@@ -25,12 +25,11 @@ xml.archive :xmlns => "http://rs.tdwg.org/dwc/text/",
     xml.id :index => 0
     core_terms.each_with_index do |tuple, i|
       next if i == 0
-      name, uri, default = tuple
-      if default
-        xml.field :index => i, :default => default, :term => uri
-      else
-        xml.field :index => i, :term => uri
-      end
+      name, uri, default, method_name, vocabulary_uri = tuple
+      attrs = { index: i, term: uri }
+      attrs[:default] = default if default
+      attrs[:vocabulary] = vocabulary_uri if vocabulary_uri
+      xml.field attrs
     end
   end
   

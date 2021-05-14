@@ -1,6 +1,17 @@
 module DarwinCore
   class Occurrence
 
+    # Terms are tuples of (
+    #   term name,
+    #   term URI,
+    #   default value,
+    #   Observation method to call to get the value if it differs from the term name,
+    #   vocabulary URI
+    # )
+    # The easiest way to find new term URI's is to use
+    # http://tools.gbif.org/dwca-assistant/. Vocabularies that GBIF understands
+    # are at https://rs.gbif.org/vocabulary, though it's probably only best to
+    # specify one if we're actually adhering to it.
     TERMS = [
       %w(id id),
       %w(occurrenceID http://rs.tdwg.org/dwc/terms/occurrenceID),
@@ -45,6 +56,21 @@ module DarwinCore
       %w(rightsHolder http://purl.org/dc/terms/rightsHolder),
       %w(inaturalistLogin http://xmlns.com/foaf/0.1/nick)
     ]
+    ANNOTATION_TERMS = [
+      ["sex", "http://rs.tdwg.org/dwc/terms/sex", nil, "gbif_sex", "http://rs.gbif.org/vocabulary/gbif/sex"]
+    ]
+    ANNOTATION_CONTROLLED_ATTRIBUTES = {}
+    # ANNOTATION_TERMS.each do |name, uri, default, method_name, vocabulary|
+    #   ANNOTATION_CONTROLLED_ATTRIBUTES[name] = ControlledTerm.
+    #     joins(:labels).
+    #     where( is_value: false, active: true ).
+    #     where( "LOWER(controlled_term_labels.label) = ?", name.downcase ).
+    #     first
+    # end
+    cattr_accessor :annotation_controlled_attributes do
+      {}
+    end
+    TERMS += ANNOTATION_TERMS
     TERM_NAMES = TERMS.map{|name, uri, default, method| name}
 
     ALA_EXTRA_TERMS = [
@@ -337,6 +363,31 @@ module DarwinCore
 
       def positioningMethod
         positioning_method
+      end
+
+      # Attempting to match terms used on iNat to https://rs.gbif.org/vocabulary/gbif/sex.xml
+      def gbif_sex
+        winning_value = winning_annotation_value_for_term( "sex" )
+        case winning_value
+        when "cannot be determined"
+          "undetermined"
+        else
+          winning_value
+        end
+      end
+
+      def winning_annotation_value_for_term( term )
+        return if annotations.blank?
+        DarwinCore::Occurrence.annotation_controlled_attributes[term] ||= ControlledTerm.
+          joins(:labels).
+          where( is_value: false, active: true ).
+          where( "LOWER(controlled_term_labels.label) = ?", term ).
+          first
+        controlled_attribute = DarwinCore::Occurrence.annotation_controlled_attributes[term]
+        return unless controlled_attribute
+        winning_anno = annotations.detect{|a| a.controlled_attribute_id == controlled_attribute.id && a.vote_score >= 0}
+        return unless winning_anno
+        winning_anno.controlled_value.label.downcase
       end
 
     end
