@@ -945,13 +945,15 @@ bg:
   decrease_brightness: Намали яркостта
   #Default option
   default: по подразбиране
+  #Default option
+  default_: По подразбиране
   default_invite_comment: "Страхотна снимка! Трябва да я публикувате на %{site_name}: {{INVITE_LINK}}"
-  default_observation_license: Лиценз на наблюдение по подразбиране
-  default_photo_license: Лиценз на снимка по подразбиране
+  default_observation_license: Лиценз по подразбиране за наблюдение
+  default_photo_license: Лиценз по подразбиране за снимка
   default_search_place: Място по подразбиране при търсене
   default_search_place_description: |
     Това ще е мястото по подразбиране при търсене в „Изследвайте“ и „Разпознаване“.
-  default_sound_license: Лиценз на звук по подразбиране
+  default_sound_license: Лиценз по подразбиране за звук
   delete: Изтриване
   delete_conversation: Изтрий разговора
   delete_icon?: Изтрий иконата?
@@ -1821,6 +1823,7 @@ bg:
   most_recent_observation_by_date_observed: Най-новите потвърдими наблюдения според дата на наблюдаване
   most_species: Най-много видове
   most_observed_species: Най-наблюдавани видове
+  multiple_select_option: '-- множествен --'
   multiple_taxa_for_taxon_change: "Множество таксони (вход за размяна/обединяване, изход за разделяне)"
   must_be_observed_after: |
     трябва да е наблюдавано след %{operand}
@@ -2956,6 +2959,7 @@ bg:
   save_comment: Запази коментара
   save_draft: Запази чернова
   save_fields: Запази полетата
+  save_flag: Запази маркера
   save_guide_taxon: Запази таксона на ръководството
   save_identification: Запази разпознаването
   save_observation: Запази наблюдението
