@@ -57,16 +57,9 @@ module DarwinCore
       %w(inaturalistLogin http://xmlns.com/foaf/0.1/nick)
     ]
     ANNOTATION_TERMS = [
-      ["sex", "http://rs.tdwg.org/dwc/terms/sex", nil, "gbif_sex", "http://rs.gbif.org/vocabulary/gbif/sex"]
+      ["sex", "http://rs.tdwg.org/dwc/terms/sex", nil, "gbif_sex", "http://rs.gbif.org/vocabulary/gbif/sex"],
+      ["lifeStage", "http://rs.tdwg.org/dwc/terms/lifeStage", nil, "gbif_lifeStage", "http://rs.gbif.org/vocabulary/gbif/life_stage"]
     ]
-    ANNOTATION_CONTROLLED_ATTRIBUTES = {}
-    # ANNOTATION_TERMS.each do |name, uri, default, method_name, vocabulary|
-    #   ANNOTATION_CONTROLLED_ATTRIBUTES[name] = ControlledTerm.
-    #     joins(:labels).
-    #     where( is_value: false, active: true ).
-    #     where( "LOWER(controlled_term_labels.label) = ?", name.downcase ).
-    #     first
-    # end
     cattr_accessor :annotation_controlled_attributes do
       {}
     end
@@ -80,6 +73,66 @@ module DarwinCore
       %w(positioningDevice https://www.inaturalist.org/terms/positioningDevice),
       %w(positioningMethod https://www.inaturalist.org/terms/positioningMethod)
     ]
+
+    GBIF_LIFE_STAGES = %w(
+      adult
+      agamont
+      ammocoete
+      bipinnaria
+      blastomere
+      calf
+      caterpillar
+      chick
+      eft
+      egg
+      elver
+      embryo
+      fawn
+      foal
+      fry
+      gamete
+      gametophyte
+      gamont
+      glochidium
+      grub
+      hatchling
+      imago
+      infant
+      juvenile
+      kit
+      kitten
+      larva
+      larvae
+      leptocephalus
+      maggot
+      nauplius
+      nymph
+      ovule
+      ovum
+      planula
+      polewig
+      pollen
+      polliwig
+      polliwog
+      pollywog
+      polwig
+      protonema
+      pup
+      pupa
+      puppe
+      seed
+      seedling
+      sperm
+      spore
+      sporophyte
+      tadpole
+      trochophore
+      veliger
+      whelp
+      wriggler
+      zoea
+      zygote
+    )
 
     # Extend observation with DwC methods.  For reasons unclear to me, url
     # methods are protected if you instantiate a view *outside* a model, but not
@@ -376,12 +429,19 @@ module DarwinCore
         end
       end
 
-      def winning_annotation_value_for_term( term )
+      def gbif_lifeStage
+        winning_value = winning_annotation_value_for_term( "lifeStage", inat_term: "Life Stage" )
+        return winning_value if GBIF_LIFE_STAGES.include?( winning_value )
+        nil
+      end
+
+      def winning_annotation_value_for_term( term, options = {} )
         return if annotations.blank?
+        inat_term = options.delete(:inat_term) || term
         DarwinCore::Occurrence.annotation_controlled_attributes[term] ||= ControlledTerm.
           joins(:labels).
           where( is_value: false, active: true ).
-          where( "LOWER(controlled_term_labels.label) = ?", term ).
+          where( "LOWER(controlled_term_labels.label) = ?", inat_term.downcase ).
           first
         controlled_attribute = DarwinCore::Occurrence.annotation_controlled_attributes[term]
         return unless controlled_attribute

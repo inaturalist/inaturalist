@@ -116,5 +116,50 @@ describe DarwinCore::Occurrence do
         expect( DarwinCore::Occurrence.adapt( annotation.resource ).gbif_sex ).to be_blank
       end
     end
+    describe "lifeStage" do
+      before(:all) do
+        @controlled_attribute = ControlledTerm.make!(
+          active: true,
+          is_value: false
+        )
+        @controlled_attribute.labels << ControlledTermLabel.make!(
+          label: "Life Stage",
+          controlled_term: @controlled_attribute
+        )
+        @controlled_attribute
+      end
+      it "should leave nymph" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Nymph" )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).gbif_lifeStage ).to eq "nymph"
+      end
+      it "should leave larva" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Larva" )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).gbif_lifeStage ).to eq "larva"
+      end
+      it "ignores teneral" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Teneral" )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).gbif_lifeStage ).to be_blank
+      end
+      it "ignores subimago" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Subimago" )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).gbif_lifeStage ).to be_blank
+      end
+    end
   end
 end
