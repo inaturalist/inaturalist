@@ -1868,7 +1868,7 @@ ja:
   manage_your_relationships: ユーザーとの関係の管理
   manager: 管理者
   managers: 管理者
-  managers_can_do: マネージャーは、キュレーターができることはもちろん、プロジェクトの設定の編集やプロジェクトジャーナルの記事を書くことができます。
+  managers_can_do: マネージャーは、キュレーターができることはもちろん、プロジェクトの設定の編集やプロジェクトのニュースを書くことができます。
   managing_projects: プロジェクトの管理
   map: マップ
   map_legend: 地図記号一覧
@@ -2326,7 +2326,7 @@ ja:
       <ul>
       <li><strong>あなたのコンテンツ:</strong> あなたの観察記録について%{site_name}コミュニティから寄せられたコメント、同定、お気に入りを表示します。誰かがプロジェクトにあなたの観察記録を加えたり、新規フィールドに注釈を追加した場合には更新の通知が届きます。</li>
       <li><strong>人々:</strong>フォローしている人々の新しい観察記録、日記。</li>
-      <li><strong>生物、プロジェクト、場所: </strong>フォローしている特定の生物や場所の新しい観察記録。プロジェクトに参加すると、プロジェクトジャーナルが公開されたときに通知を受け取るように設定できます。</li>
+      <li><strong>生物、プロジェクト、場所: </strong>フォローしている特定の生物や場所の新しい観察記録。プロジェクトに参加すると、プロジェクトのニュースが公開されたときに通知を受け取るように設定できます。</li>
       <li><strong>参加した議論:</strong>他の利用者のコンテンツにコメントや同定を投稿すると、自動的にそのコンテンツのフォロワーに登録されます。フォロー解除には「フォローの管理」ツールを使います。</li>
       </ul>
   one_by_one: "１個ずつ"
@@ -2932,7 +2932,7 @@ ja:
   project_group_description: プロジェクトが属するグループ
   project_home: プロジェクトホーム
   project_icon: プロジェクトアイコン
-  project_journal: プロジェクトジャーナル
+  project_journal: ニュース
   project_id_or_url_slug: プロジェクトIDまたはURL,例：333、my-project
   project_invitations: 'プロジェクトへの招待'
   project_list: プロジェクトリスト
@@ -3039,7 +3039,7 @@ ja:
   receive_email_notifications: メール通知を受け取る
   receive_email_notifications_description: "これをオフにすると、 %{site_name} からの通知に関するメールが届かなくなります。"
   receive_email_notifications_when_people_leave_you: 以下の内容のメール配信を希望します：
-  receive_project_journal_notifications?: プロジェクトジャーナルの通知を受信しますか？
+  receive_project_journal_notifications?: ニュースの通知を受信しますか？
   receive_updates_from_this_project: このプロジェクトより新着情報を受信する
   recent: 新着
   recent_evidence_of_organism: 生物の最近の証拠
@@ -4201,6 +4201,7 @@ ja:
           プロジェクトに追加する観測記録のフィルターを指定します。複数の種（または分類群）、場所、日付、またはその他の条件を選択して、自動的に観測結果をプロジェクトに追加することができます。
         trusting_members_will_be_notified: |
           プロジェクトの要件やユーザーからの信頼に関する条件を変更しました。これにより、既に不明瞭の座標をプロジェクト管理者へ信頼して提供しているメンバーにも通知され、新しい要件でもプロジェクトを信頼するかどうかを判断する機会が与えられます。
+        users_can_follow_your_project: ユーザーはプロジェクトをフォローすることで、ニュースから最新の情報を得ることができます
         errors:
           summary_is_required: プロジェクトの概要が必要です。
       project_user_curator_coordinate_access_labels:
@@ -4218,6 +4219,13 @@ ja:
           </p>
           <p>
           この種のプロジェクトは、プロジェクトに不注意に追加した観察も統計に表示しますが、キュレータがそれらの観察の非公開または不明瞭な座標を表示することはできず、また観察者がプロジェクトの規約を遵守したとは見なしません。あなたがプロジェクトのキュレータで非公開の座標にアクセスしたい場合、あるいはまた観察をキュレーション済みのプロジェクトのチェックリストに含めたい場合は、通常のプロジェクトの場合と同様、プロジェクトに登録した人に観察を追加してもらう必要があります。
+          </p>
+        no_journal_blurb_html: |
+          <p>
+          ニュースはプロジェクトのメンバーとコミュニケーションするためのツールです。告知や優先順位の設定、プロジェクトの成果を宣伝することなどに利用できます。
+          </p>
+          <p>
+          まずは、 <a href="%{url}" class="readmore">記事の作成</a>から始めてみましょう！
           </p>
         curated_checklist_desc: |
           これはこのプロジェクトに明示的に追加され専門家が吟味したチェックリストと種数の観測であり、対象はこのイベントを行った場所と時間に記録された観測すべではありません。
@@ -4368,7 +4376,7 @@ ja:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: メッセージ
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_project_journal_posts: プロジェクトジャーナル
+        notification_preferences_project_journal_posts: ニュース
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_added_your_observations: プロジェクトがあなたの観察記録を追加するとき
         #Checkbox label for user preference about what to receive in the daily
