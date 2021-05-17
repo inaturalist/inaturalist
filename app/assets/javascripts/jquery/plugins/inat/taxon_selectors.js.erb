@@ -128,7 +128,7 @@
         input = $(wrapper).find('input[type=text]:first'),
         q = $(input).val();
     var searchExternalLink = null;
-    if ( <%= !CONFIG.content_freeze_enabled %> ) {
+    if ( !( CONFIG && CONFIG.content_freeze_enabled ) ) {
       var searchExternalLink = $('<a href="#">'+I18n.t('search_external_name_providers')+' &raquo;</a>').css({
         'font-weight': 'bold'
       }).click(function() {
