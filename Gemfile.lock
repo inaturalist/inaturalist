@@ -406,7 +406,7 @@ GEM
     mimemagic (0.3.8)
       nokogiri (~> 1)
     mini_mime (1.0.2)
-    mini_portile2 (2.5.0)
+    mini_portile2 (2.5.1)
     minitest (5.14.0)
     multi_json (1.13.1)
     multi_xml (0.6.0)
@@ -416,7 +416,7 @@ GEM
     net-ssh (5.1.0)
     netrc (0.11.0)
     newrelic_rpm (6.2.0.354)
-    nokogiri (1.11.0)
+    nokogiri (1.11.4)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     non-stupid-digest-assets (1.0.9)
@@ -720,7 +720,7 @@ DEPENDENCIES
   koala
   machinist!
   newrelic_rpm (~> 6.2.0)
-  nokogiri (~> 1.11.0)
+  nokogiri (~> 1.11.4)
   non-stupid-digest-assets
   objectify-xml!
   omniauth (>= 1.9.0)
