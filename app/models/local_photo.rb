@@ -163,7 +163,9 @@ class LocalPhoto < Photo
   end
 
   def could_be_public
-    Shared::LicenseModule::ODP_LICENSES.include?( self.license )
+    return false unless Shared::LicenseModule::ODP_LICENSES.include?( self.license )
+    return false if flags.any?{ |f| !f.resolved? }
+    true
   end
 
   def self.change_photo_bucket_if_needed( p )
@@ -298,7 +300,6 @@ class LocalPhoto < Photo
   def repair(options = {})
     reset_file_from_original
     self.file.reprocess!
-    set_urls
     [self, {}]
   end
 
