@@ -120,18 +120,26 @@ ja:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: 定着方法について
+  about_license_options: ライセンスのオプションについて
   about_licenses: ライセンスについて
   about_muting: ミュートについて
   #Header for a section describing taxon names
   about_names: 名称について
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "%{place}について"
   about_places: 場所について
   about_the_cc_licenses: クリエイティブ・コモンズ・ライセンスについて
   about_these_licenses: ライセンスについて
   about_this_bioblitz: このバイオブリッツについて
   about_this_map: この地図について
   about_this_project: このプロジェクトについて
+  about_trusting_projects: Trust Projectsについて
+  about_trusting_projects_options_any: このプロジェクトのあなたのすべての観察記録
   about_trusting_projects_options_any_desc: |-
     これには、あなたがジオプライバシーを「不明瞭」または「非公開」に設定した観察記録が含まれます。例えば、あなたの裏庭や他の人に知られたくない場所での観察記録などです。
+  about_trusting_projects_options_taxon: |-
+    このプロジェクトのあなたの観察記録のうち、絶滅危惧種のため場所が不明瞭なもののみ
   about_trusting_projects_options_taxon_desc: |-
     多くのプロジェクトでは、絶滅のおそれのある分類群を観察しているために、不明瞭になっている座標にアクセスする必要があります。
   about_trusting_projects_overview: |-
@@ -167,6 +175,7 @@ ja:
   #Tool tip for a button that adds a link to a text area
   add_a_link: リンクを追加
   add_a_name: 名前を追加
+  add_a_note: ノートを追加
   add_a_new_change_group: 新規変更グループを追加
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: 番号付き箇条書きにする
@@ -252,6 +261,7 @@ ja:
   add_several_observations_at_once: 同時に複数の観察記録を追加する。
   add_sex_female_annotation: '“性別: メス”の注釈を追加する'
   add_sex_male_annotation: '“性別: オス”の注釈を追加する'
+  add_sex_cannot_be_determined_annotation: '"生死：判別できない"の注釈を追加する'
   add_some_now: 今すぐ追加する
   add_tag: 新規タグ
   add_tags: タグを追加
@@ -553,6 +563,9 @@ ja:
   automatic_short: 自動
   automatically_add_observations_to_this_project: このプロジェクトに観察記録を自動的に追加する
   automatically_update_my_content_for_taxon_changes: 分類群の変更を自分のデータに自動的に反映
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: 平均
   back: 戻る
   back_to_all_species: すべての種に戻る
   back_to_browsing_people: ユーザー閲覧へ戻る
