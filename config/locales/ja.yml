@@ -4775,6 +4775,9 @@ ja:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: カンマまたはスラッシュを含めないでください
+              should_match_english_translation: |
+                は英語にしなければいけません。しかし、現在は「%{suggested}」の%{suggested_locale}訳と一致しています。そのような意味であれば「%{suggested}」を使用してください。そうすれば、その言語でサイトを見たときに翻訳されます。
+              should_be_in_english: は英語にしてください。
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 この言語の名前は種の学名と一致してはいけません
