@@ -161,5 +161,49 @@ describe DarwinCore::Occurrence do
         expect( DarwinCore::Occurrence.adapt( annotation.resource ).gbif_lifeStage ).to be_blank
       end
     end
+    describe "reproductiveCondition" do
+      before(:all) do
+        @controlled_attribute = ControlledTerm.make!(
+          active: true,
+          is_value: false,
+          multivalued: true
+        )
+        @controlled_attribute.labels << ControlledTermLabel.make!(
+          label: "Plant Phenology",
+          controlled_term: @controlled_attribute
+        )
+        @controlled_attribute
+      end
+      it "should add flowering for Plant Phenology=Flowering" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Flowering" )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).reproductiveCondition ).to eq "flowering"
+      end
+      it "should be blank for Plant Phenology=Cannot Be Determined" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Cannot Be Determined" )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).reproductiveCondition ).to be_blank
+      end
+      it "should concatenate multiple values with pipes" do
+        obs = Observation.make!
+        Annotation.make!(
+          resource: obs,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Flowering" )
+        )
+        Annotation.make!(
+          resource: obs,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Fruiting" )
+        )
+        expect( DarwinCore::Occurrence.adapt( obs ).reproductiveCondition ).to eq "flowering|fruiting"
+      end
+    end
   end
 end

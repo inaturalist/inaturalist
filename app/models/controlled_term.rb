@@ -63,6 +63,10 @@ class ControlledTerm < ActiveRecord::Base
 
   attr_accessor :prepared_values
 
+  def to_s
+    "<ControlledTerm #{id}: #{labels.first.try(:name)}>"
+  end
+
   def self.first_term_by_label(label)
     return unless label
     first_label = ControlledTermLabel.

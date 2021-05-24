@@ -58,7 +58,8 @@ module DarwinCore
     ]
     ANNOTATION_TERMS = [
       ["sex", "http://rs.tdwg.org/dwc/terms/sex", nil, "gbif_sex", "http://rs.gbif.org/vocabulary/gbif/sex"],
-      ["lifeStage", "http://rs.tdwg.org/dwc/terms/lifeStage", nil, "gbif_lifeStage", "http://rs.gbif.org/vocabulary/gbif/life_stage"]
+      ["lifeStage", "http://rs.tdwg.org/dwc/terms/lifeStage", nil, "gbif_lifeStage", "http://rs.gbif.org/vocabulary/gbif/life_stage"],
+      ["reproductiveCondition", "http://rs.tdwg.org/dwc/terms/reproductiveCondition", nil]
     ]
     cattr_accessor :annotation_controlled_attributes do
       {}
@@ -435,8 +436,15 @@ module DarwinCore
         nil
       end
 
-      def winning_annotation_value_for_term( term, options = {} )
-        return if annotations.blank?
+      def reproductiveCondition
+        v = winning_annotations_for_term( "reproductiveCondition", inat_term: "Plant Phenology" ).map {|a|
+          a.controlled_value.label.downcase
+        }.join( "|" )
+        v == "cannot be determined" ? nil : v
+      end
+
+      def winning_annotations_for_term( term, options = {} )
+        return [] if annotations.blank?
         inat_term = options.delete(:inat_term) || term
         DarwinCore::Occurrence.annotation_controlled_attributes[term] ||= ControlledTerm.
           joins(:labels).
@@ -444,8 +452,12 @@ module DarwinCore
           where( "LOWER(controlled_term_labels.label) = ?", inat_term.downcase ).
           first
         controlled_attribute = DarwinCore::Occurrence.annotation_controlled_attributes[term]
-        return unless controlled_attribute
-        winning_anno = annotations.detect{|a| a.controlled_attribute_id == controlled_attribute.id && a.vote_score >= 0}
+        return [] unless controlled_attribute
+        annotations.select{|a| a.controlled_attribute_id == controlled_attribute.id && a.vote_score >= 0}
+      end
+
+      def winning_annotation_value_for_term( term, options = {} )
+        winning_anno = winning_annotations_for_term( term, options ).first
         return unless winning_anno
         winning_anno.controlled_value.label.downcase
       end
