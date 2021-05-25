@@ -225,7 +225,8 @@ class Photo < ActiveRecord::Base
       f.id != flag.id && f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved?
     end
     # flagged photos should move to the public bucket, so make sure they end up in the right place
-    if self.is_a?( LocalPhoto ) && options[:action] == "created"
+    # resolved copyright flags include an addition step later to restore the photo
+    if self.is_a?( LocalPhoto ) && ( options[:action] == "created" || !flag_is_copyright )
       change_photo_bucket_if_needed
     end
     # For copyright flags, we need to change the photo URLs when flagged, and
