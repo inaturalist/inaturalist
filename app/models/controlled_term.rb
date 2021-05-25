@@ -81,7 +81,7 @@ class ControlledTerm < ActiveRecord::Base
 
   def term_label(options = { })
     options[:locale] = options[:locale].to_s || "en"
-    all_labels = labels.order(:id)
+    all_labels = labels.sort_by(&:id)
     if options[:taxon] && options[:taxon].is_a?(Taxon)
       if match = all_labels.detect{ |l| l.locale == options[:locale] &&
           l.valid_within_taxon && options[:taxon].has_ancestor_taxon_id(l.valid_within_taxon.id) }
