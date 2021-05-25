@@ -3649,7 +3649,7 @@ uk:
   projects_you_admin: Проєкти, що адмініструєте ви
   proposed_taxa_that_contradict_the_community_id: Запропоновані таксони, які суперечать ID спільноти
   proposed_taxa_that_support_the_community_id: Запропоновані таксони, які співпадають з ID спільноти
-  protozoans: протисти
+  protozoans: найпростіші
   provider_authorizations: Авторизація провайдера
   public_domain: Публічний домен
   publish: Опублікувати
@@ -6283,9 +6283,34 @@ uk:
     shared:
       blocked:
         youve_been_blocked: Вас було заблоковано
+        youve_been_blocked_desc: |
+          Власник цього ресурсу заблокував вас, що завадить вам з ним
+          зв'язатися. Більшість інтерактивних функцій на цій сторінці
+          не працюватиме.
+        youve_blocked: Ви заблокували цю людину
+        youve_blocked_desc: |
+          Ви заблокували власника цього ресурсу, що завадить вам з ним
+          зв'язатися. Більшість інтерактивних функцій на цій сторінці
+          не працюватиме.
+      spam:
+        message_for_owner_and_curators_html: |
+          Цей запис було позначено як спам, тому він більше не
+          доступний для загального перегляду. Ви можете його бачити тому, що створили його, або є
+          куратором сайту. Якщо вважаєте, що це помилка, будь ласка,
+          <a href="mailto:%{email}">зв'яжіться з нами</a>.
+        this_has_been_flagged_as_spam: Це було позначено як спам
+      not_found:
+        sorry_that_doesnt_exist: На жаль, цього не існує!
+        even_our_dedicated_search_mole_couldnt: Навіть наш спеціальний пошуковий агент нічого не знайшов!
     stats:
       index:
+        active_desc: Створювали ID, спостереження, коментар або допис за останні 30 днів
+        active_users_desc: Створювали ID, спостереження, коментар або допис за останні 30 днів
+        android_desc_html: Створено за допомогою <a href="%{url}">iNaturalist Android</a>
         identifiers_desc: Додали визначення до чужих спостережень цього дня
+        website_desc_html: |
+          Створені за допомогою веб-сайтів <a href="https://www.inaturalist.org">iNaturalist</a>
+          або <a href="%{url}">iNaturalist Network</a>
     taxa:
       show:
         charts_help_other: |

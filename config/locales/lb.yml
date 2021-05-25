@@ -402,6 +402,7 @@ lb:
   automatically_add_observations_to_this_project: Automatesch Observatioune bei dëse Projet derbäisetzen
   back: Zréck
   back_to_all_species: Zréck op all Aarten
+  back_to_browsing_people: Zeréck zu Léit duerchsichen
   back_to_calendar: "Zréck op de Kalenner vum %{user}}"
   back_to_editing_observation: Zréck op d'Ännere vun der Observatioun
   back_to_friends: Zréck bei d'Frënn
@@ -441,9 +442,13 @@ lb:
   bold_text: fetten Text
   breadcrumbs: Broutgrimmelen
   brown: brong
+  browse: Duerchsichen
   browse_all_projects: All Projeten duerchsichen
   browse_all_species: All Aarten duersichen
+  browse_observations: Observatiounen duerchsichen
+  browse_people: Zeréck zu Léit duerchsichen
   browse_projects: Projeten duerchsichen
+  browse_species_that_occur_near_this_observation: Aarten duerchsichen déi no un dëser Observatioun fonnt gi sinn.
   by: vum
   by_everyone: Vu jidderengem
   by_user: "Vum %{user}"
@@ -732,6 +737,7 @@ lb:
   error_updating_photo: "Feeler beim Aktualiséiere vun der Foto: %{photo_errors}"
   establishment:
     endemic: endemesch
+    introduced: Ageféieren
     native: Nativ
     naturalised: Naturaliséiert
   everyone: jiddwereen
@@ -769,6 +775,7 @@ lb:
   find_a_place: Eng Plaz fannen
   find_photos: Fotoe fannen
   find_places: Plaze fannen
+  find_some_people_to_follow: "Fannt Léit fir ze suivéieren"
   find_species: Aarten fannen
   find_your_current_location: Är aktuell Plaz fannen
   finished: Fäerdeg
@@ -797,9 +804,11 @@ lb:
   flickr_photos: Flickr-Fotoen
   #Adjective, as in a fluid layout of images
   fluid: flësseg
-  follow: Iwwerwaachen
+  follow: Suivéieren
+  follow_receive_updates_about_new_observations: Suivéieren (Updates iwwer nei Observatiounen kréien)
+  follow_user: "%{user} suivéieren"
   followed_projects: Suivéiert Projeten
-  following: Follgend
+  following: Suivéiert
   following_x_people:
     one: 'Follgen %{count} Persoun'
     other: 'Follgen %{count} Persounen'
@@ -894,12 +903,14 @@ lb:
   interactions: Interaktiounen
   internal_server_error: Interne Feeler um Server
   internal_taxon_rank: Interne Taxon Rang
+  introduced: Ageféieren
+  introduced_in_place: "Ageféieren zu %{place}"
   invitation: Invitatioun
   invite: invitéieren
   invite_people: Leit invitéieren
   invite_people_to_project: "Leit op %{project} invitéieren"
   invite_your_friends: Invitéiert Är Frënn
-  is_not_following_anyone: folgt kengem
+  is_not_following_anyone: suivéiert kengem
   is_this_offensive_html: 'Ass dest <a href="/help#inappropriate"> onubruechte</a>, Spam oder beleidegent?'
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: kursiven Text
@@ -1277,7 +1288,7 @@ lb:
   observations_by_user: "Observatioune vum %{user}"
   observations_deleted: Observatioune goufe geläscht.
   observations_from: Observatioune vum %{date}
-  observations_from_people_taxa_and_places_youre_following: "Observatioune vu Leit, Plazen an Taxa, déi Dir iwwerwaacht."
+  observations_from_people_taxa_and_places_youre_following: "Observatioune vu Leit, Plazen an Taxa, deenen dir suivéiert."
   observations_from_this_place: Observatioune vun dëser Plaz
   observations_from_this_project: Observatioune vun dësem Projet
   observations_map: Observatiounen / Kaart
@@ -1304,6 +1315,12 @@ lb:
   on_caps: "Un"
   on_day: "um"
   onboarding:
+    observe_panel_title: Loosst eis ufänken an post a puer Observatiounen
+    observe_panel_body_p1_local: Braucht Dir Inspiratioun? Hei sinn e puer Organismen dei an der Géigend observéiert goufen...
+    observe_panel_body_p2: Gitt eraus an observéiert en individuellen Organismus. Wielt eppes wëlles an huelt eng kloer, Vollformat Foto. Wann Dir schonn eng Foto vun eppes wëlles hutt, <a href="%{new_observation_path}">füügt se elo bäi</a>. Dir kënnt och d'%{site_name} mobil Apps benotze fir Observatiounen eropzehuelen.
+    observe_panel_body_p3: Wann Dir Är Observatioune gedeelt hutt, weist dës Säit Iech Updates aus der Gemeinschaft a Form vu Kommentaren an Bestëmmungen. Wee weess wat Dir entdeckt!
+    follow_panel_title_local: Suivéiert Naturalisten an der Géigend
+    follow_panel_body: Wann Dir dës Profiller besicht an op de Follow Knäppche klickt, da sidd Dir benoriichtegt wann se Observatioune posten
     following_panel_title: Leit, Taxa a Plazen iwwerwaachen
     following_panel_body: |
       Op %{site_name} kënnt Dir Leit erausichen deenen hir gepoust Observatiounen Dir verfollege wëllt. Dir kënnt Iech och op verschidden Aarten abonnéieren, fir nei Observatioune vun dësen Aarten am A ze halen, oder datselwecht och mat Plaze maachen.
@@ -1353,6 +1370,7 @@ lb:
   personal_message: Perséinleche Message
   per_page: "Pro Säit"
   photo: Foto
+  photo_browser: Fotoen duerchsichen
   photo_deleted: Foto geläscht
   photo_type: Phototyp
   photos_from: Fotoe vu(n)
