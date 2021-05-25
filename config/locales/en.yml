@@ -1034,7 +1034,12 @@ en:
     place: Place to which this status is restricted.
     url: URL for a page describing this status.
     geoprivacy: Default geoprivacy for observations of this taxon
-    iucn: Equivalent IUCN Red List code
+    iucn: |
+      Equivalent IUCN Red List code. This is not the actual IUCN assessment,
+      just the IUCN code that best matches the threat of coordinate disclosure
+      implied by this status. This will override the geoprivacy if it is "Least
+      Concern" or below, so if you've want to obscure observations of this
+      taxon, set this to "Near Threatened" or above.
   conservation_status_geoprivacy_desc: |
     Default geoprivacy applied to all observations of this taxon in this place
   contact_support: Contact Support
