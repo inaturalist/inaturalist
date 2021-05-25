@@ -112,7 +112,13 @@ class ConservationStatus < ActiveRecord::Base
   end
 
   def normalize_geoprivacy
-    self.geoprivacy = nil if geoprivacy.blank?
+    if geoprivacy.blank?
+      self.geoprivacy = nil
+    else
+      self.geoprivacy = geoprivacy.to_s.downcase.underscore
+    end
+    geoprivacies = [Observation::OPEN, Observation::OBSCURED, Observation::PRIVATE]
+    self.geoprivacy = nil unless geoprivacies.include?( geoprivacy )
     true
   end
 

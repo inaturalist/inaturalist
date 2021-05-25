@@ -11,11 +11,10 @@ const ArticlesTab = ( {
   links,
   currentUser
 } ) => {
-  const isCurator =
-    currentUser && currentUser.roles && (
-      currentUser.roles.indexOf( "curator" ) >= 0 ||
-      currentUser.roles.indexOf( "admin" ) >= 0
-    );
+  const isCurator = currentUser && currentUser.roles && (
+    currentUser.roles.indexOf( "curator" ) >= 0
+    || currentUser.roles.indexOf( "admin" ) >= 0
+  );
   return (
     <Grid className="ArticlesTab">
       <Row>
@@ -23,17 +22,21 @@ const ArticlesTab = ( {
           <h2
             className={`text-center ${description ? "hidden" : ""}`}
           >
-            <i className="fa fa-refresh fa-spin"></i>
+            <i className="fa fa-refresh fa-spin" />
           </h2>
           <div className={description ? "" : "hidden"}>
             <h2>
-              { I18n.t( "source_" ) } { descriptionSource } { descriptionSourceUrl ? (
+              { I18n.t( "source_" ) }
+              { " " }
+              { descriptionSource }
+              { " " }
+              { descriptionSourceUrl && (
                 <a href={descriptionSourceUrl}>
-                  <i className="icon-link-external"></i>
+                  <i className="icon-link-external" />
                 </a>
-              ) : null }
+              ) }
             </h2>
-            <div dangerouslySetInnerHTML={{ __html: description }}></div>
+            <div dangerouslySetInnerHTML={{ __html: description }} />
           </div>
         </Col>
         <Col xs={3} xsOffset={1}>
@@ -56,7 +59,7 @@ const ArticlesTab = ( {
                   </a>
                   { isCurator ? (
                     <a href={`/taxon_links/${link.taxon_link.id}/edit`}>
-                      <i className="fa fa-pencil"></i>
+                      <i className="fa fa-pencil" />
                     </a>
                   ) : null }
                 </li>
@@ -68,14 +71,16 @@ const ArticlesTab = ( {
               href={`/taxon_links/new?taxon_id=${taxonId}`}
               className="btn btn-primary btn-block"
             >
-              <i className="icon-link"></i> { I18n.t( "add_link" ) }
+              <i className="icon-link" />
+              { " " }
+              { I18n.t( "add_link" ) }
             </a>
           ) : null }
         </Col>
       </Row>
     </Grid>
   );
-}
+};
 
 ArticlesTab.propTypes = {
   taxonId: PropTypes.number,

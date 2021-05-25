@@ -119,6 +119,15 @@ CSV.foreach( csv_path, headers: HEADERS ) do |row|
       next
     end
   end
+  geoprivacy = nil
+  unless row["geoprivacy"].blank?
+    geoprivacies = [Observation::OPEN, Observation::OBSCURED, Observation::PRIVATE]
+    unless geoprivacies.include?( row["geoprivacy"].to_s.downcase.underscore )
+      puts "\tGeoprivacy '#{row["geoprivacy"]}' was not recognized, skipping..."
+      skipped << identifier
+      next
+    end
+  end
   cs = ConservationStatus.new(
     taxon: taxon,
     place: place,

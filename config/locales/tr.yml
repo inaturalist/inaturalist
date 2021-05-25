@@ -2285,6 +2285,10 @@ tr:
   missing_date: Eksik Tarih
   mobile: Mobil
   moderation_history_for_user_html: '%{user} kullanıcısının moderasyon geçmişi'
+  moderation_history_desc_html: |
+    Bu, kullanıcının sınıflandırma oluşturmalarının yanı sıra moderasyon hareketlerini (örneğin yorumları gizleme veya görünür yapma), notlar ve işaretlemeleri de içerir. Bunu <strong>sadece küratörler görüntüleyebilir</strong> ve <strong>küratörler kendi geçmişlerini görüntüleyemez</strong>, bu yüzden kişi hakkındaki notları kesinlikle kişinin kendisi görüntüleyememelidir.
+  moderator_note_desc: |
+    Moderatör notları; moderasyonun kullanıcı hakkındaki kanıtlara dayalı endişeleri veya verdikleri karşılıkların kayıtlarıdır. Örneğin kukla hesap. Lütfen kullanıcı hakkındaki kişisel fikirleri veya dedikoduları dahil etme.
   #Person who executed a moderator action or flagged something
   moderator_or_flagger: Moderatör / İşaretleyici
   mollusks: yumuşakçalar
@@ -3571,8 +3575,12 @@ tr:
   ranks_lowercase_suborder: alt takım
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
   ranks_lowercase_infraorder: infra takım
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: geçiş takımı
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
   ranks_lowercase_superfamily: üst aile
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: epi familya
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
   ranks_lowercase_family: aile
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
@@ -3585,8 +3593,14 @@ tr:
   ranks_lowercase_subtribe: alt oymak
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
   ranks_lowercase_genus: cins
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: melez cins
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
   ranks_lowercase_subgenus: alt cins
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: seksiyon
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: alt seksiyon
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
   ranks_lowercase_species: tür
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
@@ -3595,6 +3609,10 @@ tr:
   ranks_lowercase_subspecies: alt tür
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
   ranks_lowercase_variety: varyasyon
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: form
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: ara melez
   ranges: Aralıklar
   ray_finned_fishes: ışınsal yüzgeçli balıklar
   re_apply_list_rules: Liste kurallarını yeniden uygula
@@ -5113,6 +5131,9 @@ tr:
       reset_place_filter: Konum Filtresini Temizle
       all_observations_in_this_taxon: Bu sınıftaki tüm gözlemler
       observations_of_exactly_this_taxon: Tam olarak bu sınıflandırmadaki gözlemler
+      focus_tree_on_this_taxon: Bu sınıflandırmadaki ağaca odaklan
+      expand_all_nodes_in_this_branch: Bu setteki tüm boğumları genişlet
+      collapse_this_branch: Bu seti daralt
       dropdowns:
         sort: Sırala
         taxonomic: Sınıflandırmasal
@@ -6647,6 +6668,7 @@ tr:
           değil şeklinde işaret koymak isterseniz, yardımcı olacaktır.
           </p>
       show:
+        take_a_moment_to_review_html: '<a href="%{link}">Kılavuzumuzu</a> incelemek için bir kaç dakikanı ayır.'
         this_user_was_banned: Bu kullanıcı askıya alındı
         favorites_list_prompt_html: |
           En sevdiğiniz sınıfların bazılarını göstermek ister misiniz? "Favoriler" başlıklı %{link_start_tag}bir liste oluştur%{link_end_tag} ve böylece en son eklenenler bu alanda görünecektir.

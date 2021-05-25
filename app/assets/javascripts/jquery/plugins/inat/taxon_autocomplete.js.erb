@@ -179,7 +179,7 @@ $.fn.taxonAutocomplete = function( options ) {
       success: function( data ) {
         var results = data.results || [ ];
         // show as the last item an option to search external name providers
-        if( options.searchExternal !== false && <%= !CONFIG.content_freeze_enabled %> ) {
+        if( options.searchExternal !== false && !( CONFIG && CONFIG.content_freeze_enabled ) ) {
           results.push({
             type: "search_external",
             title: I18n.t("search_external_name_providers")

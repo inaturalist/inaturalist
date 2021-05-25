@@ -849,7 +849,7 @@ lv:
   choose_a_taxon: Izvēlēties taksonu (pēc izvēles)
   choose_columns: Izvēlēties slejas
   choose_file: Izvēlēties failu
-  choose_files: Izvēlēties failus
+  choose_files: Izvēlies failus
   choose_from_your_lists: Izvēlēties no saviem sarakstiem
   choose_photos_for_this_taxon: Pievienot taksonam fotogrāfijas
   choose_photos_to_tag_from_photostream: Izvēlēties fotogrāfijas atzīmēšanai no savas galerijas
@@ -1114,7 +1114,7 @@ lv:
   curator_application_inelligible_error: |
     Lai pieteiktos pārziņa statusam, kontam jābūt aktīvam vismaz 60 dienas un lietotājam jāpievieno vismaz 100 identifikācijas, kas precizē galējo identifikāciju, tai skaitā paša lietotāja pievienotās identifikācijas.
   #Message shown when a curator application has been succesfully submitted
-  curator_application_success: Pieteikums pārziņa statusa iegūšanai ir iesniegts.
+  curator_application_success: Pieteikums pārziņa statusam iesniegts.
   #Header
   curator_application_what_curators_can_do: Pārziņiem pieejamās darbības
   #Description of a curator's ability to edit the taxonomy; part of a list of
@@ -1151,6 +1151,8 @@ lv:
   #preceded with "Curators cannot..."
   curator_application_what_curators_cannot_do_read_messages_html: |
     Lasīt citu cilvēku sarakstes.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Pieteikums pārziņa statusam
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Vairākus mēnešus esi pievienojis identifikācijas un novērojumus un tā plāno turpināt.
   #A requirement for becoming a curator; part of a list, so you might imagine
@@ -1730,7 +1732,7 @@ lv:
   id_categories:
     tooltips:
       leading: |
-        Šis ir viens no kopienas piedāvātajiem taksoniem. Iespējams, ka identifikācija tuvojas pareizajai atbildei.
+        Šis ir viens no kopienas piedāvātajiem taksoniem. Iespējams, ka identifikācija drīz kļūs pavisam precīza.
       improving: |
         Pirmais taksona minējums, kam piekrīt kopiena. Šādi tiek precizēts kopienas piedāvātais taksons.
   id_withdrawn: ID atsaukta
@@ -2561,7 +2563,7 @@ lv:
   observations_by_user: "Lietotāja %{user} novērojumi"
   observations_deleted: Novērojumi izdzēsti.
   observations_fields_are: |
-    Novērojuma lauki ir papildu informācija par novērojumu, piemēram, novēroto indivīdu skaits, biotopa apraksts un jebkas cits, ko izdomāsi. Projektos ir iespējams norādīt, kurus laukus būtu vēlams aizpildīt.
+    Novērojuma lauki ir papildu informācija par novērojumu, piemēram, novēroto indivīdu skaits, dzīvotnes apraksts un jebkas cits, kas ienāk prātā. Projektos ir iespējams norādīt, kurus laukus būtu vēlams aizpildīt.
   observations_from: Novērojumi no %{date}
   observations_from_people_taxa_and_places_youre_following: "Novērojumi no cilvēkiem, vietām un taksoniem, kuriem tu seko."
   observations_from_this_place: Novērojumi šajā vietā
@@ -2629,7 +2631,7 @@ lv:
     updates_by_you_panel_title: Šo cilni var izmantot, lai ātri izfiltrētu tikai tava satura aktualitātes.
     updates_by_you_panel_body: '"Visas aktualitātes" cilnē saņemsi paziņojumus ne tikai par savu saturu, bet arī par lietotājiem, taksoniem un vietām, kam tu seko, izmantojot labajā pusē atrodamo "Abonementi" rīku.'
     youve_got_updates_panel_title: Saņemti jauni paziņojumi.
-    youve_got_updates_panel_body_p1: 'Esi lietas kursā ar šiem paziņojumiem:'
+    youve_got_updates_panel_body_p1: 'Esi lietas kursā par notiekošo ar paziņojumiem:'
   one_of_your_lists: "viens no taviem sarakstiem..."
   only_a_project_manager_can_add: Tikai projekta menedžeris var piešķirt projekta pārziņa statusu
   only_administrators_may_access_that_page: Tikai administratoriem ir piekļuve šai lapai
