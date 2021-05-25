@@ -1728,7 +1728,7 @@ cs:
   first_observation_by_date_added: První pozorování podle data přidání
   first_observer: první pozorovatel
   #Verb form, as in "Flag this item"
-  flag: Vlajka
+  flag: Označit
   flag_as_inappropriate: Označit jako nevhodné
   flag_an_item: Označit položku
   flag_as_spammer: Označit jako spammera
@@ -3731,9 +3731,9 @@ cs:
       many: čeledí
       other: čeledi
     subfamily: podčeleď
-    supertribe: nadkmen
-    tribe: kmen
-    subtribe: Podkmen
+    supertribe: Nadtribus
+    tribe: Tribus
+    subtribe: Podtribus
     genus: rod
     x_genera:
       one: Rod
@@ -3798,11 +3798,11 @@ cs:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
   ranks_lowercase_subfamily: podčeleď
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
-  ranks_lowercase_supertribe: nadkmen
+  ranks_lowercase_supertribe: nadtribus
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
-  ranks_lowercase_tribe: kmen
+  ranks_lowercase_tribe: tribus
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
-  ranks_lowercase_subtribe: podkmen
+  ranks_lowercase_subtribe: podtribus
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
   ranks_lowercase_genus: rod
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
@@ -3814,7 +3814,7 @@ cs:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
   ranks_lowercase_subsection: podsekce
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
-  ranks_lowercase_complex: komplexní
+  ranks_lowercase_complex: komplex druhů
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
   ranks_lowercase_species: druh
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
@@ -7555,103 +7555,103 @@ cs:
         u: "@vow"
         default: "@con"
       "@gender":
-        m: samec
-        f: samice
-        "n": neutrum
+        m: mužské
+        f: ženské
+        "n": střední
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        application: "@n"
+        application: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        assessment_section: "@n"
+        assessment_section: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        atlas: "@n"
+        atlas: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        check_list: "@n"
+        check_list: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        class: "@n"
+        class: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        comment: "@n"
+        comment: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        complex: "@n"
+        complex: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        epifamily: "@n"
+        epifamily: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        family: "@n"
+        family: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        flag: "@n"
+        flag: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
-        form: "@n"
+        form: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        genus: "@n"
+        genus: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        genushybrid: "@n"
+        genushybrid: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        hybrid: "@n"
+        hybrid: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        identification: "@n"
+        identification: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        infraclass: "@n"
+        infraclass: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        infraorder: "@n"
+        infraorder: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        journal: "@n"
+        journal: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        listed_taxon: "@n"
+        listed_taxon: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        note: "@n"
+        note: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         observation: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         observation_field: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        order: "@n"
+        order: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        phylum: "@n"
+        phylum: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         place: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        post: "@n"
+        post: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        profile: "@n"
+        profile: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        project: "@n"
+        project: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        section: "@n"
+        section: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        species: "@n"
+        species: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        subclass: "@n"
+        subclass: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        subfamily: "@n"
+        subfamily: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        subgenus: "@n"
+        subgenus: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        suborder: "@n"
+        suborder: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        subphylum: "@n"
+        subphylum: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        subsection: "@n"
+        subsection: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        subspecies: "@n"
+        subspecies: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        subtribe: "@n"
+        subtribe: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        superclass: "@n"
+        superclass: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        superfamily: "@n"
+        superfamily: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        superorder: "@n"
+        superorder: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        supertribe: "@n"
+        supertribe: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        taxon: "@n"
+        taxon: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        taxon_change: "@n"
+        taxon_change: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_drop: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        taxon_link: "@n"
+        taxon_link: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_merge: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -7661,9 +7661,9 @@ cs:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon_swap: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        tribe: "@n"
+        tribe: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        variety: "@n"
+        variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@n"
   #Title of a section warning the user about something
