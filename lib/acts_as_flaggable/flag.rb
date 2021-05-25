@@ -79,7 +79,6 @@ class Flag < ActiveRecord::Base
   end
 
   def notify_flaggable_on_update
-    debugger
     if flaggable && flaggable.respond_to?(:flagged_with) && resolved_changed?
       if resolved?
         flaggable.flagged_with(self, action: "resolved")
