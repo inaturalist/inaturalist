@@ -979,20 +979,22 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def self.reindex_observations( taxon_id, place_id )
-    page = 1
+    last_id = 0
     per_page = 1000
     while true
       res = Observation.elastic_search(
         source: ["id"],
+        sort: { id: "asc" },
         filters: [
+          { range: { id: { gt: last_id } } },
           { term: { private_place_ids: place_id } },
           { term: { "taxon.ancestor_ids": taxon_id } }
         ]
-      ).page( page ).per_page( per_page )
+      ).per_page( per_page )
       ids = res.response.hits.hits.map(&:_id).map(&:to_i)
       break if ids.blank?
       Observation.elastic_index!( delay: true, ids: ids )
-      page += 1
+      last_id += ids.last
     end
   end
 
