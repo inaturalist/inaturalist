@@ -207,6 +207,21 @@ describe ListedTaxon do
       expect( lt ).not_to be_valid
       expect( lt.errors[:establishment_means] ).not_to be_blank
     end
+
+    it "should reindex observations of taxon when establishment means changes to introduced" do
+      l = CheckList.make!
+      t = Taxon.make!
+      lt = ListedTaxon.make!( list: l, taxon: t )
+      expect( lt.establishment_means ).to be_blank
+      o = Observation.make!( taxon: t, latitude: l.place.latitude, longitude: l.place.longitude )
+      Delayed::Worker.new.work_off
+      es_o = Observation.elastic_search( where: { id: o.id } ).results[0]
+      expect( es_o.taxon.introduced ).to be false
+      lt.update_attributes( establishment_means: ListedTaxon::INTRODUCED )
+      Delayed::Worker.new.work_off
+      es_o = Observation.elastic_search( where: { id: o.id } ).results[0]
+      expect( es_o.taxon.introduced ).to be true
+    end
   end
   
   describe "check list user removal" do
