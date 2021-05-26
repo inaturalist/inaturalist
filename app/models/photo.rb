@@ -224,10 +224,17 @@ class Photo < ActiveRecord::Base
     other_unresolved_copyright_flags_exist = flags.detect do |f|
       f.id != flag.id && f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved?
     end
+    # flagged photos should move to the public bucket, so make sure they end up in the right place
+    # resolved copyright flags include an additional step later to restore the photo
+    if self.is_a?( LocalPhoto ) && (
+      %w(created unresolved).include?(options[:action]) || !flag_is_copyright
+    )
+      change_photo_bucket_if_needed
+    end
     # For copyright flags, we need to change the photo URLs when flagged, and
     # reset them when there are no more copyright flags
     if flag_is_copyright && !other_unresolved_copyright_flags_exist
-      if options[:action] == "created"
+      if %w(created unresolved).include?(options[:action])
         styles = %w(original large medium small thumb square)
         updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
         updates += styles.map do |s|
