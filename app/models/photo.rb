@@ -215,7 +215,13 @@ class Photo < ActiveRecord::Base
       :file_file_size, :file_processing, :file_updated_at, :mobile,
       :original_url]
     options[:methods] ||= []
-    options[:methods] += [:license_name, :license_url, :attribution, :type]
+    options[:methods] += [
+      :license_code,
+      :license_name,
+      :license_url,
+      :attribution,
+      :type
+    ]
     super(options)
   end
 
