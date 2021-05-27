@@ -51,7 +51,8 @@ const TAXON_FIELDS = {
   default_photo: {
     attribution: true,
     license_code: true,
-    url: true
+    url: true,
+    square_url: true
   },
   iconic_taxon_name: true,
   id: true,
@@ -148,9 +149,8 @@ const FIELDS = {
   observed_on: true,
   observed_time_zone: true,
   ofvs: {
-    datatype: true,
-    name: true,
     observation_field: {
+      datatype: true,
       description: true,
       name: true,
       taxon: {
