@@ -3724,6 +3724,7 @@ nl:
   recent_observations: Recente waarnemingen
   recent_observations_: Recente waarnemingen
   recent_post: Recent bericht
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Recente waarnemingen door %{login} (Atom)"
   recent_observations_by: "Recente waarnemingen door %{login}"
   recently_active: Onlangs actief
@@ -4328,7 +4329,6 @@ nl:
   that_photo_doesnt_exist: Die foto bestaat niet.
   that_observation_doesnt_exist: Die waarneming bestaat niet.
   that_observation_doesnt_have_any_photos: "Die waarneming bevat geen foto's."
-  that_observation_hasnt_been_added_this_project: Die waarneming werd niet aan dit project toegevoegd.
   that_observation_no_longer_exists: Deze waarneming bestaat niet langer.
   that_project_doesnt_exist: "Dat project bestaat niet."
   that_role_doesnt_exist: Die rol bestaat niet
@@ -6069,7 +6069,6 @@ nl:
     stats:
       index:
         active_desc: Heeft in de afgelopen 30 dagen een determinatie, waarneming, reactie of bericht gemaakt
-        active_users_desc: Heeft in de afgelopen 30 dagen een determinatie, waarneming, reactie of bericht gemaakt
         android_desc_html: Gemaakt met de <a href="%{url}">iNaturalist Android app</a>
         avg_ttcid: Gem TTCID
         avg_ttid: Gem TTID
