@@ -3713,6 +3713,7 @@ da:
   recent_observations: Seneste observationer
   recent_observations_: Seneste observationer
   recent_post: Seneste indlæg
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Seneste observationer af %{login} (Atom)"
   recent_observations_by: "Seneste observationer af %{login}"
   recently_active: Nyligt aktive
@@ -4319,7 +4320,6 @@ da:
   that_photo_doesnt_exist: Dette foto eksisterer ikke.
   that_observation_doesnt_exist: Denne observation eksisterer ikke
   that_observation_doesnt_have_any_photos: "Denne observation har ikke nogle foto´s."
-  that_observation_hasnt_been_added_this_project: Denne observation er ikke tilføjet dette projekt.
   that_observation_no_longer_exists: Denne observation eksisterer ikke længere.
   that_project_doesnt_exist: "Dette projekt eksisterer ikke."
   that_role_doesnt_exist: Denne rolle eksisterer ikke
@@ -6266,7 +6266,6 @@ da:
     stats:
       index:
         active_desc: Oprettede et ID, en obs, en kommentar eller et indlæg i de forgangne 30 dage
-        active_users_desc: Oprettede et ID, en obs, en kommentar eller et indlæg i de forgangne 30 dage
         android_desc_html: Oprettet via <a href="%{url}">iNaturalist Android app</a>
         avg_ttcid: Gnms TTFID
         avg_ttid: Gnms TTID
