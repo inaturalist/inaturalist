@@ -2704,6 +2704,7 @@ ar:
   recent_observations: الملاحظات الأخيرة
   recent_observations_: الملاحظات الأخيرة
   recent_post: المنشور الأخير
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "الملاحظات الأخيرة لـ%{login} (أتوم)"
   recent_observations_by: "الملاحظات الأخيرة لـ%{login}"
   recently_active: نشط مؤخرا
@@ -3197,7 +3198,6 @@ ar:
   that_photo_doesnt_exist: هذه الصورة غير موجودة.
   that_observation_doesnt_exist: هذه الملاحظة غير موجودة.
   that_observation_doesnt_have_any_photos: "هذه الملاحظة ليس لديها أي صور."
-  that_observation_hasnt_been_added_this_project: لم تتم إضافة هذه الملاحظة إلى هذا المشروع.
   that_observation_no_longer_exists: لم تعد هذه الملاحظة موجودة.
   that_project_doesnt_exist: "هذا المشروع غير موجود."
   that_role_doesnt_exist: هذا الدور غير موجود
@@ -4883,7 +4883,6 @@ ar:
     stats:
       index:
         active_desc: تم إنشاء معرف أو ملاحظة أو تعليق أو منشور في الثلاثين يوما الماضية
-        active_users_desc: تم إنشاء معرف أو ملاحظة أو تعليق أو منشور في الثلاثين يوما الماضية
         android_desc_html: تم إنشاؤها عبر <a href="%{url}">تطبيق أندرويد إيناتوراليست</a>
         avg_ttcid: متوسط ​​TTCID
         avg_ttid: متوسط ​​TTID
