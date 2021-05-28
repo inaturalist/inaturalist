@@ -3773,6 +3773,7 @@ ru:
   recent_observations: Последние наблюдения
   recent_observations_: Последние наблюдения
   recent_post: Последние сообщения
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Последние наблюдения %{login} (Атом)"
   recent_observations_by: "Последние наблюдения %{login}"
   recently_active: Последние активные
@@ -4407,7 +4408,6 @@ ru:
   that_photo_doesnt_exist: Это фото не существует.
   that_observation_doesnt_exist: Это наблюдение не существует.
   that_observation_doesnt_have_any_photos: "Это наблюдение не содержит никаких фото."
-  that_observation_hasnt_been_added_this_project: Это наблюдение не было добавлено к данному проекту.
   that_observation_no_longer_exists: Это наблюдение больше не существует.
   that_project_doesnt_exist: "Такой проект не существует."
   that_role_doesnt_exist: Эта роль не существует
@@ -6147,7 +6147,6 @@ ru:
     stats:
       index:
         active_desc: Добавляли идентификации, наблюдения, комментарии или сообщения в журнале в предыдущие 30 дней
-        active_users_desc: Добавляли идентификации, наблюдения, комментарии или сообщения в журнале в предыдущие 30 дней
         android_desc_html: Создано с помощью <a href="%{url}">приложения iNaturalist для Android</a>
         avg_ttcid: Ср TTCID
         avg_ttid: Ср TTID
