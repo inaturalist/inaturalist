@@ -3696,6 +3696,7 @@ sv:
   recent_observations: Senaste fynden
   recent_observations_: Senaste Fynden
   recent_post: Senaste inlägg
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Senaste fynden av %{login} (Atom)"
   recent_observations_by: "Senaste fynden av %{login}"
   recently_active: Senaste aktiva
@@ -4296,7 +4297,6 @@ sv:
   that_photo_doesnt_exist: Den bilden finns inte.
   that_observation_doesnt_exist: Det fyndet finns inte.
   that_observation_doesnt_have_any_photos: "Det fyndet har inga bilder."
-  that_observation_hasnt_been_added_this_project: Det fyndet har inte lagts till detta projekt.
   that_observation_no_longer_exists: Det fyndet finns inte längre.
   that_project_doesnt_exist: "Det projektet finns inte."
   that_role_doesnt_exist: Den rollen finns inte
@@ -6056,7 +6056,6 @@ sv:
     stats:
       index:
         active_desc: Skapade en bestämning, fynd, kommentar eller ett inlägg under de senaste 30 dagarna
-        active_users_desc: Skapade en bestämning, fynd, kommentar eller ett inlägg under de senaste 30 dagarna
         android_desc_html: Skapad via <a href="%{url}">iNaturalist Android-appen</a>
         avg_ttcid: Medel TTGB
         avg_ttid: Medel TTB
