@@ -3333,6 +3333,7 @@ zh-TW:
   recent_observations: 最近觀察
   recent_observations_: 最近觀察
   recent_post: 最近文章
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "最近由 %{login}（Atom）做出的觀察"
   recent_observations_by: "最近由 %{login}做出的觀察"
   recently_active: 最近活躍內容
@@ -3882,7 +3883,6 @@ zh-TW:
   that_photo_doesnt_exist: 照片不存在
   that_observation_doesnt_exist: 觀察不存在
   that_observation_doesnt_have_any_photos: "觀察沒有任何照片"
-  that_observation_hasnt_been_added_this_project: 觀察尚未添加至此專案。
   that_observation_no_longer_exists: 觀察已不存在
   that_project_doesnt_exist: "該專案不存在。"
   that_role_doesnt_exist: 該身份不存在。
@@ -5348,7 +5348,6 @@ zh-TW:
     stats:
       index:
         active_desc: 代表在前 30 日所建立的鑑定、觀察、評論、或發佈文章
-        active_users_desc: 在前 30 日所建立的鑑定、觀察、評論、或發佈文章
         android_desc_html: 代表透過 <a href="%{url}">iNaturalist Android 應用程式</a>建立
         avg_ttcid: 平均 TTCID
         avg_ttid: 平均 TTID
