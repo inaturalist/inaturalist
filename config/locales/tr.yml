@@ -3635,6 +3635,7 @@ tr:
   recent_observations: Son gözlemler
   recent_observations_: Son Gözlemler
   recent_post: Son gönderi
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "%{login} ile son gözlemler (Atom)"
   recent_observations_by: "%{login} ile son gözlemler"
   recently_active: Son Zamanlarda Etkin
@@ -4234,7 +4235,6 @@ tr:
   that_photo_doesnt_exist: Bu fotoğraf mevcut değil.
   that_observation_doesnt_exist: Bu gözlem mevcut değil.
   that_observation_doesnt_have_any_photos: "Bu gözlem herhangi bir fotoğrafa sahip değil."
-  that_observation_hasnt_been_added_this_project: Bu gözlem bu projeye eklenmedi.
   that_observation_no_longer_exists: Bu gözlem artık mevcut değil.
   that_project_doesnt_exist: "Bu proje mevcut değil."
   that_role_doesnt_exist: Bu görev mevcut değil
@@ -6124,7 +6124,6 @@ tr:
     stats:
       index:
         active_desc: Önceki 30 gün içerisinde bir tanımlama, gözlem, yorum, veya gönderi oluşturuldu
-        active_users_desc: Önceki 30 gün içerisinde bir tanımlama, gözlem, yorum, veya gönderi oluşturuldu
         android_desc_html: <a href="%{url}">iNaturalist Android uygulması</a> üzerinden oluşturuldu
         avg_ttcid: Ort TTCID
         avg_ttid: Ort TTID
