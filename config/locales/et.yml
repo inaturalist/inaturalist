@@ -2644,6 +2644,7 @@ et:
   recent_observations: Viimased vaatlused
   recent_observations_: Viimased vaatlused
   recent_post: Viimane postitus
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Viimased vaatlused kasutajalt %{login} (Atom)"
   recent_observations_by: "Viimased vaatlused kasutajalt %{login}"
   recently_active: Hiljuti aktiivne
@@ -3165,7 +3166,6 @@ et:
   that_photo_doesnt_exist: Fotot ei eksisteeri.
   that_observation_doesnt_exist: Vaatlust ei eksisteeri.
   that_observation_doesnt_have_any_photos: "Sellel vaatlusel pole fotosid."
-  that_observation_hasnt_been_added_this_project: Seda vaatlust pole antud projekti lisatud.
   that_observation_no_longer_exists: Vaatlust enam ei eksisteeri.
   that_project_doesnt_exist: "Projekti ei eksisteeri."
   that_role_doesnt_exist: Seda rolli ei eksisteeri
@@ -4292,7 +4292,6 @@ et:
     stats:
       index:
         active_desc: Lõi viimase 30 päeva jooksul määratluse, vaatluse, kommentaari või postituse
-        active_users_desc: Lõi viimase 30 päeva jooksul määratluse, vaatluse, kommentaari või postituse
         android_desc_html: Loodud <a href="%{url}">iNaturalist Android äpiga</a>
         avg_ttcid: Keskmine AKM
         avg_ttid: Keskmine AM
