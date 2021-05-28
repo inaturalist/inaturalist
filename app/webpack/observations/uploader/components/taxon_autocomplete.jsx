@@ -122,9 +122,11 @@ class TaxonAutocomplete extends React.Component {
           <span className="subtitle">{ r.subtitle }</span>
           { extraSubtitle }
         </div>
-        <a target="_blank" rel="noopener noreferrer" href={`/taxa/${r.id}`}>
-          <div className="ac-view">{ I18n.t( "view" ) }</div>
-        </a>
+        { r.type !== "message" && (
+          <a target="_blank" rel="noopener noreferrer" href={`/taxa/${r.id}`}>
+            <div className="ac-view">{ I18n.t( "view" ) }</div>
+          </a>
+        ) }
       </div>
     );
   }
