@@ -3715,6 +3715,7 @@ fr:
   recent_observations: Observations récentes
   recent_observations_: Observations récentes
   recent_post: Note récente
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Observations récentes de %{login} (Atom)"
   recent_observations_by: "Observations récentes de %{login}"
   recently_active: Actifs récemment
@@ -4314,7 +4315,6 @@ fr:
   that_photo_doesnt_exist: Cette photo n’existe pas.
   that_observation_doesnt_exist: Cette observation n’existe pas.
   that_observation_doesnt_have_any_photos: "Cette observation n’a aucune photo."
-  that_observation_hasnt_been_added_this_project: Cette observation n’a pas été ajoutée à ce projet.
   that_observation_no_longer_exists: Cette observation n’existe plus.
   that_project_doesnt_exist: "Ce projet n’existe pas."
   that_role_doesnt_exist: Ce rôle n’existe pas
@@ -6341,7 +6341,6 @@ fr:
     stats:
       index:
         active_desc: A créé une ID, une observation, un commentaire, ou un article de journal dans les 30 derniers jours
-        active_users_desc: A créé un ID, une observation, un commentaire, ou un bulletin dans les 30 derniers jours
         android_desc_html: Créée avec l'<a href="%{url}">application Android iNaturalist</a>
         avg_ttcid: TTCID moyen
         avg_ttid: TTID moyen
