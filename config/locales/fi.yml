@@ -3492,6 +3492,7 @@ fi:
   recent_observations: Viimeaikaiset havainnot
   recent_observations_: Viimeaikaiset havainnot
   recent_post: Viimeisimmät kirjoitukset
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Viimeaikaiset havainnot käyttäjältä %{login} (Atom)"
   recent_observations_by: "Tuoreet havainnot käyttäjältä %{login}"
   recently_active: Viime aikoina aktiiviset
@@ -3994,7 +3995,6 @@ fi:
   that_photo_doesnt_exist: Kuvaa ei ole olemassa.
   that_observation_doesnt_exist: Tätä havaintoa ei ole olemassa.
   that_observation_doesnt_have_any_photos: "Tässä havainnossa ei ole yhtään kuvaa."
-  that_observation_hasnt_been_added_this_project: Tätä havaintoa ei ole lisätty tähän projektiin.
   that_observation_no_longer_exists: Tätä havaintoa ei ole enää olemassa.
   that_project_doesnt_exist: "Tätä projektia ei ole olemassa."
   that_role_doesnt_exist: Tätä roolia ei ole olemassa
@@ -5294,7 +5294,6 @@ fi:
     stats:
       index:
         active_desc: Loi tunnistuksen, havainnon, kommentin tai viestin edeltävänä 30 päivänä
-        active_users_desc: Loi tunnistuksen, havainnon, kommentin tai viestin edeltävänä 30 päivänä
         android_desc_html: Luotu <a href="%{url}">iNaturalist Android-sovelluksen</a> kautta
         avg_ttcid: Keskimääräinen TTID
         avg_ttid: Keskimääräinen TTID
