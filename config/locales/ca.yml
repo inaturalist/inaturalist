@@ -3642,6 +3642,7 @@ ca:
   recent_observations: Observacions recents
   recent_observations_: Observacions recents
   recent_post: Notes recents
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Observacions recents de %{login} (Atom)"
   recent_observations_by: "Observacions recents de %{login}"
   recently_active: Actiu recentment
@@ -4242,7 +4243,6 @@ ca:
   that_photo_doesnt_exist: Aquesta foto no existeix.
   that_observation_doesnt_exist: Aquesta observació no existeix.
   that_observation_doesnt_have_any_photos: "Aquesta observació no té cap foto."
-  that_observation_hasnt_been_added_this_project: Aquesta observació no s’ha afegit al projecte.
   that_observation_no_longer_exists: Aquesta observació ja no existeix.
   that_project_doesnt_exist: "Aquest projecte ja no existeix."
   that_role_doesnt_exist: Aquest rol no existeix.
@@ -5942,7 +5942,6 @@ ca:
     stats:
       index:
         active_desc: S'ha creat una ID, observació, comentari o article en els darrers 30 dies
-        active_users_desc: S'ha creat una ID, observació, comentari o article en els darrers 30 dies
         android_desc_html: Creat des de l'<a href="%{url}">App iNaturalist d'Android</a>
         avg_ttcid: TTCID mitjana
         avg_ttid: TTID mitjana
