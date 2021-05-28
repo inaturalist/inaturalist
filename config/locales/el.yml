@@ -3556,6 +3556,7 @@ el:
   recent_observations: Πρόσφατες παρατηρήσεις
   recent_observations_: Πρόσφατες παρατηρήσεις
   recent_post: Πρόσφατη ανάρτηση
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Πρόσφατες παρατηρήσεις από %{login} (Ατομικό)"
   recent_observations_by: "Πρόσφατες παρατηρήσεις από %{login}"
   recently_active: Πρόσφατα ενεργοί
@@ -4154,7 +4155,6 @@ el:
   that_photo_doesnt_exist: Αυτή η φωτογραφία δεν υπάρχει.
   that_observation_doesnt_exist: Αυτή η παρατήρηση δεν υπάρχει.
   that_observation_doesnt_have_any_photos: "Αυτή η παρατήρηση δεν έχει καμία φωτογραφία."
-  that_observation_hasnt_been_added_this_project: Αυτή η παρατήρηση δεν έχει προστεθεί σε αυτό το πρότζεκτ.
   that_observation_no_longer_exists: Αυτή η παρατήρηση δεν υπάρχει πλέον.
   that_project_doesnt_exist: "Αυτό το πρότζεκτ δεν υπάρχει."
   that_role_doesnt_exist: Αυτός ο ρόλος δεν υπάρχει
@@ -5876,7 +5876,6 @@ el:
     stats:
       index:
         active_desc: Δημιουργήθηκε ένα ID, παρατήρηση, σχόλιο ή ανάρτηση μέσα στις προηγούμενες 30 ημέρες
-        active_users_desc: Δημιουργήθηκε ένα ID, παρατήρηση, σχόλιο ή ανάρτηση μέσα στις προηγούμενες 30 ημέρες
         android_desc_html: Δημιουργήθηκε μέσω της <a href="%{url}">εφαρμογής του iNaturalist</a>
         avg_ttcid: Μέσο TTCID
         avg_ttid: Μέσος ΧΤ
