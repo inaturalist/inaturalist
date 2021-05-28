@@ -73,8 +73,13 @@ const PROJECT_FIELDS = {
   },
   icon: true,
   project_observation_fields: {
+    id: true,
     observation_field: {
-      id: true
+      allowed_values: true,
+      datatype: true,
+      description: true,
+      id: true,
+      name: true
     }
   },
   slug: true,
@@ -110,6 +115,9 @@ const FIELDS = {
   description: true,
   faves: {
     user: USER_FIELDS
+  },
+  flags: {
+    id: true
   },
   geojson: true,
   geoprivacy: true,
@@ -212,7 +220,8 @@ const FIELDS = {
     name: true,
     observations_count: true,
     preferences: {
-      prefers_community_taxa: true
+      prefers_community_taxa: true,
+      prefers_observation_fields_by: true
     }
   } ),
   votes: {
@@ -271,6 +280,7 @@ export function windowStateForObservation( observation, state, opts = { } ) {
   const observationState = {
     observation: {
       id: observation.id,
+      uuid: observation.uuid,
       observed_on: observation.observed_on,
       user: {
         login: observation.user.login
