@@ -3838,6 +3838,7 @@ uk:
   recent_observations: Нещодавні спостереження
   recent_observations_: Нещодавні спостереження
   recent_post: Нещодавний допис
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Нещодавні спостереження від користувача %{login} (Atom)"
   recent_observations_by: "Нещодавні спостереження користувача %{login}"
   recently_active: Нещодавно активні
@@ -4475,7 +4476,6 @@ uk:
   that_photo_doesnt_exist: Такого фото не існує.
   that_observation_doesnt_exist: Таке спостереження не існує.
   that_observation_doesnt_have_any_photos: "Це спостереження не має жодного фото."
-  that_observation_hasnt_been_added_this_project: Такого спостереження не було додано до цього проєкту.
   that_observation_no_longer_exists: Такого спостереження більше не існує.
   that_project_doesnt_exist: "Такого проєкту не існує."
   that_role_doesnt_exist: Такої ролі не існує
@@ -6304,7 +6304,6 @@ uk:
     stats:
       index:
         active_desc: Створювали ID, спостереження, коментар або допис за останні 30 днів
-        active_users_desc: Створювали ID, спостереження, коментар або допис за останні 30 днів
         android_desc_html: Створено за допомогою <a href="%{url}">iNaturalist Android</a>
         identifiers_desc: Додали визначення до чужих спостережень цього дня
         website_desc_html: |
