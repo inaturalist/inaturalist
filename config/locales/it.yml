@@ -3651,6 +3651,7 @@ it:
   recent_observations: Osservazioni recenti
   recent_observations_: Osservazioni recenti
   recent_post: Post recenti
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Osservazioni recenti di %{login} (Atom)"
   recent_observations_by: "Osservazioni recenti di %{login}"
   recently_active: Attivi di recente
@@ -4250,7 +4251,6 @@ it:
   that_photo_doesnt_exist: La foto non esiste.
   that_observation_doesnt_exist: L'osservazione non esiste.
   that_observation_doesnt_have_any_photos: "L'osservazione non ha alcuna foto."
-  that_observation_hasnt_been_added_this_project: L'osservazione non è ancora stata aggiunta al progetto.
   that_observation_no_longer_exists: L'osservazione non esiste più.
   that_project_doesnt_exist: "Il progetto non esiste."
   that_role_doesnt_exist: Il ruolo non esiste
@@ -5968,7 +5968,6 @@ it:
     stats:
       index:
         active_desc: Identificazione, osservazione, commento o post creato nei precedenti 30 giorni
-        active_users_desc: Identificazioni, obs, commenti o post creati nei 30 giorni precedenti
         android_desc_html: Create via <a href="%{url}">iNaturalist app Android</a>
         avg_ttcid: TTCID Media
         avg_ttid: TTID Media
