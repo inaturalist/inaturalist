@@ -3849,6 +3849,7 @@ cs:
   recent_observations: Nedávná pozorování
   recent_observations_: Nedávná pozorování
   recent_post: Nedávný příspěvek
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Nedávná pozorování uživatele %{login} (Atom)"
   recent_observations_by: "Nedávná pozorování uživatele %{login}"
   recently_active: Nedávno aktivní
@@ -4486,7 +4487,6 @@ cs:
   that_photo_doesnt_exist: Tato fotka neexistuje.
   that_observation_doesnt_exist: Toto pozorování neexistuje.
   that_observation_doesnt_have_any_photos: "Toto pozorování nemá žádné fotky."
-  that_observation_hasnt_been_added_this_project: Toto pozorování nebylo přidáno k tomuto projektu.
   that_observation_no_longer_exists: Toto pozorování už neexistuje.
   that_project_doesnt_exist: "Tento projekt neexistuje."
   that_role_doesnt_exist: Tato funkce neexistuje.
@@ -6250,7 +6250,6 @@ cs:
     stats:
       index:
         active_desc: Vytvořeno ID, pozorování nebo příspěvek v předchozích 30 dnech
-        active_users_desc: Vytvořeno ID, pozorování nebo příspěvek v předchozích 30 dnech
         android_desc_html: Vytvořeno pomocí <a href="%{url}"> aplikace iNaturalist Android </a>
         avg_ttcid: Průměrná hodnota TTCID
         avg_ttid: Průměrná hodnota TTID
