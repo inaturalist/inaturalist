@@ -3650,6 +3650,7 @@ de:
   recent_observations: Letzte Beobachtungen
   recent_observations_: Aktuelle Beobachtungen
   recent_post: Aktueller Beitrag
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Aktuelle Beobachtungen von %{login} (Atom)"
   recent_observations_by: "Rezente Beobachtungen von %{login}"
   recently_active: Kürzlich aktiv
@@ -4252,7 +4253,6 @@ de:
   that_photo_doesnt_exist: Dieses Foto existiert nicht.
   that_observation_doesnt_exist: Diese Beobachtung existiert nicht.
   that_observation_doesnt_have_any_photos: "Diese Beobachtung hat keine Fotos."
-  that_observation_hasnt_been_added_this_project: Diese Beobachtung wurde nicht zu einem Projekt hinzugefügt.
   that_observation_no_longer_exists: Diese Beobachtung existiert nicht mehr.
   that_project_doesnt_exist: "Dieses Projekt existiert nicht."
   that_role_doesnt_exist: Dieses Rolle existiert nicht.
@@ -5938,7 +5938,6 @@ de:
     stats:
       index:
         active_desc: eine ID, obs, Kommentar oder Beitrag in den letzten 30 Tagen erstellt
-        active_users_desc: eine ID, obs, Kommentar oder Beitrag in den letzten 30 Tagen erstellt
         android_desc_html: mittels <a href="%{url}">iNaturalist Android App</a> erstellt
         identifiers_desc: Eine ID zu der Beobachtung von jemand anderem an diesem Tag hinzugefügt.
         iphone_desc_html: mittels <a href="%{url}">iNaturalist iPhone App</a> erstellt
