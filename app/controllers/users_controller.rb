@@ -43,6 +43,7 @@ class UsersController < ApplicationController
     :show
   ]
   before_filter :before_edit, only: [:edit, :edit_after_auth]
+  before_filter :lookup_viewing_instance, only: [:new_updates]
   skip_before_action :check_preferred_place, only: :api_token
   skip_before_action :preload_user_preferences, only: :api_token
   skip_before_action :set_site, only: :api_token
@@ -600,13 +601,26 @@ class UsersController < ApplicationController
     unless params[:resource_type].blank?
       filters << { term: { resource_type: params[:resource_type].capitalize } }
     end
-    @updates = current_user.recent_notifications(unviewed: true, per_page: 200, filters: filters)
+    @updates = current_user.recent_notifications(
+      unviewed: true,
+      per_page: 200,
+      filters: filters,
+      viewing_model_id: @viewing_model_id
+    )
     unless request.format.json?
       if @updates.count == 0
-        @updates = current_user.recent_notifications(viewed: true, per_page: 10, filters: filters)
+        @updates = current_user.recent_notifications(
+          viewed: true,
+          per_page: 10,
+          filters: filters,
+          viewing_model_id: @viewing_model_id
+        )
       end
       if @updates.count == 0
-        @updates = current_user.recent_notifications(per_page: 5, filters: filters)
+        @updates = current_user.recent_notifications(
+          per_page: 5,
+          filters: filters
+        )
       end
     end
     if !%w(1 yes y true t).include?(params[:skip_view].to_s)
@@ -1358,6 +1372,12 @@ protected
         redirect_back_or_default(root_url)
       end
       return false
+    end
+  end
+
+  def lookup_viewing_instance
+    if params[:viewing_model_id] && params[:viewing_model_id].match( /^[a-z]+:[0-9]+$/i )
+      @viewing_model_id = params[:viewing_model_id]
     end
   end
 

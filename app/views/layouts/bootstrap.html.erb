@@ -194,6 +194,9 @@
           square: "<%= image_url(LocalPhoto.new.file.url(:square)) %>"
         }
       };
+      <% if @notification_instance -%>
+      var NOTIFICATION_INSTANCE = "<%= [@notification_instance.class.name, @notification_instance.id].join( ":" ) %>";
+      <% end -%>
       var CONTROLLER_ACTION = "<%= controller.class.to_s %>::<%= action_name %>";
       var CONFIG = {
         content_freeze_enabled: <%= !!CONFIG.content_freeze_enabled %>

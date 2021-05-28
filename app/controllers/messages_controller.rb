@@ -107,6 +107,7 @@ class MessagesController < ApplicationController
     if @flaggable_message && @flaggable_message.flagged?
       @flag = @flaggable_message.flags.detect{|f| f.user_id == current_user.id }
     end
+    @notification_instance = @message
     @new_correspondent = !Message.
       where( from_user_id: current_user, to_user_id: @reply_to ).
       exists?

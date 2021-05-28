@@ -289,6 +289,7 @@ class ObservationsController < ApplicationController
           @shareable_description += ".\n\n#{FakeView.truncate( @observation.description, length: 100 )}"
         end
 
+        @notification_instance = @observation
         @skip_application_js = true
         @flash_js = true
         return render layout: "bootstrap"

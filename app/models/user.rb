@@ -1210,10 +1210,30 @@ class User < ActiveRecord::Base
     options[:filters] = options[:filters] ? options[:filters].dup : [ ]
     options[:inverse_filters] = options[:inverse_filters] ? options[:inverse_filters].dup : [ ]
     options[:per_page] ||= 10
+    if options[:viewing_model_id]
+      viewing_model_id = options[:viewing_model_id].split( ":" )
+    end
     if options[:unviewed]
       options[:inverse_filters] << { term: { viewed_subscriber_ids: id } }
+      if viewing_model_id
+        options[:inverse_filters] << { bool: { filter: [
+          { term: { resource_type: viewing_model_id[0] } },
+          { term: { resource_id: viewing_model_id[1] } },
+        ]}}
+      end
     elsif options[:viewed]
-      options[:filters] << { term: { viewed_subscriber_ids: id } }
+      viewed_filter = { term: { viewed_subscriber_ids: id } }
+      if viewing_model_id
+        options[:filters] << { bool: { should: [
+          viewed_filter,
+          { bool: { filter: [
+            { term: { resource_id: viewing_model_id[1] } },
+            { term: { resource_id: viewing_model_id[1] } },
+          ] } }
+        ]}}
+      else
+        options[:filters] << viewed_filter
+      end
     end
     options[:filters] << { term: { subscriber_ids: id } }
     ops = {

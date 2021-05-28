@@ -323,7 +323,11 @@ $(document).ready(function() {
 
   $( "#header #updatesnav .dropdown" ).on( "click", function( e ) {
     if ( !$( "#updatessubnav" ).data( "loaded" ) ) {
-      $( "#updatessubnav" ).load( "/users/new_updates?notification=activity,mention", function( data ) {
+      var updatesPath = "/users/new_updates?notification=activity,mention";
+      if ( NOTIFICATION_INSTANCE ) {
+        updatesPath += "&viewing_model_id=" + NOTIFICATION_INSTANCE;
+      }
+      $( "#updatessubnav" ).load( updatesPath, function( data ) {
         $( this ).html( data );
         $( "#updatessubnav" ).data( "loaded", true )
         setUpdatesCount( 0, { skipAnimation: true } );
@@ -1005,8 +1009,12 @@ function getMessagesCount() {
 
 function getHeaderCounts() {
   var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
+  var endpointPath = "/users/notification_counts";
+  if ( NOTIFICATION_INSTANCE ) {
+    endpointPath += "?except_model_id=" + NOTIFICATION_INSTANCE;
+  }
   $.ajax({
-    url: "<%= CONFIG.node_api_url %>/users/notification_counts",
+    url: "<%= CONFIG.node_api_url %>" + endpointPath,
     headers: {
       Authorization: apiToken
     },
