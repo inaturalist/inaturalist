@@ -159,8 +159,7 @@ class TaxonAutocomplete extends React.Component {
   componentDidMount( ) {
     const {
       afterUnselect,
-      initialSelection,
-      config
+      initialSelection
     } = this.props;
     const that = this;
     const getState = ( ) => that.state;
@@ -297,10 +296,6 @@ class TaxonAutocomplete extends React.Component {
   returnVisionResults( response, callback ) {
     let { results } = response;
     const { viewNotNearby } = this.state;
-    const { config } = this.props;
-    const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
-    const viewerIsAdmin = loggedInUser && loggedInUser.roles
-      && loggedInUser.roles.indexOf( "admin" ) >= 0;
     const nearbyResults = _.filter( response.results,
       r => r.frequency_score && r.frequency_score > 0 );
     this.setState( {
