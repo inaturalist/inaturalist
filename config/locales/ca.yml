@@ -926,6 +926,8 @@ ca:
     place: Lloc pel qual aquest estat és restringit.
     url: URL de la pàgina que descriu aquest estat.
     geoprivacy: Geo-privacitat per defecte per a les observacions d'aquesta espècie
+    iucn: |
+      Equivalent del codi de la Llista Vermella (IUCN). Aquesta no és la classificació real de l'IUCN, únicament és el codi de l'IUCN que s'ajusta millor a la revelació de les coordenades que millor s'ajusta al seu estat d'amenaça. Aquest sobreescriu la geoprivacitat si és "Menys Preocupant" o inferior: així que si has volgut ocultar les observacions d'aquest taxó, marca'l com a "Gairebé amenaçat" o superior.
   conservation_status_geoprivacy_desc: |
     Geoprivacitat aplicada per defecte a totes les observacions d'aquest tàxon en aquest lloc
   contact_support: Contacteu amb Suport
@@ -4243,6 +4245,7 @@ ca:
   that_photo_doesnt_exist: Aquesta foto no existeix.
   that_observation_doesnt_exist: Aquesta observació no existeix.
   that_observation_doesnt_have_any_photos: "Aquesta observació no té cap foto."
+  that_observation_hasnt_been_added_this_project: Aquesta observació no ha estat afegida al projecte.
   that_observation_no_longer_exists: Aquesta observació ja no existeix.
   that_project_doesnt_exist: "Aquest projecte ja no existeix."
   that_role_doesnt_exist: Aquest rol no existeix.
