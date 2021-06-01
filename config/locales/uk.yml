@@ -44,11 +44,6 @@ uk:
     many: '<span class="count">%{count}</span> Ідентифікаторів'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Ідентифікатори'
-  x_languages:
-    one: "%{count} мова"
-    few: "%{count} мови"
-    many: "%{count} мов"
-    other: "%{count} мови"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     #Count of number of taxa that represent the first addition to a life list
@@ -119,11 +114,6 @@ uk:
     few: "%{count} інших"
     many: "%{count} інших"
     other: "%{count} інших"
-  x_people:
-    one: "%{count} особа"
-    few: "%{count} особи"
-    many: "%{count} особ"
-    other: "%{count} особи"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} людей </strong> допомогли %{user} з <strong>%{y} визначенням</strong>"
   x_photos:
     one: "%{count} фото"
