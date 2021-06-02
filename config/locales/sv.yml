@@ -946,6 +946,10 @@ sv:
     place: Fyndplats som denna status är begränsad till.
     url: URL till en sida som beskriver denna status.
     geoprivacy: Standard koordinatsekretess för fynd av detta taxon
+    iucn: |
+      Motsvarande IUCN-rödlistekod. Detta är inte den faktiska IUCN-bedömningen,
+      bara den IUCN-kod som bäst matchar det hot om som denna status implicerar vid utlämnande av koordinater. Detta kommer att åsidosätta koordinatsekretessen om det är "Livskraftig" eller lägre, så om du vill dölja observationer av detta
+      taxon, sätt det till "Nära hotad" eller högre.
   conservation_status_geoprivacy_desc: |
     Standard koordinatsekretess tillämpas på alla fynd av detta taxon på denna plats
   contact_support: Kontakta support
@@ -4297,6 +4301,7 @@ sv:
   that_photo_doesnt_exist: Den bilden finns inte.
   that_observation_doesnt_exist: Det fyndet finns inte.
   that_observation_doesnt_have_any_photos: "Det fyndet har inga bilder."
+  that_observation_hasnt_been_added_this_project: Det fyndet har inte lagts till detta projekt.
   that_observation_no_longer_exists: Det fyndet finns inte längre.
   that_project_doesnt_exist: "Det projektet finns inte."
   that_role_doesnt_exist: Den rollen finns inte
