@@ -336,6 +336,7 @@ en:
     sex: Add Annotations for "Sex"
     plant_phenology: Add Annotations for "Plant Phenology"
     life_stage: Add Annotations for "Life Stage"
+    evidence_of_presence: Add Annotations for "Evidence of Presence"
   add_another_flag: Add Another Flag
   add_another_photo: Add Another Photo
   add_another_section: Add Another Section
@@ -396,6 +397,12 @@ en:
   add_life_stage_larva_annotation: 'Add "Life Stage: Larva" annotation'
   add_life_stage_juvenile_annotation: 'Add "Life Stage: Juvenile" annotation'
   add_life_stage_egg_annotation: 'Add "Life Stage: Egg" annotation'
+  add_evidence_of_presence_organism_annotation: 'Add "Evidence of Presence: organism" annotation'
+  add_evidence_of_presence_feather_annotation: 'Add "Evidence of Presence: feather" annotation'
+  add_evidence_of_presence_scat_annotation: 'Add "Evidence of Presence: scat" annotation'
+  add_evidence_of_presence_track_annotation: 'Add "Evidence of Presence: track" annotation'
+  add_evidence_of_presence_bone_annotation: 'Add "Evidence of Presence: bone" annotation'
+  add_evidence_of_presence_molt_annotation: 'Add "Evidence of Presence: molt" annotation'
   # As in a Taxon Framework Relationship
   add_relationship: 'Add relationship'
   # As in a Guide Section
@@ -1083,6 +1090,21 @@ en:
     alive: Alive
     dead: Dead
     cannot_be_determined: Cannot Be Determined
+    evidence_of_presence: Evidence of Presence
+    # As in the feather on a bird
+    feather: Feather
+    # Refers to an observation that depicts the actual organism and not some
+    # kind of secondary evidence like a footprint
+    organism: Organism
+    # Fecal matter, not regurgitated matter
+    scat: Scat
+    # Impression made by the organism on the ground or in snow, like a footprint
+    track: Track
+    # Endoskeletal remains, like a deer bone
+    bone: Bone
+    # Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    # plumage in a bird or seasonal hair/fur in a mammal
+    molt: Molt
   controlled_term_definitions:
     alive: Organism is living and shows no signs of imminent death
     dead: Organism is dead or shows signs of imminent death
@@ -1092,6 +1114,14 @@ en:
     no_evidence_of_flowering: Media provides no evidence of reproductive structures
     teneral: Adult that has recently emerged but has not yet achieved its final adult form
     cannot_be_determined: Cannot be determined from the evidence provided
+    feather: One or more feathers not attached to an organism
+    organism: Whole or partial organism
+    scat: Fecal matter (not owl pellets or other regurgitated matter)
+    track: Impression in ground or snow made by organism
+    bone: |
+      Predominantly endoskeletal remains; partial bone exposure in an otherwise
+      intact organism should be labelled "organism"
+    molt: Discarded skin or exoskeleton
   controls: Controls
   convert: Convert
   coordinate_systems: Coordinate systems
