@@ -212,6 +212,9 @@ tr:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Gizli koordinatlarının paylaşımı için şunları seçebilirsin
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Doğruluk (m)'
   account: Hesap
   account_creation: Hesap Oluşturma
@@ -866,7 +869,6 @@ tr:
   comments: Yorumlar
   comments_by_me: Yorumlarım
   comments_have_been_disabled: Yorumlar devre dışı bırakıldı
-  comments_on: İle ilgili yorumlar
   comments_on_my_observations: Gözlemlerim ile ilgili yorumlar
   commercial_solicitation: Ticari istek, hiçbir yerle bağlı olmayanlar vb.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -1968,10 +1970,6 @@ tr:
   leaderboard: Lider Sıralaması
   leaderboard_for_x: "%{x} için Lider Sıralaması"
   leaderboards: Lider Sıralamaları
-  leaderboard_most:
-    species: '%{time} zamanındaki çoğu tür'
-    observations: '%{time} zamanındaki çoğu gözlem'
-    identifications: '%{time} zamanındaki çoğu tanımlama'
   leading: Öncü
   learn: Öğren
   learn_about_the_species_live_in: Yaşayan türler ile ilgili bilgi edin
@@ -4235,6 +4233,7 @@ tr:
   that_photo_doesnt_exist: Bu fotoğraf mevcut değil.
   that_observation_doesnt_exist: Bu gözlem mevcut değil.
   that_observation_doesnt_have_any_photos: "Bu gözlem herhangi bir fotoğrafa sahip değil."
+  that_observation_hasnt_been_added_this_project: Bu gözlem bu projeye eklenmedi.
   that_observation_no_longer_exists: Bu gözlem artık mevcut değil.
   that_project_doesnt_exist: "Bu proje mevcut değil."
   that_role_doesnt_exist: Bu görev mevcut değil
@@ -7295,6 +7294,9 @@ tr:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: yeni yorumlara izin vermiyor
             user:
               must_be_on_site_long_enough: |
