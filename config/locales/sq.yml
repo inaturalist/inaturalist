@@ -50,6 +50,9 @@ sq:
   about_this_bioblitz: Për këtë bioblitz
   about_this_map: Rreth kësaj harte
   about_this_project: Rreth këtij Projekti
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Llogaria (m)'
   account: Llogaria
   account_settings: Konfigurimet e llogarisë
@@ -555,7 +558,6 @@ sq:
   comment_deleted: Komenti u fshi
   comments: Komentet
   comments_by_me: Komentet nga unë
-  comments_on: Komente mbi
   comments_on_my_observations: Komentet për vëzhgimet e mia
   commercial_solicitation: Kërkesa komerciale, lidhje askund, etj.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -1243,10 +1245,6 @@ sq:
   leaderboard: Fituesi
   leaderboard_for_x: "Fituesi per %{x}"
   leaderboards: FItuesit
-  leaderboard_most:
-    species: Më shumë specie për %{time}
-    observations: Më shumë vëzhgime për %{time}
-    identifications: Më shumë identifikime për %{time}
   leading: Duke udhëhequr
   learn: Mëso
   learn_about_the_species_live_in: Mëso për speciet që jetojnë në
