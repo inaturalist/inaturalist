@@ -263,6 +263,7 @@ sv:
     sex: Lägg till anteckningar för "Kön"
     plant_phenology: Lägg till anteckningar för "Växtfenologi"
     life_stage: Lägg till anteckningar för "Livsform"
+    evidence_of_presence: Lägg till anteckningar om "Stöd för förekomst"
   add_another_flag: Lägg till ytterligare en flagga
   add_another_photo: Lägg till ytterligare en bild
   add_another_section: Lägg till ytterligare ett avsnitt
@@ -323,6 +324,12 @@ sv:
   add_life_stage_larva_annotation: 'Lägg till anteckningen "Livsstadium: Larv"'
   add_life_stage_juvenile_annotation: 'Lägg till anteckningen "Livsstadium: Juvenil"'
   add_life_stage_egg_annotation: 'Lägg till anteckningen "Livsstadium: Ägg"'
+  add_evidence_of_presence_organism_annotation: 'Lägg till "Stöd för förekomst: organism"-anteckning'
+  add_evidence_of_presence_feather_annotation: 'Lägg till "Stöd för förekomst: fjäder"-anteckning'
+  add_evidence_of_presence_scat_annotation: 'Lägg till "Stöd för förekomst: spillning"-anteckning'
+  add_evidence_of_presence_track_annotation: 'Lägg till "Stöd för förekomst: spår"-anteckning'
+  add_evidence_of_presence_bone_annotation: 'Lägg till "Stöd för förekomst: benrester"-anteckning'
+  add_evidence_of_presence_molt_annotation: 'Lägg till "Stöd för förekomst: ömsskinn/exuvium"-anteckning'
   #As in a Taxon Framework Relationship
   add_relationship: 'Lägg till en relation'
   #As in a Guide Section
@@ -995,6 +1002,21 @@ sv:
     alive: Levande
     dead: Död
     cannot_be_determined: Kan inte avgöras
+    evidence_of_presence: Stöd för förekomst
+    #As in the feather on a bird
+    feather: Fjäder
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organism
+    #Fecal matter, not regurgitated matter
+    scat: Spillning
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Spår
+    #Endoskeletal remains, like a deer bone
+    bone: Benrester
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Ömsskinn/exuvium
   controlled_term_definitions:
     alive: Levande organism som inte uppvisar tecken på snar död
     dead: Död organism eller visar tecken på snar död
@@ -1004,6 +1026,13 @@ sv:
     no_evidence_of_flowering: Inga tecken på reproduktiva strukturer i media
     teneral: Adult som nyligen kläckts men ännu inte fått sitt slutliga adulta utseende
     cannot_be_determined: Kan inte bestämmas utifrån angiven information
+    feather: En eller flera fjädrar som inte sitter fast på en organism
+    organism: Hela eller delar av en organism
+    scat: Avföring (inte spybollar eller andra uppstötningar)
+    track: Avtryck i marken eller snön av en organism
+    bone: |
+      Mest kvarlämningar av inre skelett; delvis synligt ben från en i övrigt intakt organism bör anges som "organism"
+    molt: Kvarlämning av skinn eller exoskelett
   controls: Kontroller
   convert: Konvertera
   coordinate_systems: Koordinatsystem
@@ -2003,6 +2032,13 @@ sv:
   leaderboard: Topplista
   leaderboard_for_x: "Topplista för %{x}"
   leaderboards: Topplistor
+  leaderboard_most:
+    species_in_month_year: Flest arter i %{month_year}
+    species_in_year: Flest arter %{year}
+    observations_in_month_year: Flest fynd i %{month_year}
+    observations_in_year: Flest fynd %{year}
+    identifications_in_month_year: Flest bestämningar i %{month_year}
+    identifications_in_year: Flest bestämningar %{year}
   leading: Leder
   learn: Lär dig
   learn_about_the_species_live_in: Lär dig om arterna som lever i
