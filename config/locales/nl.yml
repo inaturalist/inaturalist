@@ -994,6 +994,21 @@ nl:
     alive: Levend
     dead: Dood
     cannot_be_determined: Kan niet worden vastgesteld
+    evidence_of_presence: Bewijs van voorkomst
+    #As in the feather on a bird
+    feather: Veer
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organisme
+    #Fecal matter, not regurgitated matter
+    scat: Uitwerpselen
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Spoor
+    #Endoskeletal remains, like a deer bone
+    bone: Bot
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Vervellingshuid
   controlled_term_definitions:
     alive: Organisme leeft en vertoont geen tekenen stervende te zijn
     dead: Organisme is dood of vertoont tekenen stervende te zijn
@@ -1003,6 +1018,13 @@ nl:
     no_evidence_of_flowering: Media levert geen bewijs van reproductieve structuren
     teneral: Volwassene die onlangs ontpopt is maar nog niet zijn uiteindelijke volwassen vorm heeft
     cannot_be_determined: Kan niet worden gedetermineerd met het geleverde bewijs
+    feather: Een of meer veren die niet zijn bevestigd aan een organisme
+    organism: Heel of gedeeltelijk organisme
+    scat: Feces (geen uileballen of andere uitgebraakte dingen)
+    track: Afdruk in grond of sneeuw gemaakt door organisme
+    bone: |
+      Vooral endoskelet-resten; gedeeltelijke blootstelling van bot in een verder intact organisme moet worden gelabeld als "organisme"
+    molt: Afgeworpen huid of exoskelet
   controls: Besturing
   convert: Converteren
   coordinate_systems: Coördinaatsystemen
@@ -2000,6 +2022,13 @@ nl:
   leaderboard: Toplijst
   leaderboard_for_x: "Toplijst voor %{x}"
   leaderboards: Toplijsten
+  leaderboard_most:
+    species_in_month_year: Meeste soorten in %{month_year}
+    species_in_year: Meeste soorten in %{year}
+    observations_in_month_year: Meeste waarnemingen in %{month_year}
+    observations_in_year: Meeste waarnemingen in %{year}
+    identifications_in_month_year: Meeste determinaties in %{month_year}
+    identifications_in_year: Meeste determinaties in %{year}
   leading: Leidend
   learn: Leren
   learn_about_the_species_live_in: Leer over de soorten die voorkomen in
