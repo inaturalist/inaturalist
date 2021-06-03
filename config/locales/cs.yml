@@ -309,6 +309,9 @@ cs:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Můžete si vybrat sdílení skrytých souřadnic pro
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Přesnost (m)'
   account: Účet
   account_creation: Vytvoření účtů
@@ -992,7 +995,6 @@ cs:
   comments: Komentáře
   comments_by_me: Moje komentáře
   comments_have_been_disabled: Komentáře byly zakázány
-  comments_on: Komentáře o
   comments_on_my_observations: Komentáře k mým pozorováním
   commercial_solicitation: Komerční žádost, neplatné odkazy atd.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -2124,10 +2126,6 @@ cs:
   leaderboard: Nejlepší výsledky
   leaderboard_for_x: "Nejlepší výsledky pro %{x}"
   leaderboards: Přehledy nejlepších výsledků
-  leaderboard_most:
-    species: Nejvíce druhů v %{time}
-    observations: Nejvíce pozorování v %{time}
-    identifications: Nejvíce identifikací v %{time}
   leading: Nejlepší
   learn: Učit se
   learn_about_the_species_live_in: Naučte se o druzích, které žijí v
@@ -4487,6 +4485,7 @@ cs:
   that_photo_doesnt_exist: Tato fotka neexistuje.
   that_observation_doesnt_exist: Toto pozorování neexistuje.
   that_observation_doesnt_have_any_photos: "Toto pozorování nemá žádné fotky."
+  that_observation_hasnt_been_added_this_project: Toto pozorování nebylo přidáno k tomuto projektu.
   that_observation_no_longer_exists: Toto pozorování už neexistuje.
   that_project_doesnt_exist: "Tento projekt neexistuje."
   that_role_doesnt_exist: Tato funkce neexistuje.
@@ -7405,6 +7404,9 @@ cs:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: neumožňuje nové komentáře
             user:
               must_be_on_site_long_enough: |
