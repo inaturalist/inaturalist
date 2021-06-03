@@ -58,7 +58,12 @@ class ControlledTerm < ActiveRecord::Base
     caterpillar: :life_stage,
     teneral: :life_stage,
     egg: :life_stage,
-    nymph: :life_stage
+    nymph: :life_stage,
+    track: :evidence_of_presence,
+    scat: :evidence_of_presence,
+    bone: :evidence_of_presence,
+    feather: :evidence_of_presence,
+    molt: :evidence_of_presence
   }
 
   attr_accessor :prepared_values

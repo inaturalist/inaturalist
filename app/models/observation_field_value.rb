@@ -198,12 +198,18 @@ class ObservationFieldValue < ActiveRecord::Base
   def create_annotation
     attr_val = annotation_attribute_and_value
     return if attr_val.blank?
-    Annotation.create!(observation_field_value: self,
+    a = Annotation.create(
+      observation_field_value: self,
       resource: observation,
       controlled_attribute: attr_val[:controlled_attribute],
       controlled_value: attr_val[:controlled_value],
       user_id: user_id,
-      created_at: created_at) rescue nil
+      created_at: created_at
+    )
+    unless a.persisted?
+      Rails.logger.error "[ERROR] Failed to created annotation for #{self}: #{a.errors.full_messages.to_sentence}"
+    end
+    a
   end
 
   def annotation_attribute_and_value
@@ -244,6 +250,34 @@ class ObservationFieldValue < ActiveRecord::Base
     elsif observation_field.name.downcase == "roadkill" && value == "yes"
       controlled_attribute = ControlledTerm.first_term_by_label( "Alive or Dead" )
       controlled_value = ControlledTerm.first_term_by_label( "Dead" )
+    elsif observation_field.name =~ /animal sign/i
+      value_term_label = case value.downcase
+      when "tracks"
+        "track"
+      when "scat"
+        "scat"
+      when "bone", "bones"
+        "bone"
+      when "fur/feathers"
+        "feather"
+      when "shed skin"
+        "molt"
+      end
+      return unless value_term_label
+      controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
+      controlled_value = ControlledTerm.first_term_by_label( value_term_label )
+    elsif observation_field.name.downcase === "scat/excreta" && value.downcase == "yes"
+      controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
+      controlled_value = ControlledTerm.first_term_by_label( "scat" )
+    elsif observation_field.name.downcase === "scat?" && value.downcase == "yes"
+      controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
+      controlled_value = ControlledTerm.first_term_by_label( "scat" )
+    elsif observation_field.name.downcase === "bone(s)" && value.downcase == "yes"
+      controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
+      controlled_value = ControlledTerm.first_term_by_label( "bone" )
+    elsif observation_field.name.downcase === "tracks" && value.downcase == "yes"
+      controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
+      controlled_value = ControlledTerm.first_term_by_label( "track" )
     end
     return unless controlled_attribute && controlled_value
     { controlled_attribute: controlled_attribute,
