@@ -359,6 +359,7 @@ cs:
     sex: Přidat poznámky pro "Pohlaví"
     plant_phenology: Přidat poznámky pro "Fenologii rostlin"
     life_stage: Přidat poznámky pro "Vývojové stádium"
+    evidence_of_presence: Přidat anotace k "Důkazům přítomnosti"
   add_another_flag: Vložit další vlajku
   add_another_photo: Vložit další foto
   add_another_section: Vložit další oddíl
@@ -419,6 +420,11 @@ cs:
   add_life_stage_larva_annotation: 'Přidat anotaci „Stádium života: larva“'
   add_life_stage_juvenile_annotation: 'Přidat anotaci „Stádium života: mládě“'
   add_life_stage_egg_annotation: 'Přidat anotaci „Stádium života: vejce“'
+  add_evidence_of_presence_organism_annotation: 'Přidat anotaci „Důkaz přítomnosti: organismus“'
+  add_evidence_of_presence_feather_annotation: 'Přidat anotaci „Důkaz přítomnosti: peří“'
+  add_evidence_of_presence_scat_annotation: 'Přidat anotaci „Důkaz přítomnosti: trus“'
+  add_evidence_of_presence_track_annotation: 'Přidat anotaci „Důkaz přítomnosti: stopa“'
+  add_evidence_of_presence_bone_annotation: 'Přidat anotaci „Důkaz přítomnosti: kost“'
   #As in a Taxon Framework Relationship
   add_relationship: 'Přidat vztah'
   #As in a Guide Section
@@ -1110,6 +1116,18 @@ cs:
     alive: Živé
     dead: Mrtvý
     cannot_be_determined: Nelze určit
+    evidence_of_presence: Důkazy přítomnosti
+    #As in the feather on a bird
+    feather: Peří
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organismus
+    #Fecal matter, not regurgitated matter
+    scat: Trus
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Stopa
+    #Endoskeletal remains, like a deer bone
+    bone: Kost
   controlled_term_definitions:
     alive: Organismus žije a nevykazuje žádné známky bezprostřední smrti
     dead: Organismus je mrtvý a nevykazuje žádné známky bezprostřední smrti
@@ -1119,6 +1137,13 @@ cs:
     no_evidence_of_flowering: Média neposkytují žádné důkazy o reprodukčních strukturách
     teneral: Dospělec, který se nedávno objevil, ale dosud nedosáhl konečné dospělé formy
     cannot_be_determined: Na základě poskytnutých důkazů nelze určit
+    feather: Jedno nebo více per, které nejsou připevněny k organismu
+    organism: Celý organismus nebo jeho část
+    track: Otisk v zemi nebo ve sněhu způsobený organismem
+    bone: |
+      Převážně pozůstatky vnitřní kostry; částečně odhalené kosti v jinak neporušeném organismu
+      by měly být označeny jako „organismus“
+    molt: Odhozená kůže nebo exoskelet
   controls: Ovládací prvky
   convert: Převést
   coordinate_systems: Systémy souřadnic
