@@ -197,6 +197,9 @@ fr:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Vous pouvez choisir de partager vos coordonnées masquées pour :
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Préc. (m)'
   account: Compte
   account_creation: Création de compte
@@ -866,7 +869,6 @@ fr:
   comments: Commentaires
   comments_by_me: Mes commentaires
   comments_have_been_disabled: Les commentaires sont désactivés
-  comments_on: Commentaires sur
   comments_on_my_observations: Commentaires sur mes observations
   commercial_solicitation: Démarchage commercial, liens vers nulle part, etc.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -941,7 +943,6 @@ fr:
     place: Lieu auquel la situation est limitée.
     url: URL d’une page décrivant la situation.
     geoprivacy: Géoconfidentialité par défaut pour les observations liées à ce taxon
-    iucn: Code équivalent de la liste rouge de l’UICN
   conservation_status_geoprivacy_desc: |
     La géoconfidentialité par défaut est appliquée à toutes les observations de ce taxon à cet endroit
   contact_support: Contacter le soutien
@@ -985,6 +986,13 @@ fr:
     alive: Vivant
     dead: Mort
     cannot_be_determined: Indéterminé
+    #As in the feather on a bird
+    feather: Plume
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organisme
+    #Fecal matter, not regurgitated matter
+    scat: Excréments
   controlled_term_definitions:
     alive: L'organisme est vivant et ne montre aucun signe de mort imminente
     dead: L'organisme est mort ou montre des signes de mort imminente
@@ -2002,10 +2010,6 @@ fr:
   leaderboard: Classement
   leaderboard_for_x: "Classement de %{x}"
   leaderboards: Classements
-  leaderboard_most:
-    species: Le plus d'espèces en %{time}
-    observations: Le plus d'observations en %{time}
-    identifications: Le plus d'identifications en %{time}
   leading: En tête
   learn: Apprendre
   learn_about_the_species_live_in: Apprenez-en davantage sur les espèces qui vivent dans
@@ -3716,6 +3720,7 @@ fr:
   recent_observations: Observations récentes
   recent_observations_: Observations récentes
   recent_post: Note récente
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Observations récentes de %{login} (Atom)"
   recent_observations_by: "Observations récentes de %{login}"
   recently_active: Actifs récemment
@@ -4831,7 +4836,7 @@ fr:
   wondering_what_to_do_next: Voici quelques étapes suivantes pour vous guider dans l’observation et l’identification du monde naturel
   would_you_like_to: Aimeriez-vous en
   would_you_prefer_to_view_common_names_used_in_place_html: Préférez-vous voir les noms communs utilisés à <strong>%{place}</strong> ?
-  x_blog: "Blog de %{x}"
+  x_blog: "Blog %{x}"
   x_deleted: "%{x} supprimé"
   x_does_not_exist: "« %{x} » n’existe pas"
   x_flagged: "%{x} marqué"
@@ -6342,7 +6347,6 @@ fr:
     stats:
       index:
         active_desc: A créé une ID, une observation, un commentaire, ou un article de journal dans les 30 derniers jours
-        active_users_desc: A créé un ID, une observation, un commentaire, ou un bulletin dans les 30 derniers jours
         android_desc_html: Créée avec l'<a href="%{url}">application Android iNaturalist</a>
         avg_ttcid: TTCID moyen
         avg_ttid: TTID moyen
@@ -7568,6 +7572,9 @@ fr:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: n'autorise pas les nouveaux commentaires
             user:
               must_be_on_site_long_enough: |

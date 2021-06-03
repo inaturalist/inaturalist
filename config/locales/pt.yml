@@ -186,6 +186,9 @@ pt:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Você pode optar por partilhar as coordenadas ocultas para
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Precisão (m)'
   account: Conta
   account_creation: Criação de Conta
@@ -232,6 +235,7 @@ pt:
     sex: Adicionar Anotações Sobre "Género"
     plant_phenology: Adicionar Anotações Sobre "Fenologia da Planta"
     life_stage: Adicionar Anotações Sobre "Fase da Vida"
+    evidence_of_presence: Adicionar anotações sobre "Evidência da Presença"
   add_another_flag: Adicionar Outro Sinalizador
   add_another_photo: Adicionar Outra Fotografia
   add_another_section: Adicionar Outra Secção
@@ -292,6 +296,12 @@ pt:
   add_life_stage_larva_annotation: 'Adicionar anotação "Fase da Vida: Larva"'
   add_life_stage_juvenile_annotation: 'Adicionar anotação "Fase da Vida: Juvenil"'
   add_life_stage_egg_annotation: 'Adicionar anotação "Fase da Vida: Ovo"'
+  add_evidence_of_presence_organism_annotation: 'Adicionar anotação "Evidência de Presença: organismo"'
+  add_evidence_of_presence_feather_annotation: 'Adicionar anotação "Evidência de Presença: penas"'
+  add_evidence_of_presence_scat_annotation: 'Adicionar anotação "Evidência de Presença: fezes"'
+  add_evidence_of_presence_track_annotation: 'Adicionar anotação "Evidência de Presença: trilho"'
+  add_evidence_of_presence_bone_annotation: 'Adicionar anotação "Evidência de Presença: osso"'
+  add_evidence_of_presence_molt_annotation: 'Adicionar anotação "Evidência de Presença: muda"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Adicionar relação'
   #As in a Guide Section
@@ -823,7 +833,6 @@ pt:
   comment_deleted: Comentário eliminado
   comments: Comentários
   comments_by_me: Meus Comentários
-  comments_on: Comentários sobre
   comments_on_my_observations: Comentários sobre as minhas observações
   commercial_solicitation: Solicitação comercial, links sem vínculo, etc.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -887,7 +896,6 @@ pt:
     place: Local ao qual esse estatuto é referente.
     url: URL para página que descreva este estatuto.
     geoprivacy: Geoprivacidade padrão para as observações deste taxon
-    iucn: Equivalente na Lista Vermelha da IUCN (IUCN Red List)
   contain_all_descendants?: Esta checklist contém todos os representantes deste taxon que ocorrem na área?
   content_and_display: Conteúdo & Exibição
   continue: Continuar
@@ -908,6 +916,29 @@ pt:
     juvenile: Juvenil
     alive: Vivo
     dead: Morto
+    evidence_of_presence: Evidência de Presença
+    #As in the feather on a bird
+    feather: Pena
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organismo
+    #Fecal matter, not regurgitated matter
+    scat: Fezes
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Trilho
+    #Endoskeletal remains, like a deer bone
+    bone: Osso
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Muda
+  controlled_term_definitions:
+    feather: Uma ou mais penas não ligadas a um organismo
+    organism: Organismo inteiro ou parcial
+    scat: Matéria fecal (não pelotas de coruja ou outra regurgitação)
+    track: Impressão no solo ou neve feita pelo organismo
+    bone: |
+      Restos endo-esqueléticos predominantes; exposição parcial de ossos num organismo intacto deve ser rotulado de "organismo"
+    molt: Pele ou exoesqueleto descartados
   controls: Controlos
   convert: Converter
   coordinate_systems: Sistemas de coordenadas
@@ -1717,10 +1748,6 @@ pt:
   leaderboard: Colaboradores mais ativos
   leaderboard_for_x: "Os colaboradores mais ativos de %{x}"
   leaderboards: Colaboradores mais ativos
-  leaderboard_most:
-    species: A maioria das espécies em %{time}
-    observations: A maioria das observações em %{time}
-    identifications: A maioria das identificações em %{time}
   leading: Principal
   learn: Aprender
   learn_about_the_species_live_in: Aprenda sobre as espécies que vivem em
@@ -2838,6 +2865,7 @@ pt:
   recent_observations: Observações recentes
   recent_observations_: Observações recentes
   recent_post: Publicação recente
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Observações recentes por %{login} (Atom)"
   recent_observations_by: "Observações recentes por %{login}"
   recently_active: Activos recentemente

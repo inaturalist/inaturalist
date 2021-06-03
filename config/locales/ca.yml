@@ -197,6 +197,9 @@ ca:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Heu escollits compartir les vostres coordenades ocultes per a
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Exactitud (m)'
   account: Compte
   account_creation: Creació de compta
@@ -853,7 +856,6 @@ ca:
   comments: Comentaris
   comments_by_me: Els vostres comentaris
   comments_have_been_disabled: S'han desactivat els comentaris
-  comments_on: Comentaris sobre
   comments_on_my_observations: Comentaris sobre les vostres observacions
   commercial_solicitation: Anuncieu alguna cosa, els enllaços no són vàlids, etc.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -926,7 +928,8 @@ ca:
     place: Lloc pel qual aquest estat és restringit.
     url: URL de la pàgina que descriu aquest estat.
     geoprivacy: Geo-privacitat per defecte per a les observacions d'aquesta espècie
-    iucn: Equivalent del codi de la Llista Vermella (IUCN)
+    iucn: |
+      Equivalent del codi de la Llista Vermella (IUCN). Aquesta no és la classificació real de l'IUCN, únicament és el codi de l'IUCN que s'ajusta millor a la revelació de les coordenades que millor s'ajusta al seu estat d'amenaça. Aquest sobreescriu la geoprivacitat si és "Menys Preocupant" o inferior: així que si has volgut ocultar les observacions d'aquest taxó, marca'l com a "Gairebé amenaçat" o superior.
   conservation_status_geoprivacy_desc: |
     Geoprivacitat aplicada per defecte a totes les observacions d'aquest tàxon en aquest lloc
   contact_support: Contacteu amb Suport
@@ -1960,10 +1963,6 @@ ca:
   leaderboard: Els més actius
   leaderboard_for_x: "Els més actius de %{x}"
   leaderboards: Els més actius
-  leaderboard_most:
-    species: La majoria de les espècies a %{time}
-    observations: La majoria de les observacions a %{time}
-    identifications: La majoria de les identificacions a %{time}
   leading: Dirigint
   learn: Apreneu-ne
   learn_about_the_species_live_in: Informeu-vos sobre les espècies que viuen a
@@ -3643,6 +3642,7 @@ ca:
   recent_observations: Observacions recents
   recent_observations_: Observacions recents
   recent_post: Notes recents
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Observacions recents de %{login} (Atom)"
   recent_observations_by: "Observacions recents de %{login}"
   recently_active: Actiu recentment
@@ -4243,7 +4243,7 @@ ca:
   that_photo_doesnt_exist: Aquesta foto no existeix.
   that_observation_doesnt_exist: Aquesta observació no existeix.
   that_observation_doesnt_have_any_photos: "Aquesta observació no té cap foto."
-  that_observation_hasnt_been_added_this_project: Aquesta observació no s’ha afegit al projecte.
+  that_observation_hasnt_been_added_this_project: Aquesta observació no ha estat afegida al projecte.
   that_observation_no_longer_exists: Aquesta observació ja no existeix.
   that_project_doesnt_exist: "Aquest projecte ja no existeix."
   that_role_doesnt_exist: Aquest rol no existeix.
@@ -5943,7 +5943,6 @@ ca:
     stats:
       index:
         active_desc: S'ha creat una ID, observació, comentari o article en els darrers 30 dies
-        active_users_desc: S'ha creat una ID, observació, comentari o article en els darrers 30 dies
         android_desc_html: Creat des de l'<a href="%{url}">App iNaturalist d'Android</a>
         avg_ttcid: TTCID mitjana
         avg_ttid: TTID mitjana
@@ -6931,6 +6930,9 @@ ca:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: no permet nous comentaris
             user:
               must_be_on_site_long_enough: |

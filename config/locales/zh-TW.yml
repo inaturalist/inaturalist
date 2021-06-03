@@ -157,6 +157,9 @@ zh-TW:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     您可以選擇分享隱藏的座標給：
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: '精確度 (公尺)'
   account: 帳號
   account_creation: 帳號建立
@@ -796,7 +799,6 @@ zh-TW:
   comments: 評論
   comments_by_me: 由我做出的評論
   comments_have_been_disabled: 已停用評論
-  comments_on: 評論在
   comments_on_my_observations: 對我觀察的評論
   commercial_solicitation: 商業招攬，無效連結等等。
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -867,7 +869,6 @@ zh-TW:
     place: 狀態被限制的地點。
     url: 描述此狀態的頁面 URL。
     geoprivacy: 用於此物種分類觀察的預設位置隱私
-    iucn: 等同國際自然保護聯盟瀕危物種（IUCN）紅色名錄規範
   conservation_status_geoprivacy_desc: |
     預設位置隱私會套用到在此地點上的所有分類群觀察
   contact_support: 聯絡支援
@@ -1795,10 +1796,6 @@ zh-TW:
   leaderboard: 排行榜
   leaderboard_for_x: "用於 %{x} 的排行榜"
   leaderboards: 排行榜
-  leaderboard_most:
-    species: 在 %{time} 內提供最多物種
-    observations: 在 %{time} 內做出最多觀察
-    identifications: 在 %{time} 內做出最多鑑定
   leading: 優先
   learn: 學習
   learn_about_the_species_live_in: 了較有關物種存活於
@@ -3334,6 +3331,7 @@ zh-TW:
   recent_observations: 最近觀察
   recent_observations_: 最近觀察
   recent_post: 最近文章
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "最近由 %{login}（Atom）做出的觀察"
   recent_observations_by: "最近由 %{login}做出的觀察"
   recently_active: 最近活躍內容
@@ -5349,7 +5347,6 @@ zh-TW:
     stats:
       index:
         active_desc: 代表在前 30 日所建立的鑑定、觀察、評論、或發佈文章
-        active_users_desc: 在前 30 日所建立的鑑定、觀察、評論、或發佈文章
         android_desc_html: 代表透過 <a href="%{url}">iNaturalist Android 應用程式</a>建立
         avg_ttcid: 平均 TTCID
         avg_ttid: 平均 TTID

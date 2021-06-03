@@ -278,6 +278,9 @@ ru:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Вы можете выбрать, с кем готовы делиться крытыми координатами
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Точность (м)'
   account: Учётная запись
   account_creation: Создание учётной записи
@@ -964,7 +967,6 @@ ru:
   comments: Комментарии
   comments_by_me: Мои комментарии
   comments_have_been_disabled: Комментарии были отключены
-  comments_on: Комментарии для
   comments_on_my_observations: Комментарии к моим наблюдениям
   commercial_solicitation: Коммерческие предложения, ссылки в никуда и т. д.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -1039,7 +1041,6 @@ ru:
     place: Место, в котором этот статус ограничен.
     url: URL страницы с описанием этого статуса.
     geoprivacy: Значение по умолчанию приватности местоположения для наблюдений этого таксона
-    iucn: Эквивалент кода в Красном списке МСОП
   conservation_status_geoprivacy_desc: |
     Настройки по умолчанию приватности местоположения применены ко всем наблюдениям таксона в этом месте
   contact_support: Обратитесь в службу поддержки
@@ -2079,9 +2080,7 @@ ru:
   leaderboard_for_x: "Лидеры %{x}"
   leaderboards: Лидеры
   leaderboard_most:
-    species: Больше всего видов за %{time}
-    observations: Больше всего наблюдений за %{time}
-    identifications: Больше всего идентификаций за %{time}
+    observations_in_month_year: Наибольшее число наблюдений за %{month_year}
   leading: Ведущий
   learn: Изучайте
   learn_about_the_species_live_in: Узнать о видах, которые обитают в
@@ -3774,6 +3773,7 @@ ru:
   recent_observations: Последние наблюдения
   recent_observations_: Последние наблюдения
   recent_post: Последние сообщения
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Последние наблюдения %{login} (Атом)"
   recent_observations_by: "Последние наблюдения %{login}"
   recently_active: Последние активные
@@ -6148,7 +6148,6 @@ ru:
     stats:
       index:
         active_desc: Добавляли идентификации, наблюдения, комментарии или сообщения в журнале в предыдущие 30 дней
-        active_users_desc: Добавляли идентификации, наблюдения, комментарии или сообщения в журнале в предыдущие 30 дней
         android_desc_html: Создано с помощью <a href="%{url}">приложения iNaturalist для Android</a>
         avg_ttcid: Ср TTCID
         avg_ttid: Ср TTID
@@ -7245,6 +7244,9 @@ ru:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: не разрешать добавлять новые комментарии
             user:
               must_be_on_site_long_enough: |

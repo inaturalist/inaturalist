@@ -216,6 +216,9 @@ nl:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Je kan kiezen om verborgen coördinaten te delen voor
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Prec. (m)'
   account: Account
   account_creation: Account aangemaakt
@@ -876,7 +879,6 @@ nl:
   comments: Reacties
   comments_by_me: Reacties door mij
   comments_have_been_disabled: Reacties zijn uitgeschakeld
-  comments_on: Reacties op
   comments_on_my_observations: Reacties op mijn waarnemingen
   commercial_solicitation: Commerciële advertenties, koppelingen naar nergens, enzovoort.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -949,7 +951,6 @@ nl:
     place: Plek tot waar deze status is beperkt.
     url: URL naar de website die deze status beschrijft
     geoprivacy: Standaard geoprivacy voor waarnemingen van dit taxon
-    iucn: Equivalent van IUCN Rode Lijst code
   conservation_status_geoprivacy_desc: |
     Default geoprivacy toegepast op alle waarnemingen van dit taxon op deze plaats.
   contact_support: Neem contact op met support
@@ -993,6 +994,21 @@ nl:
     alive: Levend
     dead: Dood
     cannot_be_determined: Kan niet worden vastgesteld
+    evidence_of_presence: Bewijs van voorkomst
+    #As in the feather on a bird
+    feather: Veer
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organisme
+    #Fecal matter, not regurgitated matter
+    scat: Uitwerpselen
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Spoor
+    #Endoskeletal remains, like a deer bone
+    bone: Bot
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Vervellingshuid
   controlled_term_definitions:
     alive: Organisme leeft en vertoont geen tekenen stervende te zijn
     dead: Organisme is dood of vertoont tekenen stervende te zijn
@@ -1002,6 +1018,13 @@ nl:
     no_evidence_of_flowering: Media levert geen bewijs van reproductieve structuren
     teneral: Volwassene die onlangs ontpopt is maar nog niet zijn uiteindelijke volwassen vorm heeft
     cannot_be_determined: Kan niet worden gedetermineerd met het geleverde bewijs
+    feather: Een of meer veren die niet zijn bevestigd aan een organisme
+    organism: Heel of gedeeltelijk organisme
+    scat: Feces (geen uileballen of andere uitgebraakte dingen)
+    track: Afdruk in grond of sneeuw gemaakt door organisme
+    bone: |
+      Vooral endoskelet-resten; gedeeltelijke blootstelling van bot in een verder intact organisme moet worden gelabeld als "organisme"
+    molt: Afgeworpen huid of exoskelet
   controls: Besturing
   convert: Converteren
   coordinate_systems: Coördinaatsystemen
@@ -2000,9 +2023,12 @@ nl:
   leaderboard_for_x: "Toplijst voor %{x}"
   leaderboards: Toplijsten
   leaderboard_most:
-    species: Meeste soorten in %{time}
-    observations: Meeste waarnemingen in %{time}
-    identifications: Meeste determinaties in %{time}
+    species_in_month_year: Meeste soorten in %{month_year}
+    species_in_year: Meeste soorten in %{year}
+    observations_in_month_year: Meeste waarnemingen in %{month_year}
+    observations_in_year: Meeste waarnemingen in %{year}
+    identifications_in_month_year: Meeste determinaties in %{month_year}
+    identifications_in_year: Meeste determinaties in %{year}
   leading: Leidend
   learn: Leren
   learn_about_the_species_live_in: Leer over de soorten die voorkomen in
@@ -3725,6 +3751,7 @@ nl:
   recent_observations: Recente waarnemingen
   recent_observations_: Recente waarnemingen
   recent_post: Recent bericht
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Recente waarnemingen door %{login} (Atom)"
   recent_observations_by: "Recente waarnemingen door %{login}"
   recently_active: Onlangs actief
@@ -6070,7 +6097,6 @@ nl:
     stats:
       index:
         active_desc: Heeft in de afgelopen 30 dagen een determinatie, waarneming, reactie of bericht gemaakt
-        active_users_desc: Heeft in de afgelopen 30 dagen een determinatie, waarneming, reactie of bericht gemaakt
         android_desc_html: Gemaakt met de <a href="%{url}">iNaturalist Android app</a>
         avg_ttcid: Gem TTCID
         avg_ttid: Gem TTID
@@ -7161,6 +7187,9 @@ nl:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: staat geen nieuwe reacties toe
             user:
               must_be_on_site_long_enough: |

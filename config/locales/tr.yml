@@ -212,6 +212,9 @@ tr:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Gizli koordinatlarının paylaşımı için şunları seçebilirsin
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Doğruluk (m)'
   account: Hesap
   account_creation: Hesap Oluşturma
@@ -866,7 +869,6 @@ tr:
   comments: Yorumlar
   comments_by_me: Yorumlarım
   comments_have_been_disabled: Yorumlar devre dışı bırakıldı
-  comments_on: İle ilgili yorumlar
   comments_on_my_observations: Gözlemlerim ile ilgili yorumlar
   commercial_solicitation: Ticari istek, hiçbir yerle bağlı olmayanlar vb.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -938,7 +940,6 @@ tr:
     place: Bu durumun kısıtlandığı yer.
     url: Bu durumu açıklayan bir sayfanın URL'si.
     geoprivacy: Bu sınıfın gözlemleri için varsayılan coğrafi gizlilik
-    iucn: Eşdeğer IUCN Kırmızı Listesi kodu
   conservation_status_geoprivacy_desc: |
     Bu yerdeki tüm sınıf gözlemlerine uygulanan varsayılan coğrafi gizlilik
   contact_support: Destekle İletişime Geç
@@ -1969,10 +1970,6 @@ tr:
   leaderboard: Lider Sıralaması
   leaderboard_for_x: "%{x} için Lider Sıralaması"
   leaderboards: Lider Sıralamaları
-  leaderboard_most:
-    species: '%{time} zamanındaki çoğu tür'
-    observations: '%{time} zamanındaki çoğu gözlem'
-    identifications: '%{time} zamanındaki çoğu tanımlama'
   leading: Öncü
   learn: Öğren
   learn_about_the_species_live_in: Yaşayan türler ile ilgili bilgi edin
@@ -3636,6 +3633,7 @@ tr:
   recent_observations: Son gözlemler
   recent_observations_: Son Gözlemler
   recent_post: Son gönderi
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "%{login} ile son gözlemler (Atom)"
   recent_observations_by: "%{login} ile son gözlemler"
   recently_active: Son Zamanlarda Etkin
@@ -6125,7 +6123,6 @@ tr:
     stats:
       index:
         active_desc: Önceki 30 gün içerisinde bir tanımlama, gözlem, yorum, veya gönderi oluşturuldu
-        active_users_desc: Önceki 30 gün içerisinde bir tanımlama, gözlem, yorum, veya gönderi oluşturuldu
         android_desc_html: <a href="%{url}">iNaturalist Android uygulması</a> üzerinden oluşturuldu
         avg_ttcid: Ort TTCID
         avg_ttid: Ort TTID
@@ -7297,6 +7294,9 @@ tr:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: yeni yorumlara izin vermiyor
             user:
               must_be_on_site_long_enough: |

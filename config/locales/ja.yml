@@ -147,6 +147,9 @@ ja:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     非表示の座標を共有するか選択できます
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: '精度（m）'
   account: アカウント
   account_creation: アカウント作成
@@ -771,7 +774,6 @@ ja:
   comments: コメント
   comments_by_me: 自分のコメント
   comments_have_been_disabled: コメントが無効になっています
-  comments_on: コメント：
   comments_on_my_observations: 自分の観察記録のコメント
   commercial_solicitation: セールス、どこにも繋がらないリンクなど。
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -835,7 +837,6 @@ ja:
     place: このステータスが制限されている場所。
     url: 保全状況を明記するウェブページのURL
     geoprivacy: この分類群のデフォルト位置情報公開設定
-    iucn: 相当するIUCNレッドリスト記号
   conservation_status_geoprivacy_desc: |
     この場所でのこの分類群のすべての観察記録に適用されるデフォルトの地理情報プライバシー
   contact_support: サポートへのお問い合わせ
@@ -1666,10 +1667,6 @@ ja:
   leaderboard: リーダーボード
   leaderboard_for_x: "%{x}の達人"
   leaderboards: リーダーボード
-  leaderboard_most:
-    species: '%{time} 観察種数ランキング'
-    observations: '%{time} 観察記録数ランキング'
-    identifications: '%{time} 同定数ランキング'
   leading: 主導
   learn: 学習
   learn_about_the_species_live_in: 次の場所で生息する生き物について学ぶ：
@@ -3002,6 +2999,8 @@ ja:
     kingdom: 界
     subkingdom: 亜界
     phylum: 門
+    x_phyla:
+      other: 門
     subphylum: 亜門
     superclass: 上綱
     class: 綱
@@ -3060,6 +3059,7 @@ ja:
   recent_observations: 最新の観察記録
   recent_observations_: 最近の観察記録
   recent_post: 新着投稿
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "%{login}の最新観察記録"
   recent_observations_by: "%{login}の新着観察記録"
   recently_active: 最近の活動

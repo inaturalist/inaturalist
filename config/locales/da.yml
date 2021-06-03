@@ -202,6 +202,9 @@ da:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Du kan vælge at dele skjulte koordinater for
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Nøj. (m)'
   account: Konto
   account_creation: Kontooprettelse
@@ -249,6 +252,7 @@ da:
     sex: Tilføj noter for "køn"
     plant_phenology: Tilføj anmærkninger for "plantefænologi"
     life_stage: Tilføj noter for "livsstadie"
+    evidence_of_presence: Føj anmærkninger til "Beviser for tilstedeværelse"
   add_another_flag: Tilføj endnu en markering
   add_another_photo: Tilføj endnu et foto
   add_another_section: Tilføj en sektion mere
@@ -309,6 +313,12 @@ da:
   add_life_stage_larva_annotation: 'Tilføj anmærkningen "Livsstadie: Larve"'
   add_life_stage_juvenile_annotation: 'Tilføj noten "Livsstadie: Juvenil"'
   add_life_stage_egg_annotation: 'Tilføj anmærkningen "Livsstadie: Æg"'
+  add_evidence_of_presence_organism_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Organisme"'
+  add_evidence_of_presence_feather_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Fjer"'
+  add_evidence_of_presence_scat_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Ekskrement"'
+  add_evidence_of_presence_track_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Spor"'
+  add_evidence_of_presence_bone_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Knogle"'
+  add_evidence_of_presence_molt_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Ham"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Tilføj forbindelse'
   #As in a Guide Section
@@ -864,7 +874,6 @@ da:
   comments: Kommentarer
   comments_by_me: Kommentarer fra mig
   comments_have_been_disabled: Kommentarer er deaktiveret
-  comments_on: Kommentarer til
   comments_on_my_observations: Kommentarer til mine observationer
   commercial_solicitation: Kommerciel opfordring, fører ingen steder hen etc.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -939,7 +948,9 @@ da:
     place: Sted, hvor denne status er begrænset.
     url: URL for en side, der beskriver denne status.
     geoprivacy: Standard geofortrolighed for denne taksons observationer
-    iucn: Tilsvarende IUCN Rødliste kode
+    iucn: |
+      Ækvivalent IUCN Red List-kode. Dette er ikke den faktiske IUCN-vurdering,
+      blot den bedst matchende IUCN-kode ift. truslen om koordinatafsløring indikeret af denne status. Dette vil tilsidesætte geofortrolighed, hvis den er "Mindste bekymring" eller derunder, så ønsker du at sløre observationer af denne takson, indstil da denne til "Næsten truet" eller derover.
   conservation_status_geoprivacy_desc: |
     Standard lokalitetsbeskyttelse anvendt på alle observationer af dette takson på dette sted
   contact_support: Kontakt support
@@ -983,6 +994,21 @@ da:
     alive: Levende
     dead: Død
     cannot_be_determined: Kan ikke bestemmes
+    evidence_of_presence: Bevis for tilstedeværelse
+    #As in the feather on a bird
+    feather: Fjer
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organisme
+    #Fecal matter, not regurgitated matter
+    scat: Ekskrement
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Spor
+    #Endoskeletal remains, like a deer bone
+    bone: Knogle
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Ham
   controlled_term_definitions:
     alive: Organisme lever og viser ingen tegn på forestående død
     dead: Organisme død eller viser tegn på forestående død
@@ -992,6 +1018,13 @@ da:
     no_evidence_of_flowering: Medier leverer ingen beviser på reproduktionsstrukturer
     teneral: Udvokset, der for nylig er kommet frem, men endnu ikke har opnået sin endelige voksne form
     cannot_be_determined: Kan ikke bestemmes ud fra det leverede bevis
+    feather: En eller flere fjer ikke fastgjort til en organisme
+    organism: Hel eller partiel organisme
+    scat: Fækalt materiale (ikke uglegylp eller andet gylgningsmateriale)
+    track: Aftryk i jord eller sne afsat af organisme
+    bone: |
+      Overvejende endoskeletale rester; delvis knogleeksponering i en ellers intakt organisme skal mærkes "organisme"
+    molt: Afstødt hud eller exoskelet
   controls: Kontrolpanel
   convert: Konvertér
   coordinate_systems: Koordinatsystem
@@ -1994,9 +2027,12 @@ da:
   leaderboard_for_x: "Topliste for %{x}"
   leaderboards: Toplister
   leaderboard_most:
-    species: Fleste arter i %{time}
-    observations: Fleste observationer i %{time}
-    identifications: Fleste identifikationer i %{time}
+    species_in_month_year: Fleste arter i %{month_year}
+    species_in_year: Fleste arter i %{year}
+    observations_in_month_year: Fleste observationer i %{month_year}
+    observations_in_year: Fleste observationer i %{year}
+    identifications_in_month_year: Fleste identifikationer i %{month_year}
+    identifications_in_year: Fleste identifikationer i %{year}
   leading: Førende
   learn: Lære
   learn_about_the_species_live_in: Lær om de arter, der lever i
@@ -3714,6 +3750,7 @@ da:
   recent_observations: Seneste observationer
   recent_observations_: Seneste observationer
   recent_post: Seneste indlæg
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Seneste observationer af %{login} (Atom)"
   recent_observations_by: "Seneste observationer af %{login}"
   recently_active: Nyligt aktive
@@ -6267,7 +6304,6 @@ da:
     stats:
       index:
         active_desc: Oprettede et ID, en obs, en kommentar eller et indlæg i de forgangne 30 dage
-        active_users_desc: Oprettede et ID, en obs, en kommentar eller et indlæg i de forgangne 30 dage
         android_desc_html: Oprettet via <a href="%{url}">iNaturalist Android app</a>
         avg_ttcid: Gnms TTFID
         avg_ttid: Gnms TTID
@@ -7451,6 +7487,9 @@ da:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: tillader ikke nye kommentarer
             user:
               must_be_on_site_long_enough: |

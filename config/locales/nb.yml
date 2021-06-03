@@ -181,6 +181,9 @@ nb:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Du kan velge å dele skjulte koordinater for
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Nøy. (m)'
   account: Konto
   account_creation: Kontoopprettelse
@@ -836,7 +839,6 @@ nb:
   comments: Kommentarer
   comments_by_me: Mine kommentarer
   comments_have_been_disabled: Kommentarer er deaktivert
-  comments_on: Kommentarer på
   comments_on_my_observations: Kommentarer på mine observasjoner
   commercial_solicitation: Kommersielle meldinger, lenker til ingenting, osv.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -908,7 +910,6 @@ nb:
     place: Sted som statusen er begrenset til.
     url: Url til en side som beskriver denne statusen.
     geoprivacy: Standard geosperring for observasjoner av dette taksonet
-    iucn: Tilsvarende IUCN-rødlistekode
   conservation_status_geoprivacy_desc: |
     Standard geosperring påført alle observasjoner av dette taksonet på dette stedet
   contact_support: Kontakt brukerstøtte
@@ -1843,10 +1844,6 @@ nb:
   leaderboard: Ledertavle
   leaderboard_for_x: "Ledertavle for %{x}"
   leaderboards: Ledertavler
-  leaderboard_most:
-    species: Flest arter per %{time}
-    observations: Fleste observajoner per %{time}
-    identifications: Fleste identifikasjoner per %{time}
   leading: Leder
   learn: Lær
   learn_about_the_species_live_in: Lær om artene som forekommer i
@@ -3392,6 +3389,7 @@ nb:
   recent_observations: Siste observasjoner
   recent_observations_: Siste observasjoner
   recent_post: Nylig innlegg
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Siste observasjoner av %{login} (Atom)"
   recent_observations_by: "Siste observasjoner av %{login}"
   recently_active: Nyligt aktive
@@ -5639,7 +5637,6 @@ nb:
     stats:
       index:
         active_desc: Har opprettet en id, obs, kommentar, eller innlegg de foregående 30 dager
-        active_users_desc: Har opprettet en id, obs, kommentar, eller innlegg de foregående 30 dager
         android_desc_html: Opprettet med <a href="%{url}">iNaturalist sin Android-app</a>
         avg_ttcid: Snitt TTFID
         avg_ttid: Snitt TTID
@@ -6629,6 +6626,9 @@ nb:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: tillater ikke nye kommentarer
             user:
               must_be_on_site_long_enough: |

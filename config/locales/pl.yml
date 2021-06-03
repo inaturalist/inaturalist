@@ -246,6 +246,9 @@ pl:
   about_muting: O wyciszaniu
   #Header for a section describing taxon names
   about_names: O Nazwach
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "O %{place}"
   about_places: O lokalizacjach
   about_the_cc_licenses: O licencjach Creative Commons
   about_these_licenses: O tych licencjach
@@ -254,6 +257,9 @@ pl:
   about_this_project: O tym projekcie
   about_trips_html: |
     <h4>Wycieczki pozwalają na zbieranie danych o obecnych i nieobecnych gatunkach poprzez dodanie szerszego kontekstu do obserwacji</h4><p><strong>Dlaczego</strong>Dane obecnych-nieobecnych zawierają informacje przydatne do naukowych analiz, na przykład modelowania zasięgu gatunków (zwykłe obserwacje dostępne na iNaturalist są danymi dowodzącymi wyłącznie "obecności" danego gatunku).</p> <p><strong>Jak</strong> Wycieczka dodaje szerszy kontekst do twoich obserwacji poprzez odnotowywanie:</p> <ul> <li><strong>Czego</strong> szukałeś (twoja lista)</li> <li><strong>Gdzie</strong> szukałeś (obszar poszukiwań)</li> <li><strong>Kiedy</strong> szukałeś (czas poszukiwań)</li> </ul> <p>Gatunki z twojej listy, które udało ci się zaobserwować na określonym obszarze i w określonym czasie poszukiwań są oznaczone jako obecne. Gatunki, których nie udało ci się znaleźć są oznaczone jako nieobecne. Kliknij 'Generuj tabelę z obecnymi i nieobecnymi podczas wycieczek', aby utworzyć tabelę obecnych-nieobecnych dla gatunków z wycieczek i powiązanych obserwacji.<a href='%{url}'>Dowiedz się więcej</a></p>
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Dokładność (m)'
   account: Konto
   account_creation: Tworzenie konta
@@ -282,6 +288,7 @@ pl:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Dodaj odnośnik
   add_a_name: Dodaj nazwę
+  add_a_note: Dodaj notatkę
   add_a_new_change_group: Dodaj nową grupę zmian
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Dodaj listę numerowaną
@@ -307,6 +314,7 @@ pl:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Dodaj zasób
   add_batch: Dodaj wiele
+  add_blocked_users: Dodaj zablokowanego użytkownika
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Dodaj tekst pogrubiony
   add_comma_separated_tags: "Dodaj tagi oddzielone przecinkami"
@@ -323,6 +331,7 @@ pl:
   add_id: Dodaj oznaczenie
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Dodaj tekst pochyły
+  add_muted_users: Dodaj wyciszonego użytkownika
   add_new_lexicon: Dodaj nowy język
   add_new_photos_by_their_ids: Dodaj nowe zdjęcia używając ich Flickr ID (zdjęcia muszą być objęte licencją Creative Commons!)
   add_new_place: Dodaj nową lokalizację
@@ -579,12 +588,21 @@ pl:
   any_license: Dowolna
   #Label for an option to show content with photos, sounds, or neither
   any_media: Dowolny
+  #Label for an option to show content from any project
+  any_project: Dowolny
   #Label for an option to show content with any quality grade
   any_quality_grade: Dowolny
   #Label for an option to show observation with any reviewed status, i.e. both
   #reviewed and unreviewed
   any_reviewed: Dowolny
   anyone: Ktokolwiek
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Aplikacja
+  applications: Aplikacje
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Aplikuj
   apply_to_selected: Zastosuj do wybranych
   apply_captive_cultivated: "Zastosuj żyje w niewoli / jest hodowany"
   apply_fields: Zastosuj pola
@@ -720,6 +738,7 @@ pl:
   back_to_your_observations: Wróć do swoich obserwacji
   back_to_your_profile: Wróć do swojego profilu
   back_to_your_projects: Wróć do swoich projektów
+  badges: Odznaki
   based_on_the_evidence_can_id_be_improved: |
     Czy na podstawie dostępnych danych takson społeczności może wciąż zostać sprawdzony lub ulepszony?
   batch: Seria
@@ -891,7 +910,6 @@ pl:
   comment_deleted: Komentarz usunięty
   comments: Komentarze
   comments_by_me: Moje komentarze
-  comments_on: Komentarze do
   comments_on_my_observations: Komentarze do moich obserwacji
   commercial_solicitation: Nachalny marketing, linki donikąd, itp.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -932,9 +950,14 @@ pl:
   confirm_new_password: Potwierdź nowe hasło
   confirm_now: Potwierdź teraz
   confirm_your_info: Potwierdź swoje dane
+  confirming_ids: Potwierdzanie oznaczeń
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Połącz
   connect_to_provider: "Połącz z %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Podłączone konta
+  connected_accounts_titlecase: Połączone konta
   connecting_flickr: "Łączenie z Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Połącz się ponownie z Flickr, aby autoryzować uprawnienia do zapisu
   connecting_to_facebook: "Łączenie z Facebook..."
@@ -946,13 +969,13 @@ pl:
     place: Miejsce, do którego odnosi się podatny status.
     url: URL do strony opisującej ten status.
     geoprivacy: Domyślne ustawienia geoprywatności dla obserwacji tego taksonu
-    iucn: Równorzędna kategoria z Czerwonej księgi gatunków zagrożonych
   conservation_status_geoprivacy_desc: |
     Domyślne ustawienia geoprywatności dla wszystkich obserwacji tego taksonu w tej lokalizacji
   contact_support: Skontaktuj się z pomocą
   contain_all_descendants?: Czy ta checklista zawiera wszystkie taksony o niższej randze, które występują na tym terenie?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Zawartość
+  content_and_display: Zawartość i wyświetlanie
   content_author: Autor zawartości
   content_hidden: Treść została ukryta
   content_hidden_by_user_on_date_because_reason_html: |
@@ -1075,6 +1098,7 @@ pl:
   datatype: Typ danych
   date_: Data
   date_added: Data dodania
+  date_authorized: Data autoryzacji
   date_created: Data utworzenia
   date_format:
     date_long:
@@ -1130,6 +1154,7 @@ pl:
   default_invite_comment: "Świetne zdjęcie! Powinieneś opublikować je na %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Domyślna licencja dla obserwacji
   default_photo_license: Domyślna licencja dla zdjęcia
+  default_search_place: Domyślna lokalizacja wyszukiwania
   default_sound_license: Domyślna licencja dla dźwięku
   definitions: Definicje
   delete: Usuń
@@ -1174,6 +1199,14 @@ pl:
       signed_out: 'Wylogowano pomyślnie.'
     passwords:
       send_instructions: 'W ciągu kilku minut otrzymasz e-mail z instrukcjami jak zresetować swoje hasło.'
+      updated: 'Twoje hasło zostało pomyślnie zmienione. Jesteś teraz zalogowany.'
+      updated_not_active: 'Twoje hasło zostało pomyślnie zmienione.'
+    registrations:
+      updated: 'Pomyślnie zaktualizowałeś swoje konto'
+      destroyed: 'Do zobaczenia! Twoje konto zostało pomyślnie anulowane. Mamy nadzieję zobaczyć Cię ponownie wkrótce.'
+    mailer:
+      reset_password_instructions:
+        subject: 'Instrukcje resetowania hasła'
   devise_reset_password_instructions_hello_email: Witaj %{email}
   discoveries: Odkrycia
   did_not_send_invitations_because: Nie wysłano zaproszeń, ponieważ...
@@ -1182,7 +1215,11 @@ pl:
   disable: Wyłącz
   disable_comments: Wyłącz komentarze
   disagree_: Nie zgadzam się
+  disconnect_caps: ROZŁĄCZ
   disconnect_provider: "Rozłącz %{provider}"
+  display: Wyświetlanie
+  display_link_to_checklist: Wyświetlaj link do listy projektów ze strony projektu
+  display_name: Nazwa wyświetlana
   distance_traveled_value: "Przebyta odległość: %{distance}m"
   distance_traveled: "Przebyta odległość (m)"
   documentation_for_developers_html: Dokumentacja dla <a href="/pages/developers">twórców</a>
@@ -1215,6 +1252,7 @@ pl:
   drawings: Rysunki
   duplicate_verb: Duplikat
   duration_value: "Czas trwania: %{duration} minut"
+  earliest_added: Najwcześniej dodane
   edit: Edytuj
   edit_a_batch_of_observations: Edytuj serię obserwacji
   edit_account_settings_and_profile: "Edytuj ustawienia konta i profil"
@@ -1324,6 +1362,9 @@ pl:
   export_observations: Eksport obserwacji
   export_with_private_coordinates: Eksportuj wraz z ukrytymi współrzędnymi
   exporting: "Eksportowanie..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
+  external_applications: Aplikacje zewnętrzne
   external_taxon_including_children: Takson zewnętrzny (w tym dzieci)
   extinct: wymarły
   extinct_in_the_wild: Wymarły na wolności
@@ -1505,6 +1546,10 @@ pl:
   geoprivacy_is_private_desc: Obserwator ukrył współrzędne.
   get_started: Rozpocznij
   give_it_some_detail: Dodaj szczegóły!
+  #Prompt to donate money on a montly basis
+  give_monthly_caps: PRZEKAZUJ CO MIESIĄC
+  #Prompt to donate money once
+  give_now_caps: PRZEKAŻ TERAZ
   global_names: Globalne nazwy
   globally: globalnie
   go: Szukaj
@@ -1561,6 +1606,9 @@ pl:
   hide_content: Ukryj zawartość
   hide_desc: |
     Ukrycie zawartości usunie ją z widoku publicznego, ale ludzie wciąż będą mogli zobaczyć, że coś zostało ukryte. Opiekunowie strony i autor treści będą mogli zobaczyć ukrytą zawartość. Dotyczy to tylko treści tekstowej, więc jeśli ukryjesz zawartość identyfikacji, identyfikacja będzie wciąż widoczna, ale uwagi identyfikującego już nie. Uważaj, tego nie można odwrócić - tylko administratorzy mogą ponownie odkryć zawartość, dlatego używaj tego narzędzia z rozwagą.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: Ukryj "Brak adnotacji"
   high: Wysoki
   highest_rank: Najwyższa pozycja
   highlights_and_stats_from_year_on_site: "Statystyki i wyróżnienia od %{year} na %{site}"
@@ -1630,6 +1678,9 @@ pl:
   inat_account_action: "%{site_name} &#58; Konto &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} uważa, że to jest kompletna lista taksonów dla tego miejsca."
   inat_user_profile: "%{site_name}: Profil użytkownika %{user}"
+  inaturalist_activity_notifications: "Powiadomienia o aktywności na %{site_name}"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
+  inaturalist_applications: "Aplikacje iNaturalist"
   inaturalist_is_a_joint_initiative: "%{site_name} to wspólna inicjatywa California Academy of Sciences i National Geographic Society."
   inaturalist_places: "Lokalizacje %{site_name}"
   info: Informacje
@@ -1637,6 +1688,8 @@ pl:
   insects: owady
   insect_life_stage: Stadium rozwoju owada
   instagram: Instagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Wstaw cytat
   interactions: Interakcje
   internal_server_error: Błąd Wewnętrzny Serwera
   internal_taxon_rank: Ranga wewnętrznego taksonu
@@ -1690,6 +1743,7 @@ pl:
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Zablokuj poziom powiększenia
+  language_slash_locale: Język/Ustawienia regionalne
   language_slash_type: Język / Typ
   #Large photo size
   large: duże
@@ -1709,14 +1763,11 @@ pl:
   leaderboard: Tablica wyników
   leaderboard_for_x: "Tablica wyników dla %{x}"
   leaderboards: Tablice wyników
-  leaderboard_most:
-    species: Najwięcej gatunków w %{time}
-    observations: Najwięcej obserwacji w %{time}
-    identifications: Najwięcej oznaczeń w %{time}
   leading: Wiodący
   learn: Dowiedz się
   learn_about_the_species_live_in: Dowiedz się więcej o gatunkach, które żyją w
   learn_more: Dowiedz się więcej
+  learn_more_on_the_blog: Dowiedz się więcej na blogu
   learn_more_raquo: "Dowiedz się więcej &raquo;"
   learn_what_these_licenses_mean: Dowiedz się, co oznaczają te licencje
   least_concern: Gatunek najmniejszej troski
@@ -1855,6 +1906,7 @@ pl:
     ko: Koreański
     lb: Luksemburski
     lt: Litewski
+    lv: Łotewski
     mk: Macedoński
     nb: Norweski Bokmål
     nl: Holenderski
@@ -1867,6 +1919,7 @@ pl:
     sq: Albański
     sv: Szwedzki
     tr: Turecki
+    uk: Ukraiński
     zh-CN: Chiński (uproszczony)
     zh-TW: Chiński (tradycyjny)
   location: Lokalizacja
@@ -1877,6 +1930,10 @@ pl:
   location_is_private: Lokalizacja jest prywatna
   location_specified: Lokalizacja określona
   log_in: Zaloguj się
+  log_out: Wyloguj
+  log_out_caps: WYLOGUJ
+  #Application is a mobile app the user has authorized to access their iNat account
+  log_out_of_application: "Wylogować z %{site_name}?"
   log_scale_label: Dziennik
   login_slash_username: Login / nazwa użytkownika
   logo:
@@ -2193,7 +2250,9 @@ pl:
   note: Uwaga
   notes: Notatki
   note_you_can_modify_the_height_attribute: "Uwaga: Możesz modyfikować atrybut \"wysokość\", aby dopasować element do wolnej przestrzeni na swojej stronie internetowej."
+  notifications: Powiadomienia
   notify_me_of_mentions: Powiadamiaj mnie o wzmiankach (np. @użytkownik)
+  notify_me_of_mentions_description: "Jeśli wyłączysz tę opcję, nie będziesz otrzymywać żadnych powiadomień, gdy ktoś wspomni o Tobie na %{site_name}."
   notify_me_about_redundant_identifications: Powiadamiaj mnie o potwierdzeniu oznaczeń
   notify_me_about_redundant_identifications_desc: |
     Otrzymuj powiadomienia o oznaczeniach, które pasują do Twoich własnych oznaczeń. Jeżeli z tego zrezygnujesz, będziesz otrzymywać tylko powiadomienia o oznaczeniach taksonów, które nie pasują do taksonu w Twoim własnym oznaczeniu.
@@ -2211,6 +2270,16 @@ pl:
   observation_: obserwacja
   observation_added: Dodano obserwację.
   observation_added_to_the_project: "Obserwacja dodana do projektu \"%{project}\""
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Obserwacje użytkownika %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Obserwacja &copy; %{user}
   observation_brief_something_on_day: "Coś dnia %{day}"
   observation_brief_something_on_day_at_time: "Coś dnia %{day} o %{time}"
   observation_brief_something_by_user: "Coś przez %{user}"
@@ -2274,6 +2343,8 @@ pl:
   observations_saved: Obserwacja/e zapisane!
   observations_this_year_vs_last_year: Obserwacje tegoroczne vs. zeszłoroczne
   observations_total: Obserwacji łącznie
+  observations_w: Obserwacje z
+  observations_w_field: Obserwacje z polem
   observations_widget: Widżet obserwacji
   observations_with_this_field: Obserwacje z tym polem
   observations_with_this_field_and_value: Obserwacje z tym polem i wartością
@@ -2304,10 +2375,12 @@ pl:
   of_places: lokalizacje
   of_this_taxon: Tego taksonu
   offensive_inappropriate: Obraźliwy / Nieodpowiedni
+  off_caps: "WYŁ."
   official_blog: Oficjalny blog
   offline_access_enabled: Dostęp offline włączony
   old_observation_form: Stary formularz obserwacji (przestarzały)
   ok: "OK"
+  on_caps: "WŁ."
   onboarding:
     observe_panel_body_p1_local: Potrzebujesz inspiracji? Oto kilka organizmów obserwowanych w pobliżu...
     follow_panel_title_local: Obserwuj przyrodników z okolicy
@@ -2462,10 +2535,14 @@ pl:
       municipality: gmina
       Nationality: Narodowość
       nationality: narodowość
+      Nearby_Intersection: Pobliskie skrzyżowanie
+      nearby_intersection: pobliskie skrzyżowanie
       Open_Space: Otwarta przestrzeń
       open_space: otwarta przestrzeń
       Parish: Parafia
       parish: parafia
+      Prefecture: Prefektura
+      prefecture: prefektura
       Point_of_Interest: Ciekawe miejsce
       Postal_Code: Kod pocztowy
       postal_code: kod pocztowy
@@ -2763,6 +2840,7 @@ pl:
   places_of_interest: Ciekawe miejsca
   plants: rośliny
   popular: Obs. popularne
+  position: Pozycja
   post_published: Post opublikowany!
   posts: Posty
   potential_disagreement: Potencjalna niezgodność
@@ -2783,6 +2861,7 @@ pl:
   processing: Przetwarzanie
   processing3p: "Przetwarzanie..."
   profile: Profil
+  profile_picture: Zdjęcie profilowe
   project: Projekt
   project_admins:
     one: Administrator projektu
@@ -2807,6 +2886,7 @@ pl:
   project_requirements: Wymagania projektu
   project_rules: Zasady projektu
   project_settings: Ustawienia projektu
+  project_start_time_datetime: "Czas rozpoczęcia: %{datetime}"
   project_that_does_not_contain_these_observations: Projekt, który nie zawiera tych obserwacji
   project_user_cannot_be_found: Nie można znaleźć użytkownika projektu
   project_was_successfully_created: Projekt został pomyślnie utworzony.
@@ -2822,6 +2902,7 @@ pl:
   quality_grade: Stopień jakości
   quality_grade_: Stopień jakości
   quality_grade_colon: "Stopień jakości:"
+  query: Zapytanie
   radius: Promień (m)
   radius_value: "Promień (m): %{radius}"
   rank_position: Ranga
@@ -2897,16 +2978,48 @@ pl:
     form: Forma
     infrahybrid: Infrahybryda
     leaves: Liście
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: królestwo
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: podkrólestwo
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: typ
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: podtyp
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: rząd
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: podrząd
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: rodzina
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: kompleks
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: gatunek
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: hybryda
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: podgatunek
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: odmiana
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: forma
+  ray_finned_fishes: promieniopłetwe
   re_order_photos: "Zmień kolejność zdjęć &raquo;"
   read_more: Czytaj więcej
   read_the_full_wikipedia: Przeczytaj pełen opis na Wikipedii
   real_time_discussions: Dyskusje w czasie rzeczywistym
   reason: Powód
   recaptcha_verification_failed: Weryfikacja reCAPTCHA nie powiodła się
+  receive_email_notifications: Otrzymuj powiadomienia e-mail
   receive_email_notifications_when_people_leave_you: Otrzymuj powiadomienia e-mail o
   recent: Najnowsze
+  recent_observations_: Najnowsze obserwacje
   recent_observations_by: "Ostatnie obserwacje wg %{login}"
   recently_active: Ostatnio aktywni
+  recently_added: Ostatnio dodane
+  recently_created: Ostatnio utworzone
+  recently_finished: Ostatnio zakończone
   recently_resolved: Ostatnio rozstrzygnięte
   red: czerwony
   refresh: Odśwież
@@ -3313,6 +3426,7 @@ pl:
   updated_photo: Zaktualizowane zdjęcie
   upload: Prześlij
   upload_a_csv_file: Prześlij plik CSV
+  upload_new_photo: Prześlij nowe zdjęcie
   upload_photo: Prześlij zdjęcie
   uploaded_by: Przesłane przez
   uploader:
@@ -3322,6 +3436,7 @@ pl:
     tooltips:
       add: Dodaj obserwacje
       combine: Połącz wybrane obserwacje
+      duplicate: Duplikuj wybrane obserwacje
       photo_failed: Nie udało się przesłać zdjęcia
       remove: Usuń wybrane obserwacje
       remove_observation: Usuń obserwację
@@ -3364,6 +3479,7 @@ pl:
   user_flagged_as_a_spammer_html: "%{user} zgłoszony jako spamer"
   user_hasnt_joined_any_projects: "%{user} nie dołączył do żadnego projektu"
   user_helped_x_people_with_y_ids_html: "%{user} pomógł <strong>%{x} osobom</strong> z <strong>%{y} oznaczeniami</strong>"
+  user_invited_you_to_join_project: "%{user} zaprosił Cię do dołączenia do %{project}"
   user_is_a_naturalist: "%{user} jest przyrodnikiem!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> jest teraz administratorem projektu %{project}
@@ -3378,6 +3494,7 @@ pl:
   username_or_email: Nazwa użytkownika lub adres e-mail
   username_or_user_id: Nazwa użytkownika lub identyfikator użytkownika
   users: Użytkownicy
+  users_profile: "Profil %{user}"
   users_projects: "Projekty użytkownika %{user}"
   value: Wartość
   values: Wartości
@@ -3717,7 +3834,6 @@ pl:
     stats:
       index:
         active_desc: Dodali oznaczenia, obserwacje, komentarze lub posty w poprzednich 30 dniach
-        active_users_desc: Dodali oznaczenia, obserwacje, komentarze lub posty w poprzednich 30 dniach
         android_desc_html: Dodane za pomocą <a href="%{url}">aplikacji iNaturalist na Androida</a>
         avg_ttcid: Średni TTCID
         avg_ttid: Średni TTCID
@@ -4300,6 +4416,10 @@ pl:
           attributes:
             base:
               guide_has_too_many_taxa: "przewodnik może zawierać 500 taksonów"
+        moderator_action:
+          attributes:
+            user_id:
+              must_be_a_curator: musi być kuratorem
         observation:
           attributes:
             base:
@@ -4528,11 +4648,15 @@ pl:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  wikimedia: Wikimedia
   wild: Organizmy dzikie
   will_paginate:
     previous_label: "&#8592; Poprzednia"
     next_label: "Następna &#8594;"
     page_gap: "&hellip;"
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: Od Z do A
   zoom_in: Powiększ
   zoom_out: Pomniejsz
   zoom_photo: Powiększ zdjęcie

@@ -197,6 +197,9 @@ it:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Puoi scegliere di condividere le coordinate nascoste per
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Acc (m)'
   account: Account
   account_creation: Creazione Utenza
@@ -856,7 +859,6 @@ it:
   comments: Commenti
   comments_by_me: I miei commenti
   comments_have_been_disabled: I commenti sono stati disabilitati
-  comments_on: Commenti su
   comments_on_my_observations: Commenti alle mie osservazioni
   commercial_solicitation: Promozioni commerciali, link a nulla, etc.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -928,7 +930,8 @@ it:
     place: Luogo al quale si riferisce questo stato conservazionistico.
     url: URL di una pagina che descrive questo stato conservazionistico.
     geoprivacy: Geoprivacy predefinita per le osservazioni di questo taxon
-    iucn: Codice equivalente della Lista Rossa IUCN
+    iucn: |
+      Equivalente del Codice della Lista Rossa IUCN. Questa non è l’effettiva valutazione della IUCN, ma il codice IUCN che meglio corrisponde al rischio di divulgazione delle coordinate implicita in questo stato. Questo sovrascriverà la geoprivacy se è "Minor Preoccupazione" o inferiore: quindi se si vuole oscurare le osservazioni di questo taxon, bisogna impostare questo codice su "Quasi Minacciato" o superiore.
   conservation_status_geoprivacy_desc: |
     Geoprivacy predefinita applicata a tutte le osservazioni di questo taxon per questo luogo
   contact_support: Contatta il supporto
@@ -1964,10 +1967,6 @@ it:
   leaderboard: Classifica
   leaderboard_for_x: "Classifica per %{x}"
   leaderboards: Classifiche
-  leaderboard_most:
-    species: Con più specie in %{time}
-    observations: Con più osservazioni in %{time}
-    identifications: Con più identificazioni in %{time}
   leading: Da guida
   learn: Impara
   learn_about_the_species_live_in: Scopri le specie che vivono in
@@ -3652,6 +3651,7 @@ it:
   recent_observations: Osservazioni recenti
   recent_observations_: Osservazioni recenti
   recent_post: Post recenti
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Osservazioni recenti di %{login} (Atom)"
   recent_observations_by: "Osservazioni recenti di %{login}"
   recently_active: Attivi di recente
@@ -4251,7 +4251,7 @@ it:
   that_photo_doesnt_exist: La foto non esiste.
   that_observation_doesnt_exist: L'osservazione non esiste.
   that_observation_doesnt_have_any_photos: "L'osservazione non ha alcuna foto."
-  that_observation_hasnt_been_added_this_project: L'osservazione non è ancora stata aggiunta al progetto.
+  that_observation_hasnt_been_added_this_project: L'osservazione non è ancora stata aggiunta a questo progetto.
   that_observation_no_longer_exists: L'osservazione non esiste più.
   that_project_doesnt_exist: "Il progetto non esiste."
   that_role_doesnt_exist: Il ruolo non esiste
@@ -5969,7 +5969,6 @@ it:
     stats:
       index:
         active_desc: Identificazione, osservazione, commento o post creato nei precedenti 30 giorni
-        active_users_desc: Identificazioni, obs, commenti o post creati nei 30 giorni precedenti
         android_desc_html: Create via <a href="%{url}">iNaturalist app Android</a>
         avg_ttcid: TTCID Media
         avg_ttid: TTID Media
@@ -6975,6 +6974,9 @@ it:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: non consente nuovi commenti
             user:
               must_be_on_site_long_enough: |

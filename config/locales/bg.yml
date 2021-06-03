@@ -182,6 +182,9 @@ bg:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Можете да изберете да споделите скритите координати за
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Точност (m)'
   account: Акаунт
   account_creation: Създаване на акаунт
@@ -704,7 +707,6 @@ bg:
   comments: Коментари
   comments_by_me: Коментари от мен
   comments_have_been_disabled: Коментарите са изключени
-  comments_on: Коментари на
   comments_on_my_observations: Коментари на мои наблюдения
   commercial_solicitation: Комерсиални предложения, препратки доникъде и т.н.
   common_name: Народно име
@@ -749,7 +751,6 @@ bg:
     place: Място, до което се отнася този статут.
     url: Адрес на уеб страница описваща този статут.
     geoprivacy: Геоповерителност по подразбиране за този таксон
-    iucn: Еквивалент на кода в Червения списък на IUCN
   conservation_status_geoprivacy_desc: |
     Геоповерителността по подразбиране прилагана към всички наблюдения от този таксон и на това място
   contact_support: Свържете се с поддръжка
@@ -1497,10 +1498,6 @@ bg:
   leaderboard: Водачество
   leaderboard_for_x: "Водачество за %{x}"
   leaderboards: Водачества
-  leaderboard_most:
-    species: Най-много видове за %{time}
-    observations: Най-много наблюдения за %{time}
-    identifications: Най-много разпознавания за %{time}
   learn: Научете
   learn_about_the_species_live_in: Научи за видовете живеещи в
   learn_about_third_party_tracking: Научете повече за проследяването от трети страни
@@ -2868,6 +2865,7 @@ bg:
   recent_observations: Скорошни наблюдения
   recent_observations_: Скорошни наблюдения
   recent_post: Скорошни публикации
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Скорошни наблюдения от %{login} (Atom)"
   recent_observations_by: "Скорошни наблюдения от %{login}"
   recently_active: Последно активни

@@ -728,7 +728,6 @@ id:
   comments: Komentar
   comments_by_me: Dikomentari oleh saya
   comments_have_been_disabled: Komentar telah dinonaktifkan
-  comments_on: Komentar di
   comments_on_my_observations: Komentar di observasi saya
   commercial_solicitation: iklan, link ke mana-mana, dll
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -791,7 +790,6 @@ id:
     place: letakkan ke status yang dibatasi.
     url: URL untuk sebuah halaman yang menjelaskan status ini.
     geoprivacy: Default geo privasi untuk pengamatan takson ini
-    iucn: Setara kode IUCN Red List
   contact_support: Hubungi Bantuan
   contain_all_descendants?: Apakah daftar ini berisi semua keturunan takson ada di sini?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -1623,10 +1621,6 @@ id:
   layers: Lapisan
   layout: Rancangan
   leaderboards: Papan
-  leaderboard_most:
-    species: Paling banyak spesies pada %{time}
-    observations: Pengamatan terbanyak pada %{time}
-    identifications: Identifikasi terbanyak pada %{time}
   learn_about_the_species_live_in: Pelajari tentang spesies yang hidup
   learn_more: Pelajari lebih lanjut
   learn_more_raquo: "Pelajari lebih banyak&raquo"
@@ -2509,6 +2503,7 @@ id:
   recent: Terkini
   recent_observations: Pengamatan yang baru
   recent_post: Tulisan yang baru
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Pengamatan yang baru oleh %{login} (Atom)"
   recent_observations_by: "Pengamatab yabf baru oleh %{login}"
   recently_active: Baru aktif

@@ -28,6 +28,9 @@ sk:
   about_this_bioblitz: O tomto bioblitze.
   about_this_map: O tejto mape
   about_this_project: O tomto projekte
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Presnosť (m)'
   account: Účet
   account_creation: Vytvorenie účtu
@@ -517,7 +520,6 @@ sk:
   comment_deleted: komentár zmazaný
   comments: Komentáre
   comments_by_me: Moje komentáre
-  comments_on: Komentáre o
   comments_on_my_observations: Komentáre k mojim pozorovaniam
   commercial_solicitation: Komerčná žiadosť, neplatné odkazy atď.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -568,7 +570,6 @@ sk:
     place: Miesto, na ktoré je tento status obmedzený.
     url: URL stránky opisujúci tento status.
     geoprivacy: Štandardne nastavené geosúkromie pre pozorovanie tohto taxónu
-    iucn: Ekvivalentný kód v Červenom zozname IUCN
   contact_support: Kontaktujte podporu
   contain_all_descendants?: Obsahuje tento zoznam všetky následné taxóny, ktoré se tu vyskytujú?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -1251,10 +1252,6 @@ sk:
   leaderboard: Najlepšie výsledky
   leaderboard_for_x: "Najlepšie výsledky pre %{x}"
   leaderboards: Prehľady najlepších výsledkov
-  leaderboard_most:
-    species: Najviac druhov v %{time}
-    observations: Najviac pozorovaní v %{time}
-    identifications: Najviac identifikácií v %{time}
   leading: Najlepší
   learn: Učiť sa
   learn_about_the_species_live_in: Naučte sa o druhoch, ktoré žijú v
@@ -2434,6 +2431,7 @@ sk:
   recent_observations: Nedávne pozorovania
   recent_observations_: Nedávne pozorovania
   recent_post: Nedávne príspevky
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Nedávne pozorovania užívateľa %{login} (Atom)"
   recent_observations_by: "Nedávne pozorovania užívateľa %{login}"
   recently_active: Nedávno aktívne

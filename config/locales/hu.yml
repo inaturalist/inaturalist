@@ -1,7 +1,321 @@
 hu:
+  x_comments:
+    one: '%{count} megjegyzés'
+    other: '%{count} megjegyzés'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> megjegyzés'
+    other: '<span class="count">%{count}</span> megjegyzés'
+  x_faves:
+    one: '%{count} kedvenc'
+    other: '%{count} kedvenc'
+  x_flags_resolved_html:
+    one: "<span class='count'>%{count}</span> bejelentés megoldva"
+    other: "<span class='count'>%{count}</span> bejelentés megoldva"
+  x_identifications:
+    one: '%{count} meghatározás'
+    other: '%{count} meghatározás'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> meghatározás'
+    other: '<span class="count">%{count}</span> meghatározás'
+  x_identifications_:
+    one: '%{count} meghatározás'
+    other: '%{count} meghatározás'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> meghatározó'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> meghatározó'
+  x_languages:
+    one: "%{count} nyelv"
+    other: "%{count} nyelv"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} életlista első"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} életlista első"
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> bejegyzés'
+    other: '<span class="count">%{count}</span> bejegyzés'
+  x_matching_taxa:
+    one: '%{count} egyező taxon'
+    other: '%{count} egyező taxon'
+  x_matching_taxa_html:
+    one: '<span class="count">%{count}</span> egyező taxon'
+    other: '<span class="count">%{count}</span> egyező taxon'
+  x_misidentifications_of_this_species:
+    one: "%{count} hibás meghatározás e fajhoz"
+    other: "%{count} hibás meghatározás e fajhoz"
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} hibás meghatározás %{rank} fajainál"
+    other: "%{count} hibás meghatározás %{rank} fajainál"
+  x_observations:
+    one: "%{count} megfigyelés"
+    other: "%{count} megfigyelés"
+  x_observations_:
+    one: "%{count} megfigyelés"
+    other: "%{count} megfigyelés"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> megfigyelés"
+    other: "<span class='count'>%{count}</span> megfigyelés"
+  x_observations_link_html:
+    one: "<a href='%{url}'>%{count} megfigyelés</a>"
+    other: "<a href='%{url}'>%{count} megfigyelés</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> megfigyelés átnézve"
+    other: "<span class='count'>%{count}</span> megfigyelés átnézve"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> megfigyelő'
+    other: '<span class="count">%{count}</span> megfigyelő'
+  x_others:
+    one: "%{count} további felhasználó"
+    other: "%{count} egyéb"
+  x_people:
+    one: "%{count} személy"
+    other: "%{count} személy"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} személy</strong> segített %{user}<strong>%{y} meghatározással</strong>"
+  x_photos:
+    one: "%{count} fénykép"
+    other: "%{count} fénykép"
+  x_new_species:
+    one: "%{count} új faj"
+    other: "%{count} új faj"
+  x_new_users:
+    one: '%{count} új felhasználó'
+    other: '%{count} új felhasználó'
+  x_species:
+    one: '%{count} faj'
+    other: '%{count} faj'
+  x_species_html:
+    one: "<span class='count'>%{count}</span> faj"
+    other: "<span class='count'>%{count}</span> faj"
+  x_species_link_html:
+    one: "<a href='%{url}'>%{count} faj</a>"
+    other: "<a href='%{url}'>%{count} faj</a>"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} javaslat szűrve a következők szerint:"
+    other: "%{count} javaslat szűrve a következők szerint:"
+  x_taxa:
+    one: "%{count} taxon"
+    other: "%{count} taxon"
+  x_taxa_observed_html:
+    one: "<span class='count'>%{count}</span> taxon megfigyelve"
+    other: "<span class='count'>%{count}</span> taxon megfigyelve"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> tudányos szintű meghatározás"
+    other: "<span class='count'>%{count}</span> tudányos szintű meghatározás"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>%{count}</span> tudományos szintű meghatározás faji szinten vagy az alatt beazonosítva"
+    other: "<span class='count'>%{count}</span> tudományos szintű meghatározás faji szinten vagy az alatt beazonosítva"
+  x_sounds:
+    one: "%{count} hang"
+    other: "%{count} hang"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span> gondozott taxon"
+    other: "<span class='count'>%{count}</span> gondozott taxon"
+  x_taxa_matching_current_filters:
+    one: "%{count} taxon a szűrési feltételek megfelelően"
+    other: "%{count} taxon a szűrési feltételek megfelelően"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>%{count}</span> taxonmódosítás"
+    other: "<span class='count'>%{count}</span> taxonmódosítás"
   _100_day_trends: Száznapos trend
+  _percent_ID_d: "% meghatározott"
   a_community_for_naturalist: Természetbarátok közössége
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "ABC-sorrend"
+  about: Rólunk
   about_blocking: A tiltásról
+  about_charts: A grafikonokról
+  about_community_taxa: A közösségi taxonokról
+  about_complete_taxa: A teljes taxonokról
+  about_conservation_status: A természetvédelmi státuszról
+  about_editing_observation_fields: A megfigyelések adatmezőiről
+  about_license_options: A licencelési lehetőségekről
+  about_licenses: A licencekről
+  about_muting: A némításról
+  #Header for a section describing taxon names
+  about_names: A nevekről
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "%{place} leírása"
+  about_places: A helyekről
+  about_this_map: Erről a térképről
+  about_this_project: Erről a projektről
+  account: Fiók
+  account_creation: Fiók létrehozás
+  account_settings: Fiók beállításai
+  accept: Elfogadom
+  accept_community_identifications: Elfogadom a közösség meghatározásait
+  accuracy: Pontosság
+  accuracy_meters: Pontosság (méterben)
+  add: Hozzáadás
+  add_a_batch_of_observations: Megfigyelések tömeges hozzáadása
+  add_a_batch_of_taxa: Taxonok tömeges hozzáadása
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Felsorolás lista hozzáadása
+  add_a_comment: Megjegyzés hozzáadása
+  add_a_field: Adatmező hozzáadása
+  add_a_flag: Bejelentés
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Hivatkozás hozzáadása
+  add_a_name: Név hozzáadása
+  add_a_note: Jegyzet hozzáadása
+  add_an_identification: Meghatározás hozzáadása
+  add_an_observation: Megfigyelés hozzáadása
+  add_an_observation?: Új megfigyelés?
+  add_comment: Megjegyzés hozzáadása
+  added: Hozzáadva
+  added!: Hozzáadva!
+  added_by: 'Hozzáadta:'
+  agree_: Egyetértés
+  agree?: Egyetértesz?
+  agree_with_current_taxon: Egyetért a jelenlegi taxonnal
+  agreeing: Egyetértés...
+  all: Mind
+  all_comments: Minden megjegyzés
+  and: és
+  are_you_sure?: Biztos vagy benne?
+  are_you_sure_no_undo: Biztos vagy benne? Ezt nem lehet visszavonni.
+  associated_taxa: Társított taxonok
+  asc: Növekvő
+  ascending: Növekvő
+  assessment: értékelések
+  back_to_observation_fields: Vissza az adatmezőkhöz
+  birds: madarak
+  birthday: Születésnap
+  black: fekete
+  block_user: Felhasználó tiltása
+  block_removed: Tiltás visszavonva
+  blocked_users: Letiltott felhasználók
+  blue: kék
+  blue_butterfly_etc: "kék, pillangó, stb."
+  cancel: Mégse
+  captive: Fogságban
+  casual: hobbiszintű
+  casual_: Hobbiszintű
+  casual_tooltip_html: 'A "hobbiszintű" megfigyeléseknél hiányzik a kép vagy hang, a hely, a dátum, vagy egyéb okokból nem felelnek meg a "Tudományos szint" vagy a "Meghatározás szükséges" minőségi szinteknek. <a href="https://www.inaturalist.org/pages/help#quality">További információ a minőségi szintekről</a>'
+  categories: Kategóriák
+  colors: Színek
+  columns: Oszlopok
+  combine: Összerendezés
+  comment: megjegyzés
+  #Verb, generally a label on a button that allows the user to add a comment
+  comment_: Megjegyzés
+  comment_deleted: Megjegyzés törölve
+  comments: Megjegyzések
+  comments_by_me: Megjegyzések tőlem
+  comments_have_been_disabled: Megjegyzések letiltva
+  comments_on_my_observations: Megjegyzések a megfigyeléseimhez
+  community: Közösség
+  community_guidelines: Közösségi irányelvek
+  curator_application_what_curators_can_do_hide_comments_html: |
+    A <a
+    href="/pages/community+guidelines" target="_blank">Közösségi irányelveket</a> sértő felhasználók felfüggesztése és megjegyzéseinek elrejtése.
+  disable_comments: Megjegyzések letiltása
+  disable_comments_desc: További megjegyzések letiltása
+  edit_comment: A megjegyzésed szerkesztése
+  editing_observation_field: Az adatmezők szerkesztése
+  explore: Felfedezés
+  fill_out_project_observation_fields: A projekt adatmezőinek kitöltése
+  find_new_place_to_explore: Fedezz fel egy új helyet!
+  forum: Fórum
+  go: Mehet
+  go_back: Vissza
+  google: Google
+  grid: Rács
+  grid_layout: Rácselrendezés
+  grid_tooltip: Rácselrendezés megtekintése
+  header_your_observations: Megfigyeléseim
+  help: Súgó
+  identify: Azonosítás
+  identify_title: "Azonosítás"
+  leave_a_comment: Írd ide a megjegyzést
+  location: Hely
+  location_is_accurate: A hely pontatlan
+  location_is_exact: a hely pontos
+  location_is_public: A hely publikus
+  location_is_obscured: A hely kitakart
+  log_in_or_sign_up_to_add_comments_html: |
+    Megjegyzés hozzáadásához <a href="/login">jelentkezz be</a> vagy <a href="/signup">regisztrálj</a>.
+  map: Térkép
+  map_legend: Térkép jelmagyarázat
+  map_marker_size: térképjelölő mérete
+  merge_observation_field_x_into: '"%{x}" adatmező összevonása ezzel...'
+  most_comments_and_faves: A legtöbb megjegyzés vagy kedvenc
+  must_have_observation_field: "'%{operand}' adatmező nem lehet üres"
+  new_observation_field: Új adatmező
+  no_comments_yet: Még nincsenek megjegyzések.
+  observation_belongs_to_project_requiring_field: |
+    Ez a megfigyelés egy olyan projekthez tartozik, amelynél kötelező ezen adatmező kitöltése. A megfigyelést el kell távolítani a projektből, és csak azután lehet az adatmező értéket törölni.
+  observation_field: Adatmező
+  observation_field_details: Adatmező részletei
+  observation_fields: Adatmezők
+  observation_fields_are_additional: Az adatmezők kiegészítő információkkal szolgálhatnak a megfigyelésekhez.
+  observation_fields_by_preferences_description: |
+    Az adatmezők nagyjából címkékként működnek, és alapértelmezetten bárki hozzáadhatja azokat a megfigyelésedhez. Ezen a beállítások módosíthatsz, ha csak te szeretnéd ezt megtenni, vagy a kurátorokra bízod.
+  observations: Megfigyelések
+  observations_: megfigyelés
+  observations_fields_are: |
+    Az adatmezők a megfigyelésekhez tartozó extra adatok, amely bármi lehet, például a megfigyelők száma, élőhelyleírás, stb. A projektek meghatározhatják, hogy mely adatmezők kitöltése kötelező.
+  observations_specifying_this_field: Megfigyelések ezzel az adatmezővel
+  observations_specifying_this_field_with_value: Megfigyelések "%{value}" értékkel ebben az adatmezőben
+  observations_w_field: Megfigyelések adatmezővel
+  observations_with_this_field: Megfigyelések ezzel az adatmezővel
+  observations_with_this_field_and_value: Megfigyelések ezzel az adatmezővel és értékkel
+  of_observations: megfigyelés
+  our_blog: Blogunk
+  press: Sajtó
+  privacy: Adatvédelem
+  ranks:
+    #Singular
+    species: Faj
+    x_species:
+      one: Faj
+      other: Fajok
+  save_comment: Megjegyzés mentése
+  search: Keresés
+  terms_service: Felhasználási feltételek
+  these_observations_have_not_been_uploaded_yet: |
+    Ezek a megfigyelések még nem kerültek feltöltésre.
+  upload: Feltöltés
+  upload_a_csv_file: CSV-fájl feltöltése
+  user_added_an_observation_field_html: '%{user} kitöltötte a(z) "%{field_name}" adatmezőt %{owner} megfigyeléséhez'
+  user_added_an_observation_field_value_html: "%{user} értéket adott meg egy adatmezőben"
+  who_can_add_observation_fields_to_my_obs: Ki adhat adatmezőket a megfigyeléseimhez?
+  you_cant_delete_observation_fields_that_people_are_using: "Nem lehet használatban lévő adatmezőket törölni"
+  you_must_choose_an_observation_field: Ki kell választanod egy adatmezőt
+  your_observations: Megfigyeléseim
+  views:
+    guides:
+      pdf_layouts:
+        grid: rács
+    observations:
+      show:
+        observer_does_not_allow_observation_fields: A megfigyelő nem teszi lehetővé új adatmezők hozzáadását
+        observer_only_allows_curators_to_add_fields: A megfigyelő csak kurátorok számára engedélyezi adatmezők hozzáadását
+    observation_fields:
+      about_editing_observation_fields_desc_html: |
+        <p class='ui'>
+        Módosíthatod ezt az adatmezőt, mivel vagy te hoztad létre, vagy mert kurátor vagy. Utóbbi esetben kövesd az alábbi útmutatást:
+        </p>
+        <ol>
+        <li>Ne végezz tetszőleges névmódosításokat (pl. "tojásrakó" módosítása "tojó"-ra)</li>
+        <li>Figyelj arra, hogy az adatmezők bármely taxon megfigyeléseihez felhasználhatók, ezért a taxon-specifikus kifejezések kerülendők</li>
+        <li>Ne törölj használatban lévő adatmezőket</li>
+        <li>Ne fordítsd le a meglévő mezőket más nyelvekre. Az iNaturalist közvetítőnyelve az angol. Ha nagyon indolkolt egy meglévő koncepciójú adatmező más nyelvre való átültetése, hozz létre egy új adatmezőt.</li>
+        </ol>
+    users:
+      edit:
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Megjegyzések
+      recent:
+        about_recent_users: Rólunk
+    welcome:
+      index:
+        explore_and_share: Fedezd fel a természetet és oszd meg megfigyeléseidet!
   date:
     abbr_month_names:
       - 

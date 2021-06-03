@@ -213,6 +213,9 @@ gl:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Podes escoller compartir coordenadas ocultas para
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Exactitude (metros)'
   account: Conta
   account_creation: Creación Dunha Conta
@@ -869,7 +872,6 @@ gl:
   comments: Comentarios
   comments_by_me: Os meus comentarios
   comments_have_been_disabled: Inhabilitáronse os comentarios
-  comments_on: Comentarios sobre
   comments_on_my_observations: Comentarios sobre as miñas observacións
   commercial_solicitation: Anuncia algo, os enlaces non son válidos, etc.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -941,7 +943,6 @@ gl:
     place: Ubicación na que se restrinxe este estadio.
     url: URL para a páxina que describe este estadio.
     geoprivacy: Xeoprivacidade predeterminada para observacións deste taxon
-    iucn: Código equivalente da Lista Vermella IUCN
   conservation_status_geoprivacy_desc: |
     Xeoprivacidade predeterminada aplicada a tódalas observacións deste taxon neste lugar
   contact_support: Contacta ó Soporte
@@ -1970,10 +1971,6 @@ gl:
   leaderboard: Usuarios máis activos
   leaderboard_for_x: "Os máis activos de %{x}"
   leaderboards: Os máis activos
-  leaderboard_most:
-    species: A maioría das especies en %{time}
-    observations: A maioría das observacións en %{time}
-    identifications: A maioría de identificacións en %{time}
   leading: Na dianteira
   learn: Infórmate
   learn_about_the_species_live_in: Aprende sobre as especies que viven en
@@ -3653,6 +3650,7 @@ gl:
   recent_observations: Observacións recentes
   recent_observations_: Observacións recentes
   recent_post: Notas recentes
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Observacións recentes por %{login} (Atom)"
   recent_observations_by: "Observacións recentes por %{login}"
   recently_active: Activos recentemente
@@ -5953,7 +5951,6 @@ gl:
     stats:
       index:
         active_desc: Identificaron, observaron, comentaron ou publicaron nos 30 días anteriores
-        active_users_desc: Identificaron, observaron, comentaron ou publicaron nos 30 días anteriores
         android_desc_html: Creados coa <a href="%{url}">app iNaturalist para Android</a>
         avg_ttcid: Media TTCID
         avg_ttid: Media TTID
@@ -6952,6 +6949,9 @@ gl:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: non permite comentarios novos
             user:
               must_be_on_site_long_enough: |
