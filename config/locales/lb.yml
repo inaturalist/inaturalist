@@ -168,6 +168,7 @@ lb:
     sex: Annotatioune fir "Geschlecht" derbäisetzen
     plant_phenology: Annotatioune fir "Planzephänologie" derbäisetzen
     life_stage: Bemierkunge fir "Liewensstadium" derbäisetzen
+    evidence_of_presence: Annotatioun fir "Evidenz vum Virkommen" bäifügen
   add_another_flag: Nach eng Markéierung derbäisetzen
   add_another_photo: Eng aner Foto derbäisetzen
   add_another_section: En aneren Abschnitt derbäisetzen
@@ -211,6 +212,12 @@ lb:
   add_life_stage_larva_annotation: 'Setzt d''Informatioun "Liewensstadium: Larv" derbäi'
   add_life_stage_juvenile_annotation: 'Setzt d''Informatioun "Liewensstadium: jonkt Déier" derbäi'
   add_life_stage_egg_annotation: 'Setzt d''Informatioun "Liewensstadium: Ee" derbäi'
+  add_evidence_of_presence_organism_annotation: 'Annotatioun "Evidenz vum Virkommen: Organismus" bäifügen'
+  add_evidence_of_presence_feather_annotation: 'Annotatioun "Evidenz vum Virkommen: Fieder" bäifügen'
+  add_evidence_of_presence_scat_annotation: 'Annotatioun "Evidenz vum Virkommen: Exkrement" bäifügen'
+  add_evidence_of_presence_track_annotation: 'Annotatioun "Evidenz vum Virkommen: Spuer" bäifügen'
+  add_evidence_of_presence_bone_annotation: 'Annotatioun "Evidenz vum Virkommen: Schank" bäifügen'
+  add_evidence_of_presence_molt_annotation: 'Annotatioun "Evidenz vum Virkommen: Häutung" bäifügen'
   #As in a Taxon Framework Relationship
   add_relationship: 'Eng Relatioun derbäisetzen'
   #As in a Guide Section
@@ -560,9 +567,31 @@ lb:
     alive: Lieweg
     dead: Dout
     cannot_be_determined: Ka net bestëmmt ginn
+    evidence_of_presence: Evidenz vum Virkommen
+    #As in the feather on a bird
+    feather: Fieder
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organismus
+    #Fecal matter, not regurgitated matter
+    scat: Exkrement
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Spuer
+    #Endoskeletal remains, like a deer bone
+    bone: Schank
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Häutung
   controlled_term_definitions:
     alive: Organismus ass lieweg a weist keng Unzeeche vun imminenten Doud
     dead: Organismus ass dout oder weist Unzeeche vun imminenten Doud
+    feather: Eng oder mei Fiederen net um Organismuss hänkent
+    organism: Ganzen oder partiellen Organismus
+    scat: Fäkal Exkrementer (keen gierkstent Material)
+    track: Androck am Buedem oder Schnéi vum Organismus
+    bone: |
+      Virun allem Iwwerreschter vum Endoskelett; partiell siichtbar Schanken an engem anescht intakten Organismus sollen als "Organismus" bezeechent ginn
+    molt: Verworfen Haut oder Exoskelet
   controls: Kontrollen
   convert: Ëmwandelen
   coordinate_systems: Koordinatesystem
@@ -937,6 +966,13 @@ lb:
   last_year: Lescht Joer
   lat: Lat
   leaderboard: Féierungstabel
+  leaderboard_most:
+    species_in_month_year: Déi meescht Aarten an %{month_year}
+    species_in_year: Déi meescht Aarten an %{year}
+    observations_in_month_year: Meescht Observatioune am %{month_year}
+    observations_in_year: Meescht Observatioune an %{year}
+    identifications_in_month_year: Meescht Bestëmmungen am %{month_year}
+    identifications_in_year: Meescht Bestëmmungen an %{year}
   leading: Richtungsweisend
   learn: Léieren
   learn_more: Méi wëssen
