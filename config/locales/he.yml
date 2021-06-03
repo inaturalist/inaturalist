@@ -246,6 +246,9 @@ he:
   about_this_project: אודות פרויקט זה
   about_trips_html: |
     <h4>סקרים מאפשר איסוף נתוני נוכחות/אי-נוכחות על ידי הוספת הקשר לתצפיות שלך </h4><p><strong>הסיבה</strong> שבגללה נתוני נוכחות/אי-נוכחות מכילים מידע אודות מאמץ הדיגום היא שמידע זה מאפשר לאמוד טוב יותר את תחומי התפוצה של המינים (הנתונים הגולמיים של iNaturalist הם נתוני נוכחות בלבד). </p> <p><strong>האופן</strong> שבו סקר מוסיף הקשר לתצפיותך הוא על ידי רישום:</p> <ul> <li><strong>מה</strong> חיפשת (מין מטרה)</li> <li><strong>היכן</strong> חיפשת (מרחב החיפוש)</li> <li><strong>מתי</strong> חיפשת (פרק זמן החיפוש)</li> </ul> <p>מינים ברשימת המטרה אשר הצלחת לצפות בהם במהלך מרחב וזמן הסקר מסומנים כנוכחים. מינים שהיו ברשימת המטרה ולא נצפו מדווחים כ"לא-נוכחים". הקליקו על 'צרו טבלת נוכחות/אי-נוכחות מנתוני סקרים' על מנת ליצור טבלת נתוני נוכחות/אי-נוכחות של של מינים מסקרים ומתצפיות המקושרות אליהם. <a href='%{url}'>מידע נוסף</a></p>
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'דיוק (מטרים)'
   account: חשבון
   account_creation: צור חשבון
@@ -889,7 +892,6 @@ he:
   comments: תגובות
   comments_by_me: תגובות שלי
   comments_have_been_disabled: לא ניתן להוסיף הערות
-  comments_on: תגובות על
   comments_on_my_observations: תגובות על התצפיות שלי
   commercial_solicitation: פרסומת מסחרית, קישורים לא תקינים, וכו'
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -1658,10 +1660,6 @@ he:
   leaderboard: טבלת מובילים
   leaderboard_for_x: "טבלת מובילים של %{x}"
   leaderboards: טבלאות מובילים
-  leaderboard_most:
-    species: מספר הזיהויים הרב ביותר ב%{time}
-    observations: מספר התצפיות הרב ביותר ב%{time}
-    identifications: מספר הזיהויים הרב ביותר ב%{time}
   leading: מוביל
   learn: למדו
   learn_about_the_species_live_in: הכירו את המינים שחיים ב
@@ -3320,6 +3318,7 @@ he:
   that_photo_doesnt_exist: תמונה זו אינה קיימת
   that_observation_doesnt_exist: תצפית זו אינה קיימת.
   that_observation_doesnt_have_any_photos: "לתצפית זו אין תמונות."
+  that_observation_hasnt_been_added_this_project: התצפית לא הוספה לפרוייקט.
   that_observation_no_longer_exists: תצפית זו אינה קיימת.
   that_project_doesnt_exist: "פרוייקט זה אינו קיים."
   that_role_doesnt_exist: תפקיד זה אינו קיים
@@ -4749,6 +4748,9 @@ he:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: אין אישור להוספת הערות
         project_observation:
           attributes:
