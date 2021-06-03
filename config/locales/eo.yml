@@ -105,6 +105,9 @@ eo:
   about_this_bioblitz: Pri ĉi tiu biofulmado
   about_this_map: Pri Ĉi Tiu Mapo
   about_this_project: Pri ĉi tiu Projekto
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Prec (m)'
   account: Konto
   account_creation: Kreado de Konto
@@ -401,7 +404,6 @@ eo:
   comment_deleted: Koment forigita
   comments: Komentoj
   comments_by_me: Komentoj far mi
-  comments_on: Komentoj pri
   #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Enmeti
   #Adjective describing a taxon change that has been committed
