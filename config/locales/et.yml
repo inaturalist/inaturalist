@@ -150,6 +150,9 @@ et:
   about_this_bioblitz: Välkvaatlusest
   about_this_map: Sellest kaardist
   about_this_project: Sellest projektist
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Täpsus (m)'
   account: Konto
   account_creation: Konto loomine
@@ -689,7 +692,6 @@ et:
   comment_deleted: Kommentaar kustutatud
   comments: Kommentaarid
   comments_by_me: Minu kommentaarid
-  comments_on: Kommentaarid teemal
   comments_on_my_observations: Minu vaatluste kommentaarid
   commercial_solicitation: Ärilisi teateid, katkiseid linke, jne.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -1445,10 +1447,6 @@ et:
   leaderboard: Edetabel
   leaderboard_for_x: "Edetabel: %{x}"
   leaderboards: Edetabelid
-  leaderboard_most:
-    species: Enim liike %{time}
-    observations: Enim vaatluseid %{time}
-    identifications: Enim määratlusi %{time}
   leading: Suunaja
   learn: Õpi
   learn_about_the_species_live_in: Õpi liikide kohta, mis leiduvad kohas
@@ -3166,6 +3164,7 @@ et:
   that_photo_doesnt_exist: Fotot ei eksisteeri.
   that_observation_doesnt_exist: Vaatlust ei eksisteeri.
   that_observation_doesnt_have_any_photos: "Sellel vaatlusel pole fotosid."
+  that_observation_hasnt_been_added_this_project: Seda vaatlust pole antud projekti lisatud.
   that_observation_no_longer_exists: Vaatlust enam ei eksisteeri.
   that_project_doesnt_exist: "Projekti ei eksisteeri."
   that_role_doesnt_exist: Seda rolli ei eksisteeri
