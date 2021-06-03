@@ -213,6 +213,9 @@ sv:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Du kan välja att dela dolda koordinater för
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Noggr (m)'
   account: Konto
   account_creation: Att skapa konto
@@ -873,7 +876,6 @@ sv:
   comments: Kommentarer
   comments_by_me: Kommentarer av mig
   comments_have_been_disabled: Kommentarer har inaktiverats
-  comments_on: Kommentarer på
   comments_on_my_observations: Kommentarer på mina fynd
   commercial_solicitation: Kommersiella förfrågningar, länkar som inte leder någonstans, m.m.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -2001,10 +2003,6 @@ sv:
   leaderboard: Topplista
   leaderboard_for_x: "Topplista för %{x}"
   leaderboards: Topplistor
-  leaderboard_most:
-    species: Flest arter i %{time}
-    observations: Flest fynd i %{time}
-    identifications: Flest bestämningar i %{time}
   leading: Leder
   learn: Lär dig
   learn_about_the_species_live_in: Lär dig om arterna som lever i
@@ -7091,6 +7089,9 @@ sv:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: tillåter inte nya kommentarer
             user:
               must_be_on_site_long_enough: |
