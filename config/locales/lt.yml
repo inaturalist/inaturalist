@@ -278,6 +278,9 @@ lt:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Jūs galite pasirinkti viešinti informaciją apie koordinates
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Tiksl. (m)'
   account: Paskyra
   account_creation: Paskyros sukūrimas
@@ -948,7 +951,6 @@ lt:
   comments: Komentarai
   comments_by_me: Mano komentarai
   comments_have_been_disabled: Komentarai buvo išjungti
-  comments_on: Komentarai
   comments_on_my_observations: Mano stebėjimo komentarai
   commercial_solicitation: Reklamos, neveikiančios nuorodos ir t. t.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -1833,10 +1835,6 @@ lt:
   leaderboard: Pirmaujančiųjų sarašas
   leaderboard_for_x: "%{x} pirmaujančiųjų sarašas"
   leaderboards: Pirmaujančiųjų sarašai
-  leaderboard_most:
-    species: Daugiausiai rūšių per %{time}
-    observations: Daugiausiai stebėjimų per %{time}
-    identifications: Daugiausiai identifikacijų per %{time}
   leading: Vedantis
   learn: Sužinoti
   learn_about_the_species_live_in: Sužinokite apie rūšis, kurios gyvena
@@ -3662,6 +3660,7 @@ lt:
   that_photo_doesnt_exist: Ši nuotrauka neegzistuoja.
   that_observation_doesnt_exist: Šis stebėjimas neegzistuoja.
   that_observation_doesnt_have_any_photos: "Šis stebėjimas neturi nuotraukų."
+  that_observation_hasnt_been_added_this_project: Šis stebėjimas nebuvo pridėtas prie projekto.
   that_observation_no_longer_exists: Šis stebėjimas nebeegzistuoja.
   that_project_doesnt_exist: "Šis projektas neegzistuoja."
   that_was_the_last_observation_matching_the_current_filters: Tai buvo paskutinis stebėjimas, kuris atitinka pasirinktus filtrus.
@@ -5062,6 +5061,9 @@ lt:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: neleidžia pridėti naujų komentarų
         project_observation:
           attributes:
