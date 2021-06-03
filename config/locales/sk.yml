@@ -28,6 +28,9 @@ sk:
   about_this_bioblitz: O tomto bioblitze.
   about_this_map: O tejto mape
   about_this_project: O tomto projekte
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Presnosť (m)'
   account: Účet
   account_creation: Vytvorenie účtu
@@ -517,7 +520,6 @@ sk:
   comment_deleted: komentár zmazaný
   comments: Komentáre
   comments_by_me: Moje komentáre
-  comments_on: Komentáre o
   comments_on_my_observations: Komentáre k mojim pozorovaniam
   commercial_solicitation: Komerčná žiadosť, neplatné odkazy atď.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -1250,10 +1252,6 @@ sk:
   leaderboard: Najlepšie výsledky
   leaderboard_for_x: "Najlepšie výsledky pre %{x}"
   leaderboards: Prehľady najlepších výsledkov
-  leaderboard_most:
-    species: Najviac druhov v %{time}
-    observations: Najviac pozorovaní v %{time}
-    identifications: Najviac identifikácií v %{time}
   leading: Najlepší
   learn: Učiť sa
   learn_about_the_species_live_in: Naučte sa o druhoch, ktoré žijú v
@@ -2871,6 +2869,7 @@ sk:
   that_photo_doesnt_exist: Tá fotka neexistuje.
   that_observation_doesnt_exist: To pozorovanie neexistuje.
   that_observation_doesnt_have_any_photos: "To pozorovanie nemá žiadne fotky."
+  that_observation_hasnt_been_added_this_project: To pozorovanie nebolo pridané k tomuto projektu.
   that_observation_no_longer_exists: To pozorovanie už neexistuje.
   that_project_doesnt_exist: "Ten projekt neexistuje."
   that_role_doesnt_exist: Tá funkcia neexistuje.
