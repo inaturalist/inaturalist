@@ -157,6 +157,9 @@ zh-TW:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     您可以選擇分享隱藏的座標給：
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: '精確度 (公尺)'
   account: 帳號
   account_creation: 帳號建立
@@ -796,7 +799,6 @@ zh-TW:
   comments: 評論
   comments_by_me: 由我做出的評論
   comments_have_been_disabled: 已停用評論
-  comments_on: 評論在
   comments_on_my_observations: 對我觀察的評論
   commercial_solicitation: 商業招攬，無效連結等等。
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -1794,10 +1796,6 @@ zh-TW:
   leaderboard: 排行榜
   leaderboard_for_x: "用於 %{x} 的排行榜"
   leaderboards: 排行榜
-  leaderboard_most:
-    species: 在 %{time} 內提供最多物種
-    observations: 在 %{time} 內做出最多觀察
-    identifications: 在 %{time} 內做出最多鑑定
   leading: 優先
   learn: 學習
   learn_about_the_species_live_in: 了較有關物種存活於
@@ -3883,6 +3881,7 @@ zh-TW:
   that_photo_doesnt_exist: 照片不存在
   that_observation_doesnt_exist: 觀察不存在
   that_observation_doesnt_have_any_photos: "觀察沒有任何照片"
+  that_observation_hasnt_been_added_this_project: 觀察尚未添加至此專案。
   that_observation_no_longer_exists: 觀察已不存在
   that_project_doesnt_exist: "該專案不存在。"
   that_role_doesnt_exist: 該身份不存在。
