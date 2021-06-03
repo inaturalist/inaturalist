@@ -208,6 +208,9 @@ el:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Μπορείτε να επιλέξετε να κοινοποιήσετε τις κρυφές σας συντεταγμένες για
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Ακρ (μ)'
   account: Λογαριασμός
   account_creation: Δημιουργία λογαριασμού
@@ -860,7 +863,6 @@ el:
   comments: Σχόλια
   comments_by_me: Σχόλια από εμένα
   comments_have_been_disabled: Τα σχόλια έχουν απενεργοποιηθεί
-  comments_on: Σχόλια σε
   comments_on_my_observations: Σχόλια στις παρατηρήσεις μου
   commercial_solicitation: Εμπορική παράκληση , συνδέσεις που δεν οδηγούν πουθενά, πχ.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -1967,10 +1969,6 @@ el:
   leaderboard: Λίστα κατάταξης
   leaderboard_for_x: "Λίστα κατάταξης για %{x}"
   leaderboards: Λίστες κατάταξης
-  leaderboard_most:
-    species: Περισσότερα είδη στο %{time}
-    observations: Περισσότερες παρατηρήσεις το %{time}
-    identifications: Περισσότερες ταυτοποιήσεις στο %{time}
   leading: Κορυφαίος
   learn: Μάθετε
   learn_about_the_species_live_in: Μάθετε σχετικά με τα είδη που ζουν εκεί
@@ -4155,6 +4153,7 @@ el:
   that_photo_doesnt_exist: Αυτή η φωτογραφία δεν υπάρχει.
   that_observation_doesnt_exist: Αυτή η παρατήρηση δεν υπάρχει.
   that_observation_doesnt_have_any_photos: "Αυτή η παρατήρηση δεν έχει καμία φωτογραφία."
+  that_observation_hasnt_been_added_this_project: Αυτή η παρατήρηση δεν έχει προστεθεί σε αυτό το πρότζεκτ.
   that_observation_no_longer_exists: Αυτή η παρατήρηση δεν υπάρχει πλέον.
   that_project_doesnt_exist: "Αυτό το πρότζεκτ δεν υπάρχει."
   that_role_doesnt_exist: Αυτός ο ρόλος δεν υπάρχει
@@ -7005,6 +7004,9 @@ el:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: δεν επιτρέπει νέα σχόλια
             user:
               must_be_on_site_long_enough: |
