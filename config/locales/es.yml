@@ -199,6 +199,9 @@ es:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Puedes elegir compartir coordenadas ocultas para
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Prec.(m)'
   account: Cuenta
   account_creation: Creación de cuentas
@@ -857,7 +860,6 @@ es:
   comments: Comentarios
   comments_by_me: Mis comentarios
   comments_have_been_disabled: Se han desactivado los comentarios
-  comments_on: Comentarios sobre
   comments_on_my_observations: Comentarios sobre mis observaciones
   commercial_solicitation: Publicidad comercial, enlaces no llevan a ningún lugar, etc.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -932,6 +934,10 @@ es:
     place: Lugar en el cual el estatus está restringido.
     url: URL de una página que describa este estado.
     geoprivacy: Geoprivacidad predeterminada para esta especie o grupo.
+    iucn: |
+      Código de la lista roja IUCN equivalente. Esta no es la evaluación real del IUCN,
+      únicamente el código IUCN que se ajusta mejor a la amenazaque supone la divulgación de coordenadas
+      implícita por este estado. Esto anulará la geoprivacidad si es de "Mínima de preocupación" o inferior, así que si quieres ocultar las observaciones de este taxón, establece esto en "Casi Amenazado" o superior.
   conservation_status_geoprivacy_desc: |
     La geoprivacidad predeterminada se aplica a todas las observaciones de este taxón en este lugar
   contact_support: Contactar el servicio técnico
@@ -1974,10 +1980,6 @@ es:
   leaderboard: Marcador
   leaderboard_for_x: "Los más activos de %{x}"
   leaderboards: Los más activos
-  leaderboard_most:
-    species: La mayoría de las especies en %{time}
-    observations: La mayoría de las observaciones en %{time}
-    identifications: La mayoría de las identificaciones en %{time}
   leading: Principal
   learn: Aprende
   learn_about_the_species_live_in: Aprende sobre las especies que viven en
@@ -4281,6 +4283,7 @@ es:
   that_photo_doesnt_exist: Esa foto no existe.
   that_observation_doesnt_exist: Esa observación no existe.
   that_observation_doesnt_have_any_photos: "Esa observación no tiene ninguna foto."
+  that_observation_hasnt_been_added_this_project: Esa observación no ha sido añadida al proyecto.
   that_observation_no_longer_exists: Esa observació ya no existe.
   that_project_doesnt_exist: "Ese proyecto ya no existe."
   that_role_doesnt_exist: Ese rol no existe.
@@ -7106,6 +7109,9 @@ es:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: no permite nuevos comentarios
             user:
               must_be_on_site_long_enough: |
