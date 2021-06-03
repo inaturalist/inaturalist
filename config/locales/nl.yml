@@ -216,6 +216,9 @@ nl:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Je kan kiezen om verborgen coördinaten te delen voor
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Prec. (m)'
   account: Account
   account_creation: Account aangemaakt
@@ -876,7 +879,6 @@ nl:
   comments: Reacties
   comments_by_me: Reacties door mij
   comments_have_been_disabled: Reacties zijn uitgeschakeld
-  comments_on: Reacties op
   comments_on_my_observations: Reacties op mijn waarnemingen
   commercial_solicitation: Commerciële advertenties, koppelingen naar nergens, enzovoort.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -1998,10 +2000,6 @@ nl:
   leaderboard: Toplijst
   leaderboard_for_x: "Toplijst voor %{x}"
   leaderboards: Toplijsten
-  leaderboard_most:
-    species: Meeste soorten in %{time}
-    observations: Meeste waarnemingen in %{time}
-    identifications: Meeste determinaties in %{time}
   leading: Leidend
   learn: Leren
   learn_about_the_species_live_in: Leer over de soorten die voorkomen in
@@ -4329,6 +4327,7 @@ nl:
   that_photo_doesnt_exist: Die foto bestaat niet.
   that_observation_doesnt_exist: Die waarneming bestaat niet.
   that_observation_doesnt_have_any_photos: "Die waarneming bevat geen foto's."
+  that_observation_hasnt_been_added_this_project: Die waarneming werd niet aan dit project toegevoegd.
   that_observation_no_longer_exists: Deze waarneming bestaat niet langer.
   that_project_doesnt_exist: "Dat project bestaat niet."
   that_role_doesnt_exist: Die rol bestaat niet
@@ -7159,6 +7158,9 @@ nl:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: staat geen nieuwe reacties toe
             user:
               must_be_on_site_long_enough: |
