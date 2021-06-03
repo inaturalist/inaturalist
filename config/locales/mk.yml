@@ -68,6 +68,9 @@ mk:
   about_these_licenses: За овие лиценци
   about_this_map: За картава
   about_this_project: За проектов
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Уточнетост (м)'
   account: Сметка
   account_creation: Создавање на сметка
@@ -352,7 +355,6 @@ mk:
   comment_deleted: Коментарот е избришан
   comments: Коментари
   comments_by_me: Коментари од мене
-  comments_on: Коментари за
   comments_on_my_observations: Коментари на моите набљудувања
   commercial_solicitation: Рекламирање, не води никаде и тн.
   #Second person verb to commit a taxon change, i.e. the change has been executed
