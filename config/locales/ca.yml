@@ -197,6 +197,9 @@ ca:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Heu escollits compartir les vostres coordenades ocultes per a
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Exactitud (m)'
   account: Compte
   account_creation: Creació de compta
@@ -853,7 +856,6 @@ ca:
   comments: Comentaris
   comments_by_me: Els vostres comentaris
   comments_have_been_disabled: S'han desactivat els comentaris
-  comments_on: Comentaris sobre
   comments_on_my_observations: Comentaris sobre les vostres observacions
   commercial_solicitation: Anuncieu alguna cosa, els enllaços no són vàlids, etc.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -1961,10 +1963,6 @@ ca:
   leaderboard: Els més actius
   leaderboard_for_x: "Els més actius de %{x}"
   leaderboards: Els més actius
-  leaderboard_most:
-    species: La majoria de les espècies a %{time}
-    observations: La majoria de les observacions a %{time}
-    identifications: La majoria de les identificacions a %{time}
   leading: Dirigint
   learn: Apreneu-ne
   learn_about_the_species_live_in: Informeu-vos sobre les espècies que viuen a
@@ -6932,6 +6930,9 @@ ca:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: no permet nous comentaris
             user:
               must_be_on_site_long_enough: |
