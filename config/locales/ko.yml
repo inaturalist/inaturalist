@@ -92,6 +92,9 @@ ko:
   about_this_bioblitz: 이 바이오블리츠에 대하여
   about_this_map: 이 지도에 대하여
   about_this_project: 이 프로젝트에 대하여
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: '정확도 (m)'
   account: 계정
   account_creation: iNaturalist에 가입한 날짜
@@ -547,7 +550,6 @@ ko:
   comment_deleted: 댓글 삭제됨
   comments: 댓글
   comments_by_me: 내가 작성한 댓글
-  comments_on: 에 달린 댓글
   comments_on_my_observations: 내 관찰에 달린 댓글
   community: 공동체
   community_curated: 공동으로 큐레이션됨
@@ -1180,8 +1182,6 @@ ko:
   latitude: 위도
   latitude_value: "위도: %{latitude}"
   layout: 배치 (레이아웃)
-  leaderboard_most:
-    observations: '%{time}에 가장 많은 관찰'
   learn_more: 더 알아보기
   least_concern: 관심 대상
   leave: 떠나기
