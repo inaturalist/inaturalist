@@ -143,6 +143,9 @@ eu:
   about_this_bioblitz: Bioblitz honi buruz
   about_this_map: Mapa honi buruz
   about_this_project: Proiektu honi buruz
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Zehaztasuna (metroak)'
   account: Kontua
   account_creation: Kontua sortzea
@@ -703,7 +706,6 @@ eu:
   comments: Oharrak
   comments_by_me: Nire oharrak
   comments_have_been_disabled: Iruzkinak egiteko aukera kendu da
-  comments_on: Iruzkinak
   comments_on_my_observations: Nire behaketen iruzkinak
   commercial_solicitation: Iragarri zerbait, estekak ez dira baliagarriak eta abar.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -2235,6 +2237,7 @@ eu:
   that_photo_doesnt_exist: Argazki hori ez da existitzen.
   that_observation_doesnt_exist: Behaketa hori ez da existitzen.
   that_observation_doesnt_have_any_photos: "Behaketa horrek ez du argazkirik."
+  that_observation_hasnt_been_added_this_project: Behaketa hori ez da proiektura gehitu.
   that_observation_no_longer_exists: Behaketa hori dagoeneko ez da existitzen.
   that_project_doesnt_exist: "Proiektu hau dagoeneko ez da existitzen."
   that_role_doesnt_exist: Zerrenda hori ez da existitzen.
