@@ -197,6 +197,9 @@ fr:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Vous pouvez choisir de partager vos coordonnées masquées pour :
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Préc. (m)'
   account: Compte
   account_creation: Création de compte
@@ -866,7 +869,6 @@ fr:
   comments: Commentaires
   comments_by_me: Mes commentaires
   comments_have_been_disabled: Les commentaires sont désactivés
-  comments_on: Commentaires sur
   comments_on_my_observations: Commentaires sur mes observations
   commercial_solicitation: Démarchage commercial, liens vers nulle part, etc.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -984,6 +986,13 @@ fr:
     alive: Vivant
     dead: Mort
     cannot_be_determined: Indéterminé
+    #As in the feather on a bird
+    feather: Plume
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organisme
+    #Fecal matter, not regurgitated matter
+    scat: Excréments
   controlled_term_definitions:
     alive: L'organisme est vivant et ne montre aucun signe de mort imminente
     dead: L'organisme est mort ou montre des signes de mort imminente
@@ -2001,10 +2010,6 @@ fr:
   leaderboard: Classement
   leaderboard_for_x: "Classement de %{x}"
   leaderboards: Classements
-  leaderboard_most:
-    species: Le plus d'espèces en %{time}
-    observations: Le plus d'observations en %{time}
-    identifications: Le plus d'identifications en %{time}
   leading: En tête
   learn: Apprendre
   learn_about_the_species_live_in: Apprenez-en davantage sur les espèces qui vivent dans
@@ -4315,6 +4320,7 @@ fr:
   that_photo_doesnt_exist: Cette photo n’existe pas.
   that_observation_doesnt_exist: Cette observation n’existe pas.
   that_observation_doesnt_have_any_photos: "Cette observation n’a aucune photo."
+  that_observation_hasnt_been_added_this_project: Cette observation n’a pas été ajoutée à ce projet.
   that_observation_no_longer_exists: Cette observation n’existe plus.
   that_project_doesnt_exist: "Ce projet n’existe pas."
   that_role_doesnt_exist: Ce rôle n’existe pas
@@ -7566,6 +7572,9 @@ fr:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: n'autorise pas les nouveaux commentaires
             user:
               must_be_on_site_long_enough: |
