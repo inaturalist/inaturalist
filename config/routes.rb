@@ -9,6 +9,9 @@ Rails.application.routes.draw do
       get :network
       get :affiliation
     end
+    member do
+      get :export
+    end
   end
 
   uuid_pattern = BelongsToWithUuid::UUID_PATTERN.to_s.gsub( /[\^\$]/, "" )

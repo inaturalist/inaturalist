@@ -457,4 +457,13 @@ class Site < ActiveRecord::Base
     prefers_google_webmaster_dns_verified? || URI.parse( url.to_s ).host.to_s.include?( default_site_domain )
   end
 
+  # Path where the site data export file *should* be. Actual generation happens
+  # via the export_site_data.rb script and the SiteDataExporter class
+  def export_path
+    private_page_cache_path( File.join(
+      "export_site_data",
+      "#{SiteDataExporter.basename_for_site( self )}.zip"
+    ) )
+  end
+
 end
