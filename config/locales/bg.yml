@@ -231,6 +231,7 @@ bg:
     sex: Добави анотации за „Пол“
     plant_phenology: Добави анотации за „Фенология на растение“
     life_stage: Добави анотации за „Жизнен стадий“
+    evidence_of_presence: Добави анотации за „Свидетелство за присъствие“
   add_another_flag: Добавяне на друг маркер
   add_another_photo: Добавяне на друга снимка
   add_another_section: Добавяне на друг раздел
@@ -286,6 +287,12 @@ bg:
   add_life_stage_larva_annotation: 'Добави анотация „Жизнен стадий: Ларва“'
   add_life_stage_juvenile_annotation: 'Добави анотация „Жизнен стадий: Млад“'
   add_life_stage_egg_annotation: 'Добави анотация „Жизнен стадий: Яйце“'
+  add_evidence_of_presence_organism_annotation: 'Добави анотация „Свидетелство за присъствие: организъм“'
+  add_evidence_of_presence_feather_annotation: 'Добави анотация „Свидетелство за присъствие: перо“'
+  add_evidence_of_presence_scat_annotation: 'Добави анотация „Свидетелство за присъствие: изпражнения“'
+  add_evidence_of_presence_track_annotation: 'Добави анотация „Свидетелство за присъствие: следа“'
+  add_evidence_of_presence_bone_annotation: 'Добави анотация „Свидетелство за присъствие: кост“'
+  add_evidence_of_presence_molt_annotation: 'Добави анотация „Свидетелство за присъствие: съблекло“'
   add_several_observations_at_once: Добавяне на няколко наблюдения наведнъж.
   add_sex_female_annotation: 'Добави анотация „Пол: Женски“'
   add_sex_male_annotation: 'Добави анотация „Пол: Мъжки“'
@@ -787,6 +794,21 @@ bg:
     alive: Жив
     dead: Мъртъв
     cannot_be_determined: Неопределим
+    evidence_of_presence: Свидетелство за присъствие
+    #As in the feather on a bird
+    feather: Перо
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Организъм
+    #Fecal matter, not regurgitated matter
+    scat: Изпражнения
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Следа
+    #Endoskeletal remains, like a deer bone
+    bone: Кост
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Съблекло
   controlled_term_definitions:
     alive: Организмът е жив и не показва признаци за предстояща смърт
     dead: Организмът е мъртъв или по всичко личи, че скоро ще загине
@@ -796,6 +818,13 @@ bg:
     no_evidence_of_flowering: Медията не свидетелства за наличието на репродуктивни структури
     teneral: Възрастно, което наскоро е излиняло (имагинирало) и все още не е придобило окончателния си вид
     cannot_be_determined: Не може да се определи по наличните свидетелства
+    feather: Едно или повече пера неприкрепени към организъм
+    organism: Цял организъм или част от него
+    scat: Фекалии (но не птичи погадки или друга повърната субстанция)
+    track: Отпечатък в земята или снега оставен от организъм
+    bone: |
+      Oстанки основно от вътрешен скелет; частично видими кости от иначе запазен организъм, трябва да бъдат обозначени като „организъм“
+    molt: Излиняла („съблечена“) кожа или телесна обвивка
   coordinate_systems: Координатни системи
   coordinates: Координати
   #A filter option that only shows observations for which the viewer has
@@ -1185,6 +1214,8 @@ bg:
   file_should_be_in_the_following_format: "Файлът трябва да е в следния формат: име на таксон, описание"
   fill_out_project_observation_fields: Попълнете полетата за наблюдения на проекта
   fill_out_your_profile: довършете профила си
+  #The name of a computer file
+  filename: Име на файл
   filter: Филтриране
   filter_by_curator_identification: Филтрирай по разпознавания от куратори
   filter_by_place: Филтрирай по място
@@ -1498,6 +1529,13 @@ bg:
   leaderboard: Водачество
   leaderboard_for_x: "Водачество за %{x}"
   leaderboards: Водачества
+  leaderboard_most:
+    species_in_month_year: Най-много видове за %{month_year}
+    species_in_year: Най-много видове за %{year}
+    observations_in_month_year: Най-много наблюдения за %{month_year}
+    observations_in_year: Най-много наблюдения за %{year}
+    identifications_in_month_year: Най-много разпознавания за %{month_year}
+    identifications_in_year: Най-много разпознавания за %{year}
   learn: Научете
   learn_about_the_species_live_in: Научи за видовете живеещи в
   learn_about_third_party_tracking: Научете повече за проследяването от трети страни
