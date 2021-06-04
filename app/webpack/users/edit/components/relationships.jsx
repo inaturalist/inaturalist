@@ -85,7 +85,7 @@ const Relationships = ( {
           <label className="relationship-label" htmlFor="name">{I18n.t( "search" )}</label>
           <div className="input-group">
             <UserAutocomplete
-              resetOnChange={false}
+              resetOnChange
               afterSelect={( { item } ) => searchUsers( item )}
               afterUnselect={( ) => searchUsers( { item: { id: null } } )}
               bootstrapClear

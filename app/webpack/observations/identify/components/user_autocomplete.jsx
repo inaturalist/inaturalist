@@ -66,10 +66,15 @@ class UserAutocomplete extends React.Component {
 
 
 UserAutocomplete.propTypes = {
+  // eslint-disable-next-line react/no-unused-prop-types
   resetOnChange: PropTypes.bool,
+  // eslint-disable-next-line react/no-unused-prop-types
   bootstrapClear: PropTypes.bool,
+  // eslint-disable-next-line react/no-unused-prop-types
   afterSelect: PropTypes.func,
+  // eslint-disable-next-line react/no-unused-prop-types
   afterUnselect: PropTypes.func,
+  // eslint-disable-next-line react/no-unused-prop-types
   initialSelection: PropTypes.object,
   initialUserID: PropTypes.oneOfType( [
     PropTypes.string,
@@ -77,6 +82,7 @@ UserAutocomplete.propTypes = {
   ] ),
   className: PropTypes.string,
   placeholder: PropTypes.string,
+  // eslint-disable-next-line react/no-unused-prop-types
   projectID: PropTypes.number
 };
 
