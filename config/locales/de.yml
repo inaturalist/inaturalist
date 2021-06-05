@@ -1579,6 +1579,8 @@ de:
   file_should_be_in_the_following_format: "Die Datei sollte in folgendem Format sein: Taxon-Name, Beschreibung"
   fill_out_project_observation_fields: Beobachtungsfelder des Projekts ausfüllen
   fill_out_your_profile: vervollständige dein Profil
+  #The name of a computer file
+  filename: Dateiname
   filter: Filtern
   filter_by_curator_identification: Filtern nach Identifikation (Kurator)
   filter_by_place: nach Gebiet filtern
@@ -1995,6 +1997,13 @@ de:
   leaderboard: Rangliste
   leaderboard_for_x: "Rangliste für %{x}"
   leaderboards: Ranglisten
+  leaderboard_most:
+    species_in_month_year: Die meisten Arten in %{month_year}
+    species_in_year: Die meisten Arten in %{year}
+    observations_in_month_year: Die meisten Beobachtungen in %{month_year}
+    observations_in_year: Die meisten Beobachtungen in %{year}
+    identifications_in_month_year: Die meisten Bestimmungen in %{month_year}
+    identifications_in_year: Die meisten Bestimmungen in %{year}
   leading: initiativ
   learn: Lernen
   learn_about_the_species_live_in: 'Lerne mehr über die Arten, die hier leben:'
