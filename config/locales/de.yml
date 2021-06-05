@@ -586,6 +586,8 @@ de:
     Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat Identifikationen und Beobachtungen
   are_you_sure_want_delete_taxon_listed_taxa: |
     Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat gelistete Taxa.
+  are_you_sure_want_delete_taxon_listed_taxa_identifications: |
+    Möchtest du dieses Taxon wirklich löschen? Es enthält gelistete Taxa und Identifikationen
   are_you_sure_want_delete_taxon_observations: |
     Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat Beobachtungen
   are_you_sure_want_delete_taxon_link: Bist du sicher, dass du diesen Taxon-Link entfernen willst?
@@ -1003,6 +1005,7 @@ de:
     flowering: Blüten sichtbar, geöffnet und noch fest mit der Pflanze verbunden
     fruiting: Frucht sichtbar und noch fest mit der Pflanze verbunden
     no_evidence_of_flowering: Die Fotos zeigen keinen Nachweis für reproduktive Strukturen
+    teneral: Ein ausgewachsenes Individuum, das aber noch nicht fertig ausgefärbt ist
     cannot_be_determined: Kann anhand der zur Verfügung stehenden Daten nicht bestimmt werden
     feather: Eine oder mehrere Federn ohne das zugehörige Tier
     organism: Kompletter oder unvollständiger Organismus
@@ -1576,6 +1579,8 @@ de:
   file_should_be_in_the_following_format: "Die Datei sollte in folgendem Format sein: Taxon-Name, Beschreibung"
   fill_out_project_observation_fields: Beobachtungsfelder des Projekts ausfüllen
   fill_out_your_profile: vervollständige dein Profil
+  #The name of a computer file
+  filename: Dateiname
   filter: Filtern
   filter_by_curator_identification: Filtern nach Identifikation (Kurator)
   filter_by_place: nach Gebiet filtern
@@ -1992,6 +1997,13 @@ de:
   leaderboard: Rangliste
   leaderboard_for_x: "Rangliste für %{x}"
   leaderboards: Ranglisten
+  leaderboard_most:
+    species_in_month_year: Die meisten Arten in %{month_year}
+    species_in_year: Die meisten Arten in %{year}
+    observations_in_month_year: Die meisten Beobachtungen in %{month_year}
+    observations_in_year: Die meisten Beobachtungen in %{year}
+    identifications_in_month_year: Die meisten Bestimmungen in %{month_year}
+    identifications_in_year: Die meisten Bestimmungen in %{year}
   leading: initiativ
   learn: Lernen
   learn_about_the_species_live_in: 'Lerne mehr über die Arten, die hier leben:'
@@ -4401,6 +4413,8 @@ de:
   to_suggest_an_identification: eine Bestimmung vorschlagen
   today: Heute
   too_many_results: Zu viele Ergebnisse
+  too_many_taxa_to_render: |
+    Diese Abfrage gibt zu viele Taxa zurück, um sie gleichzeitig zu rendern. Versuche, mehr Filter hinzuzufügen
   tools: Werkzeuge
   top_contributors: Top-Mitwirkende
   top_identifier: Top-Bestimmer

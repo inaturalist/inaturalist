@@ -425,6 +425,7 @@ cs:
   add_evidence_of_presence_scat_annotation: 'Přidat anotaci „Důkaz přítomnosti: trus“'
   add_evidence_of_presence_track_annotation: 'Přidat anotaci „Důkaz přítomnosti: stopa“'
   add_evidence_of_presence_bone_annotation: 'Přidat anotaci „Důkaz přítomnosti: kost“'
+  add_evidence_of_presence_molt_annotation: 'Přidat anotaci „Důkaz přítomnosti: svlečka“'
   #As in a Taxon Framework Relationship
   add_relationship: 'Přidat vztah'
   #As in a Guide Section
@@ -1128,6 +1129,9 @@ cs:
     track: Stopa
     #Endoskeletal remains, like a deer bone
     bone: Kost
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Svlečka
   controlled_term_definitions:
     alive: Organismus žije a nevykazuje žádné známky bezprostřední smrti
     dead: Organismus je mrtvý a nevykazuje žádné známky bezprostřední smrti
@@ -1139,6 +1143,7 @@ cs:
     cannot_be_determined: Na základě poskytnutých důkazů nelze určit
     feather: Jedno nebo více per, které nejsou připevněny k organismu
     organism: Celý organismus nebo jeho část
+    scat: Fekální hmota (ne vývržky sov nebo jiný natrávený materiál)
     track: Otisk v zemi nebo ve sněhu způsobený organismem
     bone: |
       Převážně pozůstatky vnitřní kostry; částečně odhalené kosti v jinak neporušeném organismu
@@ -1724,6 +1729,8 @@ cs:
   file_should_be_in_the_following_format: "Soubor by měl být v následujícím formátu: název taxonu, popis"
   fill_out_project_observation_fields: Vyplnit pole pozorování v projektu
   fill_out_your_profile: vyplnit váš profil
+  #The name of a computer file
+  filename: Název souboru
   filter: Filtrovat
   filter_by_curator_identification: Filtrovat podle identifikace kurátora
   filter_by_place: Filtrovat podle polohy

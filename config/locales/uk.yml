@@ -2934,7 +2934,7 @@ uk:
     youve_got_updates_panel_body_p2: |
       <ul>
       <li><strong>Ваші матеріали:</strong> Активність щодо ваших спостережень, наприклад коментарі, визначення або уподобання від спільноти %{site_name}. Ви також отримуватимете оновлення, коли хтось додасть ваше спостереження до проєкту або проанотує його у додаткових полях.</li>
-      <li><strong>Люди:</strong> Нові спостереження або записи у журналі від людей, на яких ви підписані.</li>
+      <li><strong>Людей:</strong> Нові спостереження або записи у журналі від людей, на яких ви підписані.</li>
       <li><strong>Організми, проєкти і місця:</strong> Нові спостереження певних організмів, або з певних місць, на які ви підписані. Ви також можете долучитися до проєктів, щоб отримувати сповіщення про нові записи у журналах проєктів.</li>
       <li><strong>Обговорення, до яких ви залучені:</strong> Коли ви залишаєте коментар, або додаєте визначення до чиїхось матеріалів, ви автоматично підписуєтесь на будь-яку нову активність стосовно цього контенту. Щоб припинити отримувати оновлення, скористайтеся інструментом "Керувати підписками".</li>
       </ul>
@@ -3042,7 +3042,7 @@ uk:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
       #added an ID to an observation by loarie
-      with_observation: додав/додала <strong>визначення</strong> до %{observation_link} %{user_link}
+      with_observation: 'додав/додала <strong>визначення</strong> до %{observation_link} цього користувача: %{user_link}'
       #The same as people_added.identification.with_observation, except it
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
@@ -4484,7 +4484,7 @@ uk:
     Адміністратор — це людина, яка створила проєкт. Вони можуть робити все те саме, що й
     менеджери і куратори, а також видалити проєкт.
   the_below_items_are_needed_to_achieve: |
-    Наступні пункти необхідні для досягнення <span className="bold">Дослідницького рівня:</span>
+    Для досягнення <span className="bold">Дослідницького рівня</span> необхідно, аби спостереження відповідало наступним пунктам:
   the_community_id_requires_at_least_two_identifications: Визначення спільноти потребує принаймні двох визначень.
   the_community_must_feel_that: |
     Спільнота повинна відчувати, що таксон спільноти є найкращим з того, що опирається на наявні свідчення.
@@ -4810,7 +4810,6 @@ uk:
   user_muted: Користувача ігноровано
   user_observed_on_on_date_in_place: |
     Користувач %{user} спостерігав це %{date} у такому місці: %{place}
-  user_suggested_an_id: "%{user} запропонував визначення"
   user_thinks_yours_is: "%{user} %{noun} ваше спостереження %{observation} є"
   user_trusts_you_with_their_private_coordinates: "%{user} довіряє вам приховані координати"
   user_trusts_you_with_their_private_coordinates_desc: |
@@ -6455,7 +6454,14 @@ uk:
         translators_title: Перекладачі
         translators_desc: |
           Чи знали ви, що iNaturalist був перекладений %{x_languages},
-          практично повністю зусиллями %{x_people}, при тому що деякі з них навіть не користуються iNat? Ось ті чудові перекладачі, які доклали зусилля до перекладу цьог року, а також кількість слів, яку вони переклали для %{website_link_tag}веб-сайту%{link_tag_end}, застосунків для 
+          практично повністю зусиллями %{x_people}, при тому що деякі з них навіть не користуються iNat? Ось ті чудові перекладачі, які доклали зусилля до перекладу цього року, а також кількість слів, яку вони переклали для %{website_link_tag}веб-сайту%{link_tag_end}, застосунків для 
+          %{iphone_link_tag}iPhone%{link_tag_end} та
+          %{android_link_tag}Android%{link_tag_end}, а також
+          %{seek_link_tag}Seek%{link_tag_end}. Усіх людей, які долучилися до перекладів, у тому числі перекладачів з минулих років та учасників Translatewiki, можна побачити у наших
+          %{view_all_web_link_tag}веб%{link_tag_end} та
+          %{view_all_mobile_link_tag}мобільних%{link_tag_end} репозиторіях коду.
+        translators_desc_for_site: |
+          Чи знали ви, що %{site_name} був перекладений практично повністю зусиллями %{x_people}? Ось ті чудові перекладачі, які доклали зусилля до перекладу цього року, а також кількість слів, яку вони переклали для %{website_link_tag}веб-сайту%{link_tag_end}, застосунків для 
           %{iphone_link_tag}iPhone%{link_tag_end} та
           %{android_link_tag}Android%{link_tag_end}, а також
           %{seek_link_tag}Seek%{link_tag_end}. Усіх людей, які долучилися до перекладів, у тому числі перекладачів з минулих років та учасників Translatewiki, можна побачити у наших

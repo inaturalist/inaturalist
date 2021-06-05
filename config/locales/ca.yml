@@ -247,6 +247,7 @@ ca:
     sex: Afegiu anotacions sobre "Sexe"
     plant_phenology: Afegiu anotacions sobre "Fenologia de la Planta"
     life_stage: Afegiu anotacions sobre "Estat Biològic"
+    evidence_of_presence: Afegiu anotacions per "Evidència de Presència"
   add_another_flag: Afegiu una altra etiqueta.
   add_another_photo: Afegiu una altra foto
   add_another_section: Afegiu una altra secció
@@ -307,6 +308,12 @@ ca:
   add_life_stage_larva_annotation: 'Afegiu nota "Estat del Cicle biològic: Larva"'
   add_life_stage_juvenile_annotation: 'Afegir l''anotació «Etapa de la vida: juvenil»'
   add_life_stage_egg_annotation: 'Afegiu nota "Estat del Cicle biològic: Ou"'
+  add_evidence_of_presence_organism_annotation: 'Afegiu l''anotació "Evidència de Presència: Organisme".'
+  add_evidence_of_presence_feather_annotation: 'Afegiu l''anotació "Evidència de Presència: Plomes"'
+  add_evidence_of_presence_scat_annotation: 'Afegiu l''anotació "Evidència de Presència: Excrements"'
+  add_evidence_of_presence_track_annotation: 'Afegiu l''anotació "Evidència de Presència: Petjades"'
+  add_evidence_of_presence_bone_annotation: 'Afegiu l''anotació "Evidència de Presència: Ossos"'
+  add_evidence_of_presence_molt_annotation: 'Afegiu l''anotació "Evidència de Presència: Muda"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Afegeix una relació'
   #As in a Guide Section
@@ -973,6 +980,21 @@ ca:
     alive: Viu
     dead: Mort
     cannot_be_determined: No se’n pot determinar
+    evidence_of_presence: Evidència de Presència
+    #As in the feather on a bird
+    feather: Plomes
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organisme
+    #Fecal matter, not regurgitated matter
+    scat: Excrements
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Petjades
+    #Endoskeletal remains, like a deer bone
+    bone: Ossos
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Muda
   controlled_term_definitions:
     alive: L'organisme està viu i no mostra signes de probable mort imminent
     dead: L'organisme està mort o mostra signes de probable mort imminent
@@ -982,6 +1004,13 @@ ca:
     no_evidence_of_flowering: Les imatges no aporten evidències d'estructures reproductives
     teneral: Adult que ha emergit recentment però encara no ha assolit la seva forma adulta definitiva
     cannot_be_determined: No es pot determinar a partir de les dades aportades
+    feather: Una o més plomes, no unides a un organisme
+    organism: Tot o part d'un organisme
+    scat: Matèria fecal (no egagròpiles de rapinyaires o altres materials regurgitats)
+    track: Impressió al terra o la neu feta per un organisme
+    bone: |
+      Predominantment restes d'endoesquelet; els ossos parcialment exposats d'altra forma en organismes intactes haurien d'etiquetar-se com a "organisme"
+    molt: Restes de pell o exoesquelet
   controls: Controls
   convert: Convertiu
   coordinate_systems: Sistemes de coordenades
@@ -1544,6 +1573,8 @@ ca:
   file_should_be_in_the_following_format: "L'arxiu hauria de tenir el següent format: nom de l'espècie o grup, descripció"
   fill_out_project_observation_fields: Ompliu els camps d'observació del projecte
   fill_out_your_profile: ompliu el perfil
+  #The name of a computer file
+  filename: Nom del fitxer
   filter: Filtre
   filter_by_curator_identification: Filtre per Identificació del Supervisor
   filter_by_place: Filtrar per lloc
@@ -1963,6 +1994,13 @@ ca:
   leaderboard: Els més actius
   leaderboard_for_x: "Els més actius de %{x}"
   leaderboards: Els més actius
+  leaderboard_most:
+    species_in_month_year: La majoria de les espècies de %{month_year}
+    species_in_year: La majoria de les espècies de %{year}
+    observations_in_month_year: La majoria de les observacions de %{month_year}
+    observations_in_year: La majoria de les observacions de %{year}
+    identifications_in_month_year: La majoria de les identificacions de %{month_year}
+    identifications_in_year: La majoria de les identificacions de %{year}
   leading: Dirigint
   learn: Apreneu-ne
   learn_about_the_species_live_in: Informeu-vos sobre les espècies que viuen a
