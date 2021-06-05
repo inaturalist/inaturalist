@@ -123,6 +123,7 @@ hu:
   _100_day_trends: Száznapos trend
   _percent_ID_d: "% meghatározott"
   a_community_for_naturalist: Természetbarátok közössége
+  a_flag_for_x: "%{x} megjelölés"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "ABC-sorrend"
@@ -144,6 +145,10 @@ hu:
   about_places: A helyekről
   about_this_map: Erről a térképről
   about_this_project: Erről a projektről
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
+  acc: 'Pontosság (méter):'
   account: Fiók
   account_creation: Fiók létrehozás
   account_settings: Fiók beállításai
@@ -163,20 +168,71 @@ hu:
   add_a_link: Hivatkozás hozzáadása
   add_a_name: Név hozzáadása
   add_a_note: Jegyzet hozzáadása
+  add_a_single_observation: Egy megfigyelés hozzáadása
   add_an_identification: Meghatározás hozzáadása
   add_an_observation: Megfigyelés hozzáadása
   add_an_observation?: Új megfigyelés?
+  add_an_observation_of: "%{taxon} taxonon belüli megfigyelés hozzáadása"
+  add_an_observation_to_project_html: Megfigyelés hozzáadása %{project} projekthez
+  add_another_subscription: További feliratkozás
   add_comment: Megjegyzés hozzáadása
+  add_from_your_observations: Hozzáadás a megfigyeléseidből
+  add_observations: Megfigyelés hozzáadása
+  add_observations_by_checking_off: Megfigyelés hozzáadása egy fajlista alapján
+  add_observations_project: Megfigyelések hozzáadása ehhez a projekthez
+  add_several_observations_at_once: Több megfigyelés hozzáadása egyszerre.
+  add_your_own_observations_at: "Megfigyelés hozzáadása itt: %{site_name}"
   added: Hozzáadva
   added!: Hozzáadva!
   added_by: 'Hozzáadta:'
   agree_: Egyetértés
-  agree?: Egyetértesz?
+  agree?: Egyetértek
   agree_with_current_taxon: Egyetért a jelenlegi taxonnal
   agreeing: Egyetértés...
   all: Mind
   all_comments: Minden megjegyzés
+  all_observations: Minden megfigyelés
+  all_taxa:
+    amphibians: Kétéltűek
+    arachnids: Pókszabásúak
+    birds: Madarak
+    fungi: Gombák
+    fungi_including_lichens: Gombák és zuzmók
+    insects: Rovarok
+    mammals: Emlősök
+    mollusks: Puhatestűek
+    plants: Növények
+    protozoans: Állati egysejtűek
+    ray_finned_fishes: Sugarasúszójú halak
+    reptiles: Hüllők
+  all_updates: Minden frissítés
+  amphibians: kétéltűek
   and: és
+  any: bármely
+  any_: Bármely
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Bármely
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Bármely
+  #Label for an option to show content from any date
+  any_date: Bármely
+  #Label for an option to show content with any establishment means
+  any_establishment: Bármely
+  #Label for an option to show content with any license
+  any_license: Bármely
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Bármely
+  #Label for an option to show content from any project
+  any_project: Bármely
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Bármely
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Bármely
+  #Label for an option to show/include content by any user
+  any_user: Bármely
+  anyone: Bárki
+  arachnids: pókszabásúak
   are_you_sure?: Biztos vagy benne?
   are_you_sure_no_undo: Biztos vagy benne? Ezt nem lehet visszavonni.
   associated_taxa: Társított taxonok
@@ -184,6 +240,12 @@ hu:
   ascending: Növekvő
   assessment: értékelések
   back_to_observation_fields: Vissza az adatmezőkhöz
+  back_to_possessive_user_profile: "Vissza %{possuser} profiljához"
+  back_to_your_dashboard: Vissza a vezérlőpulthoz
+  back_to_your_profile: Vissza a profilodhoz
+  badges: Jelvények
+  bio: Bemutatkozás
+  bio_description: Mutatkozz be az iNaturalist többi felhasználójának!
   birds: madarak
   birthday: Születésnap
   black: fekete
@@ -192,12 +254,19 @@ hu:
   blocked_users: Letiltott felhasználók
   blue: kék
   blue_butterfly_etc: "kék, pillangó, stb."
+  bounding_box: Határolókeret
+  calendar: Naptár
   cancel: Mégse
   captive: Fogságban
+  captive_observations: Fogvatartott egyedek megfigyelései
   casual: hobbiszintű
   casual_: Hobbiszintű
   casual_tooltip_html: 'A "hobbiszintű" megfigyeléseknél hiányzik a kép vagy hang, a hely, a dátum, vagy egyéb okokból nem felelnek meg a "Tudományos szint" vagy a "Meghatározás szükséges" minőségi szinteknek. <a href="https://www.inaturalist.org/pages/help#quality">További információ a minőségi szintekről</a>'
   categories: Kategóriák
+  change_password: Jelszó módosítása
+  change_your_password: Jelszó módosítása
+  check_out_my_observations_at: 'A megfigyeléseimet megtekintheted itt:'
+  choose_files: Válassz fájlokat
   colors: Színek
   columns: Oszlopok
   combine: Összerendezés
@@ -211,28 +280,163 @@ hu:
   comments_on_my_observations: Megjegyzések a megfigyeléseimhez
   community: Közösség
   community_guidelines: Közösségi irányelvek
+  confirm_new_password: Új jelszó megerősítése
+  confirming_ids: Egyetértő meghatározások
+  confirming_ids_description: Ha ezt kikapcsolod, nem fogsz értesítéseket kapni azokról a meghatározásokról, amelyek megegyeznek a tiéddel.
+  csv: CSV
   curator_application_what_curators_can_do_hide_comments_html: |
     A <a
     href="/pages/community+guidelines" target="_blank">Közösségi irányelveket</a> sértő felhasználók felfüggesztése és megjegyzéseinek elrejtése.
+  dashboard: Vezérlőpult
+  date_format:
+    date_long:
+      january: '%{year}. január %{day}.'
+      february: '%{year}. február %{day}.'
+      march: '%{year}. március %{day}.'
+      april: '%{year}. április %{day}.'
+      may: '%{year}. május %{day}.'
+      june: '%{year}. június %{day}.'
+      july: '%{year}. július %{day}.'
+      august: '%{year}. augusztus %{day}.'
+      september: '%{year}. szeptember %{day}.'
+      october: '%{year}. október %{day}.'
+      november: '%{year}. november %{day}.'
+      december: '%{year}. december %{day}.'
+    month:
+      january: Január
+      february: Február
+      march: Március
+      april: Április
+      may: Május
+      june: Június
+      july: Július
+      august: Augusztus
+      september: Szeptember
+      october: Október
+      november: November
+      december: December
+  date_observed: Megfigyelés dátuma
+  date_observed_: Megfigyelés dátuma
+  date_picker:
+    currentText: Ma
+    range: Tartomány
+  date_range: Dátumtartomány
+  description_slash_tags: Leírás / címke
+  did_not_send_invitations_because: A következőknek nem tudunk meghívót küldeni, mivel...
   disable_comments: Megjegyzések letiltása
   disable_comments_desc: További megjegyzések letiltása
+  display_monthly_supporter_badge: A havi támogatói jelvény megjelenítése a profilon
+  display_name: Megjelenített név
+  display_name_description: Ez a név fog megjelenni a profilodon és a copyright megjegyzésnél
+  documentation_for_developers_html: <a href="/pages/developers">Fejlesztői</a> dokumentáció
+  do_you_study_nematodes_worlds_foremost_expert_barnacle: |
+    A fonálférgeket tanulmányozod? Esetleg te vagy a világ legelismertebb szakértője moharendszertan-témában? Vagy csak szeretsz vadvirágokat nézegetni? A profilod kitöltésével személyesebbé és bizalmasabbá teheted jelenléted.
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: TÁMOGATÁS
+  done: Kész
+  dont_have_an_account_sign_up_html: Nincs még fiókod? <strong>Regisztrálj.</strong>
+  download: Letöltés
+  download_csv: CSV letöltése
+  download_csv_template: CSV-sablon letöltése
+  download_kml: KML letöltése
+  drag_and_drop_some_photos_or_sounds: Húzz ide néhány fényképet vagy hangot
+  edit: Módosítás
+  edit_account_settings_and_profile: "Fiókbeállítások és profil módosítása"
   edit_comment: A megjegyzésed szerkesztése
+  edit_observations: Megfigyelések szerkesztése
+  edit_photos_for_observation_id: "%{obs_id} megfigyelés fényképeinek módosítása"
+  edit_the_observation: Megfigyelés szerkesztése
+  edit_your_account_and_profile_html: "Fiókod és profilod módosítása"
   editing_observation_field: Az adatmezők szerkesztése
+  editing_observation_id: "%{obs_id} megfigyelés módosítása"
+  editing_observations:
+    one: '<span class="count">Egy</span> megfigyelés módosítása'
+    other: '<span class="count">%{count}</span> megfigyelés módosítása'
+  editing_subscription_to_x_html: "Feliratkozás módosítása erre: %{x}"
+  email: Email
+  email_description: Az email címedet nem osztjuk meg más felhasználókkal az iNaturalist oldalon
+  email_addresses_description: Vesszővel elválasztva. 30 naponként 60 meghívó küldhető.
+  email_addresses_to_receive_invites: A meghívottak email címei
+  email_notifications: Email értesítések
+  end: Vége
+  establishment:
+    introduced: Behurcolt
+  exact_date: Pontos dátum
+  exit_full_screen: "Kilépés teljes képernyőből"
   explore: Felfedezés
+  export_observations: Megfigyelések exportálása
+  favorite_taxa: Kedvenc taxonok
   fill_out_project_observation_fields: A projekt adatmezőinek kitöltése
+  fill_out_your_profile: profilod kitöltése
+  filters: Szűrők
   find_new_place_to_explore: Fedezz fel egy új helyet!
+  find_your_current_location: A jelenlegi tartózkodási helyed lekérése
+  followers: Követők
+  following: Követve
+  following_x_people:
+    one: 'Egy felhasználót követ'
+    other: '%{count} felhasználót követ'
+  forgot_your_password: Elfelejtetted a jelszavadat?
   forum: Fórum
+  from_flickr_facebook_etc: Flickr, Facebook stb. oldalakról
+  from_soundcloud: Soundcloudról
+  full_screen: Teljes képernyő
+  Genus: Nemzetség
+  get_started: Elkezdem
+  getting_started_guide: Első lépések
   go: Mehet
   go_back: Vissza
   google: Google
   grid: Rács
   grid_layout: Rácselrendezés
   grid_tooltip: Rácselrendezés megtekintése
+  guides: Útmutatók
+  has_photos: Fényképpel
+  has_photos_or_sounds: Hanggal
   header_your_observations: Megfigyeléseim
+  header_your_profile: Profilod
   help: Súgó
+  hi: Szia,
+  home: Kezdőlap
+  id_withdrawn: Azonosítás visszavonva
   identify: Azonosítás
   identify_title: "Azonosítás"
+  identification_withdrawn: Meghatározás visszavonva
+  ids: "Azonosítások"
+  inat_user_profile: "%{site_name}: %{user} profilja"
+  inaturalist_activity_notifications: "Értesítések %{site_name}-tevékenységekről"
+  inaturalist_is_a_joint_initiative: "Az %{site_name} a California Academy of Sciences és a National Geographic Society közös kezdeményezése."
+  insects: rovarok
+  introduced: Behurcolt
+  introduced_in_place: "Behurcolva ide: %{place}"
+  invite_someone_to: "%{name}-meghívó küldése"
+  invite_your_friends: Ismerősök meghívása
+  invite_your_friends_description: "Segíts az %{site_name} növekedésében, hívd meg barátaidat, ismerőseidet, kollégáidat!"
+  joined_with_date: "Csatlakozás: %{date}"
+  journal_posts: Bejegyzések
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Hely nincs megadva
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Nagyítás mértékének rögzítése
+  last_active_with_date: "Utolsó aktivitás: %{date}"
+  #As in map layers, i.e. layers of data that might be overlayed on a map
+  layers: Rétegek
+  leaderboards: Ranglisták
+  leaderboard_most:
+    species_in_month_year: Legtöbb faj %{month_year} hónapban
+    species_in_year: Legtöbb faj %{year} évben
+    observations_in_month_year: Legtöbb megfigyelés %{month_year} hónapban
+    observations_in_year: Legtöbb megfigyelés %{year} évben
+    identifications_in_month_year: Legtöbb meghatározás %{month_year} hónapban
+    identifications_in_year: Legtöbb meghatározás %{year} évben
+  learn: Tanulj
   leave_a_comment: Írd ide a megjegyzést
+  list: Lista
+  lists: Listák
   location: Hely
   location_is_accurate: A hely pontatlan
   location_is_exact: a hely pontos
@@ -240,14 +444,39 @@ hu:
   location_is_obscured: A hely kitakart
   log_in_or_sign_up_to_add_comments_html: |
     Megjegyzés hozzáadásához <a href="/login">jelentkezz be</a> vagy <a href="/signup">regisztrálj</a>.
+  login_slash_username: Login / felhasználónév
+  logo:
+    none: egyik sem
+  mammals: emlősök
+  manage_all_your_subscriptions: Feliratkozásaid kezelése
   map: Térkép
   map_legend: Térkép jelmagyarázat
   map_marker_size: térképjelölő mérete
+  maps:
+    overlays:
+      range: Tartomány
+  mark_as_reviewed: Megjelölés átnézettként
+  meet: Ismerkedj
+  member_of_the_inaturalist_network_html: |
+    Az <a href="%{url}">iNaturalist Network</a> tagja
   merge_observation_field_x_into: '"%{x}" adatmező összevonása ezzel...'
+  mollusks: puhatestűek
+  months: Hónapok
+  more: Egyéb
+  more_filters: További szűrők
+  more_import_options: További importálási lehetőségek
   most_comments_and_faves: A legtöbb megjegyzés vagy kedvenc
   must_have_observation_field: "'%{operand}' adatmező nem lehet üres"
+  n_ago: "%{n}"
+  needs_id_: Meghatározásra vár
   new_observation_field: Új adatmező
+  new_password: Új jelszó
   no_comments_yet: Még nincsenek megjegyzések.
+  noble_curators: "%{site} tiszteletbeli kurátorai"
+  none: Egyik sem
+  notifications: Értesítések
+  notify_me_of_mentions: Értesítések említésekről (pl. @felhasználónév)
+  notify_me_of_mentions_description: "Ha ezt kikapcsolod, nem fogsz értesítéseket kapni, ha valaki megemlít az %{site_name} oldalon."
   observation_belongs_to_project_requiring_field: |
     Ez a megfigyelés egy olyan projekthez tartozik, amelynél kötelező ezen adatmező kitöltése. A megfigyelést el kell távolítani a projektből, és csak azután lehet az adatmező értéket törölni.
   observation_field: Adatmező
@@ -266,34 +495,201 @@ hu:
   observations_with_this_field: Megfigyelések ezzel az adatmezővel
   observations_with_this_field_and_value: Megfigyelések ezzel az adatmezővel és értékkel
   of_observations: megfigyelés
+  off_caps: "KI"
+  old_observation_form: Régi megfigyelési űrlap (elavult)
+  on_caps: "BE"
+  onboarding:
+    follow_panel_body: Ha meglátogatod ezeket a profilokat és a Követés gombra kattintasz, értesítéseket kapsz a felhasználó megfigyeléseiről
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
+  or_all_caps: VAGY
   our_blog: Blogunk
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
+  parent: Szülő
+  person: Személy
+  personal_message: Személyes üzenet
+  personal_message_description: Sokan nem szeretnek automatikus emailt kapni, ezért jasvasoljuk, hogy írd le, miért szeretnéd, ha csatlakoznának.
+  place_geo:
+    geo_planet_place_types:
+      Unknown: Ismeretlen
+      unknown: ismeretlen
+  places: Helyek
+  places_of_interest: Érdekes helyek
+  plants: növények
+  please_confirm_your_inat_username: "Kérjük erősítsd meg %{site_name} felhasználónevedet"
+  popular: Népszerű
+  powered_by_inaturalist_open_source_software_html: 'Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist open source software</a>'
   press: Sajtó
+  preview: Előnézet
+  preview_personal_message: "szeretnélek meghívni az %{site} oldalra, ahová növények és állatok megfigyeléseit töltheted fel, gondozhatod életlistádat és sokat tanulhatsz a természetről."
+  preview_your_message: Üzenet előnézete
   privacy: Adatvédelem
+  profile: Profil
+  profile_picture: Profilkép
+  profile_visibility_desc: |
+    Annak érdekében, hogy a spamelőket távol tartsuk az %{site_name} oldaltól, a felhasználói profilok csak azután lesznek láthatók, miután a felhasználó számos kutatási szintű megfigyelést tett közzé.
+  protozoans: állati egysejtűek
+  range: Tartomány
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
+    genus: Nemzetség
+    x_genera:
+      one: Nemzetség
+      other: Nemzetség
+    genushybrid: Nemzetséghibrid
+    subgenus: Alnemzetség
     #Singular
     species: Faj
     x_species:
       one: Faj
       other: Fajok
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: nemzetség
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: nemzetséghibrid
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: alnemzetség
+  ranges: Tartományok
+  ray_finned_fishes: sugarasúszójú halak
+  read_our_getting_started_guide: olvasd el az Első lépések útmutatót
+  real_time_discussions: Valósidejű beszélgetések
+  receive_email_notifications: Email értesítések fogadása
+  receive_email_notifications_description: "Ha ezt kikapcsolod, nem fogsz %{site_name} emaileket kapni az értesítésekről."
+  recently_active: Nemrég aktív
+  redo_search_in_map: Újrakeresés a térképen
+  redo_search_in_map_area: Újrakeresés a térképterületen
+  relationships_user_settings: Kapcsolatok
+  remember_me: Emlékezz rám
+  removed: Eltávolítva
+  reptiles: hüllők
+  research_grade: Tudományos szintű
+  reset_search_filters: Szűrők visszaállítása
   save_comment: Megjegyzés mentése
+  save_settings_caps: BEÁLLÍTÁSOK MENTÉSE
   search: Keresés
+  select_options: válassz
+  send_the_invites: Meghívók küldése
+  show: Megjelenítés
+  sign_in_with_provider: "Bejelentkezés %{provider}-profillal"
+  sign_in_with_google: Bejelentkezés Google-fiókkal
+  site_stats: Webhelyforgalom
+  #Plural
+  species: Fajok
+  species_unknown: Ismeretlen fajok
+  start: Kezdete
+  subscribe_to_a_taxon: Feliratkozás taxonhoz
+  subscribe_to_a_place: Feliratkozás helyhez
+  subscribe_to_this: Feliratkozás erre
+  subscriptions: Feliratkozások
+  suggest_an_identification: Meghatározás hozzáadása
+  taxa_info: Taxoninformációk
   terms_service: Felhasználási feltételek
+  the_people_of_inat: "Emberek az %{site_name} mögött"
+  the_world: A világ
+  these_folks_kindly_volunteer_to: Ők azok, akik önkéntesen gondozzák a taxonómiát és megoldanak különféle problémákat.
   these_observations_have_not_been_uploaded_yet: |
     Ezek a megfigyelések még nem kerültek feltöltésre.
+  threatened: Veszélyeztetett
+  time_ago: "%{time}"
+  today: Ma
+  unknown: Ismeretlen
+  unknown_error: Ismeretlen hiba
+  unsubscribe: Leiratkozás
+  unsubscribe_from_emails_like_this: Leiratkozás az ehhez hasonló emailekről
+  update_subscription: Feliratkozás frissítése
+  update_subscription_preferences: Feliratkozási beállítások frissítése
+  updated: Frissítve
   upload: Feltöltés
   upload_a_csv_file: CSV-fájl feltöltése
   user_added_an_observation_field_html: '%{user} kitöltötte a(z) "%{field_name}" adatmezőt %{owner} megfigyeléséhez'
   user_added_an_observation_field_value_html: "%{user} értéket adott meg egy adatmezőben"
+  username: Felhasználónév
+  username_description: Ezzel a felhasználónévvel jelentkezhetsz be, és ennek révén tud az iNaturalist többi felhasználója azonosítani.
+  username_or_email: Felhasználónév vagy email cím
+  users_profile: "%{user} profilja"
+  view_all: Összes megtekintése
+  view_leaderboard_from_last_month: Az előző havi ranglista megtekintése
+  view_leaderboard_from_last_year: Az előző évi ranglista megtekintése
+  view_observation: Megfigyelés megtekintése
+  view_observations: Megfigyelések megtekintése
+  view_your_dashboard: Vezérlőpult megtekintése
+  view_your_dashboard_for_more_updates_html: "További információkért <a href='%{url}'>irány a vezérlőpult</a>"
+  welcome_back!: Köszöntünk ismét!
+  #Label for the most probable taxon in the automated suggestions. @gender
+  #should work here. %{rank} is usually genus or a higher-level rank like
+  #family
+  were_pretty_sure_this_is_in_the_rank: 'Nagy bizonyossággal e %{rank} tagja:'
   who_can_add_observation_fields_to_my_obs: Ki adhat adatmezőket a megfigyeléseimhez?
+  withdraw: Visszavonás
+  withdrawing: Visszavonás...
+  yesterday: Tegnap
+  you_can_sign_free_at: "Az ingyenes %{site_name}-regisztrációhoz látogass el ide:"
   you_cant_delete_observation_fields_that_people_are_using: "Nem lehet használatban lévő adatmezőket törölni"
   you_must_choose_an_observation_field: Ki kell választanod egy adatmezőt
+  your_content: Tartalmaid
   your_observations: Megfigyeléseim
+  your_profile_was_successfully_updated: A profilod sikeresen módosítva.
+  your_subscriptions_to_this_place: E helyhez tartozó feliratkozásaid
+  verifiable: Hiteles
+  verifiable_observations: Hiteles megyfigyelések
   views:
     guides:
       pdf_layouts:
         grid: rács
     observations:
       show:
+        quality_assessment_help_html: |
+          <p>
+          Az adatminőségi kiértékelés a megfigyelés pontosságának összefoglalása. Minden megfigyelés <strong>"hobbiszint"</strong>ről indul, majd <strong>"meghatározás szükséges"</strong> szintre válta, ha
+          </p>
+
+          <ul>
+          <li>a megfigyeléshez tartozik <strong>egy dátum</strong></li>
+          <li>a megfigyelés <strong>helyhez kötött</strong> (vagyis vannak szélességi és hosszúsági koordinátái)</li>
+          <li>a megfigyeléshez tartozik <strong>fénykép vagy hang</strong></li>
+          <li>a megfigyelés alanya <strong>nem ember</strong></li>
+          </ul>
+          <p>
+          A megfigyelés <strong>"tudományos szint"</strong>űre vált, ha
+          </p>
+          <ul>
+          <li>
+          az %{site_name} <strong>közössége egyetért a fajszintű (vagy alacsonyabb) meghatározással</strong>, például ha a meghatározók több mint kétharmada egyetért a taxonban. (Ha a közösség úgy szavaz, hogy a közösségi taxon már nem pontosítható, a meghatározás alcsalád vagy alacsonyabb szintre vált.)
+          </li>
+          </ul>
+          <p>
+          A megfigyelés <strong>"hobbiszintű"</strong>re vált, ha a fenti feltételek nem teljesülnek, vagy ha a közösség egyetért abban, hogy:
+          </p>
+          <ul>
+          <li>
+          a <strong>hely nem tűnik pontosnak</strong> (pl. majmok az óceán közepén, vízilovak irodaházak tetején stb.)
+          </li>
+          <li>
+          az <strong>élőlény nem vad vagy honosított</strong> (pl. ember által fogvatartott vagy kultivált)
+          </li>
+          <li>
+          a megfigyelés <strong>nem szolgál bizonyítékkal az élőlényről</strong>, pl. tájképek, vízfelszín, kövek stb.
+          </li>
+          <li>
+          a megfigyelés <strong>nem szolgál időszerű (~100 éves) bizonyítékkal az élőlényről</strong> (pl. fosszíliák, viszont nyomok, ürülék, száradt levelek elfogadhatók)
+          </li>
+          <li>
+          a megfigyelésnek már nincs szüksége azonosításra <em>és</em> a közösségi meghatározás család szint feletti
+          </li>
+          <li>
+          a megfigyelő kikapcsolta a közösségi meghatározást és a közösségi azonosítási taxon nem a szülője vagy a gyermeke a a megfigyelő azonosításához tartozo taxonnak
+          </li>
+          </ul>
+          <p>
+          És hogy ha ez még még mindig nem túl bonyolult, léteznek helyzetek, melyekben a rendszer maga szavaz:
+          </p>
+          <ul>
+          <li>
+          A rendszer a megfigyelést nem vadnak értékeli, ha van legalább 10 másik megfigyelés az adott nemzetség szintjén vagy az alatt a megfigyeléshez tartozó legkisebb földrajzi egységben, és ezen megfigyelések legalább 80 százaléka nem vadként van megjelölve.
+          </li>
+          </ul>
         observer_does_not_allow_observation_fields: A megfigyelő nem teszi lehetővé új adatmezők hozzáadását
         observer_only_allows_curators_to_add_fields: A megfigyelő csak kurátorok számára engedélyezi adatmezők hozzáadását
     observation_fields:
@@ -307,15 +703,59 @@ hu:
         <li>Ne törölj használatban lévő adatmezőket</li>
         <li>Ne fordítsd le a meglévő mezőket más nyelvekre. Az iNaturalist közvetítőnyelve az angol. Ha nagyon indolkolt egy meglévő koncepciójú adatmező más nyelvre való átültetése, hozz létre egy új adatmezőt.</li>
         </ol>
+    taxa:
+      show:
+        frequency:
+          research: Tudományos szintű
+          verifiable: Hiteles
     users:
       edit:
+        display_monthly_supporter_status_on_my_profile: |
+          A havi támogató státusz megjelenítése a profilon
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
+        monthly_supporter: Havi támogató
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Megjegyzések
+        project_addition_preferences:
+          any: Bármely
       recent:
         about_recent_users: Rólunk
     welcome:
       index:
+        connect_with_nature: Kapcsolódj a természethez
         explore_and_share: Fedezd fel a természetet és oszd meg megfigyeléseidet!
+        observations_to_date: 'megfigyelés'
+        species_observed: 'Megfigyelt faj'
+        people_signed_up: 'regisztrált felhasználó'
+        how_it_works: Hogyan működik?
+        record_your_observations: Végezz megfigyeléseket
+        share_with_fellow_naturalists: Oszd meg természettudósokkal
+        discuss_your_findings: Vitasd meg a látottakat
+        contribute_to_science: Segítsd a tudományt
+        science_desc_html: |
+          Minden megfigyelés hozzájárulhat a biodiverzitás kutatásához: a legritkább pillangófajtól kezdve a leggyakoribb kertigyomig. A megfigyeléseket megosztjuk a <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a>-val és hasonló tudományos adatbankokkal, melynek révén az információk kutatásoknál hasznosulhatnak. Csak annyit kell tenned, hogy megfigyeléseket készítesz a természetben.
+        nature_at_your_fingertips: A természet a tenyeredben van
+        keep_track: Rögzítsd a látottakat
+        record_your_encounters: |
+          Rögzítsd találkozásiadat más élőlényekkel és gondozd az életlistádat, mindezt a felhőben.
+        create_useful_data: Rögzíts hasznos információkat
+        help_scientists: Segíts a kutatóknak annak megértésében, hogy hol és mikor fordulnak elő különféle élőlények.
+        crowdsource_identifications: Bízd másra az azonosítást
+        connect_with_experts: A közösség szakértői segítségedre lesznek az általad megfigyelt élőlények azonosításában.
+        become_a_citizen_scientist: Válj a tudóstársadalom pártoló tagjává
+        find_a_project: "Találj az érdeklődésednek megfelelő projektet, vagy indítsd el a sajátod."
+        learn_about_nature: Ismerd meg a természetet
+        build_your_knowledge: Segíts másoknak az azonosításban, vegyél részt beszélgetésekben és szélesítsd ismereteidet.
+        run_a_bioblitz: Tarts egy bioblitz-t
+        hold_an_event: A bioblitz egy olyan esemény, amelynek során a felhasználók egy bizonyos területen annyi fajt figyelnek meg, amennyit csak tudnak.
+        works_on_all_your_devices: Minden készüléken működik
+        install_our_mobile_apps: |
+          Telepítsd mobilalkalmazásunkat, hogy bármikor tudj megfigyeléseket végezni, még hálózat és wifi nélkül is.
+        who_uses_site_name: "%{site_name}: akik már használják"
+        what_are_you_waiting_for: Mire vársz?
+        join_today: Csatlakozz most
   date:
     abbr_month_names:
       - 
@@ -323,7 +763,7 @@ hu:
       - Feb
       - Mar
       - Apr
-      - May
+      - Május
       - Jun
       - Jul
       - Aug
@@ -333,16 +773,16 @@ hu:
       - Dec
     month_names:
       - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
+      - Január
+      - Február
+      - Március
+      - Április
+      - Május
+      - Június
+      - Július
+      - Augusztus
+      - Szeptember
+      - Október
       - November
       - December
   number:
@@ -350,3 +790,16 @@ hu:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    attributes:
+      observation:
+        observed_on: megfigyelés dátuma
+      project:
+        zoom_level: Nagyítás mértéke
+      user:
+        email: Email
+        login: Felhasználónév
+  wild: Vad
+  zoom_in: Nagyítás
+  zoom_out: Kicsinyítés
+  zoom_photo: Kicsinyítés/nagyítás
