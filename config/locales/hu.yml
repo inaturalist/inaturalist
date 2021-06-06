@@ -383,6 +383,7 @@ hu:
   from_soundcloud: Soundcloudról
   full_screen: Teljes képernyő
   Genus: Nemzetség
+  geoprivacy_is_private: A pozíció nem publikus
   get_started: Elkezdem
   getting_started_guide: Első lépések
   go: Mehet
@@ -466,8 +467,10 @@ hu:
   more_filters: További szűrők
   more_import_options: További importálási lehetőségek
   most_comments_and_faves: A legtöbb megjegyzés vagy kedvenc
+  most_observed_threatened_species: A leggyakrabban megfigyelt veszélyeztetett fajok
   must_have_observation_field: "'%{operand}' adatmező nem lehet üres"
   n_ago: "%{n}"
+  near_threatened: Mérsékelten fenyegetett
   needs_id_: Meghatározásra vár
   new_observation_field: Új adatmező
   new_password: Új jelszó
@@ -585,6 +588,10 @@ hu:
   subscriptions: Feliratkozások
   suggest_an_identification: Meghatározás hozzáadása
   taxa_info: Taxoninformációk
+  taxon_is_threatened_coordinates_hidden: Veszélyeztetett taxon, a koordináták nem publikusak
+  taxon_is_threatened_coordinates_hidden_desc: |
+    A meghatározások között van legalább egy olyan taxon, amely (vagy amelynek egy altaxonja) ritkaság és/vagy veszélyeztetett. Emiatt a hely nem publikus.
+  taxon_is_threatened_coordinates_obscured: Veszélyeztetett taxon, a koordinátákat kitakarjuk
   terms_service: Felhasználási feltételek
   the_people_of_inat: "Emberek az %{site_name} mögött"
   the_world: A világ
@@ -792,6 +799,8 @@ hu:
         strip_insignificant_zeros: true
   activerecord:
     attributes:
+      conservation_status:
+        geoprivacy: Pozíció láthatósága
       observation:
         observed_on: megfigyelés dátuma
       project:
