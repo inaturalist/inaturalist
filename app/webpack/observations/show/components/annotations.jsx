@@ -336,7 +336,9 @@ class Annotations extends React.Component {
                         eventKey={index}
                         title={
                           I18n.t( `controlled_term_definitions.${_.snakeCase( v.label )}`, {
-                            defaultValue: v.label
+                            defaultValue: I18n.t( `controlled_term_labels.${_.snakeCase( v.label )}`, {
+                              defaultValue: v.label
+                            } )
                           } )
                         }
                       >
