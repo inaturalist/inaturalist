@@ -21,15 +21,16 @@ class TimeShifter extends SelectionBasedComponent {
     this.handleValueChange = this.handleValueChange.bind( this );
   }
 
-  updateCard( card, dateString ) {
+  updateCard( card, dateString, amountToShift ) {
     const { updateObsCard } = this.props;
     updateObsCard( card, {
       date: dateString,
       selected_date: dateString
+      // time_shifted: amountToShift
     } );
   }
 
-  addTimeToSelectedObs( hours, minutes ) {
+  addTimeToSelectedObs( hours, minutes, amountToShift ) {
     const { selectedObsCards, inputFormat } = this.props;
 
     const cardsToUpdate = _.keys( selectedObsCards ).map( card => selectedObsCards[card] );
@@ -46,12 +47,12 @@ class TimeShifter extends SelectionBasedComponent {
 
       // we need some way to let a user know that one of these dates is no longer updating
       if ( minDateString !== currentTime ) {
-        this.updateCard( card, dateString );
+        this.updateCard( card, dateString, amountToShift );
       }
     } );
   }
 
-  subtractTimeFromSelectedObs( hours, minutes ) {
+  subtractTimeFromSelectedObs( hours, minutes, amountToShift ) {
     const { selectedObsCards, inputFormat } = this.props;
 
     const cardsToUpdate = _.keys( selectedObsCards ).map( card => selectedObsCards[card] );
@@ -64,7 +65,7 @@ class TimeShifter extends SelectionBasedComponent {
         .subtract( minutes, "minutes" )
         .format( inputFormat || "YYYY/MM/DD h:mm A ZZ" );
 
-      this.updateCard( card, dateString );
+      this.updateCard( card, dateString, amountToShift );
     } );
   }
 
@@ -94,11 +95,11 @@ class TimeShifter extends SelectionBasedComponent {
     const minutes = Number.isInteger( amountToShift ) ? 0 : 30;
 
     if ( isPositive( amountToShift ) ) {
-      this.addTimeToSelectedObs( hours, minutes );
+      this.addTimeToSelectedObs( hours, minutes, amountToShift );
     }
 
     if ( isNegative( amountToShift ) ) {
-      this.subtractTimeFromSelectedObs( hours, minutes );
+      this.subtractTimeFromSelectedObs( hours, minutes, amountToShift );
     }
   }
 
@@ -121,7 +122,6 @@ class TimeShifter extends SelectionBasedComponent {
     const { timeShift } = this.state;
     return (
       <div>
-        <p>{I18n.t( "time_shifter" )}</p>
         <div className="slidecontainer">
           <input
             type="range"
