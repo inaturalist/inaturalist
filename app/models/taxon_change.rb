@@ -364,6 +364,10 @@ class TaxonChange < ActiveRecord::Base
     debug = options[:debug]
     logger = options[:logger] || Rails.logger
     logger.info "[INFO #{Time.now}] Starting partial revert for #{self}"
+    if committed_on.nil? && !debug
+      logger.info "Reverting requires committed_on not to be nil"
+      return false
+    end
     logger.info "[INFO #{Time.now}] Destroying identifications..."
     unless debug
       identifications.find_each(&:destroy)
@@ -390,7 +394,7 @@ class TaxonChange < ActiveRecord::Base
     end
     if options[:deactivate_output_taxa]
       output_taxa.each do |output_taxon|
-        output_taxon.update_attributes( is_active: false ) unless debug
+        output_taxon.update_attributes( is_active: false ) unless ( debug || input_taxa.include? output_taxon )
       end
     end
     # output taxa may or may not need to be made inactive, impossible to say in code
