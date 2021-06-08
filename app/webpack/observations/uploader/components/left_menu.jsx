@@ -15,6 +15,7 @@ import ObservationFieldsChooser from "./observation_fields_chooser";
 import ProjectsChooser from "./projects_chooser";
 import TagsChooser from "./tags_chooser";
 import util from "../models/util";
+import TimeShifter from "./time_shifter";
 
 class LeftMenu extends SelectionBasedComponent {
   static formPanel( key, title, glyph, contents, contentCount ) {
@@ -129,7 +130,7 @@ class LeftMenu extends SelectionBasedComponent {
                 taxon_id: null,
                 selected_taxon: null,
                 species_guess: null
-              } );
+              } ); 
             }
           }}
           placeholder={this.valuesOf( "selected_taxon" ).length > 1
@@ -137,6 +138,19 @@ class LeftMenu extends SelectionBasedComponent {
             : I18n.t( "species_name_cap" )
           }
           config={this.props.config}
+        />
+        <TimeShifter
+          dateTime={commonDate
+            ? moment( commonDate, inputFormat ).format( "x" )
+            : undefined
+          }
+          inputFormat={inputFormat}
+          onChange={dateString => updateSelectedObsCards( {
+            date: dateString,
+            selected_date: dateString
+          } )}
+          selectedObsCards={this.props.selectedObsCards}
+          updateObsCard={this.props.updateObsCard}
         />
         <DateTimeFieldWrapper
           ref="datetime"
@@ -299,7 +313,8 @@ LeftMenu.propTypes = {
   removeFromSelectedObsCards: PropTypes.func,
   setState: PropTypes.func,
   reactKey: PropTypes.string,
-  config: PropTypes.object
+  config: PropTypes.object,
+  updateObsCard: PropTypes.func
 };
 
 export default LeftMenu;
