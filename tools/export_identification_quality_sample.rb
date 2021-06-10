@@ -34,7 +34,9 @@ puts "storing sample in array" if OPTS.debug
 data = []
 Observation.includes( :identifications ).where( id: obs_ids ).each do |o|
   involved_taxa = Taxon.where( id: [ o.taxon_id, o.community_taxon_id, o.identifications.map{ |a| a.taxon_id } ].flatten.uniq )
-  ancestries = involved_taxa.map{ |a| a.ancestry.nil? ? a.id.to_s : a.ancestry + "/#{a.id}" }
+  all_ancestries = involved_taxa.map{ |a| a.ancestry.nil? ? a.id.to_s : a.ancestry + "/#{a.id}" }
+  matching_taxon = involved_taxa.select{|a| a[:id]==o.taxon_id}.first
+  ancestor_ids = matching_taxon.nil? ? [o.taxon_id] : [matching_taxon.ancestor_ids,o.taxon_id].flatten
 
   identifications = o.identifications.
     sort_by{|i| i.created_at}.
@@ -52,12 +54,43 @@ Observation.includes( :identifications ).where( id: obs_ids ).each do |o|
   data << {
     observation_id: o.id,
     taxon_id: o.taxon_id,
+    ancestry: ancestor_ids,
     iconic_taxon_id: o.iconic_taxon_id, 
     quality: o.quality_grade,
     community_taxon_id: o.community_taxon_id,
     identifications: identifications,
-    ancestries: ancestries
+    all_ancestries: all_ancestries,
+    geoprivacy: o.geoprivacy,
+    latitude: o.latitude,
+    longitude: o.longitude,
+    positional_accuracy: o.public_positional_accuracy,
+    created_at: o.created_at,
+    year: o.created_at.year
   }  
+end
+
+puts "add states, countries and continents" if OPTS.debug
+
+obs_place_ids = []
+i=0
+data.map{|a| a[:observation_id]}.each_slice(500) do | obs_ids |
+  dat = INatAPIService.observations( { id: obs_ids } )
+  obs_place_ids << dat["results"].map{|a| {id: a["id"], place_id: a["place_ids"]}}
+  i+=1
+end
+obs_place_ids = obs_place_ids.flatten; nil
+
+continents = Place.where(admin_level: -1).pluck(:id)
+countries = Place.where(admin_level: 0).pluck(:id)
+states = Place.where(admin_level: 1).pluck(:id)
+obs_place_ids.each do |row|
+  continent = row[:place_id] & continents
+  country = row[:place_id] & countries
+  state = row[:place_id] & states
+  out_row = data.select{|i| i[:observation_id] == row[:id]}.first
+  out_row[:country] = ( country.count == 0 ? nil : country.first )
+  out_row[:continent] = ( continent.count == 0 ? nil : continent.first )
+  out_row[:state] = ( state.count == 0 ? nil : state.first )
 end
 
 puts "saving JSON data" if OPTS.debug
