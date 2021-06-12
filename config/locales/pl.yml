@@ -708,6 +708,9 @@ pl:
   automatic_short: Automatyczny
   automatically_add_observations_to_this_project: Automatycznie dodawaj obserwacje do tego projektu
   automatically_update_my_content_for_taxon_changes: Automatycznie aktualizuj moje obserwacje wraz ze zmianami taksonomicznymi
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Śr.
   back: Wstecz
   back_to_all_species: Wróć do wszystkich gatunków
   back_to_browsing_people: Wróć do przeglądania użytkowników
@@ -1208,6 +1211,7 @@ pl:
       reset_password_instructions:
         subject: 'Instrukcje resetowania hasła'
   devise_reset_password_instructions_hello_email: Witaj %{email}
+  devise_unlock_instructions_unlock: Odblokuj swoje konto
   discoveries: Odkrycia
   did_not_send_invitations_because: Nie wysłano zaproszeń, ponieważ...
   did_you_mean: 'Czy chodziło ci o'
@@ -1215,6 +1219,9 @@ pl:
   disable: Wyłącz
   disable_comments: Wyłącz komentarze
   disagree_: Nie zgadzam się
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Rozłącz
   disconnect_caps: ROZŁĄCZ
   disconnect_provider: "Rozłącz %{provider}"
   display: Wyświetlanie
@@ -1315,6 +1322,7 @@ pl:
   email_address_for_comments_and_other_feedback: Adres e-mail dla komentarzy i innych informacji zwrotnych.
   email_addresses_to_receive_invites: Adresy e-mail do odbierania zaproszeń
   email_copyright: "Chroniony prawem autorskim &copy; %{x}, wszelkie prawa zastrzeżone"
+  email_notifications: Powiadomienia e-mail
   email_settings: Ustawienia powiadomień e-mail
   embed: 'Osadź'
   embed_place_widget: Osadź widget miejsca
@@ -1404,6 +1412,8 @@ pl:
   file_should_be_in_the_following_format: "Plik powinien zawierać następującą kolejność: nazwa taksonu, opis"
   fill_out_project_observation_fields: Uzupełnij notatki związane z projektem
   fill_out_your_profile: uzupełnij swój profil
+  #The name of a computer file
+  filename: Nazwa pliku
   filter: Filtr
   filter_by_curator_identification: Filtruj po oznaczeniach kuratorów
   filter_by_place: Filtruj według lokalizacji
@@ -1740,6 +1750,10 @@ pl:
   labels: Etykiety
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Lokalizacja prywatna
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Brak lokalizacji
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Zablokuj poziom powiększenia
@@ -1810,6 +1824,7 @@ pl:
     italian: Włoski
     japanese: Japoński
     korean: Koreański
+    latvian: Łotewski
     lithuanian: Litewski
     luxembourgish: Luksemburski
     maltese: Maltański
