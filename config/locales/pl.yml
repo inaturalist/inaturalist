@@ -242,6 +242,7 @@ pl:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: O sposobach ustanowienia
+  about_license_options: O opcjach licencji
   about_licenses: O licencjach
   about_muting: O wyciszaniu
   #Header for a section describing taxon names
@@ -257,6 +258,7 @@ pl:
   about_this_project: O tym projekcie
   about_trips_html: |
     <h4>Wycieczki pozwalają na zbieranie danych o obecnych i nieobecnych gatunkach poprzez dodanie szerszego kontekstu do obserwacji</h4><p><strong>Dlaczego</strong>Dane obecnych-nieobecnych zawierają informacje przydatne do naukowych analiz, na przykład modelowania zasięgu gatunków (zwykłe obserwacje dostępne na iNaturalist są danymi dowodzącymi wyłącznie "obecności" danego gatunku).</p> <p><strong>Jak</strong> Wycieczka dodaje szerszy kontekst do twoich obserwacji poprzez odnotowywanie:</p> <ul> <li><strong>Czego</strong> szukałeś (twoja lista)</li> <li><strong>Gdzie</strong> szukałeś (obszar poszukiwań)</li> <li><strong>Kiedy</strong> szukałeś (czas poszukiwań)</li> </ul> <p>Gatunki z twojej listy, które udało ci się zaobserwować na określonym obszarze i w określonym czasie poszukiwań są oznaczone jako obecne. Gatunki, których nie udało ci się znaleźć są oznaczone jako nieobecne. Kliknij 'Generuj tabelę z obecnymi i nieobecnymi podczas wycieczek', aby utworzyć tabelę obecnych-nieobecnych dla gatunków z wycieczek i powiązanych obserwacji.<a href='%{url}'>Dowiedz się więcej</a></p>
+  about_trusting_projects: O ufaniu projektom
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -366,6 +368,12 @@ pl:
   add_life_stage_larva_annotation: 'Dodaj adnotację "Stadium rozwoju: Larwa"'
   add_life_stage_juvenile_annotation: 'Dodaj adnotację "Stadium rozwoju: Osobnik młodociany"'
   add_life_stage_egg_annotation: 'Dodaj adnotację "Stadium rozwoju: Jajo"'
+  add_evidence_of_presence_organism_annotation: 'Dodaj adnotację „Ślad obecności: organizm”'
+  add_evidence_of_presence_feather_annotation: 'Dodaj adnotację „Ślad obecności: pióro”'
+  add_evidence_of_presence_scat_annotation: 'Dodaj adnotację „Ślad obecności: odchody”'
+  add_evidence_of_presence_track_annotation: 'Dodaj adnotację „Ślad obecności: trop”'
+  add_evidence_of_presence_bone_annotation: 'Dodaj adnotację „Ślad obecności: kość”'
+  add_evidence_of_presence_molt_annotation: 'Dodaj adnotację „Ślad obecności: wylinka”'
   #As in a Taxon Framework Relationship
   add_relationship: 'Dodaj powiązanie'
   #As in a Guide Section
@@ -672,6 +680,8 @@ pl:
   are_you_sure_you_want_to_remove_manager: Czy jesteś pewien, że chcesz usunąć %{user} jako menedżera?
   are_you_sure_you_want_to_remove_these_x_taxa?: "Czy jesteś pewien, że chcesz usunąć te %{x} taksonów?"
   are_you_sure_you_want_to_remove_this_invitation: Czy na pewno chcesz usunąć to zaproszenie?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Czy na pewno chcesz usunąć tę obserwację z projektu %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Czy na pewno chcesz usunąć ten takson z checklisty %{place}?"
   associated_observations: Powiązane obserwacje
   associated_taxa: Powiązane taksony
@@ -752,6 +762,7 @@ pl:
   because_of: z powodu
   before_importing_photos: przed zaimportowaniem zdjęć
   bg_color: Kolor tła
+  bio_description: Powiedz coś o sobie innym użytkownikom iNaturalist!
   bioblitz: Bioblitz
   birds: ptaki
   birthday: Urodziny
@@ -913,6 +924,7 @@ pl:
   comment_deleted: Komentarz usunięty
   comments: Komentarze
   comments_by_me: Moje komentarze
+  comments_have_been_disabled: Komentarze zostały wyłączone
   comments_on_my_observations: Komentarze do moich obserwacji
   commercial_solicitation: Nachalny marketing, linki donikąd, itp.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -923,6 +935,7 @@ pl:
   committed_on: Wykonano dnia %{date}
   #Status message while a taxon change is being committed
   committing: Zatwierdzanie...
+  common_name: Nazwa zwyczajowa
   community: Społeczność
   community_curated: Pod opieką społeczności
   community_guidelines: Standardy społeczności
