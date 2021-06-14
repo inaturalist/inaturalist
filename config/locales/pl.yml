@@ -242,6 +242,7 @@ pl:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: O sposobach ustanowienia
+  about_license_options: O opcjach licencji
   about_licenses: O licencjach
   about_muting: O wyciszaniu
   #Header for a section describing taxon names
@@ -257,6 +258,7 @@ pl:
   about_this_project: O tym projekcie
   about_trips_html: |
     <h4>Wycieczki pozwalają na zbieranie danych o obecnych i nieobecnych gatunkach poprzez dodanie szerszego kontekstu do obserwacji</h4><p><strong>Dlaczego</strong>Dane obecnych-nieobecnych zawierają informacje przydatne do naukowych analiz, na przykład modelowania zasięgu gatunków (zwykłe obserwacje dostępne na iNaturalist są danymi dowodzącymi wyłącznie "obecności" danego gatunku).</p> <p><strong>Jak</strong> Wycieczka dodaje szerszy kontekst do twoich obserwacji poprzez odnotowywanie:</p> <ul> <li><strong>Czego</strong> szukałeś (twoja lista)</li> <li><strong>Gdzie</strong> szukałeś (obszar poszukiwań)</li> <li><strong>Kiedy</strong> szukałeś (czas poszukiwań)</li> </ul> <p>Gatunki z twojej listy, które udało ci się zaobserwować na określonym obszarze i w określonym czasie poszukiwań są oznaczone jako obecne. Gatunki, których nie udało ci się znaleźć są oznaczone jako nieobecne. Kliknij 'Generuj tabelę z obecnymi i nieobecnymi podczas wycieczek', aby utworzyć tabelę obecnych-nieobecnych dla gatunków z wycieczek i powiązanych obserwacji.<a href='%{url}'>Dowiedz się więcej</a></p>
+  about_trusting_projects: O ufaniu projektom
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -366,6 +368,12 @@ pl:
   add_life_stage_larva_annotation: 'Dodaj adnotację "Stadium rozwoju: Larwa"'
   add_life_stage_juvenile_annotation: 'Dodaj adnotację "Stadium rozwoju: Osobnik młodociany"'
   add_life_stage_egg_annotation: 'Dodaj adnotację "Stadium rozwoju: Jajo"'
+  add_evidence_of_presence_organism_annotation: 'Dodaj adnotację „Ślad obecności: organizm”'
+  add_evidence_of_presence_feather_annotation: 'Dodaj adnotację „Ślad obecności: pióro”'
+  add_evidence_of_presence_scat_annotation: 'Dodaj adnotację „Ślad obecności: odchody”'
+  add_evidence_of_presence_track_annotation: 'Dodaj adnotację „Ślad obecności: trop”'
+  add_evidence_of_presence_bone_annotation: 'Dodaj adnotację „Ślad obecności: kość”'
+  add_evidence_of_presence_molt_annotation: 'Dodaj adnotację „Ślad obecności: wylinka”'
   #As in a Taxon Framework Relationship
   add_relationship: 'Dodaj powiązanie'
   #As in a Guide Section
@@ -672,6 +680,8 @@ pl:
   are_you_sure_you_want_to_remove_manager: Czy jesteś pewien, że chcesz usunąć %{user} jako menedżera?
   are_you_sure_you_want_to_remove_these_x_taxa?: "Czy jesteś pewien, że chcesz usunąć te %{x} taksonów?"
   are_you_sure_you_want_to_remove_this_invitation: Czy na pewno chcesz usunąć to zaproszenie?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Czy na pewno chcesz usunąć tę obserwację z projektu %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Czy na pewno chcesz usunąć ten takson z checklisty %{place}?"
   associated_observations: Powiązane obserwacje
   associated_taxa: Powiązane taksony
@@ -708,6 +718,9 @@ pl:
   automatic_short: Automatyczny
   automatically_add_observations_to_this_project: Automatycznie dodawaj obserwacje do tego projektu
   automatically_update_my_content_for_taxon_changes: Automatycznie aktualizuj moje obserwacje wraz ze zmianami taksonomicznymi
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Śr.
   back: Wstecz
   back_to_all_species: Wróć do wszystkich gatunków
   back_to_browsing_people: Wróć do przeglądania użytkowników
@@ -749,6 +762,7 @@ pl:
   because_of: z powodu
   before_importing_photos: przed zaimportowaniem zdjęć
   bg_color: Kolor tła
+  bio_description: Powiedz coś o sobie innym użytkownikom iNaturalist!
   bioblitz: Bioblitz
   birds: ptaki
   birthday: Urodziny
@@ -910,6 +924,7 @@ pl:
   comment_deleted: Komentarz usunięty
   comments: Komentarze
   comments_by_me: Moje komentarze
+  comments_have_been_disabled: Komentarze zostały wyłączone
   comments_on_my_observations: Komentarze do moich obserwacji
   commercial_solicitation: Nachalny marketing, linki donikąd, itp.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -920,12 +935,14 @@ pl:
   committed_on: Wykonano dnia %{date}
   #Status message while a taxon change is being committed
   committing: Zatwierdzanie...
+  common_name: Nazwa zwyczajowa
   community: Społeczność
   community_curated: Pod opieką społeczności
   community_guidelines: Standardy społeczności
   community_id_heading: Takson wybrany przez społeczność
   community_id_at_species_or_lower?: Takson wybrany przez społeczność na poziomie gatunku lub niższym?
   community_id_at_species_level_or_lower: Takson wybrany przez społeczność na poziomie gatunku lub niższym
+  community_id_is_precise: Takson społeczności jest precyzyjny
   community_moderation_settings: Ustawienia moderacji społeczności
   community_supported_id: Takson wspierany przez społeczność?
   compare: Porównaj
@@ -951,6 +968,7 @@ pl:
   confirm_now: Potwierdź teraz
   confirm_your_info: Potwierdź swoje dane
   confirming_ids: Potwierdzanie oznaczeń
+  confirming_ids_description: Jeśli wyłączysz tę opcję, nie będziesz już otrzymywać powiadomień o oznaczeniach, które są zgodne z Twoimi.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Połącz
@@ -1002,6 +1020,7 @@ pl:
     teneral: Osobnik teneralny
     subimago: Subimago
     pupa: Poczwarka
+    no_evidence_of_flowering: Brak śladów kwitnienia
     nymph: Nimfa
     larva: Larwa
     egg: Jajo
@@ -1061,6 +1080,7 @@ pl:
   create_a_query: Stwórz zapytanie
   create_an_account: Utwórz konto
   create_an_atlas: Stwórz atlas
+  create_export: Utwórz eksport
   create_new_taxon: Utwórz nowy takson
   create_observations: Utwórz obserwacje
   created: Utworzone
@@ -1151,6 +1171,8 @@ pl:
   decrease_brightness: Zmniejsz jasność
   #Default option
   default: domyślny
+  #Default option
+  default_: Domyślny
   default_invite_comment: "Świetne zdjęcie! Powinieneś opublikować je na %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Domyślna licencja dla obserwacji
   default_photo_license: Domyślna licencja dla zdjęcia
@@ -1208,6 +1230,7 @@ pl:
       reset_password_instructions:
         subject: 'Instrukcje resetowania hasła'
   devise_reset_password_instructions_hello_email: Witaj %{email}
+  devise_unlock_instructions_unlock: Odblokuj swoje konto
   discoveries: Odkrycia
   did_not_send_invitations_because: Nie wysłano zaproszeń, ponieważ...
   did_you_mean: 'Czy chodziło ci o'
@@ -1215,6 +1238,9 @@ pl:
   disable: Wyłącz
   disable_comments: Wyłącz komentarze
   disagree_: Nie zgadzam się
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Rozłącz
   disconnect_caps: ROZŁĄCZ
   disconnect_provider: "Rozłącz %{provider}"
   display: Wyświetlanie
@@ -1315,6 +1341,7 @@ pl:
   email_address_for_comments_and_other_feedback: Adres e-mail dla komentarzy i innych informacji zwrotnych.
   email_addresses_to_receive_invites: Adresy e-mail do odbierania zaproszeń
   email_copyright: "Chroniony prawem autorskim &copy; %{x}, wszelkie prawa zastrzeżone"
+  email_notifications: Powiadomienia e-mail
   email_settings: Ustawienia powiadomień e-mail
   embed: 'Osadź'
   embed_place_widget: Osadź widget miejsca
@@ -1404,6 +1431,8 @@ pl:
   file_should_be_in_the_following_format: "Plik powinien zawierać następującą kolejność: nazwa taksonu, opis"
   fill_out_project_observation_fields: Uzupełnij notatki związane z projektem
   fill_out_your_profile: uzupełnij swój profil
+  #The name of a computer file
+  filename: Nazwa pliku
   filter: Filtr
   filter_by_curator_identification: Filtruj po oznaczeniach kuratorów
   filter_by_place: Filtruj według lokalizacji
@@ -1740,6 +1769,10 @@ pl:
   labels: Etykiety
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Lokalizacja prywatna
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Brak lokalizacji
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Zablokuj poziom powiększenia
@@ -1810,6 +1843,7 @@ pl:
     italian: Włoski
     japanese: Japoński
     korean: Koreański
+    latvian: Łotewski
     lithuanian: Litewski
     luxembourgish: Luksemburski
     maltese: Maltański
@@ -1985,7 +2019,7 @@ pl:
       observations: Obserwacje
       range: Zakres
   map_tooltip: Pokaż widok mapy
-  mark_as_reviewed: Oznacz jako przejrzane
+  mark_as_reviewed: Oznacz jako przejrzaną
   mark_all_as_reviewed: Oznacz wszystkie jako przejrzane
   mark_all_as_unreviewed: Oznacz wszystkie jako nieprzejrzane
   matching_species_will_shown_up_here: Tu pokażą się pasujące gatunki. Mapy pokażą zakres występowania, jeśli jest on zdefiniowany dla miejsca %{place}.
@@ -2020,6 +2054,10 @@ pl:
   misidentifications: Błędne oznaczenia
   misleading_or_illegal_content_html: |
     Treści nielegalne lub mylące, rasistowskie lub ksenofobiczne wyzwiska itd. Aby dowiedzieć się więcej o tym, co uważamy za "odpowiednie", zobacz <a href"/help#innappropriate">FAQ</a>.
+  #Label shown when a date has not been entered
+  missing_date: Brak daty
+  #Person who executed a moderator action or flagged something
+  moderator_or_flagger: Moderator / Zgłaszający
   mollusks: mięczaki
   momentjs:
     shortRelativeTime:
@@ -2059,6 +2097,12 @@ pl:
     date_long: "D MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "H:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Miesiąc
   months: Miesiące
   more: Więcej
@@ -2853,7 +2897,7 @@ pl:
   previous_observation: Poprzednia obserwacja
   previous_page: Poprzednia strona
   previous_photo: Poprzednie zdjęcie
-  previous_tab: Poprzednia strona
+  previous_tab: Poprzednia zakładka
   print_verb: Drukuj
   privacy: Prywatność
   probably_spam: Prawdopodobnie spam
@@ -3694,7 +3738,7 @@ pl:
   your_google_account_info: Informacje o Twoim koncie Google
   your_pinned_locations: Twoje przypięte lokalizacje
   your_profile_was_successfully_updated: Twój profil został pomyślnie zaktualizowany!
-  your_recent_projects: Twoje ostatnie Projekty
+  your_recent_projects: Twoje ostatnie projekty
   your_relationships: Twoje relacje
   your_tags: Twoje tagi
   yours: Twoje

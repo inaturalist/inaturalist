@@ -127,7 +127,7 @@ hu:
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "ABC-sorrend"
-  about: Rólunk
+  about: Bemutatkozás
   about_blocking: A tiltásról
   about_charts: A grafikonokról
   about_community_taxa: A közösségi taxonokról
@@ -383,6 +383,7 @@ hu:
   from_soundcloud: Soundcloudról
   full_screen: Teljes képernyő
   Genus: Nemzetség
+  geoprivacy_is_private: A pozíció nem publikus
   get_started: Elkezdem
   getting_started_guide: Első lépések
   go: Mehet
@@ -466,8 +467,10 @@ hu:
   more_filters: További szűrők
   more_import_options: További importálási lehetőségek
   most_comments_and_faves: A legtöbb megjegyzés vagy kedvenc
+  most_observed_threatened_species: A leggyakrabban megfigyelt veszélyeztetett fajok
   must_have_observation_field: "'%{operand}' adatmező nem lehet üres"
   n_ago: "%{n}"
+  near_threatened: Mérsékelten fenyegetett
   needs_id_: Meghatározásra vár
   new_observation_field: Új adatmező
   new_password: Új jelszó
@@ -503,6 +506,7 @@ hu:
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
   or_all_caps: VAGY
+  other_species_commonly_misidentified_as_this_species_in_place_html: Egyéb fajok <a href="%{url}">%{place}</a> régiójában, amelyeket gyakran tévesen e fajként határoznak meg
   our_blog: Blogunk
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Szülő
@@ -574,17 +578,24 @@ hu:
   show: Megjelenítés
   sign_in_with_provider: "Bejelentkezés %{provider}-profillal"
   sign_in_with_google: Bejelentkezés Google-fiókkal
+  similar_species: Hasonló fajok
   site_stats: Webhelyforgalom
   #Plural
   species: Fajok
   species_unknown: Ismeretlen fajok
   start: Kezdete
+  status: Státusz
   subscribe_to_a_taxon: Feliratkozás taxonhoz
   subscribe_to_a_place: Feliratkozás helyhez
   subscribe_to_this: Feliratkozás erre
   subscriptions: Feliratkozások
   suggest_an_identification: Meghatározás hozzáadása
   taxa_info: Taxoninformációk
+  taxon_is_threatened_coordinates_hidden: Veszélyeztetett taxon, a koordináták nem publikusak
+  taxon_is_threatened_coordinates_hidden_desc: |
+    A meghatározások között van legalább egy olyan taxon, amely (vagy amelynek egy altaxonja) ritkaság és/vagy veszélyeztetett. Emiatt a hely nem publikus.
+  taxon_is_threatened_coordinates_obscured: Veszélyeztetett taxon, a koordinátákat kitakarjuk
+  taxonomy: Rendszertan
   terms_service: Felhasználási feltételek
   the_people_of_inat: "Emberek az %{site_name} mögött"
   the_world: A világ
@@ -792,6 +803,8 @@ hu:
         strip_insignificant_zeros: true
   activerecord:
     attributes:
+      conservation_status:
+        geoprivacy: Pozíció láthatósága
       observation:
         observed_on: megfigyelés dátuma
       project:
