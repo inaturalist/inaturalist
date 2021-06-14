@@ -942,6 +942,7 @@ pl:
   community_id_heading: Takson wybrany przez społeczność
   community_id_at_species_or_lower?: Takson wybrany przez społeczność na poziomie gatunku lub niższym?
   community_id_at_species_level_or_lower: Takson wybrany przez społeczność na poziomie gatunku lub niższym
+  community_id_is_precise: Takson społeczności jest precyzyjny
   community_moderation_settings: Ustawienia moderacji społeczności
   community_supported_id: Takson wspierany przez społeczność?
   compare: Porównaj
@@ -967,6 +968,7 @@ pl:
   confirm_now: Potwierdź teraz
   confirm_your_info: Potwierdź swoje dane
   confirming_ids: Potwierdzanie oznaczeń
+  confirming_ids_description: Jeśli wyłączysz tę opcję, nie będziesz już otrzymywać powiadomień o oznaczeniach, które są zgodne z Twoimi.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Połącz
@@ -1018,6 +1020,7 @@ pl:
     teneral: Osobnik teneralny
     subimago: Subimago
     pupa: Poczwarka
+    no_evidence_of_flowering: Brak śladów kwitnienia
     nymph: Nimfa
     larva: Larwa
     egg: Jajo
@@ -1077,6 +1080,7 @@ pl:
   create_a_query: Stwórz zapytanie
   create_an_account: Utwórz konto
   create_an_atlas: Stwórz atlas
+  create_export: Utwórz eksport
   create_new_taxon: Utwórz nowy takson
   create_observations: Utwórz obserwacje
   created: Utworzone
@@ -1167,6 +1171,8 @@ pl:
   decrease_brightness: Zmniejsz jasność
   #Default option
   default: domyślny
+  #Default option
+  default_: Domyślny
   default_invite_comment: "Świetne zdjęcie! Powinieneś opublikować je na %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Domyślna licencja dla obserwacji
   default_photo_license: Domyślna licencja dla zdjęcia
@@ -2013,7 +2019,7 @@ pl:
       observations: Obserwacje
       range: Zakres
   map_tooltip: Pokaż widok mapy
-  mark_as_reviewed: Oznacz jako przejrzane
+  mark_as_reviewed: Oznacz jako przejrzaną
   mark_all_as_reviewed: Oznacz wszystkie jako przejrzane
   mark_all_as_unreviewed: Oznacz wszystkie jako nieprzejrzane
   matching_species_will_shown_up_here: Tu pokażą się pasujące gatunki. Mapy pokażą zakres występowania, jeśli jest on zdefiniowany dla miejsca %{place}.
@@ -2048,6 +2054,10 @@ pl:
   misidentifications: Błędne oznaczenia
   misleading_or_illegal_content_html: |
     Treści nielegalne lub mylące, rasistowskie lub ksenofobiczne wyzwiska itd. Aby dowiedzieć się więcej o tym, co uważamy za "odpowiednie", zobacz <a href"/help#innappropriate">FAQ</a>.
+  #Label shown when a date has not been entered
+  missing_date: Brak daty
+  #Person who executed a moderator action or flagged something
+  moderator_or_flagger: Moderator / Zgłaszający
   mollusks: mięczaki
   momentjs:
     shortRelativeTime:
@@ -2087,6 +2097,12 @@ pl:
     date_long: "D MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "H:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Miesiąc
   months: Miesiące
   more: Więcej
@@ -2881,7 +2897,7 @@ pl:
   previous_observation: Poprzednia obserwacja
   previous_page: Poprzednia strona
   previous_photo: Poprzednie zdjęcie
-  previous_tab: Poprzednia strona
+  previous_tab: Poprzednia zakładka
   print_verb: Drukuj
   privacy: Prywatność
   probably_spam: Prawdopodobnie spam
@@ -3722,7 +3738,7 @@ pl:
   your_google_account_info: Informacje o Twoim koncie Google
   your_pinned_locations: Twoje przypięte lokalizacje
   your_profile_was_successfully_updated: Twój profil został pomyślnie zaktualizowany!
-  your_recent_projects: Twoje ostatnie Projekty
+  your_recent_projects: Twoje ostatnie projekty
   your_relationships: Twoje relacje
   your_tags: Twoje tagi
   yours: Twoje
