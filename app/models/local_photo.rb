@@ -556,8 +556,13 @@ class LocalPhoto < Photo
       photo.update_columns( url_updates )
       photo.reload
 
-      # TODO: disabling deleting source images for now
-      # LocalPhoto.delete_images_from_bucket( s3_client, source_bucket, images )
+      # if the photo is being removed as a result of a flag being applied,
+      # then remove it from the source bucket
+      if photo.flags.detect{ |f| !f.resolved? }
+        LocalPhoto.delete_images_from_bucket( s3_client, source_bucket, images )
+      end
+
+      # TODO: mark the observation as being updated, re-index only the updated_at column
     else
       # move failed, so remove any files that did get copied to the target before the failure
       LocalPhoto.delete_images_from_bucket( s3_client, target_bucket, images )
