@@ -312,7 +312,6 @@ es-MX:
   add_section: Añade sección
   add_several_observations_at_once: Añade varias observaciones al mismo tiempo.
   add_sex_female_annotation: 'Añade anotación "género: femenino"'
-  add_sex_male_annotation: 'Añade anotación "Género: masculino"'
   add_sex_cannot_be_determined_annotation: 'Añadir anotación "Sexo: No se puede determinar"'
   add_some_now: Añade unas ahora
   add_tag: Añade etiqueta
@@ -956,7 +955,6 @@ es-MX:
   contributor_cannot_be_found: El contribuidor del proyecto no pudo ser encontrado
   contributors_to_project: "Contribuciones a %{project}"
   controlled_term_labels:
-    sex: Género
     male: Masculino
     female: Femenino
     plant_phenology: Fenología de la planta
@@ -6223,14 +6221,6 @@ es-MX:
           "Plant Phenology=Flower Budding": Con Yemas Florales
           "Plant Phenology=Flowering": Floración
           "Plant Phenology=Fruiting": Fructificando
-          "Plant Phenology=No Evidence of Flowering": Sin evidencias
-          "Life Stage=egg": Huevo
-          "Life Stage=larva": Larva u oruga
-          "Life Stage=teneral": Muda
-          "Life Stage=subimago": Subadulto
-          "Life Stage=nymph": Ninfa
-          "Life Stage=pupa": Pupa o crisálida
-          "Life Stage=adult": Adulto
           unannotated: Sin anotación
         max_photos_desc: |
           Un taxón solo puede tener %{max} fotos. Deberá eliminar las fotos existentes para agregar más.
