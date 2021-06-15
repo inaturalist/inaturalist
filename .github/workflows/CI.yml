@@ -33,10 +33,12 @@ jobs:
       fail-fast: false
       matrix:
         spec_pattern:
-          - spec/models/{a,b,c,d,e,f,g,i}*_spec.rb
-          - spec/models/{l,m,o}*_spec.rb
-          - spec/models/{p,q,s,t,u,w}*_spec.rb
-          - spec/controllers
+          - spec/models/{a,b,c,d,e,f,g,h,i,j,k,l}*_spec.rb
+          - spec/models/{m,n,o}*_spec.rb
+          - spec/models/{p,q,r,s}*_spec.rb
+          - spec/models/{t,u,v,w,y,z}*_spec.rb
+          - spec/controllers/{a,b,c,d,e,f,g,h,i,j,k,l,m,n,o}*_spec.rb
+          - spec/controllers/{p,q,r,s,t,u,v,w,x,y,z}*_spec.rb
           - spec/helpers spec/initializers spec/lib spec/views spec/features
 
     steps:
