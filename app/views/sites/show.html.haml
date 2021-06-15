@@ -9,6 +9,19 @@
         - if @record.send("#{attc}?")
           .meta.small.stacked{:style => "text-transform: uppercase;"}= attc.humanize
           = image_tag @record.send(attc.to_sym).url, class: "img-responsive stacked"
+      - if @export_url
+        .well.upstacked
+          %h4 Site Data Export
+          %p
+            This export contains data for site admins to which the partner
+            organization is entitled. It should be updated in June and December.
+          = link_to @export_url, class: "btn btn-default btn-block stacked upstacked" do
+            %i.fa.fa-download
+            =t :download
+            = surround "(", ")" do
+              = number_to_human_size @export_bytes
+          .small.text-center.text-muted
+            =t :bold_label_colon_value_html, label: t(:date_updated), value: l( @export_mtime )
     .col-md-8
       %h2= @record.name
       - if is_admin? || current_user.is_site_admin_of?(@record)
