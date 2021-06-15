@@ -430,6 +430,7 @@ lb:
   back_to_your_observations: Zréck bei Är Observatiounen
   back_to_your_profile: Zréck op Äre Profil
   back_to_your_projects: Zréck op Är Projeten
+  badges: Badgen
   batch: Batch
   because_of: well
   before_importing_photos: virum Import vu Fotoen
@@ -1288,6 +1289,16 @@ lb:
   obscured: Verschleiert
   observation: Observatioun
   observation_: Observatioun
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Observatioune vum %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Observatioune &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     D'Observatioun gehéiert zu engem Projet deen dëst Feld verlaangt. D'Observatioun muss aus deem Projet erausgeholl ginn ier dëst Feld ka geläscht ginn.
   observation_brief_taxon_from_place: "%{taxon} vun %{place}"
@@ -1629,9 +1640,27 @@ lb:
   rank_sciname: "%{rank} %{name}"
   ranks:
     kingdom: Kinnekräich
+    x_kingdoms:
+      one: Räich
+      other: Räich
+    x_phyla:
+      one: Stamm
+      other: Stämm
+    x_classes:
+      one: Klass
+      other: Klassen
     subclass: Ënnerklass
     order: Uerdnung
+    x_orders:
+      one: Uerdnung
+      other: Uerdnungen
     family: Famill
+    x_families:
+      one: Famill
+      other: Famillen
+    x_genera:
+      one: Gattung
+      other: Gattungen
     subgenus: Ënneraart
     section: Abschnitt
     complex: Komplex
@@ -2121,9 +2150,11 @@ lb:
       no_observations_found_in_place: Keng Observatioune fonnt an %{place}
       dropdowns:
         sort: Sortéieren
+        taxonomic: Taxonomesch
         name: Numm
         show: Weisen
         children: Kanner
+        full_taxonomy: Komplett Taxonomie
     messages:
       from: Vum
       to: Fir
@@ -2206,6 +2237,8 @@ lb:
         TTID_desc: Zäit bis een eng Bestëmmung vun engem aneren kritt
       year:
         growth_by_country_title: Wuesstem no Land
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: Eemol
         species_per_year: Aarten / Joer
     taxa:
       show:
@@ -2218,11 +2251,18 @@ lb:
           "Alive or Dead=Dead": Dout
           "Plant Phenology=Flowering": Bléiend
           "Plant Phenology=Fruiting": Kritt Friichten
-          "Life Stage=egg": Ee
-          "Life Stage=larva": Larve
-          "Life Stage=nymph": Nymph
-          "Life Stage=pupa": Popp
-          "Life Stage=adult": Erwuessen
+          "Plant Phenology=No Evidence": Keng Evidenz
+          "Life Stage=Adult": Erwuessen
+          "Life Stage=Egg": Ee
+          "Life Stage=Larva": Larve
+          "Life Stage=Juvenile": Juvenil
+          "Life Stage=Nymph": Nymph
+          "Life Stage=Pupa": Popp
+          "Life Stage=Subimago": Subimago
+          "Life Stage=Teneral": Teneral
+          "Sex=Cannot Be Determined": Ka net bestëmmt ginn
+          "Sex=Female": Weiblech
+          "Sex=Male": Männlech
           unannotated: Keng Notiz
     users:
       delete:
@@ -2683,4 +2723,7 @@ lb:
   will_paginate:
     previous_label: "&#8592; Vireg"
     next_label: "Nächst &#8594;"
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: Z bis A
   zoom_photo: Zoom Foto
