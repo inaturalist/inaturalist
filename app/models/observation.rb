@@ -1483,7 +1483,9 @@ class Observation < ActiveRecord::Base
         return true
       end
     end
-    cps = collection_projects( authenticate: viewer )
+    cps = collection_projects( authenticate: viewer ).select do |cp|
+      curated_project_ids.include?( cp.id )
+    end
     curator_coordinate_access_allowed_for_collection = cps.detect do |cp|
       pu = user.project_users.where( project_id: cp.id ).first
       if cp.observation_requirements_updated_at.blank?
