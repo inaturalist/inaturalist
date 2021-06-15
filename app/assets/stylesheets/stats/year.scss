@@ -331,6 +331,9 @@ $ribbon-midfold-width: 40px;
       }
     }
     .idents-users-helped {
+      .UserWithIcon {
+        flex-direction: row-reverse;
+      }
       text-align: right;
       h3 {
         text-align: right;
@@ -342,7 +345,6 @@ $ribbon-midfold-width: 40px;
         .icon {
           margin-right: 0px;
           margin-left: 10px;
-          float: right;
         }
       }
     }

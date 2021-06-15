@@ -244,7 +244,14 @@ const App = ( {
                   <Col xs={5} className="info_column">
                     <div className="user_info">
                       <PreviousNextButtonsContainer />
-                      <UserWithIcon user={observation.user} />
+                      <UserWithIcon
+                        user={observation.user}
+                        hideSubtitle={
+                          testingInterpolationMitigation
+                          && observation.obscured
+                          && !observation.private_geojson
+                        }
+                      />
                     </div>
                     <Row className="date_row">
                       <Col xs={6}>

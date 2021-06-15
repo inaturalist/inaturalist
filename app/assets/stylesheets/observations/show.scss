@@ -1364,7 +1364,6 @@ h3, h4 {
       .title {
         font-size: 14px;
         line-height: 14px;
-        padding-top: 8px;
         font-weight: 700;
         text-overflow: ellipsis;
         display: block;
@@ -1376,6 +1375,7 @@ h3, h4 {
         margin-top: 4px;
         i {
           font-size: 12px;
+          margin-right: 3px;
         }
       }
     }
