@@ -2599,13 +2599,20 @@ en:
   multiple_select_option: -- multiple --
   multiple_taxa_for_taxon_change: "Multiple taxa (input for swap/merge, output for split)"
   multiple_taxon_ids_separated_by_commas: 'Multiple taxon IDs separated by commas, e.g. 123,654'
-  must_be_observed_after: |
-    must be observed after %{operand}
-  must_be_observed_before: |
-    must be observed before %{operand}
-  must_be_observed_in: must be observed in
+  must_be_in_taxon: must be in taxon %{taxon}
+  must_be_not_in_taxon: must not be in taxon %{taxon}
+  must_be_not_observed_by_user: must not be observed by %{user}
+  must_be_not_observed_in_place: must not be observed in %{place}
+  must_be_observed_after: must be observed after %{operand}
+  must_be_observed_before: must be observed before %{operand}
+  must_be_observed_by_user: must be observed by %{user}
+  must_be_observed_in_place: must be observed in %{place}
   must_be_less_than_x_MB: "Must be less than %{x} MB"
   must_have_observation_field: "must have observation field '%{operand}' filled out"
+  must_have_photos: must have photos
+  # Grades is a comma separated list of quality grades
+  must_have_quality_grades: "must have quality grades: %{grades}"
+  must_have_sounds: must have sounds
   must_have_x: "must have %{x}"
   mute_user: Mute User
   mute_removed: Mute removed
@@ -4948,6 +4955,7 @@ en:
   username_or_user_id: Username or User ID
   users: Users
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>'s contributions to %{project_title}
+  users_favorites: "%{user}'s Favorites"
   users_highlights_and_stats_from_year_on_site: "%{user}'s highlights and stats from %{year} on %{site}"
   users_id: "%{user}'s ID"
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
@@ -5288,6 +5296,7 @@ en:
   your_default: your default
   your_default_time_zone: Your default time zone
   your_email_address: Your email address
+  your_favorites: Your Favorites
   your_flickr_account: your Flickr account
   your_flickr_photos_have_been_tagged: Your Flickr photos have been tagged!
   your_hard_drive: your hard drive
