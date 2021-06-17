@@ -2270,11 +2270,8 @@ pt:
   multiple_select_option: '-- múltiplo --'
   multiple_taxa_for_taxon_change: "Diversas espécies e grupos (entrada de dados para alterar/fundir, saída de dados para dividir)"
   multiple_taxon_ids_separated_by_commas: 'Várias IDs de táxons separadas por vírgula, e.g. 123,654'
-  must_be_observed_after: |
-    deve ser observado depois %{operand}
-  must_be_observed_before: |
-    deve ser observado antes %{operand}
-  must_be_observed_in: deve ser observado em
+  must_be_observed_after: deve ser observado depois %{operand}
+  must_be_observed_before: deve ser observado antes %{operand}
   must_be_less_than_x_MB: "Deve ser menor que %{x} MB"
   must_have_observation_field: "deve ter o campo de observação '%{operand}' preenchido"
   must_have_x: "deve ter %{x}"
