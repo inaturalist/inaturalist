@@ -1876,7 +1876,7 @@ zh-CN:
   licensing: 授权协议
   licensing_your_content_gives_others_legal: "对您的内容进行协议授权，可以授予遵守该协议的其他人使用您内容的合法权利。%{site_name}使用您知识共享协议授权的内容同其他数据合作伙伴进行分享，比如"
   life: 生命
-  life_list: "%{user}的生命清单"
+  life_list: "%{user}的生命列表"
   life_list_updated: 生物列表已更新！
   life_list_updated_we_also_saved_a: 生命清单已更新！我们也保存了此分类单元的一份空白观察。
   life_lists_automatically_fill: 生物列表会自动填充您所观察到的新分类单元，它们可能会限定于更高阶的父分类单元，例如，鸦科（Corvidae）鸟类的生物列表。
@@ -2193,11 +2193,8 @@ zh-CN:
   multiple_select_option: '-- 多重 --'
   multiple_taxa_for_taxon_change: "复合分类单元（交换/合并输入，分别输出）"
   multiple_taxon_ids_separated_by_commas: '以逗号分隔的多个分类单元ID，例如：123654'
-  must_be_observed_after: |
-    必须在 %{operand} 之后被观察
-  must_be_observed_before: |
-    必须在 %{operand} 之前被观察
-  must_be_observed_in: 必须观察在
+  must_be_observed_after: 必须在 %{operand} 之后被观察
+  must_be_observed_before: 必须在 %{operand} 之前被观察
   must_be_less_than_x_MB: "必须小于 %{x} MB"
   must_have_observation_field: "必须填写观察字段“%{operand}”"
   must_have_x: "必须有 %{x}"

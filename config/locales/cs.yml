@@ -2555,11 +2555,8 @@ cs:
   multiple_select_option: '-- vícero --'
   multiple_taxa_for_taxon_change: "Několik taxonů (vstup pro záměnu/sloučení, výstup pro rozdělení)"
   multiple_taxon_ids_separated_by_commas: 'Několik ID taxonů oddělených čárkami, např. 123,654'
-  must_be_observed_after: |
-    musí být pozorován po %{operand}
-  must_be_observed_before: |
-    musí být pozorován před %{operand}
-  must_be_observed_in: musí být pozorován v
+  must_be_observed_after: musí být pozorován po %{operand}
+  must_be_observed_before: musí být pozorován před %{operand}
   must_be_less_than_x_MB: "Musí být méně než %{x} MB"
   must_have_observation_field: "pole pozorování '%{operand}' musí být vyplněno"
   must_have_x: "musí mít %{x}"

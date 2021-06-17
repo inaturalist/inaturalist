@@ -2354,11 +2354,8 @@ el:
   multiple_select_option: '-- πολλαπλές --'
   multiple_taxa_for_taxon_change: "Πολλαπλές ταξινομικές μονάδες (είσοδος για ανταλλαγή/συγχώνευση, έξοδος για διαχωρισμό)"
   multiple_taxon_ids_separated_by_commas: 'Πολλαπλές ταυτοποιήσεις ταξινομικών βαθμίδων χωρίζονται με κόμμα, π.χ. 123,654'
-  must_be_observed_after: |
-    πρέπει να παρατηρηθεί μετά τις %{operand}
-  must_be_observed_before: |
-    πρέπει να παρατηρηθεί πριν τις %{operand}
-  must_be_observed_in: πρέπει να παρατηρηθεί στις
+  must_be_observed_after: πρέπει να παρατηρηθεί μετά τις %{operand}
+  must_be_observed_before: πρέπει να παρατηρηθεί πριν τις %{operand}
   must_be_less_than_x_MB: "Πρέπει να είναι λιγότερο από %{x} MB"
   must_have_observation_field: "Απαιτείται συμπλήρωση %{operand} του πεδίου παρατηρήσεων"
   must_have_x: "πρέπει να έχει %{x}"

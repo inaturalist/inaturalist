@@ -1755,11 +1755,8 @@ et:
   multiple_select_option: '-- mitu --'
   multiple_taxa_for_taxon_change: "Mitu taksonit (sisend vahetamiseks/ühendamiseks, väljund jagamiseks)"
   multiple_taxon_ids_separated_by_commas: 'Mitu taksoni IDd, mis on omavahel komadega eraldatud, nt 123,654'
-  must_be_observed_after: |
-    vaatlus peab olema tehtud peale %{operand}
-  must_be_observed_before: |
-    vaatlus peab olema tehtud enne %{operand}
-  must_be_observed_in: vaatlus peab olema tehtud kohas
+  must_be_observed_after: vaatlus peab olema tehtud peale %{operand}
+  must_be_observed_before: vaatlus peab olema tehtud enne %{operand}
   must_be_less_than_x_MB: "Peab olema väiksem kui %{x} MB"
   must_have_observation_field: "vaatluse peab väli '%{operand}' olema täidetud"
   must_have_x: "peab omama %{x}"

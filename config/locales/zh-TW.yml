@@ -2326,11 +2326,8 @@ zh-TW:
   multiple_select_option: '-- 多種 --'
   multiple_taxa_for_taxon_change: "多項物種分類群（輸入用於對換/合併方面，輸出用於拆分方面）"
   multiple_taxon_ids_separated_by_commas: '以逗號分隔多項物種分類 ID，例如：123,654'
-  must_be_observed_after: |
-    必須在 %{operand} 之後觀察
-  must_be_observed_before: |
-    必須在 %{operand} 之前觀察
-  must_be_observed_in: 必須被觀察在
+  must_be_observed_after: 必須在 %{operand} 之後觀察
+  must_be_observed_before: 必須在 %{operand} 之前觀察
   must_be_less_than_x_MB: "必須小於 %{x} MB"
   must_have_observation_field: "必須在觀察欄位「%{operand}」填寫內容"
   must_have_x: "必須要有 %{x}"

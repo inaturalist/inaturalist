@@ -2524,11 +2524,8 @@ uk:
   multiple_select_option: '-- декілька--'
   multiple_taxa_for_taxon_change: "Декілька таксонів (ввід для заміни/злиття, вивід для розділення)"
   multiple_taxon_ids_separated_by_commas: 'Кілька визначень таксонів, розділені комами, наприклад 123,654'
-  must_be_observed_after: |
-    має бути спостережено після %{operand}
-  must_be_observed_before: |
-    має бути спостережено до %{operand}
-  must_be_observed_in: має бути спостережено в
+  must_be_observed_after: має бути спостережено після %{operand}
+  must_be_observed_before: має бути спостережено до %{operand}
   must_be_less_than_x_MB: "має бути менше за %{x} МБ"
   must_have_observation_field: "спостереження мусить мати заповнене поле %{operand}"
   must_have_x: "мусить мати %{x}"

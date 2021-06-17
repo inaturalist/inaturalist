@@ -2476,11 +2476,8 @@ ru:
   multiple_select_option: '-- множественный --'
   multiple_taxa_for_taxon_change: "Несколько таксонов (ввод для замены/слияния, вывод для разделения)"
   multiple_taxon_ids_separated_by_commas: 'Множественные идентификации таксона, разделённые запятыми, например, 123,654'
-  must_be_observed_after: |
-    должен наблюдаться после %{operand}
-  must_be_observed_before: |
-    должен наблюдаться перед %{operand}
-  must_be_observed_in: должен наблюдаться в
+  must_be_observed_after: должен наблюдаться после %{operand}
+  must_be_observed_before: должен наблюдаться перед %{operand}
   must_be_less_than_x_MB: "Должен быть меньше %{x} Мб"
   must_have_observation_field: "должен иметь заполненное поле наблюдения %{operand}"
   must_have_x: "должен иметь %{x}"

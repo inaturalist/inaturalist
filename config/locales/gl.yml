@@ -2364,11 +2364,8 @@ gl:
   multiple_select_option: '-- varios --'
   multiple_taxa_for_taxon_change: "Máis dunha especie ou grupo (entrada de datos para intercambiar/combinar, saída de datos para separar)"
   multiple_taxon_ids_separated_by_commas: 'Varias identificacións de taxons separadas por comas, p.e. 123,654'
-  must_be_observed_after: |
-    debe ser observado despois de %{operand}
-  must_be_observed_before: |
-    debe ser observado antes de %{operand}
-  must_be_observed_in: deben ser observacións en
+  must_be_observed_after: debe ser observado despois de %{operand}
+  must_be_observed_before: debe ser observado antes de %{operand}
   must_be_less_than_x_MB: "Debe ser menor de %{x} MB"
   must_have_observation_field: "Debes completar o campo '%{operand}' na observación"
   must_have_x: "debe ter %{x}"

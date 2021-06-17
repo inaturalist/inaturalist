@@ -2402,13 +2402,20 @@ de:
   multiple: mehrfach
   multiple_select_option: '--mehrfach--'
   multiple_taxon_ids_separated_by_commas: 'Mehrere Taxon-IDs getrennt durch Kommas, z.B. 123,654'
-  must_be_observed_after: |
-    muss beobachtet worden sein nach %{operand}
-  must_be_observed_before: |
-    muss beobachtet worden sein bevor %{operand}
-  must_be_observed_in: muss beobachtet worden sein in
+  must_be_in_taxon: muss im Taxon %{taxon} sein
+  must_be_not_in_taxon: darf nicht im Taxon %{taxon} sein
+  must_be_not_observed_by_user: darf nicht von %{user} beobachtet worden sein
+  must_be_not_observed_in_place: darf nicht in %{place} beobachtet worden sein
+  must_be_observed_after: muss beobachtet worden sein nach %{operand}
+  must_be_observed_before: muss beobachtet worden sein bevor %{operand}
+  must_be_observed_by_user: muss von %{user} beobachtet worden sein
+  must_be_observed_in_place: muss in %{place} beobachtet worden sein
   must_be_less_than_x_MB: "Muss weniger sein als %{x} MB"
   must_have_observation_field: "muss das Beobachtungsfeld '%{operand}'ausgefüllt haben"
+  must_have_photos: muss Fotos enthalten
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "muss Qualitätsstufen besitzen: %{grades}"
+  must_have_sounds: muss Audioaufnahmen enthalten
   must_have_x: "muss %{x} haben"
   mute_user: Benutzer sperren
   mute_removed: Sperre entfernt
@@ -4613,6 +4620,7 @@ de:
   username_or_user_id: Benutzername oder Benutzer-ID
   users: Benutzer
   users_contributions_to_project_html: Beiträge von <a href="%{url}">%{login}</a> zu %{project_title}
+  users_favorites: "Favoriten von %{user}"
   users_highlights_and_stats_from_year_on_site: "Highlights und Statistiken aus %{year} von %{user} auf %{site}"
   users_id: "%{user}s ID"
   users_latest_observations_on_site: "Die jüngsten Beobachtungen von %{user} bei %{site}"
@@ -4929,6 +4937,7 @@ de:
   your_default: deine Standardeinstellungen
   your_default_time_zone: Deine Standard-Zeitzone
   your_email_address: Deine E-Mail-Adresse
+  your_favorites: Deine Favoriten
   your_flickr_account: Dein Flickr-Account
   your_flickr_photos_have_been_tagged: Deine Flickr-Bilder wurden getaggt!
   your_hard_drive: deiner Festplatte

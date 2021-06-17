@@ -1540,11 +1540,8 @@ sk:
   most_observed_threatened_species: Najviac pozorovaných ohrozených druhov
   multiple: viacero
   multiple_select_option: '-- viacero --'
-  must_be_observed_after: |
-    musí byť pozorovaný po %{operand}
-  must_be_observed_before: |
-    musí byť pozorovaný pred %{operand}
-  must_be_observed_in: musí byť pozorovaný v
+  must_be_observed_after: musí byť pozorovaný po %{operand}
+  must_be_observed_before: musí byť pozorovaný pred %{operand}
   must_be_less_than_x_MB: "Musí byť menej ako %{x} MB"
   must_have_observation_field: "pole pozorovania '%{operand}' musí byť vyplnené"
   must_have_x: "musí mať %{x}"

@@ -2363,11 +2363,8 @@ tr:
   multiple_select_option: '-- çoklu --'
   multiple_taxa_for_taxon_change: "Birden fazla sınıf (değiştirme/birleştirme için giriş, ayırma için çıkış)"
   multiple_taxon_ids_separated_by_commas: 'Virgülle ayrılmış çoklu sınıf tanımlamaları, örn. 123,654'
-  must_be_observed_after: |
-    %{operand} sonrasında gözlemlenmesi gerekir
-  must_be_observed_before: |
-    %{operand} öncesinde gözlemlenmesi gerekir
-  must_be_observed_in: şurada gözlemlenmiş olması gerekir
+  must_be_observed_after: '%{operand} sonrasında gözlemlenmesi gerekir'
+  must_be_observed_before: '%{operand} öncesinde gözlemlenmesi gerekir'
   must_be_less_than_x_MB: "%{x} MB boyuttan az olması gerekir"
   must_have_observation_field: "%{operand} gözlem alanının doldurulmuş olması gerekir"
   must_have_x: "%{x} olması gerekir"

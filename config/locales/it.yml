@@ -2366,11 +2366,8 @@ it:
   multiple_select_option: '-- più --'
   multiple_taxa_for_taxon_change: "Taxa multipli (entra per scambiare/unire, esci per dividere)"
   multiple_taxon_ids_separated_by_commas: 'Multiple ID del taxon separate da virgola, e.g 123,654'
-  must_be_observed_after: |
-    deve essere stato osservato dopo %{operand}
-  must_be_observed_before: |
-    deve essere stato osservato prima %{operand}
-  must_be_observed_in: deve essere stata osservata in
+  must_be_observed_after: deve essere stato osservato dopo %{operand}
+  must_be_observed_before: deve essere stato osservato prima %{operand}
   must_be_less_than_x_MB: "Deve essere meno di %{x} MB"
   must_have_observation_field: "deve avere il campo '%{operand}' compilato"
   must_have_x: "deve avere %{x}"

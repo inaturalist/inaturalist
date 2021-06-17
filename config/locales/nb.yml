@@ -2217,11 +2217,8 @@ nb:
   multiple_select_option: '-- flere --'
   multiple_taxa_for_taxon_change: "Flere taksa (input for bytting/sammenslåing, output for oppdeling)"
   multiple_taxon_ids_separated_by_commas: 'Flere kommaseparerte takson-ID-er, f.eks. 123,654'
-  must_be_observed_after: |
-    må være observert etter %{operand}
-  must_be_observed_before: |
-    må være observert før %{operand}
-  must_be_observed_in: må være observert i
+  must_be_observed_after: må være observert etter %{operand}
+  must_be_observed_before: må være observert før %{operand}
   must_be_less_than_x_MB: "Må være mindre enn %{x} MB"
   must_have_observation_field: "må ha en verdi for observasjonsfeltet '%{operand}'"
   must_have_x: "må ha %{x}"

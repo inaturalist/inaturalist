@@ -1511,11 +1511,8 @@ sq:
   multiple_select_option: '-- Shumfish --'
   multiple_taxa_for_taxon_change: "Taxa te shumëfishta (të dhënat për ndërrim/bashkim, te dalat për ndarje)"
   multiple_taxon_ids_separated_by_commas: 'ID të Taksonve të shumëfisht të ndarë me presje, p.sh. 123,654'
-  must_be_observed_after: |
-    Patjetër të vëzhgohet pas %{operand}
-  must_be_observed_before: |
-    Patjetër të vëzhgohet përpara %{operand}
-  must_be_observed_in: Patjetër të vëzhgohet në
+  must_be_observed_after: Patjetër të vëzhgohet pas %{operand}
+  must_be_observed_before: Patjetër të vëzhgohet përpara %{operand}
   must_be_less_than_x_MB: "Duhet të jetë më pak se %{x}MB"
   must_have_observation_field: "Domosdo të ketë fushë të vëzhgimit %{operand} të plotësuar"
   must_have_x: "Duhet të ketë %{x}"

@@ -2167,11 +2167,8 @@ lt:
   multiple: keli
   multiple_select_option: '-- kelis --'
   multiple_taxon_ids_separated_by_commas: 'Daug taksonų ID, atskirtų kableliais, pvz.: 123,654'
-  must_be_observed_after: |
-    turi būti stebėtas po %{operand}
-  must_be_observed_before: |
-    turi būti stebėtas prieš %{operand}
-  must_be_observed_in: 'turi būti stebėtas vietovėje:'
+  must_be_observed_after: turi būti stebėtas po %{operand}
+  must_be_observed_before: turi būti stebėtas prieš %{operand}
   must_be_less_than_x_MB: "Turi būti mažesnis nei %{x} MB"
   must_have_observation_field: "turi būti užildytas stebėjimo laukas „%{operand}“"
   must_have_x: "turi turėti %{x}"

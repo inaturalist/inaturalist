@@ -2430,11 +2430,8 @@ nl:
   multiple_select_option: '-- meerdere --'
   multiple_taxa_for_taxon_change: "Meerdere taxa (invoer voor wisseling/samenvoeging, uitvoer voor opsplitsing)"
   multiple_taxon_ids_separated_by_commas: 'Meerdere taxonID''s gescheiden door komma''s, bijv. 123,654'
-  must_be_observed_after: |
-    moet waargenomen worden na %{operand}
-  must_be_observed_before: |
-    moet waargenomen worden voor %{operand}
-  must_be_observed_in: moet waargenomen worden in
+  must_be_observed_after: moet waargenomen worden na %{operand}
+  must_be_observed_before: moet waargenomen worden voor %{operand}
   must_be_less_than_x_MB: "Moet kleiner zijn dan %{x} MB"
   must_have_observation_field: "Waarnemingsveld %{operand} is een verplicht veld"
   must_have_x: "%{x} vereist"

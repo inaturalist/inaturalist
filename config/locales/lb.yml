@@ -1189,8 +1189,18 @@ lb:
   most_observed_threatened_species: Bedroten Aarten déi am dacksten observéiert goufen
   multiple: méi
   multiple_select_option: '-- méi --'
+  must_be_in_taxon: muss am Taxon %{taxon} sinn
+  must_be_not_in_taxon: muss net am Taxon %{taxon} sinn
+  must_be_not_observed_by_user: muss net observéiert sinn vum %{user}
+  must_be_not_observed_in_place: muss net observéiert sinn zu %{place}
+  must_be_observed_by_user: muss observéiert sinn vum %{user}
+  must_be_observed_in_place: muss observéiert sinn zu %{place}
   must_be_less_than_x_MB: "Muss méi kleng si wéi %{x} MB"
   must_have_observation_field: "musst d'Observatiousfeld %{operand} ausgefëllt hunn"
+  must_have_photos: muss Fotoen hunn
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "muss Qualiteitsgrad: %{grades} hunn"
+  must_have_sounds: muss ee Sound hunn
   mute_user: Benotzer stomm schalten
   mute_removed: Stomm schalten ewechgeholl
   n_ago: "viru(n) %{n}"
@@ -2006,6 +2016,7 @@ lb:
   username: Benotzernumm
   username_or_email: Benotzernumm oder E-Mail-Adress
   users: Benotzer
+  users_favorites: "%{user} seng Favoritten"
   users_profile: "Profil vum %{user}"
   users_projects: "Projete vum %{user}"
   value: Wäert
@@ -2121,6 +2132,7 @@ lb:
   your_content: Ären Inhalt
   your_contributions_to_project: "Är Kontributioune fir %{project_title}"
   your_email_address: Är E-Mailadress
+  your_favorites: Är Favoritten
   your_id: Är ID
   your_membership: Är Memberschaft
   your_name_was_saved: Ären Numm gouf gespäichert.

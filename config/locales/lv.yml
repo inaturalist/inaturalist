@@ -2297,11 +2297,8 @@ lv:
   multiple: vairāki
   multiple_select_option: '-- vairāki --'
   multiple_taxon_ids_separated_by_commas: 'Vairākas taksonu identifikācijas, kas jāatdala ar komatiem, piemēram, 123,654.'
-  must_be_observed_after: |
-    jābūt novērotam pēc %{operand}
-  must_be_observed_before: |
-    jābūt novērotam pirms %{operand}
-  must_be_observed_in: jābūt novērotam iekš
+  must_be_observed_after: jābūt novērotam pēc %{operand}
+  must_be_observed_before: jābūt novērotam pirms %{operand}
   must_be_less_than_x_MB: "Faila izmēram jabūt mazākam par %{x} MB"
   must_have_observation_field: "%{operand} novērojuma laukam jābūt aizpildītam"
   must_have_x: "jābūt ar %{x}"

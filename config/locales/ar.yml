@@ -1656,11 +1656,8 @@ ar:
   multiple_select_option: '-- متعدد --'
   multiple_taxa_for_taxon_change: "أصناف متعددة (مدخلات للمبادلة/الدمج، إخراج للتقسيم)"
   multiple_taxon_ids_separated_by_commas: "\nالمعرفات المتعددة للأصنوفة مفصولة بفواصل، مثل 123،654"
-  must_be_observed_after: |
-    تجب ملاحظته بعد %{operand}
-  must_be_observed_before: |
-    تجب ملاحظته قبل %{operand}
-  must_be_observed_in: تجب ملاحظته في
+  must_be_observed_after: تجب ملاحظته بعد %{operand}
+  must_be_observed_before: تجب ملاحظته قبل %{operand}
   must_be_less_than_x_MB: "يجب أن يكون أقل من %{x} ميغابايت"
   must_have_observation_field: "يجب أن يكون حقل الملاحظة '%{operand}' ممتلئا"
   must_have_x: "يجب أن يحتوي على %{x}"

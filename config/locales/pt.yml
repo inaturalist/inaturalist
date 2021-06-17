@@ -2060,11 +2060,8 @@ pt:
   multiple_select_option: '-- múltiplo --'
   multiple_taxa_for_taxon_change: "Múltiplos taxa (fornecer para trocar/combinar, resultado para dividir)"
   multiple_taxon_ids_separated_by_commas: 'As várias Identificações do táxon estão separadas por vírgulas, por exemplo 123,654'
-  must_be_observed_after: |
-    deve ser observado depois de %{operand}
-  must_be_observed_before: |
-    deve ser observado antes de %{operand}
-  must_be_observed_in: deve ser observado em
+  must_be_observed_after: deve ser observado depois de %{operand}
+  must_be_observed_before: deve ser observado antes de %{operand}
   must_be_less_than_x_MB: "Deve ser menor que %{x} MB"
   must_have_observation_field: "deve ter o campo de observação %{operand} preenchido"
   must_have_x: "deve ter %{x}"

@@ -1863,11 +1863,8 @@ bg:
   most_observed_species: Най-наблюдавани видове
   multiple_select_option: '-- множествен --'
   multiple_taxa_for_taxon_change: "Множество таксони (вход за размяна/обединяване, изход за разделяне)"
-  must_be_observed_after: |
-    трябва да е наблюдавано след %{operand}
-  must_be_observed_before: |
-    трябва да е наблюдавано преди %{operand}
-  must_be_observed_in: трябва да е наблюдавано във
+  must_be_observed_after: трябва да е наблюдавано след %{operand}
+  must_be_observed_before: трябва да е наблюдавано преди %{operand}
   must_be_less_than_x_MB: "Трябва да е по-малко от %{x} MB"
   must_have_observation_field: "трябва да има попълнено поле за наблюдения '%{operand}'"
   must_have_x: "трябва да има %{x}"
@@ -3189,6 +3186,7 @@ bg:
   status: Статус
   stay_and_try_again: Останете и опитайте пак
   still_no_luck?: Пак ли нищо?
+  stop_editing: Прекрати редактирането
   stop_following_user: "Спри да следваш %{user}"
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
