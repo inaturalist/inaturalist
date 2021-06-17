@@ -2410,11 +2410,8 @@ fr:
   multiple_select_option: '-- multiple --'
   multiple_taxa_for_taxon_change: "Taxons multiples (entrée aux fins d’échange/fusion, sortie aux fins de séparation)"
   multiple_taxon_ids_separated_by_commas: 'IDs de taxon multiples séparés par des virgules, par ex. 123,654'
-  must_be_observed_after: |
-    doit être observé après %{operand}
-  must_be_observed_before: |
-    doit être observé avant %{operand}
-  must_be_observed_in: doit être observé dans
+  must_be_observed_after: doit être observé après %{operand}
+  must_be_observed_before: doit être observé avant %{operand}
   must_be_less_than_x_MB: "Doit être de moins de %{x} Mo"
   must_have_observation_field: "le champ '%{operand}' de l’observation doit être rempli"
   must_have_x: "doit avoir %{x}"
