@@ -880,6 +880,18 @@ ja:
     alive: 生存
     dead: 死亡
     cannot_be_determined: 判別不能
+    evidence_of_presence: 存在の証拠
+    #As in the feather on a bird
+    feather: 羽毛
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: 生物
+    #Fecal matter, not regurgitated matter
+    scat: 糞
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: 足跡
+    #Endoskeletal remains, like a deer bone
+    bone: 骨
   controlled_term_definitions:
     alive: 生物は生きており、差し迫った死の兆候はない
     dead: 生物は死んでいるか、瀕死である
@@ -1996,11 +2008,8 @@ ja:
   multiple_select_option: '--複数--'
   multiple_taxa_for_taxon_change: "複数の分類群（スワップ/マージの入力、分割の出力）"
   multiple_taxon_ids_separated_by_commas: 'カンマ区切りで複数の分類群のID（例：123,654）'
-  must_be_observed_after: |
-    %{operand} より後を指定する必要があります。
-  must_be_observed_before: |
-    %{operand} より前を指定する必要があります
-  must_be_observed_in: 次の場所で観察する必要があります
+  must_be_observed_after: '%{operand} より後を指定する必要があります。'
+  must_be_observed_before: '%{operand} より前を指定する必要があります'
   must_be_less_than_x_MB: "%{x} MBより小さいファイルでなければなりません"
   must_have_observation_field: "観測フィールド「%{operand} 」が入力されている必要があります"
   must_have_x: "%{x}がなければなりません"
