@@ -2396,11 +2396,8 @@ ca:
   multiple_select_option: '-- múltiple --'
   multiple_taxa_for_taxon_change: "Múltiples tàxons (entrar per intercanviar/barrejar, sortir per separar)"
   multiple_taxon_ids_separated_by_commas: 'Moltes ID de tàxons separades per comes, p.e. 123,456'
-  must_be_observed_after: |
-    ha de ser observada després de %{operand}
-  must_be_observed_before: |
-    ha de ser observada abans de %{operand}
-  must_be_observed_in: han de ser observacions a
+  must_be_observed_after: ha de ser observada després de %{operand}
+  must_be_observed_before: ha de ser observada abans de %{operand}
   must_be_less_than_x_MB: "Ha de ser menor de %{x} MB"
   must_have_observation_field: "heu de completar el camp '%{operand}' a l'observació"
   must_have_x: "ha de tenir %{x}"
