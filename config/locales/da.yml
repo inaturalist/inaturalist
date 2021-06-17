@@ -2437,13 +2437,20 @@ da:
   multiple_select_option: '-- flere --'
   multiple_taxa_for_taxon_change: "Flere taksa (input for skifte/sammenlægning, output for deling)"
   multiple_taxon_ids_separated_by_commas: 'Flere takson IDer separeret med komma, f.eks. 123,654'
-  must_be_observed_after: |
-    skal være observeret efter %{operand}
-  must_be_observed_before: |
-    skal være observeret før %{operand}
-  must_be_observed_in: skal være observeret i
+  must_be_in_taxon: skal være i %{taxon}- takson
+  must_be_not_in_taxon: må ikke være i %{taxon}- takson
+  must_be_not_observed_by_user: må ikke være observeret af %{user}
+  must_be_not_observed_in_place: må ikke være observeret i/ved/på %{place}
+  must_be_observed_after: skal være observeret efter %{operand}
+  must_be_observed_before: skal være observeret før %{operand}
+  must_be_observed_by_user: skal være observeret af %{user}
+  must_be_observed_in_place: skal være observeret i/ved/på %{place}
   must_be_less_than_x_MB: "skal være mindre end %{x} MB"
   must_have_observation_field: "skal have observationsfelt %{operand} udfyldt"
+  must_have_photos: skal have fotos
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "skal have kvalitetsgraduering: %{grades}"
+  must_have_sounds: skal have lyde
   must_have_x: "skal have %{x}"
   mute_user: Sluk for bruger
   mute_removed: Sluk fjernet
@@ -4712,6 +4719,7 @@ da:
   username_or_user_id: Brugernavn eller bruger ID
   users: Brugere
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>'s bidrag til %{project_title}
+  users_favorites: "%{user}s favoritter"
   users_highlights_and_stats_from_year_on_site: "%{user}s højdepunkter og statistik fra %{year} på %{site}"
   users_id: "%{user}s ID"
   users_latest_observations_on_site: "%{user}'s seneste observation på %{site}"
@@ -5033,6 +5041,7 @@ da:
   your_default: din standard
   your_default_time_zone: Din standard tidszone
   your_email_address: Din e-mailadresse
+  your_favorites: Dine favoritter
   your_flickr_account: din Flickr konto
   your_flickr_photos_have_been_tagged: Dine Flickr foto´s er blevet tagget!
   your_hard_drive: din harddisk
