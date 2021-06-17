@@ -2193,11 +2193,8 @@ zh-CN:
   multiple_select_option: '-- 多重 --'
   multiple_taxa_for_taxon_change: "复合分类单元（交换/合并输入，分别输出）"
   multiple_taxon_ids_separated_by_commas: '以逗号分隔的多个分类单元ID，例如：123654'
-  must_be_observed_after: |
-    必须在 %{operand} 之后被观察
-  must_be_observed_before: |
-    必须在 %{operand} 之前被观察
-  must_be_observed_in: 必须观察在
+  must_be_observed_after: 必须在 %{operand} 之后被观察
+  must_be_observed_before: 必须在 %{operand} 之前被观察
   must_be_less_than_x_MB: "必须小于 %{x} MB"
   must_have_observation_field: "必须填写观察字段“%{operand}”"
   must_have_x: "必须有 %{x}"
