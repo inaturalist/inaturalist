@@ -2327,11 +2327,8 @@ fi:
   multiple_select_option: "\n-- useita --"
   multiple_taxa_for_taxon_change: "Useita taksoneja (input vaihdolle/yhdistämiselle ja output jakamiselle)"
   multiple_taxon_ids_separated_by_commas: 'Useiden taksonien IDt erotellaan pilkuilla esim 123,654'
-  must_be_observed_after: |
-    tulee olla havaittu %{operand} jälkeen
-  must_be_observed_before: |
-    tulee olla havaittu ennen %{operand}
-  must_be_observed_in: Täytyy olla havaittu paikassa
+  must_be_observed_after: tulee olla havaittu %{operand} jälkeen
+  must_be_observed_before: tulee olla havaittu ennen %{operand}
   must_be_less_than_x_MB: "On oltava pienempi kuin %{x} MB"
   must_have_observation_field: "pakollista havaintokenttää '%{operand}' ei saa jättää tyhjäksi"
   must_have_x: "täytyy olla %{x}"
