@@ -2555,10 +2555,20 @@ cs:
   multiple_select_option: '-- vícero --'
   multiple_taxa_for_taxon_change: "Několik taxonů (vstup pro záměnu/sloučení, výstup pro rozdělení)"
   multiple_taxon_ids_separated_by_commas: 'Několik ID taxonů oddělených čárkami, např. 123,654'
+  must_be_in_taxon: musí být v taxonu %{taxon}
+  must_be_not_in_taxon: nesmí být v taxonu %{taxon}
+  must_be_not_observed_by_user: nesmí být pozorován uživatelem %{user}
+  must_be_not_observed_in_place: nesmí být pozorováno v %{place}
   must_be_observed_after: musí být pozorován po %{operand}
   must_be_observed_before: musí být pozorován před %{operand}
+  must_be_observed_by_user: musí být pozorován uživatelem %{user}
+  must_be_observed_in_place: musí být pozorováno v %{place}
   must_be_less_than_x_MB: "Musí být méně než %{x} MB"
   must_have_observation_field: "pole pozorování '%{operand}' musí být vyplněno"
+  must_have_photos: musí mít fotografie
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "musí mít úroveň kvality: %{grades}"
+  must_have_sounds: musí mít zvuky
   must_have_x: "musí mít %{x}"
   mute_user: Ztlumit uživatele
   mute_removed: Ztlumení zrušeno
@@ -4860,6 +4870,7 @@ cs:
   username_or_user_id: Uživatelské jméno nebo uživatelské ID
   users: Uživatelé
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>příspěvky k %{project_title}
+  users_favorites: "Oblíbené uživatele %{user}"
   users_highlights_and_stats_from_year_on_site: "významné události a statistiky uživatele %{user} za rok %{year} na %{site}"
   users_id: "ID uživatele %{user}"
   users_latest_observations_on_site: "poslední pozorování uživatele %{user} na %{site}"
@@ -5186,6 +5197,7 @@ cs:
   your_default: vaše základní nastavení
   your_default_time_zone: Vaše základní časové pásmo
   your_email_address: Vaše e-mailová adresa
+  your_favorites: Vaše oblíbené položky
   your_flickr_account: Váš účet na Flickru
   your_flickr_photos_have_been_tagged: Vaše fotky na Flickru byly označeny!
   your_hard_drive: váš pevný disk
