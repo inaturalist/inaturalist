@@ -251,6 +251,7 @@ fr:
     sex: Ajouter des annotations pour « Sexe »
     plant_phenology: Ajouter des annotations sur la « phénologie végétale»
     life_stage: Ajouter des annotations pour « stade de développement »
+    evidence_of_presence: Ajouter des annotations pour « Signe de présence »
   add_another_flag: Ajouter un autre signalement
   add_another_photo: Ajouter une autre photo
   add_another_section: Ajouter une autre section
@@ -311,6 +312,12 @@ fr:
   add_life_stage_larva_annotation: 'Ajoute l''annotation «  Stade de développement : larve »'
   add_life_stage_juvenile_annotation: 'Ajouter l’annotation « Stade de développement : juvénile »'
   add_life_stage_egg_annotation: 'Ajoute l''annotation «  Stade de développement : oeuf »'
+  add_evidence_of_presence_organism_annotation: 'Ajouter l''annotation « Signe de présence : organisme »'
+  add_evidence_of_presence_feather_annotation: 'Ajouter l''annotation « Signe de présence : plume »'
+  add_evidence_of_presence_scat_annotation: 'Ajouter l''annotation « Signe de présence : excréments »'
+  add_evidence_of_presence_track_annotation: 'Ajouter l''annotation « Signe de présence : piste »'
+  add_evidence_of_presence_bone_annotation: 'Ajouter l''annotation « Signe de présence : os »'
+  add_evidence_of_presence_molt_annotation: 'Ajouter l''annotation « Signe de présence : mue »'
   #As in a Taxon Framework Relationship
   add_relationship: 'Ajouter un lien'
   #As in a Guide Section
@@ -986,6 +993,7 @@ fr:
     alive: Vivant
     dead: Mort
     cannot_be_determined: Indéterminé
+    evidence_of_presence: Signe de présence
     #As in the feather on a bird
     feather: Plume
     #Refers to an observation that depicts the actual organism and not some
@@ -993,6 +1001,13 @@ fr:
     organism: Organisme
     #Fecal matter, not regurgitated matter
     scat: Excréments
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Piste
+    #Endoskeletal remains, like a deer bone
+    bone: Os
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Mue
   controlled_term_definitions:
     alive: L'organisme est vivant et ne montre aucun signe de mort imminente
     dead: L'organisme est mort ou montre des signes de mort imminente
@@ -1002,6 +1017,13 @@ fr:
     no_evidence_of_flowering: Les données ne fournissent aucune preuve de structures reproductrices
     teneral: Adulte récemment sorti de son cocon/sa pupe mais qui n'as pas atteint sa forme adulte finale
     cannot_be_determined: Ne peut être déterminé à partir des données fournies
+    feather: Une ou plusieurs plumes qui ne sont pas attachées à un organisme
+    organism: Tout ou partie d'un organisme
+    scat: Excréments (pas des pelotes de réjection de chouettes ni d'autres matières régurgitées)
+    track: Empreinte faite sur le sol ou dans la neige par l'organisme
+    bone: |
+      Restes principalement endosquelettiques ; en cas d'exposition partielle des os d'un organisme intact par ailleurs, indiquer « organisme ».
+    molt: Dépouille ou exosquelette abandonné
   controls: Contrôles
   convert: Convertir
   coordinate_systems: Systèmes des coordonnées
@@ -1582,6 +1604,8 @@ fr:
   file_should_be_in_the_following_format: "Le fichier doit être dans le format suivant : nom du taxon, description"
   fill_out_project_observation_fields: Remplir vos champs d’observation de projet
   fill_out_your_profile: compléter votre profil
+  #The name of a computer file
+  filename: Nom de fichier
   filter: Filtrer
   filter_by_curator_identification: Filtrer par identification du chef de projet
   filter_by_place: Filtrer par lieu
@@ -2410,10 +2434,20 @@ fr:
   multiple_select_option: '-- multiple --'
   multiple_taxa_for_taxon_change: "Taxons multiples (entrée aux fins d’échange/fusion, sortie aux fins de séparation)"
   multiple_taxon_ids_separated_by_commas: 'IDs de taxon multiples séparés par des virgules, par ex. 123,654'
+  must_be_in_taxon: doit être dans le taxon %{taxon}
+  must_be_not_in_taxon: ne doit pas être dans le taxon %{taxon}
+  must_be_not_observed_by_user: ne doit pas faire partie des observations @vow_or_con{vow:d'|con:de }%{user}
+  must_be_not_observed_in_place: 'ne doit pas faire partie des observations dans le lieu suivant : %{place}'
   must_be_observed_after: doit être observé après %{operand}
   must_be_observed_before: doit être observé avant %{operand}
+  must_be_observed_by_user: doit faire partie des observations @vow_or_con{vow:d'|con:de }%{user}
+  must_be_observed_in_place: 'doit être observé dans le lieu suivant : %{place}'
   must_be_less_than_x_MB: "Doit être de moins de %{x} Mo"
   must_have_observation_field: "le champ '%{operand}' de l’observation doit être rempli"
+  must_have_photos: doit disposer de photos
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "doit avoir les niveaux de qualité : %{grades}"
+  must_have_sounds: doit disposer de sons
   must_have_x: "doit avoir %{x}"
   mute_user: Réduire l’utilisateur au silence
   mute_removed: Mise au silence supprimée
@@ -4666,6 +4700,7 @@ fr:
   username_or_user_id: Nom ou ID d’utilisateur
   users: Utilisateurs
   users_contributions_to_project_html: contributions de <a href="%{url}">%{login}</a> à %{project_title}
+  users_favorites: "Favoris @vow_or_con{vow:d'|con:de }%{user}"
   users_highlights_and_stats_from_year_on_site: "Mises en évidence et statistiques de %{user} pour %{year} sur %{site}"
   users_id: "ID de %{user}"
   users_latest_observations_on_site: "dernières observations de %{user} sur %{site}"
@@ -4993,6 +5028,7 @@ fr:
   your_default: vos paramètres par défaut
   your_default_time_zone: Votre fuseau horaire par défaut
   your_email_address: Votre adresse électronique
+  your_favorites: Vos favoris
   your_flickr_account: votre compte Flickr
   your_flickr_photos_have_been_tagged: Vos photos Flickr ont été étiquetées!
   your_hard_drive: votre disque dur
@@ -6602,6 +6638,18 @@ fr:
           "Plant Phenology=Flower Budding": Bourgeonnement floral
           "Plant Phenology=Flowering": Floraison
           "Plant Phenology=Fruiting": Fructification
+          "Plant Phenology=No Evidence": Aucun signe
+          "Life Stage=Adult": Adulte
+          "Life Stage=Egg": Œuf
+          "Life Stage=Larva": Larve
+          "Life Stage=Juvenile": Juvénile
+          "Life Stage=Nymph": Nymphe
+          "Life Stage=Pupa": Pupe
+          "Life Stage=Subimago": Subimago
+          "Life Stage=Teneral": Ténéral
+          "Sex=Cannot Be Determined": Indéterminable
+          "Sex=Female": Femelle
+          "Sex=Male": Mâle
           unannotated: Pas d'annotation
         max_photos_desc: |
           Un taxon peut avoir seulement %{max} photos. Vous devrez enlever des photos

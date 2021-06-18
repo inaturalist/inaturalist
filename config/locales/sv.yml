@@ -1271,6 +1271,7 @@ sv:
       december: december
   date_is_accurate: Datum är korrekt
   date_joined: Datum gick med
+  date_obscured_notice: Datum diffuserat p.g.a. personlig eller organismsekretess
   date_observed: Datum observerad
   date_observed_: Datum observerad
   date_observed_on: datum observerad på
@@ -2443,10 +2444,20 @@ sv:
   multiple_select_option: '-- flera --'
   multiple_taxa_for_taxon_change: "Flera taxa (indata för byte/hopslagning, utdata för uppdelning)"
   multiple_taxon_ids_separated_by_commas: 'Flera taxonID åtskiljda av kommatecken, t.ex. 123,654'
+  must_be_in_taxon: måste inluderas i taxon %{taxon}
+  must_be_not_in_taxon: får inte inkluderas i %{taxon}
+  must_be_not_observed_by_user: får inte ha observerats av %{user}
+  must_be_not_observed_in_place: får inte ha observerats i %{place}
   must_be_observed_after: måste observeras efter %{operand}
   must_be_observed_before: måste observeras före %{operand}
+  must_be_observed_by_user: måste ha observerats av %{user}
+  must_be_observed_in_place: måste ha observerats i %{place}
   must_be_less_than_x_MB: "Måste vara mindre än %{x} MB"
   must_have_observation_field: "måste ha fyndfält '%{operand}' ifyllt"
+  must_have_photos: måste ha bilder
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "måste vara av kvalitetsklass: %{grades}"
+  must_have_sounds: måste ha ljud
   must_have_x: "måste ha %{x}"
   mute_user: Tysta användare
   mute_removed: Tystning borttagen
@@ -4671,6 +4682,7 @@ sv:
   username_or_user_id: Användarnamn eller användar-ID
   users: Användare
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>s bidrag till %{project_title}
+  users_favorites: "%{user}s favoriter"
   users_highlights_and_stats_from_year_on_site: "%{user}s höjdpunkter och statistik från %{year} på %{site}"
   users_id: "%{user}s ID"
   users_latest_observations_on_site: "%{user}senaste fynd på %{site}"
@@ -4991,6 +5003,7 @@ sv:
   your_default: din standard
   your_default_time_zone: Din standardtidszon
   your_email_address: Din e-postadress
+  your_favorites: Dina favoriter
   your_flickr_account: ditt Flickr-konto
   your_flickr_photos_have_been_tagged: Dina Flickr-bilder har taggats!
   your_hard_drive: din hårddisk
@@ -6268,6 +6281,18 @@ sv:
           "Plant Phenology=Flower Budding": Blomknopp
           "Plant Phenology=Flowering": Blomning
           "Plant Phenology=Fruiting": I frukt
+          "Plant Phenology=No Evidence": Inget belägg
+          "Life Stage=Adult": Adult
+          "Life Stage=Egg": Ägg
+          "Life Stage=Larva": Larv
+          "Life Stage=Juvenile": Juvenil
+          "Life Stage=Nymph": Nymf
+          "Life Stage=Pupa": Puppa
+          "Life Stage=Subimago": Subimago
+          "Life Stage=Teneral": Teneral
+          "Sex=Cannot Be Determined": Går ej att avgöra
+          "Sex=Female": Hona
+          "Sex=Male": Hane
           unannotated: Ingen anteckning
         max_photos_desc: |
           Ett taxon kan bara ha %{max} bilder. Du måste ta bort befintliga bilder för att lägga till fler.
