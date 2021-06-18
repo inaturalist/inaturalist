@@ -258,6 +258,9 @@ const App = ( {
                         <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "observed" ) } ) }</span>
                         <span className="date" title={isoDateObserved}>
                           { testingInterpolationMitigation
+                            && observation.observed_on
+                            && observation.obscured
+                            && !observation.private_geojson
                             && <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} /> }
                           { formattedDateObserved }
                         </span>
@@ -266,6 +269,8 @@ const App = ( {
                         <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "submitted" ) } ) }</span>
                         <span className="date" title={isoDateAdded}>
                           { testingInterpolationMitigation
+                            && observation.obscured
+                            && !observation.private_geojson
                             && <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} /> }
                           { formattedDateAdded }
                         </span>
