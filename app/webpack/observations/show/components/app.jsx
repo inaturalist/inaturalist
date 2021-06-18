@@ -381,7 +381,11 @@ const App = ( {
       <ModeratorActionModalContainer />
       {
         config && config.currentUser
-        && ( config.currentUser.roles.indexOf( "curator" ) >= 0 || config.currentUser.roles.indexOf( "admin" ) >= 0 )
+        && (
+          config.currentUser.roles.indexOf( "curator" ) >= 0
+          || config.currentUser.roles.indexOf( "admin" ) >= 0
+          || config.currentUser.sites_admined.length > 0
+        )
         && (
           <div>
             <TestGroupToggle
