@@ -157,6 +157,7 @@ hu:
   accuracy: Pontosság
   accuracy_meters: Pontosság (méterben)
   actions: Műveletek
+  active_users: Aktív felhasználó
   add: Hozzáadás
   add_a_batch_of_observations: Megfigyelések tömeges hozzáadása
   add_a_batch_of_taxa: Taxonok tömeges hozzáadása
@@ -235,6 +236,7 @@ hu:
     insects: Rovarok
     mammals: Emlősök
     mollusks: Puhatestűek
+    other_animals: egyéb állatok
     plants: Növények
     protozoans: Állati egysejtűek
     ray_finned_fishes: Sugarasúszójú halak
@@ -357,6 +359,7 @@ hu:
   curator_application_what_curators_can_do_hide_comments_html: |
     A <a
     href="/pages/community+guidelines" target="_blank">Közösségi irányelveket</a> sértő felhasználók felfüggesztése és megjegyzéseinek elrejtése.
+  daily_users: Napi felhasználók
   dashboard: Vezérlőpult
   data_quality_assessment: Adatminőség
   date_added: Létrehozás dátuma
@@ -480,6 +483,7 @@ hu:
   from_soundcloud: Soundcloudról
   full_screen: Teljes képernyő
   Genus: Nemzetség
+  geoprivacy: Pozíció láthatósága
   geoprivacy_is_private: A pozíció nem publikus
   get_started: Elkezdem
   getting_started_guide: Első lépések
@@ -503,6 +507,7 @@ hu:
   identify: Azonosítás
   identify_title: "Azonosítás"
   identification_withdrawn: Meghatározás visszavonva
+  identifiers: Meghatározók
   ids: "Azonosítások"
   increase_brightness: Fényerő növelése
   inappropriate_content: Kifogásolható tartalom?
@@ -583,8 +588,12 @@ hu:
   near_threatened: Mérsékelten fenyegetett
   nearby_observations_: Közeli megfigyelések
   needs_id_: Meghatározásra vár
+  new: Új
   new_observation_field: Új adatmező
   new_password: Új jelszó
+  new_users: Új felhasználó
+  new_users_in_year: "Új felhasználó - %{year}"
+  new_users_w_7_obs: Új felhasználók 7 megfigyeléssel
   next: Következő
   'no': 'Nem'
   no_comments_yet: Még nincsenek megjegyzések.
@@ -597,8 +606,11 @@ hu:
   notifications: Értesítések
   notify_me_of_mentions: Értesítések említésekről (pl. @felhasználónév)
   notify_me_of_mentions_description: "Ha ezt kikapcsolod, nem fogsz értesítéseket kapni, ha valaki megemlít az %{site_name} oldalon."
+  obscured: Kitakart
   observation_belongs_to_project_requiring_field: |
     Ez a megfigyelés egy olyan projekthez tartozik, amelynél kötelező ezen adatmező kitöltése. A megfigyelést el kell távolítani a projektből, és csak azután lehet az adatmező értéket törölni.
+  observations_by_app: Megfigyelések applikáció szerint
+  observations_by_rank: Megfigyelések besorolás szerint
   observation_field: Adatmező
   observation_field_details: Adatmező részletei
   observation_fields: Adatmezők
@@ -618,18 +630,24 @@ hu:
   observations_with_this_field_and_value: Megfigyelések ezzel az adatmezővel és értékkel
   observations_without_media: Megfigyelés fénykép/hang nélkül
   observed: Megfigyelve
+  observers: Megfigyelők
   of_observations: megfigyelés
+  of_observers: megfigyelők
+  of_identifiers: meghatározók
   off_caps: "KI"
   old_observation_form: Régi megfigyelési űrlap (elavult)
   on_caps: "BE"
   onboarding:
     follow_panel_body: Ha meglátogatod ezeket a profilokat és a Követés gombra kattintasz, értesítéseket kapsz a felhasználó megfigyeléseiről
+  open_: Nyilvános
   or: vagy
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
   or_all_caps: VAGY
   organism_is_wild: Vadon élő
   organisms: Élőlények
+  other: Egyéb
+  other_animals: egyéb állatok
   other_species_commonly_misidentified_as_this_species_in_place_html: Egyéb fajok <a href="%{url}">%{place}</a> régiójában, amelyeket gyakran tévesen e fajként határoznak meg
   our_blog: Blogunk
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -756,6 +774,8 @@ hu:
     A meghatározások között van legalább egy olyan taxon, amely (vagy amelynek egy altaxonja) ritkaság és/vagy veszélyeztetett. Emiatt a hely nem publikus.
   taxon_is_threatened_coordinates_obscured: Veszélyeztetett taxon, a koordinátákat kitakarjuk
   taxonomy: Rendszertan
+  taxon_ranks: Rendszertani besorolás
+  taxonomic_groups: Rendszertani csoportok
   terms_service: Felhasználási feltételek
   the_below_items_are_needed_to_achieve: |
     A következőkre van szükség a <span className="bold">Tudományos szint</span> eléréséhez:
@@ -930,6 +950,12 @@ hu:
         welcome_to_projects: A projektek bemutatása
         you_can_learn_more_html: |
           <a href="https://www.inaturalist.org/pages/managing-projects">Itt</a> többet is megtudhatsz a projektek kezeléséről, a <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">blogunkon</a> pedig elolvashatod a projektek történetét.
+    stats:
+      index:
+        identifiers_desc: Meghatározást adott e napon más valaki megfigyeléséhez
+        new_users_desc: Regisztrált ezen a napon
+        observations_1_week_moving_window: Megfigyelések (egyhetes mozgóátlag)
+        observers_desc: Megfigyelést adott hozzá ezen a napon
     taxa:
       show:
         frequency:
