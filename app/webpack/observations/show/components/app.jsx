@@ -257,12 +257,16 @@ const App = ( {
                       <Col xs={6}>
                         <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "observed" ) } ) }</span>
                         <span className="date" title={isoDateObserved}>
+                          { testingInterpolationMitigation
+                            && <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} /> }
                           { formattedDateObserved }
                         </span>
                       </Col>
                       <Col xs={6}>
                         <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "submitted" ) } ) }</span>
                         <span className="date" title={isoDateAdded}>
+                          { testingInterpolationMitigation
+                            && <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} /> }
                           { formattedDateAdded }
                         </span>
                       </Col>
