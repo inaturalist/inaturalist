@@ -247,6 +247,7 @@ it:
     sex: Aggiungi annotazione per "Sesso"
     plant_phenology: Aggiungi annotazione per "Fenologia della pianta"
     life_stage: Aggiungi annotazione per "Stadio vitale"
+    evidence_of_presence: Aggiungere annotazioni per "Prova di Presenza"
   add_another_flag: Aggiungi un altro contrassegno
   add_another_photo: Aggiungi un'altra foto
   add_another_section: Aggiungi un'altra sezione
@@ -307,6 +308,12 @@ it:
   add_life_stage_larva_annotation: 'Aggiungi nota "Stadio vitale: Larva"'
   add_life_stage_juvenile_annotation: 'Aggiungi nota "Stadio vitale: Giovane"'
   add_life_stage_egg_annotation: 'Aggiungi nota "Stadio vitale: Uovo"'
+  add_evidence_of_presence_organism_annotation: 'Aggiungi l''annotazione "Prova di Presenza: organismo"'
+  add_evidence_of_presence_feather_annotation: 'Aggiungi l''annotazione "Prova di Presenza: piuma"'
+  add_evidence_of_presence_scat_annotation: 'Aggiungi l''annotazione "Prova di Presenza: escremento"'
+  add_evidence_of_presence_track_annotation: 'Aggiungi l''annotazione "Prova di Presenza: traccia"'
+  add_evidence_of_presence_bone_annotation: 'Aggiungi l''annotazione "Prova di Presenza: osso"'
+  add_evidence_of_presence_molt_annotation: 'Aggiungi l''annotazione "Prova di Presenza: muta"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Aggiungi una relazione'
   #As in a Guide Section
@@ -975,6 +982,21 @@ it:
     alive: Vivo
     dead: Morto
     cannot_be_determined: Impossibile Da Determinare
+    evidence_of_presence: Prova di Presenza
+    #As in the feather on a bird
+    feather: Piuma
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organismo
+    #Fecal matter, not regurgitated matter
+    scat: Escremento
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Traccia
+    #Endoskeletal remains, like a deer bone
+    bone: Osso
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Muta
   controlled_term_definitions:
     alive: L'organismo è vivo e non mostra segni di morte imminente
     dead: L'organismo è morto o mostra segni di morte imminente
@@ -984,6 +1006,13 @@ it:
     no_evidence_of_flowering: Il contenuto multimediale non fornisce alcuna evidenza delle strutture riproduttive
     teneral: Individuo adulto che ha recentemente superato lo stadio di pupa ma che non ha ancora raggiunto la sua forma adulta definitiva
     cannot_be_determined: Non può essere determinato in base alle prove fornite
+    feather: Una o più piume non attaccate a un organismo
+    organism: Organismo intero o parziale
+    scat: Materia fecale (non agglomerati di pellet o altra materia rigurgitata)
+    track: Forma impressa sul suolo o sulla neve prodotta da organismo
+    bone: |
+      Resti prevalentemente endoscheletrici; l'esposizione parziale delle ossa in un organismo altrimenti intatto dovrebbe essere etichettata come "organismo"
+    molt: Pelle o esoscheletro scartati
   controls: Controlli
   convert: Converti
   coordinate_systems: Sistemi di coordinate
@@ -1219,6 +1248,7 @@ it:
       december: Dicembre
   date_is_accurate: La data è accurata
   date_joined: Data di Adesione
+  date_obscured_notice: Data oscurata per proteggere la privacy personale o dell'organismo
   date_observed: Data osservazione
   date_observed_: Data osservazione
   date_observed_on: osservata in data
@@ -1551,6 +1581,8 @@ it:
   file_should_be_in_the_following_format: "Il file deve essere nel seguente formato: nome del taxon, descrizione"
   fill_out_project_observation_fields: Compila i campi dell'osservazione del progetto
   fill_out_your_profile: completa il tuo profilo
+  #The name of a computer file
+  filename: Nome del file
   filter: Filtra
   filter_by_curator_identification: Filtra in base all'identificazione dei curatori
   filter_by_place: Filtra per luogo
@@ -1967,6 +1999,13 @@ it:
   leaderboard: Classifica
   leaderboard_for_x: "Classifica per %{x}"
   leaderboards: Classifiche
+  leaderboard_most:
+    species_in_month_year: Maggior numero di specie in %{month_year}
+    species_in_year: Maggior numero di specie nel %{year}
+    observations_in_month_year: Maggiori numero di osservazioni in %{month_year}
+    observations_in_year: Maggiori numero di osservazioni nel %{year}
+    identifications_in_month_year: Maggior numero di identificazioni in %{month_year}
+    identifications_in_year: Maggior numero di identificazioni nel %{year}
   leading: Da guida
   learn: Impara
   learn_about_the_species_live_in: Scopri le specie che vivono in
@@ -2366,10 +2405,20 @@ it:
   multiple_select_option: '-- più --'
   multiple_taxa_for_taxon_change: "Taxa multipli (entra per scambiare/unire, esci per dividere)"
   multiple_taxon_ids_separated_by_commas: 'Multiple ID del taxon separate da virgola, e.g 123,654'
+  must_be_in_taxon: dev'essere nel taxon %{taxon}
+  must_be_not_in_taxon: non dev'essere nel taxon %{taxon}
+  must_be_not_observed_by_user: non dev'essere osservato da %{user}
+  must_be_not_observed_in_place: non dev'essere osservato in %{place}
   must_be_observed_after: deve essere stato osservato dopo %{operand}
   must_be_observed_before: deve essere stato osservato prima %{operand}
+  must_be_observed_by_user: dev'essere osservato da %{user}
+  must_be_observed_in_place: dev'essere osservato in %{place}
   must_be_less_than_x_MB: "Deve essere meno di %{x} MB"
   must_have_observation_field: "deve avere il campo '%{operand}' compilato"
+  must_have_photos: deve contenere foto
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "deve avere gradi di qualità: %{grades}"
+  must_have_sounds: deve avere suoni
   must_have_x: "deve avere %{x}"
   mute_user: Silenzia l'utente
   mute_removed: Rimuovi il silenziatore
@@ -4580,6 +4629,7 @@ it:
   username_or_user_id: Nome Utente o ID Utente
   users: Utenti
   users_contributions_to_project_html: I contributi di <a href="%{url}">%{login}</a> al progetto %{project_title}
+  users_favorites: "Preferiti di %{user}"
   users_highlights_and_stats_from_year_on_site: "Sintesi e statistiche di %{user} dal %{year} su %{site}"
   users_id: "ID di %{user}"
   users_latest_observations_on_site: "Le osservazioni più recenti di %{user} su %{site}"
@@ -4897,6 +4947,7 @@ it:
   your_default: il tuo predefinito
   your_default_time_zone: Il tuo fuso orario predefinito
   your_email_address: Il tuo indirizzo email
+  your_favorites: I Tuoi Preferiti
   your_flickr_account: il tuo account Flickr
   your_flickr_photos_have_been_tagged: Le tue foto Flickr sono state etichettate!
   your_hard_drive: tuo disco rigido
@@ -6145,6 +6196,17 @@ it:
           "Plant Phenology=Flower Budding": Bocciolo di Fiore
           "Plant Phenology=Flowering": In Fiore
           "Plant Phenology=Fruiting": In Frutto
+          "Plant Phenology=No Evidence": Nessuna Prova
+          "Life Stage=Adult": Adulto
+          "Life Stage=Egg": Uovo
+          "Life Stage=Larva": Larva
+          "Life Stage=Juvenile": Giovane
+          "Life Stage=Nymph": Ninfa
+          "Life Stage=Pupa": Pupa
+          "Life Stage=Subimago": Subimago
+          "Sex=Cannot Be Determined": Impossibile da determinare
+          "Sex=Female": Femmina
+          "Sex=Male": Maschio
           unannotated: Nessuna annotazione
         max_photos_desc: |
           Un taxon può avere solo %{max} foto. Devi rimuovere le foto esistenti per aggiungerne altre.
