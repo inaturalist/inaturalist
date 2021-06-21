@@ -75,6 +75,16 @@ class ObservationModal extends React.Component {
         }
       }, 500 );
     }
+    // This method fires *a lot* so we need to be very specific about when we
+    // want to focus on the pane to support keyboard scrolling
+    const updateShouldMakeDetailPaneScrollable = this.props.observation && (
+      // This covers first load
+      !prevProps.observation
+      // When moving between observations
+      || prevProps.observation.id !== this.props.observation.id
+      // When moving between tabs
+      || prevProps.tab !== this.props.tab
+    );
     if ( ( this.props.identificationFormVisible
         && prevProps.identificationFormVisible !== this.props.identificationFormVisible
     ) || ( this.props.commentFormVisible
@@ -82,7 +92,7 @@ class ObservationModal extends React.Component {
     ) ) {
       // focus on the ID or Comment form first fields if either just became visible
       scrollSidebarToForm( ReactDOM.findDOMNode( this ) );
-    } else {
+    } else if ( updateShouldMakeDetailPaneScrollable ) {
       // Try to focus on a scrollable element to support vertical keyboard
       // scrolling
       const sidebar = $( ".ObservationModal:first" ).find( ".sidebar" );
