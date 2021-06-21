@@ -1242,6 +1242,7 @@ ca:
       december: Desembre
   date_is_accurate: La data és correcta
   date_joined: Data quan es va unir
+  date_obscured_notice: Data enfosquida per protegir la privacitat personal o de l'organisme
   date_observed: Data d'observació
   date_observed_: Data de l'observació
   date_observed_on: data en què es va observar
@@ -2396,10 +2397,20 @@ ca:
   multiple_select_option: '-- múltiple --'
   multiple_taxa_for_taxon_change: "Múltiples tàxons (entrar per intercanviar/barrejar, sortir per separar)"
   multiple_taxon_ids_separated_by_commas: 'Moltes ID de tàxons separades per comes, p.e. 123,456'
+  must_be_in_taxon: ha d'estar en el tàxon %{taxon}
+  must_be_not_in_taxon: no pot en estar en el tàxon %{taxon}
+  must_be_not_observed_by_user: no pot haver estat observat per %{user}
+  must_be_not_observed_in_place: no pot haver estat observat a %{place}
   must_be_observed_after: ha de ser observada després de %{operand}
   must_be_observed_before: ha de ser observada abans de %{operand}
+  must_be_observed_by_user: ha d'haver estat observar per %{user}
+  must_be_observed_in_place: ha d'haver estat observat a %{place}
   must_be_less_than_x_MB: "Ha de ser menor de %{x} MB"
   must_have_observation_field: "heu de completar el camp '%{operand}' a l'observació"
+  must_have_photos: ha de tenir fotos
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "ha de tenir el grau de qualitat: %{grades}"
+  must_have_sounds: ha de tenir sons
   must_have_x: "ha de tenir %{x}"
   mute_user: Silencia l’usuari
   mute_removed: Emmudiment eliminat
@@ -4608,6 +4619,7 @@ ca:
   username_or_user_id: Nom o identificador de l'usuari
   users: Usuaris
   users_contributions_to_project_html: Contribucions de <a href="%{url}">%{login}</a> al projecte %{project_title}
+  users_favorites: "Favorits de %{user}"
   users_highlights_and_stats_from_year_on_site: "Destacats i estadístiques de %{user} del %{year} a %{site}"
   users_id: "ID de %{user}"
   users_latest_observations_on_site: "Últimes observacions de %{user} a %{site}"
@@ -4923,6 +4935,7 @@ ca:
   your_default: els vostres valors per defecte
   your_default_time_zone: El vostre fus horari per defecte
   your_email_address: La vostra adreça de correu
+  your_favorites: Els teus Favorits
   your_flickr_account: el vostre compte de Flickr
   your_flickr_photos_have_been_tagged: S'han etiquetat les vostres fotos de Flickr!
   your_hard_drive: El vostre disc dur
@@ -6141,6 +6154,18 @@ ca:
           "Plant Phenology=Flower Budding": Gemmes florals
           "Plant Phenology=Flowering": Florint
           "Plant Phenology=Fruiting": Fructificant
+          "Plant Phenology=No Evidence": Sense evidències
+          "Life Stage=Adult": Adult
+          "Life Stage=Egg": Ou
+          "Life Stage=Larva": Larva
+          "Life Stage=Juvenile": Juvenil
+          "Life Stage=Nymph": Nimfa
+          "Life Stage=Pupa": Pupa
+          "Life Stage=Subimago": Subimago
+          "Life Stage=Teneral": Teneral
+          "Sex=Cannot Be Determined": No es pot determinar
+          "Sex=Female": Femella
+          "Sex=Male": Mascle
           unannotated: Sense anotacions
         max_photos_desc: |
           Un tàxon pot tenir un màxim de %{max} fotos. És possible que hagueu d'eliminar algunes fotos per afegir més.

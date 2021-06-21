@@ -1095,6 +1095,12 @@ zh-TW:
     編輯社群維護的地點和上傳大於 1 MB 的 KML 檔案(但小於 5 MB)。
   #Header
   curator_application_what_curators_cannot_do: 策展人不能做什麼
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    影響社群鑑定出來的分類群或是觀察紀錄的品質等級超過任何使用者能做的
   #Description of the fact that a curator cannot commit taxon changes for
   #complete taxa; part of a list of things curators can do, so you might
   #imagine it is preceded with "Curators cannot..."
@@ -1177,6 +1183,7 @@ zh-TW:
       december: 12月
   date_is_accurate: 日期正確
   date_joined: 加入日期
+  date_obscured_notice: 為了保護個人或是生物的隱私權，日期已遮蔽
   date_observed: 觀察日期
   date_observed_: 觀察日期
   date_observed_on: 觀察日期
@@ -2125,7 +2132,7 @@ zh-TW:
   log_out_caps: 登出
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "登出 %{site_name}？"
-  log_scale_label: 日誌
+  log_scale_label: 對數
   login_slash_username: 登入 / 用戶名稱
   logo:
     logo: 標誌
@@ -2243,7 +2250,7 @@ zh-TW:
     <a href="/help#inappropriate">常見問題</a>。
   #Label shown when a date has not been entered
   missing_date: 缺漏日期
-  mobile: 移動
+  mobile: 行動裝置
   moderation_history_for_user_html: '%{user} 的調停歷史記錄'
   moderation_history_desc_html: |
     這包含了版主的執行項目 (例：隱藏或取消隱藏評論）、註記以及標註此使用者的所有項目（除了建立分類群外）。這<strong>僅有策展人可見</strong>，而<strong>策展人無法閱覽他們自己的歷史紀錄</strong> ，所以註記某人絕不會被他/她所看到。
@@ -2326,10 +2333,20 @@ zh-TW:
   multiple_select_option: '-- 多種 --'
   multiple_taxa_for_taxon_change: "多項物種分類群（輸入用於對換/合併方面，輸出用於拆分方面）"
   multiple_taxon_ids_separated_by_commas: '以逗號分隔多項物種分類 ID，例如：123,654'
+  must_be_in_taxon: 必須是在分類群%{taxon}中
+  must_be_not_in_taxon: 必須不在分類群%{taxon}中
+  must_be_not_observed_by_user: 必須不是%{user}所觀察的
+  must_be_not_observed_in_place: 必須不是在%{place}所觀察的
   must_be_observed_after: 必須在 %{operand} 之後觀察
   must_be_observed_before: 必須在 %{operand} 之前觀察
+  must_be_observed_by_user: 必須是由%{user}所觀察的
+  must_be_observed_in_place: 必須是在%{place}所觀察的
   must_be_less_than_x_MB: "必須小於 %{x} MB"
   must_have_observation_field: "必須在觀察欄位「%{operand}」填寫內容"
+  must_have_photos: 必須要有照片
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "必須符合品質等級為：%{grades}"
+  must_have_sounds: 必須要有聲音檔
   must_have_x: "必須要有 %{x}"
   mute_user: 禁言使用者
   mute_removed: 禁言已移除
@@ -4502,6 +4519,7 @@ zh-TW:
   username_or_user_id: 用戶名稱或用戶 ID
   users: 使用者
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>對於%{project_title}的貢獻
+  users_favorites: "%{user} 的最愛"
   users_highlights_and_stats_from_year_on_site: "%{user} 的精彩內容與在 %{site} 上來自於 %{year} 的統計狀態"
   users_id: "%{user} 的鑑定"
   users_latest_observations_on_site: "%{user} 在 %{site} 的最新觀察"
@@ -4814,6 +4832,7 @@ zh-TW:
   your_default: 您的預設
   your_default_time_zone: 您的預設時區
   your_email_address: 您的電子郵件地址
+  your_favorites: 您的最愛
   your_flickr_account: 您的 Flickr 帳號
   your_flickr_photos_have_been_tagged: 您的 Flickr 照片已被標記！
   your_hard_drive: 您的磁碟機
@@ -5280,8 +5299,8 @@ zh-TW:
         you_reviewed_message: "您檢閱了頁面上超出 %{total} 的符合觀察裡 %{pageTotal} 中的 %{reviewed} 觀察。"
         unreview_all_tooltip: "對在頁面上的所有觀察移除已檢閱狀態"
         too_many_results_desc: |
-          各頁面結果數量的頁面次數不能超過 10,000 個。
-          請嘗試篩選來減少結果數量，或是將觀察標記為已檢視並使用「檢視更多」來取代頁數
+          各頁面結果數量乘以頁面數不能超過 10,000 筆觀察紀錄。
+          請嘗試篩選來減少結果數量，或是將觀察紀錄標記為已檢視並使用「檢視更多」來取代點選頁面數
       import:
         coordinate_systems_help: |
           %{site_name} 接受讓座標使用各種不同座標系統，因此當您提供座標是用在經緯度以外的系統時，我們需要了解您想使用何種座標系統以正確詮釋出。請確認您有挑選出適用於您的資料，或遙遠位置的合宜座標系統。如果您的座標來自 GPS 單位，請檢查所使用座標系統的名稱設定。註：我們不儲存自定義的座標，僅用經緯度轉換。
@@ -5906,6 +5925,8 @@ zh-TW:
           代表透過 <a href="https://www.inaturalist.org">iNaturalist</a>
           或 <a href="%{url}">iNaturalist 網路</a>網站建立
       year:
+        compare_site_desc: |
+          比較今年和去年的差異如何？綠色長條代表今年，白色的垂直長條代表去年，灰色的背景區域顯示最低和最高的年份，以及所有年份的平均。
         compared_to_previous_years: 和前一年比較
         donate_title: "特別感謝我們所有的捐助者"
         donors: 捐款者
@@ -5917,7 +5938,7 @@ zh-TW:
         growth_by_country_desc_html: |
           成長是在哪裡發生的呢？成長的結果會複雜難懂，是因為按國家來區分成長會是比例失真的，此地圖和圖表便是用來嘗試突破這一點。在此我們預設上選擇忽略美國，並使用對數尺度來顯著出與其它國家之間的差異。如果國家被塗成黑色，這代表貢獻程度不到百分比、貢獻沒有成長、或是貢獻比去年少（可將游標覆蓋到國家上來查看更多詳情）。 <strong>"% 總成長"</strong>代表著某一特定國家在全球成長裡所佔百分比的，例如假設在 2018 年有 20 個觀察、2017 有 10 個觀察，這代表成長了 10 個觀察，假如當中有 5 個觀察是來自於非洲的貝南，那貝南就貢獻了 50% 總成長。<strong>"% 成長"</strong>代表某國家此年度觀察數量與去年觀察數量增加的百分比，假如寮國去年有 10 個觀察而今年是 20 個，這代表有 100% 的成長，其中如果去年是 0 個觀察而今年是 1 個，會呈現為無限百分比成長。
         growth_by_country_title: 按國家區分的成長
-        growth_in_year_obs: "在%{year}的成長（觀察）"
+        growth_in_year_obs: "在%{year}的成長（觀察紀錄）"
         growth_title: 成長
         new_species_desc: |
           此年度在 %{site_name} 上首次被觀察的物種。
@@ -5933,8 +5954,8 @@ zh-TW:
         obs_in_year: 在%{year}觀察
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: 一次性捐款
-        percent_growth_in_year: "% 成長在%{year}"
-        percent_of_total_growth: "% 總成長"
+        percent_growth_in_year: "在%{year}的成長比例(%)"
+        percent_of_total_growth: "總成長比例(%)"
         observations_per_year: 觀察紀錄 / 年
         observations_per_year_by_date_added: 依新增日期
         observations_per_year_by_date_observed: 依觀察日期
