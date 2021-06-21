@@ -82,6 +82,19 @@ class ObservationModal extends React.Component {
     ) ) {
       // focus on the ID or Comment form first fields if either just became visible
       scrollSidebarToForm( ReactDOM.findDOMNode( this ) );
+    } else {
+      // Try to focus on a scrollable element to support vertical keyboard
+      // scrolling
+      const sidebar = $( ".ObservationModal:first" ).find( ".sidebar" );
+      const activeTab = $( ".inat-tab.active", sidebar );
+      // Sometimes the tab itself is not scrollable but a child of that tab is,
+      // which we indicate with tabindex="-1"
+      const scrollableTabChild = $( "[tabindex=-1]:first", activeTab );
+      if ( scrollableTabChild.length > 0 ) {
+        scrollableTabChild.focus( );
+      } else {
+        activeTab.focus( );
+      }
     }
   }
 
@@ -665,7 +678,7 @@ class ObservationModal extends React.Component {
             <div className="sidebar">
               { activeTabs.indexOf( "info" ) < 0 ? null : (
                 <div className={`inat-tab info-tab ${activeTab === "info" ? "active" : ""}`}>
-                  <div className="info-tab-content">
+                  <div className="info-tab-content" tabIndex="-1">
                     <div className="info-tab-inner">
                       <div className="map-and-details">
                         { taxonMap }
@@ -806,7 +819,7 @@ class ObservationModal extends React.Component {
                 </div>
               ) }
               { activeTabs.indexOf( "annotations" ) < 0 ? null : (
-                <div className={`inat-tab annotations-tab ${activeTab === "annotations" ? "active" : ""}`}>
+                <div className={`inat-tab annotations-tab ${activeTab === "annotations" ? "active" : ""}`} tabIndex="-1">
                   <div className="column-header">{ I18n.t( "annotations" ) }</div>
                   <AnnotationsContainer />
                   <div className="column-header">{ I18n.t( "observation_fields" ) }</div>
@@ -814,7 +827,7 @@ class ObservationModal extends React.Component {
                 </div>
               ) }
               { activeTabs.indexOf( "data-quality" ) < 0 ? null : (
-                <div className={`inat-tab data-quality-tab ${activeTab === "data-quality" ? "active" : ""}`}>
+                <div className={`inat-tab data-quality-tab ${activeTab === "data-quality" ? "active" : ""}`} tabIndex="-1">
                   <QualityMetricsContainer />
                 </div>
               ) }
