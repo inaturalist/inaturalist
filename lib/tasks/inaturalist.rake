@@ -190,7 +190,7 @@ namespace :inaturalist do
   task :delete_orphaned_photos => :environment do
     first_id = Photo.minimum(:id)
     last_id = Photo.maximum(:id) - 10000
-    index = 0
+    index = first_id
     batch_size = 10000
     # using `where id BETWEEN` instead of .find_each or similar, which use
     # LIMIT and create fewer, but longer-running queries
@@ -225,6 +225,8 @@ namespace :inaturalist do
     last_id = Sound.maximum(:id) - 10000
     index = 0
     batch_size = 10000
+    orphans_count = 0
+    last_orphan_id = 0
     # using `where id BETWEEN` instead of .find_each or similar, which use
     # LIMIT and create fewer, but longer-running queries
     while index <= last_id
@@ -236,8 +238,11 @@ namespace :inaturalist do
         # set the orphan attribute on sound, which will set the same on Deletedsound
         s.orphan = true
         s.destroy
+        last_orphan_id = p.id
+        orphans_count += 1
       end
       index += batch_size
+      puts "#{index} :: total #{orphans_count} :: last #{last_orphan_id}"
     end
   end
 

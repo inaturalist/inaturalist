@@ -506,6 +506,12 @@ class LocalPhoto < Photo
     )
   end
 
+  def mark_observations_as_updated
+    observations.each do |o|
+      o.mark_as_updated
+    end
+  end
+
   private
 
   def self.move_to_appropriate_bucket( p )
@@ -561,8 +567,8 @@ class LocalPhoto < Photo
       if photo.flags.detect{ |f| !f.resolved? }
         LocalPhoto.delete_images_from_bucket( s3_client, source_bucket, images )
       end
-
-      # TODO: mark the observation as being updated, re-index only the updated_at column
+      # mark the observation as being updated, re-index only the updated_at column
+      photo.mark_observations_as_updated
     else
       # move failed, so remove any files that did get copied to the target before the failure
       LocalPhoto.delete_images_from_bucket( s3_client, target_bucket, images )
