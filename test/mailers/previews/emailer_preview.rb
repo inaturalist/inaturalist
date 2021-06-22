@@ -88,6 +88,34 @@ class EmailerPreview < ActionMailer::Preview
     DeviseMailer.devise_mail( @user, :reset_password_instructions )
   end
 
+  def unlock_instructions
+    @user ||= User.first
+    DeviseMailer.devise_mail( @user, :unlock_instructions )
+  end
+
+  def collection_project_changed_for_trusting_member
+    set_locale
+    Emailer.collection_project_changed_for_trusting_member( ProjectUser.last )
+  end
+
+  def curator_application
+    lorem = <<-EOT
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+      est laborum.
+    EOT
+    Emailer.curator_application( User.last, {
+      explanation: lorem,
+      taxonomy_examples: lorem,
+      name_examples: lorem,
+      moderation_examples: lorem
+    } )
+  end
+
   private
   def set_user
     # @user = if login = @rack_env["QUERY_STRING"].to_s[/login=([^&]+)/, 1]

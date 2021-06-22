@@ -116,6 +116,10 @@ export function fetchMonthFrequencyResearchGrade( ) {
 
 export function fetchMonthFrequency( ) {
   return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !_.isEmpty( state.observations.monthFrequency ) ) {
+      return;
+    }
     const promises = [
       dispatch( fetchMonthFrequencyVerifiable( ) ),
       dispatch( fetchMonthFrequencyResearchGrade( ) )
@@ -205,25 +209,6 @@ export function fetchRecentObservations( ) {
   } );
 }
 
-export function setFirstObservation( observation ) {
-  return {
-    type: SET_FIRST_OBSERVATION,
-    observation
-  };
-}
-
-export function fetchFirstObservation( ) {
-  return ( dispatch, getState ) => {
-    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
-      order: "asc",
-      per_page: 1
-    } );
-    return ( inatjs.observations.search( params ).then( response => {
-      dispatch( setFirstObservation( response.results[0] ) );
-    } ) );
-  };
-}
-
 export function setLastObservation( observation ) {
   return {
     type: SET_LAST_OBSERVATION,
@@ -236,7 +221,8 @@ export function fetchLastObservation( ) {
     const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
       order_by: "observed_on",
       order: "desc",
-      per_page: 1
+      per_page: 1,
+      skip_total_hits: true
     } );
     return ( inatjs.observations.search( params ).then( response => {
       dispatch( setLastObservation( response.results[0] ) );

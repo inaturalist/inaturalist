@@ -1,0 +1,19 @@
+= render "header"
+
+%p=t "views.emailer.collection_project_changed_for_trusting_member.requirements_have_changed"
+
+%p
+  = image_tag( @project.icon.url(:span2), style: "vertical-align: middle; margin-right: 0.5em" ) if @project.icon?
+  = link_to @project.title, @project
+
+%p
+  =t "views.emailer.collection_project_changed_for_trusting_member.admins_may_have_access_to_more_observations_html",
+    obs_url: observations_url( project_id: @project, user_id: @user.login, verifiable: "any", place_id: "any" )
+
+%p= link_to( project_url( @project, tab: "about" ), project_url( @project, tab: "about" ) )
+
+%p=t "views.emailer.collection_project_changed_for_trusting_member.you_can_change_html", url: project_url( @project )
+
+%p=t "views.emailer.collection_project_changed_for_trusting_member.wondering_what_this_means_html", url: help_url( anchor: "geoprivacy" )
+
+= render "footer"

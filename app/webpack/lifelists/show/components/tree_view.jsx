@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { DropdownButton, MenuItem } from "react-bootstrap";
 import TaxaTreeContainer from "../containers/taxa_tree_container";
 import TaxaListContainer from "../containers/taxa_list_container";
 
@@ -8,100 +9,103 @@ class TreeView extends React.Component {
     const {
       lifelist, setTreeMode
     } = this.props;
-    const rankLabel = `SimpleTree: ${lifelist.treeMode === "simplified" ? "on" : "off"}`;
+    let label = lifelist.treeMode === "simplified"
+      ? I18n.t( "views.lifelists.dropdowns.simplified_tree" )
+      : I18n.t( "views.lifelists.dropdowns.full_taxonomy" );
+    label = `${I18n.t( "view" )}: ${label}`;
     return (
-      <div className="dropdown">
-        <button
-          className="btn btn-sm dropdown-toggle"
-          type="button"
-          data-toggle="dropdown"
-          id="rankDropdown"
+      <DropdownButton
+        title={label}
+        id="treeModeDropdown"
+        onSelect={key => setTreeMode( key )}
+      >
+        <MenuItem
+          eventKey="simplified"
+          className={lifelist.treeMode === "simplified" ? "selected" : null}
         >
-          { rankLabel }
-          <span className="caret" />
-        </button>
-        <ul className="dropdown-menu" aria-labelledby="rankDropdown">
-          <li
-            onClick={( ) => setTreeMode( lifelist.treeMode === "simplified" ? "tree" : "simplified" )}
-          >
-            SimpleTree: { lifelist.treeMode === "simplified" ? "off" : "on" }
-          </li>
-        </ul>
-      </div>
+          { I18n.t( "views.lifelists.dropdowns.simplified_tree" ) }
+        </MenuItem>
+        <MenuItem
+          eventKey="full_taxonomy"
+          className={lifelist.treeMode === "simplified" ? null : "selected"}
+        >
+          { I18n.t( "views.lifelists.dropdowns.full_taxonomy" ) }
+        </MenuItem>
+      </DropdownButton>
     );
   }
 
   sortOptions( ) {
-    this.ssh = "ssh";
     const { lifelist, setTreeSort } = this.props;
-    let sortLabel = "Sort: Total Observations";
+    let label = I18n.t( "views.lifelists.dropdowns.most_observed" );
     if ( lifelist.treeSort === "name" ) {
-      sortLabel = "Sort: Name";
+      label = I18n.t( "views.lifelists.dropdowns.name" );
     } else if ( lifelist.treeSort === "taxonomic" ) {
-      sortLabel = "Sort: Taxonomic";
+      label = I18n.t( "views.lifelists.dropdowns.taxonomic" );
+    } else if ( lifelist.treeSort === "obsAsc" ) {
+      label = I18n.t( "views.lifelists.dropdowns.least_observed" );
     }
+    label = `${I18n.t( "views.lifelists.dropdowns.sort" )}: ${label}`;
     return (
-      <div className="dropdown">
-        <button
-          className="btn btn-sm dropdown-toggle"
-          type="button"
-          data-toggle="dropdown"
-          id="sortDropdown"
+      <DropdownButton
+        title={label}
+        id="sortDropdown"
+        onSelect={key => setTreeSort( key )}
+      >
+        <MenuItem
+          eventKey="obsDesc"
+          className={lifelist.treeSort === "obsDesc" ? "selected" : null}
         >
-          { sortLabel }
-          <span className="caret" />
-        </button>
-        <ul className="dropdown-menu" aria-labelledby="sortDropdown">
-          <li
-            className={lifelist.treeSort === "obsDesc" ? "selected" : null}
-            onClick={( ) => setTreeSort( "obsDesc" )}
-          >
-            Total Observations
-          </li>
-          <li
-            className={lifelist.treeSort === "name" ? "selected" : null}
-            onClick={( ) => setTreeSort( "name" )}
-          >
-            Name
-          </li>
-          <li
-            className={lifelist.treeSort === "taxonomic" ? "selected" : null}
-            onClick={( ) => setTreeSort( "taxonomic" )}
-          >
-            Taxonomic
-          </li>
-        </ul>
-      </div>
+          { I18n.t( "views.lifelists.dropdowns.most_observed" ) }
+        </MenuItem>
+        <MenuItem
+          eventKey="obsAsc"
+          className={lifelist.treeSort === "obsAsc" ? "selected" : null}
+        >
+          { I18n.t( "views.lifelists.dropdowns.least_observed" ) }
+        </MenuItem>
+        <MenuItem
+          eventKey="name"
+          className={lifelist.treeSort === "name" ? "selected" : null}
+        >
+          { I18n.t( "views.lifelists.dropdowns.name" ) }
+        </MenuItem>
+        <MenuItem
+          eventKey="taxonomic"
+          className={lifelist.treeSort === "taxonomic" ? "selected" : null}
+        >
+          { I18n.t( "views.lifelists.dropdowns.taxonomic" ) }
+        </MenuItem>
+      </DropdownButton>
     );
   }
 
   ancestryOptions( ) {
-    this.ssh = "ssh";
     const { lifelist, setListShowAncestry } = this.props;
-    let sortLabel = "Ancestry: Hide";
+    let label = I18n.t( "hide" );
     if ( lifelist.listShowAncestry ) {
-      sortLabel = "Ancestry: Show";
+      label = I18n.t( "show" );
     }
+    label = `${I18n.t( "views.lifelists.dropdowns.ancestry" )}: ${label}`;
     return (
-      <div className="dropdown">
-        <button
-          className="btn btn-sm dropdown-toggle"
-          type="button"
-          data-toggle="dropdown"
-          id="ancestryDropdown"
+      <DropdownButton
+        title={label}
+        id="ancestryDropdown"
+        onSelect={key => setListShowAncestry( key === "show" )}
+      >
+        <MenuItem
+          eventKey="show"
+          className={lifelist.listShowAncestry ? "selected" : null}
         >
-          { sortLabel }
-          <span className="caret" />
-        </button>
-        <ul className="dropdown-menu" aria-labelledby="ancestryDropdown">
-          <li
-            className={lifelist.listShowAncestry ? "selected" : null}
-            onClick={( ) => setListShowAncestry( !lifelist.listShowAncestry )}
-          >
-            Ancestry: { lifelist.listShowAncestry ? "Hide" : "Show" }
-          </li>
-        </ul>
-      </div>
+          { I18n.t( "show" ) }
+        </MenuItem>
+        <MenuItem
+          eventKey="hide"
+          className={lifelist.listShowAncestry ? null : "selected"}
+        >
+          { I18n.t( "hide" ) }
+        </MenuItem>
+      </DropdownButton>
     );
   }
 
@@ -118,7 +122,6 @@ class TreeView extends React.Component {
         <div className="search-options">
           { this.sortOptions( ) }
           { lifelist.navView === "tree" && this.rankOptions( ) }
-          { lifelist.navView === "list" && this.ancestryOptions( ) }
         </div>
         { treeComponent }
       </div>
@@ -127,11 +130,8 @@ class TreeView extends React.Component {
 }
 
 TreeView.propTypes = {
-  config: PropTypes.object,
   lifelist: PropTypes.object,
-  setNavView: PropTypes.func,
   setTreeSort: PropTypes.func,
-  setListViewRankFilter: PropTypes.func,
   setTreeMode: PropTypes.func,
   setListShowAncestry: PropTypes.func
 };

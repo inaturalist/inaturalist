@@ -182,6 +182,19 @@ inatreact.t = inatreact.translate;
 
 const stripTags = text => text.replace( /<.+?>/g, "" );
 
+const shortFormattedNumber = d => {
+  if ( d >= 1000000000 ) {
+    return I18n.t( "number.format.si.giga", { number: _.round( d / 1000000000, 3 ) } );
+  }
+  if ( d >= 1000000 ) {
+    return I18n.t( "number.format.si.mega", { number: _.round( d / 1000000, 3 ) } );
+  }
+  if ( d >= 1000 ) {
+    return I18n.t( "number.format.si.kilo", { number: _.round( d / 1000, 3 ) } );
+  }
+  return d;
+};
+
 // Duplicating stylesheets/colors
 const COLORS = {
   inatGreen: "#74ac00",
@@ -236,5 +249,6 @@ export {
   formattedDateTimeInTimeZone,
   COLORS,
   inatreact,
-  stripTags
+  stripTags,
+  shortFormattedNumber
 };

@@ -162,6 +162,18 @@ describe ObservationFieldValue, "validation" do
       ofv = ObservationFieldValue.make( observation: observation, user: observation.user )
       expect( ofv ).to be_valid
     end
+    it "should pass on update if the updater is a curator" do
+      ofv = ObservationFieldValue.make( observation: observation, user: observation.user )
+      expect( ofv ).to be_valid
+      ofv.updater = make_curator
+      expect( ofv ).to be_valid
+    end
+    it "should fail on update if the updater is not a curator" do
+      ofv = ObservationFieldValue.make!( observation: observation, user: observation.user )
+      expect( ofv ).to be_valid
+      ofv.updater = User.make!
+      expect( ofv ).not_to be_valid
+    end
   end
   describe "when observer prefers only themselves" do
     let(:observer) { User.make!( prefers_observation_fields_by: User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER ) }
@@ -173,6 +185,13 @@ describe ObservationFieldValue, "validation" do
     it "should pass if the user is the observer" do
       ofv = ObservationFieldValue.make( observation: observation, user: observer )
       expect( ofv ).to be_valid
+    end
+    it "should fail on update if the updater is not the observer" do
+      ofv = ObservationFieldValue.make!( observation: observation, user: observer )
+      expect( ofv ).to be_valid
+      ofv.value = "something else"
+      ofv.updater = User.make!
+      expect( ofv ).not_to be_valid
     end
   end
 end
@@ -191,6 +210,22 @@ describe ObservationFieldValue, "annotation_attribute_and_value" do
     @alive_or_dead.controlled_term_values.create( controlled_value: @dead )
     @alive_or_dead.controlled_term_values.create( controlled_value: @cannot_be_determined )
     @dead_or_alive_field = ObservationField.make!( name: "Dead or alive", allowed_values: "dead|alive|moribund|not sure" )
+    @evidence = ControlledTerm.make!( active: true )
+    ControlledTermLabel.make!( controlled_term: @evidence, label: "Evidence of Presence" )
+    # @dead = ControlledTerm.make!( is_value: true, active: true )
+    # ControlledTermLabel.make!( controlled_term: @dead, label: "Dead" )
+    @track = ControlledTerm.make!( is_value: true, active: true )
+    ControlledTermLabel.make!( controlled_term: @track, label: "Track" )
+    @scat = ControlledTerm.make!( is_value: true, active: true )
+    ControlledTermLabel.make!( controlled_term: @scat, label: "Scat" )
+    @feather = ControlledTerm.make!( is_value: true, active: true )
+    ControlledTermLabel.make!( controlled_term: @feather, label: "Feather" )
+    @molt = ControlledTerm.make!( is_value: true, active: true )
+    ControlledTermLabel.make!( controlled_term: @molt, label: "Molt" )
+    @evidence_field = ObservationField.make!(
+      name: "Animal Sign and Song",
+      allowed_values: "None Recorded|Tracks|Scat|Remains|Call/Song|Evidence of Feeding|Evidence of Egg Laying|Smell|Scratching/Scent Post|Nest|Burrow/Den|Web|Fur/Feathers|Shell/Exoskeleton|Shed skin|Window print"
+    )
   end
 
   it "associates alive ofvs" do
@@ -223,4 +258,41 @@ describe ObservationFieldValue, "annotation_attribute_and_value" do
     expect( attr_val ).to be_blank
   end
 
+  it "associates tracks ofvs" do
+    ofv = ObservationFieldValue.make( observation_field: @evidence_field, value: "Tracks" )
+    attr_val = ofv.annotation_attribute_and_value
+    expect( attr_val ).not_to be_blank
+    expect( attr_val[:controlled_attribute] ).to eq @evidence
+    expect( attr_val[:controlled_value] ).to eq @track
+  end
+
+  it "associates scat ofvs" do
+    ofv = ObservationFieldValue.make( observation_field: @evidence_field, value: "Scat" )
+    attr_val = ofv.annotation_attribute_and_value
+    expect( attr_val ).not_to be_blank
+    expect( attr_val[:controlled_attribute] ).to eq @evidence
+    expect( attr_val[:controlled_value] ).to eq @scat
+  end
+  it "associates Fur/Feathers ofvs" do
+    ofv = ObservationFieldValue.make( observation_field: @evidence_field, value: "Fur/Feathers" )
+    attr_val = ofv.annotation_attribute_and_value
+    expect( attr_val ).not_to be_blank
+    expect( attr_val[:controlled_attribute] ).to eq @evidence
+    expect( attr_val[:controlled_value] ).to eq @feather
+  end
+  it "associates shed ofvs" do
+    ofv = ObservationFieldValue.make( observation_field: @evidence_field, value: "Shed skin" )
+    attr_val = ofv.annotation_attribute_and_value
+    expect( attr_val ).not_to be_blank
+    expect( attr_val[:controlled_attribute] ).to eq @evidence
+    expect( attr_val[:controlled_value] ).to eq @molt
+  end
+  it "shoud map an OFV like Tracks?=yes" do
+    of = ObservationField.make!( name: "Tracks", allowed_values: "yes|no" )
+    ofv = ObservationFieldValue.make!( observation_field: of, value: "yes" )
+    attr_val = ofv.annotation_attribute_and_value
+    expect( attr_val ).not_to be_blank
+    expect( attr_val[:controlled_attribute] ).to eq @evidence
+    expect( attr_val[:controlled_value] ).to eq @track
+  end
 end

@@ -50,7 +50,9 @@ sq:
   about_this_bioblitz: Për këtë bioblitz
   about_this_map: Rreth kësaj harte
   about_this_project: Rreth këtij Projekti
-  about_x: "Për %{x}"
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Llogaria (m)'
   account: Llogaria
   account_settings: Konfigurimet e llogarisë
@@ -459,6 +461,7 @@ sq:
   cc_by_sa_name: Atribuimi-NdaniNjëlloj
   cc_used_under_a: "Creative Commons, përdorë nën një"
   change_admin: Ndryshoje administratorin
+  #Button to change the cover (or banner) image for a project
   change_cover: Ndrysho kopertinën
   change_descriptions:
     split: Taxoni i vjetër u nda në taxa të reja të shumëfishta
@@ -555,19 +558,21 @@ sq:
   comment_deleted: Komenti u fshi
   comments: Komentet
   comments_by_me: Komentet nga unë
-  comments_on: Komente mbi
   comments_on_my_observations: Komentet për vëzhgimet e mia
   commercial_solicitation: Kërkesa komerciale, lidhje askund, etj.
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Kryej
+  #Adjective describing a taxon change that has been committed
   committed: Kryer
+  #Label for date the taxon change was committed
   committed_on: Kryer më %{date}
+  #Status message while a taxon change is being committed
   committing: Duke u kryer...
   community: Komuniteti
   community_curated: Komuniteti i kuruar
   community_guidelines: Udhëzimet e komunitetit
   community_id_heading: ID e komunitetit
   community_id_at_species_or_lower?: ID i komunitetit në specie ose më i ulët?
-  community_id_at_genus_level_or_lower: ID e komunitetit në nivelin e gjinisë ose më të ulët
   community_id_at_species_level_or_lower: ID e komunitetit në nivelin e specieve ose më e ulët
   community_moderation_settings: Konfigurimet e moderimit të komunitetit
   community_supported_id: ID e mbështetur nga komuniteti?
@@ -593,6 +598,7 @@ sq:
   confirm_now: Konfirmo tani
   confirm_your_info: Konfirmo informacionin tënd
   connect_to_provider: "Lidhu me %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Llogaritë e lidhura
   connecting_flickr: "Duke u lidhur me Flickr..."
   connecting_to_facebook: "Duke u lidhur me Facebook..."
@@ -604,7 +610,6 @@ sq:
     place: Vendi ku ky status është i kufizuar.
     url: URL për një faqe që përshkruan këtë status.
     geoprivacy: Gjeo-lokacioni i paracaktuar për vëzhgimet e këtij taxon
-    iucn: Ekuivalenti IUCN i Kodit të Listës së Kuqe
   contain_all_descendants?: A përmban kjo listë të gjithë pasardhësit e këtij taxon që paraqiten këtu?
   continue: Vazhdo
   contributor_cannot_be_found: Kontribuesi nuk mund të gjendet
@@ -755,6 +760,7 @@ sq:
   delete: Fshi
   delete_all: Fshi të gjitha
   delete_conversation: Fshije bisedën
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: ta fshij kopertinën?
   delete_icon?: Ta fshij ikonën?
   delete_photo: Fshi foto
@@ -867,7 +873,6 @@ sq:
   editing_this: Duke ndryshuar %{elem}
   editing_x_in_y: "Duke ndryshuar %{x} në %{y}"
   editors: Redaktorët
-  either: Ose
   either_that_user_doesnt_exist_or: "Ose ky përdorues nuk ekziston ose jeni duke i ndjekur ato."
   eligible_for_research_grade: I pranueshëm për Nivel Kërkimor
   email_addresses_description: Posta elektronike të ndara me presje, limito në 60 për çdo 30 ditë.
@@ -912,7 +917,6 @@ sq:
   everywhere: gjithkund
   exact: I/E saktë
   exact_date: Data e saktë
-  exact_location: Vendndodhja_e_saktë
   exact_rank: Katergoria e saktë
   existing_flags: Flamujt ekzistues
   exit_full_screen: "Dil nga ekrani i plotë"
@@ -1088,7 +1092,6 @@ sq:
   heads_up_you_have_multiple: "Paralajmërim / Vini re: Keni në dispozicion etiketa kompjuterike (machine tags) të shumta klasore për kategoritë identike. Ato janë të ndara me ngjyra këtu poshtë sipas kategorive."
   help: Ndihmë
   help_confirm_observations!: Ndihmoni të konfirmoni vëzhgimet!
-  helped_the_observer_make: Ndihmon vrojtuesin/en për identifikimin përfundimtar (d.m.th. është kryer para identifikimit final dhe përputhet)
   here_are_3_examples: Këtu janë 3 shembuj të të dhënave të formuluara mirë
   here_are_our_top_species_suggestions: Këtu janë sugjerimet tona për speciet kryesore
   hex_color_eg: Ngjyra Hex, p.sh. 65644F
@@ -1109,8 +1112,6 @@ sq:
     tooltips:
       leading: |
         Taxon rrjedh prej komunitetit taxon. Ky identifikim mund të shpjerë drejt përgjigjes së drejtë.
-      improving: |
-        Sugjerimi i parë i këtij taxon me të cilin komuniteti më pas pajtohet. Kjo ndihmon rafinimin komunitetit taxon.
       maverick: |
         Taxon nuk është pasardhëse apo paraardhëse e komunitetit taxon, d.m.th. komuniteti nuk pajtohet me këtë taxon.
   id_withdrawn: Identifikimi është tërhequr
@@ -1143,6 +1144,7 @@ sq:
   ignore_and_continue: injoro dhe vazhdo
   ignore_times: Injoro kohët
   image_must_be_exactly: pamja duhet të jetë saktësisht 950 piksel e gjerë dhe më së shumti 400 piksel e lartë
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: E rrezikuar
   import: Importo
   import_all_photos_as_observations: Importo të gjitha fotot si vëzhgime
@@ -1195,7 +1197,6 @@ sq:
   inviteonly: Vetëm me ftesë
   invited_x: "I ftuar %{x}"
   is_not_following_anyone: nuk është duke ndjekur dikë.
-  is_now: është tani
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: A është evidenca e siguruar e mjaftueshme për të konfirmuar që kjo është %{taxon}
   is_this_offensive_html: 'A është kjo <a href="/help#i papërshtatshëm">inappropriate</a>,spam ose ofenduese?'
   is_this_place_a_duplicate: A është ky vend i dyfishuar?
@@ -1244,10 +1245,6 @@ sq:
   leaderboard: Fituesi
   leaderboard_for_x: "Fituesi per %{x}"
   leaderboards: FItuesit
-  leaderboard_most:
-    species: Më shumë specie për %{time}
-    observations: Më shumë vëzhgime për %{time}
-    identifications: Më shumë identifikime për %{time}
   leading: Duke udhëhequr
   learn: Mëso
   learn_about_the_species_live_in: Mëso për speciet që jetojnë në
@@ -1455,6 +1452,7 @@ sq:
   meet: Tako
   member_of_the_inaturalist_network_html: |
     Anëtarë i <a href="%{url}">iNaturalist Network</a>
+  #As in members of a project
   members: Anëtarët
   membership_model: Modeli i anëtarësimit
   mentioned_you_in_noun_html: "%{user}% u ka përmendur në %{noun}"
@@ -1513,11 +1511,8 @@ sq:
   multiple_select_option: '-- Shumfish --'
   multiple_taxa_for_taxon_change: "Taxa te shumëfishta (të dhënat për ndërrim/bashkim, te dalat për ndarje)"
   multiple_taxon_ids_separated_by_commas: 'ID të Taksonve të shumëfisht të ndarë me presje, p.sh. 123,654'
-  must_be_observed_after: |
-    Patjetër të vëzhgohet pas %{operand}
-  must_be_observed_before: |
-    Patjetër të vëzhgohet përpara %{operand}
-  must_be_observed_in: Patjetër të vëzhgohet në
+  must_be_observed_after: Patjetër të vëzhgohet pas %{operand}
+  must_be_observed_before: Patjetër të vëzhgohet përpara %{operand}
   must_be_less_than_x_MB: "Duhet të jetë më pak se %{x}MB"
   must_have_observation_field: "Domosdo të ketë fushë të vëzhgimit %{operand} të plotësuar"
   must_have_x: "Duhet të ketë %{x}"
@@ -1668,7 +1663,6 @@ sq:
   no_taxa_selected: Nuk u zgjodh asnjë taxa!
   no_taxonomic_changes_match_those_criteria: Asnjë ndryshim taksonomik nuk përputhet me këto kritere
   no_wikipedia_page_for_taxon: Asnjë faqe në Wikipedia për këtë takson.
-  no_x_this_y: "Nuk ka %{x} ky %{y}"
   noble_curators: "%{site}'s Përzgjedhësit fisnik"
   non_human?: Jo-njerëzore?
   none: Asnjë
@@ -2095,7 +2089,7 @@ sq:
   please_add_a_citation_for_this_change: Ju lutem shtoni citat për këtë ndryshim.
   please_add_this_observation_to: Ju lutemi shtoni këtë vëzhgim në
   please_add_this_to_x_html: "Ju lutemi shtoni këtë tek %{x}"
-  please_allow_a_few_weeks_for_external_sites: Ju lutem prisni ca javë derisa faqet e jashtme të sinkonizojnë ndryshimet nga ky vëzhgim
+  please_allow_a_few_weeks_for_external_sites: Ju lutem prisni ca javë derisa faqet e jashtme të sinkonizojnë ndryshimet nga ky vëzhgim #Title to a section warning a user to exercise caution
   please_complete_the_following_to_add_project: |
     Ju lutem plotësoni pjesën në vazhdim që ta shtoni këtë vëzhgim te projekti:
   please_confirm_your_inat_username: "Ju lutem konfirmoni emrin e përdoruesit për %{site_name}"
@@ -2248,6 +2242,7 @@ sq:
   recent_observations: Vëzhgimet e kohëve të fundit
   recent_observations_: Vëzhgimet e Kohëve të fundit
   recent_post: Postim i kohës së fundit
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Vëzhgimet e kohëve të fundit nga %{login}(Atom)"
   recent_observations_by: "Vëzhgimet e kohëve të fundit nga %{login}"
   recently_active: Aktiv së fundmi

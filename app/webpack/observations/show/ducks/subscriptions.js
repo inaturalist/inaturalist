@@ -35,9 +35,15 @@ export function resetSubscriptions( ) {
 
 export function fetchSubscriptions( options = {} ) {
   return ( dispatch, getState ) => {
-    const observation = options.observation || getState( ).observation;
+    const s = getState( );
+    const observation = options.observation || s.observation;
     if ( !observation ) { return null; }
+    const { testingApiV2 } = s.config;
     const params = { id: observation.id };
+    if ( testingApiV2 ) {
+      params.fields = "resource_type";
+      params.id = observation.uuid;
+    }
     return inatjs.observations.subscriptions( params ).then( response => {
       dispatch( setSubscriptions( response.results ) );
     } ).catch( e => { } );

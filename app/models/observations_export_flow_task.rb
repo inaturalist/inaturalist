@@ -127,9 +127,9 @@ class ObservationsExportFlowTask < FlowTask
     FileUtils.mkdir_p(File.dirname(fpath), mode: 0755)
     columns = export_columns
     site = user.site || Site.default
-    search_params = params.merge( viewer: user )
+    search_params = params.merge( viewer: user, authenticate: user )
     CSV.open(fpath, "w") do |csv|
-      csv << columns
+      csv << columns.map {|c| CGI.unescape( c ) }
       batch_i = 0
       obs_i = 0
       Observation.search_in_batches( search_params ) do |batch|
@@ -143,15 +143,17 @@ class ObservationsExportFlowTask < FlowTask
           logger.info "Obs #{obs_i} (#{observation.id})" if @debug
           observation.localize_locale = user.locale || site.locale
           observation.localize_place = user.place || site.place
+          coordinates_viewable = observation.coordinates_viewable_by?( user )
           csv << columns.map do |c|
             c = "cached_tag_list" if c == "tag_list"
-            if c =~ /^private_/ && !observation.coordinates_viewable_by?( user )
+            if c =~ /^private_/ && !coordinates_viewable
               nil
             else
               observation.send(c) rescue nil
             end
           end
           obs_i += 1
+          logger.info "Finished Obs #{obs_i} (#{observation.id})" if @debug
         end
         batch_i += 1
       end
@@ -217,7 +219,7 @@ class ObservationsExportFlowTask < FlowTask
     else
       NOTIFICATION_PRIORITY
     end
-    opts[:queue] = "csv" if count > 5000
+    opts[:queue] = "csv" if count > 1000
     opts[:unique_hash] = {'ObservationsExportFlowTask': id}
     opts
   end

@@ -1,4 +1,5 @@
 NonStupidDigestAssets.whitelist += [
+  "bird.png",
   /logo\..*$/,
   /logo-small.*/,
   "inat-logo-pb.png",

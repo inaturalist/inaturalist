@@ -7,7 +7,7 @@ Sync donorbox users with iNat User and UserParent records
 
 Usage:
 
-  rails runner tools/calflora_observation_links.rb
+  rails runner tools/donorbox.rb
 
 where [options] are:
 EOS
@@ -67,7 +67,15 @@ while true
       end
       total_verified_users += 1
     end
-    if user_parent = UserParent.find_by_email( donor["email"] )
+    user_parent = UserParent.find_by_email( donor["email"] )
+    # Sometimes the parent enters the same email on Donorobox as they use for
+    # their iNat account, but they entered a different email address when
+    # filling out the UserParent form. This should make sure that if we know the
+    # user is a donor AND they filled out the UserParent form, their child
+    # should be approved, even if they used a different email address on the
+    # UserParent form
+    user_parent ||= user.parentages.where( "donorbox_donor_id IS NULL" ).first if user
+    if user_parent
       puts "\tUserParent Donor: #{user_parent.donor?}" if opts.debug
       unless user_parent.donor?
         begin
@@ -78,7 +86,7 @@ while true
             puts "Failed to mark #{user_parent} as a donor: #{user.errors.full_messages.to_sentence}"
             failed_parents += 1
           end
-        rescue OpenSSL::SSL::SSLError => e
+        rescue OpenSSL::SSL::SSLError, Net::ReadTimeout => e
           # Mail failed to send
           puts "Failed to mark #{user_parent} as a donor: mail delivery failed (#{e})"
           failed_parents += 1

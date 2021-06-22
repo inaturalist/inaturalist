@@ -234,8 +234,14 @@ class QualityMetrics extends React.Component {
       ( observation.photos ? observation.photos.length : 0 )
       + ( observation.sounds ? observation.sounds.length : 0 )
     ) > 0;
-    const atLeastSpecies = ( observation.taxon && observation.taxon.rank_level <= 10 );
-    const atLeastGenus = ( observation.taxon && observation.taxon.rank_level <= 20 );
+    const communityTaxonAtLeastSpecies = (
+      observation.communityTaxon
+      && observation.communityTaxon.rank_level <= 10
+    );
+    const communityTaxonAtLeastSubfamily = (
+      observation.taxon
+      && observation.taxon.rank_level < 30
+    );
     const mostAgree = observation.identifications_most_agree;
     let locationSpecified = false;
     if ( observation.geojson ) {
@@ -256,9 +262,9 @@ class QualityMetrics extends React.Component {
     const recentCells = this.voteCellsForMetric( "recent" );
     const needsIDInfo = this.infoForMetric( "needs_id" );
     const rankText = needsIDInfo.mostDisagree
-      ? I18n.t( "community_id_at_genus_level_or_lower" )
+      ? I18n.t( "community_id_is_precise" )
       : I18n.t( "community_id_at_species_level_or_lower" );
-    const rankPassed = needsIDInfo.mostDisagree ? atLeastGenus : atLeastSpecies;
+    const rankPassed = needsIDInfo.mostDisagree ? communityTaxonAtLeastSubfamily : communityTaxonAtLeastSpecies;
     return (
       <div className="QualityMetrics">
         { tableOnly ? null : (

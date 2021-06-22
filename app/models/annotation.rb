@@ -30,9 +30,8 @@ class Annotation < ActiveRecord::Base
   validates_uniqueness_of :controlled_value_id,
     scope: [:resource_type, :resource_id, :controlled_attribute_id]
 
-  after_create :touch_resource
-  after_save :index_observation
-  after_destroy :index_observation, :touch_resource
+  after_commit :index_observation, on: [:create, :update, :destroy]
+  after_commit :touch_resource, on: [:create, :destroy]
 
   attr_accessor :skip_indexing, :bulk_delete, :wait_for_obs_index_refresh
 
@@ -162,14 +161,10 @@ class Annotation < ActiveRecord::Base
     true
   end
 
-  def index_observation_later
-    if resource.is_a?(Observation) && !skip_indexing
-      Observation.elastic_index!(ids: [resource.id], delay: true)
-    end
-  end
-
   def touch_resource
-    resource.touch if resource && !(resource.bulk_delete || bulk_delete)
+    if resource && resource.respond_to?( :updated_at ) && !(resource.bulk_delete || bulk_delete)
+      resource.update_columns( updated_at: Time.now )
+    end
     true
   end
 

@@ -8,9 +8,6 @@ describe SiteStatistic do
     OauthApplication.make!(name: "iNaturalist iPhone App")
   end
 
-  before(:all) { DatabaseCleaner.strategy = :truncation }
-  after(:all)  { DatabaseCleaner.strategy = :transaction }
-
   elastic_models( Observation )
 
   describe "stats_generated_for_day?" do

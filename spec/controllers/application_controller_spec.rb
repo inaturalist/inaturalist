@@ -120,4 +120,63 @@ describe ApplicationController do
 
   end
 
+  describe GuidesController do
+    describe "network affiliation prompt" do
+      describe "for user in partner site place" do
+        let(:place) { make_place_with_geom }
+        let(:alt_site) { Site.make!( place: place ) }
+        before do
+          # Stub this request to ensure the user's lat/lon is in the site place
+          allow( INatAPIService ).to receive(:geoip_lookup) {
+            OpenStruct.new_recursive(
+              results: {
+                ll: [place.latitude, place.longitude],
+                country: { name: "foo" },
+                city: { name: "foo" },
+                region: { name: "foo" }
+              }
+            )
+          }
+          expect( Site.default ).not_to eq alt_site
+        end
+        it "should be set if user views default site while not affiliated with the partner site" do
+          u = User.make!( site: Site.default )
+          expect( u.site ).to eq Site.default
+          sign_in u
+          get :index, format: :html
+          expect( session[:potential_site] ).not_to be_blank
+          expect( session[:potential_site][:id] ).to eq alt_site.id
+        end
+        it "should be set if user views default site while not affiliated with any site" do
+          u = User.make!( site: nil )
+          expect( u.site ).to be_nil
+          sign_in u
+          get :index, format: :html
+          expect( session[:potential_site] ).not_to be_blank
+          expect( session[:potential_site][:id] ).to eq alt_site.id
+        end
+        it "should not be set when viewing the site you are affiliated with" do
+          u = User.make!( site: alt_site )
+          expect( u.site ).to eq alt_site
+          sign_in u
+          get :index, format: :html, inat_site_id: alt_site.id
+          expect( session[:potential_site] ).to be_blank
+        end
+        it "should not be set if prompting you to join the site you are affiliated with" do
+          u = User.make!( site: alt_site )
+          expect( u.site ).to eq alt_site
+          sign_in u
+          get :index, format: :html
+          expect( session[:potential_site] ).to be_blank
+        end
+        it "should not be set when viewing a partner site" do
+          third_site = Site.make!
+          u = User.make!
+          sign_in u
+          get :index, format: :html, inat_site_id: third_site.id
+          expect( session[:potential_site] ).to be_blank
+        end
+      end
+    end
+  end
 end

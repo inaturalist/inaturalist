@@ -3,11 +3,12 @@ require "optimist"
 
 opts = Optimist::options do
     banner <<-EOS
-Sync donorbox users with iNat User and UserParent records
+Sync donorbox user plans with iNat users. Primarily for letting us know when a
+user is a Monthly Supporter.
 
 Usage:
 
-  rails runner tools/calflora_observation_links.rb
+  rails runner tools/donorbox-plans.rb
 
 where [options] are:
 EOS

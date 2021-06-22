@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     only: [ :edit ],
     if: lambda { authenticate_with_oauth? }
   before_action -> { doorkeeper_authorize! :write },
-    only: [ :create, :update, :dashboard, :new_updates, :api_token, :mute, :unmute ],
+    only: [ :create, :update, :dashboard, :new_updates, :api_token, :mute, :unmute, :block, :unblock ],
     if: lambda { authenticate_with_oauth? }
   before_action -> { doorkeeper_authorize! :account_delete },
     only: [ :destroy ],
@@ -15,7 +15,9 @@ class UsersController < ApplicationController
       :search, :update_session, :parental_consent ]
   load_only = [ :suspend, :unsuspend, :destroy, :purge,
     :show, :update, :followers, :following, :relationships, :add_role,
-    :remove_role, :set_spammer, :merge, :trust, :untrust, :mute, :unmute ]
+    :remove_role, :set_spammer, :merge, :trust, :untrust, :mute, :unmute,
+    :block, :unblock, :moderation
+  ]
   before_filter :find_user, :only => load_only
   # we want to load the user for set_spammer but not attempt any spam blocking,
   # because set_spammer may change the user's spammer properties
@@ -23,9 +25,29 @@ class UsersController < ApplicationController
   check_spam only: [:create, :update], instance: :user
   before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
   before_filter :admin_required, :only => [:curation, :merge]
-  before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer, :recent]
-  before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
+  before_filter :site_admin_of_user_required, only: [:add_role, :remove_role]
+  before_filter :curator_required, only: [:recent]
+  before_filter :curator_or_site_admin_required, only: [
+    :moderation,
+    :set_spammer,
+    :suspend,
+    :unsuspend
+  ]
+  before_filter :return_here, only: [
+    :curation,
+    :dashboard,
+    :edit,
+    :index,
+    :moderation,
+    :relationships,
+    :show
+  ]
   before_filter :before_edit, only: [:edit, :edit_after_auth]
+  skip_before_action :check_preferred_place, only: :api_token
+  skip_before_action :preload_user_preferences, only: :api_token
+  skip_before_action :set_site, only: :api_token
+  skip_before_action :check_preferred_site, only: :api_token
+  skip_before_action :set_ga_trackers, only: :api_token
 
   protect_from_forgery unless: -> {
     request.parameters[:action] == "search" && request.format.json? }
@@ -88,11 +110,11 @@ class UsersController < ApplicationController
       return redirect_back_or_default @user
     end
     
-    if !current_user.has_role?(@role.name) || (@user.is_admin? && !current_user.is_admin?)
+    if @user.is_admin? && !current_user.is_admin?
       flash[:error] = t(:you_dont_have_permission_to_do_that)
       return redirect_back_or_default @user
     end
-    
+
     @user.roles << @role
     if @role.name === Role::CURATOR
       @user.update_attributes( curator_sponsor: current_user )
@@ -106,12 +128,12 @@ class UsersController < ApplicationController
       flash[:error] = t(:that_role_doesnt_exist)
       return redirect_back_or_default @user
     end
-    
-    unless current_user.has_role?(@role.name)
+
+    if @user.is_admin? && !current_user.is_admin?
       flash[:error] = t(:you_dont_have_permission_to_do_that)
       return redirect_back_or_default @user
     end
-    
+
     if @user.roles.delete(@role)
       flash[:notice] = "Removed #{@role.name} status from #{@user.login}"
       if @role.name === Role::CURATOR
@@ -318,7 +340,6 @@ class UsersController < ApplicationController
       format.html {
         # will_paginate collection will have total_entries
         @users = scope.paginate(page: params[:page], per_page: params[:per_page])
-        counts_for_users
       }
       format.json do
         # use .limit.offset to avoid a slow count(), since count isn't used
@@ -513,17 +534,27 @@ class UsersController < ApplicationController
     if @site && !@site.discourse_url.blank? && @discourse_url = @site.discourse_url
       cache_key = "dashboard-discourse-data-#{@site.id}"
       begin
+        if @site.discourse_category.blank?
+          url = "#{@discourse_url}/latest.json?order=created"
+          @discourse_topics_url = @discourse_url
+        else
+          url = "#{@discourse_url}/c/#{@site.discourse_category}.json?order=created"
+          @discourse_topics_url = "#{@discourse_url}/c/#{@site.discourse_category}"
+        end
         unless @discourse_data = Rails.cache.read( cache_key )
           @discourse_data = {}
           @discourse_data[:topics] = JSON.parse(
-            RestClient.get( "#{@discourse_url}/latest.json?order=created", timeout: 5 ).body
+            RestClient::Request.execute( method: "get",
+              url: url, open_timeout: 1, timeout: 5 ).body
           )["topic_list"]["topics"].select{|t| !t["pinned"] && !t["closed"] && !t["has_accepted_answer"]}[0..5]
           @discourse_data[:categories] = JSON.parse(
-            RestClient.get( "#{@discourse_url}/categories.json", timeout: 5 ).body
+            RestClient::Request.execute( method: "get",
+              url: "#{@discourse_url}/categories.json", open_timeout: 1, timeout: 5 ).body
           )["category_list"]["categories"].index_by{|c| c["id"]}
           Rails.cache.write( cache_key, @discourse_data, expires_in: 15.minutes )
         end
       rescue SocketError, RestClient::Exception, Timeout::Error, RestClient::Exceptions::Timeout
+        @discourse_data = nil
         # No connection or other connection issue
         nil
       end
@@ -595,6 +626,11 @@ class UsersController < ApplicationController
       format.html do
         @monthly_supporter = @user.donorbox_plan_status == "active" &&
           @user.donorbox_plan_type == "monthly"
+        if true || params[:test] == "profile"
+          render :edit2, layout: "bootstrap"
+        else
+          render :edit
+        end
       end
       format.json do
         render :json => @user.to_json(
@@ -717,7 +753,7 @@ class UsersController < ApplicationController
     else
       @display_user = User.find_by_id(params[:id].to_i)
       @display_user ||= User.find_by_login(params[:id])
-      @display_user ||= User.find_by_email(params[:id])
+      @display_user ||= User.find_by_email(params[:id]) unless params[:id].blank?
       @display_user ||= User.where( "email ILIKE ?", "%#{params[:id]}%" ).first
       @display_user ||= User.elastic_paginate( query: {
         bool: {
@@ -940,6 +976,105 @@ class UsersController < ApplicationController
     end
   end
 
+  def block
+    @user_block = current_user.user_blocks.where( blocked_user_id: @user ).first
+    @user_block ||= current_user.user_blocks.create( blocked_user: @user )
+    respond_to do |format|
+      format.json do
+        if @user_block.valid?
+          render head: :no_content, layout: false, text: nil
+        else
+          render status: :unprocessable_entity, json: { errors: @user_block.errors }
+        end
+      end
+    end
+  end
+
+  def unblock
+    @user_block = current_user.user_blocks.where( blocked_user_id: @user ).first
+    @user_block.destroy if @user_block
+    respond_to do |format|
+      format.json do
+        if @user_block
+          render head: :no_content, layout: false, text: nil
+        else
+          render status: :unprocessable_entity, json: { errors: ["User #{@user.id} was not blocked"] }
+        end
+      end
+    end
+  end
+
+  def moderation
+    before = params[:before] || Time.now
+    if @user == current_user && !current_user.is_admin?
+      flash[:error] = t(:you_dont_have_permission_to_do_that)
+      return redirect_back_or_default person_by_login_path( @user.login )
+    end
+    max = 100
+    @valid_years = ( 2008..Date.today.year ).to_a.reverse
+    @years = ( params[:years] || [] ).map(&:to_i) & @valid_years
+    @types = ( params[:types] || [] ) & %w(Flag ModeratorNote ModeratorAction)
+    scopes = {}
+    scopes["ModeratorNote"] = ModeratorNote.
+      where( subject_user_id: @user ).
+      where( "created_at < ?", before ).
+      order( "id desc" )
+    scopes["Flag"] = Flag.
+      where( "created_at < ?", before ).
+      where( flaggable_user_id: @user ).
+      where( "flaggable_type != 'Taxon'" ).
+      order( "id desc" )
+    @records = []
+    scopes.each do |type, scope|
+      next unless @types.blank? || @types.include?( type )
+      if @years.blank?
+        scope = scope.limit( max )
+      else
+        @years.each do |year|
+          d1 = "#{year}-01-01"
+          d2 = "#{year}-12-31"
+          scope = scope.where( "#{Object.const_get( type ).table_name}.created_at BETWEEN ? AND ?", d1, d2 )
+        end
+      end
+      @records += scope.to_a
+    end
+    if @types.blank? || @types.include?( "ModeratorAction" )
+      moderator_actions_on_identifications = ModeratorAction.
+        where( "moderator_actions.created_at < ?", before ).
+        where( resource_type: "Identification" ).
+        joins( "JOIN identifications i ON i.id = moderator_actions.resource_id" ).
+        where( "i.user_id = ?", @user ).
+        order( "moderator_actions.id desc" )
+      moderator_actions_on_comments = ModeratorAction.
+        where( "moderator_actions.created_at < ?", before ).
+        where( resource_type: "Comment" ).
+        joins( "JOIN comments c ON c.id = moderator_actions.resource_id" ).
+        where( "c.user_id = ?", @user ).
+        order( "moderator_actions.id desc" )
+      if @years.blank?
+        moderator_actions_on_comments = moderator_actions_on_comments.limit( max )
+        moderator_actions_on_identifications = moderator_actions_on_identifications.limit( max )
+      else
+        @years.each do |year|
+          d1 = "#{year}-01-01"
+          d2 = "#{year}-12-31"
+          moderator_actions_on_comments = moderator_actions_on_comments.
+            where( "moderator_actions.created_at BETWEEN ? AND ?", d1, d2 )
+          moderator_actions_on_identifications = moderator_actions_on_identifications.
+            where( "moderator_actions.created_at BETWEEN ? AND ?", d1, d2 )
+        end
+      end
+      @records += moderator_actions_on_comments.to_a
+      @records += moderator_actions_on_identifications.to_a
+    end
+    @records = @records.flatten.sort_by {|r| r.created_at }
+    respond_to do |format|
+      format.html do
+        render layout: "bootstrap-container"
+      end
+    end
+  end
+
 protected
 
   def add_friend
@@ -1030,9 +1165,8 @@ protected
   end
   
   def counts_for_users
-    @listed_taxa_counts = ListedTaxon.where(list_id: @users.to_a.map{|u| u.life_list_id}).
-      group(:user_id).count
-    @post_counts = Post.where(user_id: @users.to_a).group(:user_id).count
+    @species_counts = @users.map{ |i| [i.id, i.species_count] }.to_h
+    @post_counts = Post.where(user_id: @users.to_a, parent_type: User).group(:user_id).count
   end
   
   def activity_object_image_url(activity_stream)
@@ -1200,6 +1334,30 @@ protected
     @sites = Site.live.limit(100)
     if @user = current_user
       @user.site_id ||= Site.first.try(:id) unless @sites.blank?
+    end
+  end
+
+  def curator_or_site_admin_required
+    unless logged_in? && @user && ( current_user.is_curator? || current_user.is_site_admin_of?( @user.site ) )
+      flash[:notice] = t(:only_curators_can_access_that_page)
+      if session[:return_to] == request.fullpath
+        redirect_to root_url
+      else
+        redirect_back_or_default(root_url)
+      end
+      return false
+    end
+  end
+
+  def site_admin_of_user_required
+    unless logged_in? && @user && current_user.is_site_admin_of?( @user.site )
+      flash[:notice] = t(:only_administrators_may_access_that_page)
+      if session[:return_to] == request.fullpath
+        redirect_to root_url
+      else
+        redirect_back_or_default(root_url)
+      end
+      return false
     end
   end
 

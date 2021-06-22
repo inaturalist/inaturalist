@@ -41,18 +41,6 @@ describe User do
       expect(@user.confirmation_token).not_to be_blank
     end
     
-    it 'should create a life list' do
-      @creating_user.call
-      @user.reload
-      expect(@user.life_list).not_to be_blank
-    end
-    
-    it 'should create a life list that is among this users lists' do
-      @creating_user.call
-      @user.reload
-      expect(@user.lists).to include(@user.life_list)
-    end
-    
     it "should enforce unique login regardless of a case" do
       u1 = User.make!(:login => 'foo')
       expect {
@@ -173,6 +161,19 @@ describe User do
       expect( u.name ).to eq name
     end
 
+    it "should strip an email out of the name" do
+      email = "foo@bar.com"
+      u = User.make!( name: email )
+      expect( u.name ).not_to include email
+      u = User.make!( name: "this is my email: #{email}" )
+      expect( u.name ).not_to include email
+      u = User.make!( name: "#{email} is my email" )
+      expect( u.name ).not_to include email
+    end
+
+    it "should allow @ sign in name if it doesn't look like an email" do
+      expect( User.make!( name: "@username" ) ).to be_valid
+    end
   end
 
   describe "update" do
@@ -226,15 +227,6 @@ describe User do
       without_delay { u.update_attributes( login: new_login ) }
       p.reload
       expect( p.native_username ).to eq new_login
-    end
-
-    it "should update the life list title if the login changed" do
-      u = User.make!
-      expect( u.life_list.title ).to eq "#{u.login}'s Life List"
-      new_login = "zolophon"
-      without_delay { u.update_attributes( login: new_login ) }
-      u.reload
-      expect( u.life_list.title ).to eq "#{new_login}'s Life List"
     end
 
     it "should not update photos by other users when the name changes" do
@@ -546,6 +538,30 @@ describe User do
             longitude: place.longitude
           )
         end
+
+        # stubbing GET
+        response_json = <<-JSON
+        {
+          "count_without_taxon": 0,
+          "size": 1,
+          "results": [
+            {
+              "id": #{o.taxon_id},
+              "name": "Animalia",
+              "rank": "kingdom",
+              "rank_level": 70,
+              "is_active": true,
+              "parent_id": 48460,
+              "descendant_obs_count": 6,
+              "direct_obs_count": 0
+            }
+          ]
+        }
+        JSON
+        stub_request(:get, /#{INatAPIService::ENDPOINT}/).
+          to_return(status: 200, body: response_json,
+            headers: {"Content-Type" => "application/json"})
+
         user.sane_destroy
         jobs = Delayed::Job.all
         # jobs.map(&:handler).each{|h| puts h}
@@ -562,6 +578,30 @@ describe User do
             longitude: place.longitude
           )
         end
+
+        # stubbing GET
+        response_json = <<-JSON
+        {
+          "count_without_taxon": 0,
+          "size": 1,
+          "results": [
+            {
+              "id": #{o.taxon_id},
+              "name": "Animalia",
+              "rank": "kingdom",
+              "rank_level": 70,
+              "is_active": true,
+              "parent_id": 48460,
+              "descendant_obs_count": 6,
+              "direct_obs_count": 0
+            }
+          ]
+        }
+        JSON
+        stub_request(:get, /#{INatAPIService::ENDPOINT}/).
+          to_return(status: 200, body: response_json,
+            headers: {"Content-Type" => "application/json"})
+        
         expect( place.check_list.listed_taxa.find_by_taxon_id( t.id ) ).not_to be_blank
         user.sane_destroy
         Delayed::Worker.new.work_off
@@ -590,13 +630,13 @@ describe User do
     describe "for owner of a project" do
       let(:project) { without_delay { Project.make!( user: user ) } }
 
-      it "should queue jobs to refresh project lists" do
+      it "should not queue jobs to refresh project lists" do
         expect( project.project_list ).not_to be_blank
         Delayed::Job.delete_all
         user.sane_destroy
         jobs = Delayed::Job.all
         # jobs.map(&:handler).each{|h| puts h}
-        expect(jobs.select{|j| j.handler =~ /'ProjectList'.*\:refresh/m}).not_to be_blank
+        expect(jobs.select{|j| j.handler =~ /'ProjectList'.*\:refresh/m}).to be_blank
       end
 
       it "should destroy projects with no observations" do
@@ -667,9 +707,6 @@ describe User do
     end
 
     describe "user with identifications" do
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
-
       it "should reassess the community taxon of observations the user has identified" do
         o = make_research_grade_candidate_observation( taxon: Taxon.make!( rank: Taxon::SPECIES ) )
         expect( o.community_taxon ).to be_blank
@@ -691,6 +728,19 @@ describe User do
         o.reload
         expect( o.quality_grade ).to eq Observation::NEEDS_ID
       end
+    end
+
+    it "should not delete taxa the user created" do
+      t = Taxon.make!( creator: user )
+      Delayed::Job.delete_all
+      user.sane_destroy
+      expect( Taxon.find_by_id( t.id ) ).not_to be_blank
+    end
+    it "should not delete taxon names the user created" do
+      tn = TaxonName.make!( creator: user )
+      Delayed::Job.delete_all
+      user.sane_destroy
+      expect( TaxonName.find_by_id( tn.id ) ).not_to be_blank
     end
   end
 
@@ -762,8 +812,6 @@ describe User do
   end
 
   describe "merge" do
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
     elastic_models( Observation, Identification )
     
     let(:keeper) { User.make! }
@@ -839,14 +887,6 @@ describe User do
       expect(
         User.elastic_search( filters: [ { term: { id: keeper.id } } ] ).response.hits.hits[0]._source.observations_count
       ).to eq Observation.by( keeper ).count
-    end
-
-    it "should merge life lists" do
-      t = Taxon.make!
-      reject.life_list.add_taxon(t)
-      keeper.merge(reject)
-      keeper.reload
-      expect(keeper.life_list.taxon_ids).to include(t.id)
     end
 
     it "should remove self friendships" do
@@ -959,8 +999,6 @@ describe User do
   end
 
   describe "community taxa preference" do
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
     elastic_models( Identification )
 
     it "should not remove community taxa when set to false" do
@@ -1308,6 +1346,35 @@ describe User do
         observed_on_string: 1.week.ago.to_s
       )
       expect( user.taxa_unobserved_before_date( Date.today, [taxon] ) ).to eq []
+    end
+  end
+
+  describe "create_from_omniauth" do
+    let(:email) { Faker::Internet.email }
+    let(:auth_info) { {
+      "info" => {
+        "email" => email,
+        "name" => email
+      },
+      "extra" => {
+        "user_hash" => {
+          "email" => email
+        }
+      }
+    } }
+    it "should not allow an email in the name field" do
+      u = User.create_from_omniauth( auth_info )
+      expect( u.email ).to eq email
+      expect( u.name ).not_to include email
+    end
+    it "should not automatically suggest something like the email in the name field" do
+      u = User.create_from_omniauth( auth_info )
+      expect( u.name ).to be_blank
+    end
+    it "should not automatically suggest something like the email in the login field" do
+      email_login_suggestion = User.suggest_login( email )
+      u = User.create_from_omniauth( auth_info )
+      expect( u.login ).not_to include email_login_suggestion
     end
   end
 

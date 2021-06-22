@@ -2,11 +2,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe UserParent, "creation" do
-  # Note: to test mail deliver from Devise you have to use transaction cleaning
-  # b/c Devise only delivers emails after_commit
-  before(:all) { DatabaseCleaner.strategy = :truncation }
-  after(:all)  { DatabaseCleaner.strategy = :transaction }
-
   it "should not trigger the delivery of any emails" do
     deliveries = Devise.mailer.deliveries.size
     # The blueprint makes an active user that was a created a little while ago

@@ -70,6 +70,7 @@ class TaxonName < ActiveRecord::Base
     :PORTUGUESE          =>  'Portuguese',
     :RUMANIAN            =>  'Rumanian',
     :RUSSIAN             =>  'Russian',
+    :SINHALA             =>  'Sinhala',
     :SLOVAK              =>  'Slovak',
     :SPANISH             =>  'Spanish',
     :SWEDISH             =>  'Swedish',
@@ -77,6 +78,7 @@ class TaxonName < ActiveRecord::Base
     :TAHITIAN            =>  'Tahitian',
     :TOKELAUAN           =>  'Tokelauan',
     :TURKISH             =>  'Turkish',
+    :UKRAINIAN           =>  'Ukrainian',
     :WARAY_WARAY         =>  'Waray-Waray'
   }
   
@@ -139,6 +141,7 @@ class TaxonName < ActiveRecord::Base
     "spanish"               => "es",
     "swedish"               => "sv",
     "turkish"               => "tr",
+    "ukrainian"             => "uk",
     "vietnamese"            => "vi"
   }
   LEXICONS_BY_LOCALE = LOCALES.invert.merge( "zh-TW" => "chinese_traditional" )
@@ -178,7 +181,9 @@ class TaxonName < ActiveRecord::Base
 
   def self.normalize_lexicon(lexicon)
     return nil if lexicon.blank?
-    return "Norwegian" if lexicon == "norwegian_bokmal"
+    return TaxonName::NORWEGIAN if lexicon == "norwegian_bokmal"
+    # Correct a common misspelling
+    return TaxonName::UKRAINIAN if lexicon.to_s.downcase.strip == "ukranian"
     ( LEXICONS[lexicon.underscore.upcase.to_sym] || lexicon.titleize ).strip
   end
   

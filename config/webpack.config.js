@@ -22,7 +22,8 @@ const config = {
     "projects-form": "./projects/form/webpack-entry",
     "projects-show": "./projects/show/webpack-entry",
     "observations-compare": "./observations/compare/webpack-entry",
-    "notifications-demo": "./notifications/demo/webpack-entry"
+    "notifications-demo": "./notifications/demo/webpack-entry",
+    "users-edit": "./users/edit/webpack-entry"
   },
   output: {
     // each bundle will be stored in app/assets/javascripts/[name].output.js
@@ -38,7 +39,6 @@ const config = {
       // run everything through babel
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
         loader: "babel-loader",
         query: { presets: ["@babel/preset-env", "@babel/preset-react"] }
       }

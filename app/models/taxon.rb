@@ -97,7 +97,8 @@ class Taxon < ActiveRecord::Base
               :strip_name,
               :capitalize_name,
               :remove_wikipedia_summary_unless_auto_description,
-              :ensure_parent_ancestry_in_ancestry
+              :ensure_parent_ancestry_in_ancestry,
+              :unfeature_inactive
   after_create :denormalize_ancestry
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
@@ -238,6 +239,70 @@ class Taxon < ActiveRecord::Base
     'subspecies',
     'variety'
   ]
+
+  WIKIPEDIA_RANKS = {
+    "infratribe" => "infratribus",
+    "infraphylum" => "infraphylum",
+    "infraorder" => "infraordo",
+    "cohort" => "cohort",
+    "microrder" => "micrordo",
+    "genus" => "genus",
+    "subsection" => "zoosubsectio",
+    "grandorder" => "grandordo",
+    "microphylum" => "microphylum",
+    "sublegion" => "sublegio",
+    "subdivision" => "zoosubdivisio",
+    "parvclass" => "parvclassis",
+    "supercohort" => "supercohort",
+    "nanorder" => "nanordo",
+    "parafamily" => "parafamilia",
+    "superdivision" => "superdivisio",
+    "superlegion" => "superlegio",
+    "magnorder" => "magnordo",
+    "variety" => "varietas",
+    "tribe" => "tribus",
+    "parvorder" => "parvordo",
+    "superfamily" => "superfamilia",
+    "subphylum" => "subphylum",
+    "superphylum" => "superphylum",
+    "infrakingdom" => "infraregnum",
+    "mb" => "grandordo",
+    "supertribe" => "supertribus",
+    "division" => "zoodivisio",
+    "hyperfamily" => "hyperfamilia",
+    "section" => "zoosectio",
+    "superclass" => "superclassis",
+    "subtribe" => "subtribus",
+    "subterclass" => "subterclassis",
+    "division" => "divisio",
+    "subspecies" => "subspecies",
+    "class" => "classis",
+    "subsection" => "subsectio",
+    "infraclass" => "infraclassis",
+    "subcohort" => "subcohort",
+    "subfamily" => "subfamilia",
+    "subkingdom" => "subregnum",
+    "superkingdom" => "superregnum",
+    "species" => "species",
+    "suborder" => "subordo",
+    "subgenus" => "subgenus",
+    "subdivision" => "subdivisio",
+    "order" => "ordo",
+    "subclass" => "subclassis",
+    "section" => "sectio",
+    "legion" => "legio",
+    "kingdom" => "regnum",
+    "domain" => "domain",
+    "superdomain" => "superdomain",
+    "superorder" => "superordo",
+    "nanophylum" => "nanophylum",
+    "family" => "familia",
+    "mirordo" => "mirordo-mb",
+    "infralegion" => "infralegio",
+    "form" => "forma",
+    "mirorder" => "mirordo",
+    "phylum" => "phylum"
+  }
   
   # In case you don't feel like looking up TaxonNames
   ICONIC_TAXON_NAMES = {
@@ -491,7 +556,6 @@ class Taxon < ActiveRecord::Base
     return true if skip_after_move
     denormalize_ancestry
     return true if id_changed?
-    update_life_lists
     update_obs_iconic_taxa
     Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
       unique_hash: { "Observation::update_stats_for_observations_of": id }).
@@ -651,7 +715,7 @@ class Taxon < ActiveRecord::Base
 
   def self.set_conservation_status(id)
     return unless t = Taxon.find_by_id(id)
-    s = t.conservation_statuses.where("place_id IS NULL").map(&:iucn).max
+    s = t.conservation_statuses.where("place_id IS NULL").pluck(:iucn).max
     Taxon.where(id: t).update_all(conservation_status: s)
   end
   
@@ -1200,18 +1264,6 @@ class Taxon < ActiveRecord::Base
     return false if rank_level.blank?
     rank_level < SPECIES_LEVEL
   end
-
-  def update_life_lists(options = {})
-    ids = options[:skip_ancestors] ? [id] : [id, ancestor_ids].flatten.compact
-    if ListRule.exists?([
-        "operator LIKE 'in_taxon%' AND operand_type = ? AND operand_id IN (?)", 
-        Taxon.to_s, ids])
-      LifeList.delay(priority: INTEGRITY_PRIORITY,
-        unique_hash: { "LifeList::update_life_lists_for_taxon": id }).
-        update_life_lists_for_taxon(self)
-    end
-    true
-  end
   
   def update_obs_iconic_taxa
     Observation.where(taxon_id: id).update_all(iconic_taxon_id: iconic_taxon_id)
@@ -1324,6 +1376,11 @@ class Taxon < ActiveRecord::Base
     true
   end
 
+  def unfeature_inactive
+    self.featured_at = nil unless is_active?
+    true
+  end
+
   def auto_summary
     return if LIFE && id == LIFE.id
     translated_rank = if rank.blank?
@@ -1405,8 +1462,6 @@ class Taxon < ActiveRecord::Base
         taxon_name.destroy
       end
     end
-    
-    LifeList.delay(:priority => INTEGRITY_PRIORITY).update_life_lists_for_taxon(self)
     
     %w(flags).each do |association|
       send(association, :reload => true).each do |associate|
@@ -1631,7 +1686,6 @@ class Taxon < ActiveRecord::Base
     Taxon.where(taxon.descendant_conditions).find_in_batches do |batch|
       batch.each do |t|
         t.without_ancestry_callbacks do
-          t.update_life_lists(:skip_ancestors => true)
           t.set_iconic_taxon
           t.update_obs_iconic_taxa
         end
@@ -1733,7 +1787,13 @@ class Taxon < ActiveRecord::Base
 
   def deleteable_by?(user)
     return true if user.is_admin?
+    return true if new_record?
     return false if taxon_changes.exists? || taxon_change_taxa.exists?
+    return false if children.exists?
+    return false if identifications.exists?
+    return false if controlled_term_taxa.exists?
+    return false if ProjectObservationRule.where( operand_type: "Taxon", operand_id: id ).exists?
+    return false if ObservationFieldValue.joins(:observation_field).where( "observation_fields.datatype = 'taxon' AND value = ?", id.to_s ).exists?
     return false if TaxonChange.joins( taxon: :taxon_ancestors ).where( "taxon_ancestors.ancestor_taxon_id = ?", id ).exists?
     return false if TaxonChangeTaxon.joins( taxon: :taxon_ancestors ).where( "taxon_ancestors.ancestor_taxon_id = ?", id ).exists?
     creator_id == user.id
@@ -1815,7 +1875,8 @@ class Taxon < ActiveRecord::Base
   end
 
   def atlased?
-    atlas && atlas.is_active?
+    return @atlased unless @atlased.nil?
+    @atlased = atlas && atlas.is_active? && atlas.presence_places.exists?
   end
 
   def cached_atlas_presence_places

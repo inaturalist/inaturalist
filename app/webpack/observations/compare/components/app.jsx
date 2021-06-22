@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import QueriesContainer from "../containers/queries_container";
 import TabsContainer from "../containers/tabs_container";
+import TaxonChildrenModalContainer from "../containers/taxon_children_modal_container";
 
 const App = ( ) => (
   <div id="Compare">
@@ -24,6 +25,7 @@ const App = ( ) => (
         </Col>
       </Row>
     </Grid>
+    <TaxonChildrenModalContainer />
   </div>
 );
 

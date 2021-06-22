@@ -231,46 +231,104 @@ describe UsersController, "merge" do
   let(:normal_user) { User.make! }
   let(:curator_user) { make_curator }
   let(:admin_user) { make_admin }
-  let(:keeper_user) { User.make! }
-  let(:reject_user) { User.make! }
+  let(:keeper_user) { User.make!( login: "keeper", name: "keeper" ) }
+  let(:reject_user) { User.make!( login: "reject", name: "reject" ) }
   it "should not work for normal users" do
     sign_in normal_user
-    put :merge, id: keeper_user.id, reject_user_id: reject_user.id
+    after_delayed_job_finishes do
+      put :merge, id: keeper_user.id, reject_user_id: reject_user.id
+    end
     expect( User.find_by_id( reject_user.id ) ).not_to be_blank
   end
   it "should not work for curators" do
     sign_in curator_user
-    put :merge, id: keeper_user.id, reject_user_id: reject_user.id
+    after_delayed_job_finishes do
+      put :merge, id: keeper_user.id, reject_user_id: reject_user.id
+    end
     expect( User.find_by_id( reject_user.id ) ).not_to be_blank
   end
   it "should work for site admins" do
     sign_in admin_user
-    put :merge, id: keeper_user.id, reject_user_id: reject_user.id
+    after_delayed_job_finishes do
+      put :merge, id: keeper_user.id, reject_user_id: reject_user.id
+    end
     expect( User.find_by_id( reject_user.id ) ).to be_blank
+  end
+  describe "reindexing" do
+    elastic_models( Project )
+    it "should happen for projects the reject created" do
+      proj = Project.make!(:collection, user: reject_user )
+      es_proj = Project.elastic_search( where: { id: proj.id } ).results.results[0]
+      proj_admin_user = User.find_by_id( es_proj.admins.first.user_id )
+      expect( proj_admin_user ).to eq reject_user
+      sign_in admin_user
+      after_delayed_job_finishes do
+        put :merge, id: keeper_user.id, reject_user_id: reject_user.id
+      end
+      expect( User.find_by_id( reject_user.id ) ).to be_blank
+      es_proj = Project.elastic_search( where: { id: proj.id } ).results.results[0]
+      proj_admin_user = User.find_by_id( es_proj.admins.first.user_id )
+      expect( proj_admin_user ).to eq keeper_user
+    end
   end
 end
 
 describe UsersController, "add_role" do
-  it "should set curator_sponsor to current user" do
+  let(:normal_user) { User.make! }
+  before { Role.make!( name: Role::CURATOR ) }
+  it "should not work for a curator" do
     curator_user = make_curator
-    normal_user = User.make!
     sign_in curator_user
-    put :add_role, id: normal_user.id, role: "curator"
+    put :add_role, id: normal_user.id, role: Role::CURATOR
+    normal_user.reload
+    expect( normal_user ).not_to be_is_curator
+  end
+  it "should work for a site_admin" do
+    Site.make! if Site.default.blank?
+    site = Site.make!
+    sa = SiteAdmin.make!( site: site )
+    normal_user.update_attributes!( site: site )
+    sign_in sa.user
+    put :add_role, id: normal_user.id, role: Role::CURATOR
     normal_user.reload
     expect( normal_user ).to be_is_curator
-    expect( normal_user.curator_sponsor ).to eq curator_user
+  end
+  it "should set curator_sponsor to current user" do
+    admin_user = make_admin
+    sign_in admin_user
+    put :add_role, id: normal_user.id, role: Role::CURATOR
+    normal_user.reload
+    expect( normal_user ).to be_is_curator
+    expect( normal_user.curator_sponsor ).to eq admin_user
   end
 end
 
 describe UsersController, "remove_role" do
+  let(:curator_user) { make_curator }
+  let(:target_curator_user) { make_curator }
+  it "should not work for a curator" do
+    sign_in curator_user
+    put :remove_role, id: target_curator_user.id, role: Role::CURATOR
+    target_curator_user.reload
+    expect( target_curator_user ).to be_is_curator
+  end
+  it "should work for a site_admin" do
+    Site.make! if Site.default.blank?
+    site = Site.make!
+    sa = SiteAdmin.make!( site: site )
+    target_curator_user.update_attributes!( site: site )
+    sign_in sa.user
+    put :remove_role, id: target_curator_user.id, role: Role::CURATOR
+    target_curator_user.reload
+    expect( target_curator_user ).not_to be_is_curator
+  end
   it "should nilify curator_sponsor" do
-    curator_user = make_curator
     admin_user = make_admin
     sign_in admin_user
-    put :remove_role, id: curator_user.id, role: "curator"
-    curator_user.reload
-    expect( curator_user ).not_to be_is_curator
-    expect( curator_user.curator_sponsor ).to be_blank
+    put :remove_role, id: curator_user.id, role: Role::CURATOR
+    updated_curator_user = User.find_by_id( curator_user.id )
+    expect( updated_curator_user ).not_to be_is_curator
+    expect( updated_curator_user.curator_sponsor ).to be_blank
   end
 end
 
@@ -320,5 +378,31 @@ describe UsersController, "show" do
     get :show, id: u.login
     expect( assigns(:user) ).to eq u
     expect( response ).to be_success
+  end
+end
+
+describe UsersController, "moderation" do
+  let(:subject_user) { User.make! }
+  it "should be viewable by curators" do
+    sign_in make_curator
+    get :moderation, id: subject_user.login
+    expect( response.response_code ).to eq 200
+  end
+  it "should not be viewable by non-curators" do
+    sign_in User.make!
+    get :moderation, id: subject_user.login
+    expect( response.response_code ).not_to eq 200
+  end
+  it "should not be viewable by a curator if it's about the curator" do
+    curator = make_curator
+    sign_in curator
+    get :moderation, id: curator.login
+    expect( response.response_code ).not_to eq 200
+  end
+  it "should be viewable by an admin if it's about the admin" do
+    admin = make_admin
+    sign_in admin
+    get :moderation, id: admin.login
+    expect( response.response_code ).to eq 200
   end
 end

@@ -1,11 +1,10 @@
---- config/database.yml	2013-07-19 19:20:48.443272703 -0700
-+++ config/database.yml	2013-12-10 07:14:16.780481582 -0800
-@@ -3,7 +3,7 @@
+--- config/database.yml	2020-10-08 18:17:20.000000000 -0700
++++ config/database.yml	2020-10-08 18:17:53.000000000 -0700
+@@ -3,6 +3,7 @@
    host: localhost
    encoding: utf8
    adapter: postgis
--  username: you
 +  username: postgres
    template: template_postgis
-
+ 
  development:

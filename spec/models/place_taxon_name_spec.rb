@@ -1,5 +1,21 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+describe PlaceTaxonName, "create" do
+  it "should set position relative to other records" do
+    t = Taxon.make!
+    tn1 = TaxonName.make!(name: "first", taxon: t)
+    tn2 = TaxonName.make!(name: "second", taxon: t)
+    tn3 = TaxonName.make!(name: "third", taxon: t)
+    place = make_place_with_geom
+    ptn1 = PlaceTaxonName.make!( place: place, taxon_name: tn1 )
+    expect( ptn1.position ).to eq 1
+    ptn2 = PlaceTaxonName.make!( place: place, taxon_name: tn2 )
+    expect( ptn2.position ).to eq 2
+    ptn3 = PlaceTaxonName.make!( place: make_place_with_geom, taxon_name: tn3 )
+    expect( ptn3.position ).to eq 1
+  end
+end
+
 describe PlaceTaxonName, "create_country_records_from_lexicons" do
 
   it "should add names in Chinese (traditional) to Taiwain" do

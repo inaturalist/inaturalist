@@ -21,8 +21,15 @@
   posted_at ||= item.created_at
   posted_at = item.updated_at if item.is_a?(Flag)
   html_class = "#{item.class.name.humanize.underscore}_activity_item item clear stacked"
+  id_attr = if item.is_a? Comment
+    "activity_comment_#{item.uuid}"
+  elsif item.is_a? Identification
+    "activity_identification_#{item.uuid}"
+  else
+    dom_id( item, "activity" )
+  end
 -%>
-<div id="<%= dom_id(item, 'activity') %>" class="<%= html_class %>">
+<div id="<%= id_attr  %>" class="<%= html_class %>">
   <div class="item_user column">
     <% if user && !no_thumb -%>
       <%= link_to image_tag(user.icon.url(:thumb), :class => 'usericon'), person_path(user) %>

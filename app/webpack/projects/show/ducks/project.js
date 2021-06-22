@@ -57,7 +57,20 @@ export function fetchMembers( ) {
         members_loaded: true,
         members: response
       } ) );
-    } ).catch( e => { } );
+    } ).catch( ( ) => { } );
+  };
+}
+
+export function fetchCurrentProjectUser( ) {
+  return ( dispatch, getState ) => {
+    const { project } = getState( );
+    return inatjs.projects.membership( { id: project.id } )
+      .then( response => {
+        if ( response.results[0] ) {
+          dispatch( setAttributes( { currentProjectUser: response.results[0] } ) );
+        }
+      } )
+      .catch( e => console.log( e ) );
   };
 }
 
@@ -206,14 +219,22 @@ export function fetchSpeciesObservers( ) {
   };
 }
 
-export function fetchIdentifiers( ) {
+export function fetchIdentifiers( noPageLimit = false ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
-    if ( !project ) { return null; }
-    return inatjs.observations.identifiers( project.search_params ).then( response => {
+    if ( !project || project.all_identifiers_loaded ) { return null; }
+    const params = {
+      ...project.search_params,
+      per_page: 0
+    };
+    if ( noPageLimit ) {
+      delete params.per_page;
+    }
+    return inatjs.observations.identifiers( params ).then( response => {
       dispatch( setAttributes( {
         identifiers_loaded: true,
-        identifiers: response
+        identifiers: response,
+        all_identifiers_loaded: noPageLimit
       } ) );
     } ).catch( e => console.log( e ) );
   };
@@ -222,7 +243,7 @@ export function fetchIdentifiers( ) {
 export function fetchPosts( ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
-    if ( !project ) { return null; }
+    if ( !project || project.posts_loaded ) { return null; }
     return inatjs.projects.posts( { id: project.id, per_page: 3 } ).then( response => {
       dispatch( setAttributes( {
         posts_loaded: true,
@@ -235,7 +256,7 @@ export function fetchPosts( ) {
 export function fetchIconicTaxaCounts( ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
-    if ( !project ) { return null; }
+    if ( !project || project.iconic_taxa_species_counts_loaded ) { return null; }
     return inatjs.observations.iconicTaxaSpeciesCounts( project.search_params ).then( response => {
       dispatch( setAttributes( {
         iconic_taxa_species_counts_loaded: true,
@@ -315,9 +336,7 @@ export function fetchOverviewData( ) {
     dispatch( fetchObservers( ) );
     dispatch( fetchSpeciesObservers( ) );
     dispatch( fetchIdentifiers( ) );
-    dispatch( fetchPosts( ) );
     dispatch( fetchMembers( ) );
-    dispatch( fetchQualityGradeCounts( ) );
   };
 }
 
@@ -501,5 +520,14 @@ export function deleteFlag( id ) {
     return inatjs.flags.delete( { id } ).then( ( ) => {
       dispatch( afterFlagChange( ) );
     } ).catch( e => console.log( e ) );
+  };
+}
+
+export function updateProjectUser( projectUser ) {
+  return dispatch => {
+    console.log( "[DEBUG] projectUser: ", projectUser );
+    inatjs.project_users.update( { id: projectUser.id, project_user: projectUser } )
+      .then( ( ) => dispatch( fetchCurrentProjectUser( ) ) )
+      .catch( e => alert( e ) );
   };
 }

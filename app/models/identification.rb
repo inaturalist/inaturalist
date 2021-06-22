@@ -375,8 +375,9 @@ class Identification < ActiveRecord::Base
 
   def create_observation_review
     return true if skip_observation || bulk_delete
-    ObservationReview.where(observation_id: observation_id,
-      user_id: user_id).first_or_create.touch
+    ObservationReview.where(observation_id: observation_id, user_id: user_id).
+      first_or_create.
+      update_attributes( reviewed: true, updated_at: Time.now )
     true
   end
 
@@ -659,7 +660,6 @@ class Identification < ActiveRecord::Base
         ).update_taxa_obs_and_observed_taxa_count_after_update_observation( obs.id, obs.user_id )
         obs.set_community_taxon( force: true )
         obs.skip_indexing = true
-        obs.skip_refresh_lists = true
         obs.skip_refresh_check_lists = true
         obs.skip_identifications = true
         obs.save
@@ -725,7 +725,7 @@ class Identification < ActiveRecord::Base
           includes: ["id"],
         },
         filters: [
-          { terms: { "taxon.id" => [taxon_id] } }
+          { terms: { "taxon.ancestor_ids" => [taxon_id] } }
         ],
         track_total_hits: true
       ).page( page ).per_page( 1000 )

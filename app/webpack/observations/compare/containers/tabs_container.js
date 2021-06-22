@@ -1,17 +1,20 @@
 import { connect } from "react-redux";
-// import { setConfig } from "../../../shared/ducks/config";
-import { chooseTab } from "../ducks/compare";
+import { chooseTab, setColorScheme } from "../ducks/compare";
+import { showModal } from "../ducks/taxon_children_modal";
 import Tabs from "../components/tabs";
 
 function mapStateToProps( state ) {
   return {
-    chosenTab: state.compare.tab
+    chosenTab: state.compare.tab,
+    colorScheme: state.compare.colorScheme
   };
 }
 
 function mapDispatchToProps( dispatch ) {
   return {
-    chooseTab: tab => dispatch( chooseTab( tab ) )
+    chooseTab: tab => dispatch( chooseTab( tab ) ),
+    showTaxonChildrenModal: ( ) => dispatch( showModal( ) ),
+    chooseColorScheme: colorScheme => dispatch( setColorScheme( colorScheme ) )
   };
 }
 

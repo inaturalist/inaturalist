@@ -5,15 +5,14 @@ class FlagsController < ApplicationController
   before_filter :model_required, except: [:index, :update, :show, :on, :destroy]
   before_filter :load_flag, only: [:show, :destroy, :update]
   before_filter :curator_or_owner_required, only: [:update]
-  before_filter :admin_required, only: [:destroy]
   
   # put the parameters for the foreign keys here
   FLAG_MODELS = [ "Observation", "Taxon", "Post", "Comment", "Identification",
-    "Message", "Photo", "List", "Project", "Guide", "GuideSection", "LifeList",
+    "Message", "Photo", "List", "Project", "Guide", "GuideSection",
     "User", "CheckList", "Sound" ]
   FLAG_MODELS_ID = [ "observation_id","taxon_id","post_id", "comment_id",
     "identification_id", "message_id", "photo_id", "list_id", "project_id",
-    "guide_id", "guide_section_id", "life_list_id", "user_id", "check_list_id",
+    "guide_id", "guide_section_id", "user_id", "check_list_id",
     "sound_id" ]
   PARTIALS = %w(dialog)
 
@@ -54,6 +53,15 @@ class FlagsController < ApplicationController
     elsif params[:resolved].noish?
       "no"
     end
+    @deleted = if params[:deleted].blank?
+      "any"
+    elsif params[:deleted] == "any"
+      "any"
+    elsif params[:deleted].yesish?
+      "yes"
+    elsif params[:deleted].noish?
+      "no"
+    end
     @flaggable_type = params[:flaggable_type] if FLAG_MODELS.include?( params[:flaggable_type] )
     @user = User.where( login: params[:user_id] ).first || User.where( id: params[:user_id] ).first
     @user ||= User.where( login: params[:user_name] ).first
@@ -80,6 +88,19 @@ class FlagsController < ApplicationController
       @flags = @flags.where( "resolved" )
     elsif @resolved == "no"
       @flags = @flags.where( "NOT resolved" )
+    end
+    if @flaggable_type
+      if @deleted == "yes"
+        flaggable_klass = Object.const_get( @flaggable_type )
+        @flags = @flags.
+          joins( "LEFT JOIN #{flaggable_klass.table_name} ON #{flaggable_klass.table_name}.id = flags.flaggable_id" ).
+          where( "#{flaggable_klass.table_name}.id IS NULL" )
+      elsif @deleted == "no"
+        flaggable_klass = Object.const_get( @flaggable_type )
+        @flags = @flags.
+          joins( "LEFT JOIN #{flaggable_klass.table_name} ON #{flaggable_klass.table_name}.id = flags.flaggable_id" ).
+          where( "#{flaggable_klass.table_name}.id IS NOT NULL" )
+      end
     end
     if @flagger_type == "auto"
       @flags = @flags.where( "flags.user_id = 0 OR flags.user_id IS NULL" )
@@ -144,11 +165,6 @@ class FlagsController < ApplicationController
     if @flag.flag == "other" && !params[:flag_explanation].blank?
       @flag.flag = params[:flag_explanation]
     end
-    if @flag.flaggable_type == "Observation"
-      @flag.flaggable.wait_for_index_refresh = true
-    elsif @flag.flaggable.respond_to?( :wait_for_obs_index_refresh )
-      @flag.flaggable.wait_for_obs_index_refresh = true
-    end
     if @flag.save
       flash[:notice] = t(:flag_saved_thanks_html, url: url_for( @flag ) )
     else
@@ -185,16 +201,15 @@ class FlagsController < ApplicationController
     if resolver_id = params[:flag].delete("resolver_id")
       params[:flag]["resolver"] = User.find_by_id(resolver_id)
     end
-    if @flag.flaggable && @flag.flaggable_type == "Observation"
-      @flag.flaggable.wait_for_index_refresh = true
-    elsif @flag.flaggable && @flag.flaggable.respond_to?( :wait_for_obs_index_refresh )
-      @flag.flaggable.wait_for_obs_index_refresh = true
-    end
     respond_to do |format|
-      msg = if @flag.update_attributes(params[:flag])
-        t(:flag_saved)
-      else
-        t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence)
+      msg = begin
+        if @flag.update_attributes(params[:flag])
+          t(:flag_saved)
+        else
+          t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence)
+        end
+      rescue Photo::MissingPhotoError
+        "Flag resolved, but the photo in question is gone and cannot be restored"
       end
       if @object.is_a?(Project)
         Project.refresh_es_index
@@ -215,12 +230,24 @@ class FlagsController < ApplicationController
   end
   
   def destroy
-    @object = @flag.flaggable
-    if @flag.flaggable && @flag.flaggable_type == "Observation"
-      @flag.flaggable.wait_for_index_refresh = true
-    elsif @flag.flaggable && @flag.flaggable.respond_to?( :wait_for_obs_index_refresh )
-      @flag.flaggable.wait_for_obs_index_refresh = true
+    unless @flag.deletable_by?( current_user )
+      msg = t(:you_dont_have_permission_to_do_that)
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          if session[:return_to] == request.fullpath
+            redirect_to root_url
+          else
+            redirect_back_or_default( root_url )
+          end
+        end
+        format.json do
+          render status: :unprocessable_entity, json: { error: msg }
+        end
+      end
+      return
     end
+    @object = @flag.flaggable
     @flag.destroy
     if @object.is_a?(Project)
       Project.refresh_es_index

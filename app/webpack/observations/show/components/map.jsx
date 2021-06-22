@@ -140,6 +140,7 @@ class Map extends React.Component {
       taxonMap = (
         <TaxonMap
           key={mapKey}
+          placement="observations-show"
           reloadKey={mapKey}
           taxonLayers={[taxonLayer]}
           observations={[obsForMap]}

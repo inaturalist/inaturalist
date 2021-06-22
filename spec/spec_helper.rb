@@ -93,6 +93,7 @@ RSpec.configure do |config|
   config.filter_run_excluding disabled: true
 end
 
+# Pretend Delayed Job doesn't exist and run all jobs when they are queued
 def without_delay
   Delayed::Worker.delay_jobs = false
   r = yield
@@ -100,9 +101,16 @@ def without_delay
   r
 end
 
-def after_delayed_job_finishes
+# Invoke jobs *after* the block executes, which is closer to what happens in
+# production. ignore_run_at will ignore any run_at scheduling, so *all* queued
+# jobs get invoked immediately after the block
+def after_delayed_job_finishes( ignore_run_at = false )
   r = yield
-  Delayed::Worker.new.work_off
+  if ignore_run_at
+    Delayed::Job.find_each {|j| j.invoke_job }
+  else
+    Delayed::Worker.new.work_off
+  end
   r
 end
 

@@ -109,7 +109,7 @@ class ApplicationController < ActionController::Base
         containing_lat_lng( current_user.latitude, current_user.longitude ).
         where( admin_level: Place::COUNTRY_LEVEL ).first
       if potential_place
-        place_name = t( "places_name.#{potential_place.name.to_s.parameterize.underscore}", default: potential_place.name )
+        place_name = potential_place.translated_name
         session[:potential_place] = {
           id: potential_place.id,
           name: place_name == "United States" ? "the United States" : place_name
@@ -120,10 +120,6 @@ class ApplicationController < ActionController::Base
   end
 
   def check_preferred_site
-    unless params[:test].to_s =~ /network/
-      session.delete(:potential_site)
-      return true
-    end
     return true unless flash.empty?
     return true unless current_user
     if current_user.prefers_no_site?
@@ -138,28 +134,32 @@ class ApplicationController < ActionController::Base
         current_user.latitude = lat.to_f
         current_user.longitude = lon.to_f
       end
-    else
+    end
+    viewing_non_default_site = @site != Site.default
+    viewer_affiliated_with_non_default_site = (
+      !current_user.site.blank? && current_user.site != Site.default
+    )
+    if viewing_non_default_site || viewer_affiliated_with_non_default_site
+      session.delete(:potential_site)
       return true
     end
-    return true unless session[:potential_site].blank?
-    return true if @site != Site.default && current_user.site == @site
     if current_user.latitude && current_user.longitude
       potential_place = Place.
         containing_lat_lng( current_user.latitude, current_user.longitude ).
         where( "places.id IN (?)", Site.where( "NOT draft" ).pluck(:place_id).compact ).first
-      Rails.logger.debug "[DEBUG] potential_place: #{potential_place}"
-      return true unless potential_place
+      unless potential_place
+        session.delete(:potential_site)
+        return true
+      end
       potential_site = Site.where( "NOT draft" ).where( place_id: potential_place.id ).first
-      Rails.logger.debug "[DEBUG] potential_site: #{potential_site}"
-      if potential_site
+      if potential_site && potential_site != current_user.site
         session[:potential_site] = {
           id: potential_site.id,
           name: potential_site.name,
-          place_name: t(
-            "places_name.#{potential_place.name.to_s.parameterize.underscore}",
-            default: potential_place.name
-          )
+          place_name: potential_place.translated_name
         }
+      else
+        session.delete(:potential_site)
       end
     end
     true

@@ -12,7 +12,7 @@
           Warning: there are observations not represented in this complete set
           = link_to t( :view ), observations_path(@observation_search_url_params)
       %h2.pull-left
-        =t :complete_set_for_taxon_in_place_html, taxon: render( "shared/taxon" taxon: @complete_set.taxon, named_ancestor: true ) , place: t( "places_name.#{@complete_set.place.name.parameterize.underscore}", default: @complete_set.place.name)
+        =t :complete_set_for_taxon_in_place_html, taxon: render( "shared/taxon" taxon: @complete_set.taxon, named_ancestor: true ) , place: @complete_set.place.translated_name
       .pull-right= link_to t( :edit ), edit_complete_set_path( @complete_set )
 
   - complete_set_data = {                               |
@@ -44,7 +44,7 @@
     = label_tag "Add species to set"
     = f.text_field :taxon_id, :value => "enter a taxon_id"
     = f.hidden_field :list_id
-    = hidden_field_tag 'success_msg', t( :life_list_updated )
+    = hidden_field_tag 'success_msg', t( :check_list_updated )
     = f.submit t( :add ), :id => "listed_taxon_submit", :class => 'default inline button inlineblock'
     = image_tag( 'spinner.gif', :id => 'listed_taxon_loading', :style => 'display: none' )  
 

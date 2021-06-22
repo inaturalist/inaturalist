@@ -7,9 +7,9 @@ class ProjectUser < ActiveRecord::Base
   after_save :check_role,
              :remove_updates,
              :subscribe_to_assessment_sections_later,
-             :index_project,
              :update_project_observations_later
-  after_destroy :remove_updates, :index_project
+  after_commit :index_project, on: [:create, :update]
+  after_destroy :remove_updates
   validates_uniqueness_of :user_id, :scope => :project_id, :message => "already a member of this project"
   validates_presence_of :project, :user
   validates_rules_from :project, :rule_methods => [:has_time_zone?]
@@ -25,7 +25,19 @@ class ProjectUser < ActiveRecord::Base
     CURATOR_COORDINATE_ACCESS_ANY,
     CURATOR_COORDINATE_ACCESS_NONE
   ]
+  # Specifies whether curators can see hidden coordinates based on who added the observation to the project
   preference :curator_coordinate_access, :string, :default => CURATOR_COORDINATE_ACCESS_OBSERVER
+
+  # Specifies whether curators can see hidden coordinates based on why the coordinates were hidden
+  CURATOR_COORDINATE_ACCESS_FOR_NONE = "none"     # Curators cannot view hidden coords
+  CURATOR_COORDINATE_ACCESS_FOR_TAXON = "taxon"   # Curators can view coords hidden by threatened taxon
+  CURATOR_COORDINATE_ACCESS_FOR_ANY = "any"       # Curators can view coords hidden for any reason
+  preference :curator_coordinate_access_for, :string, default: CURATOR_COORDINATE_ACCESS_FOR_NONE
+
+  # The period of time a collection project curator must wait between changing
+  # the observation requirements and accessing hidden coordinates
+  CURATOR_COORDINATE_ACCESS_WAIT_PERIOD = 1.week
+
   preference :updates, :boolean, :default => true
   
   CURATOR_CHANGE_NOTIFICATION = "curator_change"
@@ -40,7 +52,7 @@ class ProjectUser < ActiveRecord::Base
     # don't bother queuing this if there's no relevant role change
     queue_if: Proc.new{ |pu|
       !pu.project.is_new_project? &&
-        pu.role_changed? &&
+        pu.previous_changes[:role] &&
         ( ROLES.include?(pu.role) || pu.user_id == pu.project.user_id )
     },
     # check to make sure role status hasn't changed since queuing

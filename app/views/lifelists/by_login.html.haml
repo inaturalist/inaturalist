@@ -1,7 +1,6 @@
 - content_for :title do
   = raw t( :life_list, user: @user.login )
 - content_for :extracss do
-  = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
   = stylesheet_link_tag "lifelists"
 - content_for :extrajs do
   :ruby
@@ -13,25 +12,10 @@
     :ruby
       js_current_user = { id: current_user.id,
         login: current_user.login,
-        curator_project_ids: current_user.project_users.curator_privilege.pluck(:project_id),
-        icon_url: current_user.icon.file? ? current_user.icon.url(:medium) : nil,
-        roles: current_user.roles.map(&:name),
-        prefers_skip_coarer_id_modal: current_user.prefers_skip_coarer_id_modal,
-        prefers_hide_obs_show_annotations: current_user.prefers_hide_obs_show_annotations,
-        prefers_hide_obs_show_projects: current_user.prefers_hide_obs_show_projects,
-        prefers_hide_obs_show_tags: current_user.prefers_hide_obs_show_tags,
-        prefers_hide_obs_show_observation_fields: current_user.prefers_hide_obs_show_observation_fields,
-        prefers_hide_obs_show_identifiers: current_user.prefers_hide_obs_show_identifiers,
-        prefers_hide_obs_show_copyright: current_user.prefers_hide_obs_show_copyright,
-        prefers_hide_obs_show_quality_metrics: current_user.prefers_hide_obs_show_quality_metrics,
-        prefers_hide_obs_show_expanded_cid: current_user.prefers_hide_obs_show_expanded_cid,
-        prefers_medialess_obs_maps: current_user.prefers_medialess_obs_maps,
-        preferred_observation_license: (current_user.preferred_observation_license || "").downcase,
         prefers_scientific_name_first: current_user.prefers_scientific_name_first,
-        blockedUserHashes: current_user.user_blocks.map{|ub| Digest::MD5.hexdigest( ub.blocked_user_id.to_s ) },
-        blockedByUserHashes: current_user.user_blocks_as_blocked_user.map{|ub| Digest::MD5.hexdigest( ub.user_id.to_s ) },
-        trusted_user_ids: current_user.friendships.where( "trust" ).pluck(:friend_id),
-        testGroups: current_user.test_groups_array
+        preferred_lifelist_nav_view: (current_user.preferred_lifelist_nav_view || ""),
+        preferred_lifelist_details_view: (current_user.preferred_lifelist_details_view || ""),
+        preferred_lifelist_tree_mode: (current_user.preferred_lifelist_tree_mode || ""),
       }
   :javascript
     var LIFELIST_USER = #{ js_lifelist_user.to_json.html_safe };
@@ -56,6 +40,7 @@
         square: "#{image_url(LocalPhoto.new.file.url(:square))}"
       }
     };
+    var INITIAL_PLACE = #{ @place ? { id: @place.id, display_name: @place.display_name }.to_json.html_safe : "null" };
   = javascript_include_tag "lifelists-show-webpack"
 
 #app

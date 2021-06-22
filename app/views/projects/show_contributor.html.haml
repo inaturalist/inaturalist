@@ -70,8 +70,21 @@
         %label{ class: @project.is_new_project? ? "disabled" : nil }
           =t 'views.projects.curator_coordinate_access_label'
         - if @project.is_new_project?
-          .description
-            =t "views.projects.collection_and_umbrellas_do_not_support"
+          = f.form_field t(:trust_this_project_with_your_private_coordinates?), description: t(:about_trusting_projects_overview) do
+            = f.radio_button :prefers_curator_coordinate_access_for, ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_NONE,
+              label_after: true,
+              label: t(:no),
+              data: { autosubmit: true }
+            = f.radio_button :prefers_curator_coordinate_access_for, ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY,
+              label_after: true,
+              label: t(:yes_for_any_of_my_observations),
+              description: t(:about_trusting_projects_options_any_desc),
+              data: { autosubmit: true }
+            = f.radio_button :prefers_curator_coordinate_access_for, ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON,
+              label_after: true,
+              label: t(:yes_but_only_for_threatened),
+              description: t(:about_trusting_projects_options_taxon_desc),
+              data: { autosubmit: true }
         - else
           - [ProjectUser::CURATOR_COORDINATE_ACCESS_ANY, ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER, ProjectUser::CURATOR_COORDINATE_ACCESS_NONE].each do |option|
             = f.radio_button :preferred_curator_coordinate_access, option,

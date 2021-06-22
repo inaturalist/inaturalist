@@ -30,7 +30,7 @@ const App = ( {
   rootTaxonID,
   updatedAt
 } ) => {
-  let body = "todo";
+  let body;
   const inatUser = user ? new inatjs.User( user ) : null;
   const defaultSite = _.find( sites, s => s.id === DEFAULT_SITE_ID );
   if ( !year ) {
@@ -86,8 +86,8 @@ const App = ( {
             site={site && site.id !== DEFAULT_SITE_ID ? site : null}
           />
         ) }
-        { window.location.search.match( /test=compare/ ) && data && data.taxa && data.taxa.accumulation && (
-          <Compare data={data} year={year} />
+        { data && data.taxa && data.taxa.accumulation && (
+          <Compare data={data} year={year} forUser />
         ) }
         { data.publications && (
           <Publications data={data.publications} year={year} />
@@ -103,7 +103,11 @@ const App = ( {
           )
         }
         { !user && <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} /> }
-        { !user && ( !site || site.id === DEFAULT_SITE_ID ) && <Donate year={year} /> }
+        { !user && ( !site || site.id === DEFAULT_SITE_ID ) && (
+          <div>
+            <Donate year={year} data={data} />
+          </div>
+        ) }
         { updatedAt && (
           <p className="updated-at text-center text-muted">
             { I18n.t( "views.stats.year.stats_generated_datetime", {
@@ -125,13 +129,13 @@ const App = ( {
               data-mobile-iframe="true"
             >
               <a
-                // className="fb-xfbml-parse-ignore"
                 className="btn btn-primary btn-inat facebook-share-button"
                 target="_blank"
                 rel="noopener noreferrer"
                 href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.toString( ).replace( /#.+/, "" )}&amp;src=sdkpreparse`}
               >
-                <img src="/assets/facebook-f-logo-white.svg" alt={I18n.t( "facebook" )} />
+                { /* eslint-disable-next-line no-undef */ }
+                <img src={FB_LOGO_URL} alt={I18n.t( "facebook" )} />
                 { I18n.t( "facebook" ) }
               </a>
             </div>
@@ -139,11 +143,28 @@ const App = ( {
               className="btn btn-primary btn-inat twitter-share-button"
               href={`https://twitter.com/intent/tweet?text=Check+these+${year}+${site.site_name_short || site.name}+stats!&url=${window.location.toString( ).replace( /#.+/, "" )}`}
               data-size="large"
+              target="_blank"
               rel="noopener noreferrer"
             >
               <i className="fa fa-twitter" />
               { I18n.t( "twitter" ) }
             </a>
+            { /* eslint-disable-next-line no-undef */ }
+            { SHAREABLE_IMAGE_URL && (
+              <a
+                className="btn btn-bordered"
+                href={
+                  /* eslint-disable-next-line no-undef */
+                  SHAREABLE_IMAGE_URL
+                }
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fa fa-download" />
+                { I18n.t( "download" ) }
+              </a>
+            ) }
           </center>
         </div>
       </div>

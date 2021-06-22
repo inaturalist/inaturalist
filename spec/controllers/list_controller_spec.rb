@@ -5,42 +5,35 @@ describe ListsController do
   describe "create" do
     it "allow creation of multiple types" do
       taxon = Taxon.make!
-      user = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
+      user = UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER ).user
       sign_in user
-      post :create, list: { title: "foo", type: "LifeList"}, taxa: [{ taxon_id: taxon.id}]
+      place = make_place_with_geom(user: user)
+      post :create, list: { title: "foo", type: "CheckList"}, taxa: [{ taxon_id: taxon.id}], place: place.id
       expect(response).to be_redirect
-      list = user.lists.last
-      expect(list.rules.first.operand_id).to be(taxon.id)
-      expect(list).to be_a(LifeList)
+      list = List.where(place_id: place.id).last
+      expect(list).to be_a(CheckList)
     end
 
     it "does not create lists for users without speech privilege" do
       taxon = Taxon.make!
       user = User.make!
       sign_in user
-      expect( user.lists.count ).to eq 1
+      expect( user.lists.count ).to eq 0
       post :create, list: { title: "foo" }, taxa: [{ taxon_id: taxon.id}]
-      expect( user.lists.count ).to eq 1
+      expect( user.lists.count ).to eq 0
     end
 
     it "creates lists for users with speech privilege" do
       taxon = Taxon.make!
       user = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
       sign_in user
-      expect( user.lists.count ).to eq 1
+      expect( user.lists.count ).to eq 0
       post :create, list: { title: "foo" }, taxa: [{ taxon_id: taxon.id}]
-      expect( user.lists.count ).to eq 2
+      expect( user.lists.count ).to eq 1
     end
   end
 
   describe "destroy" do
-    it "should not allow you to delete your own life list" do
-      u = User.make!
-      sign_in u
-      delete :destroy, :id => u.life_list_id
-      expect(List.find_by_id(u.life_list_id)).not_to be_blank
-    end
-
     it "should not allow anyone to delete a default project list" do
       p = Project.make!
       u = p.user

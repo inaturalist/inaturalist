@@ -404,7 +404,6 @@ ActiveRecord::Schema.define(:version => 20130102225500) do
     t.integer  "positional_accuracy"
     t.decimal  "private_latitude",                                :precision => 15, :scale => 10
     t.decimal  "private_longitude",                               :precision => 15, :scale => 10
-    t.integer  "private_positional_accuracy"
     t.string   "geoprivacy"
     t.string   "quality_grade",                                                                   :default => "casual"
     t.point    "geom",                             :limit => nil

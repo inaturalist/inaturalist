@@ -61,6 +61,9 @@ class LocationChooserMap extends React.Component {
     if ( this.map && !center ) {
       setTimeout( this.fitCircles, 10 );
     }
+    if ( this.map ) {
+      iNaturalist.log( { "map-placement": "observations-upload-location-chooser" } );
+    }
   }
 
   shouldComponentUpdate( nextProps ) {

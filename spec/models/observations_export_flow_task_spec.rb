@@ -25,25 +25,26 @@ describe ObservationsExportFlowTask do
     end
   end
   describe "run" do
-    before do
-      # not sure why the before(:each) in spec_helper may not have run yet here
-      make_default_site
-      @o = Observation.make!
-      @ft = ObservationsExportFlowTask.make
-      @ft.inputs.build(:extra => {:query => "user_id=#{@o.user_id}"})
-      @ft.save!
-      @ft.run
-    end
-    it "should generate a zipped csv archive by default" do
-      output = @ft.outputs.first
-      expect(output).not_to be_blank
-      expect(output.file.path).to be =~ /csv.zip$/
-    end
-
-    it "should filter by user_id" do
-      csv = CSV.open(File.join(@ft.work_path, "#{@ft.basename}.csv")).to_a
-      expect(csv.size).to eq 2
-      expect(csv[1]).to include @o.id.to_s
+    describe "user_id filter" do
+      before do
+        # not sure why the before(:each) in spec_helper may not have run yet here
+        make_default_site
+        @o = Observation.make!
+        @ft = ObservationsExportFlowTask.make
+        @ft.inputs.build(:extra => {:query => "user_id=#{@o.user_id}"})
+        @ft.save!
+        @ft.run
+      end
+      it "should generate a zipped csv archive by default" do
+        output = @ft.outputs.first
+        expect(output).not_to be_blank
+        expect(output.file.path).to be =~ /csv.zip$/
+      end
+      it "should work" do
+        csv = CSV.open(File.join(@ft.work_path, "#{@ft.basename}.csv")).to_a
+        expect(csv.size).to eq 2
+        expect(csv[1]).to include @o.id.to_s
+      end
     end
 
     it "should filter by year" do
@@ -76,10 +77,27 @@ describe ObservationsExportFlowTask do
       expect(csv[2]).to include o2.id.to_s
     end
 
+    it "should filter by without_taxon_id" do
+      u = User.make!
+      o_of_taxon = Observation.make!( user: u, taxon: Taxon.make! )
+      o_of_other_taxon = Observation.make!( user: u, taxon: Taxon.make! )
+      expect( u.observations.count ).to eq 2
+      ft = ObservationsExportFlowTask.make
+      ft.inputs.build( extra: { query: "user_id=#{u.id}&without_taxon_id=#{o_of_taxon.taxon.id}" } )
+      ft.save!
+      ft.run #( debug: true, logger: Logger.new( STDOUT ) )
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
+      expect( csv.size ).to eq 2
+      taxon_id_col_idx = csv[0].index( "taxon_id" )
+      expect( csv.detect{|row| row[taxon_id_col_idx].to_i == o_of_taxon.taxon.id } ).to be_blank
+      expect( csv.detect{|row| row[taxon_id_col_idx].to_i == o_of_other_taxon.taxon.id } ).not_to be_blank
+    end
+
     it "should allow JSON output" do
+      o = Observation.make!
       ft = ObservationsExportFlowTask.make
       ft.options = {:format => "json"}
-      ft.inputs.build(:extra => {:query => "user_id=#{@o.user_id}"})
+      ft.inputs.build(:extra => {:query => "user_id=#{o.user_id}"})
       ft.save!
       ft.run
       output = ft.outputs.first
@@ -197,6 +215,182 @@ describe ObservationsExportFlowTask do
       csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
       expect(csv.size).to eq 2
       expect(csv[1]).to include o.private_latitude.to_s
+    end
+
+    describe "for collection projects" do
+      let(:place) { make_place_with_geom }
+      let(:user) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
+      let(:project) {
+        p = Project.make!(
+          project_type: "collection",
+          user: user,
+          prefers_user_trust: true,
+          created_at: 2.weeks.ago,
+          updated_at: 2.weeks.ago
+        )
+        p.project_observation_rules.create( operator: "observed_in_place?", operand: place )
+        p.update_attribute( :observation_requirements_updated_at, 2.weeks.ago )
+        p
+      }
+      def stub_api_requests_for_observation( o, options = {} )
+        Delayed::Worker.new.work_off
+        PlaceDenormalizer.denormalize
+        es_o = Observation.elastic_search( where: { id: o.id } ).results[0]
+        # make sure it's indexed
+        expect( es_o.id.to_i ).to eq o.id
+        # When you specify a project, the export will use the API, so we're
+        # stubbing the API response here
+        # This stubs the first request
+        stub_request(:get, /\/v1\/observations\?.*id_above=1[^\d]/).
+          to_return(
+            status: 200,
+            body: {
+              total_results: options[:obs_not_in_project] ? 0 : 1,
+              page: 1,
+              per_page: 1,
+              results: options[:obs_not_in_project] ? [] : [
+                { id: o.id }
+              ],
+              test: "stub working for first request"
+            }.to_json,
+            headers: { "Content-Type" => "application/json" }
+          )
+        # This stubs second and subsequent requests
+        stub_request(:get, /\/v1\/observations\?.*id_above=[2-9]/).
+          to_return(
+            status: 200,
+            body: {
+              total_results: 1,
+              page: 2,
+              per_page: 1,
+              results: [],
+              test: "stub working for second request"
+            }.to_json,
+            headers: { "Content-Type" => "application/json" }
+          )
+        stub_request(:get, /\/v1\/observations\?.*per_page=1/).
+          to_return(
+            status: 200,
+            body: {
+              total_results: options[:obs_not_in_project] ? 0 : 1,
+              page: 1,
+              per_page: 1,
+              results: options[:obs_not_in_project] ? [] : [
+                { id: o.id }
+              ],
+              test: "stub working for total_entries request"
+            }.to_json,
+            headers: { "Content-Type" => "application/json" }
+          )
+        # stub the request to get collection project membership
+        stub_request(:get, /\/v1\/observations\/#{o.id}\?.*include_new_projects/).
+          to_return(
+            status: 200,
+            body: {
+              total_results: options[:obs_not_in_project] ? 0 : 1,
+              page: 1,
+              per_page: 1,
+              results: options[:obs_not_in_project] ? [] : [
+                {
+                  id: o.id,
+                  non_traditional_projects: options[:coordinates_not_viewable] ? [] : [
+                    project: {
+                      id: project.id
+                    }
+                  ]
+                }
+              ],
+              test: "stub working for second request"
+            }.to_json,
+            headers: { "Content-Type" => "application/json" }
+          )
+      end
+      def export_csv_for_project( p )
+        ft = ObservationsExportFlowTask.make( user: p.user )
+        ft.inputs.build( extra: { query: "projects[]=#{p.id}" })
+        ft.save!
+        ft.run #( debug: true, logger: Logger.new( STDOUT ) )
+        f = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) )
+        csv = f.to_a
+        f.close
+        csv
+      end
+      it "should include private coordinates if the observer trusts you with anything" do
+        pu = ProjectUser.make!(
+          project: project,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        )
+        o = Observation.make!(
+          user: pu.user,
+          latitude: place.latitude,
+          longitude: place.longitude,
+          geoprivacy: Observation::PRIVATE
+        )
+        stub_api_requests_for_observation( o )
+        csv = export_csv_for_project( project)
+        expect( csv.size ).to eq 2
+        expect( csv[1] ).to include o.private_latitude.to_s
+      end
+      it "should include private coordinates if the observer trusts you with threatened taxa and the observed taxon is threatened" do
+        pu = ProjectUser.make!(
+          project: project,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON
+        )
+        o = Observation.make!(
+          user: pu.user,
+          latitude: place.latitude,
+          longitude: place.longitude,
+          taxon: make_threatened_taxon
+        )
+        stub_api_requests_for_observation( o )
+        csv = export_csv_for_project( project )
+        expect( csv.size ).to eq 2
+        expect( csv[1] ).to include o.private_latitude.to_s
+      end
+      it "should not include private coordinates if the observer trusts you with threatened taxa and the observed taxon is threatened and geoprivacy is obscured" do
+        pu = ProjectUser.make!(
+          project: project,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON
+        )
+        o = Observation.make!(
+          user: pu.user,
+          latitude: place.latitude,
+          longitude: place.longitude,
+          taxon: make_threatened_taxon,
+          geoprivacy: Observation::OBSCURED
+        )
+        stub_api_requests_for_observation( o, coordinates_not_viewable: true )
+        csv = export_csv_for_project( project )
+        expect( csv.size ).to eq 2
+        expect( csv[1] ).not_to include o.private_latitude.to_s
+      end
+      it "should not include private coordinates if the observation is not in the project" do
+        pu = ProjectUser.make!(
+          project: project,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON
+        )
+        o = Observation.make!(
+          user: pu.user,
+          latitude: place.latitude + 10,
+          longitude: place.longitude + 10,
+          geoprivacy: Observation::OBSCURED
+        )
+        stub_api_requests_for_observation( o, obs_not_in_project: true )
+        csv = export_csv_for_project( project )
+        expect( csv.size ).to eq 1
+        expect( csv.to_s ).not_to include o.private_latitude.to_s
+      end
+      it "should not include private coordinates if the observer is not in the project" do
+        o = Observation.make!(
+          latitude: place.latitude,
+          longitude: place.longitude,
+          geoprivacy: Observation::PRIVATE
+        )
+        stub_api_requests_for_observation( o, coordinates_not_viewable: true )
+        csv = export_csv_for_project( project)
+        expect( csv.size ).to eq 2
+        expect( csv[1] ).not_to include o.private_latitude.to_s
+      end
     end
   end
 

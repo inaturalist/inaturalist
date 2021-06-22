@@ -1,0 +1,26 @@
+= render "header"
+%h1 Curator Application
+
+%table{ cellpadding: 5 }
+  %tbody
+    %tr
+      %th User
+      %td
+        = link_to @user.login, person_url( @user ), target: "_blank"
+        = link_to "[curate]", user_detail_admin_url( @user ), target: "_blank"
+    %tr
+      %th User created at
+      %td=l @user.created_at
+    %tr
+      %th Observations
+      %td= link_to @user.observations_count, observations_url( user_id: @user.login ), target: "_blank"
+    %tr
+      %th Identifications
+      %td= link_to @user.identifications_count, identifications_by_login_url( login: @user.login ), target: "_blank"
+
+
+- [:explanation, :taxonomy_examples, :name_examples, :moderation_examples].each do |a|
+  %h2=t "curator_application_fields_#{a}_html"
+  %blockquote= @application[a]
+
+= render "footer"

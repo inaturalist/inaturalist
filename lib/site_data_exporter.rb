@@ -30,7 +30,7 @@ class SiteDataExporter
     private_place_guess
     private_latitude
     private_longitude
-    private_positional_accuracy
+    public_positional_accuracy
     geoprivacy
     taxon_geoprivacy
     coordinates_obscured
@@ -116,13 +116,18 @@ class SiteDataExporter
     @dbname = ActiveRecord::Base.configurations[Rails.env]["database"]
     @dbhost = ActiveRecord::Base.configurations[Rails.env]["host"]
     @max_obs_id = options[:max_obs_id] || Observation.calculate(:maximum, :id)
+    @num_processes = options[:num_processes].to_i > 0 ? options[:num_processes].to_i : 3
     @options = options
+  end
+
+  def self.basename_for_site( site )
+    "#{site.name.parameterize}-#{site.id}"
   end
 
   def export
     # Make a temp dir
     @work_dir = Dir.mktmpdir
-    @basename = "#{@site_name.parameterize}-#{@site.id}-#{Date.today.to_s.gsub(/\-/, '')}-#{Time.now.to_i}"
+    @basename = SiteDataExporter.basename_for_site( @site )
     @work_path = File.join( @work_dir, @basename )
     FileUtils.mkdir_p @work_path, :mode => 0755
 
@@ -168,7 +173,6 @@ class SiteDataExporter
         creator_id,
         updater_id,
         observations_count,
-        listed_taxa_count,
         rank_level,
         unique_name,
         wikipedia_title,
@@ -345,7 +349,7 @@ class SiteDataExporter
     }
     base_results = Observation.elastic_search( base_es_params.merge( per_page: 0 ) )
     total_entries = base_results.total_entries
-    num_partitions = total_entries < 10000 ? 1 : 3
+    num_partitions = total_entries < 10000 ? 1 : @num_processes
     partition_offset = @max_obs_id / num_partitions
     partitions = num_partitions.times.map do |i|
       (i*partition_offset..(i+1)*partition_offset)

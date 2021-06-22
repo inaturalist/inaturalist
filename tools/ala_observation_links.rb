@@ -70,7 +70,7 @@ puts "Re-indexing #{obs_ids_to_index.size} observations..."
 obs_ids_to_index = obs_ids_to_index.compact.uniq
 obs_ids_to_index.in_groups_of( 500 ) do |group|
   print '.'
-  Observation.elastic_index!( ids: group.compact )
+  Observation.elastic_index!( ids: group.compact, wait_for_index_refresh: true )
 end
 puts
 

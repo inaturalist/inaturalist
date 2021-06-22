@@ -40,7 +40,7 @@
             %li
               = link_to url_for_params(:place_id => place.id, :without => [:page]) do
                 %span.badge.right= @nav_places_counts[place.id]
-                =t 'places_name.'+place.name.downcase.gsub(' ','_'), :default => place.name
+                = place.translated_name
                 - if place.place_type_name
                   .text-muted
                     %small= t("place_geo.geo_planet_place_types.#{place.place_type_name.to_s.gsub(' ','_')}", :default => place.place_type_name)

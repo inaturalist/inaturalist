@@ -95,7 +95,8 @@ describe Observation do
         # ["2017/03/12 12:17 AM PDT", month: 3, day: 12, hour: 0, offset: "-07:00"], # this doesn't work.. why...
         ["2017/04/12 12:17 AM PDT", month: 4, day: 12, hour: 0, offset: "-07:00"],
         ["2020/09/02 8:28 PM UTC", month: 9, day: 2, hour: 20, offset: "+00:00"],
-        ["2020/09/02 8:28 PM GMT", month: 9, day: 2, hour: 20, offset: "+00:00"]
+        ["2020/09/02 8:28 PM GMT", month: 9, day: 2, hour: 20, offset: "+00:00"],
+        ["2021-03-02T13:00:10.000-06:00", month: 3, day: 2, hour: 13, offset: "-06:00"]
       ].each do |date_string, opts|
         o = Observation.make!(:observed_on_string => date_string)
         expect(o.observed_on.day).to eq opts[:day]
@@ -213,12 +214,12 @@ describe Observation do
       expect(@observation.identifications.first.taxon).to eq @observation.taxon
     end
   
-    it "should queue a DJ job to refresh lists" do
+    it "should not queue a DJ job to refresh lists" do
       Delayed::Job.delete_all
       stamp = Time.now
       Observation.make!(:taxon => Taxon.make!)
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      expect(jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}).not_to be_blank
+      expect(jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}).to be_blank
     end
   
     it "should properly parse relative datetimes like '2 days ago'" do
@@ -578,9 +579,6 @@ describe Observation do
     end
 
     describe "identification category" do
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
-      
       it "should be set" do
         t = Taxon.make!
         o = Observation.make!( taxon: t )
@@ -609,6 +607,37 @@ describe Observation do
       o = Observation.make( latitude: 1, longitude: -181 )
       expect( o ).not_to be_valid
       expect( o.errors[:longitude] ).not_to be_blank
+    end
+
+    it "should set time_zone to the Rails time zone even when set to the zic time zone" do
+      tz = ActiveSupport::TimeZone["Pacific Time (US & Canada)"]
+      o = Observation.make!( time_zone: tz.tzinfo.name )
+      expect( o.time_zone ).to eq tz.name
+      expect( o.zic_time_zone ).to eq tz.tzinfo.name
+    end
+
+    it "should set zic_time_zone to the zic time zone even when set to the Rails time zone" do
+      tz = ActiveSupport::TimeZone["Pacific Time (US & Canada)"]
+      o = Observation.make!( zic_time_zone: tz.name )
+      expect( o.time_zone ).to eq tz.name
+      expect( o.zic_time_zone ).to eq tz.tzinfo.name
+    end
+
+    it "should set time_zone to a Rails time zone when a zic time zone we know about was specified but Rails ignores it" do
+      ignored_time_zones = { "America/Toronto" => "Eastern Time (US & Canada)" }
+      ignored_time_zones.each do |tz_name, rails_name|
+        o = Observation.make!( time_zone: tz_name )
+        expect( o.time_zone ).to eq rails_name
+      end
+    end
+
+    it "should set time_zone to the user's time zone when a zic time zone we don't know about was specified but Rails ignores it" do
+      u = User.make!( time_zone: "Pacific Time (US & Canada)" )
+      iana_tz = "America/Bahia"
+      expect( ActiveSupport::TimeZone[iana_tz] ).not_to be_nil
+      expect( ActiveSupport::TimeZone::MAPPING.invert[iana_tz] ).to be_nil
+      o = Observation.make!( user: u, time_zone: "America/Bahia" )
+      expect( o.time_zone ).to eq u.time_zone
     end
 
   end
@@ -747,34 +776,7 @@ describe Observation do
       expect(obs.iconic_taxon).to be_blank
     end
 
-    it "should add a new taxon to the user's life list" do
-      o = without_delay { Observation.make!(taxon: Taxon.make!) }
-      expect( o.user.life_list.taxa ).to include o.taxon
-      without_delay { o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id ) }
-      o.reload
-      expect( o.user.life_list.taxa ).to include o.taxon
-    end
-
-    it "should remove an old taxon from the user's life list if that was the only obs" do
-      o = without_delay { Observation.make!(taxon: Taxon.make!) }
-      old_taxon = o.taxon
-      expect( o.user.life_list.taxa ).to include o.taxon
-      without_delay { o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id ) }
-      o.reload
-      expect( o.user.life_list.taxa ).not_to include old_taxon
-    end
-
-    it "should not remove an old taxon from the user's life list if that was not the only obs" do
-      o = without_delay { Observation.make!(taxon: Taxon.make!) }
-      o1 = without_delay { Observation.make!(taxon: o.taxon, user: o.user) }
-      old_taxon = o.taxon
-      expect( o.user.life_list.taxa ).to include o.taxon
-      without_delay { o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id ) }
-      o.reload
-      expect( o.user.life_list.taxa ).to include old_taxon
-    end
-
-    it "should queue refresh jobs for associated project lists if the taxon changed" do
+    it "should not queue refresh jobs for associated project lists if the taxon changed" do
       o = Observation.make!(:taxon => Taxon.make!)
       pu = ProjectUser.make!(:user => o.user)
       po = ProjectObservation.make!(:observation => o, :project => pu.project)
@@ -782,8 +784,7 @@ describe Observation do
       stamp = Time.now
       o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      # puts jobs.map(&:handler).inspect
-      expect(jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}).not_to be_blank
+      expect(jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}).to be_blank
     end
   
     it "should queue refresh job for check lists if the coordinates changed" do
@@ -792,11 +793,10 @@ describe Observation do
       stamp = Time.now
       o.update_attributes(:latitude => o.latitude + 1)
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
       expect(jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}).not_to be_blank
     end
 
-    it "should only queue one job to refresh life lists if taxon changed" do
+    it "should not queue job to refresh life lists if taxon changed" do
       o = Observation.make!(:taxon => Taxon.make!)
       Delayed::Job.delete_all
       stamp = Time.now
@@ -804,10 +804,10 @@ describe Observation do
         o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
       end
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      expect(jobs.select{|j| j.handler =~ /LifeList.*refresh_with_observation/m}.size).to eq(1)
+      expect(jobs.select{|j| j.handler =~ /LifeList.*refresh_with_observation/m}.size).to eq(0)
     end
 
-    it "should only queue one job to refresh project lists if taxon changed" do
+    it "should not queue job to refresh project lists if taxon changed" do
       po = make_project_observation(:taxon => Taxon.make!)
       o = po.observation
       Delayed::Job.delete_all
@@ -816,7 +816,7 @@ describe Observation do
         o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
       end
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      expect(jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}.size).to eq(1)
+      expect(jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}.size).to eq(0)
     end
 
     it "should only queue one check list refresh job" do
@@ -827,7 +827,6 @@ describe Observation do
         o.update_attributes(:latitude => o.latitude + 1)
       end
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
       expect(jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}.size).to eq(1)
     end
   
@@ -844,7 +843,7 @@ describe Observation do
       # puts job.handler.inspect
     end
   
-    it "should queue refresh job for project lists if the taxon changed" do
+    it "should not queue refresh job for project lists if the taxon changed" do
       po = make_project_observation
       o = po.observation
       Delayed::Job.delete_all
@@ -853,7 +852,7 @@ describe Observation do
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       pattern = /ProjectList.*refresh_with_observation/m
       job = jobs.detect{|j| j.handler =~ pattern}
-      expect(job).not_to be_blank
+      expect(job).to be_blank
       # puts job.handler.inspect
     end
   
@@ -888,11 +887,6 @@ describe Observation do
     end
   
     describe "quality_grade" do
-
-      # some identification deletion callbacks need to happen after the transaction is complete
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
-    
       it "should become research when it qualifies" do
         o = Observation.make!(:taxon => Taxon.make!(rank: 'species'), latitude: 1, longitude: 1)
         i = Identification.make!(:observation => o, :taxon => o.taxon)
@@ -1425,18 +1419,17 @@ describe Observation do
       expect(p.observations_count).to eq(0)
     end
 
-    it "should update a life listed taxon stats" do
+    it "should not update a listed taxon stats" do
       t = Taxon.make!
       u = User.make!
-      without_delay do
-        l = LifeList.make!(user: u)
-        l.add_taxon(t)
-      end
+      l = List.make!(user: u)
+      lt = ListedTaxon.make!(list: l, taxon: t)
+      expect(lt.first_observation).to be_blank
       o1 = without_delay { Observation.make!(taxon: t, user: u, observed_on_string: '2014-03-01') }
       o2 = without_delay { Observation.make!(taxon: t, user: u, observed_on_string: '2015-03-01') }
-      lt = o1.user.life_list.listed_taxa.where(taxon_id: t.id).first
-      expect(lt.first_observation).to eq o1
-      expect(lt.last_observation).to eq o2
+      lt.reload
+      expect(lt.first_observation).to  be_blank
+      expect(lt.last_observation).to  be_blank
     end
   end
 
@@ -1456,12 +1449,12 @@ describe Observation do
       expect(user.observations_count).to eq old_count - 1
     end
   
-    it "should queue a DJ job to refresh lists" do
+    it "should not queue a DJ job to refresh lists" do
       Delayed::Job.delete_all
       stamp = Time.now
       Observation.make!(:taxon => Taxon.make!)
       jobs = Delayed::Job.where("created_at >= ?", stamp)
-      expect(jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}).not_to be_blank
+      expect(jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}).to be_blank
     end
 
     it "should delete associated updates" do
@@ -1742,8 +1735,6 @@ describe Observation do
     end
     
     describe "has_photos" do
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
       it "should find observations with photos" do
         make_observation_photo(:observation => @pos)
         obs = Observation.has_photos.all
@@ -1965,9 +1956,6 @@ describe Observation do
       place_guess: original_place_guess
     } }
 
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
-  
     it "should be set automatically if the taxon is threatened" do
       observation = Observation.make!( defaults )
       expect( observation.taxon ).to be_threatened
@@ -2074,7 +2062,7 @@ describe Observation do
       expect( o.coordinates_viewable_by?( pu.user ) ).to be false
     end
 
-    it "should be visible to managers of projects if observer prefers it" do
+    it "should be visible to managers of projects if observer allows it for this observation" do
       po = ProjectObservation.make!( prefers_curator_coordinate_access: true )
       expect( po.observation.user.project_ids ).not_to include po.project_id
       o = po.observation
@@ -2091,6 +2079,159 @@ describe Observation do
       i = Identification.make!( observation: o )
       o.reload
       expect( o.private_place_guess ).to eq original_place_guess
+    end
+
+    describe "curator_coordinate_access_for" do
+      let(:place) { make_place_with_geom }
+      let(:project) do
+        proj = Project.make(:collection)
+        proj.update_attributes( prefers_user_trust: true )
+        pu = ProjectUser.make!(
+          project: proj,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        )
+        proj.project_observation_rules << ProjectObservationRule.new( operator: "observed_in_place?", operand: place )
+        proj.reload
+        proj
+      end
+      let(:non_curator) do
+        u = ProjectUser.make!( project: project ).user
+        u.reload
+        u
+      end
+      let(:curator) do
+        u = ProjectUser.make!( project: project, role: ProjectUser::CURATOR ).user
+        u.reload
+        u
+      end
+      def stub_api_response_for_observation( o )
+        response_json = <<-JSON
+          {
+            "results": [
+              {
+                "id": #{o.id},
+                "non_traditional_projects": [
+                  {
+                    "project": {
+                      "id": #{project.id}
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        JSON
+        stub_request(:get, /#{INatAPIService::ENDPOINT}/).to_return(
+          status: 200,
+          body: response_json,
+          headers: { "Content-Type" => "application/json" }
+        )
+      end
+      let(:o) do
+        Observation.make!( latitude: place.latitude, longitude: place.longitude, taxon: make_threatened_taxon )
+      end
+      it "should not allow curator access by default" do
+        pu = ProjectUser.make!( project: project, user: o.user )
+        stub_api_response_for_observation( o )
+        expect( o ).to be_in_collection_projects( [project] )
+        expect( o ).to be_coordinates_obscured
+        expect( o.coordinates_viewable_by?( curator ) ).to be false
+      end
+      it "should not allow curator access if the project observation requirements changed during the wait period" do
+        expect( project.observation_requirements_updated_at ).to be > ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+        pu = ProjectUser.make!(
+          project: project,
+          user: o.user,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        )
+        stub_api_response_for_observation( o )
+        expect( o ).to be_in_collection_projects( [project] )
+        expect( o ).to be_coordinates_obscured
+        expect( o.coordinates_viewable_by?( curator ) ).to be false
+      end
+      it "should allow curator access if the project observation requirements changed beofre the wait period" do
+        allow_any_instance_of( Project ).to receive(:observation_requirements_updated_at).
+          and_return( ( ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD + 1.week ).ago )
+        expect( project.observation_requirements_updated_at ).to be < ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+        pu = ProjectUser.make!(
+          project: project,
+          user: o.user,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        )
+        stub_api_response_for_observation( o )
+        expect( o ).to be_in_collection_projects( [project] )
+        expect( o ).to be_coordinates_obscured
+        expect( o.coordinates_viewable_by?( curator ) ).to be true
+      end
+      describe "taxon" do
+        let(:pu) do
+          ProjectUser.make!(
+            project: project,
+            user: o.user,
+            prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON
+          )
+        end
+        before do
+          allow_any_instance_of( Project ).to receive(:observation_requirements_updated_at).
+            and_return( ( ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD + 1.week ).ago )
+          expect( project.observation_requirements_updated_at ).to be < ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+          expect( pu.preferred_curator_coordinate_access_for ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON
+        end
+        it "should allow curator access to coordinates of a threatened taxon" do
+          stub_api_response_for_observation( o )
+          expect( o ).to be_in_collection_projects( [project] )
+          expect( o ).to be_coordinates_obscured
+          expect( o.coordinates_viewable_by?( curator ) ).to be true
+        end
+        it "should not allow non-curator access to coordinates of a threatened taxon" do
+          stub_api_response_for_observation( o )
+          expect( o ).to be_in_collection_projects( [project] )
+          expect( o ).to be_coordinates_obscured
+          expect( o.coordinates_viewable_by?( non_curator ) ).to be false
+        end
+        it "should not allow curator access to coordinates of a threatened taxon if geoprivacy is obscured" do
+          o.update_attributes( geoprivacy: Observation::OBSCURED )
+          stub_api_response_for_observation( o )
+          expect( o ).to be_in_collection_projects( [project] )
+          expect( o ).to be_coordinates_obscured
+          expect( o.coordinates_viewable_by?( curator ) ).to be false
+        end
+      end
+      describe "any" do
+        let(:pu) do
+          ProjectUser.make!(
+            project: project,
+            user: o.user,
+            prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+          )
+        end
+        before do
+          allow_any_instance_of( Project ).to receive(:observation_requirements_updated_at).
+            and_return( ( ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD + 1.week ).ago )
+          expect( project.observation_requirements_updated_at ).to be < ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+          expect( pu.preferred_curator_coordinate_access_for ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        end
+        it "should not allow curator access if disabled" do
+          project.update_attributes( prefers_user_trust: false )
+          stub_api_response_for_observation( o )
+          expect( o ).to be_in_collection_projects( [project] )
+          expect( o ).to be_coordinates_obscured
+          expect( o.coordinates_viewable_by?( curator ) ).to be false
+        end
+        it "should allow curator access to coordinates of a threatened taxon" do
+          stub_api_response_for_observation( o )
+          expect( o ).to be_in_collection_projects( [project] )
+          expect( o ).to be_coordinates_obscured
+          expect( o.coordinates_viewable_by?( curator ) ).to be true
+        end
+        it "should allow curator access to coordinates of a threatened taxon if geoprivacy is obscured" do
+          o.update_attributes( geoprivacy: Observation::OBSCURED )
+          stub_api_response_for_observation( o )
+          expect( o ).to be_in_collection_projects( [project] )
+          expect( o ).to be_coordinates_obscured
+          expect( o.coordinates_viewable_by?( curator ) ).to be true
+        end
+      end
     end
   end
   
@@ -2276,8 +2417,6 @@ describe Observation do
       o.update_attributes( geoprivacy: Observation::OBSCURED )
       Delayed::Worker.new.work_off
       o.reload
-      puts "o.private_latitude: #{o.private_latitude}"
-      puts "o.latitude:         #{o.latitude}"
       expect( o.private_latitude ).not_to eq o.latitude
     end
   end
@@ -2566,8 +2705,6 @@ describe Observation do
 
   describe "update_stats_for_observations_of" do
     elastic_models( Identification )
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
 
     it "should work" do
       parent = Taxon.make!(rank: Taxon::GENUS)
@@ -3545,9 +3682,6 @@ describe Observation do
     end
 
     describe "with a photo" do
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
-      
       it "should not be mappable if its photo is flagged" do
         o = make_research_grade_observation
         op = make_observation_photo(observation: o)
@@ -3734,7 +3868,7 @@ describe Observation do
 
     it "generates mention updates" do
       u = User.make!
-      o = Observation.make!(description: "hey @#{ u.login }")
+      o = after_delayed_job_finishes { Observation.make!(description: "hey @#{ u.login }") }
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq true
     end
 
@@ -3744,21 +3878,25 @@ describe Observation do
       expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: o ) ).to eq true
       # mark the generated updates as viewed
       UpdateAction.user_viewed_updates( UpdateAction.where( notifier: o ), u.id )
-      o.update_attributes( description: "#{o.description} and some extra" )
+      after_delayed_job_finishes do
+        o.update_attributes( description: "#{o.description} and some extra" )
+      end
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
     end
     it "removes mention updates if the description was updated to remove the mentioned user" do
       u = User.make!
       o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
       expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: o ) ).to eq true
-      o.update_attributes( description: "bye" )
+      after_delayed_job_finishes { o.update_attributes( description: "bye" ) }
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
     end
     it "generates a mention update if the description was updated and the mentioned user was in the new content" do
       u = User.make!
       o = without_delay { Observation.make!(description: "hey") }
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
-      o.update_attributes( description: "#{o.description} @#{u.login}" )
+      after_delayed_job_finishes do
+        o.update_attributes( description: "#{o.description} @#{u.login}" )
+      end
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq true
     end
   end

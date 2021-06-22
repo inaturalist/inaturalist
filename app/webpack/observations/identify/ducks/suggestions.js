@@ -14,6 +14,7 @@ const SET_DETAIL_TAXON = "observations-identify/suggestions/SET_DETAIL_TAXON";
 const UPDATE_WITH_OBSERVATION = "observations-identify/suggestions/UPDATE_WITH_OBSERVATION";
 
 const TAXON_FIELDS = {
+  ancestor_ids: true,
   id: true,
   name: true,
   rank: true,
@@ -130,9 +131,11 @@ export default function reducer(
         const place = _
           .sortBy( action.updates.places, p => p.bbox_area )
           .find( p => p.admin_level !== null && p.admin_level < 3 );
-        newState.query.place_id = place.id;
-        newState.query.place = place;
-        newState.query.defaultPlace = place;
+        if ( place ) {
+          newState.query.place_id = place.id;
+          newState.query.place = place;
+          newState.query.defaultPlace = place;
+        }
       }
       break;
     }
@@ -290,7 +293,7 @@ export function fetchSuggestions( query ) {
         payload.lng = s.suggestions.observation.geojson.coordinates[0];
       }
     }
-    return inatjs.taxa.suggest( payload ).then( suggestions => {
+    return inatjs.taxa.suggest( _.omitBy( payload, _.isNull ) ).then( suggestions => {
       const currentQuery = getState( ).suggestions.query;
       if ( _.isEqual( sanitizeQuery( currentQuery ), sanitizedQuery ) ) {
         dispatch( stopLoading( ) );

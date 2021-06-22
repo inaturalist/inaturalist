@@ -3,9 +3,8 @@
   width: 100%;
   line-height: 1.6em;
 
-  // hide taxobox
-  .infobox.biota {
-    display: none;
+  p {
+    line-height: 1.8em;
   }
 
   .infobox, 
@@ -13,21 +12,43 @@
   table.infobox, 
   .infobox_v2,
   table.infobox_v2,
-  .thumb, 
-  .tright {
+  .tright,
+  .tleft {
     float: right;
     clear: right;
-    margin-left: 20px;
-    margin-bottom: 1em;
     background-color: #eee;
-    padding: 1em;
+    border-left: 20px solid white;
+    border-bottom: 20px solid white;
+    padding: 10px;
   }
 
-  .gallerybox .thumb {
-    float: none;
-    margin: 0;
-    margin-bottom: 0.6em;
+  ul.gallery {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
     padding: 0;
+  }
+
+  .gallerybox {
+    .thumb {
+      float: none;
+      margin: 0;
+      margin-bottom: 0.6em;
+      padding: 0;
+      background-color: #eee;
+      > div {
+        padding: 10px;
+        text-align: center;
+        margin: 0 !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 140px;
+      }
+    }
+    .gallerytext {
+      font-size: smaller;
+    }
   }
 
   .sisterproject {
@@ -56,16 +77,14 @@
     font-style: italic;
   }
 
-  .mw-editsection {
-    display: none;
-  }
-
   .thumbimage {
     margin-bottom: 0.6em;
   }
 
   .thumbcaption {
     font-style: italic;
+    font-size: smaller;
+    line-height: 1.6;
   }
 
   .thumbcaption,
@@ -96,6 +115,9 @@
 
   .toc {
     line-height: 1.8;
+  }
+  .toccolours {
+    background: #f8f9fa;
   }
 
   a.new {

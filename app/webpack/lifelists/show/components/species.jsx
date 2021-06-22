@@ -3,12 +3,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import TaxonThumbnail from "../../../taxa/show/components/taxon_thumbnail";
 
+// eslint-disable-next-line react/prefer-stateless-function
 class Species extends Component {
-  constructor( props, context ) {
-    super( props, context );
-    let asdf = "ASdf";
-  }
-
   render( ) {
     const {
       search, fetchNextPage, config, lifelist, zoomToTaxon
@@ -23,12 +19,16 @@ class Species extends Component {
       if ( _.size( species ) === 0 ) {
         if ( lifelist.speciesPlaceFilter ) {
           if ( lifelist.detailsTaxon ) {
-            emptyMessage = `You have no unobserved species within this taxon in ${lifelist.speciesPlaceFilter.display_name}.`;
+            emptyMessage = I18n.t( "views.lifelists.no_unobserved_species_within_this_taxon_in_place", {
+              place: lifelist.speciesPlaceFilter.display_name
+            } );
           } else {
-            emptyMessage = `You have no unobserved species in ${lifelist.speciesPlaceFilter.display_name}.`;
+            emptyMessage = I18n.t( "views.lifelists.no_unobserved_species_in_place", {
+              place: lifelist.speciesPlaceFilter.display_name
+            } );
           }
         } else if ( lifelist.detailsTaxon ) {
-          emptyMessage = "You've observed all species within this taxon.";
+          emptyMessage = I18n.t( "views.lifelists.no_unobserved_species_within_this_taxon" );
         }
       }
       view = (
@@ -57,7 +57,7 @@ class Species extends Component {
                 <div>
                   <a
                     onClick={onClick}
-                    href={`/observations?user_id=${lifelist.user.login}&taxon_id=${s.taxon.id}&place_id=any&verifiable=any`}
+                    href={`/observations?unobserved_by_user_id=${lifelist.user.login}&taxon_id=${s.taxon.id}&place_id=any&verifiable=any`}
                   >
                     { I18n.t( "x_observations", { count: s.count } ) }
                   </a>
@@ -79,7 +79,7 @@ class Species extends Component {
             onClick={fetchNextPage}
           >
             <i className="fa fa-caret-down" />
-            Show More
+            { I18n.t( "show_more" ) }
           </button>
         );
     }

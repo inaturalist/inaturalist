@@ -14,6 +14,7 @@
 }
 
 // Below here it's safe to cut and paste from the Fontastic export
+
 [data-icon]:before {
   font-family: "inaturalisticons" !important;
   content: attr(data-icon);
@@ -166,9 +167,6 @@
 .icon-adjust:before {
   content: "\e02c";
 }
-.icon-layers:before {
-  content: "\e021";
-}
 .icon-sparkly-label:before {
   content: "\e029";
 }
@@ -189,4 +187,7 @@
 }
 .icon-treeview:before {
   content: "\e030";
+}
+.icon-layers:before {
+  content: "\e031";
 }

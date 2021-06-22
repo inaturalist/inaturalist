@@ -64,8 +64,8 @@
         </div>
       <% end %>
 
-      <% unless @headless %>
-        <% if current_user && session[:potential_place] && flash.empty? %>
+      <% if !@headless && flash.empty? %>
+        <% if current_user && session[:potential_place] %>
           <div class="bootstrap">
             <div id="full-width-notice" class="container-fluid bg-warning">
               <%=t :would_you_prefer_to_view_common_names_used_in_place_html, place: session[:potential_place][:name] %>
@@ -73,14 +73,16 @@
               <%= link_to t(:no), user_path( current_user,  user: { prefers_no_place: true }, from_potential_place: true ), method: "PUT", class: "btn btn-default btn-xs" %>
             </div>
           </div>
-        <% elsif current_user && session[:potential_site] && flash.empty? %>
+        <% elsif current_user && session[:potential_site] %>
           <div class="bootstrap">
             <div id="full-width-notice" class="bg-warning">
               <div class="container">
                 <%= t(
                   "network_affiliation_prompt_from_inat_to_#{session[:potential_site][:name].parameterize.underscore}_html",
+                  inat_site_name: Site.default.name,
                   default: t( :network_affiliation_prompt_from_inat_html,
                     site_name: session[:potential_site][:name],
+                    inat_site_name: Site.default.name,
                     place: session[:potential_site][:place_name],
                     vow_or_con: session[:potential_site][:place_name].first.downcase
                   )
@@ -137,14 +139,10 @@
 
     <div id="inat-universal-autocomplete"></div>
 
-    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js' %>
-    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js' %>
+    <%= javascript_include_tag "jquery/jquery-1.11.3.min.js" %>
+    <%= javascript_include_tag "jquery/jquery-ui-1.11.4.min.js" %>
+    <%= render "shared/i18n" %>
     <script type="text/javascript">
-      I18n = { }
-      <% # Don't set this to CONFIG.default_locale, b/c I18n-js needs en as the final fallback %>
-      I18n.defaultLocale = "en";
-      I18n.locale = "<%= I18n.locale %>";
-      I18n.fallbacks = true;
       <% site_place = @site && @site.place
          user_place = current_user && current_user.place
          user_search_place = current_user && current_user.search_place -%>
@@ -172,11 +170,14 @@
           prefers_medialess_obs_maps: <%= current_user.prefers_medialess_obs_maps %>,
           prefers_captive_obs_maps: <%= current_user.prefers_captive_obs_maps %>,
           preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>",
+          prefers_not_nearby_suggestions: <%= !!session[:prefers_not_nearby_suggestions] %>,
+          testGroups: <%= current_user.test_groups_array.to_json.html_safe %>
         };
       <% end -%>
       var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;
       var TIMEZONE = "<%= Time.zone.tzinfo.name %>";
       var SITE = {
+        id: <%= @site.id %>,
         name: "<%= @site.name %>",
         short_name: "<%= @site.site_name_short %>",
         help_email: "<%= @site.email_help %>",
@@ -193,9 +194,12 @@
           square: "<%= image_url(LocalPhoto.new.file.url(:square)) %>"
         }
       };
+      var CONTROLLER_ACTION = "<%= controller.class.to_s %>::<%= action_name %>";
+      var CONFIG = {
+        content_freeze_enabled: <%= !!CONFIG.content_freeze_enabled %>
+      };
     </script>
-    <%= javascript_include_tag 'application_bundle' %>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <%= javascript_include_tag "bootstrap_bundle" %>
     <script type="text/javascript">
       // stop conflict btwn jqueryui button and bootstrap button
       if ( $ && $.fn && $.fn.button && typeof( $.fn.button.noConflict ) === "function" ) {
@@ -203,8 +207,8 @@
         $.fn.btn = btn;
       }
     </script>
-    <%= google_maps_js libraries: %w(places geometry drawing) %>
-    <%= javascript_include_tag "map_bundle" unless @minimal_header %>
+    <%= google_maps_js( libraries: %w(places geometry drawing) ) unless @skip_external_connections %>
+    <%= javascript_include_tag "map_bundle" unless @minimal_header || @skip_external_connections %>
     <%= yield :extrajs %>
     <% if logged_in? && !@minimal_header -%>
       <script type="text/javascript" charset="utf-8">

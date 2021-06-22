@@ -64,25 +64,10 @@
     <% end %>
   </span>
   
-  <% if logged_in? && ( ( list.is_a?(LifeList) && list.editable_by?(current_user) ) || ( list.is_a?(CheckList) && (current_user.admin? || !list.is_default?) ) ) -%>
+  <% if logged_in? && ( list.is_a?(CheckList) && (current_user.admin? || !list.is_default?) ) -%>
     <% link_to_toggle_menu t(:tools), :id => "tools_button", :class => "minor button",
         :wrapper => {:class => "inter toggle_menu_list", :style => "padding: 0"} do %>
-      <% if list.is_a?(LifeList) && list.editable_by?(current_user) -%>
-        <ul>
-          <li>
-            <%- msg = t(:this_will_re_apply_all_list_rules).gsub(/\s+/m, " ") -%>
-            <%= link_to_function t(:re_apply_list_rules),
-              "confirmStartDelayed('#{escape_javascript(msg)}', '#{list_refresh_path(@list.id)}', #{LifeList::MAX_RELOAD_TRIES}, 'refreshlink')", 
-              :id => "refreshlink" %>
-          </li>
-           <li>
-            <%- msg = t(:this_will_add_listed_taxa) -%>
-            <%= link_to_function t(:reload_from_observations), 
-              "confirmStartDelayed('#{msg}', '#{list_reload_from_observations_path(@list.id)}', #{LifeList::MAX_RELOAD_TRIES}, 'reloadlink')", 
-              :id => "reloadlink" %>
-          </li>
-        </ul>
-      <% elsif list.is_a?(CheckList) %>
+      <% if list.is_a?(CheckList) %>
         <% if logged_in? && current_user.is_admin? -%>
           <div class="admin">
             <ul>

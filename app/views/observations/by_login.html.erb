@@ -1,5 +1,5 @@
 <% content_for(:title)  do %>
-  <%= @title = is_me?( current_user ) ? t(:edit_observations) : t( :observations_by_user, user: h(@login) ) %>
+  <%= @title = is_me?( @selected_user ) ? t(:edit_observations) : t( :observations_by_user, user: h(@login) ) %>
 <% end %>
 
 <% content_for(:extracss) do %>
@@ -15,7 +15,7 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready( function( ) {
       // render map
-      $("#map").taxonMap({ appendMarkerToList: true });
+      $("#map").taxonMap({ appendMarkerToList: true, placement: "observations-login" });
       window.map = $("#map").data("taxonMap");
       // Reveal columns
       $('.created_at').show();

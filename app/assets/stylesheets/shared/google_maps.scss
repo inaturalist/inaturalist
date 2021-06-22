@@ -161,6 +161,8 @@ body > div > .popover {
   .gmapv3legend ul.inat-overlay li {
     padding: 5px;
     list-style: none;
+    display: flex;
+    align-items: center;
   }
 
   .gmapv3legend ul.inat-overlay li.header {
@@ -170,10 +172,6 @@ body > div > .popover {
     line-height: 22px;
     border-top: 1px solid #d8d8d8;
     padding: 6px 0px 0px 7px;
-  }
-
-  .gmapv3legend ul.inat-overlay li.header::after {
-      content: ":";
   }
 
   .gmapv3legend ul.inat-overlay li.last {
@@ -211,8 +209,8 @@ body > div > .popover {
   }
 
   .gmapv3legend ul.inat-overlay .icon.color-box.unknown {
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
     border: 2px dotted black;
   }
 

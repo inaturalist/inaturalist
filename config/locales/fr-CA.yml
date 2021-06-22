@@ -102,6 +102,7 @@ fr-CA:
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> taxon observé"
     other: "<span class='count'>%{count}</span> taxons observés"
+  _100_day_trends: Tendances de 100 jours
   a_community_for_naturalist: Une communauté pour naturalistes
   about: À propos
   about_blocking: À propos du blocage
@@ -118,7 +119,9 @@ fr-CA:
   about_this_project: À propos de ce projet
   about_trips_html: |
     <h4>Les voyages permettent la collecte de données de présence/absence en ajoutant un contexte à vos observations</h4><p><strong>Pourquoi</strong> Les données de présence/absence incluent des informations sur l’effort d’échantillonnage, qui est utile pour les analyses scientifiques comme les modèles de répartition (les observations brutes de iNaturalist sont des données de 'présence uniquement').</p> <p><strong>Comment</strong> Un voyage ajoute un contexte à vos observations en enregistrant :</p> <ul> <li><strong>Ce que</strong> vous avez cherché (liste cible)</li> <li><strong>Où</strong> vous l'avez cherché (zone de recherche)</li> <li><strong>Quand</strong> vous l'avez cherché (période de recherche)</li> </ul> <p>Les espèces de votre liste cible que vous aurez pu observer dans la zone de recherche sont interprétées comme des présences. Alors que les espèces de votre liste cible que vous n’aurez pas pu observer seront interprétées comme des absences. Cliquez sur « Données tabulées de présence/absence pour les voyages » pour générer un tableau d’enregistrements de présence/absence pour les espèces des voyages et les observations associées. <a href='%{url}'>En savoir plus</a></p>
-  about_x: "À propos de %{x}"
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Préc. (m)'
   account: Compte
   account_creation: Création de compte
@@ -151,6 +154,7 @@ fr-CA:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Ajouter un lien
   add_a_name: Ajouter un nom
+  add_a_note: Ajouter une note
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Ajouter une liste numérotée
   #Tool tip for a button that adds bold text to a text area
@@ -286,6 +290,11 @@ fr-CA:
     Si vous n'avez pas fait cette demande, veuillez ignorer ce courriel.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Votre mot de passe ne sera pas modifié tant que vous n'aurez pas cliqué sur le lien ci-dessus pour en créer un nouveau.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Votre compte a été verrouillé en raison d'une quantité excessive de tentatives de connexion infructueuses.
+  devise_unlock_instructions_click_the_link: |
+    Cliquez sur le lien ci-dessous pour débloquer votre compte :
+  devise_unlock_instructions_unlock: Déverrouiller votre compte
   dont_send_me_email: "Ne m’envoyez pas de courriel!"
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
@@ -304,6 +313,9 @@ fr-CA:
     bug_reports: Signalements de bogue
   forum_desc: |
     Le forum est un endroit pour discuter de iNat lui-même, y compris pour l’aide et le soutien, les demandes de fonctionnalité, les rapports de bogues, les annonces, et autres.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: Masquer « Pas d'annotation »
   #Tool tip for a button that inserts quoted text into a text area
   insert_a_quote: Insérer une citation
   it_can_now_be_used_for_research: Elle peut maintenant être utilisée pour la recherche et mise en vedette sur d’autres sites Web
@@ -315,24 +327,19 @@ fr-CA:
     responsable du site. Si vous pensez que c’est une erreur, veuillez
     <a href="mailto:%{help_email}" class="contact">nous contacter</a>.
     <a href="%{manage_flags_path}">Gérer les signalements</a>
+  learn_more_on_the_blog: Apprenez-en plus sur le blogue
   legacy_authentication_notice_html: |
     Il semble que vous utilisez un mot de passe d'une ancienne version de ce site Web.
     Souvenez-vous de <a href="%{url}">modifier votre mot de passe</a> aux fins de la nouvelle version.
   #Text inserted into a textarea when the link button is clicked but no text was selected
   linked_text: texte lié
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des commentaires.
+    <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des commentaires.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des identifications.
+    <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des identifications.
   mail_disclaimer: "%{site_name} ne permettra pas à ses utilisateurs de vous envoyer des invitations supplémentaires au moyen de notre système d’invitation. Merci de signaler les abus d’invitation à %{site}."
   #Label shown when a date has not been entered
   missing_date: Date manquante
-  #Special version for network_affiliation_prompt_from_inat_html, which cannot
-  #be properly translated into Finnish with the %{place} variable. Please don't
-  #feel obligated to translate this into any language other than Finnish
-  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, fait partie du réseau international iNaturalist, se concentre sur la biodiversité et les personnes en Finlande. Souhaitez-vous
-    changer l'affiliation de votre compte iNaturalist.org pour iNaturalist Suomi?
   no_more_mail_from_site: "Vous ne voulez pas recevoir de courriel d’%{site_name}?  Modifiez vos paramètres de courriel à"
   note_you_can_modify_the_height_attribute: "Remarque : Vous pouvez modifier l'attribut 'height' pour l’adapter à l'espace disponible sur votre page Web."
   official_blog: Blogue officiel
@@ -354,6 +361,9 @@ fr-CA:
   project_x_was_delete: "%{project} a été supprimé (merci d'attendre quelques minutes pour qu'il soit supprimé du site Web)"
   receive_email_notifications_when_people_leave_you: Recevoir des avis par courriel sur
   search_by_name_or_email: Rechercher par nom ou par courriel
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Afficher « Pas d'annotation »
   show_off_your_recent_observations: Mettez en valeur vos observations récentes sur votre propre blogue ou site Web!
   some_observations_are_missing_media_or_identifications: |
     Certaines observations n'ont pas de photo/son ou d'identification
@@ -775,23 +785,6 @@ fr-CA:
           Créé via <a href="https://www.inaturalist.org">iNaturalist</a>
           ou les sites Web <a href="%{url}">Réseau iNaturalist</a>
       year:
-        donate_desc_html: |
-          Merci d'être généreux par votre temps, votre attention, votre expertise et vos
-          dons! iNaturalist est une initiative conjointe sans but lucratif de la
-          California Academy of Sciences et de la National Geographic Society.
-          Il est géré par une
-          <a href="%{team_url}">petite équipe</a> qui
-          fait toute l'ingénierie de conception et de logiciel
-          pour le web, les mobiles et
-          <a href="%{seek_url}">Seek by iNaturalist</a>, en plus de gérer
-          le soutien de la communauté, les collaborations et les intégrations qui maintiennent
-          les choses en marche (et qui se développent rapidement!). Le programme repose sur de nombreuses
-          subventions et dons, y compris des dons de bienfaisance provenant de moins de 0,2 %
-          contributeurs. Nous sommes particulièrement reconnaissants aux Soutiens mensuels
-          dont les cadeaux récurrents nous aident à planifier l'avenir. Vous pouvez faire un don en
-          plus de 30 devises pour soutenir les opérations principales d'iNaturalist.
-          Merci à tout le monde pour votre contribution à rendre l'année 2019 la plus grande
-          d'iNaturalist!
         new_species_desc_html: |
           Espèces ajoutées pour la première fois cette année.
           Cliquez sur un mois pour voir certaines des nouvelles espèces ajoutées pendant le mois en question.
@@ -860,7 +853,7 @@ fr-CA:
           Si cela représente une violation de nos conditions d'utilisation ou représente autre comportement que nous considérons inapproprié pour notre site, nous
           enquêterons.
           </p>
-        inaturalist_network_affiliation_desc_html: |
+        inaturalist_network_affiliation_desc_html: |2
           <p> Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de sites web localisés liés à la communauté mondiale de iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation locale et bénéficier de la biodiversité locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées de la vue du public dans le but de protéger les espèces menacées. </p> 
           <p> Votre nom d'utilisateur et votre mot de passe sont valides sur tous les sites qui font partie du réseau iNaturalist. Si vous choisissez de vous rattacher à un site du réseau, les institutions locales qui opèrent sur chaque site auront aussi accès à votre adresse courriel (seulement pour communiquer avec vous pour ce qui concerne les activités du site) et aux coordonnées réelles des observations qui sont masquées au public ou qui sont privées.</p>
           <p>
@@ -903,8 +896,8 @@ fr-CA:
           Nous utilisons des services tiers pour évaluer la stabilité de l'application et détecter des bogues. Ces programmes tiers incluent
         prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
           Adresses IP (qui peuvent être utilisées pour déterminer votre ville et vous traquer sur différents sites Web et services; notez que vous avons activé
-           l'<a href="https://support.google.com/analytics/answer/2763052">anonymisation IP</a> dans Google Analytics ; Firebase Crashlytics
-          <a href="<a href="https://firebase.google.com/support/privacy"> peut stocker les adresses IP</a> temporairement)
+          l'<a href="https://support.google.com/analytics/answer/2763052">anonymisation IP</a> dans Google Analytics ; Firebase Crashlytics
+          <a href="https://firebase.google.com/support/privacy"> peut stocker les adresses IP</a> temporairement)
         this_only_applies_to_traditional_projects: |
           Ceci ne s'applique qu'aux projets traditionnels. Vous ne pouvez pas exclure les observations des collections ni des projets chapeau, qui sont essentiellement des recherches sauvegardées.
           Davantage d'informations <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">ici</a>.
@@ -962,6 +955,9 @@ fr-CA:
         strip_insignificant_zeros: true
   activerecord:
     attributes:
+      message:
+        subject: Objet
+        body: Corps du texte
       site:
         logo_email_banner: Bannière courriel
       user:

@@ -1,7 +1,10 @@
 module PlacesHelper
   def place_name_and_type(place, options = {})
-    place_name = options[:display] ? place.display_name : place.name
-    place_name = t("places_name.#{place_name.downcase.underscore}", :default => place_name)
+    place_name = if options[:display]
+      place.display_name
+    else
+      place.translated_name
+    end
     place_type_name = place_type(place)
     content_tag(:span, :class => "place #{place.place_type_name}") do
       raw(place_name + (place_type_name.blank? ? '' : " #{place_type_name}"))

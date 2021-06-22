@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 11.1
--- Dumped by pg_dump version 11.1
+-- Dumped from database version 13.0
+-- Dumped by pg_dump version 13.0
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -12,6 +12,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -274,7 +275,7 @@ CREATE AGGREGATE public.median(numeric) (
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
+SET default_table_access_method = heap;
 
 --
 -- Name: annotations; Type: TABLE; Schema: public; Owner: -
@@ -737,7 +738,8 @@ CREATE TABLE public.conservation_statuses (
     geoprivacy character varying(255) DEFAULT 'obscured'::character varying,
     iucn integer DEFAULT 20,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    updater_id integer
 );
 
 
@@ -2262,6 +2264,40 @@ ALTER SEQUENCE public.moderator_actions_id_seq OWNED BY public.moderator_actions
 
 
 --
+-- Name: moderator_notes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.moderator_notes (
+    id integer NOT NULL,
+    user_id integer,
+    body text,
+    subject_user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: moderator_notes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.moderator_notes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: moderator_notes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.moderator_notes_id_seq OWNED BY public.moderator_notes.id;
+
+
+--
 -- Name: notifications; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2460,7 +2496,8 @@ CREATE TABLE public.oauth_applications (
     url character varying(255),
     description text,
     scopes character varying DEFAULT ''::character varying NOT NULL,
-    confidential boolean DEFAULT true NOT NULL
+    confidential boolean DEFAULT true NOT NULL,
+    official boolean DEFAULT false
 );
 
 
@@ -2920,7 +2957,6 @@ CREATE TABLE public.observations (
     positional_accuracy integer,
     private_latitude numeric(15,10),
     private_longitude numeric(15,10),
-    private_positional_accuracy integer,
     geoprivacy character varying(255),
     quality_grade character varying DEFAULT 'casual'::character varying,
     user_agent character varying(255),
@@ -3555,7 +3591,8 @@ CREATE TABLE public.projects (
     end_time timestamp without time zone,
     trusted boolean DEFAULT false,
     "group" character varying(255),
-    last_aggregated_at timestamp without time zone
+    last_aggregated_at timestamp without time zone,
+    observation_requirements_updated_at timestamp without time zone
 );
 
 
@@ -4906,7 +4943,8 @@ CREATE TABLE public.user_blocks (
     user_id integer,
     blocked_user_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    override_user_id integer
 );
 
 
@@ -5095,7 +5133,10 @@ CREATE TABLE public.users (
     donorbox_plan_status character varying,
     donorbox_plan_started_at date,
     uuid uuid DEFAULT public.uuid_generate_v4(),
-    species_count integer DEFAULT 0
+    species_count integer DEFAULT 0,
+    locked_at timestamp without time zone,
+    failed_attempts integer DEFAULT 0,
+    unlock_token character varying
 );
 
 
@@ -5710,6 +5751,13 @@ ALTER TABLE ONLY public.model_attribute_changes ALTER COLUMN id SET DEFAULT next
 --
 
 ALTER TABLE ONLY public.moderator_actions ALTER COLUMN id SET DEFAULT nextval('public.moderator_actions_id_seq'::regclass);
+
+
+--
+-- Name: moderator_notes id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.moderator_notes ALTER COLUMN id SET DEFAULT nextval('public.moderator_notes_id_seq'::regclass);
 
 
 --
@@ -6663,6 +6711,14 @@ ALTER TABLE ONLY public.moderator_actions
 
 
 --
+-- Name: moderator_notes moderator_notes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.moderator_notes
+    ADD CONSTRAINT moderator_notes_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: notifications_notifiers notifications_notifiers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7283,6 +7339,13 @@ CREATE INDEX index_annotations_on_resource_id_and_resource_type ON public.annota
 
 
 --
+-- Name: index_annotations_on_unique_resource_and_attribute; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_annotations_on_unique_resource_and_attribute ON public.annotations USING btree (resource_type, resource_id, controlled_attribute_id, controlled_value_id);
+
+
+--
 -- Name: index_annotations_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7483,6 +7546,13 @@ CREATE INDEX index_conservation_statuses_on_source_id ON public.conservation_sta
 --
 
 CREATE INDEX index_conservation_statuses_on_taxon_id ON public.conservation_statuses USING btree (taxon_id);
+
+
+--
+-- Name: index_conservation_statuses_on_updater_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_conservation_statuses_on_updater_id ON public.conservation_statuses USING btree (updater_id);
 
 
 --
@@ -7864,6 +7934,13 @@ CREATE INDEX index_identifications_on_taxon_change_id ON public.identifications 
 
 
 --
+-- Name: index_identifications_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_identifications_on_taxon_id ON public.identifications USING btree (taxon_id);
+
+
+--
 -- Name: index_identifications_on_user_id_and_created_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8071,6 +8148,20 @@ CREATE INDEX index_moderator_actions_on_resource_type_and_resource_id ON public.
 --
 
 CREATE INDEX index_moderator_actions_on_user_id ON public.moderator_actions USING btree (user_id);
+
+
+--
+-- Name: index_moderator_notes_on_subject_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_moderator_notes_on_subject_user_id ON public.moderator_notes USING btree (subject_user_id);
+
+
+--
+-- Name: index_moderator_notes_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_moderator_notes_on_user_id ON public.moderator_notes USING btree (user_id);
 
 
 --
@@ -8872,6 +8963,13 @@ CREATE INDEX index_projects_on_user_id ON public.projects USING btree (user_id);
 
 
 --
+-- Name: index_provider_authorizations_on_provider_name_and_provider_uid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_provider_authorizations_on_provider_name_and_provider_uid ON public.provider_authorizations USING btree (provider_name, provider_uid);
+
+
+--
 -- Name: index_provider_authorizations_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9369,6 +9467,13 @@ CREATE INDEX index_user_blocks_on_blocked_user_id ON public.user_blocks USING bt
 
 
 --
+-- Name: index_user_blocks_on_override_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_blocks_on_override_user_id ON public.user_blocks USING btree (override_user_id);
+
+
+--
 -- Name: index_user_blocks_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9523,6 +9628,13 @@ CREATE INDEX index_users_on_state ON public.users USING btree (state);
 
 
 --
+-- Name: index_users_on_unlock_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_unlock_token ON public.users USING btree (unlock_token);
+
+
+--
 -- Name: index_users_on_updated_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9548,6 +9660,13 @@ CREATE UNIQUE INDEX index_users_on_uuid ON public.users USING btree (uuid);
 --
 
 CREATE INDEX index_versions_on_item_type_and_item_id ON public.versions USING btree (item_type, item_id);
+
+
+--
+-- Name: index_votes_on_unique_obs_fave; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_votes_on_unique_obs_fave ON public.votes USING btree (votable_type, votable_id, voter_type, voter_id) WHERE (((votable_type)::text = 'Observation'::text) AND ((voter_type)::text = 'User'::text) AND (vote_scope IS NULL) AND (vote_flag = true));
 
 
 --
@@ -10477,4 +10596,32 @@ INSERT INTO schema_migrations (version) VALUES ('20200822002822');
 INSERT INTO schema_migrations (version) VALUES ('20200824210059');
 
 INSERT INTO schema_migrations (version) VALUES ('20200826001446');
+
+INSERT INTO schema_migrations (version) VALUES ('20200910001039');
+
+INSERT INTO schema_migrations (version) VALUES ('20200918185507');
+
+INSERT INTO schema_migrations (version) VALUES ('20200918230545');
+
+INSERT INTO schema_migrations (version) VALUES ('20200925210606');
+
+INSERT INTO schema_migrations (version) VALUES ('20201023174221');
+
+INSERT INTO schema_migrations (version) VALUES ('20201118012108');
+
+INSERT INTO schema_migrations (version) VALUES ('20201204005354');
+
+INSERT INTO schema_migrations (version) VALUES ('20210125233250');
+
+INSERT INTO schema_migrations (version) VALUES ('20210127005238');
+
+INSERT INTO schema_migrations (version) VALUES ('20210128211322');
+
+INSERT INTO schema_migrations (version) VALUES ('20210213020914');
+
+INSERT INTO schema_migrations (version) VALUES ('20210220195556');
+
+INSERT INTO schema_migrations (version) VALUES ('20210305235042');
+
+INSERT INTO schema_migrations (version) VALUES ('20210408221535');
 

@@ -1,4 +1,6 @@
 - source ||= chooser
+- meta_pieces = [source.in_text, source.url]
+- meta_pieces << t(:added_on_datetime, datetime: l( source.created_at ) ) unless source.created_at.blank?
 %strong= t("source_list.#{source.title.gsub( ":", "" ).gsub(" ", "_").downcase}", default: source.title )
 .small
-  = [source.in_text, source.url, t(:added_on_datetime, datetime: l( source.created_at ) )].delete_if{|s| s.blank?}.join( ", " )
+  = meta_pieces.delete_if{|s| s.blank?}.join( ", " )

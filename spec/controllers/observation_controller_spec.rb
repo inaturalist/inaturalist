@@ -429,7 +429,17 @@ describe ObservationsController do
   end
 
   describe "index" do
+    let(:user) { User.make! }
+    before { sign_in user }
+
     render_views
+
+    it "should not raise an exception with malformed date params" do
+      expect {
+        get :index, { on: "2020-09", user_id: user.id }
+      }.not_to raise_exception
+    end
+
     it "should just ignore project slugs for projects that don't exist" do
       expect {
         get :index, projects: 'imaginary-project'

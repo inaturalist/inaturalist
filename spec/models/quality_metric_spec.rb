@@ -39,8 +39,6 @@ describe QualityMetric, "creation" do
   end
 
   describe "elastic index" do
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
     it "should get the updated quality_grade" do
       o = without_delay { make_research_grade_observation }
       o.elastic_index!

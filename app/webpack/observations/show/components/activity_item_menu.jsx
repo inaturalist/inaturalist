@@ -252,6 +252,7 @@ const ActivityItemMenu = ( {
     && loggedInUser
     && !viewerIsActor
     && observation
+    && observation.user
     && observation.user.id === loggedInUser.id
   ) {
     menuItems.push( ( <MenuItem divider key={`trust-divider-${item.uuid}`} /> ) );

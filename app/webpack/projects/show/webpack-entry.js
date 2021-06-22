@@ -4,10 +4,20 @@ import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { createStore, compose, applyMiddleware, combineReducers } from "redux";
+import {
+  createStore,
+  compose,
+  applyMiddleware,
+  combineReducers
+} from "redux";
 import AppContainer from "./containers/app_container";
 import configReducer, { setConfig } from "../../shared/ducks/config";
-import projectReducer, { setProject, fetchOverviewData, setSelectedTab } from "./ducks/project";
+import projectReducer, {
+  setProject,
+  fetchOverviewData,
+  setSelectedTab,
+  fetchCurrentProjectUser
+} from "./ducks/project";
 import photoModalReducer from "../../taxa/shared/ducks/photo_modal";
 import confirmModalReducer from "../../observations/show/ducks/confirm_modal";
 import flaggingModalReducer from "../../observations/show/ducks/flagging_modal";
@@ -55,8 +65,9 @@ if ( !_.isEmpty( PREFERRED_PLACE ) ) {
 }
 
 store.dispatch( setProject( PROJECT_DATA ) );
-store.dispatch( fetchOverviewData( ) );
 store.dispatch( setSelectedTab( CURRENT_TAB, { subtab: CURRENT_SUBTAB, replaceState: true } ) );
+store.dispatch( fetchCurrentProjectUser( ) );
+store.dispatch( fetchOverviewData( ) );
 
 render(
   <Provider store={store}>
@@ -68,4 +79,3 @@ render(
 window.onpopstate = e => {
   store.dispatch( setSelectedTab( e.state.selectedTab, { skipState: true } ) );
 };
-

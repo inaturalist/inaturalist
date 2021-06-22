@@ -35,7 +35,7 @@ class TaxonSwap < TaxonChange
   end
 
   def input_taxa
-    taxon_change_taxa.select{|tct| !tct._destroy}.map(&:taxon)
+    taxon_change_taxa.select{|tct| !tct._destroy}.map(&:taxon).compact
   end
 
   def output_taxa

@@ -42,17 +42,20 @@
         %th updated at
         %th actions
       - for record in @records
+        - linkable_record = record.becomes(record.class.base_class)
         %tr
           %td= check_box_tag "ids[]", record.id
           %td= record.id
           %td
             - name = record.try_methods(:title, :name, :species_guess, :to_s)
-            - linkable_record = record.becomes(record.class.base_class)
             = link_to(name, record) rescue link_to(name, linkable_record) rescue name
           %td= record.try_methods(:body, :description, :remarks)
           %td= record.created_at
           %td= record.updated_at
-          %td
-            = link_to("view", record) rescue nil
+          %td.nobr
+            = link_to( "view", record ) rescue link_to( "view", linkable_record ) rescue nil
+            - if respond_to? "edit_#{linkable_record.class.name.underscore}_path"
+              &middot;
+              = link_to "edit", send( "edit_#{linkable_record.class.name.underscore}_path", linkable_record ) rescue nil
   - if @records.respond_to?(:total_pages)
     = will_paginate @records

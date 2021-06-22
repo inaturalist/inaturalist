@@ -6,14 +6,14 @@ describe FlagsController do
   # constants elsewhere, so I figured some tests couldn't hurt
   it "should have the right FLAG_MODELS" do
     expect( FlagsController::FLAG_MODELS ).to eq [ "Observation", "Taxon", "Post", "Comment",
-      "Identification", "Message", "Photo", "List", "Project", "Guide", "GuideSection", "LifeList",
+      "Identification", "Message", "Photo", "List", "Project", "Guide", "GuideSection",
       "User", "CheckList", "Sound" ]
   end
 
   it "should have the right FLAG_MODELS_ID" do
     expect( FlagsController::FLAG_MODELS_ID ).to eq [ "observation_id", "taxon_id", "post_id",
       "comment_id", "identification_id", "message_id", "photo_id", "list_id", "project_id",
-      "guide_id", "guide_section_id", "life_list_id", "user_id", "check_list_id", "sound_id" ]
+      "guide_id", "guide_section_id", "user_id", "check_list_id", "sound_id" ]
   end
 
   describe "update" do
@@ -71,10 +71,26 @@ describe FlagsController do
       expect( Flag.find_by_id( flag.id ) ).not_to be_blank
     end
 
-    it "does not allow the flag creator to destroy" do
+    it "does not allow the flag creator to destroy if there are comments" do
       http_login(user)
+      Comment.make!( parent: flag )
       post :destroy, id: flag.id
       expect( Flag.find_by_id( flag.id ) ).not_to be_blank
+    end
+
+    it "does not allow the flag creator to destroy if resolved" do
+      http_login( user )
+      flag.update_attributes( resolved: true, resolver: make_curator )
+      post :destroy, id: flag.id
+      expect( Flag.find_by_id( flag.id ) ).not_to be_blank
+    end
+
+    it "allows the flag creator to destroy if unresolved and there are no comments" do
+      http_login( user )
+      expect( flag.comments.count ).to eq 0
+      expect( flag ).not_to be_resolved
+      post :destroy, id: flag.id
+      expect( Flag.find_by_id( flag.id ) ).to be_blank
     end
 
     it "does not allow other users to destroy" do

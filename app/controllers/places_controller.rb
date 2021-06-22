@@ -200,7 +200,7 @@ class PlacesController < ApplicationController
       flash[:notice] = notice
       return redirect_to @place
     else
-      flash[:error] = t(:there_were_problems_importing_that_place, :place_error => @place.errors.full_messages.join(', '))
+      flash.now[:error] = t(:there_were_problems_importing_that_place, :place_error => @place.errors.full_messages.join(', '))
       render :action => :new
     end
   end

@@ -34,6 +34,15 @@
           %td
             %h3=t :reply
           %td{ colspan: 2 }
+            - if @new_correspondent
+              .alert.alert-warning
+                %p=t :messages_new_correspondent_it_looks_like
+                %ul
+                  %li
+                    %p=t :messages_new_correspondent_specimens
+                  %li
+                    %p=t :messages_new_correspondent_personal
+                %p=t :messages_new_correspondent_actions_html, tos_url: "/terms", guidelines_url: wiki_page_url( "community+guidelines" )
             = form_for Message.new(:to_user => @reply_to, :thread_id => @thread_message.thread_id), :builder => BootstrapFormBuilder do |f|
               = f.hidden_field :thread_id
               = f.hidden_field :to_user_id

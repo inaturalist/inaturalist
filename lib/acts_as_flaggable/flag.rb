@@ -23,7 +23,8 @@ class Flag < ActiveRecord::Base
   notifies_subscribers_of :self, :notification => "activity", :include_owner => true,
     :on => :update,
     :queue_if => Proc.new {|flag|
-      !flag.new_record? && flag.comment_changed?
+      # existing flag whose comment has been changed
+      !flag.previous_changes[:id] && flag.previous_changes[:comment]
     }
   auto_subscribes :resolver, :on => :update, :if => Proc.new {|record, resource|
     record.resolved_changed? && !record.resolver.blank? && 
@@ -72,21 +73,25 @@ class Flag < ActiveRecord::Base
 
   def notify_flaggable_on_create
     if flaggable && flaggable.respond_to?(:flagged_with)
-      flaggable.flagged_with(self, :action => "created")
+      flaggable.flagged_with(self, action: "created")
     end
     true
   end
 
   def notify_flaggable_on_update
-    if flaggable && flaggable.respond_to?(:flagged_with) && resolved_changed? && resolved?
-      flaggable.flagged_with(self, :action => "resolved")
+    if flaggable && flaggable.respond_to?(:flagged_with) && resolved_changed?
+      if resolved?
+        flaggable.flagged_with(self, action: "resolved")
+      else
+        flaggable.flagged_with(self, action: "unresolved")
+      end
     end
     true
   end
 
   def notify_flaggable_on_destroy
     if flaggable && flaggable.respond_to?(:flagged_with)
-      flaggable.flagged_with(self, :action => "destroyed")
+      flaggable.flagged_with(self, action: "destroyed")
     end
     true
   end
@@ -183,4 +188,12 @@ class Flag < ActiveRecord::Base
     end
     !flaggable_content.blank? && user && user.is_curator?
   end
+
+  def deletable_by?( user )
+    return false if new_record? || user.blank?
+    return true if user.is_admin?
+    return true if user.id === self.user_id && !resolved? && !comments.any?
+    false
+  end
+
 end

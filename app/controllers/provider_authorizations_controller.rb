@@ -1,5 +1,9 @@
 class ProviderAuthorizationsController < ApplicationController
-  before_filter :authenticate_user!, :only => [:destroy]
+  before_action :doorkeeper_authorize!,
+    only: [ :destroy ],
+    if: lambda { authenticate_with_oauth? }
+  before_filter :authenticate_user!, only: [ :destroy ],
+    unless: lambda { authenticated_with_oauth? }
   protect_from_forgery :except => :create
 
   # change the /auth/:provider/callback route to point to this if you want to examine the rack data returned by omniauth
@@ -13,15 +17,31 @@ class ProviderAuthorizationsController < ApplicationController
   end
 
   def destroy
-    if request.delete?
-      provider_authorization = current_user.has_provider_auth(params[:provider])
-      provider_authorization.destroy if provider_authorization
-      flash[:notice] = t(:you_unlinked_your_provider_account, provider: provider_authorization.provider.to_s.capitalize)
-    else
-      flash[:notice] = "Failed to unlinked your #{params[:provider]} account"
-      t(:failed_to_unlink_your_provider_account, provider: params[:provider])
+    return render_404 unless request.delete?
+    provider_authorization = current_user.has_provider_auth(params[:provider]) unless params[:provider].blank?
+    provider_authorization ||= current_user.provider_authorizations.find_by_id( params[:id] )
+    provider_authorization.destroy if provider_authorization
+    respond_to do |format|
+      format.html do
+        flash[:notice] = if provider_authorization
+          t(:you_unlinked_your_provider_account,
+            provider: ProviderAuthorization::PROVIDER_NAMES[provider_authorization.provider_name]
+          )
+        else
+          t(:failed_to_unlink_your_account)
+        end
+        redirect_to edit_person_url( current_user )
+      end
+      format.json do
+        if provider_authorization
+          head :no_content
+        else
+          render status: :unprocessable_entity, json: {
+            error: t(:failed_to_unlink_account),
+          }
+        end
+      end
     end
-    redirect_to edit_person_url(current_user)
   end
 
   def create
@@ -46,6 +66,14 @@ class ProviderAuthorizationsController < ApplicationController
         unless (iconfarm == 0 || iconserver == 0)
           auth_info["info"]["image"] = "http://farm#{iconfarm}.static.flickr.com/#{iconserver}/buddyicons/#{nsid}.jpg"
         end
+      end
+    when "apple"
+      if auth_info["info"]["name"] && auth_info["info"]["name"]["firstName"]
+        full_name = auth_info["info"]["name"]["firstName"]
+        if auth_info["info"]["name"]["lastName"]
+          full_name += " " + auth_info["info"]["name"]["lastName"]
+        end
+        auth_info["info"]["name"] = full_name
       end
     end
     
@@ -141,7 +169,6 @@ class ProviderAuthorizationsController < ApplicationController
     @provider_authorization.update_with_auth_info(auth_info)
     @provider_authorization.touch
     set_request_locale
-    flash[:notice] = t(:welcome_back)
     if get_session_omniauth_scope.to_s == 'write' && @provider_authorization.scope != 'write'
       flash[:notice] = "You just authorized #{@site.site_name_short} to write to your account " +
         "on #{@provider_authorization.provider}. Thanks! Please try " +

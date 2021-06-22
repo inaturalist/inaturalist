@@ -27,21 +27,13 @@ module MakeHelpers
   
   def make_user_with_role(role_name, opts = {})
     user = User.make!(opts)
-    user.roles << Role.make!(:name => role_name.to_s)
+    role = Role.find_by_name( role_name ) || Role.make!( name: role_name.to_s )
+    user.roles << role
     user
   end
 
   def make_user_with_privilege( privilege, options = {} )
     UserPrivilege.make!( privilege: privilege, user: User.make!( options ) ).user
-  end
-  
-  def make_life_list_for_taxon(taxon, options = {})
-    list = LifeList.make!(options)
-    list.rules << ListRule.new(
-      :operand => taxon, 
-      :operator => 'in_taxon?'
-    )
-    list
   end
 
   def make_observations_export_flow_task( options = {} )
@@ -248,7 +240,7 @@ module MakeHelpers
     set_taxon_with_rank_and_parent( "Myrtales", Taxon::ORDER, @Magnoliopsida )
     set_taxon_with_rank_and_parent( "Onagraceae", Taxon::FAMILY, @Myrtales )
     set_taxon_with_rank_and_parent( "Clarkia", Taxon::GENUS, @Onagraceae )
-    set_taxon_with_rank_and_parent( "Clarkia amoena", Taxon::GENUS, @Clarkia )
+    set_taxon_with_rank_and_parent( "Clarkia amoena", Taxon::SPECIES, @Clarkia )
 
     Taxon.reset_iconic_taxa_constants_for_tests
 
@@ -266,7 +258,7 @@ module MakeHelpers
       return instance_variable_get( "@#{varname}" )
     end
     instance_variable_set( "@#{varname}", Taxon.make!( options.merge( name: name, rank: rank ) ) )
-    instance_variable_get( "@#{varname}" ).update_attributes( parent: parent )
+    instance_variable_get( "@#{varname}" ).update_attributes!( parent: parent )
     if common_name
       instance_variable_get( "@#{varname}" ).taxon_names << TaxonName.make!(
         name: common_name, 
@@ -274,6 +266,7 @@ module MakeHelpers
         lexicon: TaxonName::LEXICONS[:ENGLISH]
       )
     end
+    instance_variable_get( "@#{varname}" ).reload
     instance_variable_get( "@#{varname}" )
   end
 

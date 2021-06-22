@@ -5,13 +5,13 @@
 <div class="row">
   <div class="col-md-12">
     <div class="list-group"> 
-      <%= link_to observations_path( user_id: user.login ), :class => "list-group-item" do %>
+      <%= link_to observations_path( user_id: user.login, verifiable: "any", place_id: "any" ), :class => "list-group-item" do %>
         <span class="badge"><%= user.observations_count %></span>
         <i class="fa fa-binoculars"></i>
         <%= t(:observations) %>
       <% end %>
-      <%= link_to user.life_list, :class => 'list-group-item' do %>
-        <span class="badge"><%= user.life_list_taxa_count %></span>
+      <%= link_to by_login_lifelists_path( login: user.login ), :class => 'list-group-item' do %>
+        <span class="badge"><%= user.species_count %></span>
         <span class="glyphicon glyphicon-leaf"></span>
         <%= t(:species) %>
       <% end %>      
@@ -39,4 +39,4 @@
     </div>
   </div>
 </div>
-    
+

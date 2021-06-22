@@ -5,7 +5,7 @@ import moment from "moment";
 import { color as d3color } from "d3";
 import { COLORS } from "../../../shared/util";
 import { histogramWithoutGaps } from "../util";
-import DateHistogram from "./date_histogram";
+import DateHistogram from "../../../shared/components/date_histogram";
 import CountryGrowth from "./country_growth";
 
 const Growth = ( {

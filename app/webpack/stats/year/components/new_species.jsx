@@ -4,7 +4,7 @@ import moment from "moment";
 import _ from "lodash";
 import inatjs from "inaturalistjs";
 import ObservationsGrid from "./observations_grid";
-import DateHistogram from "./date_histogram";
+import DateHistogram from "../../../shared/components/date_histogram";
 
 class NewSpecies extends React.Component {
   constructor( props ) {

@@ -41,6 +41,10 @@ class TextEditor extends React.Component {
     }
   }
 
+  componentWillReceiveProps( props ) {
+    this.setState( { content: props.content } );
+  }
+
   componentDidUpdate( prevProps, prevState ) {
     const { changeHandler } = this.props;
     const { content } = this.state;
@@ -56,14 +60,10 @@ class TextEditor extends React.Component {
       showCharsRemainingAt,
       onBlur
     } = this.props;
-    const { textareaChars, preview, content } = this.state;
+    const { preview, content } = this.state;
+    const textareaChars = content ? content.length : 0;
     const textareaOnChange = e => {
       this.setState( { content: e.target.value } );
-      if ( maxLength ) {
-        if ( e.target.value.length > showCharsRemainingAt ) {
-          this.setState( { textareaChars: e.target.value.length } );
-        }
-      }
     };
     return (
       <div className={`TextEditor ${className} ${preview && "with-preview"}`}>

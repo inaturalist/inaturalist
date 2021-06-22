@@ -7,7 +7,6 @@ import {
   fetchObservation,
   addIdentification
 } from "./current_observation_actions";
-import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
 import { showAlert } from "./alert_actions";
 
@@ -60,7 +59,6 @@ function agreeWithObservaiton( observation ) {
       if ( _.find( observations, o => o.id === observation.id ) ) {
         dispatch( updateObservationInCollection( observation, { agreeLoading: false } ) );
         dispatch( fetchObservation( observation ) );
-        dispatch( fetchObservationsStats( ) );
       }
     } );
   };
@@ -96,6 +94,7 @@ function agreeWithCurrentObservation( ) {
       !currentObservation
       || !currentObservation.id
       || !currentObservation.taxon
+      || !currentObservation.user
       || currentObservation.user.id === currentUser.id
       || ( currentObservation.taxon && !currentObservation.taxon.is_active )
       || existingIdent
@@ -123,7 +122,6 @@ function submitIdentificationWithConfirmation( identification, options = {} ) {
           dispatch( fetchCurrentObservation( identification.observation ) ).then( ( ) => {
             $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
           } );
-          dispatch( fetchObservationsStats( ) );
         } );
     };
     if ( options.confirmationText ) {

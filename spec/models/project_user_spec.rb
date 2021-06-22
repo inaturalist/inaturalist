@@ -60,8 +60,6 @@ describe ProjectUser do
   elastic_models( Observation, Taxon, Identification )
 
   describe "updating curator_coordinate_access" do
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
     it "should update past project observations from this project" do
       pu = ProjectUser.make!
       expect( pu.project.user ).not_to eq pu.user

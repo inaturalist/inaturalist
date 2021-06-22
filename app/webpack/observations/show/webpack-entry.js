@@ -17,7 +17,7 @@ import commentIDPanelReducer from "./ducks/comment_id_panel";
 import communityIDModalReducer from "./ducks/community_id_modal";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 import confirmModalReducer from "./ducks/confirm_modal";
-import controlledTermsReducer from "./ducks/controlled_terms";
+import controlledTermsReducer, { fetchAnnotationsPanelPreferences } from "./ducks/controlled_terms";
 import flaggingModalReducer from "./ducks/flagging_modal";
 import identificationsReducer from "./ducks/identifications";
 import licensingModalReducer from "./ducks/licensing_modal";
@@ -33,6 +33,7 @@ import setupKeyboardShortcuts from "./keyboard_shortcuts";
 import currentObservationReducer from "../identify/reducers/current_observation_reducer";
 import suggestionsReducer from "../identify/ducks/suggestions";
 import moderatorActionsReducer from "../../shared/ducks/moderator_actions";
+import textEditorReducer from "../shared/ducks/text_editors";
 
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
@@ -59,6 +60,7 @@ const rootReducer = combineReducers( {
   otherObservations: otherObservationsReducer,
   projectFieldsModal: projectFieldsModalReducer,
   qualityMetrics: qualityMetricsReducer,
+  textEditor: textEditorReducer,
   subscriptions: subscriptionsReducer,
   disagreementAlert: disagreementAlertReducer,
   moderatorActions: moderatorActionsReducer,
@@ -112,6 +114,16 @@ if (
       writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
     } );
   }
+}
+
+store.dispatch( fetchAnnotationsPanelPreferences( ) );
+
+if (
+  ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "interpolation" ) )
+) {
+  store.dispatch( setConfig( {
+    testingInterpolationMitigation: true
+  } ) );
 }
 
 store.dispatch( fetchObservation( obsId, {

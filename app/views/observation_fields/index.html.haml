@@ -1,0 +1,55 @@
+- content_for(:title) do
+  = @title = t(:observation_fields)
+.container
+  .row
+    .col-xs-8
+      %h2= @title
+    .col-xs-4
+      = form_tag( observation_fields_path, method: :get, class: "pull-right", style: "margin-top: 20px" ) do
+        = hidden_fields_for_params without: [:q, :commit, :utf8, :page]
+        .input-group
+          = text_field_tag :q, @q, class: "form-control", placeholder: t(:search)
+          .input-group-btn
+            - unless @q.blank?
+              = link_to url_for_params( without: [:q, :page, :commit, :utf8] ), class: "btn btn-default" do
+                %i.fa.fa-times-circle.text-muted
+            = submit_tag t(:search), class: "btn btn-primary"
+  .row
+    .col-xs-12
+      %p= t :observation_fields_are_additional
+      %table.table
+        %thead
+          %tr
+            %th
+              = link_to url_for_params( order_by: "name", order: @order == "desc" ? "asc" : "desc", without: [:page, :utf8, :commit] ) do
+                = t(:name)
+                - if @order_by == "name"
+                  - if @order == "desc"
+                    &darr;
+                  - else
+                    &uarr;
+            %th
+              = link_to url_for_params( order_by: "created_at", order: @order == "desc" ? "asc" : "desc", without: [:page, :utf8, :commit] ) do
+                = t(:date_added)
+                - if @order_by == "created_at"
+                  - if @order == "desc"
+                    &darr;
+                  - else
+                    &uarr;
+            %th=t :datatype
+            %th=t :description
+        %tbody
+          - @observation_fields.each do |observation_field|
+            %tr
+              %td= link_to observation_field.name, observation_field
+              %td=l observation_field.created_at.to_date
+              %td= observation_field.datatype
+              %td= observation_field.description
+              - if observation_field.editable_by?(current_user)
+                %td= link_to t(:edit), edit_observation_field_path(observation_field)
+                %td
+                  = link_to t(:delete), observation_field,                                            |
+                    :data => {:confirm => 'Are you sure? Other people may be using this field too.'}, |
+                    :method => :delete                                                                |
+      = will_paginate @observation_fields
+      = link_to t(:new_observation_field), new_observation_field_path, :class => "button"
