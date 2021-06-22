@@ -23,6 +23,7 @@ class SitesController < ApplicationController
   # GET /sites/1.json
   def show
     @record = Site.find(params[:id])
+    @record_admin ||= @record.site_admins.where( user_id: current_user ).first
 
     if current_user.is_admin? || @record_admin
       export_path = @record.export_path
