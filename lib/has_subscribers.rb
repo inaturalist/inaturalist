@@ -401,7 +401,7 @@ module HasSubscribers
     end
 
     def delete_notifications
-      Notification.delete_all_for_resource( record )
+      Notification.delete_all_for_resource( self )
       true
     end
 
