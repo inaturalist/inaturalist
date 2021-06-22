@@ -2,19 +2,19 @@ class ListsController < ApplicationController
   include Shared::ListsModule
   include Shared::GuideModule
 
-  before_filter :authenticate_user!, :except => [:index, :show, :by_login, :taxa, :guide,
+  before_action :authenticate_user!, :except => [:index, :show, :by_login, :taxa, :guide,
     :cached_guide, :guide_widget]
-  before_filter :authenticate_user!, only: [:show], if: Proc.new {|c| [:csv, :json].include?( c.request.format )}
+  before_action :authenticate_user!, only: [:show], if: Proc.new {|c| [:csv, :json].include?( c.request.format )}
   load_except = [ :index, :new, :create, :by_login ]
-  before_filter :load_list, :except => load_except
+  before_action :load_list, :except => load_except
   blocks_spam :except => load_except, :instance => :list
   check_spam only: [:create, :update], instance: :list
-  before_filter :owner_required, :only => [:edit, :update, :destroy, 
+  before_action :owner_required, :only => [:edit, :update, :destroy, 
     :remove_taxon]
-  before_filter :require_listed_taxa_editor, :only => [:add_taxon_batch, :batch_edit]
-  before_filter :load_user_by_login, :only => :by_login
-  before_filter :admin_required, :only => [:add_from_observations_now, :refresh_now]
-  before_filter :set_iconic_taxa, :only => [:show]
+  before_action :require_listed_taxa_editor, :only => [:add_taxon_batch, :batch_edit]
+  before_action :load_user_by_login, :only => :by_login
+  before_action :admin_required, :only => [:add_from_observations_now, :refresh_now]
+  before_action :set_iconic_taxa, :only => [:show]
 
   caches_page :show, :if => Proc.new {|c| c.request.format == :csv}
 

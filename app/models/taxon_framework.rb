@@ -1,4 +1,4 @@
-class TaxonFramework < ActiveRecord::Base
+class TaxonFramework < ApplicationRecord
   belongs_to :taxon, inverse_of: :taxon_framework
   belongs_to :source
   belongs_to :user

@@ -1,13 +1,13 @@
 class CheckListsController < ApplicationController
   include Shared::ListsModule
   
-  before_filter :authenticate_user!, :except => [:index, :show, :taxa]
-  before_filter :authenticate_user, only: [:show], if: Proc.new {|c| [:csv, :json].include?( c.request.format )}
-  before_filter :load_list, :only => [:show, :edit, :update, :destroy, :compare, :remove_taxon, :add_taxon_batch, :taxa, :batch_edit]
-  before_filter :require_editor, :only => [:edit, :update, :destroy, :remove_taxon]
-  before_filter :require_listed_taxa_editor, :only => [:batch_edit, :add_taxon_batch]
-  before_filter :lock_down_default_check_lists, :only => [:edit, :update, :destroy, :batch_edit]
-  before_filter :set_iconic_taxa, :only => [:show]
+  before_action :authenticate_user!, :except => [:index, :show, :taxa]
+  before_action :authenticate_user, only: [:show], if: Proc.new {|c| [:csv, :json].include?( c.request.format )}
+  before_action :load_list, :only => [:show, :edit, :update, :destroy, :compare, :remove_taxon, :add_taxon_batch, :taxa, :batch_edit]
+  before_action :require_editor, :only => [:edit, :update, :destroy, :remove_taxon]
+  before_action :require_listed_taxa_editor, :only => [:batch_edit, :add_taxon_batch]
+  before_action :lock_down_default_check_lists, :only => [:edit, :update, :destroy, :batch_edit]
+  before_action :set_iconic_taxa, :only => [:show]
 
   # Not supporting any of these just yet
   def index; redirect_to '/'; end
@@ -178,7 +178,6 @@ class CheckListsController < ApplicationController
     return true unless @list.is_default?
     if logged_in? && current_user.is_admin?
       flash[:notice] = t(:you_can_edit_this_default_check_list_because)
-      return true
     else
       flash[:error] = t(:you_cant_do_that_for_the_default_check_list_place)
       redirect_to @list

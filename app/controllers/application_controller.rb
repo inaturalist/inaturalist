@@ -10,29 +10,29 @@ class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
   protect_from_forgery
-  before_filter :permit_params
-  around_filter :set_time_zone
-  around_filter :logstash_catchall
-  before_filter :return_here, :only => [:index, :show, :by_login]
-  before_filter :return_here_from_url
-  before_filter :preload_user_preferences
-  before_filter :user_logging
-  before_filter :check_user_last_active
-  after_filter :user_request_logging
-  before_filter :remove_header_and_footer_for_apps
-  before_filter :login_from_param
-  before_filter :set_site
-  before_filter :draft_site_requires_login
-  before_filter :draft_site_requires_admin
-  before_filter :set_ga_trackers
-  before_filter :set_request_locale
-  before_filter :check_preferred_place
-  before_filter :check_preferred_site
-  before_filter :sign_out_spammers
-  before_filter :set_session_oauth_application_id
+  before_action :permit_params
+  # around_action :set_time_zone
+  # around_action :logstash_catchall
+  before_action :return_here, :only => [:index, :show, :by_login]
+  before_action :return_here_from_url
+  before_action :preload_user_preferences
+  before_action :user_logging
+  before_action :check_user_last_active
+  after_action :user_request_logging
+  before_action :remove_header_and_footer_for_apps
+  before_action :login_from_param
+  before_action :set_site
+  before_action :draft_site_requires_login
+  before_action :draft_site_requires_admin
+  before_action :set_ga_trackers
+  before_action :set_request_locale
+  before_action :check_preferred_place
+  before_action :check_preferred_site
+  before_action :sign_out_spammers
+  before_action :set_session_oauth_application_id
 
   # /ping should skip all before filters and just render
-  skip_filter *_process_action_callbacks.map(&:filter), only: :ping
+  skip_before_action *_process_action_callbacks.map(&:filter), only: :ping, raise: false
 
   PER_PAGES = [10,30,50,100,200]
   HEADER_VERSION = 21
@@ -173,7 +173,7 @@ class ApplicationController < ActionController::Base
 
   # Redirect to the URI stored by the most recent store_location call or
   # to the passed default.  Set an appropriately modified
-  #   after_filter :store_location, :only => [:index, :new, :show, :edit]
+  #   after_action :store_location, :only => [:index, :new, :show, :edit]
   # for any controller you want to be bounce-backable.
   def redirect_back_or_default(default)
     back_url = session[:return_to] # || request.env['HTTP_REFERER']
@@ -272,7 +272,7 @@ class ApplicationController < ActionController::Base
       else
         redirect_back_or_default(root_url)
       end
-      return false
+      throw :abort
     end
   end
   
@@ -471,12 +471,12 @@ class ApplicationController < ActionController::Base
     }
     @places = Place.elastic_paginate(search_params)
     Place.preload_associations(@places, :place_geometry_without_geom)
-    if logged_in? && @places.blank? && !params[:q].blank?
-      if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
-        new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid, user: current_user)}.compact
-        @places = Place.where("id in (?)", new_places.map(&:id).compact).page(1).to_a
-      end
-    end
+    # if logged_in? && @places.blank? && !params[:q].blank?
+    #   if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
+    #     new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid, user: current_user)}.compact
+    #     @places = Place.where("id in (?)", new_places.map(&:id).compact).page(1).to_a
+    #   end
+    # end
   end
   
   # Get current_user's preferences, prefs in the session, or stash new prefs in the session
@@ -598,7 +598,7 @@ class ApplicationController < ActionController::Base
         render :status => :unprocessable_entity, :json => {:error => msg}
       end
     end
-    return false
+    throw :abort
   end
 
   def site_admin_required
@@ -617,7 +617,7 @@ class ApplicationController < ActionController::Base
         render status: :unprocessable_entity, json: { error: msg }
       end
     end
-    return false
+    throw :abort
   end
 
   def remove_header_and_footer_for_apps
@@ -754,7 +754,7 @@ class ApplicationController < ActionController::Base
     options = args.last.is_a?(Hash) ? args.last : {}
     default = options[:default] ? options[:default].to_sym : :html
     formats = [args].flatten.map(&:to_sym)
-    before_filter(options) do
+    before_action(options) do
       request.format = default if request.format.blank? || !formats.include?(request.format.to_sym)
     end
   end
@@ -807,7 +807,7 @@ end
 # Override the Google Analytics insertion code so it won't track admins
 module Rubaidh # :nodoc:
   module GoogleAnalyticsMixin
-    # An after_filter to automatically add the analytics code.
+    # An after_action to automatically add the analytics code.
     def add_google_analytics_code
       return if logged_in? && current_user.has_role?(User::JEDI_MASTER_ROLE)
       

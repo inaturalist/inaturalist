@@ -1,4 +1,4 @@
-class ObservationSound < ActiveRecord::Base
+class ObservationSound < ApplicationRecord
   belongs_to :observation, inverse_of: :observation_sounds, counter_cache: false
   belongs_to :sound
   after_create :set_observation_sounds_count, :set_observation_quality_grade

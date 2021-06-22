@@ -56,7 +56,7 @@ module Privileges
     end
     module ClassMethods
       def requires_privilege( privilege, options = {} )
-        before_filter( options ) do
+        before_action( options ) do
           if current_user && !current_user.privileged_with?( privilege ) && !current_user.is_admin? && !current_user.is_curator?
             msg = t( "errors.messages.requires_privilege_#{privilege}" )
             respond_to do |format|

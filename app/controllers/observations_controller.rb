@@ -2,9 +2,9 @@
 class ObservationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :index, if: :json_request?
   protect_from_forgery unless: -> { request.format.widget? } #, except: [:stats, :user_stags, :taxa]
-  before_filter :decide_if_skipping_preloading, only: [ :index, :show, :taxon_summary, :review ]
-  before_filter :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
-  before_filter :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
+  before_action :decide_if_skipping_preloading, only: [ :index, :show, :taxon_summary, :review ]
+  before_action :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
+  before_action :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
 
   WIDGET_CACHE_EXPIRATION = 15.minutes
   cache_sweeper :observation_sweeper, :only => [:create, :update, :destroy]
@@ -20,10 +20,10 @@ class ObservationsController < ApplicationController
     only: [ :create, :update, :destroy, :viewed_updates, :update_fields, :review ],
     if: lambda { authenticate_with_oauth? }
   
-  before_filter :load_user_by_login, :only => [:by_login, :by_login_all, :lifelist_by_login]
-  after_filter :return_here, :only => [:index, :by_login, :show, 
+  before_action :load_user_by_login, :only => [:by_login, :by_login_all, :lifelist_by_login]
+  after_action :return_here, :only => [:index, :by_login, :show, 
     :import, :export, :add_from_list, :new, :project]
-  before_filter :authenticate_user!,
+  before_action :authenticate_user!,
                 :unless => lambda { authenticated_with_oauth? },
                 :except => [:explore,
                             :index,
@@ -46,21 +46,21 @@ class ObservationsController < ApplicationController
   load_only = [ :show, :edit, :edit_photos, :update_photos, :destroy,
     :fields, :viewed_updates, :community_taxon_summary, :update_fields,
     :review, :taxon_summary, :observation_links ]
-  before_filter :load_observation, :only => load_only
+  before_action :load_observation, :only => load_only
   blocks_spam :only => load_only - [ :taxon_summary, :observation_links ],
     :instance => :observation
   check_spam only: [:create, :update], instance: :observation
-  before_filter :require_owner, :only => [:edit, :edit_photos,
+  before_action :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
-  before_filter :curator_required, :only => [:curation, :accumulation, :phylogram]
-  before_filter :load_photo_identities, :only => [:new, :new_batch, :show,
+  before_action :curator_required, :only => [:curation, :accumulation, :phylogram]
+  before_action :load_photo_identities, :only => [:new, :new_batch, :show,
     :new_batch_csv,:edit, :update, :edit_batch, :create, :import, 
     :import_photos, :import_sounds, :new_from_list]
-  before_filter :load_sound_identities, :only => [:new, :new_batch, :show,
+  before_action :load_sound_identities, :only => [:new, :new_batch, :show,
     :new_batch_csv,:edit, :update, :edit_batch, :create, :import, 
     :import_photos, :import_sounds, :new_from_list]
-  before_filter :photo_identities_required, :only => [:import_photos]
-  before_filter :load_prefs, :only => [:index, :project, :by_login]
+  before_action :photo_identities_required, :only => [:import_photos]
+  before_action :load_prefs, :only => [:index, :project, :by_login]
   
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess votes id"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"

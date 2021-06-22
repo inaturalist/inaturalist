@@ -1,4 +1,4 @@
-class ModeratorNote < ActiveRecord::Base
+class ModeratorNote < ApplicationRecord
   belongs_to :user
   belongs_to :subject_user, class_name: "User"
 

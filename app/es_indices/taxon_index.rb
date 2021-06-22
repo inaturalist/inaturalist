@@ -1,4 +1,4 @@
-class Taxon < ActiveRecord::Base
+class Taxon < ApplicationRecord
 
   include ActsAsElasticModel
 

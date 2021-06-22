@@ -2,17 +2,17 @@
 class GuidesController < ApplicationController
   include GuidesHelper
   before_action :doorkeeper_authorize!, :only => [ :show, :user ], :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, 
+  before_action :authenticate_user!, 
     :except => [:index, :show, :search], 
     :unless => lambda { authenticated_with_oauth? }
   load_only = [ :show, :edit, :update, :destroy, :import_taxa,
     :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags, :import_tags_from_csv,
     :import_tags_from_csv_template ]
-  before_filter :load_record, :only => load_only
+  before_action :load_record, :only => load_only
   blocks_spam :only => load_only, :instance => :guide
   check_spam only: [:create, :update], instance: :guide
-  before_filter :require_owner, :only => [:destroy]
-  before_filter :require_guide_user, :only => [
+  before_action :require_owner, :only => [:destroy]
+  before_action :require_guide_user, :only => [
     :edit, :update, :import_taxa, :reorder, :add_color_tags,
     :add_tags_for_rank, :remove_all_tags, :import_tags_from_csv]
 

@@ -1,4 +1,4 @@
-class Announcement < ActiveRecord::Base
+class Announcement < ApplicationRecord
   PLACEMENTS = %w(users/dashboard#sidebar users/dashboard welcome/index)
   has_and_belongs_to_many :sites
   validates_presence_of :placement, :start, :end, :body
@@ -43,7 +43,7 @@ class Announcement < ActiveRecord::Base
     if @announcements.blank?
       @announcements = base_scope.in_specific_locale( I18n.locale ).where( "sites.id IS NULL" )
       @announcements = base_scope.where( "sites.id IS NULL AND locales IS NULL" ) if @announcements.blank?
-      @announcements = @announcements.flatten
+      @announcements = @announcements.to_a.flatten
     end
     @announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" ) if @announcements.blank?
     @announcements = @announcements.sort_by {|a| [

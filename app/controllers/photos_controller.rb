@@ -2,11 +2,11 @@
 class PhotosController < ApplicationController
   before_action :doorkeeper_authorize!, only: [:update],
     if: lambda { authenticate_with_oauth? }
-  before_filter :load_record, :only => [:show, :update, :repair, :destroy, :rotate]
-  before_filter :require_owner, :only => [:update, :destroy, :rotate]
-  before_filter :authenticate_user!, except: [:show],
+  before_action :load_record, :only => [:show, :update, :repair, :destroy, :rotate]
+  before_action :require_owner, :only => [:update, :destroy, :rotate]
+  before_action :authenticate_user!, except: [:show],
     unless: lambda { authenticated_with_oauth? }
-  before_filter :return_here, :only => [:show, :invite, :inviter, :fix]
+  before_action :return_here, :only => [:show, :invite, :inviter, :fix]
 
   cache_sweeper :photo_sweeper, :only => [:update, :repair]
   

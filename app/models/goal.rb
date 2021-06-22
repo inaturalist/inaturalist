@@ -1,4 +1,4 @@
-class Goal < ActiveRecord::Base
+class Goal < ApplicationRecord
   has_many :goal_rules,
            :dependent => :destroy
   has_many :goal_participants,

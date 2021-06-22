@@ -1,6 +1,6 @@
 class EmailerController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   def invite
     from = "#{@site.name} <#{@site.email_noreply}>"

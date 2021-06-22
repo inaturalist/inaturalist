@@ -1,4 +1,4 @@
-class ExternalTaxon < ActiveRecord::Base
+class ExternalTaxon < ApplicationRecord
   belongs_to :taxon_framework_relationship
   
   after_create :update_taxon_framework_relationship

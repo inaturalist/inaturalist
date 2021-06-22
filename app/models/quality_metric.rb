@@ -1,4 +1,4 @@
-class QualityMetric < ActiveRecord::Base
+class QualityMetric < ApplicationRecord
 
   blockable_by lambda {|qm| qm.observation.user_id }
 

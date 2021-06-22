@@ -1,4 +1,4 @@
-class ObservationLink < ActiveRecord::Base
+class ObservationLink < ApplicationRecord
   belongs_to :observation
   before_save :set_href_name
   

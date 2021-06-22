@@ -3,7 +3,7 @@ module ActionController
     class << self
 
       def blocks_spam(options={})
-        before_filter :block_spammers, only: options[:only],
+        before_action :block_spammers, only: options[:only],
           except: options[:except]
 
         define_method(:block_if_spammer) do |obj|
@@ -66,7 +66,7 @@ module ActionController
       # really required, which we set for all users anyway, so this probably
       # isn't necessary, but it would probably help.
       def check_spam( options = {} )
-        before_filter :set_akismet_params_on_record, only: options[:only], except: options[:except]
+        before_action :set_akismet_params_on_record, only: options[:only], except: options[:except]
 
         define_method( :set_akismet_params_on_record ) do
           return unless record = instance_variable_get( "@" + options[:instance].to_s )

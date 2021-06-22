@@ -1,4 +1,4 @@
-class ProjectObservation < ActiveRecord::Base
+class ProjectObservation < ApplicationRecord
   blockable_by lambda {|po| po.observation.try(:user_id) }
 
   belongs_to :project
@@ -24,7 +24,7 @@ class ProjectObservation < ActiveRecord::Base
     :on_list?,
     :verifiable?,
     :wild?
-  ], :unless => "errors.any?"
+  ], unless: lambda {|po| po.errors.any? }
   validate :observed_in_bioblitz_time_range?
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
 

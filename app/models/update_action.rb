@@ -1,4 +1,4 @@
-class UpdateAction < ActiveRecord::Base
+class UpdateAction < ApplicationRecord
 
   include ActsAsElasticModel
 
@@ -250,7 +250,7 @@ class UpdateAction < ActiveRecord::Base
       UpdateAction.elastic_delete_by_ids!( batch.map(&:id) )
     end
     # then delete them from Postgres
-    UpdateAction.delete_all(*args)
+    UpdateAction.where(*args).delete_all
   end
 
   def self.first_with_attributes(attrs, options = {})

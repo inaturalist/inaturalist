@@ -1,5 +1,5 @@
 class ProviderOauthController < ApplicationController
-  before_filter :authenticate_user!, :only => [:bounce_back]
+  before_action :authenticate_user!, :only => [:bounce_back]
 
   layout "bootstrap"
   

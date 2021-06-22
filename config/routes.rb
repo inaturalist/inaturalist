@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :moderator_notes
   resources :data_partners
   resources :saved_locations
-  apipie
+  # apipie
 
   resources :sites do
     collection do

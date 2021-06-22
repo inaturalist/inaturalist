@@ -1,8 +1,8 @@
 class TaxonFrameworkRelationshipsController < ApplicationController
-  before_filter :find_taxon_framework_relationship, only: [:show, :edit]
-  before_filter :authenticate_user!, except: [:index, :show]
-  before_filter :curator_required, only: [:new, :create, :edit, :update, :destroy]
-  before_filter :taxon_curator_required, only: [:edit, :update, :destroy]
+  before_action :find_taxon_framework_relationship, only: [:show, :edit]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :curator_required, only: [:new, :create, :edit, :update, :destroy]
+  before_action :taxon_curator_required, only: [:edit, :update, :destroy]
   before_action :set_taxon_framework_relationship, except: [:index, :new, :create]
   
   layout "bootstrap"

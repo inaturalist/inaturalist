@@ -1,4 +1,4 @@
-class ProjectInvitation < ActiveRecord::Base
+class ProjectInvitation < ApplicationRecord
   belongs_to :project
   belongs_to :observation
   belongs_to :user

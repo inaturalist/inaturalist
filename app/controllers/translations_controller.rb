@@ -1,6 +1,6 @@
 class TranslationsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :curator_required
+  before_action :authenticate_user!
+  before_action :curator_required
 
   # Not sure why but without this Rails thinks this action isn't here, even
   # though it's defined in the superclass

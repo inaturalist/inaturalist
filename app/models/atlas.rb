@@ -1,4 +1,4 @@
-class Atlas < ActiveRecord::Base
+class Atlas < ApplicationRecord
   has_subscribers
   belongs_to :taxon
   belongs_to :user

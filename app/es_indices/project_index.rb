@@ -1,4 +1,4 @@
-class Project < ActiveRecord::Base
+class Project < ApplicationRecord
   include ActsAsElasticModel
 
   DEFAULT_ES_BATCH_SIZE = 500

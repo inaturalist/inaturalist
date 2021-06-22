@@ -1,4 +1,4 @@
-class UserParent < ActiveRecord::Base
+class UserParent < ApplicationRecord
   # This is the child
   belongs_to :user, inverse_of: :user_parent
 

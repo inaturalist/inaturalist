@@ -1,8 +1,8 @@
 class AnnouncementsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :site_admin_required, except: [:dismiss]
-  before_filter :load_announcement, :only => [:show, :edit, :update, :destroy, :dismiss]
-  before_filter :load_sites, only: [:new, :edit, :create]
+  before_action :authenticate_user!
+  before_action :site_admin_required, except: [:dismiss]
+  before_action :load_announcement, :only => [:show, :edit, :update, :destroy, :dismiss]
+  before_action :load_sites, only: [:new, :edit, :create]
 
   layout "bootstrap"
   

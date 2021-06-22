@@ -3,15 +3,15 @@ class PlacesController < ApplicationController
   include Shared::WikipediaModule
   include Shared::GuideModule
   
-  before_filter :authenticate_user!, :except => [:index, :show, :search, 
+  before_action :authenticate_user!, :except => [:index, :show, :search, 
     :wikipedia, :taxa, :children, :autocomplete, :geometry, :guide,
     :cached_guide, :guide_widget]
-  before_filter :return_here, :only => [:show]
-  before_filter :load_place, :only => [:show, :edit, :update, :destroy, 
+  before_action :return_here, :only => [:show]
+  before_action :load_place, :only => [:show, :edit, :update, :destroy, 
     :children, :taxa, :geometry, :cached_guide, :guide_widget, :widget, :merge]
-  before_filter :limit_page_param_for_search, :only => [:search]
-  before_filter :editor_required, :only => [:edit, :update, :destroy]
-  before_filter :curator_required, :only => [:planner]
+  before_action :limit_page_param_for_search, :only => [:search]
+  before_action :editor_required, :only => [:edit, :update, :destroy]
+  before_action :curator_required, :only => [:planner]
   
   caches_page :geometry
   caches_action :cached_guide,
@@ -20,7 +20,7 @@ class PlacesController < ApplicationController
     if: Proc.new {|c| c.session.blank? || c.session["warden.user.user.key"].blank? }
   cache_sweeper :place_sweeper, :only => [:update, :destroy, :merge]
 
-  before_filter :allow_external_iframes, only: [:guide_widget, :cached_guide]
+  before_action :allow_external_iframes, only: [:guide_widget, :cached_guide]
 
   requires_privilege :organizer, only: [:new, :create, :edit, :update, :destroy],
     if: Proc.new{|c|
@@ -282,11 +282,12 @@ class PlacesController < ApplicationController
   end
   
   def find_external
-    @places = if @ydn_places = GeoPlanet::Place.search(params[:q], :count => 10)
-      @ydn_places.map {|ydnp| Place.new_from_geo_planet(ydnp)}
-    else
-      []
-    end
+    # @places = if @ydn_places = GeoPlanet::Place.search(params[:q], :count => 10)
+    #   @ydn_places.map {|ydnp| Place.new_from_geo_planet(ydnp)}
+    # else
+    #   []
+    # end
+    @places = []
     
     respond_to do |format|
       format.json do

@@ -1,9 +1,9 @@
 class GuideTaxaController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_action :authenticate_user!, :except => [:index, :show]
   load_only = [ :show, :edit, :update, :destroy, :update_photos, :sync ]
-  before_filter :load_record, :only => load_only
-  before_filter :load_guide, :only => load_only
-  before_filter :only => [:edit, :update, :destroy, :update_photos, :sync] do |c|
+  before_action :load_record, :only => load_only
+  before_action :load_guide, :only => load_only
+  before_action :only => [:edit, :update, :destroy, :update_photos, :sync] do |c|
     require_guide_user
   end
   layout "bootstrap"

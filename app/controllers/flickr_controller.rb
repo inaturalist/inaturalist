@@ -1,7 +1,7 @@
 class FlickrController < ApplicationController
-  before_filter :authenticate_user! , :except => [:invite]
-  before_filter :ensure_has_no_flickr_identity, :only => ['link']
-  before_filter :return_here, :only => [:index, :show, :by_login, :options]
+  before_action :authenticate_user! , :except => [:invite]
+  before_action :ensure_has_no_flickr_identity, :only => ['link']
+  before_action :return_here, :only => [:index, :show, :by_login, :options]
   
   # Finds photos for the logged-in user
   def photos

@@ -1,4 +1,4 @@
-class TaxonFrameworkRelationship < ActiveRecord::Base
+class TaxonFrameworkRelationship < ApplicationRecord
   alias_attribute :internal_taxa, :taxa
   
   attr_accessor :current_user

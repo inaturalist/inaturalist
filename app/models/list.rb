@@ -3,7 +3,7 @@
 # they be lists of things they've seen, lists of things they'd like to see, or
 # just lists of taxa that interest them for some reason.
 #
-class List < ActiveRecord::Base
+class List < ApplicationRecord
   acts_as_spammable fields: [:title, :description],
                     comment_type: "item-description",
                     automated: false

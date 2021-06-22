@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include ActsAsSpammable::User
   include ActsAsElasticModel
   # include ActsAsUUIDable
@@ -233,7 +233,7 @@ class User < ActiveRecord::Base
   end
 
   # Roles
-  has_and_belongs_to_many :roles, -> { uniq }
+  has_and_belongs_to_many :roles #, -> { uniq }
   belongs_to :curator_sponsor, class_name: "User"
   belongs_to :suspended_by_user, class_name: "User"
   

@@ -1,4 +1,4 @@
-class UserBlock < ActiveRecord::Base
+class UserBlock < ApplicationRecord
   # After a single user has been blocked this many times we alert staff about it
   PROBLEMATIC_BLOCK_THRESHOLD = 3
   # Number of blocks allowed per user

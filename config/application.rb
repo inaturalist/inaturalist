@@ -1,6 +1,6 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
+
 require 'rails/all'
-require 'rack/mobile-detect'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module Inaturalist
   class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.0
+    config.active_record.belongs_to_required_by_default = false
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -32,7 +35,7 @@ module Inaturalist
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
+    # config.active_record.raise_in_transactional_callbacks = true
     
     # config.active_record.observers = :user_observer, :listed_taxon_sweeper # this might have to come back, was running into probs with Preferences
     config.active_record.observers = [ :observation_sweeper, :user_sweeper ]
@@ -75,10 +78,9 @@ module Inaturalist
 
     config.action_mailer.preview_path = "#{Rails.root}/test/mailers/previews"
 
-    config.middleware.insert_before "ActionDispatch::DebugExceptions", "LogstasherCatchAllErrors"
     config.middleware.use Rack::MobileDetect
 
-    config.middleware.insert_before 0, "Rack::Cors" do
+    config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
         resource '/oauth/token', :headers => :any, :methods => [:post]
@@ -111,7 +113,7 @@ INTEGRITY_PRIORITY = 3          # maintains data integrity for everything else, 
 OPTIONAL_PRIORITY = 4           # inconsequential stuff like updating wikipedia summaries
 
 # Yahoo Developer Network
-GeoPlanet.appid = CONFIG.yahoo_dev_network.app_id
+# GeoPlanet.appid = CONFIG.yahoo_dev_network.app_id
 
 # flickr api keys - these need to be set before Flickraw gets included
 FlickRaw.api_key = CONFIG.flickr.key
@@ -132,7 +134,7 @@ require 'geo_ruby/shp4r/shp'
 require 'geo_ruby/kml'
 # geojson via RGeo
 require 'rgeo/geo_json'
-require 'google/api_client'
+# require 'google/api_client'
 require 'pp'
 require 'to_csv'
 require 'elasticsearch/model'

@@ -1,4 +1,4 @@
-class SiteStatistic < ActiveRecord::Base
+class SiteStatistic < ApplicationRecord
 
   STAT_TYPES = [ :observations, :users, :projects,
     :taxa, :identifications, :identifier, :platforms, :platforms_cumulative ]

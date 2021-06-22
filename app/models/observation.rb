@@ -1,5 +1,5 @@
 #encoding: utf-8
-class Observation < ActiveRecord::Base
+class Observation < ApplicationRecord
 
   include ActsAsElasticModel
   include ObservationSearch
@@ -2987,7 +2987,7 @@ class Observation < ActiveRecord::Base
   def update_observations_places
     Observation.update_observations_places(ids: [ id ])
     # reload the association since we added the records using SQL
-    observations_places(true)
+    observations_places.reload
   end
 
   def set_taxon_photo

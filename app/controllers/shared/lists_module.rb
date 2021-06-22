@@ -406,7 +406,7 @@ private
     end
   end
   
-  def load_list #before_filter
+  def load_list #before_action
     @list = List.find_by_id(params[:id].to_i)
     @list ||= List.find_by_id(params[:list_id].to_i)
     List.preload_associations(@list, :user)
@@ -426,7 +426,7 @@ private
     list
   end
 
-  def set_iconic_taxa #before_filter
+  def set_iconic_taxa #before_action
     @iconic_taxa = Taxon::ICONIC_TAXA
     @iconic_taxa_by_id = @iconic_taxa.index_by(&:id)
   end

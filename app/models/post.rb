@@ -1,4 +1,4 @@
-class Post < ActiveRecord::Base
+class Post < ApplicationRecord
   acts_as_spammable :fields => [ :title, :body ],
                     :comment_type => "blog-post"
   # include ActsAsUUIDable

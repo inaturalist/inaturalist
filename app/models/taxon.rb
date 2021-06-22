@@ -1,5 +1,5 @@
 #encoding: utf-8
-class Taxon < ActiveRecord::Base
+class Taxon < ApplicationRecord
   # Sometimes you don't want to make a new taxon name with a taxon, like when
   # you're saving a new taxon name with a new associated taxon. Hence, this.
   attr_accessor :skip_new_taxon_name

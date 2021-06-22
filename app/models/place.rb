@@ -1,5 +1,5 @@
 #encoding: utf-8
-class Place < ActiveRecord::Base
+class Place < ApplicationRecord
 
   include ActsAsElasticModel
   # include ActsAsUUIDable
@@ -390,48 +390,50 @@ class Place < ActiveRecord::Base
     return false if !admin_level.nil? && !user.is_admin?
     false
   end
-  
+
+  # TODO Rails 5: Remove all geoplanet code. The api hasn't existed for many years
   # Import a place from Yahoo GeoPlanet using the WOEID (Where On Earth ID)
   def self.import_by_woeid(woeid, options = {})
-    if existing = Place.find_by_woeid(woeid)
-      return existing
-    end
+    # if existing = Place.find_by_woeid(woeid)
+    #   return existing
+    # end
     
-    begin
-      ydn_place = GeoPlanet::Place.new(woeid.to_i)
-    rescue GeoPlanet::NotFound => e
-      Rails.logger.error "[ERROR] #{e.class}: #{e.message}"
-      return nil
-    end
-    place = Place.new_from_geo_planet(ydn_place)
-    begin
-      unless place.save
-        Rails.logger.error "[ERROR #{Time.now}] place [#{place.name}], ancestry: #{place.ancestry}, errors: #{place.errors.full_messages.to_sentence}"
-        return
-      end
-    rescue PG::Error, ActiveRecord::RecordNotUnique => e
-      raise e unless e.message =~ /duplicate key/
-      return
-    end
-    place.parent = options[:parent] if options[:parent] && options[:parent].persisted?
+    # begin
+    #   ydn_place = GeoPlanet::Place.new(woeid.to_i)
+    # rescue GeoPlanet::NotFound => e
+    #   Rails.logger.error "[ERROR] #{e.class}: #{e.message}"
+    #   return nil
+    # end
+    # place = Place.new_from_geo_planet(ydn_place)
+    # begin
+    #   unless place.save
+    #     Rails.logger.error "[ERROR #{Time.now}] place [#{place.name}], ancestry: #{place.ancestry}, errors: #{place.errors.full_messages.to_sentence}"
+    #     return
+    #   end
+    # rescue PG::Error, ActiveRecord::RecordNotUnique => e
+    #   raise e unless e.message =~ /duplicate key/
+    #   return
+    # end
+    # place.parent = options[:parent] if options[:parent] && options[:parent].persisted?
     
-    unless (options[:ignore_ancestors] || ydn_place.ancestors.blank?)
-      ancestors = []
-      (ydn_place.ancestors || []).reverse_each do |ydn_ancestor|
-        next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(ydn_ancestor.placetype_code)
-        ancestor = Place.import_by_woeid(ydn_ancestor.woeid, :ignore_ancestors => true, :parent => ancestors.last)
-        ancestors << ancestor if ancestor
-        if place && place.persisted? && ancestor && ancestor.persisted?
-          place.parent = ancestor
-        end
-      end
-    end
+    # unless (options[:ignore_ancestors] || ydn_place.ancestors.blank?)
+    #   ancestors = []
+    #   (ydn_place.ancestors || []).reverse_each do |ydn_ancestor|
+    #     next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(ydn_ancestor.placetype_code)
+    #     ancestor = Place.import_by_woeid(ydn_ancestor.woeid, :ignore_ancestors => true, :parent => ancestors.last)
+    #     ancestors << ancestor if ancestor
+    #     if place && place.persisted? && ancestor && ancestor.persisted?
+    #       place.parent = ancestor
+    #     end
+    #   end
+    # end
     
-    if options[:user].is_a?(User)
-      place.user_id = options[:user].id
-    end
-    place.save
-    place
+    # if options[:user].is_a?(User)
+    #   place.user_id = options[:user].id
+    # end
+    # place.save
+    # place
+    nil
   end
   
   # Make a new Place from a GeoPlanet::Place

@@ -1,2 +1,2 @@
-class DeletedUser < ActiveRecord::Base
+class DeletedUser < ApplicationRecord
 end

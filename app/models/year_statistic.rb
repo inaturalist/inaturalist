@@ -1,4 +1,4 @@
-class YearStatistic < ActiveRecord::Base
+class YearStatistic < ApplicationRecord
   belongs_to :user
   belongs_to :site
 

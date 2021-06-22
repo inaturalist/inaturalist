@@ -3,7 +3,7 @@
 # last observed taxon (saving some db time), this model's validation makes
 # sure a taxon passes all of a list's ListRules.
 #
-class ListedTaxon < ActiveRecord::Base
+class ListedTaxon < ApplicationRecord
   has_subscribers destroy_callback: :commit
   
   belongs_to :list

@@ -1,8 +1,8 @@
 class UserParentsController < ApplicationController
   layout "registrations"
-  before_filter :set_instance_variables
-  before_filter :load_record, only: [:destroy]
-  before_filter :admin_required, only: [:destroy]
+  before_action :set_instance_variables
+  before_action :load_record, only: [:destroy]
+  before_action :admin_required, only: [:destroy]
 
   def index
     redirect_to new_user_parent_path

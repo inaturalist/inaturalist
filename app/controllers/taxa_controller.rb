@@ -18,30 +18,30 @@ class TaxaController < ApplicationController
     } },
     if: Proc.new {|c| request.format.json? }
 
-  before_filter :allow_external_iframes, only: [:map]
+  before_action :allow_external_iframes, only: [:map]
   
   include TaxaHelper
   include Shared::WikipediaModule
   
-  before_filter :return_here, :only => [:index, :show, :flickr_tagger, :curation, :synonyms, :browse_photos]
-  before_filter :authenticate_user!, :only => [:update_photos,
+  before_action :return_here, :only => [:index, :show, :flickr_tagger, :curation, :synonyms, :browse_photos]
+  before_action :authenticate_user!, :only => [:update_photos,
     :set_photos,
     :update_colors, :tag_flickr_photos, :tag_flickr_photos_from_observations,
     :flickr_photos_tagged, :add_places, :synonyms]
-  before_filter :curator_required, :only => [:new, :create, :edit, :update,
+  before_action :curator_required, :only => [:new, :create, :edit, :update,
     :destroy, :curation, :refresh_wikipedia_summary, :merge, :synonyms, :graft]
-  before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
+  before_action :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :update_photos, :set_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
     :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details]
-  before_filter :taxon_curator_required, :only => [:edit, :update,
+  before_action :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
-  before_filter :limit_page_param_for_search, :only => [:index,
+  before_action :limit_page_param_for_search, :only => [:index,
     :browse, :search]
-  before_filter :ensure_flickr_write_permission, :only => [
+  before_action :ensure_flickr_write_permission, :only => [
     :flickr_photos_tagged, :tag_flickr_photos, 
     :tag_flickr_photos_from_observations]
-  before_filter :load_form_variables, :only => [:edit, :new]
+  before_action :load_form_variables, :only => [:edit, :new]
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos, :set_photos]
   
   GRID_VIEW = "grid"

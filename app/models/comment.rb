@@ -1,4 +1,4 @@
-class Comment < ActiveRecord::Base
+class Comment < ApplicationRecord
 
   acts_as_spammable fields: [ :body ],
                     comment_type: "comment"

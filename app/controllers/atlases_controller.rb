@@ -1,9 +1,9 @@
 class AtlasesController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :curator_required, :only => [:new, :create, :edit, :update,
+  before_action :authenticate_user!
+  before_action :curator_required, :only => [:new, :create, :edit, :update,
     :destroy, :alter_atlas_presence, :destroy_all_alterations, :remove_atlas_alteration,
     :remove_listed_taxon_alteration, :refresh_atlas]
-  before_filter :find_atlas, except: [ :new, :create, :index ]
+  before_action :find_atlas, except: [ :new, :create, :index ]
   layout "bootstrap"
 
   def new

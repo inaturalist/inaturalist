@@ -1,4 +1,4 @@
-class ProjectUser < ActiveRecord::Base
+class ProjectUser < ApplicationRecord
   
   belongs_to :project, inverse_of: :project_users, touch: true
   belongs_to :user, touch: true

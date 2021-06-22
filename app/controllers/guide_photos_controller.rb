@@ -1,8 +1,8 @@
 class GuidePhotosController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :load_record, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_guide, :except => [:index, :new, :create]
-  before_filter :only => [:edit, :update, :destroy, :edit_photos, :update_photos] do |c|
+  before_action :authenticate_user!
+  before_action :load_record, :only => [:show, :edit, :update, :destroy]
+  before_action :load_guide, :except => [:index, :new, :create]
+  before_action :only => [:edit, :update, :destroy, :edit_photos, :update_photos] do |c|
     require_guide_user
   end
 

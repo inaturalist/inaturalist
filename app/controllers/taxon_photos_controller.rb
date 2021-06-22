@@ -1,5 +1,5 @@
 class TaxonPhotosController < ApplicationController
-  before_filter :admin_required
+  before_action :admin_required
   layout "bootstrap"
 
   def new

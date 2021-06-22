@@ -1,4 +1,4 @@
-class Sound < ActiveRecord::Base
+class Sound < ApplicationRecord
   belongs_to :user
   has_many :observation_sounds, :dependent => :destroy
   has_many :observations, :through => :observation_sounds

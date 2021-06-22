@@ -2,7 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   layout "registrations"
 
-  before_filter :load_registration_form_data, only: [:new, :create]
+  before_action :load_registration_form_data, only: [:new, :create]
 
   def permit_params
     if params[:user]

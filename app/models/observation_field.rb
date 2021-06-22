@@ -1,4 +1,4 @@
-class ObservationField < ActiveRecord::Base
+class ObservationField < ApplicationRecord
 
   include ActsAsElasticModel
   # include ActsAsUUIDable

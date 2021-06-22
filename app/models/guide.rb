@@ -1,4 +1,4 @@
-class Guide < ActiveRecord::Base
+class Guide < ApplicationRecord
   acts_as_spammable :fields => [ :title, :description ]
   belongs_to :user, :inverse_of => :guides
   belongs_to :place, :inverse_of => :guides

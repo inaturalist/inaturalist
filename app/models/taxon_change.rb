@@ -1,4 +1,4 @@
-class TaxonChange < ActiveRecord::Base
+class TaxonChange < ApplicationRecord
   belongs_to :taxon, inverse_of: :taxon_changes
   has_many :taxon_change_taxa, inverse_of: :taxon_change, dependent: :destroy
   has_many :taxa, :through => :taxon_change_taxa

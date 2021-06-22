@@ -1,4 +1,4 @@
-class UserPrivilege < ActiveRecord::Base
+class UserPrivilege < ApplicationRecord
   belongs_to :user
   belongs_to :revoke_user, class_name: "User"
   validates :user_id, uniqueness: { scope: :privilege }

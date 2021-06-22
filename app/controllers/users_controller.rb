@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   before_action -> { doorkeeper_authorize! :account_delete },
     only: [ :destroy ],
     if: lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!,
+  before_action :authenticate_user!,
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :new, :create, :activate, :relationships,
       :search, :update_session, :parental_consent ]
@@ -18,22 +18,22 @@ class UsersController < ApplicationController
     :remove_role, :set_spammer, :merge, :trust, :untrust, :mute, :unmute,
     :block, :unblock, :moderation
   ]
-  before_filter :find_user, :only => load_only
+  before_action :find_user, :only => load_only
   # we want to load the user for set_spammer but not attempt any spam blocking,
   # because set_spammer may change the user's spammer properties
   blocks_spam :only => load_only - [ :set_spammer ], :instance => :user
   check_spam only: [:create, :update], instance: :user
-  before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
-  before_filter :admin_required, :only => [:curation, :merge]
-  before_filter :site_admin_of_user_required, only: [:add_role, :remove_role]
-  before_filter :curator_required, only: [:recent]
-  before_filter :curator_or_site_admin_required, only: [
+  before_action :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
+  before_action :admin_required, :only => [:curation, :merge]
+  before_action :site_admin_of_user_required, only: [:add_role, :remove_role]
+  before_action :curator_required, only: [:recent]
+  before_action :curator_or_site_admin_required, only: [
     :moderation,
     :set_spammer,
     :suspend,
     :unsuspend
   ]
-  before_filter :return_here, only: [
+  before_action :return_here, only: [
     :curation,
     :dashboard,
     :edit,
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     :relationships,
     :show
   ]
-  before_filter :before_edit, only: [:edit, :edit_after_auth]
+  before_action :before_edit, only: [:edit, :edit_after_auth]
   skip_before_action :check_preferred_place, only: :api_token
   skip_before_action :preload_user_preferences, only: :api_token
   skip_before_action :set_site, only: :api_token

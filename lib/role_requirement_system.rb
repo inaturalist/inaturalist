@@ -1,3 +1,4 @@
+# TODO Rails 5: Remove this file, pretty sure we've never used it
 # Main module for authentication.  
 # Include this in ApplicationController to activate RoleRequirement
 #
@@ -40,9 +41,9 @@ module RoleRequirementSystem
       )
       
       # only declare that before filter once
-      unless (@before_filter_declared||=false)
-        @before_filter_declared=true
-        before_filter :check_roles
+      unless (@before_action_declared||=false)
+        @before_action_declared=true
+        before_action :check_roles
       end
       
       # convert to an array if it isn't already

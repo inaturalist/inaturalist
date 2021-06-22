@@ -1,6 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
 
-  before_filter :load_registration_form_data, only: [:new, :create]
+  before_action :load_registration_form_data, only: [:new, :create]
 
   layout "registrations"
 

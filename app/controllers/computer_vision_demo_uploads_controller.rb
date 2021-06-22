@@ -1,7 +1,7 @@
 class ComputerVisionDemoUploadsController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
-  before_filter :lookup_upload, only: [ :score ]
+  before_action :lookup_upload, only: [ :score ]
 
   def create
     @upload = ComputerVisionDemoUpload.new(photo: params[:file],

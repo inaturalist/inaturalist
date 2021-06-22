@@ -1,4 +1,4 @@
-class Site < ActiveRecord::Base
+class Site < ApplicationRecord
   has_many :observations, inverse_of: :site
   has_many :users, inverse_of: :site
   has_many :site_admins, inverse_of: :site

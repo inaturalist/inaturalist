@@ -1,5 +1,5 @@
 #encoding: utf-8
-class ControlledTerm < ActiveRecord::Base
+class ControlledTerm < ApplicationRecord
 
   include ActsAsElasticModel
   # include ActsAsUUIDable
@@ -32,7 +32,7 @@ class ControlledTerm < ActiveRecord::Base
   after_commit :index_attributes
   scope :active, -> { where(active: true) }
   scope :attributes, -> { where(is_value: false) }
-  scope :values, -> { where(is_value: true) }
+  # scope :values, -> { where(is_value: true) }
   scope :unassigned_values, -> {
     values.
     joins("LEFT JOIN controlled_term_values ctv ON (controlled_terms.id = ctv.controlled_value_id)").

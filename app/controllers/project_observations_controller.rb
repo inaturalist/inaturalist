@@ -1,7 +1,7 @@
 class ProjectObservationsController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :show, :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_record, only: [:update, :destroy]
+  before_action :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
+  before_action :load_record, only: [:update, :destroy]
   
   def create
     begin

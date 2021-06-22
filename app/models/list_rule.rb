@@ -7,7 +7,7 @@
 # is applied, it calls the operator method with the operand as an argument. 
 # If it returns true, the taxon gets in the list. Otherwise, it's Failsville.
 #
-class ListRule < ActiveRecord::Base
+class ListRule < ApplicationRecord
   belongs_to :list
   belongs_to :operand, :polymorphic => true
   after_create :refresh_list

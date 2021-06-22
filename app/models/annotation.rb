@@ -1,5 +1,5 @@
 #encoding: utf-8
-class Annotation < ActiveRecord::Base
+class Annotation < ApplicationRecord
 
   acts_as_votable
   blockable_by lambda {|annotation| annotation.resource.try(:user_id) }

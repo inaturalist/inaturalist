@@ -1,7 +1,7 @@
 class AnnotationsController < ApplicationController
   before_action :doorkeeper_authorize!, if: ->{ authenticate_with_oauth? }
-  before_filter :authenticate_user!, unless: ->{ authenticated_with_oauth? }
-  before_filter :load_record, only: [:update, :destroy]
+  before_action :authenticate_user!, unless: ->{ authenticated_with_oauth? }
+  before_action :load_record, only: [:update, :destroy]
 
   def create
     p = annotation_params(params[:annotation])

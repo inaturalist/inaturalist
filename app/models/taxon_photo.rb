@@ -1,4 +1,4 @@
-class TaxonPhoto < ActiveRecord::Base
+class TaxonPhoto < ApplicationRecord
   belongs_to :taxon
   belongs_to :photo
   

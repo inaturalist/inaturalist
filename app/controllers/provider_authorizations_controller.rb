@@ -2,7 +2,7 @@ class ProviderAuthorizationsController < ApplicationController
   before_action :doorkeeper_authorize!,
     only: [ :destroy ],
     if: lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, only: [ :destroy ],
+  before_action :authenticate_user!, only: [ :destroy ],
     unless: lambda { authenticated_with_oauth? }
   protect_from_forgery :except => :create
 

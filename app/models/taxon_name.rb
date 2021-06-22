@@ -1,5 +1,5 @@
 #encoding: utf-8
-class TaxonName < ActiveRecord::Base
+class TaxonName < ApplicationRecord
   belongs_to :taxon
   belongs_to :source
   belongs_to :creator, :class_name => 'User'

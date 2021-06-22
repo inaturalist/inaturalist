@@ -1,5 +1,5 @@
 #encoding: utf-8
-class Identification < ActiveRecord::Base
+class Identification < ApplicationRecord
   include ActsAsElasticModel
   acts_as_spammable fields: [ :body ],
                     comment_type: "comment",

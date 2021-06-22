@@ -1,4 +1,4 @@
-class TaxonLink < ActiveRecord::Base
+class TaxonLink < ApplicationRecord
   belongs_to :taxon
   belongs_to :user
   belongs_to :place

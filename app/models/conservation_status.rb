@@ -1,5 +1,5 @@
 #encoding: utf-8
-class ConservationStatus < ActiveRecord::Base
+class ConservationStatus < ApplicationRecord
   belongs_to :taxon
   belongs_to :user
   has_updater
