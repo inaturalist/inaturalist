@@ -21,6 +21,11 @@ class TimeShifter extends SelectionBasedComponent {
     this.handleValueChange = this.handleValueChange.bind( this );
   }
 
+  componentDidMount( ) {
+    const output = document.getElementById( "newTime" );
+    output.innerHTML = 0; // Display the default slider value
+  }
+
   updateCard( card, dateString, amountToShift ) {
     const { updateObsCard } = this.props;
     updateObsCard( card, {
@@ -115,13 +120,18 @@ class TimeShifter extends SelectionBasedComponent {
     // Update the current slider value (each time you drag the slider handle)
     slider.oninput = ( ) => {
       output.innerHTML = this.value;
+      // slider.innerHTML = "clock";
     };
   }
 
   render( ) {
     const { timeShift } = this.state;
     return (
-      <div>
+      <div className="slider-group">
+        <p className="panel-group current-hours">
+          {I18n.t( "hours_adjusted" )}
+          <span id="newTime" />
+        </p>
         <div className="slidecontainer">
           <input
             type="range"
@@ -132,11 +142,15 @@ class TimeShifter extends SelectionBasedComponent {
             className="slider"
             id="timeShifter"
             onChange={this.handleSlider}
+            list="tickmarks"
           />
-          <p>
-            {`${I18n.t( "hours" )} `}
-            <span id="newTime" />
-          </p>
+          <div className="tickmarks">
+            <span className="tick">-24</span>
+            <span className="tick">-12</span>
+            <span className="tick">0</span>
+            <span className="tick">12</span>
+            <span className="tick">24</span>
+          </div>
         </div>
       </div>
     );

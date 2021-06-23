@@ -59,6 +59,7 @@ class LeftMenu extends SelectionBasedComponent {
     this.details = this.details.bind( this );
     // this.formPanel = this.formPanel.bind( this );
     this.openLocationChooser = this.openLocationChooser.bind( this );
+    this.timeShifter = this.timeShifter.bind( this );
   }
 
   shouldComponentUpdate( nextProps ) {
@@ -180,6 +181,19 @@ class LeftMenu extends SelectionBasedComponent {
             }
           />
         </div>
+        {/* <TimeShifter
+          dateTime={commonDate
+            ? moment( commonDate, inputFormat ).format( "x" )
+            : undefined
+          }
+          inputFormat={inputFormat}
+          onChange={dateString => updateSelectedObsCards( {
+            date: dateString,
+            selected_date: dateString
+          } )}
+          selectedObsCards={this.props.selectedObsCards}
+          updateObsCard={this.props.updateObsCard}
+        /> */}
         <div className="input-group" onClick={this.openLocationChooser}>
           <div className="input-group-addon">
             <Glyphicon glyph="map-marker" />
@@ -239,20 +253,26 @@ class LeftMenu extends SelectionBasedComponent {
             </label>
           </div>
         </div>
-        <TimeShifter
-          dateTime={commonDate
-            ? moment( commonDate, inputFormat ).format( "x" )
-            : undefined
-          }
-          inputFormat={inputFormat}
-          onChange={dateString => updateSelectedObsCards( {
-            date: dateString,
-            selected_date: dateString
-          } )}
-          selectedObsCards={this.props.selectedObsCards}
-          updateObsCard={this.props.updateObsCard}
-        />
       </div>
+    );
+  }
+
+  timeShifter( ) {
+    const { commonDate, inputFormat, updateSelectedObsCards } = this.props;
+    return (
+      <TimeShifter
+        dateTime={commonDate
+          ? moment( commonDate, inputFormat ).format( "x" )
+          : undefined
+        }
+        inputFormat={inputFormat}
+        onChange={dateString => updateSelectedObsCards( {
+          date: dateString,
+          selected_date: dateString
+        } )}
+        selectedObsCards={this.props.selectedObsCards}
+        updateObsCard={this.props.updateObsCard}
+      />
     );
   }
 
@@ -293,6 +313,7 @@ class LeftMenu extends SelectionBasedComponent {
               <ProjectsChooser {...this.props} /> ), projectsContent ) }
             { LeftMenu.formPanel( "4", I18n.t( "fields_" ), "th-list", (
               <ObservationFieldsChooser {...this.props} /> ), fieldsContent ) }
+            { LeftMenu.formPanel( "5", I18n.t( "adjust_time" ), "time", this.timeShifter( ) )}
           </PanelGroup>
         </div>
       );

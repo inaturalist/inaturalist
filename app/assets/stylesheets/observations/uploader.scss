@@ -1042,18 +1042,24 @@ label {
   line-height: inherit;
 }
 
+.slider-group {
+  margin-bottom: 15px;
+}
+
 // time-shifter slider CSS, modified from https://www.w3schools.com/howto/howto_js_rangeslider.asp
 .slidecontainer {
   width: 100%; /* Width of the outside container */
 }
 
+$thumb: 20px;
+
 /* The slider itself */
 .slider {
   -webkit-appearance: none;
   width: 100%;
-  height: 15px;
-  border-radius: 5px;  
-  background: #d3d3d3;
+  height: 10px;
+  border-radius: $thumb * 2;
+  background: #fff;
   outline: none;
   opacity: 0.7;
   -webkit-transition: .2s;
@@ -1063,17 +1069,50 @@ label {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%; 
-  background: $inat-green;
+  width: $thumb;
+  height: $thumb;
+  border-radius: $thumb * 2;
+  background-color: $inat-green;
+  background-repeat: no-repeat;
+  background-position: center;
   cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: $inat-green;
+  width: $thumb;
+  height: $thumb;
+  border-radius: $thumb * 2;
+  background-color: $inat-green;
+  background-repeat: no-repeat;
+  background-position: center;
   cursor: pointer;
+}
+
+// tickmark CSS adapted from https://codepen.io/sakamies/pen/KXQmXo
+$tickmark: 6px;
+
+.tickmarks {
+  display: flex;
+  justify-content: space-between;
+  padding: $tickmark;
+}
+
+.tick {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 1px;
+  background: gray;
+  height: $tickmark;
+  line-height: $tickmark * 5;
+  margin-bottom: $tickmark * 2;
+}
+
+.current-hours {
+  display: flex;
+  justify-content: center;
+}
+
+span[id="newTime"] {
+  padding-left: 5px;
 }
