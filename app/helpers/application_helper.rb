@@ -1004,7 +1004,7 @@ module ApplicationHelper
     when "User"
       image_tag(resource.icon.url(:thumb), options.merge(:alt => "#{resource.login} icon", :class => "usericon"))
     when "Observation"
-      observation_image(resource, options.merge(:size => "square"))
+      observation_image(resource, options.merge(:style => "square"))
     when "Project"
       image_tag(resource.icon.url(:thumb), options)
     when "ProjectUserInvitation"
@@ -1025,7 +1025,7 @@ module ApplicationHelper
     when "Place"
       image_tag(FakeView.image_url("icon-maps.png"), options)
     when "Taxon"
-      taxon_image(resource, {:size => "square", :width => 48}.merge(options))
+      taxon_image(resource, {:style => "square", :width => 48}.merge(options))
     when "TaxonSplit", "TaxonMerge", "TaxonSwap", "TaxonDrop", "TaxonStage"
       image_tag( FakeView.image_url( "#{resource.class.name.underscore}-aaaaaa-48px.png", options) )
     when "ObservationField"

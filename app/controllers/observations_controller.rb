@@ -1,6 +1,6 @@
 #encoding: utf-8
 class ObservationsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: :index, if: :json_request?
+  skip_before_action :verify_authenticity_token, only: :index, if: :json_request?, raise: false
   protect_from_forgery unless: -> { request.format.widget? } #, except: [:stats, :user_stags, :taxa]
   before_action :decide_if_skipping_preloading, only: [ :index, :show, :taxon_summary, :review ]
   before_action :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
