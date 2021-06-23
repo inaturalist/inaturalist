@@ -26,22 +26,23 @@ class TimeShifter extends SelectionBasedComponent {
     output.innerHTML = 0; // Display the default slider value
   }
 
-  updateCard( card, dateString, amountToShift ) {
+  updateCard( card, dateString ) {
     const { updateObsCard } = this.props;
     updateObsCard( card, {
       date: dateString,
       selected_date: dateString
-      // time_shifted: amountToShift
     } );
   }
 
-  addTimeToSelectedObs( hours, minutes, amountToShift ) {
+  addTimeToSelectedObs( hours, minutes ) {
     const { selectedObsCards, inputFormat } = this.props;
 
     const cardsToUpdate = _.keys( selectedObsCards ).map( card => selectedObsCards[card] );
 
     cardsToUpdate.forEach( card => {
       const { date } = card;
+      if ( date === null ) { return; }
+
       const newDate = moment( new Date( date ) )
         .add( hours, "hours" )
         .add( minutes, "minutes" );
@@ -50,27 +51,29 @@ class TimeShifter extends SelectionBasedComponent {
       const minDateString = moment.min( currentTime, newDate );
       const dateString = newDate.tz( card.time_zone ).format( inputFormat || "YYYY/MM/DD h:mm A ZZ" );
 
-      // we need some way to let a user know that one of these dates is no longer updating
+      // we might want to add a way to let a user know that one of these dates is no longer updating
       if ( minDateString !== currentTime ) {
-        this.updateCard( card, dateString, amountToShift );
+        this.updateCard( card, dateString );
       }
     } );
   }
 
-  subtractTimeFromSelectedObs( hours, minutes, amountToShift ) {
+  subtractTimeFromSelectedObs( hours, minutes ) {
     const { selectedObsCards, inputFormat } = this.props;
 
     const cardsToUpdate = _.keys( selectedObsCards ).map( card => selectedObsCards[card] );
 
     cardsToUpdate.forEach( card => {
       const { date } = card;
+      if ( date === null ) { return; }
+
       const dateString = moment( new Date( date ) )
         .tz( card.time_zone )
         .subtract( hours, "hours" )
         .subtract( minutes, "minutes" )
         .format( inputFormat || "YYYY/MM/DD h:mm A ZZ" );
 
-      this.updateCard( card, dateString, amountToShift );
+      this.updateCard( card, dateString );
     } );
   }
 
@@ -100,11 +103,11 @@ class TimeShifter extends SelectionBasedComponent {
     const minutes = Number.isInteger( amountToShift ) ? 0 : 30;
 
     if ( isPositive( amountToShift ) ) {
-      this.addTimeToSelectedObs( hours, minutes, amountToShift );
+      this.addTimeToSelectedObs( hours, minutes );
     }
 
     if ( isNegative( amountToShift ) ) {
-      this.subtractTimeFromSelectedObs( hours, minutes, amountToShift );
+      this.subtractTimeFromSelectedObs( hours, minutes );
     }
   }
 
@@ -120,7 +123,6 @@ class TimeShifter extends SelectionBasedComponent {
     // Update the current slider value (each time you drag the slider handle)
     slider.oninput = ( ) => {
       output.innerHTML = this.value;
-      // slider.innerHTML = "clock";
     };
   }
 

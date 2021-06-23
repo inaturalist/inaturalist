@@ -313,7 +313,7 @@ class LeftMenu extends SelectionBasedComponent {
               <ProjectsChooser {...this.props} /> ), projectsContent ) }
             { LeftMenu.formPanel( "4", I18n.t( "fields_" ), "th-list", (
               <ObservationFieldsChooser {...this.props} /> ), fieldsContent ) }
-            { LeftMenu.formPanel( "5", I18n.t( "adjust_time" ), "time", this.timeShifter( ) )}
+            { LeftMenu.formPanel( "5", I18n.t( "offset_time" ), "time", this.timeShifter( ) )}
           </PanelGroup>
         </div>
       );

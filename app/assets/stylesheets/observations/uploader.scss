@@ -1113,10 +1113,9 @@ $tickmark: 6px;
 
 .current-hours {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 span[id="newTime"] {
   padding-left: 5px;
-  width: 45px;
 }
