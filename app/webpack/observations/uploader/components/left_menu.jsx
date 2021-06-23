@@ -131,7 +131,7 @@ class LeftMenu extends SelectionBasedComponent {
                 taxon_id: null,
                 selected_taxon: null,
                 species_guess: null
-              } ); 
+              } );
             }
           }}
           placeholder={this.valuesOf( "selected_taxon" ).length > 1

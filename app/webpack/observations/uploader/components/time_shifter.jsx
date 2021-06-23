@@ -49,7 +49,6 @@ class TimeShifter extends SelectionBasedComponent {
       const minDateString = moment.min( currentTime, newDate );
       const dateString = newDate.tz( card.time_zone ).format( inputFormat || "YYYY/MM/DD h:mm A ZZ" );
 
-      // we might want to add a way to let a user know that one of these dates is no longer updating
       if ( minDateString !== currentTime ) {
         this.updateCard( card, dateString );
       }
