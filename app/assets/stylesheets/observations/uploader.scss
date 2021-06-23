@@ -1044,6 +1044,8 @@ label {
 
 .slider-group {
   margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 // time-shifter slider CSS, modified from https://www.w3schools.com/howto/howto_js_rangeslider.asp
@@ -1094,7 +1096,8 @@ $tickmark: 6px;
 .tickmarks {
   display: flex;
   justify-content: space-between;
-  padding: $tickmark;
+  padding: $tickmark 7px $tickmark 10px;
+  width: 99%;
 }
 
 .tick {
@@ -1115,4 +1118,5 @@ $tickmark: 6px;
 
 span[id="newTime"] {
   padding-left: 5px;
+  width: 45px;
 }

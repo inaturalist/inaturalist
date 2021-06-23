@@ -144,13 +144,13 @@ class TimeShifter extends SelectionBasedComponent {
             onChange={this.handleSlider}
             list="tickmarks"
           />
-          <div className="tickmarks">
-            <span className="tick">-24</span>
-            <span className="tick">-12</span>
-            <span className="tick">0</span>
-            <span className="tick">12</span>
-            <span className="tick">24</span>
-          </div>
+        </div>
+        <div className="tickmarks">
+          <span className="tick">-24</span>
+          <span className="tick">-12</span>
+          <span className="tick">0</span>
+          <span className="tick">12</span>
+          <span className="tick">24</span>
         </div>
       </div>
     );
