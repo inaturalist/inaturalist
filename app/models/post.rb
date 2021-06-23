@@ -43,7 +43,7 @@ class Post < ApplicationRecord
   belongs_to :parent, :polymorphic => true
   belongs_to :user
   has_many :comments, :as => :parent, :dependent => :destroy
-  has_and_belongs_to_many :observations, -> { uniq }
+  has_and_belongs_to_many :observations, -> { distinct }
 
   validates_length_of :title, in: 1..2000
   validates_presence_of :parent

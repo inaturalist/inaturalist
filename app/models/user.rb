@@ -233,7 +233,7 @@ class User < ApplicationRecord
   end
 
   # Roles
-  has_and_belongs_to_many :roles #, -> { uniq }
+  has_and_belongs_to_many :roles, -> { distinct }
   belongs_to :curator_sponsor, class_name: "User"
   belongs_to :suspended_by_user, class_name: "User"
   

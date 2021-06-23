@@ -74,6 +74,17 @@ module Inaturalist
 
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
+      # Rails 5 is more strict about what classes are allowed to be subclasses.
+      # If a subclass constant gets reloaded but the parent doesn't, the
+      # subclass is no longer considered a subclass of the parent and you end
+      # up with ActiveRecord::SubclassNotFound errors, which is probably going
+      # to happen a lot in a development and maybe a test environment.
+      # According to https://github.com/rails/rails/issues/29542, this is
+      # expected behavior and the way to deal with it is to preload all these
+      # classes.
+      require_dependency "list"
+      require_dependency "check_list"
+      require_dependency "project_list"
     end
 
     config.action_mailer.preview_path = "#{Rails.root}/test/mailers/previews"

@@ -78,7 +78,7 @@ class Taxon < ApplicationRecord
   has_updater
   belongs_to :conservation_status_source, :class_name => "Source"
   belongs_to :taxon_framework_relationship, touch: true
-  has_and_belongs_to_many :colors, -> { uniq }
+  has_and_belongs_to_many :colors, -> { distinct }
   has_many :taxon_descriptions, :dependent => :destroy
   has_one :en_wikipedia_description,
     -> { where("locale='en' AND provider='Wikipedia'") },
