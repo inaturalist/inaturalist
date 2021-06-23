@@ -214,6 +214,9 @@ es-CO:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Puedes elegir compartir coordenadas ocultas para
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Precisión (metros)'
   account: Cuenta
   account_creation: Creación de la cuenta
@@ -857,7 +860,6 @@ es-CO:
   comments: Comentarios
   comments_by_me: Mis comentarios
   comments_have_been_disabled: Los comentarios han sido desactivados
-  comments_on: Comentarios sobre
   comments_on_my_observations: Comentarios sobre mis observaciones
   #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Guardar
@@ -870,6 +872,8 @@ es-CO:
   committing: Guardando...
   common_name: Nombre común
   community: Comunidad
+  community_curated: Supervisado por la comunidad
+  community_id_heading: Taxón de la comunidad
   connecting_flickr: "Conectándose a Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Conéctate de nuevo a Flickr para autorizar permisos de escritura
   connecting_to_facebook: "Conectándose a Facebook..."
@@ -881,7 +885,6 @@ es-CO:
     place: Lugar al que este estado está restringido.
     url: URL de una página que describe este estado.
     geoprivacy: Geoprivacidad predeterminada para este taxón
-    iucn: Código equivalente a la Lista roja de UICN.
   conservation_status_geoprivacy_desc: |
     La geoprivacidad predeterminada se aplica a todas las observaciones de este taxón en este lugar
   contact_support: Contactar el servicio técnico
@@ -1792,11 +1795,8 @@ es-CO:
   multiple_select_option: '-- múltiples --'
   multiple_taxa_for_taxon_change: "Múltiples taxones (entrada de datos para intercambiar/combinarr, salida de datos para dividir)"
   multiple_taxon_ids_separated_by_commas: 'Múltiples IDs de taxones separadas por comas, p. ej., 123,654'
-  must_be_observed_after: |
-    debe observarse después de %{operand}
-  must_be_observed_before: |
-    debe observarse antes de %{operand}
-  must_be_observed_in: debe ser observado en
+  must_be_observed_after: debe observarse después de %{operand}
+  must_be_observed_before: debe observarse antes de %{operand}
   must_be_less_than_x_MB: "Debe ser menor que %{x} MB"
   must_have_observation_field: "debe tener el campo de observación '%{operand}' completo"
   must_have_x: "debe tener %{x}"

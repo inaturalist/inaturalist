@@ -2094,8 +2094,13 @@ describe Observation do
         proj.reload
         proj
       end
-      let(:curator) do
+      let(:non_curator) do
         u = ProjectUser.make!( project: project ).user
+        u.reload
+        u
+      end
+      let(:curator) do
+        u = ProjectUser.make!( project: project, role: ProjectUser::CURATOR ).user
         u.reload
         u
       end
@@ -2177,6 +2182,12 @@ describe Observation do
           expect( o ).to be_in_collection_projects( [project] )
           expect( o ).to be_coordinates_obscured
           expect( o.coordinates_viewable_by?( curator ) ).to be true
+        end
+        it "should not allow non-curator access to coordinates of a threatened taxon" do
+          stub_api_response_for_observation( o )
+          expect( o ).to be_in_collection_projects( [project] )
+          expect( o ).to be_coordinates_obscured
+          expect( o.coordinates_viewable_by?( non_curator ) ).to be false
         end
         it "should not allow curator access to coordinates of a threatened taxon if geoprivacy is obscured" do
           o.update_attributes( geoprivacy: Observation::OBSCURED )

@@ -166,6 +166,9 @@ fi:
   about_muting: Tietoja hiljentämisestä
   #Header for a section describing taxon names
   about_names: Tietoja nimistä
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Tietoja %{place}"
   about_places: Tietoja paikoista
   about_the_cc_licenses: Tietoja Creative Commons -lisensseistä
   about_these_licenses: Tietoja näistä lisensseistä
@@ -192,6 +195,9 @@ fi:
     </p>
   about_trusting_projects: Tietoa projekteihin luottamisesta
   about_trusting_projects_options_any: Kaikki havaintosi tässä projektissa
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Tarkkuus (m)'
   account: Käyttäjätunnus
   account_creation: Tunnuksen luominen
@@ -850,7 +856,6 @@ fi:
   comments: Kommentit
   comments_by_me: Omat kommentit
   comments_have_been_disabled: Kommentointi poistettu käytöstä
-  comments_on: Kommentit
   comments_on_my_observations: Kommentit omissa havainnoissani
   commercial_solicitation: Kaupallinen tarjous, linkit ei mihinkään, yms.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -904,6 +909,7 @@ fi:
   connect_to_provider: "Yhdistä palveluun %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Yhdistetyt tilit
+  connected_accounts_titlecase: Yhdistetyt käyttäjätilit
   connecting_flickr: "Otetaan yhteyttä Flickr'iin..."
   connect_to_flickr_again_to_authorize_write_permissions: Yhdistä uudelleen Flickriin hyväksyäksesi kirjoitusoikeudet
   connecting_to_facebook: "Yhdistetään Facebookiin..."
@@ -916,7 +922,6 @@ fi:
     place: Paikka, johon tämä status on rajattu.
     url: URL-sivusto, jossa luokittelut on määritelty.
     geoprivacy: Sijainnin tietosuojan oletusarvo havainnoille tässä taksonissa.
-    iucn: Vastaava IUCN:n punaisen kirjan koodi
   conservation_status_geoprivacy_desc: |
     Kaikille tämän paikan ja taksonin havainnoille on asetettu oletusarvoinen sijainnin tietosuoja
   contact_support: Ota yhteyttä käyttäjätukeen
@@ -1208,6 +1213,7 @@ fi:
       december: joulukuu
   date_is_accurate: Päivämäärä on oikea
   date_joined: Liittymispäivä
+  date_obscured_notice: Päivämäärä piilotettu henkilön tai eliön yksityisyyden suojaamiseksi
   date_observed: Havaintopäivämäärä
   date_observed_: Havaintopäivämäärä
   date_observed_on: Havaintopäivämäärä
@@ -1932,10 +1938,6 @@ fi:
   leaderboard: Tulostaulukko
   leaderboard_for_x: "%{x}:n tulostaulu"
   leaderboards: Tulostaulukot
-  leaderboard_most:
-    species: Eniten lajeja, %{time}
-    observations: Eniten havaintoja, %{time}
-    identifications: Eniten tunnistuksia, %{time}
   leading: Johtava
   learn: Opi
   learn_about_the_species_live_in: Opi lajeista, jotka elävät paikassa
@@ -2326,11 +2328,8 @@ fi:
   multiple_select_option: "\n-- useita --"
   multiple_taxa_for_taxon_change: "Useita taksoneja (input vaihdolle/yhdistämiselle ja output jakamiselle)"
   multiple_taxon_ids_separated_by_commas: 'Useiden taksonien IDt erotellaan pilkuilla esim 123,654'
-  must_be_observed_after: |
-    tulee olla havaittu %{operand} jälkeen
-  must_be_observed_before: |
-    tulee olla havaittu ennen %{operand}
-  must_be_observed_in: Täytyy olla havaittu paikassa
+  must_be_observed_after: tulee olla havaittu %{operand} jälkeen
+  must_be_observed_before: tulee olla havaittu ennen %{operand}
   must_be_less_than_x_MB: "On oltava pienempi kuin %{x} MB"
   must_have_observation_field: "pakollista havaintokenttää '%{operand}' ei saa jättää tyhjäksi"
   must_have_x: "täytyy olla %{x}"
@@ -3493,6 +3492,7 @@ fi:
   recent_observations: Viimeaikaiset havainnot
   recent_observations_: Viimeaikaiset havainnot
   recent_post: Viimeisimmät kirjoitukset
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Viimeaikaiset havainnot käyttäjältä %{login} (Atom)"
   recent_observations_by: "Tuoreet havainnot käyttäjältä %{login}"
   recently_active: Viime aikoina aktiiviset
@@ -5295,7 +5295,6 @@ fi:
     stats:
       index:
         active_desc: Loi tunnistuksen, havainnon, kommentin tai viestin edeltävänä 30 päivänä
-        active_users_desc: Loi tunnistuksen, havainnon, kommentin tai viestin edeltävänä 30 päivänä
         android_desc_html: Luotu <a href="%{url}">iNaturalist Android-sovelluksen</a> kautta
         avg_ttcid: Keskimääräinen TTID
         avg_ttid: Keskimääräinen TTID
@@ -5420,14 +5419,6 @@ fi:
           "Plant Phenology=Flower Budding": Kukka puhkeamassa
           "Plant Phenology=Flowering": Kukkiva
           "Plant Phenology=Fruiting": Hedelmiä
-          "Plant Phenology=No Evidence of Flowering": Ei näyttöä
-          "Life Stage=egg": Muna
-          "Life Stage=larva": Toukka
-          "Life Stage=teneral": Teneraali
-          "Life Stage=subimago": Subimago
-          "Life Stage=nymph": Nymfi
-          "Life Stage=pupa": Kotelo
-          "Life Stage=adult": Aikuinen
           unannotated: Ei annotaatiota
         photo_chooser_modal_desc: |
           Raahaa kuvat tänne vasemmalta, tai raahaa kuvat tänne uudelleenjärjestääksesi.
@@ -6160,6 +6151,9 @@ fi:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: uusia kommentteja ei voi lisätä
             user:
               must_be_on_site_long_enough: |

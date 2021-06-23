@@ -199,6 +199,9 @@ pt:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Você pode optar por compartilhar as coordenadas ocultas para
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Precisão exata - Acurácia (m)'
   account: Conta
   account_creation: Criação de conta
@@ -856,7 +859,6 @@ pt:
   comments: Comentários
   comments_by_me: Meus comentários
   comments_have_been_disabled: Os comentários foram desabilitados
-  comments_on: Comentários sobre
   comments_on_my_observations: Comentários sobre minhas observações
   commercial_solicitation: Solicitação comercial, links sem vínculo, etc.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -929,7 +931,6 @@ pt:
     place: Local ao qual este status é restrito.
     url: URL que descreve esta condição.
     geoprivacy: Geoprivacidade pré-determinada para as observações destas espécies e grupo.
-    iucn: Código equivalente ao da Lista Vermelha IUCN
   conservation_status_geoprivacy_desc: |
     Geoprivacidade padrão aplicada a todas as observações deste táxon neste local
   contact_support: Fale com o Suporte
@@ -1898,10 +1899,6 @@ pt:
   leaderboard: Colaboradores mais ativos
   leaderboard_for_x: "Ranking para %{x}"
   leaderboards: Colaboradores mais ativos
-  leaderboard_most:
-    species: A maioria das espécies em %{time}
-    observations: A maioria das observações em %{time}
-    identifications: A maioria das identificações %{time}
   leading: Conduzindo
   learn: Aprender
   learn_about_the_species_live_in: Aprenda sobre espécies que vivem em
@@ -2273,11 +2270,8 @@ pt:
   multiple_select_option: '-- múltiplo --'
   multiple_taxa_for_taxon_change: "Diversas espécies e grupos (entrada de dados para alterar/fundir, saída de dados para dividir)"
   multiple_taxon_ids_separated_by_commas: 'Várias IDs de táxons separadas por vírgula, e.g. 123,654'
-  must_be_observed_after: |
-    deve ser observado depois %{operand}
-  must_be_observed_before: |
-    deve ser observado antes %{operand}
-  must_be_observed_in: deve ser observado em
+  must_be_observed_after: deve ser observado depois %{operand}
+  must_be_observed_before: deve ser observado antes %{operand}
   must_be_less_than_x_MB: "Deve ser menor que %{x} MB"
   must_have_observation_field: "deve ter o campo de observação '%{operand}' preenchido"
   must_have_x: "deve ter %{x}"
@@ -3446,6 +3440,7 @@ pt:
   recent_observations: Observações recentes
   recent_observations_: Observações recentes
   recent_post: Publicação Recente
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Observações recentes de %{login} (Atom)"
   recent_observations_by: "Observações recentes de %{login}"
   recently_active: Ativos recentemente
@@ -5723,7 +5718,6 @@ pt:
     stats:
       index:
         active_desc: Criou uma identificação, observação, comentário ou mensagem nos últimos 30 dias.
-        active_users_desc: Criou uma identificação, observação, comentário ou mensagem nos últimos 30 dias.
         android_desc_html: Criado pelo <a href="%{url}">aplicativo iNaturalist para iPhone</a>
         avg_ttcid: Avg TTCID
         avg_ttid: Avg TTCID
@@ -5901,14 +5895,6 @@ pt:
           "Plant Phenology=Flower Budding": Brotamentos de Flores
           "Plant Phenology=Flowering": Florescendo
           "Plant Phenology=Fruiting": Frutificando
-          "Plant Phenology=No Evidence of Flowering": sem evidência
-          "Life Stage=egg": Ovo
-          "Life Stage=larva": Larva
-          "Life Stage=teneral": Teneral
-          "Life Stage=subimago": Subimago
-          "Life Stage=nymph": Ninfa
-          "Life Stage=pupa": Pupa
-          "Life Stage=adult": Adulto
           unannotated: Nenhuma anotação
         max_photos_desc: |
           Um táxon só pode ter %{max} fotos. Você precisará remover os existentes
@@ -6800,6 +6786,9 @@ pt:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: não permite novos comentários
             user:
               must_be_on_site_long_enough: |

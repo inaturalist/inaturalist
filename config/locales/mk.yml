@@ -68,6 +68,9 @@ mk:
   about_these_licenses: За овие лиценци
   about_this_map: За картава
   about_this_project: За проектов
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Уточнетост (м)'
   account: Сметка
   account_creation: Создавање на сметка
@@ -352,7 +355,6 @@ mk:
   comment_deleted: Коментарот е избришан
   comments: Коментари
   comments_by_me: Коментари од мене
-  comments_on: Коментари за
   comments_on_my_observations: Коментари на моите набљудувања
   commercial_solicitation: Рекламирање, не води никаде и тн.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -382,8 +384,6 @@ mk:
   connecting_flickr: "Поврзувам со Flickr..."
   connecting_to_facebook: "Поврзувам со Facebook..."
   conservation_status: Заштитен статус
-  conservation_status_descriptions:
-    iucn: Истоветен код во Црвениот список на МСЗП
   coordinates: Координати
   copy: Копирање
   copyright:
@@ -762,7 +762,6 @@ mk:
   most_species: Највеќе видови
   most_observed_species: Највеќе набљудувани видови
   multiple_taxa_for_taxon_change: "Повеќе таксони (внос за замена/спојување, извод за разделување)"
-  must_be_observed_in: мора да се набљудува во
   must_be_less_than_x_MB: "Мора да биде помала од %{x} МБ"
   must_have_observation_field: "мора да е пополнето полето „%{operand}“"
   must_have_x: "мора да има %{x}"
@@ -1115,6 +1114,7 @@ mk:
   ray_finned_fishes: зракоперки
   recent_observations: Скорешни набљудувања
   recent_post: Скорешна објава
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Скорешни набљудувања од %{login} (Атом)"
   recent_observations_by: "Скорешни набљудувања од %{login}"
   recently_active: Неодамна активни

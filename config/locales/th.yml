@@ -137,6 +137,9 @@ th:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     คุณสามารถเลือกที่จะแบ่งปันพิกัดที่ซ่อนอยู่สำหรับ
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Acc (m)'
   account: บัญชีผู้ใช้
   account_creation: การสร้างบัญชี
@@ -376,6 +379,8 @@ th:
       other: "%{count} นก"
     x_insecta:
       other: "%{count} แมลง"
+    x_fungi:
+      other: "%{count} เห็ดรา"
     x_protozoa:
       other: "%{count} โปรโตซัว"
     x_other_animals:
@@ -392,11 +397,14 @@ th:
   allow_project_curators_to_view_your_private_coordinates: ให้สิทธิแก่ผู้ดูแลโครงการเข้าดูตำแหน่งที่ตั้งของคุณที่ซ่อนไว้
   amphibians: สัตว์สะเทินน้ำสะเทินบก
   and: และ
+  android: แอนดรอยด์
   animals: สัตว์
   any: อื่น ๆ
   any_: รายการใดก็ได้
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: รายการใดก็ได้
+  #Label for an option to show content with any annotation value
+  any_annotation_value: อื่นๆ
   #Label for an option to show content from any date
   any_date: อื่นๆ
   #Label for an option to show content with any establishment means

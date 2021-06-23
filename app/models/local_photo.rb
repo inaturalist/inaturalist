@@ -163,7 +163,9 @@ class LocalPhoto < Photo
   end
 
   def could_be_public
-    Shared::LicenseModule::ODP_LICENSES.include?( self.license )
+    return false unless Shared::LicenseModule::ODP_LICENSES.include?( self.license )
+    return false if flags.any?{ |f| !f.resolved? }
+    true
   end
 
   def self.change_photo_bucket_if_needed( p )
@@ -298,7 +300,6 @@ class LocalPhoto < Photo
   def repair(options = {})
     reset_file_from_original
     self.file.reprocess!
-    set_urls
     [self, {}]
   end
 
@@ -505,6 +506,12 @@ class LocalPhoto < Photo
     )
   end
 
+  def mark_observations_as_updated
+    observations.each do |o|
+      o.mark_as_updated
+    end
+  end
+
   private
 
   def self.move_to_appropriate_bucket( p )
@@ -555,8 +562,13 @@ class LocalPhoto < Photo
       photo.update_columns( url_updates )
       photo.reload
 
-      # TODO: disabling deleting source images for now
-      # LocalPhoto.delete_images_from_bucket( s3_client, source_bucket, images )
+      # if the photo is being removed as a result of a flag being applied,
+      # then remove it from the source bucket
+      if photo.flags.detect{ |f| !f.resolved? }
+        LocalPhoto.delete_images_from_bucket( s3_client, source_bucket, images )
+      end
+      # mark the observation as being updated, re-index only the updated_at column
+      photo.mark_observations_as_updated
     else
       # move failed, so remove any files that did get copied to the target before the failure
       LocalPhoto.delete_images_from_bucket( s3_client, target_bucket, images )

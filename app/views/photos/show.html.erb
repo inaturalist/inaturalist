@@ -150,6 +150,12 @@
                 :class => "delete button" %>
             </td>
           </tr>
+          <% if @photo.file_file_name.to_s !~ /^open-uri/ %>
+            <tr>
+              <th><%=t :filename %></th>
+              <td><%= @photo.file_file_name %></td>
+            </tr>
+          <% end %>
         <% end -%>
         <% if !@photo.metadata.blank? %>
           <%- coords_viewable = @photo.observations.detect{|o| !o.coordinates_viewable_by?(current_user)}.blank? -%>

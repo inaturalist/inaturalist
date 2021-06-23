@@ -98,6 +98,7 @@ class ObservationFields extends React.Component {
                   }
                   this.setState( { editingFieldValue: null } );
                 }}
+                config={config}
               />
             );
           }

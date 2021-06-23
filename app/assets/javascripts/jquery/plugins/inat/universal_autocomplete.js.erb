@@ -88,7 +88,7 @@ $.fn.universalAutocomplete = function( options ) {
         }
         break;
       case "Place":
-        itemUrl = "/places/" + item.record.slug;
+        itemUrl = "/places/" + ( item.record.slug || item.record.id );
         obsUrl = "/observations?place_id=" + item.record.id;
         acThumb = $( "<i></i>" ).addClass( "fa fa-map-marker" );
         itemText = item.record.display_name || item.record.name;
@@ -101,7 +101,7 @@ $.fn.universalAutocomplete = function( options ) {
         }
         break;
       case "Project":
-        itemUrl = "/projects/" + item.record.slug;
+        itemUrl = "/projects/" + ( item.record.slug || item.record.id );
         obsUrl = "/observations?project_id=" + item.record.id;
         if ( item.record.icon && !item.record.icon.match( /attachment_defaults/ ) ) {
           acThumb = $( "<img />" ).attr( "src", item.record.icon );

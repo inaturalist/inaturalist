@@ -181,6 +181,9 @@ es-AR:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Puedes elegir compartir coordenadas ocultas para
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Prec.(m)'
   account: Cuenta
   account_creation: Creación de cuentas
@@ -839,7 +842,6 @@ es-AR:
   comments: Comentarios
   comments_by_me: Mis comentarios
   comments_have_been_disabled: Los comentarios han sido desactivados
-  comments_on: Comentarios sobre
   comments_on_my_observations: Comentarios sobre mis observaciones
   commercial_solicitation: Publicidad comercial, enlaces no llevan a ningún lugar, etc.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -914,7 +916,6 @@ es-AR:
     place: Lugar en el cual el estatus está restringido.
     url: URL de una página que describa este estado.
     geoprivacy: Geoprivacidad predeterminada para esta especie o grupo.
-    iucn: Código equivalente a la Lista roja de UICN.
   conservation_status_geoprivacy_desc: |
     La geoprivacidad predeterminada se aplica a todas las observaciones de este taxón en este lugar
   contact_support: Contactar el servicio técnico
@@ -1762,10 +1763,6 @@ es-AR:
   leaderboard: Marcador
   leaderboard_for_x: "Los más activos de %{x}"
   leaderboards: Los más activos
-  leaderboard_most:
-    species: La mayoría de las especies en %{time}
-    observations: La mayoría de las observaciones en %{time}
-    identifications: La mayoría de las identificaciones en %{time}
   leading: Principal
   learn: Aprende
   learn_about_the_species_live_in: Aprende sobre las especies que viven en
@@ -2103,11 +2100,8 @@ es-AR:
   multiple_select_option: '-- múltiples --'
   multiple_taxa_for_taxon_change: "Más de una especie o grupo (entrada de datos para intercambiar/mezclar, salida de datos para separar)"
   multiple_taxon_ids_separated_by_commas: 'Varias IDs de taxones separadas por comas, p.e. 123,654'
-  must_be_observed_after: |
-    debe observarse después de %{operand}
-  must_be_observed_before: |
-    debe observarse antes de %{operand}
-  must_be_observed_in: deben ser observaciones en
+  must_be_observed_after: debe observarse después de %{operand}
+  must_be_observed_before: debe observarse antes de %{operand}
   must_be_less_than_x_MB: "Debe ser menor que %{x} MB"
   must_have_observation_field: "debe completar el campo '%{operand}' en la observación"
   must_have_x: "debe tener %{x}"
@@ -3185,6 +3179,7 @@ es-AR:
   recent_observations: Observaciones recientes
   recent_observations_: Observaciones recientes
   recent_post: Notas recientes
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Observaciones recientes por %{login} (Atom)"
   recent_observations_by: "Observaciones recientes por %{login}"
   recently_active: Activo recientemente
@@ -5213,7 +5208,6 @@ es-AR:
     stats:
       index:
         active_desc: Creó una identificación, observación, comentario, o mensaje en los 30 días previos.
-        active_users_desc: Creó una identificación, observación, comentario, o mensaje en los 30 días previos
         android_desc_html: Creado mediante la <a href="%{url}">aplicación Naturalista para iPhone</a>
         identifiers_desc: Añadió una identificación a la observación de alguien en este día
         iphone_desc_html: Creado mediante la <a href="%{url}">apli iNaturalist para iPhone</a>
@@ -5305,10 +5299,6 @@ es-AR:
         frequency:
           research: Grado de investigación
           verifiable: Verificable
-          "Life Stage=egg": Huevo
-          "Life Stage=teneral": Muda
-          "Life Stage=nymph": Ninfa
-          "Life Stage=adult": Adulto
           unannotated: Sin anotación
         max_photos_desc: |
           Un taxón solo puede tener %{max} fotos. Deberá eliminar las fotos existentes para agregar más.
@@ -6065,6 +6055,9 @@ es-AR:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: no permite nuevos comentarios
             user:
               must_be_on_site_long_enough: |

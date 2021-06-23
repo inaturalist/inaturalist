@@ -287,6 +287,9 @@ en:
   # Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     You can choose to share hidden coordinates for
+  # Abbreviated form of "accuracy in meters", where "accuracy" is the
+  # positional_accuracy attribute of an observation, which is really more like
+  # positional uncertainty
   acc: 'Acc (m)'
   account: Account
   account_creation: Account Creation
@@ -336,6 +339,7 @@ en:
     sex: Add Annotations for "Sex"
     plant_phenology: Add Annotations for "Plant Phenology"
     life_stage: Add Annotations for "Life Stage"
+    evidence_of_presence: Add Annotations for "Evidence of Presence"
   add_another_flag: Add Another Flag
   add_another_photo: Add Another Photo
   add_another_section: Add Another Section
@@ -396,6 +400,12 @@ en:
   add_life_stage_larva_annotation: 'Add "Life Stage: Larva" annotation'
   add_life_stage_juvenile_annotation: 'Add "Life Stage: Juvenile" annotation'
   add_life_stage_egg_annotation: 'Add "Life Stage: Egg" annotation'
+  add_evidence_of_presence_organism_annotation: 'Add "Evidence of Presence: organism" annotation'
+  add_evidence_of_presence_feather_annotation: 'Add "Evidence of Presence: feather" annotation'
+  add_evidence_of_presence_scat_annotation: 'Add "Evidence of Presence: scat" annotation'
+  add_evidence_of_presence_track_annotation: 'Add "Evidence of Presence: track" annotation'
+  add_evidence_of_presence_bone_annotation: 'Add "Evidence of Presence: bone" annotation'
+  add_evidence_of_presence_molt_annotation: 'Add "Evidence of Presence: molt" annotation'
   # As in a Taxon Framework Relationship
   add_relationship: 'Add relationship'
   # As in a Guide Section
@@ -956,7 +966,6 @@ en:
   comments: Comments
   comments_by_me: Comments by me
   comments_have_been_disabled: Comments have been disabled
-  comments_on: Comments on
   comments_on_my_observations: Comments on my observations
   commercial_solicitation: Commercial solicitation, links to nowhere, etc.
   # Second person verb to commit a taxon change, i.e. the change has been executed
@@ -1034,7 +1043,12 @@ en:
     place: Place to which this status is restricted.
     url: URL for a page describing this status.
     geoprivacy: Default geoprivacy for observations of this taxon
-    iucn: Equivalent IUCN Red List code
+    iucn: |
+      Equivalent IUCN Red List code. This is not the actual IUCN assessment,
+      just the IUCN code that best matches the threat of coordinate disclosure
+      implied by this status. This will override the geoprivacy if it is "Least
+      Concern" or below, so if you've want to obscure observations of this
+      taxon, set this to "Near Threatened" or above.
   conservation_status_geoprivacy_desc: |
     Default geoprivacy applied to all observations of this taxon in this place
   contact_support: Contact Support
@@ -1078,6 +1092,21 @@ en:
     alive: Alive
     dead: Dead
     cannot_be_determined: Cannot Be Determined
+    evidence_of_presence: Evidence of Presence
+    # As in the feather on a bird
+    feather: Feather
+    # Refers to an observation that depicts the actual organism and not some
+    # kind of secondary evidence like a footprint
+    organism: Organism
+    # Fecal matter, not regurgitated matter
+    scat: Scat
+    # Impression made by the organism on the ground or in snow, like a footprint
+    track: Track
+    # Endoskeletal remains, like a deer bone
+    bone: Bone
+    # Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    # plumage in a bird or seasonal hair/fur in a mammal
+    molt: Molt
   controlled_term_definitions:
     alive: Organism is living and shows no signs of imminent death
     dead: Organism is dead or shows signs of imminent death
@@ -1087,6 +1116,14 @@ en:
     no_evidence_of_flowering: Media provides no evidence of reproductive structures
     teneral: Adult that has recently emerged but has not yet achieved its final adult form
     cannot_be_determined: Cannot be determined from the evidence provided
+    feather: One or more feathers not attached to an organism
+    organism: Whole or partial organism
+    scat: Fecal matter (not owl pellets or other regurgitated matter)
+    track: Impression in ground or snow made by organism
+    bone: |
+      Predominantly endoskeletal remains; partial bone exposure in an otherwise
+      intact organism should be labelled "organism"
+    molt: Discarded skin or exoskeleton
   controls: Controls
   convert: Convert
   coordinate_systems: Coordinate systems
@@ -1360,6 +1397,7 @@ en:
       december: December
   date_is_accurate: Date is accurate
   date_joined: Date Joined
+  date_obscured_notice: Date obscured to protect personal or organism privacy
   date_observed: Date observed
   date_observed_: Date Observed
   date_observed_on: date observed on
@@ -1701,6 +1739,8 @@ en:
   file_should_be_in_the_following_format: "File should be in the following format: taxon name, description"
   fill_out_project_observation_fields: Fill out project observation fields
   fill_out_your_profile: complete your profile
+  # The name of a computer file
+  filename: Filename
   filter: Filter
   filter_by_curator_identification: Filter by Curator Identification
   filter_by_place: Filter by Place
@@ -2145,9 +2185,12 @@ en:
   leaderboard_for_x: "Leaderboard for %{x}"
   leaderboards: Leaderboards
   leaderboard_most:
-    species: Most species in %{time}
-    observations: Most observations in %{time}
-    identifications: Most identifications in %{time}
+    species_in_month_year: Most species in %{month_year}
+    species_in_year: Most species in %{year}
+    observations_in_month_year: Most observations in %{month_year}
+    observations_in_year: Most observations in %{year}
+    identifications_in_month_year: Most identifications in %{month_year}
+    identifications_in_year: Most identifications in %{year}
   leading: Leading
   learn: Learn
   learn_about_the_species_live_in: Learn about the species that live in
@@ -2558,13 +2601,20 @@ en:
   multiple_select_option: -- multiple --
   multiple_taxa_for_taxon_change: "Multiple taxa (input for swap/merge, output for split)"
   multiple_taxon_ids_separated_by_commas: 'Multiple taxon IDs separated by commas, e.g. 123,654'
-  must_be_observed_after: |
-    must be observed after %{operand}
-  must_be_observed_before: |
-    must be observed before %{operand}
-  must_be_observed_in: must be observed in
+  must_be_in_taxon: must be in taxon %{taxon}
+  must_be_not_in_taxon: must not be in taxon %{taxon}
+  must_be_not_observed_by_user: must not be observed by %{user}
+  must_be_not_observed_in_place: must not be observed in %{place}
+  must_be_observed_after: must be observed after %{operand}
+  must_be_observed_before: must be observed before %{operand}
+  must_be_observed_by_user: must be observed by %{user}
+  must_be_observed_in_place: must be observed in %{place}
   must_be_less_than_x_MB: "Must be less than %{x} MB"
   must_have_observation_field: "must have observation field '%{operand}' filled out"
+  must_have_photos: must have photos
+  # Grades is a comma separated list of quality grades
+  must_have_quality_grades: "must have quality grades: %{grades}"
+  must_have_sounds: must have sounds
   must_have_x: "must have %{x}"
   mute_user: Mute User
   mute_removed: Mute removed
@@ -3914,6 +3964,7 @@ en:
   recent_observations: Recent observations
   recent_observations_: Recent Observations
   recent_post: Recent post
+  # Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Recent observations by %{login} (Atom)"
   recent_observations_by: "Recent observations by %{login}"
   recently_active: Recently Active
@@ -4531,7 +4582,7 @@ en:
   that_photo_doesnt_exist: That photo doesn't exist.
   that_observation_doesnt_exist: That observation doesn't exist.
   that_observation_doesnt_have_any_photos: "That observation doesn't have any photos."
-  that_observation_hasnt_been_added_this_project: That observation hasn't been added this project.
+  that_observation_hasnt_been_added_this_project: That observation hasn't been added to this project.
   that_observation_no_longer_exists: That observation no longer exists.
   that_project_doesnt_exist: "That project doesn't exist."
   that_role_doesnt_exist: That role doesn't exist
@@ -4907,6 +4958,7 @@ en:
   username_or_user_id: Username or User ID
   users: Users
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>'s contributions to %{project_title}
+  users_favorites: "%{user}'s Favorites"
   users_highlights_and_stats_from_year_on_site: "%{user}'s highlights and stats from %{year} on %{site}"
   users_id: "%{user}'s ID"
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
@@ -5247,6 +5299,7 @@ en:
   your_default: your default
   your_default_time_zone: Your default time zone
   your_email_address: Your email address
+  your_favorites: Your Favorites
   your_flickr_account: your Flickr account
   your_flickr_photos_have_been_tagged: Your Flickr photos have been tagged!
   your_hard_drive: your hard drive
@@ -6769,7 +6822,6 @@ en:
     stats:
       index:
         active_desc: Created an ID, obs, comment, or post in the previous 30 days
-        active_users_desc: Created an ID, obs, comment, or post in the previous 30 days
         android_desc_html: Created via the <a href="%{url}">iNaturalist Android app</a>
         avg_ttcid: Avg TTCID
         avg_ttid: Avg TTID
@@ -7095,14 +7147,18 @@ en:
           "Plant Phenology=Flower Budding": Flower Budding
           "Plant Phenology=Flowering": Flowering
           "Plant Phenology=Fruiting": Fruiting
-          "Plant Phenology=No Evidence of Flowering": No Evidence
-          "Life Stage=egg": Egg
-          "Life Stage=larva": Larva
-          "Life Stage=teneral": Teneral
-          "Life Stage=subimago": Subimago
-          "Life Stage=nymph": Nymph
-          "Life Stage=pupa": Pupa
-          "Life Stage=adult": Adult
+          "Plant Phenology=No Evidence": No Evidence
+          "Life Stage=Adult": Adult
+          "Life Stage=Egg": Egg
+          "Life Stage=Larva": Larva
+          "Life Stage=Juvenile": Juvenile
+          "Life Stage=Nymph": Nymph
+          "Life Stage=Pupa": Pupa
+          "Life Stage=Subimago": Subimago
+          "Life Stage=Teneral": Teneral
+          "Sex=Cannot Be Determined": Cannot Be Determined
+          "Sex=Female": Female
+          "Sex=Male": Male
           unannotated: No Annotation
         max_photos_desc: |
           A taxon can only have %{max} photos. You'll need to remove existing
@@ -8091,6 +8147,9 @@ en:
         post:
           attributes:
             parent:
+              # Error message shown when a client tries to create a comment on a
+              # post that does not allow comments. Theoretically an end user
+              # should never see this, though an API client might.
               prefers_no_comments: does not allow new comments
             user:
               must_be_on_site_long_enough: |

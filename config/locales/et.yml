@@ -150,6 +150,9 @@ et:
   about_this_bioblitz: Välkvaatlusest
   about_this_map: Sellest kaardist
   about_this_project: Sellest projektist
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Täpsus (m)'
   account: Konto
   account_creation: Konto loomine
@@ -689,7 +692,6 @@ et:
   comment_deleted: Kommentaar kustutatud
   comments: Kommentaarid
   comments_by_me: Minu kommentaarid
-  comments_on: Kommentaarid teemal
   comments_on_my_observations: Minu vaatluste kommentaarid
   commercial_solicitation: Ärilisi teateid, katkiseid linke, jne.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -744,7 +746,6 @@ et:
     place: Koht, kus staatus kehtib.
     url: Staatust kirjeldava lehe URL.
     geoprivacy: Selle taksoni vaatluste asukoha privaatsuse vaikimisi säte
-    iucn: Samaväärne IUCNi punase nimestiku kood
   contact_support: Klienditugi
   contain_all_descendants?: Kas see kontrollnimekiri sisaldab kõiki selles kohas leiduvaid antud taksoni järglasi?
   content_hidden: Sisu on peidetud
@@ -1446,10 +1447,6 @@ et:
   leaderboard: Edetabel
   leaderboard_for_x: "Edetabel: %{x}"
   leaderboards: Edetabelid
-  leaderboard_most:
-    species: Enim liike %{time}
-    observations: Enim vaatluseid %{time}
-    identifications: Enim määratlusi %{time}
   leading: Suunaja
   learn: Õpi
   learn_about_the_species_live_in: Õpi liikide kohta, mis leiduvad kohas
@@ -1758,11 +1755,8 @@ et:
   multiple_select_option: '-- mitu --'
   multiple_taxa_for_taxon_change: "Mitu taksonit (sisend vahetamiseks/ühendamiseks, väljund jagamiseks)"
   multiple_taxon_ids_separated_by_commas: 'Mitu taksoni IDd, mis on omavahel komadega eraldatud, nt 123,654'
-  must_be_observed_after: |
-    vaatlus peab olema tehtud peale %{operand}
-  must_be_observed_before: |
-    vaatlus peab olema tehtud enne %{operand}
-  must_be_observed_in: vaatlus peab olema tehtud kohas
+  must_be_observed_after: vaatlus peab olema tehtud peale %{operand}
+  must_be_observed_before: vaatlus peab olema tehtud enne %{operand}
   must_be_less_than_x_MB: "Peab olema väiksem kui %{x} MB"
   must_have_observation_field: "vaatluse peab väli '%{operand}' olema täidetud"
   must_have_x: "peab omama %{x}"
@@ -2645,6 +2639,7 @@ et:
   recent_observations: Viimased vaatlused
   recent_observations_: Viimased vaatlused
   recent_post: Viimane postitus
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Viimased vaatlused kasutajalt %{login} (Atom)"
   recent_observations_by: "Viimased vaatlused kasutajalt %{login}"
   recently_active: Hiljuti aktiivne
@@ -4293,7 +4288,6 @@ et:
     stats:
       index:
         active_desc: Lõi viimase 30 päeva jooksul määratluse, vaatluse, kommentaari või postituse
-        active_users_desc: Lõi viimase 30 päeva jooksul määratluse, vaatluse, kommentaari või postituse
         android_desc_html: Loodud <a href="%{url}">iNaturalist Android äpiga</a>
         avg_ttcid: Keskmine AKM
         avg_ttid: Keskmine AM
@@ -4381,13 +4375,6 @@ et:
           verifiable: Tõendatav
           "Alive or Dead=Alive": Elus
           "Alive or Dead=Dead": Surnud
-          "Life Stage=egg": Muna
-          "Life Stage=larva": Tõuk
-          "Life Stage=teneral": Valmik
-          "Life Stage=subimago": Eelvalmik
-          "Life Stage=nymph": Nümf
-          "Life Stage=pupa": Nukk
-          "Life Stage=adult": Täiskasvanu
           unannotated: Märkus puudub
         no_trending_desc: Selle taksoni alamtaksoneid viimase kuu jooksul ei vaadeldud
         photo_chooser_modal_desc: |

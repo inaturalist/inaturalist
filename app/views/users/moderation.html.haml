@@ -62,7 +62,11 @@
                 =t :removed
             = surround "[", "]" do
               = record.action
-        %td= link_to_user( record.user )
+        %td
+          - if record.user_id == 0 && record.is_a?( Flag )
+            = @site.site_name_short
+          - else
+            = link_to_user( record.user )
         %td= record.try_methods( :body, :flag, :description )
         %td.nobr
           - if record.is_a?( ModeratorNote )

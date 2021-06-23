@@ -561,7 +561,7 @@ class Place < ActiveRecord::Base
         self.place_geometry = pg
       end
       update_bbox_from_geom(geom) if self.place_geometry.valid?
-    rescue ActiveRecord::StatementInvalid => e
+    rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordInvalid => e
       Rails.logger.error "[ERROR] \tCouldn't save #{self.place_geometry}: #{e.message[0..200]}"
       if e.message =~ /TopologyException/
         add_custom_error( :base, e.message[/TopologyException: (.+)/, 1] )

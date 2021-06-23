@@ -31,6 +31,9 @@ ar:
   about_this_project: عن هذا المشروع
   about_trips_html: |
     <h4>تُمكِّن الرحلات من جمع بيانات غياب الحضور عن طريق إضافة سياق إلى ملاحظاتك</h4><p><strong>لماذا</strong> تتضمن بيانات غياب الحضور معلومات حول جهد أخذ العينات مفيد للتحليلات العلمية مثل توزيع النمذجة (ملاحظات إيناتوراليست الخام هي بيانات "حضور فقط").</p> <p><strong>كيف</strong> تضيف الرحلة سياقا إلى ملاحظاتك عن طريق التسجيل:</p> <ul> <li><strong>ما</strong> الذي بحثت عنه (قائمة الأهداف)</li> <li><strong>أين</strong> بحثت (منطقة البحث)</li> <li><strong>متى</strong> بحثت (الفاصل الزمني للبحث)</li> </ul> <p>يتم تفسير الأنواع الموجودة في قائمة الأهداف التي تمكنت من مراقبتها داخل منطقة البحث والفاصل الزمني على أنها وجود، بينما يتم تفسير الأنواع الموجودة في قائمتك المستهدفة والتي لم تتمكن من ملاحظتها على أنها حالات غياب، انقر فوق "جدولة بيانات غياب الحضور من الرحلات" لإنشاء جدول لسجلات التواجد-الغياب لنوع من الرحلات والملاحظات المرتبطة بها. <a href='%{url}'>معرفة المزيد</a></p>
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'الدقة (م)'
   account: الحساب
   account_creation: إنشاء الحساب
@@ -539,7 +542,6 @@ ar:
   comment_deleted: تم حذف التعليق
   comments: تعليقات
   comments_by_me: تعليقات بواسطتي
-  comments_on: تعليقات على
   comments_on_my_observations: تعليقات على ملاحظاتي
   commercial_solicitation: التماس تجاري، وصلات إلى لا مكان، إلخ.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -594,7 +596,6 @@ ar:
     place: المكان الذي يتم تقييد هذه الحالة فيه.
     url: مسار لصفحة تصف هذه الحالة.
     geoprivacy: الخصوصية الجغرافية الافتراضية لملاحظات هذه الأصنوفة
-    iucn: يعادل رمز القائمة الحمراء للاتحاد الدولي لحفظ الطبيعة والموارد الطبيعية
   conservation_status_geoprivacy_desc: |
     يتم تطبيق الخصوصية الجغرافية الافتراضي على جميع ملاحظات هذه الأصنوفة في هذا المكان
   contact_support: اتصل بالدعم
@@ -1346,10 +1347,6 @@ ar:
   leaderboard: المتصدرون
   leaderboard_for_x: "المتصدرون لـ%{x}%{x}"
   leaderboards: المتصدرون
-  leaderboard_most:
-    species: معظم الأنواع في %{time}
-    observations: معظم الملاحظات في %{time}
-    identifications: معظم عمليات التحديد في %{time}
   leading: عنوان
   learn: تعلم
   learn_about_the_species_live_in: تعرف على الأنواع التي تعيش في
@@ -1659,11 +1656,8 @@ ar:
   multiple_select_option: '-- متعدد --'
   multiple_taxa_for_taxon_change: "أصناف متعددة (مدخلات للمبادلة/الدمج، إخراج للتقسيم)"
   multiple_taxon_ids_separated_by_commas: "\nالمعرفات المتعددة للأصنوفة مفصولة بفواصل، مثل 123،654"
-  must_be_observed_after: |
-    تجب ملاحظته بعد %{operand}
-  must_be_observed_before: |
-    تجب ملاحظته قبل %{operand}
-  must_be_observed_in: تجب ملاحظته في
+  must_be_observed_after: تجب ملاحظته بعد %{operand}
+  must_be_observed_before: تجب ملاحظته قبل %{operand}
   must_be_less_than_x_MB: "يجب أن يكون أقل من %{x} ميغابايت"
   must_have_observation_field: "يجب أن يكون حقل الملاحظة '%{operand}' ممتلئا"
   must_have_x: "يجب أن يحتوي على %{x}"
@@ -2705,6 +2699,7 @@ ar:
   recent_observations: الملاحظات الأخيرة
   recent_observations_: الملاحظات الأخيرة
   recent_post: المنشور الأخير
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "الملاحظات الأخيرة لـ%{login} (أتوم)"
   recent_observations_by: "الملاحظات الأخيرة لـ%{login}"
   recently_active: نشط مؤخرا
@@ -4884,7 +4879,6 @@ ar:
     stats:
       index:
         active_desc: تم إنشاء معرف أو ملاحظة أو تعليق أو منشور في الثلاثين يوما الماضية
-        active_users_desc: تم إنشاء معرف أو ملاحظة أو تعليق أو منشور في الثلاثين يوما الماضية
         android_desc_html: تم إنشاؤها عبر <a href="%{url}">تطبيق أندرويد إيناتوراليست</a>
         avg_ttcid: متوسط ​​TTCID
         avg_ttid: متوسط ​​TTID
@@ -5073,13 +5067,6 @@ ar:
         frequency:
           research: درجة البحث
           verifiable: يمكن التحقق منه
-          "Life Stage=egg": بيضة
-          "Life Stage=larva": يرقة
-          "Life Stage=teneral": انسلاخ
-          "Life Stage=subimago": سوبيماجو
-          "Life Stage=nymph": حورية
-          "Life Stage=pupa": عذراء
-          "Life Stage=adult": بالغة
           unannotated: لا يوجد تعليق توضيحي
         max_photos_desc: |
           يمكن أن تحتوي الأصنوفة فقط على %{max} صور؛ ستحتاج إلى إزالة الصور الحالية 

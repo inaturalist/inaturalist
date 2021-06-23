@@ -213,6 +213,9 @@ gl:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Podes escoller compartir coordenadas ocultas para
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Exactitude (metros)'
   account: Conta
   account_creation: Creación Dunha Conta
@@ -869,7 +872,6 @@ gl:
   comments: Comentarios
   comments_by_me: Os meus comentarios
   comments_have_been_disabled: Inhabilitáronse os comentarios
-  comments_on: Comentarios sobre
   comments_on_my_observations: Comentarios sobre as miñas observacións
   commercial_solicitation: Anuncia algo, os enlaces non son válidos, etc.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -941,7 +943,6 @@ gl:
     place: Ubicación na que se restrinxe este estadio.
     url: URL para a páxina que describe este estadio.
     geoprivacy: Xeoprivacidade predeterminada para observacións deste taxon
-    iucn: Código equivalente da Lista Vermella IUCN
   conservation_status_geoprivacy_desc: |
     Xeoprivacidade predeterminada aplicada a tódalas observacións deste taxon neste lugar
   contact_support: Contacta ó Soporte
@@ -1970,10 +1971,6 @@ gl:
   leaderboard: Usuarios máis activos
   leaderboard_for_x: "Os máis activos de %{x}"
   leaderboards: Os máis activos
-  leaderboard_most:
-    species: A maioría das especies en %{time}
-    observations: A maioría das observacións en %{time}
-    identifications: A maioría de identificacións en %{time}
   leading: Na dianteira
   learn: Infórmate
   learn_about_the_species_live_in: Aprende sobre as especies que viven en
@@ -2367,11 +2364,8 @@ gl:
   multiple_select_option: '-- varios --'
   multiple_taxa_for_taxon_change: "Máis dunha especie ou grupo (entrada de datos para intercambiar/combinar, saída de datos para separar)"
   multiple_taxon_ids_separated_by_commas: 'Varias identificacións de taxons separadas por comas, p.e. 123,654'
-  must_be_observed_after: |
-    debe ser observado despois de %{operand}
-  must_be_observed_before: |
-    debe ser observado antes de %{operand}
-  must_be_observed_in: deben ser observacións en
+  must_be_observed_after: debe ser observado despois de %{operand}
+  must_be_observed_before: debe ser observado antes de %{operand}
   must_be_less_than_x_MB: "Debe ser menor de %{x} MB"
   must_have_observation_field: "Debes completar o campo '%{operand}' na observación"
   must_have_x: "debe ter %{x}"
@@ -3653,6 +3647,7 @@ gl:
   recent_observations: Observacións recentes
   recent_observations_: Observacións recentes
   recent_post: Notas recentes
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Observacións recentes por %{login} (Atom)"
   recent_observations_by: "Observacións recentes por %{login}"
   recently_active: Activos recentemente
@@ -3857,7 +3852,7 @@ gl:
   selected_photos: Fotos seleccionadas
   selected_taxon: Grupo ou especie seleccionada
   select_this_taxon: Selecciona Este Taxon
-  send: enviada(s)
+  send: Enviar
   send_invites_to: Enviar invitacións a
   send_me_reset_password_instructions: Envíenme as instrucións para restablecer o meu contrasinal
   send_the_invites: Enviar as invitacións
@@ -5953,7 +5948,6 @@ gl:
     stats:
       index:
         active_desc: Identificaron, observaron, comentaron ou publicaron nos 30 días anteriores
-        active_users_desc: Identificaron, observaron, comentaron ou publicaron nos 30 días anteriores
         android_desc_html: Creados coa <a href="%{url}">app iNaturalist para Android</a>
         avg_ttcid: Media TTCID
         avg_ttid: Media TTID
@@ -6109,14 +6103,6 @@ gl:
           "Plant Phenology=Flower Budding": Flores Agromando
           "Plant Phenology=Flowering": Floración
           "Plant Phenology=Fruiting": Fructificando
-          "Plant Phenology=No Evidence of Flowering": Sen Evidencias
-          "Life Stage=egg": Ovo
-          "Life Stage=larva": Larva
-          "Life Stage=teneral": Imago tenro
-          "Life Stage=subimago": Subimago
-          "Life Stage=nymph": Ninfa
-          "Life Stage=pupa": Pupa
-          "Life Stage=adult": Adulto
           unannotated: Sen Anotación
         max_photos_desc: |
           Un taxon só pode ter %{max} fotos. Para engadir máis, tes que borrar fotos existentes.
@@ -6318,7 +6304,7 @@ gl:
         prefers_no_tracking_label_desc_value_html: |
           <strong>Os servicios de terceiros engaden un enorme valor para nós</strong>, mantendo a estabilidade e usabilidade de iNaturalist có noso relativamente pequeno cadro de persoal. En dispositivos móbiles, case non hai outro xeito para percibir os problemas que ocorren, xa que o software emprégase en dispositivos que non controlamos. Ás veces nin sequera nos decatamos dos problemas que ocorren ata que os vemos nos dados que estes servicios nos provén. <strong>Compartindo esta información, axúdasnos a atenderte a ti e á comunidade de iNaturalist enteira.</strong>
         prefers_no_tracking_label_desc_limits: |
-          Repara que esta opción só se aplica a dados para anáise e de erros que estamos enviando explícitamente a estas compañías. Tódolos servidores de iNaturalist son fornecidos e aloxados por Microsoft, tódalas imaxes de iNaturalist están aloxadas por Amazon, e case tódolos mapas de iNaturalist están fornecidos por Google, o que significa que de cada vez que ves unha observación en iNaturalist, estás conectando ós servicios fornecidos por estas compañías e expoñéndolles o teu enderezo IP, no mínimo (na aplicación para iPhone empregamos os mapas de Apple). iNaturalist probablemente non existiría sen os servicios que estas empresas fornecen, e anque poidamos limitar a cantidade e os tipos de dados que compartimos con eles usando iNat, non podemos parar a corrente de dados por completo.
+          Repara que esta opción só se aplica a dados para análise e de erros que estamos enviando explícitamente a estas compañías. Tódolos servidores de iNaturalist son fornecidos e aloxados por Microsoft, tódalas imaxes de iNaturalist están aloxadas por Amazon, e case tódolos mapas de iNaturalist están fornecidos por Google, o que significa que de cada vez que ves unha observación en iNaturalist, estás conectándote ós servicios fornecidos por estas compañías e expoñéndolles o teu enderezo IP, como pouco (na aplicación para iPhone empregamos os mapas de Apple). iNaturalist probablemente non existiría sen os servizos que estas empresas fornecen, e aínda que poidamos limitar a cantidade e os tipos de dados que compartimos con eles usando iNat, non podemos parar a corrente de dados por completo.
         project_settings_desc: |
           Lembra, isto non da permiso ós proxectos para acceder ás túas coordenadas ocultas ou para enviarte novas. Debes de unirte ós proxectos para concederlles estes permisos, or darllos caso a caso.
         same_day_geoprivacy_protection: Protección de xeoprivacidade no mesmo día
@@ -6952,6 +6938,9 @@ gl:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: non permite comentarios novos
             user:
               must_be_on_site_long_enough: |

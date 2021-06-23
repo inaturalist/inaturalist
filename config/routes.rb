@@ -9,6 +9,9 @@ Rails.application.routes.draw do
       get :network
       get :affiliation
     end
+    member do
+      get :export
+    end
   end
 
   uuid_pattern = BelongsToWithUuid::UUID_PATTERN.to_s.gsub( /[\^\$]/, "" )
@@ -25,6 +28,8 @@ Rails.application.routes.draw do
   get "/users/new.mobile", to: redirect( "/signup" )
   get "/donate", to: "donate#index"
   get "/monthly-supporters", to: "donate#monthly_supporters", as: :monthly_supporters
+
+  get "/donate-seek", to: redirect( "https://donorbox.org/support-seek-by-inaturalist", status: 302 )
 
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]

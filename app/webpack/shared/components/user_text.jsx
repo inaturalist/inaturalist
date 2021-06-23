@@ -136,6 +136,15 @@ class UserText extends React.Component {
     let truncatedHtml;
     if ( truncate && truncate > 0 && !more ) {
       truncatedHtml = htmlTruncate( html, truncate );
+      // html-truncate has a bug
+      // (https://github.com/huang47/nodejs-html-truncate/issues/23) where it
+      // will fail to truncate if the truncation point is in the middle of a
+      // URL, so sometimes truncatedHtml won't be fully truncated. If we're
+      // also stripping tags, we can assume they've already been stripped out
+      // and it's safe to just chop the string at the truncation point
+      if ( truncatedHtml.length > truncate && stripTags ) {
+        truncatedHtml = html.slice( 0, truncate );
+      }
     }
     let moreLink;
     if ( truncate && ( truncatedHtml !== html ) && moreToggle ) {

@@ -212,6 +212,9 @@ tr:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Gizli koordinatlarının paylaşımı için şunları seçebilirsin
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Doğruluk (m)'
   account: Hesap
   account_creation: Hesap Oluşturma
@@ -866,7 +869,6 @@ tr:
   comments: Yorumlar
   comments_by_me: Yorumlarım
   comments_have_been_disabled: Yorumlar devre dışı bırakıldı
-  comments_on: İle ilgili yorumlar
   comments_on_my_observations: Gözlemlerim ile ilgili yorumlar
   commercial_solicitation: Ticari istek, hiçbir yerle bağlı olmayanlar vb.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -938,7 +940,6 @@ tr:
     place: Bu durumun kısıtlandığı yer.
     url: Bu durumu açıklayan bir sayfanın URL'si.
     geoprivacy: Bu sınıfın gözlemleri için varsayılan coğrafi gizlilik
-    iucn: Eşdeğer IUCN Kırmızı Listesi kodu
   conservation_status_geoprivacy_desc: |
     Bu yerdeki tüm sınıf gözlemlerine uygulanan varsayılan coğrafi gizlilik
   contact_support: Destekle İletişime Geç
@@ -1969,10 +1970,6 @@ tr:
   leaderboard: Lider Sıralaması
   leaderboard_for_x: "%{x} için Lider Sıralaması"
   leaderboards: Lider Sıralamaları
-  leaderboard_most:
-    species: '%{time} zamanındaki çoğu tür'
-    observations: '%{time} zamanındaki çoğu gözlem'
-    identifications: '%{time} zamanındaki çoğu tanımlama'
   leading: Öncü
   learn: Öğren
   learn_about_the_species_live_in: Yaşayan türler ile ilgili bilgi edin
@@ -2366,11 +2363,8 @@ tr:
   multiple_select_option: '-- çoklu --'
   multiple_taxa_for_taxon_change: "Birden fazla sınıf (değiştirme/birleştirme için giriş, ayırma için çıkış)"
   multiple_taxon_ids_separated_by_commas: 'Virgülle ayrılmış çoklu sınıf tanımlamaları, örn. 123,654'
-  must_be_observed_after: |
-    %{operand} sonrasında gözlemlenmesi gerekir
-  must_be_observed_before: |
-    %{operand} öncesinde gözlemlenmesi gerekir
-  must_be_observed_in: şurada gözlemlenmiş olması gerekir
+  must_be_observed_after: '%{operand} sonrasında gözlemlenmesi gerekir'
+  must_be_observed_before: '%{operand} öncesinde gözlemlenmesi gerekir'
   must_be_less_than_x_MB: "%{x} MB boyuttan az olması gerekir"
   must_have_observation_field: "%{operand} gözlem alanının doldurulmuş olması gerekir"
   must_have_x: "%{x} olması gerekir"
@@ -3636,6 +3630,7 @@ tr:
   recent_observations: Son gözlemler
   recent_observations_: Son Gözlemler
   recent_post: Son gönderi
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "%{login} ile son gözlemler (Atom)"
   recent_observations_by: "%{login} ile son gözlemler"
   recently_active: Son Zamanlarda Etkin
@@ -6125,7 +6120,6 @@ tr:
     stats:
       index:
         active_desc: Önceki 30 gün içerisinde bir tanımlama, gözlem, yorum, veya gönderi oluşturuldu
-        active_users_desc: Önceki 30 gün içerisinde bir tanımlama, gözlem, yorum, veya gönderi oluşturuldu
         android_desc_html: <a href="%{url}">iNaturalist Android uygulması</a> üzerinden oluşturuldu
         avg_ttcid: Ort TTCID
         avg_ttid: Ort TTID
@@ -6350,14 +6344,6 @@ tr:
           "Plant Phenology=Flower Budding": Tomurcuklu Çiçek
           "Plant Phenology=Flowering": Çiçekli
           "Plant Phenology=Fruiting": Meyveli
-          "Plant Phenology=No Evidence of Flowering": Kanıt Yok
-          "Life Stage=egg": Yumurta
-          "Life Stage=larva": Larva
-          "Life Stage=teneral": Teneral
-          "Life Stage=subimago": Subimago
-          "Life Stage=nymph": Nimfa
-          "Life Stage=pupa": Pupa
-          "Life Stage=adult": Yetişkin
           unannotated: Açıklama Yok
         max_photos_desc: |
           Bir sınıf yalnızca %{max} fotoğrafa sahip olabilir. Daha fazla eklemek için mevcut fotoğrafları kaldırmanız gerekecek.
@@ -7297,6 +7283,9 @@ tr:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: yeni yorumlara izin vermiyor
             user:
               must_be_on_site_long_enough: |

@@ -213,6 +213,9 @@ sv:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Du kan välja att dela dolda koordinater för
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Noggr (m)'
   account: Konto
   account_creation: Att skapa konto
@@ -260,6 +263,7 @@ sv:
     sex: Lägg till anteckningar för "Kön"
     plant_phenology: Lägg till anteckningar för "Växtfenologi"
     life_stage: Lägg till anteckningar för "Livsform"
+    evidence_of_presence: Lägg till anteckningar om "Stöd för förekomst"
   add_another_flag: Lägg till ytterligare en flagga
   add_another_photo: Lägg till ytterligare en bild
   add_another_section: Lägg till ytterligare ett avsnitt
@@ -320,6 +324,12 @@ sv:
   add_life_stage_larva_annotation: 'Lägg till anteckningen "Livsstadium: Larv"'
   add_life_stage_juvenile_annotation: 'Lägg till anteckningen "Livsstadium: Juvenil"'
   add_life_stage_egg_annotation: 'Lägg till anteckningen "Livsstadium: Ägg"'
+  add_evidence_of_presence_organism_annotation: 'Lägg till "Stöd för förekomst: organism"-anteckning'
+  add_evidence_of_presence_feather_annotation: 'Lägg till "Stöd för förekomst: fjäder"-anteckning'
+  add_evidence_of_presence_scat_annotation: 'Lägg till "Stöd för förekomst: spillning"-anteckning'
+  add_evidence_of_presence_track_annotation: 'Lägg till "Stöd för förekomst: spår"-anteckning'
+  add_evidence_of_presence_bone_annotation: 'Lägg till "Stöd för förekomst: benrester"-anteckning'
+  add_evidence_of_presence_molt_annotation: 'Lägg till "Stöd för förekomst: ömsskinn/exuvium"-anteckning'
   #As in a Taxon Framework Relationship
   add_relationship: 'Lägg till en relation'
   #As in a Guide Section
@@ -873,7 +883,6 @@ sv:
   comments: Kommentarer
   comments_by_me: Kommentarer av mig
   comments_have_been_disabled: Kommentarer har inaktiverats
-  comments_on: Kommentarer på
   comments_on_my_observations: Kommentarer på mina fynd
   commercial_solicitation: Kommersiella förfrågningar, länkar som inte leder någonstans, m.m.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -946,7 +955,10 @@ sv:
     place: Fyndplats som denna status är begränsad till.
     url: URL till en sida som beskriver denna status.
     geoprivacy: Standard koordinatsekretess för fynd av detta taxon
-    iucn: Motsvarande IUCN-rödlistekod
+    iucn: |
+      Motsvarande IUCN-rödlistekod. Detta är inte den faktiska IUCN-bedömningen,
+      bara den IUCN-kod som bäst matchar det hot om som denna status implicerar vid utlämnande av koordinater. Detta kommer att åsidosätta koordinatsekretessen om det är "Livskraftig" eller lägre, så om du vill dölja observationer av detta
+      taxon, sätt det till "Nära hotad" eller högre.
   conservation_status_geoprivacy_desc: |
     Standard koordinatsekretess tillämpas på alla fynd av detta taxon på denna plats
   contact_support: Kontakta support
@@ -990,6 +1002,21 @@ sv:
     alive: Levande
     dead: Död
     cannot_be_determined: Kan inte avgöras
+    evidence_of_presence: Stöd för förekomst
+    #As in the feather on a bird
+    feather: Fjäder
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organism
+    #Fecal matter, not regurgitated matter
+    scat: Spillning
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Spår
+    #Endoskeletal remains, like a deer bone
+    bone: Benrester
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Ömsskinn/exuvium
   controlled_term_definitions:
     alive: Levande organism som inte uppvisar tecken på snar död
     dead: Död organism eller visar tecken på snar död
@@ -999,6 +1026,13 @@ sv:
     no_evidence_of_flowering: Inga tecken på reproduktiva strukturer i media
     teneral: Adult som nyligen kläckts men ännu inte fått sitt slutliga adulta utseende
     cannot_be_determined: Kan inte bestämmas utifrån angiven information
+    feather: En eller flera fjädrar som inte sitter fast på en organism
+    organism: Hela eller delar av en organism
+    scat: Avföring (inte spybollar eller andra uppstötningar)
+    track: Avtryck i marken eller snön av en organism
+    bone: |
+      Mest kvarlämningar av inre skelett; delvis synligt ben från en i övrigt intakt organism bör anges som "organism"
+    molt: Kvarlämning av skinn eller exoskelett
   controls: Kontroller
   convert: Konvertera
   coordinate_systems: Koordinatsystem
@@ -1237,6 +1271,7 @@ sv:
       december: december
   date_is_accurate: Datum är korrekt
   date_joined: Datum gick med
+  date_obscured_notice: Datum diffuserat p.g.a. personlig eller organismsekretess
   date_observed: Datum observerad
   date_observed_: Datum observerad
   date_observed_on: datum observerad på
@@ -1578,6 +1613,8 @@ sv:
   file_should_be_in_the_following_format: "Filen ska ha följande format: taxonnamn, beskrivning"
   fill_out_project_observation_fields: Fyll i projektfyndfält
   fill_out_your_profile: slutför din profil
+  #The name of a computer file
+  filename: Filnamn
   filter: Filter
   filter_by_curator_identification: Filtrera på förvaltares bestämning
   filter_by_place: Filtrera på fyndplats
@@ -1999,9 +2036,12 @@ sv:
   leaderboard_for_x: "Topplista för %{x}"
   leaderboards: Topplistor
   leaderboard_most:
-    species: Flest arter i %{time}
-    observations: Flest fynd i %{time}
-    identifications: Flest bestämningar i %{time}
+    species_in_month_year: Flest arter i %{month_year}
+    species_in_year: Flest arter %{year}
+    observations_in_month_year: Flest fynd i %{month_year}
+    observations_in_year: Flest fynd %{year}
+    identifications_in_month_year: Flest bestämningar i %{month_year}
+    identifications_in_year: Flest bestämningar %{year}
   leading: Leder
   learn: Lär dig
   learn_about_the_species_live_in: Lär dig om arterna som lever i
@@ -2404,13 +2444,20 @@ sv:
   multiple_select_option: '-- flera --'
   multiple_taxa_for_taxon_change: "Flera taxa (indata för byte/hopslagning, utdata för uppdelning)"
   multiple_taxon_ids_separated_by_commas: 'Flera taxonID åtskiljda av kommatecken, t.ex. 123,654'
-  must_be_observed_after: |
-    måste observeras efter %{operand}
-  must_be_observed_before: |
-    måste observeras före %{operand}
-  must_be_observed_in: måste observeras i
+  must_be_in_taxon: måste inluderas i taxon %{taxon}
+  must_be_not_in_taxon: får inte inkluderas i %{taxon}
+  must_be_not_observed_by_user: får inte ha observerats av %{user}
+  must_be_not_observed_in_place: får inte ha observerats i %{place}
+  must_be_observed_after: måste observeras efter %{operand}
+  must_be_observed_before: måste observeras före %{operand}
+  must_be_observed_by_user: måste ha observerats av %{user}
+  must_be_observed_in_place: måste ha observerats i %{place}
   must_be_less_than_x_MB: "Måste vara mindre än %{x} MB"
   must_have_observation_field: "måste ha fyndfält '%{operand}' ifyllt"
+  must_have_photos: måste ha bilder
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "måste vara av kvalitetsklass: %{grades}"
+  must_have_sounds: måste ha ljud
   must_have_x: "måste ha %{x}"
   mute_user: Tysta användare
   mute_removed: Tystning borttagen
@@ -3697,6 +3744,7 @@ sv:
   recent_observations: Senaste fynden
   recent_observations_: Senaste Fynden
   recent_post: Senaste inlägg
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Senaste fynden av %{login} (Atom)"
   recent_observations_by: "Senaste fynden av %{login}"
   recently_active: Senaste aktiva
@@ -4634,6 +4682,7 @@ sv:
   username_or_user_id: Användarnamn eller användar-ID
   users: Användare
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>s bidrag till %{project_title}
+  users_favorites: "%{user}s favoriter"
   users_highlights_and_stats_from_year_on_site: "%{user}s höjdpunkter och statistik från %{year} på %{site}"
   users_id: "%{user}s ID"
   users_latest_observations_on_site: "%{user}senaste fynd på %{site}"
@@ -4954,6 +5003,7 @@ sv:
   your_default: din standard
   your_default_time_zone: Din standardtidszon
   your_email_address: Din e-postadress
+  your_favorites: Dina favoriter
   your_flickr_account: ditt Flickr-konto
   your_flickr_photos_have_been_tagged: Dina Flickr-bilder har taggats!
   your_hard_drive: din hårddisk
@@ -6057,7 +6107,6 @@ sv:
     stats:
       index:
         active_desc: Skapade en bestämning, fynd, kommentar eller ett inlägg under de senaste 30 dagarna
-        active_users_desc: Skapade en bestämning, fynd, kommentar eller ett inlägg under de senaste 30 dagarna
         android_desc_html: Skapad via <a href="%{url}">iNaturalist Android-appen</a>
         avg_ttcid: Medel TTGB
         avg_ttid: Medel TTB
@@ -6232,14 +6281,18 @@ sv:
           "Plant Phenology=Flower Budding": Blomknopp
           "Plant Phenology=Flowering": Blomning
           "Plant Phenology=Fruiting": I frukt
-          "Plant Phenology=No Evidence of Flowering": Inga tecken
-          "Life Stage=egg": Ägg
-          "Life Stage=larva": Larv
-          "Life Stage=teneral": Teneral
-          "Life Stage=subimago": Subimago
-          "Life Stage=nymph": Nymf
-          "Life Stage=pupa": Puppa
-          "Life Stage=adult": Adult
+          "Plant Phenology=No Evidence": Inget belägg
+          "Life Stage=Adult": Adult
+          "Life Stage=Egg": Ägg
+          "Life Stage=Larva": Larv
+          "Life Stage=Juvenile": Juvenil
+          "Life Stage=Nymph": Nymf
+          "Life Stage=Pupa": Puppa
+          "Life Stage=Subimago": Subimago
+          "Life Stage=Teneral": Teneral
+          "Sex=Cannot Be Determined": Går ej att avgöra
+          "Sex=Female": Hona
+          "Sex=Male": Hane
           unannotated: Ingen anteckning
         max_photos_desc: |
           Ett taxon kan bara ha %{max} bilder. Du måste ta bort befintliga bilder för att lägga till fler.
@@ -7088,6 +7141,9 @@ sv:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: tillåter inte nya kommentarer
             user:
               must_be_on_site_long_enough: |

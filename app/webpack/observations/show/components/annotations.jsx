@@ -336,7 +336,9 @@ class Annotations extends React.Component {
                         eventKey={index}
                         title={
                           I18n.t( `controlled_term_definitions.${_.snakeCase( v.label )}`, {
-                            defaultValue: v.label
+                            defaultValue: I18n.t( `controlled_term_labels.${_.snakeCase( v.label )}`, {
+                              defaultValue: v.label
+                            } )
                           } )
                         }
                       >
@@ -391,14 +393,17 @@ class Annotations extends React.Component {
     const count = observationAnnotations.length > 0 ? `(${observationAnnotations.length})` : "";
     return (
       <div className="Annotations collapsible-section">
-        <h4
-          className="collapsible"
-          onClick={( ) => showAnnotationsPanel( !isOpen )}
-        >
-          <i className={`fa fa-chevron-circle-${isOpen ? "down" : "right"}`} />
-          { I18n.t( "annotations" ) }
-          { " " }
-          { count }
+        <h4 className="collapsible">
+          <button
+            type="button"
+            onClick={( ) => showAnnotationsPanel( !isOpen )}
+            className="btn btn-nostyle"
+          >
+            <i className={`fa fa-chevron-circle-${isOpen ? "down" : "right"}`} />
+            { I18n.t( "annotations" ) }
+            { " " }
+            { count }
+          </button>
         </h4>
         <Panel expanded={isOpen} onToggle={() => {}}>
           <Panel.Collapse>

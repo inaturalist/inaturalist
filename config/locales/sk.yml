@@ -28,6 +28,9 @@ sk:
   about_this_bioblitz: O tomto bioblitze.
   about_this_map: O tejto mape
   about_this_project: O tomto projekte
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Presnosť (m)'
   account: Účet
   account_creation: Vytvorenie účtu
@@ -517,7 +520,6 @@ sk:
   comment_deleted: komentár zmazaný
   comments: Komentáre
   comments_by_me: Moje komentáre
-  comments_on: Komentáre o
   comments_on_my_observations: Komentáre k mojim pozorovaniam
   commercial_solicitation: Komerčná žiadosť, neplatné odkazy atď.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -568,7 +570,6 @@ sk:
     place: Miesto, na ktoré je tento status obmedzený.
     url: URL stránky opisujúci tento status.
     geoprivacy: Štandardne nastavené geosúkromie pre pozorovanie tohto taxónu
-    iucn: Ekvivalentný kód v Červenom zozname IUCN
   contact_support: Kontaktujte podporu
   contain_all_descendants?: Obsahuje tento zoznam všetky následné taxóny, ktoré se tu vyskytujú?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -1251,10 +1252,6 @@ sk:
   leaderboard: Najlepšie výsledky
   leaderboard_for_x: "Najlepšie výsledky pre %{x}"
   leaderboards: Prehľady najlepších výsledkov
-  leaderboard_most:
-    species: Najviac druhov v %{time}
-    observations: Najviac pozorovaní v %{time}
-    identifications: Najviac identifikácií v %{time}
   leading: Najlepší
   learn: Učiť sa
   learn_about_the_species_live_in: Naučte sa o druhoch, ktoré žijú v
@@ -1543,11 +1540,8 @@ sk:
   most_observed_threatened_species: Najviac pozorovaných ohrozených druhov
   multiple: viacero
   multiple_select_option: '-- viacero --'
-  must_be_observed_after: |
-    musí byť pozorovaný po %{operand}
-  must_be_observed_before: |
-    musí byť pozorovaný pred %{operand}
-  must_be_observed_in: musí byť pozorovaný v
+  must_be_observed_after: musí byť pozorovaný po %{operand}
+  must_be_observed_before: musí byť pozorovaný pred %{operand}
   must_be_less_than_x_MB: "Musí byť menej ako %{x} MB"
   must_have_observation_field: "pole pozorovania '%{operand}' musí byť vyplnené"
   must_have_x: "musí mať %{x}"
@@ -2434,6 +2428,7 @@ sk:
   recent_observations: Nedávne pozorovania
   recent_observations_: Nedávne pozorovania
   recent_post: Nedávne príspevky
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Nedávne pozorovania užívateľa %{login} (Atom)"
   recent_observations_by: "Nedávne pozorovania užívateľa %{login}"
   recently_active: Nedávno aktívne
@@ -3113,9 +3108,6 @@ sk:
       edit:
         high_status_conservation_status_notice_html: |
           Pridanie statusu ochrany vyššiemu taxónu ovplyvňuje pozorovania všetkých druhov v tomto taxóne. Nepridávajte prosím statusy pre taxóny, ktoré obsahujú druhy bez statusu pretože to zakryje súradnice pozorovaní týchto druhov.
-      show:
-        frequency:
-          "Life Stage=teneral": Po zvliekaní
     users:
       edit:
         common_names_desc: |

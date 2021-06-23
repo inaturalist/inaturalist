@@ -61,6 +61,9 @@ oc:
   about_these_licenses: A prepaus d'aquestas licéncias
   about_this_map: A prepaus d'aquesta mapa
   about_this_project: A prepaus d'aqueste projècte
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Exactitud (mètres)'
   account: Compte
   accept: acceptar
@@ -372,7 +375,6 @@ oc:
   comment_deleted: Comentari suprimit
   comments: Comentaris
   comments_by_me: Mos comentaris
-  comments_on: Comentaris sus
   #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Validar
   #Adjective describing a taxon change that has been committed
@@ -805,10 +807,8 @@ oc:
   more_observations: Mai d’observacions
   more_photos: Mai de Fòtos
   most_observations: Mai d’observacions
-  must_be_observed_after: |
-    deu èsser observat aprèp %{operand}
-  must_be_observed_before: |
-    deu èsser observat abans %{operand}
+  must_be_observed_after: deu èsser observat aprèp %{operand}
+  must_be_observed_before: deu èsser observat abans %{operand}
   n_ago: "i a %{n}"
   name: Nom
   name_entered: Nom picat

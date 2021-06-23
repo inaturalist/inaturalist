@@ -197,6 +197,9 @@ it:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Puoi scegliere di condividere le coordinate nascoste per
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Acc (m)'
   account: Account
   account_creation: Creazione Utenza
@@ -244,6 +247,7 @@ it:
     sex: Aggiungi annotazione per "Sesso"
     plant_phenology: Aggiungi annotazione per "Fenologia della pianta"
     life_stage: Aggiungi annotazione per "Stadio vitale"
+    evidence_of_presence: Aggiungere annotazioni per "Prova di Presenza"
   add_another_flag: Aggiungi un altro contrassegno
   add_another_photo: Aggiungi un'altra foto
   add_another_section: Aggiungi un'altra sezione
@@ -304,6 +308,12 @@ it:
   add_life_stage_larva_annotation: 'Aggiungi nota "Stadio vitale: Larva"'
   add_life_stage_juvenile_annotation: 'Aggiungi nota "Stadio vitale: Giovane"'
   add_life_stage_egg_annotation: 'Aggiungi nota "Stadio vitale: Uovo"'
+  add_evidence_of_presence_organism_annotation: 'Aggiungi l''annotazione "Prova di Presenza: organismo"'
+  add_evidence_of_presence_feather_annotation: 'Aggiungi l''annotazione "Prova di Presenza: piuma"'
+  add_evidence_of_presence_scat_annotation: 'Aggiungi l''annotazione "Prova di Presenza: escremento"'
+  add_evidence_of_presence_track_annotation: 'Aggiungi l''annotazione "Prova di Presenza: traccia"'
+  add_evidence_of_presence_bone_annotation: 'Aggiungi l''annotazione "Prova di Presenza: osso"'
+  add_evidence_of_presence_molt_annotation: 'Aggiungi l''annotazione "Prova di Presenza: muta"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Aggiungi una relazione'
   #As in a Guide Section
@@ -856,7 +866,6 @@ it:
   comments: Commenti
   comments_by_me: I miei commenti
   comments_have_been_disabled: I commenti sono stati disabilitati
-  comments_on: Commenti su
   comments_on_my_observations: Commenti alle mie osservazioni
   commercial_solicitation: Promozioni commerciali, link a nulla, etc.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -928,7 +937,8 @@ it:
     place: Luogo al quale si riferisce questo stato conservazionistico.
     url: URL di una pagina che descrive questo stato conservazionistico.
     geoprivacy: Geoprivacy predefinita per le osservazioni di questo taxon
-    iucn: Codice equivalente della Lista Rossa IUCN
+    iucn: |
+      Equivalente del Codice della Lista Rossa IUCN. Questa non è l’effettiva valutazione della IUCN, ma il codice IUCN che meglio corrisponde al rischio di divulgazione delle coordinate implicita in questo stato. Questo sovrascriverà la geoprivacy se è "Minor Preoccupazione" o inferiore: quindi se si vuole oscurare le osservazioni di questo taxon, bisogna impostare questo codice su "Quasi Minacciato" o superiore.
   conservation_status_geoprivacy_desc: |
     Geoprivacy predefinita applicata a tutte le osservazioni di questo taxon per questo luogo
   contact_support: Contatta il supporto
@@ -972,6 +982,21 @@ it:
     alive: Vivo
     dead: Morto
     cannot_be_determined: Impossibile Da Determinare
+    evidence_of_presence: Prova di Presenza
+    #As in the feather on a bird
+    feather: Piuma
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organismo
+    #Fecal matter, not regurgitated matter
+    scat: Escremento
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Traccia
+    #Endoskeletal remains, like a deer bone
+    bone: Osso
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Muta
   controlled_term_definitions:
     alive: L'organismo è vivo e non mostra segni di morte imminente
     dead: L'organismo è morto o mostra segni di morte imminente
@@ -981,6 +1006,13 @@ it:
     no_evidence_of_flowering: Il contenuto multimediale non fornisce alcuna evidenza delle strutture riproduttive
     teneral: Individuo adulto che ha recentemente superato lo stadio di pupa ma che non ha ancora raggiunto la sua forma adulta definitiva
     cannot_be_determined: Non può essere determinato in base alle prove fornite
+    feather: Una o più piume non attaccate a un organismo
+    organism: Organismo intero o parziale
+    scat: Materia fecale (non agglomerati di pellet o altra materia rigurgitata)
+    track: Forma impressa sul suolo o sulla neve prodotta da organismo
+    bone: |
+      Resti prevalentemente endoscheletrici; l'esposizione parziale delle ossa in un organismo altrimenti intatto dovrebbe essere etichettata come "organismo"
+    molt: Pelle o esoscheletro scartati
   controls: Controlli
   convert: Converti
   coordinate_systems: Sistemi di coordinate
@@ -1216,6 +1248,7 @@ it:
       december: Dicembre
   date_is_accurate: La data è accurata
   date_joined: Data di Adesione
+  date_obscured_notice: Data oscurata per proteggere la privacy personale o dell'organismo
   date_observed: Data osservazione
   date_observed_: Data osservazione
   date_observed_on: osservata in data
@@ -1548,6 +1581,8 @@ it:
   file_should_be_in_the_following_format: "Il file deve essere nel seguente formato: nome del taxon, descrizione"
   fill_out_project_observation_fields: Compila i campi dell'osservazione del progetto
   fill_out_your_profile: completa il tuo profilo
+  #The name of a computer file
+  filename: Nome del file
   filter: Filtra
   filter_by_curator_identification: Filtra in base all'identificazione dei curatori
   filter_by_place: Filtra per luogo
@@ -1965,9 +2000,12 @@ it:
   leaderboard_for_x: "Classifica per %{x}"
   leaderboards: Classifiche
   leaderboard_most:
-    species: Con più specie in %{time}
-    observations: Con più osservazioni in %{time}
-    identifications: Con più identificazioni in %{time}
+    species_in_month_year: Maggior numero di specie in %{month_year}
+    species_in_year: Maggior numero di specie nel %{year}
+    observations_in_month_year: Maggiori numero di osservazioni in %{month_year}
+    observations_in_year: Maggiori numero di osservazioni nel %{year}
+    identifications_in_month_year: Maggior numero di identificazioni in %{month_year}
+    identifications_in_year: Maggior numero di identificazioni nel %{year}
   leading: Da guida
   learn: Impara
   learn_about_the_species_live_in: Scopri le specie che vivono in
@@ -2367,13 +2405,20 @@ it:
   multiple_select_option: '-- più --'
   multiple_taxa_for_taxon_change: "Taxa multipli (entra per scambiare/unire, esci per dividere)"
   multiple_taxon_ids_separated_by_commas: 'Multiple ID del taxon separate da virgola, e.g 123,654'
-  must_be_observed_after: |
-    deve essere stato osservato dopo %{operand}
-  must_be_observed_before: |
-    deve essere stato osservato prima %{operand}
-  must_be_observed_in: deve essere stata osservata in
+  must_be_in_taxon: dev'essere nel taxon %{taxon}
+  must_be_not_in_taxon: non dev'essere nel taxon %{taxon}
+  must_be_not_observed_by_user: non dev'essere osservato da %{user}
+  must_be_not_observed_in_place: non dev'essere osservato in %{place}
+  must_be_observed_after: deve essere stato osservato dopo %{operand}
+  must_be_observed_before: deve essere stato osservato prima %{operand}
+  must_be_observed_by_user: dev'essere osservato da %{user}
+  must_be_observed_in_place: dev'essere osservato in %{place}
   must_be_less_than_x_MB: "Deve essere meno di %{x} MB"
   must_have_observation_field: "deve avere il campo '%{operand}' compilato"
+  must_have_photos: deve contenere foto
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "deve avere gradi di qualità: %{grades}"
+  must_have_sounds: deve avere suoni
   must_have_x: "deve avere %{x}"
   mute_user: Silenzia l'utente
   mute_removed: Rimuovi il silenziatore
@@ -3652,6 +3697,7 @@ it:
   recent_observations: Osservazioni recenti
   recent_observations_: Osservazioni recenti
   recent_post: Post recenti
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Osservazioni recenti di %{login} (Atom)"
   recent_observations_by: "Osservazioni recenti di %{login}"
   recently_active: Attivi di recente
@@ -4251,7 +4297,7 @@ it:
   that_photo_doesnt_exist: La foto non esiste.
   that_observation_doesnt_exist: L'osservazione non esiste.
   that_observation_doesnt_have_any_photos: "L'osservazione non ha alcuna foto."
-  that_observation_hasnt_been_added_this_project: L'osservazione non è ancora stata aggiunta al progetto.
+  that_observation_hasnt_been_added_this_project: L'osservazione non è ancora stata aggiunta a questo progetto.
   that_observation_no_longer_exists: L'osservazione non esiste più.
   that_project_doesnt_exist: "Il progetto non esiste."
   that_role_doesnt_exist: Il ruolo non esiste
@@ -4523,7 +4569,7 @@ it:
   user_added_a_flag_html: "%{user} ha aggiunto un contrassegno"
   user_added_a_project_invitation_html: "%{user} ha aggiunto in invito di progetto"
   user_added_a_x: "%{user} ha aggiunto una %{x}"
-  user_added_a_x_to_noun_by_html: "%{user} ha aggiunto una %{x} a una %{noun} di %{by}"
+  user_added_a_x_to_noun_by_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{by}"
   user_added_a_x_to_noun_by_user_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{by}"
   user_added_a_x_to_noun_by_you_html: "%{user} ha aggiunto una/una %{x} a %{noun} di te"
   user_added_a_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
@@ -4583,6 +4629,7 @@ it:
   username_or_user_id: Nome Utente o ID Utente
   users: Utenti
   users_contributions_to_project_html: I contributi di <a href="%{url}">%{login}</a> al progetto %{project_title}
+  users_favorites: "Preferiti di %{user}"
   users_highlights_and_stats_from_year_on_site: "Sintesi e statistiche di %{user} dal %{year} su %{site}"
   users_id: "ID di %{user}"
   users_latest_observations_on_site: "Le osservazioni più recenti di %{user} su %{site}"
@@ -4900,6 +4947,7 @@ it:
   your_default: il tuo predefinito
   your_default_time_zone: Il tuo fuso orario predefinito
   your_email_address: Il tuo indirizzo email
+  your_favorites: I Tuoi Preferiti
   your_flickr_account: il tuo account Flickr
   your_flickr_photos_have_been_tagged: Le tue foto Flickr sono state etichettate!
   your_hard_drive: tuo disco rigido
@@ -5969,7 +6017,6 @@ it:
     stats:
       index:
         active_desc: Identificazione, osservazione, commento o post creato nei precedenti 30 giorni
-        active_users_desc: Identificazioni, obs, commenti o post creati nei 30 giorni precedenti
         android_desc_html: Create via <a href="%{url}">iNaturalist app Android</a>
         avg_ttcid: TTCID Media
         avg_ttid: TTID Media
@@ -6149,14 +6196,17 @@ it:
           "Plant Phenology=Flower Budding": Bocciolo di Fiore
           "Plant Phenology=Flowering": In Fiore
           "Plant Phenology=Fruiting": In Frutto
-          "Plant Phenology=No Evidence of Flowering": Nessuna evidenza
-          "Life Stage=egg": Uovo
-          "Life Stage=larva": Larva
-          "Life Stage=teneral": Muta
-          "Life Stage=subimago": Subimago
-          "Life Stage=nymph": Ninfa
-          "Life Stage=pupa": Pupa
-          "Life Stage=adult": Adulto
+          "Plant Phenology=No Evidence": Nessuna Prova
+          "Life Stage=Adult": Adulto
+          "Life Stage=Egg": Uovo
+          "Life Stage=Larva": Larva
+          "Life Stage=Juvenile": Giovane
+          "Life Stage=Nymph": Ninfa
+          "Life Stage=Pupa": Pupa
+          "Life Stage=Subimago": Subimago
+          "Sex=Cannot Be Determined": Impossibile da determinare
+          "Sex=Female": Femmina
+          "Sex=Male": Maschio
           unannotated: Nessuna annotazione
         max_photos_desc: |
           Un taxon può avere solo %{max} foto. Devi rimuovere le foto esistenti per aggiungerne altre.
@@ -6975,6 +7025,9 @@ it:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: non consente nuovi commenti
             user:
               must_be_on_site_long_enough: |

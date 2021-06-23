@@ -246,6 +246,9 @@ he:
   about_this_project: אודות פרויקט זה
   about_trips_html: |
     <h4>סקרים מאפשר איסוף נתוני נוכחות/אי-נוכחות על ידי הוספת הקשר לתצפיות שלך </h4><p><strong>הסיבה</strong> שבגללה נתוני נוכחות/אי-נוכחות מכילים מידע אודות מאמץ הדיגום היא שמידע זה מאפשר לאמוד טוב יותר את תחומי התפוצה של המינים (הנתונים הגולמיים של iNaturalist הם נתוני נוכחות בלבד). </p> <p><strong>האופן</strong> שבו סקר מוסיף הקשר לתצפיותך הוא על ידי רישום:</p> <ul> <li><strong>מה</strong> חיפשת (מין מטרה)</li> <li><strong>היכן</strong> חיפשת (מרחב החיפוש)</li> <li><strong>מתי</strong> חיפשת (פרק זמן החיפוש)</li> </ul> <p>מינים ברשימת המטרה אשר הצלחת לצפות בהם במהלך מרחב וזמן הסקר מסומנים כנוכחים. מינים שהיו ברשימת המטרה ולא נצפו מדווחים כ"לא-נוכחים". הקליקו על 'צרו טבלת נוכחות/אי-נוכחות מנתוני סקרים' על מנת ליצור טבלת נתוני נוכחות/אי-נוכחות של של מינים מסקרים ומתצפיות המקושרות אליהם. <a href='%{url}'>מידע נוסף</a></p>
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'דיוק (מטרים)'
   account: חשבון
   account_creation: צור חשבון
@@ -889,7 +892,6 @@ he:
   comments: תגובות
   comments_by_me: תגובות שלי
   comments_have_been_disabled: לא ניתן להוסיף הערות
-  comments_on: תגובות על
   comments_on_my_observations: תגובות על התצפיות שלי
   commercial_solicitation: פרסומת מסחרית, קישורים לא תקינים, וכו'
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -952,7 +954,6 @@ he:
     place: מיקום באשר סטטוס זה הינו מוגבל
     url: URL לדף המתאר סטטוס זה
     geoprivacy: הגדרת פרטיות-מקום לטקסון זה
-    iucn: קוד שקול ברשימה האדומה של IUCN
   conservation_status_geoprivacy_desc: |
     מיקום מוסתר מוגדר כברירת מחדל עבור טקסון זה במקום זה
   contact_support: יצירת קשר עם תמיכה
@@ -1659,10 +1660,6 @@ he:
   leaderboard: טבלת מובילים
   leaderboard_for_x: "טבלת מובילים של %{x}"
   leaderboards: טבלאות מובילים
-  leaderboard_most:
-    species: מספר הזיהויים הרב ביותר ב%{time}
-    observations: מספר התצפיות הרב ביותר ב%{time}
-    identifications: מספר הזיהויים הרב ביותר ב%{time}
   leading: מוביל
   learn: למדו
   learn_about_the_species_live_in: הכירו את המינים שחיים ב
@@ -1955,11 +1952,8 @@ he:
   most_observed_threatened_species: המינים שבסכנת הכחדה הנצפים ביותר
   multiple: בחירה מרובה
   multiple_select_option: '-- בחירה מרובה --'
-  must_be_observed_after: |
-    שנצפה אחרי %{operand}
-  must_be_observed_before: |
-    שנצפה לפני %{operand}
-  must_be_observed_in: הנצפים ביותר ב
+  must_be_observed_after: שנצפה אחרי %{operand}
+  must_be_observed_before: שנצפה לפני %{operand}
   must_be_less_than_x_MB: "חייב להיות קטן מ %{x} MB"
   must_have_observation_field: "חובה ששדה '%{operand}' יימלא"
   must_have_x: "חייב להכיל %{x}"
@@ -4061,14 +4055,6 @@ he:
           "Plant Phenology=Flower Budding": ניצן פרחים
           "Plant Phenology=Flowering": פריחה
           "Plant Phenology=Fruiting": עם פירות
-          "Plant Phenology=No Evidence of Flowering": אין ראיה
-          "Life Stage=egg": ביצה
-          "Life Stage=larva": לרווה
-          "Life Stage=teneral": לאחר השלה
-          "Life Stage=subimago": טרום-בוגר
-          "Life Stage=nymph": נימפה
-          "Life Stage=pupa": גולם
-          "Life Stage=adult": בוגר
           unannotated: ללא תווית
         trending_desc: הטקסונים הנצפים ביותר בחודש האחרון
         trending_in_place_desc_html: הטקסונים הנצפים ביותר בחודש האחרון <a href="%{url}">%{place}</a>
@@ -4751,6 +4737,9 @@ he:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: אין אישור להוספת הערות
         project_observation:
           attributes:

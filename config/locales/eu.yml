@@ -143,6 +143,9 @@ eu:
   about_this_bioblitz: Bioblitz honi buruz
   about_this_map: Mapa honi buruz
   about_this_project: Proiektu honi buruz
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Zehaztasuna (metroak)'
   account: Kontua
   account_creation: Kontua sortzea
@@ -703,7 +706,6 @@ eu:
   comments: Oharrak
   comments_by_me: Nire oharrak
   comments_have_been_disabled: Iruzkinak egiteko aukera kendu da
-  comments_on: Iruzkinak
   comments_on_my_observations: Nire behaketen iruzkinak
   commercial_solicitation: Iragarri zerbait, estekak ez dira baliagarriak eta abar.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -1451,7 +1453,6 @@ eu:
   most_agree: Gehiengoak babesten du
   most_disagree: Gehiengoak ez du babesten
   multiple_taxa_for_taxon_change: "Espezie edo talde bat baino gehiago (datu-sarrera trukatzeko/nahasteko, datu-irteera bereizteko)"
-  must_be_observed_in: 'hemengo behaketak izan behar dute:'
   must_have_observation_field: "'%{operand}' eremua bete behar duzu oharrean"
   n_ago: "%{n} egiten du"
   n_people_agrees: "%{amount} pertsona ados daude"
@@ -1929,6 +1930,7 @@ eu:
   receive_email_notifications_when_people_leave_you: Jakinarazpenak jaso posta bidez norbaitek jarraitzeari uzten dizunean.
   recent_observations: Duela gutxiko behaketak
   recent_post: Duela gutxiko oharrak
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Duela gutxiko honen behaketak: %{login} (Atom)"
   recent_observations_by: "Duela gutxiko honen behaketak: %{login}"
   recently_active: Duela gutxi aktiboak

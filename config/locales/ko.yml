@@ -92,6 +92,9 @@ ko:
   about_this_bioblitz: 이 바이오블리츠에 대하여
   about_this_map: 이 지도에 대하여
   about_this_project: 이 프로젝트에 대하여
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: '정확도 (m)'
   account: 계정
   account_creation: iNaturalist에 가입한 날짜
@@ -547,7 +550,6 @@ ko:
   comment_deleted: 댓글 삭제됨
   comments: 댓글
   comments_by_me: 내가 작성한 댓글
-  comments_on: 에 달린 댓글
   comments_on_my_observations: 내 관찰에 달린 댓글
   community: 공동체
   community_curated: 공동으로 큐레이션됨
@@ -586,7 +588,6 @@ ko:
     place: 보존 상태 제한지역
     url: 보전 상태를 설명하는 페이지의 URL
     geoprivacy: 분류군 관찰에 대한 기본 위치보호 설정
-    iucn: 동일한 IUCN 적색 목록 코드
   contact_support: 연락 지원
   contain_all_descendants?: 이 체크리스트가 여기 존재하는 하위 분류군을 모두 포함하고 있나요?
   continue: 계속
@@ -1181,8 +1182,6 @@ ko:
   latitude: 위도
   latitude_value: "위도: %{latitude}"
   layout: 배치 (레이아웃)
-  leaderboard_most:
-    observations: '%{time}에 가장 많은 관찰'
   learn_more: 더 알아보기
   least_concern: 관심 대상
   leave: 떠나기
@@ -2058,6 +2057,7 @@ ko:
   receive_updates_from_this_project: 이 프로젝트에서 업데이트 전송
   recent_new_users: 최근 신규 사용자
   recent_observations: 최근 관찰
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "%{login}의 최근 관찰 (Atom)"
   recently_active: 최근에 활동함
   recently_created: 최근 생성함
@@ -2567,13 +2567,6 @@ ko:
           research: 연구 자료 등급
           "Alive or Dead=Alive": 살아있음
           "Alive or Dead=Dead": 죽음
-          "Life Stage=egg": 알
-          "Life Stage=larva": 애벌레
-          "Life Stage=teneral": 우화 직후
-          "Life Stage=subimago": 준성체
-          "Life Stage=nymph": 약충
-          "Life Stage=pupa": 번데기
-          "Life Stage=adult": 성체
     users:
       edit:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
