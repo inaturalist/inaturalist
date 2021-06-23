@@ -181,19 +181,6 @@ class LeftMenu extends SelectionBasedComponent {
             }
           />
         </div>
-        {/* <TimeShifter
-          dateTime={commonDate
-            ? moment( commonDate, inputFormat ).format( "x" )
-            : undefined
-          }
-          inputFormat={inputFormat}
-          onChange={dateString => updateSelectedObsCards( {
-            date: dateString,
-            selected_date: dateString
-          } )}
-          selectedObsCards={this.props.selectedObsCards}
-          updateObsCard={this.props.updateObsCard}
-        /> */}
         <div className="input-group" onClick={this.openLocationChooser}>
           <div className="input-group-addon">
             <Glyphicon glyph="map-marker" />

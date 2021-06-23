@@ -34,10 +34,8 @@ class TimeShifter extends SelectionBasedComponent {
     } );
   }
 
-  addTimeToSelectedObs( hours, minutes ) {
-    const { selectedObsCards, inputFormat } = this.props;
-
-    const cardsToUpdate = _.keys( selectedObsCards ).map( card => selectedObsCards[card] );
+  addTimeToSelectedObs( hours, minutes, cardsToUpdate ) {
+    const { inputFormat } = this.props;
 
     cardsToUpdate.forEach( card => {
       const { date } = card;
@@ -58,10 +56,8 @@ class TimeShifter extends SelectionBasedComponent {
     } );
   }
 
-  subtractTimeFromSelectedObs( hours, minutes ) {
-    const { selectedObsCards, inputFormat } = this.props;
-
-    const cardsToUpdate = _.keys( selectedObsCards ).map( card => selectedObsCards[card] );
+  subtractTimeFromSelectedObs( hours, minutes, cardsToUpdate ) {
+    const { inputFormat } = this.props;
 
     cardsToUpdate.forEach( card => {
       const { date } = card;
@@ -78,6 +74,9 @@ class TimeShifter extends SelectionBasedComponent {
   }
 
   handleValueChange( ) {
+    const { selectedObsCards } = this.props;
+    const cardsToUpdate = _.keys( selectedObsCards ).map( card => selectedObsCards[card] );
+
     const isPositive = value => Math.sign( value ) === 1;
     const isNegative = value => Math.sign( value ) === -1;
 
@@ -103,11 +102,11 @@ class TimeShifter extends SelectionBasedComponent {
     const minutes = Number.isInteger( amountToShift ) ? 0 : 30;
 
     if ( isPositive( amountToShift ) ) {
-      this.addTimeToSelectedObs( hours, minutes );
+      this.addTimeToSelectedObs( hours, minutes, cardsToUpdate );
     }
 
     if ( isNegative( amountToShift ) ) {
-      this.subtractTimeFromSelectedObs( hours, minutes );
+      this.subtractTimeFromSelectedObs( hours, minutes, cardsToUpdate );
     }
   }
 

@@ -43,7 +43,6 @@ class DateTimeFieldWrapper extends Component {
         }
       }
     }
-    console.log( value, "value in date time field wrapper", e, inputValue, eInt );
     this.props.onChange( value );
   }
 
