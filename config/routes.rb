@@ -490,8 +490,6 @@ Rails.application.routes.draw do
   get 'identifications/bold' => 'identifications#bold'
   post 'identifications/agree' => 'identifications#agree'
   get 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }
-  get 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
-  post 'emailer/invite/send' => 'emailer#invite_send', :as => :emailer_invite_send
   resources :taxon_links
   
   get 'places/:id/widget' => 'places#widget', :as => :place_widget
