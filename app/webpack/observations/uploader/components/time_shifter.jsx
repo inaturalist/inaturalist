@@ -1,9 +1,10 @@
-import React from "react";
+import React, { createRef } from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 import _ from "lodash";
 
 import SelectionBasedComponent from "./selection_based_component";
+import { DATE_WITH_TIMEZONE_OFFSET } from "../models/util";
 
 class TimeShifter extends SelectionBasedComponent {
   constructor( props, context ) {
@@ -14,16 +15,11 @@ class TimeShifter extends SelectionBasedComponent {
       prevTimeShift: 0
     };
 
-
     this.addTimeToSelectedObs = this.addTimeToSelectedObs.bind( this );
     this.subtractTimeFromSelectedObs = this.subtractTimeFromSelectedObs.bind( this );
     this.handleSlider = this.handleSlider.bind( this );
     this.handleValueChange = this.handleValueChange.bind( this );
-  }
-
-  componentDidMount( ) {
-    const output = document.getElementById( "newTime" );
-    output.innerHTML = 0; // Display the default slider value
+    this.slider = createRef( );
   }
 
   updateCard( card, dateString ) {
@@ -47,7 +43,7 @@ class TimeShifter extends SelectionBasedComponent {
       const currentTime = moment( new Date( ) );
 
       const minDateString = moment.min( currentTime, newDate );
-      const dateString = newDate.tz( card.time_zone ).format( inputFormat || "YYYY/MM/DD h:mm A ZZ" );
+      const dateString = newDate.tz( card.time_zone ).format( inputFormat );
 
       if ( minDateString !== currentTime ) {
         this.updateCard( card, dateString );
@@ -66,7 +62,7 @@ class TimeShifter extends SelectionBasedComponent {
         .tz( card.time_zone )
         .subtract( hours, "hours" )
         .subtract( minutes, "minutes" )
-        .format( inputFormat || "YYYY/MM/DD h:mm A ZZ" );
+        .format( inputFormat );
 
       this.updateCard( card, dateString );
     } );
@@ -110,18 +106,11 @@ class TimeShifter extends SelectionBasedComponent {
   }
 
   handleSlider( ) {
-    // adapted from https://www.w3schools.com/howto/howto_js_rangeslider.asp
-    const slider = document.getElementById( "timeShifter" );
-    const output = document.getElementById( "newTime" );
-    const { value } = slider;
-    output.innerHTML = value; // Display the default slider value
-
-    this.setState( { timeShift: Number( value ) }, ( ) => this.handleValueChange( ) );
-
-    // Update the current slider value (each time you drag the slider handle)
-    slider.oninput = ( ) => {
-      output.innerHTML = this.value;
-    };
+    if ( this.slider.current && this.slider.current.value ) {
+      this.setState( {
+        timeShift: Number( this.slider.current.value )
+      }, ( ) => this.handleValueChange( ) );
+    }
   }
 
   render( ) {
@@ -130,27 +119,23 @@ class TimeShifter extends SelectionBasedComponent {
       <div className="slider-group">
         <p className="panel-group current-hours">
           {I18n.t( "hours_adjusted" )}
-          <span id="newTime" />
+          <span className="new-time">{timeShift}</span>
         </p>
         <div className="slidecontainer">
           <input
+            ref={this.slider}
             type="range"
             min="-24"
             max="24"
             step="0.5"
             value={timeShift}
             className="slider"
-            id="timeShifter"
             onChange={this.handleSlider}
             list="tickmarks"
           />
         </div>
         <div className="tickmarks">
-          <span className="tick">-24</span>
-          <span className="tick">-12</span>
-          <span className="tick">0</span>
-          <span className="tick">12</span>
-          <span className="tick">24</span>
+          {[-24, -12, 0, 12, 24].map( tick => <span className="tick" key={tick.toString( )}>{tick}</span> )}
         </div>
       </div>
     );
@@ -166,6 +151,10 @@ TimeShifter.propTypes = {
   ] ),
   selectedObsCards: PropTypes.object,
   updateObsCard: PropTypes.func
+};
+
+TimeShifter.defaultProps = {
+  inputFormat: DATE_WITH_TIMEZONE_OFFSET
 };
 
 export default TimeShifter;

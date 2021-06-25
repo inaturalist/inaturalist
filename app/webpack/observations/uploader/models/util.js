@@ -17,6 +17,8 @@ export const ACCEPTED_FILE_TYPES = [
 
 export const MAX_FILE_SIZE = 20971520; // 20 MB in bytes
 
+export const DATE_WITH_TIMEZONE_OFFSET = "YYYY/MM/DD h:mm A ZZ";
+
 const util = class util {
   static isOnline( callback ) {
     // temporary until we have a ping API
