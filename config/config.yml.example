@@ -107,20 +107,20 @@ base: &base
     # config.action_dispatch.x_sendfile_header. Most servers use X-Sendfile, but nginx prefers X-Accel-Redirect
     x_sendfile_header: 'X-Sendfile'
 
-    # # GBIF login credentials. Currently only used in 
-    # # tools/gbif_observation_links.rb, so only useful if you send data 
+    # # GBIF login credentials. Currently only used in
+    # # tools/gbif_observation_links.rb, so only useful if you send data
     # # to GBIF
     # gbif:
     #     username: yourusername
     #     password: yourpassword
     #     notification_address: you@you.com
-    
+
     # Elastic search for search indexing, other performance improvements
-    # ES also runs a syncing service on port 9300 by default. You want to use 
-    # the API port. See 
-    # http://stackoverflow.com/questions/19510659/java-io-streamcorruptedexception-invalid-internal-transport-message-format 
+    # ES also runs a syncing service on port 9300 by default. You want to use
+    # the API port. See
+    # http://stackoverflow.com/questions/19510659/java-io-streamcorruptedexception-invalid-internal-transport-message-format
     # for more details
-    elasticsearch_host: http://localhost:9200
+    elasticsearch_host: <%= ENV['ES_URL'] || 'http://localhost:9200' %>
 
     # An instance of https://github.com/inaturalist/iNaturalistAPI, the
     # same code running at CONFIG.tile_servers.elasticsearch

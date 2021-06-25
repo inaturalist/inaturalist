@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+cd .dockerdev
+
+case "$1" in
+ start)
+   docker-compose up -d $2
+   docker attach $(docker-compose ps -q $2)
+   ;;
+ start-services)
+   docker-compose up -d postgis redis elasticsearch
+   ;;
+ run)
+   docker-compose up -d runner
+   docker-compose exec runner "${@:2}"
+   ;;
+ stop)
+   docker-compose down
+   ;;
+ server)
+   docker-compose up -d rails && docker attach $(docker-compose ps -q rails)
+   ;;
+ jobs)
+   docker-compose up -d jobs && docker attach $(docker-compose ps -q jobs)
+   ;;
+ webpacker)
+   docker-compose up -d webpacker && docker attach $(docker-compose ps -q webpacker)
+   ;;
+ setup)
+   docker-compose build --no-cache
+   docker-compose run --rm runner setup
+   ;;
+ setup-localhost-alias)
+   cp com.user.docker-host-alias.plist /Library/LaunchDaemons/
+   chmod 0644 /Library/LaunchDaemons/com.user.docker-host-alias.plist
+   chown root:wheel /Library/LaunchDaemons/com.user.docker-host-alias.plist
+   launchctl load /Library/LaunchDaemons/com.user.docker-host-alias.plist
+   ;;
+ *)
+   docker-compose up -d runner
+   docker-compose exec runner $*
+   ;;
+esac

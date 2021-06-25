@@ -27,7 +27,7 @@ Dir.chdir APP_ROOT do
   end
 
   puts "\n== Creating Template Database =="
-  if system "command -v createdb"
+  if system "which createdb &> /dev/null"
     system "createdb template_postgis"
     system "psql -d template_postgis -c 'create extension postgis'"
     system "psql -d template_postgis -c 'create extension \"uuid-ossp\"'"
@@ -46,6 +46,18 @@ Dir.chdir APP_ROOT do
   puts "\n== Removing old logs and tempfiles =="
   system "rm -f log/*"
   system "rm -rf tmp/cache"
+
+  puts "\n== Rebuilding elasticsearch indexes =="
+  system "rake es:rebuild"
+
+  puts "\n== Installing node modules"
+  system "source $NVM_DIR/nvm.sh && npm install"
+
+  puts "\n== Loading sample data"
+  system "rails r \"Site.create( name: 'iNaturalist', url: 'http://localhost:3000' )\""
+  system "rails r tools/load_sources.rb"
+  system "rails r tools/load_iconic_taxa.rb"
+  system "rake inaturalist:generate_translations_js"
 
   puts "\n== Restarting application server =="
   system "touch tmp/restart.txt"
