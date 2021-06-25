@@ -4,7 +4,7 @@ import moment from "moment";
 import _ from "lodash";
 
 import SelectionBasedComponent from "./selection_based_component";
-import { DATE_WITH_TIMEZONE_OFFSET } from "../models/util";
+import { DATETIME_WITH_TIMEZONE_OFFSET } from "../models/util";
 
 class TimeShifter extends SelectionBasedComponent {
   constructor( props, context ) {
@@ -154,7 +154,7 @@ TimeShifter.propTypes = {
 };
 
 TimeShifter.defaultProps = {
-  inputFormat: DATE_WITH_TIMEZONE_OFFSET
+  inputFormat: DATETIME_WITH_TIMEZONE_OFFSET
 };
 
 export default TimeShifter;

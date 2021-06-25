@@ -14,7 +14,7 @@ import SelectionBasedComponent from "./selection_based_component";
 import ObservationFieldsChooser from "./observation_fields_chooser";
 import ProjectsChooser from "./projects_chooser";
 import TagsChooser from "./tags_chooser";
-import util from "../models/util";
+import util, { DATETIME_WITH_TIMEZONE } from "../models/util";
 import TimeShifter from "./time_shifter";
 
 class LeftMenu extends SelectionBasedComponent {
@@ -104,7 +104,7 @@ class LeftMenu extends SelectionBasedComponent {
       <option>{ I18n.t( "multiple_select_option" ) }</option>
     );
     const invalidDate = util.dateInvalid( commonDate );
-    const inputFormat = "YYYY/MM/DD h:mm A z";
+    const inputFormat = DATETIME_WITH_TIMEZONE;
     return (
       <div>
         <TaxonAutocomplete
