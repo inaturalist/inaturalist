@@ -5033,7 +5033,8 @@ CREATE TABLE public.users (
     species_count integer DEFAULT 0,
     locked_at timestamp without time zone,
     failed_attempts integer DEFAULT 0,
-    unlock_token character varying
+    unlock_token character varying,
+    oauth_application_id integer
 );
 
 
@@ -9431,6 +9432,13 @@ CREATE INDEX index_users_on_lower_login ON public.users USING btree (lower((logi
 
 
 --
+-- Name: index_users_on_oauth_application_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_oauth_application_id ON public.users USING btree (oauth_application_id);
+
+
+--
 -- Name: index_users_on_observations_count; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10460,4 +10468,6 @@ INSERT INTO schema_migrations (version) VALUES ('20210220195556');
 INSERT INTO schema_migrations (version) VALUES ('20210305235042');
 
 INSERT INTO schema_migrations (version) VALUES ('20210408221535');
+
+INSERT INTO schema_migrations (version) VALUES ('20210625223935');
 
