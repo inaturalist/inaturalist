@@ -41,11 +41,11 @@ const Notifications = ( { profile } ) => (
           <div className="stacked">
             <ToggleSwitchContainer
               name="prefers_no_email"
-              checked={profile.prefers_no_email}
+              checked={!profile.prefers_no_email}
             />
           </div>
         </div>
-        <div className={profile.prefers_no_email ? null : "collapse"}>
+        <div className={profile.prefers_no_email ? "collapse" : null}>
           <div className="stacked">
             <CheckboxRowContainer
               name="prefers_comment_email_notification"

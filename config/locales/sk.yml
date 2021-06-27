@@ -28,7 +28,9 @@ sk:
   about_this_bioblitz: O tomto bioblitze.
   about_this_map: O tejto mape
   about_this_project: O tomto projekte
-  about_x: "O %{x}"
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Presnosť (m)'
   account: Účet
   account_creation: Vytvorenie účtu
@@ -518,7 +520,6 @@ sk:
   comment_deleted: komentár zmazaný
   comments: Komentáre
   comments_by_me: Moje komentáre
-  comments_on: Komentáre o
   comments_on_my_observations: Komentáre k mojim pozorovaniam
   commercial_solicitation: Komerčná žiadosť, neplatné odkazy atď.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -559,6 +560,7 @@ sk:
   confirm_now: Potvrdiť teraz
   confirm_your_info: Potvrďte svoje info
   connect_to_provider: "Pripojiť sa k %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Pripojené účty
   connecting_flickr: "Pripájanie k Flickr..."
   connecting_to_facebook: "Pripájanie k Facebooku..."
@@ -568,7 +570,6 @@ sk:
     place: Miesto, na ktoré je tento status obmedzený.
     url: URL stránky opisujúci tento status.
     geoprivacy: Štandardne nastavené geosúkromie pre pozorovanie tohto taxónu
-    iucn: Ekvivalentný kód v Červenom zozname IUCN
   contact_support: Kontaktujte podporu
   contain_all_descendants?: Obsahuje tento zoznam všetky následné taxóny, ktoré se tu vyskytujú?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -853,7 +854,6 @@ sk:
   editing_this: Úprava %{elem}
   editing_x_in_y: "Úprava %{x} v %{y}"
   editors: Redaktori
-  either: Buď
   either_that_user_doesnt_exist_or: "Tento užívateľ buď neexistuje, alebo už ho sledujete."
   eligible_for_research_grade: Vhodné pre výskumný stupeň
   email: Email
@@ -898,7 +898,6 @@ sk:
   everywhere: všade
   exact: Presný
   exact_date: Presný dátum
-  exact_location: Presné_miesto
   exact_rank: Presné poradie
   except: okrem
   exclusion_filters: Vylučovacie filtre
@@ -910,7 +909,6 @@ sk:
   export_with_private_coordinates: Exportovať so skrytými súradnicami
   exporting: "Exportovanie..."
   external_taxon_including_children: Externý taxón (vrátane dcérskych)
-  external_taxon_rank: Externé poradie taxónu
   extinct: vyhynutý
   extinct_in_the_wild: Vyhynutý vo voľnej prírode
   extra_properties: Ďalšie vlastnosti
@@ -1148,6 +1146,7 @@ sk:
   ignore_and_continue: Ignorovať a pokračovať
   ignore_times: Ignorovať časy
   image_must_be_exactly: obrázok musí byť presne 950px široký a maximálne 400px vysoký
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Ohrozený
   import_all_photos_as_observations: Importovať všetky fotky ako pozorovania
   import_as_an_observation: Importovať ako pozorovanie
@@ -1202,7 +1201,6 @@ sk:
   inviteonly: iba pre pozvaných
   invited_x: "Pozvaný/á %{x}"
   is_not_following_anyone: nikoho nesleduje.
-  is_now: je teraz
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Sú predložené dôkazy dostatočné na potvrdenie, že toto je %{taxon}?
   is_this_offensive_html: 'Je toto <a href="/help#inappropriate">nevhodné</a>, spam, alebo urážlivé?'
   is_this_place_a_duplicate: Je toto miesto duplikát?
@@ -1254,10 +1252,6 @@ sk:
   leaderboard: Najlepšie výsledky
   leaderboard_for_x: "Najlepšie výsledky pre %{x}"
   leaderboards: Prehľady najlepších výsledkov
-  leaderboard_most:
-    species: Najviac druhov v %{time}
-    observations: Najviac pozorovaní v %{time}
-    identifications: Najviac identifikácií v %{time}
   leading: Najlepší
   learn: Učiť sa
   learn_about_the_species_live_in: Naučte sa o druhoch, ktoré žijú v
@@ -1546,11 +1540,8 @@ sk:
   most_observed_threatened_species: Najviac pozorovaných ohrozených druhov
   multiple: viacero
   multiple_select_option: '-- viacero --'
-  must_be_observed_after: |
-    musí byť pozorovaný po %{operand}
-  must_be_observed_before: |
-    musí byť pozorovaný pred %{operand}
-  must_be_observed_in: musí byť pozorovaný v
+  must_be_observed_after: musí byť pozorovaný po %{operand}
+  must_be_observed_before: musí byť pozorovaný pred %{operand}
   must_be_less_than_x_MB: "Musí byť menej ako %{x} MB"
   must_have_observation_field: "pole pozorovania '%{operand}' musí byť vyplnené"
   must_have_x: "musí mať %{x}"
@@ -1701,7 +1692,6 @@ sk:
   no_taxon_framework_relationships: Žiadne rámcové vzťahy medzi taxónom
   no_taxonomic_changes_match_those_criteria: Týmto kritériám nezodpovedajú žiadne taxonomické zmeny
   no_wikipedia_page_for_taxon: "Žiadna stránka na Wikipédii pre tento taxón \n."
-  no_x_this_y: "Žiadny %{x} tohto %{y}"
   noble_curators: "Vybraní kurátori stránky %{site}"
   non_human?: Nie je ľudský?
   none: Žiadny
@@ -2281,7 +2271,7 @@ sk:
   please_add_a_citation_for_this_change: Pridajte prosím citáciu pre túto zmenu.
   please_add_this_observation_to: Pridajte prosím toto pozorovanie k
   please_add_this_to_x_html: "Pridajte toto prosím k %{x}"
-  please_allow_a_few_weeks_for_external_sites: Počkajte prosím pár týždňov, než sa zmeny z tohto pozorovania synchronizujú s externými stránkami
+  please_allow_a_few_weeks_for_external_sites: Počkajte prosím pár týždňov, než sa zmeny z tohto pozorovania synchronizujú s externými stránkami #Title to a section warning a user to exercise caution
   please_complete_the_following_to_add_project: |
     Ak chcete pridať toto pozorovanie k projektu, vyplňte prosím nasledujúce:
   please_confirm_your_inat_username: "Potvrďte prosím svoje používateľské meno pre %{site_name}"
@@ -2438,6 +2428,7 @@ sk:
   recent_observations: Nedávne pozorovania
   recent_observations_: Nedávne pozorovania
   recent_post: Nedávne príspevky
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Nedávne pozorovania užívateľa %{login} (Atom)"
   recent_observations_by: "Nedávne pozorovania užívateľa %{login}"
   recently_active: Nedávno aktívne
@@ -2632,6 +2623,7 @@ sk:
   show_off_your_recent_observations: Ukážte svoje posledné pozorovania na svojom blogu alebo webovej stránke!
   show_only: Zobraziť len
   show_relative_proportions_of_all_observations: Zobraziť príbuzné časti všetkých pozorovaní
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Zobraziť doteraz celkom
   show_scientific_name_first: Zobraziť najprv vedecké mená
   show_taxa_from_both: (zobraziť taxóny z obidvoch zoznamov)
@@ -2935,6 +2927,7 @@ sk:
   trusted: Dôveryhodné
   trusted_project?: Dôveryhodný projekt?
   two_thirds: 2/3
+  #As in a category, not as in a keyboard
   type: Napíšte
   type_one_name_per_line: Napíšte jeden názov na každý riadok
   type_place_name: Napíšte názov miesta
@@ -3041,7 +3034,6 @@ sk:
   'yes': "Áno"
   yes_i_want_to_join: Áno, chcem sa pridať
   you: vás
-  you_are_now: Teraz ste
   you_are_already_a_member_of_this_project: "Už ste členom tohto projektu!"
   you_are_setting_this_project_to_aggregate: |
     Nastavujete tento projekt tak, aby zoskupil všetky pozorovania, ktoré spĺňajú následujúce pravidlá: %{rules} Chcete pokračovať?
@@ -3072,6 +3064,8 @@ sk:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Viac o %{application}
     observations:
       export:
@@ -3114,9 +3108,6 @@ sk:
       edit:
         high_status_conservation_status_notice_html: |
           Pridanie statusu ochrany vyššiemu taxónu ovplyvňuje pozorovania všetkých druhov v tomto taxóne. Nepridávajte prosím statusy pre taxóny, ktoré obsahujú druhy bez statusu pretože to zakryje súradnice pozorovaní týchto druhov.
-      show:
-        frequency:
-          "Life Stage=teneral": Po zvliekaní
     users:
       edit:
         common_names_desc: |

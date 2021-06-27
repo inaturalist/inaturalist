@@ -141,13 +141,8 @@
 
     <%= javascript_include_tag "jquery/jquery-1.11.3.min.js" %>
     <%= javascript_include_tag "jquery/jquery-ui-1.11.4.min.js" %>
-
+    <%= render "shared/i18n" %>
     <script type="text/javascript">
-      I18n = { }
-      <% # Don't set this to CONFIG.default_locale, b/c I18n-js needs en as the final fallback %>
-      I18n.defaultLocale = "en";
-      I18n.locale = "<%= I18n.locale %>";
-      I18n.fallbacks = true;
       <% site_place = @site && @site.place
          user_place = current_user && current_user.place
          user_search_place = current_user && current_user.search_place -%>
@@ -175,11 +170,14 @@
           prefers_medialess_obs_maps: <%= current_user.prefers_medialess_obs_maps %>,
           prefers_captive_obs_maps: <%= current_user.prefers_captive_obs_maps %>,
           preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>",
+          prefers_not_nearby_suggestions: <%= !!session[:prefers_not_nearby_suggestions] %>,
+          testGroups: <%= current_user.test_groups_array.to_json.html_safe %>
         };
       <% end -%>
       var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;
       var TIMEZONE = "<%= Time.zone.tzinfo.name %>";
       var SITE = {
+        id: <%= @site.id %>,
         name: "<%= @site.name %>",
         short_name: "<%= @site.site_name_short %>",
         help_email: "<%= @site.email_help %>",
@@ -195,6 +193,10 @@
           small: "<%= image_url(LocalPhoto.new.file.url(:small)) %>",
           square: "<%= image_url(LocalPhoto.new.file.url(:square)) %>"
         }
+      };
+      var CONTROLLER_ACTION = "<%= controller.class.to_s %>::<%= action_name %>";
+      var CONFIG = {
+        content_freeze_enabled: <%= !!CONFIG.content_freeze_enabled %>
       };
     </script>
     <%= javascript_include_tag "bootstrap_bundle" %>

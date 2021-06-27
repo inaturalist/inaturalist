@@ -252,9 +252,14 @@ a {
           background: rgba(255, 255, 255, 0.1);
           .action {
             display: inline-block;
-            padding: 2px 8px 2px 10px;
+            padding: 0px 8px 0px 10px;
             min-width: 72px;
             text-align: center;
+            &:hover,
+            &:active,
+            &:focus {
+              color: white;
+            }
           }
           .count {
             cursor: pointer;
@@ -273,7 +278,7 @@ a {
           position: absolute;
           top: 0;
           right: 0;
-          button {
+          > button {
             background: rgba(255, 255, 255, 0.2);
             border-color: rgba(255, 255, 255, 0.3);
             border-radius: 30px;
@@ -910,22 +915,18 @@ a {
       a {
         color: inherit;
       }
-      & > a:not(:last-of-type)::after,
-      & > .except > a:not(:last-of-type)::after,
-      & .SplitTaxon:not(:last-of-type)::after {
-       content: ", ";
-      }
-      .term-value {
-        .separator::before, .separator::after {
-          content: " ";
-        }
+      > a,
+      > .except > a,
+      > .SplitTaxon,
+      > .except > .SplitTaxon {
+        display: block;
+        margin-bottom: 10px;
       }
       .except {
         .bold {
           font-weight: 700;
-          &::before, &::after {
-            content: " "
-          }
+          margin-bottom: 10px;
+          margin-top: 20px;
         }
       }
     }

@@ -1,0 +1,535 @@
+th:
+  x_comments:
+    other: '%{count} ข้อคิดเห็น'
+  x_comments_html:
+    other: '<span class="count">%{count}</span> คอมเมนต์'
+  x_faves:
+    other: '%{count} ชอบ'
+  x_identifications:
+    other: '%{count} การจำแนก'
+  x_identifications_html:
+    other: '<span class="count">%{count}</span> การจำแนก'
+  x_identifications_:
+    other: '%{count} การจำแนก'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> ผู้จำแนก'
+  x_languages:
+    other: "%{count} ภาษา"
+  x_matching_taxa:
+    other: '%{count} ลำดับอนุกรมวิธานที่ตรงกัน'
+  x_matching_taxa_html:
+    other: '<span class="count">%{count}</span> ลำดับอนุกรมวิธานที่ตรงกัน'
+  x_misidentifications_of_this_species:
+    other: "%{count} การจำแนกชนิดนี้ผิด"
+  x_misidentifications_of_species_in_this_rank:
+    other: "%{count} การจำแนกชนิดในนี้ผิด %{rank}"
+  x_observations:
+    other: "%{count} การสังเกต"
+  x_observations_:
+    other: "%{count} การสังเกต"
+  x_observations_html:
+    other: "<span class='count'>%{count}</span> การสังเกตการณ์"
+  x_observations_link_html:
+    other: "<a href='%{url}'>%{count} การสังเกตการณ์</a>"
+  x_observations_reviewed_html:
+    other: "<span class='count'>%{count}</span> การสังเกตการณ์ที่ตรวจสอบแล้ว"
+  x_observers_html:
+    other: '<span class="count">%{count}</span> ผู้สังเกตการณ์'
+  x_others:
+    other: "%{count} อื่น ๆ"
+  x_people:
+    other: "%{count} บุคคล"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} คน</strong> ช่วย %{user} ด้วยจำนวน <strong>%{y} IDs</strong>"
+  x_photos:
+    other: "%{count} รูปภาพ"
+  x_new_species:
+    other: "%{count} ชนิดใหม่"
+  x_new_users:
+    other: '%{count} ผู้ใช้งานใหม่'
+  x_species:
+    other: '%{count} ชนิด'
+  x_species_html:
+    other: "<span class='count'>%{count}</span> ชนิด"
+  x_species_link_html:
+    other: "<a href='%{url}'>%{count} ชนิด</a>"
+  x_suggestions_filtered_by_colon:
+    other: "%{count} คำแนะนำกรองข้อมูลโดย:"
+  x_taxa:
+    other: "%{count} ลำดับทางอนุกรมวิธาน"
+  x_taxa_observed_html:
+    other: "<span class='count'>%{count}</span> ลำดับทางอนุกรมวิธานที่ถูกสังเกตแล้ว"
+  x_research_grade_observations_html:
+    other: "<span class='count'>%{count}</span> การสังเกตระดับการวิจัย"
+  x_research_grade_observations_to_species_html:
+    other: "<span class='count'>%{count}</span> การสังเกตระดับการวิจัยที่มีการจำแนกในระดับสายพันธุ์หรือต่ำกว่า"
+  x_sounds:
+    other: "%{count} เสียง"
+  x_taxa_matching_current_filters:
+    other: "%{count} ลำดับอนุกรมวิธานที่ตรงกับตัวกรองปัจจุบัน"
+  x_taxon_changes_added_html:
+    other: "<span class='count'>%{count}</span> ลำดับอนุกรมวิธานที่เปลี่ยนแปลงแล้ว"
+  _100_day_trends: แนวโน้มใน 100 วัน
+  _percent_ID_d: "% ID'd"
+  a_community_for_naturalist: ชุมชนสำหรับนักธรรมชาติวิทยา
+  a_default_taxon_name_will_automatically_created: |
+    ชื่อตามลำดับอนุกรมวิธานจะถูกสร้างขึ้นมาโดยอัตโนมัติจากชื่อวิทยาศาสตร์ของสิ่งมีชีวิตในลำดับอนุกรมวิธานดังกล่าว
+    เมื่อบันทึกชื่อตามอนุกรมวิธานใหม่นี้ ผู้ใช้สามารถเพิ่มชื่ออื่น ๆ ได้ที่นี่ (ชื่อสามัญ ชื่อวิทยาศาสตร์เดิมที่ถูกยกเลิก ฯลฯ)
+  a_flag_for_x: "ติดธงสำหรับ %{x}"
+  a_member_of_taxon_html: "สมาชิกของ %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A ถึง Z"
+  about: เกี่ยวกับเรา
+  about_blocking: เกี่ยวกับการบล็อก
+  about_charts: เกี่ยวกับแผนภูมิ
+  about_conservation_status: เพิ่มสถานะการอนุรักษ์
+  about_editing_observation_fields: เกี่ยวกับการแก้ไขฟิลด์ที่สังเกตการณ์
+  about_license_options: เกี่ยวกับตัวเลือกของใบอนุญาต
+  about_licenses: เกี่ยวกับใบอนุญาต
+  about_muting: เกี่ยวกับการปิดบังผู้ใช้งาน
+  #Header for a section describing taxon names
+  about_names: เกี่ยวกับชื่อ
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "เกี่ยวกับ %{place}"
+  about_places: เกี่ยวกับสถานที่
+  about_the_cc_licenses: เกี่ยวกับสัญญา Creative Commons (CC)
+  about_these_licenses: เกี่ยวกับใบอนุญาต
+  about_this_bioblitz: เกี่ยวกับ Bioblitz
+  about_this_map: เกี่ยวกับแผนที่นี้
+  about_this_project: เกี่ยวกับโปรเจคนี้
+  about_trips_html: |
+    <h4>
+    ทริปเปิดใช้งานการรวบรวมข้อมูลการมีหรือไม่มีอยู่ของสิ่งมีชีวิตโดยเพิ่มบริบทให้กับการสังเกต
+    </h4>
+    <p>
+    <strong>ทำไม</strong> ข้อมูลการมีและไม่มีตัวตนรวมถึงข้อมูลเกี่ยวกับความพยายามในการสุ่มตัวอย่างซึ่งมีประโยชน์สำหรับการวิเคราะห์ทางวิทยาศาสตร์เช่นการสร้างแบบจำลองการกระจาย (การสังเกตของ iNaturalist แบบดิบเป็นข้อมูลของการมีหรือไม่มีอยู่ของตัวตนสิ่งมีชีวิตเท่านั้น)
+    </p>
+    <p>
+    <strong>How</strong> เทคนิคการเพิ่มบันทึกข้อมูลการสังเกตของคุณ:
+    </p>
+    <ul>
+    <li><strong>อะไร</strong> ที่คุณกำลังค้นหา (สิ่งมีชีวิตเป้าหมาย)</li>
+    <li><strong>ที่ไหน</strong> ที่คุณทำการค้นหา (พื้นที่การสำรวจ)</li>
+    <li><strong>เมื่อไหร่</strong> ที่คุณทำการสำรวจ (ช่วงการค้นหา)</li>
+    </ul>
+    <p>
+    สายพันธุ์เป้าหมายในรายการที่คุณสามารถสังเกตได้ภายในพื้นที่การค้นหาและช่วงเวลาถูกตีความว่าเป็นการปรากฎในพื้นที่ ในขณะที่สายพันธุ์ในรายการเป้าหมายของคุณที่คุณไม่สามารถสังเกตได้จะถูกตีความว่าเป็นไม่ปรากฎในพื้นที่ คลิกที่ 'ตารางข้อมูลการปรากฎ ไม่ปรากฎของสิ่งมีชีวิตจากการสำรวจ' เพื่อสร้างตารางบันทึกการไม่มีตัวตนสำหรับสายพันธุ์จากการสำรวจและการสังเกตการณ์ที่เกี่ยวข้อง <a href='%{url}'>เรียนรู้เพิ่มเติม</a>
+    </p>
+  about_trusting_projects: เกี่ยวกับโครงการที่น่าเชื่อถือ
+  about_trusting_projects_options_any: สิ่งที่สังเกตทั้งหมดในโปรเจคนี้
+  about_trusting_projects_options_any_desc: |-
+    ทั้งนี้รวมถึงสิ่งที่สังเกต (observations) เมื่อผู้ใช้ตั้งค่าการปกปิดระบบพิกัด (geoprivacy) เป็นแบบ "คลุมเครือ" (obscured) หรือ "ส่วนตัว" (private) เช่น สิ่งที่สังเกตในสวนหลังบ้านหรือตำแหน่งที่ไม่ต้องการให้ผู้อื่นรู้
+  about_trusting_projects_options_taxon: |-
+    สิ่งที่สังเกต (observations) ของคุณในโครงการนี้เท่านั้นที่มีพิกัดแบบคลุมเครือ เพราะเป็นชนิดพันธุ์ที่ถูกคุกคาม
+  about_trusting_projects_options_taxon_desc: |-
+    หลายโครงการต้องการเพียงแค่เข้าถึงพิกัดที่ถูกบดบังเนื่องจากการสังเกตการณ์แสดงให้เห็นถึงสายพันธุ์ที่ถูกคุกคาม
+  about_trusting_projects_overview: |-
+    การให้สิทธิ์เข้าถึงพิกัดที่ซ่อนอยู่ของคุณจะช่วยให้ผู้จัดการของโครงการนี้เห็นตำแหน่งที่แท้จริงของการสังเกตการณ์ของคุณในโครงการนี้ สิ่งนี้มีความสำคัญอย่างยิ่งในสถานการณ์ที่นักวิทยาศาสตร์หรือผู้จัดการทรัพยากรจำเป็นต้องเข้าถึงพิกัดที่แน่นอนเพื่อการวิเคราะห์และตัดสินใจ
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    ผู้จัดการโครงการที่จะสามารถเข้าถึงพิกัดที่ซ่อนอยู่ของคุณ ได้แก่ :
+  about_trusting_projects_warning: |-
+    โปรดทราบว่าผู้จัดการโครงการสามารถเปลี่ยนพารามิเตอร์โครงการเพื่อรวมการสังเกตของคุณและสามารถเพิ่มหรือลบผู้จัดการโครงการได้ตลอดเวลา คุณจะได้รับการแจ้งเตือนเกี่ยวกับการเปลี่ยนแปลงเหล่านี้ แต่คุณแสดงความเชื่อมั่นในโครงการนี้ด้วยข้อมูลตำแหน่งส่วนตัวของคุณดังนั้นโปรดใช้ความระมัดระวัง
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    คุณสามารถเลือกที่จะแบ่งปันพิกัดที่ซ่อนอยู่สำหรับ
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
+  acc: 'Acc (m)'
+  account: บัญชีผู้ใช้
+  account_creation: การสร้างบัญชี
+  account_settings: การตั้งค่าบัญชี
+  accept: ยอมรับ
+  accept_community_identifications: ยอมรับการระบุตัวตนของชุมชน
+  accuracy: ความแม่นยำ
+  accuracy_meters: ความแม่นยำ (เมตร)
+  accuracy_of_the_coordinates: |
+    ความแม่นยำของพิกัดถูกระบุเป็นหน่วยเมตร คุณสามารถแก้ไขได้โดยคลิ๊กลิงค์ "แก้ไข" ด้านบนหรือคลิ๊กที่เครื่องหมายบนแผนที่แล้วลากแก้ไขโดยพยายามทำให้วงกลมใหญ่พอที่จะแน่ใจได้ว่าคุณอยู่ข้างในนั้น
+  action: ปฏิบัติการ
+  actions: การดำเนินการทั้งหมด
+  active: กำลังดำเนินการ
+  active_users: จำนวนผู้เล่นที่ยังมีความเคลื่อนไหวอยู่
+  activity: กิจกรรมที่เกิดขึ้น
+  activity_settings: ตั้งค่ากิจกรรมของคุณ
+  adapted_by_name_from_a_work_by_original: "เปลี่ยนแปลงโดย %{name} จากต้นทางของ %{original}"
+  add: เพิ่มเติม
+  add_a_batch_of_observations: เพิ่มชุดการสังเกต
+  add_a_batch_of_taxa: เพิ่มชุดของลำดับขั้น
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: เพิ่มรายการสัญลักษณ์แสดงหัวข้อย่อย
+  add_a_comment: เพิ่มข้อเสนอแนะ
+  add_a_field: เพิ่มฟิลด์
+  add_a_flag: เพิ่มการปักธงแสดง
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: เพิ่มลิงก์
+  add_a_name: เพิ่มชื่อ
+  add_a_note: เพิ่มหมายเหตุ
+  add_a_new_change_group: เพิ่มการเปลี่ยนแปลงกลุ่ม
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: เพิ่มรายการลำดับเลข
+  add_a_single_observation: เพิ่มการสังเกตอันเดียว
+  add_a_taxon: เพิ่มอันดับอนุกรมวิธาน
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: |
+    เพิ่ม <a target="_blank" href="%{url}">การแลกเปลี่ยนอนุกรมวิธาน</a> หากคุณต้องการเปลี่ยนชื่อ
+  add_an_assessment: เพิ่มการประเมิน
+  add_an_identification: เพิ่มการจำแนก
+  add_an_observation: เพิ่มการสังเกต
+  add_an_observation?: เพิ่มการสังเกตไหม ?
+  add_an_observation_of: "เพิ่มการสังเกตของ%{taxon}"
+  add_an_observation_to_project_html: เพิ่มการสังเกตไปที่ %{project}
+  add_annotations_for_x: เพิ่มคำอธิบายสำหรับ "%{x}"
+  add_annotations_for_controlled_attribute:
+    sex: เพิ่มคำอธิบายสำหรับ "เพศ"
+    plant_phenology: เพิ่มคำอธิบายสำหรับ "ชีพลักษณ์"
+    life_stage: เพิ่มคำอธิบายสำหรับ "ช่วงอายุ"
+  add_another_flag: ติดธงเพิ่ม
+  add_another_photo: เพิ่มภาพถ่ายอีกใบ
+  add_another_section: เพิ่มส่วนอื่น ๆ
+  add_another_subscription: เพิ่มคำอธิบายตัวกรอง
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: เพิ่มโครงการที่เกี่ยวข้อง
+  add_batch: เพิ่มแบบกลุ่ม
+  add_blocked_users: เพิ่มผู้ใช้ที่ถูกบล็อก
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: เพิ่มข้อความตัวหนา
+  add_comma_separated_tags: "เพิ่มจุลภาคเพื่อคั่นแท็ก"
+  add_comment: เพิ่มความคิดเห็น
+  add_conservation_status: เพิ่มสถานะการอนุรักษ์
+  add_countries: เพิ่มประเทศที่พบ
+  add_custom_project_fields: เพิ่มโครงการภาคสนามที่ถูกกำหนดขึ้นเอง
+  add_edit_flags: เพิ่ม / แก้ไขป้ายชื่อ
+  add_editor: เพิ่มบรรณาธิการ
+  add_description: "เพิ่ม %{description_name}"
+  add_from_your_observations: เพิ่มจากการสังเกตของคุณ
+  add_link: เพิ่มลิงค์
+  add_higher_level_taxon: เพิ่มอนุกรมวิธานระดับสูงกว่า (เช่น "นก")
+  add_id: เพิ่มการจำแนก
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: เพิ่มข้อความที่เป็นตัวเอียง
+  add_muted_users: เพิ่มผู้ใช้ที่ถูกปิดกั้น
+  add_new_lexicon: เพิ่มศัพท์เฉพาะใหม่
+  add_new_photos_by_their_ids: เพิ่มรูปภาพใหม่จาก Flickr (องค์กรไม่แสวงกำไรที่สนับสนุนการใช้เนื้อหาโดยไม่ถูกจำกัดจากสัญญาอนุญาต)
+  add_new_place: เพิ่มสถานที่ใหม่
+  add_new_rule: เพิ่มกติกาใหม่
+  add_new_source: "เพิ่มแหล่งใหม่"
+  add_new_taxon_name: เพิ่มชื่อลำดับขั้นทางอนุกรมวิธานใหม่
+  add_notes_about_this_taxon: เพิ่มหมายเหตุเกี่ยวกับอนุกรมวิธานในสถานที่นี้ เช่น เกิดขึ้นที่ไหนและเมื่อไหร่
+  add_obs_from_a_link: "เพิ่มการสังเกตการณ์จากลิงก์: %{link}"
+  add_obs_from_a_list: เพิ่มการสังเกตการณ์เข้าในรายการ
+  add_observations: เพิ่มการสังเกต
+  add_observations_by_checking_off: เพิ่มข้อสังเกตโดยการตรวจสอบสายพันธุ์จากรายการ
+  add_observations_project: เพิ่มการสังเกตในโครงการนี้
+  #Prompt to add a new journal post
+  add_one: เพิ่มอีก
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now: เพิ่มเดี๋ยวนี้
+  add_photos: เพิ่มภาพถ่าย
+  add_place: เพิ่มสถานที่
+  add_alive_or_dead_alive_annotation: 'เพิ่มมีชีวิตหรือเสียชีวิต ในคำอธิบาย'
+  add_alive_or_dead_cannot_be_determined_annotation: 'เพิ่มคำอธิบายประกอบ "มีชีวิต หรือ ตาย: ไม่สามารถกำหนดได้"'
+  add_alive_or_dead_dead_annotation: 'เพิ่มคำอธิบายประกอบ "มีชีวิต หรือ ตาย"'
+  add_plant_phenology_budding_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): การแตกหน่อ"'
+  add_plant_phenology_flower_budding_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): การเกิดตาของพืชดอก"'
+  add_plant_phenology_flowering_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): การเกิดดอก"'
+  add_plant_phenology_fruiting_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): การเกิดผล"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): ไม่มีหลักฐานของการเกิดดอก"'
+  add_life_stage_adult_annotation: 'เพิ่มคำอธิบายประกอบ "ช่วงชีวิต: วัยผู้ใหญ่"'
+  add_life_stage_teneral_annotation: 'เพิ่มคำอธิบายประกอบ "ช่วงชีวิต: ระยะหลังลอกคราบ"'
+  add_life_stage_subimago_annotation: 'เพิ่มคำอธิบายประกอบ "ช่วงชีวิต: การก่อรูปของปีก"'
+  add_life_stage_pupa_annotation: 'เพิ่มคำอธิบายประกอบ "ช่วงชีวิต: ดักแด้"'
+  add_life_stage_nymph_annotation: 'เพิ่มคำอธิบายประกอบ "ช่วงชีวิต: ตัวอ่อนบนบก (Nymph)"'
+  add_life_stage_larva_annotation: 'เพิ่มคำอธิบายประกอบ "ช่วงชีวิต: ตัวอ่อนหนอนแมลง"'
+  add_life_stage_juvenile_annotation: 'เพิ่มคำอธิบายประกอบ "ช่วงชีวิต: วัยเด็ก"'
+  add_life_stage_egg_annotation: 'เพิ่มคำอธิบายประกอบ "ช่วงชีวิต: ไข่"'
+  #As in a Taxon Framework Relationship
+  add_relationship: 'เพิ่มความสัมพันธ์'
+  #As in a Guide Section
+  add_section: เพิ่มส่วน
+  add_several_observations_at_once: เพิ่มข้อสังเกตหลายอย่างพร้อมกัน
+  add_sex_female_annotation: 'ใส่คำอธิบายประกอบ "เพศ: เมีย"'
+  add_sex_male_annotation: 'ใส่คำอธิบายประกอบ "เพศ: ผู้"'
+  add_sex_cannot_be_determined_annotation: 'ใส่คำอธิบายประกอบ "เพศ: ไม่สามารถระบุได้"'
+  add_some_now: เพิ่มบางอย่าง เดี๋ยวนี้
+  add_tag: เพิ่มป้ายกำกับ
+  add_tags: เพิ่มป้ายกำกับทั้งหมด
+  add_tags_to_selected_taxa: เพิ่มป้ายกำกับในกลุ่มลำดับที่ถูกเลือก
+  add_taxa: เพิ่มลำดับทางอนุกรมวิธาน
+  add_taxon_batch_to: "เพิ่มชุดลำดับขั้นทางอนุกรมวิธานใน %{list}"
+  add_taxon_range: เพิ่มช่วงอันดับขั้นทางอนุกรมวิธาน
+  add_taxonomic_tags_to: "เพิ่มป้ายกำกับของอันดับทางอนุกรมวิธานในรูปภาพ Flickr &raquo;"
+  add_to_a_scheme: เพิ่มเข้าไปในแผนการ
+  add_to_a_project: เพิ่มเข้าไปในโครงการ
+  add_to_calendar: เพิ่มลงในปฎิทิน
+  add_to_checklist: เพิ่มลงในรายการตรวจสอบ
+  add_to_favorites: เพิ่มไปยังรายการโปรด
+  add_to_list: เพิ่มไปยังรายการ
+  add_to_project: เพิ่มเข้าไปในโครงการ
+  add_to_your_life_list: เพิ่มไปในรายการชีวิตของคุณ
+  add_to_your_list: เพิ่มไปยังรายการของคุณ
+  add_your_email_to_get: |
+    เพิ่มอีเมลของคุณเพื่อรับความคิดเห็นเกี่ยวกับการสังเกตการณ์ของคุณจากชุมชน หากคุณไม่ต้องการที่จะแบ่งบัน โปรดกลับมาตรวจสอบอีกครั้ง
+  add_your_own_observations_at: "เพิ่มการสังเกตการณ์ของคุณที่ %{site_name}"
+  added: เพิ่มสำเร็จ
+  added!: เพิ่มสำเร็จแล้ว
+  added_as_a_part_of_a_taxon_change_html: |
+    เพิ่มในส่วนของ
+    <a target="%{target}" class="%{class}" href="%{url}">อันดับขั้นที่เปลี่ยนแปลง</a>
+  added_as_a_part_of_a_taxon_merge_html: |
+    เพิ่มในส่วนของ
+    <a target="%{target}" class="%{class}" href="%{url}">อันดับขั้นที่ถูกรวมเข้าด้วยกัน</a>
+  added_as_a_part_of_a_taxon_split_html: |
+    เพิ่มในส่วนของ
+    <a target="%{target}" class="%{class}" href="%{url}">อันดับขั้นที่ถูกแยกออกมา</a>
+  added_as_a_part_of_a_taxon_swap_html: |
+    เพิ่มในส่วนของ
+    <a target="%{target}" class="%{class}" href="%{url}">อันดับขั้นที่ถูกสลับ</a>
+  added_by: ถูกเพิ่มโดย
+  added_by_user_on_date_html: "ถูกเพิ่มโดย %{user} เมื่อ %{date}"
+  added_on_datetime: "ถูกเพิ่มเมื่อ %{datetime}"
+  added_to_favorites_html: |
+    เพิ่มไปยัง <a href="%{url}">ที่ชื่นชอบ</a>
+  adding: "กำลังทำการเพิ่ม..."
+  adjust_brightness: ปรับความสว่างหน้าจออัตโนมัติ
+  admin: ผู้ดูแล
+  admin_s: กลุ่มผู้ดูแล
+  admin_only: ผู้ดูแลระบบเท่านั้น
+  admin_tools: เครื่องมือสำหรับผู้ดูแลระบบ
+  agree_: เห็นด้วย
+  agree?: เห็นด้วย
+  agree_with_current_taxon: เห็นด้วยกับอันดับอนุกรมวิธานปัจจุบัน
+  agreeing: กำลังยืนยัน...
+  aka: เป็นที่รู้จักกันในชื่อ
+  all: ทั้งหมด
+  all_comments: ความคิดเห็นทั้งหมด
+  all_flags_must_be_resolved: ธงปักทั้งหมดต้องได้รับการแก้ไข
+  all_life: สิ่งมีชีวิตทั้งหมด
+  all_names: ชื่อทั้งหมด
+  all_observations: การสังเกตการณ์ทั้งหมด
+  all_photos: รูปถ่ายทั้งหมด
+  all_places: "สถานที่ทั้งหมด"
+  all_projects: โครงการทั้งหมด
+  all_rank_added_to_the_database:
+    phylum: ไฟล่า (Phyla) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    subphylum: ไฟล่าย่อย (Subphyla) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    superclass: ชั้นใหญ่ (Superclass) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    class: ชั้น (Class) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    subclass: ชั้นย่อย (Subclass) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    infraclass: ชั้นระหว่างอันดับ (Infraclasses) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
+    superorder: อันดับใหญ่ (Superorder) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
+    order: อันดับ (Order) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
+    suborder: อันดับย่อย (Suborder) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
+    infraorder: อันดับระหว่างวงศ์ (Infraorder) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
+    superfamily: วงศ์ใหญ่ (Superfamily) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
+    epifamily: อันดับระหว่างครอบครัว (epifamily) ทั้งหมดถูกเพิ่มไปยังฐานข้อมูล
+    family: วงศ์ (Family) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
+    subfamily: วงศ์ย่อย (Subfamily) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
+    supertribe: เผ่าใหญ่ (Supertribes) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    tribe: เผ่า (Tribes) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    subtribe: เผ่าย่อย (Subtribes) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    genus: พันธุ์ (Genera) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    genushybrid: สกุลลูกผสม (Genushybrids) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    subgenus: พันธุ์ย่อย (Subgenera) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    section: หมู่ (Section) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    subsection: หมู่ย่อย (Subsection) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    complex: คอมเพล็กซ์ (Complexe) ทั้งหมดที่เพิ่มลงในฐานข้อมูล
+    species: ชนิด (Species) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    hybrid: ลูกผสม (Hybrids) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    subspecies: ชนิดย่อย (Subspecies) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    variety: พันธุ์ (Variety) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมุล
+    form: แบบ (Form) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+  all_rights_reserved: สงวนลิขสิทธิ์
+  all_taxa:
+    amphibians: สัตว์สะเทินน้ำสะเทินบก
+    animals: สัตว์
+    arachnids: แมง
+    birds: นก
+    chromista: โครมิสตา
+    fungi: เชื้อรา
+    fungi_including_lichens: เชื้อรารวมทั้งไลเคน
+    insects: แมลง
+    mammals: สัตว์เลี้ยงลูกด้วยนม
+    mollusks: หอย
+    other_animals: สัตว์อื่น ๆ
+    plants: พืช
+    protozoans: โปรโตซัว
+    ray_finned_fishes: ปลาที่มีก้านครีบ (Ray-Finned Fishes)
+    reptiles: สัตว์เลื้อยคลาน
+    life: ชีวิต
+    x_plantae:
+      other: "%{count} พืช"
+    x_animalia:
+      other: "%{count} สัตว์"
+    x_mollusca:
+      other: "%{count} หอย"
+    x_amphibia:
+      other: "%{count} สัตว์สะเทินน้ำสะเทินบก"
+    x_mammalia:
+      other: "%{count} สัตว์เลี้ยงลูกด้วยนม"
+    x_actinopterygii:
+      other: "%{count} ปลาที่มีก้านครีบ"
+    x_reptilia:
+      other: "%{count} สัตว์เลื้อยคลาน"
+    x_aves:
+      other: "%{count} นก"
+    x_insecta:
+      other: "%{count} แมลง"
+    x_fungi:
+      other: "%{count} เห็ดรา"
+    x_protozoa:
+      other: "%{count} โปรโตซัว"
+    x_other_animals:
+      other: "%{count} สัตว์อื่น ๆ"
+  all_taxa_: อันดับอนุกรมวิธานทั้งหมด
+  all_taxa_in_this_guide: อันดับอนุกรมวิธานทั้งหมดตามคำแนะนำนี้
+  all_taxonomic_groups: "&laquo; กลุ่มอนุกรมวิธานทั้งหมด"
+  all_updates: ทั้งหมดที่อัปเดต
+  all_your_observations_will_default_this_time_zone: การสังเกตการณ์ทั้งหมดของคุณจะใช้เขตเวลานี้เป็นค่าเริ่มต้นเว้นแต่คุณจะระบุเป็นอย่างอื่น
+  all_your_observations_will_default_to_this_time_zone: การสังเกตการณ์ทั้งหมดของคุณจะใช้เขตเวลานี้เป็นค่าเริ่มต้นเว้นแต่คุณจะระบุเป็นอย่างอื่น
+  #Option to allow any taxa on a list
+  allow_any: อนุญาตทั้งหมด
+  allow_curator_access: ให้สิทธิแก่ผู้ดูแลระบบ
+  allow_project_curators_to_view_your_private_coordinates: ให้สิทธิแก่ผู้ดูแลโครงการเข้าดูตำแหน่งที่ตั้งของคุณที่ซ่อนไว้
+  amphibians: สัตว์สะเทินน้ำสะเทินบก
+  and: และ
+  android: แอนดรอยด์
+  animals: สัตว์
+  any: อื่น ๆ
+  any_: รายการใดก็ได้
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: รายการใดก็ได้
+  #Label for an option to show content with any annotation value
+  any_annotation_value: อื่นๆ
+  #Label for an option to show content from any date
+  any_date: อื่นๆ
+  #Label for an option to show content with any establishment means
+  any_establishment: อื่นๆ
+  #Label for an option to show content with any license
+  any_license: อื่นๆ
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: อื่นๆ
+  #Label for an option to show content from any project
+  any_project: อื่นๆ
+  #Label for an option to show content with any quality grade
+  any_quality_grade: อื่นๆ
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: อื่นๆ
+  #Label for an option to show/include content by any user
+  any_user: อื่นๆ
+  anyone: ใครก็ได้ (Automatic Translation)
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: แอปพลิเคชัน
+  applications: แอปพลิเคชันอื่นๆ
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: นำไปใช้
+  apply_to_selected: นำไปใช้กับไฟล์ที่เลือก
+  apply_captive_cultivated: "นำไปใช้กับการเพาะเลี้ยง/เพาะปลูก"
+  apply_fields: นำไปใช้กับงานสนาม
+  apply_geoprivacy: นำไปใช้กับความเป็นส่วนตัวของตำแหน่ง
+  apply_darr: "ใช้สำหรับ &darr;"
+  apply_these_settings_to_all: ใช้การตั้งค่าเหล่านี้กับการสังเกตทั้งหมดด้านล่าง
+  appropriate?: เหมาะสมหรือไม่?
+  arachnids: แมง
+  archives: คลังเก็บข้อมูล
+  are_you_really_sure_want_delete_this_user: คุณแน่ใจจริงๆหรือว่าต้องการลบผู้ใช้รายนี้และเนื้อหาทั้งหมดของพวกเขา
+  are_you_sure?: คุณแน่ใจหรือไม่?
+  are_you_sure_no_undo: คุณแน่ใจไหม? การดำเนินการนี้ไม่สามารถยกเลิกได้
+  are_you_sure_delete_post: คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?
+  are_you_sure_delete_taxon_move_associates: "คุณแน่ใจหรือไม่ที่ต้องการลบ %{taxonname} (%{taxonid}) และย้ายผู้ร่วมงานทั้งหมด?"
+  are_you_sure_delete_this_place: คุณแน่ใจหรือไม่ว่าต้องการลบสถานที่นี้?
+  are_you_sure_leave_this_project: คุณแน่ใจหรือไม่ว่าต้องการออกจากโครงการนี้?
+  are_you_sure_merge_these_places: คุณแน่ใจหรือไม่ว่าต้องการรวมสถานที่เหล่านี้? การดำเนินการนี้ไม่สามารถยกเลิกได้
+  are_you_sure_remove_photo: "คุณแน่ใจหรือไม่ว่าต้องการนำรูปภาพนี้ออก?"
+  are_you_sure_remove_relationship: คุณแน่ใจหรือไม่ว่าต้องการนำความสัมพันธ์นี้ออก? การดำเนินการนี้จะยกเลิกการติดตามบุคคลนี้และเพิกถอนการเข้าถึงพิกัดที่ซ่อนอยู่ของคุณหากคุณได้เปิดใช้งานการเข้าถึงดังกล่าว
+  are_you_sure_remove_taxon_from_list: "คุณแน่ใจหรือไม่ว่าต้องการนำอันดับอนุกรมวิธานออกจากรายการ?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    คุณแน่ใจหรือไม่? การดำเนินการนี้จะโหลดหน้าเว็บซ้ำซึ่งคุณอาจสูญเสียการเปลี่ยนแปลงบางอย่าง
+  are_you_sure_unresolve_flag?: |
+    คุณแน่ใจหรือไม่ว่าต้องการยกเลิกการแก้ไขค่าสถานะธงนี้? การดำเนินการนี้จะลบความละเอียดและผู้ใช้ที่แก้ไขปัญหาออกจากธงนี้
+  are_you_sure_want_delete_taxon: "คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้?"
+  are_you_sure_want_delete_taxon_descendant_taxa: |
+    คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับผู้สืบสายพันธุ์
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
+    คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับผู้สืบสายพันธุ์และการระบุจำแนก
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
+    คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับผู้สืบสายพันธุ์ การระบุจำแนกและการสังเกตการณ์
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa: |
+    คุณแน่ใจหรือไม่ว่าต้องการคุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับผู้สืบสายพันธุ์และถูกบันทึกในรายการ
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications: |
+    คุณแน่ใจหรือไม่ว่าต้องการคุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับผู้สืบสายพันธุ์ ถูกบันทึกในรายการ และมีการจำแนก
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
+    คุณแน่ใจหรือไม่ว่าต้องการคุณแน่ใจหรือไม่ว่าต้องการคุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับผู้สืบสายพันธุ์ ถูกบันทึกในรายการ มีการจำแนก และมีการสังเกตการณ์
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
+    คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับผู้สืบสายพันธุ์ การระบุจำแนกและการสังเกตการณ์
+  are_you_sure_want_delete_taxon_descendant_taxa_observations: |
+    คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับผู้สืบสายพันธุ์และการระบุจำแนก
+  are_you_sure_want_delete_taxon_identifications: |
+    คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับที่ถูกระบุตัวตนแล้ว
+  are_you_sure_want_delete_taxon_identifications_observations: |
+    คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับที่มีการระบุจำแนกและสังเกตการณ์
+  are_you_sure_want_delete_taxon_listed_taxa: |
+    คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับที่ถูกเพิ่มเข้าไปแล้ว
+  are_you_sure_want_delete_taxon_listed_taxa_identifications: |
+    คุณแน่ใจหรือไม่ว่าต้องการคุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับที่ถูกบันทึกในรายการ และมีการจำแนก
+  are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
+    คุณแน่ใจหรือไม่ว่าต้องการคุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับที่ถูกบันทึกในรายการ มีการจำแนก และมีการสังเกตการณ์
+  are_you_sure_want_delete_taxon_listed_taxa_observations: |
+    คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับที่ถูกบันทึกในรายการ และมีการสังเกตการณ์
+  are_you_sure_want_delete_taxon_observations: |
+    คุณแน่ใจหรือไม่ว่าต้องการลบอันดับอนุกรมวิธานนี้? นี่เป็นอันดับที่มีการสังเกตารณ์
+  are_you_sure_want_delete_taxon_link: คุณแน่ใจหรือไม่ว่าต้องการลบแบบของอันดับทางอนุกรมวิธานนี้?
+  are_you_sure_want_delete_this_name: คุณแน่ใจหรือไม่ว่าต้องการลบชื่อนี้?
+  are_you_sure_want_delete_this_range: คุณแน่ใจหรือไม่ว่าต้องการลบช่วงเหล่านี้?
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "คุณแน่ใจหรือไม่ว่าต้องการนำอันดับอนุกรมวิธานออกจาก %{place} รายการ?"
+  assessment: การประเมินผล
+  these_observations_have_not_been_uploaded_yet: |
+    การสังเกตเหล่านี้ยังไม่ถูกอัปโหลด
+  upload: อัปโหลด
+  upload_a_csv_file: อัปโหลดไฟล์ CSV
+  upload_a_csv_file_with_observation: |
+    อัปโหลดไฟล์ CSV พร้อมข้อมูลการสังเกต ถ้าผู้ใช้มีข้อมูลใน spreadsheet หรือฐานข้อมูล
+  upload_new_photo: อัพโหลดรูปภาพใหม่
+  upload_photo: อัปโหลดรูปภาพ
+  uploaded_by: อัปโหลดโดย
+  date:
+    abbr_month_names:
+      - 
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+    month_names:
+      - 
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+  number:
+    human:
+      format:
+        significant: true
+        strip_insignificant_zeros: true

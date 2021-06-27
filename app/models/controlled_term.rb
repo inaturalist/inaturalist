@@ -58,10 +58,19 @@ class ControlledTerm < ActiveRecord::Base
     caterpillar: :life_stage,
     teneral: :life_stage,
     egg: :life_stage,
-    nymph: :life_stage
+    nymph: :life_stage,
+    track: :evidence_of_presence,
+    scat: :evidence_of_presence,
+    bone: :evidence_of_presence,
+    feather: :evidence_of_presence,
+    molt: :evidence_of_presence
   }
 
   attr_accessor :prepared_values
+
+  def to_s
+    "<ControlledTerm #{id}: #{labels.first.try(:name)}>"
+  end
 
   def self.first_term_by_label(label)
     return unless label
@@ -77,7 +86,7 @@ class ControlledTerm < ActiveRecord::Base
 
   def term_label(options = { })
     options[:locale] = options[:locale].to_s || "en"
-    all_labels = labels.order(:id)
+    all_labels = labels.sort_by(&:id)
     if options[:taxon] && options[:taxon].is_a?(Taxon)
       if match = all_labels.detect{ |l| l.locale == options[:locale] &&
           l.valid_within_taxon && options[:taxon].has_ancestor_taxon_id(l.valid_within_taxon.id) }

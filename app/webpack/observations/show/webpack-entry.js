@@ -17,7 +17,7 @@ import commentIDPanelReducer from "./ducks/comment_id_panel";
 import communityIDModalReducer from "./ducks/community_id_modal";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 import confirmModalReducer from "./ducks/confirm_modal";
-import controlledTermsReducer from "./ducks/controlled_terms";
+import controlledTermsReducer, { fetchAnnotationsPanelPreferences } from "./ducks/controlled_terms";
 import flaggingModalReducer from "./ducks/flagging_modal";
 import identificationsReducer from "./ducks/identifications";
 import licensingModalReducer from "./ducks/licensing_modal";
@@ -114,6 +114,16 @@ if (
       writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
     } );
   }
+}
+
+store.dispatch( fetchAnnotationsPanelPreferences( ) );
+
+if (
+  ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "interpolation" ) )
+) {
+  store.dispatch( setConfig( {
+    testingInterpolationMitigation: true
+  } ) );
 }
 
 store.dispatch( fetchObservation( obsId, {

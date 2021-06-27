@@ -8,7 +8,7 @@ var genericAutocomplete = { };
 $.widget( "ui.autocomplete", $.ui.autocomplete, {
   _create: function ( ) {
     this._super( );
-    this.widget( ).menu( "option", "items", "> :not(.category)" );
+    this.widget( ).menu( "option", "items", "> :not(.non-option)" );
   }
 } );
 
@@ -196,7 +196,11 @@ $.fn.genericAutocomplete = function ( acOptions ) {
   field.keydown( function ( e ) {
     if ( field.searchClear && !options.resetOnChange === false ) {
       setTimeout( function ( ) {
-        field.val( ) ? $( field.searchClear ).show( ) : $( field.searchClear ).hide( );
+        if ( field.val( ) ) {
+          $( field.searchClear ).show( );
+        } else {
+          $( field.searchClear ).hide( );
+        }
       }, 1 );
     }
     if ( !options.react ) {

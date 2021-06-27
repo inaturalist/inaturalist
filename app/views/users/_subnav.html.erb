@@ -1,5 +1,5 @@
 <ul id="subnav" class="clear">
-  <% if is_me?( current_user) -%>
+  <% if is_me?( @selected_user ) -%>
     <li>
       <%= link_to t(:home), home_path, :class => "#{'active' if current_page?(:controller => "users", :action => "dashboard")}" %>
     </li>
@@ -7,7 +7,7 @@
   <li>
     <%= link_to t(:observations), observations_path( user_id: user.login ), id: "observations_link" %>
   </li>
-  <% if is_me?( current_user) -%>
+  <% if is_me?( user ) -%>
     <li>
       <%= link_to t(:edit_observations), observations_by_login_path( user.login ), 
         id: "observations_link", 

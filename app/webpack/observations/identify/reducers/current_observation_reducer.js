@@ -17,9 +17,15 @@ const updateLoadingForItemInObs = ( item, observation, isLoading ) => {
   const obs = _.cloneDeep( observation );
   let existingItem;
   if ( item.className === "Identification" ) {
-    existingItem = _.find( obs.identifications, i => i.id === item.id );
+    existingItem = _.find(
+      obs.identifications,
+      i => i.id === item.id || ( item.uuid && item.uuid === i.uuid )
+    );
   } else {
-    existingItem = _.find( obs.comments, i => i.id === item.id );
+    existingItem = _.find(
+      obs.comments,
+      i => i.id === item.id || ( item.uuid && item.uuid === i.uuid )
+    );
   }
   if ( existingItem ) {
     existingItem.loading = isLoading;

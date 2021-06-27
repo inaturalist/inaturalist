@@ -7,6 +7,7 @@ class CloudfrontACLUpdater
   attr_reader :ip_set_id
 
   PREFIXES_TO_GROUP = CONFIG.cloudfront_ip_prefixes_to_group || []
+  PREFIXES_TO_LIMIT = CONFIG.cloudfront_ip_prefixes_to_limit || []
 
   def initialize
     return unless CONFIG.kibana_es_uri
@@ -123,6 +124,11 @@ class CloudfrontACLUpdater
           prefix_sums[prefix][:sum] += bucket["sum_of_bytes"]["value"]
           prefix_sums[prefix][:ips] ||= []
           prefix_sums[prefix][:ips] << bucket["key"]
+        end
+      end
+      PREFIXES_TO_LIMIT.each do |prefix|
+        if bucket["key"].starts_with?( prefix )
+          ips_over_limit << bucket["key"]
         end
       end
     end

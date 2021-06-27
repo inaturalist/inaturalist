@@ -158,10 +158,59 @@ shared_examples_for "an ObservationsController" do
       }.not_to raise_error
     end
 
-    it "should handle invalid time zones" do
-      expect {
-        post :create, :format => :json, :observation => {:species_guess => "foo", :observed_on_string => "2014-07-01 14:23", :time_zone => "Eastern Time (US &amp; Canada)"}
-      }.not_to raise_error
+    describe "time_zone" do
+      it "should not raise an error when unrecognized" do
+        expect {
+          post :create, format: :json, observation: {
+            species_guess: "foo",
+            observed_on_string: "2014-07-01 14:23",
+            time_zone: "Eastern Time (US &amp; Canada)"
+          }
+        }.not_to raise_error
+      end
+      it "should accept Rails time zone names" do
+        tz = ActiveSupport::TimeZone["Baghdad"]
+        post :create, format: :json, observation: {
+          observed_on_string: "2020-03-01 00:00",
+          time_zone: tz.name
+        }
+        o = Observation.last
+        expect( o.time_zone ).to eq tz.name
+      end
+      it "should accept TZInfo time zone names" do
+        tz = ActiveSupport::TimeZone["Baghdad"]
+        post :create, format: :json, observation: {
+          observed_on_string: "2020-03-01 00:00",
+          time_zone: tz.tzinfo.name
+        }
+        o = Observation.last
+        expect( o.time_zone ).to eq tz.name
+        expect( o.zic_time_zone ).to eq tz.tzinfo.name
+      end
+      it "should accept TZInfo time zone names when observed_on_string is an ISO 8601 formtted datetime" do
+        zone_name = "Baghdad"
+        zic_zone_name = "Asia/Baghdad"
+        tz = ActiveSupport::TimeZone[zone_name]
+        post :create, format: :json, observation: {
+          observed_on_string: "2021-03-24T14:40:25",
+          time_zone: zic_zone_name
+        }
+        o = Observation.last
+        expect( o.time_zone ).to eq tz.name
+        expect( o.zic_time_zone ).to eq tz.tzinfo.name
+        expect( o.time_observed_at_in_zone.hour ).to eq 14
+      end
+      it "should override the user's time zone" do
+        tz = ActiveSupport::TimeZone["Baghdad"]
+        expect( user.time_zone ).not_to be_blank
+        expect( user.time_zone ).not_to eq tz.name
+        post :create, format: :json, observation: {
+          observed_on_string: "2020-03-01 23:00",
+          time_zone: tz.name
+        }
+        o = Observation.last
+        expect( o.time_zone ).to eq tz.name
+      end
     end
 
     describe "project_id" do
@@ -180,8 +229,6 @@ shared_examples_for "an ObservationsController" do
       end
 
       describe "if photo present" do
-        before(:all) { DatabaseCleaner.strategy = :truncation }
-        after(:all)  { DatabaseCleaner.strategy = :transaction }
         it "should add to project with has_media rule" do
           photo = LocalPhoto.make!(:user => user)
           project = Project.make!
@@ -880,6 +927,39 @@ shared_examples_for "an ObservationsController" do
       o.reload
       expect( o.created_at ).to be <= 2.week.ago
     end
+
+    it "should allow coordinate removal when obscured" do
+      o = Observation.make!( user: user, latitude: 1, longitude: 1, geoprivacy: Observation::OBSCURED )
+      puts "making request"
+      put :update, id: o.id, format: :json, observation: { latitude: "", longitude: "" }
+      puts "received response: #{response.status}"
+      expect( response ).to be_success
+      o.reload
+      expect( o.latitude ).to be_blank
+      expect( o.private_latitude ).to be_blank
+      expect( o ).not_to be_georeferenced
+    end
+
+    it "should update the license by license_code" do
+      expect( o.license ).to eq Observation::CC_BY
+      put :update, id: o.id, format: :json, observation: { license_code: "cc0" }
+      o.reload
+      expect( o.license ).to eq Observation::CC0
+    end
+
+    it "should remove the license if license_code is a blank string" do
+      expect( o.license ).to eq Observation::CC_BY
+      put :update, id: o.id, format: :json, observation: { license_code: "" }
+      o.reload
+      expect( o.license ).to be_blank
+    end
+
+    it "should not remove the license if license_code is not specified" do
+      expect( o.license ).to eq Observation::CC_BY
+      put :update, id: o.id, format: :json, observation: { description: "foo" }
+      o.reload
+      expect( o.license ).to eq Observation::CC_BY
+    end
   end
 
   describe "by_login" do
@@ -1233,8 +1313,6 @@ shared_examples_for "an ObservationsController" do
     end
 
     describe "identifications_count" do
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
       it "should get incremented" do
         o = Observation.make!
         i = Identification.make!(:observation => o)

@@ -161,14 +161,18 @@ fi:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Tietoja perustamisen keinoista
+  about_license_options: Tietoa lisenssivaihtoehdoista
   about_licenses: Tietoja lisensseistä
   about_muting: Tietoja hiljentämisestä
   #Header for a section describing taxon names
   about_names: Tietoja nimistä
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Tietoja %{place}"
   about_places: Tietoja paikoista
   about_the_cc_licenses: Tietoja Creative Commons -lisensseistä
   about_these_licenses: Tietoja näistä lisensseistä
-  about_this_bioblitz: Tietoja tästä bioblitzistä
+  about_this_bioblitz: Tietoja tästä projektista
   about_this_map: Tietoja tästä kartasta
   about_this_project: Tietoja tästä projektista
   about_trips_html: |
@@ -189,7 +193,11 @@ fi:
     <p>
     Kohdelajiluettelon lajit, jotka havaitsit keruutapahtuman yhteydessä tulkitaan havainnoiksi. Kohdelajiluettelon lajit, joita et havainnut keruutapahtuman yhteydessä, tulkitaan ei-havainnoiksi (nollahavainnoiksi). Valitse "Taulukoi havaittu-ei havaittu tieto Retkestä" panike tehdäksesi taulukon, jossa havaintojen lisäksi esitetään nollahavainnot liittyen keruutapahtumaan ja kohdelajiluetteloon. <a href='%{url}'>Lisätietoja</a>
     </p>
-  about_x: "Tietoja %{x}"
+  about_trusting_projects: Tietoa projekteihin luottamisesta
+  about_trusting_projects_options_any: Kaikki havaintosi tässä projektissa
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Tarkkuus (m)'
   account: Käyttäjätunnus
   account_creation: Tunnuksen luominen
@@ -218,6 +226,7 @@ fi:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Lisää linkki
   add_a_name: Lisää nimi
+  add_a_note: Lisää muistiinpano
   add_a_new_change_group: Lisää uusi muutosryhmä
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Lisää numeroitu lista
@@ -506,7 +515,13 @@ fi:
   #Label for an option to show/include content by any user
   any_user: Mikä tahansa
   anyone: Kuka tahansa
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Sovellus
   applications: Sovellukset
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Hyväksy
   apply_to_selected: Käytä valittuihin
   apply_captive_cultivated: "Lisää vangittu / viljelty -merkintä"
   apply_fields: Hyväksy kentät
@@ -715,6 +730,7 @@ fi:
   card: Kortti
   casual: epämuodollinen
   casual_: Epämuodollinen
+  casual_tooltip_html: '"Epämuodollisista havainnoista" puuttuu media, sijainti tai päivämäärä, tai ne eivät täytä "Tutkimustaso"- tai "Tarvitsee tunnistuksen"-laatuluokkia muista syistä. <a href="https://www.inaturalist.org/pages/help#quality">Lue lisää laatuluokista</a>'
   categories: Luokat
   cc_0_description: "Tämä lisenssi tekee teoksestasi tekijänoikeudettoman. Muilla on oikeus kopioida, muokata, jakaa ja esittää teostasi, myös kaupallisessa tarkoituksessa, kysymättä sinulta lupaa tai mainitsematta nimeäsi käytön yhteydessä. Tämä on tarjolla olevista lisensseistä kaikkein sallivin. Suositellaan teoksille, joille toivotaan mahdollisimman suurta levitystä ja käyttöä."
   cc_0_name: Ei tekijänoikeutta (CC0)
@@ -840,7 +856,6 @@ fi:
   comments: Kommentit
   comments_by_me: Omat kommentit
   comments_have_been_disabled: Kommentointi poistettu käytöstä
-  comments_on: Kommentit
   comments_on_my_observations: Kommentit omissa havainnoissani
   commercial_solicitation: Kaupallinen tarjous, linkit ei mihinkään, yms.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -888,8 +903,13 @@ fi:
   confirm_your_info: Vahvista tietosi
   confirming_ids: Tunnistusten vahvistus
   confirming_ids_description: Jos laitat tämän pois päältä, et saa enää ilmoituksia tunnistuksista, jotka ovat samaa mieltä kanssasi.
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Yhdistä
   connect_to_provider: "Yhdistä palveluun %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Yhdistetyt tilit
+  connected_accounts_titlecase: Yhdistetyt käyttäjätilit
   connecting_flickr: "Otetaan yhteyttä Flickr'iin..."
   connect_to_flickr_again_to_authorize_write_permissions: Yhdistä uudelleen Flickriin hyväksyäksesi kirjoitusoikeudet
   connecting_to_facebook: "Yhdistetään Facebookiin..."
@@ -902,7 +922,6 @@ fi:
     place: Paikka, johon tämä status on rajattu.
     url: URL-sivusto, jossa luokittelut on määritelty.
     geoprivacy: Sijainnin tietosuojan oletusarvo havainnoille tässä taksonissa.
-    iucn: Vastaava IUCN:n punaisen kirjan koodi
   conservation_status_geoprivacy_desc: |
     Kaikille tämän paikan ja taksonin havainnoille on asetettu oletusarvoinen sijainnin tietosuoja
   contact_support: Ota yhteyttä käyttäjätukeen
@@ -1008,7 +1027,6 @@ fi:
   created_on: Luotu
   creating_your_account: "Käyttäjätunnustasi luodaan..."
   creative_commons_flickr_tagged: Merkinnät lisätty Creative Commons Flickr-valokuviin
-  creative_commons_licenses: Creative Commons -lisenssit
   creative_commons_unless_otherwise_noted: "Creative Commons, ellei toisin mainita."
   critically_endangered: Äärimmäisen uhanalainen
   css_description: Tämä liitetään sivulle kaiken muun css-muotoilun jälkeen.
@@ -1022,6 +1040,128 @@ fi:
   curating: Kuratointi
   curation: Kuratointi
   curator: Kuraattori
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    iNaturalist-sivuston kuraattorit ovat luotettuja vapaaehtoisia, jotka ylläpitävät iNaturalistin taksonomiaa ja moderoivat käyttäjäsisältöä. Sivuston kuraattorit ovat tärkeä osa iNaturalistia, koska he pitävät taksonomian ajan tasalla ja iNaturalistin keskustelun asianmukaisena ja kohteliaania. Alla on kuvaus siitä, mitä kuraattorina olo tarkoittaa. Tutustu siihen ja, jos haluat kuraattoriksi, lue huolellisesti läpi
+    <a href="/pages/curator+guide" target="_blank">kuraattorin opas</a> ja täytä sitten hakemus tällä sivulla.
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Kerro, miksi haluat kuraattoriksi
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Miksi haluat olla kuraattori?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Jos haluat muokata iNaturalistin taksonomiaa, anna esimerkki tai kaksi
+    taksonomisesta muutoksesta, jotka haluaisit tehdä, ja liitä linkit asianmukaisiin
+    taksonomisiin viitteisiin, jotka on lueteltu kuraattorioppaassa
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Jos haluat muokata kansankielisiä nimiä, anna esimerkki tai kaksi
+    muutoksista, jotka haluaisit tehdä
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Jos haluat moderoida keskustelua iNaturalistissa, osoita esimerkki
+    tai kaksi yhteisön sääntöjen rikkomisesta, ja kerro mitä tekisit kyseisissä
+    tilanteissa
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Miten kuraattori menettää valtaansa
+  curator_application_how_curators_lose_their_powers_desc: |
+    iNat-henkilöstö voi poistaa kuraattorivaltuudet, jos kuraattori toistuvasti:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Jättää huomioimatta kuraattori-oppaassa kerrotut toimintatavat.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    Ei itse käyttäydy asianmukaisesti
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+    Voidaksesi hakea sivuston kuraattoriksi, sinulla on oltava ollut tili 60
+    päivää tai kauemmin ja olet lisännyt 100 tunnistusta kenen tahansa
+    havaintoihin, mukaan lukien omasi (olet lisännyt %{num_idents}). Kun olet
+    täyttänyt molemmat vaatimukset, voit lähettää hakemuksen.
+  curator_application_inelligible_error: |
+    Voidaksesi hakea sivuston kuraattoriksi, sinulla on oltava ollut tili 60
+    päivää tai kauemmin ja olet lisännyt 100 tunnistusta kenen tahansa
+    havaintoihin, mukaan lukien omasi.
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Kuraattorihakemus lähetetty
+  #Header
+  curator_application_what_curators_can_do: Mitä kuraattorit voivat tehdä
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Muokata iNaturalistin taksonomiaa kuraattorioppaan <a href="/pages/curator+guide#policies" target="_blank">Politiikat -osiossa</a>esitettyjen käytäntöjen mukaisesti. Tämä tarkoittaa, että he voivat lisätä, jakaa, vaihtaa, yhdistää, deaktivoida ja poistaa taksoneja iNaturalistissa. He voivat myös muokata suojelustatuksia ja taksonin geoprivacy, sekä muokata ja hallita kenen tahansa käyttäjän lisäämiä kansankielisiä nimiä.'
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Piilottaa kommentteja ja jäädyttää käyttäjätilin <a
+    href="/pages/community+guidelines" target="_blank">yhteisön
+    suuntaviivojen</a> rikkomisesta.
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    Ratkaista taksoneita ja käyttäjäsisältöjä koskevat <a href="/flags" target="_blank">liput</a>.
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Luoda ja muokata wikisivuja, kuten <a href="/pages/help"
+    target="_blank">iNaturalist FAQ sivu</a>.
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    Muokata yhteisökuratoituja paikkoja ja ladata KML-tiedostoja, jotka ovat suurempia kuin 1 Mt (mutta
+    pienempiä kuin 5 Mt).
+  #Header
+  curator_application_what_curators_cannot_do: Mitä kuraattorit eivät voi tehdä
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Vaikuttaa yhteisötaksonin tai havainnon tietojen laatuun enemmän kuin kuka tahansa muu käyttäjä.
+    .
+  #Description of the fact that a curator cannot commit taxon changes for
+  #complete taxa; part of a list of things curators can do, so you might
+  #imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+    Tehdä muutoksia <a href="/pages/curator+guide#completetaxa"
+    target="_blank">täydellisille taksoneille</a>.
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Poistaa muiden käyttäjien tekemää sisältöä.
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Lukea muiden käyttäjien yksityisviestejä.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Kuraattorihakemus
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Sinun pitäisi hakea kuraattoriksi vain jos:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    Olet lisännyt tunnistuksia ja/tai havaintoja muutaman kuukauden
+    ja aiot jatkaa.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+    Olet halukas ja kykenevä kuratoimaan säännöllisesti. Jos
+    haluat vain lisätä muutaman taksonin, pyydä nykyisiä kuraattoreita lisäämään
+    taksonit liputtamalla korkeamman tason taksonit.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    Osaat toimia asianmukaisesti ja noudatat yhteisösääntöjä. Yhdessä kuraattorivaltuuksien kanssa tulee oletus siitä, että
+    olet esimerkillinen iNaturalist-käyttäjä.
   curators_changed_for_x_html: "Kuraattorit vaihdettu kohteelle %{x}"
   curators: Kuraattorit
   curators_can_remove_observations_from: Kuraattorit voivat poistaa havaintoja projekteista, ja heidän tunnistuksensa näytetään havainnon ohessa projektikohtaisissa näkymissä. Kuraattorit myös näkevät tähän projektiin kuuluvien yksityisten ja karkeistettujen havaintojen tarkat koordinaatit.
@@ -1073,6 +1213,7 @@ fi:
       december: joulukuu
   date_is_accurate: Päivämäärä on oikea
   date_joined: Liittymispäivä
+  date_obscured_notice: Päivämäärä piilotettu henkilön tai eliön yksityisyyden suojaamiseksi
   date_observed: Havaintopäivämäärä
   date_observed_: Havaintopäivämäärä
   date_observed_on: Havaintopäivämäärä
@@ -1095,11 +1236,14 @@ fi:
   decrease_brightness: Vähennä kirkkautta
   #Default option
   default: oletus
+  #Default option
+  default_: Oletus
   default_invite_comment: "Hieno kuva! Sinun pitäisi lähettää se \n%{site_name}iin: {{INVITE_LINK}}"
   default_observation_license: Oletuslisenssi havainnoille
   default_photo_license: Oletuslisenssi kuville
   default_search_place: Haun oletussijainti
-  default_search_place_description: Tämä on oletussijaintisi kaikille hauille kohdassa "Tutki".
+  default_search_place_description: |
+    Tämä on oletussijaintisi kaikille hauille kohdassa "Tutki".
   default_sound_license: Oletuslisenssi äänille
   defaults_to_your_name_or_username: Oletuksena nimesi tai käyttäjätunnuksesi
   defines_a_taxon_framework_for: Määrittää taksonikehyksen taksonille %{taxon_name}
@@ -1285,7 +1429,6 @@ fi:
   editing_this: Muokataan %{elem}
   editing_x_in_y: "Muokataan %{x} %{y}:ssä"
   editors: Muokkaajat
-  either: Joko
   either_that_user_doesnt_exist_or: "Joko kyseistä käyttäjää ei ole olemassa, tai seuraat jo häntä."
   eligible_for_research_grade: Sovelias tutkimustasolle
   email: Sähköposti
@@ -1334,7 +1477,6 @@ fi:
   everywhere: kaikkialla
   exact: Tarkka
   exact_date: Tarkka päiväys
-  exact_location: Tarkka_sijainti
   exact_rank: Tarkka arvo
   except: paitsi
   exclude_places: Rajaa pois paikat
@@ -1349,8 +1491,10 @@ fi:
   export_observations: Vie havaintoja
   export_with_private_coordinates: Vie piilotettuja koordinaatteja
   exporting: "Viedään..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
   external_applications: Ulkopuolinen sovellus
-  external_taxon_rank: Ulkoinen taksonitaso
+  external_applications_description: Ulkoiset sovellukset ovat kolmannen osapuolen ohjelmistosovelluksia, jotka olet valtuuttanut käyttämään iNaturalist-tiliäsi puolestasi. Yleensä ne voivat tehdä tililläsi kaiken saman kuin itsekin, joten varmista, että luotat sovelluskehittäjiin, ennen kuin myönnät luvan.
   extinct: kuollut sukupuuttoon
   extinct_in_the_wild: Sukupuuttoon kuollut luonnossa
   extra_properties: Lisäominaisuudet
@@ -1524,6 +1668,7 @@ fi:
   fungi:
     one: sieni
     other: sientä
+  gbif: GBIF
   gbif_occurrences: GBIF:n esiintymistiedot
   generate_taxonomic_tags_for_flickr: Luo taksonomisia merkintöjä Flickr-valokuviisi.
   generate_widget: Luo pienoisohjelma
@@ -1539,7 +1684,9 @@ fi:
   get_started: Aloita
   getting_started_guide: Aloitusopas
   give_it_some_detail: Lisää joitakin yksityiskohtia!
+  #Prompt to donate money on a montly basis
   give_monthly_caps: LAHJOITA KUUKAUSITTAIN
+  #Prompt to donate money once
   give_now_caps: LAHJOITA NYT
   global_names: Maailmanlaajuiset nimet
   globally: Maailmanlaajuisesti
@@ -1591,8 +1738,8 @@ fi:
   help_confirm_observations!: Auta vahvistamaan havaintoja!
   help_support_inaturalist: "Auta tukemaan iNaturalistia"
   help_translate!: Auta kääntämisessä!
-  helped_the_observer_make: auttoi havainnoijaa tekemään lopullisen tunnistuksensa (eli ne tehtiin ennen lopullista tunnistusta, ja ne täsmäävät sen kanssa)
   here_are_3_examples: Tässä on kolme esimerkkiä hyvin järjestetystä tiedosta
+  here_are_our_top_suggestions: Tässä ovat parhaat suosituksemme
   here_are_our_top_species_suggestions: Tässä ovat parhaat lajiehdotuksemme
   hex_color_eg: Hex-väri, esim. 65644F
   hi: Hei,
@@ -1605,6 +1752,7 @@ fi:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Piilota "Ei merkintöjä"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Piilota kumulatiivinen yhteismäärä
   hide_uncountable_species: Piilota ei-laskettavat lajit
   high: Korkea
@@ -1655,6 +1803,7 @@ fi:
   ignore_times: Jätä kellonaika huomioimatta
   image_must_be_exactly: kuvan on oltava täsmälleen 950px leveä ja enintään 400px korkea
   image_size_control: Kuvan koon hallinta
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Vaarantunut
   import: Tuo
   import_all_photos_as_observations: Tuo kaikki kuvat havaintoina
@@ -1676,6 +1825,7 @@ fi:
   inbox: Saapuneet
   include_places: Sisällytä paikat
   include_projects: Sisällytä projektit
+  include_suggestions_not_seen_nearby: Sisällytä ehdotukset, joita ei ole nähty lähistöllä
   include_taxa: Sisällytä taksonit
   include_users: Sisällytä käyttäjät
   including: mukaan lukien
@@ -1690,6 +1840,7 @@ fi:
   inat_believes_this_is_a_complete_listing: "%{site_name} uskoo, että tämä on täydellinen luettelo tästä taksonista tässä paikassa."
   inat_user_profile: "%{site_name}: Käyttäjän %{user} profiili"
   inaturalist_activity_notifications: "%{site_name} tapahtumailmoitukset"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist sovellukset"
   inaturalist_is_a_joint_initiative: "%{site_name} on Kalifornian tiedeakatemian ja National Geographic Societyn yhteinen aloite."
   inaturalist_places: "%{site_name} Paikat"
@@ -1719,7 +1870,6 @@ fi:
   invited_x: "Kutsuttu %{x}"
   iphone: iPhone
   is_not_following_anyone: ei seuraa ketään.
-  is_now: on nyt
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Onko havainto dokumentoitu riittävästi (valokuvin, äänin) jotta voitaisiin vahvistaa että se on %{taxon}?
   is_this_offensive_html: 'Onko tämä <a href="/help#inappropriate">sopimaton</a>, roskapostia, tai loukkaava?'
   is_this_place_a_duplicate: Onko tämä paikka kaksoiskappale?
@@ -1788,10 +1938,6 @@ fi:
   leaderboard: Tulostaulukko
   leaderboard_for_x: "%{x}:n tulostaulu"
   leaderboards: Tulostaulukot
-  leaderboard_most:
-    species: Eniten lajeja, %{time}
-    observations: Eniten havaintoja, %{time}
-    identifications: Eniten tunnistuksia, %{time}
   leading: Johtava
   learn: Opi
   learn_about_the_species_live_in: Opi lajeista, jotka elävät paikassa
@@ -1839,6 +1985,7 @@ fi:
     italian: Italia
     japanese: Japani
     korean: Korea
+    latvian: Latvia
     lithuanian: Liettua
     luxembourgish: Luksemburgi
     maltese: Malta
@@ -1945,6 +2092,7 @@ fi:
     ko: korea
     lb: luxemburg
     lt: liettua
+    lv: Latvia
     mk: makedonia
     nb: kirjanorja
     nl: hollanti
@@ -1976,6 +2124,7 @@ fi:
     <a href="/login">Kirjaudu</a> tai <a href="/signup">rekisteröidy</a> lisätäksesi tunnistuksia.
   log_out: Kirjaudu ulos
   log_out_caps: Kirjaudu ulos
+  #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Kirjaudu ulos %{site_name}?"
   log_scale_label: Loki
   login_slash_username: Kirjautumis / käyttäjänimi
@@ -2077,6 +2226,19 @@ fi:
   message_from_user_at_time: Käyttäjältä %{user} %{time}
   message_from_user_on_date: Käyttäjältä %{user} %{date}
   messages: Viestit
+  messages_new_correspondent_it_looks_like: |
+    Näyttää siltä, että et ole aiemmin viestitellyt tämän henkilön kanssa, joten ole hyvä
+    pitää nämä asiat mielessä:
+  messages_new_correspondent_specimens: |
+    Ole varovainen, jos henkilö pyytää näytteitä tai salattuja tietoja. Yritä varmistaa pyynnön esittäneen henkilön
+    henkilöllisyys, ja jos hän pyytää näytteitä, pyydä nähdä hänen lupansa.
+  messages_new_correspondent_personal: |
+    Älä luovuta henkilökohtaisia tietoja itsestäsi ihmisille, joihin et luota.
+  messages_new_correspondent_actions_html: |
+    Jos epäilet, että tämä henkilö rikkoo <a href="%{tos_url}"
+    target="_blank">käyttöehtoja</a> tai ei toimi <a
+    href="%{guidelines_url}" target="_blank">yhteisön ohjeiden</a>mukaisesti, liputa viesti.
+    .
   misidentifications: Virhetunnistukset
   misleading_or_illegal_content_html: |
     Harhaanjohtavaa tai laitonta sisältöä, rodun tai kansan loukkaaminen, yms. Lisätietoa
@@ -2085,6 +2247,17 @@ fi:
   #Label shown when a date has not been entered
   missing_date: Puuttuva päivämäärä
   mobile: Mobiili
+  moderation_history_for_user_html: Moderointihistoria käyttäjälle %{user}
+  moderation_history_desc_html: |
+    Tämä sisältää valvojan toiminnot (esim. kommenttien piilottamisen tai esiin tuomisen), muistiinpanot,
+    ja liput koskien kaikkea sitä, mitä tämä käyttäjä on luonut (paitsi taksonit). Tämä
+    <strong>näkyy vain kuraattoreille</strong> ja <strong>kuraattorit eivät voi katsella
+    omaa historiaansa</strong>, joten henkilöä koskevien muistiinpanojen ei pitäisi koskaan näkyä
+    kyseiselle henkilölle.
+  moderator_note_desc: |
+    Valvojan muistiinpanot ovat tietoja moderaatiotoimista tai näyttöön perustuvia huolia käyttäjästä, kuten siitä, onko kyseessä mahdollisesti valehenkilötili. Älä sisällytä käyttäjää koskevia henkilökohtaisia mielipiteitä tai mielipiteitä.
+  #Person who executed a moderator action or flagged something
+  moderator_or_flagger: Valvoja / Lippu
   mollusks: nilviäiset
   momentjs:
     shortRelativeTime:
@@ -2124,6 +2297,8 @@ fi:
     date_long: "D.MM.YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D.MM"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "h:mm a"
   month: Kuukausi
   monthly_supporter_since_date_html: |
     <a href="%{url}">Kuukausittainen tukija</a> %{date} lähtien
@@ -2149,16 +2324,12 @@ fi:
   most_observed_species: Useimmin havaitut lajit
   most_observed_introduced_species: Useimmin havaitut tulokaslajit
   most_observed_threatened_species: Useimmin havaitut uhanalaiset lajit
-  move_input_children_to_output?: Siirrä lapsi ulostuloon?
   multiple: useita
   multiple_select_option: "\n-- useita --"
   multiple_taxa_for_taxon_change: "Useita taksoneja (input vaihdolle/yhdistämiselle ja output jakamiselle)"
   multiple_taxon_ids_separated_by_commas: 'Useiden taksonien IDt erotellaan pilkuilla esim 123,654'
-  must_be_observed_after: |
-    tulee olla havaittu %{operand} jälkeen
-  must_be_observed_before: |
-    tulee olla havaittu ennen %{operand}
-  must_be_observed_in: Täytyy olla havaittu paikassa
+  must_be_observed_after: tulee olla havaittu %{operand} jälkeen
+  must_be_observed_before: tulee olla havaittu ennen %{operand}
   must_be_less_than_x_MB: "On oltava pienempi kuin %{x} MB"
   must_have_observation_field: "pakollista havaintokenttää '%{operand}' ei saa jättää tyhjäksi"
   must_have_x: "täytyy olla %{x}"
@@ -2193,7 +2364,13 @@ fi:
   needs_id: tarvitsee tunnistuksen
   needs_id_: Tarvitsee tunnistuksen
   needs_id_expandable_html: "<span class='full'>Tarvitsee </span>tunnistuksen"
+  needs_id_tooltip_html: '"Tarvitsee tunnistuksen"-havainnoissa on media, sijainti ja päivämäärä, mutta ne vaativat vielä yhteisötunnistuksen. <a href="https://www.inaturalist.org/pages/help#quality">Lue lisää laatuluokista</a>'
   needs_to_be_identified: On tunnistettava
+  #Special version for network_affiliation_prompt_from_inat_html, which cannot
+  #be properly translated into Finnish with the %{place} variable. Please don't
+  #feel obligated to translate this into any language other than Finnish
+  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
+    <strong>iNaturalist Suomi</strong> on osa kansainvälistä iNaturalist-verkostoa, ja on mukautettu suomalaiseen käyttöön. Haluatko liittää tilisi iNaturalist Suomeen kansainvälisen iNaturalist.org:in (%{inat_site_name}) sijasta? 
   network_affiliation_prompt_from_other_site_html: |
     Haluatko liittää tunnuksesi verkostoon <strong>%{site_name}</strong> nykyisen <strong>%{other_site_name}</strong> sijasta?
   new: Uusi
@@ -2316,13 +2493,14 @@ fi:
   no_taxonomic_changes_match_those_criteria: Ei näitä kriteereitä vastaavia taksonomisia muutoksia
   no_users_found_with_those_filters: Yhtään käyttäjää ei löytynyt näillä suodattimilla
   no_wikipedia_page_for_taxon: Ei Wikipedia-artikkelia tälle taksonille.
-  no_x_this_y: "Ei %{x} tämä %{y}"
   noble_curators: "%{site}in mahtavat kuraattorit"
   non_human?: Ei-ihminen?
   none: Ei mitään
   none_found: Ei löytynyt
   normal: normaali
   not_completed: Ei valmis
+  not_confident: Emme ole tarpeeksi varmoja tekemään suositusta.
+  not_confident_top_suggestions: Meillä ei ole luotettavia suosituksia, mutta tässä ovat parhaat ehdotuksemme
   not_covered_by_any_taxon_frameworks: Ei kuulu mihinkään taksonikehyksiin
   not_evaluated: arvioimatta jätetty
   not_findig_what_you_want: Et löydä mitä haluat?
@@ -2357,6 +2535,9 @@ fi:
   observation_: havainto
   observation_added: Havainto lisätty
   observation_added_to_the_project: "Havainto lisätty projektiin \"%{project}\""
+  observation_belongs_to_project_requiring_field: |
+    Havainto kuuluu projektiin, joka vaatii tätä kenttää. Havainto
+    on poistettava kyseisestä projektista ennen kuin tämä kentän arvo voidaan poistaa.
   observation_brief_something_on_day: "Jotain päivänä %{day}"
   observation_brief_something_on_day_at_time: "Jotakin %{day} päivänä %{time} aikaan"
   observation_brief_something_on_day_at_time_by_user: "Jotakin %{day} päivänä %{time} aikaan henkilöltä %{user}"
@@ -2410,6 +2591,9 @@ fi:
   observed_on_datetime: Havaittu %{datetime}
   observation_removed_from_the_project: "Havainnot poistettu projektista \"%{project}\""
   observation_requirements: Havaintojen vaatimukset
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Havaintokriteerit päivitetty
   observation_rules: Havainnointisäännöt
   observation_rules_description: |
     Voit määritellä sääntöjä, joiden perusteella havaintoja lisätään tähän projektiin, esimerkiksi havainnot vain tietyltä paikalta tai taksonista. Jos valitset useamman säännön yhdestä sääntötyypistä, havainnot lisätään projektiin jos yksikin näistä säännöistä pätee. Esimerkiksi jos valitse säännöiksi "pitää olla sammakkoeläin" ja "pitää olla matelija", sisältyvät projektiin sekä sammakkoeläimet että matelijat.
@@ -2451,6 +2635,11 @@ fi:
   observed_on: Havaittu
   observer: Havainnoi
   observers: Havainnoijaa
+  observer_prefers_no_project_addition: |
+    Havainnoija ei salli muiden ihmisten lisätä havaintojaan projekteihin.
+  observer_prefers_addition_to_projects_joined: |
+    Havainnoija sallii muiden ihmisten lisätä havaintojaan vain projekteihin, joihin hän
+    on liittynyt.
   observer_short: Havainnoija
   occurrence_status: Esiintymisen tila
   occurrence_status_descriptions:
@@ -2527,6 +2716,7 @@ fi:
   only_staff_can_edit_large_places: Vain sivuston ylläpitäjät voivat muokata hyvin suuria paikkoja
   only_the_owner_of_this_list_can_do_that: Vain tämän luettelon omistaja voi tehdä sen. Älä ole paha.
   only_the_project_admin_can_delete_this_project: Vain projektin ylläpitäjä voi poistaa tämän projektin.
+  only_view_nearby_suggestions: Näytä vain lähistöllä olevat ehdotukset
   only_you: Vain sinä
   open: avoin
   open_: Avoin
@@ -3044,7 +3234,8 @@ fi:
   please_add_a_citation_for_this_change: Lisää viite muutokselle.
   please_add_this_observation_to: Ole hyvä ja lisää tämä havainto
   please_add_this_to_x_html: "Lisää tämä projektiin %{x}"
-  please_allow_a_few_weeks_for_external_sites: Salli muutama viikko ulkopuolisille sivustoille synkronoida muutokset tästä havainnosta
+  please_allow_a_few_weeks_for_external_sites: Salli muutama viikko ulkopuolisille sivustoille synkronoida muutokset tästä havainnosta #Title to a section warning a user to exercise caution
+  please_be_careful!: Ole varovainen!
   please_complete_the_following_to_add_project: |
     Täydennä seuraavat tiedot lisätäksesi tämän havainnon projektiin:
   please_confirm_your_inat_username: "Ole hyvä ja vahvista %{site_name} käyttäjänimesi"
@@ -3094,6 +3285,14 @@ fi:
     other: Projektin ylläpitäjät
   project_assessments: Projektin arvostelut
   project_assets: Projektitiedostot
+  project_coordinate_access_enabled: |
+    Sinun pitäisi pystyä näkemään luotettujen jäsenten piilotettujen havaintojen koordinaatit.
+  project_coordinate_access_disabled_until_datetime: |
+    Koordinaatit piilotettu %{datetime} saakka
+  project_coordinate_access_warning: |
+    Koordinaattien saatavuus on tärkeää tutkijoille, mutta salametsästäjät voivat myös väärinkäyttää
+    niitä. Varmista, että luotat kaikkiin projektin kuraattoreihin ennen kuin luotat tähän
+    projektiin.
   project_cover: Projektin kansikuva
   project_created_on: loi tämän projektin %{date}
   project_curator_id: Projektin kuraattorin käyttäjätunnus
@@ -3129,7 +3328,7 @@ fi:
     Projektien avulla voit yhdistää havaintosi muiden ihmisten kesken %{site_name}issa.
     Projekteilla voit esimerkiksi käynnistää kansalaistiedehankkeen tai pitää kirjaa naapuruston linnuista.
   projects_from_everywhere: Projektit kaikkialta
-  projects_from_place: "Projektit paikasta %{place}"
+  projects_from_place: "Hakuehtoihin täsmäävät projektit paikasta %{place}"
   projects_in_x: "Projektit paikassa %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Projektit joita %{user} hallinnoi
@@ -3149,6 +3348,9 @@ fi:
   range: Väli
   rank: Sija
   rank_position: Sija
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: Olomuoto
     kingdom: Kunta
@@ -3207,6 +3409,68 @@ fi:
     form: Muoto
     infrahybrid: Osaristeymä
     leaves: Lehdet
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: elomuoto
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: kunta
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: alakunta
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: pääjakso
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: alajakso
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: yläluokka
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: luokka
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: alaluokka
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: osaluokka
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: ylälahko
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: lahko
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: alalahko
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: osalahko
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: parvolahko
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: yläheimo
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: epiheimo
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: heimo
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: alaheimo
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: ylätribus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: tribus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: alatribus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: suku
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: sukuristeymä
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: alasuku
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: sektio
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: alasektio
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: laji
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: risteymä
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: alalaji
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: muunnos
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: muoto
   ranges: Vaihteluvälit
   ray_finned_fishes: viuhkaeväiset
   re_apply_list_rules: Päivitä luettelon säännöt
@@ -3228,6 +3492,7 @@ fi:
   recent_observations: Viimeaikaiset havainnot
   recent_observations_: Viimeaikaiset havainnot
   recent_post: Viimeisimmät kirjoitukset
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Viimeaikaiset havainnot käyttäjältä %{login} (Atom)"
   recent_observations_by: "Tuoreet havainnot käyttäjältä %{login}"
   recently_active: Viime aikoina aktiiviset
@@ -3307,6 +3572,7 @@ fi:
   research_: Tutkimus
   research_grade: Tutkimustaso
   research_grade_short_html: "T<span class='full'>utkimus</span><span class='full'>taso</span>"
+  research_grade_tooltip_html: '"Tutkimusaste"-havainnoissa on media, sijainti, päivämäärä ja yhteisötunnistus (yleensä lajitasolla). <a href="https://www.inaturalist.org/pages/help#quality">Lue lisää laatuluokista</a>'
   research_grade_observations_have: '"Tutkimustason" havainnoilla on päivämäärä, valokuva tai äänite, koordinaatit ja yhteisön tukema tunnistus. Klikkaa nähdäksesi havainnon laatuarvion.'
   research_grade_qualification: Tutkimustason perusteet
   reset_filters_short: Palauta
@@ -3326,6 +3592,8 @@ fi:
   reviewed: Tarkistettu
   revoke: Peruuta
   revoke_caps: PERUUTA
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   revoke_external_application: "Peru %{site_name}?"
   rg_observations: RG havainnot
   role: Rooli
@@ -3448,6 +3716,7 @@ fi:
   show_off_your_recent_observations: Näytä viimeaikaiset havaintosi omassa blogissasi tai verkkosivustollasi!
   show_only: Näytä vain
   show_relative_proportions_of_all_observations: Näytä kaikkien havaintojen suhteellinen määrä
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Näytä kumulatiivinen yhteismäärä
   show_scientific_name_first: Näytä tieteelliset nimet ensin
   show_taxa_from_everywhere: "Näytä taksonit kaikkialta"
@@ -3771,7 +4040,7 @@ fi:
   third_party_tracking: Kolmannen osapuolen seuranta
   third_person_possessive_singular: "Käyttäjän %{object_phrase} %{noun}"
   this: tämä
-  this_bioblitz_beings_in: Aikaa tämän bioblitzin alkuun
+  this_bioblitz_beings_in: Aikaa tämän projektin alkuun
   this_is_a_life_list_of: Tämä on elämänpinnalista käyttäjälle
   this_is_a_life_list_from_place_html: "Tämä on pinnalista paikasta %{place}"
   this_is_a_life_list_of_taxon_in_place: "Tämä on pinnalista taksonista %{taxon} paikassa %{place}"
@@ -3796,6 +4065,8 @@ fi:
   this_user_has_been_suspended_message: |
     Jos tämä on sinun tilisi ja luulet että tämä on tehty vahingossa, <a href="mailto:%{email}">ota yhteyttä</a>.
   this_will_add_listed_taxa: Tämä päivittää luettelon havaintojesi perusteella. Tämä voi kestää jonkin aikaa, joten käytä tätä säästeliäästi ja vain pienissä lajiluetteloissa.
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
   this_will_sign_you_out_current_session: Tämä kirjaa sinut pois nykyisestä istunnostasi tässä sovelluksessa.
   this_will_try_to_add_tags_to_your_flickr: Tämä yrittää lisätä merkintöjä Flickr-valokuvillesi. Jatketaan?
   this_year: Tänä vuonna
@@ -3832,10 +4103,13 @@ fi:
   'true': 'Kyllä'
   trending: Nousussa
   trends: Trendit
+  #Noun
+  trust: Luottamus
   trusted: Luotettu
   trusted_project?: Luotettava projekti?
   twitter: Twitter
   two_thirds: 2/3
+  #As in a category, not as in a keyboard
   type: Kirjoita
   type_one_name_per_line: Kirjoita yksi nimi per rivi
   type_place_name: Kirjoita paikan nimi
@@ -3999,6 +4273,7 @@ fi:
   view_check_list_page: Katso lajiluettelosivu
   view_contributions: Näytä muokkaukset
   view_details: Näytä tiedot
+  view_dynamic_lifelist: Näytä dynaaminen elämänpinnalista
   view_field_options: Näytä kenttäasetukset
   view_flag: Näytä lippu
   view_flags: Näytä liput
@@ -4170,7 +4445,6 @@ fi:
   youre_a_site_curator_which_means: |
     Olet sivuston kuraattori, mikä tarkoittaa, että olet tarjoutunut vaapaehtoiseksi avustamaan datan hallinnassa ja sisällön valvonnassa. Sinun ei tarvitse käsitellä kaikkia ongelmia, mutta hienoa, jos ehdit katsastaa niistä osan, sillä arvostamme kaikkea saamaamme apua. Jos sinulla on jotain kysyttävää sisällön kuratointiin liittyen tai et halua olla enää kuraattori, ota yhteyttä osoitteeseen %{email}
   you_are_over_your_invites_quota: ...olet lähettänyt enimmäismäärän kutsuja (60 kpl kuukaudessa).
-  you_are_now: Olet nyt
   you_are_now_following_x: "Seuraat nyt ystävää %{friend_user}."
   you_are_not_editing_any_guides_add_one_html: |
     Et muokkaa yhtään oppaita. <a href="/guides/new">Lisää yksi</a>
@@ -4446,8 +4720,14 @@ fi:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user is about to
+          #authorize to access their iNat account
           authorize_application_to_use_your_account?: Annatko sovellukselle %{application} luvan käyttää tunnustasi?
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           this_application_will_be_able_to_colon: "Tämä sovellus:"
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: Lisätietoa sovelluksesta %{application}
     observations:
       community_id:
@@ -4606,6 +4886,10 @@ fi:
       bulk_import_error:
         taxon_spelling_notice_html: |
           Ole hyvä ja tarkista jokaisen tietueen oikeinkirjoitus. Jos kaikki on oikein, etsi lajia osoitteessa %{search_taxa_url}. Jos nimeä ei vielä ole %{site_name} tietokannassa, sinun täytyy lisätä se, jotta massalataus toimii. Käytä sivuon alalaidasta löytyvää tekstikenttää tuodaksesi sisään uusia nimiä, Jos nimi löytyy, mutta on kytketty useaan validiin taksoniin, yritä käyttää tarkempia tai epätarkempia nimiä, jotka täsmäävät vain yhden taksonin kanssa.
+      collection_project_changed_for_trusting_member:
+        wondering_what_this_means_html: |
+          Mietitkö mitä "sijainnin tietosuoja" on?
+          <a href="%{url}">Lue lisää ohjeista</a>.
       parental_consent:
         subject: Lapsesi haluaa käyttää iNaturalistia
         content_html: |
@@ -4726,7 +5010,7 @@ fi:
       formatting_simple_help: "Linkitä URL-osoitteet ja aseta rivinvaihdot automaattisesti."
     projects:
       project_type: Projektin tyyppi
-      collection: Kokoelma
+      collection: Koonti
       umbrella: Sateenvarjo
       tracks_multiple_projects: seuraa useita projekteja
       projects_included: Sisältyvät projektit
@@ -4808,13 +5092,23 @@ fi:
         submission_models:
           any: kuka tahansa
           curators: projektin kuraattorit
+        trust_allow_members_to_trust: |-
+          Salli jäsenten luottaa tähän projektiin tarkkojen koordinaattien saamiseksi.
+        trust_help_desc: |-
+          Jos haluat saada käyttöösi kaikkien havaintojen tarkat koordinaatit, valitse tämä. Se antaa projektiin osallistuville mahdollisuuden luottaa projektin ylläpitäjiin, niin että he saavat nämä koordinaatit. Osallistujat voivat antaa pääsyn kaikkiin havaintoihin, jotka liittyvät tähän projektiin, tai vain niihin jotka on karkeistettu arkaluontoisten lajien suojelemiseksi. (Suomen alueiden havaintoja voi myös pyytää Lajitietokeskuksen kautta.)
+        trust_help_notification2: |-
+          Tästä ilmoitetaan kaikille projektin jäsenille, jotka ovat luottaneet projektiin joka kerta kun
+          muutat projektin havaintokriteereitä, jotta he voivat arvioida uudelleen,
+          haluavatko he luottaa sinuun myös uusilla kriteereillä.
+          Piilotettujen koordinaattien käyttöoikeus peruutetaan viikon ajaksi
+          havaintokriteerien muuttamisen jälkeen, jotta jäsenillä on aikaa reagoida tähän.
         trusted_project_means: |
           Projektin merkitseminen luotetuksi tarkoittaa että projektin ylläpitäjät voivat mukauttaa projektin ominaisuuksia, esim. HTML:aa tai CSS:aa. Pääsy näihin mukautettuihin ominaisuuksiin tarkoittaa että projektin ylläpitjät voivat mahdollisesti lisätä haitallista Javascript-koodia, joten merkitse luotetuiksi vain sellaisia projekteja, joilla on vastuuntuntoisia ja teknisesti osaavia ylläpitäjiä.
         you_can_preview: |
           Voit esikatsella miltä projektisi näyttäisi koontiprojektina
           <a href="%{url}">klikkaamalla tästä</a>.
       invite:
-        description_html: |
+        description_html: |2
           <h3>Tietoja kutsuista</h3>
           <p class="ui">
             Ihmisten kutsuminen projektiisi on hieman eri kuin kutsuminen
@@ -4940,7 +5234,7 @@ fi:
           Huomaa että vaikka tällainen projekti näyttää tilastoja havainnoista, joita ei ole tarkoituksellisesti lisätty projektiin, se ei salli kuraattorien nähdä yksityisiä tai karkeistettuja koordinaatteja, eikä oleta että havainnoijat olisivat hyväksyneet projektin ehdot. Jos olet projektin kuraattori ja tarvitse pääsyn yksityisiin koordinaatteihin, tai jos haluat että havainnot lasketaan mukaan projektin kuratoituun pinnalistaan, varmista että osallistujat liittyvät projektiin ja lisäävät havaintonsa siihen kuten tavalliseen projektiin.
           </p>
         click_here_to_convert_this_project: |
-          Klikkaa tästä muuntaaksesi tämän projektin kokoelmaprojektiksi.
+          Klikkaa tästä muuntaaksesi tämän projektin koontiprojektiksi.
         no_journal_blurb_html: |
           <p>
           Projektin päiväkirja on työkalu kommunikointiin projektin jäsenten kanssa. Voit käyttää sitä tiedottamiseen, prioriteettien asettamiseen tai projektin tuloksista keskustelemiseen.
@@ -5001,7 +5295,6 @@ fi:
     stats:
       index:
         active_desc: Loi tunnistuksen, havainnon, kommentin tai viestin edeltävänä 30 päivänä
-        active_users_desc: Loi tunnistuksen, havainnon, kommentin tai viestin edeltävänä 30 päivänä
         android_desc_html: Luotu <a href="%{url}">iNaturalist Android-sovelluksen</a> kautta
         avg_ttcid: Keskimääräinen TTID
         avg_ttid: Keskimääräinen TTID
@@ -5126,14 +5419,6 @@ fi:
           "Plant Phenology=Flower Budding": Kukka puhkeamassa
           "Plant Phenology=Flowering": Kukkiva
           "Plant Phenology=Fruiting": Hedelmiä
-          "Plant Phenology=No Evidence of Flowering": Ei näyttöä
-          "Life Stage=egg": Muna
-          "Life Stage=larva": Toukka
-          "Life Stage=teneral": Teneraali
-          "Life Stage=subimago": Subimago
-          "Life Stage=nymph": Nymfi
-          "Life Stage=pupa": Kotelo
-          "Life Stage=adult": Aikuinen
           unannotated: Ei annotaatiota
         photo_chooser_modal_desc: |
           Raahaa kuvat tänne vasemmalta, tai raahaa kuvat tänne uudelleenjärjestääksesi.
@@ -5302,7 +5587,6 @@ fi:
           href="https://akismet.com/">Akismet</a>, työkalun avulla. Mutta Akismet ei ole täydellinen, joten jos haluat auttaa meitä tutkimalla, ovatko uudet tilit oikeita käyttäjiä vai spammereita, arvostamme aikaasi!
           </p>
       show:
-        take_a_chance_to_review_html: 'Tutustu <a href="%{link}">pelisääntöihimme</a>.'
         this_user_was_banned: Tämä käyttäjä hyllytettiin
     user_parents:
       confirm:
@@ -5679,6 +5963,14 @@ fi:
       CompleteSet: Täydellinen sarja
       #Noun
       Flag: Lippu
+      #Action taken by a moderator in response to a flag or concern with
+      #immediate consequences in functionality, e.g. hiding an offensive
+      #comment without deleting it
+      ModeratorAction: Valvojan toiminto
+      #Text note left by a moderator about another user recording a response to
+      #a concern, like messaging someone about plagiarism, or documenting
+      #violations of the Community Guidelines for future reference
+      ModeratorNote: Valvojien muistiinpanot
       TaxonLink: Taksonilinkki
     attributes:
       assessment:
@@ -5829,6 +6121,10 @@ fi:
           attributes:
             base:
               guide_has_too_many_taxa: "oppaassa voi olla vain 500 taksonia"
+        moderator_action:
+          attributes:
+            user_id:
+              must_be_a_curator: on oltava kuraattori
         mushroom_observer_import_flow_task:
           attributes:
             base:
@@ -5855,6 +6151,9 @@ fi:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: uusia kommentteja ei voi lisätä
             user:
               must_be_on_site_long_enough: |
@@ -5867,7 +6166,7 @@ fi:
               #basically saved searches so you don't have to add anything to
               #them
               collection_and_umbrella_projects_do_not_allow_direct_submission: |
-                kokoelma- ja sateenvarjoprojekteihin ei voi lisätä havaintoja suoraan
+                koonti- ja sateenvarjoprojekteihin ei voi lisätä havaintoja suoraan
             user_id:
               must_be_curator: täytyy olla tämän projektin kuraattori
             observation_id:
@@ -6019,7 +6318,6 @@ fi:
     previous_label: "&#8592; Edellinen"
     next_label: "Seuraava &#8594;"
     page_gap: "&hellip;"
-  you_have_not_authorized_any_applications: "Et ole antanut lupaa millekään sovellukselle käyttää iNaturalist-tiliäsi."
   you_will_no_longer_be_following_or_trusting: "Et enää seuraa tai luota käyttäjään %{user}"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"

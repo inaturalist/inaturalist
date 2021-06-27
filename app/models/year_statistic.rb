@@ -129,7 +129,10 @@ class YearStatistic < ActiveRecord::Base
       }
     }
     year_statistic.update_attributes( data: json )
-    year_statistic.delay( priority: USER_PRIORITY ).generate_shareable_image
+    year_statistic.delay(
+      priority: USER_PRIORITY,
+      unique_hash: "YearStatistic::generate_shareable_image::#{user.id}::#{year}"
+    ).generate_shareable_image
     year_statistic
   end
 
@@ -211,7 +214,8 @@ class YearStatistic < ActiveRecord::Base
           date_histogram: {
             field: "created_at",
             interval: interval,
-            format: "yyyy-MM-dd"
+            format: "yyyy-MM-dd",
+            time_zone: time_zone_for_options( options )
           }
         }
       }
@@ -895,7 +899,8 @@ class YearStatistic < ActiveRecord::Base
           date_histogram: {
             field: date_field,
             interval: interval,
-            format: "yyyy-MM-dd"
+            format: "yyyy-MM-dd",
+            time_zone: time_zone_for_options( params )
           },
           aggs: {
             taxon_ids: {
@@ -1048,8 +1053,8 @@ class YearStatistic < ActiveRecord::Base
         filters << { terms: { site_id: [site.id] } }
       end
     end
-    if site = options[:user]
-      filters << { term: { "user.id" => options[:user].id } }
+    if user = options[:user]
+      filters << { term: { "user.id" => user.id } }
     end
     es_params = {
       size: 0,
@@ -1059,7 +1064,8 @@ class YearStatistic < ActiveRecord::Base
           date_histogram: {
             field: "created_at_details.date",
             interval: "month",
-            format: "yyyy-MM-dd"
+            format: "yyyy-MM-dd",
+            time_zone: time_zone_for_options( options )
           }
         }
       }
@@ -1138,7 +1144,8 @@ class YearStatistic < ActiveRecord::Base
             date_histogram: {
               field: "observed_on",
               calendar_interval: "day",
-              format: "yyyy-MM-dd"
+              format: "yyyy-MM-dd",
+              time_zone: time_zone_for_options( options )
             },
             aggs: {
               user_ids: {
@@ -1419,7 +1426,8 @@ class YearStatistic < ActiveRecord::Base
       page_donations = json.select{|d| DateTime.parse( d["donation_date"] ).year == year }
       puts "Received #{page_donations.size} donations for #{year}" if debug
       if page_donations.size == 0
-        break
+        page += 1
+        next
       end
       page_donations.each do |d|
         next if d["amount_refunded"].to_f > 0
@@ -1590,6 +1598,13 @@ class YearStatistic < ActiveRecord::Base
         { exists: { field: "taxon_change_id" } }
       ]
     }
+  end
+
+  def self.time_zone_for_options( options = {} )
+    return "UTC" unless options[:user]
+    return "UTC" if options[:user].time_zone.blank?
+    return "UTC" unless tz = ActiveSupport::TimeZone[options[:user].time_zone]
+    tz.tzinfo.name
   end
 
 end

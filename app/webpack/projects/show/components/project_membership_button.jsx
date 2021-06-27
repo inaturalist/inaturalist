@@ -96,6 +96,10 @@ class ProjectMembershipButton extends React.Component {
               { I18n.t( "yes_but_only_for_threatened" ) }
             </label>
           </div>
+          <div className="alert alert-warning">
+            <strong>{ I18n.t( "please_be_careful!" ) }</strong>
+            <p>{ I18n.t( "project_coordinate_access_warning" ) }</p>
+          </div>
           <div className="collapsible-section">
             <button
               type="button"

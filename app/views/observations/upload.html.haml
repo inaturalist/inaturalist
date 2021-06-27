@@ -15,7 +15,6 @@
 #app
 = google_maps_js libraries: %w(places geometry drawing)
 - content_for :delayed_js do
-  = javascript_include_tag "i18n/translations"
   = javascript_include_tag "jquery/jquery-1.11.3.min.js"
   = javascript_include_tag "jquery/jquery-ui-1.11.4.min.js"
   = javascript_include_tag "inaturalist"

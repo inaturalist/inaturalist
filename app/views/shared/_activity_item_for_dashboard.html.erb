@@ -108,7 +108,8 @@
           item.body
         elsif item.respond_to?(:description) && item.description
           item.description
-        end -%>
+        end
+      -%>
       <% unless text.blank? -%>
         <% if item.respond_to?(:hidden?) && item.hidden? %>
           <div class="text-muted well well-sm">

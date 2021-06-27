@@ -10,5 +10,3 @@
     = f.submit t(:create_an_account), class: "btn btn-inat btn-primary btn-lg", disabled: @site.using_recaptcha?
   .form-group.centered
     = link_to t(:already_have_an_account_log_in_html), login_path, class: "btn btn-link"
-.formcol-content
-  = render "users/provider_authorizations"

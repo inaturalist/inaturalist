@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Menu from "./menu";
 import AccountContainer from "../containers/account_container";
 import ContentContainer from "../containers/content_container";
+import ErrorBoundary from "../../../shared/components/error_boundary";
 import ProfileContainer from "../containers/profile_container";
 import NotificationsContainer from "../containers/notifications_container";
 import SaveButtonContainer from "../containers/save_button_container";
@@ -19,32 +20,25 @@ class App extends Component {
   constructor( ) {
     super( );
 
-    this.state = {
-      container: 0
-    };
-
-    this.setContainerIndex = this.setContainerIndex.bind( this );
-    this.handleUnload = this.handleUnload.bind( this );
     this.handleInputChange = this.handleInputChange.bind( this );
   }
 
-  componentDidMount() {
+  componentDidMount( ) {
     window.addEventListener( "beforeunload", this.handleUnload );
   }
 
-  componentWillUnmount() {
+  componentWillUnmount( ) {
     window.removeEventListener( "beforeunload", this.handleUnload );
   }
 
-  setContainerIndex( i ) {
-    this.setState( { container: i } );
-  }
-
   handleUnload( e ) {
+    if ( !this.props ) return;
     const { profile } = this.props;
-    e.preventDefault( );
 
-    if ( profile.saved_status === "unsaved" ) {
+    if ( profile && profile.saved_status === "unsaved" ) {
+      // preventing default within this if statement makes this work on both Chrome and Firefox
+      // https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event#browser_compatibility
+      e.preventDefault( );
       // Chrome requires returnValue to be set
       e.returnValue = "";
     } else {
@@ -53,43 +47,54 @@ class App extends Component {
   }
 
   handleInputChange( e ) {
-    this.setState( { container: Number( e.target.value ) } );
+    const { setContainerIndex } = this.props;
+    const i = Number( e.target.value );
+    setContainerIndex( i );
   }
 
   render( ) {
-    const { container } = this.state;
+    const { setContainerIndex, section } = this.props;
 
     const userSettings = [
-      <ProfileContainer />,
-      <AccountContainer />,
-      <NotificationsContainer />,
-      <RelationshipsContainer />,
-      <ContentContainer />,
-      <ApplicationsContainer />
+      <ErrorBoundary key="ProfileContainerErrorBoundary"><ProfileContainer /></ErrorBoundary>,
+      <ErrorBoundary key="AccountContainerErrorBoundary"><AccountContainer /></ErrorBoundary>,
+      <ErrorBoundary key="NotificationsContainerErrorBoundary"><NotificationsContainer /></ErrorBoundary>,
+      <ErrorBoundary key="RelationshipsContainerErrorBoundary"><RelationshipsContainer /></ErrorBoundary>,
+      <ErrorBoundary key="ContentContainerErrorBoundary"><ContentContainer /></ErrorBoundary>,
+      <ErrorBoundary key="ApplicationsContainerErrorBoundary"><ApplicationsContainer /></ErrorBoundary>
     ];
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-9">
+      <div className="container" id="UserSettings">
+        <div className="row vertical-align">
+          <div className="col-xs-12 col-sm-6">
             <h1>{I18n.t( "settings" )}</h1>
           </div>
-          <div className="col-xs-4 visible-xs settings-item">
-            <DropdownMenuMobile menuIndex={container} handleInputChange={this.handleInputChange} />
-          </div>
-          <div className="col-xs-9 col-sm-3 settings-item">
+          <div className="col-xs-12 col-sm-6">
             <SaveButtonContainer />
+          </div>
+          <div className="col-xs-12 visible-xs settings-item">
+            <ErrorBoundary>
+              <DropdownMenuMobile menuIndex={section} handleInputChange={this.handleInputChange} />
+            </ErrorBoundary>
           </div>
         </div>
         <div className="row">
-          <div className="col-xs-2 menu hidden-xs">
-            <Menu setContainerIndex={this.setContainerIndex} currentContainer={container} />
+          <div className="col-sm-2 menu hidden-xs">
+            <ErrorBoundary>
+              <Menu setContainerIndex={setContainerIndex} currentContainer={section} />
+            </ErrorBoundary>
           </div>
-          <div className="col-xs-1 hidden-xs">
+          <div className="col-sm-1 hidden-xs">
             <div className="vl" />
           </div>
-          <div className="col-xs-9">
-            {userSettings[container]}
+          <div className="col-sm-9">
+            { userSettings[section] }
+          </div>
+        </div>
+        <div className="row vertical-align">
+          <div className="col-xs-12">
+            <SaveButtonContainer />
           </div>
         </div>
         <RevokeAccessModalContainer />
@@ -102,7 +107,9 @@ class App extends Component {
 }
 
 App.propTypes = {
-  profile: PropTypes.object
+  profile: PropTypes.object,
+  section: PropTypes.number,
+  setContainerIndex: PropTypes.func
 };
 
 export default App;

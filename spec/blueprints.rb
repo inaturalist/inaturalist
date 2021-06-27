@@ -171,10 +171,6 @@ List.blueprint do
   title { Faker::Lorem.sentence }
 end
 
-LifeList.blueprint do
-  user { User.make! }
-end
-
 ListRule.blueprint do
   list { List.make! }
 end
@@ -205,6 +201,12 @@ ModeratorAction.blueprint do
   resource { Comment.make! }
   action { ModeratorAction::HIDE }
   reason { Faker::Lorem.sentence }
+end
+
+ModeratorNote.blueprint do
+  user { make_curator }
+  body { Faker::Lorem.paragraph }
+  subject_user { User.make! }
 end
 
 MushroomObserverImportFlowTask.blueprint do

@@ -7,39 +7,67 @@ const RevokeAccessModal = ( {
   onClose,
   deleteApp,
   siteName,
-  official
-} ) => (
-  <Modal
-    show={show}
-    className="RevokeAccessModal"
-    onHide={onClose}
-  >
-    <Modal.Header closeButton>
-      <Modal.Title>
-        {official
-          ? I18n.t( "log_out_of_application", { site_name: siteName } )
-          : I18n.t( "revoke_external_application", { site_name: siteName } )}
-      </Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-      <p>{I18n.t( "this_will_sign_you_out_current_session" )}</p>
-    </Modal.Body>
-    <Modal.Footer>
-      <div className="buttons">
-        <Button bsStyle="primary" onClick={deleteApp}>
-          {official ? I18n.t( "log_out_caps" ) : I18n.t( "revoke_caps" )}
-        </Button>
-      </div>
-    </Modal.Footer>
-  </Modal>
-);
+  appType
+} ) => {
+  const renderTitle = ( ) => {
+    if ( appType === "connectedApp" ) {
+      return I18n.t( "disconnect_provider", { provider: siteName } );
+    }
+
+    if ( appType === "official" ) {
+      return I18n.t( "log_out_of_application", { site_name: siteName } );
+    }
+
+    return I18n.t( "revoke_external_application", { site_name: siteName } );
+  };
+
+  const renderButtonText = ( ) => {
+    if ( appType === "connectedApp" ) {
+      return I18n.t( "disconnect_caps" );
+    }
+
+    if ( appType === "official" ) {
+      return I18n.t( "log_out_caps" );
+    }
+
+    return I18n.t( "revoke_caps" );
+  };
+
+  return (
+    <Modal
+      show={show}
+      className="RevokeAccessModal"
+      onHide={onClose}
+    >
+      <Modal.Header closeButton>
+        <Modal.Title>
+          {renderTitle( )}
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <p>
+          {appType === "connectedApp"
+            ? I18n.t( "this_will_remove_inaturalists_ability_to_access_this_account" )
+            : I18n.t( "this_will_sign_you_out_current_session" )}
+        </p>
+      </Modal.Body>
+      <Modal.Footer>
+        <div className="buttons">
+          <Button bsStyle="primary" onClick={( ) => deleteApp( appType )}>
+            {renderButtonText( )}
+          </Button>
+        </div>
+      </Modal.Footer>
+    </Modal>
+  );
+};
 
 RevokeAccessModal.propTypes = {
   show: PropTypes.bool,
   onClose: PropTypes.func,
   deleteApp: PropTypes.func,
   siteName: PropTypes.string,
-  official: PropTypes.bool
+  appType: PropTypes.string
 };
 
 export default RevokeAccessModal;

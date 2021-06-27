@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import HistoryComparison from "../components/history_comparison";
 import {
+  setHistoryDateField,
   setHistoryLayout,
   setHistoryInterval,
   fetchDataForTab
@@ -10,6 +11,7 @@ function mapStateToProps( state ) {
   return {
     queries: state.compare.queries,
     histories: state.compare.histories,
+    historyDateField: state.compare.historyDateField,
     historyLayout: state.compare.historyLayout,
     historyInterval: state.compare.historyInterval
   };
@@ -20,6 +22,10 @@ function mapDispatchToProps( dispatch ) {
     setHistoryLayout: layout => dispatch( setHistoryLayout( layout ) ),
     setHistoryInterval: interval => {
       dispatch( setHistoryInterval( interval ) );
+      dispatch( fetchDataForTab( ) );
+    },
+    setHistoryDateField: dateField => {
+      dispatch( setHistoryDateField( dateField ) );
       dispatch( fetchDataForTab( ) );
     }
   };

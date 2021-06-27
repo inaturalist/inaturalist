@@ -13,6 +13,26 @@ describe UserBlock do
       3.times { UserBlock.make!( user: user ) }
       expect( UserBlock.make( user: user, blocked_user: blocked_user ) ).not_to be_valid
     end
+    it "should pass if there are 3 other blocks for this user and a staff member is overriding the quota" do
+      3.times { UserBlock.make!( user: user ) }
+      expect(
+        UserBlock.make(
+          user: user,
+          blocked_user: blocked_user,
+          override_user_id: make_admin.id
+        )
+      ).to be_valid
+    end
+    it "should fail if there are 3 other blocks for this user and a non-staff member is overriding the quota" do
+      3.times { UserBlock.make!( user: user ) }
+      expect(
+        UserBlock.make(
+          user: user,
+          blocked_user: blocked_user,
+          override_user_id: User.make!.id
+        )
+      ).not_to be_valid
+    end
     it "should fail if the blocked user is on staff" do
       expect( UserBlock.make( blocked_user: make_admin ) ).not_to be_valid
     end

@@ -12,7 +12,6 @@ br:
   about_these_licenses: Diwar-benn an aotroù-implijout-se
   about_this_map: Diwar-benn ar gartenn-maÆ
   about_this_project: Diwar-benn ar raktres-mañ
-  about_x: "Diwar-benn %{x}"
   account: Kont
   accept: Degemer
   accept_community_identifications: Degemer anaoudurioù ar gumuniezh
@@ -312,7 +311,6 @@ br:
   comment_deleted: Evezhiadenn dilamet
   comments: Evezhiadennoù
   comments_by_me: Ma evezhiadennoù
-  comments_on: Evezhiadennoù war
   #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Kadarnaat
   #Adjective describing a taxon change that has been committed
@@ -340,6 +338,7 @@ br:
   confirm_new_password: Kadarnaat ar ger-tremen nevez
   confirm_now: Kadarnaat bremañ
   connect_to_provider: "Kevreañ ouzh %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Kontoù kevreet
   connecting_flickr: "O kevreañ ouzh Flickr..."
   connecting_to_facebook: "O kevreañ ouzh Facebook..."
@@ -514,7 +513,6 @@ br:
   editing_taxon_link: Kemmañ al liamm a denn d'an takson
   editing_this: Kemmañ %{elem}
   editing_x_in_y: "Kemmañ %{x} e%{y}"
-  either: Pe
   either_that_user_doesnt_exist_or: "N'eus ket eus an implijer-mañ pe emaoc'h o heuliañ anezhañ dija"
   eligible_for_research_grade: A c'hall bezañ degemeret el live enklask
   email: Postel
@@ -540,7 +538,6 @@ br:
   every_species_seen_by: Pep spesad gwelet gant
   everyone: An holl dud
   everywhere: E pep lec'h
-  exact_location: Lec'hiadur resis
   exact_rank: Renk resis
   existing_flags: Banieloù zo anezho
   exit_full_screen: "Kuitaat ar mod skramm leun"
@@ -705,8 +702,6 @@ br:
   layers: Gwiskadoù
   layout: Pajennaozañ
   leaderboards: Renkadurioù
-  leaderboard_most:
-    species: Ar muiañ a spesadoù e %{time}
   learn_about_the_species_live_in: Deskit muioc'h a draoù diwar-benn ar spesadoù zo o vevañ e
   learn_more: Gouzout hiroc'h
   learn_more_raquo: "Gouzout hiroc'h %raquo;"
@@ -877,7 +872,6 @@ br:
   no_project_to_admin_current_user: "Ne verit rakres ebet"
   no_project_to_admin_login: "%{login} ne ver raktres ebet"
   no_projects_yet: Raktres ebet betek-henn
-  no_x_this_y: "%{x}evet e-pad %{y}"
   none: Hini ebet
   normal: reizh
   not_found: N'eo ket bet kavet

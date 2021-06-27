@@ -150,7 +150,9 @@ et:
   about_this_bioblitz: Välkvaatlusest
   about_this_map: Sellest kaardist
   about_this_project: Sellest projektist
-  about_x: "Info: %{x}"
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Täpsus (m)'
   account: Konto
   account_creation: Konto loomine
@@ -690,7 +692,6 @@ et:
   comment_deleted: Kommentaar kustutatud
   comments: Kommentaarid
   comments_by_me: Minu kommentaarid
-  comments_on: Kommentaarid teemal
   comments_on_my_observations: Minu vaatluste kommentaarid
   commercial_solicitation: Ärilisi teateid, katkiseid linke, jne.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -733,6 +734,7 @@ et:
   confirm_now: Konnita kohe
   confirm_your_info: Kinnita oma info
   connect_to_provider: "Ühendan: %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Ühendatud kontod
   connecting_flickr: "Ühendan lehega Flickr..."
   connecting_to_facebook: "Ühendan Facebookiga..."
@@ -744,7 +746,6 @@ et:
     place: Koht, kus staatus kehtib.
     url: Staatust kirjeldava lehe URL.
     geoprivacy: Selle taksoni vaatluste asukoha privaatsuse vaikimisi säte
-    iucn: Samaväärne IUCNi punase nimestiku kood
   contact_support: Klienditugi
   contain_all_descendants?: Kas see kontrollnimekiri sisaldab kõiki selles kohas leiduvaid antud taksoni järglasi?
   content_hidden: Sisu on peidetud
@@ -1038,7 +1039,6 @@ et:
   editing_this: Muudan elementi %{elem}
   editing_x_in_y: "Muudan %{x}/%{y}"
   editors: Toimetajad
-  either: Emb-kumb
   either_that_user_doesnt_exist_or: "Kas kasutajat ei eksisteeri või sa juba jälgid teda."
   eligible_for_research_grade: Taduskõlbulikuks sobiv
   email: E-post
@@ -1083,7 +1083,6 @@ et:
   everywhere: kõikjal
   exact: Täpne
   exact_date: Täpne kuupäev
-  exact_location: Täpne asukoht
   exact_rank: Täpne kategooria
   except: väljaarvatud
   exclusion_filters: Välistusfiltrid
@@ -1284,12 +1283,12 @@ et:
   help_confirm_observations!: Aita vaatlusi kinnitada!
   help_support_inaturalist: "Toeta iNaturalisti"
   help_translate!: Aita tõlkida!
-  helped_the_observer_make: aitasid vaatlejat tema lõpliku määratlusega (st need tehti enne lõpliku määratlust ja kattusid sellega)
   here_are_3_examples: Siin on kolm korrektsete andmete näidist
   here_are_our_top_species_suggestions: Meie parimad liigipakumised
   hex_color_eg: Hex-värf, nt 65644F
   hi: Tere,
   hi_user: "Tere %{user}"
+  #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Peida hetke koguarv
   hide_uncountable_species: Peida loendamatud liigid
   high: Kõrge
@@ -1344,6 +1343,7 @@ et:
   ignore_and_continue: Eira ja jätka
   ignore_times: Eira kellaaegu
   image_must_be_exactly: pilt peab olema täpselt 950 pikslit lai ja maksimaalselt 400 pikslit kõrge
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Ohustatud
   import: Impordi
   import_all_photos_as_observations: Impordi kõik fotod vaatlustena
@@ -1398,7 +1398,6 @@ et:
   invited_x: "Kutsus objekti %{x}"
   iphone: iPhone
   is_not_following_anyone: ei jälgi kedagi.
-  is_now: on nüüd
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Kas on piisavalt tõendeid, et saab kinnitada määramist taksonisse %{taxon}?
   is_this_offensive_html: 'Kas see on <a href="/help#inappropriate">ebasobiv</a>, rämpspost või solvav?'
   is_this_place_a_duplicate: Kas see koht on duplikaat?
@@ -1448,10 +1447,6 @@ et:
   leaderboard: Edetabel
   leaderboard_for_x: "Edetabel: %{x}"
   leaderboards: Edetabelid
-  leaderboard_most:
-    species: Enim liike %{time}
-    observations: Enim vaatluseid %{time}
-    identifications: Enim määratlusi %{time}
   leading: Suunaja
   learn: Õpi
   learn_about_the_species_live_in: Õpi liikide kohta, mis leiduvad kohas
@@ -1760,11 +1755,8 @@ et:
   multiple_select_option: '-- mitu --'
   multiple_taxa_for_taxon_change: "Mitu taksonit (sisend vahetamiseks/ühendamiseks, väljund jagamiseks)"
   multiple_taxon_ids_separated_by_commas: 'Mitu taksoni IDd, mis on omavahel komadega eraldatud, nt 123,654'
-  must_be_observed_after: |
-    vaatlus peab olema tehtud peale %{operand}
-  must_be_observed_before: |
-    vaatlus peab olema tehtud enne %{operand}
-  must_be_observed_in: vaatlus peab olema tehtud kohas
+  must_be_observed_after: vaatlus peab olema tehtud peale %{operand}
+  must_be_observed_before: vaatlus peab olema tehtud enne %{operand}
   must_be_less_than_x_MB: "Peab olema väiksem kui %{x} MB"
   must_have_observation_field: "vaatluse peab väli '%{operand}' olema täidetud"
   must_have_x: "peab omama %{x}"
@@ -1920,7 +1912,6 @@ et:
   no_taxa_selected: Taksoneid pole valitud!
   no_taxonomic_changes_match_those_criteria: Ükski taksonoomiline muutus ei vasta nendele kriteeriumitele
   no_wikipedia_page_for_taxon: Selle taksoni kohta Wikipedia lehekülg puudub.
-  no_x_this_y: "%{x} pole see %{y}"
   noble_curators: "Lehe %{site} üllad kuraatorid"
   non_human?: Pole inimene?
   none: Puudub
@@ -2482,7 +2473,7 @@ et:
   please_add_a_citation_for_this_change: Palun lisa selle muudatuse juurde viide.
   please_add_this_observation_to: Palun lisa see vaatlus
   please_add_this_to_x_html: "Palun lisa see projekti %{x}"
-  please_allow_a_few_weeks_for_external_sites: Palun oota paar nädalat, et välised saidid selle vaatluse muudatused kätte saaksid
+  please_allow_a_few_weeks_for_external_sites: Palun oota paar nädalat, et välised saidid selle vaatluse muudatused kätte saaksid #Title to a section warning a user to exercise caution
   please_complete_the_following_to_add_project: |
     Vaatluse projektile lisamiseks tee palun ära:
   please_confirm_your_inat_username: "Palun kinnita oma %{site_name} kasutajatunnus"
@@ -2648,6 +2639,7 @@ et:
   recent_observations: Viimased vaatlused
   recent_observations_: Viimased vaatlused
   recent_post: Viimane postitus
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Viimased vaatlused kasutajalt %{login} (Atom)"
   recent_observations_by: "Viimased vaatlused kasutajalt %{login}"
   recently_active: Hiljuti aktiivne
@@ -2855,6 +2847,7 @@ et:
   show_off_your_recent_observations: Näita hiljutisi vaatluseid oma blogis või kodulehel!
   show_only: Näita ainult
   show_relative_proportions_of_all_observations: Näita kõigi vaatluste suhtelisi proportsioone
+  #Label for a button to show the running total of an accumulation chart
   show_running_total: Näita hetke koguarvu
   show_scientific_name_first: Näita esmalt teaduslikku nimetust
   show_taxa_from_both: (näita taksoneid mõlemast nimekirjast)
@@ -3302,6 +3295,7 @@ et:
   try_adding_species_form: Proovi lisada sellel lehel oleva vormiga liike.
   twitter: Twitter
   two_thirds: 2/3
+  #As in a category, not as in a keyboard
   type: Tüüp
   type_authority: Tüübi allikas...
   type_one_name_per_line: Kirjuta üks nimi rea kohta
@@ -3616,7 +3610,6 @@ et:
   youre_a_site_curator_which_means: |
     Oled lehe kuraator, mis tähendab, et sa oled pakkunud oma vabatahtliku panust, et kureerida meie andmeid ja jälgida sisu. Palun ära tunne, et sul on kohustus kõik probleemid ise lahendada, aga kui sul on natuke aeg, siis meile kulub igasugune abi marjaks ära. Kui sul on küsimusi sisu kureerimise kohta või sa ei soovi enam kuraator olla, siis palun võta meiega ühendust aadressil %{email}
   you_are_over_your_invites_quota: ...sa oled ületanud kuu piirangu (60 kutset)
-  you_are_now: Oled nüüd
   you_are_now_following_x: "Jälgid nüüd kasutajat %{friend_user}"
   you_are_not_editing_any_guides_add_one_html: |
     Sa ei ole seotud ühegi juhendiga. <a href="/guides/new">Alusta uut</a>
@@ -4295,7 +4288,6 @@ et:
     stats:
       index:
         active_desc: Lõi viimase 30 päeva jooksul määratluse, vaatluse, kommentaari või postituse
-        active_users_desc: Lõi viimase 30 päeva jooksul määratluse, vaatluse, kommentaari või postituse
         android_desc_html: Loodud <a href="%{url}">iNaturalist Android äpiga</a>
         avg_ttcid: Keskmine AKM
         avg_ttid: Keskmine AM
@@ -4383,13 +4375,6 @@ et:
           verifiable: Tõendatav
           "Alive or Dead=Alive": Elus
           "Alive or Dead=Dead": Surnud
-          "Life Stage=egg": Muna
-          "Life Stage=larva": Tõuk
-          "Life Stage=teneral": Valmik
-          "Life Stage=subimago": Eelvalmik
-          "Life Stage=nymph": Nümf
-          "Life Stage=pupa": Nukk
-          "Life Stage=adult": Täiskasvanu
           unannotated: Märkus puudub
         no_trending_desc: Selle taksoni alamtaksoneid viimase kuu jooksul ei vaadeldud
         photo_chooser_modal_desc: |
@@ -4503,7 +4488,6 @@ et:
           Tervitame uusi kasutajaid, kuid soovime samas võidelda ka rämpspostitajate vastu. Loodetavasti aitab see tööriist mõlemat. Märgime <a href="https://akismet.com/">Akismet-i</a> abil paljud kasutajad rämpspostitajateks, kuid Akismet pole täiuslik. Kui soovid annetada paar minutit oma ajast, et märkida uusi kasutajaid rämspostitajateks ja päris kontoteks, oleks sellest palju abi.
           </p>
       show:
-        take_a_chance_to_review_html: 'Vaata näiteks <a href="%{link}">meie juhiseid</a>.'
         this_user_was_banned: See kasutaja on deaktiveeritud
     welcome:
       index:

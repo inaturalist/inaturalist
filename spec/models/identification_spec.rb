@@ -59,9 +59,6 @@ describe Identification, "creation" do
   end
 
   describe "with callbacks" do
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
-
     it "should make older identifications not current" do
       old_ident = Identification.make!
       new_ident = Identification.make!( observation: old_ident.observation, user: old_ident.user )
@@ -349,8 +346,18 @@ describe Identification, "creation" do
       r = ObservationReview.make!(observation: o, user: o.user, updated_at: 1.day.ago)
       Identification.make!(observation: o, user: o.user)
       o.reload
-      expect(o.observation_reviews.first).to eq r
-      expect(o.observation_reviews.first.updated_at).to be > r.updated_at
+      expect( o.observation_reviews.first ).to eq r
+      expect( o.observation_reviews.first.updated_at ).to be > r.updated_at
+    end
+
+    it "marks existing unreviewed reviews as reviewed" do
+      o = Observation.make!
+      r = ObservationReview.make!( observation: o, user: o.user )
+      r.update_attributes( reviewed: false )
+      Identification.make!( observation: o, user: o.user )
+      o.reload
+      expect( o.observation_reviews.first ).to eq r
+      expect( o.observation_reviews.first ).to be_reviewed
     end
 
     it "should set curator_identification_id on project observations to last current identification" do
@@ -435,9 +442,6 @@ describe Identification, "updating" do
   end
 
   describe "observation taxon_geoprivacy" do
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
-
     it "should change if becomes current" do
       threatened = make_threatened_taxon( rank: Taxon::SPECIES )
       not_threatened = Taxon.make!( rank: Taxon::SPECIES )
@@ -457,15 +461,6 @@ describe Identification, "updating" do
 end
 
 describe Identification, "deletion" do
-  before(:all) do
-    # some identification deletion callbacks need to happen after the transaction is complete
-    DatabaseCleaner.strategy = :truncation
-  end
-
-  after(:all) do
-    DatabaseCleaner.strategy = :transaction
-  end
-
   it "should remove the taxon associated with the observation if it's the observer's identification and obs does not prefers_community_taxon" do
     observation = Observation.make!( taxon: Taxon.make!, prefers_community_taxon: false )
     identification = Identification.make!( observation: observation, taxon: observation.taxon )
@@ -559,7 +554,7 @@ describe Identification, "deletion" do
     expect(o.quality_grade).to eq Observation::NEEDS_ID
   end
   
-  it "should queue a job to update project lists if owners ident" do
+  it "should not queue a job to update project lists if owners ident" do
     o = make_research_grade_observation
     Delayed::Job.delete_all
     stamp = Time.now
@@ -571,7 +566,7 @@ describe Identification, "deletion" do
 
     pattern = /ProjectList.*refresh_with_observation/m
     job = jobs.detect{|j| j.handler =~ pattern}
-    expect(job).not_to be_blank
+    expect(job).to be_blank
     # puts job.handler.inspect
   end
   
@@ -787,8 +782,6 @@ describe Identification do
 end
 
 describe Identification, "category" do
-  before(:all) { DatabaseCleaner.strategy = :truncation }
-  after(:all)  { DatabaseCleaner.strategy = :transaction }
   let( :o ) { Observation.make! }
   let(:parent) { Taxon.make!( rank: Taxon::GENUS ) }
   let(:child) { Taxon.make!( rank: Taxon::SPECIES, parent: parent ) }
@@ -1080,8 +1073,6 @@ describe Identification, "disagreement" do
 end
 
 describe Identification, "set_previous_observation_taxon" do
-  before(:all) { DatabaseCleaner.strategy = :truncation }
-  after(:all)  { DatabaseCleaner.strategy = :transaction }
   elastic_models( Observation )
   it "should choose the observation taxon by default" do
     o = Observation.make!( taxon: Taxon.make!(:species) )

@@ -5,11 +5,11 @@ describe ProjectObservation, "creation" do
   before(:each) do
     setup_project_and_user
   end
-  it "should queue a DJ job for the list" do
+  it "should not queue a DJ job for the list" do
     stamp = Time.now
     make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     jobs = Delayed::Job.where("created_at >= ?", stamp)
-    expect(jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}).not_to be_blank
+    expect(jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}).to be_blank
   end
   
   it "should queue a DJ job to set project user counters" do
@@ -261,11 +261,11 @@ describe ProjectObservation, "destruction" do
     disable_has_subscribers
   }
 
-  it "should queue a DJ job for the list" do
+  it "should not queue a DJ job for the list" do
     stamp = Time.now
     @project_observation.destroy
     jobs = Delayed::Job.where("created_at >= ?", stamp)
-    expect(jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}).not_to be_blank
+    expect(jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}).to be_blank
   end
   
   it "should queue a DJ job to set project user counters" do
@@ -392,8 +392,6 @@ end
 describe ProjectObservation, "has_a_photo?" do
   let(:p) { Project.make! }
   elastic_models( Observation )
-  before(:all) { DatabaseCleaner.strategy = :truncation }
-  after(:all)  { DatabaseCleaner.strategy = :transaction }
   it "should be true if photo present" do
     o = make_research_grade_observation
     pu = ProjectUser.make!(:project => p, :user => o.user)
@@ -430,8 +428,6 @@ end
 describe ProjectObservation, "has_media?" do
   let(:p) { Project.make! }
   elastic_models( Observation )
-  before(:all) { DatabaseCleaner.strategy = :truncation }
-  after(:all)  { DatabaseCleaner.strategy = :transaction }
   it "should be true if photo present" do
     o = make_research_grade_observation
     pu = ProjectUser.make!(:project => p, :user => o.user)
@@ -645,7 +641,6 @@ describe ProjectObservation, "elastic indexing" do
   # db commits (e.g. no transations) and manually create indices
   #
   before(:all) do
-    DatabaseCleaner.strategy = :truncation
     try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 0.1, tries: 20 ) do
       Observation.__elasticsearch__.client.delete_by_query(
         index: Observation.index_name, body: { query: { match_all: { } } })
@@ -654,9 +649,6 @@ describe ProjectObservation, "elastic indexing" do
       Identification.__elasticsearch__.client.delete_by_query(
         index: Identification.index_name, body: { query: { match_all: { } } })
     end
-  end
-  after(:all) do
-    DatabaseCleaner.strategy = :transaction
   end
 
   it "should update projects for observations" do

@@ -26,13 +26,14 @@ describe Friendship, "on update," do
   describe "subscriptions" do
     before { enable_has_subscribers }
     after { enable_has_subscribers }
-    it "be removed if following changes to false" do
+    it "should be removed if following changes to false" do
       friendship = Friendship.make!( following: true )
       expect( friendship.user.subscriptions.where( resource: friendship.friend ).count ).to eq 1
       friendship.update_attributes( following: false )
+      friendship.reload
       expect( friendship.user.subscriptions.where( resource: friendship.friend ).count ).to eq 0
     end
-    it "be added if following changes to true" do
+    it "should be added if following changes to true" do
       friendship = Friendship.make!( following: false )
       expect( friendship.user.subscriptions.where( resource: friendship.friend ).count ).to eq 0
       friendship.update_attributes( following: true )

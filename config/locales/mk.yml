@@ -68,7 +68,9 @@ mk:
   about_these_licenses: За овие лиценци
   about_this_map: За картава
   about_this_project: За проектов
-  about_x: "За %{x}"
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Уточнетост (м)'
   account: Сметка
   account_creation: Создавање на сметка
@@ -353,7 +355,6 @@ mk:
   comment_deleted: Коментарот е избришан
   comments: Коментари
   comments_by_me: Коментари од мене
-  comments_on: Коментари за
   comments_on_my_observations: Коментари на моите набљудувања
   commercial_solicitation: Рекламирање, не води никаде и тн.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -383,8 +384,6 @@ mk:
   connecting_flickr: "Поврзувам со Flickr..."
   connecting_to_facebook: "Поврзувам со Facebook..."
   conservation_status: Заштитен статус
-  conservation_status_descriptions:
-    iucn: Истоветен код во Црвениот список на МСЗП
   coordinates: Координати
   copy: Копирање
   copyright:
@@ -503,7 +502,6 @@ mk:
   edit_your_default_settings: "Измени ги стандардните поставки"
   edited_by_name_html: "Изменето од %{name}"
   editing_taxon_range: Уредување на Распространетост на таксонот
-  either: Или
   establishment:
     endemic: ендемски
     introduced: доведен
@@ -514,7 +512,6 @@ mk:
   every_species_seen_by: Секој вид забележан од
   everyone: сите
   everywhere: насекаде
-  exact_location: Точна_местоположба
   exact_rank: Точен ранг
   exit_full_screen: "Излези од цел екран"
   export: Извези
@@ -765,7 +762,6 @@ mk:
   most_species: Највеќе видови
   most_observed_species: Највеќе набљудувани видови
   multiple_taxa_for_taxon_change: "Повеќе таксони (внос за замена/спојување, извод за разделување)"
-  must_be_observed_in: мора да се набљудува во
   must_be_less_than_x_MB: "Мора да биде помала од %{x} МБ"
   must_have_observation_field: "мора да е пополнето полето „%{operand}“"
   must_have_x: "мора да има %{x}"
@@ -851,7 +847,6 @@ mk:
   no_taxa_selected: Немате избрано таксони!
   no_taxonomic_changes_match_those_criteria: Ниедна таксономска промена не одговара на тие критериуми
   no_wikipedia_page_for_taxon: На Википедија нема страница за овој таксон.
-  no_x_this_y: "Нема %{x} за овој %{y}"
   noble_curators: "Благородните кустоси на %{site}"
   none: Ништо
   note: Напомена
@@ -1119,6 +1114,7 @@ mk:
   ray_finned_fishes: зракоперки
   recent_observations: Скорешни набљудувања
   recent_post: Скорешна објава
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Скорешни набљудувања од %{login} (Атом)"
   recent_observations_by: "Скорешни набљудувања од %{login}"
   recently_active: Неодамна активни
@@ -1294,6 +1290,7 @@ mk:
   total_members: Вкупно членови
   total_observations: Вкупно набљудувања
   total_unique_observers: Вкупно посебни набљудувачи
+  #As in a category, not as in a keyboard
   type: Внесете
   type_authority: Внесете орган...
   uicn_red_list_status: "Статус на Црвениот список на МСЗП:"

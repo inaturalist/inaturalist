@@ -133,7 +133,7 @@ const PhotoBrowser = ( {
     return I18n.t( "faves" );
   };
   const licenseDisplay = key => {
-    if ( key ) {
+    if ( key && key.length > 0 ) {
       const licenseKey = _.snakeCase( key );
       return I18n.t( `${licenseKey}_name`, { defaultValue: key } );
     }

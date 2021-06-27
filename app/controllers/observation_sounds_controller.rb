@@ -54,7 +54,6 @@ class ObservationSoundsController < ApplicationController
     
     respond_to do |format|
       format.json do
-        Observation.refresh_es_index
         if @observation_sound.valid?
           render :json => @observation_sound.to_json(:include => [:sound])
         else
@@ -78,7 +77,6 @@ class ObservationSoundsController < ApplicationController
     respond_to do |format|
       if @observation_sound.update_attributes(params[:observation_sound])
           @observation_sound.observation.elastic_index!
-          Observation.refresh_es_index
         format.json { render :json => @observation_sound.to_json(:include => [:sound]) }
       else
         Rails.logger.error "[ERROR #{Time.now}] Failed to update observation sound: #{@observation_sound.errors.full_messages.to_sentence}"

@@ -40,13 +40,14 @@
     <span id="<%= dom_id place, 'add_status' %>" class="inter status loading right" style="display:none"><%= t :adding %></span>
   <% end -%>
 
-  <strong><%= link_to t("places_name.#{place.name.gsub(' ','_').downcase}", :default => place.name), place %></strong>
+  <strong><%= link_to place.translated_name, place %></strong>
   <div class="small description">
     <% unless place.place_type_name.blank? -%>
       <%= t("place_geo.geo_planet_place_types.#{place.place_type_name.gsub(' ','_')}", :default => place.place_type_name) %>
     <% end -%>
-    <% if place.parent %><%= t :in %>
-        <%= t("places_name.#{place.parent.display_name.gsub(' ','_').downcase}", :default => place.parent.display_name) %>
+    <% if place.parent %>
+      <%- parent_place_name = place.parent.translated_name( I18n.locale, default: place.parent.display_name ) -%>
+      <%= t :in_place_x, place: parent_place_name, vow_or_con: parent_place_name[0].downcase %>
     <% end %>
   </div>
 

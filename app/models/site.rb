@@ -14,10 +14,8 @@ class Site < ActiveRecord::Base
   preference :site_name_short, :string
 
   # Email addresses
-  preference :email_admin, :string
   preference :email_noreply, :string, default: CONFIG.noreply_email
   preference :email_help, :string, default: CONFIG.help_email
-  preference :email_info, :string, default: CONFIG.help_email
 
   preference :contact_first_name, :string
   preference :contact_last_name, :string
@@ -255,6 +253,7 @@ class Site < ActiveRecord::Base
 
   preference :feedback_url, :string
   preference :discourse_url, :string
+  preference :discourse_category, :string
   preference :terms_url, :string, default: "/pages/terms"
   preference :privacy_url, :string, default: "/pages/privacy"
   preference :developers_url, :string, default: "/pages/developers"
@@ -308,6 +307,10 @@ class Site < ActiveRecord::Base
   preference :google_recaptcha_key, :string
   preference :google_recaptcha_secret, :string
 
+  # We have a limited number of callback URLs we're allowed on twitter, and
+  # we've used them all
+  preference :twitter_sign_in, :boolean, default: false
+
   # Configure taxon description callbacks. taxa/show will try to show
   # species descriptions from these sources in this order, trying the next
   # if one fails. You can see all the available describers in
@@ -330,7 +333,8 @@ class Site < ActiveRecord::Base
 
   STAFF_ONLY_PREFERENCES = [
     :google_webmaster_dns_verification,
-    :google_webmaster_dns_verified
+    :google_webmaster_dns_verified,
+    :twitter_sign_in
   ]
 
   after_save :refresh_default_site
@@ -451,6 +455,15 @@ class Site < ActiveRecord::Base
     default_site_domain = URI.parse( Site.default.url ).host.to_s[/\.(.+)$/, 1]
     return true if default_site_domain.blank?
     prefers_google_webmaster_dns_verified? || URI.parse( url.to_s ).host.to_s.include?( default_site_domain )
+  end
+
+  # Path where the site data export file *should* be. Actual generation happens
+  # via the export_site_data.rb script and the SiteDataExporter class
+  def export_path
+    private_page_cache_path( File.join(
+      "export_site_data",
+      "#{SiteDataExporter.basename_for_site( self )}.zip"
+    ) )
   end
 
 end

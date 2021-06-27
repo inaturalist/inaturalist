@@ -24,7 +24,7 @@ class Assessment extends React.Component {
     const { observation, config, updateSession } = this.props;
     if ( !observation ) { return ( <span /> ); }
     const loggedIn = config && config.currentUser;
-    const { open } = this.state
+    const { open } = this.state;
     return (
       <Grid>
         <div className="QualityMetrics collapsible-section">

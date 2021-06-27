@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Util from "../models/util";
+import { numberWithCommas, stripTags } from "../../shared/util";
 /* global TILESERVER */
 
 class ProjectMap extends Component {
-
   constructor( props, context ) {
     super( props, context );
     this.reloadData = this.reloadData.bind( this );
@@ -31,8 +31,9 @@ class ProjectMap extends Component {
     } );
 
     const inat = L.tileLayer(
-      `${TILESERVER}/grid/{z}/{x}/{y}.png?` +
-      `project_id=${this.props.project.id}&color=white&ttl=600` );
+      `${TILESERVER}/grid/{z}/{x}/{y}.png?`
+      + `project_id=${this.props.project.id}&color=white&ttl=600`
+    );
     this.map.addLayer( inat );
 
     this.map.dragging.disable();
@@ -73,8 +74,8 @@ class ProjectMap extends Component {
       } );
     }
     /* eslint no-console: 0 */
-    Util.nodeApiFetch( `observations?per_page=0&return_bounds=true&project_id=${this.props.project.id}` ).
-      then( json => {
+    Util.nodeApiFetch( `observations?per_page=0&return_bounds=true&project_id=${this.props.project.id}` )
+      .then( json => {
         this.props.updateState( { overallStats: { observations: json.total_results } } );
         if ( json.total_bounds ) {
           this.mapBounds = [
@@ -83,18 +84,21 @@ class ProjectMap extends Component {
           this.map.fitBounds( this.mapBounds );
         }
       } ).catch( e => console.log( e ) );
-    Util.nodeApiFetch( `observations/species_counts?per_page=0&project_id=${this.props.project.id}` ).
-      then( json => this.props.updateState(
-        { overallStats: { species: json.total_results } } ) ).
-      catch( e => console.log( e ) );
-    Util.nodeApiFetch( `observations/identifiers?per_page=0&project_id=${this.props.project.id}` ).
-      then( json => this.props.updateState(
-        { overallStats: { identifiers: json.total_results } } ) ).
-      catch( e => console.log( e ) );
-    Util.nodeApiFetch( `observations/observers?per_page=0&project_id=${this.props.project.id}` ).
-      then( json => this.props.updateState(
-        { overallStats: { observers: json.total_results } } ) ).
-      catch( e => console.log( e ) );
+    Util.nodeApiFetch( `observations/species_counts?per_page=0&project_id=${this.props.project.id}` )
+      .then( json => this.props.updateState(
+        { overallStats: { species: json.total_results } }
+      ) )
+      .catch( e => console.log( e ) );
+    Util.nodeApiFetch( `observations/identifiers?per_page=0&project_id=${this.props.project.id}` )
+      .then( json => this.props.updateState(
+        { overallStats: { identifiers: json.total_results } }
+      ) )
+      .catch( e => console.log( e ) );
+    Util.nodeApiFetch( `observations/observers?per_page=0&project_id=${this.props.project.id}` )
+      .then( json => this.props.updateState(
+        { overallStats: { observers: json.total_results } }
+      ) )
+      .catch( e => console.log( e ) );
   }
 
   render( ) {
@@ -119,38 +123,61 @@ class ProjectMap extends Component {
     }
     className += this.props.umbrella ? " umbrella-map-slide" : " subproject-map-slide";
     return (
-      <div className={ className }>
+      <div className={className}>
         <div className="left map-stats">
           <div className="container-fluid">
             <div className="row-fluid">
               <div className="value">
-                { Util.numberWithCommas( this.props.overallStats.observations ) }
+                { numberWithCommas( this.props.overallStats.observations ) }
               </div>
-              <div className="stat">{ I18n.t( "of_observations" ) }</div>
+              <div className="stat">
+                {
+                  stripTags( I18n.t( "x_observations_html", {
+                    count: parseInt( this.props.overallStats.observations, 0 ) || 0
+                  } ) )
+                }
+              </div>
             </div>
             <div className="row-fluid">
               <div className="value">
-                { Util.numberWithCommas( this.props.overallStats.species ) }
+                { numberWithCommas( this.props.overallStats.species ) }
               </div>
-              <div className="stat">{ I18n.t( "of_species" ) }</div>
+              <div className="stat">
+                {
+                  stripTags( I18n.t( "x_species_html", {
+                    count: parseInt( this.props.overallStats.species, 0 ) || 0
+                  } ) )
+                }
+              </div>
             </div>
             <div className="row-fluid">
               <div className="value">
-                { Util.numberWithCommas( this.props.overallStats.identifiers ) }
+                { numberWithCommas( this.props.overallStats.identifiers ) }
               </div>
-              <div className="stat">{ I18n.t( "of_identifiers" ) }</div>
+              <div className="stat">
+                {
+                  stripTags( I18n.t( "x_identifiers_html", {
+                    count: parseInt( this.props.overallStats.identifiers, 0 ) || 0
+                  } ) )
+                }
+              </div>
             </div>
             <div className="row-fluid">
               <div className="value">
-                { Util.numberWithCommas( this.props.overallStats.observers ) }
+                { numberWithCommas( this.props.overallStats.observers ) }
               </div>
-              <div className="stat">{ I18n.t( "of_observers" ) }</div>
+              <div className="stat">
+                {
+                  stripTags( I18n.t( "x_observers_html", {
+                    count: parseInt( this.props.overallStats.observers, 0 ) || 0
+                  } ) )
+                }
+              </div>
             </div>
             { parksStat }
           </div>
         </div>
-        <div className="right">
-        </div>
+        <div className="right" />
       </div>
     );
   }

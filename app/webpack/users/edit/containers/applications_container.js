@@ -6,15 +6,16 @@ import { showModal } from "../ducks/revoke_access_modal";
 
 function mapStateToProps( state ) {
   return {
-    apps: state.apps.apps
+    apps: state.apps.apps,
+    providerApps: state.apps.providerApps
   };
 }
 
 function mapDispatchToProps( dispatch ) {
   return {
-    showModal: ( id, siteName, official ) => {
+    showModal: ( id, siteName, appType ) => {
       dispatch( setAppToDelete( id ) );
-      dispatch( showModal( siteName, official ) );
+      dispatch( showModal( siteName, appType ) );
     }
   };
 }

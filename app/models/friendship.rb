@@ -24,7 +24,7 @@ class Friendship < ActiveRecord::Base
   end
 
   def remove_subscription_to_friend
-    Subscription.where( user_id: id, resource: friend ).destroy_all
+    Subscription.where( user_id: user.id, resource: friend ).destroy_all
     true
   end
 

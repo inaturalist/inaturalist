@@ -7,18 +7,21 @@ const RelationshipsCheckbox = ( {
   label,
   relationships,
   id
-} ) => (
-  <div>
-    <input
-      id={name}
-      type="checkbox"
-      checked={relationships.filter( u => u.id === id )[0][name]}
-      name={name}
-      onChange={e => handleCheckboxChange( e, id )}
-    />
-    <label htmlFor={name} className="margin-left">{label}</label>
-  </div>
-);
+} ) => {
+  const inputID = `RelationshipsCheckbox-${name}-${id}`;
+  return (
+    <div>
+      <input
+        id={inputID}
+        type="checkbox"
+        checked={relationships.filter( u => u.id === id )[0][name]}
+        name={name}
+        onChange={e => handleCheckboxChange( e, id )}
+      />
+      <label htmlFor={inputID} className="checkbox-label">{label}</label>
+    </div>
+  );
+};
 
 RelationshipsCheckbox.propTypes = {
   name: PropTypes.string,

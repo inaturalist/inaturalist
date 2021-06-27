@@ -124,8 +124,8 @@ describe TaxonName, 'creation' do
     expect(tn1.position).to eq 1
     tn2 = TaxonName.make!(name: "second", taxon: t)
     expect(tn2.position).to eq 2
-    tn2 = TaxonName.make!(name: "third", taxon: t)
-    expect(tn2.position).to eq 3
+    tn3 = TaxonName.make!(name: "third", taxon: t)
+    expect(tn3.position).to eq 3
   end
 
   it "should not allow species names that match the taxon name that are non-scientific" do
@@ -203,7 +203,7 @@ describe TaxonName, "choose_common_name" do
     expect( TaxonName.choose_common_name( [tn_norwegian, tn_bokmal], locale: "nb" ) ).to eq tn_norwegian
   end
 
-  it "should choose respect position when choosing a locale-specific name" do
+  it "should respect position when choosing a locale-specific name" do
     tn_romanji = TaxonName.make!( name: "Hamachi", lexicon: "Japanese", taxon: t )
     tn_ja = TaxonName.make!( name: "ブリ", lexicon: "Japanese", taxon: t )
     tn_ja.update_attributes( position: 1 )

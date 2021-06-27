@@ -40,19 +40,40 @@ const OTHER_OBSERVATION_FIELDS = {
   uuid: true
 };
 
+const TESTING_INTEPROLATION_MITIGATION = typeof ( CURRENT_USER ) === "object"
+  && CURRENT_USER.testGroups
+  && CURRENT_USER.testGroups.includes( "interpolation" );
+
 export default function reducer( state = OTHER_OBSERVATIONS_DEFAULT_STATE, action ) {
   if ( action.data && action.data.params && action.data.params.fields ) {
     delete action.data.params.fields;
   }
+  const otherObsFilter = o => (
+    !TESTING_INTEPROLATION_MITIGATION
+    || !o.obscured
+    || o.private_geojson
+  );
   switch ( action.type ) {
     case SET_EARLIER_USER_OBSERVATIONS:
-      return Object.assign( { }, state, { earlierUserObservations: action.observations } );
+      return Object.assign( { }, state, {
+        earlierUserObservations: _.filter( action.observations, otherObsFilter )
+      } );
     case SET_LATER_USER_OBSERVATIONS:
-      return Object.assign( { }, state, { laterUserObservations: action.observations } );
+      return Object.assign( { }, state, {
+        laterUserObservations: _.filter( action.observations, otherObsFilter )
+      } );
     case SET_NEARBY:
-      return Object.assign( { }, state, { nearby: action.data } );
+      return Object.assign( { }, state, {
+        nearby: Object.assign( {}, action.data, {
+          observations: _.filter( action.data.observations, otherObsFilter )
+        } )
+      } );
     case SET_MORE_FROM_CLADE:
-      return Object.assign( { }, state, { moreFromClade: action.data } );
+      return Object.assign( { }, state, {
+        moreFromClade: Object.assign( {}, action.data, {
+          observations: _.filter( action.data.observations, otherObsFilter )
+        } )
+      } );
     default:
       // nothing to see here
   }
@@ -110,6 +131,7 @@ export function fetchNearby( ) {
       photos: true,
       not_id: observation.uuid,
       per_page: 6,
+      skip_total_hits: true,
       details: "all"
     } );
     return inatjs.observations.search( fetchParams ).then( response => {
@@ -142,7 +164,11 @@ export function fetchMoreFromClade( ) {
       baseParams.fields = OTHER_OBSERVATION_FIELDS;
     }
     const fetchParams = Object.assign( { }, baseParams, {
-      photos: true, not_id: observation.uuid, per_page: 6, details: "all"
+      photos: true,
+      not_id: observation.uuid,
+      per_page: 6,
+      skip_total_hits: true,
+      details: "all"
     } );
     return inatjs.observations.search( fetchParams ).then( response => {
       dispatch( setMoreFromClade( { params: baseParams, observations: response.results } ) );
@@ -160,6 +186,7 @@ export function fetchMoreFromThisUser( ) {
       user_id: observation.user.id,
       order_by: "id",
       per_page: 6,
+      skip_total_hits: true,
       details: "all",
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale,

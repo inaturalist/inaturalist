@@ -1,4 +1,36 @@
 es-CR:
+  add_annotations_for_controlled_attribute:
+    evidence_of_presence: Añadir Anotaciones para "Evidencia de Presencia"
+  add_evidence_of_presence_organism_annotation: 'Añadir anotación "Evidencia de Presencia: organismo"'
+  add_evidence_of_presence_feather_annotation: 'Añadir anotación "Evidencia de Presencia: pluma"'
+  add_evidence_of_presence_scat_annotation: 'Añadir anotación "Evidencia de Presencia: heces"'
+  add_evidence_of_presence_track_annotation: 'Añadir anotación "Evidencia de Presencia: huella"'
+  add_evidence_of_presence_bone_annotation: 'Añadir anotación "Evidencia de Presencia: hueso"'
+  add_evidence_of_presence_molt_annotation: 'Añadir anotación "Evidencia de Presencia: muda"'
+  controlled_term_labels:
+    evidence_of_presence: Evidencia de Presencia
+    #As in the feather on a bird
+    feather: Pluma
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organismo
+    #Fecal matter, not regurgitated matter
+    scat: Heces
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: huella
+    #Endoskeletal remains, like a deer bone
+    bone: hueso
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: muda
+  controlled_term_definitions:
+    feather: Una o más plumas no unidas a un organismo
+    organism: Organismo total o parcial
+    scat: Materia fecal (no egagrópilas de búho u otra materia regurgitada)
+    track: Impresión en suelo o nieve hecha por el organismo
+    bone: |
+      Predominantemente restos endoesqueletales; la exposición parcial de huesos en un organismo casi intacto debería etiquetarse "organismo"
+    molt: Piel descartada o exoesqueleto
   date:
     abbr_month_names:
       - 

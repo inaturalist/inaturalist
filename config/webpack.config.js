@@ -38,7 +38,6 @@ const config = {
       // run everything through babel
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
         loader: "babel-loader",
         query: { presets: ["@babel/preset-env", "@babel/preset-react"] }
       }

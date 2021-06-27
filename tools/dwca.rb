@@ -87,5 +87,7 @@ end
 
 if opts.debug
   opts[:logger] = Logger.new(STDOUT, level: Logger::DEBUG)
+else
+  opts[:logger] = Logger.new(STDOUT, level: Logger::INFO)
 end
 DarwinCore::Archive.generate(opts)

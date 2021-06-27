@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 12.4
--- Dumped by pg_dump version 12.4
+-- Dumped from database version 13.0
+-- Dumped by pg_dump version 13.0
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -738,7 +738,8 @@ CREATE TABLE public.conservation_statuses (
     geoprivacy character varying(255) DEFAULT 'obscured'::character varying,
     iucn integer DEFAULT 20,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    updater_id integer
 );
 
 
@@ -2263,6 +2264,40 @@ ALTER SEQUENCE public.moderator_actions_id_seq OWNED BY public.moderator_actions
 
 
 --
+-- Name: moderator_notes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.moderator_notes (
+    id integer NOT NULL,
+    user_id integer,
+    body text,
+    subject_user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: moderator_notes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.moderator_notes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: moderator_notes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.moderator_notes_id_seq OWNED BY public.moderator_notes.id;
+
+
+--
 -- Name: oauth_access_grants; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2819,7 +2854,6 @@ CREATE TABLE public.observations (
     positional_accuracy integer,
     private_latitude numeric(15,10),
     private_longitude numeric(15,10),
-    private_positional_accuracy integer,
     geoprivacy character varying(255),
     quality_grade character varying DEFAULT 'casual'::character varying,
     user_agent character varying(255),
@@ -3454,7 +3488,8 @@ CREATE TABLE public.projects (
     end_time timestamp without time zone,
     trusted boolean DEFAULT false,
     "group" character varying(255),
-    last_aggregated_at timestamp without time zone
+    last_aggregated_at timestamp without time zone,
+    observation_requirements_updated_at timestamp without time zone
 );
 
 
@@ -4805,7 +4840,8 @@ CREATE TABLE public.user_blocks (
     user_id integer,
     blocked_user_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    override_user_id integer
 );
 
 
@@ -5612,6 +5648,13 @@ ALTER TABLE ONLY public.model_attribute_changes ALTER COLUMN id SET DEFAULT next
 --
 
 ALTER TABLE ONLY public.moderator_actions ALTER COLUMN id SET DEFAULT nextval('public.moderator_actions_id_seq'::regclass);
+
+
+--
+-- Name: moderator_notes id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.moderator_notes ALTER COLUMN id SET DEFAULT nextval('public.moderator_notes_id_seq'::regclass);
 
 
 --
@@ -6544,6 +6587,14 @@ ALTER TABLE ONLY public.moderator_actions
 
 
 --
+-- Name: moderator_notes moderator_notes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.moderator_notes
+    ADD CONSTRAINT moderator_notes_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: oauth_access_grants oauth_access_grants_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7350,6 +7401,13 @@ CREATE INDEX index_conservation_statuses_on_taxon_id ON public.conservation_stat
 
 
 --
+-- Name: index_conservation_statuses_on_updater_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_conservation_statuses_on_updater_id ON public.conservation_statuses USING btree (updater_id);
+
+
+--
 -- Name: index_conservation_statuses_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7942,6 +8000,20 @@ CREATE INDEX index_moderator_actions_on_resource_type_and_resource_id ON public.
 --
 
 CREATE INDEX index_moderator_actions_on_user_id ON public.moderator_actions USING btree (user_id);
+
+
+--
+-- Name: index_moderator_notes_on_subject_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_moderator_notes_on_subject_user_id ON public.moderator_notes USING btree (subject_user_id);
+
+
+--
+-- Name: index_moderator_notes_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_moderator_notes_on_user_id ON public.moderator_notes USING btree (user_id);
 
 
 --
@@ -9233,6 +9305,13 @@ CREATE INDEX index_user_blocks_on_blocked_user_id ON public.user_blocks USING bt
 
 
 --
+-- Name: index_user_blocks_on_override_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_blocks_on_override_user_id ON public.user_blocks USING btree (override_user_id);
+
+
+--
 -- Name: index_user_blocks_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10365,4 +10444,20 @@ INSERT INTO schema_migrations (version) VALUES ('20200925210606');
 INSERT INTO schema_migrations (version) VALUES ('20201023174221');
 
 INSERT INTO schema_migrations (version) VALUES ('20201118012108');
+
+INSERT INTO schema_migrations (version) VALUES ('20201204005354');
+
+INSERT INTO schema_migrations (version) VALUES ('20210125233250');
+
+INSERT INTO schema_migrations (version) VALUES ('20210127005238');
+
+INSERT INTO schema_migrations (version) VALUES ('20210128211322');
+
+INSERT INTO schema_migrations (version) VALUES ('20210213020914');
+
+INSERT INTO schema_migrations (version) VALUES ('20210220195556');
+
+INSERT INTO schema_migrations (version) VALUES ('20210305235042');
+
+INSERT INTO schema_migrations (version) VALUES ('20210408221535');
 

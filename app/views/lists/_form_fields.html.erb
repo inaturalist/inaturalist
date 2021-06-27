@@ -1,6 +1,5 @@
 <%- optionscol ||= nil -%>
 <%- list ||= form_fields ||= @list -%>
-<%- title_edit_disabled = list && list.is_a_users_default_lifelist? -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css">
     .place_id_field .chooser {width:300px;}
@@ -17,69 +16,11 @@
   </script>
 <%- end -%>
 <div class="column span-12">
-  <%= f.text_field :title, class: "text", label: t(:title).humanize, disabled: title_edit_disabled,
-    title: title_edit_disabled && t( "views.lists.edit.lifelist_titles_cannot_be_changed" ) %>
+  <%= f.text_field :title, class: "text", label: t(:title).humanize %>
   <%= f.text_area :description, :label=>t(:description) %>
 </div>
 <div class="column span-12 last">
   <% if optionscol -%>
     <%= optionscol %>
-  <% else -%>
-    <% if list.new_record? -%>
-      <div id="typescol" class="column span-12 last">
-        <%= f.check_box :type, {}, 'LifeList', {:label => t(:make_it_a_life_list?), :label_after => true} %>
-        <div class="description">
-         <%=t :life_lists_automatically_fill %>
-        </div>
-      </div>
-
-      <div id="optionscol" class="column span-12 last">
-        <div id="lifelist_fields" class="type_fields">
-          <h3><%=t :what_do_you_want_to_list? %></h3>
-          <p class="ui description">
-          <%=t :check_list_description %>
-          </p>
-
-          <div class="field">
-            <label for="taxon_input_1"><%=t :add_higher_level_taxon %></label><br/>
-            <input type="text" name="taxon_name" id="taxon_input_1" class="text" />
-            <input type="hidden" name="taxa[][taxon_id]" value="" id="taxa_1"/>
-          </div>
-
-          <%= f.text_field :place_id, :class => "text chooser", 
-            :description => t('views.lists.new.place_desc'), 
-            :placeholder => t(:start_typing_place_name) %>
-
-        </div><!-- /lifelist_fields -->
-      </div>
-      
-    <% elsif @taxon_rule %>
-      <div id="life_list_taxon" class="life_list_taxon description stacked">
-        <%= taxon_image(@taxon_rule.operand, :style => "width: 20px; vertical-align: middle") %>
-        <%=t :this_is_a_life_list_of %>
-        <%= render :partial => 'shared/taxon', 
-                   :locals => { :taxon => @taxon_rule.operand,
-                                :link_url => url_for(@taxon_rule.operand) } %>
-        <% if list.respond_to?(:place) && list.place %>
-          <%=t :from %>
-          <%= link_to(@list.place.display_name, @list.place) %>
-        <% end %>
-      </div>
-    <% elsif list.respond_to?(:place) && list.place %>
-      <div class="description stacked">
-        <%=t :this_is_a_life_list_from_place_html, place: link_to(@list.place.display_name, @list.place) %>
-      </div>
-    <% end -%>
-    
-    <div id="rankcol" class="column span-12 last">
-      <h3><%= t :rank_restrictions %></h3>
-      <%= f.radio_button :rank_rule, "any", :label => t(:allow_any), :label_after => true %>
-      <%= f.radio_button :rank_rule, "species?", :label => t(:only_species), :label_after => true %>
-      <%= f.radio_button :rank_rule, "species_or_lower?", :label => t(:only_species_and_subspecies), :label_after => true %>
-
-      <h3><%= t :select_photos_to_display %></h3>
-      <%= f.radio_button :show_obs_photos, "true", :label => t(:show_observation_photos), :label_after => true %>
-      <%= f.radio_button :show_obs_photos, "false", :label => t(:show_default_taxon_photos), :label_after => true %>
-    </div>
   <% end -%>
 </div>

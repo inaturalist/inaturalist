@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :moderator_notes
   resources :data_partners
   resources :saved_locations
   apipie
@@ -7,6 +8,9 @@ Rails.application.routes.draw do
     collection do
       get :network
       get :affiliation
+    end
+    member do
+      get :export
     end
   end
 
@@ -25,9 +29,12 @@ Rails.application.routes.draw do
   get "/donate", to: "donate#index"
   get "/monthly-supporters", to: "donate#monthly_supporters", as: :monthly_supporters
 
+  get "/donate-seek", to: redirect( "https://donorbox.org/support-seek-by-inaturalist", status: 302 )
+
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]
   resources :controlled_term_values, only: [:create, :destroy]
+  resources :curator_applications, only: [:new, :create]
   resources :annotations
 
   get "/search" => "search#index", as: "search"
@@ -141,6 +148,7 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'provider_authorizations#create', :as => :omniauth_callback
   post '/auth/:provider/callback' => 'provider_authorizations#create', :as => :omniauth_callback_post
   delete '/auth/:provider/disconnect' => 'provider_authorizations#destroy', :as => :omniauth_disconnect
+  delete "/provider_authorizations/:id" => 'provider_authorizations#destroy'
   get '/users/edit_after_auth' => 'users#edit_after_auth', :as => :edit_after_auth
   get '/facebook/photo_fields' => 'facebook#photo_fields'
   get "/eol/photo_fields" => "eol#photo_fields"
@@ -180,6 +188,9 @@ Rails.application.routes.draw do
     collection do
       get :search
       get 'leaderboard(/:year(/:month))' => :leaderboard, :as => 'leaderboard_for'
+    end
+    member do
+      get :moderation
     end
   end
   resources :relationships, controller: :relationships, only: [:index, :update, :destroy]
@@ -353,9 +364,6 @@ Rails.application.routes.draw do
   get 'lists/:id.:view_type.:format' => 'lists#show',
     :as => 'list_show_formatted_view',
     :requirements => { :id => id_param_pattern }
-  resources :life_lists, :controller => :lists do
-    resources :flags
-  end
   resources :check_lists do
     resources :flags
   end
@@ -369,14 +377,10 @@ Rails.application.routes.draw do
   get 'lists/:id/compare' => 'lists#compare', :as => :compare_lists, :constraints => { :id => /\d+([\w\-\%]*)/ }
   delete 'lists/:id/remove_taxon/:taxon_id' => 'lists#remove_taxon', :as => :list_remove_taxon, :constraints => { :id => /\d+([\w\-\%]*)/ }
   post 'lists/:id/add_taxon_batch' => 'lists#add_taxon_batch', :as => :list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  post 'check_lists/:id/add_taxon_batch' => 'check_lists#add_taxon_batch', :as => :check_list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  post 'lists/:id/reload_from_observations' => 'lists#reload_from_observations', :as => :list_reload_from_observations, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  post 'lists/:id/reload_and_refresh_now' => 'lists#reload_and_refresh_now', :as => :list_reload_and_refresh_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  post 'lists/:id/refresh_now_without_reload' => 'lists#refresh_now_without_reload', :as => :list_refresh_now_without_reload, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  post 'lists/:id/refresh' => 'lists#refresh', :as => :list_refresh, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  post 'lists/:id/add_from_observations_now' => 'lists#add_from_observations_now', :as => :list_add_from_observations_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  post 'lists/:id/refresh_now' => 'lists#refresh_now', :as => :list_refresh_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
   post 'lists/:id/generate_csv' => 'lists#generate_csv', :as => :list_generate_csv, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  post 'lists/:id/refresh_now' => 'lists#refresh_now', :as => :list_refresh_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  post 'lists/:id/add_from_observations_now' => 'lists#add_from_observations_now', :as => :list_add_from_observations_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  post 'check_lists/:id/add_taxon_batch' => 'check_lists#add_taxon_batch', :as => :check_list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }
   resources :comments, constraints: { id: id_param_pattern } do
     resources :flags
   end

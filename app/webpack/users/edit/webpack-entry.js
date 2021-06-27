@@ -11,10 +11,11 @@ import {
 } from "redux";
 
 import userSettingsReducer, { fetchUserSettings } from "./ducks/user_settings";
+import sectionReducer, { setSelectedSectionFromHash } from "./ducks/app_sections";
 import sitesReducer, { fetchNetworkSites } from "./ducks/network_sites";
 import revokeAccessModalReducer from "./ducks/revoke_access_modal";
 import deleteRelationshipModalReducer from "./ducks/delete_relationship_modal";
-import authenticatedAppsReducer, { fetchAuthorizedApps } from "./ducks/authorized_applications";
+import authenticatedAppsReducer, { fetchAuthorizedApps, fetchProviderApps } from "./ducks/authorized_applications";
 import relationshipsReducer, { fetchRelationships } from "./ducks/relationships";
 import thirdPartyTrackingModalReducer from "./ducks/third_party_tracking_modal";
 import creativeCommonsLicensingModalReducer from "./ducks/cc_licensing_modal";
@@ -28,7 +29,8 @@ const rootReducer = combineReducers( {
   apps: authenticatedAppsReducer,
   relationships: relationshipsReducer,
   thirdPartyTracking: thirdPartyTrackingModalReducer,
-  creativeCommonsLicensing: creativeCommonsLicensingModalReducer
+  creativeCommonsLicensing: creativeCommonsLicensingModalReducer,
+  section: sectionReducer
 } );
 
 const store = createStore(
@@ -42,9 +44,19 @@ const store = createStore(
   )
 );
 
+if ( window.location.hash ) {
+  store.dispatch( setSelectedSectionFromHash( window.location.hash ) );
+}
+
+window.onpopstate = e => {
+  const { hash } = e.target.location;
+  store.dispatch( setSelectedSectionFromHash( hash ) );
+};
+
 store.dispatch( fetchUserSettings( null ) );
 store.dispatch( fetchNetworkSites( ) );
 store.dispatch( fetchAuthorizedApps( ) );
+store.dispatch( fetchProviderApps( ) );
 store.dispatch( fetchRelationships( true ) );
 
 render(

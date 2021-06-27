@@ -17,6 +17,7 @@ shared_examples_for "a basic VotesController" do
     end
     it "should remove the vote" do
       post :unvote, format: :json, resource_type: 'observation', resource_id: o.id
+      o.reload
       expect( o.votes_for.size ).to eq 0
     end
   end

@@ -66,7 +66,9 @@ const localizedPhotoAttribution = ( photo, options = { } ) => {
       url = "http://creativecommons.org/publicdomain/zero/1.0/";
       rights = `${I18n.t( "copyright.no_rights_reserved" )} (CC0)`;
     } else {
-      url = `http://creativecommons.org/licenses/${photo.license_code.replace( /cc-?/, "" )}/4.0`;
+      url = photo.license_code === "pd"
+        ? "https://en.wikipedia.org/wiki/Public_domain"
+        : `http://creativecommons.org/licenses/${photo.license_code.replace( /cc-?/, "" )}/4.0`;
       rights = `${I18n.t( "some_rights_reserved" )}
         (${photo.license_code.replace( /cc-?/, "CC " ).toUpperCase( )})`;
     }

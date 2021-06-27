@@ -17,16 +17,19 @@ module DataPartnerLinkers
           predicates: [
             {
               type: "equals",
-              key: "INSTITUTION_CODE",
-              value: "iNaturalist"
-            },
-            {
-              type: "equals",
-              key: "TAXON_KEY",
-              # Uncomment one of the following for testing
-              # value: 5420950 # Clarkia breweri
-              # value: 3114255 # Hemizonella
+              key: "DATASET_KEY",
+              # I know, hardcoding, not great, but does this really need to be
+              # configurable?
+              value: "50c9509d-22c7-4a22-a47d-8c48425ef4a7"
             }
+            # {
+            #   type: "equals",
+            #   key: "TAXON_KEY",
+            #   # Uncomment one of the following for testing. Note that this is
+            #   # the GBIF species ID
+            #   # value: 5420950 # Clarkia breweri
+            #   # value: 3114255 # Hemizonella
+            # }
           ]
         }
       }.to_json
@@ -61,7 +64,7 @@ module DataPartnerLinkers
       work_path = @tmp_path
       FileUtils.mkdir_p @tmp_path, mode: 0755
       unless File.exists?("#{@tmp_path}/#{filename}")
-        system_call "curl -o #{@tmp_path}/#{filename} #{url}"
+        system_call "curl -L -o #{@tmp_path}/#{filename} #{url}"
       end
       system_call "unzip -d #{@tmp_path} #{@tmp_path}/#{filename}"
     end
@@ -94,7 +97,7 @@ module DataPartnerLinkers
           ].join(' ')
         observation = Observation.find_by_id(observation_id)
         if observation.blank?
-          logger.info "\tobservation #{observation_id} doesn't exist, skipping..."
+          logger.info "\tobservation #{observation_id} doesn't exist, skipping..." if @opts[:debug]
           next
         end
         href = "http://www.gbif.org/occurrence/#{gbif_id}"
@@ -102,7 +105,7 @@ module DataPartnerLinkers
         if existing
           existing.touch unless @opts[:debug]
           old_count += 1
-          logger.info "\tobservation link already exists for observation #{observation_id}, skipping"
+          logger.info "\tobservation link already exists for observation #{observation_id}, skipping" if @opts[:debug]
         else
           ol = ObservationLink.new( observation: observation, href: href, href_name: "GBIF", rel: "alternate" )
           ol.save unless @opts[:debug]
@@ -117,15 +120,16 @@ module DataPartnerLinkers
       delete_count = links_to_delete_scope.count
       logger.info
       logger.info "[#{Time.now}] Deleting #{delete_count} observation links..."
+      obs_ids_to_index += links_to_delete_scope.pluck(:observation_id)
+      obs_ids_to_index = obs_ids_to_index.compact.uniq
       links_to_delete_scope.delete_all unless @opts[:debug]
 
       logger.info
       logger.info "[#{Time.now}] Re-indexing #{obs_ids_to_index.size} observations..."
-      obs_ids_to_index += links_to_delete_scope.pluck(:observation_id)
-      obs_ids_to_index = obs_ids_to_index.compact.uniq
       obs_ids_to_index.in_groups_of( 500 ) do |group|
-        print "."
-        Observation.elastic_index!( ids: group.compact )
+        Observation.elastic_index!( ids: group.compact, wait_for_index_refresh: true ) unless @opts[:debug]
+        num_indexed += group_size
+        puts "[#{Time.now}] #{num_indexed} re-indexed (#{( num_indexed / obs_ids_to_index.size.to_f * 100 ).round( 2 )})"
       end
       logger.info "[#{Time.now}] Finished linking for #{@data_partner}"
     end

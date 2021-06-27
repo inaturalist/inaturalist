@@ -9,7 +9,7 @@ class StatsController < ApplicationController
     unless: lambda { authenticated_with_oauth? }
   before_filter :allow_external_iframes, only: [:wed_bioblitz]
 
-  caches_action :summary, expires_in: 1.hour
+  caches_action :summary, expires_in: 1.day
   caches_action :observation_weeks_json, expires_in: 1.day
   caches_action :nps_bioblitz, expires_in: 5.minutes
   caches_action :cnc2016, expires_in: 5.minutes
@@ -114,7 +114,10 @@ class StatsController < ApplicationController
       return render_404
     end
     delayed_progress( "stats/generate_year?user_id=#{current_user.id}&year=#{@year}" ) do
-      @job = YearStatistic.delay( priority: USER_PRIORITY ).generate_for_user_year( current_user.id, @year )
+      @job = YearStatistic.delay(
+        priority: USER_PRIORITY,
+        unique_hash: "YearStatistic::generate_for_user_year::#{current_user.id}::#{@year}"
+      ).generate_for_user_year( current_user.id, @year )
     end
     respond_to do |format|
       format.json do

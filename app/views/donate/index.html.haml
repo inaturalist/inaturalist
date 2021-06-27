@@ -21,7 +21,7 @@
   .row
     .col-md-5.col-md-offset-1.col-xs-12
       - # Note: the donorbox iframe does *not* support utm params as of 2020-12-17. It retrieves those from the URL of the parent window. ~~~kueda 20201217
-      %iframe#donorbox-iframe{ src: "https://donorbox.org/embed/support-inaturalist", seamless: "seamless", name: "donorbox", frameborder: "0", scrolling: "no", allowpaymentrequest: true }
+      %iframe#donorbox-iframe{ src: "https://donorbox.org/embed/support-inaturalist?amount=100", seamless: "seamless", name: "donorbox", frameborder: "0", scrolling: "no", allowpaymentrequest: true }
     .col-md-5.col-xs-12
       =t "views.donate.donate_desc_html"
       .sharing

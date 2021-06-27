@@ -1,4 +1,5 @@
-source "http://rubygems.org"
+
+source "https://rubygems.org"
 
 ruby "~> 2.6.0"
 
@@ -16,7 +17,6 @@ gem "aws-sdk-cloudfront"
 gem "aws-sdk-s3"
 gem "aws-sdk-waf"
 gem "biodiversity"
-gem "bugguide", git: "https://github.com/kueda/bugguide.git"
 gem "capistrano", "~> 3.3"
 gem "capistrano-rvm", "~> 0.1"
 gem "capistrano-rails", "~> 1.1"
@@ -56,7 +56,7 @@ gem "json"
 gem "jquery-rails", "~> 4.3"
 gem "koala"
 gem "dalli"
-gem "nokogiri", "~> 1.10.8"
+gem "nokogiri", "~> 1.11.4"
 gem "non-stupid-digest-assets"
 gem "objectify-xml", git: "https://github.com/inaturalist/objectify_xml.git"
 gem "omniauth", ">= 1.9.0"
@@ -108,6 +108,7 @@ gem "rgeo-geojson"
 gem "rgeo-shapefile"
 gem "activerecord-postgis-adapter", git: "https://github.com/kueda/activerecord-postgis-adapter.git", branch: "activerecord42"
 gem "terrapin"
+gem "test_after_commit"
 
 group :production do
   gem "newrelic_rpm", "~> 6.2.0"

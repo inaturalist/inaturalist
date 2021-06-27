@@ -7,7 +7,7 @@
   <div class="observation_fields">
     <%= o.fields_for :observation_field_values do |ofv| %>
       <%- ofv.object_name.gsub!(/^(\w+)\[\]/, "\\1[#{o.object.id}]") -%>
-      <%= render 'observation_field_row', :builder => ofv %>
+      <%= render 'observation_field_row', builder: ofv, removable: false %>
     <% end -%>
   </div>
   <div>

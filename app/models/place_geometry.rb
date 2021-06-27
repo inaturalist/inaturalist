@@ -110,7 +110,8 @@ class PlaceGeometry < ActiveRecord::Base
     Place.delay(
       unique_hash: { "Place::update_observations_places": place_id },
       run_at: 5.minutes.from_now,
-      queue: "slow" ).update_observations_places( place_id )
+      queue: "throttled"
+    ).update_observations_places( place_id )
   end
 
   def notify_trusting_project_members

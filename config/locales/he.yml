@@ -246,7 +246,9 @@ he:
   about_this_project: אודות פרויקט זה
   about_trips_html: |
     <h4>סקרים מאפשר איסוף נתוני נוכחות/אי-נוכחות על ידי הוספת הקשר לתצפיות שלך </h4><p><strong>הסיבה</strong> שבגללה נתוני נוכחות/אי-נוכחות מכילים מידע אודות מאמץ הדיגום היא שמידע זה מאפשר לאמוד טוב יותר את תחומי התפוצה של המינים (הנתונים הגולמיים של iNaturalist הם נתוני נוכחות בלבד). </p> <p><strong>האופן</strong> שבו סקר מוסיף הקשר לתצפיותך הוא על ידי רישום:</p> <ul> <li><strong>מה</strong> חיפשת (מין מטרה)</li> <li><strong>היכן</strong> חיפשת (מרחב החיפוש)</li> <li><strong>מתי</strong> חיפשת (פרק זמן החיפוש)</li> </ul> <p>מינים ברשימת המטרה אשר הצלחת לצפות בהם במהלך מרחב וזמן הסקר מסומנים כנוכחים. מינים שהיו ברשימת המטרה ולא נצפו מדווחים כ"לא-נוכחים". הקליקו על 'צרו טבלת נוכחות/אי-נוכחות מנתוני סקרים' על מנת ליצור טבלת נתוני נוכחות/אי-נוכחות של של מינים מסקרים ומתצפיות המקושרות אליהם. <a href='%{url}'>מידע נוסף</a></p>
-  about_x: "אודות %{x}"
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'דיוק (מטרים)'
   account: חשבון
   account_creation: צור חשבון
@@ -890,7 +892,6 @@ he:
   comments: תגובות
   comments_by_me: תגובות שלי
   comments_have_been_disabled: לא ניתן להוסיף הערות
-  comments_on: תגובות על
   comments_on_my_observations: תגובות על התצפיות שלי
   commercial_solicitation: פרסומת מסחרית, קישורים לא תקינים, וכו'
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -937,6 +938,7 @@ he:
   confirm_now: אשר עכשיו
   confirm_your_info: אשר את המידע שלך
   connect_to_provider: "התחבר ל %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: חשבונות משוייכים
   connecting_flickr: "מתחבר לפליקר..."
   connect_to_flickr_again_to_authorize_write_permissions: יש להתחבר פעם נוספת לפליקר על מנת לאפשר הרשאת כתיבה
@@ -952,7 +954,6 @@ he:
     place: מיקום באשר סטטוס זה הינו מוגבל
     url: URL לדף המתאר סטטוס זה
     geoprivacy: הגדרת פרטיות-מקום לטקסון זה
-    iucn: קוד שקול ברשימה האדומה של IUCN
   conservation_status_geoprivacy_desc: |
     מיקום מוסתר מוגדר כברירת מחדל עבור טקסון זה במקום זה
   contact_support: יצירת קשר עם תמיכה
@@ -1248,7 +1249,6 @@ he:
   editing_this: עריכת %{elem}
   editing_x_in_y: "עריכת %{x}ב%{y}"
   editors: עורכים
-  either: שניהם
   either_that_user_doesnt_exist_or: "או שהמשתמש אינו קיים, או שאתם כבר עוקבים אחריו."
   eligible_for_research_grade: מתאים לדרגת מחקר
   email: דוא״ל
@@ -1290,7 +1290,6 @@ he:
   everywhere: בכל מקום
   exact: מדוייק
   exact_date: תאריך מדויק
-  exact_location: מיקום_מדויק
   exact_rank: דרוג מדויק
   except: למעט
   exclude_users: הוצא משתמשים
@@ -1302,6 +1301,7 @@ he:
   export_observations: ייצוא תצפיות
   export_with_private_coordinates: ייצוא עם קואורדינטות מוסתרות
   exporting: "מתבצע ייצוא..."
+  external_applications_description: אפליקציות חיצוניות הן אפליקציות צד שלישי שאיפשרת להן גישה לחשבון האיי-נטורליסט שלך. ככל, אפליקציות אלה יכולות לעשות בחשבון כל דבר שבעליו יכולים, על כן יש לבטוח במפתחי האפליקציה טרם הענקת הגישה.
   extinct: נכחד
   extinct_in_the_wild: נכחד בבר
   extra_properties: תכונות נוספות
@@ -1467,7 +1467,9 @@ he:
   georeferenced: ממוקם במרחב?
   get_started: התחל
   getting_started_guide: מדריך התחלה
+  #Prompt to donate money on a montly basis
   give_monthly_caps: לתרומה חודשית
+  #Prompt to donate money once
   give_now_caps: תירמו עכשיו
   global_names: שמות גלובלים
   globally: עולמי
@@ -1562,6 +1564,7 @@ he:
   ignore_and_continue: התעלם והמשך
   ignore_times: התעלם מזמנים
   image_must_be_exactly: התמונה חייבת להיות ברוחב של 950 פיקסלים ובגובה של 400 פיקסלים לכל היותר
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: בסכנה
   import: ייבוא
   import_all_photos_as_observations: ייבוא כל התמונות כתצפיות
@@ -1611,7 +1614,6 @@ he:
   inviteonly: הזמנה בלבד
   invited_x: "%{x} הוזמן"
   iphone: אייפון
-  is_now: עכשיו
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: האם הנתונים מאפשרים לאשר שזהו %{taxon}?
   is_this_place_a_duplicate: האם מקום זה קיים כבר?
   it_can_now_be_used_for_research: מעכשיו ניתן לשימוש במחקר והכללה שאתרים אחרים
@@ -1658,10 +1660,6 @@ he:
   leaderboard: טבלת מובילים
   leaderboard_for_x: "טבלת מובילים של %{x}"
   leaderboards: טבלאות מובילים
-  leaderboard_most:
-    species: מספר הזיהויים הרב ביותר ב%{time}
-    observations: מספר התצפיות הרב ביותר ב%{time}
-    identifications: מספר הזיהויים הרב ביותר ב%{time}
   leading: מוביל
   learn: למדו
   learn_about_the_species_live_in: הכירו את המינים שחיים ב
@@ -1954,11 +1952,8 @@ he:
   most_observed_threatened_species: המינים שבסכנת הכחדה הנצפים ביותר
   multiple: בחירה מרובה
   multiple_select_option: '-- בחירה מרובה --'
-  must_be_observed_after: |
-    שנצפה אחרי %{operand}
-  must_be_observed_before: |
-    שנצפה לפני %{operand}
-  must_be_observed_in: הנצפים ביותר ב
+  must_be_observed_after: שנצפה אחרי %{operand}
+  must_be_observed_before: שנצפה לפני %{operand}
   must_be_less_than_x_MB: "חייב להיות קטן מ %{x} MB"
   must_have_observation_field: "חובה ששדה '%{operand}' יימלא"
   must_have_x: "חייב להכיל %{x}"
@@ -2104,7 +2099,6 @@ he:
   no_taxa_listed: אין טקסונים ברשימה
   no_taxa_selected: אף טקסה לא נבחרה!
   no_wikipedia_page_for_taxon: אין ערך בויקיפידיה לטקסון זה.
-  no_x_this_y: "אין %{x}ב %{y} זה/זו"
   non_human?: לא בן אדם?
   none: אף לא אחד
   none_found: לא נמצא דבר
@@ -2779,6 +2773,7 @@ he:
   please_add_a_citation_for_this_change: נא להוסיף ציטטה לשינוי זה.
   please_add_this_observation_to: נא להוסיף תצפית זו ל
   please_add_this_to_x_html: "נא להוסיף ל%{x}"
+  please_be_careful!: אנא היו זהירים!
   please_explain_why_you_want_to_hide_this: נא להסביר את סיבת הבקשה להסתרה
   please_explain_why_you_want_to_unhide_this: נא להסביר את סיבת הבקשה לאי-הסתרה
   please_fix_your_csv_and_try_again: נא לתקן את ה CSV ולנסות פעם נוספת
@@ -2824,6 +2819,8 @@ he:
     two: מנהלי פרוייקט
     many: מנהלי פרוייקט
     other: מנהלי פרוייקט
+  project_coordinate_access_warning: |
+    גישה למיקם הקואורדינטות חשובה למדענים, אולם יכולה להיות מנוצלת לרעה על ידי ציד לא חוקי. אנא וודאו כי אתם בוטחים בכל אוצרי הפרוייקט בטרם אתם בוטחים בו.
   project_created_on: פרוייקט זה נוצר ב%{date}
   project_curator_tools: כלי אצירה לפרוייקט
   project_curators: אוצרי הפרוייקט
@@ -3409,6 +3406,7 @@ he:
   trust_with_private_coordinates: אמון עם נקודות הציון המוסתרות
   twitter: טוויטר
   two_thirds: שני שליש
+  #As in a category, not as in a keyboard
   type: סוג
   type_one_name_per_line: יש להזין שם אחד בשורה
   type_place_name: הקלד שם של המקום
@@ -3525,6 +3523,7 @@ he:
   view_all_photocount_photos: "צפייה בכל %{photo_count} התמונות"
   view_assessment: צפייה הערכה
   view_details: הצגת פרטים
+  view_dynamic_lifelist: לצפייה ברשימת-חיים דינאמית
   view_field_options: הצגת אפשרויות שדה
   view_flag: צפייה בדגל
   view_flags: צפייה בדגלים
@@ -3648,7 +3647,6 @@ he:
   youre_a_site_curator_which_means: |
     אתם "משגיחי אתר", וזה אומר שהתנדבתם לעזור לנו להשגיח על הנתונים ולבדוק את התוכן. אנא אל תרגישו מחויבים לטפל בכל הבעיות האלה, אבל אם יש לכם זמן לבדוק חלק מהם, אנחנו נעריך כל עזרה שנקבל מכם. אם יש לכם שאלות בנוגע להשגחה על תוכן או שאינכם רוצים להיות משגיחי תוכן יותר, אנא צרו איתנו קשר ב: %{email}
   you_are_over_your_invites_quota: ... עברת את המיכסה החודשית של 60 הזמנות
-  you_are_now: את/ה עכשיו
   you_are_now_the_admin_for_project_html: |
     כעת <strong>את/ה</strong> האדמינ של %{project}
   you_are_now_a_curator_for_project_html: |
@@ -3777,6 +3775,8 @@ he:
     oauth:
       authorizations:
         new:
+          #Application is a third-party app or service the user has authorized to
+          #access their iNat account
           more_about_application: עוד מידע על %{application}
     observations:
       community_id:
@@ -4055,14 +4055,6 @@ he:
           "Plant Phenology=Flower Budding": ניצן פרחים
           "Plant Phenology=Flowering": פריחה
           "Plant Phenology=Fruiting": עם פירות
-          "Plant Phenology=No Evidence of Flowering": אין ראיה
-          "Life Stage=egg": ביצה
-          "Life Stage=larva": לרווה
-          "Life Stage=teneral": לאחר השלה
-          "Life Stage=subimago": טרום-בוגר
-          "Life Stage=nymph": נימפה
-          "Life Stage=pupa": גולם
-          "Life Stage=adult": בוגר
           unannotated: ללא תווית
         trending_desc: הטקסונים הנצפים ביותר בחודש האחרון
         trending_in_place_desc_html: הטקסונים הנצפים ביותר בחודש האחרון <a href="%{url}">%{place}</a>
@@ -4116,7 +4108,7 @@ he:
         prefers_no_tracking_label_desc_info_we_share: |
           המידע שאנו עשויים לחלוק עם גופים אלו כולל
         prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
-          כתובות IP. ניתן איתן לחשב את מיקומך עד לרמת עיר מסוימת, ולעקוב אחרייך באינטרנט. שים לב כי הפעלנו <a href="https://support.google.com/analytics/answer/2763052">IPים אנונימיים</a> בGoogle Analytics. Firebase Crashlytics <a href="<a href="https://firebase.google.com/support/privacy">יכולים לשמור כתובות IP לזמנים מוגבלים</a>.
+          כתובות IP. ניתן איתן לחשב את מיקומך עד לרמת עיר מסוימת, ולעקוב אחרייך באינטרנט. שים לב כי הפעלנו <a href="https://support.google.com/analytics/answer/2763052">IPים אנונימיים</a> בGoogle Analytics. Firebase Crashlytics <a href="https://firebase.google.com/support/privacy">יכולים לשמור כתובות IP לזמנים מוגבלים</a>.
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           פרטי דפדפן כגון בית יוצר, מודל וגריסה
         prefers_no_tracking_label_desc_info_we_share_crash_details: |
@@ -4127,7 +4119,6 @@ he:
       recent:
         about_recent_users: אודות
       show:
-        take_a_chance_to_review_html: 'קח דקה לצפות <a href="%{link}">בכללי השימוש שלנו</a>'
         this_user_was_banned: משתמש זה הושעה
         favorites_list_prompt_html: |
           רוצים לחלוק את הטקסות האהובות עליכם? %{link_start_tag}צרו רשימה%{link_end_tag} שכותרתה "אהובים" והתצפיות האחרונות יופיעו בה.
@@ -4746,6 +4737,9 @@ he:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: אין אישור להוספת הערות
         project_observation:
           attributes:

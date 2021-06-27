@@ -12,9 +12,9 @@
         link_subject = update.notifier
       end
       if update.notifier_type == "Comment"
-        anchor = "activity_comment_#{ update.notifier_id }"
+        anchor = "activity_comment_#{ update.notifier.try(:uuid) || update.notifier_id }"
       elsif update.notifier_type == "Identification"
-        anchor = "activity_identification_#{ update.notifier_id }"
+        anchor = "activity_identification_#{ update.notifier.try(:uuid) || update.notifier_id }"
       end
     -%>
     <li>

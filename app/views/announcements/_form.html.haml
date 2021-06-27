@@ -13,8 +13,8 @@
     if month_names.is_a?( Hash )
       month_names = [nil, I18n.t( "date.month_names" ).values].flatten
     end
-  = f.datetime_select :start, use_month_names: month_names
-  = f.datetime_select :end, use_month_names: month_names
+  = f.datetime_select :start, use_month_names: month_names, order: [:year, :month, :day]
+  = f.datetime_select :end, use_month_names: month_names, order: [:year, :month, :day]
   - if current_user.is_admin?
     = f.select :site_ids, @sites.map{ |s| [s.name, s.id] }, { include_blank: t(:all) }, multiple: true
   - else

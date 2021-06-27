@@ -177,7 +177,14 @@ class PlaceChooserPopover extends React.Component {
 
   render( ) {
     const {
-      place, className, container, preIconClass, postIconClass, label
+      className,
+      clearButton,
+      clearPlace,
+      container,
+      label,
+      place,
+      postIconClass,
+      preIconClass
     } = this.props;
     return (
       <OverlayTrigger
@@ -277,6 +284,15 @@ class PlaceChooserPopover extends React.Component {
               ? I18n.t( `places_name.${_.snakeCase( place.name )}`, { defaultValue: place.display_name } )
               : I18n.t( "filter_by_place" )
           }
+          { place && clearButton && (
+            <button
+              type="button"
+              className="btn btn-nostyle clear-button"
+              onClick={clearPlace}
+            >
+              <i className="fa fa-times" />
+            </button>
+          ) }
           { postIconClass && <i className={`${postIconClass} post-icon`} /> }
         </div>
       </OverlayTrigger>
@@ -285,6 +301,7 @@ class PlaceChooserPopover extends React.Component {
 }
 
 PlaceChooserPopover.propTypes = {
+  clearButton: PropTypes.bool,
   place: PropTypes.object,
   defaultPlace: PropTypes.object,
   // eslint-disable-next-line react/no-unused-prop-types

@@ -29,7 +29,7 @@ class AdminController < ApplicationController
   def user_detail
     @display_user = User.find_by_id(params[:id].to_i)
     @display_user ||= User.find_by_login(params[:id])
-    @display_user ||= User.find_by_email(params[:id])
+    @display_user ||= User.find_by_email(params[:id]) unless params[:id].blank?
     @observations = Observation.page_of_results( user_id: @display_user.id ) if @display_user
 
     respond_to do |format|
@@ -147,23 +147,27 @@ class AdminController < ApplicationController
 
   def stop_query
     if params[:pid] && params[:pid].match( /^\d+$/ )
-      kill_postgresql_pid( params[:pid].to_i )
+      kill_postgresql_pid( params[:pid].to_i, params[:state] )
     end
     redirect_to :queries_admin
   end
 
   private
 
-  def kill_postgresql_pid( pid )
+  def kill_postgresql_pid( pid, state = nil )
     return unless pid && pid.is_a?( Integer )
-    ActiveRecord::Base.connection.execute( "SELECT pg_cancel_backend(#{ pid })" )
+    if state == "idle in transaction"
+      ActiveRecord::Base.connection.execute( "SELECT pg_terminate_backend(#{ pid })" )
+    else
+      ActiveRecord::Base.connection.execute( "SELECT pg_cancel_backend(#{ pid })" )
+    end
   end
 
   def load_user_content_info
     user_id = params[:id] || params[:user_id]
     @display_user = User.find_by_id(user_id)
     @display_user ||= User.find_by_login(user_id)
-    @display_user ||= User.find_by_email(user_id)
+    @display_user ||= User.find_by_email(user_id) unless user_id.blank?
     unless @display_user
       flash[:error] = "User #{user_id} doesn't exist"
       redirect_back_or_default(:action => "index")

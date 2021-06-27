@@ -143,7 +143,9 @@ eu:
   about_this_bioblitz: Bioblitz honi buruz
   about_this_map: Mapa honi buruz
   about_this_project: Proiektu honi buruz
-  about_x: "Honi buruz: %{x}"
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Zehaztasuna (metroak)'
   account: Kontua
   account_creation: Kontua sortzea
@@ -704,7 +706,6 @@ eu:
   comments: Oharrak
   comments_by_me: Nire oharrak
   comments_have_been_disabled: Iruzkinak egiteko aukera kendu da
-  comments_on: Iruzkinak
   comments_on_my_observations: Nire behaketen iruzkinak
   commercial_solicitation: Iragarri zerbait, estekak ez dira baliagarriak eta abar.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -733,6 +734,7 @@ eu:
   confirm_now: Orain baieztatu
   confirm_your_info: Zure informazioa baieztatu
   connect_to_provider: "Hona konektatu: %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Lotutako kontuak
   connecting_flickr: "Flickr-era konektatzen..."
   connecting_to_facebook: "Facebook-era konektatzen..."
@@ -1008,7 +1010,6 @@ eu:
   editing_taxon_link: Taxonaren esteka aldatu
   editing_taxon_range: Taxonaren maila aldatu
   editing_this: '%{elem} aldatzen'
-  either: Edozein
   either_that_user_doesnt_exist_or: "Erabiltzaile hori ez da existitzen edo dagoeneko jarraitzen ari zara."
   email: Posta
   email_addresses_description: Posta-helbideak komarekin bereizita, muga 30 egunetik 60.
@@ -1040,7 +1041,6 @@ eu:
   everyone_journal_posts: Artikuluak egunkari guztietan
   exact: Zehatza
   exact_date: Data zehatza
-  exact_location: Kokapen zehatza
   exact_rank: Tarte zehatza
   existing_flags: Existitzen diren banderak
   exit_full_screen: "Irten pantaila osotik"
@@ -1186,7 +1186,6 @@ eu:
   heads_up_you_have_multiple: "Abisuak. Hainbat etiketa taxonomiko sortu dituzu maila berdin-berdinetarako. Kolorearen arabera kodetuta daude eta aurrerago mailaren arabera."
   help: Laguntza
   help_confirm_observations!: Lagun iezaguzu oharrak baieztatzen!
-  helped_the_observer_make: behatzaileari amaierako identifikazioa egiten lagundu zenion (hau da, azken identifikazioa baino lehen egin ziren eta bat datoz)
   here_are_3_examples: Hemen ondo osatutako datuen 3 adibide daude
   hex_color_eg: Kolorea hamaseitarrean, adib. 65644F
   hi: Kaixo.
@@ -1226,6 +1225,7 @@ eu:
   ignore: Ezikusi
   ignore_and_continue: Ezikusi eta jarraitu
   ignore_times: Denborak ezikusi
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Arriskuan
   import: Inportatu
   import_all_photos_as_observations: Argazki guztiak ohar gisa inportatu
@@ -1453,7 +1453,6 @@ eu:
   most_agree: Gehiengoak babesten du
   most_disagree: Gehiengoak ez du babesten
   multiple_taxa_for_taxon_change: "Espezie edo talde bat baino gehiago (datu-sarrera trukatzeko/nahasteko, datu-irteera bereizteko)"
-  must_be_observed_in: 'hemengo behaketak izan behar dute:'
   must_have_observation_field: "'%{operand}' eremua bete behar duzu oharrean"
   n_ago: "%{n} egiten du"
   n_people_agrees: "%{amount} pertsona ados daude"
@@ -1559,7 +1558,6 @@ eu:
   no_taxa_selected: Ez duzu espezie edo talderik hautatu!
   no_taxonomic_changes_match_those_criteria: Bilaketa-irizpide honekin ez dago aldaketa taxonomikorik
   no_wikipedia_page_for_taxon: Wikipedia-n ez dago orrialderik taxon honetarako.
-  no_x_this_y: "Ez dago %{y}honetako  %{x}-(r)ik"
   noble_curators: "Hemengo administratzaile aktiboak: %{site}"
   none: Bat ere ez
   none_found: Ez da aurkitu
@@ -1932,6 +1930,7 @@ eu:
   receive_email_notifications_when_people_leave_you: Jakinarazpenak jaso posta bidez norbaitek jarraitzeari uzten dizunean.
   recent_observations: Duela gutxiko behaketak
   recent_post: Duela gutxiko oharrak
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Duela gutxiko honen behaketak: %{login} (Atom)"
   recent_observations_by: "Duela gutxiko honen behaketak: %{login}"
   recently_active: Duela gutxi aktiboak
@@ -2314,6 +2313,7 @@ eu:
   'true': 'Egia'
   trusted_project?: Egiaztatutako proiektua al da?
   try_adding_species_form: Saiatu espezieren bat gehitzen orrialde honetako formularioa erabilita.
+  #As in a category, not as in a keyboard
   type: Mota
   type_place_name: Lekuaren izena gehitu
   type_source_name: Iturriaren izena

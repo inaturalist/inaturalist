@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import RevokeAccessModal from "../components/revoke_access_modal";
-import { deleteAuthorizedApp } from "../ducks/authorized_applications";
+import { deleteAuthorizedApp, deleteProviderApp } from "../ducks/authorized_applications";
 import { hideModal } from "../ducks/revoke_access_modal";
 
 function mapStateToProps( state ) {
@@ -8,16 +8,21 @@ function mapStateToProps( state ) {
   return {
     show: revokeAccess.show,
     siteName: revokeAccess.siteName,
-    official: revokeAccess.official
+    appType: revokeAccess.appType
   };
 }
 
 function mapDispatchToProps( dispatch ) {
   return {
     onClose: ( ) => { dispatch( hideModal( ) ); },
-    deleteApp: ( ) => {
-      dispatch( deleteAuthorizedApp( ) );
-      dispatch( hideModal( ) );
+    deleteApp: appType => {
+      if ( appType === "connectedApp" ) {
+        dispatch( deleteProviderApp( ) );
+        dispatch( hideModal( ) );
+      } else {
+        dispatch( deleteAuthorizedApp( ) );
+        dispatch( hideModal( ) );
+      }
     }
   };
 }

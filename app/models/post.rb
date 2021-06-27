@@ -22,7 +22,7 @@ class Post < ActiveRecord::Base
         UpdateAction.delete_and_purge(conditions)
         return false
       end
-      return !post.draft? && existing_updates_count == 0 && post.published_at_changed?
+      return !post.draft? && existing_updates_count == 0 && post.previous_changes[:published_at]
     },
     :if => lambda{|post, project, subscription|
       return true unless post.parent_type == 'Project'
@@ -176,8 +176,12 @@ class Post < ActiveRecord::Base
     !published_at.blank? && errors[:published_at].blank?
   end
 
-  def editable_by?(u)
-    return false unless u
+  def editable_by?( u )
+    return false unless u.is_a?( User )
+    return true if user_id == u.id
+    return true if parent.is_a?( Project ) && parent.curated_by?( u )
+    return true if parent.is_a?( Site ) && parent.editable_by?( u )
+    return true if parent.is_a?( User ) && parent == u
     user_id == u.id
   end
 

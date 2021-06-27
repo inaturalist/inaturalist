@@ -105,7 +105,9 @@ eo:
   about_this_bioblitz: Pri ĉi tiu biofulmado
   about_this_map: Pri Ĉi Tiu Mapo
   about_this_project: Pri ĉi tiu Projekto
-  about_x: "Pri %{x}"
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Prec (m)'
   account: Konto
   account_creation: Kreado de Konto
@@ -402,7 +404,6 @@ eo:
   comment_deleted: Koment forigita
   comments: Komentoj
   comments_by_me: Komentoj far mi
-  comments_on: Komentoj pri
   #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Enmeti
   #Adjective describing a taxon change that has been committed
@@ -434,6 +435,7 @@ eo:
   confirm_new_password: Konfirmi Novan Pasvorton
   confirm_now: Konfirmi nun
   confirm_your_info: Konfirmi vian informon
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Konektitaj kontoj
   connecting_flickr: "Konektanta Flickr..."
   connecting_to_facebook: "Konektanta Facebook..."
@@ -619,7 +621,6 @@ eo:
   editing: Redaktado
   editing_announcement: Redaktanta anoncon
   editing_project: Redaktante projekton %{project}
-  either: Aŭ
   email: Retpoŝta adreso
   end: Fino
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
@@ -641,7 +642,6 @@ eo:
   everywhere: ĉie
   exact: Ekzakta
   exact_date: Ekzakta Dato
-  exact_location: Ekzakta_loko
   exit_full_screen: "Malŝalti plenekranan reĝimon"
   explore: Esplori
   export: Elporti
@@ -766,7 +766,6 @@ eo:
   invite_more: Inviti plu
   invite_people: Inviti homojn
   invite_your_friends: Inviti viajn amikojn
-  is_now: estas nun
   join: Aliĝi
   join_project: Aliĝi al ĉi tiu projekto
   join_this_project: Aliĝi al ĉi tiu projekto
@@ -1761,7 +1760,6 @@ eo:
   yesterday: Hieraŭ
   you: vi
   you_: Vi
-  you_are_now: Vi estas nun
   you_are_already_a_member_of_this_project: "Vi jam estas projektano de ĉi tiu projekto!"
   you_arent_a_member_of_that_project: Vi ne estas projektano de tiu projekto.
   you_cant_flag_that: Vi ne povas flagi ĝin
@@ -1853,15 +1851,6 @@ eo:
         obs_in_year: Observoj en %{year}
     taxa:
       show:
-        frequency:
-          "Plant Phenology=No Evidence of Flowering": Neniu evidenteco
-          "Life Stage=egg": Ovo
-          "Life Stage=larva": Larvo
-          "Life Stage=teneral": Tenera imagino
-          "Life Stage=subimago": Subimagino
-          "Life Stage=nymph": Nimfo
-          "Life Stage=pupa": Pupo
-          "Life Stage=adult": Adolto
         trending_desc: Plej ofte observitaj taksonoj dum lasta monato
     users:
       edit:

@@ -28,6 +28,19 @@ export default function reducer( state = { counts: {} }, action ) {
     case SET_TAXON:
       newState.taxon = action.taxon;
       newState.taxonPhotos = _.uniqBy( newState.taxon.taxonPhotos, tp => tp.photo.id );
+      newState.counts = {};
+      delete newState.description;
+      delete newState.fieldValues;
+      delete newState.interactions;
+      delete newState.links;
+      delete newState.names;
+      delete newState.rare;
+      delete newState.recent;
+      delete newState.similar;
+      delete newState.species;
+      delete newState.taxonChange;
+      delete newState.trending;
+      delete newState.wanted;
       break;
     case SET_DESCRIPTION:
       newState.description = {
@@ -192,7 +205,7 @@ export function showPhotoChooserIfSignedIn( ) {
 export function fetchTerms( options = { histograms: false } ) {
   return ( dispatch, getState ) => {
     const s = getState( );
-    const params = { taxon_id: s.taxon.taxon.id, per_page: 50, verifiable: true };
+    const params = { taxon_id: s.taxon.taxon.id, per_page: 50 };
     if ( s.config.chosenPlace ) {
       params.place_id = s.config.chosenPlace.id;
     }
@@ -249,7 +262,8 @@ export function fetchSpecies( taxon, options = { } ) {
       taxon_id: t.id,
       rank: "species,subspecies,variety",
       verifiable: true,
-      taxon_is_active: true
+      taxon_is_active: true,
+      per_page: 0
     } );
     return inatjs.observations.speciesCounts( params ).then( response => {
       dispatch( setSpecies( response ) );
@@ -386,6 +400,9 @@ export function fetchRare( ) {
 export function fetchRecent( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
+    if ( state.observations && state.observations.recent ) {
+      return;
+    }
     const params = Object.assign( { }, defaultObservationParams( state ), {
       quality_grade: "needs_id,research",
       rank: "species",
@@ -404,6 +421,10 @@ export function fetchRecent( ) {
 
 export function fetchWanted( ) {
   return ( dispatch, getState ) => {
+    const { observations } = getState( );
+    if ( observations && observations.wanted ) {
+      return;
+    }
     const params = {
       id: getState( ).taxon.taxon.id,
       per_page: 12

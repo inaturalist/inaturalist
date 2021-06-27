@@ -4,6 +4,8 @@ class MushroomObserverImportFlowTask < FlowTask
   validate :api_key_present
   before_validation :set_unique_hash
 
+  attr_accessor :warnings
+
   class MushroomObserverImportFlowTaskError < StandardError; end
   class TooManyRequestsError < MushroomObserverImportFlowTaskError; end
   class TimeoutError < MushroomObserverImportFlowTaskError; end
@@ -67,7 +69,7 @@ class MushroomObserverImportFlowTask < FlowTask
         transaction do
           o = observation_from_result( result )
           if o && !o.save
-            mo_url = result[:url].gsub( "https", "http" )
+            mo_url_from_result( result )
             errors[mo_url] = o.errors.full_messages.to_sentence
             clear_warnings_for_url( mo_url )
           end
@@ -177,11 +179,21 @@ class MushroomObserverImportFlowTask < FlowTask
     nil
   end
 
+  def mo_url_from_result( result )
+    "http://mushroomobserver.org/observer/show_observation/#{result[:id]}"
+  end
+
   def observation_from_result( result, options = {} )
-    mo_url = result[:url].gsub( "https", "http" )
+    mo_url = mo_url_from_result( result )
+    # Ensure there's actually response to this URL and it's not an error other
+    # than Unauthorized or Forbidden
+    unless ( h = fetch_head( mo_url ) ) && ( h.code.to_i < 400 || [401, 403].include?( h.code.to_i ) )
+      warn( mo_url, "Mushroom Observer is not showing an observation for this URL" )
+      return nil
+    end
     log "working on result #{mo_url}"
     if ( is_collection_location = result.at( "is_collection_location" ) ) && is_collection_location[:value] == "false"
-      warn( result[:url], "Obs not from collection location, skipped")
+      warn( mo_url, "Obs not from collection location, skipped")
       return nil
     end
     existing = Observation.by( user ).joins(:observation_field_values).
@@ -262,6 +274,18 @@ class MushroomObserverImportFlowTask < FlowTask
         o.description = notes.text[/&gt;&quot;(.+)&quot;\}/, 1]
       elsif notes.text != "<p>{}</p>"
         o.description = notes.text
+      end
+    end
+    if notes_fields = result.at_css( "> notes_fields" )
+      o.description ||= ""
+      notes_fields_hash = notes_fields.children.inject( {} ) do |memo, notes_field|
+        key = notes_field.at( "key" ).try(:text)
+        val = notes_field.at( "value" ).try(:text)
+        memo[key] = val if key && val
+        memo
+      end
+      unless notes_fields_hash.blank?
+        o.description += "\n\n#{notes_fields_hash.map{|k,v| "<strong>#{k}</strong>: #{v}"}.join( "\n\n" )}"
       end
     end
     if !options[:skip_images] && ( images = images_from_result( result ) ) && images.size > 0

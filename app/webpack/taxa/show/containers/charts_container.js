@@ -17,6 +17,9 @@ const TERMS_TO_CHART = ["Life Stage", "Plant Phenology", "Sex"];
 function mapStateToProps( state ) {
   // process columns for seasonality
   const monthOfYearFrequencyVerifiable = state.observations.monthOfYearFrequency.verifiable || {};
+  const seasonalityLoading = _.isEmpty( state.observations.monthOfYearFrequency )
+    || !Object.keys( state.observations.monthOfYearFrequency ).includes( "verifiable" )
+    || !Object.keys( state.observations.monthOfYearFrequency ).includes( "research" );
   const seasonalityKeys = _.keys(
     monthOfYearFrequencyVerifiable
   ).map( k => parseInt( k, 0 ) ).sort( ( a, b ) => a - b );
@@ -59,6 +62,9 @@ function mapStateToProps( state ) {
   // process columns for history
   const monthFrequencyVerifiable = state.observations.monthFrequency.verifiable || {};
   const monthFrequencyResearch = state.observations.monthFrequency.research || {};
+  const historyLoading = _.isEmpty( state.observations.monthFrequency )
+    || !Object.keys( state.observations.monthFrequency ).includes( "verifiable" )
+    || !Object.keys( state.observations.monthFrequency ).includes( "research" );
   const historyKeys = _.keys( monthFrequencyVerifiable ).sort( );
   const historyColumns = [];
   const scaledHistory = state.config.prefersScaledFrequencies
@@ -89,7 +95,9 @@ function mapStateToProps( state ) {
     chartedFieldValues,
     noAnnotationHidden: state.config.prefersNoAnnotationHidden,
     scaled: state.config.prefersScaledFrequencies,
-    config: state.config
+    config: state.config,
+    historyLoading,
+    seasonalityLoading
   };
 }
 

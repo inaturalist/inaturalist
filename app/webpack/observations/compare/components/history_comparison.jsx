@@ -10,8 +10,10 @@ import DateHistogram from "../../../shared/components/date_histogram";
 import Histogram from "../../../shared/components/histogram";
 
 const HistoryComparison = ( {
+  historyDateField,
   historyLayout,
   historyInterval,
+  setHistoryDateField,
   setHistoryLayout,
   histories,
   queries,
@@ -160,6 +162,23 @@ const HistoryComparison = ( {
             ) ) }
           </select>
         </div>
+        <div className="form-group">
+          <label>{ I18n.t( "views.observations.compare.date_field" ) }</label>
+          <select
+            className="form-control"
+            onChange={e => setHistoryDateField( e.target.value )}
+            defaultValue={historyDateField}
+          >
+            { ["observed", "created"].map( dateField => (
+              <option
+                key={`date-field-select-${dateField}`}
+                value={dateField}
+              >
+                { I18n.t( dateField, { defaultValue: dateField } ) }
+              </option>
+            ) ) }
+          </select>
+        </div>
         { intervalLimitWarning && (
           <div className="alert alert-info pull-right alert-sm">
             { intervalLimitWarning }
@@ -174,15 +193,18 @@ const HistoryComparison = ( {
 };
 
 HistoryComparison.propTypes = {
-  historyLayout: PropTypes.string,
-  historyInterval: PropTypes.string,
-  setHistoryLayout: PropTypes.func,
   histories: PropTypes.array,
+  historyDateField: PropTypes.string,
+  historyInterval: PropTypes.string,
+  historyLayout: PropTypes.string,
   queries: PropTypes.array,
-  setHistoryInterval: PropTypes.func
+  setHistoryDateField: PropTypes.func,
+  setHistoryInterval: PropTypes.func,
+  setHistoryLayout: PropTypes.func
 };
 
 HistoryComparison.defaultProps = {
+  historyDateField: "observed",
   historyLayout: "combined",
   historyInterval: "week",
   queries: [],

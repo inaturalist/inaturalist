@@ -15,7 +15,7 @@
         <%= f.hidden_field :taxon_id %>
       </div>
       <%= f.hidden_field :list_id %>
-      <%= hidden_field_tag 'success_msg', t(:life_list_updated) %>
+      <%= hidden_field_tag 'success_msg', t(:list_updated) %>
       <div class="inline buttonrow" style="text-align:center">
         <%= f.submit t(:add), :id => "listed_taxon_submit", :class => 'default inline button inlineblock' %>
         <%= image_tag('spinner.gif', :id => 'listed_taxon_loading', :style => 'display: none') %>

@@ -61,14 +61,6 @@
         <span class="count"><%= @identifications.total_entries %></span>
         <label><%=t :ids_made_for_others %></label>
       </li>
-      <% if @helpful_id_count -%>
-        <li>
-          <span class="count">
-            <%= number_to_percentage(@helpful_id_count * 1.0 / @identifications.total_entries, :precision => 0) %>
-          </span>
-          <label><%=t :helped_the_observer_make %></label>
-        </li>
-      <% end -%>
     </ul>
   </div>
 </div>

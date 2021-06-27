@@ -238,7 +238,6 @@ class Emailer < ActionMailer::Base
     @project = project_user.project
     return unless @project.project_type == "collection"
     @user = project_user.user
-    set_site
     mail_with_defaults(
       subject: t(
         "views.emailer.collection_project_changed_for_trusting_member.subject",
@@ -247,11 +246,26 @@ class Emailer < ActionMailer::Base
     )
   end
 
+  def curator_application( user, application )
+    set_site
+    opts = set_site_specific_opts
+    # Always send this email to iNat staff
+    opts[:to] = Site.default.email_help.to_s.sub( "@", "+curator@" )
+    opts[:from] = user.email || opts[:from]
+    opts[:subject] = "Curator Application from #{user.login} (#{user.id})"
+    @user = user
+    @application = application
+    mail( opts )
+  end
+
   private
   def mail_with_defaults( defaults = {} )
+    set_site
     opts = set_site_specific_opts.merge( defaults )
     opts[:to] ||= @user.name.blank? ? @user.email : "#{@user.name} <#{@user.email}>"
+    set_locale
     mail( opts )
+    reset_locale
   end
 
   def default_url_options

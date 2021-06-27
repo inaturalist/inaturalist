@@ -7,14 +7,6 @@
     line-height: 1.8em;
   }
 
-  // hide taxobox
-  .infobox.biota,
-  .taxobox_v3,
-  .taxobox,
-  .infobox {
-    display: none;
-  }
-
   .infobox, 
   .infobox_v2,
   table.infobox, 
@@ -85,10 +77,6 @@
     font-style: italic;
   }
 
-  .mw-editsection {
-    display: none;
-  }
-
   .thumbimage {
     margin-bottom: 0.6em;
   }
@@ -134,10 +122,6 @@
 
   a.new {
     color: #ba0000;
-  }
-
-  .navbar {
-    display: none;
   }
 
 }

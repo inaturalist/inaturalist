@@ -6,7 +6,8 @@ const CheckboxRow = ( {
   name,
   handleCheckboxChange,
   label,
-  description
+  description,
+  disabled
 } ) => (
   <div className="row">
     <div className="col-xs-12">
@@ -17,8 +18,9 @@ const CheckboxRow = ( {
         checked={profile[name] || false}
         name={name}
         onChange={handleCheckboxChange}
+        disabled={disabled}
       />
-      <label htmlFor={`user_${name}`} className="margin-left">{label}</label>
+      <label htmlFor={`user_${name}`} className="checkbox-label">{label}</label>
       <div className="checkbox-description-margin">
         {description}
       </div>
@@ -31,7 +33,8 @@ CheckboxRow.propTypes = {
   name: PropTypes.string,
   handleCheckboxChange: PropTypes.func,
   label: PropTypes.string,
-  description: PropTypes.object
+  description: PropTypes.object,
+  disabled: PropTypes.bool
 };
 
 export default CheckboxRow;

@@ -39,7 +39,7 @@ namespace :inaturalist do
     Comment.where(user_id: spammer_ids).destroy_all
     Guide.where(user_id: spammer_ids).destroy_all
     Identification.where(user_id: spammer_ids).destroy_all
-    List.where(user_id: spammer_ids).where("lists.type != 'LifeList'").destroy_all
+    List.where(user_id: spammer_ids).destroy_all
     Observation.where(user_id: spammer_ids).destroy_all
     Post.where(user_id: spammer_ids).destroy_all
     Project.where(user_id: spammer_ids).destroy_all
@@ -76,11 +76,8 @@ namespace :inaturalist do
   desc "Delete expired S3 photos"
   task :delete_expired_photos => :environment do
     S3_CONFIG = YAML.load_file(File.join(Rails.root, "config", "s3.yml"))
-    client = ::Aws::S3::Client.new(
-      access_key_id: S3_CONFIG["access_key_id"],
-      secret_access_key: S3_CONFIG["secret_access_key"],
-      region: CONFIG.s3_region
-    )
+    client = LocalPhoto.new.s3_client
+    static_bucket = LocalPhoto.s3_bucket( false )
 
     fails = 0
     DeletedPhoto.still_in_s3.
@@ -89,19 +86,47 @@ namespace :inaturalist do
       where("(orphan=false AND deleted_photos.created_at <= ?)
         OR (orphan=true AND deleted_photos.created_at <= ?)",
         6.months.ago, 1.month.ago).select(:id, :photo_id).find_each do |p|
-      begin
-        s3_objects = client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ p.photo_id }/" )
-        images = s3_objects.contents
-      rescue
-        fails += 1
-        break if fails >= 5
+
+      s3_objects = nil
+      images = nil
+      found_in_odp_bucket = false
+      # first check to see if the photo has files in the ODP bucket
+      if LocalPhoto.odp_s3_bucket_enabled?
+        begin
+          odp_bucket = LocalPhoto.s3_bucket( true )
+          s3_objects = client.list_objects( bucket: odp_bucket, prefix: "photos/#{ p.photo_id }/" )
+          images = s3_objects.contents
+          found_in_odp_bucket = true unless images.blank?
+        rescue
+          fails += 1
+          break if fails >= 5
+        end
       end
 
+      # if there are no ODP files, check the static bucket
+      if images.blank?
+        begin
+          s3_objects = client.list_objects( bucket: static_bucket, prefix: "photos/#{ p.photo_id }/" )
+          images = s3_objects.contents
+        rescue
+          fails += 1
+          break if fails >= 5
+        end
+      end
+
+      # there were files in either bucket
       if s3_objects && s3_objects.data && s3_objects.data.is_a?( Aws::S3::Types::ListObjectsOutput )
         if images.any?
-          puts "deleting #{p.photo_id} from S3"
           begin
-            client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
+            if found_in_odp_bucket
+              # the photo has files in the OBP bucket, so delete them
+              odp_bucket = LocalPhoto.s3_bucket( true )
+              puts "deleting #{p.photo_id} from S3 ODP"
+              client.delete_objects( bucket: odp_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
+            end
+            # the photo has files in either bucket, so attempt a delete from the static bucket
+            puts "deleting #{p.photo_id} from S3"
+            client.delete_objects( bucket: static_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
             p.update_attributes(removed_from_s3: true)
           rescue
             fails += 1
@@ -165,8 +190,8 @@ namespace :inaturalist do
   task :delete_orphaned_photos => :environment do
     first_id = Photo.minimum(:id)
     last_id = Photo.maximum(:id) - 10000
-    index = 0
-    batch_size = 5000
+    index = first_id
+    batch_size = 10000
     # using `where id BETWEEN` instead of .find_each or similar, which use
     # LIMIT and create fewer, but longer-running queries
     orphans_count = 0
@@ -197,9 +222,11 @@ namespace :inaturalist do
   desc "Delete orphaned sounds"
   task :delete_orphaned_sounds => :environment do
     first_id = Sound.minimum(:id)
-    last_id = Sound.maximum(:id)
+    last_id = Sound.maximum(:id) - 10000
     index = 0
     batch_size = 10000
+    orphans_count = 0
+    last_orphan_id = 0
     # using `where id BETWEEN` instead of .find_each or similar, which use
     # LIMIT and create fewer, but longer-running queries
     while index <= last_id
@@ -211,8 +238,11 @@ namespace :inaturalist do
         # set the orphan attribute on sound, which will set the same on Deletedsound
         s.orphan = true
         s.destroy
+        last_orphan_id = p.id
+        orphans_count += 1
       end
       index += batch_size
+      puts "#{index} :: total #{orphans_count} :: last #{last_orphan_id}"
     end
   end
 
@@ -340,6 +370,42 @@ namespace :inaturalist do
       "purple",
       "random",
       "ranks",
+      "ranks_lowercase_stateofmatter",
+      "ranks_lowercase_kingdom",
+      "ranks_lowercase_subkingdom",
+      "ranks_lowercase_phylum",
+      "ranks_lowercase_subphylum",
+      "ranks_lowercase_superclass",
+      "ranks_lowercase_class",
+      "ranks_lowercase_subclass",
+      "ranks_lowercase_infraclass",
+      "ranks_lowercase_superorder",
+      "ranks_lowercase_order",
+      "ranks_lowercase_suborder",
+      "ranks_lowercase_infraorder",
+      "ranks_lowercase_subterclass",
+      "ranks_lowercase_parvorder",
+      "ranks_lowercase_zoosection",
+      "ranks_lowercase_zoosubsection",
+      "ranks_lowercase_superfamily",
+      "ranks_lowercase_epifamily",
+      "ranks_lowercase_family",
+      "ranks_lowercase_subfamily",
+      "ranks_lowercase_supertribe",
+      "ranks_lowercase_tribe",
+      "ranks_lowercase_subtribe",
+      "ranks_lowercase_genus",
+      "ranks_lowercase_genushybrid",
+      "ranks_lowercase_subgenus",
+      "ranks_lowercase_section",
+      "ranks_lowercase_subsection",
+      "ranks_lowercase_complex",
+      "ranks_lowercase_species",
+      "ranks_lowercase_hybrid",
+      "ranks_lowercase_subspecies",
+      "ranks_lowercase_variety",
+      "ranks_lowercase_form",
+      "ranks_lowercase_infrahybrid",
       "ray_finned_fishes",
       "red",
       "reload_timed_out",
@@ -350,6 +416,7 @@ namespace :inaturalist do
       "something_went_wrong_adding",
       "status_globally",
       "status_in_place",
+      "subscribe_to_observations_from_this_place_html",
       "supporting",
       "taxon_drop",
       "taxon_merge",
@@ -449,11 +516,23 @@ namespace :inaturalist do
       end
     end
 
-    # output what should be the new contents of app/assets/javascripts/i18n/translations.js
-    File.open(output_path, "w") do |file|
-      file.puts "I18n.translations || (I18n.translations = {});"
-      all_translations.sort.each do |locale, translations|
+    # Make a JS file for translations in each locale
+    all_translations.sort.each do |locale, translations|
+      locale_file_path = "app/assets/javascripts/i18n/translations/#{locale}.js"
+      File.open( locale_file_path, "w" ) do |file|
+        file.puts "I18n.translations || (I18n.translations = {});"
         file.puts "I18n.translations[\"#{ locale }\"] = #{ JSON.pretty_generate( translations ) };"
+        # Add translations for each locale name translated into that locale's
+        # language so we can show language pickers that show the language
+        # translated into that language
+        all_translations.each do |locale_name_locale, locale_name_translations|
+          next if locale_name_locale == locale
+          file.puts "I18n.translations[\"#{locale_name_locale}\"] = I18n.translations[\"#{locale_name_locale}\"] || {};"
+          json = JSON.pretty_generate( locale_name_translations[:locales].select{ |k,v|
+            k == locale_name_locale
+          } )
+          file.puts "I18n.translations[\"#{locale_name_locale}\"][\"locales\"] = #{json};"
+        end
       end
     end
   end

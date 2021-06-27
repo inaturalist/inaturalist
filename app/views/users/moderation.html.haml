@@ -1,0 +1,86 @@
+- content_for(:title) do
+  = strip_tags( t( :moderation_history_for_user_html, user: link_to_user( @user ) ) )
+
+%h2=t :moderation_history_for_user_html, user: link_to_user( @user )
+%p=t :moderation_history_desc_html
+
+.row
+  .col-xs-12
+    #controls.well
+      = form_tag( moderation_person_path( @user.id ), method: "get" ) do
+        .row
+          .col-xs-2
+            .form-group
+              %label
+                =t :year
+                = select_tag :years, options_for_select( @valid_years, selected: @years ), multiple: true, class: "select form-control", include_blank: t(:recent)
+          .col-xs-3
+            .form-group
+              %label
+                =t :type
+                = select_tag :types, options_for_select( %w(Flag ModeratorAction ModeratorNote).map{|m| [t( "activerecord.models.#{m}", default: m ), m]}, selected: @types ), multiple: true, class: "select form-control", include_blank: t(:any_)
+        .row
+          .col-xs-12
+            = submit_tag t(:filter), class: "btn btn-primary"
+            = link_to t(:reset_filters_short), url_for, class: "btn btn-link"
+            = hidden_fields_for_params( without: [:years, :types] )
+
+%table.table
+  %thead
+    %tr
+      %th=t :date_added
+      %th=t :type
+      %th=t :moderator_or_flagger
+      %th=t :body
+      %th=t :actions
+  %tbody
+    - for record in @records
+      %tr{ style: record.is_a?( Flag ) && record.resolved? ? "opacity: 0.5" : ""}
+        %td.nobr
+          %time.datetime{ datetime: record.created_at.iso8601, title: record.created_at.iso8601 }=l record.created_at, format: :long
+        %td.nobr
+          =t "activerecord.models.#{record.class.name}", default: record.class.name
+          - if record.is_a?( Flag )
+            = surround "(", ")" do
+              - if record.flaggable
+                = link_to record.flaggable_type, record.flaggable
+              - else
+                = record.flaggable_type
+                &mdash;
+                =t :removed
+            - if record.resolved?
+              %span.text-muted
+                = surround "[", "]" do
+                  =t :resolved
+          - elsif record.is_a?( ModeratorAction )
+            = surround "(", ")" do
+              - if record.resource
+                = link_to record.resource_type, record.resource
+              - else
+                = record.resource_type
+                &mdash;
+                =t :removed
+            = surround "[", "]" do
+              = record.action
+        %td
+          - if record.user_id == 0 && record.is_a?( Flag )
+            = @site.site_name_short
+          - else
+            = link_to_user( record.user )
+        %td= record.try_methods( :body, :flag, :description )
+        %td.nobr
+          - if record.is_a?( ModeratorNote )
+            - if record.editable_by?( current_user )
+              = link_to t(:edit), edit_moderator_note_path( record ), class: "btn btn-sm btn-default"
+              = link_to t(:delete), moderator_note_path( record ), method: :delete, confirm: t(:are_you_sure?), class: "btn btn-sm btn-danger"
+          - elsif record.is_a?( ModeratorAction )
+            = link_to t(:view), record.resource, class: "btn btn-sm btn-link"
+          - else
+            = link_to t(:view), record, class: "btn btn-sm btn-link"
+
+.row
+  .col-xs-8
+    = form_for ModeratorNote.new( subject_user: @user ), builder: BootstrapFormBuilder do |f|
+      = f.hidden_field :subject_user_id
+      = f.text_area :body, label: t(:add_a_note), maxlength: ModeratorNote::MAX_LENGTH, description: t(:moderator_note_desc)
+      = f.submit t(:add), class: "btn btn-primary"

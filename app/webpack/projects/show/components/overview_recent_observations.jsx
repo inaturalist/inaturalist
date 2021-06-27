@@ -41,13 +41,12 @@ const OverviewRecentObservations = ( {
             >
               <i className="fa fa-arrow-circle-right" />
             </button>
-            <button
-              type="button"
-              className="btn-green pull-right"
-              onClick={( ) => setSelectedTab( "observations" )}
+            <a
+              href={`/observations?project_id=${project.slug}&place_id=any&verifiable=any`}
+              className="btn btn-primary btn-inat btn-green pull-right"
             >
               { I18n.t( "view_all" ) }
-            </button>
+            </a>
           </h2>
           <div className="ObservationsGrid">
             { instances.slice( 0, 5 ).map( o => {

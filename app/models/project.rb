@@ -26,6 +26,7 @@ class Project < ActiveRecord::Base
   before_save :strip_title
   before_save :reset_last_aggregated_at
   before_save :remove_times_from_non_bioblitzes
+  before_save :set_observation_requirements_updated_at
   after_create :create_the_project_list
   after_save :add_owner_as_project_user
   after_save :notify_trusting_members_about_changes_if_rules_changed
@@ -360,6 +361,31 @@ class Project < ActiveRecord::Base
     return if bioblitz? || is_new_project?
     self.start_time = nil
     self.end_time = nil
+  end
+
+  def set_observation_requirements_updated_at( options = {} )
+    if new_record?
+      # puts "set_observation_requirements_updated_at: new project, backdating"
+      self.observation_requirements_updated_at = ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+      return true
+    end
+    old_params = Project.find(id).collection_search_parameters
+    new_params = collection_search_parameters
+    pu_scope = project_users.joins(:stored_preferences).where(
+      "preferences.name = 'curator_coordinate_access_for' AND preferences.value IN (?)",
+      [
+        ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON,
+        ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+      ]
+    )
+    if old_params == new_params && !prefers_user_trust_changed? && !options[:force]
+      # puts "set_observation_requirements_updated_at: no change"
+    elsif pu_scope.exists?
+      # puts "set_observation_requirements_updated_at: trusting users exist, setting stamp to now"
+      self.observation_requirements_updated_at = Time.now
+    else
+      # puts "set_observation_requirements_updated_at: requirements changed but no trusting users, no change"
+    end
   end
 
   def tracking_code_allowed?(code)
@@ -776,20 +802,6 @@ class Project < ActiveRecord::Base
     end
   end
   
-  def self.refresh_project_list(project, options = {})
-    unless project.is_a?(Project)
-      project = Project.where(id: project).includes(:project_list).first
-    end
-    
-    if project.blank?
-      Rails.logger.error "[ERROR #{Time.now}] Failed to refresh list for " + 
-        "project #{project} because it doesn't exist."
-      return
-    end
-    
-    project.project_list.refresh(options)
-  end
-  
   def self.update_observed_taxa_count(project_id)
     return unless project = Project.find_by_id(project_id)
     observed_taxa_count = if project.is_new_project?
@@ -797,7 +809,9 @@ class Project < ActiveRecord::Base
       return unless response
       response.total_results
     else
-      project.project_list.listed_taxa.where("last_observation_id IS NOT NULL").count
+      response = INatAPIService.observations_species_counts( project_id: project.id, per_page: 0 )
+      return unless response
+      response.total_results
     end
     project.update_attributes(observed_taxa_count: observed_taxa_count)
   end
