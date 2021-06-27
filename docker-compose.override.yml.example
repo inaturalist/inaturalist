@@ -1,5 +1,8 @@
 version: "2"
 services:
   pg:
-      POSTGRES_USER: username
-      POSTGRES_PASSWORD: password
+    container_name: pg
+    image: postgis/postgis:12-3.0
+    environment:
+      POSTGRES_USER: ${USERNAME}
+      POSTGRES_PASSWORD: ${PASSWORD}
