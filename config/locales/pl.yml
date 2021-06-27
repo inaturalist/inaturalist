@@ -10,34 +10,34 @@ pl:
     many: '<span class="count">%{count}</span> komentarzy'
     other: '<span class="count">%{count}</span> komentarza'
   x_faves:
-    one: '1 ulubiona'
-    few: '%{count} ulubione'
-    many: '%{count} ulubionych'
-    other: '%{count} ulubionej'
+    one: '%{count} dodanie do ulubionych'
+    few: '%{count} dodania do ulubionych'
+    many: '%{count} dodań do ulubionych'
+    other: '%{count} dodania do ulubionych'
   x_flags_resolved_html:
-    one: "<span class='count'>1</span> rozpatrzone zgłoszenie"
-    few: "<span class='count'>%{count}</span> rozpatrzone zgłoszenia"
-    many: "<span class='count'>%{count}</span> rozpatrzonych zgłoszeń"
-    other: "<span class='count'>%{count}</span> rozpatrzonego zgłoszenia"
+    one: "<span class='count'>%{count}</span> rozwiązane zgłoszenie"
+    few: "<span class='count'>%{count}</span> rozwiązane zgłoszenia"
+    many: "<span class='count'>%{count}</span> rozwiązanych zgłoszeń"
+    other: "<span class='count'>%{count}</span> rozwiązanego zgłoszenia"
   x_identifications:
-    one: '1 oznaczenie'
+    one: '%{count} oznaczenie'
     few: '%{count} oznaczenia'
     many: '%{count} oznaczeń'
     other: '%{count} oznaczenia'
   x_identifications_html:
-    one: '<span class="count">1</span> oznaczenie'
+    one: '<span class="count">%{count}</span> oznaczenie'
     few: '<span class="count">%{count}</span> oznaczenia'
     many: '<span class="count">%{count}</span> oznaczeń'
     other: '<span class="count">%{count}</span> oznaczenia'
   x_identifications_:
-    one: '1 oznaczenie'
+    one: '%{count} oznaczenie'
     few: '%{count} oznaczenia'
     many: '%{count} oznaczeń'
     other: '%{count} oznaczenia'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
-    one: '<span class="count">1</span> oznaczający'
+    one: '<span class="count">%{count}</span> oznaczający'
     #Number of people who have added identifications
     few: '<span class="count">%{count}</span> oznaczających'
     #Number of people who have added identifications
