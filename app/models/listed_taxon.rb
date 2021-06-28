@@ -748,6 +748,7 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def expire_caches
+    return unless list.is_a?(CheckList)
     ctrl = ActionController::Base.new
     ctrl.expire_fragment(List.icon_preview_cache_key(list_id))
     ListedTaxon::ORDERS.each do |order|
