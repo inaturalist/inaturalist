@@ -9,7 +9,7 @@ import moment from "moment-timezone";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import FileGallery from "./file_gallery";
-import util, { ACCEPTED_FILE_TYPES } from "../models/util";
+import util, { ACCEPTED_FILE_TYPES, DATETIME_WITH_TIMEZONE, DATETIME_WITH_TIMEZONE_OFFSET } from "../models/util";
 
 const cardSource = {
   canDrag( props ) {
@@ -215,13 +215,13 @@ class ObsCardComponent extends Component {
       locationIcon = <i className="icon-icn-location-private" />;
     }
 
-    let inputFormat = "YYYY/MM/DD h:mm A z";
+    let inputFormat = DATETIME_WITH_TIMEZONE;
     if ( obsCard.time_zone ) {
       if (
         parseInt( moment().tz( obsCard.time_zone ).format( "z" ), 0 )
         && parseInt( moment().tz( obsCard.time_zone ).format( "z" ), 0 ) !== 0
       ) {
-        inputFormat = "YYYY/MM/DD h:mm A ZZ";
+        inputFormat = DATETIME_WITH_TIMEZONE_OFFSET;
       }
     }
 
