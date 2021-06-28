@@ -365,8 +365,7 @@ class TaxonChange < ActiveRecord::Base
     logger = options[:logger] || Rails.logger
     logger.info "[INFO #{Time.now}] Starting partial revert for #{self}"
     if committed_on.nil? && !debug
-      logger.info "Reverting requires committed_on not to be nil"
-      return false
+      raise "Reverting requires committed_on not to be nil"
     end
     logger.info "[INFO #{Time.now}] Destroying identifications..."
     unless debug
