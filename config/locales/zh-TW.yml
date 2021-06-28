@@ -5197,6 +5197,10 @@ zh-TW:
           other: "共%{count}筆為獨一無二的"
       export:
         choose_columns_desc: 選擇您所想要匯出的欄位
+        create_a_query_desc_html: |
+          建立一筆觀察紀錄查詢，就像是您會前往到網站的任一地點。
+          您可以從網站的其他地方剪下貼上一筆觀察紀錄的 URL。
+          您的查詢結果必須<strong>不多於 20 萬筆觀察紀錄</strong>。
         export_in_progress_notice_html: |
           您有一筆<a href="%{url}">匯出正在進行中</a>。您必須等它完成後，才能再建立另外一筆匯出。
         ident_by_user_desc_html: |
@@ -5928,6 +5932,18 @@ zh-TW:
           比較今年和去年的差異如何？綠色長條代表今年，白色的垂直長條代表去年，灰色的背景區域顯示最低和最高的年份，以及所有年份的平均。
         compared_to_previous_years: 和前一年比較
         donate_title: "特別感謝我們所有的捐助者"
+        donate_desc_html: |
+          謝謝您如此慷慨付出您的時間、關注、專業還有捐款！
+          iNaturalist 是一個聯合加州科學院(California Academy of Science)
+          與國家地理學會(National Geographic Society)共同營運的非營利組織。
+          它是由一組<a href="%{team_url}">小團隊</a>
+          負責所有設計和網站、手機行動裝置與<a href="%{seek_url}">iNaturalist 探索(Seek)</a>
+          的開發工作，除此之外還有管理社群支援、協作
+          和讓所有事情運作(而且成長很快速！)的整合工作。
+          這個計畫仰賴眾多補助經費和捐款，包含許多捐款者一小部分的慈善捐贈。
+          我們特別感謝每月捐款者持續捐款來協助我們面對未來的規劃。
+          您可以用不同的貨幣來捐款以支持 iNaturalist 的核心營運。
+          謝謝您們大家參與和貢獻讓 %{year} 成為 iNaturalist 最盛大的一年！
         donors: 捐款者
         donors_guide_label_our_goal_is_1000: 我們的目標是每個月有 1,000 名定期捐款者
         inaturalist_network: iNaturalist 成員網路
