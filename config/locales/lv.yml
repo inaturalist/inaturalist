@@ -2947,8 +2947,8 @@ lv:
       supername: kontinenta vai reģiona daļa
       Territory: Teritorija
       territory: teritorija
-      Time_Zone: Laika zona
-      time_zone: laika zona
+      Time_Zone: Laika josla
+      time_zone: laika josla
       Town: Pilsēta
       town: pilsēta
       Undefined: Nenoteikta
@@ -4284,6 +4284,7 @@ lv:
   #not the place. Gender for all variables is not known..
   user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
     %{user} uzskata, ka šis ir visaptverošs %{taxon} taksona saraksts iekš %{place}
+  user_disagrees_with_previous_finer_identifications: "%{user} nepiekrīt iepriekšējām identifikācijām, kas bija tuvāk konkrētai sugai"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} pievienoja izlasei %{noun}, ko radījis %{owner}"
   user_flagged_as_a_non_spammer_html: "%{user} atzīmēts kā mēstuļu neizplatītājs"
@@ -4303,6 +4304,7 @@ lv:
   yes_for_any_of_my_observations: "Jā, visus manus novērojumus"
   you_are_now_following_x: "Tu tagad seko %{friend_user}"
   you_didnt_select_any_observations: Nav atlasīts neviens novērojums.
+  your_default_time_zone: Tava noklusējuma laika josla
   views:
     guides:
       edit:
@@ -4330,12 +4332,15 @@ lv:
         date_range_help: "Sākuma un beigu datums DD-MM-YYYY formātā, piemēram, 17.01.2015."
       field_descriptions:
         observed_on_string: Novērotāja norādītais datums un laiks
+        time_zone: Novērojuma laika josla
         place_guess: Novērotāja norādītais vietas apraksts
         out_of_range: Vai šis novērojums atrodas ārpus taksona zināmā izplatības apgabala?
     projects:
       new:
+        note_you_can_delete_the_time: |
+          (Atceries, ka vari izdzēst laika joslas un precīzu laiku, ja vēlies norādīt pilnas dienas.)
         use_this_for_a_time_limited_event: |
-          Šī funkcija paredzēta notikumiem konkrētā laika posmā, "Bioblitz" un sezonas projektiem. Norādi konkrētu datumu, laika periodu vai mēnešus, kuros jāveic novērojumi (neatkarīgi no gada). Ja izmanto datuma perioda sadaļu, pārliecinies, vai izvēlējies pareizo laika zonu. Lai iekļautu novērojumus, kas veikti jebkurā dienas laikā, izdzēs laiku un laika zonu tekstu. Ja ir vajadzība izvēlēties tikai vienu projekta dienu, sākuma un beigu datumu logus atstāj tukšus.
+          Šī funkcija paredzēta notikumiem konkrētā laika posmā, "Bioblitz" un sezonas projektiem. Norādi konkrētu datumu, laika periodu vai mēnešus, kuros jāveic novērojumi (neatkarīgi no gada). Ja izmanto datuma perioda sadaļu, pārliecinies, vai izvēlējies pareizo laika joslu. Lai iekļautu novērojumus, kas veikti jebkurā dienas laikā, izdzēs laiku un laika joslas tekstu. Ja ir vajadzība izvēlēties tikai vienu projekta dienu, sākuma un beigu datumu logus atstāj tukšus.
     stats:
       year:
         #Adjective, as in a donor who gives on a recurring basis, e.g. every month
@@ -4407,7 +4412,7 @@ lv:
         login: Lietotājvārds
         name: Vārds
         locale: Norises vieta
-        time_zone: Laika zona
+        time_zone: Laika josla
         search_place_id: Meklēt vietu
         place_id: Vieta
         preferred_observation_fields_by: Atļaut novērojuma lauku rādīšanu no
