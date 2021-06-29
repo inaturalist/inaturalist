@@ -11,7 +11,7 @@ module ActsAsSpammable::User
   DELETE_SPAM_AFTER = 7.days
 
   def suspend_if_spammer
-    if self.spammer_changed? && self.spammer?
+    if self.saved_change_to_spammer? && self.spammer?
       self.suspend!
     end
   end

@@ -24,10 +24,10 @@ class Flag < ActiveRecord::Base
     :on => :update,
     :queue_if => Proc.new {|flag|
       # existing flag whose comment has been changed
-      !flag.previous_changes[:id] && flag.previous_changes[:comment]
+      !flag.saved_change_to_id && flag.saved_change_to_comment
     }
   auto_subscribes :resolver, :on => :update, :if => Proc.new {|record, resource|
-    record.resolved_changed? && !record.resolver.blank? && 
+    record.saved_change_to_resolved? && !record.resolver.blank? &&
       !record.resolver.subscriptions.where(:resource_type => "Flag", :resource_id => record.id).exists?
   }
 
@@ -79,7 +79,7 @@ class Flag < ActiveRecord::Base
   end
 
   def notify_flaggable_on_update
-    if flaggable && flaggable.respond_to?(:flagged_with) && resolved_changed?
+    if flaggable && flaggable.respond_to?(:flagged_with) && saved_change_to_resolved?
       if resolved?
         flaggable.flagged_with(self, action: "resolved")
       else
@@ -144,9 +144,9 @@ class Flag < ActiveRecord::Base
   end
 
   def check_resolved
-    if resolved_changed? && resolved
+    if will_save_change_to_resolved? && resolved
       self.resolved_at = Time.now
-    elsif resolved_changed?
+    elsif will_save_change_to_resolved?
       self.resolved_at = nil
       self.resolver = nil
       self.comment = nil

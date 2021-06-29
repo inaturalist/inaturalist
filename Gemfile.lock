@@ -84,13 +84,6 @@ GIT
     omniauth-soundcloud (1.0.2)
       omniauth-oauth2
 
-GIT
-  remote: https://github.com/rivierapartners/test_after_commit.git
-  revision: 8c731bd80f6dfebe403b770f507e3ebede06c3af
-  specs:
-    test_after_commit (1.2.2)
-      activerecord (>= 3.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -767,7 +760,6 @@ DEPENDENCIES
   soundcloud
   sprockets
   terrapin
-  test_after_commit!
   thin
   uglifier
   utf8-cleaner

@@ -11,7 +11,9 @@ Rails.application.config.i18n.available_locales = I18N_SUPPORTED_LOCALES
 # set up fallbacks
 require "i18n/backend/fallbacks"
 I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
-I18n.fallbacks.map( iw: :he )
+fallback_maps = Hash[I18N_SUPPORTED_LOCALES.map{ |locale| [locale.to_sym, :en] }]
+fallback_maps[:iw] = [:he, :en]
+I18n.fallbacks.map( fallback_maps )
 
 # from and to locales for the translate gem (translation ui)
 Rails.application.config.from_locales = [:en, :es]

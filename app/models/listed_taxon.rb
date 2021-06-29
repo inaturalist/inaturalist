@@ -468,7 +468,7 @@ class ListedTaxon < ApplicationRecord
     if force_trickle_down_establishment_means.yesish?
       trickle_down_establishment_means(:force => true)
     end
-    return true unless establishment_means_changed? && !establishment_means.blank?
+    return true unless saved_change_to_establishment_means? && !establishment_means.blank?
     bubble_up_establishment_means if native?
     if introduced? && force_trickle_down_establishment_means.blank?
       trickle_down_establishment_means
@@ -543,9 +543,9 @@ class ListedTaxon < ApplicationRecord
   end
   
   def log_create_if_taxon_id_changed
-    return true unless taxon_id_changed?
-    return true if taxon_id_was.nil?
-    if has_atlas_or_complete_set?(taxon_was: taxon_id_was)
+    return true unless saved_change_to_taxon_id?
+    return true if taxon_id_before_last_save.nil?
+    if has_atlas_or_complete_set?(taxon_was: taxon_id_before_last_save)
       ListedTaxonAlteration.create(
         taxon_id: taxon_id,
         user_id: nil,
@@ -967,7 +967,7 @@ class ListedTaxon < ApplicationRecord
 
   def reindex_observations_later
     return true if taxon_id.blank? || place_id.blank?
-    return true unless previous_changes[:establishment_means]
+    return true unless saved_change_to_establishment_means?
     ListedTaxon.delay(
       priority: INTEGRITY_PRIORITY,
       unique_hash: {

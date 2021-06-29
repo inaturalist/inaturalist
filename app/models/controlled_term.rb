@@ -32,9 +32,8 @@ class ControlledTerm < ApplicationRecord
   after_commit :index_attributes
   scope :active, -> { where(active: true) }
   scope :attributes, -> { where(is_value: false) }
-  # scope :values, -> { where(is_value: true) }
   scope :unassigned_values, -> {
-    values.
+    where(is_value: true).
     joins("LEFT JOIN controlled_term_values ctv ON (controlled_terms.id = ctv.controlled_value_id)").
     where("ctv.id IS NULL")
   }

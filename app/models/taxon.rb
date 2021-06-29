@@ -539,7 +539,7 @@ class Taxon < ApplicationRecord
   def reindex_identifications_after_save
     return if new_record?
     reindex_needed = %w(rank rank_level iconic_taxon_id ancestry).detect do |a|
-      send("#{a}_changed?")
+      send("saved_change_to_#{a}?")
     end
     if reindex_needed
       Identification.delay(
@@ -551,11 +551,11 @@ class Taxon < ApplicationRecord
   end
 
   def handle_after_move
-    return true unless ancestry_changed?
+    return true unless saved_change_to_ancestry?
     set_iconic_taxon
     return true if skip_after_move
     denormalize_ancestry
-    return true if id_changed?
+    return true if saved_change_to_id?
     update_obs_iconic_taxa
     Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
       unique_hash: { "Observation::update_stats_for_observations_of": id }).
@@ -587,7 +587,7 @@ class Taxon < ApplicationRecord
   end
 
   def handle_after_activate
-    return true unless is_active_changed?
+    return true unless saved_change_to_is_active?
     Observation.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
       unique_hash: { "Observation::update_stats_for_observations_of": id } ).
       update_stats_for_observations_of( id )
@@ -627,7 +627,10 @@ class Taxon < ApplicationRecord
   
   def update_taxon_framework_relationship
     return true unless self.taxon_framework_relationship
-    taxon_framework_relationship.set_relationship if (destroyed? || name_changed? || rank_changed? || ancestry_changed? || taxon_framework_relationship_id_changed?)
+    if destroyed? || saved_change_to_name? || saved_change_to_rank? ||
+      saved_change_to_ancestry? || saved_change_to_taxon_framework_relationship_id?
+      taxon_framework_relationship.set_relationship
+    end
     attrs = {}
     attrs[:relationship] = taxon_framework_relationship.relationship
     taxon_framework_relationship.update_attributes(attrs)
@@ -709,7 +712,7 @@ class Taxon < ApplicationRecord
   end
   
   def set_wikipedia_summary_later
-    delay(:priority => OPTIONAL_PRIORITY).set_wikipedia_summary if wikipedia_title_changed?
+    delay(:priority => OPTIONAL_PRIORITY).set_wikipedia_summary if saved_change_to_wikipedia_title?
     true
   end
 
@@ -1526,7 +1529,11 @@ class Taxon < ApplicationRecord
   def descendant_of?(taxon)
     ancestor_ids.include?(taxon.id)
   end
-  
+
+  def descendant_conditions
+    Taxon.descendant_conditions( self )
+  end
+
   # TODO make this work for different conservation status sources
   def conservation_status_name
     return nil if conservation_status.blank?

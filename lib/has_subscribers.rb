@@ -347,7 +347,7 @@ module HasSubscribers
 
     def delete_subscriptions
       if Subscription.where(["resource_type = ? AND resource_id = ?", self.class.base_class.name, self.id]).any?
-        Subscription.delete_all(["resource_type = ? AND resource_id = ?", self.class.base_class.name, self.id])
+        Subscription.where(["resource_type = ? AND resource_id = ?", self.class.base_class.name, self.id]).delete_all
       end
       true
     end

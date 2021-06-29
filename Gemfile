@@ -111,7 +111,6 @@ gem "activerecord-postgis-adapter", ">= 5", "< 6"  #, git: "https://github.com/k
 # gem "activerecord-postgis-adapter", git: "https://github.com/rgeo/activerecord-postgis-adapter", branch: "5.0-stable"
 # gem "activerecord-postgis-adapter", git: "https://github.com/kueda/activerecord-postgis-adapter.git", branch: "5.0-stable"
 gem "terrapin"
-gem "test_after_commit", git: "https://github.com/rivierapartners/test_after_commit.git"
 
 group :production do
   gem "newrelic_rpm", "~> 6.2.0"

@@ -58,7 +58,7 @@ module ObservationSearch
     end
 
     def get_search_params(raw_params, options={})
-      raw_params = raw_params.clone.symbolize_keys
+      raw_params = raw_params.to_hash.symbolize_keys
       if options[:site] && options[:site].is_a?(Site)
         raw_params = Observation.site_search_params(options[:site], raw_params)
       end

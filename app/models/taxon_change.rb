@@ -402,7 +402,7 @@ class TaxonChange < ApplicationRecord
   end
 
   def commit_records_later
-    return true unless committed_on_changed? && committed?
+    return true unless saved_change_to_committed_on? && committed?
     delay(:priority => USER_INTEGRITY_PRIORITY).commit_records
     true
   end

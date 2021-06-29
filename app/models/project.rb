@@ -281,7 +281,7 @@ class Project < ApplicationRecord
   end
   
   def add_owner_as_project_user(options = {})
-    return true unless user_id_changed? || options[:force]
+    return true unless saved_change_to_user_id? || options[:force]
     if pu = project_users.where(user_id: user_id).first
       pu.update_attributes(role: ProjectUser::MANAGER)
     else
@@ -352,7 +352,7 @@ class Project < ApplicationRecord
   end
   
   def reset_last_aggregated_at
-    if start_time_changed? || end_time_changed?
+    if will_save_change_to_start_time? || will_save_change_to_end_time?
       self.last_aggregated_at = nil
     end
   end
@@ -611,7 +611,7 @@ class Project < ApplicationRecord
   end
 
   def should_generate_new_friendly_id?
-    title_changed?
+    will_save_change_to_title?
   end
 
   def slug_candidates

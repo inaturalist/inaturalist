@@ -17,12 +17,7 @@ module Logstasher
   def self.logger
     return if Rails.env.test?
     return @logger if @logger
-    @logger = Logger.new("log/#{ Rails.env }.logstash.log")
-    @logger.formatter = proc do |severity, datetime, progname, msg|
-      # strings get written to the log file verbatim
-      "#{ msg }\n"
-    end
-    @logger
+    @logger = ActiveSupport::Logger.new("log/#{ Rails.env }.logstash.log")
   end
 
   def self.ip_from_request_env(request_env)
@@ -175,7 +170,7 @@ module Logstasher
   def self.write_action_controller_log(args)
     return if Rails.env.test?
     begin
-      payload = args[4].deep_dup
+      payload = args[4].except(:headers).deep_dup
       format = payload[:format] || "all"
       format = "all" if format == "*/*"
       saved_params = Hash[

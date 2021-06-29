@@ -1003,6 +1003,10 @@ class Place < ApplicationRecord
     [ancestors, self].flatten
   end
 
+  def descendant_conditions
+    Place.descendant_conditions( self )
+  end
+
   def self_and_descendant_conditions
     ["places.id = ? OR places.ancestry like ? OR places.ancestry = ?", id, "#{ancestry}/#{id}/%", "#{ancestry}/#{id}"] 
   end
