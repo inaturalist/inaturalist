@@ -1,10 +1,10 @@
 import React, { createRef } from "react";
 import PropTypes from "prop-types";
-import moment from "moment";
+import moment from "moment-timezone";
 import _ from "lodash";
 
 import SelectionBasedComponent from "./selection_based_component";
-import { DATETIME_WITH_TIMEZONE_OFFSET } from "../models/util";
+import { DATETIME_WITH_TIMEZONE, DATETIME_WITH_TIMEZONE_OFFSET } from "../models/util";
 
 class TimeShifter extends SelectionBasedComponent {
   constructor( props, context ) {
@@ -22,8 +22,18 @@ class TimeShifter extends SelectionBasedComponent {
     this.slider = createRef( );
   }
 
-  updateCard( card, dateString ) {
-    const { updateObsCard } = this.props;
+  updateCard( card, newDate ) {
+    const { updateObsCard, inputFormat } = this.props;
+
+    let dateString = "";
+
+    // using same datetime formats as date_time_field_wrapper.js
+    if ( card.time_zone ) {
+      dateString = newDate.tz( card.time_zone ).format( DATETIME_WITH_TIMEZONE );
+    } else {
+      dateString = moment.parseZone( newDate ).format( inputFormat );
+    }
+
     updateObsCard( card, {
       date: dateString,
       selected_date: dateString
@@ -31,8 +41,6 @@ class TimeShifter extends SelectionBasedComponent {
   }
 
   addTimeToSelectedObs( hours, minutes, cardsToUpdate ) {
-    const { inputFormat } = this.props;
-
     cardsToUpdate.forEach( card => {
       const { date } = card;
       if ( date === null ) { return; }
@@ -43,28 +51,24 @@ class TimeShifter extends SelectionBasedComponent {
       const currentTime = moment( new Date( ) );
 
       const minDateString = moment.min( currentTime, newDate );
-      const dateString = newDate.tz( card.time_zone ).format( inputFormat );
 
       if ( minDateString !== currentTime ) {
-        this.updateCard( card, dateString );
+        this.updateCard( card, newDate );
       }
     } );
   }
 
   subtractTimeFromSelectedObs( hours, minutes, cardsToUpdate ) {
-    const { inputFormat } = this.props;
-
     cardsToUpdate.forEach( card => {
       const { date } = card;
       if ( date === null ) { return; }
 
-      const dateString = moment( new Date( date ) )
+      const newDate = moment( new Date( date ) )
         .tz( card.time_zone )
         .subtract( hours, "hours" )
-        .subtract( minutes, "minutes" )
-        .format( inputFormat );
+        .subtract( minutes, "minutes" );
 
-      this.updateCard( card, dateString );
+      this.updateCard( card, newDate );
     } );
   }
 
