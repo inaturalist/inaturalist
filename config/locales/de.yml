@@ -1811,6 +1811,8 @@ de:
   highlights_and_stats_from_year_on_site: "Highlights und Statistiken aus %{year} in %{site}"
   history: Historie
   home: Dashboard
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_adjusted: "Stunden angepasst:"
   however_there_were_some_issues: "Allerdings gab es ein paar Probleme: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: kein Veto; und '%{taxon}' kann zumindest bestätigt werden
   icon: Symbol
@@ -2783,6 +2785,8 @@ de:
   off_caps: "AUS"
   official_blog: Offizieller Blog
   offline_access_enabled: Offlinezugriff ermöglichen
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Zeitversatz"
   old_observation_form: Altes Beobachtungsformular (veraltet)
   ok: "OK"
   on_caps: "EIN"
