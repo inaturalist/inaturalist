@@ -1,5 +1,6 @@
 module Shared::SweepersModule
   def expire_listed_taxon(listed_taxon)
+    return unless listed_taxon.list.is_a?(CheckList)
     listed_taxon.expire_caches
   end
 

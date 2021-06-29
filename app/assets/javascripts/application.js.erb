@@ -446,11 +446,13 @@ $(document).ready(function() {
       $( "#headersearch" ).addClass( "open" );
       $( "#header" ).addClass( "search-open" );
       $( "#headersearch input" ).focus( );
+      $( "#headersearch input" ).attr( "tabindex", null );
       updateSession( { header_search_open: true } );
     }
     function hideHeaderSearch() {
       $( "#headersearch" ).removeClass( "open" );
       $( "#header" ).removeClass( "search-open" );
+      $( "#headersearch input" ).attr( "tabindex", -1 );
       updateSession( { header_search_open: false } );
     }
     $( "#header .show-btn" ).click( showHeaderSearch );

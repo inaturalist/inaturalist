@@ -220,10 +220,9 @@ input[type="tel"]:focus,
 input[type="color"]:focus,
 .uneditable-input:focus,
 .btn:focus,
-.btn:active {   
-  border-color: none;
+.btn:active {
   box-shadow: none;
-  outline: 0 none;
+  outline: auto;
 }
 
 .btn-group.btn-group-stateless .btn:focus,

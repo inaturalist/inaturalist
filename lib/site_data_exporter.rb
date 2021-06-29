@@ -154,7 +154,7 @@ class SiteDataExporter
         users
       WHERE
         site_id = #{@site.id}
-        AND spammer != 't'
+        AND (spammer = 'f' || spammer IS NULL)
     SQL
     cmd = "psql #{@dbname} -h #{@dbhost} -c \"COPY (#{sql.gsub( /\s+/m, " ")}) TO STDOUT WITH CSV HEADER\" > #{path}"
     system_call cmd
