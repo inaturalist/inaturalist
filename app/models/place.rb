@@ -521,7 +521,7 @@ class Place < ApplicationRecord
   def validate_with_geom( geom, other_attrs = {} )
     if geom.is_a?( GeoRuby::SimpleFeatures::Geometry )
       georuby_geom = geom
-      geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb )
+      geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb ) rescue nil
     end
     if geom.blank?
       # This probably means GeoRuby parsed some polygons but RGeo didn't think
@@ -550,7 +550,7 @@ class Place < ApplicationRecord
   def save_geom( geom, other_attrs = {} )
     if geom.is_a?( GeoRuby::SimpleFeatures::Geometry )
       georuby_geom = geom
-      geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb )
+      geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb ) rescue nil
     end
     return unless validate_with_geom( geom, other_attrs )
     other_attrs.delete(:user)
@@ -575,7 +575,9 @@ class Place < ApplicationRecord
   
   # Appends a geom instead of replacing it
   def append_geom(geom, other_attrs = {})
-    geom = RGeo::WKRep::WKBParser.new.parse(geom.as_wkb) if geom.is_a?(GeoRuby::SimpleFeatures::Geometry)
+    if geom.is_a?(GeoRuby::SimpleFeatures::Geometry)
+      geom = RGeo::WKRep::WKBParser.new.parse(geom.as_wkb) rescue nil
+    end
     new_geom = geom
     self.place_geometry.reload
     if place_geometry && !place_geometry.geom.nil?

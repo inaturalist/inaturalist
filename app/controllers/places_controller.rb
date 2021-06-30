@@ -357,7 +357,7 @@ class PlacesController < ApplicationController
     @merge_target = Place.find(params[:with]) rescue nil
     
     if request.post?
-      keepers = params.map do |k,v|
+      keepers = params.to_hash.map do |k,v|
         k.gsub('keep_', '') if k =~ /^keep_/ && v == 'left'
       end.compact
       keepers = nil if keepers.blank?

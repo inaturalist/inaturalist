@@ -185,7 +185,7 @@ class ListsController < ApplicationController
           redirect_to @list
         end
         format.js do
-          render :text => t(:taxon_removed_from_list)
+          render :plain => t(:taxon_removed_from_list)
         end
         format.json do
           render :json => @listed_taxon

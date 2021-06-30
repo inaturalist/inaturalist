@@ -248,7 +248,7 @@ class GuidesController < ApplicationController
         end
         prevent_caching
         # Would prefer to use accepted, but don't want to deliver an invlid zip file
-        render :status => :no_content, :layout => false, :text => ""
+        head :no_content
       end
     end
   end

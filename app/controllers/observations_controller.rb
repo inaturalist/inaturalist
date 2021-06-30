@@ -1082,7 +1082,7 @@ class ObservationsController < ApplicationController
         flash[:notice] = t(:observations_deleted)
         redirect_to observations_by_login_path(current_user.login)
       end
-      format.js { render :text => "Observations deleted.", :status => 200 }
+      format.js { render :plain => "Observations deleted.", :status => 200 }
     end
   end
   
@@ -1225,10 +1225,9 @@ class ObservationsController < ApplicationController
   # gets observations by user login
   def by_login
     block_if_spammer(@selected_user) && return
-    params.update(:user_id => @selected_user.id,
-      :viewer => current_user, 
-      :filter_spam => (current_user.blank? || current_user != @selected_user)
-    )
+    params[:user_id] = @selected_user.id
+    params[:viewer] = current_user
+    params[:filter_spam] = (current_user.blank? || current_user != @selected_user)
     params[:order_by] ||= @prefs["edit_observations_order"] if @prefs["edit_observations_order"]
     params[:order] ||= @prefs["edit_observations_sort"] if @prefs["edit_observations_sort"]
     search_params = Observation.get_search_params(params,
@@ -1400,7 +1399,7 @@ class ObservationsController < ApplicationController
       end
       format.csv do
         pagination_headers_for(@observations)
-        render :text => ProjectObservation.to_csv(@project_observations, :user => current_user)
+        render :plain => ProjectObservation.to_csv(@project_observations, :user => current_user)
       end
       format.widget do
         if params[:markup_only] == "true"
@@ -1645,7 +1644,7 @@ class ObservationsController < ApplicationController
       format.csv do
         Taxon.preload_associations(@taxa, [
           :ancestor_taxa, { taxon_names: :place_taxon_names }])
-        render :text => @taxa.to_csv(
+        render :plain => @taxa.to_csv(
           :only => [:id, :name, :rank, :rank_level, :ancestry, :is_active],
           :methods => [:common_name_string, :iconic_taxon_name, 
             :taxonomic_kingdom_name,
@@ -2102,7 +2101,7 @@ class ObservationsController < ApplicationController
     native_photo_ids = photo_list.map{|p| p.to_s}.uniq
     # the photos may exist in their native photo_class, or cached
     # as a LocalPhoto, so lookup both and combine results
-    existing = LocalPhoto.where( subtype: photo_class, native_photo_id: native_photo_ids, user_id: current_user.id )
+    existing = LocalPhoto.where( subtype: photo_class.name, native_photo_id: native_photo_ids, user_id: current_user.id )
     if photo_class && photo_class != LocalPhoto
       existing += photo_class.includes(:user).where( native_photo_id: native_photo_ids, user_id: current_user.id )
     end
@@ -2714,7 +2713,7 @@ class ObservationsController < ApplicationController
     end
     Observation.preload_associations(@observations, [ :tags, :taxon, :photos, :user, :quality_metrics ])
     pagination_headers_for(@observations)
-    render :text => Observation.as_csv(@observations, only.map{|c| c.to_sym},
+    render :plain => Observation.as_csv(@observations, only.map{|c| c.to_sym},
       { ssl: request.protocol =~ /https/ })
   end
   
@@ -3016,7 +3015,7 @@ class ObservationsController < ApplicationController
         Photo.turn_remote_photo_into_local_photo( photo )
         Photo.find_by_id( photo.id ) # || photo.becomes( LocalPhoto ) # ensure we have an object loaded with the right class
       end
-    }.compact
+    }.compact.uniq
   end
 
   def ensure_sounds_are_local_sounds( sounds )

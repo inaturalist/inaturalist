@@ -254,7 +254,7 @@ class StatsController < ApplicationController
             csv << [t.name, t.common_name.try(:name), t.iconic_taxon_name, @missing_taxon_ids.index( t.id ) ? "Missing" : "Novel"]
           end
         end
-        render text: csv_text
+        render plain: csv_text
       end
     end
   end

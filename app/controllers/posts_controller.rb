@@ -49,7 +49,9 @@ class PostsController < ApplicationController
     end
 
     pagination_headers_for( @posts )
-    
+
+    # TODO: Rails 5 - pleary 06/30/21: I removed :site_name_short from methods as Rails 5 throws
+    # an error for missing methods. We should only use methods shared by all post parent classes
     respond_to do |format|
       format.html
       format.atom
@@ -61,7 +63,7 @@ class PostsController < ApplicationController
           },
           parent: {
             only: [ :id, :title, :name ],
-            methods: [ :icon_url, :site_name_short ]
+            methods: [ :icon_url ]
           }
         }
       end
@@ -267,6 +269,8 @@ class PostsController < ApplicationController
       @posts = @posts.where( "posts.published_at < ?", older_than_post.published_at )
     end
     Post.preload_associations(@posts, [{ user: :site }, :stored_preferences, :parent])
+    # TODO: Rails 5 - pleary 06/30/21: I removed :site_name_short from methods as Rails 5 throws
+    # an error for missing methods. We should only use methods shared by all post parent classes
     respond_to do |format|
       format.json do
         json = @posts.as_json(:include => {
@@ -276,7 +280,7 @@ class PostsController < ApplicationController
           },
           parent: {
             only: [ :id, :title, :name ],
-            methods: [ :icon_url, :site_name_short ]
+            methods: [ :icon_url ]
           }
         })
         json.each_with_index do |post, i|

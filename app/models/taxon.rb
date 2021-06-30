@@ -1466,10 +1466,9 @@ class Taxon < ApplicationRecord
       end
     end
     
-    %w(flags).each do |association|
-      send(association, :reload => true).each do |associate|
-        associate.destroy unless associate.valid?
-      end
+    flags.reload
+    flags.each do |flag|
+      flag.destroy unless flag.valid?
     end
 
     Taxon.delay(:priority => INTEGRITY_PRIORITY).set_iconic_taxon_for_observations_of(id)

@@ -17,7 +17,7 @@ describe AtlasesController do
     let(:atlas) { Atlas.make!( taxon: taxon, user: user ) }
     it "should create a listing if one doesn't exist" do
       sign_in user
-      post :alter_atlas_presence, id: atlas.id, taxon_id: taxon.id, place_id: place.id
+      post :alter_atlas_presence, params: { id: atlas.id, taxon_id: taxon.id, place_id: place.id }
       lt = ListedTaxon.where(taxon_id: taxon.id, place_id: place.id, list_id: place.check_list_id).first
       expect(lt).not_to be_blank
     end
@@ -28,7 +28,7 @@ describe AtlasesController do
       check_list = List.find( place.check_list_id )
       check_listed_taxon = check_list.add_taxon( taxon )
       sign_in user
-      post :alter_atlas_presence, id: atlas.id, taxon_id: taxon.id, place_id: place.id
+      post :alter_atlas_presence, params: { id: atlas.id, taxon_id: taxon.id, place_id: place.id }
       lt = ListedTaxon.where( taxon_id: taxon.id, place_id: place.id, list_id: place.check_list_id ).first
       expect( lt ).to be_blank
     end
@@ -36,7 +36,7 @@ describe AtlasesController do
     it "should create a listing if there's a comprehensive list that isn't the place's default list" do
       comprehensive_list = place.check_lists.create!( taxon: genus, user: user, comprehensive: true )
       sign_in user
-      post :alter_atlas_presence, format: :json, id: atlas.id, taxon_id: taxon.id, place_id: place.id
+      post :alter_atlas_presence, format: :json, params: { id: atlas.id, taxon_id: taxon.id, place_id: place.id }
       lt = ListedTaxon.where( taxon_id: taxon.id, place_id: place.id, list_id: comprehensive_list.id ).first
       expect( lt ).not_to be_blank
     end
@@ -44,7 +44,7 @@ describe AtlasesController do
     it "should create a listing on the default list if there's a comprehensive list" do
       comprehensive_list = place.check_lists.create!( taxon: genus, user: user, comprehensive: true )
       sign_in user
-      post :alter_atlas_presence, format: :json, id: atlas.id, taxon_id: taxon.id, place_id: place.id
+      post :alter_atlas_presence, format: :json, params: { id: atlas.id, taxon_id: taxon.id, place_id: place.id }
       lt = ListedTaxon.where( taxon_id: taxon.id, place_id: place.id, list_id: place.check_list_id ).first
       expect( lt ).not_to be_blank
     end
@@ -55,7 +55,7 @@ describe AtlasesController do
       comprehensive_list.place.check_list.add_taxon( taxon )
       AncestryDenormalizer.denormalize
       sign_in user
-      post :alter_atlas_presence, format: :json, id: atlas.id, taxon_id: taxon.id, place_id: place.id
+      post :alter_atlas_presence, format: :json, params: { id: atlas.id, taxon_id: taxon.id, place_id: place.id }
       lt = ListedTaxon.where( taxon_id: taxon.id, place_id: place.id, list_id: comprehensive_list.id ).first
       expect( lt ).to be_blank
     end
@@ -65,7 +65,7 @@ describe AtlasesController do
       place.update_attributes( parent: parent_place )
       comprehensive_list = parent_place.check_lists.create!( taxon: genus, user: user, comprehensive: true )
       sign_in user
-      post :alter_atlas_presence, format: :json, id: atlas.id, taxon_id: taxon.id, place_id: place.id
+      post :alter_atlas_presence, format: :json, params: { id: atlas.id, taxon_id: taxon.id, place_id: place.id }
       lt = ListedTaxon.where( taxon_id: taxon.id, place_id: place.id, list_id: place.check_list.id ).first
       expect( lt ).not_to be_blank
     end

@@ -5,9 +5,11 @@ shared_examples_for "an ObservationSoundsController" do
     let(:file) { fixture_file_upload( "files/pika.mp3", "audio/mpeg" ) }
     it "should work" do
       expect {
-        post :create, format: :json, observation_sound: { observation_id: observation.id }, file: file
+        post :create, format: :json, params: {
+          observation_sound: { observation_id: observation.id }, file: file
+        }
       }.to change( ObservationSound, :count ).by( 1 )
-      expect( response ).to be_success
+      expect( response ).to be_successful
     end
   end
 end
@@ -15,7 +17,7 @@ end
 describe ObservationSoundsController, "oauth authentication" do
   elastic_models( Observation )
   let(:user) { User.make! }
-  let(:token) { double :acceptable? => true, accessible?: true, resource_owner_id: user.id }
+  let(:token) { double acceptable?: true, accessible?: true, resource_owner_id: user.id }
   let(:observation) { Observation.make!( user: user ) }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"

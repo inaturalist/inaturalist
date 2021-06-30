@@ -16,7 +16,7 @@ class ObservationPhotosController < ApplicationController
   end
   
   def create
-    unless params[:observation_photo].is_a?( Hash )
+    unless params[:observation_photo].is_a?( ActionController::Parameters )
       respond_to do |format|
         format.json do
           render json: { errors: "No observation_photo specified" }, status: :unprocessable_entity

@@ -630,7 +630,7 @@ class TaxaController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render :text => @taxa.to_json(
+        render :plain => @taxa.to_json(
                  :methods => [:id, :common_name] )
       end
     end
@@ -698,7 +698,7 @@ class TaxaController < ApplicationController
   rescue SocketError => e
     raise unless Rails.env.development?
     Rails.logger.debug "[DEBUG] Looks like you're offline, skipping flickr"
-    render :text => "You're offline."
+    render :plain => "You're offline."
   end
   
   def schemes
@@ -1149,7 +1149,7 @@ class TaxaController < ApplicationController
         "corresponding article on Wikipedia."
       render :status => 404, :text => error_text
     else
-      render :text => summary
+      render :plain => summary
     end
   end
   
@@ -1199,7 +1199,7 @@ class TaxaController < ApplicationController
         if @error_message
           render :status => :unprocessable_entity, :text => @error_message
         else
-          render :text => "Taxon grafted to #{@taxon.parent.name}"
+          render :plain => "Taxon grafted to #{@taxon.parent.name}"
         end
       end
       format.json do
@@ -1224,7 +1224,7 @@ class TaxaController < ApplicationController
         end
       end
       format.js do
-        render :text => msg, :status => :unprocessable_entity, :layout => false
+        render :plain => msg, :status => :unprocessable_entity, :layout => false
         return
       end
       format.json { render :json => {:error => msg}, :status => unprocessable_entity}
@@ -1652,10 +1652,10 @@ class TaxaController < ApplicationController
     end
     
     # Set the last editor
-    params[:taxon].update(:updater_id => current_user.id)
+    params[:taxon][:updater_id] = current_user.id
     
     # Anyone who's allowed to create or update should be able to skip locks
-    params[:taxon].update(:skip_locks => true)
+    params[:taxon][:skip_locks] = true
     
     if params[:taxon][:featured_at] && params[:taxon][:featured_at] == "1"
       params[:taxon][:featured_at] = Time.now

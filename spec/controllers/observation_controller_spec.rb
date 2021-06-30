@@ -18,7 +18,7 @@ describe ObservationsController do
     it "should add project observations if auto join project specified" do
       project = Project.make!
       expect(project.users.find_by_id(user.id)).to be_blank
-      post :create, :observation => {:species_guess => "Foo!"}, :project_id => project.id, :accept_terms => true
+      post :create, params: { observation: { species_guess: "Foo!" }, project_id: project.id, accept_terms: true }
       expect(project.users.find_by_id(user.id)).to be_blank
       expect(project.observations.last.id).to eq Observation.last.id
     end
@@ -26,7 +26,7 @@ describe ObservationsController do
     it "should add project observations to elasticsearch" do
       project = Project.make!
       expect(project.users.find_by_id(user.id)).to be_blank
-      post :create, :observation => {:species_guess => "Foo!"}, :project_id => project.id, :accept_terms => true
+      post :create, params: { observation: {species_guess: "Foo!"}, project_id: project.id, accept_terms: true }
       expect(project.observations.last.id).to eq Observation.last.id
       expect(Observation.elastic_search(where: { id: Observation.last.id }).
         results.results.first.project_ids).to eq [ project.id ]
@@ -35,14 +35,14 @@ describe ObservationsController do
     it "should add project observations if auto join project specified and format is json" do
       project = Project.make!
       expect(project.users.find_by_id(user.id)).to be_blank
-      post :create, :format => "json", :observation => {:species_guess => "Foo!"}, :project_id => project.id
+      post :create, format: "json", params: { observation: {species_guess: "Foo!"}, project_id: project.id }
       expect(project.users.find_by_id(user.id)).to be_blank
       expect(project.observations.last.id).to eq Observation.last.id
     end
     
     it "should set taxon from taxon_name param" do
       taxon = Taxon.make!
-      post :create, :observation => {:species_guess => "Foo", :taxon_name => taxon.name}
+      post :create, params: { observation: { species_guess: "Foo", taxon_name: taxon.name } }
       obs = user.observations.last
       expect(obs).to_not be_blank
       expect(obs.taxon_id).to eq taxon.id
@@ -51,7 +51,7 @@ describe ObservationsController do
     
     it "should set the site" do
       @site = Site.make!
-      post :create, observation: { species_guess: "Foo" }, site_id: @site.id, inat_site_id: @site.id
+      post :create, params: { observation: { species_guess: "Foo" }, site_id: @site.id, inat_site_id: @site.id }
       expect( user.observations.last.site ).to_not be_blank
       expect( user.observations.last.site.id ).to eq @site.id
     end
@@ -60,25 +60,27 @@ describe ObservationsController do
       p = Project.make!
       por = ProjectObservationRule.make!(operator: 'georeferenced?', ruler: p)
       expect {
-        post :create, observation: {species_guess: 'foo', observed_on_string: 1.year.from_now.to_date.to_s}, project_id: p.id
+        post :create, params: {
+          observation: { species_guess: 'foo', observed_on_string: 1.year.from_now.to_date.to_s }, project_id: p.id
+        }
       }.not_to raise_error
     end
 
     it "should work with a custom coordinate system" do
       nztm_proj4 = "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
-      post :create, observation: {
+      post :create, params: { observation: {
         geo_x: 1889191,
         geo_y: 5635569,
         coordinate_system: nztm_proj4
-      }
+      } }
       o = user.observations.last
-      expect( o.latitude ).to eq -39.380943828
-      expect( o.longitude ).to eq 176.3574072522
+      expect( o.latitude.to_f ).to eq -39.3809438281
+      expect( o.longitude.to_f ).to eq 176.3574072522
     end
 
     it "should mark the observation as reviewed by the observer if there was a taxon" do
       taxon = Taxon.make!
-      post :create, observation: { taxon_id: taxon.id }
+      post :create, params: { observation: { taxon_id: taxon.id } }
       o = user.observations.last
       expect( o ).to be_reviewed_by( o.user )
     end
@@ -101,7 +103,7 @@ describe ObservationsController do
       old_latitude = observation.latitude
       old_private_latitude = observation.private_latitude
       sign_in observation.user
-      post :update, id: observation.id, observation: { latitude: 1 }
+      post :update, params: { id: observation.id, observation: { latitude: 1 } }
       observation.reload
       expect( observation.private_longitude ).to_not be_blank
       expect( observation.latitude.to_f ).to_not eq old_latitude.to_f
@@ -115,13 +117,13 @@ describe ObservationsController do
       end
       it "should set captive" do
         expect(o).not_to be_captive
-        patch :update, id: o.id, observation: {captive_flag: '1'}
+        patch :update, params: { id: o.id, observation: {captive_flag: '1'} }
         o.reload
         expect(o).to be_captive
       end
       it "should set a quality_metric" do
         expect(o.quality_metrics).to be_blank
-        patch :update, id: o.id, observation: {captive_flag: '1'}
+        patch :update, params: { id: o.id, observation: {captive_flag: '1'} }
         o.reload
         expect(o.quality_metrics).not_to be_blank
       end
@@ -139,21 +141,21 @@ describe ObservationsController do
       end
       it "should update the license of the observation" do
         without_delay do
-          put :update, id: o.id, observation: {license: Observation::CC_BY}
+          put :update, params: { id: o.id, observation: {license: Observation::CC_BY} }
         end
         o.reload
         expect( o.license ).to eq Observation::CC_BY
       end
       it "should update user default" do
         without_delay do
-          put :update, id: o.id, observation: {license: Observation::CC_BY, make_license_default: true}
+          put :update, params: { id: o.id, observation: {license: Observation::CC_BY, make_license_default: true} }
         end
         u.reload
         expect( u.preferred_observation_license ).to eq Observation::CC_BY
       end
       it "should update past licenses" do
         without_delay do
-          put :update, id: o.id, observation: {license: Observation::CC_BY, make_licenses_same: true}
+          put :update, params: { id: o.id, observation: {license: Observation::CC_BY, make_licenses_same: true} }
         end
         past_o.reload
         expect( past_o.license ).to eq Observation::CC_BY
@@ -165,12 +167,12 @@ describe ObservationsController do
       sign_in o.user
       expect( o.photos.size ).to eq 0
       fixture_file_upload('observations.csv', 'text/csv')
-      put :update, id: o.id, observation: { description: "+2 photos" }, local_photos: {
+      put :update, params: { id: o.id, observation: { description: "+2 photos" }, local_photos: {
         o.id.to_s => [
           fixture_file_upload( "files/cuthona_abronia-tagged.jpg", "image/jpeg" ),
           fixture_file_upload( "files/cuthona_abronia-tagged.jpg", "image/jpeg" )
         ]
-      }
+      } }
       o.reload
       expect( o.photos.size ).to eq 2
     end
@@ -182,24 +184,24 @@ describe ObservationsController do
     it "should not include the place_guess when coordinates obscured" do
       original_place_guess = "Duluth, MN"
       o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1, place_guess: original_place_guess)
-      get :show, id: o.id
+      get :show, params: { id: o.id }
       expect( response.body ).not_to be =~ /#{original_place_guess}/
     end
 
     it "should 404 for absurdly large ids" do
-      get :show, id: "389299563_507aed5ae4_s.jpg"
+      get :show, params: { id: "389299563_507aed5ae4_s.jpg" }
       expect( response ).to be_not_found
     end
 
     it "renders a self-referential canonical tag" do
-      get :show, id: observation.id
+      get :show, params: { id: observation.id }
       expect( response.body ).to have_tag(
         "link[rel=canonical][href='#{observation_url( observation, host: Site.default.url )}']" )
     end
 
     it "renders a canonical tag from other sites to default site" do
       different_site = Site.make!
-      get :show, id: observation.id, inat_site_id: different_site.id
+      get :show, params: { id: observation.id, inat_site_id: different_site.id }
       expect( response.body ).to have_tag(
         "link[rel=canonical][href='#{observation_url( observation, host: Site.default.url )}']" )
     end
@@ -212,7 +214,7 @@ describe ObservationsController do
         expect( o.place_guess ).not_to be_blank
         desc = o.to_plain_s
         expect( desc ).not_to be =~ /something/i
-        get :show, id: o.id
+        get :show, params: { id: o.id }
         html = Nokogiri::HTML( response.body )
         og_desc = html.at( "meta[property='og:description']" )
         expect( og_desc[:content] ).to match /#{desc}/
@@ -221,7 +223,7 @@ describe ObservationsController do
       it "should include the taxon's common name if there's a taxon but no species_guess" do
         t = TaxonName.make!( lexicon: "English" ).taxon
         o = make_research_grade_candidate_observation( taxon: t )
-        get :show, id: o.id
+        get :show, params: { id: o.id }
         html = Nokogiri::HTML( response.body )
         og_desc = html.at( "meta[property='og:description']" )
         expect( o.taxon.common_name ).not_to be_blank
@@ -234,25 +236,25 @@ describe ObservationsController do
     before do
       @observation = Observation.make!
       @user = @observation.user
-      path = observations_by_login_all_path(@user.login, :format => 'csv')
-      FileUtils.rm private_page_cache_path(path), :force => true
+      path = observations_by_login_all_path(@user.login, format: 'csv')
+      FileUtils.rm private_page_cache_path(path), force: true
       sign_in @user
     end
 
     it "should set after request" do
       without_delay do
-        get :by_login_all, :login => @user.login, :format => :csv
+        get :by_login_all, format: :csv, params: { login: @user.login }
       end
       expect(response).to be_private_page_cached
     end
 
     it "should be cleared by new observations" do
       without_delay do
-        get :by_login_all, :login => @user.login, :format => :csv
+        get :by_login_all, format: :csv, params: { login: @user.login }
       end
       expect(response).to be_private_page_cached
-      post :create, :observation => {:species_guess => "foo"}
-      expect(observations_by_login_all_path(@user.login, :format => :csv)).to_not be_private_page_cached
+      post :create, params: { observation: { species_guess: "foo" } }
+      expect(observations_by_login_all_path(@user.login, format: :csv)).to_not be_private_page_cached
     end
   end
 
@@ -262,8 +264,8 @@ describe ObservationsController do
     before { expect( project_observation ).not_to be_blank }
     # Apparently people use the project widget
     it "render widget content" do
-      get :project, id: project.id, format: "widget"
-      expect( response ).to be_success
+      get :project, format: "widget", params: { id: project.id }
+      expect( response ).to be_successful
     end
   end
 
@@ -271,12 +273,12 @@ describe ObservationsController do
     before do
       @project = Project.make!
       @user = @project.user
-      @observation = Observation.make!(:user => @user)
-      @project_observation = make_project_observation(:project => @project, :observation => @observation, :user => @observation.user)
+      @observation = Observation.make!(user: @user)
+      @project_observation = make_project_observation(project: @project, observation: @observation, user: @observation.user)
       @observation = @project_observation.observation
       ActionController::Base.perform_caching = true
-      path = all_project_observations_path(@project, :format => 'csv')
-      FileUtils.rm private_page_cache_path(path), :force => true
+      path = all_project_observations_path(@project, format: 'csv')
+      FileUtils.rm private_page_cache_path(path), force: true
       sign_in @user
     end
 
@@ -286,22 +288,23 @@ describe ObservationsController do
 
     it "should set after request" do
       without_delay do
-        get :project_all, :id => @project, :format => :csv
+        get :project_all, format: :csv, params: { id: @project }
       end
       expect(response).to be_private_page_cached
     end
 
     it "should be cleared by new observations" do
       without_delay do
-        get :project_all, :id => @project, :format => :csv
+        get :project_all, format: :csv, params: { id: @project }
       end
       expect(response).to be_private_page_cached
-      post :destroy, :id => @observation
-      expect(all_project_observations_path(@project, :format => :csv)).to_not be_private_page_cached
+      post :destroy, params: { id: @observation }
+      expect(all_project_observations_path(@project, format: :csv)).to_not be_private_page_cached
     end
     describe "when viewed by a project curator" do
       before do
-        @project.curators << @user
+        ProjectUser.where( user: @user, project: @project ).
+          update_all( role: ProjectUser::CURATOR )
         expect( @project ).to be_curated_by @user
       end
       it "should include private coordinates for observations with geoprivacy" do
@@ -312,7 +315,7 @@ describe ObservationsController do
         )
         expect( @observation ).to be_coordinates_obscured
         expect( @project_observation ).to be_prefers_curator_coordinate_access
-        get :project_all, :id => @project, :format => :csv
+        get :project_all, format: :csv, params: { id: @project }
         target_row = nil
         CSV.parse(response.body, headers: true) do |row|
           if row['id'].to_i == @observation.id
@@ -333,7 +336,7 @@ describe ObservationsController do
         )
         expect( @observation ).to be_coordinates_obscured
         expect( @project_observation ).to be_prefers_curator_coordinate_access
-        get :project_all, :id => @project, :format => :csv
+        get :project_all, format: :csv, params: { id: @project }
         target_row = nil
         CSV.parse(response.body, headers: true) do |row|
           if row['id'].to_i == @observation.id
@@ -349,31 +352,31 @@ describe ObservationsController do
 
   describe "by_login_all" do
     it "should include observation fields" do
-      of = ObservationField.make!(:name => "count", :datatype => "numeric")
-      ofv = ObservationFieldValue.make!(:observation_field => of, :value => 7)
+      of = ObservationField.make!(name: "count", datatype: "numeric")
+      ofv = ObservationFieldValue.make!(observation_field: of, value: 7)
       user = ofv.observation.user
       sign_in user
-      get :by_login_all, :login => user.login, :format => :csv
+      get :by_login_all, format: :csv, params: { login: user.login }
       expect(response.body).to be =~ /field\:count/
     end
   end
 
   describe "project_all", "csv" do
     it "should include observation fields" do
-      of = ObservationField.make!(:name => "count", :datatype => "numeric")
-      pof = ProjectObservationField.make!(:observation_field => of)
+      of = ObservationField.make!(name: "count", datatype: "numeric")
+      pof = ProjectObservationField.make!(observation_field: of)
       p = pof.project
-      po = make_project_observation(:project => p)
-      ofv = ObservationFieldValue.make!(:observation_field => of, :value => 7, :observation => po.observation)
+      po = make_project_observation(project: p)
+      ofv = ObservationFieldValue.make!(observation_field: of, value: 7, observation: po.observation)
       sign_in p.user
-      get :project_all, :id => p.id, :format => :csv
+      get :project_all, format: :csv, params: { id: p.id }
       expect(response.body).to be =~ /field\:count/
     end
 
     it "should have project-specific fields" do
       p = Project.make!
       sign_in p.user
-      get :project_all, :id => p.id, :format => :csv
+      get :project_all, format: :csv, params: { id: p.id }
       %w(curator_ident_taxon_id curator_ident_taxon_name curator_ident_user_id curator_ident_user_login tracking_code).each do |f|
         expect(response.body).to be =~ /#{f}/
       end
@@ -386,7 +389,7 @@ describe ObservationsController do
       expect(p.user).not_to be po.observation.user
       sign_in p.user
       expect(p).to be_curated_by p.user
-      get :project_all, id: p.id, format: :csv
+      get :project_all, format: :csv, params: { id: p.id }
       expect(response.body).to be =~ /private_latitude/
       expect(response.body).to be =~ /#{po.observation.private_latitude}/
       expect(response.body).to be =~ /#{po.observation.private_longitude}/
@@ -399,7 +402,7 @@ describe ObservationsController do
       expect( po.project.project_users.where(user_id: po.observation.user_id) ).to be_blank
       expect( po ).not_to be_prefers_curator_coordinate_access
       sign_in po.project.user
-      get :project_all, id: po.project_id, format: :csv
+      get :project_all, format: :csv, params: { id: po.project_id }
       expect(response.body).to be =~ /private_latitude/
       expect(response.body).not_to be =~ /#{po.observation.private_latitude}/
     end
@@ -436,13 +439,13 @@ describe ObservationsController do
 
     it "should not raise an exception with malformed date params" do
       expect {
-        get :index, { on: "2020-09", user_id: user.id }
+        get :index, params: { on: "2020-09", user_id: user.id }
       }.not_to raise_exception
     end
 
     it "should just ignore project slugs for projects that don't exist" do
       expect {
-        get :index, projects: 'imaginary-project'
+        get :index, params: { projects: 'imaginary-project' }
       }.not_to raise_error
     end
 
@@ -457,26 +460,26 @@ describe ObservationsController do
   describe "review" do
     let(:obs_to_review) { Observation.make! }
     it "forces users to log in when requesting HTML" do
-      post :review, id: obs_to_review, format: :html
+      post :review, format: :html, params: { id: obs_to_review }
       expect(response.response_code).to eq 302
       expect(response).to be_redirect
       expect(response).to redirect_to(new_user_session_url)
     end
     it "denies non-logged-in users when requesting JSON" do
-      post :review, id: obs_to_review, format: :json
+      post :review, format: :json, params: { id: obs_to_review }
       expect(response.response_code).to eq 401
       json = JSON.parse(response.body.to_s)
       expect(json["error"]).to eq "You need to sign in or sign up before continuing."
     end
     it "allows logged-in requests" do
       sign_in obs_to_review.user
-      post :review, id: obs_to_review, format: :json
+      post :review, format: :json, params: { id: obs_to_review }
       expect(response.response_code).to eq 204
       expect(response.body).to be_blank
     end
     it "redirects HTML requests to the observations page" do
       sign_in obs_to_review.user
-      post :review, id: obs_to_review, format: :html
+      post :review, format: :html, params: { id: obs_to_review }
       expect(response.response_code).to eq 302
       expect(response).to redirect_to(observation_url(obs_to_review))
     end
@@ -485,7 +488,7 @@ describe ObservationsController do
       reviewer = User.make!
       expect(obs_to_review.observation_reviews.where(user_id: reviewer.id).size).to eq 0
       sign_in reviewer
-      post :review, id: obs_to_review
+      post :review, params: { id: obs_to_review }
       obs_to_review.reload
       expect(obs_to_review.observation_reviews.where(user_id: reviewer.id).size).to eq 1
       expect(obs_to_review.observation_reviews.first.reviewed).to eq true
@@ -496,11 +499,11 @@ describe ObservationsController do
       reviewer = User.make!
       expect(obs_to_review.observation_reviews.where(user_id: reviewer.id).size).to eq 0
       sign_in reviewer
-      post :review, id: obs_to_review
+      post :review, params: { id: obs_to_review }
       obs_to_review.reload
       expect(obs_to_review.observation_reviews.where(user_id: reviewer.id).size).to eq 1
       expect(obs_to_review.observation_reviews.first.reviewed).to eq true
-      post :review, id: obs_to_review, reviewed: "false"
+      post :review, params: { id: obs_to_review, reviewed: "false" }
       obs_to_review.reload
       expect(obs_to_review.observation_reviews.where(user_id: reviewer.id).size).to eq 1
       expect(obs_to_review.observation_reviews.first.reviewed).to eq false
@@ -514,12 +517,12 @@ describe ObservationsController do
     end
     it "should assign flow_task_id that belongs to the current user" do
       flow_task = make_observations_export_flow_task( user: user )
-      get :export, flow_task_id: flow_task.id
+      get :export, params: { flow_task_id: flow_task.id }
       expect( assigns(:flow_task) ).to eq flow_task
     end
     it "should not assign flow_task_id that belongs to another user" do
       flow_task = make_observations_export_flow_task
-      get :export, flow_task_id: flow_task.id
+      get :export, params: { flow_task_id: flow_task.id }
       expect( assigns(:flow_task) ).to be_blank
     end
   end
@@ -539,12 +542,12 @@ describe ObservationsController, "spam" do
   }
 
   it "should render 403 when the owner is a spammer" do
-    get :show, id: spammer_content.id
+    get :show, params: { id: spammer_content.id }
     expect(response.response_code).to eq 403
   end
 
   it "should render 403 when content is flagged as spam" do
-    get :show, id: spammer_content.id
+    get :show, params: { id: spammer_content.id }
     expect(response.response_code).to eq 403
   end
 end
@@ -574,11 +577,11 @@ describe ObservationsController, "new_bulk_csv" do
   end
   it "should not allow you to enqueue the same file twice" do
     Delayed::Job.delete_all
-    post :new_bulk_csv, upload: {datafile: fixture_file_upload('observations.csv', 'text/csv')}
+    post :new_bulk_csv, params: { upload: {datafile: fixture_file_upload('observations.csv', 'text/csv')} }
     expect( response ).to be_redirect
     expect( Delayed::Job.count ).to eq 1
     sleep(2)
-    post :new_bulk_csv, upload: {datafile: fixture_file_upload('observations.csv', 'text/csv')}
+    post :new_bulk_csv, params: { upload: {datafile: fixture_file_upload('observations.csv', 'text/csv')} }
     expect( Delayed::Job.count ).to eq 1
   end
 
@@ -598,10 +601,10 @@ describe ObservationsController, "new_bulk_csv" do
       ]
       csv
     end
-    post :new_bulk_csv, upload: {datafile: Rack::Test::UploadedFile.new(work_path, 'text/csv')}
+    post :new_bulk_csv, params: { upload: {datafile: Rack::Test::UploadedFile.new(work_path, 'text/csv')} }
     expect( response ).to be_redirect
     expect( Delayed::Job.count ).to eq 1
-    post :new_bulk_csv, upload: {datafile: fixture_file_upload('observations.csv', 'text/csv')}
+    post :new_bulk_csv, params: { upload: {datafile: fixture_file_upload('observations.csv', 'text/csv')} }
     expect( Delayed::Job.count ).to eq 2
   end
 
@@ -624,7 +627,7 @@ describe ObservationsController, "new_bulk_csv" do
       csv
     end
     Taxon.make!( name: "Homo sapiens" )
-    post :new_bulk_csv, upload: {datafile: Rack::Test::UploadedFile.new(work_path, 'text/csv')}
+    post :new_bulk_csv, params: { upload: {datafile: Rack::Test::UploadedFile.new(work_path, 'text/csv')} }
     Delayed::Worker.new.work_off
     expect( Observation.by( user ).count ).to eq 1
   end
@@ -659,10 +662,10 @@ describe ObservationsController, "new_bulk_csv" do
       csv
     end
     Taxon.make!( name: "Homo sapiens" )
-    post :new_bulk_csv, upload: {
+    post :new_bulk_csv, params: { upload: {
       datafile: Rack::Test::UploadedFile.new(work_path, 'text/csv'),
       coordinate_system: "nzmg"
-    }
+    } }
     Delayed::Worker.new.work_off
     expect( Observation.by( user ).count ).to eq 1
   end

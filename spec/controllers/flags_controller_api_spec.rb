@@ -12,13 +12,17 @@ describe FlagsController do
     let(:comment) { Comment.make! }
     it "should add a flag" do
       expect( comment.flags.size ).to eq 0
-      post :create, format: :json, flag: { flaggable_type: "Comment", flaggable_id: comment.id, flag: Flag::SPAM }
+      post :create, format: :json, params: {
+        flag: { flaggable_type: "Comment", flaggable_id: comment.id, flag: Flag::SPAM }
+      }
       expect( response.status ).to eq 200
       comment.reload
       expect( comment.flags.size ).to eq 1
     end
     it "should return JSON" do
-      post :create, format: :json, flag: { flaggable_type: "Comment", flaggable_id: comment.id, flag: Flag::SPAM }
+      post :create, format: :json, params: {
+        flag: { flaggable_type: "Comment", flaggable_id: comment.id, flag: Flag::SPAM }
+      }
       json = JSON.parse( response.body )
       expect( json["id"] ).to eq comment.flags.last.id
     end
@@ -27,11 +31,11 @@ describe FlagsController do
       obs_sound = ObservationSound.make!( observation: obs, sound: Sound.make!( user: obs.user ) )
       obs.reload
       expect( obs ).to be_verifiable
-      post :create, foramt: :json, flag: {
+      post :create, format: :json, params: { flag: {
         flaggable_type: "Sound",
         flaggable_id: obs_sound.sound_id,
         flag: Flag::COPYRIGHT_INFRINGEMENT
-      }
+      } }
       Delayed::Worker.new.work_off
       obs_sound.reload
       expect( obs_sound.sound ).to be_flagged
@@ -44,13 +48,13 @@ describe FlagsController do
     let(:flag) { Flag.make!( user: user ) }
     it "should update a flag" do
       expect( flag ).not_to be_resolved
-      put :update, format: :json, id: flag.id, flag: { resolved: true }
+      put :update, format: :json, params: { id: flag.id, flag: { resolved: true } }
       flag.reload
       expect( flag ).to be_resolved
     end
 
     it "should return JSON" do
-      put :update, format: :json, id: flag.id, flag: { resolved: true }
+      put :update, format: :json, params: { id: flag.id, flag: { resolved: true } }
       json = JSON.parse( response.body )
       expect( json["resolved"] ).to eq true
     end

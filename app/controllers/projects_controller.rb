@@ -894,7 +894,7 @@ class ProjectsController < ApplicationController
           csv << @headers
           @data.each {|row| csv << row}
         end
-        render :text => csv_text
+        render :plain => csv_text
       end
     end
   end

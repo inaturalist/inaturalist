@@ -196,7 +196,7 @@ class UsersController < ApplicationController
           "(it may take up to an hour to completely delete all associated content)"
         redirect_to root_path
       end
-      format.json { render head: :no_content, layout: false, text: nil }
+      format.json { head :no_content }
     end
   end
 
@@ -861,7 +861,7 @@ class UsersController < ApplicationController
       /^preferred_*/,
       /^header_search_open$/
     ]
-    updates = params.select {|k,v|
+    updates = params.to_unsafe_h.select {|k,v|
       allowed_patterns.detect{|p| 
         k.match(p)
       }
@@ -874,7 +874,7 @@ class UsersController < ApplicationController
         current_user.update_attributes(k => v)
       end
     end
-    render :head => :no_content, :layout => false, :text => nil
+    head :no_content
   end
 
   def api_token
@@ -944,7 +944,7 @@ class UsersController < ApplicationController
     end
     Emailer.parental_consent( params[:email] ).deliver_now
     respond_to do |format|
-      format.json { render head: :no_content, :layout => false, :text => nil }
+      format.json { head :no_content }
     end
   end
 
@@ -954,7 +954,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.json do
         if @user_mute.valid?
-          render head: :no_content, layout: false, text: nil
+          head :no_content
         else
           render status: :unprocessable_entity, json: { errors: @user_mute.errors }
         end
@@ -968,7 +968,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.json do
         if @user_mute
-          render head: :no_content, layout: false, text: nil
+          head :no_content
         else
           render status: :unprocessable_entity, json: { errors: ["User #{@user.id} was not muted"] }
         end
@@ -982,7 +982,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.json do
         if @user_block.valid?
-          render head: :no_content, layout: false, text: nil
+          head :no_content
         else
           render status: :unprocessable_entity, json: { errors: @user_block.errors }
         end
@@ -996,7 +996,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.json do
         if @user_block
-          render head: :no_content, layout: false, text: nil
+          head :no_content
         else
           render status: :unprocessable_entity, json: { errors: ["User #{@user.id} was not blocked"] }
         end

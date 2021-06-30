@@ -1170,7 +1170,11 @@ class Observation < ApplicationRecord
   # two windows). Also updating existing OFV of same OF name if id not 
   # specified
   def observation_field_values_attributes=(attributes)
-    attr_array = attributes.is_a?(Hash) ? attributes.values : attributes
+    if attributes.is_a?( ActionController::Parameters )
+      attr_array = attributes.to_hash.values
+    else
+      attr_array = attributes.is_a?(Hash) ? attributes.values : attributes
+    end
     return unless attr_array
     attr_array.each_with_index do |v,i|
       if v["id"].blank?
@@ -2839,13 +2843,13 @@ class Observation < ApplicationRecord
     if self.geo_x.present? && self.geo_y.present? && self.coordinate_system.present?
       # Perform the transformation
       # transfrom from `self.coordinate_system`
-      from = RGeo::CoordSys::Proj4.new(self.coordinate_system)
+      from = RGeo::CoordSys::Proj4.new( self.coordinate_system + " +type=crs" )
 
       # ... to WGS84
-      to = RGeo::CoordSys::Proj4.new(WGS84_PROJ4)
+      to = RGeo::CoordSys::Proj4.new( WGS84_PROJ4 + " +type=crs" )
 
       # Returns an array of lat, lon
-      transform = RGeo::CoordSys::Proj4.transform_coords(from, to, self.geo_x.to_d, self.geo_y.to_d)
+      transform = RGeo::CoordSys::Proj4.transform_coords( from, to, self.geo_x.to_d, self.geo_y.to_d )
 
       # Set the transform
       self.longitude, self.latitude = transform
@@ -2861,7 +2865,7 @@ class Observation < ApplicationRecord
   # Required for use of the sanitize method in
   # ObservationsHelper#short_observation_description
   def self.white_list_sanitizer
-    @white_list_sanitizer ||= HTML::WhiteListSanitizer.new
+    @white_list_sanitizer ||= Rails::Html::WhiteListSanitizer.new
   end
   
   def self.update_for_taxon_change(taxon_change, options = {}, &block)
