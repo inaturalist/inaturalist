@@ -1841,6 +1841,8 @@ da:
   highlights_and_stats_from_year_on_site: "Højdepunkter og statistikker fra %{year} på %{site}"
   history: Historik
   home: Hjem
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_adjusted: "Timer, justeret:"
   however_there_were_some_issues: "Der var dog nogle problemer:%{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Jeg ved det ikke, men jeg sikker på det er %{taxon}
   icon: Ikon
@@ -2231,6 +2233,8 @@ da:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Log ud af %{site_name}?"
   log_scale_label: Log
+  #Status message shown while logging in
+  logging_in: Logger ind...
   login_slash_username: Login / brugernavn
   logo:
     logo: Logo
@@ -2839,6 +2843,8 @@ da:
   off_caps: "FRA"
   official_blog: Officiel blog
   offline_access_enabled: Offline adgang er aktiveret
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Forskydningstid"
   old_observation_form: Gammel observations formular (forældet)
   ok: "OK"
   on_caps: "TIL"
