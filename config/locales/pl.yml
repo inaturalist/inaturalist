@@ -185,11 +185,6 @@ pl:
     few: "%{count} dźwięki"
     many: "%{count} dźwięków"
     other: "%{count} dźwięku"
-  x_taxa_curated_html:
-    one: "<span class='count'>1</span> takson pod opieką"
-    few: "<span class='count'>%{count}</span> taksony pod opieką"
-    many: "<span class='count'>%{count}</span> taksonów pod opieką"
-    other: "<span class='count'>%{count}</span> taksona pod opieką"
   x_taxa_matching_current_filters:
     one: "%{count} takson pasujący do bieżących filtrów"
     few: "%{count} taksony pasujące do bieżących filtrów"
@@ -598,7 +593,7 @@ pl:
   any_quality_grade: Dowolny
   #Label for an option to show observation with any reviewed status, i.e. both
   #reviewed and unreviewed
-  any_reviewed: Dowolny
+  any_reviewed: Obojętnie
   anyone: Ktokolwiek
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
@@ -703,13 +698,11 @@ pl:
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atrybut
-  attribution: Atrybuty
   authority_list:
     iucn_red_list: Czerwona księga gatunków zagrożonych
     natureserve: NatureServe
     cites: Konwencja waszyngtońska (CITES)
   authorize: Autoryzuj
-  authorize_permissions_from_provider: "Autoryzuj pozwolenia od %{provider}"
   automatic_short: Automatyczny
   automatically_add_observations_to_this_project: Automatycznie dodawaj obserwacje do tego projektu
   automatically_update_my_content_for_taxon_changes: Automatycznie aktualizuj moje obserwacje wraz ze zmianami taksonomicznymi
@@ -757,6 +750,7 @@ pl:
   because_of: z powodu
   before_importing_photos: przed zaimportowaniem zdjęć
   bg_color: Kolor tła
+  bio: O mnie
   bio_description: Powiedz coś o sobie innym użytkownikom iNaturalist!
   bioblitz: Bioblitz
   birds: ptaki
@@ -783,7 +777,7 @@ pl:
   browse_observations: Przeglądaj obserwacje
   browse_people: Przeglądaj ludzi
   browse_projects: Przeglądaj projekty
-  browse_species_that_occur_near_this_observation: Przeglądaj gatunki występujące w pobliżu obserwacji
+  browse_species_that_occur_near_this_observation: Przeglądaj gatunki występujące w pobliżu tej obserwacji.
   bulk_import_of_filename_is_complete: "Zbiorczy import %{filename} zakończony"
   by: przez
   by_everyone: Przez wszystkich
@@ -1964,6 +1958,8 @@ pl:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Wylogować z %{site_name}?"
   log_scale_label: Dziennik
+  #Status message shown while logging in
+  logging_in: Logowanie...
   login_slash_username: Login / nazwa użytkownika
   logo:
     logo: Logo
