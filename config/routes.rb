@@ -188,7 +188,6 @@ Rails.application.routes.draw do
   # resources :passwords
   resources :people, :controller => :users, :except => [:create] do
     collection do
-      get :search
       get 'leaderboard(/:year(/:month))' => :leaderboard, :as => 'leaderboard_for'
     end
     member do
