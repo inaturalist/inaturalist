@@ -1986,7 +1986,7 @@ en:
   history: History
   home: Home
   # Label showing hours adjusted in the time shifter in the Uploader
-  hours_adjusted: "Hours Adjusted:"
+  hours_to_adjust: "Hours to Adjust:"
   however_there_were_some_issues: "However, there were some issues: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: I don't know but I am sure this is %{taxon}
   icon: Icon
@@ -3012,6 +3012,8 @@ en:
   offline_access_enabled: Offline access enabled
   # Header label for hiding or unhiding the time shifter in the Uploader
   offset_time: "Offset Time"
+  # Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Offset
   old_observation_form: Old observation form (deprecated)
   ok: "OK"
   on_caps: "ON"
