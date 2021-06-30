@@ -1846,6 +1846,8 @@ sv:
   highlights_and_stats_from_year_on_site: "Höjdpunkter och statistik från %{year} på %{site}"
   history: Historik
   home: Hem
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_adjusted: "Justerade timmar:"
   however_there_were_some_issues: "Det uppstod dock några problem: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Jag vet inte men jag är säker på att detta är %{taxon}
   icon: Ikon
@@ -2833,6 +2835,8 @@ sv:
   off_caps: "AV"
   official_blog: Officiell blogg
   offline_access_enabled: Offline-åtkomst aktiverad
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Tidsförskjutning"
   old_observation_form: Gammalt fyndformulär (utfasat)
   ok: "OK"
   on_caps: "PÅ"
