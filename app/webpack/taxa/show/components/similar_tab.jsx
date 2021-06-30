@@ -18,7 +18,11 @@ const SimilarTab = ( {
       <div className="thumbnails">
         { results.map( result => {
           let tip = I18n.t( "x_misidentifications_of_this_species", { count: result.count } );
-          if ( taxon.rank_level > 10 ) {
+          if ( taxon.rank === "genus" ) {
+            tip = I18n.t( "x_misidentifications_of_species_in_this_genus", {
+              count: result.count
+            } );
+          } else if ( taxon.rank_level > 10 ) {
             tip = I18n.t( "x_misidentifications_of_species_in_this_rank", {
               count: result.count,
               rank: I18n.t( `ranks.${result.taxon.rank}`, { defaultValue: result.taxon.rank } ).toLowerCase( )

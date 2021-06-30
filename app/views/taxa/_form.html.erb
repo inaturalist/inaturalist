@@ -195,8 +195,8 @@
 
   <fieldset class="last column span-11">
     <legend><%= t :concept_status %></legend>
-    <%= f.radio_button :is_active, true, label_after: true, label: t(:active).titleize, disabled: !@protected_attributes_editable %>
-    <%= f.radio_button :is_active, false, label_after: true, label: t(:inactive).titleize, disabled: !@protected_attributes_editable %>
+    <%= f.radio_button :is_active, true, label_after: true, label: t(:active_taxon_status), disabled: !@protected_attributes_editable %>
+    <%= f.radio_button :is_active, false, label_after: true, label: t(:inactive_taxon_status), disabled: !@protected_attributes_editable %>
     <div class="description">
       <%= t :inactive_taxon_concepts_are %>
     </div>

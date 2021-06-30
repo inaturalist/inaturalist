@@ -71,6 +71,11 @@ en:
   x_misidentifications_of_this_species:
     one: "%{count} misidentification of this species"
     other: "%{count} misidentifications of this species"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} misidentification of species in this genus"
+    other: "%{count} misidentifications of species in this genus"
+  # This is a fallback. Most of the time we'll use
+  # x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} misidentification of species in this %{rank}"
     other: "%{count} misidentifications of species in this %{rank}"
@@ -305,6 +310,10 @@ en:
   action: Action
   actions: Actions
   active: Active
+  # Status of a complete set that is available for use
+  active_complete_set_status: Active
+  # Status of a taxon that is available for use on iNat
+  active_taxon_status: Active
   active_users: Active Users
   activity: Activity
   activity_settings: Activity settings
@@ -331,7 +340,6 @@ en:
   add_an_assessment: Add an Assessment
   add_an_identification: Add an Identification
   add_an_observation: Add an Observation
-  add_an_observation?: Add an Observation?
   add_an_observation_of: "Add an Observation of %{taxon}"
   add_an_observation_to_project_html: Add An Observation to %{project}
   add_annotations_for_x: Add Annotations for "%{x}"
@@ -429,7 +437,6 @@ en:
   add_to_favorites: Add to Favorites
   add_to_list: Add to List
   add_to_project: Add to Project
-  add_to_your_life_list: Add to Your Life List!
   add_to_your_list: Add to Your List
   add_your_email_to_get: |
     Add your email to get feedback on your observation from the community.
@@ -569,8 +576,6 @@ en:
   all_updates: All Updates
   all_your_observations_will_default_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
   all_your_observations_will_default_to_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
-  # Option to allow any taxa on a list
-  allow_any: allow any
   allow_curator_access: Allow curator access
   allow_project_curators_to_view_your_private_coordinates: Allow project curators to view your hidden coordinates
   allowed_establish_means_values: Allowed establish means values
@@ -592,7 +597,15 @@ en:
   announcement_was_successfully_created: Announcement was successfully created.
   announcement_was_successfully_updated: Announcement was successfully updated.
   announcements: Announcements
+  # Label to for an option to show content with any value. Often used as a
+  # fallback when the more specific any_* keys aren't translated. If you're
+  # seeing this used incorrectly somewhere we should be using a more specific
+  # translation, please let us know.
   any: any
+  # Label to for an option to show content with any value. Often used as a
+  # fallback when the more specific any_* keys aren't translated. If you're
+  # seeing this used incorrectly somewhere we should be using a more specific
+  # translation, please let us know.
   any_: Any
   # Label for an option to show content with any annotation attribute
   any_annotation_attribute: Any
@@ -741,7 +754,6 @@ en:
   avg: Avg
   back: Back
   back_to_all_species: Back to All Species
-  back_to_browsing_people: Back to browsing people
   back_to_calendar: "Back to %{user} calendar"
   back_to_editing_observation: Back to editing observation
   back_to_friends: Back to friends
@@ -913,10 +925,8 @@ en:
   check_list_place: "%{place} Check List"
   check_list_updated: Check list updated!
   check_lists_for: "Other Check Lists for %{place}"
-  check_out_my_observations_at:  If you want, you can check out my observations at
   check_out_our_blog: Check out our Blog
   check_out_what_the_observation: Check out what the observation you're trying to identify looks like.
-  check_out_your_new_and_improved_list_list: Check out your new and improved Life List!
   check_this_box_if_html: |
     Check this box if you want to apply a <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -1508,7 +1518,6 @@ en:
     Click the link below to unlock your account
   devise_unlock_instructions_unlock: Unlock Your Account
   discoveries: Discoveries
-  did_not_send_invitations_because: Did not send invites to the following because...
   did_you_mean: 'Did you mean'
   did_you_photos_flickr?: Did you put any photos on Flickr?
   disable: Disable
@@ -1633,9 +1642,7 @@ en:
   eligible_for_research_grade: Eligible for Research Grade
   email: Email
   email_description: Your email is not shared with other users on iNaturalist
-  email_addresses_description: Comma-separated email addresses, limit 60 every 30 days.
   email_address_for_comments_and_other_feedback: Email address for comments and other feedback
-  email_addresses_to_receive_invites: Email addresses to receive invites
   email_copyright: "Copyright &copy; %{x}, all rights reserved"
   email_notifications: Email Notifications
   email_settings: Email settings
@@ -1768,8 +1775,6 @@ en:
   first_confirmed_inat_observation: "First confirmed %{site_name} observation"
   first_connect_your_provider_account_to_your_site: "First, connect your %{provider} account to %{site_name}:"
   first_inat_observation: "First %{site_name} observation"
-  first_observation: First Observation
-  first_observation_by_date_added: First observation by date added
   first_observer: 1st observer
   # Verb form, as in "Flag this item"
   flag: Flag
@@ -1847,7 +1852,6 @@ en:
   follow: Follow
   follow_receive_updates_about_new_observations: Follow (receive updates about new observations)
   follow_user: "Follow %{user}"
-  followed_projects: Followed Projects
   followers: Followers
   following: Following
   following_x_people:
@@ -1957,7 +1961,6 @@ en:
   here_are_our_top_suggestions: Here are our top suggestions
   here_are_our_top_species_suggestions: Here are our top species suggestions
   hex_color_eg: Hex color, e.g. 65644F
-  hi: Hi,
   hi_user: "Hi %{user}"
   # Verb, usually a button to hide an interface element
   hide: Hide
@@ -2077,7 +2080,13 @@ en:
   in_the_past: in the past
   in_the_past_week: In the past week
   inactive: Inactive
+  # Status of a complete set that is not available for general use on iNat, e.g.
+  # a draft
+  inactive_complete_set_status: Inactive
   inactive_taxon: Inactive Taxon
+  # Status of a taxon that is not available for general use on iNat, e.g. an
+  # output taxon in a split that hasn't been committed
+  inactive_taxon_status: Inactive
   inactive_taxon_concepts_are:
     Inactive taxon concepts are either taxonomically outdated or being staged for a taxon change.
     Outdated concepts are kept to maintain history and compatibility with some partner sites.
@@ -2105,12 +2114,8 @@ en:
   introduced_in_place: "Introduced in %{place}"
   invitation: Invitation
   invite: invite
-  invite_more: Invite more
   invite_people: Invite people
   invite_people_to_project: "Invite people to %{project}"
-  invite_someone_to: "Invite someone to %{name}!"
-  invite_your_friends: Invite your friends
-  invite_your_friends_description: "Help make %{site_name} a bigger, better community by inviting your friends to join!"
   # Type of project where people can only join after they have been invited
   inviteonly: invite-only
   invited_x: "Invited %{x}"
@@ -2197,7 +2202,6 @@ en:
   learn_about_the_species_live_in: Learn about the species that live in
   learn_about_third_party_tracking: Learn more about third party tracking
   learn_more: Learn More
-  learn_more_on_the_blog: Learn more on the blog
   learn_more_raquo: "Learn more &raquo;"
   learn_what_these_licenses_mean: Learn what these licenses mean
   least_concern: Least Concern
@@ -2266,9 +2270,6 @@ en:
   licensing_your_content_gives_others_legal: "Licensing your content gives others the legal right to use it if they stick to the terms of the license. %{site_name} uses your Creative Commons-licensed content to share with data partners like the "
   life: Life
   life_list: "%{user}'s Life List"
-  life_list_updated: Life list updated!
-  life_list_updated_we_also_saved_a: Life list updated! We also saved a blank observation of this taxon.
-  life_lists_automatically_fill: Life lists automatically fill up with new taxa as you observe them, and they can be restricted to higher level parent taxa, e.g. a life list of birds in the crow family (Corvidae).
   linear_scale_label: Linear
   link: Link
   link_or_unlink_your_facebook_account: Link or unlink your Facebook account
@@ -2291,8 +2292,6 @@ en:
   linkedin: LinkedIn
   list: List
   list_deleted: List deleted.
-  list_reloaded_from_observations: List reloaded from observations
-  list_rules_reapplied: List rules have been re-applied
   list_saved: List saved.
   list_tooltip: Show list view
   list_updated: List updated!
@@ -2409,7 +2408,6 @@ en:
   low: Low
   lowest_rank: Lowest Rank
   make_admin: Make admin
-  mail_disclaimer: "%{site_name} will not allow its users to send you additional invitations via our inviter. Please report invitation abuse to %{site}."
   # Header for main content section of the project detail page when editing custom project data.
   main_content: Main content
   # Stub text for the main content section when editing custom project data
@@ -2417,7 +2415,6 @@ en:
   make_a_new_place: Make a new place
   make_a_taxon_swap_instead?: Make a TaxonSwap instead?
   make_curator: Make curator
-  make_it_a_life_list?: Make it a life list?
   make_manager: Make manager
   make_sure_the_default_photo_looks_good: Make sure the default photo looks good in large size.
   make_this_your_default_license: "Make this your default %{type} license"
@@ -2788,7 +2785,6 @@ en:
   no_sections_available: No sections available.
   no_sections_have_been_added_to_this_assessments_yet: No sections have been added to this assessment yet.
   no_species_have_been_listed: No species have been listed for this place yet!
-  no_species_observed: No species observed
   no_species_on_this_list: No species on this list yet!
   no_species_on_this_list_for_owner_html: |
     You can start adding species to this list directly, or if this is a life
@@ -2850,7 +2846,6 @@ en:
     cell that contains the true coordinates.
   observation: Observation
   observation_: observation
-  observation_added: Observation added.
   observation_added_to_the_project: "Observation added to the project \"%{project}\""
   observation_aggregation: Observation aggregation
   # Attributes an observation to a user. %{user} can be a username or a full
@@ -2919,7 +2914,6 @@ en:
   # Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     e.g. 2019-10-29 13:12:21
-  observed_on_datetime: Observed on %{datetime}
   observation_removed_from_the_project: "Observation removed from the project \"%{project}\""
   observation_requirements: Observation Requirements
   # Label for a field showing the date when the observation requirements for a
@@ -3010,10 +3004,6 @@ en:
     irregular: irregular
     doubtful: doubtful
     absent: absent
-  of_observations: observations
-  of_species: species
-  of_observers: observers
-  of_identifiers: identifiers
   of_places: places
   of_this_taxon: Of this taxon
   offensive_inappropriate: Offensive / Inappropriate
@@ -3072,8 +3062,6 @@ en:
   only_show_for_species_subspecies_varieties_etc: Only show for species, subspecies, varieties, etc.
   only_show_taxa_fom_this_list: "Only show taxa from this list"
   only_showing_taxa_from: only showing taxa from this list
-  only_species: only species
-  only_species_and_subspecies: only species and subspecies/varieties
   only_staff_can_edit_large_places: Only site staff can edit very large places
   only_staff_can_edit_standard_places: Only site staff can edit places in the standard hierarchy
   only_the_owner_of_this_list_can_do_that: Only the owner of this list can do that.  Don't be evil.
@@ -3171,8 +3159,6 @@ en:
   per_month: Per Month
   per_week: Per Week
   person: Person
-  personal_message: Personal Message
-  personal_message_description: Nobody likes getting email from a machine! Why not let your friends know why you're inviting them?
   per_page: "Per page"
   photo: "Photo %{photoid}, %{photoattribution}"
   photo: Photo
@@ -3699,8 +3685,6 @@ en:
   preview: Preview
   preview_observations_with_these_observation_requirements: Preview Observations with these Observation Requirements
   preview_of_synced_observation: "<strong>Preview</strong> of synced observation.  <a href=\"%{url}\">Undo?</a>"
-  preview_personal_message:  "I'd like you to join me on %{site}, a website where you can record your observations of plants and animals, keep track of your life list, and learn about the natural world!"
-  preview_your_message: Preview your message
   previewing: "Previewing..."
   previous: Previous
   prev: Prev
@@ -3807,7 +3791,6 @@ en:
   range: Range
   rank: Rank
   rank_position: Rank
-  rank_restrictions: Rank restrictions
   # When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   # Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
@@ -3872,7 +3855,6 @@ en:
       form: Form
       infrahybrid: Infrahybrid
       leaves: Leaves
-  ranks_lowercase:
   # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
   ranks_lowercase_stateofmatter: state of matter
   # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
@@ -3947,7 +3929,6 @@ en:
   ranks_lowercase_infrahybrid: infrahybrid
   ranges: Ranges
   ray_finned_fishes: ray-finned fishes
-  re_apply_list_rules: Re-apply list rules
   re_order_photos: "Re-order photos &raquo;"
   read_more: Read More
   read_our_getting_started_guide: read our Getting Started guide
@@ -4149,12 +4130,10 @@ en:
   search_your_photos: Search your photos
   searching: "Searching..."
   seasonality: Seasonality
-  second_person_possessive_plural: "Your %{noun}"
   second_person_possessive_singular: "Your %{noun}"
   see_something_wrong_with_taxon: See something wrong with this taxon?  Let the curators know.
   # Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
-  seen_it?: Seen it?
   seen_nearby: Seen Nearby
   seen_one: Seen one?
   select: Select
@@ -4171,15 +4150,12 @@ en:
     Select photos from external photo-sharing sites to convert into %{site_name}
     observations. We'll fill in the date, time, and location from a photo's
     metadata, and try to look up species names from the tags.
-  select_photos_to_display: Select photos to display
   selected: selected
   selected_photos: Selected photos
   selected_taxon: Selected Taxon
   select_this_taxon: Select This Taxon
   send: send
-  send_invites_to: Send invites to
   send_me_reset_password_instructions: Send me reset password instructions
-  send_the_invites: Send the Invites 
   sending: Sending...
   # Label for messages you've sent
   sent: Sent
@@ -4194,7 +4170,6 @@ en:
   show: Show
   show_active_and_inactive_taxa: Show active and inactive taxa
   show_common_names: Show common names
-  show_default_taxon_photos: show default taxon photos
   show_hidden_content: Show Hidden Content
   show_keyboard_shortcuts: Show Keyboard Shortcuts
   show_less: Show Less
@@ -4202,7 +4177,6 @@ en:
   # Option to show data series that show "No Annotation" data, i.e. records that
   # have no annotation
   show_no_annotation: Show "No Annotation"
-  show_observation_photos: show observation photos
   show_off_your_recent_observations: Show off your recent observations on your own blog or website!
   show_only: Show only
   show_relative_proportions_of_all_observations: Show relative proportions of all observations
@@ -4275,7 +4249,6 @@ en:
   sorry_we_dont_have_any_metadata_for_that_photo: "Sorry, we don't have any metadata for that photo that we can use to set observation properties."
   sorry_x_is_not_responding: "Sorry, %{x} is not responding. Please try again later."
   sorry_you_can_only_add_1000_at_a_time: "Sorry, you can only add 1000 at a time."
-  sorry_you_cant_delete_your_own_life_list: "Sorry, you can't delete your own life list."
   sorry_you_need_to_be_signed_in_and: Sorry, you need to be signed in and have a linked Flickr account to post tags directly to Flickr.
   sort: Sort
   sort_by: Sort By
@@ -4667,16 +4640,10 @@ en:
   these_folks_kindly_volunteer_to: These folks kindly volunteer to maintain our taxonomy and deal with other issues.
   these_observations_have_not_been_uploaded_yet: |
     These observations have not been uploaded yet.
-  they_already_have_iNat_accounts: "...they already have %{site_name} accounts"
-  they_have_been_invited: ...they've already been invited
   third_party_tracking: Third Party Tracking
   third_person_possessive_singular: "%{object_phrase}'s %{noun}"
-  third_person_possessive_plural: "%{object_phrase}'s %{noun}"
   this: this
   this_bioblitz_beings_in: This bioblitz begins in
-  this_is_a_life_list_of: This is a life list of
-  this_is_a_life_list_from_place_html: "This is a life list from %{place}"
-  this_is_a_life_list_of_taxon_in_place: "This is a life list of %{taxon} in %{place}"
   this_is_more_convenient_way_find_parent: This is a more convenient way to find a parent ID. It's the parent ID that actually gets saved.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     This is a more convenient way to find a taxon ID. It's the taxon ID
@@ -4716,11 +4683,6 @@ en:
     If this is your account and you think this was done by mistake, please <a href="mailto:%{email}">contact us</a>.
   this_will_add_listed_taxa: This will add listed taxa from observations. This may take a while so please use sparingly and on small checklists
   this_will_refresh_listed_taxa: This will refresh the listed taxa on this list. This may take a while so please use sparingly and on small checklists
-  this_will_re_apply_all_list_rules: |
-    This will re-apply all list rules to the listed taxa and update any
-    associated stats`, e.g. rejecting taxa that are not within the list taxon
-    or aren't of the selected rank. It will not add any new taxa. It may take
-    a few minutes.
   this_will_remove_inaturalists_ability_to_access_this_account: |
     This will remove iNaturalist's ability to access this account on your behalf 
     until you grant access again. You may need to change your settings on the 
@@ -4753,7 +4715,6 @@ en:
   top_identifiers_of_taxon: Top Identifiers of %{taxon}
   top_observer: Top Observer
   top_observers: Top Observers
-  top_species: Top Species
   tos_privacy_guidelines_label: |
     I agree to the <a href="/terms" target="_blank">Terms of Service</a> and
     <a href="/privacy" target="_blank">Privacy Policy</a>, and I have reviewed
@@ -5008,7 +4969,6 @@ en:
   view_more_observations_of_x_project: "View more observations from %{project} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "View more observations of %{taxon} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "View more unreviewed"
-  view_my_life_list: View my life list
   view_observation: View Observation
   view_observations: View Observations
   view_observation_flags: View observation flags
@@ -5201,7 +5161,6 @@ en:
     some of them out, we'd appreciate all the help we can get. If
     you have any questions about curating content or don't want to
     be a curator anymore, please contact us at %{email}
-  you_are_over_your_invites_quota: ...you're over your monthly quota of 60 invites
   you_are_now_following_x: "You are now following %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>you</strong> are now the admin for %{project}
@@ -5240,7 +5199,6 @@ en:
     changes, identifications, or other content
   you_can_only_block_three_users: You can only block three users
   you_can_show_the_boundary_of: You can show the boundary of the place on your project page if the place has a boundary.
-  you_can_sign_free_at: "You can sign up for a free %{site_name} account at"
   you_cant_compare_a_list_with_nothing: You can't compare a list with nothing!
   you_cant_delete_a_project_list: "You can't delete a project list"
   you_cant_delete_observation_fields_that_people_are_using: "You can't delete observation fields that people are using"
@@ -5267,7 +5225,6 @@ en:
   you_faved_this: You faved this!
   you_have_left_x_project: "You have left %{project}"
   you_havent_linked_your_inaturalist_google_account: "You haven't linked your %{site_name} account and your Google account yet"
-  you_havent_joined_any_projects: You haven't joined any projects
   you_joined_this_project: You joined this project!
   you_must_be_a_member_of_this_project_to_do_that: You must be a member of this project to do that
   you_must_choose_an_observation_field: You must choose an observation field
@@ -5334,7 +5291,6 @@ en:
     <a href="%{people_path}">acquaintances</a>.
   youre_not_following_anyone_on_inat: You're not following anyone on %{site_name} yet!
   youve_linked_your_inaturalist_google_account: "You've linked your %{site_name} account and your Google account. This will allow you to associate your Google photos with your %{site_name} observations."
-  youve_seen_it_want_to: "You've seen it! Want to"
   youve_successfully_linked_your_provider_account: "You've successfully linked your %{provider} account"
   verifiable: Verifiable
   verifiable_observations: Verifiable Observations
