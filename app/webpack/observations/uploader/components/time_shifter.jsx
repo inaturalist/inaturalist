@@ -129,9 +129,9 @@ class TimeShifter extends SelectionBasedComponent {
         <div className="tickmarks">
           {[-24, -12, 0, 12, 24].map( tick => <span className="tick" key={tick.toString( )}>{tick}</span> )}
         </div>
-        <div className="time-shifter-buttons">
+        <div className={`time-shifter-buttons btn-toolbar ${timeShift === 0 && "hidden"}`}>
           <button className="btn btn-sm btn-primary" type="button" onClick={this.handleValueChange}>
-            {I18n.t( "shift" )}
+            {I18n.t( "offset_time_verb" )}
           </button>
           <button className="btn btn-sm btn-default" type="button" onClick={this.resetShifter}>
             {I18n.t( "cancel" )}
