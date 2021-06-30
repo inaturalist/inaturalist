@@ -1972,38 +1972,6 @@ ALTER SEQUENCE public.identifications_id_seq OWNED BY public.identifications.id;
 
 
 --
--- Name: invites; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.invites (
-    id integer NOT NULL,
-    user_id integer,
-    invite_address character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: invites_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.invites_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: invites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.invites_id_seq OWNED BY public.invites.id;
-
-
---
 -- Name: list_rules; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5596,13 +5564,6 @@ ALTER TABLE ONLY public.identifications ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
--- Name: invites id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.invites ALTER COLUMN id SET DEFAULT nextval('public.invites_id_seq'::regclass);
-
-
---
 -- Name: list_rules id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6521,14 +6482,6 @@ ALTER TABLE ONLY public.guides
 
 ALTER TABLE ONLY public.identifications
     ADD CONSTRAINT identifications_pkey PRIMARY KEY (id);
-
-
---
--- Name: invites invites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.invites
-    ADD CONSTRAINT invites_pkey PRIMARY KEY (id);
 
 
 --
@@ -10470,4 +10423,6 @@ INSERT INTO schema_migrations (version) VALUES ('20210305235042');
 INSERT INTO schema_migrations (version) VALUES ('20210408221535');
 
 INSERT INTO schema_migrations (version) VALUES ('20210625223935');
+
+INSERT INTO schema_migrations (version) VALUES ('20210630004545');
 
