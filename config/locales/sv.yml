@@ -47,6 +47,11 @@ sv:
   x_misidentifications_of_this_species:
     one: "%{count} felbestämning av denna art"
     other: "%{count} felbestämningar av denna art"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} felbestämning av art i detta släkte"
+    other: "%{count} felbestämningar av arter i detta släkte"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} felbestämning av arter i denna %{rank}"
     other: "%{count} felbestämningar av arter i denna %{rank}"
@@ -229,6 +234,10 @@ sv:
   action: Åtgärd
   actions: Åtgärder
   active: Aktiva
+  #Status of a complete set that is available for use
+  active_complete_set_status: Aktivt
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Aktivt
   active_users: Aktiva användare
   activity: Aktivitet
   activity_settings: Aktivitetsinställningar
@@ -255,7 +264,6 @@ sv:
   add_an_assessment: Lägg till en bedömning
   add_an_identification: Lägg till bestämning
   add_an_observation: Lägg till ett fynd
-  add_an_observation?: Lägga till ett fynd?
   add_an_observation_of: "Lägg till ett fynd av %{taxon}"
   add_an_observation_to_project_html: Lägg till ett fynd till %{project}
   add_annotations_for_x: Lägg till noteringar för "%{x}"
@@ -353,7 +361,6 @@ sv:
   add_to_favorites: Lägg till i favoriter
   add_to_list: Lägg till i lista
   add_to_project: Lägg till i projekt
-  add_to_your_life_list: Lägg till i din livslista!
   add_to_your_list: Lägg till i din lista
   add_your_email_to_get: |
     Lägg till din e-postadress för att få respons på ditt fynd från communityn. Om du helst inte vill dela den, kolla igen snart!
@@ -492,8 +499,6 @@ sv:
   all_updates: Alla uppdateringar
   all_your_observations_will_default_this_time_zone: Alla dina fynd kommer använda denna tidzon som standard om du inte anger annat.
   all_your_observations_will_default_to_this_time_zone: Alla dina fynd kommer använda denna tidzon som standard om du inte anger annat.
-  #Option to allow any taxa on a list
-  allow_any: tillåt alla
   allow_curator_access: Tillåt åtkomst för förvaltare
   allow_project_curators_to_view_your_private_coordinates: Tillåt projektförvaltare att se dina dolda koordinater
   allowed_establish_means_values: Tillåtna värden för invandringshistoria
@@ -515,7 +520,15 @@ sv:
   announcement_was_successfully_created: Lyckades skapa meddelandet.
   announcement_was_successfully_updated: Lyckades uppdatera meddelandet.
   announcements: Meddelanden
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: alla
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any_: Vilken som helst
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: Alla
@@ -664,7 +677,6 @@ sv:
   avg: Medel
   back: Tillbaka
   back_to_all_species: Tillbaka till alla arter
-  back_to_browsing_people: Tillbaka till alla personer
   back_to_calendar: "Tillbaka till %{user}s kalender"
   back_to_editing_observation: Tillbaka till redigering av fynd
   back_to_friends: Tillbaka till vänner
@@ -836,10 +848,8 @@ sv:
   check_list_place: "%{place}-checklista"
   check_list_updated: Checklistan uppdaterades!
   check_lists_for: "Andra checklistor för %{place}"
-  check_out_my_observations_at: Om du vill kan du kolla på mina fynd på
   check_out_our_blog: Kolla vår blogg
   check_out_what_the_observation: Kolla hur fyndet du försöker bestämma ser ut.
-  check_out_your_new_and_improved_list_list: Kolla in din nya och förbättrade Livslista!
   check_this_box_if_html: |
     Markera denna ruta om du vill tillämpa en <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -1382,7 +1392,6 @@ sv:
     Klicka på länken nedan för att låsa upp ditt konto
   devise_unlock_instructions_unlock: Lås upp ditt konto
   discoveries: Upptäckter
-  did_not_send_invitations_because: Skickade inte inbjudningar till följande eftersom...
   did_you_mean: 'Menade du'
   did_you_photos_flickr?: Har du lagt några bilder på Flickr?
   disable: Inaktivera
@@ -1507,9 +1516,7 @@ sv:
   eligible_for_research_grade: Berättigad till forskningsklass
   email: E-post
   email_description: Din e-post delas inte med andra användare på iNaturalist
-  email_addresses_description: Kommaseparerade e-postadresser, begränsat till 60 var 30:e dag.
   email_address_for_comments_and_other_feedback: E-postadress för kommentarer och annan respons
-  email_addresses_to_receive_invites: E-postadresser som ska få inbjudningar
   email_copyright: "Upphovsrätt &copy; %{x}, alla rättigheter förbehållna"
   email_notifications: E-postaviseringar
   email_settings: E-postinställningar
@@ -1641,8 +1648,6 @@ sv:
   first_confirmed_inat_observation: "Första bekräftade %{site_name}-fyndet"
   first_connect_your_provider_account_to_your_site: "Koppla först ditt %{provider}-konto till %{site_name}:"
   first_inat_observation: "Första %{site_name}-fyndet"
-  first_observation: Första fyndet
-  first_observation_by_date_added: Första fyndet efter datum tillagd
   first_observer: 1:a observatör
   #Verb form, as in "Flag this item"
   flag: Flagga
@@ -1719,7 +1724,6 @@ sv:
   follow: Följ
   follow_receive_updates_about_new_observations: Följ (få uppdateringar om nya fynd)
   follow_user: "Följ %{user}"
-  followed_projects: Följda projekt
   followers: Följare
   following: Följer
   following_x_people:
@@ -1828,7 +1832,6 @@ sv:
   here_are_our_top_suggestions: Här är våra bästa förslag
   here_are_our_top_species_suggestions: Här är våra bästa förslag på arter
   hex_color_eg: Hex-färg, t.ex. 65644F
-  hi: Hej,
   hi_user: "Hej %{user}"
   #Verb, usually a button to hide an interface element
   hide: Dölj
@@ -1846,8 +1849,6 @@ sv:
   highlights_and_stats_from_year_on_site: "Höjdpunkter och statistik från %{year} på %{site}"
   history: Historik
   home: Hem
-  #Label showing hours adjusted in the time shifter in the Uploader
-  hours_adjusted: "Justerade timmar:"
   however_there_were_some_issues: "Det uppstod dock några problem: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Jag vet inte men jag är säker på att detta är %{taxon}
   icon: Ikon
@@ -1933,7 +1934,13 @@ sv:
   in_the_past: förr i tiden
   in_the_past_week: Under senaste veckan
   inactive: Inaktiv
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Inaktivt
   inactive_taxon: Inaktivt taxon
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Inaktivt
   inactive_taxon_concepts_are: Inaktiva taxonkoncept är antingen taxonomiskt föråldrade eller förbereds för en taxonändring. Föråldrade koncept behålls för att upprätthålla historik samt för kompatibilitet med vissa partnerwebbplatser.
   inappropriate_content: Olämpligt innehåll?
   inat_account_action: "%{site_name} &#58; Konto &#58; %{action_name}"
@@ -1959,12 +1966,8 @@ sv:
   introduced_in_place: "Införd till %{place}"
   invitation: Inbjudan
   invite: bjud in
-  invite_more: Bjud in fler
   invite_people: Bjud in personer
   invite_people_to_project: "Bjud in personer till %{project}"
-  invite_someone_to: "Bjud in någon till %{name}!"
-  invite_your_friends: Bjud in dina vänner
-  invite_your_friends_description: "Hjälp till att göra %{site_name} till en större och bättre community genom att bjuda in dina vänner!"
   #Type of project where people can only join after they have been invited
   inviteonly: endast inbjudna
   invited_x: "%{x} inbjudna"
@@ -2049,7 +2052,6 @@ sv:
   learn_about_the_species_live_in: Lär dig om arterna som lever i
   learn_about_third_party_tracking: Läs mer om spårning av tredje part
   learn_more: Läs mer
-  learn_more_on_the_blog: Läs mer på bloggen
   learn_more_raquo: "Lär dig mer &raquo;"
   learn_what_these_licenses_mean: Lär dig vad dessa licenser innebär
   least_concern: Livskraftig
@@ -2118,9 +2120,6 @@ sv:
   licensing_your_content_gives_others_legal: "När du licensierar dina bidrag får andra laglig rätt att använda dem om de håller sig till villkoren i licensen. %{site_name} använder dina Creative Commons-licensierade bidrag för att dela med datapartners som "
   life: Liv
   life_list: "%{user}s livslista"
-  life_list_updated: Livslista uppdaterad!
-  life_list_updated_we_also_saved_a: Livslista uppdaterad! Vi har också sparat ett tomt fynd för detta taxon.
-  life_lists_automatically_fill: Livslistor fylls automatiskt med nya taxa som du observerat, och de kan begränsas till föräldrataxa på högre nivå, t.ex. en lista över kråkfåglar (Corvidae).
   linear_scale_label: Linjärt
   link: Länk
   link_or_unlink_your_facebook_account: Anslut eller koppla från ditt Facebook-konto
@@ -2143,8 +2142,6 @@ sv:
   linkedin: LinkedIn
   list: Lista
   list_deleted: Lista raderad.
-  list_reloaded_from_observations: Lista omladdad utifrån fynd
-  list_rules_reapplied: Listans regler har åter tillämpats
   list_saved: Lista sparad.
   list_tooltip: Visa listvy
   list_updated: Listan uppdaterad!
@@ -2239,6 +2236,8 @@ sv:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Logga ut från %{site_name}?"
   log_scale_label: Logaritmisk
+  #Status message shown while logging in
+  logging_in: Loggar in...
   login_slash_username: Inlogg / användarnamn
   logo:
     logo: Logotyp
@@ -2258,7 +2257,6 @@ sv:
   low: Låg
   lowest_rank: Lägsta rang
   make_admin: Gör admin
-  mail_disclaimer: "%{site_name} tillåter inte sina användare att skicka dig fler inbjudningar via oss. Vänligen rapportera missbruk av inbjudningar till %{site}."
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Huvudinnehåll
   #Stub text for the main content section when editing custom project data
@@ -2266,7 +2264,6 @@ sv:
   make_a_new_place: Skapa en ny fyndplats
   make_a_taxon_swap_instead?: Gör ett taxonbyte istället?
   make_curator: Ge förvaltarbehörighet
-  make_it_a_life_list?: Göra det till en livslista?
   make_manager: Ge ägarbehörighet
   make_sure_the_default_photo_looks_good: Se till att standardbilden ser bra ut i stor storlek.
   make_this_your_default_license: "Gör detta till din standard %{type}-licens"
@@ -2625,7 +2622,6 @@ sv:
   no_sections_available: Inga tillgängliga sektioner.
   no_sections_have_been_added_to_this_assessments_yet: Inga sektioner har lagts till denna bedömning än.
   no_species_have_been_listed: Inga arter har listats för denna fyndplats ännu!
-  no_species_observed: Inga observerade arter
   no_species_on_this_list: Inga arter på denna lista ännu!
   no_species_on_this_list_for_owner_html: |
     Du kan börja lägga till arter i denna lista direkt eller, om detta är en livslista, så uppdateras den automatiskt med arter när du
@@ -2683,7 +2679,6 @@ sv:
     Publika koordinater visas som en slumpmässig punkt inom en 0,2 grader stor lat/long-cell som innehåller de exakta koordinaterna.
   observation: Fynd
   observation_: fynd
-  observation_added: Fynd tillagt.
   observation_added_to_the_project: "Fynd tillagt till projektet \"%{project}\""
   observation_aggregation: Aggregering av fynd
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -2748,7 +2743,6 @@ sv:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     t.ex. 2019-10-29 13:12:21
-  observed_on_datetime: Observerad den %{datetime}
   observation_removed_from_the_project: "Fynd borttaget från projektet \"%{project}\""
   observation_requirements: Fyndkrav
   #Label for a field showing the date when the observation requirements for a
@@ -2825,10 +2819,6 @@ sv:
     irregular: oregelbunden
     doubtful: osäker
     absent: ej påträffad
-  of_observations: fynd
-  of_species: arter
-  of_observers: observatörer
-  of_identifiers: determinatörer
   of_places: fyndplatser
   of_this_taxon: Av detta taxon
   offensive_inappropriate: Stötande / Olämpligt
@@ -2884,8 +2874,6 @@ sv:
   only_show_for_species_subspecies_varieties_etc: Visar endast för arter, underarter, varieteter etc.
   only_show_taxa_fom_this_list: "Visa endast taxa från denna lista"
   only_showing_taxa_from: visar bara taxa från denna lista
-  only_species: bara arter
-  only_species_and_subspecies: endast arter och underarter/varieteter
   only_staff_can_edit_large_places: Endast webbplatsens personal kan redigera riktigt stora fyndplatser
   only_staff_can_edit_standard_places: Endast webbplatsens personal kan redigera fyndplatser i standardhierarkin
   only_the_owner_of_this_list_can_do_that: Endast ägaren av denna lista kan göra det. Var inte ond.
@@ -2983,8 +2971,6 @@ sv:
   per_month: Per månad
   per_week: Per vecka
   person: Person
-  personal_message: Personligt meddelande
-  personal_message_description: Ingen tycker om att få e-post från en maskin! Varför inte låta dina vänner veta varför du bjuder in dem?
   per_page: "Per sida"
   photo: Bild
   photo_attribution: "Bild %{attribution}"
@@ -3488,8 +3474,6 @@ sv:
   preview: Förhandsgranska
   preview_observations_with_these_observation_requirements: Förhandsgranska fynd med dessa fyndkrav
   preview_of_synced_observation: "<strong>Förhandsgranskning</strong> av synkroniserat fynd.  <a href=\"%{url}\">Ångra?</a>"
-  preview_personal_message: "Jag vill bjuda in dig till %{site}, en webbplats där du kan spara dina fynd av växter och djur, hålla koll på din livslista och lär dig om naturen!"
-  preview_your_message: Förhandsgranska ditt meddelande
   previewing: "Förhandsgranskar..."
   previous: Föregående
   prev: Föreg
@@ -3588,7 +3572,6 @@ sv:
   range: Intervall
   rank: Rang
   rank_position: Rang
-  rank_restrictions: Rangbegränsningar
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
@@ -3727,7 +3710,6 @@ sv:
   ranks_lowercase_infrahybrid: infrahybrid
   ranges: Områden
   ray_finned_fishes: strålfeniga fiskar
-  re_apply_list_rules: Tillämpa listreglerna igen
   re_order_photos: "Ordna om bilder &raquo;"
   read_more: Läs mer
   read_our_getting_started_guide: läs vår Kom igång-guide
@@ -3929,12 +3911,10 @@ sv:
   search_your_photos: Sök dina bilder
   searching: "Söker..."
   seasonality: Säsongsvariation
-  second_person_possessive_plural: "Dina %{noun}"
   second_person_possessive_singular: "Din %{noun}"
   see_something_wrong_with_taxon: Är det något fel med detta taxon? Meddela förvaltarna.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
-  seen_it?: Sett den?
   seen_nearby: Sett i närheten
   seen_one: Sett en?
   select: Välj
@@ -3948,15 +3928,12 @@ sv:
   select_options: Välj alternativ
   select_photos_from_your_photo_stream: |
     Välj bilder från externa fotodelningssajter för att konvertera till %{site_name}-fynd. Vi fyller i datum, tid och plats från en bilds metadata, och försöker slå upp artnamn utifrån taggningarna.
-  select_photos_to_display: Välj bilder att visa
   selected: valda
   selected_photos: Valda bilder
   selected_taxon: Valt taxon
   select_this_taxon: Välj detta taxon
   send: skicka
-  send_invites_to: Skicka inbjudningar till
   send_me_reset_password_instructions: Skicka instruktioner för återställning av lösenord
-  send_the_invites: Skicka inbjudningarna
   sending: Skickar...
   #Label for messages you've sent
   sent: Skickat
@@ -3971,7 +3948,6 @@ sv:
   show: Visa
   show_active_and_inactive_taxa: Visa accepterade och ickeaccpeterade taxa
   show_common_names: Visa vardagliga namn
-  show_default_taxon_photos: visa standardbilder för taxon
   show_hidden_content: Visa dolt innehåll
   show_keyboard_shortcuts: Visa kortkommandon
   show_less: Visa mindre
@@ -3979,7 +3955,6 @@ sv:
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Visa "Ingen anteckning"
-  show_observation_photos: visa fyndbilder
   show_off_your_recent_observations: Visa upp dina senaste fynd på din egen blogg eller hemsida!
   show_only: Visa endast
   show_relative_proportions_of_all_observations: Visa relativ andel av alla fynd
@@ -4048,7 +4023,6 @@ sv:
   sorry_we_dont_have_any_metadata_for_that_photo: "Tyvärr, vi har inga metadata för den bilden som vi kan använda för att ange fynduppgifter."
   sorry_x_is_not_responding: "Tyvärr, %{x} svarar inte. Försök igen senare."
   sorry_you_can_only_add_1000_at_a_time: "Tyvärr, du kan bara lägga till 1000 åt gången."
-  sorry_you_cant_delete_your_own_life_list: "Tyvärr, du kan inte ta bort din egen livslista."
   sorry_you_need_to_be_signed_in_and: Tyvärr, du måste vara inloggad och ha ett länkat Flickr-konto för att lägga upp taggar direkt till Flickr.
   sort: Sortera
   sort_by: Sortera efter
@@ -4412,16 +4386,10 @@ sv:
   these_folks_kindly_volunteer_to: Följande personer underhåller frivilligt vår taxonomi och hanterar samtidigt andra frågor.
   these_observations_have_not_been_uploaded_yet: |
     Dessa fynd har ännu inte laddats upp.
-  they_already_have_iNat_accounts: "...de har redan %{site_name}-konton"
-  they_have_been_invited: ...de har redan blivit inbjudna
   third_party_tracking: Spårning av tredje part
   third_person_possessive_singular: "%{object_phrase}s %{noun}"
-  third_person_possessive_plural: "%{object_phrase}s %{noun}"
   this: detta
   this_bioblitz_beings_in: Denna bioblitz börjar om
-  this_is_a_life_list_of: Detta är en livslista över
-  this_is_a_life_list_from_place_html: "Detta är en livslista från %{place}"
-  this_is_a_life_list_of_taxon_in_place: "Detta är en livslista över %{taxon} i %{place}"
   this_is_more_convenient_way_find_parent: Detta är ett bekvämare sätt att hitta ett föräldraID. Det är föräldraID:t som faktiskt sparas.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     Detta är ett bekvämare sätt att hitta ett taxonID. Det är taxonID som faktiskt sparas. Denna sökning fungerar endast för aktiva taxa.
@@ -4456,8 +4424,6 @@ sv:
     Om det här är ditt konto och du tror att detta är ett misstag, vänligen <a href="mailto:%{email}">kontakta oss</a>.
   this_will_add_listed_taxa: Detta kommer att lägga till listade taxa från fynd. Det kan ta ett tag så använd sparsamt och på små checklistor
   this_will_refresh_listed_taxa: Detta kommer att ladda om listade taxa i denna lista. Det kan ta ett tag så använd sparsamt och på små checklistor
-  this_will_re_apply_all_list_rules: |
-    Detta kommer att på nytt tillämpa alla listregler för listade taxa samt uppdatera all tillhörande statistik, bl.a. avvisa taxa som inte ingår i listtaxonet eller är av den valda rangen. Inga nya taxa kommer att läggas till. Det kan ta några minuter.
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Detta tar bort iNaturalists möjlighet att komma åt detta konto åt dig tills du beviljar åtkomst igen. Du kan behöva ändra dina inställningar på den externa webbplatsen för att helt förhindra åtkomst.
   #Application is a third-party app or service the user has authorized to
@@ -4488,7 +4454,6 @@ sv:
   top_identifiers_of_taxon: Flest bestämningar av %{taxon}
   top_observer: Toppobservatör
   top_observers: Toppobservatörer
-  top_species: Topparter
   tos_privacy_guidelines_label: |
     Jag godkänner <a href="/terms" target="_blank">Användarvillkoren</a> och
     <a href="/privacy" target="_blank">Integritetspolicyn</a>, och jag har granskat <a href="/pages/community+guidelines" target="_blank">Communityns riktlinjer</a>.
@@ -4732,7 +4697,6 @@ sv:
   view_more_observations_of_x_project: "Visa fler fynd från %{project} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Visa fler fynd av %{taxon} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Visa fler ogranskade"
-  view_my_life_list: Visa min livslista
   view_observation: Visa fynd
   view_observations: Visa fynd
   view_observation_flags: Visa fyndflaggor
@@ -4913,7 +4877,6 @@ sv:
     Du verkar vara offline. Försök igen när du är ansluten till Internet.
   youre_a_site_curator_which_means: |
     Du är en av webbplatsens förvaltare, vilket innebär att du frivilligt förvaltar våra data och övervakar innehåll. Känn dig inte tvingad att ta dig an alla dessa uppgifter, men har du tid att kolla på några av dem blir vi glada för all hjälp vi kan få. Om du har några frågor kring förvaltning av innehåll eller inte vill vara förvaltare längre, vänligen kontakta oss på %{email}
-  you_are_over_your_invites_quota: ...du har överskridit din månatliga kvot om 60 inbjudningar
   you_are_now_following_x: "Du följer nu %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>du</strong> är nu administratör för %{project}
@@ -4947,7 +4910,6 @@ sv:
     Du kan bara ta bort taxa du skapat som inte är associerade med taxonändringar, bestämningar eller annat innehåll
   you_can_only_block_three_users: Du kan bara blockera tre användare
   you_can_show_the_boundary_of: Du kan visa fyndplatsens gräns på din projektsida om fyndplatsen har en gräns.
-  you_can_sign_free_at: "Du kan registrera dig för ett gratis %{site_name}-konto på"
   you_cant_compare_a_list_with_nothing: Du kan inte jämföra en lista med ingenting!
   you_cant_delete_a_project_list: "Du kan inte ta bort en projektlista"
   you_cant_delete_observation_fields_that_people_are_using: "Du kan inte ta bort fyndfält som personer använder"
@@ -4971,7 +4933,6 @@ sv:
   you_faved_this: Du favoritmarkerade detta!
   you_have_left_x_project: "Du har lämnat %{project}"
   you_havent_linked_your_inaturalist_google_account: "Du har inte länkat ditt %{site_name}-konto och ditt Google-konto ännu"
-  you_havent_joined_any_projects: Du har inte gått med i några projekt
   you_joined_this_project: Du gick med i detta projekt!
   you_must_be_a_member_of_this_project_to_do_that: Du måste vara medlem i detta projekt för att göra det
   you_must_choose_an_observation_field: Du måste välja ett fyndfält
@@ -5036,7 +4997,6 @@ sv:
     <a href="%{people_path}">bekantskaper</a>.
   youre_not_following_anyone_on_inat: Du följer inte någon på %{site_name} än!
   youve_linked_your_inaturalist_google_account: "Du har länkat ditt %{site_name}-konto och ditt Google-konto. Detta gör att du kan koppla dina Google-bilder till dina %{site_name}-fynd."
-  youve_seen_it_want_to: "Du har sett den! Vill du"
   youve_successfully_linked_your_provider_account: "Du har nu länkat ditt %{provider}-konto"
   verifiable: Verifierbar
   verifiable_observations: Verifierbara fynd
