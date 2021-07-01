@@ -47,6 +47,11 @@ da:
   x_misidentifications_of_this_species:
     one: "%{count} fejlidentifikation af denne art"
     other: "%{count} fejlidentifikationer af denne art"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} fejlidentifikation af art i denne slægt"
+    other: "%{count} fejlidentifikationer af arter i denne slægt"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} fejlidentifikation af arter i denne %{rank}"
     other: "%{count} fejlidentifikationer af arter i denne %{rank}"
@@ -218,6 +223,10 @@ da:
   action: Handling
   actions: Handlinger
   active: Aktiv
+  #Status of a complete set that is available for use
+  active_complete_set_status: Aktiv
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Aktiv
   active_users: Aktive brugere
   activity: Aktivitet
   activity_settings: Aktivitetsindstillinger
@@ -244,7 +253,6 @@ da:
   add_an_assessment: Tilføj en vurdering
   add_an_identification: Tilføj en identifikation
   add_an_observation: Tilføj en observation
-  add_an_observation?: Tilføj en observation?
   add_an_observation_of: "Tilføj en observation af %{taxon}"
   add_an_observation_to_project_html: Tilføj en observation til %{project}
   add_annotations_for_x: Tilføj anmærkninger for "%{x}"
@@ -342,7 +350,6 @@ da:
   add_to_favorites: Tilføj til favoritter
   add_to_list: Tilføj til liste
   add_to_project: Tilføj til projekt
-  add_to_your_life_list: Tilføj til din livsliste!
   add_to_your_list: Tilføj til din liste
   add_your_email_to_get: |
     Tilføj din e-mailadresse for at få feedback på din observation fra fællesskabet. Hvis du helst ikke vil dele den, så vend tilbage snart!
@@ -481,8 +488,6 @@ da:
   all_updates: Alle opdateringer
   all_your_observations_will_default_this_time_zone: Alle dine observationer vil som standard bruge denne tidszone med mindre du ændrer den
   all_your_observations_will_default_to_this_time_zone: Alle dine observationer vil som standard bruge denne tidszone med mindre du ændrer den
-  #Option to allow any taxa on a list
-  allow_any: tillad alle
   allow_curator_access: Tillad kuratoradgang
   allow_project_curators_to_view_your_private_coordinates: Tillad projektkuratorer at se dine fortrolige koordinater
   allowed_establish_means_values: Tilladte værdier for oprindelse
@@ -504,7 +509,15 @@ da:
   announcement_was_successfully_created: Meddelelsen blev oprettet.
   announcement_was_successfully_updated: Meddelelsen blev opdateret.
   announcements: Meddelelser
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: alle
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any_: Alle
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: Hvilken som helst
@@ -653,7 +666,6 @@ da:
   avg: Gns.
   back: Tilbage
   back_to_all_species: Tilbage til Alle arter
-  back_to_browsing_people: Tilbage til "at browse" personer
   back_to_calendar: "Tilbage til %{user} kalender"
   back_to_editing_observation: Tilbage til redigering af observation
   back_to_friends: Tilbage til venner
@@ -825,10 +837,8 @@ da:
   check_list_place: "%{place} Tjekliste"
   check_list_updated: Tjekliste er opdateret
   check_lists_for: "Yderligere tjeklister for %{place}"
-  check_out_my_observations_at: Hvis du har lyst, så kan du se mine observationer på
   check_out_our_blog: Se vores blog
   check_out_what_the_observation: Se hvordan din observation, som du er ved at identificere, ser ud
-  check_out_your_new_and_improved_list_list: Tjek din nye og forbedrede Livsliste!
   check_this_box_if_html: |
     Marker dette felt, hvis du vil anvende en
     <a
@@ -1377,7 +1387,6 @@ da:
     Klik på linket nedenfor, for at oplåse din konto:
   devise_unlock_instructions_unlock: Oplås din konto
   discoveries: Opdagelser
-  did_not_send_invitations_because: Sendte ikke invitationer til følgende, fordi ...
   did_you_mean: 'Mente du'
   did_you_photos_flickr?: Har du lagt billeder på Flickr?
   disable: Deaktiver
@@ -1501,9 +1510,7 @@ da:
   eligible_for_research_grade: Kvalificeret til forskningskvalitet
   email: E-mail
   email_description: Din e-mail deles ikke med andre brugere på iNaturalist
-  email_addresses_description: Kommaseparerede e-mailadresser, begrænset til 60 hver 30. dag.
   email_address_for_comments_and_other_feedback: E-mailadresse til kommentarer og anden feedback
-  email_addresses_to_receive_invites: E-mailadresse til modtagelse af invitationer
   email_copyright: "Ophavsret &copy; %{x}, alle rettigheder forbeholdt"
   email_notifications: E-mailnotifikationer
   email_settings: E-mail indstillinger
@@ -1634,8 +1641,6 @@ da:
   first_confirmed_inat_observation: "Først bekræftet %{site_name} observation"
   first_connect_your_provider_account_to_your_site: "Forbind først din %{provider} konto til %{site_name}"
   first_inat_observation: "Første %{site_name} observation"
-  first_observation: Første observation
-  first_observation_by_date_added: Første observation efter tilføjelsesdato
   first_observer: 1. observatør
   #Verb form, as in "Flag this item"
   flag: Markering
@@ -1713,7 +1718,6 @@ da:
   follow: Følg
   follow_receive_updates_about_new_observations: Følg (modtag opdateringer om nye observationer)
   follow_user: "Følg %{user}"
-  followed_projects: Projekter der følges
   followers: Følgere
   following: Følger
   following_x_people:
@@ -1823,7 +1827,6 @@ da:
   here_are_our_top_suggestions: Her er vores bedste forslag
   here_are_our_top_species_suggestions: Her er vores topforslag til art
   hex_color_eg: Hex farve, f.eks. 65644F
-  hi: Hej,
   hi_user: "Hej,%{user}"
   #Verb, usually a button to hide an interface element
   hide: Skjul
@@ -1841,8 +1844,6 @@ da:
   highlights_and_stats_from_year_on_site: "Højdepunkter og statistikker fra %{year} på %{site}"
   history: Historik
   home: Hjem
-  #Label showing hours adjusted in the time shifter in the Uploader
-  hours_adjusted: "Timer, justeret:"
   however_there_were_some_issues: "Der var dog nogle problemer:%{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Jeg ved det ikke, men jeg sikker på det er %{taxon}
   icon: Ikon
@@ -1927,7 +1928,13 @@ da:
   in_the_past: i fortiden
   in_the_past_week: I den sidste uge
   inactive: Inaktiv
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Inaktiv
   inactive_taxon: inaktiv takson
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Inaktiv
   inactive_taxon_concepts_are: Inaktive takson koncepter er enten taksonomisk forældede eller bliver klargjort til en takson ændring. Forældede koncepter bibeholdes for at opretholde historie og kompatibilitet med nogle websted partnere.
   inappropriate_content: Upassende indhold?
   inat_account_action: "%{site_name} &#58; konto &#58; %{action_name}"
@@ -1953,12 +1960,8 @@ da:
   introduced_in_place: "indført i %{place}"
   invitation: Invitation
   invite: invitér
-  invite_more: Invitér flere
   invite_people: Invitér personer
   invite_people_to_project: "Invitér personer til %{project}"
-  invite_someone_to: "Invitér nogen til %{name}"
-  invite_your_friends: Invitér dine venner
-  invite_your_friends_description: "Hjælp med at gøre %{site_name} til et større og bedre fællesskab ved at invitere dine venner til at deltage!"
   #Type of project where people can only join after they have been invited
   inviteonly: kun invitaion
   invited_x: "Inviteret %{x}"
@@ -2043,7 +2046,6 @@ da:
   learn_about_the_species_live_in: Lær om de arter, der lever i
   learn_about_third_party_tracking: Få mere at vide om tredjepartssporing
   learn_more: Lær mere
-  learn_more_on_the_blog: Læs mere på bloggen
   learn_more_raquo: "Lær mere &raquo;"
   learn_what_these_licenses_mean: Lær hvad disse licenser betyder
   least_concern: Mindste bekymring
@@ -2112,9 +2114,6 @@ da:
   licensing_your_content_gives_others_legal: "Licensudstedelse af dit indhold giver andre legal ret til at bruge det, hvis de respekterer licensbetingelserne. %{site_name} bruger dit Creative Commons-licenserede indhold til at dele med datapartnere så som"
   life: Liv
   life_list: "%{user}'s Livsliste"
-  life_list_updated: Livsliste opdateret!
-  life_list_updated_we_also_saved_a: Livsliste opdateret! Vi gemte også en tom observation af denne takson.
-  life_lists_automatically_fill: Livslisterne fyldes automatisk med nye taksa, efterhånden som du observerer dem, og de kan begrænses til højere niveau af overordnet taksa, f.eks. en livsliste over fugle i kragefamilien (Corvidae).
   linear_scale_label: Lineær
   link: Link
   link_or_unlink_your_facebook_account: Tilknyt eller frakobl din Facebook konto
@@ -2137,8 +2136,6 @@ da:
   linkedin: LinkedIn
   list: Liste
   list_deleted: Liste slettet.
-  list_reloaded_from_observations: Liste genindlæst fra observationer
-  list_rules_reapplied: Listeregler er blevet anvendt igen
   list_saved: Liste gemt.
   list_tooltip: Vis listevisning
   list_updated: Liste opdateret!
@@ -2254,7 +2251,6 @@ da:
   low: lav
   lowest_rank: Laveste rang
   make_admin: Gør til administrator
-  mail_disclaimer: "%{site_name} tillader ikke brugerne at sende dig yderligere invitationer via vores invitation. Venligst anmeld invitationsmisbrug til %{site}."
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Hovedindhold
   #Stub text for the main content section when editing custom project data
@@ -2262,7 +2258,6 @@ da:
   make_a_new_place: Opret et nyt sted
   make_a_taxon_swap_instead?: Lav et Taksonskift i stedet?
   make_curator: Gør til kurator
-  make_it_a_life_list?: Lav det til en livsliste?
   make_manager: Gør til leder
   make_sure_the_default_photo_looks_good: Sørg for, at standard billedet ser godt ud i stor størrelse.
   make_this_your_default_license: "Gør dette til din standard %{type} licens"
@@ -2622,7 +2617,6 @@ da:
   no_sections_available: Ingen sektioner tilgængelige.
   no_sections_have_been_added_to_this_assessments_yet: Der er endnu ikke tilføjet sektioner til disse vurderinger.
   no_species_have_been_listed: Ingen arter er blevet opført for dette sted endnu!
-  no_species_observed: Ingen arter observeret
   no_species_on_this_list: Ingen arter på denne liste endnu!
   no_species_on_this_list_for_owner_html: |
     Du kan begynde at tilføje arter direkte til denne liste, eller hvis dette er en livsliste, vil det automatisk blive opdateret med arter, når du
@@ -2682,7 +2676,6 @@ da:
     Offentlige koordinater vist som et tilfældigt punkt inden for 0,2 længde- og breddegrad af feltet, som indeholder de korrekte koordinater.
   observation: Observation
   observation_: observation
-  observation_added: Observation tilføjet
   observation_added_to_the_project: "Observation tilføjet til projektet %{project}"
   observation_aggregation: Observationssammenlægning
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -2747,7 +2740,6 @@ da:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     f.eks. 2019-10-29 13:12:21
-  observed_on_datetime: Observeret %{datetime}
   observation_removed_from_the_project: "Observation fjernet fra projektet %{project}"
   observation_requirements: Krav til observationer
   #Label for a field showing the date when the observation requirements for a
@@ -2833,10 +2825,6 @@ da:
     irregular: uregelmæssig
     doubtful: tvivlsom
     absent: ikke til stede
-  of_observations: observationer
-  of_species: arter
-  of_observers: observatører
-  of_identifiers: identifikatorer
   of_places: steder
   of_this_taxon: Af denne takson
   offensive_inappropriate: fornærmende / upassende
@@ -2893,8 +2881,6 @@ da:
   only_show_for_species_subspecies_varieties_etc: Vis kun for arter, underarter, varianter etc.
   only_show_taxa_fom_this_list: "Vis kun taksa fra denne liste"
   only_showing_taxa_from: viser kun taksa fra denne liste
-  only_species: kun arter
-  only_species_and_subspecies: kun arter og underarter/varianter
   only_staff_can_edit_large_places: Kun hjemmesidens personale kan redigere meget store steder
   only_staff_can_edit_standard_places: Kun hjemmesidepersonale kan redigere steder i standardhierarkiet
   only_the_owner_of_this_list_can_do_that: Kun ejeren af denne liste kan gøre det. Vær ikke ond.
@@ -2992,8 +2978,6 @@ da:
   per_month: Per måned
   per_week: Per uge
   person: Person
-  personal_message: Personlig besked
-  personal_message_description: Ingen kan lide at få e-mail fra en maskine! Fortæl dine venner hvorfor du vil invitere dem.
   per_page: "Per side"
   photo: Foto
   photo_attribution: "Foto %{attribution}"
@@ -3504,8 +3488,6 @@ da:
   preview: Forhåndsvisning
   preview_observations_with_these_observation_requirements: Forhåndsvis Observationer med disse Observationskrav
   preview_of_synced_observation: "<strong>Preview</strong> af synkroniseret observation.  <a href=\"%{url}\">Undo?</a>"
-  preview_personal_message: "Jeg vil gerne invitere dig til %{site}, som er et websted, hvor du kan registrere dine observationer af planter og dyr. Du kan også oprette en liste med alle de dyr du har observeret samt lære noget mere om naturen."
-  preview_your_message: Forhåndsvisning af din besked
   previewing: "Forhåndsviser..."
   previous: Forrige
   prev: Forrige
@@ -3606,7 +3588,6 @@ da:
   range: Område
   rank: Rang
   rank_position: Rang
-  rank_restrictions: Rangrestriktioner
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
@@ -3745,7 +3726,6 @@ da:
   ranks_lowercase_infrahybrid: Infrahybrid
   ranges: Områder
   ray_finned_fishes: strålefinnede fisk
-  re_apply_list_rules: Genanvend listens regler
   re_order_photos: "Ændre rækkefølgen for fotos &raquo;"
   read_more: Læs mere
   read_our_getting_started_guide: læs vores "Kom godt igang" guide
@@ -3947,12 +3927,10 @@ da:
   search_your_photos: Søg i dine foto´s
   searching: "Søger..."
   seasonality: Sæsonudsving
-  second_person_possessive_plural: "Din %{noun}"
   second_person_possessive_singular: "Din %{noun}"
   see_something_wrong_with_taxon: Ser du noget galt med denne taxon? Giv kuratorerne besked.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
-  seen_it?: Set den?
   seen_nearby: Set i nærheden
   seen_one: Set en?
   select: Vælg
@@ -3966,15 +3944,12 @@ da:
   select_options: Vælg indstillinger
   select_photos_from_your_photo_stream: |
     Vælg billeder fra eksterne fotodelingstjenester, som skal konverteres til observationer på %{site_name}. Vi vil indsætte dato, klokkeslæt og placering ud fra billedets metadata, og prøve at finde artsnavne ud fra billedets tags.
-  select_photos_to_display: Vælg billeder, der skal vises
   selected: valgte
   selected_photos: Valgte foto´s
   selected_taxon: Valgte takson
   select_this_taxon: Vælg denne takson
   send: send
-  send_invites_to: Send invitationer til
   send_me_reset_password_instructions: Send mig info om nulstilling af adgangskode
-  send_the_invites: Send invitationerne
   sending: Sender...
   #Label for messages you've sent
   sent: Sendt
@@ -3989,7 +3964,6 @@ da:
   show: Vis
   show_active_and_inactive_taxa: Vis aktive og inaktive taksa
   show_common_names: Vis lokale navne
-  show_default_taxon_photos: vis standard takson foto´s
   show_hidden_content: Vis skjult indhold
   show_keyboard_shortcuts: Vis tastaturgenveje
   show_less: Vis mindre
@@ -3997,7 +3971,6 @@ da:
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Vis "Ingen annotation"
-  show_observation_photos: vis observations foto´s
   show_off_your_recent_observations: Vis dine seneste observationer på din egen blog eller hjemmeside!
   show_only: Vis kun
   show_relative_proportions_of_all_observations: Vis relative proportioner for alle observationer
@@ -4068,7 +4041,6 @@ da:
   sorry_we_dont_have_any_metadata_for_that_photo: "Beklager, vi har ingen metadata på det foto, som vi kan bruge til at indstille observations egenskaber."
   sorry_x_is_not_responding: "Beklager, %{x} svarer ikke. Prøv igen senere."
   sorry_you_can_only_add_1000_at_a_time: "Beklager, du kan kun tilføje 1000 ad gangen."
-  sorry_you_cant_delete_your_own_life_list: "Beklager, du kan ikke slette din egen livsliste."
   sorry_you_need_to_be_signed_in_and: Beklager, du skal være logget ind og have en tilknyttet Flickr-konto for at sende tags direkte til Flickr.
   sort: Sortér
   sort_by: Sortér efter
@@ -4447,16 +4419,10 @@ da:
   these_folks_kindly_volunteer_to: Disse fantastiske personer har meldt sig til at vedligeholde vores taksonomi samt at løse de udfordringer der løbende opstår.
   these_observations_have_not_been_uploaded_yet: |
     Disse observationer er ikke blevet uploadet endnu.
-  they_already_have_iNat_accounts: "... de har allerede %{site_name} konti"
-  they_have_been_invited: ... de er allerede blevet inviteret
   third_party_tracking: Tredjepartssporing
   third_person_possessive_singular: "%{object_phrase}s %{noun}"
-  third_person_possessive_plural: "%{object_phrase}s %{noun}"
   this: dette
   this_bioblitz_beings_in: Denne bioblitz starter om
-  this_is_a_life_list_of: Dette er en livsliste for
-  this_is_a_life_list_from_place_html: "Dette er en livsliste fra %{place}"
-  this_is_a_life_list_of_taxon_in_place: "Dette er en livsliste for %{taxon} i %{place}"
   this_is_more_convenient_way_find_parent: Dette er en mere bekvem måde at finde et overordnet ID på. Det er det overordnede ID, der rent faktisk bliver gemt.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     Dette er en mere bekvem måde at finde et takson ID på. Det er takson IDet
@@ -4492,8 +4458,6 @@ da:
     Hvis dette er din konto og du mener, at dette er sket ved en fejl, bedes du <a href="mailto:%{email}"> kontakte os </a>.
   this_will_add_listed_taxa: Dette vil tilføje opførte taksa fra observationer. Det kan tage et stykke tid, så brug venligst denne mulighed sparsomt og på små tjeklister
   this_will_refresh_listed_taxa: Dette opdaterer de angivne taksa på denne liste. Det kan tage et stykke tid, så brug venligst denne mulighed sparsomt og på små tjeklister
-  this_will_re_apply_all_list_rules: |
-    Dette vil gendanne alle listeregler til den opførte taksa og opdatere eventuelle tilknyttet statistik ", f.eks. afvises taksa, der ikke er inden for takson listen eller ikke er af den valgte rang. Det tilføjer ikke nogen nye taksa. Det kan tage et par minutter.
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Dette fjerner iNaturalists mulighed for at opnå adgang til denne konto på dine vegne, indtil du gentildeler adgang. Du skal muligvis ændre dine indstillinger på det eksterne websted for helt at forhindre adgang.
   #Application is a third-party app or service the user has authorized to
@@ -4524,7 +4488,6 @@ da:
   top_identifiers_of_taxon: Flest identifikationer af %{taxon}
   top_observer: Top observatør
   top_observers: Top observatører
-  top_species: Top arter
   tos_privacy_guidelines_label: |
     Jeg accepterer <a href="/terms" target="_blank">Tjenestevilkår</a> og
     <a href="/privacy" target="_blank">Fortrolighedspolitik</a>, og jeg har gennemset
@@ -4772,7 +4735,6 @@ da:
   view_more_observations_of_x_project: "Vis flere observationer fra %{project} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Vis flere observationer af %{taxon} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Vis flere der ikke er gennemgået"
-  view_my_life_list: Vis din livsliste
   view_observation: Vis observation
   view_observations: Vis observationer
   view_observation_flags: Vis observations markeringer
@@ -4951,7 +4913,6 @@ da:
   youre_a_site_curator_which_means: |
     Du er kurator på stedet, hvilket betyder, at du har meldt dig til frivilligt, at hjælpe med kuratere vores data og overvåge indhold. Du skal ikke føle dig forpligtet til, at håndtere alle disse problemer, men hvis du har tid til at tjekke nogle af dem ud, vi vil sætte pris på al den hjælp vi kan få. Hvis du har spørgsmål om kuratering af indhold eller ikke vil
     vær kurator længere, kontakt os venligst på %{email}
-  you_are_over_your_invites_quota: ... du er over din månedlige kvote på 60 invitationer
   you_are_now_following_x: "Du følger nu %{friend_user}"
   you_are_now_the_admin_for_project_html: |
     <strong>du</strong> er nu admin for %{project}
@@ -4988,7 +4949,6 @@ da:
     Du kan kun slette taksa, du har oprettet, som ikke er knyttet til taksonændringer, identifikationer eller andet indhold
   you_can_only_block_three_users: Du kan kun blokere tre brugere
   you_can_show_the_boundary_of: Du kan vise stedets ydre grænser på din projektside. (Hvis stedet har ydre grænser).
-  you_can_sign_free_at: "Du kan tilmelde dig og få en gratis %{site_name} konto på"
   you_cant_compare_a_list_with_nothing: Du kan ikke sammenligne en liste med ingenting!
   you_cant_delete_a_project_list: "Du kan ikke slette en projektliste"
   you_cant_delete_observation_fields_that_people_are_using: "Du kan ikke slette observationsfelter, som andre personer bruger"
@@ -5012,7 +4972,6 @@ da:
   you_faved_this: Du gjorde denne til favorit!
   you_have_left_x_project: "Du har forladt %{project}"
   you_havent_linked_your_inaturalist_google_account: "Du har ikke tilknyttet din %{site_name} konto og din Google konto endnu"
-  you_havent_joined_any_projects: Du er ikke tilmeldt noget projekt
   you_joined_this_project: Du blev medlem af dette projekt!
   you_must_be_a_member_of_this_project_to_do_that: Du skal være medlem af dette projekt for at gøre det
   you_must_choose_an_observation_field: Du skal vælge et observationsfelt
@@ -5077,7 +5036,6 @@ da:
     <a href="%{people_path}"> bekendtskaber </a>.
   youre_not_following_anyone_on_inat: Du følger ingen på %{site_name} endnu!
   youve_linked_your_inaturalist_google_account: "Du har tilknyttet din %{site_name} konto med din Google konto. Dette giver dig mulighed for at bruge dine Google fotos i dine %{site_name} observationer."
-  youve_seen_it_want_to: "Du har set det! Vil du"
   youve_successfully_linked_your_provider_account: "Du har tilknyttet din %{provider} konto"
   verifiable: verificerbare
   verifiable_observations: Verificérbare observationer
