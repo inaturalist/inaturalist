@@ -47,6 +47,9 @@ nl:
   x_misidentifications_of_this_species:
     one: "1 onjuiste determinatie van deze soort"
     other: "%{count} onjuiste determinaties van deze soort"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} onjuiste determinatie een de soort in dit geslacht"
+    other: "%{count} onjuiste determinaties van soorten in dit geslacht"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -234,6 +237,10 @@ nl:
   action: Handeling
   actions: Handelingen
   active: Actief
+  #Status of a complete set that is available for use
+  active_complete_set_status: Actief
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Actief
   active_users: Actieve gebruikers
   activity: Activiteit
   activity_settings: Activiteitinstellingen
@@ -267,6 +274,7 @@ nl:
     sex: Aantekeningen voor "Geslacht" toevoegen
     plant_phenology: Aantekeningen voor "Plantenfenologie" toevoegen
     life_stage: Aantekeningen voor "Levenstadium" toevoegen
+    evidence_of_presence: Voeg aantekeningen toe voor "Bewijs van Aanwezigheid"
   add_another_flag: Nog een melding toevoegen
   add_another_photo: Nog een foto toevoegen
   add_another_section: Nog een sectie toevoegen
@@ -327,6 +335,12 @@ nl:
   add_life_stage_larva_annotation: 'Aantekening "Levenstadium: Larve" toevoegen'
   add_life_stage_juvenile_annotation: 'Aantekening "Levenstadium: Juveniel" toevoegen'
   add_life_stage_egg_annotation: 'Aantekening "Levenstadium: Ei" toevoegen'
+  add_evidence_of_presence_organism_annotation: 'Voeg "Bewijs van Aanwezigheid: organisme" aantekening toe'
+  add_evidence_of_presence_feather_annotation: 'Voeg "Bewijs van Aanwezigheid: veer" aantekening toe'
+  add_evidence_of_presence_scat_annotation: 'Voeg "Bewijs van Aanwezigheid: poep" aantekening toe'
+  add_evidence_of_presence_track_annotation: 'Voeg "Bewijs van Aanwezigheid: spoor" aantekening toe'
+  add_evidence_of_presence_bone_annotation: 'Voeg "Bewijs van Aanwezigheid: bot" aantekening toe'
+  add_evidence_of_presence_molt_annotation: 'Voeg "Bewijs van Aanwezigheid: huid of haar" aantekening toe'
   #As in a Taxon Framework Relationship
   add_relationship: 'Relatie toevoegen'
   #As in a Guide Section
@@ -954,6 +968,8 @@ nl:
     place: Plek tot waar deze status is beperkt.
     url: URL naar de website die deze status beschrijft
     geoprivacy: Standaard geoprivacy voor waarnemingen van dit taxon
+    iucn: |
+      Equivalent van de IUCN Rode Lijst code. Dit is niet de huidige IUCN-beoordeling maar de IUCN-code die het beste overeenkomt met de dreiging van het openbaar maken van de coördinaten door deze status. Dit zal de geoprivacy overschrijven als het Niet bedreigd (veilig) is of lager. Dus als je waarnemingen van dit taxon wilt vervagen, stel deze in op "Gevoelig" of hoger.
   conservation_status_geoprivacy_desc: |
     Default geoprivacy toegepast op alle waarnemingen van dit taxon op deze plaats.
   contact_support: Neem contact op met support
@@ -1270,6 +1286,7 @@ nl:
       december: December
   date_is_accurate: Datum klopt
   date_joined: Datum Aangemeld
+  date_obscured_notice: Datum verborgen om persoonlijke of organisme privacy te beschermen
   date_observed: Datum waarneming
   date_observed_: Datum waargenomen
   date_observed_on: Waarnemingsdatum
@@ -1599,6 +1616,8 @@ nl:
   file_should_be_in_the_following_format: "Het bestand moet in het volgende format zijn: taxonnaam, beschrijving"
   fill_out_project_observation_fields: Vul de waarnemingsvelden in voor dit project
   fill_out_your_profile: voltooi je profiel
+  #The name of a computer file
+  filename: Bestandsnaam
   filter: Filter
   filter_by_curator_identification: Filteren op curatordeterminatie
   filter_by_place: Filter op plaats
@@ -1912,7 +1931,13 @@ nl:
   in_the_past: in het verleden
   in_the_past_week: Vorige week
   inactive: Inactief
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Inactief
   inactive_taxon: Inactief taxon
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Inactief
   inactive_taxon_concepts_are: Inactieve taxonconcepten zijn taxonomisch achterhaald of krijgen een taxonwijziging. Achterhaalde concepten worden bewaard om de geschiedenis te behouden en voor de compatibiliteit met sommige partnerwebsites.
   inappropriate_content: Ongepaste inhoud?
   inat_account_action: "%{site_name} &#58; Account &#58; %{action_name}"
@@ -2210,6 +2235,8 @@ nl:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Afmelden bij %{site_name}?"
   log_scale_label: Logboek
+  #Status message shown while logging in
+  logging_in: Aanmelden...
   login_slash_username: Login / gebruikersnaam
   logo:
     logo: Logo
@@ -2414,10 +2441,20 @@ nl:
   multiple_select_option: '-- meerdere --'
   multiple_taxa_for_taxon_change: "Meerdere taxa (invoer voor wisseling/samenvoeging, uitvoer voor opsplitsing)"
   multiple_taxon_ids_separated_by_commas: 'Meerdere taxonID''s gescheiden door komma''s, bijv. 123,654'
+  must_be_in_taxon: moet in het taxon %{taxon} zitten
+  must_be_not_in_taxon: mag niet in het taxon %{taxon} zitten
+  must_be_not_observed_by_user: mag niet zijn waargenomen door %{user}
+  must_be_not_observed_in_place: mag niet zijn waargenomen in %{place}
   must_be_observed_after: moet waargenomen worden na %{operand}
   must_be_observed_before: moet waargenomen worden voor %{operand}
+  must_be_observed_by_user: moet zijn waargenomen door %{user}
+  must_be_observed_in_place: moet zijn waargenomen in %{place}
   must_be_less_than_x_MB: "Moet kleiner zijn dan %{x} MB"
   must_have_observation_field: "Waarnemingsveld %{operand} is een verplicht veld"
+  must_have_photos: moet foto's hebben
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "moet kwaliteitsbeoordelingen bevatten: %{grades}"
+  must_have_sounds: moet geluiden hebben
   must_have_x: "%{x} vereist"
   mute_user: Gebruiker dempen
   mute_removed: Dempen verwijderd
@@ -2801,6 +2838,8 @@ nl:
   off_caps: "UIT"
   official_blog: Officiële blog
   offline_access_enabled: Offline toegang ingeschakeld
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Delta Tijd"
   old_observation_form: Oud waarnemingsformulier (verouderd)
   ok: "OK"
   on_caps: "AAN"
@@ -4649,6 +4688,7 @@ nl:
   username_or_user_id: Gebruikersnaam of Gebruikers-ID
   users: Gebruikers
   users_contributions_to_project_html: Bijdragen van <a href="%{url}">%{login}</a> aan %{project_title}
+  users_favorites: "Favorieten van %{user}"
   users_highlights_and_stats_from_year_on_site: "%{user}'s hoogtepunten en statistieken van %{year} op %{site}"
   users_id: "ID van %{user}"
   users_latest_observations_on_site: "Laatste waarnemingen van %{user} op %{site}"
@@ -4962,6 +5002,7 @@ nl:
   your_default: jouw standaard
   your_default_time_zone: Je standaard tijdzone
   your_email_address: Je e-mailadres
+  your_favorites: Jouw favorieten
   your_flickr_account: je Flickr-account
   your_flickr_photos_have_been_tagged: Je Flickr-foto's zij gelabeld!
   your_hard_drive: je harde schijf
@@ -6252,6 +6293,18 @@ nl:
           "Plant Phenology=Flower Budding": Bloemknoppen
           "Plant Phenology=Flowering": Bloeiend
           "Plant Phenology=Fruiting": Vruchtdragend
+          "Plant Phenology=No Evidence": Geen bewijs
+          "Life Stage=Adult": Volwassen
+          "Life Stage=Egg": Ei
+          "Life Stage=Larva": Larve
+          "Life Stage=Juvenile": Juveniel
+          "Life Stage=Nymph": Nimf
+          "Life Stage=Pupa": Pop
+          "Life Stage=Subimago": Subimago
+          "Life Stage=Teneral": Teneraal
+          "Sex=Cannot Be Determined": Kan niet worden vastgesteld
+          "Sex=Female": Vrouw
+          "Sex=Male": Man
           unannotated: Geen aantekening
         max_photos_desc: |
           Een taxon kan slechts %{max} foto's bevatten. Je moet bestaande foto's verwijderen om anderen toe te kunnen voegen.
