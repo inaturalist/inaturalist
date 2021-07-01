@@ -204,6 +204,10 @@ pt:
   action: Ação
   actions: Ações
   active: Ativo
+  #Status of a complete set that is available for use
+  active_complete_set_status: Ativo
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Ativo
   active_users: Utilizadores ativos
   activity: Atividade
   activity_settings: Definições da atividade
@@ -1186,6 +1190,7 @@ pt:
       november: novembro
       december: dezembro
   date_is_accurate: A data está correta
+  date_obscured_notice: Data ocultada para proteger a privacidade pessoal ou do organismo
   date_observed: Data de observação
   date_observed_: Data da observação
   date_observed_on: Data de observação em
@@ -1596,6 +1601,8 @@ pt:
   highlights_and_stats_from_year_on_site: "Destaques e estatísticas de %{year} em %{site}"
   history: Histórico
   home: Início
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Horas para ajuste:"
   however_there_were_some_issues: "No entanto, houve alguns problemas: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Eu não sei mas tenho a certeza que é %{taxon}
   icon: Ícone
@@ -1664,7 +1671,13 @@ pt:
   in_the_past: no passado
   in_the_past_week: durante a semana passada
   inactive: inativo
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Inativo
   inactive_taxon: táxon inativo
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Inativo
   inappropriate_content: Conteúdo inapropriado?
   inat_account_action: "%{site_name} &#58; Conta &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} acredita que esta é a lista completa deste táxon para este local."
@@ -1901,6 +1914,8 @@ pt:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Sair de %{site_name}?"
   log_scale_label: Logarítmica
+  #Status message shown while logging in
+  logging_in: A iniciar sessão...
   login_slash_username: Iniciar sessão / nome de utilizador
   logo:
     logo: Logótipo
@@ -2046,10 +2061,20 @@ pt:
   multiple_select_option: '-- múltiplo --'
   multiple_taxa_for_taxon_change: "Múltiplos taxa (fornecer para trocar/combinar, resultado para dividir)"
   multiple_taxon_ids_separated_by_commas: 'As várias Identificações do táxon estão separadas por vírgulas, por exemplo 123,654'
+  must_be_in_taxon: deve estar no táxon %{taxon}
+  must_be_not_in_taxon: Não deve estar no táxon %{taxon}
+  must_be_not_observed_by_user: não deve ser observado por %{user}
+  must_be_not_observed_in_place: não deve ser observado em %{place}
   must_be_observed_after: deve ser observado depois de %{operand}
   must_be_observed_before: deve ser observado antes de %{operand}
+  must_be_observed_by_user: deve ser observado por %{user}
+  must_be_observed_in_place: deve ser observado em %{place}
   must_be_less_than_x_MB: "Deve ser menor que %{x} MB"
   must_have_observation_field: "deve ter o campo de observação %{operand} preenchido"
+  must_have_photos: deve ter fotos
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "deve ter níveis de qualidade: %{grades}"
+  must_have_sounds: deve ter sons
   must_have_x: "deve ter %{x}"
   mute_user: Silenciar o utilizador
   mute_removed: Silenciador removido
@@ -2339,6 +2364,10 @@ pt:
   off_caps: "Desligar"
   official_blog: Blogue oficial
   offline_access_enabled: Acesso offline permitido
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Tempo de deslocamento"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Deslocamento
   old_observation_form: Formulário antigo de registo de observação (descontinuado)
   on_caps: "Ligar"
   on_day: "no"
@@ -3325,6 +3354,7 @@ pt:
   username_or_user_id: Nome de utilizador ou identificação do utilizador
   users: Utilizadores
   users_contributions_to_project_html: Contribuições de <a href="%{url}">%{login}</a> ao projeto %{project_title}
+  users_favorites: "Favoritos de %{user}"
   users_id: "Identificação de %{user}"
   users_latest_observations_on_site: "Últimas observações de %{user} no %{site}"
   users_profile: "Perfil de %{user}"
@@ -3380,6 +3410,7 @@ pt:
   you_sure_delete_flag?: Tem a certeza que quer eliminar este sinalizador?
   your_account_has_been_activated: A sua conta foi ativada!
   your_content: O seu Conteúdo
+  your_favorites: Os seus favoritos
   your_observations: Suas observações
   your_profile_was_successfully_updated: Seu perfil foi atualizado com sucesso!
   your_recent_projects: Os seus projetos recentes
@@ -3526,6 +3557,20 @@ pt:
           Breve resumo deste táxon com base na sua <a target="_blank"
           href="%{url}">página da Wikipédia</a> que armazenamos indefinidamente até que
           seja atualizado manualmente. Atualizando este resumo também atualiza imediatamente o nosso cache do conteúdo da Wikipédia subjacente que mostramos no site e que é atualizado automaticamente após uma semana.
+      show:
+        frequency:
+          "Plant Phenology=No Evidence": Sem Evidências
+          "Life Stage=Adult": Adulto
+          "Life Stage=Egg": Ovo
+          "Life Stage=Larva": Larva
+          "Life Stage=Juvenile": Juvenil
+          "Life Stage=Nymph": Ninfa
+          "Life Stage=Pupa": Pupa
+          "Life Stage=Subimago": Subimago
+          "Life Stage=Teneral": Estágio Teneral
+          "Sex=Cannot Be Determined": Não pode ser determinado
+          "Sex=Female": Fêmea
+          "Sex=Male": Macho
     users:
       edit:
         inaturalist_network_affiliation_desc_html: |
