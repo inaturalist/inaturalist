@@ -47,6 +47,9 @@ it:
   x_misidentifications_of_this_species:
     one: "1 identificazione errata di questa specie"
     other: "%{count} identificazioni errate di questa specie"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} identificazione errata delle specie in questo genere"
+    other: "%{count} identificazioni errate delle specie in questo genere"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -215,6 +218,10 @@ it:
   action: Azione
   actions: Azioni
   active: Attivi
+  #Status of a complete set that is available for use
+  active_complete_set_status: Attivo
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Attivo
   active_users: Utenti attivi
   activity: Attività
   activity_settings: Impostazioni dell'attività
@@ -1892,7 +1899,13 @@ it:
   in_the_past: in passato
   in_the_past_week: La scorsa settimana
   inactive: Inattivo
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Inattivo
   inactive_taxon: Taxon inattivo
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Inattivo
   inactive_taxon_concepts_are: I taxa inattivi sono quelli obsoleti da un punto di vista tassonomico, o in attesa di una modifica del taxon. I taxa obsoleti sono mantenuti per mantenere la cronologia e la compatibilità con alcuni dei siti partner.
   inappropriate_content: Contenuto inappropriato?
   inat_account_action: "%{site_name} &#58; Profilo &#58; %{action_name}"
@@ -2187,6 +2200,8 @@ it:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Vuoi uscire da %{site_name}?"
   log_scale_label: Logaritmica
+  #Status message shown while logging in
+  logging_in: Accesso in corso...
   login_slash_username: Login / nome utente
   logo:
     logo: Logo
@@ -2770,6 +2785,8 @@ it:
   off_caps: "OFF"
   official_blog: Blog Ufficiale
   offline_access_enabled: Accesso offline abilitato
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Scostamento"
   old_observation_form: Vecchio formulario dell'osservazione (obsoleto)
   ok: "OK"
   on_caps: "ON"
