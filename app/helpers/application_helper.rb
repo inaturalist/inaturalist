@@ -1582,4 +1582,20 @@ module ApplicationHelper
     end
   end
 
+  def sortable_table_header( header, options = {} )
+    label = options.delete(:label) || header
+    content = content_tag(:span) do
+      s = label
+      if @order_by == header
+        s += if @order == "desc"
+          " &darr;"
+        else
+          " &uarr;"
+        end
+      end
+      s.html_safe
+    end
+    link_to( content, url_for_params( order_by: header, order: @order == "desc" ? "asc" : "desc" ), options )
+  end
+
 end
