@@ -84,6 +84,13 @@ pl:
     few: "%{count} błędne oznaczenia gatunku w tym rodzaju"
     many: "%{count} błędnych oznaczeń gatunku w tym rodzaju"
     other: "%{count} błędnego oznaczenia gatunku w tym rodzaju"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} błędne oznaczenie gatunku w tym %{rank}"
+    few: "%{count} błędne oznaczenia gatunku w tym %{rank}"
+    many: "%{count} błędnych oznaczeń gatunku w tym %{rank}"
+    other: "%{count} błędnego oznaczenia gatunku w tym %{rank}"
   x_observations:
     one: "%{count} obserwacja"
     few: "%{count} obserwacje"
@@ -1024,6 +1031,21 @@ pl:
     alive: Żywy
     dead: Martwy
     cannot_be_determined: Nie można określić
+    evidence_of_presence: Ślad obecności
+    #As in the feather on a bird
+    feather: Pióro
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organizm
+    #Fecal matter, not regurgitated matter
+    scat: Odchody
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Trop
+    #Endoskeletal remains, like a deer bone
+    bone: Kość
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Wylinka
   controlled_term_definitions:
     alive: Organizm żyje i nie wykazuje żadnych oznak zbliżającej się śmierci
     dead: Organizm jest martwy lub wykazuje oznaki zbliżającej się śmierci
@@ -1031,10 +1053,18 @@ pl:
     flowering: Kwiaty widoczne, otwarte i nadal przymocowane do rośliny
     fruiting: Owoc widoczny i nadal przymocowany do rośliny
     teneral: Osobnik dorosły, który niedawno się przepoczwarzył ale nie osiągnął jeszcze końcowej postaci dorosłej
+    organism: Cały lub częściowy organizm
+    track: Odcisk na ziemi lub śniegu pozostawiony przez organizm
+    molt: Zrzucona skóra lub egzoszkielet
   controls: Kontrolki
   convert: Konwertuj
   coordinate_systems: System współrzędnych
   coordinates: Współrzędne
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: Tylko z pełnymi współrzędnymi
   copy: Kopiuj
   copy_and_paste_the_following_code_to: Kopiuj i wklej ten kod, aby zagnieździć to oszacowanie na innej stronie.
   copy_and_paste_this_into_your_own_html: Kopiuj i wklej to do swojego HTMLa.
@@ -1105,6 +1135,7 @@ pl:
   custom_project_was_successfully_updated: Zaktualizowano dostosowania projektu
   customize_location: Dostosuj lokalizację
   darr_apply_darr: "&darr; Zastosuj &darr;"
+  daily_users: Dzienni użytkownicy
   dashboard: Strona główna
   data_deficient: Niepełne dane
   data_quality: Jakość danych
@@ -1783,9 +1814,16 @@ pl:
   #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Warstwy
   layout: Układ
-  leaderboard: Tablica wyników
-  leaderboard_for_x: "Tablica wyników dla %{x}"
-  leaderboards: Tablice wyników
+  leaderboard: Ranking
+  leaderboard_for_x: "Rankingi dla %{x}"
+  leaderboards: Rankingi
+  leaderboard_most:
+    species_in_month_year: Najwięcej gatunków w %{month_year}
+    species_in_year: Najwięcej gatunków w %{year}
+    observations_in_month_year: Najwięcej obserwacji w %{month_year}
+    observations_in_year: Najwięcej obserwacji w %{year}
+    identifications_in_month_year: Najwięcej oznaczeń w %{month_year}
+    identifications_in_year: Najwięcej oznaczeń w %{year}
   leading: Wiodący
   learn: Dowiedz się
   learn_about_the_species_live_in: Dowiedz się więcej o gatunkach, które żyją w
@@ -3524,6 +3562,8 @@ pl:
   view_full_size_photo: Zobacz zdjęcie w pełnym rozmiarze
   view_invitation: Zobacz zaproszenie
   view_journal: Zobacz dziennik
+  view_leaderboard_from_last_month: Zobacz rankingi z ostatniego miesiąca
+  view_leaderboard_from_last_year: Zobacz rankingi z ostatniego roku
   view_license: Zobacz licencję
   view_lists: Zobacz listy
   view_moderation_history: Zobacz historię moderacji
