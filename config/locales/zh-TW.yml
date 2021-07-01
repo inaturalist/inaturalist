@@ -31,6 +31,8 @@ zh-TW:
     other: '<span class="count">%{count}</span>個符合的分類群'
   x_misidentifications_of_this_species:
     other: "%{count} 此物種有 %{count} 個錯誤鑑定"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     other: "在此%{rank}有 %{count}  個鑑定錯誤"
   x_observations:
@@ -199,7 +201,6 @@ zh-TW:
   add_an_assessment: 新增評估
   add_an_identification: 新增物種鑑定
   add_an_observation: 新增觀察紀錄
-  add_an_observation?: 新增觀察紀錄?
   add_an_observation_of: "新增一筆%{taxon}的觀察紀錄"
   add_an_observation_to_project_html: 新增一筆觀察記錄至 %{project} 專案
   add_annotations_for_x: 新增「%{x}」註解
@@ -297,7 +298,6 @@ zh-TW:
   add_to_favorites: 加入個人最愛
   add_to_list: 新增至名錄中
   add_to_project: 新增至專案
-  add_to_your_life_list: 新增到您的生涯名錄！
   add_to_your_list: 新增到你的名錄
   add_your_email_to_get: |
     添加您的電子郵件，以讓您的觀察能獲得來自於社群的意見回饋。若您不想分享它請立即查驗！
@@ -418,8 +418,6 @@ zh-TW:
   all_updates: 所有更新
   all_your_observations_will_default_this_time_zone: 若您未指定的話，您所有的觀察將會被預設成此時區。
   all_your_observations_will_default_to_this_time_zone: 若您未指定的話，您所有的觀察將會被預設成此時區。
-  #Option to allow any taxa on a list
-  allow_any: 允許任何
   allow_curator_access: 允許策展人存取
   allow_project_curators_to_view_your_private_coordinates: 允許專案策展人檢視您的隱藏座標
   allowed_establish_means_values: 允許的確立方式值
@@ -441,7 +439,15 @@ zh-TW:
   announcement_was_successfully_created: 公告已成功創建。
   announcement_was_successfully_updated: 通告已成功更新。
   announcements: 公告
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: 任何
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any_: 任何
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: 任一註解
@@ -589,7 +595,6 @@ zh-TW:
   avg: 平均
   back: 返回
   back_to_all_species: 返回至所有物種
-  back_to_browsing_people: 返回至瀏覽人員
   back_to_calendar: "返回至%{user}行事曆"
   back_to_editing_observation: 返回至編輯觀察
   back_to_friends: 返回好友
@@ -760,10 +765,8 @@ zh-TW:
   check_list_place: "%{place}清單"
   check_list_updated: 檢查列表已更新！
   check_lists_for: "用於%{place}的其它清單"
-  check_out_my_observations_at: 若您有意願，您可以查看我的觀察在：
   check_out_our_blog: 看看我們的部落格
   check_out_what_the_observation: 查看您所嘗試鑑定物種的外型模樣。
-  check_out_your_new_and_improved_list_list: 確定您新改正過的生涯物種清單！
   check_this_box_if_html: |
     如果您想套用<a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -1290,7 +1293,6 @@ zh-TW:
     點選以下連結來解鎖您的帳號
   devise_unlock_instructions_unlock: 解鎖您的帳號
   discoveries: 發現
-  did_not_send_invitations_because: 未對以下寄出邀請原因是...
   did_you_mean: '您是指'
   did_you_photos_flickr?: 您有上傳任何圖片在 Flickr 上嗎？
   disable: 停用
@@ -1411,9 +1413,7 @@ zh-TW:
   eligible_for_research_grade: 符合研究等級
   email: 電子郵件
   email_description: 在 iNaturalist 網站上您的電子郵件不會和其他使用者分享
-  email_addresses_description: 以逗號分隔的電子郵件地址，每 30 天限制 60 個。
   email_address_for_comments_and_other_feedback: 用於接收評論和其它意見回饋的電子郵件
-  email_addresses_to_receive_invites: 接收邀請用的電子郵件地址
   email_copyright: "版權所有 &copy; %{x}, 保留所有權利"
   email_notifications: 電子郵件通知
   email_settings: 電子郵件設定
@@ -1543,8 +1543,6 @@ zh-TW:
   first_confirmed_inat_observation: "第一個被確認的 %{site_name} 觀察"
   first_connect_your_provider_account_to_your_site: "首先，連接您的 %{provider} 帳號至 %{site_name}："
   first_inat_observation: "第一個 %{site_name} 觀察"
-  first_observation: 首個觀察
-  first_observation_by_date_added: 依日期添加的首次觀察
   first_observer: 首位觀察者
   #Verb form, as in "Flag this item"
   flag: 旗號標記
@@ -1621,7 +1619,6 @@ zh-TW:
   follow: 追蹤
   follow_receive_updates_about_new_observations: 追蹤（接收有關新觀察的更新）
   follow_user: "關注 %{user}"
-  followed_projects: 追蹤中的專案
   followers: 關注者
   following: 追蹤中
   following_x_people:
@@ -1728,7 +1725,6 @@ zh-TW:
   here_are_our_top_suggestions: 以下是我們最佳的建議
   here_are_our_top_species_suggestions: 這是我們的最佳物種建議
   hex_color_eg: 16 進位色彩碼，例如：65644F
-  hi: 嗨，
   hi_user: "嗨 %{user}"
   #Verb, usually a button to hide an interface element
   hide: 隱藏
@@ -1855,12 +1851,8 @@ zh-TW:
   introduced_in_place: "在%{place}引進"
   invitation: 邀請
   invite: 邀請
-  invite_more: 邀請更多
   invite_people: 邀請人們
   invite_people_to_project: "邀請人們至%{project}"
-  invite_someone_to: "邀請一些人來 %{name}！"
-  invite_your_friends: 邀請您的好友
-  invite_your_friends_description: "透過邀請您的好友加入來協助讓 %{site_name} 成為更大、更好的社群！"
   #Type of project where people can only join after they have been invited
   inviteonly: 僅限邀請
   invited_x: "已邀請%{x}"
@@ -1944,7 +1936,6 @@ zh-TW:
   learn_about_the_species_live_in: 了較有關物種存活於
   learn_about_third_party_tracking: 了解更多關於第三方追蹤的細節
   learn_more: 了解更多
-  learn_more_on_the_blog: 在部落格上了解更多詳情
   learn_more_raquo: "了解更多&raquo;"
   learn_what_these_licenses_mean: 了解這些許可協議的含義
   least_concern: 最不重要
@@ -2012,9 +2003,6 @@ zh-TW:
   licensing_your_content_gives_others_legal: "授權您的內容，可讓其他遵守授權條款的用戶能合法使用其中資料。%{site_name} 使用您的創用 CC 授權內容，來與其它資料合作者分享，例如"
   life: 生物
   life_list: "%{user}的生物清單"
-  life_list_updated: 已更新生物清單!
-  life_list_updated_we_also_saved_a: 生物清單已更新！我們還儲存一個空白觀察紀錄到這個物種分類中。
-  life_lists_automatically_fill: 你觀察到的每個新物種分類群會自動添加到生物清單內，他們會受你訂立的較高階父級物種分類群所約束。例如，一個鴉科（Family Corvidae）的分類清單會列該科的鳥類。
   linear_scale_label: 線性
   link: 連結
   link_or_unlink_your_facebook_account: 連結或取消連結至您的 Facebook 帳號
@@ -2037,8 +2025,6 @@ zh-TW:
   linkedin: LinkedIn
   list: 清單
   list_deleted: 列表已刪除。
-  list_reloaded_from_observations: 從觀察記錄中重新載入的列表
-  list_rules_reapplied: 列表規則已重新套用
   list_saved: 清單已儲存。
   list_tooltip: 顯示清單檢視
   list_updated: 列表已更新！
@@ -2152,7 +2138,6 @@ zh-TW:
   low: 低
   lowest_rank: 最低級別
   make_admin: 作為管理員
-  mail_disclaimer: "%{site_name} 將不允許用戶經由我們的邀請者寄給您額外邀請。請回報濫用邀請至 %{site}。"
   #Header for main content section of the project detail page when editing custom project data.
   main_content: 主要內容
   #Stub text for the main content section when editing custom project data
@@ -2160,7 +2145,6 @@ zh-TW:
   make_a_new_place: 建立一個新地點
   make_a_taxon_swap_instead?: 想要弄個物種分類對換來替代？
   make_curator: 建立策展人
-  make_it_a_life_list?: 設立一個生物清單?
   make_manager: 做為負責人
   make_sure_the_default_photo_looks_good: 確認預設照片在放大尺寸下觀看沒有問題。
   make_this_your_default_license: "將此作為您的預設%{type}許可協議"
@@ -2508,7 +2492,6 @@ zh-TW:
   no_sections_available: 沒有可用的部份。
   no_sections_have_been_added_to_this_assessments_yet: 此評估尚未添加章節內容。
   no_species_have_been_listed: 此地點尚未有物種被列出！
-  no_species_observed: 沒有觀察的物種
   no_species_on_this_list: 在此名錄上尚未有觀察的物種！
   no_species_on_this_list_for_owner_html: |
     如果是物種名錄的話，您可以直接開始添加物種至名錄中，這會在您<a href="%{url}" class="nobr">添加觀察</a>時自動以此物種做更新。
@@ -2565,7 +2548,6 @@ zh-TW:
     公共座標是以包含實際座標所在的 0.2 度緯/經度單元範圍內，來顯示出的隨機點。
   observation: 觀察
   observation_: 觀察
-  observation_added: 觀察已添加
   observation_added_to_the_project: "觀察已添加至專案「%{project}」"
   observation_aggregation: 觀察聚集
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -2630,7 +2612,6 @@ zh-TW:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     例： 2019-10-29 13:12:21
-  observed_on_datetime: 在 %{datetime} 所觀察的
   observation_removed_from_the_project: "觀察已從專案「%{project}」裡移除"
   observation_requirements: 觀察需求
   #Label for a field showing the date when the observation requirements for a
@@ -2707,10 +2688,6 @@ zh-TW:
     irregular: 異常
     doubtful: 可疑
     absent: 缺失
-  of_observations: 項觀察記錄
-  of_species: 個物種
-  of_observers: 個觀察者
-  of_identifiers: 個辨認者
   of_places: 個地點
   of_this_taxon: 這個的物種分類
   offensive_inappropriate: 冒犯/不適當
@@ -2764,8 +2741,6 @@ zh-TW:
   only_show_for_species_subspecies_varieties_etc: 僅用於顯示物種、亞種、變種、或其它
   only_show_taxa_fom_this_list: "僅從此名錄中顯示物種分類群"
   only_showing_taxa_from: 僅從此列表顯示物種分類
-  only_species: 僅物種
-  only_species_and_subspecies: 僅有物種和亞種/變種
   only_staff_can_edit_large_places: 僅有網站人員可以編輯特別廣大地點
   only_staff_can_edit_standard_places: 僅有網站人員可以編輯標準層次地點
   only_the_owner_of_this_list_can_do_that: 僅有此名錄的擁有者可以這樣做，請不要幹壞事。
@@ -2863,8 +2838,6 @@ zh-TW:
   per_month: 各月
   per_week: 各週
   person: 人
-  personal_message: 個人訊息
-  personal_message_description: 沒有人喜歡收到由機器發送的電子郵件！為什麼不讓您的好友知道您邀請他們的原因呢？
   per_page: "各頁"
   photo: 照片
   photo_attribution: "照片%{attribution}"
@@ -3360,8 +3333,6 @@ zh-TW:
   preview: 預覽
   preview_observations_with_these_observation_requirements: 用這些觀察需求來預覽觀察記錄
   preview_of_synced_observation: "<strong>預覽</strong>同步觀察。<a href=\"%{url}\">要取消？</a>"
-  preview_personal_message: "我希望您能與我一同加入 %{site}，這網站可以讓您紀錄您對動植物觀察的資料，替您觀察到的生物建立名錄，並來探索自然世界！"
-  preview_your_message: 預覽您的訊息
   previewing: "預覽中..."
   previous: 上一步
   prev: 上一個
@@ -3459,7 +3430,6 @@ zh-TW:
   range: 範圍
   rank: 分類位階
   rank_position: 級別
-  rank_restrictions: 級別限制
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{name} %{rank}"
@@ -3591,7 +3561,6 @@ zh-TW:
   ranks_lowercase_infrahybrid: 種內雜交
   ranges: 範圍
   ray_finned_fishes: 輻鰭魚類
-  re_apply_list_rules: 重新套用清單規則
   re_order_photos: "重新排序照片&raquo;"
   read_more: 閱讀更多
   read_our_getting_started_guide: 閱讀我們的入門指南
@@ -3791,12 +3760,10 @@ zh-TW:
   search_your_photos: 搜尋您的照片
   searching: "搜尋中..."
   seasonality: 季節性
-  second_person_possessive_plural: "您的 %{noun}"
   second_person_possessive_singular: "您的 %{noun}"
   see_something_wrong_with_taxon: 在此物種分類發現到問題了嗎？請讓策展人知悉。
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: 探索(Seek)
-  seen_it?: 看到它了嗎？
   seen_nearby: 已看過附近
   seen_one: 有看到某個生物嗎？
   select: 選擇
@@ -3810,15 +3777,12 @@ zh-TW:
   select_options: 選擇選項
   select_photos_from_your_photo_stream: |
     選擇來自於外部照片分享網站來轉換至 %{site_name} 觀察。我們會填入將來自於照片詮釋資料的日期、時間、以及位置，並嘗試查找來自於標籤的物種名稱。
-  select_photos_to_display: 選擇照片來顯示
   selected: 已選擇
   selected_photos: 已選照片
   selected_taxon: 已選物種分類
   select_this_taxon: 選擇此分類群
   send: 傳送
-  send_invites_to: 寄送邀請給
   send_me_reset_password_instructions: 寄送給我關於重新設定密碼的說明
-  send_the_invites: 寄送邀請
   sending: 寄送中...
   #Label for messages you've sent
   sent: 已寄送
@@ -3833,7 +3797,6 @@ zh-TW:
   show: 顯示
   show_active_and_inactive_taxa: 顯示有效和無作用的物種分類
   show_common_names: 顯示俗名
-  show_default_taxon_photos: 顯示預設物種分類照片
   show_hidden_content: 顯示隱藏內容
   show_keyboard_shortcuts: 顯示鍵盤快捷鍵
   show_less: 顯示較少
@@ -3841,7 +3804,6 @@ zh-TW:
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: 顯示「沒有註記」
-  show_observation_photos: 顯示觀察照片
   show_off_your_recent_observations: 展現出在您個人部落格或網站上的近期觀察！
   show_only: 僅顯示
   show_relative_proportions_of_all_observations: 顯示所有觀察的相對比例
@@ -3913,7 +3875,6 @@ zh-TW:
   sorry_we_dont_have_any_metadata_for_that_photo: "很抱歉，我們沒有任何用於照片，可讓我們能更改觀察偏好設定的詮釋資料。"
   sorry_x_is_not_responding: "很抱歉，%{x} 沒有回應，請稍後重試。"
   sorry_you_can_only_add_1000_at_a_time: "很抱歉，您每一次只能添加 1000 個。"
-  sorry_you_cant_delete_your_own_life_list: "對不起，你是不能刪除個人生涯名錄的。"
   sorry_you_need_to_be_signed_in_and: 很抱歉，您需要登入並且要有已連結的 Flickr 帳號，來直接發佈標籤到 Flickr。
   sort: 排序
   sort_by: 排序方式
@@ -4251,16 +4212,10 @@ zh-TW:
   these_folks_kindly_volunteer_to: 這些友善人們志願來維護我們的物種分類法內容，並處理其它問題。
   these_observations_have_not_been_uploaded_yet: |
     這些觀察尚未被上傳。
-  they_already_have_iNat_accounts: "...他們已有 %{site_name} 帳號"
-  they_have_been_invited: ...他們已經被邀請
   third_party_tracking: 第三方追蹤
   third_person_possessive_singular: "%{object_phrase}的%{noun}"
-  third_person_possessive_plural: "%{object_phrase}的%{noun}"
   this: 此
   this_bioblitz_beings_in: 此 bioblitz 開始於
-  this_is_a_life_list_of: 這生物名錄屬於
-  this_is_a_life_list_from_place_html: "這是來自%{place}的生物列表"
-  this_is_a_life_list_of_taxon_in_place: "這是一個在 %{place} 的 %{taxon} 中的生物名錄"
   this_is_more_convenient_way_find_parent: 此為找尋父級鑑定的更簡便方法。這是實際被儲存的父級鑑定。
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     此為找尋物種分類鑑定的更簡便方法。這是實際被儲存的物種分類鑑定。這僅在可用的物種分類之下能被有效搜尋。
@@ -4294,8 +4249,6 @@ zh-TW:
     如果這是您的帳號且您認為是有問題的，請<a href="mailto:%{email}">聯絡我們</a>。
   this_will_add_listed_taxa: 這將會從觀察來添加已列出物種分類群。因為會花費一段時間，所以請謹慎地使用並儘量用在小型的名錄上
   this_will_refresh_listed_taxa: 這將會在此名錄上重新整理已列出的物種分類群。因為會花費一段時間，所以請謹慎地使用並儘量用在小型的名錄上
-  this_will_re_apply_all_list_rules: |
-    這將會重新套用所有清單規則至已列出物種分類群並更新所關聯的統計狀態，例如：不在列出物種分類裡或不在所選級別的所被拒絕物種分類群。這不會添加任何新的物種分類群，並且會花上幾分鐘處理。
   this_will_remove_inaturalists_ability_to_access_this_account: |
     這將取消 iNaturalist 代表您存取此帳號的能力，直到您再次授權為止。您也許需要在外部網站上更改您的設定來完全防止存取。
   #Application is a third-party app or service the user has authorized to
@@ -4326,7 +4279,6 @@ zh-TW:
   top_identifiers_of_taxon: '%{taxon}的熱門鑑定人'
   top_observer: 熱門觀察者
   top_observers: 熱門觀察者
-  top_species: 熱門物種
   tos_privacy_guidelines_label: |
     我同意<a href="/terms" target="_blank">服務條款</a>和<a href="/privacy" target="_blank">隱私權政策</a>，而且我已經審閱過<a href="/pages/community+guidelines" target="_blank">社群守則</a>。
   total: 總計
@@ -4565,7 +4517,6 @@ zh-TW:
   view_more_observations_of_x_project: "在 <nobr>%{site_name}&raquo;</nobr> 上檢視更多來自於%{project}的觀察"
   view_more_observations_of_x_taxon: "在 <nobr>%{site_name}&raquo;</nobr> 上檢視更多屬於%{taxon}的觀察"
   view_more_unreviewed: "檢視更多未檢閱項目"
-  view_my_life_list: 檢視我的生涯清單
   view_observation: 檢視觀察
   view_observations: 檢視觀察
   view_observation_flags: 檢視觀察標記
@@ -4738,7 +4689,6 @@ zh-TW:
     您似乎已離線。請在您連接至網路時重試。
   youre_a_site_curator_which_means: |
     您是個網站策展人，代表著您自願來協助策展我們的資料及監控內容。請不要為處理問題感到擔心，若您願意花費時間來查看一些項目，我們都會對所能得到的幫助有所感激。如果您有策展內容方面問題、或是不知該如何當名策展人，請透過電子郵件地址 %{email} 聯絡我們。
-  you_are_over_your_invites_quota: ...您已超出使用您每月共 60 次邀請的額度
   you_are_now_following_x: "您正在關注 %{friend_user}。"
   you_are_now_the_admin_for_project_html: |
     <strong>您</strong>現在是 %{project} 的總管理者了
@@ -4772,7 +4722,6 @@ zh-TW:
     您僅能刪除您所建立的分類群，而且該分類群沒有連結到分類群更動、鑑定和其他的相關內容。
   you_can_only_block_three_users: 您只可以封鎖三位使用者
   you_can_show_the_boundary_of: 若地點有邊界，您可在您的專案頁面上將地點邊界顯示出。
-  you_can_sign_free_at: "您可註冊一個免費 %{site_name} 帳號在："
   you_cant_compare_a_list_with_nothing: 您不能比較沒有任何內容的名錄！
   you_cant_delete_a_project_list: "您不能刪除專案清單"
   you_cant_delete_observation_fields_that_people_are_using: "您不可刪除正被其他人使用的觀察欄位"
@@ -4796,7 +4745,6 @@ zh-TW:
   you_faved_this: 您已加為最愛！
   you_have_left_x_project: "您已離開 %{project}"
   you_havent_linked_your_inaturalist_google_account: "您尚未連結您的 %{site_name} 帳號和您的 Google 帳號"
-  you_havent_joined_any_projects: 您尚未加入任一專案
   you_joined_this_project: 您加入了此專案！
   you_must_be_a_member_of_this_project_to_do_that: 您必須是此專案成員之一才能做出
   you_must_choose_an_observation_field: 您必須選擇一個觀察欄位
@@ -4859,7 +4807,6 @@ zh-TW:
     您尚未關注任何人。關注其他博物學友可讓您更容易追蹤他們的最新觀察。去看看那些人<a href="%{observations_path}">正在進行觀察</a>並尋找一些<a href="%{people_path}">同伴</a>吧。
   youre_not_following_anyone_on_inat: 您在%{site_name}還未追蹤任何人！
   youve_linked_your_inaturalist_google_account: "您已連結您的 %{site_name} 帳號與您的 Google 帳號。這可允許您讓您的 Google 照片與您的 %{site_name} 觀察作關連。"
-  youve_seen_it_want_to: "您已看見了它！想要"
   youve_successfully_linked_your_provider_account: "您成功連結了您的 %{provider} 帳號"
   verifiable: 可證實
   verifiable_observations: 可證實觀察
