@@ -246,6 +246,7 @@ fi:
     sex: Lisää merkintä sukupuolesta
     plant_phenology: Lisää merkintä kasvin fenologiasta
     life_stage: Lisää merkintä elinvaiheesta
+    evidence_of_presence: Lisää kommentti kohtaan "Todiste läsnäolosta"
   add_another_flag: Lisää toinen lippu
   add_another_photo: Lisää toinen kuva
   add_another_section: Lisää toinen jakso
@@ -306,6 +307,12 @@ fi:
   add_life_stage_larva_annotation: 'Lisää "Life Stage: Larva" selitys'
   add_life_stage_juvenile_annotation: 'Lisää "Life Stage: Juvenile" selitys'
   add_life_stage_egg_annotation: 'Lisää "Life Stage: Egg" selitys'
+  add_evidence_of_presence_organism_annotation: 'Lisää "Todiste läsnäolosta: eliö" -kommentti'
+  add_evidence_of_presence_feather_annotation: 'Lisää "Todiste läsnäolosta: sulka" -kommentti'
+  add_evidence_of_presence_scat_annotation: 'Lisää "Todiste läsnäolosta: jätös" -kommentti'
+  add_evidence_of_presence_track_annotation: 'Lisää "Todiste läsnäolosta: jälki" -kommentti'
+  add_evidence_of_presence_bone_annotation: 'Lisää "Todiste läsnäolosta: luu" -kommentti'
+  add_evidence_of_presence_molt_annotation: 'Lisää "Todiste läsnäolosta: nahka" -kommentti'
   #As in a Taxon Framework Relationship
   add_relationship: 'Lisää suhde'
   #As in a Guide Section
@@ -969,6 +976,20 @@ fi:
     dead: Kuollut
     cannot_be_determined: Ei voida tunnistaa
     evidence_of_presence: Todiste läsnäolosta
+    #As in the feather on a bird
+    feather: Sulka
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Eliö
+    #Fecal matter, not regurgitated matter
+    scat: Jätös
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Jälki
+    #Endoskeletal remains, like a deer bone
+    bone: Luu
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Nahka
   controlled_term_definitions:
     alive: Eliö on elossa eikä ole kuolemassa
     dead: Eliö on kuollut tai kuolemassa
@@ -977,6 +998,13 @@ fi:
     fruiting: Hedelmät näkyvissä ja vielä kiinni kasvissa
     no_evidence_of_flowering: Kuvissa ei näy genitaaleja
     cannot_be_determined: Ei voida määrittää perustuen annettuun näyttöön
+    feather: Yksi tai useampi sulka tai höyhen, joka ei ole kiinni eliössä
+    organism: Kokonainen eliö tai eliön osa
+    scat: Jätökset (ei pöllöjen oksennuspallot tai muut vastaavat)
+    track: Eliön jälki maassa tai lumessa
+    bone: |
+      Pääasiassa sisäisen tukirangan jäänteitä; osittainen luun paljastuminen muuten ehjässä eliössä tulisi merkitä "eliöksi"
+    molt: Hylätty nahka tai ulkoinen tukiranka
   controls: Ohjaimet
   convert: Muunna
   coordinate_systems: Koordinaattijärjestelmät
@@ -1534,6 +1562,8 @@ fi:
   file_should_be_in_the_following_format: "Tiedoston pitäisi olla seuraavassa muodossa: taksonin nimi, kuvaus"
   fill_out_project_observation_fields: Täytä projektin havaintokentät
   fill_out_your_profile: täydennä profiilisi
+  #The name of a computer file
+  filename: Tiedostonimi
   filter: Suodata
   filter_by_curator_identification: Suodata kuraattorin tekemän tunnistuksen perusteella
   filter_by_place: Suodata paikan mukaan
@@ -1931,6 +1961,13 @@ fi:
   leaderboard: Tulostaulukko
   leaderboard_for_x: "%{x}:n tulostaulu"
   leaderboards: Tulostaulukot
+  leaderboard_most:
+    species_in_month_year: Eniten lajeja %{month_year}
+    species_in_year: Eniten lajeja %{year}
+    observations_in_month_year: Eniten havaintoja %{month_year}
+    observations_in_year: Eniten havaintoja %{year}
+    identifications_in_month_year: Eniten tunnistuksia %{month_year}
+    identifications_in_year: Eniten tunnistuksia %{year}
   leading: Johtava
   learn: Opi
   learn_about_the_species_live_in: Opi lajeista, jotka elävät paikassa
@@ -2407,7 +2444,7 @@ fi:
   next_tab: Seuraava välilehti
   'no': 'Ei'
   no_assessments_have_been_added_to_this_project_yet: Tähän projektiin ei ole vielä lisätty arviointeja.
-  no_but_it_is_a_member_of_taxon: "Ei, mutta se on kuuluu taksoniin %{taxon}"
+  no_but_it_is_a_member_of_taxon: "Ei, mutta se kuuluu taksoniin %{taxon}"
   no_comments_yet: Ei vielä kommentteja.
   no_countries_added_yet: Mitään maata ei vielä lisätty
   no_curators_set: Kuraattoreita ei asetettu
