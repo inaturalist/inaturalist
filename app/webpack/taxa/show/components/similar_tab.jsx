@@ -25,6 +25,7 @@ const SimilarTab = ( {
           } else if ( taxon.rank_level > 10 ) {
             tip = I18n.t( "x_misidentifications_of_species_in_this_rank", {
               count: result.count,
+              gender: result.taxon.rank,
               rank: I18n.t( `ranks.${result.taxon.rank}`, { defaultValue: result.taxon.rank } ).toLowerCase( )
             } );
           }
@@ -63,7 +64,8 @@ const SimilarTab = ( {
     if ( place ) {
       const misidentifiedOpts = {
         place: place.display_name,
-        url: `/places/${place.id}`
+        url: `/places/${place.id}`,
+        gender: taxon.rank
       };
       const misidentifiedHeader = I18n.t(
         `other_taxa_commonly_misidentified_as_this_${_.snakeCase( taxon.rank )}_in_place_html`,
@@ -83,7 +85,7 @@ const SimilarTab = ( {
       title = I18n.t( `other_taxa_commonly_misidentified_as_this_${taxon.rank}`, {
         default: I18n.t( "other_taxa_commonly_misidentified_as_this_rank", {
           rank,
-          gender: _.snakeCase( rank )
+          gender: taxon.rank
         } )
       } );
     }

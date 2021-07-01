@@ -1080,6 +1080,16 @@ en:
   contributor_cannot_be_found: Contributor cannot be found
   contributors_to_project: "Contributors to %{project}"
   controlled_term_labels:
+    # Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Any
+    # Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Any
+    # Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Any
+    # Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Any
+    # Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Any
     sex: Sex
     male: Male
     female: Female
