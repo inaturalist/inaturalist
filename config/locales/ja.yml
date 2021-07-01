@@ -29,6 +29,8 @@ ja:
     other: '<span class="count">%{count}</span>件の該当する分類群'
   x_misidentifications_of_this_species:
     other: "この種の鑑定に間違いが%{count}件"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     other: "%この%{rank}中誤同定は%{count}件"
   x_observations:
@@ -189,7 +191,6 @@ ja:
   add_an_assessment: 評定を追加
   add_an_identification: 同定を追加
   add_an_observation: 観察記録の追加
-  add_an_observation?: 観察記録を追加しますか？
   add_an_observation_of: "%{taxon}の観察記録を追加"
   add_an_observation_to_project_html: 観察記録を%{project} に追加
   add_annotations_for_x: '「%{x}」の注釈を追加'
@@ -280,7 +281,6 @@ ja:
   add_to_favorites: お気に入りに追加
   add_to_list: リストに追加
   add_to_project: プロジェクトに追加
-  add_to_your_life_list: ライフリストに追加！
   add_to_your_list: 自分のリストに追加
   add_your_email_to_get: |
     メールを追加すると、コミュニティから観察のフィードバックを得ることができます。
@@ -405,8 +405,6 @@ ja:
   all_updates: すべての更新情報
   all_your_observations_will_default_this_time_zone: 今後指定があった場合を除き、観察記録がデフォルトでこのタイムゾーンになります
   all_your_observations_will_default_to_this_time_zone: 今後指定があった場合を除き、このタイムゾーンが観察記録のデフォルトになります。
-  #Option to allow any taxa on a list
-  allow_any: すべてを許可
   allow_curator_access: キュレーター管理者アクセスを許可
   allow_project_curators_to_view_your_private_coordinates: プロジェクトのキュレーター管理者に非表示の位置情報の閲覧を許可
   allowed_establish_means_values: 使用可能な定着状況の値
@@ -428,7 +426,15 @@ ja:
   announcement_was_successfully_created: お知らせは無事作成されました
   announcement_was_successfully_updated: お知らせは無事更新されました
   announcements: お知らせ
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: すべて
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any_: すべて
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: すべて
@@ -571,7 +577,6 @@ ja:
   avg: 平均
   back: 戻る
   back_to_all_species: すべての種に戻る
-  back_to_browsing_people: ユーザー閲覧へ戻る
   back_to_calendar: "%{user}さんのカレンダーに戻る"
   back_to_editing_observation: 観測記録の編集に戻る
   back_to_friends: 友人に戻る
@@ -731,7 +736,6 @@ ja:
   check_list_place: "%{place} チェックリスト"
   check_list_updated: チェックリスト更新されました！
   check_lists_for: "その他の%{place}のチェックリスト"
-  check_out_my_observations_at: 下記リンクから私の観察記録をご覧ください。
   check_out_our_blog: 公式ブログも読んでみてください
   check_out_what_the_observation: あなたが同定しようとしている観察がどのように見えるか確認してみてください。
   check_this_box_if_html: |
@@ -1091,7 +1095,6 @@ ja:
       user:
         suspended: あなたのアカウントは使用停止されました。
   discoveries: 発見
-  did_not_send_invitations_because: 以下の項目に招待を送らないでください。理由としては...
   did_you_mean: 'もしかして:'
   did_you_photos_flickr?: Flickrに写真をアップしていませんか？
   disable: 無効
@@ -1200,9 +1203,7 @@ ja:
   eligible_for_research_grade: 研究用候補
   email: 電子メール
   email_description: メールアドレスは、iNaturalistの他のユーザーには共有されません。
-  email_addresses_description: カンマで区切られた電子メールアドレス、30日ごとに60個まで。
   email_address_for_comments_and_other_feedback: コメントやフィードバックの送信先のEメールアドレス
-  email_addresses_to_receive_invites: 招待を受ける電子メールアドレス
   email_copyright: "Copyright &copy; %{x}, all rights reserved"
   email_notifications: メール通知
   email_settings: メール設定
@@ -1322,7 +1323,6 @@ ja:
   first_confirmed_inat_observation: "%{site_name}で初めて確認された観察記録"
   first_connect_your_provider_account_to_your_site: "まず、%{provider}のアカウントを%{site_name}と接続しましょう。"
   first_inat_observation: "初めての%{site_name}観察記録"
-  first_observation: 初観察
   first_observer: 初観測者
   #Verb form, as in "Flag this item"
   flag: フラグ
@@ -1496,7 +1496,6 @@ ja:
   here_are_our_top_suggestions: これらが上位の提案です
   here_are_our_top_species_suggestions: 最も優れた種の提案は次のとおりです
   hex_color_eg: 16進色、例：65644F
-  hi: こんにちは、
   hi_user: "こんにちは、%{user}さん"
   #Verb, usually a button to hide an interface element
   hide: 非表示
@@ -1609,12 +1608,8 @@ ja:
   introduced_in_place: "%{place}の外来種"
   invitation: 招待
   invite: 招待する
-  invite_more: もっと招待
   invite_people: ユーザーを紹介する
   invite_people_to_project: "%{project}にメンバーを招待"
-  invite_someone_to: "%{name}をみんなに紹介しよう！"
-  invite_your_friends: 友人を招待する
-  invite_your_friends_description: "%{site_name}をより大きくより良いコミュニティにしよう。友達を招待しよう！"
   #Type of project where people can only join after they have been invited
   inviteonly: 招待のみ
   invited_x: "%{x}を招待しました"
@@ -1750,9 +1745,6 @@ ja:
   licensing: ライセンス
   life: 生命
   life_list: "%{user}さんのライフリスト"
-  life_list_updated: ライフリスト更新しました！
-  life_list_updated_we_also_saved_a: ライフリストが更新されました！この分類群の空の観察記録も保存されました。
-  life_lists_automatically_fill: ライフリストとは、観察された分類群が自動的に更新されるリストのことです。上位階級の分類群を指定したライフリストもできます。（例えば、これまで観察したカラス上科の鳥類をまとめたリストなど）
   linear_scale_label: 線形
   link: リンク
   link_or_unlink_your_facebook_account: Facebookアカウントとのリンク開始・解除
@@ -1881,7 +1873,6 @@ ja:
   make_a_new_place: 新規場所を作成
   make_a_taxon_swap_instead?: 代わりに分類群の入れ替えをしますか？
   make_curator: キューレータ管理者の権限を付与
-  make_it_a_life_list?: ライフリストにしますか？
   make_manager: 管理権を与える
   make_sure_the_default_photo_looks_good: デフォルトにする写真は大きなサイズで表示してもきれいであることを確認してください
   make_this_your_default_license: "デフォルの%{type}トライセンスにする"
@@ -2161,7 +2152,6 @@ ja:
   no_results_matching: 該当するものはありません
   no_sections_available: 使用可能なセクションがありません
   no_species_have_been_listed: この場所のリストに種がまだ含まれていません
-  no_species_observed: 観察された種がありません
   no_species_on_this_list: リストに種はまだありません！
   no_species_on_this_list_for_owner_html: |
     このリストへ直接種を追加することもできますし、これがライフリストであれば、<a href="%{url}" class="nobr">観察記録を追加</a>するときに自動的に種が更新されます。
@@ -2216,7 +2206,6 @@ ja:
     公開座標は、真の座標を含む 0.2 度の緯度・経度のセル内のランダムな点として表示されます。
   observation: 観察記録
   observation_: 観察記録
-  observation_added: 観察記録
   observation_added_to_the_project: "観察記録が「%{project}」というプロジェクトに追加されました"
   observation_aggregation: 観察記録の集合体
   observation_brief_something_on_day: "%{day} の何か"
@@ -2247,7 +2236,6 @@ ja:
   observation_fields_are_additional: 観察フィールドは観察記録に追加できる任意データフィールドです
   observation_fields_by_preferences_description: |
     観察記録フィールドはタグに少し似ていますが、初期設定ではだれでも観察記録に追加できます。自分だけができるようにしたい場合、またはサイトの管理者だけができるようにしたい場合は、これを変更します。
-  observed_on_datetime: '観察日時: %{datetime}'
   observation_removed_from_the_project: "観察記録は「%{project}」から除去されました"
   observation_requirements: 観察記録の要件
   #Label for a field showing the date when the observation requirements for a
@@ -2316,10 +2304,6 @@ ja:
     irregular: イレギュラー
     doubtful: 不在疑惑
     absent: 不在
-  of_observations: 観察記録
-  of_species: 種
-  of_observers: 観察者
-  of_identifiers: 同定者
   of_places: 場所
   of_this_taxon: この分類群の
   offensive_inappropriate: 不快／不適切
@@ -2370,8 +2354,6 @@ ja:
   only_show_for_species_subspecies_varieties_etc: 種、亜種、変種などについてのみ示す。
   only_show_taxa_fom_this_list: "リスト内の分類群のみ表示する"
   only_showing_taxa_from: リスト内の分類群のみ表示中
-  only_species: 種のみ
-  only_species_and_subspecies: 種、亜種および品種のみ
   only_staff_can_edit_large_places: 非常に大きな場所を編集できるのはサイトスタッフだけです
   only_staff_can_edit_standard_places: 標準階層内の場所を編集できるのはサイトスタッフのみです。
   only_the_owner_of_this_list_can_do_that: リストの作成者でなければできません。いたずらしてはいけません。
@@ -2468,8 +2450,6 @@ ja:
   per_month: 1か月あたり
   per_week: 1週間あたり
   person: 人
-  personal_message: 個人的なメッセージ
-  personal_message_description: 機械からメールが届くのを好む人はいません！誘っている理由を友達に伝えてみよう！
   per_page: "１ページあたり"
   photo: 写真
   photo_attribution: "写真 %{attribution}"
@@ -2918,8 +2898,6 @@ ja:
   preview: プレビュー
   preview_observations_with_these_observation_requirements: これらの観察条件で観察記録をプレビューする
   preview_of_synced_observation: "同期済の観察記録の<strong>プレビュー</strong>です。<a href=\\\"%{url}\\\">取り消しますか？</a>"
-  preview_personal_message: "%{site} は、動植物の観察を記録し、今までにあなたが見つけた生き物リストをまとめ、自然界について学ぶことができるウェブサイトです。あなたも参加してみませんか？"
-  preview_your_message: メッセージをプレビュー
   previewing: "プレビュー中"
   previous: 前へ
   prev: 前へ
@@ -3006,7 +2984,6 @@ ja:
   range: 分布・生息区域
   rank: 階級
   rank_position: 順位
-  rank_restrictions: 階級制限
   ranks:
     stateofmatter: 物質の状態
     kingdom: 界
@@ -3052,7 +3029,6 @@ ja:
     leaves: 末端ノード
   ranges: 範囲
   ray_finned_fishes: 条鰭綱
-  re_apply_list_rules: リスト・ルールの再適用
   re_order_photos: "写真の並べ替え &raquo;"
   read_more: 続きを読む
   read_our_getting_started_guide: '「はじめてのユーザーガイド」をお読みください'
@@ -3230,12 +3206,10 @@ ja:
   search_your_photos: あなたの写真の中から検索
   searching: "検索中..."
   seasonality: 季節性
-  second_person_possessive_plural: "あなたの%{noun}"
   second_person_possessive_singular: "あなたの%{noun}"
   see_something_wrong_with_taxon: この分類群に間違いありますか？キュレーター管理者にお知らせください
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: 検索
-  seen_it?: 見た？
   seen_nearby: 近くで見られた
   seen_one: 見かけませんでしたか？
   select: 選択
@@ -3249,15 +3223,12 @@ ja:
   select_options: 選択
   select_photos_from_your_photo_stream: |
     外部の写真共有サイトから写真を選択すると、%{site_name} の観察記録に変換されます。写真のメタデータから日付、時刻、場所を補完し、タグから種名を検索します。
-  select_photos_to_display: 表示する写真を選択
   selected: 選択済み
   selected_photos: 選択された写真
   selected_taxon: 選択された分類群
   select_this_taxon: この分類群を選択
   send: 送信
-  send_invites_to: 招待を送る
   send_me_reset_password_instructions: パスワードリセットメールを送信してください
-  send_the_invites: 招待を送信
   sending: 送信中...
   #Label for messages you've sent
   sent: 送信済み
@@ -3272,12 +3243,10 @@ ja:
   show: 表示
   show_active_and_inactive_taxa: 新旧（廃止）分類群を表示
   show_common_names: 一般名の表示
-  show_default_taxon_photos: 分類群の既定写真を表示
   show_hidden_content: 非表示コンテンツを表示
   show_keyboard_shortcuts: キーボードショートカットを表示
   show_less: 一部のみ表示
   show_more: もっと表示
-  show_observation_photos: 観測記録の写真を表示
   show_off_your_recent_observations: 最近の観察記録を自分のブログまたはホームページで紹介しよう！
   show_only: '表示限定:'
   show_relative_proportions_of_all_observations: 全観察記録の相対比率を表示する
@@ -3342,7 +3311,6 @@ ja:
   sorry_we_dont_have_any_metadata_for_that_photo: "申し訳ありません。写真に観察記録にインポートできるメタデータが見つかりませんでした。"
   sorry_x_is_not_responding: "申し訳ありません。%{x}から応答がありません。しばらくしてからもう一度お試しください。"
   sorry_you_can_only_add_1000_at_a_time: "一度に1000項までしか追加できません"
-  sorry_you_cant_delete_your_own_life_list: "自分のライフリストを削除することはできません。"
   sorry_you_need_to_be_signed_in_and: 申し訳ありませんが、Flickrに直接タグを投稿するには、サインインしてFlickrアカウントにリンクする必要があります。
   sort: 並べ替え
   sort_by: 並び順
@@ -3632,15 +3600,9 @@ ja:
   these_folks_kindly_volunteer_to: 分類群の管理やさまざまな問題への対応などを行っているボランティアの皆さんです。
   these_observations_have_not_been_uploaded_yet: |
     こちらの観察記録はまだアップロードされていません。
-  they_already_have_iNat_accounts: "招待した方はすでに%{site_name}のユーザーです"
-  they_have_been_invited: ...はすでに招待を受けています
   third_person_possessive_singular: "%{object_phrase}の%{noun}"
-  third_person_possessive_plural: "%{object_phrase}の%{noun}"
   this: この
   this_bioblitz_beings_in: このバイオブリッツの始まりは、
-  this_is_a_life_list_of: 次のユーザのライフリスト：
-  this_is_a_life_list_from_place_html: "%{place}のライフリスト"
-  this_is_a_life_list_of_taxon_in_place: "%{place}における%{taxon}のライフリスト"
   this_is_more_convenient_way_find_parent: 親IDを探すのに便利な方法です。実際に保存されるのはその親IDです。
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     分類群IDを探すのに便利な方法です。実際に保存されるのはこの分類群IDです。この検索はアクティブな分類群に対してのみ機能します。
@@ -3695,7 +3657,6 @@ ja:
   top_identifiers_of_taxon: '%{taxon}のトップ同定者'
   top_observer: トップ観察者
   top_observers: トップ観察者
-  top_species: トップ種
   tos_privacy_guidelines_label: |
     <a href="/terms" target="_blank">利用規約</a>と<a href="/privacy" target="_blank">プライバシーポリシー</a>に同意し、<a href="/pages/community+guidelines" target="_blank">コミュニティガイドライン</a>を確認しました。
   total: 合計
@@ -3970,7 +3931,6 @@ ja:
   you: あなた
   you_appear_offline_try_again: |
     現在はオフラインのようです。インタネットに接続したらまたお試しください。
-  you_are_over_your_invites_quota: ...１カ月分の招待６０件を超えています
   you_are_now_following_x: "%{friend_user}をフォローし始めました。"
   you_are_already_a_member_of_this_project: "このプロジェクトはすでに参加しています！"
   you_are_no_longer_following_x: "%{friend}はもうフォローしていません。"
@@ -3985,7 +3945,6 @@ ja:
   you_arent_following_that_person: "そのユーザーをフォローしていません"
   you_can_accept_invitations: ここで招待を承諾することができます
   you_can_choose_observations_associated: この日記に関連付ける観察記録を選択することができます。
-  you_can_sign_free_at: "無料の%{site_name}アカウントは以下から登録できます。"
   you_cant_compare_a_list_with_nothing: 比較先のリストがないと比較できません！
   you_cant_delete_a_project_list: "プロジェクトリストを削除することができません"
   you_cant_delete_observation_fields_that_people_are_using: "現在使われている観察フィールドを削除することができません"
@@ -4037,7 +3996,6 @@ ja:
   your_profile_was_successfully_updated: プロフィールは無事更新されました
   your_recent_projects: あなたの最近のプロジェクト
   your_relationships: ユーザーとの関係
-  youve_seen_it_want_to: "観察済です！よかったら、"
   youve_successfully_linked_your_provider_account: "あなたの%{provider}アカウントと無事接続できました。"
   verifiable: 研究用+要同定
   views:
