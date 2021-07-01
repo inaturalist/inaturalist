@@ -79,6 +79,11 @@ ru:
     few: "%{count} ошибочные идентификации этого вида"
     many: "%{count} ошибочных идентификаций этого вида"
     other: "%{count} ошибочных идентификаций этого вида"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} ошибочная идентификация вида в этом роде"
+    few: "%{count} ошибочных идентификаций видов в этом роде"
+    many: "%{count} ошибочных идентификаций видов в этом роде"
+    other: "%{count} ошибочных идентификаций видов в этом роде"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -296,6 +301,10 @@ ru:
   action: Действие
   actions: Действия
   active: Активные
+  #Status of a complete set that is available for use
+  active_complete_set_status: Активный
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Активный
   active_users: Активные пользователи
   activity: Активность
   activity_settings: Настройки активности
@@ -329,6 +338,7 @@ ru:
     sex: Добавить значения для "Пол"
     plant_phenology: Добавить значения для "Фенологии растений"
     life_stage: Добавить значения для "Стадия жизни"
+    evidence_of_presence: Добавить значения для "Доказательство присутствия"
   add_another_flag: Добавить ещё один флаг
   add_another_photo: Добавить ещё фото
   add_another_section: Добавить ещё один раздел
@@ -389,6 +399,12 @@ ru:
   add_life_stage_larva_annotation: 'Добавить значение "Стадия жизни: Личинка"'
   add_life_stage_juvenile_annotation: 'Добавить значение "Стадия жизни: Молодой"'
   add_life_stage_egg_annotation: 'Добавить значение "Стадия жизни: Яйцо"'
+  add_evidence_of_presence_organism_annotation: 'Добавить значение "Доказательство присутствия: организм"'
+  add_evidence_of_presence_feather_annotation: 'Добавить значение "Доказательство присутствия: перо"'
+  add_evidence_of_presence_scat_annotation: 'Добавить значение "Доказательство присутствия: экскременты"'
+  add_evidence_of_presence_track_annotation: 'Добавить значение "Доказательство присутствия: след"'
+  add_evidence_of_presence_bone_annotation: 'Добавить значение "Доказательство присутствия: кость"'
+  add_evidence_of_presence_molt_annotation: 'Добавить значение "Доказательство присутствия: линька"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Добавить связь'
   #As in a Guide Section
@@ -1044,6 +1060,8 @@ ru:
     place: Место, в котором этот статус ограничен.
     url: URL страницы с описанием этого статуса.
     geoprivacy: Значение по умолчанию приватности местоположения для наблюдений этого таксона
+    iucn: |
+      Эквивалентный код Красного списка МСОП. Это не фактическая оценка МСОП, а просто код МСОП, который наилучшим образом соответствует угрозе раскрытия координат, подразумеваемой этим статусом. Это отменит геоприватность, если статус «Под наименьшей угрозой» или ниже, поэтому, если вы хотите скрыть наблюдения этого таксона, установите для него значение «Близок к исчезновению» или выше.
   conservation_status_geoprivacy_desc: |
     Настройки по умолчанию приватности местоположения применены ко всем наблюдениям таксона в этом месте
   contact_support: Обратитесь в службу поддержки
@@ -1087,6 +1105,21 @@ ru:
     alive: Живой
     dead: Мёртвый
     cannot_be_determined: Нельзя определить
+    evidence_of_presence: Доказательство присутствия
+    #As in the feather on a bird
+    feather: Перо
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Организм
+    #Fecal matter, not regurgitated matter
+    scat: Экскременты
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: След
+    #Endoskeletal remains, like a deer bone
+    bone: Кость
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Линька
   controlled_term_definitions:
     alive: Организм жив и не проявляет признаков неизбежной смерти
     dead: Организм жив или проявляет признаки неизбежной смерти
@@ -1096,6 +1129,13 @@ ru:
     no_evidence_of_flowering: Медиа не предоставляют доказательств репродуктивных структур
     teneral: Взрослые, которые недавно появились, но еще не достигли своей окончательной взрослой формы
     cannot_be_determined: Не может быть определен на основании представленных доказательств
+    feather: Одно или несколько перьев не прикрепленных к организму
+    organism: Весь организм или его части
+    scat: Фекалии (не погадки совы или другие срыгнутые вещества)
+    track: Отпечаток на земле или снегу сделанный организмом
+    bone: |
+      Преимущественно остатки эндоскелета; частичное обнажение костей в остальном неповрежденном организме должно быть помечено как "организм"
+    molt: Удалённая кожа или экзоскелет
   controls: Элементы управления
   convert: Конвертировать
   coordinate_systems: Системы координат
@@ -1327,6 +1367,7 @@ ru:
       december: Декабрь
   date_is_accurate: Дата является точной
   date_joined: Дата регистрации
+  date_obscured_notice: Данные скрыты, чтобы защитить существование или конфиденциальность организма
   date_observed: Дата наблюдения
   date_observed_: Дата наблюдения
   date_observed_on: дата наблюдения
@@ -1658,6 +1699,8 @@ ru:
   file_should_be_in_the_following_format: "Файл должен иметь следующий формат: наименование таксона, описание"
   fill_out_project_observation_fields: Заполнить поля наблюдения проекта
   fill_out_your_profile: заполните ваш профиль
+  #The name of a computer file
+  filename: Имя файла
   filter: Фильтр
   filter_by_curator_identification: Фильтр по идентифиции, сделанной куратором
   filter_by_place: Фильтр по месту
@@ -1888,6 +1931,8 @@ ru:
   highlights_and_stats_from_year_on_site: "Основные моменты и статистика за %{year} на %{site}"
   history: Хронология
   home: Главная
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Часы регулировки:"
   however_there_were_some_issues: "Однако были некоторые проблемы: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Я не знаю, но уверен, что это таксон %{taxon}
   icon: Иконка
@@ -1971,7 +2016,13 @@ ru:
   in_the_past: в прошлом
   in_the_past_week: на прошлой неделе
   inactive: Неактивный
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Неактивный
   inactive_taxon: Неактивный таксон
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Неактивный
   inactive_taxon_concepts_are: Концепция неактивных таксонов заключается в том, что либо таксоны  устарели, либо подверглись изменению. Устаревшие концепции сохраняются для поддержания истории и совместимости с некоторыми сайтами-партнерами.
   inappropriate_content: Неприемлемый контент?
   inat_account_action: "%{site_name} &#58; Учётная запись &#58; %{action_name}"
@@ -2072,7 +2123,12 @@ ru:
   leaderboard_for_x: "Лидеры %{x}"
   leaderboards: Лидеры
   leaderboard_most:
+    species_in_month_year: Больше всего видов за %{month_year}
+    species_in_year: Больше всего видов за %{year}
     observations_in_month_year: Наибольшее число наблюдений за %{month_year}
+    observations_in_year: Наибольшее число наблюдений за %{year}
+    identifications_in_month_year: Наибольшее число идентификаций за %{month_year}
+    identifications_in_year: Наибольшее число идентификаций за %{year}
   leading: Ведущий
   learn: Изучайте
   learn_about_the_species_live_in: Узнать о видах, которые обитают в
@@ -2262,6 +2318,8 @@ ru:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Выйти из %{site_name}?"
   log_scale_label: Логарифмическая
+  #Status message shown while logging in
+  logging_in: Вход...
   login_slash_username: Логин / имя пользователя
   logo:
     logo: Логотип
@@ -2460,10 +2518,20 @@ ru:
   multiple_select_option: '-- множественный --'
   multiple_taxa_for_taxon_change: "Несколько таксонов (ввод для замены/слияния, вывод для разделения)"
   multiple_taxon_ids_separated_by_commas: 'Множественные идентификации таксона, разделённые запятыми, например, 123,654'
+  must_be_in_taxon: должен принадлежать таксону %{taxon}
+  must_be_not_in_taxon: не должен принадлежать таксону %{taxon}
+  must_be_not_observed_by_user: не должен наблюдаться %{user}
+  must_be_not_observed_in_place: не должен наблюдаться в %{place}
   must_be_observed_after: должен наблюдаться после %{operand}
   must_be_observed_before: должен наблюдаться перед %{operand}
+  must_be_observed_by_user: должен наблюдаться %{user}
+  must_be_observed_in_place: должен наблюдаться в %{place}
   must_be_less_than_x_MB: "Должен быть меньше %{x} Мб"
   must_have_observation_field: "должен иметь заполненное поле наблюдения %{operand}"
+  must_have_photos: должны содержать фото
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "должны иметь оценки качества: %{grades}"
+  must_have_sounds: должны содержать аудио
   must_have_x: "должен иметь %{x}"
   mute_user: Игнорировать пользователя
   mute_removed: Отмена игнорирования
@@ -2828,6 +2896,10 @@ ru:
   off_caps: "ВЫКЛ"
   official_blog: Официальный блог
   offline_access_enabled: Включён автономный доступ
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Время смещения"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Смещение
   old_observation_form: Старая форма наблюдения (устарела)
   ok: "ОК"
   on_caps: "ВКЛ"
@@ -4697,6 +4769,7 @@ ru:
   username_or_user_id: Имя пользователя или его идентификатор
   users: Пользователи
   users_contributions_to_project_html: вклад <a href="%{url}">%{login}</a> в %{project_title}
+  users_favorites: "Фавориты %{user}"
   users_highlights_and_stats_from_year_on_site: "Основные моменты и статистика %{user} за %{year} на %{site}"
   users_id: "Идентификация %{user}"
   users_latest_observations_on_site: "последние наблюдения %{user} на %{site}"
@@ -5016,6 +5089,7 @@ ru:
   your_default: ваше значение по умолчанию
   your_default_time_zone: Ваш часовой пояс по умолчанию
   your_email_address: Ваш адрес электронной почты
+  your_favorites: Ваши фавориты
   your_flickr_account: Ваша учётная запись Flickr
   your_flickr_photos_have_been_tagged: В ваших фото на Flickr проставлены теги!
   your_hard_drive: ваш жесткий диск
@@ -6284,6 +6358,18 @@ ru:
           "Plant Phenology=Flower Budding": Бутонизация цветов
           "Plant Phenology=Flowering": Цветение
           "Plant Phenology=Fruiting": Плодоношение
+          "Plant Phenology=No Evidence": Нет доказательств
+          "Life Stage=Adult": Взрослый
+          "Life Stage=Egg": Яйцо
+          "Life Stage=Larva": Личинка
+          "Life Stage=Juvenile": Молодой
+          "Life Stage=Nymph": Нимфа
+          "Life Stage=Pupa": Куколка
+          "Life Stage=Subimago": Субимаго
+          "Life Stage=Teneral": После линьки
+          "Sex=Cannot Be Determined": Нельзя определить
+          "Sex=Female": Женский
+          "Sex=Male": Мужской
           unannotated: Нет значения
         max_photos_desc: |
           Таксон может иметь только %{max} фотографий. Вам нужно удалить существующие фотографии, чтобы добавить больше.
