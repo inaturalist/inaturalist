@@ -146,10 +146,15 @@ zh-CN:
     只有你那些在项目中因受威胁等级而模糊了坐标的观察
   about_trusting_projects_options_taxon_desc: |-
     许多项目只需要访问模糊的坐标，因为观测描述了一个受威胁的分类群。
+  about_trusting_projects_overview: |-
+    授权您的隐藏坐标将使此项目的管理者能够查看您在该项目中观察的准确坐标。对于科学家和资源管理者来说，了解准确的观察坐标对数据分析和决策决定是非常重要的。
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
     可以访问您的隐藏坐标的项目管理者：
+  about_trusting_projects_warning: |-
+    请注意，项目管理员可以通过更改项目参数来包括您的任何观察，且他们可以在任何时间
+    添加或解除项目管理员。您将收到有关这些更改的通知，但您是基本上将观察的私密位置数据分享给本项目，所以请务必谨慎。
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     您可以因以下原因选择共享隐藏坐标
@@ -200,6 +205,7 @@ zh-CN:
     sex: 添加用于“性”的注释
     plant_phenology: 为“植物物候学”添加注释
     life_stage: 为“生命阶段”添加注释
+    evidence_of_presence: 添加注释到“存在的证据”中
   add_another_flag: 添加其他标记
   add_another_photo: 添加其他照片
   add_another_section: 添加其他部分
@@ -260,6 +266,12 @@ zh-CN:
   add_life_stage_larva_annotation: '添加“生活期：幼虫”注解'
   add_life_stage_juvenile_annotation: '添加“生命阶段：青少年”注释'
   add_life_stage_egg_annotation: '为“生命阶段：卵”添加注释'
+  add_evidence_of_presence_organism_annotation: '添加“出现记录的证据：生物”的注释'
+  add_evidence_of_presence_feather_annotation: '添加“出现记录的证据：羽毛”的注释'
+  add_evidence_of_presence_scat_annotation: '添加“出现记录的证据：排泄物”的注释'
+  add_evidence_of_presence_track_annotation: '添加“出现记录的证据：足迹”的注释'
+  add_evidence_of_presence_bone_annotation: '添加“出现记录的证据：骨骼”的注释'
+  add_evidence_of_presence_molt_annotation: '添加“出现记录的证据：蜕皮”的注释'
   #As in a Taxon Framework Relationship
   add_relationship: '添加关系'
   #As in a Guide Section
@@ -894,6 +906,21 @@ zh-CN:
     alive: 活体
     dead: 死亡
     cannot_be_determined: 无法判断
+    evidence_of_presence: 出现记录的证据
+    #As in the feather on a bird
+    feather: 羽毛
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: 生物
+    #Fecal matter, not regurgitated matter
+    scat: 排泄物
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: 足迹
+    #Endoskeletal remains, like a deer bone
+    bone: 骨骼
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: 蜕皮
   controlled_term_definitions:
     alive: 生物还活着，并且没有死亡的征兆
     dead: 生物已经死亡或有死亡征兆
@@ -901,7 +928,13 @@ zh-CN:
     flowering: 花朵可见，已绽放，并且仍然连接在植株上
     fruiting: 果实可见并仍连接在植株上
     no_evidence_of_flowering: 媒体没有显示出繁殖结构
+    teneral: 最近羽化但尚未达发育到最终成虫形态的成虫
     cannot_be_determined: 无法根据已提供的证据确认。
+    feather: 一根或多根不附于生物身上的羽毛
+    organism: 整个或部分生物体
+    scat: 排泄物（非鸮类食丸或其它呕吐物）
+    track: 由生物在地面或雪地上留下的印痕
+    molt: 蜕下的皮或外骨骼
   controls: 控制
   convert: 转换
   coordinate_systems: 坐标系
@@ -1008,6 +1041,15 @@ zh-CN:
   curator_application_success: 管理员申请已提交
   #Header
   curator_application_what_curators_can_do: 管理员可以做什么
+  curator_application_what_curators_can_do_hide_comments_html: |
+    对违反了 <a
+    href="/pages/community+guidelines" target="_blank">社区
+    指南</a> 的用户隐藏评论并暂时停权
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    解决在此分类群的 <a href="/flags" target="_blank">标记</a>和用户内容。
   #Header
   curator_application_what_curators_cannot_do: 管理员不能做什么
   #Description of the fact that a curator cannot delete content; part of a list
@@ -1236,6 +1278,7 @@ zh-CN:
   edit_account_settings_and_profile: "编辑账户设置和详细信息"
   edit_assessment: 编辑评估
   edit_atlas: 编辑地图集
+  edit_atlas_for_taxon_html: 编辑 %{taxon} 的地图集
   edit_body: 编辑正文
   edit_comment: 编辑您的评论
   edit_complete_set_for_taxon_in_place_html: "编辑 %{taxon} 在 %{place} 的完整名录集"
@@ -1392,6 +1435,8 @@ zh-CN:
   file_should_be_in_the_following_format: "文件应该为以下格式：分类单元名称、描述"
   fill_out_project_observation_fields: 填写项目观察领域
   fill_out_your_profile: 完成您的个人资料
+  #The name of a computer file
+  filename: 文件名
   filter: 过滤器
   filter_by_curator_identification: 按巡视员的鉴定进行筛选
   filter_by_place: 按地点筛选
@@ -1796,6 +1841,12 @@ zh-CN:
   leaderboard: 排行榜
   leaderboard_for_x: "用于 %{x} 的排行榜"
   leaderboards: 排行榜
+  leaderboard_most:
+    species_in_year: 在 %{year}记录的最多物种
+    observations_in_month_year: 在%{month_year} 中记录到最多的观察记录
+    observations_in_year: 在%{year} 中记录到最多的观察记录
+    identifications_in_month_year: 在%{month_year} 做出的最多的鉴定
+    identifications_in_year: 在%{year} 中做出的最多的鉴定
   leading: 标题
   learn: 学习
   learn_about_the_species_live_in: 了解有关居住于此的物种
@@ -2100,6 +2151,7 @@ zh-CN:
   #Label shown when a date has not been entered
   missing_date: 缺少日期
   mobile: 移动
+  moderation_history_for_user_html: '%{user} 的管理历史记录'
   #Person who executed a moderator action or flagged something
   moderator_or_flagger: 调解者/标记者
   mollusks: 软体动物
@@ -2354,6 +2406,8 @@ zh-CN:
   none_found: 未找到
   normal: 一般
   not_completed: 未完成
+  not_confident: 我们没有足够的信心来提出建议。
+  not_confident_top_suggestions: 我们没有足够的信心对此物种做出鉴定，但这是我们的10个最佳建议。
   not_covered_by_any_taxon_frameworks: 没有被任何分类单元所覆盖
   not_evaluated: 未评估
   not_findig_what_you_want: 找不到您想找的东西么？
