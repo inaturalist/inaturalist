@@ -41,6 +41,8 @@ lb:
   x_misidentifications_of_this_species:
     one: "%{count} Falschbestëmmung vun dëser Aart"
     other: "%{count} Falschbestëmmungen vun dëser Aart"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} Falschbestëmmung vun Aarten an dese(m/r) %{rank}"
     other: "%{count} Falschbestëmmungen vun Aarten an desem %{rank}"
@@ -161,7 +163,6 @@ lb:
   add_an_assessment: Eng Bewäertung derbäisetzen
   add_an_identification: Eng Bestëmmung derbäisetzen
   add_an_observation: Eng Observatioun derbäisetzen
-  add_an_observation?: Eng Observatioun derbäisetzen?
   add_an_observation_of: "Eng Observatioun vu(n) %{taxon} derbäisetzen"
   add_annotations_for_x: Annotatioune fir %{x} derbäisetzen
   add_annotations_for_controlled_attribute:
@@ -237,7 +238,6 @@ lb:
   add_to_favorites: Bei d'Favoriten derbäisetzen
   add_to_list: Op d'Lëscht derbäisetzen
   add_to_project: Bei de Projet derbäisetzen
-  add_to_your_life_list: Bei deng Liewenslëscht derbäisetzen!
   add_to_your_list: Op Är Lëscht derbäisetzen
   add_your_email_to_get: |
     Setzt Är E-mail-Adress derbäi fir vun der Communautéit Réckmeldung ze kréien. Wann Dir se léiwer net ugitt, da kommt geschwënn erëm kucken!
@@ -311,8 +311,6 @@ lb:
       other: "%{count} aner Déieren"
   all_taxa_: All Taxa
   all_updates: All Aktualisatiounen
-  #Option to allow any taxa on a list
-  allow_any: all erlaben
   allowed_html: Erlaabten HTML
   allowed_values: Erlaabt Wäerter
   almost_there_: Dir sidd bal do...
@@ -328,7 +326,15 @@ lb:
   announcement_was_successfully_created: Ukënnegung gouf ugeluecht.
   announcement_was_successfully_updated: Ukënnegung gouf aktualiséiert.
   announcements: Ukënnegungen
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: all
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any_: All
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: All
@@ -409,7 +415,6 @@ lb:
   automatically_add_observations_to_this_project: Automatesch Observatioune bei dëse Projet derbäisetzen
   back: Zréck
   back_to_all_species: Zréck op all Aarten
-  back_to_browsing_people: Zeréck zu Léit duerchsichen
   back_to_calendar: "Zréck op de Kalenner vum %{user}}"
   back_to_editing_observation: Zréck op d'Ännere vun der Observatioun
   back_to_friends: Zréck bei d'Frënn
@@ -811,8 +816,6 @@ lb:
   find_your_current_location: Är aktuell Plaz fannen
   finished: Fäerdeg
   finished_with_page: Fäerdeg mat der Säit
-  first_observation: Éischt Observatioun
-  first_observation_by_date_added: Éischt Observatioun nom Datum derbäigesat
   #Verb form, as in "Flag this item"
   flag: Mellen
   flag_as_inappropriate: Als onpassend markéieren
@@ -838,7 +841,6 @@ lb:
   follow: Suivéieren
   follow_receive_updates_about_new_observations: Suivéieren (Updates iwwer nei Observatiounen kréien)
   follow_user: "%{user} suivéieren"
-  followed_projects: Suivéiert Projeten
   following: Suivéiert
   following_x_people:
     one: 'Follgen %{count} Persoun'
@@ -877,7 +879,6 @@ lb:
   help: Hëllef
   help_confirm_observations!: Hëlleft Observatiounen ze confirméieren!
   here_are_our_top_suggestions: Hei sinn eis top Suggestiounen
-  hi: Salut,
   hi_user: "Salut %{user}"
   #Verb, usually a button to hide an interface element
   hide: Verstoppen
@@ -889,8 +890,6 @@ lb:
   highest_rank: Héichste Rang
   history: Historique
   home: Home
-  #Label showing hours adjusted in the time shifter in the Uploader
-  hours_adjusted: "Stonnen ugepasst:"
   icon: Symbol
   id: ID
   ids_by_taxon: IDs no Taxon
@@ -942,7 +941,6 @@ lb:
   invite: invitéieren
   invite_people: Leit invitéieren
   invite_people_to_project: "Leit op %{project} invitéieren"
-  invite_your_friends: Invitéiert Är Frënn
   is_not_following_anyone: suivéiert kengem
   is_this_offensive_html: 'Ass dest <a href="/help#inappropriate"> onubruechte</a>, Spam oder beleidegent?'
   #Text inserted into a textarea when the italic button is clicked but no text was selected
@@ -1361,9 +1359,6 @@ lb:
   occurrence_status_levels:
     doubtful: zweiwelhaft
     absent: net do
-  of_observations: Observatiounen
-  of_species: Aarten
-  of_identifiers: Bestëmmer
   of_places: Plazen
   of_this_taxon: Vun desem Taxon
   off_caps: "AUS"
@@ -1386,7 +1381,6 @@ lb:
     youve_got_updates_panel_title: Dir hutt Aktualisatiounen!
   only_administrators_may_access_that_page: Nëmmen Administrateure kënnen op déi Säit kommen
   only_letters_numbers: "Nëmme Buschtawen an Zifferen, keng Eidelzeechen, muss mat engem Buschtaf ufänken"
-  only_species: nëmmen Aarten
   only_the_project_admin_can_delete_this_project: Nëmmen den Administrateur vum Projet kann dëse Projet läschen.
   only_view_nearby_suggestions: Nëmme Suggestiounen aus der Géigend kucken
   only_you: Nëmmen Dir
@@ -1426,7 +1420,6 @@ lb:
   per_month: Pro Mount
   per_week: Pro Woch
   person: Persoun
-  personal_message: Perséinleche Message
   per_page: "Pro Säit"
   photo: Foto
   photo_browser: Fotoen duerchsichen
@@ -1648,7 +1641,6 @@ lb:
   range: Beräich
   rank: Rang
   rank_position: Klassement
-  rank_restrictions: Rang Aschränkungen
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
@@ -1844,7 +1836,6 @@ lb:
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: '"Keng Annotatiounen" weisen'
-  show_observation_photos: Fotoe vun der Observatioun weisen
   show_off_your_recent_observations: Weist Är rezent Observatiounen op Ärem Blog oder Ärer Websäit!
   #Text to indicate that the first X items in a list are being shown, but there
   #could be more
@@ -1955,7 +1946,6 @@ lb:
   top_identifiers_of_taxon: Top Bestëmmer fir %{taxon}
   top_observer: Top Observateuren
   top_observers: Top Observateuren
-  top_species: Top Aarten
   tos_privacy_guidelines_label: |
     Ech stemmen de <a href="/terms" target="_blank">Konditioune vum Service</a> an den <a href="/privacy" target="_blank">Dateschutz Richtlinnen</a> zou an ech hunn <a href="/pages/community+guidelines" target="_blank">Communautéit's Richtlinne</a> gekuckt.
   total: Total
