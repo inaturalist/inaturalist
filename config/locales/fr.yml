@@ -1270,6 +1270,7 @@ fr:
       december: décembre
   date_is_accurate: La date est correcte
   date_joined: Date d’adhésion
+  date_obscured_notice: Date masquée pour protéger la vie privée des personnes ou des organismes
   date_observed: Date observée
   date_observed_: Date d’observation
   date_observed_on: date observée le
@@ -2026,6 +2027,13 @@ fr:
   leaderboard: Classement
   leaderboard_for_x: "Classement de %{x}"
   leaderboards: Classements
+  leaderboard_most:
+    species_in_month_year: Le plus d'espèces en %{month_year}
+    species_in_year: Le plus d'espèces en %{year}
+    observations_in_month_year: Le plus d'observations en %{month_year}
+    observations_in_year: Le plus d'observations en %{year}
+    identifications_in_month_year: Le plus d'identifications en %{month_year}
+    identifications_in_year: Le plus d'identifications en %{year}
   leading: En tête
   learn: Apprendre
   learn_about_the_species_live_in: Apprenez-en davantage sur les espèces qui vivent dans
@@ -2809,6 +2817,8 @@ fr:
   off_caps: "DÉSACTIVÉ"
   official_blog: Blog officiel
   offline_access_enabled: Accès hors ligne activé
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Décalage horaire"
   old_observation_form: Ancien formulaire d’observation (désuet)
   ok: "OK"
   on_caps: "ACTIVÉ"
