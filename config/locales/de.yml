@@ -1814,6 +1814,8 @@ de:
   highlights_and_stats_from_year_on_site: "Highlights und Statistiken aus %{year} in %{site}"
   history: Historie
   home: Dashboard
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "anzupassende Stunden:"
   however_there_were_some_issues: "Allerdings gab es ein paar Probleme: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: kein Veto; und '%{taxon}' kann zumindest bestätigt werden
   icon: Symbol
@@ -2285,7 +2287,11 @@ de:
   mentioned_you_in_a_x_on_noun_html: "%{user} erwähnte dich in einem %{x} über %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} erwähnte dich in einem %{x} am %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} erwähnte dich in einem %{x} über %{noun} von %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} erwähnte dich in einem %{x} über %{noun} von %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} erwähnte dich in einem %{x} über %{noun} von dir"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} erwähnte dich in einem %{x} über %{noun} von %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} erwähnte dich in einem %{x} über %{noun} von %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} erwähnte dich in einem %{x} über %{noun} von dir"
   merge: Verbinden
   merge_it_with_another_place: Mit einem anderen Gebiet fusionieren
   merge_two_places_together: Führe zwei Gebiete zusammen. Alle Arten auf den Checklisten werden zusammengeführt, ebenso wie alle geographischen Daten.
@@ -2778,6 +2784,8 @@ de:
   offline_access_enabled: Offlinezugriff ermöglichen
   #Header label for hiding or unhiding the time shifter in the Uploader
   offset_time: "Zeitversatz"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Verschiebung
   old_observation_form: Altes Beobachtungsformular (veraltet)
   ok: "OK"
   on_caps: "EIN"
@@ -5254,6 +5262,8 @@ de:
         about_missing_taxa: Über fehlende Taxa
         #Label for a visualization that combines multiple series of data in a single chart
         combined: kombiniert
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Datumsfeld
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: horizontal
         #Date range to aggregate by, e.g. observations per month vs. observations per week
