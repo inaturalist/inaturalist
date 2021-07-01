@@ -36,7 +36,6 @@ br:
   add_an_assessment: Ouzhpennañ ur priziadur
   add_an_identification: Ouzhpennañ un anaoudadur
   add_an_observation: Ouzhpennañ un evezhiadenn
-  add_an_observation?: Ouzhpennañ un evezhiadenn ?
   add_an_observation_of: "Ouzhpennañ un evezhiadenn diwar-benn %{taxon}"
   add_another_flag: Ouzhpennañ ur merk all
   add_another_photo: Ouzhpennañ ur poltred all
@@ -88,7 +87,6 @@ br:
   add_to_favorites: Ouzhpennañ d'ar pennrolloù
   add_to_list: Ouzhpennañ d'ul listenn
   add_to_project: Ouzhpennañ d'ar raktres
-  add_to_your_life_list: Ouzhpennañ d'ho listenn vev!
   add_to_your_list: Ouzhpennañ d'ho listenn
   add_your_email_to_get: |
     Ouzhpennañ ho chomlec'h postel evit kaout un ali war hoc'h evezhiadenn a-berzh ar gumuniezh. Ma kavit gwelloc'h chom hep rannañ anezhi, gwiriit en-dro a-benn nebeut, mar plij
@@ -134,8 +132,6 @@ br:
   all_updates: An holl hizivadurioù
   all_your_observations_will_default_this_time_zone: Holl hoc'h evezhiadennoù a vo er werzhid-eur-mañ dre ziouer, nemet e termenit anezhi mod-all
   all_your_observations_will_default_to_this_time_zone: Holl hoc'h evezhiadennoù a vo er werzhid-eur-mañ dre ziouer, nemet e termenit anezhi mod-all
-  #Option to allow any taxa on a list
-  allow_any: aotren n'eus forzh peseurt
   allow_project_curators_to_view_your_private_coordinates: Aotren goursellerien ar raktres da welet hoc'h evezhiadennoù prevez
   allowed_html: HTML aotreet
   allowed_values: Talvoudoù aotreet
@@ -148,6 +144,10 @@ br:
   announcement_was_successfully_created: Krouet mat eo bet ar c'hemenn.
   announcement_was_successfully_updated: Hizivaet mat eo bet ar c'hemenn.
   announcements: Kemennoù
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: forzh pehini
   apply_to_selected: Arloet ouzh an dibab
   apply_fields: Arloañ ar maeziennoù
@@ -198,7 +198,6 @@ br:
     iucn_red_list: Listenn ruz an UICN
   back: Distreiñ
   back_to_all_species: Distreiñ d'an Holl spesadoù
-  back_to_browsing_people: Distreiñ d'ar merdeiñ etre an dud
   back_to_calendar: "Distreiñ da zeiziadur %{user}"
   back_to_lists: "Disro d'an %{name}"
   back_to_observation: Distro d'an evzezhiadenn
@@ -461,7 +460,6 @@ br:
     failure:
       user:
         suspended: Astalet eo bet ho kont
-  did_not_send_invitations_because: N'hoc'h eus kaset pedadenn ebet d'an dud-mañ peogwir...
   did_you_mean: 'N''hoc''h eus ket soñjet kentoc''h e'
   did_you_photos_flickr?: Lakaet ho peus luc'hskeudennoù war Fickr ?
   disconnect_provider: "Digevreañ %{provider}"
@@ -516,9 +514,7 @@ br:
   either_that_user_doesnt_exist_or: "N'eus ket eus an implijer-mañ pe emaoc'h o heuliañ anezhañ dija"
   eligible_for_research_grade: A c'hall bezañ degemeret el live enklask
   email: Postel
-  email_addresses_description: Chomlec'hioù Kenrouedad dispartiet gant skejoù, bevennet da 60 bep 30 deiz
   email_address_for_comments_and_other_feedback: Chomlec'h elektronek evit an evezhiadennoù
-  email_addresses_to_receive_invites: Chomlec'hioù elektronek evit resev ar pedadennoù
   email_copyright: "Copyright &copy; %{x}, pep gwir miret strizh"
   email_settings: Arventennoù ar postel
   embed: 'Enframmañ'
@@ -642,7 +638,6 @@ br:
   help: Skoazell
   here_are_3_examples: Setu 3 skouer a roadennoù stummet mat
   hex_color_eg: Liv e niver c'hwezekredel, da sk. 65644F
-  hi: Demat,
   hi_user: "Demat, %{user}"
   high: uhel
   highest_rank: Renk uhelañ
@@ -679,11 +674,7 @@ br:
   internal_server_error: Fazi diabarzh ar servijer
   invitation: Pedadenn
   invite: pediñ
-  invite_more: Pediñ muioc'h
   invite_people: Pediñ tud
-  invite_someone_to: "Pediñ unan bennak da %{name}!"
-  invite_your_friends: Pediñ ho mignoned
-  invite_your_friends_description: "Sikourit ac'hanomp da greskiñ ha da wellaat kumuniezh  %{site_name} en ur bediñ ho mignoned d'en em gavout ganimp !"
   invited_x: "%{x} den pedet"
   jpg_png_or_gif: "JPG, PNG pe GIF"
   just_added!: Ouzpennadennoù nevez
@@ -734,7 +725,6 @@ br:
   licensing: Aotre-implijout
   life: Bev
   life_list: "Roll ar bevien %{user}"
-  life_list_updated: Roll hizivaet ar bevien!
   link: Liamm
   link_or_unlink_your_facebook_account: Liammañ pe diliammañ ho kont Facebook
   link_or_unlink_your_flickr_account: Liammañ pe diliammañ ho kot Flickr
@@ -921,7 +911,6 @@ br:
   per_month: Bep miz
   per_week: Dre sizhun
   person: den
-  personal_message: Kemennadenn bersonel
   per_page: "Dre bajenn"
   photo: Luc'hskeudenn
   photo_attribution: "Luc'hskeudenn %{attribution}"
@@ -1073,7 +1062,6 @@ br:
   please_add_this_to_x_html: "Ouzhpennit anezhañ da %{x}, mar plij"
   position: Lec'hiadur
   possessive_user: "%{user}"
-  preview_your_message: Alberz eus ho kemennadenn
   previous: Kent
   prev: kent
   previous_page: Pajenn gent
