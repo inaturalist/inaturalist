@@ -244,7 +244,6 @@ es-MX:
   add_an_observation_to_project_html: Añadir una observación a %{project}
   add_annotations_for_x: Añade anotaciones para "%{x}"
   add_annotations_for_controlled_attribute:
-    sex: Agrega anotaciones para "Género"
     plant_phenology: Añade anotaciones para "fenología de la planta"
     life_stage: Añade anotaciones para "etapa de vida"
   add_another_flag: Añade otra advertencia
@@ -312,7 +311,6 @@ es-MX:
   #As in a Guide Section
   add_section: Añade sección
   add_several_observations_at_once: Añade varias observaciones al mismo tiempo.
-  add_sex_female_annotation: 'Añade anotación "género: femenino"'
   add_sex_cannot_be_determined_annotation: 'Añadir anotación "Sexo: No se puede determinar"'
   add_some_now: Añade unas ahora
   add_tag: Añade etiqueta
@@ -6730,10 +6728,6 @@ es-MX:
   time:
     am: am
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      default: '%b. %d, %A %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%B %d, %A %H:%M'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d %b %H:%M'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
