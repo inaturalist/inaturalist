@@ -2151,6 +2151,13 @@ cs:
   leaderboard: Nejlepší výsledky
   leaderboard_for_x: "Nejlepší výsledky pro %{x}"
   leaderboards: Přehledy nejlepších výsledků
+  leaderboard_most:
+    species_in_month_year: Nejvíce druhů v %{month_year}
+    species_in_year: Nejvíce druhů v %{year}
+    observations_in_month_year: Nejvíce pozorování v %{month_year}
+    observations_in_year: Nejvíce pozorování v %{year}
+    identifications_in_month_year: Nejvíce identifikací v %{month_year}
+    identifications_in_year: Nejvíce identifikací v %{year}
   leading: Nejlepší
   learn: Učit se
   learn_about_the_species_live_in: Naučte se o druzích, které žijí v
@@ -5735,6 +5742,56 @@ cs:
           Některé z těchto fotek byly označeny kvůli nevhodnému obsahu nebo porušení autorských práv. Podrobnosti najdete zde %{links}
         join_project_desc_html: |
           Pokud se připojíte k projektu, umožníte kurátorům projektu zobrazit skryté souřadnice tohoto i ostatních pozorování v projektu a zároveň vyjadřujete svůj souhlas s <a href="%{url}" target="_blank">podmínkami</a> projektu.
+        quality_assessment_help_html: |
+          <p>
+          Hodnocení kvality dat je shrnutím přesnosti pozorování. Všechny pozorování začínají jako <strong>"příležitostné"</strong> hodnocení a stávají se <strong>"potřebují ID"</strong>, když
+          </p>
+
+          <ul>
+          <li>pozorování <strong>má datum</strong></li>.
+          <li>pozorování <strong>je georeferencované</strong> (tj. má souřadnice zeměpisné šířky / délky)</li>.
+          <li>pozorování <strong>má fotografie nebo zvuky</strong></li>
+          <li>pozorování <strong>není člověka</strong></li>.
+          </ul>
+          <p>
+          Pozorování se stává <strong>"výzkumným stupněm"</strong>, když
+          </p>
+          <ul>
+          <li>
+          komunita %{site_name} <strong>se shodne na ID na úrovni druhu nebo nižší</strong>, tj. když se na taxonu shodnou více než 2/3 identifikátorů (pokud komunita odhlasovala, že taxon komunity již nelze vylepšovat, vrací se k ID na úrovni podrodů nebo nižší)
+          </li>
+          </ul>
+          <p>
+          Pozorování se vrátí na <strong>"příležitostné"</strong>, pokud nejsou splněny výše uvedené podmínky nebo se na tom komunita nedohodne.
+          </p>
+          <ul>
+          <li>
+          <strong>místo pozorování nevypadá přesně</strong> (např. opice uprostřed oceánu, hroši v kancelářských budovách apod.)
+
+          <li>
+          <strong>organismus není divoký/přirozený</strong> (např. v zajetí nebo vypěstovaný lidmi či inteligentními mimozemšťany z vesmíru)
+          </li>
+          <li>
+          pozorování <strong>nepředstavuje důkaz organismu</strong>, např. snímky krajiny, vodních prvků, skal apod.
+          </li>
+          <li>
+          pozorování <strong>nepředstavuje nedávné (~100 let) důkazy o organismu</strong> (např. zkameněliny, ale stopy, trus a mrtvé listí jsou v pořádku).
+          </li>
+          <li>
+          pozorování již nepotřebuje identifikaci <em>a</em>identifikace společenstva je nad rodinou
+          </li>
+          <li>
+          pozorovatel se odhlásil z ID společenství a taxon s ID společenství není předkem ani potomkem taxonu spojeného s ID pozorovatele
+          </li>
+          </ul>
+          <p>
+          A pokud by to nebylo dost složité, existují také situace, kdy systém dostane hlas:
+          </p>
+          <ul>
+          <li>
+          Systém odhlasuje, že pozorování není divoké/přirozené, pokud je v nejmenším okresním, státním nebo zemském ekvivalentu, který obsahuje toto pozorování, alespoň 10 dalších pozorování daného rodu nebo nižšího druhu a 80 % nebo více těchto pozorování bylo označeno jako divoké/přirozené.
+          </li>
+          </ul>
         score_desc: "skóre = kumulativní počet / (kumulativní počet + počet neshod + neshody u základních)"
         observation_flagged_notice_html: |
           Toto pozorování bylo označeno jako spam a už není zobrazováno jako veřejné. Vy ho vidíte, protože jste ho vytvořili nebo jste kurátor stránky. Pokud si myslíte, že došlo k chybě,
