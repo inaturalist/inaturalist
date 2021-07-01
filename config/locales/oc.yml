@@ -89,7 +89,6 @@ oc:
   add_an_assessment: Apondre una avaloracion
   add_an_identification: Apondre una identificacion
   add_an_observation: Apondre una observacion
-  add_an_observation?: Apondre una observacion ?
   add_an_observation_of: "Apondre una observacion sus %{taxon}"
   add_another_flag: Apondre una autra marca
   add_another_photo: Apondre una autra fòto
@@ -138,7 +137,6 @@ oc:
   add_to_favorites: Apondre als favorits
   add_to_list: Apondre a la lista
   add_to_project: Apondre al projècte
-  add_to_your_life_list: Apondre a vòstra lista viventa !
   add_to_your_list: Apondre a vòstra lista
   add_your_own_observations_at: "Apondètz vòstras pròprias observacions a %{site_name}"
   added: Apondut
@@ -218,8 +216,6 @@ oc:
   all_taxa_in_this_guide: Autres taxons dins aqueste guida
   all_taxonomic_groups: "&laquo; Totes los gropes taxonomics"
   all_updates: Totas las mesas a jorn
-  #Option to allow any taxa on a list
-  allow_any: Autorizar tot
   allowed_establish_means_values: Valors mejanas determinadas autorizadas
   allowed_html: HTML autorizat
   allowed_occurrence_status_values: Valors d’estat d’ocurréncia autorizadas
@@ -231,6 +227,10 @@ oc:
   and_other_taxa: "&amp; Autres taxons"
   annotations: Anotacions
   announcements: Anoncis
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: totes
   apply_to_selected: Aplicar a la seleccion
   apply_captive_cultivated: "Aplicar captiu / cultivat"
@@ -263,7 +263,6 @@ oc:
   authorize_permissions_from_provider: "Autorizar los accèsses dempuèi %{provider}"
   back: Retorn
   back_to_all_species: Tornar a totas las espècias
-  back_to_browsing_people: Retorn a la navigacion entre las personas
   back_to_calendar: "Retorn al calendièr de %{user}"
   back_to_editing_observation: Retorn a la modificacion d’observacion
   back_to_lists: "Retorn a las listas %{name}"
@@ -630,7 +629,6 @@ oc:
   heads_up: Avertiment
   help: Ajuda
   hex_color_eg: Color en exadecimal, ex. 65644F
-  hi: Bonjorn,
   hi_user: "Bonjorn %{user}"
   high: naut
   history: Istoric
@@ -672,7 +670,6 @@ oc:
   introduced: introduït
   invitation: Convit
   invite: convidar
-  invite_more: Convidar mai
   invited_x: "%{x} convidat"
   join: Jonhètz-vos a
   join_project: Rejonhètz aquel projècte
@@ -829,7 +826,6 @@ oc:
   'no': 'Non'
   no_more_taxa_to_load: Mai de taxons de cargar !
   no_results_found: Cap de resultat pas trobat
-  no_species_observed: Cap d'espècias pas observadas.
   none: Pas cap
   not_completed: Incomplet
   not_evaluated: pas avalorat
@@ -873,7 +869,6 @@ oc:
   paste: Pegar
   people: Personas
   person: persona
-  personal_message: Messatge personal
   per_page: "Per pagina"
   photo: Fòto
   photo_deleted: Fòto suprimida
