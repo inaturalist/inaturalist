@@ -214,6 +214,7 @@ es-AR:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Añadir un enlace
   add_a_name: Agregar un nombre
+  add_a_note: Añadir una nota
   add_a_new_change_group: Agregar un nuevo grupo de cambio
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Añadir una lista numerada
@@ -231,6 +232,7 @@ es-AR:
     sex: Agregar anotaciones para "Género"
     plant_phenology: Agregar anotaciones para "Fenología de la planta"
     life_stage: Agregar anotaciones para "Etapa de vida"
+    evidence_of_presence: Añadir Anotaciones para "Evidencia de Presencia"
   add_another_flag: Agregar otra marca
   add_another_photo: Agregar otra foto
   add_another_section: Agregar otra sección
@@ -291,6 +293,11 @@ es-AR:
   add_life_stage_larva_annotation: 'Agregar anotación "Etapa de vida: larva"'
   add_life_stage_juvenile_annotation: 'Agregar anotación "Etapa de vida: juvenil"'
   add_life_stage_egg_annotation: 'Agregar anotación "Etapa de vida: huevo"'
+  add_evidence_of_presence_organism_annotation: 'Añadir anotación "Evidencia de Presencia: organismo"'
+  add_evidence_of_presence_feather_annotation: 'Añadir anotación "Evidencia de Presencia: plumas"'
+  add_evidence_of_presence_scat_annotation: 'Añadir anotación "Evidencia de Presencia: excrementos"'
+  add_evidence_of_presence_bone_annotation: 'Añadir anotación "Evidencia de Presencia: huesos"'
+  add_evidence_of_presence_molt_annotation: 'Añadir anotación "Evidencia de Presencia: mudas"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Agregar relación'
   #As in a Guide Section
@@ -962,6 +969,19 @@ es-AR:
     alive: Vivo
     dead: Muerto
     cannot_be_determined: No se puede determinar
+    evidence_of_presence: Evidencia de presencia
+    #As in the feather on a bird
+    feather: Plumas
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organismo
+    #Fecal matter, not regurgitated matter
+    scat: Excrementos
+    #Endoskeletal remains, like a deer bone
+    bone: Huesos
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Muda
   controlled_term_definitions:
     alive: El organismo está vivo y no muestra signos de muerte inminente
     dead: El organismo está muerto o muestra signos de muerte inminente
@@ -971,6 +991,12 @@ es-AR:
     no_evidence_of_flowering: Los medios no proporcionan pruebas de estructuras reproductivas
     teneral: Adulto que ha emergido de la pupa recientemente pero no ha alcanzado su forma adulta final
     cannot_be_determined: No es posible determinarlo a partir de las pruebas proporcionadas
+    feather: Una o más plumas no unidas a un organismo
+    organism: Organismo total o parcial
+    track: Impresión en el suelo o la nieve hecha por un organismo
+    bone: |
+      Restos endoesqueléticos predominantes; de lo contrario, la exposición parcial de huesos en un organismo intacto debe etiquetarse "organismo"
+    molt: Piel descartada o exoesqueleto
   controls: Controles
   convert: Convertir
   coordinate_systems: Sistemas de coordenadas
@@ -1067,6 +1093,49 @@ es-AR:
   #Header
   curator_application_how_curators_lose_their_powers: |
     De qué manera un curador pierde sus poderes
+  curator_application_how_curators_lose_their_powers_desc: |
+    El personal de iNat puede quitarle sus poderes de conservación a un curador si repetidamente:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Ignora las políticas de la Guía del curador.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    No demuestra el comportamiento apropiado él mismo.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |2
+    Para solicitar ser curador del sitio debes haber tenido una cuenta por 60
+     o más días y haber añadido 100 identificaciones que mejoran a varias observaciones, incluyendo las tuyas (has añadido %{num_idents}). Cuando hayas
+    cumplido con los ambos requisitos, regresa aquí y podrás enviar la
+    aplicación.
+  curator_application_inelligible_error: |
+    Para solicitar ser curador del sitio debes haber tenido una cuenta por 60
+     o más días y haber añadido 100 identificaciones que mejoran a varias observaciones, incluyendo las tuyas.
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Solicitud para ser curador enviada
+  #Header
+  curator_application_what_curators_can_do: Qué pueden hacer los curadores
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Editar la taxonomía de iNaturalist siguiendo las políticas establecidas en la <a href="/pages/curator+guide#policies" target="_blank">sección de Políticas de la Guía del conservador</a>. Esto significa que se puede añadir, dividir, intercambiar, fusionar, desactivar y eliminar los taxa en iNaturalist. También se puede editar los estados de conservación y la geoprivacidad del taxón, así como editar y administrar los nombres comunes añadidos por cualquier usuario.'
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Ocultar comentarios y suspender usuarios por violar las <a href="/pages/community+guidelines" target="_blank">Directrices de la comunidad</a>.
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    Resolver <a href="/flags" target="_blank">tiras</a> en taxones y contenido de usario.
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Crear y editar páginas wiki, como la de las <a href="/pages/help"
+    target="_blank">Preguntas frecuentes de iNaturalist</a>.
   curators_changed_for_x_html: "Curadores cambiado para %{x}"
   curators: Curadores
   curators_can_remove_observations_from: Los curadores pueden quitar observaciones del proyecto y sus identificaciones son mostradas en ciertas vistas (como referencia). Además pueden ver las coordenadas oscurecidas o privadas del proyecto.
@@ -2087,10 +2156,17 @@ es-AR:
   multiple_select_option: '-- múltiples --'
   multiple_taxa_for_taxon_change: "Más de una especie o grupo (entrada de datos para intercambiar/mezclar, salida de datos para separar)"
   multiple_taxon_ids_separated_by_commas: 'Varias IDs de taxones separadas por comas, p.e. 123,654'
+  must_be_in_taxon: debe estar en el taxón %{taxon}
+  must_be_not_in_taxon: no debe estar en el taxón %{taxon}
+  must_be_not_observed_by_user: no debe ser observado por %{user}
+  must_be_not_observed_in_place: no debe ser observado en %{place}
   must_be_observed_after: debe observarse después de %{operand}
   must_be_observed_before: debe observarse antes de %{operand}
+  must_be_observed_by_user: debe ser observado por %{user}
   must_be_less_than_x_MB: "Debe ser menor que %{x} MB"
   must_have_observation_field: "debe completar el campo '%{operand}' en la observación"
+  must_have_photos: debe tener fotos
+  must_have_sounds: debe tener sonidos
   must_have_x: "debe tener %{x}"
   mute_user: Silenciar usuario
   mute_removed: Silenciamiento eliminado
@@ -3981,6 +4057,7 @@ es-AR:
   username_or_user_id: Nombre o identificador del usuario
   users: Usuarios
   users_contributions_to_project_html: Contribuciones de <a href="%{url}">%{login}</a> a %{project_title}
+  users_favorites: "Favoritos de %{user}"
   users_highlights_and_stats_from_year_on_site: "Destaques y estadísticas de %{user} durante %{year} en %{site}"
   users_id: "Identificación de %{user}"
   users_latest_observations_on_site: "Lates observaciones de %{user} en %{site}"
@@ -4269,6 +4346,7 @@ es-AR:
   your_default: tu valor predeterminado
   your_default_time_zone: Tu huso horario predeterminado
   your_email_address: Tu dirección de correo electrónico
+  your_favorites: Tus favoritos
   your_flickr_account: su cuenta de Flickr
   your_flickr_photos_have_been_tagged: '¡Sus fotos de Flickr han sido etiquetadas!'
   your_hard_drive: Su disco duro
