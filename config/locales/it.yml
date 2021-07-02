@@ -970,6 +970,16 @@ it:
   contributor_cannot_be_found: Il collaboratore è introvabile
   contributors_to_project: "Collaboratori al progetto %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Qualsiasi
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Qualsiasi
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Qualsiasi
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Qualsiasi
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Qualsiasi
     sex: Sesso
     male: Maschio
     female: Femmina
@@ -1816,6 +1826,8 @@ it:
   highlights_and_stats_from_year_on_site: "Sintesi e statistiche dal %{year} su %{site}"
   history: Cronologia
   home: Home
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Ore da regolare:"
   however_there_were_some_issues: "Tuttavia, ci sono stati alcuni problemi: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Non lo so ma sono sicuro che è %{taxon}
   icon: Icona
@@ -2787,6 +2799,8 @@ it:
   offline_access_enabled: Accesso offline abilitato
   #Header label for hiding or unhiding the time shifter in the Uploader
   offset_time: "Scostamento"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Scostamento
   old_observation_form: Vecchio formulario dell'osservazione (obsoleto)
   ok: "OK"
   on_caps: "ON"
@@ -3839,7 +3853,6 @@ it:
   scientific_name: Nome Scientifico
   search: Cerca
   search_all_fields: cerca in tutti i campi
-  search_by_name: Cerca per nome
   search_by_name_or_email: Cerca per nome o email
   search_by_taxon_name_or_observation_id: Cerca per nome del taxon o ID dell'osservazione
   search_by_taxon_name_or_flickr_photo_id: Cerca per nome del taxon o ID della foto Flickr
