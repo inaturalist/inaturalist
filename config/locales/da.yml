@@ -982,6 +982,16 @@ da:
   contributor_cannot_be_found: Bidragsyder findes ikke
   contributors_to_project: "Bidragsydere til %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Ethvert
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Enhver
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Erhvert
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Enhver
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Ethvert
     sex: Køn
     male: Hankøn
     female: Hunkøn
@@ -3906,7 +3916,6 @@ da:
   scientific_name: Videnskabeligt navn
   search: Søg
   search_all_fields: søg i alle felter
-  search_by_name: Søg efter navn
   search_by_name_or_email: Søg efter navn eller e-mail
   search_by_taxon_name_or_observation_id: Søg efter takson navn eller observations ID
   search_by_taxon_name_or_flickr_photo_id: Søg efter takson navn eller Fkickr foto ID
