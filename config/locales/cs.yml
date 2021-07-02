@@ -1098,6 +1098,16 @@ cs:
   contributor_cannot_be_found: Přispěvatel nebyl nalezen
   contributors_to_project: "Přispěvatelé do %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Jakékoliv
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Jakákoliv
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Jakékoliv
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Jakýkoliv
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Jakékoliv
     sex: Pohlaví
     male: Samec
     female: Samice
@@ -4027,7 +4037,6 @@ cs:
   scientific_name: Vědecký název
   search: Hledat
   search_all_fields: prohledat všechna pole
-  search_by_name: Hledat podle jména
   search_by_name_or_email: Hledat podle jména nebo e-mailu
   search_by_taxon_name_or_observation_id: Hledat podle názvu taxonu nebo ID pozorování
   search_by_taxon_name_or_flickr_photo_id: Hledat podle názvu taxonu nebo ID fotky na Flickru
