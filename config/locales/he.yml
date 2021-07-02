@@ -74,6 +74,8 @@ he:
     two: "%{count} זיהויים שגויים של המין"
     many: "%{count} זיהויים שגויים של המין"
     other: "%{count} זיהויים שגויים של המין"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "זיהוי שגוי %{count} ב %{rank} הזה"
     two: "%{count} זיהויים שגויים ב %{rank} הזה"
@@ -287,7 +289,6 @@ he:
   add_an_assessment: הוספת אומדן
   add_an_identification: הוספת זיהוי
   add_an_observation: הוספת תצפית
-  add_an_observation?: להוסיף תצפית?
   add_an_observation_of: "הוספת תצפית של %{taxon}"
   add_an_observation_to_project_html: הוספת תצפית ל%{project}
   add_annotations_for_x: הופסת תווית עבור "%{x}"
@@ -376,7 +377,6 @@ he:
   add_to_favorites: הוספה למועדפים
   add_to_list: הוספה לרשימה
   add_to_project: הוספה לפרויקט
-  add_to_your_life_list: הוספה לרשימת מינים אישית
   add_to_your_list: הוספה לרשימה שלך
   add_your_email_to_get: |
     הוסיפו את כתובת הדואר האלקטרוני שלכם כדי לקבל משובים מקהילה על התצפיות שלכם.
@@ -540,8 +540,6 @@ he:
   all_updates: כל העדכונים
   all_your_observations_will_default_this_time_zone: כל התצפיות שלכם ישתמשו באזור הזמן הזה כברירת מחדל, אלא אם כן תציינו אזור זמן אחר.
   all_your_observations_will_default_to_this_time_zone: כל התצפיות שלכם ישתמשו באזור הזמן הזה כברירת מחדל, אלא אם כן תציינו אזור זמן אחר.
-  #Option to allow any taxa on a list
-  allow_any: לאפשר להכול
   allow_curator_access: הרשאת גישה לאוצרים
   allow_project_curators_to_view_your_private_coordinates: לאפשר למשגיחי המיזם לצפות בנקודות הציון המוסתרות שלך
   allowed_establish_means_values: אופשרה הקמת ערכים אמצעיים
@@ -563,7 +561,15 @@ he:
   announcement_was_successfully_created: המודעה נוצרה בהצלחה.
   announcement_was_successfully_updated: המודעה עודכנה בהצלחה.
   announcements: מודעות
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: הכול
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any_: כלשהו
   anyone: כולם
   apply_to_selected: החלה עבור מה שנבחר
@@ -680,7 +686,6 @@ he:
   automatically_update_my_content_for_taxon_changes: לעדכן את התוכן שלי עבור שינויי טקסון באופן אוטומטי
   back: חזרה
   back_to_all_species: חזרה לכל המינים
-  back_to_browsing_people: חזרה לחיפוש אנשים
   back_to_calendar: "חזרה ליומן של %{user}"
   back_to_editing_observation: חזרה לעריכת התצפית
   back_to_friends: חזרה ל'חברים'
@@ -846,7 +851,6 @@ he:
   check_list_place: "רשימת בדיקה %{place}"
   check_list_updated: רשימת הבדיקה עודכנה!
   check_lists_for: "רשימות בדיקה אחרות של %{place}"
-  check_out_my_observations_at: אם תרצו, תוכלו לראות את התצפיות שלי ב
   check_out_our_blog: ראו את הבלוג שלנו
   check_out_what_the_observation: בִדקו כיצד נראית התצפית שאתם מנסים לזהות.
   check_this_box_if_html: |
@@ -1163,7 +1167,6 @@ he:
       user:
         suspended: חשבונך הושהה
   discoveries: תגליות
-  did_not_send_invitations_because: לא נשלחה הזמנה בגלל ש...
   did_you_mean: 'האם התכוונת ל'
   did_you_photos_flickr?: האם העלית תמונות ל Flickr?
   disable: כיבוי
@@ -1253,7 +1256,6 @@ he:
   eligible_for_research_grade: מתאים לדרגת מחקר
   email: דוא״ל
   email_address_for_comments_and_other_feedback: כתובת דוא"ל להערות ומשובים אחרים
-  email_addresses_to_receive_invites: דוא"ל לקבלת הזמנות
   email_copyright: "זכויות יוצרים של &copy; %{x}, כל הזכויות שמורות"
   email_settings: הגדרות דוא״ל
   embed: 'הטמע'
@@ -1360,7 +1362,6 @@ he:
   first_confirmed_inat_observation: "התצפית הראשונה שאושרה ב%{site_name}"
   first_connect_your_provider_account_to_your_site: "ראשית יש לחבר את חשבון ה%{provider} ל%{site_name}"
   first_inat_observation: "תצפית ראשונה ב%{site_name}"
-  first_observation: תצפית ראשונה
   first_observer: הצופה ה 1
   #Verb form, as in "Flag this item"
   flag: סמן
@@ -1522,7 +1523,6 @@ he:
   here_are_3_examples: 3 דוגמאות לנתונים שמובנים היטב
   here_are_our_top_species_suggestions: הינה ההצעות הטובות ביותר שלנו
   hex_color_eg: צבע Hex, לדוגמא 65644F
-  hi: שלום,
   hi_user: "שלום %{user}"
   #Verb, usually a button to hide an interface element
   hide: הסתרה
@@ -1605,11 +1605,8 @@ he:
   introduced_in_place: "הובא ל%{place}"
   invitation: הזמנה
   invite: הזמן
-  invite_more: הזמן עוד
   invite_people: הזמן אנשים
   invite_people_to_project: "הזמנת אנשים לפרוייקט %{project}"
-  invite_someone_to: "הזמינו חברים ל%{name}!"
-  invite_your_friends: הזמנת חברים
   #Type of project where people can only join after they have been invited
   inviteonly: הזמנה בלבד
   invited_x: "%{x} הוזמן"
@@ -1729,8 +1726,6 @@ he:
   licensing: רישוי
   life: חיים
   life_list: "%{user} רשימת החיים של "
-  life_list_updated: רשימת חיים עודכנה!
-  life_list_updated_we_also_saved_a: רשימת החיים שלך עודכנה! שמרנו גם תצפית ריקה של טקסון זה.
   linear_scale_label: לינארי
   link: קישור
   link_or_unlink_your_facebook_account: קישור או ניתוק מחשבון פייסבוק
@@ -1844,7 +1839,6 @@ he:
   main_content_description: תוכן המרכזי יהיה כאן
   make_a_new_place: יצירת מקום חדש
   make_curator: עשה אוצר
-  make_it_a_life_list?: צור רשימת חיים?
   make_manager: עשה מנהל
   make_this_your_default_license: "הגדר %{type}כרשיון ברירת המחדל"
   mammals: יונקים
@@ -2087,7 +2081,6 @@ he:
   no_results_for: 'אין תוצאות עבור'
   no_results_matching: אין תוצאות תואמות
   no_species_have_been_listed: טרם דווח על מינים במקום זה!
-  no_species_observed: לא נצפה אף מין
   no_species_on_this_list: אין עדיין מינים ברשימה זו!
   no_species_on_this_list_for_owner_html: |
     ניתן להוסיף מינים ישירות לרשימה, ובמידה וזו רשימת חיים היא תתעדכן ברשימת המינים כאשר <a href="%{url}" class="nobr">יתווספו תצפיות</a>.
@@ -2128,7 +2121,6 @@ he:
   obscured_or_private: מוסתר או פרטי
   observation: תצפית
   observation_: הבחנה
-  observation_added: תצפית הוספה
   observation_added_to_the_project: "תצפית הוספה לפרויקט %{project}"
   observation_brief_something_on_day: "משהו ביום %{day}"
   observation_brief_something_on_day_at_time_by_user: "משהו ביום %{day} בשעה %{time} על ידי %{user}"
@@ -2174,7 +2166,6 @@ he:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     לדוגמא "29-10-2019 13:12:21"
-  observed_on_datetime: נצפה ב %{datetime}
   observation_removed_from_the_project: "התצפית הוסרה מהפרוייקט %{project}"
   observation_requirements: דרישות לתצפית
   observation_rules: כללי התצפית
@@ -2231,10 +2222,6 @@ he:
     irregular: לא סדיר
     doubtful: בספק
     absent: חסר/נעדר
-  of_observations: תצפיות
-  of_species: מינים
-  of_observers: מתצפתים
-  of_identifiers: מזהים
   of_places: מקומות
   of_this_taxon: של טקסון זה
   offensive_inappropriate: פוגעני/לא מתאים
@@ -2285,8 +2272,6 @@ he:
   only_show_events_that_last_less_than_2_weeks: הצגת אירועים שנמשכים פחות משבועיים
   only_show_for_species_subspecies_varieties_etc: הצג רק עבור מינים, תתי-מינים, זנים וכו'
   only_show_taxa_fom_this_list: "הצגת נתונים מטקסונים אלה בלבד"
-  only_species: מינים בלבד
-  only_species_and_subspecies: מינים ותתי-מינים/זנים בלבד
   only_staff_can_edit_large_places: רק צוות האתר יכול לערוך מקומות גדולים
   only_staff_can_edit_standard_places: רק אנשי צוות יכולים לשנות מקומות סטנדרתיות
   only_the_owner_of_this_list_can_do_that: רק בעלי הרשימה יכולים לעשות את זה. אל תהיו רעים.
@@ -2355,8 +2340,6 @@ he:
   per_month: לחודש
   per_week: לשבוע
   person: בן אדם
-  personal_message: הודעה אישית
-  personal_message_description: אף אחד לא אוהב לקבל מיילים ממכונה! עדכנו את החברים שלכם מדוע אתם מזמינים אותם.
   per_page: "לדף"
   photo: תמונה
   photo_attribution: "צילום %{attribution}"
@@ -2793,8 +2776,6 @@ he:
   present: נמצא
   press: מין העתונות
   preview: תצוגה מקדימה
-  preview_personal_message: "אני רוצה שתצטרף אליי ב%{site}, אתר שבו ניתן לדווח תצפיות של צמחים וחיות, לעקוב אחרי רשימת החיים שלך, וללמוד על עולם הטבע!"
-  preview_your_message: תצוגה מקדימה של ההודעה
   previewing: "מציג..."
   previous: הקודם
   prev: קודם
@@ -3046,12 +3027,10 @@ he:
   search_your_photos: חיפוש בתמונותייך
   searching: "חיפוש..."
   seasonality: עונתיות
-  second_person_possessive_plural: "ה %{noun} שלך"
   second_person_possessive_singular: "ה %{noun} שלך"
   see_something_wrong_with_taxon: משהו לא נכון עם הטקסון הזה? עדכנו את האוצרים.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: חיפוש
-  seen_it?: ראית את זה?
   seen_nearby: חיפוש בקרבת מקום
   seen_one: ראית אחד?
   select: בחירה
@@ -3063,15 +3042,12 @@ he:
   select_one_of_friends_albums: בחירת אחד האלבומים של %{friend}
   select_one_of_your_albums: בחירת אחד האלבומים שלך
   select_options: בחירת אפשרויות
-  select_photos_to_display: בחירת תמונות לתצוגה
   selected: נבחר
   selected_photos: תמונות שנבחרו
   selected_taxon: טקסון שנבחר
   select_this_taxon: בחירה בטקסון זה
   send: שליחה
-  send_invites_to: שליחת הזמנה ל
   send_me_reset_password_instructions: שילחו לי הנחיות לאיפוס ססמה
-  send_the_invites: שליחת ההזמנות
   sending: מתבצעת שליחה...
   #Label for messages you've sent
   sent: נשלח
@@ -3084,7 +3060,6 @@ he:
   show_keyboard_shortcuts: הצגת קיצורי-מקלדת
   show_less: להציג פחות
   show_more: להציג עוד
-  show_observation_photos: הצגת תמונות תצפית
   show_off_your_recent_observations: הציגו את התצפיות האחרונות שלכם בבלוג או באתר שלך!
   show_only: הצגת רק
   show_taxa_from_everywhere: "הצגת טקסונים מכל המקומות"
@@ -3349,14 +3324,9 @@ he:
     להלן טקסונים ש־%{site} לא יכול להוסיף לעץ הטקסונומי שלנו באופן אוטומטי מסיבה כלשהי. באפשרותך להוסיף אותם לעץ באמצעות עריכת הטקסון ובחירת טקסון הורה. לדוגמה, ההורה של "האדם הנבון" הוא הסוג "אדם". מומלץ גם לבדוק מינים זהים ולמזג אותם.
   these_observations_have_not_been_uploaded_yet: |
     התצפיות האלה עדיין לא הועלו.
-  they_have_been_invited: ... כבר הוזמנו
   third_person_possessive_singular: "%{noun} של %{object_phrase}"
-  third_person_possessive_plural: "%{noun} של %{object_phrase}"
   this: זה
   this_bioblitz_beings_in: הביובליץ מתחיל ב
-  this_is_a_life_list_of: זוהי רשימת חיים של
-  this_is_a_life_list_from_place_html: "זוהי רשימת חיים מ%{place}"
-  this_is_a_life_list_of_taxon_in_place: "זוהי רשימת חיים של %{taxon} מ%{place}"
   this_is_taking_forever: זה לוקח לנצח... נסו שנית מאוחר יותר
   this_is_the_primary_listing: זוהי הרשומה העיקרית
   this_is_your_observation: זו התצפית שלך
@@ -3391,7 +3361,6 @@ he:
   top_identifiers_of_taxon: המזהים המובילים של %{taxon}
   top_observer: המתצפת המוביל
   top_observers: המתצפתים המובילים
-  top_species: המין המוביל
   total: סה״כ
   totals: סה״כ
   total_members: סה"כ חברים
@@ -3646,7 +3615,6 @@ he:
     נראה שאתם במצב לא מקוון. אנא נסו שוב כשתהיו מחוברים לאינטרנט.
   youre_a_site_curator_which_means: |
     אתם "משגיחי אתר", וזה אומר שהתנדבתם לעזור לנו להשגיח על הנתונים ולבדוק את התוכן. אנא אל תרגישו מחויבים לטפל בכל הבעיות האלה, אבל אם יש לכם זמן לבדוק חלק מהם, אנחנו נעריך כל עזרה שנקבל מכם. אם יש לכם שאלות בנוגע להשגחה על תוכן או שאינכם רוצים להיות משגיחי תוכן יותר, אנא צרו איתנו קשר ב: %{email}
-  you_are_over_your_invites_quota: ... עברת את המיכסה החודשית של 60 הזמנות
   you_are_now_the_admin_for_project_html: |
     כעת <strong>את/ה</strong> האדמינ של %{project}
   you_are_now_a_curator_for_project_html: |
@@ -3660,7 +3628,6 @@ he:
   you_can_choose_observations_associated: את/ה יכול/ה להגדיר תצפיות כמשויכות לפוסט זה.
   you_can_only_block_three_users: ביכולתך לחסום רק שלושה משתמשים
   you_can_show_the_boundary_of: ניתן להציג את גבולות המקום בפרוייקט שלך רק אם למקום גבול קיים.
-  you_can_sign_free_at: "ניתן להרשם לחשבון חינם ב%{site_name}"
   you_cant_compare_a_list_with_nothing: לא ניתן להשוות רשימה ריקה!
   you_cant_delete_observation_fields_that_people_are_using: "לא ניתן למחוק שדות תצפית שאחרים משתמשים בהם"
   you_cant_flag_that: לא ניתן לסמן דגל על תוכן זה
@@ -3674,7 +3641,6 @@ he:
   you_dont_have_permission_to_edit_those_photos: אין לך הרשאה לערוך תמונות אלו.
   you_faved_this: העדפת את זה!
   you_have_left_x_project: "עזבת את %{project}"
-  you_havent_joined_any_projects: טרם הצטרפת לאף פרויקט
   you_joined_this_project: הצטרפת לפרוייקט!
   you_must_be_a_member_of_this_project_to_do_that: רק חברי פרוייקט יכולים לעשות את זה
   you_must_choose_an_observation_field: יש לבחור שדה תצפית
@@ -3719,7 +3685,6 @@ he:
   yours: שלך
   youre_not_following_anyone: |-
     אינכם עוקבים אחרי אף אחד. מעקב אחרי מתצפתים אחרים מאפשר לכם לצפות בתצפיות האחרונות שלהם. צאו לגלות מה אנשים אחרים <a href="%{observations_path}">מתצפתים</a> , <a href="%{people_path}">והכירו</a> אנשים חדשים.
-  youve_seen_it_want_to: "ראית את זה! רוצה ל"
   verifiable: ניתן לבדיקה
   verifiable_observations: תצפיות שניתנות לבדיקה
   views:

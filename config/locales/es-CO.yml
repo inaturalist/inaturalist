@@ -47,6 +47,8 @@ es-CO:
   x_misidentifications_of_this_species:
     one: "%{count} identificación errónea de esta especie"
     other: "%{count} identificaciones erroneas de esta especie"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} identificación errónea de especie en este %{rank}"
     other: "%{count} identificaciones erróneas de especies en este %{rank}"
@@ -256,7 +258,6 @@ es-CO:
   add_an_assessment: Agregar una evaluación
   add_an_identification: Agregar una identificación
   add_an_observation: Agregar una observación
-  add_an_observation?: '¿Agregar una observación?'
   add_an_observation_of: "Agregar una observación de %{taxon}"
   add_an_observation_to_project_html: Añadir una observación a %{project}
   add_annotations_for_x: Agregar anotaciones para «%{x}»
@@ -347,7 +348,6 @@ es-CO:
   add_to_favorites: Añadir a favoritos
   add_to_list: Agregar a la lista
   add_to_project: Agregar al proyecto
-  add_to_your_life_list: '¡Agregar a tu lista de vida!'
   add_to_your_list: Agregar a tu lista
   add_your_email_to_get: |
     Añade tu correo electrónico para recibir comentarios de la comunidad sobre tu observación. Si no quieres compartirlo, ¡revisa pronto de nuevo el sitio!
@@ -482,8 +482,6 @@ es-CO:
   all_updates: Todas las actualizaciones
   all_your_observations_will_default_this_time_zone: Todas tus observaciones tendrán esta zona horaria a menos que especifiques lo contrario.
   all_your_observations_will_default_to_this_time_zone: Todas tus observaciones tendrán esta zona horaria a menos que especifiques lo contrario.
-  #Option to allow any taxa on a list
-  allow_any: permitir cualquiera
   allow_curator_access: Permite acceso al curador
   allow_project_curators_to_view_your_private_coordinates: Permite a los curadores del proyecto ver tus coordenadas privadas
   allowed_establish_means_values: Valores promedio establecidos
@@ -505,7 +503,15 @@ es-CO:
   announcement_was_successfully_created: El aviso fue creado exitosamente.
   announcement_was_successfully_updated: El aviso fue actualizado exitosamente.
   announcements: Anuncios
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: cualquiera
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any_: Cualquiera
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: Cualquiera
@@ -652,7 +658,6 @@ es-CO:
   avg: Media
   back: Atrás
   back_to_all_species: Regresar a todas las especies
-  back_to_browsing_people: Regresar a la búsqueda de personas
   back_to_calendar: "Regresar al calendario de %{user}"
   back_to_editing_observation: Regresa a editar la observación
   back_to_friends: Volver a amigos
@@ -814,10 +819,8 @@ es-CO:
   check_list_place: "Lista de chequeo de %{place}"
   check_list_updated: '¡Lista de chequeo actualizada!'
   check_lists_for: "Otras listas de chequeo para %{place}"
-  check_out_my_observations_at: Si deseas, puedes ver mis observaciones en
   check_out_our_blog: Échale un vistazo a nuestro blog
   check_out_what_the_observation: Échale un vistazo a cómo se ve la observación que estás tratando de identificar.
-  check_out_your_new_and_improved_list_list: '¡Echa un vistazo a tu lista de vida nueva y mejorada!'
   check_this_box_if_html: |
     Selecciona esta casilla si quieres aplicar una
     <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Licencia de Atribución-No Comercial de Creative Commons</a> al contenido subido. Esto significa que cualquiera puede copiar y reusar tus fotos y/u observaciones sin necesidad de permiso, siempre y cuando, te den crédito y no usen los trabajos con fines comerciales. Puedes escoger una licencia diferente o eliminarla más tarde, pero esta es la mejor licencia para compartir datos con los investigadores.
@@ -1220,7 +1223,6 @@ es-CO:
     Haz clic en el enlace de abajo para desbloquear tu cuenta
   devise_unlock_instructions_unlock: Desbloquea tu cuenta
   discoveries: Descubrimientos
-  did_not_send_invitations_because: 'No les enviamos invitaciones a los siguientes porque:'
   did_you_mean: '¿Te refieres a'
   did_you_photos_flickr?: '¿Has subido alguna foto en Flickr?'
   disable: Desactivar
@@ -1418,8 +1420,6 @@ es-CO:
   first_confirmed_inat_observation: "Primera observación confirmada para %{site_name}"
   first_connect_your_provider_account_to_your_site: "Primero, conecta tu cuenta de %{provider} a %{site_name}:"
   first_inat_observation: "Primera observación para %{site_name}"
-  first_observation: Primera observación
-  first_observation_by_date_added: Primera observación por fecha de adición
   first_observer: Primer observador
   #Verb form, as in "Flag this item"
   flag: Marcar
@@ -1435,7 +1435,6 @@ es-CO:
   flag_for_comment_id_html: Marca para <a href="%{url}">Comentario %{id}</a>
   follow_receive_updates_about_new_observations: Seguir (recibir actualizaciones sobre nuevas observaciones)
   follow_user: "Seguir a %{user}"
-  followed_projects: Proyectos seguidos
   followers: Seguidores
   following: Siguiendo
   following_x_people:
@@ -1494,7 +1493,6 @@ es-CO:
   here_are_our_top_suggestions: Estas son nuestras sugerencias principales
   here_are_our_top_species_suggestions: Estas son nuestras sugerencias principales de especies
   hex_color_eg: Color en hexadecimal, ej. 65644F
-  hi: Hola,
   hi_user: "Hola, %{user}"
   #Verb, usually a button to hide an interface element
   hide: Ocultar
@@ -1572,12 +1570,8 @@ es-CO:
   introduced_in_place: "Introducida en %{place}"
   invitation: Invitación
   invite: invitar
-  invite_more: Invitar más personas
   invite_people: Invitar personas
   invite_people_to_project: "Invitar personas a %{project}"
-  invite_someone_to: "¡Invita a alguien a %{name}!"
-  invite_your_friends: Invita a tus amigos
-  invite_your_friends_description: "¡Ayuda a que %{site_name} sea una comunidad más grande y mejor invitando a tus amigos!"
   #Type of project where people can only join after they have been invited
   inviteonly: por invitación solamente
   invited_x: "Invitado %{x}"
@@ -1905,7 +1899,6 @@ es-CO:
   obs_id_d: Obs. identificadas
   observation: Observación
   observation_: observación
-  observation_added: Observación añadida.
   observation_added_to_the_project: "Observación añadida al proyecto %{project}"
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used

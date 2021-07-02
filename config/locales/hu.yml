@@ -47,6 +47,8 @@ hu:
   x_misidentifications_of_this_species:
     one: "%{count} hibás meghatározás e fajhoz"
     other: "%{count} hibás meghatározás e fajhoz"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} hibás meghatározás %{rank} fajainál"
     other: "%{count} hibás meghatározás %{rank} fajainál"
@@ -175,7 +177,6 @@ hu:
   add_a_single_observation: Egy megfigyelés hozzáadása
   add_an_identification: Meghatározás hozzáadása
   add_an_observation: Megfigyelés hozzáadása
-  add_an_observation?: Új megfigyelés?
   add_an_observation_of: "%{taxon} taxonon belüli megfigyelés hozzáadása"
   add_an_observation_to_project_html: Megfigyelés hozzáadása %{project} projekthez
   add_annotations_for_controlled_attribute:
@@ -249,7 +250,15 @@ hu:
   amphibians: kétéltűek
   and: és
   annotations: Megjelölések
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: bármely
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any_: Bármely
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: Bármely
@@ -315,7 +324,6 @@ hu:
   categories: Kategóriák
   change_password: Jelszó módosítása
   change_your_password: Jelszó módosítása
-  check_out_my_observations_at: 'A megfigyeléseimet megtekintheted itt:'
   choose_files: Válassz fájlokat
   clear: eltávolítás
   colors: Színek
@@ -444,7 +452,6 @@ hu:
   devise:
     sessions:
       signed_out: 'A kijelentkezés sikeres.'
-  did_not_send_invitations_because: A következőknek nem tudunk meghívót küldeni, mivel...
   disable_comments: Megjegyzések letiltása
   disable_comments_desc: További megjegyzések letiltása
   disagree_: Elutasítás
@@ -484,8 +491,6 @@ hu:
   editing_subscription_to_x_html: "Feliratkozás módosítása erre: %{x}"
   email: Email
   email_description: Az email címedet nem osztjuk meg más felhasználókkal az iNaturalist oldalon
-  email_addresses_description: Vesszővel elválasztva. 30 naponként 60 meghívó küldhető.
-  email_addresses_to_receive_invites: A meghívottak email címei
   email_notifications: Email értesítések
   end: Vége
   establishment:
@@ -540,7 +545,6 @@ hu:
   header_your_identifications: Meghatározásaid
   header_your_profile: Profilod
   help: Súgó
-  hi: Szia,
   high: Felső
   home: Kezdőlap
   id_withdrawn: Azonosítás visszavonva
@@ -563,9 +567,6 @@ hu:
   insert_a_quote: Idézet beszúrása
   introduced: Behurcolt
   introduced_in_place: "Behurcolva ide: %{place}"
-  invite_someone_to: "%{name}-meghívó küldése"
-  invite_your_friends: Ismerősök meghívása
-  invite_your_friends_description: "Segíts az %{site_name} növekedésében, hívd meg barátaidat, ismerőseidet, kollégáidat!"
   it_can_now_be_used_for_research: Már tudományos célra is felhasználható, és kiemelhető más oldalakon
   joined_with_date: "Csatlakozás: %{date}"
   journal_posts: Bejegyzések
@@ -692,9 +693,6 @@ hu:
   observer: Megfigyelő
   observers: Megfigyelők
   observer_short: Megfigyelő
-  of_observations: megfigyelés
-  of_observers: megfigyelők
-  of_identifiers: meghatározók
   off_caps: "KI"
   old_observation_form: Régi megfigyelési űrlap (elavult)
   on_caps: "BE"
@@ -716,8 +714,6 @@ hu:
   parent: Szülő
   people: Emberek
   person: Személy
-  personal_message: Személyes üzenet
-  personal_message_description: Sokan nem szeretnek automatikus emailt kapni, ezért jasvasoljuk, hogy írd le, miért szeretnéd, ha csatlakoznának.
   photo_licensing: Fényképlicenc
   photos_or_sounds: Fényképek vagy hangok
   place: Hely
@@ -739,8 +735,6 @@ hu:
   powered_by_inaturalist_open_source_software_html: 'Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist open source software</a>'
   press: Sajtó
   preview: Előnézet
-  preview_personal_message: "szeretnélek meghívni az %{site} oldalra, ahová növények és állatok megfigyeléseit töltheted fel, gondozhatod életlistádat és sokat tanulhatsz a természetről."
-  preview_your_message: Üzenet előnézete
   previous: Előző
   prev: Előző
   privacy: Adatvédelem
@@ -821,7 +815,6 @@ hu:
   select_options: válassz
   select_this_taxon: E taxon kiválasztása
   send: küldés
-  send_the_invites: Meghívók küldése
   settings: Beállítások
   show: Megjelenítés
   show_more: Továbbiak
@@ -938,7 +931,6 @@ hu:
   withdrawing: Visszavonás...
   'yes': "Igen"
   yesterday: Tegnap
-  you_can_sign_free_at: "Az ingyenes %{site_name}-regisztrációhoz látogass el ide:"
   you_cant_delete_observation_fields_that_people_are_using: "Nem lehet használatban lévő adatmezőket törölni"
   you_faved_this: A kedvenced!
   you_must_choose_an_observation_field: Ki kell választanod egy adatmezőt

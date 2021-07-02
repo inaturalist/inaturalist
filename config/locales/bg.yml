@@ -38,6 +38,8 @@ bg:
   x_misidentifications_of_this_species:
     one: "%{count} погрешно разпознаване на този вид"
     other: "%{count} погрешни разпознавания на този вид"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} погрешно разпознаване на видове от @gender{m:този|f:тази|n:това} %{rank}"
     other: "%{count} погрешни разпознавания на видове от @gender{m:този|f:тази|n:това} %{rank}"
@@ -223,7 +225,6 @@ bg:
   add_an_assessment: Добавяне на оценка
   add_an_identification: Добавяне на разпознаване
   add_an_observation: Добавяне на наблюдение
-  add_an_observation?: Добавяне на наблюдение?
   add_an_observation_of: "Добави наблюдение на %{taxon}"
   add_an_observation_to_project_html: Добави наблюдение към %{project}
   add_annotations_for_x: Добави анотации за „%{x}“
@@ -306,7 +307,6 @@ bg:
   add_to_calendar: Добавяне в календара
   add_to_favorites: Добавяне към любими
   add_to_project: Добави към проект
-  add_to_your_life_list: Добави в своя житейски списък!
   add_to_your_list: Добави в списъка си
   add_your_email_to_get: |
     Добавете своя имейл за да получавате известия от общността за Вашите наблюдения. Ако предпочитате да не го споделяте, посетете ни отново скоро!
@@ -436,8 +436,6 @@ bg:
   all_updates: Всички новости
   all_your_observations_will_default_this_time_zone: Всички Ваши наблюдения ще попадат в тази часова зона по подразбиране, освен в случаите когато изберете друго.
   all_your_observations_will_default_to_this_time_zone: Всички Ваши наблюдения ще попадат в тази часова зона по подразбиране, освен в случаите когато изберете друго.
-  #Option to allow any taxa on a list
-  allow_any: позволявай всякакви
   allow_curator_access: Разреши достъп за куратори
   allow_project_curators_to_view_your_private_coordinates: Разрешете на кураторите на проекта да виждат скритите Ви координати.
   allowed_html: Разрешен HTML
@@ -455,7 +453,15 @@ bg:
   annotation: Анотация
   annotations: Анотации
   announcements: Известия
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: без значение
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any_: Без значение
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: Без значение
@@ -1134,7 +1140,6 @@ bg:
   eligible_for_research_grade: Годно за „Изследователско качество“
   email: Електронна поща
   email_description: Вашият имейл не се споделя с други потребители на iNaturalist
-  email_addresses_description: Имейл адреси, разделени със запетаи. Ограничение от 60 на всеки 30 дена.
   email_copyright: "Авторско право &copy; %{x}, всички права запазени"
   email_notifications: Известия по имейл
   email_settings: Настройки за имейл
@@ -1238,7 +1243,6 @@ bg:
   finished: Завършено
   first_confirmed_inat_observation: "Първо потвърдено наблюдение на %{site_name}"
   first_inat_observation: "Първо наблюдения на %{site_name}"
-  first_observation_by_date_added: Първо наблюдение по дата на добавяне
   first_observer: 1-ви наблюдател
   #Verb form, as in "Flag this item"
   flag: Маркирай
@@ -1300,7 +1304,6 @@ bg:
   flickr_tags: Flickr етикети
   follow: Следвай
   follow_user: "Следвай %{user}"
-  followed_projects: Следвани проекти
   followers: Последователи
   following: Следване
   following_x_people:
@@ -1386,7 +1389,6 @@ bg:
   here_are_our_top_suggestions: Ето най-добрите ни предложения
   here_are_our_top_species_suggestions: Ето нашите най-добри предложения за видове
   hex_color_eg: Цвят в шестнайсетичен код, например 6564BF
-  hi: Привет,
   hi_user: "Здравей %{user}"
   #Verb, usually a button to hide an interface element
   hide: Скрий
@@ -1471,11 +1473,8 @@ bg:
   introduced_in_place: "Интродуциран във %{place}"
   invitation: Покана
   invite: покани
-  invite_more: Покани още
   invite_people: Покани хора
   invite_people_to_project: "Покани хора във %{project}"
-  invite_someone_to: "Покани някого на %{name}!"
-  invite_your_friends: Покани приятелите си
   #Type of project where people can only join after they have been invited
   inviteonly: само с покана
   iphone: iPhone
@@ -1604,9 +1603,6 @@ bg:
   licensing: Лицензиране
   life: Живот
   life_list: "Житейски списък на %{user}"
-  life_list_updated: Житейският списък е обновен!
-  life_list_updated_we_also_saved_a: Житейският списък е обновен! Записахме и едно непопълнено наблюдение на този таксон.
-  life_lists_automatically_fill: Житейските списъци автоматично се допълват с нови таксони когато ги наблюдавате и могат да бъдат ограничени до някакъв родителски таксон. Например можете да създадете житейски списък на наблюдаваните от Вас птици от семейство Вранови (Corvidae).
   linear_scale_label: Линейна
   link_or_unlink_your_facebook_account: Свържи или не своя Facebook акаунт
   link_or_unlink_your_flickr_account: Свържи или не своя Flickr акаунт
@@ -1728,7 +1724,6 @@ bg:
   #Stub text for the main content section when editing custom project data
   main_content_description: Тук се разполага основното съдържание
   make_curator: Направи куратор
-  make_it_a_life_list?: Направи житейски списък?
   make_manager: Направи управител
   make_sure_the_default_photo_looks_good: Уверете се, че илюстриращата снимка изглежда добре при увеличение.
   mammals: бозайници
@@ -2025,7 +2020,6 @@ bg:
     Координатите се показват като произволна точка в рамките на правоъгълник с размери 0,2 градуса геогр. дължина и ширина, който съдържа реалните координати на неопределено място в себе си.
   observation: Наблюдение
   observation_: наблюдение
-  observation_added: Наблюдението е добавено.
   observation_added_to_the_project: "Наблюдението е добавено към проекта \"%{project}\""
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
@@ -2084,7 +2078,6 @@ bg:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     например 2019-10-29 13:12:21
-  observed_on_datetime: Наблюдавано на %{datetime}
   observation_removed_from_the_project: "Наблюдението е премахнато от проекта %{project}"
   observation_requirements: Изисквания към наблюденията
   #Label for a field showing the date when the observation requirements for a
@@ -2141,10 +2134,6 @@ bg:
     Наблюдателят позволява наблюденията му да се добавят от други хора единствено към проекти, в които членува.
   observer_short: Налюдател
   occurrence_status_establishment_means: срещаемост, начин на заселване
-  of_observations: наблюдения
-  of_species: вид
-  of_observers: наблюдатели
-  of_identifiers: разпознавачи
   of_places: места
   of_this_taxon: От този таксон
   offensive_inappropriate: Обидно / неуместно
@@ -2184,8 +2173,6 @@ bg:
     Само една координатна система може да бъде използвана в един файл. В противен случай ще се конвертира или изобрази погрешно.
   only_project_curators_can_do_that: Само кураторите на проекта могат да правят това.
   only_receive_updates_about_this_taxon: Получавай известия само за този таксон
-  only_species: само видове
-  only_species_and_subspecies: само видове и подвидове/вариетети
   only_staff_can_edit_standard_places: Само екипът на сайта може да редактира местата в стандартната йерархия
   only_the_owner_of_this_list_can_do_that: Само собственика на списъка може да прави това. Не бъди така лош.
   only_the_project_admin_can_delete_this_project: Само администратора на проекта може да го изтрие.
@@ -2259,8 +2246,6 @@ bg:
   per_month: На месец
   per_week: На седмица
   person: Човек
-  personal_message: Лично съобщение
-  personal_message_description: Никой не обича да получава писма от машини! Защо не кажеш на приятелите си защо ги каниш?
   per_page: "На страница"
   photo: Снимка
   photo_attribution: "Снимка: %{attribution}"
@@ -2700,8 +2685,6 @@ bg:
   preview: Преглед
   preview_observations_with_these_observation_requirements: Предварителен преглед на наблюденията при тези изисквания
   preview_of_synced_observation: "<strong>Преглед</strong> на синхронизирано наблюдение. <a href=\"%{url}\">Отмени?</a>"
-  preview_personal_message: "Ще се радвам ако се присъединиш на сайта %{site}, където можеш да регистрираш своите наблюдения на животни и растения и да научиш повече за природата!"
-  preview_your_message: Прегледай съобщението си
   previewing: "Преглед..."
   previous: Предишно
   prev: Пред.
@@ -2777,7 +2760,6 @@ bg:
   range: Диапазон
   rank: Ранг
   rank_position: Ранг
-  rank_restrictions: Рангови ограничения
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
@@ -2882,7 +2864,6 @@ bg:
   ranks_lowercase_hybrid: хибрид
   ranges: Граници
   ray_finned_fishes: лъчеперки
-  re_apply_list_rules: Приложи списъчните правила наново
   re_order_photos: "Размести снимките &raquo;"
   read_more: Прочетете още
   read_our_getting_started_guide: прочетете нашето Ръководство за начинаещи
@@ -3038,7 +3019,6 @@ bg:
   search_your_photos: Претърси своите снимки
   searching: "Търсене..."
   seasonality: Сезонност
-  second_person_possessive_plural: "Вашите %{noun}"
   second_person_possessive_singular: "@gender{m:Вашият|f:Вашата|n:Вашето} %{noun}"
   seen_nearby: Видяно наоколо
   select: Избери
@@ -3049,13 +3029,10 @@ bg:
   select_observations_to_edit: Изберете наблюдения за редактиране...
   select_one_of_your_albums: Изберете някой от албумите си
   select_options: Избери опция
-  select_photos_to_display: Избор на снимки за изобразяване
   selected: избрано
   selected_photos: Избрани снимки
   send: Изпрати
-  send_invites_to: Изпрати покани на
   send_me_reset_password_instructions: Изпрати ми инструкции за възстановяване на паролата
-  send_the_invites: Изпрати поканите
   sending: Изпращане...
   #Label for messages you've sent
   sent: Изпратени
@@ -3067,14 +3044,12 @@ bg:
   show: Показване
   show_active_and_inactive_taxa: Покажи активни и неактивни таксони
   show_common_names: Показвай народните имена
-  show_default_taxon_photos: показвай снимките по подразбиране за таксоните
   show_keyboard_shortcuts: Покажи клавишните комбинации
   show_less: Покажи по-малко
   show_more: Покажи повече
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Показвай „Без анотация“
-  show_observation_photos: показвай снимки от наблюденията
   show_off_your_recent_observations: Покажете най-новите си наблюдения на своя блог или сайт!
   show_only: Покажи само
   show_relative_proportions_of_all_observations: Покажи относителният дял на наблюденията към общия брой наблюдения
@@ -3126,7 +3101,6 @@ bg:
   sorry_we_didnt_find_that_photo: "Съжаляваме, не успахме да намерим снимката."
   sorry_we_dont_have_any_metadata_for_that_photo: "Съжаляваме, не разполагаме с метаданни за тази снимка които да приложим към наблюдението."
   sorry_x_is_not_responding: "Съжаляваме, %{x} не отговаря. Моля опитайте пак по-късно."
-  sorry_you_cant_delete_your_own_life_list: "Съжаляваме, не можете да изтриете собствения си житейски списък."
   sort: Сортиране
   sort_by: Сортиране по
   sorting_by: Сортиране по
@@ -3363,9 +3337,6 @@ bg:
   these_folks_kindly_volunteer_to: Тези хора любезно и доброволно поддържат нашата таксономия и се занимават с някои други проблеми.
   third_party_tracking: Проследяване от трети страни
   this_bioblitz_beings_in: Този биоблиц започва след
-  this_is_a_life_list_of: Това е житейски списък на
-  this_is_a_life_list_from_place_html: "Това е житейски списък от %{place}"
-  this_is_a_life_list_of_taxon_in_place: "Това е житейски списък на%{taxon} от %{place}"
   this_is_how_taxon_names_will_be_displayed: Така ще бъдат изобразявани всички имена на таксони из целия %{site_name}
   this_is_your_observation: Това наблюдение е Ваше
   this_is_your_observation_desc: Винаги можете да виждате координатите на собствените си наблюдения.
@@ -3385,8 +3356,6 @@ bg:
   this_user_has_been_suspended: Този потребител е запориран
   this_user_has_been_suspended_message: |
     Ако това е Вашият акаунт и смятате, че това е направено по погрешка, моля <a href="mailto:%{email}">свържете се с нас</a>.
-  this_will_re_apply_all_list_rules: |
-    Това ще приложи наново всички правила на списъка към изброените таксони и ще обнови съответната статистика. Например ще премахне таксони, които не са дъщерни на таксона на списъка или не са от посочения ранг. Това няма да добави нови таксони. Може да отнеме няколко минути.
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Това ще прекрати способността на iNaturalist да достъпва този акаунт от Ваше име, докато не възобновите достъпа му. Може да се наложи да промените настройките си на външния сайт, за да предотвратите напълно достъпа.
   #Application is a third-party app or service the user has authorized to
@@ -3412,7 +3381,6 @@ bg:
   top_identifiers_of_taxon: Най-добри разпознавачи на %{taxon}
   top_observer: Най-добър наблюдател
   top_observers: Най-добри наблюдатели
-  top_species: Водещи видове
   tos_privacy_guidelines_label: |
     Съгласявам се с <a href="/terms" target="_blank">Условията за ползване</a> и <a href="/privacy" target="_blank">Политиката за поверителност</a> и се запознах с <a href="/pages/community+guidelines" target="_blank">Правилата на общността</a>.
   total: Общо
@@ -3737,7 +3705,6 @@ bg:
   you_faved_this: Вие харесахте това!
   you_have_left_x_project: "Напуснахте %{project}"
   you_havent_linked_your_inaturalist_google_account: "Все още не сте свързали Вашия акаунт на %{site_name} с акаунта си на Google"
-  you_havent_joined_any_projects: Не участвате в никакви проекти
   you_joined_this_project: Вие се включихте в проекта!
   you_must_be_a_member_of_this_project_to_do_that: Трябва да членувате в проекта за да направите това
   you_must_choose_an_observation_field: Трябва да изберете поле за наблюдения

@@ -27,6 +27,38 @@ mr:
   about_the_cc_licenses: '"क्रिएटिव्ह कॉमन्स लायसन्स" विषयी'
   about_these_licenses: विविध परवानान्यांविषयी
   about_this_bioblitz: '"बायोब्लिट्झ" विषयी'
+  add_annotations_for_controlled_attribute:
+    evidence_of_presence: 'टिप्पणी जोडा: "उपस्थितीचा पुरावा"'
+  add_evidence_of_presence_organism_annotation: 'टिप्पणी जोडा "उपस्थितीचा पुरावा: जीव"'
+  add_evidence_of_presence_feather_annotation: 'टिप्पणी जोडा: "उपस्थितीचा पुरावा: पीस"'
+  add_evidence_of_presence_scat_annotation: 'टिप्पणी जोडा: "उपस्थितीचा पुरावा: मल"'
+  add_evidence_of_presence_track_annotation: 'टिप्पणी जोडा: "उपस्थितीचा पुरावा: पाऊलखुणा"'
+  add_evidence_of_presence_bone_annotation: 'टिप्पणी जोडा: "उपस्थितीचा पुरावा: अस्थी"'
+  add_evidence_of_presence_molt_annotation: 'टिप्पणी जोडा: उपस्थितीचा पुरावा: कात'
+  controlled_term_labels:
+    evidence_of_presence: उपस्थितीचा पुरावा
+    #As in the feather on a bird
+    feather: पीस
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: जीव
+    #Fecal matter, not regurgitated matter
+    scat: मल
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: पाऊलखुणा
+    #Endoskeletal remains, like a deer bone
+    bone: हाड
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: कात
+  controlled_term_definitions:
+    feather: जीवापासून विलग झालेले पीस
+    organism: संपूर्ण किंवा अर्धवट जीव
+    scat: विष्ठा
+    track: खुणा/पदचिन्हे
+    bone: |
+      प्रामुख्याने अस्थींचे अवशेष, याव्यतिरिक्त जीवाच्या अखंड शरीरावरील हाडांचा काही भाग प्रदर्शित झाल्यास तो "जीव" म्हणून निर्देशित करावा
+    molt: कात किंवा टाकून दिलेली त्वचा/बाह्यअस्थी
   view_more_observations_from_this_place: ह्या ठिकाणाभोवतीची इतर निरीक्षणे पहा
   views:
     stats:
