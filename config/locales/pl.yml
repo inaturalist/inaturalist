@@ -1010,6 +1010,16 @@ pl:
   contributor_cannot_be_found: Współautor nie został odnaleziony
   contributors_to_project: "Współautorzy %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Dowolna
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Dowolna
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Dowolne
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Obojętnie
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Dowolny
     sex: Płeć
     male: Samiec
     female: Samica
@@ -1657,7 +1667,6 @@ pl:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ukryj "Brak adnotacji"
-  high: Wysoki
   highest_rank: Najwyższa pozycja
   highlights_and_stats_from_year_on_site: "Statystyki i wyróżnienia od %{year} na %{site}"
   history: Historia
@@ -2009,7 +2018,6 @@ pl:
   look_up_name: "Wyszukaj nazwę"
   looks_like_no_species_in_guide: Wygląda na to, że jeszcze nie masz żadnych gatunków w przewodniku.
   lookup: Wyszukaj
-  low: Słaby
   lowest_rank: Najniższa kategoria
   make_admin: Nadaj uprawnienia administratora
   #Header for main content section of the project detail page when editing custom project data.
@@ -2525,7 +2533,7 @@ pl:
   per_day: Dziennie
   per_month: Miesięcznie
   per_week: Tygodniowo
-  person: osoba
+  person: Osoba
   per_page: "Na stronę"
   photo: Zdjęcie
   photo_attribution: "Zdjęcie %{attribution}"
@@ -3117,6 +3125,7 @@ pl:
   required_: Wymagane
   required_field: pole wymagane
   required_columns_in_order: Wymagane kolumny w kolejności
+  research_: Badawczy
   research_grade: Stopień badawczy
   research_grade_short_html: "S<span class='full'>topień</span>b<span class='full'>adawczy</span>"
   research_grade_qualification: Kwalifikacja do Stopnia badawczego
@@ -4409,7 +4418,7 @@ pl:
         source_identifier: Identyfikator źródła
         source_url: Źródłowy adres URL
       taxon_name:
-        name_provider: Nazwa dostawcy
+        name_provider: Dostawca nazw
         source_url: Źródłowy adres URL
         source_identifier: Identyfikator źródła
       user:
@@ -4435,9 +4444,11 @@ pl:
         invalid: jest nieprawidłowy
         less_than: musi być mniejszy niż %{count}
         less_than_or_equal_to: musi być mniejszy lub równy %{count}
+        new_project_owner_must_be_a_manager: Nowy właściciel projektu musi być administratorem
         not_a_number: nie jest liczbą
         not_an_integer: musi być liczbą całkowitą
         odd: musi być liczbą nieparzystą
+        only_project_owner_can_change_project_owner: Tylko właściciel projektu może zmienić właściciela projektu
         record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
       template:
         body: 'Wystąpiły problemy z następującymi polami:'
@@ -4486,7 +4497,7 @@ pl:
                 może zostać zmieniona wyłącznie przez kuratora tego taksonu
             rank_level:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                może zostać zmieniona wyłącznie przez kuratora tego taksonu
+                może zostać zmieniony wyłącznie przez kuratora tego taksonu
             ancestry:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 może zostać zmieniony wyłącznie przez kuratora tego taksonu
@@ -4506,7 +4517,9 @@ pl:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: nie powinien zawierać przecinków ani ukośników
+              should_be_in_english: powinien być w języku angielskim
             name:
+              already_exists: już istnieje dla tego taksonu w tym leksykonie
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 nie można dopasować nazwy naukowej gatunku dla tego leksykonu
               bad_format: |
@@ -4524,6 +4537,10 @@ pl:
             email:
               must_look_like_an_email_address: musi wyglądać jak adres e-mail
               domain_is_not_supported: domena nie jest obsługiwana
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Już zablokowałeś tego użytkownika.
         user_parent:
           attributes:
             email:
@@ -4532,7 +4549,7 @@ pl:
   doorkeeper:
     scopes:
       write: |
-        Dodawaj, aktualizuj i usuwaj swoje obserwacje, oznaczenia i inne treści a także uzyskaj dostęp do swoich do których może ukrytych współrzędnych i innych informacji do których możesz uzyskać dostęp na tej stronie.
+        Dodawać, aktualizować i usuwać Twoje obserwacje, oznaczenia i inne treści w Twoim imieniu, a także uzyskać dostęp do Twoich ukrytych współrzędnych i innych informacji, do których możesz uzyskać dostęp na tej stronie.
       account_delete: |
         Usunąć konto w Twoim imieniu
     errors:
@@ -4541,9 +4558,9 @@ pl:
         invalid_request: 'Żądanie nie zawiera wymaganego parametru, zawiera nieobsługiwaną wartość parametru lub jest w inny sposób nieprawidłowo sformułowane.'
         invalid_redirect_uri: 'Dołączony identyfikator URI przekierowania jest nieprawidłowy.'
         unauthorized_client: 'Klient nie ma uprawnień do wykonania tego żądania przy użyciu tej metody.'
-        access_denied: 'Odrzucenie żądania ze strony właściciela zasobu lub serwera autoryzacji.'
+        access_denied: 'Właściciel zasobu lub serwer autoryzacyjny odrzucił żądanie.'
         invalid_scope: 'Żądany zakres jest nieprawidłowy, nieznany lub nieprawidłowo sformułowany.'
-        server_error: 'Serwer autoryzacji napotkał nieoczekiwany warunek uniemożliwiając wykonanie żądania.'
+        server_error: 'Serwer autoryzacji napotkał nieoczekiwany warunek, który uniemożliwił mu wykonanie żądania.'
         temporarily_unavailable: 'Serwer autoryzacji nie jest obecnie w stanie obsłużyć żądania z powodu tymczasowego przeciążenia lub konserwacji serwera.'
         #Configuration error messages
         credential_flow_not_configured: 'Przepływ poświadczeń hasła właściciela zasobu nie powiódł się z powodu nieskonfigurowania ustawień Doorkeeper.configure.resource_owner_from_credentials.'
@@ -4551,8 +4568,7 @@ pl:
         #Access grant errors
         unsupported_response_type: 'Serwer autoryzacji nie obsługuje tego typu odpowiedzi.'
         #Access token errors
-        invalid_client: 'Uwierzytelnianie klienta nie powiodło się z powodu nieznanego klienta, nieuwzględnienia uwierzytelniania klienta lub nieobsługiwanej metody uwierzytelniania.'
-        invalid_grant: 'Udzielona autoryzacja jest nieprawidłowa, wygasła, unieważniona, nie odpowiada identyfikatorowi URI przekierowania użytemu w żądaniu autoryzacji lub została wydana innemu klientowi.'
+        invalid_client: 'Uwierzytelnienie klienta nie powiodło się z powodu nieznanego klienta, nieuwzględnienia uwierzytelnienia klienta lub nieobsługiwanej metody uwierzytelniania.'
         unsupported_grant_type: 'Typ udzielania autoryzacji nie jest obsługiwany przez serwer autoryzacji.'
         #Password Access token errors
         invalid_resource_owner: 'Podane poświadczenia właściciela zasobu są nieprawidłowe lub właściciel zasobu nie może zostać znaleziony'
@@ -4583,9 +4599,9 @@ pl:
         u: "@vow"
         default: "@con"
       "@gender":
-        m: mężczyzna
-        f: kobieta
-        "n": wykastruj
+        m: męski
+        f: żeński
+        "n": nijaki
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         application: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -4609,7 +4625,7 @@ pl:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
-        form: "@m"
+        form: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -4635,7 +4651,7 @@ pl:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         order: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        phylum: "@n"
+        phylum: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -4655,7 +4671,7 @@ pl:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         suborder: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        subphylum: "@n"
+        subphylum: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         subsection: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -4692,12 +4708,15 @@ pl:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  #Title of a section warning the user about something
+  warning_title: Ostrzeżenie
   wikimedia: Wikimedia
   wild: Organizmy dzikie
   will_paginate:
     previous_label: "&#8592; Poprzednia"
     next_label: "Następna &#8594;"
     page_gap: "&hellip;"
+  you_will_no_longer_be_following_or_trusting: "Nie będziesz już obserwować ani ufać %{user}"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"
   z_to_a: Od Z do A
