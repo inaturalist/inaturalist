@@ -971,6 +971,16 @@ de:
   contributor_cannot_be_found: Mitwirkender kann nicht gefunden werden
   contributors_to_project: "Teilnehmer vom Projekt %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Beliebig
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Beliebig
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Beliebig
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Beliebig
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Beliebig
     sex: Geschlecht
     male: Männlich
     female: Weiblich
@@ -3848,7 +3858,6 @@ de:
   scientific_name: Wissenschaftlicher Name
   search: Suchen
   search_all_fields: alle Felder durchsuchen
-  search_by_name: Nach Namen suchen
   search_by_name_or_email: Nach Namen oder E-Mail suchen
   search_by_taxon_name_or_observation_id: Nach Taxonnamen oder Beobachtungs-ID suchen
   search_by_taxon_name_or_flickr_photo_id: Nach Taxonnamen oder Flickr Foto-ID suchen
