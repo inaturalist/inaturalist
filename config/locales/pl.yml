@@ -596,6 +596,10 @@ pl:
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
   any_: Dowolna
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Dowolna
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Dowolny
   #Label for an option to show content from any date
   any_date: Dowolna
   #Label for an option to show content with any license
@@ -939,7 +943,6 @@ pl:
   committing: Zatwierdzanie...
   common_name: Nazwa zwyczajowa
   community: Społeczność
-  community_curated: Pod opieką społeczności
   community_guidelines: Wytyczne dla społeczności
   community_id_heading: Takson wybrany przez społeczność
   community_id_at_species_or_lower?: Takson wybrany przez społeczność na poziomie gatunku lub niższym?
@@ -1136,6 +1139,17 @@ pl:
   curating: Naprawianie
   curation: Naprawa
   curator: Kurator
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Musisz wyjaśnić, dlaczego chcesz zostać kuratorem
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Dlaczego chcesz być kuratorem?
+  #Header
+  curator_application_what_curators_can_do: Co mogą kuratorzy
+  #Header
+  curator_application_what_curators_cannot_do: Czego kuratorzy nie mogą
+  #Title of a page where people apply to become a curator
+  curator_application_title: Podanie na kuratora
   curators_changed_for_x_html: "Zmiana kuratorów %{x}"
   curators: Kuratorzy
   curator_identification: Oznaczenie kuratora
@@ -1311,7 +1325,7 @@ pl:
   drafts: Szkice
   drag_and_drop_some_photos_or_sounds: Przeciągnij i upuść zdjęcia lub dźwięki
   drawings: Rysunki
-  duplicate_verb: Duplikat
+  duplicate_verb: Duplikuj
   duration_value: "Czas trwania: %{duration} minut"
   earliest_added: Najwcześniej dodane
   edit: Edytuj
@@ -1784,6 +1798,7 @@ pl:
   join_the_largest_group_of_naturalists_in_the_world: Dołącz do największej grupy przyrodników na świecie!
   join_this_project: Dołącz do tego projektu
   'joined!': Dołączono!
+  joined_projects: Projekty do których dołączyłeś
   joined_with_date: "Dołączono: %{date}"
   journal: Dziennik
   journal_post: Wpis do dziennika
@@ -2389,7 +2404,7 @@ pl:
   observation_rules_description: |
     Możesz wybrać reguły określające, które obserwacje mają być dodawane do projektu (np. ograniczenie co do konkretnego miejsca lub taksonu). Jeśli chcesz wybrać więcej reguł z określonego typu, to obserwacje zostaną dodane, jeśli choć jedna z reguł będzie spełniona. Na przykład gdy ustanowisz zasadę "musi być Płazem" i "musi być Gadem", to do projektu zakwalifikują się obserwacje płazów LUB gadów.
   observation_was_deleted: Obserwacja została usunięta.
-  observation_without_media: Obserwacja bez multimediów
+  observation_without_media: Obserwację bez multimediów
   observations: Obserwacje
   observations_: obserwacje
   observations_added_by_x_html: "Obserwacje dodane przez %{x}"
@@ -2934,6 +2949,7 @@ pl:
     many: Administratorów projektu
     other: Administratora projektu
   project_cover: Okładka projektu
+  project_curator_id: ID kuratora projektu
   project_curator_tools: Narzędzia kuratora projektu
   project_curators: Kuratorzy projektu
   project_group_label: Grupa
@@ -3095,6 +3111,7 @@ pl:
   remember_me: Zapamiętaj mnie
   remove: Usuń
   remove_all_tags: Usuń wszystkie tagi
+  remove_comma_separated_tags: "Usuń tagi oddzielone przecinkami"
   remove_from: Usuń z
   remove_curator: Usuń kuratora
   remove_curator_status: Usuń status kuratora
@@ -3314,6 +3331,7 @@ pl:
   support_inaturalist: Wesprzyj iNaturalist
   suspend_user: Zawieś użytkownika
   sync: Zsynchronizować?
+  tags: Tagi
   take_me_facebook: Tak, zabierz mnie do Facebooka!
   take_me_flickr!: Tak, zabierz mnie do Flickr!
   taxa: Taksony
@@ -4132,76 +4150,76 @@ pl:
   datetime:
     distance_in_words:
       about_x_hours:
-        one: około 1 godziny
-        few: około %{count} godzin
+        one: około %{count} godziny
+        few: około %{count} godziny
         many: około %{count} godzin
-        other: około %{count} godzin
+        other: około %{count} godziny
       about_x_months:
-        one: około 1 miesiąca
+        one: około %{count} miesiąca
         few: około %{count} miesięcy
         many: około %{count} miesięcy
-        other: około %{count} miesięcy
+        other: około %{count} miesięca
       about_x_years:
-        one: około 1 roku
+        one: około %{count} roku
         few: około %{count} lat
         many: około %{count} lat
-        other: około %{count} lat
+        other: około %{count} roku
       almost_x_years:
-        one: prawie rok
+        one: prawie %{count} rok
         few: prawie %{count} lata
         many: prawie %{count} lat
-        other: prawie %{count} lat
+        other: prawie %{count} roku
       half_a_minute: pół minuty
       less_than_x_minutes:
-        one: mniej niż minutę
+        one: mniej %{count} minutę
         few: mniej niż %{count} minuty
         many: mniej niż %{count} minut
         other: mniej niż %{count} minuty
       less_than_x_seconds:
-        one: mniej niż sekundę
+        one: mniej niż %{count} sekundę
         few: mniej niż %{count} sekundy
         many: mniej niż %{count} sekund
-        other: mniej niż %{count} sekund
+        other: mniej niż %{count} sekundy
       over_x_years:
-        one: ponad rok
+        one: ponad %{count} rok
         few: ponad %{count} lata
         many: ponad %{count} lat
         other: ponad %{count} roku
       x_days:
-        one: "1 dzień"
+        one: "%{count} dzień"
         few: '%{count} dni'
         many: '%{count} dni'
-        other: '%{count} dni'
+        other: '%{count} dnia'
       x_minutes:
-        one: "1 minuta"
+        one: "%{count} minuta"
         few: '%{count} minuty'
         many: '%{count} minut'
-        other: '%{count} minut'
+        other: '%{count} minuty'
       x_months:
-        one: "1 miesiąc"
+        one: "%{count} miesiąc"
         few: '%{count} miesiące'
         many: '%{count} miesięcy'
-        other: '%{count} miesięcy'
+        other: '%{count} miesiąca'
       x_seconds:
-        one: "1 sekunda"
+        one: "%{count} sekunda"
         few: '%{count} sekundy'
         many: '%{count} sekund'
-        other: '%{count} sekund'
+        other: '%{count} sekundy'
     countdown_x_days:
       one: dzień
       few: dni
       many: dni
-      other: dni
+      other: dnia
     countdown_x_hours:
       one: godzina
       few: godziny
       many: godzin
       other: godziny
     countdown_x_minutes:
-      one: min
-      few: min
-      many: min
-      other: min
+      one: minuta
+      few: minuty
+      many: minut
+      other: minuty
     countdown_x_seconds:
       one: sekunda
       few: sekundy
@@ -4303,7 +4321,7 @@ pl:
             one: Bajt
             few: Bajty
             many: Bajtów
-            other: Bajtów
+            other: Bajta
           gb: GB
           kb: KB
           mb: MB
@@ -4373,6 +4391,9 @@ pl:
       listed_taxon:
         occurrence_status_level: Stopień statusu występowania
         establishment_means: Sposoby ustanowienia
+      message:
+        subject: Temat
+        body: Treść
       observation:
         observed_on: data obserwacji
       observation_field_value:
