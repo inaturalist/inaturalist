@@ -821,7 +821,7 @@ class Place < ApplicationRecord
     # Move the mergee's listed_taxa to the target's default check list
     mergee.check_lists.each do |cl|
       cl.update_attributes( place: self )
-      ListedTaxon.where( list_id: cl ).update_all( place_id: self )
+      ListedTaxon.where( list_id: cl.id ).update_all( place_id: id )
     end
     if check_list
       ListedTaxon.where( list_id: mergee.check_list_id ).update_all( list_id: check_list_id, place_id: id )

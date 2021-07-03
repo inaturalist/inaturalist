@@ -489,6 +489,7 @@ describe Project do
       expect( pu2.observations_count ).to eq 0
       expect( pu2.taxa_count ).to eq 0
       expect( project.observations.count ).to eq 0
+      project.reload
       project.aggregate_observations
       project.reload
       pu.reload
@@ -644,6 +645,7 @@ describe Project do
       taxon2 = Taxon.make!
       ProjectObservationRule.make!(operator: "in_taxon?", operand: taxon1, ruler: p)
       ProjectObservationRule.make!(operator: "in_taxon?", operand: taxon2, ruler: p)
+      p.reload
       expect( p.observations_url_params[:taxon_ids].sort ).to eq [taxon1.id, taxon2.id].sort
     end
 
@@ -653,6 +655,7 @@ describe Project do
       taxon2 = Taxon.make!
       ProjectObservationRule.make!(operator: "in_taxon?", operand: taxon1, ruler: p)
       ProjectObservationRule.make!(operator: "in_taxon?", operand: taxon2, ruler: p)
+      p.reload
       expect( p.observations_url_params(concat_ids: true)[:taxon_ids] ).to eq [taxon1.id, taxon2.id].sort.join(",")
     end
 
@@ -662,6 +665,7 @@ describe Project do
       place2 = make_place_with_geom
       ProjectObservationRule.make!(operator: "observed_in_place?", operand: place1, ruler: p)
       ProjectObservationRule.make!(operator: "observed_in_place?", operand: place2, ruler: p)
+      p.reload
       expect( p.observations_url_params[:place_id].sort ).to eq [place1.id, place2.id].sort
     end
 
@@ -671,6 +675,7 @@ describe Project do
       place2 = make_place_with_geom
       ProjectObservationRule.make!(operator: "observed_in_place?", operand: place1, ruler: p)
       ProjectObservationRule.make!(operator: "observed_in_place?", operand: place2, ruler: p)
+      p.reload
       expect( p.observations_url_params(concat_ids: true)[:place_id] ).to eq [place1.id, place2.id].sort.join(",")
     end
 

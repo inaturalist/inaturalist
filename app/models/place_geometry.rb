@@ -29,11 +29,25 @@ class PlaceGeometry < ApplicationRecord
       return
     end
     if geom.num_points < 4
-      errors.add(:geom, " must have more than 3 points")
+      errors.add(:geom, "must have more than 3 points")
     end
-
     if geom.detect{|g| g.num_points < 4}
-      errors.add(:geom, " has a sub geometry with less than 4 points!")
+      errors.add(:geom, "has a sub geometry with less than 4 points!")
+    end
+  end
+
+  # During the Rails 5 upgrade, invalid WKT assigned to geom raised this error
+  # when the geometry tried to be read. This seems like a problem with RGeo
+  # that hasn't been fixed yet, so this is a rough kluge. Alternatively, we
+  # could raise something more specific and catch it elsewhere. This might fail
+  # a bit silently. ~~kueda 20210702
+  def geom
+    begin
+      super
+    rescue NoMethodError => e
+      raise e unless e.message =~ /undefined method.*factory/
+      errors.add(:geom, "could not be parsed")
+      nil
     end
   end
 

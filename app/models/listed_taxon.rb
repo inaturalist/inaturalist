@@ -855,19 +855,19 @@ class ListedTaxon < ApplicationRecord
   end
 
   def other_primary_listed_taxa?
-    scope = ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true)
+    scope = ListedTaxon.where( taxon_id: taxon_id, place_id: place_id, primary_listing: true )
     scope = scope.where("id != ?", id) if id
     scope.count > 0
   end
   
   def multiple_primary_listed_taxa?
-    scope = ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true)
+    scope = ListedTaxon.where( taxon_id: taxon_id, place_id: place_id, primary_listing: true )
     scope = scope.where("id != ?", id) if id
     scope.count > 1
   end
   
   def primary_listed_taxon
-    primary_listing ? self : ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true).first
+    primary_listing ? self : ListedTaxon.where( taxon_id: taxon_id, place_id: place_id, primary_listing: true ).first
   end
 
   def check_primary_listing

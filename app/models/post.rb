@@ -148,7 +148,7 @@ class Post < ApplicationRecord
   end
   
   def update_user_counter_cache
-    if parent_type == "User" && (published_at_changed? || destroyed?) 
+    if parent_type == "User" && (saved_change_to_published_at? || destroyed?)
       User.where( id: user_id, ).update_all( journal_posts_count: user.journal_posts.published.count )
     end
     true
