@@ -137,7 +137,7 @@
         </script>
       <% elsif logged_in? && current_user.id == @list.user_id %>
         <%=t :no_species_on_this_list %>
-        <%=t :no_species_on_this_list_for_owner_html, :url => new_observation_url %>
+        <%=t :no_species_on_this_list_for_owner %>
       <% elsif @q %>
         <%=t :no_results_matching %> "<%= @q %>"
       <% else %>
