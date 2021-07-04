@@ -24,7 +24,7 @@ If you've found a problem in the code, please supply detailed reproduction condi
 1. Leave a comment on the issue saying you're working on it
 1. Fork the repo, and make an issue-specific branch in your fork that starts with the issue number followed by some descriptive, hyphen-separated text. For example, if the issue is number 1234 with a title like "Flagging a message blocks recipient from viewing it again," you should make a branch like `1234-message-flagging`
 1. Work on your changes
-1. When you're done, issue a pull request to the master branch in the main repo. iNat staff will review it when we have time
+1. When you're done, issue a pull request to the main branch in the [inaturalist repo](https://github.com/inaturalist/inaturalist). iNat staff will review it when we have time
 
 # Reporting Security Issues
 
