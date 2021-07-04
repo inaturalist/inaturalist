@@ -1146,8 +1146,16 @@ pl:
   curator_application_fields_explanation_html: Dlaczego chcesz być kuratorem?
   #Header
   curator_application_what_curators_can_do: Co mogą kuratorzy
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Ukrywać komentarze i zawieszać użytkowników za naruszanie <a
+    href="/pages/community+guidelines" target="_blank">Wytycznych społeczności</a>.
   #Header
   curator_application_what_curators_cannot_do: Czego kuratorzy nie mogą
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Usuwać treści dodanych przez innych użytkowników.
   #Title of a page where people apply to become a curator
   curator_application_title: Podanie na kuratora
   curators_changed_for_x_html: "Zmiana kuratorów %{x}"
@@ -1377,6 +1385,7 @@ pl:
     other: 'Edytowanie <span class="count">%{count}</span> obserwacji:'
   editing_project: Edytowanie projektu %{project}
   editing_subscription_to_x_html: "Edytowanie subskrypcji do %{x}"
+  editing_taxon: Edytowanie %{taxon}
   editing_taxon_link: Edytuj Łącze Taksonu
   editing_taxon_name_for_taxon_html: Edytowanie nazwy taksonu "%{name}" dla %{taxon}
   editing_taxon_range: Edytowanie zasięgu taksonu
@@ -1386,12 +1395,14 @@ pl:
   either_that_user_doesnt_exist_or: "Podany użytkownik nie istnieje lub już go obserwujesz."
   eligible_for_research_grade: Kwalifikuje się do stopnia badawczego
   email: E‐mail
+  email_description: Twój e-mail nie jest udostępniany innym użytkownikom iNaturalist
   email_address_for_comments_and_other_feedback: Adres e-mail dla komentarzy i innych informacji zwrotnych.
   email_copyright: "Chroniony prawem autorskim &copy; %{x}, wszelkie prawa zastrzeżone"
   email_notifications: Powiadomienia e-mail
   email_settings: Ustawienia powiadomień e-mail
   embed: 'Osadź'
   embed_place_widget: Osadź widget miejsca
+  embed_this_assessment: Osadź tę ocenę
   embed_widget_project: Osadź widget projektu na swojej stronie
   enable_offline_access: Zezwól na dostęp offline
   enable_offline_access_for_mobile: Zezwól na dostęp offline dla urządzeń mobilnych
@@ -1453,6 +1464,7 @@ pl:
   failed_to_find_your_location: Nie udało się odnaleźć twojej lokalizacji.
   failed_to_repair_photo: "Nie udało się naprawić zdjęcia: %{errors}"
   failed_to_save_record: "Nie udało się zapisać. Proszę spróbować ponownie później."
+  failed_to_unlink_your_account: Nie udało się odłączyć Twojego konta
   'false': 'Fałsz'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Ulubione
@@ -2122,7 +2134,7 @@ pl:
       #Short text representing 1 day in the past
       d: "1 d"
       #Short text representing %d days in the past
-      dd: "%dd"
+      dd: "%d d"
       #Short text representing 1 month in the past
       M: "1msc"
       #Short text representing %d months in the past
@@ -2477,7 +2489,7 @@ pl:
   only_the_project_admin_can_delete_this_project: Tylko administrator projektu może usunąć ten projekt.
   only_you: Tylko Ty
   open: otwarty
-  open_: Otwórz
+  open_: Otwarta
   open_description: "Każdy może zobaczyć współrzędne, chyba że takson jest zagrożony."
   open_street_map: OpenStreetMap
   optional: opcjonalne
