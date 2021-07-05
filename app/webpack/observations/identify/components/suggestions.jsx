@@ -221,7 +221,7 @@ class Suggestions extends React.Component {
                 className="pull-right"
                 container={$( ".ObservationModal" ).get( 0 )}
                 chosen={query.order_by}
-                choices={["default", "taxonomy"]}
+                choices={["default", "taxonomy", "scientific_name"]}
                 choiceLabels={{ default: "default_" }}
                 defaultChoice="default"
                 preIconClass={false}
