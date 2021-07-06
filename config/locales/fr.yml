@@ -974,6 +974,16 @@ fr:
   contributor_cannot_be_found: Le collaborateur est introuvable
   contributors_to_project: "Collaborateurs à %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Tous
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Toutes
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Tous
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Tous
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Tous
     sex: Sexe
     male: Mâle
     female: Femelle
@@ -2819,6 +2829,8 @@ fr:
   offline_access_enabled: Accès hors ligne activé
   #Header label for hiding or unhiding the time shifter in the Uploader
   offset_time: "Décalage horaire"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Décalage
   old_observation_form: Ancien formulaire d’observation (désuet)
   ok: "OK"
   on_caps: "ACTIVÉ"
@@ -3888,7 +3900,6 @@ fr:
   scientific_name: Nom scientifique
   search: Rechercher
   search_all_fields: chercher tous les champs
-  search_by_name: Recherche par nom
   search_by_name_or_email: Rechercher par nom ou par adresse électronique
   search_by_taxon_name_or_observation_id: Recherche par nom de taxon ou ID d'observation
   search_by_taxon_name_or_flickr_photo_id: Recherche par nom de taxon ou d'identité photo Flickr

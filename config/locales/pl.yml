@@ -596,6 +596,10 @@ pl:
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
   any_: Dowolna
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Dowolna
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Dowolny
   #Label for an option to show content from any date
   any_date: Dowolna
   #Label for an option to show content with any license
@@ -939,7 +943,6 @@ pl:
   committing: Zatwierdzanie...
   common_name: Nazwa zwyczajowa
   community: Społeczność
-  community_curated: Pod opieką społeczności
   community_guidelines: Wytyczne dla społeczności
   community_id_heading: Takson wybrany przez społeczność
   community_id_at_species_or_lower?: Takson wybrany przez społeczność na poziomie gatunku lub niższym?
@@ -1010,6 +1013,16 @@ pl:
   contributor_cannot_be_found: Współautor nie został odnaleziony
   contributors_to_project: "Współautorzy %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Dowolna
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Dowolna
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Dowolne
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Obojętnie
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Dowolny
     sex: Płeć
     male: Samiec
     female: Samica
@@ -1126,6 +1139,25 @@ pl:
   curating: Naprawianie
   curation: Naprawa
   curator: Kurator
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Musisz wyjaśnić, dlaczego chcesz zostać kuratorem
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Dlaczego chcesz być kuratorem?
+  #Header
+  curator_application_what_curators_can_do: Co mogą kuratorzy
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Ukrywać komentarze i zawieszać użytkowników za naruszanie <a
+    href="/pages/community+guidelines" target="_blank">Wytycznych społeczności</a>.
+  #Header
+  curator_application_what_curators_cannot_do: Czego kuratorzy nie mogą
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Usuwać treści dodanych przez innych użytkowników.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Podanie na kuratora
   curators_changed_for_x_html: "Zmiana kuratorów %{x}"
   curators: Kuratorzy
   curator_identification: Oznaczenie kuratora
@@ -1301,7 +1333,7 @@ pl:
   drafts: Szkice
   drag_and_drop_some_photos_or_sounds: Przeciągnij i upuść zdjęcia lub dźwięki
   drawings: Rysunki
-  duplicate_verb: Duplikat
+  duplicate_verb: Duplikuj
   duration_value: "Czas trwania: %{duration} minut"
   earliest_added: Najwcześniej dodane
   edit: Edytuj
@@ -1353,6 +1385,7 @@ pl:
     other: 'Edytowanie <span class="count">%{count}</span> obserwacji:'
   editing_project: Edytowanie projektu %{project}
   editing_subscription_to_x_html: "Edytowanie subskrypcji do %{x}"
+  editing_taxon: Edytowanie %{taxon}
   editing_taxon_link: Edytuj Łącze Taksonu
   editing_taxon_name_for_taxon_html: Edytowanie nazwy taksonu "%{name}" dla %{taxon}
   editing_taxon_range: Edytowanie zasięgu taksonu
@@ -1362,12 +1395,14 @@ pl:
   either_that_user_doesnt_exist_or: "Podany użytkownik nie istnieje lub już go obserwujesz."
   eligible_for_research_grade: Kwalifikuje się do stopnia badawczego
   email: E‐mail
+  email_description: Twój e-mail nie jest udostępniany innym użytkownikom iNaturalist
   email_address_for_comments_and_other_feedback: Adres e-mail dla komentarzy i innych informacji zwrotnych.
   email_copyright: "Chroniony prawem autorskim &copy; %{x}, wszelkie prawa zastrzeżone"
   email_notifications: Powiadomienia e-mail
   email_settings: Ustawienia powiadomień e-mail
   embed: 'Osadź'
   embed_place_widget: Osadź widget miejsca
+  embed_this_assessment: Osadź tę ocenę
   embed_widget_project: Osadź widget projektu na swojej stronie
   enable_offline_access: Zezwól na dostęp offline
   enable_offline_access_for_mobile: Zezwól na dostęp offline dla urządzeń mobilnych
@@ -1429,6 +1464,7 @@ pl:
   failed_to_find_your_location: Nie udało się odnaleźć twojej lokalizacji.
   failed_to_repair_photo: "Nie udało się naprawić zdjęcia: %{errors}"
   failed_to_save_record: "Nie udało się zapisać. Proszę spróbować ponownie później."
+  failed_to_unlink_your_account: Nie udało się odłączyć Twojego konta
   'false': 'Fałsz'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Ulubione
@@ -1657,7 +1693,6 @@ pl:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ukryj "Brak adnotacji"
-  high: Wysoki
   highest_rank: Najwyższa pozycja
   highlights_and_stats_from_year_on_site: "Statystyki i wyróżnienia od %{year} na %{site}"
   history: Historia
@@ -1775,6 +1810,7 @@ pl:
   join_the_largest_group_of_naturalists_in_the_world: Dołącz do największej grupy przyrodników na świecie!
   join_this_project: Dołącz do tego projektu
   'joined!': Dołączono!
+  joined_projects: Projekty do których dołączyłeś
   joined_with_date: "Dołączono: %{date}"
   journal: Dziennik
   journal_post: Wpis do dziennika
@@ -2001,7 +2037,7 @@ pl:
     white_bg_gif: GIF z białym tłem
     transparent_png: transparentny PNG
     white_text_transparent_png: biały tekst przezroczysty PNG
-    none: żaden
+    none: brak
   long: Dł.
   longitude: Długość geograficzna
   longitude_in_decimal: 'Długość w stopniach dziesiętnych, np. -122,123'
@@ -2009,7 +2045,6 @@ pl:
   look_up_name: "Wyszukaj nazwę"
   looks_like_no_species_in_guide: Wygląda na to, że jeszcze nie masz żadnych gatunków w przewodniku.
   lookup: Wyszukaj
-  low: Słaby
   lowest_rank: Najniższa kategoria
   make_admin: Nadaj uprawnienia administratora
   #Header for main content section of the project detail page when editing custom project data.
@@ -2084,30 +2119,30 @@ pl:
   mollusks: mięczaki
   momentjs:
     shortRelativeTime:
-      future: "w %s"
+      future: "za %s"
       past: "%s"
       #Short text representing 1 second in the past
       s: "1 s"
       #Short text representing 1 minute in the past
       m: "1 min"
       #Short text representing %d minutes in the past
-      mm: "%dmin"
+      mm: "%d min"
       #Short text representing 1 hour in the past
       h: "1 h"
       #Short text representing %d hours in the past
-      hh: "%dh"
+      hh: "%d h"
       #Short text representing 1 day in the past
       d: "1 d"
       #Short text representing %d days in the past
-      dd: "%dd"
+      dd: "%d d"
       #Short text representing 1 month in the past
-      M: "1msc"
+      M: "1 mies."
       #Short text representing %d months in the past
-      MM: "%dmsc"
+      MM: "%d mies."
       #Short text representing 1 year in the past
-      'y': "1r"
+      'y': "1 r."
       #Short text representing %d years in the past
-      yy: "%dl"
+      yy: "%d l."
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -2381,7 +2416,7 @@ pl:
   observation_rules_description: |
     Możesz wybrać reguły określające, które obserwacje mają być dodawane do projektu (np. ograniczenie co do konkretnego miejsca lub taksonu). Jeśli chcesz wybrać więcej reguł z określonego typu, to obserwacje zostaną dodane, jeśli choć jedna z reguł będzie spełniona. Na przykład gdy ustanowisz zasadę "musi być Płazem" i "musi być Gadem", to do projektu zakwalifikują się obserwacje płazów LUB gadów.
   observation_was_deleted: Obserwacja została usunięta.
-  observation_without_media: Obserwacja bez multimediów
+  observation_without_media: Obserwację bez multimediów
   observations: Obserwacje
   observations_: obserwacje
   observations_added_by_x_html: "Obserwacje dodane przez %{x}"
@@ -2454,7 +2489,7 @@ pl:
   only_the_project_admin_can_delete_this_project: Tylko administrator projektu może usunąć ten projekt.
   only_you: Tylko Ty
   open: otwarty
-  open_: Otwórz
+  open_: Otwarta
   open_description: "Każdy może zobaczyć współrzędne, chyba że takson jest zagrożony."
   open_street_map: OpenStreetMap
   optional: opcjonalne
@@ -2525,7 +2560,7 @@ pl:
   per_day: Dziennie
   per_month: Miesięcznie
   per_week: Tygodniowo
-  person: osoba
+  person: Osoba
   per_page: "Na stronę"
   photo: Zdjęcie
   photo_attribution: "Zdjęcie %{attribution}"
@@ -2926,6 +2961,7 @@ pl:
     many: Administratorów projektu
     other: Administratora projektu
   project_cover: Okładka projektu
+  project_curator_id: ID kuratora projektu
   project_curator_tools: Narzędzia kuratora projektu
   project_curators: Kuratorzy projektu
   project_group_label: Grupa
@@ -3087,6 +3123,7 @@ pl:
   remember_me: Zapamiętaj mnie
   remove: Usuń
   remove_all_tags: Usuń wszystkie tagi
+  remove_comma_separated_tags: "Usuń tagi oddzielone przecinkami"
   remove_from: Usuń z
   remove_curator: Usuń kuratora
   remove_curator_status: Usuń status kuratora
@@ -3117,6 +3154,7 @@ pl:
   required_: Wymagane
   required_field: pole wymagane
   required_columns_in_order: Wymagane kolumny w kolejności
+  research_: Badawczy
   research_grade: Stopień badawczy
   research_grade_short_html: "S<span class='full'>topień</span>b<span class='full'>adawczy</span>"
   research_grade_qualification: Kwalifikacja do Stopnia badawczego
@@ -3305,6 +3343,7 @@ pl:
   support_inaturalist: Wesprzyj iNaturalist
   suspend_user: Zawieś użytkownika
   sync: Zsynchronizować?
+  tags: Tagi
   take_me_facebook: Tak, zabierz mnie do Facebooka!
   take_me_flickr!: Tak, zabierz mnie do Flickr!
   taxa: Taksony
@@ -4123,76 +4162,76 @@ pl:
   datetime:
     distance_in_words:
       about_x_hours:
-        one: około 1 godziny
-        few: około %{count} godzin
+        one: około %{count} godziny
+        few: około %{count} godziny
         many: około %{count} godzin
-        other: około %{count} godzin
+        other: około %{count} godziny
       about_x_months:
-        one: około 1 miesiąca
+        one: około %{count} miesiąca
         few: około %{count} miesięcy
         many: około %{count} miesięcy
-        other: około %{count} miesięcy
+        other: około %{count} miesięca
       about_x_years:
-        one: około 1 roku
+        one: około %{count} roku
         few: około %{count} lat
         many: około %{count} lat
-        other: około %{count} lat
+        other: około %{count} roku
       almost_x_years:
-        one: prawie rok
+        one: prawie %{count} rok
         few: prawie %{count} lata
         many: prawie %{count} lat
-        other: prawie %{count} lat
+        other: prawie %{count} roku
       half_a_minute: pół minuty
       less_than_x_minutes:
-        one: mniej niż minutę
+        one: mniej %{count} minutę
         few: mniej niż %{count} minuty
         many: mniej niż %{count} minut
         other: mniej niż %{count} minuty
       less_than_x_seconds:
-        one: mniej niż sekundę
+        one: mniej niż %{count} sekundę
         few: mniej niż %{count} sekundy
         many: mniej niż %{count} sekund
-        other: mniej niż %{count} sekund
+        other: mniej niż %{count} sekundy
       over_x_years:
-        one: ponad rok
+        one: ponad %{count} rok
         few: ponad %{count} lata
         many: ponad %{count} lat
         other: ponad %{count} roku
       x_days:
-        one: "1 dzień"
+        one: "%{count} dzień"
         few: '%{count} dni'
         many: '%{count} dni'
-        other: '%{count} dni'
+        other: '%{count} dnia'
       x_minutes:
-        one: "1 minuta"
+        one: "%{count} minuta"
         few: '%{count} minuty'
         many: '%{count} minut'
-        other: '%{count} minut'
+        other: '%{count} minuty'
       x_months:
-        one: "1 miesiąc"
+        one: "%{count} miesiąc"
         few: '%{count} miesiące'
         many: '%{count} miesięcy'
-        other: '%{count} miesięcy'
+        other: '%{count} miesiąca'
       x_seconds:
-        one: "1 sekunda"
+        one: "%{count} sekunda"
         few: '%{count} sekundy'
         many: '%{count} sekund'
-        other: '%{count} sekund'
+        other: '%{count} sekundy'
     countdown_x_days:
       one: dzień
       few: dni
       many: dni
-      other: dni
+      other: dnia
     countdown_x_hours:
       one: godzina
       few: godziny
       many: godzin
       other: godziny
     countdown_x_minutes:
-      one: min
-      few: min
-      many: min
-      other: min
+      one: minuta
+      few: minuty
+      many: minut
+      other: minuty
     countdown_x_seconds:
       one: sekunda
       few: sekundy
@@ -4294,7 +4333,7 @@ pl:
             one: Bajt
             few: Bajty
             many: Bajtów
-            other: Bajtów
+            other: Bajta
           gb: GB
           kb: KB
           mb: MB
@@ -4364,6 +4403,9 @@ pl:
       listed_taxon:
         occurrence_status_level: Stopień statusu występowania
         establishment_means: Sposoby ustanowienia
+      message:
+        subject: Temat
+        body: Treść
       observation:
         observed_on: data obserwacji
       observation_field_value:
@@ -4409,7 +4451,7 @@ pl:
         source_identifier: Identyfikator źródła
         source_url: Źródłowy adres URL
       taxon_name:
-        name_provider: Nazwa dostawcy
+        name_provider: Dostawca nazw
         source_url: Źródłowy adres URL
         source_identifier: Identyfikator źródła
       user:
@@ -4435,9 +4477,11 @@ pl:
         invalid: jest nieprawidłowy
         less_than: musi być mniejszy niż %{count}
         less_than_or_equal_to: musi być mniejszy lub równy %{count}
+        new_project_owner_must_be_a_manager: Nowy właściciel projektu musi być administratorem
         not_a_number: nie jest liczbą
         not_an_integer: musi być liczbą całkowitą
         odd: musi być liczbą nieparzystą
+        only_project_owner_can_change_project_owner: Tylko właściciel projektu może zmienić właściciela projektu
         record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
       template:
         body: 'Wystąpiły problemy z następującymi polami:'
@@ -4486,7 +4530,7 @@ pl:
                 może zostać zmieniona wyłącznie przez kuratora tego taksonu
             rank_level:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                może zostać zmieniona wyłącznie przez kuratora tego taksonu
+                może zostać zmieniony wyłącznie przez kuratora tego taksonu
             ancestry:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 może zostać zmieniony wyłącznie przez kuratora tego taksonu
@@ -4506,7 +4550,9 @@ pl:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: nie powinien zawierać przecinków ani ukośników
+              should_be_in_english: powinien być w języku angielskim
             name:
+              already_exists: już istnieje dla tego taksonu w tym leksykonie
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 nie można dopasować nazwy naukowej gatunku dla tego leksykonu
               bad_format: |
@@ -4524,6 +4570,10 @@ pl:
             email:
               must_look_like_an_email_address: musi wyglądać jak adres e-mail
               domain_is_not_supported: domena nie jest obsługiwana
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Już zablokowałeś tego użytkownika.
         user_parent:
           attributes:
             email:
@@ -4532,7 +4582,7 @@ pl:
   doorkeeper:
     scopes:
       write: |
-        Dodawaj, aktualizuj i usuwaj swoje obserwacje, oznaczenia i inne treści a także uzyskaj dostęp do swoich do których może ukrytych współrzędnych i innych informacji do których możesz uzyskać dostęp na tej stronie.
+        Dodawać, aktualizować i usuwać Twoje obserwacje, oznaczenia i inne treści w Twoim imieniu, a także uzyskać dostęp do Twoich ukrytych współrzędnych i innych informacji, do których możesz uzyskać dostęp na tej stronie.
       account_delete: |
         Usunąć konto w Twoim imieniu
     errors:
@@ -4541,9 +4591,9 @@ pl:
         invalid_request: 'Żądanie nie zawiera wymaganego parametru, zawiera nieobsługiwaną wartość parametru lub jest w inny sposób nieprawidłowo sformułowane.'
         invalid_redirect_uri: 'Dołączony identyfikator URI przekierowania jest nieprawidłowy.'
         unauthorized_client: 'Klient nie ma uprawnień do wykonania tego żądania przy użyciu tej metody.'
-        access_denied: 'Odrzucenie żądania ze strony właściciela zasobu lub serwera autoryzacji.'
+        access_denied: 'Właściciel zasobu lub serwer autoryzacyjny odrzucił żądanie.'
         invalid_scope: 'Żądany zakres jest nieprawidłowy, nieznany lub nieprawidłowo sformułowany.'
-        server_error: 'Serwer autoryzacji napotkał nieoczekiwany warunek uniemożliwiając wykonanie żądania.'
+        server_error: 'Serwer autoryzacji napotkał nieoczekiwany warunek, który uniemożliwił mu wykonanie żądania.'
         temporarily_unavailable: 'Serwer autoryzacji nie jest obecnie w stanie obsłużyć żądania z powodu tymczasowego przeciążenia lub konserwacji serwera.'
         #Configuration error messages
         credential_flow_not_configured: 'Przepływ poświadczeń hasła właściciela zasobu nie powiódł się z powodu nieskonfigurowania ustawień Doorkeeper.configure.resource_owner_from_credentials.'
@@ -4551,8 +4601,7 @@ pl:
         #Access grant errors
         unsupported_response_type: 'Serwer autoryzacji nie obsługuje tego typu odpowiedzi.'
         #Access token errors
-        invalid_client: 'Uwierzytelnianie klienta nie powiodło się z powodu nieznanego klienta, nieuwzględnienia uwierzytelniania klienta lub nieobsługiwanej metody uwierzytelniania.'
-        invalid_grant: 'Udzielona autoryzacja jest nieprawidłowa, wygasła, unieważniona, nie odpowiada identyfikatorowi URI przekierowania użytemu w żądaniu autoryzacji lub została wydana innemu klientowi.'
+        invalid_client: 'Uwierzytelnienie klienta nie powiodło się z powodu nieznanego klienta, nieuwzględnienia uwierzytelnienia klienta lub nieobsługiwanej metody uwierzytelniania.'
         unsupported_grant_type: 'Typ udzielania autoryzacji nie jest obsługiwany przez serwer autoryzacji.'
         #Password Access token errors
         invalid_resource_owner: 'Podane poświadczenia właściciela zasobu są nieprawidłowe lub właściciel zasobu nie może zostać znaleziony'
@@ -4583,9 +4632,9 @@ pl:
         u: "@vow"
         default: "@con"
       "@gender":
-        m: mężczyzna
-        f: kobieta
-        "n": wykastruj
+        m: męski
+        f: żeński
+        "n": nijaki
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         application: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -4609,7 +4658,7 @@ pl:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
-        form: "@m"
+        form: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -4635,7 +4684,7 @@ pl:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         order: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        phylum: "@n"
+        phylum: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -4655,7 +4704,7 @@ pl:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         suborder: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
-        subphylum: "@n"
+        subphylum: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         subsection: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -4692,12 +4741,15 @@ pl:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  #Title of a section warning the user about something
+  warning_title: Ostrzeżenie
   wikimedia: Wikimedia
   wild: Organizmy dzikie
   will_paginate:
     previous_label: "&#8592; Poprzednia"
     next_label: "Następna &#8594;"
     page_gap: "&hellip;"
+  you_will_no_longer_be_following_or_trusting: "Nie będziesz już obserwować ani ufać %{user}"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"
   z_to_a: Od Z do A

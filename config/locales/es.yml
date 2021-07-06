@@ -322,8 +322,8 @@ es:
   #As in a Guide Section
   add_section: Agregar sección
   add_several_observations_at_once: Agregar varias observaciones al mismo tiempo.
-  add_sex_female_annotation: 'Agregar anotación "Género: femenino"'
-  add_sex_male_annotation: 'Añade anotación «Género: masculino»'
+  add_sex_female_annotation: 'Agregar anotación "Sexo: Hembra"'
+  add_sex_male_annotation: 'Añade anotación "Sexo: Macho"'
   add_sex_cannot_be_determined_annotation: 'Añadir anotación "Sexo: No se puede determinar"'
   add_some_now: Agregar algunas ahora
   add_tag: Agregar etiqueta
@@ -970,8 +970,8 @@ es:
   contributors_to_project: "Contribuyentes de %{project}"
   controlled_term_labels:
     sex: Sexo
-    male: Masculino
-    female: Femenino
+    male: Macho
+    female: Hembra
     plant_phenology: Fenología de la planta
     budding: En germinación
     flower_budding: Yemas Florales
@@ -3849,7 +3849,6 @@ es:
   scientific_name: Nombre científico
   search: Buscar
   search_all_fields: buscar todos los campos
-  search_by_name: Búsqueda por nombre
   search_by_name_or_email: Búsqueda por nombre o email
   search_by_taxon_name_or_observation_id: Búsqueda por nombre taxonómico o por Identificación de la observación
   search_by_taxon_name_or_flickr_photo_id: Busqueda por ID foto de Flickr o nombre taxonómico.

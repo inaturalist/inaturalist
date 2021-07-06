@@ -1326,8 +1326,6 @@ lv:
     Ja tas nebiji tu, lūdzu, neņem vērā šo e-pasta ziņu.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Tava parole netiks nomainīta kamēr nebūsi uzspiedis uz saites un izveidojis jaunu.
-  devise_unlock_instructions_your_account_has_been_locked: |
-    Tavs konts ir bloķēts, jo pieslēgšanās nav izdevusies pārāk daudz reižu.
   devise_unlock_instructions_click_the_link: |
     Nospied uz zemāk redzamās saites, lai atbloķētu kontu.
   devise_unlock_instructions_unlock: Atbloķēt kontu
@@ -1990,7 +1988,6 @@ lv:
   linked_facebook: "Tavs %{site_name} konts pašlaik ir savienots ar tavu Facebook kontu."
   linked_facebook_automaticaly: "Pievērs uzmanību tam, ka pieslēdzoties %{site_name} vietnei ar Facebook kontu, mēs automātiski savienosim tavu %{site_name} kontu ar Facebook kontu. To darām tādēļ, jo pieļaujam, ka vēlēsies importēt fotogrāfijas no Facebook."
   linked_facebook_description: "%{site_name} konta savienošana ar Facebook kontu, sniedz tev iespēju pievienot saviem novērojumiem vairākas fotogrāfijas reizē. Ja izlem atvienot %{site_name} kontu no Facebook konta, mēs tevi no tā neatturēsim, bet tev vairs nebūs iespējas pievienot fotogrāfijas. Noteiktos gadījumos kontu atvienošana varētu būt pareizā izvēle, piemēram, ja izveidosi jaunu Facebook kontu, ko gribēsi savienot ar %{site_name} kontu."
-  linked_facebook_howto: "Lai savienotu Facebook ar %{site_name}, nospied uz saites pa labi un pieslēdzies savam Facebook kontam."
   linked_facebook_password: "Mēs nekad nepieprasām tavu Facebook paroli, bet paši Facebook to mēdz palūgt, lai pārbaudītu, vai pogas URL patiešām ir no Facebook.com. Mēs arī neveicam izmaiņas tavos Facebook datos, ja vien tu pats to nelūdz."
   linked_flickr: "Tavs %{site_name} konts pašlaik ir savienots ar tavu Flickr kontu."
   linked_flickr_automatically: "Pievērs uzmanību tam, ka pieslēdzoties %{site_name} vietnei ar Flickr kontu, mēs automātiski savienosim tavu %{site_name} kontu ar Flickr kontu. To darām tādēļ, jo pieļaujam, ka vēlēsies importēt fotogrāfijas no Flickr."
@@ -2084,10 +2081,6 @@ lv:
   location_is_private: Atrašanās vieta ir privāta
   location_specified: Norādīta atrašanās vieta
   log_in: Pieslēgties
-  log_in_or_sign_up_to_add_comments_html: |
-    <a href="/login">Pieslēdzies</a> vai <a href="/signup">reģistrējies</a>, lai pievienotu komentārus.
-  log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/login">Pieslēdzies</a> vai <a href="/signup">reģistrējies</a>, lai pievienotu identifikācijas.
   log_out: Iziet
   log_out_caps: IZIET
   #Application is a mobile app the user has authorized to access their iNat account
@@ -3657,7 +3650,6 @@ lv:
   scientific_name: Zinātniskais nosaukums
   search: Meklēt
   search_all_fields: meklēt visos laukos
-  search_by_name: Meklēt pēc vārda
   search_by_name_or_email: Meklēt pēc vārda vai e-pasta adreses
   search_by_taxon_name_or_observation_id: Meklēt pēc taksona nosaukuma vai novērojuma ID
   search_by_taxon_name_or_flickr_photo_id: Meklēt pēc taksona vai Flickr fotogrāfijas ID
@@ -3745,8 +3737,6 @@ lv:
   showing_x_of_y: Rāda %{x} no %{y}
   showing_x_of_y_listings: "Rāda %{x} no %{y} sarakstiem"
   sign_in: Pierakstīties
-  sign_in_with_provider: "Pieslēdzies ar %{provider}"
-  sign_in_with_google: Pieslēdzies ar Google
   sign_out: Izrakstīties
   sign_up: Reģistrēties
   similar_species: Līdzīgas sugas
@@ -3794,7 +3784,6 @@ lv:
   sorry_we_dont_have_any_metadata_for_that_photo: "Diemžēl no šīs fotogrāfijas nevaram iegūt metadatus, lai aizpildītu novērojuma datu laukus."
   sorry_x_is_not_responding: "Diemžēl %{x} nereaģē, Lūdzu, pamēģini vēlreiz nedaudz vēlāk."
   sorry_you_can_only_add_1000_at_a_time: "Diemžēl ar vienu pieņēmienu vairāk par 1000 pievienot nav iespējams."
-  sorry_you_need_to_be_signed_in_and: Lai saglabātu tagus pa tiešo iekš Flickr, jāpierakstās Flickr kontā un tas jāsavieno ar iNat kontu.
   sort: Šķirot
   sort_by: Šķirot pēc
   sorting_by: Šķiro pēc
@@ -4521,7 +4510,6 @@ lv:
     attēlu mitināšanai.
   we_can_only_understand_csv_in: Sistēma saprot CSV tikai šādā formātā
   we_couldnt_find_a_user: Neatradām lietotāju ar šo e-pasta adresi.
-  we_couldnt_find_a_user_with_that_activation_code: "Neatradām lietotāju ar šo aktivizācijas kodu. Iespējams, ka jau aktivizēji savu kontu, pamēģini pieslēgties."
   we_didnt_find_any_photos: Vadoties pēc meklētājā ievadītā, neizdevās atrast nevienu fotogrāfiju.
   we_had_a_problem_flagging_that_item: "Pievienojot vienumam karodziņu, radās problēma: %{flag_error}"
   we_had_trouble_saving_comment: "Komentāru neizdevās saglabāt:"

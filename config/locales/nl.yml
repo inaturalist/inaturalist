@@ -991,6 +991,16 @@ nl:
   contributor_cannot_be_found: Medewerker kan niet gevonden worden
   contributors_to_project: "Medewerkers aan %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Alle
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Alle
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Alle
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Alle
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Alle
     sex: Geslacht
     male: Mannelijk
     female: Vrouwelijk
@@ -1847,6 +1857,8 @@ nl:
   highlights_and_stats_from_year_on_site: "Hoogtepunten en statistieken van %{year} op %{site}"
   history: Geschiedenis
   home: Startpagina
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Uren om aan te passen:"
   however_there_were_some_issues: "Er waren echter wat problemen: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Dat weet ik niet, maar ik weet zeker dat dit %{taxon} is
   icon: Pictogram
@@ -2840,6 +2852,8 @@ nl:
   offline_access_enabled: Offline toegang ingeschakeld
   #Header label for hiding or unhiding the time shifter in the Uploader
   offset_time: "Delta Tijd"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Verschil
   old_observation_form: Oud waarnemingsformulier (verouderd)
   ok: "OK"
   on_caps: "AAN"
@@ -3912,7 +3926,6 @@ nl:
   scientific_name: Wetenschappelijke naam
   search: Zoeken
   search_all_fields: Doorzoek alle velden
-  search_by_name: Zoeken op naam
   search_by_name_or_email: Zoek op naam of e-mail
   search_by_taxon_name_or_observation_id: Zoeken op taxon naam of waarnemings-ID
   search_by_taxon_name_or_flickr_photo_id: Zoek op taxonnaam of Flickr foto ID

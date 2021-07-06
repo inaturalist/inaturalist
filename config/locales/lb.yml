@@ -143,6 +143,10 @@ lb:
   action: Aktioun
   actions: Aktiounen
   active: Aktiv
+  #Status of a complete set that is available for use
+  active_complete_set_status: Aktiv
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Aktiv
   active_users: Aktiv Benotzer
   activity: Aktivitéit
   activity_settings: Astellunge vun der Aktivitéit
@@ -657,6 +661,7 @@ lb:
       november: November
       december: Dezember
   date_is_accurate: Datum ass richteg
+  date_obscured_notice: Datum verstoppt fir perséinlech Daten oder Organismen ze schützen
   date_observed_: Datum vun der Observatioun
   date_picker:
     closeText: Zoumaachen
@@ -1810,7 +1815,6 @@ lb:
   saved_at_time: Gespäichert um %{time}
   saving: "Späicheren..."
   search: Sichen
-  search_by_name: No engem Numm sichen
   search_observations: "Observatioune sichen"
   search_projects: Projeten duerchsichen
   search_species_: Aart sichen...

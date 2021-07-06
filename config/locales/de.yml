@@ -971,6 +971,16 @@ de:
   contributor_cannot_be_found: Mitwirkender kann nicht gefunden werden
   contributors_to_project: "Teilnehmer vom Projekt %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Beliebig
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Beliebig
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Beliebig
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Beliebig
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Beliebig
     sex: Geschlecht
     male: Männlich
     female: Weiblich
@@ -3848,7 +3858,6 @@ de:
   scientific_name: Wissenschaftlicher Name
   search: Suchen
   search_all_fields: alle Felder durchsuchen
-  search_by_name: Nach Namen suchen
   search_by_name_or_email: Nach Namen oder E-Mail suchen
   search_by_taxon_name_or_observation_id: Nach Taxonnamen oder Beobachtungs-ID suchen
   search_by_taxon_name_or_flickr_photo_id: Nach Taxonnamen oder Flickr Foto-ID suchen
@@ -4568,7 +4577,7 @@ de:
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}: eine Beobachtung von %{owner} favorisiert"
-  user_faved_this_observation: "%{user} hat diese Beobachtung zu seinen Favoriten hinzugefügt"
+  user_faved_this_observation: "%{user} hat diese Beobachtung als Favoriten hinzugefügt"
   user_flagged_as_a_non_spammer_html: "%{user} als Nicht-Spammer markiert"
   user_flagged_as_a_spammer_html: "%{user} als Spammer gemeldet"
   user_has_opted_out_of_community_id: Benutzer hat sich gegen die Teilnahme am Community-Taxon entschieden
