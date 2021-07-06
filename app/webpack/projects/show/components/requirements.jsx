@@ -56,10 +56,8 @@ const Requirements = ( {
       </a>
     ) );
   let userRules;
-  if ( project.rule_members_only ) {
-    userRules = I18n.t( "project_members_only" );
-  } else if ( _.isEmpty( project.userRules ) ) {
-    userRules = I18n.t( "any_user" );
+  if ( _.isEmpty( project.userRules ) ) {
+    userRules = project.rule_members_only ? I18n.t( "project_members_only" ) : I18n.t( "any_user" );
   } else {
     userRules = _.map( _.sortBy( project.userRules, r => r.user.login ), r => (
       <a key={`project-user-rules-${r.id}`} href={`/people/${r.user.login}`}>
