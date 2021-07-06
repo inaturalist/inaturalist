@@ -1073,6 +1073,8 @@ nb:
   #Header
   curator_application_how_curators_lose_their_powers: |
     Hvordan en kurator mister sin makt
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Kuratorsøknad sendt inn
   #Header
   curator_application_what_curators_can_do: Hva kuratorer kan gjøre
   #Header
@@ -1082,6 +1084,8 @@ nb:
   #preceded with "Curators cannot..."
   curator_application_what_curators_cannot_do_read_messages_html: |
     Les direktemeldinger av andre personer.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Kuratorsøknad
   #Header followed by a list
   curator_application_you_should_apply_if: |
     Du bør kun søke om å være en kurator dersom:
@@ -1785,6 +1789,7 @@ nb:
   inat_account_action: "%{site_name}&#58; Konto &#58;% %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} tror at dette er en dekkende liste over taksonet på dette stedet."
   inat_user_profile: "%{site_name}: %{user} sin profil"
+  inaturalist_activity_notifications: "%{site_name} aktivitetsvarsler"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist applikasjoner"
   inaturalist_is_a_joint_initiative: "%{site_name} er et felles initiativ av California Academy of Sciences og National Geographic Society."
@@ -1877,7 +1882,12 @@ nb:
   leaderboard_for_x: "Ledertavle for %{x}"
   leaderboards: Ledertavler
   leaderboard_most:
+    species_in_month_year: Flest arter i %{month_year}
     species_in_year: Flest arter i %{year}
+    observations_in_month_year: Flest observasjoner i %{month_year}
+    observations_in_year: Flest observasjoner i %{year}
+    identifications_in_month_year: Flest identifikasjoner i %{month_year}
+    identifications_in_year: Flest identifikasjoner i %{year}
   leading: Leder
   learn: Lær
   learn_about_the_species_live_in: Lær om artene som forekommer i
@@ -2253,6 +2263,9 @@ nb:
   must_be_observed_before: må være observert før %{operand}
   must_be_less_than_x_MB: "Må være mindre enn %{x} MB"
   must_have_observation_field: "må ha en verdi for observasjonsfeltet '%{operand}'"
+  must_have_photos: må ha bilder
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "må ha kvalitetsgrader: %{grades}"
   must_have_sounds: må ha lyder
   must_have_x: "må ha %{x}"
   mute_user: Demp bruker
@@ -2427,6 +2440,7 @@ nb:
   none_found: Ingen funnet
   normal: normal
   not_completed: Ikke fullført
+  not_confident: Vi er ikke sikre nok til å komme med en anbefaling.
   not_confident_top_suggestions: Vi er ikke sikker nok til å komme med en anbefaling, men her er våre beste forslag
   not_covered_by_any_taxon_frameworks: Ikke dekt av noen taksonrammeverk
   not_evaluated: ikke vurdert
@@ -2444,6 +2458,7 @@ nb:
   note_you_can_modify_the_height_attribute: "Merk: Du kan tilpasse 'height' egenskapen til plassen du har tilgjengelig på din nettside."
   notifications: Varsler
   notify_me_of_mentions: Informer meg når jeg blir nevnt (f.eks. @brukernavn)
+  notify_me_of_mentions_description: "Hvis du slår dette av, vil du ikke få varsler når noen nevner deg på %{site_name}."
   notify_me_about_redundant_identifications: Informer meg om bekreftende identifikasjoner
   notify_me_about_redundant_identifications_desc: |
     Få varslinger om identifikasjoner som kommer overens med dine egne. Hvis du slår av dette blir du kun varslet om identifikasjoner av taksa som ikke er eksakt lik taksonet i din egen identifikasjon.
@@ -4897,6 +4912,8 @@ nb:
         about_total_taxa: "Om taksa totalt"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Kombinert
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Datofelt
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Horisontal
         #Date range to aggregate by, e.g. observations per month vs. observations per week
@@ -5784,6 +5801,17 @@ nb:
           "Plant Phenology=Flower Budding": Blomsterknopper
           "Plant Phenology=Flowering": Blomstrende
           "Plant Phenology=Fruiting": Fruktbærende
+          "Plant Phenology=No Evidence": Ingen bevis
+          "Life Stage=Adult": Voksen
+          "Life Stage=Egg": Egg
+          "Life Stage=Larva": Larve
+          "Life Stage=Juvenile": Juvenil
+          "Life Stage=Nymph": Nymfe
+          "Life Stage=Pupa": Puppe
+          "Life Stage=Subimago": Subimago
+          "Sex=Cannot Be Determined": Kan ikke bestemmes
+          "Sex=Female": Hunnkjønn
+          "Sex=Male": Hannkjønn
           unannotated: Ingen merknader
         max_photos_desc: |
           Et takson kan kun ha %{max} bilder. Du må fjerne eksisterende bilder for å legge til flere.
@@ -6576,6 +6604,10 @@ nb:
           attributes:
             base:
               guide_has_too_many_taxa: "guide kan ha kun 500 taksa"
+        moderator_action:
+          attributes:
+            user_id:
+              must_be_a_curator: må være en kurator
         mushroom_observer_import_flow_task:
           attributes:
             base:
