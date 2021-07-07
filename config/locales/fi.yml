@@ -2504,8 +2504,6 @@ fi:
   no_sections_have_been_added_to_this_assessments_yet: Tähän arviointiin ei ole vielä lisätty yhtään osiota.
   no_species_have_been_listed: Tähän paikkaan ei ole vielä tallennettu yhtään lajia!
   no_species_on_this_list: Ei vielä lajeja tässä luettelossa!
-  no_species_on_this_list_for_owner_html: |
-    Voit aloittaa lisäämällä lajeja suoraan tähän luetteloon, tai jos tämä on pinnalista, se päivitetään automaattisesti uusilla lajeilla <a href="%{url}" class="nobr">lisäät havaintoja</a>.
   no_subject_parens: "(Ei otsikkoa)"
   no_suggestions_available: Ehdotuksia ei saatavissa
   no_summary_from_wikipedia: Ei yhteenvetoa Wikipediasta
@@ -5822,23 +5820,6 @@ fi:
       submit: Tallenna %{model}
       update: Päivitä %{model}
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: '.'
-        format: '%u %n'
-        precision: 2
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: ','
-        significant: false
-        strip_insignificant_zeros: false
-        unit: USD
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as
