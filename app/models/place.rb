@@ -593,7 +593,7 @@ class Place < ActiveRecord::Base
         h[:swlng] = geom.points.map(&:x).select{|x| x > 0 || x < -180}.min
         h[:nelng] = geom.points.map(&:x).select{|x| x < 0 || x > 180}.max
       else
-        h[:longitude] = geom.centroid.x,
+        h[:longitude] = geom.centroid.x
         h[:swlng] = geom.envelope.lower_corner.x
         h[:nelng] = geom.envelope.upper_corner.x
       end
