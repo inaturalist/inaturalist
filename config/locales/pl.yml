@@ -463,7 +463,6 @@ pl:
     tribe: Wszystkie plemiona dodane do bazy
     subtribe: Wszystkie podplemiona dodane do bazy
     genus: Wszystkie rodzaje dodane do bazy
-    genushybrid: Wszystkie hybrydy gatunkowe dodane do bazy
     subgenus: Wszystkie podrodzaje dodane do bazy
     section: Wszystkie sekcje dodane do bazy
     subsection: Wszystkie podsekcje dodane do bazy
@@ -1144,6 +1143,8 @@ pl:
     Musisz wyjaśnić, dlaczego chcesz zostać kuratorem
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Dlaczego chcesz być kuratorem?
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Podanie na kuratora wysłane.
   #Header
   curator_application_what_curators_can_do: Co mogą kuratorzy
   curator_application_what_curators_can_do_hide_comments_html: |
@@ -1168,6 +1169,7 @@ pl:
   customize_location: Dostosuj lokalizację
   darr_apply_darr: "&darr; Zastosuj &darr;"
   daily_users: Dzienni użytkownicy
+  danger_zone: Strefa niebezpieczeństwa
   dashboard: Strona główna
   data_deficient: Niepełne dane
   data_quality: Jakość danych
@@ -2323,8 +2325,8 @@ pl:
   no_sections_available: Brak dostępnych sekcji.
   no_sections_have_been_added_to_this_assessments_yet: Do tej oceny nie dodano jeszcze żadnych sekcji.
   no_species_on_this_list: Póki co brak gatunków na liście!
-  no_species_on_this_list_for_owner_html: |
-    Możesz zacząć dodawać gatunki bezpośrednio do tej listy lub - jeśli to lista życiowa - gatunki będą dodawać się automatycznie, gdy <a href="%{url}" class="nobr">dodasz obserwacje</a>.
+  no_species_on_this_list_for_owner: |
+    Możesz zacząć dodawać gatunki do tej listy używając narzędzia "Dodaj do swojej listy" po prawej stronie.
   no_subject_parens: "(Brak tematu)"
   no_suggestions_available: Sugestie nie są dostępne
   no_summary_from_wikipedia: Brak podsumowania z Wikipedii
@@ -2516,8 +2518,6 @@ pl:
   other_taxa_commonly_misidentified_as_this_complex_in_place_html: Inne taksony często błędnie oznaczane jako ten kompleks w <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_genus: Inne taksony często błędnie oznaczane jako ten rodzaj
   other_taxa_commonly_misidentified_as_this_genus_in_place_html: Inne taksony często błędnie oznaczane jako ten rodzaj w <a href="%{url}">%{place}</a>
-  other_taxa_commonly_misidentified_as_this_genushybrid: Inne taksony często błędnie oznaczane jako ta hybryda gatunku
-  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Inne taksony często błędnie oznaczane jako ta hybryda gatunku w <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_hybrid: Inne taksony często błędnie oznaczane jako ta hybryda
   other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Inne taksony często błędnie oznaczane jako ta hybryda w <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_rank: Inne taksony często błędnie oznaczane jako kategoria %{rank}
@@ -2942,6 +2942,7 @@ pl:
   press: Prasa
   preview: Podgląd
   previous: Poprzedni
+  prev: Poprzednie
   previous_observation: Poprzednia obserwacja
   previous_page: Poprzednia strona
   previous_photo: Poprzednie zdjęcie
@@ -3084,6 +3085,10 @@ pl:
   ranks_lowercase_suborder: podrząd
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
   ranks_lowercase_family: rodzina
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: rodzaj
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: podrodzaj
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
   ranks_lowercase_complex: kompleks
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
@@ -3647,7 +3652,7 @@ pl:
   #Label for the most probable taxon in the automated suggestions. @gender
   #should work here. %{rank} is usually genus or a higher-level rank like
   #family
-  were_pretty_sure_this_is_in_the_rank: Jesteśmy pewni, że należy to do %{rank}
+  were_pretty_sure_this_is_in_the_rank: Jesteśmy prawie pewni, że należy to do %{rank}
   what: Co
   what_did_you_see: Co zaobserwowałeś?
   what_did_you_see?: <em>Co</em> zaobserwowałeś?
@@ -3796,6 +3801,8 @@ pl:
       mailer:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: Czy planujesz korzystać z %{site_name} w klasie?
+    donate:
+      post_donate_social_media_text: Wspieram iNaturalist ponieważ...
     guides:
       show:
         draft_desc: |
@@ -4265,6 +4272,11 @@ pl:
       record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
     template:
       body: 'Wystąpiły problemy z następującymi polami:'
+      header:
+        one: "%{count} błąd uniemożliwił zapisanie tego %{model}"
+        few: '%{count} błędy uniemożliwiły zapisanie tego %{model}'
+        many: '%{count} błędów uniemożliwiło zapisanie tego %{model}'
+        other: '%{count} błędu uniemożliwiło zapisanie tego %{model}'
   helpers:
     defaults:
       title: "TO JEST TYTUŁ"
@@ -4275,23 +4287,6 @@ pl:
       submit: Zapisz %{model}
       update: Aktualizuj %{model}
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: ' '
-        format: '%n %u'
-        precision: 2
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: ','
-        significant: false
-        strip_insignificant_zeros: false
-        unit: zł
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as
@@ -4376,6 +4371,12 @@ pl:
         odd: musi być liczbą nieparzystą
         only_project_owner_can_change_project_owner: Tylko właściciel projektu może zmienić właściciela projektu
         record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
+      template:
+        header:
+          one: '%{count} błąd uniemożliwił zapisanie tego %{model}'
+          few: '%{count} błędy uniemożliwiły zapisanie tego %{model}'
+          many: '%{count} błędów uniemożliwiło zapisanie tego %{model}'
+          other: '%{count} błędu uniemożliwiło zapisanie tego %{model}'
   activerecord:
     models:
       #Noun
@@ -4485,6 +4486,11 @@ pl:
         record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
       template:
         body: 'Wystąpiły problemy z następującymi polami:'
+        header:
+          one: '%{count} błąd uniemożliwił zapisanie tego %{model}'
+          few: '%{count} błędy uniemożliwiły zapisanie tego %{model}'
+          many: '%{count} błędów uniemożliwiło zapisanie tego %{model}'
+          other: '%{count} błędu uniemożliwiło zapisanie tego %{model}'
       models:
         application:
           attributes:
@@ -4519,6 +4525,13 @@ pl:
           attributes:
             value:
               dna_only_atcg: "dla DNA może zawierać wyłącznie litery A, T, C lub G"
+        post:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: nie zezwala na nowe komentarze
         project_observation:
           attributes:
             user_id:
