@@ -2082,8 +2082,6 @@ he:
   no_results_matching: אין תוצאות תואמות
   no_species_have_been_listed: טרם דווח על מינים במקום זה!
   no_species_on_this_list: אין עדיין מינים ברשימה זו!
-  no_species_on_this_list_for_owner_html: |
-    ניתן להוסיף מינים ישירות לרשימה, ובמידה וזו רשימת חיים היא תתעדכן ברשימת המינים כאשר <a href="%{url}" class="nobr">יתווספו תצפיות</a>.
   no_subject_parens: "(ללא נושא)"
   no_suggestions_available: אין הצעות זמינות
   no_summary_from_wikipedia: אין סיכום מויקיפידיה
@@ -4372,23 +4370,6 @@ he:
       submit: שמירת %{model}
       update: עדכון %{model}
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: ','
-        format: '%u%n'
-        precision: 2
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: .
-        significant: false
-        strip_insignificant_zeros: false
-        unit: '$'
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as
