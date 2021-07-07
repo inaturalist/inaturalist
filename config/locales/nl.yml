@@ -2632,10 +2632,6 @@ nl:
   no_sections_have_been_added_to_this_assessments_yet: Er zijn nog geen secties aan deze beoordelingen toegevoegd.
   no_species_have_been_listed: Voor deze plaats is nog geen soortenlijst!
   no_species_on_this_list: Nog geen soorten op deze lijst!
-  no_species_on_this_list_for_owner_html: |
-    Je kunt beginnen met het toevoegen van soorten aan deze lijst maar als dit een levenslijst is
-    dan wordt deze automatisch bijgewerkt met soorten wanneer je
-    <a href="%{url}" class="nobr"> waarnemingen toevoegt</a>.
   no_subject_parens: "(Geen onderwerp)"
   no_suggestions_available: Geen suggesties beschikbaar
   no_summary_from_wikipedia: Geen overzicht in Wikipedia
@@ -6830,23 +6826,6 @@ nl:
       submit: '%{model} opslaan'
       update: '%{model} bijwerken'
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: '.'
-        format: '%u%n'
-        precision: 2
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: ','
-        significant: false
-        strip_insignificant_zeros: false
-        unit: '€'
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as
