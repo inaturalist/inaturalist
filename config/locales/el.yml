@@ -2503,8 +2503,6 @@ el:
   no_sections_have_been_added_to_this_assessments_yet: Κανένα τμήμα δεν έχει προστεθεί σε αυτή την αξιολόγηση ακόμα.
   no_species_have_been_listed: Κανένα είδος δεν έχει ακόμα καταγραφεί για αυτόν τον τόπο!
   no_species_on_this_list: Ακόμα δεν υπάρχουν είδη σε αυτή τη λίστα!
-  no_species_on_this_list_for_owner_html: |
-    Μπορείτε να αρχίσετε να προσθέτετε είδη απευθείας σε αυτή τη λίστα, ή αν αυτή είναι μια λίστα ζωής, θα ενημερώνεται αυτόματα με είδη όταν εσείς <a href="%{url}" class="nobr">προσθέτετε παρατηρήσεις</a>. 
   no_subject_parens: "(Χωρίς θέμα)"
   no_suggestions_available: Δεν υπάρχουν διαθέσιμες προτάσεις
   no_summary_from_wikipedia: Καμία περίληψη από τη Βικιπαίδεια
@@ -6594,23 +6592,6 @@ el:
       submit: Αποθήκευση %{model}
       update: Ενημέρωση %{model}
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: ','
-        format: '%u%n'
-        precision: 2
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: .
-        significant: false
-        strip_insignificant_zeros: false
-        unit: '$'
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as
