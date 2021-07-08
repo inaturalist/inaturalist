@@ -192,6 +192,11 @@ pl:
     few: "%{count} dźwięki"
     many: "%{count} dźwięków"
     other: "%{count} dźwięku"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span> edytowany takson"
+    few: "<span class='count'>%{count}</span> edytowane taksony"
+    many: "<span class='count'>%{count}</span> edytowanych taksonów"
+    other: "<span class='count'>%{count}</span> edytowanego taksonu"
   x_taxa_matching_current_filters:
     one: "%{count} takson pasujący do bieżących filtrów"
     few: "%{count} taksony pasujące do bieżących filtrów"
@@ -463,6 +468,7 @@ pl:
     tribe: Wszystkie plemiona dodane do bazy
     subtribe: Wszystkie podplemiona dodane do bazy
     genus: Wszystkie rodzaje dodane do bazy
+    genushybrid: Wszystkie hybrydy międzyrodzajowe dodane do bazy
     subgenus: Wszystkie podrodzaje dodane do bazy
     section: Wszystkie sekcje dodane do bazy
     subsection: Wszystkie podsekcje dodane do bazy
@@ -2518,6 +2524,8 @@ pl:
   other_taxa_commonly_misidentified_as_this_complex_in_place_html: Inne taksony często błędnie oznaczane jako ten kompleks w <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_genus: Inne taksony często błędnie oznaczane jako ten rodzaj
   other_taxa_commonly_misidentified_as_this_genus_in_place_html: Inne taksony często błędnie oznaczane jako ten rodzaj w <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genushybrid: Inne taksony często błędnie oznaczane jako ta hybryda międzyrodzajowa
+  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Inne taksony często błędnie oznaczane jako ta hybryda międzyrodzajowa w <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_hybrid: Inne taksony często błędnie oznaczane jako ta hybryda
   other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Inne taksony często błędnie oznaczane jako ta hybryda w <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_rank: Inne taksony często błędnie oznaczane jako kategoria %{rank}
@@ -3053,6 +3061,7 @@ pl:
       few: Rodzaje
       many: Rodzajów
       other: Rodzaju
+    genushybrid: Hybryda międzyrodzajowa
     subgenus: Podrodzaj
     section: Sekcja
     subsection: Podsekcja
@@ -3087,6 +3096,8 @@ pl:
   ranks_lowercase_family: rodzina
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
   ranks_lowercase_genus: rodzaj
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: hybryda międzyrodzajowa
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
   ranks_lowercase_subgenus: podrodzaj
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
@@ -3173,7 +3184,7 @@ pl:
   results: wyniki
   review_all: Przejrzyj wszystkie
   reviewed: Przejrzane
-  rg_observations: Obserwacje RG
+  rg_observations: Obserwacje SB
   role: Rola
   rotate_left: Obrót w lewo
   rotate_right: Obróć w prawo
@@ -3621,6 +3632,7 @@ pl:
   view_observation: Zobacz obserwację
   view_observations: Zobacz obserwacje
   view_observation_flags: Zobacz zgłoszenia obserwacji
+  view_on: Zobacz na
   view_on_flickr: Zobacz na Flickr
   view_post: Zobacz post
   view_projects_from_place: "Zobacz projekty z miejsca %{place}"
@@ -3630,6 +3642,7 @@ pl:
   view_taxon_page: Zobacz stronę taksonu
   view_taxon_page_for_this_x: "Zobacz stronę taksonu dla tego %{x}"
   view_taxononomy_details_for_taxon: "Zobacz szczegóły taksonomii dla %{taxon}"
+  view_the: "Zobacz %{action}&#59; %{link}"
   view_the_observation: Zobacz obserwację
   view_user_observations: "Zobacz obserwacje %{user}"
   view_x: "Zobacz %{x}"
@@ -3823,6 +3836,7 @@ pl:
       filter_by: Filtruj według
       filtered_by: 'Przefiltrowane według:'
       apply_filters_to_export: Zastosuj filtry do eksportu
+      restrict_to_taxon: Ogranicz do %{taxon}
       dropdowns:
         sort: Sortuj
         name: Nazwa
@@ -3866,6 +3880,8 @@ pl:
       identify:
         review_all_tooltip: "Oznacz wszystkie obserwacje na stronie jako przejrzane"
         unreview_all_tooltip: "Usuń status przejrzanych dla wszystkich obserwacji na stronie"
+      show:
+        observer_does_not_allow_observation_fields: Obserwator nie zezwala na dodatkowe pola obserwacji
     emailer:
       photos_missing:
         subject: Niektóre zdjęcia wymagają naprawy
