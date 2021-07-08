@@ -664,7 +664,7 @@ class Taxon < ApplicationRecord
   def index_observations
     return if skip_observation_indexing
     # changing some fields doesn't require reindexing observations
-    return if ( changes.keys - [
+    return if ( saved_changes.keys - [
       "photos_locked",
       "taxon_framework_relationship_id",
       "updater_id",
@@ -692,7 +692,7 @@ class Taxon < ApplicationRecord
   # Set the iconic taxon if it hasn't been set
   #
   def set_iconic_taxon(options = {})
-    unless iconic_taxon_id_changed?
+    unless will_save_change_to_iconic_taxon_id? || saved_change_to_iconic_taxon_id?
       self.iconic_taxon = if is_iconic?
         self
       else
@@ -700,7 +700,7 @@ class Taxon < ApplicationRecord
       end
     end
     
-    if !new_record? && (iconic_taxon_id_changed? || options[:force])
+    if !new_record? && (will_save_change_to_iconic_taxon_id? || saved_change_to_iconic_taxon_id? || options[:force])
       new_child_ancestry = "#{ancestry}/#{id}"
       conditions = ["(ancestry LIKE ? OR ancestry = ?)", "#{new_child_ancestry}/%", new_child_ancestry]
       conditions[0] += " AND (iconic_taxon_id IN (?) OR iconic_taxon_id IS NULL)"

@@ -1223,6 +1223,8 @@ describe User do
       expect( es_o.spam ).to be false
       user.add_flag( flag: Flag::SPAM, user_id: flagger.id )
       Delayed::Worker.new.work_off
+      o.reload
+      expect( o.as_indexed_json[:spam] ).to be true
       es_o = Observation.elastic_search( where: { id: o.id } ).results[0]
       expect( es_o.spam ).to be true
     end

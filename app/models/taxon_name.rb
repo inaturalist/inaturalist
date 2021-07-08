@@ -194,7 +194,7 @@ class TaxonName < ApplicationRecord
   end
   
   def update_unique_names
-    return true unless name_changed?
+    return true unless saved_change_to_name?
     non_unique_names = TaxonName.includes(:taxon).where(name: name).select("DISTINCT ON (taxon_id) *")
     non_unique_names.each do |taxon_name|
       taxon_name.taxon.update_unique_name if taxon_name.taxon

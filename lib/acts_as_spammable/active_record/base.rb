@@ -72,7 +72,7 @@ module ActiveRecord
           # if there is any overlap between the fields that could be spam
           # and the fields that have been changed this time around
           # & is the set intersection operator
-          ( self.changed.map(&:to_sym) & rakismet_fields ).any?
+          ( self.saved_changes.keys.map(&:to_sym) & rakismet_fields ).any?
         end
 
         # If any of the rakismet fields have been modified, then
