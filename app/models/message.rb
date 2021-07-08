@@ -38,6 +38,7 @@ class Message < ActiveRecord::Base
   end
 
   def send_message
+    return if from_user.suspended? || known_spam?
     reload
     new_message = dup
     new_message.user = to_user
@@ -46,12 +47,12 @@ class Message < ActiveRecord::Base
   end
 
   def to_user_copy
-    return self if to_user_id == user_id
+    return nil if to_user_id == user_id
     to_user.messages.inbox.where(:thread_id => thread_id).detect{|m| m.body == body}
   end
 
   def from_user_copy
-    return self if from_user_id == user_id
+    return nil if from_user_id == user_id
     from_user.messages.sent.where(:thread_id => thread_id).detect{|m| m.body == body}
   end
 
@@ -96,6 +97,8 @@ class Message < ActiveRecord::Base
     return true if user_id == from_user_id
     return true if skip_email
     return true if UserMute.where( user_id: to_user, muted_user_id: from_user ).exists?
+    return true if UserBlock.where( user_id: to_user, blocked_user_id: from_user ).exists?
+    return true if from_user.suspended? || known_spam?
     Emailer.delay(:priority => USER_INTEGRITY_PRIORITY).new_message(id)
     true
   end
