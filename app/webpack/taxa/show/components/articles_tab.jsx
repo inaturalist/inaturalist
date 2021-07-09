@@ -98,8 +98,6 @@ const ArticlesTab = ( {
                 <div>
                   <h3>
                     <span className="label label-default">
-                      <i className="icon-sparkly-label" />
-                      { " " }
                       { I18n.t( "computer_vision_model_pending" ) }
                     </span>
                   </h3>
