@@ -1016,6 +1016,24 @@ en:
     <span class="comprehensive_notice" data-tip="%{tip}">Comprehensive</span>
     check list for %{taxon}
   comprehensive_list: Comprehensive list
+  # Name for the statistical model used to determine visual similarity between
+  # photos and taxa
+  computer_vision_model: Computer Vision Model
+  # Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Included
+  computer_vision_model_included_desc: |
+    The current Computer Vision Model knows about this taxon, so it might be
+    included in automated suggestions with the "Visually Similar" label.
+  # Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Pending
+  computer_vision_model_pending_desc: |
+    The current Computer Vision Model does not know about this taxon, so while
+    it might be included in automated suggestions with the "Nearby" label, it
+    will not have the "Visually Similar" label. While the requirements for
+    model inclusion change with each model, generally inclusion is based on
+    number of observations, so to increase the chance of this taxon getting
+    included during the next model training, add or identify more observations
+    of this taxon.
   concept_status: Concept Status
   configure: Configure
   configure_a_widget_to_show:

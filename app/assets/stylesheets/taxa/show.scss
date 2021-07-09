@@ -1132,3 +1132,17 @@ body > [role="dialog"] .PhotoChooserModal {
     display: none
   }
 }
+
+.computer-vision-status {
+  .label {
+    padding-top: 0.3em;
+    display: inline-block;
+    i {
+      position: relative;
+      top: -2px;
+    }
+  }
+  .label-success {
+    background-color: $inat-green;
+  }
+}
