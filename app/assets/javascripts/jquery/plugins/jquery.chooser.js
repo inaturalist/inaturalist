@@ -168,7 +168,7 @@
         // If the results array looks like some kind of search respose, use the
         // actual records nested in each search result
         if ( records.results.length > 0 && records.results[0].record ) {
-          records = _.map( records.results, r => r.record );
+          records = _.map( records.results, function( r ) { return r.record } );
         } else {
           records = records.results;
         }
