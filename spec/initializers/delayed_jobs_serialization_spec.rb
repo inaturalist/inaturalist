@@ -13,7 +13,11 @@ describe "Delayed::Jobs serialization" do
     o = Observation.make!
     expect( YAML.load( o.to_yaml ).attributes.length ).to be > 30
     o.dj_serialize_minimal = true
-    expect( YAML.load( o.to_yaml ).attributes.length ).to be 1
+    # This is a little brittle, but when you deserialize and instantiate a ruby
+    # object, you might end up with more attributes than were actually
+    # serialized to YAML. This test at least tries to ensure that the hydrated
+    # object is at least minimal
+    expect( YAML.load( o.to_yaml ).attributes.length ).to be < 5
   end
 
 end

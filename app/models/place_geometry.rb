@@ -67,7 +67,7 @@ class PlaceGeometry < ApplicationRecord
   end
 
   def process_geometry_if_changed
-    process_geometry if geom_changed?
+    process_geometry if saved_change_to_geom?
     true
   end
 
@@ -129,7 +129,7 @@ class PlaceGeometry < ApplicationRecord
   end
 
   def notify_trusting_project_members
-    return true unless geom_changed?
+    return true unless saved_change_to_geom?
     Project.
         joins(:project_observation_rules).
         where( "rules.operator = 'observed_in_place?'" ).
