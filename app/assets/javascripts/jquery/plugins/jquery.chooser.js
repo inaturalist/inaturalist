@@ -177,7 +177,7 @@
         if (!records[i]) { continue }
         items.push(
           $.extend(records[i], {
-            label: records[i].label || records[i].html || records[i].title || records[i].name || records[i].login,
+            label: records[i].label || records[i].html || records[i].title || records[i].login || records[i].name,
             value: records[i].value || records[i].title || records[i].name || records[i].id,
             recordId: records[i].id
           })
