@@ -924,6 +924,19 @@ da:
     <span class="comprehensive_notice" data-tip="%{tip}">Omfattende</span>
     tjekliste for %{taxon}
   comprehensive_list: omfattende liste
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Computer Vision Model
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Inkluderet
+  computer_vision_model_included_desc: |
+    Den nuværende Computer Vision Model kender til denne takson, så den inkluderes muligvis i automatiserede forslag med "Visuelt lignende"-etiketten.
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Afventende
+  computer_vision_model_pending_desc: |
+    Den nuværende Computer Vision Model kender ikke til denne takson, så mens den måske inkluderes i automatiserede forslag med etiketten "Nærliggende", vil den ikke have etiketten "Visuelt lignende". Selvom kravene til modelinkludering ændrer sig for hver model, er inkludering generelt baseret på
+    antal observationer, så for at forøge denne taksons chance for inkludering under den næste modeloptræning, så tilføj eller identificér flere observationer
+    af denne takson.
   concept_status: Koncept status
   configure: Konfigurér
   configure_a_widget_to_show: Konfigurér en widget for at vise %{site_name} observationer på din hjemmeside eller i din blog. Det kan være nødvendigt at medtage den integrerede CSS i <code>&lt;head&gt;</code> din HTML. Du kan ændre i CSS'en som du vil.
