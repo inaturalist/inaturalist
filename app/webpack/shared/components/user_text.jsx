@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import safeHtml from "safe-html";
 import htmlTruncate from "html-truncate";
 import linkifyHtml from "linkifyjs/html";
 import sanitizeHtml from "sanitize-html";
@@ -49,32 +48,20 @@ const ALLOWED_TAGS = ( `
   tr
   tt
   ul
-` ).split( /\s+/m );
+` ).split( /\s+/m ).filter( e => e !== "" );
 
 const ALLOWED_ATTRIBUTES_NAMES = (
   "href src width height alt cite title class name abbr value align target rel"
   // + "xml:lang style controls preload"
 ).split( " " );
 
-const ALLOWED_ATTRIBUTES = {
-  href: {
-    allowedTags: ["a"],
-    filter: value => {
-      // Only let through http urls
-      if ( /^https?:/i.exec( value ) ) {
-        return value;
-      }
-      return false;
-    }
-  }
-};
-for ( let i = 0; i < ALLOWED_ATTRIBUTES_NAMES.length; i += 1 ) {
-  ALLOWED_ATTRIBUTES[ALLOWED_ATTRIBUTES_NAMES[i]] = { allTags: true };
-}
+const ALLOWED_ATTRIBUTES = { a: ["href"] };
+ALLOWED_TAGS.filter( tag => tag !== "a" ).forEach( tag => { ALLOWED_ATTRIBUTES[tag] = ALLOWED_ATTRIBUTES_NAMES; } );
 
 const CONFIG = {
   allowedTags: ALLOWED_TAGS,
-  allowedAttributes: ALLOWED_ATTRIBUTES
+  allowedAttributes: ALLOWED_ATTRIBUTES,
+  allowedSchemes: ["http", "https"]
 };
 
 class UserText extends React.Component {
@@ -129,7 +116,7 @@ class UserText extends React.Component {
       // use BRs for newlines
       html = text.trim( ).replace( /\n/gm, "<br />" );
     }
-    html = safeHtml( UserText.hyperlinkMentions( html ), config || CONFIG );
+    html = sanitizeHtml( UserText.hyperlinkMentions( html ), config || CONFIG );
     if ( stripTags ) {
       html = sanitizeHtml( html, { allowedTags: [], allowedAttributes: {} } );
     }
