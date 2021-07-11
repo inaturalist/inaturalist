@@ -915,6 +915,17 @@ it:
   comprehensive_check_list_for_taxon_html: |
     Checklist <span class="comprehensive_notice" data-tip="%{tip}">onnicomprensiva</span> per %{taxon}
   comprehensive_list: Elenco completo
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Modello di Visione Computerizzata
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Incluso
+  computer_vision_model_included_desc: |
+    Il Modello di Visione Computerizzata corrente conosce questo taxon, quindi potrebbe esser incluso nei suggerimenti automatizzati con l'etichetta "Visivamente Simile".
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: In sospeso
+  computer_vision_model_pending_desc: |
+    Il Modello di Visione Computerizzata corrente non conosce questotaxon, quindi mentre potrebbe esser incluso nei suggerimenti automatici con l'etichetta "Nelle Vicinanze", non avrà l'etichetta "Visivamente Simile". Mentre i requisiti per l'inclusione del modello cambiano ad ogni modello, generalmente l'inclusione si basa sul numero di osservazioni, così per aumentare le possibilità che questo taxon sia incluso durante l'addestramento del modello successivo, aggiungi o identifica più osservazioni di questo taxon.
   concept_status: Stato del concetto
   configure: Configura
   configure_a_widget_to_show: Configura un widget per mostrare le osservazioni di %{site_name} sul tuo sito web o blog. È necessario includere il CSS incorporato nel <code>&lt;head&gt;</code>  del tuo HTML. Sentiti libero di riscrivere il CSS.
