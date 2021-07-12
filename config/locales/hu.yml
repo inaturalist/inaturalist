@@ -232,6 +232,7 @@ hu:
   agreeing: Egyetértés...
   all: Mind
   all_comments: Minden megjegyzés
+  all_life: Minden életforma
   all_observations: Minden megfigyelés
   all_rights_reserved: minden jog fenntartva
   all_taxa:
@@ -248,6 +249,7 @@ hu:
     protozoans: Állati egysejtűek
     ray_finned_fishes: Sugarasúszójú halak
     reptiles: Hüllők
+    life: Élet
   all_taxa_: Minden taxon
   all_updates: Minden frissítés
   amphibians: kétéltűek
@@ -441,6 +443,7 @@ hu:
   data_quality_assessment: Adatminőség
   date_: Dátum
   date_added: Létrehozás dátuma
+  date_created: Létehozás dátuma
   date_format:
     date_long:
       january: '%{year}. január %{day}.'
@@ -590,6 +593,7 @@ hu:
   has_sounds: Hanggal
   header_your_observations: Megfigyeléseim
   header_your_favorites: Kedvenceid
+  header_your_lists: Listáid
   header_your_journal: A te hírmondód
   header_your_identifications: Meghatározásaid
   header_your_profile: Profilod
@@ -661,6 +665,8 @@ hu:
   leave_a_comment: Írd ide a megjegyzést
   leave_this_project: Kilépés a projektből
   let_us_walk_you_through: Ismerd meg az iNaturalist főbb funkcióit.
+  life: Élet
+  life_list: "%{user} életlistája"
   list: Lista
   list_views:
     taxonomic: rendszertani
@@ -732,6 +738,7 @@ hu:
   new: Új
   new_and_noteworthy: Újdonságok
   new_journal_post: Új hírmondó-bejegyzés
+  new_list: Új lista
   new_message: Új üzenet
   new_observation_field: Új adatmező
   new_password: Új jelszó
@@ -798,6 +805,7 @@ hu:
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
   or_all_caps: VAGY
+  order: Rendezés
   order_by: Rendezés
   organism_is_wild: Vadon élő
   organisms: Élőlények
@@ -829,6 +837,7 @@ hu:
   parent: Szülő
   people: Emberek
   person: Személy
+  per_page: "Oldalanként"
   photo_browser: Fényképtár
   photo_licensing: Fényképlicenc
   photos_of_taxon_html: "%{taxon} képei"
@@ -896,6 +905,8 @@ hu:
     x_species:
       one: Faj
       other: Fajok
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: rend
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
   ranks_lowercase_superfamily: főcsalád
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
@@ -968,6 +979,7 @@ hu:
   #Journal post formatting option
   simple: Egyszerű
   site_stats: Webhelyforgalom
+  sort: Rendezés
   sort_by: Rendezés
   sorting_by: Rendezés
   source: Forrás
@@ -1008,6 +1020,7 @@ hu:
   terms_service: Felhasználási feltételek
   the_below_items_are_needed_to_achieve: |
     A következőkre van szükség a <span className="bold">Tudományos szint</span> eléréséhez:
+  the_community_id_requires_at_least_two_identifications: A közösségi taxonhoz legalább két felhasználó meghatározása szükséges.
   the_people_of_inat: "Emberek az %{site_name} mögött"
   the_world: A világ
   these_folks_kindly_volunteer_to: Ők azok, akik önkéntesen gondozzák a taxonómiát és megoldanak különféle problémákat.
@@ -1020,6 +1033,8 @@ hu:
   this_observation_was_created_using: "A megfigyelés ezzel készült:"
   threatened: Veszélyeztetett
   time_ago: "%{time}"
+  #As in the title of a book or a blog post
+  title: név
   today: Ma
   top_identifier: Legtöbbször azonosította
   top_identifiers: Legtöbbször azonosította
@@ -1068,6 +1083,7 @@ hu:
   view: Megtekintés
   view_all: Összes megtekintése
   view_details: Részletek
+  view_dynamic_lifelist: Dinamikus életlista megtekintése
   view_full_size_photo: Teljes méretű fénykép megtekintése
   view_journal: Hírmondó megtekintése
   view_leaderboard_from_last_month: Az előző havi ranglista megtekintése
@@ -1118,10 +1134,30 @@ hu:
         grid: rács
         journal: hírmondó
     lifelists:
+      list_view: Listanézet
+      tree_view: Faelrendezés
+      unobserved_species: Nem megfigyelt fajok
+      all_unobserved_species: Minden nem megfigyelt faj
       all_observations: Minden megfigyelés
       total_observations: Minden megfigyelés
+      filter_by: 'Szűrés:'
+      no_unobserved_species_in_place: 'Nem megfigyelt fajok itt: %{place}.'
+      observations_of_exactly_this_taxon: Pontosan e taxon megfigyelései
+      focus_tree_on_this_taxon: A fa erre a taxonra fókuszáljon
+      expand_all_nodes_in_this_branch: Ezen ágon belül minden elem kinyitása
+      collapse_this_branch: Ezen ág becsukása
       dropdowns:
+        sort: Rendezés
         taxonomic: Rendszertani
+        most_observed: Leggyakrabban megfigyelt
+        least_observed: Legritkábban megfigyelt
+        date_added_newest: Hozzáadás dátuma, újaktól kezdve
+        date_added_oldest: Hozzáadás dátuma, régiektől kezdve
+        simplified_tree: Egyszerűsített fa
+        full_taxonomy: Teljes rendszertan
+    lists:
+      edit:
+        lifelist_titles_cannot_be_changed: Az életlisták nevén nem lehet módosítani
     observations:
       field_descriptions:
         time_zone: A megfigyelés időzónája
@@ -1230,6 +1266,10 @@ hu:
         none: Nem.
       updates_desc: |
         Az értesítések a vezérlőpulton és a napi emailekben érkeznek.
+    shared:
+      not_found:
+        sorry_that_doesnt_exist: A túróba, ez nem létezik!
+        even_our_dedicated_search_mole_couldnt: Még a keresővakondunk sem talált semmit.
     stats:
       index:
         identifiers_desc: Meghatározást adott e napon más valaki megfigyeléséhez
@@ -1314,18 +1354,18 @@ hu:
   date:
     abbr_month_names:
       - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
+      - jan.
+      - feb.
+      - márc.
+      - ápr.
       - Május
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
+      - jún.
+      - júl.
+      - aug.
+      - szept.
+      - okt.
+      - nov.
+      - dec.
     month_names:
       - 
       - Január
@@ -1347,6 +1387,8 @@ hu:
         strip_insignificant_zeros: true
   activerecord:
     attributes:
+      assessment_section:
+        title: Név
       conservation_status:
         geoprivacy: Pozíció láthatósága
       message:
@@ -1355,8 +1397,13 @@ hu:
         observed_on: megfigyelés dátuma
       observation_field_value:
         value: 'érték'
+      post:
+        title: Név
       project:
+        title: Név
         zoom_level: Nagyítás mértéke
+      source:
+        title: Név
       user:
         email: Email
         login: Felhasználónév
@@ -1365,6 +1412,9 @@ hu:
   will_paginate:
     previous_label: "&#8592; Előző"
     next_label: "Következő &#8594;"
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: Fordított ABC-sorrend
   zoom_in: Nagyítás
   zoom_out: Kicsinyítés
   zoom_photo: Kicsinyítés/nagyítás
