@@ -548,6 +548,11 @@ lb:
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: Verständlech?
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Computer Vision Model
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Begräifen an
   configure: Astellen
   configure_a_widget_to_show: Konfiguréiert de Widget esou, dass hien %{site_name} Observatiounen ob Ärem Blog oder Ärer Websäit weist. Et ka sinn dass Dir embedded CSS an den <code>&lt;head&gt;</code> vun Ärem HTML musst drasetzen. Dir kënnt gären den CSS ëmschreiwen.
   confirm: Confirméieren
