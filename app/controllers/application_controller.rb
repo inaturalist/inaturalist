@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
   around_filter :logstash_catchall
   before_filter :return_here, :only => [:index, :show, :by_login]
   before_filter :return_here_from_url
-  before_filter :redirect_to_store
   before_filter :preload_user_preferences
   before_filter :user_logging
   before_filter :check_user_last_active
@@ -800,12 +799,6 @@ class ApplicationController < ActionController::Base
   def blocked_by_content_freeze
     if CONFIG.content_freeze_enabled
       render template: "content_freeze", status: 403, layout: "application"
-    end
-  end
-
-  def redirect_to_store
-    if request.host === "store.inaturalist.org"
-      redirect_to "https://inaturalist.threadless.com"
     end
   end
 
