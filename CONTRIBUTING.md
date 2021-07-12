@@ -8,6 +8,30 @@ We will probably close pull requests that don't address open issues. Again, if y
 
 ## Getting a Development Environment Set Up
 
+### Using Docker
+
+The development environment for iNaturalist is set up to run containerized services in Docker. Furthermore this configuration allows running the [API](https://github.com/inaturalist/iNaturalistAPI) alongside the services. 
+
+1. Install [Docker](https://www.docker.com/)
+2. Copy `docker-compose.override.yml.example` to `docker-compose.override.yml` and customize credentials
+3. Run `make services` to start Elasticsearch, memcached, redis, and PostgeSQL. Run `make services-api` to include the API and run in the foreground (see note above).
+
+   **Note**: If iNaturalistAPI is not in a sibling directory to this repository specify the path as such: `make services-api API_PATH=path/to/api`.
+
+4. Run `ruby bin/setup` to set up gems, config files, and database
+5. Start the server: `rails server -b 127.0.0.1`
+
+Additionally, the [Development Setup Guide](https://github.com/inaturalist/inaturalist/wiki/Development-Setup-Guide) covers [React and Node](https://github.com/inaturalist/inaturalist/wiki/Development-Setup-Guide#react--node-modules), [seed data](https://github.com/inaturalist/inaturalist/wiki/Development-Setup-Guide#load-some-seed-data), and [additional tools](https://github.com/inaturalist/inaturalist/wiki/Development-Setup-Guide#create-test-users-places-and-observations) to help you get going.
+You can skip the sections on setting up redis, memcached, postgis, and Elasticsearch when running these in Docker.
+
+#### Running tests
+
+1. Run `make services` to start the required services
+2. Make sure the test database is setup if this is the first time running tests: `bundle exec rake db:setup RAILS_ENV=test`
+3. Run specs: `bundle exec rspec` or `bundle exec rspec file/to/test.rb`
+
+### Running services locally
+
 The [Development Setup Guide](https://github.com/inaturalist/inaturalist/wiki/Development-Setup-Guide) should provide steps for getting set up, but be warned, it's not particularly easy. If you need help, please ask in the [Forum](https://forum.inaturalist.org).
 
 ## Reporting Issues
