@@ -919,6 +919,12 @@ fr:
     <span class="comprehensive_notice" data-tip="%{tip}">Check-list complète</span>
     pour %{taxon}
   comprehensive_list: Liste complète
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Inclus
+  computer_vision_model_included_desc: |
+    Le modèle actuel de vision par ordinateur connaît ce taxon. Celui-ci pourrait donc être inclus dans les suggestions automatiques avec l'étiquette « Visuellement semblable ».
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: En attente
   concept_status: État du concept
   configure: Configurer
   configure_a_widget_to_show: "Configurez un widget pour afficher les observations\nd’%{site_name} sur votre site web ou votre blog. Vous devrez peut-être inclure\nle CSS intégré dans le <code>&lt;head&gt;</code> de votre HTML. N’hésitez pas\nà réécrire le CSS."
