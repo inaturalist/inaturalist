@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-18.04
     services:
       postgres:
-        image: postgis/postgis:11-2.5
+        image: postgis/postgis:12-2.5
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
