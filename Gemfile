@@ -91,7 +91,7 @@ gem "savon"   #allow to consume soap services with WSDL
 gem "sass-rails" #, "5.0.7"
 gem "soundcloud"
 gem "sprockets" #, "~> 2.12.5"
-gem "uglifier", "= 4.1.0"
+gem "uglifier"
 gem "utf8-cleaner"
 gem "watu_table_builder", require: "table_builder"
 gem "will_paginate"

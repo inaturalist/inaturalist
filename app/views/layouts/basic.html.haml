@@ -9,8 +9,8 @@
     %meta{ http_equiv: "Content-Language", content: I18n.locale }
     - if current_user
       %meta{ name: "inaturalist-api-token", content: JsonWebToken.encode(user_id: current_user.id) }
+    = javascript_include_tag "i18n_bundle"
     = render "shared/i18n"
-    = javascript_include_tag "i18n/translations/en.js"
     = yield :extrahead
   %body
     = content_for?(:content) ? yield(:content) : yield

@@ -628,7 +628,7 @@ GEM
     tzinfo (1.2.9)
       thread_safe (~> 0.1)
     uber (0.1.0)
-    uglifier (4.1.0)
+    uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
@@ -769,7 +769,7 @@ DEPENDENCIES
   sprockets
   terrapin
   thin
-  uglifier (= 4.1.0)
+  uglifier
   utf8-cleaner
   watu_table_builder
   webmock

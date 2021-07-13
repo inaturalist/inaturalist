@@ -19,3 +19,5 @@ I18n.fallbacks.map( fallback_maps )
 Rails.application.config.from_locales = [:en, :es]
 Rails.application.config.to_locales = [:es, "es-MX".to_sym]
 I18n.extend(I18nExtensions)
+
+I18n::JS.export_i18n_js_dir_path = "app/assets/javascripts"

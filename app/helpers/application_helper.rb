@@ -245,7 +245,9 @@ module ApplicationHelper
       without.map!(&:to_s)
       new_params = new_params.reject {|k,v| without.include?(k) }
     end
-    new_params = new_params.merge( options ) unless options.empty?
+    unless options.empty?
+      new_params = new_params.merge( options ).permit( options.keys )
+    end
     url_for( new_params )
   end
   

@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery
   before_action :permit_params
-  # around_action :set_time_zone
-  # around_action :logstash_catchall
+  around_action :set_time_zone
+  around_action :logstash_catchall
   before_action :return_here, :only => [:index, :show, :by_login]
   before_action :return_here_from_url
   before_action :preload_user_preferences

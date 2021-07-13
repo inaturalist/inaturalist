@@ -16,6 +16,7 @@ module Inaturalist
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    config.enable_dependency_loading = true
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(#{config.root}/lib)
 
@@ -63,7 +64,6 @@ module Inaturalist
     config.assets.initialize_on_precompile = true
 
     # Ensure bower components are included in the asset pipeline
-    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
 
     config.i18n.enforce_available_locales = false
 

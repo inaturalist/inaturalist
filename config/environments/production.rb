@@ -12,8 +12,6 @@ Rails.application.configure do
 
   config.eager_load = true
 
-  config.action_dispatch.x_sendfile_header = CONFIG.x_sendfile_header
-
   # If you have no front-end server that supports something like X-Sendfile,
   # just comment this out and Rails will serve the files
 
@@ -26,6 +24,11 @@ Rails.application.configure do
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
   config.serve_static_files = false
+  config.public_file_server.enabled = false
+
+  unless config.public_file_server.enabled
+    config.action_dispatch.x_sendfile_header = CONFIG.x_sendfile_header
+  end
 
   # Allow removal of expired assets:
   config.assets.handle_expiration = true
@@ -34,7 +37,7 @@ Rails.application.configure do
   # Compress JavaScripts and CSS
   # Choose the compressors to use (if any)
   config.assets.compress = true
-  config.assets.js_compressor = Uglifier.new(mangle: false, harmony: true)
+  config.assets.js_compressor = Uglifier.new(mangle: false)
   config.assets.css_compressor = :yui
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
