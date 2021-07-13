@@ -8,7 +8,7 @@ on:
 
 jobs:
   pre_build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: fkirc/skip-duplicate-actions@master
         with:
@@ -17,7 +17,7 @@ jobs:
 
   build:
     needs: pre_build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     services:
       postgres:
         image: postgis/postgis:12-2.5
@@ -35,7 +35,7 @@ jobs:
         # Note that these letter prefix patterns must match existing files or
         # Github will error out of the build
         spec_pattern:
-          - spec/models/{bulk}*_spec.rb
+          - spec/models/bulk_observation_file_spec.rb
 
     steps:
     - uses: actions/checkout@v2
@@ -97,7 +97,7 @@ jobs:
     name: Notify Slack
     needs: build
     if: ${{ success() || failure() }}
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: iRoachie/slack-github-actions@v2.0.1
         if: env.SLACK_WEBHOOK_URL != null
