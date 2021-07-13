@@ -28,4 +28,10 @@ RAILS_ENV=test bundle exec rake --trace inaturalist:generate_translations_js
 
 which proj
 proj
-RAILS_ENV=production bundle exec rails r "puts RGeo::CoordSys::Proj4.supported?"
+RAILS_ENV=test bundle exec rails r "puts RGeo::CoordSys::Proj4.supported?"
+
+gem uninstall rgeo-proj4
+gem install rgeo-proj4 -- --with-proj-dir=/usr/bin
+which proj
+proj
+RAILS_ENV=test bundle exec rails r "puts RGeo::CoordSys::Proj4.supported?"
