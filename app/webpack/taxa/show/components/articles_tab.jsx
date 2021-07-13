@@ -15,8 +15,6 @@ const ArticlesTab = ( {
     currentUser.roles.indexOf( "curator" ) >= 0
     || currentUser.roles.indexOf( "admin" ) >= 0
   );
-  const viewerIsAdmin = currentUser && currentUser.roles
-     && currentUser.roles.indexOf( "admin" ) >= 0;
   return (
     <Grid className="ArticlesTab">
       <Row>
@@ -78,7 +76,7 @@ const ArticlesTab = ( {
               { I18n.t( "add_link" ) }
             </a>
           ) : null }
-          { viewerIsAdmin && taxon.rank === "species" && (
+          { taxon.rank === "species" && (
             <div className="computer-vision-status">
               <h2>{ I18n.t( "computer_vision_model" ) }</h2>
               { taxon.vision ? (
