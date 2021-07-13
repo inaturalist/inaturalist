@@ -919,6 +919,9 @@ fr:
     <span class="comprehensive_notice" data-tip="%{tip}">Check-list complète</span>
     pour %{taxon}
   comprehensive_list: Liste complète
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Modèle de vision par ordinateur
   #Status of a taxon that the Computer Vision Model can recognize
   computer_vision_model_included: Inclus
   computer_vision_model_included_desc: |
