@@ -918,6 +918,23 @@ de:
     <span class="comprehensive_notice" data-tip="%{tip}">Umfassende</span>
     Checkliste für %{taxon}
   comprehensive_list: Umfassende Liste
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Computer-Erkennungs-Modell
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Enthalten
+  computer_vision_model_included_desc: |
+    Das aktuelle Computer-Erkennungsmodell hat dieses Taxon gelernt, daher könnte es
+    in automatisierten Vorschläge mit dem Label "visuell ähnlich" enthalten sein.
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Ausstehend
+  computer_vision_model_pending_desc: |
+    Das aktuelle Modell der Computererkennung erkennt dieses Taxon noch nicht. Während
+    es also möglicherweise in automatisierten Vorschläge mit dem Label "in der Nähe" enthalten ist, wird es nicht das Label "visuell ähnlich" erhalten. Während sich die Anforderungen für
+    einen Einschluss mit jedem Modell ändern, basiert die Einbeziehung in der Regel auf der 
+    Anzahl von Beobachtungen. Um also die Chance zu erhöhen, dass dieses Taxon
+    während der nächsten Modelltrainierung aufgenommen wird, sollten weitere Beobachtungen
+    dieses Taxons hinzugefügt oder bestimmt werden.
   concept_status: Konzeptzustand
   configure: Einrichten
   configure_a_widget_to_show: Konfiguriere ein Widget, um %{site_name} Beobachtungen auf deiner Webseite oder deinem Blog anzuzeigen. Eventuell musst du das eingebettete CSS in den <code>&lt;head&gt;</code> deines HTML einbinden. Das CSS kann auch gerne neu geschrieben werden.
@@ -2064,6 +2081,7 @@ de:
     hawaiian: Hawaiisch
     hebrew: Hebräisch
     hiligaynon: Hiligaynon
+    hungarian: Ungarisch
     icelandic: Isländisch
     ilokano: Ilokano
     italian: Italienisch
@@ -2085,6 +2103,7 @@ de:
     swedish: Schwedisch
     tagalog: Tagalog
     tahitian: Tahitisch
+    thai: Thailändisch
     tokelauan: Tokelauisch
     turkish: Türkisch
     waray_waray: Wáray-Wáray
@@ -2160,6 +2179,7 @@ de:
     eo: Esperanto
     es: Spanisch
     es-AR: Spanish (Argentina)
+    es-CO: Spanisch (Kolumbien)
     es-MX: Spanisch (Mexiko)
     et: Estnisch
     eu: Baskisch
@@ -2168,6 +2188,7 @@ de:
     fr-CA: French (Canada)
     gl: Galicisch
     he: Hebräisch
+    hu: Ungarisch
     id: Indonesisch
     it: Italienisch
     ja: Japanisch
@@ -2186,6 +2207,7 @@ de:
     sk: Slovak
     sq: Albanisch
     sv: Schwedisch
+    th: Thailändisch
     tr: Türkisch
     uk: Ukrainisch
     zh-CN: Chinesisch (vereinfacht)
