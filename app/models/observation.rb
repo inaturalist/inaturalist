@@ -2843,10 +2843,10 @@ class Observation < ApplicationRecord
     if self.geo_x.present? && self.geo_y.present? && self.coordinate_system.present?
       # Perform the transformation
       # transfrom from `self.coordinate_system`
-      from = RGeo::CoordSys::Proj4.new( self.coordinate_system + " +type=crs" )
+      from = RGeo::CoordSys::Proj4.new( self.coordinate_system )
 
       # ... to WGS84
-      to = RGeo::CoordSys::Proj4.new( WGS84_PROJ4 + " +type=crs" )
+      to = RGeo::CoordSys::Proj4.new( WGS84_PROJ4 )
 
       # Returns an array of lat, lon
       transform = RGeo::CoordSys::Proj4.transform_coords( from, to, self.geo_x.to_d, self.geo_y.to_d )
