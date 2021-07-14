@@ -74,7 +74,8 @@ describe ObservationsController do
         coordinate_system: nztm_proj4
       } }
       o = user.observations.last
-      expect( o.latitude.to_f ).to eq -39.3809438281
+      # different versions of proj seem to change the precision of this float
+      expect( o.latitude.to_f ).to be_in([-39.380943828, -39.3809438281])
       expect( o.longitude.to_f ).to eq 176.3574072522
     end
 
