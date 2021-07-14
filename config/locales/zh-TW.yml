@@ -854,6 +854,18 @@ zh-TW:
   comprehensive_check_list_for_taxon_html: |
     <span class="comprehensive_notice" data-tip="%{tip}">完整的</span> %{taxon} 名錄
   comprehensive_list: 綜合清單
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: 電腦視覺模型
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: 包括
+  computer_vision_model_included_desc: |
+    目前的電腦視覺模型認得此分類群，所以它可能會列在「視覺上相似」的自動建議中。
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: 待確認中
+  computer_vision_model_pending_desc: |
+    目前的電腦視覺模型不認得此分類群，所以它會列在「附近可見」的自動建議中，
+    而不會顯示「視覺上相似」的標籤。當納入每個模型的需求改變時，一般來說納入的依據是觀察紀錄的數量，所以若要增加此分類群包含在下次模型訓練時的機會，請針對此分類群多多新增或鑑定觀察紀錄。
   concept_status: 概念狀態
   configure: 設置
   configure_a_widget_to_show: 設定小工具來在您的網站，或部落格上顯示出 %{site_name} 的觀察。您可能會需要於您的 HTML 裡 <code>&lt;head&gt;</code> 元素來包含內嵌式 CSS。請隨意重新編寫 CSS 吧。
@@ -2513,6 +2525,8 @@ zh-TW:
   no_sections_have_been_added_to_this_assessments_yet: 此評估尚未添加章節內容。
   no_species_have_been_listed: 此地點尚未有物種被列出！
   no_species_on_this_list: 在此名錄上尚未有觀察的物種！
+  no_species_on_this_list_for_owner: |
+    您可以使用在右方的「新增到您的名錄」工具來開始增加物種到此名錄中。
   no_subject_parens: "（無主題）"
   no_suggestions_available: 沒有可用建議
   no_summary_from_wikipedia: 未有來自於維基百科的摘要
@@ -5082,6 +5096,10 @@ zh-TW:
       show:
         flag_notice_html: |
           在 %{date} 時您標記了此對話。這個標記即便您刪除此對話的副本後，還會存在，所以如果您不想再看到這個的話，刪除它是沒問題的。
+        privacy_notice_html: |
+          當您和收件者之間私訊時，iNaturalist 工作人員可以檢視這些訊息，
+          而且當訊息被標記為審核時也會如此進行。如果您真的需要私人通訊，
+          請參考其他支援高強度加密的通訊機制。
     oauth:
       authorizations:
         new:
