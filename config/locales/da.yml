@@ -924,6 +924,19 @@ da:
     <span class="comprehensive_notice" data-tip="%{tip}">Omfattende</span>
     tjekliste for %{taxon}
   comprehensive_list: omfattende liste
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Computer Vision Model
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Inkluderet
+  computer_vision_model_included_desc: |
+    Den nuværende Computer Vision Model kender til denne takson, så den inkluderes muligvis i automatiserede forslag med "Visuelt lignende"-etiketten.
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Afventende
+  computer_vision_model_pending_desc: |
+    Den nuværende Computer Vision Model kender ikke til denne takson, så mens den måske inkluderes i automatiserede forslag med etiketten "Nærliggende", vil den ikke have etiketten "Visuelt lignende". Selvom kravene til modelinkludering ændrer sig for hver model, er inkludering generelt baseret på
+    antal observationer, så for at forøge denne taksons chance for inkludering under den næste modeloptræning, så tilføj eller identificér flere observationer
+    af denne takson.
   concept_status: Koncept status
   configure: Konfigurér
   configure_a_widget_to_show: Konfigurér en widget for at vise %{site_name} observationer på din hjemmeside eller i din blog. Det kan være nødvendigt at medtage den integrerede CSS i <code>&lt;head&gt;</code> din HTML. Du kan ændre i CSS'en som du vil.
@@ -2095,6 +2108,7 @@ da:
     hawaiian: Hawaiiansk
     hebrew: Hebraisk
     hiligaynon: Hiligaynon
+    hungarian: Ungarsk
     icelandic: Islandsk
     ilokano: Ilokano
     italian: Italiensk
@@ -2116,6 +2130,7 @@ da:
     swedish: Svensk
     tagalog: Tagalog
     tahitian: Tahitiansk
+    thai: Thailandsk
     tokelauan: Tokelauan
     turkish: Tyrkisk
     waray_waray: Waray-Waray
@@ -2192,6 +2207,7 @@ da:
     eo: Esperanto
     es: Spansk
     es-AR: Spansk (Argentina)
+    es-CO: Spansk (Colombia)
     es-MX: Spansk (Mexico)
     et: Estisk
     eu: Baskisk
@@ -2200,6 +2216,7 @@ da:
     fr-CA: Fransk (Canada)
     gl: Galicisk
     he: Hebraisk
+    hu: Ungarsk
     id: Indonesisk
     it: Italiensk
     ja: Japansk
@@ -2218,6 +2235,7 @@ da:
     sk: Slovakisk
     sq: Albansk
     sv: Svensk
+    th: Thailandsk
     tr: Tyrkisk
     uk: Ukrainsk
     zh-CN: Kinesisk (simplificeret)
@@ -2630,9 +2648,8 @@ da:
   no_sections_have_been_added_to_this_assessments_yet: Der er endnu ikke tilføjet sektioner til disse vurderinger.
   no_species_have_been_listed: Ingen arter er blevet opført for dette sted endnu!
   no_species_on_this_list: Ingen arter på denne liste endnu!
-  no_species_on_this_list_for_owner_html: |
-    Du kan begynde at tilføje arter direkte til denne liste, eller hvis dette er en livsliste, vil det automatisk blive opdateret med arter, når du
-    <a href="%{url}"class="nobr">tilføjer observationer</a>.
+  no_species_on_this_list_for_owner: |
+    Man kan begynde at føje arter til denne liste ved brug af "Føj til din liste"-værktøjet til højre.
   no_subject_parens: "(Intet emne)"
   no_suggestions_available: Ingen forslag tilgængelige
   no_summary_from_wikipedia: Ingen oversigt fra Wikipedia
@@ -7121,23 +7138,6 @@ da:
       submit: Gem %{model}
       update: Opdater %{model}
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: ','
-        format: '%u%n'
-        precision: 2
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: .
-        significant: false
-        strip_insignificant_zeros: false
-        unit: '$'
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as

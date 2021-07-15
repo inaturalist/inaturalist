@@ -2422,8 +2422,6 @@ lv:
   no_sections_have_been_added_to_this_assessments_yet: Novērtējumam vēl nav pievienota neviena sadaļa.
   no_species_have_been_listed: Vietas sarakstā vēl nav iekļauta neviena suga.
   no_species_on_this_list: Sarakstam vēl nav pievienota neviena suga.
-  no_species_on_this_list_for_owner_html: |
-    Sugas var pievienot sarakstam tieši šeit. Ja sugas ir tavā sarakstā, tās tiks automātiski atjaunotas, kad <a href="%{url}" class="nobr">pievienosi novērojumus</a>.
   no_subject_parens: "(Bez nosaukuma)"
   no_suggestions_available: Nav neviena ieteikuma
   no_summary_from_wikipedia: Nav Vikipēdijas kopsavilkuma
@@ -4375,7 +4373,7 @@ lv:
   user_blocked: Lietotājs bloķēts
   user_commented: "%{user} komentēja"
   user_commented_on: "%{user} komentēja tavu %{title} %{time}"
-  user_disagrees_this_is_taxon: "%{user} nepiekrīt tam, ka šis ir %{taxon}"
+  user_disagrees_this_is_taxon: "%{user} nepiekrīt %{taxon} identifikācijai"
   user_disagrees_with_previous_finer_identifications: "%{user} nepiekrīt iepriekšējām identifikācijām, kas bija tuvāk konkrētai sugai"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} pievienoja izlasei %{noun}, ko radījis %{owner}"
@@ -4690,7 +4688,7 @@ lv:
   your_flickr_account: Tavs Flickr konts
   your_flickr_photos_have_been_tagged: Tavām Flickr fotogrāfijām pievienoti tagi.
   your_hard_drive: tavs cietais disks
-  your_home: Tavas mājas
+  your_home: Sākumlapa
   your_id: Tavs ID
   your_identification: Tava identifikācija
   your_membership: Tava piederība

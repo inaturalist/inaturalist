@@ -2386,8 +2386,6 @@ zh-CN:
   no_sections_have_been_added_to_this_assessments_yet: 此评估中尚未添加任何章节。
   no_species_have_been_listed: 目前还没有物种被列入这个地方呢！
   no_species_on_this_list: 目前还没有物种在这个列表上呢！
-  no_species_on_this_list_for_owner_html: |
-    您可以开始直接将物种添加至此列表，或如果这是生命清单，它将在您<a href="%{url}" class="nobr">添加观察</a>时自动与物种更新。
   no_subject_parens: "（无主题）"
   no_suggestions_available: 没有可用建议
   no_summary_from_wikipedia: 没有来自维基百科的概要
@@ -5834,15 +5832,6 @@ zh-CN:
       submit: 保存 %{model}
       update: 更新%{model}
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: '，'
-        significant: false
-        strip_insignificant_zeros: false
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as

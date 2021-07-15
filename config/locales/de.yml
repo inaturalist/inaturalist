@@ -918,6 +918,23 @@ de:
     <span class="comprehensive_notice" data-tip="%{tip}">Umfassende</span>
     Checkliste für %{taxon}
   comprehensive_list: Umfassende Liste
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Computer-Erkennungs-Modell
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Enthalten
+  computer_vision_model_included_desc: |
+    Das aktuelle Computer-Erkennungsmodell hat dieses Taxon gelernt, daher könnte es
+    in automatisierten Vorschläge mit dem Label "visuell ähnlich" enthalten sein.
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Ausstehend
+  computer_vision_model_pending_desc: |
+    Das aktuelle Modell der Computererkennung erkennt dieses Taxon noch nicht. Während
+    es also möglicherweise in automatisierten Vorschläge mit dem Label "in der Nähe" enthalten ist, wird es nicht das Label "visuell ähnlich" erhalten. Während sich die Anforderungen für
+    einen Einschluss mit jedem Modell ändern, basiert die Einbeziehung in der Regel auf der 
+    Anzahl von Beobachtungen. Um also die Chance zu erhöhen, dass dieses Taxon
+    während der nächsten Modelltrainierung aufgenommen wird, sollten weitere Beobachtungen
+    dieses Taxons hinzugefügt oder bestimmt werden.
   concept_status: Konzeptzustand
   configure: Einrichten
   configure_a_widget_to_show: Konfiguriere ein Widget, um %{site_name} Beobachtungen auf deiner Webseite oder deinem Blog anzuzeigen. Eventuell musst du das eingebettete CSS in den <code>&lt;head&gt;</code> deines HTML einbinden. Das CSS kann auch gerne neu geschrieben werden.
@@ -2064,6 +2081,7 @@ de:
     hawaiian: Hawaiisch
     hebrew: Hebräisch
     hiligaynon: Hiligaynon
+    hungarian: Ungarisch
     icelandic: Isländisch
     ilokano: Ilokano
     italian: Italienisch
@@ -2085,6 +2103,7 @@ de:
     swedish: Schwedisch
     tagalog: Tagalog
     tahitian: Tahitisch
+    thai: Thailändisch
     tokelauan: Tokelauisch
     turkish: Türkisch
     waray_waray: Wáray-Wáray
@@ -2160,6 +2179,7 @@ de:
     eo: Esperanto
     es: Spanisch
     es-AR: Spanish (Argentina)
+    es-CO: Spanisch (Kolumbien)
     es-MX: Spanisch (Mexiko)
     et: Estnisch
     eu: Baskisch
@@ -2168,6 +2188,7 @@ de:
     fr-CA: French (Canada)
     gl: Galicisch
     he: Hebräisch
+    hu: Ungarisch
     id: Indonesisch
     it: Italienisch
     ja: Japanisch
@@ -2186,6 +2207,7 @@ de:
     sk: Slovak
     sq: Albanisch
     sv: Schwedisch
+    th: Thailändisch
     tr: Türkisch
     uk: Ukrainisch
     zh-CN: Chinesisch (vereinfacht)
@@ -2593,8 +2615,8 @@ de:
   no_sections_have_been_added_to_this_assessments_yet: Es wurden noch keine Abschnitte zu diesen Bewertungen hinzugefügt.
   no_species_have_been_listed: Für diesen Ort sind noch keine Arten gelistet!
   no_species_on_this_list: Noch keine Arten auf dieser Liste!
-  no_species_on_this_list_for_owner_html: |
-    Du kannst direkt mit dem Hinzufügen von Arten zu dieser Liste beginnen, oder wenn es sich um eine Life-Liste handelt, wird sie automatisch mit Arten aktualisiert, wenn du <a href="%{url}" class="nobr">Beobachtungen hinzufügst</a>.
+  no_species_on_this_list_for_owner: |
+    Du kannst mit Hilfe der Funktion "Zur Liste hinzufügen" auf der rechten Seite Arten zu dieser Liste hinzufügen.
   no_subject_parens: "(Kein Betreff)"
   no_suggestions_available: Keine Vorschläge verfügbar
   no_summary_from_wikipedia: Keine Zusammenfassung von Wikipedia
@@ -2872,7 +2894,7 @@ de:
   original_page_url_for_this_photo: "Ursprüngliche Seiten-URL für dieses Foto."
   original_rights_holder: Ursprünglicher Rechteinhaber
   original_url_for_this_map: Ursprüngliche URL für diese Karte
-  organism_appears_captive_cultivated: Organismus scheint in Haltung/kultiviert zu sein
+  organism_appears_captive_cultivated: wahrscheinlich in Haltung/kultiviert
   other: Sonstiges
   other_animals: andere Tiere
   other_lexicons: Andere Lexika
@@ -6666,23 +6688,6 @@ de:
       submit: '%{model} speichern'
       update: '%{model} aktualisieren'
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: '.'
-        format: '%u%n'
-        precision: 2
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: ','
-        significant: false
-        strip_insignificant_zeros: false
-        unit: '$'
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as

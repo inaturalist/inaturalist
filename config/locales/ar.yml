@@ -1788,8 +1788,6 @@ ar:
   no_sections_have_been_added_to_this_assessments_yet: لم تتم إضافة أي أقسام إلى هذه التقييمات بعد.
   no_species_have_been_listed: لم يتم سرد أي نوع لهذا المكان حتى الآن!
   no_species_on_this_list: لا توجد أنواع في هذه القائمة حتى الآن!
-  no_species_on_this_list_for_owner_html: |
-    يمكنك البدء في إضافة الأنواع إلى هذه القائمة مباشرة، أو إذا كانت هذه قائمة حياة، فسيتم تحديثها تلقائيا مع الأنواع عند <a href="%{url}" class="nobr">إضافة ملاحظات</a>.
   no_subject_parens: "(بدون موضوع)"
   no_suggestions_available: لا توجد اقتراحات متوفرة
   no_summary_from_wikipedia: لا يوجد ملخص من ويكيبيديا
@@ -5506,15 +5504,6 @@ ar:
       submit: حفظ %{model}
       update: تحديث %{model}
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: '،'
-        significant: false
-        strip_insignificant_zeros: false
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as

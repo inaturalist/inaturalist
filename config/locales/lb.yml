@@ -548,6 +548,11 @@ lb:
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: Verständlech?
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Computer Vision Model
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Begräifen an
   configure: Astellen
   configure_a_widget_to_show: Konfiguréiert de Widget esou, dass hien %{site_name} Observatiounen ob Ärem Blog oder Ärer Websäit weist. Et ka sinn dass Dir embedded CSS an den <code>&lt;head&gt;</code> vun Ärem HTML musst drasetzen. Dir kënnt gären den CSS ëmschreiwen.
   confirm: Confirméieren
@@ -1279,6 +1284,8 @@ lb:
   no_reply_yet: Nach keng Äntwert
   no_results_found: Näischt fonnt
   no_results_for: 'Keng Resultater fir'
+  no_species_on_this_list_for_owner: |
+    Dir kënnt ufänken Aarte bei dës Lëscht bäizefügen andeems Dir den "Op Är Lescht setzen" Tool op der rietser Säit benotzt.
   no_subject_parens: "(Kee Sujet)"
   no_suggestions_available: Keng Proposen Disponibel
   no_summary_from_wikipedia: Kee Resumé vu Wikipedia
@@ -2440,23 +2447,6 @@ lb:
     submit:
       submit: '%{model} späicheren'
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: '.'
-        format: '%u%n'
-        precision: 2
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: ','
-        significant: false
-        strip_insignificant_zeros: false
-        unit: '$'
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as

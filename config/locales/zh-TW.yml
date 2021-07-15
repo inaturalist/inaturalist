@@ -86,7 +86,7 @@ zh-TW:
     other: "已新增<span class='count'>%{count}</span> 個分類群變更"
   _100_day_trends: 100 天裡的趨勢
   _percent_ID_d: "% 已鑑定"
-  a_community_for_naturalist: 一個博物學友的社群
+  a_community_for_naturalist: 一個自然觀察者的社群
   a_default_taxon_name_will_automatically_created: |
     拉丁文學名會自動成為此物種之預設分類群名稱。
     當您儲存這個新分類群後，您將可為這個物種加上其他名稱(例如俗名、過時的學名等)。
@@ -854,6 +854,18 @@ zh-TW:
   comprehensive_check_list_for_taxon_html: |
     <span class="comprehensive_notice" data-tip="%{tip}">完整的</span> %{taxon} 名錄
   comprehensive_list: 綜合清單
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: 電腦視覺模型
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: 包括
+  computer_vision_model_included_desc: |
+    目前的電腦視覺模型認得此分類群，所以它可能會列在「視覺上相似」的自動建議中。
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: 待確認中
+  computer_vision_model_pending_desc: |
+    目前的電腦視覺模型不認得此分類群，所以它會列在「附近可見」的自動建議中，
+    而不會顯示「視覺上相似」的標籤。當納入每個模型的需求改變時，一般來說納入的依據是觀察紀錄的數量，所以若要增加此分類群包含在下次模型訓練時的機會，請針對此分類群多多新增或鑑定觀察紀錄。
   concept_status: 概念狀態
   configure: 設置
   configure_a_widget_to_show: 設定小工具來在您的網站，或部落格上顯示出 %{site_name} 的觀察。您可能會需要於您的 HTML 裡 <code>&lt;head&gt;</code> 元素來包含內嵌式 CSS。請隨意重新編寫 CSS 吧。
@@ -1267,7 +1279,7 @@ zh-TW:
   description_slash_tags: 描述/標籤
   description_tags_more: "描述、標記、&amp;更多"
   desription: 描述
-  destroy: 破壞
+  destroy: 刪除
   details: 詳細資料
   deviation: 偏差
   devise:
@@ -2513,8 +2525,8 @@ zh-TW:
   no_sections_have_been_added_to_this_assessments_yet: 此評估尚未添加章節內容。
   no_species_have_been_listed: 此地點尚未有物種被列出！
   no_species_on_this_list: 在此名錄上尚未有觀察的物種！
-  no_species_on_this_list_for_owner_html: |
-    如果是物種名錄的話，您可以直接開始添加物種至名錄中，這會在您<a href="%{url}" class="nobr">添加觀察</a>時自動以此物種做更新。
+  no_species_on_this_list_for_owner: |
+    您可以使用在右方的「新增到您的名錄」工具來開始增加物種到此名錄中。
   no_subject_parens: "（無主題）"
   no_suggestions_available: 沒有可用建議
   no_summary_from_wikipedia: 未有來自於維基百科的摘要
@@ -2728,8 +2740,8 @@ zh-TW:
     observe_panel_body_p1_global: 需要靈感？這裡有一些被觀察到的生物...
     observe_panel_body_p2: 到外頭去觀察一種生物吧。挑選一些野生動物來拍下幾張清晰、完整的照片。如果您已擁有某個野生動物的照片，現在就<a href="%{new_observation_path}">開始添加</a>吧。您也可以透過使用 %{site_name} 的移動應用程式來記錄觀察。
     observe_panel_body_p3: 一旦您分享了您的觀察，此頁面將會顯示出來自於社群評論與鑑定的更新內容。
-    follow_panel_title_local: 關注一些附近的博物學友
-    follow_panel_title_global: 關注一些活躍的博物學友
+    follow_panel_title_local: 關注一些附近的自然觀察者
+    follow_panel_title_global: 關注一些活躍的自然觀察者
     follow_panel_body: 如果您查看了這些個人檔案且點擊以下按鍵，當他們發佈觀察時將會為您更新
     following_panel_title: 維持對於人物、物種分類，和地點的追蹤
     following_panel_body: |
@@ -4472,7 +4484,7 @@ zh-TW:
   user_invited_you_to_join_project: "%{user}邀請您加入%{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} 邀請您加入此專案於 %{date}"
   user_invited_your_x_to_a_project_html: "%{user} 邀請您%{x}一個專案"
-  user_is_a_naturalist: "%{user} 是個博物學友！"
+  user_is_a_naturalist: "%{user} 是個自然觀察者！"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> 現在是 %{project} 的總管理者了
   user_is_now_a_manager_for_project_html: |
@@ -4682,7 +4694,7 @@ zh-TW:
   x_project_stats: "%{project}統計"
   x_sent_you_a_new_message_on_y_html: "%{x} 寄送您一份新訊息於 %{y}："
   x_site_is_a_social_network_for_naturalist: |
-    %{site} 是個專為博物學友們使用的社交網路！來記錄您對於動植物的觀察來分享給朋友和研究人員，以及學習有關自然世界的事物吧。
+    %{site} 是個專為自然觀察者使用的社群網路！記錄您對於動植物的觀察並分享給朋友和研究人員，以及學習有關大自然的一切吧。
   x_wrote_a_new_post_html: "%{x} 寫了一篇發表文章"
   x_wrote_y_new_posts_html: "%{x} 寫了 %{y} 篇發表文章"
   year: 年
@@ -4827,7 +4839,7 @@ zh-TW:
   your_tags: 您的標籤
   yours: 您的
   youre_not_following_anyone: |-
-    您尚未關注任何人。關注其他博物學友可讓您更容易追蹤他們的最新觀察。去看看那些人<a href="%{observations_path}">正在進行觀察</a>並尋找一些<a href="%{people_path}">同伴</a>吧。
+    您尚未關注任何人。關注其他自然觀察者可讓您更容易追蹤他們的最新觀察。去看看那些人<a href="%{observations_path}">正在進行觀察</a>並尋找一些<a href="%{people_path}">同伴</a>吧。
   youre_not_following_anyone_on_inat: 您在%{site_name}還未追蹤任何人！
   youve_linked_your_inaturalist_google_account: "您已連結您的 %{site_name} 帳號與您的 Google 帳號。這可允許您讓您的 Google 照片與您的 %{site_name} 觀察作關連。"
   youve_successfully_linked_your_provider_account: "您成功連結了您的 %{provider} 帳號"
@@ -5084,6 +5096,10 @@ zh-TW:
       show:
         flag_notice_html: |
           在 %{date} 時您標記了此對話。這個標記即便您刪除此對話的副本後，還會存在，所以如果您不想再看到這個的話，刪除它是沒問題的。
+        privacy_notice_html: |
+          當您和收件者之間私訊時，iNaturalist 工作人員可以檢視這些訊息，
+          而且當訊息被標記為審核時也會如此進行。如果您真的需要私人通訊，
+          請參考其他支援高強度加密的通訊機制。
     oauth:
       authorizations:
         new:
@@ -6352,7 +6368,7 @@ zh-TW:
         people_signed_up: '個註冊成員'
         how_it_works: 它是如何運作的
         record_your_observations: 記錄您的觀察
-        share_with_fellow_naturalists: 與關注的博物學友分享
+        share_with_fellow_naturalists: 與關注的自然觀察者分享
         discuss_your_findings: 討論您所發現的
         contribute_to_science: 貢獻於科學
         science_desc_html: |
@@ -6365,15 +6381,15 @@ zh-TW:
         help_scientists: 協助科學家與資源管理者了解生物在何時及何處出現。
         crowdsource_identifications: 群眾外包鑑定
         connect_with_experts: 聯絡可以鑑定您所觀察到生物的專家。
-        become_a_citizen_scientist: 成為一位公眾科學家
+        become_a_citizen_scientist: 成為一位公民科學家
         find_a_project: "尋找一個有著您感興趣任務的專案，或是開始您自己擁有的專案。"
         learn_about_nature: 了解關於自然
-        build_your_knowledge: 透過與其他博物學友的交談，以及協助他人來建立您的知識。
+        build_your_knowledge: 透過與其他自然觀察者的交談，以及協助他人來建立您的知識脈絡。
         run_a_bioblitz: 舉行生態速查（Bioblitz）
         hold_an_event: 舉行一場能讓人們盡情來找尋物種的活動。
         works_on_all_your_devices: 在您的所有裝置上運作
         install_our_mobile_apps: |
-          安裝我們的移動版應用程式，來讓您即使沒有手機信號或 wifi 也可以隨意觀察。
+          安裝我們的行動裝置 app，讓您即使沒有手機訊號或 wifi 也可以隨意觀察。
         who_uses_site_name: "誰使用 %{site_name}?"
         what_are_you_waiting_for: 還有什麼好等待呢？
         join_today: 今天就加入！
@@ -6532,23 +6548,6 @@ zh-TW:
       submit: 儲存 %{model}
       update: 更新%{model}
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: '，'
-        format: '%u%n'
-        precision: 2
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: .
-        significant: false
-        strip_insignificant_zeros: false
-        unit: '$'
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as

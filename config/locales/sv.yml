@@ -2635,9 +2635,8 @@ sv:
   no_sections_have_been_added_to_this_assessments_yet: Inga sektioner har lagts till denna bedömning än.
   no_species_have_been_listed: Inga arter har listats för denna fyndplats ännu!
   no_species_on_this_list: Inga arter på denna lista ännu!
-  no_species_on_this_list_for_owner_html: |
-    Du kan börja lägga till arter i denna lista direkt eller, om detta är en livslista, så uppdateras den automatiskt med arter när du
-    <a href="%{url}" class="nobr">lägger till fynd</a>.
+  no_species_on_this_list_for_owner: |
+    Du kan börja lägga arter till den här listan genom att använda verktyget "Lägg till i din lista" till höger.
   no_subject_parens: "(Inget ämne)"
   no_suggestions_available: Inga förslag tillgängliga
   no_summary_from_wikipedia: Ingen sammanfattning från Wikipedia
@@ -6761,23 +6760,6 @@ sv:
       submit: Spara %{model}
       update: Uppdatera %{model}
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: ' '
-        format: '%n%u'
-        precision: 2
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: ','
-        significant: false
-        strip_insignificant_zeros: false
-        unit: USD
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as
