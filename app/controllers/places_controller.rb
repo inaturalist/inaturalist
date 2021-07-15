@@ -14,7 +14,7 @@ class PlacesController < ApplicationController
   before_filter :curator_required, :only => [:planner]
   before_filter :check_quota, only: [:create]
 
-  QUOTA = 10
+  QUOTA = 3
   
   caches_page :geometry
   caches_action :cached_guide,
