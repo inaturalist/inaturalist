@@ -358,6 +358,7 @@ hu:
   change_your_password: Jelszó módosítása
   choose_files: Válassz fájlokat
   clear: eltávolítás
+  close: Bezárás
   colors: Színek
   columns: Oszlopok
   combine: Összerendezés
@@ -433,6 +434,7 @@ hu:
   copyright:
     all_rights_reserved: "(c) %{name}, minden jog fenntartva"
   copyright_info_and_more: Szerzői jogi információk és egyebek
+  create_export: Exportálás létrehozása
   created_by: Létrehozta
   csv: CSV
   curator_application_what_curators_can_do_hide_comments_html: |
@@ -475,6 +477,7 @@ hu:
   date_observed: Megfigyelés dátuma
   date_observed_: Megfigyelés dátuma
   date_picker:
+    closeText: Bezárás
     currentText: Ma
     prevText: Előző
     nextText: Következő
@@ -546,7 +549,9 @@ hu:
   exact_date: Pontos dátum
   exit_full_screen: "Kilépés teljes képernyőből"
   explore: Felfedezés
+  export: Exportálás
   export_observations: Megfigyelések exportálása
+  exporting: "Exportálás..."
   evidence_of_organism: Bizonyíték az organizmusra
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Kedvencek
@@ -796,6 +801,8 @@ hu:
   observations_with_this_field_and_value: Megfigyelések ezzel az adatmezővel és értékkel
   observations_without_media: Megfigyelés fénykép/hang nélkül
   observed: Megfigyelve
+  observed_by: 'Megfigyelte:'
+  observed_on: 'Megfigyelve:'
   observer: Megfigyelő
   observers: Megfigyelők
   observer_short: Megfigyelő
@@ -938,6 +945,7 @@ hu:
   recent_observations: Új megfigyelések
   recently_active: Nemrég aktív
   recently_created: Legutóbb létrehozott
+  recently_observed: Nemrég megfigyelt
   redo_search_in_map: Újrakeresés a térképen
   redo_search_in_map_area: Újrakeresés a térképterületen
   relationships_user_settings: Kapcsolatok
@@ -1145,6 +1153,13 @@ hu:
       all_observations: Minden megfigyelés
       total_observations: Minden megfigyelés
       filter_by: 'Szűrés:'
+      apply_filters_to_export: Exportálás a következő szűrőkkel
+      exporting_all_x_taxa:
+        one: '%{count} taxon exportálása'
+        other: '%{count} taxon exportálása'
+      exporting_x_taxa:
+        one: '%{count} taxon exportálása'
+        other: '%{count} taxon exportálása'
       no_unobserved_species_in_place: 'Nem megfigyelt fajok itt: %{place}.'
       observations_of_exactly_this_taxon: Pontosan e taxon megfigyelései
       focus_tree_on_this_taxon: A fa erre a taxonra fókuszáljon
