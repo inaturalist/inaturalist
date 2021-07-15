@@ -66,9 +66,9 @@ describe PlacesController do
       expect( p.place_geometry ).to_not be_nil
     end
 
-    it "limits place create to ten per day" do
+    it "limits place create to a daily quota" do
       sign_in user
-      10.times do
+      PlacesController::QUOTA.times do
         expect {
           post :create, place: {
             name: Faker::Name.name,
