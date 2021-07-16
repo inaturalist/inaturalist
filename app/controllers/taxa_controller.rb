@@ -1669,6 +1669,7 @@ class TaxaController < ApplicationController
         if existing = @taxon.conservation_statuses.detect{|cs| cs.id == status["id"].to_i }
           cs_attrs = params[:taxon][:conservation_statuses_attributes][position].clone
           cs_attrs.delete(:_destroy)
+          %i[geoprivacy place_id].each {|k| cs_attrs[k] = nil if cs_attrs[k].blank? }
           existing.assign_attributes( cs_attrs )
           if existing.changed?
             params[:taxon][:conservation_statuses_attributes][position][:updater_id] = current_user.id

@@ -314,7 +314,8 @@ describe TaxaController do
             "0" => {
               "id" => cs.id,
               "status" => cs.status,
-              "authority" => cs.authority
+              "authority" => cs.authority,
+              "geoprivacy" => cs.geoprivacy
             }
           }
         }
