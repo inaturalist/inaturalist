@@ -46,10 +46,10 @@ class PlacesController < ApplicationController
         key = place ? "random_place_ids_#{place.id}" : 'random_place_ids'
         place_ids = Rails.cache.fetch(key, expires_in: 15.minutes) do
           places = if place
-            place.children.select('id').order("RANDOM()").limit(50)
+            place.children.select('id').order( Arel.sql( "RANDOM()" ) ).limit(50)
           else
             Place.where( "admin_level IS NOT NULL" ).select(:id).
-              order("RANDOM()").limit(50)
+              order( Arel.sql( "RANDOM()" ) ).limit(50)
           end
           places.map{|p| p.id}
         end
@@ -513,7 +513,7 @@ class PlacesController < ApplicationController
         @places = Place.joins(:place_geometry).
           where(place_type: Place::OPEN_SPACE).
           where("place_geometries.id IS NOT NULL").
-          order("ST_Distance(ST_Point(places.longitude,places.latitude), ST_Point(#{@longitude},#{@latitude}))").
+          order( Arel.sql( "ST_Distance(ST_Point(places.longitude,places.latitude), ST_Point(#{@longitude},#{@latitude}))" ) ).
           page(1)
         @data = []
         @places.each do |p|

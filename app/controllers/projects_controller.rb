@@ -122,7 +122,9 @@ class ProjectsController < ApplicationController
           scope = scope.
             where(["projects.latitude IS NULL OR ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(?, ?)) < 5",
               params[:latitude], params[:longitude]]).
-            order("CASE WHEN projects.latitude IS NULL THEN 6 ELSE ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{params[:latitude]}, #{params[:latitude]})) END")
+            order( Arel.sql(
+              "CASE WHEN projects.latitude IS NULL THEN 6 ELSE ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{params[:latitude]}, #{params[:latitude]})) END"
+            ) )
         else
           if params[:featured]
             scope = scope.joins(:site_featured_projects)
@@ -470,9 +472,9 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html do
         @started = @selected_user.projects.
-          paginate( page: params[:started_page], per_page: 7 ).order( "lower( projects.title )" )
+          paginate( page: params[:started_page], per_page: 7 ).order( Arel.sql( "lower( projects.title )" ) )
         @project_users = @selected_user.project_users.joins( :project, :user ).
-          paginate( page: params[:main_page], per_page: 20 ).order( "lower( projects.title )" )
+          paginate( page: params[:main_page], per_page: 20 ).order( Arel.sql( "lower( projects.title )" ) )
         @projects = @project_users.map{ |pu| pu.project }
         render layout: "bootstrap"
       end
@@ -485,7 +487,7 @@ class ProjectsController < ApplicationController
               { project_observation_fields: :observation_field }
             ]
           }, :user).
-          order("lower(projects.title)").
+          order( Arel.sql( "lower(projects.title)" ) ).
           limit(1000)
         project_options = Project.default_json_options.update(
           :include => [

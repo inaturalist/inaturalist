@@ -69,7 +69,7 @@ class Guide < ApplicationRecord
     latitude = latitude.to_f
     longitude = longitude.to_f
     where("ST_Distance(ST_Point(guides.longitude, guides.latitude), ST_Point(#{longitude}, #{latitude})) < 5").
-    order("ST_Distance(ST_Point(guides.longitude, guides.latitude), ST_Point(#{longitude}, #{latitude}))")
+    order( Arel.sql( "ST_Distance(ST_Point(guides.longitude, guides.latitude), ST_Point(#{longitude}, #{latitude}))" ) )
   }
   scope :published, -> { where("published_at IS NOT NULL") }
 

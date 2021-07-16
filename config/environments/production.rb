@@ -18,7 +18,7 @@ Rails.application.configure do
   config.log_level = :info
 
   # Use a different cache store in production
-  config.cache_store = :dalli_store, CONFIG.memcached,
+  config.cache_store = :mem_cache_store, CONFIG.memcached,
     { compress: true, value_max_bytes: 1024 * 1024 * 3 }
 
   # Disable Rails's static asset server

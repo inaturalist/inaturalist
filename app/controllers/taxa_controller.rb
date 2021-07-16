@@ -1723,7 +1723,7 @@ class TaxaController < ApplicationController
   def load_form_variables
     @conservation_status_authorities = ConservationStatus.
       group(:authority).
-      order( "count(*) DESC").
+      order( Arel.sql( "count(*) DESC" ) ).
       limit( 500 ).
       count.
       map(&:first).compact.reject(&:blank?).map(&:strip)

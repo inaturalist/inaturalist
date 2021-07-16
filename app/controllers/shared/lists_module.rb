@@ -568,7 +568,7 @@ private
   end
 
   def set_options_order(find_options)
-    find_options[:order] = case params[:order_by]
+    options_order = case params[:order_by]
     when "name"
       order = params[:order]
       order = "asc" unless %w(asc desc).include?(params[:order])
@@ -581,6 +581,7 @@ private
       # TODO: somehow make the following not cause a filesort...
       "taxa.ancestry || '/' || listed_taxa.taxon_id"
     end
+    find_options[:order] = Arel.sql( options_order )
     find_options
   end
 

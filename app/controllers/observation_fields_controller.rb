@@ -13,7 +13,7 @@ class ObservationFieldsController < ApplicationController
     @order_by = ( ORDER_BY_FIELDS & [params[:order_by]] ).first || ORDER_BY_FIELDS.first
     @order = ( %w(asc desc) & [params[:order]] ).first || "desc"
     scope = if @order_by == "name"
-      scope.order( "LOWER(name) #{@order} NULLS LAST" )
+      scope.order( Arel.sql( "LOWER(name) #{@order} NULLS LAST" ) )
     else
       scope.order( "#{@order_by} #{@order} NULLS LAST" )
     end

@@ -204,7 +204,7 @@ class ObservationsController < ApplicationController
           joins(:place).
           where([ "taxon_id = ? AND place_id IN (?) AND establishment_means IS NOT NULL",
             taxon.id, @places ]).
-          order("establishment_means IN ('endemic', 'introduced') DESC, places.bbox_area ASC").
+          order( Arel.sql( "establishment_means IN ('endemic', 'introduced') DESC, places.bbox_area ASC" ) ).
           first
         conservation_status_in_place_scope = ConservationStatus.
           where("place_id IN (?)", @places).
@@ -1098,7 +1098,8 @@ class ObservationsController < ApplicationController
     end
     @project = Project.find(params[:project_id].to_i) if params[:project_id]
     if logged_in?
-      @projects = current_user.project_users.joins(:project).includes(:project).order('lower(projects.title)').collect(&:project)
+      @projects = current_user.project_users.joins(:project).includes(:project).
+        order( Arel.sql( "lower(projects.title)" ) ).collect(&:project)
       @project_templates = {}
       @projects.each do |p|
         @project_templates[p.title] = p.observation_fields.order(:position) if @project && p.id == @project.id

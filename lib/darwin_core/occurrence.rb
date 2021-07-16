@@ -12,6 +12,11 @@ module DarwinCore
     # http://tools.gbif.org/dwca-assistant/. Vocabularies that GBIF understands
     # are at https://rs.gbif.org/vocabulary, though it's probably only best to
     # specify one if we're actually adhering to it.
+    ANNOTATION_TERMS = [
+      ["sex", "http://rs.tdwg.org/dwc/terms/sex", nil, "gbif_sex", "http://rs.gbif.org/vocabulary/gbif/sex"],
+      ["lifeStage", "http://rs.tdwg.org/dwc/terms/lifeStage", nil, "gbif_lifeStage", "http://rs.gbif.org/vocabulary/gbif/life_stage"],
+      ["reproductiveCondition", "http://rs.tdwg.org/dwc/terms/reproductiveCondition", nil]
+    ]
     TERMS = [
       %w(id id),
       %w(occurrenceID http://rs.tdwg.org/dwc/terms/occurrenceID),
@@ -55,16 +60,10 @@ module DarwinCore
       %w(rights http://purl.org/dc/terms/rights),
       %w(rightsHolder http://purl.org/dc/terms/rightsHolder),
       %w(inaturalistLogin http://xmlns.com/foaf/0.1/nick)
-    ]
-    ANNOTATION_TERMS = [
-      ["sex", "http://rs.tdwg.org/dwc/terms/sex", nil, "gbif_sex", "http://rs.gbif.org/vocabulary/gbif/sex"],
-      ["lifeStage", "http://rs.tdwg.org/dwc/terms/lifeStage", nil, "gbif_lifeStage", "http://rs.gbif.org/vocabulary/gbif/life_stage"],
-      ["reproductiveCondition", "http://rs.tdwg.org/dwc/terms/reproductiveCondition", nil]
-    ]
+    ] + ANNOTATION_TERMS
     cattr_accessor :annotation_controlled_attributes do
       {}
     end
-    TERMS += ANNOTATION_TERMS
     TERM_NAMES = TERMS.map{|name, uri, default, method| name}
 
     ALA_EXTRA_TERMS = [

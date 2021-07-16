@@ -321,7 +321,7 @@ class UsersController < ApplicationController
       scope = scope.where(conditions)
     end
     if params[:order] == "activity"
-      scope = scope.order("(observations_count + identifications_count + journal_posts_count) desc")
+      scope = scope.order( Arel.sql( "(observations_count + identifications_count + journal_posts_count) desc" ) )
     else
       if exact_ids.blank?
         scope = scope.order("login")

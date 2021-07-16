@@ -350,7 +350,7 @@ class StatsController < ApplicationController
       where( "project_observations.project_id = ?", @project ).
       where( "observations.taxon_id IN (?)", unique_taxon_ids ).
       group( "users.id" ).
-      order( "count(*) DESC" ).
+      order( Arel.sql( "count(*) DESC" ) ).
       limit( 100 )
     if params[:quality] == "research"
       @unique_contributors = @unique_contributors.where ( "observations.quality_grade = 'research'" )
@@ -481,7 +481,7 @@ class StatsController < ApplicationController
     projs = Project.select("projects.*, count(po.observation_id)").
       joins("LEFT JOIN project_observations po ON (projects.id=po.project_id)").
       group(:id).
-      order("count(po.observation_id) desc")
+      order( Arel.sql( "count(po.observation_id) desc" ) )
     projs = if options[:group]
       projs.where("projects.group = ? OR projects.id = ? OR projects.id IN (?)", options[:group], params[:project_id], all_project_ids)
     else

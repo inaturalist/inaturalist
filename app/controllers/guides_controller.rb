@@ -392,7 +392,9 @@ class GuidesController < ApplicationController
   end
 
   def user
-    @guides = current_user.editing_guides.page(params[:page]).per_page(500).order("lower(title)")
+    @guides = current_user.editing_guides.page(params[:page]).per_page(500).order(
+      Arel.sql( "lower(title)" )
+    )
     pagination_headers_for(@observations)
     respond_to do |format|
       format.json { render :json => @guides }

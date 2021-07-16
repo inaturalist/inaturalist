@@ -145,7 +145,7 @@ class Project < ApplicationRecord
     latitude = latitude.to_f
     longitude = longitude.to_f
     where("ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude})) < 5").
-    order("ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude}))")
+    order( Arel.sql( "ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude}))" ) )
   }
   scope :from_source_url, lambda {|url| where(source_url: url) }
   scope :in_place, lambda{|place|

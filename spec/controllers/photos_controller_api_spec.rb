@@ -25,11 +25,8 @@ shared_examples_for "a PhotosController" do
     end
     it "should remove a license when license_code is blank string" do
       photo = LocalPhoto.make!( user: user, license: Photo::CC0 )
-      puts "starting update request"
       put :update, format: :json, params: { id: photo.id, photo: { license_code: "" } }
-      puts "finished update request"
       expect( response.response_code ).to eq 200
-      puts "reloading #{photo}"
       photo = Photo.find_by_id( photo.id )
       expect( photo.license ).to eq Photo::COPYRIGHT
     end
