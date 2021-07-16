@@ -858,7 +858,7 @@ zh-TW:
   #photos and taxa
   computer_vision_model: 電腦視覺模型
   #Status of a taxon that the Computer Vision Model can recognize
-  computer_vision_model_included: 包括
+  computer_vision_model_included: 包含在內
   computer_vision_model_included_desc: |
     目前的電腦視覺模型認得此分類群，所以它可能會列在「視覺上相似」的自動建議中。
   #Status of a taxon that the Computer Vision Model cannot yet recognize
@@ -1855,7 +1855,13 @@ zh-TW:
   in_the_past: 在過去
   in_the_past_week: 在過去一週
   inactive: 不活躍
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: 未啟用的
   inactive_taxon: 不起作用的物種分類
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: 未啟用的
   inactive_taxon_concepts_are: 無作用物種分類概念代表著分類方式過時，或是正處於在物種分類更改的階段上。過時概念會保留在維護歷史裡；並兼容於其它合作者的網站
   inappropriate_content: 不適當內容？
   inat_account_action: "%{site_name} &#58;帳號&#58; %{action_name}"
@@ -2002,6 +2008,7 @@ zh-TW:
     hawaiian: 夏威夷語
     hebrew: 希伯來語
     hiligaynon: Hiligaynon 語
+    hungarian: 匈牙利文
     icelandic: 冰島語
     ilokano: 伊洛卡諾語
     italian: 義大利語
@@ -2023,6 +2030,7 @@ zh-TW:
     swedish: 瑞典語
     tagalog: 他加祿語
     tahitian: 大溪地語
+    thai: 泰文
     tokelauan: 托克勞語
     turkish: 土耳其語
     waray_waray: 瓦瑞瓦瑞語
@@ -2099,6 +2107,7 @@ zh-TW:
     eo: 世界語
     es: 西班牙語
     es-AR: 西班牙文 (阿根廷)
+    es-CO: 西班牙文 (哥倫比亞)
     es-MX: 西班牙語 (墨西哥)
     et: 愛沙尼亞語
     eu: 巴斯克語
@@ -2107,6 +2116,7 @@ zh-TW:
     fr-CA: 法文 (加拿大)
     gl: 加利西亞語
     he: 希伯來文
+    hu: 匈牙利
     id: 印尼語
     it: 義大利語
     ja: 日語
@@ -2125,6 +2135,7 @@ zh-TW:
     sk: 斯洛伐克語
     sq: 阿爾巴尼亞
     sv: 瑞典語
+    th: 泰國
     tr: 土耳其語
     uk: 烏克蘭文
     zh-CN: 簡體中文
@@ -4910,6 +4921,9 @@ zh-TW:
           </p>
     flags:
       show:
+        flaggable_content_desc: |
+          標記的內容是被標記的對象在建立標記時之主要文字屬性。
+          只有側展人和管理者才能看到這個。只有管理者才能看到此訊息。
         flags_that_should_not_be_resolved_desc_html: |
           若內容不是垃圾訊息或侵犯版權，請分別解決 <code>spam</code> 與 <code>copyright
           infringement</code> 標記。
@@ -5424,6 +5438,13 @@ zh-TW:
         taxon_spelling_notice_html: |
           請檢查個項目的拼寫。若您拼寫正確，請在 %{search_taxa_url} 搜尋物種。若名稱尚未存在 %{site_name} 資料庫裡。您會需要添加此名稱才能讓大量上傳成功運作。使用在搜尋頁面下方的方框來匯入新名稱。若名稱已提供但套用在多項有效物種分類群裡，請嘗試使用更多或更少的特定名稱，來符合單一的物種分類。
       collection_project_changed_for_trusting_member:
+        #Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          既然您已經把<a
+          href="%{obs_url}">您的觀察紀錄</a>之隱藏座標開放給此專案來存取，
+          現在管理員可能在您信賴此專案的同時，可存取更多的隱藏座標。
+          您應該檢視管理員列表還有專案的需求，
+          以確認您信賴此專案來存取您的觀察紀錄座標。
         #Followed by the project icon and a link to the project
         requirements_have_changed: |-
           以下專案的觀察紀錄需求最近已更動：
@@ -5761,6 +5782,12 @@ zh-TW:
           您已更改專案需求或是開啟使用者信任。這將會提醒已經提供隱藏座標並信任此專案的所有成員，因此他們有機會能決定在新的條件下他們是否繼續信任此專案。
         umbrella_project_features: "綜合專案特性："
         unique_url_for_outreach: 用於推廣的獨一 URL 地址
+        use_this_for_a_time_limited_event: |
+          使用這個來設定限時活動、生物速查，或是季節性的專案。
+          選擇觀察紀錄必須在單一日期、日期範圍或是一年中的特定月份(不限定年份)中。
+          如果使用日期範圍的話，請確認您選擇正確的時間和時區，
+          或是刪除時間/時區的文字來包含一整天。如果您想要限制此專案僅有單一日期的話，
+          您可以把開始日期和結束日期留空
         users_can_follow_your_project: 使用者可透過日誌發布文章的更新來關注您的專案
         use_this_link_to_create_html: |
           使用<a href="%{url}">此連結</a>來改以建立傳統專案。
@@ -5939,6 +5966,10 @@ zh-TW:
         growth_by_country_desc_html: |
           成長是在哪裡發生的呢？成長的結果會複雜難懂，是因為按國家來區分成長會是比例失真的，此地圖和圖表便是用來嘗試突破這一點。在此我們預設上選擇忽略美國，並使用對數尺度來顯著出與其它國家之間的差異。如果國家被塗成黑色，這代表貢獻程度不到百分比、貢獻沒有成長、或是貢獻比去年少（可將游標覆蓋到國家上來查看更多詳情）。 <strong>"% 總成長"</strong>代表著某一特定國家在全球成長裡所佔百分比的，例如假設在 2018 年有 20 個觀察、2017 有 10 個觀察，這代表成長了 10 個觀察，假如當中有 5 個觀察是來自於非洲的貝南，那貝南就貢獻了 50% 總成長。<strong>"% 成長"</strong>代表某國家此年度觀察數量與去年觀察數量增加的百分比，假如寮國去年有 10 個觀察而今年是 20 個，這代表有 100% 的成長，其中如果去年是 0 個觀察而今年是 1 個，會呈現為無限百分比成長。
         growth_by_country_title: 按國家區分的成長
+        growth_desc: |
+          「觀察紀錄」和「分類群」的圖表中也許會包含不屬於%{site_name}
+          的人提供的關於%{site_name}可見的資料，
+          而「使用者」圖表僅顯示目前棣屬於%{site_name}中的使用者加入 iNaturalist 的日期。
         growth_in_year_obs: "在%{year}的成長（觀察紀錄）"
         growth_title: 成長
         #Label when a mark on a chart has a value that is too small to
