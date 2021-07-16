@@ -21,6 +21,7 @@
         %thead
           %tr
             %th= t :placement
+            %th= t :sites, default: "Sites"
             %th= t :start
             %th= t :end
             %th= t :body
@@ -28,6 +29,7 @@
           - @announcements.each do |announcement|
             %tr
               %td= h announcement.placement
+              %td= announcement.site_ids.empty? ? t(:all)  : announcement.sites.map(&:name).join(", ")
               %td=l announcement.start
               %td=l announcement.end
               %td
