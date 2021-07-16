@@ -252,6 +252,7 @@ hu:
     life: Élet
   all_taxa_: Minden taxon
   all_updates: Minden frissítés
+  already_have_an_account_log_in_html: Van már fiókod? <strong>Jelentkezz be.</strong>
   amphibians: kétéltűek
   and: és
   annotations: Megjelölések
@@ -434,6 +435,7 @@ hu:
   copyright:
     all_rights_reserved: "(c) %{name}, minden jog fenntartva"
   copyright_info_and_more: Szerzői jogi információk és egyebek
+  create_an_account: Fiók létrehozása
   create_export: Exportálás létrehozása
   created_by: Létrehozta
   csv: CSV
@@ -638,6 +640,7 @@ hu:
   join: Csatlakozás
   #Prompt to join a specific project
   join_project?: '%{project} projekthez csatlakozás'
+  join_the_largest_group_of_naturalists_in_the_world: Csatlakozz a világ legnagyobb természetjáró csoportjához!
   joined_projects: Tagságaid
   joined_with_date: "Csatlakozás: %{date}"
   journal: Hírmondó
@@ -691,6 +694,7 @@ hu:
   location_is_public: A hely publikus
   location_is_obscured: A hely kitakart
   location_specified: Hely megadva
+  log_in: Bejelentkezés
   log_in_or_sign_up_to_add_comments_html: |
     Megjegyzés hozzáadásához <a href="/login">jelentkezz be</a> vagy <a href="/signup">regisztrálj</a>.
   login_slash_username: Login / felhasználónév
@@ -846,6 +850,8 @@ hu:
   overview: Áttekintés
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Szülő
+  password: Jelszó
+  password_confirmation: 'Jelszó megerősítése'
   people: Emberek
   person: Személy
   per_page: "Oldalanként"
@@ -853,6 +859,8 @@ hu:
   photo_licensing: Fényképlicenc
   photos_of_taxon_html: "%{taxon} képei"
   photos_or_sounds: Fényképek vagy hangok
+  pi_consent_label: |
+    Beleegyezem, hogy az iNaturalist korlátozott személyes információkat tároljon és dolgozzon fel rólam a fiókom kezelése érdekében.
   place: Hely
   place_geo:
     geo_planet_place_types:
@@ -986,6 +994,7 @@ hu:
   sign_in_with_provider: "Bejelentkezés %{provider}-profillal"
   sign_in_with_google: Bejelentkezés Google-fiókkal
   sign_out: Kijelentkezés
+  sign_up: Regisztráció
   similar_species: Hasonló fajok
   similar_taxa: Hasonló taxonok
   #Journal post formatting option
@@ -1053,6 +1062,8 @@ hu:
   top_identifiers_of_taxon: '%{taxon} taxon legaktívabb meghatározói'
   top_observer: Legtöbbször megfigyelte
   top_observers: Legtöbbször megfigyelte
+  tos_privacy_guidelines_label: |
+    Egyetértek a <a href="/terms" target="_blank">Felhasználási feltételekkel</a> és az <a href="/privacy" target="_blank">Adatvédelmi nyilatkozattal</a>, és átolvastam a <a href="/pages/community+guidelines" target="_blank">Közösségi irányelveket</a>.
   total_observations: Minden megfigyelés
   trending: Népszerű
   trends: Trendek
@@ -1125,6 +1136,7 @@ hu:
   x_journal_new_post: "%{user} hírmondója • Új bejegyzés"
   'yes': "Igen"
   yes_i_want_to_join: Igen, szeretnék csatlakozni
+  yes_license_my_observations_so_scientists_can_use: Engedélyezem, hogy a megfigyeléseimet, a képeket és a hangokat a tudósok felhasználják (ajánlott).
   yesterday: Tegnap
   you_cant_delete_observation_fields_that_people_are_using: "Nem lehet használatban lévő adatmezőket törölni"
   you_faved_this: A kedvenced!
