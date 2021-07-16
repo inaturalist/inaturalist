@@ -102,16 +102,27 @@ class PlacesController < ApplicationController
   end
   
   def search
-    search_for_places
+    @q = params[:q].to_s.sanitize_encoding
+    if params[:limit]
+      @limit ||= params[:limit].to_i
+      @limit = 100 if @limit > 100
+    else
+      @limit = 30
+    end
+    response = INatAPIService.get(
+      "/search",
+      q: @q,
+      per_page: @limit,
+      sources: "places",
+      ttl: logged_in? ? "-1" : nil
+    )
+    places = Place.where( id: response.results.map{|r| r["record"]["id"]} ).index_by(&:id)
+    @places = WillPaginate::Collection.create( response["page"] || 1, response["per_page"] || 0, response["total_results"] || 0 ) do |pager|
+      pager.replace( response.results.map{|r| places[r["record"]["id"]]} )
+    end
+    Place.preload_associations(@places, :place_geometry_without_geom)
     respond_to do |format|
-      format.html do
-        if @places.size == 1
-          redirect_to @places.first
-        end
-      end
-      format.json do
-        render(:json => @places.to_json(:methods => [ :html, :kml_url ]))
-      end
+      format.html
     end
   end
   
