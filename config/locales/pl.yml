@@ -332,7 +332,7 @@ pl:
   add_countries: Dodaj kraje
   add_custom_project_fields: Dodaj własne pola projektu
   add_edit_flags: Dodaj/Edytuj zgłoszenia
-  add_editor: Dodaj edytor
+  add_editor: Dodaj edytora
   add_description: "Dodaj %{description_name}"
   add_from_your_observations: Dodaj ze swoich obserwacji
   add_link: Dodaj link
@@ -722,6 +722,7 @@ pl:
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atrybut
+  attribution: Uznanie autorstwa
   authority_list:
     iucn_red_list: Czerwona księga gatunków zagrożonych
     natureserve: NatureServe
@@ -970,6 +971,8 @@ pl:
   #species in the taxon and place it purports to
   comprehensive?: Kompleksowy?
   comprehensive_list: Kompleksowa lista
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Oczekujący
   configure: Konfiguruj
   configure_a_widget_to_show: Skonfiguruj widget, aby pokazać obserwacje z %{site_name} na swojej stronie lub blogu. Być może będziesz musiał uwzględnić CSS w <code>&lt;nagłówku</code> HTMLa. Jeśli potrzebujesz, możesz dostosować CSS do własnych potrzeb.
   confirm: Potwierdź
@@ -1539,6 +1542,7 @@ pl:
   flag_for_check_list_title_html: |
     Zgłoszenie dla checklisty: %{title}
   flag_for_comment_id_html: Zgłoszenie dla <a href="%{url}">Komentarza %{id}</a>
+  flag_for_comment_id_deleted: Zgłoszenie dla komentarza %{id} (usunięte)
   flag_for_curation: Zgłoś do naprawy
   flag_for_guide_title_html: |
     Zgłoszenie dla przewodnika: %{title}
@@ -1555,6 +1559,7 @@ pl:
     Zgłoszenie dla posta: %{title}
   flag_for_project_title_html: |
     Zgłoszenie dla projektu: %{title}
+  flag_for_guide_section_id_html: Zgłoszenie dla <a href="%{url}">Sekcji przewodników %{id}</a>
   flag_for_sound_id_html: Flaga dla <a href="%{url}">Dźwięku %{id}</a>
   flag_for_taxon_title_html: |
     Zgłoszenie dla taksonu: %{title}
@@ -1909,6 +1914,7 @@ pl:
     hawaiian: Hawajski
     hebrew: Hebrajski
     hiligaynon: Hiligaynon
+    hungarian: Węgierski
     icelandic: Islandzki
     ilokano: Iloko
     italian: Włoski
@@ -1930,6 +1936,7 @@ pl:
     swedish: Szwedzki
     tagalog: Tagalski
     tahitian: Tahitański
+    thai: Tajski
     tokelauan: Tokelau
     turkish: Turecki
     waray_waray: Warajski
@@ -1994,6 +2001,7 @@ pl:
     eo: Esperanto
     es: Hiszpański
     es-AR: Hiszpański (Argentyna)
+    es-CO: Hiszpański (Kolumbia)
     es-MX: Hiszpański (Meksyk)
     et: Estoński
     eu: Baskijski
@@ -2002,6 +2010,7 @@ pl:
     fr-CA: Francuski (Kanada)
     gl: Galicyjski
     he: Hebrajski
+    hu: Węgierski
     id: Indonezyjski
     it: Włoski
     ja: Japoński
@@ -2020,6 +2029,7 @@ pl:
     sk: Słowacki
     sq: Albański
     sv: Szwedzki
+    th: Tajski
     tr: Turecki
     uk: Ukraiński
     zh-CN: Chiński (uproszczony)
@@ -2484,6 +2494,7 @@ pl:
     observe_panel_body_p1_local: Potrzebujesz inspiracji? Oto kilka organizmów obserwowanych w pobliżu...
     follow_panel_title_local: Obserwuj przyrodników z okolicy
     youve_got_updates_panel_title: Masz aktualizacje!
+  one_by_one: "Jeden po drugim"
   one_of_your_lists: "jedna z Twoich list..."
   only_a_project_manager_can_add: Tylko menedżer projektu może dodać status kuratora projektu
   only_administrators_may_access_that_page: Tylko administratorzy mogą uzyskać dostęp do tej strony
@@ -3228,7 +3239,7 @@ pl:
   seek: Seek
   seen_nearby: Widziany w pobliżu
   select: Wybierz
-  select_all: Wybierz wszystkie
+  select_all: Zaznacz wszystkie
   select_one_or_more_photos: 'Wybierz jedno lub więcej zdjęć'
   select_none: Odznacz wszystkie
   select_observations_to_edit: Wybierz obserwacje do edycji...
