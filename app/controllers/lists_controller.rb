@@ -197,7 +197,7 @@ class ListsController < ApplicationController
         end
         format.js do
           render :status => :unprocessable_entity, 
-            :text => "That taxon isn't in this list."
+            :plain => "That taxon isn't in this list."
         end
         format.json do
           render :status => :unprocessable_entity, :json => {:error => "That taxon isn't in this list."}
@@ -287,10 +287,10 @@ class ListsController < ApplicationController
       format.js do
         if @done
           flash[:notice] = messages[:done]
-          render :status => :ok, :text => @messages[:done]
-        elsif @error then render :status => :unprocessable_entity, :text => "#{@messages[:error]}: #{@job.last_error}"
-        elsif @timeout then render :status => :request_timeout, :text => @messages[:timeout]
-        else render :status => :created, :text => @messages[:processing]
+          render :status => :ok, :plain => @messages[:done]
+        elsif @error then render :status => :unprocessable_entity, :plain => "#{@messages[:error]}: #{@job.last_error}"
+        elsif @timeout then render :status => :request_timeout, :plain => @messages[:timeout]
+        else render :status => :created, :plain => @messages[:processing]
         end
       end
     end

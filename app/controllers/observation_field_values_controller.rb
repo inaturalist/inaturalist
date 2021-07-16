@@ -131,7 +131,7 @@ class ObservationFieldValuesController < ApplicationController
     end
     respond_to do |format|
       format.any do
-        render status: status, text: errors ? errors.join( ", " ) : nil
+        render status: status, plain: errors ? errors.join( ", " ) : nil
       end
       format.json do 
         render status: status, json: errors ? { errors: errors } : nil

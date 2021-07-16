@@ -144,7 +144,7 @@ class GuidesController < ApplicationController
     unless @guide.published? || @guide.editable_by?(current_user)
       respond_to do |format|
         format.html { render_404 }
-        format.any(:xml, :ngz) { render :status => 404, :text => ""}
+        format.any(:xml, :ngz) { render :status => 404, :plain => ""}
         format.json { render :json => {:error => "Not found"}, :status => 404 }
       end
       return

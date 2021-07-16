@@ -24,7 +24,7 @@
   :javascript
     var PLACE = #{json_escape @place.to_json.html_safe},
         SHOW_PLACE_GEOMETRY = true,
-        WIKIPEDIA_DESCRIPTION_URL = #{url_for(:action => "wikipedia", :id => @place.wikipedia_name).inspect.html_safe},
+        WIKIPEDIA_DESCRIPTION_URL = #{places_wikipedia_url( @place.wikipedia_name ).inspect.html_safe},
         FLICKR_API_KEY = #{CONFIG.flickr.key.inspect.html_safe},
         NEARBY_PLACES = #{json_escape @nearby_places.to_json.html_safe},
         INSIDE_PLACES = #{json_escape @inside_places.to_json.html_safe}

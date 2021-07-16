@@ -1966,27 +1966,27 @@ class ObservationsController < ApplicationController
 
   def email_export
     unless flow_task = current_user.flow_tasks.find_by_id(params[:id])
-      render status: :unprocessable_entity, text: "Flow task doesn't exist"
+      render status: :unprocessable_entity, plain: "Flow task doesn't exist"
       return
     end
     if flow_task.user_id != current_user.id
-      render status: :forbidden, text: "You don't have permission to do that"
+      render status: :forbidden, plain: "You don't have permission to do that"
       return
     end
     if flow_task.outputs.exists?
       Emailer.observations_export_notification(flow_task).deliver_now
-      render status: :ok, text: ""
+      render status: :ok, plain: ""
       return
     elsif flow_task.error
       Emailer.observations_export_failed_notification(flow_task).deliver_now
-      render status: :ok, text: ""
+      render status: :ok, plain: ""
       return
     end
     flow_task.options = flow_task.options.merge(:email => true)
     if flow_task.save
-      render status: :ok, text: ""
+      render status: :ok, plain: ""
     else
-      render status: :unprocessable_entity, text: flow_task.errors.full_messages.to_sentence
+      render status: :unprocessable_entity, plain: flow_task.errors.full_messages.to_sentence
     end
   end
 
@@ -2787,7 +2787,7 @@ class ObservationsController < ApplicationController
   
   def render_observations_partial(partial)
     if @observations.empty?
-      render(:text => '')
+      render(:plain => '')
     else
       render(partial: "partial_renderer",
         locals: { partial: partial, collection: @observations }, layout: false)
@@ -2826,7 +2826,7 @@ class ObservationsController < ApplicationController
         Rails.cache.write(cache_key, job.id, :expires_in => 1.hour)
       end
       prevent_caching
-      render :status => :accepted, :text => "This file takes a little while to generate. It should be ready shortly at #{request.url}"
+      render :status => :accepted, :plain => "This file takes a little while to generate. It should be ready shortly at #{request.url}"
     end
   end
 

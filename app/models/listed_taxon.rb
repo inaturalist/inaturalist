@@ -749,10 +749,6 @@ class ListedTaxon < ApplicationRecord
 
   def expire_caches
     ctrl = ActionController::Base.new
-    ctrl.expire_fragment(List.icon_preview_cache_key(list_id))
-    ListedTaxon::ORDERS.each do |order|
-      ctrl.expire_fragment(FakeView.url_for(:controller => 'observations', :action => 'add_from_list', :id => list_id, :order => order))
-    end
     if !place_id.blank? && manually_added
       I18N_SUPPORTED_LOCALES.each do |locale|
         ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place_id, locale: locale ) )
@@ -764,6 +760,10 @@ class ListedTaxon < ApplicationRecord
       ctrl.expire_page FakeView.list_show_formatted_view_path(list_id, :format => 'csv', :view_type => 'taxonomic')
       ctrl.expire_page FakeView.list_path(list, :format => 'csv')
       ctrl.expire_page FakeView.list_show_formatted_view_path(list, :format => 'csv', :view_type => 'taxonomic')
+      ctrl.expire_fragment(List.icon_preview_cache_key(list_id))
+      ListedTaxon::ORDERS.each do |order|
+        ctrl.expire_fragment(FakeView.url_for(:controller => 'observations', :action => 'add_from_list', :id => list_id, :order => order))
+      end
     end
     true
   end

@@ -419,6 +419,7 @@ Rails.application.routes.draw do
     end
     collection do
       get 'synonyms'
+      get :autocomplete
     end
   end
   resources :taxon_names do
@@ -513,6 +514,7 @@ Rails.application.routes.draw do
   get 'places/guide' => 'places#guide', :as => :idendotron_guide
   get 'places/cached_guide/:id' => 'places#cached_guide', :as => :cached_place_guide
   get 'places/autocomplete' => 'places#autocomplete', :as => :places_autocomplete
+  get 'places/wikipedia/:id' => 'places#wikipedia', :as => :places_wikipedia
   resources :places do
     collection do
       get :planner

@@ -190,7 +190,7 @@ describe ObservationsController do
     end
 
     it "should 404 for absurdly large ids" do
-      get :show, params: { id: "389299563_507aed5ae4_s.jpg" }
+      get :show, params: { id: 123123123123123123 }
       expect( response ).to be_not_found
     end
 

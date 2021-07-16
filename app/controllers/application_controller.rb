@@ -592,7 +592,7 @@ class ApplicationController < ActionController::Base
         redirect_back_or_default( root_url )
       end
       format.js do
-        render :status => :unprocessable_entity, :text => msg
+        render :status => :unprocessable_entity, :plain => msg
       end
       format.json do
         render :status => :unprocessable_entity, :json => {:error => msg}
@@ -611,7 +611,7 @@ class ApplicationController < ActionController::Base
         redirect_to observations_path
       end
       format.js do
-        render status: :unprocessable_entity, text: msg
+        render status: :unprocessable_entity, plain: msg
       end
       format.json do
         render status: :unprocessable_entity, json: { error: msg }

@@ -689,7 +689,7 @@ class TaxaController < ApplicationController
         end
         write_fragment(key, content)
       end
-      render :layout => false, :text => content
+      render :layout => false, :plain => content
     else
       render :layout => false, :partial => "photos", :locals => {
         :photos => @photos
@@ -1147,7 +1147,7 @@ class TaxaController < ApplicationController
       error_text ||= "Could't retrieve the Wikipedia " + 
         "summary for #{@taxon.name}.  Make sure there is actually a " + 
         "corresponding article on Wikipedia."
-      render :status => 404, :text => error_text
+      render :status => 404, :plain => error_text
     else
       render :plain => summary
     end
@@ -1197,7 +1197,7 @@ class TaxaController < ApplicationController
       end
       format.js do
         if @error_message
-          render :status => :unprocessable_entity, :text => @error_message
+          render :status => :unprocessable_entity, :plain => @error_message
         else
           render :plain => "Taxon grafted to #{@taxon.parent.name}"
         end

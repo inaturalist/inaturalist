@@ -119,7 +119,7 @@ module Shared::ListsModule
           if path
             render :file => path
           else
-            render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
+            render :status => :accepted, :plain => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
           end
         else
           job_id = Rails.cache.read(@list.generate_csv_cache_key(view: @view, user_id: current_user.id))
@@ -137,7 +137,7 @@ module Shared::ListsModule
             Rails.cache.write(@list.generate_csv_cache_key(view: @view, user_id: current_user.id), job.id, :expires_in => 1.hour)
           end
           prevent_caching
-          render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
+          render :status => :accepted, :plain => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
         end
       end
       

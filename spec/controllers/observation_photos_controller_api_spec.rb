@@ -102,7 +102,7 @@ shared_examples_for "an ObservationPhotosController" do
       it "should create an observation photo" do
         o = Observation.make!( user: user )
         expect( o.observation_photos.size ).to eq 0
-        put :update, format: :json, params: { id: nil, observation_photo: { observation_id: o.id }, file: file }
+        post :create, format: :json, params: { observation_photo: { observation_id: o.id }, file: file }
         expect( response ).to be_successful
         o.reload
         expect( o.observation_photos.size ).to eq 1
@@ -110,7 +110,7 @@ shared_examples_for "an ObservationPhotosController" do
       it "should not create an observation photo if the user does not own the observation" do
         o = Observation.make!
         expect( o.observation_photos.size ).to eq 0
-        put :update, format: :json, params: { id: nil, observation_photo: { observation_id: o.id }, file: file }
+        post :create, format: :json, params: { observation_photo: { observation_id: o.id }, file: file }
         expect( response ).not_to be_successful
         expect( response.code ).not_to eq 500
         o.reload
