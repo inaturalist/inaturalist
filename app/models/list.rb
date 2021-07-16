@@ -183,7 +183,7 @@ class List < ApplicationRecord
 
   def self.icon_preview_cache_key(list)
     list_id = list.is_a?(List) ? list.id : list
-    FakeView.url_for(:controller => "lists", :action => "icon_preview", :list_id => list_id, :locale => I18n.locale)
+    FakeView.icon_preview_list_url( list_id, locale: I18n.locale )
   end
 
 end

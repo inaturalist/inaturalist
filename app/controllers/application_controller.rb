@@ -492,7 +492,7 @@ class ApplicationController < ActionController::Base
       end
     end
     
-    update_params = update_params.reject{|k,v| v.blank?} if update_params
+    update_params = update_params.to_h.reject{|k,v| v.blank?} if update_params
     if update_params.is_a?(Hash) && !update_params.empty?
       # prefs.update_attributes(update_params)
       if logged_in?

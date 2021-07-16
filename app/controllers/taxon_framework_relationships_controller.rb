@@ -193,7 +193,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
     local_params = taxon_framework_relationship_params
     taxa_attributes = local_params["taxa_attributes"]
     local_params.delete( "taxa_attributes" )
-    local_params.update( updater_id: current_user.id )
+    local_params[:updater_id] = current_user.id
     @taxon_framework_relationship = TaxonFrameworkRelationship.find( params[:id] )
     
     if taxa_attributes

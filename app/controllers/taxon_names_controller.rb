@@ -94,7 +94,7 @@ class TaxonNamesController < ApplicationController
   
   def update
     # Set the last editor
-    params[:taxon_name].update( updater_id: current_user.id )
+    params[:taxon_name][:updater_id] = current_user.id
     
     respond_to do |format|
       if @taxon_name.update_attributes( params[:taxon_name] )

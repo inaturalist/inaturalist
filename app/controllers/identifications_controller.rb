@@ -203,7 +203,7 @@ class IdentificationsController < ApplicationController
   
   def update
     @identification.assign_attributes( params[:identification] )
-    if @identification.body_changed? && @identification.hidden?
+    if @identification.will_save_change_to_body? && @identification.hidden?
       respond_to do |format|
         msg = t(:cant_edit_or_delete_hidden_content)
         format.html do

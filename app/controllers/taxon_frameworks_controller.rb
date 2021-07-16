@@ -46,7 +46,7 @@ class TaxonFrameworksController < ApplicationController
       render action: :edit
       return
     end
-    pars = taxon_framework_params.update( updater_id: current_user.id )
+    pars = taxon_framework_params[:updater_id] = current_user.id
     if @taxon_framework.update_attributes(pars)
       redirect_to taxonomy_details_for_taxon_path( @taxon_framework.taxon )
     else

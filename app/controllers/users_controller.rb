@@ -679,7 +679,7 @@ class UsersController < ApplicationController
     preferred_project_addition_by_was = @display_user.preferred_project_addition_by
 
     @display_user.assign_attributes( permit_params ) unless permit_params.blank?
-    place_id_changed = @display_user.place_id_changed?
+    place_id_changed = @display_user.will_save_change_to_place_id?
     prefers_no_place_changed = @display_user.prefers_no_place_changed?
     prefers_no_site_changed = @display_user.prefers_no_site_changed?
     if @display_user.save

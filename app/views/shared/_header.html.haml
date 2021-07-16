@@ -39,7 +39,7 @@
           - if @site && !@site.discourse_url.blank? && @site.discourse_url && !@skip_external_connections
             %li= link_to t(:forum), @site.discourse_url
           - if logged_in?
-            - user_projects = current_user.project_users.joins(:project).includes(:project).limit(7).order("(projects.user_id = #{current_user.id}) DESC, projects.updated_at ASC").map{|pu| pu.project}.sort_by{|p| p.title.downcase}
+            - user_projects = current_user.header_projects
             - unless user_projects.blank?
               %li.divider{role: "separator"}
               %li.dropdown-header=t :your_recent_projects

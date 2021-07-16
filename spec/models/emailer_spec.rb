@@ -47,7 +47,7 @@ describe Emailer, "updates_notification" do
   describe "with a site" do
     before do
       @site = Site.make!(:preferred_locale => "es-MX")
-      expect(@site.logo_email_banner).to receive(:url).at_least(:once).and_return("foo.png")
+      expect(@site.logo_email_banner).to receive(:url).at_least(:once).and_return("bird.png")
       @user.site = @site
       @user.save!
     end
@@ -172,7 +172,7 @@ describe Emailer, "bulk_observation_success" do
   describe "with a site" do
     before do
       @site = Site.make!( preferred_locale: "es-MX", name: "Superbo" )
-      expect( @site.logo_email_banner ).to receive(:url).and_return( "foo.png" )
+      expect( @site.logo_email_banner ).to receive(:url).and_return( "bird.png" )
       user.site = @site
       user.save!
     end

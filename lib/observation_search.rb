@@ -76,7 +76,7 @@ module ObservationSearch
 
     def apply_pagination_options(params, options={})
       params ||= { }
-      search_params = params.clone.symbolize_keys
+      search_params = params.to_h.symbolize_keys
       search_params[:page] = search_params[:page].to_i
       # don't allow sub 0 page
       search_params[:page] = 1 if search_params[:page] <= 0

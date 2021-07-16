@@ -119,7 +119,7 @@
               <% %w(small medium large original).each do |size| %>
                 <%- next if @photo.send("#{size}_url").blank? -%>
                 <li>
-                  <%= link_to t( "photos_size.#{size}", default: t( size ) ), url_for( size: size ) %>
+                  <%= link_to t( "photos_size.#{size}", default: t( size ) ), photo_url( @photo, size: size ) %>
                 </li>
               <% end -%>
             </ul>

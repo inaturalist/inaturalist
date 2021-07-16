@@ -100,7 +100,7 @@ const Profile = ( {
         </SettingsItem>
         <SettingsItem header={I18n.t( "bio" )} htmlFor="user_description">
           <div className="text-muted help-text">{I18n.t( "bio_description" )}</div>
-          <textarea id="user_description" className="form-control user-description" value={profile.description} name="description" onChange={handleInputChange} />
+          <textarea id="user_description" className="form-control user-description" value={profile.description || ""} name="description" onChange={handleInputChange} />
         </SettingsItem>
         <SettingsItem header={I18n.t( "badges" )} htmlFor="user_prefers_monthly_supporter_badge">
           <CheckboxRowContainer
