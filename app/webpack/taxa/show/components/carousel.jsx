@@ -65,13 +65,13 @@ class Carousel extends React.Component {
             className="nav-btn prev-btn"
             disabled={this.state.currentIndex === 0 || this.state.sliding }
             onClick={ ( ) => this.showPrev( ) }
-            title={ I18n.t( "prev" ) }
+            title={ I18n.t( "previous_taxon_short" ) }
           />
           <Button
             className="nav-btn next-btn"
             disabled={this.state.currentIndex >= this.props.items.length - 1  || this.state.sliding}
             onClick={ ( ) => this.showNext( ) }
-            title={ I18n.t( "next" ) }
+            title={ I18n.t( "next_taxon_short" ) }
           />
         </div>
       );

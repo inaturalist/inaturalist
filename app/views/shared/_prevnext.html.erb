@@ -9,8 +9,10 @@
     <% if prev_item %>
       <a id="prevlink" href="<%= prev_url %>">
         <span class="arrow">&lsaquo;</span>
-        <%= t(:previous) %>
-        <div class="title">            
+        <%# t :previous_post_short %>
+        <%# t :previous_date_short %>
+        <%=t "previous_#{prev_item.class.name.parameterize.underscore}_short", default: t(:prev) %>
+        <div class="title">
           <div><%= prev_title %></div>
         </div>
       </a>
@@ -19,11 +21,13 @@
     <% end %>
   </div>
 
-  <div class="last column span-3">        
+  <div class="last column span-3">
     <% if next_item %>
       <a id="nextlink" href="<%= next_url %>">
         <span class="arrow">&rsaquo;</span>
-        <%= t(:next) %>
+        <%# t :next_post_short %>
+        <%# t :next_date_short %>
+        <%=t "next_#{next_item.class.name.parameterize.underscore}_short", default: t(:next) %>
         <div class="title">
           <div><%= next_title %></div>
         </div>

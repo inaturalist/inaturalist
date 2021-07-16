@@ -497,12 +497,12 @@ class ObservationModal extends React.Component {
       >
         <div className="nav-buttons">
           { hidePrevNext ? null : (
-            <Button alt={I18n.t( "previous" )} className="nav-button" onClick={( ) => showPrevObservation( )}>
+            <Button alt={I18n.t( "previous_observation" )} className="nav-button" onClick={( ) => showPrevObservation( )}>
               &lsaquo;
             </Button>
           ) }
           { hidePrevNext ? null : (
-            <Button alt={I18n.t( "next" )} className="next nav-button" onClick={( ) => showNextObservation( )}>
+            <Button alt={I18n.t( "next_observation" )} className="next nav-button" onClick={( ) => showNextObservation( )}>
               &rsaquo;
             </Button>
           ) }

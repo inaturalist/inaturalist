@@ -366,14 +366,14 @@ class Suggestions extends React.Component {
                   >
                     <i className="fa fa-chevron-circle-left" />
                     { " " }
-                    { I18n.t( "prev" ) }
+                    { I18n.t( "previous_taxon_short" ) }
                   </Button>
                   <Button
                     disabled={nextTaxon === null}
                     onClick={( ) => setDetailTaxon( nextTaxon )}
                     className="next"
                   >
-                    { I18n.t( "next" ) }
+                    { I18n.t( "next_taxon_short" ) }
                     { " " }
                     <i className="fa fa-chevron-circle-right" />
                   </Button>
