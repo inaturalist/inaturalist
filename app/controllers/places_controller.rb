@@ -112,6 +112,7 @@ class PlacesController < ApplicationController
     response = INatAPIService.get(
       "/search",
       q: @q,
+      page: params[:page].to_i <= 0 ? 1 : params[:page].to_i,
       per_page: @limit,
       sources: "places",
       ttl: logged_in? ? "-1" : nil

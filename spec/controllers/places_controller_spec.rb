@@ -196,6 +196,22 @@ describe PlacesController do
     let(:another_place) { make_place_with_geom(:name => 'Norway') }
     it "should return results in HTML" do
       expect( place ).not_to be_blank
+      response_json = <<-JSON
+        {
+          "results": [
+            {
+              "record": {
+                "id": #{place.id}
+              }
+            }
+          ]
+        }
+      JSON
+      stub_request(:get, /#{INatAPIService::ENDPOINT}/).to_return(
+        status: 200,
+        body: response_json,
+        headers: { "Content-Type" => "application/json" }
+      )
       get :search, q: place.name
       expect( response.content_type ).to eq "text/html"
     end
