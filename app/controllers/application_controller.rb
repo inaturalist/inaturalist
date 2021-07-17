@@ -471,12 +471,6 @@ class ApplicationController < ActionController::Base
     }
     @places = Place.elastic_paginate(search_params)
     Place.preload_associations(@places, :place_geometry_without_geom)
-    # if logged_in? && @places.blank? && !params[:q].blank?
-    #   if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
-    #     new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid, user: current_user)}.compact
-    #     @places = Place.where("id in (?)", new_places.map(&:id).compact).page(1).to_a
-    #   end
-    # end
   end
   
   # Get current_user's preferences, prefs in the session, or stash new prefs in the session

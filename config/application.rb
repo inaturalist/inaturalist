@@ -123,9 +123,6 @@ USER_INTEGRITY_PRIORITY = 2     # maintains data integrity for stuff user's care
 INTEGRITY_PRIORITY = 3          # maintains data integrity for everything else, needs to happen, eventually
 OPTIONAL_PRIORITY = 4           # inconsequential stuff like updating wikipedia summaries
 
-# Yahoo Developer Network
-# GeoPlanet.appid = CONFIG.yahoo_dev_network.app_id
-
 # flickr api keys - these need to be set before Flickraw gets included
 FlickRaw.api_key = CONFIG.flickr.key
 FlickRaw.shared_secret = CONFIG.flickr.shared_secret

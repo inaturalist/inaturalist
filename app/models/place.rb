@@ -85,9 +85,7 @@ class Place < ApplicationRecord
   def should_generate_new_friendly_id?
     name_changed?
   end
-  
-  # Place to put a GeoPlanet response to avoid re-querying
-  attr_accessor :geoplanet_response
+
   attr_accessor :html
 
   FLICKR_PLACE_TYPES = ActiveSupport::OrderedHash.new
@@ -95,6 +93,9 @@ class Place < ApplicationRecord
   FLICKR_PLACE_TYPES[:region]    = 8 # Flickr regions are equiv to GeoPlanet "states", at least in the US
   FLICKR_PLACE_TYPES[:county]    = 9
   FLICKR_PLACE_TYPES[:locality]  = 7 # Flickr localities => GeoPlanet towns
+  # GeoPlanet was a place API offered by Yahoo early in iNat's existence, but
+  # they removed it some time around 2016. We still have places with GeoPlanet
+  # place type codes, hence these constants
   REJECTED_GEO_PLANET_PLACE_TYPE_CODES = [
     1,    # Building
     3,    # Nearby Building
@@ -390,89 +391,6 @@ class Place < ApplicationRecord
     return false if !admin_level.nil? && !user.is_admin?
     false
   end
-
-  # TODO Rails 5: Remove all geoplanet code. The api hasn't existed for many years
-  # Import a place from Yahoo GeoPlanet using the WOEID (Where On Earth ID)
-  def self.import_by_woeid(woeid, options = {})
-    # if existing = Place.find_by_woeid(woeid)
-    #   return existing
-    # end
-    
-    # begin
-    #   ydn_place = GeoPlanet::Place.new(woeid.to_i)
-    # rescue GeoPlanet::NotFound => e
-    #   Rails.logger.error "[ERROR] #{e.class}: #{e.message}"
-    #   return nil
-    # end
-    # place = Place.new_from_geo_planet(ydn_place)
-    # begin
-    #   unless place.save
-    #     Rails.logger.error "[ERROR #{Time.now}] place [#{place.name}], ancestry: #{place.ancestry}, errors: #{place.errors.full_messages.to_sentence}"
-    #     return
-    #   end
-    # rescue PG::Error, ActiveRecord::RecordNotUnique => e
-    #   raise e unless e.message =~ /duplicate key/
-    #   return
-    # end
-    # place.parent = options[:parent] if options[:parent] && options[:parent].persisted?
-    
-    # unless (options[:ignore_ancestors] || ydn_place.ancestors.blank?)
-    #   ancestors = []
-    #   (ydn_place.ancestors || []).reverse_each do |ydn_ancestor|
-    #     next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(ydn_ancestor.placetype_code)
-    #     ancestor = Place.import_by_woeid(ydn_ancestor.woeid, :ignore_ancestors => true, :parent => ancestors.last)
-    #     ancestors << ancestor if ancestor
-    #     if place && place.persisted? && ancestor && ancestor.persisted?
-    #       place.parent = ancestor
-    #     end
-    #   end
-    # end
-    
-    # if options[:user].is_a?(User)
-    #   place.user_id = options[:user].id
-    # end
-    # place.save
-    # place
-    nil
-  end
-  
-  # Make a new Place from a GeoPlanet::Place
-  def self.new_from_geo_planet(ydn_place)
-    place = Place.new(
-      :woeid => ydn_place.woeid,
-      :latitude => ydn_place.latitude,
-      :longitude => ydn_place.longitude,
-      :place_type => ydn_place.placetype_code,
-      :name => ydn_place.name
-    )
-    place.geoplanet_response = ydn_place
-    if ydn_place.bounding_box
-      place.swlat = ydn_place.bounding_box[0][0]
-      place.swlng = ydn_place.bounding_box[0][1]
-      place.nelat = ydn_place.bounding_box[1][0]
-      place.nelng = ydn_place.bounding_box[1][1]
-    end
-    
-    case ydn_place.placetype
-    when 'State'
-      place.code = ydn_place.admin1_code
-    when 'Country'
-      place.code = ydn_place.country_code
-    end
-    place
-  end
-  
-  # Make a new Place from a flickraw place response
-  def self.new_from_flickraw(flickr_place)
-    Place.new(
-      :woeid => flickr_place.woeid,
-      :latitude => flickr_place.latitude,
-      :longitude => flickr_place.longitude,
-      :place_type => FLICKR_PLACE_TYPES[flickr_place.place_type.downcase.to_sym],
-      :name => flickr_place.name,
-      :parent => options[:parent]
-    )
-  end
   
   # Create a CheckList associated with this place
   def check_default_check_list
@@ -618,7 +536,6 @@ class Place < ApplicationRecord
   # lat/lon coordinates.
   # Options:
   #   <tt>source</tt>: specify a type of handler for certain shapefiles.  Current options are 'census', 'esriworld', and 'cpad'
-  #   <tt>skip_woeid</tt>: (boolean) Whether or not to require that the shape matches a unique WOEID.  This is based querying GeoPlanet for the name of the shape.
   #   <tt>test</tt>: (boolean) setting this to +true+ will do everything other than saving places and geometries.
   #   <tt>ancestor_place</tt>: (Place) scope searches for exissting records to descendents of this place. Matching will be based on name and place_type
   #   <tt>name_column</tt>: column in shapefile attributes that holds the name of the place
@@ -629,7 +546,7 @@ class Place < ApplicationRecord
   #     Place.import_from_shapefile('/Users/kueda/Desktop/tl_2008_06_county/tl_2008_06_county.shp', :place_type => 'county', :source => 'census')
   #
   #   California Protected Areas Database:
-  #     Place.import_from_shapefile('/Users/kueda/Desktop/CPAD_March09/Units_Fee_09_longlat.shp', :source => 'cpad', :skip_woeid => true)
+  #     Place.import_from_shapefile('/Users/kueda/Desktop/CPAD_March09/Units_Fee_09_longlat.shp', :source => 'cpad')
   #
   def self.import_from_shapefile(shapefile_path, options = {}, &block)
     start_time = Time.now
@@ -659,14 +576,9 @@ class Place < ApplicationRecord
         new_place.source ||= src if src.is_a?(Source)
           
         puts "[INFO] \t\tMade new place: #{new_place}"
-        unless new_place.woeid || options[:skip_woeid]
-          puts "[INFO] \t\tCouldn't find a unique woeid. Skipping..."
-          next
-        end
         
         # Try to find an existing place
         existing = nil
-        existing = Place.find_by_woeid(new_place.woeid) unless new_place.woeid.blank?
         if !new_place.source_filename.blank? && !new_place.source_identifier.blank?
           existing ||= Place.where(source_filename: new_place.source_filename,
             source_identifier: new_place.source_identifier).first
@@ -697,11 +609,7 @@ class Place < ApplicationRecord
           end
           num_updated += 1
         else
-          place = new_place.woeid ? Place.import_by_woeid(new_place.woeid) : new_place
-          [:latitude, :longitude, :swlat, :swlng, :nelat, :nelng, :source_filename, :source_name, 
-              :source_identifier, :place_type].each do |attr_name|
-            place.send("#{attr_name}=", new_place.send(attr_name)) if new_place.send(attr_name)
-          end
+          place = new_place
           num_created += 1
         end
 
@@ -759,9 +667,6 @@ class Place < ApplicationRecord
   def self.new_from_shape(shape, options = {})
     name_column = options[:name_column] || 'name'
     source_identifier_column = options[:source_identifier_column]
-    skip_woeid = options[:skip_woeid]
-    geoplanet_query = options[:geoplanet_query]
-    geoplanet_options = options[:geoplanet_options] || {}
     data = shape.respond_to?(:data) ? shape.data : shape.attributes
     name = options[:name] ||
       data[name_column] ||
@@ -781,20 +686,6 @@ class Place < ApplicationRecord
       :nelng => shape.geometry.envelope.upper_corner.x
     ))
     place.build_place_geometry( geom: shape.geometry )
-    
-    unless skip_woeid
-      puts "[INFO] \t\tTrying to find a unique WOEID from '#{geoplanet_query || place.name}'..."
-      geoplanet_options[:count] = 2
-      ydn_places = GeoPlanet::Place.search(geoplanet_query || place.name, geoplanet_options)
-      if ydn_places && ydn_places.size == 1
-        puts "[INFO] \t\tFound unique GeoPlanet place: " + 
-          [ydn_places.first.name, ydn_places.first.woeid,
-           ydn_places.first.placetype, ydn_places.first.admin2,
-           ydn_places.first.admin1, ydn_places.first.country].join(', ')
-        place.woeid = ydn_places.first.woeid
-        place.geoplanet_response = ydn_places.first
-      end
-    end
     place
   end
   

@@ -168,26 +168,22 @@ class PlacesController < ApplicationController
   end
   
   def create
-    if params[:woeid]
-      @place = Place.import_by_woeid(params[:woeid], user: current_user)
-    else
-      @place = Place.new(params[:place])
-      @place.user = current_user
-      if params[:file]
-        assign_geometry_from_file
-      elsif !params[:geojson].blank?
-        @geometry = geometry_from_geojson(params[:geojson])
-        @place.validate_with_geom( @geometry, user: current_user )
-      end
+    @place = Place.new(params[:place])
+    @place.user = current_user
+    if params[:file]
+      assign_geometry_from_file
+    elsif !params[:geojson].blank?
+      @geometry = geometry_from_geojson(params[:geojson])
+      @place.validate_with_geom( @geometry, user: current_user )
+    end
 
-      if @geometry # && @place.valid?
-        @place.save_geom(@geometry, user: current_user)
-        @place.save
-        if @place.too_big_for_check_list?
-          notice = t(:place_too_big_for_check_list)
-          @place.check_list.destroy if @place.check_list
-          @place.update_attributes(:prefers_check_lists => false)
-        end
+    if @geometry # && @place.valid?
+      @place.save_geom(@geometry, user: current_user)
+      @place.save
+      if @place.too_big_for_check_list?
+        notice = t(:place_too_big_for_check_list)
+        @place.check_list.destroy if @place.check_list
+        @place.update_attributes(:prefers_check_lists => false)
       end
     end
     
@@ -278,24 +274,6 @@ class PlacesController < ApplicationController
     else
       flash[:error] = "Couldn't delete place: #{errors.to_sentence}"
       redirect_back_or_default places_path
-    end
-  end
-  
-  def find_external
-    # @places = if @ydn_places = GeoPlanet::Place.search(params[:q], :count => 10)
-    #   @ydn_places.map {|ydnp| Place.new_from_geo_planet(ydnp)}
-    # else
-    #   []
-    # end
-    @places = []
-    
-    respond_to do |format|
-      format.json do
-        @places.each_with_index do |place, i|
-          @places[i].html = view_context.render_in_format(:html, :partial => "create_external_place_link", :object => place, :locals => {:i => i})
-        end
-        render :json => @places.to_json(:methods => [:html])
-      end
     end
   end
   

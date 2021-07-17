@@ -31,12 +31,6 @@ base: &base
         # http://www.ubio.org/index.php?pagename=form
         key: 09af09af09af09af09af09af09af09af09af09af
 
-    yahoo_dev_network:
-        # first need Yahoo account: https://edit.yahoo.com/registration
-        # then need to sign up for Yahoo Developers Network app interface:
-        # https://developer.apps.yahoo.com/wsregapp/
-        app_id: 09azAZ09azAZ09azAZ09azAZ09azAZ09azAZ09az09azAZ09azAZ09azAZ09
-
     tile_servers:
         # EXPERIMENTAL: These endpoints should return map tiles when hit with
         # requests like /{Z}/{X}/{Y}.png.
