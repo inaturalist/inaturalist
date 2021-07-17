@@ -96,7 +96,7 @@ class ProjectObservation < ActiveRecord::Base
   after_create  :update_project_observed_taxa_counter_cache_later
   after_destroy :update_project_observed_taxa_counter_cache_later
 
-  after_create :destroy_project_invitations, :update_curator_identification, :expire_caches
+  after_create  :update_curator_identification, :expire_caches
   after_destroy :expire_caches
 
   after_create :revisit_curator_identifications_later
@@ -236,11 +236,6 @@ class ProjectObservation < ActiveRecord::Base
     rescue ActionController::RoutingError, ActionController::UrlGenerationError
       FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project_id, :format => 'csv')), :force => true
     end
-    true
-  end
-
-  def destroy_project_invitations
-    observation.project_invitations.where(:project_id => project).each(&:destroy)
     true
   end
 

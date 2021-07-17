@@ -36,12 +36,6 @@
                                       link_url: taxon_url(notifier.taxon),
                                       viewer: viewing_user } %>
             </div>
-          <% elsif notifier.is_a?(ProjectInvitation) %>
-            <p>
-              <%=t :please_add_this_to_x_html, :x => "<strong>#{notifier.project.title}</strong>".html_safe %>
-              <br/>
-              <%= link_to t(:view_invitation), observation_url(resource) %>
-            </p>
           <% elsif notifier.is_a? Flag %>
             <div class="stacked body">
               <%=t :flag_marked_as_resolved_html %>

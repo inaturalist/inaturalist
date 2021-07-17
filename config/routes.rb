@@ -386,8 +386,6 @@ Rails.application.routes.draw do
     resources :flags
   end
   get 'comments/user/:login' => 'comments#user', :as => :comments_by_login, :constraints => { :login => simplified_login_regex }
-  resources :project_invitations, :except => [:index, :show]
-  post 'project_invitation/:id/accept' => 'project_invitations#accept', :as => :accept_project_invitation
   resources :taxon_photos, constraints: { id: id_param_pattern }, only: [:new, :create]
   get 'taxa/names' => 'taxon_names#index'
   resources :taxa, constraints: { id: id_param_pattern } do
