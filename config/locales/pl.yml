@@ -2275,8 +2275,11 @@ pl:
   next: Następne
   next_observation: Następna obserwacja
   next_page: Następna strona
+  next_page_short: Następna
   next_photo: Następne zdjęcie
+  next_post_short: Następny
   next_tab: Następna zakładka
+  next_taxon_short: Następny
   'no': 'Nie'
   no_assessments_have_been_added_to_this_project_yet: Do tego projektu nie dodano jeszcze żadnych ocen.
   no_but_it_is_a_member_of_taxon: "Nie, ale należy do taksonu %{taxon}"
@@ -2506,7 +2509,7 @@ pl:
   only_show_active_taxa: Pokaż tylko aktywne taksony
   only_the_project_admin_can_delete_this_project: Tylko administrator projektu może usunąć ten projekt.
   only_you: Tylko Ty
-  open: otwarty
+  open: otwarta
   open_: Otwarta
   open_description: "Każdy może zobaczyć współrzędne, chyba że takson jest zagrożony."
   open_street_map: OpenStreetMap
@@ -2962,10 +2965,15 @@ pl:
   prev: Poprzednie
   previous_observation: Poprzednia obserwacja
   previous_page: Poprzednia strona
+  previous_page_short: Poprzednia
   previous_photo: Poprzednie zdjęcie
+  previous_post_short: Poprzedni
   previous_tab: Poprzednia zakładka
+  previous_taxon_short: Poprzedni
   print_verb: Drukuj
   privacy: Prywatność
+  private: prywatna
+  private_: Prywatna
   probably_spam: Prawdopodobnie spam
   proceed: Kontynuuj
   processing: Przetwarzanie
@@ -3331,6 +3339,8 @@ pl:
   species_search: Szukanie gatunków
   species_taxon_name: Nazwa gatunku / taksonu
   species_unknown: Gatunek nieznany
+  #Abbreviation for "source"
+  src: Źródło
   start: Początek
   start_a_new_project: Rozpocznij nowy projekt
   start_a_project: Rozpocznij projekt
@@ -3663,6 +3673,7 @@ pl:
   vulnerable: Zagrożony
   w_photos_only: ze zdjęciami
   w_sounds: z nagraniami dźwiękowymi
+  was_it_captive_cultivated?: "Czy organizm żyje w niewoli / jest hodowany?"
   weather: Pogoda
   website: Strona internetowa
   welcome: witamy
@@ -3675,8 +3686,8 @@ pl:
   #family
   were_pretty_sure_this_is_in_the_rank: Jesteśmy prawie pewni, że należy to do %{rank}
   what: Co
-  what_did_you_see: Co zaobserwowałeś?
-  what_did_you_see?: <em>Co</em> zaobserwowałeś?
+  what_did_you_see: Co widziałeś?
+  what_did_you_see?: <em>Co</em> widziałeś?
   what_do_you_think: Co myślisz?
   what_were_you_looking_for?: "Czego szukałeś? (lista docelowa)"
   whats_this?: Co to jest?
