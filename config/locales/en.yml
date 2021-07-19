@@ -3243,6 +3243,9 @@ en:
   place: Place
   placeholder: Placeholder
   place_autocomplete_placeholder: Zion National Park, Miami, etc.
+  place_create_quota_exceeded: |
+    You have exceeded the number of places you can create in a 24-hour period
+    (%{quota})
   place_deleted: Place deleted.
   place_geo:
           geo_planet_place_types:
@@ -3682,6 +3685,8 @@ en:
     Editing place boundaries is one of the biggest sources of slowdowns on iNat.
     If you can avoid it, do not add, change, or remove place boundaries unless
     it's absolutely necessary.
+  places_warning_quota: |
+    You can only create three places per day.
   places_warning_the_future: |
     For what it's worth, we will have to restrict the conditions under which
     people can add places in the future given iNat's current rate of growth.

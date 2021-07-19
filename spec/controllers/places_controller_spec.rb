@@ -65,6 +65,26 @@ describe PlacesController do
       expect( p.name ).to eq "Test admin kml"
       expect( p.place_geometry ).to_not be_nil
     end
+
+    it "limits place create to a daily quota" do
+      sign_in user
+      PlacesController::QUOTA.times do
+        expect {
+          post :create, place: {
+            name: Faker::Name.name,
+            latitude: 0.5,
+            longitude: 0.5
+          }, file: test_place_kml
+        }.to change( Place, :count ).by( 1 )
+      end
+      expect {
+        post :create, place: {
+          name: Faker::Name.name,
+          latitude: 0.5,
+          longitude: 0.5
+        }, file: test_place_kml
+      }.to change( Place, :count ).by( 0 )
+    end
   end
 
   describe "show" do
