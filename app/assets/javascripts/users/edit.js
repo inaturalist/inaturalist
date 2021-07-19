@@ -11,7 +11,7 @@ $(document).ready(function() {
   } );
   $('#user_block_blocked_user_id, #user_mute_muted_user_id').chooser({
     queryParam: 'q',
-    collectionUrl: '/people/search.json',
+    collectionUrl: $( "meta[name='config:inaturalist_api_url']" ).attr( "content" ) + "/search?sources=users",
     resourceUrl: '/people/{{id}}.json'
   } );
 })

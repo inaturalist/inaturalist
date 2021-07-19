@@ -120,10 +120,14 @@ class SiteDataExporter
     @options = options
   end
 
+  def self.basename_for_site( site )
+    "#{site.name.parameterize}-#{site.id}"
+  end
+
   def export
     # Make a temp dir
     @work_dir = Dir.mktmpdir
-    @basename = "#{@site_name.parameterize}-#{@site.id}-#{Date.today.to_s.gsub(/\-/, '')}-#{Time.now.to_i}"
+    @basename = SiteDataExporter.basename_for_site( @site )
     @work_path = File.join( @work_dir, @basename )
     FileUtils.mkdir_p @work_path, :mode => 0755
 
@@ -150,7 +154,7 @@ class SiteDataExporter
         users
       WHERE
         site_id = #{@site.id}
-        AND spammer != 't'
+        AND (spammer = 'f' || spammer IS NULL)
     SQL
     cmd = "psql #{@dbname} -h #{@dbhost} -c \"COPY (#{sql.gsub( /\s+/m, " ")}) TO STDOUT WITH CSV HEADER\" > #{path}"
     system_call cmd

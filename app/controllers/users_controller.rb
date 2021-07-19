@@ -300,60 +300,6 @@ class UsersController < ApplicationController
       end
     end
   end
-
-  def search
-    scope = User.active
-    @q = params[:q].to_s
-    escaped_q = @q.gsub(/(%|_)/){ |m| "\\" + m }
-    unless @q.blank?
-      wildcard_q = (@q.size == 1 ? "#{escaped_q}%" : "%#{escaped_q.downcase}%")
-      if logged_in? && @q =~ Devise.email_regexp
-        conditions = ["email = ?", @q]
-        exact_conditions = conditions
-      elsif @q =~ /\w+\s+\w+/
-        conditions = ["lower(name) LIKE ?", wildcard_q]
-        exact_conditions = ["lower(name) = ?", @q]
-      else
-        conditions = ["lower(login) LIKE ? OR lower(name) LIKE ?", wildcard_q, wildcard_q]
-        exact_conditions = ["lower(login) = ? OR lower(name) = ?", @q, @q]
-      end
-      exact_ids = User.active.where(exact_conditions).pluck(:id)
-      scope = scope.where(conditions)
-    end
-    if params[:order] == "activity"
-      scope = scope.order("(observations_count + identifications_count + journal_posts_count) desc")
-    else
-      if exact_ids.blank?
-        scope = scope.order("login")
-      else
-        scope = scope.select("*, (id IN (#{exact_ids.join(',')})) as is_exact")
-        scope = scope.order("is_exact DESC, login ASC")
-      end
-    end
-    params[:per_page] = params[:per_page] || 30
-    params[:per_page] = 30 if params[:per_page].to_i > 30
-    params[:per_page] = 1 if params[:per_page].to_i < 1
-    params[:page] = params[:page] || 1
-    params[:page] = 1 if params[:page].to_i < 1
-    offset = (params[:page].to_i - 1) * params[:per_page].to_i
-    respond_to do |format|
-      format.html {
-        # will_paginate collection will have total_entries
-        @users = scope.paginate(page: params[:page], per_page: params[:per_page])
-      }
-      format.json do
-        # use .limit.offset to avoid a slow count(), since count isn't used
-        @users = scope.limit(params[:per_page]).offset(offset)
-        haml_pretty do
-          @users.each_with_index do |user, i|
-            @users[i].html = view_context.render_in_format(:html, :partial => "users/chooser", :object => user).gsub(/\n/, '')
-          end
-        end
-        render :json => @users.to_json(User.default_json_options.merge(:methods => [:html])),
-          callback: params[:callback]
-      end
-    end
-  end
   
   def show
     @selected_user = @user

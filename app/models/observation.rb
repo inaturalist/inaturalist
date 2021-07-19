@@ -1483,7 +1483,9 @@ class Observation < ActiveRecord::Base
         return true
       end
     end
-    cps = collection_projects( authenticate: viewer )
+    cps = collection_projects( authenticate: viewer ).select do |cp|
+      curated_project_ids.include?( cp.id )
+    end
     curator_coordinate_access_allowed_for_collection = cps.detect do |cp|
       pu = user.project_users.where( project_id: cp.id ).first
       if cp.observation_requirements_updated_at.blank?
@@ -3301,6 +3303,32 @@ class Observation < ActiveRecord::Base
 
   def self.index_observations_for_user(user_id)
     Observation.elastic_index!( scope: Observation.by( user_id ), wait_for_index_refresh: true )
+  end
+
+  # this method will set the updated_at column on this observation to the current time,
+  # and re-index only the updated_at attribute of the observation doc in Elasticsearch
+  def mark_as_updated
+    updated_time = Time.now
+    update_column( :updated_at, updated_time )
+    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
+      Observation.__elasticsearch__.client.update_by_query(
+        index: Observation.index_name,
+        refresh: Rails.env.test?,
+        body: {
+          query: {
+            term: {
+              "id": id
+            }
+          },
+          script: {
+            source: "ctx._source.updated_at = params.updated_time",
+            params: {
+              updated_time: updated_time
+            }
+          }
+        }
+      )
+    end
   end
 
 end

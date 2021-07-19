@@ -165,7 +165,6 @@ class User < ActiveRecord::Base
   has_many :project_user_invitations, :dependent => :nullify
   has_many :project_user_invitations_received, :dependent => :delete_all, :class_name => "ProjectUserInvitation"
   has_many :listed_taxa, :dependent => :nullify
-  has_many :invites, :dependent => :nullify
   has_many :quality_metrics, :dependent => :destroy
   has_many :sources, :dependent => :nullify
   has_many :places, :dependent => :nullify

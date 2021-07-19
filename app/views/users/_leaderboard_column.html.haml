@@ -5,8 +5,10 @@
 - date ||= @date || Date.today
 %div{:class => "column span-#{span} #{'last' if last}"}
   %h4
-    - formatted_time = time_unit == 'month' ? l(date, :format => :month_year) : date.year
-    = t("leaderboard_most.#{noun_plural.downcase}", time: formatted_time)
+    - if time_unit == 'month'
+      =t "leaderboard_most.#{noun_plural.downcase}_in_month_year", month_year: l( date, format: :month_year )
+    - else
+      =t "leaderboard_most.#{noun_plural.downcase}_in_year", year: date.year
   %ol
     - if !data.blank?
       - for user, count in data

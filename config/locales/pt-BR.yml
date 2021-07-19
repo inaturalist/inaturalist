@@ -47,6 +47,8 @@ pt:
   x_misidentifications_of_this_species:
     one: "1 identificação incorreta desta espécie"
     other: "%{count} identificações incorretas desta espécie"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "1 erro de identificação de espécies neste %{rank}"
     other: "%{count} identificações erradas de espécies neste %{rank}"
@@ -199,6 +201,9 @@ pt:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Você pode optar por compartilhar as coordenadas ocultas para
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Precisão exata - Acurácia (m)'
   account: Conta
   account_creation: Criação de conta
@@ -237,7 +242,6 @@ pt:
   add_an_assessment: Adicione uma avaliação
   add_an_identification: Adicione uma identificação
   add_an_observation: Adicione uma observação
-  add_an_observation?: Adicionar uma observação?
   add_an_observation_of: "Adicione uma observação de %{taxon}"
   add_an_observation_to_project_html: Adicione uma Observação a %{project}
   add_annotations_for_x: Adicionar anotações para "%{x}"
@@ -328,7 +332,6 @@ pt:
   add_to_favorites: Adicionar aos favoritos
   add_to_list: Adicionar a lista
   add_to_project: Adicione ao projeto
-  add_to_your_life_list: Adicione a sua Lista de Vida!
   add_to_your_list: Adicione a sua lista
   add_your_email_to_get: |
     Adicione seu email para receber retorno sobre suas observações. Se prefere não compartilhar seu email, você pode verificar na própria página depois.
@@ -467,8 +470,6 @@ pt:
   all_updates: Todas as atualizações
   all_your_observations_will_default_this_time_zone: Todas as suas observações serão feitas neste horário local a não ser que você especifique de maneira diferente.
   all_your_observations_will_default_to_this_time_zone: Todas as observações terão como padrão este horário local a não ser que você especifique de outra maneira.
-  #Option to allow any taxa on a list
-  allow_any: permita qualquer
   allow_curator_access: Permitir o acesso do administrador
   allow_project_curators_to_view_your_private_coordinates: Permitir o acesso às suas coordenadas ocultas pelos administradores do projeto
   allowed_establish_means_values: Permitir a configuração dos valores médios
@@ -490,7 +491,15 @@ pt:
   announcement_was_successfully_created: Aviso foi criado com sucesso.
   announcement_was_successfully_updated: Aviso foi atualizado com sucesso.
   announcements: Anúncios
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: qualquer
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any_: Qualquer
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: Qualquer
@@ -638,7 +647,6 @@ pt:
   avg: Méd
   back: Voltar
   back_to_all_species: Voltar para Todas as Espécies
-  back_to_browsing_people: Voltar para a busca de pessoas
   back_to_calendar: "Voltar para calendário %{user}"
   back_to_editing_observation: Voltar para observação editada
   back_to_friends: Voltar a amigos
@@ -809,10 +817,8 @@ pt:
   check_list_place: "Lista de Verificação de %{place}"
   check_list_updated: Check list Atualizada!
   check_lists_for: "Outras Check Lists para %{place}"
-  check_out_my_observations_at: Se desejar, você pode ver minhas observações em
   check_out_our_blog: Confira nosso Blog
   check_out_what_the_observation: Dê uma olhada a que a observação que você esta tentando identificar se assemelha.
-  check_out_your_new_and_improved_list_list: Confira a sua nova e melhorada Lista de Vida!
   check_this_box_if_html: |
     Marque esta caixa caso queira aplicar uma
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
@@ -856,7 +862,6 @@ pt:
   comments: Comentários
   comments_by_me: Meus comentários
   comments_have_been_disabled: Os comentários foram desabilitados
-  comments_on: Comentários sobre
   comments_on_my_observations: Comentários sobre minhas observações
   commercial_solicitation: Solicitação comercial, links sem vínculo, etc.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -929,7 +934,6 @@ pt:
     place: Local ao qual este status é restrito.
     url: URL que descreve esta condição.
     geoprivacy: Geoprivacidade pré-determinada para as observações destas espécies e grupo.
-    iucn: Código equivalente ao da Lista Vermelha IUCN
   conservation_status_geoprivacy_desc: |
     Geoprivacidade padrão aplicada a todas as observações deste táxon neste local
   contact_support: Fale com o Suporte
@@ -1255,7 +1259,6 @@ pt:
     Clique no link abaixo para desbloquear sua conta
   devise_unlock_instructions_unlock: Desbloqueie Sua Conta
   discoveries: Descobertas
-  did_not_send_invitations_because: Não foram enviados convites para estes contatos porque...
   did_you_mean: 'Você quis dizer'
   did_you_photos_flickr?: Você incluiu alguma foto no Flickr?
   disable: Desativar
@@ -1372,9 +1375,7 @@ pt:
   eligible_for_research_grade: Elegível para Nível de Pesquisa
   email: E-mail
   email_description: Seu e-mail não é compartilhado com outros usuários do iNaturalist
-  email_addresses_description: Endereços separados por vírgula, limite de 60 a cada 30 dias.
   email_address_for_comments_and_other_feedback: Endereço de e-mail para comentários e outras colocações.
-  email_addresses_to_receive_invites: Endereço de e-mail para receber convites
   email_copyright: "Copyright &copy; %{x}, todos os direitos reservados"
   email_notifications: Notificações por e-mail
   email_settings: Configurações de email
@@ -1501,8 +1502,6 @@ pt:
   first_confirmed_inat_observation: "Primeira observação %{site_name} confirmada"
   first_connect_your_provider_account_to_your_site: "Primeiro, conecte sua %{provider} conta a %{site_name}:"
   first_inat_observation: "Primeira observação %{site_name}"
-  first_observation: Primeira Observação
-  first_observation_by_date_added: Primeira observação por data adicionada
   first_observer: Primeiro observador
   #Verb form, as in "Flag this item"
   flag: Alerta
@@ -1580,7 +1579,6 @@ pt:
   follow: Seguir
   follow_receive_updates_about_new_observations: Seguir (recebe atualizações sobre novas observações)
   follow_user: "Seguir %{user}"
-  followed_projects: Projetos seguidos
   followers: Seguidores
   following: Seguindo
   following_x_people:
@@ -1687,7 +1685,6 @@ pt:
   here_are_3_examples: Aqui estão 3 exemplos de dados bem organizados
   here_are_our_top_species_suggestions: Aqui pode ver a nossa seleção de espécies
   hex_color_eg: 'Cor hexadecimal, ex: 65644F'
-  hi: Olá,
   hi_user: "Olá %{user}"
   #Verb, usually a button to hide an interface element
   hide: Esconder
@@ -1820,12 +1817,8 @@ pt:
   introduced_in_place: "Introduzido em %{place}"
   invitation: Convite
   invite: convidar
-  invite_more: convidar mais
   invite_people: Convide pessoas
   invite_people_to_project: "Convide pessoas para %{project}"
-  invite_someone_to: "Convide alguém para %{name}!"
-  invite_your_friends: Convide seus amigos
-  invite_your_friends_description: "Ajude a fazer %{site_name} uma comunidade melhor e maior convidando seus amigos para participar!"
   #Type of project where people can only join after they have been invited
   inviteonly: somente com convite
   invited_x: "Convidado %{x}"
@@ -1898,16 +1891,11 @@ pt:
   leaderboard: Colaboradores mais ativos
   leaderboard_for_x: "Ranking para %{x}"
   leaderboards: Colaboradores mais ativos
-  leaderboard_most:
-    species: A maioria das espécies em %{time}
-    observations: A maioria das observações em %{time}
-    identifications: A maioria das identificações %{time}
   leading: Conduzindo
   learn: Aprender
   learn_about_the_species_live_in: Aprenda sobre espécies que vivem em
   learn_about_third_party_tracking: Saiba mais sobre o rastreamento de terceiros
   learn_more: Saiba mais
-  learn_more_on_the_blog: Saiba mais no blog
   learn_more_raquo: "Saiba mais &raquo;"
   learn_what_these_licenses_mean: Saiba o que estas licenças significam
   least_concern: Pouco preocupante
@@ -1975,9 +1963,6 @@ pt:
   licensing_your_content_gives_others_legal: "Licenciar seu conteúdo dá a oportunidade legal para outros usuários utilizarem se eles respeitarem os termos da licença. %{site_name} utiliza o conteúdo sob licença Creative Commons para compartilhar dados com parceiros como"
   life: Vida
   life_list: "Lista de Vida de %{user}"
-  life_list_updated: Lista da Vida atualizada!
-  life_list_updated_we_also_saved_a: A lista da Vida está atualizada! Nós também salvamos uma observação em branco para este táxon.
-  life_lists_automatically_fill: 'A Lista da Vida adiciona automaticamente novos táxons conforme você os observa, e eles podem ser restritos a um nível mais alto de parentesco de grupos ou espécies, ex: uma lista de vida de aves na família dos corvos (Corvidae)'
   linear_scale_label: Linear
   link: Link
   link_or_unlink_your_facebook_account: Conecte ou desconecte sua conta do Facebook
@@ -2000,8 +1985,6 @@ pt:
   linkedin: Linkedin
   list: Lista
   list_deleted: Lista excluída.
-  list_reloaded_from_observations: Lista atualizada a partir das observações
-  list_rules_reapplied: As regras da lista foram reaplicadas
   list_saved: Lista salva.
   list_tooltip: Exibir visualização de lista
   list_updated: Lista atualizada!
@@ -2114,7 +2097,6 @@ pt:
   low: Baixa
   lowest_rank: Classificação mais baixa
   make_admin: Tornar administrador
-  mail_disclaimer: "%{site_name} não permitirá que seus usuários enviem convites adicionais através do nosso sistema de convites. Por favor avise-nos sobre qualquer abuso relacionado a convites em %{site}."
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Conteúdo principal
   #Stub text for the main content section when editing custom project data
@@ -2122,7 +2104,6 @@ pt:
   make_a_new_place: Crie um novo lugar
   make_a_taxon_swap_instead?: Deseja fazer uma troca de táxons?
   make_curator: Torne coordenador
-  make_it_a_life_list?: Deseja transformar esta uma lista de vida?
   make_manager: Tornar moderador
   make_sure_the_default_photo_looks_good: Tenha certeza que a foto padrão tem boa definição em tamanho grande.
   make_this_your_default_license: "Torne esta %{type} sua licença padrão"
@@ -2232,7 +2213,7 @@ pt:
       #Short text representing %d years in the past
       yy: "%da"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone: "D MMM de YYYY · LT z"
+    datetime_with_zone: "D MMM [de] YYYY · LT z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone_no_year: "MMMM D h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
@@ -2273,11 +2254,8 @@ pt:
   multiple_select_option: '-- múltiplo --'
   multiple_taxa_for_taxon_change: "Diversas espécies e grupos (entrada de dados para alterar/fundir, saída de dados para dividir)"
   multiple_taxon_ids_separated_by_commas: 'Várias IDs de táxons separadas por vírgula, e.g. 123,654'
-  must_be_observed_after: |
-    deve ser observado depois %{operand}
-  must_be_observed_before: |
-    deve ser observado antes %{operand}
-  must_be_observed_in: deve ser observado em
+  must_be_observed_after: deve ser observado depois %{operand}
+  must_be_observed_before: deve ser observado antes %{operand}
   must_be_less_than_x_MB: "Deve ser menor que %{x} MB"
   must_have_observation_field: "deve ter o campo de observação '%{operand}' preenchido"
   must_have_x: "deve ter %{x}"
@@ -2441,11 +2419,7 @@ pt:
   no_sections_available: Nenhuma seção disponível.
   no_sections_have_been_added_to_this_assessments_yet: Nenhuma seção foi adicionada nestas avaliações ainda.
   no_species_have_been_listed: Nenhuma espécie foi listada para este lugar ainda!
-  no_species_observed: Nenhuma espécie observada
   no_species_on_this_list: Ainda não existem espécies nesta lista!
-  no_species_on_this_list_for_owner_html: |
-    Você pode começar a adicionar espécies diretamente nesta lista, ou se esta for uma lista de vida, ela será atualizada automaticamente com as espécies quando você
-    <a href="%{url}" class="nobr">adicionar observações</a>.
   no_subject_parens: "(sem assunto)"
   no_suggestions_available: Sem Sugestões Disponíveis
   no_summary_from_wikipedia: Não existe resumo no Wikipédia
@@ -2497,7 +2471,6 @@ pt:
     Coordenadas públicas mostradas como um ponto aleatório dentro da célula lat/lon de 0,2 grau que contém as coordenadas verdadeiras.
   observation: Observação
   observation_: observação
-  observation_added: Observação adicionada.
   observation_added_to_the_project: "Observação adicionada ao projeto \"%{project}\""
   observation_aggregation: Observações associadas
   observation_brief_something_on_day: "Algo em %{day}"
@@ -2550,7 +2523,6 @@ pt:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     ex. 29-10-2019 13:12:21
-  observed_on_datetime: Observado em %{datetime}
   observation_removed_from_the_project: "Observação removida do projeto \"%{project}\""
   observation_requirements: requisitos de observação
   observation_rules: Regras de Observação
@@ -2620,10 +2592,6 @@ pt:
     irregular: irregular
     doubtful: duvidoso
     absent: ausente
-  of_observations: observações
-  of_species: espécies
-  of_observers: observadores
-  of_identifiers: identificadores
   of_places: lugares
   of_this_taxon: Deste táxon
   offensive_inappropriate: Ofensivo / Inapropriado
@@ -2677,8 +2645,6 @@ pt:
   only_show_for_species_subspecies_varieties_etc: Mostrar somente espécies, subespécies, variedades, entre outros.
   only_show_taxa_fom_this_list: "Mostrar somente táxons desta lista"
   only_showing_taxa_from: mostrar somente táxons desta lista
-  only_species: apenas espécies
-  only_species_and_subspecies: apenas espécies e subespécies/variedades
   only_staff_can_edit_large_places: Somente funcionários do site podem editar lugares muito grandes
   only_staff_can_edit_standard_places: Somente a equipe do site pode editar lugares na hierarquia padrão
   only_the_owner_of_this_list_can_do_that: Somente o proprietário desta lista pode fazer isso. Não seja mal.
@@ -2775,8 +2741,6 @@ pt:
   per_month: Por mês
   per_week: Por semana
   person: Pessoa
-  personal_message: Mensagem pessoal
-  personal_message_description: Ninguém gosta de receber e-mail de uma máquina! Por que não deixar seus amigos saberem que você está os convidando?
   per_page: "por página"
   photo: Foto
   photo_attribution: "Foto %{attribution}"
@@ -3266,10 +3230,7 @@ pt:
   preview: Pré-visualização
   preview_observations_with_these_observation_requirements: Pré-visualizar observações com estes requisitos de observação
   preview_of_synced_observation: "<strong>Pré-visualização</strong> da observação sincronizada. <a href=\"%{url}\">Desfazer?</a>"
-  preview_personal_message: "Gostaria de recomendar que entre no %{site}, um site onde você pode gravar suas observações de plantas e animais, organizar a lista de observações da sua vida, e aprender mais sobre o mundo natural!"
-  preview_your_message: Visualize sua mensagem
   previewing: "Visualizando..."
-  previous: Anterior
   prev: Anterior
   previous_observation: Observações Prévias
   previous_page: Página Anterior
@@ -3361,7 +3322,6 @@ pt:
   range: Área de Distribuição
   rank: Classificação
   rank_position: Classificação
-  rank_restrictions: Restrição para classificação
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
@@ -3428,7 +3388,6 @@ pt:
     leaves: Folhas
   ranges: Distribuições
   ray_finned_fishes: Actinopterygii, grupo de peixes de barbatanas com raios.
-  re_apply_list_rules: Reaplicar as regras da lista
   re_order_photos: "Reorganize fotos &raquo;"
   read_more: Ler mais
   read_our_getting_started_guide: ler ou Acessar o guia de uso
@@ -3446,6 +3405,7 @@ pt:
   recent_observations: Observações recentes
   recent_observations_: Observações recentes
   recent_post: Publicação Recente
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Observações recentes de %{login} (Atom)"
   recent_observations_by: "Observações recentes de %{login}"
   recently_active: Ativos recentemente
@@ -3589,7 +3549,6 @@ pt:
   scientific_name: Nome Científico
   search: Pesquisar
   search_all_fields: Pesquisar em todos os campos
-  search_by_name: Buscar por nome
   search_by_name_or_email: Buscar por nome ou email
   search_by_taxon_name_or_observation_id: Buscar por táxon or identificação de osbervação
   search_by_taxon_name_or_flickr_photo_id: Busca por nome taxonômico ou por ID de foto do Flickr.
@@ -3614,12 +3573,10 @@ pt:
   search_your_photos: Pesquisar suas fotos
   searching: "Buscando..."
   seasonality: Sazonalidade
-  second_person_possessive_plural: "Sua %{noun}"
   second_person_possessive_singular: "Sua %{noun}"
   see_something_wrong_with_taxon: Você visualizou algo errado com este táxon? Avise aos coordenadores.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
-  seen_it?: Você viu?
   seen_nearby: Visto nas proximidades
   seen_one: Viu um?
   select: Selecionar
@@ -3633,15 +3590,12 @@ pt:
   select_options: Selecionar opções
   select_photos_from_your_photo_stream: |
     Selecione fotos de sites de armazenamento de imagens externos para converte-las em %{site_name} observações. Data, horário e local serão automaticamente inseridos com base em metadados, de preferência busque pelos nomes das espécies nas marcações.
-  select_photos_to_display: Selecione fotos para exibir
   selected: Selecionadas
   selected_photos: Fotos selecionadas
   selected_taxon: Táxon selecionado
   select_this_taxon: Selecione Este Táxon
   send: enviar
-  send_invites_to: Enviar convites para
   send_me_reset_password_instructions: Receber instruções para alterar senha
-  send_the_invites: Enviar convites
   sending: Enviando...
   #Label for messages you've sent
   sent: Enviado
@@ -3656,7 +3610,6 @@ pt:
   show: Exibir
   show_active_and_inactive_taxa: Exibir espécies ativas e inativas
   show_common_names: Mostrar nomes comuns
-  show_default_taxon_photos: Exibir fotos padrão para os táxons
   show_hidden_content: Mostrar conteúdo oculto
   show_keyboard_shortcuts: Mostrar Teclas de Atalho
   show_less: Mostrar menos
@@ -3664,7 +3617,6 @@ pt:
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Mostrar "Sem Anotação"
-  show_observation_photos: Exibir observações relacionadas a fotos
   show_off_your_recent_observations: Publicar suas observações mais recentes em seu blog ou site!
   show_only: 'Mostrar somente:'
   show_relative_proportions_of_all_observations: Mostrar a proporção relativa de todas as observações
@@ -3733,7 +3685,6 @@ pt:
   sorry_we_dont_have_any_metadata_for_that_photo: "Desculpe, não existem metadados disponível para esta imagem."
   sorry_x_is_not_responding: "Desculpe, %{x} serviço não disponível. Por favor tente novamente mais tarde."
   sorry_you_can_only_add_1000_at_a_time: "Desculpe, é possível carregar apenas 1000 por vez."
-  sorry_you_cant_delete_your_own_life_list: "Desculpe, você não pode excluir a sua Lista de Vida."
   sorry_you_need_to_be_signed_in_and: Desculpe, é preciso estar logado e ter uma conta do Flickr vinculada para postar marcações diretamente do Flickr.
   sort: Ordenar
   sort_by: Ordenar por
@@ -4089,15 +4040,9 @@ pt:
   these_folks_kindly_volunteer_to: Estas pessoas são gentis voluntários que mantém nossa taxonomia e lidam com outras questões.
   these_observations_have_not_been_uploaded_yet: |
     Estas observações ainda não foram carregadas.
-  they_already_have_iNat_accounts: "...eles já tem contas em %{site_name}"
-  they_have_been_invited: ...eles já foram convidados
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
-  third_person_possessive_plural: "%{noun} de %{object_phrase}"
   this: este
   this_bioblitz_beings_in: Esta maratona naturalista começa em
-  this_is_a_life_list_of: Esta é a Lista de Vida de
-  this_is_a_life_list_from_place_html: "Esta é uma lista de vida de %{place}"
-  this_is_a_life_list_of_taxon_in_place: "Esta é uma Lista de Vida de %{taxon} em %{place}"
   this_is_more_convenient_way_find_parent: Esta é uma forma mais conveniente de encontrar um identificador pai. É o identificar pai que de fato é salvo.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     Este é um método mais simples de identificar um táxon. A identidade deste táxon é que é de fato salva. Esta busca funciona apenas para táxons ativos.
@@ -4131,8 +4076,6 @@ pt:
     Se esta for a sua conta e, você acredita que isto foi feito por engano, por favor <a href="mailto:%{email}">entre em contato conosco</a>.
   this_will_add_listed_taxa: Isto irá adicionar táxons listados a partir das suas observações. Isto pode levar um tempo, então por favor utilize com moderação e em pequenas listas de verificação
   this_will_refresh_listed_taxa: Esta ação irá atualizar todos os táxons recentemente incluídos. Isto pode levar alguns minutos, por favor utilize este recurso com moderação e em pequenas checklists
-  this_will_re_apply_all_list_rules: |
-    Esta ação modificará todas as "regras" para as listas de táxons e atualizará qualquer registro associado, exemplo serão rejeitados táxons que não estiverem presentes na lifelist ou para uma área de ocorrência específica. Não será adicionado nenhum novo táxon. Aguarde alguns minutos.
   this_will_try_to_add_tags_to_your_flickr: Isto irá tentar adicionar marcações nas suas fotos do Flickr. Deseja continuar?
   this_year: Este Ano
   those_observations_no_longer_exist: Estas observações não existem mais.
@@ -4158,7 +4101,6 @@ pt:
   top_identifiers_of_taxon: Principais Identificadores de %{taxon}
   top_observer: Top Observador
   top_observers: Principais Observadores
-  top_species: Top Espécies
   tos_privacy_guidelines_label: |
     Eu concordo com os <a href="/terms" target="_blank">Termos de serviço</a> e com a
     <a href="/privacy" target="_blank">Política de Privacidade</a>, e eu revisei as <a href="/pages/community+guidelines" target="_blank">Diretrizes da Comunidade</a>.
@@ -4393,7 +4335,6 @@ pt:
   view_more_observations_of_x_project: "Ver mais observações do projeto %{project} em <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Ver mais observações de %{taxon} em <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Ver mais não revisados"
-  view_my_life_list: Ver minha Lista de Vida
   view_observation: Ver observação
   view_observations: Ver observações
   view_observation_flags: Ver observações marcadas
@@ -4562,7 +4503,6 @@ pt:
     Parece que você não está conectado. Por favor tente se conectar a internet.
   youre_a_site_curator_which_means: |
     Você é um coordenador do site, o que significa que você se voluntariou para ajudar a coordenar nossos dados e monitorar o conteúdo. Por favor não se sinta obrigado a lidar com todas essas questões, mas se você tem tempo de verificar alguns deles, nós apreciamos toda ajuda que você puder dar. Se você tiver qualquer dúvida sobre a coordenação de conteúdo ou não deseja ser mais um coordenador, por favor entre em contato conosco através de %{email}
-  you_are_over_your_invites_quota: ...você já está acima da sua cota mensal de 60 convites.
   you_are_now_following_x: "Agora você está seguindo %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>você</strong> agora é o admin em %{project}
@@ -4594,7 +4534,6 @@ pt:
     Você pode editar esta lista de verificação padrão porque você é um administrador, mas isto não deveria ser algo com necessidade de ser feito.
   you_can_only_block_three_users: Você só pode bloquear três usuários
   you_can_show_the_boundary_of: Você pode mostrar os limites do local na página do seu projeto se o local tiver limites.
-  you_can_sign_free_at: "Você pode se registrar para uma conta gratuita em %{site_name}"
   you_cant_compare_a_list_with_nothing: Você não pode comparar esta lista com nada!
   you_cant_delete_a_project_list: "Você não pode deletar a lista deste projeto"
   you_cant_delete_observation_fields_that_people_are_using: "Você não pode deletar os campos de observação que estão sendo utilizados pelas pessoas"
@@ -4620,7 +4559,6 @@ pt:
   you_faved_this: Adicionado como favorito!
   you_have_left_x_project: "Você saiu do projeto %{project}"
   you_havent_linked_your_inaturalist_google_account: "Você ainda não vinculou suas contas de %{site_name} e do Google"
-  you_havent_joined_any_projects: Você ainda não se juntou a nenhum projeto.
   you_joined_this_project: Você está participando deste projeto!
   you_must_be_a_member_of_this_project_to_do_that: Você deve ser um membro deste projeto para fazer isto
   you_must_choose_an_observation_field: Você deve escolher um campo de observação
@@ -4683,7 +4621,6 @@ pt:
     <a href="%{observations_path}">observando</a> e tenha alguns novos
     <a href="%{people_path}">conhecidos</a>.
   youve_linked_your_inaturalist_google_account: "Você vinculou sua conta %{site_name} e sua conta do Google. Isso permitirá que você associe suas Google Fotos a suas observações no %{site_name}."
-  youve_seen_it_want_to: "Você viu! Quer"
   youve_successfully_linked_your_provider_account: "Você vinculou com sucesso sua conta do %{provider}"
   verifiable: verificável
   verifiable_observations: Observações verificáveis
@@ -5723,7 +5660,6 @@ pt:
     stats:
       index:
         active_desc: Criou uma identificação, observação, comentário ou mensagem nos últimos 30 dias.
-        active_users_desc: Criou uma identificação, observação, comentário ou mensagem nos últimos 30 dias.
         android_desc_html: Criado pelo <a href="%{url}">aplicativo iNaturalist para iPhone</a>
         avg_ttcid: Avg TTCID
         avg_ttid: Avg TTCID
@@ -5901,14 +5837,6 @@ pt:
           "Plant Phenology=Flower Budding": Brotamentos de Flores
           "Plant Phenology=Flowering": Florescendo
           "Plant Phenology=Fruiting": Frutificando
-          "Plant Phenology=No Evidence of Flowering": sem evidência
-          "Life Stage=egg": Ovo
-          "Life Stage=larva": Larva
-          "Life Stage=teneral": Teneral
-          "Life Stage=subimago": Subimago
-          "Life Stage=nymph": Ninfa
-          "Life Stage=pupa": Pupa
-          "Life Stage=adult": Adulto
           unannotated: Nenhuma anotação
         max_photos_desc: |
           Um táxon só pode ter %{max} fotos. Você precisará remover os existentes
@@ -6461,23 +6389,6 @@ pt:
       submit: Salvar %{model}
       update: Atualizar %{model}
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: '.'
-        format: '%u%n'
-        precision: 2
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: ','
-        significant: false
-        strip_insignificant_zeros: false
-        unit: R$
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as
@@ -6800,6 +6711,9 @@ pt:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: não permite novos comentários
             user:
               must_be_on_site_long_enough: |

@@ -63,8 +63,8 @@ class Translators extends React.Component {
                 iphone_link_tag: "<a href='https://itunes.apple.com/us/app/inaturalist/id421397028?mt=8'>",
                 android_link_tag: "<a href='https://play.google.com/store/apps/details?id=org.inaturalist.android'>",
                 seek_link_tag: "<a href='https://www.inaturalist.org/seek'>",
-                view_all_web_link_tag: "<a href='https://github.com/inaturalist/inaturalist/blob/master/config/locales/CONTRIBUTORS.md'>",
-                view_all_mobile_link_tag: "<a href='https://github.com/inaturalist/iNaturalistAndroid/blob/master/iNaturalist/src/main/res/CONTRIBUTORS.md'>"
+                view_all_web_link_tag: "<a href='https://github.com/inaturalist/inaturalist/blob/main/config/locales/CONTRIBUTORS.md'>",
+                view_all_mobile_link_tag: "<a href='https://github.com/inaturalist/iNaturalistAndroid/blob/main/iNaturalist/src/main/res/CONTRIBUTORS.md'>"
               } )
               : I18n.t( "views.stats.year.translators_desc", {
                 x_languages: I18n.t( "x_languages", {
@@ -78,8 +78,8 @@ class Translators extends React.Component {
                 iphone_link_tag: "<a href='https://itunes.apple.com/us/app/inaturalist/id421397028?mt=8'>",
                 android_link_tag: "<a href='https://play.google.com/store/apps/details?id=org.inaturalist.android'>",
                 seek_link_tag: "<a href='https://www.inaturalist.org/seek'>",
-                view_all_web_link_tag: "<a href='https://github.com/inaturalist/inaturalist/blob/master/config/locales/CONTRIBUTORS.md'>",
-                view_all_mobile_link_tag: "<a href='https://github.com/inaturalist/iNaturalistAndroid/blob/master/iNaturalist/src/main/res/CONTRIBUTORS.md'>"
+                view_all_web_link_tag: "<a href='https://github.com/inaturalist/inaturalist/blob/main/config/locales/CONTRIBUTORS.md'>",
+                view_all_mobile_link_tag: "<a href='https://github.com/inaturalist/iNaturalistAndroid/blob/main/iNaturalist/src/main/res/CONTRIBUTORS.md'>"
               } )
           }}
         />

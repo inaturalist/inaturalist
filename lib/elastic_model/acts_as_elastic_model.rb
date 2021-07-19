@@ -75,7 +75,7 @@ module ActsAsElasticModel
             # call again for each batch, then return
             filter_ids.each_slice(options[:batch_size]) do |slice|
               elastic_index!(options.merge(ids: slice))
-              if batch_sleep
+              if batch_sleep && !options[:delay]
                 # sleep after index an ID batch, since during indexing
                 # we only sleep when indexing multiple batches, and here
                 # we explicitly requested a single batch to be indexed

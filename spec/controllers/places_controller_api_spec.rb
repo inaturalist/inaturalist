@@ -66,24 +66,6 @@ describe PlacesController, "index" do
   end
 end
 
-describe PlacesController, "search" do
-  elastic_models( Place )
-  it "should filter by with_geom" do
-    with_geom = make_place_with_geom
-    without_geom = make_place_with_geom(name: with_geom.name)
-    without_geom.place_geometry.destroy
-    Place.elastic_index! ids: [with_geom.id, without_geom.id]
-    get :search, format: :json, with_geom: true, q: with_geom.name
-    json = JSON.parse(response.body)
-    expect( json.select{|p| p['id'] == with_geom.id}.size ).to eq 1
-    expect( json.select{|p| p['id'] == without_geom.id}.size ).to eq 0
-    get :search, format: :json, with_geom: false, q: with_geom.name
-    json = JSON.parse(response.body)
-    expect( json.select{|p| p['id'] == with_geom.id}.size ).to eq 0
-    expect( json.select{|p| p['id'] == without_geom.id}.size ).to eq 1
-  end
-end
-
 
 describe PlacesController, "autocomplete" do
   elastic_models( Place )

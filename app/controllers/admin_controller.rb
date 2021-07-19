@@ -55,7 +55,13 @@ class AdminController < ApplicationController
 
   def user_content
     return unless load_user_content_info
-    @records = @display_user.send(@reflection_name).page(params[:page]) rescue []
+    @order = params[:order]
+    @order = "desc" unless %w(asc desc).include?( @order )
+    @order_by = params[:order_by]
+    @order_by = "created_at" unless %w(created_at updated_at).include?( @order_by )
+    @records = @display_user.send( @reflection_name ).order( "#{@order_by} #{@order}" ) rescue []
+
+    render layout: "bootstrap"
   end
 
   def update_user

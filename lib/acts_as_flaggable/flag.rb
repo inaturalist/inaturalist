@@ -73,21 +73,25 @@ class Flag < ActiveRecord::Base
 
   def notify_flaggable_on_create
     if flaggable && flaggable.respond_to?(:flagged_with)
-      flaggable.flagged_with(self, :action => "created")
+      flaggable.flagged_with(self, action: "created")
     end
     true
   end
 
   def notify_flaggable_on_update
-    if flaggable && flaggable.respond_to?(:flagged_with) && resolved_changed? && resolved?
-      flaggable.flagged_with(self, :action => "resolved")
+    if flaggable && flaggable.respond_to?(:flagged_with) && resolved_changed?
+      if resolved?
+        flaggable.flagged_with(self, action: "resolved")
+      else
+        flaggable.flagged_with(self, action: "unresolved")
+      end
     end
     true
   end
 
   def notify_flaggable_on_destroy
     if flaggable && flaggable.respond_to?(:flagged_with)
-      flaggable.flagged_with(self, :action => "destroyed")
+      flaggable.flagged_with(self, action: "destroyed")
     end
     true
   end

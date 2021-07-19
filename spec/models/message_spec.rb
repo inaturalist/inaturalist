@@ -34,3 +34,38 @@ describe Message, "flagging" do
     expect( Message.find_by_id(m.id) ).to_not be_blank
   end
 end
+
+describe Message, "send_message" do
+  let(:sender) { make_user_with_privilege( UserPrivilege::SPEECH ) }
+  it "should normally make a copy for the recipient" do
+    m = Message.make!( user: sender, from_user: sender )
+    m.reload
+    expect( m.to_user_copy ).to be_blank
+    m.send_message
+    m.reload
+    expect( m.to_user_copy ).not_to be_blank
+  end
+  it "should not make a copy for the recipient if the message is spam" do
+    m = Message.make!( user: sender, from_user: sender )
+    m.add_flag( flag: "spam", user_id: 0 )
+    m.reload
+    expect( m ).to be_known_spam
+    expect( m.to_user_copy ).to be_blank
+    m.send_message
+    m.reload
+    expect( m.to_user_copy ).to be_blank
+  end
+  it "should not make a copy for the recipient if the sender is a spammer" do
+    sender.update_attributes( spammer: true )
+    m = Message.make( user: sender, from_user: sender )
+    expect( m ).not_to be_valid
+  end
+  it "should not make a copy for the recipient if the sender is suspended" do
+    sender.suspend!
+    m = Message.make!( user: sender, from_user: sender )
+    expect( m.to_user_copy ).to be_blank
+    m.send_message
+    m.reload
+    expect( m.to_user_copy ).to be_blank
+  end
+end

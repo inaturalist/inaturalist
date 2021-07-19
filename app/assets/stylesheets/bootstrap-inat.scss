@@ -25,6 +25,8 @@ h6 {
   color: #1A1A1A;
 }
 
+$font-stack: Whitney, "Trebuchet MS", Arial, sans-serif;
+
 .readable,
 p { 
   font-size: 100%;
@@ -218,10 +220,9 @@ input[type="tel"]:focus,
 input[type="color"]:focus,
 .uneditable-input:focus,
 .btn:focus,
-.btn:active {   
-  border-color: none;
+.btn:active {
   box-shadow: none;
-  outline: 0 none;
+  outline: auto;
 }
 
 .btn-group.btn-group-stateless .btn:focus,
@@ -356,6 +357,7 @@ input[type="color"]:focus,
   background-color: transparent;
   border: 0 transparent;
   line-height: inherit;
+  font-size: inherit;
 }
 
 .modal-container {

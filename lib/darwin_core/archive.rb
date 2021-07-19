@@ -238,7 +238,8 @@ module DarwinCore
         { user: [:stored_preferences, :provider_authorizations] }, 
         :quality_metrics, 
         { identifications: { user: [:provider_authorizations] } },
-        { observations_places: :place }
+        { observations_places: :place },
+        { annotations: { controlled_value: [:labels], votes_for: {} } }
       ]
 
       if @opts[:community_taxon]

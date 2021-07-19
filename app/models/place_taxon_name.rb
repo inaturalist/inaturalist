@@ -4,6 +4,11 @@ class PlaceTaxonName < ActiveRecord::Base
   validates_uniqueness_of :place_id, :scope => :taxon_name_id
   validates_presence_of :place_id, :taxon_name
 
+  before_create do |ptn|
+    ptn.position = PlaceTaxonName.where( place: ptn.place ).joins(:taxon_name).
+      where( "taxon_names.taxon_id = ?", ptn.taxon_name.taxon_id ).count + 1
+  end
+
   def to_s
     "<PlaceTaxonName #{id}, place_id: #{place_id}, taxon_name_id: #{taxon_name_id}>"
   end

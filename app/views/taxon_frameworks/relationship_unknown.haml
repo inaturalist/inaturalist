@@ -57,10 +57,10 @@
                 = t :obs
                 - if taxon.is_active?
                   |
-                  %span.active= t(:active).humanize
+                  %span.active= t(:active_taxon_status)
                 - else
                   |
-                  %span.inactive= t(:inactive).humanize
+                  %span.inactive= t(:inactive_taxon_status)
                 - if taxon.flagged?
                   |
                   = link_to t( :flagged_for_curation ), taxon_flags_path( taxon ), id: "flagged", class: "bg-danger"

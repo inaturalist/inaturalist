@@ -23,6 +23,8 @@ th:
     other: '<span class="count">%{count}</span> ลำดับอนุกรมวิธานที่ตรงกัน'
   x_misidentifications_of_this_species:
     other: "%{count} การจำแนกชนิดนี้ผิด"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     other: "%{count} การจำแนกชนิดในนี้ผิด %{rank}"
   x_observations:
@@ -137,6 +139,9 @@ th:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     คุณสามารถเลือกที่จะแบ่งปันพิกัดที่ซ่อนอยู่สำหรับ
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Acc (m)'
   account: บัญชีผู้ใช้
   account_creation: การสร้างบัญชี
@@ -176,7 +181,6 @@ th:
   add_an_assessment: เพิ่มการประเมิน
   add_an_identification: เพิ่มการจำแนก
   add_an_observation: เพิ่มการสังเกต
-  add_an_observation?: เพิ่มการสังเกตไหม ?
   add_an_observation_of: "เพิ่มการสังเกตของ%{taxon}"
   add_an_observation_to_project_html: เพิ่มการสังเกตไปที่ %{project}
   add_annotations_for_x: เพิ่มคำอธิบายสำหรับ "%{x}"
@@ -267,7 +271,6 @@ th:
   add_to_favorites: เพิ่มไปยังรายการโปรด
   add_to_list: เพิ่มไปยังรายการ
   add_to_project: เพิ่มเข้าไปในโครงการ
-  add_to_your_life_list: เพิ่มไปในรายการชีวิตของคุณ
   add_to_your_list: เพิ่มไปยังรายการของคุณ
   add_your_email_to_get: |
     เพิ่มอีเมลของคุณเพื่อรับความคิดเห็นเกี่ยวกับการสังเกตการณ์ของคุณจากชุมชน หากคุณไม่ต้องการที่จะแบ่งบัน โปรดกลับมาตรวจสอบอีกครั้ง
@@ -376,6 +379,8 @@ th:
       other: "%{count} นก"
     x_insecta:
       other: "%{count} แมลง"
+    x_fungi:
+      other: "%{count} เห็ดรา"
     x_protozoa:
       other: "%{count} โปรโตซัว"
     x_other_animals:
@@ -386,17 +391,26 @@ th:
   all_updates: ทั้งหมดที่อัปเดต
   all_your_observations_will_default_this_time_zone: การสังเกตการณ์ทั้งหมดของคุณจะใช้เขตเวลานี้เป็นค่าเริ่มต้นเว้นแต่คุณจะระบุเป็นอย่างอื่น
   all_your_observations_will_default_to_this_time_zone: การสังเกตการณ์ทั้งหมดของคุณจะใช้เขตเวลานี้เป็นค่าเริ่มต้นเว้นแต่คุณจะระบุเป็นอย่างอื่น
-  #Option to allow any taxa on a list
-  allow_any: อนุญาตทั้งหมด
   allow_curator_access: ให้สิทธิแก่ผู้ดูแลระบบ
   allow_project_curators_to_view_your_private_coordinates: ให้สิทธิแก่ผู้ดูแลโครงการเข้าดูตำแหน่งที่ตั้งของคุณที่ซ่อนไว้
   amphibians: สัตว์สะเทินน้ำสะเทินบก
   and: และ
+  android: แอนดรอยด์
   animals: สัตว์
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: อื่น ๆ
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any_: รายการใดก็ได้
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: รายการใดก็ได้
+  #Label for an option to show content with any annotation value
+  any_annotation_value: อื่นๆ
   #Label for an option to show content from any date
   any_date: อื่นๆ
   #Label for an option to show content with any establishment means

@@ -110,7 +110,7 @@ TaxonAutocomplete.propTypes = {
 };
 
 TaxonAutocomplete.defaultProps = {
-  placeholder: I18n.t( "species" ),
+  placeholder: I18n.t( "search_species" ),
   config: {}
 };
 

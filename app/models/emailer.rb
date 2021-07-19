@@ -12,20 +12,6 @@ class Emailer < ActionMailer::Base
   default from: "#{Site.default.try(:name)} <#{Site.default.try(:email_noreply)}>",
           reply_to: Site.default.try(:email_noreply)
   
-  def invite_user(address, params, user) 
-    Invite.create(:user => user, :invite_address => address)
-    @user = user
-    set_locale
-    @subject = "#{subject_prefix} #{params[:sender_name]} wants you to join them on #{@site.name}"
-    @personal_message = params[:personal_message]
-    @sending_user = params[:sender_name]
-    mail(set_site_specific_opts.merge(
-      :to => address,
-      :subject => @subject
-    ))
-    reset_locale
-  end
-  
   def project_invitation_notification(project_invitation)
     return unless project_invitation
     return if project_invitation.observation.user.prefers_no_email
@@ -238,7 +224,6 @@ class Emailer < ActionMailer::Base
     @project = project_user.project
     return unless @project.project_type == "collection"
     @user = project_user.user
-    set_site
     mail_with_defaults(
       subject: t(
         "views.emailer.collection_project_changed_for_trusting_member.subject",
@@ -261,9 +246,12 @@ class Emailer < ActionMailer::Base
 
   private
   def mail_with_defaults( defaults = {} )
+    set_site
     opts = set_site_specific_opts.merge( defaults )
     opts[:to] ||= @user.name.blank? ? @user.email : "#{@user.name} <#{@user.email}>"
+    set_locale
     mail( opts )
+    reset_locale
   end
 
   def default_url_options

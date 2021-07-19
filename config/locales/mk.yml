@@ -68,6 +68,9 @@ mk:
   about_these_licenses: За овие лиценци
   about_this_map: За картава
   about_this_project: За проектов
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Уточнетост (м)'
   account: Сметка
   account_creation: Создавање на сметка
@@ -95,7 +98,6 @@ mk:
   add_an_assessment: Додај оценка
   add_an_identification: Додај препознавање
   add_an_observation: Додај набљудување
-  add_an_observation?: Да додадам набљудување?
   add_an_observation_of: "Додај набљудување на %{taxon}"
   add_another_flag: Додај друг обележувач
   add_another_photo: Додај друга слика
@@ -140,7 +142,6 @@ mk:
   add_to_favorites: Додај во омилени
   add_to_list: Додај во список
   add_to_project: Додај во проект
-  add_to_your_life_list: Додај во мојот животен список
   add_to_your_list: Додај во мојот список
   added: Додадено
   added!: Додадено!
@@ -352,7 +353,6 @@ mk:
   comment_deleted: Коментарот е избришан
   comments: Коментари
   comments_by_me: Коментари од мене
-  comments_on: Коментари за
   comments_on_my_observations: Коментари на моите набљудувања
   commercial_solicitation: Рекламирање, не води никаде и тн.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -382,8 +382,6 @@ mk:
   connecting_flickr: "Поврзувам со Flickr..."
   connecting_to_facebook: "Поврзувам со Facebook..."
   conservation_status: Заштитен статус
-  conservation_status_descriptions:
-    iucn: Истоветен код во Црвениот список на МСЗП
   coordinates: Координати
   copy: Копирање
   copyright:
@@ -583,7 +581,6 @@ mk:
   help: Помош
   help_confirm_observations!: Помогнете со потврдувањето ана набљудувањата!
   hex_color_eg: Хексадецимална боја, на пр. 65644F
-  hi: Здраво,
   highest_rank: Највисок ранг
   home: Почетна
   icon_size: Големина на иконата
@@ -617,9 +614,6 @@ mk:
   introduced: Доведен
   invitation: Покана
   invite: покани
-  invite_someone_to: "Поканете некого на %{name}!"
-  invite_your_friends: Поканете ги пријателите
-  invite_your_friends_description: "Помогнете ни %{site_name} да стане поголема и подобра заедница поканувајќи ги пријателите да ни се придружат!"
   #Type of project where people can only join after they have been invited
   inviteonly: само со покана
   join: Приклучи се
@@ -679,7 +673,6 @@ mk:
   less: Помалку
   life: Живот
   life_list: "Животниот список на %{user}"
-  life_list_updated: Списокот на животот е подновен!
   linked_facebook: "Вашата сметка на %{site_name} е врзана со вашата сметка на Facebook."
   list: Список
   list_deleted: Списокот е избришан.
@@ -732,7 +725,6 @@ mk:
   make_a_new_place: Направи ново место
   make_a_taxon_swap_instead?: А да го заменам таксонот?
   make_curator: Направи кустос
-  make_it_a_life_list?: Да го направиме животен список?
   make_manager: Назначи за раководител
   mammals: цицачи
   manager: Раководител
@@ -762,7 +754,6 @@ mk:
   most_species: Највеќе видови
   most_observed_species: Највеќе набљудувани видови
   multiple_taxa_for_taxon_change: "Повеќе таксони (внос за замена/спојување, извод за разделување)"
-  must_be_observed_in: мора да се набљудува во
   must_be_less_than_x_MB: "Мора да биде помала од %{x} МБ"
   must_have_observation_field: "мора да е пополнето полето „%{operand}“"
   must_have_x: "мора да има %{x}"
@@ -914,7 +905,6 @@ mk:
   people_following_user: "Луѓе што го следат корисникот %{user}"
   people_user_follows: "Луѓе што ги следи %{user}"
   person: лице
-  personal_message: Лична порака
   per_page: "По страница"
   photo: Слика
   photo_attribution: "Слика: %{attribution}"
@@ -1057,9 +1047,7 @@ mk:
   powered_by_inaturalist_open_source_software_html: 'Овозможено од <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a> — програм со отворен код'
   present: присутен
   preview_of_synced_observation: "<strong>Преглед</strong> на усогласеното набљудување.  <a href=\"%{url}\">Да отповикам?</a>"
-  preview_your_message: Преглед на пораката
   previewing: "Давам преглед..."
-  previous: Претходно
   prev: Прет
   previous_page: Претходна страница
   privacy: Заштита на личните податоци
@@ -1086,7 +1074,6 @@ mk:
   quality_grade: Квалитет
   quality_grade_colon: "Квалитет:"
   rank: Ранг
-  rank_restrictions: Ранговски ограничувања
   ranks:
     kingdom: царство
     phylum: колено
@@ -1115,6 +1102,7 @@ mk:
   ray_finned_fishes: зракоперки
   recent_observations: Скорешни набљудувања
   recent_post: Скорешна објава
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Скорешни набљудувања од %{login} (Атом)"
   recent_observations_by: "Скорешни набљудувања од %{login}"
   recently_active: Неодамна активни
@@ -1587,21 +1575,6 @@ mk:
       submit: Зачувај %{model}
       update: Поднови %{model}
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: '.'
-        format: '%n %u'
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: ','
-        significant: false
-        strip_insignificant_zeros: false
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as

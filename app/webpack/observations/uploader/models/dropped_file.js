@@ -1,7 +1,7 @@
 import _ from "lodash";
 import piexif from "piexifjs";
 import moment from "moment-timezone";
-import util from "./util";
+import util, { DATETIME_WITH_TIMEZONE, DATETIME_WITH_TIMEZONE_OFFSET } from "./util";
 
 const BRANDED_DESCRIPTIONS = [
   "OLYMPUS DIGITAL CAMERA",
@@ -28,7 +28,7 @@ const DroppedFile = class DroppedFile {
       updates.time_zone = obs.zic_time_zone;
       updates.date = moment( obs.time_observed_at )
         .tz( TIMEZONE )
-        .format( "YYYY/MM/DD h:mm A z" );
+        .format( DATETIME_WITH_TIMEZONE );
       updates.selected_date = updates.date;
     }
     if ( obs.latitude && obs.longitude ) {
@@ -96,10 +96,10 @@ const DroppedFile = class DroppedFile {
             && parseInt( moment( ).tz( TIMEZONE ).format( "z" ), 0 ) !== 0
           ) {
             metadata.date = moment.tz( dt, "YYYY/MM/DD HH:mm:ss", TIMEZONE )
-              .format( "YYYY/MM/DD h:mm A ZZ" );
+              .format( DATETIME_WITH_TIMEZONE_OFFSET );
           } else {
             metadata.date = moment.tz( dt, "YYYY/MM/DD HH:mm:ss", TIMEZONE )
-              .format( "YYYY/MM/DD h:mm A z" );
+              .format( DATETIME_WITH_TIMEZONE );
           }
           metadata.selected_date = metadata.date;
         }

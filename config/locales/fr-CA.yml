@@ -47,6 +47,8 @@ fr-CA:
   x_misidentifications_of_this_species:
     one: "%{count} mauvaise identification de cette espèce"
     other: "%{count} mauvaises identifications de cette espèce"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} mauvaise identification d’espèce dans ce %{rank}"
     other: "%{count} mauvaises identifications d’espèces dans ce %{rank}"
@@ -102,6 +104,7 @@ fr-CA:
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> taxon observé"
     other: "<span class='count'>%{count}</span> taxons observés"
+  _100_day_trends: Tendances de 100 jours
   a_community_for_naturalist: Une communauté pour naturalistes
   about: À propos
   about_blocking: À propos du blocage
@@ -118,6 +121,9 @@ fr-CA:
   about_this_project: À propos de ce projet
   about_trips_html: |
     <h4>Les voyages permettent la collecte de données de présence/absence en ajoutant un contexte à vos observations</h4><p><strong>Pourquoi</strong> Les données de présence/absence incluent des informations sur l’effort d’échantillonnage, qui est utile pour les analyses scientifiques comme les modèles de répartition (les observations brutes de iNaturalist sont des données de 'présence uniquement').</p> <p><strong>Comment</strong> Un voyage ajoute un contexte à vos observations en enregistrant :</p> <ul> <li><strong>Ce que</strong> vous avez cherché (liste cible)</li> <li><strong>Où</strong> vous l'avez cherché (zone de recherche)</li> <li><strong>Quand</strong> vous l'avez cherché (période de recherche)</li> </ul> <p>Les espèces de votre liste cible que vous aurez pu observer dans la zone de recherche sont interprétées comme des présences. Alors que les espèces de votre liste cible que vous n’aurez pas pu observer seront interprétées comme des absences. Cliquez sur « Données tabulées de présence/absence pour les voyages » pour générer un tableau d’enregistrements de présence/absence pour les espèces des voyages et les observations associées. <a href='%{url}'>En savoir plus</a></p>
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Préc. (m)'
   account: Compte
   account_creation: Création de compte
@@ -150,6 +156,7 @@ fr-CA:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Ajouter un lien
   add_a_name: Ajouter un nom
+  add_a_note: Ajouter une note
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Ajouter une liste numérotée
   #Tool tip for a button that adds bold text to a text area
@@ -205,7 +212,6 @@ fr-CA:
   add_to_favorites: Ajouter aux favoris
   add_to_list: Ajouter à la liste
   add_to_project: Ajouter au projet
-  add_to_your_life_list: Ajouter à votre liste des êtres vivants!
   add_to_your_list: Ajouter à votre liste
   add_your_email_to_get: |
     Ajoutez votre adresse courriel pour obtenir des commentaires de la communauté sur votre observation .
@@ -298,9 +304,7 @@ fr-CA:
     <a href="%{url}">Télécharger le modèle</a> pour l’utiliser dans le
     <a href="/observations/import?project_id=%{project_id}#csv_import">téléverseur par lot</a>
   email: Courriel
-  email_addresses_description: Adresses courriel séparées par des virgules, limitées à 60 tous les 30 jours.
   email_address_for_comments_and_other_feedback: Adresse courriel pour les commentaires
-  email_addresses_to_receive_invites: Adresses courriel pour recevoir les invitations
   email_copyright: "Copyright &copy; %{x}, tous droits réservés"
   email_settings: Paramètres de courriel
   embed_widget_project: Intégrer un widget pour ce projet sur votre site Web
@@ -322,7 +326,6 @@ fr-CA:
     responsable du site. Si vous pensez que c’est une erreur, veuillez
     <a href="mailto:%{help_email}" class="contact">nous contacter</a>.
     <a href="%{manage_flags_path}">Gérer les signalements</a>
-  learn_more_on_the_blog: Apprenez-en plus sur le blogue
   legacy_authentication_notice_html: |
     Il semble que vous utilisez un mot de passe d'une ancienne version de ce site Web.
     Souvenez-vous de <a href="%{url}">modifier votre mot de passe</a> aux fins de la nouvelle version.
@@ -332,7 +335,6 @@ fr-CA:
     <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des commentaires.
   log_in_or_sign_up_to_add_identifications_html: |
     <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des identifications.
-  mail_disclaimer: "%{site_name} ne permettra pas à ses utilisateurs de vous envoyer des invitations supplémentaires au moyen de notre système d’invitation. Merci de signaler les abus d’invitation à %{site}."
   #Label shown when a date has not been entered
   missing_date: Date manquante
   no_more_mail_from_site: "Vous ne voulez pas recevoir de courriel d’%{site_name}?  Modifiez vos paramètres de courriel à"
@@ -343,7 +345,6 @@ fr-CA:
   parental_consent:
     must_specify_email: Vous devez spécifier une adresse courriel
     invalid_email: Format de courriel invalide
-  personal_message_description: Personne n’aime recevoir des courriels d’une machine! Pourquoi ne pas laisser savoir à vos amis que vous les invitez?
   pi_consent_desc_html: |
     Nous stockons les informations personnelles telles que le nom des utilisateurs et les adresses de messagerie afin de
     gérer les compter sur ce site, et pour être en accord avec les lois sur la vie privée, nous
@@ -352,7 +353,6 @@ fr-CA:
     comment nous les utilisons, veuillez voir notre
     <a href='%{privacy_url}' target='_blank'>Politique de confidentialité</a>
     et nos <a href='%{terms_url}' target='_blank'>Conditions de service</a>.
-  preview_personal_message: "J’aimerais que vous me rejoigniez sur %{site}, un site Web où vous pouvez enregistrer vos observations sur les plantes et les animaux, garder trace des espèces observées et en apprendre plus sur le monde de la nature!"
   project_x_was_delete: "%{project} a été supprimé (merci d'attendre quelques minutes pour qu'il soit supprimé du site Web)"
   receive_email_notifications_when_people_leave_you: Recevoir des avis par courriel sur
   search_by_name_or_email: Rechercher par nom ou par courriel

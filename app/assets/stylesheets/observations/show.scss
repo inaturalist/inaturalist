@@ -758,6 +758,23 @@ h3, h4 {
   }
 }
 
+.map_details,
+.date_row,
+time {
+  .geoprivacy-icon,
+  .icon-icn-location-obscured {
+    line-height: 1.3;
+    margin-right: 5px;
+  }
+}
+time {
+  .geoprivacy-icon,
+  .icon-icn-location-obscured {
+    position: relative;
+    top: -2px;
+  }
+}
+
 .Map {
   margin: 20px 20px 0px 20px;
   border: 1px solid $border-grey;
@@ -788,10 +805,6 @@ h3, h4 {
     font-size: 14px;
     display: flex;
     justify-content: space-between;
-    .geoprivacy-icon {
-      line-height: 1.3;
-      margin-right: 5px;
-    }
     .place-guess {
       flex: 2;
       span, div {
@@ -1364,7 +1377,6 @@ h3, h4 {
       .title {
         font-size: 14px;
         line-height: 14px;
-        padding-top: 8px;
         font-weight: 700;
         text-overflow: ellipsis;
         display: block;
@@ -1376,6 +1388,7 @@ h3, h4 {
         margin-top: 4px;
         i {
           font-size: 12px;
+          margin-right: 3px;
         }
       }
     }

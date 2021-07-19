@@ -33,18 +33,18 @@
             - if @prev
               = link_to @prev, :class => "btn btn-default", title: @prev.display_name do
                 %i.fa.fa-chevron-left
-                = t(:prev)
+                = t(:previous_taxon_short)
             - else
               %span.btn.btn-default{disabled: :disabled}
                 %i.fa.fa-chevron-left
-                = t(:prev)
+                = t(:previous_taxon_short)
             - if @next
               = link_to @next, :class => "btn btn-default", title: @next.display_name do
-                = t(:next)
+                = t(:next_taxon_short)
                 %i.fa.fa-chevron-right
             - else
               %span.btn.btn-default{disabled: :disabled}
-                = t(:next)
+                = t(:next_taxon_short)
                 %i.fa.fa-chevron-right
       %h2
         - if @guide_taxon.display_name == @guide_taxon.name
@@ -173,7 +173,7 @@
         .modal-footer
           %button.btn.btn-default.pull-left.prev{:type => "button"}
             %i.glyphicon.glyphicon-chevron-left
-            =t :prev
+            =t :previous_photo_short
           %button.btn.btn-primary.next{:type => "button"}
-            =t :next
+            =t :next_photo_short
             %i.glyphicon.glyphicon-chevron-right

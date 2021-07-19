@@ -239,6 +239,14 @@ const PhotoBrowser = ( {
               ) }
               { _.map( terms, values => {
                 const attr = values[0].controlled_attribute;
+                const translatedAny = I18n.t(
+                  `controlled_term_labels.any_${_.snakeCase( attr.label )}`,
+                  {
+                    defaultValue: I18n.t( "any_annotation_attribute", {
+                      defaultValue: I18n.t( "any" )
+                    } )
+                  }
+                );
                 return (
                   <span key={`term-${attr.label}`} className="control-group">
                     <Dropdown
@@ -252,7 +260,7 @@ const PhotoBrowser = ( {
                           {( selectedTerm && selectedTerm.id === attr.id && selectedTermValue
                             ? I18n.t( `controlled_term_labels.${_.snakeCase( selectedTermValue.label )}`,
                               { defaultValue: selectedTermValue.label } )
-                            : I18n.t( "any_annotation_attribute" )
+                            : translatedAny
                           ) }
                         </strong>
                       </Dropdown.Toggle>
@@ -262,7 +270,7 @@ const PhotoBrowser = ( {
                           eventKey="any"
                           active={!selectedTermValue}
                         >
-                          { I18n.t( "any_annotation_value" ) }
+                          { translatedAny }
                         </MenuItem>
                         { values.map( v => {
                           const value = v.controlled_value;

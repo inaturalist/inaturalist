@@ -35,8 +35,8 @@ const PaginationControl = ( {
       current={current}
       pageSize={perPage}
       locale={{
-        prev_page: I18n.t( "prev" ),
-        next_page: I18n.t( "next" )
+        prev_page: I18n.t( "previous_page_short" ),
+        next_page: I18n.t( "next_page_short" )
       }}
       onChange={page => loadPage( page )}
     />

@@ -36,8 +36,6 @@
   <li><%= link_to t(:fill_out_your_profile).capitalize, edit_user_url(@resource) %></li>
   <li>
     <%= link_to t(:find_some_people_to_follow).capitalize, people_url %>
-    <%= t(:or) %>
-    <%= link_to t(:invite_your_friends).downcase, emailer_invite_url %>
   </li>
   <li><%= t( "views.devise.mailer.confirmation_instructions.community_guidelines_html", url: community_guidelines_url ) %></li>
 </ul>

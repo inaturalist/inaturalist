@@ -126,6 +126,38 @@ const annotationShortcuts = [
     shortcut: "a c",
     term: "Alive or Dead",
     value: "Cannot Be Determined"
+  },
+
+  // Evidence of Presence
+  {
+    shortcut: "e o",
+    term: "Evidence of Presence",
+    value: "Organism"
+  },
+  {
+    shortcut: "e f",
+    term: "Evidence of Presence",
+    value: "Feather"
+  },
+  {
+    shortcut: "e s",
+    term: "Evidence of Presence",
+    value: "Scat"
+  },
+  {
+    shortcut: "e t",
+    term: "Evidence of Presence",
+    value: "Track"
+  },
+  {
+    shortcut: "e b",
+    term: "Evidence of Presence",
+    value: "Bone"
+  },
+  {
+    shortcut: "e m",
+    term: "Evidence of Presence",
+    value: "Molt"
   }
 ];
 

@@ -1050,16 +1050,12 @@ class ProjectsController < ApplicationController
   end
 
   def search
-    if @site && (@site_place = @site.place)
-      @place = @site_place unless params[:everywhere].yesish?
-    end
     if @q = params[:q]
       response = INatAPIService.get(
         "/search",
         q: @q,
         page: params[:page],
         sources: "projects",
-        place_id: @place.try(:id),
         ttl: logged_in? ? "-1" : nil
       )
       projects = Project.where( id: response.results.map{|r| r["record"]["id"]} ).index_by(&:id)

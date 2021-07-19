@@ -5,7 +5,6 @@ class FlagsController < ApplicationController
   before_filter :model_required, except: [:index, :update, :show, :on, :destroy]
   before_filter :load_flag, only: [:show, :destroy, :update]
   before_filter :curator_or_owner_required, only: [:update]
-  before_filter :admin_required, only: [:destroy]
   
   # put the parameters for the foreign keys here
   FLAG_MODELS = [ "Observation", "Taxon", "Post", "Comment", "Identification",
@@ -231,6 +230,23 @@ class FlagsController < ApplicationController
   end
   
   def destroy
+    unless @flag.deletable_by?( current_user )
+      msg = t(:you_dont_have_permission_to_do_that)
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          if session[:return_to] == request.fullpath
+            redirect_to root_url
+          else
+            redirect_back_or_default( root_url )
+          end
+        end
+        format.json do
+          render status: :unprocessable_entity, json: { error: msg }
+        end
+      end
+      return
+    end
     @object = @flag.flaggable
     @flag.destroy
     if @object.is_a?(Project)

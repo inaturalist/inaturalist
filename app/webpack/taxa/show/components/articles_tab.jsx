@@ -4,18 +4,17 @@ import { Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
 
 const ArticlesTab = ( {
-  taxonId,
+  taxon,
   description,
   descriptionSource,
   descriptionSourceUrl,
   links,
   currentUser
 } ) => {
-  const isCurator =
-    currentUser && currentUser.roles && (
-      currentUser.roles.indexOf( "curator" ) >= 0 ||
-      currentUser.roles.indexOf( "admin" ) >= 0
-    );
+  const isCurator = currentUser && currentUser.roles && (
+    currentUser.roles.indexOf( "curator" ) >= 0
+    || currentUser.roles.indexOf( "admin" ) >= 0
+  );
   return (
     <Grid className="ArticlesTab">
       <Row>
@@ -23,17 +22,21 @@ const ArticlesTab = ( {
           <h2
             className={`text-center ${description ? "hidden" : ""}`}
           >
-            <i className="fa fa-refresh fa-spin"></i>
+            <i className="fa fa-refresh fa-spin" />
           </h2>
           <div className={description ? "" : "hidden"}>
             <h2>
-              { I18n.t( "source_" ) } { descriptionSource } { descriptionSourceUrl ? (
+              { I18n.t( "source_" ) }
+              { " " }
+              { descriptionSource }
+              { " " }
+              { descriptionSourceUrl && (
                 <a href={descriptionSourceUrl}>
-                  <i className="icon-link-external"></i>
+                  <i className="icon-link-external" />
                 </a>
-              ) : null }
+              ) }
             </h2>
-            <div dangerouslySetInnerHTML={{ __html: description }}></div>
+            <div dangerouslySetInnerHTML={{ __html: description }} />
           </div>
         </Col>
         <Col xs={3} xsOffset={1}>
@@ -56,7 +59,7 @@ const ArticlesTab = ( {
                   </a>
                   { isCurator ? (
                     <a href={`/taxon_links/${link.taxon_link.id}/edit`}>
-                      <i className="fa fa-pencil"></i>
+                      <i className="fa fa-pencil" />
                     </a>
                   ) : null }
                 </li>
@@ -65,20 +68,52 @@ const ArticlesTab = ( {
           </ul>
           { isCurator ? (
             <a
-              href={`/taxon_links/new?taxon_id=${taxonId}`}
+              href={`/taxon_links/new?taxon_id=${taxon.id}`}
               className="btn btn-primary btn-block"
             >
-              <i className="icon-link"></i> { I18n.t( "add_link" ) }
+              <i className="icon-link" />
+              { " " }
+              { I18n.t( "add_link" ) }
             </a>
           ) : null }
+          { taxon.rank === "species" && (
+            <div className="computer-vision-status">
+              <h2>{ I18n.t( "computer_vision_model" ) }</h2>
+              { taxon.vision ? (
+                <div>
+                  <h3>
+                    <span className="label label-success">
+                      <i className="icon-sparkly-label" />
+                      { " " }
+                      { I18n.t( "computer_vision_model_included" ) }
+                    </span>
+                  </h3>
+                  <p>
+                    { I18n.t( "computer_vision_model_included_desc" ) }
+                  </p>
+                </div>
+              ) : (
+                <div>
+                  <h3>
+                    <span className="label label-default">
+                      { I18n.t( "computer_vision_model_pending" ) }
+                    </span>
+                  </h3>
+                  <p>
+                    { I18n.t( "computer_vision_model_pending_desc" ) }
+                  </p>
+                </div>
+              ) }
+            </div>
+          ) }
         </Col>
       </Row>
     </Grid>
   );
-}
+};
 
 ArticlesTab.propTypes = {
-  taxonId: PropTypes.number,
+  taxon: PropTypes.object.isRequired,
   description: PropTypes.string,
   descriptionSource: PropTypes.string,
   descriptionSourceUrl: PropTypes.string,

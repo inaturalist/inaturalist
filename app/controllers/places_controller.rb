@@ -105,16 +105,28 @@ class PlacesController < ApplicationController
   end
   
   def search
-    search_for_places
+    @q = params[:q].to_s.sanitize_encoding
+    if params[:limit]
+      @limit ||= params[:limit].to_i
+      @limit = 100 if @limit > 100
+    else
+      @limit = 30
+    end
+    response = INatAPIService.get(
+      "/search",
+      q: @q,
+      page: params[:page].to_i <= 0 ? 1 : params[:page].to_i,
+      per_page: @limit,
+      sources: "places",
+      ttl: logged_in? ? "-1" : nil
+    )
+    places = Place.where( id: response.results.map{|r| r["record"]["id"]} ).index_by(&:id)
+    @places = WillPaginate::Collection.create( response["page"] || 1, response["per_page"] || 0, response["total_results"] || 0 ) do |pager|
+      pager.replace( response.results.map{|r| places[r["record"]["id"]]} )
+    end
+    Place.preload_associations(@places, :place_geometry_without_geom)
     respond_to do |format|
-      format.html do
-        if @places.size == 1
-          redirect_to @places.first
-        end
-      end
-      format.json do
-        render(:json => @places.to_json(:methods => [ :html, :kml_url ]))
-      end
+      format.html
     end
   end
   
@@ -179,9 +191,6 @@ class PlacesController < ApplicationController
       @place.user = current_user
       if params[:file]
         assign_geometry_from_file
-      elsif !params[:geojson].blank?
-        @geometry = geometry_from_geojson(params[:geojson])
-        @place.validate_with_geom( @geometry, user: current_user )
       end
 
       if @geometry # && @place.valid?
@@ -204,7 +213,7 @@ class PlacesController < ApplicationController
       flash[:notice] = notice
       return redirect_to @place
     else
-      flash[:error] = t(:there_were_problems_importing_that_place, :place_error => @place.errors.full_messages.join(', '))
+      flash.now[:error] = t(:there_were_problems_importing_that_place, :place_error => @place.errors.full_messages.join(', '))
       render :action => :new
     end
   end
@@ -224,9 +233,6 @@ class PlacesController < ApplicationController
       redirect_to place_path(@place)
       return
     end
-    
-    r = Place.connection.execute("SELECT st_npoints(geom) from place_geometries where place_id = #{@place.id}")
-    @npoints = r[0]['st_npoints'].to_i unless r.num_tuples == 0
   end
   
   def update
@@ -237,11 +243,6 @@ class PlacesController < ApplicationController
         @place.add_custom_error(:place_geometry, :is_too_large_to_edit)
       elsif params[:file]
         assign_geometry_from_file
-      elsif !params[:geojson].blank?
-        @geometry = geometry_from_geojson(params[:geojson])
-        if @place.validate_with_geom( @geometry, user: current_user )
-          @place.save_geom(@geometry, user: current_user) if @geometry
-        end
       end
 
       if @place.errors.any?
