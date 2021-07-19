@@ -74,7 +74,7 @@ describe PlacesController do
             name: Faker::Name.name,
             latitude: 0.5,
             longitude: 0.5
-          }, geojson: test_place_geojson
+          }, file: test_place_kml
         }.to change( Place, :count ).by( 1 )
       end
       expect {
@@ -82,7 +82,7 @@ describe PlacesController do
           name: Faker::Name.name,
           latitude: 0.5,
           longitude: 0.5
-        }, geojson: test_place_geojson
+        }, file: test_place_kml
       }.to change( Place, :count ).by( 0 )
     end
   end
