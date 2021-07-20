@@ -327,6 +327,10 @@ cs:
   action: Akce
   actions: Akce
   active: Aktivní
+  #Status of a complete set that is available for use
+  active_complete_set_status: Aktivní
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Aktivní
   active_users: Aktivní uživatelé
   activity: Aktivita
   activity_settings: Nastavení činnosti
@@ -1569,7 +1573,6 @@ cs:
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: Pusťte zde
-  double_click_to_finish: (dvojklik pro dokončení)
   download: Stáhnout
   download_bulk_import_template_html: |
     <a href="%{url}">Stáhnout šablonu</a> pro použití při <a href="/observations/import?project_id=%{project_id}#csv_import">hromadném nahrávání</a>
@@ -1911,7 +1914,6 @@ cs:
   georeferenced: Georeference?
   get_started: Začněte
   getting_started_guide: Příručka pro nováčky
-  give_it_some_detail: Přidejte nějaký detail!
   #Prompt to donate money on a montly basis
   give_monthly_caps: DÁT MĚSÍČNĚ
   #Prompt to donate money once
@@ -2079,7 +2081,13 @@ cs:
   in_the_past: v minulosti
   in_the_past_week: v minulém týdnu
   inactive: neaktivní
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Neaktivní
   inactive_taxon: neaktivní taxon
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Neaktivní
   inactive_taxon_concepts_are: Neaktivní koncepty taxonů jsou buď taxonomicky zastaralé, nebo jsou ve stádiu změny taxonu. Zastaralé koncepty se uchovávají z důvodu historických záznamů a kompatibility s některými partnerskými stránkami.
   inappropriate_content: Nevhodný obsah?
   inat_account_action: "%{site_name} &#58; Účet &#58; %{action_name}"
@@ -2694,10 +2702,14 @@ cs:
   newly_observed_species: Nově pozorované druhy
   newly_observed_species_in_year: "Nově přidané druhy v %{year}"
   next: Další
+  next_date_short: Další
   next_observation: Další pozorování
   next_page: Další stránka
+  next_page_short: Další
   next_photo: Další fotka
+  next_post_short: Další
   next_tab: Další panel
+  next_taxon_short: Další
   'no': 'Ne'
   no_assessments_have_been_added_to_this_project_yet: K tomuto projektu zatím nebyla přidána žádná hodnocení.
   no_but_it_is_a_member_of_taxon: "Ne, ale patří do %{taxon}"
@@ -3163,6 +3175,9 @@ cs:
   place: Místo
   placeholder: Zástupný text
   place_autocomplete_placeholder: Zion National Park, Miami, atd.
+  place_create_quota_exceeded: |
+    Překročili jste počet míst, která můžete vytvořit za 24 hodin
+    (%{quota})
   place_deleted: Místo bylo smazáno.
   place_geo:
     geo_planet_place_types:
@@ -3594,6 +3609,8 @@ cs:
   places_warning_editing_places_is_slow: |
     Úprava hranic místa je jedním z největších zdrojů zpomalení na iNat.
     Pokud se tomu můžete vyhnout, nepřidávejte, neměňte ani neodstraňujte hranice míst, pokud to není naprosto nezbytné.
+  places_warning_quota: |
+    Můžete vytvořit pouze tři místa denně.
   places_warning_the_future: |
     Možná se Vás to netýká, ale vzhledem k současné míře růstu iNat budeme muset omezit podmínky, za nichž lidé mohou přidávat nová místa.
   plants: rostliny
@@ -3630,11 +3647,15 @@ cs:
   preview_observations_with_these_observation_requirements: Náhled pozorování s těmito požadavky na pozorování
   preview_of_synced_observation: "<strong>Náhled</strong> synchronizovaného pozorování.  <a href=\"%{url}\">Zpět?</a>"
   previewing: "Vytváření náhledu..."
+  previous_date_short: Předchozí
   prev: Předch.
   previous_observation: Předchozí pozorování
   previous_page: Předchozí stránka
+  previous_page_short: Předchozí
   previous_photo: Předchozí fotka
+  previous_post_short: Předchozí
   previous_tab: Předchozí panel
+  previous_taxon_short: Předchozí
   print_verb: Vytisknout
   privacy: Zásady ochrany osobních údajů
   private: soukromý
@@ -6940,11 +6961,19 @@ cs:
       7: so
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      default: '%d.%m.%Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      long: '%d. %B %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%m %d'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       compact: "%b %e"
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      short_with_year: '%d. %b %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_year: '%B %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      month_day_year: '%d. %B %Y'
     month_names:
       - 
       - Leden
