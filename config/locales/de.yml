@@ -601,6 +601,10 @@ de:
     Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat gelistete Taxa.
   are_you_sure_want_delete_taxon_listed_taxa_identifications: |
     Möchtest du dieses Taxon wirklich löschen? Es enthält gelistete Taxa und Identifikationen
+  are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
+    Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat gelistete Taxa, Bestimmungen und Beobachtungen
+  are_you_sure_want_delete_taxon_listed_taxa_observations: |
+    Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat gelistete Taxa und Beobachtungen
   are_you_sure_want_delete_taxon_observations: |
     Bist du sicher, dass du dieses Taxon löschen möchtest? Es hat Beobachtungen
   are_you_sure_want_delete_taxon_link: Bist du sicher, dass du diesen Taxon-Link entfernen willst?
@@ -778,6 +782,7 @@ de:
   change_descriptions:
     split: Altes Taxon in mehrere neue Taxa aufspalten
     merge: Mehrere alte Taxa unter einem neuen Taxon zusammenfassen
+    swap: Eingabe-Taxon durch Ausgabe-Taxon ersetzen
     drop: Taxonkonzept vollständig ungültig; aus historischen Gründen oder zwecks Kompatibilität mit Partnern beibehalten.
     stage: Ein inaktives Konzept als Teil einer Änderungsgruppe zur Veröffentlichung vorbereiten
   change_geoprivacy: 'Geo-Privatsphäre ändern'
@@ -1431,7 +1436,6 @@ de:
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: Ablegen
-  double_click_to_finish: (Doppelklicken um abzuschließen)
   download: Herunterladen
   download_bulk_import_template_html: |
     <a href="%{url}">Vorlage herunterladen</a> für die Verwendung im
@@ -1763,7 +1767,6 @@ de:
   georeferenced: Georeferenziert?
   get_started: Erste Schritte
   getting_started_guide: Anleitung für den Einstieg
-  give_it_some_detail: Bitte detaillieren!
   #Prompt to donate money on a montly basis
   give_monthly_caps: MONATLICH SPENDEN
   #Prompt to donate money once
@@ -3007,6 +3010,9 @@ de:
   place: Gebiet
   placeholder: Platzhalter
   place_autocomplete_placeholder: Zion National Park, Miami, etc.
+  place_create_quota_exceeded: |
+    Du hast die Anzahl der Orte überschritten, die in einem 24-Stunden Zeitraum erstellt werden können
+    (%{quota})
   place_deleted: Ort gelöscht.
   place_geo:
     geo_planet_place_types:
@@ -3436,6 +3442,8 @@ de:
   places_warning_editing_places_is_slow: |
     Die Bearbeitung von Gebietsgrenzen ist eine der größten Ursachen für Verlangsamungen auf iNat.
     Wenn du es vermeiden kannst, füge keine Grenzen hinzu, ändere oder entferne sie nicht - außer es ist unbedingt notwendig.
+  places_warning_quota: |
+    Du kannst nur drei Orte pro Tag erstellen.
   places_warning_the_future: |
     Nebenbei bemerkt, unter Berücksichtigung der aktuellen Wachstumsrate von iNat werden wir wohl die Befugnisse einschränken müssen, mit denen Benutzer in Zukunft Gebiete hinzufügen können.
   plants: Pflanzen
@@ -4478,6 +4486,7 @@ de:
   type: Typ
   type_one_name_per_line: Einen Namen pro Zeile eingeben
   type_place_name: Name des Gebiets eingeben
+  type_source_name: Name der Quelle eingeben
   type_source_title: "Titel der Quelle eingeben"
   type_species_name: "Namen der Spezies eingeben"
   type_taxon_name: "Name des Taxons eingeben"
@@ -4486,6 +4495,7 @@ de:
   unblock: Entsperren
   unclassified: Nicht klassifiziert
   ungrafted_taxa: nicht zugeordnete Taxa
+  unhide_content: Inhalt wieder sichtbar machen
   uninvite: ausladen
   unknown: Unbekannt
   unknown_error: Unbekannter Fehler
