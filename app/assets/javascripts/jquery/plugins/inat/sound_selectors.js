@@ -110,7 +110,7 @@
 
     // Append next & prev links
     var offset = $('<input class="soundSelectorOffset" type="hidden" value="0"/>');
-    var prev = $('<a href="#" class="prevlink button">&laquo; '+I18n.t('prev_page_short')+'</a>').click(function(e) {
+    var prev = $('<a href="#" class="prevlink button">&laquo; '+I18n.t('previous_page_short')+'</a>').click(function(e) {
       var offsetnum = parseInt($(wrapper).find('.soundSelectorOffset').val());
       offsetnum -= options.limit;
       if (offsetnum < 0) offsetnum = 0;
