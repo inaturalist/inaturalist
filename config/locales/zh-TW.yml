@@ -766,11 +766,11 @@ zh-TW:
   check_list_for_individual_taxa_that: '於此地棲息的單一物種分類群名錄，例如：「%{place}的鳥類」。'
   check_list_for_taxon_html: "%{taxon} 的名錄"
   check_lists_must_belong_to_a_place: |
-    清單必須屬於某一地點。要創建一個新的物種名錄，請查看該地點的預設清單並點擊「建立新物種名錄」連結。
-  check_list_of_species_occuring_in: 物種清單出現在
-  check_list_place: "%{place}清單"
+    清單必須屬於某一地點。要創建一個新的物種名錄，請查看該地點的預設物種名錄並點擊「建立新物種名錄」連結。
+  check_list_of_species_occuring_in: 物種名錄出現在
+  check_list_place: "%{place}的名錄"
   check_list_updated: 檢查列表已更新！
-  check_lists_for: "用於%{place}的其它清單"
+  check_lists_for: "用於%{place}的其它名錄"
   check_out_our_blog: 看看我們的部落格
   check_out_what_the_observation: 查看您所嘗試鑑定物種的外型模樣。
   check_this_box_if_html: |
@@ -779,13 +779,13 @@ zh-TW:
     target='_blank'>創用 CC 姓名標示-非商業性許可版權</a>到上傳的內容，請勾選此框。這代表任何人只要有將您給表彰出，並且不使用在商業用途上，都能夠不需先詢問允許，便能複製和重複使用您的照片以及/或是觀察。您可在事後移除或挑選其它版權，但對於分享給研究人員來說這是最合適的許可版權。
   checklist: 名錄
   choose_a_field: 選擇欄位
-  choose_a_list_above: 選擇一個在上方的清單。
+  choose_a_list_above: 選擇一個在上方的名錄。
   choose_a_place: 挑選一個地點
   choose_a_taxon: 挑選一個分類（可選）
   choose_columns: 選擇欄位
   choose_file: 選擇檔案
   choose_files: 挑選檔案
-  choose_from_your_lists: 從您的清單挑選
+  choose_from_your_lists: 從您的名錄中挑選
   choose_photos_for_this_taxon: 挑選用於此分類的照片
   choose_photos_to_tag_from_photostream: 從您的照片串流挑選照片來標記
   choose_rule: 選擇一條規則
@@ -853,7 +853,7 @@ zh-TW:
   comprehensive?: 綜合？
   comprehensive_check_list_for_taxon_html: |
     <span class="comprehensive_notice" data-tip="%{tip}">完整的</span> %{taxon} 名錄
-  comprehensive_list: 綜合清單
+  comprehensive_list: 完整名錄
   #Name for the statistical model used to determine visual similarity between
   #photos and taxa
   computer_vision_model: 電腦視覺模型
@@ -903,7 +903,7 @@ zh-TW:
   conservation_status_geoprivacy_desc: |
     預設位置隱私會套用到在此地點上的所有分類群觀察
   contact_support: 聯絡支援
-  contain_all_descendants?: 此清單是否包含所有出現於此的物種分類派生？
+  contain_all_descendants?: 此物種名錄是否包含了在這裡出現的此分類群以下階層的所有分類單元？
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: 内容
   content_and_display: 內容 & 顯示
@@ -1356,7 +1356,6 @@ zh-TW:
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: 放開
-  double_click_to_finish: '（快按兩下來完成）'
   download: 下載
   download_bulk_import_template_html: |
     <a href="%{url}">下載模板</a>來用於
@@ -1550,7 +1549,7 @@ zh-TW:
   filter_by_place: 依地點篩選
   filter_by_taxon: 按物種分類篩選
   filter_by_place_taxon_and_color: 依地點、物種分類、和色彩來使用控制篩選。
-  filter_list_by_this_taxon: 依此物種分類篩選清單
+  filter_list_by_this_taxon: 依此物種分類篩選名錄
   filtering: 篩選中
   filters: 篩選
   find: 尋找
@@ -1669,7 +1668,7 @@ zh-TW:
   from_a_place: 來自一個地點
   from_eol_collection: 來自生命大百科收藏
   from_flickr_facebook_etc: 來自 Flickr、臉書、或其它。
-  from_list: 來自清單
+  from_list: 來自名錄
   from_photos: 來自照片
   from_place: 來自地點
   from_soundcloud: 來自 Soundcloud
@@ -1691,7 +1690,6 @@ zh-TW:
   georeferenced: 地理參考？
   get_started: 入門
   getting_started_guide: 入門指南
-  give_it_some_detail: 為它提供一些詳細內容！
   #Prompt to donate money on a montly basis
   give_monthly_caps: 每月捐款
   #Prompt to donate money once
@@ -1811,7 +1809,7 @@ zh-TW:
   ids: "鑑定"
   ids_made_for_others: 個替其他人所做的鑑定
   if_for_some_reason_a_user_doesnt_agree: |
-    若出自於某種原因您不同意社群物種分類，您可以拒絕，這代表著您的鑑定是用在連結至其它觀察、更新的生物清單、或其它等等。這也代表您的觀察，僅能在社群認可後才能成為研究等級的內容。
+    若出自於某種原因您不同意社群物種分類，您可以拒絕，這代表著您的鑑定是用在連結至其它觀察、更新的生涯名錄、或其它等等。這也代表您的觀察，僅能在社群認可後才能成為研究等級的內容。
   if_matches_come_from_a_comprehensive_list: 若符合來自於綜合列表內容，會在此顯示出綠色長條。
   if_this_is_a_scientific_name: 如果這是一個學名，它是否能被接受？
   if_this_link_will_apply_to_descendant: 如果此連結將套用到後代物種分類，您可以使用模版標籤來填寫 URL 裡的物種分類名稱
@@ -1841,7 +1839,7 @@ zh-TW:
   improving: 改進中
   in_n: "在%{n}"
   in_place_x: 於%{place}
-  inaturalist_network_affiliation: iNaturalist 網路聯合
+  inaturalist_network_affiliation: iNaturalist 國際網路所屬單位
   #Label for messages you've received
   inbox: 收件匣
   include_places: 包含的地點
@@ -1865,7 +1863,7 @@ zh-TW:
   inactive_taxon_concepts_are: 無作用物種分類概念代表著分類方式過時，或是正處於在物種分類更改的階段上。過時概念會保留在維護歷史裡；並兼容於其它合作者的網站
   inappropriate_content: 不適當內容？
   inat_account_action: "%{site_name} &#58;帳號&#58; %{action_name}"
-  inat_believes_this_is_a_complete_listing: "%{site_name} 相信這是此地區物種分類的完整清單。"
+  inat_believes_this_is_a_complete_listing: "%{site_name} 相信這是此地區物種分類的完整名錄。"
   inat_user_profile: "%{site_name}：%{user}的個人檔案"
   inaturalist_activity_notifications: "%{site_name} 活動通知"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
@@ -2040,7 +2038,7 @@ zh-TW:
   licensing: 許可協議
   licensing_your_content_gives_others_legal: "授權您的內容，可讓其他遵守授權條款的用戶能合法使用其中資料。%{site_name} 使用您的創用 CC 授權內容，來與其它資料合作者分享，例如"
   life: 生物
-  life_list: "%{user}的生物清單"
+  life_list: "%{user}的生涯名錄"
   linear_scale_label: 線性
   link: 連結
   link_or_unlink_your_facebook_account: 連結或取消連結至您的 Facebook 帳號
@@ -2061,26 +2059,26 @@ zh-TW:
   #Text inserted into a textarea when the link button is clicked but no text was selected
   linked_text: 連結文字
   linkedin: LinkedIn
-  list: 清單
+  list: 名錄
   list_deleted: 列表已刪除。
-  list_saved: 清單已儲存。
+  list_saved: 已儲存名錄。
   list_tooltip: 顯示清單檢視
   list_updated: 列表已更新！
   list_views:
     plain: 純文字
     taxonomic: 物種分類
     photo: 照片
-  list_was_successfully_created: 清單成功創建。
+  list_was_successfully_created: 已成功建立名錄。
   listed_taxa: 列出的物種分類
   listed_taxon: 列出的物種分類
   listed_taxon_updated: 列出的物種分類已更新
-  listing_lists: 清單列出中
+  listing_lists: 列出名錄中
   listing_project_assets: 專案_項目列出中
   listing_taxa: 物種分類列出中
-  lists: 清單
+  lists: 名錄
   lists_by_login:
     title:
-      current_user: 您的清單
+      current_user: 您的名錄
       login: 由 %{login} 列出
   load: 載入
   loading: "載入中…"
@@ -2191,7 +2189,7 @@ zh-TW:
   make_manager: 做為負責人
   make_sure_the_default_photo_looks_good: 確認預設照片在放大尺寸下觀看沒有問題。
   make_this_your_default_license: "將此作為您的預設%{type}許可協議"
-  make_this_the_primary_listing: "將這作為主要清單"
+  make_this_the_primary_listing: "將這作為主要名錄"
   mammals: 哺乳類
   manage_all_your_subscriptions: 管理您所有的訂閱
   manage_names: 管理名稱
@@ -2424,9 +2422,9 @@ zh-TW:
   new_and_noteworthy: 新事物與關注事項
   new_announcement: 新公告
   new_assessment: 新評估
-  new_check_list: 新清單
+  new_check_list: 新建名錄
   new_check_list_for: "建立一個用於%{place}的新物種名錄&raquo;"
-  new_check_list_record: "若您想標記此為綜合清單，請創建它添加物種分類群並編輯，之後您將會有用來標記為綜合的選項。"
+  new_check_list_record: "若您想註記此為完整的名錄，請建立、新增物種分類群並編輯它，之後您將有機會在此註記它為完整的名錄。"
   new_comment_on_a_parent_by_user_link: 由 %{user_link} 在 @vow_or_con{vow:an|a} %{parent} 做的新評論
   new_flag_for: 新標記用於
   new_guide: 新指南
@@ -2929,6 +2927,8 @@ zh-TW:
   place: 地點
   placeholder: 位置標誌符
   place_autocomplete_placeholder: 錫安國家公園、邁阿密等等。
+  place_create_quota_exceeded: |
+    您已經在 24 小時週期間達到可建立地點的上限(%{quota})
   place_deleted: 地點已刪除。
   place_geo:
     geo_planet_place_types:
@@ -3349,6 +3349,8 @@ zh-TW:
     新的地點是拖垮 iNat 運算資源的最大問題之一，所以<strong>請考慮不要任意新增地點</strong>。若是一個小地方僅包含數千個觀察紀錄通常沒問題，但如果您建立一個新地點包含了非常多的觀察紀錄，您會拖慢 iNat 的速度而影響到所有人。以下是一些替代的方案：
   places_warning_editing_places_is_slow: |
     編輯地點邊界是 iNat 速度減慢的最大來源之一。除非絕對必要，如果您能避免的話，盡量不要新增、更改或是移除地點邊界。
+  places_warning_quota: |
+    您一天中只能建立三個地點。
   places_warning_the_future: |
     不管怎麼說，有鑑於目前 iNat 成長的速度，我們將會在未來限制大家新增地點的條件。
   plants: 植物
@@ -5697,6 +5699,11 @@ zh-TW:
           允許成員信任此專案以存取真實座標
         trust_help_desc: |-
           如果您想存取遮蔽觀察記錄的隱藏座標，這個選項將會允許加入此專案的人信任專案的管理者來存取這些隱藏的座標。專案中的成員將可以把他們在此專案中任何隱藏觀察紀錄之座標，或僅授權被遮蔽的受脅物種之觀察紀錄座標授權給管理者。
+        trust_help_notification2: |-
+          然而，每次當您更動了專案的觀察需求條件，這將會通知所有已信任此專案的成員，
+          所以他們能夠重新評估他們是否在新的需求條件下繼續信任您。
+          在更改觀察需求條件後，您存取隱藏座標的權限將會暫時撤銷一週，
+          以讓成員們有時間能夠重新評估。
         trusted_project_means: |
           託付一個專案代表著專案負責人可以為專案添加可用物件以及自定義專案屬性（例如：橫幅的 HTML 內容、CSS）。存取自定義專案屬性代表著專案負責人有可能會添加惡意的 Javascript 內容，因此僅託付專案給具備責任感以及技術能力的負責人。
         you_can_preview: |
@@ -5948,6 +5955,11 @@ zh-TW:
           代表透過 <a href="https://www.inaturalist.org">iNaturalist</a>
           或 <a href="%{url}">iNaturalist 網路</a>網站建立
       year:
+        compare_desc: |
+          比較一下今年和前幾年差異為何呢？只要有三年以上的使用，
+          我們就能開始比較每年的活動指標。綠色條帶顯示今年，白色垂直
+          的條帶代表去年，而灰色的背景顯示最低和最高的年份，以及所有
+          年份的平均。統計中沒有包含計數為零的年份。
         compare_site_desc: |
           比較今年和去年的差異如何？綠色長條代表今年，白色的垂直長條代表去年，灰色的背景區域顯示最低和最高的年份，以及所有年份的平均。
         compared_to_previous_years: 和前一年比較
@@ -6480,6 +6492,8 @@ zh-TW:
       long: '%Y年%m月%d日'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%-m月%-d日'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      compact: "%b 月 %e 日"
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%Y %b %d'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
