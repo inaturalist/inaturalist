@@ -743,7 +743,7 @@ class ObservationsController < ApplicationController
       return
     end
 
-    @observations = Observation.where(id: params[:observations].map{ |k,v| k },
+    @observations = Observation.where(id: params[:observations].to_h.map{ |k,v| k },
       user_id: observation_user)
     
     # Make sure there's no evil going on
@@ -765,7 +765,7 @@ class ObservationsController < ApplicationController
     end
     
     # Convert the params to a hash keyed by ID.  Yes, it's weird
-    hashed_params = Hash[*params[:observations].to_a.flatten]
+    hashed_params = Hash[*params[:observations].to_h.to_a.flatten]
     errors = false
     extra_msg = nil
     @observations.each_with_index do |observation,i|
@@ -831,7 +831,8 @@ class ObservationsController < ApplicationController
       observation.editing_user_id = current_user.id
 
       observation.force_quality_metrics = true unless hashed_params[observation.id.to_s][:captive_flag].blank?
-      unless observation.update_attributes(observation_params(hashed_params[observation.id.to_s]))
+      permitted_params = ActionController::Parameters.new( hashed_params[observation.id.to_s].to_h )
+      unless observation.update_attributes( observation_params( permitted_params ) )
         errors = true
       end
 

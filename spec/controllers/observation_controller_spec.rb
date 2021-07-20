@@ -177,6 +177,21 @@ describe ObservationsController do
       o.reload
       expect( o.photos.size ).to eq 2
     end
+
+    it "should support updating multiple observations" do
+      user = User.make!
+      sign_in user
+      o1 = Observation.make!( description: "foo", user: user )
+      o2 = Observation.make!( description: "bar", user: user )
+      post :update, params: { observations: {
+        o1.id => { description: "foo1" },
+        o2.id => { description: "bar1" }
+      } }
+      o1.reload
+      o2.reload
+      expect( o1.description ).to eq "foo1"
+      expect( o2.description ).to eq "bar1"
+    end
   end
 
   describe "show" do
