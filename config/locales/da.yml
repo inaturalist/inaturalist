@@ -1447,7 +1447,6 @@ da:
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: Drop det
-  double_click_to_finish: (dobbeltklik for afslutning)
   download: Download
   download_bulk_import_template_html: |
     <a href="%{url}">Download skabelon</a> til brug i
@@ -1788,7 +1787,6 @@ da:
   georeferenced: Georefererede?
   get_started: Kom igang
   getting_started_guide: Kom godt i gang
-  give_it_some_detail: Giv det nogle detaljer!
   #Prompt to donate money on a montly basis
   give_monthly_caps: GIV MÅNEDLIGT
   #Prompt to donate money once
@@ -3055,6 +3053,9 @@ da:
   place: Sted
   placeholder: Pladsholder
   place_autocomplete_placeholder: Zion National Park, Miami, osv.
+  place_create_quota_exceeded: |
+    Antallet af steder, som kan oprette over en 24-timers periode, er overskredet
+    (%{quota})
   place_deleted: Sted slettet.
   place_geo:
     geo_planet_place_types:
@@ -3488,6 +3489,8 @@ da:
   places_warning_editing_places_is_slow: |
     Redigering af stedgrænser er en af de største kilder til træghed på iNat.
     Hvis du kan undgå det, så undlad at tilføje, ændre eller fjerne stedgrænser, medmindre det er absolut nødvendigt.
+  places_warning_quota: |
+    Kun tre steder kan oprettes dagligt.
   places_warning_the_future: |
     For hvad det er værd, så bliver vi, grundet iNat's nuværende vækstrate, fremadrettet nødt til at begrænse de betingelser, under hvilke folk kan tilføje steder.
   plants: planter
