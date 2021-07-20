@@ -533,6 +533,7 @@ Rails.application.routes.draw do
       get :stop_query
       get :users
       get "users/:id" => "admin#user_detail", as: :user_detail
+      get "login_as/:id" => "admin#login_as", as: :login_as
       get :deleted_users
       put :grant_user_privilege
       put :revoke_user_privilege

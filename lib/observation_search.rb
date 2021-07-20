@@ -243,7 +243,7 @@ module ObservationSearch
     # normalizes them for use in our search methods like query (database) or
     # elastic_query (ES)
     def query_params(params)
-      p = params.clone.symbolize_keys
+      p = params.to_hash.symbolize_keys
       unless p[:apply_project_rules_for].blank?
         if proj = Project.find_by_id(p[:apply_project_rules_for])
           p.merge!(proj.observations_url_params(extended: true))
