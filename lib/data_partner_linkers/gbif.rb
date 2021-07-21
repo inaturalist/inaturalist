@@ -120,12 +120,12 @@ module DataPartnerLinkers
       delete_count = links_to_delete_scope.count
       logger.info
       logger.info "[#{Time.now}] Deleting #{delete_count} observation links..."
+      obs_ids_to_index += links_to_delete_scope.pluck(:observation_id)
+      obs_ids_to_index = obs_ids_to_index.compact.uniq
       links_to_delete_scope.delete_all unless @opts[:debug]
 
       logger.info
       logger.info "[#{Time.now}] Re-indexing #{obs_ids_to_index.size} observations..."
-      obs_ids_to_index += links_to_delete_scope.pluck(:observation_id)
-      obs_ids_to_index = obs_ids_to_index.compact.uniq
       obs_ids_to_index.in_groups_of( 500 ) do |group|
         Observation.elastic_index!( ids: group.compact, wait_for_index_refresh: true ) unless @opts[:debug]
         num_indexed += group_size

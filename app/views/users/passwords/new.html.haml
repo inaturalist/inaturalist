@@ -6,4 +6,4 @@
       .error= t :we_couldnt_find_a_user
     - else
       .error= formatted_error_sentence_for( resource, :email )
-  = f.submit t(:send_me_reset_password_instructions), class: "btn btn-inat btn-primary"
+  = f.submit t(:send_me_reset_password_instructions), class: "btn btn-inat btn-primary", data: { loading_click: t(:sending) }

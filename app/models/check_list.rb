@@ -196,7 +196,7 @@ class CheckList < List
         end
       end
       batch.map( &:taxon_id ).uniq.each do |taxon_id|
-        Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 30.minutes.from_now,
+        Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 1.hour.from_now,
           unique_hash: { "Taxon::elastic_index": taxon_id }).
           elastic_index!(ids: [taxon_id])
       end

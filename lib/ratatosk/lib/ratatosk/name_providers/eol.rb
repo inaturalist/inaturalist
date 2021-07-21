@@ -224,8 +224,12 @@ module Ratatosk
         }.sort_by(&:last).last.try(:first).try(:downcase)
         if @adaptee.rank.blank? && @adaptee.name.split.size == 2
           @adaptee.rank = ::Taxon::SPECIES
+        elsif @adaptee.rank.blank? && @adaptee.name.split.size == 3
+          @adaptee.rank = ::Taxon::SUBSPECIES
         end
-        @adaptee.rank = nil unless Taxon::RANKS.include?( @adaptee.rank )
+        unless Taxon::RANKS.include?( @adaptee.rank )
+          raise NameProviderError, "Failed to parse taxon rank from the response from the EOL: #{original_name}"
+        end
         @adaptee.source = EolNameProvider.source
         @adaptee.name_provider = "EolNameProvider"
         @adaptee.source_identifier = begin

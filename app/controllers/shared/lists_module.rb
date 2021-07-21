@@ -107,6 +107,7 @@ module Shared::ListsModule
       end
       
       format.csv do
+        authenticate_user! unless ( authenticated_with_oauth? || logged_in? )
         path_for_taxonomic_csv = "public/lists/#{@list.to_param}.taxonomic.csv"
         path_for_normal_csv = "public/lists/#{@list.to_param}.csv"
         if @list.listed_taxa.count < 1000
@@ -141,6 +142,7 @@ module Shared::ListsModule
       end
       
       format.json do
+        authenticate_user! unless ( authenticated_with_oauth? || logged_in? )
         @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
         if @listed_taxa.respond_to?(:scoped) && params[:order_by].blank?
           @listed_taxa = @listed_taxa.reorder("listed_taxa.observations_count DESC")

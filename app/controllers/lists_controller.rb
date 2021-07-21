@@ -4,6 +4,7 @@ class ListsController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:index, :show, :by_login, :taxa, :guide,
     :cached_guide, :guide_widget]
+  before_filter :authenticate_user!, only: [:show], if: Proc.new {|c| [:csv, :json].include?( c.request.format )}
   load_except = [ :index, :new, :create, :by_login ]
   before_filter :load_list, :except => load_except
   blocks_spam :except => load_except, :instance => :list

@@ -1372,7 +1372,8 @@ module ApplicationHelper
 
   def google_maps_js(options = {})
     libraries = options[:libraries] || []
-    params = "v=3.35&key=#{CONFIG.google.browser_api_key}"
+    version = Rails.env.development? ? "weekly" : "3.43"
+    params = "v=#{version}&key=#{CONFIG.google.browser_api_key}"
     params += "&libraries=#{libraries.join(',')}" unless libraries.blank?
     "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?#{params}'></script>".html_safe
   end
@@ -1580,6 +1581,22 @@ module ApplicationHelper
       end
       s.html_safe
     end
+  end
+
+  def sortable_table_header( header, options = {} )
+    label = options.delete(:label) || header
+    content = content_tag(:span) do
+      s = label
+      if @order_by == header
+        s += if @order == "desc"
+          " &darr;"
+        else
+          " &uarr;"
+        end
+      end
+      s.html_safe
+    end
+    link_to( content, url_for_params( order_by: header, order: @order == "desc" ? "asc" : "desc" ), options )
   end
 
 end

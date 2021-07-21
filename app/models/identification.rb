@@ -715,7 +715,7 @@ class Identification < ActiveRecord::Base
           includes: ["id"],
         },
         filters: [
-          { terms: { "taxon.id" => [taxon_id] } }
+          { terms: { "taxon.ancestor_ids" => [taxon_id] } }
         ],
         track_total_hits: true
       ).page( page ).per_page( 1000 )

@@ -40,10 +40,10 @@
         = link_to t(:range), taxon_path(change_taxon, :anchor => 'taxon_range')
       - if change_taxon.is_active?
         |
-        %span.active= t(:active).humanize
+        %span.active= t(:active_taxon_status)
       - else
         |
-        %span.inactive= t(:inactive).humanize
+        %span.inactive= t(:inactive_taxon_status)
       - if change_taxon.flagged?
         |
         %span#flaggings_heads_up.description

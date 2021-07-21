@@ -262,16 +262,16 @@ class PhotoChooserModal extends React.Component {
         <Button
           disabled={page === 1}
           onClick={( ) => this.fetchPrevPhotos( )}
-          title={I18n.t( "prev" )}
+          title={I18n.t( "previous_page" )}
         >
-          { I18n.t( "prev" ) }
+          { I18n.t( "previous_page_short" ) }
         </Button>
         <Button
           disabled={photos.length < 24 || isLastPage}
           onClick={( ) => this.fetchNextPhotos( )}
-          title={I18n.t( "next" )}
+          title={I18n.t( "next_page" )}
         >
-          { I18n.t( "next" ) }
+          { I18n.t( "next_page_short" ) }
         </Button>
       </ButtonGroup>
     );

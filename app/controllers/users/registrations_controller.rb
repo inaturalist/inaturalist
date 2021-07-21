@@ -62,6 +62,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     unless errors
       resource.wait_for_index_refresh = true
+      resource.oauth_application_id = oauth_application_from_user_agent.try(:id) || OauthApplication::WEB_APP_ID
       if resource.save
         if resource.active_for_authentication?
           set_flash_message :notice, :signed_up if is_navigational_format?
@@ -96,6 +97,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
     respond_with(resource) do |format|
       format.html { render :new }
       format.json { render json: { errors: errors }, status: :unprocessable_entity }
+    end
+  end
+
+  private
+
+  def oauth_application_from_user_agent
+    case request.user_agent
+    when /^iNaturalist\/\d+.*Build.*Android/ then OauthApplication.inaturalist_android_app
+    when /^iNaturalist\/\d+.*CFNetwork.*Darwin/ then OauthApplication.inaturalist_iphone_app
+    when /^Seek\/\d+.*Handset/ then OauthApplication.seek_app
     end
   end
 

@@ -213,7 +213,7 @@ class Suggestions extends React.Component {
     return (
       <div className="Suggestions">
         <div className={`suggestions-wrapper ${detailTaxon ? "with-detail" : null}`}>
-          <div className="suggestions-list">
+          <div className="suggestions-list" tabIndex="-1">
             <div className="suggestions-inner">
               <ChooserPopover
                 id="suggestions-sort-chooser"
@@ -221,8 +221,8 @@ class Suggestions extends React.Component {
                 className="pull-right"
                 container={$( ".ObservationModal" ).get( 0 )}
                 chosen={query.order_by}
-                choices={["default", "taxonomy"]}
-                choiceLabels={{ default: "default_" }}
+                choices={["default", "taxonomy", "sciname"]}
+                choiceLabels={{ default: "default_", sciname: "scientific_name" }}
                 defaultChoice="default"
                 preIconClass={false}
                 postIconClass="fa fa-angle-down"
@@ -366,14 +366,14 @@ class Suggestions extends React.Component {
                   >
                     <i className="fa fa-chevron-circle-left" />
                     { " " }
-                    { I18n.t( "prev" ) }
+                    { I18n.t( "previous_taxon_short" ) }
                   </Button>
                   <Button
                     disabled={nextTaxon === null}
                     onClick={( ) => setDetailTaxon( nextTaxon )}
                     className="next"
                   >
-                    { I18n.t( "next" ) }
+                    { I18n.t( "next_taxon_short" ) }
                     { " " }
                     <i className="fa fa-chevron-circle-right" />
                   </Button>

@@ -106,10 +106,15 @@ class FiltersButton extends React.Component {
       "superclass",
       "class",
       "subclass",
+      "infraclass",
+      "subterclass",
       "superorder",
       "order",
       "suborder",
       "infraorder",
+      "parvorder",
+      "zoosection",
+      "zoosubsection",
       "superfamily",
       "epifamily",
       "family",
@@ -119,11 +124,16 @@ class FiltersButton extends React.Component {
       "subtribe",
       "genus",
       "genushybrid",
+      "subgenus",
+      "section",
+      "subsection",
+      "complex",
       "species",
       "hybrid",
       "subspecies",
       "variety",
-      "form"
+      "form",
+      "infrahybrid"
     ];
     const orderByFields = [
       { value: "observations.id", default: "date added", label: "date_added" },

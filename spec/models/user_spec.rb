@@ -707,9 +707,6 @@ describe User do
     end
 
     describe "user with identifications" do
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
-
       it "should reassess the community taxon of observations the user has identified" do
         o = make_research_grade_candidate_observation( taxon: Taxon.make!( rank: Taxon::SPECIES ) )
         expect( o.community_taxon ).to be_blank
@@ -815,8 +812,6 @@ describe User do
   end
 
   describe "merge" do
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
     elastic_models( Observation, Identification )
     
     let(:keeper) { User.make! }
@@ -1004,8 +999,6 @@ describe User do
   end
 
   describe "community taxa preference" do
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
     elastic_models( Identification )
 
     it "should not remove community taxa when set to false" do

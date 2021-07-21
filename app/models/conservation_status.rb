@@ -105,14 +105,20 @@ class ConservationStatus < ActiveRecord::Base
   end
 
   def set_geoprivacy
-    if !iucn.nil? && iucn <= Taxon::IUCN_LEAST_CONCERN
+    if !iucn.nil? && iucn <= Taxon::IUCN_LEAST_CONCERN && user_id.blank?
       self.geoprivacy = Observation::OPEN
     end
     true
   end
 
   def normalize_geoprivacy
-    self.geoprivacy = nil if geoprivacy.blank?
+    if geoprivacy.blank?
+      self.geoprivacy = nil
+    else
+      self.geoprivacy = geoprivacy.to_s.downcase.underscore
+    end
+    geoprivacies = [Observation::OPEN, Observation::OBSCURED, Observation::PRIVATE]
+    self.geoprivacy = nil unless geoprivacies.include?( geoprivacy )
     true
   end
 

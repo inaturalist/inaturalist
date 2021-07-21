@@ -165,7 +165,6 @@ class User < ActiveRecord::Base
   has_many :project_user_invitations, :dependent => :nullify
   has_many :project_user_invitations_received, :dependent => :delete_all, :class_name => "ProjectUserInvitation"
   has_many :listed_taxa, :dependent => :nullify
-  has_many :invites, :dependent => :nullify
   has_many :quality_metrics, :dependent => :destroy
   has_many :sources, :dependent => :nullify
   has_many :places, :dependent => :nullify
@@ -195,6 +194,10 @@ class User < ActiveRecord::Base
   has_one :user_parent, dependent: :destroy, inverse_of: :user
   has_many :parentages, class_name: "UserParent", foreign_key: "parent_user_id", inverse_of: :parent_user
   has_many :moderator_actions, inverse_of: :user
+  has_many :moderator_notes, inverse_of: :user
+  has_many :moderator_notes_as_subject, class_name: "ModeratorNote",
+    foreign_key: "subject_user_id", inverse_of: :subject_user,
+    dependent: :destroy
   
   file_options = {
     processors: [:deanimator],
@@ -500,6 +503,7 @@ class User < ActiveRecord::Base
   alias :admin? :is_admin?
 
   def is_site_admin_of?( site )
+    return true if is_admin?
     return false unless site && site.is_a?( Site )
     !!site_admins.detect{ |sa| sa.site_id == site.id }
   end
@@ -554,7 +558,8 @@ class User < ActiveRecord::Base
 
   def update_observation_licenses
     return true unless [true, "1", "true"].include?(@make_observation_licenses_same)
-    Observation.where(user_id: id).update_all(license: preferred_observation_license)
+    Observation.where( user_id: id ).
+      update_all( license: preferred_observation_license, updated_at: Time.now )
     index_observations_later
     true
   end
@@ -563,7 +568,8 @@ class User < ActiveRecord::Base
     return true unless [true, "1", "true"].include?(@make_photo_licenses_same)
     number = Photo.license_number_for_code(preferred_photo_license)
     return true unless number
-    Photo.where(["user_id = ? AND type != 'GoogleStreetViewPhoto'", id]).update_all(license: number)
+    Photo.where( "user_id = ? AND type != 'GoogleStreetViewPhoto'", id ).
+      update_all( license: number, updated_at: Time.now )
     index_observations_later
     true
   end
@@ -572,7 +578,7 @@ class User < ActiveRecord::Base
     return true unless [true, "1", "true"].include?(@make_sound_licenses_same)
     number = Photo.license_number_for_code(preferred_sound_license)
     return true unless number
-    Sound.where(user_id: id).update_all(license: number)
+    Sound.where( user_id: id ).update_all( license: number, updated_at: Time.now )
     index_observations_later
     true
   end
@@ -586,8 +592,31 @@ class User < ActiveRecord::Base
   end
 
   def update_observation_sites
-    observations.update_all(site_id: site_id)
-    index_observations
+    observations.update_all( site_id: site_id, updated_at: Time.now )
+    # update ES-indexed observations in place with update_by_query as the site_id
+    # will not affect any other attributes that necessitate a full reindex
+    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
+      Observation.__elasticsearch__.client.update_by_query(
+        index: Observation.index_name,
+        refresh: Rails.env.test?,
+        body: {
+          query: {
+            term: {
+              "user.id": id
+            }
+          },
+          script: {
+            source: "
+              if ( ctx._source.site_id != params.site_id ) {
+                ctx._source.site_id = params.site_id;
+              } else { ctx.op = 'noop' }",
+            params: {
+              site_id: site_id
+            }
+          }
+        }
+      )
+    end
   end
 
   def index_observations_later
@@ -979,11 +1008,7 @@ class User < ActiveRecord::Base
       deleted_photos = DeletedPhoto.where( user_id: user_id )
       puts "Deleting #{deleted_photos.count} DeletedPhotos and associated records from s3"
       deleted_photos.find_each do |dp|
-        images = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ dp.photo_id }/" ).contents
-        puts "\tPhoto #{dp.photo_id}, removing #{images.size} images from S3"
-        if images.any?
-          s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
-        end
+        dp.remove_from_s3( s3_client: s3_client )
         dp.destroy
       end
 

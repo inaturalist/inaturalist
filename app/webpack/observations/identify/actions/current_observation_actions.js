@@ -761,21 +761,25 @@ export function followUser( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !state.currentObservation.observation ) { return; }
-    if ( state.currentObservation.observation.user.id === state.config.currentUser.id ) {
+    const obs = state.currentObservation.observation;
+    if ( !obs.user ) { return; }
+    const { currentUser } = state.config;
+    const obsUser = obs.user;
+    if ( obsUser.id === currentUser.id ) {
       return;
     }
     const newSubscriptions = state.subscriptions.subscriptions.concat( [{
       resource_type: "User",
-      resource_id: state.currentObservation.observation.user.id,
-      user_id: state.config.currentUser.id,
+      resource_id: obsUser.id,
+      user_id: currentUser.id,
       api_status: "saving"
     }] );
     dispatch( setSubscriptions( newSubscriptions ) );
     const payload = {
-      id: state.config.currentUser.id,
-      friend_id: state.currentObservation.observation.user.id
+      id: currentUser.id,
+      friend_id: obsUser.id
     };
-    const observation = { id: state.currentObservation.observation.id };
+    const observation = { id: obs.id };
     iNaturalistJS.users.update( payload ).then(
       ( ) => dispatch( fetchSubscriptions( { observation } ) )
     );
@@ -786,19 +790,23 @@ export function unfollowUser( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !state.currentObservation.observation ) { return; }
-    if ( state.currentObservation.observation.user.id === state.config.currentUser.id ) {
+    const obs = state.currentObservation.observation;
+    const obsUser = obs.user;
+    const { currentUser } = state.config;
+    if ( !obsUser ) { return; }
+    if ( obsUser.id === currentUser.id ) {
       return;
     }
     const newSubscriptions = _.map( state.subscriptions.subscriptions, s => (
-      s.resource_type === "User" && s.resource_id === state.currentObservation.observation.user.id
+      s.resource_type === "User" && s.resource_id === obsUser.id
         ? Object.assign( { }, s, { api_status: "deleting" } )
         : s
     ) );
     dispatch( setSubscriptions( newSubscriptions ) );
-    const observation = { id: state.currentObservation.observation.id };
+    const observation = { id: obs.id };
     const payload = {
-      id: state.config.currentUser.id,
-      remove_friend_id: state.currentObservation.observation.user.id
+      id: currentUser.id,
+      remove_friend_id: obsUser.id
     };
     iNaturalistJS.users.update( payload ).then(
       ( ) => dispatch( fetchSubscriptions( { observation } ) )
@@ -810,6 +818,7 @@ export function subscribe( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !state.currentObservation.observation ) { return; }
+    if ( !state.currentObservation.observation.user ) { return; }
     if ( state.currentObservation.observation.user.id === state.config.currentUser.id ) {
       return;
     }

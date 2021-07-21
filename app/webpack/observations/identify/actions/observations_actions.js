@@ -1,6 +1,6 @@
 import _ from "lodash";
 import iNaturalistJS from "inaturalistjs";
-import { fetchObservationsStats } from "./observations_stats_actions";
+import { fetchObservationsStats, resetObservationsStats } from "./observations_stats_actions";
 import { setConfig } from "../../../shared/ducks/config";
 import { showAlert, hideAlert } from "./alert_actions";
 import { paramsForSearch } from "../reducers/search_params_reducer";
@@ -90,7 +90,11 @@ function fetchObservations( ) {
           totalPages: Math.ceil( response.total_results / response.per_page ),
           results: obs
         } ) );
-        dispatch( fetchObservationsStats( ) );
+        if ( s.config.sideBarHidden ) {
+          dispatch( resetObservationsStats( ) );
+        } else {
+          dispatch( fetchObservationsStats( true ) );
+        }
         dispatch( fetchObservationPlaces( ) );
         if ( _.isEmpty( _.filter( obs, o => !o.reviewedByCurrentUser ) ) ) {
           dispatch( setConfig( { allReviewed: true } ) );
@@ -158,11 +162,11 @@ function setReviewed( results, apiMethod ) {
     // updating the stats after each request, so this might not last, but now
     // I know how to do this
     Promise.all(
-      results.map( o => apiMethod( { id: o.id, skip_refresh: true } ) )
+      results.map( o => apiMethod( { id: o.id } ) )
     )
       .then( ( ) => {
         if ( lastResult ) {
-          return apiMethod( { id: lastResult.id } );
+          return apiMethod( { id: lastResult.id, wait_for_refresh: true } );
         }
         return null;
       } )
@@ -175,7 +179,6 @@ function setReviewed( results, apiMethod ) {
       } )
       .then( ( ) => {
         dispatch( setReviewing( false ) );
-        dispatch( fetchObservationsStats( ) );
       } );
   };
 }

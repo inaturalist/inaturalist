@@ -75,42 +75,19 @@ namespace :inaturalist do
 
   desc "Delete expired S3 photos"
   task :delete_expired_photos => :environment do
-    S3_CONFIG = YAML.load_file(File.join(Rails.root, "config", "s3.yml"))
-    client = ::Aws::S3::Client.new(
-      access_key_id: S3_CONFIG["access_key_id"],
-      secret_access_key: S3_CONFIG["secret_access_key"],
-      region: CONFIG.s3_region
-    )
-
+    client = LocalPhoto.new.s3_client
     fails = 0
     DeletedPhoto.still_in_s3.
       joins("LEFT JOIN photos ON (deleted_photos.photo_id = photos.id)").
       where("photos.id IS NULL").
       where("(orphan=false AND deleted_photos.created_at <= ?)
         OR (orphan=true AND deleted_photos.created_at <= ?)",
-        6.months.ago, 1.month.ago).select(:id, :photo_id).find_each do |p|
+        6.months.ago, 1.month.ago).select(:id, :photo_id).find_each do |dp|
       begin
-        s3_objects = client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ p.photo_id }/" )
-        images = s3_objects.contents
+        dp.remove_from_s3( s3_client: client )
       rescue
         fails += 1
         break if fails >= 5
-      end
-
-      if s3_objects && s3_objects.data && s3_objects.data.is_a?( Aws::S3::Types::ListObjectsOutput )
-        if images.any?
-          puts "deleting #{p.photo_id} from S3"
-          begin
-            client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
-            p.update_attributes(removed_from_s3: true)
-          rescue
-            fails += 1
-            break if fails >= 5
-          end
-        else
-          p.update_attributes(removed_from_s3: true)
-          puts "#{p.photo_id} has no photos in S3"
-        end
       end
     end
   end
@@ -165,8 +142,8 @@ namespace :inaturalist do
   task :delete_orphaned_photos => :environment do
     first_id = Photo.minimum(:id)
     last_id = Photo.maximum(:id) - 10000
-    index = 0
-    batch_size = 5000
+    index = first_id
+    batch_size = 10000
     # using `where id BETWEEN` instead of .find_each or similar, which use
     # LIMIT and create fewer, but longer-running queries
     orphans_count = 0
@@ -197,9 +174,11 @@ namespace :inaturalist do
   desc "Delete orphaned sounds"
   task :delete_orphaned_sounds => :environment do
     first_id = Sound.minimum(:id)
-    last_id = Sound.maximum(:id)
+    last_id = Sound.maximum(:id) - 10000
     index = 0
     batch_size = 10000
+    orphans_count = 0
+    last_orphan_id = 0
     # using `where id BETWEEN` instead of .find_each or similar, which use
     # LIMIT and create fewer, but longer-running queries
     while index <= last_id
@@ -211,8 +190,11 @@ namespace :inaturalist do
         # set the orphan attribute on sound, which will set the same on Deletedsound
         s.orphan = true
         s.destroy
+        last_orphan_id = p.id
+        orphans_count += 1
       end
       index += batch_size
+      puts "#{index} :: total #{orphans_count} :: last #{last_orphan_id}"
     end
   end
 
@@ -340,6 +322,42 @@ namespace :inaturalist do
       "purple",
       "random",
       "ranks",
+      "ranks_lowercase_stateofmatter",
+      "ranks_lowercase_kingdom",
+      "ranks_lowercase_subkingdom",
+      "ranks_lowercase_phylum",
+      "ranks_lowercase_subphylum",
+      "ranks_lowercase_superclass",
+      "ranks_lowercase_class",
+      "ranks_lowercase_subclass",
+      "ranks_lowercase_infraclass",
+      "ranks_lowercase_superorder",
+      "ranks_lowercase_order",
+      "ranks_lowercase_suborder",
+      "ranks_lowercase_infraorder",
+      "ranks_lowercase_subterclass",
+      "ranks_lowercase_parvorder",
+      "ranks_lowercase_zoosection",
+      "ranks_lowercase_zoosubsection",
+      "ranks_lowercase_superfamily",
+      "ranks_lowercase_epifamily",
+      "ranks_lowercase_family",
+      "ranks_lowercase_subfamily",
+      "ranks_lowercase_supertribe",
+      "ranks_lowercase_tribe",
+      "ranks_lowercase_subtribe",
+      "ranks_lowercase_genus",
+      "ranks_lowercase_genushybrid",
+      "ranks_lowercase_subgenus",
+      "ranks_lowercase_section",
+      "ranks_lowercase_subsection",
+      "ranks_lowercase_complex",
+      "ranks_lowercase_species",
+      "ranks_lowercase_hybrid",
+      "ranks_lowercase_subspecies",
+      "ranks_lowercase_variety",
+      "ranks_lowercase_form",
+      "ranks_lowercase_infrahybrid",
       "ray_finned_fishes",
       "red",
       "reload_timed_out",

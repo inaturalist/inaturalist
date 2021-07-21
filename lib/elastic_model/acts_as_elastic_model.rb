@@ -75,7 +75,7 @@ module ActsAsElasticModel
             # call again for each batch, then return
             filter_ids.each_slice(options[:batch_size]) do |slice|
               elastic_index!(options.merge(ids: slice))
-              if batch_sleep
+              if batch_sleep && !options[:delay]
                 # sleep after index an ID batch, since during indexing
                 # we only sleep when indexing multiple batches, and here
                 # we explicitly requested a single batch to be indexed
@@ -100,10 +100,8 @@ module ActsAsElasticModel
           result_ids = scope.order(:id).pluck(:id)
           return unless result_ids.any?
           id_hash = Digest::MD5.hexdigest( result_ids.join( "," ) )
-          queue = if result_ids.size > 500
+          queue = if result_ids.size > 50
             "throttled"
-          elsif result_ids.size > 100
-            "slow"
           end
           return self.delay(
             unique_hash: { "#{self.name}::delayed_index": id_hash },
@@ -133,20 +131,6 @@ module ActsAsElasticModel
           batches_indexed += 1
         end
         __elasticsearch__.refresh_index! if Rails.env.test?
-      end
-
-      def elastic_delete!(options = {})
-        try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
-          begin
-            __elasticsearch__.client.delete_by_query(index: index_name,
-              body: ElasticModel.search_hash(options))
-            __elasticsearch__.refresh_index! if Rails.env.test?
-          rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
-            Logstasher.write_exception(e)
-            Rails.logger.error "[Error] elastic_delete failed: #{ e }"
-            Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
-          end
-        end
       end
 
       def elastic_sync(start_id, end_id, options)
@@ -179,7 +163,7 @@ module ActsAsElasticModel
           ids_only_in_es = results.keys - batch.map(&:id)
           unless ids_only_in_es.empty?
             Rails.logger.debug "[DEBUG] Deleting vestigial docs in ES: #{ ids_only_in_es }"
-            elastic_delete!(where: { id: ids_only_in_es } )
+            elastic_delete_by_ids!( [ids_only_in_es] )
           end
           batch_start_id = batch_end_id
         end
@@ -214,7 +198,7 @@ module ActsAsElasticModel
           ).map(&:id)
           unless ids_only_in_es.empty?
             Rails.logger.debug "[DEBUG] Deleting vestigial docs in ES: #{ ids_only_in_es }"
-            elastic_delete!(where: { id: ids_only_in_es } )
+            elastic_delete_by_ids!( [ids_only_in_es] )
           end
           batch_start_id = batch_end_id
         end
@@ -230,9 +214,7 @@ module ActsAsElasticModel
               end : result.records.to_a
             elastic_ids = result.results.results.map{ |r| r.id.to_i }
             elastic_ids_to_delete = elastic_ids - records.map(&:id)
-            unless elastic_ids_to_delete.blank?
-              elastic_delete!(where: { id: elastic_ids_to_delete })
-            end
+            elastic_delete_by_ids!( elastic_ids_to_delete )
             WillPaginate::Collection.create(result.current_page, result.per_page,
               result.total_entries - elastic_ids_to_delete.count) do |pager|
               pager.replace(records)
@@ -250,14 +232,20 @@ module ActsAsElasticModel
         __elasticsearch__.refresh_index! unless Rails.env.test?
       end
 
-    def preload_for_elastic_index( instances )
-      return if instances.blank?
-      klass = instances.first.class
-      if klass.respond_to?(:load_for_index)
-        klass.preload_associations( instances,
-          klass.load_for_index.values[:includes] )
+      def preload_for_elastic_index( instances )
+        return if instances.blank?
+        klass = instances.first.class
+        if klass.respond_to?(:load_for_index)
+          klass.preload_associations( instances,
+            klass.load_for_index.values[:includes] )
+        end
       end
-    end
+
+      def elastic_delete_by_ids!( ids, options = { } )
+        return if ids.blank?
+        bulk_delete( ids, options )
+        __elasticsearch__.refresh_index! if Rails.env.test?
+      end
 
       private
 
@@ -293,6 +281,24 @@ module ActsAsElasticModel
           { index: { _id: obj.id, data: obj.as_indexed_json } }
         end
       end
+
+      def bulk_delete( ids, options = { } )
+        begin
+          __elasticsearch__.client.bulk({
+            index: __elasticsearch__.index_name,
+            type: __elasticsearch__.document_type,
+            body:  ids.map do |id|
+              { delete: { _id: id } }
+            end,
+            refresh: options[:wait_for_index_refresh] ? "wait_for" : false
+          })
+        rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+          Logstasher.write_exception(e)
+          Rails.logger.error "[Error] elastic_delete! failed: #{ e }"
+          Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+        end
+      end
+
     end
 
     def elastic_index!

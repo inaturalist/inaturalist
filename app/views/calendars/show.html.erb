@@ -50,10 +50,12 @@
 
 <div id="pageheader" class="clear">
   <%= render :partial => 'shared/prevnext', :locals => {
-    :prev_item => @previous ? @previous.observed_on.strftime('%Y-%m-%d') : nil,
-    :prev_url => @previous ? calendar_date_path(@login, @previous.observed_on.year, @previous.observed_on.month, @previous.observed_on.day) : nil,
-    :next_item => @next ? @next.observed_on.strftime('%Y-%m-%d') : nil,
-    :next_url => @next ? calendar_date_path(@login, @next.observed_on.year, @next.observed_on.month, @next.observed_on.day) : nil
+    prev_item: @previous ? @previous.observed_on : nil,
+    prev_title: @previous ? @previous.observed_on.strftime('%Y-%m-%d') : nil,
+    prev_url: @previous ? calendar_date_path(@login, @previous.observed_on.year, @previous.observed_on.month, @previous.observed_on.day) : nil,
+    next_item: @next ? @next.observed_on : nil,
+    next_title: @next ? @next.observed_on.strftime('%Y-%m-%d') : nil,
+    next_url: @next ? calendar_date_path(@login, @next.observed_on.year, @next.observed_on.month, @next.observed_on.day) : nil
   } %>
   <div class="breadcrumbs">
     <strong>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :moderator_notes
   resources :data_partners
   resources :saved_locations
   apipie
@@ -7,6 +8,9 @@ Rails.application.routes.draw do
     collection do
       get :network
       get :affiliation
+    end
+    member do
+      get :export
     end
   end
 
@@ -24,6 +28,8 @@ Rails.application.routes.draw do
   get "/users/new.mobile", to: redirect( "/signup" )
   get "/donate", to: "donate#index"
   get "/monthly-supporters", to: "donate#monthly_supporters", as: :monthly_supporters
+
+  get "/donate-seek", to: redirect( "https://donorbox.org/support-seek-by-inaturalist", status: 302 )
 
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]
@@ -131,6 +137,8 @@ Rails.application.routes.draw do
     post "session", :to => "users/sessions#create"
     get "signup", :to => "users/registrations#new"
     get "users/new", to: redirect( "signup" ), as: "new_user"
+    # This *should* be a redirect, but that is messing with the way we're doing
+    # get "/forgot_password", to: redirect( "/users/password/new" ), as: "forgot_password"
     get "/forgot_password", :to => "devise/passwords#new", :as => "forgot_password"
     put "users/update_session", :to => "users#update_session"
   end
@@ -180,8 +188,10 @@ Rails.application.routes.draw do
   # resources :passwords
   resources :people, :controller => :users, :except => [:create] do
     collection do
-      get :search
       get 'leaderboard(/:year(/:month))' => :leaderboard, :as => 'leaderboard_for'
+    end
+    member do
+      get :moderation
     end
   end
   resources :relationships, controller: :relationships, only: [:index, :update, :destroy]
@@ -414,7 +424,6 @@ Rails.application.routes.draw do
   get 'taxa/:id/children.:format' => 'taxa#children', :as => :formatted_taxon_children
   get 'taxa/:id/photos' => 'taxa#photos', as: :photos_of_taxon
   put 'taxa/:id/update_colors' => 'taxa#update_colors', :as => :update_taxon_colors
-  match 'taxa/:id/add_places' => 'taxa#add_places', :as => :add_taxon_places, :via => [:get, :post]
   get 'taxa/flickr_tagger' => 'taxa#flickr_tagger', :as => :flickr_tagger
   get 'taxa/flickr_tagger.:format' => 'taxa#flickr_tagger', :as => :formatted_flickr_tagger
   post 'taxa/tag_flickr_photos'
@@ -481,8 +490,6 @@ Rails.application.routes.draw do
   get 'identifications/bold' => 'identifications#bold'
   post 'identifications/agree' => 'identifications#agree'
   get 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }
-  get 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
-  post 'emailer/invite/send' => 'emailer#invite_send', :as => :emailer_invite_send
   resources :taxon_links
   
   get 'places/:id/widget' => 'places#widget', :as => :place_widget

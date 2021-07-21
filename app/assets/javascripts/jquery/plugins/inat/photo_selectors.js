@@ -364,11 +364,11 @@
     // Append next & prev links
     var page = $('<input class="photoSelectorPage" type="hidden" value="1"/>')
     if (options.bootstrap) {
-      var prev = $('<button type="button" class="prevlink btn btn-default">&laquo; '+I18n.t('prev')+'</button>')
-      var next = $('<button type="button" class="nextlink btn btn-default">'+I18n.t('next')+' &raquo;</button>')
+      var prev = $('<button type="button" class="prevlink btn btn-default">&laquo; '+I18n.t('previous_page_short')+'</button>')
+      var next = $('<button type="button" class="nextlink btn btn-default">'+I18n.t('next_page_short')+' &raquo;</button>')
     } else {
-      var prev = $('<a href="#" class="prevlink button">&laquo; '+I18n.t('prev')+'</a>')
-      var next = $('<a href="#" class="nextlink button">'+I18n.t('next')+' &raquo;</a>')
+      var prev = $('<a href="#" class="prevlink button">&laquo; '+I18n.t('previous_page_short')+'</a>')
+      var next = $('<a href="#" class="nextlink button">'+I18n.t('next_page_short')+' &raquo;</a>')
     }
     prev.click(function(e) {
       var prevOpts = $.extend({}, $(wrapper).data('photoSelectorOptions'));

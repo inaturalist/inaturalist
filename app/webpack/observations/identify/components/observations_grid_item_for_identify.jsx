@@ -42,9 +42,10 @@ const ObservationsGridItemForIdentify = ( {
   );
   let showAgree = observation.taxon
     && observation.taxon.rank_level <= 10
+    && observation.user
     && observation.user.id !== currentUser.id
     && observation.taxon.is_active;
-  if ( currentUser && currentUser.id === observation.user.id ) {
+  if ( currentUser && observation.user && currentUser.id === observation.user.id ) {
     showAgree = false;
   }
   const controls = (

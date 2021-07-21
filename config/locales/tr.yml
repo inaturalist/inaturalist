@@ -47,6 +47,8 @@ tr:
   x_misidentifications_of_this_species:
     one: "%{count} yanlış tür tanımlaması"
     other: "%{count} yanlış tür tanımlaması"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "Bu %{rank} düzeyindeki türlere ait %{count} yanlış tanımlama"
     other: "Bu %{rank} düzeyindeki türlere ait %{count} yanlış tanımlama"
@@ -212,6 +214,9 @@ tr:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Gizli koordinatlarının paylaşımı için şunları seçebilirsin
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Doğruluk (m)'
   account: Hesap
   account_creation: Hesap Oluşturma
@@ -240,6 +245,7 @@ tr:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Bir bağlantı ekle
   add_a_name: Bir Ad Ekle
+  add_a_note: Not Ekle
   add_a_new_change_group: Yeni Bir Değişim Grubu Ekle
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Numaralı bir liste ekle
@@ -250,7 +256,6 @@ tr:
   add_an_assessment: Bir Değerlendirme Ekle
   add_an_identification: Bir Tanımlama Ekle
   add_an_observation: Bir Gözlem Ekle
-  add_an_observation?: Gözlem Eklensin mi?
   add_an_observation_of: "Bir %{taxon} gözlemi ekle"
   add_an_observation_to_project_html: '%{project} projesine bir gözlem ekle'
   add_annotations_for_x: '"%{x}" için bir açıklama ekle'
@@ -341,7 +346,6 @@ tr:
   add_to_favorites: Favorilere Ekle
   add_to_list: Listeye Ekle
   add_to_project: Projeye Ekle
-  add_to_your_life_list: Yaşam Listene Ekle!
   add_to_your_list: Listene Ekle
   add_your_email_to_get: |
     Topluluktan gözleminiz ile ilgili geri bildirim almak için e-postanızı ekleyin.
@@ -477,8 +481,6 @@ tr:
   all_updates: Tüm Güncellemeler
   all_your_observations_will_default_this_time_zone: Tersi belirtmediğiniz sürece, tüm gözlemleriniz bu zaman diliminde varsayılan olacaktır.
   all_your_observations_will_default_to_this_time_zone: Tersi belirtmediğiniz sürece, tüm gözlemleriniz bu zaman diliminde varsayılan olacaktır.
-  #Option to allow any taxa on a list
-  allow_any: herhangi birine izin ver
   allow_curator_access: Sorumlu erişimine izin ver
   allow_project_curators_to_view_your_private_coordinates: Proje sorumlularına gizli koordinatlarını görmesi için izin ver
   allowed_establish_means_values: İzin verilen kuruluş varlığı değerleri
@@ -500,7 +502,15 @@ tr:
   announcement_was_successfully_created: Duyuru başarıyla oluşturuldu.
   announcement_was_successfully_updated: Duyuru başarıyla güncellendi.
   announcements: Duyurular
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: herhangi
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any_: Herhangi
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: Tümü
@@ -647,7 +657,6 @@ tr:
   avg: Ort
   back: Geri
   back_to_all_species: Tüm Türlere Dön
-  back_to_browsing_people: Kişi Aramaya Dön
   back_to_calendar: "%{user} takvimine dön"
   back_to_editing_observation: Gözlem düzenlemeye dön
   back_to_friends: Arkadaşlara dön
@@ -818,10 +827,8 @@ tr:
   check_list_place: "%{place} Kontrol Listesi"
   check_list_updated: Kontrol listesi güncellendi!
   check_lists_for: "%{place} için Diğer Kontrol Listeleri"
-  check_out_my_observations_at: Eğer istersen, gözlemlerimi şurada kontrol edebilirsin
   check_out_our_blog: Blogumuza Göz Atın
   check_out_what_the_observation: Tanımlamaya çalıştığınız gözlemin neye benzediğini kontrol edin.
-  check_out_your_new_and_improved_list_list: Yeni ve gelişmiş Hayat Listene gözat!
   check_this_box_if_html: |
     Yüklenen içeriğe <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -865,7 +872,6 @@ tr:
   comments: Yorumlar
   comments_by_me: Yorumlarım
   comments_have_been_disabled: Yorumlar devre dışı bırakıldı
-  comments_on: İle ilgili yorumlar
   comments_on_my_observations: Gözlemlerim ile ilgili yorumlar
   commercial_solicitation: Ticari istek, hiçbir yerle bağlı olmayanlar vb.
   #Second person verb to commit a taxon change, i.e. the change has been executed
@@ -937,7 +943,6 @@ tr:
     place: Bu durumun kısıtlandığı yer.
     url: Bu durumu açıklayan bir sayfanın URL'si.
     geoprivacy: Bu sınıfın gözlemleri için varsayılan coğrafi gizlilik
-    iucn: Eşdeğer IUCN Kırmızı Listesi kodu
   conservation_status_geoprivacy_desc: |
     Bu yerdeki tüm sınıf gözlemlerine uygulanan varsayılan coğrafi gizlilik
   contact_support: Destekle İletişime Geç
@@ -1325,7 +1330,6 @@ tr:
     Hesabınızı aktifleştirmek için aşağıdaki bağlantıya tıklayın
   devise_unlock_instructions_unlock: Hesabının Kilidini Aç
   discoveries: Keşifler
-  did_not_send_invitations_because: Aşağıdakilere davetiye gönderilmedi çünkü...
   did_you_mean: 'Bunu mu demek istediniz'
   did_you_photos_flickr?: Flickr'a herhangi bir fotoğraf koydunuz mu?
   disable: Devre dışı bırak
@@ -1446,9 +1450,7 @@ tr:
   eligible_for_research_grade: Araştırma Sınıfı için Uygun
   email: E-Posta
   email_description: Eposta adresiniz iNaturalist kullanıcılarıyla paylaşılmamaktadır
-  email_addresses_description: Virgülle ayrılmış e-posta adresleri, her 30 günde bir sınır 60'tır.
   email_address_for_comments_and_other_feedback: Yorumlar ve diğer geri bildirimler için e-posta adresi
-  email_addresses_to_receive_invites: Davet almak için e-posta adresleri
   email_copyright: "Telif hakkı &copy; %{x}, tüm hakları saklıdır"
   email_notifications: Eposta Bildirimleri
   email_settings: E-posta ayarları
@@ -1577,8 +1579,6 @@ tr:
   first_confirmed_inat_observation: "İlk onaylanmış %{site_name} gözlemi"
   first_connect_your_provider_account_to_your_site: "Öncelikle, %{provider} hesabını %{site_name} sayfasına bağla:"
   first_inat_observation: "İlk %{site_name} gözlemi"
-  first_observation: İlk Gözlem
-  first_observation_by_date_added: Eklenen tarihe göre ilk gözlem
   first_observer: Birinci gözlemci
   #Verb form, as in "Flag this item"
   flag: İşaretle
@@ -1655,7 +1655,6 @@ tr:
   follow: Takip Et
   follow_receive_updates_about_new_observations: Takip et (yeni gözlemler ile ilgili güncelleme al)
   follow_user: "%{user} kullanıcısını takip et"
-  followed_projects: Takip Edilen Projeler
   followers: Takipçiler
   following: Takip Edilen
   following_x_people:
@@ -1764,7 +1763,6 @@ tr:
   here_are_our_top_suggestions: En iyi önerilerimiz şunlar
   here_are_our_top_species_suggestions: İşte en iyi tür önerilerimiz
   hex_color_eg: Hex rengi, ör. 65644F
-  hi: Selam,
   hi_user: "Selam %{user}"
   #Verb, usually a button to hide an interface element
   hide: Gizle
@@ -1891,12 +1889,8 @@ tr:
   introduced_in_place: "%{place}'de tanıtıldı"
   invitation: Davetiye
   invite: davet et
-  invite_more: Daha çok kişiyi çağır
   invite_people: Kişileri davet et
   invite_people_to_project: "%{project} projesine insanları davet et"
-  invite_someone_to: "Birisini %{name}'e davet et!"
-  invite_your_friends: Arkadaşlarını davet et
-  invite_your_friends_description: "Arkadaşlarınızı katılmaya çağırarak %{site_name} sayfasını daha büyük ve iyi bir topluluk durumuna getirmeye yardımcı olun!"
   #Type of project where people can only join after they have been invited
   inviteonly: yalnızca davetle
   invited_x: "%{x} davet edildi"
@@ -1968,16 +1962,11 @@ tr:
   leaderboard: Lider Sıralaması
   leaderboard_for_x: "%{x} için Lider Sıralaması"
   leaderboards: Lider Sıralamaları
-  leaderboard_most:
-    species: '%{time} zamanındaki çoğu tür'
-    observations: '%{time} zamanındaki çoğu gözlem'
-    identifications: '%{time} zamanındaki çoğu tanımlama'
   leading: Öncü
   learn: Öğren
   learn_about_the_species_live_in: Yaşayan türler ile ilgili bilgi edin
   learn_about_third_party_tracking: Üçüncü parti izlemeleri hakkında daha fazla bilgi edinin
   learn_more: Daha Çok Bilgi
-  learn_more_on_the_blog: Blogda daha fazla bilgi edin
   learn_more_raquo: "Daha çok öğren &raquo;"
   learn_what_these_licenses_mean: Bu lisansların ne anlama geldiğini öğren
   least_concern: En Küçük Endişe
@@ -2045,9 +2034,6 @@ tr:
   licensing_your_content_gives_others_legal: "İçeriğinizi lisanslamak, başkalarına lisansın koşullarına uymaları halinde kullanma hakkını verir. %{site_name} Creative Commons lisanslı içeriğinizi bunun gibi veri ortaklarıyla paylaşmak için kullanır "
   life: Yaşam
   life_list: "%{user} Kullanıcısının Yaşam Listesi"
-  life_list_updated: Yaşam listesi güncellendi!
-  life_list_updated_we_also_saved_a: Yaşam listesi güncellendi! Ayrıca bu sınıfın boş bir gözlemini de kaydettik.
-  life_lists_automatically_fill: Yaşam listeleri gözlemlediğiniz sırada otomatik olarak yeni sınıflar ile doldurulur ve üst düzey soy sınıflarına kısıtlanabilirler, örneğin karga ailesindeki kuşların yaşam listeleri (Corvidae).
   linear_scale_label: Doğrusal
   link: Bağlantı
   link_or_unlink_your_facebook_account: Facebook hesabınızı bağlayın veya bağlantısını kaldırın
@@ -2070,8 +2056,6 @@ tr:
   linkedin: LinkedIn
   list: Liste
   list_deleted: Liste silindi.
-  list_reloaded_from_observations: Gözlemlerden yeniden yüklenen liste
-  list_rules_reapplied: Liste kuralları yeniden uygulandı
   list_saved: Liste kaydedildi.
   list_tooltip: Liste görünümünü göster
   list_updated: Liste güncellendi!
@@ -2185,7 +2169,6 @@ tr:
   low: Düşük
   lowest_rank: En Düşük Sıra
   make_admin: Yönetici yap
-  mail_disclaimer: "%{site_name}, kullanıcılarının çağrımız üzerinden size ek davetiye göndermesine izin vermez. Lütfen davet kötüye kullanımını %{site} adresine bildirin."
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Ana içerik
   #Stub text for the main content section when editing custom project data
@@ -2193,7 +2176,6 @@ tr:
   make_a_new_place: Yeni bir yer oluştur
   make_a_taxon_swap_instead?: Bunun yerine bir Sınıf Takası yapılsın mı?
   make_curator: Sorumlu yap
-  make_it_a_life_list?: Bir yaşam listesi yapılsın mı?
   make_manager: Yönetici yap
   make_sure_the_default_photo_looks_good: Varsayılan fotoğrafın büyük boyutta iyi göründüğünden emin olun.
   make_this_your_default_license: "Bunu varsayılan %{type} lisansınız yapın"
@@ -2283,6 +2265,13 @@ tr:
   #Label shown when a date has not been entered
   missing_date: Eksik Tarih
   mobile: Mobil
+  moderation_history_for_user_html: '%{user} kullanıcısının moderasyon geçmişi'
+  moderation_history_desc_html: |
+    Bu, kullanıcının sınıflandırma oluşturmalarının yanı sıra moderasyon hareketlerini (örneğin yorumları gizleme veya görünür yapma), notlar ve işaretlemeleri de içerir. Bunu <strong>sadece küratörler görüntüleyebilir</strong> ve <strong>küratörler kendi geçmişlerini görüntüleyemez</strong>, bu yüzden kişi hakkındaki notları kesinlikle kişinin kendisi görüntüleyememelidir.
+  moderator_note_desc: |
+    Moderatör notları; moderasyonun kullanıcı hakkındaki kanıtlara dayalı endişeleri veya verdikleri karşılıkların kayıtlarıdır. Örneğin kukla hesap. Lütfen kullanıcı hakkındaki kişisel fikirleri veya dedikoduları dahil etme.
+  #Person who executed a moderator action or flagged something
+  moderator_or_flagger: Moderatör / İşaretleyici
   mollusks: yumuşakçalar
   momentjs:
     shortRelativeTime:
@@ -2324,6 +2313,10 @@ tr:
     date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "HH:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Ay
   monthly_supporter_since_date_html: |
     %{date} tarihinden beri <a href="%{url}">Aylık Destekçi</a>
@@ -2354,11 +2347,8 @@ tr:
   multiple_select_option: '-- çoklu --'
   multiple_taxa_for_taxon_change: "Birden fazla sınıf (değiştirme/birleştirme için giriş, ayırma için çıkış)"
   multiple_taxon_ids_separated_by_commas: 'Virgülle ayrılmış çoklu sınıf tanımlamaları, örn. 123,654'
-  must_be_observed_after: |
-    %{operand} sonrasında gözlemlenmesi gerekir
-  must_be_observed_before: |
-    %{operand} öncesinde gözlemlenmesi gerekir
-  must_be_observed_in: şurada gözlemlenmiş olması gerekir
+  must_be_observed_after: '%{operand} sonrasında gözlemlenmesi gerekir'
+  must_be_observed_before: '%{operand} öncesinde gözlemlenmesi gerekir'
   must_be_less_than_x_MB: "%{x} MB boyuttan az olması gerekir"
   must_have_observation_field: "%{operand} gözlem alanının doldurulmuş olması gerekir"
   must_have_x: "%{x} olması gerekir"
@@ -2523,10 +2513,7 @@ tr:
   no_sections_available: Geçerli bölümler yok.
   no_sections_have_been_added_to_this_assessments_yet: Bu değerlendirmelere henüz hiçbir bölüm eklenmedi.
   no_species_have_been_listed: Bu yer için henüz bir tür listelenmedi!
-  no_species_observed: Tür gözlemlenmedi
   no_species_on_this_list: Bu listede henüz tür yok!
-  no_species_on_this_list_for_owner_html: |
-    Bu listeye doğrudan tür eklemeye başlayabilirsiniz ya da bu bir yaşam listesiyse, <a href="%{url}" class="nobr">gözlem eklediğinizde</a> türlerle kendiliğinden güncellenir.
   no_subject_parens: "(Konu yok)"
   no_suggestions_available: Geçerli öneriler yok
   no_summary_from_wikipedia: Vikipedi'den özet yok
@@ -2580,7 +2567,6 @@ tr:
     Açık koordinatlar, gerçek koordinatları içeren 0.2 derece enlem/boylam hücresinde rastgele bir nokta olarak gösterilir.
   observation: Gözlem
   observation_: gözlem
-  observation_added: Gözlem eklendi.
   observation_added_to_the_project: "\"%{project}\" projesine gözlem eklendi"
   observation_aggregation: Gözlem yığınlama
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -2645,7 +2631,6 @@ tr:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     örn. 29-10-2019 13:12:21
-  observed_on_datetime: '%{datetime} tarihinde gözlemlendi'
   observation_removed_from_the_project: "Gözlem, \"%{project}\" projesinden kaldırıldı"
   observation_requirements: Gözlem Gereksinimleri
   #Label for a field showing the date when the observation requirements for a
@@ -2722,10 +2707,6 @@ tr:
     irregular: düzensiz
     doubtful: şüpheli
     absent: yok
-  of_observations: gözlemler
-  of_species: türler
-  of_observers: gözlemciler
-  of_identifiers: tanımlayıcılar
   of_places: yerler
   of_this_taxon: Bu sınıfın
   offensive_inappropriate: Saldırgan / Uygunsuz
@@ -2779,8 +2760,6 @@ tr:
   only_show_for_species_subspecies_varieties_etc: Yalnızca türler, alt türler, varyeteler vb. için göster.
   only_show_taxa_fom_this_list: "Yalnızca bu listeden sınıfları göster"
   only_showing_taxa_from: yalnızca bu listeden sınıflar gösteriliyor
-  only_species: yalnızca türler
-  only_species_and_subspecies: yalnızca türler ve alt türler/çeşitler
   only_staff_can_edit_large_places: Yalnızca site yetkilileri çok büyük yerleri düzenleyebilir
   only_staff_can_edit_standard_places: Yalnızca site yetkilileri, standart hiyerarşideki yerleri düzenleyebilir
   only_the_owner_of_this_list_can_do_that: Bunu yalnızca bu listenin sahibi yapabilir. Kötü olma.
@@ -2878,8 +2857,6 @@ tr:
   per_month: Aylık
   per_week: Haftalık
   person: Kişi
-  personal_message: Kişisel İleti
-  personal_message_description: Hiç kimse bir makineden e-posta almayı sevmez! Neden arkadaşlarını çağırarak bunu bilmeleri olmasın ki?
   per_page: "Sayfa başına"
   photo: Fotoğraf
   photo_attribution: "%{attribution} Fotoğrafı"
@@ -3375,10 +3352,7 @@ tr:
   preview: Ön İzleme
   preview_observations_with_these_observation_requirements: Bu Gözlem Koşullarıyla Gözlemleri Önizleyin
   preview_of_synced_observation: "Eşitlenmiş gözlemi <strong>ön izleme</strong>. <a href=\"%{url}\">Geri alınsın mı?</a>"
-  preview_personal_message: "Bitkiler ve hayvanlarla ilgili gözlemlerinizi kaydedebileceğin, yaşam listenizi izleyebileceğin ve doğal dünyayı öğrenebileceğin yer olan %{site} sayfasında bana katılmanı istiyorum!"
-  preview_your_message: İletini ön izle
   previewing: "Ön izleme yapılıyor..."
-  previous: Önceki
   prev: Önceki
   previous_observation: Önceki Gözlem
   previous_page: Önceki sayfa
@@ -3474,7 +3448,6 @@ tr:
   range: Tarih Aralığı
   rank: Düzey
   rank_position: Düzey
-  rank_restrictions: Düzey kısıtlamaları
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
@@ -3539,9 +3512,70 @@ tr:
     form: Form
     infrahybrid: İnfra yüzergezer
     leaves: Yapraklar
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: alem
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: alt alem
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: şube
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: alt şube
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: üst sınıf
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: sınıf
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: alt sınıf
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: infra sınıf
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: üst takım
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: takım
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: alt takım
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: infra takım
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: geçiş takımı
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: üst aile
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: epi familya
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: aile
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: alt aile
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: üst oymak
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: oymak
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: alt oymak
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: cins
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: melez cins
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: alt cins
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: seksiyon
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: alt seksiyon
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: tür
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: melez
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: alt tür
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: varyasyon
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: form
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: ara melez
   ranges: Aralıklar
   ray_finned_fishes: ışınsal yüzgeçli balıklar
-  re_apply_list_rules: Liste kurallarını yeniden uygula
   re_order_photos: "Fotoğrafları yeniden sırala &raquo;"
   read_more: Daha Fazla Oku
   read_our_getting_started_guide: Başlangıç rehberimizi okuyun
@@ -3562,6 +3596,7 @@ tr:
   recent_observations: Son gözlemler
   recent_observations_: Son Gözlemler
   recent_post: Son gönderi
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "%{login} ile son gözlemler (Atom)"
   recent_observations_by: "%{login} ile son gözlemler"
   recently_active: Son Zamanlarda Etkin
@@ -3717,7 +3752,6 @@ tr:
   scientific_name: Bilimsel Ad
   search: Arama Yap
   search_all_fields: tüm alanları ara
-  search_by_name: Ada göre ara
   search_by_name_or_email: İsme veya e-postaya göre arama
   search_by_taxon_name_or_observation_id: Sınıf ismi veya gözlem tanımlamasına göre arama
   search_by_taxon_name_or_flickr_photo_id: Sınıf ismi veya Flickr fotoğraf tanımlamasına göre arama
@@ -3742,12 +3776,10 @@ tr:
   search_your_photos: Fotoğraflarını ara
   searching: "Aranıyor..."
   seasonality: Mevsimsellik
-  second_person_possessive_plural: "Senin %{noun}"
   second_person_possessive_singular: "Senin %{noun}"
   see_something_wrong_with_taxon: Bu sınıfla bir sorun mu var? Sorumlulara haber verin.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
-  seen_it?: Gördün mü?
   seen_nearby: Yakınlarda Görüldü
   seen_one: Gördün mü?
   select: Seç
@@ -3761,15 +3793,12 @@ tr:
   select_options: Seçenekler
   select_photos_from_your_photo_stream: |
     %{site_name} gözlemlerine dönüştürmek için dış fotoğraf paylaşım sitelerinden fotoğraflar seçin. Bir fotoğrafın meta verilerinde tarih, saat ve konum bilgilerini girip, etiketlerden tür adlarını aramaya çalışırız.
-  select_photos_to_display: Görüntülenecek fotoğrafları seç
   selected: seçildi
   selected_photos: Seçilmiş fotoğraflar
   selected_taxon: Seçilmiş Sınıf
   select_this_taxon: Bu Sınıfı Seç
   send: gönder
-  send_invites_to: Şuraya davetiye gönder
   send_me_reset_password_instructions: Şifre sıfırlama yönergesini gönder
-  send_the_invites: Davetleri Gönder
   sending: Gönderiliyor...
   #Label for messages you've sent
   sent: Gönderildi
@@ -3784,7 +3813,6 @@ tr:
   show: Göster
   show_active_and_inactive_taxa: Etkin ve etkin olmayan sınıfları göster
   show_common_names: Yaygın adları göster
-  show_default_taxon_photos: varsayılan sınıf fotoğraflarını göster
   show_hidden_content: Gizli İçeriği Göster
   show_keyboard_shortcuts: Klavye Kısayollarını Göster
   show_less: Daha Az Göster
@@ -3792,7 +3820,6 @@ tr:
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: '"Açıklama Notu Olmayan"ları Göster'
-  show_observation_photos: gözlem fotoğraflarını göster
   show_off_your_recent_observations: Son gözlemlerinizi kendi blogunuzda veya web sitenizde gösterin!
   show_only: Sadece göster
   show_relative_proportions_of_all_observations: Tüm gözlemlerin karşılaştırmalı oranlarını göster
@@ -3861,7 +3888,6 @@ tr:
   sorry_we_dont_have_any_metadata_for_that_photo: "Üzgünüz, gözlemleme özelliklerini ayarlayabileceğimiz fotoğraf için herhangi bir veri bilgisine sahip değiliz."
   sorry_x_is_not_responding: "Üzgünüm %{x} yanıt vermiyor. Lütfen daha sonra yeniden deneyin."
   sorry_you_can_only_add_1000_at_a_time: "Üzgünüm, bir kerede yalnızca 1000 tane ekleyebilirsiniz."
-  sorry_you_cant_delete_your_own_life_list: "Üzgünüm, kendi yaşam listeni silemezsin."
   sorry_you_need_to_be_signed_in_and: Üzgünüm, etiketleri doğrudan Flickr'ye göndermek için oturum açman ve bağlantılı bir Flickr hesabın olması gerekir.
   sort: Sırala
   sort_by: Sıralama Türü
@@ -4218,16 +4244,10 @@ tr:
   these_folks_kindly_volunteer_to: Bu insanlar, sınıflandırmamızı sürdürmek ve diğer konuları ele almak için gönüllü olarak çalışmaktadır.
   these_observations_have_not_been_uploaded_yet: |
     Bu gözlemler henüz yüklenmedi.
-  they_already_have_iNat_accounts: "...zaten %{site_name} hesabına sahipler"
-  they_have_been_invited: ...zaten davet edildiler
   third_party_tracking: Üçüncü Parti İzlemeleri
   third_person_possessive_singular: "%{object_phrase}'in %{noun}"
-  third_person_possessive_plural: "%{object_phrase}'in %{noun}"
   this: bu
   this_bioblitz_beings_in: Bioblitz şurada başlar
-  this_is_a_life_list_of: Bu şunun yaşam listesidir
-  this_is_a_life_list_from_place_html: "Bu %{place} yerinin yaşam listesidir"
-  this_is_a_life_list_of_taxon_in_place: "Bu %{place} yerindeki %{taxon} sınıfının yaşam listesidir"
   this_is_more_convenient_way_find_parent: Bu bir ana kimliği bulmak için daha uygun bir yoldur. O aslında kaydedilen üst sınıf kimliğidir.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     Bu bir ana kimliği bulmak için daha uygun bir yoldur. O aslında kaydedilen üst sınıf kimliğidir. Bu arama yalnızca etkin sınıflar içindir.
@@ -4262,8 +4282,6 @@ tr:
     Bu sizin hesabınızsa ve bunun yanlışlıkla yapıldığını düşünüyorsanız, lütfen <a href="mailto:%{email}">bizimle iletişime geçin</a>.
   this_will_add_listed_taxa: Bu, gözlemlerden listelenen sınıfları ekleyecektir. Bu biraz zaman alabilir, bu nedenle lütfen az ve küçük kontrol listelerinde kullanın
   this_will_refresh_listed_taxa: Bu, bu listede listelenen sınıfları yenileyecektir. Bu biraz zaman alabilir, bu nedenle lütfen az ve küçük kontrol listelerinde kullanın
-  this_will_re_apply_all_list_rules: |
-    Bu, tüm liste kurallarını listelenen sınıflara yeniden uygular ve ilişkili istatistikleri günceller, örn. sınıfın içinde olmayan ya da seçilen sırada olmayan sınıfları reddetme. Herhangi bir yeni sınıf eklemeyecek. Bu birkaç dakika sürebilir.
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Bu işlem, iNaturalist'in senin adına bu hesaba erişim iznini kaldıracak (tekrar erişim izni verene kadar). İşlemin geçerli olması için harici sitedeki ayarlarını da değiştirmen gerekebilir.
   #Application is a third-party app or service the user has authorized to
@@ -4294,7 +4312,6 @@ tr:
   top_identifiers_of_taxon: '%{taxon}''ı En Çok Tanımlayanlar'
   top_observer: En Çok Gözlemleyen
   top_observers: En Çok Gözlemleyenler
-  top_species: Zirvedeki Türler
   tos_privacy_guidelines_label: |
     <a href="/terms" target="_blank">Hizmet Şartları</a> ve <a href="/privacy" target="_blank">Gizlilik Politikası</a>'nı onaylıyorum, ve <a href="/pages/community+guidelines" target="_blank">Topluluk İlkelerini</a> inceledim.
   total: Toplam
@@ -4318,6 +4335,7 @@ tr:
   try_adding_species_form: Bu sayfadaki formu kullanarak bazı türler eklemeyi deneyin.
   twitter: Twitter
   two_thirds: 2/3'ü
+  #As in a category, not as in a keyboard
   type: Tür
   type_authority: Yetki gir...
   type_one_name_per_line: Satır başına bir ad yaz
@@ -4534,7 +4552,6 @@ tr:
   view_more_observations_of_x_project: "<nobr>%{site_name} &raquo;</nobr> sayfasında %{project} projesinden daha çok gözlemi görüntüle"
   view_more_observations_of_x_taxon: "<nobr>%{site_name} &raquo;</nobr> sayfasında %{taxon} sınıfından daha çok gözlemi görüntüle"
   view_more_unreviewed: "İncelenmemişleri görüntüle"
-  view_my_life_list: Yaşam listemi göster
   view_observation: Gözlemi Görüntüle
   view_observations: Gözlemleri Görüntüle
   view_observation_flags: Gözlem işaretlerini görüntüle
@@ -4715,7 +4732,6 @@ tr:
     alabileceğimiz tüm yardımı takdir ediyoruz. İçerik iyileştirme hakkında herhangi 
     bir sorunuz varsa veya artık sorumlu olmak istemiyorsanız, lütfen 
     %{email} adresinden bize ulaşın
-  you_are_over_your_invites_quota: ...aylık 60 davet kontenjanının üzerindesiniz
   you_are_now_following_x: "Sen şimdi %{friend_user} kullanıcısını takip ediyorsun."
   you_are_now_the_admin_for_project_html: |
     <strong>sen</strong> şimdi %{project} için yöneticisin
@@ -4752,7 +4768,6 @@ tr:
     Sadece kendi yarattığın ve aynı zamanda sınıf değişikliğine, tanımlamaya veya başka bir içerikle bağlantısı olmayan sınıflandırmanı silebilirsin.
   you_can_only_block_three_users: Yalnızca üç kullanıcıyı engelleyebilirsiniz
   you_can_show_the_boundary_of: Eğer bir yerin sınırı varsa, bu yerin sınırını proje sayfanızda gösterebilirsiniz.
-  you_can_sign_free_at: "Şu adresten ücretsiz bir %{site_name} hesabına kaydolabilirsiniz"
   you_cant_compare_a_list_with_nothing: Listeyi hiçbir şey ile karşılaştıramazsınız!
   you_cant_delete_a_project_list: "Bu proje listesini silemezsiniz"
   you_cant_delete_observation_fields_that_people_are_using: "İnsanların kullandığı gözlem alanlarını silemezsiniz"
@@ -4776,7 +4791,6 @@ tr:
   you_faved_this: Bunu favoriye ekledin!
   you_have_left_x_project: "%{project}'den ayrıldınız"
   you_havent_linked_your_inaturalist_google_account: "%{site_name} hesabını ve Google hesabını henüz bağlamadın"
-  you_havent_joined_any_projects: Henüz hiçbir projeye katılmadın.
   you_joined_this_project: Bu projeye katıldınız!
   you_must_be_a_member_of_this_project_to_do_that: Bunu yapmak için bu projenin bir üyesi olmalısınız
   you_must_choose_an_observation_field: Bir gözlem alanı seçmelisiniz
@@ -4838,7 +4852,6 @@ tr:
     Kimseyi takip etmiyorsun. Diğer doğa bilimcileri takip etmek onların en son gözlemlerini kolayca izlemenizi sağlayacaktır. Git ve insanların neler <a href="%{observations_path}">gözlemlediğini</a> öğren ve bazı <a href="%{people_path}">arkadaşlar</a> edin.
   youre_not_following_anyone_on_inat: '%{site_name}''te henüz kimseyi takip etmiyorsun!'
   youve_linked_your_inaturalist_google_account: "%{site_name} hesabınızı ve Google hesabınızı bağladınız. Bu, Google fotoğraflarınızı %{site_name} gözlemlerinizle ilişkilendirmenize izin verir."
-  youve_seen_it_want_to: "Onu gördün! Şunun ister misin"
   youve_successfully_linked_your_provider_account: "%{provider} hesabınızı başarıyla bağladınız"
   verifiable: Doğrulanabilir
   verifiable_observations: Doğrulanabilir Gözlemler
@@ -5056,6 +5069,9 @@ tr:
       reset_place_filter: Konum Filtresini Temizle
       all_observations_in_this_taxon: Bu sınıftaki tüm gözlemler
       observations_of_exactly_this_taxon: Tam olarak bu sınıflandırmadaki gözlemler
+      focus_tree_on_this_taxon: Bu sınıflandırmadaki ağaca odaklan
+      expand_all_nodes_in_this_branch: Bu setteki tüm boğumları genişlet
+      collapse_this_branch: Bu seti daralt
       dropdowns:
         sort: Sırala
         taxonomic: Sınıflandırmasal
@@ -5146,6 +5162,8 @@ tr:
         about_total_taxa: "Mevcut Sınıflar Hakkında"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Birleşik
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Tarih Alanı
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Yatay
         #Date range to aggregate by, e.g. observations per month vs. observations per week
@@ -6045,7 +6063,6 @@ tr:
     stats:
       index:
         active_desc: Önceki 30 gün içerisinde bir tanımlama, gözlem, yorum, veya gönderi oluşturuldu
-        active_users_desc: Önceki 30 gün içerisinde bir tanımlama, gözlem, yorum, veya gönderi oluşturuldu
         android_desc_html: <a href="%{url}">iNaturalist Android uygulması</a> üzerinden oluşturuldu
         avg_ttcid: Ort TTCID
         avg_ttid: Ort TTID
@@ -6270,14 +6287,6 @@ tr:
           "Plant Phenology=Flower Budding": Tomurcuklu Çiçek
           "Plant Phenology=Flowering": Çiçekli
           "Plant Phenology=Fruiting": Meyveli
-          "Plant Phenology=No Evidence of Flowering": Kanıt Yok
-          "Life Stage=egg": Yumurta
-          "Life Stage=larva": Larva
-          "Life Stage=teneral": Teneral
-          "Life Stage=subimago": Subimago
-          "Life Stage=nymph": Nimfa
-          "Life Stage=pupa": Pupa
-          "Life Stage=adult": Yetişkin
           unannotated: Açıklama Yok
         max_photos_desc: |
           Bir sınıf yalnızca %{max} fotoğrafa sahip olabilir. Daha fazla eklemek için mevcut fotoğrafları kaldırmanız gerekecek.
@@ -6588,7 +6597,7 @@ tr:
           değil şeklinde işaret koymak isterseniz, yardımcı olacaktır.
           </p>
       show:
-        take_a_chance_to_review_html: '<a href="%{link}">Rehberimizi</a> incelemeyi deneyin.'
+        take_a_moment_to_review_html: '<a href="%{link}">Kılavuzumuzu</a> incelemek için bir kaç dakikanı ayır.'
         this_user_was_banned: Bu kullanıcı askıya alındı
         favorites_list_prompt_html: |
           En sevdiğiniz sınıfların bazılarını göstermek ister misiniz? "Favoriler" başlıklı %{link_start_tag}bir liste oluştur%{link_end_tag} ve böylece en son eklenenler bu alanda görünecektir.
@@ -6858,23 +6867,6 @@ tr:
       submit: '%{model} kaydet'
       update: '%{model} güncelle'
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: ','
-        format: '%u%n'
-        precision: 2
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: .
-        significant: false
-        strip_insignificant_zeros: false
-        unit: '$'
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as
@@ -6993,6 +6985,14 @@ tr:
       CompleteSet: Eksiksiz Küme
       #Noun
       Flag: İşaret
+      #Action taken by a moderator in response to a flag or concern with
+      #immediate consequences in functionality, e.g. hiding an offensive
+      #comment without deleting it
+      ModeratorAction: Moderatör Etkinliği
+      #Text note left by a moderator about another user recording a response to
+      #a concern, like messaging someone about plagiarism, or documenting
+      #violations of the Community Guidelines for future reference
+      ModeratorNote: Moderatör Notu
       TaxonLink: Sınıf Bağlantısı
     attributes:
       assessment:
@@ -7164,6 +7164,10 @@ tr:
           attributes:
             base:
               guide_has_too_many_taxa: "rehber yalnızca 500 sınıfa sahip olabilir"
+        moderator_action:
+          attributes:
+            user_id:
+              must_be_a_curator: küratör olmalı
         mushroom_observer_import_flow_task:
           attributes:
             base:
@@ -7205,6 +7209,9 @@ tr:
         post:
           attributes:
             parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
               prefers_no_comments: yeni yorumlara izin vermiyor
             user:
               must_be_on_site_long_enough: |

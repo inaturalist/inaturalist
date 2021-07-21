@@ -263,29 +263,28 @@ module HasSubscribers
     def create_callback(subscribable_association, options = {})
       callback_types = []
       options_on = options[:on] ? [options[:on]].flatten.map(&:to_s) : %w(after_create)
-      callback_types << :after_update if options_on.detect{|o| o =~ /update/}
-      callback_types << :after_create if options_on.detect{|o| o =~ /create/}
-      callback_types << :after_save   if options_on.detect{|o| o =~ /save/}
+      callback_types << :update if options_on.detect{|o| o =~ /update/}
+      callback_types << :create if options_on.detect{|o| o =~ /create/}
+      callback_types << [:update, :create]   if options_on.detect{|o| o =~ /save/}
       callback_method = options[:with] || :notify_subscribers_of
       attr_accessor :skip_updates
-      callback_types.each do |callback_type|
-        send callback_type do |record|
-          unless record.skip_updates || record.try(:unsubscribable?)
-            if options[:queue_if].blank? || options[:queue_if].call(record)
-              if options[:delay] == false
-                record.send(callback_method, subscribable_association)
-              else
-                record.delay(priority: options[:priority]).
-                  send(callback_method, subscribable_association)
-              end
+      after_commit on: callback_types.flatten.uniq do |record|
+        unless_skipped = options[:unless] ? options[:unless].call( self ) : false
+        unless record.skip_updates || record.try(:unsubscribable?) || unless_skipped
+          if options[:queue_if].blank? || options[:queue_if].call(record)
+            if options[:delay] == false
+              record.send(callback_method, subscribable_association)
+            else
+              record.delay(priority: options[:priority]).
+                send(callback_method, subscribable_association)
             end
           end
-          true
         end
+        true
       end
     end
   end
-  
+
   module InstanceMethods
     def notify_subscribers_of(subscribable_association)
       return if CONFIG.has_subscribers == :disabled

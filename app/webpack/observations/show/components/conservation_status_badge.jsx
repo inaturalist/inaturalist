@@ -16,8 +16,8 @@ const ConservationStatusBadge = ( { observation, taxon } ) => {
   const cs = targetTaxon.taxon_summary.conservation_status;
   const popover = (
     <Popover
-      className={ `ConservationStatusBadgePopover ${cs.iucn_status}` }
-      id={ `cs-popover-${cs.id}` }
+      className={`ConservationStatusBadgePopover ${cs.iucn_status}`}
+      id={`cs-popover-${cs.id}`}
     >
       <div className="title">
         <span className="bold">
@@ -30,7 +30,7 @@ const ConservationStatusBadge = ( { observation, taxon } ) => {
       </div>
       <div
         className="summary"
-        dangerouslySetInnerHTML={ { __html: cs.description } }
+        dangerouslySetInnerHTML={{ __html: cs.description }}
       />
     </Popover>
   );
@@ -39,10 +39,10 @@ const ConservationStatusBadge = ( { observation, taxon } ) => {
       <OverlayTrigger
         trigger="click"
         rootClose
-        overlay={ popover }
+        overlay={popover}
         placement="bottom"
       >
-        <Badge className={ `${cs.iucn_status}` }>
+        <Badge className={`${cs.iucn_status}`}>
           { cs.iucn_status_code }
         </Badge>
       </OverlayTrigger>

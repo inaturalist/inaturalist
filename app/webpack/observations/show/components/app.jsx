@@ -244,18 +244,34 @@ const App = ( {
                   <Col xs={5} className="info_column">
                     <div className="user_info">
                       <PreviousNextButtonsContainer />
-                      <UserWithIcon user={observation.user} />
+                      <UserWithIcon
+                        user={observation.user}
+                        hideSubtitle={
+                          testingInterpolationMitigation
+                          && observation.obscured
+                          && !observation.private_geojson
+                        }
+                      />
                     </div>
                     <Row className="date_row">
                       <Col xs={6}>
                         <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "observed" ) } ) }</span>
                         <span className="date" title={isoDateObserved}>
+                          { testingInterpolationMitigation
+                            && observation.observed_on
+                            && observation.obscured
+                            && !observation.private_geojson
+                            && <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} /> }
                           { formattedDateObserved }
                         </span>
                       </Col>
                       <Col xs={6}>
                         <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "submitted" ) } ) }</span>
                         <span className="date" title={isoDateAdded}>
+                          { testingInterpolationMitigation
+                            && observation.obscured
+                            && !observation.private_geojson
+                            && <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} /> }
                           { formattedDateAdded }
                         </span>
                       </Col>
@@ -287,9 +303,15 @@ const App = ( {
                 </Col>
               </Row>
               <Row>
-                <Col xs={12}>
-                  <AnnotationsContainer />
-                </Col>
+                <LazyLoad
+                  debounce={false}
+                  offset={100}
+                  height={30}
+                >
+                  <Col xs={12}>
+                    <AnnotationsContainer />
+                  </Col>
+                </LazyLoad>
               </Row>
               <Row className={_.isEmpty( controlledTerms ) ? "top-row" : ""}>
                 <Col xs={12}>
@@ -364,7 +386,11 @@ const App = ( {
       <ModeratorActionModalContainer />
       {
         config && config.currentUser
-        && ( config.currentUser.roles.indexOf( "curator" ) >= 0 || config.currentUser.roles.indexOf( "admin" ) >= 0 )
+        && (
+          config.currentUser.roles.indexOf( "curator" ) >= 0
+          || config.currentUser.roles.indexOf( "admin" ) >= 0
+          || config.currentUser.sites_admined.length > 0
+        )
         && (
           <div>
             <TestGroupToggle

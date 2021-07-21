@@ -71,10 +71,26 @@ describe FlagsController do
       expect( Flag.find_by_id( flag.id ) ).not_to be_blank
     end
 
-    it "does not allow the flag creator to destroy" do
+    it "does not allow the flag creator to destroy if there are comments" do
       http_login(user)
+      Comment.make!( parent: flag )
       post :destroy, id: flag.id
       expect( Flag.find_by_id( flag.id ) ).not_to be_blank
+    end
+
+    it "does not allow the flag creator to destroy if resolved" do
+      http_login( user )
+      flag.update_attributes( resolved: true, resolver: make_curator )
+      post :destroy, id: flag.id
+      expect( Flag.find_by_id( flag.id ) ).not_to be_blank
+    end
+
+    it "allows the flag creator to destroy if unresolved and there are no comments" do
+      http_login( user )
+      expect( flag.comments.count ).to eq 0
+      expect( flag ).not_to be_resolved
+      post :destroy, id: flag.id
+      expect( Flag.find_by_id( flag.id ) ).to be_blank
     end
 
     it "does not allow other users to destroy" do

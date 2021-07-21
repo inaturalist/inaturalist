@@ -137,7 +137,7 @@
         </script>
       <% elsif logged_in? && current_user.id == @list.user_id %>
         <%=t :no_species_on_this_list %>
-        <%=t :no_species_on_this_list_for_owner_html, :url => new_observation_url %>
+        <%=t :no_species_on_this_list_for_owner %>
       <% elsif @q %>
         <%=t :no_results_matching %> "<%= @q %>"
       <% else %>
@@ -150,21 +150,22 @@
     <%= will_paginate @listed_taxa, :renderer => INatLinkRenderer %>
   </div>
 
-  <div class="clear meta feeds">
-    <%= separator %>
-  <strong><%=t :download %></strong>
-    <%= link_to t(:csv), list_path(@list, :format => 'csv'),
-      :class => "delayedlink csvlink",
-      "data-delayed-link-msg" =>
-        t(:please_hold_on_while_the_file),
-      :rel => "nofollow" %>
-
-    <%= link_to "#{t(:taxonomic)} CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"),
-      :class => "delayedlink csvlink",
-      "data-delayed-link-msg" =>
-        t(:please_hold_on_while_the_file_is_generated),
-      :rel => "nofollow" %>
-  </div>
+  <% if logged_in? %>
+    <div class="clear meta feeds">
+      <%= separator %>
+      <strong><%=t :download %></strong>
+      <%= link_to t(:csv), list_path(@list, :format => 'csv'),
+        :class => "delayedlink csvlink",
+        "data-delayed-link-msg" =>
+          t(:please_hold_on_while_the_file),
+        :rel => "nofollow" %>
+      <%= link_to "#{t(:taxonomic)} CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"),
+        :class => "delayedlink csvlink",
+        "data-delayed-link-msg" =>
+          t(:please_hold_on_while_the_file_is_generated),
+        :rel => "nofollow" %>
+    </div>
+  <% end %>
   <%= render :partial => "shared/flagging", :locals => { :instance => @list } %>
 </div>
 
@@ -256,11 +257,11 @@
                   <br>
                   <%= label :observed, :t do %>
                     <%= radio_button_tag :observed, :t, @observed == 't' %>
-                    <%= t(:yes).downcase %>
+                    <%= t(:yes) %>
                   <% end -%>
                   <%= label :observed, :f do %>
                     <%= radio_button_tag :observed, :f, @observed == 'f' %>
-                    <%= t(:no).downcase %>
+                    <%= t(:no) %>
                   <% end -%>
                   <%= label :observed, :any do %>
                     <%= radio_button_tag :observed, :any, @observed.blank? %>
@@ -273,15 +274,15 @@
                 <br>
                 <%= label :rank, :species do %>
                   <%= radio_button_tag :rank, :species, @rank == "species" %>
-                  <%= t( "ranks.species" ).downcase %>
+                  <%= t( "ranks.species" ) %>
                 <% end -%>
                 <%= label :rank, :leaves do %>
                   <%= radio_button_tag :rank, :leaves, @rank == "leaves" %>
-                  <%= t(:leaves).downcase %>
+                  <%= t(:leaves) %>
                 <% end -%>
                 <%= label :rank, :all do %>
                   <%= radio_button_tag :rank, :all, @rank=='all' %>
-                  <%= t(:any).downcase %>
+                  <%= t(:any) %>
                 <% end -%>
               </div>
               <div class="field">
@@ -289,15 +290,15 @@
                 <br>
                 <%= label :taxonomic_status, :active do %>
                   <%= radio_button_tag :taxonomic_status, :active, @taxonomic_status == 'active' %>
-                  <%= t(:active).downcase %>
+                  <%= t(:active_taxon_status) %>
                 <% end -%>
                 <%= label :taxonomic_status, :inactive do %>
                   <%= radio_button_tag :taxonomic_status, :inactive, @taxonomic_status == 'inactive' %>
-                  <%= t(:inactive).downcase %>
+                  <%= t(:inactive_taxon_status) %>
                 <% end -%>
                 <%= label :taxonomic_status, :all do %>
                   <%= radio_button_tag :taxonomic_status, :all, @taxonomic_status == 'all' %>
-                  <%= t(:any).downcase %>
+                  <%= t(:any) %>
                 <% end -%>
               </div>
               <input type="submit" class="default button" value="<%=t :filter %>" />

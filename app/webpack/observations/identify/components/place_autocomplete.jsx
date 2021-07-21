@@ -74,11 +74,17 @@ class PlaceAutocomplete extends React.Component {
 
 
 PlaceAutocomplete.propTypes = {
+  // eslint-disable-next-line react/no-unused-prop-types
   resetOnChange: PropTypes.bool,
+  // eslint-disable-next-line react/no-unused-prop-types
   bootstrapClear: PropTypes.bool,
+  // eslint-disable-next-line react/no-unused-prop-types
   afterSelect: PropTypes.func,
+  // eslint-disable-next-line react/no-unused-prop-types
   afterUnselect: PropTypes.func,
+  // eslint-disable-next-line react/no-unused-prop-types
   afterClear: PropTypes.func,
+  // eslint-disable-next-line react/no-unused-prop-types
   initialSelection: PropTypes.object,
   initialPlaceID: PropTypes.number,
   className: PropTypes.string,

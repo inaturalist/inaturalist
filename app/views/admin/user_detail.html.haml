@@ -55,10 +55,15 @@
         - for user_attr in basic_attrs
           %tr
             %th= user_attr
-            %td{ style: "width: 100%" }= @display_user.send(user_attr).to_s.html_safe
+            %td{ style: "width: 100%" }
+              - if user_attr == "login"
+                = link_to_user @display_user do
+                  = @display_user.login
+              - else
+                = @display_user.send(user_attr).to_s.html_safe
       %h3 Other Attributes
       %table.table
-        - for user_attr in ( User.column_names - basic_attrs - %w(encrypted_password password_salt remember_token remember_token_expires_at confirmation_token deleted_at old_preferences state) ).sort
+        - for user_attr in ( User.column_names - basic_attrs - %w(encrypted_password password_salt remember_token remember_token_expires_at confirmation_token deleted_at old_preferences state reset_password_token) ).sort
           %tr
             %th= user_attr
             %td{ style: "width: 100%" }= @display_user.send(user_attr).to_s.html_safe
@@ -233,7 +238,8 @@
               No children
     .col-xs-3
       %p
-        = user_image( @display_user, size: "large", class: "img-responsive center-block" )
+        = link_to_user @display_user do
+          = user_image( @display_user, size: "large", class: "img-responsive center-block" )
       - if @display_user.is_curator?
         = link_to t(:remove_curator_status), remove_role_path(@display_user, :role => "curator"), :method => :delete, class: "btn btn-block btn-warning"
       - else
@@ -269,6 +275,7 @@
                   = " (#{ I18n.t(:draft) })"
       = link_to "Log in as #{@display_user.login}", { controller: "admin", action: "login_as", id: @display_user.id }, class: "btn btn-block btn-info"
       = link_to "Manage / delete content", admin_user_content_path(@display_user.id), class: "btn btn-block btn-info"
+      = link_to "Moderation History", moderation_person_path( @display_user.id ), class: "btn btn-block btn-info"
       = link_to "Delete user description", admin_update_user_path(@display_user.id, "user[description]" => ""), :method => :put,
         :data => {:confirm => t(:are_you_sure_no_undo)},
         class: "btn btn-block btn-danger"

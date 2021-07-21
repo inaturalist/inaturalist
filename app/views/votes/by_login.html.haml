@@ -1,14 +1,12 @@
 :ruby
   observation_by_login_title = if is_me?(@selected_user)
-    t('faves_by_login.title.current_user',
-      default: t(:second_person_possessive_plural, :noun => t(:favorites).downcase))
+    t :your_favorites
   else
-    t('faves_by_login.title.login', login: @login,
-      default: t(:third_person_possessive_plural, :noun => t(:favorites).titleize, :object_phrase => @login))
+    t :users_favorites, user: @login
   end
 
 - content_for :title do
-  = @title ||= observation_by_login_title
+  = @title ||= observation_by_login_title.html_safe
 
 - content_for :extrajs do
   = google_maps_js

@@ -45,12 +45,23 @@ module TaxonDescribers
       decoded = coder.decode(html)
       decoded.gsub!(/href="\/([A-z])/, "href=\"#{wikipedia.base_url}/\\1")
       decoded.gsub!(/src="\/([A-z])/, "src=\"#{wikipedia.base_url}/\\1")
-      decoded.gsub!(/<div .*?class=.*?hatnote.*?>.+?<\/div>/, '')
+      doc = Nokogiri::HTML::DocumentFragment.parse( decoded )
+      selectors_to_remove = [
+        ".hatnote",
+        ".infobox.biota",
+        ".mw-editsection",
+        ".navbar",
+        ".taxobox",
+        ".taxobox_v3"
+      ]
       if options[:strip_references]
-        decoded.gsub!(/<sup .*?class=.*?reference.*?>.+?<\/sup>/, '')
-        decoded.gsub!(/<strong .*?class=.*?error.*?>.+?<\/strong>/, '')
+        selectors_to_remove << ".reference"
+        selectors_to_remove << ".error"
       end
-      decoded
+      selectors_to_remove.each do |selector|
+        doc.css( selector ).remove
+      end
+      doc.to_s
     end
 
     def wikipedia
@@ -94,20 +105,24 @@ module TaxonDescribers
     end
 
     def wikidata_wikipedia_url_for_taxon( taxon )
-      Rails.cache.fetch( "wikidata_wikipedia_url_for_taxon-#{taxon.id}", expires_in: 1.day ) do
-        lang = @locale.to_s.split( "-" ).first
-        if r = fetch_head( "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{lang}" )
-          if r.header[:location].blank?
-            nil
-          else
-            uri = URI.parse( r.header[:location].to_s ) rescue nil
-            if uri && uri.host.split( "." )[0] == lang
-              r.header[:location]
-            else
+      lang = @locale.to_s.split( "-" ).first
+      Rails.cache.fetch( "wikidata_wikipedia_url_for_taxon-#{taxon.id}-#{lang}", expires_in: 1.day ) do
+        Timeout::timeout( 5 ) do
+          if r = fetch_head( "https://hub.toolforge.org/P3151:#{taxon.id}?lang=#{lang}" )
+            if r.header[:location].blank?
               nil
+            else
+              uri = URI.parse( r.header[:location].to_s ) rescue nil
+              if uri && uri.host.split( "." )[0] == lang
+                r.header[:location]
+              else
+                nil
+              end
             end
+          else
+            nil
           end
-        else
+        rescue Timeout::Error
           nil
         end
       end

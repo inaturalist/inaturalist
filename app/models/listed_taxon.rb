@@ -44,6 +44,7 @@ class ListedTaxon < ActiveRecord::Base
   after_save :index_taxon
   after_save :log_create_if_taxon_id_changed
   after_commit :expire_caches
+  after_commit :reindex_observations_later
   after_create :sync_parent_check_list
   after_create :sync_species_if_infraspecies
   after_create :log_create
@@ -425,7 +426,7 @@ class ListedTaxon < ActiveRecord::Base
 
   def index_taxon
     unless skip_index_taxon
-      Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 30.minutes.from_now,
+      Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 1.hour.from_now,
         unique_hash: { "Taxon::elastic_index": taxon_id }).
         elastic_index!(ids: [taxon_id])
     end
@@ -747,6 +748,7 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def expire_caches
+    return unless list.is_a?(CheckList)
     ctrl = ActionController::Base.new
     ctrl.expire_fragment(List.icon_preview_cache_key(list_id))
     ListedTaxon::ORDERS.each do |order|
@@ -962,6 +964,39 @@ class ListedTaxon < ActiveRecord::Base
     default = ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS[establishment_means]
     key = default.gsub( "-", "_" ).gsub( " ", "_" ).downcase
     I18n.t( "establishment_means_descriptions.#{ key }", default: default )
+  end
+
+  def reindex_observations_later
+    return true if taxon_id.blank? || place_id.blank?
+    return true unless previous_changes[:establishment_means]
+    ListedTaxon.delay(
+      priority: INTEGRITY_PRIORITY,
+      unique_hash: {
+        "CheckList::reindex_observations_later.taxon_id": taxon_id,
+        "CheckList::reindex_observations_later.place_id": place_id,
+      }
+    ).reindex_observations( taxon_id, place_id )
+    true
+  end
+
+  def self.reindex_observations( taxon_id, place_id )
+    last_id = 0
+    per_page = 1000
+    while true
+      res = Observation.elastic_search(
+        source: ["id"],
+        sort: { id: "asc" },
+        filters: [
+          { range: { id: { gt: last_id } } },
+          { term: { private_place_ids: place_id } },
+          { term: { "taxon.ancestor_ids": taxon_id } }
+        ]
+      ).per_page( per_page )
+      ids = res.response.hits.hits.map(&:_id).map(&:to_i)
+      break if ids.blank?
+      Observation.elastic_index!( delay: true, ids: ids )
+      last_id += ids.last
+    end
   end
 
 end

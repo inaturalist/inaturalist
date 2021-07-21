@@ -589,6 +589,7 @@ class ActivityItem extends React.Component {
       if ( coordinatesObscured && !viewerCreatedItem ) {
         time = (
           <time className="time">
+            <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} />
             { moment( item.created_at ).format( I18n.t( "momentjs.month_year_short" ) ) }
           </time>
         );

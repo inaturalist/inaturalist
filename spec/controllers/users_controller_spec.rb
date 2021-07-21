@@ -82,33 +82,6 @@ describe UsersController, "delete" do
   end
 end
 
-describe UsersController, "search" do
-  it "should work while signed out" do
-    get :search
-    expect(response).to be_success
-  end
-
-  it "should results as json sorted by login" do
-    User.make!(login: "aperson")
-    User.make!(login: "person")
-    get :search, format: :json
-    results = JSON.parse(response.body)
-    expect(response).to be_success
-    expect(results[0]["login"]).to eq "aperson"
-    expect(results[1]["login"]).to eq "person"
-  end
-
-  it "should return exact matches first" do
-    User.make!(login: "aperson")
-    User.make!(login: "person")
-    get :search, format: :json, q: "person"
-    results = JSON.parse(response.body)
-    expect(response).to be_success
-    expect(results[0]["login"]).to eq "person"
-    expect(results[1]["login"]).to eq "aperson"
-  end
-end
-
 describe UsersController, "set_spammer" do
   elastic_models( Observation )
 
@@ -285,7 +258,9 @@ describe UsersController, "add_role" do
   end
   it "should work for a site_admin" do
     Site.make! if Site.default.blank?
-    sa = SiteAdmin.make!( site: Site.default )
+    site = Site.make!
+    sa = SiteAdmin.make!( site: site )
+    normal_user.update_attributes!( site: site )
     sign_in sa.user
     put :add_role, id: normal_user.id, role: Role::CURATOR
     normal_user.reload
@@ -312,7 +287,9 @@ describe UsersController, "remove_role" do
   end
   it "should work for a site_admin" do
     Site.make! if Site.default.blank?
-    sa = SiteAdmin.make!( site: Site.default )
+    site = Site.make!
+    sa = SiteAdmin.make!( site: site )
+    target_curator_user.update_attributes!( site: site )
     sign_in sa.user
     put :remove_role, id: target_curator_user.id, role: Role::CURATOR
     target_curator_user.reload
@@ -374,5 +351,31 @@ describe UsersController, "show" do
     get :show, id: u.login
     expect( assigns(:user) ).to eq u
     expect( response ).to be_success
+  end
+end
+
+describe UsersController, "moderation" do
+  let(:subject_user) { User.make! }
+  it "should be viewable by curators" do
+    sign_in make_curator
+    get :moderation, id: subject_user.login
+    expect( response.response_code ).to eq 200
+  end
+  it "should not be viewable by non-curators" do
+    sign_in User.make!
+    get :moderation, id: subject_user.login
+    expect( response.response_code ).not_to eq 200
+  end
+  it "should not be viewable by a curator if it's about the curator" do
+    curator = make_curator
+    sign_in curator
+    get :moderation, id: curator.login
+    expect( response.response_code ).not_to eq 200
+  end
+  it "should be viewable by an admin if it's about the admin" do
+    admin = make_admin
+    sign_in admin
+    get :moderation, id: admin.login
+    expect( response.response_code ).to eq 200
   end
 end

@@ -22,6 +22,7 @@ const SET_BOUNDS = "observations-compare/compare/SET_BOUNDS";
 const SET_TOTAL_TAXON_COUNTS = "observations-compare/compare/SET_TOTAL_TAXON_COUNTS";
 const MOVE_QUERY = "observations-compare/compare/MOVE_QUERY";
 const SET_MAP_LAYOUT = "observations-compare/compare/SET_MAP_LAYOUT";
+const SET_HISTORY_DATE_FIELD = "observations-compare/compare/SET_HISTORY_DATE_FIELD";
 const SET_HISTORY_LAYOUT = "observations-compare/compare/SET_HISTORY_LAYOUT";
 const SET_HISTORIES = "observations-compare/compare/SET_HISTORIES";
 const SET_HISTORY_INTERVAL = "observations-compare/compare/SET_HISTORY_INTERVAL";
@@ -35,6 +36,7 @@ const setUrl = state => {
     "taxonFrequenciesSortIndex",
     "taxonFrequenciesSortOrder",
     "mapLayout",
+    "historyDateField",
     "historyLayout",
     "historyInterval",
     "colorScheme"
@@ -114,6 +116,7 @@ export const DEFAULT_STATE = {
     nelng: 170
   },
   mapLayout: "combined",
+  historyDateField: "observed",
   historyLayout: "combined",
   historyInterval: "week",
   histories: [],
@@ -192,6 +195,10 @@ export default function reducer( state = DEFAULT_STATE, action ) {
       break;
     case SET_HISTORIES:
       newState.histories = action.histories;
+      break;
+    case SET_HISTORY_DATE_FIELD:
+      newState.historyDateField = action.historyDateField;
+      setUrl( newState );
       break;
     case SET_HISTORY_INTERVAL:
       newState.historyInterval = action.historyInterval;
@@ -427,6 +434,13 @@ export function setHistories( histories ) {
   };
 }
 
+export function setHistoryDateField( historyDateField ) {
+  return {
+    type: SET_HISTORY_DATE_FIELD,
+    historyDateField
+  };
+}
+
 export function setHistoryInterval( historyInterval ) {
   return {
     type: SET_HISTORY_INTERVAL,
@@ -448,6 +462,7 @@ export function fetchHistories( ) {
     const promises = s.queries.map( query => {
       const params = $.deparam( query.params );
       params.interval = s.historyInterval;
+      params.date_field = s.historyDateField;
       return inatjs.observations.histogram( params );
     } );
     Promise.all( promises ).catch( e => {

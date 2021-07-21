@@ -11,6 +11,13 @@ class TaxaController < ApplicationController
       c.params[:test].blank?
     }
 
+  caches_action :show, expires_in: 1.day,
+    cache_path: Proc.new{ |c| {
+      locale: I18n.locale,
+      only_path: true
+    } },
+    if: Proc.new {|c| request.format.json? }
+
   before_filter :allow_external_iframes, only: [:map]
   
   include TaxaHelper
@@ -20,12 +27,12 @@ class TaxaController < ApplicationController
   before_filter :authenticate_user!, :only => [:update_photos,
     :set_photos,
     :update_colors, :tag_flickr_photos, :tag_flickr_photos_from_observations,
-    :flickr_photos_tagged, :add_places, :synonyms]
+    :flickr_photos_tagged, :synonyms]
   before_filter :curator_required, :only => [:new, :create, :edit, :update,
     :destroy, :curation, :refresh_wikipedia_summary, :merge, :synonyms, :graft]
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :update_photos, :set_photos, :edit_colors,
-    :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
+    :update_colors, :refresh_wikipedia_summary, :merge, 
     :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details]
   before_filter :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
@@ -184,6 +191,9 @@ class TaxaController < ApplicationController
         if (partial = params[:partial]) && ALLOWED_SHOW_PARTIALS.include?(partial)
           @taxon.html = render_to_string(:partial => "#{partial}.html.erb", :object => @taxon)
         end
+        Taxon.preload_associations([@taxon], [
+          { taxon_photos: { photo: :user } },
+          { taxon_names: :place_taxon_names }, :iconic_taxon ] )
 
         opts = Taxon.default_json_options
         opts[:include][:taxon_names] = {}
@@ -280,7 +290,6 @@ class TaxaController < ApplicationController
     @taxon.creator = current_user
     @taxon.current_user = current_user
     if @taxon.save
-      Taxon.refresh_es_index
       flash[:notice] = t(:taxon_was_successfully_created)
       if locked_ancestor = @taxon.ancestors.is_locked.first
         flash[:notice] += " Heads up: you just added a descendant of a " + 
@@ -333,7 +342,6 @@ class TaxaController < ApplicationController
             "draft taxon change</a> that we assume you'll commit shortly."
         end
       end
-      Taxon.refresh_es_index
       redirect_to taxon_path(@taxon)
       return
     else
@@ -808,50 +816,6 @@ class TaxaController < ApplicationController
       format.json { render json: @photos }
     end
   end
-  
-  def add_places
-    unless params[:tab].blank?
-      @places = case params[:tab]
-      when 'countries'
-        @countries = Place.where(place_type: Place::PLACE_TYPE_CODES["Country"]).order(:name)
-      when 'us_states'
-        if @us = Place.find_by_name("United States")
-          @us.children.order(:name)
-        else
-          []
-        end
-      else
-        []
-      end
-      
-      @listed_taxa = @taxon.listed_taxa.where(place_id: @places).
-        select("DISTINCT ON (place_id) listed_taxa.*")
-      @listed_taxa_by_place_id = @listed_taxa.index_by(&:place_id)
-      
-      render :partial => 'taxa/add_to_place_link', :collection => @places, :locals => {
-        :skip_map => true
-      }
-      return
-    end
-    
-    if request.post?
-      if params[:paste_places]
-        add_places_from_paste
-      else
-        add_places_from_search
-      end
-      respond_to do |format|
-        format.json do
-          @places.each_with_index do |place, i|
-            @places[i].html = view_context.render_in_format(:html, :partial => 'add_to_place_link', :object => place)
-          end
-          render :json => @places.to_json(:methods => [:html])
-        end
-      end
-      return
-    end
-    render :layout => false
-  end
 
   def map_layers
     render json: {
@@ -866,32 +830,6 @@ class TaxaController < ApplicationController
     respond_to do |format|
       format.html { render partial: "wikipedia_taxobox", object: @taxon }
     end
-  end
-
-  private
-  def add_places_from_paste
-    place_names = params[:paste_places].split(",").map{|p| p.strip.downcase}.reject(&:blank?)
-    @places = Place.where( admin_level: Place::COUNTRY_LEVEL ).where( "lower(name) IN (?)", place_names )
-    @listed_taxa = @places.map do |place| 
-      place.check_list.try(:add_taxon, @taxon, :user_id => current_user.id)
-    end.select{|p| p.valid?}
-    @listed_taxa_by_place_id = @listed_taxa.index_by{|lt| lt.place_id}
-  end
-  
-  def add_places_from_search
-    search_for_places
-    @listed_taxa = @taxon.listed_taxa.where(place_id: @places).
-      select("DISTINCT ON (place_id) listed_taxa.*")
-    @listed_taxa_by_place_id = @listed_taxa.index_by(&:place_id)
-  end
-  public
-  
-  def find_places
-    @limit = 5
-    @js_link = params[:js_link]
-    @partial = params[:partial]
-    search_for_places
-    render :layout => false
   end
   
   def update_photos
@@ -917,7 +855,6 @@ class TaxaController < ApplicationController
     if @taxon.save
       @taxon.reload
       @taxon.elastic_index!
-      Taxon.refresh_es_index
     else
       errors << "Failed to save taxon: #{@taxon.errors.full_messages.to_sentence}"
     end
@@ -1003,7 +940,6 @@ class TaxaController < ApplicationController
     if @taxon.save
       @taxon.reload
       @taxon.elastic_index!
-      Taxon.refresh_es_index
     else
       Rails.logger.debug "[DEBUG] error: #{@taxon.errors.full_messages.to_sentence}"
       respond_to do |format|
@@ -1567,12 +1503,16 @@ class TaxaController < ApplicationController
   def load_taxon
     unless @taxon = Taxon.where(id: params[:id]).includes(:taxon_names).first
       render_404
-      return
+      return false
     end
     @taxon.current_user = current_user
+  rescue RangeError
+    render_404
+    return false
   end
   
   def do_external_lookups
+    return if CONFIG.content_freeze_enabled
     return unless logged_in?
     return unless params[:force_external] || (params[:include_external] && @taxa.blank?)
     start = Time.now
@@ -1583,12 +1523,12 @@ class TaxaController < ApplicationController
       @status = e.message
       return
     end
-    
+
     ext_taxon_ids = ext_names.map(&:taxon_id).compact
     @external_taxa = Taxon.find( ext_taxon_ids ) unless ext_taxon_ids.blank?
-    
+
     return if @external_taxa.blank?
-    
+
     # graft in the background
     @external_taxa.each do |external_taxon|
       external_taxon.delay(:priority => USER_INTEGRITY_PRIORITY).graft_silently unless external_taxon.grafted?
@@ -1597,8 +1537,6 @@ class TaxaController < ApplicationController
       end
     end
 
-    Taxon.refresh_es_index
-    
     @taxa = WillPaginate::Collection.create(1, @external_taxa.size) do |pager|
       pager.replace(@external_taxa)
       pager.total_entries = @external_taxa.size
@@ -1661,6 +1599,7 @@ class TaxaController < ApplicationController
         if existing = @taxon.conservation_statuses.detect{|cs| cs.id == status["id"].to_i }
           cs_attrs = params[:taxon][:conservation_statuses_attributes][position].clone
           cs_attrs.delete(:_destroy)
+          %i[geoprivacy place_id].each {|k| cs_attrs[k] = nil if cs_attrs[k].blank? }
           existing.assign_attributes( cs_attrs )
           if existing.changed?
             params[:taxon][:conservation_statuses_attributes][position][:updater_id] = current_user.id

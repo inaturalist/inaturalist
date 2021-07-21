@@ -105,6 +105,9 @@ eo:
   about_this_bioblitz: Pri ĉi tiu biofulmado
   about_this_map: Pri Ĉi Tiu Mapo
   about_this_project: Pri ĉi tiu Projekto
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Prec (m)'
   account: Konto
   account_creation: Kreado de Konto
@@ -136,7 +139,6 @@ eo:
   add_an_assessment: Aldoni Taksaron
   add_an_identification: Aldoni Identigon
   add_an_observation: Aldoni Observon
-  add_an_observation?: Ĉu aldoni Observon?
   add_an_observation_of: "Aldoni Observon de %{taxon}"
   add_another_flag: Aldoni Alian Flagon
   add_another_photo: Aldoni Alian Foton
@@ -188,7 +190,6 @@ eo:
   add_to_favorites: Favori
   add_to_list: Aldoni al Listo
   add_to_project: Aldoni al Projekto
-  add_to_your_life_list: Aldoni al Via Vivolisto!
   add_to_your_list: Aldoni al Via Listo
   added: Aldonita
   added!: Aldonita!
@@ -307,7 +308,15 @@ eo:
   animals: Animaloj
   annotations: Komentarioj
   announcements: Anoncoj
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: ajna
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any_: Ajna
   apply_geoprivacy: Apliki geografian privatecon
   appropriate?: Ĉu taŭga?
@@ -401,7 +410,6 @@ eo:
   comment_deleted: Koment forigita
   comments: Komentoj
   comments_by_me: Komentoj far mi
-  comments_on: Komentoj pri
   #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Enmeti
   #Adjective describing a taxon change that has been committed
@@ -690,7 +698,6 @@ eo:
   flickr_tags: Etikedoj ĉe Flickr
   follow: Aboni
   follow_user: "Aboni uzanton %{user}"
-  followed_projects: Abonataj Projektoj
   followers: Abonantoj
   following: Abonante
   following_x_people:
@@ -731,7 +738,6 @@ eo:
   help: Helpo
   help_support_inaturalist: "Helpi Subtenadon de iNaturalist"
   hex_color_eg: Deksesuma koloro, ekz. 65644F
-  hi: Saluton,
   hi_user: "Saluton %{user}"
   high: Alta
   history: Historio
@@ -761,9 +767,7 @@ eo:
   internal_server_error: Interna Servila Eraro
   invitation: Invito
   invite: inviti
-  invite_more: Inviti plu
   invite_people: Inviti homojn
-  invite_your_friends: Inviti viajn amikojn
   join: Aliĝi
   join_project: Aliĝi al ĉi tiu projekto
   join_this_project: Aliĝi al ĉi tiu projekto
@@ -1001,13 +1005,9 @@ eo:
     irregular: neregula
     doubtful: duba
     absent: mankanta
-  of_species: specioj
-  of_observers: observantoj
-  of_identifiers: identigiloj
   of_places: lokoj
   official_blog: Oficiala Rettaglibro
   ok: "Bone"
-  only_species: nur specio
   only_you: Nur vi
   open: malfermi
   open_: Malfermi
@@ -1506,9 +1506,7 @@ eo:
   search_this_taxon: serĉi tiun taksonon
   searching: "Serĉante..."
   seasonality: Sezoneco
-  second_person_possessive_plural: "Via %{noun}"
   second_person_possessive_singular: "Via %{noun}"
-  seen_it?: Ĉu vidis ĝin?
   seen_one: Ĉu vidis unu?
   select: Elekti
   select_all: Elekti Ĉiujn
@@ -1520,8 +1518,6 @@ eo:
   selected_taxon: Elektita Taksono
   select_this_taxon: Elekti Tiun Taksonon
   send: sendi
-  send_invites_to: Sendi invitojn al
-  send_the_invites: Sendi la Invitojn
   sending: Sendante...
   #Label for messages you've sent
   sent: Sendita
@@ -1550,7 +1546,6 @@ eo:
   something_: io
   somewhere_on_earth: ie sur Tero
   somewhere: (Ie...)
-  sorry_you_cant_delete_your_own_life_list: "Domaĝe, vi ne povas forigi vian propran vivoliston."
   sort: Ordigi
   sort_by: Ordigi Laŭ
   sounds:
@@ -1657,8 +1652,6 @@ eo:
   then_keybord_sequence: sekve
   this: ĉi tiu
   this_bioblitz_beings_in: Ĉi tiu biofulmado komencas en
-  this_is_a_life_list_of: Jen la vivolisto de
-  this_is_a_life_list_of_taxon_in_place: "Jen vivolisto de %{taxon} en %{place}"
   this_list_is_empty!: Tiu listo estas malplena!
   this_observation: Tiu observo
   this_year: Nuna Jaro
@@ -1849,15 +1842,6 @@ eo:
         obs_in_year: Observoj en %{year}
     taxa:
       show:
-        frequency:
-          "Plant Phenology=No Evidence of Flowering": Neniu evidenteco
-          "Life Stage=egg": Ovo
-          "Life Stage=larva": Larvo
-          "Life Stage=teneral": Tenera imagino
-          "Life Stage=subimago": Subimagino
-          "Life Stage=nymph": Nimfo
-          "Life Stage=pupa": Pupo
-          "Life Stage=adult": Adolto
         trending_desc: Plej ofte observitaj taksonoj dum lasta monato
     users:
       edit:
@@ -2043,21 +2027,6 @@ eo:
       submit: Konservi modelon %{model}
       update: Ĝisdatigi modelon %{model}
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: ' '
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: ','
-        significant: false
-        strip_insignificant_zeros: false
-        unit: '€'
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as

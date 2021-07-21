@@ -105,12 +105,6 @@ class ProjectsController < ApplicationController
             merge(Project.not_flagged_as_spam).includes( project: :stored_preferences ).
             where( "projects.user_id != ?", current_user ).
             order("projects.id desc").limit(5).map(&:project)
-          @followed = Project.
-            includes(:stored_preferences).
-            joins( "JOIN subscriptions ON subscriptions.resource_type = 'Project' AND resource_id = projects.id" ).
-            where( "subscriptions.user_id = ?", current_user ).
-            where( "projects.user_id != ?", current_user ).
-            order( "subscriptions.id DESC" ).limit( 15 ).select{ |p| !@joined.include?( p ) }
         end
         render layout: "bootstrap"
       end
@@ -236,8 +230,8 @@ class ProjectsController < ApplicationController
         # properties that new-style projects would have, and sync the ES index
         if preview
           @project.convert_properties_for_collection_project
+          @project.wait_for_index_refresh = true
           @project.elastic_index!
-          Project.refresh_es_index
         end
         # if previewing, or the project is a new-style, fetch the API
         # response and render the React projects show page
@@ -371,10 +365,9 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params[:project].merge(:user_id => current_user.id))
-
+    @project.wait_for_index_refresh = true
     respond_to do |format|
       if @project.save
-        Project.refresh_es_index
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_created)) }
         format.json {
           render :json => @project.to_json
@@ -418,8 +411,8 @@ class ProjectsController < ApplicationController
       end
     end
     respond_to do |format|
+      @project.wait_for_index_refresh = true
       if @project.update_attributes(params[:project])
-        Project.refresh_es_index
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_updated)) }
         format.json { render json: @project }
       else
@@ -460,7 +453,6 @@ class ProjectsController < ApplicationController
         redirect_to(projects_url)
       end
       format.json do
-        Project.refresh_es_index
         head :ok
       end
     end
@@ -486,7 +478,13 @@ class ProjectsController < ApplicationController
       end
       format.json do
         @project_users = @selected_user.project_users.joins(:project).
-          includes({:project => [:project_list, {:project_observation_fields => :observation_field}]}, :user).
+          includes({
+            project: [
+              :project_list,
+              { project_observation_rules: :operand },
+              { project_observation_fields: :observation_field }
+            ]
+          }, :user).
           order("lower(projects.title)").
           limit(1000)
         project_options = Project.default_json_options.update(
@@ -689,7 +687,8 @@ class ProjectsController < ApplicationController
       end
       return
     end
-    
+
+    @project.wait_for_index_refresh = true
     @project_user = @project.project_users.create((params[:project_user] || {}).merge(user: current_user))
     unless @observation
       if @project_user.valid?
@@ -766,6 +765,7 @@ class ProjectsController < ApplicationController
     elsif !params[:keep].yesish?
       Project.delay(:priority => USER_INTEGRITY_PRIORITY).delete_project_observations_on_leave_project(@project.id, @project_user.user.id)
     end
+    @project_user.project.wait_for_index_refresh = true
     @project_user.destroy
     
     respond_to do |format|
@@ -1050,16 +1050,12 @@ class ProjectsController < ApplicationController
   end
 
   def search
-    if @site && (@site_place = @site.place)
-      @place = @site_place unless params[:everywhere].yesish?
-    end
     if @q = params[:q]
       response = INatAPIService.get(
         "/search",
         q: @q,
         page: params[:page],
         sources: "projects",
-        place_id: @place.try(:id),
         ttl: logged_in? ? "-1" : nil
       )
       projects = Project.where( id: response.results.map{|r| r["record"]["id"]} ).index_by(&:id)
@@ -1138,7 +1134,6 @@ class ProjectsController < ApplicationController
     elsif !feature.noteworthy && params[:noteworthy].yesish?
       feature.update_attributes( noteworthy: true )
     end
-    Project.refresh_es_index
     render status: :ok, json: { }
   end
 
@@ -1146,7 +1141,6 @@ class ProjectsController < ApplicationController
     SiteFeaturedProject.where(
       site: @site, project: @project
     ).destroy_all
-    Project.refresh_es_index
     render status: :ok, json: { }
   end
 
@@ -1203,7 +1197,6 @@ class ProjectsController < ApplicationController
           render :status => :unprocessable_entity, :json => {:errors => @project_user.errors.full_messages}
         end
       else
-        Project.refresh_es_index
         format.html do
           flash[:notice] = notice
           redirect_to dest

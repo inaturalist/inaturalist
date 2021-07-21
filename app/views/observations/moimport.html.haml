@@ -60,33 +60,49 @@
               %th Description &amp; MO URL
           %tbody
             - @results.each do |result, observation|
+              - mo_url = @mo_import_task.mo_url_from_result( result )
               %tr
                 %td
                   - if ( images = @mo_import_task.images_from_result( result ) ) && images.size > 0
                     - images.each do |img|
                       %img{ src: "http://images.mushroomobserver.org/thumb/#{img[:id]}.jpg" }
-                  - else
+                  - elsif observation
                     = iconic_taxon_image( observation.taxon )
-                %td
-                  - if observation.taxon 
-                    = render "shared/taxon", taxon: observation.taxon, link_url: observation.taxon
-                  - else
-                    Placeholder:
-                    = observation.species_guess
-                %td.nobr
-                  = observation.munge_observed_on_with_chronic; observation.observed_on
-                %td= observation.latitude
-                %td= observation.longitude
-                %td
-                  - unless observation.positional_accuracy.blank?
-                    = "#{observation.positional_accuracy} m"
-                %td= observation.geoprivacy
-                %td= observation.place_guess
-                %td
-                  = formatted_user_text observation.description
-                  %p
-                    MO URL: 
-                    = link_to result[:url], result[:url]
+                - if observation
+                  %td
+                    - if observation.taxon
+                      = render "shared/taxon", taxon: observation.taxon, link_url: observation.taxon
+                    - else
+                      Placeholder:
+                      = observation.species_guess
+                  %td.nobr
+                    = observation.munge_observed_on_with_chronic; observation.observed_on
+                  %td= observation.latitude
+                  %td= observation.longitude
+                  %td
+                    - unless observation.positional_accuracy.blank?
+                      = "#{observation.positional_accuracy} m"
+                  %td= observation.geoprivacy
+                  %td= observation.place_guess
+                  %td
+                    = formatted_user_text observation.description
+                    %p
+                      MO URL:
+                      = link_to mo_url, mo_url
+                - else
+                  %td{ colspan: 8 }
+                    .alert.alert-danger
+                      - if @mo_import_task.warnings && !@mo_import_task.warnings[mo_url].blank?
+                        %p Problems:
+                        %ul
+                          - @mo_import_task.warnings[mo_url].each do |w|
+                            %li= w
+                      - else
+                        %p Failed to parse data from Mushroom Observer:
+                        %pre= result.to_xml
+                      %p
+                        MO URL:
+                        = link_to mo_url, mo_url
   .row
     .col-xs-12
       %h2 How This Works

@@ -46,7 +46,7 @@ describe "TaxonDescribers" do
     end
 
     it "strips references and errors from html" do
-      html = "Beggining <sup class='reference.'>1<\/sup> middle <strong class='error'>X<\/strong> end"
+      html = "Beggining <sup class=\"reference\">1<\/sup> middle <strong class=\"error\">X<\/strong> end"
       expect( wikipedia.clean_html( html ) ).to eq html
       expect(
         wikipedia.clean_html( html, strip_references: true )

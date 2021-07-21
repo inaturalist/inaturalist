@@ -1053,6 +1053,9 @@ class YearStatistic < ActiveRecord::Base
         filters << { terms: { site_id: [site.id] } }
       end
     end
+    if user = options[:user]
+      filters << { term: { "user.id" => user.id } }
+    end
     es_params = {
       size: 0,
       filters: filters,

@@ -110,7 +110,7 @@
 
     // Append next & prev links
     var offset = $('<input class="soundSelectorOffset" type="hidden" value="0"/>');
-    var prev = $('<a href="#" class="prevlink button">&laquo; '+I18n.t('prev')+'</a>').click(function(e) {
+    var prev = $('<a href="#" class="prevlink button">&laquo; '+I18n.t('previous_page_short')+'</a>').click(function(e) {
       var offsetnum = parseInt($(wrapper).find('.soundSelectorOffset').val());
       offsetnum -= options.limit;
       if (offsetnum < 0) offsetnum = 0;
@@ -121,7 +121,7 @@
       $(wrapper).find('.soundSelectorOffset').val(offsetnum);
       return false;
     });
-    var next = $('<a href="#" class="nextlink button">'+I18n.t('next')+' &raquo;</a>').click(function(e) {
+    var next = $('<a href="#" class="nextlink button">'+I18n.t('next_page_short')+' &raquo;</a>').click(function(e) {
       var offsetnum = parseInt($(wrapper).find('.soundSelectorOffset').val());
       offsetnum += options.limit;
       var nextOpts = $.extend({}, $(wrapper).data('soundSelectorOptions'), {offset: offsetnum});

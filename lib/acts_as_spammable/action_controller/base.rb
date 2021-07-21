@@ -50,7 +50,11 @@ module ActionController
         end
 
         define_method(:if_spammer_set_flash_message) do |user_to_check|
-          if current_user == user_to_check || (current_user && current_user.is_curator?)
+          curator_or_site_admin = current_user && (
+            current_user.is_curator? ||
+            current_user.is_site_admin_of?( user_to_check.site )
+          )
+          if current_user == user_to_check || curator_or_site_admin
             set_spam_flash_error
             return true
           end
