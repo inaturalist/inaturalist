@@ -1,4 +1,240 @@
 be:
+  x_comments:
+    one: '%{count} каментарый'
+    few: '%{count} каментарыі'
+    many: '%{count} каментарыяў'
+    other: '%{count} каментарыя'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> каментарый'
+    few: '<span class="count">%{count}</span> каментарыі'
+    many: '<span class="count">%{count}</span> каментарыяў'
+    other: '<span class="count">%{count}</span> каментарыя'
+  x_faves:
+    one: '%{count} упадабанне'
+    few: '%{count} упадабанні'
+    many: '%{count} упадабанняў'
+    other: '%{count} упадабання'
+  x_identifications:
+    one: '%{count} вызначэнне'
+    few: '%{count} вызначэння'
+    many: '%{count} вызначэнняў'
+    other: '%{count} вызначэнні'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> вызначэнне'
+    few: '<span class="count">%{count}</span> вызначэнні'
+    many: '<span class="count">%{count}</span> вызначэнняў'
+    other: '<span class="count">%{count}</span> вызначэнні'
+  x_identifications_:
+    one: '%{count} Вызначэнне'
+    few: '%{count} Вызначэнні'
+    many: '%{count} Вызначэнняў'
+    other: '%{count} Вызначэння'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> Вызначальнік'
+    #Number of people who have added identifications
+    few: '<span class="count">%{count}</span> Вызначальніка'
+    #Number of people who have added identifications
+    many: '<span class="count">%{count}</span> Вызначальнікаў'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> Вызначальніка'
+  x_languages:
+    one: "%{count} мова"
+    few: "%{count} мовы"
+    many: "%{count} моў"
+    other: "%{count} мовы"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} упершыню ў спісе жывога"
+    #Count of number of taxa that represent the first addition to a life list
+    few: "%{count} упершыню ў спісе жывога"
+    #Count of number of taxa that represent the first addition to a life list
+    many: "%{count} упершыню ў спісе жывога"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} упершыню ў спісе жывога"
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> запіс у часопісе'
+    few: '<span class="count">%{count}</span> запісы у часопісе'
+    many: '<span class="count">%{count}</span> запісаў у часопісе'
+    other: '<span class="count">%{count}</span> запіса у часопісе'
+  x_matching_taxa:
+    one: '%{count} адпаведны таксон'
+    few: '%{count} адпаведныя таксоны'
+    many: '%{count} адпаведных таксонаў'
+    other: '%{count} адпаведнага таксона'
+  x_matching_taxa_html:
+    one: '<span class="count">%{count}</span> адпаведны таксон'
+    few: '<span class="count">%{count}</span> адпаведныя таксоны'
+    many: '<span class="count">%{count}</span> адпаведных таксонаў'
+    other: '<span class="count">%{count}</span> адпаведнага таксона'
+  x_misidentifications_of_this_species:
+    one: "%{count} памылковае вызначэнне гэтага віда"
+    few: "%{count} памылковых вызначэнні гэтага віда"
+    many: "%{count} памылковых вызначэнняў гэтага віда"
+    other: "%{count} памылковага вызначэння гэтага віда"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} памылковае вызначэнне ў гэтым родзе"
+    few: "%{count} памылковых вызначэнні ў гэтым родзе"
+    many: "%{count} памылковых вызначэнняў у гэтым родзе"
+    other: "%{count} памылковага вызначэння ў гэтым родзе"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} памылковае вызначэнне ў гэтым %{rank}"
+    few: "%{count} памылковых вызначэнні ў гэтым %{rank}"
+    many: "%{count} памылковых вызначэнняў ў гэтым %{rank}"
+    other: "%{count} памылковага вызначэння ў гэтым %{rank}"
+  x_observations:
+    one: "%{count} назіранне"
+    few: "%{count} назіранні"
+    many: "%{count} назіранняў"
+    other: "%{count} назірання"
+  x_observations_:
+    one: "%{count} Назіранне"
+    few: "%{count} Назіранні"
+    many: "%{count} Назіранняў"
+    other: "%{count} Назірання"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> назіранне"
+    few: "<span class='count'>%{count}</span> назіранні"
+    many: "<span class='count'>%{count}</span> назіранняў"
+    other: "<span class='count'>%{count}</span> назірання"
+  x_observations_link_html:
+    one: "<a href='%{url}'>%{count} назіранне</a>"
+    few: "<a href='%{url}'>%{count} назіранні</a>"
+    many: "<a href='%{url}'>%{count} назіранняў</a>"
+    other: "<a href='%{url}'>%{count} назірання</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> назіранне прагледжана"
+    few: "<span class='count'>%{count}</span> назіранні прагледжана"
+    many: "<span class='count'>%{count}</span> назіранняў прагледжана"
+    other: "<span class='count'>%{count}</span> назірання прагледжана"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> Назіральнік'
+    few: '<span class="count">%{count}</span> Назіральнікі'
+    many: '<span class="count">%{count}</span> Назіральнікаў'
+    other: '<span class="count">%{count}</span> Назіральніка'
+  x_others:
+    one: "%{count} іншы"
+    few: "%{count} іншыя"
+    many: "%{count} іншых"
+    other: "%{count} іншага"
+  x_people:
+    one: "%{count} асоба"
+    few: "%{count} асобы"
+    many: "%{count} асобаў"
+    other: "%{count} асобы"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} людзей</strong> дапамаглі %{user} з <strong>%{y} вызначэннем</strong>"
+  x_photos:
+    one: "%{count} фота"
+    few: "%{count} фота"
+    many: "%{count} фота"
+    other: "%{count} фота"
+  x_new_species:
+    one: "%{count} Новы від"
+    few: "%{count} Новыя віды"
+    many: "%{count} Новых відаў"
+    other: "%{count} Новага віда"
+  x_new_users:
+    one: '%{count} Новы карыстальнік'
+    few: '%{count} Новыя карыстальнікі'
+    many: '%{count} Новых карыстальнікаў'
+    other: '%{count} Новага карыстальніка'
+  x_species:
+    one: '%{count} від'
+    few: '%{count} віды'
+    many: '%{count} відаў'
+    other: '%{count} віда'
+  x_species_html:
+    one: "<span class='count'>%{count}</span> від"
+    few: "<span class='count'>%{count}</span> віды"
+    many: "<span class='count'>%{count}</span> відаў"
+    other: "<span class='count'>%{count}</span> віда"
+  x_species_link_html:
+    one: "<a href='%{url}'>%{count} від</a>"
+    few: "<a href='%{url}'>%{count} віды</a>"
+    many: "<a href='%{url}'>%{count} відаў</a>"
+    other: "<a href='%{url}'>%{count} віда</a>"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} прапанова, адфільтраваная па:"
+    few: "%{count} прапановы, адфільтраваныя па:"
+    many: "%{count} прапаноў, адфільтраваных па:"
+    other: "%{count} прапановы, адфільтраваных па:"
+  x_taxa:
+    one: "%{count} таксон"
+    few: "%{count} таксона"
+    many: "%{count} таксонаў"
+    other: "%{count} таксона"
+  x_taxa_observed_html:
+    one: "<span class='count'>%{count}</span> назіранне таксона"
+    few: "<span class='count'>%{count}</span> назіранні таксона"
+    many: "<span class='count'>%{count}</span> назіранняў таксона"
+    other: "<span class='count'>%{count}</span> назірання таксона"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> назіранне ўзроўня даследвання"
+    few: "<span class='count'>%{count}</span> назіранні ўзроўня даследвання"
+    many: "<span class='count'>%{count}</span> назіранняў узроўня даследвання"
+    other: "<span class='count'>%{count}</span> назірання ўзроўня даследвання"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>%{count}</span> назіранне ўзроўня даследвання вызначана да віда ці ніжэй"
+    few: "<span class='count'>%{count}</span> назірання ўзроўня даследвання вызначана да віда ці ніжэй"
+    many: "<span class='count'>%{count}</span> назіранняў узроўня даследвання вызначана да віда ці ніжэй"
+    other: "<span class='count'>%{count}</span> назірання ўзроўня даследвання вызначана да віда ці ніжэй"
+  x_sounds:
+    one: "%{count} гук"
+    few: "%{count} гукі"
+    many: "%{count} гукаў"
+    other: "%{count} гука"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span> таксон, які курыруецца"
+    few: "<span class='count'>%{count}</span> таксоны, якія курыруюцца"
+    many: "<span class='count'>%{count}</span> таксонаў, якія курыруюцца"
+    other: "<span class='count'>%{count}</span> таксона, якія курыруюцца"
+  x_taxa_matching_current_filters:
+    one: "%{count} таксон адпавядае фільтрам"
+    few: "%{count} таксона адпавядаюць фільтрам"
+    many: "%{count} таксонаў адпавядаюць фільтрам"
+    other: "%{count} таксона адпавядае фільтрам"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>%{count}</span> змена ў таксоне дададзена"
+    few: "<span class='count'>%{count}</span> змены ў таксоне былі дададзены"
+    many: "<span class='count'>%{count}</span> змен ў таксоне было дададзена"
+    other: "<span class='count'>%{count}</span> змены ў таксоне была дададзена"
+  _100_day_trends: Трэнды за 100 дзён
+  _percent_ID_d: "% вызначана"
+  a_community_for_naturalist: Супольнасць прыродазнаўцаў
+  a_default_taxon_name_will_automatically_created: |
+    Назва таксона па змаўчанні будзе аўтаматычна створана з атрыбута навуковага імя гэтага таксона.
+    Пасля захавання новага таксона вы зможаце дадаць сюды іншыя назвы (агульныя назвы, састарэлыя навуковыя назвы і г.д.).
+  a_flag_for_x: "сцяжок для %{x}"
+  a_member_of_taxon_html: "належыць да таксона %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "А да Я"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "%{resource}"
+  about: Падрабязна
+  about_blocking: Пра блакіроўку
   date:
     abbr_month_names:
       - 
