@@ -104,7 +104,7 @@ const App = ( {
     && observation.obscured
     && !observation.private_geojson
   ) {
-    formattedDateObserved = observedAt.format( "MMMM YYYY" );
+    formattedDateObserved = observedAt.format( I18n.t( "momentjs.month_year" ) );
     isoDateObserved = observedAt.format( "YYYY-MM" );
   } else if ( observation.time_observed_at ) {
     formattedDateObserved = formattedDateTimeInTimeZone(
@@ -119,7 +119,7 @@ const App = ( {
     observation.obscured
     && !observation.private_geojson
   ) {
-    formattedDateAdded = createdAt.format( "MMMM YYYY" );
+    formattedDateAdded = createdAt.format( I18n.t( "momentjs.month_year" ) );
     isoDateAdded = createdAt.format( "YYYY-MM" );
   }
   const description = observation.description ? (
