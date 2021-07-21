@@ -1238,7 +1238,7 @@ class ObservationsController < ApplicationController
     @observations = Observation.page_of_results(search_params)
     set_up_instance_variables(search_params)
     Observation.preload_for_component(@observations, logged_in: !!current_user)
-    if @selected_user != current_user && current_user && current_user.in_test_group?( "interpolation" )
+    if @selected_user != current_user
       filtered_obs = @observations.select {|o| o.coordinates_viewable_by?( current_user )}
       diff = @observations.size - filtered_obs.size
       @observations = WillPaginate::Collection.create(
