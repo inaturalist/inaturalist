@@ -227,6 +227,7 @@ Rails.application.routes.draw do
   post 'flickr/unlink_flickr_account' => 'flickr#unlink_flickr_account'
   get 'flickr/photos.:format' => 'flickr#photos'
   get "flickr/options" => "flickr#options", as: "flickr_options"
+  get "flickr/photo_fields" => "flickr#photo_fields", as: "flickr_photo_fields"
 
   resources :observation_photos, :only => [:show, :create, :update, :destroy]
   resources :observation_sounds, :only => [:show, :create, :update, :destroy]
@@ -672,6 +673,8 @@ Rails.application.routes.draw do
   get 'translate' => 'translations#index', :as => :translate_list
   post 'translate/translate' => 'translations#translate', :as => :translate
   get 'translate/reload' => 'translations#reload', :as => :translate_reload
+
+  get "apple-app-site-association" => "apple_app_site_association#index", as: :apple_app_site_association
 
   # Hack to enable mail previews. You could also remove get
   # '/:controller(/:action(/:id))' but that breaks a bunch of other stuff. You

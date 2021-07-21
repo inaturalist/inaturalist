@@ -37,6 +37,8 @@ Rails.application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  # https://stackoverflow.com/a/51898048
+  config.assets.check_precompiled_asset = false
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log

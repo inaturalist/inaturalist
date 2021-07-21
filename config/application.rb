@@ -85,6 +85,7 @@ module Inaturalist
       require_dependency "list"
       require_dependency "check_list"
       require_dependency "project_list"
+      require_dependency "source"
     end
 
     config.action_mailer.preview_path = "#{Rails.root}/test/mailers/previews"

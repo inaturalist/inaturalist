@@ -109,13 +109,13 @@
                 %td= truncate_with_more( formatted_user_text( user.description ), length: 500 )
                 %td
                   - unless user.spammer?
-                    = link_to t(:flag_as_spammer), set_spammer_path( user, spammer: true, return_to: url_for_params ), method: :post, class: "btn btn-danger btn-block btn-sm", data: { confirm: t(:are_you_sure?) }
+                    = link_to t(:flag_as_spammer), set_spammer_path( user, spammer: true, return_to: request.path ), method: :post, class: "btn btn-danger btn-block btn-sm", data: { confirm: t(:are_you_sure?) }
                   - unless user.known_non_spammer?
-                    = link_to t(:flag_as_non_spammer), set_spammer_path( user, spammer: false, return_to: url_for_params ), method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) }, class: "btn btn-success btn-block btn-sm"
+                    = link_to t(:flag_as_non_spammer), set_spammer_path( user, spammer: false, return_to: request.path ), method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) }, class: "btn btn-success btn-block btn-sm"
                   - if user.active?
-                    = link_to t(:suspend_user), suspend_user_path( user, return_to: url_for_params ), class: "btn btn-warning btn-block btn-sm"
+                    = link_to t(:suspend_user), suspend_user_path( user, return_to: request.path ), class: "btn btn-warning btn-block btn-sm"
                   - elsif user.suspended?
-                    = link_to t(:unsuspend_user), unsuspend_user_path( user, return_to: url_for_params ), class: "btn btn-success btn-block btn-sm"
+                    = link_to t(:unsuspend_user), unsuspend_user_path( user, return_to: request.path ), class: "btn btn-success btn-block btn-sm"
 
   - if @users.size == @users.per_page
     .row
