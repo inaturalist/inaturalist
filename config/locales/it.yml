@@ -1421,7 +1421,6 @@ it:
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: Trascina qua
-  double_click_to_finish: (doppio clic per terminare)
   download: Scarica
   download_bulk_import_template_html: |
     <a href="%{url}">Scarica il modello</a> da usare nell'<a href="/observations/import?project_id=%{project_id}#csv_import">importazione in blocco</a>
@@ -1758,7 +1757,6 @@ it:
   georeferenced: Georeferenziata?
   get_started: Inizia
   getting_started_guide: Guida Introduttiva
-  give_it_some_detail: Aggiungi un po' di dettagli
   #Prompt to donate money on a montly basis
   give_monthly_caps: DONA MENSILMENTE
   #Prompt to donate money once
@@ -2076,6 +2074,7 @@ it:
     hawaiian: Hawaiano
     hebrew: Ebraico
     hiligaynon: Ilongo
+    hungarian: Ungherese
     icelandic: Islandese
     ilokano: Ilokano
     italian: Italiano
@@ -2097,6 +2096,7 @@ it:
     swedish: Svedese
     tagalog: Tagalog
     tahitian: Tahitiano
+    thai: Thailandese
     tokelauan: Tokelau
     turkish: Turco
     waray_waray: Wáray-Wáray
@@ -2173,6 +2173,7 @@ it:
     eo: Esperanto
     es: Spagnolo
     es-AR: Spagnolo (Argentina)
+    es-CO: Spagnolo (Colombia)
     es-MX: Spagnolo (Messico)
     et: Estone
     eu: Basco
@@ -2181,6 +2182,7 @@ it:
     fr-CA: Francese (Canada)
     gl: Galiziano
     he: Ebraico
+    hu: Ungherese
     id: Indonesiano
     it: Italiano
     ja: Giapponese
@@ -2199,6 +2201,7 @@ it:
     sk: Slovacco
     sq: Albanese
     sv: Svedese
+    th: Thailandese
     tr: Turco
     uk: Ucraino
     zh-CN: Cinese (tradizionale)
@@ -2533,10 +2536,14 @@ it:
   newly_observed_species: Specie Appena Osservate
   newly_observed_species_in_year: "Specie Aggiunte Di Recente Nel %{year}"
   next: Successivo
+  next_date_short: Successivo
   next_observation: Prossima osservazione
   next_page: Pagina successiva
+  next_page_short: Successivo
   next_photo: Prossima foto
+  next_post_short: Successivo
   next_tab: Scheda successiva
+  next_taxon_short: Successivo
   'no': 'No'
   no_assessments_have_been_added_to_this_project_yet: Nessuna valutazione è stata ancora aggiunta al progetto.
   no_but_it_is_a_member_of_taxon: "No, ma questo è un membro di %{taxon}"
@@ -3453,11 +3460,15 @@ it:
   preview_observations_with_these_observation_requirements: Anteprima delle Osservazioni con questi Requisiti di Osservazione
   preview_of_synced_observation: "<strong>Anteprima</strong> dell'osservazione sincronizzata. <a href=\"%{url}\">Annulla?</a>"
   previewing: "Anteprima in corso..."
+  previous_date_short: Prec
   prev: Prec
   previous_observation: Osservazione Precedente
   previous_page: Pagina precedente
+  previous_page_short: Prec
   previous_photo: Foto Precedente
+  previous_post_short: Prec
   previous_tab: Scheda precedente
+  previous_taxon_short: Prec
   print_verb: Stampa
   privacy: Privacy
   private: privata

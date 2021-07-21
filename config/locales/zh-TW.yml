@@ -766,11 +766,11 @@ zh-TW:
   check_list_for_individual_taxa_that: '於此地棲息的單一物種分類群名錄，例如：「%{place}的鳥類」。'
   check_list_for_taxon_html: "%{taxon} 的名錄"
   check_lists_must_belong_to_a_place: |
-    清單必須屬於某一地點。要創建一個新的物種名錄，請查看該地點的預設清單並點擊「建立新物種名錄」連結。
-  check_list_of_species_occuring_in: 物種清單出現在
-  check_list_place: "%{place}清單"
+    清單必須屬於某一地點。要創建一個新的物種名錄，請查看該地點的預設物種名錄並點擊「建立新物種名錄」連結。
+  check_list_of_species_occuring_in: 物種名錄出現在
+  check_list_place: "%{place}的名錄"
   check_list_updated: 檢查列表已更新！
-  check_lists_for: "用於%{place}的其它清單"
+  check_lists_for: "用於%{place}的其它名錄"
   check_out_our_blog: 看看我們的部落格
   check_out_what_the_observation: 查看您所嘗試鑑定物種的外型模樣。
   check_this_box_if_html: |
@@ -779,13 +779,13 @@ zh-TW:
     target='_blank'>創用 CC 姓名標示-非商業性許可版權</a>到上傳的內容，請勾選此框。這代表任何人只要有將您給表彰出，並且不使用在商業用途上，都能夠不需先詢問允許，便能複製和重複使用您的照片以及/或是觀察。您可在事後移除或挑選其它版權，但對於分享給研究人員來說這是最合適的許可版權。
   checklist: 名錄
   choose_a_field: 選擇欄位
-  choose_a_list_above: 選擇一個在上方的清單。
+  choose_a_list_above: 選擇一個在上方的名錄。
   choose_a_place: 挑選一個地點
   choose_a_taxon: 挑選一個分類（可選）
   choose_columns: 選擇欄位
   choose_file: 選擇檔案
   choose_files: 挑選檔案
-  choose_from_your_lists: 從您的清單挑選
+  choose_from_your_lists: 從您的名錄中挑選
   choose_photos_for_this_taxon: 挑選用於此分類的照片
   choose_photos_to_tag_from_photostream: 從您的照片串流挑選照片來標記
   choose_rule: 選擇一條規則
@@ -853,7 +853,7 @@ zh-TW:
   comprehensive?: 綜合？
   comprehensive_check_list_for_taxon_html: |
     <span class="comprehensive_notice" data-tip="%{tip}">完整的</span> %{taxon} 名錄
-  comprehensive_list: 綜合清單
+  comprehensive_list: 完整名錄
   #Name for the statistical model used to determine visual similarity between
   #photos and taxa
   computer_vision_model: 電腦視覺模型
@@ -903,7 +903,7 @@ zh-TW:
   conservation_status_geoprivacy_desc: |
     預設位置隱私會套用到在此地點上的所有分類群觀察
   contact_support: 聯絡支援
-  contain_all_descendants?: 此清單是否包含所有出現於此的物種分類派生？
+  contain_all_descendants?: 此物種名錄是否包含了在這裡出現的此分類群以下階層的所有分類單元？
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: 内容
   content_and_display: 內容 & 顯示
@@ -1356,7 +1356,6 @@ zh-TW:
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: 放開
-  double_click_to_finish: '（快按兩下來完成）'
   download: 下載
   download_bulk_import_template_html: |
     <a href="%{url}">下載模板</a>來用於
@@ -1550,7 +1549,7 @@ zh-TW:
   filter_by_place: 依地點篩選
   filter_by_taxon: 按物種分類篩選
   filter_by_place_taxon_and_color: 依地點、物種分類、和色彩來使用控制篩選。
-  filter_list_by_this_taxon: 依此物種分類篩選清單
+  filter_list_by_this_taxon: 依此物種分類篩選名錄
   filtering: 篩選中
   filters: 篩選
   find: 尋找
@@ -1669,7 +1668,7 @@ zh-TW:
   from_a_place: 來自一個地點
   from_eol_collection: 來自生命大百科收藏
   from_flickr_facebook_etc: 來自 Flickr、臉書、或其它。
-  from_list: 來自清單
+  from_list: 來自名錄
   from_photos: 來自照片
   from_place: 來自地點
   from_soundcloud: 來自 Soundcloud
@@ -1691,7 +1690,6 @@ zh-TW:
   georeferenced: 地理參考？
   get_started: 入門
   getting_started_guide: 入門指南
-  give_it_some_detail: 為它提供一些詳細內容！
   #Prompt to donate money on a montly basis
   give_monthly_caps: 每月捐款
   #Prompt to donate money once
@@ -1776,18 +1774,18 @@ zh-TW:
   i_dont_know_but_i_am_sure_this_is_taxon: 我不清楚，但我確定這是%{taxon}
   icon: 圖示
   icon_size: 圖示大小
-  iconic_taxon: 圖像物種分類
+  iconic_taxon: 代表性分類群
   id: 鑑定
   id_categories:
     tooltips:
       leading: |
-        來自於社群的物種分類。此鑑定有機會引導至正確結果。
+        來自於社群的分類群。此鑑定有機會引導至正確結果。
       improving: |
-        首先建議此物種分類來讓社群後續同意。這有助於改進社群物種分類。
+        首先建議此分類群來讓社群後續同意。這有助於改進社群的分類群。
       maverick: |
-        不是社群物種分類的祖先或派生，即代表著社群不同意此物種分類。
+        不是社群分類群的祖先或後裔，即代表著社群不同意此分類群。
   id_withdrawn: 鑑定撤回
-  ids_by_taxon: 按物種分類的鑑定
+  ids_by_taxon: 按分類群的鑑定
   identify: 鑑定
   identify_observations: "鑑定觀察"
   identify_observations_by_these_users: 由這些使用者所鑑定的觀察
@@ -1811,7 +1809,7 @@ zh-TW:
   ids: "鑑定"
   ids_made_for_others: 個替其他人所做的鑑定
   if_for_some_reason_a_user_doesnt_agree: |
-    若出自於某種原因您不同意社群物種分類，您可以拒絕，這代表著您的鑑定是用在連結至其它觀察、更新的生物清單、或其它等等。這也代表您的觀察，僅能在社群認可後才能成為研究等級的內容。
+    若出自於某種原因您不同意社群物種分類，您可以拒絕，這代表著您的鑑定是用在連結至其它觀察、更新的生涯名錄、或其它等等。這也代表您的觀察，僅能在社群認可後才能成為研究等級的內容。
   if_matches_come_from_a_comprehensive_list: 若符合來自於綜合列表內容，會在此顯示出綠色長條。
   if_this_is_a_scientific_name: 如果這是一個學名，它是否能被接受？
   if_this_link_will_apply_to_descendant: 如果此連結將套用到後代物種分類，您可以使用模版標籤來填寫 URL 裡的物種分類名稱
@@ -1841,7 +1839,7 @@ zh-TW:
   improving: 改進中
   in_n: "在%{n}"
   in_place_x: 於%{place}
-  inaturalist_network_affiliation: iNaturalist 網路聯合
+  inaturalist_network_affiliation: iNaturalist 國際網路所屬單位
   #Label for messages you've received
   inbox: 收件匣
   include_places: 包含的地點
@@ -1854,18 +1852,18 @@ zh-TW:
   in_progress: 任務進行中
   in_the_past: 在過去
   in_the_past_week: 在過去一週
-  inactive: 不活躍
+  inactive: 無效的
   #Status of a complete set that is not available for general use on iNat, e.g.
   #a draft
   inactive_complete_set_status: 未啟用的
-  inactive_taxon: 不起作用的物種分類
+  inactive_taxon: 無效的分類群
   #Status of a taxon that is not available for general use on iNat, e.g. an
   #output taxon in a split that hasn't been committed
-  inactive_taxon_status: 未啟用的
-  inactive_taxon_concepts_are: 無作用物種分類概念代表著分類方式過時，或是正處於在物種分類更改的階段上。過時概念會保留在維護歷史裡；並兼容於其它合作者的網站
+  inactive_taxon_status: 無效的
+  inactive_taxon_concepts_are: 無效的分類群概念代表著分類方式上過時，或是正處於在分類群更改的階段上。過時概念會保留在維護歷史裡；並相同於其它夥伴網站。
   inappropriate_content: 不適當內容？
   inat_account_action: "%{site_name} &#58;帳號&#58; %{action_name}"
-  inat_believes_this_is_a_complete_listing: "%{site_name} 相信這是此地區物種分類的完整清單。"
+  inat_believes_this_is_a_complete_listing: "%{site_name} 相信這是此地區分類群的完整名錄。"
   inat_user_profile: "%{site_name}：%{user}的個人檔案"
   inaturalist_activity_notifications: "%{site_name} 活動通知"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
@@ -1873,7 +1871,7 @@ zh-TW:
   inaturalist_is_a_joint_initiative: "%{site_name} 為加利福尼亞州科學院與國家地理學會的聯合倡議。"
   inaturalist_places: "%{site_name} 地點"
   info: 資訊
-  input_taxon: 輸入物種分類
+  input_taxon: 輸入分類群
   insects: 昆蟲
   insect_life_stage: 昆蟲生命階段
   instagram: Instagram
@@ -1929,7 +1927,7 @@ zh-TW:
   kml_file_size_error: "KML 大小必須小於 1 MB"
   label_colon: "%{label}："
   labels: 符號
-  label_to_group_a_batch_of_taxon_changes: 分組批量物種分類更改符號
+  label_to_group_a_batch_of_taxon_changes: 用標籤來分組一批分類群更改
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: 位置為私有的
   #Label shown when a location has not been entered. Originally "unknown" in
@@ -2040,7 +2038,7 @@ zh-TW:
   licensing: 許可協議
   licensing_your_content_gives_others_legal: "授權您的內容，可讓其他遵守授權條款的用戶能合法使用其中資料。%{site_name} 使用您的創用 CC 授權內容，來與其它資料合作者分享，例如"
   life: 生物
-  life_list: "%{user}的生物清單"
+  life_list: "%{user}的生涯名錄"
   linear_scale_label: 線性
   link: 連結
   link_or_unlink_your_facebook_account: 連結或取消連結至您的 Facebook 帳號
@@ -2061,26 +2059,26 @@ zh-TW:
   #Text inserted into a textarea when the link button is clicked but no text was selected
   linked_text: 連結文字
   linkedin: LinkedIn
-  list: 清單
+  list: 名錄
   list_deleted: 列表已刪除。
-  list_saved: 清單已儲存。
+  list_saved: 已儲存名錄。
   list_tooltip: 顯示清單檢視
   list_updated: 列表已更新！
   list_views:
     plain: 純文字
-    taxonomic: 物種分類
+    taxonomic: 分類上的
     photo: 照片
-  list_was_successfully_created: 清單成功創建。
-  listed_taxa: 列出的物種分類
-  listed_taxon: 列出的物種分類
-  listed_taxon_updated: 列出的物種分類已更新
-  listing_lists: 清單列出中
+  list_was_successfully_created: 已成功建立名錄。
+  listed_taxa: 列出的分類群
+  listed_taxon: 列出的分類群
+  listed_taxon_updated: 列出的分類群已更新
+  listing_lists: 列出名錄中
   listing_project_assets: 專案_項目列出中
-  listing_taxa: 物種分類列出中
-  lists: 清單
+  listing_taxa: 列出分類群中
+  lists: 名錄
   lists_by_login:
     title:
-      current_user: 您的清單
+      current_user: 您的名錄
       login: 由 %{login} 列出
   load: 載入
   loading: "載入中…"
@@ -2090,7 +2088,7 @@ zh-TW:
   loading_preview_and_code: 正在載入預覽和代碼…
   loading_suggestions: 正在載入建議…
   loading_tags: "正在載入標籤…"
-  loading_taxa_from_your: "正在自您的觀察載入物種分類群…"
+  loading_taxa_from_your: "正從您的觀察紀錄中來載入分類群…"
   loading_wikipedia_description: "正在載入維基百科描述…"
   locale_description: 在地化設定您的語言與日期格式偏好設置。
   locales_: 在地
@@ -2191,7 +2189,7 @@ zh-TW:
   make_manager: 做為負責人
   make_sure_the_default_photo_looks_good: 確認預設照片在放大尺寸下觀看沒有問題。
   make_this_your_default_license: "將此作為您的預設%{type}許可協議"
-  make_this_the_primary_listing: "將這作為主要清單"
+  make_this_the_primary_listing: "將這作為主要名錄"
   mammals: 哺乳類
   manage_all_your_subscriptions: 管理您所有的訂閱
   manage_names: 管理名稱
@@ -2359,7 +2357,7 @@ zh-TW:
   multiple: 多種
   multiple_select_option: '-- 多種 --'
   multiple_taxa_for_taxon_change: "多項物種分類群（輸入用於對換/合併方面，輸出用於拆分方面）"
-  multiple_taxon_ids_separated_by_commas: '以逗號分隔多項物種分類 ID，例如：123,654'
+  multiple_taxon_ids_separated_by_commas: '以逗號分隔多項分類群 ID，例如：123,654'
   must_be_in_taxon: 必須是在分類群%{taxon}中
   must_be_not_in_taxon: 必須不在分類群%{taxon}中
   must_be_not_observed_by_user: 必須不是%{user}所觀察的
@@ -2388,7 +2386,7 @@ zh-TW:
   name_or_slug: "名稱或 URL slug，例如：my-project"
   name_of_the_place_you: 您做出觀察的地點名稱
   name_providers:
-    col: 物種目錄
+    col: 全球生物物種名錄
     ubio: uBio
     nzor: 紐西蘭物種登錄
   names: 名稱
@@ -2424,9 +2422,9 @@ zh-TW:
   new_and_noteworthy: 新事物與關注事項
   new_announcement: 新公告
   new_assessment: 新評估
-  new_check_list: 新清單
+  new_check_list: 新建名錄
   new_check_list_for: "建立一個用於%{place}的新物種名錄&raquo;"
-  new_check_list_record: "若您想標記此為綜合清單，請創建它添加物種分類群並編輯，之後您將會有用來標記為綜合的選項。"
+  new_check_list_record: "若您想註記此為完整的名錄，請建立、新增物種分類群並編輯它，之後您將有機會在此註記它為完整的名錄。"
   new_comment_on_a_parent_by_user_link: 由 %{user_link} 在 @vow_or_con{vow:an|a} %{parent} 做的新評論
   new_flag_for: 新標記用於
   new_guide: 新指南
@@ -2451,24 +2449,28 @@ zh-TW:
   new_species_added_in_interval: 在%{interval}內所添加的新物種
   new_species_added_in_interval_x_of_y: 在%{interval}期間所添加的新物種（顯示 %{y} 個裡的 %{x} 個）
   new_taxon_change: 新物種分類更改
-  new_taxon_link: 新物種分類連結
-  new_taxon_name_for: 新物種分類名稱用於
+  new_taxon_link: 新建分類群連結
+  new_taxon_name_for: 新建分類群名稱用於
   new_taxon_range: 新物種分類範圍
-  new_taxonomic_change: 新物種分類更改（草稿）
+  new_taxonomic_change: 新增分類群更改（草稿）
   new_trip: 新行程
   new_updates_in_the_last_24_hours_from: "來自於 %{site_name} 在最近 24 小時內新的更新"
   new_users: 新使用者
   new_users_in_year: "在 %{year} 年的新使用者"
   new_users_w_7_obs: 具有 7 個觀察的新使用者
   newly_added: 新的添加
-  newly_added_species: 新進的添加物種
-  newly_observed_species: 新進的觀察物種
+  newly_added_species: 新加入的物種
+  newly_observed_species: 新觀察到的物種
   newly_observed_species_in_year: "在 %{year} 年新加入的物種"
   next: 下一個
+  next_date_short: 下一個
   next_observation: 下一個觀察
   next_page: 下一頁
+  next_page_short: 下一頁
   next_photo: 下一張照片
+  next_post_short: 下一個
   next_tab: 下一個頁籤
+  next_taxon_short: 下一個
   'no': '否'
   no_assessments_have_been_added_to_this_project_yet: 此專案尚未添加評估。
   no_but_it_is_a_member_of_taxon: "不，但這是%{taxon}的成員之一"
@@ -2542,9 +2544,9 @@ zh-TW:
   no_suggestions_available: 沒有可用建議
   no_summary_from_wikipedia: 未有來自於維基百科的摘要
   no_summary_has_been_set: 未有設定摘要。
-  no_taxa: 沒有物種分類
-  no_taxa_listed: 沒有列出物種分類群
-  no_taxa_selected: 沒有選擇物種分類！
+  no_taxa: 無分類群
+  no_taxa_listed: 沒有列出分類群
+  no_taxa_selected: 沒有選擇分類群！
   no_taxa_with_unknown_relationships: 沒有帶有未知關聯的分類
   no_taxon_framework_relationships: 沒有物種分類框架關聯
   no_taxonomic_changes_match_those_criteria: 沒有物種分類更改符合這些準則
@@ -2732,7 +2734,7 @@ zh-TW:
     doubtful: 可疑
     absent: 缺失
   of_places: 個地點
-  of_this_taxon: 這個的物種分類
+  of_this_taxon: 此分類群
   offensive_inappropriate: 冒犯/不適當
   off_caps: "關閉"
   official_blog: 官方部落格
@@ -2925,6 +2927,8 @@ zh-TW:
   place: 地點
   placeholder: 位置標誌符
   place_autocomplete_placeholder: 錫安國家公園、邁阿密等等。
+  place_create_quota_exceeded: |
+    您已經在 24 小時週期間達到可建立地點的上限(%{quota})
   place_deleted: 地點已刪除。
   place_geo:
     geo_planet_place_types:
@@ -3345,6 +3349,8 @@ zh-TW:
     新的地點是拖垮 iNat 運算資源的最大問題之一，所以<strong>請考慮不要任意新增地點</strong>。若是一個小地方僅包含數千個觀察紀錄通常沒問題，但如果您建立一個新地點包含了非常多的觀察紀錄，您會拖慢 iNat 的速度而影響到所有人。以下是一些替代的方案：
   places_warning_editing_places_is_slow: |
     編輯地點邊界是 iNat 速度減慢的最大來源之一。除非絕對必要，如果您能避免的話，盡量不要新增、更改或是移除地點邊界。
+  places_warning_quota: |
+    您一天中只能建立三個地點。
   places_warning_the_future: |
     不管怎麼說，有鑑於目前 iNat 成長的速度，我們將會在未來限制大家新增地點的條件。
   plants: 植物
@@ -3381,11 +3387,15 @@ zh-TW:
   preview_observations_with_these_observation_requirements: 用這些觀察需求來預覽觀察記錄
   preview_of_synced_observation: "<strong>預覽</strong>同步觀察。<a href=\"%{url}\">要取消？</a>"
   previewing: "預覽中..."
+  previous_date_short: 前一個
   prev: 上一個
   previous_observation: 上一個觀察
   previous_page: 上一頁
+  previous_page_short: 前一頁
   previous_photo: 上一個照片
+  previous_post_short: 前一個
   previous_tab: 上一個頁籤
+  previous_taxon_short: 前一個
   print_verb: 列印
   privacy: 隱私
   private: 私有
@@ -3761,7 +3771,7 @@ zh-TW:
   save_draft: 儲存草稿
   save_fields: 儲存欄位
   save_flag: 儲存標記
-  save_guide_taxon: 儲存指南物種分類
+  save_guide_taxon: 儲存指南分類群
   save_identification: 儲存鑑定
   save_observation: 儲存觀察
   save_photos: 儲存照片
@@ -3782,10 +3792,10 @@ zh-TW:
   search: 搜尋
   search_all_fields: 搜尋所有欄位
   search_by_name_or_email: 依照名稱和電子郵件來搜尋
-  search_by_taxon_name_or_observation_id: 依物種分類名稱或觀察鑑定來做搜尋
-  search_by_taxon_name_or_flickr_photo_id: 依物種分類名稱或 Flickr 照片鑑定來做搜尋
-  search_catalogue_of_life: '搜尋<a href="http://www.catalogueoflife.org">物種目錄</a>'
-  search_catalogue_of_life_raquo: "搜尋物種目錄&raquo;"
+  search_by_taxon_name_or_observation_id: 依分類群名稱或觀察鑑定來做搜尋
+  search_by_taxon_name_or_flickr_photo_id: 依分類群名稱或 Flickr 照片鑑定來做搜尋
+  search_catalogue_of_life: '搜尋<a href="http://www.catalogueoflife.org">全球生物物種名錄</a>'
+  search_catalogue_of_life_raquo: "搜尋全球生物物種名錄&raquo;"
   search_external_name_providers: 搜尋外部名稱提供者
   search_for_a_location: 搜尋位置
   search_for_species: 搜尋物種
@@ -3798,15 +3808,15 @@ zh-TW:
   search_results_for_query: '「%{query}」的搜尋結果'
   search_remote: 搜尋遠端
   search_species: 搜尋物種
-  search_species_: 搜尋物種...
+  search_species_: 搜尋物種中...
   search_the_map: 搜尋地圖
-  search_this_taxon: 搜尋此物種分類
+  search_this_taxon: 搜尋此分類群
   search_ubio_raquo: "搜尋 uBio &raquo;"
   search_your_photos: 搜尋您的照片
   searching: "搜尋中..."
   seasonality: 季節性
   second_person_possessive_singular: "您的 %{noun}"
-  see_something_wrong_with_taxon: 在此物種分類發現到問題了嗎？請讓策展人知悉。
+  see_something_wrong_with_taxon: 在此分類群發現問題了嗎？請讓策展人知悉。
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: 探索(Seek)
   seen_nearby: 已看過附近
@@ -3824,7 +3834,7 @@ zh-TW:
     選擇來自於外部照片分享網站來轉換至 %{site_name} 觀察。我們會填入將來自於照片詮釋資料的日期、時間、以及位置，並嘗試查找來自於標籤的物種名稱。
   selected: 已選擇
   selected_photos: 已選照片
-  selected_taxon: 已選物種分類
+  selected_taxon: 已選的分類群
   select_this_taxon: 選擇此分類群
   send: 傳送
   send_me_reset_password_instructions: 寄送給我關於重新設定密碼的說明
@@ -3832,7 +3842,7 @@ zh-TW:
   #Label for messages you've sent
   sent: 已寄送
   separate_values_with_a_pipe: 以豎線來分隔值，例如：「1-5|6-10|a lot」或「yes|no|maybe」
-  set_a_place_if_this_link_only_applies_to: 若此連結僅套用在來自某地點物種分類群情況下，請設定地點。若此套用於圍繞在全世界的物種分類群，請留下空白。
+  set_a_place_if_this_link_only_applies_to: 若此連結僅套用在來自某地點之分類群情況下，請設定地點。若此套用於圍繞在全世界的分類群，請留下空白。
   set_license: 設定許可協議
   settings: 設定
   share: 分享
@@ -3840,7 +3850,7 @@ zh-TW:
   short_code_for_this_place: 此地點的簡短代碼，例如 US 用於代表美國
   short_or_abbreviated_title_for_display: 用於顯示在內容有限區域裡的簡短或縮寫標題。最多 10 個字元。
   show: 顯示
-  show_active_and_inactive_taxa: 顯示有效和無作用的物種分類
+  show_active_and_inactive_taxa: 顯示有效和無效的分類群
   show_common_names: 顯示俗名
   show_hidden_content: 顯示隱藏內容
   show_keyboard_shortcuts: 顯示鍵盤快捷鍵
@@ -3857,14 +3867,14 @@ zh-TW:
   show_scientific_name_first: 顯示學名優先
   show_taxa_from_both: '（從兩項名錄中顯示分類群）'
   show_taxa_from_everywhere: "顯示來自於任何地點的物種分類"
-  show_taxa_from_place: "顯示來自於%{place}的物種分類"
+  show_taxa_from_place: "顯示來自於%{place}的分類群"
   show_total_counts: 顯示總計計數
   show_uncountable_species: 顯示無法計數的物種
   #Text to indicate that the first X items in a list are being shown, but there
   #could be more
   showing_first_x: 顯示前 %{x} 筆項目
-  showing_taxa_from_everywhere: "進行顯示來自於任何地點的物種分類群"
-  showing_taxa_from_place: "進行顯示來自於%{place}的物種分類群"
+  showing_taxa_from_everywhere: "顯示來自於任何地點的分類群"
+  showing_taxa_from_place: "顯示來自於%{place}的物種分類群"
   showing_x_of_y: 顯示 %{y} 的 %{x}
   showing_x_of_y_listings: "顯示 %{y} 份名錄中的 %{x} 份"
   sign_in: 登入
@@ -3888,7 +3898,7 @@ zh-TW:
   site_site_admin: "%{site_name} 網站管理員"
   site_staff: "%{site_name} 人員"
   site_stats: 網站統計
-  site_taxon_page: "%{site_name} 物種分類頁面"
+  site_taxon_page: "%{site_name} 分類群頁面"
   some_agree: 部份同意
   some_observations_are_missing_media_or_identifications: |
     有些觀察紀錄沒有多媒體檔案或鑑定資訊
@@ -3949,7 +3959,7 @@ zh-TW:
   source_list_: "來源名錄"
   source_list:
     ubio: uBio
-    catalogue_of_life: 物種目錄
+    catalogue_of_life: 全球生物物種名錄
     inaturalist: iNaturalist
     new_zeland_organisms_register: 紐西蘭物種登錄
     nzbrn_birds: NZBRN 鳥類
@@ -4076,8 +4086,8 @@ zh-TW:
   taxa_info: 物種分類群訊息
   taxa_needing_curation: 物種分類群需要策展
   taxa_observed: 物種分類已觀察
-  taxa_to_include: 包括的物種分類群
-  taxon: 物種分類
+  taxa_to_include: 包括的分類群
+  taxon: 分類群
   taxon_autocomplete_placeholder: 鳥、君主斑蝶等等。
   taxon_geoprivacy: 分類群位置隱私
   taxon_is_a_rank: "%{taxon}屬於%{rank}"
@@ -4111,15 +4121,15 @@ zh-TW:
     other: "帶有 %{count} 個觀察在色藻界裡（褐藻綱與相關生物）屬於%{rank}的%{taxon}"
   taxon_is_kingdom_of_life_with_x_observations:
     other: "帶有 %{count} 個觀察屬於生物界的%{taxon}"
-  taxon_is_threatened_coordinates_hidden: 物種分類為受威脅狀態，按預設隱藏座標
+  taxon_is_threatened_coordinates_hidden: 分類群為受脅狀態，預設為隱藏其座標
   taxon_is_threatened_coordinates_hidden_desc: |
     鑑定中的其中一個分類群，或其中一個分類群包含這些分類群任何之一，為稀有或是受到威脅的，所以這筆觀察紀錄的地點被遮蔽了。
-  taxon_is_threatened_coordinates_obscured: 物種分類為受威脅狀態，按預設隱蔽座標
+  taxon_is_threatened_coordinates_obscured: 分類群為受威脅狀態，預設為隱蔽其座標
   taxon_is_threatened_coordinates_obscured_desc: |
-    在鑑定裡所提議、或是包含有這些任何物種分類的分類其一，已知是稀有以及/或受威脅，因此觀察的位置被隱蔽。
+    在鑑定裡所提議、或是包含有這些任何分類群的其一分類群，已知是稀有以及/或受威脅，因此觀察紀錄的位置被遮蔽。
   taxonomy: 分類法
   taxon_assessments_are: |
-    物種分類評估是評估物種目前狀態的文獻，通常是保育狀態。例如，區域保育組織可能會使用此來組織訊息，並徵求有關在區域裡數種受威脅之物種分類群狀態的意見回饋。
+    分類群評估是評估物種目前狀態的文獻，通常是保育狀態。例如，區域保育組織可能會使用此來組織訊息，並徵求有關在區域裡數種受威脅之分類群狀態的意見回饋。
   taxon_change_must_be_committed_to_update_records: 必須提交物種分類更改以更新紀錄
   taxon_deleted: 物種分類已刪除。
   taxon_doesnt_have_a_range: 物種分類沒有包含範圍
@@ -4131,47 +4141,47 @@ zh-TW:
     it_may_take_google_a_while_to: 這將會讓 Google 花費一些時間來載入這些資料（取決於是否有 GBIF 相關內容）。
     data_url: 資料URL
     overlays: 覆蓋
-  taxon_changes: 物種分類更改
-  taxon_colors: 物種分類色彩
-  taxon_curators: 物種分類策展人
+  taxon_changes: 分類群更改
+  taxon_colors: 分類群色彩
+  taxon_curators: 分類群策展人
   taxon_framework_complete: "完成：是"
   taxon_framework_deviations_with_count_html: "差異數量：%{count}"
-  taxon_framework_relationships_with_count_html: "物種分類框架關聯：%{count}"
+  taxon_framework_relationships_with_count_html: "分類群框架關聯：%{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
   taxon_framework_flagged_covered_taxa_count_html: "已標記涵蓋的分類群：%{count}"
-  taxon_framework_notes: 物種分類框架備註
-  taxon_framework_relationship: 物種分類群框架關聯
-  taxon_framework_relationship_number: "物種分類框架關聯 %{number}"
+  taxon_framework_notes: 分類群框架備註
+  taxon_framework_relationship: 分類群框架關聯
+  taxon_framework_relationship_number: "分類群框架關聯 %{number}"
   taxon_framework_relationship_unknown_count_html: "未知關聯的數量：%{count}"
-  taxon_framework_relationships: 物種分類框架關聯
-  taxon_framework_taxon: 物種分類框架的分類單元
-  taxon_merge: 物種分類合併
-  taxon_name: 物種分類名稱
-  taxon_name_must_match_an_existing_taxon_in_our_database: 物種分類名稱必須符合存在於我們資料庫裡的物種分類
+  taxon_framework_relationships: 分類群框架關聯
+  taxon_framework_taxon: 分類群框架的分類單元
+  taxon_merge: 分類群合併
+  taxon_name: 分類群名稱
+  taxon_name_must_match_an_existing_taxon_in_our_database: 分類群名稱必須符合在我們資料庫裡既有的分類群
   taxon_observed_by_html: |
     <a href="%{url}">%{taxon}</a>的觀察出自
   taxon_observed_by_user: "由 %{user} 觀察到的%{taxon}"
-  taxon_photos_updated: 物種分類照片已更新！
-  taxon_range: 物種分類範圍
-  taxon_range_created_notice: 物種分類範圍已創建成功。請等待幾分鐘來讓內容呈現在地圖上。
-  taxon_range_updated_notice: 物種分類範圍已更新成功。請等待幾分鐘來讓變更內容呈現在地圖上。
-  taxon_ranks: 物種分類級別
+  taxon_photos_updated: 分類群照片已更新！
+  taxon_range: 分類群範圍
+  taxon_range_created_notice: 分類群範圍已建立成功。請等待幾分鐘來讓內容呈現在地圖上。
+  taxon_range_updated_notice: 分類群範圍已更新成功。請等待幾分鐘來讓變更內容呈現在地圖上。
+  taxon_ranks: 分類群階層
   taxon_removed_from_list: 分類群已從名錄中移除。
-  taxon_scheme: 物種分類綱要
-  taxon_schemes: "物種分類綱要"
-  taxon_search: 物種分類搜尋
-  taxon_search_results_for: 物種分類搜尋結果用於
+  taxon_scheme: 分類群綱要
+  taxon_schemes: "分類群綱要"
+  taxon_search: 分類群搜尋
+  taxon_search_results_for: 分類群搜尋結果用於
   taxon_split: 分類群分割
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
-  taxon_stage: 物種分類階段
-  taxon_swap: 物種分類對換
+  taxon_stage: 分類群暫時處理階段
+  taxon_swap: 分類群對換
   taxon_swap_only_has_one_input: 對換僅允許輸入一項
   taxon_swap_has_inputs_and_outputs: 對換必須包含輸入與輸出
-  taxon_name_was_deleted: 物種分類名稱已刪除。
-  taxon_name_was_successfully_updated: 物種分類名稱已成功更新。
-  taxon_was_successfully_created: 物種分類已成功創建。
-  taxon_was_successfully_updated: 物種分類已成功更新。
-  taxonomic: 物種分類
+  taxon_name_was_deleted: 分類群名稱已刪除。
+  taxon_name_was_successfully_updated: 分類群名稱已成功更新。
+  taxon_was_successfully_created: 分類群已成功建立。
+  taxon_was_successfully_updated: 分類群已成功更新。
+  taxonomic: 物種分類的
   taxonomic_changes: 物種分類更改
   taxonomic_groups: 物種分類群組
   taxonomic_order: 物種分類排序
@@ -4283,10 +4293,10 @@ zh-TW:
   this_taxon_change_has_been_commited: |
     <strong>此物種分類更改已提交！</strong>
     請不要再編輯編輯物種分類群，但可編輯其它欄位。
-  this_taxon_concept_is_inactive: 此物種分類概念是無作用的
+  this_taxon_concept_is_inactive: 此物種分類概念是無效的
   this_taxon_has_no_default_photo: 此物種分類沒有預設照片！
   this_taxon_is_inactive_this_means: |
-    此物種分類是<strong>無作用</strong>的。這代表 %{site_name} 的策展人已將此替換成更貼近目前的分類概念。
+    此物種分類是<strong>無效</strong>的。這代表 %{site_name} 的策展人已將此替換成更貼近目前分類上的概念。
   this_taxon_name_was_originally_imported: "此物種分類名稱最初匯入自外部名稱提供者："
   this_taxon_was_originally_imported_from: "此物種分類最初匯入自外部名稱提供者："
   this_user_has_been_suspended: 此用戶已被停用
@@ -5561,7 +5571,7 @@ zh-TW:
           </p>
       users_updates_suspended:
         message: |
-          您有段時間在 %{site_name} 上不活躍，因此我們暫停了您的訂閱。要恢復取得在網站活動上的更新，請再次<a href="%{login_url}">登入您的帳號</a>。
+          您有段時間在 %{site_name} 上沒有活動，因此我們暫停了您的訂閱。要恢復取得在網站活動上的更新，請再次<a href="%{login_url}">登入您的帳號</a>。
     photos:
       forbidden_notice_html: |
         我們現在沒有權限來取用這些照片。您可能需要在您的<a href="/users/edit">設定</a>中斷連接並重新連接帳號來授予我們額外權限。
@@ -5689,6 +5699,11 @@ zh-TW:
           允許成員信任此專案以存取真實座標
         trust_help_desc: |-
           如果您想存取遮蔽觀察記錄的隱藏座標，這個選項將會允許加入此專案的人信任專案的管理者來存取這些隱藏的座標。專案中的成員將可以把他們在此專案中任何隱藏觀察紀錄之座標，或僅授權被遮蔽的受脅物種之觀察紀錄座標授權給管理者。
+        trust_help_notification2: |-
+          然而，每次當您更動了專案的觀察需求條件，這將會通知所有已信任此專案的成員，
+          所以他們能夠重新評估他們是否在新的需求條件下繼續信任您。
+          在更改觀察需求條件後，您存取隱藏座標的權限將會暫時撤銷一週，
+          以讓成員們有時間能夠重新評估。
         trusted_project_means: |
           託付一個專案代表著專案負責人可以為專案添加可用物件以及自定義專案屬性（例如：橫幅的 HTML 內容、CSS）。存取自定義專案屬性代表著專案負責人有可能會添加惡意的 Javascript 內容，因此僅託付專案給具備責任感以及技術能力的負責人。
         you_can_preview: |
@@ -5940,6 +5955,11 @@ zh-TW:
           代表透過 <a href="https://www.inaturalist.org">iNaturalist</a>
           或 <a href="%{url}">iNaturalist 網路</a>網站建立
       year:
+        compare_desc: |
+          比較一下今年和前幾年差異為何呢？只要有三年以上的使用，
+          我們就能開始比較每年的活動指標。綠色條帶顯示今年，白色垂直
+          的條帶代表去年，而灰色的背景顯示最低和最高的年份，以及所有
+          年份的平均。統計中沒有包含計數為零的年份。
         compare_site_desc: |
           比較今年和去年的差異如何？綠色長條代表今年，白色的垂直長條代表去年，灰色的背景區域顯示最低和最高的年份，以及所有年份的平均。
         compared_to_previous_years: 和前一年比較
@@ -6472,6 +6492,8 @@ zh-TW:
       long: '%Y年%m月%d日'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%-m月%-d日'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      compact: "%b 月 %e 日"
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short_with_year: '%Y %b %d'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes

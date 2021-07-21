@@ -732,7 +732,6 @@ lb:
   donate: SPENDEN
   done: Fäerdeg
   dont_send_me_email: "Schéckt mir keng E-Mailen!"
-  double_click_to_finish: (duebele Klick fir ofzeschléissen)
   download: Eroflueden
   download_csv: CSV eroflueden
   download_csv_template: CSV-Schabloun eroflueden
@@ -1453,6 +1452,9 @@ lb:
     Ech stemmen zou datt iNaturalist limitéiert perséinlech Donnéeën iwwert mech ka späicheren a veraarbechte fir mäin Kont kennen ze managen.
   pink: rosa
   place: Plaz
+  place_create_quota_exceeded: |
+    Dir hutt d'Zuel vun Plazen iwwerschratt déi Dir an enger 24-Stonne-Period kreéiere kënnt
+    (%{quota})
   place_deleted: Plaz geläscht.
   place_geo:
     geo_planet_place_types:
@@ -1614,6 +1616,8 @@ lb:
     zambia: Sambia
     zimbabwe: Simbabwe
   places_of_interest: Interessant Plazen
+  places_warning_quota: |
+    Dir kënnt nëmmen dräi Plazen pro Dag kreéieren.
   plants: Planzen
   please_be_careful!: Sidd w.e.g. virsiichteg!
   please_explain_why_you_want_to_hide_this: Erkläert w.e.g. firwat Dir dëst verstoppe wëllt

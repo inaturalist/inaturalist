@@ -1434,7 +1434,6 @@ fr:
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: Le déposer
-  double_click_to_finish: (double cliquez pour finir)
   download: Télécharger
   download_bulk_import_template_html: |
     <a href="%{url}">Télécharger le modèle</a> pour l’utiliser dans le
@@ -1773,7 +1772,6 @@ fr:
   georeferenced: Géolocalisé ?
   get_started: Commencer
   getting_started_guide: Guide pour le débutant
-  give_it_some_detail: Rajoutez des détails !
   #Prompt to donate money on a montly basis
   give_monthly_caps: DONNER MENSUELLEMENT
   #Prompt to donate money once
@@ -2558,10 +2556,14 @@ fr:
   newly_observed_species: Nouvelles espèces observées
   newly_observed_species_in_year: "Nouvelles espèces observées en %{year}"
   next: Suivant
+  next_date_short: Suiv.
   next_observation: Observation suivante
   next_page: Page suivante
+  next_page_short: Suiv.
   next_photo: Photo suivante
+  next_post_short: Suiv.
   next_tab: Onglet suivant
+  next_taxon_short: Suiv.
   'no': 'Non'
   no_assessments_have_been_added_to_this_project_yet: Aucune évaluation n’a encore été ajoutée à ce projet.
   no_but_it_is_a_member_of_taxon: "Non, je ne suis pas d'accord avec l'identification, mais je confirme que ça fait partie des %{taxon}"
@@ -3036,6 +3038,9 @@ fr:
   place: Lieu
   placeholder: Signet (élément de substitution)
   place_autocomplete_placeholder: Parc national de Zion, Miami, etc.
+  place_create_quota_exceeded: |
+    Vous avez dépassé le nombre de lieux que vous pouvez créer sur une période de 24 heures
+    (%{quota})
   place_deleted: Lieu supprimé.
   place_geo:
     geo_planet_place_types:
@@ -3462,6 +3467,8 @@ fr:
     Les nouveaux lieux sont l'une des causes principales de ralentissement sur iNat, donc <strong>veuillez envisager de ne pas créer un nouveau lieu</strong>. Les petits lieux ne contenant que quelques milliers d'observations sont généralement acceptables, mais si vous créez un nouveau lieu qui contient beaucoup plus d'observations, vous allez ralentir iNat pour tous les autres utilisateurs. Voici quelques alternatives possibles :
   places_warning_editing_places_is_slow: |
     La modification des limites des endroits est l'une des plus grandes sources de ralentissements sur iNat. Si vous pouvez l'éviter, n'ajoutez, ne modifiez pas ou ne supprimez pas les limites d'endroits, sauf si c'est absolument nécessaire.
+  places_warning_quota: |
+    Vous ne pouvez créer que trois lieux par jour.
   places_warning_the_future: |
     NDLR: compte tenu du taux de croissance actuel d'iNat, nous allons prochainement devoir restreindre les conditions dans lesquelles les gens peuvent créer de nouveaux lieux.
   plants: plantes
@@ -3498,11 +3505,15 @@ fr:
   preview_observations_with_these_observation_requirements: Aperçu des observations avec ces critères d’observation
   preview_of_synced_observation: "<strong>Aperçu</strong> de l’observation synchronisée. <a href=\"%{url}\">Annuler ?</a>"
   previewing: "Aperçu en cours…"
+  previous_date_short: Préc.
   prev: Préc
   previous_observation: Observation précédente
   previous_page: Page précédente
+  previous_page_short: Préc.
   previous_photo: Photo précédente
+  previous_post_short: Préc.
   previous_tab: Onglet précédent
+  previous_taxon_short: Préc.
   print_verb: Imprimer
   privacy: Confidentialité
   private: privé

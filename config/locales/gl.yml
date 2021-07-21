@@ -47,6 +47,9 @@ gl:
   x_misidentifications_of_this_species:
     one: "%{count} identificación errada desta especie"
     other: "%{count} identificacións erradas desta especie"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} identificación errada de especies neste xénero"
+    other: "%{count} identificacións erradas de especies neste xénero"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -231,6 +234,10 @@ gl:
   action: Accións
   actions: Accións
   active: Activa
+  #Status of a complete set that is available for use
+  active_complete_set_status: Activo
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Activo
   active_users: Usuarios Activos
   activity: Actividade
   activity_settings: Configuracións da Actividade
@@ -264,6 +271,7 @@ gl:
     sex: Engadir Anotacións para "Xénero"
     plant_phenology: Engadir Anotacións para "Fenoloxía da Planta"
     life_stage: Engadir Anotacións para "Estadio Vital"
+    evidence_of_presence: Engadir Anotacións para "Proba de Presenza"
   add_another_flag: Engadir outra marca.
   add_another_photo: Engadir outra foto
   add_another_section: Engadir Outra Sección
@@ -324,6 +332,12 @@ gl:
   add_life_stage_larva_annotation: 'Engadir anotación "Estadio de Vida: Larva"'
   add_life_stage_juvenile_annotation: 'Engadir Anotación "Estadio de Vida: Xuvenil"'
   add_life_stage_egg_annotation: 'Engadir anotación "Estadio de Vida: Ovo"'
+  add_evidence_of_presence_organism_annotation: 'Engadir anotación "Proba de Presenza: organismo"'
+  add_evidence_of_presence_feather_annotation: 'Engadir anotación "Proba de Presenza: pluma"'
+  add_evidence_of_presence_scat_annotation: 'Engadir anotación "Proba de Presenza: feces"'
+  add_evidence_of_presence_track_annotation: 'Engadir anotación "Proba de Presenza: pegadas"'
+  add_evidence_of_presence_bone_annotation: 'Engadir anotación "Proba de Presenza: óso"'
+  add_evidence_of_presence_molt_annotation: 'Engadir anotación "Proba de Presenza: muda"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Engadir relación'
   #As in a Guide Section
@@ -914,6 +928,17 @@ gl:
   comprehensive_check_list_for_taxon_html: |
     <span class="comprehensive_notice" data-tip="%{tip}">Listaxe de verificación completa </span> para %{taxon}
   comprehensive_list: Lista completa
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Modelo de Visión Computerizada
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Incluído
+  computer_vision_model_included_desc: |
+    O Modelo de Visión Computerizada actual recoñece este taxon, así que poderá ser incluído en suxestións automatizadas cá etiqueta "Visualmente Semellante".
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Pendente
+  computer_vision_model_pending_desc: |
+    O Modelo de Visión Computerizada actual non recoñece este taxon, así que mesmo que poida ser incluído en suxestións automáticas cá etiqueta "Á Volta", pode que non teña a etiqueta "Visualmente Semellante". Aínda que os requisitos para a inclusión no modelo cambian con cada actualización do modelo, xeralmente a inserción está baseada no número de observacións. Para que este taxon sexa incluído durante o adestramento do seguinte modelo, engade ou identifica máis observacións deste taxon.
   concept_status: Concepto da situación
   configure: Configurar
   configure_a_widget_to_show: Configura o widget para mostrar as observacións de %{site_name} no teu sitio web ou blog. Tamén podes incluír o estilo CSS na <code><head></code> do teu código HTML. Podes modificar o CSS libremente.
@@ -946,6 +971,8 @@ gl:
     place: Ubicación na que se restrinxe este estadio.
     url: URL para a páxina que describe este estadio.
     geoprivacy: Xeoprivacidade predeterminada para observacións deste taxon
+    iucn: |
+      Equivalente ó código da Lista Vermella de IUCN. Isto non é unha avaliación real da IUCN, só o código IUCN que máis se adecúa á ameaza que supón a divulgación de coordenadas implícitas por este estado. Isto anteporase á xeoprivacidade se é "Pouco Preocupante" ou inferior, así que se quixeres escurecer observacións deste taxon, establece isto como "Case Ameazado" ou superior.
   conservation_status_geoprivacy_desc: |
     Xeoprivacidade predeterminada aplicada a tódalas observacións deste taxon neste lugar
   contact_support: Contacta ó Soporte
@@ -967,6 +994,16 @@ gl:
   contributor_cannot_be_found: Non se puido atopar ao contribuidor do proxecto
   contributors_to_project: "Contribuíntes a %{project}: Contribuíntes ao proxecto"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Calquera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Calquera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Calquera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Calquera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Calquera
     sex: Sexo
     male: Macho
     female: Femia
@@ -989,6 +1026,21 @@ gl:
     alive: Vivo
     dead: Morto
     cannot_be_determined: Non pode ser determinado
+    evidence_of_presence: Proba de Presenza
+    #As in the feather on a bird
+    feather: Pluma
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organismo
+    #Fecal matter, not regurgitated matter
+    scat: Feces
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Pegadas
+    #Endoskeletal remains, like a deer bone
+    bone: Óso
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Muda
   controlled_term_definitions:
     alive: O organismo vive e non mostra sinais de morte inminente
     dead: O organismo está morto ou mostra sinais de morte inminente
@@ -998,6 +1050,13 @@ gl:
     no_evidence_of_flowering: Os medios non amosan evidencias de estructuras reproductivas
     teneral: Adulto que emerxeu hai pouco pero aínda non acadou a forma final de adulto
     cannot_be_determined: Non se pode determinar a partires da evidencia aportada.
+    feather: Unha pluma ou máis non unidas a un organismo
+    organism: Organismo completo ou parte
+    scat: Materia fecal (non egagrópilas ou outras materias regurxitadas)
+    track: Impresión no solo ou na neve feita por un organismo
+    bone: |
+      Restos endoesqueléticos predominantemente; exposición ósea parcial nun organismo sen outros danos debe ser etiquetado como "organismo"
+    molt: Restos de pel ou exoesqueleto
   controls: Controis
   convert: Convertir
   coordinate_systems: Sistemas de coordenadas
@@ -1228,6 +1287,7 @@ gl:
       december: decembro
   date_is_accurate: A data é acertada
   date_joined: Data de Unión
+  date_obscured_notice: Data escurecida para protexer a privacidade persoal ou do organismo
   date_observed: Observado na Data
   date_observed_: Observado na Data
   date_observed_on: data que se observou
@@ -1369,7 +1429,6 @@ gl:
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: Sóltao
-  double_click_to_finish: (Con dobre clic remata a túa forma)
   download: 'Descargar:'
   download_bulk_import_template_html: |
     <a href="%{url}">Descarga o modelo</a> para empregalo no <a href="/observations/import?project_id=%{project_id}#csv_import">cargador masivo</a>
@@ -1556,6 +1615,8 @@ gl:
   file_should_be_in_the_following_format: "O arquivo debería ter o seguinte formato: Nome da especie ou grupo, descrición"
   fill_out_project_observation_fields: Enche os campos de observación do proxecto
   fill_out_your_profile: completar o teu perfil
+  #The name of a computer file
+  filename: Nome do arquivo
   filter: Filtro
   filter_by_curator_identification: Filtrar por Identificación do Conservador
   filter_by_place: Filtrar por Lugar
@@ -1703,7 +1764,6 @@ gl:
   georeferenced: Xeolocalización?
   get_started: Comeza
   getting_started_guide: Cómo comezar
-  give_it_some_detail: Introduce algún detalle!
   #Prompt to donate money on a montly basis
   give_monthly_caps: DOA MENSUALMENTE
   #Prompt to donate money once
@@ -1782,6 +1842,8 @@ gl:
   highlights_and_stats_from_year_on_site: "Destacados e estatísticas do %{year} en %{site}"
   history: Histórico
   home: Inicio
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Horas a Axustar"
   however_there_were_some_issues: "Porén, houbo algúns problemas: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Non sei, pero estou convencido de que isto é %{taxon}
   icon: Icona
@@ -1865,7 +1927,13 @@ gl:
   in_the_past: no pasado
   in_the_past_week: durante a semana pasada
   inactive: Inactiva
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Inactivo
   inactive_taxon: Especie ou grupo inactivo
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Inactivo
   inactive_taxon_concepts_are: Os conceptos inactivos son as especies ou grupos que taxonomicamente cambiáronse por outro nome. Os conceptos inactivos consérvanse para manter a historia da especie ou grupo e a compatibilidade con outros sitios.
   inappropriate_content: '¿Contido impropio?'
   inat_account_action: "%{site_name} : Conta : %{action_name}"
@@ -1963,6 +2031,13 @@ gl:
   leaderboard: Usuarios máis activos
   leaderboard_for_x: "Os máis activos de %{x}"
   leaderboards: Os máis activos
+  leaderboard_most:
+    species_in_month_year: A maioría das especies en %{month_year}
+    species_in_year: A maioría das especies en %{year}
+    observations_in_month_year: A maioría das observacións en %{month_year}
+    observations_in_year: A maioría das observacións en %{year}
+    identifications_in_month_year: A maioría de identificacións en %{month_year}
+    identifications_in_year: A maioría de identificacións en %{year}
   leading: Na dianteira
   learn: Infórmate
   learn_about_the_species_live_in: Aprende sobre as especies que viven en
@@ -2004,6 +2079,7 @@ gl:
     hawaiian: Hawaiano
     hebrew: Hebreo
     hiligaynon: Hiligainón
+    hungarian: Húngaro
     icelandic: Islandés
     ilokano: Ilocano
     italian: Italiano
@@ -2025,6 +2101,7 @@ gl:
     swedish: Sueco
     tagalog: Tagalo
     tahitian: Tahitiano
+    thai: Tai
     tokelauan: Tokelauano
     turkish: Turco
     waray_waray: Samareño
@@ -2101,6 +2178,7 @@ gl:
     eo: Esperanto
     es: Español
     es-AR: Español (Arxentina)
+    es-CO: Español (Colombia)
     es-MX: Español (México)
     et: Estonio
     eu: Vasco
@@ -2109,6 +2187,7 @@ gl:
     fr-CA: Francés (Canadá)
     gl: Galego
     he: Hebreo
+    hu: Húngaro
     id: Indonesio
     it: Italiano
     ja: Xaponés
@@ -2127,6 +2206,7 @@ gl:
     sk: Eslovaco
     sq: Albanés
     sv: Sueco
+    th: Tai
     tr: Turco
     uk: Ucraíno
     zh-CN: Chinés (simplificado)
@@ -2151,6 +2231,8 @@ gl:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "¿Pechar sesión de %{site_name}?"
   log_scale_label: Rexistro
+  #Status message shown while logging in
+  logging_in: Accedendo...
   login_slash_username: Rexistro / nome de usuario
   logo:
     logo: Logotipo
@@ -2348,10 +2430,20 @@ gl:
   multiple_select_option: '-- varios --'
   multiple_taxa_for_taxon_change: "Máis dunha especie ou grupo (entrada de datos para intercambiar/combinar, saída de datos para separar)"
   multiple_taxon_ids_separated_by_commas: 'Varias identificacións de taxons separadas por comas, p.e. 123,654'
+  must_be_in_taxon: debe estar no taxon %{taxon}
+  must_be_not_in_taxon: non debe estar no taxon %{taxon}
+  must_be_not_observed_by_user: non debe ser observado por %{user}
+  must_be_not_observed_in_place: non debe ser observado en %{place}
   must_be_observed_after: debe ser observado despois de %{operand}
   must_be_observed_before: debe ser observado antes de %{operand}
+  must_be_observed_by_user: debe ser observado por %{user}
+  must_be_observed_in_place: debe ser observado en %{place}
   must_be_less_than_x_MB: "Debe ser menor de %{x} MB"
   must_have_observation_field: "Debes completar o campo '%{operand}' na observación"
+  must_have_photos: debe ter fotos
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "debe ter graos de calidade: %{grades}"
+  must_have_sounds: debe ter sons
   must_have_x: "debe ter %{x}"
   mute_user: Acalar Usuario
   mute_removed: Silenciador retirado
@@ -2443,10 +2535,14 @@ gl:
   newly_observed_species: Especies Observadas Recentemente
   newly_observed_species_in_year: "Especies Engadidas Recentemente En %{year}"
   next: Seguinte
+  next_date_short: Seguinte
   next_observation: Observación Seguinte
   next_page: Páxina seguinte
+  next_page_short: Seguinte
   next_photo: Foto Seguinte
+  next_post_short: Seguinte
   next_tab: Pestana Seguinte
+  next_taxon_short: Seguinte
   'no': 'Non'
   no_assessments_have_been_added_to_this_project_yet: Aínda non se engadiron avaliacións a este proxecto.
   no_but_it_is_a_member_of_taxon: "Non, pero é un membro de %{taxon}"
@@ -2514,6 +2610,8 @@ gl:
   no_sections_have_been_added_to_this_assessments_yet: Aínda non se engadiron seccións a esta avaliación.
   no_species_have_been_listed: Aínda non se creou ningunha lista de especies para este lugar!
   no_species_on_this_list: Aínda non hai especies nesta lista!
+  no_species_on_this_list_for_owner: |
+    Podes comezar a engadir especies a esta lista usando a ferramenta á dereita "Engadir á túa lista"
   no_subject_parens: "(Sen tema)"
   no_suggestions_available: Non Hai Suxestións Dispoñibles
   no_summary_from_wikipedia: No hay resumen de Wikipedia
@@ -2715,6 +2813,10 @@ gl:
   off_caps: "APAGAR"
   official_blog: Blog Oficial
   offline_access_enabled: Acesso sen conexión activado
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Compensación Horaria"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Axustar
   old_observation_form: Formularios de observacións antigas (obsoleto)
   ok: "Aceptar"
   on_caps: "ACENDER"
@@ -2899,6 +3001,8 @@ gl:
   place: Lugar
   placeholder: Posición
   place_autocomplete_placeholder: Parque Nacional Zion, Miami, etc.
+  place_create_quota_exceeded: |
+    Excediches o número de lugares que podes crear nun período de 24 horas. (%{quota})
   place_deleted: Lugar eliminado.
   place_geo:
     geo_planet_place_types:
@@ -3323,6 +3427,8 @@ gl:
     Os lugares novos son as maiores fontes de desaceleración en iNat, así que <strong>por favor, considera non crear lugares novos</strong>. Se ben os lugares pequenos que conteñen só uns poucos millares de observacións non acostuman dar problemas, se creares un novo lugar con moitas observacións, diminuirías a velocidade de iNat para tódolos demais. Velaquí algunhas alternativas:
   places_warning_editing_places_is_slow: |
     A edición das demarcacións dos lugares é una das principais causas de desaceleracón en iNat. Se o puderes evitar, non engadas, mudes ou elimines as fronteiras dos lugares se non é estritamente necesario.
+  places_warning_quota: |
+    Só podes crear tres lugares por día.
   places_warning_the_future: |
     Polo que vale, teremos que restrinxir as condicións para poder engadir lugares no futuro, dado a actual taxa de crecemento de iNat.
   plants: Plantas
@@ -3359,11 +3465,15 @@ gl:
   preview_observations_with_these_observation_requirements: Previsualizar Observacións con estes Requisitos de Observación
   preview_of_synced_observation: "<strong>Previo</strong> da observación. <a href=\"%{url}\">Reverter?</a>"
   previewing: "Previsualizando..."
+  previous_date_short: Prev
   prev: Anterior
   previous_observation: Observación Anterior
   previous_page: Páxina anterior
+  previous_page_short: Prev
   previous_photo: Foto Anterior
+  previous_post_short: Prev
   previous_tab: Pestana Anterior
+  previous_taxon_short: Prev
   print_verb: Imprimir
   privacy: Política de privacidade
   private: Privada
@@ -4527,6 +4637,7 @@ gl:
   username_or_user_id: Nome ou identificador do usuario
   users: Usuarios
   users_contributions_to_project_html: As contribucións de <a href="%{url}">%{login}</a> a %{project_title}
+  users_favorites: "Favoritos de %{user}"
   users_highlights_and_stats_from_year_on_site: "Destacados de %{user} e estatísticas de %{year} en %{site}"
   users_id: "Identificación de %{user}"
   users_latest_observations_on_site: "Últimas observacións de %{user} en %{site}"
@@ -4839,6 +4950,7 @@ gl:
   your_default: os teus valores por defecto
   your_default_time_zone: A túa zona horaria actual
   your_email_address: O teu enderezo de correo electrónico
+  your_favorites: Os Teus Favoritos
   your_flickr_account: a túa conta de Flickr
   your_flickr_photos_have_been_tagged: Etiquetáronse as túas fotos de Flickr!
   your_hard_drive: O teu disco duro
@@ -6044,6 +6156,18 @@ gl:
           "Plant Phenology=Flower Budding": Flores Agromando
           "Plant Phenology=Flowering": Floración
           "Plant Phenology=Fruiting": Fructificando
+          "Plant Phenology=No Evidence": Sen Evidencias
+          "Life Stage=Adult": Adulto
+          "Life Stage=Egg": Ovo
+          "Life Stage=Larva": Larva
+          "Life Stage=Juvenile": Xuvenil
+          "Life Stage=Nymph": Ninfa
+          "Life Stage=Pupa": Pupa
+          "Life Stage=Subimago": Subimago
+          "Life Stage=Teneral": Imago tenro
+          "Sex=Cannot Be Determined": Non Se Pode Determinar
+          "Sex=Female": Femia
+          "Sex=Male": Macho
           unannotated: Sen Anotación
         max_photos_desc: |
           Un taxon só pode ter %{max} fotos. Para engadir máis, tes que borrar fotos existentes.
