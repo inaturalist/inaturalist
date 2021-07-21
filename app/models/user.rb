@@ -1008,11 +1008,7 @@ class User < ActiveRecord::Base
       deleted_photos = DeletedPhoto.where( user_id: user_id )
       puts "Deleting #{deleted_photos.count} DeletedPhotos and associated records from s3"
       deleted_photos.find_each do |dp|
-        images = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ dp.photo_id }/" ).contents
-        puts "\tPhoto #{dp.photo_id}, removing #{images.size} images from S3"
-        if images.any?
-          s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
-        end
+        dp.remove_from_s3( s3_client: s3_client )
         dp.destroy
       end
 
