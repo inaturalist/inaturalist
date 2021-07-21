@@ -811,7 +811,7 @@ class Observation < ActiveRecord::Base
       key += "_from_place"
       i18n_vars[:place] = place_guess
     end
-    if !options[:viewer] || !options[:viewer].in_test_group?( "interpolation" ) || coordinates_viewable_by?( options[:viewer] )
+    if !options[:viewer] || coordinates_viewable_by?( options[:viewer] )
       unless self.observed_on.blank?
         key += "_on_day"
         i18n_vars[:day] = I18n.l( self.observed_on, format: :long )

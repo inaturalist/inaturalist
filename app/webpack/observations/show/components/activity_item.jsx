@@ -572,10 +572,8 @@ class ActivityItem extends React.Component {
         <a href={itemURL} target={linkTarget}>{relativeTime}</a>
       </time>
     );
-    const { testingInterpolationMitigation } = config;
     if (
-      testingInterpolationMitigation
-      && observation
+      observation
       && observation.obscured
       && !observation.private_geojson
     ) {

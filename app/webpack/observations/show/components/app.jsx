@@ -69,7 +69,6 @@ moment.locale( "en", {
 const App = ( {
   observation, config, controlledTerms, deleteObservation, setLicensingModalState
 } ) => {
-  const { testingInterpolationMitigation } = config;
   if ( _.isEmpty( observation ) || _.isEmpty( observation.user ) ) {
     return (
       <div id="initial-loading" className="text-center">
@@ -101,8 +100,7 @@ const App = ( {
   );
   let isoDateAdded = createdAt.format( );
   if (
-    testingInterpolationMitigation
-    && observation.observed_on
+    observation.observed_on
     && observation.obscured
     && !observation.private_geojson
   ) {
@@ -118,8 +116,7 @@ const App = ( {
     formattedDateObserved = I18n.t( "missing_date" );
   }
   if (
-    testingInterpolationMitigation
-    && observation.obscured
+    observation.obscured
     && !observation.private_geojson
   ) {
     formattedDateAdded = createdAt.format( "MMMM YYYY" );
@@ -247,8 +244,7 @@ const App = ( {
                       <UserWithIcon
                         user={observation.user}
                         hideSubtitle={
-                          testingInterpolationMitigation
-                          && observation.obscured
+                          observation.obscured
                           && !observation.private_geojson
                         }
                       />
@@ -257,8 +253,7 @@ const App = ( {
                       <Col xs={6}>
                         <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "observed" ) } ) }</span>
                         <span className="date" title={isoDateObserved}>
-                          { testingInterpolationMitigation
-                            && observation.observed_on
+                          { observation.observed_on
                             && observation.obscured
                             && !observation.private_geojson
                             && <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} /> }
@@ -268,8 +263,7 @@ const App = ( {
                       <Col xs={6}>
                         <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "submitted" ) } ) }</span>
                         <span className="date" title={isoDateAdded}>
-                          { testingInterpolationMitigation
-                            && observation.obscured
+                          { observation.obscured
                             && !observation.private_geojson
                             && <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} /> }
                           { formattedDateAdded }
@@ -352,7 +346,7 @@ const App = ( {
           <AssessmentContainer />
         </div>
       </LazyLoad>
-      { ( !testingInterpolationMitigation || !observation.obscured || observation.private_geojson ) && (
+      { ( !observation.obscured || observation.private_geojson ) && (
         <LazyLoad debounce={false} height={515} offset={500}>
           <div className="more_from">
             <Grid>
@@ -397,12 +391,6 @@ const App = ( {
               group="apiv2"
               joinPrompt="Test API V2? You can also use the test=apiv2 URL param"
               joinedStatus="Joined API V2 test"
-              user={config.currentUser}
-            />
-            <TestGroupToggle
-              group="interpolation"
-              joinPrompt="Help test some attempts to mitigate coordinate interpolation?"
-              joinedStatus="Joined interpolation mitigation test"
               user={config.currentUser}
             />
           </div>
