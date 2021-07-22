@@ -5,6 +5,7 @@ module INatAPIService
   TIMEOUT = 8
 
   def self.geoip_lookup(params={}, options = {})
+    options[:authorization] ||= JsonWebToken.applicationToken
     return INatAPIService.get("/geoip_lookup", params, options)
   end
 
@@ -54,6 +55,10 @@ module INatAPIService
     auth_user = params.delete(:authenticate)
     if auth_user && auth_user.is_a?( User )
       headers["Authorization"] = auth_user.api_token
+    end
+    authorization = options.delete(:authorization)
+    if authorization && !headers["Authorization"]
+      headers["Authorization"] = authorization
     end
     begin
       uri = URI.parse(url)

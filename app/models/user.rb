@@ -689,7 +689,7 @@ class User < ActiveRecord::Base
     latitude = nil
     longitude = nil
     lat_lon_acc_admin_level = nil
-    geoip_response = INatAPIService.geoip_lookup({ ip: last_ip })
+    geoip_response = INatAPIService.geoip_lookup( { ip: last_ip } )
     if geoip_response && geoip_response.results
       # don't set any location if the country is unknown
       if geoip_response.results.country
