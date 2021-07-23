@@ -237,7 +237,6 @@ class Emailer < ActionMailer::Base
     opts = set_site_specific_opts
     # Always send this email to iNat staff
     opts[:to] = Site.default.email_help.to_s.sub( "@", "+curator@" )
-    opts[:from] = user.email || opts[:from]
     opts[:subject] = "Curator Application from #{user.login} (#{user.id})"
     @user = user
     @application = application
