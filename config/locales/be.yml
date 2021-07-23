@@ -235,6 +235,79 @@ be:
   activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: Падрабязна
   about_blocking: Пра блакіроўку
+  about_charts: Пра дыяграмы
+  about_community_taxa: Пра таксоны супольніцтва
+  about_complete_taxa: Пра поўныя таксоны
+  about_conservation_status: Пра ахоўны статус
+  about_editing_observation_fields: Пра рэдагаванне палёў назірання
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: Пра спосабы з'яўлення
+  about_license_options: Пра варыянты ліцэнзавання
+  about_licenses: Пра ліцэнзіі
+  about_muting: Пра прыглушэнне карыстальнікаў
+  #Header for a section describing taxon names
+  about_names: Пра назвы таксонаў
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Пра %{place}"
+  about_places: Пра месцы
+  about_the_cc_licenses: Пра ліцэнзіі Creative Commons
+  about_these_licenses: Пра гэтыя ліцэнзіі
+  about_this_bioblitz: Пра гэты біябліц
+  about_this_map: Пра гэтую мапу
+  about_this_project: Пра гэты праект
+  about_trips_html: |2
+    <h4>
+    Падарожжы дазваляюць збіраць дадзеныя аб адсутнасці/прысутнасці, дадаючы кантэкст
+    да вашых назіранняў
+    </h4>
+    <p>
+    <strong>Чаму</strong> Дадзеныя аб прысутнасці і адсутнасці ўключаюць інфармацыю пра
+    адбор проб, што можа быць карысным для навуковых аналізаў, такіх як мадэляванне размеркавання
+     (неапрацаваныя назіранні iNaturalist - гэта "толькі прысутнасць").
+    </p>
+    <p>
+    <strong>Як</strong> Падарожжа дадае кантэкст вашым назіранням, запісваючы:
+    </p>
+    <ul>
+    <li><strong>Што</strong> вы шукалі (спіс мэтаў)</li>
+    <li><strong>Дзе</strong> вы шукалі (абшар пошукаў)</li>
+    <li><strong>Калі</strong> вы шукалі (інтэрвал пошуку)</li>
+    </ul>
+    <p>
+    Віды ў вашым спісе мэтаў, якія вы змаглі назіраць у межах
+    абшару пошуку і інтэрвал інтэрпрэтуюцца як прысутнасць. Калі вы не здолелі назіраць від з вашага спісу мэтаў, гэта інтэрпрэтуецца як адсутнасць. Націсніце "Стварыць табліцу дадзеных аб адсутнасці/прысутнасці з падарожжаў", каб стварыць
+    табліцу запісаў пра наяўнасць і адсутнасць відаў з падарожжаў і звязаных з імі
+    назіранняў. <a href='%{url}'>Даведацца больш</a>
+    </p>
+  about_trusting_projects: Пра давер праектам
+  about_trusting_projects_options_any: Усе вашыя назіранні ў гэтым праекце
+  about_trusting_projects_options_any_desc: |-
+    Сюды ўваходзяць назіранні, для якіх вы пазначылі геапрыватнасць як "прыхаванае"
+    альбо "прыватнае", напр. назіранні з вашага падворка ці месцаў, пра якія вы не хочаце
+    каб даведаліся іншыя людзі.
+  about_trusting_projects_options_taxon: |-
+    Толькі вашыя назіранні ў гэтым праекце, якія маюць прыхаваныя каардынаты
+    для таксонаў, што знаходзяцца пад пагрозай
+  about_trusting_projects_options_taxon_desc: |-
+    Шматлікім праектам проста неабходны доступ да прыхаваных каардынатаў, таму што
+    назіранне адносіцца да таксона, які знаходзіцца пад пагрозай.
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
+  acc: 'Дакладнасць (м)'
+  account: Уліковы запіс
+  account_creation: Стварэнне ўліковага запісу
+  account_settings: Налады ўліковага запісу
+  accept: пагадзіцца
+  accept_community_identifications: Пагадзіцца з вызначэннем супольніцтва
+  accuracy: Дакладнасць
+  accuracy_meters: Дакладнасць (метры)
+  accuracy_of_the_coordinates: |
+    Дакладнасць каардынат у метрах. Вы можаце змяніць гэта, націснуўшы спасылку "рэдагаваць" вышэй, альбо націснуўшы на маркер карты і перацягваючы элементы кіравання. Паспрабуйце
+    зрабіце круг дастаткова вялікім, каб вы былі ўпэўнены, што знаходзіліся дзесьці ўнутры яго.
   date:
     abbr_month_names:
       - 

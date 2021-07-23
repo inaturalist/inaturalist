@@ -4117,6 +4117,19 @@ ja:
         identification_count_desc: '単一の分類群に対する同定の件数'
         score_desc: "スコア ＝ 一致数 ÷ ( 一致数 ＋ 不一致数 + 祖先の不一致数)"
     emailer:
+      collection_project_changed_for_trusting_member:
+        #Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          あなたはこのプロジェクトを信頼して<a
+          href="%{obs_url}">自身の観察記録</a>で隠している座標を提供しているため、プロジェクト管理者は、あなたが参加した時よりも多くの座標を知ることが可能になったかもしれません。管理者のリストとプロジェクトの要件を確認して、このプロジェクトに自分の観察記録を託すことができるかどうかを確認してください。
+        #Followed by the project icon and a link to the project
+        requirements_have_changed: |-
+          次のプロジェクトで観察記録の要件が変更されました:
+        subject: プロジェクト %{project} で観察記録の要件が変更されました
+        wondering_what_this_means_html: |
+          位置情報プライバシーとは？ <a href="%{url}">詳しくはドキュメントをご覧ください</a>
+        you_can_change_html: |-
+          <a href="%{url}">プロジェクトページ</a>から、設定の変更やプロジェクトの退会をすることができます。
       users_updates_suspended:
         message: |
           しばらくのあいだ%{site_name}で活動をお休みしていたようなので、フォローを停止しました。再びサイト活動の更新情報を受けるには、<a href="%{login_url}">ご自分のアカウントにログインし直して</a>ください。
