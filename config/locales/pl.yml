@@ -1325,7 +1325,7 @@ pl:
   doh_something_went_wrong_error: "Ups, coś poszło nie tak: %{error}"
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
-  donate: WESPRZYJ
+  donate: WSPOMÓŻ
   done: Gotowe
   dont_have_an_account_sign_up_html: Nie masz konta? <strong>Zarejestruj się.</strong>
   dont_send_me_email: "Nie wysyłaj mi żadnych e-maili!"
@@ -3571,6 +3571,7 @@ pl:
   user1_and_user2_faved_this_observation: "%{user1} i %{user2} dodali tę obserwację do ulubionych"
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2} i %{x_others} dodali tę obserwację do ulubionych"
   user_added_a_comment_html: "%{user} dodał komentarz"
+  user_added_a_fave_html: "%{user} dodał obserwację do ulubionych"
   user_added_a_flag_html: "%{user} dodał zgłoszenie"
   user_added_a_project_invitation_html: "%{user} dodał zaproszenie do projektu"
   user_added_a_x: "%{user} dodał %{x}"
@@ -3611,6 +3612,7 @@ pl:
   username_or_email: Nazwa użytkownika lub adres e-mail
   username_or_user_id: Nazwa użytkownika lub identyfikator użytkownika
   users: Użytkownicy
+  users_favorites: "Ulubione użytkownika %{user}"
   users_profile: "Profil %{user}"
   users_projects: "Projekty użytkownika %{user}"
   value: Wartość
@@ -3626,6 +3628,7 @@ pl:
   view_assessment: Zobacz ocenę
   view_check_list_page: Zobacz stronę checklisty
   view_details: Zobacz szczegóły
+  view_dynamic_lifelist: Zobacz dynamiczną listę życia
   view_flag: Zobacz zgłoszenie
   view_flags: Zobacz zgłoszenia
   view_flags_for_x_html: "Zobacz zgłoszenie dla %{x}"
@@ -3799,6 +3802,7 @@ pl:
   your_contributions_to_project: "Twój wkład w %{project_title}"
   your_default_time_zone: Twoja domyślna strefa czasowa
   your_email_address: Twój adres email
+  your_favorites: Twoje ulubione
   your_flickr_account: Twoje konto Flickr
   your_flickr_photos_have_been_tagged: Twoje zdjęcia Flickr zostały otagowane!
   your_hard_drive: Twój dysk twardy
