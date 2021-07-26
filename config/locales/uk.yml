@@ -79,6 +79,11 @@ uk:
     few: "%{count} помилкові визначення цього виду"
     many: "%{count} помилкових визначень цього виду"
     other: "%{count} помилкові визначення цього виду"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} хибне визначення виду в цьому роді"
+    few: "%{count} хибні визначення видів у цьому роді"
+    many: "%{count} хибних визначень видів у цьому роді"
+    other: "%{count} хибних визначень видів у цьому роді"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -312,6 +317,10 @@ uk:
   action: Дія
   actions: Дії
   active: Активні
+  #Status of a complete set that is available for use
+  active_complete_set_status: Активний
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Активний
   active_users: Активні користувачі
   activity: Активність
   activity_settings: Налаштування активності
@@ -1035,6 +1044,18 @@ uk:
     <span class="comprehensive_notice" data-tip="%{tip}">Вичерпний</span>
     таксономічний список для %{taxon}
   comprehensive_list: Вичерпний список
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Модель комп'ютерного бачення
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Включений
+  computer_vision_model_included_desc: |
+    Поточна модель комп'ютерного бачення знає про цей таксон, тому він може бути
+    доданий до автоматичних пропозицій з міткою "Візуально схожі на "...
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Очікує на підтвердження
+  computer_vision_model_pending_desc: |
+    Поточна модель комп'ютерного бачення не знає про цей таксон, тож пори те, що його може бути додано до автоматичних пропозицій з позначкою "Неподалік", він не матиме позначки "Візуально подібні". Хоча вимоги щодо включення змінюються від моделі до моделі, включення опирається на кількість спостережень, тож шанс, що цей таксон буде включено, зростатиме з додаванням нових спостережені та визначень та подальшому тренуванні моделей.
   concept_status: Статус концепції
   configure: Налаштувати
   configure_a_widget_to_show: Налаштуйте віджет, щоб показати %{site_name} спостережень на вашому сайті або блозі. Можливо, вам доведеться включити вбудований CSS у <code>&lt;head&gt;</code> вашого HTML. Ви можете вільно переписувати CSS.
@@ -1091,6 +1112,16 @@ uk:
   contributor_cannot_be_found: Не вдалося знайти учасника
   contributors_to_project: "Учасники %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Будь-яка
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Будь-яка
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Будь-яка
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Будь-що
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Будь-який
     sex: Стать
     male: Самець
     female: Самиця
@@ -1960,6 +1991,8 @@ uk:
   highlights_and_stats_from_year_on_site: "Яскраві події та статистика року %{year} на сайті %{site}"
   history: Історія
   home: Головна
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Години для регулювання:"
   however_there_were_some_issues: "Однак, були деякі проблеми: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Я не знаю, але я впевнений що це %{taxon}
   icon: Іконка
@@ -2048,7 +2081,13 @@ uk:
   in_the_past: у минулому
   in_the_past_week: за минулий тиждень
   inactive: Неактивний
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Неактивний
   inactive_taxon: Неактивний таксон
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Неактивний
   inactive_taxon_concepts_are: Неактивні концепції таксону є або систематично застарілими, або ж вони підготовлені до зміни таксону. Застарілі концепції продовжують підтримувати історію та сумісність з деякими партнерськими сайтами.
   inappropriate_content: Недоречний вміст?
   inat_account_action: "%{site_name} &#58; Обліковий запис &#58; %{action_name}"
@@ -2199,6 +2238,7 @@ uk:
     hawaiian: Гавайська
     hebrew: Іврит
     hiligaynon: Гіліґайнон
+    hungarian: Угорська
     icelandic: Ісландська
     ilokano: Ілокано
     italian: Італійська
@@ -2220,6 +2260,7 @@ uk:
     swedish: Шведська
     tagalog: Тагальська
     tahitian: Таїтянська
+    thai: Тайська
     tokelauan: Токелау
     turkish: Турецька
     waray_waray: Варай-варай
@@ -2296,6 +2337,7 @@ uk:
     eo: Есперанто
     es: Іспанська
     es-AR: Іспанська (Аргентина)
+    es-CO: Іспанська (Колумбія)
     es-MX: Іспанська (Мексика)
     et: Естонська
     eu: Баскська
@@ -2304,6 +2346,7 @@ uk:
     fr-CA: Французька (Канада)
     gl: Галісійська
     he: Іврит
+    hu: Угорська
     id: Індонезійська
     it: Італійська
     ja: Японська
@@ -2322,6 +2365,7 @@ uk:
     sk: Словацька
     sq: Албанська
     sv: Шведська
+    th: Тайська
     tr: Турецька
     uk: Українська
     zh-CN: Китайська (спрощена)
@@ -2346,6 +2390,8 @@ uk:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Вийти з %{site_name}?"
   log_scale_label: Журнал подій
+  #Status message shown while logging in
+  logging_in: Вхід...
   login_slash_username: Логін / ім'я користувача
   logo:
     logo: Логотип
@@ -2655,10 +2701,14 @@ uk:
   newly_observed_species: Види, що їх нещодавно спостерігали
   newly_observed_species_in_year: "Нещодавно додані види у %{year}"
   next: Далі
+  next_date_short: Наст.
   next_observation: Наступне спостереження
   next_page: Наступна сторінка
+  next_page_short: Наст.
   next_photo: Наступне фото
+  next_post_short: Наст.
   next_tab: Наступна вкладка
+  next_taxon_short: Наст.
   'no': 'Ні'
   no_assessments_have_been_added_to_this_project_yet: До цього проєкту ще не було додано жодних оцінок.
   no_but_it_is_a_member_of_taxon: "Ні, але це член %{taxon}"
@@ -2726,6 +2776,8 @@ uk:
   no_sections_have_been_added_to_this_assessments_yet: Поки що жоден розділ не був доданий до цієї оцінки.
   no_species_have_been_listed: Для цього місця ще наводиться жодного виду!
   no_species_on_this_list: Видів у цьому списку поки що немає!
+  no_species_on_this_list_for_owner: |
+    Ви можете почати додавати види до цього списку, використовуючи інструмент "Додати до вашого списку" праворуч.
   no_subject_parens: "(Без теми)"
   no_suggestions_available: Немає запропонованих варіантів
   no_summary_from_wikipedia: Немає опису з Вікіпедії
@@ -2930,6 +2982,10 @@ uk:
   off_caps: "ВИМК"
   official_blog: Офіційний блог
   offline_access_enabled: Доступ в автономному режимі увімкнено
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Час зміщення"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Зміщення
   old_observation_form: Стара форма для спостережень (не рекомендована)
   ok: "Прийняти"
   on_caps: "УВІМК"
@@ -3117,6 +3173,9 @@ uk:
   place: Місце
   placeholder: Замісник
   place_autocomplete_placeholder: Kharkiv, Ukraine тощо
+  place_create_quota_exceeded: |
+    Перевищено кількість місць, які ви можете створити впродовж 24-годинного періоду
+    (%{quota})
   place_deleted: Місце видалено.
   place_geo:
     geo_planet_place_types:
@@ -3541,6 +3600,8 @@ uk:
     Редагування меж місць є однією з головних причин повільної роботи iNat.
     Якщо ви можете цього уникнути, не створюйте, не змінюйте та не видаляйте меж місця, якщо це не
     є конче необхідно.
+  places_warning_quota: |
+    Можна створювати лише три місця на день.
   places_warning_the_future: |
     Як вже на то пішло, якщо темп зростання iNat буде таким і надалі, в майбутньому нам доведеться обмежити умови, за яких люди матимуть змогу додавати місця.
   plants: рослини
@@ -3577,11 +3638,15 @@ uk:
   preview_observations_with_these_observation_requirements: Передоглянути спостереження з цими вимогами до спостережень
   preview_of_synced_observation: "<strong>Передоглянути</strong> синхронізоване спостереження.  <a href=\"%{url}\">Скасувати?</a>"
   previewing: "Передогляд..."
+  previous_date_short: Попер.
   prev: Попер.
   previous_observation: Попереднє спостереження
   previous_page: Попередня сторінка
+  previous_page_short: Попер.
   previous_photo: Попереднє фото
+  previous_post_short: Попер.
   previous_tab: Попередня вкладка
+  previous_taxon_short: Попер.
   print_verb: Друк
   privacy: Приватність
   private: приватні
@@ -3931,7 +3996,7 @@ uk:
   required_field: обов'язкове поле
   required_columns_in_order: Обов'язкові поля у визначеному порядку
   research: дослідити
-  research_: Дослідити
+  research_: Дослідницький
   research_grade: Дослідницький рівень
   research_grade_short_html: "Д<span class='full'>ослідницький </span>Р<span class='full'>івень</span>"
   research_grade_tooltip_html: 'Спостереження "Дослідницького рівня" мають медіафайли, дату, а щодо їхнього точного визначення (зазвичай до рівня виду) досягнуто консенсусу спільноти. <a href="https://www.inaturalist.org/pages/help#quality">Дізнатися більше про рівні якості</a>'

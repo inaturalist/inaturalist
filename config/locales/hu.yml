@@ -126,6 +126,7 @@ hu:
   _percent_ID_d: "% meghatározott"
   a_community_for_naturalist: Természetbarátok közössége
   a_flag_for_x: "%{x} megjelölés"
+  a_member_of_taxon_html: "%{taxon} taxon tagja"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "ABC-sorrend"
@@ -196,6 +197,7 @@ hu:
   add_observations_project: Megfigyelések hozzáadása ehhez a projekthez
   #Prompt to add a new journal post
   add_one: Új létrehozása
+  add_photos: Fénykép hozzáadása
   add_alive_or_dead_alive_annotation: '"Élő vagy élettelen: Élő" megjelölés hozzáadása'
   add_alive_or_dead_cannot_be_determined_annotation: '"Élő vagy élettelen: Nem meghatározható" megjelölés hozzáadása'
   add_alive_or_dead_dead_annotation: '"Élő vagy élettelen: Élettelen" megjelölés hozzáadása'
@@ -217,7 +219,11 @@ hu:
   add_sex_female_annotation: '"Nem: Nőstény" megjelölés hozzáadása'
   add_sex_male_annotation: '"Nem: Hím" megjelölés hozzáadása'
   add_sex_cannot_be_determined_annotation: '"Nem: Nem meghatározható" megjelölés hozzáadása'
+  add_tag: Címke hozzáadása
+  add_tags: Címkék hozzáadása
+  add_to_a_project: Hozzáadás projekthez
   add_to_favorites: Hozzáadás a kedvencekhez
+  add_to_project: Hozzáadás a projekthez
   add_your_own_observations_at: "Megfigyelés hozzáadása itt: %{site_name}"
   added: Hozzáadva
   added!: Hozzáadva!
@@ -352,17 +358,20 @@ hu:
   casual_: Hobbiszintű
   casual_tooltip_html: 'A "hobbiszintű" megfigyeléseknél hiányzik a kép vagy hang, a hely, a dátum, vagy egyéb okokból nem felelnek meg a "Tudományos szint" vagy a "Meghatározás szükséges" minőségi szinteknek. <a href="https://www.inaturalist.org/pages/help#quality">További információ a minőségi szintekről</a>'
   categories: Kategóriák
+  change_geoprivacy: 'Helyadatok'
   change_password: Jelszó módosítása
   change_types:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: Cserélve erre
   change_your_password: Jelszó módosítása
+  choose_a_field: Adatmező kiválasztása
   choose_files: Válassz fájlokat
   clear: eltávolítás
   close: Bezárás
   colors: Színek
   columns: Oszlopok
   combine: Összerendezés
+  comma_separated_please: Vesszővel elválasztva
   comment: megjegyzés
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Megjegyzés
@@ -435,10 +444,12 @@ hu:
   copyright:
     all_rights_reserved: "(c) %{name}, minden jog fenntartva"
   copyright_info_and_more: Szerzői jogi információk és egyebek
+  create_a_new_field: Új mező létrehozása
   create_an_account: Fiók létrehozása
   create_export: Exportálás létrehozása
   created_by: Létrehozta
   csv: CSV
+  cumulative_ids: "Kumulatív meghatározások: %{count}/%{total}"
   curator_application_what_curators_can_do_hide_comments_html: |
     A <a
     href="/pages/community+guidelines" target="_blank">Közösségi irányelveket</a> sértő felhasználók felfüggesztése és megjegyzéseinek elrejtése.
@@ -531,6 +542,7 @@ hu:
   edit_license: Licenc módosítása
   edit_observations: Megfigyelések szerkesztése
   edit_photos_for_observation_id: "%{obs_id} megfigyelés fényképeinek módosítása"
+  edit_project: Szerkesztés
   edit_the_observation: Megfigyelés szerkesztése
   edit_your_account_and_profile_html: "Fiókod és profilod módosítása"
   editing_observation_field: Az adatmezők szerkesztése
@@ -607,6 +619,7 @@ hu:
   high: Felső
   history: Idővonal
   home: Kezdőlap
+  i_dont_know_but_i_am_sure_this_is_taxon: Nem tudom, de bizonyosan %{taxon} taxon tagja
   id_withdrawn: Azonosítás visszavonva
   identify: Azonosítás
   identify_title: "Azonosítás"
@@ -616,6 +629,7 @@ hu:
   identifiers: Meghatározók
   ids: "Azonosítások"
   ids_made_for_others: meghatározás mások számára
+  include_suggestions_not_seen_nearby: Földrajzilag távolabb eső javaslatok megjelenítése
   increase_brightness: Fényerő növelése
   inactive: Inaktív
   #Status of a complete set that is not available for general use on iNat, e.g.
@@ -717,17 +731,21 @@ hu:
   mark_as_reviewed: Megjelölés átnézettként
   mark_all_as_reviewed: Mind megjelölése átnézettként
   mark_all_as_unreviewed: Mind megjelölése átnézetlenként
+  media: Média
   media_type: Médiatípus
   meet: Ismerkedj
   member_of_the_inaturalist_network_html: |
     Az <a href="%{url}">iNaturalist Network</a> tagja
+  #As in members of a project
+  members: Tagok
   merge_observation_field_x_into: '"%{x}" adatmező összevonása ezzel...'
   message: Üzenet
   mollusks: puhatestűek
   months: Hónapok
   more: Egyéb
+  more_fields: További mezők
   more_filters: További szűrők
-  more_from_x: Több %{x} felhasználótól
+  more_from_x: Továbbiak %{x} felhasználótól
   more_import_options: További importálási lehetőségek
   more_info: További információ
   more_info_title: További információ
@@ -741,6 +759,7 @@ hu:
   most_observed_threatened_species: A leggyakrabban megfigyelt veszélyeztetett fajok
   must_have_observation_field: "'%{operand}' adatmező nem lehet üres"
   n_ago: "%{n}"
+  name: Név
   native: őshonos
   native_to_place: "Őshonos itt: %{place}"
   near_threatened: Mérsékelten fenyegetett
@@ -759,7 +778,9 @@ hu:
   new_users_w_7_obs: Új felhasználók 7 megfigyeléssel
   next: Következő
   'no': 'Nem'
+  no_but_it_is_a_member_of_taxon: "Nem, de %{taxon} taxon tagja"
   no_comments_yet: Még nincsenek megjegyzések.
+  no_identifications: Nincsenek meghatározások
   no_its_as_good_as_it_can_be: Nem, ettől már nem lehet jobb
   no_favorites_added:
     current_user: Még nem adtál hozzá kedvenceket.
@@ -768,12 +789,17 @@ hu:
   no_matching_invitations: Nincsenek meghívók
   no_more_results_found: Nincs több eredmény
   no_new_messages: Nincs új üzenet
+  no_observations: Nincsenek megfigyelések
+  no_observations_yet: Még nincsenek megfigyelések
   no_project_to_admin_current_user: "Még nem kezelsz projekteket"
   no_relevant_annotations: Nincsenek kapcsolódó megjelölések
   no_reply_yet: Még nincs válasz
   no_results_found: Nincs eredmény
   noble_curators: "%{site} tiszteletbeli kurátorai"
   none: Egyik sem
+  not_confident: Nincs kellő bizonyosságú javaslatunk.
+  not_confident_top_suggestions: 'Nincs kellő bizonyosságú javaslatunk, de a legjobb tippjeink:'
+  notes: Megjegyzések
   notifications: Értesítések
   notify_me_of_mentions: Értesítések említésekről (pl. @felhasználónév)
   notify_me_of_mentions_description: "Ha ezt kikapcsolod, nem fogsz értesítéseket kapni, ha valaki megemlít az %{site_name} oldalon."
@@ -814,6 +840,7 @@ hu:
   on_caps: "BE"
   onboarding:
     follow_panel_body: Ha meglátogatod ezeket a profilokat és a Követés gombra kattintasz, értesítéseket kapsz a felhasználó megfigyeléseiről
+  open: nyilvános
   open_: Nyilvános
   or: vagy
   #Usually used to separate buttons or functional areas of the interface, e.g.
@@ -880,16 +907,20 @@ hu:
   post_from_journal_by_parent_html: <a href="%{url}">%{parent} hírmondó</a> bejegyzései
   #Post is a noun
   post_from_your_journal_html: <a href="%{url}">Hírmondód</a> bejegyzései
+  potential_disagreement: Lehetséges konfliktus
   powered_by_inaturalist_open_source_software_html: 'Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist open source software</a>'
   press: Sajtó
   preview: Előnézet
   prev: Előző
   privacy: Adatvédelem
+  private: privát
+  private_: Privát
   profile: Profil
   profile_picture: Profilkép
   profile_visibility_desc: |
     Annak érdekében, hogy a spamelőket távol tartsuk az %{site_name} oldaltól, a felhasználói profilok csak azután lesznek láthatók, miután a felhasználó számos kutatási szintű megfigyelést tett közzé.
   project_curators: A projekt kurátorai
+  project_journal: Hírmondó
   project_requirements: Kritériumok
   projects: Projektek
   projects_description: |
@@ -906,6 +937,29 @@ hu:
   #Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
   ranks:
+    kingdom: Ország
+    x_kingdoms:
+      one: Ország
+      other: Ország
+    subkingdom: Alország
+    phylum: Törzs
+    subphylum: Altörzs
+    superclass: Főosztály
+    class: Osztály
+    x_classes:
+      one: Osztály
+      other: Osztály
+    subclass: Alosztály
+    infraclass: Alosztályág
+    superorder: Főrend
+    order: Rend
+    x_orders:
+      one: Rend
+      other: Rend
+    suborder: Alrend
+    infraorder: Alrendág
+    subterclass: Subterclass
+    parvorder: Parvorder
     superfamily: Főcsalád
     epifamily: Epifamily
     family: Család
@@ -921,8 +975,40 @@ hu:
     x_species:
       one: Faj
       other: Fajok
+    hybrid: Hibrid
+    #Singular
+    subspecies: Alfaj
+    variety: Változat
+    form: Forma
+    infrahybrid: Infrahibrid
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: ország
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: alország
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: törzs
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: altörzs
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: főosztály
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: osztály
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: alosztály
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: alosztályág
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: főrend
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
   ranks_lowercase_order: rend
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: alrend
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: alrendág
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: subterclass
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: parvorder
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
   ranks_lowercase_superfamily: főcsalád
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
@@ -937,6 +1023,16 @@ hu:
   ranks_lowercase_genushybrid: nemzetséghibrid
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
   ranks_lowercase_subgenus: alnemzetség
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: hibrid
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: alfaj
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: változat
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: forma
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: infrahibrid
   ranges: Tartományok
   ray_finned_fishes: sugarasúszójú halak
   read_more: Bővebben
@@ -948,6 +1044,7 @@ hu:
   receive_updates_from_this_project: Feliratkozás a projekt értesítéseire
   recent_evidence_of_organism: Friss bizonyíték az organizmusra
   recent_observations: Új megfigyelések
+  recent_observations_: Új megfigyelések
   recently_active: Nemrég aktív
   recently_created: Legutóbb létrehozott
   recently_observed: Nemrég megfigyelt
@@ -970,6 +1067,7 @@ hu:
   rules_for_adding_observations: Megfigyelések hozzáadására vonatkozó szabályok
   satellite: műholdkép
   save_comment: Megjegyzés mentése
+  save_observation: Megfigyelés mentése
   save_settings_caps: BEÁLLÍTÁSOK MENTÉSE
   saving: "Mentés..."
   saving_num_of_count_observations:
@@ -982,7 +1080,9 @@ hu:
   search_species_: Fajok keresése...
   seasonality: Szezonalitás
   select: Kiválasztás
+  select_one_or_more_photos: 'Fénykép(ek) kiválasztása'
   select_options: válassz
+  selected_photos: Kiválasztott fényképek
   select_this_taxon: E taxon kiválasztása
   send: küldés
   settings: Beállítások
@@ -1000,17 +1100,23 @@ hu:
   sort: Rendezés
   sort_by: Rendezés
   sorting_by: Rendezés
+  sounds:
+    add_media: Média hozzáadása
+    add_sounds: Hang hozzáadása
+    select_one_or_more_sounds: Hang(ok) kiválasztása
   source: Forrás
   source_: 'Forrás:'
   source_wikipedia: "Forrás: Wikipedia"
   #Plural
   species: Fajok
   species_from_around_the_world: Fajok a világ minden tájáról
+  species_name_cap: Fajnév
   species_search: Fajok keresése
   species_unknown: Ismeretlen fajok
   start: Kezdete
   start_a_new_project: Új projekt indítása
   start_a_project: Projekt indítása
+  start_typing_field_name: Gépeld be a mezőnevet...
   stats: Statisztikák
   status: Státusz
   #As in a place to purchase things. We use it as a link to a place where you
@@ -1023,6 +1129,8 @@ hu:
   subscribe_to_this: Feliratkozás erre
   subscriptions: Feliratkozások
   suggest_an_identification: Meghatározás hozzáadása
+  sync: Frissít?
+  tags: Címkék
   taxa: Taxon
   taxa_info: Taxoninformációk
   taxon_is_threatened_coordinates_hidden: Veszélyeztetett taxon, a koordináták nem publikusak
@@ -1035,6 +1143,7 @@ hu:
   taxon_ranks: Rendszertani besorolás
   taxonomic: Rendszertani
   taxonomic_groups: Rendszertani csoportok
+  tell_us_why: Miért gondolod?
   terms_service: Felhasználási feltételek
   the_below_items_are_needed_to_achieve: |
     A következőkre van szükség a <span className="bold">Tudományos szint</span> eléréséhez:
@@ -1070,6 +1179,7 @@ hu:
   unknown_error: Ismeretlen hiba
   unsubscribe: Leiratkozás
   unsubscribe_from_emails_like_this: Leiratkozás az ehhez hasonló emailekről
+  update_search: Keresés frissítése
   update_subscription: Feliratkozás frissítése
   update_subscription_preferences: Feliratkozási beállítások frissítése
   update_your_content: Megfigyeléseid módosítása
@@ -1090,6 +1200,7 @@ hu:
   user_added_an_observation_field_html: '%{user} kitöltötte a(z) "%{field_name}" adatmezőt %{owner} megfigyeléséhez'
   user_added_an_observation_field_value_html: "%{user} értéket adott meg egy adatmezőben"
   user_added_an_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
+  user_disagrees_this_is_taxon: "%{user} nem ért egyet azzal, hogy ez %{taxon}"
   user_suggested_an_id: "%{user} javasolt meghatározása"
   username: Felhasználónév
   username_description: Ezzel a felhasználónévvel jelentkezhetsz be, és ennek révén tud az iNaturalist többi felhasználója azonosítani.
@@ -1102,6 +1213,7 @@ hu:
   values: Értékek
   view: Megtekintés
   view_all: Összes megtekintése
+  view_all_members: Tagok megtekintése
   view_details: Részletek
   view_dynamic_lifelist: Dinamikus életlista megtekintése
   view_full_size_photo: Teljes méretű fénykép megtekintése
@@ -1110,6 +1222,7 @@ hu:
   view_leaderboard_from_last_year: Az előző évi ranglista megtekintése
   view_observation: Megfigyelés megtekintése
   view_observations: Megfigyelések megtekintése
+  view_original: "Eredeti megtekintése"
   view_sample: Példa megtekintése
   view_stats: Statisztikák megtekintése
   view_your_dashboard: Vezérlőpult megtekintése
@@ -1122,7 +1235,13 @@ hu:
   #should work here. %{rank} is usually genus or a higher-level rank like
   #family
   were_pretty_sure_this_is_in_the_rank: 'Nagy bizonyossággal e %{rank} tagja:'
+  what_did_you_see: Mit láttál?
+  what_did_you_see?: <em>Mit</em> láttál?
   whats_this?: Mi ez?
+  when_did_you_see_it?: Mikor láttad?
+  when_did_you_see_them?: <em>Mikor</em> láttad?
+  where_were_they?: Hol vannak?
+  where_were_you?: Hol voltál?
   who_can_add_observation_fields_to_my_obs: Ki adhat adatmezőket a megfigyeléseimhez?
   with_annotation: Megjelölés
   withdraw: Visszavonás
@@ -1138,9 +1257,11 @@ hu:
   you_cant_delete_observation_fields_that_people_are_using: "Nem lehet használatban lévő adatmezőket törölni"
   you_faved_this: A kedvenced!
   you_must_choose_an_observation_field: Ki kell választanod egy adatmezőt
+  you_sure_delete_this_observation: "Biztosan törlöd ezt a megfigyelést?"
   your_content: Tartalmaid
   your_default_time_zone: Az alapértelmezett időzónád
   your_favorites: Kedvenceid
+  your_hard_drive: saját meghajtó
   your_id: 'Meghatározásod:'
   your_membership: Tagságod
   your_observations: Megfigyeléseim
