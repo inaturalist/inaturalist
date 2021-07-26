@@ -2381,7 +2381,7 @@ gl:
       #Short text representing 1 year in the past
       'y': "1ano"
       #Short text representing %d years in the past
-      yy: "%danos"
+      yy: "%dy"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, YYYY · LT Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -5345,7 +5345,7 @@ gl:
         receive_an_email_with_your_data_help: Recibirás un correo electrónico cá túa exportación adxunta.
         well_email_you: "Ok, enviarémosche un correo electrónico cando estea preparado."
         taking_a_while: "Isto está levando moito. Por favor, tenta unha das seguintes opcións."
-        date_range_help: "Observado en datas máxima e mínima en formato AAAA-MM-DD, p.e. 2015-01-12"
+        date_range_help: "Observado en datas máxima e mínima en formato YYYY-MM-DD, p.e. 2015-01-12"
         created_on_help: "As datas das observacións foron creadas, non observadas, p.e. 2015-01-17, 2015-01, 2015"
         other_options_html: |
           <h3>Outras Opcións</h3>
@@ -5424,7 +5424,7 @@ gl:
       import:
         coordinate_systems_help: |
           %{site_name} acepta coordenadas usando moitos sistemas de coordenadas diferentes, así que cando proporcionas coordenadas dun sistema diferente do de latitude/lonxitude, precisamos saber cal sistema de coordenadas estás a empregar para ser quen de interpretalas correctamente. Por favor, asegúrate de escoller o sistema de coordenadas correcto para os dados ou a ubicación pode rematar moi lonxe de onde era suposta estar. Se as túas coordenadas son dunha unidade GPS, busca na configuración o nome do sistema de coordenadas que utiliza. Repara que non almacenamos coordenadas personalizadas, só as súas conversións lat/lon.
-        date_column_format: AAAA-MM-DD HH:MM
+        date_column_format: YYYY-MM-DD HH:MM
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           A columna de xeoprivacidade debe estar en Inglés e debe estar baleira ou ter un valor de "escuro" ou "privado"
@@ -5791,7 +5791,7 @@ gl:
           on_list: ser dun taxon da lista do proxecto
           verifiable: ser verificable
           wild: ser silvestre/naturalizado
-        start_time_desc: "Hora de comezo do teu bioblitz. Formato: AAAA-MM-DDThh:mm:ss±hh:mm"
+        start_time_desc: "Hora de comezo do teu bioblitz. Formato: YYYY-MM-DDThh:mm:ss±hh:mm"
         submission_models:
           any: calquera
           curators: conservadores de proxecto
@@ -6964,7 +6964,7 @@ gl:
             value:
               dna_only_atcg: "para ADN, só pode conter os caracteres A, T, C ou G"
               date_format: |
-                Debe estar no formato AAAA-MM-DD para un campo de data ("%{observation_field_name}" na túa observación de "%{observation_species_guess}")
+                Debe estar no formato YYYY-MM-DD para un campo de data ("%{observation_field_name}" na túa observación de "%{observation_species_guess}")
               time_format: |
                 debe ser en formato hh:mm para un campo de tempo ("%{observation_field_name}" na túa observación de "%{observation_species_guess}")
             observation_id:
