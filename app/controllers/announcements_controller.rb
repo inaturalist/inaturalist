@@ -9,7 +9,7 @@ class AnnouncementsController < ApplicationController
   # GET /announcements
   # GET /announcements.xml
   def index
-    @announcements = Announcement.includes(:sites).order( "id desc" ).page( params[:page] )
+    @announcements = Announcement.includes(:sites).order( "announcements.id desc" ).page( params[:page] )
     @announcements = @announcements.where( sites: { id: current_user_site_ids } ) unless current_user_site_ids.blank?
     @announcements = @announcements.where( "body ilike ?", "%#{params[:q]}%" ) unless params[:q].blank?
   end
