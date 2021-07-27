@@ -1218,6 +1218,7 @@ pl:
       december: Grudzień
   date_is_accurate: Data jest precyzyjna
   date_joined: Data dołączenia
+  date_obscured_notice: Data ukryta w celu ochrony prywatności własnej lub organizmu
   date_observed: Data obserwacji
   date_observed_: Data obserwacji
   date_observed_on: data obserwacji
@@ -1296,9 +1297,15 @@ pl:
       updated: 'Pomyślnie zaktualizowałeś swoje konto'
       destroyed: 'Do zobaczenia! Twoje konto zostało pomyślnie anulowane. Mamy nadzieję zobaczyć Cię ponownie wkrótce.'
     mailer:
+      confirmation_instructions:
+        subject: 'Instrukcje potwierdzenia'
       reset_password_instructions:
         subject: 'Instrukcje resetowania hasła'
   devise_reset_password_instructions_hello_email: Witaj %{email}
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Twoje konto zostało zablokowane z powodu zbyt dużej liczby nieudanych prób logowania.
+  devise_unlock_instructions_click_the_link: |
+    Kliknij w poniższy link, aby odblokować konto
   devise_unlock_instructions_unlock: Odblokuj swoje konto
   discoveries: Odkrycia
   did_you_mean: 'Czy chodziło ci o'
@@ -3982,6 +3989,7 @@ pl:
         obs_cid_d_to_genus_desc: Dodane w poprzednich siedmiu dniach i posiadające oznaczenie społeczności na poziomie gatunku lub niższym
         obs_desc: Dodane w poprzednich siedmiu dniach
         obs_id_d_desc: Dodane w poprzednich siedmiu dniach i posiadające oznaczenie (może być obserwatora)
+        observers_desc: Dodali obserwację tego dnia
         other_desc_html: Dodane za pomocą innych aplikacji <a href="%{url}">stworzonych przez programistów</a>
         recent_desc: Zarejestrowani w poprzednich siedmiu dniach
         recent_w_0_obs: Najnowsi bez obserwacji
