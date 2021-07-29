@@ -2278,6 +2278,7 @@ pl:
   newly_observed_species: Nowo zaobserwowane gatunki
   newly_observed_species_in_year: "Nowo dodane gatunki w %{year}"
   next: Następne
+  next_date_short: Następny
   next_observation: Następna obserwacja
   next_page: Następna strona
   next_page_short: Następna
@@ -2967,6 +2968,7 @@ pl:
   powered_by_inaturalist_open_source_software_html: 'Wsparcie dzięki <a href="https://github.com/inaturalist/inaturalist" target="_new" >oprogramowaniu open source iNaturalist</a>'
   press: Prasa
   preview: Podgląd
+  previous_date_short: Poprzedni
   prev: Poprzednie
   previous_observation: Poprzednia obserwacja
   previous_page: Poprzednia strona
@@ -3211,7 +3213,7 @@ pl:
   rotate_left: Obrót w lewo
   rotate_right: Obróć w prawo
   row_singular_or_plural: Wiersz(e)
-  rules_and_formatting: "Reguły i formatowanie"
+  rules_and_formatting: "Zasady i formatowanie"
   rules_for_adding_observations: Zasady dodawania obserwacji
   satellite: satelita
   save: Zapisz
@@ -3908,6 +3910,8 @@ pl:
       identify:
         review_all_tooltip: "Oznacz wszystkie obserwacje na stronie jako przejrzane"
         unreview_all_tooltip: "Usuń status przejrzanych dla wszystkich obserwacji na stronie"
+      import:
+        date_column_format: RRRR-MM-DD GG:MM
       show:
         observer_does_not_allow_observation_fields: Obserwator nie zezwala na dodatkowe pola obserwacji
     emailer:
