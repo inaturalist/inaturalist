@@ -1,6 +1,6 @@
 #encoding: utf-8
 class Place < ActiveRecord::Base
-
+  acts_as_flaggable
   include ActsAsElasticModel
   # include ActsAsUUIDable
   before_validation :set_uuid

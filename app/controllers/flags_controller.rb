@@ -10,10 +10,7 @@ class FlagsController < ApplicationController
 
   def index
     if request.path != "/flags" && @model
-      if @model.respond_to?(:find_by_uuid)
-        @object = @model.find_by_uuid( params[@param] )
-      end
-      @object ||= @model.find_by_id( params[@param] )
+      @object = find_object
       if @object
         # The default acts_as_flaggable index route
         @object = @object.becomes(Photo) if @object.is_a?(Photo)
@@ -130,7 +127,7 @@ class FlagsController < ApplicationController
   
   def new
     @flag = Flag.new(params[:flag])
-    @object = @model.find(params[@param])
+    @object = @model.find(params[@object_key])
     @object = @object.becomes(Photo) if @object.is_a?(Photo)
     @flag.flaggable ||= @object
     @flags = @object.flags.where(resolved: false).includes(:user)
@@ -257,18 +254,17 @@ class FlagsController < ApplicationController
   def load_flag
     render_404 unless @flag = Flag.where(id: params[:id] || params[:flag_id]).includes(:user, :resolver).first
   end
+
+  def find_object
+    object = @model.find_by_uuid(params[@object_key]) if @model.respond_to?(:find_by_uuid)
+    object ||= @model.find_by_slug(params[@object_key]) if @model.respond_to?(:find_by_slug)
+    object ||= @model.find_by_id( params[@object_key] )
+  end
   
   def set_model
-    params.each do |key, _value|
-      if Flag::TYPES.map(&:foreign_key).include? key
-        @param = key
-        @model = eval(key.split("_id")[0].classify)
-        return
-      end
-    end
-    if (@model ||= Object.const_get(params[:flag][:flaggable_type]) rescue nil)
-      return
-    end
+    @object_key = (params.keys & Flag::TYPES.map(&:foreign_key)).first
+    @model = @object_key.split("_id")[0].classify.constantize if @object_key
+    @model ||= Object.const_get(params[:flag][:flaggable_type]) rescue nil
   end
 
   def model_required
