@@ -47,6 +47,9 @@ ca:
   x_misidentifications_of_this_species:
     one: "1 identificació errònia d'aquesta espècie"
     other: "%{count} identificacions errònies d'aquesta espècie"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} espècie mal identificada en aquest gènere"
+    other: "%{count} espècies mal identificades en aquest gènere"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -215,6 +218,10 @@ ca:
   action: Acció
   actions: Accions
   active: Actiu
+  #Status of a complete set that is available for use
+  active_complete_set_status: Actiu
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Actiu
   active_users: Usuaris Actius
   activity: Activitat
   activity_settings: Configuració de l'Activitat
@@ -906,6 +913,17 @@ ca:
     <span class="comprehensive_notice" data-tip="%{tip}">Llista Completa</span>
     de %{taxon}
   comprehensive_list: Llista completa
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Model de visió per Ordinador
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Inclòs
+  computer_vision_model_included_desc: |
+    L’actual Model de Visió per Ordinador reconeix aquest tàxon, per tant, podria ser inclòs en suggeriments automatitzats amb l'etiqueta "Visualment similar".
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Pendent
+  computer_vision_model_pending_desc: |
+    L’actual Model de Visió per Ordinador no reconeix aquest tàxon, per tant podria incloure's com a suggeriments automatitzats amb l'etiqueta "Proper" no tindrà l'etiqueta "Visualment similar". Malgrat els requisits pel model d'inclusió canvien amb cada model, generalment la inclusió es basa en el nombre d'observacions, per tant, per augmentar la possibilitat que aquest tàxon obtingui la inclusió durant el següent model de formació, afegiu o identifiqueu més observacions d’aquest tàxon.
   concept_status: Concepte de la situació
   configure: Configura
   configure_a_widget_to_show: Configureu el giny per mostrar les observacions d’%{site_name} al vostre lloc web o blog. També podeu incloure l'estil CSS a la <code><head></code> del vostre codi HTML. Podeu modificar el CSS lliurement.
@@ -961,6 +979,16 @@ ca:
   contributor_cannot_be_found: No s'ha pogut trobar al contribuïdor del projecte
   contributors_to_project: "Col·laboradors de %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Qualsevol
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Qualsevol
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Qualsevol
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Qualsevol
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Qualsevol
     sex: Sexe
     male: Mascle
     female: Femella
@@ -1098,6 +1126,10 @@ ca:
     Heu d'explicar per què voleu ser supervisor
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Per què voleu ser supervisor?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Si voleu editar la taxonomia d'iNaturalist, si us plau indiqueu-nos un o dos exemples dels canvis taxonòmics que voldríeu fer, i incloeu les fonts de les vostres propostes de canvi. Si s'escai, citeu les autoritats taxonòmiques adequades <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies"> com s'indica a la Guia del Supervisor.</a>. Si no incloeu cap font, la vostra proposta no serà considerada.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Si voleu editar els noms comuns, si us plau indiqueu un o dos exemples dels canvis que voldríeu fer
@@ -1798,6 +1830,8 @@ ca:
   highlights_and_stats_from_year_on_site: "Destacats i estadístiques des de%{year} a %{site}"
   history: Historial
   home: Inici
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Hores a ajustar:"
   however_there_were_some_issues: "Malgrat això, hi havia alguns problemes: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: No ho sé segur, però segur que és%{taxon}
   icon: Icona
@@ -1881,7 +1915,13 @@ ca:
   in_the_past: en el passat
   in_the_past_week: La setmana passada
   inactive: Inactiva
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Inactiu
   inactive_taxon: Tàxon inactiu
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Inactiu
   inactive_taxon_concepts_are: Les categories taxonòmiques inactives són tàxons antiquats o que han canviat el nom. Les categories inactives es conserven per mantenir la història de l'espècie o grup i la compatibilitat amb altres llocs.
   inappropriate_content: Contingut inadequat?
   inat_account_action: "%{site_name} : Compte : %{action_name}"
@@ -2031,6 +2071,7 @@ ca:
     hawaiian: Hawaià
     hebrew: Hebreu
     hiligaynon: Híligaynon
+    hungarian: Hongarès
     icelandic: Islandès
     ilokano: Ilocano
     italian: Italià
@@ -2052,6 +2093,7 @@ ca:
     swedish: Suec
     tagalog: Tagal
     tahitian: Tahitià
+    thai: Tailandès
     tokelauan: Tokelauà
     turkish: Turc
     waray_waray: Samarà
@@ -2128,6 +2170,7 @@ ca:
     eo: Esperanto
     es: Castellà
     es-AR: Espanyol (Argentina)
+    es-CO: Espanyol (Colòmbia)
     es-MX: Castellà (Mèxic)
     et: Estonià
     eu: Basc
@@ -2136,6 +2179,7 @@ ca:
     fr-CA: Francès (Canadà)
     gl: Gallec
     he: Hebreu
+    hu: Hongarès
     id: Indonesi
     it: Italià
     ja: Japonès
@@ -2154,6 +2198,7 @@ ca:
     sk: Eslovac
     sq: Albanès
     sv: Suec
+    th: Tailandès
     tr: Turc
     uk: Ucraïnès
     zh-CN: Xinès (simplificat)
@@ -2178,6 +2223,8 @@ ca:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Sortir de %{site_name}?"
   log_scale_label: Registre
+  #Status message shown while logging in
+  logging_in: Iniciant sessió...
   login_slash_username: Entrada/nom d'usuari
   logo:
     logo: Logotip
@@ -2484,10 +2531,14 @@ ca:
   newly_observed_species: Espècies observades recentment
   newly_observed_species_in_year: "Noves Espècies afegides el %{year}"
   next: Següent
+  next_date_short: Següent
   next_observation: Propera observació
   next_page: Pàgina següent
+  next_page_short: Següent
   next_photo: Propera foto
+  next_post_short: Següent
   next_tab: Propera pestanya
+  next_taxon_short: Següent
   'no': 'No'
   no_assessments_have_been_added_to_this_project_yet: Encara no s'ha afegit cap valoració a aquest projecte.
   no_but_it_is_a_member_of_taxon: "No, però es un membre de %{taxon}"
@@ -2555,6 +2606,8 @@ ca:
   no_sections_have_been_added_to_this_assessments_yet: Encara no s'han afegit seccions a aquestes avaluacions.
   no_species_have_been_listed: Encara no s'ha llistat cap espècie per a aquest lloc!
   no_species_on_this_list: Encara no hi ha cap espècie en aquesta llista!
+  no_species_on_this_list_for_owner: |
+    Podeu començar a afegir espècies a aquesta llista utilitzant l'eina "Afegeix a la Teva Llista", a la dreta.
   no_subject_parens: "(Sense tema)"
   no_suggestions_available: Sense suggeriments disponibles
   no_summary_from_wikipedia: No hi ha resum de Wikipedia
@@ -2755,6 +2808,10 @@ ca:
   off_caps: "DESACTIVAT"
   official_blog: Blog oficial
   offline_access_enabled: Accés fora de línia activat
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Establir hora"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Establir
   old_observation_form: Antic registre de l'observació (obsolet)
   ok: "D’acord"
   on_caps: "ACTIVAT"
@@ -2941,6 +2998,8 @@ ca:
   place: Lloc
   placeholder: Posició
   place_autocomplete_placeholder: Parc Nacional Zion, Miami, etc.
+  place_create_quota_exceeded: |
+    Heu excedit el nombre de llocs que podeu crear en 24 hores (%{quota})
   place_deleted: Lloc eliminat.
   place_geo:
     geo_planet_place_types:
@@ -3361,6 +3420,8 @@ ca:
     Els nous llocs són una de les majors causes d'alentiment d'iNat, per això<strong>us preguem que no definiu nous llocs</strong>. Si bé els llocs petits amb poques observacions no suposen problemes, si feu llocs que tenen moltes observacions, provoqueu que iNat vagi lent per a tots els usuaris. Aquí teniu algunes formes alternatives d'actuació:
   places_warning_editing_places_is_slow: |
     L'edició de nous límits és una de les principals causes d'alentiment d'iNat. Si podeu eviteu fer això, no afegiu, canvieu o elimineu fronteres de llocs si no és estrictament necessari.
+  places_warning_quota: |
+    Només pots crear tres llocs al dia
   places_warning_the_future: |
     Per això, si és necessari, en el futur podríem restringir les condicions per les quals els usuaris poden afegir nous llocs atès el ritme de creixement d'iNat.
   plants: Plantes
@@ -3397,11 +3458,15 @@ ca:
   preview_observations_with_these_observation_requirements: Previsualitzar Observacions amb aquests Requisits de les Observacions
   preview_of_synced_observation: "<strong>Previsualització</strong> de l'observació sincronitzada.  <a href=\"%{url}\">La voleu desfer?</a>"
   previewing: "Previsualitzant..."
+  previous_date_short: Anterior
   prev: Anterior
   previous_observation: Observació anterior
   previous_page: Pàgina anterior
+  previous_page_short: Anterior
   previous_photo: Foto anterior
+  previous_post_short: Anterior
   previous_tab: Pestanya anterior
+  previous_taxon_short: Anterior
   print_verb: Imprimeix
   privacy: Privacitat
   private: privada
