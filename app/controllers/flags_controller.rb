@@ -5,15 +5,7 @@ class FlagsController < ApplicationController
   before_filter :model_required, except: [:index, :update, :show, :on, :destroy]
   before_filter :load_flag, only: [:show, :destroy, :update]
   before_filter :curator_or_owner_required, only: [:update]
-  
-  # put the parameters for the foreign keys here
-  FLAG_MODELS = [ "Observation", "Taxon", "Post", "Comment", "Identification",
-    "Message", "Photo", "List", "Project", "Guide", "GuideSection",
-    "User", "CheckList", "Sound" ]
-  FLAG_MODELS_ID = [ "observation_id","taxon_id","post_id", "comment_id",
-    "identification_id", "message_id", "photo_id", "list_id", "project_id",
-    "guide_id", "guide_section_id", "user_id", "check_list_id",
-    "sound_id" ]
+
   PARTIALS = %w(dialog)
 
   def index
@@ -62,7 +54,7 @@ class FlagsController < ApplicationController
     elsif params[:deleted].noish?
       "no"
     end
-    @flaggable_type = params[:flaggable_type] if FLAG_MODELS.include?( params[:flaggable_type] )
+    @flaggable_type = params[:flaggable_type] if Flag::TYPES.include?( params[:flaggable_type] )
     @user = User.where( login: params[:user_id] ).first || User.where( id: params[:user_id] ).first
     @user ||= User.where( login: params[:user_name] ).first
     @resolver = User.where( login: params[:resolver_id] ).first || User.where( id: params[:resolver_id] ).first
@@ -267,11 +259,10 @@ class FlagsController < ApplicationController
   end
   
   def set_model
-    params.each do |key,value|
-      if FLAG_MODELS_ID.include? key
+    params.each do |key, _value|
+      if Flag::TYPES.map(&:foreign_key).include? key
         @param = key
-        object_name = key.split("_id")[0]
-        @model = eval(object_name.camelcase)
+        @model = eval(key.split("_id")[0].classify)
         return
       end
     end

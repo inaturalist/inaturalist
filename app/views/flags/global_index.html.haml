@@ -64,7 +64,7 @@
               .form-group
                 %label=t :content_type
                 :ruby
-                  flaggable_type_options = options_for_select( ( ["all"] + FlagsController::FLAG_MODELS.sort ).map {|t|
+                  flaggable_type_options = options_for_select( ( ["all"] + Flag::TYPES.sort ).map {|t|
                     [I18n.t( t, default: t ), t]
                   }, @flaggable_type )
                 = select_tag :flaggable_type, flaggable_type_options, class: "select form-control"
