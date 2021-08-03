@@ -933,6 +933,24 @@ sv:
     <span class="comprehensive_notice" data-tip="%{tip}">Fullständig</span>
     checklista för %{taxon}
   comprehensive_list: Fullständig lista
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Bildigenkänningsmodell
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Inkluderad
+  computer_vision_model_included_desc: |
+    Den nuvarande bildigenkänningsmodellen känner till detta taxon, så det kan
+    ingå i automatiserade förslag med "Visuellt liknande"-etiketten.
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Väntar
+  computer_vision_model_pending_desc: |
+    Den nuvarande bildigenkänningsmodellen känner inte till detta taxon, så även om
+    det kan inkluderas i automatiserade förslag med "Närliggande"-etiketten,
+    kommer det inte att ha "Visuellt liknande"-etiketten. Kraven på
+    modellinkludering förändras med varje modell, men generellt bygger inkludering på
+    antal observationer, så för att öka chansen att detta taxon blir
+    inkluderat till nästa modellträning, lägga till eller bestäm fler fynd
+    av detta taxon.
   concept_status: Konceptets status
   configure: Konfigurera
   configure_a_widget_to_show: Konfigurera en widget för att visa %{site_name}-fynd på din webbplats eller blogg. Du kan behöva inkludera den inbyggda CSS:en i <code>&lt;head&gt;</code> i din HTML. Skriv gärna om CSS-koden.
@@ -1140,6 +1158,9 @@ sv:
     Du behöver förklara varför du vill bli förvaltare
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Varför vill du bli förvaltare?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Om du vill redigera iNaturalists taxonomi, ge ett exempel eller två på taxonomiska ändringar du skulle vilja genomföra och inkludera källor till dina föreslagna förändringar. Om möjligt, ange etablerade taxonomiska auktoriteter <a href="https://www.inaturalist.se/pages/f%C3%B6rvaltarguide#policies">som angivet i Förvaltarvägledningen</a>. Om du inte inkluderar några källor kommer din ansökan inte att beaktas.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Om du vill redigera vardagliga namn, ge ett exempel eller två på ändringar som du vill göra
@@ -2096,6 +2117,7 @@ sv:
     hawaiian: Hawaiiska
     hebrew: Hebreiska
     hiligaynon: Hiligaynon
+    hungarian: Ungerska
     icelandic: Isländska
     ilokano: Ilokano
     italian: Italienska
@@ -2117,6 +2139,7 @@ sv:
     swedish: Svenska
     tagalog: Tagalog
     tahitian: Tahitiska
+    thai: Thailändska
     tokelauan: Tokelauiska
     turkish: Turkiska
     waray_waray: Waray-Waray
@@ -2193,6 +2216,7 @@ sv:
     eo: Esperanto
     es: Spanska
     es-AR: Spanska (Argentina)
+    es-CO: Spanska (Colombia)
     es-MX: Spanska (Mexiko)
     et: Estniska
     eu: Baskiska
@@ -2201,6 +2225,7 @@ sv:
     fr-CA: Franska (Kanada)
     gl: Galiciska
     he: Hebreiska
+    hu: Ungerska
     id: Indonesiska
     it: Italienska
     ja: Japanska
@@ -2219,6 +2244,7 @@ sv:
     sk: Slovakiska
     sq: Albanska
     sv: Svenska
+    th: Thailändska
     tr: Turkiska
     uk: Ukrainska
     zh-CN: Kinesiska (förenklad)
@@ -2559,10 +2585,14 @@ sv:
   newly_observed_species: Nyligen observerade arter
   newly_observed_species_in_year: "Nytillagda arter under %{year}"
   next: Nästa
+  next_date_short: Nästa
   next_observation: Nästa fynd
   next_page: Nästa sida
+  next_page_short: Nästa
   next_photo: Nästa bild
+  next_post_short: Nästa
   next_tab: Nästa flik
+  next_taxon_short: Nästa
   'no': 'Nej'
   no_assessments_have_been_added_to_this_project_yet: Inga bedömningar har lagts till detta projekt ännu.
   no_but_it_is_a_member_of_taxon: "Nej, men det är en medlem av %{taxon}"
@@ -3023,6 +3053,9 @@ sv:
   place: Fyndplats
   placeholder: Platshållare
   place_autocomplete_placeholder: Zion National Park, Miami etc.
+  place_create_quota_exceeded: |
+    Du har överskridit antalet fyndplatser du kan skapa under en 24-timmarsperiod
+    (%{quota})
   place_deleted: Fyndplats raderad.
   place_geo:
     geo_planet_place_types:
@@ -3447,6 +3480,8 @@ sv:
   places_warning_editing_places_is_slow: |
     Redigering av fyndplatsgränser är en av de största källorna till att iNat går trögt.
     Om du kan undvika det, lägg inte till, ändra eller ta bort fyndplatsgränser om du inte verkligen måste.
+  places_warning_quota: |
+    Du kan bara skapa tre fyndplatser per dag.
   places_warning_the_future: |
     Tänk på att vi att vi kommer att behöva begränsa de villkor under vilka användare kan lägga till fyndplatser i framtiden givet iNats nuvarande tillväxttakt.
   plants: växter
@@ -3483,11 +3518,15 @@ sv:
   preview_observations_with_these_observation_requirements: Förhandsgranska fynd med dessa fyndkrav
   preview_of_synced_observation: "<strong>Förhandsgranskning</strong> av synkroniserat fynd.  <a href=\"%{url}\">Ångra?</a>"
   previewing: "Förhandsgranskar..."
+  previous_date_short: Föregående
   prev: Föreg
   previous_observation: Föregående fynd
   previous_page: Föregående sida
+  previous_page_short: Föregående
   previous_photo: Föregående bild
+  previous_post_short: Föregående
   previous_tab: Föregående flik
+  previous_taxon_short: Föregående
   print_verb: Skriv ut
   privacy: Integritet
   private: privat
