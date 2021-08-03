@@ -1142,6 +1142,10 @@ nl:
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Waarom wil je een curator zijn?
   #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Als je de taxonomie van iNaturalist wilt bewerken, geef dan één of twee voorbeelden
+    van taxonomische wijzigingen die je wilt aanbrengen en voeg bronnen toe aan je voorstellen. Citeer indien van toepassing de juiste taxonomische autoriteiten <a href="https://www.inaturalist.org/pages/curator+guide#policies"> zoals vermeld in de Curator Guide</a>. Als je geen bronnen toevoegt wordt je aanvraag niet in behandeling genomen.
+  #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Als je algemene namen wilt bewerken geef dan één of twee voorbeelden van
     wijzigingen die je wilt aanbrengen
@@ -2093,6 +2097,7 @@ nl:
     hawaiian: Hawaïaans
     hebrew: Hebreeuws
     hiligaynon: "\nHiligaynon"
+    hungarian: Hongaars
     icelandic: IJslands
     ilokano: Ilokano
     italian: Italiaans
@@ -2114,6 +2119,7 @@ nl:
     swedish: Zweeds
     tagalog: Tagalog
     tahitian: Tahitiaans
+    thai: Thai
     tokelauan: Tokelaus
     turkish: Turks
     waray_waray: Winaray
@@ -2190,6 +2196,7 @@ nl:
     eo: Esperanto
     es: Spaans
     es-AR: Spaans (Argentinië)
+    es-CO: Spaans (Colombia)
     es-MX: Spaans (Mexico)
     et: Estlands
     eu: Baskisch
@@ -2198,6 +2205,7 @@ nl:
     fr-CA: Frans (Canada)
     gl: Galicisch
     he: Hebreeuws
+    hu: Hongaars
     id: Indonesisch
     it: Italiaans
     ja: Japans
@@ -2216,6 +2224,7 @@ nl:
     sk: Slowaaks
     sq: Albanees
     sv: Zweeds
+    th: Thai
     tr: Turks
     uk: Oekraïens
     zh-CN: Chinees (vereenvoudigd)
@@ -2554,10 +2563,14 @@ nl:
   newly_observed_species: Nieuw waargenomen soorten
   newly_observed_species_in_year: "Nieuw toegevoegde soorten in %{year}"
   next: Volgende
+  next_date_short: Volgende
   next_observation: Volgende waarneming
   next_page: Volgende pagina
+  next_page_short: Volgende
   next_photo: Volgende foto
+  next_post_short: Volgende
   next_tab: Volgende tabblad
+  next_taxon_short: Volgende
   'no': 'Nee'
   no_assessments_have_been_added_to_this_project_yet: Er zijn nog geen beoordelingen aan dit project toegevoegd.
   no_but_it_is_a_member_of_taxon: "Nee, maar het is een lid van %{taxon}"
@@ -3499,11 +3512,15 @@ nl:
   preview_observations_with_these_observation_requirements: Voorbeeld van waarnemingen met deze waarnemingsvereisten
   preview_of_synced_observation: "<strong>Voorbeeld</strong>van een gesynchroniseerde waarneming. <a href=\"%{url}\">Ongedaan maken?</a>"
   previewing: "Previewing ..."
+  previous_date_short: Vorige
   prev: Vorige
   previous_observation: Vorige waarneming
   previous_page: Vorige pagina
+  previous_page_short: Vorige
   previous_photo: Vorige foto
+  previous_post_short: Vorige
   previous_tab: Vorige tabblad
+  previous_taxon_short: Vorige
   print_verb: Afdrukken
   privacy: Privacy
   private: privé
@@ -4804,7 +4821,7 @@ nl:
   #Label for the most probable taxon in the automated suggestions. @gender
   #should work here. %{rank} is usually genus or a higher-level rank like
   #family
-  were_pretty_sure_this_is_in_the_rank: Volgens ons zit dit vrijwel zeker in @gender{n:het|de} %{rank}
+  were_pretty_sure_this_is_in_the_rank: Volgens ons zit dit vrijwel zeker in %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Het spijt ons, maar je bulkimport van %{filename} is mislukt."
   what: Wat
   what_did_you_see: Wat heb je gezien?
