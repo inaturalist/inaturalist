@@ -132,6 +132,7 @@ end
 group :test do
   gem "faker"
   gem "simplecov", require: false
+  gem "shoulda-matchers"
   gem "rspec", "~> 3.8.0"
   gem "rspec-rails", "~> 3.8.2"
   gem "rspec-html-matchers"

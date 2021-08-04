@@ -93,6 +93,13 @@ RSpec.configure do |config|
   config.filter_run_excluding disabled: true
 end
 
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+
 # Pretend Delayed Job doesn't exist and run all jobs when they are queued
 def without_delay
   Delayed::Worker.delay_jobs = false

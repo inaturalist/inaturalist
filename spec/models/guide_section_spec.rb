@@ -15,13 +15,8 @@ describe GuideSection do
       expect(gs).to be_modified
     end
 
-    it "should validate the length of a title" do
-      gs = GuideSection.make(:title => "foo")
-      expect(gs).to be_valid
-      gs = GuideSection.make(:title => "foo"*256)
-      expect(gs).not_to be_valid
-      expect(gs.errors[:title]).not_to be_blank
-    end
+    it { is_expected.to validate_length_of(:title).is_at_least(1) }
+    it { is_expected.to validate_length_of(:title).is_at_most(256) }
   end
 
   describe "acts_as_spammable" do
