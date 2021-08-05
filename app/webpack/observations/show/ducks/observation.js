@@ -282,6 +282,7 @@ export function windowStateForObservation( observation, state, opts = { } ) {
       id: observation.id,
       uuid: observation.uuid,
       observed_on: observation.observed_on,
+      obscured: observation.obscured,
       user: {
         login: observation.user.login
       }
@@ -306,9 +307,14 @@ export function windowStateForObservation( observation, state, opts = { } ) {
   } else {
     title = `${I18n.t( "something" )} ${title}`;
   }
-  if ( observation.observed_on ) {
-    const date = moment( observation.observed_on ).format( "MMMM D, YYYY" );
-    title = `${title} on ${date}`;
+  if (
+    observation.observed_on
+    && observation.obscured
+    && !observation.private_geojson
+  ) {
+    title = `${title} in ${moment( observation.observed_on ).format( I18n.t( "momentjs.month_year" ) )}`;
+  } else if ( observation.observed_on ) {
+    title = `${title} on ${moment( observation.observed_on ).format( "ll" )}`;
   }
   let url = `/observations/${observation.id}`;
   if ( window.location.search ) {
