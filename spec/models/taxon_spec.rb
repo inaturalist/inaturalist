@@ -202,7 +202,27 @@ describe Taxon, "creation" do
     taxon.reload
     expect(taxon.parent_id).to be(output_taxon.id)
   end
-  
+
+  context "for complex" do
+    before(:all) { load_test_taxa }
+
+    let(:child_species) { Taxon.make! name: "Lontra canadensis", rank: "species", parent: @Hylidae }
+    let(:child_complex) { Taxon.make! name: "Lontra canadensis", rank: "complex", parent: @Hylidae }
+    let(:child_complex2) { Taxon.make! name: "Lontra canadensis", rank: "complex", parent: @Hylidae }
+
+    it "should validate unique name scoped to ancestry and rank" do
+      child_complex
+
+      expect{ child_complex2 }.to raise_exception ActiveRecord::RecordInvalid,
+                                                  "Validation failed: Name already used as a child complex of this taxon's parent"
+    end
+
+    it "should allow sibling if no other complex shares name" do
+      child_species
+
+      expect{ child_complex }.not_to raise_exception
+    end
+  end
 end
 
 describe Taxon, "updating" do
