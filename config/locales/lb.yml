@@ -1324,12 +1324,20 @@ lb:
   observation_attribution_copyright_html: Observatioune &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     D'Observatioun gehéiert zu engem Projet deen dëst Feld verlaangt. D'Observatioun muss aus deem Projet erausgeholl ginn ier dëst Feld ka geläscht ginn.
+  observation_brief_something_in_month: "Eppes am %{month}"
+  observation_brief_something_in_month_by_user: "Eppes am %{month} vum %{user}"
+  observation_brief_something_from_place_in_month: "Eppes aus %{place} am %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Eppes aus %{place} am %{month} vum %{user}"
+  observation_brief_taxon_in_month: "%{taxon} am %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} am %{month} vum %{user}"
   observation_brief_taxon_from_place: "%{taxon} vun %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} vun %{place} vum %{user}"
   observation_brief_taxon_from_place_on_day: "%{taxon} vun %{place} vum %{day}"
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} vun %{place} vum %{day} vum %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} vun %{place} vum %{day} um %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} vun %{place} vum %{day} um %{time} vum %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} aus %{place} am %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} aus %{place} am %{month} vum %{user}"
   observations_by_category: "Observatioune Pro Kategorie"
   observations_by_app: Observatioune no App
   observations_by_rank: Observatiounen no Rang
