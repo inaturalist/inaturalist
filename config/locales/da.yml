@@ -1146,6 +1146,13 @@ da:
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Hvorfor vil du gerne være kurator?
   #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Ønsker du at redigere iNaturalists taksonomi, så angiv et eksempel eller to på de taksonomiske ændringer, du gerne vil foretage, og inkludere kilder til dine
+    foreslåede ændringer. Såfremt relevant, bedes du citere de korrekte taksonomiske myndigheder <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">, som anført
+    i Kuratorvejledning</a>. Inkluderer du ingen kilder, tages din
+    ansøgning ikke i betragtning.
+  #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Ønsker du at redigere almindelige navne, så angiv et eksempel eller to på
     ændringer, du ønsker at foretage
@@ -2722,6 +2729,8 @@ da:
   observation_brief_something_on_day_at_time: "Noget %{day} kl. %{time}"
   observation_brief_something_on_day_at_time_by_user: "Noget %{day} kl. %{time} af %{user}"
   observation_brief_something_on_day_by_user: "Noget fra %{day} af %{user}"
+  observation_brief_something_in_month: "Noget i %{month}"
+  observation_brief_something_in_month_by_user: "Noget i %{month} af %{user}"
   observation_brief_something_by_user: "Noget af %{user}"
   observation_brief_something_from_place: "Noget fra %{place}"
   observation_brief_something_from_place_by_user: "Noget fra %{place} af %{user}"
@@ -2729,10 +2738,14 @@ da:
   observation_brief_something_from_place_on_day_by_user: "Noget fra %{place} den %{day} af %{user}"
   observation_brief_something_from_place_on_day_at_time: "Noget fra %{place} den %{day} klokken %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Noget fra %{place} den %{day} klokken %{time} af %{user}"
+  observation_brief_something_from_place_in_month: "Noget fra %{place} i %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Noget fra %{place} i %{month} af %{user}"
   observation_brief_taxon_on_day: "%{taxon} %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} %{day} kl. %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} %{day} kl. %{time} af %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} fra %{day} af %{user}"
+  observation_brief_taxon_in_month: "%{taxon} i %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} i %{month} af %{user}"
   observation_brief_taxon_by_user: "%{taxon} af %{user}"
   observation_brief_taxon_from_place: "%{taxon} fra %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} fra %{place} af %{user}"
@@ -2740,6 +2753,8 @@ da:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} fra %{place} %{day} af %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} fra %{place} %{day} kl. %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} fra %{place} %{day} kl. %{time} af %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} fra %{place} i %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} fra %{place} i %{month} af %{user}"
   observations_by_category: "Observationer efter kategori"
   observations_by_app: Observationer via App
   observations_by_rank: Observationer efter rang
