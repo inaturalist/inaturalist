@@ -176,6 +176,8 @@ hu:
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Számozott lista hozzáadása
   add_a_single_observation: Egy megfigyelés hozzáadása
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: |
+    A név módosításához végezz el <a target="_blank" href="%{url}">taxoncserét</a>
   add_an_identification: Meghatározás hozzáadása
   add_an_observation: Megfigyelés hozzáadása
   add_an_observation_of: "%{taxon} taxonon belüli megfigyelés hozzáadása"
@@ -227,6 +229,8 @@ hu:
   add_your_own_observations_at: "Megfigyelés hozzáadása itt: %{site_name}"
   added: Hozzáadva
   added!: Hozzáadva!
+  added_as_a_part_of_a_taxon_swap_html: |
+    <a target="%{target}" class="%{class}" href="%{url}">Taxoncsere</a>ként hozzáadva
   added_by: 'Hozzáadta:'
   added_on_datetime: "Hozzáadás dátuma: %{datetime}"
   added_to_favorites_html: |
@@ -294,6 +298,11 @@ hu:
   #Label for an option to show/include content by any user
   any_user: Bármely
   anyone: Bárki
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Alkalmaz
+  apply_darr: "Alkalmaz &darr;"
+  apply_these_settings_to_all: Ezen beállítások alkalmazása az összes alábbi megfigyelésre.
   arachnids: pókszabásúak
   are_you_sure?: Biztos vagy benne?
   are_you_sure_no_undo: Biztos vagy benne? Ezt nem lehet visszavonni.
@@ -336,6 +345,8 @@ hu:
   badges: Jelvények
   based_on_the_evidence_can_id_be_improved: |
     A bizonyíték alapján lehet még javítani a közösségi meghatározáson?
+  batch_edit: Tömeges szerkesztés
+  batch_operations: Tömeges műveletek
   be_the_first_to_fave_this_observation: Elsőként kedvencelheted ezt a megfigyelést...
   bio: Leírás
   bio_description: Mutatkozz be az iNaturalist többi felhasználójának!
@@ -361,6 +372,8 @@ hu:
   change_geoprivacy: 'Helyadatok'
   change_password: Jelszó módosítása
   change_types:
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_into: Felosztva ezekre
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: Cserélve erre
   change_your_password: Jelszó módosítása
@@ -453,6 +466,7 @@ hu:
   curator_application_what_curators_can_do_hide_comments_html: |
     A <a
     href="/pages/community+guidelines" target="_blank">Közösségi irányelveket</a> sértő felhasználók felfüggesztése és megjegyzéseinek elrejtése.
+  darr_apply_darr: "&darr; Alkalmaz &darr;"
   daily_users: Napi felhasználók
   dashboard: Vezérlőpult
   data_quality_assessment: Adatminőség
@@ -506,6 +520,7 @@ hu:
   delete: Törlés
   delete_all: Összes törlése
   delete_conversation: Beszélgetés törlése
+  delete_selected: Kijelöltek törlése
   desc: Csökkenő
   descending: Csökkenő
   description_slash_tags: Leírás / címke
@@ -537,12 +552,14 @@ hu:
   drag_and_drop_some_photos_or_sounds: Húzz ide néhány fényképet vagy hangot
   duplicate_verb: Másolás
   edit: Módosítás
+  edit_a_batch_of_observations: Megfigyelések tömeges szerkesztése
   edit_account_settings_and_profile: "Fiókbeállítások és profil módosítása"
   edit_comment: A megjegyzésed szerkesztése
   edit_license: Licenc módosítása
   edit_observations: Megfigyelések szerkesztése
   edit_photos_for_observation_id: "%{obs_id} megfigyelés fényképeinek módosítása"
   edit_project: Szerkesztés
+  edit_selected: Kijelöltek szerkesztése
   edit_the_observation: Megfigyelés szerkesztése
   edit_your_account_and_profile_html: "Fiókod és profilod módosítása"
   editing_observation_field: Az adatmezők szerkesztése
@@ -627,7 +644,7 @@ hu:
   identifications: Meghatározások
   identifications_by: "%{user} meghatározásai"
   identifiers: Meghatározók
-  ids: "Azonosítások"
+  ids: "azonosítás"
   ids_made_for_others: meghatározás mások számára
   include_suggestions_not_seen_nearby: Földrajzilag távolabb eső javaslatok megjelenítése
   increase_brightness: Fényerő növelése
@@ -713,6 +730,7 @@ hu:
   login_slash_username: Login / felhasználónév
   logo:
     none: egyik sem
+  lookup: Keresés
   low: Alsó
   mammals: emlősök
   manage_all_your_subscriptions: Feliratkozásaid kezelése
@@ -740,6 +758,8 @@ hu:
   members: Tagok
   merge_observation_field_x_into: '"%{x}" adatmező összevonása ezzel...'
   message: Üzenet
+  #Label shown when a date has not been entered
+  missing_date: Hiányzó dátum
   mollusks: puhatestűek
   months: Hónapok
   more: Egyéb
@@ -808,8 +828,10 @@ hu:
     Ez a megfigyelés egy olyan projekthez tartozik, amelynél kötelező ezen adatmező kitöltése. A megfigyelést el kell távolítani a projektből, és csak azután lehet az adatmező értéket törölni.
   observations_by_app: Megfigyelések applikáció szerint
   observations_by_rank: Megfigyelések besorolás szerint
+  observation_date: Dátum
   observation_field: Adatmező
   observation_field_details: Adatmező részletei
+  observation_field_type_date: Dátum
   observation_fields: Adatmezők
   observation_fields_are_additional: Az adatmezők kiegészítő információkkal szolgálhatnak a megfigyelésekhez.
   observation_fields_by_preferences_description: |
@@ -1066,6 +1088,7 @@ hu:
   reviewed: Átnézett
   rules_for_adding_observations: Megfigyelések hozzáadására vonatkozó szabályok
   satellite: műholdkép
+  save_all: Minden mentése
   save_comment: Megjegyzés mentése
   save_observation: Megfigyelés mentése
   save_settings_caps: BEÁLLÍTÁSOK MENTÉSE
@@ -1103,6 +1126,7 @@ hu:
   sounds:
     add_media: Média hozzáadása
     add_sounds: Hang hozzáadása
+    photos_sounds: Fotók / hangok
     select_one_or_more_sounds: Hang(ok) kiválasztása
   source: Forrás
   source_: 'Forrás:'
@@ -1112,6 +1136,7 @@ hu:
   species_from_around_the_world: Fajok a világ minden tájáról
   species_name_cap: Fajnév
   species_search: Fajok keresése
+  species_taxon_name: Faj- / taxonnév
   species_unknown: Ismeretlen fajok
   start: Kezdete
   start_a_new_project: Új projekt indítása
@@ -1119,6 +1144,7 @@ hu:
   start_typing_field_name: Gépeld be a mezőnevet...
   stats: Statisztikák
   status: Státusz
+  stop_editing: Szerkesztés befejezése
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: BOLT
@@ -1229,17 +1255,21 @@ hu:
   view_your_dashboard_for_more_updates_html: "További információkért <a href='%{url}'>irány a vezérlőpult</a>"
   view_yours: Sajátok megtekintése
   visually_similar: Kinézetre hasonló
+  w_photos_only: fotókkal
   was_it_captive_cultivated?: "Fogságban lévő vagy kultivált?"
   welcome_back!: Köszöntünk ismét!
   #Label for the most probable taxon in the automated suggestions. @gender
   #should work here. %{rank} is usually genus or a higher-level rank like
   #family
   were_pretty_sure_this_is_in_the_rank: 'Nagy bizonyossággal e %{rank} tagja:'
+  what: Mi
   what_did_you_see: Mit láttál?
   what_did_you_see?: <em>Mit</em> láttál?
   whats_this?: Mi ez?
+  when: Mikor
   when_did_you_see_it?: Mikor láttad?
   when_did_you_see_them?: <em>Mikor</em> láttad?
+  where: Hol
   where_were_they?: Hol vannak?
   where_were_you?: Hol voltál?
   who_can_add_observation_fields_to_my_obs: Ki adhat adatmezőket a megfigyeléseimhez?
@@ -1250,6 +1280,7 @@ hu:
   x_journal_archives_for_y: "%{user} hírmondója • Archívum"
   x_journal_middot: "%{user} hírmondója •"
   x_journal_new_post: "%{user} hírmondója • Új bejegyzés"
+  x_project_journal: "%{project} project %{name}"
   'yes': "Igen"
   yes_i_want_to_join: Igen, szeretnék csatlakozni
   yes_license_my_observations_so_scientists_can_use: Engedélyezem, hogy a megfigyeléseimet, a képeket és a hangokat a tudósok felhasználják (ajánlott).
@@ -1262,7 +1293,7 @@ hu:
   your_default_time_zone: Az alapértelmezett időzónád
   your_favorites: Kedvenceid
   your_hard_drive: saját meghajtó
-  your_id: 'Meghatározásod:'
+  your_id: Meghatározásod
   your_membership: Tagságod
   your_observations: Megfigyeléseim
   your_profile_was_successfully_updated: A profilod sikeresen módosítva.
