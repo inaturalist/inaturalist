@@ -307,7 +307,6 @@ $leaderItemImageDim: 56px;
   .item-label {
     color: #4a4a4a;
     font-size: 13px;
-    text-transform: uppercase;
     line-height: 1;
     margin-bottom: 10px;
   }
@@ -679,7 +678,7 @@ $nav-btn-dim: 40px;
 .nav-buttons .next-btn:before {
   content: '\276F';
 }
-.Carousel .viewall, {
+.Carousel .viewall {
   width: 100%;
   height: 262px;
   background-color: #333;
@@ -689,7 +688,6 @@ $nav-btn-dim: 40px;
   text-align: center;
   border-radius: 5px;
   font-size: 16px;
-  text-transform: uppercase;
 }
 .Carousel .viewall:hover,
 .Carousel .viewall:focus {

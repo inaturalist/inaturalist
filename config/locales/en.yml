@@ -361,7 +361,6 @@ en:
   add_comma_separated_tags: "Add Comma-separated Tags"
   add_comment: Add a Comment
   add_conservation_status: Add Conservation Status
-  add_countries: Add Countries
   add_custom_project_fields: Add Custom Project Fields
   add_edit_flags: Add/Edit Flags
   add_editor: Add Editor
@@ -787,6 +786,7 @@ en:
     Based on the evidence, can the Community Taxon still be confirmed or improved?
   batch: Batch
   batch_edit: Batch edit
+  # Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Batch edit taxa for %{x}"
   batch_operations: Batch Operations
   be_the_first_to_fave_this_observation: Be the first to fave this observation!
@@ -1210,7 +1210,6 @@ en:
   couldnt_change_your_password: "Couldn't change your password: %{e}"
   couldnt_find_a_user_matching_x_param: "Couldn't find a user matching %{id}"
   couldnt_find_that_taxon: Could't find that taxon.
-  countries: Countries
   create: Create
   create_a_guide: Create a Guide
   create_a_new_field: Create a New Field
@@ -1446,7 +1445,9 @@ en:
   date_picker:
     closeText: Close
     currentText: Today
+    # Contextual help for a button navigating to the previous month in a date picker
     prevText: Prev
+    # Contextual help for a button navigating to the next month in a date picker
     nextText: Next
     range: Range
   date_range: Date Range
@@ -2207,6 +2208,7 @@ en:
   last_active_with_date: "Last Active: %{date}"
   last_confirmed_observation: Last confirmed observation
   last_observation: Last observation
+  last_observation_caps: LAST OBSERVATION
   last_seen: Last seen
   last_year: Last Year
   lat: Lat
@@ -2238,6 +2240,7 @@ en:
   leave: Leave
   leave_a_comment: Leave a comment
   leave_this_project: Leave this project
+  # Terminal nodes in a taxonomic tree
   leaves: leaves
   legacy_authentication_notice_html: |
     Looks like you're using a password from an older version of this website.
@@ -2762,7 +2765,6 @@ en:
   no_assessments_have_been_added_to_this_project_yet: No assessments have been added to this project yet.
   no_but_it_is_a_member_of_taxon: "No, but it is a member of %{taxon}"
   no_comments_yet: No comments yet.
-  no_countries_added_yet: No countries added yet
   no_creative_commons_flickr_photos_tagged_x: 'No Creative Commons Flickr photos tagged "%{x}"'
   no_curators_set: No curators set
   no_curators_yet: No curators yet!
@@ -3180,7 +3182,6 @@ en:
   password_confirmation: 'Password confirmation'
   paste: Paste
   paste_in_a_bunch_of_names: Paste in a bunch of names, 1 per line, and hit the button!
-  paste_in_a_comma_separated_list: Paste in a comma-separated list of countries
   people: People
   people_following_user: "People Following %{user}"
   people_user_follows: "People %{user} Follows"
@@ -3822,7 +3823,6 @@ en:
     Projects let you pool your observations with other people on %{site_name}.
     Whether you're starting a citizen science effort or keeping tabs on
     the birds in your neighborhood, Projects are the way to go.
-  projects_from_everywhere: Projects from Everywhere
   projects_from_place: "Projects from %{place}"
   projects_in_x: "Projects in %{x}"
   # "admins" is equivalent to "administrates"
@@ -4101,7 +4101,6 @@ en:
   restart: Restart
   restore: Restore
   restoring: Restoring...
-  results: results
   review_all: Review All
   reviewed: Reviewed
   revoke: Revoke
@@ -4757,17 +4756,16 @@ en:
   to_add_ids: to add IDs
   to_configure_your_widget: to configure your widget.
   to_recipient: to
-  to_suggest_an_identification: to suggest an identification
   today: Today
   too_many_results: Too Many Results
   too_many_taxa_to_render: |
     This query returns too many taxa to render at one time. Try adding more filters
   tools: Tools
   top_contributors: Top contributors
-  top_identifier: Top Identifier
+  top_identifier_caps: TOP IDENTIFIER
   top_identifiers: Top Identifiers
   top_identifiers_of_taxon: Top Identifiers of %{taxon}
-  top_observer: Top Observer
+  top_observer_caps: TOP OBSERVER
   top_observers: Top Observers
   tos_privacy_guidelines_label: |
     I agree to the <a href="/terms" target="_blank">Terms of Service</a> and
@@ -4777,7 +4775,8 @@ en:
   totals: Totals
   total_members: Total members
   total_observations: Total observations
-  total_species_observed: Total Species Observed
+  total_observations_caps: TOTAL OBSERVATIONS
+  total_species_observed_caps: TOTAL SPECIES OBSERVED
   total_unique_observers: Total unique observers
   translated_languages: Translated Languages
   'true': 'True'
@@ -4888,7 +4887,6 @@ en:
     other: Uploading %{num} of %{count} photos...
   url_identifier_of_a_project_derived_from: "URL / identifier of a project derived from some external resource"
   url_of_this_taxon_on_the_source_website: URL of this taxon on the source's website
-  US_states: US States
   usage_stats: Usage stats
   use_name_as_a_placeholder: |
     Use <span class='ac-placeholder'>"%{name}"</span> as a placeholder
@@ -5107,8 +5105,6 @@ en:
   when_did_you_see_it?: When did you see it?
   when_did_you_see_them?: <em>When</em> did you see them?
   where: Where
-  where_do_x_live: Where do %{taxa} live?
-  where_does_x_live: Where does %{taxa} live?
   where_were_they?: Where were they?
   where_were_you?: Where were you?
   which_projects_can_add_your_observations?: Which traditional projects can add your observations?
