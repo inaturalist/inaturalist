@@ -288,7 +288,6 @@ nl:
   add_comma_separated_tags: "Door komma's gescheiden labels toevoegen"
   add_comment: Reactie toevoegen
   add_conservation_status: Natuurbeschermingsstatus toevoegen
-  add_countries: Landen toevoegen
   add_custom_project_fields: Aangepaste projectvelden toevoegen
   add_edit_flags: Meldingen toevoegen/bewerken
   add_editor: Editor toevoegen
@@ -712,6 +711,7 @@ nl:
     Gebaseerd op het bewijs, kan het gemeenschapstaxon nog steeds bevestigd of verbeterd worden?
   batch: Batch
   batch_edit: Bewerk in batch
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Bewerk taxa in batch voor %{x}"
   batch_operations: Batchbewerkingen
   be_the_first_to_fave_this_observation: Sla als eerste deze waarneming op als een favoriet!
@@ -1102,7 +1102,6 @@ nl:
   couldnt_change_your_password: "Je wachtwoord kon niet gewijzigd worden: %{e}"
   couldnt_find_a_user_matching_x_param: "Kon geen gebruiker vinden die overeenstemt met %{id}"
   couldnt_find_that_taxon: Taxon niet gevonden.
-  countries: Landen
   create: Aanmaken
   create_a_guide: Maak een gids aan
   create_a_new_field: Nieuw veld aanmaken
@@ -1302,7 +1301,9 @@ nl:
   date_picker:
     closeText: Sluiten
     currentText: Vandaag
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Vorige
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Volgende
     range: Periode
   date_range: Tijdspanne
@@ -2035,6 +2036,7 @@ nl:
   last_active_with_date: "Laatst actief %{date}"
   last_confirmed_observation: Laatste bevestigde waarneming
   last_observation: Laatste waarneming
+  last_observation_caps: LAATSTE WAARNEMING
   last_seen: Laatst gezien
   last_year: Vorig jaar
   lat: Lat
@@ -2066,6 +2068,7 @@ nl:
   leave: Verlaat
   leave_a_comment: Reactie achterlaten
   leave_this_project: Dit project verlaten
+  #Terminal nodes in a taxonomic tree
   leaves: verlaat
   legacy_authentication_notice_html: |
     Het lijkt erop dat je een wachtwoord gebruikt van een oudere versie van deze website.
@@ -2575,7 +2578,6 @@ nl:
   no_assessments_have_been_added_to_this_project_yet: Er zijn nog geen beoordelingen aan dit project toegevoegd.
   no_but_it_is_a_member_of_taxon: "Nee, maar het is een lid van %{taxon}"
   no_comments_yet: Nog geen reacties.
-  no_countries_added_yet: Nog geen landen toegevoegd
   no_creative_commons_flickr_photos_tagged_x: 'Geen Creative Commons Flickr-foto''s met de tag "%{x}"'
   no_curators_set: Geen beheerders ingesteld
   no_curators_yet: Nog geen curatoren!
@@ -2976,7 +2978,6 @@ nl:
   password_confirmation: 'Bevestiging wachtwoord'
   paste: Plakken
   paste_in_a_bunch_of_names: Plak een aantal namen, 1 per regel en druk op de knop!
-  paste_in_a_comma_separated_list: Plak in een door komma's gescheiden lijst van landen
   people: Personen
   people_following_user: "Personen die %{user} volgen"
   people_user_follows: "Personen die %{user} volgt"
@@ -3593,7 +3594,6 @@ nl:
   projects_description: |
     Projecten laten je je waarnemingen samenvoegen met andere mensen op %{site_name}.
     Of je nu een intiatief voor burgerwetenschap opstart of op de hoogte wilt blijven van de vogels in jouw buurt, projecten zijn dé manier.
-  projects_from_everywhere: Projecten van overal
   projects_from_place: "Projecten van %{place}"
   projects_in_x: "Projecten in %{x}"
   #"admins" is equivalent to "administrates"
@@ -3872,7 +3872,6 @@ nl:
   restart: Herstart
   restore: Herstellen
   restoring: Aan het herstellen ...
-  results: resultaten
   review_all: Alles nakijken
   reviewed: Nagekeken
   revoke: Intrekken
@@ -4496,27 +4495,27 @@ nl:
   to_add_ids: om ID's toe te voegen
   to_configure_your_widget: configureer je widget
   to_recipient: naar
-  to_suggest_an_identification: om een determinatie voor te stellen
   today: Vandaag
   too_many_results: Te veel resultaten
   too_many_taxa_to_render: |
     Deze query retourneert te veel taxa om tegelijkertijd te renderen. Probeer meer filters toe te voegen.
   tools: Hulpmiddelen
   top_contributors: Top bijdragers
-  top_identifier: Top-determineerder
+  top_identifier_caps: TOP DETERMINEERDER
   top_identifiers: Top-determineerders
   top_identifiers_of_taxon: Top-determineerders van %{taxon}
-  top_observer: Top Waarnemer
+  top_observer_caps: TOP WAARNEMER
   top_observers: Top Waarnemers
   tos_privacy_guidelines_label: |
     Ik ga akkoord met de <a href="/terms" target="_blank">gebruiksvoorwaarden</a> en het
     <a href="/privacy" target="_blank">privacybeleid</a>, en ik heb
     de <a href="/pages/community+guidelines" target="_blank">gemeenschapsrichtlijnen</a> doorgenomen.
   total: Totaal
-  totals: totalen
+  totals: Totalen
   total_members: Totaal aantal leden
   total_observations: Totaal aantal waarnemingen
-  total_species_observed: Totaal aantal soorten waargenomen
+  total_observations_caps: TOTAAL AANTAL WAARNEMINGEN
+  total_species_observed_caps: TOTAAL AANTAL WAARGENOMEN SOORTEN
   total_unique_observers: Totaal aantal unieke waarnemers
   translated_languages: Vertaalde Talen
   'true': 'Waar'
@@ -4624,7 +4623,6 @@ nl:
     other: Uploading %{num} van %{count} fotos...
   url_identifier_of_a_project_derived_from: "URL/identifier van een project dat is afgeleid van een externe bron"
   url_of_this_taxon_on_the_source_website: URL van dit taxon op de website van de bron
-  US_states: Staten in de VS
   usage_stats: Gebruiksstatistieken
   use_name_as_a_placeholder: |
     <span class='ac-placeholder'>"%{name}"</span> als een placeholder gebruiken
@@ -4818,9 +4816,10 @@ nl:
   welcome_to_inat: "Welkom op %{site_name}!"
   welcome_to_guides: "Welkom bij  %{site_name} Gidsen!"
   welcome_to_x_project: "Welkom bij %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Volgens ons zit dit vrijwel zeker in %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Het spijt ons, maar je bulkimport van %{filename} is mislukt."
   what: Wat
@@ -4835,8 +4834,6 @@ nl:
   when_did_you_see_it?: Wanneer heb je het gezien??
   when_did_you_see_them?: <em>Wanneer</em> zag je hen?
   where: Waar
-  where_do_x_live: Waar leven %{taxa}?
-  where_does_x_live: Waar leven %{taxa}?
   where_were_they?: Waar waren ze?
   where_were_you?: Waar was je?
   which_projects_can_add_your_observations?: Welke traditionele projecten kunnen je waarnemingen toevoegen?
