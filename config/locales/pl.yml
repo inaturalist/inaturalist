@@ -329,7 +329,6 @@ pl:
   add_comma_separated_tags: "Dodaj tagi oddzielone przecinkami"
   add_comment: Dodaj komentarz
   add_conservation_status: Dodaj status ochronny
-  add_countries: Dodaj kraje
   add_custom_project_fields: Dodaj własne pola projektu
   add_edit_flags: Dodaj/Edytuj zgłoszenia
   add_editor: Dodaj edytora
@@ -768,6 +767,7 @@ pl:
     Czy na podstawie dostępnych danych takson społeczności może wciąż zostać sprawdzony lub ulepszony?
   batch: Seria
   batch_edit: Seryjna edycja
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Seryjna edycja taksonów dla %{x}"
   batch_operations: Operacje seryjne
   be_the_first_to_fave_this_observation: Polub tę obserwację jako pierwszy!
@@ -1117,7 +1117,6 @@ pl:
   couldnt_change_your_password: "Nie udało się zmienić hasła: %{e}"
   couldnt_find_a_user_matching_x_param: "Nie udało się znaleźć użytkownika %{id}"
   couldnt_find_that_taxon: Nie udało się znaleźć podanego taksonu.
-  countries: Kraje
   create: Utwórz
   create_a_guide: Stwórz przewodnik
   create_a_new_field: Stwórz nową notatkę
@@ -1225,7 +1224,9 @@ pl:
   date_picker:
     closeText: Zamknij
     currentText: Dzisiaj
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Poprzedni
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Następny
     range: Zakres
   date_range: Zakres dat
@@ -1889,6 +1890,7 @@ pl:
   leave: Opuść
   leave_a_comment: Zostaw komentarz
   leave_this_project: Opuść projekt
+  #Terminal nodes in a taxonomic tree
   leaves: liście
   legacy_authentication_notice_html: |
     Wygląda na to, że używasz hasła ze starszej wersji strony.
@@ -2291,7 +2293,6 @@ pl:
   no_assessments_have_been_added_to_this_project_yet: Do tego projektu nie dodano jeszcze żadnych ocen.
   no_but_it_is_a_member_of_taxon: "Nie, ale należy do taksonu %{taxon}"
   no_comments_yet: Brak komentarzy.
-  no_countries_added_yet: Nie dodano krajów
   no_creative_commons_flickr_photos_tagged_x: 'Brak zdjęć z Flickra na licencji Creative Commons z tagiem "%{x}"'
   no_curators_set: Brak ustanowionych kuratorów
   no_curators_yet: Póki co brak kuratorów!
@@ -3206,7 +3207,6 @@ pl:
   resolved_by_user_on_date_html: Rozstrzygnięte przez %{user} dnia %{date}
   restore: Przywróć
   restoring: Przywracanie...
-  results: wyniki
   review_all: Przejrzyj wszystkie
   reviewed: Przejrzane
   rg_observations: Obserwacje SB
@@ -3500,14 +3500,11 @@ pl:
   to_add_ids: aby dodać oznaczenia
   to_configure_your_widget: aby skonfigurować swój widżet.
   to_recipient: do
-  to_suggest_an_identification: aby zasugerować oznaczenie
   today: Dzisiaj
   too_many_results: Zbyt wiele wyników
   tools: Narzędzia
-  top_identifier: Najczęściej oznaczający
   top_identifiers: Najczęściej oznaczający
   top_identifiers_of_taxon: Najczęściej oznaczający %{taxon}
-  top_observer: Najczęściej obserwujący
   top_observers: Najczęściej obserwujący
   total: Razem
   total_members: Członków łącznie
@@ -3692,9 +3689,10 @@ pl:
   welcome_to_inat: "Witamy na %{site_name}!"
   welcome_to_guides: "Witamy w przewodnikach %{site_name}!"
   welcome_to_x_project: "Witamy w %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Jesteśmy prawie pewni, że należy to do %{rank}
   what: Co
   what_did_you_see: Co widziałeś?
@@ -3706,8 +3704,6 @@ pl:
   when_did_you_see_it?: Kiedy to widziałeś?
   when_did_you_see_them?: <em>Kiedy</em> je widziałeś?
   where: Gdzie
-  where_do_x_live: Gdzie żyje %{taxa}?
-  where_does_x_live: Gdzie żyją %{taxa}?
   where_were_you?: Gdzie byłeś?
   which_projects_can_add_your_observations?: Które tradycyjne projekty mogą dodawać Twoje obserwacje?
   white: biały
