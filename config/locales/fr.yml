@@ -266,7 +266,6 @@ fr:
   add_comma_separated_tags: "Ajouter des balises séparées par des virgules"
   add_comment: Ajouter un commentaire
   add_conservation_status: Ajouter la situation quant à la conservation
-  add_countries: Ajouter des pays
   add_custom_project_fields: Ajouter des champs de projet personnalisés
   add_edit_flags: Ajouter / modifier les signalements
   add_editor: Ajouter un éditeur
@@ -690,6 +689,7 @@ fr:
     D’après les données, le taxon de communauté peut-il être encore confirmé ou amélioré ?
   batch: Groupe
   batch_edit: Modification groupée
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Modification groupée des taxons %{x}"
   batch_operations: Opérations groupées
   be_the_first_to_fave_this_observation: Soyez le premier à ajouter cette observation comme favori !
@@ -1090,7 +1090,6 @@ fr:
   couldnt_change_your_password: "Impossible de modifier votre mot de passe : %{e}"
   couldnt_find_a_user_matching_x_param: "Impossible de trouver un utilisateur correspondant à %{id}"
   couldnt_find_that_taxon: Impossible de trouver ce taxon.
-  countries: Pays
   create: Créer
   create_a_guide: Créer un guide
   create_a_new_field: Créer un nouveau champ
@@ -1291,7 +1290,9 @@ fr:
   date_picker:
     closeText: Fermer
     currentText: Aujourd’hui
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Précédent
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Suivant
     range: Période
   date_range: Intervalle
@@ -2057,6 +2058,7 @@ fr:
   leave: Quitter
   leave_a_comment: Laisser un commentaire
   leave_this_project: Quitter ce projet
+  #Terminal nodes in a taxonomic tree
   leaves: feuilles
   legacy_authentication_notice_html: |
     Il semble que vous utilisez un mot de passe d’une ancienne version de ce site web.
@@ -2563,7 +2565,6 @@ fr:
   no_assessments_have_been_added_to_this_project_yet: Aucune évaluation n’a encore été ajoutée à ce projet.
   no_but_it_is_a_member_of_taxon: "Non, je ne suis pas d'accord avec l'identification, mais je confirme que ça fait partie des %{taxon}"
   no_comments_yet: Aucun commentaire jusqu’à présent.
-  no_countries_added_yet: Aucun pays n’a été ajouté jusqu’à présent
   no_creative_commons_flickr_photos_tagged_x: 'Aucune photo Creative Commons de Flickr n’a été étiquetée « %{x} »'
   no_curators_set: Aucun responsable de l’organisation n’a été défini
   no_curators_yet: Aucun responsable de l’organisation jusqu’à présent!
@@ -2959,7 +2960,6 @@ fr:
   password_confirmation: 'Confirmation du mot de passe'
   paste: Coller
   paste_in_a_bunch_of_names: Collez dans un groupe de noms, 1 par ligne, et appuyez sur le bouton!
-  paste_in_a_comma_separated_list: Coller une liste de pays séparés par des virgules
   people: Personnes
   people_following_user: "Personnes suivant %{user}"
   people_user_follows: "Personnes que %{user} suit"
@@ -3577,7 +3577,6 @@ fr:
   projects: Projets
   projects_description: |
     Les projets vous permettent d'associer vos observations à celles d’autres personnes sur %{site_name}. Si vous souhaitez démarrer un projet de science citoyenne ou gérer un registre des oiseaux de votre voisinage, les projets sont le bon outil.
-  projects_from_everywhere: Projets de partout
   projects_from_place: "Projets de %{place}"
   projects_in_x: "Projets dans %{x}"
   #"admins" is equivalent to "administrates"
@@ -3856,7 +3855,6 @@ fr:
   restart: Redémarrer
   restore: Rétablir
   restoring: Restauration …
-  results: résultats
   review_all: Relire tout
   reviewed: Vérifié
   revoke: Révoquer
@@ -4477,17 +4475,14 @@ fr:
   to_add_ids: pour ajouter des ID
   to_configure_your_widget: pour configurer votre widget.
   to_recipient: À
-  to_suggest_an_identification: pour suggérer une identification
   today: Aujourd’hui
   too_many_results: Trop de résultats
   too_many_taxa_to_render: |
     Cette requête renvoie trop de taxons pour tous les afficher à la fois. Essayez d’ajouter plus de filtres.
   tools: Outils
   top_contributors: Collaborateurs les plus importants
-  top_identifier: Meilleurs identificateurs
   top_identifiers: Meilleurs Identificateurs
   top_identifiers_of_taxon: Meilleurs identificateurs de %{taxon}
-  top_observer: Meilleurs observateurs
   top_observers: Meilleurs observateurs
   tos_privacy_guidelines_label: |
     J'accepte les <a href="/terms" target="_blank">conditions d'utilisation</a> et
@@ -4497,7 +4492,6 @@ fr:
   totals: Totaux
   total_members: Total des membres
   total_observations: Total des observations
-  total_species_observed: Nombre total d’espèces observées
   total_unique_observers: Total des observateurs uniques
   translated_languages: Langues traduites
   'true': 'Oui'
@@ -4604,7 +4598,6 @@ fr:
     other: Téléversement de %{num} sur %{count} photos…
   url_identifier_of_a_project_derived_from: "URL/identifiant d'un projet dérivé d’une ressource externe"
   url_of_this_taxon_on_the_source_website: URL de ce taxon sur le site Web de la source
-  US_states: États des États-Unis
   usage_stats: Statistiques d'utilisation
   use_name_as_a_placeholder: |
     Utilisez <span class='ac-placeholder'>"%{name}"</span> comme signet
@@ -4803,9 +4796,10 @@ fr:
   welcome_to_inat: "Bienvenue sur %{site_name}!"
   welcome_to_guides: "Bienvenue sur les guides d’%{site_name}!"
   welcome_to_x_project: "Bienvenue sur %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Nous sommes quasiment sûrs qu'il se trouve dans les %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Nous sommes désolés, mais votre importation en vrac de %{filename} a échoué."
   what: Quoi
@@ -4820,8 +4814,6 @@ fr:
   when_did_you_see_it?: Quand l’avez-vous vu ?
   when_did_you_see_them?: <em>Quand</em> les avez-vous vus ?
   where: Où
-  where_do_x_live: Où vit %{taxa} ?
-  where_does_x_live: Où vit %{taxa} ?
   where_were_they?: Où étaient-ils ?
   where_were_you?: Où étiez-vous ?
   which_projects_can_add_your_observations?: Quels projets traditionnels peuvent ajouter vos observations ?
