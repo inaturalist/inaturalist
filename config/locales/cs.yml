@@ -378,7 +378,6 @@ cs:
   add_comma_separated_tags: "Vložit tagy oddělené čárkou"
   add_comment: Vložit komentář
   add_conservation_status: vložit status ochrany
-  add_countries: Vložit země
   add_custom_project_fields: Vložit vlastní projektová pole
   add_edit_flags: Přidat/editovat vlajky
   add_editor: Přidat editora
@@ -830,6 +829,7 @@ cs:
     Může být na základě důkazů komunitní ID stále potvrzeno nebo vylepšeno?
   batch: Série
   batch_edit: Upravit sérii
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Hromadná editace taxonů pro %{x}"
   batch_operations: Hromadné operace
   be_the_first_to_fave_this_observation: Buďte první, komu se toto pozorování líbí!
@@ -1228,7 +1228,6 @@ cs:
   couldnt_change_your_password: "Nelze změnit vaše heslo: %{e}"
   couldnt_find_a_user_matching_x_param: "Nebyl nalezen odpovídající uživatel %{id}"
   couldnt_find_that_taxon: Tento taxon nebyl nalezen.
-  countries: Země
   create: Vytvořit
   create_a_guide: Vytvořit průvodce
   create_a_new_field: Vytvořit nové pole
@@ -1433,7 +1432,9 @@ cs:
   date_picker:
     closeText: Zavřít
     currentText: Dnes
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Předchozí
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Následujicí
     range: Rozsah
   date_range: Časové období
@@ -2200,6 +2201,7 @@ cs:
   leave: Odejít
   leave_a_comment: Zanechat komentář
   leave_this_project: Opustit tento projekt
+  #Terminal nodes in a taxonomic tree
   leaves: odchází
   legacy_authentication_notice_html: |
     Zdá se, že používáte heslo ze starší verze této webové stránky. Nezapomeňte si prosím pro novou verzi <a href="%{url}">heslo změnit</a>.
@@ -2709,7 +2711,6 @@ cs:
   no_assessments_have_been_added_to_this_project_yet: K tomuto projektu zatím nebyla přidána žádná hodnocení.
   no_but_it_is_a_member_of_taxon: "Ne, ale patří do %{taxon}"
   no_comments_yet: Žádné komentáře.
-  no_countries_added_yet: Žádné země zatím ještě nebyly přidány
   no_creative_commons_flickr_photos_tagged_x: 'Žádné fotky s licencí Creative Commons na Flickru nejsou označeny "%{x}"'
   no_curators_set: Žádní kurátoři nejsou nastaveni
   no_curators_yet: Zatím žádní kurátoři!
@@ -3095,7 +3096,6 @@ cs:
   password_confirmation: 'Potvrzení hesla'
   paste: Vložit
   paste_in_a_bunch_of_names: Vložte skupinu názvů, 1 na každý řádek, a zmáčkněte tlačítko!
-  paste_in_a_comma_separated_list: Vložte seznam států oddělených čárkami
   people: Lidé
   people_following_user: "lidí sleduje uživatele %{user}"
   people_user_follows: "Lidé, které sleduje uživatel %{user}"
@@ -3722,7 +3722,6 @@ cs:
   projects: Projekty
   projects_description: |
     Projekty jsou způsob, jak sdílet vaše pozorování s pozorováním ostatních na %{site_name}. Pokud chcete začít s vědeckým projektem mezi občany nebo pozorovat ptáky ve svém okolí, projekty jsou cestou, jak se tam dostat.
-  projects_from_everywhere: Projekty odevšad
   projects_from_place: "Projekty z %{place}"
   projects_in_x: "Projekty v %{x}"
   #"admins" is equivalent to "administrates"
@@ -4013,7 +4012,6 @@ cs:
   restart: Restart
   restore: Obnovit
   restoring: Obnovování...
-  results: výsledky
   review_all: Označit všechny za zkontrolované
   reviewed: Zkontrolováno
   revoke: Odvolat
@@ -4666,17 +4664,14 @@ cs:
   to_add_ids: přidat ID
   to_configure_your_widget: ke konfiguraci vašeho widgetu.
   to_recipient: k provedení
-  to_suggest_an_identification: k navržení identifikace
   today: Dnes
   too_many_results: Příliš mnoho výsledků
   too_many_taxa_to_render: |
     Tento dotaz volí příliš mnoho taxonů, které se mají zobrazit všechny najednou. Zkuste přidat další filtry.
   tools: Nástroje
   top_contributors: Nejlepší přispěvatelé
-  top_identifier: Nejlepší identifikátor
   top_identifiers: Nejlepší identifikátoři
   top_identifiers_of_taxon: Nejlepší identifikátoři %{taxon}
-  top_observer: Nejlepší pozorovatel
   top_observers: Nejlepší pozorovatelé
   tos_privacy_guidelines_label: |
     Souhlasím s <a href="/terms" target="_blank">Podmínkami služby</a> a
@@ -4685,7 +4680,6 @@ cs:
   totals: Součty
   total_members: Celkový počet členů
   total_observations: Celkový počet pozorování
-  total_species_observed: Celkový počet pozorovaných druhů
   total_unique_observers: Celkový počet jednotlivých pozorovatelů
   translated_languages: Přeložené jazyky
   'true': 'Pravda'
@@ -4796,7 +4790,6 @@ cs:
     other: Nahrávání %{num} %{count} fotek...
   url_identifier_of_a_project_derived_from: "URL / identifikátor projektu odvozený z externího zdroje"
   url_of_this_taxon_on_the_source_website: URL tohoto taxonu na webové stránce zdroje
-  US_states: Státy USA
   usage_stats: Statistika užívání
   use_name_as_a_placeholder: |
     Použít <span class='ac-placeholder'>"%{name}"</span> jako placeholder
@@ -4992,9 +4985,10 @@ cs:
   welcome_to_inat: "Vítejte na %{site_name}!"
   welcome_to_guides: "Vítejte v průvodcích %{site_name}!"
   welcome_to_x_project: "Vítejte v projektu %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Jsme si celkem jistí, že toto je v %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Omlouváme se, ale váš hromadný import z %{filename} se nezdařil."
   what: Co
@@ -5009,8 +5003,6 @@ cs:
   when_did_you_see_it?: Kdy jste to viděli?
   when_did_you_see_them?: <em>Kdy</em> jste je viděli?
   where: Kde
-  where_do_x_live: Kde žijí %{taxa}?
-  where_does_x_live: Kde žije %{taxa}?
   where_were_they?: Kde byli?
   where_were_you?: Kde jste byli?
   which_projects_can_add_your_observations?: K jakým projektům můžete přidat svá pozorování?
