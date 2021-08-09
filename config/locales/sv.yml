@@ -285,7 +285,6 @@ sv:
   add_comma_separated_tags: "Lägg till kommaseparerade taggningar"
   add_comment: Lägg till en kommentar
   add_conservation_status: Lägg till bevarandestatus
-  add_countries: Lägg till länder
   add_custom_project_fields: Lägg till anpassade projektfält
   add_edit_flags: Lägg till/Ändra flaggor
   add_editor: Lägg till redigerare
@@ -710,6 +709,7 @@ sv:
     Baserat på ovan, kan community-bestämningen ytterligare bekräftas eller förbättras?
   batch: Batch
   batch_edit: Redigera flera i taget
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Redigera flera taxa för %{x}"
   batch_operations: Batch-funktioner
   be_the_first_to_fave_this_observation: Var först med att göra det här fyndet till favorit!
@@ -1115,7 +1115,6 @@ sv:
   couldnt_change_your_password: "Kunde inte ändra ditt lösenord: %{e}"
   couldnt_find_a_user_matching_x_param: "Kunde inte hitta en användare med %{id}"
   couldnt_find_that_taxon: Kunde inte hitta detta taxon.
-  countries: Länder
   create: Skapa
   create_a_guide: Skapa en guide
   create_a_new_field: Skapa ett nytt fält
@@ -1316,7 +1315,9 @@ sv:
   date_picker:
     closeText: Stäng
     currentText: Idag
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Föreg.
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Nästa
     range: Intervall
   date_range: Datumintervall
@@ -2055,6 +2056,7 @@ sv:
   last_active_with_date: "Senast aktiv: %{date}"
   last_confirmed_observation: Senast bekräftade fynd
   last_observation: Senaste fynd
+  last_observation_caps: SENASTE FYND
   last_seen: Senast sedd
   last_year: Senaste året
   lat: Lat
@@ -2086,6 +2088,7 @@ sv:
   leave: Lämna
   leave_a_comment: Lämna en kommentar
   leave_this_project: Lämna detta projekt
+  #Terminal nodes in a taxonomic tree
   leaves: löv
   legacy_authentication_notice_html: |
     Det ser ut som om du använder ett lösenord från en äldre version av denna webbplats.
@@ -2597,7 +2600,6 @@ sv:
   no_assessments_have_been_added_to_this_project_yet: Inga bedömningar har lagts till detta projekt ännu.
   no_but_it_is_a_member_of_taxon: "Nej, men det är en medlem av %{taxon}"
   no_comments_yet: Inga kommentarer ännu.
-  no_countries_added_yet: Inga länder tillagda ännu
   no_creative_commons_flickr_photos_tagged_x: 'Inga Creative Commons Flickr-bilder taggade "%{x}"'
   no_curators_set: Inga förvaltare utsedda
   no_curators_yet: Inga förvaltare ännu!
@@ -2991,7 +2993,6 @@ sv:
   password_confirmation: 'Lösenordsbekräftelse'
   paste: Klistra in
   paste_in_a_bunch_of_names: Klistra in ett gäng namn, 1 per rad, och tryck på knappen!
-  paste_in_a_comma_separated_list: Klistra in i en kommaseparerad lista med länder
   people: Personer
   people_following_user: "Personer som följer %{user}"
   people_user_follows: "Personer %{user} följer"
@@ -3602,7 +3603,6 @@ sv:
   projects_description: |
     Projekten låter dig dela dina fynd med andra personer på %{site_name}.
     Oavsett om du börjar med medborgarforskning eller tänker hålla koll på fåglarna i grannskapet, är projekt lämpade för det.
-  projects_from_everywhere: Projekt från överallt
   projects_from_place: "Projekt från %{place}"
   projects_in_x: "Projekt i %{x}"
   #"admins" is equivalent to "administrates"
@@ -3881,7 +3881,6 @@ sv:
   restart: Starta om
   restore: Återställ
   restoring: Återställer...
-  results: resultat
   review_all: Granska alla
   reviewed: Granskad
   revoke: Återkalla
@@ -4495,17 +4494,16 @@ sv:
   to_add_ids: för att lägga till bestämningar
   to_configure_your_widget: för att konfigurera din widget.
   to_recipient: till
-  to_suggest_an_identification: för att föreslå en bestämning
   today: Idag
   too_many_results: För många resultat
   too_many_taxa_to_render: |
     Denna förfrågan returnerar för många taxa för att återges samtidigt. Försök att lägga till fler filter
   tools: Verktyg
   top_contributors: De som bidragit mest
-  top_identifier: Flest bestämningar
+  top_identifier_caps: MESTA BESTÄMMARE
   top_identifiers: Flest bestämningar
   top_identifiers_of_taxon: Flest bestämningar av %{taxon}
-  top_observer: Toppobservatör
+  top_observer_caps: MESTA OBSERVATÖR
   top_observers: Toppobservatörer
   tos_privacy_guidelines_label: |
     Jag godkänner <a href="/terms" target="_blank">Användarvillkoren</a> och
@@ -4514,7 +4512,7 @@ sv:
   totals: Summa
   total_members: Totalt antal medlemmar
   total_observations: Totalt antal fynd
-  total_species_observed: Totalt antal observerade arter
+  total_observations_caps: ANTAL FYND
   total_unique_observers: Totalt antal unika observatörer
   translated_languages: Översatta språk
   'true': 'Sant'
@@ -4621,7 +4619,6 @@ sv:
     other: Laddar upp %{num} av %{count} foton...
   url_identifier_of_a_project_derived_from: "URL / identifierare för projekt med externt ursprung"
   url_of_this_taxon_on_the_source_website: URL till detta taxon på källans webbplats
-  US_states: Stater i USA
   usage_stats: Användningsstatistik
   use_name_as_a_placeholder: |
     Använd <span class='ac-placeholder'>"%{name}"</span> som platshållare
@@ -4817,9 +4814,14 @@ sv:
   welcome_to_inat: "Välkommen till %{site_name}!"
   welcome_to_guides: "Välkommen till %{site_name} guider!"
   welcome_to_x_project: "Välkommen till %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Vi är ganska säkra på att detta hör till släktet
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_family: Vi är ganska säkra på att detta hör till ordningen
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Vi är ganska säkra på att detta tillhör %{rank}@gender{n:t|en}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Vi beklagar, men din bulkimport av %{filename} misslyckades."
   what: Vad
@@ -4834,8 +4836,6 @@ sv:
   when_did_you_see_it?: När såg du det?
   when_did_you_see_them?: <em>När</em> såg du dem?
   where: Var
-  where_do_x_live: Var bor %{taxa}?
-  where_does_x_live: Var bor %{taxa}?
   where_were_they?: Var befann de sig?
   where_were_you?: Var var du?
   which_projects_can_add_your_observations?: Till vilka traditionella projekt passar dina fynd?
