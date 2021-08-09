@@ -145,7 +145,6 @@ eo:
   add_another_section: Aldoni Alian Paragrafon
   add_batch: Aldoni batch
   add_comment: Aldoni Komenton
-  add_countries: Aldoni landojn
   add_edit_flags: Aldoni/Redakti Flagojn
   add_editor: Aldoni Redaktoron
   add_link: Aldoni Ligilon
@@ -491,7 +490,6 @@ eo:
   copyright_holder: Posedanto de la aŭtorrajtoj
   copyright_info: Aŭtorrajta Informo
   copyright_info_and_more: Informo pri Aŭtorrajtoj kaj Plu
-  countries: Landoj
   create: Krei
   create_a_guide: Krei Gvidilon
   create_a_new_field: Krei Novan Kampon
@@ -549,7 +547,9 @@ eo:
   date_picker:
     closeText: Fermi
     currentText: Hodiaŭ
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Antaŭen
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Sekven
   date_time: Dato/tempo
   day: Tago
@@ -794,6 +794,7 @@ eo:
   leave: Foriri
   leave_a_comment: Lasi komenton
   leave_this_project: Forlasi ĉi tiun projekton
+  #Terminal nodes in a taxonomic tree
   leaves: folioj
   lexicon: Terminaro
   lexicons:
@@ -1390,7 +1391,6 @@ eo:
   project_was_successfully_created: Sukcese kreis projekton.
   project_was_successfully_updated: Sukcese ĝisdatigis projekton.
   projects: Projektoj
-  projects_from_everywhere: Projektoj Ĉie Ajn
   projects_from_place: "Projektoj ĉe %{place}"
   projects_in_x: "Projektoj en %{x}"
   projects_you_admin: Projektoj Administrataj de Vi
@@ -1471,7 +1471,6 @@ eo:
   resolver_said_x_html: '<span class="meta">%{resolver} diris,</span> "%{x}"'
   restore: Restarigi
   restoring: Restariganta...
-  results: rezultoj
   reviewed: Reviziita
   role: Rolo
   row_singular_or_plural: Vico(j)
@@ -1680,7 +1679,6 @@ eo:
   uploader:
     tooltips:
       remove_photo: Forigi foton
-  US_states: Usonaj Ŝtatoj
   user: Uzanto
   user_autocomplete_placeholder: kueda, simon123, ktp.
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -1723,8 +1721,6 @@ eo:
   whats_this?: Kio estas ĉi tio?
   when: Kiam
   where: Kie
-  where_do_x_live: Kie vivas %{taxa}?
-  where_does_x_live: Kie vivas %{taxa}?
   where_were_they?: Kie ili estis?
   where_were_you?: Kie vi estis?
   white: blanka
