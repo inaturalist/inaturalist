@@ -212,7 +212,6 @@ id:
   add_comma_separated_tags: "Tambahkan tag dipisahkan dengan koma"
   add_comment: Tambahkan Komentar
   add_conservation_status: menambahkan status konservasi
-  add_countries: Tambahkan Negara
   add_custom_project_fields: Menambahkan kolom proyek kustom
   add_edit_flags: Tambahkan/Sunting Tanda
   add_editor: Tambah Editor
@@ -566,6 +565,7 @@ id:
   badges: Lencana
   batch: Jamak
   batch_edit: Sejumlah perubahan
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Perubahan taksa sejumlah %{x}"
   batch_operations: Beberapa operasi
   be_the_first_to_fave_this_observation: Jadilah yang pertama untuk menyukai pengamatan ini!
@@ -869,7 +869,6 @@ id:
   couldnt_change_your_password: "tidak dapat merubah kaa sandi anda: %{e}"
   couldnt_find_a_user_matching_x_param: "tidak dapat menemukan penggunan yang sesuai %{id}"
   couldnt_find_that_taxon: tidak dapat menemukan taksa tersebut
-  countries: Negara
   create: Buat
   create_a_guide: Membuat panduan
   create_a_new_field: Membuat halaman baru
@@ -1033,7 +1032,9 @@ id:
   date_picker:
     closeText: Tutup
     currentText: Hari ini
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: sebelum
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Selanjutnya
     range: Rentang
   date_range: Rentang Waktu
@@ -1619,6 +1620,7 @@ id:
   least_concern: kekhawatiran paling kecil
   leave_a_comment: Tinggalkan komentar
   leave_this_project: Tinggalkan projek ini
+  #Terminal nodes in a taxonomic tree
   leaves: meninggalkan
   legacy_authentication_notice_html: |
     Sepertinya Anda menggunakan password dari situs versi lama.
@@ -1973,7 +1975,6 @@ id:
   'no': 'Tidak'
   no_assessments_have_been_added_to_this_project_yet: Tidak ada penilaian telah ditambahkan ke proyek ini.
   no_comments_yet: Belum ada komen.
-  no_countries_added_yet: Belum ada negara yang ditambahkan.
   no_creative_commons_flickr_photos_tagged_x: 'Tidak ada foto umum kreatif flickr ditandai "%{x}"'
   no_curators_set: Tidak ada kurator ditetapkan
   no_curators_yet: Belum ada kurator!
@@ -2181,7 +2182,6 @@ id:
   password_confirmation: 'Konfirmasi kata sandi'
   paste: Tempel
   paste_in_a_bunch_of_names: Tempel di sejumlah nama, 1 per baris, dan tekan tombol!
-  paste_in_a_comma_separated_list: Tempel pada koma-terpisah pada daftar negara
   people: Orang
   people_following_user: "Para pengikut %{user}"
   people_user_follows: "Orang %{user} Ikuti"
@@ -2529,7 +2529,6 @@ id:
   resolve_this_flag: Selesaikan kembali penanda ini
   resolved: Terselesaikan
   resolved_by: Terselesaikan oleh
-  results: hasil
   reviewed: telah dilihat kembali
   role: Peran
   rotate_left: Putar kekiri
@@ -2908,7 +2907,6 @@ id:
       add: Tambah pengamatan
   url_identifier_of_a_project_derived_from: "URL / pengidentikasi dari sebuah proyek yang berasal dari beberapa sumber daya eksternal"
   url_of_this_taxon_on_the_source_website: URL pada takson ini pada sumber website
-  US_states: Negara Bagian Amerika Serikat
   usage_stats: Statistik penggunaan
   use_this_form_to_create_a_new: |
     Gunakan formulir ini untuk membuat rancangan baru perubahan taksonomi menggambarkan diusulkan dipisah, menggabungkan atau swap pada taksa aktif untuk kemudian dilakukan.
