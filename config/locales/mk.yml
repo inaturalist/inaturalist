@@ -109,7 +109,6 @@ mk:
   add_comma_separated_tags: "Додај ознаки одделени со запирки"
   add_comment: Додај коментар
   add_conservation_status: Додај заштитен статус
-  add_countries: Додај земји
   add_custom_project_fields: Додај свои проектни полиња
   add_editor: Додај уредник
   add_description: "Додај го %{description_name}"
@@ -302,6 +301,7 @@ mk:
   back_to_your_projects: Назад на вашите проекти
   batch: Збир
   batch_edit: Збирно уредување
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Збурно уредување на таксони за %{x}"
   batch_operations: Збирни постапки
   bg_color: заднинска боја
@@ -391,7 +391,6 @@ mk:
     no_known_copyright_restrictions: "%{name}, нема познати авторскоправни ограничувања (%{license_name})"
     public_domain: јавна сопственост
     copyright: авторски права
-  countries: Земји
   create: Создај
   create_a_guide: Создај водич
   create_a_new_field: Создај ново поле
@@ -446,7 +445,9 @@ mk:
   date_picker:
     closeText: Затвори
     currentText: Денес
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Прет
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: След
   date_time: Датум/време
   day: Ден
@@ -631,6 +632,7 @@ mk:
   least_concern: со најмала загриженост
   leave_a_comment: Напишете коментар
   leave_this_project: Напушти го проектов
+  #Terminal nodes in a taxonomic tree
   leaves: напушта
   lexicon: Лексикон
   lexicons:
@@ -807,7 +809,6 @@ mk:
   next_page: Следна страница
   'no': 'Не'
   no_comments_yet: Засега нема коментари.
-  no_countries_added_yet: Засега нема додадени земји
   no_curators_set: Нема зададени кустоси
   no_curators_yet: Засега нема кустоси!
   no_flags: Овој пат нема обележувачи
@@ -899,7 +900,6 @@ mk:
   password: Лозинка
   password_confirmation: 'Потврда на лозинката'
   paste: Вметни
-  paste_in_a_comma_separated_list: Тука пекопирајте список на земји, одделени со запирки
   people: Луѓе
   people_following_user: "Луѓе што го следат корисникот %{user}"
   people_user_follows: "Луѓе што ги следи %{user}"
@@ -1116,7 +1116,6 @@ mk:
   remove_selected: Отстрани го одбраното
   remove_tags: Отстрани ги ознаките
   resolve: Реши
-  results: ставки
   rules_types:
     must_be_in: мора да биде во таксон
   said: рече
@@ -1298,7 +1297,6 @@ mk:
   updated_photo: Подновена слика
   upload: Подигни
   upload_a_csv_file: Подигни CSV
-  US_states: Сој. држави од САД
   use_this_form_to_create_a_new: |
     Образецов е предвиден за правење на нацрт за нова таксономска промена. Притоа опишете го предложеното одвојување, спојување или замена на активните таксони што треба подоцна да се спроведе.
   user: Корисник
@@ -1368,8 +1366,6 @@ mk:
   when_did_you_see_it?: Кога го видовте?
   when_did_you_see_them?: <em>Кога</em> ги видовте?
   where: Каде
-  where_do_x_live: Каде живеат %{taxa}?
-  where_does_x_live: Каде живее %{taxa}?
   where_were_they?: Каде беа?
   where_were_you?: Каде бевте?
   white: бела
