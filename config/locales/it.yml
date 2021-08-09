@@ -269,7 +269,6 @@ it:
   add_comma_separated_tags: "Aggiungi etichette separate da virgole"
   add_comment: Aggiungi un commento
   add_conservation_status: Aggiungi stato di conservazione
-  add_countries: Aggiungi Paesi
   add_custom_project_fields: Aggiungi campi personalizzati per il progetto
   add_edit_flags: Aggiungi/Modifica contrassegni
   add_editor: Aggiungi Editor
@@ -694,6 +693,7 @@ it:
     Basandosi sull'evidenza, il taxon della comunità può essere ancora confermato o migliorato?
   batch: Gruppo
   batch_edit: Modifica in gruppo
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Modifica in gruppo i taxa %{x}"
   batch_operations: Operazioni a blocchi
   be_the_first_to_fave_this_observation: Aggiungi per primo questa osservazione ai preferiti!
@@ -1088,7 +1088,6 @@ it:
   couldnt_change_your_password: "Impossibile cambiare la password: %{e}"
   couldnt_find_a_user_matching_x_param: "Impossibile trovare un utente che corrisponde a %{id}"
   couldnt_find_that_taxon: Impossibile trovare il taxon.
-  countries: Stati
   create: Crea
   create_a_guide: Crea una guida
   create_a_new_field: Crea un nuovo campo
@@ -1286,7 +1285,9 @@ it:
   date_picker:
     closeText: Chiudi
     currentText: Oggi
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Prec
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Successivo
     range: Intervallo
   date_range: Intervallo di date
@@ -2012,6 +2013,7 @@ it:
   last_active_with_date: "Attivo l'ultima volta: %{date}"
   last_confirmed_observation: Ultima osservazione confermata
   last_observation: Ultima osservazione
+  last_observation_caps: ULTIMA OSSERVAZIONE
   last_seen: Vista l'ultima volta
   last_year: L'anno scorso
   lat: Lat
@@ -2043,6 +2045,7 @@ it:
   leave: Lascia
   leave_a_comment: Lascia un commento
   leave_this_project: Abbandona questo progetto
+  #Terminal nodes in a taxonomic tree
   leaves: foglie
   legacy_authentication_notice_html: |
     Sembra che tu stia utilizzando una password di una versione precedente di questo sito.
@@ -2548,7 +2551,6 @@ it:
   no_assessments_have_been_added_to_this_project_yet: Nessuna valutazione è stata ancora aggiunta al progetto.
   no_but_it_is_a_member_of_taxon: "No, ma questo è un membro di %{taxon}"
   no_comments_yet: Ancora nessun commento.
-  no_countries_added_yet: Ancora nessuno stato aggiunto
   no_creative_commons_flickr_photos_tagged_x: 'Nessuna Foto Creative Commons di Flickr è stata contrassegnata "%{x}"'
   no_curators_set: Nessun curatore stabilito
   no_curators_yet: Ancora nessun curatore!
@@ -2944,7 +2946,6 @@ it:
   password_confirmation: 'Conferma della password'
   paste: Incolla
   paste_in_a_bunch_of_names: Incolla una lista di nomi, 1 per riga, e premi il pulsante!
-  paste_in_a_comma_separated_list: Incolla come lista di stati separata da virgole
   people: Persone
   people_following_user: "Persone stanno seguendo %{user}"
   people_user_follows: "Persone che %{user} segue"
@@ -3548,7 +3549,6 @@ it:
   projects: Progetti
   projects_description: |
     I progetti ti permettono di unire le tue osservazioni con altre persone su %{site_name}. Se stai per avviare un progetto di citizen science o semplicemente vuoi annotarti le specie di uccelli presenti in un parco vicino a te, i Progetti fanno per te.
-  projects_from_everywhere: Progetti da tutti i luoghi
   projects_from_place: "Progetti in %{place}"
   projects_in_x: "Progetti in %{x}"
   #"admins" is equivalent to "administrates"
@@ -3827,7 +3827,6 @@ it:
   restart: Riavvia
   restore: Ripristina
   restoring: Ripristino in corso...
-  results: risultati
   review_all: Controlla tutto
   reviewed: Revisionata
   revoke: Revoca
@@ -4435,17 +4434,16 @@ it:
   to_add_ids: per aggiungere ID
   to_configure_your_widget: per configurare il tuo widget.
   to_recipient: a
-  to_suggest_an_identification: per suggerire un'identificazione
   today: Oggi
   too_many_results: Troppi risultati
   too_many_taxa_to_render: |
     Questa richiesta ha restituito troppi taxa per vederli in una volta sola. Prova ad aggiungere qualche filtro
   tools: Strumenti
   top_contributors: I migliori collaboratori
-  top_identifier: Il miglior identificatore
+  top_identifier_caps: MIGLIOR IDENTIFICATORE
   top_identifiers: I migliori identificatori
   top_identifiers_of_taxon: Migliori identificatori per %{taxon}
-  top_observer: Il miglior osservatore
+  top_observer_caps: MIGLIOR OSSERVATORE
   top_observers: Migliori osservatori
   tos_privacy_guidelines_label: |
     Accetto i <a href="/terms" target="_blank">Termini di Servizio</a> e l'
@@ -4455,7 +4453,8 @@ it:
   totals: Totali
   total_members: Totale membri
   total_observations: Totale osservazioni
-  total_species_observed: Totale specie osservate
+  total_observations_caps: OSSERVAZIONI TOTALI
+  total_species_observed_caps: TOTALE SPECIE OSSERVATE
   total_unique_observers: Totale osservatori unici
   translated_languages: Lingue tradotte
   'true': 'Vero'
@@ -4562,7 +4561,6 @@ it:
     other: Caricamento foto %{num} di %{count}...
   url_identifier_of_a_project_derived_from: "URL / identificatore di un progetto derivato da qualche risorsa esterna"
   url_of_this_taxon_on_the_source_website: URL di questo taxon sul sito web sorgente
-  US_states: Stati degli Stati Uniti
   usage_stats: Statistiche di utilizzo
   use_name_as_a_placeholder: |
     Usa <span class='ac-placeholder'>"%{name}"</span> come segnaposto
@@ -4757,9 +4755,10 @@ it:
   welcome_to_inat: "Benvenuto/a su %{site_name}!"
   welcome_to_guides: "Benvenuto/a sulle Guide di %{site_name}"
   welcome_to_x_project: "Benvenuto/a nel progetto %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Siamo abbastanza sicuri che è in %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Ci dispiace ma la tua importazione in blocco di %{filename} è fallita."
   what: Che
@@ -4774,8 +4773,6 @@ it:
   when_did_you_see_it?: Quando l'hai visto?
   when_did_you_see_them?: <em>Quando</em> l'hai visto?
   where: Dove
-  where_do_x_live: Dove vive %{taxa}?
-  where_does_x_live: Dove vive il %{taxa}?
   where_were_they?: Dove erano?
   where_were_you?: Tu dov'eri?
   which_projects_can_add_your_observations?: Quali progetti tradizionali possono aggiungere le tue osservazioni?
