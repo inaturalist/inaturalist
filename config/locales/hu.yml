@@ -506,7 +506,9 @@ hu:
   date_picker:
     closeText: Bezárás
     currentText: Ma
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Előző
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Következő
     range: Tartomány
   date_range: Dátumtartomány
@@ -1189,10 +1191,8 @@ hu:
   #As in the title of a book or a blog post
   title: név
   today: Ma
-  top_identifier: Legtöbbször azonosította
   top_identifiers: Legtöbbször azonosította
   top_identifiers_of_taxon: '%{taxon} taxon legaktívabb meghatározói'
-  top_observer: Legtöbbször megfigyelte
   top_observers: Legtöbbször megfigyelte
   tos_privacy_guidelines_label: |
     Egyetértek a <a href="/terms" target="_blank">Felhasználási feltételekkel</a> és az <a href="/privacy" target="_blank">Adatvédelmi nyilatkozattal</a>, és átolvastam a <a href="/pages/community+guidelines" target="_blank">Közösségi irányelveket</a>.
@@ -1258,9 +1258,10 @@ hu:
   w_photos_only: fotókkal
   was_it_captive_cultivated?: "Fogságban lévő vagy kultivált?"
   welcome_back!: Köszöntünk ismét!
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: 'Nagy bizonyossággal e %{rank} tagja:'
   what: Mi
   what_did_you_see: Mit láttál?
