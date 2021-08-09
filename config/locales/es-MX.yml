@@ -47,6 +47,9 @@ es-MX:
   x_misidentifications_of_this_species:
     one: "1 error de identificación de esta especie"
     other: "%{count} errores de identificación de esta especie"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} identificaciones erroneas de espeies en este género"
+    other: "%{count} identificaciones erróneas de especies en este género"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -214,6 +217,10 @@ es-MX:
   action: Acción
   actions: Acciones
   active: Activo
+  #Status of a complete set that is available for use
+  active_complete_set_status: Activo
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Activo
   active_users: Usuarios activos
   activity: Actividad
   activity_settings: Configuración de la actividad
@@ -244,8 +251,10 @@ es-MX:
   add_an_observation_to_project_html: Añadir una observación a %{project}
   add_annotations_for_x: Añade anotaciones para "%{x}"
   add_annotations_for_controlled_attribute:
+    sex: Agrega anotaciones para "Sexo"
     plant_phenology: Añade anotaciones para "fenología de la planta"
     life_stage: Añade anotaciones para "etapa de vida"
+    evidence_of_presence: Añadir Anotaciones para "Evidencia de Presencia"
   add_another_flag: Añade otra advertencia
   add_another_photo: Añade otra foto
   add_another_section: Añade otra sección
@@ -259,7 +268,6 @@ es-MX:
   add_comma_separated_tags: "Añade etiquetas separadas por comas"
   add_comment: Añade un comentario
   add_conservation_status: Añade estado de conservación
-  add_countries: Añade países
   add_custom_project_fields: Añade campos a la medida del proyecto
   add_edit_flags: Agrega/edita etiquetas
   add_editor: Agrega editor
@@ -306,11 +314,19 @@ es-MX:
   add_life_stage_larva_annotation: 'Añade anotación "etapa de vida: larva"'
   add_life_stage_juvenile_annotation: 'Añade anotación "etapa de vida: juvenil"'
   add_life_stage_egg_annotation: 'Añade anotación "etapa de vida: huevo"'
+  add_evidence_of_presence_organism_annotation: 'Añadir anotación "Evidencia de Presencia: organismo"'
+  add_evidence_of_presence_feather_annotation: 'Añadir anotación "Evidencia de Presencia: pluma(s)"'
+  add_evidence_of_presence_scat_annotation: 'Añadir anotación "Evidencia de Presencia: excreta(s)"'
+  add_evidence_of_presence_track_annotation: 'Añadir anotación "Evidencia de Presencia: huella(s)"'
+  add_evidence_of_presence_bone_annotation: 'Añadir anotación "Evidencia de Presencia: hueso(s)"'
+  add_evidence_of_presence_molt_annotation: 'Añadir anotación "Evidencia de Presencia: muda(s)"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Añadir relación'
   #As in a Guide Section
   add_section: Añade sección
   add_several_observations_at_once: Añade varias observaciones al mismo tiempo.
+  add_sex_female_annotation: 'Agregar anotación "Sexo: Hembra"'
+  add_sex_male_annotation: 'Añade anotación "Sexo: Macho"'
   add_sex_cannot_be_determined_annotation: 'Añadir anotación "Sexo: No se puede determinar"'
   add_some_now: Añade unas ahora
   add_tag: Añade etiqueta
@@ -435,6 +451,9 @@ es-MX:
     x_actinopterygii:
       one: "1 pez con aletas radiadas"
       other: "%{count} peces con aletas radiadas"
+    x_reptilia:
+      one: "1 reptil"
+      other: "%{count} reptiles"
     x_aves:
       one: "1 ave"
       other: "%{count} aves"
@@ -673,6 +692,7 @@ es-MX:
     Basándose en la evidencia, ¿Se puede confirmar o mejorar el ID de la comunidad ?
   batch: Grupo
   batch_edit: Edita grupo
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Edición de datos por lote para las especies o grupos de la %{x}"
   batch_operations: Operaciones de grupo
   be_the_first_to_fave_this_observation: Se el primero en decir que le agrada esta observación.
@@ -899,6 +919,24 @@ es-MX:
     <span class="comprehensive_notice" data-tip="%{tip}">Lista exhaustiva</span>
     de %{taxon}
   comprehensive_list: Lista exhaustiva
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Modelo de "Visión por Computador"
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Incluido
+  computer_vision_model_included_desc: |
+    El Modelo de "Visión por Computador" actual conoce este taxón, así que podría
+    incluirse en sugerencias automatizadas con la etiqueta "Visualmente Similar".
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Pendiente
+  computer_vision_model_pending_desc: |
+    El Modelo de "Visión por Computador" actual no reconoce este taxón, así que aunque 
+    pueda ser incluido en sugerencias automatizadas con la etiqueta "Cercano",
+    no tendrá la etiqueta "Visualmente Similar". Mientras que los requisitos para
+    inclusión del modelo cambian con cada versión, generalmente esto se basa en el
+    número de observaciones, así para aumentar la probabilidad de que este taxón sea
+    incluido durante el siguiente entrenamiento del modelo, agrega o identifica más observaciones
+    de este taxón.
   concept_status: Estado del concepto
   configure: Configurar
   configure_a_widget_to_show: Configura el widget para mostrar las observaciones de %{site_name} en tu sitio web o blog. También puedes incluir el estilo CSS en la <code>&lt;head&gt;</code> de tu código HTML. Sienteté libre de modificar el CSS.
@@ -956,6 +994,17 @@ es-MX:
   contributor_cannot_be_found: El contribuidor del proyecto no pudo ser encontrado
   contributors_to_project: "Contribuciones a %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Cualquiera
+    sex: Sexo
     male: Masculino
     female: Femenino
     plant_phenology: Fenología de la planta
@@ -977,6 +1026,21 @@ es-MX:
     alive: Vivo
     dead: Muerto
     cannot_be_determined: No se puede determinar
+    evidence_of_presence: Evidencia de presencia
+    #As in the feather on a bird
+    feather: Pluma(s)
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organismo(s)
+    #Fecal matter, not regurgitated matter
+    scat: Excreta(s)
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Huella(s)
+    #Endoskeletal remains, like a deer bone
+    bone: Hueso(s)
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Muda(s)
   controlled_term_definitions:
     alive: El organismo está vivo y no muestra signos de muerte inminente
     dead: El organismo está muerto o muestra signos de muerte inminente
@@ -986,6 +1050,13 @@ es-MX:
     no_evidence_of_flowering: Las imágenes no muestran evidencias de estructuras reproductivas
     teneral: Adulto que ha emergido de la pupa recientemente pero no ha alcanzado su forma adulta final
     cannot_be_determined: No se puede determinar a partir de la evidencia proporcionada
+    feather: Una o más plumas no unidas a un organismo
+    organism: Organismo completo o una parte del mismo
+    scat: Materia fecal (no pellets de lechuzas/búhos u otro material regurgitado)
+    track: Impresión(es) en suelo o nieve hecha por el organismo
+    bone: |
+      Principalmente restos del endoesqueleto/huesos; por otro lado, la exposición parcial de huesos en un organismo intacto, debe etiquetarse "organismo"
+    molt: Piel descartada o exoesqueleto
   controls: Controles
   convert: Convierte
   coordinate_systems: Sistemas de coordenadas
@@ -1030,7 +1101,6 @@ es-MX:
   couldnt_change_your_password: "Tu contraseña no pudo ser modificada: %{e}"
   couldnt_find_a_user_matching_x_param: "No se pudo encontrar al usuario con parametros: %{id}"
   couldnt_find_that_taxon: No se encontro la especie o grupo.
-  countries: Países
   create: Crear
   create_a_guide: Crea una guía
   create_a_new_field: Crea un nuevo campo
@@ -1070,6 +1140,10 @@ es-MX:
     Debes explicar por qué quieres ser curador
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: '¿Por qué quieres ser curador?'
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Si quieres editar la taxonomía de iNaturalist, por favor proporciona un ejemplo o dos
+    de cambios taxonómicos que te gustaría realizar, e incluye enlaces a las autoridades taxonómicas pertinentes tal como establece la Guía del curador
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Si quieres editar nombres comunes, por favor proporciona un ejemplo o dos de los cambios que te gustaría hacer
@@ -1218,13 +1292,16 @@ es-MX:
       december: diciembre
   date_is_accurate: La fecha es correcta
   date_joined: Fecha de inscripción
+  date_obscured_notice: Fecha oculta para proteger la privacidad personal o del organismo
   date_observed: Fecha de la obs.
   date_observed_: Fecha de observación
   date_observed_on: fecha que se observo
   date_picker:
     closeText: Cerrar
     currentText: Hoy
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Anterior
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Siguiente
     range: Distribución
   date_range: Intervalo de fechas
@@ -1548,6 +1625,8 @@ es-MX:
   file_should_be_in_the_following_format: "El archivo debería tener el siguiente formato: nombre de la especie o grupo, descripción"
   fill_out_project_observation_fields: Llena los campos de observación del proyecto
   fill_out_your_profile: Escribe tu perfil
+  #The name of a computer file
+  filename: Nombre de archivo
   filter: Filtro
   filter_by_curator_identification: Filtrar por identificaciones de curador
   filter_by_place: Filtra por lugar
@@ -1774,6 +1853,8 @@ es-MX:
   highlights_and_stats_from_year_on_site: "Destacados y estadísticas de %{year} en %{site}"
   history: Historial
   home: Inicio
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Horas para ajustar:"
   however_there_were_some_issues: "Sin embargo, hubo algunos problemas: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: No lo sé, pero estoy seguro de que es %{taxon}
   icon: Ícono
@@ -1857,7 +1938,13 @@ es-MX:
   in_the_past: En el pasado
   in_the_past_week: En la semana pasada
   inactive: inactiva
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Inactivo
   inactive_taxon: Especie o grupo inactivo
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Inactivo
   inactive_taxon_concepts_are: Conceptos inactivos son las especies o grupos que taxonómicamente han sido cambiados por otro nombre. Los conceptos inactivos se mantienen para mantener la historia de la especies o grupo y la compatibilidad con otros sitios.
   inappropriate_content: '¿Contenido inapropiado?'
   inat_account_action: "%{site_name} &#58; Cienta &#58; %{action_name}"
@@ -1958,6 +2045,13 @@ es-MX:
   leaderboard: Los más activos
   leaderboard_for_x: "Los más activos de %{x}"
   leaderboards: Los más activos
+  leaderboard_most:
+    species_in_month_year: Mayor cantidad de especies en %{month_year}
+    species_in_year: Mayor cantidad de especies en %{year}
+    observations_in_month_year: Mayor cantidad de observaciones en %{month_year}
+    observations_in_year: Mayor cantidad de observaciones en %{year}
+    identifications_in_month_year: Mayor número de identificaciones en %{month_year}
+    identifications_in_year: Mayor cantidad de identificaciones en %{year}
   leading: Principal
   learn: Aprende
   learn_about_the_species_live_in: Aprende sobre las especies que viven en
@@ -1969,6 +2063,7 @@ es-MX:
   leave: Dejar
   leave_a_comment: Deja un comentario
   leave_this_project: Sal de este proyecto
+  #Terminal nodes in a taxonomic tree
   leaves: últimos
   legacy_authentication_notice_html: |
     Parece que estas usando una contraseña de una versión antigua de este sitio web.
@@ -2022,6 +2117,7 @@ es-MX:
     swedish: Sueco
     tagalog: Tagalo
     tahitian: Tahitiano
+    thai: Tailandés
     tokelauan: Tokelauano
     turkish: Turco
     waray_waray: Samareño
@@ -2107,6 +2203,7 @@ es-MX:
     fr-CA: Francés (Canadá)
     gl: Gallego
     he: Hebreo
+    hu: Húngaro
     id: Indonesio
     it: Italiano
     ja: Japonés
@@ -2150,6 +2247,8 @@ es-MX:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "¿Cerrar sesión de %{site_name}?"
   log_scale_label: Registro
+  #Status message shown while logging in
+  logging_in: Iniciando sesión ...
   login_slash_username: Login / nombre de usuario
   logo:
     logo: Logotipo
@@ -2324,6 +2423,8 @@ es-MX:
     time_hours: "h:mm a"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM AAAA"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'AA"
   month: Mes
   monthly_supporter_since_date_html: |
     <a href="%{url}">Patrocinador mensual</a> desde %{date}
@@ -2354,10 +2455,20 @@ es-MX:
   multiple_select_option: '--- Múltiple ---'
   multiple_taxa_for_taxon_change: "Más de una especie o grupo (entrada de datos para intercambiar/mezclar, salida de datos para separar)"
   multiple_taxon_ids_separated_by_commas: 'IDs múltiples separados por comas, p.e. 123,654'
+  must_be_in_taxon: debe estar en el taxón %{taxon}
+  must_be_not_in_taxon: no debe estar en el taxón %{taxon}
+  must_be_not_observed_by_user: no debe ser observado por %{user}
+  must_be_not_observed_in_place: no debe ser observado en %{place}
   must_be_observed_after: debe observarse después de %{operand}
   must_be_observed_before: debe observarse antes de %{operand}
+  must_be_observed_by_user: debe ser observado por %{user}
+  must_be_observed_in_place: debe ser observado en %{place}
   must_be_less_than_x_MB: "Debe pesar menos de %{x}MB"
   must_have_observation_field: "debe completar el campo '%{operand}' en la observación"
+  must_have_photos: debe tener fotos
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "debe tener el nivel de calidad: %{grades}"
+  must_have_sounds: debe tener sonidos
   must_have_x: "debe tener %{x}"
   mute_user: Silenciar usuario
   mute_removed: Silenciamiento eliminado
@@ -2452,15 +2563,18 @@ es-MX:
   newly_observed_species: Especie observada recientemente
   newly_observed_species_in_year: "Nuevas especies añadidas en %{year}"
   next: Sig
+  next_date_short: Siguiente
   next_observation: Siguiente observación
   next_page: Siguiente página
+  next_page_short: Siguiente
   next_photo: Foto siguiente
+  next_post_short: Siguiente
   next_tab: Siguiente pestaña
+  next_taxon_short: Siguiente
   'no': 'No'
   no_assessments_have_been_added_to_this_project_yet: Ninguna evaluación ha sido añadida a este proyecto..
   no_but_it_is_a_member_of_taxon: "No, pero es un miembro de %{taxon}"
   no_comments_yet: No hay comentarios aún.
-  no_countries_added_yet: No se han añadido países
   no_creative_commons_flickr_photos_tagged_x: 'No hay fotos en Flickr etiquetadas con Creative Commons para "%{x}"'
   no_curators_set: No hay curadores aún
   no_curators_yet: '¡No hay curadores aún!'
@@ -2523,6 +2637,8 @@ es-MX:
   no_sections_have_been_added_to_this_assessments_yet: Aún no se han añadido secciones a esta evaluación.
   no_species_have_been_listed: '¡Aún no hay una lista de especies para este lugar!'
   no_species_on_this_list: '¡Aún no hay especies en esta lista!'
+  no_species_on_this_list_for_owner: |
+    Puedes empezar a añadir especies a esta lista usando la herramienta "Añadir a tu lista" a la derecha.
   no_subject_parens: "(Sin tema)"
   no_suggestions_available: No hay sugerencias disponibles
   no_summary_from_wikipedia: No hay resumen de Wikipedia
@@ -2594,6 +2710,8 @@ es-MX:
   observation_brief_something_on_day_at_time: "Algo el %{day} a las %{time}"
   observation_brief_something_on_day_at_time_by_user: "Algo el %{day} a las %{time} por %{user}"
   observation_brief_something_on_day_by_user: "Algo el %{day} por %{user}"
+  observation_brief_something_in_month: "Algo en %{month}"
+  observation_brief_something_in_month_by_user: "Algo en %{month} por %{user}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
   observation_brief_something_from_place_by_user: "Algo desde %{place} de %{user}"
@@ -2601,10 +2719,14 @@ es-MX:
   observation_brief_something_from_place_on_day_by_user: "Algo desde %{place} el %{day} de %{user}"
   observation_brief_something_from_place_on_day_at_time: "Algo desde %{place} el %{day} a las %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Algo desde %{place} el %{day} a las %{time} de %{user}"
+  observation_brief_something_from_place_in_month: "Algo de %{place} en %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Algo de %{place} en %{month} por %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} el %{day} a las %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} el %{day} a las %{time} por %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} el %{day} por %{user}"
+  observation_brief_taxon_in_month: "%{taxon} en %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} en %{month} por %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} desde %{place} de %{user}"
@@ -2612,6 +2734,8 @@ es-MX:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} desde %{place} el%{day} de %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} desde %{place} el%{day} a las %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} desde %{place} el %{day} a las %{time} de %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} de %{place} en %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} de %{place} en %{month} por %{user}"
   observations_by_category: "Observaciones por categoría"
   observations_by_app: Observaciones por App
   observations_by_rank: Observaciones por rango
@@ -2724,6 +2848,10 @@ es-MX:
   off_caps: "DESACTIVADO"
   official_blog: Blog oficial
   offline_access_enabled: El acceso sin conexión habilitado
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Tiempo de compensación"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: compensación
   old_observation_form: Antiguó registro de observaciones
   ok: "Aceptar"
   on_caps: "ACTIVA"
@@ -2850,7 +2978,6 @@ es-MX:
   password_confirmation: 'Confirma tu contraseña'
   paste: Pegar
   paste_in_a_bunch_of_names: '¡Pega un grupo de nombres, uno por línea y aprieta el botón!'
-  paste_in_a_comma_separated_list: Pega una lista de países separados por comas
   people: Gente
   people_following_user: "Personas siguiendo a %{user}"
   people_user_follows: "Personas que %{user} sigue"
@@ -2918,6 +3045,8 @@ es-MX:
   place: Lugar
   placeholder: Posición
   place_autocomplete_placeholder: Parque Nacional Zion, Miami, etc.
+  place_create_quota_exceeded: |
+    Has excedido el número de lugares que puedes crear en un periodo de 24 horas (%{quota})
   place_deleted: Lugar eliminado.
   place_geo:
     geo_planet_place_types:
@@ -3340,6 +3469,8 @@ es-MX:
   places_warning_editing_places_is_slow: |
     La edición de los límites de lugar es una de las mayores fuentes de lentitud en iNat.
     Si puedes evitarlo, no añadas, cambies o elimines límites a menos que sea absolutamente necesario.
+  places_warning_quota: |
+    Sólo puedes crear tres lugares por día.
   places_warning_the_future: |
     Por si sirve de algo, en el futuro tendremos que restringir las condiciones para añadir lugares, dada la tasa actual de crecimiento de iNat.
   plants: Plantas
@@ -3376,11 +3507,15 @@ es-MX:
   preview_observations_with_these_observation_requirements: Previsualizar Observaciones con estos Requerimientos de Observación
   preview_of_synced_observation: "<strong>Previo</strong> de la observación.  <a href=\"%{url}\">¿Revertir?</a>"
   previewing: "Vista previa..."
+  previous_date_short: Anterior
   prev: Ant
   previous_observation: Observación Anterior
   previous_page: Página previa
+  previous_page_short: Anterior
   previous_photo: Foto anterior
+  previous_post_short: Anterior
   previous_tab: Pestaña anterior
+  previous_taxon_short: Anterior
   print_verb: Imprimir
   privacy: Normativa de privacidad
   private: Privada
@@ -3446,7 +3581,6 @@ es-MX:
   projects: Proyectos
   projects_description: |
     Los proyectos son una forma de agrupar tus observaciones con las de otras personas en %{site_name}.
-  projects_from_everywhere: Proyectos de todas partes
   projects_from_place: "Proyectos de %{place}"
   projects_in_x: "Proyectos en %{x}"
   #"admins" is equivalent to "administrates"
@@ -3476,6 +3610,9 @@ es-MX:
   ranks:
     stateofmatter: Estado de la materia
     kingdom: Reino
+    x_kingdoms:
+      one: Reino
+      other: Reinos
     subkingdom: Subreino
     phylum: Filo
     x_phyla:
@@ -3722,7 +3859,6 @@ es-MX:
   restart: Reiniciar
   restore: Restaurar
   restoring: Restaurando...
-  results: Resultados
   review_all: Revisar todas
   reviewed: Revisada
   revoke: Revocar
@@ -4337,17 +4473,14 @@ es-MX:
   to_add_ids: para agregar identificaciones
   to_configure_your_widget: para configurar tu widget.
   to_recipient: a
-  to_suggest_an_identification: sugerir una identificación
   today: Hoy
   too_many_results: Demasiados resultados
   too_many_taxa_to_render: |
     Esta consulta devuelve demasiados taxa por lo que no pueden ser mostrados todos al mismo tiempo. Intente añadiendo más filtros.
   tools: Herramientas
   top_contributors: Los principales contribuyentes
-  top_identifier: Identificador superior
   top_identifiers: Los principales identificadores
   top_identifiers_of_taxon: Identificadores principales de %{taxon}
-  top_observer: Mayor observador
   top_observers: Mejores observadores
   tos_privacy_guidelines_label: |
     Acepto los <a href="/terms" target="_blank">Términos de servicio</a> y la <a href="/privacy" target="_blank">Política de privacidad</a>, y he revisado los <a href="/pages/community+guidelines" target="_blank">Lineamientos de la comunidad</a>.
@@ -4355,7 +4488,6 @@ es-MX:
   totals: Totales
   total_members: Total de miembros
   total_observations: Total de observaciones
-  total_species_observed: El total de especies observadas
   total_unique_observers: Total de observadores únicos
   translated_languages: Lenguajes traducidos
   'true': 'Sí'
@@ -4462,7 +4594,6 @@ es-MX:
     other: Subiendo %{num} de %{count} fotos...
   url_identifier_of_a_project_derived_from: "Dirección web / identificador del proyecto derivado de fuentes externas"
   url_of_this_taxon_on_the_source_website: Enlace de esta especie o grupo en el sitio web fuente
-  US_states: Estados de Estados Unidos
   usage_stats: Estadísticas de uso
   use_name_as_a_placeholder: |
     Usa <span class='ac-placeholder'>"%{name}"</span> como un marcador de posición
@@ -4473,6 +4604,9 @@ es-MX:
   use_unique_file_names_for_separate_uploads: Usa nombres únicos de archivos para subidas separadas
   use_well_formed_csv: |
     Use archivos CSV bien formados. Esto significa que el texto con comas debe estar encerrado con dobles comillas. La mayoría de las hojas de cálculo deben exportar CSV en este formato.
+  used_x_times:
+    one: Usado 1 vez
+    other: Usado %{count} veces
   user: Usuario
   user1_and_user2_faved_this_observation: "%{user1} y %{user2} añadieron esta observación a sus favoritos"
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, y %{x_others} añadieron esta observación a sus favoritos"
@@ -4541,6 +4675,7 @@ es-MX:
   username_or_user_id: Nombre o identificador del usuario
   users: Usuarios
   users_contributions_to_project_html: <a href="%{url}">%{login}</a> contribuciones de %{project_title}
+  users_favorites: "Favoritos de %{user}"
   users_highlights_and_stats_from_year_on_site: "Destacados y estadísticas de %{user} durante %{year} en %{site}"
   users_id: "de %{user}"
   users_latest_observations_on_site: "Últimas observaciones de %{user} en %{site}"
@@ -4653,9 +4788,10 @@ es-MX:
   welcome_to_inat: "¡Bienvenido a %{site_name}!"
   welcome_to_guides: "¡Bienvenido a Guías %{site_name}!"
   welcome_to_x_project: "Bienvenido al proyecto %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Estamos bastante seguros de que está en el %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Lo sentimos, pero tu importación masiva de %{filename} ha fallado."
   what: Qué
@@ -4670,8 +4806,6 @@ es-MX:
   when_did_you_see_it?: '¿Cuándo lo viste?'
   when_did_you_see_them?: <em>¿Cuándo</em> los viste?
   where: Dónde
-  where_do_x_live: '¿Donde viven los %{taxa}?'
-  where_does_x_live: '¿Donde vive el %{taxa}?'
   where_were_they?: <em>¿Dónde</em> se encontraban?
   where_were_you?: <em>¿Dónde</em> estabas?
   which_projects_can_add_your_observations?: '¿Qué proyectos tradicionales pueden añadir tus observaciones?'
@@ -4856,6 +4990,7 @@ es-MX:
   your_default: Predeterminado
   your_default_time_zone: Tu zona de tiempo predeterminada
   your_email_address: Tu dirección de correo
+  your_favorites: Tus favoritos
   your_flickr_account: Tu cuenta de Flickr
   your_flickr_photos_have_been_tagged: '¡Tus fotos de Flickr han sido etiquetadas!'
   your_hard_drive: Tu disco duro
@@ -5123,6 +5258,9 @@ es-MX:
       exporting_all_x_taxa:
         one: Exportando %{count} taxón
         other: Exportando %{count} taxones
+      exporting_x_taxa:
+        one: Exportando %{count} taxón
+        other: Exportando %{count} taxones
       no_observations_found_in_place: No se han encontrado observaciones en %{place}.
       no_observations_found_within_this_taxon_in_place: No se han encontrado observaciones con este taxón en %{place}.
       no_species_found_within_this_taxon_in_place: No se han encontrado especies de este taxón en %{place}.
@@ -5264,6 +5402,18 @@ es-MX:
           one: "%{count} no en común"
           #Count of how many taxa are not present in *all* of several observation searches
           other: "%{count} no en común"
+        #Count of how many taxa are present in an observation search
+        x_total:
+          #Count of how many taxa are present in an observation search
+          one: "%{count} total"
+          #Count of how many taxa are present in an observation search
+          other: "%{count} en total"
+        #Count of how many taxa in several observation searches are present in only one of those searches
+        x_unique:
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          one: "%{count} único"
+          #Count of how many taxa in several observation searches are present in only one of those searches
+          other: "%{count} únicos"
       export:
         choose_columns_desc: Elige las columnas que deseas exportar
         create_a_query_desc_html: |
@@ -5985,8 +6135,12 @@ es-MX:
       index:
         active_desc: Creó una identificación, observación, comentario o mensaje en los 30 días previos.
         android_desc_html: Creado mediante la <a href="%{url}">aplicación de iNaturalist para Android</a>
+        avg_ttcid: Promedio TTCID
+        avg_ttid: Promedio TTID
         identifiers_desc: Añadió un ID a la observación de alguien en este día
         iphone_desc_html: Creado mediante la <a href="%{url}">aplicación de iNaturalist para iPhone</a>
+        med_ttcid: Mediana TTCID
+        med_ttid: Mediana TTID
         new_users_desc: Conectado en este día
         obs_1_day: "Observación (1 día)"
         obs_1_day_desc: "Observaciones creadas en un día solo"
@@ -6005,7 +6159,9 @@ es-MX:
         recent_w_7_obs: Reciente c/ >= 7 obs.
         recent_w_7_obs_desc: Conectado en los 7 días previos y añadió >= 7 observaciones
         time_to_id_desc: Tiempo para identificación (horas, ventana de 1 semana)
+        TTCID: TTCID
         TTCID_desc: Tiempo para recibir una identificación de alguien que coincida con la de la comunidad.
+        TTID: TTID
         TTID_desc: Tiempo para recibir una identificación de alguien más
         TTID_note: |
           Estas estadísticas fueron realizadas para las observaciones creadas para la semana previa, lo que significa que no incluye identificaciones añadidas después de  más de una semana, por lo que las estadísticas parecen más bajas que si se volvieran a realizar en el presente, pero de todas formas deben de proporcionar una medida decente de que tan rápido la comunidad identifica dentro de lapsos de una semana. Estas estadísticas solamente son para observaciones con fotos.
@@ -6152,6 +6308,18 @@ es-MX:
           "Plant Phenology=Flower Budding": Con Yemas Florales
           "Plant Phenology=Flowering": Floración
           "Plant Phenology=Fruiting": Fructificando
+          "Plant Phenology=No Evidence": Sin evidencias
+          "Life Stage=Adult": Adulto
+          "Life Stage=Egg": Huevo(s)
+          "Life Stage=Larva": Larva(s) u oruga(s)
+          "Life Stage=Juvenile": Juvenil(es)
+          "Life Stage=Nymph": Ninfa(s)
+          "Life Stage=Pupa": Pupa o crisálida
+          "Life Stage=Subimago": Subadulto
+          "Life Stage=Teneral": Adulto tierno
+          "Sex=Cannot Be Determined": No se puede determinar
+          "Sex=Female": Hembra
+          "Sex=Male": Macho
           unannotated: Sin anotación
         max_photos_desc: |
           Un taxón solo puede tener %{max} fotos. Deberá eliminar las fotos existentes para agregar más.
@@ -6589,6 +6757,9 @@ es-MX:
     countdown_x_hours:
       one: hora
       other: horas
+    countdown_x_minutes:
+      one: min
+      other: min
     countdown_x_seconds:
       one: s
       other: s
@@ -6702,6 +6873,8 @@ es-MX:
   time:
     am: am
     formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      default: '%d %b %Y %H:%M:%S %z'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d %b %H:%M'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
@@ -6879,6 +7052,7 @@ es-MX:
         place_id: Lugar
         preferred_observation_fields_by: Permite campos de observación de
     errors:
+      format: '%{attribute} %{message}'
       messages:
         accepted: Debe ser aceptado
         blank: No puede quedarse vacío
