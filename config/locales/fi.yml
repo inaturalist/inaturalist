@@ -260,7 +260,6 @@ fi:
   add_comma_separated_tags: "Lisää pilkulla erotellut merkinnät"
   add_comment: Lisää kommentti
   add_conservation_status: Lisää suojelutaso
-  add_countries: Lisää maita
   add_custom_project_fields: Lisää mukautettuja projektikenttiä
   add_edit_flags: Lisää/muokkaa merkintöjä
   add_editor: Lisää muokkaaja
@@ -685,6 +684,7 @@ fi:
     Voiko yhteisön tekemää tunnistusta vielä vahvistaa tai parantaa perustuen näyttöön?
   batch: Erä
   batch_edit: Erän muokkaus
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Massamuokkaa taksoneita kohteelle %{x}"
   batch_operations: Erätoiminnot
   be_the_first_to_fave_this_observation: Ole ensimmäinen tätä suositteleva!
@@ -1042,7 +1042,6 @@ fi:
   couldnt_change_your_password: "Ei voitu vaihtaa salasanaasi: %{e}"
   couldnt_find_a_user_matching_x_param: "Emme löytäneet käyttäjää %{id}"
   couldnt_find_that_taxon: Taksonin löytäminen ei onnistunut.
-  countries: Maat
   create: Luo
   create_a_guide: Luo opas
   create_a_new_field: Luo uusi kenttä
@@ -1247,7 +1246,9 @@ fi:
   date_picker:
     closeText: Sulje
     currentText: Tänään
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Edellinen
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Seuraava
     range: Aikaväli
   date_range: Ajanjakso
@@ -1972,6 +1973,7 @@ fi:
   leave: Poistu
   leave_a_comment: Jätä kommentti
   leave_this_project: Jätä tämä projekti
+  #Terminal nodes in a taxonomic tree
   leaves: lehdet
   legacy_authentication_notice_html: |
     Näyttää siltä, että käytät salasanaa verkkosivuston vanhasta versiosta.
@@ -2439,7 +2441,6 @@ fi:
   no_assessments_have_been_added_to_this_project_yet: Tähän projektiin ei ole vielä lisätty arviointeja.
   no_but_it_is_a_member_of_taxon: "Ei, mutta se kuuluu taksoniin %{taxon}"
   no_comments_yet: Ei vielä kommentteja.
-  no_countries_added_yet: Mitään maata ei vielä lisätty
   no_curators_set: Kuraattoreita ei asetettu
   no_curators_yet: Ei vielä kuraattoreita!
   no_description: Ei kuvausta
@@ -3327,7 +3328,6 @@ fi:
   projects_description: |
     Projektien avulla voit yhdistää havaintosi muiden ihmisten kesken %{site_name}issa.
     Projekteilla voit esimerkiksi käynnistää kansalaistiedehankkeen tai pitää kirjaa naapuruston linnuista.
-  projects_from_everywhere: Projektit kaikkialta
   projects_from_place: "Hakuehtoihin täsmäävät projektit paikasta %{place}"
   projects_in_x: "Projektit paikassa %{x}"
   #"admins" is equivalent to "administrates"
@@ -3586,7 +3586,6 @@ fi:
   restart: Käynnistä uudelleen
   restore: Palauta
   restoring: Palauttaa...
-  results: tulokset
   review_all: Tarkista kaikki
   reviewed: Tarkistettu
   revoke: Peruuta
@@ -4066,15 +4065,12 @@ fi:
   to_add_ids: lisätäksesi tunnistuksia
   to_configure_your_widget: määrittääksesi pienoisohjelmasi.
   to_recipient: vastaanottaja
-  to_suggest_an_identification: ehdottaaksesi tunnistusta
   today: Tänään
   too_many_results: Liian monta tulosta
   tools: Työkalut
   top_contributors: Huippuavustajat
-  top_identifier: Paras tunnistaja
   top_identifiers: Parhaimmat tunnistajat
   top_identifiers_of_taxon: Taksonin %{taxon} parhaimmat tunnistajat
-  top_observer: Paras havainnoija
   top_observers: Eniten havainnoineet
   tos_privacy_guidelines_label: |
     Hyväksyn <a href="/terms" target="_blank">käyttöehdot</a> ja <a href="/privacy" target="_blank">yksityisyyskäytännöt</a>, ja olen tutustunut <a href="/pages/community+guidelines" target="_blank">yhteisön pelisääntöihin</a> (englanniksi).
@@ -4082,7 +4078,6 @@ fi:
   totals: Yhteensä
   total_members: Jäseniä yhteensä
   total_observations: Havaintoja yhteensä
-  total_species_observed: Lajeja havaittu yhteensä
   total_unique_observers: Yksilölliset havainnoijat yhteensä
   translated_languages: Käännetyt kielet
   'true': 'Kyllä'
@@ -4170,7 +4165,6 @@ fi:
   uploading_num_of_count_photos:
     one: Tallennetaan kuvaa...
     other: Tallennetaan %{num}/%{count} kuvaa...
-  US_states: USA:n osavaltiot
   usage_stats: Käyttötilastot
   use_this_form_to_create_a_new: |
     Käytä tätä lomaketta, kun haluat ehdottaa uutta taksonomista muutosta ja kuvaile ehdotettu aktiivisen taksonin jako, yhdistäminen tai vaihto.
@@ -4338,9 +4332,10 @@ fi:
   welcome_to_inat: "Tervetuloa %{site_name}iin!"
   welcome_to_guides: "Tervetuloa %{site_name} oppaisiin!"
   welcome_to_x_project: "Tervetuloa projektiin %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Olemme melko varmoja, että se on osa %{rank}a
   what: Mitä
   what_did_you_see: Mitä näet?
@@ -4353,8 +4348,6 @@ fi:
   when_did_you_see_it?: Milloin näit sen?
   when_did_you_see_them?: <em>Milloin</em> näit ne?
   where: Missä
-  where_do_x_live: Missä %{taxa} elää?
-  where_does_x_live: Missä %{taxa} elää?
   where_were_they?: Missä he olivat?
   where_were_you?: Missä olit?
   which_projects_can_add_your_observations?: Mitkä perinteiset projektit voivat lisätä havaintojasi ko. projektiin?
