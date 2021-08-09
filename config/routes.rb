@@ -504,6 +504,7 @@ Rails.application.routes.draw do
   get 'places/cached_guide/:id' => 'places#cached_guide', :as => :cached_place_guide
   get 'places/autocomplete' => 'places#autocomplete', :as => :places_autocomplete
   resources :places do
+    resources :flags
     collection do
       get :planner
     end

@@ -14,6 +14,8 @@ class Flag < ActiveRecord::Base
     INAPPROPRIATE,
     COPYRIGHT_INFRINGEMENT
   ]
+  TYPES = %w[CheckList Comment Guide GuideSection Identification List Message Observation Photo Place Post Project Sound
+             Taxon User]
   belongs_to :flaggable, polymorphic: true
   belongs_to :flaggable_user, class_name: "User", foreign_key: "flaggable_user_id", inverse_of: :flags_as_flaggable_user
 
@@ -64,7 +66,7 @@ class Flag < ActiveRecord::Base
   end
   
   def flaggable_type_valid
-    if FlagsController::FLAG_MODELS.include?(flaggable_type)
+    if Flag::TYPES.include?(flaggable_type)
       true
     else
       errors.add(:flaggable_type, "can't be flagged")

@@ -5,23 +5,12 @@ class FlagsController < ApplicationController
   before_filter :model_required, except: [:index, :update, :show, :on, :destroy]
   before_filter :load_flag, only: [:show, :destroy, :update]
   before_filter :curator_or_owner_required, only: [:update]
-  
-  # put the parameters for the foreign keys here
-  FLAG_MODELS = [ "Observation", "Taxon", "Post", "Comment", "Identification",
-    "Message", "Photo", "List", "Project", "Guide", "GuideSection",
-    "User", "CheckList", "Sound" ]
-  FLAG_MODELS_ID = [ "observation_id","taxon_id","post_id", "comment_id",
-    "identification_id", "message_id", "photo_id", "list_id", "project_id",
-    "guide_id", "guide_section_id", "user_id", "check_list_id",
-    "sound_id" ]
+
   PARTIALS = %w(dialog)
 
   def index
     if request.path != "/flags" && @model
-      if @model.respond_to?(:find_by_uuid)
-        @object = @model.find_by_uuid( params[@param] )
-      end
-      @object ||= @model.find_by_id( params[@param] )
+      @object = find_object
       if @object
         # The default acts_as_flaggable index route
         @object = @object.becomes(Photo) if @object.is_a?(Photo)
@@ -62,7 +51,7 @@ class FlagsController < ApplicationController
     elsif params[:deleted].noish?
       "no"
     end
-    @flaggable_type = params[:flaggable_type] if FLAG_MODELS.include?( params[:flaggable_type] )
+    @flaggable_type = params[:flaggable_type] if Flag::TYPES.include?( params[:flaggable_type] )
     @user = User.where( login: params[:user_id] ).first || User.where( id: params[:user_id] ).first
     @user ||= User.where( login: params[:user_name] ).first
     @resolver = User.where( login: params[:resolver_id] ).first || User.where( id: params[:resolver_id] ).first
@@ -138,7 +127,7 @@ class FlagsController < ApplicationController
   
   def new
     @flag = Flag.new(params[:flag])
-    @object = @model.find(params[@param])
+    @object = @model.find(params[@object_key])
     @object = @object.becomes(Photo) if @object.is_a?(Photo)
     @flag.flaggable ||= @object
     @flags = @object.flags.where(resolved: false).includes(:user)
@@ -265,19 +254,17 @@ class FlagsController < ApplicationController
   def load_flag
     render_404 unless @flag = Flag.where(id: params[:id] || params[:flag_id]).includes(:user, :resolver).first
   end
+
+  def find_object
+    object = @model.find_by_uuid(params[@object_key]) if @model.respond_to?(:find_by_uuid)
+    object ||= @model.find_by_slug(params[@object_key]) if @model.respond_to?(:find_by_slug)
+    object ||= @model.find_by_id( params[@object_key] )
+  end
   
   def set_model
-    params.each do |key,value|
-      if FLAG_MODELS_ID.include? key
-        @param = key
-        object_name = key.split("_id")[0]
-        @model = eval(object_name.camelcase)
-        return
-      end
-    end
-    if (@model ||= Object.const_get(params[:flag][:flaggable_type]) rescue nil)
-      return
-    end
+    @object_key = (params.keys & Flag::TYPES.map(&:foreign_key)).first
+    @model = @object_key.split("_id")[0].classify.constantize if @object_key
+    @model ||= Object.const_get(params[:flag][:flaggable_type]) rescue nil
   end
 
   def model_required

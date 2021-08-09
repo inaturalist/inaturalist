@@ -62,6 +62,7 @@
   #metalinks.meta.right
     :ruby
       pieces = []
+      pieces << link_to(t(:flag_this_place), new_place_flag_path(@place), :id => "flag_this", :rel => "nofollow")
       pieces << link_to(t(:embed_place_widget), place_widget_path(@place.id), :rel => "nofollow") if @place.check_list
       pieces << link_to(t(:edit_place), edit_place_path(@place), :rel => "nofollow") if @place.editable_by?(current_user)
     = raw pieces.join(' | ')
