@@ -308,7 +308,6 @@ he:
   add_comma_separated_tags: "הוספת תגיות (מופרדות בפסיקים)"
   add_comment: הוספת תגובה
   add_conservation_status: הוספת סטטוס שימור
-  add_countries: הוספת מדינות
   add_custom_project_fields: הוספת שדות פרויקט מותאמים אישית
   add_edit_flags: הוסף/ערוך דגלים
   add_editor: הוספת עורך
@@ -718,6 +717,7 @@ he:
     בהתבסס על הראיות, האם אפשר לאשר או לשפר טקסון הקהילה?
   batch: קבוצה
   batch_edit: עריכת קבוצה
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "עריכת קבוצת טקסונים %{x}"
   batch_operations: מספר פעולות
   be_the_first_to_fave_this_observation: תהיו הראשון להעדיף תצפית זו!
@@ -1037,7 +1037,6 @@ he:
   couldnt_change_your_password: "לא ניתן היה לשנות את סיסמתך: %{e}"
   couldnt_find_a_user_matching_x_param: "לא ניתן היה למצוא משתמש תואם ל %{id}"
   couldnt_find_that_taxon: לא ניתן לאתר טקסון זה
-  countries: מדינות
   create: יצירה
   create_a_guide: יצירת מגדיר
   create_a_new_field: יצירת שדה חדש
@@ -1115,7 +1114,9 @@ he:
   date_picker:
     closeText: סגירה
     currentText: היום
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: הקודם
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: הבא
     range: טווח זמנים
   date_range: טווח תאריכים
@@ -1666,6 +1667,7 @@ he:
   leave: לעזוב
   leave_a_comment: הוספת תגובה
   leave_this_project: עזיבת פרוייקט זה
+  #Terminal nodes in a taxonomic tree
   leaves: עלים
   legacy_authentication_notice_html: |
     נראה כי הסיסמה היא של גירסה ישנה יותר של האתר. יש <a href="%{url}">לעדכן את הסיסמה</a> לפעילות בגירסה החדשה.
@@ -2029,7 +2031,6 @@ he:
   'no': 'לא'
   no_but_it_is_a_member_of_taxon: "לא, אבל הוא שייך ל%{taxon}"
   no_comments_yet: לא קיימות הערות בינתיים
-  no_countries_added_yet: טרם הוספו ארצות
   no_curators_set: אוצרים טרם הוגדרו
   no_curators_yet: אוצרים טרם הוגדרו!
   no_description: ללא תיאור
@@ -2826,7 +2827,6 @@ he:
   projects: פרוייקטים
   projects_description: |
     פרוייקטים מאפשר לכם לחלוק ולשתף תצפיות עם אנשים ב%{site_name}. במידה ואתם פותחים פרוייקט מדע אזרחי, או עוקבים אחרי ציפורים בשכונה שלכם, פרוייקטים זאת הדרך לעשות זאת.
-  projects_from_everywhere: פרוייקטים מכל המקומות
   projects_from_place: "פרוייקט מ%{place}"
   projects_in_x: "פרוייקטים ב %{x}"
   projects_you_admin: הפרוייקטים שאת/ה אדמינ בהם
@@ -2970,7 +2970,6 @@ he:
   resolved_by_user_on_date_html: נפתר על ידי %{user} ב %{date}
   restore: שחזור
   restoring: משוחזר כעת...
-  results: תוצאות
   review_all: סקירת הכול
   reviewed: נסקר
   role: תפקיד
@@ -3347,21 +3346,17 @@ he:
   to_add_comments: להוספת הערות
   to_add_ids: להוספת זיהויים
   to_recipient: אל
-  to_suggest_an_identification: להצעת זיהוי
   today: היום
   too_many_results: יותר מדי תוצאות
   tools: כלים
   top_contributors: האוצרים המובילים
-  top_identifier: המזהה המוביל
   top_identifiers: מזהים מובילים
   top_identifiers_of_taxon: המזהים המובילים של %{taxon}
-  top_observer: המתצפת המוביל
   top_observers: המתצפתים המובילים
   total: סה״כ
   totals: סה״כ
   total_members: סה"כ חברים
   total_observations: סה"כ תצפיות
-  total_species_observed: סה"כ מינים שנצפו
   total_unique_observers: סה"כ מתצפתים יחודיים
   translated_languages: שפות מתורגמות
   'true': 'נכון'
@@ -3427,7 +3422,6 @@ he:
       select_all: בחירת כל התצפיות
       upload_failed: העלאה נכשלה
   url_of_this_taxon_on_the_source_website: URL של טקסון זה באתר המקור
-  US_states: מדינות ארה"ב
   usage_stats: סטטיסטיקות שימוש
   used_x_times:
     one: משומש פעם אחת
@@ -3546,9 +3540,10 @@ he:
   welcome_to_inat: "ברוכים הבאים ל%{site_name}!"
   welcome_to_guides: "ברוכים הבאים למגדירי %{site_name}!"
   welcome_to_x_project: "ברוכים הבאים ל%{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: אנחנו יחסית בטוחים שזה בתוך ה%{rank}
   what: מה
   what_did_you_see: מה ראית?
