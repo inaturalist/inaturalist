@@ -183,7 +183,6 @@ lb:
   add_bold_text: Fett Text afügen
   add_comment: Eng Bemierkung derbäisetzen
   add_conservation_status: Schutzstatus derbäisetzen
-  add_countries: Länner derbäisetzen
   add_editor: Editeur derbäisetzen
   add_description: "%{description_name} derbäisetzen"
   add_from_your_observations: Aus Ären Observatiounen derbäisetzen
@@ -620,7 +619,6 @@ lb:
   copyright_info_and_more: Copyright Info a Méi
   copyright_infringement: Copyright-Verletzung
   couldnt_change_your_password: "Äert Passwuert konnt net geännert ginn: %{e}"
-  countries: Länner
   create_a_guide: E Guide uleeën
   create_a_new_field: En neit Feld uleeën
   create_a_new_taxon: En neien Taxon uleeën
@@ -671,7 +669,9 @@ lb:
   date_picker:
     closeText: Zoumaachen
     currentText: Haut
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Vireg
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Nächst
     range: Beräich
   date_time: Datum/Zäit
@@ -974,6 +974,7 @@ lb:
   last_active_with_date: "Lescht Aktivitéit: %{date}"
   last_confirmed_observation: Lescht confirméiert Observatioun
   last_observation: Lescht Observatioun
+  last_observation_caps: LESCHT OBSERVATIOUN
   last_seen: Fir d'lescht gesinn
   last_year: Lescht Joer
   lat: Lat
@@ -1255,7 +1256,6 @@ lb:
   'no': 'Neen'
   no_but_it_is_a_member_of_taxon: "Neen, awer et ass e Member vu(n) %{taxon}"
   no_comments_yet: Nach keng Bemierkungen.
-  no_countries_added_yet: Nach keng Länner derbäigesat
   no_description: Keng Beschreiwung
   no_identifications: Keng Bestëmmungen
   no_favorites_added:
@@ -1812,7 +1812,6 @@ lb:
   resolved_by: Geklärt vum
   restore: Restauréieren
   restoring: Restauréieren...
-  results: Resultater
   review_all: All nokucken
   reviewed: Nogekuckt
   rg_observations: RG Observatiounen
@@ -1962,18 +1961,19 @@ lb:
   title: Titel
   title_and_description: "Titel & Beschreiwung"
   to_recipient: un
-  to_suggest_an_identification: zu Bestëmmung virschloen
   today: Haut
   too_many_results: Ze vill Resultater
-  top_identifier: Top Bestëmmer
+  top_identifier_caps: TOP BESTEMMER
   top_identifiers: Top Bestëmmer
   top_identifiers_of_taxon: Top Bestëmmer fir %{taxon}
-  top_observer: Top Observateuren
+  top_observer_caps: TOP BEOBACHTER
   top_observers: Top Observateuren
   tos_privacy_guidelines_label: |
     Ech stemmen de <a href="/terms" target="_blank">Konditioune vum Service</a> an den <a href="/privacy" target="_blank">Dateschutz Richtlinnen</a> zou an ech hunn <a href="/pages/community+guidelines" target="_blank">Communautéit's Richtlinne</a> gekuckt.
   total: Total
   total_observations: Total Observatiounen
+  total_observations_caps: TOTAL OBSERVATIOUNEN
+  total_species_observed_caps: TOTAL AARTEN BEOBACHT
   translated_languages: Iwwersat Sproochen
   'true': 'Wouer'
   trends: Tendenzen
@@ -2013,7 +2013,6 @@ lb:
       photo_failed: Foto konnt net eropgeluede ginn
       remove_observation: Observatioun ewechhuelen
       remove_photo: Foto ewechhuelen
-  US_states: US Staaten
   usage_stats: Statistike vum Benotzen
   user: Benotzer
   user_added_a_comment_html: "%{user} huet ee Kommentar bäigefüügt"
