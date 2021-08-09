@@ -269,7 +269,6 @@ ca:
   add_comma_separated_tags: "Afegiu etiquetes separades per comes"
   add_comment: Afegiu un comentari
   add_conservation_status: afegiu estat de conservació
-  add_countries: Afegiu països
   add_custom_project_fields: Afegiu camps de projecte personalitzats
   add_edit_flags: Afegir/Editar etiquetes
   add_editor: Afegiu Editor
@@ -690,6 +689,7 @@ ca:
     Basat en l'evidència, pot confirmar o millorar el Tàxon de la Comunitat?
   batch: Grup
   batch_edit: Modifica el grup
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Edició de tàxons en lots per a %{x}"
   batch_operations: Operacions de grups
   be_the_first_to_fave_this_observation: Sigueu el primer en fer aquesta observació favorita!
@@ -1086,7 +1086,6 @@ ca:
   couldnt_change_your_password: "La contrasenya no s’ha pogut modificar: %{e}"
   couldnt_find_a_user_matching_x_param: "No s’ha pogut trobar l'usuari amb els paràmetres següents: %{id}"
   couldnt_find_that_taxon: No es va trobar aquest tàxon
-  countries: Països
   create: Crea
   create_a_guide: Crea una guia
   create_a_new_field: Crea un nou camp
@@ -1281,7 +1280,9 @@ ca:
   date_picker:
     closeText: Tanca
     currentText: Avui
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Ant
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Seg.
     range: Rang
   date_range: Interval de dates
@@ -2009,6 +2010,7 @@ ca:
   last_active_with_date: "Darrera activitat: %{date}"
   last_confirmed_observation: Última observació confirmada
   last_observation: Darrera observació
+  last_observation_caps: DARRERA OBSERVACIÓ
   last_seen: Vist per última vegada
   last_year: Darrer any
   lat: Lat
@@ -2040,6 +2042,7 @@ ca:
   leave: Sortir
   leave_a_comment: Deixeu un comentari
   leave_this_project: Sortiu d'aquest projecte
+  #Terminal nodes in a taxonomic tree
   leaves: abandona
   legacy_authentication_notice_html: |
     Sembla que utilitzeu una contrasenya d'una versió antiga d'aquest lloc web.
@@ -2543,7 +2546,6 @@ ca:
   no_assessments_have_been_added_to_this_project_yet: Encara no s'ha afegit cap valoració a aquest projecte.
   no_but_it_is_a_member_of_taxon: "No, però es un membre de %{taxon}"
   no_comments_yet: Encara no hi ha comentaris
-  no_countries_added_yet: Encara no s'han afegit països
   no_creative_commons_flickr_photos_tagged_x: 'No hi ha fotos a Flickr etiquetades amb Creative Commons per a "%{x}"'
   no_curators_set: Encara no hi ha supervisors
   no_curators_yet: Encara no hi ha supervisors!
@@ -2939,7 +2941,6 @@ ca:
   password_confirmation: 'Confirmeu la contrasenya'
   paste: Enganxa
   paste_in_a_bunch_of_names: Enganxa un grup de noms, 1 per línia i feu clic a l’enllaç!
-  paste_in_a_comma_separated_list: Enganxa la llista de països separats per comes
   people: Persones
   people_following_user: "Usuaris que segueixen %{user}"
   people_user_follows: "Usuaris %{user} Seguidors"
@@ -3540,7 +3541,6 @@ ca:
   projects: Projectes
   projects_description: |
     Els projectes són una manera d'agrupar les vostres observacions amb les d’altres persones a %{site_name}. Tant si us interessa iniciar un projecte científic ciutadà com si només voleu mantenir registres de les aus del vostre veïnat, podeu fer servir projectes.
-  projects_from_everywhere: Projectes de tot arreu
   projects_from_place: "Projectes de %{place}"
   projects_in_x: "Projectes en %{x}"
   #"admins" is equivalent to "administrates"
@@ -3819,7 +3819,6 @@ ca:
   restart: Reinicia
   restore: Restaura
   restoring: Restaurant...
-  results: resultats
   review_all: Revisar-ho tot
   reviewed: Revisat
   revoke: Revoca
@@ -4428,17 +4427,16 @@ ca:
   to_add_ids: per afegir ID
   to_configure_your_widget: per configurar el vostre giny.
   to_recipient: a
-  to_suggest_an_identification: per suggerir una identificació
   today: Avui
   too_many_results: Massa resultats
   too_many_taxa_to_render: |
     Aquesta consulta retorna massa resultats per mostrar a la vegada. Proveu d'afegir més filtres
   tools: Eines
   top_contributors: Col·laboradors més actius
-  top_identifier: Principals identificadors
+  top_identifier_caps: PRINCIPAL IDENTIFICADOR
   top_identifiers: Principals identificadors
   top_identifiers_of_taxon: Principals identificadors de %{taxon}
-  top_observer: Principals observadors
+  top_observer_caps: PRINCIPAL OBSERVADOR
   top_observers: Principal observadors
   tos_privacy_guidelines_label: |
     Accepto les <a href="/terms" target="_blank">Condicions del Servei</a> i la <a href="/privacy" target="_blank">Política de Privacitat</a>, i he revisat les <<a href="/pages/community+guidelines" target="_blank">Normes de la Comunitat</a>.
@@ -4446,7 +4444,8 @@ ca:
   totals: Totals
   total_members: Nombre total de membres
   total_observations: Nombre total d'observacions
-  total_species_observed: Total d'espècies observades
+  total_observations_caps: OBSERVACIONS TOTALS
+  total_species_observed_caps: ESPÈCIES OBSERVADES EN TOTAL
   total_unique_observers: Nombre total d'observadors únics
   translated_languages: Idiomes traduïts
   'true': 'Cert'
@@ -4553,7 +4552,6 @@ ca:
     other: Pujant foto %{num} de %{count}...
   url_identifier_of_a_project_derived_from: "Adreça web / identificador del projecte derivat de fonts externes"
   url_of_this_taxon_on_the_source_website: Enllaç d'aquesta espècie o grup a la pàgina web font
-  US_states: Estats Units
   usage_stats: Estadístiques d'ús
   use_name_as_a_placeholder: |
     Utilitza <span class="ac-placeholder">"%{name}"</span> com a marcador del lloc
@@ -4747,9 +4745,10 @@ ca:
   welcome_to_inat: "Benvingut a %{site_name}!"
   welcome_to_guides: "Benvingut a les Guies de %{site_name}!"
   welcome_to_x_project: "Benvingut al projecte %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Estem prou segurs que aquest està en el lloc %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Ho sentim, però la vostra importació massiva des de %{filename} ha fallat."
   what: Què
@@ -4764,8 +4763,6 @@ ca:
   when_did_you_see_it?: Quan l’heu vist?
   when_did_you_see_them?: <em>Quan</em> els vau veure?
   where: "On"
-  where_do_x_live: On viu el %{taxa}?
-  where_does_x_live: On viu el %{taxa}?
   where_were_they?: <em>On</em> es trobaven?
   where_were_you?: <em>On</em> estàveu?
   which_projects_can_add_your_observations?: Quins projectes tradicionals poden incorporar les vostres observacions?
