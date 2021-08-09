@@ -285,7 +285,6 @@ gl:
   add_comma_separated_tags: "Engade etiquetas separadas por comas"
   add_comment: Engadir un comentario
   add_conservation_status: Engade un estado de conservación
-  add_countries: Engadir países
   add_custom_project_fields: Engadir campos de proxecto personalizados
   add_edit_flags: Engade/Edita Marcas
   add_editor: Engade Editor
@@ -705,6 +704,7 @@ gl:
     Baseándose na evidencia, ¿o Taxon da Comunidade pode ser aínda confirmado ou mellorado?
   batch: Grupo
   batch_edit: Modificar grupo
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Edición de datos por lote para %{x}"
   batch_operations: Operacións de grupos
   be_the_first_to_fave_this_observation: '¡Sé o primeiro en engadir esta observación a favoritos!'
@@ -1101,7 +1101,6 @@ gl:
   couldnt_change_your_password: "O teu contrasinal non se puido modificar: %{e}"
   couldnt_find_a_user_matching_x_param: "Non se puido atopar o usuario cos parámetros: %{id}"
   couldnt_find_that_taxon: Non se atopou a especie ou grupo.
-  countries: Países
   create: Crear
   create_a_guide: Crear unha Guía
   create_a_new_field: Crear un novo campo
@@ -1140,6 +1139,10 @@ gl:
     Debes explicar porqué queres ser un administrador
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: '¿Porqué queres ser un administrador?'
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Se queres editar a taxonomía de iNaturalist, por favor, da un exemplo ou dous de mudanzas taxonómicas que che gustaría facer e inclúe fontes para as mudanzas propostas. Se corresponde, por favor, cita ás autoridades taxonómicas pertinentes <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">como aparecen listadas na Guía do Administrador</a>. Se non inclúes ningunha fonte, a túa solicitude non será considerada.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Se quixeres editar nomes vernáculos, por favor, da un ou dous exemplos dos cambios que che gustaría facer
@@ -1291,7 +1294,9 @@ gl:
   date_picker:
     closeText: Pechar
     currentText: Hoxe
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Anterior
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Seguinte
     range: Rango
   date_range: Rango de Datas
@@ -2015,6 +2020,7 @@ gl:
   last_active_with_date: "Activo por última vez: %{date}"
   last_confirmed_observation: Última observación confirmada
   last_observation: Última observación
+  last_observation_caps: ÚLTIMA OBSERVACIÓN
   last_seen: Visto por última vez
   last_year: O Ano Pasado
   lat: Latitude
@@ -2046,6 +2052,7 @@ gl:
   leave: Saír
   leave_a_comment: Deixar un comentario
   leave_this_project: Saír deste proxecto
+  #Terminal nodes in a taxonomic tree
   leaves: follas
   legacy_authentication_notice_html: |
     Parece que estás usando un contrasinal dunha versión antiga desta web. Por favor, lembra <a href="%{url}">mudar o teu contrasinal</a> para a nova versión.
@@ -2544,7 +2551,6 @@ gl:
   no_assessments_have_been_added_to_this_project_yet: Aínda non se engadiron avaliacións a este proxecto.
   no_but_it_is_a_member_of_taxon: "Non, pero é un membro de %{taxon}"
   no_comments_yet: Aínda non hai comentarios
-  no_countries_added_yet: Aínda non se agregaron países
   no_creative_commons_flickr_photos_tagged_x: 'Non hai fotos en Flickr etiquetadas con Creative Commons para "%{x}"'
   no_curators_set: Aínda non hai administradores
   no_curators_yet: '¡Aínda non hai administradores!'
@@ -2680,6 +2686,8 @@ gl:
   observation_brief_something_on_day_at_time: "Algo no %{day} ás %{time}"
   observation_brief_something_on_day_at_time_by_user: "Algo no %{day} ás %{time} por %{user}"
   observation_brief_something_on_day_by_user: "Algo no %{day} por %{user}"
+  observation_brief_something_in_month: "Algo en %{month}"
+  observation_brief_something_in_month_by_user: "Algo en %{month} por %{user}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
   observation_brief_something_from_place_by_user: "Algo de %{place} por %{user}"
@@ -2687,10 +2695,14 @@ gl:
   observation_brief_something_from_place_on_day_by_user: "Algo de %{place} no%{day} por %{user}"
   observation_brief_something_from_place_on_day_at_time: "Algo de %{place} no %{day} ás %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Algo de %{place} no %{day} ás %{time} por %{user}"
+  observation_brief_something_from_place_in_month: "Algo de %{place} en %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Algo de %{place} en %{month} por %{user}"
   observation_brief_taxon_on_day: "%{taxon} no %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} no %{day} ás %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} no %{day} ás %{time} por %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} no %{day} por %{user}"
+  observation_brief_taxon_in_month: "%{taxon} en %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} en %{month} por %{user}"
   observation_brief_taxon_by_user: "%{taxon} por %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} de %{place} por %{user}"
@@ -2698,6 +2710,8 @@ gl:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} de %{place} no %{day} por %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} de %{place} no %{day} ás %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} de %{place} no %{day} ás %{time} por %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} de %{place} en %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} de %{place} en %{month} por %{user}"
   observations_by_category: "Observacións Por Categoría"
   observations_by_app: Observacións Por App
   observations_by_rank: Observacións Por Rango
@@ -2932,7 +2946,6 @@ gl:
   password_confirmation: 'Confirma o teu contrasinal'
   paste: Pegar
   paste_in_a_bunch_of_names: Pega un grupo de nomes, 1 por liña e preme o botón!
-  paste_in_a_comma_separated_list: Pega a lista de países separados por comas
   people: Persoas
   people_following_user: "Persoas que seguen a %{user}"
   people_user_follows: "Xente %{user} Seguidores"
@@ -3536,7 +3549,6 @@ gl:
   projects: Proxectos
   projects_description: |
     Os proxectos son unha forma de agrupar as túas observacións con outras persoas en %{site_name}. Tanto se che interesa iniciar un proxecto científico cidadán coma se só queres manter rexistros das aves dun parque próximo ao teu club de observación local, podes facelo con Proxectos.
-  projects_from_everywhere: Proxectos de Todas Partes
   projects_from_place: "Proxectos de %{place}"
   projects_in_x: "Proxectos en %{x}"
   #"admins" is equivalent to "administrates"
@@ -3815,7 +3827,6 @@ gl:
   restart: Reiniciar
   restore: Restaurar
   restoring: Restaurando...
-  results: Resultados
   review_all: Rever Todo
   reviewed: Revisto
   revoke: Revogar
@@ -4427,17 +4438,16 @@ gl:
   to_add_ids: para engadir identificacións
   to_configure_your_widget: para configurar o teu widget.
   to_recipient: a
-  to_suggest_an_identification: para suxerir unha identificación
   today: Hoxe
   too_many_results: Demasiados Resultados
   too_many_taxa_to_render: |
     Esta consulta proporciona demasiados taxons para mostralos todos ó tempo. Téntao engadindo máis filtros
   tools: Ferramentas
   top_contributors: Maiores contribuíntes
-  top_identifier: Maior Identificador
+  top_identifier_caps: MAIOR IDENTIFICADOR
   top_identifiers: Maiores Identificadores
   top_identifiers_of_taxon: Maiores Identificadores de %{taxon}
-  top_observer: Maior Observador
+  top_observer_caps: MAIOR OBSERVADOR
   top_observers: Maiores Observadores
   tos_privacy_guidelines_label: |
     Estou dacordo cós <a href="/terms" target="_blank">Termos de Servizo</a> e <a href="/privacy" target="_blank">Políticas de Privacidade</a>, e revisei as <a href="/pages/community+guidelines" target="_blank">Directrices da Comunidade</a>.
@@ -4445,7 +4455,8 @@ gl:
   totals: Totais
   total_members: Total de membros
   total_observations: Total de observacións
-  total_species_observed: Total das Especies Observadas
+  total_observations_caps: OBSERVACIÓNS TOTAIS
+  total_species_observed_caps: TOTAL DE ESPECIES OBSERVADAS
   total_unique_observers: Total de observadores únicos
   translated_languages: Línguas Traducidas
   'true': 'Si'
@@ -4552,7 +4563,6 @@ gl:
     other: Cargando %{num} de %{count} fotos...
   url_identifier_of_a_project_derived_from: "Enderezo web/identificador do proxecto derivado de fontes externas"
   url_of_this_taxon_on_the_source_website: Enlace desta especie ou grupo na páxina web fonte
-  US_states: Estados Unidos
   usage_stats: Estatísticas de uso
   use_name_as_a_placeholder: |
     Usar <span class='ac-placeholder'>%{name}</span> como marcador de posición
@@ -4747,9 +4757,10 @@ gl:
   welcome_to_inat: "Benvido a %{site_name}!"
   welcome_to_guides: "¡Benvido ás Guías de %{site_name}!"
   welcome_to_x_project: "Benvido ao proxecto %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Estamos case seguros de que isto está nos %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Descúlpanos, pero a túa importación en masa de %{filename} fallou."
   what: Que
@@ -4764,8 +4775,6 @@ gl:
   when_did_you_see_it?: Cando o viches?
   when_did_you_see_them?: <em>Cando os viches?
   where: Onde
-  where_do_x_live: '¿Onde viven os %{taxa}?'
-  where_does_x_live: '¿Onde vive o %{taxa}?'
   where_were_they?: <em>Onde se atopaban?
   where_were_you?: <em>Onde</em> estabas ti?
   which_projects_can_add_your_observations?: '¿Que proxectos tradicionais poden engadir as túas observacións?'
