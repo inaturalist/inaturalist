@@ -18,16 +18,4 @@
         %ul
           %li.quiet.description= t :no_flags
       - else
-        %table.table
-          %tbody
-          - for item in items do
-            %tr
-              %td
-                %time.datetime{ datetime: item.created_at.iso8601, title: l( item.created_at, format: :long ) }=l item.created_at, format: :long
-              %td
-                - if item.is_a?( Flag )
-                  = render "flag", flag: item
-                - elsif item.action == ModeratorAction::HIDE
-                  =t :user_hid_this_item_because_reason_html, user: link_to_user( item.user ), item: t( @model.name.underscore ), reason: formatted_user_text( item.reason, skip_simple_format: true )
-                - else
-                  =t :user_unhid_this_item_because_reason_html, user: link_to_user( item.user ), item: t( @model.name.underscore ), reason: formatted_user_text( item.reason, skip_simple_format: true )
+        = render partial: "flag_table", locals: { flags: items, site: @site}
