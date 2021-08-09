@@ -293,7 +293,6 @@ lv:
   add_comma_separated_tags: "Pievienot ar komatiem atdalītus tagus"
   add_comment: Pievienot komentāru
   add_conservation_status: Norādīt aizsardzības statusu
-  add_countries: Pievienot valstis
   add_custom_project_fields: Pievienot projektam pielāgojamus laukus
   add_edit_flags: Pievienot vai labot karodziņu statusu
   add_editor: Pievienot redaktoru
@@ -713,6 +712,7 @@ lv:
     Vai, balstoties uz sniegtajiem pierādījumiem, kopienas piedāvāto taksonu var vēl uzlabot?
   batch: Vairākus reizē
   batch_edit: Rediģēt vairākus reizē
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Labot vairākus %{x} taksonus reizē"
   batch_operations: Vairākas darbības reizē
   be_the_first_to_fave_this_observation: Esi pirmais, kas pievienos šo novērojumu izlasei!
@@ -1042,7 +1042,6 @@ lv:
   couldnt_change_your_password: "Neizdevās nomainīt paroli: %{e}"
   couldnt_find_a_user_matching_x_param: "Neizdevās atrast lietotāju %{id}"
   couldnt_find_that_taxon: Neizdevās atrast šādu taksonu.
-  countries: Valstis
   create: Izveidot
   create_a_guide: Izveidot padomu
   create_a_new_field: Izveidot jaunu lauku
@@ -1228,7 +1227,9 @@ lv:
   date_picker:
     closeText: Aizvērt
     currentText: Šodien
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Iepriekš.
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Nākamais
     range: Periods
   date_range: Datuma periods
@@ -1910,6 +1911,7 @@ lv:
   leave: Pamest
   leave_a_comment: Pievienot komentāru
   leave_this_project: Pamest projektu
+  #Terminal nodes in a taxonomic tree
   leaves: lapas
   legacy_authentication_notice_html: |
     Izskatās, ka izmantoji paroli no vecākas vietnes versijas.
@@ -2354,7 +2356,6 @@ lv:
   no_assessments_have_been_added_to_this_project_yet: Šim projektam vēl nav pievienots neviens novērtējums.
   no_but_it_is_a_member_of_taxon: "Nē, bet tas pieder pie %{taxon}"
   no_comments_yet: Pagaidām nav komentāru.
-  no_countries_added_yet: Pagaidām nav pievienota neviena valsts
   no_creative_commons_flickr_photos_tagged_x: 'Nav nevienas Creative Commons Flickr fotogrāfijas ar "%{x}" tagu'
   no_curators_set: Nav neviena pārziņa
   no_curators_yet: Pagaidām nav neviena pārziņa.
@@ -2715,7 +2716,6 @@ lv:
   password_confirmation: 'Paroles apstiprināšana'
   paste: Ielīmēt
   paste_in_a_bunch_of_names: Ielīmē vienu nosaukumu katrā rindā un nospied pogu.
-  paste_in_a_comma_separated_list: Ielīmē sarakstu ar valstīm, atdalot katru valsti ar komatu.
   people: Lietotāji
   people_following_user: "Lietotāji, kas seko %{user}"
   people_user_follows: "Lietotāji, kam seko %{user}"
@@ -3306,7 +3306,6 @@ lv:
   projects: Projekti
   projects_description: |
     %{site_name} projektos kopā ar citiem lietotājiem iespējams apkopot novērojumus. Ja plāno uzsākt kādu amatierzinātnes projektu vai uzskaitīt putnus savā apkārtnē, projektu izveidošana visnotaļ būs lieliska ideja.
-  projects_from_everywhere: Projekti no visām vietām
   projects_from_place: "Projekti no %{place}"
   projects_in_x: "Projekti iekš %{x}"
   #"admins" is equivalent to "administrates"
@@ -3582,7 +3581,6 @@ lv:
   restart: Restartēt
   restore: Atjaunot
   restoring: Atjauno...
-  results: rezultāti
   review_all: Pārbaudīt visu
   reviewed: Pārbaudīts
   revoke: Atcelt
@@ -4197,17 +4195,14 @@ lv:
   to_add_ids: pievienot ID
   to_configure_your_widget: pielāgot tavu logrīku
   to_recipient: kam
-  to_suggest_an_identification: ieteikt identifikāciju
   today: Šodien
   too_many_results: Par daudz rezultātu
   too_many_taxa_to_render: |
     Meklētājs atrada pārāk daudz taksonu, lai tos visus attēlotu vienā reizē. Pamēģini aktivizēt vairāk filtru.
   tools: Rīki
   top_contributors: Lielākie atbalstītāji
-  top_identifier: Biežākais identificētājs
   top_identifiers: Biežākie identificētāji
   top_identifiers_of_taxon: '%{taxon} taksona biežākie identificētāji'
-  top_observer: Biežākais novērotājs
   top_observers: Biežākie novērotāji
   tos_privacy_guidelines_label: |
     Piekrītu <a href="/terms" target="_blank">Lietošanas noteikumiem</a> un
@@ -4216,7 +4211,6 @@ lv:
   totals: Kopā
   total_members: Kopējais dalībnieku skaits
   total_observations: Kopējais novērojumu skaits
-  total_species_observed: Kopējais novēroto sugu skaits
   total_unique_observers: Kopējais vienīgo novērotāju skaits
   translated_languages: Tulkojumu valodas
   'true': 'Patiess'
@@ -4321,7 +4315,6 @@ lv:
     zero: Augšupielādē %{num} no %{count} fotogrāfijām...
     one: Augšupielādē fotogrāfiju...
     other: Augšupielādē %{num} no %{count} fotogrāfijām...
-  US_states: ASV štati
   usage_stats: Lietojuma satistika
   use_name_as_a_placeholder: |
     Izmantot <span class='ac-placeholder'>"%{name}"</span> kā vietturi
@@ -4516,9 +4509,10 @@ lv:
   welcome_to_inat: "Laipni lūdzam %{site_name} vietnē!"
   welcome_to_guides: "Laipni lūdzam %{site_name} vietnes padomos!"
   welcome_to_x_project: "Laipni lūdzam %{project} projektā"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Esam diezgan pārliecināti, ka organisms pieder %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Atvaino, %{filename} lielapjoma importēšana nav izdevusies."
   what: Kas
@@ -4533,8 +4527,6 @@ lv:
   when_did_you_see_it?: Kad to redzēji?
   when_did_you_see_them?: <em>Kad</em> to redzēji?
   where: Kur
-  where_do_x_live: Kur dzīvo %{taxa}?
-  where_does_x_live: Kur dzīvo %{taxa}?
   where_were_they?: Kur tie bija?
   where_were_you?: Kur tu biji?
   which_projects_can_add_your_observations?: Kuriem tradicionālajiem projektiem drīkst pievienot tavus novērojumus?
