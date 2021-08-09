@@ -219,7 +219,6 @@ zh-CN:
   add_comma_separated_tags: "添加逗号分隔的标签"
   add_comment: 添加一条评论
   add_conservation_status: 添加保护状态
-  add_countries: 添加国家
   add_custom_project_fields: 添加自定义项目字段
   add_edit_flags: 添加/编辑标记
   add_editor: 添加编辑器
@@ -618,6 +617,7 @@ zh-CN:
     基于现有证据, 社区身份证还能被确认或改进吗？
   batch: 批
   batch_edit: 批量编辑
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "为 %{x} 批处理编辑分类"
   batch_operations: 批操作
   be_the_first_to_fave_this_observation: 成为最先将此观察列为最爱的人！
@@ -977,7 +977,6 @@ zh-CN:
   couldnt_change_your_password: "无法更改您的密码：%{e}"
   couldnt_find_a_user_matching_x_param: "找不到符合%{id}的用户"
   couldnt_find_that_taxon: 找不到这个分类单元。
-  countries: 国家
   create: 创建
   create_a_guide: 创建指导
   create_a_new_field: 创建一个新字段
@@ -1118,7 +1117,9 @@ zh-CN:
   date_picker:
     closeText: 关闭
     currentText: 今天
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: 上一个
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: 下一个
     range: 范围
   date_range: 数据范围
@@ -1853,6 +1854,7 @@ zh-CN:
   leave: 离开
   leave_a_comment: 留下评论
   leave_this_project: 离开这个项目
+  #Terminal nodes in a taxonomic tree
   leaves: 离开
   legacy_authentication_notice_html: |
     看起来您正在使用来自此网站旧版本的密码。请记得<a href="%{url}">更改您的密码</a>以便使用新版本。
@@ -2318,7 +2320,6 @@ zh-CN:
   no_assessments_have_been_added_to_this_project_yet: 此项目尚未添加任何评估。
   no_but_it_is_a_member_of_taxon: "不，但它是%{taxon}的成员之一"
   no_comments_yet: 尚无评论。
-  no_countries_added_yet: 尚未添加国家
   no_creative_commons_flickr_photos_tagged_x: '没有知识共享Flickr照片标记为“%{x}”'
   no_curators_set: 未设馆长
   no_curators_yet: 目前还没有馆长！
@@ -2684,7 +2685,6 @@ zh-CN:
   password_confirmation: '密码确认'
   paste: 粘贴
   paste_in_a_bunch_of_names: 粘贴一系列名字，每行一个，然后点击按钮！
-  paste_in_a_comma_separated_list: 粘贴以逗号分隔的国家列表
   people: 成员
   people_following_user: "关注 %{user} 的人"
   people_user_follows: "%{user} 关注的人"
@@ -3259,7 +3259,6 @@ zh-CN:
   projects: 项目
   projects_description: |
     通过项目，您可以在%{site_name}上与其他人共享您的观察结果。无论您是在开展公民科学活动还是密切关注您附近的鸟类，项目都是您的选择。
-  projects_from_everywhere: 来自各处的项目
   projects_from_place: "来自%{place}的项目"
   projects_in_x: "在 %{x} 中的项目"
   #"admins" is equivalent to "administrates"
@@ -3530,7 +3529,6 @@ zh-CN:
   restart: 重启
   restore: 恢复
   restoring: 正在恢复...
-  results: 结果
   review_all: 复核全部
   reviewed: 已复核
   revoke: 撤销
@@ -4089,17 +4087,14 @@ zh-CN:
   to_add_ids: 要添加ID
   to_configure_your_widget: 配置您的小部件。
   to_recipient: 至
-  to_suggest_an_identification: 要建议一次鉴定
   today: 今天
   too_many_results: 太多结果
   too_many_taxa_to_render: |
     此查询返回的分类群太多，无法一次呈现。请尝试添加更多筛选
   tools: 工具
   top_contributors: 顶尖贡献者
-  top_identifier: 最多标识符
   top_identifiers: 顶端标识符
   top_identifiers_of_taxon: '%{taxon} 中排名靠前的鉴定者'
-  top_observer: 最多观察者
   top_observers: 最多观察者
   tos_privacy_guidelines_label: |
     我同意 <a href="/terms" target="_blank">服务条款</a> 和
@@ -4109,7 +4104,6 @@ zh-CN:
   totals: 总计
   total_members: 成员总数
   total_observations: 总计观察
-  total_species_observed: 总计观察物种
   total_unique_observers: 总计独立观察者
   translated_languages: 翻译的语言
   'true': '是'
@@ -4214,7 +4208,6 @@ zh-CN:
     other: 正在上传 %{num} 张照片，共 %{count} 张...
   url_identifier_of_a_project_derived_from: "由同一外部资源衍生出来的URL/项目标识符"
   url_of_this_taxon_on_the_source_website: 此分类在来源网站上的URL
-  US_states: 美国州
   usage_stats: 用法状态
   use_name_as_a_placeholder: |
     使用<span class='ac-placeholder'>"%{name}"</span>作为一个占位符
@@ -4404,9 +4397,10 @@ zh-CN:
   welcome_to_inat: "欢迎来到%{site_name}！"
   welcome_to_guides: "欢迎来到%{site_name}指南！"
   welcome_to_x_project: "欢迎来到 %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: 我们很确定这个的排名是在%{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "我们很抱歉，但您的 %{filename} 的大量导入工作已失败。"
   what: 什么
@@ -4421,8 +4415,6 @@ zh-CN:
   when_did_you_see_it?: 您何时看见的它？
   when_did_you_see_them?: 您<em>在哪</em>发现的它们？
   where: 哪里
-  where_do_x_live: '%{taxa}居住在哪里？'
-  where_does_x_live: '%{taxa}居住在哪里？'
   where_were_they?: 他们在哪里？
   where_were_you?: 您在哪里？
   which_projects_can_add_your_observations?: 哪些项目可以添加您的观察？
