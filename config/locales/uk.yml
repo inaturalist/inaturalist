@@ -368,7 +368,6 @@ uk:
   add_comma_separated_tags: "Додати розділені комами теги"
   add_comment: Додати коментар
   add_conservation_status: Додати природоохоронний статус
-  add_countries: Додати країни
   add_custom_project_fields: Додати користувальницькі поля проєкту
   add_edit_flags: Додати/Редагувати прапорці
   add_editor: Додати редактора
@@ -822,6 +821,7 @@ uk:
     Чи можна підтвердити або покращити таксон, визначений спільнотою, на базі наявних даних?
   batch: Пакетно
   batch_edit: Пакетне редагування
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Пакетне редагування таксонів: %{x}"
   batch_operations: Пакетні операції
   be_the_first_to_fave_this_observation: Стань першим, хто уподобає це спостереження!
@@ -1220,7 +1220,6 @@ uk:
   couldnt_change_your_password: "Не вдалося змінити пароль: %{e}"
   couldnt_find_a_user_matching_x_param: "Не вдалося знайти користувача, що відповідає %{id}"
   couldnt_find_that_taxon: Не вдалося знайти цей таксон.
-  countries: Країни
   create: Створити
   create_a_guide: Створити посібник
   create_a_new_field: Створити нове поле
@@ -1422,7 +1421,9 @@ uk:
   date_picker:
     closeText: Закрити
     currentText: Сьогодні
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Попер.
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Наступний
     range: Проміжок
   date_range: Проміжок дат
@@ -2203,6 +2204,7 @@ uk:
   leave: Покинути
   leave_a_comment: Залишити коментар
   leave_this_project: Покинути цей проєкт?
+  #Terminal nodes in a taxonomic tree
   leaves: листя
   legacy_authentication_notice_html: |
     Схоже, ви використовуєте пароль зі старішої версії веб-сайту.
@@ -2709,7 +2711,6 @@ uk:
   no_assessments_have_been_added_to_this_project_yet: До цього проєкту ще не було додано жодних оцінок.
   no_but_it_is_a_member_of_taxon: "Ні, але це член %{taxon}"
   no_comments_yet: Ще немає коментарів.
-  no_countries_added_yet: Жодна країна ще не додана
   no_creative_commons_flickr_photos_tagged_x: 'Немає фото з Flickr під ліцензією Creative Commons з тегом "%{x}'
   no_curators_set: Кураторів не призначено
   no_curators_yet: Куратори поки що відсутні!
@@ -3102,7 +3103,6 @@ uk:
   password_confirmation: 'Підтвердження паролю'
   paste: Вставити
   paste_in_a_bunch_of_names: Вставте декілька імен, по 1 на рядок і натисніть на кнопку!
-  paste_in_a_comma_separated_list: Вставте у розділений комами список країн
   people: Люди
   people_following_user: "Люди, що стежать за %{user}"
   people_user_follows: "Люди, на яких підписаний %{user}"
@@ -3715,7 +3715,6 @@ uk:
   projects: Проєкти
   projects_description: |
     Проекти дозволяють об'єднати ваші спостереження зі спостереженнями інших користувачів %{site_name}. Чи то нова ініціатива з громадської науки, чи просто обліки птахів на вашому подвір'ї, проєкти - те, що вам потрібно.
-  projects_from_everywhere: Проєкти звідусіль
   projects_from_place: "Проєкти з місця: %{place}"
   projects_in_x: "Проєкти у %{x}"
   #"admins" is equivalent to "administrates"
@@ -4010,7 +4009,6 @@ uk:
   restart: Перезавантажити
   restore: Відновити
   restoring: Відновлення...
-  results: результати
   review_all: Переглянути все
   reviewed: Перевірено
   revoke: Скасувати
@@ -4665,17 +4663,14 @@ uk:
   to_add_ids: щоб додати визначення
   to_configure_your_widget: щоб налаштувати ваш віджет.
   to_recipient: до
-  to_suggest_an_identification: запропонувати визначення
   today: Сьогодні
   too_many_results: Забагато результатів
   too_many_taxa_to_render: |
     Цей запит повертає занадто багато таксонів для візуалізації за один раз. Спробуйте додати більше фільтрів
   tools: Інструменти
   top_contributors: Найактивніші учасники
-  top_identifier: Кращий ідентифікатор
   top_identifiers: Кращі ідентифікатори
   top_identifiers_of_taxon: Кращі ідентифікатори таксону %{taxon}
-  top_observer: Кращий спостерігач
   top_observers: Кращі спостерігачі
   tos_privacy_guidelines_label: |
     Я погоджуюся з <a href="/terms" target="_blank">Умовами використання</a> та <a href="/privacy" target="_blank">Політикою конфіденційності</a>, а також ознайомився з <a href="/pages/community+guidelines" target="_blank">Правилами спільноти</a>.
@@ -4683,7 +4678,6 @@ uk:
   totals: 'Підсумок:'
   total_members: Всього учасників
   total_observations: Всього спостережень
-  total_species_observed: Всього спостережено видів
   total_unique_observers: Всього унікальних спостерігачів
   translated_languages: Перекладено мовами
   'true': 'Вірно'
@@ -4795,7 +4789,6 @@ uk:
     other: Вивантаження %{num} фото з %{count}
   url_identifier_of_a_project_derived_from: "URL / ідентифікатор проєкту, отриманий із зовнішнього ресурсу"
   url_of_this_taxon_on_the_source_website: URL цього таксону на сайті джерела
-  US_states: Штати США
   usage_stats: Статистика використання
   use_name_as_a_placeholder: |
     Використовуйте <span class='ac-placeholder'>"%{name}"</span> в якості замісника
@@ -4992,9 +4985,10 @@ uk:
   welcome_to_inat: "Ласкаво просимо до %{site_name}!"
   welcome_to_guides: "Ласкаво просимо до Посібників %{site_name}!"
   welcome_to_x_project: "Вітаємо у %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Скидається на те, що це належить до %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Нам шкода, але ваш пакетний імпорт %{filename} не вдався."
   what: Що
@@ -5009,8 +5003,6 @@ uk:
   when_did_you_see_it?: Коли ви це бачили?
   when_did_you_see_them?: <em>Коли</em> ви їх бачили?
   where: Де
-  where_do_x_live: Де мешкають %{taxa}?
-  where_does_x_live: Де мешкає %{taxa}?
   where_were_they?: Де вони були?
   where_were_you?: Де ви були?
   which_projects_can_add_your_observations?: Які традиційні проєкти можуть додавати ваші спостереження?
