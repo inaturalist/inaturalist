@@ -6,6 +6,31 @@ end
 
 describe ListedTaxon do
   elastic_models( Observation, Place )
+
+  it { is_expected.to belong_to :list }
+  it { is_expected.to belong_to :taxon }
+  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to :place }
+  it { is_expected.to belong_to :taxon_range }
+  it { is_expected.to belong_to :source }
+  it { is_expected.to belong_to(:first_observation).class_name("Observation").with_foreign_key "first_observation_id" }
+  it { is_expected.to belong_to(:last_observation).class_name("Observation").with_foreign_key "last_observation_id" }
+  it { is_expected.to belong_to(:simple_place).with_foreign_key(:place_id).class_name "Place" }
+  it { is_expected.to have_many(:comments).dependent :destroy }
+
+  it { is_expected.to validate_presence_of :list_id }
+  it { is_expected.to validate_presence_of :taxon_id }
+  it { is_expected.to validate_uniqueness_of(:taxon_id).scoped_to(:list_id).with_message "is already on this list" }
+  it { is_expected.to validate_length_of(:description).is_at_most(1000).allow_blank }
+  it do
+    is_expected.to validate_inclusion_of(:occurrence_status_level).in_array(ListedTaxon::OCCURRENCE_STATUS_LEVELS.keys)
+                                                                  .allow_blank
+  end
+  it do
+    is_expected.to validate_inclusion_of(:establishment_means).in_array(ListedTaxon::ESTABLISHMENT_MEANS)
+                                                              .allow_blank.allow_nil
+  end
+
   it "should be invalid when check list fields set on a non-check list" do
     list = List.make!
     check_list = CheckList.make!

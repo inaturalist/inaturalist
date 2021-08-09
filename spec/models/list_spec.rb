@@ -3,6 +3,15 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 describe List do
   elastic_models( Observation, Place )
 
+  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to :place }
+  it { is_expected.to have_one(:check_list_place).class_name("Place").with_foreign_key :check_list_id }
+  it { is_expected.to have_many(:rules).class_name("ListRule").dependent :destroy }
+  it { is_expected.to have_many(:listed_taxa).dependent :destroy }
+  it { is_expected.to have_many(:taxa).through :listed_taxa }
+
+  it { is_expected.to validate_presence_of :title }
+
   describe "updating" do
     it "should not be allowed anyone other than the owner" do
       list = List.make!
