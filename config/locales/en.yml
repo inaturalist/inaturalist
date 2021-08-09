@@ -5088,9 +5088,16 @@ en:
   welcome_to_inat: "Welcome to %{site_name}!"
   welcome_to_guides: "Welcome to %{site_name} Guides!"
   welcome_to_x_project: "Welcome to %{project}"
-  # Label for the most probable taxon in the automated suggestions. @gender
-  # should work here. %{rank} is usually genus or a higher-level rank like
-  # family
+  # Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: We're pretty sure this is in the genus
+  # Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: We're pretty sure this is in the family
+  # Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_family: We're pretty sure this is in the order
+  # Falback label for the most probable taxon in the automated suggestions.
+  # Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  # instead. @gender should work here. %{rank} is usually genus or a
+  # higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: We're pretty sure this is in the %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "We're sorry but your bulk import of %{filename} has failed."
   what: What

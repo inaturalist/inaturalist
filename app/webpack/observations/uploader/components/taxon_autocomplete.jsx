@@ -185,9 +185,15 @@ class TaxonAutocomplete extends React.Component {
       $.each( items, ( index, item ) => {
         if ( isVisionResults ) {
           if ( item.isCommonAncestor ) {
-            const label = I18n.t( "were_pretty_sure_this_is_in_the_rank", {
-              rank: I18n.t( `ranks_lowercase_${_.snakeCase( item.rank )}`, { defaultValue: item.rank } ),
-              gender: _.snakeCase( item.rank )
+            const snakeCaseRank = _.snakeCase( item.rank );
+            // I18n.t( "were_pretty_sure_this_is_in_the_genus" )
+            // I18n.t( "were_pretty_sure_this_is_in_the_family" )
+            // I18n.t( "were_pretty_sure_this_is_in_the_order" )
+            const label = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, {
+              defaultValue: I18n.t( "were_pretty_sure_this_is_in_the_rank", {
+                rank: I18n.t( `ranks_lowercase_${snakeCaseRank}`, { defaultValue: item.rank } ),
+                gender: snakeCaseRank
+              } )
             } );
             ul.append( `<li class='category header-category non-option'>${label}</li>` );
             commonAncestorCategoryShown = true;
