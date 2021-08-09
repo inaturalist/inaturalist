@@ -271,7 +271,6 @@ el:
   add_comma_separated_tags: "Προσθέστε ετικέτες χωρισμένες με κόμμα"
   add_comment: Προσθήκη σχόλιου
   add_conservation_status: Προσθήκη κατάστασης διατήρησης
-  add_countries: Προσθήκη χωρών
   add_custom_project_fields: Προσθήκη πεδίων προσαρμοσμένων στο πρότζεκτ
   add_edit_flags: Προσθήκη/επεξεργασία σημαιών
   add_editor: Προσθήκη συντάκτη
@@ -686,6 +685,7 @@ el:
     Βάσει των στοιχείων, μπορεί η Κοινοτική Ταξινομική Μονάδα να επιβεβαιωθεί ή να βελτιωθεί περαιτέρω;
   batch: Παρτίδα
   batch_edit: Μαζική επεξεργασία
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Μαζική επεξεργασία των taxa για %{x}"
   batch_operations: Μαζικές Ενέργειες
   be_the_first_to_fave_this_observation: Ας είστε ο πρώτος που θα επιδοκιμάσει αυτήν την παρατήρηση!
@@ -1033,7 +1033,6 @@ el:
   couldnt_change_your_password: "Δεν μπορεί να αλλάξει ο κωδικός:%{e}"
   couldnt_find_a_user_matching_x_param: "Δεν ήταν δυνατή η εύρεση χρήστη που να ταιριάζει με %{id}"
   couldnt_find_that_taxon: Δεν ήταν δυνατή η εύρεση ταξινομικής ομάδας.
-  countries: Χώρες
   create: Δημιουργία
   create_a_guide: Δημιουργία οδηγού
   create_a_new_field: Δημιουργία νέου πεδίου
@@ -1232,7 +1231,9 @@ el:
   date_picker:
     closeText: Κλείσιμο
     currentText: Σήμερα
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Προηγ
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Επόμενο
     range: Εύρος
   date_range: Εύρος ημερομηνίας
@@ -1965,6 +1966,7 @@ el:
   leave: Αποχωρείστε
   leave_a_comment: Αφήστε ένα σχόλιο
   leave_this_project: Εγκαταλείψτε αυτό το πρότζεκτ
+  #Terminal nodes in a taxonomic tree
   leaves: φύλλα
   legacy_authentication_notice_html: |
     Φαίνεται πως χρησιμοποιείτε έναν κωδικό από μια παλιότερη έκδοση αυτής της ιστοσελίδας. Παρακαλούμε θυμηθείτε να <a href="%{url}">αλλάξετε τον κωδικό σας</a> για τη νέα έκδοση.
@@ -2433,7 +2435,6 @@ el:
   no_assessments_have_been_added_to_this_project_yet: Καμιά αποτίμηση δεν έχει προστεθεί σε αυτό το πρότζεκτ ακόμα.
   no_but_it_is_a_member_of_taxon: "Όχι, αλλά είναι μέρος του %{taxon}"
   no_comments_yet: Δεν υπάρχουν ακόμα σχόλια
-  no_countries_added_yet: Δεν έχουν προστεθεί χώρες ακόμα
   no_creative_commons_flickr_photos_tagged_x: 'Καμία Creative Commons φωτογραφία από το Flickr με ετικέτα "%{x}"'
   no_curators_set: Δεν έχουν ορισθεί επιμελητές
   no_curators_yet: Κανένας επιμελητής ακόμα!
@@ -2797,7 +2798,6 @@ el:
   password_confirmation: 'Επιβεβαίωση κωδικού'
   paste: Επικόλληση
   paste_in_a_bunch_of_names: Επικόλληση σε μπόλικα ονόματα, 1 ανά γραμμή, και πατήστε το κουμπί!
-  paste_in_a_comma_separated_list: Επικολλήστε σε μια λίστα χωρών διαχωρισμένων με κόμμα
   people: Οι άνθρωποι
   people_following_user: "Πρόσωπα που ακολουθούν την/τον %{user}"
   people_user_follows: "Πρόσωπα που ο/η %{user} ακολουθεί"
@@ -3400,7 +3400,6 @@ el:
   projects_description: |
     Η μελέτη σε αφήνει να μοιράζεσαι τις παρατηρήσεις σου με άλλους ανθρώπους στο.
     Είτε ξεκινάς την προσπάθεια στην επιστήμη των πολιτών είτε παρατηρείς προσεκτικά τα πουλία στην γειτονία σου, η μελέτη είναι η κατάλληλη μέθοδος.
-  projects_from_everywhere: Εγχειρήματα από παντού
   projects_from_place: "Πρότζεκτ από %{place}"
   projects_in_x: "Εγχειρήματα στο %{x}"
   #"admins" is equivalent to "administrates"
@@ -3606,7 +3605,6 @@ el:
   restart: Επανεκκίνηση
   restore: Επαναφορά
   restoring: Γίνεται επαναφορά...
-  results: Αποτελέσματα
   review_all: Αναθεώρηση όλων
   reviewed: Θεωρημένο
   revoke: Ανάκληση
@@ -4212,17 +4210,14 @@ el:
   to_add_ids: για να προσθέσετε σύστημα ανίχνευσης εισβολής
   to_configure_your_widget: για να διαμορφώσετε το γραφικό σας στοιχείο.
   to_recipient: προς
-  to_suggest_an_identification: πρόταση για ταυτοποίηση
   today: Σήμερα
   too_many_results: Πάρα Πολλά Αποτελέσματα
   too_many_taxa_to_render: |
     Αυτή η αναζήτηση επιστρέφει πάρα πολλές ταξινομικές μονάδες για να διαχειριστούν ταυτόχρονα. Δοκιμάστε να προσθέσετε περισσότερα φίλτρα
   tools: Εργαλεία
   top_contributors: Κορυφαίοι συνεισφέροντες
-  top_identifier: Κορυφαίος Ταυτοποιητής
   top_identifiers: Κορυφαίοι Ταυτοποιητές
   top_identifiers_of_taxon: Κορυφαίοι Ταυτοποιητές για %{taxon}
-  top_observer: Κορυφαίος παρατηρητής
   top_observers: Παρατηρητές Τορ επιπέδου
   tos_privacy_guidelines_label: |
     Συμφωνώ με τους <a href="/terms" target="_blank">Όρους Παροχής Υπηρεσιών</a> και
@@ -4231,7 +4226,6 @@ el:
   totals: Σύνολα
   total_members: Συνολικά μέλη
   total_observations: Συνολικές παρατηρήσεις
-  total_species_observed: Σύνολο παρατηρηθέντων ειδών
   total_unique_observers: Σύνολο μοναδικών παρατηρητών
   translated_languages: Μεταφρασμένες γλώσσες
   'true': 'Αληθές'
@@ -4336,7 +4330,6 @@ el:
     other: Μεταφορτώνονται %{num} από %{count} φωτογραφίες...
   url_identifier_of_a_project_derived_from: "URL / ο ταυτοποιητής του πρότζεκτ προήλθε από κάποια εξωτερική πηγή"
   url_of_this_taxon_on_the_source_website: Το URL αυτής της ταξινομικής βαθμίδας στην ιστοσελίδα της πηγής
-  US_states: Πολιτείες ΗΠΑ
   usage_stats: Στατιστικά χρήσης
   use_name_as_a_placeholder: |
     Χρήση <span class='ac-placeholder'>%{name}</span> ως αντικαταστάτη
@@ -4528,9 +4521,10 @@ el:
   welcome_to_inat: "Καλώς ήρθατε στο %{site_name}!"
   welcome_to_guides: "Καλώς ήρθατε στους Οδηγούς του %{site_name}!"
   welcome_to_x_project: "Καλώς ήρθατε στο %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Είμαστε αρκετά σίγουροι ότι αυτό ανήκει στα %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Λυπούμαστε αλλά η μαζική εισαγωγή του %{filename} έχει αποτύχει."
   what: Τι
@@ -4545,8 +4539,6 @@ el:
   when_did_you_see_it?: Πότε το είδατε;
   when_did_you_see_them?: <em>Πότε</em> τα εντοπίσατε;
   where: Πού
-  where_do_x_live: Πού %{taxa} ζουν;
-  where_does_x_live: Πού %{taxa} ζει;
   where_were_they?: Πού βρίσκονταν;
   where_were_you?: Πού βρισκόσασταν;
   which_projects_can_add_your_observations?: Ποιά παραδοσιακά πρότζεκτ μπορούν να προσθέσουν τις παρατηρήσεις σας;
