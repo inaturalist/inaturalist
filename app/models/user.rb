@@ -871,7 +871,6 @@ class User < ActiveRecord::Base
         :flags
       ] },
       :project_observations,
-      :project_invitations,
       :quality_metrics,
       :observation_field_values,
       :observation_sounds,

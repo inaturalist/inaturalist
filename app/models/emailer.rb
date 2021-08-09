@@ -11,27 +11,7 @@ class Emailer < ActionMailer::Base
 
   default from: "#{Site.default.try(:name)} <#{Site.default.try(:email_noreply)}>",
           reply_to: Site.default.try(:email_noreply)
-  
-  def project_invitation_notification(project_invitation)
-    return unless project_invitation
-    return if project_invitation.observation.user.prefers_no_email
-    obs_str = project_invitation.observation.to_plain_s(:no_user => true, 
-      :no_time => true, :no_place_guess => true)
-    @subject = "#{subject_prefix} #{project_invitation.user.login} invited your " + 
-      "observation of #{project_invitation.observation.species_guess} " + 
-      "to #{project_invitation.project.title}"
-    @project = project_invitation.project
-    @observation = project_invitation.observation
-    @user = project_invitation.observation.user
-    set_locale
-    @inviter = project_invitation.user
-    mail(set_site_specific_opts.merge(
-      :to => project_invitation.observation.user.email, 
-      :subject => @subject
-    ))
-    reset_locale
-  end
-  
+
   def updates_notification(user, updates)
     return if user.blank? || updates.blank?
     return if user.email.blank?
