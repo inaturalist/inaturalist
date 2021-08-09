@@ -276,7 +276,6 @@ tr:
   add_comma_separated_tags: "Virgülle Ayrılmış Etiket Ekle"
   add_comment: Bir Yorum Ekle
   add_conservation_status: Koruma Durumu Ekle
-  add_countries: Ülkeleri Ekle
   add_custom_project_fields: Özel Proje Alanları Ekle
   add_edit_flags: İşaret Ekle/Düzenle
   add_editor: Düzenleyici Ekle
@@ -690,6 +689,7 @@ tr:
     Kanıtlara dayanarak, Topluluk Sınıfı hâlâ onaylanabilir ya da geliştirilebilir mi?
   batch: Toplu
   batch_edit: Toplu düzenleme
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "%{x} sınıfları için toplu düzenleme"
   batch_operations: Toplu İşlemler
   be_the_first_to_fave_this_observation: Bu gözlemi ilk favori yapan siz olun!
@@ -1038,7 +1038,6 @@ tr:
   couldnt_change_your_password: "Şifreniz değiştirilemiyor: %{e}"
   couldnt_find_a_user_matching_x_param: "Eşleşen bir kullanıcı bulunamıyor: %{id}"
   couldnt_find_that_taxon: Bu sınıf bulunamadı.
-  countries: Ülkeler
   create: Oluştur
   create_a_guide: Bir Rehber Oluştur
   create_a_new_field: Yeni Bir Alan Oluştur
@@ -1227,7 +1226,9 @@ tr:
   date_picker:
     closeText: Kapat
     currentText: Bugün
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Önceki
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Sonraki
     range: Tarih Aralığı
   date_range: Tarih aralığı
@@ -1968,6 +1969,7 @@ tr:
   leave: Ayrıl
   leave_a_comment: Yorum yaz
   leave_this_project: Projeden Ayrıl
+  #Terminal nodes in a taxonomic tree
   leaves: yapraklar
   legacy_authentication_notice_html: |
     Bu sitenin eski bir sürümünden bir şifre kullanıyormuşsunuz gibi görünüyor. Lütfen, yeni sürüm için <a href="%{url}">şifreni değiştir</a>.
@@ -2446,7 +2448,6 @@ tr:
   no_assessments_have_been_added_to_this_project_yet: Bu projeye henüz değerlendirme eklenmedi.
   no_but_it_is_a_member_of_taxon: "Hayır ama bir %{taxon} üyesi"
   no_comments_yet: Henüz yorum yok.
-  no_countries_added_yet: Henüz ülke eklenmedi
   no_creative_commons_flickr_photos_tagged_x: '"%{x}" için etiketlenmiş Creative Commons Flickr fotoğrafları lisansı yok'
   no_curators_set: Belirlenmiş sorumlu yok
   no_curators_yet: Henüz sorumlu yok!
@@ -2826,7 +2827,6 @@ tr:
   password_confirmation: 'Şifre doğrulama'
   paste: Yapıştır
   paste_in_a_bunch_of_names: Her bir satıra adları yapıştırın ve düğmeye basın!
-  paste_in_a_comma_separated_list: Ülkelerin listesini virgülle ayrılmış şekilde yapıştır
   people: İnsanlar
   people_following_user: "İnsanlar %{user} Kullanıcısını Takip Ediyor"
   people_user_follows: "%{user} Kişi Takip Ediyor"
@@ -3419,7 +3419,6 @@ tr:
   projects_description: |
     Projeler, gözlemlerinizi %{site_name} üzerinden başkalarıyla paylaşmanıza izin verir. 
     Bir vatandaş bilimi çabasına girişmek ya da mahallenizdeki kuşlarla ilgili kayıtlar tutmak istersen, Projeler bunu yapmanın yoludur.
-  projects_from_everywhere: Her Yerden Projeler
   projects_from_place: "%{place} yerinden projeler"
   projects_in_x: "%{x} içinden projeler"
   #"admins" is equivalent to "administrates"
@@ -3688,7 +3687,6 @@ tr:
   restart: Yeniden başlat
   restore: Geri yükle
   restoring: Geri yükleniyor...
-  results: sonuçlar
   review_all: Tümünü İncele
   reviewed: İncelenmiş
   revoke: İptal Et
@@ -4295,17 +4293,14 @@ tr:
   to_add_ids: tanımlamaları ekleme
   to_configure_your_widget: widget'inizi yapılandırma.
   to_recipient: kime
-  to_suggest_an_identification: bir kimlik önerme
   today: Bugün
   too_many_results: Çok Fazla Sonuç
   too_many_taxa_to_render: |
     Bu sorgu bir kerede sunulamayacak kadar çok sınıf içeriyor. Daha çok filtre eklemeyi deneyin
   tools: Araçlar
   top_contributors: En çok katkıda bulunanlar
-  top_identifier: En Çok Tanımlayan
   top_identifiers: En Çok Tanımlayanlar
   top_identifiers_of_taxon: '%{taxon}''ı En Çok Tanımlayanlar'
-  top_observer: En Çok Gözlemleyen
   top_observers: En Çok Gözlemleyenler
   tos_privacy_guidelines_label: |
     <a href="/terms" target="_blank">Hizmet Şartları</a> ve <a href="/privacy" target="_blank">Gizlilik Politikası</a>'nı onaylıyorum, ve <a href="/pages/community+guidelines" target="_blank">Topluluk İlkelerini</a> inceledim.
@@ -4313,7 +4308,6 @@ tr:
   totals: Toplam
   total_members: Toplam üye
   total_observations: Toplam Gözlem
-  total_species_observed: Gözlemlenen Toplam Tür
   total_unique_observers: Toplam benzersiz gözlemci
   translated_languages: Çevrilmiş Diller
   'true': 'Doğru'
@@ -4420,7 +4414,6 @@ tr:
     other: '%{num} fotoğraftan %{count} tanesi yükleniyor...'
   url_identifier_of_a_project_derived_from: "Bazı dış kaynaklardan sağlanmış bir projenin URL'si / tanımlayıcısı"
   url_of_this_taxon_on_the_source_website: Kaynağın genel ağ sayfasında bu sınıfın URL'si
-  US_states: Amerika Birleşik Devletleri
   usage_stats: Kullanım istatistikleri
   use_name_as_a_placeholder: |
     Yer imi olarak <span class='ac-placeholder'>%{name}</span> kullanın
@@ -4614,9 +4607,10 @@ tr:
   welcome_to_inat: "%{site_name}'e hoş geldiniz!"
   welcome_to_guides: "%{site_name} Rehberlerine Hoş geldiniz!"
   welcome_to_x_project: "%{project}'e hoş geldiniz"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Bunun %{rank} içinde olduğundan oldukça eminiz
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Üzgünüz, %{filename} toplu içe aktarma işlemin başarısız oldu."
   what: Ne
@@ -4631,8 +4625,6 @@ tr:
   when_did_you_see_it?: Onu ne zaman gördünüz?
   when_did_you_see_them?: Onları <em>ne zaman</em> gördünüz?
   where: Nerede
-  where_do_x_live: '%{taxa} nerede yaşıyor?'
-  where_does_x_live: '%{taxa} nerede yaşıyor?'
   where_were_they?: Neredeydiler?
   where_were_you?: Neredeydin?
   which_projects_can_add_your_observations?: Hangi geleneksel projeler gözlemlerinizi ekleyebilir?
