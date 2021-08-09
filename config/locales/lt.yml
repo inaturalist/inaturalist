@@ -341,7 +341,6 @@ lt:
   add_comma_separated_tags: "Pridėti kableliais arskirtas žymes"
   add_comment: Pridėti komentarą
   add_conservation_status: Pridėti apsaugos statusą
-  add_countries: Pridėti šalis
   add_custom_project_fields: Pridėti pritaikytus projekto laukus
   add_edit_flags: Pridėti/Redaguoti žymes
   add_editor: Pridėti autorių
@@ -788,6 +787,7 @@ lt:
     Ar gali būti patvirtintas ar patobulintas bendruomenės taksonas, remiantis įrodymais?
   batch: Grupė
   batch_edit: Redaguoti grupę
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Grupinis taksonų redagavimas %{x}"
   batch_operations: Grupinės operacijos
   be_the_first_to_fave_this_observation: Pirmasis pamėk šį stebėjimą!
@@ -1095,7 +1095,6 @@ lt:
   couldnt_change_your_password: "Negalima pakeisti jūsų slaptažodžio: %{e}"
   couldnt_find_a_user_matching_x_param: "Nepavyko rasti vartotojo atitinkančio %{id}"
   couldnt_find_that_taxon: Taksonas nerastas
-  countries: Šalys
   create: Kurti
   create_a_guide: Kurti gidą
   create_a_new_field: Kurti naują lauką
@@ -1173,7 +1172,9 @@ lt:
   date_picker:
     closeText: Uždaryti
     currentText: Šiandien
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Ankst.
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Kitas
     range: Periodas
   date_range: Periodas
@@ -2237,7 +2238,6 @@ lt:
   'no': 'Ne'
   no_but_it_is_a_member_of_taxon: "Ne, bet tai yra %{taxon} narys"
   no_comments_yet: Dar nėra komentarų.
-  no_countries_added_yet: Dar nepridėta jokia šalis
   no_creative_commons_flickr_photos_tagged_x: 'Nepažymėta jokių Creative Commons Flickr nuotraukų „%{x}“'
   no_curators_set: Nėra nustatytų kuratorių
   no_curators_yet: Dar nėra kuratorių!
@@ -2474,7 +2474,6 @@ lt:
   password: Slaptažodis
   password_confirmation: 'Slaptažodis (patvirtinimas)'
   paste: Įklijuoti
-  paste_in_a_comma_separated_list: Įklijuokite sąrašą šalių, askirtų kableliais
   people: Žmonės
   people_following_user: "Žmonės sekantis %{user}"
   people_user_follows: "Žmonės %{user} seka"
@@ -2995,7 +2994,6 @@ lt:
   project_was_successfully_updated: Projektas atnaujintas sėkmingai.
   project_x_was_delete: "%{project} ištrintas (palaukite kelias minutes, kad šis projektas būtų panaikintas iš tinklalapio)"
   projects: Projektai
-  projects_from_everywhere: Projektai iš visur
   projects_from_place: "Projektai iš %{place}"
   projects_in_x: "Projektai vietovėje: %{x}"
   #"admins" is equivalent to "administrates"
@@ -3183,7 +3181,6 @@ lt:
   restart: Paleisti iš naujo
   restore: Atkurti
   restoring: Atkuriama...
-  results: rezultatai
   review_all: Peržiūrėti viską
   reviewed: Peržiūrėtas
   rg_observations: ID stebėjimai
@@ -3708,15 +3705,12 @@ lt:
   to_add_comments: pridėti komentarų
   to_add_ids: pridėti ID
   to_configure_your_widget: configuruoti jūsų valdiklį.
-  to_suggest_an_identification: pasiūlyti identifikaciją
   today: Šiandien
   too_many_results: Per daug rezultatų
   tools: Įrankiai
   top_contributors: Daugiausiai prisidėję
-  top_identifier: Top identifikuotojas
   top_identifiers: Top identifikuotojai
   top_identifiers_of_taxon: 'Top identifikuotojai taksono: %{taxon}'
-  top_observer: Top stebėtojas
   top_observers: Top stebėtojai
   tos_privacy_guidelines_label: |
     Sutinku su <a href="/terms" target="_blank">Paslaugų teikimo sąlygomis</a> ir <a href="/privacy" target="_blank">Privatumo politika</a>, susipažinau su <a href="/pages/community+guidelines" target="_blank">Bendruomenės gairėmis</a>.
@@ -3724,7 +3718,6 @@ lt:
   totals: iš viso
   total_members: Iš viso narių
   total_observations: Visi stebėjimai
-  total_species_observed: Iš viso rūšių stebėta
   total_unique_observers: Iš viso skirtingų stebėtojų
   translated_languages: Išverstos kalbos
   'true': 'Taip'
@@ -3804,7 +3797,6 @@ lt:
     few: Įkeliamos %{num} iš %{count} nuotraukos...
     many: Įkeliamos %{num} iš %{count} nuotraukos...
     other: Įkeliamos %{num} iš %{count} nuotraukos...
-  US_states: JAV valstijos
   usage_stats: Naudojimo statistika
   use_name_as_a_placeholder: |
     Naudoti <span class='ac-placeholder'>„%{name}“</span> kaip užpildą
@@ -3976,9 +3968,10 @@ lt:
   welcome_to_inat: "Sveiki atvykę į %{site_name}!"
   welcome_to_guides: "Sveiki atvykę į %{site_name} vadovus!"
   welcome_to_x_project: "Sveiki atvykę į %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Mes įsitikinę, kad šis organizmas priklauso %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Atsiprašome, tačiau grupinis %{filename} importas nepavyko."
   what: Kas
@@ -3991,8 +3984,6 @@ lt:
   when_did_you_see_it?: Kada tai pamatėte?
   when_did_you_see_them?: <em>Kada</em> juos pamatėte?
   where: Kur
-  where_do_x_live: Kur gyvena %{taxa}?
-  where_does_x_live: Kur gyvena %{taxa}?
   where_were_they?: Kur jie?
   where_were_you?: Kur buvote?
   white: balta
