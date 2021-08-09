@@ -352,7 +352,6 @@ ru:
   add_comma_separated_tags: "Добавить теги, разделённые запятыми"
   add_comment: Добавить комментарий
   add_conservation_status: Добавить природоохранный статус
-  add_countries: Добавить страны
   add_custom_project_fields: Добавить пользовательские поля проекта
   add_edit_flags: Добавить/редактировать флаги
   add_editor: Добавить редактора
@@ -805,6 +804,7 @@ ru:
     Основываясь на свидетельствах, можно ли подтвердить или улучшить таксон сообщества?
   batch: Пакетная загрузка
   batch_edit: Пакетное редактирование
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Пакетное редактирование таксонов для %{x}"
   batch_operations: Пакетные Операции
   be_the_first_to_fave_this_observation: Будьте первым, кто добавил это наблюдение в фавориты!
@@ -1181,7 +1181,6 @@ ru:
   couldnt_change_your_password: "Не удалось сменить пароль: %{e}"
   couldnt_find_a_user_matching_x_param: "Не удаётся найти пользователя, соответствующего %{id}"
   couldnt_find_that_taxon: Этот таксон не найден.
-  countries: Страны
   create: Создать
   create_a_guide: Создать руководство
   create_a_new_field: Создать новое поле
@@ -1371,7 +1370,9 @@ ru:
   date_picker:
     closeText: Закрыть
     currentText: Сегодня
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Пред
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: След
     range: Диапазон
   date_range: Диапазон дат
@@ -2135,6 +2136,7 @@ ru:
   leave: Уйти
   leave_a_comment: Оставить комментарий
   leave_this_project: Покинуть этот проект
+  #Terminal nodes in a taxonomic tree
   leaves: листья
   legacy_authentication_notice_html: |
     Похоже, вы используете пароль более старой версии этого веб-сайта.
@@ -2627,7 +2629,6 @@ ru:
   no_assessments_have_been_added_to_this_project_yet: Никакие оценки ещё не были добавлены к этому проекту.
   no_but_it_is_a_member_of_taxon: "Нет, но это член %{taxon}"
   no_comments_yet: Пока нет комментариев.
-  no_countries_added_yet: Пока страны не добавлены
   no_creative_commons_flickr_photos_tagged_x: 'Не найдены фото с Flickr с лицензией Creative Commons с тегом %{x}'
   no_curators_set: Кураторы не назначены
   no_curators_yet: Пока нет кураторов!
@@ -3011,7 +3012,6 @@ ru:
   password_confirmation: 'Подтверждение пароля'
   paste: Вставить
   paste_in_a_bunch_of_names: Вставьте множество имён, по 1 на строку, и нажмите кнопку!
-  paste_in_a_comma_separated_list: Вставить в список стран, разделенных запятыми
   people: Люди
   people_following_user: "Люди, подписанные на %{user}"
   people_user_follows: "Люди, на которых подписан %{user}"
@@ -3607,7 +3607,6 @@ ru:
   projects: Проекты
   projects_description: |
     Проекты - это способ объединить свои наблюдения с наблюдениями других людей на %{site_name}. Если вы заинтересованы в том, чтобы начать городской научный проект или просто наблюдаете птиц в ближайшем парке вместе с участниками местного клуба любителей птиц, проекты являются удобным способом.
-  projects_from_everywhere: Проекты из любой точки мира
   projects_from_place: "Проекты для %{place}"
   projects_in_x: "Проекты в %{x}"
   #"admins" is equivalent to "administrates"
@@ -3902,7 +3901,6 @@ ru:
   restart: Перезапустить
   restore: Восстановить
   restoring: Восстановление...
-  results: результаты
   review_all: Просмотреть всё
   reviewed: Проверено
   revoke: Отмена
@@ -4546,17 +4544,14 @@ ru:
   to_add_ids: добавить идентификации
   to_configure_your_widget: сформировать ваш виджет.
   to_recipient: для
-  to_suggest_an_identification: предложить идентификацию
   today: Сегодня
   too_many_results: Слишком много результатов
   too_many_taxa_to_render: |
     Этот запрос возвращает слишком много таксонов для визуализации за один раз. Попробуйте добавить больше фильтров
   tools: Инструменты
   top_contributors: Лучшие участники
-  top_identifier: Лучший Эксперт
   top_identifiers: Лучшие Эксперты
   top_identifiers_of_taxon: Лучшие Эксперты по %{taxon}
-  top_observer: Лучший Наблюдатель
   top_observers: Лучшие наблюдатели
   tos_privacy_guidelines_label: |
     Я согласен <a href="/terms" target="_blank">условиями предоставления услуг</a> и
@@ -4565,7 +4560,6 @@ ru:
   totals: Всего
   total_members: Общее число членов
   total_observations: Итого наблюдений
-  total_species_observed: Итого наблюдаемых видов
   total_unique_observers: Итого уникальных наблюдателей
   translated_languages: Переведенные языки
   'true': 'Да'
@@ -4676,7 +4670,6 @@ ru:
     other: Загрузка %{num} фото из %{count}...
   url_identifier_of_a_project_derived_from: "URL / идентификатор проекта, полученный из некоего внешнего ресурса"
   url_of_this_taxon_on_the_source_website: URL этого таксона на веб-сайте источника
-  US_states: США
   usage_stats: Статистика использования
   use_name_as_a_placeholder: |
     Используйте <span class='ac-placeholder'>"%{name}"</span> в качестве заполнителя
@@ -4872,9 +4865,10 @@ ru:
   welcome_to_inat: "Добро пожаловать на %{site_name}!"
   welcome_to_guides: "Добро пожаловать в руководства %{site_name}!"
   welcome_to_x_project: "Добро пожаловать в %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Мы почти уверены, что это относится к %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Извините, но ваш массовый импорт %{filename} не удался."
   what: Что
@@ -4889,8 +4883,6 @@ ru:
   when_did_you_see_it?: Когда вы это видели?
   when_did_you_see_them?: <em>Когда</em> вы это видели?
   where: Где
-  where_do_x_live: Где обитают %{taxa}?
-  where_does_x_live: Где обитают %{taxa}?
   where_were_they?: Где они находились?
   where_were_you?: Где вы были?
   which_projects_can_add_your_observations?: Какие традиционные проекты могут воспользоваться вашими наблюдениями?
