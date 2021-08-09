@@ -79,7 +79,6 @@ sk:
   add_comma_separated_tags: "Vložiť tagy oddelené čiarkou"
   add_comment: Pridať komentár
   add_conservation_status: vložiť status ochrany
-  add_countries: Vložiť krajiny
   add_custom_project_fields: Vložiť vlastné projektové polia
   add_edit_flags: Pridať/editovať vlajky
   add_editor: Pridať editora
@@ -360,6 +359,7 @@ sk:
     Môže byť komunitný taxón na základe dôkazov potvrdený alebo vylepšený?
   batch: Séria
   batch_edit: Upraviť sériu
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Hromadná editácia taxónov pre %{x}"
   batch_operations: Hromadné operácie
   be_the_first_to_fave_this_observation: Buďte prvý, komu sa toto pozorovanie páči!
@@ -635,7 +635,6 @@ sk:
   couldnt_change_your_password: "Nedá sa zmeniť vaše heslo: %{e}"
   couldnt_find_a_user_matching_x_param: "Nebol nájdený odpovedajúci užívateľ %{id}"
   couldnt_find_that_taxon: Tento taxón nebol nájdený.
-  countries: Krajiny
   create: Vytvoriť
   create_a_guide: Vytvoriť sprievodcu
   create_a_new_field: Vytvoriť nové pole
@@ -715,7 +714,9 @@ sk:
   date_picker:
     closeText: Zatvoriť
     currentText: Dnes
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Predchádzajúci
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Ďalší
     range: Rozsah
   date_range: Časový interval
@@ -1251,6 +1252,7 @@ sk:
   leave: Opustiť
   leave_a_comment: Zanechať komentár
   leave_this_project: Opustiť tento projekt
+  #Terminal nodes in a taxonomic tree
   leaves: odchádza
   legacy_authentication_notice_html: |
     Zdá sa, že používate heslo zo staršej verzie tejto webovej stránky. Nezabudnite si prosím pre novú verziu <a href="%{url}">heslo zmeniť</a>.
@@ -1606,7 +1608,6 @@ sk:
   no_assessments_have_been_added_to_this_project_yet: K tomuto projektu zatiaľ neboli pridané žiadne hodnotenia.
   no_but_it_is_a_member_of_taxon: "Nie, ale patrí do %{taxon}"
   no_comments_yet: Žiadne komentáre.
-  no_countries_added_yet: Žiadne krajiny zatiaľ neboli pridané
   no_creative_commons_flickr_photos_tagged_x: 'Žiadne fotky s licenciou Creative Commons na Flickr nie sú označené "%{x}"'
   no_curators_set: Žiadni kurátori nie sú nastavení
   no_curators_yet: Zatiaľ žiadni kurátori!
@@ -1862,7 +1863,6 @@ sk:
   password_confirmation: 'Potvrdenie hesla'
   paste: Prilepiť
   paste_in_a_bunch_of_names: Vložte skupinu názvov, 1 na každý riadok, a zmáčknite tlačidlo!
-  paste_in_a_comma_separated_list: Vložte zoznam štátov oddelených čiarkami
   people: Ľudia
   people_following_user: "Ľudia sledujú užívateľa %{user}"
   people_user_follows: "Ľudia, ktorí sledujú užívateľa %{user}"
@@ -2319,7 +2319,6 @@ sk:
   project_was_successfully_updated: Projekt bol úspešne aktualizovaný.
   project_x_was_delete: "%{project} bol zmazaný (počkajte prosím pár minút, než bude odstránený z webovej stránky)"
   projects: Projekty
-  projects_from_everywhere: Projekty odvšadiaľ
   projects_from_place: "Projekty z %{place}"
   projects_in_x: "Projekty v %{x}"
   projects_you_admin: Projekty, ktoré spravujete
@@ -2482,7 +2481,6 @@ sk:
   resolver_said_x_html: '<span class="meta">%{resolver} povedal/a:</span> "%{x}"'
   restore: Obnoviť
   restoring: Obnovovanie...
-  results: výsledky
   review_all: Označiť všetky za skontrolované
   reviewed: Skontrolované
   rg_observations: VS pozorovania
@@ -2861,21 +2859,17 @@ sk:
   to_add_ids: pridať ID
   to_configure_your_widget: ku konfigurácii vášho widgetu.
   to_recipient: k prevedeniu
-  to_suggest_an_identification: k navrhnutiu identifikácie
   today: Dnes
   too_many_results: Veľmi veľa výsledkov
   tools: Nástroje
   top_contributors: Najlepší prispievatelia
-  top_identifier: Najlepší identifikátor
   top_identifiers: Najlepší identifikátori
   top_identifiers_of_taxon: Najlepší identifikátori %{taxon}
-  top_observer: Najlepší pozorovateľ
   top_observers: Najlepší pozorovatelia
   total: Súčet
   totals: Súčty
   total_members: Celkový počet členov
   total_observations: Celkový počet pozorovaní
-  total_species_observed: Celkový počet pozorovaných druhov
   total_unique_observers: Celkový počet jednotlivých pozorovateľov
   translated_languages: Preložené jazyky
   'true': 'Pravda'
