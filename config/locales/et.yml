@@ -201,7 +201,6 @@ et:
   add_comma_separated_tags: "Lisa komaga erladatud märksõnad"
   add_comment: Lisa kommentaar
   add_conservation_status: Lisa kaitsestaatus
-  add_countries: Lisa riigid
   add_custom_project_fields: Lisa projektile spetsiaalsed väljad
   add_edit_flags: Lisa/muuda märkuseid
   add_editor: Lisa toimetaja
@@ -520,6 +519,7 @@ et:
     Kas vastavalt tõenditele saab kogukondliku määratluse kinnitada või seda parandada?
   batch: Komplekt
   batch_edit: Muuda komplektina
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Muuda komplektina %{x} taksoneid"
   batch_operations: Komplekstegevused
   be_the_first_to_fave_this_observation: Nimeta esimesena see vaatlus enda lemmikuks!
@@ -814,7 +814,6 @@ et:
   couldnt_change_your_password: "Ei saanud muuta salasõna: %{e}"
   couldnt_find_a_user_matching_x_param: "Ei leidnud kasutajat, kes vastab tunnusele %{id}"
   couldnt_find_that_taxon: Ei leidnud taksonit.
-  countries: Riigid
   create: Loo
   create_a_guide: Loo juhend
   create_a_new_field: Loo uus väli
@@ -894,7 +893,9 @@ et:
   date_picker:
     closeText: Sulge
     currentText: Täna
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Eelmine
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Järgmine
     range: Vahemik
   date_range: Kuupäevavahemik
@@ -1446,7 +1447,8 @@ et:
   leave: Lahku
   leave_a_comment: Kommenteeri
   leave_this_project: Lahku projektist
-  leaves: lahkub
+  #Terminal nodes in a taxonomic tree
+  leaves: kõrgem tase
   legacy_authentication_notice_html: |
     Näib, et kasutad selle lehe varasema versiooni salasõna.
     Palun pea meeles, et uue lehe jaoks tuleb <a href="%{url}">salasõna muuta</a>.
@@ -1823,7 +1825,6 @@ et:
   no_assessments_have_been_added_to_this_project_yet: Sellele projektile pole veel hinnanguid lisatud.
   no_but_it_is_a_member_of_taxon: "Ei, kuid see kuulub taksonisse %{taxon}"
   no_comments_yet: Kommentaare veel ei ole.
-  no_countries_added_yet: Riike pole veel lisatud
   no_creative_commons_flickr_photos_tagged_x: 'Creative Commons litsentsiga Flickr fotod märksõnaga "%{x}" puuduvad'
   no_curators_set: Kuraatoreid pole määratud
   no_curators_yet: Kuraatoreid veel pole!
@@ -2102,7 +2103,6 @@ et:
   password_confirmation: 'Salasõna kordus'
   paste: Kleebi
   paste_in_a_bunch_of_names: Kleebi korraga palju nimesid, üks rea kohta ja vajuta nuppu!
-  paste_in_a_comma_separated_list: Lisa siia komaga eraldatud riikide nimekiri
   people: Inimesed
   people_following_user: "Kasutaja %{user} jälgijad"
   people_user_follows: "Kasutaja %{user} jälgitavad"
@@ -2529,7 +2529,6 @@ et:
   projects: Projektid
   projects_description: |
     Projektid võimaldavad koguda vaatlusi teistel lehe %{site_name} kasutajatelt. Hoolimata sellest, kas soovid alustada kogukondlikku teaduskorjet või saada teada, millised linnud lähikonnas elavad, on just projektid õigeks lahenduseks.
-  projects_from_everywhere: Projektid kõikjalt
   projects_from_place: "Projektid kohast %{place}"
   projects_in_x: "Projektid kohas %{x}"
   projects_you_admin: Sinu administreeritavad projektid
@@ -2695,7 +2694,6 @@ et:
   resolver_said_x_html: '<span class="meta">%{resolver} ütles:</span> "%{x}"'
   restore: Taasta
   restoring: Taastan...
-  results: tulemused
   review_all: Kontrolli kõiki
   reviewed: Kontrollitud
   rg_observations: Teaduskõlbulikud vaatlused
@@ -3220,20 +3218,16 @@ et:
   to_add_comments: lisada kommentaare
   to_add_ids: lisada määratlusi
   to_configure_your_widget: tööriista häälestamiseks.
-  to_suggest_an_identification: määratluse pakkumiseks
   today: Täna
   tools: Tööriistad
   top_contributors: Parimad täiendajad
-  top_identifier: Parimad määratlejad
   top_identifiers: Parimad määratlejad
   top_identifiers_of_taxon: Taksoni %{taxon} parimad määratlejad
-  top_observer: Parimad vaatlejad
   top_observers: Parimad vaatlejad
   total: Kokku
   totals: Kokku
   total_members: Kokku kasutajaid
   total_observations: Vaatluseid kokku
-  total_species_observed: Kokku vaadeldud liike
   total_unique_observers: Kokku erinevaid vaatlejaid
   translated_languages: Tõlgitud keeled
   'true': 'Tõene'
@@ -3320,7 +3314,6 @@ et:
     other: Laen üles fotot %{num}/%{count}...
   url_identifier_of_a_project_derived_from: "Mõnest välisest allikast pärinev projekti URL / identifikaator"
   url_of_this_taxon_on_the_source_website: Selle taksoni URL allikaks oleval veebilehel
-  US_states: USA osariigid
   usage_stats: Kasutusstatistika
   use_name_as_a_placeholder: |
     Kasuta <span class='ac-placeholder'>"%{name}"</span> kohatäitjana
@@ -3475,9 +3468,10 @@ et:
   welcome_to_inat: "Teretulemast lehele %{site_name}!"
   welcome_to_guides: "Teretulemast lehe %{site_name} juhendeid uurima!"
   welcome_to_x_project: "Teretulemast projekti %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Oleme päris kindlad, et see on kategoorias %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Meil on kahju, kuid faili %{filename} massimport kukkus läbi."
   what: Mis
@@ -3491,8 +3485,6 @@ et:
   when_did_you_see_it?: Kunas sa seda nägid?
   when_did_you_see_them?: <em>Kunas</em> sa neid nägid?
   where: Kus
-  where_do_x_live: Kus elab takson %{taxa}?
-  where_does_x_live: Kus elab taksan %{taxa}?
   where_were_they?: Kus need olid?
   where_were_you?: Kus sa olid?
   which_projects_can_add_your_observations?: Millised tavaprojektid saavad su vaatluseid lisada?
