@@ -47,6 +47,9 @@ fr:
   x_misidentifications_of_this_species:
     one: "1 mauvaise identification de cette espèce"
     other: "%{count} mauvaises identifications de cette espèce"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} identification erronée d'espèce dans ce genre"
+    other: "%{count} identifications erronées d'espèce dans ce genre"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -219,6 +222,10 @@ fr:
   action: Action
   actions: Actions
   active: Actif
+  #Status of a complete set that is available for use
+  active_complete_set_status: Actif
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Actif
   active_users: Utilisateurs actifs
   activity: Activité
   activity_settings: Paramètres d’activité
@@ -266,7 +273,6 @@ fr:
   add_comma_separated_tags: "Ajouter des balises séparées par des virgules"
   add_comment: Ajouter un commentaire
   add_conservation_status: Ajouter la situation quant à la conservation
-  add_countries: Ajouter des pays
   add_custom_project_fields: Ajouter des champs de projet personnalisés
   add_edit_flags: Ajouter / modifier les signalements
   add_editor: Ajouter un éditeur
@@ -690,6 +696,7 @@ fr:
     D’après les données, le taxon de communauté peut-il être encore confirmé ou amélioré ?
   batch: Groupe
   batch_edit: Modification groupée
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Modification groupée des taxons %{x}"
   batch_operations: Opérations groupées
   be_the_first_to_fave_this_observation: Soyez le premier à ajouter cette observation comme favori !
@@ -928,6 +935,8 @@ fr:
     Le modèle actuel de vision par ordinateur connaît ce taxon. Celui-ci pourrait donc être inclus dans les suggestions automatiques avec l'étiquette « Visuellement semblable ».
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: En attente
+  computer_vision_model_pending_desc: |
+    Le modèle actuel de vision par ordinateur ne connaît pas ce taxon. Par conséquent, bien que celui-ci puisse être inclus dans les suggestions automatiques avec l'étiquette « Vu à proximité », il n'aura pas l'étiquette « Visuellement semblable ». Bien que les conditions d'inclusion soient différentes pour chaque modèle, l'inclusion repose en général sur le nombre d'observations. Pour augmenter la probabilité que ce taxon soit inclus lors du prochain entraînement du modèle, ajoutez ou identifiez plus d'observations de ce taxon.
   concept_status: État du concept
   configure: Configurer
   configure_a_widget_to_show: "Configurez un widget pour afficher les observations\nd’%{site_name} sur votre site web ou votre blog. Vous devrez peut-être inclure\nle CSS intégré dans le <code>&lt;head&gt;</code> de votre HTML. N’hésitez pas\nà réécrire le CSS."
@@ -1090,7 +1099,6 @@ fr:
   couldnt_change_your_password: "Impossible de modifier votre mot de passe : %{e}"
   couldnt_find_a_user_matching_x_param: "Impossible de trouver un utilisateur correspondant à %{id}"
   couldnt_find_that_taxon: Impossible de trouver ce taxon.
-  countries: Pays
   create: Créer
   create_a_guide: Créer un guide
   create_a_new_field: Créer un nouveau champ
@@ -1131,11 +1139,6 @@ fr:
     Vous devez expliquer pourquoi vous voulez devenir responsable.
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Pourquoi voulez-vous être responsable?
-  #Prompt for information when applying to be a curator
-  curator_application_fields_taxonomy_examples_html: |
-    Si vous souhaitez modifier la taxinomie d'iNaturalist, veuillez donner un exemple ou deux
-    de modifications taxinomiques que vous voulez apporter et inclure des liens vers les autorités
-    appropriées en matière de taxinomie, qui figurent dans le Guide des responsables de l’organisation.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Si vous souhaitez modifier les noms vernaculaires, veuillez fournir un exemple ou deux des
@@ -1296,7 +1299,9 @@ fr:
   date_picker:
     closeText: Fermer
     currentText: Aujourd’hui
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Précédent
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Suivant
     range: Période
   date_range: Intervalle
@@ -1518,7 +1523,7 @@ fr:
   either_that_user_doesnt_exist_or: "Cet utilisateur n’existe pas ou vous le suivez déjà."
   eligible_for_research_grade: Éligible au niveau recherche
   email: Courriel
-  email_description: Vôtre e-mail n'est pas partagé avec d'autres utilisateurs
+  email_description: Votre e-mail n'est pas partagé avec d'autres utilisateurs
   email_address_for_comments_and_other_feedback: Adresse électronique pour les commentaires
   email_copyright: "Copyright &copy; %{x}, tous droits réservés"
   email_notifications: Notifications par mail
@@ -1677,6 +1682,8 @@ fr:
   flag_for_observation_title_html: |
     Signalement pour l'Observation : %{title}
   flag_for_photo_id_html: Signalement pour la <a href="%{url}">Photo %{id}</a>
+  flag_for_place_title_html: |
+    Signalement pour le lieu : %{title}
   flag_for_post_title_html: |
     Signalement pour le message : %{title}
   flag_for_project_title_html: |
@@ -1697,6 +1704,7 @@ fr:
   flag_saved_thanks_html: Drapeau enregistré. Merci ! <a href="%{url}" class="readmore">Afficher le drapeau</a>
   flag_this_observation: Signaler cette observation
   flag_this_photo: Signaler cette photo
+  flag_this_place: Signaler ce lieu
   flag_this_sound: Signaler ce son
   flagged: a signalé
   flagged_: Marqué
@@ -1857,6 +1865,8 @@ fr:
   highlights_and_stats_from_year_on_site: "Mises en évidence et statistiques pour %{year} sur %{site}"
   history: Historique
   home: Accueil
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Heures de décalage :"
   however_there_were_some_issues: "Cependant, il y a eu quelques problèmes : %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Je ne sais pas, mais je confirme que ça fait partie des %{taxon}
   icon: Icône
@@ -1942,7 +1952,13 @@ fr:
   in_the_past: dans le passé
   in_the_past_week: Durant la semaine passée
   inactive: Inactif
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Inactif
   inactive_taxon: Taxon inactif
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Inactif
   inactive_taxon_concepts_are: Les taxons inactifs sont soit désuets d’un point de vue taxinomique, soit en attente d’une modification de taxon. Les concepts désuets sont conservés aux fins d’historique et de compatibilité avec certains sites partenaires.
   inappropriate_content: Contenu inapproprié ?
   inat_account_action: "%{site_name} &#58; Compte &#58; %{action_name}"
@@ -2031,6 +2047,7 @@ fr:
   last_active_with_date: "Dernière activité : %{date}"
   last_confirmed_observation: Dernière observation confirmée
   last_observation: Dernière observation
+  last_observation_caps: DERNIÈRE OBSERVATION
   last_seen: Vu la dernière fois
   last_year: Année dernière
   lat: Lat.
@@ -2062,6 +2079,7 @@ fr:
   leave: Quitter
   leave_a_comment: Laisser un commentaire
   leave_this_project: Quitter ce projet
+  #Terminal nodes in a taxonomic tree
   leaves: feuilles
   legacy_authentication_notice_html: |
     Il semble que vous utilisez un mot de passe d’une ancienne version de ce site web.
@@ -2072,6 +2090,7 @@ fr:
     scientific_names: Noms scientifiques
     afrikaans: Afrikaans
     albanian: Albanais
+    belarusian: Biélorusse
     bengali: Bengali
     catalan: Catalan
     cebuano: Cebuano
@@ -2181,6 +2200,7 @@ fr:
   locales_: Paramètres régionaux
   locales:
     ar: arabe
+    be: Biélorusse
     bg: Bulgare
     br: Breton
     ca: Catalan
@@ -2568,7 +2588,6 @@ fr:
   no_assessments_have_been_added_to_this_project_yet: Aucune évaluation n’a encore été ajoutée à ce projet.
   no_but_it_is_a_member_of_taxon: "Non, je ne suis pas d'accord avec l'identification, mais je confirme que ça fait partie des %{taxon}"
   no_comments_yet: Aucun commentaire jusqu’à présent.
-  no_countries_added_yet: Aucun pays n’a été ajouté jusqu’à présent
   no_creative_commons_flickr_photos_tagged_x: 'Aucune photo Creative Commons de Flickr n’a été étiquetée « %{x} »'
   no_curators_set: Aucun responsable de l’organisation n’a été défini
   no_curators_yet: Aucun responsable de l’organisation jusqu’à présent!
@@ -2631,6 +2650,8 @@ fr:
   no_sections_have_been_added_to_this_assessments_yet: Aucune section n’a encore été ajoutée à cette évaluation.
   no_species_have_been_listed: Aucune espèce n’a encore été répertoriée dans ce lieu!
   no_species_on_this_list: Aucune espèce sur cette liste jusqu’à présent!
+  no_species_on_this_list_for_owner: |
+    Vous pouvez commencer à ajouter des espèces à cette liste en utilisant l'outil "Ajouter à votre liste" sur la droite.
   no_subject_parens: "(Aucun sujet)"
   no_suggestions_available: Aucune suggestion disponible
   no_summary_from_wikipedia: Aucun résumé de Wikipédia
@@ -2704,6 +2725,8 @@ fr:
   observation_brief_something_on_day_at_time: "Quelque chose le %{day} à %{time}"
   observation_brief_something_on_day_at_time_by_user: "Quelque chose le %{day} à %{time} par %{user}"
   observation_brief_something_on_day_by_user: "Quelque chose le %{day} par %{user}"
+  observation_brief_something_in_month: "Quelque chose en %{month}"
+  observation_brief_something_in_month_by_user: "Quelque chose en %{month} par %{user}"
   observation_brief_something_by_user: "Quelque chose par %{user}"
   observation_brief_something_from_place: "Quelque chose de %{place}"
   observation_brief_something_from_place_by_user: "Quelque chose de %{place} par %{user}"
@@ -2711,10 +2734,14 @@ fr:
   observation_brief_something_from_place_on_day_by_user: "Quelque chose de %{place} le %{day} par %{user}"
   observation_brief_something_from_place_on_day_at_time: "Quelque chose de %{place} le %{day} à %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Quelque chose de %{place} le %{day} à %{time} par %{user}"
+  observation_brief_something_from_place_in_month: "Quelque chose @vow_or_con{vow:d'|de }%{place} en %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Quelque chose @vow_or_con{vow:d'|de }%{place} en %{month} par %{user}"
   observation_brief_taxon_on_day: "%{taxon} le %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} le %{day} à %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} le %{day} par %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} le %{day} par %{user}"
+  observation_brief_taxon_in_month: "%{taxon} en %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} en %{month} par %{user}"
   observation_brief_taxon_by_user: "%{taxon} par %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} de %{place} par %{user}"
@@ -2722,6 +2749,8 @@ fr:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} de %{place} le %{day} par %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} de %{place} le %{day} à %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} de %{place} le %{day} à %{time} par %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} @vow_or_con{vow:d'|de }%{place} en %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} @vow_or_con{vow:d'|de }%{place} en %{month} par %{user}"
   observations_by_category: "Observations par catégorie"
   observations_by_app: Observations par application
   observations_by_rank: Observations par rang
@@ -2964,7 +2993,6 @@ fr:
   password_confirmation: 'Confirmation du mot de passe'
   paste: Coller
   paste_in_a_bunch_of_names: Collez dans un groupe de noms, 1 par ligne, et appuyez sur le bouton!
-  paste_in_a_comma_separated_list: Coller une liste de pays séparés par des virgules
   people: Personnes
   people_following_user: "Personnes suivant %{user}"
   people_user_follows: "Personnes que %{user} suit"
@@ -3582,7 +3610,6 @@ fr:
   projects: Projets
   projects_description: |
     Les projets vous permettent d'associer vos observations à celles d’autres personnes sur %{site_name}. Si vous souhaitez démarrer un projet de science citoyenne ou gérer un registre des oiseaux de votre voisinage, les projets sont le bon outil.
-  projects_from_everywhere: Projets de partout
   projects_from_place: "Projets de %{place}"
   projects_in_x: "Projets dans %{x}"
   #"admins" is equivalent to "administrates"
@@ -3861,7 +3888,6 @@ fr:
   restart: Redémarrer
   restore: Rétablir
   restoring: Restauration …
-  results: résultats
   review_all: Relire tout
   reviewed: Vérifié
   revoke: Révoquer
@@ -4482,17 +4508,16 @@ fr:
   to_add_ids: pour ajouter des ID
   to_configure_your_widget: pour configurer votre widget.
   to_recipient: À
-  to_suggest_an_identification: pour suggérer une identification
   today: Aujourd’hui
   too_many_results: Trop de résultats
   too_many_taxa_to_render: |
     Cette requête renvoie trop de taxons pour tous les afficher à la fois. Essayez d’ajouter plus de filtres.
   tools: Outils
   top_contributors: Collaborateurs les plus importants
-  top_identifier: Meilleurs identificateurs
+  top_identifier_caps: MEILLEUR IDENTIFICATEUR
   top_identifiers: Meilleurs Identificateurs
   top_identifiers_of_taxon: Meilleurs identificateurs de %{taxon}
-  top_observer: Meilleurs observateurs
+  top_observer_caps: MEILLEUR OBSERVATEUR
   top_observers: Meilleurs observateurs
   tos_privacy_guidelines_label: |
     J'accepte les <a href="/terms" target="_blank">conditions d'utilisation</a> et
@@ -4502,7 +4527,8 @@ fr:
   totals: Totaux
   total_members: Total des membres
   total_observations: Total des observations
-  total_species_observed: Nombre total d’espèces observées
+  total_observations_caps: NOMBRE D'OBSERVATIONS
+  total_species_observed_caps: NOMBRE D'ESPÈCES OBSERVÉES
   total_unique_observers: Total des observateurs uniques
   translated_languages: Langues traduites
   'true': 'Oui'
@@ -4609,7 +4635,6 @@ fr:
     other: Téléversement de %{num} sur %{count} photos…
   url_identifier_of_a_project_derived_from: "URL/identifiant d'un projet dérivé d’une ressource externe"
   url_of_this_taxon_on_the_source_website: URL de ce taxon sur le site Web de la source
-  US_states: États des États-Unis
   usage_stats: Statistiques d'utilisation
   use_name_as_a_placeholder: |
     Utilisez <span class='ac-placeholder'>"%{name}"</span> comme signet
@@ -4808,9 +4833,16 @@ fr:
   welcome_to_inat: "Bienvenue sur %{site_name}!"
   welcome_to_guides: "Bienvenue sur les guides d’%{site_name}!"
   welcome_to_x_project: "Bienvenue sur %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Nous sommes presque certains que cet organisme appartient au genre
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Nous sommes presque certains que cet organisme appartient à l'ordre
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: Nous sommes presque certains que cet organisme appartient à l'ordre
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Nous sommes quasiment sûrs qu'il se trouve dans les %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Nous sommes désolés, mais votre importation en vrac de %{filename} a échoué."
   what: Quoi
@@ -4825,8 +4857,6 @@ fr:
   when_did_you_see_it?: Quand l’avez-vous vu ?
   when_did_you_see_them?: <em>Quand</em> les avez-vous vus ?
   where: Où
-  where_do_x_live: Où vit %{taxa} ?
-  where_does_x_live: Où vit %{taxa} ?
   where_were_they?: Où étaient-ils ?
   where_were_you?: Où étiez-vous ?
   which_projects_can_add_your_observations?: Quels projets traditionnels peuvent ajouter vos observations ?

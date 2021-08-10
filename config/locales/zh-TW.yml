@@ -228,7 +228,6 @@ zh-TW:
   add_comma_separated_tags: "新增以逗號分隔式標籤"
   add_comment: 新增評論
   add_conservation_status: 新增保育狀態
-  add_countries: 新增國家
   add_custom_project_fields: 新增自定專案欄位
   add_edit_flags: 新增/編輯標記
   add_editor: 增加編輯者
@@ -634,6 +633,7 @@ zh-TW:
     基於現有證據，仍需要確認或改善社群分類群嗎?
   batch: 批量
   batch_edit: 批次編輯
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "批量編輯%{x}物種分類群"
   batch_operations: 批量操作
   be_the_first_to_fave_this_observation: 成為最先將此觀察列為最愛的人吧！
@@ -1028,7 +1028,6 @@ zh-TW:
   couldnt_change_your_password: "無法更改您的密碼：%{e}"
   couldnt_find_a_user_matching_x_param: "查無用戶符合 %{id}"
   couldnt_find_that_taxon: 找不到分類。
-  countries: 國家
   create: 建立
   create_a_guide: 建立一個指南
   create_a_new_field: 創建一個新欄位
@@ -1067,9 +1066,6 @@ zh-TW:
     您必須解釋為什麼您想成為策展人
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: 為什麼您想要成為策展人？
-  #Prompt for information when applying to be a curator
-  curator_application_fields_taxonomy_examples_html: |
-    如果您想編輯 iNaturalist 上的分類系統，請提供一至兩個您想處理的分類變動，並包含列在策展人指南中適當的分類文獻或資料庫的連結
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     如果您想編輯俗名，請提供您會如何編輯的一至兩個範例
@@ -1221,7 +1217,9 @@ zh-TW:
   date_picker:
     closeText: 關閉
     currentText: 今日
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: 上一頁
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: 下一頁
     range: 範圍
   date_range: 日期範圍
@@ -1976,6 +1974,7 @@ zh-TW:
   leave: 離開
   leave_a_comment: 留下評論
   leave_this_project: 離開此專案
+  #Terminal nodes in a taxonomic tree
   leaves: 支序
   legacy_authentication_notice_html: |
     看起來您正在使用此網站的舊版本密碼。請記得為新版本來<a href="%{url}">更改您的密碼</a>。
@@ -2475,7 +2474,6 @@ zh-TW:
   no_assessments_have_been_added_to_this_project_yet: 此專案尚未添加評估。
   no_but_it_is_a_member_of_taxon: "不，但這是%{taxon}的成員之一"
   no_comments_yet: 尚無評論。
-  no_countries_added_yet: 尚未添加國家
   no_creative_commons_flickr_photos_tagged_x: '沒有創用CC 的 Flickr 照片被標記為「%{x}」'
   no_curators_set: 沒有策展人設定
   no_curators_yet: 尚未有策展人！
@@ -2611,6 +2609,8 @@ zh-TW:
   observation_brief_something_on_day_at_time: "在 %{day} %{time} 所記錄的某些生物"
   observation_brief_something_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 所記錄的"
   observation_brief_something_on_day_by_user: "由使用者 %{user} 在 %{day} 所記錄的"
+  observation_brief_something_in_month: "在 %{month} 月的某些觀察"
+  observation_brief_something_in_month_by_user: "由使用者 %{user} 在 %{month} 月所記錄的"
   observation_brief_something_by_user: "由使用者 %{user} 所記錄的"
   observation_brief_something_from_place: "在 %{place} 所記錄的"
   observation_brief_something_from_place_by_user: "由使用者 %{user} 在 %{place} 所記錄的"
@@ -2861,7 +2861,6 @@ zh-TW:
   password_confirmation: '密碼確認'
   paste: 貼上
   paste_in_a_bunch_of_names: 每行貼上一串名稱，然後按下按鍵！
-  paste_in_a_comma_separated_list: 貼上以逗號分隔的國家列表
   people: 成員
   people_following_user: "關注 %{user} 的人"
   people_user_follows: "%{user} 關注的人"
@@ -3462,7 +3461,6 @@ zh-TW:
   projects_description: |
     專案能讓您的觀察在 %{site_name} 上與其他人交流。
     無論您是有意開始進行公眾科學事項，或是僅對在您的鄰近地區裡賞鳥感興趣，專案都會是可採用的方法。
-  projects_from_everywhere: 來自各處的專案
   projects_from_place: "來自於%{place}的專案"
   projects_in_x: "在%{x}的專案"
   #"admins" is equivalent to "administrates"
@@ -3733,7 +3731,6 @@ zh-TW:
   restart: 重新開始
   restore: 還原
   restoring: 正在還原...
-  results: 結果
   review_all: 檢閱全部
   reviewed: 已檢閱
   revoke: 撤銷
@@ -4322,17 +4319,14 @@ zh-TW:
   to_add_ids: 添加鑑定
   to_configure_your_widget: 來設置您的小工具。
   to_recipient: 至
-  to_suggest_an_identification: 提議一個鑑定
   today: 今日
   too_many_results: 太多結果
   too_many_taxa_to_render: |
     此查詢一次回傳太多要呈現的物種分類。請嘗試添加更多的篩選
   tools: 工具
   top_contributors: 頂尖貢獻者
-  top_identifier: 熱門鑑定人
   top_identifiers: 熱門鑑定人
   top_identifiers_of_taxon: '%{taxon}的熱門鑑定人'
-  top_observer: 熱門觀察者
   top_observers: 熱門觀察者
   tos_privacy_guidelines_label: |
     我同意<a href="/terms" target="_blank">服務條款</a>和<a href="/privacy" target="_blank">隱私權政策</a>，而且我已經審閱過<a href="/pages/community+guidelines" target="_blank">社群守則</a>。
@@ -4340,7 +4334,6 @@ zh-TW:
   totals: 總計
   total_members: 會員總數
   total_observations: 觀察總數
-  total_species_observed: 觀察物種總計
   total_unique_observers: 唯一觀察者總計
   translated_languages: 已翻譯語言
   'true': '是'
@@ -4445,7 +4438,6 @@ zh-TW:
     other: 正上傳一共 %{count} 張裡的 %{num} 張照片...
   url_identifier_of_a_project_derived_from: "由同一外部資源衍生的 URL / 專案識別"
   url_of_this_taxon_on_the_source_website: 此物種分類在來源網站的 URL
-  US_states: 美國州
   usage_stats: 使用量統計內容
   use_name_as_a_placeholder: |
     使用<span class='ac-placeholder'>"%{name}"</span>為位置標誌符
@@ -4639,9 +4631,10 @@ zh-TW:
   welcome_to_inat: "歡迎來到 %{site_name}！"
   welcome_to_guides: "歡迎來到 %{site_name} 指南！"
   welcome_to_x_project: "歡迎來到%{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: 我們認為應是在 %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "很抱歉，您的%{filename}大量匯入失敗。"
   what: 什麼
@@ -4656,8 +4649,6 @@ zh-TW:
   when_did_you_see_it?: 您何時看到它？
   when_did_you_see_them?: 您在<em>何時</em>看到它們？
   where: 哪裡
-  where_do_x_live: '%{taxa}存活於何處?'
-  where_does_x_live: '%{taxa}存活於何處?'
   where_were_they?: 它們在何處？
   where_were_you?: 您在何處？
   which_projects_can_add_your_observations?: 哪個傳統專案可以添加您的觀察？

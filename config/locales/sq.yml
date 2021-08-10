@@ -98,7 +98,6 @@ sq:
   add_comma_separated_tags: "Shto etiketa të ndara me pikëpresje"
   add_comment: Shto një koment
   add_conservation_status: Shto statusin e ruajtjes
-  add_countries: Shto shtete
   add_custom_project_fields: Shto fusha të rëndomta të projektin
   add_edit_flags: Shto/redakto shënime
   add_editor: Shto redaktor
@@ -399,6 +398,7 @@ sq:
     Bazuar në dëshmi, a mund të konfirmohet apo përmirësohet ID-ja e komunitetit?
   batch: Seri
   batch_edit: Redaktimi i grupimit
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Taksat për redaktimin e grupimit për %{x}"
   batch_operations: Operacionet e grupimit
   be_the_first_to_fave_this_observation: Bëhu i pari që ta pëlqesh këtë vëzhgim!
@@ -665,7 +665,6 @@ sq:
   couldnt_change_your_password: "Nuk mund ta ndryshoni fjalëkalimin tuaj: %{e}"
   couldnt_find_a_user_matching_x_param: "Nuk mund të gjendet përdoruesi që përputhet me %{id}"
   couldnt_find_that_taxon: Nuk mund të gjendet ky takson.
-  countries: Shtetet
   create: Krijo
   create_a_guide: Krijo një udhëzues
   create_a_new_field: Krijo një fushë të re
@@ -745,7 +744,9 @@ sq:
   date_picker:
     closeText: Mbyll
     currentText: Sot
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: E mëparshme
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Vijo
     range: Rangu
   date_range: Shtrirja në mes të datave
@@ -1243,6 +1244,7 @@ sq:
   least_concern: më pak i kërcënuar
   leave_a_comment: Lini një koment
   leave_this_project: Largohu nga ky projekt
+  #Terminal nodes in a taxonomic tree
   leaves: Gjethet
   legacy_authentication_notice_html: |
     Duket se po përdorni një fjalëkalim nga një version i vjetër i kësaj faqeje. Ju lutem mos harroni të <a href="%{url}"> ndryshoni fjalëkalimin tuaj </a> në versionin e ri.
@@ -1575,7 +1577,6 @@ sq:
   no_assessments_have_been_added_to_this_project_yet: Asnjë vlerësim nuk është shtuar ende rreth këtij projekti.
   no_but_it_is_a_member_of_taxon: "Jo, por është anëtar i %{taxon}"
   no_comments_yet: Nuk ka komente ende.
-  no_countries_added_yet: Asnjë vend nuk ka shtuar akoma
   no_creative_commons_flickr_photos_tagged_x: 'Asnjë fotografi Flickr nën Creative Commons nuk është etiketuar "%{x}"'
   no_curators_set: Asnjë kurator nuk është caktuar
   no_curators_yet: Asnjë kurator ende!
@@ -1843,7 +1844,6 @@ sq:
   password_confirmation: 'Konfirmim i fjalëkalimit'
   paste: Ngjit
   paste_in_a_bunch_of_names: Ngjit në varg emrash, 1 për vijë, dhe bjeri butonit!
-  paste_in_a_comma_separated_list: Ngjit në listën e shteteve të ndarë me presje
   people: Njerëz
   people_following_user: "Njerëz që ndjekin %{user}"
   people_user_follows: "Njerëz që %{user} i ndjek"
@@ -2143,7 +2143,6 @@ sq:
   projects_description: |
     Projektet ua mundësojnë t'i bashkoni vëzhgimet tuaja me njerëz tjerë në %{site_name}.
     Po që se jeni duke nisur një përpjekje shkencore qytetare apo mbani regjistër të zogjve në lagjen tuaj, Projektet janë mënyra e duhur.
-  projects_from_everywhere: Projekte nga të gjitha anët
   projects_from_place: "Projektet nga %{place}"
   projects_in_x: "Projektet në %{x}"
   projects_you_admin: Projektet që ju administroni
@@ -2276,7 +2275,6 @@ sq:
   resolved_by: Zgjidhur nga
   restore: Restauro
   restoring: Duke u restauruar...
-  results: rezultatet
   review_all: Rishiko të gjitha
   reviewed: Rishikuar
   role: Roli
@@ -2558,7 +2556,6 @@ sq:
   the_world: Bota
   the_world_is_full_of_interesting_places: |
     Bota është e mbushur me vende interesante, çdonjëra e mbushur me forma të çuditshme dhe të mrekullueshme. Disa janë në anën tjetër të botës, ndërsa të tjera aty poshtë rrugës! Vendet e %{site_name} ju mundësojnë të kërkoni për jetën anekënd planetit. Fillo të hulumtosh!
-  total_species_observed: Numri total i specjeve të vëzhguara
   try_adding_species_form: Provo te shtosh ca specje duke përdorur formularin në këtë faqe.
   type_species_name: "Shkruaj emrin e specjeve"
   type_taxon_name: "Lloji i emrit të taxon"

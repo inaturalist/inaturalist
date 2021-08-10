@@ -262,7 +262,6 @@ pt:
   add_comma_separated_tags: "Adicionar marcações separadas por vírgulas"
   add_comment: Adicionar um comentário
   add_conservation_status: Adicionar um status de conservação
-  add_countries: Adicione países
   add_custom_project_fields: Adicione campos de projetos personalizados
   add_edit_flags: Adicionar/Editar Etiquetas
   add_editor: Adicionar Editor
@@ -680,6 +679,7 @@ pt:
     Com base nas evidências, o Táxon comunitário ainda pode ser confirmado ou melhorado?
   batch: Grupo
   batch_edit: Editar em grupo
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Edição de dados por lote para %{x}"
   batch_operations: Operações por lote
   be_the_first_to_fave_this_observation: Seja o primeiro a adicionar esta observação aos favoritos!
@@ -1030,7 +1030,6 @@ pt:
   couldnt_change_your_password: "Não foi possível mudas a sua senha: %{e}"
   couldnt_find_a_user_matching_x_param: "Não foi possível encontrar um usuário com parâmetros %{id}"
   couldnt_find_that_taxon: Não foi possível encontrar uma espécie ou grupo.
-  countries: Países
   create: Criar
   create_a_guide: Crie um guia
   create_a_new_field: Crie um novo campo
@@ -1076,11 +1075,6 @@ pt:
     Você deve explicar porque quer se tornar um curador
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Por que você quer ser um curador?
-  #Prompt for information when applying to be a curator
-  curator_application_fields_taxonomy_examples_html: |
-    Se você deseja editar a taxonomia do iNaturalist, por favor, forneça um ou dois exemplos
-    das mudanças taxonômicas que você gostaria de fazer e inclua links para as
-    autoridades taxonômicas conforme listado no Guia do Curador
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Se você deseja editar nomes comuns, forneça um ou dois exemplos de mudanças que você gostaria de fazer
@@ -1161,7 +1155,9 @@ pt:
   date_picker:
     closeText: Fechar
     currentText: Hoje
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Anterior
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Próximo
     range: Intervalo
   date_range: Intervalo de datas
@@ -1900,6 +1896,7 @@ pt:
   leave: Sair
   leave_a_comment: Deixe um comentário
   leave_this_project: Sair deste projeto
+  #Terminal nodes in a taxonomic tree
   leaves: folhas
   legacy_authentication_notice_html: |
     Parece que você está utilizando uma senha da versão antiga deste site. Por favor lembre-se de <a href="%{url}">mudar sua senha</a> para a nova versão.
@@ -2355,7 +2352,6 @@ pt:
   no_assessments_have_been_added_to_this_project_yet: Nenhuma avaliação foi adicionada neste projeto ainda.
   no_but_it_is_a_member_of_taxon: "Não, mas é um membro de %{taxon}"
   no_comments_yet: Nenhum comentário ainda.
-  no_countries_added_yet: Nenhum país adicionado ainda.
   no_creative_commons_flickr_photos_tagged_x: 'Não existem fotos Creative Commons do Flickr marcadas "%{x}"'
   no_curators_set: Ainda não existem coordenadores
   no_curators_yet: Ainda não existem administradores!
@@ -2713,7 +2709,6 @@ pt:
   password_confirmation: 'Confirme sua senha'
   paste: Colar
   paste_in_a_bunch_of_names: Adicione um grupo de nomes, 1 por linha, a aperte o botão!
-  paste_in_a_comma_separated_list: Cole uma lista de países separados por vírgulas
   people: Pessoas
   people_following_user: "Pessoas que Seguem %{user}"
   people_user_follows: "Pessoas %{user} Segue"
@@ -3296,7 +3291,6 @@ pt:
   projects: Projetos
   projects_description: |
     Projetos são uma maneira de reunir suas observações com outras pessoas no %{site_name}. Seja começando um projeto de ciência cidadã ou mantendo tabelas sobre as aves próximas na sua vizinhança, os Projetos são o caminho a seguir.
-  projects_from_everywhere: Projetos de todos os lugares
   projects_from_place: "Projetos do %{place}"
   projects_in_x: "Projetos em %{x}"
   #"admins" is equivalent to "administrates"
@@ -3495,7 +3489,6 @@ pt:
   restart: Reiniciar
   restore: Restaurar
   restoring: Restaurando...
-  results: resultados
   review_all: Revisar todas
   reviewed: Revisado
   rg_observations: NP Observações
@@ -4087,17 +4080,14 @@ pt:
   to_add_ids: para adicionar IDentificações
   to_configure_your_widget: para configurar seu widget.
   to_recipient: para
-  to_suggest_an_identification: para sugerir uma identificação
   today: Hoje
   too_many_results: Muitos resultados
   too_many_taxa_to_render: |
     Esta consulta retorna muitos taxa para renderizar de uma só vez. Tente adicionar mais filtros
   tools: Ferramentas
   top_contributors: Principais colaboradores
-  top_identifier: Top Identificador
   top_identifiers: Principais Identificadores
   top_identifiers_of_taxon: Principais Identificadores de %{taxon}
-  top_observer: Top Observador
   top_observers: Principais Observadores
   tos_privacy_guidelines_label: |
     Eu concordo com os <a href="/terms" target="_blank">Termos de serviço</a> e com a
@@ -4106,7 +4096,6 @@ pt:
   totals: Totais
   total_members: Total de membros
   total_observations: Total de observações
-  total_species_observed: Número total de espécies observadas
   total_unique_observers: Total de observadores únicos
   translated_languages: Idiomas traduzidos
   'true': 'Verdadeiro'
@@ -4209,7 +4198,6 @@ pt:
     other: Carregando %{num} de %{count} fotos...
   url_identifier_of_a_project_derived_from: "URL / identificador de um projeto exportado de provedores externos"
   url_of_this_taxon_on_the_source_website: O link deste táxon no site que é fonte
-  US_states: Estados dos EUA
   usage_stats: Estatísticas de uso
   use_name_as_a_placeholder: |
     Use <span class='ac-placeholder'>"%{name}"</span> como um marcador de posição
@@ -4400,9 +4388,10 @@ pt:
   welcome_to_inat: "Seja bem vindo a %{site_name}!"
   welcome_to_guides: "Seja bem Vindo às Guias do %{site_name}!"
   welcome_to_x_project: "Seja bem vindo ao projeto %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Temos certeza que isso é no %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Pedimos desculpas mas a importação em massa de %{filename} falhou."
   what: Qual
@@ -4417,8 +4406,6 @@ pt:
   when_did_you_see_it?: Quando você viu?
   when_did_you_see_them?: <em>Quando</em> você os viu?
   where: Onde
-  where_do_x_live: Onde moram os %{taxa}?
-  where_does_x_live: Onde mora o %{taxa}?
   where_were_they?: Onde eles estão?
   where_were_you?: Onde você está?
   which_projects_can_add_your_observations?: Quais projetos tradicionais podem adicionar suas observações?

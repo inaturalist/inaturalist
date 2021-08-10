@@ -211,7 +211,6 @@ ja:
   add_comma_separated_tags: "カンマ区切りタグを追加"
   add_comment: コメントを追加
   add_conservation_status: 保全状況を追加
-  add_countries: 国を追加
   add_custom_project_fields: プロジェクト専用フィールドを追加
   add_edit_flags: フラグの追加・編集
   add_editor: 編集者を追加
@@ -609,6 +608,7 @@ ja:
     証拠に基づいてコミュニティ分類群を確定しますか、改善しますか？
   batch: 一括
   batch_edit: 一括編集
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "%{x}の分類群一括編集"
   batch_operations: 一括操作
   be_the_first_to_fave_this_observation: この観察記録の最初のお気に入り登録者になろう！
@@ -938,7 +938,6 @@ ja:
   couldnt_change_your_password: "パスワードを変えることができませんでした：%{e}"
   couldnt_find_a_user_matching_x_param: "%{id}というユーザーが見つかりません"
   couldnt_find_that_taxon: お探しのタクソンが見つかりません
-  countries: 国
   create: 作成
   create_a_guide: ガイドを作成
   create_a_new_field: 新規フィールドを作成
@@ -1031,7 +1030,9 @@ ja:
   date_picker:
     closeText: 閉じる
     currentText: 今日
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: 前へ
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: 次へ
     range: 範囲
   date_range: 期間
@@ -1683,6 +1684,7 @@ ja:
   leave: 退会する
   leave_a_comment: コメントする
   leave_this_project: このプロジェクトを退会
+  #Terminal nodes in a taxonomic tree
   leaves: 末端ノード
   legacy_authentication_notice_html: |
     このWebサイトの古いバージョンのパスワードを使用しているようです。
@@ -2091,7 +2093,6 @@ ja:
   no_assessments_have_been_added_to_this_project_yet: このプロジェクトにはまだ評価がありません。
   no_but_it_is_a_member_of_taxon: "同定に十分な情報が無いか、 %{taxon} の別の分類群です。"
   no_comments_yet: まだコメントはありません
-  no_countries_added_yet: まだ国は追加されていません
   no_creative_commons_flickr_photos_tagged_x: 'Flickrには「%{x}」とタグ付けられたクリエイティブ・コモンズの写真がありません'
   no_curators_set: キュレーター管理者が設定されていません
   no_curators_yet: キューレータ管理者はまだいません！
@@ -2420,7 +2421,6 @@ ja:
   password_confirmation: 'パスワード確認'
   paste: 貼り付け
   paste_in_a_bunch_of_names: たくさんの名称を、行ごとに一つずつを貼り付けた後、ボトンを押すとバッチで処理します
-  paste_in_a_comma_separated_list: カンマ区切りで国名のリストを貼り付けてください
   people: ユーザー
   people_following_user: "%{user}さんのフォロワー"
   people_user_follows: "%{user}さんがフォローしているユーザー"
@@ -2955,7 +2955,6 @@ ja:
   projects: プロジェクト
   projects_description: |
     プロジェクトでは、%{site_name} 上の他の人とあなたの観測を共有することができます。市民科学の取り組みを始めようとしている場合でも、近所の鳥を把握しようとしている場合でも、プロジェクトを利用することができます。
-  projects_from_everywhere: あらゆる場所からのプロジェクト
   projects_from_place: "%{place}からのプロジェクト"
   projects_in_x: "%{x}の中のプロジェクト"
   #"admins" is equivalent to "administrates"
@@ -3127,7 +3126,6 @@ ja:
   resolved_by_user_on_date_html: '%{user}さんによって %{date} に解決済み'
   restore: 復元
   restoring: 復旧中...
-  results: 結果
   review_all: すべてを確認済みに
   reviewed: 確認済み
   role: 役割
@@ -3640,17 +3638,14 @@ ja:
   to_add_comments: すれば、コメントを投稿することができます
   to_add_ids: すれば、IDを追加することができます
   to_configure_your_widget: をクリックしてウィジェットを設定します。
-  to_suggest_an_identification: 同定を提案
   today: 今日
   too_many_results: 検索結果が多すぎます
   too_many_taxa_to_render: |
     このクエリは、一度に描画するにはあまりにも多くの分類群を返します。より多くのフィルタを追加してみてください。
   tools: ツール
   top_contributors: トップ協力者
-  top_identifier: トップ同定者
   top_identifiers: 同定の達人
   top_identifiers_of_taxon: '%{taxon}のトップ同定者'
-  top_observer: トップ観察者
   top_observers: トップ観察者
   tos_privacy_guidelines_label: |
     <a href="/terms" target="_blank">利用規約</a>と<a href="/privacy" target="_blank">プライバシーポリシー</a>に同意し、<a href="/pages/community+guidelines" target="_blank">コミュニティガイドライン</a>を確認しました。
@@ -3658,7 +3653,6 @@ ja:
   totals: 合計
   total_members: メンバー人数
   total_observations: 合計観察記録数
-  total_species_observed: 観察された総種数
   'true': '真'
   trends: トレンド
   trusted_project?: 信頼できるプロジェクト？
@@ -3731,7 +3725,6 @@ ja:
       upload_failed: アップロード失敗
   uploading_num_of_count_photos:
     other: '%{num}/%{count}枚の写真をアップロード中...'
-  US_states: アメリカの州
   usage_stats: 利用状況
   use_name_as_a_placeholder: |
     <span class='ac-placeholder'>「%{name}」</span> をプレースホルダーとして使用します。
@@ -3851,9 +3844,10 @@ ja:
   welcome_to_inat: "%{site_name}へようこそ！"
   welcome_to_guides: "%{site_name}のガイドへようこそ！"
   welcome_to_x_project: "%{project}へようこそ"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: 下の%{rank}だと確信しています
   were_sorry_but_your_bulk_import_of_filename_has_failed: "申し訳ありません。%{filename}の一括インポートが失敗しました。"
   what_did_you_see: 何を見ましたか？
@@ -3865,8 +3859,6 @@ ja:
   when_did_you_see_it?: いつ見ましたか？
   when_did_you_see_them?: <em>いつ</em>見ましたか？
   where: どこ
-  where_do_x_live: '%{taxa}はどこに生息していますか？'
-  where_does_x_live: '%{taxa}はどこに生息していますか？'
   where_were_they?: 場所は？
   where_were_you?: 場所は？
   which_projects_can_add_your_observations?: どのプロジェクトに自分の観察記録の追加を許可しますか？

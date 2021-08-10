@@ -274,7 +274,6 @@ da:
   add_comma_separated_tags: "Tilføj kommaseparerede tags"
   add_comment: Tilføj en kommentar
   add_conservation_status: Tilføj bevaringsstatus
-  add_countries: Tilføj lande
   add_custom_project_fields: Tilføj brugerdefinerede projektfelter
   add_edit_flags: Tilføj/redigér markeringer
   add_editor: Tilføj redaktør
@@ -699,6 +698,7 @@ da:
     På baggrund af ovenstående, kan fællesskabs ID'et stadig bekræftes eller forbedres?
   batch: Bundt
   batch_edit: Multi redigere
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Bundt redigere takson for %{x}"
   batch_operations: Multi operationer
   be_the_first_to_fave_this_observation: Vær den første til at gøre denne observation til favorit
@@ -1104,7 +1104,6 @@ da:
   couldnt_change_your_password: "Kunne ikke ændre din adgangskode: %{e}"
   couldnt_find_a_user_matching_x_param: "Kunne ikke finde en matchende bruger %{id}"
   couldnt_find_that_taxon: Kunne ikke finde den takson.
-  countries: Lande
   create: Oprette
   create_a_guide: Opret en Guide
   create_a_new_field: Opret et nyt felt
@@ -1147,7 +1146,11 @@ da:
   curator_application_fields_explanation_html: Hvorfor vil du gerne være kurator?
   #Prompt for information when applying to be a curator
   curator_application_fields_taxonomy_examples_html: |
-    Ønsker du at redigere iNaturalists taksonomi, så angiv et eksempel eller to på taksonomiændringer, du gerne vil foretage, og inkludér links til de relevante taksonomimyndigheder, som anført i Kurator Guide
+    Ønsker du at redigere iNaturalists taksonomi, så angiv et eksempel eller to på de taksonomiske ændringer, du gerne vil foretage, og inkludere kilder til dine
+    foreslåede ændringer. Såfremt relevant, bedes du citere de korrekte taksonomiske myndigheder <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">, som anført
+    i Kuratorvejledning</a>. Inkluderer du ingen kilder, tages din
+    ansøgning ikke i betragtning.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Ønsker du at redigere almindelige navne, så angiv et eksempel eller to på
@@ -1308,7 +1311,9 @@ da:
   date_picker:
     closeText: Luk
     currentText: I dag
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Forrige
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Næste
     range: Område
   date_range: Datointerval
@@ -1689,6 +1694,8 @@ da:
   flag_for_observation_title_html: |
     Markér til Observation: %{title}
   flag_for_photo_id_html: Markér til <a href="%{url}">Foto %{id}</a>
+  flag_for_place_title_html: |
+    Markering af sted: %{title}
   flag_for_post_title_html: |
     Markér til Indlæg: %{title}
   flag_for_project_title_html: |
@@ -1709,6 +1716,7 @@ da:
   flag_saved_thanks_html: Markering gemt. Tak! <a href="%{url}" class="readmore">Vis markering</a>
   flag_this_observation: Markér dette objekt
   flag_this_photo: Markér dette foto
+  flag_this_place: Markér dette sted
   flag_this_sound: Markér denne lyd
   flagged: markeret
   flagged_: Markeret
@@ -2044,6 +2052,7 @@ da:
   last_active_with_date: "Senest aktiv: %{date}"
   last_confirmed_observation: Sidste bekræftede observation
   last_observation: Sidste observation
+  last_observation_caps: SENESTE OBSERVATION
   last_seen: Sidst set
   last_year: Sidste år
   lat: Bre.
@@ -2075,6 +2084,7 @@ da:
   leave: Forlad
   leave_a_comment: Efterlad en kommentar
   leave_this_project: Forlad dette projekt
+  #Terminal nodes in a taxonomic tree
   leaves: blade
   legacy_authentication_notice_html: |
     Det ser ud til at du bruger en adgangskode fra en ældre version af denne hjemmeside.
@@ -2085,6 +2095,7 @@ da:
     scientific_names: Videnskabelige navne
     afrikaans: Afrikaans
     albanian: Albansk
+    belarusian: Hviderussisk
     bengali: Bengalsk
     catalan: Catalansk
     cebuano: Cebuano
@@ -2194,6 +2205,7 @@ da:
   locales_: Landestandarder
   locales:
     ar: Arabisk
+    be: Hviderussisk
     bg: Bulgarsk
     br: Bretonsk
     ca: Catalansk
@@ -2587,7 +2599,6 @@ da:
   no_assessments_have_been_added_to_this_project_yet: Ingen vurderinger er blevet tilføjet til dette projekt endnu.
   no_but_it_is_a_member_of_taxon: "Nej, men det er et medlem af %{taxon}"
   no_comments_yet: Ingen kommentarer endnu.
-  no_countries_added_yet: Ingen lande tilføjet endnu
   no_creative_commons_flickr_photos_tagged_x: 'Ingen Creative Commons Flickr foto´s tagget "%{x}"'
   no_curators_set: Ingen kurator valgt
   no_curators_yet: Ingen kurator endnu!
@@ -2725,6 +2736,8 @@ da:
   observation_brief_something_on_day_at_time: "Noget %{day} kl. %{time}"
   observation_brief_something_on_day_at_time_by_user: "Noget %{day} kl. %{time} af %{user}"
   observation_brief_something_on_day_by_user: "Noget fra %{day} af %{user}"
+  observation_brief_something_in_month: "Noget i %{month}"
+  observation_brief_something_in_month_by_user: "Noget i %{month} af %{user}"
   observation_brief_something_by_user: "Noget af %{user}"
   observation_brief_something_from_place: "Noget fra %{place}"
   observation_brief_something_from_place_by_user: "Noget fra %{place} af %{user}"
@@ -2732,10 +2745,14 @@ da:
   observation_brief_something_from_place_on_day_by_user: "Noget fra %{place} den %{day} af %{user}"
   observation_brief_something_from_place_on_day_at_time: "Noget fra %{place} den %{day} klokken %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Noget fra %{place} den %{day} klokken %{time} af %{user}"
+  observation_brief_something_from_place_in_month: "Noget fra %{place} i %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Noget fra %{place} i %{month} af %{user}"
   observation_brief_taxon_on_day: "%{taxon} %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} %{day} kl. %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} %{day} kl. %{time} af %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} fra %{day} af %{user}"
+  observation_brief_taxon_in_month: "%{taxon} i %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} i %{month} af %{user}"
   observation_brief_taxon_by_user: "%{taxon} af %{user}"
   observation_brief_taxon_from_place: "%{taxon} fra %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} fra %{place} af %{user}"
@@ -2743,6 +2760,8 @@ da:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} fra %{place} %{day} af %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} fra %{place} %{day} kl. %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} fra %{place} %{day} kl. %{time} af %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} fra %{place} i %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} fra %{place} i %{month} af %{user}"
   observations_by_category: "Observationer efter kategori"
   observations_by_app: Observationer via App
   observations_by_rank: Observationer efter rang
@@ -2985,7 +3004,6 @@ da:
   password_confirmation: 'Adgangskode bekræftelse'
   paste: Indsæt
   paste_in_a_bunch_of_names: Indsæt et bundt af navne, 1 per linje, og tryk på knappen!
-  paste_in_a_comma_separated_list: Indsæt i en kommasepareret liste over lande
   people: Personer
   people_following_user: "Personer, der følger %{user}"
   people_user_follows: "Personer %{user} følger"
@@ -3605,7 +3623,6 @@ da:
   projects: Projekter
   projects_description: |
     Projekter er en måde at forene dine - med andres observationer på %{site_name}. Hvis du er interesseret i at starte et "citizen science" projekt eller holde styr på fuglene i en nærliggende park, er projekter skabt til det.
-  projects_from_everywhere: Projekter alle steder fra
   projects_from_place: "Projekter fra %{place}"
   projects_in_x: "Projekter i %{x}"
   #"admins" is equivalent to "administrates"
@@ -3884,7 +3901,6 @@ da:
   restart: Genstart
   restore: Gendan
   restoring: Gendanner...
-  results: resultater
   review_all: Gennemgå alle
   reviewed: Gennemgået
   revoke: Tilbagekald
@@ -4516,17 +4532,16 @@ da:
   to_add_ids: for at tilføje IDs
   to_configure_your_widget: for at konfigurere din widget.
   to_recipient: til
-  to_suggest_an_identification: at foreslå en identifikation
   today: I dag
   too_many_results: For mange resultater
   too_many_taxa_to_render: |
     Denne forespørgsel finder for mange taksa til at kunne vise dem på én gang. Prøv at tilføje flere filtre
   tools: Værktøjer
   top_contributors: Top bidragsydere
-  top_identifier: Top identifikator
+  top_identifier_caps: IDENTIFIKATIONSLEDER
   top_identifiers: Flest identifikationer
   top_identifiers_of_taxon: Flest identifikationer af %{taxon}
-  top_observer: Top observatør
+  top_observer_caps: OBSERVATIONSLEDER
   top_observers: Top observatører
   tos_privacy_guidelines_label: |
     Jeg accepterer <a href="/terms" target="_blank">Tjenestevilkår</a> og
@@ -4536,7 +4551,8 @@ da:
   totals: totaler
   total_members: Samlet antal medlemmer
   total_observations: Samlet antal observationer
-  total_species_observed: Samlet antal arter observeret
+  total_observations_caps: OBSERVATIONER I ALT
+  total_species_observed_caps: OBSERVEREDE ARTER I ALT
   total_unique_observers: Samlet antal unikke observatører
   translated_languages: Oversatte sprog
   'true': 'Sandt'
@@ -4646,7 +4662,6 @@ da:
     other: Uploader %{num} af %{count} foto´s...
   url_identifier_of_a_project_derived_from: "URL / identifikator for et projekt afledt af en ekstern ressource"
   url_of_this_taxon_on_the_source_website: URL for denne takson på kildens hjemmeside
-  US_states: US Stater
   usage_stats: Anvendelses statistik
   use_name_as_a_placeholder: |
     Brug <span class='ac-placeholder'>"%{name}"</span> som en pladsholder
@@ -4842,9 +4857,16 @@ da:
   welcome_to_inat: "Velkommen til %{site_name}"
   welcome_to_guides: "Velkommen til  %{site_name} guider!"
   welcome_to_x_project: "Velkommen til %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Vi er ret sikre på, at det er i slægten
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Vi er ret sikre på, at det er i familien
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: Vi er ret sikre på, at det er i ordenen
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Vi er ret sikre på, at dette er i %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Vi beklager, men din multiimport af %{filename} har fejlet."
   what: Hvad
@@ -4859,8 +4881,6 @@ da:
   when_did_you_see_it?: Hvornår observerede du den?
   when_did_you_see_them?: <em>Hvornår</em> så du dem?
   where: Hvor
-  where_do_x_live: Hvor lever %{taxa}?
-  where_does_x_live: Hvor lever %{taxa}?
   where_were_they?: Hvor var de?
   where_were_you?: Hvor observerede du den?
   which_projects_can_add_your_observations?: Hvilke traditionelle projekter kan tilføje dine observationer?

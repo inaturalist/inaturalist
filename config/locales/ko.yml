@@ -139,7 +139,6 @@ ko:
   add_comma_separated_tags: "쉼표로 구분된 태그 추가하기"
   add_comment: 댓글 추가
   add_conservation_status: 보전 상태 추가하기
-  add_countries: 국가 추가하기
   add_custom_project_fields: 사용자 지정 프로젝트 필드 추가하기
   add_edit_flags: 플래그 추가/편집
   add_editor: 편집자 추가
@@ -416,6 +415,7 @@ ko:
   back_to_your_projects: 내 프로젝트로 돌아가기
   batch: 일괄
   batch_edit: 일괄 편집
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "%{x}로 분류군 일괄 편집"
   batch_operations: 일괄 운영
   before_importing_photos: 사진을 불러오기 전에
@@ -650,7 +650,6 @@ ko:
   couldnt_change_your_password: "비밀번호를 변경하지 못하였습니다: %{e}"
   couldnt_find_a_user_matching_x_param: "%{id}와(과) 일치하는 사용자를 찾을 수 없습니다"
   couldnt_find_that_taxon: 분류군을 찾지 못했습니다.
-  countries: 국가
   create: 만들기
   create_a_guide: 가이드 만들기
   create_a_new_field: 새로운 필드 생성
@@ -728,7 +727,9 @@ ko:
   date_picker:
     closeText: 닫기
     currentText: 오늘
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: 이전
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: 다음
     range: 범위
   date_range: 날짜 범위
@@ -1450,7 +1451,6 @@ ko:
   'no': '아니오'
   no_assessments_have_been_added_to_this_project_yet: 아직 이 프로젝트에 평가를 추가하지 않았습니다.
   no_comments_yet: 아직 댓글이 없습니다.
-  no_countries_added_yet: 아직 국가가 추가되지 않았습니다.
   no_creative_commons_flickr_photos_tagged_x: '%{x}로 크리에이티브 커먼즈 Flickr 사진 태그된 것이 없음'
   no_curators_set: 정해진 큐레이터 없음
   no_curators_yet: 아직 큐레이터가 없습니다
@@ -2245,7 +2245,6 @@ ko:
   too_many_results: 결과가 너무 많음
   total: 합계
   total_observations: 총 관찰
-  total_species_observed: 관찰된 종 전체
   translated_languages: 번역된 언어
   twitter: 트위터
   unblock: 차단 해제

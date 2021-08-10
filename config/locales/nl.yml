@@ -288,7 +288,6 @@ nl:
   add_comma_separated_tags: "Door komma's gescheiden labels toevoegen"
   add_comment: Reactie toevoegen
   add_conservation_status: Natuurbeschermingsstatus toevoegen
-  add_countries: Landen toevoegen
   add_custom_project_fields: Aangepaste projectvelden toevoegen
   add_edit_flags: Meldingen toevoegen/bewerken
   add_editor: Editor toevoegen
@@ -712,6 +711,7 @@ nl:
     Gebaseerd op het bewijs, kan het gemeenschapstaxon nog steeds bevestigd of verbeterd worden?
   batch: Batch
   batch_edit: Bewerk in batch
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Bewerk taxa in batch voor %{x}"
   batch_operations: Batchbewerkingen
   be_the_first_to_fave_this_observation: Sla als eerste deze waarneming op als een favoriet!
@@ -936,6 +936,21 @@ nl:
     <span class="comprehensive_notice" data-tip="%{tip}">Volledige</span>
     checklist voor %{taxon}
   comprehensive_list: Volledige lijst
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Computer Vision Model
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Opgenomen
+  computer_vision_model_included_desc: |
+    Het huidige Computer Vision Model kent dit taxon dus het kan
+    voorkomen in geautomatiseerde suggesties met het "Visueel vergelijkbaar" label.
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: In behandeling
+  computer_vision_model_pending_desc: |
+    Het huidige Computer Vision Model kent dit taxon niet, het kan dus voorkomen in geautomatiseerde suggesties met het label "In de omgeving" maar het zal dan niet het label "Visueel vergelijkbaar" hebben. Hoewel de vereisten voor opname in het model met elk model wijzigen, is opname in het algemeen gebaseerd op
+    aantal waarnemingen, om de kans te vergroten dat dit taxon tijdens de volgende modeltraining
+    wordt opgenomen. Voeg meer waarnemingen toe van dit taxon of determineer ze.
+    .
   concept_status: Conceptstatus
   configure: Instellen
   configure_a_widget_to_show: Stel een widget in om de  %{site_name} waarnemingen te tonen op je website of blog. Het kan zijn dat je de  CSS moet opnemen in de  <code>&lt;head&gt;</code> van je HTML. Voel je vrij de CSS te herschrijven.
@@ -1102,7 +1117,6 @@ nl:
   couldnt_change_your_password: "Je wachtwoord kon niet gewijzigd worden: %{e}"
   couldnt_find_a_user_matching_x_param: "Kon geen gebruiker vinden die overeenstemt met %{id}"
   couldnt_find_that_taxon: Taxon niet gevonden.
-  countries: Landen
   create: Aanmaken
   create_a_guide: Maak een gids aan
   create_a_new_field: Nieuw veld aanmaken
@@ -1144,8 +1158,7 @@ nl:
   #Prompt for information when applying to be a curator
   curator_application_fields_taxonomy_examples_html: |
     Als je de taxonomie van iNaturalist wilt bewerken, geef dan één of twee voorbeelden
-    van taxonomische wijzigingen die je zou willen aanbrengen, en voeg links toe naar de juiste
-    taxonomische autoriteiten zoals vermeld in de Curator Guide
+    van taxonomische wijzigingen die je wilt aanbrengen en voeg bronnen toe aan je voorstellen. Citeer indien van toepassing de juiste taxonomische autoriteiten <a href="https://www.inaturalist.org/pages/curator+guide#policies"> zoals vermeld in de Curator Guide</a>. Als je geen bronnen toevoegt wordt je aanvraag niet in behandeling genomen.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Als je algemene namen wilt bewerken geef dan één of twee voorbeelden van
@@ -1303,7 +1316,9 @@ nl:
   date_picker:
     closeText: Sluiten
     currentText: Vandaag
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Vorige
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Volgende
     range: Periode
   date_range: Tijdspanne
@@ -2036,6 +2051,7 @@ nl:
   last_active_with_date: "Laatst actief %{date}"
   last_confirmed_observation: Laatste bevestigde waarneming
   last_observation: Laatste waarneming
+  last_observation_caps: LAATSTE WAARNEMING
   last_seen: Laatst gezien
   last_year: Vorig jaar
   lat: Lat
@@ -2067,6 +2083,7 @@ nl:
   leave: Verlaat
   leave_a_comment: Reactie achterlaten
   leave_this_project: Dit project verlaten
+  #Terminal nodes in a taxonomic tree
   leaves: verlaat
   legacy_authentication_notice_html: |
     Het lijkt erop dat je een wachtwoord gebruikt van een oudere versie van deze website.
@@ -2098,6 +2115,7 @@ nl:
     hawaiian: Hawaïaans
     hebrew: Hebreeuws
     hiligaynon: "\nHiligaynon"
+    hungarian: Hongaars
     icelandic: IJslands
     ilokano: Ilokano
     italian: Italiaans
@@ -2119,6 +2137,7 @@ nl:
     swedish: Zweeds
     tagalog: Tagalog
     tahitian: Tahitiaans
+    thai: Thai
     tokelauan: Tokelaus
     turkish: Turks
     waray_waray: Winaray
@@ -2195,6 +2214,7 @@ nl:
     eo: Esperanto
     es: Spaans
     es-AR: Spaans (Argentinië)
+    es-CO: Spaans (Colombia)
     es-MX: Spaans (Mexico)
     et: Estlands
     eu: Baskisch
@@ -2203,6 +2223,7 @@ nl:
     fr-CA: Frans (Canada)
     gl: Galicisch
     he: Hebreeuws
+    hu: Hongaars
     id: Indonesisch
     it: Italiaans
     ja: Japans
@@ -2221,6 +2242,7 @@ nl:
     sk: Slowaaks
     sq: Albanees
     sv: Zweeds
+    th: Thai
     tr: Turks
     uk: Oekraïens
     zh-CN: Chinees (vereenvoudigd)
@@ -2559,15 +2581,18 @@ nl:
   newly_observed_species: Nieuw waargenomen soorten
   newly_observed_species_in_year: "Nieuw toegevoegde soorten in %{year}"
   next: Volgende
+  next_date_short: Volgende
   next_observation: Volgende waarneming
   next_page: Volgende pagina
+  next_page_short: Volgende
   next_photo: Volgende foto
+  next_post_short: Volgende
   next_tab: Volgende tabblad
+  next_taxon_short: Volgende
   'no': 'Nee'
   no_assessments_have_been_added_to_this_project_yet: Er zijn nog geen beoordelingen aan dit project toegevoegd.
   no_but_it_is_a_member_of_taxon: "Nee, maar het is een lid van %{taxon}"
   no_comments_yet: Nog geen reacties.
-  no_countries_added_yet: Nog geen landen toegevoegd
   no_creative_commons_flickr_photos_tagged_x: 'Geen Creative Commons Flickr-foto''s met de tag "%{x}"'
   no_curators_set: Geen beheerders ingesteld
   no_curators_yet: Nog geen curatoren!
@@ -2630,6 +2655,8 @@ nl:
   no_sections_have_been_added_to_this_assessments_yet: Er zijn nog geen secties aan deze beoordelingen toegevoegd.
   no_species_have_been_listed: Voor deze plaats is nog geen soortenlijst!
   no_species_on_this_list: Nog geen soorten op deze lijst!
+  no_species_on_this_list_for_owner: |
+    Je kunt beginnen met het toevoegen van soorten aan deze lijst via de optie "Toevoegen aan je lijst" aan de rechterkant.
   no_subject_parens: "(Geen onderwerp)"
   no_suggestions_available: Geen suggesties beschikbaar
   no_summary_from_wikipedia: Geen overzicht in Wikipedia
@@ -2703,6 +2730,8 @@ nl:
   observation_brief_something_on_day_at_time: "Iets op %{day} om %{time}"
   observation_brief_something_on_day_at_time_by_user: "Iets op %{day} om %{time} door %{user}"
   observation_brief_something_on_day_by_user: "Iets op %{day} door %{user}"
+  observation_brief_something_in_month: "Iets in %{month}"
+  observation_brief_something_in_month_by_user: "Iets in %{month} door %{user}"
   observation_brief_something_by_user: "Iets door %{user}"
   observation_brief_something_from_place: "Iets uit %{place}"
   observation_brief_something_from_place_by_user: "Iets uit %{place} door %{user}"
@@ -2710,10 +2739,14 @@ nl:
   observation_brief_something_from_place_on_day_by_user: "Iets uit %{place} op %{day} door %{user}"
   observation_brief_something_from_place_on_day_at_time: "Iets uit %{place} op %{day} om %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Iets uit %{place} op %{day} om %{time} door %{user}"
+  observation_brief_something_from_place_in_month: "Iets uit %{place} in %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Iets uit %{place} in %{month} door %{user}"
   observation_brief_taxon_on_day: "%{taxon} op %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} op %{day} om %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} op %{day} om %{time} door %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} op %{day} door %{user}"
+  observation_brief_taxon_in_month: "%{taxon} in %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} in %{month} door %{user}"
   observation_brief_taxon_by_user: "%{taxon} door %{user}"
   observation_brief_taxon_from_place: "%{taxon} uit %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} uit %{place} door %{user}"
@@ -2721,6 +2754,8 @@ nl:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} uit %{place} op %{day} door %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} uit %{place} op %{day} om %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} uit %{place} op %{day} om %{time} door %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} uit %{place} in %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} uit %{place} in %{month} door %{user}"
   observations_by_category: "Waarnemingen per categorie"
   observations_by_app: Waarnemingen volgens App
   observations_by_rank: Waarnemingen per rang
@@ -2968,7 +3003,6 @@ nl:
   password_confirmation: 'Bevestiging wachtwoord'
   paste: Plakken
   paste_in_a_bunch_of_names: Plak een aantal namen, 1 per regel en druk op de knop!
-  paste_in_a_comma_separated_list: Plak in een door komma's gescheiden lijst van landen
   people: Personen
   people_following_user: "Personen die %{user} volgen"
   people_user_follows: "Personen die %{user} volgt"
@@ -3036,6 +3070,9 @@ nl:
   place: Plaats
   placeholder: Tijdelijke aanduiding
   place_autocomplete_placeholder: Zion National Park, Miami, enz.
+  place_create_quota_exceeded: |
+    Jij hebt het aantal plaatsen overschreden dat je in een periode van 24 uur kunt aanmaken
+    (%{quota})
   place_deleted: Plaats verwijderd.
   place_geo:
     geo_planet_place_types:
@@ -3467,6 +3504,8 @@ nl:
   places_warning_editing_places_is_slow: |
     Gebiedsgrenzen bewerken is een van de grootste bronnen van vertraging op iNat.
     Voorkom het toevoegen, veranderen of wijzigen van gebiedsgrenzen tenzij het absoluut noodzakelijk is.
+  places_warning_quota: |
+    Je kunt slechts drie plaatsen per dag maken.
   places_warning_the_future: |
     Voor wat het waard is, in het huidige groeitempo van iNat zullen de voorwaarden strenger worden waaronder
     mensen in de toekomst plaatsen kunnen toevoegen.
@@ -3504,11 +3543,15 @@ nl:
   preview_observations_with_these_observation_requirements: Voorbeeld van waarnemingen met deze waarnemingsvereisten
   preview_of_synced_observation: "<strong>Voorbeeld</strong>van een gesynchroniseerde waarneming. <a href=\"%{url}\">Ongedaan maken?</a>"
   previewing: "Previewing ..."
+  previous_date_short: Vorige
   prev: Vorige
   previous_observation: Vorige waarneming
   previous_page: Vorige pagina
+  previous_page_short: Vorige
   previous_photo: Vorige foto
+  previous_post_short: Vorige
   previous_tab: Vorige tabblad
+  previous_taxon_short: Vorige
   print_verb: Afdrukken
   privacy: Privacy
   private: privé
@@ -3581,7 +3624,6 @@ nl:
   projects_description: |
     Projecten laten je je waarnemingen samenvoegen met andere mensen op %{site_name}.
     Of je nu een intiatief voor burgerwetenschap opstart of op de hoogte wilt blijven van de vogels in jouw buurt, projecten zijn dé manier.
-  projects_from_everywhere: Projecten van overal
   projects_from_place: "Projecten van %{place}"
   projects_in_x: "Projecten in %{x}"
   #"admins" is equivalent to "administrates"
@@ -3860,7 +3902,6 @@ nl:
   restart: Herstart
   restore: Herstellen
   restoring: Aan het herstellen ...
-  results: resultaten
   review_all: Alles nakijken
   reviewed: Nagekeken
   revoke: Intrekken
@@ -4484,27 +4525,27 @@ nl:
   to_add_ids: om ID's toe te voegen
   to_configure_your_widget: configureer je widget
   to_recipient: naar
-  to_suggest_an_identification: om een determinatie voor te stellen
   today: Vandaag
   too_many_results: Te veel resultaten
   too_many_taxa_to_render: |
     Deze query retourneert te veel taxa om tegelijkertijd te renderen. Probeer meer filters toe te voegen.
   tools: Hulpmiddelen
   top_contributors: Top bijdragers
-  top_identifier: Top-determineerder
+  top_identifier_caps: TOP DETERMINEERDER
   top_identifiers: Top-determineerders
   top_identifiers_of_taxon: Top-determineerders van %{taxon}
-  top_observer: Top Waarnemer
+  top_observer_caps: TOP WAARNEMER
   top_observers: Top Waarnemers
   tos_privacy_guidelines_label: |
     Ik ga akkoord met de <a href="/terms" target="_blank">gebruiksvoorwaarden</a> en het
     <a href="/privacy" target="_blank">privacybeleid</a>, en ik heb
     de <a href="/pages/community+guidelines" target="_blank">gemeenschapsrichtlijnen</a> doorgenomen.
   total: Totaal
-  totals: totalen
+  totals: Totalen
   total_members: Totaal aantal leden
   total_observations: Totaal aantal waarnemingen
-  total_species_observed: Totaal aantal soorten waargenomen
+  total_observations_caps: TOTAAL AANTAL WAARNEMINGEN
+  total_species_observed_caps: TOTAAL AANTAL WAARGENOMEN SOORTEN
   total_unique_observers: Totaal aantal unieke waarnemers
   translated_languages: Vertaalde Talen
   'true': 'Waar'
@@ -4612,7 +4653,6 @@ nl:
     other: Uploading %{num} van %{count} fotos...
   url_identifier_of_a_project_derived_from: "URL/identifier van een project dat is afgeleid van een externe bron"
   url_of_this_taxon_on_the_source_website: URL van dit taxon op de website van de bron
-  US_states: Staten in de VS
   usage_stats: Gebruiksstatistieken
   use_name_as_a_placeholder: |
     <span class='ac-placeholder'>"%{name}"</span> als een placeholder gebruiken
@@ -4806,10 +4846,11 @@ nl:
   welcome_to_inat: "Welkom op %{site_name}!"
   welcome_to_guides: "Welkom bij  %{site_name} Gidsen!"
   welcome_to_x_project: "Welkom bij %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
-  were_pretty_sure_this_is_in_the_rank: Volgens ons zit dit vrijwel zeker in @gender{n:het|de} %{rank}
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
+  were_pretty_sure_this_is_in_the_rank: Volgens ons zit dit vrijwel zeker in %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Het spijt ons, maar je bulkimport van %{filename} is mislukt."
   what: Wat
   what_did_you_see: Wat heb je gezien?
@@ -4823,8 +4864,6 @@ nl:
   when_did_you_see_it?: Wanneer heb je het gezien??
   when_did_you_see_them?: <em>Wanneer</em> zag je hen?
   where: Waar
-  where_do_x_live: Waar leven %{taxa}?
-  where_does_x_live: Waar leven %{taxa}?
   where_were_they?: Waar waren ze?
   where_were_you?: Waar was je?
   which_projects_can_add_your_observations?: Welke traditionele projecten kunnen je waarnemingen toevoegen?

@@ -46,7 +46,6 @@ br:
   add_batch: Ouzpennañ ul lod
   add_comma_separated_tags: "Ouzhpennañ tikedennoù dispartiet gant skejoù"
   add_comment: Ouzhpennañ un evezhiadenn
-  add_countries: Ouzhpennañ broioù
   add_custom_project_fields: Ouzhpennañ maeziennoù raktres personelaet
   add_description: "Ouzhpennañ %{description_name}"
   add_from_your_observations: Ouzhpennañ diwar hoc'h evezhiadennoù
@@ -220,6 +219,7 @@ br:
   back_to_your_projects: Distreiñ d'ho raktresoù
   batch: Lod
   batch_edit: Kemmañ lod
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Lod kemmañ taksonoù evit %{x}"
   batch_operations: Oberiadennoù dre lod
   because_of: en abeg da
@@ -359,7 +359,6 @@ br:
   couldnt_change_your_password: "Ne c'haller ket kemmañ ho ker-tremen : %{e}"
   couldnt_find_a_user_matching_x_param: "Ne c'haller ket kavout un implijer a glot gant %{id}"
   couldnt_find_that_taxon: Ne c'haller ket kavout an takson-mañ.
-  countries: Broioù
   create: Krouiñ
   create_a_guide: Krouiñ ur sturlevr
   create_a_new_field: Krouiñ ur vaezienn nevez
@@ -417,7 +416,9 @@ br:
   date_picker:
     closeText: Serriñ
     currentText: Hiziv
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Kent
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: War-lerc'h
   date_time: Deiz/Eur
   day: Deiz
@@ -697,6 +698,7 @@ br:
   learn_what_these_licenses_mean: Deskit muioc'h diwar-benn talvoudegezh an aotroù-implijout-mañ
   leave_a_comment: Lezel un evezhiadenn
   leave_this_project: Kuitaat ar raktres-mañ
+  #Terminal nodes in a taxonomic tree
   leaves: delioù
   legacy_authentication_notice_html: |
     Seblantout a ra emaoc'h oc'h implijout ur ger-tremen eus un doare kozh eus al lec'hienn Genrouedad-mañ. Dalc'hit mat <a href="%{url}">kemmañ ho ker-tremen</a> evit an doare nevez.
@@ -852,7 +854,6 @@ br:
   next_page: Pajenn war-lerc'h
   'no': 'Ket'
   no_comments_yet: Evezhiaden ebet goulennet
-  no_countries_added_yet: Bro ebet n'eo bet ouzhpennet betek-henn
   no_creative_commons_flickr_photos_tagged_x: 'Luc''hskeudenn Flickr Creative Commons ebet n''eo bet liketennet %{x}'
   no_photos: Luc'hskeudenn ebet
   no_post_yet: Notenn ebet betek-henn!
@@ -899,7 +900,6 @@ br:
   password_confirmation: 'Kadarnaat ar ger-tremen'
   paste: Pegañ
   paste_in_a_bunch_of_names: Pegit en ur strollad anvioù, 1 dre linenn, ha pouezit war ar bouton!
-  paste_in_a_comma_separated_list: Pegañ en ur rollad broioù disrannet gant skejoù
   people: Tud
   people_following_user: "Tud war-lerc'h %{user}"
   people_user_follows: "Tud heuliet gant %{user}"

@@ -244,7 +244,6 @@ bg:
   add_comma_separated_tags: "Добави етикети (разделени със запетаи)"
   add_comment: Добавяне на коментар
   add_conservation_status: Добави природозащитен статут
-  add_countries: Добавяне на държави
   add_custom_project_fields: Добавяне на потребителски полета на проекта
   add_edit_flags: Добави/редактирай маркери
   add_editor: Добави редактор
@@ -582,6 +581,7 @@ bg:
   back_to_your_projects: Обратно към Вашите проекти
   badges: Значки
   batch_edit: Групово редактиране
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Групово редактиране на таксони за %{x}"
   batch_operations: Групови операции
   be_the_first_to_fave_this_observation: Станете първият добавил наблюдението в Любими!
@@ -869,7 +869,6 @@ bg:
   copyright_infringement_desc: Нарушава закон за авторско право или е създадено от човек различен от наблюдателя без това да е указано
   couldnt_change_your_password: "Не можахме да променим паролата Ви: %{e}"
   couldnt_find_that_taxon: Таксонът не беше открит.
-  countries: Държави
   create: Създай
   create_a_guide: Създай ръководство
   create_a_new_field: Създай ново поле
@@ -967,7 +966,9 @@ bg:
   date_picker:
     closeText: Затвори
     currentText: Днес
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Пред.
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: След.
     range: Период
   date_range: Интервал от време
@@ -1543,6 +1544,7 @@ bg:
   leave: Напусни
   leave_a_comment: Остави коментар
   leave_this_project: Напусни проекта
+  #Terminal nodes in a taxonomic tree
   leaves: листа
   let_us_walk_you_through: Нека Ви запознаем с основните функции на сайта.
   lexicon: Лексика
@@ -2941,7 +2943,6 @@ bg:
   restart: Рестартиране
   restore: Възстанови
   restoring: Възстановяване...
-  results: резултати
   review_all: Рецензирай всичко
   reviewed: Рецензиран
   revoke: Отмени
@@ -3373,10 +3374,8 @@ bg:
     Заявката генерира твърде много таксони за визуализация наведнъж. Опитайте да добавите още филтри
   tools: Инструменти
   top_contributors: Водещи участници
-  top_identifier: Най-добър разпознавач
   top_identifiers: Най-добри разпознавачи
   top_identifiers_of_taxon: Най-добри разпознавачи на %{taxon}
-  top_observer: Най-добър наблюдател
   top_observers: Най-добри наблюдатели
   tos_privacy_guidelines_label: |
     Съгласявам се с <a href="/terms" target="_blank">Условията за ползване</a> и <a href="/privacy" target="_blank">Политиката за поверителност</a> и се запознах с <a href="/pages/community+guidelines" target="_blank">Правилата на общността</a>.
@@ -3384,7 +3383,6 @@ bg:
   totals: Общо
   total_members: Общо членове
   total_observations: Общо наблюдения
-  total_species_observed: Общо наблюдавани видове
   total_unique_observers: Общо различни наблюдатели
   translated_languages: Преводни езици
   'true': 'Вярно'
@@ -3453,7 +3451,6 @@ bg:
   uploading_num_of_count_photos:
     one: Качване на снимка...
     other: Качване на %{num} от %{count} снимки...
-  US_states: Щати на САЩ
   usage_stats: Статистика на използването
   use_this_form_to_create_a_new: |
     Използвайте този формуляр за да създадете нов проект за таксономична промяна - описващ предлагано разделяне, обединяване или размяна на активни таксони - който да бъде изпълнен по-късно.
@@ -3598,9 +3595,10 @@ bg:
   welcome_to_inat: "Добре дошли в %{site_name}!"
   welcome_to_guides: "Добре дошли в Ръководствата на %{site_name}!"
   welcome_to_x_project: "Добре дошли във %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Почти сигурни сме, че това е от %{rank}
   what: Какво
   what_did_you_see: Какво наблюдавахте?
@@ -3611,7 +3609,6 @@ bg:
   when_did_you_see_it?: Кога го наблюдавахте?
   when_did_you_see_them?: <em>Кога</em> ги видяхте?
   where: Къде
-  where_do_x_live: Къде живеят %{taxa}?
   where_were_you?: Къде се намирахте?
   which_projects_can_add_your_observations?: Кои проекти могат да добавят Ваши наблюдения?
   white: бяло

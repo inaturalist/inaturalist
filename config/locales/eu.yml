@@ -196,7 +196,6 @@ eu:
   add_comma_separated_tags: "Komarekin bereiztutako etiketak gehitu"
   add_comment: Iruzkina gehitu
   add_conservation_status: Iraute egoera gehitu
-  add_countries: Herrialdeak gehitu
   add_custom_project_fields: Pertsonalizatutako proiektu-eremuak gehitu
   add_edit_flags: Gehitu/Aldatu banderak
   add_editor: Editorea gehitu
@@ -541,6 +540,7 @@ eu:
   back_to_your_projects: Zure proiektuetara itzuli
   batch: Taldea
   batch_edit: Taldea aldatu
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Datuen edizioa loteka honetarako: %{x}"
   batch_operations: Taldeetako eragiketak
   be_the_first_to_fave_this_observation: Izan zaitez behaketa hau atsegiten lehena!
@@ -813,7 +813,6 @@ eu:
   couldnt_change_your_password: "Zure pasahitza ezin izan da aldatu: %{e}"
   couldnt_find_a_user_matching_x_param: "Ezin izan da parametro hauek dituen erabiltzailea topatu: %{id}"
   couldnt_find_that_taxon: Espeziea edo taldea ez da topatu.
-  countries: Herrialdeak
   create: Sortu
   create_a_guide: Gida bat sortu
   create_a_new_field: Eremu berria sortu
@@ -893,7 +892,9 @@ eu:
   date_picker:
     closeText: Itxi
     currentText: Gaur
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Aurrekoa
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Hurrengoa
     range: Eremua
   date_range: Data tartea
@@ -1491,7 +1492,6 @@ eu:
   next_tab: Hurrengo fitxa
   'no': 'Ez'
   no_comments_yet: Oraindik ez dago aipamenik
-  no_countries_added_yet: Oraindik ez da herrialderik gehitu
   no_creative_commons_flickr_photos_tagged_x: 'Flickr-en ez dago Creative Commons-ekin etiketatutako argazkirik honetarako: %{x}'
   no_curators_set: Oraindik ez dago administratzailerik
   no_curators_yet: Oraindik ez dago administratzailerik!
@@ -1652,7 +1652,6 @@ eu:
   password_confirmation: 'Baieztatu zure pasahitza'
   paste: Itsatsi
   paste_in_a_bunch_of_names: Itsatsi izen-zerrenda, lerro bakoitzeko 1 eta klikatu botoia!
-  paste_in_a_comma_separated_list: Itsatsi herrialde-zerrenda komekin bereizita
   people: Pertsonak
   people_following_user: "Honi jarraitzen dioten pertsonak: %{user}"
   people_user_follows: "Jendea %{user} Jarraitzaileak"
@@ -1952,7 +1951,6 @@ eu:
   resolved: Konponduta
   resolved_by: 'Honek ebatzia:'
   resolver_said_x_html: '<span class=meta>%{resolver} esan zuen:</span> %{x}'
-  results: emaitzak
   rg_observations: RG Behaketak
   role: Baimena
   rotate_left: Ezkerretara biratu
@@ -2261,7 +2259,6 @@ eu:
   to_add_comments: aipamenak gehitzeko.
   to_add_ids: identifikazioak gehitzeko
   to_configure_your_widget: zure widget-a konfiguratzeko.
-  to_suggest_an_identification: Identifikazio bat gomendatu
   today: Gaur
   tools: Tresnak
   top_contributors: Parte-hartzaile nagusiak
@@ -2312,7 +2309,6 @@ eu:
     CSV fitxategia behaketako datuekin kargatu. Zure datuak kalkulu-orri batean edo datu-base batean baldin badaude, seguru asko honela egin beharko duzu.
   url_identifier_of_a_project_derived_from: "Kanpoko iturrietatik eratorritako web helbidea / proiektuaren identifikadorea"
   url_of_this_taxon_on_the_source_website: Espezie edo talde honen esteka iturriko web orrian
-  US_states: Estatu Batuak
   use_this_form_to_create_a_new: |
     Erabili modu hori zirriborroan aldaketa taxonomikoa sortzeko; bereizteko den, batzeko den edo taldearen edo espeziearen aldaketa den zehaztuta, ondoren gordetzeko.
   use_this_if_the_url_needs_genus_species_separated: |
@@ -2411,8 +2407,6 @@ eu:
   when_did_you_see_it?: Noiz ikusi zenuen?
   when_did_you_see_them?: <em>Noiz</em> ikusi zenituen?
   where: Non
-  where_do_x_live: Non bizi dira %{taxa}?
-  where_does_x_live: Non bizi da %{taxa}?
   where_were_they?: <em>Non</em> zeuden?
   where_were_you?: <em>Non</em> zeunden zu?
   white: zuria

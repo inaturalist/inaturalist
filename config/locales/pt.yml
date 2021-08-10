@@ -254,7 +254,6 @@ pt:
   add_comma_separated_tags: "Adicionar Etiquetas Separadas por Vírgulas"
   add_comment: Adicionar um Comentário
   add_conservation_status: Adicionar Estatuto de Conservação
-  add_countries: Adicionar Países
   add_custom_project_fields: Adicionar Campos de Projeto Personalizados
   add_edit_flags: Adicionar/Editar Sinalizadores
   add_editor: Adicionar Editor
@@ -671,6 +670,7 @@ pt:
     Baseando na evidência, a ID da comunidade pode ainda ser confirmado ou melhorado?
   batch: Conjunto
   batch_edit: Editar em conjunto
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Editar táxons em conjunto para %{x}"
   batch_operations: Operações em conjunto
   be_the_first_to_fave_this_observation: Seja o primeiro a adicionar esta observação aos favoritos!
@@ -909,6 +909,16 @@ pt:
   contributor_cannot_be_found: O participante não pode ser encontrado
   contributors_to_project: "Participantes em %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Qualquer
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Qualquer
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Qualquer
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Qualquer
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Qualquer
     sex: Género
     male: Masculino
     female: Feminino
@@ -989,7 +999,6 @@ pt:
   couldnt_change_your_password: "Não foi possível mudar a sua palavra-passe: %{e}"
   couldnt_find_a_user_matching_x_param: "Não foi possível encontrar um utilizador a corresponder com %{id}"
   couldnt_find_that_taxon: Não foi possível encontrar esse taxon.
-  countries: Países
   create: Criar
   create_a_guide: Criar um guia
   create_a_new_field: Criar um novo campo
@@ -1037,7 +1046,8 @@ pt:
   curator_application_fields_taxonomy_examples_html: |
     Se deseja editar a taxonomia do iNaturalist, forneça um exemplo ou dois
     de mudanças taxonómicas que gostaria de fazer, e inclua links para as autoridades taxonómicas apropriadas,
-    como listado no Guia de Curadores
+    <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">como listado no Guia de Curadores</a>
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Se deseja editar nomes comuns, forneça um exemplo ou dois das
@@ -1197,7 +1207,9 @@ pt:
   date_picker:
     closeText: Fechar
     currentText: Hoje
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Anterior
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Seguinte
     range: Intervalo
   date_range: Intervalo de datas
@@ -1761,6 +1773,7 @@ pt:
   least_concern: pouco preocupante
   leave_a_comment: Deixar um comentário
   leave_this_project: Sair deste projeto
+  #Terminal nodes in a taxonomic tree
   leaves: folhas
   legacy_authentication_notice_html: |
     Parece que está a usar uma palavra-passe de uma versão anterior deste website.
@@ -2150,7 +2163,6 @@ pt:
   no_assessments_have_been_added_to_this_project_yet: Ainda não foi adicionada nenhuma avaliação a este projeto.
   no_but_it_is_a_member_of_taxon: "Não, mas é um membro de %{taxon}"
   no_comments_yet: Nenhum comentário ainda.
-  no_countries_added_yet: Nenhum país adicionado ainda.
   no_creative_commons_flickr_photos_tagged_x: 'Não existem fotos Creative Commons do Flickr marcadas "%{x}"'
   no_curators_set: Ainda não existem coordenadores
   no_curators_yet: Ainda não existem administradores!
@@ -2210,6 +2222,8 @@ pt:
   no_sections_have_been_added_to_this_assessments_yet: Nenhuma seção foi adicionada nestas avaliações ainda.
   no_species_have_been_listed: Nenhuma espécie foi listada para este lugar ainda!
   no_species_on_this_list: Ainda não existem espécies nesta lista!
+  no_species_on_this_list_for_owner: |
+    Pode começar a adicionar espécies a esta lista usando a ferramenta "Adicionar à Sua Lista" à direita.
   no_subject_parens: "(sem assunto)"
   no_suggestions_available: Sem Sugestões Disponíveis
   no_summary_from_wikipedia: Não existe resumo no Wikipédia
@@ -2317,7 +2331,7 @@ pt:
     Observações "próximas" de um lugar estão dentro de um retângulo que demarca os limites desse lugar, o que pode resultar em um resultado impreciso para lugares que são muito diferentes de retângulos. Isto acontece devido uma limitação da nossa base de dados, no entanto estamos trabalhando para resolver.
   observations_needing_curation: Observações que necessitam da supervisão pelo curador
   observations_observed_this_month: Observações <em>observadas</em> este mês, não foram adicionadas. Vá lá fora!
-  observations_of_relatives: Observações de parentes
+  observations_of_relatives: Observações relacionadas
   observations_of_taxon: "Observações de %{taxon_name}"
   observations_per_month: Observações / Mês
   observations_removed_from_the_project: "Observações removidas do projeto \"%{project}\""
@@ -2449,7 +2463,6 @@ pt:
   password_confirmation: 'Confirmação da palavra-passe'
   paste: Colar
   paste_in_a_bunch_of_names: Colar vários nomes, um por linha, e carregar no botão!
-  paste_in_a_comma_separated_list: Colar numa lista de países separados por vírgulas
   people: Pessoas
   people_following_user: "Pessoas que Seguem %{user}"
   people_user_follows: "Pessoas que %{user} segue"
@@ -2788,7 +2801,6 @@ pt:
   projects: Projetos
   projects_description: |
     Os projetos permitem agrupar as suas observações com as de outras pessoas em %{site_name}. Quer pretende iniciar um projeto de ciência cidadã, ou manter um registo das aves que existem no seu bairro. Os projetos são o caminho certo.
-  projects_from_everywhere: Projetos de qualquer sítio
   projects_from_place: "Projetos de %{place}"
   projects_in_x: "Projetos em %{x}"
   projects_you_admin: Projetos que administra
@@ -2930,7 +2942,6 @@ pt:
   resolved_by: Resolvido por
   restore: Restaurar
   restoring: A restaurar...
-  results: resultados
   review_all: Rever Todas
   reviewed: Revisto
   revoke: Anular
@@ -3264,16 +3275,13 @@ pt:
   too_many_results: Demasiados pedidos!
   tools: Ferramentas
   top_contributors: Principais colaboradores
-  top_identifier: Principal Identificador
   top_identifiers: Principais Identificadores
   top_identifiers_of_taxon: Principais Identificadores de %{taxon}
-  top_observer: Principal Observador
   top_observers: Principais Observadores
   total: Total
   totals: totais
   total_members: Número total de membros
   total_observations: Número total de observações
-  total_species_observed: Número Total de Espécies Observadas
   total_unique_observers: Número total de observadores únicos
   translated_languages: Idiomas traduzidos
   'true': 'Verdadeiro'
@@ -3378,9 +3386,10 @@ pt:
   welcome_back!: Bem-vindo de volta!
   welcome_to_inat: "Bem-vindo ao %{site_name}!"
   welcome_to_x_project: "Bem-vindo ao projeto %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Nós temos certeza que isto está em %{rank}
   which_projects_can_add_your_observations?: Quais projetos podem adicionar suas observações?
   wondering_what_to_do_next: Seguem algumas dicas para o ajudar a começar a observar e identificar o mundo natural

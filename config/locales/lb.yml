@@ -183,7 +183,6 @@ lb:
   add_bold_text: Fett Text afügen
   add_comment: Eng Bemierkung derbäisetzen
   add_conservation_status: Schutzstatus derbäisetzen
-  add_countries: Länner derbäisetzen
   add_editor: Editeur derbäisetzen
   add_description: "%{description_name} derbäisetzen"
   add_from_your_observations: Aus Ären Observatiounen derbäisetzen
@@ -620,7 +619,6 @@ lb:
   copyright_info_and_more: Copyright Info a Méi
   copyright_infringement: Copyright-Verletzung
   couldnt_change_your_password: "Äert Passwuert konnt net geännert ginn: %{e}"
-  countries: Länner
   create_a_guide: E Guide uleeën
   create_a_new_field: En neit Feld uleeën
   create_a_new_taxon: En neien Taxon uleeën
@@ -671,7 +669,9 @@ lb:
   date_picker:
     closeText: Zoumaachen
     currentText: Haut
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Vireg
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Nächst
     range: Beräich
   date_time: Datum/Zäit
@@ -829,6 +829,8 @@ lb:
   flag: Mellen
   flag_as_inappropriate: Als onpassend markéieren
   flag_for_curation: Mellen fir Kuratioun
+  flag_for_place_title_html: |
+    Meldung fir d'Plaz: %{title}
   flag_for_taxon_title_html: |
     Melldung fir Taxon: %{title}
   flag_it!: Markéiert et!
@@ -837,6 +839,7 @@ lb:
   flag_resolution: Resolutioun
   flag_saved: Markéierung gespäichert
   flag_this_photo: Dës Foto markéieren
+  flag_this_place: Des Plaz melden
   flagged: markéiert
   flagged_: Markéiert
   flagger: Gemellt
@@ -974,6 +977,7 @@ lb:
   last_active_with_date: "Lescht Aktivitéit: %{date}"
   last_confirmed_observation: Lescht confirméiert Observatioun
   last_observation: Lescht Observatioun
+  last_observation_caps: LESCHT OBSERVATIOUN
   last_seen: Fir d'lescht gesinn
   last_year: Lescht Joer
   lat: Lat
@@ -997,6 +1001,7 @@ lb:
   lexicons:
     scientific_names: Wëssenschaftlech Nimm
     albanian: Albanesch
+    belarusian: Belarusesch
     bengali: Bengalesch
     catalan: Katalanesch
     chinese_simplified: Chinesesch (Vereinfacht)
@@ -1056,6 +1061,7 @@ lb:
   loading_suggestions: Virschléi gi gelueden...
   locales:
     ar: Arabesch
+    be: Belarusesch
     bg: Bulgaresch
     br: Bretonesch
     ca: Katalanesch
@@ -1255,7 +1261,6 @@ lb:
   'no': 'Neen'
   no_but_it_is_a_member_of_taxon: "Neen, awer et ass e Member vu(n) %{taxon}"
   no_comments_yet: Nach keng Bemierkungen.
-  no_countries_added_yet: Nach keng Länner derbäigesat
   no_description: Keng Beschreiwung
   no_identifications: Keng Bestëmmungen
   no_favorites_added:
@@ -1324,12 +1329,20 @@ lb:
   observation_attribution_copyright_html: Observatioune &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     D'Observatioun gehéiert zu engem Projet deen dëst Feld verlaangt. D'Observatioun muss aus deem Projet erausgeholl ginn ier dëst Feld ka geläscht ginn.
+  observation_brief_something_in_month: "Eppes am %{month}"
+  observation_brief_something_in_month_by_user: "Eppes am %{month} vum %{user}"
+  observation_brief_something_from_place_in_month: "Eppes aus %{place} am %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Eppes aus %{place} am %{month} vum %{user}"
+  observation_brief_taxon_in_month: "%{taxon} am %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} am %{month} vum %{user}"
   observation_brief_taxon_from_place: "%{taxon} vun %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} vun %{place} vum %{user}"
   observation_brief_taxon_from_place_on_day: "%{taxon} vun %{place} vum %{day}"
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} vun %{place} vum %{day} vum %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} vun %{place} vum %{day} um %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} vun %{place} vum %{day} um %{time} vum %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} aus %{place} am %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} aus %{place} am %{month} vum %{user}"
   observations_by_category: "Observatioune Pro Kategorie"
   observations_by_app: Observatioune no App
   observations_by_rank: Observatiounen no Rang
@@ -1804,7 +1817,6 @@ lb:
   resolved_by: Geklärt vum
   restore: Restauréieren
   restoring: Restauréieren...
-  results: Resultater
   review_all: All nokucken
   reviewed: Nogekuckt
   rg_observations: RG Observatiounen
@@ -1954,18 +1966,19 @@ lb:
   title: Titel
   title_and_description: "Titel & Beschreiwung"
   to_recipient: un
-  to_suggest_an_identification: zu Bestëmmung virschloen
   today: Haut
   too_many_results: Ze vill Resultater
-  top_identifier: Top Bestëmmer
+  top_identifier_caps: TOP BESTEMMER
   top_identifiers: Top Bestëmmer
   top_identifiers_of_taxon: Top Bestëmmer fir %{taxon}
-  top_observer: Top Observateuren
+  top_observer_caps: TOP BEOBACHTER
   top_observers: Top Observateuren
   tos_privacy_guidelines_label: |
     Ech stemmen de <a href="/terms" target="_blank">Konditioune vum Service</a> an den <a href="/privacy" target="_blank">Dateschutz Richtlinnen</a> zou an ech hunn <a href="/pages/community+guidelines" target="_blank">Communautéit's Richtlinne</a> gekuckt.
   total: Total
   total_observations: Total Observatiounen
+  total_observations_caps: TOTAL OBSERVATIOUNEN
+  total_species_observed_caps: TOTAL AARTEN BEOBACHT
   translated_languages: Iwwersat Sproochen
   'true': 'Wouer'
   trends: Tendenzen
@@ -2005,7 +2018,6 @@ lb:
       photo_failed: Foto konnt net eropgeluede ginn
       remove_observation: Observatioun ewechhuelen
       remove_photo: Foto ewechhuelen
-  US_states: US Staaten
   usage_stats: Statistike vum Benotzen
   user: Benotzer
   user_added_a_comment_html: "%{user} huet ee Kommentar bäigefüügt"
@@ -2072,6 +2084,12 @@ lb:
   welcome_back!: Wëllkomm zréck!
   welcome_to_inat: "Wëllkomm op %{site_name}!"
   welcome_to_x_project: "Wëllkomm op %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Mir si zimmlech sécher dëst ass an der Uerdnung
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Mir si zimmlech sécher dëst ass an der Famill
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: Mir si zimmlech sécher dëst ass an der Uerdnung
   what: Wat
   what_did_you_see: Wat hutt Dir gesinn?
   what_do_you_think: Wat mengt Dir?

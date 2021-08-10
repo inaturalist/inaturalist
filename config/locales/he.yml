@@ -308,7 +308,6 @@ he:
   add_comma_separated_tags: "הוספת תגיות (מופרדות בפסיקים)"
   add_comment: הוספת תגובה
   add_conservation_status: הוספת סטטוס שימור
-  add_countries: הוספת מדינות
   add_custom_project_fields: הוספת שדות פרויקט מותאמים אישית
   add_edit_flags: הוסף/ערוך דגלים
   add_editor: הוספת עורך
@@ -718,6 +717,7 @@ he:
     בהתבסס על הראיות, האם אפשר לאשר או לשפר טקסון הקהילה?
   batch: קבוצה
   batch_edit: עריכת קבוצה
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "עריכת קבוצת טקסונים %{x}"
   batch_operations: מספר פעולות
   be_the_first_to_fave_this_observation: תהיו הראשון להעדיף תצפית זו!
@@ -934,6 +934,12 @@ he:
     <span class="comprehensive_notice" data-tip="%{tip}"> מלא </span>
     לבדוק רשימה עבור %{taxon}
   comprehensive_list: רשימה שלמה
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: כלול
+  computer_vision_model_included_desc: |
+    מודל עיבוד התמונה הנוכחי מכיר טקסון זה, כך שייתכן כי הוא יכלל בתוצאות המוצעות עם התגית "דומה ויזואלית".
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: ממתין
   concept_status: מצב הקונספט
   configure: הגדרה
   confirm: אישור
@@ -978,6 +984,16 @@ he:
   contributor_cannot_be_found: לא ניתן למצוא את התורמים
   contributors_to_project: "התורמים ל%{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: הכל
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: הכל
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: הכל
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: הכל
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: הכל
     sex: זוויג
     male: זכר
     female: נקבה
@@ -1037,7 +1053,6 @@ he:
   couldnt_change_your_password: "לא ניתן היה לשנות את סיסמתך: %{e}"
   couldnt_find_a_user_matching_x_param: "לא ניתן היה למצוא משתמש תואם ל %{id}"
   couldnt_find_that_taxon: לא ניתן לאתר טקסון זה
-  countries: מדינות
   create: יצירה
   create_a_guide: יצירת מגדיר
   create_a_new_field: יצירת שדה חדש
@@ -1115,7 +1130,9 @@ he:
   date_picker:
     closeText: סגירה
     currentText: היום
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: הקודם
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: הבא
     range: טווח זמנים
   date_range: טווח תאריכים
@@ -1403,6 +1420,7 @@ he:
   flag_saved_thanks_html: הדגל שמור. תודה! <a href="%{url}" class="readmore">צפייה בדגל</a>
   flag_this_observation: סימון תצפית
   flag_this_photo: סמן תמונה זו
+  flag_this_place: סמן מקום זה
   flag_this_sound: סמן קול זה
   flagged: סומן
   flagged_: סומן
@@ -1643,6 +1661,7 @@ he:
   last_active_with_date: "פעילות אחרונה: %{date}"
   last_confirmed_observation: תצפית מאושרח אחרונה
   last_observation: תצפית אחרונה
+  last_observation_caps: תצפית אחרונה
   last_seen: נראה לאחרונה
   last_year: השנה הקודמת
   lat: קו רוחב
@@ -1666,6 +1685,7 @@ he:
   leave: לעזוב
   leave_a_comment: הוספת תגובה
   leave_this_project: עזיבת פרוייקט זה
+  #Terminal nodes in a taxonomic tree
   leaves: עלים
   legacy_authentication_notice_html: |
     נראה כי הסיסמה היא של גירסה ישנה יותר של האתר. יש <a href="%{url}">לעדכן את הסיסמה</a> לפעילות בגירסה החדשה.
@@ -1675,6 +1695,7 @@ he:
     scientific_names: שמות מדעיים
     afrikaans: אפריקאנס
     albanian: אלבנית
+    belarusian: בלארוסית
     bengali: בנגלית
     catalan: קטלנית
     cebuano: קובנית
@@ -1765,6 +1786,7 @@ he:
   locales_: אזורים
   locales:
     ar: ערבית
+    be: בלארוסית
     bg: בולגרית
     br: בריטונית
     ca: קטלנית
@@ -2029,7 +2051,6 @@ he:
   'no': 'לא'
   no_but_it_is_a_member_of_taxon: "לא, אבל הוא שייך ל%{taxon}"
   no_comments_yet: לא קיימות הערות בינתיים
-  no_countries_added_yet: טרם הוספו ארצות
   no_curators_set: אוצרים טרם הוגדרו
   no_curators_yet: אוצרים טרם הוגדרו!
   no_description: ללא תיאור
@@ -2368,6 +2389,8 @@ he:
   place: מקום
   placeholder: מציין מיקום
   place_autocomplete_placeholder: שמורת יהודיה, נהריה, וכו'
+  place_create_quota_exceeded: |
+    עברת את מספר המקומות שניתן ליצור בפרק זמן של 24 שעות (%{quota})
   place_deleted: המקום נמחק
   place_geo:
     geo_planet_place_types:
@@ -2826,7 +2849,6 @@ he:
   projects: פרוייקטים
   projects_description: |
     פרוייקטים מאפשר לכם לחלוק ולשתף תצפיות עם אנשים ב%{site_name}. במידה ואתם פותחים פרוייקט מדע אזרחי, או עוקבים אחרי ציפורים בשכונה שלכם, פרוייקטים זאת הדרך לעשות זאת.
-  projects_from_everywhere: פרוייקטים מכל המקומות
   projects_from_place: "פרוייקט מ%{place}"
   projects_in_x: "פרוייקטים ב %{x}"
   projects_you_admin: הפרוייקטים שאת/ה אדמינ בהם
@@ -2970,7 +2992,6 @@ he:
   resolved_by_user_on_date_html: נפתר על ידי %{user} ב %{date}
   restore: שחזור
   restoring: משוחזר כעת...
-  results: תוצאות
   review_all: סקירת הכול
   reviewed: נסקר
   role: תפקיד
@@ -3347,21 +3368,21 @@ he:
   to_add_comments: להוספת הערות
   to_add_ids: להוספת זיהויים
   to_recipient: אל
-  to_suggest_an_identification: להצעת זיהוי
   today: היום
   too_many_results: יותר מדי תוצאות
   tools: כלים
   top_contributors: האוצרים המובילים
-  top_identifier: המזהה המוביל
+  top_identifier_caps: מזהה מוביל/ה
   top_identifiers: מזהים מובילים
   top_identifiers_of_taxon: המזהים המובילים של %{taxon}
-  top_observer: המתצפת המוביל
+  top_observer_caps: מתצפת/ת מוביל/ה
   top_observers: המתצפתים המובילים
   total: סה״כ
   totals: סה״כ
   total_members: סה"כ חברים
   total_observations: סה"כ תצפיות
-  total_species_observed: סה"כ מינים שנצפו
+  total_observations_caps: סה"כ תצפיות
+  total_species_observed_caps: סה"כ מינים שנצפו
   total_unique_observers: סה"כ מתצפתים יחודיים
   translated_languages: שפות מתורגמות
   'true': 'נכון'
@@ -3427,7 +3448,6 @@ he:
       select_all: בחירת כל התצפיות
       upload_failed: העלאה נכשלה
   url_of_this_taxon_on_the_source_website: URL של טקסון זה באתר המקור
-  US_states: מדינות ארה"ב
   usage_stats: סטטיסטיקות שימוש
   used_x_times:
     one: משומש פעם אחת
@@ -3546,9 +3566,16 @@ he:
   welcome_to_inat: "ברוכים הבאים ל%{site_name}!"
   welcome_to_guides: "ברוכים הבאים למגדירי %{site_name}!"
   welcome_to_x_project: "ברוכים הבאים ל%{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: אנחנו די בטוחים שזה שייך לסוג
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: אנחנו די בטוחים שזה שייך למשפחה
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: אנחנו די בטוחים שזה נמצא בסדרה
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: אנחנו יחסית בטוחים שזה בתוך ה%{rank}
   what: מה
   what_did_you_see: מה ראית?

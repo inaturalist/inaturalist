@@ -278,7 +278,6 @@ es-CO:
   add_comma_separated_tags: "Agregar etiquetas separadas por comas"
   add_comment: Agregar un comentario
   add_conservation_status: Agregar estado de conservación
-  add_countries: Agregar países
   add_custom_project_fields: Agregar campos de proyecto personalizados
   add_edit_flags: Agregar/Editar Marcas
   add_editor: Agregar editor
@@ -691,6 +690,7 @@ es-CO:
     Basándose en la evidencia, ¿se puede confirmar o mejorar el taxón comunitario?
   batch: Grupo
   batch_edit: Edición en grupo
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Editar en grupo los taxones para %{x}"
   batch_operations: Operaciones por grupo
   be_the_first_to_fave_this_observation: '¡Se el primero en agregar esta observación a favoritos!'
@@ -984,7 +984,6 @@ es-CO:
   couldnt_change_your_password: "Tu contraseña no pudo ser modificada: %{e}"
   couldnt_find_a_user_matching_x_param: "No se pudo encontrar un usuario que coincida con %{id}"
   couldnt_find_that_taxon: No se encontró el taxón.
-  countries: Países
   create: Crear
   create_a_guide: Crear una guía
   create_a_new_field: Crear un nuevo campo
@@ -1025,10 +1024,6 @@ es-CO:
     Debes explicar por qué quieres convertirte en curador
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: '¿Por qué quieres ser un curador?'
-  #Prompt for information when applying to be a curator
-  curator_application_fields_taxonomy_examples_html: |
-    Si quieres editar la taxonomía de iNaturalist, por favor proporciona un ejemplo o dos
-    de cambios taxonómicos que te gustaría realizar, e incluye enlaces a las autoridades taxonómicas pertinentes tal como establece la Guía del Curador
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Si quieres editar nombres comunes, por favor proporciona un ejemplo o dos de los cambios que te gustaría hacer
@@ -1833,7 +1828,6 @@ es-CO:
   no_assessments_have_been_added_to_this_project_yet: Todavía no se agregaron evaluaciones a este proyecto.
   no_but_it_is_a_member_of_taxon: "No, pero es un miembro de %{taxon}"
   no_comments_yet: No hay comentarios todavía.
-  no_countries_added_yet: Ningún país añadido aún
   no_creative_commons_flickr_photos_tagged_x: 'No hay fotos en Flickr etiquetadas con Creative Commons para "%{x}"'
   no_curators_set: No hay curadores aún
   no_curators_yet: '¡No hay curadores aún!'

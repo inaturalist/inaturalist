@@ -252,7 +252,6 @@ nb:
   add_comma_separated_tags: "Legg til kommaseparerte etiketter"
   add_comment: Legg til en kommentar
   add_conservation_status: Legg til bevaringsstatus
-  add_countries: Legg til land
   add_custom_project_fields: Legg til egendefinerte prosjektfelt
   add_edit_flags: Legg til/rediger markeringer
   add_editor: Legg til redaktør
@@ -666,6 +665,7 @@ nb:
     Basert på bevismaterialet, kan fellesskapets takson bekreftes eller forbedres ytterlige?
   batch: Batch
   batch_edit: Rediger i batch
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Rediger taksa i batch for %{x}"
   batch_operations: Batch-handlinger
   be_the_first_to_fave_this_observation: Vær den første som gjør denne observasjonen til en favoritt!
@@ -1037,7 +1037,6 @@ nb:
   couldnt_change_your_password: "Kunne ikke endre ditt passord: %{e}"
   couldnt_find_a_user_matching_x_param: "Kunne ikke finne en bruker som matcher %{id}"
   couldnt_find_that_taxon: Fant ikke det taksonet.
-  countries: Land
   create: Opprett
   create_a_guide: Opprett en guide
   create_a_new_field: Opprett et nytt felt
@@ -1146,7 +1145,9 @@ nb:
   date_picker:
     closeText: Lukk
     currentText: I dag
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Forrige
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Neste
     range: Intervall
   date_range: Datointervall
@@ -1889,6 +1890,7 @@ nb:
   leading: Leder
   learn: Lær
   learn_about_the_species_live_in: Lær om artene som forekommer i
+  learn_about_third_party_tracking: Lær mer om tredjepartssporing
   learn_more: Lær mer
   learn_more_raquo: "Lær mer &raquo;"
   learn_what_these_licenses_mean: Lær hva disse lisenser betyr
@@ -1896,6 +1898,7 @@ nb:
   leave: Forlat
   leave_a_comment: Legg igjen en kommentar
   leave_this_project: Forlat dette prosjektet
+  #Terminal nodes in a taxonomic tree
   leaves: forlater
   legacy_authentication_notice_html: |
     Der virker som du bruker et passord fra en eldre versjon av denne nettsiden.
@@ -2182,6 +2185,7 @@ nb:
   #Label shown when a date has not been entered
   missing_date: Mangler dato
   mobile: Mobil
+  moderation_history_for_user_html: Moderasjonshistorikk for %{user}
   mollusks: bløtdyr
   momentjs:
     shortRelativeTime:
@@ -2257,8 +2261,14 @@ nb:
   multiple_select_option: '-- flere --'
   multiple_taxa_for_taxon_change: "Flere taksa (input for bytting/sammenslåing, output for oppdeling)"
   multiple_taxon_ids_separated_by_commas: 'Flere kommaseparerte takson-ID-er, f.eks. 123,654'
+  must_be_in_taxon: må være i takson %{taxon}
+  must_be_not_in_taxon: må ikke være i takson %{taxon}
+  must_be_not_observed_by_user: må ikke være observert av %{user}
+  must_be_not_observed_in_place: må ikke være observert i %{place}
   must_be_observed_after: må være observert etter %{operand}
   must_be_observed_before: må være observert før %{operand}
+  must_be_observed_by_user: må være observert av %{user}
+  must_be_observed_in_place: må være observert i %{place}
   must_be_less_than_x_MB: "Må være mindre enn %{x} MB"
   must_have_observation_field: "må ha en verdi for observasjonsfeltet '%{operand}'"
   must_have_photos: må ha bilder
@@ -2355,7 +2365,6 @@ nb:
   no_assessments_have_been_added_to_this_project_yet: Ingen vurderinger har blitt lagt til i dette prosjektet ennå.
   no_but_it_is_a_member_of_taxon: "Nei, men det er et medlem av %{taxon}"
   no_comments_yet: Ingen kommentarer ennå.
-  no_countries_added_yet: Ingen land lagt til ennå
   no_creative_commons_flickr_photos_tagged_x: 'Ingen Creative Commons Flickr-bilder med etikett "%{x}"'
   no_curators_set: Ingen kuratorer satt
   no_curators_yet: Ingen kuratorer ennå!
@@ -2730,7 +2739,6 @@ nb:
   password_confirmation: 'Passordbekreftelse'
   paste: Lim inn
   paste_in_a_bunch_of_names: Lim inn ei haug med navn, 1 per linje, og trykk på knappen!
-  paste_in_a_comma_separated_list: Lim inn en kommaseparert liste med land
   people: Personer
   people_following_user: "Personer som følger %{user}"
   people_user_follows: "Personer som %{user} følger"
@@ -3310,7 +3318,6 @@ nb:
   projects: Prosjekter
   projects_description: |
     Prosjekter lar deg slå sammen dine observasjoner med andre personer på %{site_name}. Om du starter en dugnadsinnsats eller følger med på fuglene i ditt nabolag, prosjekter er veien å gå.
-  projects_from_everywhere: Prosjekter fra overalt
   projects_from_place: "Prosjekter fra %{place}"
   projects_in_x: "Prosjekter i %{x}"
   #"admins" is equivalent to "administrates"
@@ -3398,6 +3405,32 @@ nb:
     form: Form
     infrahybrid: Infrahybrid
     leaves: Blad
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: orden
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: slekt
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: slektshybrid
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: underslekt
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: seksjon
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: underseksjon
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: kompleks
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: art
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: hybrid
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: underart
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: varietet
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: form
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: infrahybrid
   ranges: Utbredelser
   ray_finned_fishes: strålefinnefisker
   re_order_photos: "Endre bildenes rekkefølge &raquo;"
@@ -3513,7 +3546,6 @@ nb:
   restart: Start på nytt
   restore: Gjenopprett
   restoring: Gjenoppretter...
-  results: resultater
   review_all: Revider alle
   reviewed: Revidert
   revoke: Tilbakekall
@@ -4105,17 +4137,14 @@ nb:
   to_add_ids: for å legge til ID-er
   to_configure_your_widget: for å konfigurere din widget.
   to_recipient: til
-  to_suggest_an_identification: for å foreslå en identifikasjon
   today: I dag
   too_many_results: For mange resultater
   too_many_taxa_to_render: |
     Denne spørringen returnerer for mange taksa for å kunne vises på en gang. Prøv å legg til flere filtre
   tools: Verktøy
   top_contributors: Topp-bidragsytere
-  top_identifier: Topp-identifikator
   top_identifiers: Topp-identifikatorer
   top_identifiers_of_taxon: Topp-identifikatorer av %{taxon}
-  top_observer: Topp-observatør
   top_observers: Topp-observatører
   tos_privacy_guidelines_label: |
     Jeg godtar <a href="/terms" target="_blank">tjenestevilkårene</a> og
@@ -4125,7 +4154,6 @@ nb:
   totals: Totaler
   total_members: Samlet antall medlemmer
   total_observations: Samlet antall observasjoner
-  total_species_observed: Samlet antall arter observert
   total_unique_observers: Samlet antall unike observatører
   translated_languages: Oversatte språk
   'true': 'Sant'
@@ -4231,7 +4259,6 @@ nb:
     other: Laster opp bilde %{num} av %{count}...
   url_identifier_of_a_project_derived_from: "Url / identifikator til et prosjekt avledet fra en ekstern ressurs"
   url_of_this_taxon_on_the_source_website: URL av dette taksonet på kildenes nettside
-  US_states: Stater i USA
   usage_stats: Bruksstatistikker
   use_name_as_a_placeholder: |
     Bruk <span class='ac-placeholder'>"%{name}"</span> som et midlertidig navn
@@ -4419,9 +4446,10 @@ nb:
   welcome_to_inat: "Velkommen til %{site_name}!"
   welcome_to_guides: "Velkommen til %{site_name}-guider!"
   welcome_to_x_project: "Velkommen til %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Vi er ganske sikker på at dette er i %{rank}@gender{n:et|en}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Beklager, men din masseimport av %{filename} mislykkes."
   what: Hva
@@ -4436,8 +4464,6 @@ nb:
   when_did_you_see_it?: Når så du den?
   when_did_you_see_them?: <em>Når</em> så du de?
   where: Hvor
-  where_do_x_live: Hvor lever %{taxa}?
-  where_does_x_live: Hvor lever %{taxa}?
   where_were_they?: Hvor var de?
   where_were_you?: Hvor var du?
   which_projects_can_add_your_observations?: Hvilke tradisjonelle prosjekter kan legge til dine observasjoner?

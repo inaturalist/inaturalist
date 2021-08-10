@@ -329,7 +329,6 @@ pl:
   add_comma_separated_tags: "Dodaj tagi oddzielone przecinkami"
   add_comment: Dodaj komentarz
   add_conservation_status: Dodaj status ochronny
-  add_countries: Dodaj kraje
   add_custom_project_fields: Dodaj własne pola projektu
   add_edit_flags: Dodaj/Edytuj zgłoszenia
   add_editor: Dodaj edytora
@@ -768,6 +767,7 @@ pl:
     Czy na podstawie dostępnych danych takson społeczności może wciąż zostać sprawdzony lub ulepszony?
   batch: Seria
   batch_edit: Seryjna edycja
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Seryjna edycja taksonów dla %{x}"
   batch_operations: Operacje seryjne
   be_the_first_to_fave_this_observation: Polub tę obserwację jako pierwszy!
@@ -1117,7 +1117,6 @@ pl:
   couldnt_change_your_password: "Nie udało się zmienić hasła: %{e}"
   couldnt_find_a_user_matching_x_param: "Nie udało się znaleźć użytkownika %{id}"
   couldnt_find_that_taxon: Nie udało się znaleźć podanego taksonu.
-  countries: Kraje
   create: Utwórz
   create_a_guide: Stwórz przewodnik
   create_a_new_field: Stwórz nową notatkę
@@ -1218,13 +1217,16 @@ pl:
       december: Grudzień
   date_is_accurate: Data jest precyzyjna
   date_joined: Data dołączenia
+  date_obscured_notice: Data ukryta w celu ochrony prywatności własnej lub organizmu
   date_observed: Data obserwacji
   date_observed_: Data obserwacji
   date_observed_on: data obserwacji
   date_picker:
     closeText: Zamknij
     currentText: Dzisiaj
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Poprzedni
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Następny
     range: Zakres
   date_range: Zakres dat
@@ -1296,9 +1298,15 @@ pl:
       updated: 'Pomyślnie zaktualizowałeś swoje konto'
       destroyed: 'Do zobaczenia! Twoje konto zostało pomyślnie anulowane. Mamy nadzieję zobaczyć Cię ponownie wkrótce.'
     mailer:
+      confirmation_instructions:
+        subject: 'Instrukcje potwierdzenia'
       reset_password_instructions:
         subject: 'Instrukcje resetowania hasła'
   devise_reset_password_instructions_hello_email: Witaj %{email}
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Twoje konto zostało zablokowane z powodu zbyt dużej liczby nieudanych prób logowania.
+  devise_unlock_instructions_click_the_link: |
+    Kliknij w poniższy link, aby odblokować konto
   devise_unlock_instructions_unlock: Odblokuj swoje konto
   discoveries: Odkrycia
   did_you_mean: 'Czy chodziło ci o'
@@ -1446,6 +1454,7 @@ pl:
   exact_date: Dokładna data
   exact_rank: Dokładna kategoria
   except: poza
+  exclude_places: Wyklucz lokalizacje
   exclude_projects: Wyklucz projekty
   exclude_taxa: Wyklucz taksony
   exclude_users: Wyklucz użytkowników
@@ -1881,6 +1890,7 @@ pl:
   leave: Opuść
   leave_a_comment: Zostaw komentarz
   leave_this_project: Opuść projekt
+  #Terminal nodes in a taxonomic tree
   leaves: liście
   legacy_authentication_notice_html: |
     Wygląda na to, że używasz hasła ze starszej wersji strony.
@@ -2271,6 +2281,7 @@ pl:
   newly_observed_species: Nowo zaobserwowane gatunki
   newly_observed_species_in_year: "Nowo dodane gatunki w %{year}"
   next: Następne
+  next_date_short: Następny
   next_observation: Następna obserwacja
   next_page: Następna strona
   next_page_short: Następna
@@ -2282,7 +2293,6 @@ pl:
   no_assessments_have_been_added_to_this_project_yet: Do tego projektu nie dodano jeszcze żadnych ocen.
   no_but_it_is_a_member_of_taxon: "Nie, ale należy do taksonu %{taxon}"
   no_comments_yet: Brak komentarzy.
-  no_countries_added_yet: Nie dodano krajów
   no_creative_commons_flickr_photos_tagged_x: 'Brak zdjęć z Flickra na licencji Creative Commons z tagiem "%{x}"'
   no_curators_set: Brak ustanowionych kuratorów
   no_curators_yet: Póki co brak kuratorów!
@@ -2620,8 +2630,8 @@ pl:
       continent: kontynent
       Country: Kraj
       country: kraj
-      County: Powiat
-      county: powiat
+      County: Hrabstwo
+      county: hrabstwo
       District: Dzielnica
       district: dzielnica
       Division: Oddział
@@ -2638,8 +2648,8 @@ pl:
       intersection: skrzyżowanie
       Island: Wyspa
       island: wyspa
-      Local_Administrative_Area: Lokalna jednostka administracyjna
-      local_administrative_area: lokalna jednostka administracyjna
+      Local_Administrative_Area: Lokalny obszar administracyjny
+      local_administrative_area: lokalny obszar administracyjny
       Miscellaneous: Różne
       miscellaneous: różne
       Municipality: Gmina
@@ -2657,8 +2667,8 @@ pl:
       Point_of_Interest: Ciekawe miejsce
       Postal_Code: Kod pocztowy
       postal_code: kod pocztowy
-      Province: Województwo
-      province: Dzielnica
+      Province: Prowincja
+      province: prowincja
       Republic: Republika
       republic: republika
       State: Stan
@@ -2960,6 +2970,7 @@ pl:
   powered_by_inaturalist_open_source_software_html: 'Wsparcie dzięki <a href="https://github.com/inaturalist/inaturalist" target="_new" >oprogramowaniu open source iNaturalist</a>'
   press: Prasa
   preview: Podgląd
+  previous_date_short: Poprzedni
   prev: Poprzednie
   previous_observation: Poprzednia obserwacja
   previous_page: Poprzednia strona
@@ -3196,7 +3207,6 @@ pl:
   resolved_by_user_on_date_html: Rozstrzygnięte przez %{user} dnia %{date}
   restore: Przywróć
   restoring: Przywracanie...
-  results: wyniki
   review_all: Przejrzyj wszystkie
   reviewed: Przejrzane
   rg_observations: Obserwacje SB
@@ -3204,7 +3214,7 @@ pl:
   rotate_left: Obrót w lewo
   rotate_right: Obróć w prawo
   row_singular_or_plural: Wiersz(e)
-  rules_and_formatting: "Reguły i formatowanie"
+  rules_and_formatting: "Zasady i formatowanie"
   rules_for_adding_observations: Zasady dodawania obserwacji
   satellite: satelita
   save: Zapisz
@@ -3490,14 +3500,11 @@ pl:
   to_add_ids: aby dodać oznaczenia
   to_configure_your_widget: aby skonfigurować swój widżet.
   to_recipient: do
-  to_suggest_an_identification: aby zasugerować oznaczenie
   today: Dzisiaj
   too_many_results: Zbyt wiele wyników
   tools: Narzędzia
-  top_identifier: Najczęściej oznaczający
   top_identifiers: Najczęściej oznaczający
   top_identifiers_of_taxon: Najczęściej oznaczający %{taxon}
-  top_observer: Najczęściej obserwujący
   top_observers: Najczęściej obserwujący
   total: Razem
   total_members: Członków łącznie
@@ -3682,9 +3689,10 @@ pl:
   welcome_to_inat: "Witamy na %{site_name}!"
   welcome_to_guides: "Witamy w przewodnikach %{site_name}!"
   welcome_to_x_project: "Witamy w %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Jesteśmy prawie pewni, że należy to do %{rank}
   what: Co
   what_did_you_see: Co widziałeś?
@@ -3696,8 +3704,6 @@ pl:
   when_did_you_see_it?: Kiedy to widziałeś?
   when_did_you_see_them?: <em>Kiedy</em> je widziałeś?
   where: Gdzie
-  where_do_x_live: Gdzie żyje %{taxa}?
-  where_does_x_live: Gdzie żyją %{taxa}?
   where_were_you?: Gdzie byłeś?
   which_projects_can_add_your_observations?: Które tradycyjne projekty mogą dodawać Twoje obserwacje?
   white: biały
@@ -3901,6 +3907,8 @@ pl:
       identify:
         review_all_tooltip: "Oznacz wszystkie obserwacje na stronie jako przejrzane"
         unreview_all_tooltip: "Usuń status przejrzanych dla wszystkich obserwacji na stronie"
+      import:
+        date_column_format: RRRR-MM-DD GG:MM
       show:
         observer_does_not_allow_observation_fields: Obserwator nie zezwala na dodatkowe pola obserwacji
     emailer:
@@ -3982,6 +3990,7 @@ pl:
         obs_cid_d_to_genus_desc: Dodane w poprzednich siedmiu dniach i posiadające oznaczenie społeczności na poziomie gatunku lub niższym
         obs_desc: Dodane w poprzednich siedmiu dniach
         obs_id_d_desc: Dodane w poprzednich siedmiu dniach i posiadające oznaczenie (może być obserwatora)
+        observers_desc: Dodali obserwację tego dnia
         other_desc_html: Dodane za pomocą innych aplikacji <a href="%{url}">stworzonych przez programistów</a>
         recent_desc: Zarejestrowani w poprzednich siedmiu dniach
         recent_w_0_obs: Najnowsi bez obserwacji

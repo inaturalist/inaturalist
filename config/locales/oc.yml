@@ -100,7 +100,6 @@ oc:
   add_comma_separated_tags: "Apondre de balisas separadas per de virgulas"
   add_comment: Apondre un comentari
   add_conservation_status: apondre l’estat de conservacion
-  add_countries: Apondre de païses
   add_custom_project_fields: Apondètz de camps de projècte personalizats
   add_edit_flags: Apondre / editar d'etiquetas
   add_description: "Apondre %{description_name}"
@@ -286,6 +285,7 @@ oc:
   back_to_your_projects: Retorn a vòstres projèctes
   batch: Lòt
   batch_edit: Moditicacion del lòt
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Lòt de modificacions de taxons per %{x}"
   batch_operations: Operacions per lòt
   before_importing_photos: abans d’importar de fòtos
@@ -411,7 +411,6 @@ oc:
     copyright: dreit d’autor
     attribution_license: Licéncia Atribucion
     gnu_free_documentation_license: Licéncia Documentacion liura GNU
-  countries: Païses
   create: Crear
   create_a_guide: Crear un guida
   create_a_new_field: Crear un camp novèl
@@ -467,7 +466,9 @@ oc:
   date_picker:
     closeText: Tampar
     currentText: Uèi
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Precedent
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Seguent
   date_time: Data/Ora
   day: Jorn
@@ -689,6 +690,7 @@ oc:
   leaderboard_for_x: "Classament per %{x}"
   leaderboards: Classaments
   learn_more: Ne saber mai
+  #Terminal nodes in a taxonomic tree
   leaves: fuèlhas
   lexicon: Lexic
   lexicons:
@@ -1046,7 +1048,6 @@ oc:
   reptiles: reptils
   research: recercar
   research_grade: recercar un nivèl
-  results: resultats
   role: Ròtle
   rotate_left: Virar a esquèrra
   rotate_right: Virar a dreita

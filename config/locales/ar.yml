@@ -82,7 +82,6 @@ ar:
   add_comma_separated_tags: "أضف علامات مفصولة بفواصل"
   add_comment: إضافة تعليق
   add_conservation_status: إضافة حالة حفظ
-  add_countries: إضافة البلدان
   add_custom_project_fields: إضافة حقول مشروع مخصص
   add_edit_flags: إضافة/تعديل الأعلام
   add_editor: إضافة محرر
@@ -368,6 +367,7 @@ ar:
     استنادا إلى الأدلة، هل يمكن تأكيد أو تحسين أصنوفة المجتمع؟
   batch: دفعة
   batch_edit: دفعة تعديلات
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "دفعة تحرير الأصناف لـ%{x}"
   batch_operations: دفعة عمليات
   be_the_first_to_fave_this_observation: كن أول من يفضل هذه الملاحظة!
@@ -667,7 +667,6 @@ ar:
   couldnt_change_your_password: "تعذر تغيير كلمة مرورك: %{e}"
   couldnt_find_a_user_matching_x_param: "تعذر العثور على مستخدم يطابق %{id}"
   couldnt_find_that_taxon: لا يمكن العثور على أصنوفة.
-  countries: بلدان
   create: إنشاء
   create_a_guide: إنشاء دليل
   create_a_new_field: إنشاء حقل جديد
@@ -750,7 +749,9 @@ ar:
   date_picker:
     closeText: إغلاق
     currentText: اليوم
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: السابق
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: التالي
     range: النطاق
   date_range: النطاق الزمني
@@ -1346,6 +1347,7 @@ ar:
   leave: مغادرة
   leave_a_comment: اترك تعليقًا
   leave_this_project: اترك هذا المشروع
+  #Terminal nodes in a taxonomic tree
   leaves: أوراق أشجار
   legacy_authentication_notice_html: |
     يبدو أنك تستخدم كلمة سر من إصدار أقدم من هذا الموقع، يُرجَى تذكر <a href="%{url}">تغيير كلمة السر</a> للإصدار الجديد.
@@ -1725,7 +1727,6 @@ ar:
   no_assessments_have_been_added_to_this_project_yet: لم تتم إضافة أي تقديرات لهذا المشروع بعد.
   no_but_it_is_a_member_of_taxon: "لا، ولكنه عضو في %{taxon}"
   no_comments_yet: لا تعليقات حتى الآن.
-  no_countries_added_yet: لم تتم إضافة أي بلدان حتى الآن
   no_creative_commons_flickr_photos_tagged_x: 'لا توجد صور فليكر موسومة بالمشاع الإبداعي "%{x}"'
   no_curators_set: لم يتم تعيين قيمين
   no_curators_yet: لا يوجد قيمون حتى الآن!
@@ -2044,7 +2045,6 @@ ar:
   password_confirmation: 'تأكيد كلمة السر'
   paste: لصق
   paste_in_a_bunch_of_names: ألصق في مجموعة من الأسماء، 1 في كل سطر، واضرب الزر!
-  paste_in_a_comma_separated_list: الصق في قائمة بلدان مفصولة بفواصل
   people: أشخاص
   people_following_user: "الأشخاص الذين يتابعون %{user}"
   people_user_follows: "أشخاص يتابعهم %{user}"
@@ -2586,7 +2586,6 @@ ar:
     تتيح لك المشروعات تجميع ملاحظاتك مع أشخاص آخرين في %{site_name}،
     سواء كنت ترغب في بدء مشروع علم مواطن أو أو تحافظ على علامات تبويب 
     الطيور في منطقتك، فإن المشاريع هي الطريق للذهاب فيه.
-  projects_from_everywhere: مشاريع من كل مكان
   projects_from_place: "مشاريع من %{place}"
   projects_in_x: "مشاريع في %{x}"
   projects_you_admin: مشاريع أنت إداريها
@@ -2753,7 +2752,6 @@ ar:
   resolver_said_x_html: '<span class="meta">%{resolver} قال:</span> "%{x}"'
   restore: استرجاع
   restoring: جارٍ الاسترجاع...
-  results: النتائج
   review_all: مراجعة الكل
   reviewed: تمت مراجعتها
   rg_observations: ملاحظات على درجة البحث
@@ -3264,23 +3262,19 @@ ar:
   to_add_ids: لإضافة معرفات
   to_configure_your_widget: لتكوين أداتك.
   to_recipient: إلى
-  to_suggest_an_identification: لاقتراح هوية
   today: اليوم
   too_many_results: نتائج كثيرة جدا
   too_many_taxa_to_render: |
     يعرض هذا الاستعلام عددا كبيرا من الأصناف ليتم عرضه في وقت واحد؛ حاول إضافة المزيد من المرشحات
   tools: الأدوات
   top_contributors: أبرز المساهمين
-  top_identifier: أعلى معرف
   top_identifiers: أعلى المعرفات
   top_identifiers_of_taxon: أهم معرفات %{taxon}
-  top_observer: أعلى مراقب
   top_observers: أفضل الملاحظين
   total: إجمالي
   totals: مجموع
   total_members: إجمالي الأعضاء
   total_observations: مجموع الملاحظات
-  total_species_observed: مجموع الأنواع الملحوظة
   total_unique_observers: مجموع المراقبين الفريدين
   translated_languages: اللغات المترجمة
   'true': 'صحيح'
@@ -3375,7 +3369,6 @@ ar:
       upload_failed: فشل الرفع
   url_identifier_of_a_project_derived_from: "مسار / معرف مشروع مستمد من بعض الموارد الخارجية"
   url_of_this_taxon_on_the_source_website: مسار لهذه الأصنوفة على الموقع الإلكتروني للمصدر
-  US_states: الولايات المتحدة
   usage_stats: إحصاءات الاستخدام
   use_name_as_a_placeholder: |
     استخدم <span class='ac-placeholder'>"%{name}"</span> كعنصر نائب
@@ -3545,9 +3538,10 @@ ar:
   welcome_to_inat: "مرحبا بك في %{site_name}!"
   welcome_to_guides: "مرحبا بك في دليل %{site_name}!"
   welcome_to_x_project: "مرحبا بك في %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: نحن متأكدون من أن هذا في %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "عذرا، أخفق الاستيراد الضخم ل%{filename}."
   what: ماذا
@@ -3562,8 +3556,6 @@ ar:
   when_did_you_see_it?: متى رأيت هذا؟
   when_did_you_see_them?: <em>متى</em> شاهدتهم؟
   where: أين
-  where_do_x_live: أين يعيش %{taxa}؟
-  where_does_x_live: أين يعيش %{taxa}؟
   where_were_they?: أين كانوا؟
   where_were_you?: أين كنت؟
   which_projects_can_add_your_observations?: ما هي المشاريع التقليدية التي يمكنها إضافة ملاحظاتك؟

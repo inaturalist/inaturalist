@@ -47,6 +47,9 @@ ca:
   x_misidentifications_of_this_species:
     one: "1 identificació errònia d'aquesta espècie"
     other: "%{count} identificacions errònies d'aquesta espècie"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} espècie mal identificada en aquest gènere"
+    other: "%{count} espècies mal identificades en aquest gènere"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -215,6 +218,10 @@ ca:
   action: Acció
   actions: Accions
   active: Actiu
+  #Status of a complete set that is available for use
+  active_complete_set_status: Actiu
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Actiu
   active_users: Usuaris Actius
   activity: Activitat
   activity_settings: Configuració de l'Activitat
@@ -262,7 +269,6 @@ ca:
   add_comma_separated_tags: "Afegiu etiquetes separades per comes"
   add_comment: Afegiu un comentari
   add_conservation_status: afegiu estat de conservació
-  add_countries: Afegiu països
   add_custom_project_fields: Afegiu camps de projecte personalitzats
   add_edit_flags: Afegir/Editar etiquetes
   add_editor: Afegiu Editor
@@ -683,6 +689,7 @@ ca:
     Basat en l'evidència, pot confirmar o millorar el Tàxon de la Comunitat?
   batch: Grup
   batch_edit: Modifica el grup
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Edició de tàxons en lots per a %{x}"
   batch_operations: Operacions de grups
   be_the_first_to_fave_this_observation: Sigueu el primer en fer aquesta observació favorita!
@@ -906,6 +913,17 @@ ca:
     <span class="comprehensive_notice" data-tip="%{tip}">Llista Completa</span>
     de %{taxon}
   comprehensive_list: Llista completa
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Model de visió per Ordinador
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Inclòs
+  computer_vision_model_included_desc: |
+    L’actual Model de Visió per Ordinador reconeix aquest tàxon, per tant, podria ser inclòs en suggeriments automatitzats amb l'etiqueta "Visualment similar".
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Pendent
+  computer_vision_model_pending_desc: |
+    L’actual Model de Visió per Ordinador no reconeix aquest tàxon, per tant podria incloure's com a suggeriments automatitzats amb l'etiqueta "Proper" no tindrà l'etiqueta "Visualment similar". Malgrat els requisits pel model d'inclusió canvien amb cada model, generalment la inclusió es basa en el nombre d'observacions, per tant, per augmentar la possibilitat que aquest tàxon obtingui la inclusió durant el següent model de formació, afegiu o identifiqueu més observacions d’aquest tàxon.
   concept_status: Concepte de la situació
   configure: Configura
   configure_a_widget_to_show: Configureu el giny per mostrar les observacions d’%{site_name} al vostre lloc web o blog. També podeu incloure l'estil CSS a la <code><head></code> del vostre codi HTML. Podeu modificar el CSS lliurement.
@@ -961,6 +979,16 @@ ca:
   contributor_cannot_be_found: No s'ha pogut trobar al contribuïdor del projecte
   contributors_to_project: "Col·laboradors de %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Qualsevol
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Qualsevol
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Qualsevol
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Qualsevol
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Qualsevol
     sex: Sexe
     male: Mascle
     female: Femella
@@ -1058,7 +1086,6 @@ ca:
   couldnt_change_your_password: "La contrasenya no s’ha pogut modificar: %{e}"
   couldnt_find_a_user_matching_x_param: "No s’ha pogut trobar l'usuari amb els paràmetres següents: %{id}"
   couldnt_find_that_taxon: No es va trobar aquest tàxon
-  countries: Països
   create: Crea
   create_a_guide: Crea una guia
   create_a_new_field: Crea un nou camp
@@ -1100,7 +1127,8 @@ ca:
   curator_application_fields_explanation_html: Per què voleu ser supervisor?
   #Prompt for information when applying to be a curator
   curator_application_fields_taxonomy_examples_html: |
-    Si voleu editar la taxonomia d'iNaturalist, si us plau indiqueu-nos un o dos canvis taxonòmics que voldríeu fer, i incloeu enllaços a les autoritats taxonòmiques adequades con es llistes a la Guia del Supervisor.
+    Si voleu editar la taxonomia d'iNaturalist, si us plau indiqueu-nos un o dos exemples dels canvis taxonòmics que voldríeu fer, i incloeu les fonts de les vostres propostes de canvi. Si s'escai, citeu les autoritats taxonòmiques adequades <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies"> com s'indica a la Guia del Supervisor.</a>. Si no incloeu cap font, la vostra proposta no serà considerada.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Si voleu editar els noms comuns, si us plau indiqueu un o dos exemples dels canvis que voldríeu fer
@@ -1252,7 +1280,9 @@ ca:
   date_picker:
     closeText: Tanca
     currentText: Avui
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Ant
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Seg.
     range: Rang
   date_range: Interval de dates
@@ -1801,6 +1831,8 @@ ca:
   highlights_and_stats_from_year_on_site: "Destacats i estadístiques des de%{year} a %{site}"
   history: Historial
   home: Inici
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Hores a ajustar:"
   however_there_were_some_issues: "Malgrat això, hi havia alguns problemes: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: No ho sé segur, però segur que és%{taxon}
   icon: Icona
@@ -1884,7 +1916,13 @@ ca:
   in_the_past: en el passat
   in_the_past_week: La setmana passada
   inactive: Inactiva
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Inactiu
   inactive_taxon: Tàxon inactiu
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Inactiu
   inactive_taxon_concepts_are: Les categories taxonòmiques inactives són tàxons antiquats o que han canviat el nom. Les categories inactives es conserven per mantenir la història de l'espècie o grup i la compatibilitat amb altres llocs.
   inappropriate_content: Contingut inadequat?
   inat_account_action: "%{site_name} : Compte : %{action_name}"
@@ -1972,6 +2010,7 @@ ca:
   last_active_with_date: "Darrera activitat: %{date}"
   last_confirmed_observation: Última observació confirmada
   last_observation: Darrera observació
+  last_observation_caps: DARRERA OBSERVACIÓ
   last_seen: Vist per última vegada
   last_year: Darrer any
   lat: Lat
@@ -2003,6 +2042,7 @@ ca:
   leave: Sortir
   leave_a_comment: Deixeu un comentari
   leave_this_project: Sortiu d'aquest projecte
+  #Terminal nodes in a taxonomic tree
   leaves: abandona
   legacy_authentication_notice_html: |
     Sembla que utilitzeu una contrasenya d'una versió antiga d'aquest lloc web.
@@ -2034,6 +2074,7 @@ ca:
     hawaiian: Hawaià
     hebrew: Hebreu
     hiligaynon: Híligaynon
+    hungarian: Hongarès
     icelandic: Islandès
     ilokano: Ilocano
     italian: Italià
@@ -2055,6 +2096,7 @@ ca:
     swedish: Suec
     tagalog: Tagal
     tahitian: Tahitià
+    thai: Tailandès
     tokelauan: Tokelauà
     turkish: Turc
     waray_waray: Samarà
@@ -2131,6 +2173,7 @@ ca:
     eo: Esperanto
     es: Castellà
     es-AR: Espanyol (Argentina)
+    es-CO: Espanyol (Colòmbia)
     es-MX: Castellà (Mèxic)
     et: Estonià
     eu: Basc
@@ -2139,6 +2182,7 @@ ca:
     fr-CA: Francès (Canadà)
     gl: Gallec
     he: Hebreu
+    hu: Hongarès
     id: Indonesi
     it: Italià
     ja: Japonès
@@ -2157,6 +2201,7 @@ ca:
     sk: Eslovac
     sq: Albanès
     sv: Suec
+    th: Tailandès
     tr: Turc
     uk: Ucraïnès
     zh-CN: Xinès (simplificat)
@@ -2181,6 +2226,8 @@ ca:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Sortir de %{site_name}?"
   log_scale_label: Registre
+  #Status message shown while logging in
+  logging_in: Iniciant sessió...
   login_slash_username: Entrada/nom d'usuari
   logo:
     logo: Logotip
@@ -2487,15 +2534,18 @@ ca:
   newly_observed_species: Espècies observades recentment
   newly_observed_species_in_year: "Noves Espècies afegides el %{year}"
   next: Següent
+  next_date_short: Següent
   next_observation: Propera observació
   next_page: Pàgina següent
+  next_page_short: Següent
   next_photo: Propera foto
+  next_post_short: Següent
   next_tab: Propera pestanya
+  next_taxon_short: Següent
   'no': 'No'
   no_assessments_have_been_added_to_this_project_yet: Encara no s'ha afegit cap valoració a aquest projecte.
   no_but_it_is_a_member_of_taxon: "No, però es un membre de %{taxon}"
   no_comments_yet: Encara no hi ha comentaris
-  no_countries_added_yet: Encara no s'han afegit països
   no_creative_commons_flickr_photos_tagged_x: 'No hi ha fotos a Flickr etiquetades amb Creative Commons per a "%{x}"'
   no_curators_set: Encara no hi ha supervisors
   no_curators_yet: Encara no hi ha supervisors!
@@ -2558,6 +2608,8 @@ ca:
   no_sections_have_been_added_to_this_assessments_yet: Encara no s'han afegit seccions a aquestes avaluacions.
   no_species_have_been_listed: Encara no s'ha llistat cap espècie per a aquest lloc!
   no_species_on_this_list: Encara no hi ha cap espècie en aquesta llista!
+  no_species_on_this_list_for_owner: |
+    Podeu començar a afegir espècies a aquesta llista utilitzant l'eina "Afegeix a la Teva Llista", a la dreta.
   no_subject_parens: "(Sense tema)"
   no_suggestions_available: Sense suggeriments disponibles
   no_summary_from_wikipedia: No hi ha resum de Wikipedia
@@ -2629,6 +2681,8 @@ ca:
   observation_brief_something_on_day_at_time: "Alguna cosa el %{day} a les %{time}"
   observation_brief_something_on_day_at_time_by_user: "Alguna cosa el %{day} a les %{time} per %{user}"
   observation_brief_something_on_day_by_user: "Alguna cosa el %{day} per %{user}"
+  observation_brief_something_in_month: "Quelcom al %{month}"
+  observation_brief_something_in_month_by_user: "Quelcom al %{month} de %{user}"
   observation_brief_something_by_user: "Quelcom de %{user}"
   observation_brief_something_from_place: "Quelcom a %{place}"
   observation_brief_something_from_place_by_user: "Quelcom a %{place} de %{user}"
@@ -2636,10 +2690,14 @@ ca:
   observation_brief_something_from_place_on_day_by_user: "Quelcom a %{place} el %{day} per %{user}"
   observation_brief_something_from_place_on_day_at_time: "Quelcom a %{place} el %{day} a les %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Quelcom a %{place} el %{day} a les %{time} per %{user}"
+  observation_brief_something_from_place_in_month: "Quelcom a %{place} al %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Quelcom de %{place} al %{month} de %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} el %{day} a les %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} el %{day} a les %{time} per %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} el %{day} per %{user}"
+  observation_brief_taxon_in_month: "%{taxon} al %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} al %{month} per %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} a %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} a %{place} per %{user}"
@@ -2647,6 +2705,8 @@ ca:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} a %{place} el %{day} per %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} a %{place} el %{day} a les %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} a %{place} el %{day} a les %{time} per %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} de %{place} al %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} de %{place} al %{month} per %{user}"
   observations_by_category: "Observacions Per categoria"
   observations_by_app: Observacions Per App
   observations_by_rank: Observacions Per rang
@@ -2758,6 +2818,10 @@ ca:
   off_caps: "DESACTIVAT"
   official_blog: Blog oficial
   offline_access_enabled: Accés fora de línia activat
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Establir hora"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Establir
   old_observation_form: Antic registre de l'observació (obsolet)
   ok: "D’acord"
   on_caps: "ACTIVAT"
@@ -2877,7 +2941,6 @@ ca:
   password_confirmation: 'Confirmeu la contrasenya'
   paste: Enganxa
   paste_in_a_bunch_of_names: Enganxa un grup de noms, 1 per línia i feu clic a l’enllaç!
-  paste_in_a_comma_separated_list: Enganxa la llista de països separats per comes
   people: Persones
   people_following_user: "Usuaris que segueixen %{user}"
   people_user_follows: "Usuaris %{user} Seguidors"
@@ -2944,6 +3007,8 @@ ca:
   place: Lloc
   placeholder: Posició
   place_autocomplete_placeholder: Parc Nacional Zion, Miami, etc.
+  place_create_quota_exceeded: |
+    Heu excedit el nombre de llocs que podeu crear en 24 hores (%{quota})
   place_deleted: Lloc eliminat.
   place_geo:
     geo_planet_place_types:
@@ -3364,6 +3429,8 @@ ca:
     Els nous llocs són una de les majors causes d'alentiment d'iNat, per això<strong>us preguem que no definiu nous llocs</strong>. Si bé els llocs petits amb poques observacions no suposen problemes, si feu llocs que tenen moltes observacions, provoqueu que iNat vagi lent per a tots els usuaris. Aquí teniu algunes formes alternatives d'actuació:
   places_warning_editing_places_is_slow: |
     L'edició de nous límits és una de les principals causes d'alentiment d'iNat. Si podeu eviteu fer això, no afegiu, canvieu o elimineu fronteres de llocs si no és estrictament necessari.
+  places_warning_quota: |
+    Només pots crear tres llocs al dia
   places_warning_the_future: |
     Per això, si és necessari, en el futur podríem restringir les condicions per les quals els usuaris poden afegir nous llocs atès el ritme de creixement d'iNat.
   plants: Plantes
@@ -3400,11 +3467,15 @@ ca:
   preview_observations_with_these_observation_requirements: Previsualitzar Observacions amb aquests Requisits de les Observacions
   preview_of_synced_observation: "<strong>Previsualització</strong> de l'observació sincronitzada.  <a href=\"%{url}\">La voleu desfer?</a>"
   previewing: "Previsualitzant..."
+  previous_date_short: Anterior
   prev: Anterior
   previous_observation: Observació anterior
   previous_page: Pàgina anterior
+  previous_page_short: Anterior
   previous_photo: Foto anterior
+  previous_post_short: Anterior
   previous_tab: Pestanya anterior
+  previous_taxon_short: Anterior
   print_verb: Imprimeix
   privacy: Privacitat
   private: privada
@@ -3470,7 +3541,6 @@ ca:
   projects: Projectes
   projects_description: |
     Els projectes són una manera d'agrupar les vostres observacions amb les d’altres persones a %{site_name}. Tant si us interessa iniciar un projecte científic ciutadà com si només voleu mantenir registres de les aus del vostre veïnat, podeu fer servir projectes.
-  projects_from_everywhere: Projectes de tot arreu
   projects_from_place: "Projectes de %{place}"
   projects_in_x: "Projectes en %{x}"
   #"admins" is equivalent to "administrates"
@@ -3749,7 +3819,6 @@ ca:
   restart: Reinicia
   restore: Restaura
   restoring: Restaurant...
-  results: resultats
   review_all: Revisar-ho tot
   reviewed: Revisat
   revoke: Revoca
@@ -4358,17 +4427,16 @@ ca:
   to_add_ids: per afegir ID
   to_configure_your_widget: per configurar el vostre giny.
   to_recipient: a
-  to_suggest_an_identification: per suggerir una identificació
   today: Avui
   too_many_results: Massa resultats
   too_many_taxa_to_render: |
     Aquesta consulta retorna massa resultats per mostrar a la vegada. Proveu d'afegir més filtres
   tools: Eines
   top_contributors: Col·laboradors més actius
-  top_identifier: Principals identificadors
+  top_identifier_caps: PRINCIPAL IDENTIFICADOR
   top_identifiers: Principals identificadors
   top_identifiers_of_taxon: Principals identificadors de %{taxon}
-  top_observer: Principals observadors
+  top_observer_caps: PRINCIPAL OBSERVADOR
   top_observers: Principal observadors
   tos_privacy_guidelines_label: |
     Accepto les <a href="/terms" target="_blank">Condicions del Servei</a> i la <a href="/privacy" target="_blank">Política de Privacitat</a>, i he revisat les <<a href="/pages/community+guidelines" target="_blank">Normes de la Comunitat</a>.
@@ -4376,7 +4444,8 @@ ca:
   totals: Totals
   total_members: Nombre total de membres
   total_observations: Nombre total d'observacions
-  total_species_observed: Total d'espècies observades
+  total_observations_caps: OBSERVACIONS TOTALS
+  total_species_observed_caps: ESPÈCIES OBSERVADES EN TOTAL
   total_unique_observers: Nombre total d'observadors únics
   translated_languages: Idiomes traduïts
   'true': 'Cert'
@@ -4483,7 +4552,6 @@ ca:
     other: Pujant foto %{num} de %{count}...
   url_identifier_of_a_project_derived_from: "Adreça web / identificador del projecte derivat de fonts externes"
   url_of_this_taxon_on_the_source_website: Enllaç d'aquesta espècie o grup a la pàgina web font
-  US_states: Estats Units
   usage_stats: Estadístiques d'ús
   use_name_as_a_placeholder: |
     Utilitza <span class="ac-placeholder">"%{name}"</span> com a marcador del lloc
@@ -4677,9 +4745,10 @@ ca:
   welcome_to_inat: "Benvingut a %{site_name}!"
   welcome_to_guides: "Benvingut a les Guies de %{site_name}!"
   welcome_to_x_project: "Benvingut al projecte %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Estem prou segurs que aquest està en el lloc %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Ho sentim, però la vostra importació massiva des de %{filename} ha fallat."
   what: Què
@@ -4694,8 +4763,6 @@ ca:
   when_did_you_see_it?: Quan l’heu vist?
   when_did_you_see_them?: <em>Quan</em> els vau veure?
   where: "On"
-  where_do_x_live: On viu el %{taxa}?
-  where_does_x_live: On viu el %{taxa}?
   where_were_they?: <em>On</em> es trobaven?
   where_were_you?: <em>On</em> estàveu?
   which_projects_can_add_your_observations?: Quins projectes tradicionals poden incorporar les vostres observacions?

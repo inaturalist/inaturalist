@@ -285,7 +285,6 @@ sv:
   add_comma_separated_tags: "Lägg till kommaseparerade taggningar"
   add_comment: Lägg till en kommentar
   add_conservation_status: Lägg till bevarandestatus
-  add_countries: Lägg till länder
   add_custom_project_fields: Lägg till anpassade projektfält
   add_edit_flags: Lägg till/Ändra flaggor
   add_editor: Lägg till redigerare
@@ -710,6 +709,7 @@ sv:
     Baserat på ovan, kan community-bestämningen ytterligare bekräftas eller förbättras?
   batch: Batch
   batch_edit: Redigera flera i taget
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Redigera flera taxa för %{x}"
   batch_operations: Batch-funktioner
   be_the_first_to_fave_this_observation: Var först med att göra det här fyndet till favorit!
@@ -933,6 +933,24 @@ sv:
     <span class="comprehensive_notice" data-tip="%{tip}">Fullständig</span>
     checklista för %{taxon}
   comprehensive_list: Fullständig lista
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Bildigenkänningsmodell
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Inkluderad
+  computer_vision_model_included_desc: |
+    Den nuvarande bildigenkänningsmodellen känner till detta taxon, så det kan
+    ingå i automatiserade förslag med "Visuellt liknande"-etiketten.
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Väntar
+  computer_vision_model_pending_desc: |
+    Den nuvarande bildigenkänningsmodellen känner inte till detta taxon, så även om
+    det kan inkluderas i automatiserade förslag med "Närliggande"-etiketten,
+    kommer det inte att ha "Visuellt liknande"-etiketten. Kraven på
+    modellinkludering förändras med varje modell, men generellt bygger inkludering på
+    antal observationer, så för att öka chansen att detta taxon blir
+    inkluderat till nästa modellträning, lägga till eller bestäm fler fynd
+    av detta taxon.
   concept_status: Konceptets status
   configure: Konfigurera
   configure_a_widget_to_show: Konfigurera en widget för att visa %{site_name}-fynd på din webbplats eller blogg. Du kan behöva inkludera den inbyggda CSS:en i <code>&lt;head&gt;</code> i din HTML. Skriv gärna om CSS-koden.
@@ -1097,7 +1115,6 @@ sv:
   couldnt_change_your_password: "Kunde inte ändra ditt lösenord: %{e}"
   couldnt_find_a_user_matching_x_param: "Kunde inte hitta en användare med %{id}"
   couldnt_find_that_taxon: Kunde inte hitta detta taxon.
-  countries: Länder
   create: Skapa
   create_a_guide: Skapa en guide
   create_a_new_field: Skapa ett nytt fält
@@ -1142,7 +1159,7 @@ sv:
   curator_application_fields_explanation_html: Varför vill du bli förvaltare?
   #Prompt for information when applying to be a curator
   curator_application_fields_taxonomy_examples_html: |
-    Om du vill redigera iNaturalists taxonomi, ge ett exempel eller två på taxonomiska ändringar du skulle vilja genomföra och inkludera länkar till etablerade taxonomiska auktoriteter som angivet i Förvaltarvägledningen
+    Om du vill redigera iNaturalists taxonomi, ge ett exempel eller två på taxonomiska ändringar du skulle vilja genomföra och inkludera källor till dina föreslagna förändringar. Om möjligt, ange etablerade taxonomiska auktoriteter <a href="https://www.inaturalist.se/pages/f%C3%B6rvaltarguide#policies">som angivet i Förvaltarvägledningen</a>. Om du inte inkluderar några källor kommer din ansökan inte att beaktas.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Om du vill redigera vardagliga namn, ge ett exempel eller två på ändringar som du vill göra
@@ -1298,7 +1315,9 @@ sv:
   date_picker:
     closeText: Stäng
     currentText: Idag
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Föreg.
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Nästa
     range: Intervall
   date_range: Datumintervall
@@ -1683,6 +1702,8 @@ sv:
   flag_for_observation_title_html: |
     Flagga för fynd: %{title}
   flag_for_photo_id_html: Flagga för <a href="%{url}">bild %{id}</a>
+  flag_for_place_title_html: |
+    Flagga för fyndplats: %{title}
   flag_for_post_title_html: |
     Flagga för inlägg: %{title}
   flag_for_project_title_html: |
@@ -1703,6 +1724,7 @@ sv:
   flag_saved_thanks_html: Flagga sparad. Tack! <a href="%{url}" class="readmore">Visa flagga</a>
   flag_this_observation: Flagga detta fynd
   flag_this_photo: Flagga denna bild
+  flag_this_place: Flagga denna fyndplats
   flag_this_sound: Flagga detta ljud
   flagged: flaggades
   flagged_: Flaggad
@@ -2037,6 +2059,7 @@ sv:
   last_active_with_date: "Senast aktiv: %{date}"
   last_confirmed_observation: Senast bekräftade fynd
   last_observation: Senaste fynd
+  last_observation_caps: SENASTE FYND
   last_seen: Senast sedd
   last_year: Senaste året
   lat: Lat
@@ -2068,6 +2091,7 @@ sv:
   leave: Lämna
   leave_a_comment: Lämna en kommentar
   leave_this_project: Lämna detta projekt
+  #Terminal nodes in a taxonomic tree
   leaves: löv
   legacy_authentication_notice_html: |
     Det ser ut som om du använder ett lösenord från en äldre version av denna webbplats.
@@ -2078,6 +2102,7 @@ sv:
     scientific_names: Vetenskapliga namn
     afrikaans: Afrikaans
     albanian: Albanska
+    belarusian: Belarusiska
     bengali: Bengaliska
     catalan: Katalanska
     cebuano: Cebuano
@@ -2099,6 +2124,7 @@ sv:
     hawaiian: Hawaiiska
     hebrew: Hebreiska
     hiligaynon: Hiligaynon
+    hungarian: Ungerska
     icelandic: Isländska
     ilokano: Ilokano
     italian: Italienska
@@ -2120,6 +2146,7 @@ sv:
     swedish: Svenska
     tagalog: Tagalog
     tahitian: Tahitiska
+    thai: Thailändska
     tokelauan: Tokelauiska
     turkish: Turkiska
     waray_waray: Waray-Waray
@@ -2185,6 +2212,7 @@ sv:
   locales_: Platser
   locales:
     ar: Arabiska
+    be: Belarusiska
     bg: Bulgariska
     br: Bretonska
     ca: Katalanska
@@ -2196,6 +2224,7 @@ sv:
     eo: Esperanto
     es: Spanska
     es-AR: Spanska (Argentina)
+    es-CO: Spanska (Colombia)
     es-MX: Spanska (Mexiko)
     et: Estniska
     eu: Baskiska
@@ -2204,6 +2233,7 @@ sv:
     fr-CA: Franska (Kanada)
     gl: Galiciska
     he: Hebreiska
+    hu: Ungerska
     id: Indonesiska
     it: Italienska
     ja: Japanska
@@ -2222,6 +2252,7 @@ sv:
     sk: Slovakiska
     sq: Albanska
     sv: Svenska
+    th: Thailändska
     tr: Turkiska
     uk: Ukrainska
     zh-CN: Kinesiska (förenklad)
@@ -2562,15 +2593,18 @@ sv:
   newly_observed_species: Nyligen observerade arter
   newly_observed_species_in_year: "Nytillagda arter under %{year}"
   next: Nästa
+  next_date_short: Nästa
   next_observation: Nästa fynd
   next_page: Nästa sida
+  next_page_short: Nästa
   next_photo: Nästa bild
+  next_post_short: Nästa
   next_tab: Nästa flik
+  next_taxon_short: Nästa
   'no': 'Nej'
   no_assessments_have_been_added_to_this_project_yet: Inga bedömningar har lagts till detta projekt ännu.
   no_but_it_is_a_member_of_taxon: "Nej, men det är en medlem av %{taxon}"
   no_comments_yet: Inga kommentarer ännu.
-  no_countries_added_yet: Inga länder tillagda ännu
   no_creative_commons_flickr_photos_tagged_x: 'Inga Creative Commons Flickr-bilder taggade "%{x}"'
   no_curators_set: Inga förvaltare utsedda
   no_curators_yet: Inga förvaltare ännu!
@@ -2706,6 +2740,8 @@ sv:
   observation_brief_something_on_day_at_time: "Något på %{day} kl. %{time}"
   observation_brief_something_on_day_at_time_by_user: "Något på %{day} kl. %{time} av %{user}"
   observation_brief_something_on_day_by_user: "Något på %{day} av %{user}"
+  observation_brief_something_in_month: "Något i %{month}"
+  observation_brief_something_in_month_by_user: "Något i %{month} av %{user}"
   observation_brief_something_by_user: "Något av %{user}"
   observation_brief_something_from_place: "Något från %{place}"
   observation_brief_something_from_place_by_user: "Något från %{place} av %{user}"
@@ -2713,10 +2749,14 @@ sv:
   observation_brief_something_from_place_on_day_by_user: "Något från %{place} på %{day} av %{user}"
   observation_brief_something_from_place_on_day_at_time: "Något från %{place} på %{day} kl. %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Något från %{place} på %{day} kl. %{time} av %{user}"
+  observation_brief_something_from_place_in_month: "Något från %{place} i %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Något från %{place} i %{month} av %{user}"
   observation_brief_taxon_on_day: "%{taxon} på %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} på %{day} kl. %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} den %{day} kl. %{time} av %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} den %{day} av %{user}"
+  observation_brief_taxon_in_month: "%{taxon} i %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} i %{month} av %{user}"
   observation_brief_taxon_by_user: "%{taxon} av %{user}"
   observation_brief_taxon_from_place: "%{taxon} från %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} från %{place} av %{user}"
@@ -2724,6 +2764,8 @@ sv:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} från %{place} på %{day} av %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} från %{place} på %{day} kl. %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} från %{place} på %{day} kl. %{time} av %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} från %{place} i %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} från %{place} i %{month} av %{user}"
   observations_by_category: "Fynd per kategori"
   observations_by_app: Fynd efter app
   observations_by_rank: Fynd efter rang
@@ -2956,7 +2998,6 @@ sv:
   password_confirmation: 'Lösenordsbekräftelse'
   paste: Klistra in
   paste_in_a_bunch_of_names: Klistra in ett gäng namn, 1 per rad, och tryck på knappen!
-  paste_in_a_comma_separated_list: Klistra in i en kommaseparerad lista med länder
   people: Personer
   people_following_user: "Personer som följer %{user}"
   people_user_follows: "Personer %{user} följer"
@@ -3026,6 +3067,9 @@ sv:
   place: Fyndplats
   placeholder: Platshållare
   place_autocomplete_placeholder: Zion National Park, Miami etc.
+  place_create_quota_exceeded: |
+    Du har överskridit antalet fyndplatser du kan skapa under en 24-timmarsperiod
+    (%{quota})
   place_deleted: Fyndplats raderad.
   place_geo:
     geo_planet_place_types:
@@ -3450,6 +3494,8 @@ sv:
   places_warning_editing_places_is_slow: |
     Redigering av fyndplatsgränser är en av de största källorna till att iNat går trögt.
     Om du kan undvika det, lägg inte till, ändra eller ta bort fyndplatsgränser om du inte verkligen måste.
+  places_warning_quota: |
+    Du kan bara skapa tre fyndplatser per dag.
   places_warning_the_future: |
     Tänk på att vi att vi kommer att behöva begränsa de villkor under vilka användare kan lägga till fyndplatser i framtiden givet iNats nuvarande tillväxttakt.
   plants: växter
@@ -3486,11 +3532,15 @@ sv:
   preview_observations_with_these_observation_requirements: Förhandsgranska fynd med dessa fyndkrav
   preview_of_synced_observation: "<strong>Förhandsgranskning</strong> av synkroniserat fynd.  <a href=\"%{url}\">Ångra?</a>"
   previewing: "Förhandsgranskar..."
+  previous_date_short: Föregående
   prev: Föreg
   previous_observation: Föregående fynd
   previous_page: Föregående sida
+  previous_page_short: Föregående
   previous_photo: Föregående bild
+  previous_post_short: Föregående
   previous_tab: Föregående flik
+  previous_taxon_short: Föregående
   print_verb: Skriv ut
   privacy: Integritet
   private: privat
@@ -3558,7 +3608,6 @@ sv:
   projects_description: |
     Projekten låter dig dela dina fynd med andra personer på %{site_name}.
     Oavsett om du börjar med medborgarforskning eller tänker hålla koll på fåglarna i grannskapet, är projekt lämpade för det.
-  projects_from_everywhere: Projekt från överallt
   projects_from_place: "Projekt från %{place}"
   projects_in_x: "Projekt i %{x}"
   #"admins" is equivalent to "administrates"
@@ -3837,7 +3886,6 @@ sv:
   restart: Starta om
   restore: Återställ
   restoring: Återställer...
-  results: resultat
   review_all: Granska alla
   reviewed: Granskad
   revoke: Återkalla
@@ -4451,17 +4499,16 @@ sv:
   to_add_ids: för att lägga till bestämningar
   to_configure_your_widget: för att konfigurera din widget.
   to_recipient: till
-  to_suggest_an_identification: för att föreslå en bestämning
   today: Idag
   too_many_results: För många resultat
   too_many_taxa_to_render: |
     Denna förfrågan returnerar för många taxa för att återges samtidigt. Försök att lägga till fler filter
   tools: Verktyg
   top_contributors: De som bidragit mest
-  top_identifier: Flest bestämningar
+  top_identifier_caps: MESTA BESTÄMMARE
   top_identifiers: Flest bestämningar
   top_identifiers_of_taxon: Flest bestämningar av %{taxon}
-  top_observer: Toppobservatör
+  top_observer_caps: MESTA OBSERVATÖR
   top_observers: Toppobservatörer
   tos_privacy_guidelines_label: |
     Jag godkänner <a href="/terms" target="_blank">Användarvillkoren</a> och
@@ -4470,7 +4517,8 @@ sv:
   totals: Summa
   total_members: Totalt antal medlemmar
   total_observations: Totalt antal fynd
-  total_species_observed: Totalt antal observerade arter
+  total_observations_caps: ANTAL FYND
+  total_species_observed_caps: OBSERVERADE ARTER TOTALT
   total_unique_observers: Totalt antal unika observatörer
   translated_languages: Översatta språk
   'true': 'Sant'
@@ -4577,7 +4625,6 @@ sv:
     other: Laddar upp %{num} av %{count} foton...
   url_identifier_of_a_project_derived_from: "URL / identifierare för projekt med externt ursprung"
   url_of_this_taxon_on_the_source_website: URL till detta taxon på källans webbplats
-  US_states: Stater i USA
   usage_stats: Användningsstatistik
   use_name_as_a_placeholder: |
     Använd <span class='ac-placeholder'>"%{name}"</span> som platshållare
@@ -4773,9 +4820,16 @@ sv:
   welcome_to_inat: "Välkommen till %{site_name}!"
   welcome_to_guides: "Välkommen till %{site_name} guider!"
   welcome_to_x_project: "Välkommen till %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Vi är ganska säkra på att detta hör till släktet
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Vi är ganska säkra på att detta hör till familjen
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: Vi är ganska säkra på att detta hör till ordningen
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Vi är ganska säkra på att detta tillhör %{rank}@gender{n:t|en}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Vi beklagar, men din bulkimport av %{filename} misslyckades."
   what: Vad
@@ -4790,8 +4844,6 @@ sv:
   when_did_you_see_it?: När såg du det?
   when_did_you_see_them?: <em>När</em> såg du dem?
   where: Var
-  where_do_x_live: Var bor %{taxa}?
-  where_does_x_live: Var bor %{taxa}?
   where_were_they?: Var befann de sig?
   where_were_you?: Var var du?
   which_projects_can_add_your_observations?: Till vilka traditionella projekt passar dina fynd?

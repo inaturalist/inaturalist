@@ -276,7 +276,6 @@ de:
   add_comma_separated_tags: "Komma-getrennte Stichwörter hinzufügen"
   add_comment: Kommentar hinzufügen
   add_conservation_status: Schutzstatus hinzufügen
-  add_countries: Länder hinzufügen
   add_custom_project_fields: Benutzerdefinierte Projektfelder hinzufügen
   add_edit_flags: Meldung hinzufügen/bearbeiten
   add_editor: Autor hinzufügen
@@ -701,6 +700,7 @@ de:
     Kann die Community-ID anhand der vorhandenen Belege noch weiter verbessert werden?
   batch: Batch
   batch_edit: Stapelbearbeitung
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "mehrere Taxa für %{x} auf einmal bearbeiten"
   batch_operations: Stapeloperationen
   be_the_first_to_fave_this_observation: Sei der erste, der diese Beobachtung favorisiert!
@@ -1102,7 +1102,6 @@ de:
   couldnt_change_your_password: "Konnte das Passwort nicht ändern: %{e}"
   couldnt_find_a_user_matching_x_param: "Konnte keinen passenden Benutzer finden: %{id}"
   couldnt_find_that_taxon: Konnte das Taxon nicht finden.
-  countries: Länder
   create: Erstellen
   create_a_guide: Erzeuge einen Guide
   create_a_new_field: Ein neues Feld erstellen
@@ -1145,10 +1144,6 @@ de:
     Du musst begründen, warum du Kurator werden willst
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Warum möchtest du Kurator sein?
-  #Prompt for information when applying to be a curator
-  curator_application_fields_taxonomy_examples_html: |
-    Wenn du die Taxonomie von iNaturalist bearbeiten möchtest, gib bitte ein oder zwei Beispiele von Taxonomie-Änderungen, die du vornehmen möchtest, einschließlich Links zu den jeweiligen
-    taxonomischen Instanze, wie sie auch im Kurator-Leitfaden aufgeführt sind.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Wenn du umgangsprachliche Namen bearbeiten möchtest, gib bitte ein oder zwei Beispiele von
@@ -1301,7 +1296,9 @@ de:
   date_picker:
     closeText: Schließen
     currentText: Heute
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Zurück
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Weiter
     range: Zeitraum
   date_range: Zeitraum
@@ -2022,6 +2019,7 @@ de:
   last_active_with_date: "Zuletzt aktiv: %{date}"
   last_confirmed_observation: Letzte bestätigte Beobachtung
   last_observation: Letzte Beobachtung
+  last_observation_caps: LETZTE BEOBACHTUNG
   last_seen: Zuletzt gesehen
   last_year: Letztes Jahr
   lat: Breite
@@ -2053,6 +2051,7 @@ de:
   leave: Verlassen
   leave_a_comment: Einen Kommentar hinterlassen
   leave_this_project: Dieses Projekt verlassen
+  #Terminal nodes in a taxonomic tree
   leaves: Taxon-Enden
   legacy_authentication_notice_html: |
     Sieht so aus, als ob du ein Passwort von einer älteren Version dieser Website benutzt.
@@ -2560,7 +2559,6 @@ de:
   no_assessments_have_been_added_to_this_project_yet: Zu diesem Projekt sind noch keine Bewertungen hinzugekommen.
   no_but_it_is_a_member_of_taxon: "Ja; aber der Nachweis lässt als Bestimmung '%{taxon}' zu"
   no_comments_yet: Noch keine Kommentare.
-  no_countries_added_yet: Noch keine Länder hinzugefügt
   no_curators_set: Keine Kuratoren festgelegt
   no_curators_yet: Noch keine Kuratoren!
   no_description: Keine Beschreibung
@@ -2692,6 +2690,8 @@ de:
   observation_brief_something_on_day_at_time: "Etwas am %{day} um %{time}"
   observation_brief_something_on_day_at_time_by_user: "Etwas am %{day} um %{time} von %{user}"
   observation_brief_something_on_day_by_user: "Etwas am %{day} von %{user}"
+  observation_brief_something_in_month: "Irgendetwas im %{month}"
+  observation_brief_something_in_month_by_user: "Irgendetwas im %{month} von %{user}"
   observation_brief_something_by_user: "Irgendetwas von %{user}"
   observation_brief_something_from_place: "Etwas aus %{place}"
   observation_brief_something_from_place_by_user: "Etwas aus %{place} von %{user}"
@@ -2699,10 +2699,14 @@ de:
   observation_brief_something_from_place_on_day_by_user: "Etwas aus %{place} am %{day} von %{user}"
   observation_brief_something_from_place_on_day_at_time: "Etwas von %{place} am %{day} um %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Etwas von %{place} am %{day} um %{time} von %{user}"
+  observation_brief_something_from_place_in_month: "Irgendetwas aus %{place} im %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Irgendetwas aus %{place} im %{month} von %{user}"
   observation_brief_taxon_on_day: "%{taxon} am %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} am %{day} um %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} am %{day} um %{time} von %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} am %{day} von %{user}"
+  observation_brief_taxon_in_month: "%{taxon} im %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} im %{month} von %{user}"
   observation_brief_taxon_by_user: "%{taxon} von %{user}"
   observation_brief_taxon_from_place: "%{taxon} von %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} von %{place} von %{user}"
@@ -2710,6 +2714,8 @@ de:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} von %{place} am %{day} von %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} von %{place} am %{day} um %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} von %{place} am %{day} um %{time} von %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} aus %{place} im %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} aus %{place} im %{month} von %{user}"
   observations_by_category: "Beobachtungen nach Kategorie"
   observations_by_app: Beobachtungen nach App
   observations_by_rank: Beobachtungen nach Rang
@@ -2942,7 +2948,6 @@ de:
   password_confirmation: 'Passwort bestätigen'
   paste: Einfügen
   paste_in_a_bunch_of_names: Trage mehrere Namen ein, einen pro Zeile, und klicke auf den Button!
-  paste_in_a_comma_separated_list: Füge eine kommagetrennte Liste von Ländern ein.
   people: Personen
   people_following_user: "Personen, die %{user} folgen"
   people_user_follows: "Benutzer denen %{user} folgt"
@@ -3557,7 +3562,6 @@ de:
   projects: Projekte
   projects_description: |
     Mit Projekten kannst du deine Beobachtungen gezielt mit anderen Benutzern auf %{site_name} teilen. Ob du nun eine gemeinnützige wissenschaftliche Initiative startest oder die Vögel in deiner Nachbarschaft dokumentieren willst, Projekte sind der richtige Weg.
-  projects_from_everywhere: Projekte von Überall
   projects_from_place: "Projekte aus %{place}"
   projects_in_x: "Projekte in %{x}"
   #"admins" is equivalent to "administrates"
@@ -3836,7 +3840,6 @@ de:
   restart: Neustart
   restore: Wiederherstellen
   restoring: Stelle wieder her …
-  results: Ergebnisse
   review_all: Alle Überprüfen
   reviewed: begutachtet
   revoke: Ablehnen
@@ -4445,17 +4448,16 @@ de:
   to_add_ids: um IDs hinzuzufügen
   to_configure_your_widget: um dein Widget zu konfigurieren.
   to_recipient: an
-  to_suggest_an_identification: eine Bestimmung vorschlagen
   today: Heute
   too_many_results: Zu viele Ergebnisse
   too_many_taxa_to_render: |
     Diese Abfrage gibt zu viele Taxa zurück, um sie gleichzeitig zu rendern. Versuche, mehr Filter hinzuzufügen
   tools: Werkzeuge
   top_contributors: Top-Mitwirkende
-  top_identifier: Top-Bestimmer
+  top_identifier_caps: TOP-BESTIMMER
   top_identifiers: Top-Bestimmer
   top_identifiers_of_taxon: Top-Bestimmer für %{taxon}
-  top_observer: Top-Beobachter
+  top_observer_caps: TOP-BEOBACHTER
   top_observers: Top-Beobachter
   tos_privacy_guidelines_label: |
     Ich stimme den <a href="/terms" target="_blank">Nutzungsbedingungen</a> und der
@@ -4465,7 +4467,8 @@ de:
   totals: Insgesamt
   total_members: Mitglieder insgesamt
   total_observations: Beobachtungen insgesamt
-  total_species_observed: Insgesamt beobachtete Arten
+  total_observations_caps: BEOBACHTUNGEN INSGESAMT
+  total_species_observed_caps: ANZAHL BEOBACHTETER ARTEN
   total_unique_observers: Gesamtzahl Einzelbeobachter
   translated_languages: Übersetzte Sprachen
   'true': 'Wahr'
@@ -4497,6 +4500,7 @@ de:
   ungrafted_taxa: nicht zugeordnete Taxa
   unhide_content: Inhalt wieder sichtbar machen
   uninvite: ausladen
+  unique_observers: Einzelbeobachter
   unknown: Unbekannt
   unknown_error: Unbekannter Fehler
   unknown_rank: '(Unbekannter Rang)'
@@ -4567,7 +4571,6 @@ de:
     one: Foto wird hochgeladen...
     other: Lade %{num} von %{count} Fotos hoch...
   url_of_this_taxon_on_the_source_website: URL dieses Taxons auf der Website der Quelle
-  US_states: US-Staaten
   usage_stats: Nutzungsstatistiken
   use_name_as_a_placeholder: |
     Benutze <span class='ac-placeholder'>"%{name}"</span> als Platzhalter
@@ -4762,9 +4765,10 @@ de:
   welcome_to_inat: "Willkommen bei %{site_name}!"
   welcome_to_guides: "Willkommen bei %{site_name}-Guides!"
   welcome_to_x_project: "Willkommen bei %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Wir schlagen vor dass es in dieser %{rank} sein könnte
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Es tut uns leid aber der Batch-Import von %{filename} ist fehlgeschlagen."
   what: Was
@@ -4779,8 +4783,6 @@ de:
   when_did_you_see_it?: Wann war die Beobachtung?
   when_did_you_see_them?: <em>Wann</em> hast du sie gesehen?
   where: Wo
-  where_do_x_live: Wo leben %{taxa}?
-  where_does_x_live: Wo lebt %{taxa}?
   where_were_they?: Wo waren die Beobachtungen?
   where_were_you?: Wo war das?
   which_projects_can_add_your_observations?: Welche traditionellen Projekte können deine Beobachtungen hinzufügen?

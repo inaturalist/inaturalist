@@ -246,7 +246,6 @@ es-AR:
   add_comma_separated_tags: "Agregar etiquetas separadas por comas"
   add_comment: Agregar un comentario
   add_conservation_status: Agregar estado de conservación
-  add_countries: Agregar países
   add_custom_project_fields: Agregar campos de proyecto personalizados
   add_edit_flags: Agregar/editar etiquetas
   add_editor: Agregar editor
@@ -670,6 +669,7 @@ es-AR:
     Basándose en las evidencias, ¿la ID de la comunidad puede ser confirmada o mejorada?
   batch: Grupo
   batch_edit: Editar por lotes
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Editar por lotes los datos de los taxones para %{x}"
   batch_operations: Operaciones por lotes
   be_the_first_to_fave_this_observation: '¡Se el primero en agregar esta observación a favoritos!'
@@ -947,6 +947,16 @@ es-AR:
   contributor_cannot_be_found: El contribuidor no se pudo encontrar
   contributors_to_project: "Contribuyentes de %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Cualquiera
     sex: Sexo
     male: Masculino
     female: Femenino
@@ -977,6 +987,8 @@ es-AR:
     organism: Organismo
     #Fecal matter, not regurgitated matter
     scat: Excrementos
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Huellas
     #Endoskeletal remains, like a deer bone
     bone: Huesos
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
@@ -993,6 +1005,7 @@ es-AR:
     cannot_be_determined: No es posible determinarlo a partir de las pruebas proporcionadas
     feather: Una o más plumas no unidas a un organismo
     organism: Organismo total o parcial
+    scat: Materias fecales (no egagrópilas de rapaces u otros materiales regurgitados)
     track: Impresión en el suelo o la nieve hecha por un organismo
     bone: |
       Restos endoesqueléticos predominantes; de lo contrario, la exposición parcial de huesos en un organismo intacto debe etiquetarse "organismo"
@@ -1041,7 +1054,6 @@ es-AR:
   couldnt_change_your_password: "Tu contraseña no pudo ser modificada: %{e}"
   couldnt_find_a_user_matching_x_param: "No se pudo encontrar al usuario con parámetros: %{id}"
   couldnt_find_that_taxon: No se encontró la especie o grupo.
-  countries: Países
   create: Crea
   create_a_guide: Crea una guía
   create_a_new_field: Crea un nuevo campo
@@ -1081,9 +1093,6 @@ es-AR:
     Te pedimos que expliques por qué querés convertirte en un curador
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: '¿Por qué quieres ser un curador?'
-  #Prompt for information when applying to be a curator
-  curator_application_fields_taxonomy_examples_html: |
-    Si querés editar la taxonomía de iNaturalist, envíanos uno o dos ejemplos de cambios taxonómicos que te gustaría realizar e incluye enlaces a las autoridades taxonómicas adecuadas que se enumeran en la Guía para el curador
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Si querés editar nombres comunes, envíanos uno o dos ejemplos de cambios que te gustaría realizar
@@ -1190,7 +1199,9 @@ es-AR:
   date_picker:
     closeText: Cierra
     currentText: Hoy
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Anterior
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Siguiente
     range: Área
   date_range: Intervalo de fechas
@@ -1497,6 +1508,8 @@ es-AR:
   flag_for_observation_title_html: |
     Marca para la observación: %{title}
   flag_for_photo_id_html: Marcar para <a href="%{url}">comentario %{id}</a>
+  flag_for_place_title_html: |
+    Marca para el Lugar: %{title}
   flag_for_post_title_html: |
     Marca para la lista: %{title}
   flag_for_project_title_html: |
@@ -1517,6 +1530,7 @@ es-AR:
   flag_saved_thanks_html: Marca guardada. ¡Gracias! <a href="%{url}" class="readmore">Ver marca</a>
   flag_this_observation: Incluir advertencia en esta observación
   flag_this_photo: Marca esta foto con advertencia
+  flag_this_place: Marcar este Lugar
   flag_this_sound: Marcar este sonido
   flagged: marcado
   flagged_: Marcado
@@ -1809,6 +1823,7 @@ es-AR:
   last_active_with_date: "Última actividad: %{date}"
   last_confirmed_observation: Última observación confirmada
   last_observation: Última observación
+  last_observation_caps: ÚLTIMA OBSERVACIÓN
   last_seen: Visto por última vez
   last_year: Año pasado
   lat: Latitud
@@ -1832,6 +1847,7 @@ es-AR:
   leave: Deja
   leave_a_comment: Deja un comentario
   leave_this_project: Sal de este proyecto
+  #Terminal nodes in a taxonomic tree
   leaves: hojas
   legacy_authentication_notice_html: |
     Parece que estas usando una contraseña de una versión antigua de este sitio web.
@@ -1842,6 +1858,7 @@ es-AR:
     scientific_names: Nombres científicos
     afrikaans: Afrikáans
     albanian: Albanés
+    belarusian: Bielorruso
     bengali: Bengalí
     catalan: Catalán
     cebuano: Cebuano
@@ -1946,6 +1963,7 @@ es-AR:
   locales_: Locales
   locales:
     ar: Árabe
+    be: Bielorruso
     bg: Búlgaro
     br: Bretón
     ca: Catalán
@@ -2250,7 +2268,6 @@ es-AR:
   no_assessments_have_been_added_to_this_project_yet: Todavía no se agregaron evaluaciones a este proyecto.
   no_but_it_is_a_member_of_taxon: "No, pero es un miembro de %{taxon}"
   no_comments_yet: No hay comentarios todavía.
-  no_countries_added_yet: No se han agregado países todavía
   no_creative_commons_flickr_photos_tagged_x: 'No hay fotos en Flickr etiquetadas con Creative Commons para "%{x}"'
   no_curators_set: Aún no hay curadores
   no_curators_yet: '¡No hay curadores aún!'
@@ -2365,6 +2382,8 @@ es-AR:
   #name. @vow_or_con will work here and use the first letter of the name used
   observation_attribution: Observación hecha por %{user}
   observation_brief_something_on_day: "Algo el %{day}"
+  observation_brief_something_in_month: "Algo en %{month}"
+  observation_brief_something_in_month_by_user: "Algo en %{month} por %{user}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
   observation_brief_something_from_place_by_user: "Algo desde %{place} de %{user}"
@@ -2372,7 +2391,11 @@ es-AR:
   observation_brief_something_from_place_on_day_by_user: "Algo desde %{place} el %{day} de %{user}"
   observation_brief_something_from_place_on_day_at_time: "Algo desde %{place} el %{day} a las %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Algo desde %{place} el %{day} a las %{time} de %{user}"
+  observation_brief_something_from_place_in_month: "Algo de %{place} en %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Algo de %{place} en %{month} por %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
+  observation_brief_taxon_in_month: "%{taxon} en %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} en %{month} por %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} desde %{place} de %{user}"
@@ -2380,6 +2403,8 @@ es-AR:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} desde %{place} el%{day} de %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} desde %{place} el%{day} a las %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} desde %{place} el %{day} a las %{time} de %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} de %{place} en %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} de %{place} en %{month} por %{user}"
   observations_by_category: "Observaciones por categoría"
   observations_by_app: Observaciones por App
   observations_by_rank: Observaciones por rango
@@ -2600,7 +2625,6 @@ es-AR:
   password_confirmation: 'Confirmar contraseña'
   paste: Pegar
   paste_in_a_bunch_of_names: Pegar un grupo de nombres, 1 por línea y ¡presionar el botón!
-  paste_in_a_comma_separated_list: Pegar la lista de países separados por comas
   people: Personas
   people_following_user: "Personas que siguen a %{user}"
   people_user_follows: "Gente %{user} Seguidores"
@@ -2664,6 +2688,8 @@ es-AR:
   place: Lugar
   placeholder: Posición
   place_autocomplete_placeholder: Parque Nacional Zion, Miami, etc.
+  place_create_quota_exceeded: |
+    Has excedido el número de lugares que puedes crear en un periodo de 24 horas (%{quota})
   place_deleted: Lugar eliminado.
   place_geo:
     geo_planet_place_types:
@@ -3047,6 +3073,8 @@ es-AR:
     zimbabwe: Zimbabue
   places_of_interest: Lugares de Interés
   places_merged_successfully: '¡Los lugares se combinaron satisfactoriamente!'
+  places_warning_quota: |
+    Sólo puedes crear tres lugares por día.
   plants: plantas
   please_add_a_citation_for_this_change: Añade una referencia para este cambio.
   please_add_this_observation_to: Añade esta observación a
@@ -3138,7 +3166,6 @@ es-AR:
   projects: Proyectos
   projects_description: |
     Los proyectos son una forma de agrupar tus observaciones con otras personas en %{site_name}.  Ya sea que te interese comenzar un proyecto de ciencia ciudadana o solamente mantener registros de las aves de un parque cercano con tu club local, la forma de hacerlo es con Proyectos.
-  projects_from_everywhere: Proyectos de todas partes
   projects_from_place: "Proyectos de %{place}"
   projects_in_x: "Proyectos en %{x}"
   #"admins" is equivalent to "administrates"
@@ -3312,7 +3339,6 @@ es-AR:
   resolver_said_x_html: '<span class="meta">%{resolver} dijo:</span> "%{x}"'
   restore: Restaurar
   restoring: Restaurando...
-  results: resultados
   review_all: Revisar todas
   reviewed: Revisada
   rg_observations: GI Observaciones
@@ -3869,23 +3895,23 @@ es-AR:
   to_add_ids: para agregar identificaciones
   to_configure_your_widget: para configurar tu widget.
   to_recipient: a
-  to_suggest_an_identification: para sugerir una identificación
   today: Hoy
   too_many_results: Demasiados resultados
   too_many_taxa_to_render: |
     Esta consulta devuelve demasiados taxones por lo que no pueden ser mostrados todos al mismo tiempo. Intente añadiendo más filtros.
   tools: Herramientas
   top_contributors: Mayores contribuyentes
-  top_identifier: Identificador superior
+  top_identifier_caps: IDENTIFICADOR PRINCIPAL
   top_identifiers: Top identificadores
   top_identifiers_of_taxon: Identificadores principales de %{taxon}
-  top_observer: Mayor observador
+  top_observer_caps: OBSERVADOR PRINCIPAL
   top_observers: Mejores observadores
   total: Total
   totals: Totales
   total_members: Total de miembros
   total_observations: Total de observaciones
-  total_species_observed: El total de especies observadas
+  total_observations_caps: TOTAL DE OBSERVACIONES
+  total_species_observed_caps: TOTAL DE ESPECIES OBSERVADAS
   total_unique_observers: Total de observadores únicos
   translated_languages: Lenguajes traducidos
   'true': 'Verdadero'
@@ -3983,7 +4009,6 @@ es-AR:
     other: Subiendo %{num} de %{count} fotos...
   url_identifier_of_a_project_derived_from: "Dirección web / identificador del proyecto derivado de fuentes externas"
   url_of_this_taxon_on_the_source_website: Enlace de esta especie o grupo en el sitio web fuente
-  US_states: Estados Unidos
   usage_stats: Estadísticas de uso
   use_name_as_a_placeholder: |
     Usa <span class='ac-placeholder'>"%{name}"</span> como un marcador de posición
@@ -4161,9 +4186,16 @@ es-AR:
   welcome_to_inat: "¡Bienvenido a %{site_name}!"
   welcome_to_guides: "¡Bienvenido a Guías %{site_name}!"
   welcome_to_x_project: "Bienvenido al proyecto %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: 'Estamos bastante seguros de que está en este género:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: 'Estamos bastante seguros de que está en esta familia:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: 'Estamos bastante seguros de que está en este orden:'
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Estamos bastante seguros de que está en el %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Lo sentimos, pero tu importación masiva de %{filename} ha fallado."
   what: Qué
@@ -4178,8 +4210,6 @@ es-AR:
   when_did_you_see_it?: '¿Cuándo lo viste?'
   when_did_you_see_them?: <em>¿Cuándo</em> los viste?
   where: Donde
-  where_do_x_live: '¿Dónde viven los %{taxa}?'
-  where_does_x_live: '¿Dónde vive el %{taxa}?'
   where_were_they?: <em>¿Dónde</em> se encontraban?
   where_were_you?: <em>¿Dónde</em> estabas?
   which_projects_can_add_your_observations?: '¿Qué proyectos tradicionales pueden añadir tus observaciones?'
@@ -5321,6 +5351,8 @@ es-AR:
         frequency:
           research: Grado de investigación
           verifiable: Verificable
+          "Sex=Female": Hembra
+          "Sex=Male": Macho
           unannotated: Sin anotación
         max_photos_desc: |
           Un taxón solo puede tener %{max} fotos. Deberá eliminar las fotos existentes para agregar más.

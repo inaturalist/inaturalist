@@ -109,6 +109,9 @@ et:
     Vaikimisi taksoni nimi luuakse automaatselt sellele määratud teaduslikust nimetusest. Kui oled uue taksoni salvestanud, saad lisada teisi nimesid (rahvapärased nimetused, aegunud nimetused, jne).
   a_flag_for_x: "märkus %{x} kohta"
   a_member_of_taxon_html: "taksoni %{taxon} liige"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A > Y"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -140,16 +143,55 @@ et:
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Asustamismeetodist
+  about_license_options: Litsentseerimisvõimalustest
   about_licenses: Litsentsidest
   about_muting: Väljalülitamisest
   #Header for a section describing taxon names
   about_names: Nimedest
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Info: %{place}"
   about_places: Kohtadest
   about_the_cc_licenses: Creative Commons litsentsidest
   about_these_licenses: Nendest litsentsidest
   about_this_bioblitz: Välkvaatlusest
   about_this_map: Sellest kaardist
   about_this_project: Sellest projektist
+  about_trips_html: |
+    <h4>Reiside abil saab koguda kohalolu-puudumise andmeid lisades vaatlustele konteksti</h4>
+    <p>
+    <strong>Miks</strong> Kohalolu-puudumise andmed sisaldavad infot valimi mahu kohta, mida saab kasutada teaduslikuks analüüsiks, muuhulgas leviku modelleerimine (iNaturalist vaatluste toor-andmed näitavad ainult olemasolus).
+    </p>
+    <p>
+    <strong>Kuidas</strong> Reis lisab su vaatlustele konteksti, sest salvestatakse:
+    </p>
+    <ul>
+    <li><strong>Mida</strong> sa otsisid (eesmärkide nimekiri)</li>
+    <li><strong>Kus</strong> sa otsisid (otsinguala)</li>
+    <li><strong>Kuna</strong> sa otsisid (otsingu ajavahemik)</li>
+    </ul>
+    <p>
+    Sinu eesmärkide nimekirjas olevad liigid, mida sul õnnestus otsinguala sees ja otsingu ajavahemikul vaadelda, loetakse kohal olnud liikideks. Liigid, mida vaadelda ei õnnestunud, loetakse puuduvateks. Vajuta nupule 'Koonda reiside kohalolnud / puudunud andmed', mille tulemusena luuakse reiside liigipõhine kohalolu / puudumise andmete tabel koos seotud vaatlustega. <a href='%{url}'>Loe veel</a>
+    </p>
+  about_trusting_projects: Projektide usaldamisest
+  about_trusting_projects_options_any: Kõiki sinu selles projektis osalevad vaatlused
+  about_trusting_projects_options_any_desc: |-
+    Sellel alla kuuluvad ka vaatlused, mille geoprivaatsuse oled määranud "varjatud" või "priivatseks". Ehk vaatlused oma tagahoovist või kohtades, mida teistega jagada ei soovi.
+  about_trusting_projects_options_taxon: |-
+    Ainult sinu projektis osalevad vaatlused, mille koordinaadid on varjatud, kuna tegu on ohustatud liikidega
+  about_trusting_projects_options_taxon_desc: |-
+    Paljud projektid vajavad ligipääsu varjatud koordinaatidele, sest vaatlusobjektideks on ohustatud taksonid.
+  about_trusting_projects_overview: |-
+    Lubades ligipääsu oma peidetud koordinaatidel, võimaldad selle projekti haldajatel näha sinu selles projektis osalevate vaatluste tõeliseid varjamata asukohti. See on äärmiselt oluline olukordades, kus teadlased ja ressursside haldajad vajavad ligipääsu täpsetele koordinaatidele, et läbi viia anlüüse ning teha otsuseid.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    Projekti haldajad, kes pääsevad ligi sinu peidetud koordinaatidele on:
+  about_trusting_projects_warning: |-
+    Pane tähele, et projektide haldajad võivad muuta projekti parameetreid, mille tulemusena võivad sobilikuks osutada erinevad sinu vaatluseid, ning nad saavad igal ajal lisada ja eemaldada projekti haldajaid. Sind teavitatakse nendest muutustest, kuid põhimõtteliselt usaldad sa oma privaatsed asukohaandmed sellele projektile, nii et ole ettevaatlik.
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Võid valida, milliseid peidetud koordinaate jagad:
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -166,6 +208,10 @@ et:
   action: Toiming
   actions: Toimingud
   active: Aktiivne
+  #Status of a complete set that is available for use
+  active_complete_set_status: Aktiivne
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Aktiivne
   active_users: Aktiivsed kasutajad
   activity: Täiendused
   activity_settings: Teadete sätted
@@ -173,11 +219,18 @@ et:
   add: Lisa
   add_a_batch_of_observations: Lisa vaatluste komplekt
   add_a_batch_of_taxa: Lisa taksonite komplekt
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Lisa täppidega loend
   add_a_comment: Lisa kommentaar
   add_a_field: Lisa väli
   add_a_flag: Lisa märkus
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Lisa link
   add_a_name: Lisa nimi
+  add_a_note: Lisa märkus
   add_a_new_change_group: Lisa uus muutusterühm
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Lisa nummerdatud loend
   add_a_single_observation: Lisa üks vaatlus.
   add_a_taxon: Lisa takson
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -186,11 +239,13 @@ et:
   add_an_identification: Lisa määratlus
   add_an_observation: Lisa vaatlus
   add_an_observation_of: "Lisa taksoni %{taxon} vaatlus"
+  add_an_observation_to_project_html: Lisa projektile %{project} vaatlus
   add_annotations_for_x: Lisa "%{x}" märked
   add_annotations_for_controlled_attribute:
     sex: Lisa "Sugu" märked
     plant_phenology: Lisa "Taime fenoloogia" märked
     life_stage: Lisa "Elujärk" märked
+    evidence_of_presence: Lisa märge "Kohalolu tõendid"
   add_another_flag: Lisa veel üks märkus
   add_another_photo: Lisa veel üks foto
   add_another_section: Lisa veel üks sektsioon
@@ -198,10 +253,12 @@ et:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Uus lisa
   add_batch: Lisa komplekt
+  add_blocked_users: Lisa blokeeritud kasutaja
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Lisa rasvane tekst
   add_comma_separated_tags: "Lisa komaga erladatud märksõnad"
   add_comment: Lisa kommentaar
   add_conservation_status: Lisa kaitsestaatus
-  add_countries: Lisa riigid
   add_custom_project_fields: Lisa projektile spetsiaalsed väljad
   add_edit_flags: Lisa/muuda märkuseid
   add_editor: Lisa toimetaja
@@ -210,6 +267,9 @@ et:
   add_link: Lisa link
   add_higher_level_taxon: Lisa kõrgema taseme takson (nt "linnud")
   add_id: Lisa määratlus
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Lisa kursiivis tekst
+  add_muted_users: Lisa vaigistatud kasutaja
   add_new_lexicon: Lisa uus sõnastik
   add_new_photos_by_their_ids: Lisa Flickr ID alusel uusi fotosid (peavad olema Creative Commons!)
   add_new_place: Lisa uus koht
@@ -229,9 +289,14 @@ et:
   add_one_now: Lisa
   add_photos: Lisa fotod
   add_place: Lisa koht
+  add_alive_or_dead_alive_annotation: 'Lisa märge "Elus või surnud: elus"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Lisa märge "Elus või surnud: ei saa lõpuni otsustada"'
+  add_alive_or_dead_dead_annotation: 'Lisa märkus "Elus või surnud: surnud"'
   add_plant_phenology_budding_annotation: 'Lisa märge "Taime fenoloogia: võrsuv" (Plant Phenology: Budding)'
+  add_plant_phenology_flower_budding_annotation: 'Lisa märge "Taime fenoloogia: õis pungub"'
   add_plant_phenology_flowering_annotation: 'Lisa märge "Taime fenoloogia: õitsev" (Plant Phenology: Flowering)'
   add_plant_phenology_fruiting_annotation: 'Lisa märge "Taime fenoloogia: viljakandev" (Plant Phenology: Fruiting)'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Lisa märge "Taime fenoloogia: õitsemist pole märgata"'
   add_life_stage_adult_annotation: 'Lisa märge "Elujärk: täiskasvanud" (Life Stage: Adult)'
   add_life_stage_teneral_annotation: 'Lisa märge "Elujärk: valmik" (Life Stage: teneral)'
   add_life_stage_subimago_annotation: 'Lisa märge "Elujärk: eelvalmik" (Life Stage: subimago)'
@@ -240,6 +305,12 @@ et:
   add_life_stage_larva_annotation: 'Lisa märge "Elujärk: tõuk" (Life Stage: Larva)'
   add_life_stage_juvenile_annotation: 'Lisa märge "Elujärk: nooruk" (Life Stage: Juvenile)'
   add_life_stage_egg_annotation: 'Lisa märge "Elujärk: muna" (Life Stage: Egg)'
+  add_evidence_of_presence_organism_annotation: 'Lisa märge "Kohalolu tõendid: organism"'
+  add_evidence_of_presence_feather_annotation: 'Lisa märge "Kohalolu tõendid: sulg"'
+  add_evidence_of_presence_scat_annotation: 'Lisa märge "Kohalolu tõendid: väljaheide"'
+  add_evidence_of_presence_track_annotation: 'Lisa märge "Kohalolu tõendid: jäljed"'
+  add_evidence_of_presence_bone_annotation: 'Lisa märge "Kohalolu tõendid: luu"'
+  add_evidence_of_presence_molt_annotation: 'Lisa märge "Kohalolu tõendid: karvad"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Lisa seos'
   #As in a Guide Section
@@ -247,6 +318,7 @@ et:
   add_several_observations_at_once: Lisa korraga mitu vaatlust
   add_sex_female_annotation: 'Lisa märge "Sugu: nais"'
   add_sex_male_annotation: 'Lisa märge "Sugu: mees"'
+  add_sex_cannot_be_determined_annotation: 'Lisa märge "Sugu: ei saa täpselt määrata"'
   add_some_now: Lisa midagi kohe
   add_tag: Lisa märksõna
   add_tags: Lisa märksõnad
@@ -269,8 +341,17 @@ et:
   add_your_own_observations_at: "Lisa oma vaatlused lehele %{site_name}"
   added: Lisatud
   added!: Lisatud!
+  added_as_a_part_of_a_taxon_change_html: |
+    Lisatud <a target="%{target}" class="%{class}" href="%{url}">taksonimuudatuse</a> käigus
+  added_as_a_part_of_a_taxon_merge_html: |
+    Lisatud <a target="%{target}" class="%{class}" href="%{url}">taksonite ühendamise</a> käigus
+  added_as_a_part_of_a_taxon_split_html: |
+    Lisatud <a target="%{target}" class="%{class}" href="%{url}">taksonite jagamise</a> käigus
+  added_as_a_part_of_a_taxon_swap_html: |
+    Lisatud <a target="%{target}" class="%{class}" href="%{url}">taksonivahetuse</a> käigus
   added_by: Lisanud
   added_by_user_on_date_html: "Lisanud %{user} kuupäeval %{date}"
+  added_on_datetime: "Lisatud %{datetime}"
   added_to_favorites_html: |
     Lisatud <a href="%{url}">lemmikute</a> hulka
   adding: "Lisan..."
@@ -396,6 +477,7 @@ et:
   alphabetical_order: Tähestikuline järjekord
   already_have_an_account_log_in_html: On juba konto? <strong>Logi sisse.</strong>
   amphibians: kahepaiksed
+  ancestor_taxon: Ülemtakson
   and: ja
   and_other_taxa: "&amp; Muud taksonid"
   android: Android
@@ -415,6 +497,35 @@ et:
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
   any_: Kõik
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Kõik
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Kõik
+  #Label for an option to show content from any date
+  any_date: Kõik
+  #Label for an option to show content with any establishment means
+  any_establishment: Kõik
+  #Label for an option to show content with any license
+  any_license: Kõik
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Kõik
+  #Label for an option to show content from any project
+  any_project: Kõik
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Kõik
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Kõik
+  #Label for an option to show/include content by any user
+  any_user: Kõik
+  anyone: Igaüks
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Mobiiliäpp
+  applications: Mobiiliäpid
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Saada
   apply_to_selected: Määra valitule
   apply_captive_cultivated: "Määra vangistatud / kultiveeritud"
   apply_fields: Määra väljad
@@ -474,6 +585,11 @@ et:
   assessment_x: "hinnang %{assessment}"
   assessments: hinnangud
   associations: Seosed
+  atlas_for_taxon_html: Taksoni %{taxon} atlas
+  #As in the Atom Syndication Format:
+  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  #an Atom representation of the content shown on the current page
+  atom: Atom
   attached_taxon: Lisatud takson
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
@@ -487,6 +603,9 @@ et:
   automatic_short: Automaatne
   automatically_add_observations_to_this_project: Lisa vaatlused automaatselt selle projekti alla
   automatically_update_my_content_for_taxon_changes: Uuenda automaatselt minu loodud sisu vastavalt taksonimuudatustele
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Keskm.
   back: Tagasi
   back_to_all_species: Tagasi kõigi liikide juurde
   back_to_calendar: "Tagasi kasutaja %{user} kalendrisse"
@@ -520,12 +639,15 @@ et:
     Kas vastavalt tõenditele saab kogukondliku määratluse kinnitada või seda parandada?
   batch: Komplekt
   batch_edit: Muuda komplektina
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Muuda komplektina %{x} taksoneid"
   batch_operations: Komplekstegevused
   be_the_first_to_fave_this_observation: Nimeta esimesena see vaatlus enda lemmikuks!
   because_of: sest
   before_importing_photos: enne fotode importi
   bg_color: Taustavärv
+  bio: Elulugu
+  bio_description: Räägi teistele iNaturalisti kasutajatele endast!
   bioblitz: Välkvaatlus
   birds: linnud
   birthday: Sünnipäev
@@ -539,6 +661,8 @@ et:
   body: Tekst
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: rasvane tekst
   bounding_box: Piirkast
   breadcrumbs: Hierarhia
   #This is a description of the "head" property of Custom Project Fields, i.e.
@@ -564,6 +688,7 @@ et:
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalendrites näeb korraga vaid %{x} vaatlust
   cancel: Loobu
+  cant_edit_or_delete_hidden_content: Sa ei saa muuta või kustutada sisu, mille lehe kuraatorid on peitnud
   cant_flag_an_object_that_doesnt_exist: Ei saa lisada märkust objektile, mida ei eksisteeri
   cant_merge_a_taxon_with_itself: Taksonit ei saa ühendada iseendaga.
   captive: Vangistatud
@@ -755,6 +880,16 @@ et:
   contributor_cannot_be_found: Täjendajat ei leita
   contributors_to_project: "Projekti %{project} täjendajad"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Kõik
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Kõik
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Kõik
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Kõik
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Kõik
     sex: Sugu
     male: Mees
     female: Nais
@@ -814,7 +949,6 @@ et:
   couldnt_change_your_password: "Ei saanud muuta salasõna: %{e}"
   couldnt_find_a_user_matching_x_param: "Ei leidnud kasutajat, kes vastab tunnusele %{id}"
   couldnt_find_that_taxon: Ei leidnud taksonit.
-  countries: Riigid
   create: Loo
   create_a_guide: Loo juhend
   create_a_new_field: Loo uus väli
@@ -885,16 +1019,22 @@ et:
       may: Mai
       june: Juuni
       july: Juuli
+      august: august
+      september: september
       october: Oktoober
+      november: november
       december: Detsember
   date_is_accurate: Kuupäev on täpne
+  date_joined: Liitumiskuupäev
   date_observed: Vaatluskuupäev
   date_observed_: Vaatluskuupäev
   date_observed_on: vaadeldud kuupäeval
   date_picker:
     closeText: Sulge
     currentText: Täna
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Eelmine
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Järgmine
     range: Vahemik
   date_range: Kuupäevavahemik
@@ -1446,7 +1586,8 @@ et:
   leave: Lahku
   leave_a_comment: Kommenteeri
   leave_this_project: Lahku projektist
-  leaves: lahkub
+  #Terminal nodes in a taxonomic tree
+  leaves: kõrgem tase
   legacy_authentication_notice_html: |
     Näib, et kasutad selle lehe varasema versiooni salasõna.
     Palun pea meeles, et uue lehe jaoks tuleb <a href="%{url}">salasõna muuta</a>.
@@ -1823,7 +1964,6 @@ et:
   no_assessments_have_been_added_to_this_project_yet: Sellele projektile pole veel hinnanguid lisatud.
   no_but_it_is_a_member_of_taxon: "Ei, kuid see kuulub taksonisse %{taxon}"
   no_comments_yet: Kommentaare veel ei ole.
-  no_countries_added_yet: Riike pole veel lisatud
   no_creative_commons_flickr_photos_tagged_x: 'Creative Commons litsentsiga Flickr fotod märksõnaga "%{x}" puuduvad'
   no_curators_set: Kuraatoreid pole määratud
   no_curators_yet: Kuraatoreid veel pole!
@@ -2102,7 +2242,6 @@ et:
   password_confirmation: 'Salasõna kordus'
   paste: Kleebi
   paste_in_a_bunch_of_names: Kleebi korraga palju nimesid, üks rea kohta ja vajuta nuppu!
-  paste_in_a_comma_separated_list: Lisa siia komaga eraldatud riikide nimekiri
   people: Inimesed
   people_following_user: "Kasutaja %{user} jälgijad"
   people_user_follows: "Kasutaja %{user} jälgitavad"
@@ -2529,7 +2668,6 @@ et:
   projects: Projektid
   projects_description: |
     Projektid võimaldavad koguda vaatlusi teistel lehe %{site_name} kasutajatelt. Hoolimata sellest, kas soovid alustada kogukondlikku teaduskorjet või saada teada, millised linnud lähikonnas elavad, on just projektid õigeks lahenduseks.
-  projects_from_everywhere: Projektid kõikjalt
   projects_from_place: "Projektid kohast %{place}"
   projects_in_x: "Projektid kohas %{x}"
   projects_you_admin: Sinu administreeritavad projektid
@@ -2695,7 +2833,6 @@ et:
   resolver_said_x_html: '<span class="meta">%{resolver} ütles:</span> "%{x}"'
   restore: Taasta
   restoring: Taastan...
-  results: tulemused
   review_all: Kontrolli kõiki
   reviewed: Kontrollitud
   rg_observations: Teaduskõlbulikud vaatlused
@@ -3220,20 +3357,16 @@ et:
   to_add_comments: lisada kommentaare
   to_add_ids: lisada määratlusi
   to_configure_your_widget: tööriista häälestamiseks.
-  to_suggest_an_identification: määratluse pakkumiseks
   today: Täna
   tools: Tööriistad
   top_contributors: Parimad täiendajad
-  top_identifier: Parimad määratlejad
   top_identifiers: Parimad määratlejad
   top_identifiers_of_taxon: Taksoni %{taxon} parimad määratlejad
-  top_observer: Parimad vaatlejad
   top_observers: Parimad vaatlejad
   total: Kokku
   totals: Kokku
   total_members: Kokku kasutajaid
   total_observations: Vaatluseid kokku
-  total_species_observed: Kokku vaadeldud liike
   total_unique_observers: Kokku erinevaid vaatlejaid
   translated_languages: Tõlgitud keeled
   'true': 'Tõene'
@@ -3320,7 +3453,6 @@ et:
     other: Laen üles fotot %{num}/%{count}...
   url_identifier_of_a_project_derived_from: "Mõnest välisest allikast pärinev projekti URL / identifikaator"
   url_of_this_taxon_on_the_source_website: Selle taksoni URL allikaks oleval veebilehel
-  US_states: USA osariigid
   usage_stats: Kasutusstatistika
   use_name_as_a_placeholder: |
     Kasuta <span class='ac-placeholder'>"%{name}"</span> kohatäitjana
@@ -3475,9 +3607,10 @@ et:
   welcome_to_inat: "Teretulemast lehele %{site_name}!"
   welcome_to_guides: "Teretulemast lehe %{site_name} juhendeid uurima!"
   welcome_to_x_project: "Teretulemast projekti %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Oleme päris kindlad, et see on kategoorias %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Meil on kahju, kuid faili %{filename} massimport kukkus läbi."
   what: Mis
@@ -3491,8 +3624,6 @@ et:
   when_did_you_see_it?: Kunas sa seda nägid?
   when_did_you_see_them?: <em>Kunas</em> sa neid nägid?
   where: Kus
-  where_do_x_live: Kus elab takson %{taxa}?
-  where_does_x_live: Kus elab taksan %{taxa}?
   where_were_they?: Kus need olid?
   where_were_you?: Kus sa olid?
   which_projects_can_add_your_observations?: Millised tavaprojektid saavad su vaatluseid lisada?
@@ -4914,6 +5045,9 @@ et:
   will_paginate:
     previous_label: "&#8592; eelmine"
     next_label: "Järgmine &#8594;"
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: Y > A
   zoom_in: Suurenda
   zoom_out: Vähenda
   zoom_photo: Suurenda fotot
