@@ -1694,6 +1694,8 @@ da:
   flag_for_observation_title_html: |
     Markér til Observation: %{title}
   flag_for_photo_id_html: Markér til <a href="%{url}">Foto %{id}</a>
+  flag_for_place_title_html: |
+    Markering af sted: %{title}
   flag_for_post_title_html: |
     Markér til Indlæg: %{title}
   flag_for_project_title_html: |
@@ -1714,6 +1716,7 @@ da:
   flag_saved_thanks_html: Markering gemt. Tak! <a href="%{url}" class="readmore">Vis markering</a>
   flag_this_observation: Markér dette objekt
   flag_this_photo: Markér dette foto
+  flag_this_place: Markér dette sted
   flag_this_sound: Markér denne lyd
   flagged: markeret
   flagged_: Markeret
@@ -2092,6 +2095,7 @@ da:
     scientific_names: Videnskabelige navne
     afrikaans: Afrikaans
     albanian: Albansk
+    belarusian: Hviderussisk
     bengali: Bengalsk
     catalan: Catalansk
     cebuano: Cebuano
@@ -2201,6 +2205,7 @@ da:
   locales_: Landestandarder
   locales:
     ar: Arabisk
+    be: Hviderussisk
     bg: Bulgarsk
     br: Bretonsk
     ca: Catalansk
@@ -4854,8 +4859,10 @@ da:
   welcome_to_x_project: "Velkommen til %{project}"
   #Label for the most probable taxon in the automated suggestions when that taxon is a genus
   were_pretty_sure_this_is_in_the_genus: Vi er ret sikre på, at det er i slægten
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Vi er ret sikre på, at det er i familien
   #Label for the most probable taxon in the automated suggestions when that taxon is an order
-  were_pretty_sure_this_is_in_the_family: Vi er ret sikre på, at det er i ordnen
+  were_pretty_sure_this_is_in_the_order: Vi er ret sikre på, at det er i ordenen
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
