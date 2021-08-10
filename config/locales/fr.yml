@@ -47,6 +47,9 @@ fr:
   x_misidentifications_of_this_species:
     one: "1 mauvaise identification de cette espèce"
     other: "%{count} mauvaises identifications de cette espèce"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} identification erronée d'espèce dans ce genre"
+    other: "%{count} identifications erronées d'espèce dans ce genre"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -219,6 +222,10 @@ fr:
   action: Action
   actions: Actions
   active: Actif
+  #Status of a complete set that is available for use
+  active_complete_set_status: Actif
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Actif
   active_users: Utilisateurs actifs
   activity: Activité
   activity_settings: Paramètres d’activité
@@ -928,6 +935,8 @@ fr:
     Le modèle actuel de vision par ordinateur connaît ce taxon. Celui-ci pourrait donc être inclus dans les suggestions automatiques avec l'étiquette « Visuellement semblable ».
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: En attente
+  computer_vision_model_pending_desc: |
+    Le modèle actuel de vision par ordinateur ne connaît pas ce taxon. Par conséquent, bien que celui-ci puisse être inclus dans les suggestions automatiques avec l'étiquette « Vu à proximité », il n'aura pas l'étiquette « Visuellement semblable ». Bien que les conditions d'inclusion soient différentes pour chaque modèle, l'inclusion repose en général sur le nombre d'observations. Pour augmenter la probabilité que ce taxon soit inclus lors du prochain entraînement du modèle, ajoutez ou identifiez plus d'observations de ce taxon.
   concept_status: État du concept
   configure: Configurer
   configure_a_widget_to_show: "Configurez un widget pour afficher les observations\nd’%{site_name} sur votre site web ou votre blog. Vous devrez peut-être inclure\nle CSS intégré dans le <code>&lt;head&gt;</code> de votre HTML. N’hésitez pas\nà réécrire le CSS."
@@ -1673,6 +1682,8 @@ fr:
   flag_for_observation_title_html: |
     Signalement pour l'Observation : %{title}
   flag_for_photo_id_html: Signalement pour la <a href="%{url}">Photo %{id}</a>
+  flag_for_place_title_html: |
+    Signalement pour le lieu : %{title}
   flag_for_post_title_html: |
     Signalement pour le message : %{title}
   flag_for_project_title_html: |
@@ -1693,6 +1704,7 @@ fr:
   flag_saved_thanks_html: Drapeau enregistré. Merci ! <a href="%{url}" class="readmore">Afficher le drapeau</a>
   flag_this_observation: Signaler cette observation
   flag_this_photo: Signaler cette photo
+  flag_this_place: Signaler ce lieu
   flag_this_sound: Signaler ce son
   flagged: a signalé
   flagged_: Marqué
@@ -1853,6 +1865,8 @@ fr:
   highlights_and_stats_from_year_on_site: "Mises en évidence et statistiques pour %{year} sur %{site}"
   history: Historique
   home: Accueil
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Heures de décalage :"
   however_there_were_some_issues: "Cependant, il y a eu quelques problèmes : %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Je ne sais pas, mais je confirme que ça fait partie des %{taxon}
   icon: Icône
@@ -1938,7 +1952,13 @@ fr:
   in_the_past: dans le passé
   in_the_past_week: Durant la semaine passée
   inactive: Inactif
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Inactif
   inactive_taxon: Taxon inactif
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Inactif
   inactive_taxon_concepts_are: Les taxons inactifs sont soit désuets d’un point de vue taxinomique, soit en attente d’une modification de taxon. Les concepts désuets sont conservés aux fins d’historique et de compatibilité avec certains sites partenaires.
   inappropriate_content: Contenu inapproprié ?
   inat_account_action: "%{site_name} &#58; Compte &#58; %{action_name}"
@@ -2027,6 +2047,7 @@ fr:
   last_active_with_date: "Dernière activité : %{date}"
   last_confirmed_observation: Dernière observation confirmée
   last_observation: Dernière observation
+  last_observation_caps: DERNIÈRE OBSERVATION
   last_seen: Vu la dernière fois
   last_year: Année dernière
   lat: Lat.
@@ -2069,6 +2090,7 @@ fr:
     scientific_names: Noms scientifiques
     afrikaans: Afrikaans
     albanian: Albanais
+    belarusian: Biélorusse
     bengali: Bengali
     catalan: Catalan
     cebuano: Cebuano
@@ -2178,6 +2200,7 @@ fr:
   locales_: Paramètres régionaux
   locales:
     ar: arabe
+    be: Biélorusse
     bg: Bulgare
     br: Breton
     ca: Catalan
@@ -2627,6 +2650,8 @@ fr:
   no_sections_have_been_added_to_this_assessments_yet: Aucune section n’a encore été ajoutée à cette évaluation.
   no_species_have_been_listed: Aucune espèce n’a encore été répertoriée dans ce lieu!
   no_species_on_this_list: Aucune espèce sur cette liste jusqu’à présent!
+  no_species_on_this_list_for_owner: |
+    Vous pouvez commencer à ajouter des espèces à cette liste en utilisant l'outil "Ajouter à votre liste" sur la droite.
   no_subject_parens: "(Aucun sujet)"
   no_suggestions_available: Aucune suggestion disponible
   no_summary_from_wikipedia: Aucun résumé de Wikipédia
@@ -2700,6 +2725,8 @@ fr:
   observation_brief_something_on_day_at_time: "Quelque chose le %{day} à %{time}"
   observation_brief_something_on_day_at_time_by_user: "Quelque chose le %{day} à %{time} par %{user}"
   observation_brief_something_on_day_by_user: "Quelque chose le %{day} par %{user}"
+  observation_brief_something_in_month: "Quelque chose en %{month}"
+  observation_brief_something_in_month_by_user: "Quelque chose en %{month} par %{user}"
   observation_brief_something_by_user: "Quelque chose par %{user}"
   observation_brief_something_from_place: "Quelque chose de %{place}"
   observation_brief_something_from_place_by_user: "Quelque chose de %{place} par %{user}"
@@ -2707,10 +2734,14 @@ fr:
   observation_brief_something_from_place_on_day_by_user: "Quelque chose de %{place} le %{day} par %{user}"
   observation_brief_something_from_place_on_day_at_time: "Quelque chose de %{place} le %{day} à %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Quelque chose de %{place} le %{day} à %{time} par %{user}"
+  observation_brief_something_from_place_in_month: "Quelque chose @vow_or_con{vow:d'|de }%{place} en %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Quelque chose @vow_or_con{vow:d'|de }%{place} en %{month} par %{user}"
   observation_brief_taxon_on_day: "%{taxon} le %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} le %{day} à %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} le %{day} par %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} le %{day} par %{user}"
+  observation_brief_taxon_in_month: "%{taxon} en %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} en %{month} par %{user}"
   observation_brief_taxon_by_user: "%{taxon} par %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} de %{place} par %{user}"
@@ -2718,6 +2749,8 @@ fr:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} de %{place} le %{day} par %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} de %{place} le %{day} à %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} de %{place} le %{day} à %{time} par %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} @vow_or_con{vow:d'|de }%{place} en %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} @vow_or_con{vow:d'|de }%{place} en %{month} par %{user}"
   observations_by_category: "Observations par catégorie"
   observations_by_app: Observations par application
   observations_by_rank: Observations par rang
@@ -4481,8 +4514,10 @@ fr:
     Cette requête renvoie trop de taxons pour tous les afficher à la fois. Essayez d’ajouter plus de filtres.
   tools: Outils
   top_contributors: Collaborateurs les plus importants
+  top_identifier_caps: MEILLEUR IDENTIFICATEUR
   top_identifiers: Meilleurs Identificateurs
   top_identifiers_of_taxon: Meilleurs identificateurs de %{taxon}
+  top_observer_caps: MEILLEUR OBSERVATEUR
   top_observers: Meilleurs observateurs
   tos_privacy_guidelines_label: |
     J'accepte les <a href="/terms" target="_blank">conditions d'utilisation</a> et
@@ -4492,6 +4527,8 @@ fr:
   totals: Totaux
   total_members: Total des membres
   total_observations: Total des observations
+  total_observations_caps: NOMBRE D'OBSERVATIONS
+  total_species_observed_caps: NOMBRE D'ESPÈCES OBSERVÉES
   total_unique_observers: Total des observateurs uniques
   translated_languages: Langues traduites
   'true': 'Oui'
@@ -4796,6 +4833,12 @@ fr:
   welcome_to_inat: "Bienvenue sur %{site_name}!"
   welcome_to_guides: "Bienvenue sur les guides d’%{site_name}!"
   welcome_to_x_project: "Bienvenue sur %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Nous sommes presque certains que cet organisme appartient au genre
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Nous sommes presque certains que cet organisme appartient à l'ordre
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: Nous sommes presque certains que cet organisme appartient à l'ordre
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
