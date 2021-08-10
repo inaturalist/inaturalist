@@ -834,6 +834,8 @@ zh-CN:
   comprehensive_check_list_for_taxon_html: |
     <span class="comprehensive_notice" data-tip="%{tip}">完整的</span> %{taxon} 名录
   comprehensive_list: 综合分析列表
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: 待确认
   concept_status: 概念状态
   configure: 配置
   configure_a_widget_to_show: 配置小部件以在您的网站或博客显示 %{site_name} 观察。您可能必须在您的HTML的<code>&lt;head&gt;</code>中包含嵌入式CSS。请随意重写CSS。
@@ -884,6 +886,16 @@ zh-CN:
   contributor_cannot_be_found: 找不到贡献者
   contributors_to_project: "贡献至 %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: 任意
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: 任意
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: 任意
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: 任意
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: 任意
     sex: 性别
     male: 雄性
     female: 雌性
@@ -1658,6 +1670,8 @@ zh-CN:
   highlights_and_stats_from_year_on_site: "来自 %{site} 在 %{year} 年的要点与统计数据"
   history: 历史
   home: 首页
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "要调整的小时："
   however_there_were_some_issues: "然而，这里有一些问题：%{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: 我不知道，但我确信这是%{taxon}
   icon: 图标
@@ -1739,6 +1753,9 @@ zh-CN:
   in_the_past: 在过去
   in_the_past_week: 在上周
   inactive: 不活跃
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: 未启用
   inactive_taxon: 不活跃的分类单元
   inactive_taxon_concepts_are: 不活跃的分类单元概念要么是分类学过时，要么是正在进行分类单元的更改。过时概念会被保留在维护历史中，并与其他合作伙伴网站相互兼容。
   inappropriate_content: 不适当的内容？
@@ -1885,6 +1902,7 @@ zh-CN:
     hawaiian: 夏威夷语
     hebrew: 希伯来语
     hiligaynon: 希利盖农语
+    hungarian: 匈牙利语
     icelandic: 冰岛语
     ilokano: 伊洛卡诺语
     italian: 意大利语
@@ -2226,10 +2244,18 @@ zh-CN:
   multiple_select_option: '-- 多重 --'
   multiple_taxa_for_taxon_change: "复合分类单元（交换/合并输入，分别输出）"
   multiple_taxon_ids_separated_by_commas: '以逗号分隔的多个分类单元ID，例如：123654'
+  must_be_not_observed_by_user: 必须不是 %{user} 所观察
+  must_be_not_observed_in_place: 必须不是在 %{place} 被观察到
   must_be_observed_after: 必须在 %{operand} 之后被观察
   must_be_observed_before: 必须在 %{operand} 之前被观察
+  must_be_observed_by_user: 必须由 %{user} 所观察
+  must_be_observed_in_place: 必须是在 %{place} 观察到的
   must_be_less_than_x_MB: "必须小于 %{x} MB"
   must_have_observation_field: "必须填写观察字段“%{operand}”"
+  must_have_photos: 必须含有照片
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "质量等级必须为: %{grades}"
+  must_have_sounds: 必须有音频
   must_have_x: "必须有 %{x}"
   mute_user: 禁言用户
   mute_removed: 禁言已移除
@@ -2312,10 +2338,14 @@ zh-CN:
   newly_observed_species: 最近被观察到的物种：
   newly_observed_species_in_year: "在 %{year}年新增的物种"
   next: 下一个
+  next_date_short: 下一个
   next_observation: 下一观察
   next_page: 下一页
+  next_page_short: 下一页
   next_photo: 下一照片
+  next_post_short: 下一个
   next_tab: 下一标签
+  next_taxon_short: 下一个
   'no': '否'
   no_assessments_have_been_added_to_this_project_yet: 此项目尚未添加任何评估。
   no_but_it_is_a_member_of_taxon: "不，但它是%{taxon}的成员之一"
@@ -2382,6 +2412,8 @@ zh-CN:
   no_sections_have_been_added_to_this_assessments_yet: 此评估中尚未添加任何章节。
   no_species_have_been_listed: 目前还没有物种被列入这个地方呢！
   no_species_on_this_list: 目前还没有物种在这个列表上呢！
+  no_species_on_this_list_for_owner: |
+    您可以使用右边的“添加到您的列表”工具开始添加物种。
   no_subject_parens: "（无主题）"
   no_suggestions_available: 没有可用建议
   no_summary_from_wikipedia: 没有来自维基百科的概要
@@ -2440,6 +2472,13 @@ zh-CN:
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
   observation_attribution: '%{user} 的观察'
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: '&copy; %{user} 的观察记录'
   observation_belongs_to_project_requiring_field: |
     此观察属于一个需要此字段的项目。 必须先从该项目移除观察记录才能删除此字段值。
   observation_brief_something_on_day: "%{day}日的一些内容"
@@ -2538,18 +2577,24 @@ zh-CN:
   observations_widget: 观察小窗口
   observations_with_this_field: 有此字段的观察
   observations_with_this_field_and_value: 有此字段和此值的观察
+  observations_without_media: 包含/不包含媒体的观察
   observationcounts_refreshed: 观察计数已刷新
   observed: 观察日期
   observed_by: 观察自
   observed_on: 观察于
   observer: 观察者
   observers: 观察者
+  observer_prefers_no_project_addition: |
+    观察者不允许其他人把其观察记录添加到项目中。
+  observer_prefers_addition_to_projects_joined: |
+    观察者只允许别人将他们的观察添加到他们已经加入的项目中。
   observer_short: 观察者
   occurence_status_describes_how: '发生状态描述了在指定地区中的分类有多么普遍或稀有。参见DarwinCore以获取<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">更多有关术语的信息</a>。'
   occurrence_status: 发生状态
   occurrence_status_descriptions:
     absent: 在区域内未发生
     common: 频繁发生
+    doubtful: 假定会发生，但对证据存在疑虑。
     irregular: 存在不可预测，包含流浪生物。可能会在某些年份很常见而另一些年份不存在
     present: 在此区域发生
     uncommon: 定期发生，但数量较少，需要仔细寻找正确栖息地
@@ -2567,6 +2612,10 @@ zh-CN:
   off_caps: "关闭"
   official_blog: 官方博客
   offline_access_enabled: 启用离线访问
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "偏移时间"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: 调整时间
   old_observation_form: 旧观察表单（已弃用）
   ok: "确定"
   on_caps: "开启"
@@ -2750,6 +2799,8 @@ zh-CN:
   place: 地方
   placeholder: 占位符
   place_autocomplete_placeholder: 宰恩国家公园、迈阿密等
+  place_create_quota_exceeded: |
+    您已经超过了您可以在24小时内创建的位置的数量上限 (%{quota})
   place_deleted: 地点已删除。
   place_geo:
     geo_planet_place_types:
@@ -3194,11 +3245,15 @@ zh-CN:
   preview_observations_with_these_observation_requirements: 用这些观察需求來预览观察记录
   preview_of_synced_observation: "同步观察的<strong>预览</strong>。 <a href=\"%{url}\">撤销？</a>"
   previewing: "正在预览..."
+  previous_date_short: 上一个
   prev: 上一个
   previous_observation: 上一观察
   previous_page: 上一页
+  previous_page_short: 上一页
   previous_photo: 上一照片
+  previous_post_short: 上一个
   previous_tab: 上一标签
+  previous_taxon_short: 上一个
   print_verb: 打印
   privacy: 隐私政策
   private: 私有
