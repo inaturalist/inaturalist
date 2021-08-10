@@ -829,6 +829,8 @@ lb:
   flag: Mellen
   flag_as_inappropriate: Als onpassend markéieren
   flag_for_curation: Mellen fir Kuratioun
+  flag_for_place_title_html: |
+    Meldung fir d'Plaz: %{title}
   flag_for_taxon_title_html: |
     Melldung fir Taxon: %{title}
   flag_it!: Markéiert et!
@@ -837,6 +839,7 @@ lb:
   flag_resolution: Resolutioun
   flag_saved: Markéierung gespäichert
   flag_this_photo: Dës Foto markéieren
+  flag_this_place: Des Plaz melden
   flagged: markéiert
   flagged_: Markéiert
   flagger: Gemellt
@@ -998,6 +1001,7 @@ lb:
   lexicons:
     scientific_names: Wëssenschaftlech Nimm
     albanian: Albanesch
+    belarusian: Belarusesch
     bengali: Bengalesch
     catalan: Katalanesch
     chinese_simplified: Chinesesch (Vereinfacht)
@@ -1057,6 +1061,7 @@ lb:
   loading_suggestions: Virschléi gi gelueden...
   locales:
     ar: Arabesch
+    be: Belarusesch
     bg: Bulgaresch
     br: Bretonesch
     ca: Katalanesch
@@ -2079,6 +2084,12 @@ lb:
   welcome_back!: Wëllkomm zréck!
   welcome_to_inat: "Wëllkomm op %{site_name}!"
   welcome_to_x_project: "Wëllkomm op %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Mir si zimmlech sécher dëst ass an der Uerdnung
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Mir si zimmlech sécher dëst ass an der Famill
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: Mir si zimmlech sécher dëst ass an der Uerdnung
   what: Wat
   what_did_you_see: Wat hutt Dir gesinn?
   what_do_you_think: Wat mengt Dir?
