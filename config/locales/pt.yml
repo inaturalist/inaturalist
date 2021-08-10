@@ -909,6 +909,16 @@ pt:
   contributor_cannot_be_found: O participante não pode ser encontrado
   contributors_to_project: "Participantes em %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Qualquer
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Qualquer
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Qualquer
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Qualquer
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Qualquer
     sex: Género
     male: Masculino
     female: Feminino
@@ -2212,6 +2222,8 @@ pt:
   no_sections_have_been_added_to_this_assessments_yet: Nenhuma seção foi adicionada nestas avaliações ainda.
   no_species_have_been_listed: Nenhuma espécie foi listada para este lugar ainda!
   no_species_on_this_list: Ainda não existem espécies nesta lista!
+  no_species_on_this_list_for_owner: |
+    Pode começar a adicionar espécies a esta lista usando a ferramenta "Adicionar à Sua Lista" à direita.
   no_subject_parens: "(sem assunto)"
   no_suggestions_available: Sem Sugestões Disponíveis
   no_summary_from_wikipedia: Não existe resumo no Wikipédia
