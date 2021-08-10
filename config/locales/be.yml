@@ -14,6 +14,11 @@ be:
     few: '%{count} упадабанні'
     many: '%{count} упадабанняў'
     other: '%{count} упадабання'
+  x_flags_resolved_html:
+    one: "<span class='count'>%{count}</span> пазнака вырашаная"
+    few: "<span class='count'>%{count}</span> пазнакі вырашаныя"
+    many: "<span class='count'>%{count}</span> пазнак вырашана"
+    other: "<span class='count'>%{count}</span> пазнакі вырашана"
   x_identifications:
     one: '%{count} вызначэнне'
     few: '%{count} вызначэння'
@@ -294,6 +299,23 @@ be:
   about_trusting_projects_options_taxon_desc: |-
     Шматлікім праектам проста неабходны доступ да прыхаваных каардынатаў, таму што
     назіранне адносіцца да таксона, які знаходзіцца пад пагрозай.
+  about_trusting_projects_overview: |-
+    Прадастаўленне доступу да вашых схаваных каардынат дазволіць кіраўнікам гэтага
+    праекта ўбачыць сапраўднае, непрыхаванае месца вашых назіранняў у гэтым
+    праекце. Гэта надзвычай важна ў сітуацыях, калі навукоўцы ці
+    менеджэрам рэсурсаў патрэбны доступ да дакладных каардынат для аналізу і
+    прыняцця рашэння.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    Менеджэры праектаў, якія атрымаюць доступ да вашых схаваных каардынат:
+  about_trusting_projects_warning: |-
+    Звярніце ўвагу, што кіраўнікі праектаў могуць змяняць параметры праекта, каб уключыць любыя
+    вашыя назіранні. Таксама яны могуць дадаваць альбо выдаляць кіраўнікоў праектаў у любы
+    час. Вы атрымаеце апавяшчэнні пра гэтыя змены, але вы па сутнасці давяраеце гэтаму праект свае прыватныя дадзеныя пра месцазнаходжанне, так што будзьце уважлівыя.
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Вы можаце выбраць, з падзяліцца схаванымі каардынатамі
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -308,6 +330,180 @@ be:
   accuracy_of_the_coordinates: |
     Дакладнасць каардынат у метрах. Вы можаце змяніць гэта, націснуўшы спасылку "рэдагаваць" вышэй, альбо націснуўшы на маркер карты і перацягваючы элементы кіравання. Паспрабуйце
     зрабіце круг дастаткова вялікім, каб вы былі ўпэўнены, што знаходзіліся дзесьці ўнутры яго.
+  action: Дзеянне
+  actions: Дзеянні
+  active: Актыўны
+  #Status of a complete set that is available for use
+  active_complete_set_status: Актыўны
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Актыўны
+  active_users: Актыўныя карыстальнікі
+  activity: Дзейнасць
+  activity_settings: Налады актыўнасці
+  adapted_by_name_from_a_work_by_original: "Адаптавана %{name} на падставе працы %{original}"
+  add: Дадаць
+  add_a_batch_of_observations: Дадаць некалькі назіранняў
+  add_a_batch_of_taxa: Дадаць некалькі таксонаў
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Дадаць маркіраваны спіс
+  add_a_comment: Дадаць каментар
+  add_a_field: Дадаць поле
+  add_a_flag: Пазначыць сцяжком
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Дадаць спасылку
+  add_a_name: Дадаць імя
+  add_a_note: Дадаць заўвагу
+  add_a_new_change_group: Дадаць новую групу змен
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Дадаць нумераваны спіс
+  add_a_single_observation: Дадаць адзінкавае назіранне.
+  add_a_taxon: Дадаць таксон
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: |
+    Дадаць <a target="_blank" href="%{url}">замену таксона</a> калі вы хочаце змяніць імя
+  add_an_assessment: Дадаць ацэнку
+  add_an_identification: Дадаць вызначэнне
+  add_an_observation: Дадаць назіранне
+  add_an_observation_of: "Дадаць назіранне %{taxon}"
+  add_an_observation_to_project_html: Дадаць назіранне да %{project}
+  add_annotations_for_x: Дадаць значэнне для "%{x}"
+  add_annotations_for_controlled_attribute:
+    sex: Дадаць значэння для "Пол"
+    plant_phenology: Дадаць значэння для "Феналогія раслін"
+    life_stage: Дадаць значэння для "Жыццёвая стадыя"
+    evidence_of_presence: Дадаць значэння для "Доказ прысутнасці"
+  add_another_flag: Дадаць іншую пазнаку
+  add_another_photo: Дадаць іншае фота
+  add_another_section: Дадаць іншы раздзел
+  add_another_subscription: Дадаць іншую падпіску
+  add_batch: Дадаць некалькі
+  add_blocked_users: Дадаць заблакаваных карыстальнікаў
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Дадаць тэкст тлустым шрыфтам
+  add_comma_separated_tags: "Дадаць тэгі, падзеленыя коскамі"
+  add_comment: Дадаць каментар
+  add_conservation_status: Дадаць статус аховы
+  add_custom_project_fields: Дадаць дадатковыя палі праекту
+  add_edit_flags: Дадаць/рэдагаваць пазнакі
+  add_editor: Дадаць рэдактар
+  add_description: "Дадаць %{description_name}"
+  add_from_your_observations: Дадаць з вашых назіранняў
+  add_link: Дадаць спасылку
+  add_higher_level_taxon: Дадаць таксон вышэйшага ўзроўню (напрыклад, "птушкі")
+  add_id: Дадаць вызначэнне
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Дадаць тэкст курсівам
+  add_muted_users: Дадаць прыглушаных карыстальнікаў
+  add_new_lexicon: Дадаць новую мову
+  add_new_photos_by_their_ids: Дадаць новыя фотаздымкі па іх ідэнтыфікатарах Flickr (павінны маць ліцэнзію Creative Commons!)
+  add_new_place: Дадаць новае месца
+  add_new_rule: Дадаць новае правіла
+  add_new_source: "Дадаць новую крыніцу..."
+  add_new_taxon_name: Дадаць новае імя таксона
+  add_notes_about_this_taxon: Дадаць заўвагі пра гэты таксон у гэтым месцы, напр. дзе і калі ён сустракаецца.
+  add_obs_from_a_link: "Дадаць назіранні са спісу: %{link}"
+  add_obs_from_a_list: Дадаць назіранні са спісу
+  add_observations: Дадаць назіранні
+  add_observations_by_checking_off: Дадаць назіранні, пазначаючы віды са спісу.
+  add_observations_project: Дадаць назіранні да гэтага праекту
+  #Prompt to add a new journal post
+  add_one: Дадаць зараз!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now: Дадаць зараз
+  add_photos: Дадаць фота
+  add_place: Дадаць месца
+  add_alive_or_dead_alive_annotation: 'Дадаць значэнне "Жывы ці мёртвы: жывы"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Дадаць значэнне "Жывы ці мёртвы: не магчыма вызначыць"'
+  add_alive_or_dead_dead_annotation: 'Дадаць значэнне "Жывы ці мёртвы: мёртвы"'
+  add_plant_phenology_budding_annotation: 'Дадаць значэнне "Феналогія раслін: бутанізацыя"'
+  add_plant_phenology_flower_budding_annotation: 'Дадаць значэнне "Феналогія раслін: бутанізацыя"'
+  add_plant_phenology_flowering_annotation: 'Дадаць значэнне "Феналогія раслін: квітненне"'
+  add_plant_phenology_fruiting_annotation: 'Дадаць значэнне "Феналогія раслін: плоданашэнне"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Дадаць значэнне "Феналогія раслін: няма сведчання квітнення"'
+  add_life_stage_adult_annotation: 'Дадаць значэнне "Жыццёвая стадыя: дарослае"'
+  add_life_stage_subimago_annotation: 'Дадаць значэнне "Жыццёвая стадыя: субімага"'
+  add_life_stage_pupa_annotation: 'Дадаць значэнне "Жыццёвая стадыя: лялечка"'
+  add_life_stage_nymph_annotation: 'Дадаць значэнне "Жыццёвая стадыя: німфа"'
+  add_life_stage_larva_annotation: 'Дадаць значэнне "Жыццёвая стадыя: лічынка"'
+  add_life_stage_juvenile_annotation: 'Дадаць значэнне "Жыццёвая стадыя: ювенільнае"'
+  add_life_stage_egg_annotation: 'Дадаць значэнне "Жыццёвая стадыя: яйка"'
+  add_evidence_of_presence_organism_annotation: 'Дадаць значэнне "Доказ прысутнасці: арганізм"'
+  add_evidence_of_presence_feather_annotation: 'Дадаць значэнне "Доказ прысутнасці: пяро"'
+  add_evidence_of_presence_scat_annotation: 'Дадаць значэнне "Доказ прысутнасці: экскрэменты"'
+  add_evidence_of_presence_track_annotation: 'Дадаць значэнне "Доказ прысутнасці: сляды"'
+  add_evidence_of_presence_bone_annotation: 'Дадаць значэнне "Доказ прысутнасці: костка"'
+  add_evidence_of_presence_molt_annotation: 'Дадаць значэнне "Доказ прысутнасці: лінька"'
+  #As in a Taxon Framework Relationship
+  add_relationship: 'Дадаць сувязь'
+  #As in a Guide Section
+  add_section: Дадаць падзел
+  add_several_observations_at_once: Дадаць некалькі назіранняў адначасова
+  add_sex_female_annotation: 'Дадаць значэнне "Пол: жаночы"'
+  add_sex_male_annotation: 'Дадаць значэнне "Пол: мужчынскі"'
+  add_sex_cannot_be_determined_annotation: 'Дадаць значэнне "Пол: немагчыма вызначыць"'
+  add_some_now: Дадаць што-небудзь зараз
+  add_tag: Дадаць тэг
+  add_tags: Дадаць тэгі
+  add_tags_to_selected_taxa: Дадаць тэгі да абраных таксонаў
+  add_taxa: Дадаць таксоны
+  add_taxon_batch_to: "Дадаць некалькі таксоноаў да %{list}"
+  add_taxon_range: Дадаць арэал таксона
+  add_taxonomic_tags_to: "Дадаць таксанамічныя тэгі да выбраных фотаздымкаў Flickr &raquo;"
+  add_to_a_scheme: Дадаць да схемы
+  add_to_a_project: Дадаць да праекта
+  add_to_calendar: Дадаць да календара
+  add_to_checklist: Дадаць да чэкліста
+  add_to_favorites: Дадаць да ўлюблёных
+  add_to_list: Дадаць да спісу
+  add_to_project: Дадаць да праекта
+  add_to_your_list: Дадаць да вашага спіса
+  add_your_email_to_get: |
+    Дадайце сваю электронную пошту, каб атрымаць зваротную сувязь з супольніцтвам пра свае назіранні.
+    Калі вы не хочаце абагульваць іх, калі ласка, вяртайцеся ў бліжэйшы час!
+  added: Дададзена
+  added!: Дададзена!
+  added_as_a_part_of_a_taxon_change_html: |
+    Дададзена як частка
+    <a target="%{target}" class="%{class}" href="%{url}">змены таксона</a>
+  added_as_a_part_of_a_taxon_merge_html: |
+    Дададзена як частка
+    <a target="%{target}" class="%{class}" href="%{url}">аб'яднання таксонаў</a>
+  added_as_a_part_of_a_taxon_split_html: |
+    Дададзена як частка
+    <a target="%{target}" class="%{class}" href="%{url}">падзела таксона</a>
+  added_as_a_part_of_a_taxon_swap_html: |
+    Дададзена як частка
+    <a target="%{target}" class="%{class}" href="%{url}">замены таксона</a>
+  added_by: Дададзена
+  added_by_user_on_date_html: "Дададзена %{user} %{date}"
+  added_on_datetime: "Дададзена %{datetime}"
+  added_to_favorites_html: |
+    Дададзена да <a href="%{url}">ўлюблёных</a>
+  adding: "Дадаецца..."
+  adjust_brightness: Карэкціроўка яскравасці
+  admin: Адміністратар
+  admin_s: Адміністратар(ы)
+  admin_only: Толькі адміністратары
+  admin_tools: Інструменты адміністратара
+  agree_: Згадзіцца
+  agree?: Згодны?
+  agree_with_current_taxon: Згадзіцца з дадзеным таксонам
+  agreeing: Згаджаемся...
+  aka: таксама вядомы як
+  all: Усе
+  all_comments: Усе каментарыі
+  all_flags_must_be_resolved: Усе пазнакі павінны быць вырашаны
+  all_life: Усё жыццё
+  all_names: Усе імёны
+  all_observations: Усе назіранні
+  all_photos: Усе фота
+  all_places: "Усе месцы"
+  all_projects: Усе праекты
+  all_rank_added_to_the_database:
+    phylum: Усе аддзелы/тыпы дададзены да базы дадзеных
+    subphylum: Усе пададдзелы дададзены да базы дадзеных
+    superclass: Усе звышкласы дадазены да базы дадзеных
+    class: Усе класы дададзены да базы дадзеных
   date:
     abbr_month_names:
       - 
