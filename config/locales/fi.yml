@@ -953,6 +953,16 @@ fi:
   contributor_cannot_be_found: Osallistujaa ei löydy
   contributors_to_project: "Projektin %{project} osallistujat"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Mikä tahansa
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Mikä tahansa
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Mikä tahansa
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Mikä tahansa
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Mikä tahansa
     sex: Sukupuoli
     male: Koiras
     female: Naaras
@@ -2498,6 +2508,8 @@ fi:
   no_sections_have_been_added_to_this_assessments_yet: Tähän arviointiin ei ole vielä lisätty yhtään osiota.
   no_species_have_been_listed: Tähän paikkaan ei ole vielä tallennettu yhtään lajia!
   no_species_on_this_list: Ei vielä lajeja tässä luettelossa!
+  no_species_on_this_list_for_owner: |
+    Voit alkaa lisätä lajeja tähän luetteloon käyttämällä oikealla olevaa "Lisää luetteloosi"-työkalua.
   no_subject_parens: "(Ei otsikkoa)"
   no_suggestions_available: Ehdotuksia ei saatavissa
   no_summary_from_wikipedia: Ei yhteenvetoa Wikipediasta
