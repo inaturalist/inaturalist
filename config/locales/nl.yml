@@ -936,6 +936,21 @@ nl:
     <span class="comprehensive_notice" data-tip="%{tip}">Volledige</span>
     checklist voor %{taxon}
   comprehensive_list: Volledige lijst
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Computer Vision Model
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Opgenomen
+  computer_vision_model_included_desc: |
+    Het huidige Computer Vision Model kent dit taxon dus het kan
+    voorkomen in geautomatiseerde suggesties met het "Visueel vergelijkbaar" label.
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: In behandeling
+  computer_vision_model_pending_desc: |
+    Het huidige Computer Vision Model kent dit taxon niet, het kan dus voorkomen in geautomatiseerde suggesties met het label "In de omgeving" maar het zal dan niet het label "Visueel vergelijkbaar" hebben. Hoewel de vereisten voor opname in het model met elk model wijzigen, is opname in het algemeen gebaseerd op
+    aantal waarnemingen, om de kans te vergroten dat dit taxon tijdens de volgende modeltraining
+    wordt opgenomen. Voeg meer waarnemingen toe van dit taxon of determineer ze.
+    .
   concept_status: Conceptstatus
   configure: Instellen
   configure_a_widget_to_show: Stel een widget in om de  %{site_name} waarnemingen te tonen op je website of blog. Het kan zijn dat je de  CSS moet opnemen in de  <code>&lt;head&gt;</code> van je HTML. Voel je vrij de CSS te herschrijven.
@@ -2640,6 +2655,8 @@ nl:
   no_sections_have_been_added_to_this_assessments_yet: Er zijn nog geen secties aan deze beoordelingen toegevoegd.
   no_species_have_been_listed: Voor deze plaats is nog geen soortenlijst!
   no_species_on_this_list: Nog geen soorten op deze lijst!
+  no_species_on_this_list_for_owner: |
+    Je kunt beginnen met het toevoegen van soorten aan deze lijst via de optie "Toevoegen aan je lijst" aan de rechterkant.
   no_subject_parens: "(Geen onderwerp)"
   no_suggestions_available: Geen suggesties beschikbaar
   no_summary_from_wikipedia: Geen overzicht in Wikipedia
@@ -2713,6 +2730,8 @@ nl:
   observation_brief_something_on_day_at_time: "Iets op %{day} om %{time}"
   observation_brief_something_on_day_at_time_by_user: "Iets op %{day} om %{time} door %{user}"
   observation_brief_something_on_day_by_user: "Iets op %{day} door %{user}"
+  observation_brief_something_in_month: "Iets in %{month}"
+  observation_brief_something_in_month_by_user: "Iets in %{month} door %{user}"
   observation_brief_something_by_user: "Iets door %{user}"
   observation_brief_something_from_place: "Iets uit %{place}"
   observation_brief_something_from_place_by_user: "Iets uit %{place} door %{user}"
@@ -2720,10 +2739,14 @@ nl:
   observation_brief_something_from_place_on_day_by_user: "Iets uit %{place} op %{day} door %{user}"
   observation_brief_something_from_place_on_day_at_time: "Iets uit %{place} op %{day} om %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Iets uit %{place} op %{day} om %{time} door %{user}"
+  observation_brief_something_from_place_in_month: "Iets uit %{place} in %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Iets uit %{place} in %{month} door %{user}"
   observation_brief_taxon_on_day: "%{taxon} op %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} op %{day} om %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} op %{day} om %{time} door %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} op %{day} door %{user}"
+  observation_brief_taxon_in_month: "%{taxon} in %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} in %{month} door %{user}"
   observation_brief_taxon_by_user: "%{taxon} door %{user}"
   observation_brief_taxon_from_place: "%{taxon} uit %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} uit %{place} door %{user}"
@@ -2731,6 +2754,8 @@ nl:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} uit %{place} op %{day} door %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} uit %{place} op %{day} om %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} uit %{place} op %{day} om %{time} door %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} uit %{place} in %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} uit %{place} in %{month} door %{user}"
   observations_by_category: "Waarnemingen per categorie"
   observations_by_app: Waarnemingen volgens App
   observations_by_rank: Waarnemingen per rang
@@ -3045,6 +3070,9 @@ nl:
   place: Plaats
   placeholder: Tijdelijke aanduiding
   place_autocomplete_placeholder: Zion National Park, Miami, enz.
+  place_create_quota_exceeded: |
+    Jij hebt het aantal plaatsen overschreden dat je in een periode van 24 uur kunt aanmaken
+    (%{quota})
   place_deleted: Plaats verwijderd.
   place_geo:
     geo_planet_place_types:
@@ -3476,6 +3504,8 @@ nl:
   places_warning_editing_places_is_slow: |
     Gebiedsgrenzen bewerken is een van de grootste bronnen van vertraging op iNat.
     Voorkom het toevoegen, veranderen of wijzigen van gebiedsgrenzen tenzij het absoluut noodzakelijk is.
+  places_warning_quota: |
+    Je kunt slechts drie plaatsen per dag maken.
   places_warning_the_future: |
     Voor wat het waard is, in het huidige groeitempo van iNat zullen de voorwaarden strenger worden waaronder
     mensen in de toekomst plaatsen kunnen toevoegen.
