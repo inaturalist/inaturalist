@@ -47,6 +47,9 @@ es:
   x_misidentifications_of_this_species:
     one: "%{count} identificación errónea de esta especie"
     other: "%{count} identificaciones erróneas de esta especie"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} identificación errónea de especie en este género"
+    other: "%{count} identificaciones erróneas de especies en este género"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -217,6 +220,10 @@ es:
   action: Acción
   actions: Acciones
   active: Activo
+  #Status of a complete set that is available for use
+  active_complete_set_status: Activo
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Activo
   active_users: Usuarios activos
   activity: Actividad
   activity_settings: Configuración de la actividad
@@ -910,6 +917,10 @@ es:
     <span class="comprehensive_notice" data-tip="%{tip}">Lista exhaustiva</span>
     de %{taxon}
   comprehensive_list: Lista completa
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Incluido
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Pendiente
   concept_status: Concepto de la situación
   configure: Configurar
   configure_a_widget_to_show: Configura el widget para mostrar las observaciones de %{site_name} en tu sitio web o blog. También puedes incluir el estilo CSS en la <code>&lt;head&gt;</code> de tu código HTML. Siéntete libre de modificar el CSS.
@@ -969,6 +980,16 @@ es:
   contributor_cannot_be_found: El contribuidor no se pudo encontrar
   contributors_to_project: "Contribuyentes de %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Cualquiera
     sex: Sexo
     male: Macho
     female: Hembra
@@ -1814,6 +1835,8 @@ es:
   highlights_and_stats_from_year_on_site: "Destaques y estadísticas de %{year} en %{site}"
   history: Historial
   home: Inicio
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Horas para ajustar:"
   however_there_were_some_issues: "Sin embargo, hubo algunos problemas: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: No lo sé, pero estoy seguro de que es %{taxon}
   icon: Ícono
@@ -1898,7 +1921,13 @@ es:
   in_the_past: en el pasado
   in_the_past_week: Durante la semana pasada
   inactive: Inactiva
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Inactivo
   inactive_taxon: Especie o grupo inactivo
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Inactivo
   inactive_taxon_concepts_are: Taxones inactivos son aquéllos que taxonómicamente se han cambiado por otro nombre. Los nombres anticuados se mantienen por razones históricas y para mantener la compatibilidad con otros sitios.
   inappropriate_content: '¿Contenido inapropiado?'
   inat_account_action: "%{site_name} : Cuenta : %{action_name}"
@@ -1986,6 +2015,7 @@ es:
   last_active_with_date: "Última actividad: %{date}"
   last_confirmed_observation: Última observación confirmada
   last_observation: Última observación
+  last_observation_caps: ÚLTIMA OBSERVACIÓN
   last_seen: Visto por última vez
   last_year: Año pasado
   lat: Latitud
@@ -2049,6 +2079,7 @@ es:
     hawaiian: Hawaiano
     hebrew: Hebreo
     hiligaynon: Hiligainón
+    hungarian: Húngaro
     icelandic: Islandés
     ilokano: Ilocano
     italian: Italiano
@@ -2070,6 +2101,7 @@ es:
     swedish: Sueco
     tagalog: Tagalo
     tahitian: Tahitiano
+    thai: Tailandés
     tokelauan: Tokelauano
     turkish: Turco
     waray_waray: Samareño
@@ -2146,6 +2178,7 @@ es:
     eo: Esperanto
     es: Español
     es-AR: Español (Argentina)
+    es-CO: Español (Colombia)
     es-MX: Español (México)
     et: Estonio
     eu: Euskera
@@ -2154,6 +2187,7 @@ es:
     fr-CA: Francés (Canadá)
     gl: Gallego
     he: Hebreo
+    hu: Húngaro
     id: Indonesio
     it: Italiano
     ja: Japonés
@@ -2172,6 +2206,7 @@ es:
     sk: Eslovaco
     sq: Albanés
     sv: Sueco
+    th: Tailandés
     tr: Turco
     uk: Ucraniano
     zh-CN: Chino (simplificado)
@@ -2196,6 +2231,8 @@ es:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "¿Cerrar sesión de %{site_name}?"
   log_scale_label: Registro
+  #Status message shown while logging in
+  logging_in: Iniciando sesión...
   login_slash_username: Registro / nombre de usuario
   logo:
     logo: Logotipo
@@ -2511,10 +2548,14 @@ es:
   newly_observed_species: Especie Observada recientemente
   newly_observed_species_in_year: "Nuevas especies añadidas en %{year}"
   next: Siguiente
+  next_date_short: Siguiente
   next_observation: Siguiente observación
   next_page: Página siguiente
+  next_page_short: Siguiente
   next_photo: Foto siguiente
+  next_post_short: Siguiente
   next_tab: Siguiente pestaña
+  next_taxon_short: Siguiente
   'no': 'No'
   no_assessments_have_been_added_to_this_project_yet: Todavía no se agregaron evaluaciones a este proyecto.
   no_but_it_is_a_member_of_taxon: "No, pero es un miembro de %{taxon}"
@@ -2581,6 +2622,8 @@ es:
   no_sections_have_been_added_to_this_assessments_yet: No se han agregado secciones a esta evaluacion todavia.
   no_species_have_been_listed: '¡No se han enlistado especies para este lugar todavía!'
   no_species_on_this_list: '¡No hay especies en esta lista todavía!'
+  no_species_on_this_list_for_owner: |
+    Puedes empezar añadiendo especies a esta lista usando la herramienta "Añadir a tu lista" a la derecha.
   no_subject_parens: "(No tema)"
   no_suggestions_available: No hay sugerencias disponibles
   no_summary_from_wikipedia: No hay resumen de Wikipedia
@@ -2652,6 +2695,8 @@ es:
   observation_brief_something_on_day_at_time: "Algo el %{day} a las %{time}"
   observation_brief_something_on_day_at_time_by_user: "Algo el %{day} a las %{time} por %{user}"
   observation_brief_something_on_day_by_user: "Algo el %{day} por %{user}"
+  observation_brief_something_in_month: "Algo en %{month}"
+  observation_brief_something_in_month_by_user: "Algo de %{month} por %{user}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
   observation_brief_something_from_place_by_user: "Algo desde %{place} de %{user}"
@@ -2659,10 +2704,14 @@ es:
   observation_brief_something_from_place_on_day_by_user: "Algo desde %{place} el %{day} de %{user}"
   observation_brief_something_from_place_on_day_at_time: "Algo desde %{place} el %{day} a las %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Algo desde %{place} el %{day} a las %{time} de %{user}"
+  observation_brief_something_from_place_in_month: "Algo de %{place} en %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Algo de %{place} en %{month} por %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} el %{day} a las %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} el %{day} a las %{time} por %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} el %{day} por %{user}"
+  observation_brief_taxon_in_month: "%{taxon} en %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} en %{month} por %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} desde %{place} de %{user}"
@@ -2670,6 +2719,8 @@ es:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} desde %{place} el%{day} de %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} desde %{place} el%{day} a las %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} desde %{place} el %{day} a las %{time} de %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} de %{place} en %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} de %{place} en %{month} por %{user}"
   observations_by_category: "Observaciones por categoría"
   observations_by_app: Observaciones por App
   observations_by_rank: Observaciones por rango
@@ -2784,6 +2835,10 @@ es:
   off_caps: "DESACTIVA"
   official_blog: Blog oficial
   offline_access_enabled: Acceso sin conexión activado
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Tiempo de compensación"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Compensación
   old_observation_form: Antiguo registro de observaciones
   ok: "Aceptar"
   on_caps: "ACTIVA"
@@ -2969,6 +3024,8 @@ es:
   place: Lugar
   placeholder: Posición
   place_autocomplete_placeholder: Parque Nacional Zion, Miami, etc.
+  place_create_quota_exceeded: |
+    Has excedido el número de lugares que puedes crear en un periodo de 24 horas (%{quota})
   place_deleted: Lugar eliminado.
   place_geo:
     geo_planet_place_types:
@@ -3395,6 +3452,8 @@ es:
   places_warning_editing_places_is_slow: |
     La edición de los límites de lugar es una de las mayores fuentes de lentitud en iNat.
     Si puedes evitarlo, no añadas, cambies o elimines límites a menos que sea absolutamente necesario.
+  places_warning_quota: |
+    Sólo puedes crear tres lugares por día.
   places_warning_the_future: |
     Por si sirve de algo, en el futuro tendremos que restringir las condiciones para añadir lugares, dada la tasa actual de crecimiento de iNat.
   plants: plantas
@@ -3431,11 +3490,15 @@ es:
   preview_observations_with_these_observation_requirements: Previsualizar Observaciones con estos Requerimientos de Observación
   preview_of_synced_observation: "<strong>Previo</strong> de la observación.  <a href=\"%{url}\">¿Revertir?</a>"
   previewing: "Previzualizando..."
+  previous_date_short: Previo
   prev: Anterior
   previous_observation: Observación Anterior
   previous_page: Página anterior
+  previous_page_short: Previo
   previous_photo: Foto anterior
+  previous_post_short: Previo
   previous_tab: Pestaña anterior
+  previous_taxon_short: Previo
   print_verb: Imprimir
   privacy: Privacidad
   private: Privada
@@ -4395,8 +4458,10 @@ es:
     Esta consulta devuelve demasiados taxones por lo que no pueden ser mostrados todos al mismo tiempo. Intente añadiendo más filtros.
   tools: Herramientas
   top_contributors: Mayores contribuyentes
+  top_identifier_caps: IDENTIFICADOR PRINCIPAL
   top_identifiers: Top identificadores
   top_identifiers_of_taxon: Identificadores principales de %{taxon}
+  top_observer_caps: OBSERVADOR PRINCIPAL
   top_observers: Mejores observadores
   tos_privacy_guidelines_label: |
     Acepto los <a href="/terms" target="_blank">Términos de servicio</a> y la <a href="/privacy" target="_blank">Política de privacidad</a>, y he revisado los <a href="/pages/community+guidelines" target="_blank">Lineamientos de la comunidad</a>.
@@ -4404,6 +4469,8 @@ es:
   totals: Totales
   total_members: Total de miembros
   total_observations: Total de observaciones
+  total_observations_caps: TOTAL DE OBSERVACIONES
+  total_species_observed_caps: TOTAL DE ESPECIES OBSERVADAS
   total_unique_observers: Total de observadores únicos
   translated_languages: Lenguajes traducidos
   'true': 'Verdadero'
@@ -6202,6 +6269,7 @@ es:
           "Life Stage=Teneral": Teneral
           "Sex=Cannot Be Determined": No puede determinarse
           "Sex=Female": Hembra
+          "Sex=Male": Macho
           unannotated: Sin anotación
         max_photos_desc: |
           Un taxón solo puede tener %{max} fotos. Deberá eliminar las fotos existentes para agregar más.
