@@ -947,6 +947,16 @@ es-AR:
   contributor_cannot_be_found: El contribuidor no se pudo encontrar
   contributors_to_project: "Contribuyentes de %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Cualquiera
     sex: Sexo
     male: Masculino
     female: Femenino
@@ -977,6 +987,8 @@ es-AR:
     organism: Organismo
     #Fecal matter, not regurgitated matter
     scat: Excrementos
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Huellas
     #Endoskeletal remains, like a deer bone
     bone: Huesos
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
@@ -993,6 +1005,7 @@ es-AR:
     cannot_be_determined: No es posible determinarlo a partir de las pruebas proporcionadas
     feather: Una o más plumas no unidas a un organismo
     organism: Organismo total o parcial
+    scat: Materias fecales (no egagrópilas de rapaces u otros materiales regurgitados)
     track: Impresión en el suelo o la nieve hecha por un organismo
     bone: |
       Restos endoesqueléticos predominantes; de lo contrario, la exposición parcial de huesos en un organismo intacto debe etiquetarse "organismo"
@@ -1495,6 +1508,8 @@ es-AR:
   flag_for_observation_title_html: |
     Marca para la observación: %{title}
   flag_for_photo_id_html: Marcar para <a href="%{url}">comentario %{id}</a>
+  flag_for_place_title_html: |
+    Marca para el Lugar: %{title}
   flag_for_post_title_html: |
     Marca para la lista: %{title}
   flag_for_project_title_html: |
@@ -1515,6 +1530,7 @@ es-AR:
   flag_saved_thanks_html: Marca guardada. ¡Gracias! <a href="%{url}" class="readmore">Ver marca</a>
   flag_this_observation: Incluir advertencia en esta observación
   flag_this_photo: Marca esta foto con advertencia
+  flag_this_place: Marcar este Lugar
   flag_this_sound: Marcar este sonido
   flagged: marcado
   flagged_: Marcado
@@ -1807,6 +1823,7 @@ es-AR:
   last_active_with_date: "Última actividad: %{date}"
   last_confirmed_observation: Última observación confirmada
   last_observation: Última observación
+  last_observation_caps: ÚLTIMA OBSERVACIÓN
   last_seen: Visto por última vez
   last_year: Año pasado
   lat: Latitud
@@ -1841,6 +1858,7 @@ es-AR:
     scientific_names: Nombres científicos
     afrikaans: Afrikáans
     albanian: Albanés
+    belarusian: Bielorruso
     bengali: Bengalí
     catalan: Catalán
     cebuano: Cebuano
@@ -1945,6 +1963,7 @@ es-AR:
   locales_: Locales
   locales:
     ar: Árabe
+    be: Bielorruso
     bg: Búlgaro
     br: Bretón
     ca: Catalán
@@ -2363,6 +2382,8 @@ es-AR:
   #name. @vow_or_con will work here and use the first letter of the name used
   observation_attribution: Observación hecha por %{user}
   observation_brief_something_on_day: "Algo el %{day}"
+  observation_brief_something_in_month: "Algo en %{month}"
+  observation_brief_something_in_month_by_user: "Algo en %{month} por %{user}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
   observation_brief_something_from_place_by_user: "Algo desde %{place} de %{user}"
@@ -2370,7 +2391,11 @@ es-AR:
   observation_brief_something_from_place_on_day_by_user: "Algo desde %{place} el %{day} de %{user}"
   observation_brief_something_from_place_on_day_at_time: "Algo desde %{place} el %{day} a las %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Algo desde %{place} el %{day} a las %{time} de %{user}"
+  observation_brief_something_from_place_in_month: "Algo de %{place} en %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Algo de %{place} en %{month} por %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
+  observation_brief_taxon_in_month: "%{taxon} en %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} en %{month} por %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} desde %{place} de %{user}"
@@ -2378,6 +2403,8 @@ es-AR:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} desde %{place} el%{day} de %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} desde %{place} el%{day} a las %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} desde %{place} el %{day} a las %{time} de %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} de %{place} en %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} de %{place} en %{month} por %{user}"
   observations_by_category: "Observaciones por categoría"
   observations_by_app: Observaciones por App
   observations_by_rank: Observaciones por rango
@@ -2661,6 +2688,8 @@ es-AR:
   place: Lugar
   placeholder: Posición
   place_autocomplete_placeholder: Parque Nacional Zion, Miami, etc.
+  place_create_quota_exceeded: |
+    Has excedido el número de lugares que puedes crear en un periodo de 24 horas (%{quota})
   place_deleted: Lugar eliminado.
   place_geo:
     geo_planet_place_types:
@@ -3044,6 +3073,8 @@ es-AR:
     zimbabwe: Zimbabue
   places_of_interest: Lugares de Interés
   places_merged_successfully: '¡Los lugares se combinaron satisfactoriamente!'
+  places_warning_quota: |
+    Sólo puedes crear tres lugares por día.
   plants: plantas
   please_add_a_citation_for_this_change: Añade una referencia para este cambio.
   please_add_this_observation_to: Añade esta observación a
@@ -3870,13 +3901,17 @@ es-AR:
     Esta consulta devuelve demasiados taxones por lo que no pueden ser mostrados todos al mismo tiempo. Intente añadiendo más filtros.
   tools: Herramientas
   top_contributors: Mayores contribuyentes
+  top_identifier_caps: IDENTIFICADOR PRINCIPAL
   top_identifiers: Top identificadores
   top_identifiers_of_taxon: Identificadores principales de %{taxon}
+  top_observer_caps: OBSERVADOR PRINCIPAL
   top_observers: Mejores observadores
   total: Total
   totals: Totales
   total_members: Total de miembros
   total_observations: Total de observaciones
+  total_observations_caps: TOTAL DE OBSERVACIONES
+  total_species_observed_caps: TOTAL DE ESPECIES OBSERVADAS
   total_unique_observers: Total de observadores únicos
   translated_languages: Lenguajes traducidos
   'true': 'Verdadero'
@@ -4151,6 +4186,12 @@ es-AR:
   welcome_to_inat: "¡Bienvenido a %{site_name}!"
   welcome_to_guides: "¡Bienvenido a Guías %{site_name}!"
   welcome_to_x_project: "Bienvenido al proyecto %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: 'Estamos bastante seguros de que está en este género:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: 'Estamos bastante seguros de que está en esta familia:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: 'Estamos bastante seguros de que está en este orden:'
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
@@ -5310,6 +5351,8 @@ es-AR:
         frequency:
           research: Grado de investigación
           verifiable: Verificable
+          "Sex=Female": Hembra
+          "Sex=Male": Macho
           unannotated: Sin anotación
         max_photos_desc: |
           Un taxón solo puede tener %{max} fotos. Deberá eliminar las fotos existentes para agregar más.
