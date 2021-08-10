@@ -1702,6 +1702,8 @@ sv:
   flag_for_observation_title_html: |
     Flagga för fynd: %{title}
   flag_for_photo_id_html: Flagga för <a href="%{url}">bild %{id}</a>
+  flag_for_place_title_html: |
+    Flagga för fyndplats: %{title}
   flag_for_post_title_html: |
     Flagga för inlägg: %{title}
   flag_for_project_title_html: |
@@ -1722,6 +1724,7 @@ sv:
   flag_saved_thanks_html: Flagga sparad. Tack! <a href="%{url}" class="readmore">Visa flagga</a>
   flag_this_observation: Flagga detta fynd
   flag_this_photo: Flagga denna bild
+  flag_this_place: Flagga denna fyndplats
   flag_this_sound: Flagga detta ljud
   flagged: flaggades
   flagged_: Flaggad
@@ -2099,6 +2102,7 @@ sv:
     scientific_names: Vetenskapliga namn
     afrikaans: Afrikaans
     albanian: Albanska
+    belarusian: Belarusiska
     bengali: Bengaliska
     catalan: Katalanska
     cebuano: Cebuano
@@ -2208,6 +2212,7 @@ sv:
   locales_: Platser
   locales:
     ar: Arabiska
+    be: Belarusiska
     bg: Bulgariska
     br: Bretonska
     ca: Katalanska
@@ -4513,6 +4518,7 @@ sv:
   total_members: Totalt antal medlemmar
   total_observations: Totalt antal fynd
   total_observations_caps: ANTAL FYND
+  total_species_observed_caps: OBSERVERADE ARTER TOTALT
   total_unique_observers: Totalt antal unika observatörer
   translated_languages: Översatta språk
   'true': 'Sant'
@@ -4816,8 +4822,10 @@ sv:
   welcome_to_x_project: "Välkommen till %{project}"
   #Label for the most probable taxon in the automated suggestions when that taxon is a genus
   were_pretty_sure_this_is_in_the_genus: Vi är ganska säkra på att detta hör till släktet
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Vi är ganska säkra på att detta hör till familjen
   #Label for the most probable taxon in the automated suggestions when that taxon is an order
-  were_pretty_sure_this_is_in_the_family: Vi är ganska säkra på att detta hör till ordningen
+  were_pretty_sure_this_is_in_the_order: Vi är ganska säkra på att detta hör till ordningen
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
