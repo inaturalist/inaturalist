@@ -27,6 +27,10 @@ mr:
   about_the_cc_licenses: '"क्रिएटिव्ह कॉमन्स लायसन्स" विषयी'
   about_these_licenses: विविध परवानान्यांविषयी
   about_this_bioblitz: '"बायोब्लिट्झ" विषयी'
+  #Status of a complete set that is available for use
+  active_complete_set_status: सक्रिय
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: सक्रिय
   add_annotations_for_controlled_attribute:
     evidence_of_presence: 'टिप्पणी जोडा: "उपस्थितीचा पुरावा"'
   add_evidence_of_presence_organism_annotation: 'टिप्पणी जोडा "उपस्थितीचा पुरावा: जीव"'
@@ -35,7 +39,24 @@ mr:
   add_evidence_of_presence_track_annotation: 'टिप्पणी जोडा: "उपस्थितीचा पुरावा: पाऊलखुणा"'
   add_evidence_of_presence_bone_annotation: 'टिप्पणी जोडा: "उपस्थितीचा पुरावा: अस्थी"'
   add_evidence_of_presence_molt_annotation: 'टिप्पणी जोडा: उपस्थितीचा पुरावा: कात'
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: संगणकीय दृश्य प्रतिमा
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: समाविष्ट
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: प्रलंबित
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: कोणताही
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: कोणताही
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: कोणताही
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: कोणताही
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: कोणताही
     evidence_of_presence: उपस्थितीचा पुरावा
     #As in the feather on a bird
     feather: पीस
@@ -59,6 +80,21 @@ mr:
     bone: |
       प्रामुख्याने अस्थींचे अवशेष, याव्यतिरिक्त जीवाच्या अखंड शरीरावरील हाडांचा काही भाग प्रदर्शित झाल्यास तो "जीव" म्हणून निर्देशित करावा
     molt: कात किंवा टाकून दिलेली त्वचा/बाह्यअस्थी
+  date_obscured_notice: वैयक्तिक किंवा सजीवाच्या गोपनीयतेच्या संरक्षणासाठी तारीख अनिश्चित ठेवली आहे
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "समायोजित करण्याचे तासः"
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: निष्क्रिय
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: निष्क्रिय
+  #Status message shown while logging in
+  logging_in: तुमचे खाते उघडत आहे
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "वेळेत सुधारणा"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: वेळेत सुधारणा
   view_more_observations_from_this_place: ह्या ठिकाणाभोवतीची इतर निरीक्षणे पहा
   views:
     stats:
