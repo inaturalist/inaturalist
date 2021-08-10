@@ -1026,6 +1026,19 @@ ru:
     <span class="comprehensive_notice" data-tip="%{tip}">Полный</span>
     контрольный список для %{taxon}
   comprehensive_list: Полный список
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Модель компьютерного зрения
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Включен
+  computer_vision_model_included_desc: |
+    Текущая модель компьютерного зрения знает этот таксон, поэтому он может быть
+    включен в автоматизированные предложения с меткой "Визуально похожий".
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Ожидает обработки
+  computer_vision_model_pending_desc: |
+    Текущая модель компьютерного зрения не знает этот таксон, поэтому он может быть
+    включен в автоматизированные предложения с меткой "Поблизости" и не будет иметь метки "Визуально похожий". Хотя требования к включению модели меняются с каждой моделью, обычно включение основано на количестве наблюдений, поэтому для увеличения вероятности включения этого таксона во время следующего обучения модели добавьте больше наблюдений этого таксона или его идентификаций.
   concept_status: Статус концепции
   configure: Задать
   configure_a_widget_to_show: Настройте виджет, чтобы показывать наблюдения %{site_name} на вашем веб-сайте или в вашем блоге. Возможно, вам придется включить встроенный CSS в секцию <code>&lt;head&gt;</code> вашего HTML. Не стесняйтесь перезаписывать CSS.
@@ -1083,6 +1096,16 @@ ru:
   contributor_cannot_be_found: Не удаётся найти поставщика данных
   contributors_to_project: "Участники %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Любой
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Любая
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Любая
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Любое
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Любое
     sex: Пол
     male: Мужской
     female: Женский
@@ -1219,6 +1242,11 @@ ru:
     Вы должны объяснить, почему вы хотите стать куратором
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Почему вы хотите быть куратором?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Если вы хотите отредактировать таксономию iNaturalist, предоставьте один или два примера таксономических изменений, которые вы хотели бы внести, и укажите источники предлагаемых вами изменений. Если возможно, укажите соответствующие таксономические авторитетные источники <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">как указано в руководстве для кураторов</a>. Если вы не указываете какие-либо источники, ваша
+    заявка не будет рассмотрена.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Если вы хотите отредактировать общие имена, пожалуйста, приведите один или два примера изменений, которые вы хотели бы внести
@@ -1750,6 +1778,8 @@ ru:
   flag_for_observation_title_html: |
     Флаг для наблюдения: %{title}
   flag_for_photo_id_html: Флаг для <a href="%{url}">фото %{id}</a>
+  flag_for_place_title_html: |
+    Флаг для места: %{title}
   flag_for_post_title_html: |
     Флаг для сообщения: %{title}
   flag_for_project_title_html: |
@@ -1770,6 +1800,7 @@ ru:
   flag_saved_thanks_html: Флаг сохранён. Спасибо! <a href="%{url}" class="readmore">Посмотреть флаг</a>
   flag_this_observation: Пометить это наблюдение
   flag_this_photo: Пометить это фото
+  flag_this_place: Отметить это место
   flag_this_sound: Пометить это аудио
   flagged: помечено
   flagged_: Помечено
@@ -2105,6 +2136,7 @@ ru:
   last_active_with_date: "Последняя активность: %{date}"
   last_confirmed_observation: Последнее подтвержденное наблюдение
   last_observation: Последнее наблюдение
+  last_observation_caps: ПОСЛЕДНЕЕ НАБЛЮДЕНИЕ
   last_seen: Последнее наблюдение
   last_year: За последний год
   lat: Шир
@@ -2147,6 +2179,7 @@ ru:
     scientific_names: Научные названия
     afrikaans: Африкаанс
     albanian: албанский
+    belarusian: Белорусский
     bengali: Бенгальский
     catalan: Каталонский
     cebuano: Себуанский
@@ -2168,6 +2201,7 @@ ru:
     hawaiian: Гавайский
     hebrew: Иврит
     hiligaynon: Хилигайнон
+    hungarian: Венгерский
     icelandic: Исландский
     ilokano: Илоканский
     italian: Итальянский
@@ -2189,6 +2223,7 @@ ru:
     swedish: Шведский
     tagalog: тагальский
     tahitian: таитянский
+    thai: Тайский
     tokelauan: токелау
     turkish: Турецкий
     waray_waray: варайский
@@ -2254,6 +2289,7 @@ ru:
   locales_: Локализации
   locales:
     ar: Арабский
+    be: Белорусский
     bg: Болгарский
     br: Бретонский
     ca: Каталонский
@@ -2265,6 +2301,7 @@ ru:
     eo: Эсперанто
     es: Испанский
     es-AR: Испанский (Аргентина)
+    es-CO: Испанский (Колумбия)
     es-MX: Испанский (Мексика)
     et: Эстонский
     eu: Баскский
@@ -2273,6 +2310,7 @@ ru:
     fr-CA: Французский (Канада)
     gl: Галисийский
     he: Иврит
+    hu: Венгерский
     id: индонезийский
     it: Итальянский
     ja: Японский
@@ -2291,6 +2329,7 @@ ru:
     sk: Словацкий
     sq: албанский
     sv: Шведский
+    th: Тайский
     tr: Турецкий
     uk: Украинский
     zh-CN: Китайский (упрощенный)
@@ -2621,10 +2660,14 @@ ru:
   newly_observed_species: Новые недавно наблюдаемые виды
   newly_observed_species_in_year: "Новые виды в %{year}"
   next: Далее
+  next_date_short: След
   next_observation: Следующее наблюдение
   next_page: Следующая страница
+  next_page_short: След
   next_photo: Следующее фото
+  next_post_short: След
   next_tab: Следующая вкладка
+  next_taxon_short: След
   'no': 'Нет'
   no_assessments_have_been_added_to_this_project_yet: Никакие оценки ещё не были добавлены к этому проекту.
   no_but_it_is_a_member_of_taxon: "Нет, но это член %{taxon}"
@@ -2691,6 +2734,8 @@ ru:
   no_sections_have_been_added_to_this_assessments_yet: К этим оценкам пока не добавлены никакие разделы.
   no_species_have_been_listed: Ни одного вида ещё не было указано для этого места!
   no_species_on_this_list: Ни одного вида нет ещё в этом списке!
+  no_species_on_this_list_for_owner: |
+    Вы можете начать добавлять виды в этот список, используя инструмент "Добавить в свой список" справа.
   no_subject_parens: "(без темы)"
   no_suggestions_available: Нет предложений
   no_summary_from_wikipedia: Нет резюме в Википедии
@@ -2762,6 +2807,8 @@ ru:
   observation_brief_something_on_day_at_time: "Некоторые за %{day} в %{time}"
   observation_brief_something_on_day_at_time_by_user: "Некоторые от %{user} за %{day} в %{time}"
   observation_brief_something_on_day_by_user: "Некоторые за %{day} от %{user}"
+  observation_brief_something_in_month: "Некоторые за %{month}"
+  observation_brief_something_in_month_by_user: "Некоторые за %{month} от %{user}"
   observation_brief_something_by_user: "Некоторые от %{user}"
   observation_brief_something_from_place: "Некоторые из %{place}"
   observation_brief_something_from_place_by_user: "Некоторые из %{place} от %{user}"
@@ -2769,10 +2816,14 @@ ru:
   observation_brief_something_from_place_on_day_by_user: "Некоторые из %{place} за %{day} от %{user}"
   observation_brief_something_from_place_on_day_at_time: "Некоторые из %{place} за %{day} в %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Некоторые из %{place} за %{day} в %{time} от %{user}"
+  observation_brief_something_from_place_in_month: "Некоторые из %{place} за %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Некоторые из %{place} за %{month} от %{user}"
   observation_brief_taxon_on_day: "%{taxon} за %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} за %{day} в %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} от %{user} за %{day} в %{time}"
   observation_brief_taxon_on_day_by_user: "%{taxon} %{day} от %{user}"
+  observation_brief_taxon_in_month: "%{taxon} за %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} за %{month} от %{user}"
   observation_brief_taxon_by_user: "%{taxon} от %{user}"
   observation_brief_taxon_from_place: "%{taxon} из %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} из %{place} от %{user}"
@@ -2780,6 +2831,8 @@ ru:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} из %{place} за %{day} от %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} из %{place} за %{day} в %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} из %{place} за %{day} в %{time} от %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} из %{place} за %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} из %{place} за %{month} от %{user}"
   observations_by_category: "Наблюдения по категориям"
   observations_by_app: Наблюдения по приложениям
   observations_by_rank: Наблюдения по рангу
@@ -3078,6 +3131,9 @@ ru:
   place: Место
   placeholder: Заполнитель
   place_autocomplete_placeholder: Национальный парк Зайон, Майами и т.п.
+  place_create_quota_exceeded: |
+    Вы превысили число мест, которые можно создать за период 24 часа
+    (%{quota})
   place_deleted: Место удалено.
   place_geo:
     geo_planet_place_types:
@@ -3499,6 +3555,8 @@ ru:
     Новые места - один из самых больших источников замедления iNat, поэтому <strong>пожалуйста, подумайте о том, чтобы не создавать новое место</strong>. Хотя небольшие места, содержащие только несколько тысяч наблюдений, обычно считаются приемлемыми, но если вы создаёте новое место, содержащее большое количество наблюдений, вы замедлите iNat для всех остальных. Вот несколько альтернативных подходов:
   places_warning_editing_places_is_slow: |
     Редактирование границ места - один из основных источников замедления работы iNat. Если вы можете этого избежать, не добавляйте, не изменяйте и не удаляйте границы мест, если только это не является абсолютно необходимым.
+  places_warning_quota: |
+    Вы можете создавать только три места в день.
   places_warning_the_future: |
     Как бы то ни было, нам придется ограничить условия, при которых люди могут добавлять места в будущем, учитывая текущие темпы роста iNat.
   plants: растения
@@ -3535,11 +3593,15 @@ ru:
   preview_observations_with_these_observation_requirements: Предварительный просмотр наблюдений согласно требованиям проекта
   preview_of_synced_observation: "<strong>Предварительный просмотр</strong> синхронизированного наблюдения. <a href=\"%{url}\">Отменить?</a>"
   previewing: "Предварительный просмотр..."
+  previous_date_short: Пред
   prev: Пред
   previous_observation: Предыдущее Наблюдение
   previous_page: Предыдущая страница
+  previous_page_short: Пред
   previous_photo: Предыдущее Фото
+  previous_post_short: Пред
   previous_tab: Предыдущая вкладка
+  previous_taxon_short: Пред
   print_verb: Печать
   privacy: Конфиденциальность
   private: конфиденциальный
@@ -4550,8 +4612,10 @@ ru:
     Этот запрос возвращает слишком много таксонов для визуализации за один раз. Попробуйте добавить больше фильтров
   tools: Инструменты
   top_contributors: Лучшие участники
+  top_identifier_caps: ЛУЧШИЙ ЭКСПЕРТ
   top_identifiers: Лучшие Эксперты
   top_identifiers_of_taxon: Лучшие Эксперты по %{taxon}
+  top_observer_caps: ЛУЧШИЙ НАБЛЮДАТЕЛЬ
   top_observers: Лучшие наблюдатели
   tos_privacy_guidelines_label: |
     Я согласен <a href="/terms" target="_blank">условиями предоставления услуг</a> и
@@ -4560,6 +4624,8 @@ ru:
   totals: Всего
   total_members: Общее число членов
   total_observations: Итого наблюдений
+  total_observations_caps: ВСЕГО НАБЛЮДЕНИЙ
+  total_species_observed_caps: ВСЕГО НАБЛЮДАЕМЫХ ВИДОВ
   total_unique_observers: Итого уникальных наблюдателей
   translated_languages: Переведенные языки
   'true': 'Да'
@@ -4865,6 +4931,12 @@ ru:
   welcome_to_inat: "Добро пожаловать на %{site_name}!"
   welcome_to_guides: "Добро пожаловать в руководства %{site_name}!"
   welcome_to_x_project: "Добро пожаловать в %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Мы почти уверены, что это род
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Мы почти уверены, что это отряд
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: Мы почти уверены, что это отряд
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
@@ -6045,6 +6117,11 @@ ru:
         we_have_redesigned_projects: |
           Проекты созданы так, чтобы автоматически включались все наблюдения, которые соответствуют местам, таксонам, пользователям, качеству и датам, которые вы задаёте. Выбирайте между двумя основными типами: проекты-коллекции и проекты-зонтики, которые имеют следующие особенности:
         welcome_to_projects: Добро пожаловать в проекты!
+        you_can_learn_more_html: |
+          Вы можете узнать больше об управлении проектами 
+          <a href="https://www.inaturalist.org/pages/managing-projects">здесь</a>
+          или прочитать историю проектов в 
+          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">нашем блоге</a>.
         you_have_not_defined_any_observation_requirements: |
           Не определены требования к наблюдению. Обязательно выберите один или несколько таксонов (например, птицы, хвойные деревья), места (например, Бразилия, Йеллоустон), пользователей и/или даты, чтобы определить наблюдения, которые вы хотите включить в свой проект.
         errors:
