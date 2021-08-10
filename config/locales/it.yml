@@ -1663,6 +1663,8 @@ it:
   flag_for_observation_title_html: |
     Contrassegno per l'Osservazione: %{title}
   flag_for_photo_id_html: Contrassegno per la <a href="%{url}">Foto %{id}</a>
+  flag_for_place_title_html: |
+    Contrassegno per il luogo: %{title}
   flag_for_post_title_html: |
     Contrassegno per il Post: %{title}
   flag_for_project_title_html: |
@@ -1683,6 +1685,7 @@ it:
   flag_saved_thanks_html: Contrassegno salvato. Grazie! <a href="%{url}" class="readmore">Visualizza contrassegno</a>
   flag_this_observation: Contrassegna questa osservazione
   flag_this_photo: Contrassegna questa foto
+  flag_this_place: Contrassegna questo luogo
   flag_this_sound: Segnala questo suono
   flagged: ha segnalato
   flagged_: Contrassegnato
@@ -2056,6 +2059,7 @@ it:
     scientific_names: Nomi scientifici
     afrikaans: Africano
     albanian: Albanese
+    belarusian: Bielorusso
     bengali: Bengalese
     catalan: Catalano
     cebuano: Cebuano
@@ -2165,6 +2169,7 @@ it:
   locales_: Localizzazioni
   locales:
     ar: Arabo
+    be: Bielorusso
     bg: Bulgaro
     br: Bretone
     ca: Catalano
@@ -4755,6 +4760,12 @@ it:
   welcome_to_inat: "Benvenuto/a su %{site_name}!"
   welcome_to_guides: "Benvenuto/a sulle Guide di %{site_name}"
   welcome_to_x_project: "Benvenuto/a nel progetto %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Siamo abbastanza sicuri che sia nel genere
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Siamo abbastanza sicuri che sia nella famiglia
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: Siamo abbastanza sicuri che sia nell'ordine
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
