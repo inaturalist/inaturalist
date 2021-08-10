@@ -1890,6 +1890,7 @@ nb:
   leading: Leder
   learn: Lær
   learn_about_the_species_live_in: Lær om artene som forekommer i
+  learn_about_third_party_tracking: Lær mer om tredjepartssporing
   learn_more: Lær mer
   learn_more_raquo: "Lær mer &raquo;"
   learn_what_these_licenses_mean: Lær hva disse lisenser betyr
@@ -2184,6 +2185,7 @@ nb:
   #Label shown when a date has not been entered
   missing_date: Mangler dato
   mobile: Mobil
+  moderation_history_for_user_html: Moderasjonshistorikk for %{user}
   mollusks: bløtdyr
   momentjs:
     shortRelativeTime:
@@ -2259,8 +2261,14 @@ nb:
   multiple_select_option: '-- flere --'
   multiple_taxa_for_taxon_change: "Flere taksa (input for bytting/sammenslåing, output for oppdeling)"
   multiple_taxon_ids_separated_by_commas: 'Flere kommaseparerte takson-ID-er, f.eks. 123,654'
+  must_be_in_taxon: må være i takson %{taxon}
+  must_be_not_in_taxon: må ikke være i takson %{taxon}
+  must_be_not_observed_by_user: må ikke være observert av %{user}
+  must_be_not_observed_in_place: må ikke være observert i %{place}
   must_be_observed_after: må være observert etter %{operand}
   must_be_observed_before: må være observert før %{operand}
+  must_be_observed_by_user: må være observert av %{user}
+  must_be_observed_in_place: må være observert i %{place}
   must_be_less_than_x_MB: "Må være mindre enn %{x} MB"
   must_have_observation_field: "må ha en verdi for observasjonsfeltet '%{operand}'"
   must_have_photos: må ha bilder
@@ -3397,6 +3405,32 @@ nb:
     form: Form
     infrahybrid: Infrahybrid
     leaves: Blad
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: orden
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: slekt
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: slektshybrid
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: underslekt
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: seksjon
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: underseksjon
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: kompleks
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: art
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: hybrid
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: underart
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: varietet
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: form
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: infrahybrid
   ranges: Utbredelser
   ray_finned_fishes: strålefinnefisker
   re_order_photos: "Endre bildenes rekkefølge &raquo;"
