@@ -102,8 +102,7 @@ class FlagsController < ApplicationController
     end
     if @taxon && @flaggable_type == "Taxon"
       @flags = @flags.
-        joins( "LEFT OUTER JOIN taxon_ancestors ta ON ta.taxon_id = flags.flaggable_id" ).
-        where( "ta.ancestor_taxon_id = ?", @taxon )
+        joins( "JOIN taxa ON (taxa.id = flags.flaggable_id AND #{@taxon.subtree_conditions.to_sql})" )
     end
     if @resolver
       @flags = @flags.where( resolver_id: @resolver )

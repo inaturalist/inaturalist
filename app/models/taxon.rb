@@ -63,9 +63,6 @@ class Taxon < ActiveRecord::Base
   has_many :conservation_statuses, :dependent => :destroy
   has_many :guide_taxa, :inverse_of => :taxon, :dependent => :nullify
   has_many :guides, :inverse_of => :taxon, :dependent => :nullify
-  has_many :taxon_ancestors, :dependent => :delete_all
-  has_many :taxon_ancestors_as_ancestor, :class_name => "TaxonAncestor", :foreign_key => :ancestor_taxon_id, :dependent => :delete_all
-  has_many :ancestor_taxa, :class_name => "Taxon", :through => :taxon_ancestors
   has_one :atlas, inverse_of: :taxon, dependent: :destroy
   has_one :taxon_framework, inverse_of: :taxon, dependent: :destroy
   has_many :listed_taxon_alterations, inverse_of: :taxon, dependent: :delete_all
@@ -188,8 +185,7 @@ class Taxon < ActiveRecord::Base
     define_method "find_#{rank}" do
       return self if self.rank == rank
       return nil if rank_level.to_i > level.to_i
-      @cached_ancestors ||= ancestor_taxa.loaded? ? ancestor_taxa :
-        ancestors.select("id, name, rank, ancestry,
+      @cached_ancestors ||= ancestors.select("id, name, rank, ancestry,
           iconic_taxon_id, rank_level, created_at, updated_at, is_active,
           observations_count").all
       @cached_ancestors.detect{|a| a.rank == rank}
@@ -469,11 +465,9 @@ class Taxon < ActiveRecord::Base
   
   scope :self_and_descendants_of, lambda{|taxon|
     if taxon
-      conditions = taxon.descendant_conditions.to_sql
-      conditions += " OR taxa.id = #{ taxon.id }"
-      where(conditions)
+      where( taxon.subtree_conditions )
     else
-      where("1 = 2")
+      where( "1 = 2" )
     end
   }
   
@@ -641,23 +635,12 @@ class Taxon < ActiveRecord::Base
       upstream_framework = upstream_taxon_framework
       return nil unless ( upstream_framework && upstream_framework.complete && upstream_framework.rank_level <= SPECIES_LEVEL )
     end
-    scope = taxon_ancestors_as_ancestor.
-      select("distinct taxon_ancestors.taxon_id").
-      joins(:taxon).
-      where( "taxon_ancestors.taxon_id != ? AND rank = ? AND is_active", id, SPECIES ).
+    scope = subtree.
+      select( :id ).distinct.
+      where( "rank = ? AND is_active", SPECIES ).
       where( "(select count(*) from conservation_statuses cs
         WHERE cs.taxon_id = taxa.id AND cs.place_id IS NULL AND cs.iucn = ?) = 0", Taxon::IUCN_EXTINCT )
     scope.count
-  end
-
-  def denormalize_ancestry
-    Taxon.transaction do
-      TaxonAncestor.where( taxon_id: id ).delete_all
-      unless self_and_ancestor_ids.blank?
-        sql = "INSERT INTO taxon_ancestors VALUES " + self_and_ancestor_ids.map {|aid| "(#{id},#{aid})" }.join( "," )
-        ActiveRecord::Base.connection.execute( sql )
-      end
-    end
   end
 
   def index_observations
@@ -832,7 +815,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def descendants_count
-    taxon_ancestors_as_ancestor.count
+    subtree.count
   end
 
   def taxon_changes_count
@@ -1796,8 +1779,8 @@ class Taxon < ActiveRecord::Base
     return false if controlled_term_taxa.exists?
     return false if ProjectObservationRule.where( operand_type: "Taxon", operand_id: id ).exists?
     return false if ObservationFieldValue.joins(:observation_field).where( "observation_fields.datatype = 'taxon' AND value = ?", id.to_s ).exists?
-    return false if TaxonChange.joins( taxon: :taxon_ancestors ).where( "taxon_ancestors.ancestor_taxon_id = ?", id ).exists?
-    return false if TaxonChangeTaxon.joins( taxon: :taxon_ancestors ).where( "taxon_ancestors.ancestor_taxon_id = ?", id ).exists?
+    return false if TaxonChange.joins( :taxon ).where( subtree_conditions ).exists?
+    return false if TaxonChangeTaxon.joins( :taxon ).where( subtree_conditions ).exists?
     creator_id == user.id
   end
 

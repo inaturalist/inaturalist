@@ -234,7 +234,7 @@ module DarwinCore
       fake_view = FakeView.new
       
       preloads = [
-        { taxon: :ancestor_taxa },
+        taxon,
         { user: [:stored_preferences, :provider_authorizations] }, 
         :quality_metrics, 
         { identifications: { user: [:provider_authorizations] } },
@@ -243,7 +243,7 @@ module DarwinCore
       ]
 
       if @opts[:community_taxon]
-        preloads  << { community_taxon: :ancestor_taxa }
+        preloads << :community_taxon
       end
       try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, logger: logger ) do
         CSV.open(tmp_path, 'w') do |csv|

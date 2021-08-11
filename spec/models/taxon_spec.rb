@@ -134,13 +134,6 @@ describe Taxon, "creation" do
     expect( t.name ).to eq name
   end
 
-  it "should create TaxonAncestors" do
-    parent = Taxon.make!( rank: Taxon::GENUS )
-    t = Taxon.make!( rank: Taxon::SPECIES, parent: parent )
-    t.reload
-    expect( t.taxon_ancestors ).not_to be_blank
-  end
-
   it "should strip trailing space" do
     expect( Taxon.make!( name: "Trailing space  " ).name ).to eq "Trailing space"
   end
@@ -1041,22 +1034,6 @@ describe Taxon, "moving" do
     end
     o.reload
     expect(o.taxon).to eq sp
-  end
-
-  it "should create TaxonAncestors" do
-    t = Taxon.make!( rank: Taxon::SPECIES, name: "Ronica vestrit" )
-    expect( t.taxon_ancestors.count ).to eq 1 # should always make one for itself
-    t.move_to_child_of( @Calypte )
-    t.reload
-    expect( t.taxon_ancestors.count ).to be > 1
-    expect( t.taxon_ancestors.detect{ |ta| ta.ancestor_taxon_id == @Calypte.id } ).not_to be_blank
-  end
-
-  it "should remove existing TaxonAncestors" do
-    t = Taxon.make!( rank: Taxon::SPECIES, parent: @Calypte )
-    expect( TaxonAncestor.where( taxon_id: t.id, ancestor_taxon_id: @Calypte.id ).count ).to eq 1
-    t.move_to_child_of( @Pseudacris )
-    expect( TaxonAncestor.where( taxon_id: t.id, ancestor_taxon_id: @Calypte.id ).count ).to eq 0
   end
 
   it "should reindex descendants" do
