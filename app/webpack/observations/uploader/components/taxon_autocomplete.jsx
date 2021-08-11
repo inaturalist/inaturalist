@@ -196,11 +196,13 @@ class TaxonAutocomplete extends React.Component {
             // I18n.t( "were_pretty_sure_this_is_in_the_genus" )
             // I18n.t( "were_pretty_sure_this_is_in_the_family" )
             // I18n.t( "were_pretty_sure_this_is_in_the_order" )
-            const labelInLocale = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}` );
             const labelInEnglish = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, { locale: "en" } );
             const labelInLocaleFallback = I18n.t( "were_pretty_sure_this_is_in_the_rank", {
               rank: I18n.t( `ranks_lowercase_${snakeCaseRank}`, { defaultValue: item.rank } ),
               gender: snakeCaseRank
+            } );
+            const labelInLocale = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, {
+              defaultValue: labelInLocaleFallback
             } );
             let label = labelInLocale;
             if ( I18n.locale !== "en" && label === labelInEnglish ) {
