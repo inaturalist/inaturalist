@@ -96,7 +96,6 @@ class Taxon < ActiveRecord::Base
               :remove_wikipedia_summary_unless_auto_description,
               :ensure_parent_ancestry_in_ancestry,
               :unfeature_inactive
-  after_create :denormalize_ancestry
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
              :reindex_identifications_after_save,
@@ -550,7 +549,6 @@ class Taxon < ActiveRecord::Base
     return true unless ancestry_changed?
     set_iconic_taxon
     return true if skip_after_move
-    denormalize_ancestry
     return true if id_changed?
     update_obs_iconic_taxa
     Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
