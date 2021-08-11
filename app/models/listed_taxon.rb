@@ -748,6 +748,7 @@ class ListedTaxon < ApplicationRecord
   end
 
   def expire_caches
+    return unless list.is_a?(CheckList)
     ctrl = ActionController::Base.new
     if !place_id.blank? && manually_added
       I18N_SUPPORTED_LOCALES.each do |locale|

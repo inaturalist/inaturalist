@@ -10,4 +10,4 @@
     = f.password_field :password_confirmation, autocomplete: "off", placeholder: t(:confirm_new_password), required: true, class: "form-control"
     - unless resource.errors[:password_confirmation].blank?
       .error= formatted_error_sentence_for( resource, :password_confirmation )
-  = f.submit t(:change_your_password), class: "btn btn-inat btn-primary"
+  = f.submit t(:change_your_password), class: "btn btn-inat btn-primary", data: { loading_click: true }

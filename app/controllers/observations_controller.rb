@@ -258,8 +258,6 @@ class ObservationsController < ApplicationController
         @next = Observation.page_of_results({ user_id: @observation.user.id,
           per_page: 1, min_id: @observation.id + 1, order_by: "id", order: "asc" }).first
         @user_quality_metrics = @observation.quality_metrics.select{|qm| qm.user_id == current_user.id}
-        @project_invitations = @observation.project_invitations.limit(100).to_a
-        @project_invitations_by_project_id = @project_invitations.index_by(&:project_id)
       end
     end
     respond_to do |format|
@@ -1239,7 +1237,7 @@ class ObservationsController < ApplicationController
     @observations = Observation.page_of_results(search_params)
     set_up_instance_variables(search_params)
     Observation.preload_for_component(@observations, logged_in: !!current_user)
-    if @selected_user != current_user && current_user && current_user.in_test_group?( "interpolation" )
+    if @selected_user != current_user
       filtered_obs = @observations.select {|o| o.coordinates_viewable_by?( current_user )}
       diff = @observations.size - filtered_obs.size
       @observations = WillPaginate::Collection.create(

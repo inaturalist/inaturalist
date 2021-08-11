@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import DateTimeField from "react-bootstrap-datetimepicker";
 import moment from "moment-timezone";
+import { DATETIME_WITH_TIMEZONE, DATETIME_WITH_TIMEZONE_OFFSET } from "../models/util";
 
 class DateTimeFieldWrapper extends Component {
 
@@ -37,9 +38,9 @@ class DateTimeFieldWrapper extends Component {
       const pickedDate = new Date( eInt );
       if ( pickedDate ) {
         if ( timeZone ) {
-          value = moment( pickedDate ).tz( timeZone ).format( inputFormat || "YYYY/MM/DD h:mm A z" );
+          value = moment( pickedDate ).tz( timeZone ).format( inputFormat || DATETIME_WITH_TIMEZONE );
         } else {
-          value = moment.parseZone( pickedDate ).format( inputFormat || "YYYY/MM/DD h:mm A ZZ" );
+          value = moment.parseZone( pickedDate ).format( inputFormat || DATETIME_WITH_TIMEZONE_OFFSET );
         }
       }
     }
@@ -67,7 +68,7 @@ class DateTimeFieldWrapper extends Component {
         inputProps={ this.props.inputProps }
         defaultText={ this.props.defaultText || "" }
         dateTime={ this.props.dateTime }
-        inputFormat={this.props.inputFormat || "YYYY/MM/DD h:mm A ZZ"}
+        inputFormat={this.props.inputFormat || DATETIME_WITH_TIMEZONE_OFFSET}
         onChange={ this.onChange }
       />
     );

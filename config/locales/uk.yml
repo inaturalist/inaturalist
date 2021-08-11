@@ -79,6 +79,13 @@ uk:
     few: "%{count} помилкові визначення цього виду"
     many: "%{count} помилкових визначень цього виду"
     other: "%{count} помилкові визначення цього виду"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} хибне визначення виду в цьому роді"
+    few: "%{count} хибні визначення видів у цьому роді"
+    many: "%{count} хибних визначень видів у цьому роді"
+    other: "%{count} хибних визначень видів у цьому роді"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} помилкове визначення видів в цьому %{rank}"
     few: "%{count} помилкові визначення видів в цьому %{rank}"
@@ -310,6 +317,10 @@ uk:
   action: Дія
   actions: Дії
   active: Активні
+  #Status of a complete set that is available for use
+  active_complete_set_status: Активний
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Активний
   active_users: Активні користувачі
   activity: Активність
   activity_settings: Налаштування активності
@@ -336,7 +347,6 @@ uk:
   add_an_assessment: Додати оцінку
   add_an_identification: Додати визначення
   add_an_observation: Додати спостереження
-  add_an_observation?: Додати спостереження?
   add_an_observation_of: "Додати спостереження %{taxon}"
   add_an_observation_to_project_html: Додати спостереження до %{project}
   add_annotations_for_x: Додати примітки для "%{x}"
@@ -358,7 +368,6 @@ uk:
   add_comma_separated_tags: "Додати розділені комами теги"
   add_comment: Додати коментар
   add_conservation_status: Додати природоохоронний статус
-  add_countries: Додати країни
   add_custom_project_fields: Додати користувальницькі поля проєкту
   add_edit_flags: Додати/Редагувати прапорці
   add_editor: Додати редактора
@@ -434,7 +443,6 @@ uk:
   add_to_favorites: Додати в уподобані
   add_to_list: Додати до списку
   add_to_project: Додати до проєкту
-  add_to_your_life_list: Додати до вашого списку живого!
   add_to_your_list: Додати до вашого списку
   add_your_email_to_get: |
     Для отримання відгуку про ваше спостереження від спільноти, додайте свою електронну пошту.
@@ -602,8 +610,6 @@ uk:
   all_updates: Усі оновлення
   all_your_observations_will_default_this_time_zone: Усі ваші спостереження за промовчанням належатимуть до цього часового поясу, якщо ви не вкажете інакше.
   all_your_observations_will_default_to_this_time_zone: Усі ваші спостереження за промовчанням належатимуть до цього часового поясу, якщо ви не вкажете інакше.
-  #Option to allow any taxa on a list
-  allow_any: дозволити будь-які
   allow_curator_access: Дозволити доступ куратора
   allow_project_curators_to_view_your_private_coordinates: Дозволити кураторам проєкту переглядати ваші приховані координати
   allowed_establish_means_values: Дозволені значення шляхів виникнення
@@ -625,7 +631,15 @@ uk:
   announcement_was_successfully_created: Оголошення успішно створено.
   announcement_was_successfully_updated: Оголошення успішно оновлено.
   announcements: Оголошення
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: будь-які
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any_: Будь-які
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: Будь-який
@@ -774,7 +788,6 @@ uk:
   avg: Серед.
   back: Назад
   back_to_all_species: Назад до всіх видів
-  back_to_browsing_people: Назад до перегляду людей
   back_to_calendar: "Назад до календаря %{user}"
   back_to_editing_observation: Назад до редагування спостереження
   back_to_friends: Назад до друзів
@@ -808,6 +821,7 @@ uk:
     Чи можна підтвердити або покращити таксон, визначений спільнотою, на базі наявних даних?
   batch: Пакетно
   batch_edit: Пакетне редагування
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Пакетне редагування таксонів: %{x}"
   batch_operations: Пакетні операції
   be_the_first_to_fave_this_observation: Стань першим, хто уподобає це спостереження!
@@ -945,10 +959,8 @@ uk:
   check_list_place: "Таксономічний список %{place}"
   check_list_updated: Таксономічний список оновлено!
   check_lists_for: "Інші таксономічні списки для %{place}"
-  check_out_my_observations_at: Якщо бажаєте, ви можете перевірити мої спостереження в
   check_out_our_blog: Перегляньте наш блог
   check_out_what_the_observation: Перегляньте, на що схоже спостереження, яке ви намагаєтеся визначити.
-  check_out_your_new_and_improved_list_list: Перегляньте ваш новий та поліпшений список життя!
   check_this_box_if_html: |
     Встановіть цей прапорець, якщо ви хочете застосувати <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -1032,6 +1044,18 @@ uk:
     <span class="comprehensive_notice" data-tip="%{tip}">Вичерпний</span>
     таксономічний список для %{taxon}
   comprehensive_list: Вичерпний список
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Модель комп'ютерного бачення
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Включений
+  computer_vision_model_included_desc: |
+    Поточна модель комп'ютерного бачення знає про цей таксон, тому він може бути
+    доданий до автоматичних пропозицій з міткою "Візуально схожі на "...
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Очікує на підтвердження
+  computer_vision_model_pending_desc: |
+    Поточна модель комп'ютерного бачення не знає про цей таксон, тож пори те, що його може бути додано до автоматичних пропозицій з позначкою "Неподалік", він не матиме позначки "Візуально подібні". Хоча вимоги щодо включення змінюються від моделі до моделі, включення опирається на кількість спостережень, тож шанс, що цей таксон буде включено, зростатиме з додаванням нових спостережені та визначень та подальшому тренуванні моделей.
   concept_status: Статус концепції
   configure: Налаштувати
   configure_a_widget_to_show: Налаштуйте віджет, щоб показати %{site_name} спостережень на вашому сайті або блозі. Можливо, вам доведеться включити вбудований CSS у <code>&lt;head&gt;</code> вашого HTML. Ви можете вільно переписувати CSS.
@@ -1088,6 +1112,16 @@ uk:
   contributor_cannot_be_found: Не вдалося знайти учасника
   contributors_to_project: "Учасники %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Будь-яка
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Будь-яка
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Будь-яка
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Будь-що
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Будь-який
     sex: Стать
     male: Самець
     female: Самиця
@@ -1186,7 +1220,6 @@ uk:
   couldnt_change_your_password: "Не вдалося змінити пароль: %{e}"
   couldnt_find_a_user_matching_x_param: "Не вдалося знайти користувача, що відповідає %{id}"
   couldnt_find_that_taxon: Не вдалося знайти цей таксон.
-  countries: Країни
   create: Створити
   create_a_guide: Створити посібник
   create_a_new_field: Створити нове поле
@@ -1227,10 +1260,6 @@ uk:
     Ви маєте пояснити, чому ви хочете стати куратором
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Чому ви хочете стати куратором?
-  #Prompt for information when applying to be a curator
-  curator_application_fields_taxonomy_examples_html: |
-    Якщо ви хочете внести зміни до таксономії iNaturalist, наведіть один-два приклади таксономічних змін, які ви хотіли б зробити і додайте посилання на належні
-    таксономічні авторитетні джерела, як вказано у Посібнику куратора
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Якщо ви хочете редагувати загальні назви, наведіть один-два приклади змін, які ви хотіли б зробити
@@ -1385,13 +1414,16 @@ uk:
       december: Грудень
   date_is_accurate: Дата є точною
   date_joined: Дата реєстрації
+  date_obscured_notice: Дані розмито з метою захисту особистих даних або збереження організму.
   date_observed: Дата спостереження
   date_observed_: Дата спостереження
   date_observed_on: Дата спостереження
   date_picker:
     closeText: Закрити
     currentText: Сьогодні
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Попер.
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Наступний
     range: Проміжок
   date_range: Проміжок дат
@@ -1491,7 +1523,6 @@ uk:
     Натисніть на посилання нижче, щоб розблокувати ваш обліковий запис
   devise_unlock_instructions_unlock: Розблокувати ваш обліковий запис
   discoveries: Відкриття
-  did_not_send_invitations_because: Не надіслав запрошення, позаяк...
   did_you_mean: 'Можливо, ви мали на увазі'
   did_you_photos_flickr?: Чи завантажували ви якісь фото на Flickr?
   disable: Вимкнути
@@ -1527,7 +1558,6 @@ uk:
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: Відпустіть курсор
-  double_click_to_finish: (натисніть двічі для завершення)
   download: Завантажити
   download_bulk_import_template_html: |
     <a href="%{url}">Завантажити шаблон</a> для використання у
@@ -1615,9 +1645,7 @@ uk:
   eligible_for_research_grade: Придатне для дослідницького рівня
   email: Ел. пошта
   email_description: Ваша електронна пошта не доступна іншим користувачам iNaturalist
-  email_addresses_description: Розділені комами адреси ел. пошти, ліміт 60 на кожні 30 днів.
   email_address_for_comments_and_other_feedback: Адреси ел. пошти для коментарів та інших відгуків
-  email_addresses_to_receive_invites: Адреси ел. пошти для отримання запрошень
   email_copyright: "Авторські права &copy;%{x}, усі права захищені"
   email_notifications: Сповіщення ел. поштою
   email_settings: Налаштування ел. пошти
@@ -1748,8 +1776,6 @@ uk:
   first_confirmed_inat_observation: "Перше підтверджене спостереження з %{site_name}"
   first_connect_your_provider_account_to_your_site: "Спочатку підключіть ваш обліковий запис %{provider} до сайту %{site_name}:"
   first_inat_observation: "Перше спостереження з %{site_name}"
-  first_observation: Перше спостереження
-  first_observation_by_date_added: Перше спостереження за датою додання
   first_observer: 1-й спостерігач
   #Verb form, as in "Flag this item"
   flag: Прапорець
@@ -1826,7 +1852,6 @@ uk:
   follow: Підписатися
   follow_receive_updates_about_new_observations: Підписатися (отримувати оновлення про нові спостереження)
   follow_user: "Підписатися на користувача %{user}"
-  followed_projects: Проєкти, на які ви підписані
   followers: Підписники
   following: Підписки
   following_x_people:
@@ -1878,7 +1903,6 @@ uk:
   georeferenced: З геоприв'язкою?
   get_started: Розпочати
   getting_started_guide: Посібник для початківця
-  give_it_some_detail: Розкажіть про це докладніше!
   #Prompt to donate money on a montly basis
   give_monthly_caps: РОБИТИ ДОНАТ ЩОМІСЯЧНО
   #Prompt to donate money once
@@ -1940,7 +1964,6 @@ uk:
   here_are_our_top_suggestions: Ось наші кращі пропозиції
   here_are_our_top_species_suggestions: Ось наші кращі пропозиції щодо видів
   hex_color_eg: Hex-колір, наприклад 65644F
-  hi: Вітаємо,
   hi_user: "Вітаємо, %{user}"
   #Verb, usually a button to hide an interface element
   hide: Приховати
@@ -1965,6 +1988,8 @@ uk:
   highlights_and_stats_from_year_on_site: "Яскраві події та статистика року %{year} на сайті %{site}"
   history: Історія
   home: Головна
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Години для регулювання:"
   however_there_were_some_issues: "Однак, були деякі проблеми: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Я не знаю, але я впевнений що це %{taxon}
   icon: Іконка
@@ -2053,7 +2078,13 @@ uk:
   in_the_past: у минулому
   in_the_past_week: за минулий тиждень
   inactive: Неактивний
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Неактивний
   inactive_taxon: Неактивний таксон
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Неактивний
   inactive_taxon_concepts_are: Неактивні концепції таксону є або систематично застарілими, або ж вони підготовлені до зміни таксону. Застарілі концепції продовжують підтримувати історію та сумісність з деякими партнерськими сайтами.
   inappropriate_content: Недоречний вміст?
   inat_account_action: "%{site_name} &#58; Обліковий запис &#58; %{action_name}"
@@ -2079,12 +2110,8 @@ uk:
   introduced_in_place: "Інтродукований у такому місці: %{place}"
   invitation: Запрошення
   invite: запросити
-  invite_more: Запросити ще
   invite_people: Запросити людей
   invite_people_to_project: "Запросити людей до проєкту %{project}"
-  invite_someone_to: "Запросіть когось до %{name}!"
-  invite_your_friends: Запросити своїх друзів
-  invite_your_friends_description: "Допоможіть зробити %{site_name} більшою, кращою спільнотою, запросивши до нього своїх друзів!"
   #Type of project where people can only join after they have been invited
   inviteonly: лише за запрошенням
   invited_x: "Запрошено %{x}"
@@ -2146,6 +2173,7 @@ uk:
   last_active_with_date: "Остання активність: %{date}"
   last_confirmed_observation: Останнє підтверджене спостереження
   last_observation: Останнє спостереження
+  last_observation_caps: ОСТАННЄ СПОСТЕРЕЖЕННЯ
   last_seen: Востаннє бачили
   last_year: Минулий рік
   lat: Широта
@@ -2171,13 +2199,13 @@ uk:
   learn_about_the_species_live_in: Дізнайтеся, які види живуть у
   learn_about_third_party_tracking: Дізнатися більше про відстеження сторонніми особами
   learn_more: Дізнатися більше
-  learn_more_on_the_blog: Дізнатися більше у блозі
   learn_more_raquo: "Дізнатися більше &raquo;"
   learn_what_these_licenses_mean: Дізнайтеся, що означають ці ліцензії
   least_concern: Найменша осторога
   leave: Покинути
   leave_a_comment: Залишити коментар
   leave_this_project: Покинути цей проєкт?
+  #Terminal nodes in a taxonomic tree
   leaves: листя
   legacy_authentication_notice_html: |
     Схоже, ви використовуєте пароль зі старішої версії веб-сайту.
@@ -2209,6 +2237,7 @@ uk:
     hawaiian: Гавайська
     hebrew: Іврит
     hiligaynon: Гіліґайнон
+    hungarian: Угорська
     icelandic: Ісландська
     ilokano: Ілокано
     italian: Італійська
@@ -2230,6 +2259,7 @@ uk:
     swedish: Шведська
     tagalog: Тагальська
     tahitian: Таїтянська
+    thai: Тайська
     tokelauan: Токелау
     turkish: Турецька
     waray_waray: Варай-варай
@@ -2240,9 +2270,6 @@ uk:
   licensing_your_content_gives_others_legal: "Ліцензування вашого контенту надає іншим право на його використання, якщо вони дотримуються умови ліцензії. %{site_name} використовує ваш контент під ліцензіями Creative Commons для обміну з партнерами, такими як "
   life: Життя
   life_list: "Список живого %{user}"
-  life_list_updated: Список живого оновлено!
-  life_list_updated_we_also_saved_a: Список живого оновлено! Ми також зберегли порожнє спостереження цього таксону.
-  life_lists_automatically_fill: Списки живого автоматично доповнюються новими таксонами, коли ви їх спостерігаєте. Списки можна обмежити до таксонів вищого рівня та їхніх дочірніх таксонів, наприклад список птахів родини Воронові (Corvidae).
   linear_scale_label: Лінійна
   link: Посилання
   link_or_unlink_your_facebook_account: Пов'язати або відв'язти свій обліковий запис Facebook
@@ -2265,8 +2292,6 @@ uk:
   linkedin: LinkedIn
   list: Список
   list_deleted: Список видалено.
-  list_reloaded_from_observations: Список перезавантажено із спостережень
-  list_rules_reapplied: Правила списку було повторно застосовано
   list_saved: Список збережено.
   list_tooltip: Показати представлення списком
   list_updated: Список оновлено!
@@ -2311,6 +2336,7 @@ uk:
     eo: Есперанто
     es: Іспанська
     es-AR: Іспанська (Аргентина)
+    es-CO: Іспанська (Колумбія)
     es-MX: Іспанська (Мексика)
     et: Естонська
     eu: Баскська
@@ -2319,6 +2345,7 @@ uk:
     fr-CA: Французька (Канада)
     gl: Галісійська
     he: Іврит
+    hu: Угорська
     id: Індонезійська
     it: Італійська
     ja: Японська
@@ -2337,6 +2364,7 @@ uk:
     sk: Словацька
     sq: Албанська
     sv: Шведська
+    th: Тайська
     tr: Турецька
     uk: Українська
     zh-CN: Китайська (спрощена)
@@ -2361,6 +2389,8 @@ uk:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Вийти з %{site_name}?"
   log_scale_label: Журнал подій
+  #Status message shown while logging in
+  logging_in: Вхід...
   login_slash_username: Логін / ім'я користувача
   logo:
     logo: Логотип
@@ -2380,7 +2410,6 @@ uk:
   low: Нижчий
   lowest_rank: Найнижчий ранг
   make_admin: Зробити адміністратором
-  mail_disclaimer: "Користувачам %{site_name} не буде дозволено надсилати вам додаткові запрошення через нас. Будь ласка, повідомте про запрошення від %{site}."
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Основний вміст
   #Stub text for the main content section when editing custom project data
@@ -2388,7 +2417,6 @@ uk:
   make_a_new_place: Створити нове місце
   make_a_taxon_swap_instead?: Зробити замість цього заміну таксона?
   make_curator: Створити куратора
-  make_it_a_life_list?: Зробити список живого?
   make_manager: Зробити керівником
   make_sure_the_default_photo_looks_good: Переконайтеся, що фото за промовчанням виглядає добре в великому розмірі.
   make_this_your_default_license: "Зробіть %{type} вашою стандартною ліцензією"
@@ -2672,15 +2700,18 @@ uk:
   newly_observed_species: Види, що їх нещодавно спостерігали
   newly_observed_species_in_year: "Нещодавно додані види у %{year}"
   next: Далі
+  next_date_short: Наст.
   next_observation: Наступне спостереження
   next_page: Наступна сторінка
+  next_page_short: Наст.
   next_photo: Наступне фото
+  next_post_short: Наст.
   next_tab: Наступна вкладка
+  next_taxon_short: Наст.
   'no': 'Ні'
   no_assessments_have_been_added_to_this_project_yet: До цього проєкту ще не було додано жодних оцінок.
   no_but_it_is_a_member_of_taxon: "Ні, але це член %{taxon}"
   no_comments_yet: Ще немає коментарів.
-  no_countries_added_yet: Жодна країна ще не додана
   no_creative_commons_flickr_photos_tagged_x: 'Немає фото з Flickr під ліцензією Creative Commons з тегом "%{x}'
   no_curators_set: Кураторів не призначено
   no_curators_yet: Куратори поки що відсутні!
@@ -2742,10 +2773,9 @@ uk:
   no_sections_available: Немає доступних розділів.
   no_sections_have_been_added_to_this_assessments_yet: Поки що жоден розділ не був доданий до цієї оцінки.
   no_species_have_been_listed: Для цього місця ще наводиться жодного виду!
-  no_species_observed: Жодного виду не спостерігали
   no_species_on_this_list: Видів у цьому списку поки що немає!
-  no_species_on_this_list_for_owner_html: |
-    Ви можете почати додавати види до цього списку напряму, або якщо це список живого, він буде автоматично поповнюватися видами, коли ви <a href="%{url}" class="nobr">додаватимете спостереження</a>.
+  no_species_on_this_list_for_owner: |
+    Ви можете почати додавати види до цього списку, використовуючи інструмент "Додати до вашого списку" праворуч.
   no_subject_parens: "(Без теми)"
   no_suggestions_available: Немає запропонованих варіантів
   no_summary_from_wikipedia: Немає опису з Вікіпедії
@@ -2800,7 +2830,6 @@ uk:
     Загальновидимі координати відображені у вигляді випадкової точки в межах діапазону в 0,2 градуса широти/довготи, що містить справжні координати.
   observation: Спостереження
   observation_: спостереження
-  observation_added: Спостереження додано.
   observation_added_to_the_project: "Спостереження додано до проєкту \"%{project}\""
   observation_aggregation: Узагальнення спостережень
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -2865,7 +2894,6 @@ uk:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     напр. 2019-10-29 13:12:21
-  observed_on_datetime: Спостережено %{datetime}
   observation_removed_from_the_project: "Спостереження видалено з проєкту \"%{project}\""
   observation_requirements: Вимоги до спостережень
   #Label for a field showing the date when the observation requirements for a
@@ -2946,16 +2974,16 @@ uk:
     irregular: нерегулярний
     doubtful: сумнівний
     absent: відсутній
-  of_observations: спостереження
-  of_species: види
-  of_observers: спостерігачі
-  of_identifiers: Ідентифікатори
   of_places: Місця
   of_this_taxon: Цього таксону
   offensive_inappropriate: Образливий / Недоречний
   off_caps: "ВИМК"
   official_blog: Офіційний блог
   offline_access_enabled: Доступ в автономному режимі увімкнено
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Час зміщення"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Зміщення
   old_observation_form: Стара форма для спостережень (не рекомендована)
   ok: "Прийняти"
   on_caps: "УВІМК"
@@ -3005,8 +3033,6 @@ uk:
   only_show_for_species_subspecies_varieties_etc: Показати лише для видів, підвидів, різновидів, тощо.
   only_show_taxa_fom_this_list: "Показати таксони лише з цього списку"
   only_showing_taxa_from: відображені таксони лише з цього списку
-  only_species: лише види
-  only_species_and_subspecies: лише види і підвиди/різновиди
   only_staff_can_edit_large_places: Лише співробітники сайту можуть редагувати дуже великі місця
   only_staff_can_edit_standard_places: Лише співробітники сайту можуть редагувати місця у стандартній ієрархії
   only_the_owner_of_this_list_can_do_that: Це зробити може лише власник цього списку. Не будьте злими.
@@ -3078,7 +3104,6 @@ uk:
   password_confirmation: 'Підтвердження паролю'
   paste: Вставити
   paste_in_a_bunch_of_names: Вставте декілька імен, по 1 на рядок і натисніть на кнопку!
-  paste_in_a_comma_separated_list: Вставте у розділений комами список країн
   people: Люди
   people_following_user: "Люди, що стежать за %{user}"
   people_user_follows: "Люди, на яких підписаний %{user}"
@@ -3104,8 +3129,6 @@ uk:
   per_month: За місяць
   per_week: За тиждень
   person: Особа
-  personal_message: Особисте повідомлення
-  personal_message_description: Нікому не подобається отримувати електронні листи, створені машиною! Чому б не дати вашим друзям знати, чому ви їх запрошуєте?
   per_page: "На сторінку"
   photo: Фото
   photo_attribution: "Фото %{attribution}"
@@ -3147,6 +3170,9 @@ uk:
   place: Місце
   placeholder: Замісник
   place_autocomplete_placeholder: Kharkiv, Ukraine тощо
+  place_create_quota_exceeded: |
+    Перевищено кількість місць, які ви можете створити впродовж 24-годинного періоду
+    (%{quota})
   place_deleted: Місце видалено.
   place_geo:
     geo_planet_place_types:
@@ -3571,6 +3597,8 @@ uk:
     Редагування меж місць є однією з головних причин повільної роботи iNat.
     Якщо ви можете цього уникнути, не створюйте, не змінюйте та не видаляйте меж місця, якщо це не
     є конче необхідно.
+  places_warning_quota: |
+    Можна створювати лише три місця на день.
   places_warning_the_future: |
     Як вже на то пішло, якщо темп зростання iNat буде таким і надалі, в майбутньому нам доведеться обмежити умови, за яких люди матимуть змогу додавати місця.
   plants: рослини
@@ -3606,15 +3634,16 @@ uk:
   preview: Передогляд
   preview_observations_with_these_observation_requirements: Передоглянути спостереження з цими вимогами до спостережень
   preview_of_synced_observation: "<strong>Передоглянути</strong> синхронізоване спостереження.  <a href=\"%{url}\">Скасувати?</a>"
-  preview_personal_message: "Я хочу вас запросити приєднатися до мене на %{site}, веб-сайті де ви можете записувати ваші спостереження за рослинами і тваринами, відслідковувати свій список живого і дізнаватися про світ природи!"
-  preview_your_message: Попередньо переглянути повідомлення
   previewing: "Передогляд..."
-  previous: Попереднє
+  previous_date_short: Попер.
   prev: Попер.
   previous_observation: Попереднє спостереження
   previous_page: Попередня сторінка
+  previous_page_short: Попер.
   previous_photo: Попереднє фото
+  previous_post_short: Попер.
   previous_tab: Попередня вкладка
+  previous_taxon_short: Попер.
   print_verb: Друк
   privacy: Приватність
   private: приватні
@@ -3687,7 +3716,6 @@ uk:
   projects: Проєкти
   projects_description: |
     Проекти дозволяють об'єднати ваші спостереження зі спостереженнями інших користувачів %{site_name}. Чи то нова ініціатива з громадської науки, чи просто обліки птахів на вашому подвір'ї, проєкти - те, що вам потрібно.
-  projects_from_everywhere: Проєкти звідусіль
   projects_from_place: "Проєкти з місця: %{place}"
   projects_in_x: "Проєкти у %{x}"
   #"admins" is equivalent to "administrates"
@@ -3711,7 +3739,6 @@ uk:
   range: Проміжок
   rank: Ранг
   rank_position: Ранг
-  rank_restrictions: Обмеження рангу
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
@@ -3864,7 +3891,6 @@ uk:
   ranks_lowercase_infrahybrid: інфрагібрид
   ranges: Територія
   ray_finned_fishes: променепері риби
-  re_apply_list_rules: Повторно застосувати правила списку
   re_order_photos: "Змінити порядок фото &raquo;"
   read_more: Детальніше
   read_our_getting_started_guide: читати Посібник для початківця
@@ -3966,7 +3992,7 @@ uk:
   required_field: обов'язкове поле
   required_columns_in_order: Обов'язкові поля у визначеному порядку
   research: дослідити
-  research_: Дослідити
+  research_: Дослідницький
   research_grade: Дослідницький рівень
   research_grade_short_html: "Д<span class='full'>ослідницький </span>Р<span class='full'>івень</span>"
   research_grade_tooltip_html: 'Спостереження "Дослідницького рівня" мають медіафайли, дату, а щодо їхнього точного визначення (зазвичай до рівня виду) досягнуто консенсусу спільноти. <a href="https://www.inaturalist.org/pages/help#quality">Дізнатися більше про рівні якості</a>'
@@ -3984,7 +4010,6 @@ uk:
   restart: Перезавантажити
   restore: Відновити
   restoring: Відновлення...
-  results: результати
   review_all: Переглянути все
   reviewed: Перевірено
   revoke: Скасувати
@@ -4045,7 +4070,6 @@ uk:
   scientific_name: Наукова назва
   search: Знайти
   search_all_fields: Шукати в усіх полях
-  search_by_name: Шукати за іменем
   search_by_name_or_email: Шукайте за іменем або електронною адресою
   search_by_taxon_name_or_observation_id: Шукати за назвою таксону або визначенням спостереження
   search_by_taxon_name_or_flickr_photo_id: Шукати за назвою таксону або ID фото на Flickr
@@ -4070,12 +4094,10 @@ uk:
   search_your_photos: Шукати ваші фото
   searching: "Пошук.."
   seasonality: Фенологія
-  second_person_possessive_plural: "Ваш %{noun}"
   second_person_possessive_singular: "Ваш %{noun}"
   see_something_wrong_with_taxon: Щось не так із цим таксоном? Повідомте кураторам.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
-  seen_it?: Чи бачили ви це?
   seen_nearby: Побачені неподалік
   seen_one: Траплялося таке?
   select: Обрати
@@ -4089,15 +4111,12 @@ uk:
   select_options: Оберіть варіант
   select_photos_from_your_photo_stream: |
     Обрати фото із зовнішніх сайтів обміну фото для перетворення на спостереження %{site_name}. Ми заповнимо дату, час і розташування з метаданих фото й спробуємо знайти назви видів за допомогою позначок.
-  select_photos_to_display: Обрати фото для відображення
   selected: обрано
   selected_photos: Обрані фото
   selected_taxon: Обрані таксони
   select_this_taxon: Обрати цей таксон
   send: Надіслати
-  send_invites_to: Надіслати запрошення
   send_me_reset_password_instructions: Надіслати мені інструкції для скидання пароля
-  send_the_invites: Розіслати запрошення
   sending: Надсилання...
   #Label for messages you've sent
   sent: Надіслані
@@ -4112,7 +4131,6 @@ uk:
   show: Показати
   show_active_and_inactive_taxa: Показувати активні та неактивні таксони
   show_common_names: Показувати загальні назви
-  show_default_taxon_photos: показувати фото таксону за замовчуванням
   show_hidden_content: Показувати прихований вміст
   show_keyboard_shortcuts: Показати сполучення клавіш
   show_less: Показати менше
@@ -4120,7 +4138,6 @@ uk:
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Показати дані, для яких "Немає приміток"
-  show_observation_photos: показати фото спостереження
   show_off_your_recent_observations: Похизуйтеся вашими останніми спостереженнями на власному блозі або веб-сайті!
   show_only: Показувати тільки
   show_relative_proportions_of_all_observations: Показати відносні частки всіх спостережень
@@ -4190,7 +4207,6 @@ uk:
   sorry_we_dont_have_any_metadata_for_that_photo: "На жаль, у нас немає жодних метаданих для цього фото, які ми могли б використати для встановлення властивостей спостереження."
   sorry_x_is_not_responding: "На жаль, %{x} не відповідає. Будь ласка, спробуйте пізніше."
   sorry_you_can_only_add_1000_at_a_time: "На жаль, ви можете додати лише 1000 за раз."
-  sorry_you_cant_delete_your_own_life_list: "На жаль, не можна видалити свій власний список життя."
   sorry_you_need_to_be_signed_in_and: Вибачте, вам необхідно ввійти і мати пов'язаний обліковий запис Flickr, щоб відправляти позначки безпосередньо на Flickr.
   sort: Сортувати
   sort_by: Сортувати за
@@ -4589,16 +4605,10 @@ uk:
   these_folks_kindly_volunteer_to: Ці люди люб'язно допомагають підтримують нашу таксономію та розв'язувати інші проблеми.
   these_observations_have_not_been_uploaded_yet: |
     Ці спостереження ще не завантажені.
-  they_already_have_iNat_accounts: "...у них вже є облікові записи %{site_name}"
-  they_have_been_invited: ...їх вже було запрошено
   third_party_tracking: Відстеження сторонніми сервісами
   third_person_possessive_singular: "%{noun} %{object_phrase}"
-  third_person_possessive_plural: "%{noun} %{object_phrase}"
   this: це
   this_bioblitz_beings_in: Цей біобліц розпочинається за
-  this_is_a_life_list_of: Це список живого
-  this_is_a_life_list_from_place_html: "Це список живого з %{place}"
-  this_is_a_life_list_of_taxon_in_place: "Це список живого для %{taxon} в %{place}"
   this_is_more_convenient_way_find_parent: Це зручніший спосіб знайти батьківський ID. Фактично зберігається саме батьківський ідентифікатор.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     Це зручніший спосіб знайти ідентифікатор таксону. Це ідентифікатор таксону, який фактично зберігається. Цей пошук працює тільки для активних таксонів.
@@ -4636,8 +4646,6 @@ uk:
     Якщо це ваш обліковий запис і ви вважаєте, що це було зроблено помилково, <a href="mailto:%{email}">зв'яжіться з нами</a>.
   this_will_add_listed_taxa: Це призведе до додавання вказаних таксонів зі спостережень. Це може зайняти деякий час, тому, будь ласка, вдавайтеся до цього лише за явної потреби та у невеликих таксономічних списках
   this_will_refresh_listed_taxa: Це призведе до оновлення таксонів у цьому списку. Це потребує деякого часу, так що, будь-ласка, використовуйте цю можливість економно і для невеликих таксономічних списків.
-  this_will_re_apply_all_list_rules: |
-    Це повторно застосує всі правила списку до вказаних таксонів та оновить усі пов'язані статистики. Наприклад, відхилення таксонів, що не включені до списку, або ранг яких не відповідає обраному. Це не додасть жодних нових таксонів. Може зайняти певний час.
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Це позбавить iNaturalist можливості отримувати доступ до цього облікового запису від вашого імені, аж доки ви не надасте доступ повторно. Щоб повністю запобігти доступу, Вам необхідно змінити налаштування на зовнішньому сайті.
   #Application is a third-party app or service the user has authorized to
@@ -4656,26 +4664,25 @@ uk:
   to_add_ids: щоб додати визначення
   to_configure_your_widget: щоб налаштувати ваш віджет.
   to_recipient: до
-  to_suggest_an_identification: запропонувати визначення
   today: Сьогодні
   too_many_results: Забагато результатів
   too_many_taxa_to_render: |
     Цей запит повертає занадто багато таксонів для візуалізації за один раз. Спробуйте додати більше фільтрів
   tools: Інструменти
   top_contributors: Найактивніші учасники
-  top_identifier: Кращий ідентифікатор
+  top_identifier_caps: КРАЩИЙ ІДЕНТИФІКАТОР
   top_identifiers: Кращі ідентифікатори
   top_identifiers_of_taxon: Кращі ідентифікатори таксону %{taxon}
-  top_observer: Кращий спостерігач
+  top_observer_caps: КРАЩИЙ ОГЛЯДАЧ
   top_observers: Кращі спостерігачі
-  top_species: Найбільше видів
   tos_privacy_guidelines_label: |
     Я погоджуюся з <a href="/terms" target="_blank">Умовами використання</a> та <a href="/privacy" target="_blank">Політикою конфіденційності</a>, а також ознайомився з <a href="/pages/community+guidelines" target="_blank">Правилами спільноти</a>.
   total: Загалом
   totals: 'Підсумок:'
   total_members: Всього учасників
   total_observations: Всього спостережень
-  total_species_observed: Всього спостережено видів
+  total_observations_caps: УСЬОГО СПОСТЕРЕЖЕНЬ
+  total_species_observed_caps: УСЬОГО СПОСТЕРЕЖЕНИХ ВИДІВ
   total_unique_observers: Всього унікальних спостерігачів
   translated_languages: Перекладено мовами
   'true': 'Вірно'
@@ -4787,7 +4794,6 @@ uk:
     other: Вивантаження %{num} фото з %{count}
   url_identifier_of_a_project_derived_from: "URL / ідентифікатор проєкту, отриманий із зовнішнього ресурсу"
   url_of_this_taxon_on_the_source_website: URL цього таксону на сайті джерела
-  US_states: Штати США
   usage_stats: Статистика використання
   use_name_as_a_placeholder: |
     Використовуйте <span class='ac-placeholder'>"%{name}"</span> в якості замісника
@@ -4891,7 +4897,7 @@ uk:
   view_all_observations: Переглянути всі спостереження
   view_all_photocount_photos: "Переглянути всі %{photo_count} фото"
   view_assessment: Переглянути оцінку
-  view_check_list_page: Переглянути сторінку таксономічного списку
+  view_check_list_page: На сторінку таксономічного списку
   view_contributions: Переглянути доповнення
   view_details: Переглянути подробиці
   view_dynamic_lifelist: Переглянути динамічний список живого
@@ -4917,7 +4923,6 @@ uk:
   view_more_observations_of_x_project: "Переглянути більше спостережень з %{project} на <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Переглянути більше спостережень %{taxon} на <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Подивитися більше не переглянутих"
-  view_my_life_list: Переглянути мій список живого
   view_observation: Переглянути спостереження
   view_observations: Переглянути спостереження
   view_observation_flags: Переглянути прапорці спостереження
@@ -4985,9 +4990,10 @@ uk:
   welcome_to_inat: "Ласкаво просимо до %{site_name}!"
   welcome_to_guides: "Ласкаво просимо до Посібників %{site_name}!"
   welcome_to_x_project: "Вітаємо у %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Скидається на те, що це належить до %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Нам шкода, але ваш пакетний імпорт %{filename} не вдався."
   what: Що
@@ -5002,8 +5008,6 @@ uk:
   when_did_you_see_it?: Коли ви це бачили?
   when_did_you_see_them?: <em>Коли</em> ви їх бачили?
   where: Де
-  where_do_x_live: Де мешкають %{taxa}?
-  where_does_x_live: Де мешкає %{taxa}?
   where_were_they?: Де вони були?
   where_were_you?: Де ви були?
   which_projects_can_add_your_observations?: Які традиційні проєкти можуть додавати ваші спостереження?
@@ -5099,7 +5103,6 @@ uk:
     Здається, ви не в мережі. Спробуйте ще раз, коли ви підключені до Інтернету.
   youre_a_site_curator_which_means: |
     Ви є куратором сайту, що означає, що ви допомагали керувати нашими даними та наглядати за вмістом на волонтерських засад. Будь ласка, не почувайтеся зобов'язаним розв'язувати усі ці питання, але якщо ви маєте час, щоб перевірити деякі з них, ми будемо дуже вдячні за будь-яку вашу допомогу. Якщо ви маєте якісь питання щодо кураторства або не бажаєте більше бути куратором, зв'яжіться з нами за %{email}
-  you_are_over_your_invites_quota: ...ви перевищуєте місячну квоту від 60 запрошень
   you_are_now_following_x: "Зараз ви підписані на %{friend_user}."
   you_are_now_the_admin_for_project_html: |
     <strong>ви</strong> тепер є адміністратором %{project}
@@ -5135,7 +5138,6 @@ uk:
     Ви можете видалити тільки ті створені вами таксони, які не пов'язані зі змінами таксонів, визначеннями, або іншим вмістом
   you_can_only_block_three_users: Ви можете заблокувати лише трьох користувачів
   you_can_show_the_boundary_of: Ви можете показати межу місця на сторінці вашого проєкту, якщо місце має кордони.
-  you_can_sign_free_at: "Ви можете зареєструвати безкоштовний обліковий запис на %{site_name}"
   you_cant_compare_a_list_with_nothing: Ви не можете порівняти список із нічим!
   you_cant_delete_a_project_list: "Ви не можете видалити список проєктів"
   you_cant_delete_observation_fields_that_people_are_using: "Ви не можете видалити поля спостереження, які використовують люди"
@@ -5160,7 +5162,6 @@ uk:
   you_faved_this: Ви це уподобали!
   you_have_left_x_project: "Ви залишили %{project}"
   you_havent_linked_your_inaturalist_google_account: "Ви не прив'язали свій обліковий запис %{site_name} до вашого облікового запису Google"
-  you_havent_joined_any_projects: Ви ще не долучилися до жодних проєктів
   you_joined_this_project: Ви долучилися до цього проєкту!
   you_must_be_a_member_of_this_project_to_do_that: Ви маєте бути членом цього проєкту для того, щоб зробити це
   you_must_choose_an_observation_field: Ви повинні обрати поле спостереження
@@ -5225,7 +5226,6 @@ uk:
     <a href="%{people_path}">знайомства</a>.
   youre_not_following_anyone_on_inat: Ви вже ще не підписані ні на кого на %{site_name}!
   youve_linked_your_inaturalist_google_account: "Ви пов'язали свій обліковий запис %{site_name} та обліковий запис Google. Це дозволить пов'язати ваші фотографії Google до спостережень на %{site_name}."
-  youve_seen_it_want_to: "Ви бачили це! Бажаєте"
   youve_successfully_linked_your_provider_account: "Ви успішно пов'язали свій обліковий запис %{provider}"
   verifiable: Перевірюване
   verifiable_observations: Перевірювані спостереження
@@ -7154,23 +7154,6 @@ uk:
       submit: Зберегти %{model}
       update: Оновити %{model}
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: ' '
-        format: '%u%n'
-        precision: 2
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: ','
-        significant: false
-        strip_insignificant_zeros: false
-        unit: '$'
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as

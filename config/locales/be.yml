@@ -1,0 +1,540 @@
+be:
+  x_comments:
+    one: '%{count} каментарый'
+    few: '%{count} каментарыі'
+    many: '%{count} каментарыяў'
+    other: '%{count} каментарыя'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> каментарый'
+    few: '<span class="count">%{count}</span> каментарыі'
+    many: '<span class="count">%{count}</span> каментарыяў'
+    other: '<span class="count">%{count}</span> каментарыя'
+  x_faves:
+    one: '%{count} упадабанне'
+    few: '%{count} упадабанні'
+    many: '%{count} упадабанняў'
+    other: '%{count} упадабання'
+  x_flags_resolved_html:
+    one: "<span class='count'>%{count}</span> пазнака вырашаная"
+    few: "<span class='count'>%{count}</span> пазнакі вырашаныя"
+    many: "<span class='count'>%{count}</span> пазнак вырашана"
+    other: "<span class='count'>%{count}</span> пазнакі вырашана"
+  x_identifications:
+    one: '%{count} вызначэнне'
+    few: '%{count} вызначэння'
+    many: '%{count} вызначэнняў'
+    other: '%{count} вызначэнні'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> вызначэнне'
+    few: '<span class="count">%{count}</span> вызначэнні'
+    many: '<span class="count">%{count}</span> вызначэнняў'
+    other: '<span class="count">%{count}</span> вызначэнні'
+  x_identifications_:
+    one: '%{count} Вызначэнне'
+    few: '%{count} Вызначэнні'
+    many: '%{count} Вызначэнняў'
+    other: '%{count} Вызначэння'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> Вызначальнік'
+    #Number of people who have added identifications
+    few: '<span class="count">%{count}</span> Вызначальніка'
+    #Number of people who have added identifications
+    many: '<span class="count">%{count}</span> Вызначальнікаў'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> Вызначальніка'
+  x_languages:
+    one: "%{count} мова"
+    few: "%{count} мовы"
+    many: "%{count} моў"
+    other: "%{count} мовы"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} упершыню ў спісе жывога"
+    #Count of number of taxa that represent the first addition to a life list
+    few: "%{count} упершыню ў спісе жывога"
+    #Count of number of taxa that represent the first addition to a life list
+    many: "%{count} упершыню ў спісе жывога"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} упершыню ў спісе жывога"
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> запіс у часопісе'
+    few: '<span class="count">%{count}</span> запісы у часопісе'
+    many: '<span class="count">%{count}</span> запісаў у часопісе'
+    other: '<span class="count">%{count}</span> запіса у часопісе'
+  x_matching_taxa:
+    one: '%{count} адпаведны таксон'
+    few: '%{count} адпаведныя таксоны'
+    many: '%{count} адпаведных таксонаў'
+    other: '%{count} адпаведнага таксона'
+  x_matching_taxa_html:
+    one: '<span class="count">%{count}</span> адпаведны таксон'
+    few: '<span class="count">%{count}</span> адпаведныя таксоны'
+    many: '<span class="count">%{count}</span> адпаведных таксонаў'
+    other: '<span class="count">%{count}</span> адпаведнага таксона'
+  x_misidentifications_of_this_species:
+    one: "%{count} памылковае вызначэнне гэтага віда"
+    few: "%{count} памылковых вызначэнні гэтага віда"
+    many: "%{count} памылковых вызначэнняў гэтага віда"
+    other: "%{count} памылковага вызначэння гэтага віда"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} памылковае вызначэнне ў гэтым родзе"
+    few: "%{count} памылковых вызначэнні ў гэтым родзе"
+    many: "%{count} памылковых вызначэнняў у гэтым родзе"
+    other: "%{count} памылковага вызначэння ў гэтым родзе"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} памылковае вызначэнне ў гэтым %{rank}"
+    few: "%{count} памылковых вызначэнні ў гэтым %{rank}"
+    many: "%{count} памылковых вызначэнняў ў гэтым %{rank}"
+    other: "%{count} памылковага вызначэння ў гэтым %{rank}"
+  x_observations:
+    one: "%{count} назіранне"
+    few: "%{count} назіранні"
+    many: "%{count} назіранняў"
+    other: "%{count} назірання"
+  x_observations_:
+    one: "%{count} Назіранне"
+    few: "%{count} Назіранні"
+    many: "%{count} Назіранняў"
+    other: "%{count} Назірання"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> назіранне"
+    few: "<span class='count'>%{count}</span> назіранні"
+    many: "<span class='count'>%{count}</span> назіранняў"
+    other: "<span class='count'>%{count}</span> назірання"
+  x_observations_link_html:
+    one: "<a href='%{url}'>%{count} назіранне</a>"
+    few: "<a href='%{url}'>%{count} назіранні</a>"
+    many: "<a href='%{url}'>%{count} назіранняў</a>"
+    other: "<a href='%{url}'>%{count} назірання</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> назіранне прагледжана"
+    few: "<span class='count'>%{count}</span> назіранні прагледжана"
+    many: "<span class='count'>%{count}</span> назіранняў прагледжана"
+    other: "<span class='count'>%{count}</span> назірання прагледжана"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> Назіральнік'
+    few: '<span class="count">%{count}</span> Назіральнікі'
+    many: '<span class="count">%{count}</span> Назіральнікаў'
+    other: '<span class="count">%{count}</span> Назіральніка'
+  x_others:
+    one: "%{count} іншы"
+    few: "%{count} іншыя"
+    many: "%{count} іншых"
+    other: "%{count} іншага"
+  x_people:
+    one: "%{count} асоба"
+    few: "%{count} асобы"
+    many: "%{count} асобаў"
+    other: "%{count} асобы"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} людзей</strong> дапамаглі %{user} з <strong>%{y} вызначэннем</strong>"
+  x_photos:
+    one: "%{count} фота"
+    few: "%{count} фота"
+    many: "%{count} фота"
+    other: "%{count} фота"
+  x_new_species:
+    one: "%{count} Новы від"
+    few: "%{count} Новыя віды"
+    many: "%{count} Новых відаў"
+    other: "%{count} Новага віда"
+  x_new_users:
+    one: '%{count} Новы карыстальнік'
+    few: '%{count} Новыя карыстальнікі'
+    many: '%{count} Новых карыстальнікаў'
+    other: '%{count} Новага карыстальніка'
+  x_species:
+    one: '%{count} від'
+    few: '%{count} віды'
+    many: '%{count} відаў'
+    other: '%{count} віда'
+  x_species_html:
+    one: "<span class='count'>%{count}</span> від"
+    few: "<span class='count'>%{count}</span> віды"
+    many: "<span class='count'>%{count}</span> відаў"
+    other: "<span class='count'>%{count}</span> віда"
+  x_species_link_html:
+    one: "<a href='%{url}'>%{count} від</a>"
+    few: "<a href='%{url}'>%{count} віды</a>"
+    many: "<a href='%{url}'>%{count} відаў</a>"
+    other: "<a href='%{url}'>%{count} віда</a>"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} прапанова, адфільтраваная па:"
+    few: "%{count} прапановы, адфільтраваныя па:"
+    many: "%{count} прапаноў, адфільтраваных па:"
+    other: "%{count} прапановы, адфільтраваных па:"
+  x_taxa:
+    one: "%{count} таксон"
+    few: "%{count} таксона"
+    many: "%{count} таксонаў"
+    other: "%{count} таксона"
+  x_taxa_observed_html:
+    one: "<span class='count'>%{count}</span> назіранне таксона"
+    few: "<span class='count'>%{count}</span> назіранні таксона"
+    many: "<span class='count'>%{count}</span> назіранняў таксона"
+    other: "<span class='count'>%{count}</span> назірання таксона"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> назіранне ўзроўня даследвання"
+    few: "<span class='count'>%{count}</span> назіранні ўзроўня даследвання"
+    many: "<span class='count'>%{count}</span> назіранняў узроўня даследвання"
+    other: "<span class='count'>%{count}</span> назірання ўзроўня даследвання"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>%{count}</span> назіранне ўзроўня даследвання вызначана да віда ці ніжэй"
+    few: "<span class='count'>%{count}</span> назірання ўзроўня даследвання вызначана да віда ці ніжэй"
+    many: "<span class='count'>%{count}</span> назіранняў узроўня даследвання вызначана да віда ці ніжэй"
+    other: "<span class='count'>%{count}</span> назірання ўзроўня даследвання вызначана да віда ці ніжэй"
+  x_sounds:
+    one: "%{count} гук"
+    few: "%{count} гукі"
+    many: "%{count} гукаў"
+    other: "%{count} гука"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span> таксон, які курыруецца"
+    few: "<span class='count'>%{count}</span> таксоны, якія курыруюцца"
+    many: "<span class='count'>%{count}</span> таксонаў, якія курыруюцца"
+    other: "<span class='count'>%{count}</span> таксона, якія курыруюцца"
+  x_taxa_matching_current_filters:
+    one: "%{count} таксон адпавядае фільтрам"
+    few: "%{count} таксона адпавядаюць фільтрам"
+    many: "%{count} таксонаў адпавядаюць фільтрам"
+    other: "%{count} таксона адпавядае фільтрам"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>%{count}</span> змена ў таксоне дададзена"
+    few: "<span class='count'>%{count}</span> змены ў таксоне былі дададзены"
+    many: "<span class='count'>%{count}</span> змен ў таксоне было дададзена"
+    other: "<span class='count'>%{count}</span> змены ў таксоне была дададзена"
+  _100_day_trends: Трэнды за 100 дзён
+  _percent_ID_d: "% вызначана"
+  a_community_for_naturalist: Супольнасць прыродазнаўцаў
+  a_default_taxon_name_will_automatically_created: |
+    Назва таксона па змаўчанні будзе аўтаматычна створана з атрыбута навуковага імя гэтага таксона.
+    Пасля захавання новага таксона вы зможаце дадаць сюды іншыя назвы (агульныя назвы, састарэлыя навуковыя назвы і г.д.).
+  a_flag_for_x: "сцяжок для %{x}"
+  a_member_of_taxon_html: "належыць да таксона %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "А да Я"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "%{resource}"
+  about: Падрабязна
+  about_blocking: Пра блакіроўку
+  about_charts: Пра дыяграмы
+  about_community_taxa: Пра таксоны супольніцтва
+  about_complete_taxa: Пра поўныя таксоны
+  about_conservation_status: Пра ахоўны статус
+  about_editing_observation_fields: Пра рэдагаванне палёў назірання
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: Пра спосабы з'яўлення
+  about_license_options: Пра варыянты ліцэнзавання
+  about_licenses: Пра ліцэнзіі
+  about_muting: Пра прыглушэнне карыстальнікаў
+  #Header for a section describing taxon names
+  about_names: Пра назвы таксонаў
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Пра %{place}"
+  about_places: Пра месцы
+  about_the_cc_licenses: Пра ліцэнзіі Creative Commons
+  about_these_licenses: Пра гэтыя ліцэнзіі
+  about_this_bioblitz: Пра гэты біябліц
+  about_this_map: Пра гэтую мапу
+  about_this_project: Пра гэты праект
+  about_trips_html: |2
+    <h4>
+    Падарожжы дазваляюць збіраць дадзеныя аб адсутнасці/прысутнасці, дадаючы кантэкст
+    да вашых назіранняў
+    </h4>
+    <p>
+    <strong>Чаму</strong> Дадзеныя аб прысутнасці і адсутнасці ўключаюць інфармацыю пра
+    адбор проб, што можа быць карысным для навуковых аналізаў, такіх як мадэляванне размеркавання
+     (неапрацаваныя назіранні iNaturalist - гэта "толькі прысутнасць").
+    </p>
+    <p>
+    <strong>Як</strong> Падарожжа дадае кантэкст вашым назіранням, запісваючы:
+    </p>
+    <ul>
+    <li><strong>Што</strong> вы шукалі (спіс мэтаў)</li>
+    <li><strong>Дзе</strong> вы шукалі (абшар пошукаў)</li>
+    <li><strong>Калі</strong> вы шукалі (інтэрвал пошуку)</li>
+    </ul>
+    <p>
+    Віды ў вашым спісе мэтаў, якія вы змаглі назіраць у межах
+    абшару пошуку і інтэрвал інтэрпрэтуюцца як прысутнасць. Калі вы не здолелі назіраць від з вашага спісу мэтаў, гэта інтэрпрэтуецца як адсутнасць. Націсніце "Стварыць табліцу дадзеных аб адсутнасці/прысутнасці з падарожжаў", каб стварыць
+    табліцу запісаў пра наяўнасць і адсутнасць відаў з падарожжаў і звязаных з імі
+    назіранняў. <a href='%{url}'>Даведацца больш</a>
+    </p>
+  about_trusting_projects: Пра давер праектам
+  about_trusting_projects_options_any: Усе вашыя назіранні ў гэтым праекце
+  about_trusting_projects_options_any_desc: |-
+    Сюды ўваходзяць назіранні, для якіх вы пазначылі геапрыватнасць як "прыхаванае"
+    альбо "прыватнае", напр. назіранні з вашага падворка ці месцаў, пра якія вы не хочаце
+    каб даведаліся іншыя людзі.
+  about_trusting_projects_options_taxon: |-
+    Толькі вашыя назіранні ў гэтым праекце, якія маюць прыхаваныя каардынаты
+    для таксонаў, што знаходзяцца пад пагрозай
+  about_trusting_projects_options_taxon_desc: |-
+    Шматлікім праектам проста неабходны доступ да прыхаваных каардынатаў, таму што
+    назіранне адносіцца да таксона, які знаходзіцца пад пагрозай.
+  about_trusting_projects_overview: |-
+    Прадастаўленне доступу да вашых схаваных каардынат дазволіць кіраўнікам гэтага
+    праекта ўбачыць сапраўднае, непрыхаванае месца вашых назіранняў у гэтым
+    праекце. Гэта надзвычай важна ў сітуацыях, калі навукоўцы ці
+    менеджэрам рэсурсаў патрэбны доступ да дакладных каардынат для аналізу і
+    прыняцця рашэння.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    Менеджэры праектаў, якія атрымаюць доступ да вашых схаваных каардынат:
+  about_trusting_projects_warning: |-
+    Звярніце ўвагу, што кіраўнікі праектаў могуць змяняць параметры праекта, каб уключыць любыя
+    вашыя назіранні. Таксама яны могуць дадаваць альбо выдаляць кіраўнікоў праектаў у любы
+    час. Вы атрымаеце апавяшчэнні пра гэтыя змены, але вы па сутнасці давяраеце гэтаму праект свае прыватныя дадзеныя пра месцазнаходжанне, так што будзьце уважлівыя.
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Вы можаце выбраць, з падзяліцца схаванымі каардынатамі
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
+  acc: 'Дакладнасць (м)'
+  account: Уліковы запіс
+  account_creation: Стварэнне ўліковага запісу
+  account_settings: Налады ўліковага запісу
+  accept: пагадзіцца
+  accept_community_identifications: Пагадзіцца з вызначэннем супольніцтва
+  accuracy: Дакладнасць
+  accuracy_meters: Дакладнасць (метры)
+  accuracy_of_the_coordinates: |
+    Дакладнасць каардынат у метрах. Вы можаце змяніць гэта, націснуўшы спасылку "рэдагаваць" вышэй, альбо націснуўшы на маркер карты і перацягваючы элементы кіравання. Паспрабуйце
+    зрабіце круг дастаткова вялікім, каб вы былі ўпэўнены, што знаходзіліся дзесьці ўнутры яго.
+  action: Дзеянне
+  actions: Дзеянні
+  active: Актыўны
+  #Status of a complete set that is available for use
+  active_complete_set_status: Актыўны
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Актыўны
+  active_users: Актыўныя карыстальнікі
+  activity: Дзейнасць
+  activity_settings: Налады актыўнасці
+  adapted_by_name_from_a_work_by_original: "Адаптавана %{name} на падставе працы %{original}"
+  add: Дадаць
+  add_a_batch_of_observations: Дадаць некалькі назіранняў
+  add_a_batch_of_taxa: Дадаць некалькі таксонаў
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Дадаць маркіраваны спіс
+  add_a_comment: Дадаць каментар
+  add_a_field: Дадаць поле
+  add_a_flag: Пазначыць сцяжком
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Дадаць спасылку
+  add_a_name: Дадаць імя
+  add_a_note: Дадаць заўвагу
+  add_a_new_change_group: Дадаць новую групу змен
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: Дадаць нумераваны спіс
+  add_a_single_observation: Дадаць адзінкавае назіранне.
+  add_a_taxon: Дадаць таксон
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: |
+    Дадаць <a target="_blank" href="%{url}">замену таксона</a> калі вы хочаце змяніць імя
+  add_an_assessment: Дадаць ацэнку
+  add_an_identification: Дадаць вызначэнне
+  add_an_observation: Дадаць назіранне
+  add_an_observation_of: "Дадаць назіранне %{taxon}"
+  add_an_observation_to_project_html: Дадаць назіранне да %{project}
+  add_annotations_for_x: Дадаць значэнне для "%{x}"
+  add_annotations_for_controlled_attribute:
+    sex: Дадаць значэння для "Пол"
+    plant_phenology: Дадаць значэння для "Феналогія раслін"
+    life_stage: Дадаць значэння для "Жыццёвая стадыя"
+    evidence_of_presence: Дадаць значэння для "Доказ прысутнасці"
+  add_another_flag: Дадаць іншую пазнаку
+  add_another_photo: Дадаць іншае фота
+  add_another_section: Дадаць іншы раздзел
+  add_another_subscription: Дадаць іншую падпіску
+  add_batch: Дадаць некалькі
+  add_blocked_users: Дадаць заблакаваных карыстальнікаў
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Дадаць тэкст тлустым шрыфтам
+  add_comma_separated_tags: "Дадаць тэгі, падзеленыя коскамі"
+  add_comment: Дадаць каментар
+  add_conservation_status: Дадаць статус аховы
+  add_custom_project_fields: Дадаць дадатковыя палі праекту
+  add_edit_flags: Дадаць/рэдагаваць пазнакі
+  add_editor: Дадаць рэдактар
+  add_description: "Дадаць %{description_name}"
+  add_from_your_observations: Дадаць з вашых назіранняў
+  add_link: Дадаць спасылку
+  add_higher_level_taxon: Дадаць таксон вышэйшага ўзроўню (напрыклад, "птушкі")
+  add_id: Дадаць вызначэнне
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Дадаць тэкст курсівам
+  add_muted_users: Дадаць прыглушаных карыстальнікаў
+  add_new_lexicon: Дадаць новую мову
+  add_new_photos_by_their_ids: Дадаць новыя фотаздымкі па іх ідэнтыфікатарах Flickr (павінны маць ліцэнзію Creative Commons!)
+  add_new_place: Дадаць новае месца
+  add_new_rule: Дадаць новае правіла
+  add_new_source: "Дадаць новую крыніцу..."
+  add_new_taxon_name: Дадаць новае імя таксона
+  add_notes_about_this_taxon: Дадаць заўвагі пра гэты таксон у гэтым месцы, напр. дзе і калі ён сустракаецца.
+  add_obs_from_a_link: "Дадаць назіранні са спісу: %{link}"
+  add_obs_from_a_list: Дадаць назіранні са спісу
+  add_observations: Дадаць назіранні
+  add_observations_by_checking_off: Дадаць назіранні, пазначаючы віды са спісу.
+  add_observations_project: Дадаць назіранні да гэтага праекту
+  #Prompt to add a new journal post
+  add_one: Дадаць зараз!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now: Дадаць зараз
+  add_photos: Дадаць фота
+  add_place: Дадаць месца
+  add_alive_or_dead_alive_annotation: 'Дадаць значэнне "Жывы ці мёртвы: жывы"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Дадаць значэнне "Жывы ці мёртвы: не магчыма вызначыць"'
+  add_alive_or_dead_dead_annotation: 'Дадаць значэнне "Жывы ці мёртвы: мёртвы"'
+  add_plant_phenology_budding_annotation: 'Дадаць значэнне "Феналогія раслін: бутанізацыя"'
+  add_plant_phenology_flower_budding_annotation: 'Дадаць значэнне "Феналогія раслін: бутанізацыя"'
+  add_plant_phenology_flowering_annotation: 'Дадаць значэнне "Феналогія раслін: квітненне"'
+  add_plant_phenology_fruiting_annotation: 'Дадаць значэнне "Феналогія раслін: плоданашэнне"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Дадаць значэнне "Феналогія раслін: няма сведчання квітнення"'
+  add_life_stage_adult_annotation: 'Дадаць значэнне "Жыццёвая стадыя: дарослае"'
+  add_life_stage_subimago_annotation: 'Дадаць значэнне "Жыццёвая стадыя: субімага"'
+  add_life_stage_pupa_annotation: 'Дадаць значэнне "Жыццёвая стадыя: лялечка"'
+  add_life_stage_nymph_annotation: 'Дадаць значэнне "Жыццёвая стадыя: німфа"'
+  add_life_stage_larva_annotation: 'Дадаць значэнне "Жыццёвая стадыя: лічынка"'
+  add_life_stage_juvenile_annotation: 'Дадаць значэнне "Жыццёвая стадыя: ювенільнае"'
+  add_life_stage_egg_annotation: 'Дадаць значэнне "Жыццёвая стадыя: яйка"'
+  add_evidence_of_presence_organism_annotation: 'Дадаць значэнне "Доказ прысутнасці: арганізм"'
+  add_evidence_of_presence_feather_annotation: 'Дадаць значэнне "Доказ прысутнасці: пяро"'
+  add_evidence_of_presence_scat_annotation: 'Дадаць значэнне "Доказ прысутнасці: экскрэменты"'
+  add_evidence_of_presence_track_annotation: 'Дадаць значэнне "Доказ прысутнасці: сляды"'
+  add_evidence_of_presence_bone_annotation: 'Дадаць значэнне "Доказ прысутнасці: костка"'
+  add_evidence_of_presence_molt_annotation: 'Дадаць значэнне "Доказ прысутнасці: лінька"'
+  #As in a Taxon Framework Relationship
+  add_relationship: 'Дадаць сувязь'
+  #As in a Guide Section
+  add_section: Дадаць падзел
+  add_several_observations_at_once: Дадаць некалькі назіранняў адначасова
+  add_sex_female_annotation: 'Дадаць значэнне "Пол: жаночы"'
+  add_sex_male_annotation: 'Дадаць значэнне "Пол: мужчынскі"'
+  add_sex_cannot_be_determined_annotation: 'Дадаць значэнне "Пол: немагчыма вызначыць"'
+  add_some_now: Дадаць што-небудзь зараз
+  add_tag: Дадаць тэг
+  add_tags: Дадаць тэгі
+  add_tags_to_selected_taxa: Дадаць тэгі да абраных таксонаў
+  add_taxa: Дадаць таксоны
+  add_taxon_batch_to: "Дадаць некалькі таксоноаў да %{list}"
+  add_taxon_range: Дадаць арэал таксона
+  add_taxonomic_tags_to: "Дадаць таксанамічныя тэгі да выбраных фотаздымкаў Flickr &raquo;"
+  add_to_a_scheme: Дадаць да схемы
+  add_to_a_project: Дадаць да праекта
+  add_to_calendar: Дадаць да календара
+  add_to_checklist: Дадаць да чэкліста
+  add_to_favorites: Дадаць да ўлюблёных
+  add_to_list: Дадаць да спісу
+  add_to_project: Дадаць да праекта
+  add_to_your_list: Дадаць да вашага спіса
+  add_your_email_to_get: |
+    Дадайце сваю электронную пошту, каб атрымаць зваротную сувязь з супольніцтвам пра свае назіранні.
+    Калі вы не хочаце абагульваць іх, калі ласка, вяртайцеся ў бліжэйшы час!
+  added: Дададзена
+  added!: Дададзена!
+  added_as_a_part_of_a_taxon_change_html: |
+    Дададзена як частка
+    <a target="%{target}" class="%{class}" href="%{url}">змены таксона</a>
+  added_as_a_part_of_a_taxon_merge_html: |
+    Дададзена як частка
+    <a target="%{target}" class="%{class}" href="%{url}">аб'яднання таксонаў</a>
+  added_as_a_part_of_a_taxon_split_html: |
+    Дададзена як частка
+    <a target="%{target}" class="%{class}" href="%{url}">падзела таксона</a>
+  added_as_a_part_of_a_taxon_swap_html: |
+    Дададзена як частка
+    <a target="%{target}" class="%{class}" href="%{url}">замены таксона</a>
+  added_by: Дададзена
+  added_by_user_on_date_html: "Дададзена %{user} %{date}"
+  added_on_datetime: "Дададзена %{datetime}"
+  added_to_favorites_html: |
+    Дададзена да <a href="%{url}">ўлюблёных</a>
+  adding: "Дадаецца..."
+  adjust_brightness: Карэкціроўка яскравасці
+  admin: Адміністратар
+  admin_s: Адміністратар(ы)
+  admin_only: Толькі адміністратары
+  admin_tools: Інструменты адміністратара
+  agree_: Згадзіцца
+  agree?: Згодны?
+  agree_with_current_taxon: Згадзіцца з дадзеным таксонам
+  agreeing: Згаджаемся...
+  aka: таксама вядомы як
+  all: Усе
+  all_comments: Усе каментарыі
+  all_flags_must_be_resolved: Усе пазнакі павінны быць вырашаны
+  all_life: Усё жыццё
+  all_names: Усе імёны
+  all_observations: Усе назіранні
+  all_photos: Усе фота
+  all_places: "Усе месцы"
+  all_projects: Усе праекты
+  all_rank_added_to_the_database:
+    phylum: Усе аддзелы/тыпы дададзены да базы дадзеных
+    subphylum: Усе пададдзелы дададзены да базы дадзеных
+    superclass: Усе звышкласы дадазены да базы дадзеных
+    class: Усе класы дададзены да базы дадзеных
+  date:
+    abbr_month_names:
+      - 
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+    month_names:
+      - 
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+  number:
+    human:
+      format:
+        significant: true
+        strip_insignificant_zeros: true

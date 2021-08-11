@@ -10,7 +10,7 @@ function mapStateToProps( state ) {
   const props = {
     iconClassName: "fa fa-binoculars",
     className: "NumObservations",
-    label: I18n.t( "total_observations" ),
+    label: I18n.t( "total_observations_caps" ),
     name: 0,
     linkText: I18n.t( "view_all" ),
     noContent: true

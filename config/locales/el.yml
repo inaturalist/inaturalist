@@ -47,6 +47,8 @@ el:
   x_misidentifications_of_this_species:
     one: "%{count} λάθος ταυτοποίηση αυτού του είδους"
     other: "%{count} λάθος ταυτοποιήσεις αυτού του είδους"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} λάθος ταυτοποίηση είδους σε αυτό/ή το/την %{rank}"
     other: "%{count} λάθος ταυτοποιήσεις είδους σε αυτό/ή το/την %{rank}"
@@ -249,7 +251,6 @@ el:
   add_an_assessment: Προσθήκη αξιολόγησης
   add_an_identification: Προσθήκη ταυτοποίησης
   add_an_observation: Προσθήκη παρατήρησης
-  add_an_observation?: Προσθήκη μιας παρατήρησης;
   add_an_observation_of: "Προσθήκη παρατήρησης του  %{taxon}"
   add_an_observation_to_project_html: Προσθέστε μια παρατήρηση στο %{project}
   add_annotations_for_x: Προσθήκη Ενδείξεων για "%{x}"
@@ -270,7 +271,6 @@ el:
   add_comma_separated_tags: "Προσθέστε ετικέτες χωρισμένες με κόμμα"
   add_comment: Προσθήκη σχόλιου
   add_conservation_status: Προσθήκη κατάστασης διατήρησης
-  add_countries: Προσθήκη χωρών
   add_custom_project_fields: Προσθήκη πεδίων προσαρμοσμένων στο πρότζεκτ
   add_edit_flags: Προσθήκη/επεξεργασία σημαιών
   add_editor: Προσθήκη συντάκτη
@@ -340,7 +340,6 @@ el:
   add_to_favorites: Προσθήκη στα αγαπημένα
   add_to_list: Προσθήκη στη Λίστα
   add_to_project: Προσθήκη σε Πρότζεκτ
-  add_to_your_life_list: Προσθήκη στην "λίστα ζωής" σας!
   add_to_your_list: Προσθήκη στη λίστα σας
   add_your_email_to_get: |
     Προσθέστε το ηλεκτρονικό σας ταχυδρομείο για να λαμβάνετε ενημερώσεις σχετικά με τις παρατηρήσεις σας από την κοινότητα.
@@ -476,8 +475,6 @@ el:
   all_updates: Όλες οι ενημερώσεις
   all_your_observations_will_default_this_time_zone: Όλες οι παρατηρήσεις σας θα έχουν ως προεπιλεγμένη αυτήν τη ζώνη ώρας εκτός κι αν προσδιορίσετε διαφορετικά.
   all_your_observations_will_default_to_this_time_zone: Όλες οι παρατηρήσεις σας θα έχουν ως προεπιλεγμένη αυτήν τη ζώνη ώρας εκτός κι αν προσδιορίσετε διαφορετικά.
-  #Option to allow any taxa on a list
-  allow_any: Επιτρέψτε οτιδήποτε
   allow_curator_access: Να επιτρέπεται η πρόσβαση επιμελητή
   allow_project_curators_to_view_your_private_coordinates: Να επιτρέπεται στους επιμελητές πρότζεκτ να βλέπουν τις κρυμμένες συντεταγμένες σας.
   allowed_establish_means_values: Επιτρεπόμενες θεσπισμένες μέσες τιμές
@@ -499,7 +496,15 @@ el:
   announcement_was_successfully_created: Επιτυχής δημιουργία ανακοίνωσης.
   announcement_was_successfully_updated: Επιτυχής ενημέρωση ανακοίνωσης.
   announcements: Ανακοινώσεις
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: οτιδήποτε
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any_: Οποιοδήποτε
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: Οποιοδήποτε
@@ -647,7 +652,6 @@ el:
   avg: Μ.Ο.
   back: Πίσω
   back_to_all_species: Πίσω σε όλα τα είδη
-  back_to_browsing_people: Πίσω στο περιήγηση σε άτομα
   back_to_calendar: "Επιστροφή στο ημερολόγιο του %{user}"
   back_to_editing_observation: Επιστροφή στην επεξεργασία παρατήρησης
   back_to_friends: Επιστροφή στους φίλους
@@ -681,6 +685,7 @@ el:
     Βάσει των στοιχείων, μπορεί η Κοινοτική Ταξινομική Μονάδα να επιβεβαιωθεί ή να βελτιωθεί περαιτέρω;
   batch: Παρτίδα
   batch_edit: Μαζική επεξεργασία
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Μαζική επεξεργασία των taxa για %{x}"
   batch_operations: Μαζικές Ενέργειες
   be_the_first_to_fave_this_observation: Ας είστε ο πρώτος που θα επιδοκιμάσει αυτήν την παρατήρηση!
@@ -818,10 +823,8 @@ el:
   check_list_place: "%{place} Λίστα ελέγχου"
   check_list_updated: Η λίστα ελέγχου ενημερώθηκε!
   check_lists_for: "Άλλες Λίστες Ελέγχου για %{place}"
-  check_out_my_observations_at: Αν ενδιαφέρεσαι, μπορείς να δείς τις παρατηρήσεις μου στο
   check_out_our_blog: Κοιτάξτε το ιστολόγιό μας
   check_out_what_the_observation: Δες πως φαίνεται η παρατήρηση που προσπαθείς να ταυτοποιήσεις.
-  check_out_your_new_and_improved_list_list: Ρίξτε μια ματιά στη νέα και βελτιωμένη Λίστα Ζωής!
   check_this_box_if_html: |
     Πατήστε σε αυτό το κουτί αν θέλετε να βάλετε ένα<a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -1030,7 +1033,6 @@ el:
   couldnt_change_your_password: "Δεν μπορεί να αλλάξει ο κωδικός:%{e}"
   couldnt_find_a_user_matching_x_param: "Δεν ήταν δυνατή η εύρεση χρήστη που να ταιριάζει με %{id}"
   couldnt_find_that_taxon: Δεν ήταν δυνατή η εύρεση ταξινομικής ομάδας.
-  countries: Χώρες
   create: Δημιουργία
   create_a_guide: Δημιουργία οδηγού
   create_a_new_field: Δημιουργία νέου πεδίου
@@ -1070,11 +1072,6 @@ el:
     Πρέπει να εξηγήσετε γιατί θέλετε να γίνετε επιμελητής
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Γιατί θέλετε να είστε επιμελητής?
-  #Prompt for information when applying to be a curator
-  curator_application_fields_taxonomy_examples_html: |
-    Αν θέλετε να επεξεργαστείτε την ταξινόμηση στο iNaturalist, παρακαλώ δώστε ένα παράδειγμα ή δύο
-    ταξινομικές αλλαγές που θα θέλατε να κάνετε, και περιλάβετε συνδέσμους προς τις κατάλληλες
-    ταξινομικές αρχές, όπως αναφέρονται στον Οδηγό Επιμελητή
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Αν θέλετε να επεξεργαστείτε κοινές ονομασίες, παρακαλώ δώστε ένα παράδειγμα ή δύο από τις
@@ -1234,7 +1231,9 @@ el:
   date_picker:
     closeText: Κλείσιμο
     currentText: Σήμερα
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Προηγ
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Επόμενο
     range: Εύρος
   date_range: Εύρος ημερομηνίας
@@ -1334,7 +1333,6 @@ el:
     Κάντε κλικ στον παρακάτω σύνδεσμο για να ξεκλειδώσετε το λογαριασμό σας
   devise_unlock_instructions_unlock: Ξεκλειδώστε Το Λογαριασμό Σας
   discoveries: Ανακαλύψεις
-  did_not_send_invitations_because: Δεν στάλθηκαν προσκλήσεις στους παρακάτω επειδή...
   did_you_mean: 'Μήπως εννοείτε'
   did_you_photos_flickr?: Έχετε βάλει κάποια φωτογραφία στο Flickr;
   disable: Απενεργοποίηση
@@ -1370,7 +1368,6 @@ el:
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: Αφήστε το εδώ
-  double_click_to_finish: (διπλό κλικ για ολοκλήρωση)
   download: Λήψη
   download_bulk_import_template_html: |
     <a href="%{url}"> Κατεβάστε το πρότυπο </a> για χρήση στο <a href="/observations/import?project_id=%{project_id}#csv_import">bulk uploader</a>
@@ -1452,9 +1449,7 @@ el:
   eligible_for_research_grade: Επιλέξιμο για Ερευνητικό Επίπεδο
   email: Διεύθυνση ηλ. ταχυδρομείου
   email_description: Το email σας δεν κοινοποιείται στους άλλους χρήστες στο iNaturalist
-  email_addresses_description: Διευθύνσεις email χωρισμένες με κόμμα, όριο 60 κάθε 30 μέρες.
   email_address_for_comments_and_other_feedback: Διευθύνσεις email για σχόλια και άλλη ανατροφοδότηση.
-  email_addresses_to_receive_invites: Διευθύνσεις email για την παραλαβή προσκλήσεων
   email_copyright: "Πνευματικά δικαιώματα &copy; %{x}, όλα τα δικαιώματα κατοχυρωμένα"
   email_notifications: Ειδοποιήσεις Email
   email_settings: Ρυθμίσεις ηλεκτρονικού ταχυδρομείου
@@ -1583,8 +1578,6 @@ el:
   first_confirmed_inat_observation: "Πρώτη επιβεβαιωμένη παρατήρηση στο %{site_name}"
   first_connect_your_provider_account_to_your_site: "Πρώτα, συνδέστε τον %{provider} λογαριασμό σας στο %{site_name}:"
   first_inat_observation: "Πρώτη παρατήρηση στο %{site_name}"
-  first_observation: Πρώτη παρατήρηση
-  first_observation_by_date_added: Πρώτη παρατήρηση ανά ημέρα προσθήκης
   first_observer: 1ος παρατηρητής
   #Verb form, as in "Flag this item"
   flag: Αναφορά
@@ -1660,7 +1653,6 @@ el:
   follow: Ακολουθήστε
   follow_receive_updates_about_new_observations: Ακολουθήστε (λαμβάνετε ενημερώσεις σχετικά με νέες παρατηρήσεις)
   follow_user: "Ακολουθήστε τον %{user}"
-  followed_projects: Ακολουθούμενα πρότζεκτ
   followers: Ακόλουθοι
   following: Ακολουθεί
   following_x_people:
@@ -1707,7 +1699,6 @@ el:
   georeferenced: Έχει Γεωγραφική Αναφορά?
   get_started: Ξεκινήστε
   getting_started_guide: Οδηγός για το πως να ξεκινήσετε
-  give_it_some_detail: Δώστε κάποιες λεπτομέρειες!
   #Prompt to donate money on a montly basis
   give_monthly_caps: ΔΩΣΤΕ ΜΗΝΙΑΙΑ
   #Prompt to donate money once
@@ -1767,7 +1758,6 @@ el:
   here_are_3_examples: Ορίστε 3 παραδείγματα από καλοσχηματισμένα δεδομένα
   here_are_our_top_species_suggestions: Εδώ είναι η προτεινόμενη λίστα των κορυφαίων μας ειδών
   hex_color_eg: Χρώμα Hex, π.χ. 65644F
-  hi: Γεια,
   hi_user: "Γεια %{user}"
   #Verb, usually a button to hide an interface element
   hide: Απόκρυψη
@@ -1893,12 +1883,8 @@ el:
   introduced_in_place: "Εισήχθη σε %{place}"
   invitation: Πρόσκληση
   invite: πρόσκληση
-  invite_more: Πρόσκληση περισσότερων
   invite_people: Πρόσκληση ατόμων
   invite_people_to_project: "Πρόσκληση ατόμων στο %{project}"
-  invite_someone_to: "Προσκαλέστε κάποιον στο %{name}!"
-  invite_your_friends: Πρόσκληση των φίλων σας
-  invite_your_friends_description: "Βοηθήστε να κάνουμε το %{site_name} μια μεγαλύτερη, καλύτερη κοινότητα καλώντας τους φίλους σας να συμμετάσχουν!"
   #Type of project where people can only join after they have been invited
   inviteonly: Με πρόσκληση μόνο
   invited_x: "Προσκεκλημένος %{x}"
@@ -1974,13 +1960,13 @@ el:
   learn_about_the_species_live_in: Μάθετε σχετικά με τα είδη που ζουν εκεί
   learn_about_third_party_tracking: Μάθετε περισσότερα για την παρακολούθηση τρίτων
   learn_more: Μάθετε περισσότερα
-  learn_more_on_the_blog: Μάθετε περισσότερα στο blog
   learn_more_raquo: "Μάθετε περισσότερα &raquo;"
   learn_what_these_licenses_mean: Μάθετε τι σημαίνουν οι άδειες
   least_concern: Χαμηλού κινδύνου
   leave: Αποχωρείστε
   leave_a_comment: Αφήστε ένα σχόλιο
   leave_this_project: Εγκαταλείψτε αυτό το πρότζεκτ
+  #Terminal nodes in a taxonomic tree
   leaves: φύλλα
   legacy_authentication_notice_html: |
     Φαίνεται πως χρησιμοποιείτε έναν κωδικό από μια παλιότερη έκδοση αυτής της ιστοσελίδας. Παρακαλούμε θυμηθείτε να <a href="%{url}">αλλάξετε τον κωδικό σας</a> για τη νέα έκδοση.
@@ -2042,9 +2028,6 @@ el:
   licensing_your_content_gives_others_legal: "Η αδειοδότηση του περιεχομένου σας δίνει στους άλλους το νόμιμο δικαίωμα να το χρησιμοποιήσουν αν ακολουθήσουν τους όρους της άδειας. %{site_name}χρησιμοποιεί το δικό σας Creative Commons-αδειοδοτημένο περιεχόμενο για να το μοιραστεί με συνεργάτες όπως "
   life: Ζωή
   life_list: "Λίστα ζωής του %{user}"
-  life_list_updated: Η λίστα ζωής ενημερώθηκε!
-  life_list_updated_we_also_saved_a: Η λίστα ζωής ενημερώθηκε! Επίσης αποθηκεύσαμε μια κενή παρατήρηση αυτής της ταξονομίας.
-  life_lists_automatically_fill: Οι λίστες ζωής γεμίζουν αυτόματα με νέες ταξινομικές ομάδες καθώς τις παρατηρείτε, και μπορούν να περιοριστούν σε υψηλότερου ιεραρχικού επιπέδου ταξινομικές ομάδες, π.χ. μια λίστα ζωής από πτηνά που ανήκουν στην οικογένεια από τα κοράκια (Corvidae).
   linear_scale_label: Γραμμική
   link: Σύνδεσμος
   link_or_unlink_your_facebook_account: Συνδέστε ή ξεσυνδέστε τον λογαριασμό σας στο Facebook
@@ -2067,8 +2050,6 @@ el:
   linkedin: LinkedIn
   list: Κατάλογος
   list_deleted: Η λίστα διαγράφηκε.
-  list_reloaded_from_observations: Η λίστα επαναφορτώθηκε από παρατηρήσεις
-  list_rules_reapplied: Οι κανόνες της λίστας έχουν εφαρμοστεί ξανά
   list_saved: Η λίστα αποθηκεύτηκε.
   list_tooltip: Εμφάνιση διάταξης λίστας
   list_updated: Η λίστα ενημερώθηκε!
@@ -2181,7 +2162,6 @@ el:
   low: χαμηλό
   lowest_rank: Χαμηλότερη κατάταξη
   make_admin: Ορισμός διαχειριστή
-  mail_disclaimer: "Το %{site_name} δεν θα επιτρέπει στους χρήστες να σας στέλνουν επιπρόσθετες προσκλήσεις μέσω του μηχανισμού αποστολής προσκλήσεων. Παρακαλούμε αναφέρεται την κατάχρηση προσκλήσεων στο %{site}."
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Κύριο περιεχόμενο
   #Stub text for the main content section when editing custom project data
@@ -2189,7 +2169,6 @@ el:
   make_a_new_place: Φτιάξτε έναν νέο τόπο
   make_a_taxon_swap_instead?: Θέλετε να κάνετε μια Ανταλλαγή Ταξινομικής Βαθμίδας αντ' αυτού?
   make_curator: Αναβάθμιση σε διαχειριστής
-  make_it_a_life_list?: Θέλετε να δημιουργήσετε μια λίστα ζωής;
   make_manager: Θέσε διαχειριστή
   make_sure_the_default_photo_looks_good: Βεβαιωθείτε πως η προεπιλεγμένη εικόνα φαίνεται καλά
   make_this_your_default_license: "Αποθηκεύστε αυτή ως τη βασική σας %{type} άδεια"
@@ -2456,7 +2435,6 @@ el:
   no_assessments_have_been_added_to_this_project_yet: Καμιά αποτίμηση δεν έχει προστεθεί σε αυτό το πρότζεκτ ακόμα.
   no_but_it_is_a_member_of_taxon: "Όχι, αλλά είναι μέρος του %{taxon}"
   no_comments_yet: Δεν υπάρχουν ακόμα σχόλια
-  no_countries_added_yet: Δεν έχουν προστεθεί χώρες ακόμα
   no_creative_commons_flickr_photos_tagged_x: 'Καμία Creative Commons φωτογραφία από το Flickr με ετικέτα "%{x}"'
   no_curators_set: Δεν έχουν ορισθεί επιμελητές
   no_curators_yet: Κανένας επιμελητής ακόμα!
@@ -2518,10 +2496,7 @@ el:
   no_sections_available: Δεν υπάρχουν διαθέσιμοι τομείς.
   no_sections_have_been_added_to_this_assessments_yet: Κανένα τμήμα δεν έχει προστεθεί σε αυτή την αξιολόγηση ακόμα.
   no_species_have_been_listed: Κανένα είδος δεν έχει ακόμα καταγραφεί για αυτόν τον τόπο!
-  no_species_observed: Δεν έχουν παρατηρηθεί ακόμα είδη
   no_species_on_this_list: Ακόμα δεν υπάρχουν είδη σε αυτή τη λίστα!
-  no_species_on_this_list_for_owner_html: |
-    Μπορείτε να αρχίσετε να προσθέτετε είδη απευθείας σε αυτή τη λίστα, ή αν αυτή είναι μια λίστα ζωής, θα ενημερώνεται αυτόματα με είδη όταν εσείς <a href="%{url}" class="nobr">προσθέτετε παρατηρήσεις</a>. 
   no_subject_parens: "(Χωρίς θέμα)"
   no_suggestions_available: Δεν υπάρχουν διαθέσιμες προτάσεις
   no_summary_from_wikipedia: Καμία περίληψη από τη Βικιπαίδεια
@@ -2573,7 +2548,6 @@ el:
     Οι δημόσιες συντεταγμένες φαίνονται σαν ένα αυθαίρετο σημείο μέσα στο κελί των 0.2 βαθμών Γεωγρ. πλάτους και μήκους που περιέχει τις πραγματικές συντεταγμένες.
   observation: Παρατήρηση
   observation_: παρατήρηση
-  observation_added: Προστέθηκε παρατήρηση.
   observation_added_to_the_project: "Η Παρατήρηση προστέθηκε στο πρότζεκτ \"%{project}\""
   observation_aggregation: Συνάθροιση παρατήρησης
   observation_belongs_to_project_requiring_field: |
@@ -2630,7 +2604,6 @@ el:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     π.χ. 2019-10-29 13:12:21
-  observed_on_datetime: Παρατηρήθηκε στις %{datetime}
   observation_removed_from_the_project: "Η Παρατήρηση αφαιρέθηκε από το πρότζεκτ \"%{project}\""
   observation_requirements: Απαιτήσεις παρατήρησης
   #Label for a field showing the date when the observation requirements for a
@@ -2703,10 +2676,6 @@ el:
     irregular: ανώμαλο
     doubtful: αμφίβολο
     absent: απών
-  of_observations: Παρατηρήσεις
-  of_species: είδη
-  of_observers: Παρατηρητές
-  of_identifiers: ταυτοποιητές
   of_places: τόποι
   of_this_taxon: Αυτού του taxon
   offensive_inappropriate: Προσβλητικό / Ακατάλληλο
@@ -2760,8 +2729,6 @@ el:
   only_show_for_species_subspecies_varieties_etc: Εμφάνιση για είδη, υποείδη, ποικιλίες, κλπ.
   only_show_taxa_fom_this_list: "Εμφάνιση taxa μόνο από αυτή τη λίστα"
   only_showing_taxa_from: εμφάνιση taxa μόνο από αυτή τη λίστα
-  only_species: μόνο είδη
-  only_species_and_subspecies: μόνο είδη και υποείδη/ποικιλίες
   only_staff_can_edit_large_places: Μόνο το προσωπικό της σελίδας μπορεί να επεξεργάζεται πολύ μεγάλες περιοχές
   only_staff_can_edit_standard_places: Μόνο το προσωπικό της σελίδας μπορεί να επεξεργάζεται περιοχές στην καθιερωμένη ιεραρχία
   only_the_owner_of_this_list_can_do_that: Μόνο ο ιδιοκτήτης αυτής της λίστας μπορεί να το κάνει αυτό. Μη γίνεστε κακός.
@@ -2831,7 +2798,6 @@ el:
   password_confirmation: 'Επιβεβαίωση κωδικού'
   paste: Επικόλληση
   paste_in_a_bunch_of_names: Επικόλληση σε μπόλικα ονόματα, 1 ανά γραμμή, και πατήστε το κουμπί!
-  paste_in_a_comma_separated_list: Επικολλήστε σε μια λίστα χωρών διαχωρισμένων με κόμμα
   people: Οι άνθρωποι
   people_following_user: "Πρόσωπα που ακολουθούν την/τον %{user}"
   people_user_follows: "Πρόσωπα που ο/η %{user} ακολουθεί"
@@ -2857,8 +2823,6 @@ el:
   per_month: Ανά μήνα
   per_week: Ανά εβδομάδα
   person: Πρόσωπο
-  personal_message: Προσωπικό μήνυμα
-  personal_message_description: Σε κανέναν δεν αρέσει να λαμβάνει μηνύματα ηλεκτρονικού ταχυδρομείου από μια μηχανή! Γιατί δεν κάνετε γνωστό στους φίλους σας τους λόγους για τους οποίους τους προσκαλείτε;
   per_page: "Ανά σελίδα"
   photo: Φωτογραφία
   photo_attribution: "Φωτογραφία %{attribution}"
@@ -3365,10 +3329,7 @@ el:
   preview: Προεπισκόπηση
   preview_observations_with_these_observation_requirements: Προεπισκόπηση Παρατηρήσεων με αυτά τα Προαπαιτούμενα Παρατηρήσεων
   preview_of_synced_observation: "<strong>Προεπισκόπηση</strong> συγχρονισμένων παρατηρήσεων.<a href=\"%{url}\">Αναίρεση</a>"
-  preview_personal_message: "Θα ήθελα να συμμετάσχετε μαζί μου στο %{site}, μία ιστοσελίδα όπου μπορείτε να καταγράφετε τις παρατηρήσεις σας για τα φυτά και τα ζώα, να παρακολουθείτε την λίστα της ζωής σας, και να μαθαίνετε για τον φυσικό κόσμο!"
-  preview_your_message: Προεπισκόπηση του μηνύματος σας
   previewing: "Προεπισκόπηση σε εξέλιξη..."
-  previous: Προηγούμενο
   prev: Προηγ
   previous_observation: Προηγούμενη παρατήρηση
   previous_page: Προηγούμενη σελίδα
@@ -3439,7 +3400,6 @@ el:
   projects_description: |
     Η μελέτη σε αφήνει να μοιράζεσαι τις παρατηρήσεις σου με άλλους ανθρώπους στο.
     Είτε ξεκινάς την προσπάθεια στην επιστήμη των πολιτών είτε παρατηρείς προσεκτικά τα πουλία στην γειτονία σου, η μελέτη είναι η κατάλληλη μέθοδος.
-  projects_from_everywhere: Εγχειρήματα από παντού
   projects_from_place: "Πρότζεκτ από %{place}"
   projects_in_x: "Εγχειρήματα στο %{x}"
   #"admins" is equivalent to "administrates"
@@ -3463,7 +3423,6 @@ el:
   range: Εύρος
   rank: Κατάταξη
   rank_position: Κατάταξη
-  rank_restrictions: Περιορισμοί κατάταξης
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
@@ -3530,7 +3489,6 @@ el:
     leaves: Φύλλα
   ranges: Εύρη
   ray_finned_fishes: Ακτινοπτερύγιοι
-  re_apply_list_rules: Εφαρμόστε ξανά τους κανόνες της λίστας
   re_order_photos: "Επαναταξινόμηση φωτογραφιών &raquo;"
   read_more: Διαβάστε περισσότερα
   read_our_getting_started_guide: Διαβάστε τον "Ξεκινώντας" οδηγό μας
@@ -3647,7 +3605,6 @@ el:
   restart: Επανεκκίνηση
   restore: Επαναφορά
   restoring: Γίνεται επαναφορά...
-  results: Αποτελέσματα
   review_all: Αναθεώρηση όλων
   reviewed: Θεωρημένο
   revoke: Ανάκληση
@@ -3706,7 +3663,6 @@ el:
   scientific_name: Επιστημονική Ονομασία
   search: Αναζήτηση
   search_all_fields: αναζήτηση όλων των πεδίων
-  search_by_name: Αναζήτηση βάση ονόματος
   search_by_name_or_email: Αναζήτηση με όνομα ή email
   search_by_taxon_name_or_observation_id: Αναζήτηση με ονομασία taxon ή ταυτοποίηση παρατήρησης
   search_by_taxon_name_or_flickr_photo_id: Αναζήτηση μέσω ταξινομικής βαθμίδας ή κωδικό φωτογραφίας Flickr
@@ -3731,12 +3687,10 @@ el:
   search_your_photos: Αναζητήστε τις φωτογραφίες σας
   searching: "Γίνεται αναζήτηση..."
   seasonality: Εποχικότητα
-  second_person_possessive_plural: "Το δικό σας %{noun}"
   second_person_possessive_singular: "Το δικό σας %{noun}"
   see_something_wrong_with_taxon: Βλέπετε κάτι λάθος σε αυτό το taxon; Ενημερώστε τους επιμελητές.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Αναζήτηση
-  seen_it?: το έχει δει κανείς;
   seen_nearby: Έχει παρατηρηθεί στη γύρω περιοχή
   seen_one: Έχετε δει ένα;
   select: Επιλογή
@@ -3750,15 +3704,12 @@ el:
   select_options: Επιλογή επιλογών
   select_photos_from_your_photo_stream: |
     Επιλέξτε φωτογραφίες από εξωτερικούς ιστοτόπους κοινής χρήσης φωτογραφιών για να τις μετατρέψετε σε %{site_name} παρατηρήσεις. Θα συμπληρώσουμε την ημερομηνία,ώρα και τοποθεσία από τα μεταδεδομένα της φωτογραφίας και θα προσπαθήσουμε να εντοπίσουμε ονόματα ειδών από τις ετικέτες.
-  select_photos_to_display: Επιλέξτε φωτογραφίες για εμφάνιση
   selected: Επιλεγμένα
   selected_photos: Επιλεγμένες φωτογραφίες
   selected_taxon: Επιλεγμένο Taxon
   select_this_taxon: Επιλογή αυτού του taxon
   send: αποστολή
-  send_invites_to: Αποστολή προκλήσεων προς
   send_me_reset_password_instructions: Αποστολή οδηγιών επαναφοράς κωδικού
-  send_the_invites: Στείλε τις προσκλήσεις
   sending: Στέλνεται...
   #Label for messages you've sent
   sent: Απεσταλμένα
@@ -3773,7 +3724,6 @@ el:
   show: Εμφάνιση
   show_active_and_inactive_taxa: Εμφάνιση ενεργών και ανενεργών ταξινομικών βαθμίδων
   show_common_names: Mostrar nombres conocidos
-  show_default_taxon_photos: Εμφάνιση προεπιλεγμένων φωτογραφιών ταξινομικής βαθμίδας
   show_hidden_content: Εμφάνιση κρυφού περιεχομένου
   show_keyboard_shortcuts: Εμφάνιση συντομεύσεων πληκτρολογίου
   show_less: Εμφάνιση λιγότερων
@@ -3781,7 +3731,6 @@ el:
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Εμφάνιση "Χωρίς Σημείωση"
-  show_observation_photos: εμφάνιση φωτογραφιών παρατήρησης
   show_off_your_recent_observations: Ανέβασε τις πρόσφατες παρατηρήσεις σου στο δικό στο blog ή ιστοσελιδα!
   show_only: Εμφάνιση μόνο
   show_relative_proportions_of_all_observations: Εμφάνιση σχετικών αναλογιών όλων των παρατηρήσεων
@@ -3852,7 +3801,6 @@ el:
   sorry_we_dont_have_any_metadata_for_that_photo: "Λυπούμαστε, δεν υπάρχουν διαθέσιμα μεταδεδομένα για αυτή την φωτογραφία που μπορούν να χρησιμοποιηθούν για τις ιδιότητες της παρατήρησης"
   sorry_x_is_not_responding: "Λυπούμαστε,%{x}δεν αποκρίνεται. Παρακαλούμε δοκιμάστε ξανά αργότερα."
   sorry_you_can_only_add_1000_at_a_time: "Συγγνώμη, μπορείτε να προσθέσετε μόνον 1000 κάθε μια φορά."
-  sorry_you_cant_delete_your_own_life_list: "Συγγνώμη, δεν μπορείτε να διαγράψετε τη δική σας λίστα ζωής."
   sorry_you_need_to_be_signed_in_and: Λυπούμαστε, απαιτείται εγγραφή και σύνδεση με τον λογαριασμό Flickr σας προκειμένου να δημοσιεύετε ετικέτες απευθείας στο Flickr.
   sort: Ταξινόμηση
   sort_by: Ταξινόμηση κατά
@@ -4207,16 +4155,10 @@ el:
   these_folks_kindly_volunteer_to: Αυτοί οι άνθρωποι εθελοντικά έχουν αναλάβει την διατήρηση της ταξινόμησης και την διαχείριση άλλων δεδομένων
   these_observations_have_not_been_uploaded_yet: |
     Αυτές οι παρατηρήσεις δεν έχουν μεταφορτωθεί ακόμα.
-  they_already_have_iNat_accounts: "...διαθέτουν ήδη %{site_name} λογαριασμούς"
-  they_have_been_invited: έχουν ήδη προσκληθεί
   third_party_tracking: Παρακολούθηση Τρίτων
   third_person_possessive_singular: "του %{object_phrase} %{noun}"
-  third_person_possessive_plural: "του %{object_phrase} %{noun}"
   this: αυτό
   this_bioblitz_beings_in: Το bioblitz ξεκινά σε
-  this_is_a_life_list_of: Αυτή είναι μια λίστα ζωής από
-  this_is_a_life_list_from_place_html: "Αυτή είναι μια λίστα ζωής από %{place}"
-  this_is_a_life_list_of_taxon_in_place: "Αυτή είναι μια λίστα ζωής του %{taxon} σε %{place}"
   this_is_more_convenient_way_find_parent: Αυτός είναι ένας ευκολότερος τρόπος να βρείτε την ταυτοποίηση ενός γονέα. Η ταυτοποίηση του γονέα είναι αυτή που αποθηκεύεται.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     Αυτός είναι ένας ευκολότερος τρόπος να βρείτε την ταυτοποίηση μιας ταξινομικής βαθμίδας. Η ταυτοποίηση της ταξινομικής βαθμίδας είναι αυτή που αποθηκεύεται. Αυτή η αναζήτηση λειτουργεί μόνο για τις ενεργές ταξινομικές βαθμίδες.
@@ -4250,8 +4192,6 @@ el:
     Αν αυτός είναι ο λογαριασμός μας και πιστεύετε ότι αυτό έχει συμβεί κατά λάθος, παρακαλούμε <a href="mailto:%{email}">επικοινωνήστε μαζί μας</a>.
   this_will_add_listed_taxa: Αυτό θα προσθέσει τις αρχειοθετημένες ταξινομικές βαθμίδες από τις παρατηρήσεις. Αυτό μπορεί να πάρει λίγη ώρα γι'αυτό σας παρακαλούμε να κάνετε περιορισμένη χρήση και μικρές λίστες ελέγχου.
   this_will_refresh_listed_taxa: Αυτό θα προσθέσει τις αρχειοθετημένες ταξινομικές βαθμίδες από τις παρατηρήσεις. Αυτό μπορεί να πάρει λίγη ώρα γι'αυτό σας παρακαλούμε να κάνετε περιορισμένη χρήση και μικρές λίστες ελέγχου.
-  this_will_re_apply_all_list_rules: |
-    Αυτό θα εφαρμόσει εκ νέου όλους τους κανόνες για τις καταχωρημένες στη λίστα ταξινομικές μονάδες και θα ενημερώσει τυχόν συσχετιζόμενα στοιχεία, π.χ. απόρριψη άλλων ταξινομικών μονάδων που δεν είναι εντός της λίστας της ταξινομικής μονάδας ή δεν ανήκουν στη επιλεγμένη κατάταξη. Δεν θα προσθέσει καμια νέα ταξινομική μονάδα. Μπορεί να χρειαστούν λίγα λεπτά.
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Αυτό θα αφαιρέσει τη δυνατότητα του iNaturalist να έχει πρόσβαση σε αυτόν τον λογαριασμό εκ μέρους σας μέχρι να σας επιτραπεί ξανά την πρόσβαση. Ίσως χρειαστεί να αλλάξετε τις ρυθμίσεις σας στην εξωτερική ιστοσελίδα για να αποτρέψετε εντελώς την πρόσβαση.
   #Application is a third-party app or service the user has authorized to
@@ -4270,19 +4210,15 @@ el:
   to_add_ids: για να προσθέσετε σύστημα ανίχνευσης εισβολής
   to_configure_your_widget: για να διαμορφώσετε το γραφικό σας στοιχείο.
   to_recipient: προς
-  to_suggest_an_identification: πρόταση για ταυτοποίηση
   today: Σήμερα
   too_many_results: Πάρα Πολλά Αποτελέσματα
   too_many_taxa_to_render: |
     Αυτή η αναζήτηση επιστρέφει πάρα πολλές ταξινομικές μονάδες για να διαχειριστούν ταυτόχρονα. Δοκιμάστε να προσθέσετε περισσότερα φίλτρα
   tools: Εργαλεία
   top_contributors: Κορυφαίοι συνεισφέροντες
-  top_identifier: Κορυφαίος Ταυτοποιητής
   top_identifiers: Κορυφαίοι Ταυτοποιητές
   top_identifiers_of_taxon: Κορυφαίοι Ταυτοποιητές για %{taxon}
-  top_observer: Κορυφαίος παρατηρητής
   top_observers: Παρατηρητές Τορ επιπέδου
-  top_species: Κορυφαία είδη
   tos_privacy_guidelines_label: |
     Συμφωνώ με τους <a href="/terms" target="_blank">Όρους Παροχής Υπηρεσιών</a> και
     <a href="/privacy" target="_blank">Πολιτική Απορρήτου</a>, και έχω διαβάσει τις <a href="/pages/community+guidelines" target="_blank">Οδηγίες της Κοινότητας</a>.
@@ -4290,7 +4226,6 @@ el:
   totals: Σύνολα
   total_members: Συνολικά μέλη
   total_observations: Συνολικές παρατηρήσεις
-  total_species_observed: Σύνολο παρατηρηθέντων ειδών
   total_unique_observers: Σύνολο μοναδικών παρατηρητών
   translated_languages: Μεταφρασμένες γλώσσες
   'true': 'Αληθές'
@@ -4395,7 +4330,6 @@ el:
     other: Μεταφορτώνονται %{num} από %{count} φωτογραφίες...
   url_identifier_of_a_project_derived_from: "URL / ο ταυτοποιητής του πρότζεκτ προήλθε από κάποια εξωτερική πηγή"
   url_of_this_taxon_on_the_source_website: Το URL αυτής της ταξινομικής βαθμίδας στην ιστοσελίδα της πηγής
-  US_states: Πολιτείες ΗΠΑ
   usage_stats: Στατιστικά χρήσης
   use_name_as_a_placeholder: |
     Χρήση <span class='ac-placeholder'>%{name}</span> ως αντικαταστάτη
@@ -4524,7 +4458,6 @@ el:
   view_more_observations_of_x_project: "Προβολή περισσοτέρων παρατηρήσεων από %{project} στο <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Προβολή περισσοτέρων παρατηρήσεων του %{taxon} στο <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Προβολή περισσοτέρων αθεώρητων"
-  view_my_life_list: Προβολή της λίστας της ζωής σας
   view_observation: Προβολή παρατήρησης
   view_observations: Προβολή Παρατηρήσεων
   view_observation_flags: Προβολή αναφορών παρατηρήσεων
@@ -4588,9 +4521,10 @@ el:
   welcome_to_inat: "Καλώς ήρθατε στο %{site_name}!"
   welcome_to_guides: "Καλώς ήρθατε στους Οδηγούς του %{site_name}!"
   welcome_to_x_project: "Καλώς ήρθατε στο %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Είμαστε αρκετά σίγουροι ότι αυτό ανήκει στα %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Λυπούμαστε αλλά η μαζική εισαγωγή του %{filename} έχει αποτύχει."
   what: Τι
@@ -4605,8 +4539,6 @@ el:
   when_did_you_see_it?: Πότε το είδατε;
   when_did_you_see_them?: <em>Πότε</em> τα εντοπίσατε;
   where: Πού
-  where_do_x_live: Πού %{taxa} ζουν;
-  where_does_x_live: Πού %{taxa} ζει;
   where_were_they?: Πού βρίσκονταν;
   where_were_you?: Πού βρισκόσασταν;
   which_projects_can_add_your_observations?: Ποιά παραδοσιακά πρότζεκτ μπορούν να προσθέσουν τις παρατηρήσεις σας;
@@ -4697,7 +4629,6 @@ el:
     Φαίνεται να είστε εκτός σύνδεσης. Παρακαλούμε δοκιμάστε ξανά όταν συνδεθείτε στο ίντερνετ.
   youre_a_site_curator_which_means: |
     Είστε ένας επιμελητής της σελίδας, το οποίο σημαίνει ότι εθελοντικά επιμελείστε τα δεδομένα μας και χειρίζεστε το περιεχόμενο.Δεν υποχρεούστε να ασχολείστε με όλα αυτά τα ζητήματα, αλλά αν έχετε το χρόνο να ελέγξετε κάποια από αυτά, θα εκτιμούσαμε πολύ τη βοήθειά σας.Αν έχετε κάποια ερώτηση σχετικά με την επιμέλεια περιεχομένου ή δεν επιθυμείτε πλέον να είστε επιμελητής, παρακαλούμε επικοινωνήστε μαζί μας στο %{email}
-  you_are_over_your_invites_quota: ...έχετε ξεπεράσει το μηνιαίο σας πλαφόν των 60 προσκλήσεων
   you_are_now_following_x: "Τώρα ακολουθείτε %{friend_user}"
   you_are_now_the_admin_for_project_html: |
     <strong> Εσείς </strong> είστε τώρα ο διαχειριστής του πρότζεκτ %{project}
@@ -4731,7 +4662,6 @@ el:
     Μπορείτε να διαγράψετε μόνο τις ταξινομικές μονάδες που δημιουργήσατε και δεν σχετίζονται με αλλαγές στην ταξινομική μονάδα, ταυτοποιήσεις ή άλλο περιεχόμενο
   you_can_only_block_three_users: Μπορείτε να μπλοκάρετε μέχρι τρεις χρήστες
   you_can_show_the_boundary_of: Μπορείτε να δείξετε το όριο της περιοχής στη σελίδα του πρότζεκτ εάν η περιοχή έχει όριο.
-  you_can_sign_free_at: "Μπορείτε να εγγραφείτε για έναν δωρεάν %{site_name} λογαριασμό στο"
   you_cant_compare_a_list_with_nothing: Δεν μπορείτε να συγκρίνετε μια λίστα με τίποτα άλλο!
   you_cant_delete_a_project_list: "Δεν μπορείτε να διαγράψετε μια λίστα πρότζεκτ"
   you_cant_delete_observation_fields_that_people_are_using: "Δεν μπορείτε να διαγράψετε πεδία παρατηρήσεων που χρησιμοποιούν άλλα άτομα"
@@ -4755,7 +4685,6 @@ el:
   you_faved_this: Αγαπημένο!
   you_have_left_x_project: "Φύγατε από το %{project}"
   you_havent_linked_your_inaturalist_google_account: "Δεν έχετε συνδέσει το λογαριασμό σας στο%{site_name} και τον λογαριασμό σας στο Google ακόμη"
-  you_havent_joined_any_projects: Δεν έχετε συμμετάσχει σε κανένα πρότζεκτ
   you_joined_this_project: Γίνατε μέλος του πρότζεκτ!
   you_must_be_a_member_of_this_project_to_do_that: Πρέπει να είστε μέλος αυτού του πρότζεκτ για να το κάνετε αυτό
   you_must_choose_an_observation_field: Πρέπει να επιλέξετε ένα πεδίο παρατήρησης
@@ -4817,7 +4746,6 @@ el:
     Δεν ακολουθείτε κανέναν. Το να ακολουθείτε άλλους θα σας επιτρέψει να παρακολουθείτε τις παρατηρήσεις τους. Εξερευνήστε τις <a href="%{observations_path}">παρατηρήσεις</a> τους και κάντε νέες <a href="%{people_path}">γνωριμίες</a>.
   youre_not_following_anyone_on_inat: Δεν ακολουθείτε κανέναν στο %{site_name} ακόμα!
   youve_linked_your_inaturalist_google_account: "Έχετε συνδέσει τον %{site_name} λογαριασμό σας με τον λογαριασμό σας στο Google. Αυτό θα σας επιτρέπει να σχετίζετε της Google Εικόνες σας με τις %{site_name} παρατηρήσεις."
-  youve_seen_it_want_to: "Το έχετε ήδη δει! Θέλετε να"
   youve_successfully_linked_your_provider_account: "Έχετε συνδέσει επιτυχώς τον %{provider} λογαριασμό σας"
   verifiable: Επαληθεύσιμο
   verifiable_observations: Επαληθεύσιμες Παρατηρήσεις
@@ -6648,23 +6576,6 @@ el:
       submit: Αποθήκευση %{model}
       update: Ενημέρωση %{model}
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: ','
-        format: '%u%n'
-        precision: 2
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: .
-        significant: false
-        strip_insignificant_zeros: false
-        unit: '$'
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as

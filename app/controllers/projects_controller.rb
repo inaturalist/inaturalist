@@ -714,11 +714,7 @@ class ProjectsController < ApplicationController
       return
     end
     
-    if @project_invitation = ProjectInvitation.where(project_id: @project.id, observation_id: @observation.id).first
-      @project_invitation.destroy
-    end
-    
-    respond_to_join(:dest => @observation, :notice => t(:youve_joined_the_x_project, :project_invitation => @project_invitation.project.title))
+    respond_to_join(:dest => @observation, :notice => t(:youve_joined_the_x_project, :project_invitation => @project.title))
   end
 
   def confirm_leave
@@ -1009,10 +1005,6 @@ class ProjectsController < ApplicationController
       else
         @errors[observation.id] = project_observation.errors.full_messages
       end
-      
-      if @project_invitation = ProjectInvitation.where(project_id: @project.id, observation_id: observation.id).first
-        @project_invitation.destroy
-      end
     end
     Observation.elastic_index!( ids: @observations.map( &:id ) )
     
@@ -1052,16 +1044,12 @@ class ProjectsController < ApplicationController
   end
 
   def search
-    if @site && (@site_place = @site.place)
-      @place = @site_place unless params[:everywhere].yesish?
-    end
     if @q = params[:q]
       response = INatAPIService.get(
         "/search",
         q: @q,
         page: params[:page],
         sources: "projects",
-        place_id: @place.try(:id),
         ttl: logged_in? ? "-1" : nil
       )
       projects = Project.where( id: response.results.map{|r| r["record"]["id"]} ).index_by(&:id)

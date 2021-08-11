@@ -30,21 +30,9 @@
           %tr
             %th
             %th
-              = link_to url_for_params( order_by: "user", order: @order == "desc" ? "asc" : "desc" ) do
-                = t(:name)
-                - if @order_by == "user"
-                  - if @order == "desc"
-                    &darr;
-                  - else
-                    &uarr;
+              = sortable_table_header "user", label: t(:name)
             %th
-              = link_to url_for_params( order_by: "date", order: @order == "desc" ? "asc" : "desc" ) do
-                = t(:date_added)
-                - if @order_by == "date"
-                  - if @order == "desc"
-                    &darr;
-                  - else
-                    &uarr;
+              = sortable_table_header "date", label: t(:date_added)
             %th=t :settings
             %th=t :actions
         %tbody

@@ -41,12 +41,12 @@
             %i.icon-person{"ng-hide" => "o.user.icon_url"}
           %a{ href: "/people/{{ o.user.login }}", title: "{{ o.user.login }}", target: "_self" }
             {{ o.user.login }}
-        %td{ :class => "{{ params.order_by == 'observed_on' ? 'sorting' : '' }}", title: "{{ shared.t('observed_on_datetime', { datetime: o.time_observed_at || o.observed_on }) }}" }
+        %td{ :class => "{{ params.order_by == 'observed_on' ? 'sorting' : '' }}" }
           %inat-calendar-date{ date: "o.observed_on_details.date", timezone: "o.observed_time_zone", time: "o.time_observed_at", obscured: "o.obscured && !o.private_geojson" }
         %td.place
           %span{ "ng-bind-html": "o.placeIcon() | sanitize" }
           {{ o.displayPlace( ) }}
-        %td{ :class => "{{ params.order_by == 'observations.id' ? 'sorting' : '' }}", title: "{{ shared.t('added_on_datetime', { datetime: o.created_at } ) }}" }
+        %td{ :class => "{{ params.order_by == 'observations.id' ? 'sorting' : '' }}" }
           %inat-calendar-date{ date: "o.created_at_details.date", timezone: "o.created_time_zone", time: "o.created_at", obscured: "o.obscured && !o.private_geojson" }
   .spinner.ng-cloak{ "ng-show": "pagination.searching" }
     %span.fa.fa-spin.fa-refresh

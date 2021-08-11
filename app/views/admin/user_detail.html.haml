@@ -63,7 +63,7 @@
                 = @display_user.send(user_attr).to_s.html_safe
       %h3 Other Attributes
       %table.table
-        - for user_attr in ( User.column_names - basic_attrs - %w(encrypted_password password_salt remember_token remember_token_expires_at confirmation_token deleted_at old_preferences state) ).sort
+        - for user_attr in ( User.column_names - basic_attrs - %w(encrypted_password password_salt remember_token remember_token_expires_at confirmation_token deleted_at old_preferences state reset_password_token) ).sort
           %tr
             %th= user_attr
             %td{ style: "width: 100%" }= @display_user.send(user_attr).to_s.html_safe

@@ -144,7 +144,7 @@ GEM
     acts-as-taggable-on (8.1.0)
       activerecord (>= 5.0, < 6.2)
     acts_as_votable (0.13.1)
-    addressable (2.7.0)
+    addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
@@ -383,6 +383,8 @@ GEM
       addressable
       faraday
       json (>= 1.8)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     loofah (2.10.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -513,7 +515,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
-    rake (13.0.3)
+    rake (13.0.6)
     rakismet (1.5.4)
     rdoc (6.3.1)
     redcarpet (3.5.1)

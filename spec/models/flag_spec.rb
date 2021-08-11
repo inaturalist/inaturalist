@@ -4,6 +4,11 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe Flag, "creation" do
   elastic_models( Observation )
 
+  it "should have the right TYPES" do
+    expect( Flag::TYPES ).to eq %w[CheckList Comment Guide GuideSection Identification List Message Observation Photo
+                                   Place Post Project Sound Taxon User]
+  end
+
   it "should not allow flags that are too long" do
     f = Flag.make(
       :flag => <<-EOT

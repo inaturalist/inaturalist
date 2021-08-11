@@ -38,6 +38,7 @@ class Message < ApplicationRecord
   end
 
   def send_message
+    return if from_user.suspended? || known_spam?
     reload
     new_message = dup
     new_message.user = to_user
@@ -96,6 +97,8 @@ class Message < ApplicationRecord
     return true if user_id == from_user_id
     return true if skip_email
     return true if UserMute.where( user_id: to_user, muted_user_id: from_user ).exists?
+    return true if UserBlock.where( user_id: to_user, blocked_user_id: from_user ).exists?
+    return true if from_user.suspended? || known_spam?
     Emailer.delay(:priority => USER_INTEGRITY_PRIORITY).new_message(id)
     true
   end

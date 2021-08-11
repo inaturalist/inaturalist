@@ -1,6 +1,6 @@
 #encoding: utf-8
 class Place < ApplicationRecord
-
+  acts_as_flaggable
   include ActsAsElasticModel
   # include ActsAsUUIDable
   before_validation :set_uuid
@@ -41,13 +41,15 @@ class Place < ApplicationRecord
 
   validates_presence_of :latitude, :longitude
   validates_numericality_of :latitude,
-    :allow_blank => true, 
-    :less_than_or_equal_to => 90, 
-    :greater_than_or_equal_to => -90
+                            allow_blank: true,
+                            less_than_or_equal_to: 90,
+                            greater_than_or_equal_to: -90,
+                            unless: :updating_bbox
   validates_numericality_of :longitude,
-    :allow_blank => true, 
-    :less_than_or_equal_to => 180, 
-    :greater_than_or_equal_to => -180
+                            allow_blank: true,
+                            less_than_or_equal_to: 180,
+                            greater_than_or_equal_to: -180,
+                            unless: :updating_bbox
   validates_length_of :name, :within => 2..500, 
     :message => "must be between 2 and 500 characters"
   validates_uniqueness_of :name, :scope => :ancestry, :unless => Proc.new {|p| p.ancestry.blank?}
@@ -87,6 +89,8 @@ class Place < ApplicationRecord
   end
 
   attr_accessor :html
+
+  attr_accessor :updating_bbox
 
   FLICKR_PLACE_TYPES = ActiveSupport::OrderedHash.new
   FLICKR_PLACE_TYPES[:country]   = 12
@@ -364,15 +368,9 @@ class Place < ApplicationRecord
   
   # Calculate and cache the bbox area for place area size queries
   def calculate_bbox_area
-    if self.swlat && self.swlng && self.nelat && self.nelng && 
-        (self.swlat_changed? || self.swlng_changed? || self.nelat_changed? || 
-          self.nelng_changed?)
-      height = self.nelat - self.swlat
-      width = if self.straddles_date_line?
-        (180 - self.swlng) + (180 - self.nelng*-1)
-      else
-        self.nelng - self.swlng
-      end
+    if swlat && swlng && nelat && nelng && (swlat_changed? || swlng_changed? || nelat_changed? || nelng_changed?)
+      height = nelat - swlat
+      width = straddles_date_line? ? (180 - swlng) + (180 - nelng*-1) : nelng - swlng
       self.bbox_area = width * height
     end
     true
@@ -480,7 +478,7 @@ class Place < ApplicationRecord
         pg = PlaceGeometry.create!(other_attrs)
         self.place_geometry = pg
       end
-      update_bbox_from_geom(geom) if self.place_geometry.valid?
+      update_attributes(points_from_geom(geom).merge(updating_bbox: true)) if self.place_geometry.valid?
     rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordInvalid => e
       Rails.logger.error "[ERROR] \tCouldn't save #{self.place_geometry}: #{e.message[0..200]}"
       if e.message =~ /TopologyException/
@@ -509,24 +507,19 @@ class Place < ApplicationRecord
     end
     self.save_geom(new_geom, other_attrs)
   end
-  
-  # Update this place's bbox from a geometry.  Note this skips validations, 
-  # but explicitly recalculates the bbox area
-  def update_bbox_from_geom(geom)
-    self.longitude = geom.centroid.x
-    self.latitude = geom.centroid.y
-    self.swlat = geom.envelope.lower_corner.y
-    self.nelat = geom.envelope.upper_corner.y
-    if geom.spans_dateline?
-      self.longitude = geom.envelope.centroid.x + 180*(geom.envelope.centroid.x > 0 ? -1 : 1)
-      self.swlng = geom.points.map(&:x).select{|x| x > 0 || x < -180}.min
-      self.nelng = geom.points.map(&:x).select{|x| x < 0 || x > 180}.max
-    else
-      self.swlng = geom.envelope.lower_corner.x
-      self.nelng = geom.envelope.upper_corner.x
+
+  def points_from_geom(geom)
+    { latitude: geom.centroid.y, swlat: geom.envelope.lower_corner.y, nelat: geom.envelope.upper_corner.y }.tap do |h|
+      if geom.spans_dateline?
+        h[:longitude] = geom.envelope.centroid.x + 180*(geom.envelope.centroid.x > 0 ? -1 : 1)
+        h[:swlng] = geom.points.map(&:x).select{|x| x > 0 || x < -180}.min
+        h[:nelng] = geom.points.map(&:x).select{|x| x < 0 || x > 180}.max
+      else
+        h[:longitude] = geom.centroid.x
+        h[:swlng] = geom.envelope.lower_corner.x
+        h[:nelng] = geom.envelope.upper_corner.x
+      end
     end
-    calculate_bbox_area
-    save(validate: false)
   end
   
   #

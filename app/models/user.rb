@@ -165,7 +165,6 @@ class User < ApplicationRecord
   has_many :project_user_invitations, :dependent => :nullify
   has_many :project_user_invitations_received, :dependent => :delete_all, :class_name => "ProjectUserInvitation"
   has_many :listed_taxa, :dependent => :nullify
-  has_many :invites, :dependent => :nullify
   has_many :quality_metrics, :dependent => :destroy
   has_many :sources, :dependent => :nullify
   has_many :places, :dependent => :nullify
@@ -690,7 +689,7 @@ class User < ApplicationRecord
     latitude = nil
     longitude = nil
     lat_lon_acc_admin_level = nil
-    geoip_response = INatAPIService.geoip_lookup({ ip: last_ip })
+    geoip_response = INatAPIService.geoip_lookup( { ip: last_ip } )
     if geoip_response && geoip_response.results
       # don't set any location if the country is unknown
       if geoip_response.results.country
@@ -872,7 +871,6 @@ class User < ApplicationRecord
         :flags
       ] },
       :project_observations,
-      :project_invitations,
       :quality_metrics,
       :observation_field_values,
       :observation_sounds,
@@ -1009,11 +1007,7 @@ class User < ApplicationRecord
       deleted_photos = DeletedPhoto.where( user_id: user_id )
       puts "Deleting #{deleted_photos.count} DeletedPhotos and associated records from s3"
       deleted_photos.find_each do |dp|
-        images = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ dp.photo_id }/" ).contents
-        puts "\tPhoto #{dp.photo_id}, removing #{images.size} images from S3"
-        if images.any?
-          s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
-        end
+        dp.remove_from_s3( s3_client: s3_client )
         dp.destroy
       end
 

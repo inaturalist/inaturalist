@@ -20,12 +20,6 @@ describe ProjectObservation, "creation" do
     expect(jobs.select{|j| j.handler =~ /\:update_taxa_counter_cache/}).not_to be_blank
   end
 
-  it "should destroy project invitations for its project and observation" do
-    pi = ProjectInvitation.make!(:project => @project, :observation => @observation)
-    make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
-    expect(ProjectInvitation.find_by_id(pi.id)).to be_blank
-  end
-
   it "should set curator id if observer is a curator" do
     o = Observation.make!(:user => @project.user, :taxon => Taxon.make!)
     po = without_delay {make_project_observation(:observation => o, :project => @project, :user => o.user)}

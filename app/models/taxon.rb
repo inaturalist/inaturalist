@@ -110,10 +110,12 @@ class Taxon < ApplicationRecord
   after_save :index_observations
 
   validates_presence_of :name, :rank, :rank_level
-  validates_uniqueness_of :name, 
-                          :scope => [:ancestry, :is_active],
-                          :unless => Proc.new { |taxon| (taxon.ancestry.blank? || !taxon.is_active)},
-                          :message => "already used as a child of this taxon's parent"
+  validates_uniqueness_of :name, scope: %i[ancestry is_active],
+                          unless: -> { (ancestry.blank? || !is_active || complex?) }, # If a complex, allow duplicate sibling name for species...
+                          message: "already used as a child of this taxon's parent"
+  validates_uniqueness_of :name, scope: %i[ancestry is_active rank],
+                          if: -> { complex? },  # ... but do not allow duplicate sibling complex name
+                          message: "already used as a child complex of this taxon's parent"
   # validates_uniqueness_of :source_identifier,
   #                         :scope => [:source_id],
   #                         :message => "already exists",
@@ -666,7 +668,13 @@ class Taxon < ApplicationRecord
       "updater_id",
       "updated_at"
     ] ).empty?
-    Observation.elastic_index!( scope: observations.select( :id ), delay: true )
+    if changes[:ancestry]
+      # using Taxon.find since the ancestry gem uses the before save
+      # ancestry and descendants' ancestries have already been updated
+      Observation.elastic_index!( scope: Observation.of( Taxon.find( id ) ), delay: true )
+    else
+      Observation.elastic_index!( scope: observations.select( :id ), delay: true )
+    end
   end
 
   def normalize_rank

@@ -14,7 +14,7 @@ const Growth = ( {
   site
 } ) => {
   const label = d => I18n.t( "bold_label_colon_value_html", {
-    label: moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" ),
+    label: moment( d.date ).add( 2, "days" ).format( I18n.t( "momentjs.month_year" ) ),
     value: I18n.t( "x_observations", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
   } );
   const grayColor = "rgba( 40%, 40%, 40%, 0.5 )";
@@ -87,7 +87,7 @@ const Growth = ( {
       novel_species_ids: []
     } );
     const speciesLabel = d => I18n.t( "bold_label_colon_value_html", {
-      label: moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" ),
+      label: moment( d.date ).add( 2, "days" ).format( I18n.t( "momentjs.month_year" ) ),
       value: I18n.t( "x_species", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
     } );
     taxaSeries = {
@@ -147,7 +147,7 @@ const Growth = ( {
     } ) );
     userData.push( emptyJan );
     const newUsersLabel = d => I18n.t( "bold_label_colon_value_html", {
-      label: moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" ),
+      label: moment( d.date ).add( 2, "days" ).format( I18n.t( "momentjs.month_year" ) ),
       value: I18n.t( "x_new_users", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
     } );
 
@@ -180,7 +180,7 @@ const Growth = ( {
         data: userData.map( interval => ( { date: interval.date, value: interval.total } ) ),
         color: grayColor,
         label: d => I18n.t( "bold_label_colon_value_html", {
-          label: moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" ),
+          label: moment( d.date ).add( 2, "days" ).format( I18n.t( "momentjs.month_year" ) ),
           value: I18n.t( "x_people", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
         } )
       }

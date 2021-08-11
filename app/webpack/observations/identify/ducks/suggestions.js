@@ -78,44 +78,59 @@ export default function reducer(
       }
       break;
     case UPDATE_WITH_OBSERVATION: {
+      const { observation } = action;
+      const isFeaturedObs = observation.uuid === state.query.featured_observation_uuid
+        || observation.id === state.query.featured_observation_id;
       newState.query = {
         source: state.query.source,
         order_by: state.query.order_by
       };
-      const { observation } = action;
-      if ( observation.taxon ) {
-        let indexOfTaxonInAncestors = observation.taxon.ancestor_ids
-          .indexOf( observation.taxon.id );
-        if ( indexOfTaxonInAncestors < 0 ) {
-          indexOfTaxonInAncestors = observation.taxon.ancestor_ids.length;
-        }
-        if ( observation.taxon.rank_level === 10 ) {
-          newState.query.taxon_id = observation
-            .taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 1, 0 )];
-        } else if ( observation.taxon.rank_level < 10 ) {
-          newState.query.taxon_id = observation
-            .taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 2, 0 )];
-        } else {
-          newState.query.taxon_id = observation.taxon.id;
-        }
-      }
-      let placeIDs;
-      if ( observation.private_place_ids && observation.private_place_ids.length > 0 ) {
-        placeIDs = observation.private_place_ids;
+      // If observation currently in query (tab change in modal), preserve taxon and place filters
+      if ( observation && isFeaturedObs ) {
+        newState.query = Object.assign( newState.query, {
+          taxon: state.query.taxon,
+          taxon_id: state.query.taxon.id,
+          place: state.query.place,
+          place_id: state.query.place_id
+        } );
       } else {
-        placeIDs = observation.place_ids;
-      }
-      if ( observation.places ) {
-        const place = _
-          .sortBy( observation.places, p => p.bbox_area )
-          .find( p => p.admin_level !== null && p.admin_level < 3 );
-        if ( place ) {
-          newState.query.place_id = place.id;
-          newState.query.place = place;
-          newState.query.defaultPlace = place;
+        if ( observation.taxon ) {
+          let indexOfTaxonInAncestors = observation.taxon.ancestor_ids
+            .indexOf( observation.taxon.id );
+          if ( indexOfTaxonInAncestors < 0 ) {
+            indexOfTaxonInAncestors = observation.taxon.ancestor_ids.length;
+          }
+          if ( observation.taxon.rank_level === 10 ) {
+            newState.query.taxon_id = observation
+              .taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 1, 0 )];
+          } else if ( observation.taxon.rank_level < 10 ) {
+            newState.query.taxon_id = observation
+              .taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 2, 0 )];
+          } else {
+            newState.query.taxon_id = observation.taxon.id;
+          }
+        } else {
+          newState.query.taxon_id = null;
+          newState.query.taxon = null;
         }
-      } else if ( placeIDs && placeIDs.length > 0 ) {
-        newState.query.place_id = placeIDs[placeIDs.length - 1];
+        let placeIDs;
+        if ( observation.private_place_ids && observation.private_place_ids.length > 0 ) {
+          placeIDs = observation.private_place_ids;
+        } else {
+          placeIDs = observation.place_ids;
+        }
+        if ( observation.places ) {
+          const place = _
+            .sortBy( observation.places, p => p.bbox_area )
+            .find( p => p.admin_level !== null && p.admin_level < 3 );
+          if ( place ) {
+            newState.query.place_id = place.id;
+            newState.query.place = place;
+            newState.query.defaultPlace = place;
+          }
+        } else if ( placeIDs && placeIDs.length > 0 ) {
+          newState.query.place_id = placeIDs[placeIDs.length - 1];
+        }
       }
       newState.detailTaxon = null;
       newState.detailPhotoIndex = 0;

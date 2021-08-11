@@ -176,24 +176,6 @@ shared_examples_for "a signed in UsersController" do
     end
   end
 
-  describe "search" do
-    it "should search by username" do
-      u = User.make!
-      get :search, format: :json, params: { q: u.login }
-      expect(response).to be_successful
-      json = JSON.parse(response.body)
-      expect(json.detect{|ju| ju['id'] == u.id}).not_to be_blank
-    end
-
-    it "should allow email searches" do
-      u = User.make!
-      get :search, format: :json, params: { q: u.email }
-      expect(response).to be_successful
-      json = JSON.parse(response.body)
-      expect(json.detect{|ju| ju['id'] == u.id}).not_to be_blank
-    end
-  end
-
   describe "test_groups" do
     it "should be set with update" do
       test_groups = "foo"
@@ -292,36 +274,6 @@ describe UsersController, "without authentication" do
       get :show, format: :json, params: { id: user.id }
       expect( response ).to be_successful
       expect( JSON.parse( response.body )["identifications_count"] ).to eq 0
-    end
-  end
-
-  describe "search" do
-    it "should search by username" do
-      u1 = User.make!(login: "foo")
-      u2 = User.make!(login: "bar")
-      get :search, format: :json, params: { q: u1.login }
-      expect(response).to be_successful
-      json = JSON.parse(response.body)
-      expect(json.detect{|ju| ju['id'] == u1.id}).not_to be_blank
-      expect(json.detect{|ju| ju['id'] == u2.id}).to be_blank
-    end
-    
-    it "should not allow email searches" do
-      u = User.make!
-      get :search, format: :json, params: { q: u.email }
-      expect(response).to be_successful
-      json = JSON.parse(response.body)
-      expect(json).to be_blank
-    end
-
-    it "can order by activity" do
-      u1 = User.make!(login: "aaa", observations_count: 2)
-      u2 = User.make!(login: "abb", observations_count: 1)
-      u3 = User.make!(login: "acc", observations_count: 3)
-      get :search, format: :json, params: { q: "a" }
-      expect(JSON.parse(response.body).map{ |r| r["login"] }).to eq [ "aaa", "abb", "acc" ]
-      get :search, format: :json, params: { q: "a", order: "activity" }
-      expect(JSON.parse(response.body).map{ |r| r["login"] }).to eq [ "acc", "aaa", "abb" ]
     end
   end
 

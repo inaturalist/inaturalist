@@ -811,7 +811,7 @@ class Observation < ApplicationRecord
       key += "_from_place"
       i18n_vars[:place] = place_guess
     end
-    if !options[:viewer] || !options[:viewer].in_test_group?( "interpolation" ) || coordinates_viewable_by?( options[:viewer] )
+    if coordinates_viewable_by?( options[:viewer] )
       unless self.observed_on.blank?
         key += "_on_day"
         i18n_vars[:day] = I18n.l( self.observed_on, format: :long )
@@ -820,6 +820,9 @@ class Observation < ApplicationRecord
         key += "_at_time"
         i18n_vars[:time] = I18n.l( time_observed_at_in_zone, format: :compact )
       end
+    elsif !self.observed_on.blank?
+      key += "_in_month"
+      i18n_vars[:month] = I18n.l( self.observed_on, format: :month_year )
     end
     unless options[:no_user]
       key += "_by_user"

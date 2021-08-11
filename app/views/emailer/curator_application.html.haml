@@ -9,6 +9,9 @@
         = link_to @user.login, person_url( @user ), target: "_blank"
         = link_to "[curate]", user_detail_admin_url( @user ), target: "_blank"
     %tr
+      %th Email address
+      %td= @user.email
+    %tr
       %th User created at
       %td=l @user.created_at
     %tr

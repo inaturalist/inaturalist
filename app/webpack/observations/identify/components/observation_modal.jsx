@@ -479,7 +479,9 @@ class ObservationModal extends React.Component {
     const country = _.find( observation.places || [], p => p.admin_level === 0 );
     let dateTimeObserved = I18n.t( "unknown" );
     if ( observation.observed_on ) {
-      if ( observation.time_observed_at ) {
+      if ( observation.obscured && !observation.private_geojson ) {
+        dateTimeObserved = moment( observation.observed_on ).format( I18n.t( "momentjs.month_year" ) );
+      } else if ( observation.time_observed_at ) {
         dateTimeObserved = formattedDateTimeInTimeZone(
           observation.time_observed_at, observation.observed_time_zone
         );
@@ -497,12 +499,12 @@ class ObservationModal extends React.Component {
       >
         <div className="nav-buttons">
           { hidePrevNext ? null : (
-            <Button alt={I18n.t( "previous" )} className="nav-button" onClick={( ) => showPrevObservation( )}>
+            <Button alt={I18n.t( "previous_observation" )} className="nav-button" onClick={( ) => showPrevObservation( )}>
               &lsaquo;
             </Button>
           ) }
           { hidePrevNext ? null : (
-            <Button alt={I18n.t( "next" )} className="next nav-button" onClick={( ) => showNextObservation( )}>
+            <Button alt={I18n.t( "next_observation" )} className="next nav-button" onClick={( ) => showNextObservation( )}>
               &rsaquo;
             </Button>
           ) }
@@ -706,27 +708,35 @@ class ObservationModal extends React.Component {
                                   { " " }
                                   <span className="login">{ observation.user.login }</span>
                                 </a>
-                                <span className="separator">&bull;</span>
-                                <a
-                                  href={`/observations?user_id=${observation.user.login}&verifiable=any&place_id=any`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  <i className="fa fa-binoculars" />
-                                  { " " }
-                                  {
-                                    I18n.toNumber(
-                                      observation.user.observations_count,
-                                      { precision: 0 }
-                                    )
-                                  }
-                                </a>
+                                { !( observation.obscured && !observation.private_geojson ) && (
+                                  <span>
+                                    <span className="separator">&bull;</span>
+                                    <a
+                                      href={`/observations?user_id=${observation.user.login}&verifiable=any&place_id=any`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                    >
+                                      <i className="fa fa-binoculars" />
+                                      { " " }
+                                      {
+                                        I18n.toNumber(
+                                          observation.user.observations_count,
+                                          { precision: 0 }
+                                        )
+                                      }
+                                    </a>
+                                  </span>
+                                ) }
                               </li>
                             ) }
                             <li>
                               <i className="fa fa-calendar bullet-icon" />
                               { " " }
                               { dateTimeObserved }
+                              { observation.observed_on
+                                && observation.obscured
+                                && !observation.private_geojson
+                                && <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} /> }
                             </li>
                             <li>
                               <i className="fa fa-map-marker bullet-icon" />

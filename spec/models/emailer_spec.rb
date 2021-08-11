@@ -137,19 +137,6 @@ describe Emailer, "new_message" do
 
 end
 
-describe Emailer, "invite" do
-  it "should work" do
-    user = User.make!
-    address = "foo@bar.com"
-    params = {
-      :sender_name => "Admiral Akbar",
-      :personal_message => "it's a twap"
-    }
-    mail = Emailer.invite_user(address, params, user)
-    expect(mail.body).not_to be_blank
-  end
-end
-
 describe Emailer, "project_user_invitation" do
   it "should work if the sender no longer exists" do
     pui = ProjectUserInvitation.make!

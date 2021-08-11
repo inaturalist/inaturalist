@@ -445,33 +445,7 @@ class ApplicationController < ActionController::Base
       render_404
     end
   end
-  
-  def search_for_places
-    @q = params[:q].to_s.sanitize_encoding
-    if params[:limit]
-      @limit ||= params[:limit].to_i
-      @limit = 50 if @limit > 50
-    end
-    site_place = @site.place if @site
-    filters = [ { match: { display_name: { query: @q, operator: "and" } } } ]
-    inverse_filters = [ ]
-    if site_place
-      filters << { term: { ancestor_place_ids: site_place.id } }
-    end
-    if params[:with_geom].yesish?
-      filters << { exists: { field: "geometry_geojson" } }
-    elsif params[:with_geom].noish?
-      inverse_filters << { exists: { field: "geometry_geojson" } }
-    end
-    search_params = {
-      filters: filters,
-      inverse_filters: inverse_filters,
-      per_page: @limit, 
-      page: params[:page]
-    }
-    @places = Place.elastic_paginate(search_params)
-    Place.preload_associations(@places, :place_geometry_without_geom)
-  end
+
   
   # Get current_user's preferences, prefs in the session, or stash new prefs in the session
   def current_preferences(update_params = nil)

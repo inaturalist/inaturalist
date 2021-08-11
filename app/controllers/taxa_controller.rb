@@ -27,12 +27,12 @@ class TaxaController < ApplicationController
   before_action :authenticate_user!, :only => [:update_photos,
     :set_photos,
     :update_colors, :tag_flickr_photos, :tag_flickr_photos_from_observations,
-    :flickr_photos_tagged, :add_places, :synonyms]
+    :flickr_photos_tagged, :synonyms]
   before_action :curator_required, :only => [:new, :create, :edit, :update,
     :destroy, :curation, :refresh_wikipedia_summary, :merge, :synonyms, :graft]
   before_action :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :update_photos, :set_photos, :edit_colors,
-    :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
+    :update_colors, :refresh_wikipedia_summary, :merge, 
     :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details]
   before_action :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
@@ -816,50 +816,6 @@ class TaxaController < ApplicationController
       format.json { render json: @photos }
     end
   end
-  
-  def add_places
-    unless params[:tab].blank?
-      @places = case params[:tab]
-      when 'countries'
-        @countries = Place.where(place_type: Place::PLACE_TYPE_CODES["Country"]).order(:name)
-      when 'us_states'
-        if @us = Place.find_by_name("United States")
-          @us.children.order(:name)
-        else
-          []
-        end
-      else
-        []
-      end
-      
-      @listed_taxa = @taxon.listed_taxa.where(place_id: @places).
-        select("DISTINCT ON (place_id) listed_taxa.*")
-      @listed_taxa_by_place_id = @listed_taxa.index_by(&:place_id)
-      
-      render :partial => 'taxa/add_to_place_link', :collection => @places, :locals => {
-        :skip_map => true
-      }
-      return
-    end
-    
-    if request.post?
-      if params[:paste_places]
-        add_places_from_paste
-      else
-        add_places_from_search
-      end
-      respond_to do |format|
-        format.json do
-          @places.each_with_index do |place, i|
-            @places[i].html = view_context.render_in_format(:html, :partial => 'add_to_place_link', :object => place)
-          end
-          render :json => @places.to_json(:methods => [:html])
-        end
-      end
-      return
-    end
-    render :layout => false
-  end
 
   def map_layers
     render json: {
@@ -874,32 +830,6 @@ class TaxaController < ApplicationController
     respond_to do |format|
       format.html { render partial: "wikipedia_taxobox", object: @taxon }
     end
-  end
-
-  private
-  def add_places_from_paste
-    place_names = params[:paste_places].split(",").map{|p| p.strip.downcase}.reject(&:blank?)
-    @places = Place.where( admin_level: Place::COUNTRY_LEVEL ).where( "lower(name) IN (?)", place_names )
-    @listed_taxa = @places.map do |place| 
-      place.check_list.try(:add_taxon, @taxon, :user_id => current_user.id)
-    end.select{|p| p.valid?}
-    @listed_taxa_by_place_id = @listed_taxa.index_by{|lt| lt.place_id}
-  end
-  
-  def add_places_from_search
-    search_for_places
-    @listed_taxa = @taxon.listed_taxa.where(place_id: @places).
-      select("DISTINCT ON (place_id) listed_taxa.*")
-    @listed_taxa_by_place_id = @listed_taxa.index_by(&:place_id)
-  end
-  public
-  
-  def find_places
-    @limit = 5
-    @js_link = params[:js_link]
-    @partial = params[:partial]
-    search_for_places
-    render :layout => false
   end
   
   def update_photos
@@ -1669,6 +1599,7 @@ class TaxaController < ApplicationController
         if existing = @taxon.conservation_statuses.detect{|cs| cs.id == status["id"].to_i }
           cs_attrs = params[:taxon][:conservation_statuses_attributes][position].clone
           cs_attrs.delete(:_destroy)
+          %i[geoprivacy place_id].each {|k| cs_attrs[k] = nil if cs_attrs[k].blank? }
           existing.assign_attributes( cs_attrs )
           if existing.changed?
             params[:taxon][:conservation_statuses_attributes][position][:updater_id] = current_user.id

@@ -74,6 +74,11 @@ body > [role="dialog"] .ActivityItem {
     a {
       color: #999999;
     }
+    .geoprivacy-icon,
+    .icon-icn-location-obscured {
+      line-height: 1.3;
+      margin-right: 5px;
+    }
   }
   .panel-title {
     display: flex;

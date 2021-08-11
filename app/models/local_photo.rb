@@ -514,6 +514,29 @@ class LocalPhoto < Photo
     end
   end
 
+  def prune_odp_duplicates( options = { } )
+    return unless in_public_s3_bucket?
+    client = options[:s3_client] || LocalPhoto.new.s3_client
+    static_bucket = LocalPhoto.s3_bucket
+    # check the static bucket for files for this photo
+    s3_objects = client.list_objects( bucket: static_bucket, prefix: "photos/#{ id }/" )
+    images = s3_objects.contents
+    return unless images.any?
+    puts "deleting photo #{id} [#{images.size} files] from S3"
+    # delete the duplicates in the static bucket
+    client.delete_objects( bucket: static_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
+  end
+
+  def self.prune_odp_duplicates_batch( min_id, max_id )
+    s3_client = LocalPhoto.new.s3_client
+    LocalPhoto.
+      where( "id >= ?", min_id ).
+      where( "id < ?", max_id ).
+      find_each( batch_size: 100 ) do |lp|
+      lp.prune_odp_duplicates( s3_client: s3_client )
+    end
+  end
+
   private
 
   def self.move_to_appropriate_bucket( p )

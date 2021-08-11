@@ -42,6 +42,7 @@ module DarwinCore
       %w(decimalLatitude http://rs.tdwg.org/dwc/terms/decimalLatitude),
       %w(decimalLongitude http://rs.tdwg.org/dwc/terms/decimalLongitude),
       %w(coordinateUncertaintyInMeters http://rs.tdwg.org/dwc/terms/coordinateUncertaintyInMeters),
+      %w(geodeticDatum http://rs.tdwg.org/dwc/terms/geodeticDatum EPSG:4326),
       %w(countryCode http://rs.tdwg.org/dwc/terms/countryCode),
       %w(stateProvince http://rs.tdwg.org/dwc/terms/stateProvince),
       %w(identificationID http://rs.tdwg.org/dwc/terms/identificationID),
@@ -322,6 +323,10 @@ module DarwinCore
         else
           public_positional_accuracy
         end
+      end
+
+      def geodeticDatum
+        "EPSG:4326"
       end
 
       def countryCode

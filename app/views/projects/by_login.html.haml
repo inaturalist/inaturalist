@@ -20,11 +20,6 @@
     = will_paginate @project_users, param_name: "main_page"
   .col-xs-12.col-md-4
     .row
-    .col-xs-12.col-md-12
-      - if is_me?
-        .project_invitations_button
-          = link_to t( :manage_your_project_invitations ), project_invitations_path, class: "btn btn-default"
-    .row
       .col-xs-12.col-md-12
         .panel.panel-info.project_panel
           .panel-heading

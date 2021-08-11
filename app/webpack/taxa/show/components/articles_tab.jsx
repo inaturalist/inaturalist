@@ -4,7 +4,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
 
 const ArticlesTab = ( {
-  taxonId,
+  taxon,
   description,
   descriptionSource,
   descriptionSourceUrl,
@@ -68,7 +68,7 @@ const ArticlesTab = ( {
           </ul>
           { isCurator ? (
             <a
-              href={`/taxon_links/new?taxon_id=${taxonId}`}
+              href={`/taxon_links/new?taxon_id=${taxon.id}`}
               className="btn btn-primary btn-block"
             >
               <i className="icon-link" />
@@ -76,6 +76,36 @@ const ArticlesTab = ( {
               { I18n.t( "add_link" ) }
             </a>
           ) : null }
+          { taxon.rank === "species" && (
+            <div className="computer-vision-status">
+              <h2>{ I18n.t( "computer_vision_model" ) }</h2>
+              { taxon.vision ? (
+                <div>
+                  <h3>
+                    <span className="label label-success">
+                      <i className="icon-sparkly-label" />
+                      { " " }
+                      { I18n.t( "computer_vision_model_included" ) }
+                    </span>
+                  </h3>
+                  <p>
+                    { I18n.t( "computer_vision_model_included_desc" ) }
+                  </p>
+                </div>
+              ) : (
+                <div>
+                  <h3>
+                    <span className="label label-default">
+                      { I18n.t( "computer_vision_model_pending" ) }
+                    </span>
+                  </h3>
+                  <p>
+                    { I18n.t( "computer_vision_model_pending_desc" ) }
+                  </p>
+                </div>
+              ) }
+            </div>
+          ) }
         </Col>
       </Row>
     </Grid>
@@ -83,7 +113,7 @@ const ArticlesTab = ( {
 };
 
 ArticlesTab.propTypes = {
-  taxonId: PropTypes.number,
+  taxon: PropTypes.object.isRequired,
   description: PropTypes.string,
   descriptionSource: PropTypes.string,
   descriptionSourceUrl: PropTypes.string,

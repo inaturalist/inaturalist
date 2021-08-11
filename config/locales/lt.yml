@@ -79,6 +79,8 @@ lt:
     few: "%{count} neteisingos šios rūšies identifikacijos"
     many: "%{count} neteisingos šios rūšies identifikacijos"
     other: "%{count} neteisingos šios rūšies identifikacijos"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} neteisinga rūšies identifikacija šiame %{rank}"
     few: "%{count} neteisingos rušies identifikacijos šiame %{rank}"
@@ -319,7 +321,6 @@ lt:
   add_an_assessment: Pridėti įvertinimą
   add_an_identification: Pridėti identifikaciją
   add_an_observation: Pridėti stebėjimą
-  add_an_observation?: Pridėti stebėjimą?
   add_an_observation_of: "Pridėti %{taxon} stebėjimą"
   add_an_observation_to_project_html: Pridėti Stebėjima prie %{project}
   add_annotations_for_x: Pridėti papildomos informacijos apie "%{x}"
@@ -340,7 +341,6 @@ lt:
   add_comma_separated_tags: "Pridėti kableliais arskirtas žymes"
   add_comment: Pridėti komentarą
   add_conservation_status: Pridėti apsaugos statusą
-  add_countries: Pridėti šalis
   add_custom_project_fields: Pridėti pritaikytus projekto laukus
   add_edit_flags: Pridėti/Redaguoti žymes
   add_editor: Pridėti autorių
@@ -410,7 +410,6 @@ lt:
   add_to_favorites: Pridėti į mėgstamiausius
   add_to_list: Pridėti į sąrašą
   add_to_project: Pridėti į projektą
-  add_to_your_life_list: Pridėti į jūsų gyvenimo sąrašą!
   add_to_your_list: Pridėti į jūsų sąrašą
   add_your_email_to_get: |
     Pridėkite savo el. pašto adresą norėdami iš bendruomenės gauti atsiliepimą apie stebėjimą.
@@ -578,8 +577,6 @@ lt:
   all_updates: Visi Atnaujinimai
   all_your_observations_will_default_this_time_zone: Visi jūsų stebėjimai bus numatyti pagal šią laiko juostą, nebent nurodysite kitaip.
   all_your_observations_will_default_to_this_time_zone: Visi jūsų stebėjimai bus numatyti pagal šią laiko juostą, nebent nurodysite kitaip.
-  #Option to allow any taxa on a list
-  allow_any: leisti bet kuriuos
   allow_curator_access: Leisti kuratoriaus prieigą
   allow_project_curators_to_view_your_private_coordinates: Leisti projekto kuratoriams peržiūrėti privačias koordinates
   allowed_establish_means_values: Leidžiama nustatyti reikšmes
@@ -601,7 +598,15 @@ lt:
   announcement_was_successfully_created: Skelbimas buvo sėkmingai sukurtas.
   announcement_was_successfully_updated: Skelbimas buvo sėkmingai atnaujintas.
   announcements: Skelbimai
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: nesvarbu
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any_: Bet kuris
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: Bet koks
@@ -749,7 +754,6 @@ lt:
   avg: Vidurkis
   back: Atgal
   back_to_all_species: Atgal į visas rūšis
-  back_to_browsing_people: Atgal į žmonių naršymą
   back_to_calendar: "Atgal į %{user} kalendorių"
   back_to_editing_observation: Grįžti prie stebėjimo redagavimo
   back_to_friends: Grįžti prie draugų
@@ -783,6 +787,7 @@ lt:
     Ar gali būti patvirtintas ar patobulintas bendruomenės taksonas, remiantis įrodymais?
   batch: Grupė
   batch_edit: Redaguoti grupę
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Grupinis taksonų redagavimas %{x}"
   batch_operations: Grupinės operacijos
   be_the_first_to_fave_this_observation: Pirmasis pamėk šį stebėjimą!
@@ -911,10 +916,8 @@ lt:
   check_list_place: "%{place} Kontrolinis Sąrašas"
   check_list_updated: Kontrolinis sąrašas atnaujintas!
   check_lists_for: "Kiti %{place} Kontroliniai Sąrašai"
-  check_out_my_observations_at: Jei norite, mano stebėjimus galite rasti
   check_out_our_blog: Apsilankykite mūsų tinklaraštyje
   check_out_what_the_observation: Patikrinkite kaip atrodo stebėjimas, kurį bandote įdentifikuoti.
-  check_out_your_new_and_improved_list_list: Peržiūrėkite savo naują ir patobulintą "Life List"!
   checklist: Kontrolinis sąrašas
   choose_a_field: Pasirinkite lauką
   choose_a_list_above: Pasirinkite sąrašą viršuje.
@@ -1092,7 +1095,6 @@ lt:
   couldnt_change_your_password: "Negalima pakeisti jūsų slaptažodžio: %{e}"
   couldnt_find_a_user_matching_x_param: "Nepavyko rasti vartotojo atitinkančio %{id}"
   couldnt_find_that_taxon: Taksonas nerastas
-  countries: Šalys
   create: Kurti
   create_a_guide: Kurti gidą
   create_a_new_field: Kurti naują lauką
@@ -1170,7 +1172,9 @@ lt:
   date_picker:
     closeText: Uždaryti
     currentText: Šiandien
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Ankst.
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Kitas
     range: Periodas
   date_range: Periodas
@@ -1261,7 +1265,6 @@ lt:
   devise_reset_password_instructions_your_password_wont_change_until: |
     Jūsų slaptažodis nepasikeis tol, kol nesukursite naujo paspausite aukščiau esančią nuorodą.
   discoveries: Atradimai
-  did_not_send_invitations_because: Nesiuntė pakvietimų šiems, nes...
   did_you_mean: 'Ar turėjote omenyje'
   did_you_photos_flickr?: Ar įkėlėte nuotraukų į Flickr?
   disable: Išjungti
@@ -1294,7 +1297,6 @@ lt:
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: Įmesti
-  double_click_to_finish: (dukart spustelėkite, kad baigtumėte)
   download: Atsisiųsti
   download_bulk_import_template_html: |
     <a href="%{url}">Atsisiųskite šabloną</a> <a href="/observations/import?project_id=%{project_id}#csv_import"> masinio įkėlėjo</a> naudojimui
@@ -1372,9 +1374,7 @@ lt:
   either_that_user_doesnt_exist_or: "Arba šis vartotojas neegzistuoja arba jūs jau jį sekate."
   eligible_for_research_grade: Tinkamas identifikavimui
   email: El. paštas
-  email_addresses_description: El. pašto adresai, atskirti kableliais, limitas - 60 kas 30 dienų.
   email_address_for_comments_and_other_feedback: El. pašto adresai komentarams ir kitiems atsiliepimams.
-  email_addresses_to_receive_invites: El. pašto adresai pakvietimams gauti
   email_copyright: "Autorinės teisės &copy; %{x}, visos teisės saugomos"
   email_notifications: El. pašto pranešimai
   email_settings: El. pašto nustatymai
@@ -1490,7 +1490,6 @@ lt:
   first_confirmed_inat_observation: "Pirmas patvirtintas %{site_name} stebėjimas"
   first_connect_your_provider_account_to_your_site: "Pirma prijunkite savo %{provider} paskyrą prie %{site_name}:"
   first_inat_observation: "Pirmas %{site_name} stebėjimas"
-  first_observation: Pirmasis stebėjimas
   first_observer: Pirmas stebėtojas
   #Verb form, as in "Flag this item"
   flag: Pažymėti
@@ -1562,7 +1561,6 @@ lt:
   follow: Sekti
   follow_receive_updates_about_new_observations: Sekti (gauti naujienas apie naujus stebėjimus)
   follow_user: "Sekti %{user}"
-  followed_projects: Sekami projektai
   followers: Sekėjai
   following: sekama
   following_x_people:
@@ -1610,7 +1608,6 @@ lt:
   geoprivacy_is_private_desc: Stebėtojas koordinates padarė privačiomis.
   get_started: Pradėti
   getting_started_guide: Darbo Pradžios Vadovas
-  give_it_some_detail: Pridėkite informacijos!
   #Prompt to donate money on a montly basis
   give_monthly_caps: AUKOTI KARTĄ PER MĖNESĮ
   #Prompt to donate money once
@@ -1667,7 +1664,6 @@ lt:
   here_are_3_examples: Štai 3 gerai suformuotų duomenų pavyzdžiai
   here_are_our_top_species_suggestions: Čia yra mūsų top rūšies pasiūlymai
   hex_color_eg: Hex spalva, pvz., 65644F
-  hi: Labas,
   hi_user: "Labas, %{user}"
   #Verb, usually a button to hide an interface element
   hide: Paslėpti
@@ -1769,12 +1765,8 @@ lt:
   introduced_in_place: "Introdukuotas vietovėje: %{place}"
   invitation: Kvietimas
   invite: pakviesti
-  invite_more: Pakviesti daugiau
   invite_people: Pakviesti žmonių
   invite_people_to_project: "Pakviesti žmonių į %{project}"
-  invite_someone_to: "Pakvieskite ka nors į %{name}!"
-  invite_your_friends: Pakviesk savo draugus
-  invite_your_friends_description: "Padėkite paversti %{site_name} didesne ir geresne bendruomene pakviesdami savo draugus prisijungti!"
   #Type of project where people can only join after they have been invited
   inviteonly: tik su pakvietimais
   invited_x: "Pakviestas %{x}"
@@ -1898,9 +1890,6 @@ lt:
   licensing_your_content_gives_others_legal: "Jūsų turinio licencijavimas suteikia juridinę teisę kitiems jį naudoti, jei jie laikysis licencijos sąlygų. %{site_name} naudoja jūsų Creative Commons licencijuotą turinį pasidalinti su duomenų partneriais, pavyzdžiui "
   life: Gyvybė
   life_list: "%{user} gyvenimo sąrašas"
-  life_list_updated: Gyvenimo sąrašas atnaujintas!
-  life_list_updated_we_also_saved_a: Gyvenimo sąrašas atnaujintas! Mes taip pat išsaugojome tuščią šio taksono stebėjimą.
-  life_lists_automatically_fill: 'Gyvenimo sąrašas automatiškai pasipildo naujais taksonai, kai įkeliate jų stebėjimus. Jis gali būti apribotas kokiu nors taksonu, pvz.: varninių šeimos (Corvidae) gyvenimo sąrašas.'
   linear_scale_label: Linijinis
   link: Nuoroda
   link_or_unlink_your_facebook_account: Susiekite arba atsiekite savo Facebook paskyrą
@@ -1923,7 +1912,6 @@ lt:
   linkedin: LinkedIn
   list: Sąrašas
   list_deleted: Sąrašas ištrintas.
-  list_rules_reapplied: Sąrašo taisyklės atnaujintos
   list_saved: Sąrašas išsaugotas.
   list_tooltip: Rodyti sąraše
   list_updated: Sąrašas atnaujintas!
@@ -2034,7 +2022,6 @@ lt:
   main_content_description: Čia patenka pagrindinis turinys
   make_a_new_place: Sukurti naują vietą
   make_curator: Padaryti kuratoriumi
-  make_it_a_life_list?: Padaryti tai gyvenimo sąrašu?
   make_manager: Padaryti valdytoju
   make_sure_the_default_photo_looks_good: Įsitikinkite, kad numatytoji nuotrauka gerai atrodo išdidinta.
   mammals: žinduoliai
@@ -2251,7 +2238,6 @@ lt:
   'no': 'Ne'
   no_but_it_is_a_member_of_taxon: "Ne, bet tai yra %{taxon} narys"
   no_comments_yet: Dar nėra komentarų.
-  no_countries_added_yet: Dar nepridėta jokia šalis
   no_creative_commons_flickr_photos_tagged_x: 'Nepažymėta jokių Creative Commons Flickr nuotraukų „%{x}“'
   no_curators_set: Nėra nustatytų kuratorių
   no_curators_yet: Dar nėra kuratorių!
@@ -2308,7 +2294,6 @@ lt:
   no_results_for: 'Jokių rezultatų '
   no_results_matching: Atitinkančių rezultatų nerasta
   no_species_have_been_listed: Dar jokia rūšis nebuvo įtraukta į šios vietos rūšių sąrašą!
-  no_species_observed: Nebuvo stebėta jokių rūšių
   no_species_on_this_list: Šiame sąraše dar nėra rūšių!
   no_subject_parens: "(Nėra temos)"
   no_suggestions_available: Nėra pasiūlymų
@@ -2350,7 +2335,6 @@ lt:
   obscured_or_private: paslėptas arba privatus
   observation: Stebėjimas
   observation_: stebėjimas
-  observation_added: Stebėjimas pridėtas.
   observation_added_to_the_project: "Stebėjimas pridėtas prie šio projekto \"%{project}\""
   observation_brief_something_on_day: "Kažkas %{day}"
   observation_brief_something_on_day_at_time: "Kažkas %{day} %{time}"
@@ -2381,7 +2365,6 @@ lt:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     pvz.: 2019-10-29 13:12:21
-  observed_on_datetime: Stebėta %{datetime}
   observation_requirements: Stebėjimų reikalavimai
   observation_rules: Stebėjimų taisyklės
   observation_was_deleted: Stebėjimas buvo ištrintas.
@@ -2419,10 +2402,6 @@ lt:
   observer_short: Stebėtojas
   occurrence_status_descriptions:
     absent: Neaptinkamas šioje vietoje
-  of_observations: stebėjimai
-  of_species: rūšys
-  of_observers: stebėtojai
-  of_identifiers: identifikuotojai
   of_places: vietos
   of_this_taxon: Šio taksono
   offensive_inappropriate: Įžeidžiantis / Nepriimtinas
@@ -2443,7 +2422,6 @@ lt:
   only_show_active_taxa: Rodyti tik aktyvius taksonus
   only_show_events_that_last_less_than_2_weeks: Rodyti tik tuos įvykius, kurie trunka trumpiau nei 2 savaites
   only_show_taxa_fom_this_list: "Rodyti taksonus tik iš šio sąrašo"
-  only_species: tik rūšys
   only_you: Tik jūs
   open: atviras
   open_: Atviras
@@ -2496,7 +2474,6 @@ lt:
   password: Slaptažodis
   password_confirmation: 'Slaptažodis (patvirtinimas)'
   paste: Įklijuoti
-  paste_in_a_comma_separated_list: Įklijuokite sąrašą šalių, askirtų kableliais
   people: Žmonės
   people_following_user: "Žmonės sekantis %{user}"
   people_user_follows: "Žmonės %{user} seka"
@@ -2515,8 +2492,6 @@ lt:
   per_month: Per Mėnesį
   per_week: Per Savaitę
   person: Asmuo
-  personal_message: Asmeninė žinutė
-  personal_message_description: Niekam nepatinka, kai jiems rašo kompiuteris! Geriau pakvieskite draugus asmeniškai!
   per_page: "Puslapyje"
   photo: Nuotrauka
   photo_attribution: "%{attribution} nuotrauka"
@@ -2965,10 +2940,7 @@ lt:
   preview: Peržiūra
   preview_observations_with_these_observation_requirements: Peržiūrėti stebėjimus su šiais stebėjimų reikalavimais
   preview_of_synced_observation: "Sinchronizuoto stebėjimo <strong>Peržiūra</strong>. <a href=\"%{url}\">Anuliuoti?</a>"
-  preview_personal_message: "Noriu, kad prie manes prisijungtum tinklalapyje %{site}, kuriame gali registruoti savo augalų ir gyvūnų stebėjimus bei sužinoti daugiau apie gamtą!"
-  preview_your_message: Peržiūrėti savo žinutę
   previewing: "Peržiūrima..."
-  previous: Ankstesnis
   prev: Ankst.
   previous_observation: Ankstesnis stebėjimas
   previous_page: Anstesnis puslapis
@@ -3022,7 +2994,6 @@ lt:
   project_was_successfully_updated: Projektas atnaujintas sėkmingai.
   project_x_was_delete: "%{project} ištrintas (palaukite kelias minutes, kad šis projektas būtų panaikintas iš tinklalapio)"
   projects: Projektai
-  projects_from_everywhere: Projektai iš visur
   projects_from_place: "Projektai iš %{place}"
   projects_in_x: "Projektai vietovėje: %{x}"
   #"admins" is equivalent to "administrates"
@@ -3045,7 +3016,6 @@ lt:
   range: Ribos
   rank: Rangas
   rank_position: Rangas
-  rank_restrictions: Rango apribojimai
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
@@ -3211,7 +3181,6 @@ lt:
   restart: Paleisti iš naujo
   restore: Atkurti
   restoring: Atkuriama...
-  results: rezultatai
   review_all: Peržiūrėti viską
   reviewed: Peržiūrėtas
   rg_observations: ID stebėjimai
@@ -3259,7 +3228,6 @@ lt:
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: Mokslinis pavadinimas
   search: Paieška
-  search_by_name: Paieška pagal pavadinimą
   search_by_name_or_email: Ieškoti pagal vardą arba el. pašto adresą
   search_by_taxon_name_or_observation_id: Ieškoti pagal taksono pavadinimą arba stebėjimo ID
   search_by_taxon_name_or_flickr_photo_id: Ieškoti pagal taksono pavadinimą arba Flickr ID
@@ -3280,12 +3248,10 @@ lt:
   search_your_photos: Ieškoti tarp jūsų nuotraukų
   searching: "Ieškoma..."
   seasonality: Sezoniškumas
-  second_person_possessive_plural: "Jūsų %{noun}"
   second_person_possessive_singular: "Jūsų %{noun}"
   see_something_wrong_with_taxon: Kažkas negerai su šiuo taksonu? Praneškite kuratoriams.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
-  seen_it?: Matėte?
   seen_nearby: Pastebėtas netoliese
   seen_one: Matėte?]
   select: Pasirinkite
@@ -3299,15 +3265,12 @@ lt:
   select_options: Pažymėkite pasirinkimus
   select_photos_from_your_photo_stream: |
     Pasirinkite nuotraukas iš išorinio nuotraukų dalinimosi puslapio, skirtas paversti %{site_name} stebėjimais. Mes užpildysime datą, laiką ir vietovę iš nuotraukų metaduomenų ir bandysime aptikti rūšių pavadinimus žymose.
-  select_photos_to_display: Pasirinkti nuotraukas rodymui
   selected: pasirinkta
   selected_photos: Pasirinktos nuotraukos
   selected_taxon: Pasirinktas taksonas
   select_this_taxon: Rinktis šį taksoną
   send: siųsti
-  send_invites_to: Siųsti kvietimus
   send_me_reset_password_instructions: Atsiųskite man slaptažodžio atstatymo instrukciją
-  send_the_invites: Siųsti kvietimus
   sending: Siunčiama...
   #Label for messages you've sent
   sent: Išsiųsta
@@ -3319,12 +3282,10 @@ lt:
   show: Rodyti
   show_active_and_inactive_taxa: Rodyti aktyvius ir neaktyvius taksonus
   show_common_names: Rodyti lietuviškus pavadinimus
-  show_default_taxon_photos: rodyti numatytas taksono nuotraukas
   show_hidden_content: Rodyti paslėptą turinį
   show_keyboard_shortcuts: Rodyti spračiuosius klavišus
   show_less: Rodyti mažiau
   show_more: Rodyti daugiau
-  show_observation_photos: rodyti stebėjimo nuotraukas
   show_off_your_recent_observations: Parodykite savo naujausius stebėjimus savo tinklaraštyje ar tinklalapyje!
   show_only: Rodyti tik
   show_scientific_name_first: Pirmiausia rodyti mokslinius pavadinimus
@@ -3382,7 +3343,6 @@ lt:
   sorry_we_didnt_find_that_photo: "Atsiprašome, šios nuotraukos neradome."
   sorry_x_is_not_responding: "Atsiprašome, %{x} neatsako. Prašome bandyti vėliau."
   sorry_you_can_only_add_1000_at_a_time: "Atsiprašome, vienu metu galite pridėti tik 1000."
-  sorry_you_cant_delete_your_own_life_list: "Atsiprašome, galite ištrinti tik savo gyvenimo sąrašą."
   sort: Rūšiuoti
   sort_by: Rūšiuoti pagal
   sorting_by: Rūšiuojama pagal
@@ -3705,15 +3665,9 @@ lt:
   these_folks_kindly_volunteer_to: Šie žmonės be atlygio prižiūri mūsų taksonomiją ir sprendžia kitas problemas.
   these_observations_have_not_been_uploaded_yet: |
     Šie stebėjimai dar nebuvo įkelti
-  they_already_have_iNat_accounts: "...jie jau turi %{site_name} paskyras"
-  they_have_been_invited: ...jie jau buvo pakviesti
   third_person_possessive_singular: "%{object_phrase} %{noun}"
-  third_person_possessive_plural: "%{object_phrase} %{noun}"
   this: šis
   this_bioblitz_beings_in: Šis bioblicas prasidės
-  this_is_a_life_list_of: Tai yra gyvenimo sąrašas
-  this_is_a_life_list_from_place_html: "Tai yra gyvenimo sąrašas iš %{place}"
-  this_is_a_life_list_of_taxon_in_place: "Tai yra %{taxon} gyvenimo sąrašas iš %{place}"
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     Tai patogesnis būdas rasti taksono ID. Tai taksono ID, kuris iš tikrųjų yra išsaugojamas. Ši paieška veikia tik su aktyviais taksonais.
   this_is_taking_forever: Tai trunka per ilgai. Prašome bandyti vėliau.
@@ -3751,24 +3705,19 @@ lt:
   to_add_comments: pridėti komentarų
   to_add_ids: pridėti ID
   to_configure_your_widget: configuruoti jūsų valdiklį.
-  to_suggest_an_identification: pasiūlyti identifikaciją
   today: Šiandien
   too_many_results: Per daug rezultatų
   tools: Įrankiai
   top_contributors: Daugiausiai prisidėję
-  top_identifier: Top identifikuotojas
   top_identifiers: Top identifikuotojai
   top_identifiers_of_taxon: 'Top identifikuotojai taksono: %{taxon}'
-  top_observer: Top stebėtojas
   top_observers: Top stebėtojai
-  top_species: Top rūšys
   tos_privacy_guidelines_label: |
     Sutinku su <a href="/terms" target="_blank">Paslaugų teikimo sąlygomis</a> ir <a href="/privacy" target="_blank">Privatumo politika</a>, susipažinau su <a href="/pages/community+guidelines" target="_blank">Bendruomenės gairėmis</a>.
   total: Iš viso
   totals: iš viso
   total_members: Iš viso narių
   total_observations: Visi stebėjimai
-  total_species_observed: Iš viso rūšių stebėta
   total_unique_observers: Iš viso skirtingų stebėtojų
   translated_languages: Išverstos kalbos
   'true': 'Taip'
@@ -3848,7 +3797,6 @@ lt:
     few: Įkeliamos %{num} iš %{count} nuotraukos...
     many: Įkeliamos %{num} iš %{count} nuotraukos...
     other: Įkeliamos %{num} iš %{count} nuotraukos...
-  US_states: JAV valstijos
   usage_stats: Naudojimo statistika
   use_name_as_a_placeholder: |
     Naudoti <span class='ac-placeholder'>„%{name}“</span> kaip užpildą
@@ -4020,9 +3968,10 @@ lt:
   welcome_to_inat: "Sveiki atvykę į %{site_name}!"
   welcome_to_guides: "Sveiki atvykę į %{site_name} vadovus!"
   welcome_to_x_project: "Sveiki atvykę į %{project}"
-  #Label for the most probable taxon in the automated suggestions. @gender
-  #should work here. %{rank} is usually genus or a higher-level rank like
-  #family
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: Mes įsitikinę, kad šis organizmas priklauso %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Atsiprašome, tačiau grupinis %{filename} importas nepavyko."
   what: Kas
@@ -4035,8 +3984,6 @@ lt:
   when_did_you_see_it?: Kada tai pamatėte?
   when_did_you_see_them?: <em>Kada</em> juos pamatėte?
   where: Kur
-  where_do_x_live: Kur gyvena %{taxa}?
-  where_does_x_live: Kur gyvena %{taxa}?
   where_were_they?: Kur jie?
   where_were_you?: Kur buvote?
   white: balta
@@ -4130,7 +4077,6 @@ lt:
   you_dont_have_permission_to_edit_that_project: Jūs neturite leidimo redaguoti šį projektą.
   you_faved_this: Jūs tai pamėgote!
   you_have_left_x_project: "Jūs palikote %{project}"
-  you_havent_joined_any_projects: Jūs neprisijungėte prie jokių projektų
   you_joined_this_project: Prisijungėte prie šio projekto!
   you_need_to_select_some_observations_first: Pirma turite pasirinkti stebėjimus.
   you_sure_delete_check_list: "Ar tikrai norite tai ištrinti? Gali būti, jog žmonės į tai įdėjo daug darbo..."
@@ -4782,23 +4728,6 @@ lt:
       submit: Išsaugoti %{model}
       update: Atnaujinti %{model}
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: ' '
-        format: '%u%n'
-        precision: 2
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: ','
-        significant: false
-        strip_insignificant_zeros: false
-        unit: '$'
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as

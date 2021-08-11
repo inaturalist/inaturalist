@@ -138,6 +138,8 @@ Rails.application.routes.draw do
     post "session", :to => "users/sessions#create"
     get "signup", :to => "users/registrations#new"
     get "users/new", to: redirect( "signup" ), as: "new_user"
+    # This *should* be a redirect, but that is messing with the way we're doing
+    # get "/forgot_password", to: redirect( "/users/password/new" ), as: "forgot_password"
     get "/forgot_password", :to => "devise/passwords#new", :as => "forgot_password"
     put "users/update_session", :to => "users#update_session"
   end
@@ -193,7 +195,6 @@ Rails.application.routes.draw do
   # resources :passwords
   resources :people, :controller => :users, :except => [:create] do
     collection do
-      get :search
       get 'leaderboard(/:year(/:month))' => :leaderboard, :as => 'leaderboard_for'
     end
     member do
@@ -395,8 +396,6 @@ Rails.application.routes.draw do
     resources :flags
   end
   get 'comments/user/:login' => 'comments#user', :as => :comments_by_login, :constraints => { :login => simplified_login_regex }
-  resources :project_invitations, :except => [:index, :show]
-  post 'project_invitation/:id/accept' => 'project_invitations#accept', :as => :accept_project_invitation
   resources :taxon_photos, constraints: { id: id_param_pattern }, only: [:new, :create]
   get 'taxa/names' => 'taxon_names#index'
   resources :taxa, constraints: { id: id_param_pattern } do
@@ -434,7 +433,6 @@ Rails.application.routes.draw do
   get 'taxa/:id/children.:format' => 'taxa#children', :as => :formatted_taxon_children
   get 'taxa/:id/photos' => 'taxa#photos', as: :photos_of_taxon
   put 'taxa/:id/update_colors' => 'taxa#update_colors', :as => :update_taxon_colors
-  match 'taxa/:id/add_places' => 'taxa#add_places', :as => :add_taxon_places, :via => [:get, :post]
   get 'taxa/flickr_tagger' => 'taxa#flickr_tagger', :as => :flickr_tagger
   get 'taxa/flickr_tagger.:format' => 'taxa#flickr_tagger', :as => :formatted_flickr_tagger
   post 'taxa/tag_flickr_photos'
@@ -500,8 +498,6 @@ Rails.application.routes.draw do
   get 'identifications/bold' => 'identifications#bold'
   post 'identifications/agree' => 'identifications#agree'
   get 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }
-  get 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
-  post 'emailer/invite/send' => 'emailer#invite_send', :as => :emailer_invite_send
   resources :taxon_links
   
   get 'places/:id/widget' => 'places#widget', :as => :place_widget
@@ -517,6 +513,7 @@ Rails.application.routes.draw do
   get 'places/autocomplete' => 'places#autocomplete', :as => :places_autocomplete
   get 'places/wikipedia/:id' => 'places#wikipedia', :as => :places_wikipedia
   resources :places do
+    resources :flags
     collection do
       get :planner
     end

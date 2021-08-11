@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 13.0
--- Dumped by pg_dump version 13.0
+-- Dumped from database version 13.2
+-- Dumped by pg_dump version 13.2
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1968,38 +1968,6 @@ CREATE SEQUENCE public.identifications_id_seq
 --
 
 ALTER SEQUENCE public.identifications_id_seq OWNED BY public.identifications.id;
-
-
---
--- Name: invites; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.invites (
-    id integer NOT NULL,
-    user_id integer,
-    invite_address character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: invites_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.invites_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: invites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.invites_id_seq OWNED BY public.invites.id;
 
 
 --
@@ -5032,7 +5000,8 @@ CREATE TABLE public.users (
     species_count integer DEFAULT 0,
     locked_at timestamp without time zone,
     failed_attempts integer DEFAULT 0,
-    unlock_token character varying
+    unlock_token character varying,
+    oauth_application_id integer
 );
 
 
@@ -5591,13 +5560,6 @@ ALTER TABLE ONLY public.guides ALTER COLUMN id SET DEFAULT nextval('public.guide
 --
 
 ALTER TABLE ONLY public.identifications ALTER COLUMN id SET DEFAULT nextval('public.identifications_id_seq'::regclass);
-
-
---
--- Name: invites id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.invites ALTER COLUMN id SET DEFAULT nextval('public.invites_id_seq'::regclass);
 
 
 --
@@ -6519,14 +6481,6 @@ ALTER TABLE ONLY public.guides
 
 ALTER TABLE ONLY public.identifications
     ADD CONSTRAINT identifications_pkey PRIMARY KEY (id);
-
-
---
--- Name: invites invites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.invites
-    ADD CONSTRAINT invites_pkey PRIMARY KEY (id);
 
 
 --
@@ -9430,6 +9384,13 @@ CREATE INDEX index_users_on_lower_login ON public.users USING btree (lower((logi
 
 
 --
+-- Name: index_users_on_oauth_application_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_oauth_application_id ON public.users USING btree (oauth_application_id);
+
+
+--
 -- Name: index_users_on_observations_count; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10459,4 +10420,8 @@ INSERT INTO schema_migrations (version) VALUES ('20210220195556');
 INSERT INTO schema_migrations (version) VALUES ('20210305235042');
 
 INSERT INTO schema_migrations (version) VALUES ('20210408221535');
+
+INSERT INTO schema_migrations (version) VALUES ('20210625223935');
+
+INSERT INTO schema_migrations (version) VALUES ('20210630004545');
 
