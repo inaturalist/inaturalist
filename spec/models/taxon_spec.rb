@@ -914,15 +914,6 @@ describe Taxon, "merging" do
     s.reload
     expect(s.resource).to eq(o)
   end
-
-  it "should work with denormalized ancestries" do
-    AncestryDenormalizer.truncate
-    expect(TaxonAncestor.count).to eq 0
-    AncestryDenormalizer.denormalize
-    expect {
-      @keeper.merge(@reject)
-    }.not_to raise_error
-  end
 end
 
 describe Taxon, "moving" do

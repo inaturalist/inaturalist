@@ -20,7 +20,6 @@ describe ControlledTerm do
   
     describe "for_taxon" do
       it "returns terms for taxa and their ancestors" do
-        AncestryDenormalizer.denormalize
         ControlledTerm.make!
         [mammalia, primates, plantae].each do |t|
           ControlledTermTaxon.make!( taxon: t )

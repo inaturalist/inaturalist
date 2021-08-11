@@ -537,7 +537,6 @@ describe TaxonSwap, "commit_records" do
   end
 
   it "should log listed taxa if taxon changed" do
-    AncestryDenormalizer.denormalize
     @user = User.make!
     atlas_place = make_place_with_geom(admin_level: 0)
     atlas = Atlas.make!(user: @user, taxon: @input_taxon, is_active: false)

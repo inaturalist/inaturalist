@@ -279,7 +279,6 @@ module MakeHelpers
     taxon = options[:taxon]
     presence_place = options.delete(:place) || make_place_with_geom( place_type: Place::COUNTRY, admin_level: Place::COUNTRY_LEVEL )
     listed_taxon = presence_place.check_list.add_taxon( taxon )
-    AncestryDenormalizer.denormalize
     PlaceDenormalizer.denormalize
     Atlas.make!( options )
   end

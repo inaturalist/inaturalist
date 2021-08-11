@@ -24,7 +24,6 @@ describe AtlasesController do
     
     it "should destroy a listing if one does exist" do
       expect( taxon ).not_to be_blank
-      AncestryDenormalizer.denormalize
       check_list = List.find( place.check_list_id )
       check_listed_taxon = check_list.add_taxon( taxon )
       sign_in user
@@ -53,7 +52,6 @@ describe AtlasesController do
       comprehensive_list = place.check_lists.create!( taxon: genus, user: user, comprehensive: true )
       lt = comprehensive_list.add_taxon( taxon )
       comprehensive_list.place.check_list.add_taxon( taxon )
-      AncestryDenormalizer.denormalize
       sign_in user
       post :alter_atlas_presence, format: :json, id: atlas.id, taxon_id: taxon.id, place_id: place.id
       lt = ListedTaxon.where( taxon_id: taxon.id, place_id: place.id, list_id: comprehensive_list.id ).first
