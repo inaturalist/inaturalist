@@ -186,15 +186,28 @@ class TaxonAutocomplete extends React.Component {
         if ( isVisionResults ) {
           if ( item.isCommonAncestor ) {
             const snakeCaseRank = _.snakeCase( item.rank );
+            // Note: given the way we're doing fallbacks as of this writing on
+            // 2021-08-10, `defaultValue` only kicks in when the key doesn't
+            // exist in the current locale or any of the fallbacks... so if
+            // there's an English translation, that will be used instead of
+            // `defaultValue`. Here I'm achieving the desired behavior
+            // manually, but this is a problem with our fallback system, b/c
+            // this is *not* how defaultValue is supposed to work.
             // I18n.t( "were_pretty_sure_this_is_in_the_genus" )
             // I18n.t( "were_pretty_sure_this_is_in_the_family" )
             // I18n.t( "were_pretty_sure_this_is_in_the_order" )
-            const label = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, {
-              defaultValue: I18n.t( "were_pretty_sure_this_is_in_the_rank", {
-                rank: I18n.t( `ranks_lowercase_${snakeCaseRank}`, { defaultValue: item.rank } ),
-                gender: snakeCaseRank
-              } )
+            const labelInEnglish = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, { locale: "en" } );
+            const labelInLocaleFallback = I18n.t( "were_pretty_sure_this_is_in_the_rank", {
+              rank: I18n.t( `ranks_lowercase_${snakeCaseRank}`, { defaultValue: item.rank } ),
+              gender: snakeCaseRank
             } );
+            const labelInLocale = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, {
+              defaultValue: labelInLocaleFallback
+            } );
+            let label = labelInLocale;
+            if ( I18n.locale !== "en" && label === labelInEnglish ) {
+              label = labelInLocaleFallback;
+            }
             ul.append( `<li class='category header-category non-option'>${label}</li>` );
             commonAncestorCategoryShown = true;
           } else if ( !suggestionsCategoryShown ) {
