@@ -1657,6 +1657,8 @@ ca:
   flag_for_observation_title_html: |
     Marqueu per a l'Observació: %{title}
   flag_for_photo_id_html: Marqueu per a <a href="%{url}">Fotografia %{id}</a>
+  flag_for_place_title_html: |
+    Marca pel lloc: %{title}
   flag_for_post_title_html: |
     Marqueu per a l'Entrada: %{title}
   flag_for_project_title_html: |
@@ -1677,6 +1679,7 @@ ca:
   flag_saved_thanks_html: Marca desada. Gràcies! <a href="%{url}" class="readmore">Veure la marca</a>
   flag_this_observation: Marca aquesta observació
   flag_this_photo: Marca aquesta foto
+  flag_this_place: Marqueu aquest lloc
   flag_this_sound: Marqueu aquest só
   flagged: marcat
   flagged_: Marcat
@@ -2053,6 +2056,7 @@ ca:
     scientific_names: Noms científics
     afrikaans: Afrikaans
     albanian: Albanès
+    belarusian: Bielorús
     bengali: Bengalí
     catalan: Català
     cebuano: Cebuà
@@ -2162,6 +2166,7 @@ ca:
   locales_: Locals
   locales:
     ar: Àrab
+    be: Bielorús
     bg: Búlgar
     br: Bretó
     ca: Català
@@ -4745,6 +4750,16 @@ ca:
   welcome_to_inat: "Benvingut a %{site_name}!"
   welcome_to_guides: "Benvingut a les Guies de %{site_name}!"
   welcome_to_x_project: "Benvingut al projecte %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Estem prou segurs que està en el gènere
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Estem força segurs que està en la família
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: 'Estem força segurs que està en l''ordre:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: 'Estem força segurs que està en la subfamília:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: 'Estem força segurs que està en la superfamília:'
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
