@@ -1096,9 +1096,7 @@ describe Taxon, "moving" do
     g_obs_es = Observation.elastic_search( where: { id: g_ident.observation_id } ).results.results.first
     s_obs_es = Observation.elastic_search( where: { id: s_ident.observation_id } ).results.results.first
     expect( g_obs_es.taxon.ancestor_ids ).to include @Hylidae.id
-    # TODO: there seems to be a data inconsistency here -
-    #    the obs index for descendants of the moved taxon don't have updated ancestries
-    # expect( s_obs_es.taxon.ancestor_ids ).to include @Hylidae.id
+    expect( s_obs_es.taxon.ancestor_ids ).to include @Hylidae.id
   end
 
   # This is a sanity spec written while trying to investigate claims that adding

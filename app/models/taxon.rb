@@ -669,7 +669,13 @@ class Taxon < ActiveRecord::Base
       "updater_id",
       "updated_at"
     ] ).empty?
-    Observation.elastic_index!( scope: observations.select( :id ), delay: true )
+    if changes[:ancestry]
+      # using Taxon.find since the ancestry gem uses the before save
+      # ancestry and descendants' ancestries have already been updated
+      Observation.elastic_index!( scope: Observation.of( Taxon.find( id ) ), delay: true )
+    else
+      Observation.elastic_index!( scope: observations.select( :id ), delay: true )
+    end
   end
 
   def normalize_rank
