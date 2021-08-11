@@ -1679,6 +1679,8 @@ es-MX:
   flag_for_observation_title_html: |
     Marca para la observación: %{title}
   flag_for_photo_id_html: Marcar <a href="%{url}">Foto %{id}</a>
+  flag_for_place_title_html: |
+    Advertencia para Lugar: %{title}
   flag_for_post_title_html: |
     Marcar la entrada: %{title}
   flag_for_project_title_html: |
@@ -1699,6 +1701,7 @@ es-MX:
   flag_saved_thanks_html: Advertencia guardada. ¡Gracias! <a href="%{url}" class="readmore">Ver advertencia</a>
   flag_this_observation: Incluye una advertencia en esta observación
   flag_this_photo: Alerta para esta foto
+  flag_this_place: Advertir de este lugar
   flag_this_sound: Marcar este sonido
   flagged: Con advertencia
   flagged_: Marcado
@@ -2032,6 +2035,7 @@ es-MX:
   last_active_with_date: "Última actividad: %{date}"
   last_confirmed_observation: Última observación confirmada
   last_observation: Última observación
+  last_observation_caps: ÚLTIMA OBSERVACIÓN
   last_seen: Visto por última vez
   last_year: Año pasado
   lat: Latitud
@@ -2074,6 +2078,7 @@ es-MX:
     scientific_names: Nombres científicos
     afrikaans: Afrikáans
     albanian: Albanés
+    belarusian: Bielorruso
     bengali: Bengalí
     catalan: Catalán
     cebuano: Cebuano
@@ -2183,6 +2188,7 @@ es-MX:
   locales_: Locales
   locales:
     ar: Árabe
+    be: Bielorruso
     bg: Búlgaro
     br: Bretón
     ca: Catalán
@@ -4479,8 +4485,10 @@ es-MX:
     Esta consulta devuelve demasiados taxa por lo que no pueden ser mostrados todos al mismo tiempo. Intente añadiendo más filtros.
   tools: Herramientas
   top_contributors: Los principales contribuyentes
+  top_identifier_caps: IDENTIFICADOR PRINCIPAL
   top_identifiers: Los principales identificadores
   top_identifiers_of_taxon: Identificadores principales de %{taxon}
+  top_observer_caps: OBSERVADOR PRINCIPAL
   top_observers: Mejores observadores
   tos_privacy_guidelines_label: |
     Acepto los <a href="/terms" target="_blank">Términos de servicio</a> y la <a href="/privacy" target="_blank">Política de privacidad</a>, y he revisado los <a href="/pages/community+guidelines" target="_blank">Lineamientos de la comunidad</a>.
@@ -4488,6 +4496,8 @@ es-MX:
   totals: Totales
   total_members: Total de miembros
   total_observations: Total de observaciones
+  total_observations_caps: TOTAL DE OBSERVACIONES
+  total_species_observed_caps: TOTAL DE ESPECIES OBSERVADAS
   total_unique_observers: Total de observadores únicos
   translated_languages: Lenguajes traducidos
   'true': 'Sí'
@@ -4788,6 +4798,12 @@ es-MX:
   welcome_to_inat: "¡Bienvenido a %{site_name}!"
   welcome_to_guides: "¡Bienvenido a Guías %{site_name}!"
   welcome_to_x_project: "Bienvenido al proyecto %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: 'Estamos bastante seguros de que está en este género:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: 'Estamos bastante seguros de que está en esta familia:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: 'Estamos bastante seguros de que está en este orden:'
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
