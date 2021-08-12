@@ -134,13 +134,6 @@ describe Taxon, "creation" do
     expect( t.name ).to eq name
   end
 
-  it "should create TaxonAncestors" do
-    parent = Taxon.make!( rank: Taxon::GENUS )
-    t = Taxon.make!( rank: Taxon::SPECIES, parent: parent )
-    t.reload
-    expect( t.taxon_ancestors ).not_to be_blank
-  end
-
   it "should strip trailing space" do
     expect( Taxon.make!( name: "Trailing space  " ).name ).to eq "Trailing space"
   end
@@ -921,15 +914,6 @@ describe Taxon, "merging" do
     s.reload
     expect(s.resource).to eq(o)
   end
-
-  it "should work with denormalized ancestries" do
-    AncestryDenormalizer.truncate
-    expect(TaxonAncestor.count).to eq 0
-    AncestryDenormalizer.denormalize
-    expect {
-      @keeper.merge(@reject)
-    }.not_to raise_error
-  end
 end
 
 describe Taxon, "moving" do
@@ -1041,22 +1025,6 @@ describe Taxon, "moving" do
     end
     o.reload
     expect(o.taxon).to eq sp
-  end
-
-  it "should create TaxonAncestors" do
-    t = Taxon.make!( rank: Taxon::SPECIES, name: "Ronica vestrit" )
-    expect( t.taxon_ancestors.count ).to eq 1 # should always make one for itself
-    t.move_to_child_of( @Calypte )
-    t.reload
-    expect( t.taxon_ancestors.count ).to be > 1
-    expect( t.taxon_ancestors.detect{ |ta| ta.ancestor_taxon_id == @Calypte.id } ).not_to be_blank
-  end
-
-  it "should remove existing TaxonAncestors" do
-    t = Taxon.make!( rank: Taxon::SPECIES, parent: @Calypte )
-    expect( TaxonAncestor.where( taxon_id: t.id, ancestor_taxon_id: @Calypte.id ).count ).to eq 1
-    t.move_to_child_of( @Pseudacris )
-    expect( TaxonAncestor.where( taxon_id: t.id, ancestor_taxon_id: @Calypte.id ).count ).to eq 0
   end
 
   it "should reindex descendants" do
@@ -1614,6 +1582,10 @@ describe "complete_species_count" do
     it "should not count inactive taxa" do
       species = Taxon.make!( rank: Taxon::SPECIES, parent: taxon, is_active: false, current_user: taxon_curator.user )
       expect( taxon.complete_species_count ).to eq 0
+    end
+    it "should be nil for species" do
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: taxon, current_user: taxon_curator.user )
+      expect( species.complete_species_count ).to eq nil
     end
   end
 end

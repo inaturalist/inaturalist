@@ -47,7 +47,6 @@ describe Annotation do
   it "validates attribute belongs to taxon" do
     animalia = Taxon.make!(name: "Animalia", rank: Taxon::KINGDOM)
     mammalia = Taxon.make!(name: "Mammalia", parent: animalia, rank: Taxon::CLASS)
-    AncestryDenormalizer.denormalize
     obs = Observation.make!(taxon: animalia)
     atr = ControlledTermTaxon.make!( taxon: mammalia ).controlled_term
     ctv = ControlledTermValue.make!(controlled_attribute: atr)
@@ -63,7 +62,6 @@ describe Annotation do
   it "validates value belongs to taxon" do
     animalia = Taxon.make!(name: "Animalia", rank: Taxon::KINGDOM)
     mammalia = Taxon.make!(name: "Mammalia", parent: animalia, rank: Taxon::CLASS)
-    AncestryDenormalizer.denormalize
     obs = Observation.make!(taxon: animalia)
     atr = ControlledTerm.make!
     val = ControlledTerm.make!( is_value: true )

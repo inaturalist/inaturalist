@@ -75,8 +75,6 @@ describe Observation do
       @genus = Taxon.make!(name: "Homo", rank: "genus", parent: @family)
       @sapiens = Taxon.make!(name: "Homo sapiens", rank: "species", parent: @genus)
       @habilis = Taxon.make!(name: "Homo habilis", rank: "species", parent: @genus)
-      AncestryDenormalizer.truncate
-      AncestryDenormalizer.denormalize
     end
 
     it "returns the leaf taxon id" do
