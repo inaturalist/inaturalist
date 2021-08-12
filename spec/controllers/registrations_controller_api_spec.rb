@@ -53,7 +53,7 @@ describe Users::RegistrationsController, "create" do
       login: "zapphytest2",
       password: "zomgbar",
       password_confirmation: "zomgbar"
-    }
+    } }
     expect( response.response_code ).to eq 422
   end
 

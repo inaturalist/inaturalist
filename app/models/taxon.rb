@@ -668,7 +668,7 @@ class Taxon < ApplicationRecord
       "updater_id",
       "updated_at"
     ] ).empty?
-    if changes[:ancestry]
+    if saved_changes[:ancestry]
       # using Taxon.find since the ancestry gem uses the before save
       # ancestry and descendants' ancestries have already been updated
       Observation.elastic_index!( scope: Observation.of( Taxon.find( id ) ), delay: true )
