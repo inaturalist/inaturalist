@@ -1,6 +1,40 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Place do
+  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to :source }
+  it { is_expected.to belong_to(:check_list).dependent :destroy }
+  it { is_expected.to have_many :listed_taxa }
+  it { is_expected.to have_many(:taxa).through :listed_taxa }
+  it { is_expected.to have_many(:check_lists).dependent :destroy }
+  it { is_expected.to have_many(:taxon_links).dependent :delete_all }
+  it { is_expected.to have_many(:guides).dependent :nullify }
+  it { is_expected.to have_many(:projects).dependent(:nullify).inverse_of :place }
+  it { is_expected.to have_many(:trips).dependent(:nullify).inverse_of :place }
+  it { is_expected.to have_many(:sites).dependent(:nullify).inverse_of :place }
+  it { is_expected.to have_many(:extra_place_sites).dependent(:nullify).inverse_of(:extra_place).class_name("Site").with_foreign_key :extra_place_id }
+  it { is_expected.to have_many(:place_taxon_names).dependent(:delete_all).inverse_of :place }
+  it { is_expected.to have_many(:taxon_names).through :place_taxon_names }
+  it { is_expected.to have_many(:users).inverse_of(:place).dependent :nullify }
+  it { is_expected.to have_many(:search_users).inverse_of(:search_place).dependent(:nullify).class_name "User" }
+  it { is_expected.to have_many :observations_places }
+  it { is_expected.to have_one(:place_geometry).dependent(:destroy).inverse_of :place }
+  it { is_expected.to have_one(:place_geometry_without_geom).class_name 'PlaceGeometry' }
+
+  it { is_expected.to validate_presence_of(:place_geometry).on :create }
+  it { is_expected.to validate_presence_of :latitude }
+  it { is_expected.to validate_presence_of :longitude }
+  context "not updating bbox" do
+    subject { Place.new updating_bbox: false }
+    it { is_expected.to validate_numericality_of(:latitude).allow_nil.is_less_than_or_equal_to(90).is_greater_than_or_equal_to(-90) }
+    it { is_expected.to validate_numericality_of(:longitude).allow_nil.is_less_than_or_equal_to(180).is_greater_than_or_equal_to(-180) }
+  end
+  it { is_expected.to validate_length_of(:name).is_at_least(2).is_at_most(500).with_message "must be between 2 and 500 characters" }
+  context "ancestry not blank" do
+    subject { Place.new ancestry: "1/2/3", name: "Test" }
+    it { is_expected.to validate_uniqueness_of(:name).scoped_to :ancestry }
+  end
+
   it "should have taxa" do
     place = make_place_with_geom
     taxon = Taxon.make!

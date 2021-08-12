@@ -1,6 +1,13 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Photo do
+  it { is_expected.to belong_to :user }
+  it { is_expected.to have_many(:observation_photos).dependent :destroy }
+  it { is_expected.to have_many(:taxon_photos).dependent :destroy }
+  it { is_expected.to have_many(:guide_photos).dependent(:destroy).inverse_of :photo }
+  it { is_expected.to have_many(:observations).through :observation_photos }
+  it { is_expected.to have_many(:taxa).through :taxon_photos }
+
   elastic_models( Observation )
   let( :stable_image_url ) { "https://www.inaturalist.org/assets/logo-small.png" }
   describe "creation" do
