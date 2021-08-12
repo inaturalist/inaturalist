@@ -177,15 +177,20 @@ class Annotation < ApplicationRecord
   end
 
   def self.reassess_annotations_for_taxon_ids( taxon_ids )
+    [taxon_ids].flatten.each do |taxon_id|
+      Annotation.reassess_annotations_for_taxon_id( taxon_id )
+    end
+  end
+
+  def self.reassess_annotations_for_taxon_id( taxon )
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     Annotation.
         joins(
           controlled_attribute: {
-            controlled_term_taxa: {
-              taxon: :taxon_ancestors
-            }
+            controlled_term_taxa: :taxon
           }
         ).
-        where( "taxon_ancestors.ancestor_taxon_id IN (?)", taxon_ids ).
+        where( taxon.subtree_conditions ).
         includes(
           { resource: :taxon },
           controlled_value: [

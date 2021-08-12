@@ -1642,8 +1642,7 @@ class ObservationsController < ApplicationController
         render :layout => "bootstrap"
       end
       format.csv do
-        Taxon.preload_associations(@taxa, [
-          :ancestor_taxa, { taxon_names: :place_taxon_names }])
+        Taxon.preload_associations(@taxa, { taxon_names: :place_taxon_names })
         render :plain => @taxa.to_csv(
           :only => [:id, :name, :rank, :rank_level, :ancestry, :is_active],
           :methods => [:common_name_string, :iconic_taxon_name, 

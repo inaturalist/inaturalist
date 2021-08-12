@@ -1,23 +1,19 @@
-require File.dirname( __FILE__ ) + '/../spec_helper.rb'
+require "spec_helper"
 
 describe CheckList do
-  
-  before( :each ) do
-    @check_list = CheckList.make!( taxon: Taxon.make! )
+
+  it { is_expected.to belong_to :taxon }
+  it { is_expected.to belong_to :source }
+
+  it do
+    is_expected.to validate_uniqueness_of(:taxon_id).scoped_to(:place_id).allow_nil
+                                                    .with_message "already has a check list for this place."
   end
-  
-  it "should have one and only place" do
-    @check_list.place = nil
-    expect( @check_list ).not_to be_valid
-  end
+
+  before { @check_list = CheckList.make!(taxon: Taxon.make!) }
   
   it "should completable" do
     expect( @check_list ).to respond_to( :comprehensive )
-  end
-  
-  it "should have a unique taxon for its place" do
-    @new_check_list = CheckList.new( place: @check_list.place, taxon: @check_list.taxon )
-    expect( @new_check_list ).not_to be_valid
   end
   
   it "should create a new in_taxon? rule if taxon_id has been set" do

@@ -137,6 +137,7 @@ group :test do
   gem "simplecov", require: false
   gem "rspec" #, "~> 3.8.0"
   gem "rspec-rails" #, "~> 3.8.2"
+  gem "shoulda-matchers"
   gem "rspec-html-matchers"
   gem "webmock"
 end

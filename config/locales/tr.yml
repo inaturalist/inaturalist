@@ -1602,6 +1602,8 @@ tr:
   flag_for_observation_title_html: |
     Şu Gözlem için İşaretle: %{title}
   flag_for_photo_id_html: <a href="%{url}">Fotoğraf %{id}</a> için işaretle
+  flag_for_place_title_html: |
+    Şu Yer için işaretle:%{title}
   flag_for_post_title_html: |
     Şu Gönderi için İşaretle: %{title}
   flag_for_project_title_html: |
@@ -1622,6 +1624,7 @@ tr:
   flag_saved_thanks_html: İşaret kaydedildi. Teşekkürler! <a href="%{url}" class="readmore">İşareti görüntüle</a>
   flag_this_observation: Bu Gözlemi İşaretle
   flag_this_photo: Bu Fotoğrafı İşaretle
+  flag_this_place: Bu Yeri İşaretle
   flag_this_sound: Bu Sesi İşaretle
   flagged: işaretli
   flagged_: İşaretli

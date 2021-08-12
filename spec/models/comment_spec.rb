@@ -2,6 +2,14 @@ require File.expand_path("../../spec_helper", __FILE__)
 
 describe Comment do
   elastic_models( Observation )
+
+  it { is_expected.to belong_to :user }
+
+  it { is_expected.to validate_length_of(:body).is_at_least 1 }
+  it { is_expected.to validate_length_of(:body).is_at_most described_class::MAX_LENGTH }
+  it { is_expected.to validate_presence_of :parent }
+
+
   describe "creation" do
     it "should increment a counter cache on the parent if the column exists" do
       o = Observation.make!

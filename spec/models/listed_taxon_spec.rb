@@ -108,7 +108,6 @@ describe ListedTaxon do
     
     it "should log listed_taxon_alterations if listed_taxa has_atlas_or_complete_set? on create" do
       taxon = Taxon.make!
-      AncestryDenormalizer.denormalize
       atlas_place = make_place_with_geom(admin_level: 0)
       atlas = Atlas.make!(user: @user, taxon: taxon, is_active: true)
       atlas_place_check_list = List.find(atlas_place.check_list_id)
@@ -126,7 +125,6 @@ describe ListedTaxon do
   describe "destroy" do
     it "should log listed_taxon_alterations if listed_taxa has_atlas_or_complete_set? on destroy" do
       taxon = Taxon.make!
-      AncestryDenormalizer.denormalize
       atlas_place = make_place_with_geom(admin_level: 0)
       atlas_place_check_list = List.find(atlas_place.check_list_id)
       @user = User.make!

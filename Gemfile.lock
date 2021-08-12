@@ -589,6 +589,8 @@ GEM
       nokogiri (>= 1.8.1)
       nori (~> 2.4)
       wasabi (~> 3.4)
+    shoulda-matchers (4.5.1)
+      activesupport (>= 4.2.0)
     signet (0.15.0)
       addressable (~> 2.3)
       faraday (>= 0.17.3, < 2.0)
@@ -764,6 +766,7 @@ DEPENDENCIES
   rubyzip
   sass-rails
   savon
+  shoulda-matchers
   simplecov
   soundcloud
   sprockets

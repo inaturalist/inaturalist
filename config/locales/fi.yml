@@ -1994,6 +1994,7 @@ fi:
     scientific_names: Tieteelliset nimet
     afrikaans: Afrikaans
     albanian: Albania
+    belarusian: Valkovenäjä
     bengali: Bengali
     catalan: Katalaani
     cebuano: Cebuano
@@ -2097,6 +2098,7 @@ fi:
   locales_: Kieli
   locales:
     ar: arabia
+    be: Valkovenäjä
     bg: bulgaria
     br: bretoni
     ca: katalaani
@@ -4344,6 +4346,16 @@ fi:
   welcome_to_inat: "Tervetuloa %{site_name}iin!"
   welcome_to_guides: "Tervetuloa %{site_name} oppaisiin!"
   welcome_to_x_project: "Tervetuloa projektiin %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Olemme melko varmoja että tämä kuuluu sukuun
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Olemme melko varmoja että tämä kuuluu heimoon
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: Olemme melko varmoja että tämä kuuluu lahkoon 
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: Olemme melko varmoja että tämä kuuluu alaheimoon 
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: Olemme melko varmoja että tämä kuuluu yläheimoon 
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a

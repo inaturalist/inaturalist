@@ -39,8 +39,7 @@ class ControlledTerm < ApplicationRecord
   }
   scope :for_taxon, -> (taxon) {
     joins( "LEFT OUTER JOIN controlled_term_taxa ctt ON ctt.controlled_term_id = controlled_terms.id" ).
-    joins( "LEFT OUTER JOIN taxon_ancestors ta ON ctt.taxon_id = ta.ancestor_taxon_id" ).
-    where( "ctt.taxon_id IS NULL OR ta.taxon_id = ?", taxon ).distinct
+    where( "ctt.id IS NULL OR ctt.taxon_id IN (?)", taxon.path_ids ).distinct
   }
 
   accepts_nested_attributes_for :controlled_term_taxa, allow_destroy: true

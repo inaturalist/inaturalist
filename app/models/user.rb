@@ -1081,6 +1081,20 @@ class User < ApplicationRecord
     puts "Ensure all staging servers get synced"
     puts
   end
+
+  def self.remove_icon_from_s3( user_id )
+    @s3_config ||= YAML.load_file( File.join( Rails.root, "config", "s3.yml") )
+    @s3_client ||= ::Aws::S3::Client.new(
+      access_key_id: @s3_config["access_key_id"],
+      secret_access_key: @s3_config["secret_access_key"],
+      region: CONFIG.s3_region
+    )
+    user_images = @s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "attachments/users/icons/#{user_id}/" ).contents
+    if user_images.any?
+      @s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: user_images.map{|s| { key: s.key } } } )
+    end
+    # Note that the images might remain in Cloudfront for 24 hours, but by the time this gets called they're probably already gone
+  end
   
   def create_deleted_user
     DeletedUser.create(
