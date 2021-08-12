@@ -55,6 +55,7 @@ class CheckList < List
   
   def set_title
     return true unless title.blank?
+    return unless taxon || place
     unless taxon
       self.title = "#{place.name} Check List"
       return true

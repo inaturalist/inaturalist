@@ -821,6 +821,10 @@ class Taxon < ApplicationRecord
     subtree.count
   end
 
+  def subtree_conditions
+    descendant_conditions.or( Taxon.arel_table[:id].eq( id ) )
+  end
+
   def taxon_changes_count
     (taxon_changes.map(&:id) +
      taxon_change_taxa.map(&:taxon_change_id)).uniq.length
