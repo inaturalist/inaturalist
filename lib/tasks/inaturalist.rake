@@ -90,6 +90,15 @@ namespace :inaturalist do
         break if fails >= 5
       end
     end
+    # Delete user profile pics for users that were deleted over a month ago
+    DeletedUser.where( "created_at < ?", 1.month.ago ).each do |du|
+      begin
+        User.remove_icon_from_s3( du.user_id )
+      rescue
+        fails += 1
+        break if fails >= 5
+      end
+    end
   end
 
   desc "Delete expired local photos"
