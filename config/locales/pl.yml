@@ -262,6 +262,25 @@ pl:
   about_trips_html: |
     <h4>Wycieczki pozwalają na zbieranie danych o obecnych i nieobecnych gatunkach poprzez dodanie szerszego kontekstu do obserwacji</h4><p><strong>Dlaczego</strong>Dane obecnych-nieobecnych zawierają informacje przydatne do naukowych analiz, na przykład modelowania zasięgu gatunków (zwykłe obserwacje dostępne na iNaturalist są danymi dowodzącymi wyłącznie "obecności" danego gatunku).</p> <p><strong>Jak</strong> Wycieczka dodaje szerszy kontekst do twoich obserwacji poprzez odnotowywanie:</p> <ul> <li><strong>Czego</strong> szukałeś (twoja lista)</li> <li><strong>Gdzie</strong> szukałeś (obszar poszukiwań)</li> <li><strong>Kiedy</strong> szukałeś (czas poszukiwań)</li> </ul> <p>Gatunki z twojej listy, które udało ci się zaobserwować na określonym obszarze i w określonym czasie poszukiwań są oznaczone jako obecne. Gatunki, których nie udało ci się znaleźć są oznaczone jako nieobecne. Kliknij 'Generuj tabelę z obecnymi i nieobecnymi podczas wycieczek', aby utworzyć tabelę obecnych-nieobecnych dla gatunków z wycieczek i powiązanych obserwacji.<a href='%{url}'>Dowiedz się więcej</a></p>
   about_trusting_projects: O ufaniu projektom
+  about_trusting_projects_options_any: Wszystkich swoich obserwacji w tym projekcie
+  about_trusting_projects_options_any_desc: |-
+    Obejmuje to obserwacje, w których ustawiłeś geoprywatność na "ukrytą"
+    lub "prywatną", np. obserwacje z Twojego podwórka lub miejsc, o których nie chcesz, aby
+    inni ludzie wiedzieli.
+  about_trusting_projects_options_taxon: |-
+    Tylko Twoje obserwacje w tym projekcie, które posiadają ukryte współrzędne ze względu na zagrożone taksony
+  about_trusting_projects_options_taxon_desc: |-
+    Wiele projektów po prostu wymaga dostępu do współrzędnych, które są ukryte, ponieważ obserwacja
+    przedstawia zagrożony takson.
+  about_trusting_projects_overview: |-
+    Udzielenie dostępu do ukrytych współrzędnych pozwoli menedżerom tego projektu zobaczyć prawdziwe, nieukryte lokalizacje Twoich obserwacji. Jest to niezwykle ważne w sytuacjach, w których naukowcy lub menedżerowie zasobów potrzebują dostępu do dokładnych współrzędnych w celach analizy i podejmowania decyzji.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    Menedżerowie projektu, którzy będą mieli dostęp do ukrytych współrzędnych to:
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Możesz wybrać czy udostępniać ukryte współrzędne dla
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -571,6 +590,7 @@ pl:
   all_updates: Wszystkie aktualizacje
   all_your_observations_will_default_this_time_zone: Wszystkie twoje obserwacje będą przypisane do tej strefy czasowej, chyba że wskażesz inaczej.
   all_your_observations_will_default_to_this_time_zone: Wszystkie twoje obserwacje będą przypisane do tej strefy czasowej, chyba że wskażesz inaczej.
+  allow_curator_access: Zezwalaj na dostęp kuratorom
   allow_project_curators_to_view_your_private_coordinates: Zezwalaj opiekunom projektu na dostęp do ukrytych współrzędnych
   allowed_html: Dozwolony HTML
   allowed_occurrence_status_values: Dozwolone wartości dla statusu występowania
@@ -1074,6 +1094,7 @@ pl:
     flowering: Kwiaty widoczne, otwarte i nadal przymocowane do rośliny
     fruiting: Owoc widoczny i nadal przymocowany do rośliny
     teneral: Osobnik dorosły, który niedawno się przepoczwarzył ale nie osiągnął jeszcze końcowej postaci dorosłej
+    cannot_be_determined: Nie można ustalić na podstawie przedstawionych dowodów
     organism: Cały lub częściowy organizm
     track: Odcisk na ziemi lub śniegu pozostawiony przez organizm
     molt: Zrzucona skóra lub egzoszkielet
