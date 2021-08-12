@@ -2,6 +2,51 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Observation do
+  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to(:community_taxon).class_name 'Taxon' }
+  it { is_expected.to belong_to(:iconic_taxon).class_name('Taxon').with_foreign_key 'iconic_taxon_id' }
+  it { is_expected.to belong_to :oauth_application }
+  it { is_expected.to belong_to(:site).inverse_of :observations }
+  it { is_expected.to have_many(:observation_photos).dependent(:destroy).inverse_of :observation }
+  it { is_expected.to have_many(:photos).through :observation_photos }
+  it { is_expected.to have_many(:listed_taxa).with_foreign_key 'last_observation_id' }
+  it { is_expected.to have_many(:first_listed_taxa).class_name('ListedTaxon').with_foreign_key 'first_observation_id' }
+  it { is_expected.to have_many(:first_check_listed_taxa).class_name('ListedTaxon').with_foreign_key 'first_observation_id' }
+  it { is_expected.to have_many(:comments).dependent :destroy }
+  it { is_expected.to have_many(:annotations).dependent :destroy }
+  it { is_expected.to have_many(:identifications).dependent :destroy }
+  it { is_expected.to have_many(:project_observations).dependent :destroy }
+  it { is_expected.to have_many(:project_observations_with_changes).class_name 'ProjectObservation' }
+  it { is_expected.to have_many(:project_invitations).dependent :destroy }
+  it { is_expected.to have_many(:projects).through :project_observations }
+  it { is_expected.to have_many(:quality_metrics).dependent :destroy }
+  it { is_expected.to have_many(:observation_field_values).dependent(:destroy).inverse_of :observation }
+  it { is_expected.to have_many(:observation_fields).through :observation_field_values }
+  it { is_expected.to have_many :observation_links }
+  it { is_expected.to have_and_belong_to_many :posts }
+  it { is_expected.to have_many(:observation_sounds).dependent(:destroy).inverse_of :observation }
+  it { is_expected.to have_many(:sounds).through :observation_sounds }
+  it { is_expected.to have_many :observations_places }
+  it { is_expected.to have_many(:observation_reviews).dependent :destroy }
+  it { is_expected.to have_many(:confirmed_reviews).class_name 'ObservationReview' }
+
+
+  context 'when geo_x present' do
+    subject { Observation.new geo_x: 1 }
+    it { is_expected.to validate_presence_of :geo_y }
+  end
+  context 'when geo_y present' do
+    subject { Observation.new geo_y: 1 }
+    it { is_expected.to validate_presence_of :geo_x }
+  end
+  it { is_expected.to validate_numericality_of(:geo_y).allow_nil.with_message "should be a number" }
+  it { is_expected.to validate_numericality_of(:geo_x).allow_nil.with_message "should be a number" }
+  it { is_expected.to validate_numericality_of(:latitude).allow_nil.is_less_than(90).is_greater_than -90 }
+  it { is_expected.to validate_numericality_of(:longitude).allow_nil.is_less_than_or_equal_to(180).is_greater_than_or_equal_to -180 }
+  it { is_expected.to validate_length_of(:species_guess).is_at_most(256).allow_blank }
+  it { is_expected.to validate_length_of(:place_guess).is_at_most(256).allow_blank }
+  it { is_expected.to validate_presence_of :user_id }
+
   before(:all) do
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
   end
@@ -586,27 +631,6 @@ describe Observation do
         expect( o.identifications.first.taxon ).to eq t
         expect( o.identifications.first.category ).to eq Identification::LEADING
       end
-    end
-
-    it "should not allow latitude greater than 90" do
-      o = Observation.make( latitude: 91, longitude: 1 )
-      expect( o ).not_to be_valid
-      expect( o.errors[:latitude] ).not_to be_blank
-    end
-    it "should not allow latitude less than -90" do
-      o = Observation.make( latitude: 91, longitude: 1 )
-      expect( o ).not_to be_valid
-      expect( o.errors[:latitude] ).not_to be_blank
-    end
-    it "should not allow longitude greater than 180" do
-      o = Observation.make( latitude: 1, longitude: 181 )
-      expect( o ).not_to be_valid
-      expect( o.errors[:longitude] ).not_to be_blank
-    end
-    it "should not allow longitude less than -180" do
-      o = Observation.make( latitude: 1, longitude: -181 )
-      expect( o ).not_to be_valid
-      expect( o.errors[:longitude] ).not_to be_blank
     end
 
     it "should set time_zone to the Rails time zone even when set to the zic time zone" do
@@ -3740,30 +3764,6 @@ describe Observation do
       "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
     }
     subject { Observation.make }
-    
-    it "requires geo_x if geo_y is present" do
-      subject.geo_y = 5413457.7
-      subject.valid?
-      expect(subject.errors[:geo_x].size).to eq(1)
-    end
-
-    it "requires geo_x to be a number" do
-      subject.geo_x = "test"
-      subject.valid?
-      expect(subject.errors[:geo_x].size).to eq(1)
-    end
-
-    it "requires geo_y if geo_x is present" do
-      subject.geo_x = 1528677.3
-      subject.valid?
-      expect(subject.errors[:geo_y].size).to eq(1)
-    end
-
-    it "requires geo_y to be a number" do
-      subject.geo_y = "test"
-      subject.valid?
-      expect(subject.errors[:geo_y].size).to eq(1)
-    end
 
     # FIXME: this is fragile
     it "requires coordinate_system to be valid" do
