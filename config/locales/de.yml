@@ -2062,6 +2062,7 @@ de:
     scientific_names: Wissenschaftlicher Name
     afrikaans: Afrikaans
     albanian: Albanisch
+    belarusian: Weißrussisch
     bengali: Bengali
     catalan: Katalanisch
     cebuano: Cebuano
@@ -2170,6 +2171,7 @@ de:
   locales_: Sprachumgebungen
   locales:
     ar: Arabisch
+    be: Weißrussisch
     bg: Bulgarisch
     br: Bretonisch
     ca: Katalanisch
@@ -4370,6 +4372,9 @@ de:
   the_world_is_full_of_interesting_places: |
     Die Welt ist voller interessanter Orte, die alle voller seltsamer und wunderbarer Lebensformen sind. Einige sind auf der anderen Seite der Welt, während andere nur am Ende der Straße sind! %{site_name}-Gebiete erlauben es dir, das Leben rund um den Planeten zu erkunden.  Fang an zu erforschen!
   then_keybord_sequence: dann
+  there_are_x_synonyms_html:
+    one: "Es existiert <span class='count'>1</span> Synonym</span>"
+    other: "Es existieren <span class='count'>%{count}</span> Synonyme</span>"
   there_is_no_wikipedia_page_matching: Es gibt keinen passenden Wikipedia-Eintrag
   there_isnt_a_wikipedia_article_titled_x_html: |
     Es gibt keinen Wikipedia-Artikel oder keine Weiterleitung mit dem Titel'<i>%{x}</i>'. Vielleicht möchtest du ja einen <a href='http://de.wikipedia.org/wiki/%{x}'>erstellen</a>?
@@ -4386,6 +4391,7 @@ de:
   there_were_some_problems_saving_those_colors: "Problem beim Speichern dieser Farben: %{error}"
   there_were_some_problems_with_fields: "Es gab einige Probleme mit den folgenden Feldern:"
   there_were_some_problems_with_these_files: "Es gab einige Probleme mit diesen Dateien:"
+  theres_something_wrong_with_taxon_framework_relationship: Hier stimmt etwas nicht - wir können die Beziehung zwischen internen und externen Taxa nicht bestimmen
   these_are_items_people_on: |
     Das sind Dinge, die die Leute auf der Seite zur Kuration gemeldet haben. Spam-Kommentare sollten gelöscht werden und Benutzer, die Spam verbreiten, sollten gesperrt werden (gehe zu deren Profilseite und klicke unten rechts auf "Benutzer sperren", um sie am Einloggen zu hindern). Andere gemeldete Sachen sollten nur gelöscht werden, wenn sie eindeutig hasserfüllt, illegal usw. sind. Unhöflichkeit, beleidigende Sprache usw. sollten mit einem höflichen Kommentar behandelt werden. Wiederholungstäter sollten einem Seitenadministrator oder %{email} gemeldet werden.
   these_folks_kindly_volunteer_to: Diese Personen engagieren sich freiwillig, um unsere Taxonomie zu pflegen und sich mit anderen Problemen zu befassen.
@@ -4500,6 +4506,7 @@ de:
   ungrafted_taxa: nicht zugeordnete Taxa
   unhide_content: Inhalt wieder sichtbar machen
   uninvite: ausladen
+  unique_identifier_of_this_taxon: Eindeutige Kennung dieses Taxons in der Quelldatenbank.
   unique_observers: Einzelbeobachter
   unknown: Unbekannt
   unknown_error: Unbekannter Fehler
@@ -4765,11 +4772,21 @@ de:
   welcome_to_inat: "Willkommen bei %{site_name}!"
   welcome_to_guides: "Willkommen bei %{site_name}-Guides!"
   welcome_to_x_project: "Willkommen bei %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Wir schlagen vor, dass es in dieser Gattung sein könnte
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Wir schlagen vor, dass es in dieser Familie sein könnte
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: Wir schlagen vor, dass es in dieser Ordnung sein könnte
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: Wir schlagen vor, dass es in dieser Unterfamilie sein könnte
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: Wir schlagen vor, dass es in dieser Überfamilie sein könnte
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
-  were_pretty_sure_this_is_in_the_rank: Wir schlagen vor dass es in dieser %{rank} sein könnte
+  were_pretty_sure_this_is_in_the_rank: Wir schlagen vor, dass es in dieser %{rank} sein könnte
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Es tut uns leid aber der Batch-Import von %{filename} ist fehlgeschlagen."
   what: Was
   what_did_you_see: Was hast du gesehen?
@@ -5398,6 +5415,7 @@ de:
         positional_accuracy: "Genauigkeit der Koordinaten (ja, ja, ja, Genauigkeit! = Präzision -- schlechte Terminologie)"
         geoprivacy: "Ob der Beobachter die Koordinaten verdeckt oder unsichtbar gemacht hat"
         coordinates_obscured: "Ob die Koordinaten verdeckt wurden oder nicht, sei es wegen Geoprivatsphäre oder wegen eines Gefährdungsstatus"
+        out_of_range: Ob diese Beobachtung außerhalb der bekannten Verbreitung des Taxons liegt oder nicht
         user_id: Eindeutige Kennung für diesen Beobachter
         user_login: Benutzername des Beobachters
         created_at: Datetime des Erstellen der Beobachtung
@@ -7096,6 +7114,9 @@ de:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: soll keine Kommata oder Schrägstriche enthalten
+              should_match_english_translation: |
+                sollte auf Englisch sein, aber zur Zeit stimmt es mit der %{suggested_locale} Übersetzung von "%{suggested}" überein.
+                Verwende "%{suggested}" wenn du dies gemeint haben solltest, dann wird es übersetzt, wenn du die Seite in dieser Sprache ansiehst.
               should_be_in_english: sollte in Englisch sein
             name:
               already_exists: existiert bereits für dieses Taxon in diesem Lexikon
@@ -7153,6 +7174,7 @@ de:
         invalid_request: 'Der Anfrage fehlt ein benötigter Parameter, enthält einen nicht unterstützten Parameterwert oder ist anderweitig fehlerhaft.'
         invalid_redirect_uri: 'Der beigefügte Weiterleitungs-URI ist ungültig.'
         unauthorized_client: 'Der Client ist nicht berechtigt, diese Anfrage mit dieser Methode durchzuführen.'
+        access_denied: 'Die Anfrage wurde durch Benutzer oder Autorisierungs-Server verweigert.'
         #Access token errors
         invalid_client: 'Die Klientauthentifizierung ist fehlgeschlagen, weil ein unbekannter Klient, keine Klientauthentifizierung oder eine nicht unterstützte Authentifizierungsmethode enthalten ist.'
         invalid_grant: 'Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde widerrufen, an einen anderen Client ausgestellt oder der Weiterleitungs-URI stimmt nicht mit der Autorisierungs-Anfrage überein.'

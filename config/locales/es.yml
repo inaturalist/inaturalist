@@ -917,10 +917,23 @@ es:
     <span class="comprehensive_notice" data-tip="%{tip}">Lista exhaustiva</span>
     de %{taxon}
   comprehensive_list: Lista completa
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Modelo de visión por ordenador
   #Status of a taxon that the Computer Vision Model can recognize
   computer_vision_model_included: Incluido
+  computer_vision_model_included_desc: |
+    El Modelo de Visión por Ordenador actual conoce este taxón, así que podría
+    ser incluido en sugerencias automáticas con la etiqueta "Visualmente Similar".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Pendiente
+  computer_vision_model_pending_desc: |
+    El Modelo de Visión por Ordenador actual no conoce sobre este taxón, así que aunque
+    pueda ser incluido en sugerencias automatizadas con la etiqueta "Cerca",
+    no tendrá la etiqueta "Visualmente Similar". Aunque los requisitos para
+    inclusión del modelo cambian con cada modelo, generalmente la inclusión se basa en
+    número de observaciones, así que para aumentar la probabilidad de que este taxón sea
+    incluido durante el siguiente entrenamiento del modelo, agregue o identifique más observaciones de este taxón.
   concept_status: Concepto de la situación
   configure: Configurar
   configure_a_widget_to_show: Configura el widget para mostrar las observaciones de %{site_name} en tu sitio web o blog. También puedes incluir el estilo CSS en la <code>&lt;head&gt;</code> de tu código HTML. Siéntete libre de modificar el CSS.
@@ -1126,6 +1139,11 @@ es:
     Debes explicar por qué quieres convertirte en conservador
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: '¿Por qué quieres ser conservador?'
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Si quieres editar la taxonomía de iNaturalist, por favor proporciona un ejemplo o dos
+    de cambios taxonómicos que te gustaría hacer, e incluye fuentes para tus cambios propuestos. Si aplicables, por favor cita la propia autoridad taxonomía <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">como listadas en la Guía de Curadores</a>. Si no incluyes ninguna fuente tu aplicación no será considerada.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Si quieres editar nombres comunes, por favor proporciona un ejemplo o dos de los cambios que te gustaría hacer
@@ -1659,6 +1677,8 @@ es:
   flag_for_observation_title_html: |
     Marca para la observación: %{title}
   flag_for_photo_id_html: Marcar <a href="%{url}">Foto %{id}</a>
+  flag_for_place_title_html: |
+    Marca para el Lugar: %{title}
   flag_for_post_title_html: |
     Marcar la entrada: %{title}
   flag_for_project_title_html: |
@@ -1679,6 +1699,7 @@ es:
   flag_saved_thanks_html: Marca guardada. ¡Gracias! <a href="%{url}" class="readmore">Ver marca</a>
   flag_this_observation: Incluir advertencia en esta observación
   flag_this_photo: Marca esta foto con advertencia
+  flag_this_place: Marcar este lugar
   flag_this_sound: Marcar este sonido
   flagged: marcado
   flagged_: Marcado
@@ -2058,6 +2079,7 @@ es:
     scientific_names: Nombres científicos
     afrikaans: Afrikáans
     albanian: Albanés
+    belarusian: Bielorruso
     bengali: Bengalí
     catalan: Catalán
     cebuano: Cebuano
@@ -2167,6 +2189,7 @@ es:
   locales_: Locales
   locales:
     ar: Árabe
+    be: Bielorruso
     bg: Búlgaro
     br: Bretón
     ca: Catalán
@@ -4772,6 +4795,16 @@ es:
   welcome_to_inat: "¡Bienvenido a %{site_name}!"
   welcome_to_guides: "¡Bienvenido a Guías %{site_name}!"
   welcome_to_x_project: "Bienvenido al proyecto %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: 'Estamos bastante seguros de que está en este género:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: 'Estamos bastante seguros de que está en esta familia:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: 'Estamos bastante seguros de que está en este orden:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: 'Estamos bastante seguros de que está en esta subfamilia:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: 'Estamos bastante seguros de que está en esta superfamilia:'
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a

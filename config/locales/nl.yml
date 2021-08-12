@@ -1694,6 +1694,8 @@ nl:
   flag_for_observation_title_html: |
     Melding voor waarneming: %{title}
   flag_for_photo_id_html: Melding voor <a href="%{url}">foto %{id}</a>
+  flag_for_place_title_html: |
+    Melding voor gebied: %{title}
   flag_for_post_title_html: |
     Melding voor bericht: %{title}
   flag_for_project_title_html: |
@@ -1714,6 +1716,7 @@ nl:
   flag_saved_thanks_html: Melding opgeslagen. Bedankt! <a href="%{url}" class="readmore">Melding bekijken</a>
   flag_this_observation: Meld deze waarneming
   flag_this_photo: Meld deze foto
+  flag_this_place: Meld dit gebied
   flag_this_sound: Meld dit geluid
   flagged: gemeld
   flagged_: Gemeld
@@ -2094,6 +2097,7 @@ nl:
     scientific_names: Wetenschappelijke namen
     afrikaans: Afrikaans
     albanian: Albanees
+    belarusian: Wit-Russisch
     bengali: Bengaals
     catalan: Catalaans
     cebuano: Creools (Frans)
@@ -2203,6 +2207,7 @@ nl:
   locales_: Taalinstelling
   locales:
     ar: Arabisch
+    be: Wit-Russisch
     bg: Bulgaars
     br: Bretoens
     ca: Catalaans
@@ -4846,6 +4851,12 @@ nl:
   welcome_to_inat: "Welkom op %{site_name}!"
   welcome_to_guides: "Welkom bij  %{site_name} Gidsen!"
   welcome_to_x_project: "Welkom bij %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: 'We zijn er vrij zeker van dat het in deze orde is:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: 'We zijn er vrij zeker van dat het in deze subfamilie is:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: 'We zijn er vrij zeker van dat het in deze superfamilie is:'
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
