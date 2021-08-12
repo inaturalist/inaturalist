@@ -1085,8 +1085,8 @@ class User < ActiveRecord::Base
   def self.remove_icon_from_s3( user_id )
     @s3_config ||= YAML.load_file( File.join( Rails.root, "config", "s3.yml") )
     @s3_client ||= ::Aws::S3::Client.new(
-      access_key_id: s3_config["access_key_id"],
-      secret_access_key: s3_config["secret_access_key"],
+      access_key_id: @s3_config["access_key_id"],
+      secret_access_key: @s3_config["secret_access_key"],
       region: CONFIG.s3_region
     )
     user_images = @s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "attachments/users/icons/#{user_id}/" ).contents
