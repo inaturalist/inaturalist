@@ -633,7 +633,7 @@ class Taxon < ActiveRecord::Base
       upstream_framework = upstream_taxon_framework
       return nil unless ( upstream_framework && upstream_framework.complete && upstream_framework.rank_level <= SPECIES_LEVEL )
     end
-    scope = subtree.
+    scope = descendants.
       select( :id ).distinct.
       where( "rank = ? AND is_active", SPECIES ).
       where( "(select count(*) from conservation_statuses cs

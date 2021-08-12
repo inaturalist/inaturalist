@@ -1585,6 +1585,10 @@ describe "complete_species_count" do
       species = Taxon.make!( rank: Taxon::SPECIES, parent: taxon, is_active: false, current_user: taxon_curator.user )
       expect( taxon.complete_species_count ).to eq 0
     end
+    it "should be nil for species" do
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: taxon, current_user: taxon_curator.user )
+      expect( species.complete_species_count ).to eq nil
+    end
   end
 end
 
