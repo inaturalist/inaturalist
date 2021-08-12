@@ -1,17 +1,30 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ObservationField do
+  it { is_expected.to belong_to :user }
+  it { is_expected.to have_many(:observation_field_values).dependent :destroy }
+  it { is_expected.to have_many(:observations).through :observation_field_values }
+  it { is_expected.to have_many(:project_observation_fields).dependent :destroy }
+  it { is_expected.to have_many(:projects).through :project_observation_fields }
+  it { is_expected.to have_many(:comments).dependent :destroy }
+
+  it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
+  # TODO: `validate_presence_of :name` contradicts `allow_blank` of length validation
+  xit { is_expected.to validate_presence_of :name }
+  xit { is_expected.to validate_length_of(:name).is_at_most(255).allow_blank }
+  it { is_expected.to validate_length_of(:description).is_at_most(255).allow_blank }
+
   elastic_models( Observation, Project )
 
   describe "creation" do
-    it "should stip allowd values" do
+    it "should strip allowed values" do
       of = ObservationField.make!(:allowed_values => "foo |bar")
       expect( of.allowed_values).to eq "foo|bar"
     end
   end
 
   describe "validation" do
-    it "should fail if allowd_values doesn't have pipes" do
+    it "should fail if allowed_values doesn't have pipes" do
       expect {
         ObservationField.make!(:allowed_values => "foo")
       }.to raise_error(ActiveRecord::RecordInvalid)

@@ -1,6 +1,8 @@
 require File.expand_path("../../spec_helper", __FILE__)
 
 describe ObservationsExportFlowTask do
+  it { is_expected.to validate_presence_of :user_id }
+
   elastic_models( Observation, Identification )
   describe "validation" do
     it "should not allow exports of more than 200,000 observations" do
