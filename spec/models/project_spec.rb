@@ -1,11 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Project do
-  it { is_expected.to belong_to :user }
-  it { is_expected.to belong_to(:place).inverse_of :projects }
+  xit { is_expected.to belong_to :user }
+  xit { is_expected.to belong_to(:place).inverse_of :projects }
   it { is_expected.to have_many(:project_users).dependent(:delete_all).inverse_of :project }
   it { is_expected.to have_many(:project_observations).dependent :delete_all }
-  it { is_expected.to have_many(:project_invitations).dependent :destroy }
   it { is_expected.to have_many(:project_user_invitations).dependent :delete_all }
   it { is_expected.to have_many(:users).through :project_users }
   it { is_expected.to have_many(:observations).through :project_observations }

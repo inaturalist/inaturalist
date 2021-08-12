@@ -57,6 +57,11 @@ describe ProjectUser, "creation" do
 end
 
 describe ProjectUser do
+  it { is_expected.to belong_to(:project).inverse_of(:project_users).touch true }
+  it { is_expected.to belong_to(:user).touch true }
+  it { is_expected.to validate_presence_of :project }
+  it { is_expected.to validate_presence_of :user }
+
   elastic_models( Observation, Taxon, Identification )
 
   describe "updating curator_coordinate_access" do

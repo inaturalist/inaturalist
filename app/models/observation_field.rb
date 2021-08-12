@@ -21,7 +21,7 @@ class ObservationField < ApplicationRecord
   
   validates_uniqueness_of :name, :case_sensitive => false
   validates_presence_of :name
-  validates_length_of :name, :maximum => 255, :allow_blank => true
+  validates_length_of :name, :maximum => 255
   validates_length_of :description, :maximum => 255, :allow_blank => true
   
   before_validation :strip_tags

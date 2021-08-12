@@ -1,5 +1,13 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+describe ProjectObservation do
+  it { is_expected.to belong_to :project }
+  it { is_expected.to belong_to(:curator_identification).class_name "Identification" }
+  it { is_expected.to belong_to :user }
+  it { is_expected.to validate_presence_of :project }
+  it { is_expected.to validate_presence_of :observation }
+end
+
 describe ProjectObservation, "creation" do
   elastic_models( Observation, Place )
   before(:each) do

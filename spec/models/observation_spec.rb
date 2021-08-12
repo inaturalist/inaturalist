@@ -17,7 +17,6 @@ describe Observation do
   it { is_expected.to have_many(:identifications).dependent :destroy }
   it { is_expected.to have_many(:project_observations).dependent :destroy }
   it { is_expected.to have_many(:project_observations_with_changes).class_name 'ProjectObservation' }
-  it { is_expected.to have_many(:project_invitations).dependent :destroy }
   it { is_expected.to have_many(:projects).through :project_observations }
   it { is_expected.to have_many(:quality_metrics).dependent :destroy }
   it { is_expected.to have_many(:observation_field_values).dependent(:destroy).inverse_of :observation }
@@ -41,11 +40,14 @@ describe Observation do
   end
   it { is_expected.to validate_numericality_of(:geo_y).allow_nil.with_message "should be a number" }
   it { is_expected.to validate_numericality_of(:geo_x).allow_nil.with_message "should be a number" }
+  it { is_expected.to validate_presence_of :user_id }
   it { is_expected.to validate_numericality_of(:latitude).allow_nil.is_less_than(90).is_greater_than -90 }
-  it { is_expected.to validate_numericality_of(:longitude).allow_nil.is_less_than_or_equal_to(180).is_greater_than_or_equal_to -180 }
   it { is_expected.to validate_length_of(:species_guess).is_at_most(256).allow_blank }
   it { is_expected.to validate_length_of(:place_guess).is_at_most(256).allow_blank }
-  it { is_expected.to validate_presence_of :user_id }
+  it do
+    is_expected.to validate_numericality_of(:longitude).allow_nil.is_less_than_or_equal_to(180)
+                                                                 .is_greater_than_or_equal_to -180
+  end
 
   before(:all) do
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
