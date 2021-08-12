@@ -234,7 +234,7 @@ module DarwinCore
       fake_view = FakeView.new
       
       preloads = [
-        taxon,
+        :taxon,
         { user: [:stored_preferences, :provider_authorizations] }, 
         :quality_metrics, 
         { identifications: { user: [:provider_authorizations] } },
