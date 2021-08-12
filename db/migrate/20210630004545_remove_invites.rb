@@ -1,4 +1,4 @@
-class RemoveInvites < ActiveRecord::Migration
+class RemoveInvites < ActiveRecord::Migration[4.2]
   def up
     drop_table :invites
   end

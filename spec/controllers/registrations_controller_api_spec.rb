@@ -7,7 +7,7 @@ def register_user_with_params( params = {} )
     password: "zomgbar",
     password_confirmation: "zomgbar",
     email: u.email
-  } }.merge( params )
+  }.merge( params ) }
   User.find_by_login(u.login)
 end
 
