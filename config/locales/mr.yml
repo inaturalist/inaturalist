@@ -2,15 +2,42 @@ mr:
   x_comments:
     one: '%{count} टिप्पणी'
     other: '%{count} टिप्पण्या'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> टिपण्णी'
+    other: '<span class="count">%{count}</span> टिप्पण्या'
   x_faves:
     one: '%{count} आवडते'
     other: '%{count} आवडती'
+  x_flags_resolved_html:
+    one: "<span class='count'>%{count}</span> निशाण निरसन"
+    other: "<span class='count'>%{count}</span> निशाणे निरसन"
   x_identifications:
     one: '%{count} ओळख'
     other: '%{count} ओळखी'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> ओळख'
+    other: '<span class="count">%{count}</span> ओळखी'
   x_identifications_:
     one: '%{count} ओळख'
     other: '%{count} ओळखी'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> ओळखकर्ता'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> ओळखकर्ता'
+  x_languages:
+    one: "%{count} भाषा"
+    other: "%{count} भाषा"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} जीवन यादी प्रथम"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} जीवन यादी प्रथम"
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> नोंदवही नोंद'
+    other: '<span class="count">%{count}</span> नोंदवही नोंदी'
   x_matching_taxa:
     one: '%{count} मिळताजुळता वर्ग'
     other: '%{count} मिळतेजुळते वर्ग'
@@ -23,15 +50,26 @@ mr:
   x_misidentifications_of_species_in_this_genus:
     one: "%{count} } ह्या जातीची इथे चुकीची ओळख"
     other: "%{count} } ह्या वर्गातील जातीच्या इथे चुकीच्या ओळखी"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} } ह्या जातीची इथे चुकीची ओळख%{rank}"
+    other: "%{count} } ह्या जातीच्या इथे चुकीच्या ओळखी %{rank}"
   x_observations:
     one: "%{count} निरीक्षण"
     other: "%{count} निरीक्षणे"
   x_observations_:
     one: "%{count} निरीक्षण"
     other: "%{count} निरीक्षणे"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> निरीक्षण"
+    other: "<span class='count'>%{count}</span> निरीक्षणे"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} निरीक्षण</a>"
     other: "<a href='%{url}'>%{count} निरीक्षणे</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> निरीक्षण समीक्षा"
+    other: "<span class='count'>%{count}</span> निरीक्षणे समीक्षा"
   x_observers_html:
     one: '<span class="count">%{count}</span> निरीक्षक'
     other: '<span class="count">%{count}</span> निरीक्षक'
@@ -60,6 +98,9 @@ mr:
   x_species_link_html:
     one: "<a href='%{url}'>%{count} प्रजाती</a>"
     other: "<a href='%{url}'>%{count} प्रजाती</a>"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} चाळणी केलेले निरीक्षण"
+    other: "%{count} चाळणी केलेली निरीक्षणे"
   x_taxa:
     one: "%{count} वर्ग"
     other: "%{count} वर्ग"
@@ -126,6 +167,10 @@ mr:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     आपण आपले गोपनीय निर्देशांक जाहीर करण्याचे ठरवु शकता
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
+  acc: 'अचूकता (मी)'
   account_settings: खाते व्यवस्थापन
   #Status of a complete set that is available for use
   active_complete_set_status: सक्रिय
