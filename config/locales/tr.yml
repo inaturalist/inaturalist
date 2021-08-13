@@ -47,6 +47,9 @@ tr:
   x_misidentifications_of_this_species:
     one: "%{count} yanlış tür tanımlaması"
     other: "%{count} yanlış tür tanımlaması"
+  x_misidentifications_of_species_in_this_genus:
+    one: "Bu cinste %{count} hatalı tür tanımlı"
+    other: "Bu cinste %{count} hatalı tür tanımlı"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -230,6 +233,10 @@ tr:
   action: Eylem
   actions: Eylemler
   active: Aktif
+  #Status of a complete set that is available for use
+  active_complete_set_status: Etkin
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Etkin
   active_users: Aktif Kullanıcılar
   activity: Etkinlik
   activity_settings: Etkinlik ayarları
@@ -911,6 +918,8 @@ tr:
   comprehensive_check_list_for_taxon_html: |
     %{taxon} için <span class="comprehensive_notice" data-tip="%{tip}">kapsamlı</span> kontrol listesi
   comprehensive_list: Kapsamlı liste
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Yükleniyor
   concept_status: Konsept Durumu
   configure: Yapılandır
   configure_a_widget_to_show: '%{site_name} sayfasındaki gözlemleri kendi sayfanda ya da blogunda görmek için bir widget yapılandır. Gömülü CSS’yi <code>&lt;head&gt;</code> HTML’nizin içine eklemeniz gerekebilir. CSS''yi tekrar yazmaktan çekinmeyin.'
@@ -964,6 +973,16 @@ tr:
   contributor_cannot_be_found: Katılımcı bulunamadı
   contributors_to_project: "%{project} katılımcıları"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Tümü
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Tümü
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Tümü
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Tümü
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Tümü
     sex: Cinsiyet
     male: Erkek
     female: Dişi
@@ -986,6 +1005,15 @@ tr:
     alive: Canlı
     dead: Ölü
     cannot_be_determined: Belirlenemedi
+    #As in the feather on a bird
+    feather: Tüy
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organizma
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: İz
+    #Endoskeletal remains, like a deer bone
+    bone: Kemik
   controlled_term_definitions:
     alive: Organizma yaşıyor ve bir ölüm belirtisi göstermiyor
     dead: Organizma ölü ya da bir ölüm belirtisi gösteriyor
@@ -1948,6 +1976,7 @@ tr:
   last_active_with_date: "Son Aktif: %{date}"
   last_confirmed_observation: Son onaylanan gözlem
   last_observation: Son gözlem
+  last_observation_caps: SON GÖZLEM
   last_seen: Son görülme
   last_year: Geçen Yıl
   lat: Enlem
@@ -2003,6 +2032,7 @@ tr:
     hawaiian: Havaice
     hebrew: İbranice
     hiligaynon: Hiligaynon
+    hungarian: Macarca
     icelandic: İzlandaca
     ilokano: Ilokano
     italian: İtalyanca
@@ -2116,6 +2146,7 @@ tr:
     lt: Litvanca
     lv: Letonya
     mk: Makedonca
+    mr: Marathi
     nb: Bokmal Norveççesi
     nl: Felemenkçe
     oc: Oksitanca
@@ -2150,6 +2181,8 @@ tr:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "%{site_name}'den çıkış yap?"
   log_scale_label: Günlük
+  #Status message shown while logging in
+  logging_in: Oturum açılıyor...
   login_slash_username: Giriş yap / kullanıcı adı
   logo:
     logo: Logo
@@ -2347,10 +2380,16 @@ tr:
   multiple_select_option: '-- çoklu --'
   multiple_taxa_for_taxon_change: "Birden fazla sınıf (değiştirme/birleştirme için giriş, ayırma için çıkış)"
   multiple_taxon_ids_separated_by_commas: 'Virgülle ayrılmış çoklu sınıf tanımlamaları, örn. 123,654'
+  must_be_in_taxon: '%{taxon} sınıfında olmalı'
+  must_be_not_in_taxon: '%{taxon} sınıfında olmamalı'
   must_be_observed_after: '%{operand} sonrasında gözlemlenmesi gerekir'
   must_be_observed_before: '%{operand} öncesinde gözlemlenmesi gerekir'
   must_be_less_than_x_MB: "%{x} MB boyuttan az olması gerekir"
   must_have_observation_field: "%{operand} gözlem alanının doldurulmuş olması gerekir"
+  must_have_photos: fotoğraf içermeli
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "minimum kalite derecesi: %{grades}"
+  must_have_sounds: ses içermeli
   must_have_x: "%{x} olması gerekir"
   mute_user: Kullanıcıyı Sustur
   mute_removed: Susturma kaldırıldı
@@ -2584,6 +2623,8 @@ tr:
   observation_brief_something_on_day_at_time: "%{day} tarihi %{time} zamanından bir şeyler"
   observation_brief_something_on_day_at_time_by_user: "%{user} kullanıcısı tarafından %{time} zamanında ve %{day} gününde bir şeyler"
   observation_brief_something_on_day_by_user: "%{day} gününde %{user} kullanıcısından bir şeyler"
+  observation_brief_something_in_month: "%{month} ayından bir şeyler"
+  observation_brief_something_in_month_by_user: "%{user} tarafından %{month} ayından bir şeyler"
   observation_brief_something_by_user: "%{user} kullanıcısından bir şeyler"
   observation_brief_something_from_place: "%{place} yerinden bir şeyler"
   observation_brief_something_from_place_by_user: "%{user} kullanıcısı tarafından %{place} yerinden bir şeyler"
@@ -2595,6 +2636,7 @@ tr:
   observation_brief_taxon_on_day_at_time: "%{day} gününde %{time} zamanında %{taxon}"
   observation_brief_taxon_on_day_at_time_by_user: "%{user} tarafından %{time} zamanında %{day} gününde %{taxon}"
   observation_brief_taxon_on_day_by_user: "%{day} gününde %{user} tarafından %{taxon}"
+  observation_brief_taxon_in_month: "%{month} ayında %{taxon}"
   observation_brief_taxon_by_user: "%{user} tarafından %{taxon}"
   observation_brief_taxon_from_place: "%{place} yerinden %{taxon}"
   observation_brief_taxon_from_place_by_user: "%{user} tarafından ve %{place} yerinden %{taxon}"
@@ -3315,6 +3357,8 @@ tr:
     Yeni yerler iNat'taki en büyük yavaşlama nedenlerinden biridir, <strong>bu nedenle lütfen yeni bir yer açmamayı düşünün</strong>. Yalnızca birkaç bin gözlem içeren küçük yerler genellikle uygun olsa da, çok sayıda gözlem içeren yeni bir yer yaparsanız, iNat'ı diğer herkes için yavaşlatırsınız. İşte bazı alternatif yaklaşımlar:
   places_warning_editing_places_is_slow: |
     Yer sınırlarını düzenlemek, iNat'taki en büyük yavaşlama kaynaklarından biridir. Bundan kaçınabiliyorsanız, kesinlikle gerekli olmadıkça yer sınırlarını eklemeyin, değiştirmeyin ya da kaldırmayın.
+  places_warning_quota: |
+    Günde üçten fazla konum oluşturamazsın.
   places_warning_the_future: |
     Değeri ne olursa olsun, iNat'ın mevcut büyüme hızı göz önüne alındığında, insanların gelecekte yer ekleyebilecekleri koşulları kısıtlamamız gerekecek.
   plants: bitkiler
@@ -4302,8 +4346,10 @@ tr:
     Bu sorgu bir kerede sunulamayacak kadar çok sınıf içeriyor. Daha çok filtre eklemeyi deneyin
   tools: Araçlar
   top_contributors: En çok katkıda bulunanlar
+  top_identifier_caps: EN ÇOK TANIMLAYAN
   top_identifiers: En Çok Tanımlayanlar
   top_identifiers_of_taxon: '%{taxon}''ı En Çok Tanımlayanlar'
+  top_observer_caps: EN ÇOK GÖZLEMLEYEN
   top_observers: En Çok Gözlemleyenler
   tos_privacy_guidelines_label: |
     <a href="/terms" target="_blank">Hizmet Şartları</a> ve <a href="/privacy" target="_blank">Gizlilik Politikası</a>'nı onaylıyorum, ve <a href="/pages/community+guidelines" target="_blank">Topluluk İlkelerini</a> inceledim.
@@ -4311,6 +4357,8 @@ tr:
   totals: Toplam
   total_members: Toplam üye
   total_observations: Toplam Gözlem
+  total_observations_caps: TOPLAM GÖZLEM
+  total_species_observed_caps: GÖZLEMLENEN TOPLAM TÜR
   total_unique_observers: Toplam benzersiz gözlemci
   translated_languages: Çevrilmiş Diller
   'true': 'Doğru'
@@ -4498,6 +4546,7 @@ tr:
   username_or_user_id: Kullanıcı Adı ya da Kimliği
   users: Kullanıcılar
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>'in %{project_title} projesine katkıları
+  users_favorites: "%{user} kullanıcısının favorileri"
   users_highlights_and_stats_from_year_on_site: "%{user} kullanıcısının %{year} yerinde %{site} sayfasındaki öne çıkanları ve istatistikleri"
   users_id: "%{user} Tanımlamaları"
   users_latest_observations_on_site: "%{user} kullanıcısının %{site} sayfasındaki son gözlemleri"
@@ -4610,6 +4659,16 @@ tr:
   welcome_to_inat: "%{site_name}'e hoş geldiniz!"
   welcome_to_guides: "%{site_name} Rehberlerine Hoş geldiniz!"
   welcome_to_x_project: "%{project}'e hoş geldiniz"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Bunun cinste olduğuna oldukça eminiz
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Bunun familyada olduğuna oldukça eminiz
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: Bunun takımda olduğuna oldukça eminiz
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: Bunun alt familyada olduğuna oldukça eminiz
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: Bunun üst familyada olduğuna oldukça eminiz
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
@@ -6277,6 +6336,7 @@ tr:
           "Plant Phenology=Flower Budding": Tomurcuklu Çiçek
           "Plant Phenology=Flowering": Çiçekli
           "Plant Phenology=Fruiting": Meyveli
+          "Life Stage=Adult": Yetişkin
           unannotated: Açıklama Yok
         max_photos_desc: |
           Bir sınıf yalnızca %{max} fotoğrafa sahip olabilir. Daha fazla eklemek için mevcut fotoğrafları kaldırmanız gerekecek.
