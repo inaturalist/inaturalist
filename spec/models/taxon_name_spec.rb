@@ -1,6 +1,16 @@
 # encoding: UTF-8
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+describe TaxonName do
+  it { is_expected.to belong_to :taxon }
+  it { is_expected.to belong_to :source }
+  it { is_expected.to belong_to(:creator).class_name 'User' }
+  it { is_expected.to have_many(:taxon_scheme_taxa).dependent :destroy }
+  it { is_expected.to have_many(:place_taxon_names).dependent(:delete_all).inverse_of :taxon_name }
+  it { is_expected.to have_many(:places).through :place_taxon_names }
+  it { is_expected.to validate_length_of(:name).is_at_least(1).is_at_most(256) }
+end
+
 describe TaxonName, 'creation' do
   before(:each) do
     @taxon_name = TaxonName.new(:name => 'Physeter catodon', 
