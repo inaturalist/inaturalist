@@ -2,6 +2,11 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe UserPrivilege do
+  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to(:revoke_user).class_name "User" }
+
+  it { is_expected.to validate_uniqueness_of(:user_id).scoped_to :privilege }
+
   elastic_models( Observation )
 
   let(:user) { User.make! }

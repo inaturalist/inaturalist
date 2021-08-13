@@ -2,6 +2,13 @@
 require File.dirname(__FILE__) + "/../spec_helper"
 
 describe UserMute do
+  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to(:muted_user).class_name "User" }
+
+  it { is_expected.to validate_presence_of :user }
+  it { is_expected.to validate_presence_of :muted_user }
+  it { is_expected.to validate_uniqueness_of(:muted_user_id).scoped_to(:user_id).with_message "already muted" }
+
   before { enable_has_subscribers }
   after { disable_has_subscribers }
 
