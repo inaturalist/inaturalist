@@ -6,7 +6,14 @@ class WikiPagesController < ApplicationController
 
   def edit_allowed?
     return false unless logged_in?
-    return true if current_user.is_admin? || current_user.is_site_admin_of?( @site )
+    return true if current_user.is_admin?
+    if (
+      current_user.is_site_admin_of?( @site ) &&
+      @page.creator.is_site_admin_of?( @site ) &&
+      !@page.creator.is_admin?
+    )
+      return true
+    end
     if !@site.home_page_wiki_path.blank? && @page.path == @site.home_page_wiki_path
       return false unless current_user.site_id == @site.id
     end
