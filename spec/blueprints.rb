@@ -310,12 +310,6 @@ Project.blueprint(:collection) do
   project_type { "collection" }
 end
 
-ProjectInvitation.blueprint do
-  user { User.make! }
-  project { Project.make! }
-  observation { Observation.make! }
-end
-
 ProjectList.blueprint do
   project { Project.make }
 end

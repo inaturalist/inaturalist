@@ -108,13 +108,6 @@ module MakeHelpers
     lp.observations << Observation.make!(:user => lp.user)
     lp
   end
-  
-  def make_project_invitation(options = {})
-    pu = ProjectUser.make!
-    o = Observation.make!
-    pi = ProjectInvitation.create!(options.merge(:user => pu.user, :project => pu.project, :observation => o))
-    pi
-  end
 
   def make_project_observation(options = {})
     p = options[:project] || Project.make!
