@@ -240,7 +240,6 @@ describe GuideTaxon do
       expect(guide_photos.last.position).to be > gp.position
     end
 
-<<<<<<< HEAD
     # it "should not add maps" do
     #   page = EolService.page(791500, :common_names => true, :maps => 1, :details => true, :photos => 0)
     #   gt.sync_eol_photos(:page => page)
@@ -252,34 +251,17 @@ describe GuideTaxon do
   end
 
   describe "add_color_tags" do
-    let(:yellow) { Color.make!(:value => "yellow") }
-    let(:blue) { Color.make!(:value => "blue") }
-    let(:taxon) {
-      t = Taxon.make!
-      t.colors += [yellow, blue]
-      t.save
-      t
-    }
-    let(:gt) { GuideTaxon.make!(:taxon => taxon)}
+    let(:yellow) { build :color, value: "yellow" }
+    let(:blue) { build :color, value: "blue" }
+    let(:taxon) { build :taxon, colors: [yellow, blue] }
+    let(:subject) { build :guide_taxon, taxon: taxon }
+
+    before { subject.add_color_tags }
 
     it "should add tags" do
-      gt.add_color_tags
-      expect(gt.tag_list).to include("color=yellow")
-      expect(gt.tag_list).to include("color=blue")
+      expect(subject.tag_list).to include("color=yellow")
+      expect(subject.tag_list).to include("color=blue")
     end
-=======
-describe GuideTaxon, "add_color_tags" do
-  let(:yellow) { build :color, value: "yellow" }
-  let(:blue) { build :color, value: "blue" }
-  let(:taxon) { build :taxon, colors: [yellow, blue] }
-  let(:subject) { build :guide_taxon, taxon: taxon }
-
-  before { subject.add_color_tags }
-
-  it "should add tags" do
-    expect(subject.tag_list).to include("color=yellow")
-    expect(subject.tag_list).to include("color=blue")
->>>>>>> Address slow spec
   end
 
   describe "add_rank_tag" do

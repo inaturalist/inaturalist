@@ -1609,11 +1609,10 @@ describe Observation do
   
     it "should not make a guess for problematic names" do
       Taxon::PROBLEM_NAMES.each do |name|
-        t = Taxon.make( name: name.capitalize )
-        if t.save
-          o = Observation.make!(:species_guess => name)
-          expect(o.taxon_id).not_to eq t.id
-        end
+        next unless build(:taxon, name: name.capitalize).valid?
+
+        observation = build :observation, species_guess: name
+        expect { observation.set_taxon_from_species_guess }.to_not change { observation.taxon_id }
       end
     end
   
