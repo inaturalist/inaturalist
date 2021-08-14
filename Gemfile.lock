@@ -288,6 +288,11 @@ GEM
       json
     exiftool_vendored (12.25.0)
       exiftool (>= 0.7.0)
+    factory_bot (5.2.0)
+      activesupport (>= 4.2.0)
+    factory_bot_rails (5.2.0)
+      factory_bot (~> 5.2.0)
+      railties (>= 4.2.0)
     faker (2.18.0)
       i18n (>= 1.6, < 2)
     faraday (1.4.2)
@@ -662,6 +667,7 @@ DEPENDENCIES
   elasticsearch-rails
   exifr
   exiftool_vendored
+  factory_bot_rails
   faker
   fastimage
   flickraw-cached

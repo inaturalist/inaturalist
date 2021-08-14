@@ -6,6 +6,7 @@ ENV["RAILS_ENV"] = 'test'
 require File.expand_path("../../config/environment", __FILE__)
 
 require 'rspec/rails'
+require 'factory_bot_rails'
 require 'capybara/rails'
 require 'webmock/rspec'
 WebMock.allow_net_connect!
@@ -87,6 +88,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include RSpecHtmlMatchers
+  config.include FactoryBot::Syntax::Methods
   config.fixture_path = "#{::Rails.root}/spec/fixtures/"
   config.infer_spec_type_from_file_location!
   # disable certain specs. Useful for travis
