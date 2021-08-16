@@ -15,6 +15,7 @@ class DateTimeFieldWrapper extends Component {
   }
 
   componentDidMount( ) {
+    moment.locale( I18n.locale );
     // the datetime picker prevents a card drag preview without this
     this.close( );
   }

@@ -12,15 +12,40 @@ describe WikiPagesController do
     end
     describe "admin-only" do
       let(:wiki_page) { WikiPage.make!( admin_only: true ) }
-      it "should be accessible to site admins" do
-        sign_in make_admin
-        get :edit, params: { path: wiki_page.path }
+      let(:default_site) { Site.default }
+      let(:other_site) { Site.make! }
+      let(:staff_user) { make_admin }
+      let(:site_admin_user) { SiteAdmin.make!( site: other_site ).user }
+      it "should be accessible to site admins if made by an admin of the site they admin" do
+        site_wiki_page = WikiPage.make!( admin_only: true, creator: site_admin_user )
+        sign_in site_admin_user
+        get :edit, params: { path: site_wiki_page.path, inat_site_id: other_site.id }
         expect( response.status ).to eq 200
       end
       it "should not be accessible to curators" do
         sign_in make_curator
         get :edit, params: { path: wiki_page.path }
         expect( response.status ).to be_between( 300, 400 )
+      end
+      it "should not be accessible to site admins if the page was created by staff" do
+        staff_wiki_page = WikiPage.make!( admin_only: true, creator: staff_user )
+        sign_in site_admin_user
+        get :edit, params: { path: staff_wiki_page.path, inat_site_id: other_site.id }
+        expect( response.status ).to be_between( 300, 400 )
+      end
+      it "should not be accessible to site admins if the page was created by a site admin of another site" do
+        yet_another_site = Site.make!
+        yet_another_site_admin_user = SiteAdmin.make!( site: yet_another_site ).user
+        site_wiki_page = WikiPage.make!( admin_only: true, creator: yet_another_site_admin_user )
+        sign_in site_admin_user
+        get :edit, params: { path: site_wiki_page.path, inat_site_id: other_site.id }
+        expect( response.status ).to be_between( 300, 400 )
+      end
+      it "should be accessible to staff if made by a site admin of another site" do
+        site_wiki_page = WikiPage.make!( admin_only: true, creator: site_admin_user )
+        sign_in staff_user
+        get :edit, params: { path: site_wiki_page.path }
+        expect( response.status ).to eq 200
       end
     end
   end

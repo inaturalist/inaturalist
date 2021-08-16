@@ -32,7 +32,7 @@ chdir APP_ROOT do
   end
 
   puts "\n== Creating Template Database =="
-  if system "command -v createdb"
+  if system "command -v createdb > /dev/null"
     system "createdb template_postgis"
     system "psql -d template_postgis -c 'create extension postgis'"
     system "psql -d template_postgis -c 'create extension \"uuid-ossp\"'"
