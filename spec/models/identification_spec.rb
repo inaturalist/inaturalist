@@ -3,26 +3,6 @@ require "spec_helper"
 describe Identification, "creation" do
 
   describe "without callbacks" do
-    it "should have a taxon" do 
-      @id = Identification.make!
-      @id.taxon = nil
-      @id.valid?
-      expect(@id.errors[:taxon]).not_to be_blank
-    end
-    
-    it "should have a user" do 
-      @id = Identification.make!
-      @id.user = nil
-      @id.valid?
-      expect(@id.errors[:user]).not_to be_blank
-    end
-
-    it "should have an observation" do 
-      @id = Identification.make!
-      @id.observation = nil
-      @id.valid?
-      expect(@id.errors[:observation]).not_to be_blank
-    end
 
     it "should store the previous observation taxon" do
       o = make_research_grade_observation
@@ -746,6 +726,16 @@ end
 
 describe Identification do
   elastic_models( Observation, Identification )
+
+  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to :taxon_change }
+  it { is_expected.to belong_to(:previous_observation_taxon).class_name "Taxon" }
+  it { is_expected.to have_many(:project_observations).with_foreign_key(:curator_identification_id).dependent :nullify }
+
+  it { is_expected.to validate_presence_of :observation }
+  it { is_expected.to validate_presence_of :user }
+  it { is_expected.to validate_presence_of(:taxon).with_message "for an ID must be something we recognize" }
+  it { is_expected.to validate_length_of(:body).is_at_least(0).is_at_most(Comment::MAX_LENGTH).allow_blank.on :create }
 
   describe "mentions" do
     before { enable_has_subscribers }

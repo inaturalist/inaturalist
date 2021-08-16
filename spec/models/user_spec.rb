@@ -17,6 +17,84 @@ bad_logins = [
   "^foo"
 ]
 
+describe User, "associations" do
+  it { is_expected.to belong_to(:curator_sponsor).class_name "User" }
+  it { is_expected.to belong_to(:place).inverse_of :users }
+  it { is_expected.to belong_to(:search_place).inverse_of(:search_users).class_name "Place" }
+  it { is_expected.to belong_to(:site).inverse_of :users }
+  it { is_expected.to belong_to(:suspended_by_user).class_name "User" }
+  it { is_expected.to have_many(:annotations).dependent :destroy }
+  it { is_expected.to have_many(:atlases).inverse_of(:user).dependent :nullify }
+  it { is_expected.to have_many(:comments).dependent :destroy }
+  it { is_expected.to have_many(:created_guide_sections).class_name("GuideSection").with_foreign_key("creator_id").inverse_of(:creator).dependent :nullify }
+  it { is_expected.to have_many :deleted_observations }
+  it { is_expected.to have_many :deleted_photos }
+  it { is_expected.to have_many :deleted_sounds }
+  it { is_expected.to have_many(:editing_guides).through(:guide_users) }
+  it { is_expected.to have_many(:flags_as_flaggable_user).inverse_of(:flaggable_user).class_name("Flag").with_foreign_key("flaggable_user_id").dependent :nullify }
+  it { is_expected.to have_many(:flags_as_flagger).inverse_of(:user).class_name "Flag" }
+  it { is_expected.to have_many :flow_tasks }
+  it { is_expected.to have_many(:friendships).dependent :destroy }
+  it { is_expected.to have_many(:friendships_as_friend).class_name("Friendship").with_foreign_key("friend_id").inverse_of(:friend).dependent :destroy }
+  it { is_expected.to have_many(:guide_users).inverse_of(:user).dependent :delete_all }
+  it { is_expected.to have_many(:guides).dependent(:destroy).inverse_of :user }
+  it { is_expected.to have_many(:identifications).dependent :destroy }
+  it { is_expected.to have_many(:journal_posts).class_name("Post").dependent :destroy }
+  it { is_expected.to have_many(:listed_taxa).dependent :nullify }
+  it { is_expected.to have_many(:lists).dependent :destroy }
+  it { is_expected.to have_many(:messages).dependent :destroy }
+  it { is_expected.to have_many(:moderator_actions).inverse_of :user }
+  it { is_expected.to have_many(:moderator_notes).inverse_of :user }
+  it { is_expected.to have_many(:moderator_notes_as_subject).class_name("ModeratorNote").with_foreign_key("subject_user_id").inverse_of(:subject_user).dependent :destroy }
+  it { is_expected.to have_many(:observation_field_values).dependent(:nullify).inverse_of :user }
+  it { is_expected.to have_many(:observation_fields).dependent(:nullify).inverse_of :user }
+  it { is_expected.to have_many(:observations).dependent :destroy }
+  it { is_expected.to have_many(:parentages).class_name("UserParent").with_foreign_key("parent_user_id").inverse_of :parent_user }
+  it { is_expected.to have_many(:photos).dependent :destroy }
+  it { is_expected.to have_many(:places).dependent :nullify }
+  it { is_expected.to have_many :posts }
+  it { is_expected.to have_many :projects }
+  it { is_expected.to have_many(:project_observations).dependent :nullify }
+  it { is_expected.to have_many(:project_user_invitations).dependent :nullify }
+  it { is_expected.to have_many(:project_user_invitations_received).dependent(:delete_all).class_name "ProjectUserInvitation" }
+  it { is_expected.to have_many(:project_users).dependent :destroy }
+  it { is_expected.to have_many(:provider_authorizations).dependent :delete_all }
+  it { is_expected.to have_many(:quality_metrics).dependent :destroy }
+  it { is_expected.to have_many(:saved_locations).inverse_of(:user).dependent :destroy }
+  it { is_expected.to have_many(:site_admins).inverse_of :user }
+  it { is_expected.to have_many(:sounds).dependent :destroy }
+  it { is_expected.to have_many(:sources).dependent :nullify }
+  it { is_expected.to have_many(:subscriptions).dependent :delete_all }
+  it { is_expected.to have_many(:taxa).with_foreign_key("creator_id").inverse_of :creator }
+  it { is_expected.to have_many(:taxon_changes).inverse_of :user }
+  it { is_expected.to have_many(:taxon_curators).inverse_of(:user).dependent :destroy }
+  it { is_expected.to have_many :taxon_framework_relationships }
+  it { is_expected.to have_many(:taxon_links).dependent :nullify }
+  it { is_expected.to have_many(:taxon_names).with_foreign_key("creator_id").inverse_of :creator }
+  it { is_expected.to have_many(:updated_guide_sections).class_name("GuideSection").with_foreign_key("updater_id").inverse_of(:updater).dependent :nullify }
+  it { is_expected.to have_many(:updated_observation_field_values).dependent(:nullify).inverse_of(:updater).with_foreign_key("updater_id").class_name "ObservationFieldValue" }
+  it { is_expected.to have_many(:user_blocks).inverse_of(:user).dependent :destroy }
+  it { is_expected.to have_many(:user_blocks_as_blocked_user).class_name("UserBlock").with_foreign_key("blocked_user_id").inverse_of(:blocked_user).dependent :destroy }
+  it { is_expected.to have_many(:user_mutes).inverse_of(:user).dependent :destroy }
+  it { is_expected.to have_many(:user_mutes_as_muted_user).class_name("UserMute").with_foreign_key("muted_user_id").inverse_of(:muted_user).dependent :destroy }
+  it { is_expected.to have_many(:user_privileges).inverse_of(:user).dependent :delete_all }
+  it { is_expected.to have_one(:flickr_identity).dependent :delete }
+  it { is_expected.to have_one(:soundcloud_identity).dependent :delete }
+  it { is_expected.to have_one(:user_parent).dependent(:destroy).inverse_of :user }
+end
+
+describe User, "validations" do
+  it { is_expected.to validate_exclusion_of(:login).in_array %w(password new edit create update delete destroy) }
+  it { is_expected.to validate_exclusion_of(:password).in_array %w(password) }
+  it { is_expected.to validate_length_of(:login).is_at_least(User::MIN_LOGIN_SIZE).is_at_most User::MAX_LOGIN_SIZE }
+  it { is_expected.to validate_length_of(:name).is_at_most(100).allow_blank }
+  it { is_expected.to validate_length_of(:time_zone).is_at_least(3).allow_nil }
+  it { is_expected.to validate_presence_of :login }
+  it { is_expected.to validate_presence_of :password }
+  it { is_expected.to validate_presence_of :email }
+  it { is_expected.to validate_uniqueness_of(:login).case_insensitive }
+end
+
 describe User do
   before(:all) do
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
@@ -39,13 +117,6 @@ describe User do
       @creating_user.call
       @user.reload
       expect(@user.confirmation_token).not_to be_blank
-    end
-    
-    it "should enforce unique login regardless of a case" do
-      u1 = User.make!(:login => 'foo')
-      expect {
-        User.make!(:login => 'FOO')
-      }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
     it "should require email under normal circumstances" do
@@ -83,10 +154,6 @@ describe User do
       u.save
       expect(u.email).to eq "foo@bar.com"
       expect(u).to be_valid
-    end
-
-    it "should allow time_zone to be nil" do
-      expect( User.make( time_zone: nil ) ).to be_valid
     end
 
     it "should not allow time_zone to be a blank string" do
@@ -258,18 +325,6 @@ describe User do
   # Validations
   #
 
-  it 'requires login' do
-    expect {
-      u = create_user(:login => nil)
-      expect(u.errors[:login]).to_not be_blank
-    }.to_not change(User, :count)
-    
-    expect {
-      u = create_user(:login => "")
-      expect(u.errors[:login]).to_not be_blank
-    }.to_not change(User, :count)
-  end
-
   it "should not allow duplicate emails" do
     existing = User.make!
     u = User.make(:email => existing.email)
@@ -295,24 +350,10 @@ describe User do
     end
   end
 
-  it 'requires password' do
-    expect {
-      u = create_user(:password => nil)
-      expect(u.errors[:password]).to_not be_blank
-    }.to_not change(User, :count)
-  end
-
   it 'requires password confirmation' do
     expect {
       u = create_user(:password_confirmation => "")
       expect(u.errors[:password_confirmation]).to_not be_blank
-    }.to_not change(User, :count)
-  end
-
-  it 'requires email' do
-    expect {
-      u = create_user(:email => nil)
-      expect(u.errors[:email]).to_not be_blank
     }.to_not change(User, :count)
   end
 

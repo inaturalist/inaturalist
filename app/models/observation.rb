@@ -303,7 +303,6 @@ class Observation < ApplicationRecord
   has_many :project_observations, :dependent => :destroy
   has_many :project_observations_with_changes, -> {
     joins(:model_attribute_changes) }, class_name: "ProjectObservation"
-  has_many :project_invitations, :dependent => :destroy
   has_many :projects, :through => :project_observations
   has_many :quality_metrics, :dependent => :destroy
   has_many :observation_field_values, -> { order("id asc") }, :dependent => :destroy, :inverse_of => :observation

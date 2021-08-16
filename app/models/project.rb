@@ -6,7 +6,6 @@ class Project < ApplicationRecord
   belongs_to :place, inverse_of: :projects
   has_many :project_users, dependent: :delete_all, inverse_of: :project
   has_many :project_observations, dependent: :delete_all
-  has_many :project_invitations, dependent: :destroy
   has_many :project_user_invitations, dependent: :delete_all
   has_many :users, through: :project_users
   has_many :observations, through: :project_observations

@@ -1,5 +1,37 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+describe Taxon, "associations" do
+  it { is_expected.to belong_to(:conservation_status_source).class_name "Source" }
+  it { is_expected.to belong_to(:creator).class_name 'User' }
+  it { is_expected.to belong_to(:iconic_taxon).class_name('Taxon').with_foreign_key 'iconic_taxon_id' }
+  it { is_expected.to belong_to :source }
+  it { is_expected.to belong_to(:taxon_framework_relationship).touch true }
+  it { is_expected.to have_many(:assessments).dependent :nullify }
+  it { is_expected.to have_many(:conservation_statuses).dependent :destroy }
+  it { is_expected.to have_many(:controlled_term_taxa).inverse_of(:taxon).dependent :destroy }
+  it { is_expected.to have_many(:guide_taxa).inverse_of(:taxon).dependent :nullify }
+  it { is_expected.to have_many(:guides).inverse_of(:taxon).dependent :nullify }
+  it { is_expected.to have_many(:identifications).dependent :destroy }
+  it { is_expected.to have_many(:listed_taxa).dependent :destroy }
+  it { is_expected.to have_many(:listed_taxon_alterations).inverse_of(:taxon).dependent :delete_all }
+  it { is_expected.to have_many(:lists).through :listed_taxa }
+  it { is_expected.to have_many(:observations).dependent :nullify }
+  it { is_expected.to have_many(:photos).through :taxon_photos }
+  it { is_expected.to have_many(:taxon_change_taxa).inverse_of :taxon }
+  it { is_expected.to have_many(:taxon_curators).inverse_of :taxon }
+  it { is_expected.to have_many(:taxon_descriptions).dependent :destroy }
+  it { is_expected.to have_many :taxon_changes }
+  it { is_expected.to have_many(:taxon_links).dependent :delete_all }
+  it { is_expected.to have_many(:taxon_names).dependent :destroy }
+  it { is_expected.to have_many(:taxon_photos).dependent :destroy }
+  it { is_expected.to have_many(:taxon_ranges).dependent :destroy }
+  it { is_expected.to have_many(:taxon_scheme_taxa).dependent :destroy }
+  it { is_expected.to have_many(:taxon_schemes).through :taxon_scheme_taxa }
+  it { is_expected.to have_one(:atlas).inverse_of(:taxon).dependent :destroy }
+  it { is_expected.to have_one(:simplified_tree_milestone_taxon).dependent :destroy }
+  it { is_expected.to have_one(:taxon_framework).inverse_of(:taxon).dependent :destroy }
+end
+
 describe Taxon do
   elastic_models( Observation, Taxon )
 

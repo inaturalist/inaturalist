@@ -1,6 +1,12 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 Paperclip::Storage::Filesystem.stubbed_for_tests = false
 
+describe TaxonRange do
+  it { is_expected.to belong_to :taxon }
+  it { is_expected.to belong_to :source }
+  it { is_expected.to have_many(:listed_taxa).dependent :nullify }
+end
+
 describe TaxonRange, "create_kml_attachment" do
   it "should create an kml attachment from geometry" do
     tr = without_delay { make_taxon_range_with_geom }
