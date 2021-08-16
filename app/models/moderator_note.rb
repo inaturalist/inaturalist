@@ -15,7 +15,7 @@ class ModeratorNote < ApplicationRecord
 
   private
   def author_is_curator
-    unless user.is_curator?
+    unless user && user.is_curator?
       errors.add(:user, :must_be_a_curator)
     end
   end

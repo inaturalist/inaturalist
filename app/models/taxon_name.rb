@@ -171,7 +171,7 @@ class TaxonName < ApplicationRecord
   end
   
   def strip_tags
-    self.name.gsub!(/<.*?>/, '')
+    self.name.gsub!(/<.*?>/, '') unless name.blank?
     true
   end
 

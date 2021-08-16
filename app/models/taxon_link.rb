@@ -74,7 +74,7 @@ class TaxonLink < ApplicationRecord
   end
   
   def url_without_template_tags
-    stripped_url = self.url
+    stripped_url = self.url.to_s
     TEMPLATE_TAGS.each {|tt| stripped_url.gsub!(tt, '')}
     stripped_url
   end

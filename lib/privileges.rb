@@ -23,7 +23,7 @@ module Privileges
         callback_types = [callback_types].flatten
         callback_types.each do |callback_type|
           validate on: callback_type, if: options[:if] do |record|
-            unless record.user.privileged_with?( privilege )
+            unless record.user && record.user.privileged_with?( privilege )
               errors.add( :user_id, "requires_privilege_#{privilege}".to_sym )
             end
           end
