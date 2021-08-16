@@ -1,6 +1,13 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe UpdateAction do
+  it { is_expected.to belong_to :resource }
+  it { is_expected.to belong_to :notifier }
+  it { is_expected.to belong_to(:resource_owner).class_name "User" }
+
+  it { is_expected.to validate_presence_of :resource }
+  it { is_expected.to validate_presence_of :notifier }
+
   before { enable_has_subscribers }
   after { disable_has_subscribers }
 

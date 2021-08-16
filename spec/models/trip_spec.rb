@@ -1,28 +1,35 @@
 # encoding: UTF-8
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
-describe Trip, "updating" do
-  it "should add any observations in time frame if changed"
-  it "should remove observations outside the time frame if changed" # or should it...
-end
+describe Trip do
+  it { is_expected.to have_many(:trip_taxa).dependent(:destroy).inverse_of :trip }
+  it { is_expected.to have_many(:trip_purposes).dependent :destroy }
+  it { is_expected.to have_many(:taxa).through :trip_taxa }
+  it { is_expected.to belong_to(:place).inverse_of :trips }
 
-describe Trip, "add_taxa_from_observations" do
-  let(:trip) { Trip.make! }
-  it "should add taxa" do
-    o = Observation.make!(:observed_on_string => (trip.start_time + 5.minutes).iso8601, :taxon => Taxon.make!, :user => trip.user)
-    expect(trip.observations).not_to be_blank
-    expect(trip.trip_taxa.count).to eq 0
-    trip.add_taxa_from_observations
-    expect(trip.trip_taxa.count).to eq 1
+  describe Trip, "updating" do
+    it "should add any observations in time frame if changed"
+    it "should remove observations outside the time frame if changed" # or should it...
   end
 
-  it "should not add duplicate taxa" do
-    t = Taxon.make!
-    2.times do
-      o = Observation.make!(:observed_on_string => (trip.start_time + 5.minutes).iso8601, :taxon => t, :user => trip.user)
+  describe Trip, "add_taxa_from_observations" do
+    let(:trip) { Trip.make! }
+    it "should add taxa" do
+      o = Observation.make!(:observed_on_string => (trip.start_time + 5.minutes).iso8601, :taxon => Taxon.make!, :user => trip.user)
+      expect(trip.observations).not_to be_blank
+      expect(trip.trip_taxa.count).to eq 0
+      trip.add_taxa_from_observations
+      expect(trip.trip_taxa.count).to eq 1
     end
-    trip.add_taxa_from_observations
-    expect(trip.trip_taxa.count).to eq 1
+
+    it "should not add duplicate taxa" do
+      t = Taxon.make!
+      2.times do
+        o = Observation.make!(:observed_on_string => (trip.start_time + 5.minutes).iso8601, :taxon => t, :user => trip.user)
+      end
+      trip.add_taxa_from_observations
+      expect(trip.trip_taxa.count).to eq 1
+    end
   end
 end
 

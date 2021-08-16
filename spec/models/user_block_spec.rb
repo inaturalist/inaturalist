@@ -2,6 +2,10 @@
 require File.dirname(__FILE__) + "/../spec_helper"
 
 describe UserBlock do
+  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to(:blocked_user).class_name "User" }
+  it { is_expected.to belong_to(:override_user).class_name "User" }
+
   let( :user ) { User.make! }
   let( :blocked_user ) { User.make! }
   describe "validation" do

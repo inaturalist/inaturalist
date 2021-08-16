@@ -1,6 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe TaxonPhoto do
+  it { is_expected.to belong_to :taxon }
+  it { is_expected.to belong_to :photo }
+
   elastic_models( Observation )
   describe "creation" do
     it "should be invalid if there are already the maximum amount of taxon photos" do
