@@ -27,16 +27,16 @@ module Shared::WikipediaModule
     respond_to do |format|
       format.html do
         if @decoded.empty?
-          render(:text => "#{@before_wikipedia} Wikipedia doesn't have a page for #{@title}", :status => 404)
+          render(:plain => "#{@before_wikipedia} Wikipedia doesn't have a page for #{@title}", :status => 404)
         else
-          render(:text => "#{@before_wikipedia} #{@decoded}")
+          render(:plain => "#{@before_wikipedia} #{@decoded}")
         end
       end
     end
   rescue SocketError => e
     raise unless Rails.env.development?
     Rails.logger.debug "[DEBUG] Looks like you're offline, skipping wikipedia"
-    render :text => "You're offline."
+    render :plain => "You're offline."
   end
   
   private

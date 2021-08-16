@@ -1,4 +1,4 @@
-class Message < ActiveRecord::Base
+class Message < ApplicationRecord
   acts_as_spammable fields: [ :subject, :body ],
     user: :from_user
 

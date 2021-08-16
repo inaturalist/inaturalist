@@ -1,4 +1,4 @@
-class ModeratorAction < ActiveRecord::Base
+class ModeratorAction < ApplicationRecord
   HIDE = "hide"
   UNHIDE = "unhide"
   ACTIONS = [HIDE, UNHIDE]

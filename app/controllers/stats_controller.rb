@@ -1,13 +1,13 @@
 class StatsController < ApplicationController
-  before_filter :set_time_zone_to_utc
-  before_filter :load_params, except: [:year, :generate_year]
+  before_action :set_time_zone_to_utc
+  before_action :load_params, except: [:year, :generate_year]
   before_action :doorkeeper_authorize!,
     only: [ :generate_year ],
     if: lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!,
+  before_action :authenticate_user!,
     only: [:cnc2017_taxa, :cnc2017_stats, :generate_year],
     unless: lambda { authenticated_with_oauth? }
-  before_filter :allow_external_iframes, only: [:wed_bioblitz]
+  before_action :allow_external_iframes, only: [:wed_bioblitz]
 
   caches_action :summary, expires_in: 1.day
   caches_action :observation_weeks_json, expires_in: 1.day
@@ -254,7 +254,7 @@ class StatsController < ApplicationController
             csv << [t.name, t.common_name.try(:name), t.iconic_taxon_name, @missing_taxon_ids.index( t.id ) ? "Missing" : "Novel"]
           end
         end
-        render text: csv_text
+        render plain: csv_text
       end
     end
   end
@@ -350,7 +350,7 @@ class StatsController < ApplicationController
       where( "project_observations.project_id = ?", @project ).
       where( "observations.taxon_id IN (?)", unique_taxon_ids ).
       group( "users.id" ).
-      order( "count(*) DESC" ).
+      order( Arel.sql( "count(*) DESC" ) ).
       limit( 100 )
     if params[:quality] == "research"
       @unique_contributors = @unique_contributors.where ( "observations.quality_grade = 'research'" )
@@ -481,7 +481,7 @@ class StatsController < ApplicationController
     projs = Project.select("projects.*, count(po.observation_id)").
       joins("LEFT JOIN project_observations po ON (projects.id=po.project_id)").
       group(:id).
-      order("count(po.observation_id) desc")
+      order( Arel.sql( "count(po.observation_id) desc" ) )
     projs = if options[:group]
       projs.where("projects.group = ? OR projects.id = ? OR projects.id IN (?)", options[:group], params[:project_id], all_project_ids)
     else

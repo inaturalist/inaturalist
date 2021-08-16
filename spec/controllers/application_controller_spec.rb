@@ -28,20 +28,20 @@ describe ApplicationController do
   describe "set_locale" do
     it "should set the session locale" do
       session[:locale] = "en"
-      get :set_locale, locale: :fr
+      get :set_locale, params: { locale: :fr }
       expect( session[:locale] ).to eq "fr"
     end
 
     it "should do nothing for unknown locales" do
       session[:locale] = "en"
-      get :set_locale, locale: :xx
+      get :set_locale, params: { locale: :xx }
       expect( session[:locale] ).to eq "en"
     end
 
     it "should update logged in users' locales" do
       u = User.make!(locale: "en")
       http_login(u)
-      get :set_locale, locale: :fr
+      get :set_locale, params: { locale: :fr }
       u.reload
       expect( session[:locale] ).to eq "fr"
       expect( u.locale ).to eq "fr"
@@ -89,7 +89,7 @@ describe ApplicationController do
       end
 
       it "redirects logged-out users to log in" do
-        get :index, inat_site_id: site.id
+        get :index, params: { inat_site_id: site.id }
         expect(response.response_code).to eq 302
         expect(response).to be_redirect
         expect(response).to redirect_to(new_user_session_url)
@@ -97,7 +97,7 @@ describe ApplicationController do
 
       it "redirects basic users to log in" do
         http_login(basic_user)
-        get :index, inat_site_id: site.id
+        get :index, params: { inat_site_id: site.id }
         expect(response.response_code).to eq 302
         expect(response).to be_redirect
         expect(response).to redirect_to(login_url)
@@ -105,14 +105,14 @@ describe ApplicationController do
 
       it "does not redirect admins" do
         http_login(admin_user)
-        get :index, inat_site_id: site.id
+        get :index, params: { inat_site_id: site.id }
         expect(response.response_code).to eq 200
         expect(response).to_not be_redirect
       end
 
       it "does not redirect site admins" do
         http_login(site_admin_user)
-        get :index, inat_site_id: site.id
+        get :index, params: { inat_site_id: site.id }
         expect(response.response_code).to eq 200
         expect(response).to_not be_redirect
       end
@@ -159,7 +159,7 @@ describe ApplicationController do
           u = User.make!( site: alt_site )
           expect( u.site ).to eq alt_site
           sign_in u
-          get :index, format: :html, inat_site_id: alt_site.id
+          get :index, format: :html, params: { inat_site_id: alt_site.id }
           expect( session[:potential_site] ).to be_blank
         end
         it "should not be set if prompting you to join the site you are affiliated with" do
@@ -173,7 +173,7 @@ describe ApplicationController do
           third_site = Site.make!
           u = User.make!
           sign_in u
-          get :index, format: :html, inat_site_id: third_site.id
+          get :index, format: :html, params: { inat_site_id: third_site.id }
           expect( session[:potential_site] ).to be_blank
         end
       end

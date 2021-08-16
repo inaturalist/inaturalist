@@ -11,19 +11,19 @@ describe FlagsController do
 
     it "allows curators to update" do
       http_login(curator)
-      post :update, id: flag.id, flag: { comment: "whatever" }
+      post :update, params: { id: flag.id, flag: { comment: "whatever" } }
       expect(flash[:error]).to be_blank
     end
 
     it "allows the flag creator to update" do
       http_login(user)
-      post :update, id: flag.id, flag: { comment: "whatever" }
+      post :update, params: { id: flag.id, flag: { comment: "whatever" } }
       expect(flash[:error]).to be_blank
     end
 
     it "does not allow other users to update" do
       http_login(User.make!)
-      post :update, id: flag.id, flag: { comment: "whatever" }
+      post :update, params: { id: flag.id, flag: { comment: "whatever" } }
       expect(flash[:error]).to eq "You don't have permission to do that."
     end
 
@@ -32,11 +32,11 @@ describe FlagsController do
       flag = Flag.make!( flaggable: o )
       o.destroy
       http_login curator
-      post :update, id: flag.id, flag: {
+      post :update, params: { id: flag.id, flag: {
         comment: "it's fine, everything's fine, totally fine",
         resolver_id: curator.id,
         resolved: true
-      }
+      } }
       expect( response ).to be_redirect
       flag.reload
       expect( flag ).to be_resolved
@@ -53,21 +53,21 @@ describe FlagsController do
 
     it "does not allow curators to destroy" do
       http_login(curator)
-      post :destroy, id: flag.id
+      post :destroy, params: { id: flag.id }
       expect( Flag.find_by_id( flag.id ) ).not_to be_blank
     end
 
     it "does not allow the flag creator to destroy if there are comments" do
       http_login(user)
       Comment.make!( parent: flag )
-      post :destroy, id: flag.id
+      post :destroy, params: { id: flag.id }
       expect( Flag.find_by_id( flag.id ) ).not_to be_blank
     end
 
     it "does not allow the flag creator to destroy if resolved" do
       http_login( user )
       flag.update_attributes( resolved: true, resolver: make_curator )
-      post :destroy, id: flag.id
+      post :destroy, params: { id: flag.id }
       expect( Flag.find_by_id( flag.id ) ).not_to be_blank
     end
 
@@ -75,19 +75,19 @@ describe FlagsController do
       http_login( user )
       expect( flag.comments.count ).to eq 0
       expect( flag ).not_to be_resolved
-      post :destroy, id: flag.id
+      post :destroy, params: { id: flag.id }
       expect( Flag.find_by_id( flag.id ) ).to be_blank
     end
 
     it "does not allow other users to destroy" do
       http_login(User.make!)
-      post :destroy, id: flag.id
+      post :destroy, params: { id: flag.id }
       expect( Flag.find_by_id( flag.id ) ).not_to be_blank
     end
 
     it "allows admins to destroy" do
       http_login( admin )
-      post :destroy, id: flag.id
+      post :destroy, params: { id: flag.id }
       expect( Flag.find_by_id( flag.id ) ).to be_blank
     end
   end

@@ -176,6 +176,7 @@ class LocalPhoto < Photo
   def photo_bucket_should_be_changed?
     # must have a URL
     return false unless original_url
+    return false unless CONFIG.usingS3
     # the code must be configured to use a public bucket
     return false unless LocalPhoto.odp_s3_bucket_enabled?
     # the LocalPhoto must be in a bucket other than what its license dictates
@@ -498,6 +499,7 @@ class LocalPhoto < Photo
   end
 
   def s3_client
+    return unless CONFIG.usingS3
     s3_credentials = LocalPhoto.new.file.s3_credentials
     ::Aws::S3::Client.new(
       access_key_id: s3_credentials[:access_key_id],

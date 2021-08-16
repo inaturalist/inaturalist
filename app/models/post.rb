@@ -1,4 +1,4 @@
-class Post < ActiveRecord::Base
+class Post < ApplicationRecord
   acts_as_spammable :fields => [ :title, :body ],
                     :comment_type => "blog-post"
   # include ActsAsUUIDable
@@ -22,7 +22,7 @@ class Post < ActiveRecord::Base
         UpdateAction.delete_and_purge(conditions)
         return false
       end
-      return !post.draft? && existing_updates_count == 0 && post.previous_changes[:published_at]
+      return !post.draft? && existing_updates_count == 0 && post.saved_change_to_published_at?
     },
     :if => lambda{|post, project, subscription|
       return true unless post.parent_type == 'Project'
@@ -43,7 +43,7 @@ class Post < ActiveRecord::Base
   belongs_to :parent, :polymorphic => true
   belongs_to :user
   has_many :comments, :as => :parent, :dependent => :destroy
-  has_and_belongs_to_many :observations, -> { uniq }
+  has_and_belongs_to_many :observations, -> { distinct }
 
   validates_length_of :title, in: 1..2000
   validates_presence_of :parent
@@ -148,7 +148,7 @@ class Post < ActiveRecord::Base
   end
   
   def update_user_counter_cache
-    if parent_type == "User" && (published_at_changed? || destroyed?) 
+    if parent_type == "User" && (saved_change_to_published_at? || destroyed?)
       User.where( id: user_id, ).update_all( journal_posts_count: user.journal_posts.published.count )
     end
     true

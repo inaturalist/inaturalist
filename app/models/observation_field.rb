@@ -1,4 +1,4 @@
-class ObservationField < ActiveRecord::Base
+class ObservationField < ApplicationRecord
 
   include ActsAsElasticModel
   # include ActsAsUUIDable
@@ -139,7 +139,7 @@ class ObservationField < ActiveRecord::Base
   end
 
   def reindex_observations_if_name_changed
-    if name_changed?
+    if saved_change_to_name?
       Observation.elastic_index!(ids:
         ObservationFieldValue.where( observation_field_id: self.id).pluck(:observation_id),
         delay: true)

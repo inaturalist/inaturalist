@@ -1,4 +1,4 @@
-class TaxonChange < ActiveRecord::Base
+class TaxonChange < ApplicationRecord
   belongs_to :taxon, inverse_of: :taxon_changes
   has_many :taxon_change_taxa, inverse_of: :taxon_change, dependent: :destroy
   has_many :taxa, :through => :taxon_change_taxa
@@ -407,7 +407,7 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def commit_records_later
-    return true unless committed_on_changed? && committed?
+    return true unless saved_change_to_committed_on? && committed?
     delay(:priority => USER_INTEGRITY_PRIORITY).commit_records
     true
   end

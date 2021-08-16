@@ -1,5 +1,5 @@
 # would've liked to call this simply Authorization, but that model name clashes with restful_authentication
-class ProviderAuthorization < ActiveRecord::Base
+class ProviderAuthorization < ApplicationRecord
   belongs_to  :user
   validates_presence_of :user_id, :provider_uid, :provider_name
   validates_uniqueness_of :provider_uid, :scope => :provider_name

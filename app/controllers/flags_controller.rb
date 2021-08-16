@@ -1,10 +1,10 @@
 class FlagsController < ApplicationController
   before_action :doorkeeper_authorize!, if: lambda { authenticate_with_oauth? }, except: [:show]
-  before_filter :authenticate_user!, unless: lambda { authenticated_with_oauth? }, except: [:show]
-  before_filter :set_model, except: [:update, :show, :destroy, :on]
-  before_filter :model_required, except: [:index, :update, :show, :on, :destroy]
-  before_filter :load_flag, only: [:show, :destroy, :update]
-  before_filter :curator_or_owner_required, only: [:update]
+  before_action :authenticate_user!, unless: lambda { authenticated_with_oauth? }, except: [:show]
+  before_action :set_model, except: [:update, :show, :destroy, :on]
+  before_action :model_required, except: [:index, :update, :show, :on, :destroy]
+  before_action :load_flag, only: [:show, :destroy, :update]
+  before_action :curator_or_owner_required, only: [:update]
 
   PARTIALS = %w(dialog)
 

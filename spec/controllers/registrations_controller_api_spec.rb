@@ -2,12 +2,12 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 def register_user_with_params( params = {} )
   u = User.make
-  post :create, format: "json", user: {
+  post :create, format: "json", params: { user: {
     login: u.login,
     password: "zomgbar",
     password_confirmation: "zomgbar",
     email: u.email
-  }.merge( params )
+  }.merge( params ) }
   User.find_by_login(u.login)
 end
 
@@ -40,32 +40,32 @@ describe Users::RegistrationsController, "create" do
   end
 
   it "should show errors when invalid" do
-    post :create, format: :json, user: {
+    post :create, format: :json, params: { user: {
       password: "zomgbar",
       password_confirmation: "zomgbar"
-    }
+    } }
     json = JSON.parse( response.body )
     expect( json["errors"] ).not_to be_blank
   end
 
   it "should return 422 when invalid" do
-    post :create, format: :json, user: {
+    post :create, format: :json, params: { user: {
       login: "zapphytest2",
       password: "zomgbar",
       password_confirmation: "zomgbar"
-    }
+    } }
     expect( response.response_code ).to eq 422
   end
 
   it "should not have duplicate email errors when email taken" do
     existing = User.make!
     user = User.make( email: existing.email )
-    post :create, format: :json, user: {
+    post :create, format: :json, params: { user: {
       login: user.login,
       email: user.email,
       password: "zomgbar",
       password_confirmation: "zomgbar"
-    }
+    } }
     json = JSON.parse( response.body )
     expect( json["errors"].uniq.size ).to eq json["errors"].size
   end
@@ -80,12 +80,12 @@ describe Users::RegistrationsController, "create" do
     site1 = Site.make!( url: "test.host" )
     site2 = Site.make!
     u = User.make
-    post :create, inat_site_id: site2.id, user: {
+    post :create, params: { inat_site_id: site2.id, user: {
       login: u.login,
       password: "zomgbar",
       password_confirmation: "zomgbar",
       email: u.email
-    }
+    } }
     expect( User.find_by_login( u.login ).site ).to eq site2
   end
 
@@ -101,12 +101,12 @@ describe Users::RegistrationsController, "create" do
     site1 = Site.make!( url: "test.host" )
     site2 = Site.make!( preferred_locale: locale )
     u = User.make
-    post :create, inat_site_id: site2.id, user: {
+    post :create, params: { inat_site_id: site2.id, user: {
       login: u.login,
       password: "zomgbar",
       password_confirmation: "zomgbar",
       email: u.email
-    }
+    } }
     expect( User.find_by_login( u.login ).locale ).to eq locale
   end
 

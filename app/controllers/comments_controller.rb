@@ -2,10 +2,10 @@ class CommentsController < ApplicationController
   before_action :doorkeeper_authorize!,
     only: [ :create, :update, :destroy ],
     if: lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
-  before_filter :admin_required, :only => [:user]
-  before_filter :load_record, :only => [:show, :edit, :update, :destroy]
-  before_filter :owner_required, :only => [:edit, :update]
+  before_action :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
+  before_action :admin_required, :only => [:user]
+  before_action :load_record, :only => [:show, :edit, :update, :destroy]
+  before_action :owner_required, :only => [:edit, :update]
   check_spam only: [:create, :update], instance: :comment
   
   def index

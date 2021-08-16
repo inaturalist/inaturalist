@@ -56,7 +56,7 @@ module TaxaHelper
       return iconic_taxon_image(taxon, params)
     end
     params[:size] ||= "square"
-    image_params = params.merge(:alt => default_taxon_name(taxon))
+    image_params = params.except(:size).merge(:alt => default_taxon_name(taxon))
     unless taxon.default_photo.blank?
       image_params[:alt] += " - Photo #{taxon.default_photo.attribution}"
     end

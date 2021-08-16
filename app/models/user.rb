@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include ActsAsSpammable::User
   include ActsAsElasticModel
   # include ActsAsUUIDable
@@ -232,7 +232,7 @@ class User < ActiveRecord::Base
   end
 
   # Roles
-  has_and_belongs_to_many :roles, -> { uniq }
+  has_and_belongs_to_many :roles, -> { distinct }
   belongs_to :curator_sponsor, class_name: "User"
   belongs_to :suspended_by_user, class_name: "User"
   
@@ -588,7 +588,7 @@ class User < ActiveRecord::Base
       priority: USER_INTEGRITY_PRIORITY,
       unique_hash: { "User::update_observation_sites": id },
       queue: "throttled"
-    ).update_observation_sites if site_id_changed?
+    ).update_observation_sites if saved_change_to_site_id?
   end
 
   def update_observation_sites
@@ -1180,7 +1180,7 @@ class User < ActiveRecord::Base
 
   def restore_access_tokens_by_suspended_user
     return true if suspended?
-    if suspended_at_changed?
+    if saved_change_to_suspended_at?
       # This is not an ideal solution because there are reasons to revoke a
       # token that are not related to suspension, like trying to deal with a
       # oauth app that's behaving badly for some reason, or a user's token is
@@ -1200,8 +1200,8 @@ class User < ActiveRecord::Base
 
   def update_photo_properties
     changes = {}
-    changes[:native_username] = login if login_changed?
-    changes[:native_realname] = name if name_changed?
+    changes[:native_username] = login if saved_change_to_login?
+    changes[:native_realname] = name if saved_change_to_name?
     unless changes.blank?
       delay( priority: USER_INTEGRITY_PRIORITY ).update_photos_with_changes( changes )
     end
@@ -1422,6 +1422,12 @@ class User < ActiveRecord::Base
     return [] if taxon_counts.blank?
     previous_observed_taxon_ids = taxon_counts.distinct_taxa.buckets.map{ |b| b["key"] }
     Taxon.where( id: taxa_plus_ancestor_ids - previous_observed_taxon_ids )
+  end
+
+  def header_projects
+    project_users.joins(:project).includes(:project).limit(7).
+      order( Arel.sql( "(projects.user_id = #{id}) DESC, projects.updated_at ASC" ) ).
+      map{ |pu| pu.project }.sort_by{ |p| p.title.downcase }
   end
 
   # this method will look at all this users photos and create separate delayed jobs

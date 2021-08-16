@@ -1,4 +1,4 @@
-class ObservationFieldValue < ActiveRecord::Base
+class ObservationFieldValue < ApplicationRecord
 
   blockable_by lambda {|ofv| ofv.observation.try(:user_id) }
   

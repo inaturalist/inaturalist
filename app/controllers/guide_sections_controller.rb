@@ -1,8 +1,8 @@
 class GuideSectionsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :load_record, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_guide, :except => [:index, :new, :create, :import, :import_from_eol, :import_from_wikipedia]
-  before_filter :only => [:edit, :update, :destroy] do |c|
+  before_action :authenticate_user!
+  before_action :load_record, :only => [:show, :edit, :update, :destroy]
+  before_action :load_guide, :except => [:index, :new, :create, :import, :import_from_eol, :import_from_wikipedia]
+  before_action :only => [:edit, :update, :destroy] do |c|
     require_guide_user
   end
   check_spam only: [:create, :update], instance: :guide_section

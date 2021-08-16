@@ -1,4 +1,4 @@
-class UserBlock < ActiveRecord::Base
+class UserBlock < ApplicationRecord
   # After a single user has been blocked this many times we alert staff about it
   PROBLEMATIC_BLOCK_THRESHOLD = 3
   # Number of blocks allowed per user
@@ -22,7 +22,7 @@ class UserBlock < ActiveRecord::Base
   end
 
   def only_three_per_user
-    if user.user_blocks.count >= BLOCK_QUOTA && ( override_user.blank? || !override_user.is_admin? )
+    if user && user.user_blocks.count >= BLOCK_QUOTA && ( override_user.blank? || !override_user.is_admin? )
       errors.add( :base, I18n.t( "you_can_only_block_three_users" ) )
     end
     true

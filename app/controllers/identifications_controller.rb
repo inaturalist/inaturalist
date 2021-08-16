@@ -1,12 +1,12 @@
 class IdentificationsController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :except => [:by_login], :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_user_by_login, :only => [:by_login]
+  before_action :authenticate_user!, :except => [:by_login], :unless => lambda { authenticated_with_oauth? }
+  before_action :load_user_by_login, :only => [:by_login]
   load_only = [ :show, :edit, :update, :destroy ]
-  before_filter :load_record, only: load_only
+  before_action :load_record, only: load_only
   blocks_spam :only => load_only, :instance => :identification
   check_spam only: [:create, :update], instance: :identification
-  before_filter :require_owner, :only => [:edit, :update, :destroy]
+  before_action :require_owner, :only => [:edit, :update, :destroy]
   cache_sweeper :comment_sweeper, :only => [:create, :update, :destroy, :agree]
   caches_action :bold, :expires_in => 6.hours, :cache_path => Proc.new {|c| 
     c.params.merge(:sequence => Digest::MD5.hexdigest(c.params[:sequence]))
@@ -203,7 +203,7 @@ class IdentificationsController < ApplicationController
   
   def update
     @identification.assign_attributes( params[:identification] )
-    if @identification.body_changed? && @identification.hidden?
+    if @identification.will_save_change_to_body? && @identification.hidden?
       respond_to do |format|
         msg = t(:cant_edit_or_delete_hidden_content)
         format.html do

@@ -1,3 +1,3 @@
-class FrequencyCellMonthTaxon < ActiveRecord::Base
+class FrequencyCellMonthTaxon < ApplicationRecord
 
 end

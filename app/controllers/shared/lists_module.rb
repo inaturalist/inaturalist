@@ -119,7 +119,7 @@ module Shared::ListsModule
           if path
             render :file => path
           else
-            render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
+            render :status => :accepted, :plain => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
           end
         else
           job_id = Rails.cache.read(@list.generate_csv_cache_key(view: @view, user_id: current_user.id))
@@ -137,7 +137,7 @@ module Shared::ListsModule
             Rails.cache.write(@list.generate_csv_cache_key(view: @view, user_id: current_user.id), job.id, :expires_in => 1.hour)
           end
           prevent_caching
-          render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
+          render :status => :accepted, :plain => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
         end
       end
       
@@ -406,7 +406,7 @@ private
     end
   end
   
-  def load_list #before_filter
+  def load_list #before_action
     @list = List.find_by_id(params[:id].to_i)
     @list ||= List.find_by_id(params[:list_id].to_i)
     List.preload_associations(@list, :user)
@@ -426,7 +426,7 @@ private
     list
   end
 
-  def set_iconic_taxa #before_filter
+  def set_iconic_taxa #before_action
     @iconic_taxa = Taxon::ICONIC_TAXA
     @iconic_taxa_by_id = @iconic_taxa.index_by(&:id)
   end
@@ -568,7 +568,7 @@ private
   end
 
   def set_options_order(find_options)
-    find_options[:order] = case params[:order_by]
+    options_order = case params[:order_by]
     when "name"
       order = params[:order]
       order = "asc" unless %w(asc desc).include?(params[:order])
@@ -581,6 +581,7 @@ private
       # TODO: somehow make the following not cause a filesort...
       "taxa.ancestry || '/' || listed_taxa.taxon_id"
     end
+    find_options[:order] = Arel.sql( options_order )
     find_options
   end
 

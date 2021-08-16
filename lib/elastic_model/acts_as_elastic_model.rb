@@ -302,7 +302,6 @@ module ActsAsElasticModel
     end
 
     def elastic_index!
-      original_associations_loaded = self.association_cache.keys
       begin
         index_options = { }
         if respond_to?(:wait_for_index_refresh) && wait_for_index_refresh
@@ -314,15 +313,7 @@ module ActsAsElasticModel
         if respond_to?(:last_indexed_at) && !destroyed?
           update_column(:last_indexed_at, Time.now)
         end
-        # indexing can preload a lot of associations which can hang around and cause
-        # memory usage to spike. To avoid that, reset (i.e. unload the association)
-        # any associations that were loaded purely for indexing
-        associations_added_for_indexing = self.association_cache.keys - original_associations_loaded
-        associations_added_for_indexing.each do |k|
-          if self.send( k ).is_a?( ActiveRecord::Associations::CollectionProxy )
-            self.send( k ).reset
-          end
-        end
+
         @@inserts += 1
         # garbage collect after a small batch of individual instance indexing
         # don't do this for every elastic_index! as GC is somewhat expensive

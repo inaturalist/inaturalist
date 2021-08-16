@@ -1,8 +1,8 @@
 class QualityMetricsController < ApplicationController
   before_action :doorkeeper_authorize!, if: lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, unless: lambda { authenticated_with_oauth? }
-  before_filter :return_here, except: [:vote]
-  before_filter :load_observation
+  before_action :authenticate_user!, unless: lambda { authenticated_with_oauth? }
+  before_action :return_here, except: [:vote]
+  before_action :load_observation
   
   def vote
     if @existing = @observation.quality_metrics.where(user_id: current_user.id, metric: params[:metric]).first

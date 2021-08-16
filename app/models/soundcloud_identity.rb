@@ -1,4 +1,4 @@
-class SoundcloudIdentity < ActiveRecord::Base
+class SoundcloudIdentity < ApplicationRecord
   belongs_to :user
 
   def token

@@ -1,4 +1,4 @@
-class Friendship < ActiveRecord::Base
+class Friendship < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: "User", foreign_key: "friend_id"
   
@@ -12,10 +12,10 @@ class Friendship < ActiveRecord::Base
   blockable_by lambda {|friendship| friendship.friend_id }
 
   after_update :remove_subscription_to_friend, if: Proc.new{|friendship|
-    friendship.following_changed? && !friendship.following?
+    friendship.saved_change_to_following? && !friendship.following?
   }
   after_update :create_subscription_after_update, if: Proc.new{|friendship|
-    friendship.following_changed? && friendship.following?
+    friendship.saved_change_to_following? && friendship.following?
   }
   after_destroy :remove_subscription_to_friend
   

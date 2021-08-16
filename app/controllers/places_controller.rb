@@ -3,17 +3,17 @@ class PlacesController < ApplicationController
   include Shared::WikipediaModule
   include Shared::GuideModule
   
-  before_filter :authenticate_user!, :except => [:index, :show, :search, 
+  before_action :authenticate_user!, :except => [:index, :show, :search, 
     :wikipedia, :taxa, :children, :autocomplete, :geometry, :guide,
     :cached_guide, :guide_widget]
-  before_filter :return_here, :only => [:show]
-  before_filter :load_place, :only => [:show, :edit, :update, :destroy, 
+  before_action :return_here, :only => [:show]
+  before_action :load_place, :only => [:show, :edit, :update, :destroy, 
     :children, :taxa, :geometry, :cached_guide, :guide_widget, :widget, :merge]
-  before_filter :limit_page_param_for_search, :only => [:search]
-  before_filter :editor_required, :only => [:edit, :update, :destroy]
-  before_filter :curator_required, :only => [:planner]
-  before_filter :check_quota, only: [:create]
-
+  before_action :limit_page_param_for_search, :only => [:search]
+  before_action :editor_required, :only => [:edit, :update, :destroy]
+  before_action :curator_required, :only => [:planner]
+  before_action :check_quota, only: [:create]
+  
   QUOTA = 3
   
   caches_page :geometry
@@ -23,7 +23,7 @@ class PlacesController < ApplicationController
     if: Proc.new {|c| c.session.blank? || c.session["warden.user.user.key"].blank? }
   cache_sweeper :place_sweeper, :only => [:update, :destroy, :merge]
 
-  before_filter :allow_external_iframes, only: [:guide_widget, :cached_guide]
+  before_action :allow_external_iframes, only: [:guide_widget, :cached_guide]
 
   requires_privilege :organizer, only: [:new, :create, :edit, :update, :destroy],
     if: Proc.new{|c|
@@ -49,10 +49,10 @@ class PlacesController < ApplicationController
         key = place ? "random_place_ids_#{place.id}" : 'random_place_ids'
         place_ids = Rails.cache.fetch(key, expires_in: 15.minutes) do
           places = if place
-            place.children.select('id').order("RANDOM()").limit(50)
+            place.children.select('id').order( Arel.sql( "RANDOM()" ) ).limit(50)
           else
             Place.where( "admin_level IS NOT NULL" ).select(:id).
-              order("RANDOM()").limit(50)
+              order( Arel.sql( "RANDOM()" ) ).limit(50)
           end
           places.map{|p| p.id}
         end
@@ -184,23 +184,22 @@ class PlacesController < ApplicationController
   end
   
   def create
-    if params[:woeid]
-      @place = Place.import_by_woeid(params[:woeid], user: current_user)
-    else
-      @place = Place.new(params[:place])
-      @place.user = current_user
-      if params[:file]
-        assign_geometry_from_file
-      end
+    @place = Place.new(params[:place])
+    @place.user = current_user
+    if params[:file]
+      assign_geometry_from_file
+    elsif !params[:geojson].blank?
+      @geometry = geometry_from_geojson(params[:geojson])
+      @place.validate_with_geom( @geometry, user: current_user )
+    end
 
-      if @geometry # && @place.valid?
-        @place.save_geom(@geometry, user: current_user)
-        @place.save
-        if @place.too_big_for_check_list?
-          notice = t(:place_too_big_for_check_list)
-          @place.check_list.destroy if @place.check_list
-          @place.update_attributes(:prefers_check_lists => false)
-        end
+    if @geometry # && @place.valid?
+      @place.save_geom(@geometry, user: current_user)
+      @place.save
+      if @place.too_big_for_check_list?
+        notice = t(:place_too_big_for_check_list)
+        @place.check_list.destroy if @place.check_list
+        @place.update_attributes(:prefers_check_lists => false)
       end
     end
     
@@ -286,23 +285,6 @@ class PlacesController < ApplicationController
     end
   end
   
-  def find_external
-    @places = if @ydn_places = GeoPlanet::Place.search(params[:q], :count => 10)
-      @ydn_places.map {|ydnp| Place.new_from_geo_planet(ydnp)}
-    else
-      []
-    end
-    
-    respond_to do |format|
-      format.json do
-        @places.each_with_index do |place, i|
-          @places[i].html = view_context.render_in_format(:html, :partial => "create_external_place_link", :object => place, :locals => {:i => i})
-        end
-        render :json => @places.to_json(:methods => [:html])
-      end
-    end
-  end
-  
   def autocomplete
     @q = params[:q] || params[:term] || params[:item]
     @q = sanitize_query(@q.to_s.sanitize_encoding)
@@ -361,7 +343,7 @@ class PlacesController < ApplicationController
     @merge_target = Place.find(params[:with]) rescue nil
     
     if request.post?
-      keepers = params.map do |k,v|
+      keepers = params.to_hash.map do |k,v|
         k.gsub('keep_', '') if k =~ /^keep_/ && v == 'left'
       end.compact
       keepers = nil if keepers.blank?
@@ -517,7 +499,7 @@ class PlacesController < ApplicationController
         @places = Place.joins(:place_geometry).
           where(place_type: Place::OPEN_SPACE).
           where("place_geometries.id IS NOT NULL").
-          order("ST_Distance(ST_Point(places.longitude,places.latitude), ST_Point(#{@longitude},#{@latitude}))").
+          order( Arel.sql( "ST_Distance(ST_Point(places.longitude,places.latitude), ST_Point(#{@longitude},#{@latitude}))" ) ).
           page(1)
         @data = []
         @places.each do |p|

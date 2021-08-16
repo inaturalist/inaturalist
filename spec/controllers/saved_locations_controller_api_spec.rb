@@ -18,14 +18,14 @@ shared_examples_for "a SavedLocationsController" do
 
   describe "create" do
     it "should associate a new SavedLocation with the user that created it" do
-      post :create, format: :json, saved_location: { title: "foo", latitude: 1, longitude: 1 }
+      post :create, format: :json, params: { saved_location: { title: "foo", latitude: 1, longitude: 1 } }
       expect( SavedLocation.last.user ).to eq user
     end
   end
   describe "destroy" do
     it "should not allow deletion of a SavedLocation that does not belong to the authenticated user" do
       sl = SavedLocation.make!
-      delete :destroy, format: :json, id: sl.id
+      delete :destroy, format: :json, params: { id: sl.id }
       expect( response ).to be_forbidden
       expect( SavedLocation.find_by_id( sl.id ) ).not_to be_blank
     end

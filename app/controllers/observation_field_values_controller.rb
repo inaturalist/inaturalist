@@ -1,7 +1,7 @@
 class ObservationFieldValuesController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :show, :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_observation_field_value, :only => [:update, :destroy]
+  before_action :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
+  before_action :load_observation_field_value, :only => [:update, :destroy]
 
   def index
     per_page = params[:per_page].to_i
@@ -131,7 +131,7 @@ class ObservationFieldValuesController < ApplicationController
     end
     respond_to do |format|
       format.any do
-        render status: status, text: errors ? errors.join( ", " ) : nil
+        render status: status, plain: errors ? errors.join( ", " ) : nil
       end
       format.json do 
         render status: status, json: errors ? { errors: errors } : nil

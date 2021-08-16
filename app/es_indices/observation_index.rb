@@ -1,4 +1,4 @@
-class Observation < ActiveRecord::Base
+class Observation < ApplicationRecord
 
   include ActsAsElasticModel
 
@@ -450,8 +450,8 @@ class Observation < ActiveRecord::Base
         AND place_id IN (#{ uniq_obs_place_ids })
         AND establishment_means IS NOT NULL
         GROUP BY taxon_id, establishment_means").to_a.each do |r|
-        taxon_establishment_places[r["taxon_id"]] ||= {}
-        taxon_establishment_places[r["taxon_id"]][r["establishment_means"]] = r["place_ids"].split( "," )
+        taxon_establishment_places[r["taxon_id"].to_s] ||= {}
+        taxon_establishment_places[r["taxon_id"].to_s][r["establishment_means"]] = r["place_ids"].split( "," )
       end
       place_ids = taxon_establishment_places.values.map(&:values).flatten.uniq.map(&:to_i)
       return if place_ids.empty?
@@ -459,7 +459,7 @@ class Observation < ActiveRecord::Base
       Place.connection.execute("
         SELECT id, bbox_area
         FROM places WHERE id IN (#{ place_ids.join(',') })").to_a.each do |r|
-        places[r["id"]] = {
+        places[r["id"].to_s] = {
           id: r["id"].to_i,
           bbox_area: r["bbox_area"].to_f
         }

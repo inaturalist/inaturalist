@@ -1,4 +1,4 @@
-class TaxonRange < ActiveRecord::Base
+class TaxonRange < ApplicationRecord
   
   belongs_to :taxon
   belongs_to :source

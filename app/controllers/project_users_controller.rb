@@ -1,7 +1,7 @@
 class ProjectUsersController < ApplicationController
   before_action :doorkeeper_authorize!, if: ->{ authenticate_with_oauth? }
-  before_filter :authenticate_user!, unless: ->{ authenticated_with_oauth? }
-  before_filter :load_record, :require_owner
+  before_action :authenticate_user!, unless: ->{ authenticated_with_oauth? }
+  before_action :load_record, :require_owner
   def update
     respond_to do |format|
       format.json do

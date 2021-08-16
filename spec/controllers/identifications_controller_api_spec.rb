@@ -8,12 +8,12 @@ shared_examples_for "an IdentificationsController basics" do
     it "should work" do
       expect(observation.identifications.count).to eq 0
       t = Taxon.make!
-      post :create, :format => :json, :identification => {
-        :observation_id => observation.id,
-        :taxon_id => t.id,
-        :body => "i must eat them all"
-      }
-      expect(response).to be_success
+      post :create, format: :json, params: { identification: {
+        observation_id: observation.id,
+        taxon_id: t.id,
+        body: "i must eat them all"
+      } }
+      expect(response).to be_successful
       observation.reload
       expect(observation.identifications.count).to eq 1
     end
@@ -23,7 +23,9 @@ shared_examples_for "an IdentificationsController basics" do
     let(:identification) { Identification.make!( user: user ) }
     it "should work" do
       expect {
-        put :update, :format => :json, :id => identification.id, :identification => {:body => "i must eat them all"}
+        put :update, format: :json, params: {
+          id: identification.id, identification: { body: "i must eat them all" }
+        }
         identification.reload
       }.to change(identification, :body)
     end
@@ -37,11 +39,11 @@ shared_examples_for "an IdentificationsController" do
   describe "create" do
     it "should mark the observation as captive if requested" do
       expect( observation ).not_to be_captive_cultivated
-      post :create, format: :json, identification: {
+      post :create, format: :json, params: { identification: {
         observation_id: observation.id, 
         taxon_id: Taxon.make!.id,
         captive_flag: '1'
-      }
+      } }
       observation.reload
       expect( observation ).to be_captive_cultivated
     end
@@ -50,24 +52,24 @@ shared_examples_for "an IdentificationsController" do
       QualityMetric.make!(metric: QualityMetric::WILD, observation: observation, user: user, agree: false)
       observation.reload
       expect( observation ).to be_captive_cultivated
-      post :create, format: :json, identification: {
+      post :create, format: :json, params: { identification: {
         observation_id: observation.id, 
         taxon_id: Taxon.make!.id,
         captive_flag: '0'
-      }
-      expect( response ).to be_success
+      } }
+      expect( response ).to be_successful
       observation.reload
       expect( observation ).to be_captive_cultivated
     end
 
     it "should include the observation in the response" do
       t = Taxon.make!
-      post :create, :format => :json, :identification => {
-        :observation_id => observation.id,
-        :taxon_id => t.id,
-        :body => "i must eat them all"
-      }
-      expect(response).to be_success
+      post :create, format: :json, params: { identification: {
+        observation_id: observation.id,
+        taxon_id: t.id,
+        body: "i must eat them all"
+      } }
+      expect(response).to be_successful
       json = JSON.parse(response.body)
       expect(json['observation']['id']).to eq observation.id
     end
@@ -76,12 +78,12 @@ shared_examples_for "an IdentificationsController" do
       t = Taxon.make!
       o = make_private_observation
       expect(user).not_to eq o.user
-      post :create, :format => :json, :identification => {
-        :observation_id => o.id,
-        :taxon_id => t.id,
-        :body => "i must eat them all"
-      }
-      expect(response).to be_success
+      post :create, format: :json, params: { identification: {
+        observation_id: o.id,
+        taxon_id: t.id,
+        body: "i must eat them all"
+      } }
+      expect(response).to be_successful
       json = JSON.parse(response.body)
       expect(json['observation']['private_latitude']).to be_blank
     end
@@ -90,25 +92,25 @@ shared_examples_for "an IdentificationsController" do
       load_test_taxa
       t = Taxon.make!
       expect(@Pseudacris_regilla.iconic_taxon).to eq @Amphibia
-      o = Observation.make!(:taxon => @Pseudacris_regilla)
+      o = Observation.make!( taxon: @Pseudacris_regilla )
       expect(o.iconic_taxon_name).to eq @Amphibia.name
-      post :create, :format => :json, :identification => {
-        :observation_id => o.id,
-        :taxon_id => t.id,
-        :body => "i must eat them all"
-      }
-      expect(response).to be_success
+      post :create, format: :json, params: { identification: {
+        observation_id: o.id,
+        taxon_id: t.id,
+        body: "i must eat them all"
+      } }
+      expect(response).to be_successful
       json = JSON.parse(response.body)
       expect(json['observation']['iconic_taxon_name']).to eq o.iconic_taxon_name
     end
 
     it "should set vision attribute" do
-      post :create, format: :json, identification: {
+      post :create, format: :json, params: { identification: {
         observation_id: observation.id,
         taxon_id: Taxon.make!.id,
         vision: true
-      }
-      expect( response ).to be_success
+      } }
+      expect( response ).to be_successful
       json = JSON.parse(response.body)
       expect( json["vision"] ).to be true
       ident = Identification.find( json["id"] )
@@ -117,21 +119,21 @@ shared_examples_for "an IdentificationsController" do
 
     it "should assign a taxon by UUID" do
       t = Taxon.make!
-      post :create, format: :json, identification: {
+      post :create, format: :json, params: { identification: {
         taxon_id: t.uuid,
         observation_id: observation.id
-      }
-      expect( response ).to be_success
+      } }
+      expect( response ).to be_successful
       expect( user.identifications.last.taxon ).to eq t
     end
 
     it "should assign an observation by UUID" do
       t = Taxon.make!
-      post :create, format: :json, identification: {
+      post :create, format: :json, params: { identification: {
         taxon_id: t.id,
         observation_id: observation.uuid
-      }
-      expect( response ).to be_success
+      } }
+      expect( response ).to be_successful
       expect( user.identifications.last.observation ).to eq observation
     end
   end
@@ -140,14 +142,18 @@ shared_examples_for "an IdentificationsController" do
     let(:identification) { Identification.make!( user: user ) }
     
     it "should return json" do
-      put :update, :format => :json, :id => identification.id, :identification => {:body => "i must eat them all"}
+      put :update, format: :json, params: { 
+        id: identification.id, identification: { body: "i must eat them all" }
+      }
       json = JSON.parse(response.body)
       expect(json['taxon_id']).to eq identification.taxon_id
     end
 
     it "should work with a UUID" do
       expect {
-        put :update, format: :json, id: identification.uuid, identification: { body: "i must eat them all" }
+        put :update, format: :json, params: { 
+          id: identification.uuid, identification: { body: "i must eat them all" }
+        }
         identification.reload
       }.to change( identification, :body )
     end
@@ -160,7 +166,9 @@ shared_examples_for "an IdentificationsController" do
       expect( i2 ).to be_current
       expect( identification ).not_to be_current
       # puts "updating"
-      put :update, format: :json, id: identification.id, identification: { current: true }
+      put :update, format: :json, params: {
+        id: identification.id, identification: { current: true }
+      }
       # puts "response.body: #{response.body}"
       # puts "done updating"
       identification.reload
@@ -173,14 +181,14 @@ shared_examples_for "an IdentificationsController" do
       let(:hidden_ident) { ModeratorAction.make!( resource: Identification.make!( user: user) ).resource }
       it "should allow the identifier to withdraw" do
         expect( hidden_ident ).to be_current
-        put :update, format: :json, id: hidden_ident.id, identification: { current: false }
+        put :update, format: :json, params: { id: hidden_ident.id, identification: { current: false } }
         hidden_ident.reload
         expect( hidden_ident ).not_to be_current
       end
       it "should allow the identifier to restore" do
         hidden_ident.update_attributes( current: false )
         expect( hidden_ident ).not_to be_current
-        put :update, format: :json, id: hidden_ident.id, identification: { current: true }
+        put :update, format: :json, params: { id: hidden_ident.id, identification: { current: true } }
         hidden_ident.reload
         expect( hidden_ident ).to be_current
       end
@@ -188,7 +196,7 @@ shared_examples_for "an IdentificationsController" do
         body = "ermgrd its er mirirge"
         hidden_ident.update_attributes( body: body )
         expect( hidden_ident.body ).to eq body
-        put :update, format: :json, id: hidden_ident.id, identification: { body: "this is totally less offensive" }
+        put :update, format: :json, params: { id: hidden_ident.id, identification: { body: "this is totally less offensive" } }
         hidden_ident.reload
         expect( hidden_ident.body ).to eq body
       end
@@ -198,15 +206,15 @@ shared_examples_for "an IdentificationsController" do
   describe "destroy" do
     elastic_models( Observation, Identification )
 
-    let(:identification) { Identification.make!(:user => user) }
+    let(:identification) { Identification.make!( user: user ) }
 
     it "should not destroy the identification by default" do
-      delete :destroy, format: :json, id: identification.id
+      delete :destroy, format: :json, params: { id: identification.id }
       expect( Identification.find_by_id( identification.id ) ).not_to be_blank
     end
 
     it "should destroy the identification with the delete parameter" do
-      delete :destroy, format: :json, id: identification.id, delete: true
+      delete :destroy, format: :json, params: { id: identification.id, delete: true }
       expect( Identification.find_by_id( identification.id ) ).to be_blank
     end
 
@@ -214,20 +222,20 @@ shared_examples_for "an IdentificationsController" do
       ModeratorAction.make!( resource: identification )
       identification.reload
       expect( identification ).to be_hidden
-      delete :destroy, format: :json, id: identification.id, delete: true
+      delete :destroy, format: :json, params: { id: identification.id, delete: true }
       expect( Identification.find_by_id( identification.id ) ).not_to be_blank
     end
     
     it "should mark the identification as not current" do
       expect( identification ).to be_current
-      delete :destroy, format: :json, id: identification.id
+      delete :destroy, format: :json, params: { id: identification.id }
       identification.reload
       expect( identification ).not_to be_current
     end
 
     it "should remove the observation taxon if there are no current identifications" do
       expect( identification.observation.taxon ).to eq identification.taxon
-      delete :destroy, format: :json, id: identification.id
+      delete :destroy, format: :json, params: { id: identification.id }
       identification.reload
       expect( identification.observation.taxon ).to be_blank
     end
@@ -237,7 +245,7 @@ shared_examples_for "an IdentificationsController" do
       i1 = Identification.make!( user: user, observation: o )
       i2 = Identification.make!( user: user, observation: o )
       i3 = Identification.make!( user: user, observation: o )
-      delete :destroy, id: i2.id
+      delete :destroy, params: { id: i2.id }
       i1.reload
       i3.reload
       expect( i3 ).to be_current
@@ -250,13 +258,13 @@ shared_examples_for "an IdentificationsController" do
     elastic_models( Observation, Identification )
     it "should return identifications by the selected user" do
       ident = Identification.make!( user: user )
-      get :by_login, format: :json, login: user.login
+      get :by_login, format: :json, params: { login: user.login }
       json = JSON.parse( response.body )
       expect( json.detect{|i| i["id"] == ident.id } ).not_to be_blank
     end
     it "should not return identifications not by the selected user" do
       ident = Identification.make!
-      get :by_login, format: :json, login: user.login
+      get :by_login, format: :json, params: { login: user.login }
       json = JSON.parse( response.body )
       expect( json.detect{|i| i["id"] == ident.id } ).to be_blank
     end
@@ -264,7 +272,7 @@ shared_examples_for "an IdentificationsController" do
       let(:ident) { Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) ) }
       let(:json_ident) do
         expect( ident ).not_to be_blank
-        get :by_login, format: :json, login: user.login
+        get :by_login, format: :json, params: { login: user.login }
         json = JSON.parse( response.body )
         json.detect{|i| i["id"] == ident.id }
       end
@@ -289,7 +297,7 @@ shared_examples_for "an IdentificationsController" do
       ident = Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) )
       tn = TaxonName.make!( taxon: ident.taxon, lexicon: TaxonName::LEXICONS[:SPANISH] )
       user.update_attributes( locale: "es" )
-      get :by_login, format: :json, login: user.login
+      get :by_login, format: :json, params: { login: user.login }
       json = JSON.parse( response.body )
       json_ident = json.detect{|i| i["id"] == ident.id }
       expect( json_ident["taxon"]["default_name"]["name"] ).to eq tn.name
@@ -300,7 +308,7 @@ shared_examples_for "an IdentificationsController" do
       tn = TaxonName.make!( taxon: ident.taxon, lexicon: TaxonName::LEXICONS[:ENGLISH] )
       ptn = PlaceTaxonName.make!( taxon_name: tn, place: place )
       user.update_attributes( place: place, locale: "en" )
-      get :by_login, format: :json, login: user.login
+      get :by_login, format: :json, params: { login: user.login }
       json = JSON.parse( response.body )
       json_ident = json.detect{|i| i["id"] == ident.id }
       expect( json_ident["taxon"]["default_name"]["name"] ).to eq tn.name
@@ -309,7 +317,7 @@ shared_examples_for "an IdentificationsController" do
       ident = Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) )
       tn = TaxonName.make!( taxon: ident.observation.taxon, lexicon: TaxonName::LEXICONS[:SPANISH] )
       user.update_attributes( locale: "es" )
-      get :by_login, format: :json, login: user.login
+      get :by_login, format: :json, params: { login: user.login }
       json = JSON.parse( response.body )
       json_ident = json.detect{|i| i["id"] == ident.id }
       expect( json_ident["observation"]["taxon"]["default_name"]["name"] ).to eq tn.name
@@ -318,7 +326,7 @@ shared_examples_for "an IdentificationsController" do
 end
 
 describe IdentificationsController, "oauth authentication" do
-  let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id, :application => OauthApplication.make! }
+  let(:token) { double acceptable?: true, accessible?: true, resource_owner_id: user.id, application: OauthApplication.make! }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow(controller).to receive(:doorkeeper_token) { token }

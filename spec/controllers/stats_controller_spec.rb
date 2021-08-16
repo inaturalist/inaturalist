@@ -34,14 +34,14 @@ describe StatsController do
     end
 
     it "render the latest stat by default" do
-      get :index, format: :json, start_date: 1.day.ago.to_s
+      get :index, format: :json, params: { start_date: 1.day.ago.to_s }
       json = JSON.parse(response.body)
       expect( json[0]["created_at"] ).to eq Time.now.utc.beginning_of_day.as_json
       expect( json[1]["created_at"] ).to eq 1.day.ago.utc.beginning_of_day.as_json
     end
 
     it "accepts start and end dates" do
-      get :index, format: :json, start_date: 7.days.ago.to_s, end_date: 6.days.ago.to_s
+      get :index, format: :json, params: { start_date: 7.days.ago.to_s, end_date: 6.days.ago.to_s }
       json = JSON.parse(response.body)
       expect( json[0]["created_at"] ).to eq 6.days.ago.utc.beginning_of_day.as_json
       expect( json[1]["created_at"] ).to eq 7.day.ago.utc.beginning_of_day.as_json

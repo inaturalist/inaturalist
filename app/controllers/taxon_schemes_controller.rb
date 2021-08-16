@@ -1,7 +1,7 @@
 class TaxonSchemesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :curator_required, :except => [:index, :show]
-  before_filter :load_taxon_scheme, :except => [:index]
+  before_action :authenticate_user!, :except => [:index, :show]
+  before_action :curator_required, :except => [:index, :show]
+  before_action :load_taxon_scheme, :except => [:index]
   
   def index
     @taxon_schemes = TaxonScheme.paginate(:page => params[:page])  

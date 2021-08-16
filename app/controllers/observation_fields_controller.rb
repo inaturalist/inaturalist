@@ -1,7 +1,7 @@
 class ObservationFieldsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :load_observation_field, :only => [:show, :edit, :update, :destroy, :merge, :merge_field]
-  before_filter :owner_or_curator_required, :only => [:edit, :update, :destroy, :merge, :merge_field]
+  before_action :authenticate_user!, :except => [:index, :show]
+  before_action :load_observation_field, :only => [:show, :edit, :update, :destroy, :merge, :merge_field]
+  before_action :owner_or_curator_required, :only => [:edit, :update, :destroy, :merge, :merge_field]
 
   ORDER_BY_FIELDS = %w(created_at name values_count users_count)
   
@@ -13,7 +13,7 @@ class ObservationFieldsController < ApplicationController
     @order_by = ( ORDER_BY_FIELDS & [params[:order_by]] ).first || ORDER_BY_FIELDS.first
     @order = ( %w(asc desc) & [params[:order]] ).first || "desc"
     scope = if @order_by == "name"
-      scope.order( "LOWER(name) #{@order} NULLS LAST" )
+      scope.order( Arel.sql( "LOWER(name) #{@order} NULLS LAST" ) )
     else
       scope.order( "#{@order_by} #{@order} NULLS LAST" )
     end

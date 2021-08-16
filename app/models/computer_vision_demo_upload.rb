@@ -1,4 +1,4 @@
-class ComputerVisionDemoUpload < ActiveRecord::Base
+class ComputerVisionDemoUpload < ApplicationRecord
 
   serialize :metadata
 

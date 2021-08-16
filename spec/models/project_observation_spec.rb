@@ -235,6 +235,7 @@ describe ProjectObservation, "creation" do
     ObservationFieldValue.make!( observation_field: pof2.observation_field, observation: obs_with_1_and_2 )
     obs_with_1_and_2.reload
     obs_without_1_and_2 = Observation.make!
+    proj.reload
 
     expect( ProjectObservation.make( project: proj, observation: obs_with_1 ) ).not_to be_valid
     expect( ProjectObservation.make( project: proj, observation: obs_with_2 ) ).not_to be_valid

@@ -179,8 +179,11 @@ module HasSubscribers
           resource = options[:to] ? record.send(options[:to]) : record
           user = record.auto_subscriber || record.send(subscriber)
           if user && resource
-            Subscription.delete_all(:user_id => user.id,
-              :resource_type => resource.class.name, :resource_id => resource.id)
+            Subscription.where(
+              user_id: user.id,
+              resource_type: resource.class.name,
+              resource_id: resource.id
+            ).delete_all
           else
             Rails.logger.error "[ERROR #{Time.now}] Couldn't delete auto subscription for #{record}"
           end
@@ -344,7 +347,7 @@ module HasSubscribers
 
     def delete_subscriptions
       if Subscription.where(["resource_type = ? AND resource_id = ?", self.class.base_class.name, self.id]).any?
-        Subscription.delete_all(["resource_type = ? AND resource_id = ?", self.class.base_class.name, self.id])
+        Subscription.where(["resource_type = ? AND resource_id = ?", self.class.base_class.name, self.id]).delete_all
       end
       true
     end

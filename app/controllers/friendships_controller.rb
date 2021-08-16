@@ -1,7 +1,7 @@
 class FriendshipsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :load_record, only: [:update, :destroy]
-  before_filter :require_owner, only: [:update, :destroy]
+  before_action :authenticate_user!
+  before_action :load_record, only: [:update, :destroy]
+  before_action :require_owner, only: [:update, :destroy]
 
   layout "bootstrap"
 

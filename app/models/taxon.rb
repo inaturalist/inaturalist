@@ -1,5 +1,5 @@
 #encoding: utf-8
-class Taxon < ActiveRecord::Base
+class Taxon < ApplicationRecord
   # Sometimes you don't want to make a new taxon name with a taxon, like when
   # you're saving a new taxon name with a new associated taxon. Hence, this.
   attr_accessor :skip_new_taxon_name
@@ -75,7 +75,7 @@ class Taxon < ActiveRecord::Base
   has_updater
   belongs_to :conservation_status_source, :class_name => "Source"
   belongs_to :taxon_framework_relationship, touch: true
-  has_and_belongs_to_many :colors, -> { uniq }
+  has_and_belongs_to_many :colors, -> { distinct }
   has_many :taxon_descriptions, :dependent => :destroy
   has_one :en_wikipedia_description,
     -> { where("locale='en' AND provider='Wikipedia'") },
@@ -244,11 +244,9 @@ class Taxon < ActiveRecord::Base
     "cohort" => "cohort",
     "microrder" => "micrordo",
     "genus" => "genus",
-    "subsection" => "zoosubsectio",
     "grandorder" => "grandordo",
     "microphylum" => "microphylum",
     "sublegion" => "sublegio",
-    "subdivision" => "zoosubdivisio",
     "parvclass" => "parvclassis",
     "supercohort" => "supercohort",
     "nanorder" => "nanordo",
@@ -265,9 +263,7 @@ class Taxon < ActiveRecord::Base
     "infrakingdom" => "infraregnum",
     "mb" => "grandordo",
     "supertribe" => "supertribus",
-    "division" => "zoodivisio",
     "hyperfamily" => "hyperfamilia",
-    "section" => "zoosectio",
     "superclass" => "superclassis",
     "subtribe" => "subtribus",
     "subterclass" => "subterclassis",
@@ -534,7 +530,7 @@ class Taxon < ActiveRecord::Base
   def reindex_identifications_after_save
     return if new_record?
     reindex_needed = %w(rank rank_level iconic_taxon_id ancestry).detect do |a|
-      send("#{a}_changed?")
+      send("saved_change_to_#{a}?")
     end
     if reindex_needed
       Identification.delay(
@@ -546,10 +542,10 @@ class Taxon < ActiveRecord::Base
   end
 
   def handle_after_move
-    return true unless ancestry_changed?
+    return true unless saved_change_to_ancestry?
     set_iconic_taxon
     return true if skip_after_move
-    return true if id_changed?
+    return true if saved_change_to_id?
     update_obs_iconic_taxa
     Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
       unique_hash: { "Observation::update_stats_for_observations_of": id }).
@@ -581,7 +577,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def handle_after_activate
-    return true unless is_active_changed?
+    return true unless saved_change_to_is_active?
     Observation.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
       unique_hash: { "Observation::update_stats_for_observations_of": id } ).
       update_stats_for_observations_of( id )
@@ -621,7 +617,10 @@ class Taxon < ActiveRecord::Base
   
   def update_taxon_framework_relationship
     return true unless self.taxon_framework_relationship
-    taxon_framework_relationship.set_relationship if (destroyed? || name_changed? || rank_changed? || ancestry_changed? || taxon_framework_relationship_id_changed?)
+    if destroyed? || saved_change_to_name? || saved_change_to_rank? ||
+      saved_change_to_ancestry? || saved_change_to_taxon_framework_relationship_id?
+      taxon_framework_relationship.set_relationship
+    end
     attrs = {}
     attrs[:relationship] = taxon_framework_relationship.relationship
     taxon_framework_relationship.update_attributes(attrs)
@@ -644,13 +643,13 @@ class Taxon < ActiveRecord::Base
   def index_observations
     return if skip_observation_indexing
     # changing some fields doesn't require reindexing observations
-    return if ( changes.keys - [
+    return if ( saved_changes.keys - [
       "photos_locked",
       "taxon_framework_relationship_id",
       "updater_id",
       "updated_at"
     ] ).empty?
-    if changes[:ancestry]
+    if saved_changes[:ancestry]
       # using Taxon.find since the ancestry gem uses the before save
       # ancestry and descendants' ancestries have already been updated
       Observation.elastic_index!( scope: Observation.of( Taxon.find( id ) ), delay: true )
@@ -678,7 +677,7 @@ class Taxon < ActiveRecord::Base
   # Set the iconic taxon if it hasn't been set
   #
   def set_iconic_taxon(options = {})
-    unless iconic_taxon_id_changed?
+    unless will_save_change_to_iconic_taxon_id? || saved_change_to_iconic_taxon_id?
       self.iconic_taxon = if is_iconic?
         self
       else
@@ -686,7 +685,7 @@ class Taxon < ActiveRecord::Base
       end
     end
     
-    if !new_record? && (iconic_taxon_id_changed? || options[:force])
+    if !new_record? && (will_save_change_to_iconic_taxon_id? || saved_change_to_iconic_taxon_id? || options[:force])
       new_child_ancestry = "#{ancestry}/#{id}"
       conditions = ["(ancestry LIKE ? OR ancestry = ?)", "#{new_child_ancestry}/%", new_child_ancestry]
       conditions[0] += " AND (iconic_taxon_id IN (?) OR iconic_taxon_id IS NULL)"
@@ -698,7 +697,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def set_wikipedia_summary_later
-    delay(:priority => OPTIONAL_PRIORITY).set_wikipedia_summary if wikipedia_title_changed?
+    delay(:priority => OPTIONAL_PRIORITY).set_wikipedia_summary if saved_change_to_wikipedia_title?
     true
   end
 
@@ -820,6 +819,10 @@ class Taxon < ActiveRecord::Base
 
   def descendants_count
     subtree.count
+  end
+
+  def subtree_conditions
+    descendant_conditions.or( Taxon.arel_table[:id].eq( id ) )
   end
 
   def taxon_changes_count
@@ -1452,10 +1455,9 @@ class Taxon < ActiveRecord::Base
       end
     end
     
-    %w(flags).each do |association|
-      send(association, :reload => true).each do |associate|
-        associate.destroy unless associate.valid?
-      end
+    flags.reload
+    flags.each do |flag|
+      flag.destroy unless flag.valid?
     end
 
     Taxon.delay(:priority => INTEGRITY_PRIORITY).set_iconic_taxon_for_observations_of(id)
@@ -1515,7 +1517,11 @@ class Taxon < ActiveRecord::Base
   def descendant_of?(taxon)
     ancestor_ids.include?(taxon.id)
   end
-  
+
+  def descendant_conditions
+    Taxon.descendant_conditions( self )
+  end
+
   # TODO make this work for different conservation status sources
   def conservation_status_name
     return nil if conservation_status.blank?
@@ -1956,7 +1962,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def self.remove_rank_from_name(name)
-    pieces = name.split
+    pieces = name.to_s.split
     return name if pieces.size == 1
     pieces.map! {|p| p.gsub('.', '')}
     pieces.reject! {|p| (RANKS + RANK_EQUIVALENTS.keys).include?(p.downcase)}

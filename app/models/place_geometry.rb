@@ -1,7 +1,7 @@
 # Stores the geometries of places.  We COULD have had a geometry column in the
 # places table, but geometries can get rather large, and loading them into
 # memory every time you want to work with a place is expensive.
-class PlaceGeometry < ActiveRecord::Base
+class PlaceGeometry < ApplicationRecord
   belongs_to :place, inverse_of: :place_geometry
   belongs_to :source
   scope :without_geom, -> { select((column_names - ['geom']).join(', ')) }
@@ -29,11 +29,25 @@ class PlaceGeometry < ActiveRecord::Base
       return
     end
     if geom.num_points < 4
-      errors.add(:geom, " must have more than 3 points")
+      errors.add(:geom, "must have more than 3 points")
     end
-
     if geom.detect{|g| g.num_points < 4}
-      errors.add(:geom, " has a sub geometry with less than 4 points!")
+      errors.add(:geom, "has a sub geometry with less than 4 points!")
+    end
+  end
+
+  # During the Rails 5 upgrade, invalid WKT assigned to geom raised this error
+  # when the geometry tried to be read. This seems like a problem with RGeo
+  # that hasn't been fixed yet, so this is a rough kluge. Alternatively, we
+  # could raise something more specific and catch it elsewhere. This might fail
+  # a bit silently. ~~kueda 20210702
+  def geom
+    begin
+      super
+    rescue NoMethodError => e
+      raise e unless e.message =~ /undefined method.*factory/
+      errors.add(:geom, "could not be parsed")
+      nil
     end
   end
 
@@ -53,7 +67,7 @@ class PlaceGeometry < ActiveRecord::Base
   end
 
   def process_geometry_if_changed
-    process_geometry if geom_changed?
+    process_geometry if saved_change_to_geom?
     true
   end
 
@@ -115,7 +129,7 @@ class PlaceGeometry < ActiveRecord::Base
   end
 
   def notify_trusting_project_members
-    return true unless geom_changed?
+    return true unless saved_change_to_geom?
     Project.
         joins(:project_observation_rules).
         where( "rules.operator = 'observed_in_place?'" ).

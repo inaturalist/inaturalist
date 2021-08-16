@@ -1,10 +1,10 @@
 class VotesController < ApplicationController
   before_action :doorkeeper_authorize!, :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }, except: [:by_login]
-  before_filter :load_votable, except: [:by_login, :destroy]
-  before_filter :load_user_by_login, only: :by_login
-  before_filter :load_vote, only: [:destroy]
-  before_filter :require_owner, only: [:destroy]
+  before_action :authenticate_user!, :unless => lambda { authenticated_with_oauth? }, except: [:by_login]
+  before_action :load_votable, except: [:by_login, :destroy]
+  before_action :load_user_by_login, only: :by_login
+  before_action :load_vote, only: [:destroy]
+  before_action :require_owner, only: [:destroy]
 
   def destroy
     votable = @vote.votable

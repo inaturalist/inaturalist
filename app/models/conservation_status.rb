@@ -1,5 +1,5 @@
 #encoding: utf-8
-class ConservationStatus < ActiveRecord::Base
+class ConservationStatus < ApplicationRecord
   belongs_to :taxon
   belongs_to :user
   has_updater
@@ -9,7 +9,7 @@ class ConservationStatus < ActiveRecord::Base
   before_create :set_geoprivacy
   before_save :normalize_geoprivacy
   after_save :update_observation_geoprivacies, :if => lambda {|record|
-    record.id_changed? || record.geoprivacy_changed? || record.place_id_changed?
+    record.saved_change_to_id? || record.saved_change_to_geoprivacy? || record.saved_change_to_place_id?
   }
   after_save :update_taxon_conservation_status
   after_destroy :update_observation_geoprivacies
@@ -132,12 +132,12 @@ class ConservationStatus < ActiveRecord::Base
     # If the place changed *and* we're updating we need to reassess obs that
     # were affected by the old values. This doesn't apply to newly-added
     # statuses
-    if place_id_changed? && !id_changed?
+    if saved_change_to_place_id? && !saved_change_to_id?
       Observation.delay(priority: USER_INTEGRITY_PRIORITY,
         unique_hash: {
-          "Observation::reassess_coordinates_for_observations_of": [ taxon_id, place: place_id_was ]
+          "Observation::reassess_coordinates_for_observations_of": [ taxon_id, place: place_id_before_last_save ]
         }
-      ).reassess_coordinates_for_observations_of( taxon_id, place: place_id_was )
+      ).reassess_coordinates_for_observations_of( taxon_id, place: place_id_before_last_save )
     end
     true
   end

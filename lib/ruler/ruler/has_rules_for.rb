@@ -39,7 +39,7 @@ module Ruler
           end
         end
       end
-      validate validation_method_name, options
+      validate validation_method_name.to_sym, options
       
       const_set "RULE_METHODS", rule_methods
     end

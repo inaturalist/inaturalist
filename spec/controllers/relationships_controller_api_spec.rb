@@ -6,7 +6,7 @@ shared_examples_for "a RelationshipsController" do
 
     it "should update" do
       expect( relationship ).to be_following
-      put :update, format: :json, id: relationship.id, relationship: { following: false }
+      put :update, format: :json, params: { id: relationship.id, relationship: { following: false } }
       expect( response.status ).to eq 200
       relationship.reload
       expect( relationship ).not_to be_following
@@ -16,7 +16,7 @@ shared_examples_for "a RelationshipsController" do
   describe "destroy" do
     let(:relationship) { Friendship.make!( user: user ) }
     it "should destroy" do
-      delete :destroy, format: :json, id: relationship.id
+      delete :destroy, format: :json, params: { id: relationship.id }
       expect( Friendship.find_by_id( relationship.id ) ).to be_blank
     end
   end

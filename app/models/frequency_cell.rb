@@ -1,4 +1,4 @@
-class FrequencyCell < ActiveRecord::Base
+class FrequencyCell < ApplicationRecord
   CELL_SIZE = 1 # degrees
 
   def self.populate

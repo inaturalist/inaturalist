@@ -1,5 +1,5 @@
 #encoding: utf-8
-class Observation < ActiveRecord::Base
+class Observation < ApplicationRecord
 
   include ActsAsElasticModel
   include ObservationSearch
@@ -1172,7 +1172,11 @@ class Observation < ActiveRecord::Base
   # two windows). Also updating existing OFV of same OF name if id not 
   # specified
   def observation_field_values_attributes=(attributes)
-    attr_array = attributes.is_a?(Hash) ? attributes.values : attributes
+    if attributes.is_a?( ActionController::Parameters )
+      attr_array = attributes.to_hash.values
+    else
+      attr_array = attributes.is_a?(Hash) ? attributes.values : attributes
+    end
     return unless attr_array
     attr_array.each_with_index do |v,i|
       if v["id"].blank?
@@ -1188,17 +1192,26 @@ class Observation < ActiveRecord::Base
   
   def refresh_check_lists
     return true if skip_refresh_check_lists
+    changing_quality_grade = will_save_change_to_quality_grade? || saved_change_to_quality_grade?
+    changing_taxon_id = will_save_change_to_taxon_id? || saved_change_to_taxon_id?
+    changing_latitude = will_save_change_to_latitude? || saved_change_to_latitude?
+    changing_longitude = will_save_change_to_longitude? || saved_change_to_longitude?
+    changing_observed_on = will_save_change_to_observed_on? || saved_change_to_observed_on?
     refresh_needed = (georeferenced? || was_georeferenced?) && 
-      (taxon_id || taxon_id_was) && 
-      (quality_grade_changed? || taxon_id_changed? || latitude_changed? || longitude_changed? || observed_on_changed?)
+      ( taxon_id || taxon_id_before_last_save) &&
+      ( changing_quality_grade ||
+        changing_taxon_id ||
+        changing_latitude ||
+        changing_longitude ||
+        changing_observed_on )
     return true unless refresh_needed
     CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
       unique_hash: { "CheckList::refresh_with_observation": id }).
       refresh_with_observation(id, :taxon_id => taxon_id,
-        :taxon_id_was  => taxon_id_changed? ? taxon_id_was : nil,
-        :latitude_was  => (latitude_changed? || longitude_changed?) ? latitude_was : nil,
-        :longitude_was => (latitude_changed? || longitude_changed?) ? longitude_was : nil,
-        :new => id_was.blank?)
+        :taxon_id_was  => saved_change_to_taxon_id? ? taxon_id_before_last_save : nil,
+        :latitude_was  => saved_change_to_latitude? ? latitude_before_last_save : nil,
+        :longitude_was => saved_change_to_longitude? ? longitude_before_last_save : nil,
+        :new => saved_change_to_id? )
     true
   end
   
@@ -1320,7 +1333,8 @@ class Observation < ActiveRecord::Base
   end
   
   def was_georeferenced?
-    (latitude_was && longitude_was) || (private_latitude_was && private_longitude_was)
+    ( latitude_before_last_save && longitude_before_last_save ) ||
+      ( private_latitude_before_last_save && private_longitude_before_last_save )
   end
   
   def quality_metric_score(metric)
@@ -2162,8 +2176,8 @@ class Observation < ActiveRecord::Base
   end
 
   def update_taxon_counter_caches
-    return true unless destroyed? || taxon_id_changed?
-    taxon_ids = [taxon_id_was, taxon_id].compact.uniq
+    return true unless destroyed? || saved_change_to_taxon_id?
+    taxon_ids = [taxon_id_before_last_save, taxon_id].compact.uniq
     unless taxon_ids.blank?
       taxon_ids_including_ancestors = Taxon.where("id IN (?)", taxon_ids).
         map(&:self_and_ancestor_ids).flatten.uniq
@@ -2778,14 +2792,14 @@ class Observation < ActiveRecord::Base
 
   def create_observation_review
     return true unless taxon
-    return true unless taxon_id_was.blank?
+    return true unless taxon_id_before_last_save.blank?
     return true unless editing_user_id && editing_user_id == user_id
     ObservationReview.where( observation_id: id, user_id: user_id ).first_or_create.touch
     true
   end
 
   def reassess_annotations
-    return true unless taxon_id_changed?
+    return true unless saved_change_to_taxon_id?
     annotations.each do |a|
       a.destroy unless a.valid?
     end
@@ -2831,13 +2845,13 @@ class Observation < ActiveRecord::Base
     if self.geo_x.present? && self.geo_y.present? && self.coordinate_system.present?
       # Perform the transformation
       # transfrom from `self.coordinate_system`
-      from = RGeo::CoordSys::Proj4.new(self.coordinate_system)
+      from = RGeo::CoordSys::Proj4.new( self.coordinate_system )
 
       # ... to WGS84
-      to = RGeo::CoordSys::Proj4.new(WGS84_PROJ4)
+      to = RGeo::CoordSys::Proj4.new( WGS84_PROJ4 )
 
       # Returns an array of lat, lon
-      transform = RGeo::CoordSys::Proj4.transform_coords(from, to, self.geo_x.to_d, self.geo_y.to_d)
+      transform = RGeo::CoordSys::Proj4.transform_coords( from, to, self.geo_x.to_d, self.geo_y.to_d )
 
       # Set the transform
       self.longitude, self.latitude = transform
@@ -2853,7 +2867,7 @@ class Observation < ActiveRecord::Base
   # Required for use of the sanitize method in
   # ObservationsHelper#short_observation_description
   def self.white_list_sanitizer
-    @white_list_sanitizer ||= HTML::WhiteListSanitizer.new
+    @white_list_sanitizer ||= Rails::Html::WhiteListSanitizer.new
   end
   
   def self.update_for_taxon_change(taxon_change, options = {}, &block)
@@ -2989,11 +3003,11 @@ class Observation < ActiveRecord::Base
   def update_observations_places
     Observation.update_observations_places(ids: [ id ])
     # reload the association since we added the records using SQL
-    observations_places(true)
+    observations_places.reload
   end
 
   def set_taxon_photo
-    return true unless research_grade? && quality_grade_changed?
+    return true unless research_grade? && saved_change_to_quality_grade?
     if taxon && !taxon.photos.any?
       community_taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 1.day.from_now ).set_photo_from_observations
     end

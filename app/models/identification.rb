@@ -1,5 +1,5 @@
 #encoding: utf-8
-class Identification < ActiveRecord::Base
+class Identification < ApplicationRecord
   include ActsAsElasticModel
   acts_as_spammable fields: [ :body ],
                     comment_type: "comment",
@@ -155,7 +155,7 @@ class Identification < ActiveRecord::Base
   end
 
   def update_other_identifications
-    return true unless ( current_changed? || new_record? ) && current?
+    return true unless ( will_save_change_to_current? || new_record? ) && current?
     scope = if id
       Identification.where("observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id)
     else

@@ -1,5 +1,5 @@
 class CalendarsController < ApplicationController
-  before_filter :load_user_by_login
+  before_action :load_user_by_login
   
   def index
     @year = (params[:year] || Time.now.year).to_i

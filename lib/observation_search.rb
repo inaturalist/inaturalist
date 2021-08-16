@@ -58,7 +58,7 @@ module ObservationSearch
     end
 
     def get_search_params(raw_params, options={})
-      raw_params = raw_params.clone.symbolize_keys
+      raw_params = raw_params.to_hash.symbolize_keys
       if options[:site] && options[:site].is_a?(Site)
         raw_params = Observation.site_search_params(options[:site], raw_params)
       end
@@ -76,7 +76,7 @@ module ObservationSearch
 
     def apply_pagination_options(params, options={})
       params ||= { }
-      search_params = params.clone.symbolize_keys
+      search_params = params.to_h.symbolize_keys
       search_params[:page] = search_params[:page].to_i
       # don't allow sub 0 page
       search_params[:page] = 1 if search_params[:page] <= 0
@@ -243,7 +243,7 @@ module ObservationSearch
     # normalizes them for use in our search methods like query (database) or
     # elastic_query (ES)
     def query_params(params)
-      p = params.clone.symbolize_keys
+      p = params.to_hash.symbolize_keys
       unless p[:apply_project_rules_for].blank?
         if proj = Project.find_by_id(p[:apply_project_rules_for])
           p.merge!(proj.observations_url_params(extended: true))

@@ -1,5 +1,5 @@
 class TaxonRangesController < ApplicationController
-  before_filter :curator_required
+  before_action :curator_required
   
   def new
     @taxon_range = TaxonRange.new( taxon_id: params[:taxon_id].to_i )

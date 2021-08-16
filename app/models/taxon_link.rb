@@ -1,4 +1,4 @@
-class TaxonLink < ActiveRecord::Base
+class TaxonLink < ApplicationRecord
   belongs_to :taxon
   belongs_to :user
   belongs_to :place
@@ -74,7 +74,7 @@ class TaxonLink < ActiveRecord::Base
   end
   
   def url_without_template_tags
-    stripped_url = self.url
+    stripped_url = self.url.to_s
     TEMPLATE_TAGS.each {|tt| stripped_url.gsub!(tt, '')}
     stripped_url
   end

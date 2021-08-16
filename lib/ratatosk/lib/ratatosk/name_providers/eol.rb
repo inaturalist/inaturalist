@@ -208,12 +208,12 @@ module Ratatosk
       # Initialize with an Hpricot object of a single Eol XML response
       #
       def initialize(hxml, params = {})
-        parser = ::ScientificNameParser.new
+        parser = ::Biodiversity::Parser
         @adaptee = Taxon.new(params)
         @hxml = hxml
         original_name = @hxml.at_xpath('.//scientificName').inner_text
-        if (parsed_name = parser.parse(original_name)) && parsed_name[:scientificName]
-          @adaptee.name = parsed_name[:scientificName][:canonical]
+        if parsed_name = parser.parse(original_name)
+          @adaptee.name = parsed_name[:normalized]
         end
         if @adaptee.name.blank?
           raise NameProviderError, "Failed to parse the response from the EOL: #{original_name}"

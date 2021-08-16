@@ -1,4 +1,4 @@
-class SiteFeaturedProject < ActiveRecord::Base
+class SiteFeaturedProject < ApplicationRecord
 
   belongs_to :site
   belongs_to :project

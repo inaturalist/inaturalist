@@ -1,4 +1,4 @@
-class DataPartner < ActiveRecord::Base
+class DataPartner < ApplicationRecord
   UNKNOWN = "unknown"
   DAILY = "daily"
   WEEKLY = "weekly"

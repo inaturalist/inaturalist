@@ -3,7 +3,7 @@
 # they be lists of things they've seen, lists of things they'd like to see, or
 # just lists of taxa that interest them for some reason.
 #
-class List < ActiveRecord::Base
+class List < ApplicationRecord
   acts_as_spammable fields: [:title, :description],
                     comment_type: "item-description",
                     automated: false
@@ -183,7 +183,7 @@ class List < ActiveRecord::Base
 
   def self.icon_preview_cache_key(list)
     list_id = list.is_a?(List) ? list.id : list
-    FakeView.url_for(:controller => "lists", :action => "icon_preview", :list_id => list_id, :locale => I18n.locale)
+    FakeView.icon_preview_list_url( list_id, locale: I18n.locale )
   end
 
 end

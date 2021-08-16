@@ -1,6 +1,6 @@
 require 'paperclip'
 
-class WikiPageAttachment < ActiveRecord::Base
+class WikiPageAttachment < ApplicationRecord
   acts_as_wiki_page_attachment do
     has_attached_file :wiki_page_attachment, :styles => { :medium => "300x300>", :thumb => "100x100>" },
       :storage => :s3,

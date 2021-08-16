@@ -4,8 +4,7 @@
   = stylesheet_link_tag :user_parents
 - content_for(:extrajs) do
   %script{ src: "https://www.google.com/recaptcha/api.js?hl=#{I18n.locale}" }
-  = javascript_include_tag "moment/min/moment-with-locales.min"
-  = javascript_include_tag "moment-timezone/builds/moment-timezone-with-data-2010-2020.min"
+  = javascript_include_tag "moment_bundle"
 - content_for :left do
   .user-parent-progress.hidden-xs.hidden-sm
     %h1=t "views.user_parents.new.inaturalist_minor_account_signup"

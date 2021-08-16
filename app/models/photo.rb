@@ -1,5 +1,5 @@
 #encoding: utf-8
-class Photo < ActiveRecord::Base
+class Photo < ApplicationRecord
   acts_as_flaggable
   belongs_to :user
   has_many :observation_photos, :dependent => :destroy

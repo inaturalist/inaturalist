@@ -2,8 +2,7 @@
 - content_for(:title) do
   = t(:confirm_your_info)
 - content_for(:extrajs) do
-  = javascript_include_tag "moment/min/moment-with-locales.min"
-  = javascript_include_tag "moment-timezone/builds/moment-timezone-with-data-2010-2020.min"
+  = javascript_include_tag "moment_bundle"
 = form_for resource, url: person_path( resource ) do |f|
   %h1
     =t :almost_there_

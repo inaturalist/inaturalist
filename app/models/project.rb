@@ -1,4 +1,4 @@
-class Project < ActiveRecord::Base
+class Project < ApplicationRecord
 
   include ActsAsElasticModel
 
@@ -136,7 +136,7 @@ class Project < ActiveRecord::Base
   validates_presence_of :start_time, if: lambda {|p| p.bioblitz? }, message: "can't be blank for a bioblitz"
   validates_presence_of :end_time, if: lambda {|p| p.bioblitz? }, message: "can't be blank for a bioblitz"
   validate :place_with_boundary, if: lambda {|p| p.bioblitz? }
-  validate :one_year_time_span, if: lambda {|p| p.bioblitz? }, unless: "errors.any?"
+  validate :one_year_time_span, if: lambda {|p| p.bioblitz? }, unless: lambda {|p| p.errors.any? }
   validate :aggregation_preference_allowed?
 
   scope :in_group, lambda {|name| where(group: name) }
@@ -144,7 +144,7 @@ class Project < ActiveRecord::Base
     latitude = latitude.to_f
     longitude = longitude.to_f
     where("ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude})) < 5").
-    order("ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude}))")
+    order( Arel.sql( "ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude}))" ) )
   }
   scope :from_source_url, lambda {|url| where(source_url: url) }
   scope :in_place, lambda{|place|
@@ -280,7 +280,7 @@ class Project < ActiveRecord::Base
   end
   
   def add_owner_as_project_user(options = {})
-    return true unless user_id_changed? || options[:force]
+    return true unless saved_change_to_user_id? || options[:force]
     if pu = project_users.where(user_id: user_id).first
       pu.update_attributes(role: ProjectUser::MANAGER)
     else
@@ -351,7 +351,7 @@ class Project < ActiveRecord::Base
   end
   
   def reset_last_aggregated_at
-    if start_time_changed? || end_time_changed?
+    if will_save_change_to_start_time? || will_save_change_to_end_time?
       self.last_aggregated_at = nil
     end
   end
@@ -610,7 +610,7 @@ class Project < ActiveRecord::Base
   end
 
   def should_generate_new_friendly_id?
-    title_changed?
+    will_save_change_to_title?
   end
 
   def slug_candidates

@@ -2,19 +2,19 @@ class ListsController < ApplicationController
   include Shared::ListsModule
   include Shared::GuideModule
 
-  before_filter :authenticate_user!, :except => [:index, :show, :by_login, :taxa, :guide,
+  before_action :authenticate_user!, :except => [:index, :show, :by_login, :taxa, :guide,
     :cached_guide, :guide_widget]
-  before_filter :authenticate_user!, only: [:show], if: Proc.new {|c| [:csv, :json].include?( c.request.format )}
+  before_action :authenticate_user!, only: [:show], if: Proc.new {|c| [:csv, :json].include?( c.request.format )}
   load_except = [ :index, :new, :create, :by_login ]
-  before_filter :load_list, :except => load_except
+  before_action :load_list, :except => load_except
   blocks_spam :except => load_except, :instance => :list
   check_spam only: [:create, :update], instance: :list
-  before_filter :owner_required, :only => [:edit, :update, :destroy, 
+  before_action :owner_required, :only => [:edit, :update, :destroy, 
     :remove_taxon]
-  before_filter :require_listed_taxa_editor, :only => [:add_taxon_batch, :batch_edit]
-  before_filter :load_user_by_login, :only => :by_login
-  before_filter :admin_required, :only => [:add_from_observations_now, :refresh_now]
-  before_filter :set_iconic_taxa, :only => [:show]
+  before_action :require_listed_taxa_editor, :only => [:add_taxon_batch, :batch_edit]
+  before_action :load_user_by_login, :only => :by_login
+  before_action :admin_required, :only => [:add_from_observations_now, :refresh_now]
+  before_action :set_iconic_taxa, :only => [:show]
 
   caches_page :show, :if => Proc.new {|c| c.request.format == :csv}
 
@@ -185,7 +185,7 @@ class ListsController < ApplicationController
           redirect_to @list
         end
         format.js do
-          render :text => t(:taxon_removed_from_list)
+          render :plain => t(:taxon_removed_from_list)
         end
         format.json do
           render :json => @listed_taxon
@@ -197,7 +197,7 @@ class ListsController < ApplicationController
         end
         format.js do
           render :status => :unprocessable_entity, 
-            :text => "That taxon isn't in this list."
+            :plain => "That taxon isn't in this list."
         end
         format.json do
           render :status => :unprocessable_entity, :json => {:error => "That taxon isn't in this list."}
@@ -287,10 +287,10 @@ class ListsController < ApplicationController
       format.js do
         if @done
           flash[:notice] = messages[:done]
-          render :status => :ok, :text => @messages[:done]
-        elsif @error then render :status => :unprocessable_entity, :text => "#{@messages[:error]}: #{@job.last_error}"
-        elsif @timeout then render :status => :request_timeout, :text => @messages[:timeout]
-        else render :status => :created, :text => @messages[:processing]
+          render :status => :ok, :plain => @messages[:done]
+        elsif @error then render :status => :unprocessable_entity, :plain => "#{@messages[:error]}: #{@job.last_error}"
+        elsif @timeout then render :status => :request_timeout, :plain => @messages[:timeout]
+        else render :status => :created, :plain => @messages[:processing]
         end
       end
     end

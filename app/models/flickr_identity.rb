@@ -1,4 +1,4 @@
-class FlickrIdentity < ActiveRecord::Base
+class FlickrIdentity < ApplicationRecord
   belongs_to :user
 
   def source_options

@@ -188,7 +188,7 @@ class ObservationsExportFlowTask < FlowTask
 
   def export_columns
     exp_columns = options[:columns] || []
-    exp_columns = exp_columns.select{|k,v| v == "1"}.keys if exp_columns.is_a?(Hash)
+    exp_columns = exp_columns.to_h.select{|k,v| v == "1"}.keys if exp_columns.is_a?(Hash) || exp_columns.is_a?(ActionController::Parameters)
     exp_columns = Observation::CSV_COLUMNS if exp_columns.blank?
     ofv_columns = exp_columns.select{|c| c.index("field:")}
     ident_columns = exp_columns.select{|c| c.index("ident_by_" )}

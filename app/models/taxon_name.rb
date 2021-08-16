@@ -1,5 +1,5 @@
 #encoding: utf-8
-class TaxonName < ActiveRecord::Base
+class TaxonName < ApplicationRecord
   belongs_to :taxon
   belongs_to :source
   belongs_to :creator, :class_name => 'User'
@@ -171,7 +171,7 @@ class TaxonName < ActiveRecord::Base
   end
   
   def strip_tags
-    self.name.gsub!(/<.*?>/, '')
+    self.name.gsub!(/<.*?>/, '') unless name.blank?
     true
   end
 
@@ -202,7 +202,7 @@ class TaxonName < ActiveRecord::Base
   end
   
   def update_unique_names
-    return true unless name_changed?
+    return true unless saved_change_to_name?
     non_unique_names = TaxonName.includes(:taxon).where(name: name).select("DISTINCT ON (taxon_id) *")
     non_unique_names.each do |taxon_name|
       taxon_name.taxon.update_unique_name if taxon_name.taxon

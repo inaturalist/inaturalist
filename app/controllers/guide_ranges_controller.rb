@@ -1,8 +1,8 @@
 class GuideRangesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :load_record, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_guide, :except => [:index, :new, :create, :import]
-  before_filter :only => [:edit, :update, :destroy] do |c|
+  before_action :authenticate_user!, :except => [:index, :show]
+  before_action :load_record, :only => [:show, :edit, :update, :destroy]
+  before_action :load_guide, :except => [:index, :new, :create, :import]
+  before_action :only => [:edit, :update, :destroy] do |c|
     require_guide_user
   end
 

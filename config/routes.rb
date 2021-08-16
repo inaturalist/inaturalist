@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :moderator_notes
   resources :data_partners
   resources :saved_locations
-  apipie
+  # apipie
 
   resources :sites do
     collection do
@@ -105,6 +105,7 @@ Rails.application.routes.draw do
   end
 
   wiki_root '/pages'
+  get '/pages' => "wiki_pages#all", as: "wiki_all"
 
   # Riparian routes
   resources :flow_tasks do
@@ -144,7 +145,6 @@ Rails.application.routes.draw do
   end
   
   get '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
-  get '/help' => 'help#index', :as => :help
   get '/auth/failure' => 'provider_authorizations#failure', :as => :omniauth_failure
   post '/auth/:provider' => 'provider_authorizations#blank'
   get '/auth/:provider/callback' => 'provider_authorizations#create', :as => :omniauth_callback
@@ -156,7 +156,14 @@ Rails.application.routes.draw do
   get "/eol/photo_fields" => "eol#photo_fields"
   get '/wikimedia_commons/photo_fields' => 'wikimedia_commons#photo_fields'
   post '/facebook' => 'facebook#index'
-  
+
+  resource :help, only: :index do
+    collection do
+      get :index
+      get :getting_started
+    end
+  end
+
   resources :announcements do
     member do
       put :dismiss
@@ -217,11 +224,11 @@ Rails.application.routes.draw do
       put :rotate
     end
   end
-  delete 'google_photos/unlink' => 'picasa#unlink'
   
   post 'flickr/unlink_flickr_account' => 'flickr#unlink_flickr_account'
   get 'flickr/photos.:format' => 'flickr#photos'
   get "flickr/options" => "flickr#options", as: "flickr_options"
+  get "flickr/photo_fields" => "flickr#photo_fields", as: "flickr_photo_fields"
 
   resources :observation_photos, :only => [:show, :create, :update, :destroy]
   resources :observation_sounds, :only => [:show, :create, :update, :destroy]
@@ -359,6 +366,9 @@ Rails.application.routes.draw do
   resources :lists, :constraints => { :id => id_param_pattern } do
     resources :flags
     get 'batch_edit'
+    member do
+      get :icon_preview
+    end
   end
   get 'lists/:id/taxa' => 'lists#taxa', :as => :list_taxa
   get 'lists/:id/taxa.:format' => 'lists#taxa', :as => :formatted_list_taxa
@@ -409,6 +419,7 @@ Rails.application.routes.draw do
     end
     collection do
       get 'synonyms'
+      get :autocomplete
     end
   end
   resources :taxon_names do
@@ -429,7 +440,6 @@ Rails.application.routes.draw do
   post 'taxa/tag_flickr_photos_from_observations'
   get 'taxa/search' => 'taxa#search', :as => :search_taxa
   get 'taxa/search.:format' => 'taxa#search', :as => :formatted_search_taxa
-  get 'taxa/:action.:format' => 'taxa#index', :as => :formatted_taxa_action
   match 'taxa/:id/merge' => 'taxa#merge', :as => :merge_taxon, :via => [:get, :post]
   get 'taxa/:id/merge.:format' => 'taxa#merge', :as => :formatted_merge_taxon
   get 'taxa/:id/observation_photos' => 'taxa#observation_photos', :as => :taxon_observation_photos
@@ -501,6 +511,7 @@ Rails.application.routes.draw do
   get 'places/guide' => 'places#guide', :as => :idendotron_guide
   get 'places/cached_guide/:id' => 'places#cached_guide', :as => :cached_place_guide
   get 'places/autocomplete' => 'places#autocomplete', :as => :places_autocomplete
+  get 'places/wikipedia/:id' => 'places#wikipedia', :as => :places_wikipedia
   resources :places do
     resources :flags
     collection do
@@ -520,6 +531,7 @@ Rails.application.routes.draw do
       get :stop_query
       get :users
       get "users/:id" => "admin#user_detail", as: :user_detail
+      get "login_as/:id" => "admin#login_as", as: :login_as
       get :deleted_users
       put :grant_user_privilege
       put :revoke_user_privilege
@@ -648,11 +660,18 @@ Rails.application.routes.draw do
     end
   end
 
-  get "/google_photos(/:action(/:id))", controller: :picasa
+  resources :google_photos, controller: :picasa do
+    collection do
+      get :options
+      delete :unlink
+    end
+  end
 
   get 'translate' => 'translations#index', :as => :translate_list
   post 'translate/translate' => 'translations#translate', :as => :translate
   get 'translate/reload' => 'translations#reload', :as => :translate_reload
+
+  get "apple-app-site-association" => "apple_app_site_association#index", as: :apple_app_site_association
 
   # Hack to enable mail previews. You could also remove get
   # '/:controller(/:action(/:id))' but that breaks a bunch of other stuff. You
@@ -661,7 +680,7 @@ Rails.application.routes.draw do
   unless Rails.env.production?
     get '/rails/mailers/*path' => 'rails/mailers#preview'
   end
-  get '/:controller(/:action(/:id))'
+  # get "/:controller(/:action(/:id))", defaults: { from_dynamic_route: true}
 
   match '/404', to: 'errors#error_404', via: :all
   match '/422', to: 'errors#error_422', via: :all

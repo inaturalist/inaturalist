@@ -18,30 +18,30 @@ class TaxaController < ApplicationController
     } },
     if: Proc.new {|c| request.format.json? }
 
-  before_filter :allow_external_iframes, only: [:map]
+  before_action :allow_external_iframes, only: [:map]
   
   include TaxaHelper
   include Shared::WikipediaModule
   
-  before_filter :return_here, :only => [:index, :show, :flickr_tagger, :curation, :synonyms, :browse_photos]
-  before_filter :authenticate_user!, :only => [:update_photos,
+  before_action :return_here, :only => [:index, :show, :flickr_tagger, :curation, :synonyms, :browse_photos]
+  before_action :authenticate_user!, :only => [:update_photos,
     :set_photos,
     :update_colors, :tag_flickr_photos, :tag_flickr_photos_from_observations,
     :flickr_photos_tagged, :synonyms]
-  before_filter :curator_required, :only => [:new, :create, :edit, :update,
+  before_action :curator_required, :only => [:new, :create, :edit, :update,
     :destroy, :curation, :refresh_wikipedia_summary, :merge, :synonyms, :graft]
-  before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
+  before_action :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :update_photos, :set_photos, :edit_colors,
     :update_colors, :refresh_wikipedia_summary, :merge, 
     :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details]
-  before_filter :taxon_curator_required, :only => [:edit, :update,
+  before_action :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
-  before_filter :limit_page_param_for_search, :only => [:index,
+  before_action :limit_page_param_for_search, :only => [:index,
     :browse, :search]
-  before_filter :ensure_flickr_write_permission, :only => [
+  before_action :ensure_flickr_write_permission, :only => [
     :flickr_photos_tagged, :tag_flickr_photos, 
     :tag_flickr_photos_from_observations]
-  before_filter :load_form_variables, :only => [:edit, :new]
+  before_action :load_form_variables, :only => [:edit, :new]
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos, :set_photos]
   
   GRID_VIEW = "grid"
@@ -630,7 +630,7 @@ class TaxaController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render :text => @taxa.to_json(
+        render :plain => @taxa.to_json(
                  :methods => [:id, :common_name] )
       end
     end
@@ -689,7 +689,7 @@ class TaxaController < ApplicationController
         end
         write_fragment(key, content)
       end
-      render :layout => false, :text => content
+      render :layout => false, :plain => content
     else
       render :layout => false, :partial => "photos", :locals => {
         :photos => @photos
@@ -698,7 +698,7 @@ class TaxaController < ApplicationController
   rescue SocketError => e
     raise unless Rails.env.development?
     Rails.logger.debug "[DEBUG] Looks like you're offline, skipping flickr"
-    render :text => "You're offline."
+    render :plain => "You're offline."
   end
   
   def schemes
@@ -1077,9 +1077,9 @@ class TaxaController < ApplicationController
       error_text ||= "Could't retrieve the Wikipedia " + 
         "summary for #{@taxon.name}.  Make sure there is actually a " + 
         "corresponding article on Wikipedia."
-      render :status => 404, :text => error_text
+      render :status => 404, :plain => error_text
     else
-      render :text => summary
+      render :plain => summary
     end
   end
   
@@ -1127,9 +1127,9 @@ class TaxaController < ApplicationController
       end
       format.js do
         if @error_message
-          render :status => :unprocessable_entity, :text => @error_message
+          render :status => :unprocessable_entity, :plain => @error_message
         else
-          render :text => "Taxon grafted to #{@taxon.parent.name}"
+          render :plain => "Taxon grafted to #{@taxon.parent.name}"
         end
       end
       format.json do
@@ -1154,7 +1154,7 @@ class TaxaController < ApplicationController
         end
       end
       format.js do
-        render :text => msg, :status => :unprocessable_entity, :layout => false
+        render :plain => msg, :status => :unprocessable_entity, :layout => false
         return
       end
       format.json { render :json => {:error => msg}, :status => unprocessable_entity}
@@ -1582,10 +1582,10 @@ class TaxaController < ApplicationController
     end
     
     # Set the last editor
-    params[:taxon].update(:updater_id => current_user.id)
+    params[:taxon][:updater_id] = current_user.id
     
     # Anyone who's allowed to create or update should be able to skip locks
-    params[:taxon].update(:skip_locks => true)
+    params[:taxon][:skip_locks] = true
     
     if params[:taxon][:featured_at] && params[:taxon][:featured_at] == "1"
       params[:taxon][:featured_at] = Time.now
@@ -1654,7 +1654,7 @@ class TaxaController < ApplicationController
   def load_form_variables
     @conservation_status_authorities = ConservationStatus.
       group(:authority).
-      order( "count(*) DESC").
+      order( Arel.sql( "count(*) DESC" ) ).
       limit( 500 ).
       count.
       map(&:first).compact.reject(&:blank?).map(&:strip)

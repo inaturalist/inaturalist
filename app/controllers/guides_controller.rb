@@ -2,17 +2,17 @@
 class GuidesController < ApplicationController
   include GuidesHelper
   before_action :doorkeeper_authorize!, :only => [ :show, :user ], :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, 
+  before_action :authenticate_user!, 
     :except => [:index, :show, :search], 
     :unless => lambda { authenticated_with_oauth? }
   load_only = [ :show, :edit, :update, :destroy, :import_taxa,
     :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags, :import_tags_from_csv,
     :import_tags_from_csv_template ]
-  before_filter :load_record, :only => load_only
+  before_action :load_record, :only => load_only
   blocks_spam :only => load_only, :instance => :guide
   check_spam only: [:create, :update], instance: :guide
-  before_filter :require_owner, :only => [:destroy]
-  before_filter :require_guide_user, :only => [
+  before_action :require_owner, :only => [:destroy]
+  before_action :require_guide_user, :only => [
     :edit, :update, :import_taxa, :reorder, :add_color_tags,
     :add_tags_for_rank, :remove_all_tags, :import_tags_from_csv]
 
@@ -144,7 +144,7 @@ class GuidesController < ApplicationController
     unless @guide.published? || @guide.editable_by?(current_user)
       respond_to do |format|
         format.html { render_404 }
-        format.any(:xml, :ngz) { render :status => 404, :text => ""}
+        format.any(:xml, :ngz) { render :status => 404, :plain => ""}
         format.json { render :json => {:error => "Not found"}, :status => 404 }
       end
       return
@@ -248,7 +248,7 @@ class GuidesController < ApplicationController
         end
         prevent_caching
         # Would prefer to use accepted, but don't want to deliver an invlid zip file
-        render :status => :no_content, :layout => false, :text => ""
+        head :no_content
       end
     end
   end
@@ -392,7 +392,9 @@ class GuidesController < ApplicationController
   end
 
   def user
-    @guides = current_user.editing_guides.page(params[:page]).per_page(500).order("lower(title)")
+    @guides = current_user.editing_guides.page(params[:page]).per_page(500).order(
+      Arel.sql( "lower(title)" )
+    )
     pagination_headers_for(@observations)
     respond_to do |format|
       format.json { render :json => @guides }

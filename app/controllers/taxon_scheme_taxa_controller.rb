@@ -1,6 +1,6 @@
 class TaxonSchemeTaxaController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :curator_required, :except => [:index, :show]
+  before_action :authenticate_user!, :except => [:index, :show]
+  before_action :curator_required, :except => [:index, :show]
     
   def new
     @taxon_schemes = TaxonScheme.limit(100).sort_by{|ts| ts.title}

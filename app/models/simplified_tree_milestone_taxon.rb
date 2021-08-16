@@ -1,4 +1,4 @@
-class SimplifiedTreeMilestoneTaxon < ActiveRecord::Base
+class SimplifiedTreeMilestoneTaxon < ApplicationRecord
 
   belongs_to :taxon
 

@@ -1,8 +1,8 @@
 class ModeratorNotesController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :curator_required
-  before_filter :load_record, except: [:create]
-  before_filter :editor_required, except: [:create]
+  before_action :authenticate_user!
+  before_action :curator_required
+  before_action :load_record, except: [:create]
+  before_action :editor_required, except: [:create]
 
   layout "bootstrap"
 

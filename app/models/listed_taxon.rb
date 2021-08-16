@@ -3,7 +3,7 @@
 # last observed taxon (saving some db time), this model's validation makes
 # sure a taxon passes all of a list's ListRules.
 #
-class ListedTaxon < ActiveRecord::Base
+class ListedTaxon < ApplicationRecord
   has_subscribers destroy_callback: :commit
   
   belongs_to :list
@@ -106,7 +106,7 @@ class ListedTaxon < ActiveRecord::Base
     joins("INNER JOIN conservation_statuses cs ON cs.taxon_id = listed_taxa.taxon_id").
     where("cs.iucn >= #{Taxon::IUCN_NEAR_THREATENED} AND (cs.place_id IS NULL OR cs.place_id::text IN (#{place_ancestor_ids_sql(place_id)}))").
     select("DISTINCT ON (taxa.ancestry || '/' || listed_taxa.taxon_id, listed_taxa.observations_count) listed_taxa.*").
-    order("taxa.ancestry || '/' || listed_taxa.taxon_id, listed_taxa.observations_count")
+    order( Arel.sql( "taxa.ancestry || '/' || listed_taxa.taxon_id, listed_taxa.observations_count" ) )
   }
   scope :with_species, -> { joins(:taxon).where(taxa: { rank_level: 10 }) }
   
@@ -468,7 +468,7 @@ class ListedTaxon < ActiveRecord::Base
     if force_trickle_down_establishment_means.yesish?
       trickle_down_establishment_means(:force => true)
     end
-    return true unless establishment_means_changed? && !establishment_means.blank?
+    return true unless saved_change_to_establishment_means? && !establishment_means.blank?
     bubble_up_establishment_means if native?
     if introduced? && force_trickle_down_establishment_means.blank?
       trickle_down_establishment_means
@@ -543,9 +543,9 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def log_create_if_taxon_id_changed
-    return true unless taxon_id_changed?
-    return true if taxon_id_was.nil?
-    if has_atlas_or_complete_set?(taxon_was: taxon_id_was)
+    return true unless saved_change_to_taxon_id?
+    return true if taxon_id_before_last_save.nil?
+    if has_atlas_or_complete_set?(taxon_was: taxon_id_before_last_save)
       ListedTaxonAlteration.create(
         taxon_id: taxon_id,
         user_id: nil,
@@ -750,10 +750,6 @@ class ListedTaxon < ActiveRecord::Base
   def expire_caches
     return unless list.is_a?(CheckList)
     ctrl = ActionController::Base.new
-    ctrl.expire_fragment(List.icon_preview_cache_key(list_id))
-    ListedTaxon::ORDERS.each do |order|
-      ctrl.expire_fragment(FakeView.url_for(:controller => 'observations', :action => 'add_from_list', :id => list_id, :order => order))
-    end
     if !place_id.blank? && manually_added
       I18N_SUPPORTED_LOCALES.each do |locale|
         ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place_id, locale: locale ) )
@@ -765,6 +761,10 @@ class ListedTaxon < ActiveRecord::Base
       ctrl.expire_page FakeView.list_show_formatted_view_path(list_id, :format => 'csv', :view_type => 'taxonomic')
       ctrl.expire_page FakeView.list_path(list, :format => 'csv')
       ctrl.expire_page FakeView.list_show_formatted_view_path(list, :format => 'csv', :view_type => 'taxonomic')
+      ctrl.expire_fragment(List.icon_preview_cache_key(list_id))
+      ListedTaxon::ORDERS.each do |order|
+        ctrl.expire_fragment(FakeView.url_for(:controller => 'observations', :action => 'add_from_list', :id => list_id, :order => order))
+      end
     end
     true
   end
@@ -856,19 +856,19 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def other_primary_listed_taxa?
-    scope = ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true)
+    scope = ListedTaxon.where( taxon_id: taxon_id, place_id: place_id, primary_listing: true )
     scope = scope.where("id != ?", id) if id
     scope.count > 0
   end
   
   def multiple_primary_listed_taxa?
-    scope = ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true)
+    scope = ListedTaxon.where( taxon_id: taxon_id, place_id: place_id, primary_listing: true )
     scope = scope.where("id != ?", id) if id
     scope.count > 1
   end
   
   def primary_listed_taxon
-    primary_listing ? self : ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true).first
+    primary_listing ? self : ListedTaxon.where( taxon_id: taxon_id, place_id: place_id, primary_listing: true ).first
   end
 
   def check_primary_listing
@@ -968,7 +968,7 @@ class ListedTaxon < ActiveRecord::Base
 
   def reindex_observations_later
     return true if taxon_id.blank? || place_id.blank?
-    return true unless previous_changes[:establishment_means]
+    return true unless saved_change_to_establishment_means?
     ListedTaxon.delay(
       priority: INTEGRITY_PRIORITY,
       unique_hash: {

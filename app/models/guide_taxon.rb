@@ -1,5 +1,5 @@
 #encoding: utf-8
-class GuideTaxon < ActiveRecord::Base
+class GuideTaxon < ApplicationRecord
   attr_accessor :html
   belongs_to :guide, :inverse_of => :guide_taxa
   belongs_to :taxon, :inverse_of => :guide_taxa

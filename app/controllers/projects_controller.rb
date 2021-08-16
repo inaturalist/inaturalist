@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   WIDGET_CACHE_EXPIRATION = 15.minutes
 
   protect_from_forgery unless: -> { request.format.widget? }
-  before_filter :allow_external_iframes, only: [ :show ]
+  before_action :allow_external_iframes, only: [ :show ]
 
   caches_action :observed_taxa_count, :contributors,
     expires_in: WIDGET_CACHE_EXPIRATION,
@@ -12,25 +12,25 @@ class ProjectsController < ApplicationController
   before_action :doorkeeper_authorize!, 
     only: [ :by_login, :join, :leave, :members, :feature, :unfeature ],
     if: lambda { authenticate_with_oauth? }
-  before_filter :admin_or_this_site_admin_required, only: [ :feature, :unfeature ]
+  before_action :admin_or_this_site_admin_required, only: [ :feature, :unfeature ]
   
-  before_filter :return_here,
+  before_action :return_here,
     only: [ :index, :show, :contributors, :members, :show_contributor, :terms, :invite ]
-  before_filter :authenticate_user!, 
+  before_action :authenticate_user!, 
     unless: lambda { authenticated_with_oauth? },
     except: [ :index, :show, :search, :map, :contributors, :observed_taxa_count,
       :browse, :calendar, :stats_slideshow ]
   load_except = [ :create, :index, :search, :new_traditional, :by_login, :map, :browse, :calendar, :new ]
-  before_filter :load_project, except: load_except
+  before_action :load_project, except: load_except
   blocks_spam except: load_except, instance: :project
   check_spam only: [:create, :update], instance: :project
-  before_filter :ensure_current_project_url, only: :show
-  before_filter :load_project_user,
+  before_action :ensure_current_project_url, only: :show
+  before_action :load_project_user,
     except: [ :index, :search, :new_traditional, :by_login, :new, :feature, :unfeature ]
-  before_filter :load_user_by_login, only: [ :by_login ]
-  before_filter :ensure_can_edit, only: [ :edit, :update ]
-  before_filter :filter_params, only: [ :update, :create ]
-  before_filter :site_required, only: [ :feature, :unfeature ]
+  before_action :load_user_by_login, only: [ :by_login ]
+  before_action :ensure_can_edit, only: [ :edit, :update ]
+  before_action :filter_params, only: [ :update, :create ]
+  before_action :site_required, only: [ :feature, :unfeature ]
 
   requires_privilege :organizer, only: [:new_traditional]
   
@@ -122,7 +122,9 @@ class ProjectsController < ApplicationController
           scope = scope.
             where(["projects.latitude IS NULL OR ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(?, ?)) < 5",
               params[:latitude], params[:longitude]]).
-            order("CASE WHEN projects.latitude IS NULL THEN 6 ELSE ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{params[:latitude]}, #{params[:latitude]})) END")
+            order( Arel.sql(
+              "CASE WHEN projects.latitude IS NULL THEN 6 ELSE ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{params[:latitude]}, #{params[:latitude]})) END"
+            ) )
         else
           if params[:featured]
             scope = scope.joins(:site_featured_projects)
@@ -470,9 +472,9 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html do
         @started = @selected_user.projects.
-          paginate( page: params[:started_page], per_page: 7 ).order( "lower( projects.title )" )
+          paginate( page: params[:started_page], per_page: 7 ).order( Arel.sql( "lower( projects.title )" ) )
         @project_users = @selected_user.project_users.joins( :project, :user ).
-          paginate( page: params[:main_page], per_page: 20 ).order( "lower( projects.title )" )
+          paginate( page: params[:main_page], per_page: 20 ).order( Arel.sql( "lower( projects.title )" ) )
         @projects = @project_users.map{ |pu| pu.project }
         render layout: "bootstrap"
       end
@@ -485,7 +487,7 @@ class ProjectsController < ApplicationController
               { project_observation_fields: :observation_field }
             ]
           }, :user).
-          order("lower(projects.title)").
+          order( Arel.sql( "lower(projects.title)" ) ).
           limit(1000)
         project_options = Project.default_json_options.update(
           :include => [
@@ -890,7 +892,7 @@ class ProjectsController < ApplicationController
           csv << @headers
           @data.each {|row| csv << row}
         end
-        render :text => csv_text
+        render :plain => csv_text
       end
     end
   end

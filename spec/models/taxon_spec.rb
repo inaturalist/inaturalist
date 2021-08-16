@@ -740,7 +740,7 @@ describe Taxon, "merging" do
       parent: @Calypte
     )
     @has_many_assocs = Taxon.reflections.select{|k,v| v.macro == :has_many}.map{|k,v| k}
-    @has_many_assocs.each {|assoc| @reject.send(assoc, :force_reload => true)}
+    @has_many_assocs.each {|assoc| @reject.send(assoc).reload}
   end
     
   it "should move the reject's children to the keeper" do

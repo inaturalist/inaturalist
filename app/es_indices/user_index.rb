@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include ActsAsElasticModel
 
   scope :load_for_index, -> { includes( :roles, :flags, :provider_authorizations ) }

@@ -1,4 +1,4 @@
-class Role < ActiveRecord::Base
+class Role < ApplicationRecord
   ADMIN = 'admin'
   CURATOR = 'curator'
   ADMIN_ROLE = Role.find_or_create_by(name: ADMIN)

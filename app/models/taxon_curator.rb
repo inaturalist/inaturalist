@@ -1,4 +1,4 @@
-class TaxonCurator < ActiveRecord::Base
+class TaxonCurator < ApplicationRecord
   belongs_to :taxon # deprecated, remove when we're sure transition to taxon frameworks is complete
   belongs_to :taxon_framework
   belongs_to :user

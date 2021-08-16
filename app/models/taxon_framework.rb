@@ -1,4 +1,4 @@
-class TaxonFramework < ActiveRecord::Base
+class TaxonFramework < ApplicationRecord
   belongs_to :taxon, inverse_of: :taxon_framework
   belongs_to :source
   belongs_to :user
@@ -21,7 +21,7 @@ class TaxonFramework < ActiveRecord::Base
   
   def handle_change_in_completeness
     # would use new_record? here if this was called any time other than after_save
-    return true unless complete_changed? || ( rank_level_changed? && !id_changed? )
+    return true unless saved_change_to_complete? || ( saved_change_to_rank_level? && !saved_change_to_id? )
     return true if skip_reindexing_taxa
     Taxon.
       delay( priority: INTEGRITY_PRIORITY, unique_hash: { "Taxon::reindex_taxa_covered_by": self.id } ).
@@ -41,11 +41,17 @@ class TaxonFramework < ActiveRecord::Base
   def check_other_taxon_framework_relationships
     return true if skip_check_frameworks
     return true unless rank_level
-    return true unless new_record? || rank_level_changed? || source_id_changed? || taxon_id_changed?
+    unless new_record? || saved_change_to_rank_level? || saved_change_to_source_id? || saved_change_to_taxon_id?
+      return true
+    end
     
     upstream_taxon_frameworks = TaxonFramework.where( "taxon_id IN (?)", taxon.ancestor_ids ).pluck( :id )
     ancestor_string = taxon.rank == "stateofmatter" ? taxon.id.to_s : "%/#{ taxon.id }"
-    tr = TaxonFrameworkRelationship.joins( :taxa ).where( "taxon_framework_id IN (?) AND (taxa.id = ? OR taxa.ancestry LIKE (?) OR taxa.ancestry LIKE (?))", upstream_taxon_frameworks, taxon.id, "#{ ancestor_string }", "#{ ancestor_string }/%" )
+    tr = TaxonFrameworkRelationship.joins( :taxa ).
+      where(
+        "taxon_framework_id IN (?) AND (taxa.id = ? OR taxa.ancestry LIKE (?) OR taxa.ancestry LIKE (?))",
+        upstream_taxon_frameworks, taxon.id, ancestor_string, "#{ ancestor_string }/%"
+      )
     return tr.destroy_all
   end
   

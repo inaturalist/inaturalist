@@ -1,4 +1,4 @@
-class PlaceTaxonName < ActiveRecord::Base
+class PlaceTaxonName < ApplicationRecord
   belongs_to :place, :inverse_of => :place_taxon_names
   belongs_to :taxon_name, :inverse_of => :place_taxon_names
   validates_uniqueness_of :place_id, :scope => :taxon_name_id

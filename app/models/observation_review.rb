@@ -1,4 +1,4 @@
-class ObservationReview < ActiveRecord::Base
+class ObservationReview < ApplicationRecord
 
   belongs_to :observation
   belongs_to :user

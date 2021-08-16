@@ -137,7 +137,7 @@ module ActiveRecord
     end
   end
 
-  class ActiveRecord::ConnectionAdapters::PostGISAdapter::MainAdapter
+  class ActiveRecord::ConnectionAdapters::PostGISAdapter
     def active_queries
       User.connection.execute("SELECT *
         FROM pg_stat_activity

@@ -1,7 +1,7 @@
 class TaxonLinksController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :load_taxon_link, except: [:new, :create, :index]
-  before_filter :curator_required, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :load_taxon_link, except: [:new, :create, :index]
+  before_action :curator_required, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @taxon_links = TaxonLink.order("taxon_links.id DESC").includes(:taxon, :place).page(params[:page])

@@ -1,4 +1,4 @@
-class GuideRange < ActiveRecord::Base
+class GuideRange < ApplicationRecord
   belongs_to :guide_taxon, :inverse_of => :guide_ranges
   has_one :guide, :through => :guide_taxon
   after_save {|r| r.guide.expire_caches(:check_ngz => true)}
