@@ -641,7 +641,11 @@ Rails.application.routes.draw do
   resources :conservation_statuses, :only => [:autocomplete]
 
   resource :computer_vision_demo, only: :index, controller: :computer_vision_demo do
+    collection do
+      get :index
+    end
   end
+
   resources :computer_vision_demo_uploads do
     member do
       post :score

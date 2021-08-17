@@ -933,7 +933,7 @@ class ObservationsController < ApplicationController
   end
   
   def update_photos
-    @observation_photos = ObservationPhoto.where(id: params[:observation_photos].map{|k,v| k})
+    @observation_photos = ObservationPhoto.where(id: params[:observation_photos].to_h.map{|k,v| k})
     @observation_photos.each do |op|
       next unless @observation.observation_photo_ids.include?(op.id)
       op.update_attributes(params[:observation_photos][op.id.to_s])
