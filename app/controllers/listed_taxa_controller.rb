@@ -111,7 +111,7 @@ class ListedTaxaController < ApplicationController
   def update
     unless @list.listed_taxa_editable_by?(current_user)
       flash[:error] = "You don't have permission to edit listed taxa on this list"
-      redirect_to :back
+      redirect_back_or_default( @listed_taxon )
       return
     end
     
@@ -122,7 +122,7 @@ class ListedTaxaController < ApplicationController
       if @listed_taxon.valid?
         format.html do
           flash[:notice] = t(:listed_taxon_updated)
-          redirect_to :back
+          redirect_back_or_default( @listed_taxon )
         end
         format.json do
           if params[:partial] && SHOW_PARTIALS.include?(params[:partial])
@@ -135,7 +135,7 @@ class ListedTaxaController < ApplicationController
         format.html do
           Rails.logger.debug "[DEBUG] @listed_taxon.errors.full_messages: #{@listed_taxon.errors.full_messages.inspect}"
           flash[:error] = "There were problems updating that listed taxon: #{@listed_taxon.errors.full_messages.to_sentence}"
-          redirect_to :back
+          redirect_back_or_default( @listed_taxon )
         end
         format.json do
           render :status => :unprocessable_entity, :json => @listed_taxon.as_json(:methods => [:errors])

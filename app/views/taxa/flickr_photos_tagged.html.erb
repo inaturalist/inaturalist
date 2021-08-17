@@ -137,6 +137,7 @@
                     <%= link_to "&times;".html_safe, {:controller => 'flickr', :action => 'remove_tag', :id => tag.id, :format => 'json'},
                       "data-type" => 'json',
                       :remote => true,
+                      :method => :delete,
                       :id => "remove_tag_link_#{tag.id}",
                       :title => 'Remove tag'
                     %>

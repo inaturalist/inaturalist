@@ -157,7 +157,7 @@ Rails.application.routes.draw do
   get '/wikimedia_commons/photo_fields' => 'wikimedia_commons#photo_fields'
   post '/facebook' => 'facebook#index'
 
-  resource :help, only: :index do
+  resource :help, controller: :help, only: :index do
     collection do
       get :index
       get :getting_started
@@ -229,6 +229,7 @@ Rails.application.routes.draw do
   get 'flickr/photos.:format' => 'flickr#photos'
   get "flickr/options" => "flickr#options", as: "flickr_options"
   get "flickr/photo_fields" => "flickr#photo_fields", as: "flickr_photo_fields"
+  delete "flickr/remove_tag" => "flickr/remove_tag", as: "flickr_remove_tag"
 
   resources :observation_photos, :only => [:show, :create, :update, :destroy]
   resources :observation_sounds, :only => [:show, :create, :update, :destroy]

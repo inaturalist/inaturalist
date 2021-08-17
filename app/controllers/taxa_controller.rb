@@ -1310,7 +1310,7 @@ class TaxaController < ApplicationController
   def tag_flickr_photos_from_observations
     if params[:o].blank?
       flash[:error] = t(:you_didnt_select_any_observations)
-      return redirect_to :back
+      return redirect_back_or_default( flickr_tagger_path )
     end
     
     @observations = current_user.observations.where(id: params[:o].split(',')).
@@ -1318,12 +1318,12 @@ class TaxaController < ApplicationController
     
     if @observations.blank?
       flash[:error] = t(:no_observations_matching_those_ids)
-      return redirect_to :back
+      return redirect_back_or_default( flickr_tagger_path )
     end
     
     if @observations.map(&:user_id).uniq.size > 1 || @observations.first.user_id != current_user.id
       flash[:error] = t(:you_dont_have_permission_to_edit_those_photos)
-      return redirect_to :back
+      return redirect_back_or_default( flickr_tagger_path )
     end
     
     flickr = get_flickraw
@@ -1337,7 +1337,7 @@ class TaxaController < ApplicationController
         tags << "inaturalist:observation=#{observation.id}"
         tag_flickr_photo(photo.native_photo_id, tags, :flickr => flickr)
         unless flash[:error].blank?
-          return redirect_to :back
+          return redirect_back_or_default( flickr_tagger_path )
         end
         flickr_photo_ids << photo.native_photo_id
       end

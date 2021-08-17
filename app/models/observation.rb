@@ -2863,12 +2863,6 @@ class Observation < ApplicationRecord
     self.positional_accuracy = nil if positional_accuracy == 0
     true
   end
-
-  # Required for use of the sanitize method in
-  # ObservationsHelper#short_observation_description
-  def self.white_list_sanitizer
-    @white_list_sanitizer ||= Rails::Html::WhiteListSanitizer.new
-  end
   
   def self.update_for_taxon_change(taxon_change, options = {}, &block)
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
