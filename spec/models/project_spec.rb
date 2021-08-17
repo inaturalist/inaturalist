@@ -1,6 +1,41 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Project do
+  xit { is_expected.to belong_to :user }
+  xit { is_expected.to belong_to(:place).inverse_of :projects }
+  it { is_expected.to have_many(:project_users).dependent(:delete_all).inverse_of :project }
+  it { is_expected.to have_many(:project_observations).dependent :delete_all }
+  it { is_expected.to have_many(:project_user_invitations).dependent :delete_all }
+  it { is_expected.to have_many(:users).through :project_users }
+  it { is_expected.to have_many(:observations).through :project_observations }
+  it { is_expected.to have_one(:project_list).dependent :destroy }
+  it { is_expected.to have_many(:listed_taxa).through :project_list }
+  it { is_expected.to have_many(:taxa).through :listed_taxa }
+  it { is_expected.to have_many(:project_assets).dependent :delete_all }
+  it { is_expected.to have_one(:custom_project).dependent :delete }
+  it { is_expected.to have_many(:project_observation_fields).dependent(:destroy).inverse_of :project }
+  it { is_expected.to have_many(:observation_fields).through :project_observation_fields }
+  it { is_expected.to have_many(:posts).dependent :destroy }
+  it { is_expected.to have_many(:journal_posts).class_name "Post" }
+  it { is_expected.to have_many(:assessments).dependent :destroy }
+  it { is_expected.to have_many(:site_featured_projects).dependent :destroy }
+  it { is_expected.to have_many(:project_observation_rules_as_operand).class_name "ProjectObservationRule" }
+
+  context "validations" do
+    subject { Project.make! }
+    it { is_expected.to validate_presence_of :user }
+    it { is_expected.to validate_length_of(:title).is_at_least(1).is_at_most 100 }
+    it { is_expected.to validate_uniqueness_of :title }
+    it { is_expected.to validate_exclusion_of(:title).in_array Project::RESERVED_TITLES + %w(user) }
+    it { is_expected.to validate_inclusion_of(:map_type).in_array Project::MAP_TYPES }
+
+    context "when bioblitz" do
+      subject { Project.make project_type: Project::BIOBLITZ_TYPE }
+      it { is_expected.to validate_presence_of(:start_time).with_message "can't be blank for a bioblitz" }
+      it { is_expected.to validate_presence_of(:end_time).with_message "can't be blank for a bioblitz" }
+    end
+  end
+
 
   it "resets last_aggregated_at if start or end times changed" do
     p = Project.make!(prefers_aggregation: true, project_type: Project::BIOBLITZ_TYPE,
@@ -58,25 +93,9 @@ describe Project do
       expect(project.project_users.first.user_id).to eq project.user_id
     end
   
-    it "should not allow ProjectsController action names as titles" do
-      project = Project.make!
-      expect(project).to be_valid
-      project.title = "new"
-      expect(project).not_to be_valid
-      project.title = "user"
-      expect(project).not_to be_valid
-    end
-  
     it "should stip titles" do
       project = Project.make!(:title => " zomg spaces ")
       expect(project.title).to eq 'zomg spaces'
-    end
-
-    it "should validate uniqueness of title" do
-      p1 = Project.make!
-      p2 = Project.make(:title => p1.title)
-      expect(p2).not_to be_valid
-      expect(p2.errors[:title]).not_to be_blank
     end
 
     it "should not notify the owner of their own new projects" do
