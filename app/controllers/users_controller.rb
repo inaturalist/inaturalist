@@ -1112,7 +1112,7 @@ protected
   
   def counts_for_users
     @species_counts = @users.map{ |i| [i.id, i.species_count] }.to_h
-    @post_counts = Post.where(user_id: @users.to_a, parent_type: User).group(:user_id).count
+    @post_counts = Post.where(user_id: @users.to_a, parent_type: "User").group(:user_id).count
   end
   
   def activity_object_image_url(activity_stream)

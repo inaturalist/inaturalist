@@ -450,7 +450,7 @@ Rails.application.routes.draw do
   get 'taxa/auto_complete_name' => 'taxa#auto_complete_name'
   get 'taxa/occur_in' => 'taxa#occur_in'
   get '/taxa/curation' => 'taxa#curation', :as => :curate_taxa
-  get "taxa/*q" => 'taxa#try_show'
+  get "taxa/*q" => 'taxa#try_show', as: :taxa_try_show
   
   resources :sources
   get 'journal' => 'posts#browse', :as => :journals

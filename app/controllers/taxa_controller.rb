@@ -1400,7 +1400,7 @@ class TaxaController < ApplicationController
         else
           canonical
         end
-        return redirect_to( { action: redirect_target }.merge( request.GET ) )
+        return redirect_to( taxa_try_show_path( { q: redirect_target }.merge( request.GET ) ) )
       end
     end
     
