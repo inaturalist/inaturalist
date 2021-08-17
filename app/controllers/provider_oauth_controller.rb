@@ -154,13 +154,10 @@ class ProviderOauthController < ApplicationController
       pa.user
     end
     user ||= begin
-      gclient = Google::APIClient.new
-      gclient.authorization.client_id = CONFIG.google.client_id
-      gclient.authorization.client_secret = CONFIG.google.secret
-      gclient.authorization.access_token = provider_token
-      gclient.authorization.scope = 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
-      goauth2 = gclient.discovered_api('oauth2')
-      r = gclient.execute(:api_method => goauth2.userinfo.get)
+      r = RestClient.get( "https://www.googleapis.com/userinfo/v2/me", {
+        Authorization: "Bearer #{provider_token}",
+        "User-Agent" => "iNaturalist/Google"
+      } )
       json = JSON.parse(r.body)
       unless uid = json['id']
         Rails.logger.debug "[DEBUG] Google auth failed: #{json.inspect}"
@@ -177,8 +174,8 @@ class ProviderOauthController < ApplicationController
           'info' => {
             'email' => json['email'],
             'name' => json['name'],
-            'first_name' => json['first_name'],
-            'last_name' => json['last_name'],
+            'first_name' => json['given_name'],
+            'last_name' => json['family_name'],
             'image' => json['picture'],
             'urls' => {
               'Google Plus' => json['link']
@@ -189,23 +186,10 @@ class ProviderOauthController < ApplicationController
             'token' => provider_token
           }
         }
-        if auth_info['info']['image'].blank?
-          gplus = gclient.discovered_api('plus')
-          r = gclient.execute(
-            :api_method => gplus.people.get,
-            :parameters => {'collection' => 'public', 'userId' => 'me'}
-          )
-          json = JSON.parse(r.body)
-          auth_info['info']['name'] ||= json['displayName']
-          auth_info['info']['first_name'] ||= json['givenName']
-          auth_info['info']['last_name'] ||= json['familyName']
-          auth_info['info']['image'] ||= json['image'].try(:[], 'url')
-          auth_info['info']['description'] ||= json['aboutMe']
-        end
-        user = User.create_from_omniauth(auth_info)
+        user = User.create_from_omniauth( auth_info )
       end
       user
-    rescue Google::APIClient::ClientError => e
+    rescue RestClient::Unauthorized => e
       Rails.logger.debug "[DEBUG] Failed to make a Google API call: #{e}"
       nil
     end

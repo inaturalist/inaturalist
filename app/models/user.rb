@@ -772,6 +772,7 @@ class User < ApplicationRecord
     icon_url = auth_info["info"]["image"]
     # Don't bother if the icon URL looks like the default Google user icon
     icon_url = nil if icon_url =~ /4252rscbv5M/
+    icon_url = nil if icon_url =~ /s96-c/
     u = User.new(
       :login => autogen_login,
       :email => email,
