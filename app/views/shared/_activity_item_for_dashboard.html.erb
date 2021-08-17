@@ -34,7 +34,7 @@
     <div class="timeline-heading">
       <h2 class="timeline-title">  
         <span class="time">
-          <%= compact_date(posted_at) %>
+          <%= compact_date( posted_at, obscured: item.is_a?( Observation ) && !item.coordinates_viewable_by?( current_user ) ) %>
         </span>
         <span style="font-weight:normal; color:gray">
           <%- title = link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user)) %>

@@ -35,7 +35,8 @@ module ApplicationHelper
     html
   end
   
-  def compact_date(date)
+  def compact_date( date, options = {} )
+    obscured = options[:obscured]
     return 'the past' if date.nil?
     if date.is_a?(Time)
       date = date.in_time_zone(current_user.time_zone) if current_user
@@ -47,7 +48,9 @@ module ApplicationHelper
     else
       Date.today
     end
-    if date == today
+    if obscured
+      I18n.l( date, format: :month_year )
+    elsif date == today
       time ? I18n.l( time, format: :compact ) : t(:today)
     elsif date.year == Date.today.year 
       I18n.l( date.to_date, format: :compact )
