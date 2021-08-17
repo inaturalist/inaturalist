@@ -164,7 +164,7 @@ class PlaceGeometry < ApplicationRecord
         0.075
       end
     if s = PlaceGeometry.where(id: id).
-      select("id, cleangeometry(ST_SimplifyPreserveTopology(geom, #{ tolerance })) as simpl").first.simpl
+      select("id, cleangeometry(ST_SimplifyPreserveTopology(geom, #{ tolerance })) as simpl").first.simpl rescue nil
       return s
     end
     PlaceGeometry.where(id: id).

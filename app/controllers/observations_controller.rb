@@ -527,9 +527,12 @@ class ObservationsController < ApplicationController
       return
     end
     
-    @observations = params[:observations].map do |fieldset_index, observation|
+    @observations = params[:observations].to_h.map do |fieldset_index, observation|
       next if observation.blank?
       observation.delete('fieldset_index') if observation[:fieldset_index]
+      unless observation.is_a?( ActionController::Parameters )
+        observation = ActionController::Parameters.new( observation )
+      end
 
       # If the client is trying to create an observation that already exists,
       # update that observation instead of returning an error. This is meant to
@@ -671,7 +674,7 @@ class ObservationsController < ApplicationController
           elsif @observations.size == 1
             redirect_to observation_path(@observations.first)
           else
-            redirect_to :action => self.current_user.login
+            redirect_to observations_by_login_path( self.current_user.login )
           end
         else
           if @observations.size == 1
