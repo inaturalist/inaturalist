@@ -272,9 +272,6 @@ ru:
     Только те ваши наблюдения в этом проекте, координаты которых скрыты для находящихся под угрозой исчезновения таксонов
   about_trusting_projects_options_taxon_desc: |-
     Многим проектам необходим доступ к координатам, которые скрыты из-за того, что наблюдение содержит таксон, находящийся под угрозой.
-  about_trusting_projects_overview: |-
-    Предоставление доступа к скрытым координатам позволит менеджерам этого
-    проекта увидеть истинное, не скрытое местоположение ваших наблюдений в этом проекте. Это особенно важно в тех ситуациях, когда ученым или менеджерам ресурсов нужен доступ к точным координатам для анализа и принятия решений.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -2390,7 +2387,6 @@ ru:
   manage_all_your_subscriptions: Управление всеми вашими подписками
   manage_names: Управление именами
   manage_your_projects: Управление вашими проектами
-  manage_your_project_invitations: Управление вашими приглашениями в проект
   manage_your_relationships: Управлять вашими связями
   manager: Менеджер
   managers: Менеджеры
@@ -3642,7 +3638,6 @@ ru:
   project_icon: Значок проекта
   project_journal: Журнал проекта
   project_id_or_url_slug: Идентификатор или URL-адрес проекта, например, 333 или мой-проект
-  project_invitations: 'Приглашения в проект'
   project_list: Список проектов
   project_list_defaults:
     title: "Контрольный список %{owner_name}"
@@ -4757,7 +4752,6 @@ ru:
   user_added_a_comment_html: "%{user} добавил комментарий"
   user_added_a_fave_html: "%{user} добавил к фаворитам"
   user_added_a_flag_html: "%{user} добавил флаг"
-  user_added_a_project_invitation_html: "%{user} добавил приглашение в проект"
   user_added_a_x: "%{user} добавил %{x}"
   user_added_a_x_to_noun_by_html: "%{user} добавил %{x} к %{noun} %{by}"
   user_added_a_x_to_noun_by_user_html: "%{user} добавил %{x} к %{noun} %{by}"

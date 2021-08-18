@@ -272,8 +272,6 @@ pl:
   about_trusting_projects_options_taxon_desc: |-
     Wiele projektów po prostu wymaga dostępu do współrzędnych, które są ukryte, ponieważ obserwacja
     przedstawia zagrożony takson.
-  about_trusting_projects_overview: |-
-    Udzielenie dostępu do ukrytych współrzędnych pozwoli menedżerom tego projektu zobaczyć prawdziwe, nieukryte lokalizacje Twoich obserwacji. Jest to niezwykle ważne w sytuacjach, w których naukowcy lub menedżerowie zasobów potrzebują dostępu do dokładnych współrzędnych w celach analizy i podejmowania decyzji.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -2104,7 +2102,6 @@ pl:
   manage_all_your_subscriptions: Zarządzaj wszystkimi swoimi subskrypcjami
   manage_names: Zarządzaj nazwami
   manage_your_projects: Zarządzanie swoimi projektami
-  manage_your_project_invitations: Zarządzaj swoimi zaproszeniami do projektu
   manage_your_relationships: Zarządzaj swoimi relacjami
   manager: Menedżer
   managers: Menedżerowie
@@ -3024,7 +3021,6 @@ pl:
   project_group_description: Grupa do której należy projekt
   project_icon: Ikona projektu
   project_id_or_url_slug: ID projektu lub slug URL, np. 333 lub moj-projekt
-  project_invitations: 'Zaproszenia do projektu'
   project_list_defaults:
     title: "Checklista %{owner_name}"
   project_curators_added_some_of_your_observations_html: |
@@ -3601,7 +3597,6 @@ pl:
   user_added_a_comment_html: "%{user} dodał komentarz"
   user_added_a_fave_html: "%{user} dodał obserwację do ulubionych"
   user_added_a_flag_html: "%{user} dodał zgłoszenie"
-  user_added_a_project_invitation_html: "%{user} dodał zaproszenie do projektu"
   user_added_a_x: "%{user} dodał %{x}"
   user_added_a_x_to_noun_by_html: "%{user} dodał %{x} do %{noun} przez %{by}"
   user_added_a_x_to_noun_html: "%{user} dodał %{x} do %{noun}"
@@ -4765,6 +4760,8 @@ pl:
         order: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         phylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        place: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)

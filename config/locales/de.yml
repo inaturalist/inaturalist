@@ -194,12 +194,6 @@ de:
   about_trusting_projects_options_taxon_desc: |-
     Viele Projekte benötigen nur Zugang zu verdeckten Koordinaten, da die
     Beobachtung ein bedrohtes Taxon darstellt.
-  about_trusting_projects_overview: |-
-    Wenn du Zugriff auf deine versteckten Koordinaten gewährst, können die Manager dieses
-    Projekts die unverschleierte Position deiner Beobachtungen in diesem
-    Projekt sehen. Dies ist extrem wichtig in Situationen, in denen Wissenschaftler oder
-    Ressourcenmanager Zugriff auf exakte Koordinaten für Analysen und
-    Entscheidungsfindung benötigen.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -2095,6 +2089,7 @@ de:
     luxembourgish: Luxemburgisch
     maltese: Maltesisch
     maori: Maori
+    marathi: Marathi
     misima_paneati: Misima-Paneati
     norwegian: Norwegisch
     occitan: Okzitanisch
@@ -2182,14 +2177,14 @@ de:
     en: Englisch
     eo: Esperanto
     es: Spanisch
-    es-AR: Spanish (Argentina)
+    es-AR: Spanisch (Argentinien)
     es-CO: Spanisch (Kolumbien)
     es-MX: Spanisch (Mexiko)
     et: Estnisch
     eu: Baskisch
     fi: Finnisch
     fr: Französisch
-    fr-CA: French (Canada)
+    fr-CA: Französisch (Kanada)
     gl: Galicisch
     he: Hebräisch
     hu: Ungarisch
@@ -2198,17 +2193,18 @@ de:
     ja: Japanisch
     ko: Koreanisch
     lb: Luxemburgisch
-    lt: litauisch
+    lt: Litauisch
     lv: Lettisch
     mk: Mazedonisch
-    nb: Norwegian Bokmål
+    mr: Marathi
+    nb: Norwegisch (Bokmål)
     nl: Niederländisch
     oc: Okzitanisch
-    pl: polnisch
-    pt: Portuguese
+    pl: Polnisch
+    pt: Portugiesisch
     pt-BR: Portugiesisch (Brasilien)
     ru: Russisch
-    sk: Slovak
+    sk: Slowakisch
     sq: Albanisch
     sv: Schwedisch
     th: Thailändisch
@@ -2272,7 +2268,6 @@ de:
   manage_all_your_subscriptions: Alle deine Abos verwalten
   manage_names: Namen verwalten
   manage_your_projects: Deine Projekte verwalten
-  manage_your_project_invitations: Deine Projekt-Einladungen verwalten
   manage_your_relationships: Deine Beziehungen verwalten
   manager: Manager
   managers: Manager
@@ -3536,7 +3531,6 @@ de:
   project_icon: Projektsymbol
   project_journal: Projekt-Journal
   project_id_or_url_slug: Projekt ID oder URL-slug, z.B. 333 oder mein-projekt
-  project_invitations: 'Projekteinladungen'
   project_list: Projektliste
   project_list_defaults:
     title: "Checkliste von %{owner_name}"
@@ -4597,7 +4591,6 @@ de:
   user_added_a_comment_html: "Kommentar hinzugefügt von: %{user}"
   user_added_a_fave_html: "%{user} hat einen Favoriten hinzugefügt"
   user_added_a_flag_html: "%{user} hat etwas gemeldet"
-  user_added_a_project_invitation_html: "%{user} hat eine Projekt-Einladung hinzugefügt"
   user_added_a_x: "%{user}: %{x} hinzugefügt"
   user_added_a_x_to_noun_by_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
   user_added_a_x_to_noun_by_user_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"

@@ -295,12 +295,6 @@ cs:
   about_trusting_projects_options_taxon_desc: |-
     Mnoho projektů potřebuje pouze přístup k souřadnicím, které jsou skryté, protože pozorování
     zobrazuje ohrožený taxon.
-  about_trusting_projects_overview: |-
-    Poskytnutí přístupu k vašim skrytým souřadnicím umožní správcům tohoto
-    projektu vidět pravdu, neskryté umístění vašich pozorování v tomto
-    projektu. To je mimořádně důležité v situacích, kdy vědci nebo
-    správci zdrojů potřebují přístup k přesným souřadnicím pro účely analýzy a
-    rozhodování.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -2420,7 +2414,6 @@ cs:
   manage_all_your_subscriptions: Spravujte všechny vaše odběry
   manage_names: Spravovat jména
   manage_your_projects: Spravovat svoje projekty
-  manage_your_project_invitations: Spravovat vaše projektové pozvánky
   manage_your_relationships: Spravovat svoje vztahy
   manager: Manažer
   managers: Správce
@@ -2848,6 +2841,8 @@ cs:
   observation_brief_something_on_day_at_time: "Něco v %{day} v %{time}"
   observation_brief_something_on_day_at_time_by_user: "Něco dne %{day} v %{time} od %{user}"
   observation_brief_something_on_day_by_user: "Něco na %{day} od %{user}"
+  observation_brief_something_in_month: "Něco v %{month}"
+  observation_brief_something_in_month_by_user: "Něco v %{month} od %{user}"
   observation_brief_something_by_user: "Něco od %{user}"
   observation_brief_something_from_place: "Něco z %{place}"
   observation_brief_something_from_place_by_user: "Něco z %{place} od %{user}"
@@ -2855,10 +2850,14 @@ cs:
   observation_brief_something_from_place_on_day_by_user: "Něco z %{place} z %{day} od %{user}"
   observation_brief_something_from_place_on_day_at_time: "Něco z %{place} dne %{day} v %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Něco od %{place} dne %{day} v %{time} od %{user}"
+  observation_brief_something_from_place_in_month: "Něco z %{place} v %{month}"
+  observation_brief_something_from_place_in_month_by_user: "Něco z %{place} v %{month} od %{user}"
   observation_brief_taxon_on_day: "%{taxon} na %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} dne %{day} v %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} dne %{day} v %{time} podle %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} dne %{day} od %{user}"
+  observation_brief_taxon_in_month: "%{taxon} v %{month}"
+  observation_brief_taxon_in_month_by_user: "%{taxon} v %{month} od %{user}"
   observation_brief_taxon_by_user: "%{taxon} od %{user}"
   observation_brief_taxon_from_place: "%{taxon} od %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} od %{place} od %{user}"
@@ -2866,6 +2865,8 @@ cs:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} od %{place} dne %{day} od %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} od %{place} dne %{day} v %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} od %{place} dne %{day} v %{time} od %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} z %{place} v %{month}"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} z %{place} v %{month} od %{user}"
   observations_by_category: "Pozorování podle kategorie"
   observations_by_app: Pozorování podle aplikace
   observations_by_rank: Pozoování podle pořadí
@@ -3694,7 +3695,6 @@ cs:
   project_icon: Ikona projektu
   project_journal: Deník projektu
   project_id_or_url_slug: ID projektu nebo řádek URL, např. 333 nebo můj projekt
-  project_invitations: 'Pozvánky do projektu'
   project_list: Seznam projektů
   project_list_defaults:
     title: "Seznam uživatele %{owner_name}"
@@ -4811,7 +4811,6 @@ cs:
   user_added_a_comment_html: "Uživatel %{user} přidal komentář"
   user_added_a_fave_html: "%{user} přidal oblíbené"
   user_added_a_flag_html: "%{user} přidal praporek"
-  user_added_a_project_invitation_html: "Uživatel %{user} přidal pozvánku k projektu"
   user_added_a_x: "%{user} přidal(a) %{x}"
   user_added_a_x_to_noun_by_html: "%{user} přidal %{x} k %{noun} podle %{by}"
   user_added_a_x_to_noun_by_user_html: "%{user} přidal %{x} k %{noun} podle %{by}"

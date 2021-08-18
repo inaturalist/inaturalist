@@ -146,8 +146,6 @@ zh-CN:
     只有你那些在项目中因受威胁等级而模糊了坐标的观察
   about_trusting_projects_options_taxon_desc: |-
     许多项目只需要访问模糊的坐标，因为观测描述了一个受威胁的分类群。
-  about_trusting_projects_overview: |-
-    授权您的隐藏坐标将使此项目的管理者能够查看您在该项目中观察的准确坐标。对于科学家和资源管理者来说，了解准确的观察坐标对数据分析和决策决定是非常重要的。
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -2084,7 +2082,6 @@ zh-CN:
   manage_all_your_subscriptions: 管理所有订阅者
   manage_names: 管理名称
   manage_your_projects: 管理您的项目
-  manage_your_project_invitations: 管理你的项目邀请
   manage_your_relationships: 管理您的关联
   manager: 经理
   managers: 经理
@@ -3289,7 +3286,6 @@ zh-CN:
   project_icon: 项目图标
   project_journal: 项目日志
   project_id_or_url_slug: 项目ID或URL条，例如 333 或 my-project
-  project_invitations: '项目邀请'
   project_list: 项目列表
   project_list_defaults:
     title: "%{owner_name}的清单"
@@ -4281,7 +4277,6 @@ zh-CN:
   user_added_a_comment_html: "%{user} 添加了一条评论"
   user_added_a_fave_html: "%{user} 添加为喜爱"
   user_added_a_flag_html: "%{user} 添加了一个标记"
-  user_added_a_project_invitation_html: "%{user} 添加了一个项目邀请"
   user_added_a_x: "%{user} 添加了一个 %{x}"
   user_added_a_x_to_noun_by_html: "%{user}将%{x}添加至由%{by}的%{noun}"
   user_added_a_x_to_noun_by_user_html: "%{user}将%{x}添加至由%{by}的%{noun}"

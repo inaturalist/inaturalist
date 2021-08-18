@@ -150,8 +150,6 @@ zh-TW:
     僅限您在此專案中之觀察記錄因瀕危分類群而被遮蔽的座標
   about_trusting_projects_options_taxon_desc: |-
     許多專案只需要存取被遮蔽的座標，因為該觀察記錄描述了一個瀕危的分類群。
-  about_trusting_projects_overview: |-
-    授權您的隱藏座標將會允許這個專案的管理者看到您在此專案中真實而無遮蔽的地點。這對於科學家或是資源管理者來說，為了分析和做決策，存取真正的座標是非常重要的。
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -2193,7 +2191,6 @@ zh-TW:
   manage_all_your_subscriptions: 管理您所有的訂閱
   manage_names: 管理名稱
   manage_your_projects: 管理您的專案
-  manage_your_project_invitations: 管理您的專案邀請
   manage_your_relationships: 管理您的關係
   manager: 負責人
   managers: 負責人
@@ -3433,7 +3430,6 @@ zh-TW:
   project_icon: 專案圖示
   project_journal: 專案日誌
   project_id_or_url_slug: 專案 ID 或 URL slug，例如：333 或 my-project
-  project_invitations: '專案邀請'
   project_list: 專案清單
   project_list_defaults:
     title: "%{owner_name} 的名錄"
@@ -4456,7 +4452,6 @@ zh-TW:
   user_added_a_comment_html: "%{user} 新增了一個評論"
   user_added_a_fave_html: "%{user} 添加為最愛"
   user_added_a_flag_html: "%{user} 添加一個標記"
-  user_added_a_project_invitation_html: "%{user} 新增一份專案邀請"
   user_added_a_x: "%{user}添加一個%{x}"
   user_added_a_x_to_noun_by_html: "%{user}添加一個%{x}至由%{by}的%{noun}"
   user_added_a_x_to_noun_by_user_html: "%{user} 新增一筆 %{x} 至 %{by} 的 %{noun}"
