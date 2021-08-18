@@ -229,9 +229,14 @@ body > [role="dialog"] .ObservationModal {
     .link-btn:hover {
       text-decoration: none;
     }
+    // the default bootstrap button has padding which, for a btn-link, makes
+    // whitespace around the content clickable, which can result in
+    // mis-clicks when aiming for adjacent buttons
     .btn-checkbox {
       text-align: left;
       padding-left: 0;
+      padding-right: 0;
+      margin-left: 12px;
       input {
         margin-right: 5px;
       }

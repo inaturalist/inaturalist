@@ -607,7 +607,7 @@ class ObservationModal extends React.Component {
                   </Overlay>
                 </div>
                 <div className="action-tools">
-                  { blind ? null : <div className="btn"><FavesContainer /></div> }
+                  { blind ? null : <div className="btn btn-checkbox"><FavesContainer /></div> }
                   <OverlayTrigger
                     placement="top"
                     trigger={["hover", "focus"]}
