@@ -1513,6 +1513,11 @@ en:
   details: Details
   deviation: Deviation
   devise:
+    confirmations:
+      send_paranoid_instructions: |
+        If your email address exists in our database, you will receive an email
+        with instructions for how to confirm your email address in a few
+        minutes.
     failure:
       already_authenticated: 'You are already signed in.'
       unauthenticated: 'You need to sign in or sign up before continuing.'
