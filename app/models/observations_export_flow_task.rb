@@ -7,6 +7,10 @@ class ObservationsExportFlowTask < FlowTask
 
   MAX_OBSERVATIONS = 200000
 
+  class ObservationsExportError < StandardError; end
+  class ObservationsExportNotSaved < ObservationsExportError; end
+  class ObservationsExportDeleted < ObservationsExportError; end
+
   before_save do |record|
     record.redirect_url = FakeView.export_observations_path
   end
@@ -38,6 +42,9 @@ class ObservationsExportFlowTask < FlowTask
   def run(run_options = {})
     @logger = run_options[:logger] if run_options[:logger]
     @debug = run_options[:debug]
+    unless persisted?
+      raise ObservationsExportNotSaved.new( "Export must be saved before being run" )
+    end
     update_attributes(finished_at: nil, error: nil, exception: nil)
     outputs.each(&:destroy)
     outputs.reload
@@ -104,6 +111,9 @@ class ObservationsExportFlowTask < FlowTask
         logger.info "BATCH #{batch_i}"
         logger.info
       end
+      unless FlowTask.where( id: id ).exists?
+        raise ObservationsExportDeleted.new( "Export was deleted during its run" )
+      end
       Observation.preload_associations(batch, preloads)
       batch.each do |observation|
         logger.info "Obs #{obs_i} (#{observation.id})" if @debug
@@ -155,7 +165,7 @@ class ObservationsExportFlowTask < FlowTask
           if c =~ /^private_/ && !coordinates_viewable
             nil
           else
-            observation.send(c) #rescue nil
+            observation.send(c) rescue nil
           end
         end
       end
