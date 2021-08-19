@@ -25,14 +25,17 @@ class PlaceGeometry < ApplicationRecord
   def validate_geometry
     # not sure why this is necessary, but validates_presence_of :geom doesn't always seem to run first
     if geom.blank?
-      errors.add(:geom, "cannot be blank")
+      errors.add(:geom, :cannot_be_blank)
       return
     end
     if geom.num_points < 4
-      errors.add(:geom, "must have more than 3 points")
+      errors.add(:geom, :must_have_more_than_three_points)
     end
     if geom.detect{|g| g.num_points < 4}
-      errors.add(:geom, "has a sub geometry with less than 4 points!")
+      errors.add(:geom, :polygon_with_less_than_four_points)
+    end
+    if geom.detect{|g| g.points.detect{|pt| pt.x < -180 || pt.x > 180 || pt.y < -90 || pt.y > 90}}
+      errors.add(:geom, :invalid_point)
     end
   end
 
