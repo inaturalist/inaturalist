@@ -4201,16 +4201,6 @@ ALTER SEQUENCE public.taxa_id_seq OWNED BY public.taxa.id;
 
 
 --
--- Name: taxon_ancestors; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.taxon_ancestors (
-    taxon_id integer NOT NULL,
-    ancestor_taxon_id integer NOT NULL
-);
-
-
---
 -- Name: taxon_change_taxa; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -9048,20 +9038,6 @@ CREATE UNIQUE INDEX index_taxa_on_uuid ON public.taxa USING btree (uuid);
 
 
 --
--- Name: index_taxon_ancestors_on_ancestor_taxon_id_and_taxon_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_taxon_ancestors_on_ancestor_taxon_id_and_taxon_id ON public.taxon_ancestors USING btree (ancestor_taxon_id, taxon_id);
-
-
---
--- Name: index_taxon_ancestors_on_taxon_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_taxon_ancestors_on_taxon_id ON public.taxon_ancestors USING btree (taxon_id);
-
-
---
 -- Name: index_taxon_change_taxa_on_taxon_change_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10425,3 +10401,4 @@ INSERT INTO schema_migrations (version) VALUES ('20210625223935');
 
 INSERT INTO schema_migrations (version) VALUES ('20210630004545');
 
+INSERT INTO schema_migrations (version) VALUES ('20210819164339');

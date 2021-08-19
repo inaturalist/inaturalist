@@ -569,7 +569,6 @@ Rails.application.routes.draw do
       get :nps_bioblitz
       get :cnc2016
       get :cnc2017
-      get :cnc2017_taxa
       get :cnc2017_stats
       get :canada_150
       get :parks_canada_2017
