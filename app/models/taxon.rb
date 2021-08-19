@@ -1413,8 +1413,6 @@ class Taxon < ApplicationRecord
     reject_taxon_names = reject.taxon_names.all.to_a
     reject_taxon_scheme_taxa = reject.taxon_scheme_taxa.all.to_a
     # otherwise it will screw up merge_has_many_associations
-    TaxonAncestor.where(:taxon_id => reject.id).delete_all
-    TaxonAncestor.where(:ancestor_taxon_id => reject.id).delete_all
     merge_has_many_associations(reject)
     
     # Merge ListRules and other polymorphic assocs
