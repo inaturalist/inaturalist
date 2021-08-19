@@ -94,24 +94,43 @@ class ObservationsExportFlowTask < FlowTask
     Observation.elastic_query( search_params ).total_entries
   end
 
+  def for_each_observation( search_params )
+    batch_i = 0
+    obs_i = 0
+    site = user.site || Site.default
+    Observation.search_in_batches( search_params ) do |batch|
+      if @debug
+        logger.info
+        logger.info "BATCH #{batch_i}"
+        logger.info
+      end
+      Observation.preload_associations(batch, preloads)
+      batch.each do |observation|
+        logger.info "Obs #{obs_i} (#{observation.id})" if @debug
+        observation.localize_locale = user.locale || site.locale
+        observation.localize_place = user.place || site.place
+        yield observation
+        obs_i += 1
+        logger.info "Finished Obs #{obs_i} (#{observation.id})" if @debug
+      end
+      batch_i += 1
+    end
+  end
+
   def json_archive
     json_path = File.join(work_path, "#{basename}.json")
     json_opts = { only: export_columns, include: [ :observation_field_values, :photos ] }
     site = user.site || Site.default
     FileUtils.mkdir_p(File.dirname(json_path), mode: 0755)
+    search_params = params.merge( viewer: user, authenticate: user )
     open(json_path, "w") do |f|
       f << "["
       first = true
-      Observation.search_in_batches(params) do |batch|
-        Observation.preload_associations(batch, preloads)
-        batch.each do |observation|
-          f << ',' unless first
-          observation.localize_locale = user.locale || site.locale
-          observation.localize_place = user.place || site.place
-          first = false
-          json = observation.to_json(json_opts).sub(/^\[/, "").sub(/\]$/, "")
-          f << json
-        end
+      for_each_observation( search_params ) do |observation|
+        f << ',' unless first
+        first = false
+        json = observation.to_json(json_opts).sub(/^\[/, "").sub(/\]$/, "")
+        f << json
       end
       f << "]"
     end
@@ -126,36 +145,19 @@ class ObservationsExportFlowTask < FlowTask
     fpath = csv_path
     FileUtils.mkdir_p(File.dirname(fpath), mode: 0755)
     columns = export_columns
-    site = user.site || Site.default
     search_params = params.merge( viewer: user, authenticate: user )
     CSV.open(fpath, "w") do |csv|
       csv << columns.map {|c| CGI.unescape( c ) }
-      batch_i = 0
-      obs_i = 0
-      Observation.search_in_batches( search_params ) do |batch|
-        if @debug
-          logger.info
-          logger.info "BATCH #{batch_i}"
-          logger.info
-        end
-        Observation.preload_associations(batch, preloads)
-        batch.each do |observation|
-          logger.info "Obs #{obs_i} (#{observation.id})" if @debug
-          observation.localize_locale = user.locale || site.locale
-          observation.localize_place = user.place || site.place
-          coordinates_viewable = observation.coordinates_viewable_by?( user )
-          csv << columns.map do |c|
-            c = "cached_tag_list" if c == "tag_list"
-            if c =~ /^private_/ && !coordinates_viewable
-              nil
-            else
-              observation.send(c) rescue nil
-            end
+      for_each_observation( search_params ) do |observation|
+        coordinates_viewable = observation.coordinates_viewable_by?( user )
+        csv << columns.map do |c|
+          c = "cached_tag_list" if c == "tag_list"
+          if c =~ /^private_/ && !coordinates_viewable
+            nil
+          else
+            observation.send(c) #rescue nil
           end
-          obs_i += 1
-          logger.info "Finished Obs #{obs_i} (#{observation.id})" if @debug
         end
-        batch_i += 1
       end
     end
     zip_path = File.join(work_path, "#{basename}.csv.zip")
