@@ -34,7 +34,6 @@ describe PlaceGeometry do
       two_pt_polygon = "MULTIPOLYGON(((-122.24 37.85,-122.28 37.84)))"
       pg.geom = two_pt_polygon
       expect(pg).not_to be_valid
-      expect( pg.errors.size ).to eq 1
     end
 
     it "should be invalid with a latitude greater than 90" do
