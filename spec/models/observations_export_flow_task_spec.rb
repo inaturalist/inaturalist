@@ -27,6 +27,18 @@ describe ObservationsExportFlowTask do
     end
   end
   describe "run" do
+    it "should not work if the task is not saved" do
+      make_default_site
+      o = Observation.make!
+      ft = ObservationsExportFlowTask.make
+      ft.inputs.build(:extra => {:query => "user_id=#{o.user_id}"})
+      ft.run( debug: true, logger: Logger.new( STDOUT ) )
+      expect( ft.outputs ).to be_blank
+      expect( ft.exception ).not_to be_blank
+    end
+    # Note: we *should* test raising an error when the task is deleted
+    # mid-run, but I'm not sure how to do that in a single process. ~~~kueda
+    # 202108
     describe "user_id filter" do
       before do
         # not sure why the before(:each) in spec_helper may not have run yet here
