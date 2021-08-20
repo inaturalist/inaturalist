@@ -58,7 +58,7 @@ describe Observation do
 
     describe "parses and sets time" do
       context "with observed_on_string" do
-        subject { build_stubbed :observation }
+        subject { build_stubbed :observation, :without_times }
 
         before do |spec|
           subject.observed_on_string = spec.metadata[:time]
@@ -156,26 +156,26 @@ describe Observation do
         let(:u_cot) { build_stubbed :user, time_zone: "Bogota" }
 
         it "should use the user's time zone if the date string only has an offset and it matches the user's time zone" do
-          o_est = build_stubbed :observation, user: u_est, observed_on_string: "2019-01-29 9:21:46 a. m. GMT-05:00"
+          o_est = build_stubbed :observation, :without_times, user: u_est, observed_on_string: "2019-01-29 9:21:46 a. m. GMT-05:00"
           o_est.run_callbacks :validation
           expect( o_est.time_zone ).to eq u_est.time_zone
-          o_cot = build_stubbed :observation, user: u_cot, observed_on_string: "2019-01-29 9:21:46 a. m. GMT-05:00"
+          o_cot = build_stubbed :observation, :without_times, user: u_cot, observed_on_string: "2019-01-29 9:21:46 a. m. GMT-05:00"
           o_cot.run_callbacks :validation
           expect( o_cot.time_zone ).to eq u_cot.time_zone
         end
 
         it "should use the user's time zone if the date string only has an offset and it matches the user's time zone during daylight savings time" do
-          o_est = build_stubbed :observation, user: u_est, observed_on_string: "2018-06-29 9:21:46 a. m. GMT-05:00"
+          o_est = build_stubbed :observation, :without_times, user: u_est, observed_on_string: "2018-06-29 9:21:46 a. m. GMT-05:00"
           o_est.run_callbacks :validation
           expect( o_est.time_zone ).to eq u_est.time_zone
-          o_cot = build_stubbed :observation, user: u_cot, observed_on_string: "2018-06-29 9:21:46 a. m. GMT-05:00"
+          o_cot = build_stubbed :observation, :without_times, user: u_cot, observed_on_string: "2018-06-29 9:21:46 a. m. GMT-05:00"
           o_cot.run_callbacks :validation
           expect( o_cot.time_zone ).to eq u_cot.time_zone
         end
 
         it "should parse out a time even if a problem time zone code is in the observed_on_string" do
           u_cdt = create :user, time_zone: "Central Time (US & Canada)"
-          o_cdt = create :observation, user: u_cdt, observed_on_string: "2019-03-24 2:10 PM CDT"
+          o_cdt = create :observation, :without_times, user: u_cdt, observed_on_string: "2019-03-24 2:10 PM CDT"
 
           expect( o_cdt.time_zone ).to eq u_cdt.time_zone
           expect( o_cdt.time_observed_at ).not_to be_blank
@@ -198,14 +198,14 @@ describe Observation do
       end
 
       it "should not choke of bad dates" do
-        observation = create :observation
+        observation = create :observation, :without_times
         observation.observed_on_string = "this is not a date"
 
         expect { observation.save }.not_to raise_error
       end
 
       it "should not be in the future" do
-        expect { create :observation, observed_on_string: '2 weeks from now' }.to raise_error(ActiveRecord::RecordInvalid)
+        expect { create :observation, :without_times, observed_on_string: '2 weeks from now' }.to raise_error(ActiveRecord::RecordInvalid)
       end
 
       it "should parse a bunch of test date strings" do
@@ -239,7 +239,7 @@ describe Observation do
             ['2020/09/02 8:28 PM GMT', month: 9, day: 2, hour: 20, offset: '+00:00'],
             ['2021-03-02T13:00:10.000-06:00', month: 3, day: 2, hour: 13, offset: '-06:00']
         ].each do |date_string, opts|
-          observation = build :observation, observed_on_string: date_string
+          observation = build :observation, :without_times, observed_on_string: date_string
           observation.run_callbacks :validation
 
           expect(observation.observed_on.day).to eq opts[:day]
@@ -256,7 +256,7 @@ describe Observation do
             ['lun dic 09 2013 23:37:08 GMT-0800 (GMT-8)', month: 12, day: 9, hour: 23, offset: "-08:00"],
             ['jue dic 12 2013 00:54:02 GMT-0800 (GMT-8)', month: 12, day: 12, hour: 0, offset: "-08:00"]
         ].each do |date_string, opts|
-          observation = build :observation, observed_on_string: date_string
+          observation = build :observation, :without_times, observed_on_string: date_string
           observation.run_callbacks :validation
 
           expect(ActiveSupport::TimeZone[observation.time_zone].formatted_offset).to eq opts[:offset]
@@ -267,7 +267,7 @@ describe Observation do
       end
 
       it "should handle a user without a time zone" do
-        observation = build :observation, user: build(:user, time_zone: nil),
+        observation = build :observation, :without_times, user: build(:user, time_zone: nil),
                                           observed_on_string: "2018-06-29 9:21:46 a. m. GMT-05:00"
         observation.run_callbacks :validation
 
@@ -275,7 +275,7 @@ describe Observation do
       end
 
       it "should set the time zone to UTC if the user's time zone is blank" do
-        observation = build :observation, observed_on_string: nil, user: build(:user, time_zone: nil)
+        observation = build :observation, :without_times, observed_on_string: nil, user: build(:user, time_zone: nil)
         observation.run_callbacks :validation
 
         expect(observation.time_zone).to eq 'UTC'
@@ -323,7 +323,6 @@ describe Observation do
     describe "setting lat lon" do
       let(:lat) { 37.91143999 }
       let(:lon) { -122.2687819 }
-
 
       it "sets latlon and place guess on save" do
         observation = create :observation
