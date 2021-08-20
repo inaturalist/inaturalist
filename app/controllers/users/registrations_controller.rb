@@ -3,6 +3,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   layout "registrations"
 
   before_action :load_registration_form_data, only: [:new, :create]
+  # For non-JSON requests, ensure that CSRF forgery protection is enabled.
+  # Theoretically this should prevent third parties from creating accounts
+  protect_from_forgery unless: -> { request.format.json? }
 
   def permit_params
     if params[:user]
@@ -35,6 +38,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     requestor_ip = Logstasher.ip_from_request_env(request.env)
     resource.last_ip = requestor_ip
+    # For JSON (i.e. API) requests, verify that a valid application JSON Web
+    # Token was provided, ensuring that only iNat clients create user
+    # accounts
+    if request.format.json?
+      token = request.authorization.to_s.split( /\s+/ ).last
+      begin
+        ::JsonWebToken.decodeApplication( token )
+      rescue JWT::DecodeError => e
+        respond_with( resource ) do |format|
+          format.html do
+            flash[:error] = I18n.t( :you_dont_have_permission_to_do_that )
+            render :new, status: :unauthorized
+          end
+          format.json { render json: {}, status: :unauthorized }
+        end
+        return
+      end
+    end
 
     if @site.using_recaptcha? && !is_mobile_app? && !request.format.json?
       if !GoogleRecaptcha.verify_recaptcha( response: params["g-recaptcha-response"],
