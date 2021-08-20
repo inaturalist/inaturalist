@@ -125,6 +125,7 @@ group :test, :development, :prod_dev do
 end
 
 group :test do
+  gem "factory_bot_rails", require: false
   gem "faker"
   gem "simplecov", require: false
   gem "rspec"

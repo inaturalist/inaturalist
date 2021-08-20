@@ -171,12 +171,13 @@ describe ProjectObservation, "creation" do
   end
 
   describe "updates" do
+    let(:project_user) { build :project_user, role: ProjectUser::CURATOR }
+
     before { enable_has_subscribers }
     after { disable_has_subscribers }
 
     it "should be generated for the observer" do
-      pu = ProjectUser.make!(role: ProjectUser::CURATOR)
-      po = without_delay { ProjectObservation.make!(user: pu.user, project: pu.project) }
+      po = without_delay { ProjectObservation.make!(user: project_user.user, project: project_user.project) }
       expect( UpdateAction.unviewed_by_user_from_query(po.observation.user_id, notifier: po) ).to eq true
     end
     it "should not be generated if the observer added to the project" do
@@ -189,17 +190,16 @@ describe ProjectObservation, "creation" do
       end
     end
     it "should generate updates on the project" do
-      pu = ProjectUser.make!(role: ProjectUser::CURATOR)
-      po = without_delay { ProjectObservation.make!(user: pu.user, project: pu.project) }
+      po = without_delay { ProjectObservation.make!(user: project_user.user, project: project_user.project) }
       expect( UpdateAction.last.resource ).to eq po.project
     end
 
-    it "should not generate more than 30 updates" do
-      observer = User.make!
-      pu = ProjectUser.make!(role: ProjectUser::CURATOR)
-      po = without_delay do
-        31.times do
-          ProjectObservation.make!(user: pu.user, project: pu.project, observation: Observation.make!(user: observer))
+    it "should not generate more than 15 updates" do
+      observer = create :user
+      without_delay do
+        16.times do
+          observation = create :observation, user: observer
+          ProjectObservation.make!(user: project_user.user, project: project_user.project, observation: observation)
         end
       end
       es_response = UpdateAction.elastic_search(

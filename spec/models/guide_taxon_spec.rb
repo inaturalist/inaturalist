@@ -14,44 +14,52 @@ describe GuideTaxon do
   it { is_expected.to validate_presence_of :taxon }
 
   describe "creation" do
-    before(:all) do
-      load_test_taxa
-    end
+    let(:genus) { build :taxon, :as_genus }
+    let(:species) { build :taxon, :as_species, wikipedia_summary: "foo bar" }
+    let(:guide) { create :guide }
+    let(:subject) { create :guide_taxon, taxon: species }
 
     it "should add the taxon's wikipedia description as a GuideSection" do
-      t = Taxon.make!(:wikipedia_summary => "foo bar")
-      gt = GuideTaxon.make!(:taxon => t)
-      gt.reload
-      expect(gt.guide_sections).not_to be_blank
-      expect(gt.guide_sections.first.description).to eq(t.wikipedia_summary)
+      expect(subject.guide_sections).not_to be_blank
+      expect(subject.guide_sections.first.description).to eq(species.wikipedia_summary)
     end
 
     it "should set the license for the default GuideSection to CC-BY-SA" do
-      t = Taxon.make!(:wikipedia_summary => "foo bar")
-      gt = GuideTaxon.make!(:taxon => t)
-      gt.reload
-      expect(gt.guide_sections.first.license).to eq(Observation::CC_BY_SA)
+      expect(subject.guide_sections.first.license).to eq(Observation::CC_BY_SA)
     end
 
     it "should update the guide's taxon id" do
-      g = Guide.make!
-      expect(g.taxon_id).to be_blank
-      ancestor = Taxon.make!(rank: Taxon::GENUS)
-      t1 = Taxon.make!(parent: ancestor, rank: Taxon::SPECIES)
-      t2 = Taxon.make!(parent: ancestor, rank: Taxon::SPECIES)
-      gt1 = without_delay { GuideTaxon.make!(:guide => g, :taxon => t1) }
-      gt2 = without_delay { GuideTaxon.make!(:guide => g, :taxon => t2) }
-      g.reload
-      expect(g.taxon_id).to eq(ancestor.id)
+      genus.save
+
+      without_delay { create :guide_taxon, guide: guide, taxon: (create :taxon, :as_species, parent: genus) }
+      without_delay { create :guide_taxon, guide: guide, taxon: (create :taxon, :as_species, parent: genus) }
+
+      expect { guide.reload }.to change { guide.taxon_id }.from(nil).to(genus.id)
     end
 
-    it "should be impossible to create more than 500 guide taxa per guide" do
-      g = Guide.make!
-      500.times do
-        GuideTaxon.make!(:guide => g)
+    describe "#within_count_limit" do
+      subject { build :guide_taxon }
+
+      let(:guide) { subject.guide }
+      let(:count) { 500 }
+
+      before { allow(guide).to receive_message_chain(:guide_taxa, :count).and_return count }
+
+      describe "should not be able to create more than 500 guide taxa per guide" do
+        it { is_expected.to_not be_valid }
+
+        it "should have error" do
+          expect(subject.tap(&:valid?).errors.messages[:base]).to include I18n.t(
+            "activerecord.errors.models.guide_taxon.attributes.base.guide_has_too_many_taxa"
+          )
+        end
       end
-      gt = GuideTaxon.make(:guide => g)
-      expect(gt).not_to be_valid
+
+      describe "should be able to create up to 500 guide taxa per guide" do
+        let(:count) { 499 }
+
+        it { is_expected.to be_valid }
+      end
     end
   end
 
@@ -243,20 +251,16 @@ describe GuideTaxon do
   end
 
   describe "add_color_tags" do
-    let(:yellow) { Color.make!(:value => "yellow") }
-    let(:blue) { Color.make!(:value => "blue") }
-    let(:taxon) {
-      t = Taxon.make!
-      t.colors += [yellow, blue]
-      t.save
-      t
-    }
-    let(:gt) { GuideTaxon.make!(:taxon => taxon)}
+    let(:yellow) { build :color, value: "yellow" }
+    let(:blue) { build :color, value: "blue" }
+    let(:taxon) { build :taxon, colors: [yellow, blue] }
+    let(:subject) { build :guide_taxon, taxon: taxon }
+
+    before { subject.add_color_tags }
 
     it "should add tags" do
-      gt.add_color_tags
-      expect(gt.tag_list).to include("color=yellow")
-      expect(gt.tag_list).to include("color=blue")
+      expect(subject.tag_list).to include("color=yellow")
+      expect(subject.tag_list).to include("color=blue")
     end
   end
 
