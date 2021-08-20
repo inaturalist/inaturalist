@@ -1377,6 +1377,9 @@ da:
   details: Detaljer
   deviation: Afvigelse
   devise:
+    confirmations:
+      send_paranoid_instructions: |
+        Findes din e-mailadresse i vores database, modtager du om få minutter en e-mail med instruktioner til, hvordan du bekræfter din e.mailadresse.
     failure:
       already_authenticated: 'Du er allerede logget ind.'
       unauthenticated: 'Du skal logge ind, eller registrere dig, for at fortsætte.'
@@ -7510,6 +7513,13 @@ da:
               is_too_large_to_edit: er for stor til at redigere
               is_too_large_to_import: er for stor til import
               contains_too_many_observations: indeholder for mange observationer til import
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: er obligatorisk
+              invalid_point: har et ugyldigt punkt, f.eks. længdegrad større end 180 eller breddegrad på mindre end -90
+              must_have_more_than_three_points: skal have flere end 3 punkter
+              polygon_with_fewer_than_four_points: har en polygon med færre end 4 punkter
         post:
           attributes:
             parent:
