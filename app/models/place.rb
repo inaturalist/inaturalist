@@ -820,6 +820,7 @@ class Place < ApplicationRecord
 
   def bbox_contains_lat_lng_acc?(lat, lng, acc = nil)
     f = RGeo::Geographic.simple_mercator_factory
+    return false unless bounding_box
     bbox = f.polygon(
       f.linear_ring([
         f.point(swlng, swlat),
@@ -828,7 +829,7 @@ class Place < ApplicationRecord
         f.point(nelng, swlat),
         f.point(swlng, swlat)
       ])
-    )
+    ) rescue nil
     return false unless bbox
     pt = f.point(lng,lat)
 
