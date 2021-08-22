@@ -8,4 +8,7 @@ FactoryBot.define do
     state { "active" }
     time_zone { "Pacific Time (US & Canada)" }
   end
+
+  trait(:as_admin) { roles { [association(:role, name: 'admin')] } }
+  trait(:as_curator) { roles { [association(:role, name: 'curator')] } }
 end
