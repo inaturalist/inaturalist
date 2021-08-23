@@ -1349,6 +1349,9 @@ it:
   details: Dettagli
   deviation: Scostamento
   devise:
+    confirmations:
+      send_paranoid_instructions: |
+        Se il tuo indirizzo email esiste nel nostro database, riceverai un'email con le istruzioni per come confermare il tuo indirizzo email in pochi minuti.
     failure:
       already_authenticated: 'Hai già eseguito l''accesso.'
       unauthenticated: 'Per continuare è necessario accedere o registrarsi.'
@@ -7027,6 +7030,13 @@ it:
               is_too_large_to_edit: è troppo grande per essere modificato
               is_too_large_to_import: è troppo grande per essere importato
               contains_too_many_observations: contiene troppe osservazioni da importare
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: non può essere vuoto
+              invalid_point: ha un punto non valido, es. longitudine maggiore di 180 o latitudine inferiore a -90
+              must_have_more_than_three_points: deve avere oltre 3 punti
+              polygon_with_fewer_than_four_points: ha un poligono con meno di 4 punti
         post:
           attributes:
             parent:

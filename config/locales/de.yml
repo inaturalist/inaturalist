@@ -1354,6 +1354,9 @@ de:
   details: Details
   deviation: Abweichung
   devise:
+    confirmations:
+      send_paranoid_instructions: |
+        Wenn deine E-Mail-Adresse in unserer Datenbank existiert, wirst du in wenigen Minuten eine E-Mail mit einer Anleitung zum Bestätigen deiner E-Mail-Adresse erhalten.
     failure:
       already_authenticated: 'Du bist bereits angemeldet.'
       unauthenticated: 'Du musst dich einloggen oder anmelden um fortzufahren.'
@@ -7048,6 +7051,13 @@ de:
               is_too_large_to_edit: ist zu groß zum Bearbeiten
               is_too_large_to_import: ist zu groß zum importieren
               contains_too_many_observations: Enthält zu viele zu importierende Beobachtungen
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: darf nicht leer sein
+              invalid_point: Standort ist ungültig, z.B. Längengrad größer 180 oder Breite kleiner als -90
+              must_have_more_than_three_points: muss mehr als 3 Punkte haben
+              polygon_with_fewer_than_four_points: hat ein Polygon mit weniger als 4 Punkten
         post:
           attributes:
             parent:
