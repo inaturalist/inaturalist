@@ -135,6 +135,9 @@ class Taxon < ApplicationRecord
     :observations => {:notification => "new_observations", :include_owner => false}
   }
   
+  OBSERVOSE_THRESHOLD = 1
+  OBSERVOSE_WARNING_THRESHOLD = 1000
+
   NAME_PROVIDER_TITLES = {
     'ColNameProvider' => 'Catalogue of Life',
     'NZORNameProvider' => 'New Zealand Organisms Register',
@@ -1172,7 +1175,7 @@ class Taxon < ApplicationRecord
   end
   
   def reasess_taxon_framework_relationship_after_move
-    tfr = taxon_framework_relationship
+    return unless tfr = taxon_framework_relationship
     if tf = tfr.taxon_framework
       unless upstream_taxon_framework == tf
         tfr.destroy
@@ -1219,29 +1222,59 @@ class Taxon < ApplicationRecord
     true
   end
 
+  def curated_taxon_framework?( taxon_framework )
+    return false unless taxon_framework
+    return false unless taxon_framework.taxon_curators.any?
+  end
+
+  def current_user_curates_taxon?( user, taxon_framework )
+      current_user_curates_taxon = false
+      if user && taxon_framework
+        current_user_curates_taxon = taxon_framework.taxon_curators.where( user: user ).exists?
+      end
+      current_user_curates_taxon
+  end
+
+  def observose_branch?
+    return false unless response = INatAPIService.taxa( id: id )
+    return false unless  result = response.results.first
+    return result["observations_count"] > OBSERVOSE_THRESHOLD
+  end
+
+  def observose_warning_branch?
+    return false if new_record?
+    return false unless response = INatAPIService.taxa( id: id )
+    return false unless  result = response.results.first
+    return result["observations_count"] > OBSERVOSE_WARNING_THRESHOLD
+  end
+
+  def get_observose_threshold
+    return OBSERVOSE_THRESHOLD
+  end
+
+  def get_observose_warning_threshold
+    return OBSERVOSE_WARNING_THRESHOLD
+  end
+
   def protected_attributes_editable_by?( user )
     return true unless is_active
     return true if user && user.is_admin?
-    upstream_taxon_framework = get_upstream_taxon_framework
-    return true unless upstream_taxon_framework
-    return true unless upstream_taxon_framework.taxon_curators.any?
-    current_user_curates_taxon = false
-    if user
-      current_user_curates_taxon = upstream_taxon_framework.taxon_curators.where( user: user ).exists?
+    upstream_taxon_framework = upstream_taxon_framework
+
+    if observose_branch?
+      return false unless curated_taxon_framework?( upstream_taxon_framework )
+      return current_user_curates_taxon?( user, upstream_taxon_framework )
+    else 
+      return true unless curated_taxon_framework?( upstream_taxon_framework )
+      return current_user_curates_taxon?( user, upstream_taxon_framework )
     end
-    current_user_curates_taxon
   end
   
   def activated_protected_attributes_editable_by?( user )
     return true if user && user.is_admin?
-    upstream_taxon_framework = get_upstream_taxon_framework
-    return true unless upstream_taxon_framework
-    return true unless upstream_taxon_framework.taxon_curators.any?
-    current_user_curates_taxon = false
-    if user
-      current_user_curates_taxon = upstream_taxon_framework.taxon_curators.where( user: user ).exists?
-    end
-    current_user_curates_taxon
+    upstream_taxon_framework = upstream_taxon_framework
+    return true unless curated_taxon_framework?( upstream_taxon_framework )
+    return current_user_curates_taxon?( user, upstream_taxon_framework )
   end
   
   #
@@ -1764,8 +1797,8 @@ class Taxon < ApplicationRecord
   def editable_by?( user )
     return false unless user.is_a?( User )
     return true if user.is_admin?
-    return true if user.is_curator? && get_upstream_taxon_framework
-    user.is_curator? && rank_level.to_i < ORDER_LEVEL
+    return true if user.is_curator?
+    return false
   end
 
   def mergeable_by?(user, reject)
