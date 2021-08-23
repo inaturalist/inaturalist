@@ -19,6 +19,10 @@ id:
     other: '<span class="count">%{count}</span> Pengidentifikasi'
   x_languages:
     other: "%{count} bahasa"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} daftar kehidupan pertama"
   x_journal_posts_html:
     other: '<span class="count">%{count}</span> postingan jurnal'
   x_matching_taxa:
@@ -27,6 +31,8 @@ id:
     other: '<span class="count">%{count}</span> takson cocok'
   x_misidentifications_of_this_species:
     other: "%{count} misidentifikasi spesies ini"
+  x_misidentifications_of_species_in_this_genus:
+    other: "%{count} kesalahan identifikasi spesies di genus ini"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -115,6 +121,10 @@ id:
   about_complete_taxa: Tentang Taksa Lengkap
   about_conservation_status: Tentang Status Konservasi
   about_editing_observation_fields: Tentang Mengedit Bidang Pengamatan
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: Tentang Cara Pengenalan
   about_license_options: Tentang Opsi Lisensi
   about_licenses: Tentang Lisensi
   about_muting: Tentang Bisukan
@@ -129,6 +139,24 @@ id:
   about_this_bioblitz: Tentang bioblitz ini
   about_this_map: Tentang peta ini
   about_this_project: Tentang proyek ini
+  about_trips_html: |
+    <h4>
+    Perjalanan memungkinkan pengumpulan data keberadaan/ketidakberadaan dengan menambahkan konteks kepada pengamatanmu
+    </h4>
+    <p>
+    <strong>Mengapa</strong> Data keberadaan/ketidakberadaan memiliki informasi tentang upaya pengambilan sampel yang berguna untuk analisis saintifik seperti pemodelan distribusi (pengamatan mentah iNaturalist hanya merupakan data 'keberadaan').
+    </p>
+    <p>
+    <strong>Bagaimana</strong> Sebuah perjalanan menambah konteks ke dalam pengamatanmu dengan mencatat:
+    </p>
+    <ul>
+    <li><strong>Apa</strong> yang kamu cari (daftar target)</li>
+    <li><strong>Di mana</strong> kamu mencarinya (area pencarian)</li>
+    <li><strong>Kapan</strong> kamu mencarinya (interval pencarian)</li>
+    </ul>
+    <p>
+    Spesies di dalam daftar targetmu yang dapat kamu amati di dalam area pencarian dan intervalnya ditafsirkan sebagai keberadaan. Sebaliknya, spesies yang terdaftar di dalam daftar targetmu yang tidak dapat kamu amati ditafsirkan sebagai ketidakberadaan. Ketuk 'Tabulasi Data Keberadaan/Ketidakberadaan Dari Perjalanan' untuk mendapatkan tabel catatan keberadaan/ketidakberadaan sebuah spesies dari perjalanan dan pengamatan yang terkait.<a href='%{url}'>Pelajari lebih lanjut</a>
+    </p>
   about_trusting_projects: Tentang Mempercayai Proyek
   about_trusting_projects_options_any: Semua pengamatan anda di proyek ini
   about_trusting_projects_options_any_desc: |-
@@ -141,6 +169,11 @@ id:
   about_trusting_projects_options_taxon_desc: |-
     Banyak proyek yang hanya membutuhkan akses ke koordinat yang dikaburkan karena
     pengamatan menggambarkan takson yang terancam.
+  about_trusting_projects_overview: |-
+    Memberikan akses ke koordinat tersembunyi anda akan mengizinkan manager dari proyek
+    ini untuk melihat lokasi pemantauan anda yang sebenar-benarnya dan tanpa dikaburkan dalam
+    proyek ini. Hal ini sangat penting dalam situasi seperti saat peneliti atau manager sumber daya membutuhkan akses ke koordinat yang tepat untuk analisis dan
+    pengambilan keputusan.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -150,6 +183,10 @@ id:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Anda dapat memilih untuk membagikan koordinat yang disembunyikan dengan
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
+  acc: 'Aku (m)'
   account: Akun
   account_creation: Pembentukan Akun
   account_settings: Pengaturan Akun
@@ -162,6 +199,10 @@ id:
   action: Tindakan
   actions: Tindakan
   active: Aktif
+  #Status of a complete set that is available for use
+  active_complete_set_status: Aktif
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Aktif
   active_users: Pengguna yang Aktif
   activity: Aktifitas
   activity_settings: Pengaturan aktivitas
@@ -177,6 +218,7 @@ id:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Tambahkan tautan
   add_a_name: Tambahkan Nama
+  add_a_note: Tambahkan Catatan
   add_a_new_change_group: Tambahkan Grup Perubahan Baru
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Tambahkan daftar nomor
@@ -194,6 +236,7 @@ id:
     sex: Tambah Catatan untuk "Kelamin"
     plant_phenology: Tambah Catatan untuk "Fenologi Tumbuhan"
     life_stage: Tambah catatan untuk "Fase Hidup"
+    evidence_of_presence: Tambahkan Catatan untuk "Bukti Keberadaan"
   add_another_flag: menambahkan penanda lain
   add_another_photo: Menambahkan foto lain
   add_another_section: menambahkan bagian lain
@@ -219,7 +262,7 @@ id:
   add_italic_text: Tambahkan teks cetak miring
   add_muted_users: Tambahkan pengguna yang dibisukan
   add_new_lexicon: Tambahkan kosa kata baru
-  add_new_photos_by_their_ids: Tambahkan foto baru dari ID Flickr mereka (harus berlisensi Creative Commons!)
+  add_new_photos_by_their_ids: Tambahkan Foto Baru dari ID Flickr mereka (harus berlisensi Creative Commons!)
   add_new_place: Tambahkan tempat baru
   add_new_rule: Menambahkan aturan baru
   add_new_source: "Menambahkan sumber baru"
@@ -244,6 +287,7 @@ id:
   add_plant_phenology_flower_budding_annotation: 'Tambah catatan "Fenologi Tumbuhan: Bunga Berkuncup"'
   add_plant_phenology_flowering_annotation: 'Tambah catatan "Fenologi Tumbuhan: Berbunga"'
   add_plant_phenology_fruiting_annotation: 'Tambah catatan "Fenologi Tumbuhan: Berbuah"'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Tambah catatan "Fenologi Tumbuhan: Tidak Ada Bukti Berbunga"'
   add_life_stage_adult_annotation: 'Tambah catatan "Fase Hidup: Dewasa"'
   add_life_stage_teneral_annotation: 'Tambah catatan "Fase Hidup: teneral"'
   add_life_stage_subimago_annotation: 'Tambah catatan "Fase Hidup: subimago"'
@@ -252,6 +296,14 @@ id:
   add_life_stage_larva_annotation: 'Tambah catatan "Fase Hidup: Larva"'
   add_life_stage_juvenile_annotation: 'Tambah catatan "Fase Hidup: Juvenil"'
   add_life_stage_egg_annotation: 'Tambah catatan "Fase Hidup: Telur"'
+  add_evidence_of_presence_organism_annotation: 'Tambahkan catatan "Bukti Keberadaan: organisme"'
+  add_evidence_of_presence_feather_annotation: 'Tambahkan catatan "Bukti Keberadaan: bulu"'
+  add_evidence_of_presence_scat_annotation: 'Tambahkan catatan "Bukti Keberadaan: tahi"'
+  add_evidence_of_presence_track_annotation: 'Tambahkan catatan "Bukti Keberadaan: jejak"'
+  add_evidence_of_presence_bone_annotation: 'Tambahkan catatan "Bukti Keberadaan: tulang"'
+  add_evidence_of_presence_molt_annotation: 'Tambahkan catatan "Bukti Keberadaan: kulit"'
+  #As in a Taxon Framework Relationship
+  add_relationship: 'Tambahkan hubungan'
   #As in a Guide Section
   add_section: Tambahkan Bagian
   add_several_observations_at_once: Tambahkan beberapa pengamatan sekaligus
@@ -335,6 +387,7 @@ id:
     subgenus: Semua subgenus dimasukkan ke database
     section: Seluruh bagian telah ditambahkan ke database
     subsection: Seluruh sub bagian telah ditambahkan ke database
+    complex: Semua kompleks dimasukkan ke database
     species: Seluruh spesies telah ditambahkan ke dalam database
     hybrid: Seluruh hibrida telah ditambahkan ke database
     subspecies: Seluruh sub spesies telah ditambahkan ke database
@@ -346,6 +399,7 @@ id:
     animals: Binatang
     arachnids: Arakhnida
     birds: Burung
+    chromista: Chromista
     fungi: Jamur
     fungi_including_lichens: Jamur termasuk Lumut
     insects: Serangga
@@ -367,6 +421,8 @@ id:
       other: "%{count} amfibi"
     x_mammalia:
       other: "%{count} mamalia"
+    x_actinopterygii:
+      other: "%{count} ikan bersirip kipas"
     x_reptilia:
       other: "%{count} reptilia"
     x_aves:
@@ -377,6 +433,8 @@ id:
       other: "%{count} arakhinda"
     x_fungi:
       other: "%{count} jamur"
+    x_chromista:
+      other: "%{count} chromista"
     x_protozoa:
       other: "%{count} protozoa"
     x_other_animals:
@@ -466,6 +524,7 @@ id:
   are_you_sure_leave_this_project: Apa anda yakin ingin meninggalkan proyek ini?
   are_you_sure_merge_these_places: Apakah Anda yakin ingin menggabungkan tempat-tempat ini? Ini tidak dapat dibatalkan.
   are_you_sure_remove_photo: "Apakah Anda yakin ingin menghapus foto ini?"
+  are_you_sure_remove_relationship: Apakah kamu yakin untuk menghapus hubungan ini? Hal ini akan membuatmu berhenti mengikuti orang ini dan mencabut aksesmu kepada koordinat yang disembunyikan jika kamu pernah mengaktifkan akses tersebut.
   are_you_sure_remove_taxon_from_list: "Apakah Anda yakin ingin menghapus taksa ini dari daftar?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Apa kamu yakin? Ini akan memuat ulang halaman. Anda mungkin kehilangan beberapa perubahan.
@@ -473,6 +532,36 @@ id:
     Apakah anda yakin ingin menghilangkan perbaikan di tanda ini? Hal ini akan menghilangkan
     perbaikan dan pengguna yang memperbaiki tanda ini.
   are_you_sure_want_delete_taxon: "Apakah Anda yakin ingin menghapus takson ini?"
+  are_you_sure_want_delete_taxon_descendant_taxa: |
+    Apakah kamu yakin untuk menghapus takson ini? Takson ini memiliki taksa turunan.
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
+    Apakah kamu yakin untuk menghapus takson ini? Takson ini memiliki taksa turunan dan identifikasi.
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
+    Apakah kamu yakin untuk menghapus takson ini? Takson ini memiliki taksa turunan, identifikasi, dan pengamatan.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa: |
+    Apakah kamu yakin untuk menghapus takson ini? Takson ini memiliki taksa turunan dan taksa yang terdaftar.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications: |
+    Apakah kamu yakin untuk menghapus takson ini? Takson ini memiliki taksa turunan, taksa yang terdaftar, dan identifikasi.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
+    Apakah kamu yakin untuk menghapus takson ini? Takson ini memiliki taksa turunan, taksa yang terdaftar, identifikasi, dan pengamatan.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
+    Apakah kamu yakin untuk menghapus takson ini? Takson ini memiliki taksa turunan, taksa yang terdaftar, dan pengamatan.
+  are_you_sure_want_delete_taxon_descendant_taxa_observations: |
+    Apakah kamu yakin untuk menghapus takson ini? Takson ini memiliki taksa turunan dan pengamatan.
+  are_you_sure_want_delete_taxon_identifications: |
+    Apakah kamu yakin untuk menghapus takson ini? Takson ini memiliki identifikasi.
+  are_you_sure_want_delete_taxon_identifications_observations: |
+    Apakah kamu yakin untuk menghapus takson ini? Takson ini memiliki identifikasi dan pengamatan.
+  are_you_sure_want_delete_taxon_listed_taxa: |
+    Apakah kamu yakin untuk menghapus takson ini? Takson ini memiliki taksa yang terdaftar.
+  are_you_sure_want_delete_taxon_listed_taxa_identifications: |
+    Apakah kamu yakin untuk menghapus takson ini? Takson ini memiliki taksa yang terdaftar dan identifikasi.
+  are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
+    Apakah kamu yakin untuk menghapus takson ini? Takson ini memiliki taksa yang terdaftar, identifikasi, dan pengamatan.
+  are_you_sure_want_delete_taxon_listed_taxa_observations: |
+    Apakah kamu yakin untuk menghapus takson ini? Takson ini memiliki taksa yang terdaftar dan pengamatan.
+  are_you_sure_want_delete_taxon_observations: |
+    Apakah kamu yakin untuk menghapus takson ini? Takson ini memiliki pengamatan.
   are_you_sure_want_delete_taxon_link: Apakah Anda yakin ingin menghapus link yang takson ini?
   are_you_sure_want_delete_this_name: Apakah Anda yakin ingin menghapus nama ini?
   are_you_sure_want_delete_this_range: Apakah Anda yakin ingin menghapus rentang ini?
@@ -491,6 +580,8 @@ id:
     Flag spam di konten mereka akan diselesaikan.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Apakah Anda yakin ingin menghapus taksa ini %{x}?"
   are_you_sure_you_want_to_remove_this_invitation: Apakah Anda yakin ingin menghapus undangan ini?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Apakah kamu yakin untuk menghapus pengamatan ini dari %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Apakah Anda yakin ingin menghapus takson ini dari daftar %{place}?"
   associated_observations: pengamatan terkait
   associated_taxa: Taksa yang terkait
@@ -508,6 +599,7 @@ id:
   assessment_x: "%{assessment} penilaian"
   assessments: Penilaian
   associations: asosiasi
+  atlas_for_taxon_html: Atlas untuk %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -519,6 +611,8 @@ id:
   attribution: Atribusi
   authority_list:
     iucn_red_list: Daftar Merah IUCN
+    natureserve: NatureServe
+    cites: CITES
   authorize: Otorisasi
   authorize_permissions_from_provider: "Otorisasi izin dari %{provider}"
   automatic_short: Otomatis
@@ -558,6 +652,8 @@ id:
   back_to_your_profile: Kembali ke profil anda
   back_to_your_projects: Kembali ke proyek anda
   badges: Lencana
+  based_on_the_evidence_can_id_be_improved: |
+    Berdasarkan bukti yang ada, dapatkah Takson Komunitasnya dikonfirmasi atau ditingkatkan?
   batch: Jamak
   batch_edit: Sejumlah perubahan
   #Where x is the title of a list of taxa
@@ -569,6 +665,7 @@ id:
   bg_color: Warna latar
   bio: Bio
   bio_description: Ceritakan tentang diri anda pada pengguna lain di iNaturalist!
+  bioblitz: Bioblitz
   birds: Burung
   birthday: Ulang Tahun
   black: Hitam
@@ -613,8 +710,11 @@ id:
   cant_merge_a_taxon_with_itself: Tidak dapat menggabungkan takson yang sama
   captive: Peliharaan
   captive_cultivated: Ditangkarkan / dibudidayakan
+  captive_observations: Pengamatan Tangkapan
   card: Kartu
   casual: Pekerja lepas
+  casual_: Kasual
+  casual_tooltip_html: 'Pengamatan "Kasual" tidak memiliki media, lokasi, atau tanggal, atau tidak memenuhi persyaratan dan kualitas untuk menjadi bagian dari kelas "Riset" atau "Memerlukan ID" karena satu dan lain hal. <a href="https://www.inaturalist.org/pages/help#quality">Pelajari lebih lanjut tentang tingkat kualitas</a>'
   categories: Kategori
   cc_0_description: "Lisensi ini melepaskan pekerjaan Anda ke dalam domain publik, sehingga orang lain dapat menyalin, memodifikasi, mendistribusikan dan melakukan pekerjaan Anda, bahkan untuk tujuan komersial, semua tanpa meminta izin atau memberikan kredit. Ini adalah lisensi yang paling akomidatif ditawarkan.Direkomendasikan untuk penyebaran maksimum dan penggunaan bahan berlisensi."
   cc_0_name: Tidak ada hak cipta (CC0)
@@ -624,9 +724,13 @@ id:
   cc_by_nc_description: "Lisensi ini memungkinkan orang lain menggabungkan, mengambil, dan membangun kerja Anda non-komersial, dan meskipun karya-karya baru mereka juga harus mengakui Anda namun tetap non-komersial, mereka tidak memiliki lisensi karya turunan mereka dengan persyaratan yang sama."
   cc_by_nc_name: Atribusi non-komersial
   cc_by_nc_nd_description: "Lisensi ini adalah yang paling ketat dari enam lisensi utama, hanya mengizinkan orang lain untuk men-download karya-karya Anda dan berbagi dengan orang lain selama mereka kredit Anda, tetapi mereka tidak dapat mengubahnya dengan cara apapun atau menggunakannya secara komersial."
+  cc_by_nc_nd_name: Atribusi-NonKomersial-TanpaTurunan
   cc_by_nc_sa_description: "Lisensi ini memungkinkan orang lain merubah, mengambil, dan membangun kerja Anda secara non-komersial, selama mereka kredit Anda dan lisensi kreasi baru mereka di bawah persyaratan yang sama."
+  cc_by_nc_sa_name: Atribusi-NonKomersial-BerbagiSerupa
   cc_by_nd_description: "Lisensi ini memungkinkan untuk redistribusi, komersial dan non-komersial, asalkan diteruskan tanpa merubah / utuh, dengan kredit untuk Anda."
+  cc_by_nd_name: Atribusi-TanpaTurunan
   cc_by_sa_description: "Lisensi ini memungkinkan orang lain menggabungkan, mengambil, dan membangun kerja Anda bahkan untuk tujuan komersial, selama mereka kredit Anda dan lisensi kreasi baru mereka di bawah persyaratan yang sama. Semua karya-karya baru berdasarkan pada Anda akan membawa lisensi yang sama, sehingga setiap derivatif juga akan memungkinkan penggunaan komersial."
+  cc_by_sa_name: Atribusi-BerbagiSerupa
   cc_used_under_a: "Creative Commons, digunakan di bawah"
   change_admin: Perubahan Admin
   #Button to change the cover (or banner) image for a project
@@ -692,6 +796,10 @@ id:
   check_lists_for: "Daftar nama lainnya untuk %{place}"
   check_out_our_blog: Lihat Blog kami
   check_out_what_the_observation: Lihat tampilan observasi yang sedang anda coba untuk mengidentifikasi bagaimana tampilannya.
+  check_this_box_if_html: |
+    Tandai kotak ini jika Anda ingin mengajukan <a
+    href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>lisensi Creative Commons Atribusi-NonKomersial</a> untuk konten yang diunggah. Ini berarti semua orang dapat menyalin maupun menggunakan kembali foto-foto Anda dan/atau pengamatan Anda tanpa perlu meminta izin selama mereka memberi kredit kepada Anda dan tidak memakai karyamu untuk tujuan komersial. Anda dapat memilih jenis lisensi yang berbeda atau mencabut lisensi Anda nantinya, tetapi lisensi ini merupakan yang terbaik untuk berbagi dengan peneliti lainnya.
   checklist: Daftar nama
   choose_a_field: Pilih bidang
   choose_a_list_above: Pilih daftar diatas
@@ -708,6 +816,7 @@ id:
   choose_tags: Pilih tanda
   choose_taxon: Pilih taksa
   choose_what_kind_of_change_youre_creating: "Memilih jenis pengubahan yang anda buat."
+  cid_d_to_genus: Pemberian IDK kepada Genus
   citation: Kutipan
   classification: Pengelompokan
   clear: kosongkan
@@ -719,6 +828,9 @@ id:
   colors: Warna
   columns: Kolom
   combine: Menggabungkan
+  comma_separated_list_of_tracking_codes: |
+    Daftar kode pelacakan yang dipisahkan koma. Tambahkan ini kepada tautanmu jika kamu ingin menambahkan kode pelacakan saat membawa orang lain kepada formulir pengamatan yang baru, contohnya %{root_url}observations/new?project_id=%{project_id}&tracking_code=kodemu123.
+    Kamu bisa menggunakan ini untuk melacak partisipasi dari sumber-sumber yang berbeda. Kamu dapat mengakses kode-kode ini saat mengunduh pengamatan proyekmu dalam bentuk CSV.
   comma_separated_please: Tolong dipisahkan dengan koma
   comment: Komentar
   #Verb, generally a label on a button that allows the user to add a comment
@@ -808,6 +920,16 @@ id:
   contributor_cannot_be_found: Kontributor tidak dapat ditemukan
   contributors_to_project: "Kontributor di %{project}"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Apa saja
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Apa saja
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Apa saja
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Apa saja
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Apa saja
     sex: Jenis Kelamin
     male: Laki-laki
     female: Perempuan
@@ -879,6 +1001,7 @@ id:
   created_by_user_on_date: Dibuat oleh %{user} pada %{date}
   created_on: Dibuat pada
   creating_your_account: "sedang membuat akun anda..."
+  creative_commons_flickr_tagged: Foto Flickr Creative Commons Yang Ditandai
   creative_commons_unless_otherwise_noted: "Creative Commons kecuali dinyatakan lain."
   critically_endangered: Terancam punah
   css_description: Ini akan dapat dimasukkan setelah semua css lain masuk pada halaman.
@@ -1379,7 +1502,7 @@ id:
   flags_for_x_html: Tanda untuk %{x}
   flags_on_users_content: "Menandai di %{user}'s konten"
   flickr_account_information: Informasi akun flickr anda
-  flickr_has_no_creative_commons: Flickr tidak memiliki Creative Commons-lisensi foto dari tempat ini.
+  flickr_has_no_creative_commons: Flickr tidak memiliki foto berlisensi Creative Commons dari tempat ini.
   flickr_identity: Identitas Flickr
   flickr_needs_to_confirm: "Flickr perlu mengkonfirmasi bahwa Anda ingin akun Anda terhubung ke %{site_name}."
   flickr_photo: Foto Flickr
@@ -1661,7 +1784,7 @@ id:
     waray_waray: Bahasa Waray-Waray
   less: Kurang
   licensing: lisensi
-  licensing_your_content_gives_others_legal: "Melisensi konten Anda memberikan orang lain hak hukum untuk menggunakannya jika mereka tetap dengan persyaratan lisensi. %{site_name} menggunakan konten Anda lisensi Creative Commons untuk berbagi dengan mitra Data seperti"
+  licensing_your_content_gives_others_legal: "Melisensi konten Anda memberikan orang lain hak hukum untuk menggunakannya jika mereka tetap mematuhi persyaratan lisensi. %{site_name} menggunakan konten Anda yang berlisensi Creative Commons untuk berbagi dengan mitra data seperti "
   life: Kehidupan
   link: Tautan
   link_or_unlink_your_facebook_account: Tautkan atau non-tautkan akun Facebook anda
@@ -1969,7 +2092,7 @@ id:
   'no': 'Tidak'
   no_assessments_have_been_added_to_this_project_yet: Tidak ada penilaian telah ditambahkan ke proyek ini.
   no_comments_yet: Belum ada komen.
-  no_creative_commons_flickr_photos_tagged_x: 'Tidak ada foto umum kreatif flickr ditandai "%{x}"'
+  no_creative_commons_flickr_photos_tagged_x: 'Tidak ada foto Creative Commons Flickr yang ditandai "%{x}"'
   no_curators_set: Tidak ada kurator ditetapkan
   no_curators_yet: Belum ada kurator!
   no_flags: Tidak ada tanda saat ini
@@ -3071,7 +3194,7 @@ id:
         eol_subjects_desc: |
           EOL menerbitkan konten di bawah sejumlah judul subjek yang berbeda, tidak semua yang tersedia untuk setiap takson. Memilih "Ikhtisar" hanya akan mengimpor bagian teks tersedia pertama dari EOL, yang umumnya berisi ringkasan bila tersedia.
         licensing_explanation: |
-          Lisensi hibah konten Anda orang lain hak untuk menyalin dan memodifikasi tanpa meminta izin Anda. Itu membuat lebih mudah untuk berbagi pekerjaan Anda, dan jika Anda menggabungkan konten pihak ke-3 dari lainnya sumber yang menggunakan lisensi Creative Commons ShareAlike (seperti Wikipedia), Anda secara hukum wajib menggunakan lisensi yang sama. Berikut gambaran dari semua lisensi Creative Commons dan arti yang mereka maksut:
+          Dengan membuat lisensi untuk konten Anda, Anda memberikan orang lain hak untuk menyalin dan memodifikasi karya Anda tanpa perlu meminta izin Anda. Itu membuat hal-hal seperti membagikan karya Anda lebih mudah, dan jika Anda menyertakan konten pihak ke-3 dari sumber lainnya yang menggunakan lisensi Creative Commons BerbagSerupa (seperti Wikipedia), Anda secara hukum wajib menggunakan lisensi yang serupa. Berikut gambaran dari semua lisensi Creative Commons beserta artinya masing-masing:
         places_note: |
           Catatan: tidak semua tempat memiliki daftar periksa dengan taksa. Jika Anda mengalami
           kesulitan menemukan tempat dengan taksa, cobalah memilih wilayah yang lebih luas dengan
