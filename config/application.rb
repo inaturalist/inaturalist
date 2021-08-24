@@ -100,6 +100,24 @@ module Inaturalist
         resource '/users/api_token', :headers => :any, :methods => [:get]
       end
     end
+
+    config.middleware.use( Rack::Tracker ) do
+      handler :google_global, {
+        anonymize_ip: true,
+        # working around the limitations of Rack::Tracker's ability to generate dynamic tracker IDs
+        trackers: [
+          {
+            id: lambda { |env|
+              return env["inat_ga_trackers"][0][1] if env["inat_ga_trackers"] && env["inat_ga_trackers"][0]
+            }
+          }, {
+            id: lambda { |env|
+              return env["inat_ga_trackers"][1][1] if env["inat_ga_trackers"] && env["inat_ga_trackers"][1]
+            }
+          }
+        ]
+      }
+    end
   end
 
 end

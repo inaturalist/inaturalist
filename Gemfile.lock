@@ -440,9 +440,6 @@ GEM
     rack (2.2.3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
-    rack-google-analytics (1.2.0)
-      actionpack
-      activesupport
     rack-mobile-detect (0.4.0)
       rack
     rack-openid (1.4.2)
@@ -450,6 +447,10 @@ GEM
       ruby-openid (>= 2.1.8)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    rack-tracker (1.13.0)
+      activesupport (>= 3.0)
+      rack (>= 1.4)
+      tilt (>= 1.4)
     rails (5.2.6)
       actioncable (= 5.2.6)
       actionmailer (= 5.2.6)
@@ -704,8 +705,8 @@ DEPENDENCIES
   pg
   puma
   rack-cors
-  rack-google-analytics
   rack-mobile-detect
+  rack-tracker
   rails (= 5.2.6)
   rails-controller-testing
   rails-html-sanitizer
