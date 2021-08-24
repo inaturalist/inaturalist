@@ -135,7 +135,7 @@ class Taxon < ApplicationRecord
     :observations => {:notification => "new_observations", :include_owner => false}
   }
   
-  OBSERVOSE_THRESHOLD = 1
+  OBSERVOSE_THRESHOLD = 200000
   OBSERVOSE_WARNING_THRESHOLD = 1000
 
   NAME_PROVIDER_TITLES = {
@@ -1224,7 +1224,7 @@ class Taxon < ApplicationRecord
 
   def curated_taxon_framework?( taxon_framework )
     return false unless taxon_framework
-    return false unless taxon_framework.taxon_curators.any?
+    return taxon_framework.taxon_curators.any?
   end
 
   def current_user_curates_taxon?( user, taxon_framework )
@@ -1259,8 +1259,7 @@ class Taxon < ApplicationRecord
   def protected_attributes_editable_by?( user )
     return true unless is_active
     return true if user && user.is_admin?
-    upstream_taxon_framework = upstream_taxon_framework
-
+    upstream_taxon_framework = get_upstream_taxon_framework
     if observose_branch?
       return false unless curated_taxon_framework?( upstream_taxon_framework )
       return current_user_curates_taxon?( user, upstream_taxon_framework )
@@ -1272,7 +1271,7 @@ class Taxon < ApplicationRecord
   
   def activated_protected_attributes_editable_by?( user )
     return true if user && user.is_admin?
-    upstream_taxon_framework = upstream_taxon_framework
+    upstream_taxon_framework = get_upstream_taxon_framework
     return true unless curated_taxon_framework?( upstream_taxon_framework )
     return current_user_curates_taxon?( user, upstream_taxon_framework )
   end
