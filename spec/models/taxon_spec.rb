@@ -1360,61 +1360,21 @@ describe Taxon, "leading_name" do
 end
 
 describe Taxon, "editable_by?" do
-  def stub_api_response_for_taxon_over_threshold( t )
-    response_json = <<-JSON
-      {
-        "total_results": 1,
-        "page": 1,
-        "per_page": 30, 
-        "results": [
-          {
-            "observations_count": #{Taxon::OBSERVOSE_THRESHOLD + 10},
-            "id": #{t.id}
-          }
-        ]
-      }
-    JSON
-    stub_request(:get, /#{INatAPIService::ENDPOINT}/).to_return(
-      status: 200,
-      body: response_json,
-      headers: { "Content-Type" => "application/json" }
-    )
-  end
-  def stub_api_response_for_taxon_under_thershold( t )
-    response_json = <<-JSON
-      {
-        "total_results": 1,
-        "page": 1,
-        "per_page": 30, 
-        "results": [
-          {
-            "observations_count": #{Taxon::OBSERVOSE_THRESHOLD - 10},
-            "id": #{t.id}
-          }
-        ]
-      }
-    JSON
-    stub_request(:get, /#{INatAPIService::ENDPOINT}/).to_return(
-      status: 200,
-      body: response_json,
-      headers: { "Content-Type" => "application/json" }
-    )
-  end
   let(:admin) { make_admin }
   let(:curator) { make_curator }
   let(:t) do
     Taxon.make!
   end
   it "should be editable by admins if class" do
-    stub_api_response_for_taxon_over_threshold( t )
+    t.update_attributes( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT + 10 )
     expect( t ).to be_protected_attributes_editable_by( admin )
   end
   it "should be editable by curators if below threshold" do
-    stub_api_response_for_taxon_under_thershold( t )
+    t.update_attributes( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT - 10 )
     expect( t ).to be_protected_attributes_editable_by( curator )
   end
   it "should not be editable by curators if above threshold" do
-    stub_api_response_for_taxon_over_threshold( t )
+    t.update_attributes( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT + 10 )
     expect( t ).not_to be_protected_attributes_editable_by( curator )
   end
   describe "when taxon framework" do

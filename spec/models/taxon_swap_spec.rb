@@ -375,7 +375,7 @@ describe TaxonSwap, "commit" do
     }.to raise_error TaxonChange::RankLevelError
   end
 
-  it "should raise an error if commiter is not a taxon curator of a taxon framework of the input taxon" do 
+  it "should raise an error if commiter is not a taxon curator of a taxon framework of the input taxon" do
     superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
     tf = TaxonFramework.make!( taxon: superfamily, rank_level: 5 )
     tc = TaxonCurator.make!( taxon_framework: tf )

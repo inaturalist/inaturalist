@@ -135,8 +135,8 @@ class Taxon < ApplicationRecord
     :observations => {:notification => "new_observations", :include_owner => false}
   }
   
-  OBSERVOSE_THRESHOLD = 200000
-  OBSERVOSE_WARNING_THRESHOLD = 1000
+  NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT = 200000
+  NUM_OBSERVATIONS_TRIGGERING_WARNING = 1000
 
   NAME_PROVIDER_TITLES = {
     'ColNameProvider' => 'Catalogue of Life',
@@ -1236,24 +1236,22 @@ class Taxon < ApplicationRecord
   end
 
   def observose_branch?
-    return false unless response = INatAPIService.taxa( id: id )
-    return false unless  result = response.results.first
-    return result["observations_count"] > OBSERVOSE_THRESHOLD
+    return false unless observations_count
+    return observations_count > NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT
   end
 
   def observose_warning_branch?
     return false if new_record?
-    return false unless response = INatAPIService.taxa( id: id )
-    return false unless  result = response.results.first
-    return result["observations_count"] > OBSERVOSE_WARNING_THRESHOLD
+    return false unless observations_count
+    return observations_count > NUM_OBSERVATIONS_TRIGGERING_WARNING
   end
 
   def get_observose_threshold
-    return OBSERVOSE_THRESHOLD
+    return NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT
   end
 
   def get_observose_warning_threshold
-    return OBSERVOSE_WARNING_THRESHOLD
+    return NUM_OBSERVATIONS_TRIGGERING_WARNING
   end
 
   def protected_attributes_editable_by?( user )

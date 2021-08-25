@@ -235,7 +235,7 @@
   
   <div class="clear buttonrow">
     <% if @taxon.observose_warning_branch? -%>
-      <%= f.submit t(:save_changes), :class => 'default button', data: { loading_click: t(:saving), confirm: t( :this_taxon_has_more_than, observation_warning_threshold: @taxon.get_observose_warning_threshold ) } %>
+      <%= f.submit t(:save_changes), :class => 'default button', data: { loading_click: t(:saving), confirm: t( :this_taxon_has_more_than_1000 ) } %>
     <% else %>
       <%= f.submit t(:save_changes), :class => 'default button', data: { loading_click: t(:saving) } %>
     <% end -%>
