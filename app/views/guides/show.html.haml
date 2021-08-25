@@ -111,7 +111,7 @@
               .input-group
                 %input.form-control{:type => "text", :placeholder => t(:search), :name => "q", :value => @q}
                 .input-group-btn
-                  %button.btn=t :search
+                  %button.btn.btn-default=t :search
               - unless @q.blank?
                 = link_to t(:clear).capitalize, url_for_params(without: [:q]), :class => "btn btn-default clearbtn"
             .pull-right
