@@ -69,7 +69,7 @@ module FlagsHelper
       t :resolved_by_user_on_date_html, user: resolved_by, date: resolved_at ? l(resolved_at) : t(:unknown)
     end
 
-    formatted_user_text( flag.comment ).to_s + resolver.to_s
+    [formatted_user_text( flag.comment ), resolver].compact.join( "" ).html_safe
   end
 
   def flaggable_edit(flaggable)
