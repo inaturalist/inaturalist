@@ -628,8 +628,6 @@ en:
   # Label for an option to show/include content by any user
   any_user: Any
   anyone: Anyone
-  # The technology company, used in the sentence "Log in with Apple"
-  apple: Apple
   # An app or service the user has authorized to access their iNat account, e.g.
   # the iNaturalist Android app or Flickr
   application: Application
@@ -4261,6 +4259,8 @@ en:
   showing_x_of_y: Showing %{x} of %{y}
   showing_x_of_y_listings: "Showing %{x} of %{y} listings"
   sign_in: Sign In
+  # Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Sign in with Apple
   sign_in_with_provider: "Log in with %{provider}"
   sign_in_with_google: Sign in with Google
   sign_out: Sign Out
