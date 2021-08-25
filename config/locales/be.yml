@@ -375,6 +375,8 @@ be:
   add_another_photo: Дадаць іншае фота
   add_another_section: Дадаць іншы раздзел
   add_another_subscription: Дадаць іншую падпіску
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: Дадаць актыў праекта
   add_batch: Дадаць некалькі
   add_blocked_users: Дадаць заблакаваных карыстальнікаў
   #Tool tip for a button that adds bold text to a text area
@@ -421,6 +423,7 @@ be:
   add_plant_phenology_fruiting_annotation: 'Дадаць значэнне "Феналогія раслін: плоданашэнне"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Дадаць значэнне "Феналогія раслін: няма сведчання квітнення"'
   add_life_stage_adult_annotation: 'Дадаць значэнне "Жыццёвая стадыя: дарослае"'
+  add_life_stage_teneral_annotation: 'Дадаць значэнне "Жыццёвая стадыя: тэнеральная стадыя"'
   add_life_stage_subimago_annotation: 'Дадаць значэнне "Жыццёвая стадыя: субімага"'
   add_life_stage_pupa_annotation: 'Дадаць значэнне "Жыццёвая стадыя: лялечка"'
   add_life_stage_nymph_annotation: 'Дадаць значэнне "Жыццёвая стадыя: німфа"'
@@ -460,6 +463,7 @@ be:
   add_your_email_to_get: |
     Дадайце сваю электронную пошту, каб атрымаць зваротную сувязь з супольніцтвам пра свае назіранні.
     Калі вы не хочаце абагульваць іх, калі ласка, вяртайцеся ў бліжэйшы час!
+  add_your_own_observations_at: "Дадайце свае ўласныя назіранні ў %{site_name}"
   added: Дададзена
   added!: Дададзена!
   added_as_a_part_of_a_taxon_change_html: |
@@ -504,6 +508,142 @@ be:
     subphylum: Усе пададдзелы дададзены да базы дадзеных
     superclass: Усе звышкласы дадазены да базы дадзеных
     class: Усе класы дададзены да базы дадзеных
+    subclass: Усе падкласы дадазены да базы дадзеных
+    infraclass: Усе інфракласы дадазены да базы дадзеных
+    superorder: Усе звышпарадкі дадазены да базы дадзеных
+    order: Усе парадкі дададзены да базы дадзеных
+    suborder: Усе падпарадкі дадазены да базы дадзеных
+    infraorder: Усе інфрапарадкі дадазены да базы дадзеных
+    superfamily: Усе звышсем'і дадазены да базы дадзеных
+    epifamily: Усе эпісем'і дадазены да базы дадзеных
+    family: Усе сем'і дадазены да базы дадзеных
+    subfamily: Усе падсем'і дадазены да базы дадзеных
+    supertribe: Усе звыштрыбы дадазены да базы дадзеных
+    tribe: Усе трыбы дададзены да базы дадзеных
+    subtribe: Усе падтрыбы дадазены да базы дадзеных
+    genus: Усе роды дададзены да базы дадзеных
+    genushybrid: Усе родавыя гібрыды дадазены да базы дадзеных
+    subgenus: Усе падроды дадазены да базы дадзеных
+    section: Усе секцыі дадазены да базы дадзеных
+    subsection: Усе падсекцыі дадазены да базы дадзеных
+    complex: Усе комплексы дадазены да базы дадзеных
+    species: Усе віды дадазены да базы дадзеных
+    hybrid: Усе гібрыды дадазены да базы дадзеных
+    subspecies: Усе падвіды дадазены да базы дадзеных
+    variety: Усе варыянты дадазены да базы дадзеных
+    form: Усе формы дададзены да базы дадзеных
+  all_rights_reserved: усе правы абаронены
+  all_taxa:
+    amphibians: Земнаводныя
+    animals: Жывёлы
+    arachnids: Павукападобныя
+    birds: Птушкі
+    chromista: Храмісты
+    fungi: Грыбы
+    fungi_including_lichens: Грыбы, у тым ліку лішаі
+    insects: Казуркі
+    mammals: Млекакормячыя
+    mollusks: Малюскі
+    other_animals: Іншыя жывёлы
+    plants: Расліны
+    protozoans: Найпростыя
+    ray_finned_fishes: Промнепёрыя рыбы
+    reptiles: Паўзуны
+    life: Жыццё
+    x_plantae:
+      one: "%{count} расліна"
+      few: "%{count} расліны"
+      many: "%{count} раслін"
+      other: "%{count} расліны"
+    x_animalia:
+      one: "%{count} жывёла"
+      few: "%{count} жывёлы"
+      many: "%{count} жывёл"
+      other: "%{count} жывёлы"
+    x_mollusca:
+      one: "%{count} малюск"
+      few: "%{count} малюскі"
+      many: "%{count} малюскаў"
+      other: "%{count} малюска"
+    x_amphibia:
+      one: "%{count} земнаводнае"
+      few: "%{count} земнаводныя"
+      many: "%{count} земнаводных"
+      other: "%{count} земнаводнага"
+    x_mammalia:
+      one: "%{count} млекакормячае"
+      few: "%{count} млекакормячых"
+      many: "%{count} млекакормячых"
+      other: "%{count} млекакормячага"
+    x_actinopterygii:
+      one: "%{count} промнепёрая рыба"
+      few: "%{count} промнепёрыя рыбы"
+      many: "%{count} промнепёрых рыб"
+      other: "%{count} промнепёрай рыбы"
+    x_reptilia:
+      one: "%{count} паўзун"
+      few: "%{count} паўзуны"
+      many: "%{count} паўзуноў"
+      other: "%{count} паўзуна"
+    x_aves:
+      one: "%{count} птушка"
+      few: "%{count} птушкі"
+      many: "%{count} птушак"
+      other: "%{count} птушкі"
+    x_insecta:
+      one: "%{count} казурка"
+      few: "%{count} казуркі"
+      many: "%{count} казурак"
+      other: "%{count} казуркі"
+    x_arachnida:
+      one: "%{count} павукападобнае"
+      few: "%{count} павукападобныя"
+      many: "%{count} павукападобных"
+      other: "%{count} павукападобнага"
+    x_fungi:
+      one: "%{count} грыб"
+      few: "%{count} грыба"
+      many: "%{count} грыбоў"
+      other: "%{count} грыба"
+    x_chromista:
+      one: "%{count} храміста"
+      few: "%{count} храмісты"
+      many: "%{count} храмістаў"
+      other: "%{count} храмісты"
+    x_protozoa:
+      one: "%{count} найпростае"
+      few: "%{count} найпростыя"
+      many: "%{count} найпростых"
+      other: "%{count} найпростага"
+    x_other_animals:
+      one: "%{count} іншая жывёла"
+      few: "%{count} іншыя жывёлы"
+      many: "%{count} іншых жывёлаў"
+      other: "%{count} іншай жывёлы"
+  all_taxa_: Усе таксоны
+  all_taxa_in_this_guide: Усе таксоны ў гэтым дапаможніку
+  all_taxonomic_groups: "&laquo; Усе таксанамічныя групы"
+  all_updates: Усе аднаўленні
+  all_your_observations_will_default_this_time_zone: Усе вашы назіранні будуць па змаўчанні ў гэтым гадзінным поясе, калі вы не пазначаеце іншае.
+  all_your_observations_will_default_to_this_time_zone: Усе вашы назіранні будуць па змаўчанні ў гэтым гадзінным поясе, калі вы не пазначаеце іншае.
+  allow_curator_access: Дазволіць доступ куратарам
+  allow_project_curators_to_view_your_private_coordinates: Дазвольце куратарам праекта праглядаць вашыя схаваныя каардынаты
+  allowed_establish_means_values: Дазваленыя значэнні шляху ўзнікнення
+  allowed_html: Дазволены HTML
+  allowed_occurrence_status_values: Дазволеныя значэнні статуса сустракаемасці
+  allowed_values: Дазволеныя значэнні
+  almost_there_: Амаль гатова...
+  alphabetical: Па алфавіце
+  alphabetical_order: Па алфавіце
+  already_have_an_account_log_in_html: Ужо ёсць уліковы запіс? <strong>Увайсці.</strong>
+  amphibians: земнаводныя
+  ancestor_taxon: Бацькоўскі таксон
+  and: і
+  and_other_taxa: "&amp; Іншыя таксоны"
+  android: Android
+  animals: Жывёлы
+  annotation: Анатацыя
+  annotations: Анатацыі
   announcement_was_successfully_created: Аб'ява была паспяхова створана.
   announcement_was_successfully_updated: Аб'ява была паспяхова адноўлена.
   announcements: Аб'явы
