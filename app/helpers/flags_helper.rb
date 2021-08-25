@@ -58,18 +58,18 @@ module FlagsHelper
 
     resolved_at = flag.resolved_at || flag.updated_at
     resolved_by = if flag.resolver
-                    link_to_user(flag.resolver)
-                  elsif flag.resolver_id
-                    t :deleted_user
-                  else
-                    site.name
-                  end
+      link_to_user( flag.resolver )
+    elsif flag.resolver_id
+      t :deleted_user
+    else
+      site.name
+    end
 
     resolver = content_tag :div, class: 'text-muted' do
       t :resolved_by_user_on_date_html, user: resolved_by, date: resolved_at ? l(resolved_at) : t(:unknown)
     end
 
-    formatted_user_text(flag.comment) + resolver
+    formatted_user_text( flag.comment ).to_s + resolver.to_s
   end
 
   def flaggable_edit(flaggable)
