@@ -104,6 +104,7 @@ class SitesController < ApplicationController
 
   def network
     @page_title = t( "views.stats.year.inaturalist_network" )
+    @sites = Site.live.order( "id asc" ).limit( 500 ).all
     render layout: "bootstrap-container"
   end
 
