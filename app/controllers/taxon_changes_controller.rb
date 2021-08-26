@@ -87,6 +87,10 @@ class TaxonChangesController < ApplicationController
       if current_user && @upstream_taxon_framework && @upstream_taxon_framework.taxon_curators.count > 0 && @upstream_taxon_framework.taxon_curators.select{|tc| tc.user_id != current_user}
         @curated_upstream_taxon_framework = @upstream_taxon_framework
       end
+      @observose_taxon = @taxon_change.input_taxa.detect{|t| t.observose_branch?}.try( :observose_branch? )
+      @observose_taxon_threshold = Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT
+      @observose_taxon_warning = @taxon_change.input_taxa.detect{|t| t.observose_warning_branch?}.try( :observose_warning_branch? )
+      @observose_taxon_warning_threshold = Taxon::NUM_OBSERVATIONS_TRIGGERING_WARNING
     end
     respond_to do |format|
       format.html
