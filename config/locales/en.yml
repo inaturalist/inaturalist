@@ -231,6 +231,7 @@ en:
   about_place: "About %{place}"
   about_places: About Places
   about_the_cc_licenses: About Creative Commons licenses
+  about_the_network: About the Network
   about_these_licenses: About these licenses
   about_this_bioblitz: About this bioblitz
   about_this_map: About This Map
@@ -466,6 +467,8 @@ en:
   admin_s: Admin(s)
   admin_only: Admin-only
   admin_tools: Admin Tools
+  # Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Affiliated Organizations
   agree_: Agree
   agree?: Agree?
   agree_with_current_taxon: Agree with current taxon
@@ -1731,6 +1734,7 @@ en:
   exclusion_filters: Exclusion Filters
   existing_flags: Existing Flags
   exit_full_screen: "Exit Full Screen"
+  examples_of_data_use_by_network_members: Examples of Data Use by Network Members
   examples_of_ranking_organizations: Examples of Ranking Organizations
   explore: Explore
   export: Export
@@ -2105,6 +2109,7 @@ en:
   improving: Improving
   in_n: "in %{n}"
   in_place_x: in %{place}
+  inaturalist_network: iNaturalist Network
   inaturalist_network_affiliation: iNaturalist Network Affiliation
   # Label for messages you've received
   inbox: Inbox
@@ -2625,6 +2630,7 @@ en:
     <a href="%{url}">Monthly Supporter</a> since %{date}
   months: Months
   more: More
+  more_about_sharing: More About Sharing
   more_fields: More Fields
   more_filters: More Filters
   more_from_x: More from %{x}
@@ -2718,6 +2724,8 @@ en:
   network_affiliation_prompt_from_other_site_html: |
     Would you like to change your affiliation from <strong>%{other_site_name}</strong> to
     <strong>%{site_name}</strong>?
+  # Column header in a table listing iNaturalist Network members
+  network_member: Network Member
   new: New
   new_and_noteworthy: New & Noteworthy
   new_announcement: New announcement
@@ -4282,6 +4290,120 @@ en:
   site_staff: "%{site_name} Staff"
   site_stats: Site Stats
   site_taxon_page: "%{site_name} taxon page"
+  sites_affiliation_about_desc_html: |
+    If your organization is interested in joining the iNaturalist Network, you
+    can find more details %{start_tag_join}here%{end_tag_join}.
+  sites_affiliation_examples_canada_cdc_html: |
+    %{start_tag_inat_canada}iNaturalist Canada%{end_tag_inat_canada} enables
+    data from iNaturalist to be incorporated into secure, provincial-level
+    systems managed by Conservation Data Centers (CDCs). These systems are
+    used when assessments are carried out (twice per year) to determine the
+    at-risk status of species, as well in determining the critical habitat of
+    threatened and endangered species.   As a result, it has also been
+    possible to locate and mitigate hotspots of road mortality for species at
+    risk; delineate and eventually protect Key Biodiversity Areas, and;
+    reconfirm the presence of species that had not been reported for decades.
+  sites_affiliation_examples_ecuardor_bndb_html: |
+    %{start_tag_ecuador}iNaturalist Ecuador%{end_tag_ecuador} feeds into the
+    National Database of Biodiversity of Ecuador – BNDB – a large repository
+    of data from scientific records as well as citizen science. The purpose is
+    to integrate the knowledge and data that helps strengthen the
+    environmental understanding of the flora and fauna of Ecuador.
+  sites_affiliation_examples_mexico_nbis_html: |
+    Mexico's %{start_tag_naturalista}Naturalista%{end_tag_naturalista}
+    observations feed into the National Biodiversity
+    Information System (at CONABIO, the National Biodiversity Commision)
+    together with records from eBird. People can find both scientific and
+    citizen science records in
+    %{start_tag_enciclovida}Enciclovida%{end_tag_enciclovida}.
+  sites_affiliation_examples_portugal_atlas_html: |
+    Portugal's iNaturalist network member
+    %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} shared records
+    data for the Portuguese atlas of migratory birds, for the atlas of mammals,
+    as well as several other Portuguese scientific research papers.
+  sites_affiliation_more_automatically_hidden_coordinates: |
+    Automatically hidden coordinates (obscured or private due to "taxon
+    geoprivacy")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist automatically hides the coordinates for some species to protect
+    them from disturbance, collection, or poaching. If the observation
+    coordinates have only been hidden automatically to protect species,
+    iNaturalist shares  the true coordinates of all observations from their
+    respective countries with Network Members.
+  sites_affiliation_more_email_addresses: |
+    Email addresses are shared with Network Members solely for the purposes of
+    communications related to the site.
+  sites_affiliation_more_twice_per_year: |
+    Twice per year, iNaturalist shares email addresses of affiliated accounts
+    and some hidden coordinates (i.e. coordinates publicly obscured or private)
+    with the iNaturalist Network Members to facilitate the use of iNaturalist
+    data for research, conservation, and management in their respective
+    countries. The two ways that coordinates can be hidden are shared
+    differently, as described below.
+  sites_affiliation_more_user_hidden_coordinates: |
+    User-hidden coordinates (obscured or private due to "geoprivacy" setting)
+  sites_affiliation_more_user_hidden_coordinates_desc: |
+    Observations with hidden coordinates due to individual user's choices are
+    shared in a much more limited and specific way.  By affiliating with a
+    Network site, iNaturalist will share with that site’s administrators the
+    precise coordinates of observations with geoprivacy that you have set to
+    obscured or private, in addition to those which are publicly obscured or
+    private due to taxon geoprivacy. This allows your observations to become
+    more valuable to local conservation efforts.
+  sites_affiliation_overview_current_member_list_html: |
+    You can see the current member list for the
+    %{start_tag_network}iNaturalist Network%{end_tag_network}.
+  sites_affiliation_overview_in_order_to_advance: |
+    In order to advance research and conservation in their respective countries,
+    Network Members may share data from iNaturalist. They have a responsibility
+    to assess the validity and appropriateness of data requests and their
+    potential outcomes; convey in writing the responsibility to also ensure the
+    security of such data and not to expose it publicly in any way, or share or
+    use it beyond its original intended purpose; to document all instances of
+    sharing along with the associated results, outcomes, or intended uses; and
+    to report annually to iNaturalist.
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    The %{start_tag_network}iNaturalist Network%{end_tag_network} is a
+    collection of localized websites in the %{start_tag_global}global
+    iNaturalist community%{end_tag_global}.
+  sites_affiliation_overview_when_you_affiliate: |
+    When you affiliate with an iNaturalist Network Member, your email address
+    and the true locations of your obscured and private locations are shared
+    with the Network Member. This allows your observations to become more
+    valuable to local conservation efforts. If you live in or frequently visit
+    a country that is a member of the Network, you are encouraged to choose
+    that as your affiliation to facilitate data sharing.
+  sites_affiliation_overview_you_can_continue_html: |
+    You can continue to log in through iNaturalist.org or through your
+    network-specific website. No matter your affiliation, all your data will be
+    hosted in the same place and you’ll continue to be able to interact with
+    the broader international iNaturalist community. Each iNaturalist account
+    can be affiliated with only one Network Member. You may review or change
+    your affiliation in your
+    %{start_tag_settings}account settings%{end_tag_settings}.
+  sites_affiliation_title: Learn More About Network Affiliation
+  sites_network_cas_and_nat_geo_html: |
+    The %{start_tag_cas}California Academy of Sciences%{end_tag_cas} and the
+    %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} have
+    formal agreements with organizations in each of these countries to support
+    the use of the iNaturalist platform. <strong>If your organization is
+    interested in joining the iNaturalist Network, you can find more details
+    %{start_tag_join}here%{end_tag_join}.</strong>
+  sites_network_consists_of: "The iNaturalist Network consists of several organizations:"
+  sites_network_inaturalist_network_collection: |
+    The iNaturalist Network is a collection of localized websites that are fully
+    connected to the global iNaturalist community. Network sites are supported
+    by local institutions that promote local use and facilitate the use of data
+    from iNaturalist to benefit local biodiversity. They have access to true
+    coordinates from their countries that are automatically obscured from
+    public view in order to better protect threatened species.
+  sites_network_your_username: |
+    Your username and password works on all sites that are part of the
+    iNaturalist Network. If you choose to affiliate with a Network site, the
+    local institutions that support each site will also have access to your
+    email address (only to communicate with you about site activities) and
+    access to the true coordinates for observations that you have chosen to
+    make publicly obscured or private.
   some_agree: some agree
   some_observations_are_missing_media_or_identifications: |
     Some observations are missing media or identifications

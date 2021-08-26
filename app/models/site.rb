@@ -331,6 +331,8 @@ class Site < ApplicationRecord
   # Whether this site prefers https
   preference :ssl, :boolean
 
+  preference :affiliated_organizations, :text
+
   STAFF_ONLY_PREFERENCES = [
     :google_webmaster_dns_verification,
     :google_webmaster_dns_verified,
