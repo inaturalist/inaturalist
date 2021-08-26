@@ -1906,175 +1906,225 @@ id:
   #English but we switched to "missing" to convey that a complete observation
   #*should* have a location
   location_unknown: Lokasi Tidak Ada
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: Kunci skala
+  language_slash_locale: Bahasa
+  language_slash_locale_description: Ini menyetel preferensi bahasa dan format tanggalmu di seluruh iNaturalist berdasarkan tempat asalmu. Perubahan akan muncul saat halaman ini disegarkan kembali
   language_slash_type: Bahasa / Tipe
   #Large photo size
   large: besar
   last_active_with_date: "Terakhir Aktif: %{date}"
-  last_confirmed_observation: Pengamatan yang telah dikonfirmasi
+  last_confirmed_observation: Pengamatan terakhir yang dikonfirmasi
   last_observation: Pengamatan terakhir
+  last_observation_caps: PENGAMATAN TERAKHIR
   last_seen: Terakhir dilihat
-  lat: Lintang
+  last_year: Tahun Lalu
+  lat: Lin
   latitude: Garis Lintang
-  latitude_in_decimals: 'Garis lintang pada angka desimal, contoh 38. 123'
+  latitude_in_decimals: 'Garis lintang dalam derajat berangka desimal, contoh 38.123'
   latitude_slash_y_coord_slash_northing: Garis lintang / koordinat y / utara
+  latitude_value: "Lintang: %{latitude}"
   #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Lapisan
-  layout: Rancangan
-  leaderboards: Papan
+  layout: Tata Letak
+  leaderboard: Papan Peringkat
+  leaderboard_for_x: "Papan peringkat untuk %{x}"
+  leaderboards: Papan Peringkat
+  leaderboard_most:
+    species_in_month_year: Spesies terbanyak pada %{month_year}
+    species_in_year: Spesies terbanyak pada %{year}
+    observations_in_month_year: Pengamatan terbanyak pada %{month_year}
+    observations_in_year: Pengamatan terbanyak pada %{year}
+    identifications_in_month_year: Identifikasi terbanyak pada %{month_year}
+    identifications_in_year: Identifikasi terbanyak pada %{year}
+  leading: Memimpin
   learn: Belajar
-  learn_about_the_species_live_in: Pelajari tentang spesies yang hidup
+  learn_about_the_species_live_in: Pelajari tentang spesies yang hidup di
+  learn_about_third_party_tracking: Pelajari lebih lanjut tentang pelacak pihak ketiga
   learn_more: Pelajari lebih lanjut
-  learn_more_raquo: "Pelajari lebih banyak&raquo"
-  learn_what_these_licenses_mean: Pelajari apa yang dimaksut dengan lisensi
+  learn_more_raquo: "Pelajari lebih lanjut &raquo;"
+  learn_what_these_licenses_mean: Pelajari apa yang dimaksud dengan lisensi ini
   least_concern: kekhawatiran paling kecil
   leave: Tinggalkan
   leave_a_comment: Tinggalkan komentar
-  leave_this_project: Tinggalkan projek ini
+  leave_this_project: Tinggalkan proyek ini
   #Terminal nodes in a taxonomic tree
-  leaves: meninggalkan
+  leaves: daun
   legacy_authentication_notice_html: |
-    Sepertinya Anda menggunakan password dari situs versi lama.
-    Harap diingat <a href="%{url}"> Ubah password Anda </a> untuk versi baru.
-  let_us_walk_you_through: Mari kita pandu Anda melalui fitur utama dari situs ini.
-  lexicon: Leksikon
+    Sepertinya Anda menggunakan password dari situs versi yang lama.
+    Harap <a href="%{url}">mengubah password Anda</a> untuk versi yang baru.
+  let_us_walk_you_through: Persilakan kami untuk memandu Anda mengenai fitur-fitur utama situs ini.
+  lexicon: Kamus
   lexicons:
-    scientific_names: Nama Peneliti
-    afrikaans: Bahasa Afrika
-    bengali: Bahasa Benggala
-    catalan: Bahasa Catalan
-    cebuano: Bahasa Cebuano
-    creole_french: Bahasa Creole (Perancis)
-    creole_portuguese: Bahasa Creole (Portugis)
-    davawenyo: Bahasa Davawenyo
-    dutch: Bahasa Belanda
-    english: Bahasa Inggris
-    french: Bahasa Perancis
-    gela: Bahasa Gela
-    german: Bahasa Jerman
-    hawaiian: Bahasa Hawai
-    hebrew: Bahasa Ibrani
-    hiligaynon: Bahasa Hiligaynon
-    icelandic: Bahasa Islandia
-    ilokano: Bahasa Ilocano
-    italian: Bahasa Itali
-    japanese: Bahasa Jepang
-    korean: Bahasa Korea
-    maltese: Bahasa Maltis
-    maori: Bahasa Maori
-    misima_paneati: Bahasa Misima-paneati
-    norwegian: Bahasa Norwegia
-    pangasinan: Bahasa Pangasinan
-    portuguese: Bahasa Portugis
-    romanian: Bahasa Romania
-    russian: Bahasa Rusia
-    spanish: Bahasa Spanyol
-    swedish: Bahasa Swedia
-    tagalog: Bahasa Tagalog
-    tahitian: Bahasa Tahiti
-    tokelauan: Bahasa Tokelauan
-    turkish: Bahasa Turki
-    waray_waray: Bahasa Waray-Waray
+    scientific_names: Nama Ilmiah
+    afrikaans: Afrika
+    albanian: Albania
+    belarusian: Belarusia
+    bengali: Benggala
+    catalan: Katalan
+    cebuano: Cebuano
+    chinese_simplified: Mandarin (sederhana)
+    chinese_traditional: Mandarin (tradisional)
+    creole_french: Creole (Prancis)
+    creole_portuguese: Creole (Portugis)
+    czech: Ceko
+    danish: Denmark
+    davawenyo: Davawenyo
+    dutch: Belanda
+    english: Inggris
+    estonian: Estonia
+    finnish: Finlandia
+    french: Prancis
+    gela: Gela
+    german: Jerman
+    greek: Yunani
+    hawaiian: Hawaii
+    hebrew: Ibrani
+    hiligaynon: Hiligaynon
+    hungarian: Hungaria
+    icelandic: Islandia
+    ilokano: Ilokano
+    italian: Italia
+    japanese: Jepang
+    korean: Korea
+    latvian: Latvia
+    lithuanian: Lithuania
+    luxembourgish: Luksemburg
+    maltese: Malta
+    maori: Maori
+    marathi: Marathi
+    misima_paneati: Misima-paneati
+    norwegian: Norwegia
+    occitan: Occitan
+    pangasinan: Pangasinan
+    portuguese: Portugis
+    romanian: Romania
+    russian: Rusia
+    spanish: Spanyol
+    swedish: Swedia
+    tagalog: Tagalog
+    tahitian: Tahiti
+    thai: Thai
+    tokelauan: Tokelauan
+    turkish: Turki
+    waray_waray: Waray-Waray
   less: Kurang
-  licensing: lisensi
+  licensed_site_photos: "Foto %{site_name} berlisensi"
+  license: Lisensi
+  licensing: Lisensi
   licensing_your_content_gives_others_legal: "Melisensi konten Anda memberikan orang lain hak hukum untuk menggunakannya jika mereka tetap mematuhi persyaratan lisensi. %{site_name} menggunakan konten Anda yang berlisensi Creative Commons untuk berbagi dengan mitra data seperti "
   life: Kehidupan
-  link: Tautan
-  link_or_unlink_your_facebook_account: Tautkan atau non-tautkan akun Facebook anda
-  link_or_unlink_your_flickr_account: Tautkan atau non-tautkan akun Flickr anda
-  link_your_facebook_account: Tautkan akun Facebook anda
-  link_your_flickr_account: Tautkan akun Flickr anda
-  linked_facebook: "Akun %{site_name} Anda saat ini terkait dengan akun Facebook Anda."
-  linked_facebook_automaticaly: "Perlu diingat bahwa jika Anda masuk ke %{site_name} melalui Facebook, kami akan secara otomatis kembali menghubungkan %{site_name} Anda dengan akun Facebook. Tampaknya masuk akal jika Anda menggunakan Facebook dan Anda ingin dapat mengimpor foto dari Facebook bukan?"
-  linked_facebook_howto: "Untuk menghubungkan Facebook dengan %{site_name}, klik link disebelah kanan dan masuk ke Facebook.com."
-  linked_facebook_password: "Kami tidak akan pernah menanyakan kata sandi Facebook anda (tapi Facebook mungkin, periksa url yang dikirimkan tombol anda dan pastikan itu adalah Facebook.com). Kami juga tidak akan mengubah data Facebook anda kecuali Anda ingin kami melakukannya."
-  linked_flickr: "Akun %{site_name} Anda saat ini terkait dengan akun Flickr Anda."
+  life_list: "Daftar Kehidupan %{user}"
+  linear_scale_label: Linier
+  link: Hubungan
+  link_or_unlink_your_facebook_account: Hubungkan atau putuskan akun Facebook Anda
+  link_or_unlink_your_flickr_account: Hubungkan atau putuskan akun Flickr Anda
+  link_or_unlink_your_google_account: Hubungkan atau putuskan akun Google Anda
+  link_your_facebook_account: Hubungkan akun Facebook Anda
+  link_your_flickr_account: Hubungkan akun Flickr Anda
+  link_your_google_account: Hubungkan akun Google Anda
+  linked_facebook: "Akun %{site_name} Anda saat ini terhubung dengan akun Facebook Anda."
+  linked_facebook_automaticaly: "Perlu diingat bahwa jika Anda masuk ke %{site_name} melalui Facebook, kami akan secara otomatis menghubungkan kembali akun %{site_name} dan akun Facebook Anda. Tampak masuk akal bukan jika Anda menggunakan Facebook, Anda ingin dapat mengimpor foto dari Facebook?"
+  linked_facebook_description: "Dengan menjaga akun %{site_name} Anda tetap terhubung dengan akun Facebook, Anda dapat menambahkan sejumlah foto untuk pengamatanmu. Jika Anda ingin %{site_name} dan Facebook putus, kami tidak akan menghentikanmu, Anda tidak akan bisa menambahkan foto saja. Terkadang, ini mungkin jalan yang terbaik, contohnya jika Anda membuat akun Facebook baru yang ingin dihubungkan dengan %{site_name}."
+  linked_facebook_howto: "Untuk menghubungkan Facebook dengan %{site_name}, klik hubungkan di sebelah kanan dan masuk ke Facebook.com."
+  linked_facebook_password: "Kami tidak akan pernah menanyakan kata sandi Facebook Anda (tapi Facebook mungkin menanyakannya, periksa url yang dikirimkan tombol Anda dan pastikan itu adalah Facebook.com). Kami juga tidak akan mengubah data Facebook Anda kecuali Anda menginginkan kami untuk melakukannya."
+  linked_flickr: "Akun %{site_name} Anda saat ini terhubung dengan akun Flickr Anda."
+  linked_flickr_automatically: "Perlu diingat bahwa jika Anda masuk ke %{site_name} melalui Flickr, kami akan secara otomatis menghubungkan kembali akun %{site_name} dan akun Flickr Anda. Tampak masuk akal bukan jika Anda menggunakan Flickr, Anda ingin dapat mengimpor foto dari Flickr?"
+  linked_flickr_description: "Dengan menjaga akun %{site_name} Anda tetap terhubung dengan akun Flickr, Anda dapat menambahkan sejumlah foto untuk pengamatanmu. Jika Anda ingin %{site_name} dan Facebook putus, kami tidak akan menghentikanmu, Anda tidak akan bisa menambahkan foto saja. Terkadang, ini mungkin jalan yang terbaik, contohnya jika Anda membuat akun Facebook baru yang ingin dihubungkan dengan %{site_name}."
   linked_flickr_password_html: "<strong>Kami tidak akan pernah bertanya tentang kata sandi Flickr anda</strong>(namun Flickr dapat saja, periksa url yang dikirimkan oleh tombol anda dan pastikan bahwa itu adalah Flickr.com)."
   linkedin: LinkedIn
   list: Daftar
   list_deleted: Daftar dihapus.
   list_saved: Daftar disimpan.
-  list_tooltip: Daftar tampilan acara
-  list_updated: Daftar diperbaharui!
+  list_tooltip: Tampilkan tampilan daftar
+  list_updated: Daftar diperbarui!
   list_views:
     plain: polos
-    taxonomic: taksonomi
+    taxonomic: taksonomik
     photo: foto
-  list_was_successfully_created: Daftar telah berhasil dibuat
-  listed_taxa: Daftar taxa
-  listed_taxon: Daftar takson
-  listed_taxon_updated: Daftar takson diperbaharui
+  list_was_successfully_created: Daftar berhasil dibuat.
+  listed_taxa: Daftar Taksa
+  listed_taxon: Takson terdaftar
+  listed_taxon_updated: Takson terdaftar diperbarui
   listing_lists: Pendaftaran daftar
-  listing_project_assets: Daftar aset_proyek
-  listing_taxa: Pendaftaran taksa
+  listing_project_assets: Pendaftaran Aset Proyek
+  listing_taxa: Pendaftaran Taksa
   lists: Daftar
   lists_by_login:
     title:
-      current_user: Daftar anda
+      current_user: Daftar Anda
       login: Daftar oleh %{login}
-  load: Unggah
-  loading: "Menunggah..."
-  loading_flickr_photos: "Mengunggah foto Flickr..."
-  loading_images: Mengunggah gambar...
+  load: Muat
+  loading: "Memuat..."
+  loading_flickr_photos: "Memuat foto Flickr..."
+  loading_images: Memuat gambar...
   loading_metadata: Memuat metadata...
-  loading_preview_and_code: Mengunggah pratinjau dan kode...
-  loading_suggestions: Memuat saran...
-  loading_tags: "Mengunggah tanda..."
-  loading_taxa_from_your: "Mengunggah taksa dari pengamatan anda..."
-  loading_wikipedia_description: "Mengunggah deskripsi Wikipedia..."
-  locale_description: Lokal menetapkan bahasa dan tanggal preferensi format Anda
-  locales_: Lokal
+  loading_preview_and_code: Memuat pratinjau dan kode...
+  loading_suggestions: Memuat rekomendasi...
+  loading_tags: "Memuat tanda..."
+  loading_taxa_from_your: "Memuat taksa dari pengamatan Anda..."
+  loading_wikipedia_description: "Memuat deskripsi Wikipedia..."
+  locale_description: Tempat menyetel bahasa dan format tanggal sesuai preferensi Anda.
+  locales_: Tempat
   locales:
     ar: Arab
-    bg: Bahasa bulgaria
+    be: Belarusia
+    bg: Bulgaria
     br: Breton
-    ca: Bahasa Catalan
-    cs: Cek
+    ca: Katalan
+    cs: Ceko
     da: Denmark
     de: Jerman
     el: Yunani
-    en: Bahasa Inggris
+    en: Inggris
     eo: Esperanto
     es: Bahasa Spanyol
     es-AR: Spanyol (Argentina)
-    es-MX: Bahasa Meksiko
+    es-CO: Spanyol (Kolombia)
+    es-MX: Spanyol (Meksiko)
     et: Estonia
-    eu: Bahasa Basque
-    fi: Suomi
-    fr: Bahasa Perancis
-    fr-CA: Perancis (Kanada)
-    gl: Bahasa Galician
+    eu: Basque
+    fi: Finlandia
+    fr: Prancis
+    fr-CA: Prancis (Kanada)
+    gl: Galisia
     he: Ibrani
-    id: bahasa Indonesia
-    it: bahasa Italia
-    ja: Bahasa Jepang
-    ko: Bahasa korea
+    hu: Hungaria
+    id: Indonesia
+    it: Italia
+    ja: Jepang
+    ko: Korea
     lb: Luksemburg
-    lt: Lituavi
-    lv: Lativia
-    mk: Bahasa Macedonian
-    nb: Bokmål
+    lt: Lituania
+    lv: Latvia
+    mk: Makedonia
+    mr: Marathi
+    nb: Bokmål Norwegia
     nl: Belanda
-    oc: Ositan
+    oc: Occitan
     pl: Polandia
     pt: Portugis
-    pt-BR: Bahasa Portugis (Brazil)
+    pt-BR: Portugis (Brasil)
     ru: Rusia
     sk: Slovakia
     sq: Albania
     sv: Swedia
+    th: Thai
     tr: Turki
-    uk: Ukrania
-    zh-CN: Bahasa Cina (disederhanakan)
-    zh-TW: Bahasa Cina (tradisional)
+    uk: Ukraina
+    zh-CN: Mandarin (sederhana)
+    zh-TW: Mandarin (tradisional)
   locality_notes: Catatan lokalitas
-  localized_species_accounts: Akun spesies lokal
+  localized_species_accounts: Akun spesies yang dilokalisasi
   location: Lokasi
   location_is_accurate: Lokasi akurat
-  location_is_exact: lokasi yang tepat
+  location_is_exact: lokasi tepat
   location_is_public: Lokasi publik
   location_is_obscured: Lokasi dikaburkan
-  location_is_private: Lokasi privat
-  location_specified: Lokasi dispesifikan
+  location_is_private: Lokasi pribadi
+  location_specified: Lokasi ditetapkan
+  locked_taxa_will_not_allow_new: Taksa yang dikunci tidak mengizinkan taksa turunan baru untuk ditambahkan kepada taksa tersebut. Jadi, jika Anda mengunci Amfibi dan seseorang mencoba untuk mengimpor <i>Rana catesbeiana</i> dari salah satu penyedia nama eksternal, takson baru akan dibuat, tetapi takson tersebut tidak dapat diklasifikasi sebagai amfibi. Ketika hal ini terjadi, taksa yang baru ditambahkan tersebut harus ditandai untuk menarik perhatian kurator. Hal ini seharusnya digunakan hanya untuk taksa yang kami pikir sudah memiliki semua turunannya. Kurator dapat membatalkan hal ini dengan mengubah taksa dan mengisi ID induk secara langsung, tetapi harap pertimbangkan untuk menyatukan saja taksa baru ke taksa yang sudah ada.
   log_in: Masuk
   log_in_or_sign_up_to_add_comments_html: |
     <a href="/login">Masuk</a> atau <a href="/signup">daftar</a> untuk menambahkan komentar.
@@ -2085,80 +2135,116 @@ id:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Keluar dari %{site_name}?"
   log_scale_label: Log
+  #Status message shown while logging in
+  logging_in: Sedang masuk...
   login_slash_username: Masuk / nama pengguna
   logo:
     logo: Logo
     white_bg_gif: BG GIF putih
     transparent_png: PNG transparan
-    white_text_transparent_png: teks putih transparan PNG
+    white_text_transparent_png: PNG berteks putih transparan
     none: tidak ada
   long: Bujur
   longitude: Garis Bujur
-  longitude_in_decimal: 'Garis bujur pada angka desimal, contoh -122.123'
+  longitude_in_decimal: 'Garis bujur dalam derajat berangka desimal, contoh -122.123'
   longitude_slash_x_coord_slash_easting: Garis Bujur / koordinat x / timur
   longitude_value: "Garis Bujur: %{longitude}"
-  look_up_name: "Mencari nama"
-  looks_like_neither_have!: Sepertinya tidak memiliki taksa apapun!
-  looks_like_no_species_in_guide: Sepertinya anda belum memiliki spesies pada panduan anda.
-  lookup: Lihatlah
-  low: rendah
-  lowest_rank: Ranking terendah
-  make_admin: Jadikan pengurus
+  look_up_name: "Cari nama"
+  looks_like_neither_have!: Sepertinya tidak ada yang memiliki taksa!
+  looks_like_no_species_in_guide: Sepertinya Anda belum memiliki spesies apapun pada panduan Anda.
+  lookup: Cari
+  low: Rendah
+  lowest_rank: Kategori Terendah
+  make_admin: Jadikan pengelola
   #Header for main content section of the project detail page when editing custom project data.
-  main_content: Konten Utama
+  main_content: Konten utama
   #Stub text for the main content section when editing custom project data
-  main_content_description: Konten utama disini
+  main_content_description: Konten utama di sini
   make_a_new_place: Buat tempat baru
-  make_a_taxon_swap_instead?: Membuat sebuah TaxonSwap bukan?
-  make_curator: Membuat kurator
-  make_manager: Membuat manajer
+  make_a_taxon_swap_instead?: Buat TaxonSwap saja?
+  make_curator: Jadikan kurator
+  make_manager: Jadikan manajer
   make_sure_the_default_photo_looks_good: Pastikan foto tersebut terlihat bagus pada ukuran besar.
-  make_this_your_default_license: "Buat hal ini menjadi %{type} lisensi utama anda."
+  make_this_your_default_license: "Buat ini menjadi lisensi %{type} utama Anda."
   make_this_the_primary_listing: "Buat ini menjadi daftar utama"
   mammals: mamalia
-  manage_all_your_subscriptions: Kelola semua abonemen Anda
-  manage_names: Kelola nama
-  manage_your_projects: Atur Proyek Anda
+  manage_all_your_subscriptions: Kelola semua langganan Anda
+  manage_names: Kelola Nama
+  manage_your_projects: Kelola Proyek Anda
   manage_your_relationships: Kelola relasi
   manager: Manajer
-  managers: Manajer-manajer
-  managers_can_do: Manajer dapat melakukan segala sesuatu yang kurator lakukan seperti mengedit pengaturan proyek dan postingan tulisan proyek jurnal.
-  managing_projects: Proyek yang Diatur
+  managers: Manajer
+  managers_can_do: Manajer dapat melakukan segala sesuatu yang kurator lakukan, mereka juga dapat mengubah pengaturan proyek dan menulis posting untuk proyek jurnal.
+  managing_projects: Proyek Yang Dikelola
   map: Peta
+  map_legend: Legenda Peta
   map_marker_size: ukuran penanda peta
+  map_of_observations: Peta Pengamatan
   maps:
     overlays:
       all_observations: Semua pengamatan
-      every_publicly_visible_observation: Setiap pengamatan terlihat oleh publik dibuat dalam jaringan iNaturalist
-      featured_observations: Pilihan pengamatan
+      every_publicly_visible_observation: Setiap pengamatan publik yang dibuat di dalam jaringan iNaturalist
+      featured_observations: Pengamatan terpilih
       gbif_network: Jaringan GBIF
-      gbif_network_description: Catatan dari museum dan penyedia peristiwa lainnya didistribusikan oleh Fasilitas Global Biodiversity Information
+      gbif_network_description: Catatan dari museum dan penyedia keberadaan lainnya didistribusikan oleh Fasilitas Informatika Keanekaragaman Hayati Global
       observations: Pengamatan
-      place_boundary: Batas lempeng
-      checklist_places: Daftar tempat
-      checklist_places_description: Tempat dimana takson ini telah terdaftar
-      range: Rentang
-  map_tooltip: Tunjukan tampilan peta
-  mark_as_reviewed: Tandai sebagai telah ditinjau
-  mark_all_as_reviewed: Tandai Semua sebagai Telah ditinjau
-  mark_all_as_unreviewed: Tandai semua sebagai belum ditinjau
-  medium: Menengah
+      place_boundary: Batas tempat
+      checklist_places: Tempat daftar centang
+      checklist_places_description: Tempat di mana takson ini telah terdaftar
+      range: Jangkauan
+  map_tooltip: Tunjukkan tampilan peta
+  mark_as_reviewed: Tandai Telah Ditinjau
+  #Note that "Identify" is https://www.inaturalist.org/observations/identify
+  mark_as_reviewed_desc: |
+    Menandai sebuah pengamatan sebagai sudah ditinjau akan membuatnya tidak lagi muncul di Kenali Anda. Ini akan tetap terlihat oleh orang lain di Kenali mereka.
+  mark_all_as_reviewed: Tandai Semua Telah Ditinjau
+  mark_all_as_unreviewed: Tandai Semua Belum Ditinjau
+  maverick: Melawan
+  media: Media
+  media_type: Jenis Media
+  medium: menengah
   meet: Temui
+  member_of_the_inaturalist_network_html: |
+    Anggota dari <a href="%{url}">Jaringan iNaturalist</a>
+  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
+    Anggota dari %{partial_inat_network_tag_html}Jaringan iNaturalist</a>, inisiatif gabungan dari %{cas_tag_html} dan %{nat_geo_tag_html}
   #As in members of a project
   members: Anggota
+  membership_model: Model Keanggotaan
   mentioned_you_in_noun_html: "%{user} menyebut Anda di %{noun}"
+  mentioned_you_in_noun_by_html: "%{user} menyebut Anda di %{noun} oleh %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} menyebut Anda di %{noun} oleh %{by}"
+  mentioned_you_in_noun_by_you_html: "%{user} menyebut Anda di %{noun} oleh Anda"
+  mentioned_you_in_a_x_on_noun_html: "%{user} menyebut Anda di %{x} pada %{noun}"
+  mentioned_you_in_an_x_on_noun_html: "%{user} menyebut Anda di %{x} pada %{noun}"
+  mentioned_you_in_a_x_on_noun_by_html: "%{user} menyebut Anda di %{x} pada %{noun} oleh %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} menyebut Anda di %{x} pada %{noun} oleh %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} menyebut Anda di %{x} pada %{noun} oleh Anda"
+  mentioned_you_in_an_x_on_noun_by_html: "%{user} menyebut Anda di %{x} pada %{noun} oleh %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} menyebut Anda di %{x} pada %{noun} oleh %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} menyebut Anda di %{x} pada %{noun} oleh Anda"
   merge: Gabungkan
   merge_it_with_another_place: Gabungkan dengan tempat lainnya
-  merge_two_places_together: Menggabungkan dua tempat bersama-sama. Semua spesies pada daftar periksa akan digabung, serta data geografis.
-  merge_observation_field_x_into: 'Satukan kolom pengamatan "%{x}" menjadi...'
+  merge_two_places_together: Menggabungkan dua tempat menjadi satu. Semua spesies pada daftar centang akan digabung, termasuk data geografisnya.
+  merge_observation_field_x_into: 'Gabung kolom pengamatan "%{x}" menjadi...'
   merging: Menggabungkan
-  merging_places: Menggabungkan tempat
+  merging_places: Menggabungkan Tempat
   message: Pesan
+  message_deleted: Pesan dihapus
+  message_from_user_at_time: Dari %{user} pada %{time}
+  message_from_user_on_date: Dari %{user} pada %{date}
   messages: Pesan
+  messages_new_correspondent_it_looks_like: |
+    Sepertinya kamu belum pernah berhubungan dengan orang ini sebelumnya, ingat hal-hal berikut:
+  messages_new_correspondent_specimens: |
+    Hati-hati terhadap permohonan spesimen atau data yang disembunyikan. Coba verifikasi identitas orang yang mengajukan permohonan dan jika mereka meminta spesimen, coba minta izin mereka.
+  messages_new_correspondent_personal: |
+    Jangan memberi informasi personal tentang dirimu kepada orang yang kamu tidak kenal atau percaya.
   messages_new_correspondent_actions_html: |
     Jika sekiranya ada orang yang kamu pikir melanggar <a href="%{tos_url}"
     target="_blank">Syarat dan Ketentuan Layanan</a> atau tidak bertindak sesuai <a
     href="%{guidelines_url}" target="_blank">Pedoman Komunitas</a>, harap menandai pesan di bawah ini.
+  misidentifications: Kesalahan identifikasi
   mollusks: Moluska
   momentjs:
     shortRelativeTime:
@@ -2330,7 +2416,7 @@ id:
   no_places_available: Tidak ada tempat yang tersedia
   no_post_yet: Belum ada postingan!
   no_project_selected: Tidak ada proyek yang dipilih
-  no_project_to_admin_current_user: "Anda tidak memiliki admin pada proyek"
+  no_project_to_admin_current_user: "Anda tidak mengelola proyek apapun"
   no_project_to_admin_login: "%{login} tidak admin setiap proyek"
   no_projects_yet: Belum ada proyek
   no_range_data_available: Tidak ada jarak data yang tersedia
@@ -2944,6 +3030,8 @@ id:
   showing_taxa_from_everywhere: "Tampilkan taksa dari manapun"
   showing_taxa_from_place: "Tampilkan taksa dari %{place}"
   sign_in: Masuk
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Masuk dengan Apple
   sign_in_with_provider: "Masuk dengan %{provider}"
   sign_out: Keluar
   sign_up: Daftar
