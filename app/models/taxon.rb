@@ -1246,14 +1246,6 @@ class Taxon < ApplicationRecord
     return observations_count > NUM_OBSERVATIONS_TRIGGERING_WARNING
   end
 
-  def get_observose_threshold
-    return NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT
-  end
-
-  def get_observose_warning_threshold
-    return NUM_OBSERVATIONS_TRIGGERING_WARNING
-  end
-
   def protected_attributes_editable_by?( user )
     return true unless is_active
     return true if user && user.is_admin?
