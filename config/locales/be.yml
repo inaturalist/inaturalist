@@ -647,6 +647,248 @@ be:
   announcement_was_successfully_created: Аб'ява была паспяхова створана.
   announcement_was_successfully_updated: Аб'ява была паспяхова адноўлена.
   announcements: Аб'явы
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
+  any: усе
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
+  any_: Усе
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Усе
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Усе
+  #Label for an option to show content from any date
+  any_date: Усе
+  #Label for an option to show content with any establishment means
+  any_establishment: Усе
+  #Label for an option to show content with any license
+  any_license: Усе
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Усе
+  #Label for an option to show content from any project
+  any_project: Усе
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Усе
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Усе
+  #Label for an option to show/include content by any user
+  any_user: Усе
+  anyone: Кожны
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Прыкладанне
+  applications: Прыкладанні
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Ужыць
+  apply_to_selected: Ужыць да выбраных
+  apply_captive_cultivated: "Ужыць утрымліваецца ў няволі / у культуры"
+  apply_fields: Ужыць палі
+  apply_geoprivacy: Ужыць геапрыватнасць
+  apply_darr: "Ужыць &darr;"
+  apply_establishment_means_to_descendant_places: "Ужыць шлях узнікнення да ўсіх месцаў, што змяшчаюцца ў гэтым"
+  apply_these_settings_to_all: Ужыць гэтыя налады да ўсіх назіранняў, што пералічаны ніжэй.
+  appropriate?: Падыходзіць?
+  arachnids: павукападобныя
+  archives: Архівы
+  are_you_really_sure_want_delete_this_user: Вы сапраўды, насамрэч ўпэўненыя, што хочаце выдаліць гэтага карыстальніка і ўвесь ягоны змест?
+  are_you_sure?: Вы ўпэўненыя?
+  are_you_sure_no_undo: Вы ўпэўненыя? Гэта дзеянне не можа быць скасавана.
+  are_you_sure_delete_post: Вы ўпэўненыя, што хочаце выдаліць гэты допіс?
+  are_you_sure_delete_taxon_move_associates: "Вы ўпэўненыя, што хочаце выдаліць %{taxonname} (%{taxonid}) і перасунуць усе звязаныя з ім запісы?"
+  are_you_sure_delete_this_place: Вы ўпэўненыя, што хочаце выдаліць гэтае месца?
+  are_you_sure_leave_this_project: Вы ўпэўненыя, што жадаеце пакінуць гэты праект?
+  are_you_sure_merge_these_places: Вы ўпэўненыя, што хочаце аб'яднаць гэтыя месцы? Гэта дзеянне не можа быць скасавана
+  are_you_sure_remove_photo: "Вы ўпэўненыя, што жадаеце выдаліць гэтае фота?"
+  are_you_sure_remove_relationship: Вы ўпэўненыя, што жадаеце выдаліць гэтую сувязь? Гэтым самым вы адпішацеся ад гэтай асобы і скасуеце доступ да вашых прыхаваных каардынатаў калі такі доступ быў дазволены раней.
+  are_you_sure_remove_taxon_from_list: "Вы ўпэўненыя, што хочаце выдаліць гэты таксон са спіса?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Вы ўпэўнены? Гэта перазагрузіць старонку, і вы можаце страціць некаторыя змены.
+  are_you_sure_unresolve_flag?: |
+    Вы ўпэўнены, што хочаце зняць гэты сцяжок? Гэта скасуе вырашэнне праблемы і выдаліць карыстальніка, які прапанаваў вырашенне, пазначаные гэтагым сцягам.
+  are_you_sure_want_delete_taxon: "Вы ўпэўненыя, што хочаце выдаліць гэты таксон?"
+  are_you_sure_want_delete_taxon_descendant_taxa: |
+    Вы ўпэўненыя, што хочаце выдаліць гэты таксон? Ён мае таксоны-нашчадкі.
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
+    Вы ўпэўненыя, што хочаце выдаліць гэты таксон? Ён мае таксоны-нашчадкі і вызначэнні.
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
+    Вы ўпэўненыя, што хочаце выдаліць гэты таксон? Ён мае таксоны-нашчадкі, вызначэнні і назіранні.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa: |
+    Вы ўпэўненыя, што хочаце выдаліць гэты таксон? Ён мае таксоны-нашчадкі і таксоны, якія знаходзяцца ў спісах.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications: |
+    Вы ўпэўненыя, што хочаце выдаліць гэты таксон? Ён мае таксоны-нашчадкі, таксоны, якія знаходзяцца ў спісах і вызначэнні.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
+    Вы ўпэўненыя, што хочаце выдаліць гэты таксон? Ён мае таксоны-нашчадкі, таксоны, якія знаходзяцца ў спісах, вызначэнні і назіранні.
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
+    Вы ўпэўненыя, што хочаце выдаліць гэты таксон? Ён мае таксоны-нашчадкі, таксоны, якія знаходзяцца ў спісах і назіранні.
+  are_you_sure_want_delete_taxon_descendant_taxa_observations: |
+    Вы ўпэўненыя, што хочаце выдаліць гэты таксон? Ён мае таксоны-нашчадкі і назіранні.
+  are_you_sure_want_delete_taxon_identifications: |
+    Вы ўпэўненыя, што хочаце выдаліць гэты таксон? Ён мае вызначэнні.
+  are_you_sure_want_delete_taxon_identifications_observations: |
+    Вы ўпэўненыя, што хочаце выдаліць гэты таксон? Ён мае вызначэнні і назіранні.
+  are_you_sure_want_delete_taxon_listed_taxa: |
+    Вы ўпэўненыя, што хочаце выдаліць гэты таксон? Ён мае таксоны, якія знаходзяцца ў спісах.
+  are_you_sure_want_delete_taxon_listed_taxa_identifications: |
+    Вы ўпэўненыя, што хочаце выдаліць гэты таксон? Ён мае таксоны, якія знаходзяцца ў спісах і вызначэнні.
+  are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
+    Вы ўпэўненыя, што хочаце выдаліць гэты таксон? Ён мае таксоны, якія знаходзяцца ў спісах, вызначэнні і назіранні.
+  are_you_sure_want_delete_taxon_listed_taxa_observations: |
+    Вы ўпэўненыя, што хочаце выдаліць гэты таксон? Ён мае таксоны, якія знаходзяцца ў спісах і назіранні.
+  are_you_sure_want_delete_taxon_observations: |
+    Вы ўпэўненыя, што хочаце выдаліць гэты таксон? Ён мае назіранні.
+  are_you_sure_want_delete_taxon_link: Вы ўпэўненыя, што хочаце выдаліць гэтую спасылку на таксон?
+  are_you_sure_want_delete_this_name: Вы ўпэўненыя, што хочаце выдаліць гэтую назву?
+  are_you_sure_want_delete_this_range: Вы ўпэўненыя, што хочаце выдаліць гэты дыяпазон?
+  are_you_sure_you_want_to_commit_this_change: Вы ўпэўненыя, што хочаце зацвердзіць гэтую змену? Гэта дзеянне не можа быць скасавана
+  are_you_sure_you_want_to_delete_this: Вы ўпэўненыя, што хочаце выдаліць гэта?
+  are_you_sure_you_want_to_delete_this_assessment?: Вы ўпэўнены, што хочаце выдаліць адзанку?
+  are_you_sure_you_want_to_delete_this_photo?: Вы ўпэўненыя, што хочаце выдаліць гэтае фота?
+  are_you_sure_you_want_to_delete_this_post: Вы ўпэўненыя, што хочаце выдаліць гэты допіс?
+  are_you_sure_you_want_to_delete_this_taxon_change: Вы ўпэўненыя, што хочаце выдаліць гэтую змену таксона?
+  are_you_sure_you_want_to_remove_all_tags: Вы ўпэўненыя, што жадаеце выдаліць усе пазначэнні?
+  are_you_sure_you_want_to_remove_curator: Вы ўпэўнены, што хочаце выдаліць %{user} як куратара?
+  are_you_sure_you_want_to_remove_from_project: Вы ўпэўнены, што хочаце выдаліць %{user} з гэтага праекта?
+  are_you_sure_you_want_to_remove_manager: Вы ўпэўнены, што хочаце выдаліць %{user} як кіраўніка?
+  are_you_sure_you_want_to_remove_spammer: |
+    Вы ўпэўненыя, што лічыце гэтага карыстальніка пачэсным?
+    Любыя сцягі, якія сігналізуюць пра спам у іхнім змесціве, будуць вырашаны.
+  are_you_sure_you_want_to_remove_these_x_taxa?: "Вы ўпэўнены, што хочаце выдаліць гэтыя %{x} таксоны?"
+  are_you_sure_you_want_to_remove_this_invitation: Вы ўпэўнены, што хочаце выдаліць гэтае запрашэнне?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Вы ўпэўненыя, што хочаце выдаліць гэтае назіранне з %{project}?
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Вы ўпэўненыя, што хочаце выдаліць гэты таксон з таксанамічнага спісу для месца: %{place}?"
+  associated_observations: Звязаныя назіранні
+  associated_taxa: Звязаныя таксоны
+  attention: Увага
+  you_sure_delete_list: Вы ўпэўненыя, што хочаце выдаліць гэты спіс?
+  you_sure_delete_taxon_from_list?: "Вы ўпэўненыя, што хочаце выдаліць %{taxon} таксон са спіса?"
+  asc: Па ўзрастанню
+  ascending: Па ўзрастанню
+  assessment: ацэнка
+  assessment_has_benn_completed: Ацэнка скончана
+  assessment_sections: Падзелы ацэнкі
+  assessment_was_deleted: Ацыэнка была выдалена
+  assessment_was_successfully_created: Ацэнка была паспяхова створана
+  assessment_was_successfully_updated: Ацэнка была паспяхова адноўлена
+  assessment_x: "%{assessment} ацэнка"
+  assessments: ацэнкі
+  associations: Сувязі
+  atlas_for_taxon_html: Атлас для %{taxon}
+  #As in the Atom Syndication Format:
+  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  #an Atom representation of the content shown on the current page
+  atom: Atom
+  attached_taxon: Дастасаваны таксон
+  #Noun form, as in a property of something. Generally used to describe the
+  #name of an attribute available for annotation, e.g. "Life Stage"
+  attribute: Атрыбут
+  attribution: Атрыбуцыя
+  authority_list:
+    iucn_red_list: Чырвоны ліст IUCN
+    natureserve: NatureServe
+    cites: CITES
+  authorize: Аўтарызаваць
+  authorize_permissions_from_provider: "Аўтарызаваць дазволы адд %{provider}"
+  automatic_short: Аўта
+  automatically_add_observations_to_this_project: Аўтаматычна дадаць назіранні да гэтага праекта
+  automatically_update_my_content_for_taxon_changes: Аўтаматычна аднавіць мой змест для зменаў таксонаў
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Сяр.
+  back: Вярнуцца
+  back_to_all_species: Вярнуцца да ўсіх відаў
+  back_to_calendar: "Вярнуцца да каляндара %{user}"
+  back_to_editing_observation: Вярнуцца да рэдактавання назіранняў
+  back_to_friends: Вярнуцца да сяброў
+  back_to_flags_html: "&laquo; Вярнуцца да сцяжкоў"
+  back_to_lists: "Вярнуцца да спісаў %{name}"
+  back_to_observation: Вярнуцца да назірання
+  back_to_observation_fields: Вярнуцца да палёў назірання
+  back_to_people: Вярнуцца да людзей
+  back_to_places: Вярнуцца да месцаў
+  back_to_possessive_user_profile: "Вярнуцца да профілю %{possuser}"
+  back_to_post: '&laquo; Вярнуцца да допіса'
+  back_to_projects: Вярнуцца да праектаў
+  back_to_suggestions: Вярнуцца да прапаноў
+  back_to_taxon: "Вярнуцца да %{defaulttaxon}"
+  back_to_taxon_changes: "Вярнуцца да зменаў таксона"
+  back_to_taxon_framework_for_x: "Вярнуцца да таксанамічнай сістэмы %{taxon_name}"
+  back_to_viewing: "Вярнуцца да прагляду <i>%{taxon}</i>"
+  back_to_x: "Вярнуцца да %{noun}"
+  back_to_x_assessment: "Вярнуцца да ацэнак праекта %{project}"
+  back_to_x_history: "Назад да гісторыі %{x}"
+  back_to_x_journal: "Назад да часопіса карыстальніка %{user}"
+  back_to_x_blog: "Назад да блога карыстальніка %{x}"
+  back_to_your_dashboard: Вярнуцца да панэлі маніторынга
+  back_to_your_lists: Вярнуцца да вашых спісаў
+  back_to_your_journal: Вярнуцца да вашых часопісаў
+  back_to_your_observations: Вярнуцца да вашых назіранняў
+  back_to_your_profile: Вярнуцца да вашага профілю
+  back_to_your_projects: Вярнуцца да вашых праектаў
+  badges: Значкі
+  based_on_the_evidence_can_id_be_improved: |
+    Зыходзячы з доказаў, ці можна таксон супольнасці быць пацверджаны або палепшаны?
+  batch: Пакетная запампоўка
+  batch_edit: Пакетнае рэдактаванне
+  #Where x is the title of a list of taxa
+  batch_edit_taxa_for_x_html: "Пакетнае рэдактаванне таксонаў для %{x}"
+  batch_operations: Пакетныя аперацыі
+  be_the_first_to_fave_this_observation: Будзьце першым, хто ўпадабае гэта назіранне!
+  because_of: з прычыны што
+  before_importing_photos: перад імпартам фота
+  bg_color: Колер фона
+  bio: Біяграфія
+  bio_description: Раскажыце іншым карыстальнікам iNaturalist пра сябе!
+  bioblitz: Біябліц
+  birds: птушкі
+  birthday: Дзень нараджэння
+  black: чорны
+  block_user: Заблакаваць карыстальніка
+  block_removed: Блок зняты
+  blocked_users: Заблакаваныя карыстальнікі
+  blog_widget: Віджэт блога
+  blue: блакітны
+  blue_butterfly_etc: "блакітны, матылёк і г.д."
+  body: Тэкст
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: тлусты шрыфт
+  bounding_box: абмежавальная рамка
+  breadcrumbs: Навігацыйны ланцужок
+  captive_cultivated: У няволі / У культуры
+  card: Картка
+  casual: звычайнае
+  casual_: Звычайнае
+  casual_tooltip_html: '"Звычайныя" назіранні - гэта тыя, якім бракуе медыяфайлаў, месцазнаходжання, або даты, або тыя, што не адпавядаюць патрабаванням статуса якасці "Даследванне" або "Патрабуе ID" па іншых прычынах. <a href="https://www.inaturalist.org/pages/help#quality">Даведацца больш пра ўзроўні якасці</a>'
+  categories: Катэгорыі
+  cc_0_description: "Гэтая ліцэнзія робіць вашую працу грамадскім здабыткам, таму іншыя могуць капіраваць, змяняць, распаўсюджваць і выконваць вашу працу, нават у камерцыйных мэтах, усё без пытання дазволу і без выказвання вам падзякі. Гэта найбольш зручная ліцэнзія з прапанаваных. Рэкамендуецца для максімальнага распаўсюджвання і выкарыстання ліцэнзійных матэрыялаў."
+  cc_0_name: Без аўтарскага права (CC0)
+  cc_attribution_license: Ліцензія Creative Commons з пазначэннем аўтарства
+  cc_by_description: "Гэта ліцэнзія дазваляе іншым распаўсюджваць, перапрацоўваць, дапрацоўваць і абапірацца на вашу працу, нават у камерцыйных, пры ўмове, што яны пазначаюць аўтарства твора."
+  cc_by_name: З пазначэннем аўтарства
+  cc_by_nc_description: "Гэта ліцэнзія дазваляе іншым перапрацоўваць, выпраўляць і развіваць твор на некамерцыйнай аснове, і хоць для вытворных прац захоўваюцца патрабаванні пазначэння аўтараў і некамерцыйнага выкарыстання, не патрабуецца прадстаўлення трэцім асобам аналагічных правоў на вытворныя ад яе."
+  cc_by_nc_name: З пазначэннем аўтарства - Некамерцыйная
+  cc_by_nc_nd_description: "Гэтая ліцэнзія мае найбольш абмежаванняў сярод шасці асноўных ліцэнзій, дазваляючых свабодны распаўсюд твораў. Яна дазваляе іншым атрымоўваць і распаўсюджваць твор да таго моманту, пакуль яны згадваюць аўтара і спасылаюцца на яго, але яны не могуць ні якім чынам змяняць твор і выкарыстоўваць яго ў камерцыйных мэтах."
+  cc_by_nc_nd_name: З пазначэннем аўтарства - Некамерцыйная - Без вытворных
+  cc_by_nc_sa_description: "Гэта ліцэнзія дазваляе іншым перапрацоўваць, выпраўляць і развіваць твор на некамерцыйнай аснове да тага часу, пакуль яны згадваюць арыгінальнае аўтарства і ліцэнзіруюць вытворныя працы на аналагічных ліцэнзійных умовах."
+  cc_by_nc_sa_name: З пазначэннем аўтарства - Некамерцыйная - З захаваннем умоваў
+  cc_by_nd_description: "Гэта ліцэнзія дазваляе свабодна распаўсюджваць творы, як на камерцыйнай, так і некамерцыйнай аснове, пры гэтым праца павінна заставацца нязменнай і абавязкова павінна пазначацца аўтарства."
+  cc_by_nd_name: З пазначэннем аўтарства - Без вытворных
+  cc_by_sa_description: "Гэтая ліцэнзія дазваляе іншым рэдагаваць, рабіць змены і браць за аснову для сваіх твораў ваш твор, нават для выкарыстання з камерцыйнай мэтай, да таго часу, пакуль яны пазначаюць вашае аўтарства і ліцэнзуюць свае новыя творы на тых жа ўмовах. Усе новыя творы, заснаваныя на вашым творы, павінны ліцэнзавацца на тых жа ўмовах, на якіх ліцэнзуюцца вашыя творы. Г. зн. любыя вытворныя творы таксама дазваляецца ліцэнзаваць у камерцыйных мэтах."
+  cc_by_sa_name: З пазначэннем аўтарства - З захаваннем умоваў
+  cc_used_under_a: "Creative Commons, выкарыстоўваецца адпаведна з "
+  change_admin: Змяніць адміністратара
+  #Button to change the cover (or banner) image for a project
+  change_cover: Змяніць вокладку
+  covered_by_a_taxon_framework_link: "таксанамічная сістэма %{taxon_framework_rank} %{taxon_framework_name}"
+  defines_a_taxon_framework_for: Вызначае таксанамічную сістэму для %{taxon_name}
   date:
     abbr_month_names:
       - 
