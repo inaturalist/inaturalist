@@ -74,6 +74,13 @@ describe Place, "bbox_contains_lat_lng_acc?" do
     place = make_place_with_geom
     expect( place.bbox_contains_lat_lng_acc?( place.latitude, place.longitude, 99999999 ) ).to be false
   end
+
+  it "should return false for places without bounds" do
+    place = Place.new
+    expect {
+      expect( place.bbox_contains_lat_lng_acc?( 1, 1 ) ).to be false
+    }.not_to raise_error
+  end
 end
 
 describe Place, "creation" do

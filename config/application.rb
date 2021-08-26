@@ -86,6 +86,14 @@ module Inaturalist
       require_dependency "check_list"
       require_dependency "project_list"
       require_dependency "source"
+      require_dependency "photo"
+      require_dependency "local_photo"
+      require_dependency "flickr_photo"
+      require_dependency "eol_photo"
+      require_dependency "wikimedia_commons_photo"
+      require_dependency "facebook_photo"
+      require_dependency "google_street_view_photo"
+      require_dependency "picasa_photo"
     end
 
     config.action_mailer.preview_path = "#{Rails.root}/test/mailers/previews"
@@ -99,6 +107,24 @@ module Inaturalist
         resource '/oauth/revoke', :headers => :any, :methods => [:post]
         resource '/users/api_token', :headers => :any, :methods => [:get]
       end
+    end
+
+    config.middleware.use( Rack::Tracker ) do
+      handler :google_global, {
+        anonymize_ip: true,
+        # working around the limitations of Rack::Tracker's ability to generate dynamic tracker IDs
+        trackers: [
+          {
+            id: lambda { |env|
+              return env["inat_ga_trackers"][0][1] if env["inat_ga_trackers"] && env["inat_ga_trackers"][0]
+            }
+          }, {
+            id: lambda { |env|
+              return env["inat_ga_trackers"][1][1] if env["inat_ga_trackers"] && env["inat_ga_trackers"][1]
+            }
+          }
+        ]
+      }
     end
   end
 

@@ -150,6 +150,8 @@ zh-TW:
     僅限您在此專案中之觀察記錄因瀕危分類群而被遮蔽的座標
   about_trusting_projects_options_taxon_desc: |-
     許多專案只需要存取被遮蔽的座標，因為該觀察記錄描述了一個瀕危的分類群。
+  about_trusting_projects_overview: |-
+    授權您的隱藏座標將會允許這個專案的管理者看到您在此專案中真實而無遮蔽的地點。這對於科學家或是資源管理者來說，為了分析和做決策，存取真正的座標是非常重要的。
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -1279,6 +1281,9 @@ zh-TW:
   details: 詳細資料
   deviation: 偏差
   devise:
+    confirmations:
+      send_paranoid_instructions: |
+        如果我們的資料庫中有您的 email 地址，您將會在幾分鐘內收到一封 email，裡頭有確認您 email 方法的說明。
     failure:
       already_authenticated: '您已經登入了。'
       unauthenticated: '您必須登入或是註冊才能繼續使用。'
@@ -1592,6 +1597,8 @@ zh-TW:
   flag_for_observation_title_html: |
     標記此觀察記錄：%{title}
   flag_for_photo_id_html: 標記此 <a href="%{url}">照片 %{id}</a>
+  flag_for_place_title_html: |
+    標記此地點：%{title}
   flag_for_post_title_html: |
     標記此貼文：%{title}
   flag_for_project_title_html: |
@@ -1612,6 +1619,7 @@ zh-TW:
   flag_saved_thanks_html: 標記已儲存，感謝！<a href="%{url}" class="readmore">檢視標記</a>
   flag_this_observation: 為本觀察紀錄加上旗號標記。
   flag_this_photo: 標記此照片
+  flag_this_place: 標記此地點
   flag_this_sound: 標記此聲音
   flagged: 已標記
   flagged_: 已標記
@@ -1941,6 +1949,7 @@ zh-TW:
   last_active_with_date: "最近活躍：%{date}"
   last_confirmed_observation: 最近提交的觀察
   last_observation: 最近觀察
+  last_observation_caps: 最近的一筆觀察
   last_seen: 上次看見
   last_year: 去年
   lat: 緯度
@@ -1982,6 +1991,7 @@ zh-TW:
     scientific_names: 學名
     afrikaans: 南非語
     albanian: 阿爾巴尼亞語
+    belarusian: 白羅斯文
     bengali: 孟加拉語
     catalan: 加泰隆尼亞語
     cebuano: 宿霧語
@@ -2014,6 +2024,7 @@ zh-TW:
     luxembourgish: 盧森堡語
     maltese: 馬爾他語
     maori: 毛利語
+    marathi: 馬拉提語
     misima_paneati: Misima-paneati 語
     norwegian: 挪威語
     occitan: 奧克語
@@ -2091,6 +2102,7 @@ zh-TW:
   locales_: 在地
   locales:
     ar: 阿拉伯語
+    be: 白羅斯文
     bg: 保加利亞語
     br: 布列塔尼語
     ca: 加泰隆尼亞語
@@ -2120,6 +2132,7 @@ zh-TW:
     lt: 立陶宛語
     lv: 拉脫維亞文
     mk: 馬其頓語
+    mr: 馬拉提文
     nb: 書面挪威文 (挪威博克莫爾語)
     nl: 荷蘭語
     oc: 奧克語
@@ -2615,10 +2628,14 @@ zh-TW:
   observation_brief_something_from_place_on_day_by_user: "由使用者 %{user} 於 %{day} 在 %{place} 所記錄的"
   observation_brief_something_from_place_on_day_at_time: "於 %{day} %{time} 在 %{place} 所記錄的"
   observation_brief_something_from_place_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 在 %{place} 所記錄的"
+  observation_brief_something_from_place_in_month: "%{month} 在 %{place} 所記錄的"
+  observation_brief_something_from_place_in_month_by_user: "由使用者 %{user} 於 %{month} 在 %{place} 所記錄的"
   observation_brief_taxon_on_day: "在 %{day} 所記錄的 %{taxon}"
   observation_brief_taxon_on_day_at_time: "在 %{day} %{time} 所記錄的 %{taxon}"
   observation_brief_taxon_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 所記錄的"
   observation_brief_taxon_on_day_by_user: "由 %{user} 在 %{day} 所記錄的 %{taxon}"
+  observation_brief_taxon_in_month: "在 %{month} 所記錄的 %{taxon}"
+  observation_brief_taxon_in_month_by_user: "由 %{user} 在 %{month} 所記錄的 %{taxon}"
   observation_brief_taxon_by_user: "%{user} 所建立的 %{taxon}"
   observation_brief_taxon_from_place: "位於 %{place} 的 %{taxon}"
   observation_brief_taxon_from_place_by_user: "由 %{user} 在 %{place} 所記錄的 %{taxon}"
@@ -2626,6 +2643,8 @@ zh-TW:
   observation_brief_taxon_from_place_on_day_by_user: "由 %{user} 於 %{day} 在 %{place} 所記錄的 %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time: "%{day} %{time} 在 %{place} 所記錄的 %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "由 %{user} 於 %{day} %{time} 在 %{place} 所記錄的 %{taxon}"
+  observation_brief_taxon_from_place_in_month: "%{month} 在 %{place} 所記錄的 %{taxon}"
+  observation_brief_taxon_from_place_in_month_by_user: "由 %{user} 於 %{month} 在 %{place} 所記錄的 %{taxon}"
   observations_by_category: "依分類區分觀察"
   observations_by_app: 依應用程式區分觀察
   observations_by_rank: 依級別區分觀察
@@ -4321,8 +4340,10 @@ zh-TW:
     此查詢一次回傳太多要呈現的物種分類。請嘗試添加更多的篩選
   tools: 工具
   top_contributors: 頂尖貢獻者
+  top_identifier_caps: 最高紀錄之鑑定者
   top_identifiers: 熱門鑑定人
   top_identifiers_of_taxon: '%{taxon}的熱門鑑定人'
+  top_observer_caps: 最高紀錄之觀察者
   top_observers: 熱門觀察者
   tos_privacy_guidelines_label: |
     我同意<a href="/terms" target="_blank">服務條款</a>和<a href="/privacy" target="_blank">隱私權政策</a>，而且我已經審閱過<a href="/pages/community+guidelines" target="_blank">社群守則</a>。
@@ -4330,6 +4351,8 @@ zh-TW:
   totals: 總計
   total_members: 會員總數
   total_observations: 觀察總數
+  total_observations_caps: 觀察紀錄總數
+  total_species_observed_caps: 已觀察到的物種總數
   total_unique_observers: 唯一觀察者總計
   translated_languages: 已翻譯語言
   'true': '是'
@@ -4626,6 +4649,16 @@ zh-TW:
   welcome_to_inat: "歡迎來到 %{site_name}！"
   welcome_to_guides: "歡迎來到 %{site_name} 指南！"
   welcome_to_x_project: "歡迎來到%{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: 我們很肯定這是在此屬
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: 我們很肯定這是在此科
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: 我們很肯定這是在此目
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: 我們很肯定這是在此亞科
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: 我們很肯定的是在此總科
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
@@ -6914,6 +6947,13 @@ zh-TW:
               is_too_large_to_edit: 太大無法編輯
               is_too_large_to_import: 太大而無法匯入
               contains_too_many_observations: 包含太多觀察而無法匯入
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: 不可留空
+              invalid_point: 有不正確的點位，例如：經度大於 180 或緯度小於 -90
+              must_have_more_than_three_points: 必須要多於三個點
+              polygon_with_fewer_than_four_points: 具有少於四個點的多邊形
         post:
           attributes:
             parent:

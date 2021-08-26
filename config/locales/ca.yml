@@ -1344,6 +1344,9 @@ ca:
   details: Detalls
   deviation: Desviació
   devise:
+    confirmations:
+      send_paranoid_instructions: |
+        Si la teva adreça de correu electrònic existeix a la nostra base de dades, rebràs un correu electrònic amb instruccions per confirmar la teva adreça en uns minuts.
     failure:
       already_authenticated: 'Ja heu iniciat la sessió.'
       unauthenticated: 'Heu d''iniciar la sessió o registrar-vos abans de continuar'
@@ -6984,6 +6987,13 @@ ca:
               is_too_large_to_edit: és massa gran per editar
               is_too_large_to_import: és massa gran per a importar-ho
               contains_too_many_observations: Conté massa observacions per importar
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: no pot estar en blanc
+              invalid_point: té un punt no vàlid, p.e. la longitud és més gran de 180 o la latitud inferior a -90
+              must_have_more_than_three_points: ha de tenir més de 3 punts
+              polygon_with_fewer_than_four_points: té un polígon amb menys de 4 punts
         post:
           attributes:
             parent:

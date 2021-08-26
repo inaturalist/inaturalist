@@ -105,6 +105,7 @@ const FIELDS = {
     body: true,
     created_at: true,
     flags: { id: true },
+    hidden: true,
     id: true,
     moderator_actions: MODERATOR_ACTION_FIELDS,
     spam: true,
@@ -129,6 +130,7 @@ const FIELDS = {
     current: true,
     disagreement: true,
     flags: { id: true },
+    hidden: true,
     moderator_actions: MODERATOR_ACTION_FIELDS,
     previous_observation_taxon: TAXON_FIELDS,
     spam: true,
@@ -224,6 +226,7 @@ const FIELDS = {
       prefers_observation_fields_by: true
     }
   } ),
+  viewer_trusted_by_observer: true,
   votes: {
     id: true,
     user: Object.assign( {}, USER_FIELDS, { id: true } ),

@@ -53,9 +53,5 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-
-  config.middleware.use Rack::GoogleAnalytics, :trackers => lambda { |env|
-    return env['inat_ga_trackers'] if env['inat_ga_trackers']
-  }
 end
 

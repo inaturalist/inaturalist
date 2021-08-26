@@ -323,7 +323,10 @@ class ActivityItem extends React.Component {
     const headerItems = [];
     const unresolvedFlags = _.filter( item.flags || [], f => !f.resolved );
     if ( item.hidden ) {
-      const moderatorAction = _.sortBy( _.filter( item.moderator_actions, ma => ma.action === "hide" ), ma => ma.id * -1 )[0];
+      const moderatorAction = _.sortBy(
+        _.filter( item.moderator_actions, ma => ma.action === "hide" ),
+        ma => ma.id * -1
+      )[0];
       const maUserLink = (
         <a
           href={`/people/${moderatorAction.user.login}`}

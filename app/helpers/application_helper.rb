@@ -241,15 +241,12 @@ module ApplicationHelper
   # with the hash passed in.  To remove existing values, specify them with
   # :without => [:some, :keys]
   # Example: url_for_params(:taxon_id => 1, :without => :page)
-  def url_for_params(options = {})
-    new_params = params.clone
+  def url_for_params( options = {} )
+    new_params = request.POST.merge( request.GET ).merge( options )
     if without = options.delete(:without)
       without = [without] unless without.is_a?(Array)
       without.map!(&:to_s)
       new_params = new_params.reject {|k,v| without.include?(k) }
-    end
-    unless options.empty?
-      new_params = new_params.merge( options ).permit( options.keys )
     end
     url_for( new_params )
   end
