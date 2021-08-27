@@ -212,7 +212,7 @@ module Logstasher
   end
 
   def self.is_user_agent_a_bot?(user_agent)
-    !![ "(bot|spider|pinger)\/", "(yahoo|ruby|newrelicpinger|python|lynx|crawler)" ].
+    !![ "(bot|spider|pinger)\/", "(yahoo|ruby|newrelicpinger|python|lynx|crawler|facebookexternalhit)" ].
       detect { |bot| user_agent =~ /#{ bot }/i }
   end
 

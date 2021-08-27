@@ -30,7 +30,20 @@ class AdminController < ApplicationController
     @display_user = User.find_by_id(params[:id].to_i)
     @display_user ||= User.find_by_login(params[:id])
     @display_user ||= User.find_by_email(params[:id]) unless params[:id].blank?
-    @observations = Observation.page_of_results( user_id: @display_user.id ) if @display_user
+    if @display_user
+      @observations = Observation.page_of_results( user_id: @display_user.id )
+      geoip_response = INatAPIService.geoip_lookup( { ip: @display_user.last_ip } )
+      if geoip_response && geoip_response.results && geoip_response.results.country
+        @geoip_location = [
+          geoip_response.results.city,
+          geoip_response.results.region,
+          geoip_response.results.country
+        ].join( ", " )
+        if geoip_response.results.ll
+          @geoip_latitude, @geoip_longitude = geoip_response.results.ll
+        end
+      end
+    end
 
     respond_to do |format|
       format.html do
