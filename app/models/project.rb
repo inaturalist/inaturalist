@@ -72,11 +72,12 @@ class Project < ApplicationRecord
     super_candidate = super( string )
     candidate = title.parameterize
     candidate = super_candidate if candidate.blank? || candidate == super_candidate
-    if candidate.to_i > 0
-      candidate = string.gsub( /[^\p{Word}0-9\-_]+/, "-" ).downcase
-    end
     if candidate =~ /^\d+$/
-      candidate = ["project", id, candidate].compact.join( "-" )
+      candidate = string.gsub( /[^\p{Word}0-9\-_]+/, "-" ).downcase
+    
+      if candidate =~ /^\d+$/
+        candidate = ["project", id, candidate].compact.join( "-" )
+      end
     end
     candidate
   end
