@@ -887,6 +887,9 @@ be:
   change_admin: Змяніць адміністратара
   #Button to change the cover (or banner) image for a project
   change_cover: Змяніць вокладку
+  change_types:
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replace_with: заменена на
   covered_by_a_taxon_framework_link: "таксанамічная сістэма %{taxon_framework_rank} %{taxon_framework_name}"
   defines_a_taxon_framework_for: Вызначае таксанамічную сістэму для %{taxon_name}
   date:
