@@ -190,6 +190,8 @@ es-MX:
     Solo tus observaciones en este proyecto que tengan coordenadas oscurecidas debido a que corresponden a taxones en riesgo
   about_trusting_projects_options_taxon_desc: |-
     Muchos proyectos solo necesitan acceso a coordenadas oscurecidas porque la observación corresponde a un taxón en riesgo.
+  about_trusting_projects_overview: |-
+    Al conceder acceso a tus coordenadas ocultas, los administradores de este proyecto podrán ver la ubicación real, no oscurecida, de tus observaciones en este proyecto. Esto es extremadamente importante en situaciones en las que un científico o administrador de recursos necesite tener acceso a las coordenadas exactas para el análisis o la toma de decisiones.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -1361,6 +1363,10 @@ es-MX:
   details: Detalles
   deviation: Desviacion
   devise:
+    confirmations:
+      send_paranoid_instructions: |
+        Si tu dirección de correo electrónico ya existe en nuestra base de datos, recibirás un correo electrónico con instrucciones para confirmar tu dirección de correo en unos
+        minutos.
     failure:
       already_authenticated: 'Ya has iniciado sesión.'
       unauthenticated: 'Debes iniciar sesión o registrarte antes de continuar.'
@@ -2109,6 +2115,7 @@ es-MX:
     luxembourgish: Luxemburgués
     maltese: Maltés
     maori: Maorí
+    marathi: Maratí
     misima_paneati: Misima-paneati
     norwegian: Noruego
     occitan: Occitano
@@ -2216,6 +2223,7 @@ es-MX:
     lt: Lituano
     lv: Letón
     mk: Macedonio
+    mr: Maratí
     nb: Noruego Bokmål
     nl: Holandés
     oc: Occitano
@@ -2894,6 +2902,9 @@ es-MX:
       </ul>
   one_by_one: "Uno per uno"
   one_of_your_lists: "una de tus listas..."
+  one_or_more_input_taxa_have_more_than_1000: |
+    Uno o más taxones de entrada tienen más de 1000 observaciones asignadas.
+    El llevarlo a cabo puede tardar algún tiempo en procesarse, ¿estás seguro de que este cambio de taxón es necesario? Además, los cambios de taxón no se pueden deshacer.
   only_a_project_manager_can_add: Solo un Gerente del proyecto puede darle una clasificación a un curador de proyecto
   only_administrators_may_access_that_page: Solo los administradores pueden acceder a esa página
   only_an_admin_can_remove_project_users: Solo el administrador puede eliminar usuarios del proyecto.
@@ -4006,6 +4017,8 @@ es-MX:
   showing_x_of_y: Mostrando %{x} de %{y}
   showing_x_of_y_listings: "Mostrando %{x} de %{y} listados"
   sign_in: Entra
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Regístrate con Apple
   sign_in_with_provider: "Entra con %{provider}"
   sign_in_with_google: Iniciar sesión con Google
   sign_out: Termina la sesión
@@ -4447,6 +4460,7 @@ es-MX:
   this_taxon_change_has_been_commited: |
     <strong>¡Este cambio de taxonomía en la especie o grupo ha sido guradado!</strong> Porfavor no edites la especie o grupo. Puedes editar los demas campos.
   this_taxon_concept_is_inactive: esta especie o grupo esta inactiva
+  this_taxon_has_more_than_1000: Este taxón tiene más de 1000 observaciones asignadas. La edición puede tardar algún tiempo en procesarse, ¿estás seguro de que es necesario?
   this_taxon_has_no_default_photo: '¡Esta especie o grupo no tiene foto predeterminada!'
   this_taxon_is_inactive_this_means: |
     Esta especie o grupo esta <strong>inactiva</strong>. Esto sigifica que los curadores de %{site_name} lo han reemplazado por un concepto mas actualizado.
@@ -4799,6 +4813,10 @@ es-MX:
   were_pretty_sure_this_is_in_the_family: 'Estamos bastante seguros de que está en esta familia:'
   #Label for the most probable taxon in the automated suggestions when that taxon is an order
   were_pretty_sure_this_is_in_the_order: 'Estamos bastante seguros de que está en este orden:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: 'Estamos bastante seguros de que está en esta subfamilia:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: 'Estamos bastante seguros de que está en esta superfamilia:'
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
@@ -7161,6 +7179,13 @@ es-MX:
               is_too_large_to_edit: es demasiado grande para editarse
               is_too_large_to_import: es demasiado grande para importar
               contains_too_many_observations: contiene demasiadas observaciones para importar
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: no puede estar en blanco
+              invalid_point: tiene un punto inválido, por ejemplo, longitud mayor a 180 o latitud menor que -90
+              must_have_more_than_three_points: debe tener más de 3 puntos
+              polygon_with_fewer_than_four_points: tiene un polígono con menos de 4 puntos
         post:
           attributes:
             parent:
@@ -7306,6 +7331,7 @@ es-MX:
       "@vow_or_con":
         vow: vocal
         con: consonante
+        a: "@vow"
       "@gender":
         m: Macho
         f: Hembra
