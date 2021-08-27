@@ -2917,6 +2917,10 @@ sv:
       </ul>
   one_by_one: "En-efter-en"
   one_of_your_lists: "en av dina listor..."
+  one_or_more_input_taxa_have_more_than_1000: |
+    Ett eller flera inmatningstaxa har mer än 1000 underliggande observationer.
+    En bekräftning kan ta lite tid att behandla, är du säker på att denna taxonändring
+    är nödvändig? Dessutom kan taxonändringar inte ångras.
   only_a_project_manager_can_add: Endast en projektledare kan lägga till förvaltarstatus
   only_administrators_may_access_that_page: Endast administratörer har tillgång till den sidan
   only_an_admin_can_remove_project_users: Endast en administratör kan ta bort projektanvändare
@@ -4036,6 +4040,8 @@ sv:
   showing_x_of_y: Visar %{x} av %{y}
   showing_x_of_y_listings: "Visar %{x} av %{y} listor"
   sign_in: Logga in
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Logga in med Apple
   sign_in_with_provider: "Logga in med %{provider}"
   sign_in_with_google: Logga in med Google
   sign_out: Logga ut
@@ -4476,6 +4482,7 @@ sv:
     <strong>Denna taxonändring är på gång!</strong>
     Redigera inte några taxa.  Redigering av andra fält är ok.
   this_taxon_concept_is_inactive: detta taxonkoncept är inaktivt
+  this_taxon_has_more_than_1000: Detta taxon har mer än 1000 underliggande observationer. Redigering kan ta lite tid att bearbeta, är du säker på att det är nödvändigt?
   this_taxon_has_no_default_photo: Detta taxon har ingen standardbild!
   this_taxon_is_inactive_this_means: |
     Detta taxon är <strong>inaktivt</strong>. Det innebär att %{site_name}s förvaltare har ersatt det med ett taxonomiskt mer aktuellt taxonkoncept.
