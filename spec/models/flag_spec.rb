@@ -31,7 +31,7 @@ describe Flag, "creation" do
       subject.run_callbacks :create
     end
 
-    context "Observation" do
+    context "on observations" do
       let(:flaggable) { build_stubbed :observation, quality_grade: Observation::NEEDS_ID }
 
       it "should set the flaggable content for an observation to the description" do
@@ -46,7 +46,7 @@ describe Flag, "creation" do
     end
 
     [Post, Comment, Identification].each do |model|
-      context "#{model}" do
+      context "on #{model.to_s.downcase.pluralize}" do
         let(:flaggable) { build_stubbed :"#{model.name.underscore}", body: "some bad stuff" }
 
         it "should set the flaggable content to the body" do
