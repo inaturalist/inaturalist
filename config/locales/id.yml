@@ -2646,39 +2646,54 @@ id:
   observation_observed_on_examples: |
     contoh 2019-10-29 13:12:21
   observation_removed_from_the_project: "Pengamatan dihapus dari proyek \"%{project}\""
+  observation_requirements: Persyaratan Pengamatan
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: Persyaratan pengamatan diperbarui pada
   observation_rules: Aturan pengamatan
   observation_rules_description: |
-    Anda dapat memilik aturan untuk menjelaskan pengamatan apa yang dapat ditambahkan pada proyek ini, seperti membatasi pengamatan untuk tempat atau taksa tertentu. Jika Anda memiliki lebih dari satu aturan untuk tipe aturan, pengamatan akan menjadi akurat jika salah satu aturan berlalu. Misalnya, jika Anda memiliki aturan "harus dalam Amphibia "dan" harus dalam Reptilia ", maka proyek akan menerima pengamatan reptil atau amfibi.
+    Anda dapat memilih aturan untuk menentukan pengamatan apa yang dapat ditambahkan ke dalam proyek ini, seperti membatasi pengamatan untuk tempat atau taksa tertentu. Jika Anda memiliki lebih dari satu aturan untuk tipe aturan, pengamatan akan menjadi akurat jika salah satu aturan berlalu. Misalnya, jika Anda memiliki aturan "harus berupa Amfibi" dan "harus berupa Reptil", maka proyek akan menerima pengamatan reptil ATAU amfibi.
   observation_was_deleted: Pengamatan telah dihapus.
+  observation_without_media: Pengamatan tanpa media
   observations: Pengamatan
   observations_: pengamatan
   observations_added_by_x_html: "Pengamatan ditambahkan oleh %{x}"
+  observations_annotated_with_annotation: "Pengamatan yang dibubuhi catatan %{annotation}"
   observations_by: Pengamatan oleh
   observations_by_user: "Pengamatan oleh %{user}"
   observations_deleted: Pengamatan telah dihapus.
   observations_fields_are: |
     Kolom pengamatan adalah potongan-potongan tambahan data yang terkait dengan pengamatan, seperti jumlah individu yang diamati, deskripsi habitat, atau apapun yang Anda inginkan! Proyek juga dapat menentukan kolom yang ingin mereka isi.
   observations_from: Pengamatan dari %{date}
+  observations_from_people_taxa_and_places_youre_following: "Pengamatan dari orang, tempat, dan taksa yang Anda ikuti"
   observations_from_this_place: Pengamatan dari tempat ini
   observations_from_this_project: Pengamatan dari proyek ini
+  observations_in_this_project_must: Pengamatan dari proyek ini harus memenuhi kriteria berikut
   observations_map: Pengamatan / Peta
   observation_must_dotdotdot: Pengamatan harus...
   observations_near_a_place_are: |
-    Pengamatan "dekat" tempat berada dalam persegi panjang yang ditarik sekitar batas tempat ini, yang dapat mengakibatkan beberapa hasil yang tidak akurat untuk tempat-tempat yang tidak menyerupai persegi panjang. Hal ini disebabkan keterbatasan dengan database kami bahwa kami sedang bekerja untuk menyelesaikannya.
-  observations_needing_curation: Pengamatan Memerlukan Kurasi
+    Pengamatan di "dekat" sebuah tempat berada di dalam suatu persegi panjang yang ditarik di sekitar batas tempat ini, yang menyebabkan beberapa hasil yang diberikan tidak akurat untuk tempat-tempat yang tidak menyerupai persegi panjang. Hal ini disebabkan oleh keterbatasan database kami yang hingga kini masih kami usahakan untuk ditingkatkan kualitasnya.
+  observations_needing_curation: Pengamatan Yang Memerlukan Kurasi
+  observations_observed_this_month: Pengamatan yang <em>diamati</em> bulan ini, bukan ditambahkan bulan ini. Mari keluar menjelajah!
+  observations_of_relatives: Pengamatan kerabat
   observations_of_taxon: "Pengamatan pada %{taxon_name}"
   observations_per_month: Pengamatan / Bulan
   observations_removed_from_the_project: "Pengamatan dihapus dari proyek \"%{project}\""
   observations_saved: Pengamatan disimpan!
-  observations_specifying_this_field: Pengamatan yang menentukan kolom ini
-  observations_specifying_this_field_with_value: Pengamatan yang menentukan kolom ini dengan "%{value}"
+  observations_specifying_this_field: Pengamatan yang mencakup kolom ini
+  observations_specifying_this_field_with_value: Pengamatan yang mencakup kolom ini dengan "%{value}"
   observations_text_search_warning: |
-    Pencarian teks dapat menghasilkan hasil yang aneh bila dikombinasikan dengan filter lainnya. Jika
-    Anda ingin mencari pengamatan dari spesies tertentu, menggunakan saringan takson.
+    Pencarian teks dapat menghasilkan hasil yang aneh bila dikombinasikan dengan saringan lainnya. Jika
+    Anda ingin mencari pengamatan dari spesies tertentu, gunakan saringan takson.
+  observations_this_year_vs_last_year: Pengamatan Tahun Ini vs. Tahun Lalu
+  observations_total: Total Pengamatan
   observations_w: Pengamatan dengan
   observations_w_field: Pengamatan dengan kolom
-  observations_was_successfully_updated: Pengamatan telah sukses diperbarui.
+  observations_was_successfully_updated: Pengamatan sukses diperbarui.
   observations_widget: Widget Pengamatan
+  observations_with_this_field: Pengamatan dengan kolom ini
+  observations_with_this_field_and_value: Pengamatan dengan kolom dan nilai ini
+  observations_without_media: Pengamatan Tanpa Media
   observationcounts_refreshed: Jumlah pengamatan diperbarui
   observed: Diamati
   observed_by: Diamati oleh
@@ -2689,19 +2704,35 @@ id:
   occurrence_status: Status terjadinya
   occurrence_status_descriptions:
     absent: Tak terjadi di area tersebut
-  occurrence_status_establishment_means: Status kejadian, pembentukan berarti
+    common: Sering didapatkan
+    doubtful: Dianggap ada, tetapi keberadaannya diragukan berdasarkan buktinya
+    irregular: Keberadaan tidak terprediksi, termasuk yang berkeliaran; mungkin sering ditemukan pada tahun-tahun tertentu dan tidak ditemukan di tahun-tahun lainnya
+    present: Didapatkan di area
+    uncommon: Biasanya didapatkan, tapi dalam jumlah sedikit; memerlukan pencarian di habitat yang sesuai dengan teliti
+  occurrence_status_establishment_means: status keberadaan, asal muasal
   occurrence_status_levels:
-    present: Sekarang
+    present: ada
     common: umum
     uncommon: tidak umum
-    irregular: luar biasa
-    doubtful: ragu-ragu
-    absent: absen
+    irregular: tidak teratur
+    doubtful: diragukan
+    absent: tidak ada
+  of_places: tempat
+  of_this_taxon: Dari takson ini
   offensive_inappropriate: ofensif / tidak pantas
+  off_caps: "MATI"
   official_blog: Blog Resmi
   offline_access_enabled: Akses offline diaktifkan
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Penyesuaian Waktu"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Penyesuaian
+  old_observation_form: Bentuk pengamatan lama (usang)
   ok: "Oke"
+  on_caps: "NYALA"
   on_day: "pada"
+  onboarding:
+    youve_got_updates_panel_title: Kamu mendapatkan berita baru!
   one_by_one: "satu per satu"
   one_of_your_lists: "satu dari daftar Anda..."
   only_a_project_manager_can_add: Hanya manajer proyek yang dapat menambahkan status proyek kurator
@@ -3972,7 +4003,22 @@ id:
       4: Ra
       5: Ka
       6: Ju
-      7: Sa
+      7: Sab
+    formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      default: '%Y-%m-%d'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      long: '%d %B, %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      short: '%d %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      compact: "%e %b"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      short_with_year: '%d %b, %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      month_year: '%B %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      month_day_year: '%d %B, %Y'
     month_names:
       - 
       - Januari
@@ -3990,6 +4036,14 @@ id:
   datetime:
     distance_in_words:
       half_a_minute: setengah menit
+    countdown_x_days:
+      other: hari
+    countdown_x_hours:
+      other: jam
+    countdown_x_minutes:
+      other: men
+    countdown_x_seconds:
+      other: det
     prompts:
       day: Hari
       hour: Jam
@@ -4014,11 +4068,38 @@ id:
     template:
       body: 'Ada masalah dengan bidang-bidang berikut:'
   helpers:
+    defaults:
+      title: "INI JUDUl"
     select:
       prompt: Mohon pilih
+    submit:
+      create: Buat %{model}
+      submit: Simpan %{model}
   number:
+    format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
+      delimiter: '.'
+      precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
+      separator: ','
+      significant: false
+      strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}rb"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}jt"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}M"
     human:
       decimal_units:
+        format: '%n %u'
         units:
           billion: Milyar
           million: Juta
@@ -4026,8 +4107,18 @@ id:
           thousand: Ribu
           trillion: Triliun
       format:
+        precision: 3
         significant: true
         strip_insignificant_zeros: true
+      storage_units:
+        format: '%n %u'
+        units:
+          byte:
+            other: Bita
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
   support:
     array:
       last_word_connector: ', dan'
@@ -4035,6 +4126,23 @@ id:
       words_connector: ','
   time:
     am: pagi
+    formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      default: '%d %b., %Y %H:%M:%S %z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      long: '%d %B, %Y %I:%M %p'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      short: '%d %b %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      compact: "%I:%M %p"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      observed_at: '%I:%M %p %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      rfc: "%d %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      day_month_year: "%d %B, %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      hours: "%l:%M %p"
     pm: malam
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
@@ -4067,9 +4175,11 @@ id:
         title: Judul
         body: Isi
       conservation_status:
+        status: Status
         description: Deskripsi
         authority: Wewenang
         place_id: Tempat
+        url: URL
         geoprivacy: Geoprivasi
         iucn: setara IUCN
       flag:
@@ -4081,11 +4191,28 @@ id:
       listed_taxon:
         occurrence_status_level: tingkat status terjadinya
         establishment_means: Pendirian sarana
+      message:
+        subject: Subyek
+        body: Isi
       observation:
+        description: Catatan
         geo_x: Arah Timur
         geo_y: Arah Utara
+        observed_on: tanggal diamati
       observation_field_value:
         value: 'Nilai'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: Diantrekan
+        #Date/time the task began processing
+        started_at: Dimulai
+        #Date/time the task finished processing
+        finished_at: Diselesaikan
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: Input
+      post:
+        title: Judul
+        body: Isi
       project:
         title: Judul
         project_icon: Ikon proyek
@@ -4114,9 +4241,11 @@ id:
         parent_id: Induk
         place_type: Tipe tempat
         prefers_check_lists: Checklist diperbolehkan?
+        woeid: WOEID
       source:
         title: Judul
         in_text: dalam teks
+        url: URL
         citation: Kutipan
       taxon:
         name: Nama
@@ -4135,6 +4264,12 @@ id:
         source_identifier: Sumber identifier
       user:
         email: Surel
+        login: Nama pengguna
+        name: Nama
+        locale: Tempat
+        time_zone: Zona waktu
+        search_place_id: Tempat pencarian
+        place_id: Tempat
     errors:
       models:
         guide:
@@ -4158,6 +4293,157 @@ id:
           attributes:
             user_id:
               must_be_curator: harus menjadi kurator pada proyek ini
+  doorkeeper:
+    flash:
+      applications:
+        create:
+          #Application as in a software application
+          notice: 'Aplikasi dibuat.'
+        destroy:
+          #Application as in a software application
+          notice: 'Aplikasi dihapus'
+        update:
+          #Application as in a software application
+          notice: 'Aplikasi diperbarui.'
+      authorized_applications:
+        destroy:
+          #Application as in a software application
+          notice: 'Aplikasi ditarik kembali.'
+  i18n:
+    inflections:
+      "@vow_or_con":
+        vow: vokal
+        con: konsonan
+        a: "@vow"
+        e: "@vow"
+        i: "@vow"
+        o: "@vow"
+        u: "@vow"
+        default: "@con"
+      "@gender":
+        m: pria
+        f: wanita
+        "n": netral
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        application: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        assessment_section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        atlas: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        check_list: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
+        form: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        identification: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        listed_taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        note: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation_field: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        place: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        post: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        species: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_drop: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_link: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_merge: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_split: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_stage: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_swap: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@n"
+        #Default gender for nouns that aren't listed here
+        default: "@n"
+  #Title of a section warning the user about something
+  warning_title: Peringatan
+  wikimedia: Wikimedia
   wild: Liar
+  will_paginate:
+    previous_label: "&#8592; Sebelumnya"
+    next_label: "Berikutnya &#8594;"
+    page_gap: "&hellip;"
+  you_will_no_longer_be_following_or_trusting: "Kamu tidak akan mengikuti atau memercayai %{user} lagi"
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: Z ke A
   zoom_in: Perdekat
   zoom_out: Perjauh
+  zoom_photo: Perbesar Foto
