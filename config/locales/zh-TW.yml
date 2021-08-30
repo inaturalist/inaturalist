@@ -1282,6 +1282,8 @@ zh-TW:
   deviation: 偏差
   devise:
     confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
         如果我們的資料庫中有您的 email 地址，您將會在幾分鐘內收到一封 email，裡頭有確認您 email 方法的說明。
     failure:
