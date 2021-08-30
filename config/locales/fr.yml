@@ -2509,7 +2509,7 @@ fr:
   #Stub text to show where the nav section of the project detail page is.
   nav_description: La navigation du projet va ici.
   ne_lat: Lat. NE
-  ne_lon: Lon. NE
+  ne_lon: Long. NE
   near_threatened: Quasi-menacée
   nearby_observations_: Observations à proximité
   needs_id: besoin ID
@@ -4215,7 +4215,7 @@ fr:
   support_inaturalist: Soutenir iNaturalist
   suspend_user: Suspendre l’utilisateur
   sw_lat: Lat. SO
-  sw_lon: Lon. SO
+  sw_lon: Long. SO
   sync: Synchroniser ?
   sync_obs_with_photo_metadata: "Synchroniser les observations avec les métadonnées de la photo ?"
   synonyms: Synonymes
@@ -5600,13 +5600,13 @@ fr:
         coordinate_systems_help: |
           %{site_name} accepte les coordonnées en provenance de différents systèmes
           de coordonnées. Donc, quand vous fournissez des coordonnées autres que
-          latitude/longitude, nous devons connaître le système de coordonnées vous
+          latitude/longitude, nous devons connaître le système de coordonnées que vous
           utilisez pour pouvoir les interpréter correctement. Assurez-vous d’avoir
           choisi le bon système de coordonnées pour vos données, sinon
           l’emplacement sera loin de là où il devrait être. Si vos
           coordonnées proviennent d’un GPS, vérifiez ses paramètres pour trouver le nom du
           système de coordonnées qu’il utilise. Prenez note que nous ne stockons pas les coordonnées
-          personnalisées, seulement leurs conversions en lat/lon.
+          personnalisées, seulement leurs conversions en lat./long.
         date_column_format: AAAA-MM-JJ HH:MM
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
