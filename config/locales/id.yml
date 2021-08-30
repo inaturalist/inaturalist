@@ -1248,6 +1248,8 @@ id:
   deviation: Deviasi
   devise:
     confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
         Jika alamat surel Anda ada di dalam database kami, Anda akan menerima surel dengan petunjuk cara untuk mengonfirmasi alamat surel Anda di dalam beberapa menit.
     failure:
