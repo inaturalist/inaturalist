@@ -1384,6 +1384,8 @@ sv:
   deviation: Avvikelse
   devise:
     confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
         Om din e-postadress finns i vår databas, kommer du att få ett e-postmeddelande
         med instruktioner för hur du bekräftar din e-postadress om några
