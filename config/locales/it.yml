@@ -1350,6 +1350,8 @@ it:
   deviation: Scostamento
   devise:
     confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
         Se il tuo indirizzo email esiste nel nostro database, riceverai un'email con le istruzioni per come confermare il tuo indirizzo email in pochi minuti.
     failure:
