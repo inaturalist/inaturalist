@@ -196,7 +196,7 @@ class AdminController < ApplicationController
     @type = params[:type] || "observations"
     @reflection_name, @reflection = User.reflections.detect{|k,r| k.to_s == @type}
     @klass = Object.const_get(@reflection.class_name) rescue nil
-    @klass = nil unless @klass.try(:base_class).try(:superclass) == ActiveRecord::Base
+    @klass = nil unless @klass < ActiveRecord::Base
     unless @klass
       flash[:error] = "#{params[:type]} doesn't exist"
       redirect_back_or_default(:action => "index")
