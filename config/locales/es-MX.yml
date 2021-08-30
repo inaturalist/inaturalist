@@ -1364,6 +1364,8 @@ es-MX:
   deviation: Desviacion
   devise:
     confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
         Si tu dirección de correo electrónico ya existe en nuestra base de datos, recibirás un correo electrónico con instrucciones para confirmar tu dirección de correo en unos
         minutos.
