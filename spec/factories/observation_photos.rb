@@ -3,4 +3,8 @@ FactoryBot.define do
     observation
     photo
   end
+
+  trait :local do
+    photo { build :local_photo }
+  end
 end

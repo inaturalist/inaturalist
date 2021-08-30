@@ -254,6 +254,15 @@ def elastic_models(*args)
   end
 end
 
+def stub_elastic_index!(*models)
+  before do
+    models.flatten.each do |model|
+      allow_any_instance_of(model).to receive(:elastic_index!).and_return true
+      allow(model).to receive(:elastic_index!).and_return true
+    end
+  end
+end
+
 def make_default_site
   Site.make!(
     name: "iNaturalist",
