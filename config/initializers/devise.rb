@@ -101,7 +101,16 @@ Devise.setup do |config|
   # able to access the website for two days without confirming his account,
   # access will be blocked just in the third day. Default is 0.days, meaning
   # the user cannot access the website without confirming his account.
-  config.allow_unconfirmed_access_for = 2.days
+
+  # Note: this is obviously not a reasonable amount of time to allow unconfirmed
+  # access, but we have effectively not been using the Confirmable module since
+  # 2012 in order to support 3rd party sign in, which doesn't always supply us
+  # with an email address to confirm. However, we *are* still using the
+  # confirmation_instructions email that comes with that module, basically as a
+  # welcome email. So, setting this to 1.year is a kludge while we try and do
+  # the work to either disable the module or actually use it properly. ~~~kueda
+  # 20210831
+  config.allow_unconfirmed_access_for = 1.year
 
   # If true, requires any email changes to be confirmed (exactly the same way as
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
