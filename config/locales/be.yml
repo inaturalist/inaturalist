@@ -891,6 +891,10 @@ be:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replace_with: заменена на
   covered_by_a_taxon_framework_link: "таксанамічная сістэма %{taxon_framework_rank} %{taxon_framework_name}"
+  date_obscured_notice: Дата прыхавана для абароны персанальных дадзеных або для бяспекі арганізма
+  date_picker:
+    #Contextual help for a button navigating to the previous month in a date picker
+    prevText: Папярэдні
   defines_a_taxon_framework_for: Вызначае таксанамічную сістэму для %{taxon_name}
   date:
     abbr_month_names:
