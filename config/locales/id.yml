@@ -240,7 +240,7 @@ id:
   add_another_flag: menambahkan penanda lain
   add_another_photo: Menambahkan foto lain
   add_another_section: menambahkan bagian lain
-  add_another_subscription: menambahkan pelanggan lain
+  add_another_subscription: Tambahkan Langganan Lainnya
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: menambahkan aset
   add_batch: menambahkan beberapa hal
@@ -390,7 +390,7 @@ id:
     complex: Semua kompleks dimasukkan ke database
     species: Seluruh spesies telah ditambahkan ke dalam database
     hybrid: Seluruh hibrida telah ditambahkan ke database
-    subspecies: Seluruh sub spesies telah ditambahkan ke database
+    subspecies: Seluruh subspesies telah ditambahkan ke database
     variety: Seluruh varietas telah ditambahkan ke database
     form: Seluruh bentuk telah ditambahkan ke database
   all_rights_reserved: Hak cipta dilindungi undang-undang
@@ -680,7 +680,7 @@ id:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: teks tebal
-  bounding_box: melewati kotak
+  bounding_box: Kotak Pembatas
   breadcrumbs: Tepung roti
   #This is a description of the "head" property of Custom Project Fields, i.e.
   #the customizable content that will replace top section of the project detail
@@ -1846,7 +1846,7 @@ id:
   inaturalist_is_a_joint_initiative: "%{site_name} adalah inisiatif gabungan dari California Academy of Sciences dan National Geographic Society."
   inaturalist_places: "Tempat-tempat %{site_name}"
   info: Informasi
-  input_taxon: Masukkan takson
+  input_taxon: Takson Masukan
   insects: serangga
   insect_life_stage: Tahap Kehidupan Serangga
   instagram: Instagram
@@ -2702,10 +2702,15 @@ id:
   observed_on: Diamati pada
   observer: Pengamat
   observers: Pengamat
+  observer_prefers_no_project_addition: |
+    Pengamat tidak memperbolehkan orang lain menambahkan pengamatan lainnya ke proyek ini.
+  observer_prefers_addition_to_projects_joined: |
+    Pengamat hanya memperbolehkan orang lain untuk menambahkan pengamatan lainnya ke proyek-proyek yang sudah diikuti orang tersebut.
   observer_short: Pengamat
-  occurrence_status: Status terjadinya
+  occurence_status_describes_how: 'Status keberadaan menjelaskan seberapa umum atau langka suatu takson berada di dalam suatu area. Lihat DarwinCore untuk <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">lebih banyak informasi tentang terminologinya</a>.'
+  occurrence_status: Status keberadaan
   occurrence_status_descriptions:
-    absent: Tak terjadi di area tersebut
+    absent: Tidak ada di area tersebut
     common: Sering didapatkan
     doubtful: Dianggap ada, tetapi keberadaannya diragukan berdasarkan buktinya
     irregular: Keberadaan tidak terprediksi, termasuk yang berkeliaran; mungkin sering ditemukan pada tahun-tahun tertentu dan tidak ditemukan di tahun-tahun lainnya
@@ -2724,98 +2729,155 @@ id:
   offensive_inappropriate: ofensif / tidak pantas
   off_caps: "MATI"
   official_blog: Blog Resmi
-  offline_access_enabled: Akses offline diaktifkan
+  offline_access_enabled: Akses luring diaktifkan
   #Header label for hiding or unhiding the time shifter in the Uploader
   offset_time: "Penyesuaian Waktu"
   #Button label to offset the date/time of observations by a set number of hours
   offset_time_verb: Penyesuaian
   old_observation_form: Bentuk pengamatan lama (usang)
-  ok: "Oke"
+  ok: "OK"
   on_caps: "NYALA"
   on_day: "pada"
   onboarding:
+    observe_panel_title: Mari Kita Mulai Dengan Mengunggah Beberapa Pengamatan
+    observe_panel_body_p1_local: Perlu inspirasi? Berikut adalah beberapa organisme yang diamati di dekatmu...
+    observe_panel_body_p1_global: Perlu inspirasi? Berikut adalah beberapa organisme yang sedang diamati...
+    observe_panel_body_p2: Pergilah dan amatilah suatu organisme. Pilihlah suatu organisme yang liar dan ambillah gambar yang jelas dan memenuhi bingkai foto. Jika kamu sudah memiliki foto organisme liar, <a href="%{new_observation_path}">tambahkan sekarang</a>. Kamu juga bisa menggunakan aplikasi %{site_name} di ponselmu untuk mencatat pengamatan.
+    observe_panel_body_p3: Saat kamu sudah membagikan pengamatanmu, halaman ini akan memberikan kabar terbaru dari komunitas dalam bentuk komentar dan identifikasi. Siapa tahu kamu akan menemukan sesuatu yang keren!
+    follow_panel_title_local: Ikuti Naturalis Di Sekitarmu
+    follow_panel_title_global: Ikuti Naturalis Yang Aktif
+    follow_panel_body: Jika kamu mengunjungi profil-profil ini dan mengeklik tombol ikuti, kamu akan diberikan kabar saat mereka mengunggah pengamatan mereka.
+    following_panel_title: Ikuti Orang, Taksa, dan Tempat Tertentu
+    following_panel_body: |
+      Di %{site_name}, kamu bisa mengikuti orang lain untuk melacak perkembangan pengamatan yang mereka unggah. Kamu juga bisa mengikuti spesies tertentu agar bisa melihat pengamatan-pengamatan terbaru dari spesies tersebut, atau kamu juga bisa mengikuti tempat-tempat yang menarik bagimu.
+    comments_panel_title: Penasaran akan diskusi yang sedang berjalan di %{site_name}?
+    comments_panel_body: "<p>%{site_name} merupakan tempat berbagi cerita dan berdiskusi tentang pengamatan makhluk hidup. Berikut adalah diskusi yang sedang berjalan saat ini. (Catatan: Anda secara otomatis mengikuti diskusi apapun yang Anda komentari atau bantu identifikasi. Kelola kabar-kabar tersebut di bagian 'Langganan' di kanan.)</p>"
+    updates_by_you_panel_title: Tab ini adalah cara cepat untuk menyaring kabar tentang konten Anda saja.
+    updates_by_you_panel_body: Ingat, di tab 'Semua kabar', Anda akan mendapatkan kabar bukan hanya tentang konten Anda sendiri, tetapi juga konten tentang orang-orang yang Anda ikuti dan taksa atau tempat-tempat yang kamu ikut berlangganan menggunakan fitur Langganan di kanan.
     youve_got_updates_panel_title: Kamu mendapatkan berita baru!
-  one_by_one: "satu per satu"
-  one_of_your_lists: "satu dari daftar Anda..."
-  only_a_project_manager_can_add: Hanya manajer proyek yang dapat menambahkan status proyek kurator
-  only_administrators_may_access_that_page: Hanya administrator dapat akses halaman ini
-  only_an_admin_can_remove_project_users: Hanya admin yang dapat menghapus proyek pengguna
+    youve_got_updates_panel_body_p1: Jangan ketinggalan dengan kabar berikut...
+    youve_got_updates_panel_body_p2: |
+      <ul>
+      <li><strong>Konten Anda:</strong> Aktivitas di pengamatan Anda seperti komentar, identifikasi, atau favorit dari komunitas %{site_name}. Anda juga akan mendapatkan kabar terbaru saat seseorang menambahkan pengamatan Anda ke sebuah proyek, atau memberikan catatan kolom tambahan.</li>
+      <li><strong>Orang:</strong> Pengamatan baru atau postingan jurnal dari orang yang kamu ikuti.</li>
+      <li><strong>Organisme, Proyek & Tempat:</strong> Pengamatan baru dari organisme atau tempat tertentu yang kamu ikuti. Kamu juga bisa bergabung dengan proyek jadi kamu akan diberi kabar ketika mereka menerbitkan postingan jurnal proyek.</li>
+      <li><strong>Diskusi yang telah kamu ikuti:</strong> Berkomentar atau menambahkan identifikasi kepada konten orang lain otomatis menambahkan langgananmu kepada aktivitas baru apapun pada konten ini. Pakai fitur 'Kelola langganan Anda' untuk berhenti menerima kabar.</li>
+      </ul>
+  one_by_one: "Satu per satu"
+  one_of_your_lists: "salah satu dari daftar Anda..."
+  one_or_more_input_taxa_have_more_than_1000: |
+    Satu atau lebih input taksa memiliki lebih dari 1000 pengamatan di hilir. Hal ini membutuhkan beberapa waktu untuk diproses, apakah Anda yakin perubahan takson ini diperlukan? Perubahan takson ini juga tidak bisa dikembalikan seperti semula.
+  only_a_project_manager_can_add: Hanya manajer proyek yang dapat menambahkan status kurator proyek
+  only_administrators_may_access_that_page: Hanya pengelola yang dapat mengakses halaman ini
+  only_an_admin_can_remove_project_users: Hanya pengelola yang dapat menghapus proyek pengguna
   only_curators_can_add_edit_scientific_names: Hanya kurator yang dapat menambahkan/mengubah nama ilmiah.
-  only_curators_can_access_that_page: Hanya kurator yang dapat akses halaman ini.
-  only_letters_numbers: "Hanya huruf dan angka, tidak ada spasi"
+  only_curators_can_access_that_page: Hanya kurator yang dapat mengakses halaman ini.
+  only_files_with_10000_rows_at_a_time: Hanya berkas yang kurang dari 10.000 baris saja, ya
+  only_letters_numbers: "Hanya huruf dan angka, tidak ada spasi, harus dimulai dengan huruf"
   only_one_coordinate_system_per_file: |
-    Hanya satu sistem kordinat yang dapat digunakan per dokumen, dinyatakan konversi tidak benar atau tayangan akan terjadi.
+    Hanya satu sistem kordinat yang dapat digunakan per dokumen, kalau tidak kesalahan konversi atau tampilan bisa terjadi.
   only_project_curators_can_do_that: Hanya kurator proyek yang dapat melakukannya.
-  only_receive_updates_about_this_taxon: Hanya menerima pembaruan tentang takson ini
-  only_show_active_taxa: Hanya tujukkan taksa aktif
-  only_show_events_that_last_less_than_2_weeks: Hanya menunjukkan acara terbaru kurang dari 2 minggu
+  only_receive_updates_about_this_taxon: Hanya terima kabar tentang takson ini
+  only_show_active_taxa: Hanya tunjukkan taksa yang aktif
+  only_show_events_that_last_less_than_2_weeks: Hanya tunjukkan acara terbaru yang berjalan kurang dari 2 minggu
   only_show_for_species_subspecies_varieties_etc: Hanya tunjukkan untuk spesies, sub spesies, varietas, dan lainnya.
   only_show_taxa_fom_this_list: "Hanya tunjukkan taksa dari daftar ini"
   only_showing_taxa_from: hanya tujukkan taksa dari daftar ini
-  only_the_owner_of_this_list_can_do_that: Hanya pemilik daftar ini bisa melakukan itu. Jangan jahat.
-  only_the_project_admin_can_delete_this_project: Hanya admin proyek yang dapat menghapus proyek ini.
+  only_staff_can_edit_large_places: Hanya staf situs yang dapat mengubah tempat yang sangat besar
+  only_staff_can_edit_standard_places: Hanya staf situs yang dapat mengubah tempat di hierarki standar
+  only_the_owner_of_this_list_can_do_that: Hanya pemilik daftar ini bisa melakukan itu. Jangan jadi orang jahat.
+  only_the_project_admin_can_delete_this_project: Hanya pengelola proyek yang dapat menghapus proyek ini.
+  only_view_nearby_suggestions: Hanya tampilkan rekomendasi yang ditemui di sekitar
+  only_you: Hanya Anda
   open: buka
   open_: Buka
-  open_description: "Semua orang dapat melihat koordinat kecuali takson terancam."
+  open_description: "Semua orang dapat melihat koordinatnya kecuali takson yang terancam."
+  open_street_map: OpenStreetMap
   optional: opsional
   optional_columns_note_for_any: "kolom opsional (catatan: untuk setiap kolom ini untuk digunakan dalam sebuah pengamatan, mereka semua harus hadir)"
   or: atau
-  or_choose_high_level_taxa: "... Atau memilih dari beberapa tingkat tinggi taksa"
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
+  or_all_caps: ATAU
+  or_choose_high_level_taxa: "... atau memilih dari beberapa taksa tingkat tinggi"
   or_if_you_dont_want_email: "Atau jika Anda tidak ingin email apapun..."
   orange: jingga
   order: Urut
-  order_by: 'Urut berdasarkan:'
+  order_by: Urut berdasarkan
+  organism_is_wild: Organisme ini liar
   organisms: Organisme
   original: Asli
-  originally_flagged_by: Asli ditandai oleh
-  originally_imported_from_url_html: "Diimpor asli dari <a href='%{url}'>%{url}</a>"
-  original_page_url_for_this_photo: "Halaman asli URL untuk foto ini"
-  original_rights_holder: Penahan hak asli
+  originally_flagged_by: Aslinya ditandai oleh
+  originally_imported_from_url_html: "Aslinya diimpor dari <a href='%{url}'>%{url}</a>"
+  original_page_url_for_this_photo: "URL halaman asli untuk foto ini."
+  original_rights_holder: Pemilik hak sesungguhnya
   original_url_for_this_map: URL asli untuk peta ini
-  organism_appears_captive_cultivated: Organisme muncul kaptif / dibudidayakan
-  other: lainnya
-  other_animals: binatangt lain
+  organism_appears_captive_cultivated: Organisme Sepertinya Peliharaan / Dibudidayakan
+  other: Lainnya
+  other_animals: binatang lain
+  other_lexicons: Kosa Kata Lain
   other_listings_of_this_taxon_for_this_place: Daftar lain dari takson ini untuk tempat ini
+  other_names: Nama Lain
   our_blog: Blog Kami
-  output_taxon: Keluaran takson
+  output_taxon: Takson Keluaran
   overview: Ikhtisar
+  overlapping_downstream_taxon_frameworks_html: "Framework Takson hilir yang tumpang tindih: %{count}"
   owner: 'Pemilik:'
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Induk
   #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Nama induk
+  parental_consent:
+    must_specify_email: Anda harus memberikan alamat email
+    invalid_email: Format email tidak valid
   password: Kata sandi
   password_confirmation: 'Konfirmasi kata sandi'
   paste: Tempel
   paste_in_a_bunch_of_names: Tempel di sejumlah nama, 1 per baris, dan tekan tombol!
   people: Orang
-  people_following_user: "Para pengikut %{user}"
-  people_user_follows: "Orang %{user} Ikuti"
+  people_following_user: "Orang Yang Mengikuti %{user}"
+  people_user_follows: "Orang Yang %{user} Ikuti"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: menambahkan <a href="%{observation_url}">pengamatan</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
       #added an ID to an observation by loarie
-      with_observation: tambahkan <kuat>ID</kuat> ke %{observation_link} oleh %{user_link}
+      with_observation: menambahkan <strong>ID</strong> kepada sebuah %{observation_link} oleh %{user_link}
       #The same as people_added.identification.with_observation, except it
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
-      without_observation: tambahkan <kuat>ID</kuat>
+      without_observation: menambahkan <strong>ID</strong>
+    post: mengunggah sebuah %{post_link}
+    comment:
+      with_by: mengomentari %{comment_subject_link} oleh %{by_link}
+      without_by: mengomentari %{comment_subject_link}
   per_day: Per Hari
   per_month: Per Bulan
   per_week: Per Minggu
-  person: orang
+  person: Orang
   per_page: "Per halaman"
   photo: Foto
   photo_attribution: "Permalink %{attribution}"
+  photo_browser: Pencari Foto
   photo_by_id_attribution: "Foto %{id}, %{attribution}"
+  photo_credits: Kredit Foto
   photo_deleted: Foto dihapus
-  photo_destroyed_because_it_was_deleted_from: "Foto dihapus dari situs eksternal atau %{site_name} tidak lagi memiliki izin untuk melihatnya"
-  photo_hosting_accounts: Akun foto tuan rumah
-  photo_licensing: lisensi foto
-  photo_type: Tipe foto
+  photo_destroyed_because_it_was_deleted_from: "Foto dihancurkan dikarenakan foto tersebut dihapus dari situs eksternal atau %{site_name} tidak lagi memiliki izin untuk melihatnya"
+  photo_hosting_accounts: Akun penyimpan foto
+  photo_licensing: Lisensi Foto
+  photo_type: Jenis foto
   photo_urls_repaired: URL foto diperbaiki
+  photos_chosen_for_this_taxon: Foto yang dipilih untuk takson ini
   photos_from: Foto dari
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Foto Dikunci
+  photos_locked_desc: Hanya staf yang dapat mengubah foto bawaan dari takson ini
+  photos_of_taxon_html: "Foto %{taxon}"
+  photos_or_sounds: Foto atau suara
   photos_or_sounds?: Foto atau suara?
   photos_size:
     small: kecil
@@ -2830,8 +2892,15 @@ id:
     Saya mengizinkan iNaturalist untuk menyimpan dan memproses sebagian informasi pribadi saya demi pengelolaan akun saya.
   pi_consent_child_label: |
     Saya mengizinkan iNaturalist untuk menyimpan dan memproses sebagian informasi pribadi anak saya demi pengelolaan akun anak saya.
+  pin_verb: Pin
   pink: merah muda
+  pinned_locations_desc: |
+    Sematkan pin pada catatan koordinat, akurasi, geoprivasi, dan localitas untuk digunakan nanti.
   place: Tempat
+  placeholder: Penampung
+  place_autocomplete_placeholder: Taman Nasional Ujung Kulon, Bandung, dll.
+  place_create_quota_exceeded: |
+    Anda telah melampaui jumlah tempat yang dapat kamu buat dalam kurun waktu 24 jam (%{quota})
   place_deleted: Tempat dihapus
   place_geo:
     geo_planet_place_types:
@@ -2841,147 +2910,424 @@ id:
       airport: bandara
       Building: Bangunan
       building: bangunan
+      Canton: Kanton
+      canton: kanton
+      City Building: Bangunan Kota
+      city building: bangunan kota
       Colloquial: Bahasa sehari-hari
       colloquial: bahasa sehari-hari
+      Commune: Komune
+      commune: komune
+      Constituency: Daerah Pemilihan
+      constituency: Daerah pemilihan
       Continent: Benua
-      continent: Benua
+      continent: benua
       Country: Negara
-      country: Negara
-      County: Daerah
-      county: daerah
-      District: Kabupaten
-      district: kabupaten
+      country: negara
+      County: Keresidenan
+      county: keresidenan
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Delegasi
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: delegasi
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: Bagian Departemen
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: bagian departemen
+      District: Distrik
+      district: distrik
+      Division: Divisi
+      division: divisi
       Drainage: Drainase
       drainage: Drainase
-      Estate: negara bagian
-      estate: negara bagian
+      Estate: Estat
+      estate: estat
+      Governorate: Gubernurat
+      governorate: gubernurat
       Historical_County: Daerah bersejarah
       historical_county: Daerah bersejarah
-      Historical_State: Negara bagian bersejarah
-      historical_state: Negara bagian bersejarah
-      Historical_Town: Kota bersejarah
-      historical_town: Kota bersejarah
-      Intersection: Interseksi
-      intersection: Interseksi
+      Historical_State: Negara Bagian Bersejarah
+      historical_state: negara bagian bersejarah
+      Historical_Town: Kota Bersejarah
+      historical_town: kota bersejarah
+      Intersection: Persimpangan
+      intersection: persimpangan
       Island: Pulau
-      island: Pulau
-      Land_Feature: Fitur pulau
-      land_feature: fitur pulau
-      Local_Administrative_Area: Area Administratif Lokal
-      local_administrative_area: area administratif lokal
-      Miscellaneous: bermacam-macam
-      miscellaneous: bermacam-macam
-      Municipality: Munisipalitas (Kotamadya/Kabupaten)
-      municipality: munisipalitas
+      island: pulau
+      Land_Feature: Fitur Daratan
+      land_feature: fitur daratan
+      Local_Administrative_Area: Daerah Administratif Lokal
+      local_administrative_area: daerah administratif lokal
+      Local_Authority: Otoritas Lokal
+      local_authority: otoritas lokal
+      Miscellaneous: Lain-lain
+      miscellaneous: lain-lain
+      Municipality: Kotamadya
+      municipality: kotamadya
       Nationality: Kebangsaan
       nationality: kebangsaan
-      Nearby_Building: Bangunan terdekat
-      nearby_building: bangunan terdekat
-      Nearby_Intersection: Interseksi Terdekat
-      nearby_intersection: interseksi terdekat
+      Nearby_Building: Bangunan Sekitar
+      nearby_building: bangunan sekitar
+      Nearby_Intersection: Persimpangan Sekitar
+      nearby_intersection: persimpangan sekitar
       Open_Space: Ruang Terbuka
       open_space: ruang terbuka
       Parish: Paroki
       parish: paroki
-      Point_of_Interest: Poin yang disenangi
-      point_of_interest: poin yang disenangi
-      Postal_Code: 'Kode pos:'
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: Poblacion
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: poblacion
+      Prefecture: Prefektur
+      prefecture: prefektur
+      Prefecture_City: Kota Prefektur
+      prefecture_city: kota prefektur
+      Point_of_Interest: Tempat Menarik
+      point_of_interest: tempat menarik
+      Postal_Code: Kode Pos
       postal_code: kode pos
       Province: Provinsi
       province: provinsi
+      Regency: Kabupaten
+      regency: kabupaten
       Region: Wilayah
       region: wilayah
       Republic: Republik
+      republic: republik
+      Shire: Shire
+      shire: shire
       Sports_Team: Tim Olahraga
       sports_team: tim olahraga
       State: Negara Bagian
       state: negara bagian
       Street: Jalan
       street: jalan
-      Street_Segment: Segemn Jalan
+      Street_Segment: Segmen Jalan
       street_segment: segmen jalan
-      Suburb: Pinggiran kota
-      suburb: Pinggiran kota
-      Supername: Nama
-      supername: nama
+      Subdivision: Subdivisi
+      subdivision: subdivisi
+      Suburb: Pinggir Kota
+      suburb: Pinggir kota
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Sum
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: sum
+      Supername: Nama Super
+      supername: nama super
       Territory: Teritori
       territory: teritori
       Time_Zone: Zona Waktu
       time_zone: zona waktu
       Town: Kota
       town: kota
-      Undefined: Tak terdefinisi
-      undefined: tak terdefinisi
-      Unknown: Tidak diketahui
+      Undefined: Tidak terdefinisi
+      undefined: tidak terdefinisi
+      Unknown: Tidak Diketahui
       unknown: tidak diketahui
+      Village_block: Kampung/Desa
+      village_block: kampung/desa
       Zone: Zona
       zone: zona
-  place_guess: tepak tebakan
-  place_imported: Tempat diimport
-  place_must_have_a_boundary_defined: Tempat Harus Memiliki Batas yang Jelas
+  place_guess: tebakan tempat
+  place_imported: Tempat diimpor!
+  place_must_have_a_boundary_defined: Tempat Harus Memiliki Batas yang Jelas.
   place_name: Nama tempat
   place_notes: Catatan Tempat
   place_too_big_for_check_list: |
-    Tempat ini terlalu besar untuk check list. Menghitung check list statistik yang cukup mahal, jadi kami tidak mengizinkan mereka untuk tempat yang sangat besar, kecuali mereka telah ditambahkan oleh admin situs. Namun, Anda tetap dapat menggunakan ini tempat untuk batas proyek dan pertanyaan pengamatan.
+    Tempat ini terlalu besar untuk daftar centang. Proses menghitung statistik daftar centang cukup mahal, jadi kami tidak mengizinkannya untuk tempat yang sangat besar, kecuali mereka telah ditambahkan oleh admin situs. Namun, Anda tetap dapat menggunakan tempat ini untuk batas proyek dan pertanyaan pengamatan.
   place_updated: Tempat diperbarui!
   placement: Penempatan
   places: Tempat
-  places_added_by_members_of_the_community: Tempat ditambahkan oleh anggota dari komunitas
-  places_maintained_by_site_admins: Tempat diatur oleh situs admin
+  places_added_by_members_of_the_community: Tempat yang ditambahkan oleh anggota komunitas
+  places_maintained_by_site_admins: Tempat yang diurus oleh pengelola situs
   places_name:
     afghanistan: Afganistan
     africa: Afrika
+    akrotiri_and_dhekelia: Akrotiri and Dhekelia
+    aland: Åland
+    albania: Albania
+    algeria: Aljazair
+    american_samoa: Samoa Amerika
+    andorra: Andorra
+    angola: Angola
+    anguilla: Anguilla
+    antarctica: Antartika
     antigua_and_barbuda: Antigua dan Barbuda
+    argentina: Argentina
+    armenia: Armenia
+    aruba: Aruba
+    asia: Asia
+    australia: Australia
+    austria: Austria
+    azerbaijan: Azerbaijan
+    bahamas: Bahama
+    bahrain: Bahrain
+    bangladesh: Bangladesh
+    barbados: Barbados
+    belarus: Belarusia
     belgium: Belgia
+    belize: Belize
+    benin: Benin
+    bermuda: Bermuda
+    bhutan: Bhutan
+    bolivia: Bolivia
+    bonaire_saint_eustatius_and_saba: Bonaire, Santo Eustasius, dan Saba
     bosnia_and_herzegovina: Bosnia dan Herzegovina
+    botswana: Botswana
+    bouvet_island: Pulau Bouvet
+    brazil: Brasil
+    british_indian_ocean_territory: Teritori Samudra Hindia Britania
+    british_virgin_islands: Kepulauan Virgin Britania Raya
+    brunei: Brunei
+    bulgaria: Bulgaria
+    burkina_faso: Burkina Faso
+    burundi: Burundi
+    cambodia: Kamboja
+    cameroon: Kamerun
+    canada: Kanada
+    cape_verde: Tanjung Verde
+    cayman_islands: Kepulauan Cayman
+    central_african_republic: Republik Afrika Tengah
     central_america: Amerika Tengah
+    chad: Chad
+    chile: Chili
+    china: Tiongkok
+    christmas_island: Pulau Natal
+    clipperton_island: Pulau Clipperton
+    cocos_islands: Kepulauan Cocos
+    colombia: Kolombia
+    commonwealth_of_the_northern_mariana_islands: Persemakmuran Kepulauan Mariana Utara
+    comoros: Komoro
+    cook_islands: Kepulauan Cook
+    costa_rica: Kosta Rika
+    cote_d_ivoire: Pantai Gading
+    croatia: Kroasia
+    cuba: Kuba
+    curacao: Curaçao
+    cyprus: Siprus
+    czech_republic: Republik Ceko
+    democratic_republic_of_the_congo: Republik Demokratik Kongo
+    denmark: Denmark
+    djibouti: Djibouti
+    dominica: Dominika
+    dominican_republic: Republik Dominika
+    east_timor: Timor Leste
+    ecuador: Ekuador
     egypt: Mesir
-    equatorial_guinea: Guinea ekuator
+    el_salvador: El Salvador
+    equatorial_guinea: Guinea Khatulistiwa
+    eritrea: Eritrea
+    estonia: Estonia
+    ethiopia: Etiopia
     europe: Eropa
-    france: Perancis
+    falkland_islands: Kepulauan Falkland
+    faroe_islands: Kepulauan Faroe
+    fiji: Fiji
+    finland: Finlandia
+    france: Prancis
+    french_guiana: Guyana Prancis
+    french_polynesia: Polinesia Prancis
+    french_southern_territories: Teritori Selatan Prancis
+    gabon: Gabon
+    gambia: Gambia
+    georgia: Georgia
     germany: Jerman
+    ghana: Ghana
+    gibraltar: Gibraltar
     greece: Yunani
+    greenland: Greenland
+    grenada: Grenada
+    guadeloupe: Guadeloupe
+    guam: Guam
+    guatemala: Guatemala
+    guernsey: Guernsey
+    guinea: Guinea
+    guinea_bissau: Guinea-Bissau
+    guyana: Guyana
+    haiti: Haiti
+    heard_island_and_mcdonald_islands: Pulau Heard dan Kepulauan McDonald
+    honduras: Honduras
+    hong_kong: Hong Kong
     hungary: Hungaria
+    iceland: Islandia
+    india: India
+    indonesia: Indonesia
+    iran: Iran
     iraq: Irak
+    ireland: Irlandia
+    isle_of_man: Pulau Man
+    israel: Israel
     italy: Italia
+    jamaica: Jamaika
     japan: Jepang
+    jersey: Jersey
+    jordan: Yordania
+    kazakhstan: Kazakhstan
+    kenya: Kenya
+    kiribati: Kiribati
+    korea: Korea
+    kosovo: Kosovo
+    kuwait: Kuwait
+    kyrgyzstan: Kirgizstan
+    laos: Laos
+    latvia: Latvia
+    lebanon: Lebanon
+    lesotho: Lesotho
+    liberia: Liberia
+    libya: Libya
+    liechtenstein: Liechtenstein
+    lithuania: Lituania
+    luxembourg: Luksemburg
+    macao: Makau
+    macedonia: Makedonia Utara
+    madagascar: Madagaskar
+    malawi: Malawi
+    malaysia: Malaysia
+    maldives: Maladewa
+    mali: Mali
+    malta: Malta
+    marshall_islands: Kepulauan Marshall
+    martinique: Martinik
+    mauritania: Mauritania
+    mauritius: Mauritius
+    mayotte: Mayotte
     mexico: Meksiko
-    new_guinea: Papua Nugini
+    micronesia: Mikronesia
+    moldova: Moldova
+    monaco: Monako
+    mongolia: Mongolia
+    montenegro: Montenegro
+    montserrat: Montserrat
+    morocco: Maroko
+    mozambique: Mozambik
+    myanmar: Myanmar
+    namibia: Namibia
+    nauru: Nauru
+    nepal: Nepal
+    netherlands: Belanda
+    new_caledonia: Kaledonia Baru
+    new_guinea: Papua
     new_zealand: Selandia Baru
+    nicaragua: Nikaragua
+    niger: Niger
+    nigeria: Nigeria
+    niue: Niue
+    norfolk_island: Pulau Norfolk
     north_africa: Afrika Utara
     north_america: Amerika Utara
     north_korea: Korea Utara
+    northern_cyprus: Siprus Utara
     norway: Norwegia
+    oman: Oman
+    pakistan: Pakistan
+    palau: Palau
     palestine: Palestina
+    panama: Panama
     papua_new_guinea: Papua Nugini
+    paraguay: Paraguay
+    peru: Peru
+    philippines: Filipina
+    pitcairn_islands: Kepulauan Pitcairn
     poland: Polandia
-    republic_of_congo: Kongo Republik
+    portugal: Portugal
+    puerto_rico: Puerto Riko
+    qatar: Qatar
+    republic_of_congo: Republik Kongo
+    reunion: Reunion
+    romania: Rumania
+    russia: Rusia
+    rwanda: Rwanda
+    saint_barthelemy: Saint-Barthélemy
+    saint_helena: Saint Helena
+    saint_kitts_and_nevis: Saint Kitts dan Nevis
+    saint_lucia: Santa Lucia
+    saint_martin: Saint Martin
+    saint_pierre_and_miquelon: Saint Pierre dan Miquelon
+    saint_vincent_and_the_grenadines: Saint Vincent dan Grenadine
+    samoa: Samoa
+    san_marino: San Marino
     sao_tome_and_principe: Sao Tome dan Principe
     saudi_arabia: Arab Saudi
-    solomon_islands: Solomon, Kepulauan
+    senegal: Senegal
+    serbia: Serbia
+    seychelles: Seychelles
+    sierra_leone: Sierra Leone
+    singapore: Singapura
+    sint_maarten: Sint Maarten
+    slovakia: Slowakia
+    slovenia: Slovenia
+    solomon_islands: Kepulauan Solomon
+    somalia: Somalia
     south_africa: Afrika Selatan
     south_america: Amerika Selatan
+    south_georgia_and_the_south_sandwich_islands: Georgia Selatan dan Kepulauan Sandwich Selatan
     south_korea: Korea Selatan
+    south_sudan: Sudan Selatan
     spain: Spanyol
+    sri_lanka: Sri Lanka
+    sudan: Sudan
+    suriname: Suriname
+    svalbard_and_jan_mayen: Svalbard dan Jan Mayen
+    swaziland: Eswatini
     sweden: Swedia
+    switzerland: Swiss
     syria: Suriah
+    taiwan: Taiwan
+    tajikistan: Tajikistan
+    tanzania: Tanzania
+    thailand: Thailand
+    togo: Togo
+    tokelau: Tokelau
+    tonga: Tonga
     trinidad_and_tobago: Trinidad dan Tobago
+    tunisia: Tunisia
     turkey: Turki
-    united_kingdom: Inggris
-    united_states: Amerika
+    turkmenistan: Turkmenistan
+    turks_and_caicos_islands: Kepulauan Turks dan Caicos
+    tuvalu: Tuvalu
+    uganda: Uganda
+    ukraine: Ukraina
+    united_arab_emirates: Uni Emirat Arab
+    united_kingdom: Britania Raya
+    united_states: Amerika Serikat
+    united_states_minor_outlying_islands: Kepulauan Terluar Kecil Amerika Serikat
+    united_states_virgin_islands: Kepulauan Virgin Amerika Serikat
+    uruguay: Uruguay
+    uzbekistan: Uzbekistan
+    vanuatu: Vanuatu
+    vatican_city: Negara Kota Vatikan
+    venezuela: Venezuela
+    vietnam: Vietnam
+    virgin_islands: Kepulauan Virgin
+    wallis_and_futuna: Wallis dan Futuna
     west_africa: Afrika Barat
+    western_sahara: Sahara Barat
+    yemen: Yaman
+    zambia: Zambia
+    zimbabwe: Zimbabwe
   places_of_interest: tempat-tempat menarik
   places_merged_successfully: Tempat sukses digabungkan!
   plants: tanaman
   please_add_a_citation_for_this_change: Harap tambahkan kutipan untuk perubahan ini.
   please_add_this_observation_to: Harap tambahkan pengamatan ini untuk
   please_add_this_to_x_html: "Harap tambahkan ini untuk %{x}"
+  please_allow_a_few_weeks_for_external_sites: Harap menunggu beberapa minggu untuk situs eksternal menyinkronisasi perubahan dari pengamatan ini #Title to a section warning a user to exercise caution
+  please_be_careful!: Harap Berhati-hati!
+  please_complete_the_following_to_add_project: |
+    Harap menyelesaikan hal-hal berikut ini untuk menambahkan pengamatan ini ke dalam proyek:
   please_confirm_your_inat_username: "Harap konfirmasi nama pengguna %{site_name} Anda"
+  please_explain_why_you_want_to_hide_this: Tolong jelaskan mengapa Anda ingin menyembunyikan ini
+  please_explain_why_you_want_to_unhide_this: Tolong jelaskan mengapa Anda ingin menampilkan ini
   please_fix_your_csv_and_try_again: Harap perbaiki CSV Anda dan coba lagi.
   please_hold_on_while_the_file: Silahkan tunggu sementara file yang dihasilkan. Ini dapat mengambil beberapa menit jika Anda memiliki banyak pengamatan.
   please_hold_on_while_the_file_is_generated: Silahkan tunggu sementara file yang dihasilkan. Ini dapat mengambil beberapa menit untuk daftar besar.
   popular: Populer
   position: Posisi
+  possessive_user: "%{user}"
   post_published: Tulisan diterbitkan!
   posted_by: Ditulis oleh
   posted_on: Ditulis pada
@@ -3069,13 +3415,15 @@ id:
     genus: genus
     genushybrid: genushybrid
     #Singular
-    species: spesies
+    species: Spesies
     hybrid: hybrid
     #Singular
-    subspecies: sub spesies
+    subspecies: Subspesies
     variety: varietas
     form: bentuk
     leaves: meninggalkan
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: subspesies
   ray_finned_fishes: ikan bersirip cahaya
   re_order_photos: "Pesan kembali foto&raquo;"
   read_our_getting_started_guide: baca panduan Memulai kami
@@ -3338,11 +3686,13 @@ id:
   stop_editing: Berhenti Editing
   stop_following_user: "Berhenti mengikuti %{user}"
   stuff_just_added: "Barang yang telah Anda tambahkan..."
+  subject_committed_thing_affecting_stuff_html: "%{subject} mengubah %{thing} sehingga memengaruhi %{stuff}"
   submission_model_description: Siapa yang dapat menambahkan pengamatan ke proyek Anda?
   submitted: dimasukkan
   subscribe_to_places_to: |
-    Berlangganan tempat untuk menerima update tentang pengamatan baru dibuat sana. Pembaruan dari orang yang Anda ikuti dan hal-hal yang sudah berkomentar juga dikelola melalui langganan, jadi jika Anda ingin melihat apa yang sudah Anda berlangganan dan berhenti berlangganan dari hal-hal tersebut, Anda bisa klik "Kelola semua langganan Anda" di bawah ini. Anda juga harus dapat berhenti berlangganan dari apapun di situs dengan melihat hal itu.
+    Berlanggananlah dengan tempat tertentu untuk menerima kabar terbaru tentang pengamatan-pengamatan baru yang dibuat di sana. Kabar dari orang yang Anda ikuti dan hal-hal yang sudah Anda komentari juga dikelola melalui langganan, jadi jika Anda ingin melihat apa yang Anda ikuti dan ingin berhenti berlangganan dari hal-hal tersebut, Anda bisa mengeklik "Kelola semua langganan Anda" di bawah ini. Anda juga dapat berhenti berlangganan dari apapun yang ada di situs dengan melihat halaman itu.
   subscribe_to_this: Berlangganan pada ini
+  subscriptions: Langganan
   subscriptions_arent_available_for: Langganan tidak tersedia untuk tempat tanpa batas.
   successfully_changed_your_password: Berhasil mengubah sandi Anda.
   suggest_an_identification: sarankan identifikasi
@@ -3498,6 +3848,7 @@ id:
   unknown: Tidak diketahui
   unknown_rank: '(Peringkat Tidak diketahui)'
   unmute: Bunyikan
+  updates_suspension_email_subject: "%{prefix} Langgananmu tertahan"
   updating: Memperbarui...
   unprocessable: Tidak diproses
   unpublish: Tidak dipublis
@@ -3509,9 +3860,10 @@ id:
   update_existing_photos_with_new_license: Memperbarui foto yang ada dengan pilihan lisensi baru
   update_existing_sounds_with_new_license: Memperbarui suara yang ada dengan pilihan lisensi baru
   update_photos: Memperbarui foto
-  update_search: memperbaharui pencarian
+  update_search: Perbarui Pencarian
   update_selected_taxa: Memperbarui taksa yang dipilih
-  update_subscription: Memperbarui langganan
+  update_subscription: Perbarui langganan
+  update_subscription_preferences: Perbarui pilihan berlangganan
   update_your_content: Memperbarui konten Anda
   update_with_eol_content: Memperbarui dengan konten EOL
   updated: Diperbarui
@@ -3535,6 +3887,10 @@ id:
   use_well_formed_csv: |
     Gunakan CSV terbentuk dengan baik. Ini berarti teks dengan koma harus tertutup dengan tanda kutip ganda. Sebagian besar aplikasi spreadsheet harus mengekspor CSV di format ini.
   user: Pengguna
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user} meyakini bahwa ini adalah daftar komprehensif dari %{taxon} di %{place}
   user_muted: Pengguna diredam
   username: Nama pengguna
   username_or_email: Nama pengguna atau email
@@ -3677,12 +4033,13 @@ id:
   your_id: ID Anda
   your_identification: Identifikasi Anda
   your_name_was_saved: Nama Anda telah disimpan.
-  your_observations: Pengamatan anda
+  your_observations: Pengamatan Anda
   your_photos_have_been_tagged: Foto anda telah di tag!
   your_projects: Proyek Anda
   your_profile_was_successfully_updated: Profil anda telah berhasil diperbarui!
   your_recent_projects: Proyek Baru-baru Ini
   your_relationships: Relasi Anda
+  your_subscriptions_to_this_place: Langgananmu untuk tempat ini
   verifiable: diverifikasi
   views:
     views: 'Lihat'
@@ -3815,6 +4172,10 @@ id:
           Memungkinkan kurator proyek untuk melihat koordinat pribadi untuk pengamatan ini.
         curator_coordinate_access_disabled_desc_html: |
           Proyek ini tidak memungkinkan pengamatan dengan koordinat yang kurator proyek tidak dapat melihat. Jika Anda tidak ingin berbagi koordinat pengamatan ini dengan kurator proyek ini, Anda harus menghapus pengamatan dari proyek tersebut.
+    emailer:
+      users_updates_suspended:
+        message: |
+          Anda telah tidak aktif di %{site_name} selama beberapa saat, jadi kami telah menahan langganan Anda. Untuk kembali mendapatkan kabar tentang aktivitas di situs, harap <a href="%{login_url}">masuk ke akun Anda</a> lagi.
     places:
       kml_field_desc: |
         KML dari batas tempat. Anda dapat membuat satu menggunakan Google Maps, Google Earth , atau sebagian besar aplikasi GIS. Harus memiliki setidaknya satu polygon dan menjadi di bawah 1 MB (5 MB untuk kurator situs)
@@ -3935,7 +4296,7 @@ id:
         connect_with_nature: Hubungkan dengan Nature
         explore_and_share: Jelajahi dan bagikan pengamatan Anda dari alam.
         observations_to_date: 'Pengamatan Hingga Saat Ini'
-        species_observed: 'Spesies yang Diamati'
+        species_observed: 'Spesies Yang Diamati'
         people_signed_up: 'Orang yang telah mendaftar'
         how_it_works: Bagaimana itu Bekerja
         record_your_observations: Rekam pengamatan anda
