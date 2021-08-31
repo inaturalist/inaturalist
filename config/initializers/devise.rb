@@ -110,7 +110,7 @@ Devise.setup do |config|
   # welcome email. So, setting this to 1.year is a kludge while we try and do
   # the work to either disable the module or actually use it properly. ~~~kueda
   # 20210831
-  config.allow_unconfirmed_access_for = 1.year
+  config.allow_unconfirmed_access_for = 20.years
 
   # If true, requires any email changes to be confirmed (exactly the same way as
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
