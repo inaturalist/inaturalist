@@ -2818,7 +2818,6 @@ it:
     absent: Non presente nell'area
     common: Presente frequentemente
     doubtful: Probabilmente presente, ma esistono dubbi in merito
-    irregular: Presenza non prevedibile, inclusi i migranti; forse comune alcuni anni e assente in altri
     present: Presente nell'area
     uncommon: Presenza regolare, ma a basse consistenze; richiede cercare attentamente l'habitat adatto
   occurrence_status_establishment_means: stato della distribuzione, origine del popolamento
@@ -2870,6 +2869,10 @@ it:
       </ul>
   one_by_one: "Uno per uno"
   one_of_your_lists: "una delle tue liste..."
+  one_or_more_input_taxa_have_more_than_1000: |
+    Uno o più taxa a monte hanno più di 1000 osservazioni a valle.
+    Il commit potrebbe richiedere un po' di tempo per l'elaborazione, sei sicuro che questa modifica del taxon
+    sia necessaria? Inoltre, le modifiche del taxon non possono essere annullate.
   only_a_project_manager_can_add: Solo il gestore del progetto può assegnare il ruolo di curatore
   only_administrators_may_access_that_page: Solo gli amministratori possono accedere a questa pagina
   only_an_admin_can_remove_project_users: Solo l'amministratore può rimuovere gli utenti dal progetto
@@ -4417,6 +4420,7 @@ it:
     <strong>Questa modifica del taxon è stata salvata!</strong>
     Per favore non modificare i taxa. Modifica pure gli altri campi.
   this_taxon_concept_is_inactive: questo taxon è inattivo
+  this_taxon_has_more_than_1000: Questo taxon ha più di 1000 osservazioni a valle. La modifica può richiedere del tempo per elaborare, sei sicuro che sia necessario?
   this_taxon_has_no_default_photo: Questo taxon non ha una foto predefinita!
   this_taxon_is_inactive_this_means: |
     Questo taxon è <strong>inattivo</strong>. Questo significa che i curatori di %{site_name} l'hanno sostituito con un taxon più recente.
