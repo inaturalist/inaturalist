@@ -128,6 +128,8 @@ th:
     สิ่งที่สังเกต (observations) ของคุณในโครงการนี้เท่านั้นที่มีพิกัดแบบคลุมเครือ เพราะเป็นชนิดพันธุ์ที่ถูกคุกคาม
   about_trusting_projects_options_taxon_desc: |-
     หลายโครงการต้องการเพียงแค่เข้าถึงพิกัดที่ถูกบดบังเนื่องจากการสังเกตการณ์แสดงให้เห็นถึงสายพันธุ์ที่ถูกคุกคาม
+  about_trusting_projects_overview: |-
+    การให้สิทธิ์เข้าถึงพิกัดที่ซ่อนอยู่ของคุณจะช่วยให้ผู้จัดการของโครงการนี้เห็นตำแหน่งที่แท้จริงของการสังเกตการณ์ของคุณในโครงการนี้ สิ่งนี้มีความสำคัญอย่างยิ่งในสถานการณ์ที่นักวิทยาศาสตร์หรือผู้จัดการทรัพยากรจำเป็นต้องเข้าถึงพิกัดที่แน่นอนเพื่อการวิเคราะห์และตัดสินใจ
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -186,6 +188,7 @@ th:
     sex: เพิ่มคำอธิบายสำหรับ "เพศ"
     plant_phenology: เพิ่มคำอธิบายสำหรับ "ชีพลักษณ์"
     life_stage: เพิ่มคำอธิบายสำหรับ "ช่วงอายุ"
+    evidence_of_presence: หลักฐานการพบเจอ
   add_another_flag: ติดธงเพิ่ม
   add_another_photo: เพิ่มภาพถ่ายอีกใบ
   add_another_section: เพิ่มส่วนอื่น ๆ
@@ -376,8 +379,12 @@ th:
       other: "%{count} นก"
     x_insecta:
       other: "%{count} แมลง"
+    x_arachnida:
+      other: "%{count} แมง"
     x_fungi:
       other: "%{count} เห็ดรา"
+    x_chromista:
+      other: "%{count} โครมิสต์"
     x_protozoa:
       other: "%{count} โปรโตซัว"
     x_other_animals:
@@ -390,6 +397,7 @@ th:
   all_your_observations_will_default_to_this_time_zone: การสังเกตการณ์ทั้งหมดของคุณจะใช้เขตเวลานี้เป็นค่าเริ่มต้นเว้นแต่คุณจะระบุเป็นอย่างอื่น
   allow_curator_access: ให้สิทธิแก่ผู้ดูแลระบบ
   allow_project_curators_to_view_your_private_coordinates: ให้สิทธิแก่ผู้ดูแลโครงการเข้าดูตำแหน่งที่ตั้งของคุณที่ซ่อนไว้
+  alphabetical: ตามตัวอักษร
   alphabetical_order: เรียงตามลำดับอักษร
   already_have_an_account_log_in_html: มีบัญชีผู้ใช้แล้ว? <strong>ล็อก อิน</strong>
   amphibians: สัตว์สะเทินน้ำสะเทินบก
