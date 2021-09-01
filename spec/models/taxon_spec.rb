@@ -1362,15 +1362,20 @@ end
 describe Taxon, "editable_by?" do
   let(:admin) { make_admin }
   let(:curator) { make_curator }
+  let(:t) do
+    Taxon.make!
+  end
   it "should be editable by admins if class" do
-    expect( Taxon.make!( rank: Taxon::CLASS ) ).to be_editable_by( admin )
+    t.update_attributes( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT + 10 )
+    expect( t ).to be_protected_attributes_editable_by( admin )
   end
-  it "should be editable by curators if below order" do
-    taxon = Taxon.make!( rank: Taxon::FAMILY )
-    expect( taxon ).to be_editable_by( curator )
+  it "should be editable by curators if below threshold" do
+    t.update_attributes( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT - 10 )
+    expect( t ).to be_protected_attributes_editable_by( curator )
   end
-  it "should not be editable by curators if order or above" do
-    expect( Taxon.make!( rank: Taxon::CLASS ) ).not_to be_editable_by( curator )
+  it "should not be editable by curators if above threshold" do
+    t.update_attributes( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT + 10 )
+    expect( t ).not_to be_protected_attributes_editable_by( curator )
   end
   describe "when taxon framework" do
     let(:second_curator) { make_curator }

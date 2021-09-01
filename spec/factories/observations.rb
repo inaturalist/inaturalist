@@ -25,7 +25,8 @@ FactoryBot.define do
     latitude { 1 }
     longitude { 1 }
     quality_grade { Observation::RESEARCH_GRADE }
-    identifications { [association(:identification)] }
+    identifications { [association(:identification, taxon: taxon)] }
+    observation_photos { [association(:observation_photo, :local)] }
   end
 
   trait :with_sounds do

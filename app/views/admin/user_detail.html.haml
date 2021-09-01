@@ -59,6 +59,11 @@
               - if user_attr == "login"
                 = link_to_user @display_user do
                   = @display_user.login
+              - elsif user_attr == "last_ip"
+                = @display_user.send(user_attr).to_s.html_safe
+                - if @geoip_location
+                  &nbsp;
+                  = link_to @geoip_location, observations_path( user_id: @display_user.id, lat: @geoip_latitude, lng: @geoip_longitude )
               - else
                 = @display_user.send(user_attr).to_s.html_safe
       %h3 Other Attributes

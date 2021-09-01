@@ -121,6 +121,12 @@ describe Project do
       expect( p.slug ).to eq "foo"
     end
 
+    it "should transliterate slugs when the title starts with a number" do
+      p = Project.make!( title: "1000 Föö" )
+      p.save
+      expect( p.slug ).to eq "1000-foo"
+    end
+
     describe "for bioblitzes" do
       let(:p) do
         Project.make(
