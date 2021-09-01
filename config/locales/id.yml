@@ -854,7 +854,10 @@ id:
   community: Komunitas
   community_curated: Komunitas yang terbantu
   community_guidelines: Pedoman Komunitas
+  community_id_heading: Takson Komunitas
   community_id_at_species_or_lower?: ID komunitas di spesies atau lebih rendah?
+  community_id_at_species_level_or_lower: Takson Komunitas pada tingkat spesies atau di bawahnya
+  community_id_is_precise: Takson Komunitas tepat
   community_moderation_settings: Pengaturan Moderasi Komunitas
   community_supported_id: ID komunitas pendukung?
   compare: Bandingkan
@@ -866,12 +869,26 @@ id:
   compiled_by_name: "Disusun oleh %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Selesai
+  complete_set_for_taxon_in_place_html: "Set Komplet untuk %{taxon} di %{place}"
   completed: Selesai!
   completed_at: Diselesaikan pada
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: Komprehensif?
+  comprehensive_check_list_for_taxon_html: |
+    Daftar centang <span class="comprehensive_notice" data-tip="%{tip}">komprehensif</span> untuk %{taxon}
   comprehensive_list: Daftar komprehensif
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Model Penglihatan Komputer
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Termasuk
+  computer_vision_model_included_desc: |
+    Model Penglihatan Komputer yang sekarang dapat mengenali takson ini, jadi takson ini mungkin sudah dimasukkan ke dalam rekomendasi otomatis dengan label "Serupa Secara Visual"
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Belum bisa
+  computer_vision_model_pending_desc: |
+    Model Penglihatan Komputer belum dapat mengenali takson ini, jadi walaupun takson ini mungkin dimasukkan ke dalam rekomendasi otomatis dengan label "Sekitaran", ia tidak akan memiliki label "Serupa Secara Visual". Meskipun persyaratan untuk penyertaan model berubah-ubah untuk setiap model, secara umum penyertaan dibuat berdasarkan jumlah pengamatan, sehingga untuk meningkatkan kemungkinan takson ini akan dimasukkan di latihan model selanjutnya, tambahkan atau identifikasi lebih banyak pengamatan untuk takson ini.
   concept_status: Status konsep
   configure: Pengaturan
   configure_a_widget_to_show: Mengkonfigurasi widget untuk menunjukkan %{site_name} pengamatan di website atau blog Anda. Anda mungkin harus memasukkan CSS tertanam dalam <code>&lt;head&gt;</code> HTML Anda. Jangan ragu untuk menulis ulang CSS.
@@ -894,13 +911,20 @@ id:
   connect_to_flickr_again_to_authorize_write_permissions: Sambungkan ke Flickr kembali untuk mengotorisasikan izin menulis
   connecting_to_facebook: "Hubungkan ke Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Hubungkan  %{site_name} akun anda ke akun di situs lainnya kan mengizinkan anda masuk ke %{site_name} menggunakan kredensial Anda dari situs tersebut."
+  cannot_be_changed_during_a_content_freeze: Tidak dapat diganti di saat pembekuan konten
   conservation_status: Status konservasi
   conservation_status_descriptions:
     status: Kode status, peringkat, dll Jika kode pendek seperti E atau CR ada, silakan gunakan itu, tetapi jika tidak, silakan gunakan status penuh, misalnya terancam punah atau kritis.
     description: Deskripsi singkat tentang mengapa ini tercantum.
+    authority: |
+      Organisasi yang menyatakan status ini. Harap gunakan fitur penyelesaian otomatis untuk memilih otoritas yang ada sebelum menambahkan yang baru. Kamu bisa melompati ini jika *kamu* ingin didaftarkan sebagai otoritas.
     place: letakkan ke status yang dibatasi.
     url: URL untuk sebuah halaman yang menjelaskan status ini.
     geoprivacy: Default geo privasi untuk pengamatan takson ini
+    iucn: |
+      Kode IUCN Daftar Merah yang sederajat. Ini bukan penilaian IUCN yang sebenarnya, hanya merupakan kode IUCN yang paling mendekati ancaman penyingkapan koordinat yang ditunjukkan oleh status ini. Hal ini akan membatalkan pengaturan geoprivasimu jika ia berada di tingkat "Berisiko Rendah" atau di bawahnya, jadi jika kamu ingin mengaburkan pengamatan dari takson ini, atur pengamatan ini ke tingkat "Hampir Terancam" atau lebih tinggi lagi.
+  conservation_status_geoprivacy_desc: |
+    Pengaturan geoprivasi bawaan diterapkan untuk semua pengamatan takson ini di tempat ini
   contact_support: Hubungi Bantuan
   contain_all_descendants?: Apakah daftar ini berisi semua keturunan takson ada di sini?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -934,26 +958,64 @@ id:
     male: Laki-laki
     female: Perempuan
     plant_phenology: Fenologi Tumbuhan
+    budding: Berkuncup
+    flower_budding: Bunga Berkuncup
+    flowering: Berbunga
     fruiting: Berbuah
     life_stage: Tahapan Kehidupan
     adult: Dewasa
+    teneral: Teneral
+    subimago: Subimago
+    pupa: Kepompong
     no_evidence_of_flowering: Tidak Ada Tanda Berbunga
     nymph: Nimfa
+    larva: Larva
     egg: Telur
+    juvenile: Remaja
     alive_or_dead: Hidup atau Mati
     alive: Hidup
     dead: Mati
     cannot_be_determined: Tidak Dapat Ditentukan
+    evidence_of_presence: Bukti Keberadaan
+    #As in the feather on a bird
+    feather: Bulu
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organisme
+    #Fecal matter, not regurgitated matter
+    scat: Tahi
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Jejak
+    #Endoskeletal remains, like a deer bone
+    bone: Tulang
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Kulit
   controlled_term_definitions:
     alive: Organisme hidup dan tidak memperlihatkan tanda-tanda akan mati
     dead: Organisme telah mati atau memperlihatkan tanda-tanda akan mati
     flower_budding: Kuncup bunga terlihat namun tidak terbuka
     flowering: Bunga terlihat, terbuka, dan tetap menempel ke tanaman
     fruiting: Buah terlihat dan masih menempel ke tanaman
+    no_evidence_of_flowering: Media tidak menunjukkan adanya bukti struktur organ reproduksi
+    teneral: Individu dewasa yang baru muncul tetapi belum mencapai rupa dewasa yang sepenuhnya
     cannot_be_determined: Tidak dapat disimpulkan dari bukti yang diberikan
+    feather: Satu atau lebih bulu yang tidak terkait dengan sebuah organisme
+    organism: Organisme penuh atau sebagian
+    scat: Unsur tinja (bukan pelet burung hantu atau zat muntahan lainnya)
+    track: Jejak di tanah atau salju yang dibuat oleh organisme
+    bone: |
+      Didominasi oleh sisa-sisa endoskeleton; organisme yang seharusnya utuh, tapi sebagian tulangnya terlihat harus tetap dilabeli "organisme"
+    molt: Kulit yang dibuang atau eksoskeleton
   controls: Kontrol
+  convert: Ubah
   coordinate_systems: Sistem koordinat
   coordinates: Koordinat
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: Hanya dengan koordinat sepenuhnya
   coords_viewable_for_proj_desc: |
     Hanya tampilkan pengamatan dari proyek ini yang mana anda dapat melihat koordinat
     "sebenar-benarnya", termasuk pengamatan tanpa dikaburkan, pengamatan yang dikaburkan oleh
@@ -976,12 +1038,19 @@ id:
     public_domain: Domain Umum
     copyright: Hak cipta
     no_copyright: tidak ada hak cipta (CC0)
+    attribution_noncommercial_sharealike_license: Lisensi Atribusi-NonKomersial-BerbagiSerupa
+    attribution_noncommercial_license: Lisensi Atribusi-NonKomersial
+    attribution_noncommercial_noderivs_license: Lisensi Atribusi-NonKomersial-TanpaTurunan
     attribution_license: Lisensi Atribusi
+    attribution_sharealike_license: Lisensi Atribusi-BerbagiSerupa
+    attribution_noderivs_license: Lisensi Atribusi-TanpaTurunan
     gnu_free_documentation_license: Lisensi Dokumentasi Bebas GNU
   copyright_holder: Pemilik hak cipta
   copyright_info: Informasi hak cipta
   copyright_info_and_more: Informasi hak cipta dan Lainnya
+  copyright_infringement: Pelanggaran Hak Cipta
   copyright_infringement_desc: Melanggar hukum hak cipta atau diciptakan oleh orang lain selain pengamat dan tidak memiliki atribusi
+  covered_by_a_taxon_framework_html: "Dicakup oleh %{link}"
   covered_by_a_taxon_framework_link: "framework takson untuk %{taxon_framework_rank} %{taxon_framework_name}"
   couldnt_change_your_password: "tidak dapat merubah kaa sandi anda: %{e}"
   couldnt_find_a_user_matching_x_param: "tidak dapat menemukan penggunan yang sesuai %{id}"
@@ -994,6 +1063,7 @@ id:
   create_a_query: Membuat pertanyaan
   create_an_account: Buat akun
   create_an_atlas: Buat Atlas
+  create_export: Buat Ekspor
   create_new_taxon: Membuat taksa baru
   create_observations: Membuat pengamatan
   created: Telah dibuat
@@ -1005,10 +1075,13 @@ id:
   creative_commons_unless_otherwise_noted: "Creative Commons kecuali dinyatakan lain."
   critically_endangered: Terancam punah
   css_description: Ini akan dapat dimasukkan setelah semua css lain masuk pada halaman.
+  csv: CSV
   csv_file: Berkas CSV
   csv_should_not_contain_a_header_row: CSV tidak harus berisi baris header
+  cumulative_ids: "ID Kumulatif: %{count} dari %{total}"
   curate_observations: Kurasi pengamatan
   curate_taxa: Kurasi taksa
+  curate_user: Kurasi pengguna
   curating: Mengkurasi
   curation: Kurasi
   curator: Kurator
@@ -1024,6 +1097,10 @@ id:
     Anda harus menjelaskan mengapa anda ingin menjadi seorang kurator
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Mengapa Anda ingin menjadi seorang kurator?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Jika kamu ingin mengubah taksonomi iNaturalist, harap menyediakan sebuah contoh atau beberapa contoh dari perubahan taksonomi yang ingin dilakukan, dan sertakan juga sumber-sumber dari perubahan yang diusulkan. Kalau bisa, tolong kutip juga otoritas taksonomi yang terkait <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">seperti yang terdaftar di Panduan Kurator</a>. Jika kamu tidak mau memasukkan sumber apapun, permohonanmu tidak akan diacuhkan.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Jika anda ingin menyunting nama yang umum digunakan, sila tambahkan satu atau beberapa contoh dari
@@ -1726,6 +1803,8 @@ id:
   here_are_our_top_species_suggestions: Berikut adalah rekomendasi spesies terbaik dari kami
   hex_color_eg: Warna hex, e.g. 65644F
   hi_user: "Halo %{user}"
+  #Verb, usually a button to hide an interface element
+  hide: Sembunyi
   hide_content: Sembunyikan konten
   hide_desc: |
     Menyembunyikan konten akan menghapusnya dari tampilan publik, tetapi orang-orang tetap bisa melihat bahwa ada sesuatu yang disembunyikan, sedangkan kurator situs serta penulis konten masih bisa melihat konten yang disembunyikan. Secara umum, ini hanya diterapkan untuk konten tertulis, contohnya jika kamu menyembunyikan identifikasi, identifikasinya akan tetap terlihat, namun kata-kata pengidentifikasi akan disembunyikan. Kamu tidak bisa membalikkan keadaan ini, dan hanya staf situs yang bisa menampilkan kembali jika konten sudah telanjur disembunyikan, jadi berhati-hatilah dan gunakan fitur ini hanya untuk konten yang kurang baik untuk dilihat.
@@ -2035,6 +2114,8 @@ id:
   linked_flickr_automatically: "Perlu diingat bahwa jika Anda masuk ke %{site_name} melalui Flickr, kami akan secara otomatis menghubungkan kembali akun %{site_name} dan akun Flickr Anda. Tampak masuk akal bukan jika Anda menggunakan Flickr, Anda ingin dapat mengimpor foto dari Flickr?"
   linked_flickr_description: "Dengan menjaga akun %{site_name} Anda tetap terhubung dengan akun Flickr, Anda dapat menambahkan sejumlah foto untuk pengamatanmu. Jika Anda ingin %{site_name} dan Facebook putus, kami tidak akan menghentikanmu, Anda tidak akan bisa menambahkan foto saja. Terkadang, ini mungkin jalan yang terbaik, contohnya jika Anda membuat akun Facebook baru yang ingin dihubungkan dengan %{site_name}."
   linked_flickr_password_html: "<strong>Kami tidak akan pernah bertanya tentang kata sandi Flickr anda</strong>(namun Flickr dapat saja, periksa url yang dikirimkan oleh tombol anda dan pastikan bahwa itu adalah Flickr.com)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: teks tautan
   linkedin: LinkedIn
   list: Daftar
   list_deleted: Daftar dihapus.
@@ -2713,7 +2794,6 @@ id:
     absent: Tidak ada di area tersebut
     common: Sering didapatkan
     doubtful: Dianggap ada, tetapi keberadaannya diragukan berdasarkan buktinya
-    irregular: Keberadaan tidak terprediksi, termasuk yang berkeliaran; mungkin sering ditemukan pada tahun-tahun tertentu dan tidak ditemukan di tahun-tahun lainnya
     present: Didapatkan di area
     uncommon: Biasanya didapatkan, tapi dalam jumlah sedikit; memerlukan pencarian di habitat yang sesuai dengan teliti
   occurrence_status_establishment_means: status keberadaan, asal muasal
@@ -3357,6 +3437,7 @@ id:
   press: Tekan
   preview: Pratinjau
   preview_observations_with_these_observation_requirements: Pratinjau Pengamatan dengan Persyaratan Pengamatan berikut
+  preview_of_synced_observation: "<strong>Tampilan Pratinjau</strong> pengamatan yang tersinkronisasi. <a href=\"%{url}\">Kembali?</a>"
   previewing: "Menampilkan pratinjau..."
   previous_date_short: Sebelum
   prev: sebelum
