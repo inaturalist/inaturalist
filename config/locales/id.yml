@@ -3311,6 +3311,20 @@ id:
     zimbabwe: Zimbabwe
   places_of_interest: tempat-tempat menarik
   places_merged_successfully: Tempat sukses digabungkan!
+  places_warning_export_complex_boundary_html: |
+    Jika Anda sedang mencoba untuk mengekspor pengamatan dari batasan yang kompleks, pikirkan kembali untuk <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">mengunduhnya saja dari GBIF</a>, di mana Anda dapat menggambar batasan semau Anda, atau mengekspornya dari iNat menggunakan tempat yang sudah ada, lalu menyaring datanya lagi ketika Anda sudah mengunduhnya.
+  places_warning_look_for_existing_html: |
+    Carilah dulu <a href="/search?source[]=places">tempat yang ada</a> untuk memastikan Anda tidak membuat tempat duplikat. Kami sudah memiliki tempat untuk semua benua dan negara, hingga dua tingkat administratif di bawah negara.
+  places_warning_projects_can_have_multiple_places: |
+    Jika Anda ingin membuat sebuah tempat untuk batasan proyek, proyek dapat berisi beberapa tempat. Contohnya, jika Anda ingin membuat proyek untuk Selandia Baru dan Australia, Anda dapat menambahkan persyaratan untuk dua tempat sekaligus tanpa harus membuat baru lagi.
+  places_warning_new_places_are_slow_html: |
+    Tempat-tempat baru menjadi salah satu sumber keleletan terbesar di iNat, jadi <strong>tolong pikirkan kembali jika ingin membuat tempat baru</strong>. Walaupun tempat-tempat kecil yang berisi hanya beberapa ribu pengamatan biasanya masih oke, namun jika Anda ingin membuat tempat baru yang berisi banyak pengamatan, Anda akan memperlambat iNat untuk semua orang. Berikut adalah beberapa pilihan yang dapat diambil:
+  places_warning_editing_places_is_slow: |
+    Mengubah batasan tempat merupakan salah satu sumber keleletan iNat. Kalau bisa dihindari, jangan menambahkan, mengganti, atau menghapus batasan tempat jika tidak benar-benar diperlukan.
+  places_warning_quota: |
+    Anda hanya dapat membuat tiga tempat per harinya.
+  places_warning_the_future: |
+    Setelah dipertimbangkan, kami harus membatasi kondisi di mana orang-orang dapat menambahkan tempat baru di masa yang akan datang dikarenakan tingkat pertumbuhan iNat saat ini.
   plants: tanaman
   please_add_a_citation_for_this_change: Harap tambahkan kutipan untuk perubahan ini.
   please_add_this_observation_to: Harap tambahkan pengamatan ini untuk
@@ -3328,29 +3342,59 @@ id:
   popular: Populer
   position: Posisi
   possessive_user: "%{user}"
-  post_published: Tulisan diterbitkan!
-  posted_by: Ditulis oleh
-  posted_on: Ditulis pada
-  posts: Tulisan
+  #Post is a noun
+  post_from_journal_by_parent_html: Postingan dari <a href="%{url}">jurnal oleh %{parent}</a>
+  #Post is a noun
+  post_from_your_journal_html: Postingan dari <a href="%{url}">jurnal Anda</a>
+  post_published: Postingan diterbitkan!
+  posted_by: Diunggah oleh
+  posted_on: Diunggah pada
+  posts: Postingan
+  potential_disagreement: Potensi Ketidaksetujuan
   powered_by: Didukung oleh
-  present: Sekarang
-  preview: Lihat kembali
-  previewing: "Melihat kembali..."
+  powered_by_inaturalist_open_source_software_html: 'Didukung oleh <a href="https://github.com/inaturalist/inaturalist" target="_new" >perangkat lunak sumber terbuka iNaturalist</a>'
+  present: sekarang
+  press: Tekan
+  preview: Pratinjau
+  preview_observations_with_these_observation_requirements: Pratinjau Pengamatan dengan Persyaratan Pengamatan berikut
+  previewing: "Menampilkan pratinjau..."
+  previous_date_short: Sebelum
   prev: sebelum
+  previous_observation: Pengamatan Sebelumnya
   previous_page: Halaman sebelumnya
-  privacy: Kebijakan Privasi
-  private: Pribadi
-  private_description: "Koordinat tersembunyi sepenuhnya dari peta umum, koordinat yang benar hanya terlihat oleh Anda dan kurator proyek yang Anda tambahkan pada pengamatan. Pengamatan dengan koordinat pribadi masih akan digunakan untuk memverifikasi tempat daftar cek."
+  previous_page_short: Sebelum
+  previous_photo: Foto Sebelumnya
+  previous_post_short: Sebelum
+  previous_tab: Tab Sebelumnya
+  previous_taxon_short: Sebelum
+  print_verb: Cetak
+  privacy: Privasi
+  private: pribadi
+  private_: Pribadi
+  private_description: "Koordinat yang sepenuhnya tersembunyi dari peta umum, koordinat sebenarnya hanya terlihat oleh Anda dan kurator proyek tempat pengamatan Anda ditambahkan. Pengamatan dengan koordinat yang disembunyikan masih akan digunakan untuk memverifikasi tempat daftar centang."
+  probably_spam: Sepertinya Spam
+  proceed: Lanjutkan
   processing: Sedang diproses
   processing3p: "Memproses..."
   profile: Profil
+  profile_picture: Foto Profil
+  profile_visibility_desc: |
+    Untuk menjaga %{site_name} dari spam, profil pengguna hanya dapat dilihat publik jika pengguna sudah menambahkan beberapa pengamatan Kelas Riset.
   project: Proyek
+  project_admins:
+    other: Pengelola proyek
   project_aggregator_filter_error: |
-    Proyek tidak dapat memungkinkan secara otomatis mengaktifkan agregasi pengamatan kecuali proyek dikaitkan dengan tempat ukuran sedang atau hanya memungkinkan pengamatan pada taksa tertentu atau taksa pada daftar
+    Proyek tidak dapat mengaktifkan agregasi pengamatan secara otomatis kecuali proyek tersebut terkait dengan tempat berukuran sedang atau proyek itu hanya memungkinkan pengamatan untuk taksa tertentu atau taksa pada daftar tertentu.
   project_assessments: Penilaian Proyek
   project_assets: Aset Proyek
-  project_cover: Cover Proyek
-  project_created_on: Buat proyek ini pada %{date}
+  project_coordinate_access_enabled: |
+    Anda harusnya dapat melihat koordinat tersembunyi pengamatan dengan memercayai anggota.
+  project_coordinate_access_disabled_until_datetime: |
+    Anda tidak bisa mengakses koordinat tersembunyi hingga %{datetime}.
+  project_coordinate_access_warning: |
+    Akses koordinat sangat penting untuk para ilmuwan, tetapi juga bisa disalahgunakan oleh para pemburu. Pastikan Anda memercayai semua kurator proyek sebelum memercayai proyek ini.
+  project_cover: Sampul proyek
+  project_created_on: membuat proyek ini pada %{date}
   project_curator_id: ID kurator proyek
   project_curator_tools: Alat kurator proyek
   project_curators: Kurator Proyek
@@ -3358,83 +3402,208 @@ id:
   project_group_description: Grup proyek milik
   project_home: Beranda Proyek
   project_icon: Ikon proyek
-  project_id_or_url_slug: 'ID Proyek or URL slug, contoh: 333 atau proyek-saya'
+  project_journal: Jurnal Proyek
+  project_id_or_url_slug: 'ID Proyek or slug URL, contoh: 333 atau proyek-saya'
   project_list: Daftar Proyek
   project_list_defaults:
+    title: "Daftar Centang %{owner_name}"
     description: Daftar spesies untuk %{owner_name}
   project_curators_added_some_of_your_observations_html: |
-    <a href="%{url}">%{project}</a> kurator menambahkna beberapa pengamatan Anda
+    Kurator <a href="%{url}">%{project}</a> menambahkan beberapa pengamatan Anda
   project_members: "Anggota %{project}"
+  project_members_only: Anggota Proyek Saja
   project_membership_model_description: Apakah proyek Anda terbuka untuk semua orang atau hanya untuk orang yang Anda undang?
   project_observations: Pengamatan Proyek
-  project_post: Tulisan Proyek
+  project_post: Postingan Proyek
+  project_requirements: Persyaratan Proyek
   project_rules: Aturan Proyek
   project_settings: Pengaturan proyek
+  project_start_time_datetime: "Waktu mulai: %{datetime}"
   project_that_does_not_contain_these_observations: Proyek yang tidak mengandung pengamatan ini
+  project_type_description: |
+    Penilaian diperuntukkan untuk kolaborasi penilaian sekelompok spesies, biasanya untuk mengukur tingkat konservasi yang seharusnya.
   project_user_cannot_be_found: Pengguna proyek tidak dapat ditemukan
-  project_user_was_invalid: "Proyek tidak valid %{project_user}"
-  project_was_successfully_created: Proyek telah sukses dibuat.
-  project_was_successfully_updated: Proyek telah sukses diperbarui.
-  project_x_was_delete: "%{project} telah dihapus"
+  project_user_was_invalid: "Pengguna proyek tidak valid: %{project_user}"
+  project_was_successfully_created: Proyek sukses dibuat.
+  project_was_successfully_updated: Proyek sukses diperbarui.
+  project_x_was_delete: "%{project} telah dihapus (harap menunggu beberapa menit untuk penghapusan proyek ini dari situs web)"
   projects: Proyek
   projects_description: |
-    Proyek adalah cara untuk menyatukan pengamatan Anda dengan orang-orang lain di %{site_name}. Apakah Anda tertarik untuk memulai proyek ilmiah masyarakat atau hanya menjaga label pada burung-burung di taman terdekat dengan klub birding lokal, Proyek adalah cara untuk memulainya.
+    Proyek mengumpulkan pengamatan Anda dengan orang-orang lain di %{site_name}. Jika Anda tertarik untuk memulai proyek ilmiah masyarakat atau hanya ingin memantau burung-burung di sekitar rumah Anda, Proyek adalah jalan yang baik untuk ditempuh.
   projects_from_place: "Proyek dari %{place}"
   projects_in_x: "Proyek dalam %{x}"
-  projects_you_admin: Proyek Anda adalah Admin
+  #"admins" is equivalent to "administrates"
+  projects_user_admins: Proyek Yang Dikelola %{user}
+  projects_you_admin: Proyek Yang Anda Kelola
+  proposed_taxa_that_contradict_the_community_id: Taksa yang diajukan yang bertentangan dengan ID Komunitas
+  proposed_taxa_that_support_the_community_id: Taksa yang diajukan yang mendukung ID Komunitas
   protozoans: protozoa
-  provider_authorizations: Otorasi Penyedia
+  provider_authorizations: Otoritas Penyedia
   public_domain: Domain Umum
   publish: Terbitkan
   purple: ungu
   quality_grade: Tingkat kualitas
   quality_grade_: Tingkat Kualitas
   quality_grade_colon: "Tingkat kualitas:"
-  queued: Antrian
-  range: Rentang
-  rank: Peringkat
-  rank_position: Peringkat
+  queued: Diantrekan
+  query: Pertanyaan
+  radius: Radius (m)
+  radius_value: "Radius (m): %{radius}"
+  random: Acak
+  range: Jangkauan
+  rank: Kategori
+  rank_position: Kategori
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
+    stateofmatter: Wujud materi
     kingdom: kingdom
-    phylum: filum
-    subphylum: sub filum
-    superclass: superclass
-    class: kelas
-    subclass: subclass
-    superorder: super ordo
+    x_kingdoms:
+      other: Kerajaan
+    subkingdom: Subkerajaan
+    phylum: Filum
+    x_phyla:
+      other: Filum
+    subphylum: Subfilum
+    superclass: Superclass
+    class: Kelas
+    x_classes:
+      other: Kelas
+    subclass: Subkelas
+    infraclass: Infrakelas
+    superorder: Superordo
     order: Ordo
-    suborder: sub ordo
-    infraorder: infra ordo
-    superfamily: superfamily
-    epifamily: epifamily
-    family: family
-    subfamily: subfamily
-    supertribe: supertribe
-    tribe: tribe
-    subtribe: subtribe
-    genus: genus
-    genushybrid: genushybrid
+    x_orders:
+      other: Ordo
+    suborder: Subordo
+    infraorder: Infraordo
+    subterclass: Subterkelas
+    parvorder: Parvordo
+    zoosection: Zooseksi
+    zoosubsection: Zoosubseksi
+    superfamily: Superfamili
+    epifamily: Epifamili
+    family: Famili
+    x_families:
+      other: Famili
+    subfamily: Subfamily
+    supertribe: Supesuku
+    tribe: Suku
+    subtribe: Subsuku
+    genus: Genus
+    x_genera:
+      other: Genus
+    genushybrid: Genushibrida
+    subgenus: Subgenus
+    section: Seksi
+    subsection: Subseksi
+    complex: Kompleks
     #Singular
     species: Spesies
-    hybrid: hybrid
+    x_species:
+      other: Spesies
+    hybrid: Hibrida
     #Singular
     subspecies: Subspesies
-    variety: varietas
-    form: bentuk
-    leaves: meninggalkan
+    variety: Varietas
+    form: Bentuk
+    infrahybrid: Infrahibrida
+    leaves: Daun
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: wujud materi
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: kerajaan
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: subkerajaan
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: filum
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: subfilum
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: superkelas
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: kelas
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: subkelas
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: infrakelas
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: superordo
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: ordo
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: subordo
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: infraordo
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: subterclass
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: parvordo
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: zooseksi
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: zoosubseksi
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: superfamili
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: epifamili
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: famili
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: subfamili
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: supersuku
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: suku
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: subsuku
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: genus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: genushibrida
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: subgenus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: seksi
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: subseksi
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: kompleks
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: spesies
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: hibrida
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
   ranks_lowercase_subspecies: subspesies
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: varietas
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: bentuk
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: infrahibrida
+  ranges: Jangkauan
   ray_finned_fishes: ikan bersirip cahaya
   re_order_photos: "Pesan kembali foto&raquo;"
+  read_more: Baca Lebih Banyak
   read_our_getting_started_guide: baca panduan Memulai kami
-  read_the_full_wikipedia: Baca deskripsi penuh Wikipedia
+  read_the_full_wikipedia: Baca deskripsi sepenuhnya di Wikipedia
+  real_time_discussions: Diskusi Waktu Sebenarnya
   reason: Alasan
-  reason_you_are_flagging_this_item: Alasan Anda menandai item ini.
+  reason_you_are_flagging_this_item: Alasan Anda menandai hal ini.
+  recaptcha_verification_failed: verifikasi reCAPTCHA gagal
+  receive_email_notifications: Terima Pemberitahuan Email
+  receive_email_notifications_description: "Jika Anda mematikannya, Anda tidak akan menerima email apapun lagi dari %{site_name} terkait pemberitahuan."
   receive_email_notifications_when_people_leave_you: Menerima notifikasi email tentang
+  receive_project_journal_notifications?: Terima pemberitahuan jurnal proyek?
   receive_updates_from_this_project: Menerima pembaruan dari proyek ini
   recent: Terkini
-  recent_observations: Pengamatan yang baru
-  recent_post: Tulisan yang baru
+  recent_evidence_of_organism: Bukti terbaru dari suatu organisme
+  recent_exports: Ekspor Terakhir
+  recent_new_users: Pengguna Baru
+  recent_observations: Pengamatan baru
+  recent_observations_: Pengamatan Terbaru
+  recent_post: Postingan terbaru
   #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Pengamatan yang baru oleh %{login} (Atom)"
   recent_observations_by: "Pengamatab yabf baru oleh %{login}"
