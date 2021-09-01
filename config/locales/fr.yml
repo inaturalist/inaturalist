@@ -191,6 +191,8 @@ fr:
     Seulement vos observations aux coordonnées masquées parce qu'elles représentent un taxon menacé.
   about_trusting_projects_options_taxon_desc: |-
     Beaucoup de projets ont besoin d'avoir accès aux coordonnées masquées de vos observations qui contiennent un taxon menacé.
+  about_trusting_projects_overview: |-
+    Autoriser l'accès à vos coordonnées masquées va permettre aux dirigeants de projets de voir le véritable emplacement de vos observations. C'est extrêmement important dans le cas où les scientifiques ont besoin des coordonnées exactes pour analyse ou prise de décision.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -969,6 +971,10 @@ fr:
     place: Lieu auquel la situation est limitée.
     url: URL d’une page décrivant la situation.
     geoprivacy: Géoconfidentialité par défaut pour les observations liées à ce taxon
+    iucn: |
+      Code équivalent de la liste rouge de l'UICN. Ce n'est pas l'évaluation de l'UICN,
+      mais le code de l'UICN qui correspond le mieux au risque de divulgation des coordonnées
+      qu'implique ce statut. Cela remplacera toute géoconfidentialité de niveau inférieur ou égal à « Préoccupation mineure ». Si vous voulez masquer les observations de ce taxon, optez pour « Quasi menacé » ou pour un niveau supérieur.
   conservation_status_geoprivacy_desc: |
     La géoconfidentialité par défaut est appliquée à toutes les observations de ce taxon à cet endroit
   contact_support: Contacter le soutien
@@ -1137,6 +1143,13 @@ fr:
     Vous devez expliquer pourquoi vous voulez devenir responsable.
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Pourquoi voulez-vous être responsable?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Si vous souhaitez modifier la taxonomie d'iNaturalist, veuillez fournir un exemple ou deux
+    de changements taxonomiques que vous souhaitez apporter, en incluant des sources. Le cas échéant, veuillez citer les autorités taxonomiques
+    appropriées mentionnées dans le <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">Guide du responsable de l'organisation</a>. Si vous n'incluez aucune source, votre demande
+    ne sera pas prise en considération.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Si vous souhaitez modifier les noms vernaculaires, veuillez fournir un exemple ou deux des
@@ -1364,6 +1377,11 @@ fr:
   details: Détails
   deviation: Déviation
   devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Si votre adresse email existe dans notre base de données, vous recevrez un message avec les instructions pour confirmer votre adresse d'ici quelques minutes.
     failure:
       already_authenticated: 'Vous êtes déjà connecté.'
       unauthenticated: 'Vous devez vous connecter ou vous inscrire avant de continuer.'
@@ -2121,6 +2139,7 @@ fr:
     luxembourgish: Luxembourgeois
     maltese: Maltais
     maori: Maori
+    marathi: Marathi
     misima_paneati: Misima-paneati
     norwegian: Norvégien
     occitan: Occitan
@@ -2228,6 +2247,7 @@ fr:
     lt: Lithuanien
     lv: letton
     mk: Macédonien
+    mr: Marathi
     nb: Bokmål norvégien
     nl: néerlandais
     oc: Occitan
@@ -2848,7 +2868,6 @@ fr:
     absent: N’apparaît pas dans la zone
     common: Apparaît fréquemment
     doubtful: Présumé apparaître, mais il y a des doutes sur la preuve
-    irregular: Présence imprévisible, y compris en vagabondage ; peut être commun certaines années et absent d’autres
     present: Apparaît dans la zone
     uncommon: Apparaît régulièrement, mais en petit nombre ; nécessite une recherche soigneuse du bon habitat
   occurrence_status_establishment_means: état de la présence, type d'implantation
@@ -2903,6 +2922,8 @@ fr:
       </ul>
   one_by_one: "Un par un"
   one_of_your_lists: "une de vos listes…"
+  one_or_more_input_taxa_have_more_than_1000: |
+    Un ou plusieurs des taxons d'entrée ont plus de 1000 observations en aval. Le traitement de l'opération risque de prendre un certain temps. Avez-vous la certitude que ce changement de taxon est nécessaire ? Les changements de taxon ne peuvent pas être annulés.
   only_a_project_manager_can_add: Seul un gestionnaire de projet peut accorder le statut de responsable de l’organisation du projet
   only_administrators_may_access_that_page: Seuls les administrateurs peuvent accéder à cette page
   only_an_admin_can_remove_project_users: Seul un administrateur peut supprimer des utilisateurs du projet
@@ -4029,6 +4050,8 @@ fr:
   showing_x_of_y: Visualisation %{x} sur %{y}
   showing_x_of_y_listings: "Affiche %{x} de %{y} listes"
   sign_in: S’identifier
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Se connecter avec Apple
   sign_in_with_provider: "Connectez-vous avec %{provider}"
   sign_in_with_google: Connectez-vous avec Google
   sign_out: Déconnexion
@@ -4474,6 +4497,7 @@ fr:
     <strong>Cette modification de taxon n’a pas été validée!</strong>
     Merci de ne pas modifier les taxons. La modification des autres champs est autorisée.
   this_taxon_concept_is_inactive: ce concept de taxon est inactif
+  this_taxon_has_more_than_1000: Ce taxon a plus de 1000 observations en aval. Le traitement de la modification risque de prendre un certain temps. Avez-vous la certitude que c'est nécessaire ?
   this_taxon_has_no_default_photo: Ce taxon n’a pas de photo par défaut!
   this_taxon_is_inactive_this_means: |
     Ce taxon est <strong>inactif</strong>, ce qui veut dire que les responsables de l’organisation d’%{site_name} l’ont remplacé
@@ -4834,6 +4858,10 @@ fr:
   were_pretty_sure_this_is_in_the_family: Nous sommes presque certains que cet organisme appartient à l'ordre
   #Label for the most probable taxon in the automated suggestions when that taxon is an order
   were_pretty_sure_this_is_in_the_order: Nous sommes presque certains que cet organisme appartient à l'ordre
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: Nous sommes presque certains que cet organisme appartient à la sous-famille
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: Nous sommes presque certains que cet organisme appartient à la superfamille
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
@@ -7070,6 +7098,8 @@ fr:
           d’observer.
         nature_at_your_fingertips: La nature au bout des doigts
         keep_track: Suivi des observations
+        record_your_encounters: |
+          Enregistrer vos rencontres avec d’autres organismes et tenir des listes d'êtres vivants, tout cela dans le cloud.
         create_useful_data: Créer des données utiles
         help_scientists: Aider les scientifiques et les gestionnaires des ressources à comprendre quand et où les organismes sont présents.
         crowdsource_identifications: Identifications participatives
@@ -7602,6 +7632,13 @@ fr:
               is_too_large_to_edit: est trop grand pour être modifié
               is_too_large_to_import: est trop gros pour être importé
               contains_too_many_observations: contient trop d'observations à importer
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: ne peut pas être vide
+              invalid_point: a un point non valide, par exemple une longitude supérieure à 180° ou une latitude inférieure à -90°
+              must_have_more_than_three_points: doit avoir plus de 3 points
+              polygon_with_fewer_than_four_points: a un polygone avec moins de 4 points
         post:
           attributes:
             parent:
