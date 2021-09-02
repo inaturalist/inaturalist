@@ -29,6 +29,11 @@ kn:
   x_misidentifications_of_this_species:
     one: "%{count} ಈ ಪ್ರಭೇಧದ ತಪ್ಪಾದ ಗುರುತಿಸುವಿಕೆ"
     other: "%{count} ಈ ಪ್ರಭೇಧದ ತಪ್ಪಾದ ಗುರುತಿಸುವಿಕೆಗಳು"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
+  x_misidentifications_of_species_in_this_rank:
+    one: "ಈ %{rank} ನಲ್ಲಿ ತಪ್ಪಾಗಿ ಗುರುತಿಸಲಾದ %{count} ಪ್ರಭೇದ"
+    other: "ಈ %{rank} ನಲ್ಲಿ ತಪ್ಪಾಗಿ ಗುರುತಿಸಲಾದ %{count} ಪ್ರಭೇದಗಳು"
   x_observations:
     one: "%{count} ವೀಕ್ಷಣೆ"
     other: "%{count} ವೀಕ್ಷಣೆಗಳು"
@@ -45,8 +50,8 @@ kn:
     one: "<span class='count'>%{count}</span> ವೀಕ್ಷಣೆ ಪರಿಶೀಲನೆಯಾಗಿದೆ"
     other: "<span class='count'>%{count}</span> ವೀಕ್ಷಣೆಗಳು ಪರಿಶೀಲನೆಯಾಗಿವೆ"
   x_observers_html:
-    one: '<span class="count">%{count}</span> ವೀಕ್ಷಕ'
-    other: '<span class="count">%{count}</span> ವೀಕ್ಷಕರು'
+    one: '<span class="count">%{count}</span> ವೀಕ್ಷಕರು'
+    other: '<span class="count">%{count}</span> ವೀಕ್ಷಕರುಗಳು'
   x_others:
     one: "%{count} ಇತರೆ"
     other: "%{count} ಇತರೆ"
@@ -57,20 +62,23 @@ kn:
     one: "%{count} ಚಿತ್ರ"
     other: "%{count} ಚಿತ್ರಗಳು"
   x_new_species:
-    one: "%{count} ಹೊಸ ಜೀವಿವರ್ಗ"
-    other: "%{count} ಹೊಸ ಜೀವಿವರ್ಗಗಳು"
+    one: "%{count} ಹೊಸ ಪ್ರಭೇದ"
+    other: "%{count} ಹೊಸ ಪ್ರಭೇದಗಳು"
   x_new_users:
     one: '%{count} ಹೊಸ ಬಳಕೆದಾರರು'
     other: '%{count} ಹೊಸ ಬಳಕೆದಾರರು'
   x_species:
-    one: '%{count} ಜೀವಿವರ್ಗ'
-    other: '%{count} ಜೀವಿವರ್ಗಗಳು'
+    one: '%{count} ಪ್ರಭೇದ'
+    other: '%{count} ಪ್ರಭೇದಗಳು'
   x_species_html:
-    one: "<span class='count'>%{count}</span> ಜೀವಿವರ್ಗ"
-    other: "<span class='count'>%{count}</span> ಜೀವಿವರ್ಗಗಳು"
+    one: "<span class='count'>%{count}</span> ಪ್ರಭೇದ"
+    other: "<span class='count'>%{count}</span> ಪ್ರಭೇದಗಳು"
   x_species_link_html:
-    one: "<a href='%{url}'>%{count} ಜೀವಿವರ್ಗ</a>"
-    other: "<a href='%{url}'>%{count} ಜೀವಿವರ್ಗಗಳು</a>"
+    one: "<a href='%{url}'>%{count} ಪ್ರಭೇದ </a>"
+    other: "<a href='%{url}'>%{count} ಪ್ರಭೇದಗಳು</a>"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} ಸಲಹೆ ಶೋಧಕದ ಮೂಲಕ:"
+    other: "%{count} ಸಲಹೆಗಳು ಶೋಧಕದ ಮೂಲಕ:"
   x_taxa:
     one: "%{count} ವರ್ಗೀಕರಣ"
     other: "%{count} ವರ್ಗೀಕರಣಗಳು"
@@ -83,9 +91,13 @@ kn:
   x_sounds:
     one: "%{count} ಧ್ವನಿ"
     other: "%{count} ಧ್ವನಿಗಳು"
+  _100_day_trends: 100 ದಿನದ ಜನಪ್ರಿಯತೆ
   _percent_ID_d: "% ID'd"
   a_community_for_naturalist: ಪರಿಸರ ಪ್ರೇಮಿಗಳ ಒಂದು ಸಮುದಾಯ
   a_member_of_taxon_html: "%{taxon} ನ ಸದಸ್ಯ"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A ಇಂದ Z"
   about: ಕುರಿತು
   about_blocking: ನಿರ್ಬಂಧನೆ ಬಗ್ಗೆ
   about_charts: ಚಾರ್ಟ್‍ಗಳ ಬಗ್ಗೆ
@@ -102,6 +114,7 @@ kn:
   about_places: ಸ್ಥಳಗಳ ಬಗ್ಗೆ
   about_the_cc_licenses: ಕ್ರಿಯೇಟೀವ್ ಕಾಮನ್ಸ್ ಪರವಾನಿಗೆ ಬಗ್ಗೆ
   about_these_licenses: ಈ ಪರವಾನಿಗೆಗಳ ಬಗ್ಗೆ
+  about_this_bioblitz: ಈ Bioblitz ಬಗ್ಗೆ
   about_this_map: ಈ ಭೂಪಟದ ಬಗ್ಗೆ
   about_this_project: ಈ ಪ್ರಾಯೋಜನೆಯ ಬಗ್ಗೆ
   about_trusting_projects: ಪ್ರಾಯೋಜನೆಗಳನ್ನು ನಂಬುವ ಬಗ್ಗೆ
@@ -214,11 +227,16 @@ kn:
   add_sex_male_annotation: '"ಲಿಂಗ: ಪುರುಷ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_sex_cannot_be_determined_annotation: '"ಲಿಂಗ: ನಿರ್ಣಯಿಸಲಾಗಲಿಲ್ಲ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_some_now: ಕೆಲವನ್ನು ಈಗ ಸೇರಿಸಿ
+  add_tag: ಟ್ಯಾಗ್ ಸೇರಿಸಿ
+  add_tags: ಟ್ಯಾಗ್ ಗಳನ್ನು ಸೇರಿಸಿ
+  add_tags_to_selected_taxa: ಆಯ್ಕೆಮಾಡಿದ ಜೀವಿವರ್ಗಕ್ಕೆ ಟ್ಯಾಗ್ ಗಳನ್ನು ಸೇರಿಸಿ
   add_taxa: ವರ್ಗೀಕರಣವನ್ನು ಸೇರಿಸಿ
   add_taxon_batch_to: "%{list} ಗೆ ವರ್ಗೀಕರಣದ ಬ್ಯಾಚ್ ಅನ್ನು ಸೇರಿಸಿ"
   add_taxon_range: ವರ್ಗೀಕರಣದ ಶ್ರೇಣಿಯನ್ನು ಸೇರಿಸಿ
+  add_taxonomic_tags_to: "ಆಯ್ಕೆಮಾಡಿದ ಫ್ಲಿಕರ್ ಚಿತ್ರಗಳಿಗೆ ವರ್ಗೀಕರಣದ ಟ್ಯಾಗ್ ಗಳನ್ನು ಸೇರಿಸಿ &raquo;"
   add_to_a_project: ಪ್ರಾಯೋಜನೆಯೊಂದಕ್ಕೆ ಸೇರಿಸಿ
   add_to_calendar: ದಿನದರ್ಶಿಕೆಗೆ ಸೇರಿಸಿ
+  add_to_checklist: ತಾಳೆಪಟ್ಟಿಗೆ ಸೇರಿಸಿ
   add_to_favorites: ಮೆಚ್ಚಿನವುಗಳಿಗೆ ಸೇರಿಸಿ
   add_to_list: ಪಟ್ಟಿಗೆ ಸೇರಿಸಿ
   add_to_project: ಪ್ರಾಯೋಜನೆಗೆ ಸೇರಿಸಿ
@@ -256,6 +274,9 @@ kn:
   all_photos: ಎಲ್ಲಾ ಚಿತ್ರಗಳು
   all_places: "ಎಲ್ಲಾ ಸ್ಥಳಗಳು"
   all_projects: ಎಲ್ಲಾ ಪ್ರಾಯೋಜನೆಗಳು
+  all_rank_added_to_the_database:
+    species: ಎಲ್ಲಾ ಪ್ರಭೇದಗಳನ್ನು ಡೇಟಾಬೇಸಿಗೆ ಸೇರಿಸಲಾಗಿದೆ
+    subspecies: ಎಲ್ಲಾ ಉಪಪ್ರಭೇದಗಳನ್ನು ಡೇಟಾಬೇಸಿಗೆ ಸೇರಿಸಲಾಗಿದೆ
   all_rights_reserved: ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಿದೆ
   all_taxa:
     amphibians: ಉಭಯಚರಿಗಳು
@@ -356,6 +377,7 @@ kn:
   #Label for an option to show/include content by any user
   any_user: ಯಾವುದಾದರೂ
   anyone: ಯಾರಾದರೂ
+  applications: ಅಪ್ಲಿಕೇಷನ್‍ಗಳು
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: ಸಲ್ಲಿಸಿ
@@ -397,6 +419,7 @@ kn:
   attention: ಗಮನಿಸಿ
   you_sure_delete_list: ಈ ಪಟ್ಟಿಯನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
   you_sure_delete_taxon_from_list?: "ಈ %{taxon}ವನ್ನು ಪಟ್ಟಿಯಿಂದ ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?"
+  asc: ಆರೋಹಣ
   ascending: ಆರೋಹಣ
   atlas_for_taxon_html: '%{taxon} ಗೆ ಭೂಪಟ'
   authorize: ಧೃಢೀಕರಿಸಿ
@@ -433,11 +456,12 @@ kn:
   back_to_your_projects: ನಿಮ್ಮ ಪ್ರಾಯೋಜನೆಗಳಿಗೆ ಹಿಂದಿರುಗಿ
   badges: ಬ್ಯಾಡ್ಜ್‌‍ಗಳು
   based_on_the_evidence_can_id_be_improved: |
-    ಸಾಕ್ಷ್ಯದ ಆಧಾರದ ಮೇಲೆ ಸಮುದಾಯದ ವರ್ಗೀಕರಣ ಇನ್ನೂ ನಿರ್ಧಾರವಾಗಬೇಕಾಗಿದೆಯೇ ಅಥವಾ ಸುಧಾರಿಸಬೇಕಾಗಿದೆಯೇ?
+    ಕುರುಹುಗಳ ಆಧಾರದ ಮೇಲೆ ಸಮುದಾಯದ ವರ್ಗೀಕರಣ ಇನ್ನೂ ನಿರ್ಧಾರವಾಗಬೇಕಾಗಿದೆಯೇ ಅಥವಾ ಸುಧಾರಿಸಬೇಕಾಗಿದೆಯೇ?
   batch: ಬ್ಯಾಚ್
   batch_edit: ಬ್ಯಾಚ್ ಸಂಪಾದನೆ
   #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "%{x} ಗಾಗಿ ವರ್ಗೀಕರಣದ ಬ್ಯಾಚ್ ಸಂಪಾದನೆ"
+  batch_operations: ಬ್ಯಾಚ್ ಕಾರ್ಯಾಚರಣೆಗಳು
   be_the_first_to_fave_this_observation: ಈ ವೀಕ್ಷಣೆಯನ್ನು ಮೆಚ್ಹುವುದರಲ್ಲಿ ನೀವು ಮೊದಲಿಗರಾಗಿ!
   because_of: ಇದರಿಂದಾಗಿ
   before_importing_photos: ಚಿತ್ರಗಳನ್ನು ಆಮದುಮಾಡುವ ಮುನ್ನ
@@ -478,6 +502,8 @@ kn:
   casual_: ಸಾಂದರ್ಭಿಕ
   categories: ವಿಭಾಗಗಳು
   cc_0_name: ಹಕ್ಕು ಸ್ವಾಮ್ಯತೆಯಿಲ್ಲ (CC0)
+  cc_used_under_a: "ಕ್ರಿಯೇಟೀವ್ ಕಾಮನ್ಸ್ ನ ಅಡಿಯಲ್ಲಿ ಬಳಸಲಾಗಿದೆ "
+  change_admin: ನಿರ್ವಾಹಕರನ್ನು ಬದಲಿಸಿ
   change_geoprivacy: 'ಭೂಗೌಪ್ಯತೆಯನ್ನು ಬದಲಿಸಿ'
   change_group: ಗುಂಪನ್ನು ಬದಲಿಸಿ
   change_icon: ಐಕಾನ್ ಬದಲಾಯಿಸಿ
@@ -487,6 +513,12 @@ kn:
     change_types: ವಿಧಗಳನ್ನು ಬದಲಿಸಿ
     split: ವಿಭಜಿಸಿ
     merge: ಒಂದುಗೂಡಿಸಿ
+    swap: ಅದಲುಬದಲಿಸಿ
+    drop: ಬಿಟ್ಟುಬಿಡಿ
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_from: ಇದರಿಂದ ವಿಭಜಿಸಿ
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_into: ಇದರಂತೆ ವಿಭಜಿಸಿ
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merge_into: ಇದಕ್ಕೆ ವಿಲೀನಗೊಳಿಸಿ
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
@@ -498,6 +530,7 @@ kn:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: ಇದರೊಂದಿಗೆ ಬದಲಿಸಲಾಗಿದೆ
     dropped: ಕೈಬಿಡಲಾಗಿದೆ
+    staged: ಸಜ್ಜುಗೊಳಿಸಲಾಗಿದೆ
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon} ಅನ್ನು %{output_taxa}ಕ್ಕೆ ವಿಭಜಿಸಲಾಗಿದೆ"
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} ಅನ್ನು %{output_taxa}ಕ್ಕೆ ವಿಭಜಿಸಲಾಗುತ್ತದೆ"
     input_taxon_was_dropped_html: "%{input_taxon} ಅನ್ನು ಕೈಬಿಡಲಾಗಿದೆ"
@@ -511,7 +544,14 @@ kn:
   changing_the_geoprivacy: 'ಭೂಗೌಪ್ಯತೆಯ ಬದಲಾವಣೆಯು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳ ಸ್ಥಳಗಳನ್ನು ಇತರರು ಹೇಗೆ ನೋಡುತ್ತಾರೆಂಬುದನ್ನು ಮಾರ್ಪಡಿಸುತ್ತದೆ.'
   check_above_for_errors: ದೋಷಗಳಿಗಾಗಿ ಮೇಲೆ ನೋಡಿ
   check_back_soon: ಶೀಘ್ರದಲ್ಲೇ ನಿರೀಕ್ಷಿಸಿ!
+  check_list: ತಾಳೆ ಪಟ್ಟಿ
+  check_list_for_taxon_html: "%{taxon} ಗಾಗಿ ತಾಳೆಪಟ್ಟಿ"
+  check_list_of_species_occuring_in: ಇಲ್ಲಿ ಇರುವಿಕೆ ತೋರಿರುವ ಪ್ರಭೇದಗಳ ತಾಳೆಪಟ್ಟಿ
+  check_list_place: "%{place} ತಾಳೆಪಟ್ಟಿ"
+  check_list_updated: ತಾಳೆಪಟ್ಟಿ ನವೀಕರಣಗೊಂಡಿದೆ!
+  check_lists_for: "%{place} ಗಾಗಿ ಇತರೇ ತಾಳೆಪಟ್ಟಿಗಳು"
   check_out_our_blog: ನಮ್ಮ ಬ್ಲಾಗ್ ಅನ್ನು ಒಮ್ಮೆ ಪರಿಶೀಲಿಸಿ
+  checklist: ತಾಳೆಪಟ್ಟಿ
   choose_a_place: ಸ್ಥಳವೊಂದನ್ನು ಆರಿಸಿ
   choose_a_taxon: ವರ್ಗೀಕರಣ ಆಯ್ಕೆಮಾಡಿ (ಐಚ್ಛಿಕ)
   choose_file: ಕಡತವನ್ನು ಆರಿಸಿ
@@ -550,7 +590,7 @@ kn:
   #Label for date the taxon change was committed
   committed_on: '%{date} ರಂದು ಸಲ್ಲಿಕೆಯಾಗಿದೆ'
   common_name: ಸಾಮಾನ್ಯ ಹೆಸರು
-  community: ಸಮೂಹ
+  community: ಸಮುದಾಯ
   community_guidelines: ಸಮುದಾಯ ಮಾರ್ಗಸೂಚಿಗಳು
   community_id_heading: ಸಮುದಾಯ ವರ್ಗೀಕರಣ
   community_id_at_species_level_or_lower: ಪ್ರಭೇಧಕ್ಕೆ ಅಥವಾ ಅದರ ಕೆಳಹಂತಕ್ಕೆ ಸಮುದಾಯದ ವರ್ಗೀಕರಣ
@@ -562,6 +602,7 @@ kn:
   comparing_list_to_list: "%{list1} ಅನ್ನು %{list2} ಜೊತೆ ಹೋಲಿಸಲಾಗುತ್ತಿದೆ"
   comparing_versions_x_and_y: "%{x} ಮತ್ತು %{y} ಆವೃತ್ತಿಗಳನ್ನು ಹೋಲಿಸಲಾಗುತ್ತಿದೆ"
   comparing_observations_from: "%{dates} ದಿಂದ %{user} ವೀಕ್ಷಣೆಗಳನ್ನು ಹೋಲಿಸಲಾಗುತ್ತಿದೆ"
+  compiled_by_name: "%{name} ಅವರಿಂದ ಸಂಕಲಿಸಲಾಗಿದೆ"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: ಸಂಪೂರ್ಣತೆ
   completed: ಸಂಪೂರ್ಣವಾಗಿದೆ
@@ -569,6 +610,8 @@ kn:
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: ವ್ಯಾಪಕವಾಗಿದೆಯೇ?
+  comprehensive_check_list_for_taxon_html: |
+    %{taxon} ಗಾಗಿ <span class="comprehensive_notice" data-tip="%{tip}">ವ್ಯಾಪಕವಾದ</span> ತಾಳೆಪಟ್ಟಿ
   comprehensive_list: ವ್ಯಾಪಕವಾದ ಪಟ್ಟಿ
   #Status of a taxon that the Computer Vision Model can recognize
   computer_vision_model_included: ಒಳಗೊಂಡಿದೆ
@@ -593,6 +636,7 @@ kn:
   conservation_status: ಸಂರಕ್ಷಣೆ ಸ್ಥಿತಿ
   conservation_status_descriptions:
     description: ಇದನ್ನು ಏತಕ್ಕೆ ಪಟ್ಟಿಮಾಡಲಾಗಿದೆಯೆಂಬುದಕ್ಕೆ ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ
+    place: ಈ ಸ್ಥಿತಿಯನ್ನು ಸೀಮಿತಗೊಳಿಸಿರುವ ಪ್ರದೇಶಗಳು.
     url: ಈ ಸ್ಥಿತಿಯನ್ನು ವಿವರಿಸುವ ಪುಟದ URL
     geoprivacy: ಈ ವರ್ಗೀಕರಣದ ವೀಕ್ಷಣೆಗಳಿಗೆ ನಿಯೋಜಿತ ಭೂಗೌಪ್ಯತೆ
   conservation_status_geoprivacy_desc: |
@@ -600,6 +644,7 @@ kn:
   contact_support: ಸಹಾಯಕ್ಕಾಗಿ ಸಂಪರ್ಕಿಸಿ
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: ವಸ್ತುವಿಷಯ
+  content_and_display: ವಸ್ತುವಿಷಯ & ಪ್ರದರ್ಶನ
   content_author: ವಸ್ತುವಿಷಯದ ಲೇಖಕರು
   content_hidden: ಮರೆಮಾಡಿದ ವಿಷಯಗಳು
   content_hidden_by_user_on_date_because_reason_html: |
@@ -631,10 +676,10 @@ kn:
     fruiting: ಹಣ್ಣಾಗುತ್ತಿದೆ
     life_stage: ಜೈವಿಕ ಹಂತ
     adult: ವಯಸ್ಕ
-    pupa: ಪ್ಯೂಪಾ
+    pupa: ಪೊರೆಹುಳು
     no_evidence_of_flowering: ಹೂವಾಗುತ್ತಿರುವ ಕುರುಹುಗಳಿಲ್ಲ
     nymph: ಅಪ್ಸರೆ ಹುಳು
-    larva: ಲಾರ್ವಾ
+    larva: ಮರಿಹುಳು
     egg: ಮೊಟ್ಟೆ
     juvenile: ಹದಿವಯಸ್ಕ
     alive_or_dead: ಜೀವಿತ ಅಥವಾ ಮೃತ
@@ -655,7 +700,7 @@ kn:
     bone: ಮೂಳೆ
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
-    molt: ಪೊರೆಬಿಡು
+    molt: ಪೊರೆ
   controlled_term_definitions:
     alive: ಜೀವಿಯು ಜೀವಂತವಾಗಿದೆ ಹಾಗೂ ಸಾವು ಸನ್ನಿಹಿತವಾಗಿರುವ ಲಕ್ಷಣಗಳನ್ನು ತೋರಿಸುತ್ತಿಲ್ಲ
     dead: ಜೀವಿಯು ಮೃತವಾಗಿದೆ ಅಥವಾ ಸಾವು ಸನ್ನಿಹಿತವಾಗಿರುವ ಲಕ್ಷಣಗಳನ್ನು ತೋರಿಸುತ್ತಿದೆ
@@ -671,6 +716,11 @@ kn:
   convert: ಪರಿವರ್ತಿಸಿ
   coordinate_systems: ನಿರ್ದೇಶಾಂಕ ವ್ಯವಸ್ಥೆಗಳು
   coordinates: ನಿರ್ದೇಶಾಂಕಗಳು
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: ಪೂರ್ಣ ನಿರ್ದೇಶಾಂಕಗಳೊಂದಿಗೆ ಮಾತ್ರ
   copy: ನಕಲಿಸಿ
   copy_and_paste_this_into_your_own_html: ಇದನ್ನು ನಿಮ್ಮದೇ HTML ಗೆ ನಕಲಿಸಿ ಮತ್ತು ಅಂಟಿಸಿ.
   copyright:
@@ -687,7 +737,7 @@ kn:
     no_copyright: ಹಕ್ಕು ಸ್ವಾಮ್ಯತೆಯಿಲ್ಲ (CC0)
   copyright_holder: ಹಕ್ಕುಸ್ವಾಮ್ಯದ ಮಾಲೀಕರು
   copyright_info: ಹಕ್ಕುಸ್ವಾಮ್ಯದ ಮಾಹಿತಿ
-  copyright_info_and_more: ಹಕ್ಕುಸ್ವಾಮ್ಯದ ಮಾಹಿತಿ ಮತ್ತು ಹೆಚ್ಚಿನದು
+  copyright_info_and_more: ಹಕ್ಕುಸ್ವಾಮ್ಯದ ಮಾಹಿತಿ ಮತ್ತು ಇನ್ನಷ್ಟು
   copyright_infringement: ಹಕ್ಕುಸ್ವಾಮ್ಯ ಉಲ್ಲಂಘನೆ
   couldnt_change_your_password: "ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸಲಾಗಲಿಲ್ಲ:%{e}"
   couldnt_find_a_user_matching_x_param: "%{id} ಅನ್ನು ಹೋಲುವ ಬಳಕೆದಾರರನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗಲಿಲ್ಲ"
@@ -753,6 +803,7 @@ kn:
   data_used: "ಬಳಸಿದ ದತ್ತಾಂಶ :"
   date_: ದಿನಾಂಕ
   date_added: ಸೇರಿಸಲಾದ ದಿನಾಂಕ
+  date_authorized: ಸಮ್ಮತಿಸಿದ ದಿನಾಂಕ
   date_created: ರಚಿಸಿದ ದಿನಾಂಕ
   date_format:
     date_long:
@@ -784,9 +835,9 @@ kn:
   date_is_accurate: ದಿನಾಂಕ ನಿಖರವಾಗಿದೆ
   date_joined: ಸೇರಿದ ದಿನಾಂಕ
   date_obscured_notice: ವೈಯಕ್ತಿಕ ಅಥವಾ ಜೀವಿಯ ಗೋಪ್ಯತೆಯನ್ನು ರಕ್ಷಿಸಲು ದಿನಾಂಕವನ್ನು ಮಸುಕುಗೊಳಿಸಲಾಗಿದೆ
-  date_observed: ವಿಕ್ಷಣಾ ದಿನಾಂಕ
-  date_observed_: ವಿಕ್ಷಣಾ ದಿನಾಂಕ
-  date_observed_on: ವಿಕ್ಷಣಾ ದಿನಾಂಕ
+  date_observed: ವೀಕ್ಷಣಾ ದಿನಾಂಕ
+  date_observed_: ವೀಕ್ಷಣಾ ದಿನಾಂಕ
+  date_observed_on: ವೀಕ್ಷಣಾ ದಿನಾಂಕ
   date_picker:
     closeText: ಮುಚ್ಚಿರಿ
     currentText: ಇಂದು
@@ -796,6 +847,7 @@ kn:
     nextText: ಮುಂದೆ
     range: ವ್ಯಾಪ್ತಿ
   date_range: ದಿನಾಂಕ ಶ್ರೇಣಿ
+  date_specified: ದಿನಾಂಕ ಸೂಚಿಸಲಾಗಿದೆ
   date_time: ದಿನಾಂಕ / ಸಮಯ
   #Express a date range. d1 and d2 could be any expression of dates, so better
   #to use the most flexible form possible here, e.g. not something like "d1 to
@@ -838,7 +890,7 @@ kn:
   description_from: ಇಂದ ವಿವರಣೆ
   description_sections: ವಿವರಣೆ ವಿಭಾಗಗಳು
   description_slash_tags: ವಿವರಣೆ / ಟ್ಯಾಗ್‍ಗಳು
-  description_tags_more: "ವಿವರಣೆ, ಟ್ಯಾಗ್‍ಗಳು, &amp; ಹೆಚ್ಚಿನವು"
+  description_tags_more: "ವಿವರಣೆ, ಟ್ಯಾಗ್‍ಗಳು, &amp; ಇನ್ನಷ್ಟು"
   desription: ವಿವರಣೆ
   destroy: ನಾಶಪಡಿಸಿ
   details: ವಿವರಗಳು
@@ -924,6 +976,8 @@ kn:
   drawings: ರೇಖಾಚಿತ್ರಗಳು
   duplicate_verb: ನಕಲು
   duration_value: "ಕಾಲಾವಧಿ: %{duration} ನಿಮಿಷಗಳು"
+  each_place_displays_all_species_inat_knows: "ಪ್ರತಿಯೊಂದು ಸ್ಥಳದ ಪುಟವು %{site_name} ಗೆ ಆ ಪ್ರದೇಶದಿಂದ ಗೊತ್ತಿರುವ ಎಲ್ಲಾ ಪ್ರಭೇದಗಳ, ಅವುಗಳ ಸಮೃದ್ಧತೆ, ಸಂರಕ್ಷಣೆಯ ಸ್ಥಿತಿ ಹಾಗೂ %{site_name} ನಲ್ಲಿ ಆ ಪ್ರದೇಶದಿಂದ ಆ ಪ್ರಭೇದವನ್ನು ಮೊಟ್ಟಮೊದಲು ವೀಕ್ಷಿಸಿದ ವ್ಯಕ್ತಿಗಳ ವಿವರಗಳನ್ನು ಒಳಗೊಂಡಂತೆ ಸಮಗ್ರ ಮಾಹಿತಿಯನ್ನು ಒದಗಿಸುತ್ತದೆ. ನೀವು ಪ್ರಭೇದಗಳನ್ನು ಜೀವಿವರ್ಗದ ಗುಂಪು, ಬಣ್ಣ, ಸಂರಕ್ಷಣೆಯ ಸ್ಥಿತಿಗಳಂತೆ ಶೋಧಿಸಬಹುದು ಅಥವಾ ಸಾಮಾನ್ಯ ರೀತಿಯಲ್ಲಿ ಹುಡುಕಬಹುದು."
+  earliest_added: ಮೊದಲಿಗೆ ಸೇರಿಸಿದ್ದು
   edit: ಸಂಪಾದಿಸಿ
   edit_a_batch_of_observations: ವೀಕ್ಷಣೆಗಳ ಬ್ಯಾಚ್ ಅನ್ನು ಸಂಪಾದಿಸಿ
   edit_account_settings_and_profile: "ಖಾತೆ ಸಂಯೋಜನೆಗಳನ್ನು &amp; ಪರಿಚಯವನ್ನು ಸಂಪಾದಿಸಿ"
@@ -943,6 +997,9 @@ kn:
   edit_project: ಪ್ರಾಯೋಜನೆಯನ್ನು ಸಂಪಾದಿಸಿ
   edit_remove: ಸಂಪಾದಿಸಿ/ತೆಗೆಯಿರಿ
   edit_selected: ಆರಿಸಿದುದನ್ನು ಸಂಪಾದಿಸಿ
+  edit_taxa: ಜೀವಿವರ್ಗಗಳನ್ನು ಸಂಪಾದಿಸಿ
+  edit_taxon: ಜೀವಿವರ್ಗವನ್ನು ಸಂಪಾದಿಸಿ
+  edit_taxon_link: ಜೀವಿವರ್ಗದ ಲಿಂಕ್ ಅನ್ನು ಸಂಪಾದಿಸಿ
   edit_taxon_range: ವರ್ಗೀಕರಣದ ಶ್ರೇಣಿಯನ್ನು ಸಂಪಾದಿಸಿ
   edit_the_observation: ವೀಕ್ಷಣೆಯನ್ನು ಸಂಪಾದಿಸಿ
   edit_your_account_and_profile_html: "ನಿಮ್ಮ ಖಾತೆ & ಪರಿಚಯವನ್ನು ಸಂಪಾದಿಸಿ"
@@ -961,13 +1018,21 @@ kn:
     other: '<span class="count">%{count}</span> ವಿಕ್ಷಣೆಗಳನ್ನು ಸಂಪಾದಿಸಲಾಗುತ್ತಿದೆ'
   editing_project: '%{project} ಸಂಪಾದಿಸಲಾಗುತ್ತಿದೆ'
   editing_taxon: '%{taxon} ಸಂಪಾದಿಸಲಾಗುತ್ತಿದೆ'
+  editing_taxon_link: ಜೀವಿವರ್ಗದ ಲಿಂಕ್ ಅನ್ನು ಸಂಪಾದಿಸಲಾಗುತ್ತಿದೆ
+  editing_taxon_range: ಜೀವಿವರ್ಗದ ಶ್ರೇಣಿಯನ್ನು ಸಂಪಾದಿಸಲಾಗುತ್ತಿದೆ
   editing_this: '%{elem} ಸಂಪಾದಿಸಲಾಗುತ್ತಿದೆ'
+  editing_x_in_y: "%{y} ರಲ್ಲಿ %{x} ಅನ್ನು ಸಂಪಾದಿಸಲಾಗುತ್ತಿದೆ"
+  editors: ಸಂಪಾದಕಗಳು
+  either_that_user_doesnt_exist_or: "ಆ ಬಳಕೆದಾರರು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ ಅಥವಾ ನೀವು ಅವರನ್ನು ಈಗಾಗಲೇ ಅನುಸರಿಸುತ್ತಿರುವಿರಿ."
+  eligible_for_research_grade: ಸಂಶೋಧನಾ ದರ್ಜೆಗೆ ಅರ್ಹವಾಗಿದೆ
   email: ಮಿಂಚೆ
   email_description: iNaturalist ನಲ್ಲಿ ನಿಮ್ಮ ಮಿಂಚೆಯನ್ನು ಇತರೆ ಬಳಕೆದಾರರ ಜೊತೆ ಹಂಚಿಕೊಂಡಿಲ್ಲ.
   email_copyright: "ಹಕ್ಕುಸ್ವಾಮ್ಯ &copy; %{x}, ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಿದೆ"
   email_notifications: ಮಿಂಚೆ ಅಧಿಸೂಚನೆಗಳು
   email_settings: ಮಿಂಚೆ ಸಂಯೋಜನೆಗಳು
   enable_offline_access: ಆಫ್‍ಲೈನ್ ಪ್ರವೇಶವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ
+  end: ಇಲ್ಲಿಯವರೆಗೆ
+  end_date_time: ಕೊನೆಗೊಳ್ಳುವ ದಿನಾಂಕ / ಸಮಯ
   endangered: ಅಳಿವಿನಂಚಿನಲ್ಲಿರುವ
   endemic: ಸ್ಥಳೀಯ
   endemic_to_x: "%{x} ಗೆ ಸ್ಥಳೀಯ"
@@ -976,13 +1041,15 @@ kn:
   error_updating_photo: "ಚಿತ್ರ ನವೀಕರಣದಲ್ಲಿ ದೋಷ: %{photo_errors}"
   establishment:
     endemic: ಸ್ಥಳೀಯ
-    introduced: ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ
+    establishment: ನೆಲೆ
+    introduced: ಪರಿಚಯಿಸಲಾಗಿದೆ
     invasive: ಅತಿಕ್ರಮಿತ
     managed: ನಿರ್ವಹಣೆಯಲ್ಲಿರುವ
     native: ಸ್ಥಳೀಯ
   establishment_means: ನೆಲೆಯ ವಿಧಾನ
   everyone: ಎಲ್ಲರೂ
   everyone_: ಎಲ್ಲರೂ
+  everyone_journal_posts: ಇದು ಎಲ್ಲರ ನಿಯತಕಾಲಿಕೆ ಲೇಖನಗಳು
   everywhere: ಎಲ್ಲೆಲ್ಲಿಯೂ
   exact: ನಿಖರವಾದ
   exact_date: ನಿಖರವಾದ ದಿನಾಂಕ
@@ -998,6 +1065,9 @@ kn:
   export_observations: ವೀಕ್ಷಣೆಗಳನ್ನು ರಫ್ತುಮಾಡಿ
   export_with_private_coordinates: ಮರೆಮಾಡಿದ ನಿರ್ದೇಶಾಂಕಗಳೊಂದಿಗೆ ರಫ್ತು ಮಾಡಿ
   exporting: "ರಫ್ತುಗೊಳಿಸಲಾಗುತ್ತಿದೆ..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
+  external_applications: ಬಾಹ್ಯ ಅಪ್ಲಿಕೇಷನ್‍ಗಳು
   extinct: ಅಳಿದುಹೋದ
   extinct_in_the_wild: ಕಾಡಿನಲ್ಲಿ ಅಳಿದಿರುವ
   extra_properties: ಹೆಚ್ಚುವರಿ ಗುಣವಿಶೇಷಗಳು
@@ -1049,6 +1119,7 @@ kn:
   first_confirmed_inat_observation: "ಮೊದಲು ಖಚಿತವಾದ %{site_name} ವೀಕ್ಷಣೆ"
   first_connect_your_provider_account_to_your_site: "ಮೊದಲು ನಿಮ್ಮ %{provider} ಖಾತೆಯನ್ನು %{site_name} ಗೆ ಜೋಡಿಸಿ:"
   first_inat_observation: "ಮೊದಲ %{site_name} ವೀಕ್ಷಣೆ"
+  flag_as_inappropriate: ಅನುಚಿತವೆಂಬಂತೆ ಗುರುತಿಸಿ
   flag_resolution: ಪರಿಹಾರ
   flickr_account_information: ನಿಮ್ಮ Flickr ಖಾತೆಯ ಮಾಹಿತಿ
   flickr_has_no_creative_commons: ಫ್ಲಿಕರ್ ಈ ಸ್ಥಳದಿಂದ ಕ್ರಿಯೇಟಿವ್ ಕಾಮನ್ಸ್ ಪರವಾನಿಗೆ ಹೊಂದಿರುವ ಚಿತ್ರಗಳನ್ನು ಹೊಂದಿಲ್ಲ.
@@ -1091,6 +1162,7 @@ kn:
   geoprivacy_is_obscured: ಭೂಗೌಪ್ಯತೆಯನ್ನು ಮಸುಕುಗೊಳಿಸಲಾಗಿದೆ
   geoprivacy_is_private: ಭೂಗೌಪ್ಯತೆಯು ಖಾಸಗಿಯಾಗಿದೆ
   get_started: ಪ್ರಾರಂಭಿಸಿ
+  getting_started_guide: ಬಳಕೆದಾರರ ಕೈಪಿಡಿ
   #Prompt to donate money once
   give_now_caps: ಇಂದೇ ಕಾಣಿಕೆ ನೀಡಿ
   global_names: ಜಾಗತಿಕ ಹೆಸರುಗಳು
@@ -1141,6 +1213,7 @@ kn:
   #Verb, usually a button to hide an interface element
   hide: ಮರೆಮಾಡಿ
   hide_content: ವಿಷಯ ಮರೆಮಾಡಿ
+  hide_uncountable_species: ಎಣಿಸಲಾಗದ ಪ್ರಭೇದಗಳನ್ನು ಮರೆಮಾಡಿ
   high: ಉನ್ನತ
   highest_rank: ಉನ್ನತ ದರ್ಜೆ
   history: ಇತಿಹಾಸ
@@ -1206,6 +1279,8 @@ kn:
   inat_account_action: "%{site_name} &#58; ಖಾತೆ &#58; %{action_name}"
   inat_user_profile: "%{site_name}: %{user} ರ ಪರಿಚಯ"
   inaturalist_activity_notifications: "%{site_name} ಚಟುವಟಿಕೆ ಅಧಿಸೂಚನೆಗಳು"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
+  inaturalist_applications: "iNaturalist ಅಪ್ಲಿಕೇಷನ್‍ಗಳು"
   inaturalist_is_a_joint_initiative: "%{site_name} ಇದು ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್ ಮತ್ತು ನ್ಯಾಷನಲ್ ಜಿಯೋಗ್ರಾಫಿಕ್ ಸೊಸೈಟಿಯ ಜಂಟಿ ಪ್ರಯತ್ನ"
   inaturalist_places: "%{site_name} ಸ್ಥಳಗಳು"
   info: ಮಾಹಿತಿ
@@ -1214,7 +1289,7 @@ kn:
   instagram: ಇನ್ಸ್ಟಾಗ್ರಾಮ್
   interactions: ಒಡನಾಟಗಳು
   internal_server_error: ಆಂತರಿಕ ಸರ್ವರ್ ದೋಷ
-  introduced: ಪರಿಚಯಿಸುತ್ತಿದೆ
+  introduced: ಪರಿಚಯಿಸಲಾಗಿದೆ
   introduced_in_place: "%{place} ನಲ್ಲಿ ಪರಿಚಯಿಸಲಾಗಿದೆ"
   invitation: ಆಹ್ವಾನ
   invite: ಆಹ್ವಾನಿಸಿ
@@ -1276,6 +1351,7 @@ kn:
     identifications_in_year: '%{year} ನಲ್ಲಿಯ ಅತಿಹೆಚ್ಚಿನ ಗುರುತಿಸುವಿಕೆಗಳು'
   leading: ಮುನ್ನಡೆಯಲ್ಲಿದೆ
   learn: ತಿಳಿಯಿರಿ
+  learn_about_the_species_live_in: ಇಲ್ಲಿ ವಾಸಿಸುವ ಪ್ರಭೇದಗಳ ಬಗ್ಗೆ ತಿಳಿಯಿರಿ
   learn_more: ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ
   learn_more_raquo: "ಹೆಚ್ಚು ತಿಳಿಯಿರಿ &raquo;"
   learn_what_these_licenses_mean: ಈ ಪರವಾನಿಗೆಗಳ ಅರ್ಥವೇನೆಂದು ತಿಳಿಯಿರಿ
@@ -1373,15 +1449,25 @@ kn:
   lists_by_login:
     title:
       current_user: ನಿಮ್ಮ ಪಟ್ಟಿಗಳು
+      login: '%{login} ಅವರಿಂದ ಪಟ್ಟಿಗಳು'
   load: ತುಂಬಿರಿ
   loading: "ಸಜ್ಜುಗೊಳಿಸಲಾಗುತ್ತಿದೆ..."
+  loading_flickr_photos: "ಫ್ಲಿಕರ್ ಚಿತ್ರಗಳನ್ನು ತುಂಬಲಾಗುತ್ತಿದೆ..."
+  loading_images: ಚಿತ್ರಗಳನ್ನು ತುಂಬಲಾಗುತ್ತಿದೆ...
+  loading_metadata: ಮೆಟಾಡೇಟಾ ತುಂಬಲಾಗುತ್ತಿದೆ...
+  loading_suggestions: ಸಲಹೆಗಳನ್ನು ತುಂಬಲಾಗುತ್ತಿದೆ...
+  loading_tags: "ಟ್ಯಾಗ್ ಗಳನ್ನು ತುಂಬಲಾಗುತ್ತಿದೆ..."
+  loading_wikipedia_description: "ವಿಕಿಪೀಡಿಯಾ ವಿವರಣೆಗಳನ್ನು ತುಂಬಲಾಗುತ್ತಿದೆ..."
   locales:
     ar: ಅರೇಬಿಕ್
     be: ಬೆಲರೂಸಿಯನ್
     bg: ಬಲ್ಗೇರಿಯನ್
+    br: ಬ್ರೆಟಾನ್
     ca: ಕ್ಯಾಟಲನ್
     cs: ಜ಼ೆಕ್
     da: ಡ್ಯಾನಿಶ್
+    de: ಜರ್ಮನ್
+    el: ಗ್ರೀಕ್
     en: ಇಂಗ್ಲಿಷ್
     eo: ಎಸ್ಪೆರಾಂಟೋ
     es: ಸ್ಪಾನಿಶ್
@@ -1406,7 +1492,9 @@ kn:
     lv: ಲ್ಯಾಟ್ವಿಯನ್
     mk: ಮ್ಯಾಸೆಡೋನಿಯನ್
     mr: ಮರಾಠಿ
+    nb: ನಾರ್ವೇಜಿಯ ಬೊಕ್ಮಾಲ್
     nl: ಡಚ್
+    oc: ಆಕ್ಸಿಟಾನ್
     pl: ಪೋಲಿಷ್
     pt: ಪೋರ್ಚುಗೀಸ್
     pt-BR: ಪೋರ್ಚುಗೀಸ್ (ಬ್ರಜಿಲ್)
@@ -1420,6 +1508,7 @@ kn:
     zh-CN: ಚೈನೀಸ್ ಸರಳೀಕೃತ
     zh-TW: ಸಾಂಪ್ರದಾಯಿಕ ಚೈನೀಸ್
   locality_notes: ಸ್ಥಳದ ಟಿಪ್ಪಣಿ
+  localized_species_accounts: ಸ್ಥಳೀಕರಿಸಿದ ಪ್ರಭೇದದ ಖಾತೆಗಳು
   location: ಸ್ಥಳ
   location_is_accurate: ಸ್ಥಳ ನಿಖರವಾಗಿದೆ
   location_is_exact: ಸ್ಥಳ ನಿಖರವಾಗಿದೆ
@@ -1463,6 +1552,7 @@ kn:
   manage_all_your_subscriptions: ನಿಮ್ಮ ಎಲ್ಲಾ ಚಂದಾದಾರಿಕೆಗಳನ್ನು ನಿರ್ವಹಿಸಿ
   manage_names: ಹೆಸರುಗಳನ್ನು ನಿರ್ವಹಿಸಿ
   manage_your_projects: ನಿಮ್ಮ ಪ್ರಾಯೋಜನೆಗಳನ್ನು ನಿರ್ವಹಿಸಿ
+  manage_your_relationships: ನಿಮ್ಮ ಸಂಬಂಧಗಳನ್ನು ನಿರ್ವಹಿಸಿ
   manager: ವ್ಯವಸ್ಥಾಪಕ
   managers: ವ್ಯವಸ್ಥಾಪಕರು
   managing_projects: ಪ್ರಾಯೋಜನೆ ನಿರ್ವಹಿಸಿ
@@ -1474,6 +1564,7 @@ kn:
       gbif_network: GBIF ಜಾಲ
       observations: ವೀಕ್ಷಣೆಗಳು
       place_boundary: ಸ್ಥಳದ ಗಡಿ
+      checklist_places: ತಾಳೆಪಟ್ಟಿ ಸ್ಥಳಗಳು
       checklist_places_description: ಈ ಜೀವಿವರ್ಗ ಪಟ್ಟಿಯಾಗಿರುವ ಸ್ಥಳಗಳು
       range: ವ್ಯಾಪ್ತಿ
   map_tooltip: ಭೂಪಟ ನೋಟವನ್ನು ಪ್ರದರ್ಶಿಸಿ
@@ -1502,6 +1593,7 @@ kn:
   mentioned_you_in_an_x_on_noun_by_user_html: "%{user} ಅವರು %{x} ನಲ್ಲಿ %{noun} ನ ಮೇಲೆ %{by} ಮೂಲಕ ನಿಮ್ಮನ್ನು ಉಲ್ಲೇಖಿಸಿದ್ದಾರೆ"
   merge: ಒಂದುಗೂಡಿಸಿ
   merge_it_with_another_place: ಇದನ್ನು ಇನ್ನೊಂದು ಸ್ಥಳದೊಂದಿಗೆ ವಿಲೀನಗೊಳಿಸಿ
+  merge_two_places_together: ಎರಡು ಸ್ಥಳಗಳನ್ನು ವಿಲೀನಗೊಳಿಸಿ. ತಾಳೆಪಟ್ಟಿಯಲ್ಲಿನ ಎಲ್ಲಾ ಪ್ರಭೇದಗಳು ಹಾಗೂ ಯಾವುದೇ ಲಭ್ಯವಿರುವ ಭೌಗೋಳಿಕ ದತ್ತಾಂಶಗಳು ವಿಲೀನಗೊಳ್ಳುತ್ತವೆ.
   merging: ವಿಲೀನಗೊಳಿಸಲಾಗುತ್ತಿದೆ
   merging_places: ಸ್ಥಳಗಳನ್ನು ವಿಲೀನಗೊಳಿಸಲಾಗುತ್ತಿದೆ
   message: ಸಂದೇಶ
@@ -1564,7 +1656,7 @@ kn:
   monthly_supporter_since_date_html: |
     %{date} ರಿಂದ <a href="%{url}">ತಿಂಗಳ ಬೆಂಬಲಿಗರು</a>
   months: ತಿಂಗಳುಗಳು
-  more: ಹೆಚ್ಚು
+  more: ಇನ್ನಷ್ಟು
   more_filters: ಹೆಚ್ಚಿನ ಶೋಧಕಗಳು
   more_from_x: '%{x} ಅವರಿಂದ ಇನ್ನೂ ಹೆಚ್ಚು'
   more_import_options: ಹೆಚ್ಚಿನ ಆಮದು ಆಯ್ಕೆಗಳು
@@ -1578,7 +1670,8 @@ kn:
   most_observations: ಅತಿಹೆಚ್ಚಿನ ವೀಕ್ಷಣೆಗಳು
   most_species: ಅತಿಹೆಚ್ಚಿನ ಪ್ರಭೇಧಗಳು
   most_observed_species: ಅತಿಹೆಚ್ಚು ವೀಕ್ಷಿಸಲಾದ ಪ್ರಭೇಧಗಳು
-  most_observed_introduced_species: ಅತಿಹೆಚ್ಚು ವೀಕ್ಷಿಸಿ ಪರಿಚಯಿಸಲಾದ ಪ್ರಭೇಧಗಳು
+  most_observed_introduced_species: ಅತಿಹೆಚ್ಚು ವೀಕ್ಷಿಸಲಾದ ಪರಿಚಯಿಸಲಾದ ಪ್ರಭೇಧಗಳು
+  most_observed_threatened_species: ಅತಿಹೆಚ್ಚು ವೀಕ್ಷಿಸಿರುವ ಅಪಾಯದಂಚಿನಲ್ಲಿರುವ ಪ್ರಭೇದಗಳು
   multiple: ಹಲವಾರು
   multiple_select_option: '--ಹಲವಾರು--'
   must_be_in_taxon: '%{taxon} ವರ್ಗೀಕರಣದಲ್ಲಿರಲೇಬೇಕು'
@@ -1603,6 +1696,7 @@ kn:
   n_people_disagrees: "%{amount} ವ್ಯಕ್ತಿಗಳು ಅಸಮ್ಮತಿಸಿದ್ದಾರೆ"
   name: ಹೆಸರು
   name_entered: ನಮೂದಿಸಿದ ಹೆಸರು
+  name_or_slug: "ಹೆಸರು ಅಥವಾ ಚುಟುಕು URL, ಉದಾ. ನನ್ನ-ಪ್ರಾಯೋಜನೆ"
   name_of_the_place_you: ನೀವು ವೀಕ್ಷಣೆಮಾಡಿದ ಸ್ಥಳದ ಹೆಸರು
   name_providers:
     ubio: uBio
@@ -1619,6 +1713,8 @@ kn:
   new: ಹೊಸತು
   new_and_noteworthy: ಹೊಸತು & ಗಮನಾರ್ಹ
   new_announcement: ಹೊಸ ಪ್ರಕಟಣೆ
+  new_check_list: ಹೊಸ ತಾಳೆಪಟ್ಟಿ
+  new_check_list_for: "%{place} ಗಾಗಿ ಹೊಸ ತಾಳೆಪಟ್ಟಿಯೊಂದನ್ನು ರಚಿಸಿ &raquo;"
   new_guide: ಹೊಸ ಕೈಪಿಡಿ
   new_lexicon: ಹೊಸ ಪದಕೋಶವನ್ನು ಸೇರಿಸಿ
   new_list: ಹೊಸ ಪಟ್ಟಿ
@@ -1642,6 +1738,7 @@ kn:
   new_updates_in_the_last_24_hours_from: "%{site_name} ನಿಂದ ಕಳೆದ 24 ಗಂಟೆಗಳಲ್ಲಿನ ಹೊಸ ನವೀಕರಣಗಳು"
   new_users: ಹೊಸ ಬಳಕೆದಾರರು
   new_users_in_year: "%{year} ದಲ್ಲಿ ಹೊಸ ಬಳಕೆದಾರರು"
+  new_users_w_7_obs: 7 ವೀಕ್ಷಣೆಗಳೊಂದಿಗೆ ಹೊಸ ಬಳಕೆದಾರರು
   newly_added: ಹೊಸದಾಗಿ ಸೇರಿಸಲಾಗಿದೆ
   newly_added_species: ಹೊಸದಾಗಿ ಸೇರಿಸಿದ ಪ್ರಭೇದಗಳು
   newly_observed_species: ಹೊಸದಾಗಿ ವೀಕ್ಷಿಸಲಾದ ಪ್ರಭೇಧಗಳು
@@ -1733,10 +1830,14 @@ kn:
   not_found: ಕಂಡುಬಂದಿಲ್ಲ
   not_linked_facebook: "ನಿಮ್ಮ %{site_name} ಖಾತೆ ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಖಾತೆಗೆ ಲಿಂಕ್ ಆಗಿಲ್ಲ"
   not_linked_flickr: "ನಿಮ್ಮ %{site_name} ಖಾತೆ ನಿಮ್ಮ Flickr ಖಾತೆಗೆ ಲಿಂಕ್ ಆಗಿಲ್ಲ"
+  not_recorded: ದಾಖಲಿಸಿಲ್ಲ
+  not_seeing_what_looking_for: ನೀವು ಬಯಸಿದ್ದು ಕಾಣಸಿಗುತ್ತಿಲ್ಲವೇ?
   note: ಟಿಪ್ಪಣಿ
   notes: ಟಿಪ್ಪಣಿಗಳು
   notifications: ಅಧಿಸೂಚನೆ
   number_of_observations: ವೀಕ್ಷಣೆಗಳ ಸಂಖ್ಯೆ
+  number_of_observers_value: "ವೀಕ್ಷಕರ ಸಂಖ್ಯೆ: %{number}"
+  number_of_observers: "ವೀಕ್ಷಕರ ಸಂಖ್ಯೆ"
   obs: ವೀಕ್ಷಣೆಗಳು
   obscured: ಮಸುಕಾಗಿಸಲಾಗಿದೆ
   obscured_or_private: ಮಸುಕಾಗಿಸಲಾಗಿದೆ ಅಥವಾ ಖಾಸಗಿಯಾಗಿದೆ
@@ -1784,6 +1885,7 @@ kn:
   observation_brief_taxon_from_place_in_month: "%{place} ನಲ್ಲಿ %{month} ತಿಂಗಳಲ್ಲಿ %{taxon}"
   observation_brief_taxon_from_place_in_month_by_user: "%{place} ನಲ್ಲಿ %{month} ತಿಂಗಳಲ್ಲಿ %{user} ಮೂಲಕ %{taxon}"
   observations_by_category: "ವಿಭಾಗಗಳ ಪ್ರಕಾರ ವೀಕ್ಷಣೆಗಳು"
+  observations_by_app: ಆಪ್ ಮೂಲಕ ಆದ ವೀಕ್ಷಣೆಗಳು
   observations_by_rank: ದರ್ಜೆಗಳ ಪ್ರಕಾರ ವೀಕ್ಷಣೆಗಳು
   observations_by_user_on_date: "%{date} ರಂದು %{user} ಆವರಿಂದ ವೀಕ್ಷಣೆಗಳು"
   observations_by_you: "ನಿಮ್ಮಿಂದ ವೀಕ್ಷಣೆಗಳು"
@@ -1809,12 +1911,26 @@ kn:
   observations: ವೀಕ್ಷಣೆಗಳು
   observations_: ವೀಕ್ಷಣೆಗಳು
   observations_added_by_x_html: "%{x} ಮೂಲಕ ಸೇರಿಸಿದ ವೀಕ್ಷಣೆಗಳು"
+  observations_by: ಇವರಿಂದ ವೀಕ್ಷಣೆಗಳು
+  observations_by_user: "%{user} ಅವರಿಂದ ವೀಕ್ಷಣೆಗಳು"
   observations_deleted: ವೀಕ್ಷಣೆಗಳನ್ನು ಅಳಿಸಲಾಗಿದೆ.
+  observations_from: '%{date} ದಿಂದ ವೀಕ್ಷಣೆಗಳು'
+  observations_from_people_taxa_and_places_youre_following: "ನೀವು ಅನುಸರಿಸುತ್ತಿರುವ ವ್ಯಕ್ತಿಗಳಿಂದ, ಸ್ಥಳಗಳಿಂದ ಮತ್ತು ಜೀವಿವರ್ಗಗಳಿಂದ ವೀಕ್ಷಣೆಗಳು"
   observations_from_this_place: ಈ ಪ್ರದೇಶದಿಂದ ವೀಕ್ಷಣೆಗಳು
+  observations_from_this_project: ಈ ಪ್ರಾಯೋಜನೆಯಿಂದ ವೀಕ್ಷಣೆಗಳು
+  observations_of_relatives: ಸಂಬಂಧಿಸಿದವುಗಳ ವೀಕ್ಷಣೆಗಳು
   observations_removed_from_the_project: "\"%{project}\" ಪ್ರಾಯೋಜನೆಯಿಂದ ತೆಗೆಯಲಾದ ವೀಕ್ಷಣೆಗಳು"
   observations_saved: ವೀಕ್ಷಣೆ(ಗಳ)ಯನ್ನು ಉಳಿಸಲಾಗಿದೆ!
   observations_this_year_vs_last_year: ವೀಕ್ಷಣೆಗಳು ಪ್ರಸ್ತುತ ವರ್ಷ vs. ಕಳೆದ ವರ್ಷ
   observations_total: ಒಟ್ಟು ವೀಕ್ಷಣೆಗಳು
+  observations_w: ವಿಕ್ಷಣೆಗಳೊಂದಿಗೆ
+  observations_without_media: ಮಾಧ್ಯಮರಹಿತ ವೀಕ್ಷಣೆಗಳು
+  observed: ವೀಕ್ಷಿಸಿರುವುದು
+  observed_by: ಇವರಿಂದ ವೀಕ್ಷಣೆ
+  observed_on: ರಂದು ವೀಕ್ಷಿಸಲಾಗಿದೆ
+  observer: ವೀಕ್ಷಕರು
+  observers: ವೀಕ್ಷಕರುಗಳು
+  observer_short: ವೀಕ್ಷಕರು
   occurrence_status: ಇರುವಿಕೆಯ ಸ್ಥಿತಿ
   occurrence_status_descriptions:
     absent: ಈ ಪ್ರದೇಶದಲ್ಲಿ ಇರುವಿಕೆ ಕಂಡುಬಂದಿಲ್ಲ
@@ -1854,6 +1970,7 @@ kn:
   only_you: ನೀವು ಮಾತ್ರ
   open: ತೆರೆಯಿರಿ
   open_: ತೆರೆಯಿರಿ
+  open_street_map: OpenStreetMap
   optional: ಐಚ್ಛಿಕ
   or: ಅಥವಾ
   #Usually used to separate buttons or functional areas of the interface, e.g.
@@ -1866,7 +1983,12 @@ kn:
   original: ಮೂಲ
   other: ಇತರೆ
   other_animals: ಇತರೆ ಪ್ರಾಣಿಗಳು
+  other_lexicons: ಇತರ ಪದಕೋಶಗಳು
   other_names: ಇತರೆ ಹೆಸರುಗಳು
+  other_species_commonly_misidentified_as_this_species: ಸಾಮಾನ್ಯವಾಗಿ ಈ ಪ್ರಭೇದದ್ದೆಂದು ತಪ್ಪಾಗಿ ಗುರುತಿಸಲಾಗಿರುವ ಇತರೇ ಪ್ರಭೇದಗಳು
+  other_species_commonly_misidentified_as_this_species_in_place_html: <a href="%{url}">%{place}</a> ನಲ್ಲಿ ಸಾಮಾನ್ಯವಾಗಿ ಈ ಪ್ರಭೇದದ್ದೆಂದು ತಪ್ಪಾಗಿ ಗುರುತಿಸಲಾಗಿರುವ ಇತರೇ ಪ್ರಭೇದಗಳು
+  other_taxa_commonly_misidentified_as_this_species: ಸಾಮಾನ್ಯವಾಗಿ ಈ ಪ್ರಭೇದದ್ದೆಂದು ತಪ್ಪಾಗಿ ಗುರುತಿಸಲಾಗಿರುವ ಇತರೇ ಜೀವಿವರ್ಗಗಳು
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: <a href="%{url}">%{place}</a> ನಲ್ಲಿ ಸಾಮಾನ್ಯವಾಗಿ ಈ ಪ್ರಭೇದದ್ದೆಂದು ತಪ್ಪಾಗಿ ಗುರುತಿಸಲಾಗಿರುವ ಇತರೇ ಜೀವಿವರ್ಗಗಳು
   our_blog: ನಮ್ಮ ಬ್ಲಾಗ್
   overview: ಪಕ್ಷಿನೋಟ
   owner: ಮಾಲೀಕರು
@@ -1876,7 +1998,9 @@ kn:
   password: ಗುಪ್ತಪದ
   password_confirmation: 'ಗುಪ್ತಪದ ಧೃಢೀಕರಣ'
   paste: ಅಂಟಿಸಿ
-  people: ಜನತೆ
+  people: ವ್ಯಕ್ತಿಗಳು
+  people_following_user: "%{user} ರನ್ನು ಅನುಸರಿಸುತ್ತಿರುವ ವ್ಯಕ್ತಿಗಳು"
+  people_user_follows: "%{user} ಅವರು ಅನುಸರಿಸುತ್ತಿರುವ ವ್ಯಕ್ತಿಗಳು"
   people_added:
     #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
     #kueda
@@ -1899,8 +2023,12 @@ kn:
   photo: ಚಿತ್ರ
   photo_attribution: "ಚಿತ್ರದ %{attribution}"
   photo_by_id_attribution: "ಚಿತ್ರದ %{id}, %{attribution}"
+  photo_deleted: ಚಿತ್ರವನ್ನು ಅಳಿಸಲಾಗಿದೆ
+  photo_licensing: ಚಿತ್ರದ ಪರವಾನಿಗೆ
   photo_type: ಚಿತ್ರದ ವಿಧ
+  photo_urls_repaired: ಚಿತ್ರದ URLಗಳನ್ನು ರಿಪೇರಿ ಮಾಡಲಾಗಿದೆ
   photos_chosen_for_this_taxon: ಈ ವರ್ಗೀಕರಣಕ್ಕೆ ಆಯ್ಕೆಯಾಗಿರುವ ಚಿತ್ರಗಳು
+  photos_from: ಇವರಿಂದ ಚಿತ್ರಗಳು
   photos_of_taxon_html: "%{taxon} ನ ಚಿತ್ರಗಳು"
   photos_or_sounds: ಚಿತ್ರಗಳು ಅಥವಾ ಧ್ವನಿಗಳು
   photos_or_sounds?: ಚಿತ್ರಗಳು ಅಥವಾ ಧ್ವನಿಗಳು?
@@ -1927,6 +2055,16 @@ kn:
   place_geo:
     geo_planet_place_types:
       Airport: ವಿಮಾನ ನಿಲ್ದಾಣ
+      airport: ವಿಮಾನ ನಿಲ್ದಾಣ
+      Building: ಕಟ್ಟಡ
+      building: ಕಟ್ಟಡ
+      Canton: ಕ್ಯಾಂಟನ್
+      canton: ಕ್ಯಾಂಟನ್
+      City Building: ಪಟ್ಟಣದ ಕಟ್ಟಡ
+      city building: ಪಟ್ಟಣದ ಕಟ್ಟಡ
+      Colloquial: ಆಡುಮಾತಿನ
+      colloquial: ಆಡುಮಾತಿನ
+      Commune: ಸಮುದಾಯ
       commune: ಸಮುದಾಯ
       Constituency: ಮತಕ್ಷೇತ್ರ
       constituency: ಮತಕ್ಷೇತ್ರ
@@ -2004,6 +2142,7 @@ kn:
       Zone: ವಲಯ
       zone: ವಲಯ
   place_imported: ಸ್ಥಳವನ್ನು ಆಮದುಮಾಡಲಾಗಿದೆ!
+  place_name: ಸ್ಥಳದ ಹೆಸರು
   place_updated: ಸ್ಥಳವನ್ನು ನವೀಕರಿಸಲಾಗಿದೆ!
   places: ಸ್ಥಳಗಳು
   places_name:
@@ -2030,11 +2169,13 @@ kn:
     barbados: ಬಾರ್ಬಡೋಸ್
     belarus: ಬೆಲಾರೆಸ್
     belgium: ಬೆಲ್ಜಿಯಂ
+    benin: ಬೆನಿನ್
     bermuda: ಬರ್ಮುಡಾ
     bhutan: ಭೂತಾನ್
     bolivia: ಬೊಲಿವಿಯಾ
     bosnia_and_herzegovina: ಬೊಸ್ನಿಯಾ ಮತ್ತು ಹೆರ್ಜೆಗೊವಿನಾ
     botswana: ಬೊಟ್ಸವಾನಾ
+    bouvet_island: ಬೌವೆಟ್ ದ್ವೀಪ
     brazil: ಬ್ರೆಜಿಲ್
     brunei: ಬ್ರುನೈ
     bulgaria: ಬಲ್ಗೇರಿಯಾ
@@ -2167,6 +2308,7 @@ kn:
     norway: ನಾರ್ವೆ
     oman: ಓಮನ್‌
     pakistan: ಪಾಕಿಸ್ತಾನ್‌
+    palau: ಪಲೌ
     palestine: ಪ್ಯಾಲಿಸ್ಟೀನ್‌
     panama: ಪನಾಮಾ
     paraguay: ಪರಗ್ವೆ
@@ -2180,9 +2322,12 @@ kn:
     romania: ರೋಮೇನಿಯಾ
     russia: ರಷ್ಯಾ
     rwanda: ರುವಾಂಡ
+    saint_helena: ಸಂತ ಹೆಲೆನಾ
     saint_kitts_and_nevis: ಸೇಂಟ್‌ ಕಿಟ್ಸ್‌ ಮತ್ತು ನೆವಿಸ್‌
     saint_lucia: ಸೈಂಟ್‌ ಲ್ಯೂಸಿಯಾ
+    saint_martin: ಸಂತ-ಮಾರ್ಟಿನ್
     samoa: ಸ್ಯಾಮೋವ
+    san_marino: ಸ್ಯಾನ್ ಮರಿನೋ
     sao_tome_and_principe: ಸಾವೋ ತೊಮೆ ಮತ್ತು ಪ್ರಿನ್ಸಿಪಿ
     saudi_arabia: ಸೌದಿ ಅರೇಬಿಯ
     senegal: ಸೆನೆಗಲ್‌
@@ -2216,6 +2361,18 @@ kn:
     ukraine: ಉಕ್ರೇನ್
     united_arab_emirates: ಯುನೈಟೆಡ್‌ ಅರಬ್‌ ಎಮಿರೆಟ್ಸ್‌
     united_kingdom: ಯುನೈಟೆಡ್ ಕಿಂಗ್‌ಡಂ
+    united_states: ಸಂಯುಕ್ತ ರಾಷ್ಟ್ರಗಳು
+    united_states_virgin_islands: ಸಂಯುಕ್ತ ರಾಷ್ಟ್ರಗಳ ವರ್ಜಿನ್ ದ್ವೀಪಗಳು
+    uruguay: ಉರುಗ್ವೆ
+    uzbekistan: ಉಜ್ಬೇಕಿಸ್ತಾನ್
+    vatican_city: ವ್ಯಾಟಿಕನ್ ಸಿಟಿ
+    venezuela: ವೆನೆಜುವೆಲಾ
+    vietnam: ವಿಯೆಟ್ನಾಂ
+    virgin_islands: ವರ್ಜಿನ್ ದ್ವೀಪಗಳು
+    west_africa: ಪಶ್ಚಿಮ ಆಫ್ರಿಕಾ
+    western_sahara: ಪಶ್ಚಿಮ ಸಹಾರಾ
+    yemen: ಯೆಮನ್
+    zambia: ಝಾಂಬಿಯಾ
     zimbabwe: ಜಿಂಬಾಬ್ವೆ
   places_of_interest: ಆಸಕ್ತಿಕರ ಸ್ಥಳಗಳು
   places_merged_successfully: ಸ್ಥಳಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ವಿಲೀನಗೊಳಿಸಲಾಗಿದೆ!
@@ -2226,7 +2383,9 @@ kn:
   popular: ಜನಪ್ರಿಯ
   position: ಸ್ಥಾನ
   possessive_user: "%{user}ಗಳು"
+  post_published: ಪೋಸ್ಟ್ ಪ್ರಕಟಣೆಗೊಂಡಿದೆ!
   potential_disagreement: ಸಂಭಾವ್ಯ ಭಿನ್ನಾಭಿಪ್ರಾಯ
+  press: ಮಾಧ್ಯಮ
   preview: ಮುನ್ನೋಟ
   previous_date_short: ಹಿಂದಿನ
   prev: ಹಿಂದಿನ
@@ -2261,6 +2420,7 @@ kn:
   project_journal: ಪ್ರಾಯೋಜನೆ ನಿಯತಕಾಲಿಕೆ
   project_list: ಪ್ರಾಯೋಜನೆ ಪಟ್ಟಿ
   project_list_defaults:
+    title: "%{owner_name} ಅವರ ತಾಳೆಪಟ್ಟಿ"
     description: '%{owner_name}ಗಾಗಿ ಪ್ರಭೇದದ ಪಟ್ಟಿ'
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a> ಮೇಲ್ವಿಚಾರಕರು ನಿಮ್ಮ ಕೆಲವು ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿದ್ದಾರೆ
@@ -2275,8 +2435,12 @@ kn:
   project_was_successfully_created: ಪ್ರಾಯೋಜನೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ರಚಿಸಲಾಗಿದೆ.
   project_was_successfully_updated: ಪ್ರಾಯೋಜನೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನವೀಕರಿಸಲಾಗಿದೆ.
   projects: ಪ್ರಾಯೋಜನೆಗಳು
+  projects_description: |
+    ಪ್ರಾಯೋಜನೆಗಳು %{site_name} ನಲ್ಲಿ ಇತರ ವ್ಯಕ್ತಿಗಳ ಜೊತೆ ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ಒಗ್ಗೂಡಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತವೆ. ನೀವು ನಾಗರೀಕ ವಿಜ್ಞಾನ ಪ್ರಯತ್ನಗಳನ್ನೇ ಪ್ರಾರಂಭಿಸಿರಿ ಅಥವಾ ನಿಮ್ಮ ನೆರೆಹೊರೆಯ ಹಕ್ಕಿಗಳ ಮೇಲೆ ನಿಗಾವಹಿಸುತ್ತಿರಿ, ಪ್ರಾಯೋಜನೆಗಳು ಅವಕ್ಕೆಲ್ಲಾ ಅತ್ಯಂತ ಸೂಕ್ತವಾದ ವಿಧಾನ.
   projects_from_place: "%{place} ದಿಂದ ಪ್ರಾಯೋಜನೆಗಳು"
   projects_in_x: "%{x} ನಲ್ಲಿ ಪ್ರಾಯೋಜನೆಗಳು"
+  projects_you_admin: ನೀವು ನಿರ್ವಹಿಸುತ್ತಿರುವ ಪ್ರಾಯೋಜನೆಗಳು
+  protozoans: ಪ್ರೋಟೋಝೋವಾಗಳು
   public_domain: ಸಾರ್ವಜನಿಕ ಡೊಮೈನ್
   publish: ಪ್ರಕಟಿಸಿ
   purple: ನೇರಳೆ
@@ -2309,13 +2473,13 @@ kn:
     subsection: ಉಪವಿಭಾಗ
     complex: ಸಂಕೀರ್ಣ
     #Singular
-    species: ಜೀವಿವರ್ಗಗಳು
+    species: ಪ್ರಭೇದ
     x_species:
-      one: ಜೀವಿವರ್ಗ
-      other: ಜೀವಿವರ್ಗಗಳು
+      one: ಪ್ರಭೇದ
+      other: ಪ್ರಭೇದಗಳು
     hybrid: ಮಿಶ್ರತಳಿ
     #Singular
-    subspecies: ಉಪಜೀವಿವರ್ಗ
+    subspecies: ಉಪಪ್ರಭೇದ
     leaves: ಎಲೆಗಳು
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
   ranks_lowercase_family: ಕುಟುಂಬ
@@ -2336,7 +2500,7 @@ kn:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
   ranks_lowercase_complex: ಸಂಕೀರ್ಣ
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
-  ranks_lowercase_species: ಜೀವಿವರ್ಗಗಳು
+  ranks_lowercase_species: ಪ್ರಭೇದಗಳು
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
   ranks_lowercase_hybrid: ಮಿಶ್ರತಳಿ
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
@@ -2360,7 +2524,7 @@ kn:
   #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "%{login} ಅವರಿಂದ ಇತ್ತೀಚಿನ ವೀಕ್ಷಣೆಗಳು (Atom)"
   recent_observations_by: "%{login} ಅವರಿಂದ ಇತ್ತೀಚಿನ ವೀಕ್ಷಣೆಗಳು"
-  recently_active: ಇತ್ತೀಚೆಗೆ ಸಕ್ರಿಯವಾಗಿದ್ದು
+  recently_active: ಇತ್ತೀಚೆಗೆ ಸಕ್ರಿಯವಾಗಿರುವವರು
   recently_added: ಇತ್ತೀಚೆಗೆ ಸೇರಿಸಿದ್ದು
   recently_created: ಇತ್ತೀಚೆಗೆ ರಚಿಸಿದ್ದು
   recently_finished: ಇತ್ತೀಚೆಗೆ ಸಂಪೂರ್ಣಗೊಳಿಸಿದ್ದು
@@ -2371,6 +2535,7 @@ kn:
   relationships:
     match: ಹೊಂದಿಸಿ
     error: ದೋಷ
+  relationships_user_settings: ಸಂಬಂಧಗಳು
   reload_from_observations: ವೀಕ್ಷಣೆಗಳಿಂದ ಮರುತುಂಬಿ
   remarks_optional: 'ಶರಾ <span class="small description">(ಐಚ್ಛಿಕ)</span>'
   remember_me: ನನ್ನನ್ನು ನೆನಪಿಡಿ
@@ -2430,14 +2595,14 @@ kn:
   rules_types:
     must_be_identified: ಗುರುತಿಸುವಿಕೆಯ ಅಗತ್ಯವಿದೆ
     must_be_on_list: ಪಟ್ಟಿಯಲ್ಲಿರಲೇಬೇಕು
-    must_be_observed_in_place: ಸ್ಥಳದಲ್ಲಿ ವಿಕ್ಷಣೆಯಾಗಿರಲೇಬೇಕು
+    must_be_observed_in_place: ಸ್ಥಳದಲ್ಲಿ ವೀಕ್ಷಣೆಯಾಗಿರಲೇಬೇಕು
     must_be_in: ಜೀವಿವರ್ಗದಲ್ಲಿರಲೇಬೇಕು
   satellite: ಉಪಗ್ರಹ
   save: ಉಳಿಸಿ
   save_all: ಎಲ್ಲಾ ಉಳಿಸಿ
   save_and_add_another: ಉಳಿಸಿ ಮತ್ತು ಮತ್ತೊಂದನ್ನು ಸೇರಿಸಿ
   save_and_continue: "ಉಳಿಸಿ &amp; ಮುಂದುವರೆಯಿರಿ..."
-  save_and_add_taxa: "ಉಳಿಸಿ ಮತ್ತು ಪ್ರಭೇದವನ್ನು ಸೇರಿಸಲು ಪ್ರಾರಂಭಿಸಿ"
+  save_and_add_taxa: "ಉಳಿಸಿರಿ ಮತ್ತು ಪ್ರಭೇದವನ್ನು ಸೇರಿಸಲು ಪ್ರಾರಂಭಿಸಿ"
   save_changes: ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ
   save_comment: ಅಭಿಪ್ರಾಯ ಉಳಿಸಿ
   save_draft: ಕರಡುಪ್ರತಿ ಉಳಿಸಿ
@@ -2496,8 +2661,9 @@ kn:
   show_common_names: ಸಾಮಾನ್ಯ ಹೆಸರುಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ
   show_hidden_content: ಮರೆಮಾಡಿದ ವಿಷಯಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ
   show_less: ಕಡಿಮೆ ತೋರಿಸಿ
-  show_more: ಇನ್ನು ಹೆಚ್ಚು ತೋರಿಸಿ
+  show_more: ಇನ್ನಷ್ಟು ತೋರಿಸಿ
   show_scientific_name_first: ವೈಜ್ಞಾನಿಕ ಹೆಸರನ್ನು ಮೊದಲು ಪ್ರದರ್ಶಿಸಿ
+  show_uncountable_species: ಎಣಿಸಲಾಗದ ಪ್ರಭೇದಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ
   #Text to indicate that the first X items in a list are being shown, but there
   #could be more
   showing_first_x: ಮೊದಲ %{x} ಅನ್ನು ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತಿದೆ
@@ -2525,12 +2691,13 @@ kn:
   some_rights_reserved: ಕೆಲವು ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಿದೆ
   something: ಒಂದಿಷ್ಟು
   something_: ಒಂದಿಷ್ಟು
+  something_went_wrong_adding: ಆ ಪ್ರಭೇದವನ್ನು ನಿಮ್ಮ ಪಟ್ಟಿಗೆ ಸೇರಿಸುವಾಗ ಯಾವುದೋ ತೊಂದರೆಯುಂಟಾಗಿದೆ
   somewhere_on_earth: ಎಲ್ಲೋ ಭೂಮಿಯ ಮೇಲೆ
   somewhere: (ಎಲ್ಲೋ ಒಂದು ಕಡೆ...)
   sorry_we_didnt_find_that_photo: "ಕ್ಷಮಿಸಿ, ನಮಗೆ ಆ ಚಿತ್ರವು ಸಿಗಲಿಲ್ಲ."
   sorry_you_can_only_add_1000_at_a_time: "ಕ್ಷಮಿಸಿ, ನೀವು ಒಂದು ಬಾರಿಗೆ 1000 ಮಾತ್ರ ಸೇರಿಸಲು ಸಾಧ್ಯ."
   sort: ವಿಂಗಡಿಸಿ
-  sort_by: ಅಂತೆ ವಿಂಗಡಿಸಿ
+  sort_by: ಇದರಂತೆ ವಿಂಗಡಿಸಿ
   sounds:
     add_media: ಮಾಧ್ಯಮ ಸೇರಿಸಿ
     add_sounds: ಧ್ವನಿಗಳನ್ನು ಸೇರಿಸಿ
@@ -2561,12 +2728,16 @@ kn:
   sources: ಮೂಲಗಳು
   spam: ಸ್ಪ್ಯಾಮ್
   #Plural
-  species: ಜೀವಿವರ್ಗಗಳು
-  species_name_cap: ಜೀವಿವರ್ಗದ ಹೆಸರು
-  species_names: ಜೀವಿವರ್ಗದ ಹೆಸರುಗಳು
-  species_search: ಜೀವಿವರ್ಗಗಳ ಹುಡುಕಾಟ
+  species: ಪ್ರಭೇದಗಳು
+  species_by_category: ವಿಭಾಗವಾರು ಪ್ರಭೇದಗಳು
+  species_from_around_the_world: ಜಗತ್ತಿನೆಲ್ಲೆಡೆಯ ಪ್ರಭೇದಗಳು
+  species_name_cap: ಪ್ರಭೇದ ಹೆಸರು
+  species_names: ಪ್ರಭೇದ ಹೆಸರುಗಳು
+  species_search: ಪ್ರಭೇದಗಳ ಹುಡುಕಾಟ
+  species_taxon_name: ಪ್ರಭೇದದ / ಜೀವಿವರ್ಗದ ಹೆಸರು
+  species_unknown: ಅಪರಿಚಿತ ಪ್ರಭೇದಗಳು
   standard: ಪ್ರಮಾಣಿತ
-  start: ಆರಂಭಿಸಿ
+  start: ಪ್ರಾರಂಭ
   start_a_new_project: ಹೊಸ ಪ್ರಾಯೋಜನೆಯೊಂದನ್ನು ಪ್ರಾರಂಭಿಸಿ
   start_a_project: ಪ್ರಾಯೋಜನೆಯೊಂದನ್ನು ಪ್ರಾರಂಭಿಸಿ
   start_date_time: ಪ್ರಾರಂಭದ ದಿನಾಂಕ / ಸಮಯ
@@ -2604,7 +2775,7 @@ kn:
   tags: ಟ್ಯಾಗ್‍ಗಳು
   take_me_facebook: ಹೌದು, ನನ್ನನ್ನು ಫೇಸ್‍ಬುಕ್ ಗೆ ಕರೆದೊಯ್ಯಿರಿ!
   take_me_flickr!: ಹೌದು, ನನ್ನನ್ನು ಫ್ಲಿಕರ್ ಗೆ ಕರೆದೊಯ್ಯಿರಿ!
-  taxa_info: ಟ್ಯಾಕ್ಸಾ ಮಾಹಿತಿ
+  taxa_info: ಜೀವಿವರ್ಗಗಳ ಮಾಹಿತಿ
   taxon: ಜೀವಿವರ್ಗ
   taxon_autocomplete_placeholder: ಹಕ್ಕಿಗಳು, ಮೊನಾರ್ಕ್, ಇತ್ಯಾದಿ
   taxon_geoprivacy: ವರ್ಗೀಕರಣದ ಭೂಗೌಪ್ಯತೆ
@@ -2617,6 +2788,9 @@ kn:
   taxon_colors: ವರ್ಗೀಕರಣದ ಬಣ್ಣಗಳು
   taxon_merge: ವರ್ಗೀಕರಣದ ವಿಲೀನ
   taxon_name: ವರ್ಗೀಕರಣದ ಹೆಸರು
+  taxon_observed_by_html: |
+    <a href="%{url}">%{taxon}</a> ಇವರಿಂದ ವೀಕ್ಷಣೆ
+  taxon_observed_by_user: "%{taxon} %{user} ಇವರಿಂದ ವೀಕ್ಷಣೆ"
   taxon_range: ವರ್ಗೀಕರಣದ ಶ್ರೇಣಿ
   taxon_ranks: ವರ್ಗೀಕರಣದ ದರ್ಜೆಗಳು
   taxon_search: ವರ್ಗೀಕರಣದ ಹುಡುಕಾಟ
@@ -2641,20 +2815,29 @@ kn:
   that_observation_doesnt_have_any_photos: "ಆ ವೀಕ್ಷಣೆಯಲ್ಲಿ ಯಾವುದೇ ಚಿತ್ರಗಳಿಲ್ಲ."
   that_project_doesnt_exist: "ಆ ಪ್ರಾಯೋಜನೆ ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ."
   thats_not_a_real_date: ಇದು ನಿಜವಾದ ದಿನಾಂಕವಲ್ಲ!
+  the_below_items_are_needed_to_achieve: |
+    <span className="bold">ಸಂಶೋಧನಾ ದರ್ಜೆ</span>ಯನ್ನು ಸಾಧಿಸಲು ಈ ಕೆಳಗಿನವುಗಳ ಅಗತ್ಯವಿದೆ :
+  the_community_must_feel_that: |
+    ಕುರುಹುಗಳ ಆಧಾರದ ಮೇರೆಗೆ ಸಮುದಾಯದ ವರ್ಗೀಕರಣವು ಸಾಧ್ಯವಿರುವ ಮಟ್ಟಿಗೆ ಅತ್ಯುತ್ತಮವಾದುದೆಂದು ಸಮುದಾಯದ ಅನಿಸಿಕೆಯಾಗಿರಬೇಕು
   the_people_of_inat: "%{site_name} ನ ವ್ಯಕ್ತಿಗಳು"
   the_species_listed_below_were_not_found_in_the_site_database: |
     ಈ ಕೆಳಗೆ ಪಟ್ಟಿಮಾಡಿರುವ ಪ್ರಭೇದಗಳು %{site_name} ಡೇಟಾಬೇಸಿನಲ್ಲಿ ಕಂಡುಬಂದಿಲ್ಲ.
   the_user_x_has_been_suspended: "%{user} ಬಳಕೆದಾರರನ್ನು ತಡೆಹಿಡಿಯಲಾಗಿದೆ"
+  the_world: ನಮ್ಮ ಜಗತ್ತು
   there_was_a_problem_saving_your_identification: "ನಿಮ್ಮ ಗುರುತಿಸುವಿಕೆಯನ್ನು ಉಳಿಸುವಲ್ಲಿ ತೊಂದರೆಯುಂಟಾಗಿದೆ : %{error}"
   there_were_problems_adding_that_observation_to_this_project: "ನಿಮ್ಮ ವೀಕ್ಷಣೆಯನ್ನು ಈ ಪ್ರಾಯೋಜನೆಗೆ ಸೇರಿಸುವಲ್ಲಿ ತೊಂದರೆಯುಂಟಾಗಿದೆ : "
   there_were_some_problems_saving_this_observation: ಈ ವೀಕ್ಷಣೆಯನ್ನು ಉಳಿಸುವಲ್ಲಿ ಕೆಲವು ತೊಂದರೆಗಳುಂಟಾಗಿವೆ
   there_were_some_problems_saving_those_colors: "ಆ ಬಣ್ಣಗಳನ್ನು ಉಳಿಸುವಲ್ಲಿ ಕೆಲವು ತೊಂದರೆಗಳುಂಟಾಗಿವೆ :%{error}"
+  this_bioblitz_beings_in: ಈ Bioblitz ಪ್ರಾರಂಭವಾಗುತ್ತದೆ
+  this_is_how_taxon_names_will_be_displayed: ನಿಮಗೆ %{site_name} ಅದ್ಯಂತ ಜೀವಿವರ್ಗದ ಹೆಸರುಗಳು ಈ ರೀತಿಯಲ್ಲಿ ಪ್ರದರ್ಶಿತವಾಗುತ್ತವೆ
   this_is_the_primary_listing: ಇದು ಪ್ರಮುಖ ಪಟ್ಟಿ
   this_is_your_observation: ಇದು ನಿಮ್ಮ ವೀಕ್ಷಣೆ
   this_list_is_empty!: ಈ ಪಟ್ಟಿ ಖಾಲಿಯಾಗಿದೆ.
   this_observation: ಈ ವೀಕ್ಷಣೆ
   this_observation_is_research_grade: ಈ ವೀಕ್ಷಣೆಯು ಸಂಶೋಧನಾ ದರ್ಜೆಯದ್ದಾಗಿದೆ!
+  this_observation_was_created_using: "ಈ ವೀಕ್ಷಣೆಯನ್ನು ಇದನ್ನು ಬಳಸಿ ರಚಿಸಲಾಗಿದೆ:"
   this_photo_is_already_associated: ಈ ಚಿತ್ರವು ನಿಮ್ಮದೊಂದು ವೀಕ್ಷಣೆಗೆ ಈಗಾಗಲೇ ಹೊಂದಿಕೊಂಡಿದೆ.
+  this_place_has_no_check_list: "ಈ ಸ್ಥಳವು ತಾಳೆಪಟ್ಟಿಯನ್ನು ಹೊಂದಿಲ್ಲ."
   this_year: ಈ ವರ್ಷ
   threatened: ಅಪಾಯದಂಚಿನಲ್ಲಿರುವ
   time_: ಸಮಯ
@@ -2665,26 +2848,37 @@ kn:
   to_recipient: ಗೆ
   today: ಇಂದು
   tools: ಉಪಕರಣ
+  top_contributors: ಅಗ್ರಶ್ರೇಣಿ ಕೊಡುಗೆದಾರರು
+  top_observer_caps: ಅಗ್ರಶ್ರೇಣಿಯ ವೀಕ್ಷಕರು
+  top_observers: ಅಗ್ರಶ್ರೇಣಿಯ ವೀಕ್ಷಕರು
   tos_privacy_guidelines_label: |
-    ನಾನು <a href="/terms" target="_blank">ಸೇವಾ ನಿಯಮಗಳು</a> ಮತ್ತು <a href="/privacy" target="_blank">ಗೋಪ್ಯತಾ ನೀತಿ</a> ಗೆ ಸಮ್ಮತಿಸುತ್ತೇನೆ, ಹಾಗೂ ನಾನು <a href="/pages/community+guidelines" target="_blank">ಸಮೂಹ ಮಾರ್ಗದರ್ಶಿಕೆ</a>ಗಳನ್ನು ಪರಿಶೀಲಿಸಿದ್ದೇನೆ.
+    ನಾನು <a href="/terms" target="_blank">ಸೇವಾ ನಿಯಮಗಳು</a> ಮತ್ತು <a href="/privacy" target="_blank">ಗೋಪ್ಯತಾ ನೀತಿ</a> ಗೆ ಸಮ್ಮತಿಸುತ್ತೇನೆ, ಹಾಗೂ ನಾನು <a href="/pages/community+guidelines" target="_blank">ಸಮುದಾಯ ಮಾರ್ಗದರ್ಶಿಕೆ</a>ಗಳನ್ನು ಪರಿಶೀಲಿಸಿದ್ದೇನೆ.
   total: ಒಟ್ಟು
   totals: ಮೊತ್ತಗಳು
   total_members: ಒಟ್ಟು ಸದಸ್ಯರು
   total_observations: ಒಟ್ಟು ವೀಕ್ಷಣೆಗಳು
   total_observations_caps: ಒಟ್ಟು ವೀಕ್ಷಣೆಗಳು
   total_species_observed_caps: ವೀಕ್ಷಿಸಿದ ಒಟ್ಟು ಪ್ರಭೇದಗಳು
+  total_unique_observers: ಒಟ್ಟು ಅನನ್ಯ ವೀಕ್ಷಕರು
   translated_languages: ಅನುವಾದಗೊಂಡ ಭಾಷೆಗಳು
   'true': 'ಸರಿ'
+  trends: ಜನಪ್ರಿಯತೆ
   twitter: ಟ್ವಿಟ್ಟರ್
   two_thirds: 2/3rds
+  type_species_name: "ಪ್ರಭೇದದ ಹೆಸರನ್ನು ನಮೂದಿಸಿ"
+  uicn_red_list_status: "IUCN ಕೆಂಪುಪಟ್ಟಿ ಸ್ಥಿತಿ:"
+  unclassified: ವಿಂಗಡಣೆಯಾಗಿಲ್ಲದವು
+  unique_observers: ಅನನ್ಯ ವೀಕ್ಷಕರು
   unknown: ಅಪರಿಚಿತ
   unknown_error: ಅಪರಿಚಿತ ದೋಷ
   unknown_rank: '(ಅಪರಿಚಿತ ದರ್ಜೆ)'
   updates_notification_email_subject: "%{prefix} ಹೊಸ ನವೀಕರಣಗಳು %{date}"
   updating: ನವೀಕರಿಸಲಾಗುತ್ತಿದೆ...
+  upcoming_bioblitzes: ಮುಂಬರಲಿರುವ Bioblitz ಗಳು
   update: ನವೀಕರಿಸಿ
   update_observations: ವೀಕ್ಷಣೆಗಳನ್ನು ನವೀಕರಿಸಿ
   update_photos: ಚಿತ್ರಗಳನ್ನು ನವೀಕರಿಸಿ
+  update_search: ಹುಡುಕಾಟ ನವೀಕರಿಸಿ
   update_your_content: ನಿಮ್ಮ ವಸ್ತುವಿಷಯವನ್ನು ನವೀಕರಿಸಿ
   updated: ನವೀಕರಿಸಲಾಗಿದೆ
   updated_by: ಮೂಲಕ ನವೀಕರಿಸಲಾಗಿದೆ
@@ -2701,6 +2895,9 @@ kn:
       remove_observation: ವೀಕ್ಷಣೆಯನ್ನು ತೆಗೆದುಹಾಕಿ
       remove_photo: ಚಿತ್ರವನ್ನು ತೆಗೆದುಹಾಕಿ
       upload_failed: ಅಪ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ
+  uploading_num_of_count_photos:
+    one: ಚಿತ್ರವನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...
+    other: '%{count} ರಲ್ಲಿ %{num} ಚಿತ್ರಗಳನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...'
   usage_stats: ಬಳಕೆಯ ಅಂಕಿಅಂಶಗಳು
   used_x_times:
     one: 1 ಬಾರಿ ಬಳಸಲಾಗಿದೆ
@@ -2723,7 +2920,14 @@ kn:
   user_added_an_x_to_noun_by_you_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ನಿಮ್ಮ ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
   user_added_an_x_to_noun_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ಸೇರಿಸಿದ್ದಾರೆ"
   user_added_x_observations_html: "%{user} ಅವರು %{x} ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
+  user_already_authenticated: ಬಳಕೆದಾರರನ್ನು ಈಗಾಗಲೇ ಧೃಢೀಕರಿಸಲಾಗಿದೆ
+  user_commented: "%{user} ಅಭಿಪ್ರಾಯ ಸೇರಿಸಿದ್ದಾರೆ"
+  user_disagrees_this_is_taxon: "%{user} ಅವರು %{taxon} ಗೆ ಅಸಮ್ಮತಿಸಿದ್ದಾರೆ"
+  user_hasnt_joined_any_projects: "%{user} ಅವರು ಯಾವುದೇ ಪ್ರಾಯೋಜನೆಗಳಿಗೆ ಸೇರಿಲ್ಲ"
+  user_invited_you_to_join_html: "%{user} ಅವರು ನಿಮ್ಮ ಸೇರಲು ಆಹ್ವಾನಿಸಿದ್ದಾರೆ"
+  user_invited_you_to_join_project: "%{user} ಅವರು %{project} ಗೆ ಸೇರಲು ನಿಮ್ಮನ್ನು ಆಹ್ವಾನಿಸಿದ್ದಾರೆ"
   user_invited_you_to_join_this_project_on_date_html: "%{user} ಅವರು ಪ್ರಾಯೋಜನೆಗೆ ಸೇರಲು ನಿಮ್ಮನ್ನು %{date} ರಂದು ಆಹ್ವಾನಿಸಿದ್ದಾರೆ"
+  user_is_a_naturalist: "%{user} ಅವರು ಒಬ್ಬ ಪರಿಸರ ಪ್ರೇಮಿ!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> ಅವರು ಈಗ %{project} ನ ನಿರ್ವಾಹಕರು
   user_is_now_a_manager_for_project_html: |
@@ -2749,20 +2953,26 @@ kn:
   view_all_n: "ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ %{n}"
   view_all_observations: ಎಲ್ಲಾ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ
   view_all_photocount_photos: "ಎಲ್ಲಾ %{photo_count} ಚಿತ್ರಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
+  view_check_list_page: ತಾಳೆಪಟ್ಟಿ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ
   view_contributions: ಕೊಡುಗೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ
   view_details: ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ
   view_invitation: ಆಹ್ವಾನವನ್ನು ವೀಕ್ಷಿಸಿ
+  view_journal: ನಿಯತಕಾಲಿಕೆ ವೀಕ್ಷಿಸಿ
+  view_leaderboard_from_last_month: ಕಳೆದ ತಿಂಗಳಿನ ಮುಂಚೂಣಿ ಫಲಕ ನೋಡಿ
+  view_leaderboard_from_last_year: ಕಳೆದ ವರ್ಷದ ಮುಂಚೂಣಿ ಫಲಕ ನೋಡಿ
   view_license: ಪರವಾನಿಗೆಯನ್ನು ವೀಕ್ಷಿಸಿ
   view_lists: ಪಟ್ಟಿಗಳನ್ನು ವೀಕ್ಷಿಸಿ
   view_more: ಇನ್ನಷ್ಟು ವೀಕ್ಷಿಸಿ
   view_more_about_x: "%{x} ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ವಿವರ ನೋಡಿ"
   view_more_observations_from_this_place: ಈ ಪ್ರದೇಶದಿಂದ ಇನ್ನೂ ಹೆಚ್ಚಿನ ವೀಕ್ಷಣೆಗಳನ್ನು ನೋಡಿ
-  view_more_unreviewed: "ವಿಮರ್ಶಿಸಿರದ ಹೆಚ್ಚು ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
+  view_more_unreviewed: "ವಿಮರ್ಶಿಸಿರದ ಇನ್ನಷ್ಟು ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
   view_observation: ವೀಕ್ಷಣೆಯನ್ನು ವೀಕ್ಷಿಸಿ
   view_observations: ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ
   view_observations_by_everyone: ಎಲ್ಲರ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ
   view_observations_by_these_users: ಈ ಬಳಕೆದಾರರ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ
   view_on_flickr: ಫ್ಲಿಕರ್ ನಲ್ಲಿ ನೋಡಿ
+  view_original: "ಮೂಲವನ್ನು ವೀಕ್ಷಿಸಿ"
+  view_photos_ranges_observations_more: "ಚಿತ್ರಗಳನ್ನು, ಪ್ರಭೇದಗಳ ಶ್ರೇಣಿಯನ್ನು, %{site_name} ನಲ್ಲಿನ ವೀಕ್ಷಣೆಗಳನ್ನು ಹಾಗೂ ಇನ್ನೂ ಹೆಚ್ಚಿನದನ್ನು ವೀಕ್ಷಿಸಿ! ನಾವು ಹಲವಾರು ಮೂಲಗಳಿಂದ ವಿವಿಧ ಬಗೆಯ ಮಾಹಿತಿಗಳನ್ನು ಸಂಗ್ರಹಿಸಿ ಪ್ರತಿಯೊಂದು ಪ್ರದೇಶದ ಪ್ರತಿಯೊಂದು ಪ್ರಭೇದದ ಸಂಕ್ಷಿಪ್ತ ಸಾರಾಂಶವನ್ನು ಜೋಡಿಸಿಟ್ಟಿದ್ದೇವೆ."
   view_place: ಸ್ಥಳವನ್ನು ವೀಕ್ಷಿಸಿ
   view_projects_from_place: "%{place} ದಿಂದ ಪ್ರಾಯೋಜನೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
   view_sample: ಮಾದರಿಗಳನ್ನು ವೀಕ್ಷಿಸಿ
@@ -2777,6 +2987,7 @@ kn:
   view_user_observations: "%{user} ಅವರ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
   view_x: "%{x} ವೀಕ್ಷಿಸಿ"
   view_year_stats_for_site: "%{site} ಗಾಗಿ %{year} ರ ಅಂಕಿಅಂಶಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
+  view_your_dashboard: ನಿಮ್ಮ ಡ್ಯಾಷ್‍ಬೋರ್ಡ್ ನೋಡಿರಿ
   view_your_inbox: ನಿಮ್ಮ ಇನ್ಬಾಕ್ಸ್ ಪರಿಶೀಲಿಸಿ
   view_your_observations: ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ
   view_your_year_stats: "ನಿಮ್ಮ %{year} ಅಂಕಿಅಂಶಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
@@ -2785,6 +2996,8 @@ kn:
   video_tutorials: ವಿಡಿಯೋ ಬೋಧಕಗಳು
   visually_similar: ನೋಟದೋಲಿಕೆ
   vulnerable: ದುರ್ಬಲ
+  w_photos_only: ಚಿತ್ರಗಳ ಸಹಿತ
+  w_sounds: ಧ್ವನಿಗಳ ಸಹಿತ
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: ಬೇಕಾಗಿದೆ
   weather: ಹವಾಮಾನ
@@ -2819,6 +3032,7 @@ kn:
   where: ಎಲ್ಲಿ
   where_were_they?: ಅವು ಎಲ್ಲಿದ್ದವು?
   where_were_you?: ನೀವು ಎಲ್ಲಿದ್ದಿರಿ?
+  which_projects_can_add_your_observations?: ಯಾವ ಸಾಂಪ್ರದಾಯಿಕ ಪ್ರಾಯೋಜನೆಗಳು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಬಹುದು?
   white: ಬಿಳಿ
   why_you_can_see_the_coordinates: ನಿಮಗೆ ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನೋಡಲು ಏಕೆ ಸಾಧ್ಯವಾಗುತ್ತಿದೆ
   who_can_add_observations_to_this_project?: ಈ ಪ್ರಾಯೋಜನೆಗೆ ಯಾರು ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಬಹುದು?
@@ -2932,6 +3146,7 @@ kn:
   your_pinned_locations: ನಿಮ್ಮ ಪಿನ್ ಮಾಡಿರುವ ಸ್ಥಳಗಳು
   your_profile_was_successfully_updated: ನಿಮ್ಮ ಪರಿಚಯವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನವೀಕರಿಸಲಾಗಿದೆ!
   your_recent_projects: ನಿಮ್ಮ ಇತ್ತೀಚಿನ ಪ್ರಾಯೋಜನೆಗಳು
+  your_relationships: ನಿಮ್ಮ ಸಂಬಂಧಗಳು
   your_subscriptions_to_this_place: ಈ ಸ್ಥಳಕ್ಕೆ ನಿಮ್ಮ ಚಂದಾದಾರಿಕೆಗಳು
   your_tags: ನಿಮ್ಮ ಟ್ಯಾಗ್‍ಗಳು
   yours: ನಿಮ್ಮದು
@@ -2946,6 +3161,9 @@ kn:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: iNaturalist ನ ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಿ
     guides:
+      index:
+        welcome_message_html: |
+          ಕೈಪಿಡಿಗಳು ಜಗತ್ತಿನಾದ್ಯಂತ ಕಾಣಸಿಗುವ ಜೀವಿವೈವಿಧ್ಯತೆಯ ಬಗ್ಗೆ ತಿಳಿಯಲು ಸಹಾಯ ಮಾಡುತ್ತವೆ. ನೀವು ಸೆರೆಂಗೇಟಿಯನ್ನೇ ಅನ್ವೇಷಿಸುತ್ತಿರಿ ಅಥವಾ ನಿಮ್ಮ ಸ್ಥಳೀಯ ಉದ್ಯಾನವನವನ್ನೇ (ಇದು ಸೆರಂಗೇಟಿಯೇ ಅಗಿರಬಹುದು) ಅನ್ವೇಷಿಸುತ್ತಿರಿ, ಕೈಪಿಡಿಗಳು ನಮ್ಮ ಭೂಗ್ರಹದ ಅಮೋಘವಾದ ಜೀವಿವೈವಿಧ್ಯತೆಯನ್ನು ಅರ್ಥೈಸಿಕೊಳ್ಳಲು ನೆರವಾಗುತ್ತವೆ.
       eolupdate_notice: |
         ದಯವಿಟ್ಟು ತಾಳ್ಮೆಯಿಂದಿರಿ, EOL ನಿಂದ ವಿಷಯಗಳನ್ನು ಆಮದು ಮಾಡಲಾಗುತ್ತಿದೆ ಹಲವು ನಿಮಿಷಗಳಾಗಬಹುದು.
       pdf_layouts:
@@ -2965,14 +3183,14 @@ kn:
       list_view: ಪಟ್ಟಿ ವೀಕ್ಷಣೆ
       observed_species: ವೀಕ್ಷಿಸಲಾದ ಪ್ರಭೇದಗಳು
       unobserved_species: ವೀಕ್ಷಿಸದೇ ಉಳಿದಿರುವ ಪ್ರಭೇದಗಳು
-      all_species: ಎಲ್ಲಾ ಜೀವಿವರ್ಗ
+      all_species: ಎಲ್ಲಾ ಪ್ರಭೇದಗಳು
       all_unobserved_species: ವೀಕ್ಷಿಸದೇ ಉಳಿದಿರುವ ಎಲ್ಲಾ ಪ್ರಭೇದಗಳು
       observations_within_this_taxon: ಈ ವರ್ಗೀಕರಣದೊಳಗಿನ ವೀಕ್ಷಣೆಗಳು
       all_observations: ಎಲ್ಲಾ ವೀಕ್ಷಣೆಗಳು
       total_observations: ಒಟ್ಟು ವೀಕ್ಷಣೆಗಳು
       apply_filters_to_export: ರಫ್ತು ಮಾಡಲು ಶೋಧಕಗಳನ್ನು ಅನ್ವಯಿಸಿ
       restrict_to_taxon: '%{taxon} ಗೆ ಸೀಮಿತಗೊಳಿಸಿ'
-      restrict_to_taxa_observed_in_place: '%{place} ನಲ್ಲಿ ವೀಕ್ಷಿಸಿದ ವರ್ಗೀಕರಣಕ್ಕೆ ಸೀಮಿತಗೊಳಿಸಿ'
+      restrict_to_taxa_observed_in_place: '%{place} ನಲ್ಲಿ ವೀಕ್ಷಿಸಿದ ಜೀವಿವರ್ಗಗಳಿಗೆ ಸೀಮಿತಗೊಳಿಸಿ'
       exporting_all_x_taxa:
         one: '%{count} ವರ್ಗೀಕರಣವನ್ನು ರಫ್ತು ಮಾಡಲಾಗುತ್ತಿದೆ'
         other: ಎಲ್ಲಾ %{count} ವರ್ಗೀಕರಣಗಳನ್ನು ರಫ್ತು ಮಾಡಲಾಗುತ್ತಿದೆ
@@ -2994,9 +3212,10 @@ kn:
     lists:
       new:
         place_desc: |
-          ಈ ಸ್ಥಳದಲ್ಲಿ ವೀಕ್ಷಿಸಿದ ವರ್ಗೀಕರಣದ ಜೊತೆಯಲ್ಲಿ ಈ ಪಟ್ಟಿಯನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪ್ರದರ್ಶಿಸಿ. ಗಮನಿಸಿ ನೀವು ಗಡಿರೇಖೆಗಳುಳ್ಳ ಪ್ರದೇಶಗಳನ್ನು ಮಾತ್ರ ಆಯ್ಕೆಮಾಡಿಕೊಳ್ಳಬಹುದು.
+          ಈ ಸ್ಥಳದಲ್ಲಿ ವೀಕ್ಷಿಸಿದ ಜೀವಿವರ್ಗಗಳದ ಜೊತೆಯಲ್ಲಿ ಈ ಪಟ್ಟಿಯನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪ್ರದರ್ಶಿಸಿ. ಗಮನಿಸಿ ನೀವು ಗಡಿರೇಖೆಗಳುಳ್ಳ ಪ್ರದೇಶಗಳನ್ನು ಮಾತ್ರ ಆಯ್ಕೆಮಾಡಿಕೊಳ್ಳಬಹುದು.
     messages:
       from: ಇಂದ
+      to: ಇವರಿಗೆ
       index:
         show_messages_from_user: '%{user} ಅವರಿಂದ ಸಂದೇಶಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ'
         show_messages_to_user: '%{user} ಅವರಿಗೆ ಸಂದೇಶಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ'
@@ -3041,14 +3260,15 @@ kn:
         taking_a_while: "ಇದು ಸ್ವಲ್ಪ ಸಮಯ ತೆಗೆದುಕೊಳ್ಳುತ್ತಿದೆ. ದಯವಿಟ್ಟು ಈ ಕೆಳಗಿನ ಆಯ್ಕೆಗಳಲ್ಲಿ ಒಂದನ್ನು ಪ್ರಯತ್ನಿಸಿ."
         date_range_help: "YYYY-MM-DD ಮಾದರಿಯಲ್ಲಿ ಗರಿಷ್ಟ ಹಾಗು ಕನಿಷ್ಟ ವೀಕ್ಷಣೆಯ ದಿನಾಂಕಗಳು, ಉದಾ. 2015-01-17"
       field_descriptions:
-        scientific_name: "ಈ ಜಾಲತಾಣದ ಪ್ರಕಾರ ವೀಕ್ಷಿಸಿದ ವರ್ಗೀಕರಣದ ವೈಜ್ಞಾನಿಕ ಹೆಸರು"
-        common_name: "ಈ ಜಾಲತಾಣದ ಪ್ರಕಾರ ವೀಕ್ಷಿಸಿದ ವರ್ಗೀಕರಣದ ಸಾಮಾನ್ಯ ಅಥವಾ ಆಡುನುಡಿಯ ಹೆಸರು"
-        iconic_taxon_name: ವೀಕ್ಷಿಸಿದ ವರ್ಗೀಕರಣದ ಉನ್ನತ-ಹಂತದ ವರ್ಗೀಕರಣ ವಿಭಾಗ
+        scientific_name: "ಈ ಜಾಲತಾಣದ ಪ್ರಕಾರ ವೀಕ್ಷಿಸಿದ ಜೀವಿವರ್ಗದ ವೈಜ್ಞಾನಿಕ ಹೆಸರು"
+        common_name: "ಈ ಜಾಲತಾಣದ ಪ್ರಕಾರ ವೀಕ್ಷಿಸಿದ ಜೀವಿವರ್ಗದ ಸಾಮಾನ್ಯ ಅಥವಾ ಆಡುನುಡಿಯ ಹೆಸರು"
+        iconic_taxon_name: ವೀಕ್ಷಿಸಿದ ಜೀವಿವರ್ಗದ ಉನ್ನತ-ಹಂತದ ವರ್ಗೀಕರಣ ವಿಭಾಗ
         time_zone: ವೀಕ್ಷಣೆಯ ಸಮಯವಲಯ
         latitude: ಸಾರ್ವಜನಿಕವಾಗಿ ಪ್ರದರ್ಶಿತವಾದ ಅಕ್ಷಾಂಶ
         longitude: ಸಾರ್ವಜನಿಕವಾಗಿ ಪ್ರದರ್ಶಿತವಾದ ರೇಖಾಂಶ
         private_latitude: "ಖಾಸಗಿ ಅಕ್ಷಾಂಶ, ವೀಕ್ಷಣೆಯು ಖಾಸಗಿ ಅಥವಾ ಮಸುಕಾಗಿಸಿದ್ದಲ್ಲಿ ಹೊಂದಿಸಿ"
         private_longitude: "ಖಾಸಗಿ ರೇಖಾಂಶ, ವೀಕ್ಷಣೆಯು ಖಾಸಗಿ ಅಥವಾ ಮಸುಕಾಗಿಸಿದ್ದಲ್ಲಿ ಹೊಂದಿಸಿ"
+        user_login: ವೀಕ್ಷಕರ ಬಳಕೆದಾರರ ಹೆಸರು
         created_at: ವೀಕ್ಷಣೆಯನ್ನು ರಚಿಸಿದ ದಿನಾಂಕ ಸಮಯ
         updated_at: ವೀಕ್ಷಣೆಯನ್ನು ಕೊನೆಯದಾಗಿ ನವೀಕರಿಸಿದ ದಿನಾಂಕ ಸಮಯ
         quality_grade: ಈ ವೀಕ್ಷಣೆಯ ಗುಣಮಟ್ಟ ದರ್ಜೆ. ಇದರ ಅರ್ಥವೇನೆಂಬ ವಿವರಗಳನ್ನು ತಿಳಿಯಲು ಸಹಾಯ ವಿಭಾಗವನ್ನು ನೋಡಿ
@@ -3066,6 +3286,9 @@ kn:
       show:
         allow_curator_coordinate_access_desc_html: |
           ಈ ವೀಕ್ಷಣೆಗೆ ಮರೆಮಾಡಿದ ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ಪ್ರಾಯೋಜನೆಯ ಮೇಲ್ವಿಚಾರಕರು ನೋಡಲು ಅನುಮತಿಸಿ
+        data_quality_assessment_desc_html: |
+          ದತ್ತಾಂಶ ಗುಣಮಟ್ಟ ವಿಮರ್ಶೆಯು ವೀಕ್ಷಣೆಯ ನಿಖರತೆಯ ಮೌಲ್ಯಮಾಪನವಾಗಿದೆ. ಸಂಶೋಧನಾ ದರ್ಜೆಯ ವೀಕ್ಷಣೆಗಳನ್ನು
+          ವಿಜ್ಞಾನಿಗಳು ಸಂಶೋಧನೆಗಳಿಗಾಗಿ ಬಳಸಬಹುದಾಗಿದೆ. ನಿಮ್ಮ ಮತವನ್ನು ಇಲ್ಲಿ ನೀಡಿ:
         flagged_photos_desc_html: |
           ಇಲ್ಲಿನ ಕೆಲವು ಚಿತ್ರಗಳನ್ನು ಅನುಚಿತ ವಿಷಯ ಅಥವಾ ಹಕ್ಕುಸ್ವಾಮ್ಯದ ಉಲ್ಲಂಘನೆಯಂತೆ ಗುರುತಿಸಲಾಗಿದೆ. ಹೆಚ್ಚಿನ ವಿವರಗಳಿಗೆ %{links} ನೋಡಿ
     emailer:
@@ -3117,6 +3340,7 @@ kn:
         delete_project: ಪ್ರಾಯೋಜನೆ ಅಳಿಸಿರಿ
         display_project_name: ಪ್ರಾಯೋಜನೆ ಹೆಸರನ್ನು ಪ್ರದರ್ಶಿಸಿ
         duplicate_project: ಪ್ರಾಯೋಜನೆ ನಕಲಿಸಿರಿ
+        multiple_project_administrators: ಹಲವಾರು ಪ್ರಾಯೋಜನೆ ನಿರ್ವಾಹಕರು
         name_placeholder: ಚಿಕಾಗೋದ ಹಕ್ಕಿಗಳು, ಅದ್ಭುತವಾದ ಡ್ರಾಗನ್‍ಫ್ಲೈಗಳು, ಇತ್ಯಾದಿ.
         only_display_member_observations: |
           ಪ್ರಾಯೋಜನೆಯ ಸದಸ್ಯರ (ಪ್ರಾಯೋಜನೆಗೆ ಸೇರಿರುವ ವ್ಯಕ್ತಿಗಳು) ವೀಕ್ಷಣೆಗಳನ್ನು ಮಾತ್ರ ಪ್ರದರ್ಶಿಸಿ
@@ -3136,8 +3360,11 @@ kn:
           ಕನಿಷ್ಟ ಒಂದು ಗುಣಮಟ್ಟ ದರ್ಜೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ. ಪ್ರತಿಯೊಂದು ಗುಣಮಟ್ಟ ದರ್ಜೆಯ ಬಗೆಗಿನ ವಿವರಣೆಯನ್ನು <a href="%{url}">ಪ್ರಶ್ನೋತ್ತರ ಪುಟ</a>ದಲ್ಲಿ ಕಾಣಬಹುದು.
         show_projects_as_flags: ಪ್ರಾಯೋಜನೆಗಳನ್ನು ಭೂಪಟದಲ್ಲಿ ಧ್ವಜಗಳಂತೆ ಪ್ರದರ್ಶಿಸಿ
         traditional_projects_cannot_be_copied: ಸಾಂಪ್ರದಾಯಿಕ ಪ್ರಾಯೋಜನೆಗಳನ್ನು ನಕಲಿಸಲಾಗುವುದಿಲ್ಲ
+        users_can_follow_your_project: ಬಳಕೆದಾರರು ನಿಯತಕಾಲಿಕೆ ಪೋಸ್ಟ್ ಗಳ ಮೂಲಕ ನವೀಕರಣೆಗಳಿಗಾಗಿ ನಿಮ್ಮ ಪ್ರಾಯೋಜನೆಯನ್ನು ಅನುಸರಿಸಬಹುದು
         use_this_link_to_create_html: |
           ಬದಲಿಗೆ ಸಾಂಪ್ರದಾಯಿಕ ಪ್ರಾಯೋಜನೆಯನ್ನು ರಚಿಸಲು <a href="%{url}">ಈ ಲಿಂಕ್</a> ಅನ್ನು ಬಳಸಿ.
+        we_have_redesigned_projects: |
+          ನೀವು ವಿವರಿಸುವ ಸ್ಥಳಗಳು, ಜೀವಿವರ್ಗಗಳು, ಗುಣಮಟ್ಟ ಮತ್ತು ದಿನಾಂಕ ಗಳನ್ನು ಸರಿಹೊಂದಿಸುವ ನಿಮ್ಮ ಎಲ್ಲಾ ವೀಕ್ಷಣೆಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸೇರಿಸುವುದಕ್ಕಾಗಿ ಪ್ರಾಯೋಜನೆಗಳನ್ನು ವಿನ್ಯಾಸಗೊಳಿಸಲಾಗಿದೆ. ಈ ಕೆಳಗಿನ ಗುಣವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಹಂಚಿಕೊಂಡಿರುವ ಎರಡು ಪ್ರಮುಖ ಬಗೆಯ ಪ್ರಾಯೋಜನೆಗಳಾದ ಕಲೆಕ್ಷನ್ ಮತ್ತು ಅಂಬ್ರೆಲ್ಲಾ ಪ್ರಾಯೋಜನೆಗಳ ಮಧ್ಯೆ ಒಂದನ್ನು ಆಯ್ದುಕೊಳ್ಳಿ.
         welcome_to_projects: ಪ್ರಾಯೋಜನೆಗಳಿಗೆ ಸುಸ್ವಾಗತ!
         you_can_learn_more_html: |
           ನೀವು ಪ್ರಾಯೋಜನೆಗಳ ನಿರ್ವಹಣೆಯ ಬಗ್ಗೆ <a href="https://www.inaturalist.org/pages/managing-projects">ಇಲ್ಲಿ</a> ಹೆಚ್ಚು ತಿಳಿಯಬಹುದು ಅಥವಾ ಪ್ರಾಯೋಜನೆಗಳ ಇತಿಹಾಸವನ್ನು <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">ನಮ್ಮ ಬ್ಲಾಗ್</a> ನಲ್ಲಿ ಓದಬಹುದು.
@@ -3165,24 +3392,33 @@ kn:
         sorry_that_doesnt_exist: ಕ್ಷಮಿಸಿ, ಅದು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ!
     stats:
       index:
+        active_desc: ಕಳೆದ 30 ದಿನಗಳಲ್ಲಿ ID, ವೀಕ್ಷಣೆ, ಅಭಿಪ್ರಾಯ ಅಥವಾ ಪೋಸ್ಟ್ ಒಂದನ್ನು ರಚಿಸಿದವರು
         android_desc_html: <a href="%{url}">iNaturalist ಆಂಡ್ರಾಯಿಡ್ ಆಪ್</a> ಮೂಲಕ ರಚಿಸಲಾಗಿದೆ
         avg_ttcid: ಸರಾಸರಿ TTCID
         avg_ttid: ಸರಾಸರಿ TTID
-        identifiers_desc: ಈ ದಿನ ಬೇರೊಬ್ಬರ ವೀಕ್ಷಣೆಗಳಿಗೆ ID ಯೊಂದನ್ನು ಸೇರಿಸಿದೆ
+        identifiers_desc: ಈ ದಿನ ಬೇರೊಬ್ಬರ ವೀಕ್ಷಣೆಗಳಿಗೆ ID ಯೊಂದನ್ನು ಸೇರಿಸಿದವರು
         iphone_desc_html: <a href="%{url}">iNaturalist ಐಫೋನ್ ಆಪ್</a> ಮೂಲಕ ರಚಿಸಲಾಗಿದೆ
         med_ttcid: Med TTCID
         med_ttid: Med TTID
-        new_users_desc: ಈ ದಿನ ನೋಂದಾಯಿಸಲಾಗಿದ್ದು
+        new_users_desc: ಈ ದಿನ ನೋಂದಣಿಯಾದವರು
         obs_1_day: "ವೀಕ್ಷಣೆಗಳು (1 ದಿನ)"
         obs_1_day_desc: "ಒಂದೇ ಒಂದು ದಿನದಲ್ಲಿ ರಚಿತವಾದ ವೀಕ್ಷಣೆಗಳು"
-        obs_cid_d_desc: ಹಿಂದಿನ 7 ದಿನಗಳಲ್ಲಿ ರಚಿತವಾಗಿ ಸಮುದಾಯದ ID ಯನ್ನು ಹೊಂದಿರುವುದು
+        obs_cid_d_desc: 7 ದಿನಗಳ ಹಿಂದೆ ರಚನೆಯಾಗಿ ಸಮುದಾಯದ ID ಯನ್ನು ಹೊಂದಿರುವುದು
+        obs_cid_d_to_genus_desc: 7 ದಿನಗಳ ಹಿಂದೆ ರಚನೆಯಾಗಿ ಜೀನಸ್-ಹಂತದಲ್ಲಿ ಅಥವಾ ಅದರ ಕೆಳಹಂತದಲ್ಲಿ ಸಮುದಾಯದ ID ಹೊಂದಿರುವುದು
         obs_desc: ಹಿಂದಿನ 7 ದಿನಗಳಲ್ಲಿ ರಚಿತವಾಗಿರುವುದು
+        obs_id_d_desc: 7 ದಿನಗಳ ಹಿಂದೆ ರಚನೆಯಾಗಿ ID ಹೊಂದಿರುವುದು (ವಿಕ್ಷಕರದ್ದೇ ಇರಬಹುದು)
+        observations_1_week_moving_window: ವೀಕ್ಷಣೆಗಳು (1 ವಾರದ ವ್ಯಾಪ್ತಿ)
         observers_desc: ಈ ದಿನ ಸೇರಿಸಿದ ವೀಕ್ಷಣೆ
-        recent_desc: ಹಿಂದಿನ 7 ದಿನಗಳಲ್ಲಿ ನೋಂದಾವಣೆಯಾಗಿದ್ದು
+        recent_desc: ಹಿಂದಿನ 7 ದಿನಗಳಲ್ಲಿ ನೋಂದಣಿಯಾದವರು
+        recent_w_0_obs: 0 ವೀಕ್ಷಣೆಗಳೊಂದಿಗೆ ಇತ್ತೀಚಿನವರು
+        recent_w_0_obs_desc: ಹಿಂದಿನ 7 ದಿನಗಳಲ್ಲಿ ನೋಂದಣಿಯಾಗಿದ್ದು 0 ವೀಕ್ಷಣೆ ಸೇರಿಸಿದವರು
+        recent_w_7_obs: '>=7 ವೀಕ್ಷಣೆಗಳೊಂದಿಗೆ ಇತ್ತೀಚಿನವರು'
+        recent_w_7_obs_desc: ಹಿಂದಿನ 7 ದಿನಗಳಲ್ಲಿ ನೋಂದಣಿಯಾಗಿದ್ದು >= 7 ವೀಕ್ಷಣೆ ಸೇರಿಸಿದವರು
+        time_to_id_desc: ಗುರುತಿಸಲು ಬೇಕಾದ ಸಮಯ (ಗಂಟೆಗಳು, 1 ವಾರದ ವ್ಯಾಪ್ತಿ)
         TTCID: TTCID
-        TTCID_desc: ಇದು ಸಮುದಾಯ ವರ್ಗೀಕರಣವನ್ನು ಹೊಂದುವ ಬೇರೊಬ್ಬರ ಗುರುತಿಸುವಿಕೆಯನ್ನು ಪಡೆಯುವ ಸಮಯ
+        TTCID_desc: ಸಮುದಾಯದ ವರ್ಗೀಕರಣವನ್ನು ಹೋಲುವ ಬೇರೊಬ್ಬರ ಗುರುತಿಸುವಿಕೆಯನ್ನು ಪಡೆಯಲು ತೆಗೆದುಕೊಂಡ ಸಮಯ
         TTID: TTID
-        TTID_desc: ಇದು ಬೇರೊಬ್ಬರಿಂದ ಗುರುತಿಸುವಿಕೆಯನ್ನು ಪಡೆಯುವ ಸಮಯ
+        TTID_desc: ಬೇರೊಬ್ಬರಿಂದ ಗುರುತಿಸುವಿಕೆಯನ್ನು ಪಡೆಯಲು ತೆಗೆದುಕೊಂಡ ಸಮಯ
         website_desc_html: |
           <a href="https://www.inaturalist.org">iNaturalist</a> ಅಥವಾ <a href="%{url}">iNaturalist ಜಾಲ</a> ದ ಜಾಲತಾಣಗಳ ಮೂಲಕ ರಚಿಸಲಾಗಿದೆ
       year:
@@ -3199,7 +3435,7 @@ kn:
           ಈ ವರ್ಷದಲ್ಲಿ %{site_name} ನಲ್ಲಿ ಮೊದಲ ಬಾರಿಗೆ ವೀಕ್ಷಣೆಯಾದ ಪ್ರಭೇದಗಳು. <a href="%{url}">%{y} ಪ್ರಭೇದ</a> ಗಳಲ್ಲಿ %{x} ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತಿದೆ.
         new_species_per_year: ಹೊಸ ಪ್ರಭೇದಗಳು / ವರ್ಷ
         new_species_per_year_by_date_added: ಸೇರಿಸಿದ ದಿನಾಂಕದಂತೆ
-        new_species_per_year_by_date_observed: ವಿಕ್ಷಣಾ ದಿನಾಂಕದಂತೆ
+        new_species_per_year_by_date_observed: ವೀಕ್ಷಣಾ ದಿನಾಂಕದಂತೆ
         obs_in_year: '%{year} ನಲ್ಲಿಯ ವೀಕ್ಷಣೆಗಳು'
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: ಒಮ್ಮೆ
@@ -3207,10 +3443,10 @@ kn:
         percent_of_total_growth: "ಒಟ್ಟು ಬೆಳವಣಿಗೆ %"
         observations_per_year: ವೀಕ್ಷಣೆಗಳು / ವರ್ಷ
         observations_per_year_by_date_added: ಸೇರಿಸಿದ ದಿನಾಂಕದಂತೆ
-        observations_per_year_by_date_observed: ವಿಕ್ಷಣಾ ದಿನಾಂಕದಂತೆ
+        observations_per_year_by_date_observed: ವೀಕ್ಷಣಾ ದಿನಾಂಕದಂತೆ
         species_per_year: ಪ್ರಭೇದಗಳು / ವರ್ಷ
         species_per_year_by_date_added: ಸೇರಿಸಿದ ದಿನಾಂಕದಂತೆ
-        species_per_year_by_date_observed: ವಿಕ್ಷಣಾ ದಿನಾಂಕದಂತೆ
+        species_per_year_by_date_observed: ವೀಕ್ಷಣಾ ದಿನಾಂಕದಂತೆ
         stats_generated_datetime: '%{datetime} ರಂದು ರಚನೆಯಾದ ಅಂಕಿಅಂಶಗಳು'
         store_prompt: |
           iNat ಬಗೆಗಿನ ನಿಮ್ಮ ಅಭಿಮಾನವನ್ನು ನೀವು ಹೋದೆಡೆಯಲ್ಲಾ ಪ್ರದರ್ಶಿಸಲು ಬಯಸುವಿರಾ? iNat ಅಂಗಡಿಯನ್ನು ಒಮ್ಮೆ ನೋಡಿ!
@@ -3235,6 +3471,7 @@ kn:
           ಅನುವಾದಕ್ಕೆ ನೀವು ಸಹಾಯಮಾಡಬಯಸಿದಲ್ಲಿ, %{link_tag}ಹೇಗೆಂದು ತಿಳಿಯಿರಿ%{link_tag_end}.
     taxa:
       show:
+        discoveries_desc: "ಈ ಜೀವಿವರ್ಗದಲ್ಲಿ ತೀರಾ ಇತ್ತೀಚೆಗೆ ಹೊಸದಾಗಿ ಗುರುತಿಸಲಾದ ಪ್ರಭೇದಗಳು"
         frequency:
           research: ಸಂಶೋಧನಾ ದರ್ಜೆ
           verifiable: ಪರಿಶೀಲಿಸಬಲ್ಲ
@@ -3247,10 +3484,10 @@ kn:
           "Plant Phenology=No Evidence": ಕುರುಹುಗಳಿಲ್ಲ
           "Life Stage=Adult": ವಯಸ್ಕ
           "Life Stage=Egg": ಮೊಟ್ಟೆ
-          "Life Stage=Larva": ಲಾರ್ವಾ
+          "Life Stage=Larva": ಮರಿಹುಳು
           "Life Stage=Juvenile": ಹದಿವಯಸ್ಕ
           "Life Stage=Nymph": ಅಪ್ಸರೆ ಹುಳು
-          "Life Stage=Pupa": ಪ್ಯೂಪಾ
+          "Life Stage=Pupa": ಪೊರೆಹುಳು
           "Sex=Cannot Be Determined": ನಿರ್ಧರಿಸಲಾಗಲಿಲ್ಲ
           "Sex=Female": ಸ್ತ್ರೀ
           "Sex=Male": ಪುರುಷ
@@ -3259,6 +3496,7 @@ kn:
           ವರ್ಗೀಕರಣವು ಕೇವಲ %{max} ಚಿತ್ರಗಳನ್ನು ಮಾತ್ರ ಹೊಂದಿರಲು ಸಾಧ್ಯವಿದೆ. ಇನ್ನೂ ಹೆಚ್ಚು ಸೇರಿಸಲು ನೀವು ಈಗಾಗಲೇ ಇರುವ ಕೆಲವನ್ನು ತೆಗೆದುಹಾಕಬೇಕಾಗುತ್ತದೆ.
         photo_chooser_modal_desc: |
           ಮರು-ಜೋಡಿಸಲು ಚಿತ್ರಗಳನ್ನು ಬಲಗಡೆಯಿಂದ ಇಲ್ಲಿಗೆ ಎಳೆಯಿರಿ ಅಥವಾ ಚಿತ್ರಗಳನ್ನು ಇಲ್ಲಿ ಎಳೆಯಿರಿ.
+        wanted_desc: ಈ ಜೀವಿವರ್ಗದಲ್ಲಿ ಇನ್ನೂ ವೀಕ್ಷಿಸಲಾಗದೇ ಉಳಿದಿರುವ ಪ್ರಭೇದಗಳು.
     users:
       delete:
         you_must_enter_confirmation_code_in_the_form: |
@@ -3272,6 +3510,8 @@ kn:
         #show a badge on your profile to indicate that you make a regular,
         #monthly donation to iNat
         monthly_supporter: ತಿಂಗಳ ಬೆಂಬಲಿಗರು
+        name_place_help_html: |
+          ಈ ಪ್ರದೇಶದಲ್ಲಿ ಬಳಸಲಾಗುವ ಸಾಮಾನ್ಯ ಹೆಸರುಗಳಿಗೆ ಆದ್ಯತೆ ನೀಡಿ.
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: ಅಭಿಪ್ರಾಯಗಳು
         #Checkbox label for user preference about what to receive in the daily email update
@@ -3329,7 +3569,7 @@ kn:
         connect_with_nature: ನಿಸರ್ಗದೊಡನೆ ಒಡನಾಡಿ
         explore_and_share: ನಿಸರ್ಗದ ಪ್ರಪಂಚವನ್ನು ಅನ್ವೇಷಿಸಿ ಮತ್ತು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ.
         observations_to_date: 'ಇಲ್ಲಿಯವರೆಗಿನ ವೀಕ್ಷಣೆಗಳು'
-        species_observed: 'ವೀಕ್ಷಿಸಿದ ವರ್ಗಗಳು'
+        species_observed: 'ವೀಕ್ಷಿಸಿದ ಪ್ರಭೇದಗಳು'
         people_signed_up: 'ನೋಂದಾಯಿತ ಸದಸ್ಯರು'
         how_it_works: ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ
         record_your_observations: ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ದಾಖಲಿಸಿ
@@ -3344,13 +3584,14 @@ kn:
           ಜೀವಿಗಳ ಜೊತೆಗಿನ ಮುಖಾಮುಖಿಯನ್ನು ದಾಖಲಿಸಿ, ಜೀವಿವೈವಿಧ್ಯದ ಪಟ್ಟಿ ನಿರ್ವಹಿಸಿ, ಇವೆಲ್ಲವನ್ನೂ ಕ್ಲೌಡ್ ನಲ್ಲಿ.
         create_useful_data: ಉಪಯುಕ್ತವಾದ ದತ್ತಾಂಶವನ್ನು ರಚಿಸಿ
         help_scientists: ಜೀವಿಗಳ ಇರುವಿಕೆಯ ಸಮಯ ಹಾಗೂ ತಾಣವನ್ನು ವಿಜ್ಞಾನಿಗಳು ಮತ್ತು ಸಂಪನ್ಮೂಲ ನಿರ್ವಾಹಕರು ಅರಿಯಲು ಸಹಾಯಮಾಡಿ
-        crowdsource_identifications: ಸಮೂಹಸಂಪನ್ಮೂಲದ ಗುರುತುಗಳು
+        crowdsource_identifications: ಸಮೂಹಸಂಪನ್ಮೂಲದ ಗುರುತಿಸುವಿಕೆಗಳು
         connect_with_experts: ನೀವು ವೀಕ್ಷಿಸಿದ ಜೀವಿಗಳನ್ನು ಗುರುತಿಸಬಲ್ಲ ತಜ್ಞರೊಡನೆ ಸಂಪರ್ಕಿಸಿ.
         become_a_citizen_scientist: ಒಬ್ಬ ನಾಗರಿಕ ಸಂಶೋಧಕರಾಗಿ
         find_a_project: "ನಿಮಗೆ ಆಸಕ್ತಿದಾಯಕವಾದ, ನಿರ್ದಿಷ್ಟ ಧ್ಯೇಯವನ್ನು ಹೊಂದಿರುವ ಪ್ರಾಯೋಜನೆಗಳನ್ನು ಹುಡುಕಿ, ಅಥವಾ ನೀವು ನಿಮ್ಮದೇ ಸ್ವಂತದ್ದನ್ನು ಪ್ರಾರಂಭಿಸಿ."
         learn_about_nature: ನಿಸರ್ಗದ ಬಗ್ಗೆ ತಿಳಿಯಿರಿ
         build_your_knowledge: ಇತರೆ ನಿಸರ್ಗಪ್ರೇಮಿಗಳೊಡನೆ ಚರ್ಚಿಸಿ ಮತ್ತು ಇತರರಿಗೆ ಸಹಾಯಮಾಡುವ ಮೂಲಕ ನಿಮ್ಮ ತಿಳಿವಳಿಕೆಯನ್ನು ಹೆಚ್ಚಿಸಿಕೊಳ್ಳಿ.
-        hold_an_event: ಸಾಧ್ಯವಾದಷ್ಟು ಜೀವಿವರ್ಗಗಳನ್ನು ಜನರು ಗುರುತಿಸುವ ಸಲುವಾಗಿ ಒಂದು ಶಿಬಿರವನ್ನು ಆಯೋಜಿಸಿ.
+        run_a_bioblitz: Bioblitz ಒಂದನ್ನು ಆಯೋಜಿಸಿ
+        hold_an_event: ಸಾಧ್ಯವಾದಷ್ಟು ಪ್ರಭೇದಗಳನ್ನು ಜನರು ಗುರುತಿಸುವ ಸಲುವಾಗಿ ಒಂದು ಶಿಬಿರವನ್ನು ಆಯೋಜಿಸಿ.
         works_on_all_your_devices: ನಿಮ್ಮ ಎಲ್ಲಾ ಸಾಧನಗಳೊಡನೆ ಕೆಲಸಮಾಡುತ್ತದೆ
         install_our_mobile_apps: |
           ನೀವು ಸಂಪರ್ಕ ಅಥವಾ ವೈಫೈ ಇಲ್ಲದಿದ್ದಾಗಲೂ ಸಹ ಸದಾ ವೀಕ್ಷಿಸಲು ಮೊಬೈಲ್ ಆಪ್‍ಗಳನ್ನು ಸ್ಥಾಪಿಸಿಕೊಳ್ಳಿ.
@@ -3644,7 +3885,7 @@ kn:
       observation:
         description: ಟಿಪ್ಪಣಿಗಳು
         geo_y: ಯಾವುದೂ ಇಲ್ಲ
-        observed_on: ವಿಕ್ಷಣಾ ದಿನಾಂಕ
+        observed_on: ವೀಕ್ಷಣಾ ದಿನಾಂಕ
       observations_export_flow_task:
         #Date/time the task was created, i.e. the date it was added to the processing queue
         created_at: ಸರದಿಯಲ್ಲಿದೆ
@@ -3815,6 +4056,21 @@ kn:
     scopes:
       account_delete: |
         ನಿಮ್ಮ ಪರವಾಗಿ ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಿ.
+    flash:
+      applications:
+        create:
+          #Application as in a software application
+          notice: 'ಅಪ್ಲಿಕೇಷನ್‍ ರಚನೆಯಾಗಿದೆ.'
+        destroy:
+          #Application as in a software application
+          notice: 'ಅಪ್ಲಿಕೇಷನ್‍ ಅಳಿಸಲಾಗಿದೆ.'
+        update:
+          #Application as in a software application
+          notice: 'ಅಪ್ಲಿಕೇಷನ್‍ ನವೀಕರಿಸಲಾಗಿದೆ.'
+      authorized_applications:
+        destroy:
+          #Application as in a software application
+          notice: 'ಅಪ್ಲಿಕೇಷನ್‍ ಪುನರ್ಜೀವಿತಗೊಳಿಸಲಾಗಿದೆ.'
   i18n:
     inflections:
       "@vow_or_con":
@@ -3941,8 +4197,14 @@ kn:
   #Title of a section warning the user about something
   warning_title: ಎಚ್ಚರಿಕೆ
   wikimedia: ವಿಕಿಮೀಡಿಯಾ
-  wild: ವನ್ಯ
+  wild: ವನ್ಯಜೀವಿ
   will_paginate:
     previous_label: "&#8592; ಹಿಂದೆ"
     next_label: "ಮುಂದೆ &#8594;"
     page_gap: "&hellip;"
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: Z ಇಂದ A
+  zoom_in: ಗಾತ್ರ ಹಿಗ್ಗಿಸಿ
+  zoom_out: ಗಾತ್ರ ಕುಗ್ಗಿಸಿ
+  zoom_photo: ಚಿತ್ರವನ್ನು ಹಿಗ್ಗಿಸಿ

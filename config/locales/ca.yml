@@ -1348,7 +1348,7 @@ ca:
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
-        Si la teva adreça de correu electrònic existeix a la nostra base de dades, rebràs un correu electrònic amb instruccions per confirmar la teva adreça en uns minuts.
+        Si la teva adreça de correu-e existeix a la nostra base de dades, en rebràs un amb instruccions per confirmar-la en pocs minuts.
     failure:
       already_authenticated: 'Ja heu iniciat la sessió.'
       unauthenticated: 'Heu d''iniciar la sessió o registrar-vos abans de continuar'
@@ -2088,6 +2088,7 @@ ca:
     ilokano: Ilocano
     italian: Italià
     japanese: Japonès
+    kannada: Kanarès
     korean: Coreà
     latvian: Letó
     lithuanian: Lituà
@@ -2197,6 +2198,7 @@ ca:
     id: Indonesi
     it: Italià
     ja: Japonès
+    kn: Kanarès
     ko: Coreà
     lb: Luxemburguès
     lt: Lituà
@@ -2812,6 +2814,7 @@ ca:
     absent: No es troba a l'àrea
     common: Es troba freqüentment
     doubtful: Sembla que existeix, però hi ha dubtes sobre les evidències
+    irregular: Presència impredictible, incloent-hi divagants; pot ser habitual alguns anys i absent altres
     present: Present a la zona
     uncommon: Present regularment, però amb reduïda representació; necessita una cerca acurada en l'hàbitat adequat
   occurrence_status_establishment_means: estat d'ocurrència, forma d'establiment
