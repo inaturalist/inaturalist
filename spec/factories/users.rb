@@ -7,6 +7,14 @@ FactoryBot.define do
     created_at { 5.days.ago.to_s(:db) }
     state { "active" }
     time_zone { "Pacific Time (US & Canada)" }
+
+    factory :admin do
+      roles { [association(:role, name: 'admin')] }
+    end
+
+    factory :curator do
+      roles { [association(:role, name: 'curator')] }
+    end
   end
 
   trait(:as_admin) { roles { [association(:role, name: 'admin')] } }

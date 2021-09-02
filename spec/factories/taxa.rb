@@ -12,6 +12,12 @@ FactoryBot.define do
     end
   end
 
+  trait :threatened do
+    after :build do |taxon|
+      taxon.conservation_statuses = [build(:conservation_status, taxon: taxon)]
+    end
+  end
+
   Taxon::RANKS.each do |taxon_rank|
     trait :"as_#{taxon_rank}" do
       rank { taxon_rank }

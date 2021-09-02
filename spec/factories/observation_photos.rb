@@ -1,10 +1,12 @@
 FactoryBot.define do
   factory :observation_photo do
     observation
-    photo
+    transient { user { observation.user } }
+    after(:build) { |op, eval| op.photo = build :photo, user: eval.user }
   end
 
   trait :local do
-    photo { build :local_photo }
+    transient { user { observation.user } }
+    after(:build) { |op, eval| op.photo = build :local_photo, user: eval.user }
   end
 end

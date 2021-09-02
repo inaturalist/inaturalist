@@ -1,11 +1,13 @@
 FactoryBot.define do
   factory :place do
-    user
+    user { build :curator }
     name { Faker::Lorem.sentence }
     display_name { name }
     slug { name.parameterize }
     uuid { Faker::Internet.uuid }
     admin_level { Place::STATE_LEVEL }
+
+    after(:build) { |place| build :place_geometry, place: place }
 
     trait :with_geom do
       latitude { 0.5 }
