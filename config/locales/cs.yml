@@ -295,6 +295,12 @@ cs:
   about_trusting_projects_options_taxon_desc: |-
     Mnoho projektů potřebuje pouze přístup k souřadnicím, které jsou skryté, protože pozorování
     zobrazuje ohrožený taxon.
+  about_trusting_projects_overview: |-
+    Poskytnutí přístupu k vašim skrytým souřadnicím umožní správcům tohoto
+    projektu vidět pravdu, neskryté umístění vašich pozorování v tomto
+    projektu. To je mimořádně důležité v situacích, kdy vědci nebo
+    správci zdrojů potřebují přístup k přesným souřadnicím pro účely analýzy a
+    rozhodování.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -2960,7 +2966,6 @@ cs:
     absent: V této oblasti se nevyskytuje
     common: Vyskytuje se často
     doubtful: Předpokládá se, že se vyskytuje, ale existují pochybnosti o důkazech
-    irregular: Nepředvídatelná přítomnost, včetně putování; mohou být běžné některé roky a nepřítomné v jiných letech
     present: Vyskytuje se v této oblasti
     uncommon: Vyskytuje se pravidelně, ale v malém počtu; pečlivě hledají vhodné stanoviště
   occurrence_status_establishment_means: status výskytu, způsob vzniku
@@ -3808,7 +3813,7 @@ cs:
     subgenus: podrod
     section: sekce
     subsection: pododdíl
-    complex: Dokončit
+    complex: Komplex
     #Singular
     species: druh
     x_species:
@@ -4159,6 +4164,8 @@ cs:
   showing_x_of_y: Zobrazování %{x} z %{y}
   showing_x_of_y_listings: "Zobrazeno %{x} z %{y} záznamů"
   sign_in: Přihlásit se
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Přihlásit se přes Apple
   sign_in_with_provider: "Přihlásit se přes %{provider}"
   sign_in_with_google: Registrovat přes Google
   sign_out: Odhlásit se

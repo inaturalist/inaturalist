@@ -1282,6 +1282,8 @@ zh-TW:
   deviation: 偏差
   devise:
     confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
         如果我們的資料庫中有您的 email 地址，您將會在幾分鐘內收到一封 email，裡頭有確認您 email 方法的說明。
     failure:
@@ -2738,7 +2740,6 @@ zh-TW:
     absent: 沒有發生在區域
     common: 發生頻率
     doubtful: 推定有發生，但對證據有疑慮
-    irregular: 存在不可預測，包含流浪生物。可能會在某些年份很常見、某些年份不存在
     present: 發生在區域
     uncommon: 定期發生；但次數不多，需要仔細尋找正確的棲息地
   occurrence_status_establishment_means: 事件狀態，定居方式
@@ -3890,6 +3891,8 @@ zh-TW:
   showing_x_of_y: 顯示 %{y} 的 %{x}
   showing_x_of_y_listings: "顯示 %{y} 份名錄中的 %{x} 份"
   sign_in: 登入
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: 使用 Apple id 登入
   sign_in_with_provider: "以 %{provider} 登入"
   sign_in_with_google: 使用 Google 帳號登入
   sign_out: 登出

@@ -72,7 +72,7 @@ class TaxonName < ApplicationRecord
     :PANGASINAN          =>  'Pangasinan',
     :POLISH              =>  'Polish',
     :PORTUGUESE          =>  'Portuguese',
-    :RUMANIAN            =>  'Rumanian',
+    :ROMANIAN            =>  'Romanian',
     :RUSSIAN             =>  'Russian',
     :SINHALA             =>  'Sinhala',
     :SLOVAK              =>  'Slovak',
@@ -192,6 +192,7 @@ class TaxonName < ApplicationRecord
   def self.normalize_lexicon(lexicon)
     return nil if lexicon.blank?
     return TaxonName::NORWEGIAN if lexicon == "norwegian_bokmal"
+    return TaxonName::ROMANIAN if lexicon.to_s.downcase.strip == "rumanian"
     # Correct a common misspelling
     return TaxonName::UKRAINIAN if lexicon.to_s.downcase.strip == "ukranian"
     ( LEXICONS[lexicon.underscore.upcase.to_sym] || lexicon.titleize ).strip
