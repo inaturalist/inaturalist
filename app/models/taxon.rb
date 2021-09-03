@@ -1634,7 +1634,7 @@ class Taxon < ApplicationRecord
     # Some admin levels can override a global status or a coarser admin level
     override_admin_levels = [Place::COUNTRY_LEVEL, Place::STATE_LEVEL]
     # Since overrides only apply within a taxon, we need to assess the geoprivacy for each taxon
-    geoprivacies = taxon_ids.map do |taxon_id|
+    geoprivacies = target_taxon_ids.map do |taxon_id|
       global_statuses_for_taxon = global_statuses.select {|cs| cs.taxon_id == taxon_id}
       place_statuses_for_taxon = place_statuses.select {|cs| cs.taxon_id == taxon_id}
       override_statuses = place_statuses_for_taxon.select {|cs|
