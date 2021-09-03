@@ -1070,7 +1070,11 @@ en:
       *you* want to be listed as the authority.
     place: Place to which this status is restricted.
     url: URL for a page describing this status.
-    geoprivacy: Default geoprivacy for observations of this taxon
+    geoprivacy: |
+      Default geoprivacy for observations of this taxon. Note that the
+      geoprivacy of a status associated with a continent-, country-, or
+      state-level place can override a a status that is global or associated
+      with a higher-level place.
     iucn: |
       Equivalent IUCN Red List code. This is not the actual IUCN assessment,
       just the IUCN code that best matches the threat of coordinate disclosure
