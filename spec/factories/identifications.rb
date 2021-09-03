@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :identification do
     user
-    taxon
     observation
+    taxon
   end
 end

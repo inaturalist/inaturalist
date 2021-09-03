@@ -233,10 +233,14 @@
       font-size: 25px;
       line-height: 25px;
     }
-    img {
+    img,
+    .img {
       width: 25px;
       height: 25px;
       margin-right: 10px;
+      i {
+        margin: 0;
+      }
     }
     &.google {
       background-color: white;

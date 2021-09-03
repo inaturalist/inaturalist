@@ -128,6 +128,9 @@ mr:
   _100_day_trends: १०० दिवसांचा कल
   _percent_ID_d: "% ओळख पटलेले"
   a_community_for_naturalist: एक समुदाय निसर्गवादींसाठी
+  a_default_taxon_name_will_automatically_created: |
+    मूलभूत वर्ग नाव आपोआप या वर्गाच्या वैज्ञानिक नावाच्या गुणधर्मावरून तयार केले जाईल.
+    जेव्हा तुम्ही हा नवीन वर्ग सेव्ह करता, तेव्हा तुम्ही इथे इतर नावे (सामान्य नावे, कालबाह्य वैज्ञानिक नावे इ.) जोडू शकाल.
   a_flag_for_x: "निशाण %{x} साठी"
   a_member_of_taxon_html: "%{taxon} चा सदस्य"
   #Ascending alphabetical sort option. Could be alternatively be translated as
@@ -160,10 +163,18 @@ mr:
   about_this_project: ह्या प्रकल्पाविषयी
   about_trusting_projects: प्रकल्पांच्या विश्वसनीयतेविषयी
   about_trusting_projects_options_any: ह्या प्रकल्पातील आपली सर्व निरीक्षणे
+  about_trusting_projects_options_any_desc: |-
+    यामध्ये आपण जिथे भौगोलिकता "अस्पष्ट" किंवा "खाजगी" अशी निवडलेली केली आहे अशा निरीक्षणांचा समावेश आहे, उदा. आपल्या परसदारातील किंवा आपल्याला इतर लोकांना माहिती होऊ नये अशी इच्छा आहे अशा ठिकाणांवरील निरीक्षणे.
+  about_trusting_projects_options_taxon: |-
+    या प्रकल्पामधील फक्त तुमची निरीक्षणे ज्यामध्ये वर्गांना असलेल्या धोक्यामुळे निर्देशांक अस्पष्ट आहेत
+  about_trusting_projects_options_taxon_desc: |-
+    बर्‍याच प्रकल्पांना फक्त अस्पष्ट निर्देशांकाबद्दल माहिती पुरेशी आहे कारण निरीक्षणामध्ये धोक्यात असलेल्या वर्गांचा समावेश आहे
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
     आपले गोपनीय निर्देशांक ज्यांना उबलब्ध आहेत असे प्रकल्प व्यवस्थापक:
+  about_trusting_projects_warning: |-
+    लक्षात घ्या की प्रकल्प व्यवस्थापक प्रकलपाचे मापदंड बदलू शकतात जेणेकरून तुमची निरीक्षणे समाविष्ट केली जातील, आणि ते कोणत्याही वेळी प्रकल्पात व्यवस्थापक जोडू किंवा घटवू शकतात. या बदलांविषयी आपल्याला वेळोवेळी सूचना प्राप्त होतील, परंतु आपण मूलत: आपल्या खाजगी स्थान माहितीबाबत या प्रकल्पावर विश्वास ठेवत आहात, तेव्हा सतर्क रहा.
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     आपण आपले गोपनीय निर्देशांक जाहीर करण्याचे ठरवु शकता
@@ -175,18 +186,140 @@ mr:
   account_creation: खातेनिर्मिती
   account_settings: खाते सेटिंग्स
   accept: स्वीकारा
+  accept_community_identifications: सामुदायिक ओळख स्वीकारा
+  accuracy: अचूकता
+  accuracy_meters: अचूकता (मीटरमध्ये)
+  accuracy_of_the_coordinates: |
+    भौगोलिक निर्देशांकांची अचूकता मीटरमध्ये. आपण वर दिलेल्या "बदल करा" लिंक वर क्लिक करून किंवा नकाशातील खुणेवर क्लिक करून आणि हँडल ड्रॅग करून ह्यात बदल करू शकता. प्रयत्नपूर्वक वर्तुळ इतके मोठे बनवा की तुम्हाला खात्री असेल की तुम्ही त्याच्या आत कुठेतरी आहात.
+  action: कृती
+  actions: कृती
+  active: सक्रिय
   #Status of a complete set that is available for use
   active_complete_set_status: सक्रिय
   #Status of a taxon that is available for use on iNat
   active_taxon_status: सक्रिय
+  active_users: सक्रिय वापरकर्ते
+  activity: गतिविधी
+  activity_settings: गतिविधी सेटिंग्ज
+  adapted_by_name_from_a_work_by_original: "%{name} नी %{original} च्या कामातून घेतलेले"
+  add: जोडा
+  add_a_batch_of_observations: निरीक्षणांचा संच जोडा
+  add_a_batch_of_taxa: वर्गांचा संच जोडा
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: ठळक मुद्द्यांची यादी जोडा
+  add_a_comment: टिपण्णी जोडा
+  add_a_field: क्षेत्र जोडा
+  add_a_flag: निशाण जोडा
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: लिंक जोडा
+  add_a_name: नाव जोडा
+  add_a_note: टीप जोडा
+  add_a_new_change_group: नवीन समूहबदल जोडा
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list: क्रमांकित यादी जोडा
+  add_a_single_observation: निरीक्षण जोडा
+  add_a_taxon: वर्ग जोडा
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: |
+    तुम्हाला नाव बदलायचे असल्यास <a target="_blank" href="%{url}">वर्ग अदलाबदल</a> जोडा
+  add_an_assessment: मूल्यांकन जोडा
+  add_an_identification: ओळख सुचवा
+  add_an_observation: निरीक्षण नोंदवा
+  add_an_observation_of: "%{taxon} चे निरीक्षण जोडा"
+  add_an_observation_to_project_html: '%{project} मध्ये निरीक्षण जोडा'
+  add_annotations_for_x: '"%{x}" च्या साठी टीप जोडा'
   add_annotations_for_controlled_attribute:
+    sex: '"लिंग" च्या साठी टीप जोडा'
+    plant_phenology: '"वनस्पती फलोद्गदिकी" च्या साठी टीप जोडा'
+    life_stage: '"जीवनावस्था" च्या साठी टीप जोडा'
     evidence_of_presence: '"उपस्थितीचा पुरावा" च्या साठी टीप जोडा'
+  add_another_flag: आणखी निशाण जोडा
+  add_another_photo: आणखी फोटो जोडा
+  add_another_section: आणखी विभाग जोडा
+  add_another_subscription: आणखी सदस्यता जोडा
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: प्रकल्प विशेष जोडा
+  add_batch: संच जोडा
+  add_blocked_users: प्रतिबंधित वापरकर्ते जोडा
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: ठळक मजकूर जोडा
+  add_comma_separated_tags: "कॉमा सेपरेटेड टॅग्स जोडा"
+  add_comment: टिपण्णी जोडा
+  add_conservation_status: संवर्धन स्थिती जोडा
+  add_custom_project_fields: स्वनिर्मित प्रकल्प क्षेत्र जोडा
+  add_edit_flags: निशाणे जोडा/बदला
+  add_editor: संपादक जोडा
+  add_description: "%{description_name} जोडा"
+  add_from_your_observations: आपल्या निरीक्षणांमधून जोडा
+  add_link: लिंक जोडा
+  add_higher_level_taxon: उच्चस्तरीय वर्ग जोडा (उदा. "पक्षी")
+  add_id: ओळख जोडा
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: इटॅलिक मजकूर जोडा
+  add_muted_users: मूक वापरकर्ते जोडा
+  add_new_lexicon: नवीन शब्दकोश जोडा
+  add_new_photos_by_their_ids: फ्लिकर आयडीद्वारे नवीन फोटो जोडा (क्रिएटिव्ह कॉमन्स असणे आवश्यक आहे!)
+  add_new_place: नवीन ठिकाण जोडा
+  add_new_rule: नवीन नियम जोडा
+  add_new_source: "नवीन स्रोत जोडा..."
+  add_new_taxon_name: नवीन वर्ग नाव जोडा
+  add_notes_about_this_taxon: या ठिकाणी या वर्गाबद्दल टीपा जोडा, उदा. कुठे आणि केव्हा सापडते.
+  add_obs_from_a_link: "सूचीमधून निरीक्षण जोडा: %{link}"
+  add_obs_from_a_list: सूचीमधून निरीक्षण जोडा
+  add_observations: निरीक्षणे जोडा
+  add_observations_by_checking_off: सूचीमधून प्रजाती वगळून निरीक्षणे जोडा.
+  add_observations_project: या प्रकल्पामध्ये निरीक्षणे जोडा
+  #Prompt to add a new journal post
+  add_one: एक जोडा!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now: आता एक जोडा
+  add_photos: फोटोज जोडा
+  add_place: ठिकाण जोडा
+  add_alive_or_dead_alive_annotation: 'जोडा "जिवंत किंवा मृत: जिवंत" टीप'
+  add_alive_or_dead_cannot_be_determined_annotation: 'जोडा "जिवंत किंवा मृत: निश्चित केले जाऊ शकत नाही" टीप'
+  add_alive_or_dead_dead_annotation: 'जोडा "जिवंत किंवा मृत: मृत" टीप'
+  add_plant_phenology_budding_annotation: 'जोडा "वनस्पती फलोद्गदिकी: कलिका"'
+  add_plant_phenology_flower_budding_annotation: 'जोडा "वनस्पती फलोद्गदिकी: पुष्प कलिका" टीप'
+  add_plant_phenology_flowering_annotation: 'जोडा "वनस्पती फलोद्गदिकी: फुलोरा" टीप'
+  add_plant_phenology_fruiting_annotation: 'जोडा "वनस्पती फलोद्गदिकी: फळधारणा" टीप'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'जोडा "वनस्पती फलोद्गदिकी: फुलण्याचा कोणताही पुरावा नाही" टीप'
+  add_life_stage_adult_annotation: 'जोडा "जीवनावस्था: प्रौढ" टीप'
+  add_life_stage_teneral_annotation: 'जोडा "जीवनावस्था: अपरिपकव" टीप'
+  add_life_stage_subimago_annotation: 'जोडा "जीवनावस्था: अर्धविकसित" टीप'
+  add_life_stage_pupa_annotation: 'जोडा "जीवनावस्था: कोष" टीप'
+  add_life_stage_nymph_annotation: 'जोडा "जीवनावस्था: अविकसित" टीप'
+  add_life_stage_larva_annotation: 'जोडा "जीवनावस्था: अळी" टीप'
+  add_life_stage_juvenile_annotation: 'जोडा "जीवनावस्था: अल्पवयीन" टीप'
+  add_life_stage_egg_annotation: 'जोडा "जीवनावस्था: अंडे" टीप'
   add_evidence_of_presence_organism_annotation: 'टिप्पणी जोडा "उपस्थितीचा पुरावा: जीव"'
   add_evidence_of_presence_feather_annotation: 'टिप्पणी जोडा: "उपस्थितीचा पुरावा: पीस"'
   add_evidence_of_presence_scat_annotation: 'टिप्पणी जोडा: "उपस्थितीचा पुरावा: मल"'
   add_evidence_of_presence_track_annotation: 'टिप्पणी जोडा: "उपस्थितीचा पुरावा: पाऊलखुणा"'
   add_evidence_of_presence_bone_annotation: 'टिप्पणी जोडा: "उपस्थितीचा पुरावा: अस्थी"'
   add_evidence_of_presence_molt_annotation: 'टिप्पणी जोडा: उपस्थितीचा पुरावा: कात'
+  #As in a Taxon Framework Relationship
+  add_relationship: 'नातेसंबध जोडा'
+  #As in a Guide Section
+  add_section: विभाग जोडा
+  add_several_observations_at_once: एकाच वेळी अनेक निरीक्षणे जोडा.
+  add_sex_female_annotation: 'जोडा "लिंग: मादी" टीप'
+  add_sex_male_annotation: 'जोडा "लिंग: नर" टीप'
+  add_sex_cannot_be_determined_annotation: 'जोडा "लिंग: निश्चित केले जाऊ शकत नाही" टीप'
+  add_some_now: आता काही जोडा
+  add_tag: टॅग जोडा
+  add_tags: टॅग्स जोडा
+  add_tags_to_selected_taxa: निवडलेल्या वर्गामध्ये टॅग जोडा
+  add_taxa: वर्ग जोडा
+  add_taxon_batch_to: "%{list} मध्ये वर्ग गट जोडा"
+  add_taxon_range: वर्ग श्रेणी जोडा
+  add_taxonomic_tags_to: "निवडक फ्लिकर फोटोंना वर्गीकरण टॅग्स जोडा &raquo;"
+  add_to_a_scheme: एखाद्या योजनेशी जोडा
+  add_to_a_project: एखाद्या प्रकल्पाशी जोडा
+  add_to_calendar: कॅलेंडरमध्ये जोडा
+  add_to_checklist: चेकलिस्टमध्ये जोडा
+  add_to_favorites: आवडीचे मध्‍ये जोडा
+  add_to_list: यादीमध्ये जोडा
+  add_to_project: प्रकल्पामध्ये जोडा
   already_have_an_account_log_in_html: याआधीच खाते आहे? <strong>लॉग इन करा</strong>
   birthday: जन्मतारीख
   calendar: दिनदर्शिका
@@ -239,6 +372,12 @@ mr:
   create_an_account: खाते उघडा
   dashboard: मुख्यपटल
   date_obscured_notice: वैयक्तिक किंवा सजीवाच्या गोपनीयतेच्या संरक्षणासाठी तारीख अनिश्चित ठेवली आहे
+  devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        जर आपला ईमेल पत्ता आमच्या डेटाबेसमध्ये उपलब्ध असेल, तर आपल्याला काही मिनिटांतच आपल्या ईमेल पत्त्याची पुष्टी कशी करावी यासंबंधीच्या सूचनांसह एक ईमेल प्राप्त होईल.
   edit_observations: निरीक्षणात बदल करा
   email: ई-मेल
   explore: सर्वेक्षण
@@ -262,8 +401,12 @@ mr:
   journal_posts: नोंदवहीतील नोंदी
   labels: खूण चिट्ठी
   learn_more: अधिक जाणून घ्या
+  lexicons:
+    marathi: मराठी
   list: यादी
   lists: याद्या
+  locales:
+    mr: मराठी
   log_in: लॉग इन करा
   #Status message shown while logging in
   logging_in: तुमचे खाते उघडत आहे
@@ -364,3 +507,13 @@ mr:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    errors:
+      models:
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: रिक्त असू शकत नाही
+              invalid_point: एखादा अवैध निर्देशांक आहे, उदा. रेखांश १८० पेक्षा जास्त किंवा अक्षांश -९० पेक्षा कमी
+              must_have_more_than_three_points: ३ पेक्षा जास्त बिंदू असणे आवश्यक आहे
+              polygon_with_fewer_than_four_points: ४ पेक्षा कमी बिंदूंसह बहुभुज आहे

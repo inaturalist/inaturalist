@@ -1344,6 +1344,11 @@ ca:
   details: Detalls
   deviation: Desviació
   devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Si la teva adreça de correu-e existeix a la nostra base de dades, en rebràs un amb instruccions per confirmar-la en pocs minuts.
     failure:
       already_authenticated: 'Ja heu iniciat la sessió.'
       unauthenticated: 'Heu d''iniciar la sessió o registrar-vos abans de continuar'
@@ -2083,6 +2088,7 @@ ca:
     ilokano: Ilocano
     italian: Italià
     japanese: Japonès
+    kannada: Kanarès
     korean: Coreà
     latvian: Letó
     lithuanian: Lituà
@@ -2192,6 +2198,7 @@ ca:
     id: Indonesi
     it: Italià
     ja: Japonès
+    kn: Kanarès
     ko: Coreà
     lb: Luxemburguès
     lt: Lituà
@@ -2807,7 +2814,7 @@ ca:
     absent: No es troba a l'àrea
     common: Es troba freqüentment
     doubtful: Sembla que existeix, però hi ha dubtes sobre les evidències
-    irregular: Presència impredictible, incloent migrants; pot ser habitual alguns anys i absent altres
+    irregular: Presència impredictible, incloent-hi divagants; pot ser habitual alguns anys i absent altres
     present: Present a la zona
     uncommon: Present regularment, però amb reduïda representació; necessita una cerca acurada en l'hàbitat adequat
   occurrence_status_establishment_means: estat d'ocurrència, forma d'establiment
@@ -2860,6 +2867,8 @@ ca:
       </ul>
   one_by_one: "Un a un"
   one_of_your_lists: "una de les teves llistes..."
+  one_or_more_input_taxa_have_more_than_1000: |
+    Un o més dels tàxons introduïts té més de 1000 observacions. Modificar-lo pot necessitar molt temps, esteu segur que aquest canvi del tàxon és necessari? A més, els canvis de tàxon no es pot desfer.
   only_a_project_manager_can_add: Només un gestor de projecte pot atorgar-li classificació a un supervisor de projecte
   only_administrators_may_access_that_page: Només els administradors poden accedir a aquesta pàgina
   only_an_admin_can_remove_project_users: Només l'administrador pot eliminar usuaris del projecte.
@@ -3969,6 +3978,8 @@ ca:
   showing_x_of_y: Mostrant %{x} de %{y}
   showing_x_of_y_listings: "Mostrant %{x} de %{y} llistes"
   sign_in: Inicieu sessió
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Iniciar sessió amb Apple
   sign_in_with_provider: "Inicieu sessió amb %{provider}"
   sign_in_with_google: Entrar amb Google
   sign_out: Surtiu
@@ -4404,6 +4415,7 @@ ca:
   this_taxon_change_has_been_commited: |
     <strong>Aquest canvi de taxonomia en l'espècie o grup s’ha desat!</strong> Si us plau, no editeu l'espècie o grup. Podeu editar els altres camps.
   this_taxon_concept_is_inactive: aquesta concepte taxonòmic està inactiu
+  this_taxon_has_more_than_1000: Aquest tàxon té més de 1000 observacions. Editar-lo pot necessitar molt temps de procés, esteu segurs que és necessari?
   this_taxon_has_no_default_photo: Aquest tàxon no té foto per defecte!
   this_taxon_is_inactive_this_means: |
     Aquest tàxon està <strong>inactiu</strong>. Això significa que els supervisors d’%{site_name} l’han reemplaçat per un concepte taxonómic més actualitzat.
@@ -6984,6 +6996,13 @@ ca:
               is_too_large_to_edit: és massa gran per editar
               is_too_large_to_import: és massa gran per a importar-ho
               contains_too_many_observations: Conté massa observacions per importar
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: no pot estar en blanc
+              invalid_point: té un punt no vàlid, p.e. la longitud és més gran de 180 o la latitud inferior a -90
+              must_have_more_than_three_points: ha de tenir més de 3 punts
+              polygon_with_fewer_than_four_points: té un polígon amb menys de 4 punts
         post:
           attributes:
             parent:

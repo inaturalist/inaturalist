@@ -28,8 +28,6 @@ describe Observation do
   it { is_expected.to have_many :observations_places }
   it { is_expected.to have_many(:observation_reviews).dependent :destroy }
   it { is_expected.to have_many(:confirmed_reviews).class_name 'ObservationReview' }
-
-
   context 'when geo_x present' do
     subject { Observation.new geo_x: 1 }
     it { is_expected.to validate_presence_of :geo_y }
@@ -56,211 +54,247 @@ describe Observation do
   elastic_models( Observation, Taxon )
 
   describe "creation" do
+    subject { build :observation }
 
-    before(:each) do
-      @taxon = Taxon.make!
-      @observation = Observation.make!(:taxon => @taxon, :observed_on_string => 'April 1st 1994 at 1am')
-    end
-  
-    it "should be in the past" do
-      expect(@observation.observed_on).to be <= Date.today
-    end
-  
-    it "should not be in the future" do
-      expect {
-        Observation.make!(:observed_on_string => '2 weeks from now')
-      }.to raise_error(ActiveRecord::RecordInvalid)
-    end
-  
-    it "should properly set date and time" do
-      Time.use_zone(@observation.time_zone) do
-        expect(@observation.observed_on.year).to eq 1994
-        expect(@observation.observed_on.month).to eq 4
-        expect(@observation.observed_on.day).to eq 1
-        expect(@observation.time_observed_at.hour).to eq 1
-      end
-    end
-  
-    it "should parse time from strings like October 30, 2008 10:31PM" do
-      @observation.observed_on_string = 'October 30, 2008 10:31PM'
-      @observation.save
-      expect(@observation.time_observed_at.in_time_zone(@observation.time_zone).hour).to eq 22
-    end
-  
-    it "should parse time from strings like 2011-12-23T11:52:06-0500" do
-      @observation.observed_on_string = '2011-12-23T11:52:06-0500'
-      @observation.save
-      expect(@observation.time_observed_at.in_time_zone(@observation.time_zone).hour).to eq 11
-    end
+    describe "parses and sets time" do
+      context "with observed_on_string" do
+        subject { build_stubbed :observation, :without_times }
 
-    it "should parse time from strings like 2011-12-23 11:52:06 -05" do
-      @observation.observed_on_string = "2011-12-23 11:52:06 -05"
-      @observation.save
-      expect( @observation.time_observed_at.in_time_zone( @observation.time_zone ).hour ).to eq 11
-    end
-  
-    it "should parse time from strings like 2011-12-23T11:52:06.123" do
-      @observation.observed_on_string = '2011-12-23T11:52:06.123'
-      @observation.save
-      expect(@observation.time_observed_at.in_time_zone(@observation.time_zone).hour).to eq 11
-    end
-  
-    it "should parse time and zone from July 9, 2012 7:52:39 AM ACST" do
-      @observation.observed_on_string = 'July 9, 2012 7:52:39 AM ACST'
-      @observation.save
-      expect(@observation.time_observed_at.in_time_zone(@observation.time_zone).hour).to eq 7
-      expect(@observation.time_zone).to eq ActiveSupport::TimeZone['Adelaide'].name
-    end
+        before do |spec|
+          subject.observed_on_string = spec.metadata[:time]
+          subject.run_callbacks :validation
+        end
 
-    it "should parse a bunch of test date strings" do
-      [
-        ['Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)', {:month => 4, :day => 6, :hour => 16, :offset => "-05:00"}],
-        ['Sun Nov 03 2013 08:15:25 GMT-0500 (GMT-5)', {:month => 11, :day => 3, :hour => 8, :offset => "-05:00"}],
+        it "should be in the past", time: 'April 1st 1994 at 1am'  do
+          expect(subject.observed_on).to be <= Date.today
+        end
 
-        # This won't work given our current setup because if we lookup a time
-        # zone by offset like this, it will return the first *named* timezone,
-        # which in this case is Amsterdam, which is the same as CET, which, in
-        # September, observes daylight savings time, so it's actually CEST and
-        # the offset is +2:00. The main problem here is that if the client just
-        # specifies an offset, we can't reliably find the zone
-        # ['September 27, 2012 8:09:50 AM GMT+01:00', :month => 9, :day => 27, :hour => 8, :offset => "+01:00"],
+        it "should properly set date and time", time: 'April 1st 1994 at 1am' do
+          Time.use_zone(subject.time_zone) do
+            expect(subject.observed_on.year).to eq 1994
+            expect(subject.observed_on.month).to eq 4
+            expect(subject.observed_on.day).to eq 1
+            expect(subject.time_observed_at.hour).to eq 1
+          end
+        end
 
-        # This *does* work b/c in December, Amsterdam is in CET, standard time
-        ['December 27, 2012 8:09:50 AM GMT+01:00', :month => 12, :day => 27, :hour => 8, :offset => "+01:00"],
+        it "should parse time from strings like October 30, 2008 10:31PM", time: "October 30, 2008 10:31PM" do
+          expect(subject.time_observed_at.in_time_zone(subject.time_zone).hour).to eq 22
+        end
 
-        # Spacy AM, offset w/o named zone
-        ["2019-01-29 9:21:46 a. m. GMT-05:00", month: 1, day: 29, hour: 9, offset: "-05:00"],
+        it "should parse time from strings like 2011-12-23T11:52:06-0500", time: "2011-12-23T11:52:06-0500" do
+          expect(subject.time_observed_at.in_time_zone(subject.time_zone).hour).to eq 11
+        end
 
-        ['Thu Dec 26 2013 11:18:22 GMT+0530 (GMT+05:30)', :month => 12, :day => 26, :hour => 11, :offset => "+05:30"],
-        ["Thu Feb 20 2020 11:46:32 GMT+1030 (GMT+10:30)", month: 2, day: 20, hour: 11, offset: "+10:30"],
-        ["Thu Feb 20 2020 11:46:32 GMT+10:30", month: 2, day: 20, hour: 11, offset: "+10:30"],
-        # ['2010-08-23 13:42:55 +0000', :month => 8, :day => 23, :hour => 13, :offset => "+00:00"],
-        ['2014-06-18 5:18:17 pm CEST', :month => 6, :day => 18, :hour => 17, :offset => "+02:00"],
-        ["2017-03-12 12:17:00 pm PDT", month: 3, day: 12, hour: 12, offset: "-07:00"],
-        ["2017/03/12 12:17 PM PDT", month: 3, day: 12, hour: 12, offset: "-07:00"],
-        ["2017/03/12 12:17 P.M. PDT", month: 3, day: 12, hour: 12, offset: "-07:00"],
-        # ["2017/03/12 12:17 AM PDT", month: 3, day: 12, hour: 0, offset: "-07:00"], # this doesn't work.. why...
-        ["2017/04/12 12:17 AM PDT", month: 4, day: 12, hour: 0, offset: "-07:00"],
-        ["2020/09/02 8:28 PM UTC", month: 9, day: 2, hour: 20, offset: "+00:00"],
-        ["2020/09/02 8:28 PM GMT", month: 9, day: 2, hour: 20, offset: "+00:00"],
-        ["2021-03-02T13:00:10.000-06:00", month: 3, day: 2, hour: 13, offset: "-06:00"]
-      ].each do |date_string, opts|
-        o = Observation.make!(:observed_on_string => date_string)
-        expect(o.observed_on.day).to eq opts[:day]
-        expect(o.observed_on.month).to eq opts[:month]
-        t = o.time_observed_at.in_time_zone(o.time_zone)
-        expect(t.hour).to eq opts[:hour]
-        expect(t.formatted_offset).to eq opts[:offset]
-      end
-    end
+        it "should parse time from strings like 2011-12-23 11:52:06 -05", time: "2011-12-23 11:52:06 -05" do
+          expect(subject.time_observed_at.in_time_zone(subject.time_zone).hour ).to eq 11
+        end
 
-    it "should parse Spanish date strings" do
-      [
-        ['lun nov 04 2013 04:22:34 p.m. GMT-0600 (GMT-6)', {:month => 11, :day => 4, :hour => 16, :offset => "-06:00"}],
-        ['lun dic 09 2013 23:37:08 GMT-0800 (GMT-8)', {:month => 12, :day => 9, :hour => 23, :offset => "-08:00"}],
-        ['jue dic 12 2013 00:54:02 GMT-0800 (GMT-8)', {:month => 12, :day => 12, :hour => 0, :offset => "-08:00"}]
-      ].each do |date_string, opts|
-        o = Observation.make!(:observed_on_string => date_string)
-        zone = ActiveSupport::TimeZone[o.time_zone]
-        expect(zone.formatted_offset).to eq opts[:offset]
-        expect(o.observed_on.month).to eq opts[:month]
-        expect(o.observed_on.day).to eq opts[:day]
-        expect(o.time_observed_at.in_time_zone(o.time_zone).hour).to eq opts[:hour]
-      end
-    end
-  
-    it "should parse a time zone from a code" do
-      @observation.observed_on_string = 'October 30, 2008 10:31PM EST'
-      @observation.save
-      expect(@observation.time_zone).to eq ActiveSupport::TimeZone['Eastern Time (US & Canada)'].name
-    end
-  
-    it "should parse time zone from strings like 2011-12-23T11:52:06-0500" do
-      @observation.observed_on_string = '2011-12-23T11:52:06-0500'
-      @observation.save
-      zone = ActiveSupport::TimeZone[@observation.time_zone]
-      expect(zone).not_to be_blank
-      expect(zone.formatted_offset).to eq "-05:00"
-    end
+        it "should parse time from strings like 2011-12-23T11:52:06.123", time: "2011-12-23T11:52:06.123" do
+          expect(subject.time_observed_at.in_time_zone(subject.time_zone).hour).to eq 11
+        end
 
-    describe "when the user has a time zone" do
-      let(:u_est) { User.make!( time_zone: "Eastern Time (US & Canada)" ) }
-      let(:u_cot) { User.make!( time_zone: "Bogota" ) }
-      let(:u_cst) { User.make!( time_zone: "Central Time (US & Canada)" ) }
+        it "should parse time and zone from July 9, 2012 7:52:39 AM ACST", time: "July 9, 2012 7:52:39 AM ACST" do
+          expect(subject.time_observed_at.in_time_zone(subject.time_zone).hour).to eq 7
+          expect(subject.time_zone).to eq ActiveSupport::TimeZone['Adelaide'].name
+        end
 
-      it "should use the user's time zone if the date string only has an offset and it matches the user's time zone" do
-        observed_on_string = "2019-01-29 9:21:46 a. m. GMT-05:00"
-        o_est = Observation.make!( user: u_est, observed_on_string: observed_on_string )
-        expect( o_est.time_zone ).to eq u_est.time_zone
-        o_cot = Observation.make!( user: u_cot, observed_on_string: observed_on_string )
-        expect( o_cot.time_zone ).to eq u_cot.time_zone
+        it "should handle unparsable times gracefully", time: "2013-03-02, 1430hrs" do
+          expect(subject.observed_on.day).to eq 2
+        end
+
+        it "should not save a time if one wasn't specified", time: "April 2 2008" do
+          expect(subject.time_observed_at).to be_blank
+        end
+
+        it "should not save a time for 'today'", time: "today" do
+          expect(subject.time_observed_at).to be(nil)
+        end
+
+        it "should parse a time zone from a code", time: 'October 30, 2008 10:31PM EST' do
+          expect(subject.time_zone).to eq ActiveSupport::TimeZone['Eastern Time (US & Canada)'].name
+        end
+
+        it "should parse time zone from strings like '2011-12-23T11:52:06-0500'", time: "2011-12-23T11:52:06-0500" do
+          expect(subject.time_zone).not_to be_blank
+          expect(ActiveSupport::TimeZone[subject.time_zone].formatted_offset).to eq "-05:00"
+        end
+
+        it "should not save relative dates/times like 'this morning'", time: "this morning" do
+          expect(subject.observed_on_string.match('this morning')).to be(nil)
+        end
+
+        it "should preserve observed_on_string if it did NOT contain a relative time descriptor", time: "April 22 2008" do
+          expect(subject.observed_on_string).to eq "April 22 2008"
+        end
+
+        it "should parse dates that contain commas", time: "April 22, 2008" do
+          expect(subject.observed_on).not_to be(nil)
+        end
+
+        it "should NOT parse a date like '2004'", time: "2004" do
+          expect(subject).not_to be_valid
+        end
+
+        it "should properly parse relative datetimes like '2 days ago'", time: "2 days ago" do
+          Time.use_zone(subject.user.time_zone) do
+            expect(subject.observed_on).to eq 2.days.ago.to_date
+          end
+        end
+
+        it "should not save relative dates/times like 'yesterday'", time: "yesterday" do
+          expect(subject.observed_on_string.split.include?('yesterday')).to be(false)
+        end
+
+        it "should default to the user's time zone" do
+          expect(subject.time_zone).to eq subject.user.time_zone
+        end
       end
 
-      it "should use the user's time zone if the date string only has an offset and it matches the user's time zone during daylight savings time" do
-        observed_on_string = "2018-06-29 9:21:46 a. m. GMT-05:00"
-        o_est = Observation.make!( user: u_est, observed_on_string: observed_on_string )
-        expect( o_est.time_zone ).to eq u_est.time_zone
-        o_cot = Observation.make!( user: u_cot, observed_on_string: observed_on_string )
-        expect( o_cot.time_zone ).to eq u_cot.time_zone
+      context "when the user has a time zone" do
+        let(:u_est) { build_stubbed :user, time_zone: "Eastern Time (US & Canada)" }
+        let(:u_cot) { build_stubbed :user, time_zone: "Bogota" }
+
+        it "should use the user's time zone if the date string only has an offset and it matches the user's time zone" do
+          o_est = build_stubbed :observation, :without_times, user: u_est, observed_on_string: "2019-01-29 9:21:46 a. m. GMT-05:00"
+          o_est.run_callbacks :validation
+          expect( o_est.time_zone ).to eq u_est.time_zone
+          o_cot = build_stubbed :observation, :without_times, user: u_cot, observed_on_string: "2019-01-29 9:21:46 a. m. GMT-05:00"
+          o_cot.run_callbacks :validation
+          expect( o_cot.time_zone ).to eq u_cot.time_zone
+        end
+
+        it "should use the user's time zone if the date string only has an offset and it matches the user's time zone during daylight savings time" do
+          o_est = build_stubbed :observation, :without_times, user: u_est, observed_on_string: "2018-06-29 9:21:46 a. m. GMT-05:00"
+          o_est.run_callbacks :validation
+          expect( o_est.time_zone ).to eq u_est.time_zone
+          o_cot = build_stubbed :observation, :without_times, user: u_cot, observed_on_string: "2018-06-29 9:21:46 a. m. GMT-05:00"
+          o_cot.run_callbacks :validation
+          expect( o_cot.time_zone ).to eq u_cot.time_zone
+        end
+
+        it "should parse out a time even if a problem time zone code is in the observed_on_string" do
+          u_cdt = create :user, time_zone: "Central Time (US & Canada)"
+          o_cdt = create :observation, :without_times, user: u_cdt, observed_on_string: "2019-03-24 2:10 PM CDT"
+
+          expect( o_cdt.time_zone ).to eq u_cdt.time_zone
+          expect( o_cdt.time_observed_at ).not_to be_blank
+        end
       end
 
-      it "should parse out a time even if a problem time zone code is in the observed_on_string" do
-        observed_on_string = "2019-03-24 2:10 PM CDT"
-        o_cdt = Observation.make!( user: u_cst, observed_on_string: observed_on_string )
-        expect( o_cdt.time_zone ).to eq u_cst.time_zone
-        expect( o_cdt.time_observed_at ).not_to be_blank
+      it "should NOT use the user's time zone if another was set" do
+        subject.time_zone = 'Eastern Time (US & Canada)'
+        subject.run_callbacks :validation
+
+        expect(subject.time_zone).not_to eq subject.user.time_zone
+        expect(subject.time_zone).to eq 'Eastern Time (US & Canada)'
+      end
+
+      it "should save the time in the time zone selected" do
+        subject.time_zone = 'Eastern Time (US & Canada)'
+        subject.run_callbacks :validation
+
+        expect(subject.time_observed_at.in_time_zone(subject.time_zone).hour).to eq 12
+      end
+
+      it "should not choke of bad dates" do
+        observation = create :observation, :without_times
+        observation.observed_on_string = "this is not a date"
+
+        expect { observation.save }.not_to raise_error
+      end
+
+      it "should not be in the future" do
+        expect { create :observation, :without_times, observed_on_string: '2 weeks from now' }.to raise_error(ActiveRecord::RecordInvalid)
+      end
+
+      it "should parse a bunch of test date strings" do
+        [
+            ['Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)', month: 4, day: 6, hour: 16, offset: '-05:00'],
+            ['Sun Nov 03 2013 08:15:25 GMT-0500 (GMT-5)', month: 11, day: 3, hour: 8, offset: '-05:00'],
+
+            # This won't work given our current setup because if we lookup a time
+            # zone by offset like this, it will return the first *named* timezone,
+            # which in this case is Amsterdam, which is the same as CET, which, in
+            # September, observes daylight savings time, so it's actually CEST and
+            # the offset is +2:00. The main problem here is that if the client just
+            # specifies an offset, we can't reliably find the zone
+            # ['September 27, 2012 8:09:50 AM GMT+01:00', :month => 9, :day => 27, :hour => 8, :offset => "+01:00"],
+
+            # This *does* work b/c in December, Amsterdam is in CET, standard time
+            ['December 27, 2012 8:09:50 AM GMT+01:00', month: 12, day: 27, hour: 8, offset: '+01:00'],
+            # Spacy AM, offset w/o named zone
+            ['2019-01-29 9:21:46 a. m. GMT-05:00', month: 1, day: 29, hour: 9, offset: '-05:00'],
+            ['Thu Dec 26 2013 11:18:22 GMT+0530 (GMT+05:30)', month: 12, day: 26, hour: 11, offset: '+05:30'],
+            ['Thu Feb 20 2020 11:46:32 GMT+1030 (GMT+10:30)', month: 2, day: 20, hour: 11, offset: '+10:30'],
+            ['Thu Feb 20 2020 11:46:32 GMT+10:30', month: 2, day: 20, hour: 11, offset: '+10:30'],
+            # ['2010-08-23 13:42:55 +0000', :month => 8, :day => 23, :hour => 13, :offset => "+00:00"],
+            ['2014-06-18 5:18:17 pm CEST', month: 6, day: 18, hour: 17, offset: '+02:00'],
+            ['2017-03-12 12:17:00 pm PDT', month: 3, day: 12, hour: 12, offset: '-07:00'],
+            ['2017/03/12 12:17 PM PDT', month: 3, day: 12, hour: 12, offset: '-07:00'],
+            ['2017/03/12 12:17 P.M. PDT', month: 3, day: 12, hour: 12, offset: '-07:00'],
+            # ["2017/03/12 12:17 AM PDT", month: 3, day: 12, hour: 0, offset: "-07:00"], # this doesn't work.. why...
+            ['2017/04/12 12:17 AM PDT', month: 4, day: 12, hour: 0, offset: '-07:00'],
+            ['2020/09/02 8:28 PM UTC', month: 9, day: 2, hour: 20, offset: '+00:00'],
+            ['2020/09/02 8:28 PM GMT', month: 9, day: 2, hour: 20, offset: '+00:00'],
+            ['2021-03-02T13:00:10.000-06:00', month: 3, day: 2, hour: 13, offset: '-06:00']
+        ].each do |date_string, opts|
+          observation = build :observation, :without_times, observed_on_string: date_string
+          observation.run_callbacks :validation
+
+          expect(observation.observed_on.day).to eq opts[:day]
+          expect(observation.observed_on.month).to eq opts[:month]
+          time = observation.time_observed_at.in_time_zone(observation.time_zone)
+          expect(time.hour).to eq opts[:hour]
+          expect(time.formatted_offset).to eq opts[:offset]
+        end
+      end
+
+      it "should parse Spanish date strings" do
+        [
+            ['lun nov 04 2013 04:22:34 p.m. GMT-0600 (GMT-6)', month: 11, day: 4, hour: 16, offset: "-06:00"],
+            ['lun dic 09 2013 23:37:08 GMT-0800 (GMT-8)', month: 12, day: 9, hour: 23, offset: "-08:00"],
+            ['jue dic 12 2013 00:54:02 GMT-0800 (GMT-8)', month: 12, day: 12, hour: 0, offset: "-08:00"]
+        ].each do |date_string, opts|
+          observation = build :observation, :without_times, observed_on_string: date_string
+          observation.run_callbacks :validation
+
+          expect(ActiveSupport::TimeZone[observation.time_zone].formatted_offset).to eq opts[:offset]
+          expect(observation.observed_on.month).to eq opts[:month]
+          expect(observation.observed_on.day).to eq opts[:day]
+          expect(observation.time_observed_at.in_time_zone(observation.time_zone).hour).to eq opts[:hour]
+        end
+      end
+
+      it "should handle a user without a time zone" do
+        observation = build :observation, :without_times, user: build(:user, time_zone: nil),
+                                          observed_on_string: "2018-06-29 9:21:46 a. m. GMT-05:00"
+        observation.run_callbacks :validation
+
+        expect( observation.observed_on ).not_to be_blank
+      end
+
+      it "should set the time zone to UTC if the user's time zone is blank" do
+        observation = build :observation, :without_times, observed_on_string: nil, user: build(:user, time_zone: nil)
+        observation.run_callbacks :validation
+
+        expect(observation.time_zone).to eq 'UTC'
       end
     end
 
-    it "should handle a user without a time zone" do
-      u = User.make!( time_zone: nil )
-      expect( u.time_zone ).to be_nil
-      o = Observation.make!( user: u, observed_on_string: "2018-06-29 9:21:46 a. m. GMT-05:00" )
-      expect( o.observed_on ).not_to be_blank
+    it "should have a matching identification if taxon is known" do
+      observation = create :observation
+
+      expect(observation.identifications.empty?).not_to be(true)
+      expect(observation.identifications.first.taxon).to eq observation.taxon
     end
 
-    it "should handle unparsable times gracefully" do
-      @observation.observed_on_string = "2013-03-02, 1430hrs"
-      @observation.save
-      expect(@observation).to be_valid
-      expect(@observation.observed_on.day).to eq 2
-    end
-  
-    it "should not save a time if one wasn't specified" do
-      @observation.observed_on_string = "April 2 2008"
-      @observation.save
-      expect(@observation.time_observed_at).to be_blank
-    end
-  
-    it "should not save a time for 'today' or synonyms" do
-      @observation.observed_on_string = "today"
-      @observation.save
-      expect(@observation.time_observed_at).to be(nil)
-    end
-
-    it "should not choke of bad dates" do
-      @observation.observed_on_string = "this is not a date"
-      expect {
-        @observation.save
-      }.not_to raise_error
-    end
-  
-    it "should have an identification if taxon is known" do
-      @observation.save
-      @observation.reload
-      expect(@observation.identifications.empty?).not_to be(true)
-    end
-  
     it "should not have an identification if taxon is not known" do
-      o = Observation.make!
-      expect(o.identifications.to_a).to be_blank
+      observation = create :observation, taxon: nil
+
+      expect(observation.identifications.to_a).to be_blank
     end
-  
-    it "should have an identification that matches the taxon" do
-      @observation.reload
-      expect(@observation.identifications.first.taxon).to eq @observation.taxon
-    end
-  
+
     it "should not queue a DJ job to refresh lists" do
       Delayed::Job.delete_all
       stamp = Time.now
@@ -268,132 +302,77 @@ describe Observation do
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       expect(jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}).to be_blank
     end
-  
-    it "should properly parse relative datetimes like '2 days ago'" do
-      Time.use_zone(@observation.user.time_zone) do
-        @observation.observed_on_string = '2 days ago'
-        @observation.save
-        expect(@observation.observed_on).to eq 2.days.ago.to_date
-      end
-    end
-  
-    it "should not save relative dates/times like 'yesterday'" do
-      expect(@observation.observed_on_string.split.include?('yesterday')).to be(false)
-    end
-  
-    it "should not save relative dates/times like 'this morning'" do
-      @observation.observed_on_string = 'this morning'
-      @observation.save
-      @observation.reload
-      expect(@observation.observed_on_string.match('this morning')).to be(nil)
-    end
-  
-    it "should preserve observed_on_string if it did NOT contain a relative " +
-       "time descriptor" do
-      @observation.observed_on_string = "April 22 2008"
-      @observation.save
-      @observation.reload
-      expect(@observation.observed_on_string).to eq "April 22 2008"
-    end
-  
-    it "should parse dates that contain commas" do
-      @observation.observed_on_string = "April 22, 2008"
-      @observation.save
-      expect(@observation.observed_on).not_to be(nil)
-    end
-  
-    it "should NOT parse a date like '2004'" do
-      @observation.observed_on_string = "2004"
-      @observation.save
-      expect(@observation).not_to be_valid
-    end
-  
-    it "should default to the user's time zone" do
-      expect(@observation.time_zone).to eq @observation.user.time_zone
-    end
-  
-    it "should NOT use the user's time zone if another was set" do
-      @observation.time_zone = 'Eastern Time (US & Canada)'
-      @observation.save
-      expect(@observation).to be_valid
-      @observation.reload
-      expect(@observation.time_zone).not_to eq @observation.user.time_zone
-      expect(@observation.time_zone).to eq'Eastern Time (US & Canada)'
-    end
-  
-    it "should save the time in the time zone selected" do
-      @observation.time_zone = 'Eastern Time (US & Canada)'
-      @observation.save
-      expect(@observation).to be_valid
-      expect(@observation.time_observed_at.in_time_zone(@observation.time_zone).hour).to eq 1
-    end
-  
-    it "should set the time zone to UTC if the user's time zone is blank" do
-      u = User.make!
-      u.update_attribute(:time_zone, nil)
-      expect(u.time_zone).to be_blank
-      o = Observation.new(:user => u)
-      o.save
-      expect(o.time_zone).to eq'UTC'
-    end
-  
+
     it "should trim whitespace from species_guess" do
-      @observation.species_guess = " Anna's Hummingbird     "
-      @observation.save
-      expect(@observation.species_guess).to eq "Anna's Hummingbird"
+      observation = create :observation, species_guess: " Anna's Hummingbird     "
+
+      expect(observation.species_guess).to eq "Anna's Hummingbird"
     end
-  
+
     it "should increment the counter cache in users" do
+      observation = create :observation
       Delayed::Worker.new.work_off
-      @observation.reload
-      old_count = @observation.user.observations_count
-      Observation.make!(:user => @observation.user)
+      observation.reload
+      old_count = observation.user.observations_count
+      Observation.make!(:user => observation.user)
       Delayed::Worker.new.work_off
-      @observation.reload
-      expect(@observation.user.observations_count).to eq old_count+1
+      observation.reload
+      expect(observation.user.observations_count).to eq old_count+1
     end
-  
-    it "should allow lots of sigfigs" do
-      lat =  37.91143999
-      lon = -122.2687819
-      @observation.latitude = lat
-      @observation.longitude = lon
-      @observation.save
-      @observation.reload
-      expect(@observation.latitude.to_f).to eq lat
-      expect(@observation.longitude.to_f).to eq lon
-    end
-  
-    it "should set lat/lon if entered in place_guess" do
-      lat =  37.91143999
-      lon = -122.2687819
-      expect(@observation.latitude).to be_blank
-      @observation.place_guess = "#{lat}, #{lon}"
-      @observation.save
-      expect(@observation.latitude.to_f).to eq lat
-      expect(@observation.longitude.to_f).to eq lon
-    end
-  
-    it "should set lat/lon if entered in place_guess as NSEW" do
-      lat =  -37.91143999
-      lon = -122.2687819
-      expect(@observation.latitude).to be_blank
-      @observation.place_guess = "S#{lat * -1}, W#{lon * -1}"
-      @observation.save
-      expect(@observation.latitude.to_f).to eq lat
-      expect(@observation.longitude.to_f).to eq lon
-    end
-  
-    it "should not set lat/lon for addresses with numbers" do
-      o = Observation.make!(:place_guess => "Apt 1, 33 Figueroa Ave., Somewhere, CA")
-      expect(o.latitude).to be_blank
-    end
-  
-    it "should not set lat/lon for addresses with zip codes" do
-      o = Observation.make!(:place_guess => "94618")
-      expect(o.latitude).to be_blank
-      o = Observation.make!(:place_guess => "94618-5555")
-      expect(o.latitude).to be_blank
+
+    describe "setting lat lon" do
+      let(:lat) { 37.91143999 }
+      let(:lon) { -122.2687819 }
+
+      it "sets latlon and place guess on save" do
+        observation = create :observation
+
+        expect(observation).to receive(:set_latlon_from_place_guess)
+        expect(observation).to receive(:set_place_guess_from_latlon)
+        observation.save
+      end
+
+      it "should allow lots of sigfigs" do
+        observation = create :observation, latitude: lat, longitude: lon
+
+        expect(observation.latitude.to_f).to eq lat
+        expect(observation.longitude.to_f).to eq lon
+      end
+
+      it "should set lat/lon if entered in place_guess" do
+        observation = build :observation, latitude: nil, longitude: nil, place_guess: "#{lat}, #{lon}"
+        observation.set_latlon_from_place_guess
+
+        expect(observation.latitude.to_f).to eq lat
+        expect(observation.longitude.to_f).to eq lon
+      end
+
+      it "should set lat/lon if entered in place_guess as NSEW" do
+        observation = build :observation, latitude: nil, longitude: nil, place_guess: "S#{lat * -1}, W#{lon * -1}"
+        observation.set_latlon_from_place_guess
+
+        expect(observation.latitude.to_f).to eq lat * -1
+        expect(observation.longitude.to_f).to eq lon
+      end
+
+      it "should not set lat/lon for addresses with numbers" do
+        observation = build :observation, place_guess: "Apt 1, 33 Figueroa Ave., Somewhere, CA"
+        observation.set_latlon_from_place_guess
+
+        expect(observation.latitude).to be_blank
+      end
+
+      it "should not set lat/lon for addresses with zip codes" do
+        observation = build :observation, place_guess: "94618"
+        observation.set_latlon_from_place_guess
+
+        expect(observation.latitude).to be_blank
+
+        observation2 = build :observation, place_guess: "94618-5555"
+        observation.set_latlon_from_place_guess
+
+        expect(observation2.latitude).to be_blank
+      end
     end
 
     describe "place_guess" do
@@ -513,22 +492,25 @@ describe Observation do
     end
   
     describe "quality_grade" do
+      subject { build_stubbed :observation }
+
       it "should default to casual" do
-        o = Observation.make!
-        expect(o.quality_grade).to eq Observation::CASUAL
+        subject.run_callbacks :update
+
+        expect(subject.quality_grade).to eq Observation::CASUAL
       end
     end
 
     it "should trim to the user_agent to 255 char" do
-      user_agent = <<-EOT
+      observation = create :observation, user_agent: <<-EOT
         Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR
         1.0.3705; .NET CLR 1.1.4322; Media Center PC 4.0; .NET CLR 2.0.50727;
         .NET CLR 3.0.04506.30; .NET CLR 3.0.04506.648; .NET CLR 3.0.4506.2152;
         .NET CLR 3.5.30729; PeoplePal 7.0; PeoplePal 7.3; .NET4.0C; .NET4.0E;
         OfficeLiveConnector.1.5; OfficeLivePatch.1.3) w:PACBHO60
       EOT
-      o = Observation.make!(:user_agent => user_agent)
-      expect(o.user_agent.size).to be < 256
+
+      expect(observation.user_agent.size).to be < 256
     end
 
     it "should set the URI" do

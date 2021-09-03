@@ -1518,6 +1518,8 @@ en:
   deviation: Deviation
   devise:
     confirmations:
+      # Message a user sees when they try to manually trigger email
+      # confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
         If your email address exists in our database, you will receive an email
         with instructions for how to confirm your email address in a few
@@ -2290,6 +2292,7 @@ en:
     ilokano: Ilokano
     italian: Italian
     japanese: Japanese
+    kannada: Kannada
     korean: Korean
     latvian: Latvian
     lithuanian: Lithuanian
@@ -2400,6 +2403,7 @@ en:
     id: Indonesian
     it: Italian
     ja: Japanese
+    kn: Kannada
     ko: Korean
     lb: Luxembourgish
     lt: Lithuanian
@@ -3055,7 +3059,7 @@ en:
     absent: Does not occur in the area
     common: Occurs frequently
     doubtful: Presumed to occur, but doubt exists over the evidence
-    irregular: Presence unpredictable, including vagrants; may be common in some years and absent others
+    irregular: Presence unpredictable, including vagrants; may be common in some years and absent in others
     present: Occurs in the area
     uncommon: Occurs regularly, but in small numbers; requires careful searching of proper habitat
   occurrence_status_establishment_means: occurrence status, establishment means
@@ -3110,6 +3114,10 @@ en:
         </ul>
   one_by_one: "One-by-one"
   one_of_your_lists: "one of your lists..."
+  one_or_more_input_taxa_have_more_than_1000: |
+    One or more input taxa have more than 1000 downstream observations.
+    Committing may take some time to process, are you sure this taxon change
+    is necessary? Also, taxon changes cannot be undone.
   only_a_project_manager_can_add: Only a project manager can add project curator status
   only_administrators_may_access_that_page: Only administrators may access that page
   only_an_admin_can_remove_project_users: Only an admin can remove project users
@@ -4263,6 +4271,8 @@ en:
   showing_x_of_y: Showing %{x} of %{y}
   showing_x_of_y_listings: "Showing %{x} of %{y} listings"
   sign_in: Sign In
+  # Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Sign in with Apple
   sign_in_with_provider: "Log in with %{provider}"
   sign_in_with_google: Sign in with Google
   sign_out: Sign Out
@@ -4739,6 +4749,7 @@ en:
     <strong>This taxon change has been committed!</strong>
     Please don't edit the taxa.  Editing other fields is ok.
   this_taxon_concept_is_inactive: this taxon concept is inactive
+  this_taxon_has_more_than_1000: This taxon has more than 1000 downstream observations. Editing may take some time to process, are you sure it's necessary?
   this_taxon_has_no_default_photo: This taxon has no default photo!
   this_taxon_is_inactive_this_means: |
     This taxon is <strong>inactive</strong>. This means %{site_name}'s curators have replaced
