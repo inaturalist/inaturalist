@@ -1616,15 +1616,57 @@ class Taxon < ApplicationRecord
       taxon_ids,
       Taxon.where( "id IN (?)", taxon_ids).pluck(:ancestry).map{|a| a.to_s.split( "/" ).map(&:to_i)}
     ].flatten.compact.uniq
-    global_status = ConservationStatus.where("place_id IS NULL AND taxon_id IN (?)", target_taxon_ids).order("iucn ASC").last
-    if global_status && global_status.geoprivacy == Observation::PRIVATE
-      return global_status.geoprivacy
-    end
-    geoprivacies = []
-    geoprivacies << global_status.geoprivacy if global_status
-    geoprivacies += ConservationStatus.
+    global_statuses = ConservationStatus.
+      where("place_id IS NULL AND taxon_id IN (?)", target_taxon_ids).
+      order("iucn ASC")
+    place_statuses = ConservationStatus.
       where( "taxon_id IN (?)", target_taxon_ids ).
-      for_lat_lon( options[:latitude], options[:longitude] ).pluck( :geoprivacy )
+      for_lat_lon( options[:latitude], options[:longitude] ).
+      includes(:place)
+    # If it's just global statuses, just choose the most conservative one
+    if place_statuses.blank? && !global_statuses.blank?
+      geoprivacies = global_statuses.map(&:geoprivacy)
+      return Observation::PRIVATE if geoprivacies.include?( Observation::PRIVATE )
+      return Observation::OBSCURED if geoprivacies.include?( Observation::OBSCURED )
+      return Observation::OPEN
+    end
+    # We have some place-based statuses, so now things get complicated
+    # Some admin levels can override a global status or a coarser admin level
+    override_admin_levels = [Place::COUNTRY_LEVEL, Place::STATE_LEVEL]
+    # Since overrides only apply within a taxon, we need to assess the geoprivacy for each taxon
+    geoprivacies = taxon_ids.map do |taxon_id|
+      global_statuses_for_taxon = global_statuses.select {|cs| cs.taxon_id == taxon_id}
+      place_statuses_for_taxon = place_statuses.select {|cs| cs.taxon_id == taxon_id}
+      override_statuses = place_statuses_for_taxon.select {|cs|
+        override_admin_levels.include?( cs.place.admin_level )
+      }
+      non_override_statuses = place_statuses_for_taxon.reject {|cs|
+        override_admin_levels.include?( cs.place.admin_level )
+      }
+      if non_override_statuses.size == 0 && override_statuses.size > 0
+        # If an override status exists, and there are no other kinds of statuses
+        # to consider, use the geoprivacy from the finest admin level status
+        finest_status = override_statuses.sort_by {|cs| cs.place.admin_level }.last
+        finest_status.try(:geoprivacy)
+      else
+        # Otherwise it's a free-for-all and we need to choose the most
+        # conservative geoprivacy available from all statuses
+        status_geoprivacies = (
+          global_statuses_for_taxon.map(&:geoprivacy) + place_statuses_for_taxon.map(&:geoprivacy)
+        ).compact
+        if status_geoprivacies.include?( Observation::PRIVATE )
+          Observation::PRIVATE
+        elsif status_geoprivacies.include?( Observation::OBSCURED )
+          Observation::OBSCURED
+        elsif status_geoprivacies.size > 0
+          Observation::OPEN
+        else
+          nil
+        end
+      end
+    end.compact
+    # So now that we have geoprivacies for each of the taxa under consideration,
+    # choose the most conservative geoprivacy among them
     return Observation::PRIVATE if geoprivacies.include?( Observation::PRIVATE )
     return Observation::OBSCURED if geoprivacies.include?( Observation::OBSCURED )
     geoprivacies.size == 0 ? nil : Observation::OPEN
