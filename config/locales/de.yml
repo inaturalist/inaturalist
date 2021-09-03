@@ -194,6 +194,12 @@ de:
   about_trusting_projects_options_taxon_desc: |-
     Viele Projekte benötigen nur Zugang zu verdeckten Koordinaten, da die
     Beobachtung ein bedrohtes Taxon darstellt.
+  about_trusting_projects_overview: |-
+    Wenn du Zugriff auf deine versteckten Koordinaten gewährst, können die Manager dieses
+    Projekts die unverschleierte Position deiner Beobachtungen in diesem
+    Projekt sehen. Dies ist extrem wichtig in Situationen, in denen Wissenschaftler oder
+    Ressourcenmanager Zugriff auf exakte Koordinaten für Analysen und
+    Entscheidungsfindung benötigen.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -1355,6 +1361,8 @@ de:
   deviation: Abweichung
   devise:
     confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
         Wenn deine E-Mail-Adresse in unserer Datenbank existiert, wirst du in wenigen Minuten eine E-Mail mit einer Anleitung zum Bestätigen deiner E-Mail-Adresse erhalten.
     failure:
@@ -2086,6 +2094,7 @@ de:
     ilokano: Ilokano
     italian: Italienisch
     japanese: Japanisch
+    kannada: Kannada
     korean: Koreanisch
     latvian: Lettisch
     lithuanian: Litauisch
@@ -2194,6 +2203,7 @@ de:
     id: Indonesisch
     it: Italienisch
     ja: Japanisch
+    kn: Kannada
     ko: Koreanisch
     lb: Luxemburgisch
     lt: Litauisch
@@ -2810,7 +2820,6 @@ de:
     absent: Kommt nicht im Gebiet vor
     common: Tritt häufig auf
     doubtful: Kommt vielleicht vor, aber es gibt Zweifel an den Belegen
-    irregular: Vorkommen unvorhersehbar, einschließlich gelegentlichen Besuchen; kann in einigen Jahren häufig sein und in anderen fehlen
     present: Kommt im Gebiet vor
     uncommon: Kommt regelmäßig vor, aber in geringer Anzahl; erfordert sorgfältige Suche in geeignetem Lebensraum
   occurrence_status_establishment_means: Verbreitungsstatus, Art der Verbreitung
@@ -3984,6 +3993,8 @@ de:
   showing_x_of_y: '%{x} von %{y} angezeigt'
   showing_x_of_y_listings: "Zeige %{x} von %{y} Ergebnissen"
   sign_in: Anmelden
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Mit Apple anmelden
   sign_in_with_provider: "Mit %{provider} anmelden"
   sign_in_with_google: Mit Google anmelden
   sign_out: Abmelden

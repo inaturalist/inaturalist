@@ -197,6 +197,24 @@ fi:
     </p>
   about_trusting_projects: Tietoa projekteihin luottamisesta
   about_trusting_projects_options_any: Kaikki havaintosi tässä projektissa
+  about_trusting_projects_options_any_desc: |-
+    Tämä sisältää havaintoja, joissa olet asettanut sijainnin tietosuojatasoksi "karkeistettu" tai "yksityinen", esim. havaintoja takapihaltasi tai paikkoja, joita et halua muiden ihmisten tietävän.
+  about_trusting_projects_options_taxon: |-
+    Vain sinun havaintosi tässä projektissa, joiden koordinaatit on karkeistettu, koska taksoni on uhanalainen
+  about_trusting_projects_options_taxon_desc: |-
+    Monet projektit tarvitsevat pääsyn karkeistettuihin koordinaatteihin, koska havainto koskee uhanalaista taksonia.
+  about_trusting_projects_overview: |-
+    Pääsy piilotettuihin koordinaatteihin mahdollistaa sen, että tämän projektin johtajat näkevät havaintojesi tarkat, karkeistamattomat sijainnit tässä projektissa. Tämä on erittäin tärkeää tilanteissa, joissa tutkijat tarvitsevat tarkkoja koordinaatteja analyysia tai
+    päätöksentekoa varten.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    Projektin vastuuhenkilöt, joilla on pääsy piilotettuihin koordinaatteihin, ovat:
+  about_trusting_projects_warning: |-
+    Huomaa, että projektien vastuuhenkilöt voivat muuttaa projektin parametreja sisältääkseen minkä tahansa havaintojasi, ja he voivat lisätä tai poistaa vastuuhenkilöitä milloin tahansa. Saat ilmoituksia näistä muutoksista, mutta luotat pääasiassa tähän projektiin yksityisten sijaintitietojesi kanssa, joten ole varovainen.
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Voit halutessasi jakaa piilotetut koordinaatit
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -213,6 +231,10 @@ fi:
   action: Toiminto
   actions: Toiminnot
   active: Aktiivinen
+  #Status of a complete set that is available for use
+  active_complete_set_status: Aktiivinen
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Aktiivinen
   active_users: Aktiiviset käyttäjät
   activity: Toiminta
   activity_settings: Aktiivisuusasetukset
@@ -903,6 +925,17 @@ fi:
   #species in the taxon and place it purports to
   comprehensive?: Kattava?
   comprehensive_list: Kattava luettelo
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Tietokonenäkömalli
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Sisältyy
+  computer_vision_model_included_desc: |
+    Nykyinen tietokonenäkömalli tuntee tämän taksonin, joten se saattaa olla mukana automaattisissa ehdotuksissa "Samannäköinen" -tarralla.
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Odottaa
+  computer_vision_model_pending_desc: |
+    Nykyinen tietokonenäkömalli ei tunne tätä taksonia, joten vaikka se voi olla mukana automaattisissa ehdotuksissa "Lähistöllä"-tarralla, se ei saa "Samannäköinen"-tarraa. Tietokonenäkömalliin mukaanottamista koskevat vaatimukset vaihtelevat kullakin mallilla, mutta yleisesti mukaanottaminen perustuu havaintojen lukumäärään, joten parantaaksesi tämän taksonin mukaanpääsyä seuraavaan mallin koulutukseen, lisää havaintoja tästä taksonista tai tee lisää tunnistuksia.
   concept_status: Konseptin tila
   configure: Määritä
   configure_a_widget_to_show: Määritä pienoisohjelma joka näyttää %{site_name} havainnot verkkosivullasi tai blogissasi. Saatat joutua sisällyttämään sulautetun CSS:n <code>&lt;head&gt;</code> osioon HTML:ssäsi. Voit vapaasti uudelleenkirjoittaa CSS:n.
@@ -1320,6 +1353,11 @@ fi:
   details: Tiedot
   deviation: Poikkeama
   devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Jos sähköpostiosoitteesi on tietokannassamme, saat muutaman minuutin kuluttua sähköpostiviestin, jossa on ohjeet sähköpostiosoitteesi vahvistamiseen.
     failure:
       already_authenticated: 'Olet jo kirjautunut sisään.'
       unauthenticated: 'Sinun pitää kirjautua sisään tai rekisteröityä ennen kuin voit jatkaa.'
@@ -1621,6 +1659,8 @@ fi:
   flag_for_observation_title_html: |
     Lippu havainnolle: %{title}
   flag_for_photo_id_html: Lippu <a href="%{url}">valokuvalle %{id}</a>
+  flag_for_place_title_html: |
+    Lippu paikalle: %{title}
   flag_for_post_title_html: |
     Lippu viestille: %{title}
   flag_for_project_title_html: |
@@ -1641,6 +1681,7 @@ fi:
   flag_saved_thanks_html: Lippu tallennettu. Kiitos! <a href="%{url}" class="readmore">Katso lippua</a>
   flag_this_observation: Liputa tämä havainto.
   flag_this_photo: Liputa tämä kuva
+  flag_this_place: Liputa tämä paikka
   flag_this_sound: Liputa tämä ääni
   flagged: lisäsi lipun
   flagged_: Liputettu
@@ -1952,6 +1993,7 @@ fi:
   last_active_with_date: "Viimeksi aktiivinen: %{date}"
   last_confirmed_observation: Viimeinen vahvistettu havainto
   last_observation: Viimeisin havainto
+  last_observation_caps: VIIMEISIN HAVAINTO
   last_seen: Nähty viimeksi
   last_year: Viime vuosi
   lat: Leveysaste
@@ -2015,6 +2057,7 @@ fi:
     hawaiian: Havaiji
     hebrew: Heprea
     hiligaynon: Hiligaino
+    hungarian: Unkari
     icelandic: Islanti
     ilokano: Ilokano
     italian: Italia
@@ -2037,6 +2080,7 @@ fi:
     swedish: Ruotsi
     tagalog: Tagalog
     tahitian: Tahiti
+    thai: Thai
     tokelauan: Tokelau
     turkish: Turkki
     waray_waray: Waray-waray
@@ -2111,6 +2155,7 @@ fi:
     eo: esperanto
     es: espanja
     es-AR: espanja (Argentiina)
+    es-CO: Espanja (Kolumbia)
     es-MX: espanja (Meksiko)
     et: viro
     eu: baski
@@ -2119,6 +2164,7 @@ fi:
     fr-CA: ranska (Kanada)
     gl: galicia
     he: heprea
+    hu: Unkari
     id: indonesia
     it: italia
     ja: japani
@@ -2138,6 +2184,7 @@ fi:
     sk: slovakia
     sq: albania
     sv: ruotsi
+    th: Thai
     tr: turkki
     zh-CN: kiina (yksinkertaistettu)
     zh-TW: kiina (perinteinen)
@@ -2446,10 +2493,14 @@ fi:
   newly_observed_species: Äskettäin havaitut lajit
   newly_observed_species_in_year: "Lisättyjä uusia lajeja vuonna %{year}"
   next: Seuraava
+  next_date_short: Seuraava
   next_observation: Seuraava havainto
   next_page: Seuraava sivu
+  next_page_short: Seuraava
   next_photo: Uusi kuva
+  next_post_short: Seuraava
   next_tab: Seuraava välilehti
+  next_taxon_short: Seuraava
   'no': 'Ei'
   no_assessments_have_been_added_to_this_project_yet: Tähän projektiin ei ole vielä lisätty arviointeja.
   no_but_it_is_a_member_of_taxon: "Ei, mutta se kuuluu taksoniin %{taxon}"
@@ -2570,6 +2621,8 @@ fi:
   observation_brief_something_on_day_at_time: "Jotakin %{day} päivänä %{time} aikaan"
   observation_brief_something_on_day_at_time_by_user: "Jotakin %{day} päivänä %{time} aikaan henkilöltä %{user}"
   observation_brief_something_on_day_by_user: "Jotain %{day} käyttäjältä %{user}"
+  observation_brief_something_in_month: "Jotain %{month}ssa"
+  observation_brief_something_in_month_by_user: "Jotain %{month}ssa käyttäjältä %{user}"
   observation_brief_something_by_user: "Jotain käyttäjältä %{user}"
   observation_brief_something_from_place: "Jotain paikasta %{place}"
   observation_brief_something_from_place_by_user: "Jotain paikasta %{place} käyttäjältä %{user}"
@@ -2577,10 +2630,14 @@ fi:
   observation_brief_something_from_place_on_day_by_user: "Jotain paikasta %{place} päivänä %{day} käyttäjältä %{user}"
   observation_brief_something_from_place_on_day_at_time: "Jotain paikasta %{place} päivänä %{day} aikana %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Jotain paikasta %{place} päivänä %{day} aikana %{time} käyttäjältä %{user}"
+  observation_brief_something_from_place_in_month: "Jotain paikasta %{place} %{month}ssa"
+  observation_brief_something_from_place_in_month_by_user: "Jotain paikasta %{place} %{month}ssa käyttäjältä %{user}"
   observation_brief_taxon_on_day: "%{taxon} %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} %{day} päivänä %{time} aikaan"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} %{day} päivänä %{time} aikaan henkilöltä %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} %{day} käyttäjältä %{user}"
+  observation_brief_taxon_in_month: "%{taxon} %{month}ssa"
+  observation_brief_taxon_in_month_by_user: "%{taxon} %{month}ssa käyttäjältä %{user}"
   observation_brief_taxon_by_user: "%{taxon} käyttäjältä %{user}"
   observation_brief_taxon_from_place: "%{taxon} paikasta %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} paikasta %{place} käyttäjältä %{user}"
@@ -2588,6 +2645,8 @@ fi:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} paikasta %{place} %{day} käyttäjältä %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} paikasta %{place} %{day} %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} paikasta %{place} %{day} %{time} käyttäjältä %{user}"
+  observation_brief_taxon_from_place_in_month: "%{taxon} paikasta %{place} %{month}ssa"
+  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} paikasta %{place} %{month}ssa käyttäjältä %{user}"
   observations_by_category: "Havainnot luokittain"
   observations_by_app: Havainnot sovelluksittain
   observations_by_rank: Havainnot luokittain
@@ -2673,7 +2732,6 @@ fi:
     absent: Ei esiinny alueella
     common: Esiintyy säännöllisesti
     doubtful: Oletettavasti esiintyy, mutta näyttö on epävarmaa
-    irregular: Esiintyminen ennalta-arvaamatonta, mukaanlukien vaeltajat; voi olla tavallinen joinain vuosina ja kadoksissa muulloin
     present: Esiintyy alueella
     uncommon: Esiintyy säännöllisesti, mutta pieninä määrinä; vatii huolellista sopivan ympäristön etsimistä
   occurrence_status_establishment_means: esiintymisen tila, vakiintuneisuus
@@ -2867,6 +2925,9 @@ fi:
   place: Paikka
   placeholder: Väliaikainen nimi
   place_autocomplete_placeholder: Pirkanmaa, Tampere tms.
+  place_create_quota_exceeded: |
+    Olet jo luonut maksimimäärän paikkoja, jotka voit luoda 24 tunnin aikana
+    (%{quota})
   place_deleted: Paikka poistettu.
   place_geo:
     geo_planet_place_types:
@@ -3247,6 +3308,8 @@ fi:
     zimbabwe: Zimbabwe
   places_of_interest: Mielenkiintoiset paikat
   places_merged_successfully: Paikat yhdistettiin onnistuneesti!
+  places_warning_quota: |
+    Voit luoda vain kolme paikkaa päivässä.
   places_warning_the_future: |
     Meidän täytyy rajoittaa paikkojen lisäämistä tulevaisuudesta, koska iNaturalistin käyttö kasvaa jatkuvasti.
   plants: kasvit
@@ -3278,11 +3341,15 @@ fi:
   preview: Esikatsele
   preview_observations_with_these_observation_requirements: Esikatsele havaintoja, joilla on nämä vaatimukset
   previewing: "Esikatsellaan..."
+  previous_date_short: Edellinen
   prev: Edellinen
   previous_observation: Edellinen havainto
   previous_page: Edellinen sivu
+  previous_page_short: Edellinen
   previous_photo: Edellinen kuva
+  previous_post_short: Edellinen
   previous_tab: Edellinen välilehti
+  previous_taxon_short: Edellinen
   print_verb: Tulosta
   privacy: Yksityisyys
   private: yksityinen
@@ -3733,6 +3800,8 @@ fi:
   showing_x_of_y: Näytetään %{x}/%{y}
   showing_x_of_y_listings: "Näytetään %{x}/%{y} luettelointia"
   sign_in: Kirjaudu sisään
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Kirjaudu sisään Apple-tunnuksilla
   sign_in_with_provider: "Kirjaudu sisään %{provider}-tilillä"
   sign_in_with_google: Kirjaudu sisään Google-tilillä
   sign_out: Kirjaudu ulos
@@ -4083,8 +4152,10 @@ fi:
   too_many_results: Liian monta tulosta
   tools: Työkalut
   top_contributors: Huippuavustajat
+  top_identifier_caps: PARAS TUNNISTAJA
   top_identifiers: Parhaimmat tunnistajat
   top_identifiers_of_taxon: Taksonin %{taxon} parhaimmat tunnistajat
+  top_observer_caps: PARAS HAVAINNOIJA
   top_observers: Eniten havainnoineet
   tos_privacy_guidelines_label: |
     Hyväksyn <a href="/terms" target="_blank">käyttöehdot</a> ja <a href="/privacy" target="_blank">yksityisyyskäytännöt</a>, ja olen tutustunut <a href="/pages/community+guidelines" target="_blank">yhteisön pelisääntöihin</a> (englanniksi).
@@ -4092,6 +4163,8 @@ fi:
   totals: Yhteensä
   total_members: Jäseniä yhteensä
   total_observations: Havaintoja yhteensä
+  total_observations_caps: HAVAINTOJA YHTEENSÄ
+  total_species_observed_caps: LAJEJA HAVAITTU YHTEENSÄ
   total_unique_observers: Yksilölliset havainnoijat yhteensä
   translated_languages: Käännetyt kielet
   'true': 'Kyllä'
@@ -6128,6 +6201,13 @@ fi:
               is_too_large_to_edit: on liian iso muokattavaksi
               is_too_large_to_import: on liian iso tuotavaksi
               contains_too_many_observations: sisältää liian monta havaintoa tuotavaksi
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: ei voi olla tyhjä
+              invalid_point: on virheellinen piste, esim. pituus suurempi kuin 180 tai leveysaste pienempi kuin -90
+              must_have_more_than_three_points: on oltava enemmän kuin 3 pistettä
+              polygon_with_fewer_than_four_points: on monikulmio, jossa on vähemmän kuin neljä pistettä
         post:
           attributes:
             parent:

@@ -1378,6 +1378,8 @@ da:
   deviation: Afvigelse
   devise:
     confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
         Findes din e-mailadresse i vores database, modtager du om få minutter en e-mail med instruktioner til, hvordan du bekræfter din e.mailadresse.
     failure:
@@ -2125,6 +2127,7 @@ da:
     ilokano: Ilokano
     italian: Italiensk
     japanese: Japansk
+    kannada: Kannaresisk
     korean: Koreansk
     latvian: Lettisk
     lithuanian: Litauisk
@@ -2234,6 +2237,7 @@ da:
     id: Indonesisk
     it: Italiensk
     ja: Japansk
+    kn: Kannaresisk
     ko: Koreansk
     lb: Luxembursk
     lt: Litauisk
@@ -2868,7 +2872,7 @@ da:
     absent: Forekommer ikke i området
     common: Forekommer hyppigt
     doubtful: Formodes at forekomme, men tvivl eksisterer vedrørende beviserne
-    irregular: Tilstedeværelse uforudsigelige, herunder vagabonder; kan være almindelig forekommende nogle år og fraværende andre år
+    irregular: Tilstedeværelse uforudsigelige, inkl. vandrere; kan være almindeligt forekommende visse år og fraværende i andre
     present: Forekommer i regionen
     uncommon: Forekommer regelmæssigt, men i små antal; kræver omhyggelig søgning af korrekt habitat
   occurrence_status_establishment_means: forekomststatus, oprindelse
@@ -2921,6 +2925,9 @@ da:
       </ul>
   one_by_one: "En efter en"
   one_of_your_lists: "en af dine lister..."
+  one_or_more_input_taxa_have_more_than_1000: |
+    En eller flere input-taksa har flere end 1.000 nedstrømsobservationer.
+    Effektuering kan kræve noget behandlingstid, er du derfor sikker på, at denne taksonændring er nødvendig? Taksonændringer kan heller ikke fortrydes.
   only_a_project_manager_can_add: Kun en projektleder kan tilføje projekt kuratorstatus
   only_administrators_may_access_that_page: Kun administratorer kan få adgang til denne side
   only_an_admin_can_remove_project_users: Kun en administrator kan fjerne projekt brugere
@@ -4049,6 +4056,8 @@ da:
   showing_x_of_y: Viser af %{x} af %{y}
   showing_x_of_y_listings: "Viser %{x} af %{y} lister"
   sign_in: Log ind
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Log ind med Apple
   sign_in_with_provider: "Log ind med %{provider}"
   sign_in_with_google: Log ind med Google
   sign_out: Log ud
@@ -4507,6 +4516,7 @@ da:
     <strong> Denne takson ændring er blevet udført! </strong>
     Vær venlig ikke at redigere taksa. Redigering af andre felter er ok.
   this_taxon_concept_is_inactive: Denne takson er inaktiv
+  this_taxon_has_more_than_1000: Denne takson har flere end 1.000 nedstrømsobservationer. Redigering kan tage noget tid at behandle, er du derfor sikker på, at det er nødvendigt?
   this_taxon_has_no_default_photo: Denne taxon har intet standardbillede!
   this_taxon_is_inactive_this_means: |
     Denne takson er <strong> inaktiv </strong>. Det betyder, at %{site_name}'s kuratorer har erstattet den med et mere taksonomisk aktuelt koncept.

@@ -272,6 +272,8 @@ pl:
   about_trusting_projects_options_taxon_desc: |-
     Wiele projektów po prostu wymaga dostępu do współrzędnych, które są ukryte, ponieważ obserwacja
     przedstawia zagrożony takson.
+  about_trusting_projects_overview: |-
+    Udzielenie dostępu do ukrytych współrzędnych pozwoli menedżerom tego projektu zobaczyć prawdziwe, nieukryte lokalizacje Twoich obserwacji. Jest to niezwykle ważne w sytuacjach, w których naukowcy lub menedżerowie zasobów potrzebują dostępu do dokładnych współrzędnych w celach analizy i podejmowania decyzji.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -2017,6 +2019,7 @@ pl:
   locales_: Preferencje językowe
   locales:
     ar: Arabski
+    be: Białoruski
     bg: Bułgarski
     br: Bretoński
     ca: Kataloński
@@ -2046,6 +2049,7 @@ pl:
     lt: Litewski
     lv: Łotewski
     mk: Macedoński
+    mr: Marathi
     nb: Norweski Bokmål
     nl: Holenderski
     oc: Oksytański
@@ -2069,6 +2073,10 @@ pl:
   location_is_private: Lokalizacja jest prywatna
   location_specified: Lokalizacja określona
   log_in: Zaloguj się
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/login">Zaloguj się</a> lub <a href="/signup">zarejestruj</a>, aby dodawać komentarze.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/login">Zaloguj się</a> lub <a href="/signup">zarejestruj</a>, aby dodawać oznaczenia.
   log_out: Wyloguj
   log_out_caps: WYLOGUJ
   #Application is a mobile app the user has authorized to access their iNat account
@@ -2157,6 +2165,7 @@ pl:
     Treści nielegalne lub mylące, rasistowskie lub ksenofobiczne wyzwiska itd. Aby dowiedzieć się więcej o tym, co uważamy za "odpowiednie", zobacz <a href"/help#innappropriate">FAQ</a>.
   #Label shown when a date has not been entered
   missing_date: Brak daty
+  moderation_history_for_user_html: Historia moderacji dla %{user}
   #Person who executed a moderator action or flagged something
   moderator_or_flagger: Moderator / Zgłaszający
   mollusks: mięczaki
@@ -2229,6 +2238,9 @@ pl:
   most_observed_threatened_species: Najczęściej obserwowany gatunek zagrożony
   multiple: wiele
   multiple_select_option: '-- wiele --'
+  multiple_taxon_ids_separated_by_commas: 'Wiele identyfikatorów taksonów oddzielonych przecinkami, np. 123,654'
+  must_be_in_taxon: musi należeć do taksonu %{taxon}
+  must_be_not_in_taxon: nie może należeć do taksonu %{taxon}
   must_be_observed_after: musi być zaobserwowany po %{operand}
   must_be_observed_before: musi być zaobserwowany przed %{operand}
   must_be_less_than_x_MB: "Musi mieć mniej niż %{x} MB"
@@ -2326,6 +2338,7 @@ pl:
   no_favorites_added:
     current_user: Nie dodałeś jeszcze niczego do ulubionych.
     user: "%{user} nie dodał jeszcze niczego do ulubionych."
+  no_journal_posts_yet: Nie ma jeszcze żadnych wpisów w dzienniku
   no_license_all_rights_reserved: Brak licencji (wszelkie prawa zastrzeżone)
   no_managers_set: Brak ustanowionych managerów
   no_matching_article_from_x: "Brak pasującego artykułu z %{x}"
@@ -2440,6 +2453,8 @@ pl:
   observations_by_you: "Twoje obserwacje"
   observations_by_you_on_date: "Twoje obserwacje z dnia %{date}"
   observation_calendar_for: "Kalendarz obserwacji dla %{user} w %{year}"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: Obserwacje mogą mieć tylko %{limit} zdjęć
   observation_date: Data
   observation_date?: Data?
   observation_field: Pole obserwacji
@@ -3014,6 +3029,7 @@ pl:
     many: Administratorów projektu
     other: Administratora projektu
   project_cover: Okładka projektu
+  project_created_on: stworzył ten projekt dnia %{date}
   project_curator_id: ID kuratora projektu
   project_curator_tools: Narzędzia kuratora projektu
   project_curators: Kuratorzy projektu
@@ -3026,6 +3042,7 @@ pl:
   project_curators_added_some_of_your_observations_html: |
     Kuratorzy projektu <a href="%{url}">%{project}</a> dodali niektóre Twoje obserwacje
   project_members: "Członkowie projektu %{project}"
+  project_members_only: Tylko członkowie projektu
   project_membership_model_description: Czy Twój projekt otwarty dla wszystkich czy tylko dla osób, które zaprosiłeś?
   project_observations: Obserwacje projektu
   project_requirements: Wymagania projektu
@@ -3131,18 +3148,50 @@ pl:
   ranks_lowercase_phylum: typ
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
   ranks_lowercase_subphylum: podtyp
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: nadgromada
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: gromada
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: podgromada
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: infragromada
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: nadrząd
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
   ranks_lowercase_order: rząd
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
   ranks_lowercase_suborder: podrząd
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: infrarząd
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: zoosekcja
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: zoopodsekcja
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: nadrodzina
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: epirodzina
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
   ranks_lowercase_family: rodzina
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: podrodzina
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: nadplemię
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: plemię
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: podplemię
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
   ranks_lowercase_genus: rodzaj
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
   ranks_lowercase_genushybrid: hybryda międzyrodzajowa
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
   ranks_lowercase_subgenus: podrodzaj
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: sekcja
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: podsekcja
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
   ranks_lowercase_complex: kompleks
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
@@ -3255,6 +3304,8 @@ pl:
     many: Zapisywanie %{num} z %{count} obserwacji...
     other: Zapisywanie %{num} z %{count} obserwacji...
   saving_verb: Zapisywanie
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Nazwa naukowa
   search: Szukaj
   search_all_fields: przeszukaj wszystkie pola
   search_by_name_or_email: Szukaj po nazwie lub adresie e-mail
@@ -3327,6 +3378,7 @@ pl:
   sorry_how_about_we_try_repeat: "Przykro nam! A może spróbujemy powtórzyć wyszukiwanie w innych bazach danych nazw gatunków? Jeśli coś znajdziemy, to zapiszemy to, abyś mógł znaleźć to następnym razem."
   sort: Sortuj
   sort_by: Sortuj według
+  sorting_by: Sortowanie według
   sounds:
     add_media: Dodaj media
     add_sounds: Dodaj dźwięki
@@ -3355,6 +3407,7 @@ pl:
   source_url: Źródłowy adres URL
   sources: Źródła
   spam: Spam
+  spammer: Spamer
   #Plural
   species: Gatunki
   species_by_category: gatunki według kategorii
@@ -3403,6 +3456,7 @@ pl:
   support_inaturalist: Wesprzyj iNaturalist
   suspend_user: Zawieś użytkownika
   sync: Zsynchronizować?
+  tagging: 'Tagowanie...'
   tags: Tagi
   take_me_facebook: Tak, zabierz mnie do Facebooka!
   take_me_flickr!: Tak, zabierz mnie do Flickr!
@@ -3453,6 +3507,7 @@ pl:
   tell_everyone_a_little_about_you: Opowiedz wszystkim trochę o sobie
   tell_the_world_a_little_about_yourself: Powiedz nam coś o sobie
   tell_us_why: Powiedz nam dlaczego...
+  terrain: teren
   text: Tekst
   thanks!: Dzięki!
   thanks_from_all_of_us_here_at: Podziękowania od nas wszystkich tutaj w
@@ -3542,6 +3597,8 @@ pl:
   unfollow: Przestań obserwować
   unlink_your_google_account: Odłącz swoje konto Google
   unlink_your_flickr_account: "Odłącz swoje konto Flickr"
+  unmute: Usuń wyciszenie
+  updates_notification_email_subject: "%{prefix} Nowe aktualizacje %{date}"
   updating: Aktualizowanie...
   unpublish: Cofnij publikację
   unsubscribe: Anuluj subskrypcję
@@ -3750,6 +3807,9 @@ pl:
   x_journal_middot: "Dziennik %{user} •"
   x_journal_new_post: "Dziennik %{user} • Nowy post"
   x_of_y: "%{x} z %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} z %{y} ludzi (ponad 2/3) zgadza się, że to jest"
   x_project_stats: "Statystyki %{project}"
   x_site_is_a_social_network_for_naturalist: |
@@ -3880,6 +3940,13 @@ pl:
       filtered_by: 'Przefiltrowane według:'
       apply_filters_to_export: Zastosuj filtry do eksportu
       restrict_to_taxon: Ogranicz do %{taxon}
+      exporting_all_x_taxa:
+        one: Eksportowanie %{count} taksonu
+        few: Eksportowanie wszystkich %{count} taksonów
+        many: Eksportowanie wszystkich %{count} taksonów
+        other: Eksportowanie wszystkich %{count} taksonów
+      no_observations_found_in_place: Nie znaleziono żadnych obserwacji w %{place}.
+      observations_of_exactly_this_taxon: Obserwacje dokładnie tego taksonu
       dropdowns:
         sort: Sortuj
         name: Nazwa
