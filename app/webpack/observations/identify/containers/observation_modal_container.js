@@ -13,7 +13,10 @@ import {
   showPrevObservation,
   updateCurrentObservation,
   fetchDataForTab,
-  submitIdentificationWithConfirmation
+  submitIdentificationWithConfirmation,
+  increaseBrightness,
+  decreaseBrightness,
+  resetBrightness
 } from "../actions";
 
 function mapStateToProps( state ) {
@@ -34,6 +37,7 @@ function mapStateToProps( state ) {
   return Object.assign( {}, {
     images,
     blind: state.config.blind,
+    brightnesses: state.brightnesses.brightnesses,
     controlledTerms: state.controlledTerms.terms,
     currentUser: state.config.currentUser,
     mapZoomLevel: state.config.mapZoomLevel,
@@ -96,7 +100,10 @@ function mapDispatchToProps( dispatch ) {
     updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) ),
     updateEditorContent: ( editor, content ) => dispatch( updateEditorContent( "obsIdentifyIdComment", content ) ),
     onMapZoomChanged: ( e, map ) => dispatch( setConfig( { mapZoomLevel: map.getZoom( ) } ) ),
-    setMapZoomLevelLocked: locked => dispatch( setConfig( { mapZoomLevelLocked: locked } ) )
+    setMapZoomLevelLocked: locked => dispatch( setConfig( { mapZoomLevelLocked: locked } ) ),
+    increaseBrightness: ( ) => dispatch( increaseBrightness( ) ),
+    decreaseBrightness: ( ) => dispatch( decreaseBrightness( ) ),
+    resetBrightness: ( ) => dispatch( resetBrightness( ) )
   };
 }
 

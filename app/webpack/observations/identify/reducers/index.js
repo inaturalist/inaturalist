@@ -41,6 +41,7 @@ import flaggingModal from "../../show/ducks/flagging_modal";
 import subscriptions from "../../show/ducks/subscriptions";
 import disagreementAlert from "../../shared/ducks/disagreement_alert";
 import moderatorActions from "../../../shared/ducks/moderator_actions";
+import brightnesses from "./brightness_reducer";
 
 const rootReducer = combineReducers( {
   config,
@@ -57,7 +58,8 @@ const rootReducer = combineReducers( {
   flaggingModal,
   subscriptions,
   disagreementAlert,
-  moderatorActions
+  moderatorActions,
+  brightnesses
 } );
 
 export default rootReducer;
