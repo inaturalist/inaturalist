@@ -101,6 +101,7 @@ observeStore( store, s => s.searchParams.params, ( ) => {
   store.dispatch( fetchObservations( ) );
 } );
 
+
 render(
   <Provider store={store}>
     <AppContainer />
