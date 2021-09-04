@@ -4094,22 +4094,49 @@ id:
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: TOKO
-  stuff_just_added: "Barang yang telah Anda tambahkan..."
+  studies_that_used_inaturalist_data_in_year: Penelitian Yang Menggunakan Data iNaturalist pada %{year}
+  stuff_just_added: "Barang yang baru saja Anda tambahkan..."
+  subject_resolved_noun_html: "%{subject} menyelesaikan %{noun}"
+  subject_affecting_stuff_html: "%{subject} yang memengaruhi %{stuff}"
   subject_committed_thing_affecting_stuff_html: "%{subject} mengubah %{thing} sehingga memengaruhi %{stuff}"
+  submission_model: Model Pengiriman
   submission_model_description: Siapa yang dapat menambahkan pengamatan ke proyek Anda?
-  submitted: Dimasukkan
+  submit_observations:
+    other: Kirimkan %{count} pengamatan
+  submitted: Dikirimkan
+  subscribe_to_a_taxon: Berlangganan Takson
+  subscribe_to_a_place: Berlangganan Tempat
+  subscribe_to_comments_on_this_flag_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari tanda ini"
+  subscribe_to_comments_on_this_post_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari postingan ini"
   subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari aktivasi takson ini"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari penukaran takson ini"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari penggabungan takson ini"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari pemisahan takson ini"
+  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari deaktivasi takson ini"
+  subscribe_to_observations_from_this_place_html: <a>Berlanggananlah</a> untuk pengamatan dari tempat ini
+  subscribe_to_observations_in_a_taxon: Ikuti semua postingan pengamatan spesies atau sekelompok organisme (contohnya 'kalajengking').
+  subscribe_to_observations_in_a_place: Ikuti semua pengamatan yang diunggah di tempat ini. Anda juga bisa menambahkan saringan takson opsional (contohnya 'kalajengking dari Texas').
   subscribe_to_places_to: |
     Berlanggananlah dengan tempat tertentu untuk menerima kabar terbaru tentang pengamatan-pengamatan baru yang dibuat di sana. Kabar dari orang yang Anda ikuti dan hal-hal yang sudah Anda komentari juga dikelola melalui langganan, jadi jika Anda ingin melihat apa yang Anda ikuti dan ingin berhenti berlangganan dari hal-hal tersebut, Anda bisa mengeklik "Kelola semua langganan Anda" di bawah ini. Anda juga dapat berhenti berlangganan dari apapun yang ada di situs dengan melihat halaman itu.
   subscribe_to_this: Berlangganan pada ini
+  subscribe_to_x_from_this_y_html: |
+    <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Berlangganan</a> pada %{x} dari %{y} ini.
   subscriptions: Langganan
   subscriptions_arent_available_for: Langganan tidak tersedia untuk tempat tanpa batas.
   successfully_changed_your_password: Berhasil mengubah sandi Anda.
-  suggest_an_identification: sarankan identifikasi
+  suggest_an_identification: Berikan Usulan Identifikasi
   suggest_or_require_that: Sarankan atau haruskan kontributor mengisi kolom ini untuk pengamatan yang mereka tambahkan untuk proyek Anda.
+  suggestions: Rekomendasi
+  suitable_for_the_global_biodiversity_information_facility: Cocok untuk Global Biodiversity Information Facility
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Cocok untuk Wikipedia dan proyek Wikimedia Foundation lainnya
   summary: Ringkasan
-  suspend_user: menangguhkan pengguna
-  sync_obs_with_photo_metadata: "Sync pengamatan dengan metadata foto?"
+  supporting: Pendukung
+  support_inaturalist: Dukung iNaturalist
+  suspend_user: Tangguhkan pengguna
+  sw_lat: Lin. SB
+  sw_lon: Buj. SB
+  sync: Sinkronkan?
+  sync_obs_with_photo_metadata: "Sinkronisasi pengamatan dengan metadata foto?"
   synonyms: Sinonim
   table: Tabel
   table_of_contents: Daftar isi
@@ -4120,84 +4147,188 @@ id:
   tags_are_a_way: 'Label adalah suatu cara untuk mengatur pengamatan Anda. Misalnya, Anda dapat memberikan tanda kepada semua pengamatan kolam air pasang Anda "kolam air pasang" supaya lebih mudah untuk ditemukan nanti.'
   take_me_facebook: Ya, bawa saya ke Facebook!
   take_me_flickr!: Ya, bawa saya ke Flickr!
+  target_list_alert: Apakah Anda yakin bahwa Anda telah mencoba untuk mengamati semua spesies yang dicakup dalam daftar target Anda? Ingat bahwa apapun yang dicakup dalam daftar target Anda yang tidak Anda amati akan ditafsirkan sebagai ketidakberadaan, jadi daftar target Anda seharusnya merefleksikan secara akurat kelompok spesies yang Anda coba temukan
+  target_list_warning: Ingat bahwa semua yang dicakup daftar target Anda yang tidak Anda amati dalam radius dan waktu perjalanan ini akan ditafsirkan sebagai ketidakberadaan. Daftar target Anda seharusnya merefleksikan secara akurat kelompok spesies yang Anda coba temukan. Jika Anda belum mencoba untuk menemukan suatu spesies dalam daftar target Anda atau semua spesies yang dicakup dalam suatu kelompok di daftar target Anda, harap menghapusnya.
+  task_deleted: Tugas dihapus
   taxa: Taksa
+  taxa_with_unknown_relationships: Taksa dengan relasi yang tidak diketahui
   taxa_info: Info Taksa
-  taxa_needing_curation: Taksa membutuhkan Kurasi
-  taxa_observed: taksa diamati
+  taxa_needing_curation: Taksa Yang Membutuhkan Kurasi
+  taxa_observed: taksa yang diamati
   taxa_to_include: Taksa untuk dimasukkan
   taxon: Takson
+  taxon_autocomplete_placeholder: Burung, kupu-kupu raja, dll.
+  taxon_geoprivacy: Geoprivasi Takson
+  taxon_is_a_rank: "%{taxon} adalah suatu %{rank}"
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} dalam %{iconic_taxon} dengan %{count} pengamatan"
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} amfibi dengan %{count} pengamatan"
+  taxon_is_a_rank_of_aves_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} burung dengan %{count} pengamatan"
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} mamalia dengan %{count} pengamatan"
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} reptil dengan %{count} pengamatan"
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} tanaman dengan %{count} pengamatan"
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} ikan bersirip kipas dengan %{count} pengamatan"
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} hewan dengan %{count} pengamatan"
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} serangga dengan %{count} pengamatan"
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} arachnida dengan %{count} pengamatan"
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} jamur dengan %{count} pengamatan"
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} protozoa dengan %{count} pengamatan"
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} moluska dengan %{count} pengamatan"
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} dalam Chromista (alga cokelat dan sekutunya) dengan %{count} pengamatan"
+  taxon_is_kingdom_of_life_with_x_observations:
+    other: "%{taxon} merupakan kerajaan dari kehidupan dengan %{count} pengamatan"
+  taxon_is_threatened_coordinates_hidden: Takson ini terancam, koordinatnya disembunyikan sesuai pengaturan sistem
+  taxon_is_threatened_coordinates_hidden_desc: |
+    Salah satu taksa yang disarankan di identifikasi, atau salah satu taksa yang mengandung taksa ini, memiliki status langka dan/atau terancam, sehingga lokasi pengamatan ini disembunyikan.
+  taxon_is_threatened_coordinates_obscured: Takson terancam, koordinatnya dikaburkan sesuai pengaturan sistem
+  taxon_is_threatened_coordinates_obscured_desc: |
+    Salah satu taksa yang disarankan di identifikasi, atau salah satu taksa yang mengandung taksa ini, memiliki status langka dan/atau terancam, sehingga lokasi pengamatan ini dikaburkan.
+  taxonomy: Taksonomi
   taxon_assessments_are: |
-    penilaian takson adalah dokumen menilai status spesies, biasanya status konservasi.
-    Sebagai contoh, sebuah organisasi konservasi daerah dapat menggunakannya untuk mengatur informasi dan mengumpulkan umpan balik tentang status beberapa taksa yang terancam di wilayah tersebut.
+    Penilaian takson adalah dokumen yang menilai status spesies saat ini, biasanya status konservasi.
+    Sebagai contoh, sebuah organisasi konservasi daerah dapat menggunakannya untuk mengatur informasi dan mengumpulkan umpan balik tentang status dari beberapa taksa yang terancam di wilayah tersebut.
+  taxon_change_must_be_committed_to_update_records: Perubahan takson harus diterapkan untuk memperbarui catatan
   taxon_deleted: Takson dihapus
-  taxon_doesnt_have_a_range: Takson tidka memiliki rentang
-  taxon_drop: takson jatuh
-  taxon_id: ID takson
-  taxon_ids: ID takson
+  taxon_doesnt_have_a_range: Takson tidak memiliki jangkauan
+  taxon_drop: deaktivasi takson
+  taxon_id: ID Takson
+  taxon_ids: ID Takson
   taxon_map:
-    gbif_occurrences: Kemunculan GBIF
-    it_may_take_google_a_while_to: Mungkin diperlukan Google beberapa saat untuk memuat data ini, dengan asumsi GBIF memiliki apapun.
+    gbif_occurrences: Keberadaan GBIF
+    it_may_take_google_a_while_to: Google mungkin memerlukan beberapa saat untuk memuat data ini, dengan asumsi GBIF memiliki sesuatu.
+    data_url: URL Data
     overlays: Hamparan
-  taxon_merge: gabungan takson
+  taxon_changes: Perubahan Takson
+  taxon_colors: Warna Takson
+  taxon_curators: Kurator Takson
+  taxon_framework_complete: "Lengkap: benar"
+  taxon_framework_deviations_with_count_html: "Deviasi: %{count}"
+  taxon_framework_relationships_with_count_html: "Relasi Framework Takson: %{count}"
+  #Count of taxa covered by the Taxon Framework that have been flagged
+  taxon_framework_flagged_covered_taxa_count_html: "Taksa yang ditandai: %{count}"
+  taxon_framework_notes: Catatan Framework Takson
+  taxon_framework_relationship: Hubungan Framework Takson
+  taxon_framework_relationship_number: "Hubungan Framework Takson %{number}"
+  taxon_framework_relationship_unknown_count_html: "Jumlah relasi tidak diketahui: %{count}"
+  taxon_framework_relationships: Relasi Framework Takson
+  taxon_framework_taxon: Takson Framework Takson
+  taxon_merge: Penggabungan Takson
   taxon_name: Nama takson
+  taxon_name_must_match_an_existing_taxon_in_our_database: Nama takson harus cocok dengan takson yang sudah ada di database kami
+  taxon_observed_by_html: |
+    <a href="%{url}">%{taxon}</a> diamati oleh
+  taxon_observed_by_user: "%{taxon} diamati oleh %{user}"
   taxon_photos_updated: Foto takson diperbarui!
-  taxon_range: Jarak takson
+  taxon_range: Jangkauan takson
+  taxon_range_created_notice: Jangkauan takson sukses dibuat. Harap menunggu beberapa menit hingga jangkauannya muncul di peta.
+  taxon_range_updated_notice: Jangkauan takson sukses diperbarui. Harap menunggu beberapa menit hingga jangkauannya muncul di peta.
+  taxon_ranks: Tingkat Takson
   taxon_removed_from_list: Takson dihapus dari daftar.
   taxon_scheme: Skema takson
+  taxon_schemes: "Skema Takson"
   taxon_search: Pencarian Takson
   taxon_search_results_for: Hasil Pencarian Takson untuk
   taxon_split: pemisahan takson
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
-  taxon_stage: tahap takson
-  taxon_swap: tukar takson
-  taxon_swap_only_has_one_input: hanya satu masukan diperbolehkan untuk ditukar
-  taxon_swap_has_inputs_and_outputs: pertukaran harus memiliki kedua input dan output
+  taxon_stage: aktivasi takson
+  taxon_swap: penukaran takson
+  taxon_swap_only_has_one_input: hanya satu masukan diperbolehkan untuk penukaran
+  taxon_swap_has_inputs_and_outputs: penukaran harus memiliki input dan output
   taxon_name_was_deleted: Nama takson telah dihapus.
-  taxon_name_was_successfully_updated: nama takson telah berhasil diperbarui.
-  taxon_was_successfully_created: Takson telah berhasil dibuat.
-  taxon_was_successfully_updated: Takson telah berhasil diperbarui.
-  taxonomic: Taksonomi
-  taxonomic_changes: Perubahan Taksonomi
+  taxon_name_was_successfully_updated: Nama takson berhasil diperbarui.
+  taxon_was_successfully_created: Takson berhasil dibuat.
+  taxon_was_successfully_updated: Takson berhasil diperbarui.
+  taxonomic: Taksonomik
+  taxonomic_changes: Perubahan Taksonomik
   taxonomic_groups: Grup Taksonomi
-  taxonomic_order: Pesan Taksonomi
-  taxonomic_status: Status Taksonomi
+  taxonomic_order: Urutan Taksonomi
+  taxonomic_status: Status taksonomi
   taxonomic_tags_for_flickr: Tag Taksonomi untuk Flickr
+  taxonomy_details: Detail Taksonomi
+  taxonomy_details_for: Detail taksonomi untuk
+  taxonomy_details_info: 'Halaman Detail Taksonomi memakai Framework Takson untuk membantu menjelaskan apa yang kami maksud dengan sebuah takson. <a href="/pages/taxon_frameworks">Baca lebih banyak</a>.'
+  taxonomy_settings: Pengaturan Taksonomi
   teachers_guide: Panduan Guru
-  tell_everyone_a_little_about_you: Beritahu semua orang sedikit mengenai diri Anda
-  tell_the_world_a_little_about_yourself: Ceritakan tentang diri Anda
+  tell_everyone_a_little_about_you: Beritahu orang sesuatu mengenai diri Anda
+  tell_the_world_a_little_about_yourself: Ceritakan tentang diri Anda kepada kami
+  tell_us_why: Ceritakan mengapa...
   terms: Ketentuan
   terms_and_rules_html: "Ketentuan &amp; Aturan"
-  terms_new_users: "Jika Anda menambahkan terms, pengguna baru harus setuju pada mereka sebelum bergabung pada proyek ini."
-  terms_service: Ketentuan layanan
-  terrain: daerah
-  that_photo_doesnt_exist: foto tersebut tidak ada.
-  that_observation_doesnt_exist: Pengamatan tersebut tidak ada
+  terms_new_users: "Jika Anda menambahkan ketentuan, pengguna baru harus menyetujuinya sebelum bergabung pada proyek ini."
+  terms_service: Ketentuan Layanan
+  terrain: medan
+  text: Teks
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Kontrol blok teks
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Kontrol format teks
+  text_editing_controls: Kontrol penyuntingan teks
+  thanks!: Terima kasih!
+  thanks_from_all_of_us_here_at: Terima kasih dari kami semua di
+  that_photo_doesnt_exist: Foto tersebut tidak ada.
+  that_observation_doesnt_exist: Pengamatan tersebut tidak ada.
   that_observation_doesnt_have_any_photos: "Pengamatan tersebut tidak memiliki foto apapun."
-  that_observation_hasnt_been_added_this_project: Pengamatan tersebut belum ditambahkan proyek ini.
-  that_observation_no_longer_exists: Pengamatan tersebut tidak lagi ada.
+  that_observation_hasnt_been_added_this_project: Pengamatan tersebut belum ditambahkan ke proyek ini.
+  that_observation_no_longer_exists: Pengamatan tersebut sudah tidak ada.
   that_project_doesnt_exist: "Proyek tersebut tidak ada."
   that_role_doesnt_exist: Peran tersebut tidak ada.
-  thats_not_a_real_date: Itu bukan tanggal yang benar!
+  that_was_the_last_observation_matching_the_current_filters: Itu adalah pengamatan terakhir yang cocok dengan saringan ini.
+  thats_not_a_real_date: Itu tanggal yang tidak ada!
   the_admin_is_the_person_who: |
-    Admin adalah orang yang menciptakan proyek. Mereka dapat melakukan segala sesuatu yang manajer dan kurator dapat melakukan, serta menghapus proyek.
-  the_following_observations_could: "Pengamatan berikut tidak akan ditambahkan ke %{link}"
-  the_following_photos_have_been_tagged: "Foto-foto berikut ini telah ditandai:"
-  the_observation_was_already_added_to_that_project: Pengamatan sudah ditambahkan ke proyek.
+    Pengelola adalah orang yang menciptakan proyek. Mereka dapat melakukan segala sesuatu yang manajer dan kurator dapat lakukan, serta menghapus proyek.
+  the_below_items_are_needed_to_achieve: |
+    Barang-barang di bawah ini perlu mencapai <span className="bold">Kelas Riset:</span>
+  the_community_id_requires_at_least_two_identifications: ID Komunitas memerlukan setidaknya dua identifikasi.
+  the_community_must_feel_that: |
+    Komunitas harus merasa bahwa Takson Komunitasnya sudah merupakan yang terbaik berdasarkan bukti yang ada
+  the_following_observations_could: "Pengamatan berikut tidak bisa ditambahkan ke %{link}"
+  the_following_photos_have_been_tagged: "Foto-foto berikut ini telah dilabeli:"
+  the_identotron_is_a_tool_to: |
+    Identotron adalah sebuah alat untuk membantu Anda mengidentifikasi pengamatan berdasarkan data daftar centang %{site_name}. Jika diberikan tingkat takson yang lebih tinggi serta sebuah tempat (contohnya mamalia di India), %{site_name} akan mencari entri daftar centang yang sesuai dengan takson di tempat tersebut, seperti panduan kolom yang dinamis untuk seluruh planet. Kebanyakan daftar centang masih dalam perkembangan, tetapi, jika ada yang komprehensif, yaitu daftar yang berisi <em>semua</em> perwakilan taksonnya di suatu tempat, Identotron akan memberitahu.
+  the_name_of_the_taxon_including_space: Nama takson, termasuk tempat untuk spesies dan infraspesies.
+  the_observation_was_already_added_to_that_project: Pengamatan sudah ditambahkan ke proyek tersebut.
   the_people_of_inat: "Orang-orang di %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
-    Spesies tercantum di bawah ini tidak ditemukan di %{site_name} basis data.
+    Spesies yang tercantum di bawah ini tidak ditemukan di database %{site_name}.
+  the_title_of_the_wikipedia_article_we_use: |
+    Judul artikel Wikipedia yang kami gunakan untuk penjelasan. Jika URL Wikipedia adalah <code>http://en.wikipedia.org/wiki/Bird</code>, maka nilainya seharusnya <code>Bird</code>. Jika dibiarkan kosong, nama ilmiah dari takson ini akan digunakan (biasanya berhasil).
   the_user_x_has_been_suspended: "Pengguna %{user} telah ditangguhkan"
   the_user_x_has_been_unsuspended: "Pengguna %{user} telah dibatalkan penangguhannya"
   the_world: Dunia
+  the_world_is_full_of_interesting_places: |
+    Dunia penuh dengan tempat-tempat yang menarik, setiap tempat berisi bentuk kehidupan yang aneh dan menakjubkan, sedangkan yang lainnya ada di dekat kita! Tempat %{site_name} mengizinkan Anda melihat-lihat kehidupan di sekitar planet ini. Mulailah menjelajah!
+  then_keybord_sequence: lalu
+  there_are_x_synonyms_html:
+    other: "Ada <span class='count'>%{count}</span> sinonim</span>"
   there_is_no_wikipedia_page_matching: Tidak ada halaman Wikipedia yang cocok
+  there_isnt_a_wikipedia_article_titled_x_html: |
+    Tidak ada artikel Wikipedia atau pengalihan yang berjudul '%{x}'. Mungkin Anda ingin <a href='http://en.wikipedia.org/wiki/%{x}'>membuatnya</a>?
   there_merge_problems_with_the_merge: "Ada masalah penggabungan dengan gabungan: %{merged_errors}"
-  there_was_a_problem_saving_your_identification: "Ada masalah dalam menyimpan identifikasi Anda: %{error}"
-  there_were_problems_adding_taxa: "Ada kesalahan dalam menambahkan taksa tersebut %{errors}"
-  there_were_problems_adding_that_observation_to_this_project: "Ada masalah dalam menambahkan pengamatan ke proyek ini:"
-  there_were_problems_importing_that_place: "Ada masalah penting pada tempat ini: %{place_error}"
-  there_were_some_problems_saving_this_observation: Ada beberapa kesalahan dalam menyimpan pengamatan ini
-  there_were_some_problems_saving_those_colors: "Ada beberapa kesalahan dalam menyimpan warna ini: %{error}"
-  there_were_some_problems_with_fields: "Ada beberapa masalah dengan bidang-bidang berikut:"
+  there_was_a_problem_creating_this_account: |
+    Ada masalah saat membuat akun ini. Silakan menghubungi kami jika isu ini tetap ada
+  there_was_a_problem_saving_your_identification: "Ada masalah saat menyimpan identifikasi Anda: %{error}"
+  there_were_problems_adding_taxa: "Ada masalah saat menambahkan taksa tersebut: %{errors}"
+  there_were_problems_adding_that_observation_to_this_project: "Ada masalah dalam menambahkan pengamatan itu ke proyek ini: "
+  there_were_problems_importing_that_place: "Ada masalah saat mengimpor tempat itu: %{place_error}"
+  there_were_problems_importing_that_place_geometry: |
+    Ada masalah saat mengimpor geometri tempat itu: %{error}
+  there_were_some_problems_saving_this_observation: Ada beberapa kesalahan saat menyimpan pengamatan ini
+  there_were_some_problems_saving_those_colors: "Ada beberapa kesalahan saat menyimpan warna itu: %{error}"
+  there_were_some_problems_with_fields: "Ada beberapa masalah dengan kolom-kolom berikut:"
+  there_were_some_problems_with_these_files: "Ada beberapa masalah dengan file-file ini:"
   these_are_items_people_on: |
     Ini adalah barang orang yang pada situs telah ditandai untuk kurasi. Komentar spam harus dihapus dan pengguna yang menambahkan spam yang harus ditunda (pergi ke halaman profil mereka dan klik "Suspend pengguna" di kanan bawah untuk mencegah mereka dari log in). Barang yang telah ditandai lain hanya harus dihapus jika mereka secara jelas memiliki kebencian, ilegal, dll. Kekasaran, bahasa yang kasar, dll, harus ditangani dengan komentar yang sopan. Pelanggar yang kembali mengulanginya harus melaporkan ke admin situs atau
   these_folks_kindly_volunteer_to: Orang-orang ini relawan yang baik  untuk mempertahankan taksonomi dan menangani isu-isu lainnya.
@@ -4350,6 +4481,7 @@ id:
   view_your_dashboard: Lihat dasbor anda
   view_your_inbox: ' dashboard kotak masuk anda'
   view_your_observations: Lihat pengamatan anda
+  view_yours: Lihat Kepunyaanmu
   view_all_of_your_observations_from_x: "Lihat semua dari pengamatan anda dari %{x}"
   video_tutorials: Tutorial Video
   vulnerable: rentan
