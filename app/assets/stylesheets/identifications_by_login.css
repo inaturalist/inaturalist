@@ -1,0 +1,43 @@
+.identification {
+  padding: 10px;
+  background-color: #eee;
+}
+
+.observations.mini .observation {
+  padding: 10px 0;
+  margin-bottom: 0;
+  border: 0;
+}
+
+.identification .identification_image {width: 75px;}
+.identification .identification_body {float: left;}
+.identification span.withdrawbutton, .identification span.agree { 
+  color: blue; 
+  text-decoration: underline;  
+  font-size: smaller;  
+  cursor: pointer; 
+  padding:0; 
+  border:0; 
+  float:none; 
+  background-color: transparent;
+}
+
+.bootstrap .readable {font-size:125%;}
+.bootstrap .observations.mini .icon {top:8px;}
+.bootstrap .needs_id_notice { 
+  background-color: #FFEE91;
+  color: #857430;
+}
+.bootstrap .research_grade_notice { 
+  background-color: #DCEAA3;
+  color: #529214;
+}
+
+.row {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.count {
+  font-weight: bold;
+}
