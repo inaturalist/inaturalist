@@ -4,8 +4,8 @@
   = stylesheet_link_tag "identifications"
   :css
     .identification {
-    padding: 10px;
-    background-color: #eee;
+      padding: 10px;
+      background-color: #eee;
     }
     
     .observations.mini .observation {
@@ -16,6 +16,18 @@
     
     .identification .identification_image {width: 75px;}
     .identification .identification_body {float: left;}
+    
+    .bootstrap .readable {font-size:125%;}
+    .bootstrap .observations.mini .icon {top:8px;}
+    .bootstrap .needs_id_notice { 
+      background-color: #FFEE91;
+      color: #857430;
+    }
+    .bootstrap .research_grade_notice { 
+      background-color: #DCEAA3;
+      color: #529214;
+    }
+    .identification span.withdrawbutton, .identification span.agree { color: blue; text-decoration: underline;  font-size: smaller;  cursor: pointer; padding:0; border:0; float:none; background-color: transparent;}
     
     .row {
       margin-bottom: 10px;
@@ -31,7 +43,7 @@
 .container
   = render :partial => "shared/by_login_header_bootstrap", locals: { model_name: "Identifications" }
   
-  #identifications.col-xs-12.col-md-9
+  #identifications.col-xs-12.col-lg-9
     - if @identifications.empty?
       #no_content.readable.description
         - if logged_in? && @selected_user.id == current_user.id
@@ -39,11 +51,10 @@
         - else
           = t 'no_identifications_added.user', user: @login.to_s
     - for identification in @identifications
-      .row
-        = render :partial => 'identification_with_observation', :object => identification
+      = render :partial => 'identification_with_observation', :object => identification
     = will_paginate @identifications
 
-  .last.column.col-xs-5.col-md-3
+  .last.column.col-xs-5.col-lg-3
     .box
       %h4
         = t :stats
