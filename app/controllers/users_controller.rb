@@ -1114,16 +1114,6 @@ protected
     @species_counts = @users.map{ |i| [i.id, i.species_count] }.to_h
     @post_counts = Post.where(user_id: @users.to_a, parent_type: "User").group(:user_id).count
   end
-  
-  def activity_object_image_url(activity_stream)
-    o = activity_stream.activity_object
-    case o.class.to_s
-    when "Observation"
-      o.photos.first.try(:square_url)
-    when ""
-      nil
-    end
-  end
 
   def most_observations(options = {})
     per = options[:per] || 'month'
