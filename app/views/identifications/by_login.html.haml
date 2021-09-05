@@ -1,0 +1,55 @@
+- content_for( :title ) do
+  = t( :identifications_by, :user => @login )
+- content_for( :extracss ) do
+  = stylesheet_link_tag "identifications"
+  :css
+    .identification {
+    padding: 10px;
+    background-color: #eee;
+    }
+    
+    .observations.mini .observation {
+      padding: 10px 0;
+      margin-bottom: 0;
+      border: 0;
+    }
+    
+    .identification .identification_image {width: 75px;}
+    .identification .identification_body {float: left;}
+    
+    .row {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .count {
+      font-weight: bold;
+    }
+  /[if lte IE 7]
+    = stylesheet_link_tag 'blueprint/ie', 'observations-ie'
+
+.container
+  = render :partial => "shared/by_login_header_bootstrap", locals: { model_name: "Identifications" }
+  
+  #identifications.col-xs-12.col-md-9
+    - if @identifications.empty?
+      #no_content.readable.description
+        - if logged_in? && @selected_user.id == current_user.id
+          = t 'no_identifications_added.current_user'
+        - else
+          = t 'no_identifications_added.user', user: @login.to_s
+    - for identification in @identifications
+      .row
+        = render :partial => 'identification_with_observation', :object => identification
+    = will_paginate @identifications
+
+  .last.column.col-xs-5.col-md-3
+    .box
+      %h4
+        = t :stats
+      %ul
+        %li
+          %span.count
+            = @identifications.total_entries
+          %label
+            = t :ids_made_for_others
