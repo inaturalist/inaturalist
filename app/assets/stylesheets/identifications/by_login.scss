@@ -1,3 +1,5 @@
+@import "../colors";
+
 .identification {
   padding: 10px;
   background-color: #eee;
@@ -22,15 +24,14 @@
   background-color: transparent;
 }
 
-.bootstrap .readable {font-size:125%;}
-.bootstrap .observations.mini .icon {top:8px;}
+.bootstrap .observations.mini .icon {top:7px;}
 .bootstrap .needs_id_notice { 
-  background-color: #FFEE91;
-  color: #857430;
+  background-color: $needs-id-yellow;
+  color: $needs-id-yellow-light;
 }
 .bootstrap .research_grade_notice { 
-  background-color: #DCEAA3;
-  color: #529214;
+  background-color: $inat-green;
+  color: white;
 }
 
 .row {
