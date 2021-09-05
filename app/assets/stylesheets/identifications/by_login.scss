@@ -9,9 +9,9 @@
 .identification {
   padding: 10px;
   background-color: #eee;
-
+  
   .identification_image { width: 75px; }
-  .identification_body { float: left; }
+  
   span.withdrawbutton, span.agree {
     color: blue; 
     text-decoration: underline;
@@ -34,6 +34,7 @@
     background-color: $inat-green;
     color: white;
   }
+  .identification { display:flex; }
 }
 
 .row {
