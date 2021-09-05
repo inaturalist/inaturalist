@@ -15,18 +15,10 @@ lv:
     zero: "<span class='count'>%{count}</span> atrisināti ziņojumi"
     one: "<span class='count'>%{count}</span> atrisināts ziņojums"
     other: "<span class='count'>%{count}</span> atrisināti ziņojumi"
-  x_identifications:
-    zero: '%{count} identifikācijas'
-    one: '%{count} identifikācija'
-    other: '%{count} identifikācijas'
   x_identifications_html:
     zero: '<span class="count">%{count}</span> identifikācijas'
     one: '<span class="count">%{count}</span> identifikācija'
     other: '<span class="count">%{count}</span> identifikācijas'
-  x_identifications_:
-    zero: '%{count} identifikācijas'
-    one: '%{count} identifikācija'
-    other: '%{count} identifikācijas'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -3374,6 +3366,7 @@ lv:
   preview_observations_with_these_observation_requirements: Priekšskatīt novērojumus ar šīm novērojumu prasībām
   preview_of_synced_observation: "Sinhronizēta novērojuma <strong>priekšskatījums</strong>. <a href=\"%{url}\">Atcelt darbību?</a>"
   previewing: "Priekšskata..."
+  previous_date_short: Iepr.
   prev: Iepriekš.
   previous_observation: Iepriekšējais novērojums
   previous_page: Iepriekšējā lapa
@@ -3879,6 +3872,8 @@ lv:
   showing_x_of_y: Rāda %{x} no %{y}
   showing_x_of_y_listings: "Rāda %{x} no %{y} sarakstiem"
   sign_in: Pierakstīties
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Pierakstīties, izmantojot Apple
   sign_in_with_provider: "Pieraksties ar %{provider}"
   sign_in_with_google: Pierakstīties ar Google
   sign_out: Izrakstīties
@@ -4795,7 +4790,7 @@ lv:
   yes_reject_it: Jā, vēlos to noraidīt
   yes_show_this_in_the_box: Jā, vēlos, lai tas tiktu rādīts lielajā lodziņā virs taksoniem
   yesterday: Vakar
-  you: tu
+  you: tevis
   you_: No tevis
   you_appear_offline_try_again: |
     Izskatās, ka esi bezsaistē. Pamēģini vēlreiz, kad būs pieejams interneta pieslēgums.
@@ -4823,7 +4818,7 @@ lv:
   you_are_subscribed_to_comments_on_this_taxon_merge: Tu seko komentāriem pie šīs taksona apvienošanas.
   you_are_subscribed_to_comments_on_this_taxon_split: Tu seko komentāriem pie šīs taksona sadalīšanas.
   you_are_subscribed_to_comments_on_this_taxon_drop: Tu seko komentāriem pie šīs taksona atmešanas.
-  you_are_subscribed_to_observations_from_this_place: Tu seko komentāriem pie šīs vietas.
+  you_are_subscribed_to_observations_from_this_place: Tu seko komentāriem par šo vietu.
   you_arent_a_member_of_that_project: Tu neesi šī projekta dalībnieks.
   you_arent_following_that_person: "Tu neseko šim lietotājam."
   you_can_accept_invitations: Šeit iespējams apstiprināt ielūgumu
