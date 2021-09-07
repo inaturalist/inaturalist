@@ -2278,6 +2278,8 @@ fi:
   meet: Tapaa
   member_of_the_inaturalist_network_html: |
     <a href="%{url}">iNaturalist-verkoston</a> jäsen
+  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
+    Tämä sivusto on osa %{partial_inat_network_tag_html}iNaturalist-verkostoa</a>, joka on %{cas_tag_html}:n ja %{nat_geo_tag_html}:n yhteishanke.
   #As in members of a project
   members: Jäsenet
   membership_model: Jäsenyysmalli
