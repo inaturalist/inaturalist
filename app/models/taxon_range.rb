@@ -2,7 +2,12 @@ class TaxonRange < ApplicationRecord
   
   belongs_to :taxon
   belongs_to :source
+  belongs_to :user
+  has_updater
   has_many :listed_taxa, :dependent => :nullify
+
+  validates_uniqueness_of :taxon_id, :message => "taxon range already exists"
+  validates_presence_of :taxon
   
   accepts_nested_attributes_for :source
   

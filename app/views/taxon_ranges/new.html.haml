@@ -1,0 +1,15 @@
+.container
+  .row
+    .col-md-12
+      %h2
+        - if @taxon_range.taxon
+          =t :label_colon, label: t(:new_taxon_range)
+          = link_to @taxon_range.taxon.name, @taxon_range.taxon
+        - else
+          = t(:new_taxon_range)  
+      = form_for(@taxon_range, :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f|
+        = f.error_messages
+        = render :partial => 'form_fields', :locals => {:f => f}
+        .clear.buttonrow.upstacked
+          = f.submit t(:create), :class => "default button"
+          = link_to t(:back), @taxon_range.taxon || taxa_path, :class => "button"

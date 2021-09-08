@@ -1,0 +1,33 @@
+.row.stacked
+  .col-xs-6
+    = f.text_field :taxon_id
+    - if f.object.range.file?
+      .field
+        = link_to f.object.range.url, f.object.range.url
+        = link_to_function t(:replace_parenthesis), "$(this).parents('.field').after('#{f.file_field(:range)}'); $(this).parents('.field').hide()", :class => "small"
+    - else
+      = f.file_field :range
+    = f.text_field :url
+    = f.text_field :source_identifier
+    = f.form_field :iucn_relationship, :label => false do
+      = label_tag :is_this_an_iucn_range_map_and_if_not_why, t(:is_this_an_iucn_range_map_and_if_not_why)
+      .radio
+        %label.inline
+          = f.radio_button :iucn_relationship, 0, :skip_builder => true
+          = t(:this_is_an_iucn_range_map)
+      .radio
+        %label.inline
+          = f.radio_button :iucn_relationship, 2, :skip_builder => true
+          = t(:iucn_range_map_for_this_taxon_has_issues)
+      .radio
+        %label.inline
+          = f.radio_button :iucn_relationship, 1, :skip_builder => true
+          = t(:taxon_not_in_iucn)
+    = f.text_area :description
+    %fieldset#source
+      = render :partial => 'sources/nested_form_fields', :locals => {:f => f}
+  .col-xs-6
+    .box
+      %h3= t :guidelines
+      = t 'views.taxon_ranges.form.new_range_guidelines_html'
+    

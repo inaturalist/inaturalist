@@ -4534,7 +4534,10 @@ CREATE TABLE public.taxon_ranges (
     source_identifier integer,
     range_updated_at timestamp without time zone,
     geom public.geometry(MultiPolygon),
-    url character varying(255)
+    url character varying(255),
+    user_id integer,
+    updater_id integer,
+    iucn_relationship integer
 );
 
 
@@ -9137,6 +9140,19 @@ CREATE INDEX index_taxon_ranges_on_geom ON public.taxon_ranges USING gist (geom)
 
 CREATE INDEX index_taxon_ranges_on_taxon_id ON public.taxon_ranges USING btree (taxon_id);
 
+--
+-- Name: index_taxon_ranges_on_updater_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_taxon_ranges_on_updater_id ON public.taxon_ranges USING btree (updater_id);
+
+
+--
+-- Name: index_taxon_ranges_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_taxon_ranges_on_user_id ON public.taxon_ranges USING btree (user_id);
+
 
 --
 -- Name: index_taxon_scheme_taxa_on_taxon_id; Type: INDEX; Schema: public; Owner: -
@@ -9952,5 +9968,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210630004545'),
 ('20210819164339'),
 ('20210819214533');
+('20210908061217'),
+('20210908070001');
 
 

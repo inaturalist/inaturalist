@@ -55,8 +55,8 @@ class Taxon < ApplicationRecord
     through: :listed_taxa
   has_many :identifications, :dependent => :destroy
   has_many :taxon_links, :dependent => :delete_all 
-  has_many :taxon_ranges, :dependent => :destroy
-  has_many :taxon_ranges_without_geom, -> { select(TaxonRange.column_names - ['geom']) }, :class_name => 'TaxonRange'
+  has_one :taxon_range, inverse_of: :taxon, :dependent => :destroy
+  has_one :taxon_range_without_geom, -> { select(TaxonRange.column_names - ['geom']) }, :class_name => 'TaxonRange'
   has_many :taxon_photos, -> { order("position ASC NULLS LAST, id ASC") }, :dependent => :destroy
   has_many :photos, :through => :taxon_photos
   has_many :assessments, :dependent => :nullify

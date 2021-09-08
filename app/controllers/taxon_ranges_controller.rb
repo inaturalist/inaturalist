@@ -1,6 +1,8 @@
 class TaxonRangesController < ApplicationController
   before_action :curator_required
   
+  layout "bootstrap"
+
   def new
     @taxon_range = TaxonRange.new( taxon_id: params[:taxon_id].to_i )
   end
@@ -11,6 +13,8 @@ class TaxonRangesController < ApplicationController
   
   def create
     @taxon_range = TaxonRange.new( params[:taxon_range] )
+    @taxon_range.user = current_user
+    @taxon_range.updater = current_user
 
     respond_to do |format|
       if @taxon_range.save
@@ -27,7 +31,11 @@ class TaxonRangesController < ApplicationController
   end
   
   def update
+    # Set the last editor
+    params[:taxon_range][:updater_id] = current_user.id
+
     @taxon_range = TaxonRange.find( params[:id] )
+
     respond_to do |format|
       if @taxon_range.update_attributes( params[:taxon_range] )
         @taxon_range.taxon
