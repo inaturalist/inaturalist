@@ -203,7 +203,7 @@ id:
   active_complete_set_status: Aktif
   #Status of a taxon that is available for use on iNat
   active_taxon_status: Aktif
-  active_users: Pengguna yang Aktif
+  active_users: Pengguna Aktif
   activity: Aktifitas
   activity_settings: Pengaturan aktivitas
   adapted_by_name_from_a_work_by_original: "Diadaptasi oleh %{name} dari sebuah karya oleh %{original}"
@@ -247,7 +247,7 @@ id:
   add_blocked_users: Tambahkan pengguna yang diblokir
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Tambahkan teks tebal
-  add_comma_separated_tags: "Tambahkan tag dipisahkan dengan koma"
+  add_comma_separated_tags: "Tambahkan Label Yang Dipisahkan Oleh Koma"
   add_comment: Tambahkan Komentar
   add_conservation_status: menambahkan status konservasi
   add_custom_project_fields: Menambahkan kolom proyek kustom
@@ -311,13 +311,13 @@ id:
   add_sex_male_annotation: 'Tambahkan anotasi "Jenis Kelamin: Pria"'
   add_sex_cannot_be_determined_annotation: 'Tambahkan anotasi "Jenis Kelamin: Tidak ditentukan"'
   add_some_now: Tambahkan beberapa sekarang
-  add_tag: Tambah Penanda
-  add_tags: Tambah penanda
-  add_tags_to_selected_taxa: Tambahkan tag ke taksa yang dipilih
+  add_tag: Tambah Label
+  add_tags: Tambah Label
+  add_tags_to_selected_taxa: Tambahkan Label ke Taksa Pilihan
   add_taxa: Tambahkan taksa
   add_taxon_batch_to: "Tambahkan Kumpulan Takson ke %{list}"
   add_taxon_range: Tambahkan jarak taksa
-  add_taxonomic_tags_to: "Tambahkan tag taksonomi untuk foto Flickr yang dipilih &raquo;"
+  add_taxonomic_tags_to: "Tambahkan label taksonomi untuk foto Flickr yang dipilih &raquo;"
   add_to_a_scheme: Tambahkan ke skema
   add_to_a_project: Tambahkan ke proyek
   add_to_calendar: Tambahkan ke kalender
@@ -461,8 +461,8 @@ id:
   and_other_taxa: "& amp;Taxa Lainnya"
   android: Android
   animals: Binatang
-  annotation: Anotasi
-  annotations: Anotasi
+  annotation: Catatan
+  annotations: Catatan
   announcement_was_successfully_created: Pengumuman berhasil dibuat.
   announcement_was_successfully_updated: Pengumuman berhasil diperbarui.
   announcements: Pengumuman
@@ -571,7 +571,7 @@ id:
   are_you_sure_you_want_to_delete_this_photo?: Apakah Anda yakin ingin menghapus foto ini?
   are_you_sure_you_want_to_delete_this_post: Apakah Anda yakin ingin menghapus postingan ini?
   are_you_sure_you_want_to_delete_this_taxon_change: Apakah Anda yakin ingin menghapus perubahan takson ini?
-  are_you_sure_you_want_to_remove_all_tags: Apakah Anda yakin ingin menghapus semua tag?
+  are_you_sure_you_want_to_remove_all_tags: Apakah Anda yakin ingin menghapus semua label?
   are_you_sure_you_want_to_remove_curator: Apakah Anda yakin ingin menghapus %{user} sebagai kurator?
   are_you_sure_you_want_to_remove_from_project: Apakah Anda yakin ingin menghapus %{user} dari proyek ini?
   are_you_sure_you_want_to_remove_manager: Apakah Anda yakin ingin menghapus %{user} sebagai manager?
@@ -810,10 +810,10 @@ id:
   choose_files: Pilih berkas
   choose_from_your_lists: Pilih dari daftar anda
   choose_photos_for_this_taxon: Pilih foto dari takson ini
-  choose_photos_to_tag_from_photostream: Pilih foto untuk menandai dari photostream anda
+  choose_photos_to_tag_from_photostream: Pilih foto untuk dilabeli dari photostream Anda
   choose_rule: Pilih aturan
   choose_subjects: Pilih subjek
-  choose_tags: Pilih tanda
+  choose_tags: Pilih label
   choose_taxon: Pilih taksa
   choose_what_kind_of_change_youre_creating: "Memilih jenis pengubahan yang anda buat."
   cid_d_to_genus: Pemberian IDK kepada Genus
@@ -1071,7 +1071,7 @@ id:
   created_by_user_on_date: Dibuat oleh %{user} pada %{date}
   created_on: Dibuat pada
   creating_your_account: "sedang membuat akun anda..."
-  creative_commons_flickr_tagged: Foto Flickr Creative Commons Yang Ditandai
+  creative_commons_flickr_tagged: Foto Flickr Creative Commons Yang Diberi Tag
   creative_commons_unless_otherwise_noted: "Creative Commons kecuali dinyatakan lain."
   critically_endangered: Terancam punah
   css_description: Ini akan dapat dimasukkan setelah semua css lain masuk pada halaman.
@@ -1479,7 +1479,7 @@ id:
   editing_taxon_name_for_taxon_html: Mengubah Nama Takson "%{name}" menjadi %{taxon}
   editing_taxon_range: Mengubah Jangkauan Takson
   editing_this: Mengubah %{elem}
-  editing_x_in_y: "Mengubah %{x} in %{y}"
+  editing_x_in_y: "Mengubah %{x} di %{y}"
   editors: Penyunting
   either_that_user_doesnt_exist_or: "Entah pengguna tidak ada atau Anda sudah mengikuti mereka."
   eligible_for_research_grade: Memenuhi syarat untuk Kelas Riset
@@ -1690,7 +1690,7 @@ id:
   flickr_photos: Foto Flickr
   flickr_style: Gaya Flickr
   flickr_tagger: Penanda Flickr
-  flickr_tags: Tanda Flickr
+  flickr_tags: Tag Flickr
   fluid_layout: Tata Letak Fluid
   #Adjective, as in a fluid layout of images
   fluid: mengalir
@@ -2146,7 +2146,7 @@ id:
   loading_metadata: Memuat metadata...
   loading_preview_and_code: Memuat pratinjau dan kode...
   loading_suggestions: Memuat rekomendasi...
-  loading_tags: "Memuat tanda..."
+  loading_tags: "Memuat label..."
   loading_taxa_from_your: "Memuat taksa dari pengamatan Anda..."
   loading_wikipedia_description: "Memuat deskripsi Wikipedia..."
   locale_description: Tempat menyetel bahasa dan format tanggal sesuai preferensi Anda.
@@ -2407,12 +2407,12 @@ id:
   most_browser_print_pdf: "Catatan: kebanyakan browser memiliki pilihan untuk mencetak ke PDF"
   most_disagree: kebanyakan tidak setuju
   most_comments_and_faves: Komentar dan Favorit Terbanyak
-  most_observations: Pengamatan Paling Banyak
+  most_observations: Pengamatan Terbanyak
   most_recent_observation_by_date_observed: Pengamatan yang dapat diverifikasi terbaru berdasarkan tanggal pengamatan
   most_species: Spesies Paling Banyak
-  most_observed_species: Pengamatan Spesies Paling Banyak
-  most_observed_introduced_species: Pengamatan Spesies Yang Dikenalkan Paling Banyak
-  most_observed_threatened_species: Pengamatan Spesies Terancam Paling Banyak
+  most_observed_species: Pengamatan Spesies Terbanyak
+  most_observed_introduced_species: Pengamatan Spesies Yang Dikenalkan Terbanyak
+  most_observed_threatened_species: Pengamatan Spesies Terancam Terbanyak
   move_input_children_to_output?: Pindahkan turunan ke output?
   multiple: banyak
   multiple_select_option: '-- banyak --'
@@ -2540,12 +2540,12 @@ id:
   no_assessments_have_been_added_to_this_project_yet: Belum ada penilaian yang ditambahkan ke proyek ini.
   no_but_it_is_a_member_of_taxon: "Bukan, itu adalah anggota %{taxon}"
   no_comments_yet: Belum ada komentar.
-  no_creative_commons_flickr_photos_tagged_x: 'Tidak ada foto Creative Commons Flickr yang ditandai "%{x}"'
+  no_creative_commons_flickr_photos_tagged_x: 'Tidak ada foto Creative Commons Flickr yang ditandai dengan "%{x}"'
   no_curators_set: Kurator belum ditetapkan
   no_curators_yet: Belum ada kurator!
   no_description: Tidak ada keterangan
   no_flags: Tidak ada tanda saat ini
-  no_flickr_photos_tagged: Tidak ada foto Flickr yang dilabeli!
+  no_flickr_photos_tagged: Tidak ada foto Flickr yang diberi tag!
   no_identifications: Belum Ada Identifikasi
   no_identifications_added:
     current_user: Anda belum menambahkan identifikasi pada pengamatan siapa pun.
@@ -2900,6 +2900,26 @@ id:
   other_lexicons: Kosa Kata Lain
   other_listings_of_this_taxon_for_this_place: Daftar lain dari takson ini untuk tempat ini
   other_names: Nama Lain
+  other_species_commonly_misidentified_as_this_species: Spesies lain yang sering salah diidentifikasi sebagai spesies ini
+  other_species_commonly_misidentified_as_this_species_in_place_html: Spesies lain yang sering salah diidentifikasi sebagai spesies ini di <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_complex: Taksa lain yang sering salah diidentifikasi sebagai kompleks ini
+  other_taxa_commonly_misidentified_as_this_complex_in_place_html: Taksa lain yang sering salah diidentifikasi sebagai kompleks ini di <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genus: Taksa lain yang sering salah diidentifikasi sebagai genus ini
+  other_taxa_commonly_misidentified_as_this_genus_in_place_html: Taksa lain yang sering salah diidentifikasi sebagai genus ini di <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genushybrid: Taksa lain yang sering salah diidentifikasi sebagai genushibrida ini
+  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Taksa lain yang sering salah diidentifikasi sebagai genushibrida ini di<a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_hybrid: Taksa lain yang sering salah diidentifikasi sebagai hibrida ini
+  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Taksa lain yang sering salah diidentifikasi sebagai hibrida ini di <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Taksa lain yang sering salah diidentifikasi sebagai %{rank} ini
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Taksa lain yang sering salah diidentifikasi sebagai %{rank} ini di<a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_section: Taksa lain yang sering salah diidentifikasi sebagai bagian ini
+  other_taxa_commonly_misidentified_as_this_section_in_place_html: Taksa lain yang sering salah diidentifikasi sebagai seksi ini di <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_species: Taksa lain yang sering salah diidentifikasi sebagai spesies ini
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: Taksa lain yang sering salah diidentifikasi sebagai spesies ini di <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_subgenus: Taksa lain yang sering salah diidentifikasi sebagai subgenus ini
+  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Taksa lain yang sering salah diidentifikasi sebagai subgenus ini di<a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_subsection: Taksa lain yang sering salah diidentifikasi sebagai subseksi ini
+  other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Taksa lain yang sering salah diidentifikasi sebagai subseksi ini di<a href="%{url}">%{place}</a>
   our_blog: Blog Kami
   output_taxon: Takson Keluaran
   overview: Ikhtisar
@@ -3436,7 +3456,7 @@ id:
   powered_by: Didukung oleh
   powered_by_inaturalist_open_source_software_html: 'Didukung oleh <a href="https://github.com/inaturalist/inaturalist" target="_new" >perangkat lunak sumber terbuka iNaturalist</a>'
   present: sekarang
-  press: Tekan
+  press: Pers
   preview: Pratinjau
   preview_observations_with_these_observation_requirements: Pratinjau Pengamatan dengan Persyaratan Pengamatan berikut
   preview_of_synced_observation: "<strong>Tampilan Pratinjau</strong> pengamatan yang tersinkronisasi. <a href=\"%{url}\">Kembali?</a>"
@@ -3479,7 +3499,7 @@ id:
   project_cover: Sampul proyek
   project_created_on: membuat proyek ini pada %{date}
   project_curator_id: ID kurator proyek
-  project_curator_tools: Alat kurator proyek
+  project_curator_tools: Peralatan Kurator Proyek
   project_curators: Kurator Proyek
   project_group_label: Grup
   project_group_description: Grup proyek milik
@@ -3688,210 +3708,329 @@ id:
   recent_observations_: Pengamatan Terbaru
   recent_post: Postingan terbaru
   #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
-  recent_atom_observations_by: "Pengamatan yang baru oleh %{login} (Atom)"
-  recent_observations_by: "Pengamatab yabf baru oleh %{login}"
-  recently_active: Baru aktif
-  recently_created: Baru dibuat
-  recently_finished: Baru diselesaikan
-  recently_observed: Baru diamati
-  recently_resolved: Baru dipecahkan
+  recent_atom_observations_by: "Pengamatan terbaru oleh %{login} (Atom)"
+  recent_observations_by: "Pengamatan terbaru oleh %{login}"
+  recently_active: Aktif Baru-baru Ini
+  recently_added: Terakhir Ditambahkan
+  recently_created: Baru Dibuat
+  recently_finished: Baru Diselesaikan
+  recently_observed: Baru Diamati
+  recently_resolved: Baru Dibereskan
   red: merah
-  redo_search_in_map: Kembalikan pencarian di peta
+  redo_search_in_map: Ulangi pencarian di peta
   redo_search_in_map_area: Ulangi pencarian dalam area peta
-  refresh: Perbarui kembali
-  refreshing: penyegaran
-  register_for_this_event_at_x_html: "Daftar untuk acara ini  pada %{x}"
+  refresh: Segarkan
+  refreshing: menyegarkan
+  regenerate_stats: Perbarui Statistik
+  register_for_this_event_at_x_html: "Daftar untuk acara ini di %{x}"
+  reject?: Tolak?
+  relative_observations: Pengamatan Relatif
+  relationship: "Relasi"
+  relationship_x: "Relasi: %{relationship}"
+  relationships:
+    match: cocok
+    one_to_one: satu-satu
+    alternate_position: posisi alternatif
+    many_to_many: banyak ke banyak
+    many_to_one: banyak ke satu
+    one_to_many: satu ke banyak
+    not_external: bukan ekstenal
+    not_internal: bukan internal
+    error: eror
   relationships_user_settings: Relasi
+  relationship_html: "Relasi: %{link}"
   reload_from_observations: Muat kembali dari pengamatan
-  reload_timed_out: 'Waktu muat kembali telah habis. Coba lagi nanti.'
-  remember_me: Ingatkan Saya
+  reload_timed_out: 'Waktu pemuatan ulang telah habis. Coba lagi nanti.'
+  remarks_optional: 'Komentar <span class="small description">(opsional)</span>'
+  remember_me: Ingat saya
   remove: Hapus
-  remove_all_tags: Hapus semua penanda
-  remove_comma_separated_tags: "Hapus tanda pemisah-koma"
+  remove_all_tags: Hapus semua label
+  remove_comma_separated_tags: "Hapus label yang dipisahkan koma"
   remove_conservation_status: hapus status konservasi
   remove_from: Hapus dari
-  remove_curator: Hapus kurator
+  remove_curator: Copot kurator
   remove_curator_status: Hapus status kurator
+  remove_from_featured: Hapus dari sorotan
   remove_from_guide: Hapus dari panduan
   remove_from_list: Hapus dari daftar
   remove_from_project: Hapus dari proyek
-  remove_this_section: Hapus seksi ini
+  remove_this_section: Hapus bagian ini
   remove_manager: Hapus manajer
-  remove_place: Hapus tempat
-  remove_selected: Hapus yang telah dipilih
-  remove_tags: Hapus penanda
+  remove_observations:
+    other: Hapus %{count} pengamatan?
+  remove_photo: Hapus Foto
+  remove_place: Hapus Tempat
+  remove_range: Hapus Jangkauan
+  remove_relationship: Hapus Relasi
+  remove_relationship_caps: HAPUS RELASI
+  remove_relationship_question: Hapus relasi?
+  remove_section: Hapus Bagian
+  remove_selected: Hapus terpilih
+  remove_tags: Hapus label
   removed: Dihapus
   removed_project_user: Hapus pengguna proyek
   removing: "Menghapus..."
-  reorder_by_taxonomy: Pesan kembali oleh taksonomi
-  repair_doesnt_work_for_that_kind_of_photo: Perbaiki kembali tidak dapat bekerja untuk beberapa foto
-  repair_external_photos: PErbaiki kembali Foto Eksternal
+  reorder_by_taxonomy: Urutkan kembali berdasarkan taksonomi
+  repair_broken_urls: Perbaiki URL yang rusak
+  repair_doesnt_work_for_that_kind_of_photo: Perbaikan tidak bekerja untuk foto jenis tersebut
+  repair_external_photos: Perbaiki Foto Eksternal
   replace_boundary_with_kml: Ganti pembatas dengan KML
-  replace_parentesis: (gantikan)
+  replace_parentesis: (ganti)
   reply: Balas
   reptiles: reptil
+  request_failed: "Permintaan Gagal"
   request_timed_out: Waktu permintaan habis!
   required: wajib diisi
-  required_field: Bidang yang wajib diisi
-  required_columns_in_order: kolum yang wajib diisi untuk
+  required_: Wajib Diisi
+  required_field: kolom yang wajib diisi
+  required_columns_in_order: Kolom wajib sesuai urutan
   research: penelitian
-  research_grade: tingkat penelitian
-  research_grade_observations_have: '"Penelitian Tingkat" pengamatan memiliki tanggal,foto,koordinat dan dukungan ID komunitas. Klik untuk melihat penilaian kualitas data.'
-  reset_search_filters: Reset penyaring pencarian
-  resolve: Selesaikan kembali
-  resolve_this_flag: Selesaikan kembali penanda ini
+  research_: Penelitian
+  research_grade: Kelas Riset
+  research_grade_short_html: "K<span class='full'>elas </span>R<span class='full'>iset</span>"
+  research_grade_tooltip_html: 'Pengamatan "Kelas Riset" memiliki media, lokasi, dan tanggal, dan konsensus komunitas pada sebuah identifikasi yang pasti (biasanya pada tingkat spesies). <a href="https://www.inaturalist.org/pages/help#quality">Pelajari tentang tingkat kualitas</a>'
+  research_grade_observations_have: 'Pengamatan "Kelas Riset" memiliki tanggal, foto, koordinat dan ID dari komunitas. Klik untuk melihat penilaian kualitas data.'
+  research_grade_qualification: Kualifikasi Kelas Riset
+  reset_filters_short: Atur Ulang
+  reset_brightness: Atur Ulang Kecerahan
+  reset_search_filters: Atur Ulang Penyaring Pencarian
+  resolve: Selesaikan
+  resolve_this_flag: Selesaikan Penanda Ini
   resolved: Terselesaikan
-  resolved_by: Terselesaikan oleh
-  reviewed: telah dilihat kembali
+  resolved_by: Diselesaikan oleh
+  resolved_by_user_on_date_html: Diselesaikan oleh %{user} pada %{date}
+  resolver_said_x_html: '<span class="meta">%{resolver} berkata, </span> "%{x}"'
+  restart: Mulai Ulang
+  restore: Pulihkan
+  restoring: Memulihkan…
+  review_all: Tinjau Semua
+  reviewed: Telah Ditinjau
+  revoke: Cabut
+  revoke_caps: CABUT
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
+  revoke_external_application: "Cabut %{site_name}?"
+  rg_observations: Pengamatan KR
   role: Peran
-  rotate_left: Putar kekiri
-  rotate_right: Putar ke kanan
+  rotate_left: Putar ke Kiri
+  rotate_right: Putar ke Kanan
   row_singular_or_plural: Baris
   rules_and_formatting: "Aturan & Format"
   rules_for_adding_observations: Aturan untuk Penambahan Pengamatan
   rules_for_becoming_a_member: Aturan untuk Menjadi Anggota
-  rules_for_becoming_memner: Aturan untuk Menjadi Angota
+  rules_for_becoming_memner: Aturan untuk Menjadi Anggota
   rules_types:
-    must_be_georeferenced: harus georeferensi
+    must_be_captive: harus peliharaan / dibudidayakan
+    must_be_georeferenced: harus diberi georeferensi
     must_be_identified: harus diidentifikasi
-    must_be_on_list: harus pada daftar
-    must_be_observed_in_place: harus diamati di dalam tempat
-    must_be_in: harus dalam takson
-    must_be_coordinates_shareable_by_project_curators: pengamat harus mengikuti kurator proyek untuk melihat koordinat.
+    must_be_on_list: harus termasuk di daftar
+    must_be_observed_in_place: harus diamati di dalam Tempat
+    must_be_in: harus di dalam takson
+    must_be_coordinates_shareable_by_project_curators: pengamat harus mengizinkan kurator proyek untuk melihat koordinat.
+  running_total: Total Akumulasi
   said: mengatakan
   satellite: satelit
   save: Simpan
-  save_all: Simpan semua
+  save_all: Simpan Semua
   save_and_add_another: Simpan dan tambahkan yang lain
   save_and_continue: "Simpan&amp; lanjutkan..."
   save_and_add_taxa: "Simpan dan mulai tambahkan spesies"
   save_changes: Simpan Perubahan
-  save_comment: Simpan komentar
-  save_draft: Simpan pesan sementara
-  save_fields: Simpan bidang
-  save_flag: Simpan tanda
-  save_guide_taxon: Simpan panduan takson
-  save_identification: Simpan identifikasi
-  save_observation: Simpan pengamatan
-  save_photos: Simpan foto
-  save_place: Simpan tempat
-  save_trip: Simpan perjalanan
+  save_comment: Simpan Komentar
+  save_draft: Simpan Draf
+  save_fields: Simpan Kolom
+  save_flag: Simpan Tanda
+  save_guide_taxon: Simpan Takson Panduan
+  save_identification: Simpan Identifikasi
+  save_observation: Simpan Pengamatan
+  save_photos: Simpan Foto
+  save_place: Simpan Tempat
+  save_settings_caps: SIMPAN PENGATURAN
+  save_trip: Simpan Perjalanan
+  saved: Tersimpan
+  saved_at_time: Disimpan pada %{time}
   saving: "Menyimpan..."
+  saving_num_of_count_observations:
+    other: Menyimpan %{num} dari %{count} pengamatan...
   saving_verb: Menyimpan
+  scale_colon: "Skala:"
   schemes: Skema
   schemes_including: Skema termasuk
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Nama Ilmiah
   search: Cari
-  search_all_fields: cari semua bidang
-  search_by_name_or_email: Cari dengan nama atau email
+  search_all_fields: cari semua kolom
+  search_by_name_or_email: Cari berdasarkan nama atau email
+  search_by_taxon_name_or_observation_id: Cari berdasarkan nama takson atau ID pengamatan
+  search_by_taxon_name_or_flickr_photo_id: Cari berdasarkan nama takson atau ID foto Flickr
   search_catalogue_of_life: 'Cari <a href="http://www.catalogueoflife.org">Katalog Kehidupan</a>'
-  search_catalogue_of_life_raquo: "Cari Katalog Kehidupan & raquo;"
+  search_catalogue_of_life_raquo: "Cari Katalog Kehidupan &raquo;"
   search_external_name_providers: Cari penyedia nama eksternal
-  search_for_species: Cari untuk spesies
-  search_list: Cari Daftar
-  search_projects: Cari proyek
-  search_results_for: Cari hasil untuk
-  search_remote: Cari remote
-  search_species: Cari spesies
-  search_the_map: Cari peta
-  search_this_taxon: Cari takson ini
-  search_ubio_raquo: "Cari uBio&raquo;"
+  search_for_a_location: Cari Sebuah Tempat
+  search_for_species: Cari untuk Spesies
+  search_list: Daftar Pencarian
+  search_observations: "Cari pengamatan"
+  search_projects: Cari Proyek
+  #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
+  search_reasons: Cari Alasan
+  search_results_for: Hasil Pencarian untuk
+  search_results_for_query: 'Hasil Pencarian untuk "%{query}"'
+  search_remote: Cari Jarak Jauh
+  search_species: Cari Spesies
+  search_species_: Cari Spesies...
+  search_the_map: Cari di peta
+  search_this_taxon: cari takson ini
+  search_ubio_raquo: "Cari uBio &raquo;"
   search_your_photos: Cari foto Anda
   searching: "Mencari..."
+  seasonality: Musim
   second_person_possessive_singular: "%{noun} Anda"
-  see_something_wrong_with_taxon: Lihat sesuatu yang salah pada takson ini? Persilahkan kurator mengetahuinya.
-  seen_one: Melihat satu?
+  see_something_wrong_with_taxon: Menemukan kesalahan pada takson ini? Beritahu kurator.
+  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  seek: Seek
+  seen_nearby: Dilihat Di Sekitar
+  seen_one: Anda melihatnya?
   select: Pilih
-  select_all: Pilih semua
-  select_one_or_more_photos: 'Pilih satu atau lebih foto'
-  select_none: Tidak pilih satupun
+  select_all: Pilih Semua
+  select_at_least_one: Pilih Minimal Satu
+  select_one_or_more_photos: 'Pilih Satu atau Lebih Foto'
+  select_none: Kosongkan Pilihan
+  select_observations_to_edit: Pilih Pengamatan untuk Diubah...
+  select_one_of_friends_albums: Pilih Salah Satu Album %{friend}
+  select_one_of_your_albums: Pilih Salah Satu Album Anda
   select_options: Opsi pilihan
   select_photos_from_your_photo_stream: |
-    Pilih foto dari situs berbagi foto eksternal untuk mengkonversi ke %{site_name} pengamatan. Kami akan mengisi tanggal, waktu, dan lokasi dari metadata foto ini, dan mencoba untuk mencari nama spesies dari tag.
-  selected: Dipilih
-  selected_photos: Foto dipilih
-  selected_taxon: Takson dipilih
+    Pilih foto dari situs berbagi foto eksternal untuk dikonversi menjadi pengamatan %{site_name}. Kami akan mengisikan tanggal, waktu, dan lokasi dari metadata foto ini, dan mencoba untuk mencari nama spesies dari labelnya.
+  selected: dipilih
+  selected_photos: Foto yang dipilih
+  selected_taxon: Takson Yang Dipilih
+  select_this_taxon: Pilih Takson Ini
   send: kirim
-  send_me_reset_password_instructions: Kirim Saya instruksi ubah kata sandi
+  send_me_reset_password_instructions: Kirim saya instruksi pengubahan kata sandi
   sending: Mengirim...
   #Label for messages you've sent
-  sent: Telah dikirim
-  set_a_place_if_this_link_only_applies_to: Atur tempat jika link ini hanya berlaku untuk taksa dari tempat tertentu. Biarkan kosong jika itu berlaku untuk semua taksa di seluruh dunia.
+  sent: Terkirim
+  separate_values_with_a_pipe: Pisahkan nilai-nilai menggunakan pipa, contohnya "1-5|6-10|banyak" atau "ya|tidak|mungkin"
+  set_a_place_if_this_link_only_applies_to: Atur tempat jika tautan ini hanya berlaku untuk taksa dari tempat tertentu. Biarkan kosong jika tautan ini berlaku untuk semua taksa di seluruh dunia.
   set_license: Atur lisensi
   settings: Pengaturan
-  short_code_for_this_place: Kode pendek untuk tempat ini, contoh US untuk United States
-  short_or_abbreviated_title_for_display: Judul singkat atau disingkat untuk ditampilkan di area ruang terbatas. Max 10 karakter.
+  share: Bagikan
+  share_colon: "Bagikan:"
+  short_code_for_this_place: Kode pendek untuk tempat ini, contohnya US untuk United States
+  short_or_abbreviated_title_for_display: Judul pendek atau singkatan untuk ditampilkan di area yang memiliki ruang terbatas. Maks 10 karakter.
   show: Tampilkan
   show_active_and_inactive_taxa: Tampilkan taksa aktif dan tidak aktif
-  show_off_your_recent_observations: Pamerkan pengamatan terbaru Anda di blog Anda sendiri atau website Anda!
+  show_common_names: Tampilkan nama umum
+  show_hidden_content: Tampilkan Konten Tersembunyi
+  show_keyboard_shortcuts: Tampilkan Pintasan Papan Tik
+  show_less: Tampilkan Lebih Sedikit
+  show_more: Tampilkan Lebih Banyak
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Tampilkan "Tanpa Catatan"
+  show_off_your_recent_observations: Pamerkan pengamatan terbaru Anda di blog Anda sendiri atau situs web Anda!
   show_only: Hanya tampilkan
+  show_relative_proportions_of_all_observations: Tampilkan proporsi relatif untuk semua pengamatan
+  #Label for a button to show the running total of an accumulation chart
+  show_running_total: Tunjukkan Total Akumulasi
+  show_scientific_name_first: Tunjukkan nama ilmiah dulu
   show_taxa_from_both: (tampilkan taksa dari kedua daftar)
   show_taxa_from_everywhere: "Tampilkan taksa dari manapun"
   show_taxa_from_place: "Tampilkan taksa dari %{place}"
-  showing_taxa_from_everywhere: "Tampilkan taksa dari manapun"
+  show_total_counts: Tampilkan total hitungan
+  show_uncountable_species: Tampilkan spesies yang tidak terhitung
+  #Text to indicate that the first X items in a list are being shown, but there
+  #could be more
+  showing_first_x: Tampilkan %{x} pertama
+  showing_taxa_from_everywhere: "Tampilkan taksa dari mana pun"
   showing_taxa_from_place: "Tampilkan taksa dari %{place}"
+  showing_x_of_y: Menampilkan %{x} dari %{y}
+  showing_x_of_y_listings: "Menampilkan %{x} dari %{y} daftar"
   sign_in: Masuk
   #Button to sign in to iNat with your Apple account
   sign_in_with_apple: Masuk dengan Apple
   sign_in_with_provider: "Masuk dengan %{provider}"
+  sign_in_with_google: Masuk dengan Google
   sign_out: Keluar
   sign_up: Daftar
-  similar_species: Spesies yang serupa
+  similar_species: Spesies Serupa
+  similar_taxa: Taksa Serupa
   #Journal post formatting option
   simple: Sederhana
   single_observation: Pengamatan tunggal
   sizes: Ukuran
+  skip_to_next_page: "Lewati ke halaman selanjutnya"
   small: kecil
-  site_name_place: "%{site_name} tempat"
-  site_observations_export_from_date: "%{site_name} pengamatan ekspor dari %{date}"
+  site_admin_tools: Peralatan pengelola situs
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Pengelola Situs
+  site_name_place: "tempat %{site_name}"
+  site_observations_export_from_date: "Ekspor pengamatan %{site_name} dari %{date}"
+  site_site_admin: "Pengelola Situs %{site_name}"
+  site_staff: "Staf %{site_name}"
   site_stats: Statistik Situs
-  site_taxon_page: "%{site_name} halaman takson"
+  site_taxon_page: "Halaman takson %{site_name}"
   some_agree: beberapa setuju
-  some_of_those_photos_couldnt_be_saved: "Beberapa dari foto ini tidak dapat disimpan: %{error}"
-  some_other_reason: Beberapa alasan lain yang Anda dapat jelaskan dibawah.
+  some_observations_are_missing_media_or_identifications: |
+    Beberapa pengamatan tidak memiliki media atau identifikasi
+  some_observations_are_missing_media_or_identifications_desc: |
+    Pengamatan tanpa media tidak akan terlihat di pencarian menurut pengaturan bawaan, dan
+    pengamatan tanpa identifikasi mungkin tidak terlihat oleh para ahli yang sedang mencari taksa spesifik. Bahkan identifikasi yang masih sangat kasar seperti "tanaman" dapat menolong ahli tanaman untuk menemukan pengamatanmu.
+  some_observations_failed_to_be_added: Beberapa pengamatan gagal ditambahkan ke proyek
+  some_observations_failed_to_save: Beberapa pengamatan gagal disimpan
+  some_of_those_photos_couldnt_be_saved: "Beberapa foto ini tidak dapat disimpan: %{error}"
+  some_other_reason: Beberapa alasan lain yang dapat Anda jelaskan di bawah.
+  duplicate_observation_flag_warning: |
+    Untuk pengamatan duplikat, sila tanyakan pengamat untuk membicarakan isu ini alih-alih membuat tanda, karena kurator situs tidak dapat menghapus pengamatan.
   some_rights_reserved: beberapa hak dilindungi
   something: Sesuatu
   something_: sesuatu
-  something_went_wrong_adding: Ada yang tidak beres dalam menambahkan spesies itu ke daftar anda
-  something_went_wrong_deleting_the_taxon_name: "Ada yang tidak beres dalam menghapus nama takson '%{taxon_name}'!"
-  somewhere_on_earth: suatu tempat di Bumi
-  somewhere: (Suatu tempat...)
-  sorry_flickr_isnt_responding_at_the_moment: "Maaf, Flickr tidak bereaksi pada saat ini."
-  sorry_how_about_we_try_repeat: "Maaf! Bagaimana kalau kita mencoba dan mengulangi pencarian di beberapa database lain dari nama-nama spesies? Jika kita menemukan sesuatu, kami akan memilikinya sehingga Anda dapat menemukannya waktu berikutnya."
-  sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Maaf, salah satu foto Flickr baik tidak ada atau Anda tidak memiliki izin untuk melihatnya."
-  sorry_that_photo_provider_isnt_responding: "Maaf, bahwa penyedia foto tidak merespons saat ini. Silakan coba lagi nanti."
-  sorry_that_service_is_not_responding: "Maaf, layanan yang tidak menanggapi. Silakan coba lagi nanti."
+  something_went_wrong_adding: Ada yang tidak beres saat menambahkan spesies itu ke daftar Anda
+  something_went_wrong_deleting_the_taxon_name: "Ada yang tidak beres saat menghapus nama takson '%{taxon_name}'!"
+  somewhere_on_earth: di suatu tempat di Bumi
+  somewhere: (Di suatu tempat...)
+  sorry_flickr_isnt_responding_at_the_moment: "Maaf, Flickr tidak merespons saat ini."
+  sorry_how_about_we_try_repeat: "Maaf! Bagaimana kalau kita coba dan ulangi pencarian di beberapa database lain yang berisi nama-nama spesies? Jika kami menemukan sesuatu, kami akan menyimpannya sehingga Anda dapat menemukannya nanti."
+  sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Maaf, salah satu foto Flickr memang tidak ada atau Anda tidak memiliki izin untuk melihatnya."
+  sorry_that_photo_provider_isnt_responding: "Maaf, penyedia foto itu tidak merespons saat ini. Silakan coba lagi nanti."
+  sorry_that_service_is_not_responding: "Maaf, layanan ini tidak merespons. Silakan coba lagi nanti."
   sorry_there_were_problems_with_your_request: "Maaf, ada masalah dengan permintaan Anda: %{project_user}"
   sorry_we_didnt_find_that_photo: "Maaf, kami tidak menemukan foto tersebut."
-  sorry_we_dont_have_any_metadata_for_that_photo: "Maaf, kami tidak memiliki metadata apapun atas foto yang yang dapat kita gunakan untuk mengatur properti pengamatan."
+  sorry_we_dont_have_any_metadata_for_that_photo: "Maaf, kami tidak memiliki metadata apapun untuk foto yang bisa kami gunakan untuk mengatur ciri-ciri pengamatan."
   sorry_x_is_not_responding: "Maaf, %{x} tidak menanggapi. Silakan coba lagi nanti."
   sorry_you_can_only_add_1000_at_a_time: "Maaf, Anda hanya dapat menambahkan 1000 pada saat ini."
-  sorry_you_need_to_be_signed_in_and: Maaf, Anda harus masuk dan memiliki akun Flickr terkait dengan posting tag langsung ke Flickr.
+  sorry_you_need_to_be_signed_in_and: Maaf, Anda harus masuk dan memiliki akun Flickr terkait untuk mengunggah tag langsung ke Flickr.
   sort: Urutkan
   sort_by: Urut berdasarkan
   sorting_by: Urut berdasarkan
-  soundcloud_needs_to_confirm: "SoundCloud perlu mengkonfirmasi bahwa Anda ingin akun Anda terhubung ke %{site_name}."
+  soundcloud_needs_to_confirm: "SoundCloud perlu konfirmasi Anda untuk menghubungkan akun Anda dengan %{site_name}."
   sounds:
     add_media: Tambahkan media
     add_sounds: Tambahkan suara
-    before_importing_sounds: sebelum memasukkan suara
-    import_from_soundcloud_description: "Pilih suara dari akun SoundCloud untuk diubah menjadi pengamatan iNaturalist. Kami akan mengisi tanggal dan waktu dari metadata suara, dan mencoba untuk mencari nama spesies dari tag."
-    import_from_sounds: Masukkan dari suara
-    import_sounds: Masukkan Suara
+    before_importing_sounds: sebelum mengimpor suara
+    import_from_soundcloud_description: "Pilih suara dari akun SoundCloud untuk diubah menjadi pengamatan iNaturalist. Kami akan mengisikan tanggal dan waktu dari metadata suara, dan mencoba untuk mencari nama spesies dari labelnya."
+    import_from_sounds: Impor dari suara
+    import_sounds: Impor Suara
     listen: Dengarkan
-    no_photos_sounds: Tidak ada foto dan suara
+    no_photos_sounds: Tidak ada foto atau suara
     photos_sounds: Foto / Suara
-    request_timed_out: Permintaan ke SoundCloud telah habis. Silakan coba lagi nanti.
+    request_timed_out: Waktu permintaan ke SoundCloud telah habis. Silakan coba lagi nanti.
     select_one_or_more_sounds: Pilih satu atau lebih suara
-    selected_sounds: Suara dipilih
+    selected_sounds: Suara terpilih
     sound: Suara
+    sound_has_been_flagged: Suara ini telah ditandai.
     soundcloud_replied_with_an_error: SoundCloud menjawab dengan kesalahan. Silakan coba lagi nanti.
     sounds: Suara
     your_soundcloud_account: Akun SoundCloud Anda
   source: Sumber
   source_: 'Sumber:'
+  source_wikipedia: "Sumber: Wikipedia"
+  source_list_: "Daftar Sumber"
   source_list:
-    catalogue_of_life: Katalog hidup
-    new_zeland_organisms_register: Daftar Organisme New Zealand
+    ubio: uBio
+    catalogue_of_life: Katalog Kehidupan
+    inaturalist: iNaturalist
+    new_zeland_organisms_register: Daftar Organisme Selandia Baru
     nzbrn_birds: Burung NZBRN
     nzbrn_fungi: Jamur NZBRN
     nzbrn_herpetofauna: Herpetofauna NZBRN
@@ -3899,191 +4038,405 @@ id:
     nzbrn_mammals: Mamalia NZBRN
     nzbrn_plants: Tanaman NZBRN
     nzbrn_other: NZBRN Lainnya
-    catalogue_of_life_2012_annual_checklist: 'Katalog kehidupan: 2012 Annual Checklist'
-    catalogue_of_life_2013_annual_checklist: 'Katalog kehidupan: 2013 Annual Checklist'
+    catalogue_of_life_2012_annual_checklist: 'Katalog Kehidupan: Daftar Centang Tahunan 2012'
+    catalogue_of_life_2013_annual_checklist: 'Katalog Kehidupan: Daftar Centang Tahunan 2013'
   source_eg:
-    title: 'COntoh: Ular: Evolusi Misteri di Alam'
+    title: 'Contoh: Ular: Evolusi Misteri di Alam'
     in_text: 'Contoh: Greene, 2000'
     url: 'Contoh: ''http://www.ucpress.edu/book.php?isbn=9780520224872'''
-    citation: 'Contoh: Greene, Harry W. Ular: Evolusi Misteri di Alam. 1st ed. University of California Press, 1997. Print.'
-  source_url: Sumber URL
+    citation: 'Contoh: Greene, Harry W. Ular: Evolusi Misteri di Alam. Edisi Pertama. University of California Press, 1997. Cetakan.'
+  source_url: URL Sumber
   source_of_coordinates: 'Sumber koordinat dan ukuran akurasi, diatur secara otomatis.'
+  sourced_to: Bersumber pada
   sources: Sumber
-  sources_youve_added: Sumber telah Anda tambahkan
+  sources_youve_added: Sumber yang Anda tambahkan
   sources_and_credits: Sumber dan Kredit
   sourcing: Sumber
+  spam: Spam
+  spammer: Pengirim Spam
   #Plural
   species: Spesies
+  species_by_category: spesies berdasarkan kategori
   species_from_around_the_world: Spesies dari seluruh dunia
-  species_guess: tamu spesial
+  species_guess: tebakan spesies
+  species_name_cap: Nama spesies
+  species_names: nama spesies
   species_search: Pencarian Spesies
-  species_taxon_name: Spesies / Nama Takson
+  species_taxon_name: Nama Spesies / Takson
   species_unknown: Spesies tidak diketahui
+  specify_the_reason_youre_flagging: Berikan alasan mengapa Anda menandai hal ini
   #Abbreviation for "source"
   src: Sumber
   standard: Standar
   start: Mulai
-  start_a_new_project: Mulai proyek baru
-  start_a_project: Mulai proyek baru
-  start_one: mulai satu
-  start_one_now: Mulai satu sekarang!
-  start_typing_field_name: Mulai ketik nama bagian...
-  start_typing_place_name: Mulai ketik nama tempat...
-  start_typing_taxon_name: Mulai ketik nama takson
-  start_typing_someones_name: "Mulai ketik nama seseorang..."
-  stats: Negara Bagian
-  still_no_luck?: masih belum beruntung?
-  still_needs_id?: Komunitas dapat konfirmasi/meningkatkan ID?
-  still_working_on_classifying_taxon: Masih bekerja pada mengklasifikasi takson ini. Periksa kembali nanti
-  stop_editing: Berhenti Editing
+  start_a_new_project: Mulai Proyek Baru
+  start_a_project: Mulai Sebuah Proyek
+  start_date_time: Tanggal / Waktu Mulai
+  start_one: Mulai Satu
+  start_one_now: Mulai Satu Sekarang!
+  start_typing_field_name: Mulailah mengetik nama kolom...
+  start_typing_place_name: Mulailah mengetik nama tempat...
+  start_typing_taxon_name: Mulailah mengetik nama takson...
+  start_typing_someones_name: "Mulailah mengetik nama seseorang..."
+  stats: Statistik
+  stats_for_this_year_have_not_been_generated: Statistik untuk tahun ini belum dihasilkan
+  status: Status
+  status_globally: '"%{status}" Secara Global'
+  status_in_place: '"%{status}" di %{place}'
+  stay_and_try_again: Tetap di sini dan coba lagi
+  still_no_luck?: Masih belum beruntung?
+  still_needs_id?: Komunitas dapat mengonfirmasi/meningkatkan ID?
+  still_working_on_classifying_taxon: Masih mengerjakan pengklasifikasian takson ini. Periksa kembali nanti
+  stop_editing: Berhenti Mengubah
   stop_following_user: "Berhenti mengikuti %{user}"
-  stuff_just_added: "Barang yang telah Anda tambahkan..."
+  stop_testing: Berhenti Menguji
+  stop_trusting_this_person_with_your_private_coordinates: Berhenti memercayakan orang ini dengan koordinat tersembunyi milik Anda
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: TOKO
+  studies_that_used_inaturalist_data_in_year: Penelitian Yang Menggunakan Data iNaturalist pada %{year}
+  stuff_just_added: "Barang yang baru saja Anda tambahkan..."
+  subject_resolved_noun_html: "%{subject} menyelesaikan %{noun}"
+  subject_affecting_stuff_html: "%{subject} yang memengaruhi %{stuff}"
   subject_committed_thing_affecting_stuff_html: "%{subject} mengubah %{thing} sehingga memengaruhi %{stuff}"
+  submission_model: Model Pengiriman
   submission_model_description: Siapa yang dapat menambahkan pengamatan ke proyek Anda?
-  submitted: dimasukkan
+  submit_observations:
+    other: Kirimkan %{count} pengamatan
+  submitted: Dikirimkan
+  subscribe_to_a_taxon: Berlangganan Takson
+  subscribe_to_a_place: Berlangganan Tempat
+  subscribe_to_comments_on_this_flag_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari tanda ini"
+  subscribe_to_comments_on_this_post_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari postingan ini"
+  subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari aktivasi takson ini"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari penukaran takson ini"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari penggabungan takson ini"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari pemisahan takson ini"
+  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari deaktivasi takson ini"
+  subscribe_to_observations_from_this_place_html: <a>Berlanggananlah</a> untuk pengamatan dari tempat ini
+  subscribe_to_observations_in_a_taxon: Ikuti semua postingan pengamatan spesies atau sekelompok organisme (contohnya 'kalajengking').
+  subscribe_to_observations_in_a_place: Ikuti semua pengamatan yang diunggah di tempat ini. Anda juga bisa menambahkan saringan takson opsional (contohnya 'kalajengking dari Texas').
   subscribe_to_places_to: |
     Berlanggananlah dengan tempat tertentu untuk menerima kabar terbaru tentang pengamatan-pengamatan baru yang dibuat di sana. Kabar dari orang yang Anda ikuti dan hal-hal yang sudah Anda komentari juga dikelola melalui langganan, jadi jika Anda ingin melihat apa yang Anda ikuti dan ingin berhenti berlangganan dari hal-hal tersebut, Anda bisa mengeklik "Kelola semua langganan Anda" di bawah ini. Anda juga dapat berhenti berlangganan dari apapun yang ada di situs dengan melihat halaman itu.
   subscribe_to_this: Berlangganan pada ini
+  subscribe_to_x_from_this_y_html: |
+    <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Berlangganan</a> pada %{x} dari %{y} ini.
   subscriptions: Langganan
   subscriptions_arent_available_for: Langganan tidak tersedia untuk tempat tanpa batas.
   successfully_changed_your_password: Berhasil mengubah sandi Anda.
-  suggest_an_identification: sarankan identifikasi
+  suggest_an_identification: Berikan Usulan Identifikasi
   suggest_or_require_that: Sarankan atau haruskan kontributor mengisi kolom ini untuk pengamatan yang mereka tambahkan untuk proyek Anda.
+  suggestions: Rekomendasi
+  suitable_for_the_global_biodiversity_information_facility: Cocok untuk Global Biodiversity Information Facility
+  suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Cocok untuk Wikipedia dan proyek Wikimedia Foundation lainnya
   summary: Ringkasan
-  suspend_user: menangguhkan pengguna
-  sync_obs_with_photo_metadata: "Sync pengamatan dengan metadata foto?"
+  supporting: Pendukung
+  support_inaturalist: Dukung iNaturalist
+  suspend_user: Tangguhkan pengguna
+  sw_lat: Lin. SB
+  sw_lon: Buj. SB
+  sync: Sinkronkan?
+  sync_obs_with_photo_metadata: "Sinkronisasi pengamatan dengan metadata foto?"
   synonyms: Sinonim
   table: Tabel
   table_of_contents: Daftar isi
+  #Noun, as in "add a tag to this observation"
+  tag: label
   tagging: 'Menandai...'
-  tags: Tanda
-  tags_are_a_way: 'Tanda adalah cara untuk mengatur pengamatan Anda. Misalnya, Anda dapat memberikan tanda semua tidepool pengamatan Anda "tidepools" untuk membuat mereka lebih mudah kemudian untuk menemukannya.'
+  tags: Label
+  tags_are_a_way: 'Label adalah suatu cara untuk mengatur pengamatan Anda. Misalnya, Anda dapat memberikan tanda kepada semua pengamatan kolam air pasang Anda "kolam air pasang" supaya lebih mudah untuk ditemukan nanti.'
   take_me_facebook: Ya, bawa saya ke Facebook!
   take_me_flickr!: Ya, bawa saya ke Flickr!
+  target_list_alert: Apakah Anda yakin bahwa Anda telah mencoba untuk mengamati semua spesies yang dicakup dalam daftar target Anda? Ingat bahwa apapun yang dicakup dalam daftar target Anda yang tidak Anda amati akan ditafsirkan sebagai ketidakberadaan, jadi daftar target Anda seharusnya merefleksikan secara akurat kelompok spesies yang Anda coba temukan
+  target_list_warning: Ingat bahwa semua yang dicakup daftar target Anda yang tidak Anda amati dalam radius dan waktu perjalanan ini akan ditafsirkan sebagai ketidakberadaan. Daftar target Anda seharusnya merefleksikan secara akurat kelompok spesies yang Anda coba temukan. Jika Anda belum mencoba untuk menemukan suatu spesies dalam daftar target Anda atau semua spesies yang dicakup dalam suatu kelompok di daftar target Anda, harap menghapusnya.
+  task_deleted: Tugas dihapus
   taxa: Taksa
+  taxa_with_unknown_relationships: Taksa dengan relasi yang tidak diketahui
   taxa_info: Info Taksa
-  taxa_needing_curation: Taksa membutuhkan Kurasi
-  taxa_observed: taksa diamati
+  taxa_needing_curation: Taksa Yang Membutuhkan Kurasi
+  taxa_observed: taksa yang diamati
   taxa_to_include: Taksa untuk dimasukkan
   taxon: Takson
+  taxon_autocomplete_placeholder: Burung, kupu-kupu raja, dll.
+  taxon_geoprivacy: Geoprivasi Takson
+  taxon_is_a_rank: "%{taxon} adalah suatu %{rank}"
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} dalam %{iconic_taxon} dengan %{count} pengamatan"
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} amfibi dengan %{count} pengamatan"
+  taxon_is_a_rank_of_aves_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} burung dengan %{count} pengamatan"
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} mamalia dengan %{count} pengamatan"
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} reptil dengan %{count} pengamatan"
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} tanaman dengan %{count} pengamatan"
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} ikan bersirip kipas dengan %{count} pengamatan"
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} hewan dengan %{count} pengamatan"
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} serangga dengan %{count} pengamatan"
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} arachnida dengan %{count} pengamatan"
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} jamur dengan %{count} pengamatan"
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} protozoa dengan %{count} pengamatan"
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} moluska dengan %{count} pengamatan"
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    other: "%{taxon} adalah suatu %{rank} dalam Chromista (alga cokelat dan sekutunya) dengan %{count} pengamatan"
+  taxon_is_kingdom_of_life_with_x_observations:
+    other: "%{taxon} merupakan kerajaan dari kehidupan dengan %{count} pengamatan"
+  taxon_is_threatened_coordinates_hidden: Takson ini terancam, koordinatnya disembunyikan sesuai pengaturan sistem
+  taxon_is_threatened_coordinates_hidden_desc: |
+    Salah satu taksa yang disarankan di identifikasi, atau salah satu taksa yang mengandung taksa ini, memiliki status langka dan/atau terancam, sehingga lokasi pengamatan ini disembunyikan.
+  taxon_is_threatened_coordinates_obscured: Takson terancam, koordinatnya dikaburkan sesuai pengaturan sistem
+  taxon_is_threatened_coordinates_obscured_desc: |
+    Salah satu taksa yang disarankan di identifikasi, atau salah satu taksa yang mengandung taksa ini, memiliki status langka dan/atau terancam, sehingga lokasi pengamatan ini dikaburkan.
+  taxonomy: Taksonomi
   taxon_assessments_are: |
-    penilaian takson adalah dokumen menilai status spesies, biasanya status konservasi.
-    Sebagai contoh, sebuah organisasi konservasi daerah dapat menggunakannya untuk mengatur informasi dan mengumpulkan umpan balik tentang status beberapa taksa yang terancam di wilayah tersebut.
+    Penilaian takson adalah dokumen yang menilai status spesies saat ini, biasanya status konservasi.
+    Sebagai contoh, sebuah organisasi konservasi daerah dapat menggunakannya untuk mengatur informasi dan mengumpulkan umpan balik tentang status dari beberapa taksa yang terancam di wilayah tersebut.
+  taxon_change_must_be_committed_to_update_records: Perubahan takson harus diterapkan untuk memperbarui catatan
   taxon_deleted: Takson dihapus
-  taxon_doesnt_have_a_range: Takson tidka memiliki rentang
-  taxon_drop: takson jatuh
-  taxon_id: ID takson
-  taxon_ids: ID takson
+  taxon_doesnt_have_a_range: Takson tidak memiliki jangkauan
+  taxon_drop: deaktivasi takson
+  taxon_id: ID Takson
+  taxon_ids: ID Takson
   taxon_map:
-    gbif_occurrences: Kemunculan GBIF
-    it_may_take_google_a_while_to: Mungkin diperlukan Google beberapa saat untuk memuat data ini, dengan asumsi GBIF memiliki apapun.
+    gbif_occurrences: Keberadaan GBIF
+    it_may_take_google_a_while_to: Google mungkin memerlukan beberapa saat untuk memuat data ini, dengan asumsi GBIF memiliki sesuatu.
+    data_url: URL Data
     overlays: Hamparan
-  taxon_merge: gabungan takson
+  taxon_changes: Perubahan Takson
+  taxon_colors: Warna Takson
+  taxon_curators: Kurator Takson
+  taxon_framework_complete: "Lengkap: benar"
+  taxon_framework_deviations_with_count_html: "Deviasi: %{count}"
+  taxon_framework_relationships_with_count_html: "Relasi Framework Takson: %{count}"
+  #Count of taxa covered by the Taxon Framework that have been flagged
+  taxon_framework_flagged_covered_taxa_count_html: "Taksa yang ditandai: %{count}"
+  taxon_framework_notes: Catatan Framework Takson
+  taxon_framework_relationship: Hubungan Framework Takson
+  taxon_framework_relationship_number: "Hubungan Framework Takson %{number}"
+  taxon_framework_relationship_unknown_count_html: "Jumlah relasi tidak diketahui: %{count}"
+  taxon_framework_relationships: Relasi Framework Takson
+  taxon_framework_taxon: Takson Framework Takson
+  taxon_merge: Penggabungan Takson
   taxon_name: Nama takson
+  taxon_name_must_match_an_existing_taxon_in_our_database: Nama takson harus cocok dengan takson yang sudah ada di database kami
+  taxon_observed_by_html: |
+    <a href="%{url}">%{taxon}</a> diamati oleh
+  taxon_observed_by_user: "%{taxon} diamati oleh %{user}"
   taxon_photos_updated: Foto takson diperbarui!
-  taxon_range: Jarak takson
+  taxon_range: Jangkauan takson
+  taxon_range_created_notice: Jangkauan takson sukses dibuat. Harap menunggu beberapa menit hingga jangkauannya muncul di peta.
+  taxon_range_updated_notice: Jangkauan takson sukses diperbarui. Harap menunggu beberapa menit hingga jangkauannya muncul di peta.
+  taxon_ranks: Tingkat Takson
   taxon_removed_from_list: Takson dihapus dari daftar.
   taxon_scheme: Skema takson
+  taxon_schemes: "Skema Takson"
   taxon_search: Pencarian Takson
   taxon_search_results_for: Hasil Pencarian Takson untuk
   taxon_split: pemisahan takson
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
-  taxon_stage: tahap takson
-  taxon_swap: tukar takson
-  taxon_swap_only_has_one_input: hanya satu masukan diperbolehkan untuk ditukar
-  taxon_swap_has_inputs_and_outputs: pertukaran harus memiliki kedua input dan output
+  taxon_stage: aktivasi takson
+  taxon_swap: penukaran takson
+  taxon_swap_only_has_one_input: hanya satu masukan diperbolehkan untuk penukaran
+  taxon_swap_has_inputs_and_outputs: penukaran harus memiliki input dan output
   taxon_name_was_deleted: Nama takson telah dihapus.
-  taxon_name_was_successfully_updated: nama takson telah berhasil diperbarui.
-  taxon_was_successfully_created: Takson telah berhasil dibuat.
-  taxon_was_successfully_updated: Takson telah berhasil diperbarui.
-  taxonomic: Taksonomi
-  taxonomic_changes: Perubahan Taksonomi
+  taxon_name_was_successfully_updated: Nama takson berhasil diperbarui.
+  taxon_was_successfully_created: Takson berhasil dibuat.
+  taxon_was_successfully_updated: Takson berhasil diperbarui.
+  taxonomic: Taksonomik
+  taxonomic_changes: Perubahan Taksonomik
   taxonomic_groups: Grup Taksonomi
-  taxonomic_order: Pesan Taksonomi
-  taxonomic_status: Status Taksonomi
-  taxonomic_tags_for_flickr: Tanda Taksonomi untuk Flickr
+  taxonomic_order: Urutan Taksonomi
+  taxonomic_status: Status taksonomi
+  taxonomic_tags_for_flickr: Tag Taksonomi untuk Flickr
+  taxonomy_details: Detail Taksonomi
+  taxonomy_details_for: Detail taksonomi untuk
+  taxonomy_details_info: 'Halaman Detail Taksonomi memakai Framework Takson untuk membantu menjelaskan apa yang kami maksud dengan sebuah takson. <a href="/pages/taxon_frameworks">Baca lebih banyak</a>.'
+  taxonomy_settings: Pengaturan Taksonomi
   teachers_guide: Panduan Guru
-  tell_everyone_a_little_about_you: Beritahu semua orang sedikit mengenai diri Anda
-  tell_the_world_a_little_about_yourself: Ceritakan tentang diri Anda
+  tell_everyone_a_little_about_you: Beritahu orang sesuatu mengenai diri Anda
+  tell_the_world_a_little_about_yourself: Ceritakan tentang diri Anda kepada kami
+  tell_us_why: Ceritakan mengapa...
   terms: Ketentuan
   terms_and_rules_html: "Ketentuan &amp; Aturan"
-  terms_new_users: "Jika Anda menambahkan terms, pengguna baru harus setuju pada mereka sebelum bergabung pada proyek ini."
-  terms_service: Ketentuan layanan
-  terrain: daerah
-  that_photo_doesnt_exist: foto tersebut tidak ada.
-  that_observation_doesnt_exist: Pengamatan tersebut tidak ada
+  terms_new_users: "Jika Anda menambahkan ketentuan, pengguna baru harus menyetujuinya sebelum bergabung pada proyek ini."
+  terms_service: Ketentuan Layanan
+  terrain: medan
+  text: Teks
+  #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
+  text_block_controls: Kontrol blok teks
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Kontrol format teks
+  text_editing_controls: Kontrol penyuntingan teks
+  thanks!: Terima kasih!
+  thanks_from_all_of_us_here_at: Terima kasih dari kami semua di
+  that_photo_doesnt_exist: Foto tersebut tidak ada.
+  that_observation_doesnt_exist: Pengamatan tersebut tidak ada.
   that_observation_doesnt_have_any_photos: "Pengamatan tersebut tidak memiliki foto apapun."
-  that_observation_hasnt_been_added_this_project: Pengamatan tersebut belum ditambahkan proyek ini.
-  that_observation_no_longer_exists: Pengamatan tersebut tidak lagi ada.
+  that_observation_hasnt_been_added_this_project: Pengamatan tersebut belum ditambahkan ke proyek ini.
+  that_observation_no_longer_exists: Pengamatan tersebut sudah tidak ada.
   that_project_doesnt_exist: "Proyek tersebut tidak ada."
   that_role_doesnt_exist: Peran tersebut tidak ada.
-  thats_not_a_real_date: Itu bukan tanggal yang benar!
+  that_was_the_last_observation_matching_the_current_filters: Itu adalah pengamatan terakhir yang cocok dengan saringan ini.
+  thats_not_a_real_date: Itu tanggal yang tidak ada!
   the_admin_is_the_person_who: |
-    Admin adalah orang yang menciptakan proyek. Mereka dapat melakukan segala sesuatu yang manajer dan kurator dapat melakukan, serta menghapus proyek.
-  the_following_observations_could: "Pengamatan berikut tidak akan ditambahkan ke %{link}"
-  the_following_photos_have_been_tagged: "Foto-foto berikut ini telah ditandai:"
-  the_observation_was_already_added_to_that_project: Pengamatan sudah ditambahkan ke proyek.
-  the_people_of_inat: "Orang pada %{site_name}"
+    Pengelola adalah orang yang menciptakan proyek. Mereka dapat melakukan segala sesuatu yang manajer dan kurator dapat lakukan, serta menghapus proyek.
+  the_below_items_are_needed_to_achieve: |
+    Barang-barang di bawah ini perlu mencapai <span className="bold">Kelas Riset:</span>
+  the_community_id_requires_at_least_two_identifications: ID Komunitas memerlukan setidaknya dua identifikasi.
+  the_community_must_feel_that: |
+    Komunitas harus merasa bahwa Takson Komunitasnya sudah merupakan yang terbaik berdasarkan bukti yang ada
+  the_following_observations_could: "Pengamatan berikut tidak bisa ditambahkan ke %{link}"
+  the_following_photos_have_been_tagged: "Foto-foto berikut ini telah dilabeli:"
+  the_identotron_is_a_tool_to: |
+    Identotron adalah sebuah alat untuk membantu Anda mengidentifikasi pengamatan berdasarkan data daftar centang %{site_name}. Jika diberikan tingkat takson yang lebih tinggi serta sebuah tempat (contohnya mamalia di India), %{site_name} akan mencari entri daftar centang yang sesuai dengan takson di tempat tersebut, seperti panduan kolom yang dinamis untuk seluruh planet. Kebanyakan daftar centang masih dalam perkembangan, tetapi, jika ada yang komprehensif, yaitu daftar yang berisi <em>semua</em> perwakilan taksonnya di suatu tempat, Identotron akan memberitahu.
+  the_name_of_the_taxon_including_space: Nama takson, termasuk tempat untuk spesies dan infraspesies.
+  the_observation_was_already_added_to_that_project: Pengamatan sudah ditambahkan ke proyek tersebut.
+  the_people_of_inat: "Orang-orang di %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
-    Spesies tercantum di bawah ini tidak ditemukan di %{site_name} basis data.
+    Spesies yang tercantum di bawah ini tidak ditemukan di database %{site_name}.
+  the_title_of_the_wikipedia_article_we_use: |
+    Judul artikel Wikipedia yang kami gunakan untuk penjelasan. Jika URL Wikipedia adalah <code>http://en.wikipedia.org/wiki/Bird</code>, maka nilainya seharusnya <code>Bird</code>. Jika dibiarkan kosong, nama ilmiah dari takson ini akan digunakan (biasanya berhasil).
   the_user_x_has_been_suspended: "Pengguna %{user} telah ditangguhkan"
   the_user_x_has_been_unsuspended: "Pengguna %{user} telah dibatalkan penangguhannya"
   the_world: Dunia
+  the_world_is_full_of_interesting_places: |
+    Dunia penuh dengan tempat-tempat yang menarik, setiap tempat berisi bentuk kehidupan yang aneh dan menakjubkan, sedangkan yang lainnya ada di dekat kita! Tempat %{site_name} mengizinkan Anda melihat-lihat kehidupan di sekitar planet ini. Mulailah menjelajah!
+  then_keybord_sequence: lalu
+  there_are_x_synonyms_html:
+    other: "Ada <span class='count'>%{count}</span> sinonim</span>"
   there_is_no_wikipedia_page_matching: Tidak ada halaman Wikipedia yang cocok
+  there_isnt_a_wikipedia_article_titled_x_html: |
+    Tidak ada artikel Wikipedia atau pengalihan yang berjudul '%{x}'. Mungkin Anda ingin <a href='http://en.wikipedia.org/wiki/%{x}'>membuatnya</a>?
   there_merge_problems_with_the_merge: "Ada masalah penggabungan dengan gabungan: %{merged_errors}"
-  there_was_a_problem_saving_your_identification: "Ada masalah dalam menyimpan identifikasi Anda: %{error}"
-  there_were_problems_adding_taxa: "Ada kesalahan dalam menambahkan taksa tersebut %{errors}"
-  there_were_problems_adding_that_observation_to_this_project: "Ada masalah dalam menambahkan pengamatan ke proyek ini:"
-  there_were_problems_importing_that_place: "Ada masalah penting pada tempat ini: %{place_error}"
-  there_were_some_problems_saving_this_observation: Ada beberapa kesalahan dalam menyimpan pengamatan ini
-  there_were_some_problems_saving_those_colors: "Ada beberapa kesalahan dalam menyimpan warna ini: %{error}"
-  there_were_some_problems_with_fields: "Ada beberapa masalah dengan bidang-bidang berikut:"
+  there_was_a_problem_creating_this_account: |
+    Ada masalah saat membuat akun ini. Silakan menghubungi kami jika isu ini tetap ada
+  there_was_a_problem_saving_your_identification: "Ada masalah saat menyimpan identifikasi Anda: %{error}"
+  there_were_problems_adding_taxa: "Ada masalah saat menambahkan taksa tersebut: %{errors}"
+  there_were_problems_adding_that_observation_to_this_project: "Ada masalah dalam menambahkan pengamatan itu ke proyek ini: "
+  there_were_problems_importing_that_place: "Ada masalah saat mengimpor tempat itu: %{place_error}"
+  there_were_problems_importing_that_place_geometry: |
+    Ada masalah saat mengimpor geometri tempat itu: %{error}
+  there_were_some_problems_saving_this_observation: Ada beberapa kesalahan saat menyimpan pengamatan ini
+  there_were_some_problems_saving_those_colors: "Ada beberapa kesalahan saat menyimpan warna itu: %{error}"
+  there_were_some_problems_with_fields: "Ada beberapa masalah dengan kolom-kolom berikut:"
+  there_were_some_problems_with_these_files: "Ada beberapa masalah dengan file-file ini:"
+  theres_something_wrong_with_taxon_framework_relationship: Ada masalah di sini - kami tidak bisa menentukan relasi antara taksa internal dan eksternal apapun
   these_are_items_people_on: |
-    Ini adalah barang orang yang pada situs telah ditandai untuk kurasi. Komentar spam harus dihapus dan pengguna yang menambahkan spam yang harus ditunda (pergi ke halaman profil mereka dan klik "Suspend pengguna" di kanan bawah untuk mencegah mereka dari log in). Barang yang telah ditandai lain hanya harus dihapus jika mereka secara jelas memiliki kebencian, ilegal, dll. Kekasaran, bahasa yang kasar, dll, harus ditangani dengan komentar yang sopan. Pelanggar yang kembali mengulanginya harus melaporkan ke admin situs atau
+    Ini adalah barang yang orang-orang di situs ini telah tandai untuk kurasi. Komentar spam harus dihapus dan pengguna yang menambahkan spam akan ditangguhkan (pergi 
+    ke halaman profil mereka dan klik "Tangguhkan pengguna" di kanan bawah untuk mencegah mereka masuk). Barang-barang lain yang telah ditandai harus dihapus 
+    hanya jika mereka secara jelas mengandung kebencian, hal-hal ilegal, dll. Ketidaksopanan, bahasa yang kasar, dll. harus ditangani dengan komentar yang sopan. 
+    Pelanggar yang mengulanginya harus melapor ke pengelola situs atau %{email}
+  these_are_taxa_that: |
+    Berikut adalah taksa yang tidak dapat ditambahkan secara otomatis oleh %{site} ke dalam pohon taksonomi untuk suatu alasan tertentu. Anda dapat menambahkannya ke pohon dengan mengubah takson dan memilih sebuah catatan induk. Contohnya, induk dari Homo sapiens adalah
+    genus Homo. Anda mungkin ingin memeriksa taksa sinonimnya dan
+    menyatukan mereka.
   these_folks_kindly_volunteer_to: Orang-orang ini relawan yang baik  untuk mempertahankan taksonomi dan menangani isu-isu lainnya.
-  this: Ini
-  this_is_more_convenient_way_find_parent: Ini adalah cara yang lebih mudah untuk menemukan ID induk. Ini adalah ID induk yang benar-benar akan disimpan.
+  these_observations_have_not_been_uploaded_yet: |
+    Pengamatan ini belum diunggah.
+  third_party_tracking: Pelacakan Pihak Ketiga
+  third_person_possessive_singular: "%{noun} %{object_phrase}"
+  this: ini
+  this_bioblitz_beings_in: Bioblitz ini dimulai dalam
+  this_is_more_convenient_way_find_parent: Ini adalah cara yang lebih mudah untuk menemukan ID induk. Ini adalah ID induk yang benar-benar disimpan.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
-    Ini adalah cara yang lebih mudah untuk menemukan ID takson. Ini adalah ID takson yang benar-benar akan disimpan. Pencarian ini hanya bekerja untuk taksa aktif.
-  this_is_taking_forever: Ini akan mengambil selamanya. Silakan coba lagi nanti.
+    Ini adalah cara yang lebih mudah untuk menemukan ID takson. Ini adalah ID takson yang benar-benar disimpan. Pencarian ini hanya bekerja untuk taksa aktif.
+  this_is_how_taxon_names_will_be_displayed: Ini adalah cara semua nama takson akan ditampilkan kepadamu di %{site_name}
+  this_is_taking_forever: Ini membutuhkan waktu selamanya. Silakan coba lagi nanti.
   this_is_the_primary_listing: Ini adalah daftar utama
+  this_is_your_observation: Ini adalah pengamatanmu
+  this_is_your_observation_desc: Kamu selalu bisa melihat koordinat pengamatanmu sendiri.
   this_job_failed_to_run: Pekerjaan ini gagal. Silakan kontak %{email}
-  this_list_is_empty!: Ini daftar kosong!
+  this_list_is_empty!: Daftar ini kosong!
+  this_list_only_accepts_taxa_that_are_species: Daftar ini hanya menerima taksa berupa spesies
+  this_list_only_accepts_taxa_that_are_species_or_lower: Daftar ini hanya menerima taksa berupa spesies atau di bawahnya
+  this_observation: Pengamatan ini
+  this_observation_is_featured_on_x_sites:
+    other: Pengamatan ini ditampilkan secara istimewa di %{count} situs
+  this_observation_is_research_grade: Pengamatan ini Kelas Riset!
+  this_observation_was_created_using: "Pengamatan ini dibuat menggunakan:"
   this_photo_is_already_associated: Foto ini sudah dikaitkan dengan salah satu pengamatan Anda.
-  this_place_has_no_check_list: "Tempat ini tidak memiliki checklist, sehingga tidak ada panduan."
-  this_taxon_concept_is_inactive: Konsep takson ini tidak aktif
+  this_place_has_no_check_list: "Tempat ini tidak memiliki daftar centang."
+  this_taxon_change_has_been_commited: |
+    <strong>Perubahan takson ini telah diterapkan!</strong>
+    Jangan ubah taksanya. Mengubah kolom lainnya diperbolehkan.
+  this_taxon_concept_is_inactive: konsep takson ini tidak aktif
+  this_taxon_has_more_than_1000: Takson ini memiliki lebih dari 1000 pengamatan hilir. Mengubahnya dapat memerlukan beberapa waktu untuk diproses, apakah Anda yakin hal ini diperlukan?
   this_taxon_has_no_default_photo: Takson ini tidak memiliki foto default!
+  this_taxon_is_inactive_this_means: |
+    Takson ini <strong>tidak aktif</strong>. Ini berarti kurator %{site_name} telah menggantinya dengan konsep taksonomi yang lebih baru.
   this_taxon_name_was_originally_imported: "Nama takson ini awalnya diimpor dari penyedia nama eksternal:"
   this_taxon_was_originally_imported_from: "Takson ini awalnya diimpor dari penyedia nama eksternal:"
+  this_user_has_been_suspended: Pengguna ini telah ditangguhkan
+  this_user_has_been_suspended_message: |
+    Jika ini adalah akunmu dan kamu pikir ini adalah kesalahan, silakan <a href="mailto:%{email}">kontak kami</a>.
   this_will_add_listed_taxa: Hal ini akan menambah taksa terdaftar dari pengamatan. Ini mungkin memakan waktu sebentar jadi silakan gunakan dengan hemat dan pada daftar checklist
   this_will_refresh_listed_taxa: Ini akan memperbarui taksa pada daftar. Ini mungkin memakan waktu sebentar jadi silakan gunakan dengan hemat dan pada daftar checklist
-  this_will_try_to_add_tags_to_your_flickr: Ini akan mencoba untuk menambahkan tag ke foto Flickr Anda. Lanjutkan?
-  those_observations_no_longer_exist: Pengamatan tersebut tidak lagi ada.
-  threatened: terancam
-  time_: Waktu
+  this_will_remove_inaturalists_ability_to_access_this_account: |
+    Ini akan menghapus kemampuan iNaturalist untuk mengakses akun ini untukmu
+    hingga kamu memberikan akses kembali. Kamu mungkin perlu untuk mengubah pengaturan
+    di situs eksternal untuk memblokir akses sepenuhnya.
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
+  this_will_sign_you_out_current_session: Hal ini akan mengeluarkanmu dari sesimu saat ini dengan aplikasi ini.
+  this_will_try_to_add_tags_to_your_flickr: Hal ini akan mencoba menambahkan tag ke foto Flickr Anda. Lanjutkan?
+  this_year: Tahun Ini
+  those_observations_no_longer_exist: Pengamatan-pengamatan itu sudah tidak ada lagi.
+  threatened: Terancam
+  time_: waktu
   time_ago: "%{time} yang lalu"
   #As in the title of a book or a blog post
   title: judul
   title_and_description: "Judul & Deskripsi"
   to_add_comments: untuk menambahkan komen
   to_add_ids: untuk menambahkan ID
-  to_configure_your_widget: untuk mengkonfigurasi widget Anda.
+  to_configure_your_widget: untuk mengatur widget Anda.
   to_recipient: untuk
   today: Hari ini
+  too_many_results: Terlalu Banyak Hasil
+  too_many_taxa_to_render: |
+    Permintaan ini mengembalikan terlalu banyak taksa untuk ditampilkan dalam satu waktu. Coba tambahkan lebih banyak saringan
   tools: Peralatan
-  top_contributors: Top kontributor
+  top_contributors: Kontributor terbanyak
+  top_identifier_caps: PENGIDENTIFIKASI TERBANYAK
+  top_identifiers: Pengidentifikasi Terbanyak
+  top_identifiers_of_taxon: Pengidentfikasi Terbanyak dari %{taxon}
+  top_observer_caps: PENGAMAT TERBANYAK
+  top_observers: Pengamat Terbanyak
   tos_privacy_guidelines_label: |
     Saya menyetujui <a href="/terms" target="_blank">Syarat dan Ketentuan Layanan</a> dan <a href="/privacy" target="_blank">Kebijakan Privasi</a>, dan saya telah membaca <a href="https://www.inaturalist.org/pages/community+guidelines">Pedoman Komunitas</a>.
-  total: 'total:'
-  totals: total
+  total: Total
+  totals: Total
   total_members: Total anggota
   total_observations: Total pengamatan
-  total_unique_observers: Total pengamatan yang unik
+  total_observations_caps: TOTAL PENGAMATAN
+  total_species_observed_caps: TOTAL SPESIES YANG DIAMATI
+  total_unique_observers: Total pengamat yang unik
+  translated_languages: Bahasa Yang Diterjemahkan
   'true': 'Benar'
+  trending: Sedang Populer
+  trends: Tren
+  trip_target_list_info: 'Spesies apapun yang dicakup dalam daftar target ini yang tidak diamati dalam radius dan waktu perjalanan ini akan ditafsirkan sebagai ketidakberadaan. <a href="/pages/trips">Baca lebih banyak</a>.'
+  #Noun
+  trust: Percayakan
+  trusted: Dipercaya
   trusted_project?: Proyek terpercaya?
-  try_adding_species_form: Mencoba menambahkan beberapa spesies menggunakan form pada halaman ini.
+  trust_this_person_with_your_private_coordinates: Percayakan orang ini dengan koordinat tersembunyi Anda
+  trust_this_project_with_your_private_coordinates?: Percayakan proyek ini dengan koordinat tersembunyi?
+  trust_with_private_coordinates: Percayakan dengan koordinat tersembunyi
+  try_adding_species_form: Coba tambahkan beberapa spesies menggunakan formulir pada halaman ini.
+  twitter: Twitter
+  two_thirds: 2/3
   #As in a category, not as in a keyboard
-  type: Tipe
+  type: Jenis
   type_authority: Ketik kewenangan...
   type_one_name_per_line: Ketik satu nama per garis
   type_place_name: Ketik nama tempat
@@ -4091,157 +4444,415 @@ id:
   type_source_title: "Ketik judul sumber"
   type_species_name: "Ketik nama spesies"
   type_taxon_name: "Ketik nama takson"
-  uicn_red_list_status: "Status Daftar Merah IUCN"
-  unclassified: Tidak dikelaskan
-  ungrafted_taxa: Taksa tidak dicabangkan
-  uninvite: tidak diundang
-  unique_identifier_of_this_taxon: Pengidentifikasi yang unik pada takson dalam sumber database.
-  unique_observers: Pengamat unik
+  uicn_red_list_status: "Status Daftar Merah IUCN:"
+  umbrella_projects: Proyek Payung
+  unblock: Cabut Blokiran
+  unclassified: Tidak diklasifikasi
+  ungrafted_taxa: Taksa Yang Tidak Dicangkok
+  unhide_content: Tampilkan Konten
+  unhide_desc: |
+    Menampilkan kembali akan menyingkapkan konten ini sehingga dapat dilihat oleh semua orang. Kurator masih bisa memilih untuk menyembunyikannya lagi di kemudian hari.
+  uninvite: batal undang
+  unique_identifier_of_this_taxon: Pengidentifikasi unik dari takson ini dalam database sumber.
+  unique_observers: pengamat unik
   unknown: Tidak diketahui
-  unknown_rank: '(Peringkat Tidak diketahui)'
+  unknown_error: Eror tidak diketahui
+  unknown_rank: '(Peringkat Tidak Diketahui)'
+  unfollow: Berhenti Ikuti
+  unlink_your_google_account: Putuskan Akun Google Anda
+  unlink_your_flickr_account: "Putuskan Akun Flickr Anda"
   unmute: Bunyikan
+  updates_notification_email_subject: "%{prefix} Kabar baru %{date}"
   updates_suspension_email_subject: "%{prefix} Langgananmu tertahan"
   updating: Memperbarui...
-  unprocessable: Tidak diproses
-  unpublish: Tidak dipublis
+  unprocessable: Tidak dapat diproses
+  unpublish: Batal Terbitkan
+  #Undo the action of resolving a flag
+  unresolve: Batal Selesaikan
+  unreview_all: Batal Tinjau Semua
   unsubscribe: Berhenti berlangganan
-  unsuspend_user: menangguhkan pengguna
-  upcoming_bioblitzes: Bioblitzes yang akan datang
+  unsubscribe_from_emails_like_this: Berhenti mendapatkan email seperti ini
+  unsuspend_user: Cabut penangguhan pengguna
+  upcoming_bioblitzes: Bioblitz yang akan datang
   update: Perbarui
-  update_existing_observations_with_new_license: Memperbarui pengamatan yang ada dengan pilihan lisensi baru
-  update_existing_photos_with_new_license: Memperbarui foto yang ada dengan pilihan lisensi baru
-  update_existing_sounds_with_new_license: Memperbarui suara yang ada dengan pilihan lisensi baru
-  update_photos: Memperbarui foto
+  update_existing_observations_with_new_license: Perbarui pengamatan yang sudah ada dengan pilihan lisensi baru
+  update_existing_photos_with_new_license: Perbarui foto yang sudah ada dengan pilihan lisensi baru
+  update_existing_sounds_with_new_license: Perbarui suara yang sudah ada dengan pilihan lisensi baru
+  update_observations: Perbarui Pengamatan
+  update_past: "Perbarui %{type} Yang Dulu"
+  update_photos: Perbarui Foto
   update_search: Perbarui Pencarian
-  update_selected_taxa: Memperbarui taksa yang dipilih
-  update_subscription: Perbarui langganan
+  update_selected_taxa: Perbarui Taksa Yang Dipilih
+  update_subscription: Perbarui Langganan
   update_subscription_preferences: Perbarui pilihan berlangganan
-  update_your_content: Memperbarui konten Anda
-  update_with_eol_content: Memperbarui dengan konten EOL
+  update_x_selected_taxa:
+    other: "Perbarui %{count} taksa yang dipilih"
+  update_your_content: Perbarui konten Anda
+  update_with_eol_content: Perbarui dengan konten EOL
+  update_with_site_content: "Perbarui dengan konten %{site_name}"
   updated: Diperbarui
   updated_by: Diperbarui oleh
-  updated_daily: diperbarui setiap hari
+  updated_by_user_on_date_html: Diperbarui oleh %{user} pada %{date}
+  updated_daily: Diperbarui setiap hari
   updated_photo: Foto yang diperbarui
   upload: Unggah
   upload_a_csv_file: Unggah file CSV
   upload_a_csv_file_with_observation: |
-    Unggah file CSV dengan data pengamatan. Jika Anda memiliki data dalam spreadsheet atau database, ini mungkin adalah cara untuk memulai.
+    Unggah file CSV berisi data pengamatan. Jika Anda memiliki data dalam spreadsheet atau database, ini mungkin adalah cara yang cocok.
+  upload_new_photo: Unggah foto baru
+  upload_photo: Unggah Foto
+  upload_range: Unggah Jangkauan
   uploaded_by: Diunggah oleh
   uploader:
+    errors:
+      file_too_big: File harus lebih kecil dari %{megabytes} MB
+      unsupported_file_type: Jenis file tidak didukung. Kami menerima JPG, PNG, GIF, WAV, AAC, MP3, dan MP4 (audio saja)
+    resize_tip: |
+      Jika file foto Anda terlalu besar, coba memotongnya hingga ukuran paling besar 2048 x 2048 piksel. Hal ini berlaku pada semua foto di server juga, dan akan mempercepat proses unggahan.
     tooltips:
       add: Tambah pengamatan
-  url_identifier_of_a_project_derived_from: "URL / pengidentikasi dari sebuah proyek yang berasal dari beberapa sumber daya eksternal"
-  url_of_this_taxon_on_the_source_website: URL pada takson ini pada sumber website
+      combine: Gabung pengamatan yang dipilih
+      duplicate: Duplikasi pengamatan yang dipilih
+      photo_failed: Foto gagal diunggah
+      remove: Hapus pengamatan yang dipilih
+      remove_observation: Hapus pengamatan
+      remove_photo: Hapus foto
+      select_all: Pilih semua pengamatan
+      upload_failed: Gagal mengunggah
+  uploading_num_of_count_photos:
+    other: Mengunggah %{num} dari %{count} foto...
+  url_identifier_of_a_project_derived_from: "URL / pengidentikasi dari sebuah proyek yang berasal dari beberapa sumber eksternal"
+  url_of_this_taxon_on_the_source_website: URL takson ini pada situs sumber
   usage_stats: Statistik penggunaan
+  use_name_as_a_placeholder: |
+    Pakai <span class='ac-placeholder'>%{name}</span> sebagai penampung
   use_this_form_to_create_a_new: |
-    Gunakan formulir ini untuk membuat rancangan baru perubahan taksonomi menggambarkan diusulkan dipisah, menggabungkan atau swap pada taksa aktif untuk kemudian dilakukan.
+    Gunakan formulir ini untuk membuat draf baru perubahan taksonomi yang menggambarkan usulan pemisahan, penggabungan, atau penukaran pada taksa aktif untuk diterapkan nantinya.
+  use_this_if_the_url_needs_genus_species_separated: |
+    Pakai ini jika nama genus dan spesies dalam URL perlu dipisahkan dengan cara tertentu. Jika taksonnya bukan berupa spesies atau infraspesies, semua di antara [GENUS] dan [SPECIES] akan diganti dengan nama taksonnya, jadi jangan gunakan banyak-banyak.
   use_unique_file_names_for_separate_uploads: Gunakan nama file yang unik untuk memisahkan unggahan
   use_well_formed_csv: |
-    Gunakan CSV terbentuk dengan baik. Ini berarti teks dengan koma harus tertutup dengan tanda kutip ganda. Sebagian besar aplikasi spreadsheet harus mengekspor CSV di format ini.
+    Gunakan CSV yang diformat dengan baik. Ini berarti teks dengan koma harus diapit dengan tanda kutip ganda. Sebagian besar aplikasi spreadsheet harusnya mengekspor CSV dalam format ini.
+  used_x_times:
+    other: Dipakai %{count} kali
   user: Pengguna
+  user1_and_user2_faved_this_observation: "%{user1} dan %{user2} menjadikan pengamatan ini favorit mereka"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, dan %{x_others} menjadikan pengamatan ini favorit mereka"
+  user_added_a_comment_html: "%{user} menambahkan komentar"
+  user_added_a_fave_html: "%{user} menambahkan favorit"
+  user_added_a_flag_html: "%{user} menambahkan sebuah tanda"
+  user_added_a_x: "%{user} menambahkan %{x}"
+  user_added_a_x_to_noun_by_html: "%{user} menambahkan %{x} untuk %{noun} oleh %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} menambahkan %{x} untuk %{noun} oleh %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} menambahkan %{x} untuk %{noun} oleh Anda"
+  user_added_a_x_to_noun_html: "%{user} menambahkan %{x} untuk %{noun}"
+  user_added_an_identification_html: "%{user} menambahkan identifikasi"
+  user_added_an_observation_field_html: '%{user} menambahkan nilai untuk "%{field_name}" kepada pengamatan oleh %{owner}'
+  user_added_an_observation_field_value_html: "%{user} menambahkan sebuah nilai bidang pengamatan"
+  user_added_an_observation_html: "%{user} menambahkan sebuah pengamatan"
+  user_added_an_x: "%{user} menambahkan sebuah %{x}"
+  user_added_an_x_to_noun_by_html: "%{user} menambahkan sebuah %{x} kepada %{noun} oleh %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} menambahkan sebuah %{x} kepada %{noun} oleh %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} menambahkan sebuah %{x} kepada %{noun} oleh Anda"
+  user_added_an_x_to_noun_html: "%{user} menambahkan %{x} kepada %{noun}"
+  user_added_x_observations_html: "%{user} menambahkan %{x} pengamatan"
+  user_already_authenticated: Pengguna sudah terautentikasi
+  user_autocomplete_placeholder: kueda, simon123, etc.
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
   #not the place. Gender for all variables is not known..
   user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
     %{user} meyakini bahwa ini adalah daftar komprehensif dari %{taxon} di %{place}
+  user_blocked: Pengguna diblokir
+  user_commented: "%{user} berkomentar"
+  user_commented_on: "%{user} mengomentari %{title} %{time} milikmu"
+  user_disagrees_this_is_taxon: "%{user} tidak setuju ini adalah %{taxon}"
+  user_disagrees_with_previous_finer_identifications: "%{user} tidak setuju dengan identifikasi sebelumnya yang lebih terperinci"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
+  user_faved_a_noun_by_owner: "%{user} menjadikan favorit %{noun} oleh %{owner}"
+  user_faved_this_observation: "%{user} menjadikan favorit pengamatan ini"
+  user_flagged_as_a_non_spammer_html: "%{user} ditandai sebagai bukan spammer"
+  user_flagged_as_a_spammer_html: "%{user} ditandai sebagai spammer"
+  user_has_opted_out_of_community_id: Pengguna telah memilih untuk keluar dari Takson Komunitas
+  user_hasnt_joined_any_projects: "%{user} belum bergabung dengan proyek apapun"
+  user_helped_x_people_with_y_ids_html: "%{user} menolong <strong>%{x} orang</strong> dengan <strong>%{y} ID</strong>"
+  user_invite_observation_to_project: '%{user} ingin mengundang pengamatan "%{observation}" Anda ke proyek %{project}.'
+  user_invited_you_to_join_html: "%{user} mengundang Anda untuk bergabung"
+  user_invited_you_to_join_project: "%{user} mengundang Anda untuk bergabung dengan %{project}"
+  user_invited_you_to_join_this_project_on_date_html: "%{user} mengundang Anda untuk bergabung dengan proyek ini pada %{date}"
+  user_invited_your_x_to_a_project_html: "%{user} mengundang %{x} Anda ke sebuah proyek"
+  user_is_a_naturalist: "%{user} adalah seorang naturalis!"
+  user_is_now_the_admin_for_project_html: |
+    <strong>%{user}</strong> kini merupakan pengelola %{project}
+  user_is_now_a_manager_for_project_html: |
+    <strong>%{user}</strong> kini merupakan manajer %{project}
+  user_is_now_a_curator_for_project_html: |
+    <strong>%{user}</strong> kini merupakan kurator %{project}
   user_muted: Pengguna diredam
+  user_observed_on_on_date_in_place: |
+    %{user} mengamatinya pada %{date} di %{place}
+  user_suggested_an_id: "%{user} menyarankan sebuah ID"
+  user_thinks_yours_is: "%{user} %{noun} pengamatan %{observation} Anda adalah"
+  user_trusts_you_with_their_private_coordinates: "%{user} memercayakan Anda dengan koordinat tersembunyi mereka"
+  user_trusts_you_with_their_private_coordinates_desc: |
+    Pengamat ini telah memilih untuk memercayakan Anda koordinat yang tersembunyi dari semua pengamatan mereka.
+  user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> menulis,
   username: Nama pengguna
+  username_description: Ini adalah nama pengguna yang akan Anda gunakan untuk masuk, juga dapat digunakan oleh pengguna lainnya untuk mengidentifikasi Anda di iNaturalist
   username_or_email: Nama pengguna atau email
-  username_or_user_id: Nama pengguna atau ID pengguna
+  username_or_user_id: Nama Pengguna atau ID Pengguna
   users: Pengguna
-  valid_options_are: Opsi yang berlaku adalah
+  users_contributions_to_project_html: Kontribusi <a href="%{url}">%{login}</a> untuk %{project_title}
+  users_favorites: "Favorit %{user}"
+  users_highlights_and_stats_from_year_on_site: "Sorotan dan statistik %{user} pada %{year} di %{site}"
+  users_id: "ID %{user}"
+  users_latest_observations_on_site: "Pengamatan terbaru %{user} di %{site}"
+  users_profile: "Profil %{user}"
+  users_projects: "Proyek %{user}"
+  users_year_on_site: "Tahun %{user} Di %{site} %{year}"
+  valid_options_are: Opsi yang valid adalah
+  value: Nilai
+  values: Nilai
+  verbing_x_of_y: "%{verb} %{x} dari %{y}..."
+  verifiable_observations_by_observation_date: Pengamatan Yang Dapat Diverifikasi Berdasarkan Tanggal Pengamatan
   view: Lihat
-  view_all: Lihat semua
-  view_all_members: Lihat semua anggota
-  view_all_n: "Lihat semua %{n}"
-  view_all_observations: Lihat semua pengamatan
-  view_assessment: Lihat penilaian
-  view_check_list_page: Lihat halaman checklist
-  view_contributions: Lihat kontribusi
-  view_details: Lihat detail
-  view_flags: Lihat penanda
-  view_flags_for_x_html: "Lihat penanda untuk %{x}"
-  view_full_observation: Lihat pengamatan penuh
-  view_invitation: Lihat undangan
-  view_journal: Lihat jurnal
-  view_leaderboard_from_last_month: Lihat leaderboard dari bulan kemarin
-  view_leaderboard_from_last_year: Lihat leaderboard dari tahun lalu
-  view_license: Lihat lisensi
-  view_lists: Lihat daftar
-  view_listing: Lihat daftar
-  view_more: Tampilkan selengkapnya
-  view_more_about_x: "Tampilkan selengkapnya mengenai %{x}"
-  view_observation: Lihat pengamatan
-  view_observations: Lihat pengamatan
-  view_observation_flags: Lihat penanda pengamatan
-  view_observations_by_everyone: Lihat pengamatan oleh semua orang
-  view_on: Lihat pada
-  view_on_flickr: Lihat pada FLickr
-  view_original: "Tampilkan yang asli"
-  view_original_by: "Tampilkan yang asli oleh %{by} di %{photo}"
-  view_place: Lihat tempat
-  view_post: Lihat tulisan
-  view_stats: Lihat statistik
-  view_taxon_changes: Lihat perubahan takson
-  view_taxon_page: Lihat halaman takson
+  view_all: Lihat Semua
+  view_all_flags: Lihat Semua Tanda
+  view_all_members: Lihat Semua Anggota
+  view_all_n: "Lihat Semua %{n}"
+  view_all_observations: Lihat Semua Pengamatan
+  view_all_photocount_photos: "Lihat Semua Foto %{photo_count}"
+  view_assessment: Lihat Penilaian
+  view_check_list_page: Lihat Halaman Daftar Centang
+  view_contributions: Lihat Kontribusi
+  view_details: Lihat Detail
+  view_dynamic_lifelist: Lihat daftar kehidupan dinamis
+  view_field_options: Lihat Opsi Kolom
+  view_flag: Lihat Tanda
+  view_flags: Lihat Tanda
+  view_flags_for_x_html: "Lihat Tanda untuk %{x}"
+  view_full_observation: Lihat Pengamatan Sepenuhnya
+  view_full_size_photo: Lihat foto berukuran penuh
+  view_invitation: Lihat Undangan
+  view_journal: Lihat Jurnal
+  view_leaderboard_from_last_month: Lihat papan peringkat dari bulan kemarin
+  view_leaderboard_from_last_year: Lihat papan peringkat dari tahun lalu
+  view_license: Lihat Lisensi
+  view_lists: Lihat Daftar
+  view_listing: Lihat Daftar
+  view_moderation_history: Lihat Riwayat Moderasi
+  view_moderation_history_for_this_comment: Lihat Riwayat Moderasi untuk Komentar ini
+  view_more: Lihat Selengkapnya
+  view_more_about_x: "Lihat Selengkapnya Mengenai %{x}"
+  view_more_observations_from_this_place: Lihat lebih banyak pengamatan dari tempat ini
+  view_more_observations_near_x_place: "Lihat lebih banyak pengamatan di dekat %{place} di <nobr>%{site_name}&raquo;</nobr>"
+  view_more_observations_of_x_project: "Lihat lebih banyak pengamatan dari %{project} di <nobr>%{site_name}&raquo;</nobr>"
+  view_more_observations_of_x_taxon: "Lihat lebih banyak pengamatan %{taxon} di <nobr>%{site_name}&raquo;</nobr>"
+  view_more_unreviewed: "Lihat lebih banyak yang belum ditinjau"
+  view_observation: Lihat Pengamatan
+  view_observations: Lihat Pengamatan
+  view_observation_flags: Lihat tanda pengamatan
+  view_observations_by_everyone: Lihat pengamatan semua orang
+  view_observations_by_these_users: Lihat Pengamatan Oleh Pengguna Ini
+  view_observations_of_this_taxon_by: Lihat pengamatan takson ini oleh
+  view_on: Lihat di
+  view_on_flickr: Lihat di Flickr
+  view_original: "Tampilkan Aslinya"
+  view_original_by: "Tampilkan aslinya oleh %{by} di %{photo}"
+  view_original_ccD_photo: "Tampilkan foto asli yang diCC oleh %{owner}"
+  view_photos_ranges_observations_more: "Lihat foto, jangkauan spesies, pengamatan %{site_name}, dan lebih banyak lagi! Kami sudah menghimpun informasi dari berbagai sumber dan menggabungkan mereka menjadi ringkasan pendek tentang setiap spesies di setiap tempat."
+  view_place: Lihat Tempat
+  view_post: Lihat Postingan
+  view_projects_from_place: "Lihat proyek dari %{place}"
+  view_sample: Lihat Sampel
+  view_stats: Lihat Statistik
+  view_taxon_change: Lihat Perubahan Takson
+  view_taxon_changes: Lihat Perubahan Takson
+  view_taxon_framework_relationship: Lihat hubungan framework takson
+  view_taxon_page: Lihat Halaman Takson
+  view_taxon_page_for_this_x: "Lihat halaman takson untuk %{x} ini"
+  view_taxononomy_details_for_taxon: "Lihat detail taksonomi untuk %{taxon}"
+  view_the: "Lihat %{action}&#59; %{link}"
   view_the_observation: Lihat pengamatan
+  view_user_observations: "Lihat pengamatan %{user}"
+  view_x: "Lihat %{x}"
+  view_year_stats_for_site: "Lihat Statistik %{year} Untuk %{site}"
   view_your_dashboard: Lihat dasbor anda
-  view_your_inbox: ' dashboard kotak masuk anda'
-  view_your_observations: Lihat pengamatan anda
-  view_all_of_your_observations_from_x: "Lihat semua dari pengamatan anda dari %{x}"
-  video_tutorials: Tutorial Video
-  vulnerable: rentan
-  wait_file_generation: Silahkan tunggu sementara file yang dihasilkan. Ini dapat mengambil beberapa menit untuk daftar besar.
-  was_it_captive_cultivated?: "Apakah itu captive / dibudidayakan?"
+  view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Lihat dasbor Anda</a> untuk kabar terbaru"
+  view_your_inbox: Lihat kotak masuk Anda
+  view_your_observations: Lihat pengamatan Anda
+  view_your_year_stats: "Lihat Statistik %{year} Anda"
+  view_yours: Lihat Kepunyaanmu
+  view_all_of_your_observations_from_x: "Lihat semua pengamatan Anda dari %{x}"
+  video_tutorials: Video Tutorial
+  visually_similar: Serupa Secara Visual
+  vulnerable: Rentan
+  w00t_no_ungrafted_taxa: 4p4! Tidak ada taksa yang tidak dicangkok!
+  w_photos_only: dengan foto
+  w_sounds: dengan suara
+  wait_file_generation: Harap menunggu sementara file sedang dihasilkan. Ini dapat memerlukan beberapa menit untuk daftar yang besar.
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
+  wanted: Dicari
+  was_it_captive_cultivated?: "Apakah itu dipelihara / dibudidayakan?"
   we_also_support: |
-    Kami juga mendukung <a href="http://flickr.com"> Flickr </a>, <a href="http://picasaweb.google.com"> Picasa </a>, dan <a href="http://facebook.com"> Facebook </a> untuk hosting gambar.
-  we_can_only_understand_csv_in: Kami hanya dapat mengerti CSV dalam format tersebut
+    Kami juga mendukung <a href="http://flickr.com"> Flickr </a>, <a href="http://photos.google.com">Google Photos</a>, dan <a href="http://facebook.com">Facebook</a> sebagai host gambar.
+  we_can_only_understand_csv_in: Kami hanya dapat mengenali CSV dalam format berikut
   we_couldnt_find_a_user: Kami tidak dapat menemukan pengguna dengan alamat email tersebut.
-  we_couldnt_find_a_user_with_that_activation_code: "Kami tidak dapat menemukan pengguna dengan kode aktivasi tersebut. Anda seharusnya telah mengaktifkan akun anda, silakan coba masuk lagi."
+  we_couldnt_find_a_user_with_that_activation_code: "Kami tidak dapat menemukan pengguna dengan kode aktivasi tersebut. Anda mungkin telah mengaktifkan akun Anda, silakan mencoba untuk masuk lagi."
   we_didnt_find_any_photos: Kami tidak menemukan foto dengan menggunakan istilah pencarian yang Anda berikan.
+  we_had_a_problem_flagging_that_item: "Kami mendapat masalah saat menandai hal itu: %{flag_error}"
   we_had_trouble_saving_comment: "Kami memiliki masalah dalam menyimpan komen tersebut:"
-  we_support_flickr: Saat ini kami mendukung Flickr untuk hosting gambar dan berharap untuk menambahkan gambar lain host lama.
-  welcome: Selamat datang
+  we_have_no_conservation_status_for_this_taxon: Kami tidak memiliki status konservasi untuk takson ini
+  we_have_no_establishment_data_for_this_taxon: "Kami tidak memiliki data cara pengenalan untuk takson ini"
+  we_support_flickr: Saat ini kami mendukung Flickr untuk hosting gambar dan berharap untuk menambahkan host gambar lainnya.
+  weather: Cuaca
+  website: Situs Web
+  week_of_date: "Pekan %{date}"
+  welcome: selamat datang
   welcome_back!: Selamat Datang Kembali!
+  welcome_to_inat: "Selamat datang ke %{site_name}!"
+  welcome_to_guides: "Selamat datang ke Panduan %{site_name}!"
+  welcome_to_x_project: "Selamat datang di %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Kami cukup yakin ini termasuk genus
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Kami cukup yakin ini termasuk famili
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: Kami cukup yakin ini termasuk ordo
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: Kami cukup yakin ini termasuk subfamili
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: Kami cukup yakin ini termasuk superfamili
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
+  were_pretty_sure_this_is_in_the_rank: Kami cukup yakin ini berada dalam %{rank}
+  were_sorry_but_your_bulk_import_of_filename_has_failed: "Maaf tapi impor sekaligus %{filename} Anda gagal."
   what: Apa
-  what_did_you_see: Apa yang dilihat?
-  what_did_you_see?: <em>Apa</em> yang dilihat?
-  what_do_you_think: Apa yang anda pikirkan?
+  what_did_you_see: Apa yang Anda lihat?
+  what_did_you_see?: <em>Apa</em> yang Anda lihat?
+  what_do_you_think: Apa yang Anda pikirkan?
   what_to_keep: Hal untuk disimpan
-  what_want_to_list?: Apa yang anda inginkah untuk daftar?
+  what_want_to_list?: Apa yang ingin Anda daftarkan?
+  what_were_you_looking_for?: "Apa yang sedang Anda cari? (daftar target)"
+  whats_this?: Apa ini?
   when: Kapan
-  when_did_you_see_it?: Kapan anda melihat?
-  where: Dimana
-  where_were_they?: Dimanakah mereka?
-  where_were_you?: Dimanakah anda?
-  which_projects_can_add_your_observations?: Proyek yang mana yang dapat ditambahkan pada pengamatan anda?
+  when_did_you_see_it?: Kapan Anda melihatnya?
+  when_did_you_see_them?: <em>Kapan</em> Anda melihatnya?
+  where: Di mana
+  where_were_they?: Di manakah mereka?
+  where_were_you?: Di manakah Anda?
+  which_projects_can_add_your_observations?: Proyek tradisional manakah yang dapat menambahkan pengamatan Anda?
   white: putih
+  why_you_can_see_the_coordinates: Mengapa Anda Bisa Melihat Koordinatnya
+  who_can_add_observation_fields_to_my_obs: Siapa yang dapat menambahkan bidang pengamatan ke pengamatan saya?
+  who_can_add_observations_to_this_project?: Siapa yang dapat menambahkan pengamatan ke proyek ini?
+  who_can_see_the_coordinates: Siapa Yang Bisa Melihat Koordinatnya
+  who_can_see_the_coordinates_observer: Orang yang membuat pengamatan
+  who_can_see_the_coordinates_projects: Kurator dari proyek berikut
+  who_can_see_the_coordinates_trusted: Orang yang dipercayakan oleh pengamat dengan koordinat tersembunyi mereka
+  who_helped_user_the_most: "Yang Membantu %{user} Paling Sering"
+  who_user_helped_the_most: "Yang %{user} Bantu Paling Sering"
+  why_the_coordinates_are_obscured: Mengapa Koordinat Dikaburkan
+  with_annotation: Dengan Catatan
+  without_annotation: Tanpa Catatan
+  widget: Widget
   widget_code: Kode widget
   widget_for: Widget untuk
+  wikipedia_attribution_cc_by_sa_3: |
+    Sumber: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
+  wikipedia_attribution_cc_by_sa_3_html: |
+    Artikel ini menggunakan materi dari artikel Wikipedia <a href="%{url}">"%{title}"</a>, yang diluncurkan di bawah <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
+    Commons Atribusi-BerbagiSerupa Lisensi 3.0</a>. Konten mungkin sudah dihilangkan dari aslinya, tetapi tidak ada konten yang diubah atau ditambahkan.
   with: dengan
-  with_errors: dengan kesalahan
-  wondering_what_to_do_next: Befikir apa yang akan dilakukan selanjutnya? Mengapa tidak
-  would_you_like_to: Apa anda ingin untuk
+  withdraw: Mundur
+  withdrawing: Mengundur...
+  with_errors: Dengan kesalahan
+  worldwide: Seluruh Dunia
+  wondering_what_to_do_next: Berikut adalah beberapa langkah untuk memulai mengamati dan mengidentifikasi dunia alam
+  would_you_like_to: Apakah Anda ingin untuk
+  would_you_prefer_to_view_common_names_used_in_place_html: Apakah Anda lebih memilih untuk melihat nama umum yang dipakai di <strong>%{place}</strong>?
+  x_blog: "Blog %{x}"
+  x_deleted: "%{x} menghapus"
+  x_does_not_exist: "\"%{x}\" tidak ada"
+  x_flagged: "%{x} ditandai"
+  x_flagged_as_flag: "%{x} ditandai sebagai %{flag}"
+  x_journal: "Jurnal %{user}"
+  x_journal_archives_for_y: "Jurnal %{user} • Arsip untuk"
+  x_journal_middot: "Jurnal %{user} •"
+  x_journal_new_post: "Jurnal %{user} • Postingan Baru"
+  x_observations_failed:
+    other: "%{count} pengamatan gagal"
+  x_of_y: "%{x} dari %{y}"
+  #This might be shown if there is a character limit in a text field, in which
+  #it would mean "x of y characters remaining"
+  x_of_y_short: "%{x} / %{y}"
+  x_of_count_confirmed:
+    other: "%{x} dari %{count} telah dikonfirmasi"
+  x_of_count_observed:
+    other: "%{x} dari %{count} telah diamati"
+  x_of_y_people_over_two_thirds_agree_it_is: "%{x} dari %{y} orang (lebih dari 2/3) menyetujui ini adalah"
+  x_is_the_root_of_the_tree: "%{rank} %{name} adalah akar dari pohon"
+  x_project_journal: "%{name} %{project}"
+  x_project_stats: "Statistik %{project}"
+  x_sent_you_a_new_message_on_y_html: "%{x} mengirimkan Anda sebuah pesan di %{y}: "
+  x_site_is_a_social_network_for_naturalist: |
+    %{site} merupakan jaringan sosial untuk naturalis! Catat pengamatan tanaman dan hewan Anda, bagikan dengan teman-teman dan peneliti, dan pelajari dunia alam.
+  x_wrote_a_new_post_html: "%{x} menulis postingan baru"
+  x_wrote_y_new_posts_html: "%{x} menulis kepada %{y} postingan baru"
   year: Tahun
+  year_in_review: "Melihat Kembali Tahun %{year}"
   year_month: tahun/bulan
+  year_on_site: "Tahun Di %{site} %{year}"
   yellow: kuning
   'yes': "Ya"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates but only for observations of
+  #threatened taxa
+  yes_but_only_for_threatened: |-
+    Ya, tapi hanya untuk pengamatan taksa yang terancam, tidak ketika saya sudah mengatur geoprivasi
   yes_find_them!: "Ya, temukan itu!"
-  yes_i_want_to_join: Ya, Saya ingin bergabung
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates
+  yes_for_any_of_my_observations: "Ya, untuk semua pengamatan saya"
+  yes_i_want_to_join: Ya, saya ingin bergabung
   yes_license_my_childs_observations: Ya, lisensi foto, suara, dan pengamatan anak saya sehingga para ilmuwan dapat menggunakan datanya (disarankan).
   yes_license_my_observations_so_scientists_can_use: Ya, lisensi foto, suara, dan pengamatan saya sehingga para ilmuwan dapat menggunakan data saya (disarankan).
-  yes_show_this_in_the_box: Ya, menunjukkan ini dalam kotak besar di bagian atas / taksa
+  yes_reject_it: Ya, tolak itu
+  yes_show_this_in_the_box: Ya, tunjukkan ini di dalam kotak besar di atas /taksa
   yesterday: Kemarin
-  you: anda
+  you: Anda
+  you_: Anda
+  you_appear_offline_try_again: |
+    Sepertinya Anda sedang di luar jaringan. Silakan mencoba lagi saat Anda terkoneksi ke Internet.
   youre_a_site_curator_which_means: |
-    Anda seorang kurator situs, yang berarti Anda sudah menawarkan diri untuk membantu kurasi data kami dan memantau konten. Jangan merasa berkewajiban
-    untuk menangani semua masalah ini, tetapi jika Anda memiliki waktu untuk memeriksa beberapa dari mereka keluar, kami akan menghargai semua bantuan yang bisa kita dapatkan. Jika Anda memiliki pertanyaan tentang kurasi konten atau tidak ingin menjadi kurator lagi, silahkan hubungi kami di
+    Anda seorang kurator situs, yang berarti Anda sudah menawarkan diri untuk membantu kurasi data kami dan memantau konten. Jangan merasa keberatan
+    untuk menangani semua masalah ini, tetapi jika Anda memiliki waktu untuk memeriksa beberapa dari mereka, kami sangat menghargai semua bantuan yang bisa kami dapatkan. Jika Anda memiliki pertanyaan tentang kurasi konten atau tidak ingin menjadi kurator lagi, silahkan hubungi kami di %{email}
+  you_are_now_following_x: "Anda sekarang mengikuti %{friend_user}."
+  you_are_now_the_admin_for_project_html: |
+    <strong>Anda</strong> kini merupakan pengelola %{project}
+  you_are_now_a_curator_for_project_html: |
+    <strong>Anda</strong> kini merupakan kurator %{project}
+  you_are_now_a_manager_for_project_html: |
+    <strong>Anda</strong> kini merupakan manajer %{project}
+  you_are_not_editing_any_guides_add_one_html: |
+    Anda tidak mengubah panduan apapun. <a href="/guides/new">Buat satu</a>
   you_are_already_a_member_of_this_project: "Anda telah menjadi anggota pada proyek ini!"
-  you_arent_a_member_of_that_project: Anda tidak menjadi anggota dari proyek tersebut.
+  you_are_no_longer_following_x: "Anda tidak lagi mengikuti %{friend}."
+  you_are_setting_this_project_to_aggregate: |
+    Anda mengatur proyek ini untuk mengumpulkan semua pengamatan yang sesuai dengan aturan berikut %{rules} Apakah Anda mau lanjut?
+  you_are_submitting_obs_with_no_date_or_no_location: |
+    Anda sedang mengirimkan pengamatan tanpa waktu atau lokasi.
+    Pengamatan tanpa informasi ini sering kali tidak mungkin untuk diidentifikasi dan menurut pengaturan sistem tidak akan terlihat di pencarian pengamatan.
+  you_arent_a_member_of_that_project: Anda bukan anggota dari proyek tersebut.
   you_arent_following_that_person: "Anda tidak mengikuti orang tersebut."
-  you_can_accept_invitations: Anda dapat menerima undangan disini
-  you_can_choose_observations_associated: Anda dapat memilih pengamatan kaitkan dengan jurnal posting ini.
+  you_can_accept_invitations: Anda dapat menerima undangan di sini
+  you_can_choose_observations_associated: Anda dapat memilih pengamatan untuk menghubungkannya dengan postingan jurnal ini.
   you_can_edit_this_default_check_list_because: |
-    Anda dapat mengedit daftar cek default ini b / c Anda seorang admin, tapi harus benar-benar menjadi kebutuhan untuk melakukannya.
+    Anda dapat mengubah daftar cek standar ini karena Anda seorang pengelola, tetapi seharusnya tidak ada alasan untuk melakukan hal ini.
+  you_can_only_destroy_taxa_you_created2: |
+    Anda hanya dapat menghapus taksa yang Anda buat yang tidak terhubung dengan perubahan takson, identifikasi, atau konten lainnya
+  you_can_only_block_three_users: Anda hanya dapat memblokir tiga pengguna
   you_can_show_the_boundary_of: Anda dapat menunjukkan batas tempat pada halaman proyek Anda jika tempat memiliki batas.
   you_cant_compare_a_list_with_nothing: Anda tidak dapat membandingkan daftar dengan apapun!
   you_cant_delete_a_project_list: "Anda tidak dapat menghapus daftar proyek"
@@ -4250,7 +4861,7 @@ id:
   you_cant_flag_that: Anda tidak dapat menandai ini
   you_cant_leave_a_project_you_created: Anda tidak dapat meninggalkan proyek yang anda buat.
   you_didnt_select_any_observations: Anda tidak memilih pengamatan apapun.
-  you_didnt_select_any_photos_to_tag: Anda tidak memilih foto apapun untuk di tag!
+  you_didnt_select_any_photos_to_tag: Anda tidak memilih foto apapun untuk diberi tag!
   you_dont_have_permission_to_do_that: Anda tidak memiliki izin untuk melakukan itu.
   you_dont_have_permission_to_edit_that_observation: "Anda tidak memiliki izin untuk mengedit pengamatan itu."
   you_dont_have_permission_to_edit_that_project: Anda tidak memiliki izin untuk mengubah proyek tersebut.
@@ -4272,40 +4883,81 @@ id:
   you_sure_delete_flag?: Apakah anda yakin ingin menghapus penanda ini?
   you_sure_delete_project?: Apakah Anda yakin ingin menghapus proyek ini?
   you_sure_delete_this_observation: "Apakah Anda yakin ingin menghapus pengamatan ini?"
+  you_unlinked_your_provider_account: "Anda memutuskan hubungan dengan akun %{provider} Anda"
   youll_need_to_link: Anda akan butuh untuk menautkan
+  your_account_has_been_activated: Akun Anda telah diaktifkan!
+  your_account_has_been_verified: "Akun %{site_name} Anda telah diverifikasi! Silakan masuk untuk melanjutkan."
   your_activation_code_was_missing: "Kode aktivasi Anda hilang. Ikuti URL dari email Anda."
+  your_browser_does_not_support_the_audio_element: Browser Anda tidak mendukung elemen audionya.
   your_comment_was_saved: Konten anda telah disimpan
-  your_default: Standar anda
+  your_content: Konten Anda
+  your_contributions_to_project: "Kontribusi Anda ke %{project_title}"
+  your_default: standar anda
   your_default_time_zone: Zona waktu standar anda
   your_email_address: Alamat email anda
-  your_flickr_account: Akun Flickr anda
-  your_flickr_photos_have_been_tagged: Foto Flickr anda telah di tag!
-  your_hard_drive: Perangkat keras anda
+  your_favorites: Favorit Anda
+  your_flickr_account: akun Flickr Anda
+  your_flickr_photos_have_been_tagged: Foto Flickr Anda telah diberi tag!
+  your_hard_drive: cakram keras anda
   your_home: Beranda
   your_id: ID Anda
   your_identification: Identifikasi Anda
+  your_membership: Keanggotaan Anda
   your_name_was_saved: Nama Anda telah disimpan.
   your_observations: Pengamatan Anda
-  your_photos_have_been_tagged: Foto anda telah di tag!
+  your_observations_couldnt_be_added_to_that_project: "Pengamatan Anda tidak dapat ditambahkan ke proyek itu: %{errors}"
+  your_photos_have_been_tagged: Foto Anda telah diberi tag!
   your_projects: Proyek Anda
-  your_profile_was_successfully_updated: Profil anda telah berhasil diperbarui!
+  your_google_account: akun Google Anda
+  your_google_account_info: Informasi Akun Google Anda
+  your_pinned_locations: Lokasi Tersimpan Anda
+  your_profile_was_successfully_updated: Profil Anda berhasil diperbarui!
   your_recent_projects: Proyek Baru-baru Ini
   your_relationships: Relasi Anda
+  your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} memerlukan Anda untuk memberikan lebih banyak izin dari %{provider} untuk lanjut:"
   your_subscriptions_to_this_place: Langgananmu untuk tempat ini
-  verifiable: diverifikasi
+  your_tags: Label Anda
+  yours: Milik Anda
+  youre_not_following_anyone: |-
+    Anda belum mengikuti siapapun. Mengikuti naturalis lain akan membantu Anda melacak pengamatan terbaru mereka dengan lebih mudah. Carilah apa yang orang sedang <a href="%{observations_path}">amati</a> dan buatlah <a href="%{people_path}">teman</a> baru.
+  youre_not_following_anyone_on_inat: Anda sedang tidak mengikuti siapapun di %{site_name}!
+  youve_linked_your_inaturalist_google_account: "Anda telah menghubungkan akun %{site_name} dan akun Google. Hal ini mengizinkan Anda untuk menghubungkan foto Google Anda dengan pengamatan %{site_name} Anda."
+  youve_successfully_linked_your_provider_account: "Anda berhasil menghubungkan akun %{provider} Anda"
+  verifiable: Dapat Diverifikasi
+  verifiable_observations: Pengamatan Yang Dapat Diverifikasi
   views:
     views: 'Lihat'
+    content_freeze:
+      content_freeze: Pembekuan Konten
+      during_this_time: |
+        Saat pembekuan konten, beberapa jenis konten tidak dapat dibuat, dihapus, maupun dimodifikasi.
+      this_functionality_will_return: |
+        Fungsionalitas ini akan kembali saat pembekuan konten berakhir.
+      we_expect_this_functionality_will_return_by_date: |
+        Kami berharap fungsionalitas ini akan kembali sebelum %{date}.
     custom_projects:
       edit:
         custom_project_fields_warning: |
-          Harap berhati-hati: menambahkan Javascript dan CSS untuk halaman proyek Anda serius dapat merusak tata letak halaman dan berpotensi memungkinkan malware untuk mempengaruhi orang-orang melihat halaman. Jika Anda tidak tahu apa bagian tertentu dari kode, jangan menambahkannya.
+          Harap berhati-hati: menambahkan Javascript dan CSS ke dalam halaman proyek Anda serius dapat merusak tata letak halaman dan berpotensi memungkinkan perangkat lunak perusak memengaruhi orang-orang yang melihat halaman tersebut. Jika Anda tidak tahu apa yang dilakukan bagian tertentu dari sebuah kode, tolong jangan menambahkannya.
     devise:
       mailer:
         confirmation_instructions:
+          are_you_planning_on_using_in_the_classroom: Apakah Anda berencana untuk menggunakan %{site_name} di kelas?
           community_guidelines_html: |
             <a href="%{url}">Lihat Pedoman Komunitas</a> untuk petunjuk tentang cara memelihara iNaturalist sebagai tempat yang ramah dan bersahabat.
+          please_read_the_teachers_guide_html: |
+            Jika ya, silakan membaca <a href="%{url}">Panduan Guru</a> untuk beberapa tips dalam menggunakan %{site_name} bersama dengan pelajar.
+    donate:
+      donate_short_desc: "Donasi sekarang untuk memberikan dukungan!"
+      post_donate_social_media_text: Saya mendukung iNaturalist karena...
+      monthly_supporters:
+        become_a_monthly_supporter_of_inaturalist: Jadi Pendukung Bulanan iNaturalist
     guides:
       index:
+        deprecated_banner: |
+          Harap mengerti bahwa sejak Januari 2019, fitur Panduan ditampilkan apa adanya; kami tidak memiliki rencana untuk menghapusnya, juga mengembangkannya lebih lanjut.
+        funding_html: |
+          Pendanaan untuk pengembangan Panduan disediakan oleh <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
         welcome_message_html: |
           Panduan membantu Anda belajar tentang keanekaragaman hayati di seluruh dunia.
           Apakah Anda sedang menjelajahi Serengeti atau hanya taman lokal Anda (Yang mungkin Serengeti), Panduan dapat membantu Anda memahami keragaman menakjubkan dari planet kita hidup.
@@ -4314,13 +4966,46 @@ id:
           Tambahkan konten EOL ke taksa terpilih sebagai kumpulan. Hal ini dapat mengambil beberapa
           waktu, jadi harap bersabar.
         add_color_tags_help: |
-          Tambahkan tag warna dari warna yang terkait dengan taksa yang dipilih.
+          Tambahkan label warna dari warna yang terkait dengan taksa yang dipilih.
+        add_rank_tags_help_html: |
+          Tambahkan kategori takson berdasarkan taksonomi kami, contohnya <code>famili=Laridae</code>
+          atau
+          <code>famili=Camar dan Sekutunya</code>
         coordinates_desc: |
           Memberikan koordinat panduan Anda akan membantu orang menemukannya ketika mencari berdasarkan lokasi.
         eol_subjects_desc: |
           EOL menerbitkan konten di bawah sejumlah judul subjek yang berbeda, tidak semua yang tersedia untuk setiap takson. Memilih "Ikhtisar" hanya akan mengimpor bagian teks tersedia pertama dari EOL, yang umumnya berisi ringkasan bila tersedia.
+        import_tags_from_csv_help_html: |
+          <p>
+          Unggah file CSV berisi label untuk taksa dalam panduan ini. CSV file Anda harus berbentuk seperti ini:
+          </p>
+          <table class="table">
+          <tbody>
+          <tr>
+          <th>Nama</th>
+          <th>warna</th>
+          <th>Jumlah tangan</th>
+          <th></th>
+          </tr>
+          <tr>
+          <td>Homo sapiens</td>
+          <td></td>
+          <td>2</td>
+          <td>bipedal</td>
+          </tr>
+          <tr>
+          <td>Vulpes vulpes</td>
+          <td>merah|hitam</td>
+          <td>0</td>
+          <td>quadripedal</td>
+          </tr>
+          </tbody>
+          </table>
+          <p>
+          Baris pertama dimulai dengan "Nama" diikuti dengan predikat/kategori label. Kemudian, setiap baris berikutnya mulai dengan nama takson, diikuti dengan tag sesuai dengan predikatnya di atas kolom. Dalam contoh ini, <i>Homo sapiens</i> mendapatkan label <code>bipedal</code> dan <code>Jumlah tangan=2</code>, dan <i>Vulpes vulpes</i> mendapatkan <code>quadripedal</code>, <code>warna=merah</code>, <code>warna=hitam</code>, dan <code>Jumlah tangan=0</code>. Kolom yang kosong akan diabaikan dan Anda bisa menambahkan beberapa baris per takson. Anda juga bisa menambahkan beberapa nilai tiap selnya dengan memakai pemisah simbol pipa.
+          </p>
         licensing_explanation: |
-          Dengan membuat lisensi untuk konten Anda, Anda memberikan orang lain hak untuk menyalin dan memodifikasi karya Anda tanpa perlu meminta izin Anda. Itu membuat hal-hal seperti membagikan karya Anda lebih mudah, dan jika Anda menyertakan konten pihak ke-3 dari sumber lainnya yang menggunakan lisensi Creative Commons BerbagSerupa (seperti Wikipedia), Anda secara hukum wajib menggunakan lisensi yang serupa. Berikut gambaran dari semua lisensi Creative Commons beserta artinya masing-masing:
+          Dengan membuat lisensi untuk konten Anda, Anda memberikan orang lain hak untuk menyalin dan memodifikasi karya Anda tanpa perlu meminta izin Anda. Itu membuat hal-hal seperti membagikan karya Anda lebih mudah, dan jika Anda menyertakan konten pihak ke-3 dari sumber lainnya yang menggunakan lisensi Creative Commons BerbagiSerupa (seperti Wikipedia), Anda secara hukum wajib menggunakan lisensi yang serupa. Berikut gambaran dari semua lisensi Creative Commons beserta artinya masing-masing:
         places_note: |
           Catatan: tidak semua tempat memiliki daftar periksa dengan taksa. Jika Anda mengalami
           kesulitan menemukan tempat dengan taksa, cobalah memilih wilayah yang lebih luas dengan
@@ -4338,6 +5023,7 @@ id:
       mobile_downloads_tip_html: |
         Panduan ini dapat di unduh dengan aplikasi mobile untuk penggunaan offline.
       pdf_layouts:
+        grid: grid
         book: buku
         journal: jurnal
       pdf_layout_notes:
@@ -4349,6 +5035,8 @@ id:
           Panduan lengkap termasuk semua foto dan deskripsi, yang mencakup beberapa halaman.
       pdf_generation_notice: |
         Harap bersabar, menghasilkan PDF besar dapat mengambil satu atau dua menit.
+      tags_help_html: |
+        Label mirip seperti kategori spesies dalam panduan Anda, tetapi beberapa spesies dapat memiliki label yang sama. Masukkan label dalam daftar yang dipisahkan dengan koma di sini, contohnya <code>kecil, berbulu</code>. Untuk menambahkan kategori bernama, pakai label, seperti <code>nama_kategori=nilai_kategori</code>, contohnya <code>warna=kuning</code>.
       sorts:
         default: Pesanan Panduan
         alphaname: Abjad dengan nama ilmiah
@@ -4372,11 +5060,14 @@ id:
         project_list_desc: |
           Taksa manual ditambah dengan kurator proyek dan taksa diwakili oleh
           observasi penelitian kelas ditambahkan ke proyek tercantum pada daftar proyek.
+    messages:
+      from: Dari
+      to: Untuk
     observations:
       copy_tip: "Tambahkan pengamatan baru dengan menyalin kolom tanggal pengamatan, tempat, foto, dan observasi ini."
       export:
         choose_columns_desc: Pilih kolom yang anda ingin untuk diekspor
-        query_placeholder: "Pilih parameter permintaan bawah atau sisipkan dalam URL pengamatan"
+        query_placeholder: "Pilih parameter permintaan di bawah ini atau tempelkan URL pengamatan"
         taxon_extras_help_html: "Catatan: kolom ini akan memperlambat generasi ekspor Anda"
         be_patient: |
           Harap bersabar, ini dapat mengambil beberapa menit. Jika ini adalah mengambil
@@ -4416,7 +5107,7 @@ id:
         license: Lisensi pengamat telah dipilih untuk pengamatan ini
         url: URL untuk pengamatan ini
         image_url: URL untuk gambar default ini
-        tag_list: daftar pemisah koma pada tag
+        tag_list: daftar pemisah koma pada label
         positioning_method: Bagaimana koordinat dijelaskan
         positioning_device: Perangkat yang digunakan untuk menentukan koordinat
       show:
@@ -4487,8 +5178,14 @@ id:
           Keanggotaan dalam proyek ini adalah dengan undangan saja. Jika Anda ingin bergabung, silahkan hubungi salah satu kurator di bawah ini dan meminta
           undangan.
       new:
+        collection_project_features: "Fitur Proyek Koleksi:"
+        do_you_need_features_from_traditional: |
+          Apakah Anda memerlukan fitur dari proyek tradisional, seperti akses menuju koordinat sesungguhnya, kolom pengamatan kustom, atau menambahkan pengamatan individu yang tidak dapat disaring secara otomatis?
+        include_annotated_observations: |
+          Hanya masukkan pengamatan yang dicatat dengan atribut tertentu (seperti tahap kehidupan), atau atribut dan nilai tertentu (seperti tahap kehidupan = dewasa). Ada batasan sebanyak satu saringan catatan per proyek.
         project_details: Rincian proyek
         project_summary: Ringkasan Proyek
+        umbrella_project_features: "Fitur Proyek Payung:"
       project_user_curator_coordinate_access_labels:
         none: Tidak satupun
       curator_coordinate_access_label: |
@@ -4509,13 +5206,32 @@ id:
         even_our_dedicated_search_mole_couldnt: Bahkan pencarian khusus kami tidak bisa menemukan apa-apa!
     stats:
       year:
+        store_prompt: |
+          Mau memamerkan kebanggaanmu akan iNat ke mana pun kamu pergi? Cek Toko iNat sekarang!
         translators_title: Penerjemah
+        translators_desc: |
+          Apakah Anda tahu bahwa iNaturalist telah diterjemahkan ke %{x_languages}, hampir seluruhnya oleh %{x_people}, beberapa dari mereka bahkan belum menggunakan iNat? Berikut adalah semua penerjemah yang kece yang telah menambahkan terjemahan tahun ini, beserta jumlah kata yang telah mereka terjemahkan untuk %{website_link_tag}situs web%{link_tag_end}, aplikasi %{iphone_link_tag}iPhone%{link_tag_end} dan %{android_link_tag}Android%{link_tag_end} kami, dan %{seek_link_tag}Seek%{link_tag_end}. Anda dapat melihat semua orang yang telah ikut menerjemahkan, termasuk orang-orang dari tahun-tahun yang lampau dan teman-teman dari Translatewiki, di penyimpanan kode %{view_all_web_link_tag}web%{link_tag_end} dan %{view_all_mobile_link_tag}mobile%{link_tag_end}.
+        translators_desc_for_site: |
+          Apakah Anda tahu bahwa %{site_name} telah diterjemahkan hampir seluruhnya oleh %{x_people}? Berikut adalah semua penerjemah yang kece yang telah menambahkan terjemahan tahun ini, beserta jumlah kata yang telah mereka terjemahkan untuk %{website_link_tag}situs web%{link_tag_end}, aplikasi %{iphone_link_tag}iPhone%{link_tag_end} dan %{android_link_tag}Android%{link_tag_end} kami, dan %{seek_link_tag}Seek%{link_tag_end}. Anda dapat melihat semua orang yang telah ikut menerjemahkan, termasuk orang-orang dari tahun-tahun yang lampau dan teman-teman dari Translatewiki, di penyimpanan kode %{view_all_web_link_tag}web%{link_tag_end} dan %{view_all_mobile_link_tag}mobile%{link_tag_end}.
+        translators_prompt: |
+          Jika Anda ingin membantu penerjemahan, %{link_tag}pelajari caranya%{link_tag_end}.
     taxa:
       show:
+        charts_help_other: |
+          Kami juga menunjukkan grafik musim untuk catatan pengamatan. Catatan merupakan suatu cara untuk menambahkan metadata untuk pengamatan menggunakan kosa kata yang diatur, seperti apakah suatu pengamatan menggambarkan tanaman yang berbunga atau berbuah.
         frequency:
           "Alive or Dead=Dead": Mati
           "Plant Phenology=Flowering": Berbunga
           "Plant Phenology=Fruiting": Berbuah
+          "Life Stage=Adult": Dewasa
+          "Life Stage=Egg": Telur
+          "Life Stage=Larva": Larva
+          "Life Stage=Juvenile": Remaja
+          "Life Stage=Nymph": Nimfa
+          "Life Stage=Pupa": Kepompong
+          "Life Stage=Subimago": Subimago
+          "Life Stage=Teneral": Teneral
+          unannotated: Tidak Ada Catatan
     taxon_names:
       taxon:
         about_html: |
@@ -4908,6 +5624,11 @@ id:
           attributes:
             user_id:
               must_be_curator: harus menjadi kurator pada proyek ini
+        taxon_name:
+          attributes:
+            lexicon:
+              should_match_english_translation: |
+                seharusnya dalam bahasa Inggris, tetapi sekarang, ini cocok dengan terjemahan %{suggested_locale} dari "%{suggested}". Pakai "%{suggested}" jika itu yang Anda maksud dan itu akan diterjemahkan saat Anda melihat situs dalam bahasa itu.
   doorkeeper:
     flash:
       applications:

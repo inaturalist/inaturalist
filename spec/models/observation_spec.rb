@@ -1272,80 +1272,146 @@ describe Observation do
     it "should queue a job to update check lists"
 
     describe "obscuring for conservation status" do
+      let(:place) { make_place_with_geom }
+      let(:species) { create :taxon, :as_species }
       it "should obscure coordinates if taxon has a conservation status in the place observed" do
-        p = make_place_with_geom
-        t = Taxon.make!(:rank => Taxon::SPECIES)
-        cs = ConservationStatus.make!(:place => p, :taxon => t)
-        o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude)
-        expect(o).not_to be_coordinates_obscured
-        o.update_attributes( taxon: t, editing_user_id: o.user_id )
-        expect(o).to be_coordinates_obscured
+        cs = create :conservation_status, place: place, taxon: species
+        o = create :observation, latitude: place.latitude, longitude: place.longitude
+        expect( o ).not_to be_coordinates_obscured
+        o.update_attributes( taxon: species, editing_user_id: o.user_id )
+        expect( o ).to be_coordinates_obscured
       end
 
       it "should not obscure coordinates if taxon has a conservation status in another place" do
-        p = make_place_with_geom
-        t = Taxon.make!(:rank => Taxon::SPECIES)
-        cs = ConservationStatus.make!(:place => p, :taxon => t)
-        o = Observation.make!(:latitude => -1*p.latitude, :longitude => p.longitude)
-        expect(o).not_to be_coordinates_obscured
-        o.update_attributes( taxon: t, editing_user_id: o.user_id )
-        expect(o).not_to be_coordinates_obscured
+        cs = create :conservation_status, place: place, taxon: species
+        o = create :observation, latitude: -1*place.latitude, longitude: place.longitude
+        expect( o ).not_to be_coordinates_obscured
+        o.update_attributes( taxon: species, editing_user_id: o.user_id )
+        expect( o ).not_to be_coordinates_obscured
       end
 
       it "should obscure coordinates if locally threatened but globally secure" do
-        p = make_place_with_geom
-        t = Taxon.make!(:rank => Taxon::SPECIES)
-        local_cs = ConservationStatus.make!(:place => p, :taxon => t)
-        global_cs = ConservationStatus.make!(:taxon => t, :status => "LC", :iucn => Taxon::IUCN_LEAST_CONCERN, :geoprivacy => "open")
-        o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude)
-        expect(o).not_to be_coordinates_obscured
-        o.update_attributes( taxon: t, editing_user_id: o.user_id )
-        expect(o).to be_coordinates_obscured
+        local_cs = create :conservation_status, place: place, taxon: species
+        global_cs = create :conservation_status,
+          taxon: species,
+          status: "LC",
+          iucn: Taxon::IUCN_LEAST_CONCERN,
+          geoprivacy: Observation::OPEN
+        o = create :observation, latitude: place.latitude, longitude: place.longitude
+        expect( o ).not_to be_coordinates_obscured
+        o.update_attributes( taxon: species, editing_user_id: o.user_id )
+        expect( o ).to be_coordinates_obscured
+      end
+
+      it "should not obscure coordinates if secure in state but globally threatened" do
+        place.update_attributes( admin_level: Place::STATE_LEVEL )
+        local_cs = create :conservation_status,
+          place: place,
+          taxon: species,
+          status: "LC",
+          iucn: Taxon::IUCN_LEAST_CONCERN,
+          geoprivacy: Observation::OPEN
+        global_cs = create :conservation_status, taxon: species
+        o = create :observation, latitude: place.latitude, longitude: place.longitude
+        expect( o ).not_to be_coordinates_obscured
+        o.update_attributes( taxon: species, editing_user_id: o.user_id )
+        expect( o ).not_to be_coordinates_obscured
+      end
+
+      it "should obscure coordinates if secure in state and globally threatened and another suggested taxon is globally threatened" do
+        place.update_attributes( admin_level: Place::STATE_LEVEL )
+        local_cs1 = create :conservation_status,
+          place: place,
+          taxon: species,
+          status: "LC",
+          iucn: Taxon::IUCN_LEAST_CONCERN,
+          geoprivacy: Observation::OPEN
+        global_cs1 = create :conservation_status, taxon: species
+        global_cs2 = create :conservation_status
+        o = create :observation, latitude: place.latitude, longitude: place.longitude, taxon: species
+        expect( o ).not_to be_coordinates_obscured
+        puts "creating ident of #{global_cs2.taxon.id}"
+        create :identification, observation: o, taxon: global_cs2.taxon
+        expect( o ).to be_coordinates_obscured
+      end
+
+      it "should obscure coordinates if secure in state and globally threatened and another suggested taxon is threatened in an overlapping state" do
+        place1 = make_place_with_geom( admin_level: Place::STATE_LEVEL )
+        place2 = make_place_with_geom( admin_level: Place::STATE_LEVEL )
+        local_cs1 = create :conservation_status,
+          place: place1,
+          taxon: species,
+          status: "LC",
+          iucn: Taxon::IUCN_LEAST_CONCERN,
+          geoprivacy: Observation::OPEN
+        local_cs2 = create :conservation_status,
+          place: place2,
+          status: "EN",
+          iucn: Taxon::IUCN_ENDANGERED,
+          geoprivacy: Observation::OBSCURED
+        global_cs = create :conservation_status, taxon: species
+        o = create :observation, latitude: place.latitude, longitude: place.longitude, taxon: species
+        expect( o ).not_to be_coordinates_obscured
+        puts "creating ident of #{local_cs2.taxon.id}"
+        create :identification, observation: o, taxon: local_cs2.taxon
+        expect( o ).to be_coordinates_obscured
       end
 
       it "should not obscure coordinates if conservation statuses exist but all are open" do
-        p = make_place_with_geom
-        t = Taxon.make!(:rank => Taxon::SPECIES)
-        cs = ConservationStatus.make!(:place => p, :taxon => t, :geoprivacy => Observation::OPEN)
-        cs_global = ConservationStatus.make!(:taxon => t, :geoprivacy => Observation::OPEN)
-        o = Observation.make!(:latitude => -1*p.latitude, :longitude => p.longitude)
-        expect(o).not_to be_coordinates_obscured
-        o.update_attributes( taxon: t, editing_user_id: o.user_id )
-        expect(o).not_to be_coordinates_obscured
+        cs = create :conservation_status, place: place, taxon: species, geoprivacy: Observation::OPEN
+        cs_global = create :conservation_status, taxon: species, geoprivacy: Observation::OPEN
+        o = create :observation, latitude: -1*place.latitude, longitude: place.longitude
+        expect( o ).not_to be_coordinates_obscured
+        o.update_attributes( taxon: species, editing_user_id: o.user_id )
+        expect( o ).not_to be_coordinates_obscured
       end
 
       describe "when at least one ID is of a threatened taxon" do
-        let(:place) { make_place_with_geom }
         let(:o) { make_research_grade_observation( latitude: place.latitude, longitude: place.longitude ) }
-        let(:threatened_taxon) { Taxon.make!( rank: Taxon::SPECIES ) }
         it "should obscure coordinates if taxon has a conservation status in the place observed" do
           expect( o ).not_to be_coordinates_obscured
-          ConservationStatus.make!( place: place, taxon: threatened_taxon )
-          Identification.make!( observation: o, taxon: threatened_taxon )
+          create :conservation_status, place: place, taxon: species
+          create :identification, observation: o, taxon: species
           o.reload
           expect( o ).to be_coordinates_obscured
         end
         it "should not obscure coordinates if taxon has a conservation status in another place" do
           o.update_attributes( latitude: ( place.latitude * -1 ), longitude: ( place.longitude * -1 ) )
           expect( o ).not_to be_coordinates_obscured
-          ConservationStatus.make!( place: place, taxon: threatened_taxon )
-          Identification.make!( observation: o, taxon: threatened_taxon )
+          create :conservation_status, place: place, taxon: species
+          create :identification, observation: o, taxon: species
           o.reload
           expect( o ).not_to be_coordinates_obscured
         end
         it "should obscure coordinates if locally threatened but globally secure" do
           expect( o ).not_to be_coordinates_obscured
-          global_cs = ConservationStatus.make!( taxon: threatened_taxon )
-          local_cs = ConservationStatus.make!( place: place, taxon: threatened_taxon )
-          Identification.make!( observation: o, taxon: threatened_taxon )
+          global_cs = create :conservation_status,
+            taxon: species,
+            iucn: Taxon::IUCN_LEAST_CONCERN,
+            geoprivacy: Observation::OPEN
+          local_cs = create :conservation_status, place: place, taxon: species
+          create :identification, observation: o, taxon: species
           o.reload
           expect( o ).to be_coordinates_obscured
         end
+        it "should not obscure coordinates if secure in state but globally threatened" do
+          expect( o ).not_to be_coordinates_obscured
+          place.update_attributes( admin_level: Place::STATE_LEVEL )
+          local_cs = create :conservation_status,
+            place: place,
+            taxon: species,
+            iucn: Taxon::IUCN_LEAST_CONCERN,
+            geoprivacy: Observation::OPEN
+          global_cs = create :conservation_status, taxon: species
+          create :identification, observation: o, taxon: species
+          o.reload
+          expect( o ).not_to be_coordinates_obscured
+        end
         it "should not obscure coordinates if conservation statuses exist but all are open" do
           expect( o ).not_to be_coordinates_obscured
-          global_cs = ConservationStatus.make!( taxon: threatened_taxon, geoprivacy: Observation::OPEN )
-          local_cs = ConservationStatus.make!( place: place, taxon: threatened_taxon, geoprivacy: Observation::OPEN )
-          Identification.make!( observation: o, taxon: threatened_taxon )
+          global_cs = create :conservation_status, taxon: species, geoprivacy: Observation::OPEN
+          local_cs = create :conservation_status, place: place, taxon: species, geoprivacy: Observation::OPEN
+          create :identification, observation: o, taxon: species
           o.reload
           expect( o ).not_to be_coordinates_obscured
         end
@@ -1353,24 +1419,24 @@ describe Observation do
 
       describe "when a dissenting ID is of a non-threatened taxon" do
         before { load_test_taxa }
-        let(:cs) { ConservationStatus.make!( taxon: @Calypte_anna ) }
-        let(:o) { Observation.make!( taxon: cs.taxon, latitude: 1, longitude: 1 ) }
+        let(:cs) { create :conservation_status, taxon: @Calypte_anna }
+        let(:o) { create :observation, taxon: cs.taxon, latitude: 1, longitude: 1 }
         before do
           expect( o.community_taxon ).to be_blank
-          Identification.make!( observation: o, taxon: o.taxon )
+          create :identification, observation: o, taxon: o.taxon
           o.reload
           expect( o.community_taxon ).to eq cs.taxon
           expect( o ).to be_coordinates_obscured
         end
         it "should not reveal the coordinates" do
-          i2 = Identification.make!( observation: o, taxon: @Pseudacris_regilla )
+          i2 = create :identification, observation: o, taxon: @Pseudacris_regilla
           o.reload
           expect( o.community_taxon ).not_to eq cs.taxon
           expect( o ).to be_coordinates_obscured
         end
         it "should reveal the coordinates if the dissenting ID is not current" do
-          i2 = Identification.make!( observation: o, taxon: @Pseudacris_regilla )
-          i3 = Identification.make!( observation: o, taxon: @Calypte_anna, user: i2.user )
+          i2 = create :identification, observation: o, taxon: @Pseudacris_regilla
+          i3 = create :identification, observation: o, taxon: @Calypte_anna, user: i2.user
           i2.reload
           i3.reload
           expect( i2 ).not_to be_current
