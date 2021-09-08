@@ -34,10 +34,19 @@ function mapStateToProps( state ) {
       originalDimensions: photo.original_dimensions
     } ) );
   }
+  const currentObsBrightnessKeys = {};
+  const brightnessKeys = Object.keys( state.observations.brightnesses );
+  const id = observation && observation.id;
+  brightnessKeys.forEach( key => {
+    if ( key.includes( id ) ) {
+      currentObsBrightnessKeys[key] = state.observations.brightnesses[key];
+    }
+  } );
+
   return Object.assign( {}, {
     images,
     blind: state.config.blind,
-    brightnesses: state.observations.brightnesses,
+    brightnesses: currentObsBrightnessKeys,
     controlledTerms: state.controlledTerms.terms,
     currentUser: state.config.currentUser,
     mapZoomLevel: state.config.mapZoomLevel,
