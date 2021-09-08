@@ -7300,10 +7300,10 @@ en:
         new_range_guidelines_html: |
           <p>
             Each taxon can have only one Taxon Range.
-            Taxon ranges must represent the global distribution of a taxon
+            Taxon ranges must represent the global distribution.
           </p>
           <p>
-            The IUCN RedList is the major source of taxon ranges for iNaturalist.
+            The IUCN RedList is the default source of taxon ranges.
             Please indicate whether you are adding an IUCN range to help inform processes
             to automatically update these ranges. Only check this if you are uploading an
             unaltered map and indicate the version (e.g. 2021-2) in the source.
@@ -7313,12 +7313,12 @@ en:
           </p>
           <ul>
             <li><p>
-              IUCN range map for this taxon has issues: for example, maybe you’ve manually narrowed
-              it to reflect a taxonomic split not represented in the IUCN RedList, or perhaps the IUCN
+              <b>IUCN range map for this taxon is unsutable:</b> for example, you’ve manually narrowed
+              it to reflect a taxonomic split not represented in the IUCN RedList, or the IUCN
               range map has major errors making its display problematic.</p></li>
             <li><p>
-              Taxon is not in IUCN - for example, if the taxon is lumped with another taxon in the IUCN
-              RedList but you’ve manually carved it off here, or if the taxon lacks an IUCN assessment
+              <b>Taxon is not in IUCN:</b> for example, the taxon is lumped with another taxon in the IUCN
+              RedList so you’ve manually carved it off here, or if the taxon lacks an IUCN assessment
               and range map.</p></li>
           </ul>
           <p>

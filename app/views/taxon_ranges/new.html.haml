@@ -6,7 +6,7 @@
           =t :label_colon, label: t(:new_taxon_range)
           = link_to @taxon_range.taxon.name, @taxon_range.taxon
         - else
-          = t(:new_taxon_range)  
+          = t(:new_taxon_range)
       = form_for(@taxon_range, :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f|
         = f.error_messages
         = render :partial => 'form_fields', :locals => {:f => f}

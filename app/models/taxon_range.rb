@@ -1,5 +1,7 @@
 class TaxonRange < ApplicationRecord
   
+  attr_accessor :delete_range
+
   belongs_to :taxon
   belongs_to :source
   belongs_to :user
@@ -32,7 +34,7 @@ class TaxonRange < ApplicationRecord
     :url => "/attachments/:class/:id.:extension"
 
   after_save :derive_missing_values
-  
+  before_validation { range.clear if delete_range == '1' }
   validates_attachment_content_type :range, :content_type => [ /kml/, /xml/ ]
 
   attr_accessor :geom_processed
