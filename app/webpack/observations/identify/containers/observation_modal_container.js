@@ -37,7 +37,7 @@ function mapStateToProps( state ) {
   return Object.assign( {}, {
     images,
     blind: state.config.blind,
-    brightnesses: state.brightnesses.brightnesses,
+    brightnesses: state.observations.brightnesses,
     controlledTerms: state.controlledTerms.terms,
     currentUser: state.config.currentUser,
     mapZoomLevel: state.config.mapZoomLevel,
