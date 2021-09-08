@@ -957,7 +957,6 @@ it:
       Organizzazione che ha dichiarato questo stato conservazionistico. Per favore usa la funzione di autocompletamento per scegliere un'autorità già esistente prima di aggiungerne una nuova. Puoi saltare questo passaggio se *tu* vuoi essere elencato come l'ente di controllo.
     place: Luogo al quale si riferisce questo stato conservazionistico.
     url: URL di una pagina che descrive questo stato conservazionistico.
-    geoprivacy: Geoprivacy predefinita per le osservazioni di questo taxon
     iucn: |
       Equivalente del Codice della Lista Rossa IUCN. Questa non è l’effettiva valutazione della IUCN, ma il codice IUCN che meglio corrisponde al rischio di divulgazione delle coordinate implicita in questo stato. Questo sovrascriverà la geoprivacy se è "Minor Preoccupazione" o inferiore: quindi se si vuole oscurare le osservazioni di questo taxon, bisogna impostare questo codice su "Quasi Minacciato" o superiore.
   conservation_status_geoprivacy_desc: |
