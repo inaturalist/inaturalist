@@ -2527,7 +2527,7 @@ describe Observation do
 
     before { allow(observation).to receive(:set_geom_from_latlon) }
 
-    it "sets geom on save" do
+    it "gets called on save" do
       observation.run_callbacks :save
 
       expect(observation).to have_received :set_geom_from_latlon
