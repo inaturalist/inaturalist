@@ -1,0 +1,22 @@
+- content_for :title do
+  Taxon Range for
+  = render "taxa/taxon.txt.erb", taxon: @taxon_range.taxon
+
+.container
+  .row
+    .col-xs-12
+      %h2.pull-left
+        =t :editing_taxon_range_for_taxon_html, taxon: @taxon_range.taxon
+      - if current_user.is_curator?
+        .pull-right= link_to t( :edit ), edit_taxon_range_path( @taxon_range )
+  .row.cf#top
+    .col-sm-3.col-xs-12.pull-right
+      .panel.panel-info
+        .panel-heading
+          %h3.panel-title
+            = "About Taxon Ranges"
+        .panel-body
+          %p
+            = "Taxon Ranges convey the global distribution of a taxon. Taxon ranges are typically referenced from the IUCN RedList"
+            = link_to "Learn more", "/pages/taxon_ranges"
+          %img.media-object{ src: "https://static.inaturalist.org/wiki_page_attachments/720-original.png", class: "img-responsive" }

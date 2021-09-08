@@ -2,7 +2,7 @@
   .row
     .col-md-12
       %h2
-        - if @taxon_range.taxon
+      	- if @taxon_range.taxon
           =t :label_colon, label: t(:new_taxon_range)
           = link_to @taxon_range.taxon.name, @taxon_range.taxon
         - else

@@ -30,6 +30,10 @@ class TaxonRangesController < ApplicationController
     end
   end
   
+  def show
+    @taxon_range = TaxonRange.find( params[:id] )
+  end
+  
   def update
     # Set the last editor
     params[:taxon_range][:updater_id] = current_user.id

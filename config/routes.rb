@@ -579,7 +579,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :taxon_ranges, :except => [:show]
+  resources :taxon_ranges
   
   resources :atlases do
     member do

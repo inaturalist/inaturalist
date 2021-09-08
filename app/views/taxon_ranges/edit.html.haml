@@ -2,7 +2,7 @@
   .row
     .col-md-12
       %h2
-        =t :editing_taxon_range_for_taxon_html, taxon: default_taxon_name( @taxon_range.taxon )
+        =t :editing_taxon_range_for_taxon_html, taxon: @taxon_range.taxon
       = form_for(@taxon_range, :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f|
         = f.error_messages
         = render :partial => 'form_fields', :locals => {:f => f}
