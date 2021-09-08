@@ -431,7 +431,7 @@ class Taxon < ApplicationRecord
   scope :of_rank_equiv_or_lower, lambda {|rank_level| where("taxa.rank_level <= ?", rank_level)}
   scope :is_locked, -> { where(:locked => true) }
   scope :containing_lat_lng, lambda {|lat, lng|
-    joins(:taxon_ranges).where("ST_Intersects(taxon_ranges.geom, ST_Point(?, ?))", lng, lat)
+    joins(:taxon_range).where("ST_Intersects(taxon_ranges.geom, ST_Point(?, ?))", lng, lat)
   }
   
   # Like it's counterpart in Place, this is potentially VERY expensive/slow
@@ -1792,8 +1792,7 @@ class Taxon < ApplicationRecord
   end
 
   def taxon_range_kml_url
-    return nil unless ranges = taxon_ranges_without_geom
-    tr = ranges.detect{|tr| !tr.range.blank?} || ranges.first
+    return nil unless tr = taxon_range_without_geom
     tr ? tr.kml_url : nil
   end
 

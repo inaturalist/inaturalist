@@ -81,7 +81,7 @@ class TaxonFrameworksController < ApplicationController
   
   def set_taxon_framework
     @taxon_framework = TaxonFramework.where( id: params[:id] ).includes(
-            { taxon: [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes] },
+            { taxon: [:taxon_names, :photos, :taxon_range_without_geom, :taxon_schemes] },
             :source
           ).first
   end

@@ -24,7 +24,7 @@ describe Taxon, "associations" do
   it { is_expected.to have_many(:taxon_links).dependent :delete_all }
   it { is_expected.to have_many(:taxon_names).dependent :destroy }
   it { is_expected.to have_many(:taxon_photos).dependent :destroy }
-  it { is_expected.to have_many(:taxon_ranges).dependent :destroy }
+  it { is_expected.to have_one(:taxon_range).dependent :destroy }
   it { is_expected.to have_many(:taxon_scheme_taxa).dependent :destroy }
   it { is_expected.to have_many(:taxon_schemes).through :taxon_scheme_taxa }
   it { is_expected.to have_one(:atlas).inverse_of(:taxon).dependent :destroy }

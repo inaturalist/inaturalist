@@ -721,9 +721,9 @@ class TaxaController < ApplicationController
   
   def range
     @taxon_range = if request.format == :geojson
-      @taxon.taxon_ranges.simplified.first
+      TaxonRange.where(taxon_id: @taxon.id).simplified.first
     else
-      @taxon.taxon_ranges.first
+      @taxon.taxon_range
     end
     unless @taxon_range
       flash[:error] = t(:taxon_doesnt_have_a_range)
@@ -820,7 +820,7 @@ class TaxaController < ApplicationController
   def map_layers
     render json: {
       id: @taxon.id,
-      ranges: @taxon.taxon_ranges.exists?,
+      ranges: @taxon.taxon_range.present?,
       gbif_id: @taxon.get_gbif_id,
       listed_places: @taxon.listed_taxa.joins(place: :place_geometry).exists?
     }
