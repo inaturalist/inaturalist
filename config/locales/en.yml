@@ -1605,6 +1605,7 @@ en:
   # add the file as, for example, a new photo in the Uploader
   drop_it: Drop it
   download: Download
+  download_attached_range: Download attached range
   download_bulk_import_template_html: |
     <a href="%{url}">Download template</a> for use in the
     <a href="/observations/import?project_id=%{project_id}#csv_import">bulk uploader</a>

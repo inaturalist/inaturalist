@@ -1,7 +1,4 @@
 class TaxonRange < ApplicationRecord
-  
-  attr_accessor :delete_range
-
   belongs_to :taxon
   belongs_to :source
   belongs_to :user
@@ -34,12 +31,12 @@ class TaxonRange < ApplicationRecord
     :path => ":rails_root/public/attachments/:class/:id.:extension",
     :url => "/attachments/:class/:id.:extension"
 
+  before_save :destroy_range?
   after_save :derive_missing_values
-  before_validation { range.clear if delete_range == '1' }
   validates_attachment_content_type :range, :content_type => [ /kml/, /xml/ ]
 
   attr_accessor :geom_processed
-
+  
   IUCN_REDLIST_MAP = 0
   IUCN_REDLIST_MAP_HAS_ISSUES = 1
   NOT_ON_IUCN_REDLIST = 2
@@ -116,6 +113,22 @@ class TaxonRange < ApplicationRecord
       f.close
     end
     File.delete(tmp_path)
+  end
+
+  def range_delete
+    @range_delete ||= "0"
+  end
+
+  def range_delete=(value)
+    @range_delete = value
+  end
+
+  def destroy_range?
+    return if geom_processed
+    self.range.clear if @range_delete == "1"
+    self.geom = nil
+    self.geom_processed = true
+    self.save
   end
 
   def bounds

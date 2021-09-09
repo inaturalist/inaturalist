@@ -23,8 +23,8 @@
       %table.table.table-bordered
         %tr
           %td= t(:range)
-          - if @taxon_range.range
-            %td= link_to @taxon_range.range.url, @taxon_range.range.url
+          - if @taxon_range.range.file?
+            %td= link_to t(:download_attached_range), @taxon_range.range.url
           - else
             %td= t(:no_attached_range)
         %tr

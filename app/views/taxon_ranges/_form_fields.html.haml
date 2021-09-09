@@ -5,7 +5,7 @@
       .field
         = link_to f.object.range.url, f.object.range.url
         = link_to_function t(:replace_parentesis), "$(this).parents('.field').after('#{f.file_field(:range)}'); $(this).parents('.field').hide()", :class => "small"
-        = f.check_box :delete_range, :label_after => true
+        = f.check_box :range_delete, label: t(:delete_range), label_after: true
     - else
       = f.file_field :range
     = f.form_field :iucn_relationship, :label => false do

@@ -1,5 +1,5 @@
 class TaxonRangesController < ApplicationController
-  before_action :curator_required
+  before_action :curator_required, only: [:new, :create, :edit, :update, :destroy]
   
   layout "bootstrap"
 
