@@ -1,3 +1,14 @@
+:ruby
+  @taxon_range_iucn_relationship =  case @taxon_range.iucn_relationship
+  when 0
+    :this_is_an_iucn_redlist_range_map
+  when 1
+    :iucn_redlist_range_map_for_this_taxon_has_issues
+  when 2
+    :taxon_not_in_the_iucn_redlist
+  else
+    :unknown
+  end  
 - content_for :title do
   Taxon Range for
   = render "taxa/taxon.txt.erb", taxon: @taxon_range.taxon
@@ -29,12 +40,12 @@
           - else
             %td= t(:no_attached_range)
         %tr
-          %td= t(:is_this_an_iucn_range_map_and_if_not_why)
+          %td= t(:is_this_an_iucn_redlist_range_map_and_if_not_why)
           %td= t(@taxon_range_iucn_relationship)
         %tr
           %td= t(:source)
           - if @taxon_range.source
-            %td= link_to @taxon_range.source.url, @taxon_range.source.title
+            %td= link_to @taxon_range.source.title, @taxon_range.source.url
           - else
             %td= t(:unknown)
         %tr

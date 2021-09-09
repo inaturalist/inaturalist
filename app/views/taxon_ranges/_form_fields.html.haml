@@ -9,19 +9,19 @@
     - else
       = f.file_field :range
     = f.form_field :iucn_relationship, :label => false do
-      = label_tag :is_this_an_iucn_range_map_and_if_not_why, t(:is_this_an_iucn_range_map_and_if_not_why)
+      = label_tag :is_this_an_iucn_redlist_range_map_and_if_not_why, t(:is_this_an_iucn_redlist_range_map_and_if_not_why)
       .radio
         %label.inline
           = f.radio_button :iucn_relationship, 0, :skip_builder => true
-          = t(:this_is_an_iucn_range_map)
+          = t(:this_is_an_iucn_redlist_range_map)
       .radio
         %label.inline
           = f.radio_button :iucn_relationship, 1, :skip_builder => true
-          = t(:iucn_range_map_for_this_taxon_has_issues)
+          = t(:iucn_redlist_range_map_for_this_taxon_has_issues)
       .radio
         %label.inline
           = f.radio_button :iucn_relationship, 2, :skip_builder => true
-          = t(:taxon_not_in_iucn)
+          = t(:taxon_not_in_the_iucn_redlist)
     %fieldset#source
       = render :partial => 'sources/nested_form_fields', :locals => {:f => f}
     = f.text_field :url

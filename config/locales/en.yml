@@ -2167,7 +2167,7 @@ en:
   iphone: iPhone
   is_not_following_anyone: is not following anyone.
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Is the evidence provided enough to confirm this is %{taxon}?
-  is_this_an_iucn_range_map_and_if_not_why: Is this an IUCN range map, and if not why?
+  is_this_an_iucn_redlist_range_map_and_if_not_why: Is this an IUCN RedList range map, and if not why?
   is_this_offensive_html: 'Is this <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?'
   is_this_place_a_duplicate: Is this place a duplicate? 
   it_can_now_be_used_for_research: It can now be used for research and featured on other websites
@@ -2179,7 +2179,7 @@ en:
     site curator. If you think this is a mistake, please
     <a href="mailto:%{help_email}" class="contact">contact us</a>.
     <a href="%{manage_flags_path}">Manage flags</a>
-  iucn_range_map_for_this_taxon_has_issues: IUCN range map for this taxon has issues
+  iucn_redlist_range_map_for_this_taxon_has_issues: IUCN RedList range map for this taxon has issues
   join: Join
   join_and_add_an_observation_to_project_html: Join and Add An Observation to %{project}
   join_project: Join this project
@@ -4586,7 +4586,7 @@ en:
   taxon_merge: taxon merge
   taxon_name: Taxon name
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxon name must match an existing taxon in our database
-  taxon_not_in_iucn: Taxon not in IUCN
+  taxon_not_in_the_iucn_redlist: Taxon not in the IUCN Redlist
   taxon_observed_by_html: |
     <a href="%{url}">%{taxon}</a> observed by
   taxon_observed_by_user: "%{taxon} observed by %{user}"
@@ -4730,7 +4730,7 @@ en:
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     This is a more convenient way to find a taxon ID. It's the taxon ID
     that actually gets saved. This search only works for active taxa.
-  this_is_an_iucn_range_map: This is an IUCN range map
+  this_is_an_iucn_redlist_range_map: This is an IUCN RedList range map
   this_is_how_taxon_names_will_be_displayed: This is how all taxon names will be displayed to you across %{site_name}
   this_is_taking_forever: This is taking forever.  Please try again later.
   this_is_the_primary_listing: This is the primary listing
@@ -7305,22 +7305,23 @@ en:
             Taxon ranges must represent the global distribution.
           </p>
           <p>
-            The IUCN RedList is the default source of taxon ranges.
-            Please indicate whether you are adding an IUCN range to help inform processes
-            to automatically update these ranges. Only check this if you are uploading an
-            unaltered map and indicate the version (e.g. 2021-2) in the source.
+            The IUCN RedList is the typical source of taxon ranges.
+            Please indicate whether you are adding an IUCN RedList range and if not how what you are
+            adding relates to the IUCN RedList. This will help inform processes
+            of automatically update ranges sourced to the IUCN RedList. If you are adding an IUCN RedList
+            range please properly indicate the IUCN RedList version (e.g. 2021-2) in the source.
           </p>
           <p>
-          If you are not uploading an IUCN range map, this should be because:
+          If you are not uploading an IUCN RedList range map, this should be because:
           </p>
           <ul>
             <li><p>
-              <b>IUCN range map for this taxon is unsutable:</b> for example, you’ve manually narrowed
+              <b>IUCN RedList range map for this taxon is unsutable:</b> for example, you’ve manually narrowed
               it to reflect a taxonomic split not represented in the IUCN RedList, or the IUCN
-              range map has major errors making its display problematic.</p></li>
+              RedList range map has major errors making its display problematic.</p></li>
             <li><p>
-              <b>Taxon is not in IUCN:</b> for example, the taxon is lumped with another taxon in the IUCN
-              RedList so you’ve manually carved it off here, or if the taxon lacks an IUCN assessment
+              <b>Taxon is not in the IUCN RedList:</b> for example, the taxon is lumped with another taxon in the IUCN
+              RedList so you’ve manually carved it off here, or if the taxon lacks an IUCN RedList assessment
               and range map.</p></li>
           </ul>
           <p>
