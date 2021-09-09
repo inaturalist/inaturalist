@@ -18,14 +18,8 @@
       - if @taxon_range.user
         .row.meta
           .col-md-12
-            = t(:created_by, gender: 'taxon')
-            = link_to @taxon_range.user.login, @taxon_range.user
-            = t :on_day
-            = l(@taxon_range.created_at.to_date, :format => :long)
+            =raw t( :created_by_user_on_date, user: link_to( @taxon_range.user.login, @taxon_range.user ), date: l( @taxon_range.created_at.to_date, format: :long ) )
       - if @taxon_range.updater
         .row.meta
           .col-md-12
-            = t(:updated_by)
-            = link_to @taxon_range.updater.login, @taxon_range.updater
-            = t :on_day
-            = l(@taxon_range.updated_at.to_date, :format => :long)
+            = t( :updated_by_user_on_date_html, user: link_to( @taxon_range.updater.login, @taxon_range.updater ), date: l( @taxon_range.updated_at.to_date, format: :long ) )
