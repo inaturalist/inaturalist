@@ -125,7 +125,8 @@ class TaxonRange < ApplicationRecord
 
   def destroy_range?
     return if geom_processed
-    self.range.clear if @range_delete == "1"
+    return unless @range_delete == "1"
+    self.range.clear
     self.geom = nil
     self.geom_processed = true
     self.save
