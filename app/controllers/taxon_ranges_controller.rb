@@ -20,7 +20,7 @@ class TaxonRangesController < ApplicationController
       if @taxon_range.save
         format.html do
           redirect_to(
-            @taxon_range.taxon || taxa_path,
+            @taxon_range || taxon_range_path,
             notice: I18n.t( "taxon_range_created_notice" )
           )
         end
@@ -55,7 +55,7 @@ class TaxonRangesController < ApplicationController
         @taxon_range.taxon
         format.html do
           redirect_to(
-            @taxon_range.taxon || taxa_path,
+            @taxon_range || taxon_range_path,
             notice: I18n.t( "taxon_range_updated_notice" )
           )
         end

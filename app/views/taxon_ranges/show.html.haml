@@ -34,7 +34,7 @@
         %tr
           %td= t(:source)
           - if @taxon_range.source
-            %td= link_to @taxon_range.source.url, @taxon_range.source.url
+            %td= link_to @taxon_range.source.url, @taxon_range.source.title
           - else
             %td= t(:unknown)
         %tr
