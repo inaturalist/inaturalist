@@ -731,7 +731,7 @@ class TaxaController < ApplicationController
       return
     end
     respond_to do |format|
-      format.html { redirect_to taxon_map_path(@taxon) }
+      format.html { redirect_to taxon_range_path( @taxon_range ) }
       format.kml { redirect_to @taxon_range.range.url }
       format.geojson { render :json => [@taxon_range].to_geojson }
     end
