@@ -230,6 +230,10 @@ en:
   # should work here
   about_place: "About %{place}"
   about_places: About Places
+  about_taxon_ranges: About Taxon Ranges
+  about_taxon_ranges_desc: |
+    Taxon Ranges convey the global distribution of a taxon. Taxon ranges are
+    typically sourced from the IUCN RedList. <a href='%{url}'>Learn more</a>
   about_the_cc_licenses: About Creative Commons licenses
   about_these_licenses: About these licenses
   about_this_bioblitz: About this bioblitz
@@ -1623,6 +1627,7 @@ en:
   duplicate_verb: Duplicate
   duration_value: "Duration: %{duration} minutes"
   each_place_displays_all_species_inat_knows: "Each place page displays all the species %{site_name} knows about from that place, including information about their abundance, conservation status, and who was first to observe that species from that place on %{site_name}. You can filter the species by taxonomic group, color, conservation status, or plain old search."
+  each_taxon_can_have: Each taxon can have only one Taxon Range. Taxon ranges must represent the global distribution.
   earliest_added: Earliest Added
   edit: Edit
   edit_a_batch_of_observations: Edit a Batch of Observations
@@ -2085,6 +2090,18 @@ en:
   if_matches_come_from_a_comprehensive_list:  If matches come from a comprehensive list a green bar will show here.
   if_this_is_a_scientific_name: If this is a scientific name, is it currently accepted?
   if_this_link_will_apply_to_descendant: If this link will apply to descendent taxa, you can use template tags to fill in the taxon name in the URL
+  if_you_are_not_uploading: |
+    If you are not uploading an IUCN RedList range map, this should be because:
+    <ul>
+      <li><p>
+        <b>IUCN RedList range map for this taxon is unsutable:</b> for example, you’ve manually narrowed
+        it to reflect a taxonomic split not represented in the IUCN RedList, or the IUCN
+        RedList range map has major errors making its display problematic.</p></li>
+      <li><p>
+        <b>Taxon is not in the IUCN RedList:</b> for example, the taxon is lumped with another taxon in the IUCN
+        RedList so you’ve manually carved it off here, or if the taxon lacks an IUCN RedList assessment
+        and range map.</p></li>
+    </ul>
   if_you_have_any_trouble_with_the_site_check_out: 'If you have any questions, please check out our <a href="%{help_url}">help section</a> or post a message to our <a href="%{feedback_url}">feedback group</a>.'
   if_your_project_is: If your project is about a particular place, set the coordinates by clicking the map or entering them manually.
   ignore: ignore
@@ -2660,6 +2677,7 @@ en:
   multiple_select_option: -- multiple --
   multiple_taxa_for_taxon_change: "Multiple taxa (input for swap/merge, output for split)"
   multiple_taxon_ids_separated_by_commas: 'Multiple taxon IDs separated by commas, e.g. 123,654'
+  must_be_an_accepted_value: must be an accepted value
   must_be_in_taxon: must be in taxon %{taxon}
   must_be_not_in_taxon: must not be in taxon %{taxon}
   must_be_not_observed_by_user: must not be observed by %{user}
@@ -3745,6 +3763,10 @@ en:
   please_fix_your_csv_and_try_again: Please fix your CSV and try again.
   please_hold_on_while_the_file: Please hold on while the file is generated. It can take a couple minutes if you have a lot of observations.
   please_hold_on_while_the_file_is_generated: Please hold on while the file is generated.  It can take a couple minutes for large lists.
+  please_provide_details: |
+    Please provide details on how the map was derived in description and link to any relevant flags
+    where taxonomic splits or why the IUCN RedList range was determined to be problematic.
+    <a class="readmore" href="%{url}">Learn more about taxon ranges</a>.
   popular: Popular
   position: Position
   possessive_user: "%{user}'s"
@@ -4665,6 +4687,12 @@ en:
      planet. Most check lists are works in progress, but if there's one
      that is comprehensive, i.e. it lists <em>all</em> the representatives of
      its taxon in a place, the Identotron will show a notice.
+  the_iucn_redlist_is_the: |
+    The <a href="https://www.iucnredlist.org/">IUCN RedList</a> is the typical source of taxon ranges.
+    Please indicate whether you are adding an IUCN RedList range and if not how what you are
+    adding relates to the IUCN RedList. This will help inform processes
+    of automatically update ranges sourced to the IUCN RedList. If you are adding an IUCN RedList
+    range please properly indicate the IUCN RedList version (e.g. 2021-2) in the source.
   the_name_of_the_taxon_including_space: The name of the taxon, including the space for species and infraspecies.
   the_observation_was_already_added_to_that_project: The observation was already added to that project.
   the_people_of_inat: "The People of %{site_name}"
@@ -7297,38 +7325,6 @@ en:
           the list. You can also specify default names in different places by
           editing the name and adding a place, but please only do this when
           different places have conflicting names.
-    taxon_ranges:
-      form:
-        new_range_guidelines_html: |
-          <p>
-            Each taxon can have only one Taxon Range.
-            Taxon ranges must represent the global distribution.
-          </p>
-          <p>
-            The IUCN RedList is the typical source of taxon ranges.
-            Please indicate whether you are adding an IUCN RedList range and if not how what you are
-            adding relates to the IUCN RedList. This will help inform processes
-            of automatically update ranges sourced to the IUCN RedList. If you are adding an IUCN RedList
-            range please properly indicate the IUCN RedList version (e.g. 2021-2) in the source.
-          </p>
-          <p>
-          If you are not uploading an IUCN RedList range map, this should be because:
-          </p>
-          <ul>
-            <li><p>
-              <b>IUCN RedList range map for this taxon is unsutable:</b> for example, you’ve manually narrowed
-              it to reflect a taxonomic split not represented in the IUCN RedList, or the IUCN
-              RedList range map has major errors making its display problematic.</p></li>
-            <li><p>
-              <b>Taxon is not in the IUCN RedList:</b> for example, the taxon is lumped with another taxon in the IUCN
-              RedList so you’ve manually carved it off here, or if the taxon lacks an IUCN RedList assessment
-              and range map.</p></li>
-          </ul>
-          <p>
-            Please provide details on how the map was derived in description and link to any relevant flags
-            where taxonomic splits or why the IUCN RedList range was determined to be problematic.
-            <a class="readmore" href="/pages/taxon_ranges">Learn more about taxon ranges</a>.
-          </p>
     users:
       dashboard:
         taxon_change_desc: |

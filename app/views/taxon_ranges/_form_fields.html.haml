@@ -4,24 +4,15 @@
     - if f.object.range.file?
       .field
         = link_to f.object.range.url, f.object.range.url
-        = link_to_function t(:replace_parenthesis), "$(this).parents('.field').after('#{f.file_field(:range)}'); $(this).parents('.field').hide()", :class => "small"
+        = link_to_function t(:replace_parentesis), "$(this).parents('.field').after('#{f.file_field(:range)}'); $(this).parents('.field').hide()", :class => "small"
       = f.check_box :delete_range, :label_after => true
     - else
       = f.file_field :range
     = f.form_field :iucn_relationship, :label => false do
       = label_tag :is_this_an_iucn_redlist_range_map_and_if_not_why, t(:is_this_an_iucn_redlist_range_map_and_if_not_why)
-      .radio
-        %label.inline
-          = f.radio_button :iucn_relationship, 0, :skip_builder => true
-          = t(:this_is_an_iucn_redlist_range_map)
-      .radio
-        %label.inline
-          = f.radio_button :iucn_relationship, 1, :skip_builder => true
-          = t(:iucn_redlist_range_map_for_this_taxon_has_issues)
-      .radio
-        %label.inline
-          = f.radio_button :iucn_relationship, 2, :skip_builder => true
-          = t(:taxon_not_in_the_iucn_redlist)
+      = f.radio_button :iucn_relationship, TaxonRange::IUCN_REDLIST_MAP, label: t(:this_is_an_iucn_redlist_range_map)
+      = f.radio_button :iucn_relationship, TaxonRange::IUCN_REDLIST_MAP_HAS_ISSUES, label: t(:iucn_redlist_range_map_for_this_taxon_has_issues)
+      = f.radio_button :iucn_relationship, TaxonRange::NOT_ON_IUCN_REDLIST, label: t(:taxon_not_in_the_iucn_redlist)
     %fieldset#source
       = render :partial => 'sources/nested_form_fields', :locals => {:f => f}
     = f.text_field :url
@@ -30,4 +21,29 @@
   .col-xs-6
     .box
       %h3= t :guidelines
-      = t 'views.taxon_ranges.form.new_range_guidelines_html'
+      %p= t :each_taxon_can_have
+        Each taxon can have only one Taxon Range.
+        Taxon ranges must represent the global distribution.
+      %p= t :the_iucn_redlist_is_the
+        The IUCN RedList is the typical source of taxon ranges.
+        Please indicate whether you are adding an IUCN RedList range and if not how what you are
+        adding relates to the IUCN RedList. This will help inform processes
+        of automatically update ranges sourced to the IUCN RedList. If you are adding an IUCN RedList
+        range please properly indicate the IUCN RedList version (e.g. 2021-2) in the source.
+      %p= t :if_you_are_not_uploading
+        If you are not uploading an IUCN RedList range map, this should be because:
+          <ul>
+            <li><p>
+              <b>IUCN RedList range map for this taxon is unsutable:</b> for example, you’ve manually narrowed
+              it to reflect a taxonomic split not represented in the IUCN RedList, or the IUCN
+              RedList range map has major errors making its display problematic.</p></li>
+            <li><p>
+              <b>Taxon is not in the IUCN RedList:</b> for example, the taxon is lumped with another taxon in the IUCN
+              RedList so you’ve manually carved it off here, or if the taxon lacks an IUCN RedList assessment
+              and range map.</p></li>
+          </ul>
+      %p= t :please_provide_details, url: "/pages/taxon_ranges"
+        Please provide details on how the map was derived in description and link to any relevant flags
+        where taxonomic splits or why the IUCN RedList range was determined to be problematic.
+        <a class="readmore" href="%{url}">Learn more about taxon ranges</a>.
+  

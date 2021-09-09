@@ -10,7 +10,8 @@ class TaxonRange < ApplicationRecord
 
   validates_uniqueness_of :taxon_id, :message => "taxon range already exists"
   validates_presence_of :taxon
-  
+  validate :species_common_name_cannot_match_taxon_name
+
   accepts_nested_attributes_for :source
   
   scope :without_geom, -> { select((column_names - ['geom']).join(', ')) }
@@ -38,6 +39,19 @@ class TaxonRange < ApplicationRecord
   validates_attachment_content_type :range, :content_type => [ /kml/, /xml/ ]
 
   attr_accessor :geom_processed
+
+  IUCN_REDLIST_MAP = 0
+  IUCN_REDLIST_MAP_HAS_ISSUES = 1
+  NOT_ON_IUCN_REDLIST = 2
+
+  def species_common_name_cannot_match_taxon_name
+    return true if iucn_relationship.nil?
+    return true if [
+      TaxonRange::IUCN_REDLIST_MAP, 
+      TaxonRange::IUCN_REDLIST_MAP_HAS_ISSUES, 
+      TaxonRange::NOT_ON_IUCN_REDLIST].includes? iucn_relationship
+    errors.add(:iucn_relationship, :must_be_an_accepted_value)
+  end
 
   def validate_geometry
     if geom && geom.num_points < 3

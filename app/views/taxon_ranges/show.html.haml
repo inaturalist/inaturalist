@@ -1,14 +1,3 @@
-:ruby
-  @taxon_range_iucn_relationship =  case @taxon_range.iucn_relationship
-  when 0
-    :this_is_an_iucn_redlist_range_map
-  when 1
-    :iucn_redlist_range_map_for_this_taxon_has_issues
-  when 2
-    :taxon_not_in_the_iucn_redlist
-  else
-    :unknown
-  end  
 - content_for :title do
   Taxon Range for
   = render "taxa/taxon.txt.erb", taxon: @taxon_range.taxon
@@ -25,11 +14,10 @@
       .panel.panel-info
         .panel-heading
           %h3.panel-title
-            = "About Taxon Ranges"
+            =t :about_taxon_ranges
         .panel-body
           %p
-            = "Taxon Ranges convey the global distribution of a taxon. Taxon ranges are typically sourced from the IUCN RedList"
-            = link_to "Learn more", "/pages/taxon_ranges"
+            =t :about_taxon_ranges_desc, url: "/pages/taxon_ranges"
           %img.media-object{ src: "https://static.inaturalist.org/wiki_page_attachments/2817-original.png", class: "img-responsive" }
     .col-sm-9.col-xs-12.pull-left#left
       %table.table.table-bordered
@@ -41,7 +29,7 @@
             %td= t(:no_attached_range)
         %tr
           %td= t(:is_this_an_iucn_redlist_range_map_and_if_not_why)
-          %td= t(@taxon_range_iucn_relationship)
+          %td= iucn_relationship_text( @taxon_range.iucn_relationship )
         %tr
           %td= t(:source)
           - if @taxon_range.source
@@ -58,14 +46,8 @@
       - if @taxon_range.user
         .row.meta
           .col-md-12
-            = t(:created_by, gender: 'taxon')
-            = link_to @taxon_range.user.login, @taxon_range.user
-            = t :on_day
-            = l(@taxon_range.created_at.to_date, :format => :long)
+            =raw t( :created_by_user_on_date, user: link_to( @taxon_range.user.login, @taxon_range.user ), date: l( @taxon_range.created_at.to_date, format: :long ) )
       - if @taxon_range.updater
         .row.meta
           .col-md-12
-            = t(:updated_by)
-            = link_to @taxon_range.updater.login, @taxon_range.updater
-            = t :on_day
-            = l(@taxon_range.updated_at.to_date, :format => :long)
+            = t( :updated_by_user_on_date_html, user: link_to( @taxon_range.user.login, @taxon_range.user ), date: l( @taxon_range.created_at.to_date, format: :long ) )
