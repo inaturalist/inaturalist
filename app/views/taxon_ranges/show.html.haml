@@ -6,7 +6,7 @@
   .row
     .col-xs-12
       %h2.pull-left
-        =t :editing_taxon_range_for_taxon_html, taxon: @taxon_range.taxon
+        =t :taxon_range_for_taxon_html, taxon: render( "shared/taxon", taxon: @taxon_range.taxon, named_ancestor: true, link_url: @taxon_range.taxon )
       - if current_user.is_curator?
         .pull-right= link_to t( :edit ), edit_taxon_range_path( @taxon_range )
   .row.cf#top
@@ -17,6 +17,44 @@
             = "About Taxon Ranges"
         .panel-body
           %p
-            = "Taxon Ranges convey the global distribution of a taxon. Taxon ranges are typically referenced from the IUCN RedList"
+            = "Taxon Ranges convey the global distribution of a taxon. Taxon ranges are typically sourced from the IUCN RedList"
             = link_to "Learn more", "/pages/taxon_ranges"
-          %img.media-object{ src: "https://static.inaturalist.org/wiki_page_attachments/720-original.png", class: "img-responsive" }
+          %img.media-object{ src: "https://static.inaturalist.org/wiki_page_attachments/2817-original.png", class: "img-responsive" }
+    .col-sm-9.col-xs-12.pull-left#left
+      %table.table.table-bordered
+        %tr
+          %td= t(:range)
+          - if @taxon_range.range
+            %td= link_to @taxon_range.range.url, @taxon_range.range.url
+          - else
+            %td= t(:no_attached_range)
+        %tr
+          %td= t(:is_this_an_iucn_range_map_and_if_not_why)
+          %td= t(@taxon_range_iucn_relationship)
+        %tr
+          %td= t(:source)
+          - if @taxon_range.source
+            %td= link_to @taxon_range.source.url, @taxon_range.source.url
+          - else
+            %td= t(:unknown)
+        %tr
+          %td= t(:url)
+          %td= link_to @taxon_range.url, @taxon_range.url
+        %tr
+          %td= t(:description)
+          %td= @taxon_range.description
+
+      - if @taxon_range.user
+        .row.meta
+          .col-md-12
+            = t(:created_by, gender: 'taxon')
+            = link_to @taxon_range.user.login, @taxon_range.user
+            = t :on_day
+            = l(@taxon_range.created_at.to_date, :format => :long)
+      - if @taxon_range.updater
+        .row.meta
+          .col-md-12
+            = t(:updated_by)
+            = link_to @taxon_range.updater.login, @taxon_range.updater
+            = t :on_day
+            = l(@taxon_range.updated_at.to_date, :format => :long)

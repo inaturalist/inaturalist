@@ -2,9 +2,9 @@
   .row
     .col-md-12
       %h2
-      	- if @taxon_range.taxon
+        - if @taxon_range.taxon
           =t :label_colon, label: t(:new_taxon_range)
-          = link_to @taxon_range.taxon.name, @taxon_range.taxon
+          = render( "shared/taxon", taxon: @taxon_range.taxon, named_ancestor: true, link_url: @taxon_range.taxon )
         - else
           = t(:new_taxon_range)
       = form_for(@taxon_range, :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f|

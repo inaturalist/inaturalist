@@ -32,6 +32,16 @@ class TaxonRangesController < ApplicationController
   
   def show
     @taxon_range = TaxonRange.find( params[:id] )
+    @taxon_range_iucn_relationship =  case @taxon_range.iucn_relationship
+    when 0
+     :this_is_an_iucn_range_map
+    when 1
+      :iucn_range_map_for_this_taxon_has_issues
+    when 2
+      :taxon_not_in_iucn
+    else
+      :unknown
+    end  
   end
   
   def update

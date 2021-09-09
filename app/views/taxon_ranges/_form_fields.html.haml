@@ -8,8 +8,6 @@
       = f.check_box :delete_range, :label_after => true
     - else
       = f.file_field :range
-    = f.text_field :url
-    = f.text_field :source_identifier
     = f.form_field :iucn_relationship, :label => false do
       = label_tag :is_this_an_iucn_range_map_and_if_not_why, t(:is_this_an_iucn_range_map_and_if_not_why)
       .radio
@@ -18,15 +16,17 @@
           = t(:this_is_an_iucn_range_map)
       .radio
         %label.inline
-          = f.radio_button :iucn_relationship, 2, :skip_builder => true
+          = f.radio_button :iucn_relationship, 1, :skip_builder => true
           = t(:iucn_range_map_for_this_taxon_has_issues)
       .radio
         %label.inline
-          = f.radio_button :iucn_relationship, 1, :skip_builder => true
+          = f.radio_button :iucn_relationship, 2, :skip_builder => true
           = t(:taxon_not_in_iucn)
-    = f.text_area :description
     %fieldset#source
       = render :partial => 'sources/nested_form_fields', :locals => {:f => f}
+    = f.text_field :url
+    = f.text_field :source_identifier
+    = f.text_area :description
   .col-xs-6
     .box
       %h3= t :guidelines
