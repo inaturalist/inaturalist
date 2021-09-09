@@ -34,4 +34,24 @@ module TaxonRangesHelper
       return display_name
     end
   end
+
+  def taxon_range_creator( taxon_range )
+    if taxon_range.user_id == 0
+      return "iNat"
+    elsif taxon_range.user
+      link_to( taxon_range.user.login, taxon_range.user )
+    else
+      return t( :deleted_user )
+    end
+  end
+
+  def taxon_range_updater( taxon_range )
+    if taxon_range.updater_id == 0
+      return "iNat"
+    elsif taxon_range.updater
+      link_to( taxon_range.updater.login, taxon_range.updater )
+    else
+      return t( :deleted_user )
+    end
+  end
 end

@@ -43,12 +43,12 @@
         - if @taxon_range.description && @taxon_range.description != ""
           %tr
             %td.keys= t(:description)
-            %td= @taxon_range.description
-      - if @taxon_range.user
+            %td= formatted_user_text @taxon_range.description.html_safe, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
+      - if @taxon_range.user_id
         .row.meta
           .col-md-12
-            =raw t( :created_by_user_on_date, user: link_to( @taxon_range.user.login, @taxon_range.user ), date: l( @taxon_range.created_at.to_date, format: :long ) )
-      - if @taxon_range.updater
+            =raw t( :created_by_user_on_date, user: taxon_range_creator( @taxon_range ), date: l( @taxon_range.created_at.to_date, format: :long ) )
+      - if @taxon_range.updater_id
         .row.meta
           .col-md-12
-            = t( :updated_by_user_on_date_html, user: link_to( @taxon_range.updater.login, @taxon_range.updater ), date: l( @taxon_range.updated_at.to_date, format: :long ) )
+            = t( :updated_by_user_on_date_html, user: taxon_range_updater( @taxon_range ), date: l( @taxon_range.updated_at.to_date, format: :long ) )
