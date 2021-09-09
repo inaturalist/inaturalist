@@ -1,9 +1,14 @@
 class TaxonRange < ApplicationRecord
-  
   belongs_to :taxon
   belongs_to :source
-  has_many :listed_taxa, :dependent => :nullify
-  
+  belongs_to :user
+  has_updater
+  has_many :listed_taxa, dependent: :nullify
+
+  validates_uniqueness_of :taxon_id, message: :already_has_a_range
+  validates_presence_of :taxon
+  validate :iucn_relationship_must_be_an_accepted_value
+
   accepts_nested_attributes_for :source
   
   scope :without_geom, -> { select((column_names - ['geom']).join(', ')) }
@@ -26,11 +31,24 @@ class TaxonRange < ApplicationRecord
     :path => ":rails_root/public/attachments/:class/:id.:extension",
     :url => "/attachments/:class/:id.:extension"
 
+  before_save :destroy_range?
   after_save :derive_missing_values
-  
   validates_attachment_content_type :range, :content_type => [ /kml/, /xml/ ]
 
   attr_accessor :geom_processed
+  
+  IUCN_RED_LIST_MAP = 0
+  IUCN_RED_LIST_MAP_UNSUITABLE = 1
+  NOT_ON_IUCN_RED_LIST = 2
+
+  def iucn_relationship_must_be_an_accepted_value
+    return true if iucn_relationship.nil?
+    return true if [
+      TaxonRange::IUCN_RED_LIST_MAP,
+      TaxonRange::IUCN_RED_LIST_MAP_UNSUITABLE,
+      TaxonRange::NOT_ON_IUCN_RED_LIST].include? iucn_relationship
+    errors.add(:iucn_relationship, :must_be_an_accepted_value)
+  end
 
   def validate_geometry
     if geom && geom.num_points < 3
@@ -95,6 +113,23 @@ class TaxonRange < ApplicationRecord
       f.close
     end
     File.delete(tmp_path)
+  end
+
+  def range_delete
+    @range_delete ||= "0"
+  end
+
+  def range_delete=(value)
+    @range_delete = value
+  end
+
+  def destroy_range?
+    return if geom_processed
+    return unless @range_delete == "1"
+    self.range.clear
+    self.geom = nil
+    self.geom_processed = true
+    self.save
   end
 
   def bounds

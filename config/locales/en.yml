@@ -230,6 +230,10 @@ en:
   # should work here
   about_place: "About %{place}"
   about_places: About Places
+  about_taxon_ranges: About Taxon Ranges
+  about_taxon_ranges_desc: |
+    Taxon Ranges convey the global distribution of a taxon. Taxon ranges are
+    typically sourced from the IUCN Red List.
   about_the_cc_licenses: About Creative Commons licenses
   about_these_licenses: About these licenses
   about_this_bioblitz: About this bioblitz
@@ -1488,6 +1492,8 @@ en:
   delete_icon?: Delete icon?
   delete_photo: Delete photo
   delete_project: Delete this project
+  # Label for a button to delete a taxon range
+  delete_range: Delete range
   delete_selected: Delete Selected
   delete_taxon_and_merge_most_data_html: |
     Delete <i>%{taxon}</i> and merge most of its data into another taxon. Use
@@ -1677,7 +1683,7 @@ en:
   editing_taxon: Editing %{taxon}
   editing_taxon_link: Editing Taxon Link
   editing_taxon_name_for_taxon_html: Editing Taxon Name "%{name}" for %{taxon}
-  editing_taxon_range: Editing Taxon Range
+  editing_taxon_range_for_taxon_html: Editing Taxon Range for %{taxon}
   editing_this: Editing %{elem}
   editing_x_in_y: "Editing %{x} in %{y}"
   editors: Editors
@@ -2835,6 +2841,7 @@ en:
   no_project_to_admin_current_user: "You don't admin any projects"
   no_project_to_admin_login: "%{login} doesn't admin any projects"
   no_projects_yet: No projects yet
+  no_attached_range: No attached range
   no_range_data_available: No range data available.
   no_recent_activity: No recent activity
   no_relevant_annotations: No Relevant Annotations
@@ -4005,6 +4012,7 @@ en:
   # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infrahybrid
   ranges: Ranges
+  range_file: Range File
   ray_finned_fishes: ray-finned fishes
   re_order_photos: "Re-order photos &raquo;"
   read_more: Read More
@@ -4589,6 +4597,31 @@ en:
   taxon_photos_updated: Taxon photos updated!
   taxon_range: Taxon range
   taxon_range_created_notice: Taxon range was successfully created. Please allow a few minutes for it to appear on the maps.
+  taxon_range_for_taxon_html: Taxon Range for %{taxon}
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: Is this an IUCN Red List range map, and if not why?
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: This is an IUCN Red List range map
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: This is not an IUCN Red List range map because that map is unsuitable
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: This is not an IUCN Red List range map because this taxon is not on the IUCN Red List
+  taxon_range_guidelines_each_taxon_can_have: Each taxon can have only one Taxon Range. Taxon ranges must represent the global distribution.
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    The %{link_start_tag}IUCN Red List%{link_end_tag} is the typical source of taxon ranges.
+    Please indicate whether you are adding an IUCN Red List range and if not how what you are
+    adding relates to the IUCN Red List. This will help inform processes
+    of automatically updating ranges sourced to the IUCN Red List. If you are adding an IUCN Red List
+    range please properly indicate the IUCN Red List version (e.g. 2021-2) in the source.
+  taxon_range_guidelines_if_you_are_not_uploading: "If you are not uploading an IUCN Red List range map, this should be because:"
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: IUCN Red List range map for this taxon is unsuitable
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    for example, you have manually narrowed it to reflect a taxonomic split not represented on the IUCN Red List, or the IUCN
+    Red List range map has major errors making its display unsuitable.
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: This taxon is not on the IUCN Red List
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    for example, the taxon is lumped with another taxon on the IUCN Red List so you’ve manually carved it off here, or if the taxon
+    lacks an IUCN Red List assessment and range map.
+  taxon_range_guidelines_please_provide_details: |
+    Please use the description to explain how the map was derived and link to any relevant flags, taxonomic splits, or other discussions
+    of why the published IUCN Red List range required alteration.
+  taxon_range_guidelines_learn_more_about_taxon_ranges: Learn more about taxon ranges
   taxon_range_updated_notice: Taxon range was successfully updated. Please allow a few minutes for changes to appear on the maps.
   taxon_ranks: Taxon Ranks
   taxon_removed_from_list: Taxon removed from list.
@@ -8260,6 +8293,12 @@ en:
             taxon:
               too_many_photos: |
                 cannot have more than %{max} photos
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: must be an accepted value
+            taxon_id:
+              already_has_a_range: already has a range
         user:
           attributes:
             login:

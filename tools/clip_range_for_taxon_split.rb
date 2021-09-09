@@ -32,10 +32,10 @@ unless taxon_split = TaxonSplit.where(id: taxon_split_id).first
 end
 
 start_taxon = taxon_split.taxon
-start_taxon_range = start_taxon.taxon_ranges.first
+start_taxon_range = start_taxon.taxon_range
 taxon_split.taxon_change_taxa.each do |end_taxon_change_taxon| #Loop through the end taxa to be created
   end_taxon = end_taxon_change_taxon.taxon
-  unless new_range = end_taxon.taxon_ranges.first
+  unless new_range = end_taxon.taxon_range
     new_range = TaxonRange.new(:taxon_id => end_taxon.id)
   end
   file_name = "#{end_taxon.name} #{end_taxon.id} split.kml".split.join("_")

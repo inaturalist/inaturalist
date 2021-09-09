@@ -804,7 +804,7 @@ module ApplicationHelper
       # taxon ranges
       if options[:taxon_layers] && options[:show_range] && (!options[:focus] || options[:focus] == :range)
         options[:taxon_layers].each do |layer|
-          append_bounds_to_map_tag_attrs(map_tag_attrs, layer[:taxon].taxon_ranges_without_geom.first)
+          append_bounds_to_map_tag_attrs(map_tag_attrs, layer[:taxon].taxon_range_without_geom)
         end
       end
       # place geometries

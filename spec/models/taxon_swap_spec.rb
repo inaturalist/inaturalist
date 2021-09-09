@@ -145,7 +145,7 @@ describe TaxonSwap, "commit" do
     tr = TaxonRange.make!(:taxon => @input_taxon)
     @swap.commit
     @output_taxon.reload
-    expect(@output_taxon.taxon_ranges).not_to be_blank
+    expect(@output_taxon.taxon_range).not_to be_blank
   end
   
   it "should duplicate atlas if one isn't already set" do
@@ -161,7 +161,7 @@ describe TaxonSwap, "commit" do
     tr2 = TaxonRange.make!(:taxon => @output_taxon)
     @swap.commit
     @output_taxon.reload
-    expect(@output_taxon.taxon_ranges.count).to eq(1)
+    expect(@output_taxon.taxon_range).not_to be_blank
   end
 
   it "should not duplicate atlas if one is already set" do

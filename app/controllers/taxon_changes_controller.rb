@@ -45,8 +45,8 @@ class TaxonChangesController < ApplicationController
     
     @taxon_changes = scope.page(params[:page]).
       select("DISTINCT ON (taxon_changes.id) taxon_changes.*").
-      includes(:taxon => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]).
-      includes(:taxa => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]).
+      includes(:taxon => [:taxon_names, :photos, :taxon_range_without_geom, :taxon_schemes]).
+      includes(:taxa => [:taxon_names, :photos, :taxon_range_without_geom, :taxon_schemes]).
       includes(:source).
       order("taxon_changes.id DESC")
 
@@ -329,7 +329,7 @@ class TaxonChangesController < ApplicationController
       {
         taxon: [
           :taxon_schemes,
-          :taxon_ranges_without_geom,
+          :taxon_range_without_geom,
           :photos
         ]
       },
@@ -337,7 +337,7 @@ class TaxonChangesController < ApplicationController
         taxa: [
           :taxon_schemes,
           :atlas,
-          :taxon_ranges_without_geom,
+          :taxon_range_without_geom,
           :photos
         ]
       },
@@ -362,8 +362,8 @@ class TaxonChangesController < ApplicationController
   def load_taxon_change
     render_404 unless @taxon_change = TaxonChange.where(id: params[:id] || params[:taxon_change_id]).
       includes(
-        {taxon: [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
-        {taxa: [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
+        {taxon: [:taxon_names, :photos, :taxon_range_without_geom, :taxon_schemes]},
+        {taxa: [:taxon_names, :photos, :taxon_range_without_geom, :taxon_schemes]},
         :source
       ).first
   end
