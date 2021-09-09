@@ -1952,7 +1952,7 @@ id:
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: teks bercetak miring
   item_flagged_notice_html: |
-    Hal ini telah ditandai sebagai spam dan sudah tidak terlihat lagi secara publik. Anda dapat melihatnya karena Anda membuatnya, atau Anda merupakan kurator situs. Jika menurut Anda ini adalah sebuah kesalahan, harap <a href="mailto:%{help_email}" class="contact">menghubungi kami</a>. <a href="%{manage_flags_path}">Kelola tanda</a>
+    Hal ini telah ditandai sebagai spam dan sudah tidak terlihat lagi secara publik. Anda dapat melihatnya karena Anda membuatnya, atau Anda merupakan kurator situs. Jika menurut Anda ini adalah sebuah kesalahan, silakan <a href="mailto:%{help_email}" class="contact">menghubungi kami</a>. <a href="%{manage_flags_path}">Kelola tanda</a>
   join: Gabung
   join_and_add_an_observation_to_project_html: Gabung dan Tambahkan Pengamatan ke %{project}
   join_project: Gabung dengan proyek ini
@@ -5399,6 +5399,17 @@ id:
         allow_curator_coordinate_access_desc_html: |
           Memungkinkan kurator proyek untuk melihat koordinat pribadi untuk pengamatan ini.
         ancestor_disagreements_desc: "# taksa yang diidentifikasi yang merupakan induk sebuah takson, tetapi bertentangan dengan taksonnya (contohnya \"Menurut saya, ini ada di genus itu, tetapi saya tidak setuju bahwa itu nama spesiesnya\")"
+        community_taxon_desc_html: |
+          <p class="ui">
+          Takson komunitas (atau identifikasi komunitas) mewakili takson yang komunitas %{site_name} pikirkan sesuai apa yang digambarkan pada pengamatan. Jika Anda tertarik tentang cara kami memilih takson komunitas, Anda bisa melihat catatan pada algoritma di bawah ini, tetapi secara umum, kami mencoba untuk <strong>memilih takson yang lebih dari 2/3 pengidentifikasinya setuju dengan itu</strong>. Kadang, hal ini berarti mengharuskan kami memilih tingkat takson yang lebih tinggi yang mengandung sejumlah taksa yang bertentangan (contohnya, jika Anda pikir ini adalah ular raja dan saya berpikir ini adalah ular derik, iNat akan memilih subordo Serpentes yang mengandung semua jenis ular). Algoritma ini agak mendukung ketidaksepakatan, sebab kami menemukan bahwa orang-orang yang tidak sepakat biasanya benar.
+          </p>
+          <p class="ui">
+          Pengamatan kelas riset harus memiliki (selain kriteria-kriteria lainnya) sebuah takson komunitas. Jika sebuah pengamatan hanya memiliki satu identifikasi, ia tidak akan memiliki takson komunitas. Semua pengamatan dengan setidaknya satu identifikasi akan memiliki takson pengamatan juga. Takson pengamatan adalah takson yang kami gunakan ketika membagikan pengamatan dengan mitra data, menghubungkan pengamatan dari takson yang sama di dalam situs, memperbarui daftar kehidupan, dll. Sering kali, takson pengamatan pada akhirnya akan diatur menjadi takson komunitas, tetapi kadang-kadang, mereka akan berbeda khususnya sebelum komunitas setuju dengan sebuah identifikasi. Contohnya, saat Anda pikir ini adalah ular (subordo Serpentes) dan saya pikir ini adalah ular raja (genus <i>Lampropeltis</i>), takson pengamatan akan berada pada ular raja (didukung oleh identifikasi saya saja), tetapi takson komunitas akan berada pada serpentes (didukung oleh setidaknya dua pengamatan). Jika karena beberapa alasan Anda tidak setuju dengan takson komunitas, Anda dapat menolaknya di pengamatan Anda sendiri, yang berarti takson pengamatan tidak akan pernah diatur menjadi takson komunitas (alih-alih ID Anda sendiri). Ini berarti pengamatan Anda juga hanya bisa menjadi kelas riset saat komunitas setuju dengan <em>Anda</em>. Jika Anda tidak menyukai ide dari taksa komunitas, Anda dapat keluar sepenuhnya dengan <a href="/users/edit" target="_blank">mengubah pengaturan Anda</a>.
+          </p>
+          <p class="ui">
+          <strong>Algoritma:</strong> untuk semua taksa yang teridentifikasi dan taksa yang memilikinya
+          (contohnya genus <i>Homo</i> mengandung <i>Homo sapiens</i>), nilai setiap taksa didapatkan dari perbandingan antara jumlah 'persetujuan' - ID kumulatif untuk takson itu dibagi jumlah ID kumulatif, 'pertentangan' - jumlah ID yang benar-benar beda (yaitu ID taksa yang tidak mengandung takson yang sedang dinilai), dan 'pertentangan induk' - jumlah ID yang lebih konservatif yang tidak setuju dengan takson yang lebih rinci. Untuk taksa teridentifikasi yang mendapatkan nilai lebih dari 2/3 dan memiliki setidaknya 2 identifikasi, pilih takson yang tingkatnya lebih rendah.
+          </p>
         cumulative_count_desc: '# identifikasi untuk sebuah takson individu dan semua keturunannya'
         curator_coordinate_access_disabled_desc_html: |
           Proyek ini tidak memperbolehkan pengamatan dengan koordinat yang tidak dapat dilihat oleh kurator proyek. Jika Anda tidak ingin berbagi koordinat pengamatan ini dengan kurator proyek ini, Anda harus menghapus pengamatan tersebut dari proyek ini.
@@ -5406,6 +5417,68 @@ id:
           Penilaian Kualitas Data merupakan sebuah evaluasi keakuratan sebuah pengamatan. Pengamatan Kelas Riset dapat digunakan oleh ilmuwan untuk penelitian. Berikan suaramu di bawah ini:
         disagreement_count_desc: "# taksa yang diidentifikasi yang bukan merupakan induk sebuah takson"
         identification_count_desc: '# identifikasi untuk sebuah takson individu'
+        flagged_photos_desc_html: |
+          Beberapa foto ini telah ditandai karena konten yang tidak pantas atau pelanggaran hak cipta. Untuk informasi selengkapnya, lihat %{links}
+        join_project_desc_html: |
+          Bergabung dengan proyek memberikan kurator proyek kemampuan untuk melihat koordinat tersembunyi pengamatan ini atau pengamatan lainnya di proyek itu dan dengan melakukan tindakan ini, Anda dianggap setuju dengan <a href="%{url}" target="_blank">ketentuan</a> proyek.
+        quality_assessment_help_html: |
+          <p>
+          Penilaian kualitas data merupakan sebuah rangkuman akurasi dari sebuah pengamatan. Semua pengamatan memulai dengan kelas <strong>"kasual"</strong>, kemudian menjadi <strong>"memerlukan ID"</strong> saat
+          </p>
+
+          <ul>
+          <li>pengamatan <strong>memiliki tanggal</strong></li>
+          <li>pengamatan <strong>telah digeorefensi</strong> (yaitu memiliki koordinat lin/buj)</li>
+          <li>pengamatan <strong>memiliki foto atau suara</strong></li>
+          <li>pengamatan <strong>bukan merupakan pengamatan manusia</strong></li>
+          </ul>
+          <p>
+          Pengamatan menjadi <strong>"kelas riset"</strong> saat
+          </p>
+          <ul>
+          <li>
+          komunitas %{site_name} <strong>setuju dengan ID bertingkat spesies atau di bawahnya</strong>, yaitu saat lebih dari 2/3 pengidentifikasi setuju dengan sebuah takson (jika komunitas sudah menentukan bahwa Takson Komunitas tidak dapat ditingkatkan lebih lagi, hal ini mengembalikan ID bertingkat subfamili atau di bawahnya)
+          </li>
+          </ul>
+          <p>
+          Pengamatan akan kembali ke kelas <strong>"kasual"</strong> jika kondisi di atas tidak dapat dicapai atau komunitas setuju
+          </p>
+          <ul>
+          <li>
+          <strong>lokasi sepertinya tidak akurat</strong> (misalkan monyet di tengah laut, kuda nil di bangunan kantor, dll.)
+          </li>
+          <li>
+          <strong>organisme yang tidak liar/dinaturalisasi</strong> (seperti organisme yang dipelihara atau dibudidayakan oleh manusia atau alien cerdas dari luar angkasa)
+          </li>
+          <li>
+          pengamatan <strong>tidak menunjukkan adanya organisme</strong>, seperti gambar-gambar pemandangan, perairan, batu, dll.
+          </li>
+          <li>
+          pengamatan <strong>tidak menampilkan bukti belakangan ini(~100 tahun) dari suatu organisme</strong> (seperti fosil, namun bukti-bukti seperti jejak, tahi, dan daun mati masih oke)
+          </li>
+          <li>
+          pengamatan tidak lagi memerlukan ID <em>dan</em> ID komunitas berada di atas famili
+          </li>
+          <li>
+          pengamat tidak memilih untuk menggunakan ID komunitas dan takson ID komunitas bukan induk atau turunan dari takson yang terkait dengan ID pengamat
+          </li>
+          </ul>
+          <p>
+          Dan jika ini semua masih belum ruwet, ada situasi-situasi lainnya di mana sistem dapat memilih:
+          </p>
+          <ul>
+          <li>
+          Sistem bisa menentukan bahwa suatu pengamatan tidak liar/dinaturalisasi jika terdapat setidaknya 10 pengamatan lainnya dari sebuah genus atau tingkat di bawahnya yang berada di dalam suatu tempat setingkat kabupaten, provinsi, atau negara yang paling kecil yang memiliki pengamatan ini serta 80% atau lebih dari pengamatan tersebut telah ditandai sebagai tidak liar/dinaturalisasi.
+          </li>
+          </ul>
+        score_desc: "nilai = jumlah kumulatif / (jumlah kumulatif + jumlah pertentangan + pertentangan induk)"
+        observation_flagged_notice_html: |
+          Pengamatan ini telah ditandai sebagai spam dan sudah tidak terlihat lagi secara publik. Anda dapat melihatnya karena Anda membuatnya, atau Anda merupakan kurator situs. Jika menurut Anda ini adalah sebuah kesalahan, silakan <a href="mailto:%{help_email}" class="contact">menghubungi kami</a>. <a href="/observations/%{observation_id}/flags">Kelola tanda</a>
+        observer_does_not_allow_observation_fields: Pengamat tidak diperbolehkan untuk menambahkan bidang pengamatan
+        observer_only_allows_curators_to_add_fields: Pengamat hanya memperbolehkan kurator situs untuk menambahkan bidang pengamatan
+      user_stats:
+        user_stats_desc: |
+          Statistik pengguna dibatasi hingga 500 tertinggi saja menurut jumlah pengamatan atau jumlah spesies, jadi daftar totalnya biasanya lebih dari 500, karena kedua daftar tersebut mungkin tidak memiliki pengguna yang sama. Nilai yang ditandai "*" berarti tidak berada pada 500 tertinggi untuk statistik tersebut.
     emailer:
       photos_missing:
         subject: Beberapa foto memerlukan perbaikan
@@ -5453,18 +5526,29 @@ id:
       edit:
         admins_must_be_existing_members: Pengelola harus merupakan anggota yang masih ada di dalam proyek.
         aggregation_pending: Pengumpulan tertunda
-        cover_desc: "Spanduk gambar opsional yang akan muncul di bagian atas halaman proyek Anda. Harus 950px lebar, kurang dari 400px tinggi."
-        custom_project_fields_means: "Sesuaikan banner proyek, menambahkan konten situs, dan mengedit CSS."
-        end_time_desc: "Waktu terakhir untuk bioblitz Anda. Harus kurang dari satu tahun setelah waktu mulai"
+        new_place_desc_html: |
+          Coba lihat dulu <a href="%{places_url}" target="_blank">tempat-tempat yang sudah ada</a> dan pastikan Anda memasukkan nama tempatnya dengan benar. Jika Anda benar-benar tidak bisa menemukan tempat yang Anda inginkan, Anda boleh <a href="%{new_place_url}" target="_blank">membuat tempat baru</a>, tetapi tolong pastikan Anda tidak sedang membuat duplikat dari tempat yang sudah ada.
+        bioblitz_desc_html: |
+          <p>
+          Bioblitz adalah sebuah acara di mana para peserta mencoba untuk mengamati sebanyak mungkin spesies dalam jangka waktu tertentu. Ini adalah cara yang menyenangkan untuk mengenalkan orang kepada keanekaragaman hayati sambil mengumpulkan data yang bernilai.
+          </p>
+        change_admin_desc: Pilih satu kurator proyek untuk menjadi pengelola baru.
+        change_owner_alert: |
+          Ini akan menghilangkan kemampuanmu untuk menghapus proyek ini atau memindahkan kepemilikan lagi. Apakah Anda ingin lanjut?
+        cover_desc: "Spanduk gambar opsional yang akan muncul di bagian atas halaman proyek Anda. Harus memiliki lebar 950px dan tinggi kurang dari 400px."
+        custom_project_fields_means: "Sesuaikan banner proyek, tambahkan konten sampingan, dan edit CSS."
+        end_time_desc: "Waktu bioblitz Anda tamat. Harus kurang dari setahun sejak waktu mulai"
         event_url_desc: |
-          URL dari layanan pendaftaran acara yang Anda gunakan untuk bioblitz Anda. Jika ini adalah URL Eventbrite yang mencakup ID numerik, kita akan
-          masukkan widget daftar pada halaman proyek Anda sampai bioblitz Anda
-          dimulai.
+          URL dari layanan pendaftaran acara yang Anda gunakan untuk bioblitz Anda. Jika ini adalah URL Eventbrite yang mencakup ID numerik, kami akan memasukkan widget pendaftaran pada halaman proyek Anda sampai bioblitz Anda dimulai.
         icon_desc: "Akan dipotong menjadi persegi"
+        it_looks_like_this_project_can_be_converted: |
+          Sepertinya proyek ini dapat dikonversi menjadi <a href="%{url}">Proyek Koleksi</a> baru.
         last_aggregated_at_desc: |
-          Saat aggregator terbaru selesai pengamatan menambah proyek ini
+          Waktu saat agregator terakhir kali selesai menambahkan pengamatan ke proyek ini
         #Label for button to make another user the owner of a project
         make_owner: Jadikan Pemilik
+        no_curators: |
+          Tidak ada kurator proyek saat ini. Jika Anda ingin menugaskan orang baru sebagai pengelola, mereka harus bergabung dulu di proyek ini dan Anda harus membuat mereka sebagai kurator.
         rules:
           captive: merupakan peliharaan/dibudidayakan
           coordinates_shareable_by_project_curators: memiliki koordinat yang dapat dilihat oleh kurator proyek
