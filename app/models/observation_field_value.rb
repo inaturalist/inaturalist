@@ -42,8 +42,6 @@ class ObservationFieldValue < ApplicationRecord
     record.user_id != subscribable.user_id
   }
 
-  attr_accessor :updater_user_id
-
   include Shared::TouchesObservationModule
   include ActsAsUUIDable
   
@@ -96,12 +94,11 @@ class ObservationFieldValue < ApplicationRecord
   end
 
   def set_user
-    if updater_user_id
-      self.user_id ||= updater_user_id
-      self.updater_id = updater_user_id
+    if updater
+      self.user ||= updater
     elsif observation
-      self.user_id ||= observation.user_id
-      self.updater_id ||= user_id
+      self.user ||= observation.user
+      self.updater ||= user
     end
     true
   end

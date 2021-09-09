@@ -113,91 +113,154 @@ describe ObservationFieldValue do
   end
 
   describe "validation" do
+    describe "#set_user" do
+      context "with updater" do
+        let(:updater) { build_stubbed :user }
+        context "with no user" do
 
-    it "should pass for allowed values" do
-      of = ObservationField.make!(:datatype => "text", :allowed_values => "foo|bar")
-      expect {
-        ObservationFieldValue.make!(:observation_field => of, :value => "foo")
-      }.not_to raise_error
-      expect {
-        ObservationFieldValue.make!(:observation_field => of, :value => "bar")
-      }.not_to raise_error
+          subject { build_stubbed :observation_field_value, user: nil, updater: updater }
+
+          it "sets user to updater" do
+            expect(subject).to be_valid
+            expect(subject.user).to eq updater
+          end
+        end
+
+        context "with existing user" do
+          let(:user) { build_stubbed :user }
+          subject { build_stubbed :observation_field_value, user: user, updater: updater }
+
+          it "maintains user" do
+            expect(subject).to be_valid
+            expect(subject.user).to_not eq updater
+          end
+        end
+      end
+
+      context "with observation but no updater" do
+        context "with no user" do
+          subject { build_stubbed :observation_field_value, user: nil }
+
+          it "sets user and updater to observation user" do
+            expect(subject).to be_valid
+            expect(subject.user).to eq subject.observation.user
+            expect(subject.updater).to eq subject.observation.user
+          end
+        end
+
+        context "with existing user and updater" do
+          let(:user) { build_stubbed :user }
+          let(:updater) { build_stubbed :user }
+
+          subject { build_stubbed :observation_field_value, user: user, updater: updater }
+
+          it "maintains user and updater" do
+            expect(subject).to be_valid
+            expect(subject.user).to_not eq subject.observation.user
+            expect(subject.updater).to_not eq subject.observation.user
+          end
+        end
+      end
     end
 
-    it "should fail for disallowed values" do
-      of = ObservationField.make!(:datatype => "text", :allowed_values => "foo|bar")
-      expect {
-        ObservationFieldValue.make!(:observation_field => of, :value => "baz")
-      }.to raise_error(ActiveRecord::RecordInvalid)
+    context "with text type observation field" do
+      let(:of) { build_stubbed :observation_field, datatype: ObservationField::TEXT, allowed_values: "foo|bar" }
+
+      it "should pass for allowed values" do
+        expect(build_stubbed :observation_field_value, observation_field: of, value: "foo").to be_valid
+        expect(build_stubbed :observation_field_value, observation_field: of, value: "bar").to be_valid
+      end
+
+      it "should fail for disallowed values" do
+        expect(build_stubbed :observation_field_value, observation_field: of, value: "baz").to_not be_valid
+      end
+
+      it "allowed values validation should be case insensitive" do
+        expect(build_stubbed :observation_field_value, observation_field: of, value: "Foo").to be_valid
+        expect(build_stubbed :observation_field_value, observation_field: of, value: "BAR").to be_valid
+      end
+
+      it "allowed values validation should handle nil values" do
+        expect(build_stubbed :observation_field_value, observation_field: of, value: nil).to_not be_valid
+      end
     end
 
-    it "allowed values validation should be case insensitive" do
-      of = ObservationField.make!(:datatype => "text", :allowed_values => "foo|bar")
-      expect {
-        ObservationFieldValue.make!(:observation_field => of, :value => "Foo")
-      }.not_to raise_error
-      expect {
-        ObservationFieldValue.make!(:observation_field => of, :value => "BAR")
-      }.not_to raise_error
+    context "with numeric type observation field" do
+      let(:of) { build_stubbed :observation_field, datatype: ObservationField::NUMERIC, allowed_values: "1|7|56-35" }
+
+      it "should be valid for numeric values in a numeric field that aren't in allowed_values" do
+        expect(build_stubbed :observation_field_value,  observation_field: of, value: 5).to be_valid
+      end
     end
 
-    it "allowed values validation should handle nil values" do
-      of = ObservationField.make!(:datatype => ObservationField::TEXT, :allowed_values => "foo|bar")
-      expect {
-        ObservationFieldValue.make!(:observation_field => of, :value => nil)
-      }.to raise_error(ActiveRecord::RecordInvalid)
-    end
+    context "with user preference" do
+      let(:observer) { build_stubbed :user, prefers_observation_fields_by: preference }
+      let(:observation) { build_stubbed :observation, user: observer }
+      let(:other_user) { build_stubbed :user }
+      let(:curator) { build_stubbed :curator }
 
-    it "should be valid for numeric values in a numeric field that aren't in allowed_values" do
-      of = ObservationField.make!( datatype: ObservationField::NUMERIC, allowed_values: "1|7|56-35" )
-      expect( ObservationFieldValue.make!( observation_field: of, value: 5 ) ).to be_valid
-    end
+      subject { build_stubbed :observation_field_value, observation: observation, user: user }
 
-    describe "when observer prefers only curators" do
-      let(:observer) { User.make!( prefers_observation_fields_by: User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS ) }
-      let(:observation) { Observation.make!( user: observer ) }
-      it "should fail if the user is not a curator" do
-        ofv = ObservationFieldValue.make( observation: observation, user: User.make! )
-        expect( ofv ).not_to be_valid
+      context "when observer prefers only curators" do
+        let(:preference) { User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS }
+
+        context "and the user is not a curator" do
+          let(:user) { other_user }
+
+          it { is_expected.to_not be_valid }
+        end
+        context "and the user is a curator" do
+          let(:user) { curator }
+
+          it { is_expected.to be_valid }
+        end
+        context "and the user is the observer" do
+          let(:user) { observer }
+
+          it { is_expected.to be_valid }
+        end
+        context "and the updater is a curator" do
+          let(:user) { observer }
+
+          it "is valid on update" do
+            expect(subject).to be_valid
+            subject.updater = curator
+            expect(subject).to be_valid
+          end
+        end
+        context "and the updater is not a curator" do
+          let(:user) { observer }
+
+          it "is valid on update" do
+            expect(subject).to be_valid
+            subject.updater = other_user
+            expect(subject).not_to be_valid
+          end
+        end
       end
-      it "should pass if the user is a curator" do
-        ofv = ObservationFieldValue.make( observation: observation, user: make_curator )
-        expect( ofv ).to be_valid
-      end
-      it "should pass if the user is the observer" do
-        ofv = ObservationFieldValue.make( observation: observation, user: observation.user )
-        expect( ofv ).to be_valid
-      end
-      it "should pass on update if the updater is a curator" do
-        ofv = ObservationFieldValue.make( observation: observation, user: observation.user )
-        expect( ofv ).to be_valid
-        ofv.updater = make_curator
-        expect( ofv ).to be_valid
-      end
-      it "should fail on update if the updater is not a curator" do
-        ofv = ObservationFieldValue.make!( observation: observation, user: observation.user )
-        expect( ofv ).to be_valid
-        ofv.updater = User.make!
-        expect( ofv ).not_to be_valid
-      end
-    end
-    describe "when observer prefers only themselves" do
-      let(:observer) { User.make!( prefers_observation_fields_by: User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER ) }
-      let(:observation) { Observation.make!( user: observer ) }
-      it "should fail if the user is not the observer" do
-        ofv = ObservationFieldValue.make( observation: observation, user: User.make! )
-        expect( ofv ).not_to be_valid
-      end
-      it "should pass if the user is the observer" do
-        ofv = ObservationFieldValue.make( observation: observation, user: observer )
-        expect( ofv ).to be_valid
-      end
-      it "should fail on update if the updater is not the observer" do
-        ofv = ObservationFieldValue.make!( observation: observation, user: observer )
-        expect( ofv ).to be_valid
-        ofv.value = "something else"
-        ofv.updater = User.make!
-        expect( ofv ).not_to be_valid
+      context "when observer prefers only themselves" do
+        let(:preference) { User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER }
+
+        context "and if the user is not the observer" do
+          let(:user) { other_user }
+
+          it { is_expected.to_not be_valid }
+        end
+        context "and the user is the observer" do
+          let(:user) { observer }
+
+          it { is_expected.to be_valid }
+        end
+        context "and the updater is not the observer" do
+          let(:user) { observer }
+
+          it "is valid on update" do
+            expect(subject).to be_valid
+            subject.value = "something else"
+            subject.updater = other_user
+            expect(subject).not_to be_valid
+          end
+        end
       end
     end
   end

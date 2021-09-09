@@ -151,13 +151,13 @@ class ObservationFieldValuesController < ApplicationController
     p = options.blank? ? params : options
     p = p[:observation_field_value] if p[:observation_field_value]
     p.delete(:id) if p[:id].to_i == 0
-    p[:updater_user_id] = current_user.id if logged_in?
+    p[:updater_id] = current_user.id if logged_in?
     p.permit(
       :id,
       :observation_id,
       :observation_field_id,
       :value,
-      :updater_user_id
+      :updater_id
     )
   end
 end
