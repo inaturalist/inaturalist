@@ -875,6 +875,7 @@ ObservationModal.propTypes = {
 };
 
 ObservationModal.defaultProps = {
+  brightnesses: {},
   controlledTerms: [],
   imagesCurrentIndex: 0,
   tabs: TABS,
