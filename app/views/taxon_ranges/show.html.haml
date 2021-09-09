@@ -1,9 +1,7 @@
 = content_for :extracss do
-  = stylesheet_link_tag "taxon_ranges/taxon"
+  = stylesheet_link_tag "taxon_ranges/show"
 - content_for :title do
-  Taxon Range for
-  = render "taxa/taxon.txt.erb", taxon: @taxon_range.taxon
-
+  =t :taxon_range_for_taxon_html, taxon: @taxon_range.taxon.name
 .container
   .row
     .col-xs-12
@@ -19,8 +17,9 @@
             =t :about_taxon_ranges
         .panel-body
           %p
-            =raw t :about_taxon_ranges_desc, url: "/pages/taxon_ranges"
-          %img.media-object{ src: "https://static.inaturalist.org/wiki_page_attachments/2817-original.png", class: "img-responsive" }
+            =t :about_taxon_ranges_desc
+            = link_to t( :learn_more), "/pages/taxon_ranges"
+          %img.media-object{ src: image_url( "about-taxon-ranges.png", host: @site.url ), class: "img-responsive" }
     .col-sm-9.col-xs-12.pull-left#left
       %table.table.table-bordered
         %tr
@@ -30,7 +29,7 @@
           - else
             %td= t(:no_attached_range)
         %tr
-          %td.keys= t(:is_this_an_iucn_redlist_range_map_and_if_not_why)
+          %td.keys= t(:taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map)
           %td= iucn_relationship_text( @taxon_range.iucn_relationship )
         - if @taxon_range.source
           %tr

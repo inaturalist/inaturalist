@@ -9,10 +9,10 @@
     - else
       = f.file_field :range
     = f.form_field :iucn_relationship, :label => false do
-      = label_tag :is_this_an_iucn_redlist_range_map_and_if_not_why, t(:is_this_an_iucn_redlist_range_map_and_if_not_why)
-      = f.radio_button :iucn_relationship, TaxonRange::IUCN_REDLIST_MAP, label: t(:this_is_an_iucn_redlist_range_map)
-      = f.radio_button :iucn_relationship, TaxonRange::IUCN_REDLIST_MAP_HAS_ISSUES, label: t(:iucn_redlist_range_map_for_this_taxon_has_issues)
-      = f.radio_button :iucn_relationship, TaxonRange::NOT_ON_IUCN_REDLIST, label: t(:taxon_not_in_the_iucn_redlist)
+      = label_tag :taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map, t(:taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map)
+      = f.radio_button :iucn_relationship, TaxonRange::IUCN_RED_LIST_MAP, label: t(:taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map)
+      = f.radio_button :iucn_relationship, TaxonRange::IUCN_RED_LIST_MAP_UNSUITABLE, label: t(:taxon_range_iucn_relationship_iucn_red_list_map_unsuitable)
+      = f.radio_button :iucn_relationship, TaxonRange::NOT_ON_IUCN_RED_LIST, label: t(:taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list)
     %fieldset#source
       = render :partial => 'sources/nested_form_fields', :locals => {:f => f}
     = f.text_field :url
@@ -21,7 +21,14 @@
   .col-xs-6
     .box
       %h3= t :guidelines
-      %p= t :each_taxon_can_have
-      %p=raw t :the_iucn_redlist_is_the
-      %p=raw t :if_you_are_not_uploading
-      %p=raw t :please_provide_details, url: "/pages/taxon_ranges"
+      %p= t :taxon_range_guidelines_each_taxon_can_have
+      %p= t :taxon_range_guidelines_the_iucn_red_list_html, link_start_tag: "<a href='https://www.iucnredlist.org/'>".html_safe, link_end_tag: "</a>".html_safe
+      %p= t :taxon_range_guidelines_if_you_are_not_uploading
+      %ul
+        %li
+          %p= t :bold_label_colon_value_html, label: t( :taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable ), value: t( :taxon_range_guidelines_for_example_you_have_manually_narrowed )
+        %li
+          %p= t :bold_label_colon_value_html, label: t( :taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list ), value: t( :taxon_range_guidelines_for_example_the_taxon_is_lumped )
+      %p
+        = t :taxon_range_guidelines_please_provide_details
+        = link_to t( :taxon_range_guidelines_learn_more_about_taxon_ranges ), "/pages/taxon_ranges"

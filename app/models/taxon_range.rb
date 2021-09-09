@@ -3,11 +3,11 @@ class TaxonRange < ApplicationRecord
   belongs_to :source
   belongs_to :user
   has_updater
-  has_many :listed_taxa, :dependent => :nullify
+  has_many :listed_taxa, dependent: :nullify
 
-  validates_uniqueness_of :taxon_id, :message => "taxon range already exists"
+  validates_uniqueness_of :taxon_id, message: :already_has_a_range
   validates_presence_of :taxon
-  validate :species_common_name_cannot_match_taxon_name
+  validate :iucn_relationship_must_be_an_accepted_value
 
   accepts_nested_attributes_for :source
   
@@ -37,16 +37,16 @@ class TaxonRange < ApplicationRecord
 
   attr_accessor :geom_processed
   
-  IUCN_REDLIST_MAP = 0
-  IUCN_REDLIST_MAP_HAS_ISSUES = 1
-  NOT_ON_IUCN_REDLIST = 2
+  IUCN_RED_LIST_MAP = 0
+  IUCN_RED_LIST_MAP_UNSUITABLE = 1
+  NOT_ON_IUCN_RED_LIST = 2
 
-  def species_common_name_cannot_match_taxon_name
+  def iucn_relationship_must_be_an_accepted_value
     return true if iucn_relationship.nil?
     return true if [
-      TaxonRange::IUCN_REDLIST_MAP, 
-      TaxonRange::IUCN_REDLIST_MAP_HAS_ISSUES, 
-      TaxonRange::NOT_ON_IUCN_REDLIST].include? iucn_relationship
+      TaxonRange::IUCN_RED_LIST_MAP,
+      TaxonRange::IUCN_RED_LIST_MAP_UNSUITABLE,
+      TaxonRange::NOT_ON_IUCN_RED_LIST].include? iucn_relationship
     errors.add(:iucn_relationship, :must_be_an_accepted_value)
   end
 
