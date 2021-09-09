@@ -49,7 +49,7 @@ class TaxonRange < ApplicationRecord
     return true if [
       TaxonRange::IUCN_REDLIST_MAP, 
       TaxonRange::IUCN_REDLIST_MAP_HAS_ISSUES, 
-      TaxonRange::NOT_ON_IUCN_REDLIST].includes? iucn_relationship
+      TaxonRange::NOT_ON_IUCN_REDLIST].include? iucn_relationship
     errors.add(:iucn_relationship, :must_be_an_accepted_value)
   end
 
