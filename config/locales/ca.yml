@@ -1497,7 +1497,6 @@ ca:
   editing_taxon: Edita %{taxon}
   editing_taxon_link: Modifica enllaç del tàxon
   editing_taxon_name_for_taxon_html: Editant Nom del tàxon %{name} de %{taxon}
-  editing_taxon_range: Modifica rang del tàxon
   editing_this: Modificant %{elem}
   editing_x_in_y: "Editant %{x} en %{y}"
   editors: Editors
@@ -5560,9 +5559,6 @@ ca:
         </ol>
       dna_help: |
         Per activar la funcionalitat de codi de barres d'ADN BOLD, assegureu-vos que el nom inclou les paraules "COI", "COX1", "ITS" o "matK", corresponents als gens que marquen aquests camps.
-      merge:
-        warning_html: |
-          Si us plau, sigueu respectuós amb les dades d'altres persones i <strong>parleu amb el creador d'una observació de camp, abans de fusionar-la</strong>. Aquesta eina destruirà el camp de l'observació fusionat i mourà totes les observacions al camp que es mantingui. <strong>Aquest procés no es pot desfer</strong>, així que aneu amb compte.
     emailer:
       bulk_import_success:
         success_message: |
