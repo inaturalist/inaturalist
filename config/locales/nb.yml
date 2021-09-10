@@ -1354,7 +1354,6 @@ nb:
   editing_taxon: Redigerer %{taxon}
   editing_taxon_link: Redigerer taksonlenke
   editing_taxon_name_for_taxon_html: Redigerer taksonnavn "%{name}" for %{taxon}
-  editing_taxon_range: Redigerer taksonutbredelse
   editing_this: Redigerer %{elem}
   editing_x_in_y: "Redigerer %{x} i %{y}"
   editors: Redaktører
@@ -5210,9 +5209,6 @@ nb:
         </ol>
       dna_help: |
         For å tillate funksjonalitet for BOLD DNA barkode matching, sørg for at dine feltnavn inneholder ordene "COI", "COX1", "ITS", eller "matK," i overenstemmelse med genet dette feltet sikter mot.
-      merge:
-        warning_html: |
-          Vennligst ha respekt for andres data og <strong>snakk med den som opprettet en observasjon før du slår sammen</strong>. Dette verktøyet vil ødelegge obserasjonsfeltet som slås sammen og flytte alle observasjoner som benytter det til eieren. <strong>Denne handlingen kan ikke angres</strong>, så vær forsiktig.
     emailer:
       bulk_import_success:
         success_message: |
