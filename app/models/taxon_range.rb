@@ -31,6 +31,7 @@ class TaxonRange < ApplicationRecord
     :path => ":rails_root/public/attachments/:class/:id.:extension",
     :url => "/attachments/:class/:id.:extension"
 
+  before_save :range_changed?
   before_save :destroy_range?
   after_save :derive_missing_values
   validates_attachment_content_type :range, :content_type => [ /kml/, /xml/ ]
@@ -66,7 +67,7 @@ class TaxonRange < ApplicationRecord
     return if self.geom_processed
     if (geom && !range.path )
       delay( priority: USER_INTEGRITY_PRIORITY ).create_kml_attachment
-    elsif (!geom && range.path)
+    elsif (!geom && range.path)  || @range_has_changes
       delay( priority: USER_INTEGRITY_PRIORITY ).create_geom_from_kml_attachment
     end
   end
@@ -130,6 +131,10 @@ class TaxonRange < ApplicationRecord
     self.geom = nil
     self.geom_processed = true
     self.save
+  end
+
+  def range_changed?
+    @range_has_changes = self.range.dirty?
   end
 
   def bounds
