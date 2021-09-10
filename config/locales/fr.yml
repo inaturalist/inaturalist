@@ -1531,7 +1531,6 @@ fr:
   editing_taxon: Modification de %{taxon}
   editing_taxon_link: Modification du lien relatif au taxon
   editing_taxon_name_for_taxon_html: Modification du nom du taxon "%{name}" pour %{taxon}
-  editing_taxon_range: Modification de l’aire de répartition du taxon
   editing_this: Modification de %{elem}
   editing_x_in_y: "Modification de %{x} dans %{y}"
   editors: Contributeurs
@@ -2867,6 +2866,7 @@ fr:
     absent: N’apparaît pas dans la zone
     common: Apparaît fréquemment
     doubtful: Présumé apparaître, mais il y a des doutes sur la preuve
+    irregular: Présence imprévisible, y compris en vagabondage ; peut être commun certaines années et absent d’autres
     present: Apparaît dans la zone
     uncommon: Apparaît régulièrement, mais en petit nombre ; nécessite une recherche soigneuse du bon habitat
   occurrence_status_establishment_means: état de la présence, type d'implantation
@@ -5818,12 +5818,6 @@ fr:
         </ol>
       dna_help: |
         Pour activer la fonctionnalité de correspondance du code-barre ADN GRAS, assurez-vous que le nom du champ inclut les mots « COI », « COX1 », « ITS » ou « matK », correspondant au gène visé par le champ.
-      merge:
-        warning_html: |
-          Veuillez respecter les données des autres personnes et <strong>parler au créateur
-          d’un champ d’observation avant de le fusionner</strong>. Cet outil détruira
-          le champ d’observation fusionné et déplacera toutes les observations qui l’utilisent
-          vers le responsable. <strong>Ce processus ne peut pas être annulé</strong>, donc soyez prudent.
     emailer:
       bulk_import_success:
         success_message: |
