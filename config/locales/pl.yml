@@ -254,6 +254,7 @@ pl:
   #should work here
   about_place: "O %{place}"
   about_places: O lokalizacjach
+  about_taxon_ranges: O zasięgach taksonów
   about_the_cc_licenses: O licencjach Creative Commons
   about_these_licenses: O tych licencjach
   about_this_bioblitz: O tym bioblitzu
@@ -1278,6 +1279,8 @@ pl:
   delete_icon?: Usunąć ikonę?
   delete_photo: Usuń zdjęcie
   delete_project: Usuń ten projekt
+  #Label for a button to delete a taxon range
+  delete_range: Usuń zasięg
   delete_selected: Usuń wybrane
   delete_user: Usuń użytkownika
   delete_your_account: Usuń konto
@@ -1426,7 +1429,7 @@ pl:
   editing_taxon: Edytowanie %{taxon}
   editing_taxon_link: Edytuj Łącze Taksonu
   editing_taxon_name_for_taxon_html: Edytowanie nazwy taksonu "%{name}" dla %{taxon}
-  editing_taxon_range: Edytowanie zasięgu taksonu
+  editing_taxon_range_for_taxon_html: Edytowanie zasięgu taksonu dla %{taxon}
   editing_this: Edytowanie %{elem}
   editing_x_in_y: "Edytowanie %{x} w %{y}"
   editors: Edytorzy
@@ -3486,6 +3489,8 @@ pl:
   taxon_observed_by_user: "%{taxon} zaobserwowany przez %{user}"
   taxon_photos_updated: Zdjęcia taksonu zaktualizowane!
   taxon_range: Zasięg taksonu
+  taxon_range_for_taxon_html: Zasięg taksonu dla %{taxon}
+  taxon_range_guidelines_learn_more_about_taxon_ranges: Dowiedz się więcej o zasięgach taksonów
   taxon_ranks: Kategorie taksonomiczne
   taxon_removed_from_list: Takson usunięty z listy.
   taxon_search: Wyszukiwanie taksonów
