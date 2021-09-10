@@ -134,6 +134,9 @@ id:
   #should work here
   about_place: "Tentang %{place}"
   about_places: Tentang tempat
+  about_taxon_ranges: Tentang Jangkauan Takson
+  about_taxon_ranges_desc: |
+    Jangkauan Takson menampilkan penyebaran global dari sebuah takson. Jangkauan takson biasanya diambil dari Daftar Merah IUCN.
   about_the_cc_licenses: Tentang lisensi Creative Commons
   about_these_licenses: Tentang lisensi ini
   about_this_bioblitz: Tentang bioblitz ini
@@ -1296,6 +1299,8 @@ id:
   delete_icon?: Hapus ikon?
   delete_photo: Hapus foto
   delete_project: Hapus proyek ini
+  #Label for a button to delete a taxon range
+  delete_range: Hapus jangkauan
   delete_selected: Hapus Yang Dipilih
   delete_taxon_and_merge_most_data_html: |
     Hapus <i>%{taxon}</i> dan gabungkan sebagian besar data tersebut ke dalam takson. Gunakan
@@ -1476,7 +1481,7 @@ id:
   editing_taxon: Mengubah %{taxon}
   editing_taxon_link: Mengubah Tautan Takson
   editing_taxon_name_for_taxon_html: Mengubah Nama Takson "%{name}" menjadi %{taxon}
-  editing_taxon_range: Mengubah Jangkauan Takson
+  editing_taxon_range_for_taxon_html: Mengubah Jangkauan Takson untuk %{taxon}
   editing_this: Mengubah %{elem}
   editing_x_in_y: "Mengubah %{x} di %{y}"
   editors: Penyunting
@@ -2590,6 +2595,7 @@ id:
   no_project_to_admin_current_user: "Anda tidak mengelola proyek apapun"
   no_project_to_admin_login: "%{login} tidak mengelola proyek apapun"
   no_projects_yet: Belum ada proyek
+  no_attached_range: Tidak ada lampiran jangkauan
   no_range_data_available: Tidak ada data jangkauan yang tersedia.
   no_recent_activity: Tidak ada aktivitas akhir-akhir ini
   no_relevant_annotations: Tidak Ada Catatan Relevan
@@ -2836,7 +2842,7 @@ id:
     updates_by_you_panel_title: Tab ini adalah cara cepat untuk menyaring kabar tentang konten Anda saja.
     updates_by_you_panel_body: Ingat, di tab 'Semua kabar', Anda akan mendapatkan kabar bukan hanya tentang konten Anda sendiri, tetapi juga konten tentang orang-orang yang Anda ikuti dan taksa atau tempat-tempat yang kamu ikut berlangganan menggunakan fitur Langganan di kanan.
     youve_got_updates_panel_title: Kamu mendapatkan berita baru!
-    youve_got_updates_panel_body_p1: Jangan ketinggalan dengan kabar berikut...
+    youve_got_updates_panel_body_p1: Jangan ketinggalan dengan kabar-kabar berikut...
     youve_got_updates_panel_body_p2: |
       <ul>
       <li><strong>Konten Anda:</strong> Aktivitas di pengamatan Anda seperti komentar, identifikasi, atau favorit dari komunitas %{site_name}. Anda juga akan mendapatkan kabar terbaru saat seseorang menambahkan pengamatan Anda ke sebuah proyek, atau memberikan catatan kolom tambahan.</li>
@@ -3685,6 +3691,7 @@ id:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infrahibrida
   ranges: Jangkauan
+  range_file: File Jangkauan
   ray_finned_fishes: ikan bersirip cahaya
   re_order_photos: "Pesan kembali foto&raquo;"
   read_more: Baca Lebih Banyak
@@ -4233,6 +4240,25 @@ id:
   taxon_photos_updated: Foto takson diperbarui!
   taxon_range: Jangkauan takson
   taxon_range_created_notice: Jangkauan takson sukses dibuat. Harap menunggu beberapa menit hingga jangkauannya muncul di peta.
+  taxon_range_for_taxon_html: Jangkauan Takson untuk %{taxon}
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: Apakah ini adalah peta jangkauan Daftar Merah IUCN, jika bukan, mengapa?
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: Ini adalah peta jangkauan Daftar Merah IUCN
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Ini bukan merupakan peta jangkauan Daftar Merah IUCN karena peta ini tidak cocok
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: Ini bukan merupakan peta jangkauan Daftar Merah IUCN karena takson ini tidak ada di Daftar Merah IUCN
+  taxon_range_guidelines_each_taxon_can_have: Setiap takson hanya boleh memiliki satu Jangkauan Takson. Jangkauan takson harus mewakili penyebaran secara global.
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    %{link_start_tag}Daftar Merah IUCN%{link_end_tag} adalah sumber tipikal dari jangkauan takson.
+    Harap menyatakan apakah Anda menambahkan jangkauan dari Daftar Merah IUCN dan jika tidak, bagaimana hubungan dari sesuatu yang Anda tambahkan dengan Daftar Merah IUCN. Hal ini akan membantu memberitahu proses yang mengubah jangkauan yang bersumber dari Daftar Merah IUCN. Jika Anda sedang menambahkan jangkauan Daftar Merah IUCN, tolong cantumkan versi Daftar Merah IUCN secara jelas (contohnya 2021-2) dalam sumbernya.
+  taxon_range_guidelines_if_you_are_not_uploading: "Jika Anda tidak sedang mengunggah peta jangkauan Daftar Merah IUCN, ini seharusnya disebabkan oleh:"
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: Peta jangkauan Daftar Merah IUCN untuk takson ini tidak cocok
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    contohnya, Anda sudah mempersempitnya secara manual supaya merefleksikan pemisahan taksonomi yang tidak ditunjukkan dalam Daftar Merah IUCN, atau peta jangkauan Daftar Merah IUCN memiliki kesalahan besar yang membuatnya tidak cocok.
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Takson ini tidak ada di Daftar Merah IUCN
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    contohnya, sebuah takson dicampur dengan takson lain dari Daftar Merah IUCN, jadi Anda secara manual mengukirnya di sini, atau jika taksonnya tidak memiliki penilaian Daftar Merah IUCN serta peta jangkauannya.
+  taxon_range_guidelines_please_provide_details: |
+    Harap menggunakan kolom deskripsi untuk menjelaskan dari mana petanya berasal dan menghubungkan tanda-tanda yang relevan, pemisahan taksonomi, dan diskusi-diskusi lainnya tentang mengapa jangkauan Daftar Merah IUCN yang diterbitkan memerlukan perubahan.
+  taxon_range_guidelines_learn_more_about_taxon_ranges: Pelajari lebih lanjut tentang jangkauan takson
   taxon_range_updated_notice: Jangkauan takson sukses diperbarui. Harap menunggu beberapa menit hingga jangkauannya muncul di peta.
   taxon_ranks: Tingkat Takson
   taxon_removed_from_list: Takson dihapus dari daftar.
@@ -5479,22 +5505,168 @@ id:
       user_stats:
         user_stats_desc: |
           Statistik pengguna dibatasi hingga 500 tertinggi saja menurut jumlah pengamatan atau jumlah spesies, jadi daftar totalnya biasanya lebih dari 500, karena kedua daftar tersebut mungkin tidak memiliki pengguna yang sama. Nilai yang ditandai "*" berarti tidak berada pada 500 tertinggi untuk statistik tersebut.
+    observation_fields:
+      about_editing_observation_fields_desc_html: |
+        <p class='ui'>
+        Anda dapat mengubah kolom pengamatan ini karena Anda membuatnya atau Anda merupakan kurator situs. Jika Anda seorang kurator situs, harap mengikuti panduan-panduan berikut:
+        </p>
+        <ol>
+        <li>Jangan membuat perubahan nama seenaknya (contohnya, mengubah "makan" menjadi "bernektar")</li>
+        <li>Ingat bahwa kolom pengamatan dapat digunakan untuk pengamatan takson apapun, jadi cobalah menghindari penggunaan istilah-istilah yang spesifik tentang suatu takson</li>
+        <li>Jangan menghapus kolom yang masih digunakan orang lain</li>
+        <li>Jangan menerjemahkan kolom yang sudah ada ke dalam bahasa yang berbeda. Bahasa Inggris adalah bahasa umum dari situs ini. Jika Anda benar-benar menginginkan suatu kolom yang melingkupi konsep yang sama, tetapi dalam bahasa yang berbeda, harap membuat kolom pengamatan yang baru.</li>
+        </ol>
+      dna_help: |
+        Untuk mengaktifkan fungsionalitas pencocokan menggunakan kode batang DNA BOLD, pastikan nama kolom Anda memasukkan kata-kata "COI", "COX1", "ITS", atau "matK", berdasarkan gen yang kolom ini sasar.
     emailer:
+      bulk_import_success:
+        success_message: |
+          Impor sekaligus %{filename} berhasil. Pengamatan Anda sekarang sedang diproses dan sebentar lagi akan berada di situs web.
+      bulk_import_error:
+        taxon_spelling_notice_html: |
+          Harap mengecek ejaan untuk setiap entri. Jika ejaan Anda sudah benar, carilah spesiesnya di %{search_taxa_url}. Jika namanya masih belum ada di dalam database %{site_name}, Anda perlu menambahkannya sebelum unggahan sekaligus Anda bisa bekerja. Gunakan kotak di bawah halaman pencarian untuk mengimpor nama-nama baru. Jika namanya ada, tetapi nama itu berlaku untuk beberapa taksa yang valid, coba gunakan nama yang kurang atau lebih spesifik yang hanya cocok dengan satu takson saja.
+      collection_project_changed_for_trusting_member:
+        #Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          Karena Anda telah memercayakan proyek ini dengan koordinat tersembunyi dari <a
+          href="%{obs_url}">beberapa pengamatan Anda</a>, sekarang, para pengelola dapat mengakses lebih banyak koordinat tersembunyi Anda daripada sebelum Anda memercayakan proyek ini. Anda harus meninjau kembali daftar pengelola dan persyaratan proyek untuk memastikan Anda masih memercayai proyek ini dengan pengamatan-pengamatan Anda:
+        #Followed by the project icon and a link to the project
+        requirements_have_changed: |-
+          Persyaratan pengamatan dari proyek berikut telah diganti baru-baru ini:
+        subject: Persyaratan pengamatan proyek telah berubah untuk %{project}
+        wondering_what_this_means_html: |
+          Masih bingung dengan apa arti "geoprivasi"?
+          <a href="%{url}">Pelajari lebih lanjut dalam dokumentasi kami</a>.
+        you_can_change_html: |-
+          Anda dapat mengubah preferensi Anda atau meninggalkan proyek ini di <a href="%{url}">halaman proyek</a>.
+      observations_export_notification:
+        your_observations_export_is_ready_html: |
+          Ekspor pengamatan Anda sudah siap. Ada salinannya yang terlampir dalam email ini, atau Anda bisa <a href="%{url}">mengunduh ekspor Anda</a>.
+        your_observations_export_failed_html: |
+          Ekspor pengamatan Anda gagal. Kunjungi <a href="%{url}">halaman ekspor pengamatan</a> untuk melihat daftar ekspor Anda.
+      parental_consent:
+        subject: Anak Anda ingin menggunakan iNaturalist
+        content_html: |
+          <p>
+          Anak Anda sedang menggunakan aplikasi edukasi <strong>Seek oleh iNaturalist</strong> dan ingin membagikan datanya dengan platform sains sipil iNaturalist. Karena mengunggah ke iNaturalist menampilkan Informasi Identifikasi Pribadi, iNaturalist tidak boleh digunakan oleh orang di bawah umur 13 tahun tanpa seizin orang tua.
+          </p>
+          <p>
+          <strong>Seek oleh iNaturalist</strong> dapat digunakan tanpa perlu membuat akun, dan tidak ada Informasi Identifikasi Pribadi yang akan dibagikan, tetapi anak Anda tidak akan bisa ikut menyumbang pengamatan kepada iNaturalist. iNaturalist adalah jejaring sosial sains sipil di mana para peserta dapat membagikan pengamatan dan identifikasi makhluk hidup untuk mengajarkan satu sama lain tentang alam dan menghasilkan data keanekaragaman hayati untuk ilmu pengetahuan.
+          </p>
+          <p>
+          Jika Anda ingin memberikan izin kepada anak Anda untuk menggunakan iNaturalist, kami memerlukan Anda untuk melakukan hal-hal berikut:
+          </p>
+          <ol>
+          <li>
+          <p>
+          Buat akun iNaturalist yang akan anak Anda gunakan melalui tautan berikut:
+          <a href="%{registration_url}">%{registration_url}</a>
+          </p>
+          </li>
+          <li>
+          <p>
+          Setelah Anda membuat akun anak Anda, kami akan menanyakan Anda untuk membuat donasi kecil sebesar US$1 menggunakan kartu kredit kepada iNaturalist untuk membuktikan bahwa Anda adalah orang dewasa. Pastikan Anda menggunakan alamat email yang sama dengan yang Anda masukkan di kolom "Email orang tua" saat mendaftar ketika membuat donasi Anda.
+          </p>
+          </li>
+          <li>
+          <p>
+          Saat kami memproses donasinya, kami akan mengirimkan email lain yang memberitahukan bahwa akun anak Anda telah diaktivasi dan Anda dapat menggunakan nama pengguna iNaturalist dan kata sandi yang Anda buat untuk masuk ke aplikasi Seek anak Anda.
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist mengumpulkan Informasi Identifikasi Pribadi berikut:
+          </p>
+          <ol>
+          <li>
+          <p>
+          <strong>alamat email (pribadi):</strong> setiap akun iNaturalist memiliki alamat email yang terkait dengannya yang tidak diperlihatkan kepada publik.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>nama pengguna (publik, diperlukan):</strong> setiap akun iNaturalist memiliki nama pengguna publik dan nomor identifikasi pengguna. Nama pengguna tidak harus mirip dengan nama asli, tetapi itu dapat digunakan untuk menghubungi orang melalui komentar publik dan pesan langsung secara pribadi.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>alamat IP (pribadi, diperlukan):</strong> iNaturalist menyimpan tetapi tidak memperlihatkan kepada publik alamat IP pengguna yang dapat digunakan untuk menurunkan Informasi Identifikasi Pribadi seperti lokasi (dengan keakuratan hingga tingkat kota).
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>gambar profil (publik, opsional):</strong> akun-akun iNaturalist dapat memiliki gambar profil yang biasanya berupa foto pengguna.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>lokasi pengamatan (publik atau pribadi, diperlukan):</strong> pengamatan iNaturalist mengandung informasi lokasi di mana pengamatan dibuat. Ini dapat dibuat menjadi publik atau disimpan untuk pribadi, tetapi standarnya akan membuatnya menjadi publik.
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist juga mengizinkan pengguna untuk membagikan gambar-gambar publik, komentar publik, dan pesan pribadi secara langsung berdasarkan akun mereka.
+          Ada kemungkinan bahwa pengguna dapat memberikan Informasi Identifikasi Pribadi dalam konten yang dihasilkan pengguna ini.
+          </p>
+          <p>
+          Pelajari lebih lanjut tentang Kebijakan Privasi iNaturalist <a href="%{privacy_policy_url}">di sini</a>.
+          </p>
       photos_missing:
         subject: Beberapa foto memerlukan perbaikan
+        we_have_been_housekeeping: |
+          Kami telah melakukan pembersihan dan menemukan beberapa foto yang terhubung dengan pengamatan Anda yang tidak lagi dapat diakses dari sumber aslinya. Foto dihost di %{providers}.
+        we_would_like_to_remove: |
+          Kami ingin menghapus semua referensi pada foto-foto yang rusak dalam waktu dekat, tetapi kami tidak mau menghapus apapun yang dapat diselamatkan. Masih ada kemungkinan bahwa beberapa foto masih ada di host eksternalnya dan dapat diperbaiki. Beberapa foto mungkin telah diunggah dengan menghubungkan akun <a href='%{account_url}'>%{site_name}</a> ke akun hosting foto lain, dan koneksi ini sudah kedaluwarsa dan memerlukan penyegaran.
+        you_can_attempt_repair: |
+          Anda dapat mencoba memperbaiki foto-fotonya dengan mengunjungi halaman foto dan mengeklik tautan "%{repair_link_text}". Jika Anda tahu foto tersebut sudah tidak ada lagi, Anda dapat memilih untuk menghapusnya.
+        please_address: |
+          Tolong selesaikan isu-isu ini <b>dalam 30 hari ke depan</b>. Setelah 30 hari, kami akan memulai untuk menghapus foto-foto yang rusak dari iNaturalist. Semua pengamatan Anda tetap tinggal. Mereka akan dinilai kembali setelah foto-foto dihapus, dan ada kemungkinan beberapa pengamatan kelas riset akan menjadi kasual jika mereka tidak lagi memiliki foto.
+        we_included_links: |
+          Kami telah menyertakan tautan untuk foto-foto yang terpengaruh di bawah ini.
+      user_parent_confirmation:
+        subject: Akun iNaturalist anak Anda telah diaktivasi
+        content_html: |
+          <p>
+          Terima kasih karena telah membuat akun iNaturalist untuk anak Anda! Akun telah diaktivasi. Berikut adalah detail yang sudah Anda masukkan menurut catatan kami:
+          </p>
+          <ul>
+          <li><strong>Nama orang tua atau wali:</strong> %{parent_name}</li>
+          <li><strong>Alamat email orang tua atau wali:</strong> %{parent_email}</li>
+          <li><strong>Nama anak:</strong> %{child_name}</li>
+          <li><strong>Tanggal ulang tahun anak:</strong> %{child_birthday}</li>
+          <li><strong>Akun email anak:</strong> %{child_email}</li>
+          <li><strong>Nama pengguna akun anak:</strong> %{child_username}</li>
+          </ul>
+          <p>
+          Silakan masuk ke akun dari aplikasi Seek anak Anda dengan menekan tombol "iNaturalist" di menu, kemudian "Masuk dengan iNaturalist" di bawah layar.
+          </p>
+          <p>
+          Anak Anda baru bisa mengunggah pengamatan ke akun iNaturalist mereka menggunakan aplikasi Seek sehingga mereka dapat dilihat di iNaturalist.org.
+          </p>
       users_updates_suspended:
         message: |
-          Anda telah tidak aktif di %{site_name} selama beberapa saat, jadi kami telah menahan langganan Anda. Untuk kembali mendapatkan kabar tentang aktivitas di situs, harap <a href="%{login_url}">masuk ke akun Anda</a> lagi.
+          Anda tidak aktif di %{site_name} selama beberapa saat, jadi kami telah menahan langganan Anda. Untuk kembali mendapatkan kabar tentang aktivitas di situs, harap <a href="%{login_url}">masuk ke akun Anda</a> lagi.
+    photos:
+      forbidden_notice_html: |
+        Kami tidak memiliki izin untuk mengakses foto-foto tersebut pada saat ini. Anda mungkin harus memutuskan hubungan dan menghubungkan kembali akun Anda di <a href="/users/edit">pengaturan</a> Anda untuk memberikan kami izin tambahan.
+      show:
+        view_original_html: |
+          Anda dapat melihat aslinya di <a href="%{url}">%{url}</a>. Tolong biarkan tanda pelanggaran hak cipta belum diselesaikan jika foto ini memang melanggar hak cipta.
     places:
       kml_field_desc: |
-        KML dari batas tempat. Anda dapat membuat satu menggunakan Google Maps, Google Earth , atau sebagian besar aplikasi GIS. Harus memiliki setidaknya satu polygon dan menjadi di bawah 1 MB (5 MB untuk kurator situs)
+        KML dari batas suatu tempat. Anda dapat membuatnya menggunakan Google Maps, Google Earth , atau sebagian besar aplikasi GIS. Harus memiliki setidaknya satu poligon dan memiliki area yang lebih kecil dari negara bagian Texas/Pulau Kalimantan.
+      edit:
+        complex_boundary_note_html: |
+          Batasan ini agak terlalu rumit untuk diubah di web. Namun, Anda dapat <a href="%{url}">mengunduh KMLnya</a>, mengubahnya di aplikasi GIS pilihan Anda, dan langsung mengunggah KML yang sudah diubah.
+        admin_level_desc: |
+          Hanya boleh diatur untuk badan politik. Berdasarkan tingkatan AS, 0 = negara, 1 = negara bagian/provinsi, 2 = county/kabupaten, 3 = town/desa
       new:
-        check_list_note: "Catatan: daftar periksa akan secara otomatis dinonaktifkan untuk tempat yang sangat besar."
-        coordinates_desc: Anda harus menentukan koordinat jika Anda tidak menarik batas atau upload KML.
-        map_instruction: Gunakan alat poligon untuk menarik batas tempat.
+        check_list_note: "Catatan: daftar centang akan secara otomatis dinonaktifkan untuk tempat yang sangat besar."
+        coordinates_desc: Anda harus menentukan koordinat jika Anda tidak menggambar batas atau mengunggah KML.
+        map_instruction: Gunakan alat poligon untuk menggambar batas tempat.
     posts:
-      formatting_none_help: "Tidak ada HTML dimasukkan, hanya menggunakan tag yang Anda masukkan."
-      formatting_simple_help: "Menghubungkan URL dan garis insert istirahat otomatis."
+      formatting_none_help: "Tidak ada HTML yang dimasukkan, hanya menggunakan label yang Anda masukkan."
+      formatting_simple_help: "Menghubungkan URL dan memasukkan jeda baris secara otomatis."
     projects:
       project_type: Jenis Proyek
       collection: Koleksi
@@ -5549,6 +5721,31 @@ id:
         make_owner: Jadikan Pemilik
         no_curators: |
           Tidak ada kurator proyek saat ini. Jika Anda ingin menugaskan orang baru sebagai pengelola, mereka harus bergabung dulu di proyek ini dan Anda harus membuat mereka sebagai kurator.
+        observation_aggregation_desc_html: |
+          <p class="description">
+          Pengumpulan pengamatan akan menambahkan pengamatan-pengamatan yang cocok secara otomatis ke dalam proyek Anda sesuai aturan-aturan proyek Anda. Karena tidak ada cara untuk menghapus banyak pengamatan dari sebuah proyek sekaligus, hal ini bisa jadi bahaya, sehingga tolong pastikan Anda telah memilih tempat dan aturan takson yang Anda inginkan, atau Anda mungkin berakhir dengan banyak pengamatan yang tidak cocok yang harus dihapus secara manual.
+          </p>
+          <p class="description">
+          Pengumpul hanya akan bekerja jika kondisi berikut dicapai:
+          </p>
+          <ol>
+          <li class="readable description">
+          Proyek Anda memiliki setidaknya satu aturan 'harus diamati di tempat' untuk tempat yang kecil hingga menengah (kurang lebih seukuran Texas atau Pulau Kalimantan)
+          </li>
+          <li class="readable description">
+          ATAU jika proyek Anda memiliki setidaknya satu aturan 'harus di dalam takson'
+          </li>
+          </ol>
+        project_assets_desc_html: |
+          <p class="description">Aset Proyek hanyalah file yang berkaitan dengan proyek Anda, dengan beberapa aturan spesial:</p>
+          <ol class="description">
+          <li>File yang berakhir dengan .logo.jpg, .logo.png, dll. akan digunakan sebagai logo pada halaman proyek alih-alih ikon proyek</li>
+          <li>File KML dan KMZ akan ditambahkan ke peta di halaman proyek</li>
+          </ol>
+        project_list_desc_html: |
+          <p class="description">
+          Anda dapat membuat daftar proyek kustom berisi taksa dan menghubungkannya ke proyek Anda. Hal ini dapat berguna untuk membatasi pengamatan yang ditambahkan ke dalam proyek Anda dan menerima hanya taksa yang cocok dengan yang ada pada daftar Anda melalui aturan "harus merupakan takson yang berada di daftar proyek".
+          </p>
         rules:
           captive: merupakan peliharaan/dibudidayakan
           coordinates_shareable_by_project_curators: memiliki koordinat yang dapat dilihat oleh kurator proyek
@@ -5575,19 +5772,83 @@ id:
         trusted_project_means: |
           Mempercayai proyek berarti bahwa manajer proyek dapat menambahkan Aset Proyek dan atribut proyek kustom (misalnya spanduk HTML, CSS). Akses
           kepada atribut proyek kustom berarti manajer proyek dapat berpotensi menambahkan Javascript, sehingga hanya percayakan proyek yang memiliki manajer yang bertanggung jawab dan kompeten secara teknis.
+        you_can_preview: |
+          Anda dapat meninjau terlebih dahulu bagaimana proyek Anda akan ditampilkan sebagai Proyek Koleksi dengan <a href="%{url}">mengeklik di sini</a>.
+      invite:
+        description_html: |
+          <h3>Tentang Undangan</h3>
+          <p class="ui">
+          Mengundang orang ke dalam proyek Anda agak berbeda dengan mengundang ke pengamatan individu. Mengundang orang akan
+          </p>
+          <ol>
+          <li>Mengirimkan mereka sebuah email yang mengundang mereka untuk bergabung dengan proyek Anda</li>
+          <li>Menunjukkan sebuah undangan pada dasbor mereka</li>
+          <li>Mengizinkan mereka bergabung ke proyek Anda jika proyeknya telah diatur ke mode hanya yang diundang</li>
+          </ol>
+          <p class="ui">
+          Hanya kurator proyek yang dapat mengundang orang untuk bergabung ke sebuah proyek. Anda harusnya bisa mencari orang menggunakan nama pengguna iNat mereka atau alamat email <em>lengkap</em> mereka, dengan asumsi kami memilikinya di dalam file.
+          </p>
       join:
         invite_only_description: |
-          Keanggotaan dalam proyek ini adalah dengan undangan saja. Jika Anda ingin bergabung, silahkan hubungi salah satu kurator di bawah ini dan meminta
-          undangan.
+          Keanggotaan dalam proyek ini hanya melalui undangan saja. Jika Anda ingin bergabung, silakan hubungi salah satu kurator di bawah ini dan meminta undangan.
       new:
+        a_project_allows_you_to_gather: |
+          Proyek koleksi mengizinkan Anda untuk mengumpulkan dan memvisualisasikan pengamatan-pengamatan menggunakan alat pencarian inti iNaturalist. Semua yang memenuhi parameter yang diatur oleh proyek akan dimasukkan secara otomatis.
+        an_umbrella_project_can_be_used_to: |
+          Proyek payung dapat digunakan untuk membandingkan statistik antara dua atau lebih Koleksi atau Proyek Tradisional. Proyek lainnya harus ada sebelum Anda dapat menambahkan mereka ke dalam sebuah proyek payung. Anda dapat memasukkan ratusan proyek di bawah satu payung. Proyek payung tidak dapat mengandung proyek payung lainnya.
+        are_you_ready_to_duplicate: |
+          Apakah Anda siap untuk meninggalkan halaman ini untuk menggandakan proyek ini? Ingat bahwa ikon proyek dan sampulnya tidak akan digandakan, dan harus diunggah ulang pada proyek duplikatnya.
+        are_you_sure_you_want_to_delete: Apakah Anda yakin ingin menghapus proyek ini?
+        can_be_included_in_multiple: Dapat dimasukkan dalam beberapa proyek payung
+        check_the_box_to_include_member_observations: |
+          Centang kotak di bawah ini untuk memasukkan hanya pengamatan yang dibuat oleh pengguna yang telah bergabung dengan proyek ini.
+          Gunakan saringan Pengguna Yang Dikecualikan di atas untuk mengecualikan pengamatan dari pengguna tertentu,
+          termasuk pemilik proyek dan pengelola.
+        click_through_to_individual_projects: Kunjungi proyek-proyek individu
+        collection_projects: Proyek Koleksi
         collection_project_features: "Fitur Proyek Koleksi:"
+        contain_entire_image_without_cropping: Muat seluruh gambar tanpa dipotong
+        custom_banner_icon_and_project_description: Sampul, ikon, dan deskripsi proyek kustom
+        data_visualizations: Visualisasi data
+        delete_project: Hapus Proyek
+        display_project_name: Hapus nama proyek
         do_you_need_features_from_traditional: |
           Apakah Anda memerlukan fitur dari proyek tradisional, seperti akses menuju koordinat sesungguhnya, kolom pengamatan kustom, atau menambahkan pengamatan individu yang tidak dapat disaring secara otomatis?
+        duplicate_project: Gandakan Proyek
         include_annotated_observations: |
           Hanya masukkan pengamatan yang dicatat dengan atribut tertentu (seperti tahap kehidupan), atau atribut dan nilai tertentu (seperti tahap kehidupan = dewasa). Ada batasan sebanyak satu saringan catatan per proyek.
+        leaderboards_among_individuals: Papan peringkat untuk <strong>individu</strong>
+        leaderboards_among_projects_and_bioblitzes: |
+          Papan peringkat untuk <strong>proyek</strong>
+        multiple_project_administrators: Lebih dari satu pengelola proyek
+        name_placeholder: Burung-burung di Papua, Capung Keren, dll.
+        no_need_to_rely_on_manual_addition: |
+          Tidak ada penambahan pengamatan secara manual
+        note_these_users_will_be_able_to_edit: |
+          Catatan: pengguna-pengguna ini dapat mengubah SEMUA detail proyek termasuk pengelola.
+        note_you_can_delete_the_time: |
+          (Catatan: Anda dapat menghapus zona waktu dan waktu tepatnya jika Anda ingin memasukkan hari penuh.)
+        note_about_unselected_filters: |
+          Catatan: Jika Anda tidak memilih taksa, tempat, atau pengguna, semua akan dimasukkan sesuai bawaan.
+        only_display_member_observations: |
+          Hanya tampilkan pengamatan dari anggota proyek (orang yang sudah bergabung dengan proyek)
+        optionally_filter_media: Saring pengamatan dengan foto, suara, atau keduanya secara opsional
+        or_drag_and_drop: (atau seret dan lepas)
         project_details: Rincian proyek
+        project_icon: Ikon Proyek
+        project_name: Nama Proyek
         project_summary: Ringkasan Proyek
         umbrella_project_features: "Fitur Proyek Payung:"
+        unique_url_for_outreach: URL unik untuk menjangkau orang
+        welcome_to_projects: Selamat Datang di Proyek!
+        you_can_learn_more_html: |
+          Anda dapat belajar lebih lanjut tentang mengelola proyek <a href="https://www.inaturalist.org/pages/managing-projects">di sini</a> atau membaca sejarah proyek di <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">blog kami</a>.
+        errors:
+          name_is_required: Nama proyek diperlukan
+          name_less_than_100_characters: Nama proyek harus kurang dari 100 karakter
+          name_already_taken: Nama proyek sudah diambil
+          cannot_have_more_than_x_project_rules: Tidak boleh memiliki lebih dari %{x} aturan proyek
+          summary_is_required: Ringkasan tentang proyek diperlukan
       project_user_curator_coordinate_access_labels:
         none: Tidak satupun
       curator_coordinate_access_label: |
@@ -5601,6 +5862,9 @@ id:
       updates_desc: |
         Menerima update tentang proyek ini pada dashboard Anda dan dalam sehari-hari email update.
     shared:
+      blocked:
+        youve_been_blocked: Anda Telah Diblokir
+        youve_blocked: Anda Telah Memblokir Orang Ini
       spam:
         this_has_been_flagged_as_spam: Ini telah menjadi ditandai sebagai spam
       not_found:
@@ -5608,6 +5872,36 @@ id:
         even_our_dedicated_search_mole_couldnt: Bahkan pencarian khusus kami tidak bisa menemukan apa-apa!
     stats:
       year:
+        compared_to_previous_years: Bandingkan Dengan Tahun Lalu
+        donate_title: "Terima Kasih Khususnya Kepada Semua Pendukung Kami"
+        donors: Penyumbang
+        donors_guide_label_our_goal_is_1000: Tujuan kami adalah 1.000 penyumbang rutin per bulan
+        inaturalist_network: Jaringan iNaturalist
+        inaturalist_network_desc: |
+          Lihat Kembali Tahun untuk para pengguna Jaringan iNaturalist.
+        include_usa: Sertakan AS
+        growth_by_country_title: Pertumbuhan Menurut Negara
+        growth_in_year_obs: "Pertumbuhan pada %{year} (obs)"
+        growth_title: Pertumbuhan
+        new_species_per_year: Spesies Baru / Tahun
+        new_species_per_year_by_date_added: Berdasarkan tanggal ditambahkan
+        new_species_per_year_by_date_observed: Berdasarkan tanggal diamati
+        obs_in_year: Obs pada %{year}
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: Satu kali
+        percent_growth_in_year: "% Pertumbuhan pada %{year}"
+        percent_of_total_growth: "% Total Pertumbuhan"
+        observations_per_year: Pengamatan / Tahun
+        observations_per_year_by_date_added: Berdasarkan tanggal ditambahkan
+        observations_per_year_by_date_observed: Berdasarkan tanggal diamati
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: Pengamatan Beruntun
+        #Adjective, as in a donor who gives on a recurring basis, e.g. every month
+        recurring: Berkala
+        species_per_year: Spesies / Tahun
+        species_per_year_by_date_added: Berdasarkan tanggal ditambahkan
+        species_per_year_by_date_observed: Berdasarkan tanggal diamati
+        stats_generated_datetime: Statistik yang dihasilkan pada %{datetime}
         store_prompt: |
           Mau memamerkan kebanggaanmu akan iNat ke mana pun kamu pergi? Cek Toko iNat sekarang!
         translators_title: Penerjemah
@@ -5622,9 +5916,15 @@ id:
         charts_help_other: |
           Kami juga menunjukkan grafik musim untuk catatan pengamatan. Catatan merupakan suatu cara untuk menambahkan metadata untuk pengamatan menggunakan kosa kata yang diatur, seperti apakah suatu pengamatan menggambarkan tanaman yang berbunga atau berbuah.
         frequency:
+          research: Kelas Riset
+          verifiable: Dapat Diverifikasi
+          "Alive or Dead=Alive": Hidup
           "Alive or Dead=Dead": Mati
+          "Plant Phenology=Budding": Bertunas
+          "Plant Phenology=Flower Budding": Bunga Berkuncup
           "Plant Phenology=Flowering": Berbunga
           "Plant Phenology=Fruiting": Berbuah
+          "Plant Phenology=No Evidence": Tidak Ada Bukti
           "Life Stage=Adult": Dewasa
           "Life Stage=Egg": Telur
           "Life Stage=Larva": Larva
@@ -5659,6 +5959,9 @@ id:
           Ingat, ini tidak memberikan izin proyek untuk mengakses koordinat pribadi anda atau mengirim pembaruan. Anda harus bergabung di proyek untuk memberikan izin ini, atau memberikan mereka pada kasus per kasus dasar.
       show:
         this_user_was_banned: Pengguna ini ditangguhkan
+    user_parents:
+      new:
+        parent_email: Email orang tua atau wali (pribadi)
     welcome:
       index:
         welcome_message_html: |
@@ -6031,6 +6334,10 @@ id:
             lexicon:
               should_match_english_translation: |
                 seharusnya dalam bahasa Inggris, tetapi sekarang, ini cocok dengan terjemahan %{suggested_locale} dari "%{suggested}". Pakai "%{suggested}" jika itu yang Anda maksud dan itu akan diterjemahkan saat Anda melihat situs dalam bahasa itu.
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: harus berupa nilai yang dapat diterima
   doorkeeper:
     flash:
       applications:
