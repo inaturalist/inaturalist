@@ -1534,7 +1534,6 @@ nl:
   editing_taxon: Bewerk %{taxon}
   editing_taxon_link: Taxonkoppeling bewerken
   editing_taxon_name_for_taxon_html: Taxonnaam "%{name}" voor %{taxon} bewerken
-  editing_taxon_range: Taxonreeks bewerken
   editing_this: '%{elem} aan het bewerken'
   editing_x_in_y: "%{x} in %{y} bewerken"
   editors: Redacteurs
@@ -5684,12 +5683,6 @@ nl:
       dna_help: |
         Om BOLD DNA-barcodeaanpassingsfunctionaliteit in te schakelen, moet je ervoor zorgen dat jouw veldnaam de woorden "COI", "COX1", "ITS" of "matK" bevat,
         overeenkomend met het gen dat dit veld beoogt.
-      merge:
-        warning_html: |
-          Respecteer de gegevens van andere mensen en <strong> praat met de maker
-          van een waarnemingsveld vóór samenvoeging </strong>. Deze tool zal het
-          waarnemingsveld samengevoegen en verplaatst alle waarnemingen die het gebruiken
-          naar de keeper. <strong> Dit proces kan niet ongedaan worden gemaakt </strong>, dus wees voorzichtig.
     emailer:
       bulk_import_success:
         success_message: |
