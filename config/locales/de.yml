@@ -1507,7 +1507,6 @@ de:
   editing_taxon: '%{taxon} bearbeiten'
   editing_taxon_link: Taxonlink bearbeiten
   editing_taxon_name_for_taxon_html: Taxonname "%{name}" für %{taxon} bearbeiten
-  editing_taxon_range: Verbreitungsgebiet bearbeiten
   editing_this: '%{elem} bearbeiten'
   editing_x_in_y: "Bearbeiten von %{x} in %{y}"
   editors: Autoren
@@ -5572,9 +5571,6 @@ de:
         Um die Funktionalität des BOLD DNA-Barcode Matching zu ermöglichen, stelle sicher, dass der
         Name des Feldes die Wörter "COI", "COX1", "ITS" oder "matK" enthält,
         entsprechend dem Gen auf welches dieses Feld abzielt.
-      merge:
-        warning_html: |
-          Bitte gehe respektvoll mit den Daten anderer Personen um und <strong>kommuniziere mit dem Ersteller eines Beobachtungsfeldes vor dem zusammenführen.</strong> Dieses Vorgehen vernichtet das Beobachtungsfeld, welches zusammengeführt wird und verschiebt alle Beobachtungen, die es verwenden, zum anderen Feld. <strong>Dieser Prozess kann nicht rückgängig gemacht werden</strong>, also sei vorsichtig.
     emailer:
       bulk_import_success:
         success_message: |
