@@ -1333,7 +1333,6 @@ zh-CN:
   editing_taxon: 编辑 %{taxon}
   editing_taxon_link: 正在编辑分类链接
   editing_taxon_name_for_taxon_html: 修改 %{taxon} 的分类群名称「%{name}」
-  editing_taxon_range: 正在编辑分类单元范围
   editing_this: 正在编辑 %{elem}
   editing_x_in_y: "正在%{y}编辑%{x}中"
   editors: 编辑者
@@ -5033,9 +5032,6 @@ zh-CN:
         </ol>
       dna_help: |
         要启用BOLD DNA条形码匹配功能，请确保您的字段名称包括文字“COI”、“COX1”、“ITS”或“matK,”对应这一字段目标的基因。
-      merge:
-        warning_html: |
-          请尊重其他人的数据，并且<strong>在合并之前与观察区域的创建者交谈</strong>。该工具将破坏正在合并的观察区域并将所有观察结果移动到其持有人。<strong>此操作无法撤消</strong>，因此请小心。
     emailer:
       bulk_import_success:
         success_message: |
