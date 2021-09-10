@@ -1506,7 +1506,6 @@ gl:
   editing_taxon: Editando %{taxon}
   editing_taxon_link: Modificar vínculo do Taxón
   editing_taxon_name_for_taxon_html: Mudando o Nome do Taxon "%{name}" a %{taxon}
-  editing_taxon_range: Modificar rango de taxón
   editing_this: Modificando %{elem}
   editing_x_in_y: "Editando %{x} en %{y}"
   editors: Editores
@@ -5535,9 +5534,6 @@ gl:
         </ol>
       dna_help: |
         Para habilitar as funcionalidades correspondentes ó código de barras BOLD DNA, asegúrate de incluir no nome de campo as palabras "COI", "COX1", "ITS", ou "matK" correspondentes ao xen obxectivo dese campo.
-      merge:
-        warning_html: |
-          Por favor, respecta os dados de outras persoas e <strong>fala có creador dun campo de observación antes de o combinar</strong>. Esta ferramenta destruirá o campo de observación sendo combiando e movendo tódalas observacións ó campo mantido. <strong>Este proceso non se pode desfacer</strong>, así que ten tino.
     emailer:
       bulk_import_success:
         success_message: |
