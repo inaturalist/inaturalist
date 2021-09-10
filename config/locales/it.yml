@@ -1502,7 +1502,6 @@ it:
   editing_taxon: Modifica %{taxon}
   editing_taxon_link: Modifica in corso del link del Taxon
   editing_taxon_name_for_taxon_html: Modifica il Nome del Taxon "%{name}" di %{taxon}
-  editing_taxon_range: Modifica in corso dell'areale del Taxon
   editing_this: Modifica %{elem} in corso
   editing_x_in_y: "Modifica di %{x} in %{y} in corso"
   editors: Editori
@@ -5578,9 +5577,6 @@ it:
         </ol>
       dna_help: |
         Per abilitare la funzione di corrispondenza con il Barcode of Life Database (BOLD), assicurati che il tuo nome del campo includa i codici "COI", "COX1", "ITS", o "matK," corrispondenti al gene a cui il campo fa riferimento.
-      merge:
-        warning_html: |
-          Per piacere sii rispettoso dei dati degli altri e <strong>parla con il creatore del campo prima di unirlo ad altri</strong>. Questo strumento cancellerà il campo che stai unendo e sposterà tutte le osservazioni che lo stanno utilizzando verso il campo mantenuto. <strong>Questo processo è irreversibile</strong>, stai attento!
     emailer:
       bulk_import_success:
         success_message: |
