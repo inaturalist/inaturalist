@@ -1517,7 +1517,6 @@ es:
   editing_taxon: Editando %{taxon}
   editing_taxon_link: Modificando vínculo del taxón
   editing_taxon_name_for_taxon_html: Editando el nombre "%{name}" para el taxón %{taxon}
-  editing_taxon_range: Modificando área del taxón
   editing_this: Modificando %{elem}
   editing_x_in_y: "Editando %{x} en%{y}"
   editors: Editores
@@ -5641,10 +5640,6 @@ es:
         </ol>
       dna_help: |
         Para habilitar la funcionalidad de coincidencia con el código de barras BOLD ADN, asegúrate de que tu nombre de campo incluya las palabras "COI", "COX1", "SUS", o "matK," correspondiente al gen que este campo busca.
-      merge:
-        warning_html: |
-          Por favor se respetuoso con los datos de otras personas y <strong>habla con el creador de un campo de observación, antes de una fusión</strong>. Esta herramienta destruirá el
-          campo de observación que se va a combinar y moverá todas las observaciones al campo mantenido. <strong>Este proceso no se puede deshacer</strong>, así que ten cuidado..
     emailer:
       bulk_import_success:
         success_message: |
