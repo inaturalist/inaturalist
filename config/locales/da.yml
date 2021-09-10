@@ -1533,7 +1533,6 @@ da:
   editing_taxon: Redigering af %{taxon}
   editing_taxon_link: Redigering af takson link
   editing_taxon_name_for_taxon_html: Redigerer taksonnavn "%{name}" for %{taxon}
-  editing_taxon_range: Redigering af takson område
   editing_this: Redigering af %{elem}
   editing_x_in_y: "Redigering af %{x} i %{y}"
   editors: Redaktører
@@ -5795,11 +5794,6 @@ da:
         For at aktivere FED DNA stregkode svarende til funktionalitet, sørg for dit
         feltnavn indeholder ordene "COI", "COX1", "ITS" eller "matK"
         svarende til genet, som dette felt er målrettet mod.
-      merge:
-        warning_html: |
-          Vær venlig at respektere andres data og <strong> tal med ophavsmanden
-          af et observationsfelt inden en sammenlægning</strong>. Dette værktøj vil ødelægge observationsfeltet hvis det sammenlægges og flytte alle observationer 
-          over til holderen.<strong> Denne proces kan ikke fortrydes </strong>, så PAS PÅ.
     emailer:
       bulk_import_success:
         success_message: |
