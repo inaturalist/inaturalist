@@ -897,7 +897,6 @@ ar:
   editing_project_asset: تحرير أصول المشروع لـ
   editing_subscription_to_x_html: "تعديل الاشتراك في %{x}"
   editing_taxon_link: تحرير رابط أصنوفة
-  editing_taxon_range: تحرير نطاق أصنوفة
   editing_this: تعديل %{elem}
   editing_x_in_y: "تعديل %{x} في %{y}"
   editors: المحررون
@@ -4228,12 +4227,6 @@ ar:
         لتمكين وظيفة مطابقة الرمز الشريطي لـBOLD DNA  الباركود; تأكد من أن
         اسم حقلك يتضمن الكلمات "COI" أو "COX1" أو "ITS"، 
         المقابلة للجين أهداف هذا الحقل.
-      merge:
-        warning_html: |
-          يُرجَى احترام بيانات الأشخاص الآخرين و<strong>التحدث إلى منشئ 
-          حقل الملاحظة قبل الدمج </strong>، هذه الأداة سوف تدمر 
-          حقل الملاحظة الذي يتم دمجه وسينقل جميع الملاحظات التي تستخدمه 
-          للصائن، <strong>لا يمكن التراجع عن هذه العملية </strong>; لذا كن حذرا.
     emailer:
       bulk_import_success:
         success_message: |
