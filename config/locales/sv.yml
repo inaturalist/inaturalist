@@ -175,6 +175,9 @@ sv:
   #should work here
   about_place: "Om %{place}"
   about_places: Om fyndplatser
+  about_taxon_ranges: Om taxons utbredningsområde
+  about_taxon_ranges_desc: |
+    Taxons utbredningsområde förmedlar den globala utbredningen av ett taxon. Källan till dessa utbredningsområden är oftast IUCNs Rödlista.
   about_the_cc_licenses: Om Creative Commons-licenser
   about_these_licenses: Om dessa licenser
   about_this_bioblitz: Om denna bioblitz
@@ -1542,7 +1545,6 @@ sv:
   editing_taxon: Redigerar %{taxon}
   editing_taxon_link: Redigerar taxonlänk
   editing_taxon_name_for_taxon_html: Redigerar taxonnamn "%{name}" för %{taxon}
-  editing_taxon_range: Redigerar taxons utbredningsområde
   editing_this: Redigerar %{elem}
   editing_x_in_y: "Redigerar %{x} i %{y}"
   editors: Redigerare
@@ -5662,10 +5664,6 @@ sv:
         </ol>
       dna_help: |
         För att aktivera matchning mot DNA-streckkod i BOLD, se till att ditt fältnamn innehåller orden "COI", "COX1", "ITS" eller "matK", motsvarande den gen fältet avser.
-      merge:
-        warning_html: |
-          Var vänlig och respektera andras data och <strong>prata med skaparen av ett fyndfält innan du slår ihop det</strong>. Detta verktyg förstör
-          det fyndfält som slås samman och flyttar alla fynd som använder det tillbaka till skötaren. <strong>Detta kan inte ångras</strong>, så var försiktig.
     emailer:
       bulk_import_success:
         success_message: |
