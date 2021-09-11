@@ -412,7 +412,7 @@ id:
     plants: Tanaman
     protozoans: Protozoa
     ray_finned_fishes: ikan bersirip cahaya
-    reptiles: reptil
+    reptiles: Reptil
     life: kehidupan
     x_plantae:
       other: "%{count} tanaman"
@@ -715,11 +715,11 @@ id:
   captive_cultivated: Ditangkarkan / dibudidayakan
   captive_observations: Pengamatan Tangkapan
   card: Kartu
-  casual: Pekerja lepas
+  casual: kasual
   casual_: Kasual
   casual_tooltip_html: 'Pengamatan "Kasual" tidak memiliki media, lokasi, atau tanggal, atau tidak memenuhi persyaratan dan kualitas untuk menjadi bagian dari kelas "Riset" atau "Memerlukan ID" karena satu dan lain hal. <a href="https://www.inaturalist.org/pages/help#quality">Pelajari lebih lanjut tentang tingkat kualitas</a>'
   categories: Kategori
-  cc_0_description: "Lisensi ini melepaskan pekerjaan Anda ke dalam domain publik, sehingga orang lain dapat menyalin, memodifikasi, mendistribusikan dan melakukan pekerjaan Anda, bahkan untuk tujuan komersial, semua tanpa meminta izin atau memberikan kredit. Ini adalah lisensi yang paling akomidatif ditawarkan.Direkomendasikan untuk penyebaran maksimum dan penggunaan bahan berlisensi."
+  cc_0_description: "Lisensi ini merilis pekerjaan Anda kepada domain publik, sehingga orang lain dapat menyalin, memodifikasi, mendistribusikan dan melakukan pekerjaan Anda, bahkan dapat dipakai pula untuk tujuan komersial, tanpa perlu meminta izin atau memberikan penghargaan. Ini adalah lisensi paling akomodatif yang ditawarkan. Direkomendasikan untuk penyebaran seluas-luasnya dan penggunaan bahan-bahan berlisensi."
   cc_0_name: Tidak ada hak cipta (CC0)
   cc_attribution_license: Atribut lisensi yang kreatif dan umum
   cc_by_description: "Lisensi ini membiarkan orang lain mendistribusikan, mencampur, mengambil, dan membangun kerja Anda, bahkan secara komersial, selama mereka kredit Anda untuk penciptaan asli."
@@ -1384,7 +1384,7 @@ id:
   disconnect_provider: "Putuskan %{provider}"
   display: Tampilan
   display_link_to_checklist: Tampilkan tautan ke daftar proyek dari halaman proyek
-  display_monthly_supporter_badge: Tampilkan Lencana Dukungan Bulanan di profil
+  display_monthly_supporter_badge: Tampilkan Lencana Pendukung Bulanan di profil
   display_name: Tampilkan Nama
   display_name_description: Ini adalah nama yang akan ditampilkan di profil Anda juga digunakan untuk atribusi hak cipta
   distance_traveled_value: "Jarak tempuh: %{distance}m"
@@ -5834,55 +5834,212 @@ id:
           Hanya tampilkan pengamatan dari anggota proyek (orang yang sudah bergabung dengan proyek)
         optionally_filter_media: Saring pengamatan dengan foto, suara, atau keduanya secara opsional
         or_drag_and_drop: (atau seret dan lepas)
-        project_details: Rincian proyek
-        project_icon: Ikon Proyek
+        please_specify_the_requirements: |
+          Harap tentukan persyaratan-persyaratan untuk pengamatan yang akan ditambahkan ke proyek ini.
+        project_background_color: Warna Latar Belakang Ringkasan Proyek
+        project_background_color_help: Pastikan Anda memilih warna yang cukup gelap supaya teks putih di atasnya dapat terbaca.
+        project_banner: Sampul Proyek (PNG, JPG, atau GIF)
+        project_banner_help: Gambar sampul opsional. Ukuran idealnya adalah 760px x 320px.
+        project_details: Rincian Proyek
+        project_icon: Ikon Proyek (PNG, JPG, atau GIF)
+        project_icon_help: |
+          Ikon opsional. Ukuran minimal 72px x 72px dan akan dipotong menjadi kotak.
         project_name: Nama Proyek
         project_summary: Ringkasan Proyek
+        project_summary_help: |
+          Berikan penjelasan singkat, padat, dan jelas tentang proyek Anda. Kira-kira 200 karakter pertama bisa dilihat pada sampul di sisi kanan layar utama proyek, jadi tulislah hal-hal yang terbaik dulu!
+        project_summary_placeholder: Temukan dan lacak burung-burung di Tahura Ir. H. Djuanda...
+        select_native_to_include: |
+          Pilih "Asli" untuk hanya menyertakan taksa yang telah ditandai "Asli" di tempat proyek Anda. Pilih "Diperkenalkan" untuk hanya menyertakan taksa yang telah ditandai "Diperkenalkan" di tempat proyek Anda.
+        select_quality_grade: |
+          Pilih salah satu Tingkat Kualitas. Penjelasan lebih lanjut untuk setiap Tingkat Kualitas dapat dilihat di <a href="%{url}">halaman FAQ</a> kami.
+        show_projects_as_flags: Tunjukkan proyek sebagai tanda di peta
+        specify_project_filters: |
+          Tetapkan saringan untuk menentukan pengamatan mana yang akan dimasukkan ke dalam proyek Anda.
+          Anda bisa memilih beberapa spesies (atau taksa), tempat, tanggal, dan kriteria-kriteria lainnya untuk pengamatan yang akan dimasukkan secara otomatis.
+        start_and_end_times_for_bioblitzes: Tanggal/waktu mulai dan tamat (untuk acara-acara jenis bioblitz)
+        traditional_projects_cannot_be_copied: Proyek tradisional tidak bisa disalin
+        trusting_members_will_be_notified: |
+          Anda telah mengganti persyaratan proyek atau mengaktifkan kepercayaan pengguna. Hal ini akan memberitahu semua anggota proyek yang telah memercayakan proyek dengan koordinat tersembunyi sehingga mereka mendapatkan kesempatan untuk menentukan apakah mereka masih ingin memercayakan proyek mengingat adanya ketentuan-ketentuan yang baru.
         umbrella_project_features: "Fitur Proyek Payung:"
         unique_url_for_outreach: URL unik untuk menjangkau orang
+        use_this_for_a_time_limited_event: |
+          Gunakan ini untuk acara yang dibatasi waktu, bioblitz, atau proyek musiman. Pilih suatu tanggal, rentang tanggal, atau bulan di mana pengamatan harus dibuat (tanpa memedulikan tahun). Jika Anda menggunakan bagian Rentang Waktu, pastikan Anda sudah memilih waktu dan zona waktu yang tepat atau silakan hapus teks waktu/zona waktu untuk menyertakan pengamatan yang dibuat kapan pun pada hari itu. Anda dapat mengosongkan Tanggal Mulai atau Tanggal Selesai jika Anda ingin membatasi proyek untuk satu hari saja.
+        users_can_follow_your_project: Pengguna dapat mengikuti proyek Anda untuk mendapatkan kabar melalui postingan jurnal
+        use_this_link_to_create_html: |
+          Gunakan <a href="%{url}">tautan ini</a> untuk membuat proyek tradisional.
+        visual_comparison_of_data_among: Perbandingan data secara visual antara proyek-proyek yang berada di bawah proyek payung
+        we_have_redesigned_projects: |
+          Proyek didesain untuk memasukkan secara otomatis semua pengamatan yang cocok dengan tempat, taksa, pengguna, kualitas, dan tanggal yang Anda tetapkan. Pilihlah satu di antara dua jenis utama:
+          Proyek Koleksi dan Proyek Payung, keduanya memiliki fitur-fitur berikut:
         welcome_to_projects: Selamat Datang di Proyek!
         you_can_learn_more_html: |
           Anda dapat belajar lebih lanjut tentang mengelola proyek <a href="https://www.inaturalist.org/pages/managing-projects">di sini</a> atau membaca sejarah proyek di <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">blog kami</a>.
+        you_have_not_defined_any_observation_requirements: |
+          Anda belum menentukan persyaratan pengamatan apapun. Pastikan Anda memilih satu atau lebih taksa (seperti burung, konifer), tempat (seperti Brazil, Yellowstone), pengguna, dan/atau tanggal untuk menentukan pengamatan yang ingin Anda masukkan ke dalam proyek Anda.
         errors:
           name_is_required: Nama proyek diperlukan
           name_less_than_100_characters: Nama proyek harus kurang dari 100 karakter
           name_already_taken: Nama proyek sudah diambil
           cannot_have_more_than_x_project_rules: Tidak boleh memiliki lebih dari %{x} aturan proyek
           summary_is_required: Ringkasan tentang proyek diperlukan
+      project_location_privacy_notice_html: |
+        <p>
+        Ingat bahwa kurator proyek dapat melihat lokasi pengamatan pribadi atau lokasi yang dikaburkan di dalam proyek ini kecuali Anda mencabut izinnya, dan mereka bisa menambahkan pengamatan apa saja milik Anda ke dalam proyek ini kecuali Anda <a href="/users/edit">mengganti pengaturan Anda</a>. Anda juga dapat memberikan atau mencabut akses ke pengamatan proyek untuk tiap-tiap pengamatan.
+        </p>
+        <p>
+        Jika Anda khawatir akan lokasi pribadi, jangan bergabung dengan proyek kecuali Anda memercayai kurator proyeknya.
+        </p>
       project_user_curator_coordinate_access_labels:
-        none: Tidak satupun
+        observer: Ya, tapi hanya jika saya sendiri yang menambahkan pengamatan ke proyek.
+        any: Ya, tidak peduli siapa yang menambahkan pengamatan ke proyek.
+        none: Tidak.
       curator_coordinate_access_label: |
-        Memungkinkan kurator proyek untuk melihat koordinat pribadi Anda pengamatan ketika ditambahkan ke proyek dengan
+        Apakah Anda ingin membuat koordinat pengamatan pribadi/dikaburkan dapat dilihat oleh kurator proyek?
       curator_coordinate_access_note: |
-        Anda juga dapat memilih untuk berbagi koordinat pribadi pengamatan dalam proyek ini berdasarkan kasus per kasus. Ini hanya default untuk pengamatan baru ditambahkan ke proyek.
+        Anda juga dapat memilih untuk berbagi koordinat tersembunyi dari pengamatan di dalam proyek ini tergantung pengamatannya. Ini hanya pengaturan standar untuk pengamatan baru yang ditambahkan ke proyek.
+      project_terms_desc_html: |
+        Perbolehkan kurator proyek ini menggunakan pengamatan Anda sesuai dengan <a href="%{url}">ketentuan proyek</a>.
       show:
+        are_you_sure_you_want_to_convert: |
+          Apakah Anda yakin Anda ingin mengubah proyek ini menjadi Proyek Koleksi?
+        bioblitz_results_desc_html: |
+          <p>
+          Tidak seperti proyek biasanya, bioblitz menampilkan statistik acara dari <em>semua</em> pengamatan di dalam tempat dan rentang waktu tertentu, tidak hanya pengamatan yang orang tambahkan dengan sengaja ke dalam proyek. Hal ini diterapkan untuk menghilangkan rintangan dari penambahan pengamatan ke dalam suatu proyek hanya untuk mengubah statistik dalam waktu nyata. Ingatlah bahwa pengamatan tidak akan tersedia untuk diekspor atau ditampilkan dalam aneka tampilan proyek seperti kontribusi anggota untuk situs web atau pencarian pengamatan proyek di aplikasi mobile kecuali tim proyek dan partisipan secara aktif menambahkan pengamatan relevan seperti yang akan mereka lakukan untuk proyek-proyek biasa.
+          </p>
+          <p>
+          Ingatlah, walaupun proyek jenis ini menunjukkan statistik untuk pengamatan yang belum secara sengaja ditambahkan ke dalam proyek, proyek ini tidak mengizinkan kurator untuk melihat koordinat pribadi atau koordinat yang dikaburkan untuk pengamatan-pengamatan yang memilikinya atau menganggap bahwa pengamat telah menyetujui ketentuan proyek. Jika Anda adalah kurator proyek dan Anda memerlukan akses untuk koordinat pribadi, peserta proyek Anda harus menyetujui ketentuan proyek, atau jika Anda ingin pengamatan dihitung ke dalam daftar centang proyek yang dikurasi, pastikan peserta Anda bergabung dengan proyek dan menambahkan pengamatan mereka seperti yang akan mereka lakukan untuk proyek-proyek biasa.
+          </p>
+        click_here_to_convert_this_project: |
+          Klik di sini untuk mengubah proyek ini menjadi Proyek Koleksi.
+        no_journal_blurb_html: |
+          <p>
+          Jurnal proyek Anda adalah sebuah alat untuk berkomunikasi dengan anggota proyek. Anda dapat menggunakannya untuk memberikan pengumuman, mengatur prioritas, atau mengobrol tentang temuan proyek Anda.
+          </p>
+          <p>
+          Untuk memulai, <a href="%{url}" class="readmore">buatlah sebuah postingan</a>
+          </p>
         curated_checklist_desc: |
-          Ini adalah daftar yang dikurasi dan jumlah taksa dari pengamatan secara eksplisit ditambahkan ke
-          proyek ini, tidak semua pengamatan dicatat pada tempat dan waktu peristiwa ini.
+          Ini adalah daftar centang yang dikurasi dan jumlah taksa dari pengamatan yang secara eksplisit ditambahkan ke
+          proyek ini, tidak semua pengamatan dicatat pada tempat dan waktu acara ini.
+        make_sure_you_have_read_about_the_differences: |
+          Pastikan Anda telah membaca perbedaannya pada <a href="%{url}" target="_blank">postingan blog kami tentang Proyek Koleksi</a>.
+        this_is_a_preview: |
+          Ini adalah pratinjau dari apa yang akan orang lihat dari proyek ini sebagai Proyek Koleksi.
+        this_project_has_not_defined_requirements: |
+          Proyek ini belum menentukan persyaratan pengamatan. Proyek memerlukan satu atau lebih taksa (seperti burung, konifer), tempat (seperti Brazil, Yellowstone), pengguna, dan/atau tanggal untuk mulai menampilkan pengamatan.
       updates_desc: |
-        Menerima update tentang proyek ini pada dashboard Anda dan dalam sehari-hari email update.
+        Terima kabar tentang proyek ini pada dasbor Anda dan dalam kabar sehari-hari melalui email.
+    search:
+      index:
+        no_taxa_options_html: |
+          <p>Anda memiliki beberapa pilihan:</p>
+          <ul class="list-unstyled">
+          <li>
+          <strong>Tambahkan Tanda ke Takson Dengan Tingkat Lebih Tinggi</strong>
+          <p>
+          Seperti genus yang mengandung suatu spesies. Semoga kurator yang baik akan menambahkan taksonnya jika ia bisa ditambahkan.
+          </p>
+          </li>
+          <li>
+          <strong><a href="%{feedback_url}">Hubungi Forum</a></strong>
+          <p>
+          Banyak kurator situs memantau pesan-pesan untuk Forum.
+          </p>
+          </li>
+          <li>
+          <strong>
+          <a href="mailto:%{help_email}">Hubungi Dukungan</a>
+          </strong>
+          <p>
+          Harap bersabar, kami tidak punya banyak staf pendukung khusus.
+          </p>
+          </li>
+          </ul>
     shared:
       blocked:
         youve_been_blocked: Anda Telah Diblokir
+        youve_been_blocked_desc: |
+          Pemilik sumber ini telah memblokir Anda, sehingga Anda dicegah untuk berkomunikasi dengan mereka. Kebanyakan fitur interaktif di halaman ini tidak akan bekerja.
         youve_blocked: Anda Telah Memblokir Orang Ini
+        youve_blocked_desc: |
+          Anda telah memblokir pemilik sumber ini, sehingga Anda dicegah untuk berkomunikasi dengan mereka. Kebanyakan fitur interaktif di halaman ini tidak akan bekerja.
       spam:
-        this_has_been_flagged_as_spam: Ini telah menjadi ditandai sebagai spam
+        message_for_owner_and_curators_html: |
+          Hal ini telah ditandai sebagai spam dan sudah tidak terlihat lagi secara publik. Anda dapat melihatnya karena Anda membuatnya, atau Anda merupakan kurator situs. Jika menurut Anda ini adalah sebuah kesalahan, silakan <a href="mailto:%{email}">menghubungi kami</a>.
+        this_has_been_flagged_as_spam: Ini telah ditandai sebagai spam
       not_found:
         sorry_that_doesnt_exist: Maaf, itu tidak ada!
         even_our_dedicated_search_mole_couldnt: Bahkan pencarian khusus kami tidak bisa menemukan apa-apa!
     stats:
+      index:
+        active_desc: Membuat sebuah ID, pengamatan, komentar, atau postingan dalam 30 hari terakhir
+        android_desc_html: Dibuat melalui <a href="%{url}">aplikasi iNaturalist Android</a>
+        avg_ttcid: Rata2 WUIDK
+        avg_ttid: Rata2 WUID
+        identifiers_desc: Telah menambahkan ID untuk pengamatan orang lain pada hari ini
+        iphone_desc_html: Dibuat melalui <a href="%{url}">aplikasi iNaturalist iPhone</a>
+        med_ttcid: Median WUIDK
+        med_ttid: Median WUID
+        new_users_desc: Mendaftar pada hari ini
+        obs_1_day: "Obs (1 hari)"
+        obs_1_day_desc: "Pengamatan yang dibuat dalam satu hari"
+        obs_cid_d_desc: Dibuat 7 hari terakhir dan memiliki ID komunitas
+        #Short for "observations community-identified to genus"
+        obs_cid_d_to_genus: Obs yang diberikan IDK untuk genus
+        obs_cid_d_to_genus_desc: Dibuat 7 hari terakhir dan memiliki ID komunitas pada atau di bawah tingkat genus
+        obs_desc: Dibuat 7 hari terakhir
+        obs_id_d_desc: Dibuat 7 hari terakhir dan memiliki ID (mungkin dari pengamat)
+        observations_1_week_moving_window: Observasi (jendela 1 minggu)
+        observers_desc: Menambahkan pengamatan pada hari ini
+        other_desc_html: Dibuat melalui aplikasi lain yang <a href="%{url}">dibangun oleh pengembang</a>
+        recent_desc: Mendaftar dalam 7 hari terakhir
+        recent_w_0_obs: Baru dengan 0 pengamatan
+        recent_w_0_obs_desc: Mendaftar dalam 7 hari terakhir dan menambahkan 0 pengamatan
+        recent_w_7_obs: Baru dengan >= 7 pengamatan
+        recent_w_7_obs_desc: Mendaftar dalam 7 hari terakhir dan menambahkan >= 7 pengamatan
+        time_to_id_desc: Waktu hingga ID (jam, jendela 1 minggu)
+        TTCID: WUIDK
+        TTCID_desc: Waktu hingga menerima identifikasi dari orang lain yang cocok dengan takson komunitas.
+        TTID: WUID
+        TTID_desc: Waktu hingga menerima identifikasi dari orang lain
+        TTID_note: |
+          Statistik-statistik ini dibuat untuk pengamatan yang telah dibuat satu minggu sebelumnya, yang berarti statistik-statistik tersebut akan tertinggal dengan identifikasi yang ditambahkan ke pengamatan setelah lebih dari seminggu, sehingga membuat statistiknya terlihat lebih rendah dari seharusnya jika Anda menghitungnya lagi pada saat ini, tetapi mereka seharusnya masih memberikan patokan yang cukup baik untuk seberapa cepat komunitas mengidentifikasi dalam jendela 1 minggu. Ingat bahwa statistik-statistik ini hanya untuk pengamatan dengan foto.
+        website_desc_html: |
+          Dibuat melalui <a href="https://www.inaturalist.org">iNaturalist</a>
+          atau situs web <a href="%{url}">Jaringan iNaturalist</a>
       year:
+        compare_desc: |
+          Bagaimana tahun ini dibandingkan dengan tahun Anda kemarin? Dengan penggunaan selama tiga tahun atau lebih, kami bisa memulai untuk membandingkan metrik aktivitas tahunan. Batang hijau menunjukkan tahun ini, batang putih menunjukkan tahun lalu, dan area latar belakang abu-abu menunjukkan tahun-tahun terendah dan tertinggi, serta rata-rata untuk semua tahun. Statistik tidak menyertakan tahun di mana semua hitungan berjumlah nol.
+        compare_site_desc: |
+          Bagaimana tahun ini dibandingkan dengan tahun Anda kemarin? Batang hijau menunjukkan tahun ini, batang putih menunjukkan tahun lalu, dan area latar belakang abu-abu menunjukkan tahun-tahun terendah dan tertinggi, serta rata-rata untuk semua tahun.
         compared_to_previous_years: Bandingkan Dengan Tahun Lalu
         donate_title: "Terima Kasih Khususnya Kepada Semua Pendukung Kami"
+        donate_desc_html: |
+          Terima kasih telah memberikan waktu, perhatian, keahlian, dan donasi Anda! iNaturalist adalah inisiatif nirlaba bersama dari California Academy of Sciences dan National Geographic Society. iNaturalist didukung oleh <a href="%{team_url}">tim kecil</a> yang melakukan semua desain dan pengembangan perangkat lunak untuk web, mobile, dan <a href="%{seek_url}">Seek oleh iNaturalist</a>, selain mengelola dukungan komunitas, kolaborasi, dan integrasi yang menjaga semuanya untuk bisa berjalan (juga berkembang dengan cepat!). Programnya bergantung kepada berbagai hibah serta donasi, termasuk hadiah amal dari sebagian kecil dari kontributor. Kami sangat berterima kasih kepada Pendukung Bulanan yang hadiah berkalanya telah menolong kami untuk merancang rencana ke depan. Anda dapat menyumbang melalui berbagai mata uang yang berbeda untuk mendukung operasi inti iNaturalist. Terima kasih semuanya untuk bagian kalian dalam membuat tahun %{year} tahun terbesar iNaturalist hingga kini!
         donors: Penyumbang
         donors_guide_label_our_goal_is_1000: Tujuan kami adalah 1.000 penyumbang rutin per bulan
         inaturalist_network: Jaringan iNaturalist
         inaturalist_network_desc: |
           Lihat Kembali Tahun untuk para pengguna Jaringan iNaturalist.
         include_usa: Sertakan AS
+        growth_by_country_desc_html: |
+          Di mana pertumbuhan sedang terjadi? Peta dan grafik ini mencoba untuk menguraikannya menurut negara, yang ternyata rumit karena pertumbuhan per negara sangatlah tidak seimbang. Di sini, kami memilih untuk membuang Amerika Serikat dan menggunakan skala log untuk menonjolkan perbedaan di antara negara-negara lainnya. Jika sebuah negara diwarnai hitam, itu berarti negara tersebut tidak berkontribusi signifikan terhadap persentase, atau ia tidak memiliki pertumbuhan tahun ini, atau tidak memiliki lebih banyak pengamatan tahun ini dibandingkan tahun lalu (layangkan kursor di atas sebuah negara untuk melihat lebih banyak detail). <strong>"% total pertumbuhan"</strong> menunjukkan seberapa banyak pertumbuhan di seluruh dunia yang berasal dari suatu negara, contohnya jika ada 20 pengamatan pada 2018 dan 10 pada 2017, maka ada pertumbuhan pengamatan sebesar 10, dan jika 5 dari pengamatan tersebut berasal dari Benin, maka Benin berkontribusi sebesar 50% dari total pertumbuhan. <strong>"% pertumbuhan"</strong> berarti jumlah pengamatan tahun ini di negara tersebut sebagai persentase dari pengamatan tahun lalu di negara tersebut, jadi jika ada 10 pengamatan di Laos tahun lalu, dan 20 tahun ini, berarti ada pertumbuhan sebesar 100%, dan jika ada 0 tahun lalu dan 1 tahun ini, berarti ada pertumbuhan sebesar tak terhingga %.
         growth_by_country_title: Pertumbuhan Menurut Negara
+        growth_desc: |
+          Grafik "Pengamatan" dan "Taksa" dapat menyertakan data yang dapat dilihat pada %{site_name} yang diberikan oleh orang-orang yang tidak terafiliasi dengan %{site_name}, sedangkan grafik "Pengguna" hanya menunjukkan tanggal-tanggal di mana pengguna yang saat ini terafiliasi dengan %{site_name} bergabung dengan iNaturalist.
         growth_in_year_obs: "Pertumbuhan pada %{year} (obs)"
         growth_title: Pertumbuhan
+        #Label when a mark on a chart has a value that is too small to
+        #visualize. low_value is the value (usually a number), low_desc is
+        #a description of what that value represents
+        low_too_small: "Rendah: %{low_value} (%{low_desc}), terlalu kecil untuk diperlihatkan"
+        new_species_desc: |
+          Spesies yang diamati untuk kali pertama di %{site_name} tahun ini.
+          Menampilkan %{x} dari <a href="%{url}">%{y} spesies</a>.
+        new_species_desc_html: |
+          Spesies yang baru ditambahkan untuk kali pertama tahun ini.
+          Klik sebuah bulan untuk melihat beberapa spesies baru yang ditambahkan pada bulan tersebut. Anda juga bisa melihat total akumulasi spesies, atau menggerakkan penggeser kembali ke masa lalu untuk melihat spesies-spesies lain yang baru diamati. Grafik ini menunjukkan spesies dari pengamatan yang dapat diverifikasi menurut bulan di mana mereka diunggah ke %{site_name} (bukan bulan mereka diamati). Grafik ini tidak menyertakan taksa dengan tingkat lebih tinggi atau rendah, sehingga suatu pengamatan yang diidentifikasi sebagai Mammalia tidak termasuk, dan pengamatan <i>Canis lupus</i> ssp. <i>arctos</i> hanya dihitung sebagai <i>Canis lupus</i>.
         new_species_per_year: Spesies Baru / Tahun
         new_species_per_year_by_date_added: Berdasarkan tanggal ditambahkan
         new_species_per_year_by_date_observed: Berdasarkan tanggal diamati
@@ -5891,11 +6048,21 @@ id:
         one_time: Satu kali
         percent_growth_in_year: "% Pertumbuhan pada %{year}"
         percent_of_total_growth: "% Total Pertumbuhan"
+        publications_desc_html: |
+          Klik grafik bunga untuk mendapatkan lebih banyak informasi tentang apa arti dari angka-angka dan warna-warnanya. Data dampak dan grafik bekerja sama dengan <a href="https://www.altmetric.com">Altmetric</a>. Informasi tentang penggunaan data bekerja sama dengan rekan-rekan kami di <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+          <br/>
+          <a href="%{url}">Lihat seluruh %{numStudies} penelitian</a>
+        publications_desc_short_html: |
+          Klik grafik bunga untuk mendapatkan lebih banyak informasi tentang apa arti dari angka-angka dan warna-warnanya. Data dampak dan grafik bekerja sama dengan <a href="https://www.altmetric.com">Altmetric</a>. Informasi tentang penggunaan data bekerja sama dengan rekan-rekan kami di <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Pengamatan / Tahun
         observations_per_year_by_date_added: Berdasarkan tanggal ditambahkan
         observations_per_year_by_date_observed: Berdasarkan tanggal diamati
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: Pengamatan Beruntun
+        observation_streaks_color_desc: |
+          Warna mewakili jumlah hari dalam skala logaritma:
+        observation_streaks_desc2: |
+          Pengamatan beruntun adalah sebuah periode sekurang-kurangnya lima hari ketika seseorang keluar dan mencatat pengamatan-pengamatan baru yang dapat diverifikasi setiap harinya. Di sini, kami menunjukkan pengamatan beruntun terpanjang yang dimulai dari tahun ini atau sedang berlangsung ketika statistik-statistik ini dihasilkan (untuk pengguna individu, kami juga menyertakan pengamatan beruntun yang berakhir tahun ini).
         #Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: Berkala
         species_per_year: Spesies / Tahun
@@ -5904,6 +6071,9 @@ id:
         stats_generated_datetime: Statistik yang dihasilkan pada %{datetime}
         store_prompt: |
           Mau memamerkan kebanggaanmu akan iNat ke mana pun kamu pergi? Cek Toko iNat sekarang!
+        sunburst_desc_html: |
+          Taksa yang diamati disusun sebagai diagram "sunburst" hierarkis. Dasar hierarki ada di tengah, dimulai dengan "Kehidupan" dan berakhir dengan spesies di sisi luar. Ukuran setiap busur proporsional dengan jumlah pengamatan takson tersebut, dan warnanya kurang lebih sesuai dengan warna "ikonik" yang lazim untuk takson itu (hijau untuk tumbuhan, jingga untuk serangga, biru untuk kebanyakan binatang, dll.), jadi jika Anda melihat banyak warna hijau, berarti Anda telah mengamati banyak tanaman.
+          <strong>Klik salah satu busur untuk menempatkan takson itu di tengah</strong> dengan turunannya di sekitarnya, atau <strong>klik di tengah untuk kembali ke atas hierarki</strong>.
         translators_title: Penerjemah
         translators_desc: |
           Apakah Anda tahu bahwa iNaturalist telah diterjemahkan ke %{x_languages}, hampir seluruhnya oleh %{x_people}, beberapa dari mereka bahkan belum menggunakan iNat? Berikut adalah semua penerjemah yang kece yang telah menambahkan terjemahan tahun ini, beserta jumlah kata yang telah mereka terjemahkan untuk %{website_link_tag}situs web%{link_tag_end}, aplikasi %{iphone_link_tag}iPhone%{link_tag_end} dan %{android_link_tag}Android%{link_tag_end} kami, dan %{seek_link_tag}Seek%{link_tag_end}. Anda dapat melihat semua orang yang telah ikut menerjemahkan, termasuk orang-orang dari tahun-tahun yang lampau dan teman-teman dari Translatewiki, di penyimpanan kode %{view_all_web_link_tag}web%{link_tag_end} dan %{view_all_mobile_link_tag}mobile%{link_tag_end}.
@@ -5915,6 +6085,7 @@ id:
       show:
         charts_help_other: |
           Kami juga menunjukkan grafik musim untuk catatan pengamatan. Catatan merupakan suatu cara untuk menambahkan metadata untuk pengamatan menggunakan kosa kata yang diatur, seperti apakah suatu pengamatan menggambarkan tanaman yang berbunga atau berbuah.
+        discoveries_desc: "Spesies terkini yang baru diidentifikasi dalam takson ini"
         frequency:
           research: Kelas Riset
           verifiable: Dapat Diverifikasi
@@ -5933,6 +6104,9 @@ id:
           "Life Stage=Pupa": Kepompong
           "Life Stage=Subimago": Subimago
           "Life Stage=Teneral": Teneral
+          "Sex=Cannot Be Determined": Tidak Dapat Ditentukan
+          "Sex=Female": Perempuan
+          "Sex=Male": Laki-laki
           unannotated: Tidak Ada Catatan
     taxon_names:
       taxon:
@@ -5944,24 +6118,51 @@ id:
         you_may_want_to_update: Anda memiliki beberapa konten yang terkait dengan taksa ini yang Anda mungkin ingin memperbarui.
         curators_can_see: |
           Hanya pengingat, kurator proyek dapat melihat pribadi dan dikaburkan koordinat pengamatan yang Anda tambahkan ke proyek ini.
+      delete:
+        type_confirmation_code: Ketik %{confirmation_code}
       edit:
+        about_third_party_tracking: Tentang pelacakan pihak ketiga
+        display_monthly_supporter_status_on_my_profile: |
+          Tampilkan status Pendukung Bulanan di profil saya
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
+        monthly_supporter: Pendukung Bulanan
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Komentar
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_identifications: Identifikasi
         #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Sebutan
+        #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: Pesan
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: Postingan jurnal proyek
         project_addition_preferences:
           any: Apa saja
           joined: Proyek yang telah Anda bergabung
           none: "Tidak ada, hanya Anda yang dapat menambahkan pengamatan Anda untuk proyek-proyek"
         project_settings_desc: |
           Ingat, ini tidak memberikan izin proyek untuk mengakses koordinat pribadi anda atau mengirim pembaruan. Anda harus bergabung di proyek untuk memberikan izin ini, atau memberikan mereka pada kasus per kasus dasar.
+      recent:
+        about_recent_users: Tentang
       show:
         this_user_was_banned: Pengguna ini ditangguhkan
     user_parents:
+      confirm:
+        thanks_for_creating_a_minor_account: TERIMA KASIH SUDAH MEMBUAT AKUN ANAK!
       new:
+        child_name_private: Nama anak (pribadi)
+        create_a_minor_account: Buat Akun Anak
+        create_minor_account: Buat Akun Anak
+        parent_name_private: Nama orang tua atau wali (pribadi)
         parent_email: Email orang tua atau wali (pribadi)
+        inaturalist_minor_account_signup: Pendaftaran Akun iNaturalist Anak
+        parent_information_private: Informasi Orang Tua (pribadi)
+        step1_title: BUAT AKUN UNTUK ANAK ANDA
+        step2_title: KONFIRMASI IDENTITAS ANDA DENGAN KARTU KREDIT
+        step3_title: TUNGGU UNTUK EMAIL KONFIRMASI
+        step3_donor_title: AKUN ANAK ANDA TELAH DIAKTIVASI
     welcome:
       index:
         welcome_message_html: |
