@@ -175,6 +175,9 @@ da:
   #should work here
   about_place: "Om %{place}"
   about_places: Om steder
+  about_taxon_ranges: Om taksonudbredelse
+  about_taxon_ranges_desc: |
+    Taksonudbredelse formidler den globale udbredelse/fordeling af en takson baseret på data typisk indhentet fra IUCNs rødliste.
   about_the_cc_licenses: Om Creative Commons licenser
   about_these_licenses: Om disse licenser
   about_this_bioblitz: Om denne bioblitz
@@ -970,6 +973,11 @@ da:
       *du* ønsker at blive opført som autoritet.
     place: Sted, hvor denne status er begrænset.
     url: URL for en side, der beskriver denne status.
+    geoprivacy: |
+      Standard geofortrolighed for observationer af denne takson. Bemærk, at
+      geofortroligheden for en status forbundet med et sted på kontinent-, land- eller
+      statsniveau kan tilsidesætte en status, der er global eller tilknyttet et sted på
+      et højere niveau.
     iucn: |
       Ækvivalent IUCN Red List-kode. Dette er ikke den faktiske IUCN-vurdering,
       blot den bedst matchende IUCN-kode ift. truslen om koordinatafsløring indikeret af denne status. Dette vil tilsidesætte geofortrolighed, hvis den er "Mindste bekymring" eller derunder, så ønsker du at sløre observationer af denne takson, indstil da denne til "Næsten truet" eller derover.
@@ -1349,6 +1357,8 @@ da:
   delete_icon?: Slet ikon?
   delete_photo: Slet foto
   delete_project: Slet dette projekt
+  #Label for a button to delete a taxon range
+  delete_range: Slet udbredelse
   delete_selected: Slet valgte
   delete_taxon_and_merge_most_data_html: |
     Slet <i> %{taxon} </i> og sammenlæg det meste af dets data i en anden takson. Brug dette værktøj til <strong> at fjerne dubletter </strong>. Hvis du vil
@@ -1533,6 +1543,7 @@ da:
   editing_taxon: Redigering af %{taxon}
   editing_taxon_link: Redigering af takson link
   editing_taxon_name_for_taxon_html: Redigerer taksonnavn "%{name}" for %{taxon}
+  editing_taxon_range_for_taxon_html: Redigér Taksonudbredelse for %{taxon}
   editing_this: Redigering af %{elem}
   editing_x_in_y: "Redigering af %{x} i %{y}"
   editors: Redaktører
@@ -2656,6 +2667,7 @@ da:
   no_project_to_admin_current_user: "Du administrerer ikke nogen projekter"
   no_project_to_admin_login: "%{login} administrerer ikke nogen projekter"
   no_projects_yet: Ingen projekter endnu
+  no_attached_range: Ingen vedhæftet udbredelse
   no_range_data_available: Ingen områdedata tilgængelig.
   no_recent_activity: Ingen nylige aktiviteter
   no_relevant_annotations: Ingen relevante anmærkninger
@@ -3791,6 +3803,7 @@ da:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: Infrahybrid
   ranges: Områder
+  range_file: Udbredelsesfil
   ray_finned_fishes: strålefinnede fisk
   re_order_photos: "Ændre rækkefølgen for fotos &raquo;"
   read_more: Læs mere
@@ -4364,6 +4377,31 @@ da:
   taxon_photos_updated: Takson foto´s opdateret!
   taxon_range: Takson område
   taxon_range_created_notice: Taksonområdet blev oprettet. Vent venligst et par minutter for at få det vist på kortene.
+  taxon_range_for_taxon_html: Taksonudbredelse for %{taxon}
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: Er dette et IUCN-rødliste udbredelseskort, og hvis ikke, hvorfor?
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: Dette et IUCN-rødliste udbredelseskort
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Dette et ikke et IUCN-rødliste udbredelseskort grundet uegnet kort
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: Dette et ikke et IUCN-rødliste udbredelseskort, da denne takson ikke er på IUCN-rødisten
+  taxon_range_guidelines_each_taxon_can_have: Hver takson kan kun have én taksonudbredelse. Taksonudbredelser skal repræsentere den globale fordeling.
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    %{link_start_tag}IUCN-rødlisten%{link_end_tag} er den typiske kilde for taksonudbredelser.
+    Angiv, om der tilføjes en IUCN-rødkisteudbredelse, og hvis ikke, så hvordan det, der tilføjes,
+    relaterer til IUCN-rødlisten. Dette vil bidrage til at informere automatiske opdateringsprocesser
+    for udbredelser indhentet til IUCN Red List. Tilføjes en IUCN-rødlisteudbredelse,
+    bedes en korrekt IUCN Red List-version (f.eks. 2021-2) angives i kilden.
+  taxon_range_guidelines_if_you_are_not_uploading: "Uploader der ikke en IUCN-rødlisteudbredelse, bør dette skyldes:"
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: IUCN-rødlisteudbredelseskort for denne takson er uegnet
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    f.eks., man har manuelt indsnævret det til at afspejle en taksonomisk opdeling, der ikke fremgår på IUCNs rødliste, eller
+    IUCNs rødlisteudbredelseskort har markante fejl med uegnet visning til følge.
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Denne takson er ikke på IUCNs rødliste
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    f.eks., man har skåret den manuelt af her, da taksonen er sammenklumpet med en anden takson på IUCNs rødliste, eller taksonen
+    mangler en IUCN-rødlistevurdering og udbredelseskort.
+  taxon_range_guidelines_please_provide_details: |
+    Brug beskrivelsen til at forklare kortets afledning, og link det til evt. relevante flag, taksonomiske opdelinger eller andre debatter
+    om, hvorfor den publicerede IUCN-rødlisteudbredelse krævede ændringer.
+  taxon_range_guidelines_learn_more_about_taxon_ranges: Få mere at vide om taksonudbredelser
   taxon_range_updated_notice: Taksonområdet blev opdateret. Ændringerne vises på kortet om få minutter.
   taxon_ranks: Taksonrangeringer
   taxon_removed_from_list: Takson fjernet fra liste.
@@ -5794,6 +5832,11 @@ da:
         For at aktivere FED DNA stregkode svarende til funktionalitet, sørg for dit
         feltnavn indeholder ordene "COI", "COX1", "ITS" eller "matK"
         svarende til genet, som dette felt er målrettet mod.
+      merge:
+        warning_html: |
+          Respektér venligt andres data og <strong>tal med ophavsmanden
+          til et observationsfelt inden en fletning</strong>. Dette værktøj ødelægger observationsfeltet, der flettes, og flytte alle observationer, som bruger det,
+          til det flettede felt.<strong>Processen er irreversibel</strong>, så vær forsigtig.
     emailer:
       bulk_import_success:
         success_message: |
@@ -7602,6 +7645,12 @@ da:
             taxon:
               too_many_photos: |
                 kan ikke have mere end %{max} fotos
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: skal være en accepteret værdi
+            taxon_id:
+              already_has_a_range: indeholder allerede udbredelse
         user:
           attributes:
             login:
