@@ -1304,8 +1304,8 @@ id:
   delete_selected: Hapus Yang Dipilih
   delete_taxon_and_merge_most_data_html: |
     Hapus <i>%{taxon}</i> dan gabungkan sebagian besar data tersebut ke dalam takson. Gunakan
-    alat ini untuk <strong>menghapus taksa yang terduplikat</strong>. Jika anda ingin
-    menghapus sinonim yang kadaluwarsa, sila buat penukaran takson. <strong>HATI-HATI!</strong> Menghapus taksa dapat menjadi sangat merusak. Sila periksa <a href="%{curator_url}">Panduan Kurator</a> untuk informasi lebih lanjut.
+    alat ini untuk <strong>menghapus taksa yang terduplikat</strong>. Jika Anda ingin
+    menghapus sinonim yang kedaluwarsa, sila buat penukaran takson. <strong>HATI-HATI!</strong> Menghapus taksa dapat menjadi sangat merusak. Silakan periksa <a href="%{curator_url}">Panduan Kurator</a> untuk informasi lebih lanjut.
   delete_user: Hapus pengguna
   delete_your_account: Hapus akun Anda
   deleted_synonyms: Sinonim terhapus
@@ -2853,7 +2853,7 @@ id:
   one_by_one: "Satu per satu"
   one_of_your_lists: "salah satu dari daftar Anda..."
   one_or_more_input_taxa_have_more_than_1000: |
-    Satu atau lebih input taksa memiliki lebih dari 1000 pengamatan di hilir. Hal ini membutuhkan beberapa waktu untuk diproses, apakah Anda yakin perubahan takson ini diperlukan? Perubahan takson ini juga tidak bisa dikembalikan seperti semula.
+    Satu atau lebih taksa input memiliki lebih dari 1000 pengamatan di hilir. Hal ini membutuhkan beberapa waktu untuk diproses, apakah Anda yakin perubahan takson ini diperlukan? Perubahan takson ini juga tidak bisa dikembalikan seperti semula.
   only_a_project_manager_can_add: Hanya manajer proyek yang dapat menambahkan status kurator proyek
   only_administrators_may_access_that_page: Hanya pengelola yang dapat mengakses halaman ini
   only_an_admin_can_remove_project_users: Hanya pengelola yang dapat menghapus proyek pengguna
@@ -6082,9 +6082,44 @@ id:
         translators_prompt: |
           Jika Anda ingin membantu penerjemahan, %{link_tag}pelajari caranya%{link_tag_end}.
     taxa:
+      edit:
+        high_status_conservation_status_notice_html: |
+          Menambahkan status konservasi untuk tingkat takson yang lebih tinggi memengaruhi pengamatan semua spesies di dalam takson ini. Jangan menambahkan status untuk taksa yang tidak memiliki status karena tindakan ini akan mengaburkan koordinat untuk pengamatan spesies-spesies itu.
+        complete_desc_html: |
+          Takson yang "lengkap" mengandung <em>semua</em> turunan taksa yang sudah diketahui dalam suatu kategori tertentu yang mematuhi kebijakan kurasi takson iNaturalist, tidak peduli mereka sudah atau belum diamati. Hanya pengelola situs yang bisa menyatakan suatu taksa sudah lengkap untuk saat ini.
+        complete_rank_desc_html: |
+          Kategori di mana takson ini selesai, contohnya jika famili ini mengandung semua genusnya, tapi tidak mengandung semua spesiesnya, ini akan diatur menjadi "genus". Standarnya diatur menjadi spesies.
+        wikipedia_summary_desc_html: |
+          Ringkasan singkat dari takson ini berdasarkan <a target="_blank"
+          href="%{url}">halaman Wikipedianya</a> yang terus kami simpan dalam cache hingga disegarkan secara manual. Menyegarkan ringkasan ini juga akan secara langsung mengubah cache konten Wikipedia kami yang kami tampilkan di situs web, yang akan disegarkan secara otomatis setiap minggunya.
       show:
+        about_names_desc: |
+          <p>
+          Kebanyakan kategori organisme memiliki "nama umum" dalam bahasa-bahasa lisan. Nama-nama ini biasanya dapat dikenali, gampang untuk diucapkan, dan tidak berubah-ubah seiring waktu, tetapi banyak organisme yang memiliki beberapa nama berbeda di tempat yang berbeda, meskipun dalam satu bahasa yang sama, sehingga sulit sekali untuk berbicara tentang organisme-organisme ini tanpa membingungkan orang. Para ilmuwan menyelesaikan masalah ini dengan menggunakan satu "nama ilmiah" untuk setiap kategori organisme yang mematuhi aturan <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenklatur biologi</a>, 
+          tetapi nama-nama ini biasanya berasal dari bahasa Latin, bahasa yang jarang dipakai untuk percakapan sehari-hari, jadi mereka tidak semudah nama umum untuk diingat oleh kebanyakan orang. Nama ilmiah juga bisa mencerminkan penempatan taksonomi suatu organisme, sehingga mereka bisa berubah ketika para ilmuwan mengembangkan lebih banyak teori yang lebih akurat tentang hubungan evolusi antara organisme yang berbeda, yang lagi-lagi mengurangi kegunaan mereka dalam hal komunikasi, bahkan di antara orang-orang yang mengetahui nama ilmiah.
+          </p>
+          <p>
+          Pepatah zaman dulu pernah berkata: "Nama umum berubah dari tempat ke tempat, sedangkan nama ilmiah berubah dari waktu ke waktu."
+          </p>
+          <p>
+          Kami mencoba untuk menyelesaikan kekurangan ini dengan menampilkan nama umum beserta nama ilmiahnya bila memungkinkan, dan memilih nama umum berdasarkan pilihan bahasa serta pilihan geografis pengguna.
+          </p>
+        about_conservation_status_desc: |
+          Status konservasi merangkum risiko kepunahan untuk sekelompok organisme.
+        about_establishment_desc: |
+          "Cara pengenalan" menjelaskan bagaimana suatu spesies datang ke tempat di mana ia sekarang berada. Diperkenalkan berarti ia datang karena aktivitas manusia, sedangkan asli berarti ia datang tanpa perantara manusia. Spesies endemik hanya berada di tempat tertentu dan tidak ditemukan di tempat lain.
+        about_taxon_curators_desc: |
+          Orang-orang ini mengelola bagian dari pohon taksonomi yang mengandung takson ini. Jika Anda ingin membuat perubahan, silakan tandai takson ini atau hubungi salah satu orang ini.
+        charts_help_seasonality: |
+          Grafik ini menunjukkan jumlah pengamatan takson ini tiap bulannya. Ingat bahwa ini merupakan jumlah pengamatan, jadi mereka dipengaruhi oleh kapan organisme dapat diamati dan kapan orang-orang berusaha untuk mencarinya. Jadi, suatu burung bisa terlihat sangat aktif pada bulan Mei, tetapi hal itu juga bisa terjadi karena kebanyakan orang yang mengamati burung-burung pada bulan Mei cenderung mengabaikan spesies tersebut di bulan-bulan setelahnya. Selain itu, jika Anda melihat lebih banyak capung pada bulan Juni daripada bulan Januari, itu mungkin karena kami memiliki lebih banyak orang yang sedang mengamati di belahan bumi utara daripada di belahan bumi selatan dan bukan karena capung lebih aktif pada bulan Juni, jadi periksalah peta saat memikirkan grafik-grafik ini. Adalah hal yang baik jika Anda menjadi skeptis akan grafik-grafik ini ketika jumlah pengamatan sedang rendah dan/atau perbedaan antara jumlah pengamatan "Dapat Diverifikasi" dan "Kelas Riset" cukup besar.
+        charts_help_history: |
+          Grafik ini menunjukkan jumlah pengamatan takson ini tiap bulannya hingga sepuluh tahun ke belakang. Lagi-lagi, hal ini berat sebelah karena dipengaruhi oleh jumlah orang yang mengamati, tetapi grafik ini akan menunjukkan lonjakan yang tidak biasa dalam pengamatan, dan jika ia terlihat datar atau menurun walaupun jumlah pengamat meningkat, ini mungkin memperlihatkan adanya perubahan jumlah.
         charts_help_other: |
           Kami juga menunjukkan grafik musim untuk catatan pengamatan. Catatan merupakan suatu cara untuk menambahkan metadata untuk pengamatan menggunakan kosa kata yang diatur, seperti apakah suatu pengamatan menggambarkan tanaman yang berbunga atau berbuah.
+        charts_help_relative_observations: |
+          Menampilkan frekuensi sebagai proporsi relatif dari semua pengamatan membantu menghaluskan efek pertumbuhan keseluruhan dari situs. Sebagai contoh, jika situs sedang bertumbuh karena kami mendapatkan lebih banyak pengamatan setiap tahunnya, kami akan mendapatkan lebih banyak pengamatan tentang takson individu apapun, yang tidak akan memberitahukan Anda tentang apakah ada lebih banyak takson itu untuk diamati di sekitar Anda, tetapi hanya menyampaikan bahwa ada lebih banyak orang yang mengamatinya. Menunjukkan proporsi relatif berarti jika ada 100 total pengamatan, tapi ada 20 pengamatan saja dari takson ini, proporsinya adalah 0,2 (20 / 100). Jika orang-orang mengamati 2000 pengamatan ini tahun depan dan 400 pengamatannya berupa takson ini, proporsinya tetap 0,2 (400 / 2000). Hal ini menyebabkan beberapa penyimpangan ketika ada sedikit pengamat saja dalam sebuah area, atau untuk taksa yang sangat jarang diamati, tetapi hal ini juga berlaku untuk jumlah total.
+        complete_taxon_desc: |
+          Taksa yang "lengkap" memiliki semua taksa turunannya yang masih ada dari kategori tertentu yang tersimpan di dalam database situs. Ketika suatu takson lengkap hingga ke tingkat spesies, contohnya, kita bisa bilang berapa banyak dari spesiesnya yang sudah diamati dan berapa banyak lagi yang masih belum diamati. Jumlah spesies untuk taksa yang "lengkap" hingga ke tingkat spesies tidak menyertakan spesies yang "tidak terhitung" seperti spesies yang sudah punah atau konsep spesies yang tidak aktif. Selain itu, mereka hanya memasukkan spesies, bukan taksa infraspesifik seperti subspesies atau varietas.
         discoveries_desc: "Spesies terkini yang baru diidentifikasi dalam takson ini"
         frequency:
           research: Kelas Riset
@@ -6108,26 +6143,145 @@ id:
           "Sex=Female": Perempuan
           "Sex=Male": Laki-laki
           unannotated: Tidak Ada Catatan
+        max_photos_desc: |
+          Suatu takson hanya boleh memiliki %{max} foto. Anda harus menghapus foto yang sudah ada untuk menambahkan lebih banyak foto.
+        no_trending_desc: Tidak ada organisme di bawah takson ini yang diamati sejak bulan lalu
+        photo_chooser_modal_desc: |
+          Seret foto ke sini dari kiri, atau seret foto ke sini untuk menyusun kembali.
+        photo_chooser_modal_explanation: |
+          Ingat bahwa halaman takson akan menampilkan foto-foto takson ini dan turunannya. Namun, foto-foto yang terpilih untuk takson ini akan diperlihatkan pertama. Foto pertama adalah foto standar yang akan digunakan di seluruh situs.
+        rare_desc: Taksa terancam yang paling sedikit diamati
+        rare_in_place_desc_html: Taksa terancam yang paling sedikit diamati di <a href="%{url}">%{place}</a>
+        site_curators_disabled_wikipedia_html: |
+          Kurator situs telah mematikan penampilan <a href="%{url}">konten ini dari Wikipedia</a>. Anda dapat membantu mengubah halaman ini di Wikipedia untuk membuatnya patut untuk takson ini, atau menandai takson ini untuk meminta perhatian dari kurator situs.
+        trending_desc: Taksa yang paling banyak diamati sejak bulan lalu
+        trending_in_place_desc_html: Taksa yang paling banyak diamati sejak bulan lalu di <a href="%{url}">%{place}</a>
+        wanted_desc: Spesies di dalam takson ini yang belum diamati.
+    taxon_changes:
+      move_children_desc: |
+        Anak-anak takson input yang berupa genus atau lebih kasar lagi akan dipindahkan ke output; spesies, subspesies, varietas, dll. akan diganti dengan sejenisnya dengan nama genus atau spesies baru.
+      form:
+        move_children_desc_html: |
+          Dengan mencentang kotak ini, anak-anak takson input akan dipindahkan ke takson output untuk Penggantian dan Peleburan ketika perubahan diterapkan. Jika ini berubah menjadi genus atau lebih bawah, ini akan membuat Penggantian Takson untuk semua turunan yang memiliki perubahan nama yang tersirat. Contohnya, jika Anda mengganti famili Canidae menjadi Dogidae, tindakan ini akan mengubah induk genus <i>Canis</i> dari Canidae menjadi Dogidae. Jika Anda mengganti genus <i>Canis</i> menjadi genus <i>Dogis</i>, tindakan ini akan membuat dan menerapkan Penggantian Takson untuk mengubah <i>Canis lupus</i> menjadi <i>Dogis lupus</i> dan <i>Canis lupus</i> ssp. <i>lupus</i> menjadi <i>Dogis lupus</i> ssp. <i>lupus</i>. Hal ini dapat membuat sedikit kekacauan, jadi gunakanlah dengan bijak.
+    taxon_links:
+      form:
+        name_with_rank_desc: |
+          Nama takson dengan kategorinya. Untuk takson infraspesifik, kategori dimasukkan setelah binomialnya.
     taxon_names:
+      form:
+        new_name_guidelines_html: |
+          <ul>
+          <li><p>Coba tambahkan nama yang telah digunakan di tempat lain. Tolong jangan menciptakan nama baru.</p></li>
+          <li><p>Jangan menambahkan nama duplikat, contohnya, jangan menamakan beberapa elang "elang"</p></li>
+          <li><p>Untuk tingkat taksa yang lebih tinggi, coba gunakan nama yang mengandung semua turunannya, seperti "heron dan sekutunya" atau "famili heath"</p></li>
+          <li>
+          <p>
+          Jangan menambahkan informasi yang bukan merupakan namanya, seperti informasi di dalam kurung tentang nama yang seharusnya menjadi namanya menurut Anda
+          </p>
+          </li>
+          <li>
+          <p>
+          Kosa kata baru harus di dalam bahasa Inggris. Jangan menambahkan nama yang diterjemahkan seperti "Prancis, Français" karena hal itu hanya membuatnya semakin sulit bahkan tidak mungkin bagi kami untuk memperlihatkan nama lokalisasinya kepada orang-orang yang menggunakan situs dalam bahasa yang berbeda.
+          </p>
+          </li>
+          <li>
+          <p>
+          Nama umum yang terkait dengan bahasa terjemahan akan muncul sebagai nama umum standar untuk bahasa tersebut (tanpa dipengaruhi preferensi tempat, urutan nama, dll.).
+          <a class="readmore" href="/pages/translate">Pelajari lebih lanjut tentang penerjemahan</a>
+          </p>
+          </li>
+          </ul>
+        places_help_html: |
+          Tambahkan nama ke suatu tempat untuk memberikan prioritas untuk situs dan pengguna dari tempat tersebut. Jika ada beberapa nama untuk suatu tempat, Anda dapat memprioritaskan mereka <a href="%{url}">di sini</a>. Tolong <strong>jangan</strong> menambahkan nama untuk SETIAP tempat di mana namanya digunakan, hanya untuk tempat yang berselisih dengan tempat lain.
       taxon:
         about_html: |
-          Taksa dapat memiliki banyak nama-nama umum. Kami mendukung satu nama default umum global, yang dapat berubah di sini dengan menyeret nama ke atas daftar. Anda juga dapat menentukan nama default pada tempat yang berbeda dengan mengedit nama dan menambahkan tempat, tapi tolong hanya melakukannya saat tempat yang berbeda memiliki nama yang saling bertentangan.
+          Taksa dapat memiliki banyak nama-nama umum. Kami mendukung satu nama umum standar secara global, yang dapat diubah di sini dengan menyeret nama ke atas daftar. Anda juga dapat menentukan nama standar pada tempat yang berbeda dengan mengedit nama dan menambahkan tempat, tapi harap dilakukan hanya saat tempat yang berbeda memiliki nama yang saling bertentangan.
     users:
       dashboard:
+        taxon_change_desc: |
+          Perubahan takson merepresentasikan perubahan pada taksonomi %{site_name}. Sering kali, %{site_name} akan secara otomatis memelihara konten Anda tetap terbaru ketika ada perubahan yang terjadi (kecuali Anda tidak memilih untuk itu), tetapi kami masih ingin memberitahu Anda kapan dan bagaimana data Anda berubah.
         your_content_will_be_updated: Konten Anda yang berhubungan dengan taksa ini akan diperbarui secara otomatis.
-        you_may_want_to_update: Anda memiliki beberapa konten yang terkait dengan taksa ini yang Anda mungkin ingin memperbarui.
+        you_may_want_to_update: Anda memiliki beberapa konten yang terkait dengan taksa ini yang mungkin ingin Anda perbarui.
+        cannot_update_your_content: "%{site_name} tidak bisa memperbarui konten Anda secara otomatis untuk perubahan ini."
+        new_project_admin_html: |
+          Apakah Anda heran mengapa Anda menjadi pengelola proyek ini? Hal ini terjadi mungkin karena pemilik sebelumnya menugaskan Anda sebagai pengelola baru, atau mereka menghapus akun mereka sehingga %{site_name} menugaskan Anda karena Anda adalah manajer proyek atau kurator situs. Jika Anda tidak mau menjadi pengelola proyek, silakan hubungi <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: |
-          Hanya pengingat, kurator proyek dapat melihat pribadi dan dikaburkan koordinat pengamatan yang Anda tambahkan ke proyek ini.
+          Hanya pengingat, kurator proyek dapat melihat koordinat pengamatan pribadi dan dikaburkan yang ditambahkan Anda ke dalam proyek ini.
       delete:
+        by_deleting_your_account_you_will_remove: |
+          Dengan menghapus akun Anda, Anda akan menghapus
+        x_observations_html:
+          other: |
+            <strong class="count">%{count} pengamatan</strong>,
+            termasuk pekerjaan dari 
+            <strong class="count">%{helpers_count} orang</strong> yang telah membantu Anda dengan identifikasi
+        x_identifications_html:
+          other: |
+            <strong class="count">%{count} identifikasi Anda</strong>
+            pada pengamatan <strong class="count">%{helpees_count} orang lain</strong>, yang mungkin dapat mengubah kualitas data dari pengamatan tersebut
+        x_comments_html:
+          other: <strong class="count">%{count} komentar</strong> yang telah Anda tambahkan
+        furthermore_cannot_undo_html: |
+          Selain itu, <strong>tindakan ini tidak bisa dikembalikan lagi.</strong> Jika Anda mengubah pikiran di kemudian hari, Anda tidak bisa mendapat kembali konten-konten Anda.
+        settings_and_mute_html: |
+          Jika situs ini menghasilkan terlalu banyak pemberitahuan, coba <a href="/users/edit">ubah pengaturan Anda</a> untuk tidak menerima pemberitahuan tertentu atau berhenti mendapatkan email dari kami. Jika Anda memiliki masalah dengan orang tertentu di situs ini, Anda bisa <a href="/users/edit">meredam mereka</a> alih-alih menghapus akun Anda.
+        still_want_to_delete_html: |
+          Jika Anda masih yakin untuk menghapus akun Anda, masukkan <code>%{confirmation_code}</code> di formulir di bawah ini dan klik tombol untuk menghapus akun Anda dengan semua datanya.
         type_confirmation_code: Ketik %{confirmation_code}
+        you_must_enter_confirmation_code_in_the_form: |
+          Anda harus memasukkan "%{confirmation_code}" di formulir untuk menghapus akun Anda
       edit:
         about_third_party_tracking: Tentang pelacakan pihak ketiga
+        blocking_desc_html: |
+          <p>
+          Memblokir seseorang mencegah seseorang mengirim pesan kepada Anda, mengomentari pengamatan Anda, mengidentifikasi pengamatan Anda, serta berinteraksi dengan Anda di %{site_name}. Ini akan menghilangkan pengamatan mereka dari hasil pencarian Anda dan menghilangkan pengamatan Anda pada hasil pencarian mereka. Namun, hal ini tidak membuat Anda tidak terlihat bagi mereka. Mereka masih bisa menemukan pengamatan Anda dan melihat profil Anda, tetapi mereka hanya tidak bisa berinteraksi dengan Anda.
+          </p>
+          <p>
+          Pemblokiran diperuntukkan untuk situasi di mana Anda tidak bisa bergaul dengan seseorang dan mereka terus mengganggu Anda, meskipun Anda telah berusaha untuk menyelesaikan perselisihan dengan cara yang manusiawi. Ini bukanlah cara untuk bersembunyi dari orang, untuk mencegah identifikasi dari orang-orang yang pendapatnya tidak Anda percayai, atau untuk mematikan ID komunitas (ada pengaturan lain untuk itu). Jadi, pemblokiran bekerja dua arah: jika Anda memblokir seseorang, mereka tidak dapat berinteraksi dengan Anda, tetapi Anda juga tidak bisa berinteraksi dengan mereka. Jika Anda menyalahgunakan ini untuk mencegah seseorang untuk mengidentifikasi pengamatan Anda, Anda juga mencegah diri Anda untuk mengidentifikasi pengamatan mereka.
+          </p>
+          <p>
+          Anda hanya bisa memblokir tiga orang. Kami pikir angka ini adalah jumlah yang masuk akal yang mengakomodasi orang-orang yang membutuhkan pemblokiran sambil mencegah penyalahgunaan fitur pemblokiran. Jika Anda rasa Anda perlu memblokir lebih banyak orang, silakan <a href="mailto:%{help_email}">menghubungi kami</a>.
+          </p>
+          <p>
+          Jika seseorang mengganggu atau melakukan stalking kepada Anda di %{site_name}, <a href="mailto:%{help_email}">beritahu kami</a>. Jika hal itu merupakan pelanggaran Syarat dan Ketentuan Layanan kami atau merupakan perilaku yang kami anggap tidak pantas untuk situs kami, kami akan menyelidikinya.
+          </p>
+        common_names_desc: |
+          Tunjukkan nama umum. Matikan jika Anda hanya ingin melihat nama ilmiah. Ingat bahwa Anda dapt mengontrol nama umum mana yang Anda lihat dengan mengganti pengaturan tempat Anda.
         display_monthly_supporter_status_on_my_profile: |
           Tampilkan status Pendukung Bulanan di profil saya
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |
+          Jika Anda berubah pikiran, Anda selalu dapat <a href='/users/edit'>mengubah pengaturan Anda</a>.
+        inaturalist_network_affiliation_desc_html: |
+          <p>
+          <a href="%{url}" target="_blank">Jaringan iNaturalist</a> adalah koleksi situs web yang terlokalisasi yang terhubung sepenuhnya dengan komunitas iNaturalist global. Situs jaringan didukung oleh institusi-institusi lokal yang telah menandatangani persetujuan dengan iNaturalist untuk mempromosikan penggunaan lokal dan memberikan manfaat kepada keanekaragaman hayati lokal. Mereka memiliki akses kepada koordinat sebenarnya dari negara mereka yang secara otomatis dikaburkan dari tampilan publik untuk melindungi spesies yang terancam.
+          </p>
+          <p>
+          Nama pengguna dan kata sandi Anda berlaku untuk semua situs yang merupakan bagian dari Jaringan iNaturalist. Jika Anda memilih untuk berafiliasi dengan sebuah situs Jaringan, institusi lokal yang mengoperasikan setiap situs akan memiliki akses juga kepada alamat email Anda (hanya untuk berkomunikasi dengan Anda tentang aktivitas situs) dan mengakses koordinat sebenarnya untuk pengamatan yang secara publik dikaburkan atau pribadi.
+          </p>
+          <p>
+          Catatan: Jangan mencoba-coba untuk mengganti afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan.
+          </p>
+        licensing_desc_html: |
+          Dengan menerapkan lisensi pada konten-konten Anda, Anda memberikan kuasa hukum kepada siapa saja tanpa perlu menanyakan izin kepada Anda jika mereka mengikuti syarat-syarat yang tertera pada lisensi tersebut. Sebagai tambahan, %{site_name} menyimpan konten Anda yang dilisensi dengan Creative Commons di arsip yang terus diperbarui yang dibuat untuk organisasi mitra tertentu yang tertarik dengan data kami. Sebagai contoh, kami memasukkan catatan Tanpa Hak Cipta (CC0), Atribusi (CC BY), dan Atribusi-NonKomersial (CC BY-NC) di dalam arsip yang kami hasilkan dari <a href="http://www.gbif.org/">Fasilitas Informasi Keanekaragaman Hayati Global</a>, sebuah organisasi internasional dan interpemerintahan yang mengumpulkan dan mendistribusikan informasi keanekaragaman hayati dari seluruh dunia.
+        license_description_attribution_html: |
+          Deskripsi dan gambar lisensi &copy; %{year} Creative Commons, digunakan di bawah <a href="http://creativecommons.org/licenses/by/3.0/">lisensi Atribusi Creative Commons</a> (narsis)
         #Header for the section of the profile settings where you can choose to
         #show a badge on your profile to indicate that you make a regular,
         #monthly donation to iNat
         monthly_supporter: Pendukung Bulanan
+        monthly_supporter_desc_html: |
+          Pendukung Bulanan iNaturalist mengirimkan kontribusi bulanan otomatis yang diterima oleh California Academy of Sciences (United States IRS EIN 94-1156258) untuk mendukung operasi nirlaba iNaturalist dan situs Jaringan iNaturalist.
+          <a href="%{url}">Klik di sini untuk menjadi Pendukung Bulanan</a>.
+          Saat kami telah mengonfirmasi dukungan Anda, Anda dapat mencentang kotak ini untuk menampilkan status ini di profil Anda. Catatan: Anda harus menggunakan alamat email yang sama di Donorbox dan di iNaturalist supaya bisa kami konfirmasi bahwa Anda telah menjadi Pendukung Bulanan.
+        muting_desc_html: |
+          <p>
+          Meredam orang dapat mencegah Anda untuk menerima pemberitahuan tentang hal-hal yang merekan lakukan, termasuk mengomentari pengamatan Anda, mengirimkan pesan kepada Anda, menyebut Anda, dll. Meredam dapat membantu Anda mengabaikan seseorang tanpa menghalangi mereka untuk melakukan apapun.
+          </p>
+          <p>
+          Anda bisa meredam sebanyak mungkin orang, tetapi ingat bahwa Anda dapat ketinggalan dengan pemberitahuan-pemberitahuan yang mungkin penting, seperti identifikasi yang mengubah ID komunitas pengamatan Anda.
+          </p>
+        name_place_help_html: |
+          Utamakan nama umum yang digunakan di tempat ini.
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Komentar
         #Checkbox label for user preference about what to receive in the daily email update
@@ -6138,14 +6292,64 @@ id:
         notification_preferences_messages: Pesan
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_journal_posts: Postingan jurnal proyek
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Saat sebuah proyek menambahkan pengamatan Anda
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
+        notification_preferences_project_curator_changes: Kurator proyek berubah
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Taksonomi berubah
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: Pengamatan berdasarkan orang yang saya ikuti
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: Pengamatan taksa atau dari tempat yang saya ikut berlangganan
+        place_preference_changed_notice_html: |
+          Preferensi tempat telah diubah. Jika Anda berubah pikiran, Anda selalu dapat <a href='/users/edit'>mengubah pengaturan Anda</a>.
         project_addition_preferences:
           any: Apa saja
-          joined: Proyek yang telah Anda bergabung
-          none: "Tidak ada, hanya Anda yang dapat menambahkan pengamatan Anda untuk proyek-proyek"
+          joined: Proyek yang Anda telah ikuti
+          none: "Tidak ada, hanya Anda yang dapat menambahkan pengamatan Anda ke dalam proyek"
+        prefers_community_taxa_desc: |
+          %{site_name} melacak organisme apa yang Anda pikirkan dalam pengamatan Anda dan apa yang komunitas pikirkan tentangnya. Jika Anda tidak berpikir bahwa pendapat komunitas harus mengesampingkan pendapat Anda, Anda bisa menonaktifkannya di sini. Orang-orang masih bisa menambahkan identifikasi, tetapi pengamatan Anda akan tetap dikaitkan dengan takson dari identifikasi Anda. Hal ini berarti pengamatan Anda tidak akan memenuhi syarat untuk status Kelas Riset kecuali identifikasi Anda sesuai dengan pendapat komunitas.
+        prefers_coordinate_interpolation_protection_desc: |
+          Saat Anda mengatur geoprivasi pengamatan menjadi "dikaburkan" atau "pribadi", tindakan ini akan menerapkan geoprivasi yang sama ke semua pengamatan Anda yang lain pada hari yang sama sehingga menyulitkan orang lain menebak koordinat sesungguhnya berdasarkan pengamatan yang dibuat dalam waktu yang kurang lebih sama.
+        prefers_no_tracking_label: Jangan mengambil data stabilitas dan pemakaian menggunakan layanan pihak ketiga
+        prefers_no_tracking_label_desc_we_use: |
+          Kami menggunakan berbagai layanan pihak ketiga untuk memantau stabilitas dan mendiagnosis kekutu dan masalah dalam perangkat lunak kami. Para pihak ketiga ini termasuk
+        prefers_no_tracking_label_desc_we_use_google_html: Google(<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
+        prefers_no_tracking_label_desc_info_we_share: |
+          Informasi yang mungkin kami bagikan dengan pihak-pihak ketiga ini termasuk
+        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
+          alamat IP (yang dapat digunakan untuk memperoleh lokasi hingga resolusi tingkat kota, dan melacak Anda di berbagai situs web dan layanan; ingat bahwa kami telah mengaktifkan <a href="https://support.google.com/analytics/answer/2763052">anonimisasi</a> pada Google Analytics; Firebase Crashlytics
+          <a href="https://firebase.google.com/support/privacy">
+          dapat menyimpan alamat IP</a> untuk sementara)
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          Detail browser, seperti pembuat, model, dan versi
+        prefers_no_tracking_label_desc_info_we_share_crash_details: |
+          Detail crash, seperti baris kode apa yang menyebabkan crash
+        prefers_no_tracking_label_desc_info_we_share_device_details: |
+          Detail perangkat, seperti pembuat dan model ponsel
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Layanan pihak ketiga ini memberikan keuntungan yang sangat besar bagi kami</strong> dalam menjaga stabilitas dan penggunaan iNaturalist dengan staf kami yang relatif sedikit. Pada perangkat-perangkat seluler, hampir tidak ada cara lain di mana kami bisa mendapatkan pengertian mengenai masalah-masalah yang sedang terjadi, karena perangkat lunaknya dijalankan pada perangkat-perangkat yang tidak kami kontrol. Terkadang, kami bahkan tidak menyadari masalah-masalah itu terjadi sebelum kami melihatnya pada data yang disediakan layanan ini. <strong>Dengan membagikan informasi ini, Anda membantu kami melayani Anda dan seluruh komunitas iNaturalist.</strong>
+        prefers_no_tracking_label_desc_limits: |
+          Ingat bahwa opsi ini hanya berlaku untuk data analytics dan crash yang secara eksplisit kami kirimkan ke perusahaan-perusahaan tersebut. Semua server-server iNaturalist disediakan dan dihosting oleh Microsoft, semua gambar-gambar iNaturalist dihosting oleh Amazon, dan hampir semua peta-peta iNaturalist disediakan oleh Google, yang berarti tiap kali Anda melihat suatu pengamatan di iNaturalist, Anda terkoneksi dengan layanan-layanan yang diberikan oleh perusahaan-perusahaan tersebut dan setidaknya mengekspos alamat IP Anda kepada mereka (untuk aplikasi iPhone kami menggunakan peta dari Apple). iNaturalist mungkin tidak dapat ada tanpa layanan-layanan yang perusahaan-perusahaan tersebut sediakan dan meskipun kami dapat membatasi jumlah dan jenis data yang Anda bagikan dengan mereka ketika menggunakan iNat, kami tidak dapat sepenuhnya menghentikan aliran data.
         project_settings_desc: |
-          Ingat, ini tidak memberikan izin proyek untuk mengakses koordinat pribadi anda atau mengirim pembaruan. Anda harus bergabung di proyek untuk memberikan izin ini, atau memberikan mereka pada kasus per kasus dasar.
+          Ingat, ini tidak memberikan izin kepada proyek untuk mengakses koordinat tersembunyi Anda atau mengirimkan kabar kepada Anda. Anda harus bergabung di proyek untuk memberikan izin ini, atau memberikan izin untuk tiap-tiap pengamatan.
+        same_day_geoprivacy_protection: Perlindungan geoprivasi di hari yang sama
+        search_place_help_html: |
+          Tempat standar untuk pencarian pengamatan.
+        scientific_name_first_desc: |
+          Tampilkan nama ilmiah sebelum nama umum.
+        taxon_change_desc: |
+          Saat taxa dilebur atau dinamakan ulang di %{site_name}, pengamatan, taksa terdaftar, identifikasi, dll. milik Anda akan secara otomatis diubah menjadi taksa baru jika perubahannya tidak ambigu. Jika Anda memilih untuk tidak diberi kabar atau perubahannya ambigu (seperti pemisahan), Anda akan menerima kabar tentang perubahan yang terhubung dengan suatu alat yang dapat Anda gunakan untuk memperbarui secara manual konten Anda jika Anda menginginkannya.
+        thanks_for_supporting_us!: Terima kasih telah mendukung kami!
+        this_only_applies_to_traditional_projects: |
+          Hal ini hanya berlaku untuk proyek tradisional. Anda tidak bisa mengecualikan pengamatan dari proyek koleksi atau proyek payung, yang intinya adalah pencarian yang disimpan. Anda bisa membaca lebih lanjut <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">di sini</a>.
+        youve_used_all_of_your_blocks: Anda telah menggunakan semua kapasitas blokiran Anda. Cabut sebuah blokiran untuk menambahkan yang lain.
       recent:
         about_recent_users: Tentang
+        definitions_html: <dl> <dt>Sepertinya Spam</dt> <dd> Pengguna yang mungkin seorang spammer, yang berarti mereka tidak memiliki pengamatan atau identifikasi, tetapi mereka memiliki deskripsi profil.</dd> <dt>Auto Spam</dt> <dd> Spammer yang secara otomatis ditandai sebagai spammer dari sistem. </dd> <dt>Manual Spam</dt> <dd> Spammer yang secara manual ditandai sebagai spammer oleh kurator situs. </dd> <dt>False Positive</dt> <dd> Pengguna yang ditandai sebagai spammer, tetapi tandanya diselesaikan oleh kurator situs karena mereka sebenarnya bukan spammer. </dd> </dl>
       show:
         this_user_was_banned: Pengguna ini ditangguhkan
     user_parents:
@@ -6167,38 +6371,38 @@ id:
       index:
         welcome_message_html: |
           untuk %{image}, di mana kamu bisa <strong>mencatat</strong> apa yang kamu temukan di alam, <strong>bertemu</strong> dengan pecinta alam lainnya, dan <strong>belajar</strong> tentang alam.
-        connect_with_nature: Hubungkan dengan Nature
+        connect_with_nature: Terhubung dengan Alam
         explore_and_share: Jelajahi dan bagikan pengamatan Anda dari alam.
         observations_to_date: 'Pengamatan Hingga Saat Ini'
         species_observed: 'Spesies Yang Diamati'
-        people_signed_up: 'Orang yang telah mendaftar'
-        how_it_works: Bagaimana itu Bekerja
-        record_your_observations: Rekam pengamatan anda
+        people_signed_up: 'Orang Telah Mendaftar'
+        how_it_works: Cara Kerja
+        record_your_observations: Rekam pengamatan Anda
         share_with_fellow_naturalists: Berbagi dengan sesama naturalis
-        discuss_your_findings: Diskusikan penemuan anda
-        contribute_to_science: Kontribusi ke Sains
+        discuss_your_findings: Diskusikan penemuan Anda
+        contribute_to_science: Berkontribusi kepada Sains
         science_desc_html: |
           Setiap pengamatan dapat berkontribusi untuk ilmu keanekaragaman hayati, dari kupu-kupu yang sangat langka hingga tanaman liar yang tumbuh di mana-mana. Kami membagikan temuan-temuanmu dengan penyimpanan data saintifik seperti <a href='http://gbif.org' target='_blank'>Fasilitas Informasi Keanekaragaman Hayati Global</a> untuk membantu para ilmuwan menemukan dan menggunakan datamu. Yang perlu kamu lakukan hanyalah mengamati.
-        nature_at_your_fingertips: Alam Di ujung jari Anda
-        keep_track: Pelihara
+        nature_at_your_fingertips: Alam di Ujung Jari Anda
+        keep_track: Pantau
         record_your_encounters: |
-          Merekam pertemuan Anda dengan organisme lain dan mengatur daftar kehidupan, semua di awan.
+          Rekam perjumpaan Anda dengan organisme lain dan jaga daftar kehidupan, semua di awan.
         create_useful_data: Buat Data yang Berguna
-        help_scientists: Bantuan ilmuwan dan manajer sumber daya memahami kapan dan di mana organisme terjadi.
+        help_scientists: Bantu ilmuwan dan manajer sumber daya memahami kapan dan di mana organisme ada.
         crowdsource_identifications: Identifikasi Dari Orang Banyak
-        connect_with_experts: Terhubung dengan ahli yang dapat mengidentifikasi organisme Anda diamati.
-        become_a_citizen_scientist: Menjadi Citizen Scientist
-        find_a_project: "Cari proyek dengan misi yang menarik minat Anda, atau memulai sendiri."
-        learn_about_nature: Belajar Mengenai Alam
-        build_your_knowledge: Membangun pengetahuan Anda dengan berbicara dengan naturalis lain dan membantu orang lain.
+        connect_with_experts: Berbincang dengan ahli yang dapat mengidentifikasi organisme yang Anda diamati.
+        become_a_citizen_scientist: Menjadi Ilmuwan Sipil
+        find_a_project: "Cari proyek dengan misi yang menarik untuk Anda, atau mulai proyek Anda sendiri."
+        learn_about_nature: Belajar Tentang Alam
+        build_your_knowledge: Bangun pengetahuan Anda dengan berbicara dengan naturalis lain dan membantu orang lain.
         run_a_bioblitz: Jalankan Bioblitz
-        hold_an_event: Mengadakan acara di mana orang mencoba untuk menemukan banyak spesies yang memungkinkan.
-        works_on_all_your_devices: Kerjakan pada Semua Perangkat Anda
+        hold_an_event: Adakan acara di mana orang mencoba untuk menemukan sebanyak mungkin spesies.
+        works_on_all_your_devices: Bekerja Di Semua Perangkat Anda
         install_our_mobile_apps: |
-          Menginstal aplikasi mobile kami sehingga Anda dapat selalu mengamati, bahkan tanpa sel penerimaan atau wifi.
+          Pasang aplikasi mobile kami sehingga Anda dapat selalu mengamati, bahkan tanpa sinyal seluler atau wifi.
         who_uses_site_name: "Siapa Menggunakan %{site_name}?"
-        what_are_you_waiting_for: Apa lagi yang anda tunggu?
-        join_today: Bergabung hari ini
+        what_are_you_waiting_for: Tunggu apa lagi?
+        join_today: Bergabunglah Hari Ini
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Simpan dan atur untuk menambahkan lampiran
@@ -6272,7 +6476,29 @@ id:
       - Desember
   datetime:
     distance_in_words:
+      about_x_hours:
+        other: sekitar %{count} jam
+      about_x_months:
+        other: sekitar %{count} bulan
+      about_x_years:
+        other: sekitar %{count} tahun
+      almost_x_years:
+        other: hampir %{count} tahun
       half_a_minute: setengah menit
+      less_than_x_minutes:
+        other: kurang dari %{count} menit
+      less_than_x_seconds:
+        other: kurang dari %{count} detik
+      over_x_years:
+        other: lebih dari %{count} tahun
+      x_days:
+        other: '%{count} hari'
+      x_minutes:
+        other: '%{count} menit'
+      x_months:
+        other: '%{count} bulan'
+      x_seconds:
+        other: '%{count} detik'
     countdown_x_days:
       other: hari
     countdown_x_hours:
@@ -6289,29 +6515,50 @@ id:
       second: Detik
       year: Tahun
   errors:
+    format: '%{attribute} %{message}'
     messages:
       accepted: harus diterima
       blank: tidak boleh kosong
-      confirmation: tidak sesuai dengan konfirmasi
-      empty: tidak dapat kosong
-      even: harus bahkan
+      confirmation: tidak sesuai dengan kata sandi
+      empty: tidak boleh kosong
+      equal_to: harus sama dengan %{count}
+      even: harus genap
       exclusion: telah dipesan
+      greater_than: harus lebih besar dari %{count}
+      greater_than_or_equal_to: harus lebih besar atau sama dengan %{count}
       inclusion: tidak termasuk dalam daftar
       invalid: tidak valid
+      less_than: harus kurang dari %{count}
+      less_than_or_equal_to: harus kurang dari atau sama dengan %{count}
+      new_project_owner_must_be_a_manager: Pemilik proyek baru harus merupakan pengelola
       not_a_number: bukan angka
-      not_an_integer: harus integer
+      not_an_integer: harus bilangan bulat
       odd: harus ganjil
+      only_project_owner_can_change_project_owner: Hanya pemilik proyek yang bisa mengganti pemilik proyek
+      record_invalid: 'Validasi gagal: %{errors}'
+      requires_privilege_speech: |
+        harus sudah memiliki tiga pengamatan yang dapat diverifikasi atau tiga identifikasi terhadap pengguna lain untuk dapat melakukan hal tersebut
+      requires_privilege_organizer: harus memiliki 50 pengamatan yang dapat diverifikasi untuk melakukan hal tersebut
       taken: telah diambil
+      too_long:
+        other: terlalu panjang (maksimal %{count} karakter)
+      too_short:
+        other: terlalu pendek (minimal %{count} karakter)
+      wrong_length:
+        other: panjangnya salah (seharusnya %{count} karakter)
     template:
       body: 'Ada masalah dengan bidang-bidang berikut:'
+      header:
+        other: '%{count} eror melarang %{model} ini untuk disimpan'
   helpers:
     defaults:
-      title: "INI JUDUl"
+      title: "INI JUDUL"
     select:
-      prompt: Mohon pilih
+      prompt: Silakan pilih
     submit:
       create: Buat %{model}
       submit: Simpan %{model}
+      update: Perbarui %{model}
   number:
     format:
       #The delimiter separates parts of large integers, so if the number is
@@ -6384,33 +6631,65 @@ id:
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
+      format: '%{attribute} %{message}'
       messages:
         accepted: harus diterima
         blank: tidak boleh kosong
         confirmation: tidak sesuai dengan konfirmasi
         empty: tidak dapat kosong
+        equal_to: harus sama dengan %{count}
         even: harus bahkan
         exclusion: telah dipesan
-        inclusion: Tidak masuk ke dalam daftar
+        greater_than: harus lebih besar dari %{count}
+        greater_than_or_equal_to: harus lebih besar atau sama dengan %{count}
+        inclusion: tidak termasuk di dalam daftar
         invalid: tidak valid
+        less_than: harus kurang dari %{count}
+        less_than_or_equal_to: harus kurang dari atau sama dengan %{count}
+        new_project_owner_must_be_a_manager: Pemilik proyek baru harus merupakan pengelola
         not_a_number: bukan angka
-        not_an_integer: harus integer
+        not_an_integer: harus bilangan bulat
         odd: harus ganjil
+        only_project_owner_can_change_project_owner: Hanya pemilik proyek yang bisa mengganti pemilik proyek
+        record_invalid: 'Validasi gagal: %{errors}'
+        requires_privilege_speech: harus sudah memiliki tiga pengamatan yang dapat diverifikasi atau tiga identifikasi terhadap pengguna lain untuk dapat melakukan hal tersebut
+        requires_privilege_organizer: harus memiliki 50 pengamatan yang dapat diverifikasi untuk melakukan hal tersebut
         taken: telah diambil
+        too_long:
+          other: terlalu panjang (maksimal %{count} karakter)
+        too_short:
+          other: terlalu pendek (minimal %{count} karakter)
+        wrong_length:
+          other: panjangnya salah (seharusnya %{count} karakter)
       template:
         body: 'Ada beberapa masalah dengan bidang-bidang berikut:'
+        header:
+          other: '%{count} eror melarang %{model} ini untuk disimpan'
   activerecord:
     models:
+      AssessmentSection: Bagian Penilaian
+      BlockedUser: Pengguna Diblokir
+      CompleteSet: Set Komplet
+      #Noun
+      Flag: Tanda
+      #Action taken by a moderator in response to a flag or concern with
+      #immediate consequences in functionality, e.g. hiding an offensive
+      #comment without deleting it
+      ModeratorAction: Tindakan Moderator
       #Text note left by a moderator about another user recording a response to
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
       ModeratorNote: Catatan Moderator
+      TaxonLink: Tautan Takson
     attributes:
       assessment:
         description: Deskripsi
       assessment_section:
         title: Judul
         body: Isi
+      blocked_user:
+        #The user who has been blocked
+        blocked_user: Pengguna Diblokir
       conservation_status:
         status: Status
         description: Deskripsi
@@ -6462,6 +6741,8 @@ id:
         terms: Periode
         map_type: Tipe peta
         zoom_level: Tingkat perbesaran
+        preferred_membership_model: Model keanggotaan yang disukai
+        preferred_submission_model: Model pengiriman yang disukai
         prefers_place_boundary_visible: Tampilkan batas tempat di peta
         tracking_codes: Kode pelacakan
         source_url: Sumber URL
@@ -6479,6 +6760,8 @@ id:
         place_type: Tipe tempat
         prefers_check_lists: Checklist diperbolehkan?
         woeid: WOEID
+      site:
+        logo_email_banner: Sampul Email
       source:
         title: Judul
         in_text: dalam teks
@@ -6508,6 +6791,7 @@ id:
         search_place_id: Tempat pencarian
         place_id: Tempat
     errors:
+      format: '%{attribute} %{message}'
       models:
         guide:
           attributes:
