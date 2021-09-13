@@ -235,6 +235,7 @@ lb:
   add_tags: Markéierungen derbäisetzen
   add_tags_to_selected_taxa: Tags bei déi ausgewielt Taxa derbäisetzen
   add_taxa: Taxa derbäisetzen
+  add_taxon_range: Taxon-Verbreedungsgebiett bäisetzen
   add_to_a_scheme: Bei e Schema derbäisetzen
   add_to_a_project: E Projet derbäisetzen
   add_to_calendar: Bei de Kalenner derbäisetzen
@@ -250,6 +251,7 @@ lb:
   added!: Derbäigesat!
   added_by: Derbäigesat vum
   added_by_user_on_date_html: "Derbäigesat vum %{user} de(n) %{date}"
+  added_on_datetime: "Bäisetzen den %{datetime}"
   added_to_favorites_html: |
     Bei <a href="%{url}">Favoriten</a> derbäigesat
   adding: "Derbäisetzen..."
@@ -295,6 +297,12 @@ lb:
     x_animalia:
       one: "Een Déier"
       other: "%{count} Déieren"
+    x_mollusca:
+      one: "%{count} Weechdéier"
+      other: "%{count} Weechdéieren"
+    x_amphibia:
+      one: "%{count} Lurch"
+      other: "%{count} Lurchen"
     x_mammalia:
       one: "1 Mamendéier"
       other: "%{count} Mamendéieren"
@@ -310,10 +318,14 @@ lb:
     x_arachnida:
       one: "1 Spannendéier"
       other: "%{count} Spannendéieren"
+    x_fungi:
+      one: "%{count} Pilz"
+      other: "%{count} Pilzer"
     x_other_animals:
       one: "1 anert Déier"
       other: "%{count} aner Déieren"
   all_taxa_: All Taxa
+  all_taxa_in_this_guide: All Taxa an dësem Guide
   all_updates: All Aktualisatiounen
   allowed_html: Erlaabten HTML
   allowed_values: Erlaabt Wäerter
@@ -366,7 +378,13 @@ lb:
   #the iNaturalist Android app or Flickr
   application: Applikatioun
   applications: Applikatiounen
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Uwenden
+  apply_to_selected: Ob den Ausgewielten uwenden
   apply_captive_cultivated: "Gefaangen / Kultivéiert uwenden"
+  apply_fields: Felder uwenden
+  apply_darr: "&darr; uwenden"
   appropriate?: Gëeegent?
   arachnids: Spannendéieren
   archives: Archiven
@@ -635,6 +653,10 @@ lb:
   cumulative_ids: "Kumulativ IDs: %{count} vun %{total}"
   curation: Kuratioun
   curator: Kurator
+  #Header
+  curator_application_what_curators_cannot_do: Wat Kuratore maache kennen
+  #Title of a page where people apply to become a curator
+  curator_application_title: Kurator Demande
   current_flags: Aktuell Markéierungen
   daily_users: Alldeeglech Benotzer
   dashboard: Dashboard
@@ -939,6 +961,12 @@ lb:
   in_the_past: an der Vergaangenheet
   in_the_past_week: An der leschter Woch
   inactive: Inaktiv
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Inaktiv
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Inaktiv
   inappropriate_content: Onubruechte Contenu?
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist Applikatiounen"
@@ -1023,6 +1051,7 @@ lb:
     greek: Griichesch
     hawaiian: Hawaiianesch
     hebrew: Hebräesch
+    hungarian: Ungaresch
     icelandic: Islännesch
     italian: Italienesch
     japanese: Japanesch
@@ -1032,6 +1061,7 @@ lb:
     lithuanian: Litauesch
     luxembourgish: Lëtzebuergesch
     maltese: Maltesesch
+    marathi: Marathi
     norwegian: Norwegesch
     occitan: Okzitanesch
     portuguese: Portugisesch
@@ -1040,6 +1070,7 @@ lb:
     spanish: Spuenesch
     swedish: Schwedesch
     tahitian: Tahitesch
+    thai: Thailännesch
     turkish: Tierkesch
   less: Manner
   license: Lizenz
@@ -1076,12 +1107,14 @@ lb:
     el: Griichesch
     en: Englesch
     es: Spuenesch
+    es-CO: Spuenesch (Kolumbien)
     es-MX: Spuenesch (Mexiko)
     et: Estnesch
     eu: Baskesch
     fi: Finnesch
     fr: Franséisch
     gl: Galizesch
+    hu: Ungaresch
     id: Indonesesch
     it: italienesch
     ja: Japanesch
@@ -1091,6 +1124,7 @@ lb:
     lt: Litauesch
     lv: Lettesch
     mk: Mazedonesch
+    mr: Marathi
     nl: Hollännesch
     pl: Polnesch
     pt-BR: Portugisesch (Brasilien)
@@ -1098,6 +1132,7 @@ lb:
     sk: Slokwakesch
     sq: Albanesch
     sv: Schwedesch
+    th: Thailännesch
     uk: Ukrainesch
     zh-CN: Chinesesch (Vereinfacht)
     zh-TW: Chinesesch (traditionell)
@@ -1108,6 +1143,8 @@ lb:
   log_out: Ausloggen
   log_out_caps: AUSLOGGEN
   log_scale_label: Log
+  #Status message shown while logging in
+  logging_in: Umeldung leeft...
   login_slash_username: Aloggen / Benotzernumm
   logo:
     logo: Logo
@@ -1260,10 +1297,14 @@ lb:
   new_users: Nei Benotzer
   newly_added: Nei derbäigesat
   next: Nächst
+  next_date_short: Nächst
   next_observation: Nächst Observatioun
   next_page: Nächst Säit
+  next_page_short: Nächst
   next_photo: Nächst Foto
+  next_post_short: Nächst
   next_tab: Nächsten Tab
+  next_taxon_short: Nächst
   'no': 'Neen'
   no_but_it_is_a_member_of_taxon: "Neen, awer et ass e Member vu(n) %{taxon}"
   no_comments_yet: Nach keng Bemierkungen.
@@ -1646,11 +1687,15 @@ lb:
   possessive_user: "%{user}"
   potential_disagreement: Potentiellen Desaccord
   preview: Virschau
+  previous_date_short: Vireg
   prev: Vireg
   previous_observation: Vireg Observatioun
   previous_page: Vireg Säit
+  previous_page_short: Vireg
   previous_photo: Vireg Foto
+  previous_post_short: Vireg
   previous_tab: Viregen Tab
+  previous_taxon_short: Vireg
   print_verb: Drécken
   privacy: Dateschutz
   private: privat
@@ -2296,9 +2341,16 @@ lb:
         TTID_desc: Zäit bis een eng Bestëmmung vun engem aneren kritt
       year:
         growth_by_country_title: Wuesstem no Land
+        new_species_per_year: Nei Aarten / Joer
+        new_species_per_year_by_date_added: No datum bäigesat
+        new_species_per_year_by_date_observed: No Datum observeiert
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: Eemol
+        observations_per_year: Observatiounen / Joer
+        observations_per_year_by_date_added: No datum bäigesat
+        observations_per_year_by_date_observed: No Datum observeiert
         species_per_year: Aarten / Joer
+        species_per_year_by_date_observed: No Datum observeiert
     taxa:
       show:
         about_conservation_status_desc: |
