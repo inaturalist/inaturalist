@@ -872,7 +872,6 @@ et:
     description: Lühike põhjendus kaitse alla panemiseks.
     place: Koht, kus staatus kehtib.
     url: Staatust kirjeldava lehe URL.
-    geoprivacy: Selle taksoni vaatluste asukoha privaatsuse vaikimisi säte
   contact_support: Klienditugi
   contain_all_descendants?: Kas see kontrollnimekiri sisaldab kõiki selles kohas leiduvaid antud taksoni järglasi?
   content_hidden: Sisu on peidetud
@@ -1175,7 +1174,6 @@ et:
   editing_project_asset: Muudan lisasid projektil
   editing_subscription_to_x_html: "Muudan jälgimist: %{x}"
   editing_taxon_link: Muudan taksoni linki
-  editing_taxon_range: Muudan taksoni piirkonda
   editing_this: Muudan elementi %{elem}
   editing_x_in_y: "Muudan %{x}/%{y}"
   editors: Toimetajad
@@ -4063,9 +4061,6 @@ et:
         </ol>
       dna_help: |
         Et lülitada sisse BOLD DNA triipkoodide võrdlemise võimalus, peab su välja nime sisaldama sõnu "COI", "COX1", "ITS" või "matK", mis vastab geenile, millega see väli tegeleb.
-      merge:
-        warning_html: |
-          Palun austa teiste kasutajate andmeid ja <strong>suhtle enne vaatlusvälja ühendamist selle loojaga</strong>. See tööriist hävitab ühendatava vaatlusvälja ning liigitab kõik seda kasutavad vaatlused alles jääva välja alle. <strong>Seda ei saa tagasi võtta!</strong> Ole ettevaatlik!
     emailer:
       bulk_import_success:
         success_message: |

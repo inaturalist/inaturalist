@@ -1098,7 +1098,6 @@ cs:
       Organizace, která tento stav vyhlásila. Před přidáním nového si prosím zvolte již existujícího představitele pomocí automatického dokončování. Můžete přeskočit, pokud chcete být *vy* uvedeni jako autorita.
     place: Místo, na které je tento status omezen.
     url: URL stránky popisující tento status.
-    geoprivacy: Standardně nastavené soukromí zěměpisné polohy pro pozorování tohoto taxonu
   conservation_status_geoprivacy_desc: |
     Na všechna pozorování tohoto taxonu v tomto místě se použilo výchozí soukromí zeměpisné polohy
   contact_support: Kontaktovat podporu
@@ -1647,7 +1646,6 @@ cs:
   editing_taxon: Editace %{taxon}
   editing_taxon_link: Editování odkazu na taxon
   editing_taxon_name_for_taxon_html: Úprava názvu taxonu "%{name}" pro %{taxon}
-  editing_taxon_range: Editování rozsahu taxonu
   editing_this: Editování %{elem}
   editing_x_in_y: "Editování %{x} v %{y}"
   editors: Editoři
@@ -5858,9 +5856,6 @@ cs:
         </ol>
       dna_help: |
         Aby byla umožněna funkce připojování čárového kódu BOLD DNA, ujistěte se, že název pole obsahuje slova "COI", "COX1", "ITS" nebo "matK," podle genů, pro které je pole určeno.
-      merge:
-        warning_html: |
-          Přistupujte prosím k údajům ostatních s respektem a <strong>kontaktujte autora pole pozorování, než provedete sloučení</strong>. Tento nástroj zničí slučované pole pozorování a přesune veškerá pozorování, která ho používají, ke správci. <strong>Tento proces je nevratný</strong>, proto buďte opatrní.
     emailer:
       bulk_import_success:
         success_message: |

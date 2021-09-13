@@ -175,6 +175,9 @@ sv:
   #should work here
   about_place: "Om %{place}"
   about_places: Om fyndplatser
+  about_taxon_ranges: Om taxons utbredningsområde
+  about_taxon_ranges_desc: |
+    Taxons utbredningsområde förmedlar den globala utbredningen av ett taxon. Källan till dessa utbredningsområden är oftast IUCNs Rödlista.
   about_the_cc_licenses: Om Creative Commons-licenser
   about_these_licenses: Om dessa licenser
   about_this_bioblitz: Om denna bioblitz
@@ -982,7 +985,8 @@ sv:
       Organisation som fastställt denna status. Använd autocomplete för att välja en befintlig auktoritet innan du lägger till en ny. Du kan hoppa över detta om *du* vill anges som auktoriteten.
     place: Fyndplats som denna status är begränsad till.
     url: URL till en sida som beskriver denna status.
-    geoprivacy: Standard koordinatsekretess för fynd av detta taxon
+    geoprivacy: |
+      Standard koordinatsekretess för fynd av detta taxon. Notera att koordinatsekretess som är knuten till en fyndplats av kontinent-, land- eller statsnivå kan åsidosätta en status som är global eller knuten till fyndplats på högre nivå.
     iucn: |
       Motsvarande IUCN-rödlistekod. Detta är inte den faktiska IUCN-bedömningen,
       bara den IUCN-kod som bäst matchar det hot om som denna status implicerar vid utlämnande av koordinater. Detta kommer att åsidosätta koordinatsekretessen om det är "Livskraftig" eller lägre, så om du vill dölja observationer av detta
@@ -1354,6 +1358,8 @@ sv:
   delete_icon?: Radera ikon?
   delete_photo: Radera bild
   delete_project: Radera detta projekt
+  #Label for a button to delete a taxon range
+  delete_range: Ta bort utbredningsområde
   delete_selected: Radera valda
   delete_taxon_and_merge_most_data_html: |
     Radera <i>%{taxon}</i> och slå ihop merparten av dess data med ett annat taxon. Använd
@@ -1543,7 +1549,7 @@ sv:
   editing_taxon: Redigerar %{taxon}
   editing_taxon_link: Redigerar taxonlänk
   editing_taxon_name_for_taxon_html: Redigerar taxonnamn "%{name}" för %{taxon}
-  editing_taxon_range: Redigerar taxons utbredningsområde
+  editing_taxon_range_for_taxon_html: Redigerar utbredningsområde för %{taxon}
   editing_this: Redigerar %{elem}
   editing_x_in_y: "Redigerar %{x} i %{y}"
   editors: Redigerare
@@ -2666,6 +2672,7 @@ sv:
   no_project_to_admin_current_user: "Du administrerar inte några projekt"
   no_project_to_admin_login: "%{login} administrerar inga projekt"
   no_projects_yet: Inga projekt än
+  no_attached_range: Inget bifogat utbredningsområde
   no_range_data_available: Inga utbredningsdata tillgängliga.
   no_recent_activity: Ingen aktivitet på ett tag
   no_relevant_annotations: Inga relevanta anteckningar
@@ -2869,6 +2876,7 @@ sv:
     absent: Ej påträffad i området
     common: Förekommer ofta
     doubtful: Antas förekomma, men tvivel finns kring bevisen
+    irregular: Oregelbunden förekomst, inkluderar vaganter; kan vara vanliga vissa år men saknas andra
     present: Förekommer i området
     uncommon: Regelbunden förekomst, men i låga antal; kräver att man leta noga i lämplig livsmiljö
   occurrence_status_establishment_means: förekomststatus, invandringshistoria
@@ -3780,6 +3788,7 @@ sv:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infrahybrid
   ranges: Områden
+  range_file: Områdesfil
   ray_finned_fishes: strålfeniga fiskar
   re_order_photos: "Ordna om bilder &raquo;"
   read_more: Läs mer
@@ -4347,6 +4356,26 @@ sv:
   taxon_photos_updated: Taxonbilder uppdaterade!
   taxon_range: Taxons utbredningsområde
   taxon_range_created_notice: Lyckades skapa utbredningsområde för taxon. Det kan ta ett par minuter innan det syns på kartorna.
+  taxon_range_for_taxon_html: Utbredningsområde för %{taxon}
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: Är detta ett utbredningsområde från IUCNs Rödlista, om inte, varför?
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: Detta är ett utbredningsområde från IUCNs Rödlist
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Detta är inte ett utbredningsområde från IUCNs Rödlista eftersom kartan inte stämmer
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: Detta är inte ett utbredningsområde från IUCN eftersom detta taxon inte finns på IUCNs Rödlista
+  taxon_range_guidelines_each_taxon_can_have: Varje taxon kan endast ha ett utbredningsområde. Utbredningsområden måste representera den globala fördelningen.
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    %{link_start_tag}IUCNs Rödlista%{link_end_tag} är den vanliga källan för utbredningsområden.
+    Ange om du lägger till ett utbredningsområde från IUCNs Rödista och om inte, hur det du lägger till relaterar till IUCNs Rödlista. Detta kommer att hjälpa till att uppdatera rutiner för automatisk uppdatering av utbredningsområden som kommer till IUCNs Redlista. Om du lägger till ett utbredningsområde från IUCNs Rödlista,
+    ange korrekt version av IUCNs Rödlista (t.ex. 2021-2) i källan.
+  taxon_range_guidelines_if_you_are_not_uploading: "Om du inte laddar upp en karta över ett utbredningsområde från IUCNs Rödlista bör detta bero på att:"
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: utbredningsområdet för IUCNs Rödlista för detta taxon är olämpligt
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    du, till exempel, kan ha manuellt minskat det för att återspegla en taxonomisk uppdelning som inte representeras på IUCNs Rödlista, eller så har utbredningsområdet från IUCNs Rödlista allvarliga fel som gör dess visning olämplig.
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Detta taxon finns inte på IUCNs Rödlista
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    till exempel är taxonet hopslaget med ett annat taxon på IUCNs Rödlista och du har manuellt skiljt ut det här, eller om taxonet saknar en bedömning och utbredningsområde enligt IUCNs Rödlista.
+  taxon_range_guidelines_please_provide_details: |
+    Använd beskrivningen för att förklara hur kartan härleddes och länka till relevanta flaggor, taxonomiska uppdelningar eller andra diskussioner om varför det publicerade utbredningsområdet från IUCNs Rödlista behövde justeras.
+  taxon_range_guidelines_learn_more_about_taxon_ranges: Läs mer om utbredningsområden
   taxon_range_updated_notice: Lyckades uppdatera utbredningsområde för taxon. Det kan ta ett par minuter innan ändringar syns på kartorna.
   taxon_ranks: Taxonranger
   taxon_removed_from_list: Taxon borttaget från listan.
@@ -7246,6 +7275,12 @@ sv:
             taxon:
               too_many_photos: |
                 kan inte ha fler än %{max} bilder
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: måste vara ett accepterat värde
+            taxon_id:
+              already_has_a_range: har redan ett utbredningsområde
         user:
           attributes:
             login:
