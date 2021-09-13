@@ -10,7 +10,7 @@ class Atlas < ApplicationRecord
   after_save :index_taxon
   after_destroy :index_taxon
   
-  NOT_IN_ATLAS_PARAMS = { acc_below: 5000, verifiable: true, geoprivacy: ["open","obscured"].join(",")}
+  NOT_IN_ATLAS_PARAMS = { verifiable: true, geoprivacy: ["open","obscured"].join(",")}
 
   TAXON_JOINS = [
     "LEFT OUTER JOIN taxa t ON t.id = atlases.taxon_id"
