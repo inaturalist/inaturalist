@@ -1,0 +1,47 @@
+@import "../colors";
+
+.observations.mini .observation {
+  padding: 10px 0;
+  margin-bottom: 0;
+  border: 0;
+}
+
+.identification {
+  padding: 10px;
+  background-color: #eee;
+  
+  .identification_image { width: 75px; }
+  
+  span.withdrawbutton, span.agree {
+    color: blue; 
+    text-decoration: underline;
+    font-size: smaller;
+    cursor: pointer;
+    padding:0;
+    border:0;
+    float:none;
+    background-color: transparent;
+  }
+}
+
+.bootstrap {
+  .observations.mini .icon { top:7px; }
+  .needs_id_notice {
+    background-color: $needs-id-yellow;
+    color: $needs-id-yellow-light;
+  }
+  .research_grade_notice {
+    background-color: $inat-green;
+    color: white;
+  }
+  .identification { display:flex; }
+}
+
+.row {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.count {
+  font-weight: bold;
+}
