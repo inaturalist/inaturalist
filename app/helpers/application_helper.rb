@@ -727,7 +727,7 @@ module ApplicationHelper
       "taxon-range-layer-label" => I18n.t("maps.overlays.range"),
       "taxon-places-layer-label" => I18n.t("maps.overlays.checklist_places"),
       "taxon-places-layer-hover" => I18n.t("maps.overlays.checklist_places_description"),
-      "taxon-observations-layer-label" => I18n.t("maps.overlays.observations"),
+      "taxon-observations-layer-label" => I18n.t( options[:taxon_observations_layer_label] ? options[:taxon_observations_layer_label] : "maps.overlays.observations" ),
       "all-layer-label" => I18n.t("maps.overlays.all_observations"),
       "all-layer-description" => I18n.t("maps.overlays.every_publicly_visible_observation"),
       "gbif-layer-label" => I18n.t("maps.overlays.gbif_network"),
