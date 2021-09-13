@@ -1077,7 +1077,7 @@ en:
     geoprivacy: |
       Default geoprivacy for observations of this taxon. Note that the
       geoprivacy of a status associated with a continent-, country-, or
-      state-level place can override a a status that is global or associated
+      state-level place can override a status that is global or associated
       with a higher-level place.
     iucn: |
       Equivalent IUCN Red List code. This is not the actual IUCN assessment,
@@ -4012,6 +4012,7 @@ en:
   # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infrahybrid
   ranges: Ranges
+  # Text to link to a taxon range as a KML file
   range_file: Range File
   ray_finned_fishes: ray-finned fishes
   re_order_photos: "Re-order photos &raquo;"
