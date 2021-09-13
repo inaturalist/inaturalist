@@ -181,7 +181,7 @@ class Atlas < ApplicationRecord
     return false if atlas.is_marked = false
     observation_search_url_params = NOT_IN_ATLAS_PARAMS.merge( {
       taxon_id: atlas.taxon_id,
-      not_in_place: atlas_presence_places.pluck(:id).join( "," )
+      not_in_place: atlas.presence_places.pluck(:id).join( "," )
     } )
     total_res = INatAPIService.observations( observation_search_url_params.merge( per_page: 0 ) ).total_results
     if total_res > 0
