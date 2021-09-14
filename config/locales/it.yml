@@ -176,6 +176,9 @@ it:
   #should work here
   about_place: "Informazioni su %{place}"
   about_places: A proposito dei luoghi
+  about_taxon_ranges: A proposito degli Areali dei Taxa
+  about_taxon_ranges_desc: |
+    Gli areali dei taxa forniscono la distribuzione globale di un taxon. Gli areali dei taxa di solito provengono dalla Lista Rossa IUNC.
   about_the_cc_licenses: A proposito delle licenze Creative Commons
   about_these_licenses: A proposito di queste licenze
   about_this_bioblitz: Riguardo questo bioblitz
@@ -957,6 +960,8 @@ it:
       Organizzazione che ha dichiarato questo stato conservazionistico. Per favore usa la funzione di autocompletamento per scegliere un'autorità già esistente prima di aggiungerne una nuova. Puoi saltare questo passaggio se *tu* vuoi essere elencato come l'ente di controllo.
     place: Luogo al quale si riferisce questo stato conservazionistico.
     url: URL di una pagina che descrive questo stato conservazionistico.
+    geoprivacy: |
+      Geoprivacy predefinita per le osservazioni di questo taxon. Nota che la geoprivacy di uno stato associato a un livello di continente, paese, o nazione può sovrascrivere uno stato che è globale od associato ad un luogo di livello superiore.
     iucn: |
       Equivalente del Codice della Lista Rossa IUCN. Questa non è l’effettiva valutazione della IUCN, ma il codice IUCN che meglio corrisponde al rischio di divulgazione delle coordinate implicita in questo stato. Questo sovrascriverà la geoprivacy se è "Minor Preoccupazione" o inferiore: quindi se si vuole oscurare le osservazioni di questo taxon, bisogna impostare questo codice su "Quasi Minacciato" o superiore.
   conservation_status_geoprivacy_desc: |
@@ -1323,6 +1328,8 @@ it:
   delete_icon?: Eliminare l'icona?
   delete_photo: Elimina foto
   delete_project: Elimina questo progetto
+  #Label for a button to delete a taxon range
+  delete_range: Elimina areale
   delete_selected: Elimina i selezionati
   delete_taxon_and_merge_most_data_html: |
     Cancella <i>%{taxon}</i> e unisci la maggior parte dei dati in un altro taxon. Questo strumento serve per <strong>cancellare i taxa duplicati</strong>. Se vuoi rimuovere un sinonimo obsoleto, effettua uno scambio di taxon. <strong>ATTENZIONE!</strong> Cancellare i taxa è un'operazione altamente distruttiva. Controlla la <a href="%{curator_url}">Guida per i curatori</a> per maggiori dettagli.
@@ -1502,6 +1509,7 @@ it:
   editing_taxon: Modifica %{taxon}
   editing_taxon_link: Modifica in corso del link del Taxon
   editing_taxon_name_for_taxon_html: Modifica il Nome del Taxon "%{name}" di %{taxon}
+  editing_taxon_range_for_taxon_html: Modifica l'Areale del Taxon per %{taxon}
   editing_this: Modifica %{elem} in corso
   editing_x_in_y: "Modifica di %{x} in %{y} in corso"
   editors: Editori
@@ -2089,6 +2097,7 @@ it:
     ilokano: Ilokano
     italian: Italiano
     japanese: Giapponese
+    kannada: Kannada
     korean: Coreano
     latvian: Lettone
     lithuanian: Lituano
@@ -2198,6 +2207,7 @@ it:
     id: Indonesiano
     it: Italiano
     ja: Giapponese
+    kn: Kannada
     ko: Coreano
     lb: Lussemburghese
     lt: Lituano
@@ -2611,6 +2621,7 @@ it:
   no_project_to_admin_current_user: "Non amministri alcun progetto"
   no_project_to_admin_login: "%{login} non ha funzioni di amministratore su nessun progetto"
   no_projects_yet: Ancora nessun progetto
+  no_attached_range: Nessun areale allegato
   no_range_data_available: Nessun dato di distribuzione disponibile.
   no_recent_activity: Nessuna attività recente
   no_relevant_annotations: Non ci sono annotazioni rilevanti
@@ -2816,6 +2827,7 @@ it:
     absent: Non presente nell'area
     common: Presente frequentemente
     doubtful: Probabilmente presente, ma esistono dubbi in merito
+    irregular: Presenza non prevedibile, inclusi i migranti; può essere comune alcuni anni e assente in altri
     present: Presente nell'area
     uncommon: Presenza regolare, ma a basse consistenze; richiede cercare attentamente l'habitat adatto
   occurrence_status_establishment_means: stato della distribuzione, origine del popolamento
@@ -3720,6 +3732,7 @@ it:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infraibrido
   ranges: Areali
+  range_file: File dell'Areale
   ray_finned_fishes: Attinopterigi
   re_order_photos: "Riordina le foto &raquo;"
   read_more: Leggi di più
@@ -4286,6 +4299,26 @@ it:
   taxon_photos_updated: Foto del taxon aggiornate!
   taxon_range: Areale del taxon
   taxon_range_created_notice: L'areale del taxon è stato creato con successo. Attendi qualche minuto affinché appaia sulla mappa.
+  taxon_range_for_taxon_html: Areale del Taxon per %{taxon}
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: Questa è una mappa di areale della Lista Rossa IUCN e, se no, perché?
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: Questa è una mappa di areale della Lista Rossa IUCN
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Questa non è una mappa di areale della Lista Rossa IUCN perché quella mappa non è adatta
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: Questa non è una mappa di areale della Lista Rossa IUCN perché questo taxon non è nella Lista Rossa IUCN
+  taxon_range_guidelines_each_taxon_can_have: Ogni taxon può avere una sola mappa di areale. Gli areali dei taxa devono rappresentare la distribuzione globale.
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    La %{link_start_tag}Lista Rossa IUCN%{link_end_tag} è la fonte comune degli areali dei taxa.
+    Per favore indica se stai aggiungendo un areale della Lista Rossa IUCN e, se no, spiega in che modo quello che stai aggiungendo si relaziona a quello della Lista Rossa IUCN. Questo servirà a definire i processi di aggiornamento automatico degli areali provenienti dalla Lista Rossa IUCN. Se stai aggiungendo un areale della Lista Rossa IUCN indica correttamente la versione della Lista Rossa IUCN (ad esempio 2021-2) nella fonte.
+  taxon_range_guidelines_if_you_are_not_uploading: "Se non stai caricando una mappa di areale della Lista Rossa IUCN, il motivo dovrebbe essere:"
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: La mappa dell'areale della Lista Rossa IUCN per questo taxon non è adatta
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    per esempio, lo hai ridotto manualmente per riflettere una divisione tassonomica non rappresentata nella Lista Rossa IUCN, o la mappa dell'areale della Lista Rossa della IUCN presenta gravi errori che rendono la sua visualizzazione inadatta.
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Questo taxon non figura nella Lista Rossa IUCN
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    per esempio, il taxon è unito con un altro taxon sulla Lista Rossa IUCN così lo hai ritagliato manualmente qui, o il taxon
+    non dispone di una valutazione della Lista Rossa IUCN e di una mappa dell'areale.
+  taxon_range_guidelines_please_provide_details: |
+    Per favore utilizza la descrizione per spiegare come la mappa è stata derivata e i link ad eventuali flag rilevanti, suddivisioni tassonomiche, o altre discussioni, o sui motivi per cui l'areale della lista rossa IUCN pubblicato richiedeva modifiche.
+  taxon_range_guidelines_learn_more_about_taxon_ranges: Scopri di più sugli areali dei taxa
   taxon_range_updated_notice: L'areale del taxon è stato aggiornato con successo. Attendi qualche minuto affinché le modifiche compaiano sulla mappa.
   taxon_ranks: Ranghi del taxon
   taxon_removed_from_list: Taxon rimosso dalla lista.
@@ -5577,6 +5610,9 @@ it:
         </ol>
       dna_help: |
         Per abilitare la funzione di corrispondenza con il Barcode of Life Database (BOLD), assicurati che il tuo nome del campo includa i codici "COI", "COX1", "ITS", o "matK," corrispondenti al gene a cui il campo fa riferimento.
+      merge:
+        warning_html: |
+          Per piacere sii rispettoso dei dati degli altri e <strong>parla con il creatore del campo prima di unirlo ad altri</strong>. Questo strumento cancellerà il campo che stai unendo e sposterà tutte le osservazioni che lo stanno utilizzando verso il campo mantenuto. <strong>Questo processo è irreversibile</strong>, stai attento!
     emailer:
       bulk_import_success:
         success_message: |
@@ -7114,6 +7150,12 @@ it:
             taxon:
               too_many_photos: |
                 non può avere più di %{max} foto
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: deve essere un valore accettato
+            taxon_id:
+              already_has_a_range: ha già un areale
         user:
           attributes:
             login:
