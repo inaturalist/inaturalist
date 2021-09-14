@@ -57,7 +57,7 @@ class TaxonSplit < TaxonChange
 
       taxon_change.output_taxa.each do |output_taxon|
         place_ids = output_place_ids.select{ |row| row[:output_taxon_id] ==  output_taxon.id }.first[:place_ids]
-        not_in_place_ids = output_place_ids.select{ |row| row[:output_taxon_id] !=  output_taxon.id }.first[:place_ids]
+        not_in_place_ids = output_place_ids.select{ |row| row[:output_taxon_id] !=  output_taxon.id }.map{|row| row[:place_ids]}.flatten.uniq
         params = { current: true, place_id: place_ids, not_in_place: not_in_place_ids, exact_taxon_id: taxon_change.input_taxon.id }
         output_id_count = taxon_change.get_id_count_and_obs(params)
         output_id_counts << { taxon_id: output_taxon.id, id_count: output_id_count[:id_count], id_obs: output_id_count[:id_obs] }
