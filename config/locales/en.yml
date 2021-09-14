@@ -590,6 +590,7 @@ en:
   alphabetical_order: Alphabetical Order
   already_have_an_account_log_in_html: Already have an account? <strong>Log in.</strong>
   amphibians: amphibians
+  analyze_ids: Analyze IDs
   ancestor_taxon: Ancestor Taxon
   and: and
   and_other_taxa: "&amp; Other Taxa"
@@ -1519,6 +1520,7 @@ en:
   description_slash_tags: Description / Tags
   description_tags_more: "Description, Tags, &amp; More"
   desription: Description
+  destination: Destination
   destroy: Destroy
   details: Details
   deviation: Deviation
@@ -1723,6 +1725,9 @@ en:
   establishment_means_describes_how: |
     Establishment means describes how the taxon came to be established in an area.  
     See DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
+  estimate_which_input: |
+    estimate which input taxon ids will be replaced with which output taxa or common ancestor once the split is comitted. This may take
+    a moment to calculate. Links to observations are truncated to subsets of 200.
   event_in_progress: Event in progress
   event_stats: Event Stats
   event_url: Event URL
@@ -2800,6 +2805,7 @@ en:
   no_identifications_added:
     current_user: You haven't added identifications to anyone's observations.
     user: "%{user} hasn't added identifications to anyone's observations."
+  no_ids: "Number of IDs"
   no_ids_have_been_suggested_yet: No IDs have been suggested yet
   no_interaction_data_available: No interaction data available
   no_its_as_good_as_it_can_be: No, it's as good as it can be
@@ -4831,6 +4837,7 @@ en:
     the <a href="/pages/community+guidelines" target="_blank">Community Guidelines</a>.
   total: Total
   totals: Totals
+  total_ids_on_input_taxon: "Total IDs of input taxon:"
   total_members: Total members
   total_observations: Total observations
   total_observations_caps: TOTAL OBSERVATIONS

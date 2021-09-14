@@ -357,6 +357,37 @@ class TaxonChangesController < ApplicationController
       format.html { render layout: "bootstrap" }
     end
   end
+
+  def analysis_with_url( row )
+    if row[:id_count] == 0
+      url = nil
+    else
+      observation_params = {
+        id: row[:id_obs].join(",")
+      }
+      url = observations_path( observation_params )
+    end
+    return { taxon_id: row[:taxon_id], id_count: row[:id_count], url: url }
+  end
+
+  def analyze_ids
+    return false unless @taxon_change.type == "TaxonSplit"
+    id_analysis = TaxonSplit.analyze_id_destinations( @taxon_change )
+
+    analysis_header = analysis_with_url( id_analysis[:total_id_count] )
+    analysis_table = []
+    id_analysis[:output_id_counts].each do |row|
+      analysis_table << analysis_with_url( row )
+    end
+    analysis_table << analysis_with_url( id_analysis[:ancestor_id_count] )
+    analysis_data = {
+      analysis_header: analysis_header,
+      analysis_table: analysis_table
+    }
+    respond_to do |format|
+      format.json { render json: analysis_data, status: :ok }
+    end
+  end
   
   private
   def load_taxon_change

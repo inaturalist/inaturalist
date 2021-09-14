@@ -623,6 +623,7 @@ Rails.application.routes.draw do
     get :commit_for_user
     put "commit_record/:type/:record_id/to/:taxon_id" => "taxon_changes#commit_records", as: :commit_record
     put "commit_records/:type/(to/:taxon_id)" => "taxon_changes#commit_records", as: :commit_records
+    post :analyze_ids
   end
   resources :taxon_schemes, :only => [:index, :show], :constraints => {:format => [:html]}
   get 'taxon_schemes/:id/mapped_inactive_taxa' => 'taxon_schemes#mapped_inactive_taxa', :as => :mapped_inactive_taxa

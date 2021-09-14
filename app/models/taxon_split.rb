@@ -32,6 +32,55 @@ class TaxonSplit < TaxonChange
     output_taxa.map(&:id).include?( input_taxon.id )
   end
 
+  def get_id_count_and_obs( params )
+    params[:per_page] = 0
+    id_count = INatAPIService.get( "/identifications", params ).total_results
+    if id_count > 0
+      params[:per_page] = ( id_count > 200 ? 200 : id_count )
+      id_obs = INatAPIService.get( "/identifications", params ).results.map{ |r| r["observation"]["id"] }.uniq
+    else
+      id_obs = []
+    end
+    return { id_count: id_count, id_obs: id_obs }
+  end
+
+  def self.analyze_id_destinations( taxon_change )
+    total_id_count = taxon_change.get_id_count_and_obs( { current: true, exact_taxon_id: taxon_change.input_taxon.id } )
+    total_id_count[:taxon_id] = taxon_change.input_taxon.id
+
+    output_id_counts = []
+    if taxon_change.output_taxa.map{ |t| t.atlased? }.all?
+      output_place_ids = []
+      taxon_change.output_taxa.each do |output_taxon|
+        output_place_ids << { output_taxon_id: output_taxon.id, place_ids: output_taxon.atlas.presence_places.pluck( :id ) }
+      end
+
+      taxon_change.output_taxa.each do |output_taxon|
+        place_ids = output_place_ids.select{ |row| row[:output_taxon_id] ==  output_taxon.id }.first[:place_ids]
+        not_in_place_ids = output_place_ids.select{ |row| row[:output_taxon_id] !=  output_taxon.id }.first[:place_ids]
+        params = { current: true, place_id: place_ids, not_in_place: not_in_place_ids, exact_taxon_id: input_taxon.id }
+        output_id_count = taxon_change.get_id_count_and_obs(params)
+        output_id_counts << { taxon_id: output_taxon.id, id_count: output_id_count[:id_count], id_obs: output_id_count[:id_obs] }
+      end
+    else
+      taxon_change.output_taxa.each do |output_taxon|
+        output_id_counts << { taxon_id: output_taxon.id, id_count: 0, id_obs: [] }
+      end
+    end
+
+    ancestor_id_count = {
+      taxon_id: taxon_change.output_ancestor.id,
+      id_count: total_id_count[:id_count] - output_id_counts.map{ |row| row[:id_count] }.sum,
+      id_obs: total_id_count[:id_count] > 200 ? nil : ( total_id_count[:id_obs] - output_id_counts.map{ |row| row[:id_obs] }.flatten.uniq )
+    }
+
+    return {
+      total_id_count: total_id_count,
+      output_id_counts: output_id_counts,
+      ancestor_id_count: ancestor_id_count
+    }
+  end
+
   def output_ancestor( options = { })
     if !@output_ancestor || options[:force]
       output_ancestor_id = output_taxa.first.ancestor_ids.reverse.detect do |aid|

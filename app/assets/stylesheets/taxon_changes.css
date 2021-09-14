@@ -15,3 +15,9 @@ ul.change_taxon {
 .taxon_change table {width: 100%;}
 .taxon_change .image_and_content .image {text-align:center;}
 .taxon_change .image_and_content .image img {max-width: 75px;}
+.analysis {
+	display: none;
+	padding: 5px;
+}
+.analysis td { padding-right: 10px; }
+.analysis tr.headers { font-weight: bold; }
