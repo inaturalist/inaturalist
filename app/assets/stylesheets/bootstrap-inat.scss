@@ -380,3 +380,12 @@ input[type="color"]:focus,
   white-space: normal;
   text-align: left;
 }
+
+.needs_id_notice {
+  background-color: $needs-id-yellow;
+  color: $needs-id-yellow-light;
+}
+.research_grade_notice {
+  background-color: $inat-green;
+  color: white;
+}
