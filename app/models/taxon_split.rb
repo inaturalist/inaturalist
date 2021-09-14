@@ -71,7 +71,7 @@ class TaxonSplit < TaxonChange
     ancestor_id_count = {
       taxon_id: taxon_change.output_ancestor.id,
       id_count: total_id_count[:id_count] - output_id_counts.map{ |row| row[:id_count] }.sum,
-      id_obs: total_id_count[:id_count] > 200 ? nil : ( total_id_count[:id_obs] - output_id_counts.map{ |row| row[:id_obs] }.flatten.uniq )
+      id_obs: total_id_count[:id_count] > 200 ? [] : ( total_id_count[:id_obs] - output_id_counts.map{ |row| row[:id_obs] }.flatten.uniq )
     }
 
     return {
