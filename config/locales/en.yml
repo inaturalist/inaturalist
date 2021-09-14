@@ -4592,6 +4592,8 @@ en:
   taxon_merge: taxon merge
   taxon_name: Taxon name
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxon name must match an existing taxon in our database
+  taxon_name_sciname_valid_prompt: Is this scientific name currently accepted?
+  taxon_name_comname_valid_prompt_html: Is this common name %{link_start_tag}appropriate%{link_end_tag}?
   taxon_observed_by_html: |
     <a href="%{url}">%{taxon}</a> observed by
   taxon_observed_by_user: "%{taxon} observed by %{user}"
@@ -8213,6 +8215,10 @@ en:
               invalid_point: has an invalid point, e.g. longitude greater than 180 or latitude less than -90
               must_have_more_than_three_points: must have more than 3 points
               polygon_with_fewer_than_four_points: has a polygon with fewer than 4 points
+        place_taxon_name:
+          attributes:
+            position:
+              cannot_be_first_unless_valid: cannot be first unless the name is valid and appropriate
         post:
           attributes:
             parent:
@@ -8274,6 +8280,7 @@ en:
         taxon_name:
           attributes:
             lexicon:
+              must_be_valid_if_default: 
               should_not_contain_commas_or_slashes: should not contain commas or slashes
               should_match_english_translation: |
                 should be in English, but currently it matches the %{suggested_locale} translation of "%{suggested}".
@@ -8289,6 +8296,8 @@ en:
               bad_format: |
                 can only contain standard Latin characters, hyphens, spaces, and
                 ×; note that putative taxa and cultivars are not allowed
+            position:
+              cannot_be_first_unless_valid: cannot be first unless the name is valid and appropriate
         taxon_photo:
           attributes:
             taxon:

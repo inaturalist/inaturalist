@@ -27,16 +27,12 @@
                 "$('#taxon_name_lexicon_select').attr('name', 'taxon_name[lexicon]');" + |
                 "$('#new_lexicon_link').show();",                                        |
                 :class => "btn btn-default"
-      = n.form_field :validity, :label => false do
-        = label_tag t(:if_this_is_a_scientific_name)
-        .radio
-          %label.inline
-            = n.radio_button :is_valid, true.to_s, :skip_builder => true
-            = t(:true)
-        .radio
-          %label.inline
-            = n.radio_button :is_valid, false, :skip_builder => true
-            = t(:false)
+      = n.form_field :validity, label: false do
+        .is-valid-label
+        = label_tag "taxon_name[is_valid]", t(:taxon_name_sciname_valid_prompt), class: @taxon_name.lexicon == TaxonName::SCIENTIFIC_NAMES ? "" : "hidden", id: "taxon_name_is_valid_sciname_prompt"
+        = label_tag "taxon_name[is_valid]", t(:taxon_name_comname_valid_prompt_html, link_start_tag: "<a href='/pages/community+guidelines'>".html_safe, link_end_tag: "</a>".html_safe ), class: @taxon_name.lexicon == TaxonName::SCIENTIFIC_NAMES ? "hidden" : "", id: "taxon_name_is_valid_comname_prompt"
+        = n.radio_button :is_valid, true.to_s, label: t(:yes)
+        = n.radio_button :is_valid, false.to_s, label: t(:no)
       .stacked.clear
         %h3
           =t :places

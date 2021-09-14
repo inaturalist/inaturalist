@@ -15,15 +15,17 @@ class TaxonName < ApplicationRecord
   validate :valid_scientific_name_must_match_taxon_name
   validate :english_lexicon_if_exists, if: Proc.new { |tn| tn.lexicon && tn.lexicon_changed? }
   validate :parameterized_lexicon_present, if: Proc.new { |tn| tn.lexicon.present? }
+  validate :first_name_must_be_valid
   NAME_FORMAT = /\A([A-z]|\s|\-|×)+\z/
   validates :name, format: { with: NAME_FORMAT, message: :bad_format }, on: :create, if: Proc.new {|tn| tn.lexicon == SCIENTIFIC_NAMES}
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
-  # before_validation do |tn|
-  #   tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
-  # end
   before_validation :capitalize_scientific_name
   before_validation :parameterize_lexicon
-  before_create {|name| name.position = name.taxon.taxon_names.size}
+  before_validation do |name|
+    if ( position.nil? || position == 0 ) && name.taxon
+      name.position = name.taxon.taxon_names.size + 1
+    end
+  end
   before_save :set_is_valid
   after_create {|name| name.taxon.set_scientific_taxon_name}
   after_save :update_unique_names
@@ -466,5 +468,11 @@ class TaxonName < ApplicationRecord
 
   def parameterized_lexicon_present
     errors.add(:lexicon, :should_be_in_english) if lexicon.parameterize.empty?
+  end
+
+  def first_name_must_be_valid
+    if ( position.nil? || position <= 1 ) && !is_valid?
+      errors.add( :position, :cannot_be_first_unless_valid )
+    end
   end
 end

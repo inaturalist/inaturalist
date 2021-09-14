@@ -21,6 +21,13 @@ describe PlaceTaxonName do
       ptn3 = PlaceTaxonName.make!( place: make_place_with_geom, taxon_name: tn3 )
       expect( ptn3.position ).to eq 1
     end
+
+    it "should not allow an invalid name to be the default in a place" do
+      ptn = build :place_taxon_name,
+        taxon_name: create( :taxon_name, lexicon: TaxonName::ENGLISH, is_valid: false )
+      expect( ptn ).not_to be_valid
+      expect( ptn.position ).to eq 1
+    end
   end
 
   describe "create_country_records_from_lexicons" do

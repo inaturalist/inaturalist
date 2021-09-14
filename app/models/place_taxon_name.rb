@@ -3,10 +3,13 @@ class PlaceTaxonName < ApplicationRecord
   belongs_to :taxon_name, :inverse_of => :place_taxon_names
   validates_uniqueness_of :place_id, :scope => :taxon_name_id
   validates_presence_of :place_id, :taxon_name
+  validate :first_name_must_be_valid
 
-  before_create do |ptn|
-    ptn.position = PlaceTaxonName.where( place: ptn.place ).joins(:taxon_name).
-      where( "taxon_names.taxon_id = ?", ptn.taxon_name.taxon_id ).count + 1
+  before_validation do |ptn|
+    if ( position.nil? || position == 0 ) && ptn.place && ptn.taxon_name
+      ptn.position = PlaceTaxonName.where( place: ptn.place ).joins(:taxon_name).
+        where( "taxon_names.taxon_id = ?", ptn.taxon_name.taxon_id ).count + 1
+    end
   end
 
   def to_s
@@ -56,6 +59,12 @@ class PlaceTaxonName < ApplicationRecord
       place_id: place_id,
       position: position
     }
+  end
+
+  def first_name_must_be_valid
+    if ( position.nil? || position <= 1 ) && taxon_name && !taxon_name.is_valid?
+      errors.add( :position, :cannot_be_first_unless_valid )
+    end
   end
 
 end

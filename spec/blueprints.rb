@@ -462,6 +462,7 @@ end
 TaxonName.blueprint do
   name { Faker::Name.name.gsub( /[^(A-z|\s|\-|×)]/, "" ) }
   taxon { Taxon.make! }
+  is_valid { true }
 end
 
 TaxonRange.blueprint do

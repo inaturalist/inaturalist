@@ -47,13 +47,20 @@ class BootstrapFormBuilder < DefaultFormBuilder
   end
 
   def check_radio_field(field, field_content = nil, options = {}, wrapper_options = {}, description = nil)
-    wrapper_options[:class] = wrapper_options[:class].gsub('form-group', field == 'check_box' ? 'checkbox' : 'radio')
+    # wrapper_options[:class] = wrapper_options[:class].gsub('form-group', field == 'check_box' ? 'checkbox' : 'radio')
+    wrapper_classes = wrapper_options[:class].to_s.split
+    wrapper_classes.delete( "form-group" )
+    wrapper_classes << ( field == "check_box" ? "checkbox" : "radio" )
+    wrapper_classes.uniq!
+    Rails.logger.debug "[DEBUG] check_radio_field, wrapper_classes: #{wrapper_classes}"
+    wrapper_options[:class] = wrapper_classes.join( " " )
     label_content = (options[:label] == false ? nil : options[:label] || field).to_s.html_safe
     if options[:required]
       label_content += content_tag(:span, " *", :class => 'required')
     end
     content = @template.content_tag( :label, [field_content, label_content].join(' ').html_safe )
     content += @template.content_tag(:div, description.html_safe ) unless description.blank?
+    Rails.logger.debug "[DEBUG] check_radio_field, wrapper_options: #{wrapper_options}"
     @template.content_tag(:div, wrapper_options) do
       content
     end
