@@ -358,34 +358,28 @@ class TaxonChangesController < ApplicationController
     end
   end
 
-  def analysis_with_url( row )
-    if row[:id_count] == 0
-      url = nil
-    else
-      observation_params = {
-        id: row[:id_obs].join(",")
-      }
-      url = observations_path( observation_params )
-    end
-    return { taxon_id: row[:taxon_id], id_count: row[:id_count], url: url }
-  end
-
   def analyze_ids
-    return false unless @taxon_change.type == "TaxonSplit"
-    id_analysis = TaxonSplit.analyze_id_destinations( @taxon_change )
-
-    analysis_header = analysis_with_url( id_analysis[:total_id_count] )
-    analysis_table = []
-    id_analysis[:output_id_counts].each do |row|
-      analysis_table << analysis_with_url( row )
-    end
-    analysis_table << analysis_with_url( id_analysis[:ancestor_id_count] )
-    analysis_data = {
-      analysis_header: analysis_header,
-      analysis_table: analysis_table
-    }
-    respond_to do |format|
-      format.json { render json: analysis_data, status: :ok }
+    if logged_in? && current_user.is_curator?
+      if @taxon_change.type == "TaxonSplit"
+        id_analysis = TaxonSplit.analyze_id_destinations( @taxon_change )
+        analysis_header = identification_analysis_with_url( id_analysis[:total_id_count] )
+        analysis_table = []
+        id_analysis[:output_id_counts].each do |row|
+          analysis_table << identification_analysis_with_url( row )
+        end
+        analysis_table << identification_analysis_with_url( id_analysis[:ancestor_id_count] )
+        analysis_data = {
+          analysis_header: analysis_header,
+          analysis_table: analysis_table
+        }
+        respond_to do |format|
+          format.json { render json: analysis_data, status: :ok }
+        end
+      else
+        format.json  { render :json => {:errors => I18n.t(:must_be_a_taxon_split)}, :status => :unprocessable_entity }
+      end
+    else
+      format.json  { render :json => {:errors => I18n.t(:only_curators_can_access_that_page)}, :status => :unprocessable_entity }
     end
   end
   
@@ -424,5 +418,17 @@ class TaxonChangesController < ApplicationController
       return false
     end
     true
+  end
+
+  def identification_analysis_with_url( row )
+    if row[:id_count] == 0
+      url = nil
+    else
+      observation_params = {
+        id: row[:id_obs].join(",")
+      }
+      url = observations_path( observation_params )
+    end
+    return { taxon_id: row[:taxon_id], id_count: row[:id_count], url: url }
   end
 end

@@ -92,7 +92,7 @@
   .row
     .col-xs-12
       = render partial: "show_change_taxon", object: @taxon_change, locals: { show_commit_button: true }
-      - if logged_in? && @taxon_change.draft? && @taxon_change.is_a?( TaxonSplit )
+      - if logged_in? && current_user.is_curator? && @taxon_change.draft? && @taxon_change.is_a?( TaxonSplit )
         =link_to t( :analyze_ids), "#", :class => "analyze_ids_button", :data => { taxon_change_id: @taxon_change.id }
         - helptip_for "analyze" do
           = t :estimate_which_input
