@@ -4351,7 +4351,12 @@ pt:
   taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Este não é um mapa de distribuição da Lista Vermelha da IUCN porque o mesmo não é adequado
   taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: Este não é um mapa de distribuição da Lista Vermelha da IUCN porque este táxon não está na Lista Vermelha da IUCN
   taxon_range_guidelines_each_taxon_can_have: Cada táxon pode ter somente um mapa de distribuição. Mapas de distribuição devem mostrar a distribuição global.
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    A %{link_start_tag}Lista Vermelha da IUCN%{link_end_tag} é a fonte típica das distribuições dos táxons. Por favor indique se você está adicionando uma distribuição da Lista Vermelha da IUCN e, se não, como o que você está adicionando está relacionado com a Lista Vermelha da IUCN. Isso ajudará a informar os processos de atualização automática de distribuição obtidos pela Lista Vermelha da IUCN. Se você estiver adicionando uma distribuição da Lista Vermelha da IUCN, indique corretamente a versão da lista (por exemplo, 2021-2) na fonte.
+  taxon_range_guidelines_if_you_are_not_uploading: "Se você não está carregando um mapa de distribuição da Lista Vermelha da IUCN, isso deve ser porque:"
   taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: O mapa de distribuição da Lista Vermelha da IUCN para este táxon não é adequado
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    por exemplo, você reduziu-o manualmente para refletir uma divisão taxonômica não representada na Lista Vermelha da IUCN, ou o mapa de distribuição da Lista Vermelha grandes erros, fazendo com que sua exibição seja inadequada.
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Este táxon não está na Lista Vermelha da IUCN
   taxon_range_guidelines_for_example_the_taxon_is_lumped: |
     por exemplo, o táxon está agrupado com outro táxon na Lista Vermelha da IUCN e você corrigiu manualmente o mapa, ou então não existe um mapa e avaliação na Lista Vermelha da IUCN.
@@ -4490,6 +4495,7 @@ pt:
     <strong>Esta alteração de táxon foi salva!</strong>
     Por favor não edite os táxons. A edição de outros campos é permitida.
   this_taxon_concept_is_inactive: o conceito de táxons está inativo
+  this_taxon_has_more_than_1000: Este táxon tem mais de 1000 observações descendentes. A edição pode levar algum tempo para ser processada, tem certeza de que isso é necessário?
   this_taxon_has_no_default_photo: Este táxon não tem foto padrão!
   this_taxon_is_inactive_this_means: |
     Este táxon esta <strong>inativo</strong>. O que significa que os coordenadores de %{site_name} o substituíram por uma classificação mais atual.
@@ -4502,6 +4508,9 @@ pt:
   this_will_refresh_listed_taxa: Esta ação irá atualizar todos os táxons recentemente incluídos. Isto pode levar alguns minutos, por favor utilize este recurso com moderação e em pequenas checklists
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Isto excluirá a capacidade do iNaturalist de acessar esta conta em seu nome até que você conceda acesso novamente. Você pode precisar alterar as suas configurações no site externo para impedir completamente o acesso.
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
+  this_will_sign_you_out_current_session: Isso desconectará você da sua sessão atual nesta aplicação.
   this_will_try_to_add_tags_to_your_flickr: Isto irá tentar adicionar marcações nas suas fotos do Flickr. Deseja continuar?
   this_year: Este Ano
   those_observations_no_longer_exist: Estas observações não existem mais.
@@ -4616,6 +4625,7 @@ pt:
   upload_a_csv_file: Carregar arquivo CSV
   upload_a_csv_file_with_observation: |
     Carregue um arquivo CSV com dados observados. Se você tem seus dados em uma planilha ou base de dados, provavelmente é melhor fazer deste jeito.
+  upload_new_photo: Carregar nova foto
   upload_photo: Carregar foto
   upload_range: Alcance de carregamento
   uploaded_by: Enviado por
@@ -4833,11 +4843,21 @@ pt:
   welcome_to_inat: "Seja bem vindo a %{site_name}!"
   welcome_to_guides: "Seja bem Vindo às Guias do %{site_name}!"
   welcome_to_x_project: "Seja bem vindo ao projeto %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Estamos bastante seguros de que isso está no gênero
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Estamos bastante seguros de que isso está na família
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: Estamos bastante seguros de que isso está na ordem
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: Estamos bastante seguros de que isso está na subfamília
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: Estamos bastante seguros de que isso está na superfamília
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
-  were_pretty_sure_this_is_in_the_rank: Temos certeza que isso é no %{rank}
+  were_pretty_sure_this_is_in_the_rank: Estamos bastante seguros de que isso está no(a) %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Pedimos desculpas mas a importação em massa de %{filename} falhou."
   what: Qual
   what_did_you_see: Oque você viu?
@@ -4856,6 +4876,7 @@ pt:
   which_projects_can_add_your_observations?: Quais projetos tradicionais podem adicionar suas observações?
   white: branco
   why_you_can_see_the_coordinates: Por que você pode ver as coordenadas
+  who_can_add_observation_fields_to_my_obs: Quem pode adicionar campos de observação às minhas observações?
   who_can_add_observations_to_this_project?: Quem pode adicionar observações a este projeto?
   who_can_see_the_coordinates: Quem pode ver as coordenadas
   who_can_see_the_coordinates_observer: A pessoa que fez a observação
@@ -5062,6 +5083,7 @@ pt:
     Você não está seguindo ninguém. Seguir outros naturalistas vai permitir que você acompanhe facilmente as últimas observações deles. Descubra o que as pessoas estão 
     <a href="%{observations_path}">observando</a> e tenha alguns novos
     <a href="%{people_path}">conhecidos</a>.
+  youre_not_following_anyone_on_inat: Você ainda não está seguindo ninguém no %{site_name}!
   youve_linked_your_inaturalist_google_account: "Você vinculou sua conta %{site_name} e sua conta do Google. Isso permitirá que você associe suas Google Fotos a suas observações no %{site_name}."
   youve_successfully_linked_your_provider_account: "Você vinculou com sucesso sua conta do %{provider}"
   verifiable: verificável
@@ -5354,6 +5376,8 @@ pt:
           </p>
         you_have_opted_out: Você optou por rejeitar identificações da comunidade
         opt_in_for_this_observation: Opine sobre esta observação
+        your_id_does_not_match: |
+          Sua identificação (<span class="bold">%{taxon_name}</span>) não combina com a identificação da comunidade
       copy_tip: "Adicione uma nova observação copiando a data, local, fotos e campos de observação desta observação."
       captive_help_html: |
         O organismo observado é uma espécie <strong>cultivada</strong> ou
@@ -5364,6 +5388,8 @@ pt:
         about_total_taxa: "Sobre os Táxons Totais"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Combinados
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Campo de Data
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Horizontais
         #Date range to aggregate by, e.g. observations per month vs. observations per week
@@ -6181,6 +6207,12 @@ pt:
           todos os anos.
         compared_to_previous_years: Comparar com anos anteriores
         donate_title: "Agradecimentos Especiais a Todos os Nossos Apoiadores"
+        donate_desc_html: |
+          Obrigado por ser generoso com seu tempo, atenção, competência e
+          doações! iNaturalist é uma iniciativa conjunta sem fins lucrativos da
+          Academia de Ciências da Califórnia e da National Geographic Society.
+          Ele é apoiado por uma <a href="%{team_url}">pequena equipe</a> que
+          faz todo o design e o software de web, móvel, e <a href="%{seek_url}">Seek de iNaturalist</a>, além de gerenciar o suporte da comunidade, colaborações, e integrações que mantêm coisas funcionando (e em crescimento rápido!). O programa depende de inúmeros subsídios e doações, incluindo presentes de caridade de uma pequena fração de contribuidores. Somos especialmente gratos aos apoiadores mensais cujos presentes recorrentes nos ajudam a planejar o futuro. Você pode doar em múltiplas moedas para apoiar as operações essenciais do iNaturalist. Obrigado a todos pela sua participação em fazer de %{year} o maior ano do iNaturalist!
         donors: Doadores
         donors_guide_label_our_goal_is_1000: A nossa meta é de 1.000 doadores recorrentes por mês
         inaturalist_network: Rede iNaturalist
@@ -6582,6 +6614,8 @@ pt:
           any: Qualquer
           joined: Projetos em que você participa
           none: "Nenhuma, apenas você pode adicionar as suas observações a projetos"
+        prefers_community_taxa_desc: |
+          O %{site_name} rastreia o que você acha que suas observações são e o que a comunidade acha. Se você não deseja que a opinião da comunidade se sobreponha à sua, você pode optar por não permitir isso desativando essa opção. As pessoas ainda poderão adicionar identificações, mas suas observações ficarão com o táxon da sua observação. Isso significa que suas observações não estarão elegíveis para o status de Nível de Pesquisa, a não ser que a sua identificação seja a mesma da comunidade.
         prefers_coordinate_interpolation_protection_desc: |
           Quando você define a geocodificação de uma observação como "obscurecida" ou "privado", isto aplicará a mesma georreferenciação a todas as outras observações do mesmo dia para tornar mais difícil para outras pessoas adivinhar as coordenadas verdadeiras com base em observações feitas em torno do mesmo tempo.
         prefers_no_tracking_label: Não colete dados de estabilidade e uso usando serviços de terceiros
@@ -6637,6 +6671,7 @@ pt:
           href="https://akismet.com/">Akismet</a>, mas Akismet não é perfeito, então, se você quiser gastar alguns minutos marcando novas contas como difusores ou não de spam, nos ajudaria.
           </p>
       show:
+        take_a_moment_to_review_html: 'Reserve um momento para analisar <a href="%{link}">as nossas diretrizes</a>.'
         this_user_was_banned: O usuário foi suspenso
         favorites_list_prompt_html: |
           Quer exibir alguns dos seus táxons favoritos? %{link_start_tag}Crie uma
@@ -7202,6 +7237,11 @@ pt:
           attributes:
             user_id:
               must_be_a_curator: deve ser um curador
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: "Importação para este usuário de Mushroom Observer está em execução ou está na fila para importar"
+              api_key_missing: "A chave do Mushroom Observer API está faltando"
         observation:
           attributes:
             base:
@@ -7338,6 +7378,16 @@ pt:
           attributes:
             base:
               user_already_blocked: Você já bloqueou esse usuário
+              user_cannot_be_staff: |
+                Você não pode bloquear a equipe do iNat. A equipe precisa ser capaz de
+                se comunicar com todos no iNat, ter acesso a todos os dados no
+                iNat, e são os mediadores finais de disputas, então bloqueá-los
+                não os impedirá de se comunicar com você. Se você tiver um
+                problema com um membro da equipe, por favor reporte-o a um dos
+                co-diretores do iNat, ou, se você tiver algum problema com um dos
+                co-diretores, você pode entrar em contato com o Chief of Science no
+                Instituto de Biodiversidade e Ciência da Sustentabilidade na
+                Academia de Ciências da Califórnia.
         user_parent:
           attributes:
             email:
