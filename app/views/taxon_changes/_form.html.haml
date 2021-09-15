@@ -1,4 +1,5 @@
 - content_for( :extracss ) do
+  = stylesheet_link_tag 'taxon_changes'
   :css
     .taxon_change_taxon input.text { width: 300px; }
     textarea { width:455px; }
@@ -11,64 +12,7 @@
     .add_taxon_link { margin-right: 10px; }
     #errorExplanation { clear:both; }
 - content_for( :extrajs ) do
-  :javascript
-    function addTaxonChangeTaxonField ( markup ) {
-      var index = $( "#multiple_taxa .taxon_change_taxon" ).length
-      markup = markup.replace( /taxon_change_taxa_attributes\]\[\d+\]/g, "taxon_change_taxa_attributes]["+index+"]" )
-      markup = markup.replace( /_taxon_change_taxa_attributes_\d+_/g, "_taxon_change_taxa_attributes_"+index+"_" )
-      $( "#new_taxon_change_taxa" ).append( markup )
-      $( "#new_taxon_change_taxa input.text:last" ).simpleTaxonSelector( {
-        isActive: 'any',
-        includeID: true
-      } )
-      rearrangeTaxonFieldsets();
-    }
-
-    function rearrangeTaxonFieldsets () {
-      var changeType = $( "input[name='taxon_change[type]']:checked" ).val() || $( "input[name*='[type]']" ).val()
-      if ( changeType == "TaxonStage" ) {
-        $( "#singletaxon" ).removeClass( "right" ).addClass( "left" ).show()
-        $( "#multiple_taxa" ).removeClass('right').addClass( "left" ).hide()
-        $( "#singletaxon legend" ).text( I18n.t( "output_taxon" ) )
-        $( "#move-children" ).hide();
-      } else if ( changeType == "TaxonDrop" ) {
-        $( "#singletaxon" ).removeClass( "right" ).addClass( "left" ).show()
-        $( "#multiple_taxa" ).removeClass( "right" ).addClass( "left" ).hide()
-        $( "#singletaxon legend" ).text( I18n.t( "input_taxon" ) )
-        $( "#move-children" ).hide( );
-      } else if ( changeType == "TaxonSwap" || changeType == "TaxonMerge" ){
-        $( "#singletaxon" ).removeClass( "left" ).addClass( "right" ).show()
-        $( "#singletaxon legend" ).text( I18n.t( "output_taxon" ) )
-        $( "#multiple_taxa" ).removeClass( "right" ).addClass( "left" ).show()
-        if ( changeType == "TaxonSwap" && $( "#multiple_taxa .taxon_change_taxon:visible" ).length > 0 ) {
-          $( "#multiple_taxa .add_taxon_link" ).hide();
-        } else {
-          $( "#multiple_taxa .add_taxon_link" ).show();
-        }
-        $( "#multiple_taxa legend" ).text( I18n.t( "input_taxon" ) )
-        $( "#move-children" ).show();
-      } else {
-        $( "#singletaxon" ).removeClass( "right" ).addClass( "left" ).show()
-        $( "#singletaxon legend" ).text( I18n.t( "input_taxon" ) )
-        $( "#multiple_taxa" ).removeClass( "left" ).addClass( "right" ).show()
-        $( "#multiple_taxa .add_taxon_link" ).show();
-        $( "#multiple_taxa legend" ).text( I18n.t( "output_taxon" ) )
-        $( "#move-children" ).hide( );
-      }
-    }
-    $( document ).ready( function() {
-      $( ".taxon_change_taxon" ).each( function () {
-        var taxonIDField = $( "input[name*='[taxon_id]']", this ).get( 0 )
-        $( "input.text", this ).simpleTaxonSelector( {
-          taxonIDField: taxonIDField,
-          isActive: "any",
-          includeID: true
-        } )
-      } )
-      rearrangeTaxonFieldsets()
-      $( "input[name='taxon_change[type]']").change( rearrangeTaxonFieldsets )
-      $( "#taxon_change_description" ).textcompleteUsers( );
-    })
+  = javascript_include_tag "taxon_changes/form"
 
 :ruby
   taxon_change ||= @taxon_change
@@ -115,7 +59,21 @@
       - new_change_group_field = capture do
         = f.text_field :change_group, description: t( :label_to_group_a_batch_of_taxon_changes ), label: t( :change_group )
       = link_to_function t( :add_a_new_change_group ), "$( '.change_group_field' ).replaceWith( '#{ escape_javascript new_change_group_field }' ); $( this ).remove()"
-
+    -unless taxon_change.committed?
+      %fieldset#id_analysis.last.column.span-16
+        -if params[:id]
+          = hidden_field_tag :current_id, params[:id]
+        =link_to t( :analyze_ids), "#", :class => "analyze_ids_button", :data => { taxon_change_id: taxon_change }
+        - helptip_for "analyze" do
+          = t :estimate_which_input
+        = image_tag "spinner.gif", :class => "spinner"
+        .analysis
+          =t( :total_ids_on_input_taxon )
+          =link_to 0, "#", class: "analysis_input"
+          %table.analysis
+            %tr.headers
+              %td= t(:no_ids)
+              %td= t(:destination)
   .column.span-24
     %fieldset#singletaxon.column.span-12
       %legend= taxon_change_type == "TaxonSplit" ? t( :input_taxon ) : t( :output_taxon )

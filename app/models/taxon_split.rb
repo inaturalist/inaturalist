@@ -47,6 +47,7 @@ class TaxonSplit < TaxonChange
   def self.analyze_id_destinations( taxon_change )
     total_id_count = taxon_change.get_id_count_and_obs( { current: true, exact_taxon_id: taxon_change.input_taxon.id } )
     total_id_count[:taxon_id] = taxon_change.input_taxon.id
+    total_id_count[:name] = taxon_change.input_taxon.name
 
     output_id_counts = []
     if taxon_change.output_taxa.map{ |t| t.atlased? }.all?
@@ -60,15 +61,16 @@ class TaxonSplit < TaxonChange
         not_in_place_ids = output_place_ids.select{ |row| row[:output_taxon_id] !=  output_taxon.id }.map{|row| row[:place_ids]}.flatten.uniq
         params = { current: true, place_id: place_ids, not_in_place: not_in_place_ids, exact_taxon_id: taxon_change.input_taxon.id }
         output_id_count = taxon_change.get_id_count_and_obs(params)
-        output_id_counts << { taxon_id: output_taxon.id, id_count: output_id_count[:id_count], id_obs: output_id_count[:id_obs] }
+        output_id_counts << { name: output_taxon.name, taxon_id: output_taxon.id, id_count: output_id_count[:id_count], id_obs: output_id_count[:id_obs] }
       end
     else
       taxon_change.output_taxa.each do |output_taxon|
-        output_id_counts << { taxon_id: output_taxon.id, id_count: 0, id_obs: [] }
+        output_id_counts << { name: output_taxon.name, taxon_id: output_taxon.id, id_count: 0, id_obs: [] }
       end
     end
 
     ancestor_id_count = {
+      name: taxon_change.output_ancestor.name,
       taxon_id: taxon_change.output_ancestor.id,
       id_count: total_id_count[:id_count] - output_id_counts.map{ |row| row[:id_count] }.sum,
       id_obs: total_id_count[:id_count] > 200 ? [] : ( total_id_count[:id_obs] - output_id_counts.map{ |row| row[:id_obs] }.flatten.uniq )

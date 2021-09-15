@@ -3,7 +3,7 @@ class TaxonChangesController < ApplicationController
   before_action :curator_required, :except => [:index, :show, :commit_for_user, :commit_records, :group]
   before_action :admin_required, :only => [:commit_taxon_change]
   before_action :blocked_by_content_freeze, except: [ :index, :show, :new, :create, :edit, :update ]
-  before_action :load_taxon_change, :except => [:index, :new, :create, :group]
+  before_action :load_taxon_change, :except => [:index, :new, :create, :group, :analyze_ids]
   before_action :return_here, :only => [:index, :show, :new, :edit, :commit_for_user]
 
   layout "bootstrap"
@@ -359,27 +359,34 @@ class TaxonChangesController < ApplicationController
   end
 
   def analyze_ids
-    if logged_in? && current_user.is_curator?
-      if @taxon_change.type == "TaxonSplit"
-        id_analysis = TaxonSplit.analyze_id_destinations( @taxon_change )
-        analysis_header = identification_analysis_with_url( id_analysis[:total_id_count] )
-        analysis_table = []
-        id_analysis[:output_id_counts].each do |row|
-          analysis_table << identification_analysis_with_url( row )
-        end
-        analysis_table << identification_analysis_with_url( id_analysis[:ancestor_id_count] )
-        analysis_data = {
-          analysis_header: analysis_header,
-          analysis_table: analysis_table
-        }
-        respond_to do |format|
-          format.json { render json: analysis_data, status: :ok }
-        end
-      else
-        format.json  { render :json => {:errors => I18n.t(:must_be_a_taxon_split)}, :status => :unprocessable_entity }
-      end
-    else
+    unless logged_in? && current_user.is_curator?
       format.json  { render :json => {:errors => I18n.t(:only_curators_can_access_that_page)}, :status => :unprocessable_entity }
+    end
+    if params[:id] || params[:taxon_change_id]
+      load_taxon_change
+    elsif params[:inputTaxonId] && params[:outputIds]
+      stub_taxon_split
+    else
+      puts "yo"
+      format.json  { render :json => {:errors => I18n.t(:must_be_a_taxon_split)}, :status => :unprocessable_entity }
+    end
+    unless @taxon_change && @taxon_change.type == "TaxonSplit"
+      format.json  { render :json => {:errors => I18n.t(:must_be_a_taxon_split)}, :status => :unprocessable_entity }
+    end
+
+    id_analysis = TaxonSplit.analyze_id_destinations( @taxon_change )
+    analysis_header = identification_analysis_with_url( id_analysis[:total_id_count] )
+    analysis_table = []
+    analysis_table << identification_analysis_with_url( id_analysis[:ancestor_id_count] )
+    id_analysis[:output_id_counts].reverse.each do |row|
+      analysis_table << identification_analysis_with_url( row )
+    end
+    analysis_data = {
+      analysis_header: analysis_header,
+      analysis_table: analysis_table
+    }
+    respond_to do |format|
+      format.json { render json: analysis_data, status: :ok }
     end
   end
   
@@ -391,6 +398,15 @@ class TaxonChangesController < ApplicationController
         {taxa: [:taxon_names, :photos, :taxon_range_without_geom, :taxon_schemes]},
         :source
       ).first
+  end
+
+  def stub_taxon_split
+    input_taxon = Taxon.where( id: params[:inputTaxonId].to_i ).first
+    output_taxa = Taxon.where( id: params[:outputIds].map{|i| i.to_i} )
+    render_404 unless input_taxon && output_taxa.count > 1
+    @taxon_change = TaxonSplit.new
+    @taxon_change.taxon = input_taxon
+    @taxon_change.new_taxa << output_taxa
   end
 
   def get_change_params
@@ -429,6 +445,6 @@ class TaxonChangesController < ApplicationController
       }
       url = observations_path( observation_params )
     end
-    return { taxon_id: row[:taxon_id], id_count: row[:id_count], url: url }
+    return { name: row[:name], taxon_id: row[:taxon_id], id_count: row[:id_count], url: url }
   end
 end
