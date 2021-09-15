@@ -188,13 +188,14 @@ class Place < ApplicationRecord
     scope type.pluralize.underscore.to_sym, -> { where("place_type = ?", code) }
   end
 
+  REGION_LEVEL = -2
   CONTINENT_LEVEL = -1
   COUNTRY_LEVEL = 0
   STATE_LEVEL = 1
   COUNTY_LEVEL = 2
   TOWN_LEVEL = 3
   PARK_LEVEL = 10
-  ADMIN_LEVELS = [CONTINENT_LEVEL, COUNTRY_LEVEL, STATE_LEVEL, COUNTY_LEVEL, TOWN_LEVEL, PARK_LEVEL]
+  ADMIN_LEVELS = [REGION_LEVEL, CONTINENT_LEVEL, COUNTRY_LEVEL, STATE_LEVEL, COUNTY_LEVEL, TOWN_LEVEL, PARK_LEVEL]
 
   # 66 is roughly the size of Texas
   MAX_PLACE_AREA_FOR_NON_STAFF = 66.0
