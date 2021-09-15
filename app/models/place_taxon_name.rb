@@ -6,9 +6,9 @@ class PlaceTaxonName < ApplicationRecord
   validate :first_name_must_be_valid
 
   before_validation do |ptn|
-    if ( position.nil? || position == 0 ) && ptn.place && ptn.taxon_name
+    if ptn.new_record? && ptn.place && ptn.taxon_name
       ptn.position = PlaceTaxonName.where( place: ptn.place ).joins(:taxon_name).
-        where( "taxon_names.taxon_id = ?", ptn.taxon_name.taxon_id ).count + 1
+        where( "taxon_names.taxon_id = ?", ptn.taxon_name.taxon_id ).count
     end
   end
 
@@ -62,7 +62,7 @@ class PlaceTaxonName < ApplicationRecord
   end
 
   def first_name_must_be_valid
-    if ( position.nil? || position <= 1 ) && taxon_name && !taxon_name.is_valid?
+    if position == 0 && taxon_name && !taxon_name.is_valid?
       errors.add( :position, :cannot_be_first_unless_valid )
     end
   end

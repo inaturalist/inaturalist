@@ -55,7 +55,7 @@ class TaxonMerge < TaxonChange
         end
         new_taxon_name = taxon_name.dup
         new_taxon_name.taxon_id = output_taxon.id
-        new_taxon_name.is_valid = false if taxon_name.is_scientific_names? && taxon_name.is_valid?
+        new_taxon_name.is_valid = false
         unless new_taxon_name.save
           Rails.logger.error "[ERROR #{Time.now}] TaxonChange #{id} failed to duplicate #{taxon_name}: " + 
             new_taxon_name.errors.full_messages.to_sentence

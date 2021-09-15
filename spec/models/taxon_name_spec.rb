@@ -124,19 +124,24 @@ describe TaxonName, 'creation' do
   end
 
   it "should not set is_valid to true for common names if it was set to false" do
-    tn = TaxonName.make!(:lexicon => TaxonName::LEXICONS[:ENGLISH], :is_valid => false)
-    expect(tn.is_valid).to be false
+    tn1 = create :taxon_name
+    tn2 = create :taxon_name,
+      taxon: tn1.taxon,
+      lexicon: TaxonName::LEXICONS[:ENGLISH],
+      is_valid: false
+    expect( tn2.is_valid ).to be false
   end
     
   it "should create new name positions that will place them at the end of lists" do
     t = Taxon.make!
     expect( t.taxon_names.size ).to eq 1 # b/c of the default scientific name
+    expect( t.taxon_names.last.position ).to eq 0
     tn1 = TaxonName.make!(name: "first", taxon: t)
-    expect(tn1.position).to eq 2
+    expect(tn1.position).to eq 1
     tn2 = TaxonName.make!(name: "second", taxon: t)
-    expect(tn2.position).to eq 3
+    expect(tn2.position).to eq 2
     tn3 = TaxonName.make!(name: "third", taxon: t)
-    expect(tn3.position).to eq 4
+    expect(tn3.position).to eq 3
   end
 
   it "should not allow species names that match the taxon name that are non-scientific" do
@@ -184,8 +189,18 @@ end
 describe TaxonName, "choose_common_name" do
   let(:t) { Taxon.make! }
   it "should not choose an invalid common name" do
-    tn_valid = TaxonName.make!( is_valid: true, taxon: t, lexicon: "English", name: "Foo" )
-    tn_invalid = TaxonName.make!( is_valid: false, taxon: t, lexicon: "English", name: "Bar" )
+    tn_valid = TaxonName.make!(
+      is_valid: true,
+      taxon: t,
+      lexicon: "English",
+      name: "Foo"
+    )
+    tn_invalid = TaxonName.make!(
+      is_valid: false,
+      taxon: t,
+      lexicon: "English",
+      name: "Bar"
+    )
     expect(TaxonName.choose_common_name([tn_invalid, tn_valid], locale: :en) ).to eq tn_valid
   end
 

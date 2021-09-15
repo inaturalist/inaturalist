@@ -1463,10 +1463,11 @@ class Taxon < ApplicationRecord
     end
     
     # Update or destroy merged taxon_names
-    reject_taxon_names.each do |taxon_name|
+    max_position = taxon_names.calculate(:maximum, :position) + 1
+    reject_taxon_names.each_with_index do |taxon_name, i|
       taxon_name.reload
       if taxon_name.is_scientific_names? && taxon_name.is_valid?
-        taxon_name.update_attributes(:is_valid => false)
+        taxon_name.update_attributes( is_valid: false, position: max_position + i )
       end
       unless taxon_name.valid?
         Rails.logger.info "[INFO] Destroying #{taxon_name} while merging taxon " + 

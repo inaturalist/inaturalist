@@ -22,8 +22,8 @@ class TaxonName < ApplicationRecord
   before_validation :capitalize_scientific_name
   before_validation :parameterize_lexicon
   before_validation do |name|
-    if ( position.nil? || position == 0 ) && name.taxon
-      name.position = name.taxon.taxon_names.size + 1
+    if name.new_record? && name.taxon
+      name.position = name.taxon.taxon_names.size
     end
   end
   before_save :set_is_valid
@@ -471,7 +471,7 @@ class TaxonName < ApplicationRecord
   end
 
   def first_name_must_be_valid
-    if ( position.nil? || position <= 1 ) && !is_valid?
+    if position == 0 && !is_valid?
       errors.add( :position, :cannot_be_first_unless_valid )
     end
   end

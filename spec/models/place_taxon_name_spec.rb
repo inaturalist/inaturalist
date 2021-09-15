@@ -15,18 +15,19 @@ describe PlaceTaxonName do
       tn3 = TaxonName.make!(name: "third", taxon: t)
       place = make_place_with_geom
       ptn1 = PlaceTaxonName.make!( place: place, taxon_name: tn1 )
-      expect( ptn1.position ).to eq 1
+      expect( ptn1.position ).to eq 0
       ptn2 = PlaceTaxonName.make!( place: place, taxon_name: tn2 )
-      expect( ptn2.position ).to eq 2
+      expect( ptn2.position ).to eq 1
       ptn3 = PlaceTaxonName.make!( place: make_place_with_geom, taxon_name: tn3 )
-      expect( ptn3.position ).to eq 1
+      expect( ptn3.position ).to eq 0
     end
 
     it "should not allow an invalid name to be the default in a place" do
-      ptn = build :place_taxon_name,
-        taxon_name: create( :taxon_name, lexicon: TaxonName::ENGLISH, is_valid: false )
+      t = create :taxon
+      tn = create( :taxon_name, taxon: t, lexicon: TaxonName::ENGLISH, is_valid: false )
+      ptn = build :place_taxon_name, taxon_name: tn
       expect( ptn ).not_to be_valid
-      expect( ptn.position ).to eq 1
+      expect( ptn.position ).to eq 0
     end
   end
 

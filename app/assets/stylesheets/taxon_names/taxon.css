@@ -7,3 +7,6 @@
 .names li .badge.pull-right {display:none;}
 .names li:first-child .badge {display:inline-block;}
 ul.plain{margin:0;padding:0;}
+.taxon_name.invalid {
+  text-decoration: line-through;
+}
