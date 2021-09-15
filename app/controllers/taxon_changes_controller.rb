@@ -360,33 +360,33 @@ class TaxonChangesController < ApplicationController
 
   def analyze_ids
     unless logged_in? && current_user.is_curator?
-      format.json  { render :json => {:errors => I18n.t(:only_curators_can_access_that_page)}, :status => :unprocessable_entity }
+      response = { json: I18n.t( :only_curators_can_access_that_page ), status: :unprocessable_entity }
     end
     if params[:id] || params[:taxon_change_id]
       load_taxon_change
     elsif params[:inputTaxonId] && params[:outputIds]
       stub_taxon_split
     else
-      puts "yo"
-      format.json  { render :json => {:errors => I18n.t(:must_be_a_taxon_split)}, :status => :unprocessable_entity }
+      response = { json: I18n.t( :only_curators_can_access_that_page ), status: :unprocessable_entity }
     end
-    unless @taxon_change && @taxon_change.type == "TaxonSplit"
-      format.json  { render :json => {:errors => I18n.t(:must_be_a_taxon_split)}, :status => :unprocessable_entity }
+    if @taxon_change && @taxon_change.type == "TaxonSplit" && @taxon_change.taxon && @taxon_change.taxon_change_taxa.size > 1
+      id_analysis = TaxonSplit.analyze_id_destinations( @taxon_change )
+      analysis_header = identification_analysis_with_url( id_analysis[:total_id_count] )
+      analysis_table = []
+      analysis_table << identification_analysis_with_url( id_analysis[:ancestor_id_count] )
+      id_analysis[:output_id_counts].reverse.each do |row|
+        analysis_table << identification_analysis_with_url( row )
+      end
+      analysis_data = {
+        analysis_header: analysis_header,
+        analysis_table: analysis_table
+      }
+      response = { json: analysis_data, status: :ok }
+    else
+      response = { json: I18n.t( :only_curators_can_access_that_page ), status: :unprocessable_entity }
     end
-
-    id_analysis = TaxonSplit.analyze_id_destinations( @taxon_change )
-    analysis_header = identification_analysis_with_url( id_analysis[:total_id_count] )
-    analysis_table = []
-    analysis_table << identification_analysis_with_url( id_analysis[:ancestor_id_count] )
-    id_analysis[:output_id_counts].reverse.each do |row|
-      analysis_table << identification_analysis_with_url( row )
-    end
-    analysis_data = {
-      analysis_header: analysis_header,
-      analysis_table: analysis_table
-    }
     respond_to do |format|
-      format.json { render json: analysis_data, status: :ok }
+      format.json { render json: response[:json], status: response[:status] }
     end
   end
   
@@ -403,7 +403,6 @@ class TaxonChangesController < ApplicationController
   def stub_taxon_split
     input_taxon = Taxon.where( id: params[:inputTaxonId].to_i ).first
     output_taxa = Taxon.where( id: params[:outputIds].map{|i| i.to_i} )
-    render_404 unless input_taxon && output_taxa.count > 1
     @taxon_change = TaxonSplit.new
     @taxon_change.taxon = input_taxon
     @taxon_change.new_taxa << output_taxa

@@ -13,7 +13,6 @@
     #errorExplanation { clear:both; }
 - content_for( :extrajs ) do
   = javascript_include_tag "taxon_changes/form"
-
 :ruby
   taxon_change ||= @taxon_change
   taxon_change_type = taxon_change.class.name
@@ -74,6 +73,7 @@
             %tr.headers
               %td= t(:no_ids)
               %td= t(:destination)
+          = link_to_function t( :reset ), "resetFunction()"
   .column.span-24
     %fieldset#singletaxon.column.span-12
       %legend= taxon_change_type == "TaxonSplit" ? t( :input_taxon ) : t( :output_taxon )
@@ -116,9 +116,7 @@
             .taxon_change_taxon
               = tct.hidden_field :taxon_change_id
               = tct.hidden_field "_destroy", value: false
-              = link_to_function t( :remove ),
-                "$( this ).prev().val(1); $( this ).parents( '.taxon_change_taxon' ).slideUp( function () { rearrangeTaxonFieldsets(); } ).attr( 'id', '' );",
-                class: "right"
+              = link_to_function t( :remove ), "removeFunction($( this ))", class: "right"
               = tct.form_field :taxon_name, label: t(:taxon_name) do
                 %input{ type: "text", class: "text" }
                 = tct.hidden_field :taxon_id
@@ -127,9 +125,7 @@
               .taxon_change_taxon
                 = tct.hidden_field :taxon_change_id
                 = tct.hidden_field "_destroy", value: false
-                = link_to_function t( :remove ),
-                  "$( this ).prev().val( 1 ); $( this ).parents( '.taxon_change_taxon' ).slideUp( function () { rearrangeTaxonFieldsets(); } ).attr( 'id', '' );",
-                  class: "right"
+                = link_to_function t( :remove ), "removeFunction($( this ))", class: "right"
                 =tct.form_field :taxon_name, label: t( :taxon_name ) do
                   %input{ type: "text", class: "text" }
                   = tct.hidden_field :taxon_id
