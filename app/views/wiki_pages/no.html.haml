@@ -3,6 +3,6 @@
 %h2= wt @title
 .nocontent.meta
   - if edit_allowed?
-    =(t :no_such_wiki_page_html, :default => 'There is no such page. Do you want to <a href="%{new_url}">create it</a>?', :new_url => wiki_page_new_path ).html_safe
+    =(t :no_such_wiki_page_html, new_url: wiki_page_new_path ).html_safe
   - else
-    =(t :no_such_wiki_page, :default => 'There is no such page.' ).html_safe
+    =(t :no_such_wiki_page ).html_safe

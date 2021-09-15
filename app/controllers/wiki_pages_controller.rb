@@ -9,8 +9,12 @@ class WikiPagesController < ApplicationController
     return true if current_user.is_admin?
     if (
       current_user.is_site_admin_of?( @site ) &&
-      @page.creator.is_site_admin_of?( @site ) &&
-      !@page.creator.is_admin?
+      (
+        @page.creator.blank? || (
+          !@page.creator.is_admin?
+          @page.creator.is_site_admin_of?( @site )
+        )
+      )
     )
       return true
     end
