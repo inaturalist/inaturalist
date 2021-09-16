@@ -2138,9 +2138,12 @@ pt:
     norwegian: Norueguês
     occitan: Occitano
     pangasinan: Pangasinán
+    polish: Polonês
     portuguese: Português
     romanian: Romano
     russian: Russo
+    sinhala: Cingalês
+    slovak: Eslovaco
     spanish: Espanhol
     swedish: Sueco
     tagalog: Análogo
@@ -2148,6 +2151,7 @@ pt:
     thai: Tailandês
     tokelauan: Tokelauano
     turkish: Turco
+    ukrainian: Ucraniano
     waray_waray: Samarenho
   less: Menos
   licensed_site_photos: "Fotos com licença %{site_name}"
@@ -2666,6 +2670,8 @@ pt:
   no_species_on_this_list_for_owner: |
     Pode começar a adicionar espécies a esta lista usando a ferramenta "Adicionar à Sua Lista" à direita.
   no_subject_parens: "(sem assunto)"
+  no_such_wiki_page: Essa página não existe.
+  no_such_wiki_page_html: Essa página não existe. Você quer <a href="%{new_url}">criá-la</a>?
   no_suggestions_available: Sem Sugestões Disponíveis
   no_summary_from_wikipedia: Não existe resumo no Wikipédia
   no_summary_has_been_set: Nenhum resumo foi definido.
@@ -3776,6 +3782,7 @@ pt:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infra-híbrido
   ranges: Distribuições
+  #Text to link to a taxon range as a KML file
   range_file: Arquivo do mapa
   ray_finned_fishes: Actinopterygii, grupo de peixes de barbatanas com raios.
   re_order_photos: "Reorganize fotos &raquo;"
@@ -4708,7 +4715,7 @@ pt:
   user_invited_you_to_join_project: "%{user} convidou você a fazer parte de %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} convidou você para fazer parte deste projeto em %{date}"
   user_invited_your_x_to_a_project_html: "%{user} convidou você para %{x} um projeto"
-  user_is_a_naturalist: "%{user} é um naturalista!"
+  user_is_a_naturalist: "%{user} é um(a) naturalista!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> agora é o administrador do %{project}
   user_is_now_a_manager_for_project_html: |
@@ -4932,7 +4939,7 @@ pt:
   x_project_stats: "Estatísticas do Projeto %{project}"
   x_sent_you_a_new_message_on_y_html: "%{x} enviou uma nova mensagem em %{y}:"
   x_site_is_a_social_network_for_naturalist: |
-    %{site} e uma rede social de naturalistas! Grave suas observações de plantas e animais, compartilhe elas com amigos e pesquisadores, e aprenda sobre o mundo natural.
+    %{site} é uma rede social de naturalistas! Grave suas observações de plantas e animais, compartilhe elas com amigos e pesquisadores, e aprenda sobre o mundo natural.
   x_wrote_a_new_post_html: "%{x} escreveu um novo artigo"
   x_wrote_y_new_posts_html: "%{x} escreveu %{y} novas publicações"
   year: Ano
