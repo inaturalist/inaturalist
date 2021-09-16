@@ -37,11 +37,6 @@ function rearrangeTaxonFieldsets() {
   }
 }
 
-function resetFunction() {
-  $( "tr.dynamically_added" ).remove();
-  $( ".analysis" ).hide();
-}
-
 function removeFunction( $this ) {
   var removedId = $this.prev().attr( "id" ).replace( "taxon_change_taxon_change_taxa_attributes_", "" ).replace( "__destroy", "" );
   var removedElement = $( "#taxon_change_taxon_change_taxa_attributes_" + removedId + "_taxon_id" );
@@ -100,11 +95,28 @@ $( function () {
           // update table
           $.each( data.analysis_table, function ( k, v ) {
             if ( $( "#analysis_" + v.taxon_id ).length === 0 ) {
-              $( "tr.headers" ).after( "<tr class='dynamically_added'><td><a id='analysis_" + v.taxon_id + "'>0</a></td><td>" + v.name + "</td></tr>" );
+              var countPiece;
+              if ( v.id_count === 0 ) {
+                countPiece = "0";
+              } else {
+                countPiece = "<a href='" + v.url + "', id='analysis_" + v.taxon_id + "' target='_blank'>" + v.id_count + "</a>";
+              }
+              var taxonPiece = "<a href='" + v.taxon_url + "', id='analysis_taxon_" + v.taxon_id + "' target='_blank'>" + v.name + "</a>";
+              var atlasPiece;
+              if ( v.atlas_url === null ) {
+                atlasPiece = v.atlas_string;
+              } else {
+                atlasPiece = "<a href='" + v.atlas_url + "', id='analysis_atlas_" + v.taxon_id + "' target='_blank'>" + v.atlas_string + "</a>";
+              }
+              var htmlString = `
+                <tr class="dynamically_added">
+                  <td>` + countPiece + `</td>
+                  <td>` + taxonPiece + `</td>
+                  <td>` + atlasPiece + `</td>
+                </tr>
+              `;
+              $( "tr.headers" ).after( htmlString );
             }
-            var $handle = $( "#analysis_" + v.taxon_id );
-            $handle.attr( "href", v.url );
-            $handle.text( v.id_count );
           } );
         }
       },

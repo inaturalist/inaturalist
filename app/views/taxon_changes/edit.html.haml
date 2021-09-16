@@ -8,6 +8,6 @@
 = render partial: "form_head"
 .last.column.span-24#pageheader
   %span.breadcrumbs
-    = link_to t( :back_to_x, :noun => t( @taxon_change.class.name.underscore ) ), taxon_change_path( @taxon_change ), class: 'back crumb'
+    = link_to t( :back ), taxon_change_path( @taxon_change ), class: "back crumb"
   %h2= @title
 = render partial: "form"

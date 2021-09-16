@@ -44,42 +44,84 @@ class TaxonSplit < TaxonChange
     return { id_count: id_count, id_obs: id_obs }
   end
 
+  def array_to_frequency_hash( array )
+    array.group_by(&:itself).transform_values!(&:size)
+  end
+
   def self.analyze_id_destinations( taxon_change )
     total_id_count = taxon_change.get_id_count_and_obs( { current: true, exact_taxon_id: taxon_change.input_taxon.id } )
     total_id_count[:taxon_id] = taxon_change.input_taxon.id
     total_id_count[:name] = taxon_change.input_taxon.name
-
+    ancestor = taxon_change.output_ancestor
     output_id_counts = []
     if taxon_change.output_taxa.map{ |t| t.atlased? }.all?
       output_place_ids = []
       taxon_change.output_taxa.each do |output_taxon|
-        output_place_ids << { output_taxon_id: output_taxon.id, place_ids: output_taxon.atlas.presence_places.pluck( :id ) }
+        output_place_ids << { output_taxon_id: output_taxon.id, places: output_taxon.atlas.presence_places }
       end
 
-      taxon_change.output_taxa.each do |output_taxon|
-        place_ids = output_place_ids.select{ |row| row[:output_taxon_id] ==  output_taxon.id }.first[:place_ids]
-        not_in_place_ids = output_place_ids.select{ |row| row[:output_taxon_id] !=  output_taxon.id }.map{|row| row[:place_ids]}.flatten.uniq
-        params = { current: true, place_id: place_ids, not_in_place: not_in_place_ids, exact_taxon_id: taxon_change.input_taxon.id }
-        output_id_count = taxon_change.get_id_count_and_obs(params)
-        output_id_counts << { name: output_taxon.name, taxon_id: output_taxon.id, id_count: output_id_count[:id_count], id_obs: output_id_count[:id_obs] }
+      presence_places_with_ancestries = output_place_ids.map{|row| row[:places].map{|a| a.self_and_ancestor_ids.reverse} }.flatten(1)
+      presence_places = presence_places_with_ancestries.map{|row| row[0]}
+      keepers = Place.where("id IN (?) AND admin_level IN (?)",presence_places_with_ancestries.flatten.uniq, [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL]).pluck(:id)
+      presence_places_plus_atlas_ancestors = presence_places_with_ancestries.map{|row| row & keepers }
+      frequency_hash = array_to_frequency_hash( presence_places_plus_atlas_ancestors.flatten )
+      unique_presence_places_plus_atlas_ancestors = presence_places_plus_atlas_ancestors.map{|a| a.join("_")}.uniq.map{|a| a.split("_").map{|a| a.to_i}}
+      all_ancestors = unique_presence_places_plus_atlas_ancestors.map{|row| row[1..-1]}.flatten.uniq
+      distinct_leaves = unique_presence_places_plus_atlas_ancestors.select{|row| !all_ancestors.include? row[0]}
+      place_ids = []
+      distinct_leaves.each do |distinct_leaf|
+        place_ids << distinct_leaf[0] if distinct_leaf.map{|l| presence_places.select{|p| p==l}}.flatten.count > 1
       end
+      if place_ids.empty?
+        inside_multiple_count = { id_count: 0, id_obs: [] }
+      else
+        params = { current: true, place_id: place_ids, not_in_place: nil, exact_taxon_id: taxon_change.input_taxon.id }
+        inside_multiple_count = taxon_change.get_id_count_and_obs(params)
+      end
+      inside_multiple_count[:taxon_id] = ancestor.id
+      inside_multiple_count[:name] = ancestor.name
+
+      taxon_change.output_taxa.each do |output_taxon|
+        place_ids = output_place_ids.select{ |row| row[:output_taxon_id] ==  output_taxon.id }.first[:places].pluck( :id )
+        if place_ids.empty?
+          output_id_count = { id_count: 0, id_obs: [] }
+        else
+          not_in_place_ids = output_place_ids.select{ |row| row[:output_taxon_id] !=  output_taxon.id }.map{|row| row[:places].pluck( :id )}.flatten.uniq
+          params = { current: true, place_id: place_ids, not_in_place: not_in_place_ids, exact_taxon_id: taxon_change.input_taxon.id }
+          output_id_count = taxon_change.get_id_count_and_obs(params)
+        end
+        output_id_counts << { name: output_taxon.name, taxon_id: output_taxon.id, id_count: output_id_count[:id_count], id_obs: output_id_count[:id_obs], atlas_id: output_taxon.atlas.id, atlas_active: true }
+      end
+
+      all_presence_places = output_place_ids.map{|row| row[:places].pluck( :id ) }.flatten.uniq
+      if all_presence_places.empty?
+        outside_all_count = { id_count: 0, id_obs: [] }
+      else
+        params = { current: true, place_id: nil, not_in_place: all_presence_places, exact_taxon_id: taxon_change.input_taxon.id }
+        outside_all_count = taxon_change.get_id_count_and_obs(params)
+      end
+      outside_all_count[:taxon_id] = ancestor.id
+      outside_all_count[:name] = ancestor.name
     else
       taxon_change.output_taxa.each do |output_taxon|
-        output_id_counts << { name: output_taxon.name, taxon_id: output_taxon.id, id_count: 0, id_obs: [] }
+        if atlas = output_taxon.atlas
+          atlas_id = atlas.id
+          atlas_active = atlas.is_active
+        else
+          atlas_id = nil
+          atlas_active = nil
+        end
+        output_id_counts << { name: output_taxon.name, taxon_id: output_taxon.id, id_count: 0, id_obs: [], atlas_id: atlas_id, atlas_active: atlas_active }
       end
+      outside_all_count = { name: ancestor.name, taxon_id: ancestor.id, id_count: total_id_count[:id_count], id_obs: total_id_count[:id_obs], atlas_id: nil }
+      inside_multiple_count = { name: ancestor.name, taxon_id: ancestor.id, id_count: 0, id_obs: [], atlas_id: nil }
     end
-
-    ancestor_id_count = {
-      name: taxon_change.output_ancestor.name,
-      taxon_id: taxon_change.output_ancestor.id,
-      id_count: total_id_count[:id_count] - output_id_counts.map{ |row| row[:id_count] }.sum,
-      id_obs: total_id_count[:id_count] > 200 ? [] : ( total_id_count[:id_obs] - output_id_counts.map{ |row| row[:id_obs] }.flatten.uniq )
-    }
 
     return {
       total_id_count: total_id_count,
       output_id_counts: output_id_counts,
-      ancestor_id_count: ancestor_id_count
+      outside_all_count: outside_all_count,
+      inside_multiple_count: inside_multiple_count
     }
   end
 

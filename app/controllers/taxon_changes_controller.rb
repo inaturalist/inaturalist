@@ -371,11 +371,13 @@ class TaxonChangesController < ApplicationController
     end
     if @taxon_change && @taxon_change.type == "TaxonSplit" && @taxon_change.taxon && @taxon_change.taxon_change_taxa.size > 1
       id_analysis = TaxonSplit.analyze_id_destinations( @taxon_change )
-      analysis_header = identification_analysis_with_url( id_analysis[:total_id_count] )
+
+      analysis_header = identification_analysis_with_url( id_analysis[:total_id_count], :total_id_count )
       analysis_table = []
-      analysis_table << identification_analysis_with_url( id_analysis[:ancestor_id_count] )
+      analysis_table << identification_analysis_with_url( id_analysis[:inside_multiple_count], :inside_multiple_count )
+      analysis_table << identification_analysis_with_url( id_analysis[:outside_all_count], :outside_all_count )
       id_analysis[:output_id_counts].reverse.each do |row|
-        analysis_table << identification_analysis_with_url( row )
+        analysis_table << identification_analysis_with_url( row, :output_id_count )
       end
       analysis_data = {
         analysis_header: analysis_header,
@@ -386,6 +388,7 @@ class TaxonChangesController < ApplicationController
       response = { json: I18n.t( :only_curators_can_access_that_page ), status: :unprocessable_entity }
     end
     respond_to do |format|
+      puts response[:json].to_json
       format.json { render json: response[:json], status: response[:status] }
     end
   end
@@ -405,7 +408,7 @@ class TaxonChangesController < ApplicationController
     output_taxa = Taxon.where( id: params[:outputIds].map{|i| i.to_i} )
     @taxon_change = TaxonSplit.new
     @taxon_change.taxon = input_taxon
-    @taxon_change.new_taxa << output_taxa
+    output_taxa.each { |t| @taxon_change.taxon_change_taxa.build( taxon: t ) }
   end
 
   def get_change_params
@@ -435,7 +438,7 @@ class TaxonChangesController < ApplicationController
     true
   end
 
-  def identification_analysis_with_url( row )
+  def identification_analysis_with_url( row, label )
     if row[:id_count] == 0
       url = nil
     else
@@ -444,6 +447,30 @@ class TaxonChangesController < ApplicationController
       }
       url = observations_path( observation_params )
     end
-    return { name: row[:name], taxon_id: row[:taxon_id], id_count: row[:id_count], url: url }
+    taxon_url = taxon_path( { id: row[:taxon_id] } )
+    if label == :total_id_count
+      return { name: row[:name], taxon_id: row[:taxon_id], taxon_url: taxon_url, id_count: row[:id_count], url: url }
+    else
+      if row[:atlas_id].nil?
+        if label == :inside_multiple_count
+          atlas_url = nil
+          atlas_string = "Overlapping atlases"
+        elsif label == :outside_all_count
+          atlas_url = nil
+          atlas_string = "Outside of all atlases"
+        else
+          atlas_url = new_atlas_path( { taxon_id: row[:taxon_id] } )
+          atlas_string = "Atlas missing"
+        end
+      else
+        if row[:atlas_active] == false
+          atlas_string = "Atlas missing"
+        else
+          atlas_string = "Atlas"
+        end
+        atlas_url = atlas_path( row[:taxon_id] )
+      end
+      return { name: row[:name], taxon_id: row[:taxon_id], taxon_url: taxon_url, id_count: row[:id_count], url: url, atlas_string: atlas_string, atlas_url: atlas_url }
+    end
   end
 end

@@ -2,19 +2,12 @@
   Taxonomic
   = @taxon_change.class.name.split('Taxon')[1]
   = "(#{@taxon_change.committed_on.nil? ? "Draft" : "Committed on #{@taxon_change.committed_on}"})"
-- content_for :extrahead do
-  = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"
-  = javascript_include_tag "taxon_changes/show"
 - content_for(:extracss) do
   = stylesheet_link_tag 'taxon_changes'
   :css
     iframe { border: 0; }
-
 - content_for :extrajs do
-  :javascript
-    $( document ).ready( function( ) {
-      $( "#comment_body" ).textcompleteUsers( );
-    } );
+  = javascript_include_tag "taxon_changes/show"
 .container
   .row
     .col-xs-12
@@ -92,25 +85,20 @@
     .col-xs-12
       = render partial: "show_change_taxon", object: @taxon_change, locals: { show_commit_button: true }
       - if logged_in? && current_user.is_curator? && @taxon_change.draft? && @taxon_change.is_a?( TaxonSplit )
+        #id_analysis
         =link_to t( :analyze_ids), "#", :class => "analyze_ids_button", :data => { taxon_change_id: @taxon_change.id }
         - helptip_for "analyze" do
           = t :estimate_which_input
         = image_tag "spinner.gif", :class => "spinner"
         .analysis
           =t( :total_ids_on_input_taxon )
-          =link_to 0, "#", class: "analysis_input"
+          =link_to 0, "#", target: "_blank", class: "analysis_input"
           %table.analysis
             %tr.headers
               %td= t(:no_ids)
               %td= t(:destination)
-            - @taxon_change.output_taxa.each do |output_taxon|
-              %tr
-                %td= link_to 0, "#", class: "analysis_#{output_taxon.id}"
-                %td= output_taxon.name
-            %tr
-              - ancestor = @taxon_change.output_ancestor
-              %td= link_to 0, "#", class: "analysis_#{ancestor.id}"
-              %td= ancestor.name
+              %td= t(:atlas)
+          = link_to_function t( :reset ), "resetFunction()"
   .row
     .col-xs-12
       #mapwrapper.stacked
