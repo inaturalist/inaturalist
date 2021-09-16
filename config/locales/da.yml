@@ -2682,6 +2682,8 @@ da:
   no_species_on_this_list_for_owner: |
     Man kan begynde at føje arter til denne liste ved brug af "Føj til din liste"-værktøjet til højre.
   no_subject_parens: "(Intet emne)"
+  no_such_wiki_page: Der er ingen sådan side.
+  no_such_wiki_page_html: Der er ingen sådan side. Vil du <a href="%{new_url}">oprette den</a>?
   no_suggestions_available: Ingen forslag tilgængelige
   no_summary_from_wikipedia: Ingen oversigt fra Wikipedia
   no_summary_has_been_set: Ingen oversigt er indstillet.
@@ -3803,6 +3805,7 @@ da:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: Infrahybrid
   ranges: Områder
+  #Text to link to a taxon range as a KML file
   range_file: Udbredelsesfil
   ray_finned_fishes: strålefinnede fisk
   re_order_photos: "Ændre rækkefølgen for fotos &raquo;"

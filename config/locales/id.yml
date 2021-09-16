@@ -922,7 +922,7 @@ id:
     place: Tempat di mana status ini dibatasi.
     url: URL untuk sebuah halaman yang menjelaskan status ini.
     geoprivacy: |
-      Geoprivasi standar untuk pengamatan takson ini. Ingat bahwa geoprivasi dari sebuah status yang terkait dengan tempat bertingkat benua, negara, atau provinsi dapat membatalkan status yang global atau memiliki tempat dengan tingkat yang lebih tinggi.
+      Geoprivasi standar untuk pengamatan takson ini. Ingat bahwa geoprivasi dari sebuah status yang terkait dengan tempat bertingkat benua, negara, atau provinsi dapat membatalkan status yang global atau status dengan tempat yang tingkatnya lebih tinggi.
     iucn: |
       Kode IUCN Daftar Merah yang sederajat. Ini bukan penilaian IUCN yang sebenarnya, hanya merupakan kode IUCN yang paling mendekati ancaman penyingkapan koordinat yang ditunjukkan oleh status ini. Hal ini akan membatalkan pengaturan geoprivasimu jika ia berada di tingkat "Berisiko Rendah" atau di bawahnya, jadi jika kamu ingin mengaburkan pengamatan dari takson ini, atur pengamatan ini ke tingkat "Hampir Terancam" atau lebih tinggi lagi.
   conservation_status_geoprivacy_desc: |
@@ -1950,7 +1950,7 @@ id:
   invited_x: "Telah mengundang %{x}"
   iphone: iPhone
   is_not_following_anyone: tidak mengikuti siapapun.
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Apakah bukti yang diberikan sudah cukup untuk mengonfirmasi bahwa ini adalah %{taxon}?
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Apakah bukti-bukti yang disediakan cukup untuk mengonfirmasi bahwa ini adalah %{taxon}?
   is_this_offensive_html: 'Apakah ini <a href="/help#inappropriate">tidak pantas</a>, spam, atau serangan?'
   is_this_place_a_duplicate: Apakah tempat ini merupakan duplikasi?
   it_can_now_be_used_for_research: Sekarang, ini dapat digunakan untuk penelitian dan ditampilkan di laman lain
@@ -2084,9 +2084,12 @@ id:
     norwegian: Norwegia
     occitan: Occitan
     pangasinan: Pangasinan
+    polish: Polandia
     portuguese: Portugis
     romanian: Romania
     russian: Rusia
+    sinhala: Sinhala
+    slovak: Slovakia
     spanish: Spanyol
     swedish: Swedia
     tagalog: Tagalog
@@ -2094,6 +2097,7 @@ id:
     thai: Thai
     tokelauan: Tokelauan
     turkish: Turki
+    ukrainian: Ukraina
     waray_waray: Waray-Waray
   less: Kurang
   licensed_site_photos: "Foto %{site_name} berlisensi"
@@ -2610,6 +2614,8 @@ id:
   no_species_on_this_list_for_owner: |
     Anda dapat mulai menambahkan spesies pada daftar ini dengan menggunakan alat "Tambahkan ke Daftar Anda" di kanan.
   no_subject_parens: "(Tidak ada subjek)"
+  no_such_wiki_page: Tidak ada halaman seperti itu.
+  no_such_wiki_page_html: Tidak ada halaman seperti itu. Apakah Anda ingin <a href="%{new_url}">membuatnya</a>?
   no_suggestions_available: Tidak Ada Rekomendasi Yang Tersedia
   no_summary_from_wikipedia: Tidak ada rangkuman dari Wikipedia
   no_summary_has_been_set: Tidak ada rangkuman yang telah ditetapkan.
@@ -3032,8 +3038,8 @@ id:
       continent: benua
       Country: Negara
       country: negara
-      County: Keresidenan
-      county: keresidenan
+      County: County
+      county: county
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       Delegation: Delegasi
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
@@ -3597,7 +3603,7 @@ id:
     x_families:
       other: Famili
     subfamily: Subfamily
-    supertribe: Supesuku
+    supertribe: Supersuku
     tribe: Suku
     subtribe: Subsuku
     genus: Genus
@@ -3692,6 +3698,7 @@ id:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infrahibrida
   ranges: Jangkauan
+  #Text to link to a taxon range as a KML file
   range_file: File Jangkauan
   ray_finned_fishes: ikan bersirip cahaya
   re_order_photos: "Pesan kembali foto&raquo;"

@@ -958,8 +958,6 @@ ca:
       Organització que ha declarat aquest estat. Si us plau, utilitzeu l'autocompletar per escollir una autoritat existent abans d'afegir una nova. Podeu saltar aquest pas si voleu que *vostè* sigueu ser relacionat com autoritat.
     place: Lloc pel qual aquest estat és restringit.
     url: URL de la pàgina que descriu aquest estat.
-    geoprivacy: |
-      Geo-privacitat per defecte per a les observacions d’aquest tàxon. Tingueu en compte que la geo-privacitat d’una situació associada a un lloc a escala de continent, país o estat pot anul·lar una situació global o associada a un lloc de nivell superior.
     iucn: |
       Equivalent del codi de la Llista Vermella (IUCN). Aquesta no és la classificació real de l'IUCN, únicament és el codi de l'IUCN que s'ajusta millor a la revelació de les coordenades que millor s'ajusta al seu estat d'amenaça. Aquest sobreescriu la geoprivacitat si és "Menys Preocupant" o inferior: així que si has volgut ocultar les observacions d'aquest taxó, marca'l com a "Gairebé amenaçat" o superior.
   conservation_status_geoprivacy_desc: |
@@ -3722,6 +3720,7 @@ ca:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infrahíbrid
   ranges: Rangs
+  #Text to link to a taxon range as a KML file
   range_file: Arxiu de Distribució
   ray_finned_fishes: peixos ossis
   re_order_photos: "Reordena fotos »"
