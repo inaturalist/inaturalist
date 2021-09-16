@@ -443,7 +443,7 @@ class TaxonChangesController < ApplicationController
       url = nil
     else
       observation_params = {
-        id: row[:id_obs].join(",")
+        id: row[:id_obs].join(","), place_id: "any", verifiable: "any"
       }
       url = observations_path( observation_params )
     end
@@ -451,26 +451,29 @@ class TaxonChangesController < ApplicationController
     if label == :total_id_count
       return { name: row[:name], taxon_id: row[:taxon_id], taxon_url: taxon_url, id_count: row[:id_count], url: url }
     else
+      role = nil
       if row[:atlas_id].nil?
         if label == :inside_multiple_count
           atlas_url = nil
-          atlas_string = "Overlapping atlases"
+          atlas_string = t( :overlapping_atlases )
+          role = "warning"
         elsif label == :outside_all_count
           atlas_url = nil
-          atlas_string = "Outside of all atlases"
+          atlas_string = t( :outside_of_all_atlases )
+          role = "warning"
         else
           atlas_url = new_atlas_path( { taxon_id: row[:taxon_id] } )
-          atlas_string = "Atlas missing"
+          atlas_string = t( :not_atlased )
         end
       else
         if row[:atlas_active] == false
-          atlas_string = "Atlas missing"
+          atlas_string = t( :not_atlased )
         else
-          atlas_string = "Atlas"
+          atlas_string = t( :atlas )
         end
         atlas_url = atlas_path( row[:taxon_id] )
       end
-      return { name: row[:name], taxon_id: row[:taxon_id], taxon_url: taxon_url, id_count: row[:id_count], url: url, atlas_string: atlas_string, atlas_url: atlas_url }
+      return { name: row[:name], taxon_id: row[:taxon_id], taxon_url: taxon_url, id_count: row[:id_count], url: url, atlas_string: atlas_string, atlas_url: atlas_url, role: role }
     end
   end
 end

@@ -33,7 +33,13 @@ $( function () {
               } else {
                 atlasPiece = "<a href='" + v.atlas_url + "', id='analysis_atlas_" + v.taxon_id + "' target='_blank'>" + v.atlas_string + "</a>";
               }
-              var htmlString = "<tr class='dynamically_added'><td>" + countPiece + "</td><td>" + taxonPiece + "</td><td>" + atlasPiece + "</td></tr>";
+              var addedClass;
+              if ( v.role === "warning" && v.id_count > 0 ) {
+                addedClass = "dynamically_added analysis_id_warning";
+              } else {
+                addedClass = "dynamically_added";
+              }
+              var htmlString = "<tr class='" + addedClass + "'><td>" + countPiece + "</td><td>" + taxonPiece + "</td><td>" + atlasPiece + "</td></tr>";
               $( "tr.headers" ).after( htmlString );
             }
           } );

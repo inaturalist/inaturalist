@@ -734,6 +734,7 @@ en:
   assessment_x: "%{assessment} assessment"
   assessments: assessments
   associations: Associations
+  atlased: Atlased
   atlas_for_taxon_html: Atlas for %{taxon}
   # As in the Atom Syndication Format:
   # https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -1726,7 +1727,7 @@ en:
     Establishment means describes how the taxon came to be established in an area.  
     See DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
   estimate_which_input: |
-    estimate which input taxon ids will be replaced with which output taxa or common ancestor once the split is comitted. This may take
+    Estimate which input taxon ids will be replaced with which output taxa and which will be coarsened to a common ancestor once the split is comitted. This may take
     a moment to calculate. Links to observations are truncated to subsets of 200.
   event_in_progress: Event in progress
   event_stats: Event Stats
@@ -2878,6 +2879,7 @@ en:
   none: None
   none_found: None found
   normal: normal
+  not_atlased: Not Atlased
   not_completed: Not Completed
   not_confident: We're not confident enough to make a recommendation.
   not_confident_top_suggestions: We're not confident enough to make a recommendation, but here are our top suggestions
@@ -3202,9 +3204,11 @@ en:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Other taxa commonly misidentified as this subgenus in <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_subsection: Other taxa commonly misidentified as this subsection
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Other taxa commonly misidentified as this subsection in <a href="%{url}">%{place}</a>
+  outside_of_all_atlases: Outside of all atlases
   our_blog: Our Blog
   output_taxon: Output taxon
   overview: Overview
+  overlapping_atlases: Overlapping atlases
   overlapping_downstream_taxon_frameworks_html: "Overlapping downstream Taxon Frameworks: %{count}"
   owner: Owner
   # One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
