@@ -2109,9 +2109,12 @@ it:
     norwegian: Norvegese
     occitan: Occitano
     pangasinan: Pangasinan
+    polish: Polacco
     portuguese: Portoghese
     romanian: Rumeno
     russian: Russo
+    sinhala: Singalese
+    slovak: Slovacco
     spanish: Spagnolo
     swedish: Svedese
     tagalog: Tagalog
@@ -2119,6 +2122,7 @@ it:
     thai: Thailandese
     tokelauan: Tokelau
     turkish: Turco
+    ukrainian: Ucraino
     waray_waray: Wáray-Wáray
   less: Meno
   licensed_site_photos: "Foto con licenza di %{site_name}"
@@ -2636,6 +2640,8 @@ it:
   no_species_on_this_list_for_owner: |
     Puoi iniziare ad aggiungere specie a questo elenco usando lo strumento "Aggiungi alla Tua Lista" sulla destra.
   no_subject_parens: "(Nessun oggetto)"
+  no_such_wiki_page: Non esiste nessuna pagina del genere.
+  no_such_wiki_page_html: Non esiste nessuna pagina del genere. Desideri <a href="%{new_url}">crearla</a>?
   no_suggestions_available: Non ci sono suggerimenti disponibili
   no_summary_from_wikipedia: Nessun riassunto di Wikipedia
   no_summary_has_been_set: Nessun riassunto impostato
@@ -3732,6 +3738,7 @@ it:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infraibrido
   ranges: Areali
+  #Text to link to a taxon range as a KML file
   range_file: File dell'Areale
   ray_finned_fishes: Attinopterigi
   re_order_photos: "Riordina le foto &raquo;"
