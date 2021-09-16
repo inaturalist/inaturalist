@@ -44,10 +44,6 @@ class TaxonSplit < TaxonChange
     return { id_count: id_count, id_obs: id_obs }
   end
 
-  def array_to_frequency_hash( array )
-    array.group_by(&:itself).transform_values!(&:size)
-  end
-
   def self.analyze_id_destinations( taxon_change )
     total_id_count = taxon_change.get_id_count_and_obs( { current: true, exact_taxon_id: taxon_change.input_taxon.id } )
     total_id_count[:taxon_id] = taxon_change.input_taxon.id
@@ -64,7 +60,7 @@ class TaxonSplit < TaxonChange
       presence_places = presence_places_with_ancestries.map{|row| row[0]}
       keepers = Place.where("id IN (?) AND admin_level IN (?)",presence_places_with_ancestries.flatten.uniq, [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL]).pluck(:id)
       presence_places_plus_atlas_ancestors = presence_places_with_ancestries.map{|row| row & keepers }
-      frequency_hash = array_to_frequency_hash( presence_places_plus_atlas_ancestors.flatten )
+      frequency_hash = presence_places_plus_atlas_ancestors.flatten.group_by(&:itself).transform_values!(&:size)
       unique_presence_places_plus_atlas_ancestors = presence_places_plus_atlas_ancestors.map{|a| a.join("_")}.uniq.map{|a| a.split("_").map{|a| a.to_i}}
       all_ancestors = unique_presence_places_plus_atlas_ancestors.map{|row| row[1..-1]}.flatten.uniq
       distinct_leaves = unique_presence_places_plus_atlas_ancestors.select{|row| !all_ancestors.include? row[0]}
