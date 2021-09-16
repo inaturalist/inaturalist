@@ -108,13 +108,7 @@ $( function () {
               } else {
                 atlasPiece = "<a href='" + v.atlas_url + "', id='analysis_atlas_" + v.taxon_id + "' target='_blank'>" + v.atlas_string + "</a>";
               }
-              var htmlString = `
-                <tr class="dynamically_added">
-                  <td>` + countPiece + `</td>
-                  <td>` + taxonPiece + `</td>
-                  <td>` + atlasPiece + `</td>
-                </tr>
-              `;
+              var htmlString = "<tr class='dynamically_added'><td>" + countPiece + "</td><td>" + taxonPiece + "</td><td>" + atlasPiece + "</td></tr>";
               $( "tr.headers" ).after( htmlString );
             }
           } );
