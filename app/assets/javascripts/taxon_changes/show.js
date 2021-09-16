@@ -5,6 +5,7 @@ function resetFunction() {
 
 $( function () {
   $( ".analyze_ids_button" ).on( "click", function ( event ) {
+    resetFunction();
     var $this = $( this );
     event.preventDefault();
     $.ajax( {

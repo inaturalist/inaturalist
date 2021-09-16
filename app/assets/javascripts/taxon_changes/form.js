@@ -64,6 +64,7 @@ function resetFunction() {
 
 $( function () {
   $( ".analyze_ids_button" ).on( "click", function ( event ) {
+    resetFunction();
     var inputTaxonId = $( "#taxon_change_taxon_id" ).val();
     var outputIds = [];
     $( "input[id^='taxon_change_taxon_change_taxa_attributes_']" ).each( function () {

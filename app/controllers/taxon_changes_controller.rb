@@ -469,7 +469,7 @@ class TaxonChangesController < ApplicationController
         if row[:atlas_active] == false
           atlas_string = t( :not_atlased )
         else
-          atlas_string = t( :atlas )
+          atlas_string = t( :atlased )
         end
         atlas_url = atlas_path( row[:taxon_id] )
       end
