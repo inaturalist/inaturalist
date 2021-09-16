@@ -1,8 +1,7 @@
-<%- content_for(:title) do -%>
-  <%= @title = t(:observation_calendar_for, :user => @login, :year => @year) %>
-<%- end -%>
-<%- content_for(:extracss) do -%>
-  <style type="text/css" media="screen">
+- content_for(:title) do
+  = @title = t(:observation_calendar_for, :user => @login, :year => @year)
+- content_for(:extracss) do
+  :css
     .yearnav {position:relative;}
     .yearnav .left, .yearnav .right {position:absolute;}
     .yearnav .left { left: 0;}
@@ -10,44 +9,31 @@
     .yearnav select { margin-top:10px;}
     table.column{ margin-right: 8px; }
     table.column.last{ margin-right: 0px; }
-  </style>
-<%- end -%>
 
-<%- content_for(:extrajs) do -%>
-  <%= javascript_include_tag "d3.min", "calendars" %>
-<%- end -%>
+- content_for(:extrajs) do
+  = javascript_include_tag "d3.min", "calendars"
 
-<%= render :partial => 'shared/by_login_header', :locals => {:title => @title} %>
+= render :partial => 'shared/by_login_header', :locals => {:title => @title}
 
-<div class="column span-24 yearnav">
-  <h2 class="left"><%= link_to "&lsaquo; #{@year - 1}".html_safe, :year => @year - 1 %></h2>
-  <% if @year < Date.today.year -%>
-    <h2 class="right"><%= link_to "#{@year + 1} &rsaquo;".html_safe, :year => @year + 1 %></h2>
-  <% end -%>
-  <h2 style="text-align: center;">
-    <%= @year %>
-  </h2>
-</div>
+.column.span-24.yearnav
+  %h2.left
+    = link_to "&lsaquo; #{@year - 1}".html_safe, :year => @year - 1
+  - if @year < Date.today.year
+    %h2.right
+      = link_to "#{@year + 1} &rsaquo;".html_safe, :year => @year + 1
+  %h2( style="text-align: center;" )
+    = @year
 
-<div class="clear">
-  <% [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december].each_with_index do |month, i| %>
-    <%= render :partial => 'calendar', :locals => {
-      :observations => @observations_by_month[i+1], 
-      :year => @year, 
-      :month => i+1,
-      :month_name => t("date_format.month.#{month}")
-    } %>
-  <% end -%>
-</div>
+.clear
+  - [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december].each_with_index do |month, i|
+    = render :partial => 'calendar', :locals => { :observations => @observations_by_month[i+1], :year => @year, :month => i+1, :month_name => t("date_format.month.#{month}") }
 
-<div class="column span-24 yearnav">
-  <h2 class="left"><%= link_to "&lsaquo; #{@year - 1}".html_safe, :year => @year - 1 %></h2>
-  <% if @year < Date.today.year -%>
-    <h2 class="right"><%= link_to "#{@year + 1} &rsaquo;".html_safe, :year => @year + 1 %></h2>
-  <% end -%>
-  <h2 style="text-align: center;">
-    <form method="get">
-      <%= select_tag :year, options_for_select(1950..Date.today.year, :selected => @year), "data-autosubmit" => true %>
-    </form>
-  </h2>
-</div>
+.column.span-24.yearnav
+  %h2.left
+    = link_to "&lsaquo; #{@year - 1}".html_safe, :year => @year - 1
+  - if @year < Date.today.year
+    %h2.right
+      = link_to "#{@year + 1} &rsaquo;".html_safe, :year => @year + 1
+  %h2( style="text-align: center;" )
+    %form( method="get" )
+      = select_tag :year, options_for_select(1950..Date.today.year, :selected => @year), "data-autosubmit" => true
