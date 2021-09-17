@@ -9,7 +9,7 @@
   login ||= @login || current_user.try(:login)
   day_names = (0..6).map{|d| t( "date.abbr_day_names" )[d] rescue t( "date.abbr_day_names", locale: "en" )[d] }
 
-= calendar_for(observations, :year => year, :month => month, :html => {:class => "calendar column #{cycle('first', nil, nil, 'last')}"}) do |t|
+= calendar_for(observations, :year => year, :month => month, :html => {:class => "calendar column"}) do |t|
   %caption
     = month_name
   = t.head(*day_names)

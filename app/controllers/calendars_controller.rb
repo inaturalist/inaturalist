@@ -5,6 +5,9 @@ class CalendarsController < ApplicationController
     @year = (params[:year] || Time.now.year).to_i
     @observations = @selected_user.observations.on(@year).select(:id, :observed_on)
     @observations_by_month = @observations.group_by {|o| o.observed_on.month}
+    respond_to do |format|
+      format.html { render layout: "bootstrap" }
+    end
   end
   
   def show
