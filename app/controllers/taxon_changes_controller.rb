@@ -153,6 +153,10 @@ class TaxonChangesController < ApplicationController
   end
   
   def destroy
+    if @taxon_change.committed?
+      flash[:error] = t(:committed_taxon_changes_cannot_be_deleted)
+      return redirect_back_or_default( taxon_changes_path )
+    end
     if @taxon_change.destroy
       flash[:notice] = "Taxon change was deleted."
     else
