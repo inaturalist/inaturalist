@@ -1,4 +1,4 @@
-pt-BR:
+pt:
   x_comments:
     one: '1 comentário'
     other: '%{count} comentários'
@@ -62,8 +62,8 @@ pt-BR:
     one: "1 Observação"
     other: "%{count} Observações"
   x_observations_html:
-    one: "<span class='count'>1</span> observações"
-    other: "<span class='count'>%{count}</span> observaçõess"
+    one: "<span class='count'>1</span> observação"
+    other: "<span class='count'>%{count}</span> observações"
   x_observations_link_html:
     one: "<a href='%{url}'>1 observação</a>"
     other: "<a href='%{url}'>%{count} observações</a>"
@@ -378,9 +378,9 @@ pt-BR:
   admin_s: Administrador(es)
   admin_only: Somente administrador
   admin_tools: Ferramentas Administrativas
-  agree_: Concordo
-  agree?: Você concorda?
-  agree_with_current_taxon: Concordo com taxon atual
+  agree_: Concordar
+  agree?: Concordar?
+  agree_with_current_taxon: Concordar com o táxon atual
   agreeing: Concordando...
   aka: também conhecido como
   all: Todas
@@ -629,7 +629,7 @@ pt-BR:
   attention: Atenção
   you_sure_delete_list: Tem certeza que gostaria de apagar esta lista?
   you_sure_delete_taxon_from_list?: "Você tem certeza que deseja remover %{taxon} da lista?"
-  asc: Cresc
+  asc: Cresc.
   ascending: Ascendente
   assessment: avaliação
   assessment_has_benn_completed: Avaliação completa
@@ -684,7 +684,7 @@ pt-BR:
   back_to_x: "Voltar para %{noun}"
   back_to_x_assessment: "Volte para as avaliações de %{project}"
   back_to_x_history: "Voltar para %{x} histórico"
-  back_to_x_journal: "Voltar para %{user}'s boletim informativo"
+  back_to_x_journal: "Voltar ao boletim de %{user}"
   back_to_x_blog: "Voltar ao blog de %{x}"
   back_to_your_dashboard: Voltar ao seu painel
   back_to_your_lists: Voltar para sua lista
@@ -1133,7 +1133,7 @@ pt-BR:
   curate_taxa: Táxon administrado
   curate_user: Usuário curador
   curating: Em avaliação
-  curation: Administração
+  curation: Supervisão pelo Curador
   curator: Coordenador
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
@@ -1271,7 +1271,7 @@ pt-BR:
   data_used: "Dados utilizados:"
   datatype: Tipo de dados
   date_: Data
-  date_added: Data de inclusão
+  date_added: Data de adição
   date_authorized: Data de Autorização
   date_created: Data de criação
   date_format:
@@ -1301,7 +1301,7 @@ pt-BR:
       october: Outubro
       november: Novembro
       december: Dezembro
-  date_is_accurate: Data é acurada
+  date_is_accurate: Data correta
   date_joined: Data de inscrição
   date_obscured_notice: Data ocultada para proteger a privacidade pessoal ou do organismo
   date_observed: Data de observação
@@ -1362,7 +1362,7 @@ pt-BR:
   deleting: Excluindo...
   deleting_verb: Excluindo
   deny: Negar
-  desc: Decresc
+  desc: Decresc.
   descending: Descendente
   describe_purpose: Descreva o objetivo deste projeto.
   describe_your_interest_in_nature: Descreva seu interesse na natureza!
@@ -1561,7 +1561,7 @@ pt-BR:
   establishment:
     endemic: Endêmica
     establishment: Estabelecimento
-    introduced: Introduzida
+    introduced: Introduzido
     invasive: Invasora
     managed: Cultivada/Cativeiro
     native: Nativa
@@ -1901,7 +1901,7 @@ pt-BR:
   identify_observations: "Identifique observações"
   identify_observations_by_these_users: Identifique observações desses usuários
   identify_title: "Identificar"
-  identification: Identificação
+  identification: identificação
   identification_by_user: Identificação por %{user}
   identification_deleted: Identificação apagada.
   identification_saved: "Identificação salva!"
@@ -1992,7 +1992,7 @@ pt-BR:
   internal_server_error: Erro interno do servidor
   internal_taxon_including_descendants: Táxon interno (incluindo descendentes)
   internal_taxon_rank: Classificação do táxon interno
-  introduced: Introduzida
+  introduced: Introduzido
   introduced_in_place: "Introduzido em %{place}"
   invitation: Convite
   invite: convidar
@@ -2024,9 +2024,9 @@ pt-BR:
   'joined!': Participando!
   joined_projects: Projetos a que aderiu
   joined_with_date: "Entrou: %{date}"
-  journal: Boletim Informativo
+  journal: Boletim
   journal_archives_for: Arquivos do Boletim Informativo
-  journal_post: Publique no Boletim Informativo
+  journal_post: Publicação do boletim
   journal_post_deleted: Boletim informativo apagado.
   journal_posts: Publicações de jornal
   jpg_png_or_gif: "JPG, PNG, ou GIF"
@@ -2270,7 +2270,7 @@ pt-BR:
   location_is_public: Localização pública
   location_is_obscured: Localização oculta
   location_is_private: Localização privada
-  location_specified: Localização especifica
+  location_specified: Localização especificada
   locked_taxa_will_not_allow_new: Táxons bloqueados não permitem inclusões de táxons descendentes. Ou seja, se você bloquear o táxon Amphibia e um dos usuários tentar importar os dados de <i>Rana catesbeiana</i> a partir de um provedor externo, um novo táxon seria criado mas não seria classificado como um anfíbio. Quando isto ocorre, o novo táxon deve ser marcado para que os curadores o localizem. Isto deve ser utilizada somente para táxons em que acreditamos ter todos os descendentes. Curadores podem resolver essa inserção editando táxons e incluindo IDs de ancestrais diretamente, mas, por favor, considere mesclar novos táxons em um táxon já presente.
   log_in: Entrar
   log_in_or_sign_up_to_add_comments_html: |
@@ -2365,10 +2365,10 @@ pt-BR:
   mentioned_you_in_noun_by_html: "%{user} mencionou você em %{noun} por %{by}"
   mentioned_you_in_noun_by_user_html: "%{user} mencionou você em %{noun} por %{by}"
   mentioned_you_in_noun_by_you_html: "%{user} mencionou você em %{noun} por você"
-  mentioned_you_in_a_x_on_noun_html: "%{user} mencionou você em uma %{x} on %{noun}"
-  mentioned_you_in_an_x_on_noun_html: "%{user} mencionou você em um %{x} on %{noun}"
-  mentioned_you_in_a_x_on_noun_by_html: "%{user} mencionou você em uma %{x} em %{noun} sobre %{by}"
-  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} mencionou você em uma %{x} em %{noun} por %{by}"
+  mentioned_you_in_a_x_on_noun_html: "%{user} mencionou você num %{x} em %{noun}"
+  mentioned_you_in_an_x_on_noun_html: "%{user} mencionou você num %{x} em %{noun}"
+  mentioned_you_in_a_x_on_noun_by_html: "%{user} mencionou você num %{x} em %{noun} por %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} mencionou você num %{x} em %{noun} por %{by}"
   mentioned_you_in_a_x_on_noun_by_you_html: "%{user} mencionou você em uma %{x} em %{noun} por você"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} mencionou você em uma %{x} em %{noun} por %{by}"
   mentioned_you_in_an_x_on_noun_by_user_html: "%{user} mencionou você em uma %{x} em %{noun} por %{by}"
@@ -2467,7 +2467,7 @@ pt-BR:
   more_import_options: Mais opções de importação
   more_info: Mais informações
   more_info_title: Maiores informações
-  more_journal_posts: Mais artigos do boletim informativo
+  more_journal_posts: Mais publicações do boletim
   more_observations: Mais observações
   more_photos: Mais Fotos
   more_than_a_week_ago: Mais de uma semana atrás
@@ -2511,7 +2511,7 @@ pt-BR:
   n_person_disagrees: "%{amount} pessoas discordam"
   name: Nome
   name_entered: Nome inserido
-  name_or_slug: "Nome ou URL, e.j. meu-projeto"
+  name_or_slug: "Nome ou URL, ex.: meu-projeto"
   name_of_the_place_you: Nome do lugar que foi realizada a observação
   name_providers:
     col: Catálogo da Vida
@@ -2530,9 +2530,9 @@ pt-BR:
   ne_lat: Lat. N.E.
   ne_lon: Long. N.E.
   near_threatened: Quase ameaçado
-  nearby_observations_: Observações Próximas
-  needs_id: Precisa de identificação
-  needs_id_: Precisa de identificação
+  nearby_observations_: Observações próximas
+  needs_id: Precisa de Identificação
+  needs_id_: Precisa de Identificação
   needs_id_expandable_html: "<span class='full'>Precisa de </span>ID"
   needs_id_tooltip_html: 'Observações "Precisa de ID" possuem mídia, localização e data, mas ainda exigem consenso da comunidade sobre uma identificação exata. <a href="https://www.inaturalist.org/pages/help#quality">Saiba mais sobre os níveis de qualidade</a>'
   needs_to_be_identified: Precisa ser identificado
@@ -4028,7 +4028,7 @@ pt-BR:
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Mostrar "Sem Anotação"
-  show_off_your_recent_observations: Publicar suas observações mais recentes em seu blog ou site!
+  show_off_your_recent_observations: Exponha as suas observações recentes no seu próprio blog ou website!
   show_only: 'Mostrar somente:'
   show_relative_proportions_of_all_observations: Mostrar a proporção relativa de todas as observações
   #Label for a button to show the running total of an accumulation chart
@@ -4177,7 +4177,7 @@ pt-BR:
   start_typing_place_name: Comece a digitar o nome de um local
   start_typing_taxon_name: Comece a digitar o nome do táxon
   start_typing_someones_name: "Começa a digitar o nome de alguém"
-  stats: Andamento
+  stats: Estatísticas
   stats_for_this_year_have_not_been_generated: As estatísticas para este ano não foram geradas.
   status: Status
   status_globally: '"%{status}" Globalmente'
@@ -4253,7 +4253,7 @@ pt-BR:
   task_deleted: Tarefa excluída
   taxa: Táxons
   taxa_with_unknown_relationships: Taxa com relações desconhecidas
-  taxa_info: Informações sobre taxa
+  taxa_info: Informações sobre táxons
   taxa_needing_curation: Táxons que requerem administração
   taxa_observed: táxons observados
   taxa_to_include: Táxons a incluir
@@ -4676,7 +4676,7 @@ pt-BR:
   user_added_a_comment_html: "%{user} adicionou um comentário"
   user_added_a_fave_html: "%{user} adicionou um favorito"
   user_added_a_flag_html: "%{user} adicionou uma sinalização"
-  user_added_a_x: "%{user} adicionar uma %{x}"
+  user_added_a_x: "%{user} adicionou um(a) %{x}"
   user_added_a_x_to_noun_by_html: "%{user} adicionou um %{x} a %{noun} de %{by}"
   user_added_a_x_to_noun_by_user_html: "%{user} adicionou uma %{x} a %{noun} de %{by}"
   user_added_a_x_to_noun_by_you_html: "%{user} adicionou um %{x} a %{noun} por você"
@@ -4703,7 +4703,7 @@ pt-BR:
   user_disagrees_this_is_taxon: "%{user} discorda que seja um(a) %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} discorda de identificações anteriores mais precisas"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} favorito %{noun} por %{owner}"
+  user_faved_a_noun_by_owner: "%{user} favoritou %{noun} por %{owner}"
   user_faved_this_observation: "%{user} favoritou esta observação"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como não difusor de spam"
   user_flagged_as_a_spammer_html: "%{user} marcado como difusor de spam"
@@ -4734,7 +4734,7 @@ pt-BR:
   username: Nome de usuário
   username_description: Este é o nome de usuário que você usará para fazer login, e outros usuários podem usá-lo para identificá-lo no iNaturalist
   username_or_email: Nome de usuário ou email
-  username_or_user_id: Nome de usuário ou identificação do usuário
+  username_or_user_id: Nome de usuário ou sua ID
   users: Usuários
   users_contributions_to_project_html: Contribuições de <a href="%{url}">%{login}</a> a %{project_title}
   users_favorites: "Favoritos de %{user}"
@@ -5093,7 +5093,7 @@ pt-BR:
   youre_not_following_anyone_on_inat: Você ainda não está seguindo ninguém no %{site_name}!
   youve_linked_your_inaturalist_google_account: "Você vinculou sua conta %{site_name} e sua conta do Google. Isso permitirá que você associe suas Google Fotos a suas observações no %{site_name}."
   youve_successfully_linked_your_provider_account: "Você vinculou com sucesso sua conta do %{provider}"
-  verifiable: verificável
+  verifiable: Verificável
   verifiable_observations: Observações verificáveis
   views:
     views: 'Visualizações'
@@ -5314,8 +5314,8 @@ pt-BR:
         name: Nome
         most_observed: Mais Observados
         least_observed: Menos Observados
-        date_added_newest: Data adicionada, da mais recente para a mais antiga
-        date_added_oldest: Data adicionada, mais antiga para mais recente
+        date_added_newest: Data de adição, mais recente para mais antiga
+        date_added_oldest: Data de adição, mais antiga para mais recente
         ancestry: Ancestralidade
         show: Mostrar
         children: Descendentes
