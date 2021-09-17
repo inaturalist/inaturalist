@@ -5,16 +5,14 @@ import {
   UPDATE_ALL_LOCAL,
   SET_REVIEWING,
   SET_PLACES_BY_ID,
-  SET_LAST_REQUEST_AT,
-  SET_BRIGHTNESSES
+  SET_LAST_REQUEST_AT
 } from "../actions";
 
 const observationsReducer = ( state = {
   results: [],
   reviewing: false,
   placesByID: {},
-  lastRequestAt: null,
-  brightnesses: {}
+  lastRequestAt: null
 }, action ) => {
   if ( action.type === RECEIVE_OBSERVATIONS ) {
     return Object.assign( {}, state, {
@@ -66,11 +64,6 @@ const observationsReducer = ( state = {
   if ( action.type === SET_LAST_REQUEST_AT ) {
     return Object.assign( {}, state, {
       lastRequestAt: action.lastRequestAt
-    } );
-  }
-  if ( action.type === SET_BRIGHTNESSES ) {
-    return Object.assign( {}, state, {
-      brightnesses: action.brightnesses
     } );
   }
   return state;

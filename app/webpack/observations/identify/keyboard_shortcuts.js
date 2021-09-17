@@ -15,10 +15,9 @@ import {
   showNextPhoto,
   showPrevTab,
   showNextTab,
-  toggleKeyboardShortcuts,
-  increaseBrightness,
-  decreaseBrightness
+  toggleKeyboardShortcuts
 } from "./actions";
+import { increaseBrightness, decreaseBrightness} from "./ducks/brightnesses";
 
 const bindShortcut = ( shortcut, action, dispatch, options = { } ) => {
   bind( shortcut, ( ) => {

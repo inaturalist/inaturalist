@@ -13,11 +13,13 @@ import {
   showPrevObservation,
   updateCurrentObservation,
   fetchDataForTab,
-  submitIdentificationWithConfirmation,
+  submitIdentificationWithConfirmation
+} from "../actions";
+import {
   increaseBrightness,
   decreaseBrightness,
   resetBrightness
-} from "../actions";
+} from "../ducks/brightnesses";
 
 function mapStateToProps( state ) {
   let images;
@@ -35,11 +37,11 @@ function mapStateToProps( state ) {
     } ) );
   }
   const currentObsBrightnessKeys = {};
-  const brightnessKeys = Object.keys( state.observations.brightnesses );
+  const brightnessKeys = Object.keys( state.brightnesses );
   const id = observation && observation.id;
   brightnessKeys.forEach( key => {
     if ( key.includes( id ) ) {
-      currentObsBrightnessKeys[key] = state.observations.brightnesses[key];
+      currentObsBrightnessKeys[key] = state.brightnesses[key];
     }
   } );
 

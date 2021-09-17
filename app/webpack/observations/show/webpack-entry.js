@@ -34,6 +34,7 @@ import currentObservationReducer from "../identify/reducers/current_observation_
 import suggestionsReducer from "../identify/ducks/suggestions";
 import moderatorActionsReducer from "../../shared/ducks/moderator_actions";
 import textEditorReducer from "../shared/ducks/text_editors";
+import brightnessesReducer from "../identify/ducks/brightnesses";
 
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
@@ -67,7 +68,8 @@ const rootReducer = combineReducers( {
 
   // stuff from identify, where the "current observation" is the obs in a modal
   currentObservation: currentObservationReducer,
-  suggestions: suggestionsReducer
+  suggestions: suggestionsReducer,
+  brightnesses: brightnessesReducer
 } );
 
 const store = createStore(
