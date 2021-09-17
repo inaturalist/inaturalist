@@ -70,19 +70,19 @@ $( function () {
     $( "input[id^='taxon_change_taxon_change_taxa_attributes_']" ).each( function () {
       if ( $( this ).attr( "id" ).indexOf( "_taxon_id" ) >= 0 ) {
         var candidate = $( this ).val();
-        if ( $.isNumeric( candidate ) && parseInt( candidate ) > 0 ) {
-          outputIds.push( parseInt( candidate ) );
+        if ( $.isNumeric( candidate ) && parseInt( candidate, 0 ) > 0 ) {
+          outputIds.push( parseInt( candidate, 0 ) );
         }
       }
     } );
 
     var parameters = {
-      inputTaxonId: inputTaxonId,
-      outputIds: outputIds
+      input_taxon_id: inputTaxonId,
+      output_taxon_ids: outputIds
     };
     var currentId = $( "#current_id" ).val();
     if ( $.isNumeric( currentId ) ) {
-      parameters.id = parseInt( currentId );
+      parameters.id = parseInt( currentId, 0 );
     }
     event.preventDefault();
     spinnerNeeded = true;

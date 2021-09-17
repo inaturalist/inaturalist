@@ -625,7 +625,7 @@ Rails.application.routes.draw do
     put "commit_records/:type/(to/:taxon_id)" => "taxon_changes#commit_records", as: :commit_records
     post :analyze_ids
   end
-  post '/taxon_changes/analyze_ids' => 'taxon_changes#analyze_ids', :as => :analyze_ids
+  post "/taxon_changes/analyze_ids" => "taxon_changes#analyze_ids", as: :analyze_ids
   resources :taxon_schemes, :only => [:index, :show], :constraints => {:format => [:html]}
   get 'taxon_schemes/:id/mapped_inactive_taxa' => 'taxon_schemes#mapped_inactive_taxa', :as => :mapped_inactive_taxa
   get 'taxon_schemes/:id/orphaned_inactive_taxa' => 'taxon_schemes#orphaned_inactive_taxa', :as => :orphaned_inactive_taxa

@@ -62,10 +62,10 @@
       %fieldset#id_analysis.last.column.span-16
         - if params[:id]
           = hidden_field_tag :current_id, params[:id]
-        = link_to t( :analyze_ids), "#", :class => "analyze_ids_button", :data => { taxon_change_id: taxon_change }
+        = link_to t( :analyze_ids ), "#", class: "analyze_ids_button", data: { taxon_change_id: taxon_change }
         - helptip_for "analyze" do
           = t :estimate_which_input
-        = image_tag "spinner.gif", :class => "spinner"
+        = image_tag "spinner.gif", class: "spinner"
         .analysis
           = t( :total_ids_on_input_taxon )
           = link_to 0, "#", target: "_blank", class: "analysis_input"

@@ -359,15 +359,15 @@ class TaxonChangesController < ApplicationController
   end
 
   def analyze_ids
-    unless logged_in? && current_user.is_curator?
-      response = { json: I18n.t( :only_curators_can_access_that_page ), status: :unprocessable_entity }
-    end
     if params[:id] || params[:taxon_change_id]
       load_taxon_change
-    elsif params[:inputTaxonId] && params[:outputIds]
+    elsif params[:input_taxon_id] && params[:output_taxon_ids]
       stub_taxon_split
     else
-      response = { json: I18n.t( :only_curators_can_access_that_page ), status: :unprocessable_entity }
+      respond_to do |format|
+        render json: { error: "You must specify a taxon change or taxon IDs" }, status: :unprocessable_entity
+      end
+      return
     end
     if @taxon_change && @taxon_change.type == "TaxonSplit" && @taxon_change.taxon && @taxon_change.taxon_change_taxa.size > 1
       id_analysis = TaxonSplit.analyze_id_destinations( @taxon_change )
@@ -388,7 +388,6 @@ class TaxonChangesController < ApplicationController
       response = { json: I18n.t( :only_curators_can_access_that_page ), status: :unprocessable_entity }
     end
     respond_to do |format|
-      puts response[:json].to_json
       format.json { render json: response[:json], status: response[:status] }
     end
   end
@@ -404,8 +403,8 @@ class TaxonChangesController < ApplicationController
   end
 
   def stub_taxon_split
-    input_taxon = Taxon.where( id: params[:inputTaxonId].to_i ).first
-    output_taxa = Taxon.where( id: params[:outputIds].map{|i| i.to_i} )
+    input_taxon = Taxon.where( id: params[:input_taxon_id].to_i ).first
+    output_taxa = Taxon.where( id: params[:output_taxon_ids].map{|i| i.to_i} )
     @taxon_change = TaxonSplit.new
     @taxon_change.taxon = input_taxon
     output_taxa.each { |t| @taxon_change.taxon_change_taxa.build( taxon: t ) }
