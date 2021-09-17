@@ -7,10 +7,7 @@
   :css
     iframe { border: 0; }
 - content_for :extrajs do
-  :javascript
-    $( document ).ready( function( ) {
-      $( "#comment_body" ).textcompleteUsers( );
-    } );
+  = javascript_include_tag "taxon_changes/show"
 .container
   .row
     .col-xs-12
@@ -87,6 +84,21 @@
   .row
     .col-xs-12
       = render partial: "show_change_taxon", object: @taxon_change, locals: { show_commit_button: true }
+      - if logged_in? && current_user.is_curator? && @taxon_change.draft? && @taxon_change.is_a?( TaxonSplit )
+        #id_analysis
+        =link_to t( :analyze_ids), "#", :class => "analyze_ids_button", :data => { taxon_change_id: @taxon_change.id }
+        - helptip_for "analyze" do
+          = t :estimate_which_input
+        = image_tag "spinner.gif", :class => "spinner"
+        .analysis
+          =t( :total_ids_on_input_taxon )
+          =link_to 0, "#", target: "_blank", class: "analysis_input"
+          %table.analysis
+            %tr.headers
+              %td= t(:no_ids)
+              %td= t(:destination)
+              %td= t(:atlas)
+          = link_to_function t( :reset ), "resetFunction()"
   .row
     .col-xs-12
       #mapwrapper.stacked
