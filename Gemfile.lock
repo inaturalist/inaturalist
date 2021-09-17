@@ -358,6 +358,7 @@ GEM
       addressable
       faraday
       json (>= 1.8)
+    lefthook (0.7.6)
     loofah (2.10.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -708,6 +709,7 @@ DEPENDENCIES
   irwi!
   json
   koala
+  lefthook
   machinist!
   newrelic_rpm (~> 6.2.0)
   nokogiri

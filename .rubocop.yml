@@ -1,3 +1,6 @@
+AllCops:
+  NewCops: enable
+
 Layout/ArgumentAlignment:
   EnforcedStyle: with_fixed_indentation
   IndentationWidth: 2
@@ -10,6 +13,9 @@ Layout/EndAlignment:
 
 Layout/DotPosition:
   EnforcedStyle: trailing
+
+Layout/LineEndStringConcatenationIndentation:
+  EnforcedStyle: indented
 
 Layout/MultilineAssignmentLayout:
   EnforcedStyle: same_line
