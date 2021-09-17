@@ -462,7 +462,7 @@ class TaxonChangesController < ApplicationController
           atlas_string = t( :outside_of_all_atlases )
           role = "warning"
         else
-          atlas_url = new_atlas_path( { taxon_id: row[:taxon_id] } )
+          atlas_url = new_atlas_path( { taxon_id: row[:atlas_id] } )
           atlas_string = t( :not_atlased )
         end
       else
