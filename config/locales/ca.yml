@@ -493,6 +493,7 @@ ca:
   alphabetical_order: Ordre alfabètic
   already_have_an_account_log_in_html: Ja teniu un compte?
   amphibians: amfibis
+  analyze_ids: Analiza IDs
   ancestor_taxon: Tàxon Ancestral
   and: i
   and_other_taxa: "&amp; altres tàxons"
@@ -635,6 +636,7 @@ ca:
   assessment_x: "%{assessment} valoracions"
   assessments: valoracions
   associations: Associacions
+  atlased: Amb Atles
   atlas_for_taxon_html: Atles de %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -958,6 +960,8 @@ ca:
       Organització que ha declarat aquest estat. Si us plau, utilitzeu l'autocompletar per escollir una autoritat existent abans d'afegir una nova. Podeu saltar aquest pas si voleu que *vostè* sigueu ser relacionat com autoritat.
     place: Lloc pel qual aquest estat és restringit.
     url: URL de la pàgina que descriu aquest estat.
+    geoprivacy: |
+      Geo-privacitat per defecte per a les observacions d’aquest tàxon. Tingueu en compte que la geo-privacitat d’una situació associada a un lloc a escala de continent, país o estat pot anul·lar una situació global o associada a un lloc de nivell superior.
     iucn: |
       Equivalent del codi de la Llista Vermella (IUCN). Aquesta no és la classificació real de l'IUCN, únicament és el codi de l'IUCN que s'ajusta millor a la revelació de les coordenades que millor s'ajusta al seu estat d'amenaça. Aquest sobreescriu la geoprivacitat si és "Menys Preocupant" o inferior: així que si has volgut ocultar les observacions d'aquest taxó, marca'l com a "Gairebé amenaçat" o superior.
   conservation_status_geoprivacy_desc: |
@@ -1344,6 +1348,7 @@ ca:
   description_slash_tags: Descripció / Etiquetes
   description_tags_more: "Descripció, etiquetes i més"
   desription: Descripció
+  destination: Destinació
   destroy: Destrueix
   details: Detalls
   deviation: Desviació
@@ -1541,6 +1546,8 @@ ca:
   establishment_means: Forma d'establir-se.
   establishment_means_describes_how: |
     La forma d'establiment indica com es va implantar el tàxon dins una àrea. Mostra DarwinCore per <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24"> obtenir més informació de terminologia</a>.
+  estimate_which_input: |
+    Estimar quins indicadors de tàxons d'entrada seran substituïts per quins tàxons de sortida i quins seran afegits a un avantpassat comú quan la divisió s'hagi finalitzat. Això pot requerir un temps per calcular-ho. Els enllaços a les observacions es divideixen en subconjunts de 200.
   event_in_progress: Esdeveniment en curs
   event_stats: Estadístiques de l'Esdeveniment
   event_url: URL de l'Esdeveniment
@@ -2104,9 +2111,12 @@ ca:
     norwegian: Noruec
     occitan: Occità
     pangasinan: Pangasinan
+    polish: Polonès
     portuguese: Portuguès
     romanian: Romanès
     russian: Rus
+    sinhala: Singalès
+    slovak: Eslovac
     spanish: Castellà
     swedish: Suec
     tagalog: Tagal
@@ -2114,6 +2124,7 @@ ca:
     thai: Tailandès
     tokelauan: Tokelauà
     turkish: Turc
+    ukrainian: Ucraïnès
     waray_waray: Samarà
   less: Menys
   licensed_site_photos: "Fotos amb llicència de %{site_name}"
@@ -2573,6 +2584,7 @@ ca:
   no_identifications_added:
     current_user: No heu afegit identificacions a les observacions de ningú.
     user: "%{user} no ha afegit identificacions a les observacions de ningú."
+  no_ids: "Nombre d'IDs"
   no_ids_have_been_suggested_yet: Encara no s'ha suggerit cap identificació
   no_interaction_data_available: Sense dades d'interacció disponibles
   no_its_as_good_as_it_can_be: No, és tan bo com ho pot ser
@@ -2629,6 +2641,8 @@ ca:
   no_species_on_this_list_for_owner: |
     Podeu començar a afegir espècies a aquesta llista utilitzant l'eina "Afegeix a la Teva Llista", a la dreta.
   no_subject_parens: "(Sense tema)"
+  no_such_wiki_page: No existeix aquesta pàgina.
+  no_such_wiki_page_html: No existeix aquesta pàgina. Voleu <a href="%{new_url}">crear-la</a>?
   no_suggestions_available: Sense suggeriments disponibles
   no_summary_from_wikipedia: No hi ha resum de Wikipedia
   no_summary_has_been_set: No s'ha fet cap resum
@@ -2645,6 +2659,7 @@ ca:
   none: Cap
   none_found: No s'ha trobat cap
   normal: normal
+  not_atlased: Sense Atles
   not_completed: No Finalitzat
   not_confident: No tenim prou seguretat per fer una recomanació.
   not_confident_top_suggestions: No estem prou segurs per fer una recomanació, però aquí teniu els nostres primers suggeriments
@@ -2945,9 +2960,11 @@ ca:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Altres tàxons habitualment mal identificar com aquest subgènere a <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_subsection: Altres tàxons generalment mal identificats com aquesta subsecció
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Altres tàxons habitualment mal identificar com aquesta subsecció a <a href="%{url}">%{place}</a>
+  outside_of_all_atlases: Fora de tots els atles
   our_blog: El nostre blog
   output_taxon: Tàxon de sortida
   overview: Vista general
+  overlapping_atlases: Sobreposant atles
   overlapping_downstream_taxon_frameworks_html: "Superposició dels marcs taxonòmics descendents: %{count}"
   owner: Propietari
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -4485,6 +4502,7 @@ ca:
     Accepto les <a href="/terms" target="_blank">Condicions del Servei</a> i la <a href="/privacy" target="_blank">Política de Privacitat</a>, i he revisat les <<a href="/pages/community+guidelines" target="_blank">Normes de la Comunitat</a>.
   total: Total
   totals: Totals
+  total_ids_on_input_taxon: "IDs total del tàxon d'entrada"
   total_members: Nombre total de membres
   total_observations: Nombre total d'observacions
   total_observations_caps: OBSERVACIONS TOTALS
