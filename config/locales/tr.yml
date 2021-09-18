@@ -953,7 +953,6 @@ tr:
       Bu durumu bildiren kuruluş. Lütfen yeni bir tane eklemeden önce var olan bir yetkiliyi seçmek için otomatik tamamlamayı kullanın. Yetkili olarak listelenmek istiyorsanız bunu atlayabilirsiniz.
     place: Bu durumun kısıtlandığı yer.
     url: Bu durumu açıklayan bir sayfanın URL'si.
-    geoprivacy: Bu sınıfın gözlemleri için varsayılan coğrafi gizlilik
   conservation_status_geoprivacy_desc: |
     Bu yerdeki tüm sınıf gözlemlerine uygulanan varsayılan coğrafi gizlilik
   contact_support: Destekle İletişime Geç
@@ -1469,7 +1468,6 @@ tr:
   editing_taxon: '%{taxon} düzenleme'
   editing_taxon_link: Sınıf Bağlantısını Düzenleme
   editing_taxon_name_for_taxon_html: '%{taxon} için Sınıf Adı "%{name}"'' Düzenleme'
-  editing_taxon_range: Sınıf Aralığını Düzenleme
   editing_this: '%{elem} Düzenleme'
   editing_x_in_y: "%{y} içindeki %{x} düzenleme"
   editors: Düzenleyiciler
@@ -5540,11 +5538,6 @@ tr:
         BOLD DNA barkod eşleştirme işlevini etkinleştirmek için alan adınızın, 
         bu alanın hedeflediği gene karşılık gelen "COI", "COX1", "ITS" veya "matK" 
         kelimelerini içerdiğinden emin olun.
-      merge:
-        warning_html: |
-          Lütfen diğer kişilerin verilerine saygılı olun ve <strong>birleştirmeden önce bir gözlem 
-          alanının yaratıcısıyla konuşun</strong>. Bu araç birleştirilen gözlem alanını imha edecek ve 
-          tüm gözlemleri onu kullanan kişiye taşıyacak. <strong> Bu işlem geri alınamaz </strong>, bu yüzden dikkatli olun.
     emailer:
       bulk_import_success:
         success_message: |

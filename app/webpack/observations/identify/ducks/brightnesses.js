@@ -2,6 +2,13 @@ import _ from "lodash";
 
 const SET_BRIGHTNESSES = "set_brightnesses";
 
+export default function reducer( state = { }, action ) {
+  if ( action.type === SET_BRIGHTNESSES ) {
+    return Object.assign( {}, state, action.brightnesses );
+  }
+  return state;
+}
+
 function setBrightnesses( brightnesses ) {
   return { type: SET_BRIGHTNESSES, brightnesses };
 }
@@ -18,8 +25,7 @@ function setNewBrightnesses( currentBrightnesses, brightnessKey, newBrightness )
 
 function increaseBrightness( ) {
   return ( dispatch, getState ) => {
-    const { currentObservation, observations } = getState( );
-    const currentBrightnesses = observations.brightnesses;
+    const { currentObservation, brightnesses: currentBrightnesses } = getState( );
     const brightnessKey = setBrightnessKey( currentObservation );
     const existing = currentBrightnesses[brightnessKey] || 1;
     let newBrightness = _.round( existing + 0.2, 2 );
@@ -33,8 +39,7 @@ function increaseBrightness( ) {
 
 function decreaseBrightness( ) {
   return ( dispatch, getState ) => {
-    const { currentObservation, observations } = getState( );
-    const currentBrightnesses = observations.brightnesses;
+    const { currentObservation, brightnesses: currentBrightnesses } = getState( );
     const brightnessKey = setBrightnessKey( currentObservation );
     const existing = currentBrightnesses[brightnessKey] || 1;
     let newBrightness = _.round( existing - 0.2, 2 );
@@ -48,8 +53,7 @@ function decreaseBrightness( ) {
 
 function resetBrightness( ) {
   return ( dispatch, getState ) => {
-    const { currentObservation, observations } = getState( );
-    const currentBrightnesses = observations.brightnesses;
+    const { currentObservation, brightnesses: currentBrightnesses } = getState( );
     const brightnessKey = setBrightnessKey( currentObservation );
     const newBrightnesses = setNewBrightnesses( currentBrightnesses, brightnessKey, 1 );
     dispatch( setBrightnesses( newBrightnesses ) );

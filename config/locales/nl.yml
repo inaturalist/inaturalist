@@ -982,7 +982,6 @@ nl:
       Organisatie die deze status heeft vastgesteld. Gebruik alsjeblieft de autocomplete-functie om een bestaande autoriteit te kiezen voordat je een nieuwe toevoegt. Je kunt dit overslaan als *jij* als de autoriteit wilt worden aangemerkt.
     place: Plek tot waar deze status is beperkt.
     url: URL naar de website die deze status beschrijft
-    geoprivacy: Standaard geoprivacy voor waarnemingen van dit taxon
     iucn: |
       Equivalent van de IUCN Rode Lijst code. Dit is niet de huidige IUCN-beoordeling maar de IUCN-code die het beste overeenkomt met de dreiging van het openbaar maken van de coördinaten door deze status. Dit zal de geoprivacy overschrijven als het Niet bedreigd (veilig) is of lager. Dus als je waarnemingen van dit taxon wilt vervagen, stel deze in op "Gevoelig" of hoger.
   conservation_status_geoprivacy_desc: |
@@ -1535,7 +1534,6 @@ nl:
   editing_taxon: Bewerk %{taxon}
   editing_taxon_link: Taxonkoppeling bewerken
   editing_taxon_name_for_taxon_html: Taxonnaam "%{name}" voor %{taxon} bewerken
-  editing_taxon_range: Taxonreeks bewerken
   editing_this: '%{elem} aan het bewerken'
   editing_x_in_y: "%{x} in %{y} bewerken"
   editors: Redacteurs
@@ -5429,7 +5427,7 @@ nl:
         interval_limit_warning_year: Alleen 100 jaar aan jaren zichtbaar
         some_queries_missing_taxa: Een aantal zoekopdrachten missen taxa
         some_queries_missing_taxa_desc: |
-          We kunnen alle de 500 meest geobserveerde taxa per zoekopdracht laden, dus als er meer taksa in de zoekopdracht zitten zijn die of niet zichtbaar, of zichtbaar als "?" als ze in andere zoekopdrachten zitten. Probeer de zoekopdrachten te verfijnen zodat ze 500 taxa of minder tonen voor optimale vergelijkingen.
+          We kunnen alleen de 500 meest waargenomen taxa per zoekopdracht laden dus als er meer taxa in de zoekopdracht zitten zijn die of niet zichtbaar of zichtbaar als "?" als ze in andere zoekopdrachten zitten. Probeer de zoekopdrachten te verfijnen zodat ze 500 taxa of minder tonen voor optimale vergelijkingen.
         taxa_not_observed_in_all_queries: Taxa niet waargenomen in alle zoekopdrachten
         taxa_observed_in_all_queries: Taxa waargenomen in alle zoekopdrachten
         taxa_observed_in_only_one_query: Taxa die zijn waargenomen in maar één zoekopdracht
@@ -5685,12 +5683,6 @@ nl:
       dna_help: |
         Om BOLD DNA-barcodeaanpassingsfunctionaliteit in te schakelen, moet je ervoor zorgen dat jouw veldnaam de woorden "COI", "COX1", "ITS" of "matK" bevat,
         overeenkomend met het gen dat dit veld beoogt.
-      merge:
-        warning_html: |
-          Respecteer de gegevens van andere mensen en <strong> praat met de maker
-          van een waarnemingsveld vóór samenvoeging </strong>. Deze tool zal het
-          waarnemingsveld samengevoegen en verplaatst alle waarnemingen die het gebruiken
-          naar de keeper. <strong> Dit proces kan niet ongedaan worden gemaakt </strong>, dus wees voorzichtig.
     emailer:
       bulk_import_success:
         success_message: |

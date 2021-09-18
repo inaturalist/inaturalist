@@ -964,7 +964,6 @@ fi:
     description: Kirjoita lyhyt kuvaus luokitteluun johtaneista syistä.
     place: Paikka, johon tämä status on rajattu.
     url: URL-sivusto, jossa luokittelut on määritelty.
-    geoprivacy: Sijainnin tietosuojan oletusarvo havainnoille tässä taksonissa.
   conservation_status_geoprivacy_desc: |
     Kaikille tämän paikan ja taksonin havainnoille on asetettu oletusarvoinen sijainnin tietosuoja
   contact_support: Ota yhteyttä käyttäjätukeen
@@ -1499,7 +1498,6 @@ fi:
   editing_subscription_to_x_html: "Muokataan tilausta kohteelle %{x}"
   editing_taxon: Muokataan taksonia %{taxon}
   editing_taxon_link: Muokataan Taksonin Linkkiä
-  editing_taxon_range: Muokataan taksonin aluetta
   editing_this: Muokataan %{elem}
   editing_x_in_y: "Muokataan %{x} %{y}:ssä"
   editors: Muokkaajat
@@ -4951,9 +4949,6 @@ fi:
         <li>Älä poista kenttiä, joita ihmiset käyttävät</li>
         <li>Älä käännä olemassa olevia kenttiä eri kielille. Englanti on tämän sivuston vakiintunut yleiskieli. Jos välttämättä tarvitset kentän joka tarkoittaa samaa asiaa mutta eri kielellä, ole hyvä ja tee uusi havaintokenttä.</li>
         </ol>
-      merge:
-        warning_html: |
-          Ole hyvä ja kunnioita toisten käyttäjien itselleen tallentamia tietoja ja <strong>ota yhteyttä kentän alkuperäiseen luojaan ennen kenttien yhdistämistä</strong>. Tämä työkalu tuhoaa kentän, jota ollaan liittämässä ja siirtää tiedot toiseen kenttään. <strong>Toimintoa ei voi perua</strong>, joten ole tarkkaavainen.
     emailer:
       bulk_import_error:
         taxon_spelling_notice_html: |

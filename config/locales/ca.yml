@@ -176,6 +176,9 @@ ca:
   #should work here
   about_place: "Sobre %{place}"
   about_places: Sobre els Llocs
+  about_taxon_ranges: Sobre la distribució dels tàxons
+  about_taxon_ranges_desc: |
+    La distribució dels tàxons indica la distribució d'un tàxon. La distribució dels tàxons està basada, normalment, de la Llista Vermella de la UICN.
   about_the_cc_licenses: Sobre les llicències de Creative Commons
   about_these_licenses: Sobre aquestes llicències
   about_this_bioblitz: Quant aquest bioblitz
@@ -955,7 +958,6 @@ ca:
       Organització que ha declarat aquest estat. Si us plau, utilitzeu l'autocompletar per escollir una autoritat existent abans d'afegir una nova. Podeu saltar aquest pas si voleu que *vostè* sigueu ser relacionat com autoritat.
     place: Lloc pel qual aquest estat és restringit.
     url: URL de la pàgina que descriu aquest estat.
-    geoprivacy: Geo-privacitat per defecte per a les observacions d'aquesta espècie
     iucn: |
       Equivalent del codi de la Llista Vermella (IUCN). Aquesta no és la classificació real de l'IUCN, únicament és el codi de l'IUCN que s'ajusta millor a la revelació de les coordenades que millor s'ajusta al seu estat d'amenaça. Aquest sobreescriu la geoprivacitat si és "Menys Preocupant" o inferior: així que si has volgut ocultar les observacions d'aquest taxó, marca'l com a "Gairebé amenaçat" o superior.
   conservation_status_geoprivacy_desc: |
@@ -1319,6 +1321,8 @@ ca:
   delete_icon?: Voleu eliminar la icona?
   delete_photo: Elimineu la foto
   delete_project: Elimineu aquest projecte
+  #Label for a button to delete a taxon range
+  delete_range: Esborrar distribució
   delete_selected: Elimineu seleccionats
   delete_taxon_and_merge_most_data_html: |
     Elimineu <i>%{taxon}</i> i combineu la majoria de les vostres dades amb un altre tàxon. Utilitzeu aquesta eina per eliminar tàxons duplicats i sinònims desactualitzats. <strong>ANEU AMB COMPTE!</strong > Eliminar tàxons podria destruir dades. Reviseu la <a href="%{curator_url}">Guia del Supervisor</a> per a més detalls.
@@ -1498,7 +1502,7 @@ ca:
   editing_taxon: Edita %{taxon}
   editing_taxon_link: Modifica enllaç del tàxon
   editing_taxon_name_for_taxon_html: Editant Nom del tàxon %{name} de %{taxon}
-  editing_taxon_range: Modifica rang del tàxon
+  editing_taxon_range_for_taxon_html: Editar la Distribució del tàxon %{taxon}
   editing_this: Modificant %{elem}
   editing_x_in_y: "Editant %{x} en %{y}"
   editors: Editors
@@ -2610,6 +2614,7 @@ ca:
   no_project_to_admin_current_user: "No administreu cap projecte"
   no_project_to_admin_login: "%{login} no administra cap projecte"
   no_projects_yet: Encara no hi ha cap projecte
+  no_attached_range: Sense distribució annexada
   no_range_data_available: No hi ha cap rang de dades disponible
   no_recent_activity: No hi ha activitat recent
   no_relevant_annotations: Sense anotacions rellevants
@@ -3715,6 +3720,8 @@ ca:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infrahíbrid
   ranges: Rangs
+  #Text to link to a taxon range as a KML file
+  range_file: Arxiu de Distribució
   ray_finned_fishes: peixos ossis
   re_order_photos: "Reordena fotos »"
   read_more: Llegiu-ne més
@@ -4282,6 +4289,25 @@ ca:
   taxon_photos_updated: S'han actualitzat les fotos del tàxon.
   taxon_range: Rang de tàxon
   taxon_range_created_notice: El rang del tàxon a estat creat correctament. Espereu uns minut perquè aparegui als mapes.
+  taxon_range_for_taxon_html: Distribució del tàxon %{taxon}
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: Aquesta és el mapa de distribució de la Llista Vermella de la UICN, i si no ho és, per què?
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: Aquest és el mapa de distribució de la Llista Vermella de la UICN
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Aquest no és el mapa de distribució de la Llista Vermella de la UICN, perquè aquest no era adequat
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: Aquest no és el mapa de distribució de la Llista Vermella de la UICN perquè aquest tàxon no està a la Llista Vermella de la UICN
+  taxon_range_guidelines_each_taxon_can_have: Cada tàxon pot tenir una única Distribució del Tàxon. Les distribucions dels tàxons han de representar la seva distribució global
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    La %{link_start_tag} llista vermella de la UICN %{link_end_tag} és la font normal de la distribució dels tàxons.
+    Indiqueu si esteu afegint un interval de la llista vermella de la UICNi, si no, d'on l'esteu afegint en relació amb la Llista Vermella de la UICN. Això ajudarà a informar els processos d’actualització automàtica de les distribucions provinents de la Llista Vermella de la UICN. Si afegiu una distribució de la llista vermella de la UICN, indiqueu correctament la versió de la llista vermella de la UICN(per exemple, 2021-2) a la font.
+  taxon_range_guidelines_if_you_are_not_uploading: "Si no esteu pujant un mapa de distribució de la Llista Vermella de la UICN, això pot ser perquè:"
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: El mapa de distribució de la Llista Vermella de la UICN per aquest tàxon no és adequada
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    per exemple, l'heu ajustat manualment per reflectir una divisió taxonòmica no representada en la Llista Vermella de la UICN, o el mapa de distribució de la Llista Vermella de la UICN té errades que fan la seva presentació inadequada
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Aquest tàxon no està a la Llista Vermella de la UICN
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    per exemple, el tàxon s'ha combinat amb un altre tàxon de la Llista Vermella de la UICN, de manera que l’heu retallat manualment, o el tàxon no té una avaluació i un mapa de distribució de la Llista Vermella de la UICN.
+  taxon_range_guidelines_please_provide_details: |
+    Utilitzeu la descripció per explicar com es va modificar el mapa i enllaçar-hi qualsevol indicador rellevant, fraccionaments taxonòmics o altres discussions sobre el motiu pel qual el rang publicat a la Llista Vermella de la UICN requeria una modificació.
+  taxon_range_guidelines_learn_more_about_taxon_ranges: Coneix més sobre la distribució dels tàxons
   taxon_range_updated_notice: El rang del tàxon a estat actualitzat correctament. Espereu uns minut perquè els canvis apareguin als mapes.
   taxon_ranks: Categories del Taxon
   taxon_removed_from_list: Tàxon eliminat de la llista.
@@ -5563,7 +5589,7 @@ ca:
         Per activar la funcionalitat de codi de barres d'ADN BOLD, assegureu-vos que el nom inclou les paraules "COI", "COX1", "ITS" o "matK", corresponents als gens que marquen aquests camps.
       merge:
         warning_html: |
-          Si us plau, sigueu respectuós amb les dades d'altres persones i <strong>parleu amb el creador d'una observació de camp, abans de fusionar-la</strong>. Aquesta eina destruirà el camp de l'observació fusionat i mourà totes les observacions al camp que es mantingui. <strong>Aquest procés no es pot desfer</strong>, així que aneu amb compte.
+          Si us plau, sigueu respectuós amb les dades d'altres persones i <strong> parleu amb el creador d'un camp d'observació abans de combinar-lo </strong>. Aquesta eina destruirà el camp d'observació que s’està fusionant i mourà totes les observacions que s’utilitzin a aquell que es mantingui. <strong> Aquest procés no es pot desfer </strong>, així que aneu amb compte.
     emailer:
       bulk_import_success:
         success_message: |
@@ -7077,6 +7103,12 @@ ca:
             taxon:
               too_many_photos: |
                 no pot tenir més de %{max} fotos
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: ha de ser un valor acceptat
+            taxon_id:
+              already_has_a_range: ja té una distribució
         user:
           attributes:
             login:

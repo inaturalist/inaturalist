@@ -970,7 +970,6 @@ gl:
       Organización que declarou este estadio. Por favor, usa o útil autocompletar para escoller unha autoridade existente antes de engadir unha nova. Podes saltar isto se *ti* queres ser listado como a autoridade.
     place: Ubicación na que se restrinxe este estadio.
     url: URL para a páxina que describe este estadio.
-    geoprivacy: Xeoprivacidade predeterminada para observacións deste taxon
     iucn: |
       Equivalente ó código da Lista Vermella de IUCN. Isto non é unha avaliación real da IUCN, só o código IUCN que máis se adecúa á ameaza que supón a divulgación de coordenadas implícitas por este estado. Isto anteporase á xeoprivacidade se é "Pouco Preocupante" ou inferior, así que se quixeres escurecer observacións deste taxon, establece isto como "Case Ameazado" ou superior.
   conservation_status_geoprivacy_desc: |
@@ -1507,7 +1506,6 @@ gl:
   editing_taxon: Editando %{taxon}
   editing_taxon_link: Modificar vínculo do Taxón
   editing_taxon_name_for_taxon_html: Mudando o Nome do Taxon "%{name}" a %{taxon}
-  editing_taxon_range: Modificar rango de taxón
   editing_this: Modificando %{elem}
   editing_x_in_y: "Editando %{x} en %{y}"
   editors: Editores
@@ -5536,9 +5534,6 @@ gl:
         </ol>
       dna_help: |
         Para habilitar as funcionalidades correspondentes ó código de barras BOLD DNA, asegúrate de incluir no nome de campo as palabras "COI", "COX1", "ITS", ou "matK" correspondentes ao xen obxectivo dese campo.
-      merge:
-        warning_html: |
-          Por favor, respecta os dados de outras persoas e <strong>fala có creador dun campo de observación antes de o combinar</strong>. Esta ferramenta destruirá o campo de observación sendo combiando e movendo tódalas observacións ó campo mantido. <strong>Este proceso non se pode desfacer</strong>, así que ten tino.
     emailer:
       bulk_import_success:
         success_message: |

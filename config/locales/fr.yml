@@ -176,6 +176,9 @@ fr:
   #should work here
   about_place: "À propos @vow_or_con{vow:d'|de }%{place}"
   about_places: À propos des lieux
+  about_taxon_ranges: À propos des aires de répartition
+  about_taxon_ranges_desc: |
+    Par aire de répartition d'un taxon, on entend sa distribution dans le monde. En général, les aires de répartition viennent de la liste rouge de l'UICN.
   about_the_cc_licenses: À propos des licences Creative Commons
   about_these_licenses: À propos de ces licences
   about_this_bioblitz: À propos de ce bioblitz
@@ -970,7 +973,6 @@ fr:
       *vous* voulez être listé comme organisation.
     place: Lieu auquel la situation est limitée.
     url: URL d’une page décrivant la situation.
-    geoprivacy: Géoconfidentialité par défaut pour les observations liées à ce taxon
     iucn: |
       Code équivalent de la liste rouge de l'UICN. Ce n'est pas l'évaluation de l'UICN,
       mais le code de l'UICN qui correspond le mieux au risque de divulgation des coordonnées
@@ -1349,6 +1351,8 @@ fr:
   delete_icon?: Supprimer l’icône ?
   delete_photo: Supprimer la photo
   delete_project: Supprimer ce projet
+  #Label for a button to delete a taxon range
+  delete_range: Supprimer l'aire de répartition
   delete_selected: Supprimer la sélection
   delete_taxon_and_merge_most_data_html: |
     Supprimez <i>%{taxon}</i> et fusionnez la plupart de ses données dans un autre taxon. Utilisez
@@ -1381,7 +1385,7 @@ fr:
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
-        Si votre adresse email existe dans notre base de données, vous recevrez un message avec les instructions pour confirmer votre adresse d'ici quelques minutes.
+        Si votre adresse email existe dans notre base de données, vous recevrez un message avec les instructions pour confirmer celle-ci d'ici quelques minutes.
     failure:
       already_authenticated: 'Vous êtes déjà connecté.'
       unauthenticated: 'Vous devez vous connecter ou vous inscrire avant de continuer.'
@@ -1532,7 +1536,7 @@ fr:
   editing_taxon: Modification de %{taxon}
   editing_taxon_link: Modification du lien relatif au taxon
   editing_taxon_name_for_taxon_html: Modification du nom du taxon "%{name}" pour %{taxon}
-  editing_taxon_range: Modification de l’aire de répartition du taxon
+  editing_taxon_range_for_taxon_html: Modification de l'aire de répartition pour %{taxon}
   editing_this: Modification de %{elem}
   editing_x_in_y: "Modification de %{x} dans %{y}"
   editors: Contributeurs
@@ -2656,6 +2660,7 @@ fr:
   no_project_to_admin_current_user: "Vous n’administrez aucun projet"
   no_project_to_admin_login: "%{login} n’administre aucun projet"
   no_projects_yet: Aucun projet jusqu’à présent
+  no_attached_range: Aucune aire de répartition associée
   no_range_data_available: Aucune donnée disponible sur l’aire de répartition.
   no_recent_activity: Aucune activité récente
   no_relevant_annotations: Pas d'annotations relatives
@@ -2868,6 +2873,7 @@ fr:
     absent: N’apparaît pas dans la zone
     common: Apparaît fréquemment
     doubtful: Présumé apparaître, mais il y a des doutes sur la preuve
+    irregular: Présence imprévisible, y compris en vagabondage ; peut être commun certaines années et absent d’autres
     present: Apparaît dans la zone
     uncommon: Apparaît régulièrement, mais en petit nombre ; nécessite une recherche soigneuse du bon habitat
   occurrence_status_establishment_means: état de la présence, type d'implantation
@@ -3787,6 +3793,8 @@ fr:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infra-hybride
   ranges: Aires de répartition
+  #Text to link to a taxon range as a KML file
+  range_file: Fichier de l'aire de répartition
   ray_finned_fishes: poissons à nageoires rayonnées
   re_order_photos: "Réorganiser l’ordre des photos &raquo;"
   read_more: Lire plus
@@ -4353,6 +4361,24 @@ fr:
   taxon_photos_updated: Photos du taxon mises à jour!
   taxon_range: Aire de répartition du taxon
   taxon_range_created_notice: L'aire de répartition du taxon a bien été créée. Veuillez attendre quelques minutes pour qu’elle apparaisse sur les cartes.
+  taxon_range_for_taxon_html: Aire de répartition pour %{taxon}
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: S'agit-il d'une carte d'aire de répartition de la liste rouge de l'UICN ? Et sinon, pourquoi ?
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: Il s'agit d'une carte d'aire de répartition de la liste rouge de l'UICN.
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Il ne s'agit pas d'une carte d'aire de répartition de la liste rouge de l'UICN, car cette carte n'est pas appropriée.
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: Il ne s'agit pas d'une carte d'aire de répartition de la liste rouge de l'UICN, car ce taxon n'est pas sur la liste rouge de l'UICN.
+  taxon_range_guidelines_each_taxon_can_have: Chaque taxon ne peut avoir qu'une seule aire de répartition. Les aire de répartition doivent correspondre à la distribution à l'échelle mondiale.
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    La %{link_start_tag}liste rouge de l'UICN%{link_end_tag} est la source normale des aires de répartition des taxons. Veuillez indiquer si vous ajoutez une aire de répartition de la liste rouge de l'UICN ou, à défaut, la relation entre votre ajout et la liste rouge de l'UICN. Cela aidera à définir les processus de mise à jour automatique des aires de répartition provenant de la liste rouge de l'UICN. Si vous ajoutez une aire de répartition de la liste rouge de l'UICN, veuillez indiquer correctement la version de la liste (par exemple 2021-2) dans la source.
+  taxon_range_guidelines_if_you_are_not_uploading: "Il peut y avoir deux raisons de ne pas téléverser une carte de la liste rouge de l'UICN :"
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: La carte d'aire de répartition de la liste rouge de l'UICN n'est pas appropriée pour ce taxon
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    par exemple, vous l'avez réduite manuellement pour refléter une séparation taxinomique non représentée sur la liste rouge de l'UICN, ou la carte d'aire de répartition de la liste rouge de l'UICN comporte des erreurs majeures qui rendent son emploi inapproprié.
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Ce taxon n'est pas sur la liste rouge de l'UICN
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    par exemple, le taxon est regroupé avec un autre taxon sur la liste rouge de l’UICN et vous l’avez donc circonscrit manuellement ici, ou le taxon n'a pas d'évaluation ni de carte de son aire de répartition sur la liste rouge de l'UICN.
+  taxon_range_guidelines_please_provide_details: |
+    Veuillez utiliser la description pour expliquer comment la carte a été préparée et renvoyer à tout signalement pertinent, toute séparation taxinomique ou toute autre discussion des raisons pour lesquelles l'aire de répartition publiée de la liste rouge de l'UICN devait être modifiée.
+  taxon_range_guidelines_learn_more_about_taxon_ranges: En savoir plus sur les aires de répartition de taxons
   taxon_range_updated_notice: L'aire de répartition du taxon a bien été mise à jour. Veuillez attendre quelques minutes pour que les modifications apparaissent sur les cartes.
   taxon_ranks: Rangs des taxons
   taxon_removed_from_list: Taxon enlevé de la liste.
@@ -5819,12 +5845,6 @@ fr:
         </ol>
       dna_help: |
         Pour activer la fonctionnalité de correspondance du code-barre ADN GRAS, assurez-vous que le nom du champ inclut les mots « COI », « COX1 », « ITS » ou « matK », correspondant au gène visé par le champ.
-      merge:
-        warning_html: |
-          Veuillez respecter les données des autres personnes et <strong>parler au créateur
-          d’un champ d’observation avant de le fusionner</strong>. Cet outil détruira
-          le champ d’observation fusionné et déplacera toutes les observations qui l’utilisent
-          vers le responsable. <strong>Ce processus ne peut pas être annulé</strong>, donc soyez prudent.
     emailer:
       bulk_import_success:
         success_message: |
@@ -7721,6 +7741,12 @@ fr:
             taxon:
               too_many_photos: |
                 ne peut pas avoir plus de %{max} photos
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: doit être une valeur acceptée
+            taxon_id:
+              already_has_a_range: a déjà une aire de répartition
         user:
           attributes:
             login:

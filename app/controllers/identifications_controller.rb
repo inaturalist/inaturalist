@@ -108,6 +108,7 @@ class IdentificationsController < ApplicationController
       format.html do
         @identifications_by_obs_id = @identifications.index_by(&:observation_id)
         @observations = @identifications.collect(&:observation)
+        render layout: "bootstrap"
       end
       format.json do
         pagination_headers_for( @identifications )

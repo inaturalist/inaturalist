@@ -196,7 +196,7 @@ zh-CN:
   add_a_single_observation: 添加一个单独的观察。
   add_a_taxon: 加入一个分类
   add_an_assessment: 添加一个评估
-  add_an_identification: 添加一个身份证明
+  add_an_identification: 新增物种鉴定
   add_an_observation: 添加一个观察
   add_an_observation_of: "添加 %{taxon} 的观察"
   add_an_observation_to_project_html: 为项目 %{project} 新增一项观察记录
@@ -864,7 +864,6 @@ zh-CN:
     description: 简单描述为什么列出这个。
     place: 此状态受限制的地点。
     url: 描述此状态的页面的URL。
-    geoprivacy: 用于此分类单元观察的默认位置隐私
   conservation_status_geoprivacy_desc: |
     默认的地理敏感信息应用到该地址的所有观察到的分类上
   contact_support: 联系客服支持
@@ -1334,7 +1333,6 @@ zh-CN:
   editing_taxon: 编辑 %{taxon}
   editing_taxon_link: 正在编辑分类链接
   editing_taxon_name_for_taxon_html: 修改 %{taxon} 的分类群名称「%{name}」
-  editing_taxon_range: 正在编辑分类单元范围
   editing_this: 正在编辑 %{elem}
   editing_x_in_y: "正在%{y}编辑%{x}中"
   editors: 编辑者
@@ -1693,14 +1691,14 @@ zh-CN:
   identify_observations_by_these_users: 鉴定这些用户的观察结果
   identify_title: "鉴定"
   identification: 鉴定
-  identification_by_user: 由 %{user} 做出的身份证明
+  identification_by_user: 由 %{user} 做出的物种鉴定
   identification_deleted: 身份验证已删除。
   identification_saved: "身份验证已保存！"
-  identification_updated: 身份证明已更新！
+  identification_updated: 鉴定已更新！
   identification_user_short: 鉴别用户
   identification_withdrawn: 身份验证已放弃。
-  identifications: 身份证明
-  identifications_by: "由 %{user} 做出的身份证明"
+  identifications: 鉴定
+  identifications_by: "来自 %{user} 的鉴定"
   computer_vision_suggestion: 电脑视觉建议
   identifiers: 标识符
   identotron: 鉴定器
@@ -2450,7 +2448,7 @@ zh-CN:
   notifications: 通知
   notify_me_of_mentions: 通知提及我的（例如@username）
   notify_me_of_mentions_description: "如果您关闭此功能，当有人在 %{site_name} 提及您时，您将不会收到任何通知。"
-  notify_me_about_redundant_identifications: 通知我有关确认身份证明
+  notify_me_about_redundant_identifications: 通知我有关的鉴定
   notify_me_about_redundant_identifications_desc: |
     接收与您自己相匹配的标识的通知。如果您选择退出此选项，您将只会收到关于与您自己的身份标识中的分类单元并不完全匹配的分类群标识的通知。
   number_of_observations: 观察次数
@@ -3619,7 +3617,7 @@ zh-CN:
   save_fields: 保存字段
   save_flag: 保存标记
   save_guide_taxon: 保存指导分类单元
-  save_identification: 保存身份证明
+  save_identification: 保存鉴定
   save_observation: 保存观察
   save_photos: 保存照片
   save_place: 保存地点
@@ -4639,7 +4637,7 @@ zh-CN:
   your_hard_drive: 您的硬盘驱动器
   your_home: 您的主页
   your_id: 您的ID
-  your_identification: 您的身份证明
+  your_identification: 您的鉴定
   your_membership: 您的成员
   your_name_was_saved: 您的名字已保存。
   your_observations: 您的观察
@@ -5034,9 +5032,6 @@ zh-CN:
         </ol>
       dna_help: |
         要启用BOLD DNA条形码匹配功能，请确保您的字段名称包括文字“COI”、“COX1”、“ITS”或“matK,”对应这一字段目标的基因。
-      merge:
-        warning_html: |
-          请尊重其他人的数据，并且<strong>在合并之前与观察区域的创建者交谈</strong>。该工具将破坏正在合并的观察区域并将所有观察结果移动到其持有人。<strong>此操作无法撤消</strong>，因此请小心。
     emailer:
       bulk_import_success:
         success_message: |
@@ -5426,7 +5421,7 @@ zh-CN:
         TTCID: TTCID
         TTCID_desc: 从与社区分类匹配的其他人那里获得身份证明的时间。
         TTID: TTID
-        TTID_desc: 从别人那里收到身份证明的时间
+        TTID_desc: 从别人那里接收鉴定的时间
         TTID_note: |
           这些统计数据是针对一周前创建的观察制作的，这意味着它会在一周以上的时间内遗漏添加到观察值中的标识，从而使得统计数据看起来比现在再次计算它们时更低，但它们仍然应该提供一个体面的衡量标准，指出社区在一周内确定的窗口速度。请注意，这些统计数据仅适用于带照片的观察。
         website_desc_html: |

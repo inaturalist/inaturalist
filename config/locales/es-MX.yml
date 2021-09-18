@@ -970,7 +970,6 @@ es-MX:
       *tú* quieres ser considerado como dicha autoridad.
     place: Lugar en el cual el estatus esta restringido.
     url: URL que describa este estaus.
-    geoprivacy: Geoprivacidad predeterminada para esta especie o grupo.
     iucn: |
       Código equivalente a la Lista roja de IUCN.
   conservation_status_geoprivacy_desc: |
@@ -1519,7 +1518,6 @@ es-MX:
   editing_taxon: Editando %{taxon}
   editing_taxon_link: Edita el enlace de la especie o grupo
   editing_taxon_name_for_taxon_html: Editando el nombre "%{name}" para el taxón %{taxon}
-  editing_taxon_range: Edita la distribución potencial de la especie o grupo
   editing_this: Editando %{elem}
   editing_x_in_y: "Editando %{x} en %{y}"
   editors: Editores
@@ -5648,10 +5646,6 @@ es-MX:
         </ol>
       dna_help: |
         Para permitir la función de localizar el código de barras BOLD DNA, asegúrate que el nombre de tu campo incluye las palabras "COI", "COX1", "ITS", o "matK," correspondientes al gene que este campo busca.
-      merge:
-        warning_html: |
-          Por favor se respetuoso con los datos de otras personas y <strong>habla con el creador de un campo de observación, antes de una fusión</strong>. Esta herramienta destruirá el
-          campo de observación que se va a combinar y moverá todas las observaciones al campo mantenido. <strong>Este proceso no se puede deshacer</strong>, así que ten cuidado.
     emailer:
       bulk_import_success:
         success_message: |

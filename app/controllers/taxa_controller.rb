@@ -1438,7 +1438,7 @@ class TaxaController < ApplicationController
         where[0] += " OR taxon_names.name LIKE ?"
         where << ('%' + params[:q].split(' ').join('%') + '%')
       end
-      @taxa = @taxa.where(where).includes(:taxon_names)
+      @taxa = @taxa.joins(:taxon_names).where(where)
     elsif params[:name]
       @qparams[:name] = params[:name]
       @taxa = @taxa.where("name = ?", params[:name])
