@@ -495,6 +495,7 @@ es-MX:
   alphabetical_order: Orden alfabético
   already_have_an_account_log_in_html: '¿Ya tienes una cuenta? <strong>Inicia sesión.</strong>'
   amphibians: Anfibios
+  analyze_ids: Analizar IDs
   ancestor_taxon: Taxón ancestro
   and: "y"
   and_other_taxa: "&amp; otros taxa"
@@ -638,6 +639,7 @@ es-MX:
   assessment_x: "Evaluación de %{assessment}"
   assessments: Evaluaciones
   associations: Asociaciones
+  atlased: Con Atlas
   atlas_for_taxon_html: Atlas para %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -1365,6 +1367,7 @@ es-MX:
   description_slash_tags: Descripción / Etiquetas
   description_tags_more: "Descripción, Etiquetas, &amp; Más"
   desription: Descripción
+  destination: Destino
   destroy: Destruye
   details: Detalles
   deviation: Desviacion
@@ -1564,6 +1567,8 @@ es-MX:
   establishment_means: Distribución
   establishment_means_describes_how: |
     La distribución describe como la especie o grupo se estableció en un área. Ve el DarwinCore para <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">más información sobre terminología</a>.
+  estimate_which_input: |
+    Estimar qué identificaciones de taxón de entrada serán reemplazados con qué taxones de salida y cuales serán agregados a un antepasado común una vez que la separación se haya realizado. Esto puede tardar un momento en calcular. Los enlaces a las observaciones se truncan en subconjuntos de 200.
   event_in_progress: Evento en curso
   event_stats: Estadísticas del evento
   event_url: URL del evento
@@ -2606,6 +2611,7 @@ es-MX:
   no_identifications_added:
     current_user: Aún no has identificado las observaciones de alguien más.
     user: "%{user}, aún no has identificado las observaciones de alguien más."
+  no_ids: "Número de IDs"
   no_ids_have_been_suggested_yet: Aún no se ha sugerido ningún ID
   no_interaction_data_available: Datos de interacción no disponibles
   no_its_as_good_as_it_can_be: No, es tan bueno como puede ser
@@ -2662,6 +2668,8 @@ es-MX:
   no_species_on_this_list_for_owner: |
     Puedes empezar a añadir especies a esta lista usando la herramienta "Añadir a tu lista" a la derecha.
   no_subject_parens: "(Sin tema)"
+  no_such_wiki_page: Esta página no existe
+  no_such_wiki_page_html: No existe esta página. ¿Quieres <a href="%{new_url}">crearla</a>?
   no_suggestions_available: No hay sugerencias disponibles
   no_summary_from_wikipedia: No hay resumen de Wikipedia
   no_summary_has_been_set: No se ha incluido un resumen
@@ -2678,6 +2686,7 @@ es-MX:
   none: Ninguno
   none_found: No se encontró ninguno
   normal: normal
+  not_atlased: Sin Atlas
   not_completed: Sin completar
   not_confident: No estamos lo suficientemente seguros para hacer una recomendación.
   not_confident_top_suggestions: 'No estamos lo suficientemente seguros para hacer una recomendación, pero nuestras mejores sugerencias son:'
@@ -2986,9 +2995,11 @@ es-MX:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Otros taxones comúnmente identificados erróneamente como este subgénero en <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_subsection: Otros taxones identificados erróneamente como esta subsección
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Otros taxones comúnmente identificados erróneamente como esta subsección en <a href="%{url}">%{place}</a>
+  outside_of_all_atlases: Fuera de todos los Atlas
   our_blog: nuestro blog
   output_taxon: Taxón de salida
   overview: Visión general
+  overlapping_atlases: Atlas sobrepuestos
   overlapping_downstream_taxon_frameworks_html: "Superposición de los marcos de referencia de taxones descendentes: %{count}"
   owner: Propietario
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -4535,6 +4546,7 @@ es-MX:
     Acepto los <a href="/terms" target="_blank">Términos de servicio</a> y la <a href="/privacy" target="_blank">Política de privacidad</a>, y he revisado los <a href="/pages/community+guidelines" target="_blank">Lineamientos de la comunidad</a>.
   total: Total
   totals: Totales
+  total_ids_on_input_taxon: "Total de IDs del taxón de entrada:"
   total_members: Total de miembros
   total_observations: Total de observaciones
   total_observations_caps: TOTAL DE OBSERVACIONES
