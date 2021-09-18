@@ -1658,6 +1658,7 @@ ja:
   last_active_with_date: "最後の活動: %{date}"
   last_confirmed_observation: 最後に確認された観察記録
   last_observation: 最終観察記録
+  last_observation_caps: 最終観察記録
   last_seen: 最終観察時
   last_year: 昨年
   lat: '緯度:'
@@ -3640,8 +3641,10 @@ ja:
     このクエリは、一度に描画するにはあまりにも多くの分類群を返します。より多くのフィルタを追加してみてください。
   tools: ツール
   top_contributors: トップ協力者
+  top_identifier_caps: トップ同定者
   top_identifiers: 同定の達人
   top_identifiers_of_taxon: '%{taxon}のトップ同定者'
+  top_observer_caps: トップ観察者
   top_observers: トップ観察者
   tos_privacy_guidelines_label: |
     <a href="/terms" target="_blank">利用規約</a>と<a href="/privacy" target="_blank">プライバシーポリシー</a>に同意し、<a href="/pages/community+guidelines" target="_blank">コミュニティガイドライン</a>を確認しました。
@@ -3649,6 +3652,7 @@ ja:
   totals: 合計
   total_members: メンバー人数
   total_observations: 合計観察記録数
+  total_observations_caps: 合計観察記録数
   'true': '真'
   trends: トレンド
   trusted_project?: 信頼できるプロジェクト？
