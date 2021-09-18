@@ -102,16 +102,25 @@ class Atlas < ApplicationRecord
     place_descendants = [place, Place.find(place_id).descendants.
       where('admin_level IN (?)',[Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] ).pluck(:id ) ].
       compact.flatten
-    ListedTaxon.joins( { list: :check_list_place } ).where( "lists.type = 'CheckList'" ).
-      where( "listed_taxa.taxon_id IN (?)", taxon.subtree_ids ).
+
+    scope = ListedTaxon.joins( { list: :check_list_place } ).where( "lists.type = 'CheckList'" ).
       where( "listed_taxa.place_id IN (?)", place_descendants )
+    if taxon.rank_level <= 10
+      scope = scope.where( "listed_taxa.taxon_id IN (?)", taxon.subtree_ids )
+    else
+      scope = scope.where( "listed_taxa.taxon_id = ?", taxon_id )
+    end
   end
 
   def relevant_listed_taxon_alterations
     exploded_place_ids_to_include, exploded_place_ids_to_exclude = get_exploded_place_ids_to_include_and_exclude
     scope = ListedTaxonAlteration.joins( :place ).
-      where( "taxon_id IN (?)", taxon.subtree_ids ).
       where( "places.admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] )
+    if taxon.rank_level <= 10
+      scope = scope.where( "taxon_id IN (?)", taxon.subtree_ids )
+    else
+      scope = scope.where( "taxon_id = ?", taxon_id )
+    end
     unless exploded_place_ids_to_exclude.blank?
       scope = scope.where( "places.id NOT IN (?)", exploded_place_ids_to_exclude )
     end
