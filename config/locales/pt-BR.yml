@@ -498,6 +498,7 @@ pt:
   alphabetical_order: Ordem Alfabética
   already_have_an_account_log_in_html: Já tem uma conta? <strong>Entre</strong>
   amphibians: anfíbios
+  analyze_ids: Analisar IDs
   ancestor_taxon: Táxon ancestral
   and: e
   and_other_taxa: "&amp; Outros Táxons"
@@ -640,6 +641,7 @@ pt:
   assessment_x: "%{assessment} avaliação"
   assessments: avaliações
   associations: Associações
+  atlased: Com mapa
   atlas_for_taxon_html: Atlas para %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -1372,6 +1374,7 @@ pt:
   description_slash_tags: Descrição / Marcações
   description_tags_more: "Descrição, Marcações, &amp; Mais"
   desription: Descrição
+  destination: Destino
   destroy: Destruir
   details: Detalhes
   deviation: Desvio
@@ -2614,6 +2617,7 @@ pt:
   no_identifications_added:
     current_user: Você ainda não adicionou identificações em nenhuma observação.
     user: "%{user} ainda não adicionou identificações a nenhuma observação."
+  no_ids: "Número de IDs"
   no_ids_have_been_suggested_yet: Nenhuma identificação foi sugerida
   no_interaction_data_available: Dados sobre interações não disponíveis
   no_its_as_good_as_it_can_be: Não, é o melhor possível
@@ -2850,13 +2854,13 @@ pt:
   observed: Observado
   observed_by: Observado por
   observed_on: Observado em
-  observer: Obsservador
+  observer: Observador
   observers: Observadores
   observer_prefers_no_project_addition: |
     Observador não permite que outras pessoas adicionem as suas observações a projetos.
   observer_prefers_addition_to_projects_joined: |
     Observador só permite que outras pessoas adicionem as suas observações aos projetos a que aderiu.
-  observer_short: Observador
+  observer_short: Observ.
   occurence_status_describes_how: 'Status de ocorrência descreve o quanto comum ou raro é um táxon em uma área pré-definida. Veja DarwinCore para <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">maiores informações sobre esta terminologia</a>.'
   occurrence_status: Status de ocorrência
   occurrence_status_descriptions:
@@ -4547,6 +4551,7 @@ pt:
     <a href="/privacy" target="_blank">Política de Privacidade</a>, e eu revisei as <a href="/pages/community+guidelines" target="_blank">Diretrizes da Comunidade</a>.
   total: Total
   totals: Totais
+  total_ids_on_input_taxon: "IDs totais do táxon de entrada:"
   total_members: Total de membros
   total_observations: Total de observações
   total_observations_caps: TOTAL DE OBSERVAÇÕES
