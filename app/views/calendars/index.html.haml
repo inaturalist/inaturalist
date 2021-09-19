@@ -1,17 +1,7 @@
 - content_for(:title) do
   = @title = t(:observation_calendar_for, :user => @login, :year => @year)
 - content_for(:extracss) do
-  :css
-    .yearnav .left { left: 0;}
-    .yearnav .center { text-align: center; }
-    .yearnav .right { right: 0;}
-    .yearnav select { margin-top: 10px;}
-    table.column{ margin: 0 10px; margin-bottom: 1.4em; }
-    .calendar { display:inline-table; }
-    .calendar caption { text-align: center; }
-    .calendar th {text-align: center;}
-    .calendar td {font-size:12px;}
-    .calendar-container {text-align: center; margin:0 auto;}
+  = stylesheet_link_tag "calendars/index"
 
 - content_for(:extrajs) do
   = javascript_include_tag "d3.min", "calendars"
