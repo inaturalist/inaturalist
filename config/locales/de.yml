@@ -646,6 +646,7 @@ de:
   assessment_x: "%{assessment} Bewertung"
   assessments: Bewertungen
   associations: Vereine
+  atlased: mit Atlas
   atlas_for_taxon_html: Atlas für %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -2110,9 +2111,12 @@ de:
     norwegian: Norwegisch
     occitan: Okzitanisch
     pangasinan: Pangasinensisch
+    polish: Polnisch
     portuguese: Portugiesisch
     romanian: Rumänisch
     russian: Russisch
+    sinhala: Singhalesisch
+    slovak: Slowakisch
     spanish: Spanisch
     swedish: Schwedisch
     tagalog: Tagalog
@@ -2120,6 +2124,7 @@ de:
     thai: Thailändisch
     tokelauan: Tokelauisch
     turkish: Türkisch
+    ukrainian: Ukrainisch
     waray_waray: Wáray-Wáray
   less: Weniger
   licensed_site_photos: "Lizenzierte %{site_name} Fotos"
@@ -2638,6 +2643,8 @@ de:
   no_species_on_this_list_for_owner: |
     Du kannst mit Hilfe der Funktion "Zur Liste hinzufügen" auf der rechten Seite Arten zu dieser Liste hinzufügen.
   no_subject_parens: "(Kein Betreff)"
+  no_such_wiki_page: Diese Seite existiert nicht.
+  no_such_wiki_page_html: Diese Seite existiert nicht. Möchtest du eine <a href="%{new_url}">erstellen</a>?
   no_suggestions_available: Keine Vorschläge verfügbar
   no_summary_from_wikipedia: Keine Zusammenfassung von Wikipedia
   no_summary_has_been_set: Keine Zusammenfassung wurde festgelegt.
@@ -2652,6 +2659,7 @@ de:
   none: Keine
   none_found: nichts gefunden
   normal: normal
+  not_atlased: ohne Atlas
   not_completed: Nicht komplett
   not_confident: Eine Empfehlung abzugeben ist uns hier zu unsicher.
   not_confident_top_suggestions: Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier sind unsere besten Vorschläge.

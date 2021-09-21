@@ -501,6 +501,7 @@ da:
   alphabetical_order: Alfabetisk orden
   already_have_an_account_log_in_html: Har du en konto? <strong>Log in.</strong>
   amphibians: padder
+  analyze_ids: Analysér ID'er
   ancestor_taxon: Stamfader Takson
   and: og
   and_other_taxa: "&amp;Andre taksa"
@@ -644,6 +645,7 @@ da:
   assessment_x: "%{assessment} vurdering"
   assessments: vurderinger
   associations: Foreninger
+  atlased: Kortlagt
   atlas_for_taxon_html: Atlas for %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -1382,6 +1384,7 @@ da:
   description_slash_tags: Beskrivelse / Tags
   description_tags_more: "Beskrivelse, Tags, &amp; Mere"
   desription: Beskrivelse
+  destination: Bestemmelsessted
   destroy: Ødelæg
   details: Detaljer
   deviation: Afvigelse
@@ -1583,6 +1586,9 @@ da:
   establishment_means_describes_how: |
     Oprindelse beskriver hvordan taksonet blev etableret i et område.
     Se DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24"> flere oplysninger om terminologi </a>.
+  estimate_which_input: |
+    Anslå, hvilke input-takson ID'er, som vil blive erstattet med hvilke output-taksa, og hvilke som vil blive forsimplet til en fælles forfader, når opdelingen er udført. Dette kan tage
+    et øjeblik at beregne. Links til observationer afkortes til undersæt á 200.
   event_in_progress: Arrangement i gang
   event_stats: Hændelses statistik
   event_url: Begivenheds-URL
@@ -2148,9 +2154,12 @@ da:
     norwegian: Norsk
     occitan: Occitansk
     pangasinan: Pangasinan
+    polish: Polsk
     portuguese: Portugisisk
     romanian: Rumænsk
     russian: Russisk
+    sinhala: Singalesisk
+    slovak: Slovakisk
     spanish: Spansk
     swedish: Svensk
     tagalog: Tagalog
@@ -2158,6 +2167,7 @@ da:
     thai: Thailandsk
     tokelauan: Tokelauan
     turkish: Tyrkisk
+    ukrainian: Ukrainsk
     waray_waray: Waray-Waray
   less: Mindre
   licensed_site_photos: "Licenserede %{site_name} fotos"
@@ -2626,6 +2636,7 @@ da:
   no_identifications_added:
     current_user: Du har ikke tilføjet identifikationer til nogens observationer.
     user: "%{user} har ikke tilføjet identifikationer til nogens observationer."
+  no_ids: "Antal ID'er"
   no_ids_have_been_suggested_yet: Ingen IDs er foreslået endnu
   no_interaction_data_available: Ingen interaktionsdata tilgængelige
   no_its_as_good_as_it_can_be: Nej, det er så godt som det kan blive
@@ -2700,6 +2711,7 @@ da:
   none: Ingen
   none_found: Ingen fundet
   normal: normal
+  not_atlased: Ikke kortlagt
   not_completed: Ikke afsluttet
   not_confident: Vi er ikke tilstrækkeligt sikre til at komme med en anbefaling.
   not_confident_top_suggestions: Vi er ikke tilstrækkeligt sikre til at give en anbefaling, men her vore bedste forslag.
@@ -3011,9 +3023,11 @@ da:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Andre taksa hyppigt fejlidentificeret som denne undersælgt i <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_subsection: Andre taksa hyppigt fejlidentificeret som denne undersektion
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Andre taksa hyppigt fejlidentificeret som denne undersektion i <a href="%{url}">%{place}</a>
+  outside_of_all_atlases: Udenfor alle atlaser
   our_blog: Vores blog
   output_taxon: Output takson
   overview: Overblik
+  overlapping_atlases: Overlappende atlaser
   overlapping_downstream_taxon_frameworks_html: "Overlappende downstream Taxon Frameworks: %{count}"
   owner: Ejer
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -4601,6 +4615,7 @@ da:
     <a href="/pages/community+guidelines" target="_blank">Fællesskabsretningslinjer</a>.
   total: I alt
   totals: totaler
+  total_ids_on_input_taxon: "ID'er i alt for input-takson:"
   total_members: Samlet antal medlemmer
   total_observations: Samlet antal observationer
   total_observations_caps: OBSERVATIONER I ALT

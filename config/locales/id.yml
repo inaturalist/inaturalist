@@ -458,6 +458,7 @@ id:
   alphabetical_order: Urutan Abjad
   already_have_an_account_log_in_html: Sudah memiliki akun? <strong>Masuk.</strong>
   amphibians: amfibi
+  analyze_ids: Analisis ID
   ancestor_taxon: Takson Induk
   and: dan
   and_other_taxa: "&amp; Taksa Lainnya"
@@ -600,6 +601,7 @@ id:
   assessment_x: "penilaian %{assessment}"
   assessments: penilaian
   associations: asosiasi
+  atlased: Diatlas
   atlas_for_taxon_html: Atlas untuk %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -1324,6 +1326,7 @@ id:
   description_slash_tags: Deskripsi / Label
   description_tags_more: "Deskripsi, Label, &amp; Lainnya"
   desription: Keterangan
+  destination: Tujuan
   destroy: Hancurkan
   details: Rincian
   deviation: Deviasi
@@ -1521,6 +1524,8 @@ id:
   establishment_means_describes_how: |
     Cara pengenalan menjelaskan bagaimana sebuah takson bisa berada di sebuah area.
     Lihat DarwinCore untuk <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">informasi lebih lanjut tentang terminologinya</a>.
+  estimate_which_input: |
+    Memperkirakan id takson input mana diganti dengan taksa output mana dan yang mana yang akan diperkasar menjadi induk yang lebih umum ketika pemisahan diterapkan. Hal ini dapat memerlukan beberapa waktu untuk dihitung. Tautan-tautan ke pengamatan dipotong menjadi subset berisi 200.
   event_in_progress: Acara sedang berlangsung
   event_stats: Statistik Acara
   event_url: URL Acara
@@ -2558,6 +2563,7 @@ id:
   no_identifications_added:
     current_user: Anda belum menambahkan identifikasi pada pengamatan siapa pun.
     user: "%{user} belum menambahkan identifikasi pada pengamatan siapa pun."
+  no_ids: "Jumlah ID"
   no_ids_have_been_suggested_yet: Belum ada ID yang disarankan
   no_interaction_data_available: Belum ada data interaksi yang tersedia
   no_its_as_good_as_it_can_be: Tidak, ini sudah yang terbaik
@@ -2632,6 +2638,7 @@ id:
   none: Tidak ada
   none_found: Tidak ditemukan
   normal: normal
+  not_atlased: Tidak diatlas
   not_completed: Belum Selesai
   not_confident: Kami tidak sepenuhnya yakin untuk membuat rekomendasi.
   not_confident_top_suggestions: 'Kami tidak cukup percaya diri untuk membuat rekomendasi, namun berikut adalah usulan utama kami:'
@@ -2932,9 +2939,11 @@ id:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Taksa lain yang sering salah diidentifikasi sebagai subgenus ini di<a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_subsection: Taksa lain yang sering salah diidentifikasi sebagai subseksi ini
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Taksa lain yang sering salah diidentifikasi sebagai subseksi ini di<a href="%{url}">%{place}</a>
+  outside_of_all_atlases: Di luar semua atlas
   our_blog: Blog Kami
   output_taxon: Takson Keluaran
   overview: Ikhtisar
+  overlapping_atlases: Atlas yang tumpang tindih
   overlapping_downstream_taxon_frameworks_html: "Framework Takson hilir yang tumpang tindih: %{count}"
   owner: 'Pemilik:'
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -4448,6 +4457,7 @@ id:
     Saya menyetujui <a href="/terms" target="_blank">Syarat dan Ketentuan Layanan</a> dan <a href="/privacy" target="_blank">Kebijakan Privasi</a>, dan saya telah membaca <a href="https://www.inaturalist.org/pages/community+guidelines">Pedoman Komunitas</a>.
   total: Total
   totals: Total
+  total_ids_on_input_taxon: "Total ID takson input:"
   total_members: Total anggota
   total_observations: Total pengamatan
   total_observations_caps: TOTAL PENGAMATAN
