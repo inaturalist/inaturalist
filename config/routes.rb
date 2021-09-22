@@ -126,12 +126,16 @@ Rails.application.routes.draw do
   get '/home.:format' => 'users#dashboard', :as => :formatted_home
   
   get '/users/edit' => 'users#edit', :as => "generic_edit_user"
-  devise_for :users, :controllers => {
-    sessions: 'users/sessions',
-    registrations: 'users/registrations',
-    confirmations: 'users/confirmations',
-    passwords: "users/passwords"
-  }
+  begin
+    devise_for :users, :controllers => {
+      sessions: 'users/sessions',
+      registrations: 'users/registrations',
+      confirmations: 'users/confirmations',
+      passwords: "users/passwords"
+    }
+  rescue ActiveRecord::NoDatabaseError
+    puts "Database not connected, failed to make routes for Devise. Ignore if setting up for the first time"
+  end
   devise_scope :user do
     get "login", :to => "users/sessions#new"
     get "logout", :to => "users/sessions#destroy"
