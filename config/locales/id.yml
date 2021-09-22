@@ -851,6 +851,7 @@ id:
   committed_by_user_on_date_html: Diterapkan oleh %{user} pada %{date}
   #Label for date the taxon change was committed
   committed_on: Diterapkan pada %{date}
+  committed_taxon_changes_cannot_be_deleted: Perubahan takson yang sudah diterapkan tidak bisa dihapus
   #Status message while a taxon change is being committed
   committing: Sedang menerapkan...
   common_name: Istilah Umum
@@ -1800,6 +1801,18 @@ id:
   header_your_projects: Proyek Anda
   header_your_profile: Profil Anda
   heads_up: 'PENTING:'
+  heads_up_automatable_draft_split_notice_html: |
+    <strong>Peringatan:</strong> Ketika Anda menerapkan perubahan ini, identifikasi akan diatur ulang untuk taksa-taksa output berdasarkan atlas mereka. Jika beberapa atau semua output tidak memiliki atlas, atau jika atlas-atlasnya saling tumpang tindih untuk suatu catatan, identifikasi akan digantikan dengan identifikasi dari takson induk yang paling dekat (%{taxon})
+  heads_up_non_automatable_draft_split_notice_html: |
+    <strong>Peringatan:</strong> Pemisahan takson ini memiliki taksa output yang tidak memiliki atlas atau tidak berbagi induk yang sama, sehingga catatan-catatan yang terkait dengan taksa inputnya tidak dapat secara otomatis ditetapkan untuk taksa-taksa outputnya saat pemisahan ini diterapkan dan komunitas harus menambahkan ID baru untuk catatan-catatan ini.
+  heads_up_automatable_split_notice_html: |
+    <strong>Peringatan:</strong> Beberapa atau semua identifikasi yang dipengaruhi pemisahan ini mungkin sudah diganti dengan identifikasi %{taxon}. Hal ini terjadi ketika kami tidak dapat menetapkan suatu identifikasi secara otomatis untuk salah satu dari taksa output.
+  heads_up_observose_taxon_change_html: |
+    <strong>Peringatan:</strong> Satu atau lebih taksa input yang terlibat dalam perubahan ini memiliki lebih dari %{observose_taxon_threshold} pengamatan hilir. Hanya pengelola atau kurator framework takson tersebut yang bisa menerapkan perubahan ini.
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+    <strong>Peringatan:</strong> Satu atau lebih taksa input yang terlibat dalam perubahan ini berada di dalam suatu <a href="%{framework_url}">framework takson</a>. Hanya pengelola atau kurator framework takson tersebut yang dapat menerapkan perubahan yang memengaruhi taksa yang tercakup di dalamnya. Silakan menghubungi salah satu kurator takson tersebut untuk menerapkan perubahan ini.
+  heads_up_there_are_other_draft_taxon_changes_html:
+    other: "<strong>Peringatan:</strong> ada %{count} draf perubahan takson lain dengan taksa input yang sama:"
   heads_up_this_photo_has_been_flagged: "PENTING: Foto ini telah ditandai."
   heads_up_this_photo_is_already_associated_with: "PENTING: foto ini sudah dikaitkan dengan <a target='_blank' href='%{url}'>observasi lain</a>"
   heads_up_you_have_multiple: "PENTING: Anda memiliki beberapa label mesin taksonomi untuk kategori serupa. Mereka diberikan kode warna di bawahnya berdasarkan kategori."
@@ -2095,6 +2108,7 @@ id:
     russian: Rusia
     sinhala: Sinhala
     slovak: Slovakia
+    slovenian: Slovenia
     spanish: Spanyol
     swedish: Swedia
     tagalog: Tagalog
@@ -2206,6 +2220,7 @@ id:
     pt-BR: Portugis (Brasil)
     ru: Rusia
     sk: Slovakia
+    sl: Slovenia
     sq: Albania
     sv: Swedia
     th: Thai
@@ -3827,6 +3842,8 @@ id:
   restore: Pulihkan
   restoring: Memulihkan…
   review_all: Tinjau Semua
+  review_identifications_of_taxon_html: |
+    Tinjau kembali identifikasi <span class="sciname">%{taxon}</span> %{taxon_id}
   reviewed: Telah Ditinjau
   revoke: Cabut
   revoke_caps: CABUT
@@ -4224,6 +4241,11 @@ id:
     Penilaian takson adalah dokumen yang menilai status spesies saat ini, biasanya status konservasi.
     Sebagai contoh, sebuah organisasi konservasi daerah dapat menggunakannya untuk mengatur informasi dan mengumpulkan umpan balik tentang status dari beberapa taksa yang terancam di wilayah tersebut.
   taxon_change_must_be_committed_to_update_records: Perubahan takson harus diterapkan untuk memperbarui catatan
+  taxon_change_title_taxon_drop: Deaktivasi Taksonomi %{id}
+  taxon_change_title_taxon_merge: Peleburan Taksonomi %{id}
+  taxon_change_title_taxon_split: Pemisahan Taksonomi %{id}
+  taxon_change_title_taxon_stage: Aktivasi Takson %{id}
+  taxon_change_title_taxon_swap: Penggantian Takson %{id}
   taxon_deleted: Takson dihapus
   taxon_doesnt_have_a_range: Takson tidak memiliki jangkauan
   taxon_drop: deaktivasi takson
@@ -4341,6 +4363,8 @@ id:
   the_identotron_is_a_tool_to: |
     Identotron adalah sebuah alat untuk membantu Anda mengidentifikasi pengamatan berdasarkan data daftar centang %{site_name}. Jika diberikan tingkat takson yang lebih tinggi serta sebuah tempat (contohnya mamalia di India), %{site_name} akan mencari entri daftar centang yang sesuai dengan takson di tempat tersebut, seperti panduan kolom yang dinamis untuk seluruh planet. Kebanyakan daftar centang masih dalam perkembangan, tetapi, jika ada yang komprehensif, yaitu daftar yang berisi <em>semua</em> perwakilan taksonnya di suatu tempat, Identotron akan memberitahu.
   the_name_of_the_taxon_including_space: Nama takson, termasuk tempat untuk spesies dan infraspesies.
+  the_name_of_the_taxon_dashes: Nama takson, spasi diganti dengan tanda hubung.
+  the_name_of_the_taxon_underscores: Nama takson, spasi diganti dengan garis bawah.
   the_observation_was_already_added_to_that_project: Pengamatan sudah ditambahkan ke proyek tersebut.
   the_people_of_inat: "Orang-orang di %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
@@ -4941,6 +4965,8 @@ id:
   you_need_to_select_some_observations_first: Anda perlu memilih beberapa pengamatan terlebih dahulu.
   you_retain_full_copyright: "Anda memiliki hak cipta penuh atas konten Anda di samping hak-hak lainnya yang diberikan kepada %{site_name} dalam Syarat dan Ketentuan Layanan kami."
   you_retain_full_copyright_over_your_content: "Anda memiliki hak cipta penuh atas konten Anda di samping hak-hak lainnya yang diberikan kepada %{site_name} dalam Syarat dan Ketentuan Layanan kami."
+  you_should_delete_this_taxon_change: |
+    Anda mungkin harus menghapus perubahan takson ini, atau setidaknya mencari solusi dengan orang-orang yang membuat perubahan lainnya.
   you_sure_delete_asset?: Apakah Anda yakin ingin menghapus Aset Proyek ini?
   you_sure_delete_check_list: "Apakah Anda yakin ingin menghapus daftar ini? Beberapa orang mungkin telah mengerjakan banyak hal di dalamnya..."
   you_sure_delete_comment?: Apakah Anda yakin ingin menghapus komentar ini?
