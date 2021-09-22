@@ -57,6 +57,26 @@ describe ConservationStatus do
       status = ConservationStatus.make!( status: "NE", iucn: Taxon::IUCN_NOT_EVALUATED, user: nil )
       expect( status.geoprivacy ).to eq Observation::OPEN
     end
+
+    it "should reassess observations of taxon if obscuring" do
+      species = Taxon.make!( rank: Taxon::SPECIES )
+      Delayed::Job.delete_all
+      stamp = Time.now
+      cs = ConservationStatus.make!( taxon: species )
+      jobs = Delayed::Job.where("created_at >= ?", stamp)
+      expect(jobs.select{|j| j.handler =~ /reassess_coordinates_for_observations_of/m}).not_to be_blank
+    end
+
+    it "should not reassess observations of taxon if open and global" do
+      species = Taxon.make!( rank: Taxon::SPECIES )
+      Delayed::Job.delete_all
+      stamp = Time.now
+      cs = ConservationStatus.make!( taxon: species, geoprivacy: "Open" )
+      expect( cs.geoprivacy ).to eq Observation::OPEN
+      expect( cs.place_id ).to be_nil
+      jobs = Delayed::Job.where( "created_at >= ?", stamp )
+      expect( jobs.select{ |j| j.handler =~ /reassess_coordinates_for_observations_of/m } ).to be_blank
+    end
   end
 
   describe ConservationStatus, "saving" do
@@ -107,6 +127,18 @@ describe ConservationStatus do
       expect( species ).not_to be_threatened
       o.reload
       expect( o ).not_to be_coordinates_obscured
+    end
+
+    it "should not reassess observations of taxon if open and global" do
+      species = Taxon.make!( rank: Taxon::SPECIES )
+      cs = without_delay { ConservationStatus.make!( taxon: species, geoprivacy: "Open" ) }
+      expect( cs.geoprivacy ).to eq Observation::OPEN
+      expect( cs.place_id ).to be_nil
+      Delayed::Job.delete_all
+      stamp = Time.now
+      cs.destroy
+      jobs = Delayed::Job.where( "created_at >= ?", stamp )
+      expect( jobs.select{ |j| j.handler =~ /reassess_coordinates_for_observations_of/m } ).to be_blank
     end
   end
 
