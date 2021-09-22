@@ -85,9 +85,11 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     page: 1,
     spam: false
   };
-  $scope.mapBounds = new google.maps.LatLngBounds(
-    new google.maps.LatLng( -80, -179 ),
-    new google.maps.LatLng( 80, 179 ));
+  if ( typeof ( google ) !== "undefined" ) {
+    $scope.mapBounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng( -80, -179 ),
+      new google.maps.LatLng( 80, 179 ));
+  }
   $scope.nearbyPlaces = null;
   $scope.hideRedoSearch = true;
   $scope.taxonInitialized = false;
@@ -580,9 +582,11 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         if( swlng < -179.9 ) { swlng = -179.9; }
         if( nelat > 80 ) { nelat = 80; }
         if( nelng > 179.9 ) { nelng = 179.9; }
-        $scope.mapBounds = new google.maps.LatLngBounds(
-          new google.maps.LatLng( swlat, swlng ),
-          new google.maps.LatLng( nelat, nelng ));
+        if ( typeof ( google ) !== "undefined" ) {
+          $scope.mapBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng( swlat, swlng ),
+            new google.maps.LatLng( nelat, nelng ));
+        }
         $rootScope.$emit( "alignMap" );
       }
 
@@ -811,6 +815,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     });
   };
   $scope.setupPlaceSearchbox = function( ) {
+    if ( typeof ( google ) === "undefined" ) return;
     // only search for "geocode" types, not businesses
     $scope.placeSearchBox = new google.maps.places.Autocomplete(
       document.getElementById( "place_name" ), {
@@ -1169,7 +1174,9 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   });
   $scope.setupMap = function( ) {
     if( $scope.map ) { return; }
-    var defaultMapType = PREFERRED_MAP_TYPE || google.maps.MapTypeId.LIGHT;
+    var defaultMapType = PREFERRED_MAP_TYPE || (
+      typeof ( google ) !== "undefined" && google.maps.MapTypeId.LIGHT
+    );
     $( "#map" ).taxonMap({
       placement: "observations-search",
       urlCoords: false,
@@ -1181,7 +1188,8 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       zoomControl: false,
       infoWindowCallback: $scope.infoWindowCallback,
       minZoom: 2
-    });
+    } );
+    if ( typeof ( google ) === "undefined" ) return;
     $scope.map = $( "#map" ).data( "taxonMap" );
     $scope.map.mapTypes.set(iNaturalist.Map.MapTypes.LIGHT_NO_LABELS, iNaturalist.Map.MapTypes.light_no_labels);
     $scope.map.mapTypes.set(iNaturalist.Map.MapTypes.LIGHT, iNaturalist.Map.MapTypes.light);
@@ -1234,6 +1242,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     $scope.searchForNearbyPlaces( options, callback );
   });
   $scope.searchForNearbyPlaces = function( options, callback ) {
+    if ( typeof ( google ) === "undefined" ) return;
     $scope.$parent.searchingNearbyPlaces = true;
     var onMap = $scope.viewing("observations", "map");
     if( $scope.$parent.placeSearchBox && $scope.map && onMap ) {
@@ -1377,6 +1386,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     $rootScope.$emit( "searchForNearbyPlaces" );
   };
   $rootScope.$on( "showInfowindow", function( event, o ) {
+    if ( typeof ( google ) === "undefined" ) return;
     if( $scope.snippetInfoWindowObservation &&
       $scope.snippetInfoWindowObservation.id == o.id ) { return; }
     if( $scope.snippetInfoWindow ) {
@@ -1512,12 +1522,15 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     $scope.$parent.delayedAlign = false;
   };
   $scope.zoomIn = function( ) {
+    if ( typeof ( google ) === "undefined" ) return;
     $scope.map.setZoom( $scope.map.getZoom() + 1 );
   };
   $scope.zoomOut = function( ) {
+    if ( typeof ( google ) === "undefined" ) return;
     $scope.map.setZoom( $scope.map.getZoom() - 1 );
   };
   $scope.findUserLocation = function( ) {
+    if ( typeof ( google ) === "undefined" ) return;
     if( typeof( navigator.geolocation ) != "undefined" ) {
       var getCurrentPositionSuccess = function( location ) {
         $scope.findingUserLocation = false;
@@ -1541,6 +1554,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   };
   $scope.togglFullscreen = function( ) {
     $scope.fullscreen = !$scope.fullscreen;
+    if ( typeof ( google ) === "undefined" ) return;
     setTimeout( function( ) {
       google.maps.event.trigger( $scope.map, "resize" );
     }, 100 );
