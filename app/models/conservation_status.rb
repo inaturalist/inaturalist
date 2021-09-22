@@ -125,6 +125,7 @@ class ConservationStatus < ApplicationRecord
   def update_observation_geoprivacies
     return true if skip_update_observation_geoprivacies
     Observation.delay(priority: USER_INTEGRITY_PRIORITY,
+      queue: "throttled",
       unique_hash: {
         "Observation::reassess_coordinates_for_observations_of": [ taxon_id, place: place_id ]
       }
@@ -134,6 +135,7 @@ class ConservationStatus < ApplicationRecord
     # statuses
     if saved_change_to_place_id? && !saved_change_to_id?
       Observation.delay(priority: USER_INTEGRITY_PRIORITY,
+        queue: "throttled",
         unique_hash: {
           "Observation::reassess_coordinates_for_observations_of": [ taxon_id, place: place_id_before_last_save ]
         }
