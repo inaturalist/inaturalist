@@ -108,11 +108,10 @@ Some notes:
   <div class="readable species_guess attribute">
     <h4 class="label"><%=t :what %></h4>
     <% if observation.taxon %>
-      <%= render :partial => 'shared/taxon', 
-                 :locals => {
-                    :taxon => observation.taxon,
-                    :link_url => obs_url,
-                    :include_parens => false} %>
+      <%= render "shared/taxon",
+        taxon: observation.taxon,
+        link_url: obs_url,
+        include_parens: true %>
     <% elsif !observation.species_guess.blank? %>
       <span class="taxon">
         <%= link_to observation.species_guess, obs_url %>
