@@ -55,8 +55,8 @@ class Taxon < ApplicationRecord
     through: :listed_taxa
   has_many :identifications, :dependent => :destroy
   has_many :taxon_links, :dependent => :delete_all 
-  has_many :taxon_ranges, :dependent => :destroy
-  has_many :taxon_ranges_without_geom, -> { select(TaxonRange.column_names - ['geom']) }, :class_name => 'TaxonRange'
+  has_one :taxon_range, inverse_of: :taxon, :dependent => :destroy
+  has_one :taxon_range_without_geom, -> { select(TaxonRange.column_names - ['geom']) }, :class_name => 'TaxonRange'
   has_many :taxon_photos, -> { order("position ASC NULLS LAST, id ASC") }, :dependent => :destroy
   has_many :photos, :through => :taxon_photos
   has_many :assessments, :dependent => :nullify
@@ -135,6 +135,9 @@ class Taxon < ApplicationRecord
     :observations => {:notification => "new_observations", :include_owner => false}
   }
   
+  NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT = 200000
+  NUM_OBSERVATIONS_TRIGGERING_WARNING = 1000
+
   NAME_PROVIDER_TITLES = {
     'ColNameProvider' => 'Catalogue of Life',
     'NZORNameProvider' => 'New Zealand Organisms Register',
@@ -428,7 +431,7 @@ class Taxon < ApplicationRecord
   scope :of_rank_equiv_or_lower, lambda {|rank_level| where("taxa.rank_level <= ?", rank_level)}
   scope :is_locked, -> { where(:locked => true) }
   scope :containing_lat_lng, lambda {|lat, lng|
-    joins(:taxon_ranges).where("ST_Intersects(taxon_ranges.geom, ST_Point(?, ?))", lng, lat)
+    joins(:taxon_range).where("ST_Intersects(taxon_ranges.geom, ST_Point(?, ?))", lng, lat)
   }
   
   # Like it's counterpart in Place, this is potentially VERY expensive/slow
@@ -1172,7 +1175,7 @@ class Taxon < ApplicationRecord
   end
   
   def reasess_taxon_framework_relationship_after_move
-    tfr = taxon_framework_relationship
+    return unless tfr = taxon_framework_relationship
     if tf = tfr.taxon_framework
       unless upstream_taxon_framework == tf
         tfr.destroy
@@ -1219,29 +1222,48 @@ class Taxon < ApplicationRecord
     true
   end
 
+  def curated_taxon_framework?( taxon_framework )
+    return false unless taxon_framework
+    return taxon_framework.taxon_curators.any?
+  end
+
+  def current_user_curates_taxon?( user, taxon_framework )
+      current_user_curates_taxon = false
+      if user && taxon_framework
+        current_user_curates_taxon = taxon_framework.taxon_curators.where( user: user ).exists?
+      end
+      current_user_curates_taxon
+  end
+
+  def observose_branch?
+    return false unless observations_count
+    return observations_count > NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT
+  end
+
+  def observose_warning_branch?
+    return false if new_record?
+    return false unless observations_count
+    return observations_count > NUM_OBSERVATIONS_TRIGGERING_WARNING
+  end
+
   def protected_attributes_editable_by?( user )
     return true unless is_active
     return true if user && user.is_admin?
     upstream_taxon_framework = get_upstream_taxon_framework
-    return true unless upstream_taxon_framework
-    return true unless upstream_taxon_framework.taxon_curators.any?
-    current_user_curates_taxon = false
-    if user
-      current_user_curates_taxon = upstream_taxon_framework.taxon_curators.where( user: user ).exists?
+    if observose_branch?
+      return false unless curated_taxon_framework?( upstream_taxon_framework )
+      return current_user_curates_taxon?( user, upstream_taxon_framework )
+    else 
+      return true unless curated_taxon_framework?( upstream_taxon_framework )
+      return current_user_curates_taxon?( user, upstream_taxon_framework )
     end
-    current_user_curates_taxon
   end
   
   def activated_protected_attributes_editable_by?( user )
     return true if user && user.is_admin?
     upstream_taxon_framework = get_upstream_taxon_framework
-    return true unless upstream_taxon_framework
-    return true unless upstream_taxon_framework.taxon_curators.any?
-    current_user_curates_taxon = false
-    if user
-      current_user_curates_taxon = upstream_taxon_framework.taxon_curators.where( user: user ).exists?
-    end
-    current_user_curates_taxon
+    return true unless curated_taxon_framework?( upstream_taxon_framework )
+    return current_user_curates_taxon?( user, upstream_taxon_framework )
   end
   
   #
@@ -1616,15 +1638,61 @@ class Taxon < ApplicationRecord
       taxon_ids,
       Taxon.where( "id IN (?)", taxon_ids).pluck(:ancestry).map{|a| a.to_s.split( "/" ).map(&:to_i)}
     ].flatten.compact.uniq
-    global_status = ConservationStatus.where("place_id IS NULL AND taxon_id IN (?)", target_taxon_ids).order("iucn ASC").last
-    if global_status && global_status.geoprivacy == Observation::PRIVATE
-      return global_status.geoprivacy
-    end
-    geoprivacies = []
-    geoprivacies << global_status.geoprivacy if global_status
-    geoprivacies += ConservationStatus.
+    global_statuses = ConservationStatus.
+      where("place_id IS NULL AND taxon_id IN (?)", target_taxon_ids).
+      order("iucn ASC")
+    place_statuses = ConservationStatus.
       where( "taxon_id IN (?)", target_taxon_ids ).
-      for_lat_lon( options[:latitude], options[:longitude] ).pluck( :geoprivacy )
+      for_lat_lon( options[:latitude], options[:longitude] ).
+      includes(:place)
+    # If it's just global statuses, just choose the most conservative one
+    if place_statuses.blank? && !global_statuses.blank?
+      geoprivacies = global_statuses.map(&:geoprivacy)
+      return Observation::PRIVATE if geoprivacies.include?( Observation::PRIVATE )
+      return Observation::OBSCURED if geoprivacies.include?( Observation::OBSCURED )
+      return Observation::OPEN
+    end
+    # We have some place-based statuses, so now things get complicated
+    # Some admin levels can override a global status or a coarser admin level
+    override_admin_levels = [
+      Place::CONTINENT_LEVEL,
+      Place::COUNTRY_LEVEL,
+      Place::STATE_LEVEL
+    ]
+    # Since overrides only apply within a taxon, we need to assess the geoprivacy for each taxon
+    geoprivacies = target_taxon_ids.map do |taxon_id|
+      global_statuses_for_taxon = global_statuses.select {|cs| cs.taxon_id == taxon_id}
+      place_statuses_for_taxon = place_statuses.select {|cs| cs.taxon_id == taxon_id}
+      override_statuses = place_statuses_for_taxon.select {|cs|
+        override_admin_levels.include?( cs.place.admin_level )
+      }
+      non_override_statuses = place_statuses_for_taxon.reject {|cs|
+        override_admin_levels.include?( cs.place.admin_level )
+      }
+      if non_override_statuses.size == 0 && override_statuses.size > 0
+        # If an override status exists, and there are no other kinds of statuses
+        # to consider, use the geoprivacy from the finest admin level status
+        finest_status = override_statuses.sort_by {|cs| cs.place.admin_level }.last
+        finest_status.try(:geoprivacy)
+      else
+        # Otherwise it's a free-for-all and we need to choose the most
+        # conservative geoprivacy available from all statuses
+        status_geoprivacies = (
+          global_statuses_for_taxon.map(&:geoprivacy) + place_statuses_for_taxon.map(&:geoprivacy)
+        ).compact
+        if status_geoprivacies.include?( Observation::PRIVATE )
+          Observation::PRIVATE
+        elsif status_geoprivacies.include?( Observation::OBSCURED )
+          Observation::OBSCURED
+        elsif status_geoprivacies.size > 0
+          Observation::OPEN
+        else
+          nil
+        end
+      end
+    end.compact
+    # So now that we have geoprivacies for each of the taxa under consideration,
+    # choose the most conservative geoprivacy among them
     return Observation::PRIVATE if geoprivacies.include?( Observation::PRIVATE )
     return Observation::OBSCURED if geoprivacies.include?( Observation::OBSCURED )
     geoprivacies.size == 0 ? nil : Observation::OPEN
@@ -1724,8 +1792,7 @@ class Taxon < ApplicationRecord
   end
 
   def taxon_range_kml_url
-    return nil unless ranges = taxon_ranges_without_geom
-    tr = ranges.detect{|tr| !tr.range.blank?} || ranges.first
+    return nil unless tr = taxon_range_without_geom
     tr ? tr.kml_url : nil
   end
 
@@ -1764,8 +1831,8 @@ class Taxon < ApplicationRecord
   def editable_by?( user )
     return false unless user.is_a?( User )
     return true if user.is_admin?
-    return true if user.is_curator? && get_upstream_taxon_framework
-    user.is_curator? && rank_level.to_i < ORDER_LEVEL
+    return true if user.is_curator?
+    return false
   end
 
   def mergeable_by?(user, reject)

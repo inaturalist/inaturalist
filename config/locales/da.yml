@@ -175,6 +175,9 @@ da:
   #should work here
   about_place: "Om %{place}"
   about_places: Om steder
+  about_taxon_ranges: Om taksonudbredelse
+  about_taxon_ranges_desc: |
+    Taksonudbredelse formidler den globale udbredelse/fordeling af en takson baseret på data typisk indhentet fra IUCNs rødliste.
   about_the_cc_licenses: Om Creative Commons licenser
   about_these_licenses: Om disse licenser
   about_this_bioblitz: Om denne bioblitz
@@ -498,6 +501,7 @@ da:
   alphabetical_order: Alfabetisk orden
   already_have_an_account_log_in_html: Har du en konto? <strong>Log in.</strong>
   amphibians: padder
+  analyze_ids: Analysér ID'er
   ancestor_taxon: Stamfader Takson
   and: og
   and_other_taxa: "&amp;Andre taksa"
@@ -641,6 +645,7 @@ da:
   assessment_x: "%{assessment} vurdering"
   assessments: vurderinger
   associations: Foreninger
+  atlased: Kortlagt
   atlas_for_taxon_html: Atlas for %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -970,7 +975,11 @@ da:
       *du* ønsker at blive opført som autoritet.
     place: Sted, hvor denne status er begrænset.
     url: URL for en side, der beskriver denne status.
-    geoprivacy: Standard geofortrolighed for denne taksons observationer
+    geoprivacy: |
+      Standard geofortrolighed for observationer af denne takson. Bemærk, at
+      geofortroligheden for en status forbundet med et sted på kontinent-, land- eller
+      statsniveau kan tilsidesætte en status, der er global eller tilknyttet et sted på
+      et højere niveau.
     iucn: |
       Ækvivalent IUCN Red List-kode. Dette er ikke den faktiske IUCN-vurdering,
       blot den bedst matchende IUCN-kode ift. truslen om koordinatafsløring indikeret af denne status. Dette vil tilsidesætte geofortrolighed, hvis den er "Mindste bekymring" eller derunder, så ønsker du at sløre observationer af denne takson, indstil da denne til "Næsten truet" eller derover.
@@ -1350,6 +1359,8 @@ da:
   delete_icon?: Slet ikon?
   delete_photo: Slet foto
   delete_project: Slet dette projekt
+  #Label for a button to delete a taxon range
+  delete_range: Slet udbredelse
   delete_selected: Slet valgte
   delete_taxon_and_merge_most_data_html: |
     Slet <i> %{taxon} </i> og sammenlæg det meste af dets data i en anden takson. Brug dette værktøj til <strong> at fjerne dubletter </strong>. Hvis du vil
@@ -1373,11 +1384,14 @@ da:
   description_slash_tags: Beskrivelse / Tags
   description_tags_more: "Beskrivelse, Tags, &amp; Mere"
   desription: Beskrivelse
+  destination: Bestemmelsessted
   destroy: Ødelæg
   details: Detaljer
   deviation: Afvigelse
   devise:
     confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
         Findes din e-mailadresse i vores database, modtager du om få minutter en e-mail med instruktioner til, hvordan du bekræfter din e.mailadresse.
     failure:
@@ -1532,7 +1546,7 @@ da:
   editing_taxon: Redigering af %{taxon}
   editing_taxon_link: Redigering af takson link
   editing_taxon_name_for_taxon_html: Redigerer taksonnavn "%{name}" for %{taxon}
-  editing_taxon_range: Redigering af takson område
+  editing_taxon_range_for_taxon_html: Redigér Taksonudbredelse for %{taxon}
   editing_this: Redigering af %{elem}
   editing_x_in_y: "Redigering af %{x} i %{y}"
   editors: Redaktører
@@ -1572,6 +1586,9 @@ da:
   establishment_means_describes_how: |
     Oprindelse beskriver hvordan taksonet blev etableret i et område.
     Se DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24"> flere oplysninger om terminologi </a>.
+  estimate_which_input: |
+    Anslå, hvilke input-takson ID'er, som vil blive erstattet med hvilke output-taksa, og hvilke som vil blive forsimplet til en fælles forfader, når opdelingen er udført. Dette kan tage
+    et øjeblik at beregne. Links til observationer afkortes til undersæt á 200.
   event_in_progress: Arrangement i gang
   event_stats: Hændelses statistik
   event_url: Begivenheds-URL
@@ -2125,6 +2142,7 @@ da:
     ilokano: Ilokano
     italian: Italiensk
     japanese: Japansk
+    kannada: Kannaresisk
     korean: Koreansk
     latvian: Lettisk
     lithuanian: Litauisk
@@ -2136,9 +2154,12 @@ da:
     norwegian: Norsk
     occitan: Occitansk
     pangasinan: Pangasinan
+    polish: Polsk
     portuguese: Portugisisk
     romanian: Rumænsk
     russian: Russisk
+    sinhala: Singalesisk
+    slovak: Slovakisk
     spanish: Spansk
     swedish: Svensk
     tagalog: Tagalog
@@ -2146,6 +2167,7 @@ da:
     thai: Thailandsk
     tokelauan: Tokelauan
     turkish: Tyrkisk
+    ukrainian: Ukrainsk
     waray_waray: Waray-Waray
   less: Mindre
   licensed_site_photos: "Licenserede %{site_name} fotos"
@@ -2234,6 +2256,7 @@ da:
     id: Indonesisk
     it: Italiensk
     ja: Japansk
+    kn: Kannaresisk
     ko: Koreansk
     lb: Luxembursk
     lt: Litauisk
@@ -2613,6 +2636,7 @@ da:
   no_identifications_added:
     current_user: Du har ikke tilføjet identifikationer til nogens observationer.
     user: "%{user} har ikke tilføjet identifikationer til nogens observationer."
+  no_ids: "Antal ID'er"
   no_ids_have_been_suggested_yet: Ingen IDs er foreslået endnu
   no_interaction_data_available: Ingen interaktionsdata tilgængelige
   no_its_as_good_as_it_can_be: Nej, det er så godt som det kan blive
@@ -2654,6 +2678,7 @@ da:
   no_project_to_admin_current_user: "Du administrerer ikke nogen projekter"
   no_project_to_admin_login: "%{login} administrerer ikke nogen projekter"
   no_projects_yet: Ingen projekter endnu
+  no_attached_range: Ingen vedhæftet udbredelse
   no_range_data_available: Ingen områdedata tilgængelig.
   no_recent_activity: Ingen nylige aktiviteter
   no_relevant_annotations: Ingen relevante anmærkninger
@@ -2668,6 +2693,8 @@ da:
   no_species_on_this_list_for_owner: |
     Man kan begynde at føje arter til denne liste ved brug af "Føj til din liste"-værktøjet til højre.
   no_subject_parens: "(Intet emne)"
+  no_such_wiki_page: Der er ingen sådan side.
+  no_such_wiki_page_html: Der er ingen sådan side. Vil du <a href="%{new_url}">oprette den</a>?
   no_suggestions_available: Ingen forslag tilgængelige
   no_summary_from_wikipedia: Ingen oversigt fra Wikipedia
   no_summary_has_been_set: Ingen oversigt er indstillet.
@@ -2684,6 +2711,7 @@ da:
   none: Ingen
   none_found: Ingen fundet
   normal: normal
+  not_atlased: Ikke kortlagt
   not_completed: Ikke afsluttet
   not_confident: Vi er ikke tilstrækkeligt sikre til at komme med en anbefaling.
   not_confident_top_suggestions: Vi er ikke tilstrækkeligt sikre til at give en anbefaling, men her vore bedste forslag.
@@ -2868,7 +2896,7 @@ da:
     absent: Forekommer ikke i området
     common: Forekommer hyppigt
     doubtful: Formodes at forekomme, men tvivl eksisterer vedrørende beviserne
-    irregular: Tilstedeværelse uforudsigelige, herunder vagabonder; kan være almindelig forekommende nogle år og fraværende andre år
+    irregular: Tilstedeværelse uforudsigelige, inkl. vandrere; kan være almindeligt forekommende visse år og fraværende i andre
     present: Forekommer i regionen
     uncommon: Forekommer regelmæssigt, men i små antal; kræver omhyggelig søgning af korrekt habitat
   occurrence_status_establishment_means: forekomststatus, oprindelse
@@ -2921,6 +2949,9 @@ da:
       </ul>
   one_by_one: "En efter en"
   one_of_your_lists: "en af dine lister..."
+  one_or_more_input_taxa_have_more_than_1000: |
+    En eller flere input-taksa har flere end 1.000 nedstrømsobservationer.
+    Effektuering kan kræve noget behandlingstid, er du derfor sikker på, at denne taksonændring er nødvendig? Taksonændringer kan heller ikke fortrydes.
   only_a_project_manager_can_add: Kun en projektleder kan tilføje projekt kuratorstatus
   only_administrators_may_access_that_page: Kun administratorer kan få adgang til denne side
   only_an_admin_can_remove_project_users: Kun en administrator kan fjerne projekt brugere
@@ -2992,9 +3023,11 @@ da:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Andre taksa hyppigt fejlidentificeret som denne undersælgt i <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_subsection: Andre taksa hyppigt fejlidentificeret som denne undersektion
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Andre taksa hyppigt fejlidentificeret som denne undersektion i <a href="%{url}">%{place}</a>
+  outside_of_all_atlases: Udenfor alle atlaser
   our_blog: Vores blog
   output_taxon: Output takson
   overview: Overblik
+  overlapping_atlases: Overlappende atlaser
   overlapping_downstream_taxon_frameworks_html: "Overlappende downstream Taxon Frameworks: %{count}"
   owner: Ejer
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -3786,6 +3819,8 @@ da:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: Infrahybrid
   ranges: Områder
+  #Text to link to a taxon range as a KML file
+  range_file: Udbredelsesfil
   ray_finned_fishes: strålefinnede fisk
   re_order_photos: "Ændre rækkefølgen for fotos &raquo;"
   read_more: Læs mere
@@ -4049,6 +4084,8 @@ da:
   showing_x_of_y: Viser af %{x} af %{y}
   showing_x_of_y_listings: "Viser %{x} af %{y} lister"
   sign_in: Log ind
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Log ind med Apple
   sign_in_with_provider: "Log ind med %{provider}"
   sign_in_with_google: Log ind med Google
   sign_out: Log ud
@@ -4357,6 +4394,31 @@ da:
   taxon_photos_updated: Takson foto´s opdateret!
   taxon_range: Takson område
   taxon_range_created_notice: Taksonområdet blev oprettet. Vent venligst et par minutter for at få det vist på kortene.
+  taxon_range_for_taxon_html: Taksonudbredelse for %{taxon}
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: Er dette et IUCN-rødliste udbredelseskort, og hvis ikke, hvorfor?
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: Dette et IUCN-rødliste udbredelseskort
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Dette et ikke et IUCN-rødliste udbredelseskort grundet uegnet kort
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: Dette et ikke et IUCN-rødliste udbredelseskort, da denne takson ikke er på IUCN-rødisten
+  taxon_range_guidelines_each_taxon_can_have: Hver takson kan kun have én taksonudbredelse. Taksonudbredelser skal repræsentere den globale fordeling.
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    %{link_start_tag}IUCN-rødlisten%{link_end_tag} er den typiske kilde for taksonudbredelser.
+    Angiv, om der tilføjes en IUCN-rødkisteudbredelse, og hvis ikke, så hvordan det, der tilføjes,
+    relaterer til IUCN-rødlisten. Dette vil bidrage til at informere automatiske opdateringsprocesser
+    for udbredelser indhentet til IUCN Red List. Tilføjes en IUCN-rødlisteudbredelse,
+    bedes en korrekt IUCN Red List-version (f.eks. 2021-2) angives i kilden.
+  taxon_range_guidelines_if_you_are_not_uploading: "Uploader der ikke en IUCN-rødlisteudbredelse, bør dette skyldes:"
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: IUCN-rødlisteudbredelseskort for denne takson er uegnet
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    f.eks., man har manuelt indsnævret det til at afspejle en taksonomisk opdeling, der ikke fremgår på IUCNs rødliste, eller
+    IUCNs rødlisteudbredelseskort har markante fejl med uegnet visning til følge.
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Denne takson er ikke på IUCNs rødliste
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    f.eks., man har skåret den manuelt af her, da taksonen er sammenklumpet med en anden takson på IUCNs rødliste, eller taksonen
+    mangler en IUCN-rødlistevurdering og udbredelseskort.
+  taxon_range_guidelines_please_provide_details: |
+    Brug beskrivelsen til at forklare kortets afledning, og link det til evt. relevante flag, taksonomiske opdelinger eller andre debatter
+    om, hvorfor den publicerede IUCN-rødlisteudbredelse krævede ændringer.
+  taxon_range_guidelines_learn_more_about_taxon_ranges: Få mere at vide om taksonudbredelser
   taxon_range_updated_notice: Taksonområdet blev opdateret. Ændringerne vises på kortet om få minutter.
   taxon_ranks: Taksonrangeringer
   taxon_removed_from_list: Takson fjernet fra liste.
@@ -4507,6 +4569,7 @@ da:
     <strong> Denne takson ændring er blevet udført! </strong>
     Vær venlig ikke at redigere taksa. Redigering af andre felter er ok.
   this_taxon_concept_is_inactive: Denne takson er inaktiv
+  this_taxon_has_more_than_1000: Denne takson har flere end 1.000 nedstrømsobservationer. Redigering kan tage noget tid at behandle, er du derfor sikker på, at det er nødvendigt?
   this_taxon_has_no_default_photo: Denne taxon har intet standardbillede!
   this_taxon_is_inactive_this_means: |
     Denne takson er <strong> inaktiv </strong>. Det betyder, at %{site_name}'s kuratorer har erstattet den med et mere taksonomisk aktuelt koncept.
@@ -4552,6 +4615,7 @@ da:
     <a href="/pages/community+guidelines" target="_blank">Fællesskabsretningslinjer</a>.
   total: I alt
   totals: totaler
+  total_ids_on_input_taxon: "ID'er i alt for input-takson:"
   total_members: Samlet antal medlemmer
   total_observations: Samlet antal observationer
   total_observations_caps: OBSERVATIONER I ALT
@@ -5788,9 +5852,9 @@ da:
         svarende til genet, som dette felt er målrettet mod.
       merge:
         warning_html: |
-          Vær venlig at respektere andres data og <strong> tal med ophavsmanden
-          af et observationsfelt inden en sammenlægning</strong>. Dette værktøj vil ødelægge observationsfeltet hvis det sammenlægges og flytte alle observationer 
-          over til holderen.<strong> Denne proces kan ikke fortrydes </strong>, så PAS PÅ.
+          Respektér venligt andres data og <strong>tal med ophavsmanden
+          til et observationsfelt inden en fletning</strong>. Dette værktøj ødelægger observationsfeltet, der flettes, og flytte alle observationer, som bruger det,
+          til det flettede felt.<strong>Processen er irreversibel</strong>, så vær forsigtig.
     emailer:
       bulk_import_success:
         success_message: |
@@ -7599,6 +7663,12 @@ da:
             taxon:
               too_many_photos: |
                 kan ikke have mere end %{max} fotos
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: skal være en accepteret værdi
+            taxon_id:
+              already_has_a_range: indeholder allerede udbredelse
         user:
           attributes:
             login:

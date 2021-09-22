@@ -170,6 +170,12 @@ pt:
   about_trusting_projects_options_taxon_desc: |-
     Muitos projetos só precisam de acesso a coordenadas que são obscurecidas porque a observação
     retrata um táxon ameaçado.
+  about_trusting_projects_overview: |-
+    Conceder acesso às suas coordenadas ocultadas permitirá que os gestores deste
+    projeto vejam a verdadeira localização desobscurecida das suas observações neste
+    projeto. Isto é extremamente importante em situações em que cientistas ou
+    gestores de recursos precisam de acesso a coordenadas exatas para a análise e
+    para a tomada de decisão.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -896,7 +902,6 @@ pt:
     description: Porque foi incluído na lista? Breve descrição.
     place: Local ao qual esse estatuto é referente.
     url: URL para página que descreva este estatuto.
-    geoprivacy: Geoprivacidade padrão para as observações deste taxon
   contain_all_descendants?: Esta checklist contém todos os representantes deste taxon que ocorrem na área?
   content_and_display: Conteúdo & Exibição
   continue: Continuar
@@ -1354,7 +1359,6 @@ pt:
   editing_project_asset: Recurso de Projeto em Edição para
   editing_subscription_to_x_html: "A editar a subscrição para %{x}"
   editing_taxon_link: A editar ligação do táxon
-  editing_taxon_range: A editar a área de distribuição do táxon
   editing_this: A editar %{elem}
   editing_x_in_y: "A editar %{x} em %{y}"
   editors: Editores

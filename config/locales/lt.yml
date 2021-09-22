@@ -269,6 +269,8 @@ lt:
   about_trusting_projects_options_taxon_desc: |-
     Daugeliui projektų tiesiog reikia prieigos prie koordinačių, kurios yra paslėptos, nes
     buvo stebėtas saugomas taksonas.
+  about_trusting_projects_overview: |-
+    Suteikdami prieigą prie savo paslėptų koordinačių, leidžiate projekto prižiūrėtojui matyti tikslias, o ne abstrakčias stebėjimu lokacijas. Tai itin svarbu kai mokslininkai vykdo tyrimus ir reikalingi tikslūs duomenys sprendimams priimti.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -1014,7 +1016,6 @@ lt:
     description: Trumpas aprašymas, kodėl tai buvo įtraukta į sąrašą.
     place: Vietovė, kurioje galioja šis statusas.
     url: Puslapio, apibūdinančio šią būseną, URL.
-    geoprivacy: Numatytasis vietos privatumas šio taksono stebėjimams
   conservation_status_geoprivacy_desc: |
     Numatytasis vietos privatumas taikomas visiems šio taksono stebėjimams šioje vietovėje
   contact_support: Susisiekti su pagalba
@@ -1365,7 +1366,6 @@ lt:
   editing_taxon: Redaguojamas %{taxon}
   editing_taxon_link: Redaguojama taksono nuorodą
   editing_taxon_name_for_taxon_html: Redaguojamas taksono %{taxon} pavadinimas „%{name}“
-  editing_taxon_range: Redaguojamas taksono arealas
   editing_this: Redaguojama %{elem}
   editing_x_in_y: "Redaguojama %{x} %{y}"
   editors: Redaktoriai

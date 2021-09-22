@@ -27,7 +27,7 @@ class TaxonLink < ApplicationRecord
     end
   }
   
-  TEMPLATE_TAGS = %w"[NAME] [GENUS] [SPECIES] [RANK] [NAME_WITH_RANK]"
+  TEMPLATE_TAGS = %w"[NAME] [NAME_] [NAME-] [GENUS] [SPECIES] [RANK] [NAME_WITH_RANK]"
   
   validate :url_cant_have_genus_without_species
   validate :url_cant_have_species_without_genus
@@ -50,18 +50,20 @@ class TaxonLink < ApplicationRecord
   
   # Fill in the template values for the URL given a taxon
   def url_for_taxon(taxon)
-    new_url = url.sub('[NAME]', taxon.name)
-    new_url = new_url.sub('[RANK]', taxon.rank)
+    new_url = url.sub( "[NAME]", taxon.name )
+    new_url = new_url.sub( "[NAME_]", taxon.name.strip.gsub( /\s+/, "_" ) )
+    new_url = new_url.sub( "[NAME-]", taxon.name.strip.gsub( /\s+/, "-" ) )
+    new_url = new_url.sub( "[RANK]", taxon.rank )
     new_url = if taxon.rank_level.to_i < Taxon::SPECIES_LEVEL
-      new_url.sub( '[NAME_WITH_RANK]', taxon.name_with_rank )
+      new_url.sub( "[NAME_WITH_RANK]", taxon.name_with_rank )
     else
-      new_url.sub( '[NAME_WITH_RANK]', taxon.name )
+      new_url.sub( "[NAME_WITH_RANK]", taxon.name )
     end
     if taxon.species_or_lower? && pieces = taxon.name.split
-      new_url.sub!('[GENUS]', pieces.first)
-      new_url.sub!('[SPECIES]', pieces[1] || '')
+      new_url.sub!( "[GENUS]", pieces.first )
+      new_url.sub!( "[SPECIES]", pieces[1] || "" )
     else
-      new_url.sub!(/\[GENUS\].*\[SPECIES\]/, taxon.name)
+      new_url.sub!( /\[GENUS\].*\[SPECIES\]/, taxon.name )
     end
     new_url
   end

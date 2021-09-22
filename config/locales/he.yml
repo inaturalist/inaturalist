@@ -963,7 +963,6 @@ he:
       אירגון אשר קבע ססטוס זה. אנא בדקו ברשימת האירגונים לפני הוספת אירגון חדש. ניתן להשאיר ריק אם תרצו להיסמן כמקבע הססטוס בעצמכם.
     place: מיקום באשר סטטוס זה הינו מוגבל
     url: URL לדף המתאר סטטוס זה
-    geoprivacy: הגדרת פרטיות-מקום לטקסון זה
   conservation_status_geoprivacy_desc: |
     מיקום מוסתר מוגדר כברירת מחדל עבור טקסון זה במקום זה
   contact_support: יצירת קשר עם תמיכה
@@ -1726,6 +1725,7 @@ he:
     luxembourgish: לוקסמבורגית
     maltese: מלטזית
     maori: מאורית
+    marathi: מארטית
     misima_paneati: מיסימה-פנאטית
     norwegian: נורבגית
     occitan: אוקיטנית
@@ -1813,6 +1813,7 @@ he:
     lb: לוקסמבורגית
     lt: ליטאית
     mk: מקדונית
+    mr: מארטית
     nb: נורווגית - בוקמאל
     nl: הולנדית
     oc: אוקיטנית
@@ -3570,6 +3571,10 @@ he:
   were_pretty_sure_this_is_in_the_family: אנחנו די בטוחים שזה שייך למשפחה
   #Label for the most probable taxon in the automated suggestions when that taxon is an order
   were_pretty_sure_this_is_in_the_order: אנחנו די בטוחים שזה נמצא בסדרה
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: אנחנו די בטוחים שזה שייך לתת-המשפחה
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: אנחנו די בטוחים שזה שייך למשפחת-העל
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a

@@ -6,6 +6,8 @@ class VotesController < ApplicationController
   before_action :load_vote, only: [:destroy]
   before_action :require_owner, only: [:destroy]
 
+  layout "bootstrap"
+
   def destroy
     votable = @vote.votable
     @vote.destroy

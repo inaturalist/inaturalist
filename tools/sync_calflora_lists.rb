@@ -65,7 +65,12 @@ def work_on_place(place)
     page.body.force_encoding('ISO-8859-1').encode('UTF-8').split("\n")[1..-1]
   end
   page_introduced = RestClient.get(url_introduced)
-  names_introduced = page_introduced.body.split("\n")[1..-1]
+  names_introduced = begin
+    page_introduced.body.split("\n")[1..-1]
+  rescue ArgumentError => e
+    raise e unless e.message =~ /invalid byte sequence in UTF-8/
+    page_introduced.body.force_encoding( "ISO-8859-1" ).encode( "UTF-8" ).split("\n")[1..-1]
+  end
   puts "\t#{names.size} names, #{names_introduced.size} introduced"
   if names.blank?
     puts "\tERROR: no names for #{url}, skipping..."
@@ -235,9 +240,9 @@ end
 california = Place.where(name: "California", admin_level: Place::STATE_LEVEL).first
 puts "Found state: #{california}" if OPTS.debug
 california.children.where(admin_level: Place::COUNTY_LEVEL).find_each do |county|
-  puts "Found county: #{county}" if OPTS.debug
   if OPTS.county
     next unless county.name.downcase == OPTS.county.downcase
+    puts "Found county: #{county}" if OPTS.debug
   end
   work_on_place(county)
 end

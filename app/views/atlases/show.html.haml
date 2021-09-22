@@ -41,11 +41,12 @@
         map_attributes = setup_map_tag_attrs(
           min_zoom: 1,
           show_all_layer: false,
+          taxon_observations_layer_label: t( :verifiable_observations ),
           taxon_layers: [ {
             taxon: @atlas.taxon,
             places: false,
             ranges: true,
-            observations: true,
+            observations: { verifiable: true },
             gbif: { disabled: true },
           } ]
         )

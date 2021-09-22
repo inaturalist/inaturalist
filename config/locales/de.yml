@@ -176,6 +176,9 @@ de:
   #should work here
   about_place: "Über %{place}"
   about_places: Über Gebiete
+  about_taxon_ranges: Info über Verbreitungsgebiete
+  about_taxon_ranges_desc: |
+    Verbreitungsgebiete stellen das globale Auftreten eines Taxons dar. Verbreitungsgebiete innerhalb von iNaturalist entstammen normalerweise aus der Roten Liste der IUCN.
   about_the_cc_licenses: Über Creative-Commons-Lizenzen
   about_these_licenses: Über diese Lizenzen
   about_this_bioblitz: Über diesen Bioblitz
@@ -194,6 +197,12 @@ de:
   about_trusting_projects_options_taxon_desc: |-
     Viele Projekte benötigen nur Zugang zu verdeckten Koordinaten, da die
     Beobachtung ein bedrohtes Taxon darstellt.
+  about_trusting_projects_overview: |-
+    Wenn du Zugriff auf deine versteckten Koordinaten gewährst, können die Manager dieses
+    Projekts die unverschleierte Position deiner Beobachtungen in diesem
+    Projekt sehen. Dies ist extrem wichtig in Situationen, in denen Wissenschaftler oder
+    Ressourcenmanager Zugriff auf exakte Koordinaten für Analysen und
+    Entscheidungsfindung benötigen.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -637,6 +646,7 @@ de:
   assessment_x: "%{assessment} Bewertung"
   assessments: Bewertungen
   associations: Vereine
+  atlased: mit Atlas
   atlas_for_taxon_html: Atlas für %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -965,7 +975,6 @@ de:
       Organisation, die diesen Status deklariert hat. Du kannst dies überspringen, wenn *du* als Autorität aufgeführt werden möchtest.
     place: Dieser Status ist auf dieses Gebiet beschränkt.
     url: URL für eine Seite, die diesen Status beschreibt.
-    geoprivacy: Standard-Geo-Privatsphäre für Beobachtungen dieses Taxons
   conservation_status_geoprivacy_desc: |
     Standardmäßig Geo-Privatsphäre auf alle Beobachtungen dieses Taxons an diesem Ort angewendet
   contact_support: Support kontaktieren
@@ -1329,6 +1338,8 @@ de:
   delete_icon?: Symbol löschen?
   delete_photo: Foto löschen
   delete_project: Dieses Projekt löschen
+  #Label for a button to delete a taxon range
+  delete_range: Verbreitungsgebiet löschen
   delete_selected: Ausgewählte löschen
   delete_taxon_and_merge_most_data_html: |
     Lösche <i>%{taxon}</i> und füge die meisten Daten in ein anderes Taxon ein. Verwende dieses Tool zum <strong>Entfernen doppelter Taxa</strong>. Wenn du ein veraltetes Synonym entfernen möchtest, erstelle bitte einen Taxon-Tausch. <strong>ACHTUNG!</strong> Das Löschen von Taxa kann sehr destruktiv sein. Lese den <a href="%{curator_url}">Kurator-Guide</a> für weitere Details.
@@ -1355,6 +1366,8 @@ de:
   deviation: Abweichung
   devise:
     confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
         Wenn deine E-Mail-Adresse in unserer Datenbank existiert, wirst du in wenigen Minuten eine E-Mail mit einer Anleitung zum Bestätigen deiner E-Mail-Adresse erhalten.
     failure:
@@ -1500,7 +1513,7 @@ de:
   editing_taxon: '%{taxon} bearbeiten'
   editing_taxon_link: Taxonlink bearbeiten
   editing_taxon_name_for_taxon_html: Taxonname "%{name}" für %{taxon} bearbeiten
-  editing_taxon_range: Verbreitungsgebiet bearbeiten
+  editing_taxon_range_for_taxon_html: Verbreitungsgebiet für %{taxon} bearbeiten
   editing_this: '%{elem} bearbeiten'
   editing_x_in_y: "Bearbeiten von %{x} in %{y}"
   editors: Autoren
@@ -2086,6 +2099,7 @@ de:
     ilokano: Ilokano
     italian: Italienisch
     japanese: Japanisch
+    kannada: Kannada
     korean: Koreanisch
     latvian: Lettisch
     lithuanian: Litauisch
@@ -2097,9 +2111,12 @@ de:
     norwegian: Norwegisch
     occitan: Okzitanisch
     pangasinan: Pangasinensisch
+    polish: Polnisch
     portuguese: Portugiesisch
     romanian: Rumänisch
     russian: Russisch
+    sinhala: Singhalesisch
+    slovak: Slowakisch
     spanish: Spanisch
     swedish: Schwedisch
     tagalog: Tagalog
@@ -2107,6 +2124,7 @@ de:
     thai: Thailändisch
     tokelauan: Tokelauisch
     turkish: Türkisch
+    ukrainian: Ukrainisch
     waray_waray: Wáray-Wáray
   less: Weniger
   licensed_site_photos: "Lizenzierte %{site_name} Fotos"
@@ -2194,6 +2212,7 @@ de:
     id: Indonesisch
     it: Italienisch
     ja: Japanisch
+    kn: Kannada
     ko: Koreanisch
     lb: Luxemburgisch
     lt: Litauisch
@@ -2535,7 +2554,7 @@ de:
   new_taxon_change: Neue Taxon-Änderung
   new_taxon_link: Neuer Taxon-Link
   new_taxon_name_for: Neuer Taxon-Name für
-  new_taxon_range: Neue Taxon-Verbreitung
+  new_taxon_range: Neues Verbreitungsgebiet
   new_taxonomic_change: Neue taxonomische Änderung (Entwurf)
   new_trip: Neuer Trip
   new_updates_in_the_last_24_hours_from: "Neue Aktualisierungen in den letzten 24 Std. von %{site_name}"
@@ -2609,6 +2628,7 @@ de:
   no_project_to_admin_current_user: "Du verwaltest keine Projekte"
   no_project_to_admin_login: "%{login} verwaltet keine Projekte"
   no_projects_yet: Noch keine Projekte
+  no_attached_range: Kein zugehöriges Verbreitungsgebiet
   no_range_data_available: Keine Verbreitungsdaten verfügbar.
   no_recent_activity: Keine kürzliche Aktivität
   no_relevant_annotations: Keine relevanten Annotationen
@@ -2623,6 +2643,8 @@ de:
   no_species_on_this_list_for_owner: |
     Du kannst mit Hilfe der Funktion "Zur Liste hinzufügen" auf der rechten Seite Arten zu dieser Liste hinzufügen.
   no_subject_parens: "(Kein Betreff)"
+  no_such_wiki_page: Diese Seite existiert nicht.
+  no_such_wiki_page_html: Diese Seite existiert nicht. Möchtest du eine <a href="%{new_url}">erstellen</a>?
   no_suggestions_available: Keine Vorschläge verfügbar
   no_summary_from_wikipedia: Keine Zusammenfassung von Wikipedia
   no_summary_has_been_set: Keine Zusammenfassung wurde festgelegt.
@@ -2637,6 +2659,7 @@ de:
   none: Keine
   none_found: nichts gefunden
   normal: normal
+  not_atlased: ohne Atlas
   not_completed: Nicht komplett
   not_confident: Eine Empfehlung abzugeben ist uns hier zu unsicher.
   not_confident_top_suggestions: Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier sind unsere besten Vorschläge.
@@ -2810,7 +2833,6 @@ de:
     absent: Kommt nicht im Gebiet vor
     common: Tritt häufig auf
     doubtful: Kommt vielleicht vor, aber es gibt Zweifel an den Belegen
-    irregular: Vorkommen unvorhersehbar, einschließlich gelegentlichen Besuchen; kann in einigen Jahren häufig sein und in anderen fehlen
     present: Kommt im Gebiet vor
     uncommon: Kommt regelmäßig vor, aber in geringer Anzahl; erfordert sorgfältige Suche in geeignetem Lebensraum
   occurrence_status_establishment_means: Verbreitungsstatus, Art der Verbreitung
@@ -3721,6 +3743,8 @@ de:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: Infrahybrid
   ranges: Bereiche
+  #Text to link to a taxon range as a KML file
+  range_file: Datei des Verbreitungsgebietes
   ray_finned_fishes: Strahlenflosser
   re_order_photos: "Fotos neu ordnen &raquo;"
   read_more: Mehr lesen
@@ -3984,6 +4008,8 @@ de:
   showing_x_of_y: '%{x} von %{y} angezeigt'
   showing_x_of_y_listings: "Zeige %{x} von %{y} Ergebnissen"
   sign_in: Anmelden
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Mit Apple anmelden
   sign_in_with_provider: "Mit %{provider} anmelden"
   sign_in_with_google: Mit Google anmelden
   sign_out: Abmelden
@@ -4291,6 +4317,25 @@ de:
   taxon_photos_updated: Taxon-Bilder aktualisiert!
   taxon_range: Verbreitungsgebiet
   taxon_range_created_notice: Verbreitungsgebiet des Taxons wurde erfolgreich erstellt. Bitte warte ein paar Minuten, damit es auf den Karten angezeigt wird.
+  taxon_range_for_taxon_html: Verbreitungsgebiet für %{taxon}
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: Ist dies eine Rote Liste-Verbreitungskarte der IUCN und falls nicht - warum?
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: Dies ist eine Rote Liste-Verbreitungskarte der IUCN
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Dies ist keine Rote Liste-Verbreitungskarte der IUCN, da sie ungeeignet ist
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: Dies ist keine Rote Liste-Verbreitungskarte der IUCN, da dieses Taxon nicht auf der Roten Liste der IUCN ist
+  taxon_range_guidelines_each_taxon_can_have: Jedes Taxon kann nur ein Verbreitungsgebiet haben. Der Bereich muss das globale Vorkommen wiedergeben.
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    Die %{link_start_tag}Rote Liste der IUCN%{link_end_tag} ist die Standard-Quelle für das Verbreitungsgebiet eines Taxons.
+    Bitte gib an, ob für ein Verbreitungsgebiet die Karte der Roten Liste der IUCN verwendet wurde und falls nicht, inwiefern sich die Angaben auf die Rote Liste der IUCN beziehen. Dies ist hilfreich, um die Prozesse bei automatischen Aktualisierungen des Verbreitungsgebietes basierend der Roten Liste der IUCN zu erleichtern. Wenn eine Karte der Roten Liste der IUCN hinzugefügt wurde, bitte die Rote Listen-Version (z.B. 2021-2) in der Quelle korrekt angeben.
+  taxon_range_guidelines_if_you_are_not_uploading: "Keine Verwendung von Rote Liste-Karten der IUCN sollte nur aus folgenden Gründen geschehen:"
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: Die Rote Liste-Karte der IUCN für dieses Taxon ist ungeeignet
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    zum Beispiel, weil du das Gebiet manuell eingeschränkt hast um einen taxonomischen Split zu berücksichtigen, der auf der Roten Liste der IUCN nicht vorhanden ist, oder weil die Verbreitungsklarte grobe Fehler aufweißt
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Dieses Taxon ist nicht in der Roten Liste der IUCN enthalten
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    zum Beispiel, weil dieses Taxon mit einem anderen auf der Roten Liste der IUCN zusammengefasst ist, oder weil es noch keine Beurteilung und kein Verbreitungsgebiet von der IUCN erhalten hat.
+  taxon_range_guidelines_please_provide_details: |
+    Bitte nutze das Feld "Bemerkungen" um zu beschreiben, worauf die Karte des Verbreitungsgebietes basiert und verlinken alle relevanten Meldungen, taxonomischen Splits und andere Diskussionen, die zeigen, warum das Verbreitungsgebiet basierend auf der Roten Liste der IUCN geändert werden musste.
+  taxon_range_guidelines_learn_more_about_taxon_ranges: Erfahre mehr über Verbreitungsgebiete
   taxon_range_updated_notice: Verbreitungsgebiet des Taxons wurde erfolgreich aktualisiert. Bitte warte ein paar Minuten, damit die Änderungen auf den Karten sichtbar werden.
   taxon_ranks: Taxonränge
   taxon_removed_from_list: Taxon aus der Liste entfernt.
@@ -5562,9 +5607,6 @@ de:
         Um die Funktionalität des BOLD DNA-Barcode Matching zu ermöglichen, stelle sicher, dass der
         Name des Feldes die Wörter "COI", "COX1", "ITS" oder "matK" enthält,
         entsprechend dem Gen auf welches dieses Feld abzielt.
-      merge:
-        warning_html: |
-          Bitte gehe respektvoll mit den Daten anderer Personen um und <strong>kommuniziere mit dem Ersteller eines Beobachtungsfeldes vor dem zusammenführen.</strong> Dieses Vorgehen vernichtet das Beobachtungsfeld, welches zusammengeführt wird und verschiebt alle Beobachtungen, die es verwenden, zum anderen Feld. <strong>Dieser Prozess kann nicht rückgängig gemacht werden</strong>, also sei vorsichtig.
     emailer:
       bulk_import_success:
         success_message: |
@@ -7135,6 +7177,12 @@ de:
             taxon:
               too_many_photos: |
                 kann nicht mehr als %{max} Fotos haben
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: muss ein gültiger Wert sein
+            taxon_id:
+              already_has_a_range: hat bereits ein Verbreitungsgebiet
         user:
           attributes:
             login:

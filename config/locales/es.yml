@@ -193,6 +193,8 @@ es:
   about_trusting_projects_options_taxon_desc: |-
     Muchos proyectos solo necesitan el acceso a coordenadas que están ocultas porque la observación
     representa un taxón amenazado.
+  about_trusting_projects_overview: |-
+    Otorgar acceso a tus coordenadas ocultas permitirá a los administradores de este proyecto ver la ubicación real de tus observaciones en este proyecto. Esto es extremadamente importante en situaciones en las que los científicos o gestores necesitan acceso a coordenadas exactas para análisis y toma de decisiones.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -965,7 +967,6 @@ es:
       *tú* quieres ser considerado como dicha autoridad.
     place: Lugar en el cual el estatus está restringido.
     url: URL de una página que describa este estado.
-    geoprivacy: Geoprivacidad predeterminada para esta especie o grupo.
     iucn: |
       Código de la lista roja IUCN equivalente. Esta no es la evaluación real del IUCN,
       únicamente el código IUCN que se ajusta mejor a la amenazaque supone la divulgación de coordenadas
@@ -1361,6 +1362,11 @@ es:
   details: Detalles
   deviation: Desviación
   devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Si tu dirección de correo electrónico existe en nuestra base de datos, recibirás un enlace de recuperación de contraseña en tu dirección de correo electrónico en unos minutos.
     failure:
       already_authenticated: 'Ya has iniciado sesión.'
       unauthenticated: 'Debes iniciar sesión o registrarte antes de continuar.'
@@ -1511,7 +1517,6 @@ es:
   editing_taxon: Editando %{taxon}
   editing_taxon_link: Modificando vínculo del taxón
   editing_taxon_name_for_taxon_html: Editando el nombre "%{name}" para el taxón %{taxon}
-  editing_taxon_range: Modificando área del taxón
   editing_this: Modificando %{elem}
   editing_x_in_y: "Editando %{x} en%{y}"
   editors: Editores
@@ -2110,6 +2115,7 @@ es:
     luxembourgish: Luxemburgués
     maltese: Maltés
     maori: Maorí
+    marathi: Maratí
     misima_paneati: Misima-paneati
     norwegian: Noruego
     occitan: Occitano
@@ -2217,6 +2223,7 @@ es:
     lt: Lituano
     lv: Letón
     mk: Macedonio
+    mr: Maratí
     nb: Noruego Bokmål
     nl: Holandés
     oc: Occitano
@@ -2838,7 +2845,6 @@ es:
     absent: No ocurre en el área
     common: Ocurre frecuentemente
     doubtful: Se presume que sucedió pero hay dudas sobre la evidencia.
-    irregular: La presencia imprevisible, incluyendo los vagabundos; puede ser común en algunos años y ausente en otros
     present: Ocurre en el área
     uncommon: Ocurre regularmente, pero en números pequeños; hay que buscar el hábitat apropiado con cuidado
   occurrence_status_establishment_means: estado de ocurrencia, medio de establecimiento
@@ -2890,6 +2896,9 @@ es:
       </ul>
   one_by_one: "Uno por uno"
   one_of_your_lists: "una de tus listas..."
+  one_or_more_input_taxa_have_more_than_1000: |
+    Uno o más taxones introducidos tiene más de 1000 observaciones.
+    Su modificación puede requerir mucho tiempo para procesarse, ¿estás seguro de que es necesario este cambio de taxón? Además, los cambios de taxón no se pueden deshacer.
   only_a_project_manager_can_add: Solo un gerente del proyecto puede dar una clasificación de curador de proyecto
   only_administrators_may_access_that_page: Solo los administradores pueden acceder a esa página
   only_an_admin_can_remove_project_users: Solo el administrador puede eliminar usuarios del proyecto.
@@ -4006,6 +4015,8 @@ es:
   showing_x_of_y: Mostrando %{x} de %{y}
   showing_x_of_y_listings: "Mostrando %{x} de %{y} listados"
   sign_in: Acceder
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Regístrate con Apple
   sign_in_with_provider: "Ingresa con %{provider}"
   sign_in_with_google: Iniciar sesión con Google
   sign_out: Salir
@@ -4443,6 +4454,7 @@ es:
   this_taxon_change_has_been_commited: |
     <strong>¡Este cambio taxonómico de la especie o grupo ha sido guardado!</strong> Por favor no edites la especie o grupo. Puedes editar los demás campos.
   this_taxon_concept_is_inactive: esta especie o grupo esta inactiva
+  this_taxon_has_more_than_1000: Este taxón tiene más de 1000 observaciones. Su edición puede tardar mucho tiempo en procesarse, ¿estás seguro de que es necesario?
   this_taxon_has_no_default_photo: Este taxón no tiene ninguna foto predeterminada.
   this_taxon_is_inactive_this_means: |
     Este taxón está <strong>inactivo</strong>. Esto significa que los curadores de %{site_name} lo han reemplazado por un concepto más actualizado taxonómicamente.
@@ -5628,10 +5640,6 @@ es:
         </ol>
       dna_help: |
         Para habilitar la funcionalidad de coincidencia con el código de barras BOLD ADN, asegúrate de que tu nombre de campo incluya las palabras "COI", "COX1", "SUS", o "matK," correspondiente al gen que este campo busca.
-      merge:
-        warning_html: |
-          Por favor se respetuoso con los datos de otras personas y <strong>habla con el creador de un campo de observación, antes de una fusión</strong>. Esta herramienta destruirá el
-          campo de observación que se va a combinar y moverá todas las observaciones al campo mantenido. <strong>Este proceso no se puede deshacer</strong>, así que ten cuidado..
     emailer:
       bulk_import_success:
         success_message: |
@@ -7164,6 +7172,13 @@ es:
               is_too_large_to_edit: es demasiado grande para editarse
               is_too_large_to_import: es demasiado grande para importar
               contains_too_many_observations: contiene demasiadas observaciones para importar
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: no puede estar en blanco
+              invalid_point: tiene un punto no válido, por ejemplo, longitud mayor a 180 o latitud menor que -90
+              must_have_more_than_three_points: debe tener más de tres puntos
+              polygon_with_fewer_than_four_points: tiene un polígono con menos de 4 puntos
         post:
           attributes:
             parent:

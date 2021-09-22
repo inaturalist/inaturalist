@@ -1,0 +1,6 @@
+- content_for( :title ) do
+  =@title = t( :new_taxonomic_change )
+= render partial: "form_head"
+%h2= @title
+%p.description=t :use_this_form_to_create_a_new
+= render partial: "form"

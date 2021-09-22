@@ -206,6 +206,12 @@ nl:
   about_trusting_projects_options_taxon_desc: |-
     Veel projecten hebben alleen toegang nodig tot coördinaten die vervaagd zijn, omdat de
     waarneming een bedreigd taxon weergeeft.
+  about_trusting_projects_overview: |-
+    Het verlenen van toegang tot je verborgen coördinaten staat beheerders van dit
+    project toe de echte, onvervaagde locatie van je waarnemingen in dit
+    project te zien. Dit is extreem belangrijk in situaties waarin wetenschappers of
+    beheerders toegang nodig hebben tot exacte coördinaten voor analyse en
+    besluitvorming.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -976,7 +982,6 @@ nl:
       Organisatie die deze status heeft vastgesteld. Gebruik alsjeblieft de autocomplete-functie om een bestaande autoriteit te kiezen voordat je een nieuwe toevoegt. Je kunt dit overslaan als *jij* als de autoriteit wilt worden aangemerkt.
     place: Plek tot waar deze status is beperkt.
     url: URL naar de website die deze status beschrijft
-    geoprivacy: Standaard geoprivacy voor waarnemingen van dit taxon
     iucn: |
       Equivalent van de IUCN Rode Lijst code. Dit is niet de huidige IUCN-beoordeling maar de IUCN-code die het beste overeenkomt met de dreiging van het openbaar maken van de coördinaten door deze status. Dit zal de geoprivacy overschrijven als het Niet bedreigd (veilig) is of lager. Dus als je waarnemingen van dit taxon wilt vervagen, stel deze in op "Gevoelig" of hoger.
   conservation_status_geoprivacy_desc: |
@@ -1374,6 +1379,11 @@ nl:
   details: Details
   deviation: Afwijking
   devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Als je e-mailadres in onze database staat ontvang je binnen enkele minuten een link met instructies hoe je jouw wachtwoord kan bevestigen.
     failure:
       already_authenticated: 'Je bent al ingelogd.'
       unauthenticated: 'Je moet inloggen of je aanmelden voor je verder gaat.'
@@ -1524,7 +1534,6 @@ nl:
   editing_taxon: Bewerk %{taxon}
   editing_taxon_link: Taxonkoppeling bewerken
   editing_taxon_name_for_taxon_html: Taxonnaam "%{name}" voor %{taxon} bewerken
-  editing_taxon_range: Taxonreeks bewerken
   editing_this: '%{elem} aan het bewerken'
   editing_x_in_y: "%{x} in %{y} bewerken"
   editors: Redacteurs
@@ -2124,6 +2133,7 @@ nl:
     luxembourgish: Luxemburgs
     maltese: Maltees
     maori: Maori
+    marathi: Marathi
     misima_paneati: Misima-paneati
     norwegian: Noors
     occitan: Provençaals
@@ -2231,6 +2241,7 @@ nl:
     lt: Litouws
     lv: Lets
     mk: Macedonisch
+    mr: Marathi
     nb: Noors Bokmål
     nl: Nederlands
     oc: Provençaals
@@ -2860,7 +2871,6 @@ nl:
     absent: Komt niet voor in het gebied
     common: Komt vaak voor
     doubtful: Komt waarschijnlijk wel wel voor, maar er bestaat twijfel over het bewijsmateriaal
-    irregular: Aanwezigheid onvoorspelbaar, inclusief zwervers; kan in sommige jaren algemeen zijn en in andere afwezig
     present: Komt voor in het gebied
     uncommon: Komt regelmatig voor, maar in kleine aantallen; goed zoeken in het juiste habitat
   occurrence_status_establishment_means: voorkomststatus, vestigingswijze
@@ -2914,6 +2924,10 @@ nl:
       </ul>
   one_by_one: "Eén voor één"
   one_of_your_lists: "één van je lijsten..."
+  one_or_more_input_taxa_have_more_than_1000: |
+    Eén of meer ingevoerde taxa hebben meer dan 1000 downstreamwaarnemingen.
+    Het bevestigen kan enige tijd in beslag nemen, weet je zeker dat deze taxonwijziging
+    nodig is? Taxonwijzigingen kunnen niet ongedaan worden gemaakt.
   only_a_project_manager_can_add: Alleen een projectbeheerder kan de status projectcurator toevoegen
   only_administrators_may_access_that_page: Alleen administratoren hebben toegang tot deze pagina
   only_an_admin_can_remove_project_users: Alleen een admin kan projectgebruikers verwijderen
@@ -4045,6 +4059,8 @@ nl:
   showing_x_of_y: '%{x} van de %{y} zichtbaar'
   showing_x_of_y_listings: "Toon %{x} van %{y} vermeldingen"
   sign_in: Aanmelden
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Log in met Apple
   sign_in_with_provider: "Log in met %{provider}"
   sign_in_with_google: Inloggen met Google
   sign_out: Afmelden
@@ -4492,6 +4508,7 @@ nl:
     <strong>Deze taxonwijziging is vastgelegd!</strong>
     Bewerk de taxa alsjeblieft niet. Het bewerken van andere velden mag wel.
   this_taxon_concept_is_inactive: Dit taxonconcept is niet actief
+  this_taxon_has_more_than_1000: Dit taxon heeft meer dan 1000 downstreamwaarnemingen. Bewerken kan enige tijd in beslag nemen, weet je zeker dat het nodig is?
   this_taxon_has_no_default_photo: Dit taxon heeft geen standaardfoto!
   this_taxon_is_inactive_this_means: |
     Dit taxon is <strong>inactief</strong>. Dit betekent dat de curatoren van %{site_name} het hebben vervangen met een meer actueel taxonomisch concept.
@@ -4842,6 +4859,10 @@ nl:
   welcome_to_inat: "Welkom op %{site_name}!"
   welcome_to_guides: "Welkom bij  %{site_name} Gidsen!"
   welcome_to_x_project: "Welkom bij %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: 'We zijn er vrij zeker van dat het in dit genus is:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: 'We zijn er vrij zeker van dat het in deze familie is:'
   #Label for the most probable taxon in the automated suggestions when that taxon is an order
   were_pretty_sure_this_is_in_the_order: 'We zijn er vrij zeker van dat het in deze orde is:'
   #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
@@ -5406,7 +5427,7 @@ nl:
         interval_limit_warning_year: Alleen 100 jaar aan jaren zichtbaar
         some_queries_missing_taxa: Een aantal zoekopdrachten missen taxa
         some_queries_missing_taxa_desc: |
-          We kunnen alle de 500 meest geobserveerde taxa per zoekopdracht laden, dus als er meer taksa in de zoekopdracht zitten zijn die of niet zichtbaar, of zichtbaar als "?" als ze in andere zoekopdrachten zitten. Probeer de zoekopdrachten te verfijnen zodat ze 500 taxa of minder tonen voor optimale vergelijkingen.
+          We kunnen alleen de 500 meest waargenomen taxa per zoekopdracht laden dus als er meer taxa in de zoekopdracht zitten zijn die of niet zichtbaar of zichtbaar als "?" als ze in andere zoekopdrachten zitten. Probeer de zoekopdrachten te verfijnen zodat ze 500 taxa of minder tonen voor optimale vergelijkingen.
         taxa_not_observed_in_all_queries: Taxa niet waargenomen in alle zoekopdrachten
         taxa_observed_in_all_queries: Taxa waargenomen in alle zoekopdrachten
         taxa_observed_in_only_one_query: Taxa die zijn waargenomen in maar één zoekopdracht
@@ -5662,12 +5683,6 @@ nl:
       dna_help: |
         Om BOLD DNA-barcodeaanpassingsfunctionaliteit in te schakelen, moet je ervoor zorgen dat jouw veldnaam de woorden "COI", "COX1", "ITS" of "matK" bevat,
         overeenkomend met het gen dat dit veld beoogt.
-      merge:
-        warning_html: |
-          Respecteer de gegevens van andere mensen en <strong> praat met de maker
-          van een waarnemingsveld vóór samenvoeging </strong>. Deze tool zal het
-          waarnemingsveld samengevoegen en verplaatst alle waarnemingen die het gebruiken
-          naar de keeper. <strong> Dit proces kan niet ongedaan worden gemaakt </strong>, dus wees voorzichtig.
     emailer:
       bulk_import_success:
         success_message: |
@@ -7203,6 +7218,13 @@ nl:
               is_too_large_to_edit: is te groot om te bewerken
               is_too_large_to_import: is te groot om te importeren
               contains_too_many_observations: bevat te veel waarnemingen om te importeren
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: mag niet leeg zijn
+              invalid_point: heeft een ongeldig punt, bijvoorbeeld lengtegraad groter dan 180 of breedtegraad minder dan -90
+              must_have_more_than_three_points: moet meer dan 3 punten hebben
+              polygon_with_fewer_than_four_points: heeft een veelhoek met minder dan 4 punten
         post:
           attributes:
             parent:

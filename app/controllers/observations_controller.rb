@@ -1521,7 +1521,7 @@ class ObservationsController < ApplicationController
 
     ofv_attrs = params[:observation][:observation_field_values_attributes]
     ofv_attrs.each do |k,v|
-      ofv_attrs[k][:updater_user_id] = current_user.id
+      ofv_attrs[k][:updater_id] = current_user.id
     end
     o = { :observation_field_values_attributes =>  ofv_attrs}
     respond_to do |format|

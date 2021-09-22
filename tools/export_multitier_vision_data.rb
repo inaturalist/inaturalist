@@ -199,15 +199,15 @@ species_and_above_rank_levels.each do |rank_level|
       } 
     # leaf
     elsif ( [
-          test_obs_counts[t.id.to_s],
+          test_obs_counts[t.id],
           t.descendants.pluck( :id ).map{ |j|
-            test_obs_counts[j.to_s]
+            test_obs_counts[j]
           }
         ].flatten.compact.sum >= TEST_NUM + VAL_NUM )
         total_count = [
-          total_obs_counts[t.id.to_s],
+          total_obs_counts[t.id],
           t.descendants.pluck( :id ).map{ |j|
-            total_obs_counts[j.to_s]
+            total_obs_counts[j]
           }
         ].flatten.compact.sum
         enough << { taxon_id: t.id, count: total_count } if total_count >= ( TRAIN_FLOOR + VAL_NUM + TEST_NUM ) 

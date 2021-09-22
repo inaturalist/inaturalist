@@ -175,6 +175,9 @@ sv:
   #should work here
   about_place: "Om %{place}"
   about_places: Om fyndplatser
+  about_taxon_ranges: Om taxons utbredningsområde
+  about_taxon_ranges_desc: |
+    Taxons utbredningsområde förmedlar den globala utbredningen av ett taxon. Källan till dessa utbredningsområden är oftast IUCNs Rödlista.
   about_the_cc_licenses: Om Creative Commons-licenser
   about_these_licenses: Om dessa licenser
   about_this_bioblitz: Om denna bioblitz
@@ -509,6 +512,7 @@ sv:
   alphabetical_order: Alfabetisk ordning
   already_have_an_account_log_in_html: Har du redan ett konto? <strong>Logga in.</strong>
   amphibians: groddjur
+  analyze_ids: Analysera ID:n
   ancestor_taxon: Överliggande taxon
   and: och
   and_other_taxa: "&amp;Andra taxa"
@@ -652,6 +656,7 @@ sv:
   assessment_x: "%{assessment}-bedömning"
   assessments: bedömningar
   associations: Kopplingar
+  atlased: Med atlas
   atlas_for_taxon_html: Atlas för %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -982,7 +987,8 @@ sv:
       Organisation som fastställt denna status. Använd autocomplete för att välja en befintlig auktoritet innan du lägger till en ny. Du kan hoppa över detta om *du* vill anges som auktoriteten.
     place: Fyndplats som denna status är begränsad till.
     url: URL till en sida som beskriver denna status.
-    geoprivacy: Standard koordinatsekretess för fynd av detta taxon
+    geoprivacy: |
+      Standard koordinatsekretess för fynd av detta taxon. Notera att koordinatsekretess som är knuten till en fyndplats av kontinent-, land- eller statsnivå kan åsidosätta en status som är global eller knuten till fyndplats på högre nivå.
     iucn: |
       Motsvarande IUCN-rödlistekod. Detta är inte den faktiska IUCN-bedömningen,
       bara den IUCN-kod som bäst matchar det hot om som denna status implicerar vid utlämnande av koordinater. Detta kommer att åsidosätta koordinatsekretessen om det är "Livskraftig" eller lägre, så om du vill dölja observationer av detta
@@ -1354,6 +1360,8 @@ sv:
   delete_icon?: Radera ikon?
   delete_photo: Radera bild
   delete_project: Radera detta projekt
+  #Label for a button to delete a taxon range
+  delete_range: Ta bort utbredningsområde
   delete_selected: Radera valda
   delete_taxon_and_merge_most_data_html: |
     Radera <i>%{taxon}</i> och slå ihop merparten av dess data med ett annat taxon. Använd
@@ -1379,11 +1387,14 @@ sv:
   description_slash_tags: Beskrivning / Taggar
   description_tags_more: "Beskrivning, taggar och mer"
   desription: Beskrivning
+  destination: Destination
   destroy: Förstör
   details: Detaljer
   deviation: Avvikelse
   devise:
     confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
         Om din e-postadress finns i vår databas, kommer du att få ett e-postmeddelande
         med instruktioner för hur du bekräftar din e-postadress om några
@@ -1541,7 +1552,7 @@ sv:
   editing_taxon: Redigerar %{taxon}
   editing_taxon_link: Redigerar taxonlänk
   editing_taxon_name_for_taxon_html: Redigerar taxonnamn "%{name}" för %{taxon}
-  editing_taxon_range: Redigerar taxons utbredningsområde
+  editing_taxon_range_for_taxon_html: Redigerar utbredningsområde för %{taxon}
   editing_this: Redigerar %{elem}
   editing_x_in_y: "Redigerar %{x} i %{y}"
   editors: Redigerare
@@ -1581,6 +1592,8 @@ sv:
   establishment_means_describes_how: |
     Invandringshistoria beskriver hur ett taxon etablerades i ett område.
     Se DarwinCore för <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">mer information om terminologi</a>.
+  estimate_which_input: |
+    Uppskatta vilka intaxon-id:n som kommer att ersättas med vilka uttaxa och vilka som kommer att hänvisas till en gemensam förfader när uppdelningen är antagen. Detta kan ta en stund att beräkna. Länkar till fynd begränsas till uppsättningar om 200.
   event_in_progress: Händelse pågår
   event_stats: Händelsestatistik
   event_url: Händelse-URL
@@ -2134,6 +2147,7 @@ sv:
     ilokano: Ilokano
     italian: Italienska
     japanese: Japanska
+    kannada: Kannada
     korean: Koreanska
     latvian: Lettiska
     lithuanian: Litauiska
@@ -2145,9 +2159,12 @@ sv:
     norwegian: Norska
     occitan: Occitanska
     pangasinan: Pangasinan
+    polish: Polska
     portuguese: Portugisiska
     romanian: Rumänska
     russian: Ryska
+    sinhala: Singalesiska
+    slovak: Slovakiska
     spanish: Spanska
     swedish: Svenska
     tagalog: Tagalog
@@ -2155,6 +2172,7 @@ sv:
     thai: Thailändska
     tokelauan: Tokelauiska
     turkish: Turkiska
+    ukrainian: Ukrainska
     waray_waray: Waray-Waray
   less: Mindre
   licensed_site_photos: "Licensierade %{site_name}-bilder"
@@ -2243,6 +2261,7 @@ sv:
     id: Indonesiska
     it: Italienska
     ja: Japanska
+    kn: Kannada
     ko: Koreanska
     lb: Luxemburgiska
     lt: Litauiska
@@ -2621,6 +2640,7 @@ sv:
   no_identifications_added:
     current_user: Du har inte lagt till bestämningar till någons fynd.
     user: "%{user} har inte lagt till bestämningar till någons fynd."
+  no_ids: "Antal ID:n"
   no_ids_have_been_suggested_yet: Inga föreslagna bestämningar ännu
   no_interaction_data_available: Inga interaktionsdata tillgängliga
   no_its_as_good_as_it_can_be: Nej, den är så bra som den kan bli
@@ -2662,6 +2682,7 @@ sv:
   no_project_to_admin_current_user: "Du administrerar inte några projekt"
   no_project_to_admin_login: "%{login} administrerar inga projekt"
   no_projects_yet: Inga projekt än
+  no_attached_range: Inget bifogat utbredningsområde
   no_range_data_available: Inga utbredningsdata tillgängliga.
   no_recent_activity: Ingen aktivitet på ett tag
   no_relevant_annotations: Inga relevanta anteckningar
@@ -2676,6 +2697,8 @@ sv:
   no_species_on_this_list_for_owner: |
     Du kan börja lägga arter till den här listan genom att använda verktyget "Lägg till i din lista" till höger.
   no_subject_parens: "(Inget ämne)"
+  no_such_wiki_page: Det finns ingen sådan sida.
+  no_such_wiki_page_html: Det finns ingen sådan sida. Vill du <a href="%{new_url}">skapa den</a>?
   no_suggestions_available: Inga förslag tillgängliga
   no_summary_from_wikipedia: Ingen sammanfattning från Wikipedia
   no_summary_has_been_set: Ingen sammanfattning har angetts.
@@ -2692,6 +2715,7 @@ sv:
   none: Ingen
   none_found: Hittade ingen
   normal: normal
+  not_atlased: Utan atlas
   not_completed: Inte slutfört
   not_confident: Vi är inte tillräckligt säkra för att göra en rekommendation.
   not_confident_top_suggestions: Vi är inte tillräckligt säkra för att komma med en rekommendation, men här är våra bästa förslag
@@ -2865,7 +2889,7 @@ sv:
     absent: Ej påträffad i området
     common: Förekommer ofta
     doubtful: Antas förekomma, men tvivel finns kring bevisen
-    irregular: Oregelbunden förekomst, inkluderar vaganter; kan vara vanliga i vissa år men saknas andra
+    irregular: Oregelbunden förekomst, inkluderar vaganter; kan vara vanliga vissa år men saknas andra
     present: Förekommer i området
     uncommon: Regelbunden förekomst, men i låga antal; kräver att man leta noga i lämplig livsmiljö
   occurrence_status_establishment_means: förekomststatus, invandringshistoria
@@ -2917,6 +2941,10 @@ sv:
       </ul>
   one_by_one: "En-efter-en"
   one_of_your_lists: "en av dina listor..."
+  one_or_more_input_taxa_have_more_than_1000: |
+    Ett eller flera inmatningstaxa har mer än 1000 underliggande observationer.
+    En bekräftning kan ta lite tid att behandla, är du säker på att denna taxonändring
+    är nödvändig? Dessutom kan taxonändringar inte ångras.
   only_a_project_manager_can_add: Endast en projektledare kan lägga till förvaltarstatus
   only_administrators_may_access_that_page: Endast administratörer har tillgång till den sidan
   only_an_admin_can_remove_project_users: Endast en administratör kan ta bort projektanvändare
@@ -2988,9 +3016,11 @@ sv:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Andra taxa som ofta felbestäms till detta undersläkte i <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_subsection: Andra taxa som ofta felbestäms till denna undersektion
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Andra taxa som ofta felbestäms till denna undersektion i <a href="%{url}">%{place}</a>
+  outside_of_all_atlases: Utanför alla atlaser
   our_blog: Vår blogg
   output_taxon: Uttaxon
   overview: Översikt
+  overlapping_atlases: Överlappande atlaser
   overlapping_downstream_taxon_frameworks_html: "Överlappande underliggande taxonkontexter: %{count}"
   owner: Ägare
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -3773,6 +3803,8 @@ sv:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infrahybrid
   ranges: Områden
+  #Text to link to a taxon range as a KML file
+  range_file: Områdesfil
   ray_finned_fishes: strålfeniga fiskar
   re_order_photos: "Ordna om bilder &raquo;"
   read_more: Läs mer
@@ -4036,6 +4068,8 @@ sv:
   showing_x_of_y: Visar %{x} av %{y}
   showing_x_of_y_listings: "Visar %{x} av %{y} listor"
   sign_in: Logga in
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Logga in med Apple
   sign_in_with_provider: "Logga in med %{provider}"
   sign_in_with_google: Logga in med Google
   sign_out: Logga ut
@@ -4338,6 +4372,26 @@ sv:
   taxon_photos_updated: Taxonbilder uppdaterade!
   taxon_range: Taxons utbredningsområde
   taxon_range_created_notice: Lyckades skapa utbredningsområde för taxon. Det kan ta ett par minuter innan det syns på kartorna.
+  taxon_range_for_taxon_html: Utbredningsområde för %{taxon}
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: Är detta ett utbredningsområde från IUCNs Rödlista, om inte, varför?
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: Detta är ett utbredningsområde från IUCNs Rödlist
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Detta är inte ett utbredningsområde från IUCNs Rödlista eftersom kartan inte stämmer
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: Detta är inte ett utbredningsområde från IUCN eftersom detta taxon inte finns på IUCNs Rödlista
+  taxon_range_guidelines_each_taxon_can_have: Varje taxon kan endast ha ett utbredningsområde. Utbredningsområden måste representera den globala fördelningen.
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    %{link_start_tag}IUCNs Rödlista%{link_end_tag} är den vanliga källan för utbredningsområden.
+    Ange om du lägger till ett utbredningsområde från IUCNs Rödista och om inte, hur det du lägger till relaterar till IUCNs Rödlista. Detta kommer att hjälpa till att uppdatera rutiner för automatisk uppdatering av utbredningsområden som kommer till IUCNs Redlista. Om du lägger till ett utbredningsområde från IUCNs Rödlista,
+    ange korrekt version av IUCNs Rödlista (t.ex. 2021-2) i källan.
+  taxon_range_guidelines_if_you_are_not_uploading: "Om du inte laddar upp en karta över ett utbredningsområde från IUCNs Rödlista bör detta bero på att:"
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: utbredningsområdet för IUCNs Rödlista för detta taxon är olämpligt
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    du, till exempel, kan ha manuellt minskat det för att återspegla en taxonomisk uppdelning som inte representeras på IUCNs Rödlista, eller så har utbredningsområdet från IUCNs Rödlista allvarliga fel som gör dess visning olämplig.
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Detta taxon finns inte på IUCNs Rödlista
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    till exempel är taxonet hopslaget med ett annat taxon på IUCNs Rödlista och du har manuellt skiljt ut det här, eller om taxonet saknar en bedömning och utbredningsområde enligt IUCNs Rödlista.
+  taxon_range_guidelines_please_provide_details: |
+    Använd beskrivningen för att förklara hur kartan härleddes och länka till relevanta flaggor, taxonomiska uppdelningar eller andra diskussioner om varför det publicerade utbredningsområdet från IUCNs Rödlista behövde justeras.
+  taxon_range_guidelines_learn_more_about_taxon_ranges: Läs mer om utbredningsområden
   taxon_range_updated_notice: Lyckades uppdatera utbredningsområde för taxon. Det kan ta ett par minuter innan ändringar syns på kartorna.
   taxon_ranks: Taxonranger
   taxon_removed_from_list: Taxon borttaget från listan.
@@ -4476,6 +4530,7 @@ sv:
     <strong>Denna taxonändring är på gång!</strong>
     Redigera inte några taxa.  Redigering av andra fält är ok.
   this_taxon_concept_is_inactive: detta taxonkoncept är inaktivt
+  this_taxon_has_more_than_1000: Detta taxon har mer än 1000 underliggande observationer. Redigering kan ta lite tid att bearbeta, är du säker på att det är nödvändigt?
   this_taxon_has_no_default_photo: Detta taxon har ingen standardbild!
   this_taxon_is_inactive_this_means: |
     Detta taxon är <strong>inaktivt</strong>. Det innebär att %{site_name}s förvaltare har ersatt det med ett taxonomiskt mer aktuellt taxonkoncept.
@@ -4520,6 +4575,7 @@ sv:
     <a href="/privacy" target="_blank">Integritetspolicyn</a>, och jag har granskat <a href="/pages/community+guidelines" target="_blank">Communityns riktlinjer</a>.
   total: Totalt
   totals: Summa
+  total_ids_on_input_taxon: "Alla ID:n för intaxon:"
   total_members: Totalt antal medlemmar
   total_observations: Totalt antal fynd
   total_observations_caps: ANTAL FYND
@@ -7236,6 +7292,12 @@ sv:
             taxon:
               too_many_photos: |
                 kan inte ha fler än %{max} bilder
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: måste vara ett accepterat värde
+            taxon_id:
+              already_has_a_range: har redan ett utbredningsområde
         user:
           attributes:
             login:

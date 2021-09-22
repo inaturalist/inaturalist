@@ -1,5 +1,22 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
+describe TaxonChangesController, "destroy" do
+  let(:tc) { make_taxon_swap }
+  before do
+    sign_in tc.user
+  end
+  it "should be possible if not committed" do
+    delete :destroy, params: { id: tc.id }
+    expect( TaxonChange.find_by_id( tc.id ) ).to be_blank
+  end
+  it "should not be possible if committed" do
+    tc.committer = tc.user
+    tc.commit
+    delete :destroy, params: { id: tc.id }
+    expect( TaxonChange.find_by_id( tc.id ) ).not_to be_blank
+  end
+end
+
 describe TaxonChangesController, "commit_records" do
   let(:tc) { make_taxon_swap }
   let(:u) { User.make! }

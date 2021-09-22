@@ -24,7 +24,7 @@ describe Taxon, "associations" do
   it { is_expected.to have_many(:taxon_links).dependent :delete_all }
   it { is_expected.to have_many(:taxon_names).dependent :destroy }
   it { is_expected.to have_many(:taxon_photos).dependent :destroy }
-  it { is_expected.to have_many(:taxon_ranges).dependent :destroy }
+  it { is_expected.to have_one(:taxon_range).dependent :destroy }
   it { is_expected.to have_many(:taxon_scheme_taxa).dependent :destroy }
   it { is_expected.to have_many(:taxon_schemes).through :taxon_scheme_taxa }
   it { is_expected.to have_one(:atlas).inverse_of(:taxon).dependent :destroy }
@@ -1298,17 +1298,17 @@ describe Taxon, "geoprivacy" do
 end
 
 describe Taxon, "max_geoprivacy" do
-  let(:t1) { Taxon.make!(rank: Taxon::SPECIES) }
-  let(:t2) { Taxon.make!(rank: Taxon::SPECIES) }
+  let(:t1) { create :taxon, :as_species }
+  let(:t2) { create :taxon, :as_species }
   let(:taxon_ids) { [t1.id, t2.id] }
   elastic_models( Observation, Identification )
   it "should be private if one of the taxa has a private global status" do
-    cs_global = ConservationStatus.make!( taxon: t1, geoprivacy: Observation::PRIVATE )
+    cs_global = create :conservation_status, taxon: t1, geoprivacy: Observation::PRIVATE
     expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq Observation::PRIVATE
   end
   it "should be private if one of the ancestor taxa has a private global status" do
-    parent = Taxon.make!( rank: Taxon::GENUS )
-    cs_global = ConservationStatus.make!( taxon: parent, geoprivacy: Observation::PRIVATE )
+    parent = create :taxon, :as_genus
+    cs_global = create :conservation_status, taxon: parent, geoprivacy: Observation::PRIVATE
     without_delay do
       t1.update_attributes( parent: parent )
     end
@@ -1317,6 +1317,84 @@ describe Taxon, "max_geoprivacy" do
   end
   it "should be nil if none of the taxa have global status" do
     expect( Taxon.max_geoprivacy( taxon_ids ) ).to be_nil
+  end
+  it "should be open if the global status is obscured but a local country status is open" do
+    place = make_place_with_geom( admin_level: Place::COUNTRY_LEVEL )
+    cs_local = create :conservation_status, taxon: t1, geoprivacy: Observation::OPEN, place: place
+    cs_global = create :conservation_status, taxon: t1
+    expect(
+      Taxon.max_geoprivacy( [t1.id], latitude: place.latitude, longitude: place.longitude )
+    ).to eq Observation::OPEN
+  end
+  it "should be open if the global status is obscured but a local continent status is open" do
+    place = make_place_with_geom( admin_level: Place::CONTINENT_LEVEL )
+    cs_local = create :conservation_status, taxon: t1, geoprivacy: Observation::OPEN, place: place
+    cs_global = create :conservation_status, taxon: t1
+    expect(
+      Taxon.max_geoprivacy( [t1.id], latitude: place.latitude, longitude: place.longitude )
+    ).to eq Observation::OPEN
+  end
+  it "should be obscured if the global status is obscured but a local town status is open" do
+    place = make_place_with_geom( admin_level: Place::TOWN_LEVEL )
+    cs_local = create :conservation_status, taxon: t1, geoprivacy: Observation::OPEN, place: place
+    cs_global = create :conservation_status, taxon: t1
+    expect(
+      Taxon.max_geoprivacy( [t1.id], latitude: place.latitude, longitude: place.longitude )
+    ).to eq Observation::OBSCURED
+  end
+  it "should be obscured if a country status is open and a non-admin place status is obscured" do
+    place = make_place_with_geom( admin_level: Place::COUNTRY_LEVEL )
+    non_admin_place = make_place_with_geom
+    cs_country = create :conservation_status,
+      taxon: t1,
+      geoprivacy: Observation::OPEN,
+      place: place
+    non_admin_status = create :conservation_status,
+      taxon: t1,
+      geoprivacy: Observation::OBSCURED,
+      place: non_admin_place
+    expect(
+      Taxon.max_geoprivacy( [t1.id], latitude: place.latitude, longitude: place.longitude )
+    ).to eq Observation::OBSCURED
+  end
+  it "should be obscured if a country status is obscured a non-admin place status is open" do
+    place = make_place_with_geom( admin_level: Place::COUNTRY_LEVEL )
+    non_admin_place = make_place_with_geom
+    cs_country = create :conservation_status,
+      taxon: t1,
+      geoprivacy: Observation::OBSCURED,
+      place: place
+    non_admin_status = create :conservation_status,
+      taxon: t1,
+      geoprivacy: Observation::OPEN,
+      place: non_admin_place
+    expect(
+      Taxon.max_geoprivacy( [t1.id], latitude: place.latitude, longitude: place.longitude )
+    ).to eq Observation::OBSCURED
+  end
+  it "should be obscured if both taxa are globally obscured but only one is locally open" do
+    place = make_place_with_geom
+    cs1_global = create :conservation_status, taxon: t1
+    cs2_global = create :conservation_status, taxon: t2
+    cs2_local = create :conservation_status, taxon: t2, geoprivacy: Observation::OPEN, place: place
+    expect(
+      Taxon.max_geoprivacy( [t1.id], latitude: place.latitude, longitude: place.longitude )
+    ).to eq Observation::OBSCURED
+  end
+  it "should be open if a continent status is obscured a country status is open" do
+    continent = make_place_with_geom( admin_level: Place::CONTINENT_LEVEL )
+    country = make_place_with_geom( admin_level: Place::COUNTRY_LEVEL )
+    cs_continent = create :conservation_status,
+      taxon: t1,
+      geoprivacy: Observation::OBSCURED,
+      place: continent
+    cs_country = create :conservation_status,
+      taxon: t1,
+      geoprivacy: Observation::OPEN,
+      place: country
+    expect(
+      Taxon.max_geoprivacy( [t1.id], latitude: country.latitude, longitude: country.longitude )
+    ).to eq Observation::OPEN
   end
 end
 
@@ -1362,15 +1440,20 @@ end
 describe Taxon, "editable_by?" do
   let(:admin) { make_admin }
   let(:curator) { make_curator }
+  let(:t) do
+    Taxon.make!
+  end
   it "should be editable by admins if class" do
-    expect( Taxon.make!( rank: Taxon::CLASS ) ).to be_editable_by( admin )
+    t.update_attributes( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT + 10 )
+    expect( t ).to be_protected_attributes_editable_by( admin )
   end
-  it "should be editable by curators if below order" do
-    taxon = Taxon.make!( rank: Taxon::FAMILY )
-    expect( taxon ).to be_editable_by( curator )
+  it "should be editable by curators if below threshold" do
+    t.update_attributes( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT - 10 )
+    expect( t ).to be_protected_attributes_editable_by( curator )
   end
-  it "should not be editable by curators if order or above" do
-    expect( Taxon.make!( rank: Taxon::CLASS ) ).not_to be_editable_by( curator )
+  it "should not be editable by curators if above threshold" do
+    t.update_attributes( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT + 10 )
+    expect( t ).not_to be_protected_attributes_editable_by( curator )
   end
   describe "when taxon framework" do
     let(:second_curator) { make_curator }

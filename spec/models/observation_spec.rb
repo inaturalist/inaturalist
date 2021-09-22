@@ -1,6 +1,8 @@
 # encoding: UTF-8
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+include ElasticStub
+
 describe Observation do
   it { is_expected.to belong_to :user }
   it { is_expected.to belong_to(:community_taxon).class_name 'Taxon' }
@@ -1272,80 +1274,146 @@ describe Observation do
     it "should queue a job to update check lists"
 
     describe "obscuring for conservation status" do
+      let(:place) { make_place_with_geom }
+      let(:species) { create :taxon, :as_species }
       it "should obscure coordinates if taxon has a conservation status in the place observed" do
-        p = make_place_with_geom
-        t = Taxon.make!(:rank => Taxon::SPECIES)
-        cs = ConservationStatus.make!(:place => p, :taxon => t)
-        o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude)
-        expect(o).not_to be_coordinates_obscured
-        o.update_attributes( taxon: t, editing_user_id: o.user_id )
-        expect(o).to be_coordinates_obscured
+        cs = create :conservation_status, place: place, taxon: species
+        o = create :observation, latitude: place.latitude, longitude: place.longitude
+        expect( o ).not_to be_coordinates_obscured
+        o.update_attributes( taxon: species, editing_user_id: o.user_id )
+        expect( o ).to be_coordinates_obscured
       end
 
       it "should not obscure coordinates if taxon has a conservation status in another place" do
-        p = make_place_with_geom
-        t = Taxon.make!(:rank => Taxon::SPECIES)
-        cs = ConservationStatus.make!(:place => p, :taxon => t)
-        o = Observation.make!(:latitude => -1*p.latitude, :longitude => p.longitude)
-        expect(o).not_to be_coordinates_obscured
-        o.update_attributes( taxon: t, editing_user_id: o.user_id )
-        expect(o).not_to be_coordinates_obscured
+        cs = create :conservation_status, place: place, taxon: species
+        o = create :observation, latitude: -1*place.latitude, longitude: place.longitude
+        expect( o ).not_to be_coordinates_obscured
+        o.update_attributes( taxon: species, editing_user_id: o.user_id )
+        expect( o ).not_to be_coordinates_obscured
       end
 
       it "should obscure coordinates if locally threatened but globally secure" do
-        p = make_place_with_geom
-        t = Taxon.make!(:rank => Taxon::SPECIES)
-        local_cs = ConservationStatus.make!(:place => p, :taxon => t)
-        global_cs = ConservationStatus.make!(:taxon => t, :status => "LC", :iucn => Taxon::IUCN_LEAST_CONCERN, :geoprivacy => "open")
-        o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude)
-        expect(o).not_to be_coordinates_obscured
-        o.update_attributes( taxon: t, editing_user_id: o.user_id )
-        expect(o).to be_coordinates_obscured
+        local_cs = create :conservation_status, place: place, taxon: species
+        global_cs = create :conservation_status,
+          taxon: species,
+          status: "LC",
+          iucn: Taxon::IUCN_LEAST_CONCERN,
+          geoprivacy: Observation::OPEN
+        o = create :observation, latitude: place.latitude, longitude: place.longitude
+        expect( o ).not_to be_coordinates_obscured
+        o.update_attributes( taxon: species, editing_user_id: o.user_id )
+        expect( o ).to be_coordinates_obscured
+      end
+
+      it "should not obscure coordinates if secure in state but globally threatened" do
+        place.update_attributes( admin_level: Place::STATE_LEVEL )
+        local_cs = create :conservation_status,
+          place: place,
+          taxon: species,
+          status: "LC",
+          iucn: Taxon::IUCN_LEAST_CONCERN,
+          geoprivacy: Observation::OPEN
+        global_cs = create :conservation_status, taxon: species
+        o = create :observation, latitude: place.latitude, longitude: place.longitude
+        expect( o ).not_to be_coordinates_obscured
+        o.update_attributes( taxon: species, editing_user_id: o.user_id )
+        expect( o ).not_to be_coordinates_obscured
+      end
+
+      it "should obscure coordinates if secure in state and globally threatened and another suggested taxon is globally threatened" do
+        place.update_attributes( admin_level: Place::STATE_LEVEL )
+        local_cs1 = create :conservation_status,
+          place: place,
+          taxon: species,
+          status: "LC",
+          iucn: Taxon::IUCN_LEAST_CONCERN,
+          geoprivacy: Observation::OPEN
+        global_cs1 = create :conservation_status, taxon: species
+        global_cs2 = create :conservation_status
+        o = create :observation, latitude: place.latitude, longitude: place.longitude, taxon: species
+        expect( o ).not_to be_coordinates_obscured
+        puts "creating ident of #{global_cs2.taxon.id}"
+        create :identification, observation: o, taxon: global_cs2.taxon
+        expect( o ).to be_coordinates_obscured
+      end
+
+      it "should obscure coordinates if secure in state and globally threatened and another suggested taxon is threatened in an overlapping state" do
+        place1 = make_place_with_geom( admin_level: Place::STATE_LEVEL )
+        place2 = make_place_with_geom( admin_level: Place::STATE_LEVEL )
+        local_cs1 = create :conservation_status,
+          place: place1,
+          taxon: species,
+          status: "LC",
+          iucn: Taxon::IUCN_LEAST_CONCERN,
+          geoprivacy: Observation::OPEN
+        local_cs2 = create :conservation_status,
+          place: place2,
+          status: "EN",
+          iucn: Taxon::IUCN_ENDANGERED,
+          geoprivacy: Observation::OBSCURED
+        global_cs = create :conservation_status, taxon: species
+        o = create :observation, latitude: place.latitude, longitude: place.longitude, taxon: species
+        expect( o ).not_to be_coordinates_obscured
+        puts "creating ident of #{local_cs2.taxon.id}"
+        create :identification, observation: o, taxon: local_cs2.taxon
+        expect( o ).to be_coordinates_obscured
       end
 
       it "should not obscure coordinates if conservation statuses exist but all are open" do
-        p = make_place_with_geom
-        t = Taxon.make!(:rank => Taxon::SPECIES)
-        cs = ConservationStatus.make!(:place => p, :taxon => t, :geoprivacy => Observation::OPEN)
-        cs_global = ConservationStatus.make!(:taxon => t, :geoprivacy => Observation::OPEN)
-        o = Observation.make!(:latitude => -1*p.latitude, :longitude => p.longitude)
-        expect(o).not_to be_coordinates_obscured
-        o.update_attributes( taxon: t, editing_user_id: o.user_id )
-        expect(o).not_to be_coordinates_obscured
+        cs = create :conservation_status, place: place, taxon: species, geoprivacy: Observation::OPEN
+        cs_global = create :conservation_status, taxon: species, geoprivacy: Observation::OPEN
+        o = create :observation, latitude: -1*place.latitude, longitude: place.longitude
+        expect( o ).not_to be_coordinates_obscured
+        o.update_attributes( taxon: species, editing_user_id: o.user_id )
+        expect( o ).not_to be_coordinates_obscured
       end
 
       describe "when at least one ID is of a threatened taxon" do
-        let(:place) { make_place_with_geom }
         let(:o) { make_research_grade_observation( latitude: place.latitude, longitude: place.longitude ) }
-        let(:threatened_taxon) { Taxon.make!( rank: Taxon::SPECIES ) }
         it "should obscure coordinates if taxon has a conservation status in the place observed" do
           expect( o ).not_to be_coordinates_obscured
-          ConservationStatus.make!( place: place, taxon: threatened_taxon )
-          Identification.make!( observation: o, taxon: threatened_taxon )
+          create :conservation_status, place: place, taxon: species
+          create :identification, observation: o, taxon: species
           o.reload
           expect( o ).to be_coordinates_obscured
         end
         it "should not obscure coordinates if taxon has a conservation status in another place" do
           o.update_attributes( latitude: ( place.latitude * -1 ), longitude: ( place.longitude * -1 ) )
           expect( o ).not_to be_coordinates_obscured
-          ConservationStatus.make!( place: place, taxon: threatened_taxon )
-          Identification.make!( observation: o, taxon: threatened_taxon )
+          create :conservation_status, place: place, taxon: species
+          create :identification, observation: o, taxon: species
           o.reload
           expect( o ).not_to be_coordinates_obscured
         end
         it "should obscure coordinates if locally threatened but globally secure" do
           expect( o ).not_to be_coordinates_obscured
-          global_cs = ConservationStatus.make!( taxon: threatened_taxon )
-          local_cs = ConservationStatus.make!( place: place, taxon: threatened_taxon )
-          Identification.make!( observation: o, taxon: threatened_taxon )
+          global_cs = create :conservation_status,
+            taxon: species,
+            iucn: Taxon::IUCN_LEAST_CONCERN,
+            geoprivacy: Observation::OPEN
+          local_cs = create :conservation_status, place: place, taxon: species
+          create :identification, observation: o, taxon: species
           o.reload
           expect( o ).to be_coordinates_obscured
         end
+        it "should not obscure coordinates if secure in state but globally threatened" do
+          expect( o ).not_to be_coordinates_obscured
+          place.update_attributes( admin_level: Place::STATE_LEVEL )
+          local_cs = create :conservation_status,
+            place: place,
+            taxon: species,
+            iucn: Taxon::IUCN_LEAST_CONCERN,
+            geoprivacy: Observation::OPEN
+          global_cs = create :conservation_status, taxon: species
+          create :identification, observation: o, taxon: species
+          o.reload
+          expect( o ).not_to be_coordinates_obscured
+        end
         it "should not obscure coordinates if conservation statuses exist but all are open" do
           expect( o ).not_to be_coordinates_obscured
-          global_cs = ConservationStatus.make!( taxon: threatened_taxon, geoprivacy: Observation::OPEN )
-          local_cs = ConservationStatus.make!( place: place, taxon: threatened_taxon, geoprivacy: Observation::OPEN )
-          Identification.make!( observation: o, taxon: threatened_taxon )
+          global_cs = create :conservation_status, taxon: species, geoprivacy: Observation::OPEN
+          local_cs = create :conservation_status, place: place, taxon: species, geoprivacy: Observation::OPEN
+          create :identification, observation: o, taxon: species
           o.reload
           expect( o ).not_to be_coordinates_obscured
         end
@@ -1353,24 +1421,24 @@ describe Observation do
 
       describe "when a dissenting ID is of a non-threatened taxon" do
         before { load_test_taxa }
-        let(:cs) { ConservationStatus.make!( taxon: @Calypte_anna ) }
-        let(:o) { Observation.make!( taxon: cs.taxon, latitude: 1, longitude: 1 ) }
+        let(:cs) { create :conservation_status, taxon: @Calypte_anna }
+        let(:o) { create :observation, taxon: cs.taxon, latitude: 1, longitude: 1 }
         before do
           expect( o.community_taxon ).to be_blank
-          Identification.make!( observation: o, taxon: o.taxon )
+          create :identification, observation: o, taxon: o.taxon
           o.reload
           expect( o.community_taxon ).to eq cs.taxon
           expect( o ).to be_coordinates_obscured
         end
         it "should not reveal the coordinates" do
-          i2 = Identification.make!( observation: o, taxon: @Pseudacris_regilla )
+          i2 = create :identification, observation: o, taxon: @Pseudacris_regilla
           o.reload
           expect( o.community_taxon ).not_to eq cs.taxon
           expect( o ).to be_coordinates_obscured
         end
         it "should reveal the coordinates if the dissenting ID is not current" do
-          i2 = Identification.make!( observation: o, taxon: @Pseudacris_regilla )
-          i3 = Identification.make!( observation: o, taxon: @Calypte_anna, user: i2.user )
+          i2 = create :identification, observation: o, taxon: @Pseudacris_regilla
+          i3 = create :identification, observation: o, taxon: @Calypte_anna, user: i2.user
           i2.reload
           i3.reload
           expect( i2 ).not_to be_current
@@ -1532,61 +1600,59 @@ describe Observation do
   end
 
   describe "species_guess parsing" do
-    before(:each) do
-      @observation = Observation.make!
-    end
-  
+    stub_elastic_index! Observation, Taxon
+
+    let(:user) { build :user }
+    let(:observation) { build :observation, taxon: nil, user: user, editing_user_id: user.id }
+
     it "should choose a taxon if the guess corresponds to a unique taxon" do
-      taxon = Taxon.make!
-      @observation.taxon = nil
-      @observation.editing_user_id = @observation.user_id
-      @observation.species_guess = taxon.name
-      @observation.save
-      expect(@observation.taxon_id).to eq taxon.id
+      taxon = create :taxon
+      observation.species_guess = taxon.name
+      observation.set_taxon_from_species_guess
+      expect(observation.taxon_id).to eq taxon.id
     end
 
     it "should choose a taxon from species_guess if exact matches form a subtree" do
-      taxon = Taxon.make!(:rank => "species", :name => "Spirolobicus bananaensis")
-      child = Taxon.make(:rank => "subspecies", :parent => taxon, :name => "#{taxon.name} foo")
+      taxon = create :taxon, :as_species, name: "Spirolobicus bananaensis"
+      child = create :taxon, :as_subspecies, parent: taxon, name: "#{taxon.name} foo"
       common_name = "Spiraled Banana Shrew"
-      TaxonName.make!(:taxon => taxon, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
-      TaxonName.make!(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
-      @observation.taxon = nil
-      @observation.editing_user_id = @observation.user_id
-      @observation.species_guess = common_name
-      @observation.save
-      expect(@observation.taxon_id).to eq taxon.id
+      create :taxon_name, taxon: taxon, name: common_name, lexicon: TaxonName::LEXICONS[:ENGLISH]
+      create :taxon_name, taxon: child, name: common_name, lexicon: TaxonName::LEXICONS[:ENGLISH]
+
+      observation.species_guess = common_name
+      observation.set_taxon_from_species_guess
+      expect(observation.taxon_id).to eq taxon.id
     end
 
     it "should not choose a taxon from species_guess if exact matches don't form a subtree" do
-      taxon = Taxon.make!(rank: "species", parent: Taxon.make!(rank: Taxon::GENUS), name: "Spirolobicus bananaensis")
-      child = Taxon.make!(:rank => "subspecies", :parent => taxon, :name => "#{taxon.name} foo")
-      taxon2 = Taxon.make!(rank: "species", parent: Taxon.make!(rank: Taxon::GENUS))
+      ancestor1 = create :taxon, :as_genus
+      ancestor2 = create :taxon, :as_genus
+      taxon = create :taxon, :as_species, parent: ancestor1, name: "Spirolobicus bananaensis"
+      child = create :taxon, :as_subspecies, parent: taxon, name: "#{taxon.name} foo"
+      taxon2 = create :taxon, :as_species, parent: ancestor2
       common_name = "Spiraled Banana Shrew"
-      TaxonName.make!(:taxon => taxon, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
-      TaxonName.make!(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
-      TaxonName.make!(:taxon => taxon2, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+      create :taxon_name, taxon: taxon, name: common_name, lexicon: TaxonName::LEXICONS[:ENGLISH]
+      create :taxon_name, taxon: child, name: common_name, lexicon: TaxonName::LEXICONS[:ENGLISH]
+      create :taxon_name, taxon: taxon2, name: common_name, lexicon: TaxonName::LEXICONS[:ENGLISH]
       expect(child.ancestors).to include(taxon)
       expect(child.ancestors).not_to include(taxon2)
       expect(Taxon.joins(:taxon_names).where("taxon_names.name = ?", common_name).count).to eq(3)
-      @observation.taxon = nil
-      @observation.editing_user_id = @observation.user_id
-      @observation.species_guess = common_name
-      @observation.save
-      expect(@observation.taxon_id).to be_blank
+
+      observation.species_guess = common_name
+      observation.set_taxon_from_species_guess
+      expect(observation.taxon_id).to be_blank
     end
 
     it "should choose a taxon from species_guess if exact matches form a subtree regardless of case" do
-      taxon = Taxon.make!(:rank => "species", :name => "Spirolobicus bananaensis")
-      child = Taxon.make!(:rank => "subspecies", :parent => taxon, :name => "#{taxon.name} foo")
+      taxon = create :taxon, rank: "species", name: "Spirolobicus bananaensis"
+      child = create :taxon, rank: "subspecies", parent: taxon, name: "#{taxon.name} foo"
       common_name = "Spiraled Banana Shrew"
-      TaxonName.make!(:taxon => taxon, :name => common_name.downcase, :lexicon => TaxonName::LEXICONS[:ENGLISH])
-      TaxonName.make!(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
-      @observation.taxon = nil
-      @observation.editing_user_id = @observation.user_id
-      @observation.species_guess = common_name
-      @observation.save
-      expect(@observation.taxon_id).to eq taxon.id
+      create :taxon_name, taxon: taxon, name: common_name.downcase, lexicon: TaxonName::LEXICONS[:ENGLISH]
+      create :taxon_name, taxon: child, name: common_name, lexicon: TaxonName::LEXICONS[:ENGLISH]
+
+      observation.species_guess = common_name
+      observation.set_taxon_from_species_guess
+      expect(observation.taxon_id).to eq taxon.id
     end
   
     it "should not make a guess for problematic names" do
@@ -1600,37 +1666,49 @@ describe Observation do
   
     it "should choose a taxon from a parenthesized scientific name" do
       name = "Northern Pygmy Owl (Glaucidium gnoma)"
-      t = Taxon.make!(:name => "Glaucidium gnoma")
-      o = Observation.make!(:species_guess => name)
-      expect(o.taxon_id).to eq t.id
+      t = create :taxon, name: "Glaucidium gnoma"
+
+      observation.species_guess = name
+      observation.set_taxon_from_species_guess
+      expect(observation.taxon_id).to eq t.id
     end
   
     it "should choose a taxon from blah sp" do
       name = "Clarkia sp"
-      t = Taxon.make!(:name => "Clarkia")
-      o = Observation.make!(:species_guess => name)
-      expect(o.taxon_id).to eq t.id
+      t = create :taxon, name: "Clarkia"
+
+      observation.species_guess = name
+      observation.set_taxon_from_species_guess
+      expect(observation.taxon_id).to eq t.id
     
       name = "Clarkia sp."
-      o = Observation.make!(:species_guess => name)
-      expect(o.taxon_id).to eq t.id
+
+      observation.species_guess = name
+      observation.set_taxon_from_species_guess
+      expect(observation.taxon_id).to eq t.id
     end
   
     it "should choose a taxon from blah ssp" do
       name = "Clarkia ssp"
-      t = Taxon.make!(:name => "Clarkia")
-      o = Observation.make!(:species_guess => name)
-      expect(o.taxon_id).to eq t.id
+      t = create :taxon, name: "Clarkia"
+
+      observation.species_guess = name
+      observation.set_taxon_from_species_guess
+      expect(observation.taxon_id).to eq t.id
     
       name = "Clarkia ssp."
-      o = Observation.make!(:species_guess => name)
-      expect(o.taxon_id).to eq t.id
+
+      observation.species_guess = name
+      observation.set_taxon_from_species_guess
+      expect(observation.taxon_id).to eq t.id
     end
 
     it "should not make a guess if ends in a question mark" do
-      t = Taxon.make!(:name => "Foo bar")
-      o = Observation.make!(:species_guess => "#{t.name}?")
-      expect(o.taxon).to be_blank
+      t = create :taxon, name: "Foo bar"
+
+      observation.species_guess = "#{t.name}?"
+      observation.set_taxon_from_species_guess
+      expect(observation.taxon).to be_blank
     end
   end
 
@@ -2240,8 +2318,10 @@ describe Observation do
   end
   
   describe "obscure_coordinates" do
+    stub_elastic_index! Observation
+
     it "should not affect observations without coordinates" do
-      o = Observation.make!
+      o = build_stubbed :observation
       expect(o.latitude).to be_blank
       o.obscure_coordinates
       expect(o.latitude).to be_blank
@@ -2251,7 +2331,7 @@ describe Observation do
     end
   
     it "should not affect already obscured coordinates" do
-      o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::OBSCURED)
+      o = create :observation, latitude: 1, longitude: 1, geoprivacy: Observation::OBSCURED
       lat = o.latitude
       private_lat = o.private_latitude
       expect(o).to be_coordinates_obscured
@@ -2261,13 +2341,13 @@ describe Observation do
       expect(o.private_latitude.to_f).to eq private_lat.to_f
     end
   
-    it "should not affect already coordinates of a protected taxon" do
-      o = make_observation_of_threatened
+    it "should not affect already obscured coordinates of a protected taxon" do
+      o = create :observation, latitude: 1, longitude: 1, taxon: create(:taxon, :threatened)
       lat = o.latitude
       private_lat = o.private_latitude
       expect(o).to be_coordinates_obscured
-      o.update_attributes(:geoprivacy => Observation::OBSCURED)
-      o.reload
+      o.geoprivacy = Observation::OBSCURED
+      o.obscure_coordinates
       expect(o.latitude.to_f).to eq lat.to_f
       expect(o.private_latitude.to_f).to eq private_lat.to_f
     end
@@ -2275,11 +2355,12 @@ describe Observation do
   end
 
   describe "unobscure_coordinates" do
+    stub_elastic_index! Observation
+
     it "should work" do
-      taxon = make_threatened_taxon
       true_lat = 38.0
       true_lon = -122.0
-      o = Observation.make!(:taxon => taxon, :latitude => true_lat, :longitude => true_lon)
+      o = create :observation, latitude: true_lat, longitude: true_lon, taxon: create(:taxon, :threatened)
       expect(o).to be_coordinates_obscured
       expect(o.latitude.to_f).not_to eq true_lat
       expect(o.longitude.to_f).not_to eq true_lon
@@ -2290,7 +2371,7 @@ describe Observation do
     end
   
     it "should not affect observations without coordinates" do
-      o = Observation.make!
+      o = build_stubbed :observation
       expect(o.latitude).to be_blank
       o.unobscure_coordinates
       expect(o.latitude).to be_blank
@@ -2299,118 +2380,134 @@ describe Observation do
       expect(o.private_longitude).to be_blank
     end
   
-    it "should not obscure observations with obscured geoprivacy" do
-      taxon = make_threatened_taxon
-      o = Observation.make!(:latitude => 38, :longitude => -122, :geoprivacy => Observation::OBSCURED)
+    it "should not unobscure observations with obscured geoprivacy" do
+      o = create :observation, latitude: 38, longitude: -122, geoprivacy: Observation::OBSCURED
       o.unobscure_coordinates
       expect(o).to be_coordinates_obscured
     end
   
-    it "should not obscure observations with private geoprivacy" do
-      taxon = make_threatened_taxon
-      o = Observation.make!(:latitude => 38, :longitude => -122, :geoprivacy => Observation::PRIVATE)
+    it "should not unobscure observations with private geoprivacy" do
+      o = create :observation, latitude: 38, longitude: -122, geoprivacy: Observation::PRIVATE
       o.unobscure_coordinates
       expect(o).to be_coordinates_obscured
       expect(o.latitude).to be_blank
     end
 
     it "should reset public_positional_accuracy" do
-      o = Observation.make!( latitude: 1, longitude: 1, geoprivacy: Observation::OBSCURED, positional_accuracy: 5 )
-      expect( o.public_positional_accuracy ).not_to eq o.positional_accuracy
+      o = create :observation, latitude: 1, longitude: 1, geoprivacy: Observation::OBSCURED, positional_accuracy: 5
+      expect(o.public_positional_accuracy).not_to eq o.positional_accuracy
       # unobscure_coordinates should be impossible if geoprivacy gets set
       o.geoprivacy = nil
       o.unobscure_coordinates
       # public_positional_accuracy only gets reset after saving
       o.save
-      expect( o.public_positional_accuracy ).to eq o.positional_accuracy
+      expect(o.public_positional_accuracy).to eq o.positional_accuracy
     end
 
   end
 
   describe "geoprivacy" do
-    it "should obscure coordinates when private" do
-      o = Observation.make!(:latitude => 37, :longitude => -122, :geoprivacy => Observation::PRIVATE)
-      expect(o).to be_coordinates_obscured
-    end
-  
-    it "should remove public coordinates when private" do
-      o = Observation.make!(latitude: 37, longitude: -122, geoprivacy: Observation::PRIVATE)
-      expect(o.latitude).to be_blank
-      expect(o.longitude).to be_blank
+    stub_elastic_index! Observation
+
+    let(:geoprivacy) { Observation::PRIVATE }
+    let(:latitude) { 37 }
+    let(:longitude) { -122 }
+    let(:taxon) { build :taxon }
+
+    subject do
+      create :observation,
+             taxon: taxon,
+             latitude: latitude,
+             longitude: longitude,
+             geoprivacy: geoprivacy,
+             place_guess: "Duluth, MN"
     end
 
-    it "should remove place_guess when private" do
-      o = Observation.make!( latitude: 1, longitude: 1, geoprivacy: Observation::PRIVATE, place_guess: "foo" )
-      expect( o.place_guess ).to be_blank
+    context "when geoprivacy private" do
+      it { is_expected.to be_coordinates_obscured}
+
+      it "should remove public coordinates" do
+        expect(subject.latitude).to be_blank
+        expect(subject.longitude).to be_blank
+      end
+
+      it "should remove place_guess" do
+        expect(subject.place_guess).to be_blank
+      end
+
+      it "should remove public coordinates if coords change but not geoprivacy" do
+        subject.update_attributes latitude: 1, longitude: 1
+
+        expect(subject).to be_coordinates_obscured
+        expect(subject.latitude).to be_blank
+        expect(subject.longitude).to be_blank
+      end
+
+      it "should restore public coordinates when removing geoprivacy" do
+        expect(subject.latitude).to be_blank
+        expect(subject.longitude).to be_blank
+        subject.update_attributes geoprivacy: nil
+        expect(subject.latitude.to_f).to eq latitude
+        expect(subject.longitude.to_f).to eq longitude
+      end
     end
 
-    it "should remove public coordinates when moving from obscured to private" do
-      o = Observation.make!(latitude: 37, longitude: -122, geoprivacy: Observation::OBSCURED)
-      expect(o.latitude).not_to be_blank
-      expect(o.longitude).not_to be_blank
-      o.update_attributes(geoprivacy: Observation::PRIVATE)
-      expect(o.latitude).to be_blank
-      expect(o.longitude).to be_blank
-    end
-  
-    it "should remove public coordinates when private if coords change but not geoprivacy" do
-      o = Observation.make!(:latitude => 37, :longitude => -122, :geoprivacy => Observation::PRIVATE)
-      o.update_attributes(:latitude => 1, :longitude => 1)
-      expect(o).to be_coordinates_obscured
-      expect(o.latitude).to be_blank
-      expect(o.longitude).to be_blank
-    end
-  
-    it "should obscure coordinates when obscured" do
-      o = Observation.make!(:latitude => 37, :longitude => -122, :geoprivacy => Observation::OBSCURED)
-      expect(o).to be_coordinates_obscured
-    end
-  
-    it "should not unobscure observations of threatened taxa" do
-      taxon = make_threatened_taxon
-      o = Observation.make!(:taxon => taxon, :latitude => 37, :longitude => -122, :geoprivacy => Observation::OBSCURED)
-      expect(o).to be_coordinates_obscured
-      o.update_attributes(:geoprivacy => nil)
-      expect(o.geoprivacy).to be_blank
-      expect(o).to be_coordinates_obscured
-    end
-  
-    it "should remove public coordinates when private even if taxon threatened" do
-      taxon = make_threatened_taxon
-      o = Observation.make!(:latitude => 37, :longitude => -122, :taxon => taxon)
-      expect(o).to be_coordinates_obscured
-      expect(o.latitude).not_to be_blank
-      o.update_attributes(:geoprivacy => Observation::PRIVATE)
-      expect(o.latitude).to be_blank
-      expect(o.longitude).to be_blank
-    end
-  
-    it "should restore public coordinates when removing geoprivacy" do
-      lat, lon = [37, -122]
-      o = Observation.make!(:latitude => lat, :longitude => lon, :geoprivacy => Observation::PRIVATE)
-      expect(o.latitude).to be_blank
-      expect(o.longitude).to be_blank
-      o.update_attributes(:geoprivacy => nil)
-      expect(o.latitude.to_f).to eq lat
-      expect(o.longitude.to_f).to eq lon
+    context "when geoprivacy obscured" do
+      let(:geoprivacy) { Observation::OBSCURED }
+      let(:threatened_taxon) { create :taxon, :threatened }
+
+      it { is_expected.to be_coordinates_obscured}
+
+      it "should remove public coordinates when moving to private" do
+        expect(subject.latitude).not_to be_blank
+        expect(subject.longitude).not_to be_blank
+        subject.update_attributes geoprivacy: Observation::PRIVATE
+        expect(subject.latitude).to be_blank
+        expect(subject.longitude).to be_blank
+      end
+
+      context "with threatened taxon" do
+        let(:taxon) { create :taxon, :threatened }
+
+        it "should not unobscure observations of threatened taxa" do
+          expect(subject).to be_coordinates_obscured
+          subject.update_attributes geoprivacy: nil
+          expect(subject.geoprivacy).to be_blank
+          expect(subject).to be_coordinates_obscured
+        end
+      end
     end
 
-    it "should be nil if not obscured or private" do
-      o = Observation.make!(:geoprivacy => "open")
-      expect(o.geoprivacy).to be_nil
-    end
+    context "when geoprivacy not obscured or private" do
+      let(:geoprivacy) { "open" }
 
-    it "should remove place_guess from to_plain_s" do
-      original_place_guess = "Duluth, MN"
-      o = Observation.make!( place_guess: original_place_guess, latitude: 1, longitude: 1 )
-      expect( o.to_plain_s ).to be =~ /#{original_place_guess}/
-      o.update_attributes( geoprivacy: Observation::OBSCURED )
-      expect( o.to_plain_s ).not_to be =~ /#{original_place_guess}/
-      expect( o.private_place_guess ).not_to be_blank
+      it "should be nil " do
+        expect(subject.geoprivacy).to be_nil
+      end
+
+      it "should remove place_guess from to_plain_s when geoprivacy updated" do
+        original_place_guess = subject.place_guess
+        expect(subject.to_plain_s).to match /#{original_place_guess}/
+        subject.update_attributes geoprivacy: Observation::OBSCURED
+        expect(subject.to_plain_s).not_to match /#{original_place_guess}/
+        expect(subject.private_place_guess).not_to be_blank
+      end
+
+      context "with threatened taxon" do
+        let(:taxon) { create :taxon, :threatened }
+
+        it "should remove public coordinates when made private" do
+          expect(subject).to be_coordinates_obscured
+          expect(subject.latitude).not_to be_blank
+          subject.update_attributes geoprivacy: Observation::PRIVATE
+          expect(subject.latitude).to be_blank
+          expect(subject.longitude).to be_blank
+        end
+      end
     end
 
     it "should set public coordinates to something other than the private coordinates when going from private to obscured" do
-      o = Observation.make!( latitude: 1, longitude: 1, geoprivacy: Observation::OBSCURED )
+      o = create :observation, latitude: 1, longitude: 1, geoprivacy: Observation::OBSCURED
       Delayed::Worker.new.work_off
       o.reload
       expect( o.private_latitude ).not_to eq o.latitude
@@ -2425,67 +2522,110 @@ describe Observation do
     end
   end
 
+  describe "#set_geom_from_latlon" do
+    let!(:observation) { create :observation }
+
+    before { allow(observation).to receive(:set_geom_from_latlon) }
+
+    it "gets called on save" do
+      observation.run_callbacks :save
+
+      expect(observation).to have_received :set_geom_from_latlon
+    end
+  end
+
   describe "geom" do
-    it "should be set with coords" do
-      o = Observation.make!(:latitude => 1, :longitude => 1)
-      expect(o.geom).not_to be_blank
+    let(:observation) { build :observation, latitude: latitude, longitude: longitude }
+    let(:latitude) { 1 }
+    let(:longitude) { 1 }
+
+    before { observation.set_geom_from_latlon }
+
+    context "with coords" do
+      it "should be set" do
+        expect(observation.geom).not_to be_blank
+      end
+
+      it "should change" do
+        expect(observation.geom.y).to eq 1.0
+        observation.latitude = 2
+        observation.set_geom_from_latlon
+        expect(observation.geom.y).to eq 2.0
+      end
+
+      it "should go away" do
+        expect(observation.geom).to_not be_blank
+        observation.assign_attributes latitude: nil, longitude: nil
+        observation.set_geom_from_latlon
+        expect(observation.geom).to be_blank
+      end
     end
-  
-    it "should not be set without coords" do
-      o = Observation.make!
-      expect(o.geom).to be_blank
-    end
-  
-    it "should change with coords" do
-      o = Observation.make!(:latitude => 1, :longitude => 1)
-      expect(o.geom.y).to eq 1.0
-      o.update_attributes(:latitude => 2)
-      expect(o.geom.y).to eq 2.0
-    end
-  
-    it "should go away with coords" do
-      o = Observation.make!(:latitude => 1, :longitude => 1)
-      o.update_attributes(:latitude => nil, :longitude => nil)
-      expect(o.geom).to be_blank
+
+    context "without coords" do
+      let(:latitude) { nil }
+      let(:longitude) { nil }
+
+      it "should not be set" do
+        expect(observation.geom).to be_blank
+      end
     end
   end
 
   describe "private_geom" do
-    it "should be set with coords" do
-      o = Observation.make!(:latitude => 1, :longitude => 1)
-      expect(o.private_geom).not_to be_blank
-    end
-  
-    it "should not be set without coords" do
-      o = Observation.make!
-      expect(o.private_geom).to be_blank
-    end
-  
-    it "should change with coords" do
-      o = Observation.make!(:latitude => 1, :longitude => 1)
-      expect(o.private_geom.y).to eq 1.0
-      o.update_attributes(:latitude => 2)
-      expect(o.private_geom.y).to eq 2.0
-    end
-  
-    it "should go away with coords" do
-      o = Observation.make!(:latitude => 1, :longitude => 1)
-      o.update_attributes(:latitude => nil, :longitude => nil)
-      expect(o.private_geom).to be_blank
+    let(:observation) { build :observation, latitude: latitude, longitude: longitude, geoprivacy: geoprivacy }
+    let(:geoprivacy) { nil }
+    let(:latitude) { 1 }
+    let(:longitude) { 1 }
+
+    before { observation.set_geom_from_latlon }
+
+    context "with coords" do
+      it "should be set" do
+        expect(observation.private_geom).not_to be_blank
+      end
+
+      it "should change" do
+        expect(observation.private_geom.y).to eq 1.0
+        observation.assign_attributes latitude: 2
+        observation.set_geom_from_latlon
+        expect(observation.private_geom.y).to eq 2.0
+      end
+
+      it "should go away" do
+        expect(observation.private_geom).not_to be_blank
+        observation.assign_attributes latitude: nil, longitude: nil
+        observation.set_geom_from_latlon
+        expect(observation.private_geom).to be_blank
+      end
+
+      context "and with geoprivacy" do
+        let(:geoprivacy) { Observation::OBSCURED }
+
+        prepend_before { observation.reassess_coordinate_obscuration }
+
+        it "should be set" do
+          expect(observation.latitude).not_to eq 1.0
+          expect(observation.private_latitude).to eq 1.0
+          expect(observation.geom.y).not_to eq 1.0
+          expect(observation.private_geom.y).to eq 1.0
+        end
+      end
+
+      context "and without geoprivacy" do
+        it "should be set" do
+          expect(observation.latitude).to eq 1.0
+          expect(observation.private_geom.y).to eq 1.0
+        end
+      end
     end
 
-    it "should be set with geoprivacy" do
-      o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::OBSCURED)
-      expect(o.latitude).not_to eq 1.0
-      expect(o.private_latitude).to eq 1.0
-      expect(o.geom.y).not_to eq 1.0
-      expect(o.private_geom.y).to eq 1.0
-    end
+    context "without coords" do
+      let(:latitude) { nil }
+      let(:longitude) { nil }
 
-    it "should be set without geoprivacy" do
-      o = Observation.make!(:latitude => 1, :longitude => 1)
-      expect(o.latitude).to eq 1.0
-      expect(o.private_geom.y).to eq 1.0
+      it "should not be set" do
+        expect(observation.private_geom).to be_blank
+      end
     end
   end
 
@@ -2549,51 +2689,73 @@ describe Observation do
 
   describe "to_json" do
     it "should not include script tags" do
-      o = Observation.make!(:description => "<script lang='javascript'>window.close()</script>")
+      o = build_stubbed :observation, description: "<script lang='javascript'>window.close()</script>"
       expect(o.to_json).not_to match(/<script/)
-      expect(o.to_json(:viewer => o.user, 
-        :force_coordinate_visibility => true,
-        :include => [:user, :taxon, :iconic_taxon])).not_to match(/<script/)
-      o = Observation.make!(:species_guess => "<script lang='javascript'>window.close()</script>")
+      expect(o.to_json(viewer: o.user,
+        force_coordinate_visibility: true,
+        include: [:user, :taxon, :iconic_taxon])).not_to match(/<script/)
+      o = build_stubbed :observation, species_guess: "<script lang='javascript'>window.close()</script>"
       expect(o.to_json).not_to match(/<script/)
     end
   end
 
+  describe "#set_license" do
+    let!(:observation) { create :observation }
+
+    before { allow(observation).to receive(:set_license) }
+
+    it "sets geom on save" do
+      observation.run_callbacks :save
+
+      expect(observation).to have_received :set_license
+    end
+  end
+
   describe "license" do
+    stub_elastic_index! Observation
+
     it "should use the user's default observation license" do
-      u = User.make!
-      u.preferred_observation_license = "CC-BY-NC"
-      u.save
-      o = Observation.make!(:user => u, :license => nil)
-      expect(o.license).to eq u.preferred_observation_license
+      o = build_stubbed :observation,
+                        license: nil,
+                        user: build_stubbed(:user, preferred_observation_license: "CC-BY-NC")
+      o.set_license
+      expect(o.license).to eq o.user.preferred_observation_license
+    end
+
+    it "should nilify if not a license" do
+      o = build_stubbed :observation, license: Observation::CC_BY
+      o.set_license
+      expect(o.license).to_not be_blank
+      o.assign_attributes license: "on"
+      o.set_license
+      expect(o.license).to be_blank
+    end
+
+    it "should normalize license" do
+      o = build_stubbed :observation, license: "cc by Nc"
+      o.set_license
+      expect(o.license).to eq Observation::CC_BY_NC
     end
 
     it "should update default license when requested" do
-      u = User.make!
+      u = create :user
       expect(u.preferred_observation_license).to be_blank
-      o = Observation.make!(:user => u, :make_license_default => true, :license => Observation::CC_BY_NC)
+      o = create :observation, user: u, make_license_default: true, license: Observation::CC_BY_NC
       expect( o.license ).to eq Observation::CC_BY_NC
       u.reload
       expect(u.preferred_observation_license).to eq Observation::CC_BY_NC
     end
 
     it "should update all other observations when requested" do
-      u = User.make!
-      o1 = Observation.make!(:user => u, :license => nil)
-      o2 = Observation.make!(:user => u, :license => nil)
+      u = create :user
+      o1 = create :observation, user: u, license: nil
+      o2 = create :observation, user: u, license: nil
       expect(o1.license).to be_blank
       o2.make_licenses_same = true
       o2.license = Observation::CC_BY_NC
       o2.save
       o1.reload
       expect(o1.license).to eq Observation::CC_BY_NC
-    end
-
-    it "should nilify if not a license" do
-      o = Observation.make!(:license => Observation::CC_BY)
-      o.update_attributes(:license => "on")
-      o.reload
-      expect(o.license).to be_blank
     end
   end
 
@@ -2826,7 +2988,6 @@ describe Observation do
     #   u.subscriber.should eq(s.user)
     # end
   end
-
 
   describe "place updates" do
     before { enable_has_subscribers }
@@ -3572,151 +3733,193 @@ describe Observation do
   end
 
   describe "fields_addable_by?" do
-    it "should default to true for anyone" do
-      expect(Observation.make!.fields_addable_by?(User.make!)).to be true
+    let(:observer) { build_stubbed :user }
+    let(:observation) { build_stubbed :observation, user: observer }
+    let(:field_adder) { build_stubbed :user }
+
+    subject { observation.fields_addable_by? field_adder }
+
+    context "for anyone else" do
+      it { is_expected.to be true }
+
+      context "no editing preferred" do
+        let(:observer_preference) { User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER }
+        let(:observer) { build_stubbed :user, preferred_observation_fields_by: observer_preference }
+
+        it { is_expected.to be false }
+      end
     end
 
-    it "should be false for nil user" do
-      expect(Observation.make!.fields_addable_by?(nil)).to be false
+    context "for nil user" do
+      let(:field_adder) { nil }
+
+      it { is_expected.to be false }
     end
 
-    it "should be true for curators if curators preferred" do
-      c = make_curator
-      u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS)
-      o = Observation.make!(:user => u)
-      expect(o.fields_addable_by?(c)).to be true
+    context "for curator" do
+      let(:field_adder) { build_stubbed :curator }
+
+      it { is_expected.to be true }
+
+      context "and curators preferred" do
+        let(:observer_preference) { User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS }
+        let(:observer) { build_stubbed :user, preferred_observation_fields_by: observer_preference }
+
+        it { is_expected.to be true }
+      end
+
+      context "and no editing preferred" do
+        let(:observer_preference) { User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER }
+        let(:observer) { build_stubbed :user, preferred_observation_fields_by: observer_preference }
+
+        it { is_expected.to be false}
+      end
     end
 
-    it "should be true for curators by default" do
-      c = make_curator
-      u = User.make!
-      o = Observation.make!(:user => u)
-      expect(o.fields_addable_by?(c)).to be true
-    end
+    context "for observer" do
+      let(:field_adder) { observer }
 
-    it "should be false for curators if no editing preferred" do
-      c = make_curator
-      u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
-      o = Observation.make!(:user => u)
-      expect(o.fields_addable_by?(c)).to be false
-    end
+      context "and no editing preferred" do
+        let(:observer_preference) { User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER }
+        let(:observer) { build_stubbed :user, preferred_observation_fields_by: observer_preference }
 
-    it "should be false for everyone other than the observer if no editing preferred" do
-      other = User.make!
-      u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
-      o = Observation.make!(:user => u)
-      expect(o.fields_addable_by?(other)).to be false
-    end
-
-    it "should be true for the observer if no editing preferred" do
-      u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
-      o = Observation.make!(:user => u)
-      expect(o.fields_addable_by?(u)).to be true
+        it { is_expected.to be true}
+      end
     end
   end
 
   describe "mappable" do
-    it "should be mappable with lat/long" do
-      expect(Observation.make!(latitude: 1.1, longitude: 2.2)).to be_mappable
+    stub_elastic_index! Observation, Taxon
+
+    describe "on save" do
+      let!(:observation) { create :observation }
+
+      it "updates mappable" do
+        allow(observation).to receive(:update_mappable)
+        observation.run_callbacks :save
+        expect(observation).to have_received :update_mappable
+      end
+
+      it "calculates mappable" do
+        allow(observation).to receive(:calculate_mappable)
+        observation.run_callbacks :save
+        expect(observation).to have_received :calculate_mappable
+      end
     end
 
-    it "should not be mappable without lat/long" do
-      expect(Observation.make!).not_to be_mappable
-    end
+    describe "#calculate_mappable" do
+      let(:observation) { build_stubbed :observation, latitude: lat, longitude: lon }
+      let(:lat) { 1.1 }
+      let(:lon) { 2.2 }
 
-    it "should not be mappable with a terrible accuracy" do
-      o = Observation.make!(latitude: 1.1, longitude: 2.2)
-      o.update_attributes( positional_accuracy: o.uncertainty_cell_diagonal_meters + 1 )
-      expect( o ).not_to be_mappable
-    end
+      context "without lat/lon" do
+        let(:lat) { nil }
+        let(:lon) { nil }
 
-    it "should be mappable if captive" do
-      expect(Observation.make!(latitude: 1.1, longitude: 2.2, captive: true)).to be_mappable
-    end
+        it { expect(observation.calculate_mappable).to be false }
+      end
 
-    it "should be mappable when adding captive metric" do
-      o = Observation.make!(latitude: 1.1, longitude: 2.2)
-      expect(o.mappable?).to be true
-      QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
-      o.reload
-      expect(o.mappable?).to be true
-    end
+      context "with lat/lon" do
+        it { expect(observation.calculate_mappable).to be true }
 
-    it "should update mappable when location metric is deleted" do
-      o = Observation.make!(latitude: 1.1, longitude: 2.2)
-      expect(o.mappable?).to be true
-      q = QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: false)
-      o.reload
-      expect(o.mappable?).to be false
-      q.destroy
-      expect(o.reload.mappable?).to be true
-    end
+        it "should not be mappable with a terrible accuracy" do
+          observation.assign_attributes(public_positional_accuracy: observation.uncertainty_cell_diagonal_meters + 1)
+          expect(observation.calculate_mappable).to be false
+        end
+      end
 
-    it "should not be mappable with an inaccurate location" do
-      o = Observation.make!(latitude: 1.1, longitude: 2.2)
-      expect(o.mappable?).to be true
-      QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: false)
-      o.reload
-      expect(o.mappable?).to be false
-    end
+      context "when adding captive metric" do
+        let(:observation) do
+          build_stubbed :observation,
+                        :with_quality_metric, metric: QualityMetric::WILD,
+                        latitude: lat, longitude: lon
+        end
 
-    it "should be mappable for obscured" do
-      o = make_research_grade_observation( geoprivacy: Observation::OBSCURED )
-      expect( o ).to be_mappable
-    end
+        it "should be mappable" do
+          expect(observation.calculate_mappable).to be true
+        end
+      end
 
-    it "should be mappable for threatened taxa" do
-      o = make_observation_of_threatened
-      expect( o ).to be_mappable
-    end
+      context "with an inaccurate location" do
+        let(:observation) do
+          build_stubbed :observation,
+                        :with_quality_metric, metric: QualityMetric::LOCATION,
+                        latitude: lat, longitude: lon
+        end
 
-    it "should not be mappable if its not evidence of an orgamism" do
-      o = make_research_grade_observation
-      expect(o.mappable?).to be true
-      QualityMetric.make!(observation: o, metric: QualityMetric::EVIDENCE, agree: false)
-      o.reload
-      expect(o.mappable?).to be false
-    end
+        it { expect(observation.calculate_mappable).to be false }
 
-    it "should not be mappable if its flagged" do
-      o = make_research_grade_observation
-      expect(o.mappable?).to be true
-      Flag.make!(flaggable: o, flag: Flag::SPAM)
-      expect(o.mappable?).to be false
+        it "should be mappable when location metric is deleted" do
+          expect(observation.calculate_mappable).to be false
+          observation.quality_metrics.reset
+          expect(observation.calculate_mappable).to be true
+        end
+      end
+
+      context "when captive" do
+        let(:observation) { build_stubbed :observation, latitude: lat, longitude: lon, captive: true }
+
+        it { expect(observation.calculate_mappable).to be true }
+      end
+
+      context "when obscured" do
+        let(:observation) { build_stubbed :observation, :research_grade, geoprivacy: Observation::OBSCURED }
+
+        it { expect(observation.calculate_mappable).to be true }
+      end
+
+      context "when threatened taxa" do
+        let(:threatened_taxon) { build_stubbed :taxon, :threatened }
+        let(:observation) { build_stubbed :observation, latitude: lat, longitude: lon, taxon: threatened_taxon }
+
+        it { expect(observation.calculate_mappable).to be true }
+      end
+
+      context "when it's not evidence of an organism" do
+        let(:observation) do
+          build_stubbed :observation, :research_grade, :with_quality_metric, metric: QualityMetric::EVIDENCE
+        end
+
+        it { expect(observation.calculate_mappable).to be false }
+      end
+
+      context "when it's flagged" do
+        let(:observation) { build_stubbed :observation, :research_grade, :with_flag, flag: Flag::SPAM }
+
+        it { expect(observation.calculate_mappable).to be false }
+      end
     end
 
     describe "with a photo" do
       it "should not be mappable if its photo is flagged" do
-        o = make_research_grade_observation
-        op = make_observation_photo(observation: o)
+        o = create :observation, :research_grade
         expect(o.mappable?).to be true
-        Flag.make!(flaggable: op.photo, flag: Flag::SPAM)
+        create :flag, flaggable: o.observation_photos.first.photo, flag: Flag::SPAM
         o.reload
         expect(o.mappable?).to be false
       end
     end
 
     it "should not be mappable if community disagrees with taxon" do
-      t = Taxon.make!( rank: Taxon::SPECIES )
-      u = User.make!( prefers_community_taxa: false )
-      o = make_research_grade_observation( user: u )
-      5.times { Identification.make!( observation: o, taxon: t ) }
+      t = create :taxon, :as_species
+      u = create :user, prefers_community_taxa: false
+      o = create :observation, :research_grade, user: u
+      5.times { create :identification, observation: o, taxon: t }
       o.reload
-      expect( o.taxon ).not_to eq t
-      expect( o.community_taxon ).to eq t
-      expect( o.mappable? ).to be false
+      expect(o.taxon).not_to eq t
+      expect(o.community_taxon).to eq t
+      expect(o.mappable?).to be false
     end
 
     it "should be mappable if the community taxon contains the taxon" do
-      genus = Taxon.make!( rank: Taxon::GENUS )
-      species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
-      o = make_research_grade_candidate_observation( taxon: genus )
-      i = Identification.make!( observation: o, taxon: species )
-      expect( o.taxon ).to eq species
-      expect( o.community_taxon ).to eq genus
-      expect( o ).to be_mappable
+      genus = create :taxon, :as_genus
+      species = create :taxon, :as_species, parent: genus
+      o = make_research_grade_candidate_observation(taxon: genus)
+      i = create :identification,  observation: o, taxon: species
+      expect(o.taxon).to eq species
+      expect(o.community_taxon).to eq genus
+      expect(o).to be_mappable
     end
-
   end
 
   describe "observations_places" do
@@ -3954,56 +4157,73 @@ describe Observation do
 end
 
 describe Observation, "probably_captive?" do
-  elastic_models( Observation )
-  let( :taxon ) { Taxon.make!( rank: Taxon::SPECIES ) }
-  let( :place ) { make_place_with_geom( admin_level: Place::COUNTRY_LEVEL ) }
-  def make_captive_obs
-    Observation.make!( taxon: taxon, captive_flag: true, latitude: place.latitude, longitude: place.longitude )
-  end
-  def make_non_captive_obs
-    Observation.make!( taxon: taxon, latitude: place.latitude, longitude: place.longitude )
-  end
-  it "should be false with under 10 captive obs" do
-    9.times { make_captive_obs }
-    expect( make_non_captive_obs ).not_to be_probably_captive
-  end
-  it "should be true with more than 10 captive obs" do
-    11.times { make_captive_obs }
-    expect( make_non_captive_obs ).to be_probably_captive
-  end
-  it "should require more than 80% captive" do
-    11.times { make_non_captive_obs }
-    11.times { make_captive_obs }
-    expect( make_non_captive_obs ).not_to be_probably_captive
-  end
-  it "should be false with no coordinates" do
-    11.times { make_captive_obs }
-    o = Observation.make!( taxon: taxon )
-    expect( o ).not_to be_georeferenced
-    expect( o ).not_to be_probably_captive
-  end
-  it "should be false with no taxon" do
-    11.times { make_captive_obs }
-    o = Observation.make!( latitude: place.latitude, longitude: place.longitude )
-    expect( o.taxon ).to be_blank
-    expect( o ).not_to be_probably_captive
-  end
-  it "should use the community taxon if present" do
-    11.times { make_captive_obs }
-    o = Observation.make!(
-      taxon: Taxon.make!( rank: Taxon::SPECIES ),
-      latitude: place.latitude,
-      longitude: place.longitude,
-      prefers_community_taxon: false
-    )
-    4.times { Identification.make!( observation: o, taxon: taxon ) }
-    o.reload
-    expect( o.taxon ).not_to eq taxon 
-    expect( o.community_taxon ).to eq taxon
-    expect( o ).to be_probably_captive
+  elastic_models(Observation)
+
+  describe "returns correct value" do
+    let(:species) { create :taxon, :as_species }
+    let(:place) { create :place, :with_geom, admin_level: Place::COUNTRY_LEVEL }
+
+    def stub_observations(count=1, **kwargs)
+      defaults = { captive: false, taxon: species, latitude: place.latitude, longitude: place.longitude }
+      elastic_stub_observations(count) do
+        build_stubbed(:observation, defaults.merge(**kwargs)) do |obs|
+          allow(obs).to receive(:public_places).and_return [place]
+          obs.update_quality_metrics
+          obs.captive = obs.captive_cultivated
+        end
+      end
+    end
+
+    before do |e|
+      allow(Observation).to receive(:system_places_for_latlon).and_return [place] unless e.metadata[:skip_before]
+    end
+    it "should be false with under 10 captive obs" do
+      stub_observations 9, captive_flag: true
+
+      expect(stub_observations).not_to be_probably_captive
+    end
+    it "should be true with more than 10 captive obs" do
+      stub_observations 11, captive_flag: true
+
+      expect(stub_observations).to be_probably_captive
+    end
+    it "should require more than 80% captive" do
+      stub_observations 11
+      stub_observations 11, captive_flag: true
+
+      expect(stub_observations).not_to be_probably_captive
+    end
+    it "should be false with no coordinates", skip_before: true do
+      stub_observations 11, captive_flag: true
+
+      expect(stub_observations 1, latitude: nil, longitude: nil).not_to be_probably_captive
+    end
+    it "should be false with no taxon" do
+      stub_observations 11, captive_flag: true
+
+      expect(stub_observations 1, taxon: nil).not_to be_probably_captive
+    end
+    it "should use the community taxon if present" do
+      stub_observations 11, captive_flag: true
+      o = create :observation, latitude: place.latitude, longitude: place.longitude, prefers_community_taxon: false
+      create_list :identification, 4, observation: o, taxon: species
+      o.reload
+
+      expect(o.taxon).not_to eq species
+      expect(o.community_taxon).to eq species
+      expect(o).to be_probably_captive
+    end
   end
 
   describe Observation, "and update_quality_metrics" do
+    let( :taxon ) { Taxon.make!( rank: Taxon::SPECIES ) }
+    let( :place ) { make_place_with_geom( admin_level: Place::COUNTRY_LEVEL ) }
+    def make_captive_obs
+      Observation.make!( taxon: taxon, captive_flag: true, latitude: place.latitude, longitude: place.longitude )
+    end
+    def make_non_captive_obs
+      Observation.make!( taxon: taxon, latitude: place.latitude, longitude: place.longitude )
+    end
     it "should add a userless quality metric if probably_captive?" do
       11.times { make_captive_obs }
       o = make_non_captive_obs

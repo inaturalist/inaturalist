@@ -172,6 +172,8 @@ es-AR:
   about_trusting_projects_options_taxon_desc: |-
     Muchos proyectos solo necesitan el acceso a coordenadas que están ocultas porque la observación
     representa un taxón amenazado.
+  about_trusting_projects_overview: |-
+    Otorgar acceso a tus coordenadas ocultas permitirá a los administradores de este proyecto ver la ubicación real de tus observaciones en este proyecto. Esto es extremadamente importante en situaciones en las que los científicos o gestores necesitan acceso a coordenadas exactas para análisis y toma de decisiones.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -923,7 +925,6 @@ es-AR:
       *tú* quieres ser considerado como dicha autoridad.
     place: Lugar en el cual el estatus está restringido.
     url: URL de una página que describa este estado.
-    geoprivacy: Geoprivacidad predeterminada para esta especie o grupo.
   conservation_status_geoprivacy_desc: |
     La geoprivacidad predeterminada se aplica a todas las observaciones de este taxón en este lugar
   contact_support: Contactar el servicio técnico
@@ -1359,7 +1360,6 @@ es-AR:
   editing_project_asset: Modificando activos del proyecto para
   editing_subscription_to_x_html: "Editando suscripción para %{x}"
   editing_taxon_link: Modificando vínculo del taxón
-  editing_taxon_range: Modificando área del taxón
   editing_this: Modificando %{elem}
   editing_x_in_y: "Editando %{x} en%{y}"
   editors: Editores
@@ -2491,7 +2491,6 @@ es-AR:
     absent: No ocurre en el área
     common: Ocurre frecuentemente
     doubtful: Se presume que sucedió pero hay dudas sobre la evidencia.
-    irregular: La presencia imprevisible, incluyendo los vagabundos; puede ser común en algunos años y ausente en otros
     present: Ocurre en el área
     uncommon: Ocurre regularmente, pero en números pequeños; hay que buscar el hábitat apropiado con cuidado
   occurrence_status_establishment_means: estado de ocurrencia, medio de establecimiento
@@ -4832,10 +4831,6 @@ es-AR:
         </ol>
       dna_help: |
         Para habilitar la funcionalidad de coincidencia con el código de barras BOLD ADN, asegúrate de que tu nombre de campo incluya las palabras "COI", "COX1", "SUS", o "matK," correspondiente al gen que este campo busca.
-      merge:
-        warning_html: |
-          Por favor se respetuoso con los datos de otras personas y <strong>habla con el creador de un campo de observación, antes de una fusión</strong>. Esta herramienta destruirá el
-          campo de observación que se va a combinar y moverá todas las observaciones al campo mantenido. <strong>Este proceso no se puede deshacer</strong>, así que ten cuidado..
     emailer:
       bulk_import_success:
         success_message: |

@@ -176,6 +176,9 @@ ca:
   #should work here
   about_place: "Sobre %{place}"
   about_places: Sobre els Llocs
+  about_taxon_ranges: Sobre la distribució dels tàxons
+  about_taxon_ranges_desc: |
+    La distribució dels tàxons indica la distribució d'un tàxon. La distribució dels tàxons està basada, normalment, de la Llista Vermella de la UICN.
   about_the_cc_licenses: Sobre les llicències de Creative Commons
   about_these_licenses: Sobre aquestes llicències
   about_this_bioblitz: Quant aquest bioblitz
@@ -490,6 +493,7 @@ ca:
   alphabetical_order: Ordre alfabètic
   already_have_an_account_log_in_html: Ja teniu un compte?
   amphibians: amfibis
+  analyze_ids: Analiza IDs
   ancestor_taxon: Tàxon Ancestral
   and: i
   and_other_taxa: "&amp; altres tàxons"
@@ -632,6 +636,7 @@ ca:
   assessment_x: "%{assessment} valoracions"
   assessments: valoracions
   associations: Associacions
+  atlased: Amb Atles
   atlas_for_taxon_html: Atles de %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -955,7 +960,8 @@ ca:
       Organització que ha declarat aquest estat. Si us plau, utilitzeu l'autocompletar per escollir una autoritat existent abans d'afegir una nova. Podeu saltar aquest pas si voleu que *vostè* sigueu ser relacionat com autoritat.
     place: Lloc pel qual aquest estat és restringit.
     url: URL de la pàgina que descriu aquest estat.
-    geoprivacy: Geo-privacitat per defecte per a les observacions d'aquesta espècie
+    geoprivacy: |
+      Geo-privacitat per defecte per a les observacions d’aquest tàxon. Tingueu en compte que la geo-privacitat d’una situació associada a un lloc a escala de continent, país o estat pot anul·lar una situació global o associada a un lloc de nivell superior.
     iucn: |
       Equivalent del codi de la Llista Vermella (IUCN). Aquesta no és la classificació real de l'IUCN, únicament és el codi de l'IUCN que s'ajusta millor a la revelació de les coordenades que millor s'ajusta al seu estat d'amenaça. Aquest sobreescriu la geoprivacitat si és "Menys Preocupant" o inferior: així que si has volgut ocultar les observacions d'aquest taxó, marca'l com a "Gairebé amenaçat" o superior.
   conservation_status_geoprivacy_desc: |
@@ -1319,6 +1325,8 @@ ca:
   delete_icon?: Voleu eliminar la icona?
   delete_photo: Elimineu la foto
   delete_project: Elimineu aquest projecte
+  #Label for a button to delete a taxon range
+  delete_range: Esborrar distribució
   delete_selected: Elimineu seleccionats
   delete_taxon_and_merge_most_data_html: |
     Elimineu <i>%{taxon}</i> i combineu la majoria de les vostres dades amb un altre tàxon. Utilitzeu aquesta eina per eliminar tàxons duplicats i sinònims desactualitzats. <strong>ANEU AMB COMPTE!</strong > Eliminar tàxons podria destruir dades. Reviseu la <a href="%{curator_url}">Guia del Supervisor</a> per a més detalls.
@@ -1340,13 +1348,16 @@ ca:
   description_slash_tags: Descripció / Etiquetes
   description_tags_more: "Descripció, etiquetes i més"
   desription: Descripció
+  destination: Destinació
   destroy: Destrueix
   details: Detalls
   deviation: Desviació
   devise:
     confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
-        Si la teva adreça de correu electrònic existeix a la nostra base de dades, rebràs un correu electrònic amb instruccions per confirmar la teva adreça en uns minuts.
+        Si la teva adreça de correu-e existeix a la nostra base de dades, en rebràs un amb instruccions per confirmar-la en pocs minuts.
     failure:
       already_authenticated: 'Ja heu iniciat la sessió.'
       unauthenticated: 'Heu d''iniciar la sessió o registrar-vos abans de continuar'
@@ -1496,7 +1507,7 @@ ca:
   editing_taxon: Edita %{taxon}
   editing_taxon_link: Modifica enllaç del tàxon
   editing_taxon_name_for_taxon_html: Editant Nom del tàxon %{name} de %{taxon}
-  editing_taxon_range: Modifica rang del tàxon
+  editing_taxon_range_for_taxon_html: Editar la Distribució del tàxon %{taxon}
   editing_this: Modificant %{elem}
   editing_x_in_y: "Editant %{x} en %{y}"
   editors: Editors
@@ -1535,6 +1546,8 @@ ca:
   establishment_means: Forma d'establir-se.
   establishment_means_describes_how: |
     La forma d'establiment indica com es va implantar el tàxon dins una àrea. Mostra DarwinCore per <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24"> obtenir més informació de terminologia</a>.
+  estimate_which_input: |
+    Estimar quins indicadors de tàxons d'entrada seran substituïts per quins tàxons de sortida i quins seran afegits a un avantpassat comú quan la divisió s'hagi finalitzat. Això pot requerir un temps per calcular-ho. Els enllaços a les observacions es divideixen en subconjunts de 200.
   event_in_progress: Esdeveniment en curs
   event_stats: Estadístiques de l'Esdeveniment
   event_url: URL de l'Esdeveniment
@@ -2086,6 +2099,7 @@ ca:
     ilokano: Ilocano
     italian: Italià
     japanese: Japonès
+    kannada: Kanarès
     korean: Coreà
     latvian: Letó
     lithuanian: Lituà
@@ -2097,9 +2111,12 @@ ca:
     norwegian: Noruec
     occitan: Occità
     pangasinan: Pangasinan
+    polish: Polonès
     portuguese: Portuguès
     romanian: Romanès
     russian: Rus
+    sinhala: Singalès
+    slovak: Eslovac
     spanish: Castellà
     swedish: Suec
     tagalog: Tagal
@@ -2107,6 +2124,7 @@ ca:
     thai: Tailandès
     tokelauan: Tokelauà
     turkish: Turc
+    ukrainian: Ucraïnès
     waray_waray: Samarà
   less: Menys
   licensed_site_photos: "Fotos amb llicència de %{site_name}"
@@ -2195,6 +2213,7 @@ ca:
     id: Indonesi
     it: Italià
     ja: Japonès
+    kn: Kanarès
     ko: Coreà
     lb: Luxemburguès
     lt: Lituà
@@ -2565,6 +2584,7 @@ ca:
   no_identifications_added:
     current_user: No heu afegit identificacions a les observacions de ningú.
     user: "%{user} no ha afegit identificacions a les observacions de ningú."
+  no_ids: "Nombre d'IDs"
   no_ids_have_been_suggested_yet: Encara no s'ha suggerit cap identificació
   no_interaction_data_available: Sense dades d'interacció disponibles
   no_its_as_good_as_it_can_be: No, és tan bo com ho pot ser
@@ -2606,6 +2626,7 @@ ca:
   no_project_to_admin_current_user: "No administreu cap projecte"
   no_project_to_admin_login: "%{login} no administra cap projecte"
   no_projects_yet: Encara no hi ha cap projecte
+  no_attached_range: Sense distribució annexada
   no_range_data_available: No hi ha cap rang de dades disponible
   no_recent_activity: No hi ha activitat recent
   no_relevant_annotations: Sense anotacions rellevants
@@ -2620,6 +2641,8 @@ ca:
   no_species_on_this_list_for_owner: |
     Podeu començar a afegir espècies a aquesta llista utilitzant l'eina "Afegeix a la Teva Llista", a la dreta.
   no_subject_parens: "(Sense tema)"
+  no_such_wiki_page: No existeix aquesta pàgina.
+  no_such_wiki_page_html: No existeix aquesta pàgina. Voleu <a href="%{new_url}">crear-la</a>?
   no_suggestions_available: Sense suggeriments disponibles
   no_summary_from_wikipedia: No hi ha resum de Wikipedia
   no_summary_has_been_set: No s'ha fet cap resum
@@ -2636,6 +2659,7 @@ ca:
   none: Cap
   none_found: No s'ha trobat cap
   normal: normal
+  not_atlased: Sense Atles
   not_completed: No Finalitzat
   not_confident: No tenim prou seguretat per fer una recomanació.
   not_confident_top_suggestions: No estem prou segurs per fer una recomanació, però aquí teniu els nostres primers suggeriments
@@ -2810,7 +2834,7 @@ ca:
     absent: No es troba a l'àrea
     common: Es troba freqüentment
     doubtful: Sembla que existeix, però hi ha dubtes sobre les evidències
-    irregular: Presència impredictible, incloent migrants; pot ser habitual alguns anys i absent altres
+    irregular: Presència impredictible, incloent-hi divagants; pot ser habitual alguns anys i absent altres
     present: Present a la zona
     uncommon: Present regularment, però amb reduïda representació; necessita una cerca acurada en l'hàbitat adequat
   occurrence_status_establishment_means: estat d'ocurrència, forma d'establiment
@@ -2863,6 +2887,8 @@ ca:
       </ul>
   one_by_one: "Un a un"
   one_of_your_lists: "una de les teves llistes..."
+  one_or_more_input_taxa_have_more_than_1000: |
+    Un o més dels tàxons introduïts té més de 1000 observacions. Modificar-lo pot necessitar molt temps, esteu segur que aquest canvi del tàxon és necessari? A més, els canvis de tàxon no es pot desfer.
   only_a_project_manager_can_add: Només un gestor de projecte pot atorgar-li classificació a un supervisor de projecte
   only_administrators_may_access_that_page: Només els administradors poden accedir a aquesta pàgina
   only_an_admin_can_remove_project_users: Només l'administrador pot eliminar usuaris del projecte.
@@ -2934,9 +2960,11 @@ ca:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Altres tàxons habitualment mal identificar com aquest subgènere a <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_subsection: Altres tàxons generalment mal identificats com aquesta subsecció
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Altres tàxons habitualment mal identificar com aquesta subsecció a <a href="%{url}">%{place}</a>
+  outside_of_all_atlases: Fora de tots els atles
   our_blog: El nostre blog
   output_taxon: Tàxon de sortida
   overview: Vista general
+  overlapping_atlases: Sobreposant atles
   overlapping_downstream_taxon_frameworks_html: "Superposició dels marcs taxonòmics descendents: %{count}"
   owner: Propietari
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -3709,6 +3737,8 @@ ca:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infrahíbrid
   ranges: Rangs
+  #Text to link to a taxon range as a KML file
+  range_file: Arxiu de Distribució
   ray_finned_fishes: peixos ossis
   re_order_photos: "Reordena fotos »"
   read_more: Llegiu-ne més
@@ -3972,6 +4002,8 @@ ca:
   showing_x_of_y: Mostrant %{x} de %{y}
   showing_x_of_y_listings: "Mostrant %{x} de %{y} llistes"
   sign_in: Inicieu sessió
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Iniciar sessió amb Apple
   sign_in_with_provider: "Inicieu sessió amb %{provider}"
   sign_in_with_google: Entrar amb Google
   sign_out: Surtiu
@@ -4274,6 +4306,25 @@ ca:
   taxon_photos_updated: S'han actualitzat les fotos del tàxon.
   taxon_range: Rang de tàxon
   taxon_range_created_notice: El rang del tàxon a estat creat correctament. Espereu uns minut perquè aparegui als mapes.
+  taxon_range_for_taxon_html: Distribució del tàxon %{taxon}
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: Aquesta és el mapa de distribució de la Llista Vermella de la UICN, i si no ho és, per què?
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: Aquest és el mapa de distribució de la Llista Vermella de la UICN
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Aquest no és el mapa de distribució de la Llista Vermella de la UICN, perquè aquest no era adequat
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: Aquest no és el mapa de distribució de la Llista Vermella de la UICN perquè aquest tàxon no està a la Llista Vermella de la UICN
+  taxon_range_guidelines_each_taxon_can_have: Cada tàxon pot tenir una única Distribució del Tàxon. Les distribucions dels tàxons han de representar la seva distribució global
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    La %{link_start_tag} llista vermella de la UICN %{link_end_tag} és la font normal de la distribució dels tàxons.
+    Indiqueu si esteu afegint un interval de la llista vermella de la UICNi, si no, d'on l'esteu afegint en relació amb la Llista Vermella de la UICN. Això ajudarà a informar els processos d’actualització automàtica de les distribucions provinents de la Llista Vermella de la UICN. Si afegiu una distribució de la llista vermella de la UICN, indiqueu correctament la versió de la llista vermella de la UICN(per exemple, 2021-2) a la font.
+  taxon_range_guidelines_if_you_are_not_uploading: "Si no esteu pujant un mapa de distribució de la Llista Vermella de la UICN, això pot ser perquè:"
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: El mapa de distribució de la Llista Vermella de la UICN per aquest tàxon no és adequada
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    per exemple, l'heu ajustat manualment per reflectir una divisió taxonòmica no representada en la Llista Vermella de la UICN, o el mapa de distribució de la Llista Vermella de la UICN té errades que fan la seva presentació inadequada
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Aquest tàxon no està a la Llista Vermella de la UICN
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    per exemple, el tàxon s'ha combinat amb un altre tàxon de la Llista Vermella de la UICN, de manera que l’heu retallat manualment, o el tàxon no té una avaluació i un mapa de distribució de la Llista Vermella de la UICN.
+  taxon_range_guidelines_please_provide_details: |
+    Utilitzeu la descripció per explicar com es va modificar el mapa i enllaçar-hi qualsevol indicador rellevant, fraccionaments taxonòmics o altres discussions sobre el motiu pel qual el rang publicat a la Llista Vermella de la UICN requeria una modificació.
+  taxon_range_guidelines_learn_more_about_taxon_ranges: Coneix més sobre la distribució dels tàxons
   taxon_range_updated_notice: El rang del tàxon a estat actualitzat correctament. Espereu uns minut perquè els canvis apareguin als mapes.
   taxon_ranks: Categories del Taxon
   taxon_removed_from_list: Tàxon eliminat de la llista.
@@ -4407,6 +4458,7 @@ ca:
   this_taxon_change_has_been_commited: |
     <strong>Aquest canvi de taxonomia en l'espècie o grup s’ha desat!</strong> Si us plau, no editeu l'espècie o grup. Podeu editar els altres camps.
   this_taxon_concept_is_inactive: aquesta concepte taxonòmic està inactiu
+  this_taxon_has_more_than_1000: Aquest tàxon té més de 1000 observacions. Editar-lo pot necessitar molt temps de procés, esteu segurs que és necessari?
   this_taxon_has_no_default_photo: Aquest tàxon no té foto per defecte!
   this_taxon_is_inactive_this_means: |
     Aquest tàxon està <strong>inactiu</strong>. Això significa que els supervisors d’%{site_name} l’han reemplaçat per un concepte taxonómic més actualitzat.
@@ -4450,6 +4502,7 @@ ca:
     Accepto les <a href="/terms" target="_blank">Condicions del Servei</a> i la <a href="/privacy" target="_blank">Política de Privacitat</a>, i he revisat les <<a href="/pages/community+guidelines" target="_blank">Normes de la Comunitat</a>.
   total: Total
   totals: Totals
+  total_ids_on_input_taxon: "IDs total del tàxon d'entrada"
   total_members: Nombre total de membres
   total_observations: Nombre total d'observacions
   total_observations_caps: OBSERVACIONS TOTALS
@@ -5554,7 +5607,7 @@ ca:
         Per activar la funcionalitat de codi de barres d'ADN BOLD, assegureu-vos que el nom inclou les paraules "COI", "COX1", "ITS" o "matK", corresponents als gens que marquen aquests camps.
       merge:
         warning_html: |
-          Si us plau, sigueu respectuós amb les dades d'altres persones i <strong>parleu amb el creador d'una observació de camp, abans de fusionar-la</strong>. Aquesta eina destruirà el camp de l'observació fusionat i mourà totes les observacions al camp que es mantingui. <strong>Aquest procés no es pot desfer</strong>, així que aneu amb compte.
+          Si us plau, sigueu respectuós amb les dades d'altres persones i <strong> parleu amb el creador d'un camp d'observació abans de combinar-lo </strong>. Aquesta eina destruirà el camp d'observació que s’està fusionant i mourà totes les observacions que s’utilitzin a aquell que es mantingui. <strong> Aquest procés no es pot desfer </strong>, així que aneu amb compte.
     emailer:
       bulk_import_success:
         success_message: |
@@ -7068,6 +7121,12 @@ ca:
             taxon:
               too_many_photos: |
                 no pot tenir més de %{max} fotos
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: ha de ser un valor acceptat
+            taxon_id:
+              already_has_a_range: ja té una distribució
         user:
           attributes:
             login:

@@ -295,6 +295,12 @@ cs:
   about_trusting_projects_options_taxon_desc: |-
     Mnoho projektů potřebuje pouze přístup k souřadnicím, které jsou skryté, protože pozorování
     zobrazuje ohrožený taxon.
+  about_trusting_projects_overview: |-
+    Poskytnutí přístupu k vašim skrytým souřadnicím umožní správcům tohoto
+    projektu vidět pravdu, neskryté umístění vašich pozorování v tomto
+    projektu. To je mimořádně důležité v situacích, kdy vědci nebo
+    správci zdrojů potřebují přístup k přesným souřadnicím pro účely analýzy a
+    rozhodování.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -1092,7 +1098,6 @@ cs:
       Organizace, která tento stav vyhlásila. Před přidáním nového si prosím zvolte již existujícího představitele pomocí automatického dokončování. Můžete přeskočit, pokud chcete být *vy* uvedeni jako autorita.
     place: Místo, na které je tento status omezen.
     url: URL stránky popisující tento status.
-    geoprivacy: Standardně nastavené soukromí zěměpisné polohy pro pozorování tohoto taxonu
   conservation_status_geoprivacy_desc: |
     Na všechna pozorování tohoto taxonu v tomto místě se použilo výchozí soukromí zeměpisné polohy
   contact_support: Kontaktovat podporu
@@ -1641,7 +1646,6 @@ cs:
   editing_taxon: Editace %{taxon}
   editing_taxon_link: Editování odkazu na taxon
   editing_taxon_name_for_taxon_html: Úprava názvu taxonu "%{name}" pro %{taxon}
-  editing_taxon_range: Editování rozsahu taxonu
   editing_this: Editování %{elem}
   editing_x_in_y: "Editování %{x} v %{y}"
   editors: Editoři
@@ -2960,7 +2964,6 @@ cs:
     absent: V této oblasti se nevyskytuje
     common: Vyskytuje se často
     doubtful: Předpokládá se, že se vyskytuje, ale existují pochybnosti o důkazech
-    irregular: Nepředvídatelná přítomnost, včetně putování; mohou být běžné některé roky a nepřítomné v jiných letech
     present: Vyskytuje se v této oblasti
     uncommon: Vyskytuje se pravidelně, ale v malém počtu; pečlivě hledají vhodné stanoviště
   occurrence_status_establishment_means: status výskytu, způsob vzniku
@@ -3808,7 +3811,7 @@ cs:
     subgenus: podrod
     section: sekce
     subsection: pododdíl
-    complex: Dokončit
+    complex: Komplex
     #Singular
     species: druh
     x_species:
@@ -4159,6 +4162,8 @@ cs:
   showing_x_of_y: Zobrazování %{x} z %{y}
   showing_x_of_y_listings: "Zobrazeno %{x} z %{y} záznamů"
   sign_in: Přihlásit se
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Přihlásit se přes Apple
   sign_in_with_provider: "Přihlásit se přes %{provider}"
   sign_in_with_google: Registrovat přes Google
   sign_out: Odhlásit se
@@ -5851,9 +5856,6 @@ cs:
         </ol>
       dna_help: |
         Aby byla umožněna funkce připojování čárového kódu BOLD DNA, ujistěte se, že název pole obsahuje slova "COI", "COX1", "ITS" nebo "matK," podle genů, pro které je pole určeno.
-      merge:
-        warning_html: |
-          Přistupujte prosím k údajům ostatních s respektem a <strong>kontaktujte autora pole pozorování, než provedete sloučení</strong>. Tento nástroj zničí slučované pole pozorování a přesune veškerá pozorování, která ho používají, ke správci. <strong>Tento proces je nevratný</strong>, proto buďte opatrní.
     emailer:
       bulk_import_success:
         success_message: |

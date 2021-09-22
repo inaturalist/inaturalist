@@ -3,7 +3,7 @@ class TaxonChangesController < ApplicationController
   before_action :curator_required, :except => [:index, :show, :commit_for_user, :commit_records, :group]
   before_action :admin_required, :only => [:commit_taxon_change]
   before_action :blocked_by_content_freeze, except: [ :index, :show, :new, :create, :edit, :update ]
-  before_action :load_taxon_change, :except => [:index, :new, :create, :group]
+  before_action :load_taxon_change, :except => [:index, :new, :create, :group, :analyze_ids]
   before_action :return_here, :only => [:index, :show, :new, :edit, :commit_for_user]
 
   layout "bootstrap"
@@ -45,8 +45,8 @@ class TaxonChangesController < ApplicationController
     
     @taxon_changes = scope.page(params[:page]).
       select("DISTINCT ON (taxon_changes.id) taxon_changes.*").
-      includes(:taxon => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]).
-      includes(:taxa => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]).
+      includes(:taxon => [:taxon_names, :photos, :taxon_range_without_geom, :taxon_schemes]).
+      includes(:taxa => [:taxon_names, :photos, :taxon_range_without_geom, :taxon_schemes]).
       includes(:source).
       order("taxon_changes.id DESC")
 
@@ -87,6 +87,10 @@ class TaxonChangesController < ApplicationController
       if current_user && @upstream_taxon_framework && @upstream_taxon_framework.taxon_curators.count > 0 && @upstream_taxon_framework.taxon_curators.select{|tc| tc.user_id != current_user}
         @curated_upstream_taxon_framework = @upstream_taxon_framework
       end
+      @observose_taxon = @taxon_change.input_taxa.detect{|t| t.observose_branch?}.try( :observose_branch? )
+      @observose_taxon_threshold = Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT
+      @observose_taxon_warning = @taxon_change.input_taxa.detect{|t| t.observose_warning_branch?}.try( :observose_warning_branch? )
+      @observose_taxon_warning_threshold = Taxon::NUM_OBSERVATIONS_TRIGGERING_WARNING
     end
     respond_to do |format|
       format.html
@@ -149,6 +153,10 @@ class TaxonChangesController < ApplicationController
   end
   
   def destroy
+    if @taxon_change.committed?
+      flash[:error] = t(:committed_taxon_changes_cannot_be_deleted)
+      return redirect_back_or_default( taxon_changes_path )
+    end
     if @taxon_change.destroy
       flash[:notice] = "Taxon change was deleted."
     else
@@ -325,7 +333,7 @@ class TaxonChangesController < ApplicationController
       {
         taxon: [
           :taxon_schemes,
-          :taxon_ranges_without_geom,
+          :taxon_range_without_geom,
           :photos
         ]
       },
@@ -333,7 +341,7 @@ class TaxonChangesController < ApplicationController
         taxa: [
           :taxon_schemes,
           :atlas,
-          :taxon_ranges_without_geom,
+          :taxon_range_without_geom,
           :photos
         ]
       },
@@ -353,15 +361,57 @@ class TaxonChangesController < ApplicationController
       format.html { render layout: "bootstrap" }
     end
   end
+
+  def analyze_ids
+    if params[:id] || params[:taxon_change_id]
+      load_taxon_change
+    elsif params[:input_taxon_id] && params[:output_taxon_ids]
+      stub_taxon_split
+    else
+      respond_to do |format|
+        render json: { error: "You must specify a taxon change or taxon IDs" }, status: :unprocessable_entity
+      end
+      return
+    end
+    if @taxon_change && @taxon_change.type == "TaxonSplit" && @taxon_change.taxon && @taxon_change.taxon_change_taxa.size > 1
+      id_analysis = TaxonSplit.analyze_id_destinations( @taxon_change )
+
+      analysis_header = identification_analysis_with_url( id_analysis[:total_id_count], :total_id_count )
+      analysis_table = []
+      analysis_table << identification_analysis_with_url( id_analysis[:inside_multiple_count], :inside_multiple_count )
+      analysis_table << identification_analysis_with_url( id_analysis[:outside_all_count], :outside_all_count )
+      id_analysis[:output_id_counts].reverse.each do |row|
+        analysis_table << identification_analysis_with_url( row, :output_id_count )
+      end
+      analysis_data = {
+        analysis_header: analysis_header,
+        analysis_table: analysis_table
+      }
+      response = { json: analysis_data, status: :ok }
+    else
+      response = { json: I18n.t( :only_curators_can_access_that_page ), status: :unprocessable_entity }
+    end
+    respond_to do |format|
+      format.json { render json: response[:json], status: response[:status] }
+    end
+  end
   
   private
   def load_taxon_change
     render_404 unless @taxon_change = TaxonChange.where(id: params[:id] || params[:taxon_change_id]).
       includes(
-        {taxon: [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
-        {taxa: [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
+        {taxon: [:taxon_names, :photos, :taxon_range_without_geom, :taxon_schemes]},
+        {taxa: [:taxon_names, :photos, :taxon_range_without_geom, :taxon_schemes]},
         :source
       ).first
+  end
+
+  def stub_taxon_split
+    input_taxon = Taxon.where( id: params[:input_taxon_id].to_i ).first
+    output_taxa = Taxon.where( id: params[:output_taxon_ids].map{|i| i.to_i} )
+    @taxon_change = TaxonSplit.new
+    @taxon_change.taxon = input_taxon
+    output_taxa.each { |t| @taxon_change.taxon_change_taxa.build( taxon: t ) }
   end
 
   def get_change_params
@@ -389,5 +439,44 @@ class TaxonChangesController < ApplicationController
       return false
     end
     true
+  end
+
+  def identification_analysis_with_url( row, label )
+    if row[:id_count] == 0
+      url = nil
+    else
+      observation_params = {
+        id: row[:id_obs].join(","), place_id: "any", verifiable: "any"
+      }
+      url = observations_path( observation_params )
+    end
+    taxon_url = taxon_path( { id: row[:taxon_id] } )
+    if label == :total_id_count
+      return { name: row[:name], taxon_id: row[:taxon_id], taxon_url: taxon_url, id_count: row[:id_count], url: url }
+    else
+      role = nil
+      if row[:atlas_id].nil?
+        if label == :inside_multiple_count
+          atlas_url = nil
+          atlas_string = t( :overlapping_atlases )
+          role = "warning"
+        elsif label == :outside_all_count
+          atlas_url = nil
+          atlas_string = t( :outside_of_all_atlases )
+          role = "warning"
+        else
+          atlas_url = new_atlas_path( { taxon_id: row[:taxon_id] } )
+          atlas_string = t( :not_atlased )
+        end
+      else
+        if row[:atlas_active] == false
+          atlas_string = t( :not_atlased )
+        else
+          atlas_string = t( :atlased )
+        end
+        atlas_url = atlas_path( row[:atlas_id] )
+      end
+      return { name: row[:name], taxon_id: row[:taxon_id], taxon_url: taxon_url, id_count: row[:id_count], url: url, atlas_string: atlas_string, atlas_url: atlas_url, role: role }
+    end
   end
 end

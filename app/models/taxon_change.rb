@@ -18,7 +18,6 @@ class TaxonChange < ApplicationRecord
   validates_presence_of :taxon_id
   validate :uniqueness_of_taxa
   validate :uniqueness_of_output_taxa
-  validate :taxa_below_order
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :taxon_change_taxa, :allow_destroy => true,
     :reject_if => lambda { |attrs| attrs[:taxon_id].blank? }
@@ -433,14 +432,6 @@ class TaxonChange < ApplicationRecord
     if taxon_ids.size != taxon_ids.uniq.size
       errors.add(:base, "output taxa must be unique")
     end
-  end
-
-  def taxa_below_order
-    return true if user && user.is_admin?
-    if [taxon, taxon_change_taxa.map(&:taxon)].flatten.compact.detect{|t| t.rank_level.to_i >= Taxon::ORDER_LEVEL }
-      errors.add(:base, "only admins can move around taxa at order-level and above")
-    end
-    true
   end
 
   def move_input_children_to_output( target_input_taxon )

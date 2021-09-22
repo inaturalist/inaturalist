@@ -22,7 +22,7 @@ describe ProjectObservation do
   end
 
   describe 'has photos and sounds' do
-    let(:observation) { build :observation, :research_grade }
+    let(:observation) { build :observation }
     let(:project) { build :project }
     let(:project_user) { build :project_user, project: project, user: observation.user }
     subject { build :project_observation, project: project, observation: observation, user: observation.user }

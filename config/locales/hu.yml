@@ -159,6 +159,7 @@ hu:
   accept_community_identifications: Elfogadom a közösség meghatározásait
   accuracy: Pontosság
   accuracy_meters: Pontosság (méterben)
+  action: Művelet
   actions: Műveletek
   active_users: Aktív felhasználó
   add: Hozzáadás
@@ -193,6 +194,7 @@ hu:
   add_from_your_observations: Hozzáadás a megfigyeléseidből
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Dőlt betűs szöveg hozzáadása
+  add_new_lexicon: Új szókészlet hozzáadása
   add_new_place: Új hely hozzáadása
   add_observations: Megfigyelés hozzáadása
   add_observations_by_checking_off: Megfigyelés hozzáadása egy fajlista alapján
@@ -551,6 +553,7 @@ hu:
   download_csv: CSV letöltése
   download_csv_template: CSV-sablon letöltése
   download_kml: KML letöltése
+  draft_saved: Piszkozat elmentve!
   drag_and_drop_some_photos_or_sounds: Húzz ide néhány fényképet vagy hangot
   duplicate_verb: Másolás
   edit: Módosítás
@@ -585,6 +588,9 @@ hu:
   export_observations: Megfigyelések exportálása
   exporting: "Exportálás..."
   evidence_of_organism: Bizonyíték az organizmusra
+  failed_to_save_record: "A rekord mentése sikertelen. Kérjük, próbáld meg később."
+  failed_to_save_record_with_errors: "Nem sikerült menteni a rekordot: %{errors}"
+  'false': 'Nem'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Kedvencek
   Family: Család
@@ -599,6 +605,8 @@ hu:
   find_new_place_to_explore: Fedezz fel egy új helyet!
   find_your_current_location: A jelenlegi tartózkodási helyed lekérése
   flag_as_inappropriate: Megjelölés kifogásolhatóként
+  flag_saved: Bejelölés elmentve
+  flag_saved_thanks_html: Bejelölés elmentve. Köszönjük! <a href="%{url}" class="readmore">Bejelölések megtekintése</a>
   fluid_layout: Rugalmas elrendezés
   follow_user: "%{user} követése"
   followers: Követők
@@ -635,6 +643,8 @@ hu:
   header_your_identifications: Meghatározásaid
   header_your_profile: Profilod
   help: Súgó
+  here_are_our_top_suggestions: Íme a legjobb javaslataink
+  here_are_our_top_species_suggestions: Íme a legjobb javaslataink
   high: Felső
   history: Idővonal
   home: Kezdőlap
@@ -642,12 +652,14 @@ hu:
   id_withdrawn: Azonosítás visszavonva
   identify: Azonosítás
   identify_title: "Azonosítás"
+  identification_saved: "Meghatározás elmentve!"
   identification_withdrawn: Meghatározás visszavonva
   identifications: Meghatározások
   identifications_by: "%{user} meghatározásai"
   identifiers: Meghatározók
   ids: "azonosítás"
   ids_made_for_others: meghatározás mások számára
+  if_this_is_a_scientific_name: Ha ez tudományos név, jelenleg elfogadott?
   include_suggestions_not_seen_nearby: Földrajzilag távolabb eső javaslatok megjelenítése
   increase_brightness: Fényerő növelése
   inactive: Inaktív
@@ -705,11 +717,13 @@ hu:
   leave_a_comment: Írd ide a megjegyzést
   leave_this_project: Kilépés a projektből
   let_us_walk_you_through: Ismerd meg az iNaturalist főbb funkcióit.
+  lexicon: Szókészlet
   lexicons:
     hungarian: magyar
   life: Élet
   life_list: "%{user} életlistája"
   list: Lista
+  list_saved: Lista elmentve.
   list_views:
     taxonomic: rendszertani
   lists: Listák
@@ -781,6 +795,7 @@ hu:
   must_have_observation_field: "'%{operand}' adatmező nem lehet üres"
   n_ago: "%{n}"
   name: Név
+  names: Nevek
   native: őshonos
   native_to_place: "Őshonos itt: %{place}"
   near_threatened: Mérsékelten fenyegetett
@@ -790,14 +805,24 @@ hu:
   new: Új
   new_and_noteworthy: Újdonságok
   new_journal_post: Új hírmondó-bejegyzés
+  new_lexicon: Új szókészlet
   new_list: Új lista
   new_message: Új üzenet
   new_observation_field: Új adatmező
   new_password: Új jelszó
+  new_taxon_name_for: 'Új taxonnév: '
   new_users: Új felhasználó
   new_users_in_year: "Új felhasználó - %{year}"
   new_users_w_7_obs: Új felhasználók 7 megfigyeléssel
   next: Következő
+  next_date_short: Következő
+  next_observation: Következő megfigyelés
+  next_page: Következő oldal
+  next_page_short: Következő
+  next_photo: Következő kép
+  next_post_short: Következő
+  next_tab: Következő fül
+  next_taxon_short: Következő
   'no': 'Nem'
   no_but_it_is_a_member_of_taxon: "Nem, de %{taxon} taxon tagja"
   no_comments_yet: Még nincsenek megjegyzések.
@@ -845,6 +870,7 @@ hu:
   observations_in_this_project_must: E projekt megfigyeléseire a következő kritériumok vonatkoznak
   observations_observed_this_month: A <em>megfigyelések</em> dátuma (és nem a feltöltés dátuma) alapján. Rajta, ki a természetbe!
   observations_of_relatives: Rokon fajok megfigyelései
+  observations_saved: Megfigyelés(ek) elmentve!
   observations_specifying_this_field: Megfigyelések ezzel az adatmezővel
   observations_specifying_this_field_with_value: Megfigyelések "%{value}" értékkel ebben az adatmezőben
   observations_total: Minden megfigyelés
@@ -865,6 +891,7 @@ hu:
     follow_panel_body: Ha meglátogatod ezeket a profilokat és a Követés gombra kattintasz, értesítéseket kapsz a felhasználó megfigyeléseiről
   open: nyilvános
   open_: Nyilvános
+  optional: opcionális
   or: vagy
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -876,6 +903,7 @@ hu:
   organism_appears_captive_cultivated: Az élőlény fogságban lévő vagy kultivált
   other: Egyéb
   other_animals: egyéb állatok
+  other_lexicons: Egyéb szókészletek
   other_species_commonly_misidentified_as_this_species_in_place_html: Egyéb fajok <a href="%{url}">%{place}</a> régiójában, amelyeket gyakran tévesen e fajként határoznak meg
   other_taxa_commonly_misidentified_as_this_complex: E komplexként gyakran tévesen meghatározott egyéb taxonok
   other_taxa_commonly_misidentified_as_this_complex_in_place_html: 'E komplexként gyakran tévesen meghatározott egyéb taxonok itt: <a href="%{url}">%{place}</a>'
@@ -934,7 +962,15 @@ hu:
   powered_by_inaturalist_open_source_software_html: 'Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist open source software</a>'
   press: Sajtó
   preview: Előnézet
+  previous_date_short: Előző
   prev: Előző
+  previous_observation: Előző megfigyelés
+  previous_page: Előző oldal
+  previous_page_short: Előző
+  previous_photo: Előző kép
+  previous_post_short: Előző
+  previous_tab: Előző fül
+  previous_taxon_short: Előző
   privacy: Adatvédelem
   private: privát
   private_: Privát
@@ -1065,7 +1101,9 @@ hu:
   receive_email_notifications_description: "Ha ezt kikapcsolod, nem fogsz %{site_name} emaileket kapni az értesítésekről."
   receive_project_journal_notifications?: Szeretnél értesítést a projekt hírmondóról?
   receive_updates_from_this_project: Feliratkozás a projekt értesítéseire
+  recent: Legújabb
   recent_evidence_of_organism: Friss bizonyíték az organizmusra
+  recent_new_users: Nemrég regisztrált felhasználók
   recent_observations: Új megfigyelések
   recent_observations_: Új megfigyelések
   recently_active: Nemrég aktív
@@ -1089,10 +1127,24 @@ hu:
   reviewed: Átnézett
   rules_for_adding_observations: Megfigyelések hozzáadására vonatkozó szabályok
   satellite: műholdkép
+  save: Mentés
   save_all: Minden mentése
+  save_and_add_another: Mentés és új hozzáadása
+  save_and_continue: "Mentés &amp; folytatás..."
+  save_and_add_taxa: "Mentés és fajok hozzáadása"
+  save_changes: Módosítások mentése
   save_comment: Megjegyzés mentése
+  save_draft: Piszkozat mentése
+  save_fields: Mezők mentése
+  save_flag: Bejelölés mentése
+  save_guide_taxon: Útmutató taxon elmentve
+  save_identification: Azonosítás elmentése
   save_observation: Megfigyelés mentése
+  save_photos: Képek mentése
+  save_place: Hely mentése
   save_settings_caps: BEÁLLÍTÁSOK MENTÉSE
+  saved: Elmentve
+  saved_at_time: 'Mentve ekkor: %{time}'
   saving: "Mentés..."
   saving_num_of_count_observations:
     one: Megfigyelések mentése...
@@ -1103,6 +1155,7 @@ hu:
   search_species: Fajok keresése
   search_species_: Fajok keresése...
   seasonality: Szezonalitás
+  seen_nearby: A közelben látták
   select: Kiválasztás
   select_one_or_more_photos: 'Fénykép(ek) kiválasztása'
   select_options: válassz
@@ -1120,6 +1173,7 @@ hu:
   similar_taxa: Hasonló taxonok
   #Journal post formatting option
   simple: Egyszerű
+  skip_to_next_page: "Ugrás a következő oldalra"
   site_stats: Webhelyforgalom
   sort: Rendezés
   sort_by: Rendezés
@@ -1195,7 +1249,9 @@ hu:
   top_observers: Legtöbbször megfigyelte
   tos_privacy_guidelines_label: |
     Egyetértek a <a href="/terms" target="_blank">Felhasználási feltételekkel</a> és az <a href="/privacy" target="_blank">Adatvédelmi nyilatkozattal</a>, és átolvastam a <a href="/pages/community+guidelines" target="_blank">Közösségi irányelveket</a>.
+  total: Összes
   total_observations: Minden megfigyelés
+  'true': 'Igen'
   trending: Népszerű
   trends: Trendek
   two_thirds: 2/3
@@ -1256,6 +1312,7 @@ hu:
   visually_similar: Kinézetre hasonló
   w_photos_only: fotókkal
   was_it_captive_cultivated?: "Fogságban lévő vagy kultivált?"
+  website: Weboldal
   welcome_back!: Köszöntünk ismét!
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
@@ -1289,6 +1346,7 @@ hu:
   you_faved_this: A kedvenced!
   you_must_choose_an_observation_field: Ki kell választanod egy adatmezőt
   you_sure_delete_this_observation: "Biztosan törlöd ezt a megfigyelést?"
+  your_comment_was_saved: A taralmad elmentve
   your_content: Tartalmaid
   your_default_time_zone: Az alapértelmezett időzónád
   your_favorites: Kedvenceid
@@ -1452,12 +1510,28 @@ hu:
         even_our_dedicated_search_mole_couldnt: Még a keresővakondunk sem talált semmit.
     stats:
       index:
+        active_desc: Meghatárott, megfigyelt, hozzászólt vagy posztolt az elmúlt 30 napban
         identifiers_desc: Meghatározást adott e napon más valaki megfigyeléséhez
         new_users_desc: Regisztrált ezen a napon
         observations_1_week_moving_window: Megfigyelések (egyhetes mozgóátlag)
         observers_desc: Megfigyelést adott hozzá ezen a napon
+        recent_desc: Az utóbbi hét nap alatt regisztrált
+        recent_w_0_obs: Legújabb 0 megfigyeléssel
+        recent_w_0_obs_desc: Az utóbbi hét nap alatt regisztrált és 0 megfigyelése van
+        recent_w_7_obs: Legújabb 7+ megfigyeléssel
+        recent_w_7_obs_desc: Az utóbbi hét nap alatt regisztrált és 7+ megfigyelése van
     taxa:
       show:
+        about_names_desc: |
+          <p>
+          Az élőlények nagy része rendelkezik névvel a beszélt nyelvek valamelyikén. Ezek a nevek általában könnyen felismerhetők, könnyen kiejthetők, és jellemzően nem módosulnak az idő folyamán. Viszont sok élőlényt számos különböző néven illetnek különféle helyeken, még ugyanazon a nyelven belül is, ami félreértésekhez vezethet. Ezt a problémát a tudósok azzal kerülik el, hogy minden egyes élőlénykategóriát egy tudomnyos névvel illetnek, amely név megfelel a <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">Binomenális nómenklatúra</a> szabályainak. A tudományos név legtöbbször latin nyelven alapszik, amelyet senki nem beszél, ezért azokat a legtöbb embernek nehezebb észben tartani. A tudományos nevek az élőlény rendszertani besorolására is utalhatnak, így azok módosításra szorulnak, amikor a tudósok rendszertanilag pontosabban be tudják kategorizálni az élőlényt. Ez szintén kommunikációs problémákhoz vezethet, még a tudományos neveket ismerők körében is.
+          </p>
+          <p>
+          Ami jól kifejezi a problémát: "A népies nevek helyről helyre, a tudományos nevek időről időre változnak."
+          </p>
+          <p>
+          Ezeket a problémákat mi azzal próbáljuk kiküszöbölni, hogy mind a népies, mind pedig a tudományos nevet megjelenítjük, a felhasználó nyelvi és földrajzi beállításai alapján.
+          </p>
         frequency:
           research: Tudományos szintű
           verifiable: Hiteles
@@ -1560,11 +1634,21 @@ hu:
       - Október
       - November
       - December
+  helpers:
+    submit:
+      submit: '%{model} mentése'
   number:
     human:
       format:
         significant: true
         strip_insignificant_zeros: true
+  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  activemodel:
+    errors:
+      template:
+        header:
+          one: '%{count} hiba miatt %{model} nem menthető el'
+          other: '%{count} hiba miatt %{model} nem menthető el'
   activerecord:
     attributes:
       assessment_section:
@@ -1588,6 +1672,11 @@ hu:
         email: Email
         login: Felhasználónév
         time_zone: Időzóna
+    errors:
+      template:
+        header:
+          one: '%{count} hiba miatt %{model} nem menthető el'
+          other: '%{count} hiba miatt %{model} nem menthető el'
   wild: Vad
   will_paginate:
     previous_label: "&#8592; Előző"

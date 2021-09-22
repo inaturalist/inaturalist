@@ -1,6 +1,6 @@
 :ruby
   photo ||= change_taxon.photos.first
-  taxon_range ||= change_taxon.taxon_ranges_without_geom.first
+  taxon_range ||= change_taxon.taxon_range_without_geom
   taxon_change ||= nil
   swaps = if @swaps_by_taxon_id
     @swaps_by_taxon_id[change_taxon.id].try(:clone) || []
@@ -40,10 +40,10 @@
         = link_to t(:range), taxon_path(change_taxon, :anchor => 'taxon_range')
       - if change_taxon.is_active?
         |
-        %span.active= t(:active_taxon_status)
+        %span.active_taxon_status= t(:active_taxon_status)
       - else
         |
-        %span.inactive= t(:inactive_taxon_status)
+        %span.inactive_taxon_status= t(:inactive_taxon_status)
       - if change_taxon.flagged?
         |
         %span#flaggings_heads_up.description

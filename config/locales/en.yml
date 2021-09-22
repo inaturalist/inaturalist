@@ -230,6 +230,10 @@ en:
   # should work here
   about_place: "About %{place}"
   about_places: About Places
+  about_taxon_ranges: About Taxon Ranges
+  about_taxon_ranges_desc: |
+    Taxon Ranges convey the global distribution of a taxon. Taxon ranges are
+    typically sourced from the IUCN Red List.
   about_the_cc_licenses: About Creative Commons licenses
   about_the_network: About the Network
   about_these_licenses: About these licenses
@@ -589,6 +593,7 @@ en:
   alphabetical_order: Alphabetical Order
   already_have_an_account_log_in_html: Already have an account? <strong>Log in.</strong>
   amphibians: amphibians
+  analyze_ids: Analyze IDs
   ancestor_taxon: Ancestor Taxon
   and: and
   and_other_taxa: "&amp; Other Taxa"
@@ -732,6 +737,7 @@ en:
   assessment_x: "%{assessment} assessment"
   assessments: assessments
   associations: Associations
+  atlased: Atlased
   atlas_for_taxon_html: Atlas for %{taxon}
   # As in the Atom Syndication Format:
   # https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -988,6 +994,7 @@ en:
   committed_by_user_on_date_html: Committed by %{user} on %{date}
   # Label for date the taxon change was committed
   committed_on: Committed on %{date}
+  committed_taxon_changes_cannot_be_deleted: Committed taxon changes cannot be deleted
   # Status message while a taxon change is being committed
   committing: Committing...
   common_name: Common Name
@@ -1073,7 +1080,11 @@ en:
       *you* want to be listed as the authority.
     place: Place to which this status is restricted.
     url: URL for a page describing this status.
-    geoprivacy: Default geoprivacy for observations of this taxon
+    geoprivacy: |
+      Default geoprivacy for observations of this taxon. Note that the
+      geoprivacy of a status associated with a continent-, country-, or
+      state-level place can override a status that is global or associated
+      with a higher-level place.
     iucn: |
       Equivalent IUCN Red List code. This is not the actual IUCN assessment,
       just the IUCN code that best matches the threat of coordinate disclosure
@@ -1487,6 +1498,8 @@ en:
   delete_icon?: Delete icon?
   delete_photo: Delete photo
   delete_project: Delete this project
+  # Label for a button to delete a taxon range
+  delete_range: Delete range
   delete_selected: Delete Selected
   delete_taxon_and_merge_most_data_html: |
     Delete <i>%{taxon}</i> and merge most of its data into another taxon. Use
@@ -1512,11 +1525,14 @@ en:
   description_slash_tags: Description / Tags
   description_tags_more: "Description, Tags, &amp; More"
   desription: Description
+  destination: Destination
   destroy: Destroy
   details: Details
   deviation: Deviation
   devise:
     confirmations:
+      # Message a user sees when they try to manually trigger email
+      # confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
         If your email address exists in our database, you will receive an email
         with instructions for how to confirm your email address in a few
@@ -1674,7 +1690,7 @@ en:
   editing_taxon: Editing %{taxon}
   editing_taxon_link: Editing Taxon Link
   editing_taxon_name_for_taxon_html: Editing Taxon Name "%{name}" for %{taxon}
-  editing_taxon_range: Editing Taxon Range
+  editing_taxon_range_for_taxon_html: Editing Taxon Range for %{taxon}
   editing_this: Editing %{elem}
   editing_x_in_y: "Editing %{x} in %{y}"
   editors: Editors
@@ -1714,6 +1730,9 @@ en:
   establishment_means_describes_how: |
     Establishment means describes how the taxon came to be established in an area.  
     See DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
+  estimate_which_input: |
+    Estimate which input taxon ids will be replaced with which output taxa and which will be coarsened to a common ancestor once the split is comitted. This may take
+    a moment to calculate. Links to observations are truncated to subsets of 200.
   event_in_progress: Event in progress
   event_stats: Event Stats
   event_url: Event URL
@@ -1993,6 +2012,35 @@ en:
   header_your_projects: Your Projects
   header_your_profile: Your Profile
   heads_up: Heads up
+  heads_up_automatable_draft_split_notice_html: |
+    <strong>Heads up:</strong> When you commit this change, identifications will
+    be re-assigned to the output taxa based on their atlases. If some or all of
+    the outputs lack atlases, or if atlases overlap for a given record,
+    identifications will be replaced with identifications of the nearest common
+    ancestor taxon (%{taxon})
+  heads_up_non_automatable_draft_split_notice_html: |
+    <strong>Heads up:</strong> This taxon split has output taxa that either do
+    not have atlases or don't share a common ancestor, so the records
+    associated with its input taxa cannot be automatically assigned to output
+    taxa when this split is committed and the community will have to add new
+    IDs for these records.
+  heads_up_automatable_split_notice_html: |
+    <strong>Heads up:</strong> Some or all of the identifications affected by
+    this split may have been replaced with identifications of %{taxon}. This
+    happens when we can't automatically assign an identification to one of the
+    output taxa.
+  heads_up_observose_taxon_change_html: |
+    <strong>Heads up:</strong> One or more of the input taxa involved in this
+    change has more than %{observose_taxon_threshold} downstream observations.
+    Only admins or any curators of that taxon framework can commit this change.
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+    <strong>Heads up:</strong> One or more of the input taxa involved in this
+    change are within a <a href="%{framework_url}">taxon framework</a>. Only
+    admins or curators of that taxon framework can commit changes affecting
+    covered taxa. Contact one of that taxon's curators to commit this change.
+  heads_up_there_are_other_draft_taxon_changes_html:
+    one: "<strong>Heads up:</strong> there is %{count} other draft taxon change with the same input taxa:"
+    other: "<strong>Heads up:</strong> there are %{count} other draft taxon changes with the same input taxa:"
   heads_up_this_photo_has_been_flagged: "HEADS UP: this photo has been flagged."
   heads_up_this_photo_is_already_associated_with: "Heads up: this photo is already associated with <a target='_blank' href='%{url}'>another observation</a>"
   heads_up_you_have_multiple: "Heads up: You have multiple taxonomic machine tags for identical ranks. They're color-coded below by rank."
@@ -2291,6 +2339,7 @@ en:
     ilokano: Ilokano
     italian: Italian
     japanese: Japanese
+    kannada: Kannada
     korean: Korean
     latvian: Latvian
     lithuanian: Lithuanian
@@ -2302,9 +2351,13 @@ en:
     norwegian: Norwegian
     occitan: Occitan
     pangasinan: Pangasinan
+    polish: Polish
     portuguese: Portuguese
     romanian: Romanian
     russian: Russian
+    sinhala: Sinhala
+    slovak: Slovak
+    slovenian: Slovenian
     spanish: Spanish
     swedish: Swedish
     tagalog: Tagalog
@@ -2312,6 +2365,7 @@ en:
     thai: Thai
     tokelauan: Tokelauan
     turkish: Turkish
+    ukrainian: Ukrainian
     waray_waray: Waray-Waray
   less: Less
   licensed_site_photos: "Licensed %{site_name} photos"
@@ -2401,6 +2455,7 @@ en:
     id: Indonesian
     it: Italian
     ja: Japanese
+    kn: Kannada
     ko: Korean
     lb: Luxembourgish
     lt: Lithuanian
@@ -2415,6 +2470,7 @@ en:
     pt-BR: Portuguese (Brazil)
     ru: Russian
     sk: Slovak
+    sl: Slovenian
     sq: Albanian
     sv: Swedish
     th: Thai
@@ -2794,6 +2850,7 @@ en:
   no_identifications_added:
     current_user: You haven't added identifications to anyone's observations.
     user: "%{user} hasn't added identifications to anyone's observations."
+  no_ids: "Number of IDs"
   no_ids_have_been_suggested_yet: No IDs have been suggested yet
   no_interaction_data_available: No interaction data available
   no_its_as_good_as_it_can_be: No, it's as good as it can be
@@ -2835,6 +2892,7 @@ en:
   no_project_to_admin_current_user: "You don't admin any projects"
   no_project_to_admin_login: "%{login} doesn't admin any projects"
   no_projects_yet: No projects yet
+  no_attached_range: No attached range
   no_range_data_available: No range data available.
   no_recent_activity: No recent activity
   no_relevant_annotations: No Relevant Annotations
@@ -2849,6 +2907,8 @@ en:
   no_species_on_this_list_for_owner: |
     You can start adding species to this list by using the "Add to Your List" tool on the right.
   no_subject_parens: "(No subject)"
+  no_such_wiki_page: There is no such page.
+  no_such_wiki_page_html: There is no such page. Do you want to <a href="%{new_url}">create it</a>?
   no_suggestions_available: No Suggestions Available
   no_summary_from_wikipedia: No summary from Wikipedia
   no_summary_has_been_set: No summary has been set.
@@ -2865,6 +2925,7 @@ en:
   none: None
   none_found: None found
   normal: normal
+  not_atlased: Not Atlased
   not_completed: Not Completed
   not_confident: We're not confident enough to make a recommendation.
   not_confident_top_suggestions: We're not confident enough to make a recommendation, but here are our top suggestions
@@ -3059,7 +3120,7 @@ en:
     absent: Does not occur in the area
     common: Occurs frequently
     doubtful: Presumed to occur, but doubt exists over the evidence
-    irregular: Presence unpredictable, including vagrants; may be common in some years and absent others
+    irregular: Presence unpredictable, including vagrants; may be common in some years and absent in others
     present: Occurs in the area
     uncommon: Occurs regularly, but in small numbers; requires careful searching of proper habitat
   occurrence_status_establishment_means: occurrence status, establishment means
@@ -3114,6 +3175,10 @@ en:
         </ul>
   one_by_one: "One-by-one"
   one_of_your_lists: "one of your lists..."
+  one_or_more_input_taxa_have_more_than_1000: |
+    One or more input taxa have more than 1000 downstream observations.
+    Committing may take some time to process, are you sure this taxon change
+    is necessary? Also, taxon changes cannot be undone.
   only_a_project_manager_can_add: Only a project manager can add project curator status
   only_administrators_may_access_that_page: Only administrators may access that page
   only_an_admin_can_remove_project_users: Only an admin can remove project users
@@ -3185,9 +3250,11 @@ en:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Other taxa commonly misidentified as this subgenus in <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_subsection: Other taxa commonly misidentified as this subsection
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Other taxa commonly misidentified as this subsection in <a href="%{url}">%{place}</a>
+  outside_of_all_atlases: Outside of all atlases
   our_blog: Our Blog
   output_taxon: Output taxon
   overview: Overview
+  overlapping_atlases: Overlapping atlases
   overlapping_downstream_taxon_frameworks_html: "Overlapping downstream Taxon Frameworks: %{count}"
   owner: Owner
   # One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -4001,6 +4068,8 @@ en:
   # Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infrahybrid
   ranges: Ranges
+  # Text to link to a taxon range as a KML file
+  range_file: Range File
   ray_finned_fishes: ray-finned fishes
   re_order_photos: "Re-order photos &raquo;"
   read_more: Read More
@@ -4120,6 +4189,8 @@ en:
   restore: Restore
   restoring: Restoring...
   review_all: Review All
+  review_identifications_of_taxon_html: |
+    Review identifications of <span class="sciname">%{taxon}</span> %{taxon_id}
   reviewed: Reviewed
   revoke: Revoke
   revoke_caps: REVOKE
@@ -4666,6 +4737,11 @@ en:
     Taxon assessments are documents assessing the current status of a species, usually conservation status.
     For example, a regional conservation organization might use them to organize information and solicit feedback about the status of several threatened taxa in the region.
   taxon_change_must_be_committed_to_update_records: Taxon change must be committed to update records
+  taxon_change_title_taxon_drop: Taxonomic Drop %{id}
+  taxon_change_title_taxon_merge: Taxonomic Merge %{id}
+  taxon_change_title_taxon_split: Taxonomic Split %{id}
+  taxon_change_title_taxon_stage: Taxonomic Stage %{id}
+  taxon_change_title_taxon_swap: Taxonomic Swap %{id}
   taxon_deleted: Taxon deleted.
   taxon_doesnt_have_a_range: Taxon doesn't have a range
   taxon_drop: taxon drop
@@ -4699,6 +4775,31 @@ en:
   taxon_photos_updated: Taxon photos updated!
   taxon_range: Taxon range
   taxon_range_created_notice: Taxon range was successfully created. Please allow a few minutes for it to appear on the maps.
+  taxon_range_for_taxon_html: Taxon Range for %{taxon}
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: Is this an IUCN Red List range map, and if not why?
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: This is an IUCN Red List range map
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: This is not an IUCN Red List range map because that map is unsuitable
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: This is not an IUCN Red List range map because this taxon is not on the IUCN Red List
+  taxon_range_guidelines_each_taxon_can_have: Each taxon can have only one Taxon Range. Taxon ranges must represent the global distribution.
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    The %{link_start_tag}IUCN Red List%{link_end_tag} is the typical source of taxon ranges.
+    Please indicate whether you are adding an IUCN Red List range and if not how what you are
+    adding relates to the IUCN Red List. This will help inform processes
+    of automatically updating ranges sourced to the IUCN Red List. If you are adding an IUCN Red List
+    range please properly indicate the IUCN Red List version (e.g. 2021-2) in the source.
+  taxon_range_guidelines_if_you_are_not_uploading: "If you are not uploading an IUCN Red List range map, this should be because:"
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: IUCN Red List range map for this taxon is unsuitable
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    for example, you have manually narrowed it to reflect a taxonomic split not represented on the IUCN Red List, or the IUCN
+    Red List range map has major errors making its display unsuitable.
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: This taxon is not on the IUCN Red List
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    for example, the taxon is lumped with another taxon on the IUCN Red List so you’ve manually carved it off here, or if the taxon
+    lacks an IUCN Red List assessment and range map.
+  taxon_range_guidelines_please_provide_details: |
+    Please use the description to explain how the map was derived and link to any relevant flags, taxonomic splits, or other discussions
+    of why the published IUCN Red List range required alteration.
+  taxon_range_guidelines_learn_more_about_taxon_ranges: Learn more about taxon ranges
   taxon_range_updated_notice: Taxon range was successfully updated. Please allow a few minutes for changes to appear on the maps.
   taxon_ranks: Taxon Ranks
   taxon_removed_from_list: Taxon removed from list.
@@ -4771,6 +4872,8 @@ en:
      that is comprehensive, i.e. it lists <em>all</em> the representatives of
      its taxon in a place, the Identotron will show a notice.
   the_name_of_the_taxon_including_space: The name of the taxon, including the space for species and infraspecies.
+  the_name_of_the_taxon_dashes: The name of the taxon, spaces replaced with dashes.
+  the_name_of_the_taxon_underscores: The name of the taxon, spaces replaced with underscores.
   the_observation_was_already_added_to_that_project: The observation was already added to that project.
   the_people_of_inat: "The People of %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
@@ -4859,6 +4962,7 @@ en:
     <strong>This taxon change has been committed!</strong>
     Please don't edit the taxa.  Editing other fields is ok.
   this_taxon_concept_is_inactive: this taxon concept is inactive
+  this_taxon_has_more_than_1000: This taxon has more than 1000 downstream observations. Editing may take some time to process, are you sure it's necessary?
   this_taxon_has_no_default_photo: This taxon has no default photo!
   this_taxon_is_inactive_this_means: |
     This taxon is <strong>inactive</strong>. This means %{site_name}'s curators have replaced
@@ -4907,6 +5011,7 @@ en:
     the <a href="/pages/community+guidelines" target="_blank">Community Guidelines</a>.
   total: Total
   totals: Totals
+  total_ids_on_input_taxon: "Total IDs of input taxon:"
   total_members: Total members
   total_observations: Total observations
   total_observations_caps: TOTAL OBSERVATIONS
@@ -5432,6 +5537,9 @@ en:
   you_need_to_select_some_observations_first: You need to select some observations first.
   you_retain_full_copyright: "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service."
   you_retain_full_copyright_over_your_content: "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service."
+  you_should_delete_this_taxon_change: |
+    You should probably delete this taxon change, or at least figure out some
+    kind of solution with the person / people who made the other change(s).
   you_sure_delete_asset?: Are you sure you want to delete this Project Asset?
   you_sure_delete_check_list: "Are you sure you want to delete this list? Some people may have put a lot of work into it..."
   you_sure_delete_comment?: Are you sure you want to delete this comment?
@@ -6313,7 +6421,7 @@ en:
         warning_html: |
           Please be respectful of other people's data and <strong>talk to the creator
           of an observation field before merging</strong>. This tool will destroy the
-          obseration field being merged and move all observations using it
+          observation field being merged and move all observations using it
           over to the keeper. <strong>This process cannot be undone</strong>, so be careful.
     emailer:
       bulk_import_success:
@@ -8369,6 +8477,12 @@ en:
             taxon:
               too_many_photos: |
                 cannot have more than %{max} photos
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: must be an accepted value
+            taxon_id:
+              already_has_a_range: already has a range
         user:
           attributes:
             login:

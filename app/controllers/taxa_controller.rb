@@ -321,7 +321,7 @@ class TaxaController < ApplicationController
     @descendants_exist = @taxon.descendants.exists?
     @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
     unless @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
-      flash.now[:notice] ||= "This active taxon is covered by a taxon framework, so some taxonomic attributes can only be editable by taxon curators associated with that taxon framework."
+      flash.now[:notice] ||= "This active taxon has more than #{Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT} downstream observations or is covered by a taxon framework, so some taxonomic attributes can only be editable by staff or taxon curators associated with that taxon framework."
     end
   end
 
@@ -721,9 +721,9 @@ class TaxaController < ApplicationController
   
   def range
     @taxon_range = if request.format == :geojson
-      @taxon.taxon_ranges.simplified.first
+      TaxonRange.where(taxon_id: @taxon.id).simplified.first
     else
-      @taxon.taxon_ranges.first
+      @taxon.taxon_range
     end
     unless @taxon_range
       flash[:error] = t(:taxon_doesnt_have_a_range)
@@ -731,7 +731,7 @@ class TaxaController < ApplicationController
       return
     end
     respond_to do |format|
-      format.html { redirect_to taxon_map_path(@taxon) }
+      format.html { redirect_to taxon_range_path( @taxon_range ) }
       format.kml { redirect_to @taxon_range.range.url }
       format.geojson { render :json => [@taxon_range].to_geojson }
     end
@@ -820,7 +820,7 @@ class TaxaController < ApplicationController
   def map_layers
     render json: {
       id: @taxon.id,
-      ranges: @taxon.taxon_ranges.exists?,
+      ranges: @taxon.taxon_range.present?,
       gbif_id: @taxon.get_gbif_id,
       listed_places: @taxon.listed_taxa.joins(place: :place_geometry).exists?
     }
@@ -1438,7 +1438,7 @@ class TaxaController < ApplicationController
         where[0] += " OR taxon_names.name LIKE ?"
         where << ('%' + params[:q].split(' ').join('%') + '%')
       end
-      @taxa = @taxa.where(where).includes(:taxon_names)
+      @taxa = @taxa.joins(:taxon_names).where(where)
     elsif params[:name]
       @qparams[:name] = params[:name]
       @taxa = @taxa.where("name = ?", params[:name])

@@ -144,6 +144,8 @@ ja:
     このプロジェクトのあなたの観察記録のうち、絶滅危惧種のため場所が不明瞭なもののみ
   about_trusting_projects_options_taxon_desc: |-
     多くのプロジェクトでは、絶滅のおそれのある分類群を観察しているために、不明瞭になっている座標にアクセスする必要があります。
+  about_trusting_projects_overview: |-
+    隠された座標へのアクセスを許可することで、このプロジェクトの管理者は、このプロジェクトでのあなたの観察記録について、正確な座標を見ることができます。これは、科学者や資源管理者が分析や意思決定のために正確な座標へのアクセスを必要とする状況において、非常に重要なことです。
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     非表示の座標を共有するか選択できます
@@ -838,7 +840,6 @@ ja:
     description: 記載理由
     place: このステータスが制限されている場所。
     url: 保全状況を明記するウェブページのURL
-    geoprivacy: この分類群のデフォルト位置情報公開設定
   conservation_status_geoprivacy_desc: |
     この場所でのこの分類群のすべての観察記録に適用されるデフォルトの地理情報プライバシー
   contact_support: サポートへのお問い合わせ
@@ -1193,7 +1194,6 @@ ja:
   editing_subscription_to_x_html: "%{x}のフォローを編集中"
   editing_taxon_link: タクソンリンクを編集中
   editing_taxon_name_for_taxon_html: '%{taxon}の分類群名 " %{name} " を編集'
-  editing_taxon_range: 生息区域を編集中
   editing_this: '%{elem}を編集中'
   editing_x_in_y: "%{y}の中の%{x}を編集中"
   editors: 編集者
@@ -1658,6 +1658,7 @@ ja:
   last_active_with_date: "最後の活動: %{date}"
   last_confirmed_observation: 最後に確認された観察記録
   last_observation: 最終観察記録
+  last_observation_caps: 最終観察記録
   last_seen: 最終観察時
   last_year: 昨年
   lat: '緯度:'
@@ -3640,8 +3641,10 @@ ja:
     このクエリは、一度に描画するにはあまりにも多くの分類群を返します。より多くのフィルタを追加してみてください。
   tools: ツール
   top_contributors: トップ協力者
+  top_identifier_caps: トップ同定者
   top_identifiers: 同定の達人
   top_identifiers_of_taxon: '%{taxon}のトップ同定者'
+  top_observer_caps: トップ観察者
   top_observers: トップ観察者
   tos_privacy_guidelines_label: |
     <a href="/terms" target="_blank">利用規約</a>と<a href="/privacy" target="_blank">プライバシーポリシー</a>に同意し、<a href="/pages/community+guidelines" target="_blank">コミュニティガイドライン</a>を確認しました。
@@ -3649,6 +3652,7 @@ ja:
   totals: 合計
   total_members: メンバー人数
   total_observations: 合計観察記録数
+  total_observations_caps: 合計観察記録数
   'true': '真'
   trends: トレンド
   trusted_project?: 信頼できるプロジェクト？

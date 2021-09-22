@@ -15,6 +15,11 @@ import {
   fetchDataForTab,
   submitIdentificationWithConfirmation
 } from "../actions";
+import {
+  increaseBrightness,
+  decreaseBrightness,
+  resetBrightness
+} from "../ducks/brightnesses";
 
 function mapStateToProps( state ) {
   let images;
@@ -31,9 +36,19 @@ function mapStateToProps( state ) {
       originalDimensions: photo.original_dimensions
     } ) );
   }
+  const currentObsBrightnessKeys = {};
+  const brightnessKeys = Object.keys( state.brightnesses );
+  const id = observation && observation.id;
+  brightnessKeys.forEach( key => {
+    if ( key.includes( id ) ) {
+      currentObsBrightnessKeys[key] = state.brightnesses[key];
+    }
+  } );
+
   return Object.assign( {}, {
     images,
     blind: state.config.blind,
+    brightnesses: currentObsBrightnessKeys,
     controlledTerms: state.controlledTerms.terms,
     currentUser: state.config.currentUser,
     mapZoomLevel: state.config.mapZoomLevel,
@@ -96,7 +111,10 @@ function mapDispatchToProps( dispatch ) {
     updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) ),
     updateEditorContent: ( editor, content ) => dispatch( updateEditorContent( "obsIdentifyIdComment", content ) ),
     onMapZoomChanged: ( e, map ) => dispatch( setConfig( { mapZoomLevel: map.getZoom( ) } ) ),
-    setMapZoomLevelLocked: locked => dispatch( setConfig( { mapZoomLevelLocked: locked } ) )
+    setMapZoomLevelLocked: locked => dispatch( setConfig( { mapZoomLevelLocked: locked } ) ),
+    increaseBrightness: ( ) => dispatch( increaseBrightness( ) ),
+    decreaseBrightness: ( ) => dispatch( decreaseBrightness( ) ),
+    resetBrightness: ( ) => dispatch( resetBrightness( ) )
   };
 }
 

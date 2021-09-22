@@ -293,7 +293,8 @@ inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
       title: options.taxonRangeLayerLabel,
       description: options.taxonRangeLayerDescription,
       hover: options.taxonRangeLayerHover,
-      controlPosition: options.controlPosition
+      controlPosition: options.controlPosition,
+      link: "/taxa/" + layer.taxon.id + "/range.html"
     }));
   }
   if( layer.observations ) {
@@ -326,7 +327,8 @@ inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
       title: options.gbifLayerLabel,
       description: options.gbifLayerDescription,
       hover: options.gbifLayerHover,
-      controlPosition: options.controlPosition
+      controlPosition: options.controlPosition,
+      link: "http://www.gbif.org/species/" + taxonData.gbif_id
     }));
   }
 };

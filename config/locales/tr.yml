@@ -918,6 +918,8 @@ tr:
   comprehensive_check_list_for_taxon_html: |
     %{taxon} için <span class="comprehensive_notice" data-tip="%{tip}">kapsamlı</span> kontrol listesi
   comprehensive_list: Kapsamlı liste
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Dahil
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Yükleniyor
   concept_status: Konsept Durumu
@@ -951,7 +953,6 @@ tr:
       Bu durumu bildiren kuruluş. Lütfen yeni bir tane eklemeden önce var olan bir yetkiliyi seçmek için otomatik tamamlamayı kullanın. Yetkili olarak listelenmek istiyorsanız bunu atlayabilirsiniz.
     place: Bu durumun kısıtlandığı yer.
     url: Bu durumu açıklayan bir sayfanın URL'si.
-    geoprivacy: Bu sınıfın gözlemleri için varsayılan coğrafi gizlilik
   conservation_status_geoprivacy_desc: |
     Bu yerdeki tüm sınıf gözlemlerine uygulanan varsayılan coğrafi gizlilik
   contact_support: Destekle İletişime Geç
@@ -1467,7 +1468,6 @@ tr:
   editing_taxon: '%{taxon} düzenleme'
   editing_taxon_link: Sınıf Bağlantısını Düzenleme
   editing_taxon_name_for_taxon_html: '%{taxon} için Sınıf Adı "%{name}"'' Düzenleme'
-  editing_taxon_range: Sınıf Aralığını Düzenleme
   editing_this: '%{elem} Düzenleme'
   editing_x_in_y: "%{y} içindeki %{x} düzenleme"
   editors: Düzenleyiciler
@@ -1578,6 +1578,8 @@ tr:
   file_should_be_in_the_following_format: "Dosya takip eden formatta olmalıdır: sınıf adı, açıklama"
   fill_out_project_observation_fields: Proje gözlem alanlarını doldurun
   fill_out_your_profile: profilinizi tamamlayın
+  #The name of a computer file
+  filename: Dosya adı
   filter: Filtre
   filter_by_curator_identification: Sorumlu Tanımalamasıyla Filtre
   filter_by_place: Yer ile Filtre
@@ -1890,7 +1892,13 @@ tr:
   in_the_past: geçmişte
   in_the_past_week: Geçen haftada
   inactive: Etkin Olmayan
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Devre Dışı
   inactive_taxon: Aktif Olmayan Sınıf
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Devre Dışı
   inactive_taxon_concepts_are: Etkin olmayan sınıf, sınıflandırmasal olarak modası geçmiş ya da sınıf değişimi için kullanılmıştır. Eski sınıf kavramları, bazı ortak sitelerle tarihi ve uyumluluğu korumak için saklanır.
   inappropriate_content: Uygunsuz içerik mi?
   inat_account_action: "%{site_name}&#58; Hesap &#58;%{action_name}"
@@ -2381,8 +2389,10 @@ tr:
   multiple_taxon_ids_separated_by_commas: 'Virgülle ayrılmış çoklu sınıf tanımlamaları, örn. 123,654'
   must_be_in_taxon: '%{taxon} sınıfında olmalı'
   must_be_not_in_taxon: '%{taxon} sınıfında olmamalı'
+  must_be_not_observed_by_user: '%{user} tarafından gözlemlenmeyen'
   must_be_observed_after: '%{operand} sonrasında gözlemlenmesi gerekir'
   must_be_observed_before: '%{operand} öncesinde gözlemlenmesi gerekir'
+  must_be_observed_by_user: '%{user} tarafından gözlemlenen'
   must_be_less_than_x_MB: "%{x} MB boyuttan az olması gerekir"
   must_have_observation_field: "%{operand} gözlem alanının doldurulmuş olması gerekir"
   must_have_photos: fotoğraf içermeli
@@ -2481,10 +2491,14 @@ tr:
   newly_observed_species: Yeni Gözlenen Türler
   newly_observed_species_in_year: "%{year} Yılında Yeni Eklenen Türler"
   next: Sonraki
+  next_date_short: İleri
   next_observation: Sonraki Gözlem
   next_page: Sonraki sayfa
+  next_page_short: Sonraki
   next_photo: Sonraki Fotoğraf
+  next_post_short: Sonraki
   next_tab: Sonraki Sekme
+  next_taxon_short: Sonraki
   'no': 'Hayır'
   no_assessments_have_been_added_to_this_project_yet: Bu projeye henüz değerlendirme eklenmedi.
   no_but_it_is_a_member_of_taxon: "Hayır ama bir %{taxon} üyesi"
@@ -2736,7 +2750,6 @@ tr:
     absent: Bu alanda ortaya çıkmaz
     common: Sık sık ortaya çıkar
     doubtful: Ortaya çıktığı varsayılıyor ancak kanıtlar şüpheli
-    irregular: Göçenlerde olmak üzere öngörülemeyen varlık; bazı yıllarda yaygın olabilir ve diğerlerinde olmayabilir
     present: Bu alanda ortaya çıkar
     uncommon: Düzenli olarak ortaya çıkar ancak az sayılarda; uygun yaşam alanlarının dikkatlice aranmasını gerektirir
   occurrence_status_establishment_means: oluşum durumu, kuruluş varlığı
@@ -3877,6 +3890,8 @@ tr:
   showing_x_of_y: Gösterilen %{y} / %{x}
   showing_x_of_y_listings: "Listelemelerden Gösterilen %{y} / %{x}"
   sign_in: Giriş Yap
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Apple ile giriş yap
   sign_in_with_provider: "%{provider} ile giriş yap"
   sign_in_with_google: Google ile giriş yap
   sign_out: Çıkış Yap
@@ -4872,6 +4887,7 @@ tr:
   your_default: varsayılanın
   your_default_time_zone: Varsayılan saat diliminiz
   your_email_address: E-posta adresiniz
+  your_favorites: Favorilerin
   your_flickr_account: Flickr hesabınız
   your_flickr_photos_have_been_tagged: Flickr fotoğraflarınız etiketlendi!
   your_hard_drive: sabit diskiniz
@@ -5522,11 +5538,6 @@ tr:
         BOLD DNA barkod eşleştirme işlevini etkinleştirmek için alan adınızın, 
         bu alanın hedeflediği gene karşılık gelen "COI", "COX1", "ITS" veya "matK" 
         kelimelerini içerdiğinden emin olun.
-      merge:
-        warning_html: |
-          Lütfen diğer kişilerin verilerine saygılı olun ve <strong>birleştirmeden önce bir gözlem 
-          alanının yaratıcısıyla konuşun</strong>. Bu araç birleştirilen gözlem alanını imha edecek ve 
-          tüm gözlemleri onu kullanan kişiye taşıyacak. <strong> Bu işlem geri alınamaz </strong>, bu yüzden dikkatli olun.
     emailer:
       bulk_import_success:
         success_message: |
@@ -6334,6 +6345,13 @@ tr:
           "Plant Phenology=Flowering": Çiçekli
           "Plant Phenology=Fruiting": Meyveli
           "Life Stage=Adult": Yetişkin
+          "Life Stage=Egg": Yumurta
+          "Life Stage=Larva": Larva
+          "Life Stage=Nymph": Nemf
+          "Life Stage=Pupa": Pupa
+          "Sex=Cannot Be Determined": Belirlenemiyor
+          "Sex=Female": Dişi
+          "Sex=Male": Erkek
           unannotated: Açıklama Yok
         max_photos_desc: |
           Bir sınıf yalnızca %{max} fotoğrafa sahip olabilir. Daha fazla eklemek için mevcut fotoğrafları kaldırmanız gerekecek.

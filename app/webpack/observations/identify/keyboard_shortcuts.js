@@ -17,6 +17,7 @@ import {
   showNextTab,
   toggleKeyboardShortcuts
 } from "./actions";
+import { increaseBrightness, decreaseBrightness} from "./ducks/brightnesses";
 
 const bindShortcut = ( shortcut, action, dispatch, options = { } ) => {
   bind( shortcut, ( ) => {
@@ -183,6 +184,8 @@ const setupKeyboardShortcuts = dispatch => {
   bindShortcut( ["command+right", "alt+right"], showNextPhoto, dispatch );
   bindShortcut( "shift+left", showPrevTab, dispatch );
   bindShortcut( "shift+right", showNextTab, dispatch );
+  bindShortcut( ["command+up", "alt+up"], increaseBrightness, dispatch );
+  bindShortcut( ["command+down", "alt+down"], decreaseBrightness, dispatch );
   _.forEach( annotationShortcuts, as => {
     bind( as.shortcut, ( ) => {
       dispatch( addAnnotationFromKeyboard( as.term, as.value ) );

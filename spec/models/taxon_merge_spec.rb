@@ -74,7 +74,7 @@ describe TaxonMerge, "commit" do
     tr2 = TaxonRange.make!(:taxon => @output_taxon)
     @merge.commit
     @output_taxon.reload
-    expect(@output_taxon.taxon_ranges.count).to eq(1)
+    expect(@output_taxon.taxon_range).not_to be_blank
   end
 
   it "should duplicate colors" do

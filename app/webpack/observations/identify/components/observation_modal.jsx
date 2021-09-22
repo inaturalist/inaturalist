@@ -46,13 +46,6 @@ const scrollSidebarToForm = dialog => {
 };
 
 class ObservationModal extends React.Component {
-  constructor( props, context ) {
-    super( props, context );
-    this.state = {
-      brightnesses: {}
-    };
-  }
-
   componentDidMount( ) {
     const domNode = ReactDOM.findDOMNode( this );
     $( ".IdentificationForm textarea,.CommentForm textarea", domNode ).textcompleteUsers( );
@@ -113,21 +106,25 @@ class ObservationModal extends React.Component {
       addComment,
       addIdentification,
       blind,
+      brightnesses,
       captiveByCurrentUser,
       chooseSuggestedTaxon,
       chooseTab,
       commentFormVisible,
       controlledTerms,
       currentUser,
+      decreaseBrightness,
       hidePrevNext,
       hideTools,
       identificationFormVisible,
       images,
       imagesCurrentIndex,
+      increaseBrightness,
       keyboardShortcutsShown,
       loadingDiscussionItem,
       observation,
       onClose,
+      resetBrightness,
       reviewedByCurrentUser,
       setImagesCurrentIndex,
       showNextObservation,
@@ -238,11 +235,9 @@ class ObservationModal extends React.Component {
         </div>
       );
     }
-
     let photos = null;
     if ( images && images.length > 0 ) {
       const brightnessKey = `${observation.id}-${imagesCurrentIndex}`;
-      const { brightnesses } = this.state;
       const brightness = brightnesses[brightnessKey] || 1;
       const brightnessClass = `brightness-${brightness.toString( ).replace( ".", "-" )}`;
       const currentImage = images[imagesCurrentIndex] || images[0];
@@ -278,10 +273,7 @@ class ObservationModal extends React.Component {
               <button
                 type="button"
                 className="btn btn-default btn-adjust-brightness"
-                onClick={( ) => {
-                  const newBrightnesses = Object.assign( {}, brightnesses, { [brightnessKey]: 1 } );
-                  this.setState( { brightnesses: newBrightnesses } );
-                }}
+                onClick={resetBrightness}
                 title={brightness === 1 ? I18n.t( "adjust_brightness" ) : I18n.t( "reset_brightness" )}
               >
                 <i className="icon-adjust" />
@@ -289,17 +281,7 @@ class ObservationModal extends React.Component {
               <button
                 type="button"
                 className="btn btn-default btn-increase-brightness"
-                onClick={( ) => {
-                  const existing = brightnesses[brightnessKey] || 1;
-                  let newBrightness = _.round( existing + 0.2, 2 );
-                  if ( newBrightness > 3 ) {
-                    newBrightness = 3;
-                  }
-                  const newBrightnesses = Object.assign( {}, brightnesses, {
-                    [brightnessKey]: newBrightness
-                  } );
-                  this.setState( { brightnesses: newBrightnesses } );
-                }}
+                onClick={increaseBrightness}
                 title={I18n.t( "increase_brightness" )}
               >
                 +
@@ -307,17 +289,7 @@ class ObservationModal extends React.Component {
               <button
                 type="button"
                 className="btn btn-default btn-decrease-brightness"
-                onClick={( ) => {
-                  const existing = brightnesses[brightnessKey] || 1;
-                  let newBrightness = _.round( existing - 0.2, 2 );
-                  if ( newBrightness < 0.2 ) {
-                    newBrightness = 0.2;
-                  }
-                  const newBrightnesses = Object.assign( {}, brightnesses, {
-                    [brightnessKey]: newBrightness
-                  } );
-                  this.setState( { brightnesses: newBrightnesses } );
-                }}
+                onClick={decreaseBrightness}
                 title={I18n.t( "decrease_brightness" )}
               >
                 -
@@ -418,7 +390,9 @@ class ObservationModal extends React.Component {
       { keys: ["SHIFT", "&rarr;"], label: I18n.t( "next_tab" ) },
       { keys: ["ALT/CMD", "&larr;"], label: I18n.t( "previous_photo" ) },
       { keys: ["ALT/CMD", "&rarr;"], label: I18n.t( "next_photo" ) },
-      { keys: ["?"], label: I18n.t( "show_keyboard_shortcuts" ) }
+      { keys: ["?"], label: I18n.t( "show_keyboard_shortcuts" ) },
+      { keys: ["ALT/CMD", "&uarr;"], label: I18n.t( "increase_brightness" ) },
+      { keys: ["ALT/CMD", "&darr;"], label: I18n.t( "decrease_brightness" ) }
     ];
 
     const defaultShortcutsBody = (
@@ -863,21 +837,25 @@ ObservationModal.propTypes = {
   addComment: PropTypes.func,
   addIdentification: PropTypes.func,
   blind: PropTypes.bool,
+  brightnesses: PropTypes.object,
   captiveByCurrentUser: PropTypes.bool,
   chooseSuggestedTaxon: PropTypes.func,
   chooseTab: PropTypes.func,
   commentFormVisible: PropTypes.bool,
   controlledTerms: PropTypes.array,
   currentUser: PropTypes.object,
+  decreaseBrightness: PropTypes.func,
   hidePrevNext: PropTypes.bool,
   hideTools: PropTypes.bool,
   identificationFormVisible: PropTypes.bool,
   images: PropTypes.array,
   imagesCurrentIndex: PropTypes.number,
+  increaseBrightness: PropTypes.func,
   keyboardShortcutsShown: PropTypes.bool,
   loadingDiscussionItem: PropTypes.bool,
   observation: PropTypes.object,
   onClose: PropTypes.func.isRequired,
+  resetBrightness: PropTypes.func,
   reviewedByCurrentUser: PropTypes.bool,
   setImagesCurrentIndex: PropTypes.func,
   showNextObservation: PropTypes.func,
@@ -897,6 +875,7 @@ ObservationModal.propTypes = {
 };
 
 ObservationModal.defaultProps = {
+  brightnesses: {},
   controlledTerms: [],
   imagesCurrentIndex: 0,
   tabs: TABS,

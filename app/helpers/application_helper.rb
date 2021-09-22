@@ -361,7 +361,7 @@ module ApplicationHelper
 
   def simple_format_with_structure( text, options )
     new_text = ""
-    chunks = text.split( /(<table.*table>|<ul.*ul>|<ol.*ol>|<pre.*pre>)/m )
+    chunks = text.split( /(<table.*?table>|<ul.*?ul>|<ol.*?ol>|<pre.*?pre>)/m )
     chunks.each do |chunk|
       if chunk =~ /<(table|ul|ol)>/
         html = Nokogiri::HTML::DocumentFragment.parse( chunk )
@@ -727,7 +727,7 @@ module ApplicationHelper
       "taxon-range-layer-label" => I18n.t("maps.overlays.range"),
       "taxon-places-layer-label" => I18n.t("maps.overlays.checklist_places"),
       "taxon-places-layer-hover" => I18n.t("maps.overlays.checklist_places_description"),
-      "taxon-observations-layer-label" => I18n.t("maps.overlays.observations"),
+      "taxon-observations-layer-label" => options[:taxon_observations_layer_label].blank? ? I18n.t( "maps.overlays.observations" ) : options[:taxon_observations_layer_label],
       "all-layer-label" => I18n.t("maps.overlays.all_observations"),
       "all-layer-description" => I18n.t("maps.overlays.every_publicly_visible_observation"),
       "gbif-layer-label" => I18n.t("maps.overlays.gbif_network"),
@@ -804,7 +804,7 @@ module ApplicationHelper
       # taxon ranges
       if options[:taxon_layers] && options[:show_range] && (!options[:focus] || options[:focus] == :range)
         options[:taxon_layers].each do |layer|
-          append_bounds_to_map_tag_attrs(map_tag_attrs, layer[:taxon].taxon_ranges_without_geom.first)
+          append_bounds_to_map_tag_attrs(map_tag_attrs, layer[:taxon].taxon_range_without_geom)
         end
       end
       # place geometries

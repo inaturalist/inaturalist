@@ -272,6 +272,9 @@ ru:
     Только те ваши наблюдения в этом проекте, координаты которых скрыты для находящихся под угрозой исчезновения таксонов
   about_trusting_projects_options_taxon_desc: |-
     Многим проектам необходим доступ к координатам, которые скрыты из-за того, что наблюдение содержит таксон, находящийся под угрозой.
+  about_trusting_projects_overview: |-
+    Предоставление доступа к скрытым координатам позволит менеджерам этого
+    проекта увидеть истинное, не скрытое местоположение ваших наблюдений в этом проекте. Это особенно важно в тех ситуациях, когда ученым или менеджерам ресурсов нужен доступ к точным координатам для анализа и принятия решений.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -1069,7 +1072,6 @@ ru:
       *Вы* хотите быть в списке полномочий.
     place: Место, в котором этот статус ограничен.
     url: URL страницы с описанием этого статуса.
-    geoprivacy: Значение по умолчанию приватности местоположения для наблюдений этого таксона
     iucn: |
       Эквивалентный код Красного списка МСОП. Это не фактическая оценка МСОП, а просто код МСОП, который наилучшим образом соответствует угрозе раскрытия координат, подразумеваемой этим статусом. Это отменит геоприватность, если статус «Под наименьшей угрозой» или ниже, поэтому, если вы хотите скрыть наблюдения этого таксона, установите для него значение «Близок к исчезновению» или выше.
   conservation_status_geoprivacy_desc: |
@@ -1459,6 +1461,11 @@ ru:
   details: Подробности
   deviation: Отклонение
   devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Если ваш адрес электронной почты есть в системе, то в течение нескольких минут вы получите письмо с инструкциями по его подтверждению.
     failure:
       already_authenticated: 'Вы уже вошли в систему.'
       unauthenticated: 'Прежде чем продолжать, вам нужно войти в систему или зарегистрироваться'
@@ -1611,7 +1618,6 @@ ru:
   editing_taxon: Редактировать %{taxon}
   editing_taxon_link: Редактирование ссылки на таксон
   editing_taxon_name_for_taxon_html: Редактирование названия таксона "%{name}" для %{taxon}
-  editing_taxon_range: Редактирование ареала таксона
   editing_this: Редактирование %{elem}
   editing_x_in_y: "Редактирование %{x} в %{y}"
   editors: Редакторы
@@ -2209,6 +2215,7 @@ ru:
     luxembourgish: Люксембургский
     maltese: Мальтийский
     maori: Маори
+    marathi: Маратхи
     misima_paneati: Misima-paneati
     norwegian: Норвежский
     occitan: Окситанский
@@ -2316,6 +2323,7 @@ ru:
     lt: Литовский
     lv: Латышский
     mk: Македонский
+    mr: Маратхи
     nb: Норвежский (букмол)
     nl: Голландский
     oc: Окситанский
@@ -2922,7 +2930,6 @@ ru:
     absent: Не встречается в регионе
     common: Часто встречается
     doubtful: Предполагается, что имеет место, но есть сомнение в отношении доказательств
-    irregular: Присутствие непредсказуемо, в том числе изменчивое; может быть распространено в одни годы и отсутствовать в другие
     present: Встречается в регионе
     uncommon: Встречается регулярно, но в небольших количествах; требует тщательного поиска правильной среды обитания
   occurrence_status_establishment_means: Статус присутствия, способ возникновения
@@ -2974,6 +2981,8 @@ ru:
       </ul>
   one_by_one: "По одному"
   one_of_your_lists: "одним из ваших списков"
+  one_or_more_input_taxa_have_more_than_1000: |
+    Один или несколько входных таксонов имеют более 1000 нижеследующих наблюдений. Процесс обновления может занять некоторое время, вы уверены, что это изменение таксона необходимо? Кроме того, изменения таксона не могут быть отменены.
   only_a_project_manager_can_add: Только менеджер проекта может добавить статус куратора проекта
   only_administrators_may_access_that_page: Только администраторы имеют доступ к этой странице.
   only_an_admin_can_remove_project_users: Только администратор может удалить пользователей из проекта
@@ -4105,6 +4114,8 @@ ru:
   showing_x_of_y: Показано %{x} из %{y}
   showing_x_of_y_listings: "Показывать %{x} из %{y} списков"
   sign_in: Войти
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Войти через Apple
   sign_in_with_provider: "Войти через %{provider}"
   sign_in_with_google: Войти через Google
   sign_out: Выйти
@@ -4573,6 +4584,7 @@ ru:
     <strong>Произведено изменение таксонов!</strong>
     Пожалуйста, не редактируйте таксоны. Редактирование других полей допустимо.
   this_taxon_concept_is_inactive: эта концепция таксона неактивна
+  this_taxon_has_more_than_1000: Этот таксон имеет более 1000 нижеследующих наблюдений. Процесс обновления может занять некоторое время, вы уверены, что это необходимо?
   this_taxon_has_no_default_photo: У этого таксона нет фото по умолчанию!
   this_taxon_is_inactive_this_means: |
     Этот таксон <strong>неактивен</strong>. Это означает, что кураторы %{site_name} заменили его более современной таксономической концепцией.
@@ -4931,6 +4943,10 @@ ru:
   were_pretty_sure_this_is_in_the_family: Мы почти уверены, что это отряд
   #Label for the most probable taxon in the automated suggestions when that taxon is an order
   were_pretty_sure_this_is_in_the_order: Мы почти уверены, что это отряд
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: Мы почти уверены, что это подсемейство
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: Мы почти уверены, что это надсемейство
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
@@ -5751,9 +5767,6 @@ ru:
         </ol>
       dna_help: |
         Чтобы включить функцию сопоставления штрихкода BOLD DNA, убедитесь, что имя вашего поля включает в себя слова «COI», «COX1», «ITS» или «matK», соответствующие гену, для которых это поле предназначено.
-      merge:
-        warning_html: |
-          Пожалуйста, относитесь с уважением к данным других людей и <strong>свяжитесь с создателем поля наблюдения перед слиянием </strong>. Этот инструмент уничтожит объединяемое поле наблюдения и переместит все наблюдения, использующие его, к держателю информации. <strong>Этот процесс нельзя отменить </strong>, поэтому будьте осторожны.
     emailer:
       bulk_import_success:
         success_message: |
@@ -7295,6 +7308,13 @@ ru:
               is_too_large_to_edit: слишком большой для редактирования
               is_too_large_to_import: слишком большой для импорта
               contains_too_many_observations: содержит слишком много наблюдений для импорта
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: не может быть пустым
+              invalid_point: содержит неверную точку, например долгота больше 180 или широта меньше -90
+              must_have_more_than_three_points: должен содержать не менее 3 точек
+              polygon_with_fewer_than_four_points: содержит многоугольник с количеством точек менее 4
         post:
           attributes:
             parent:

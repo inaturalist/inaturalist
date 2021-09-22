@@ -308,7 +308,7 @@ class Suggestions extends React.Component {
                   >
                     { comprehensiveList.title }
                     { " " }
-                    { comprehensiveList.source && (
+                    { comprehensiveList.source && comprehensiveList.source.in_text && (
                       <span
                         dangerouslySetInnerHTML={{
                           __html: `(${

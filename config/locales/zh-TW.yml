@@ -135,6 +135,9 @@ zh-TW:
   #should work here
   about_place: "關於%{place}"
   about_places: 關於地點
+  about_taxon_ranges: 關於分類群分布範圍
+  about_taxon_ranges_desc: |
+    分類群分布範圍顯示某一分類群的全球分布。分類群分布範圍通常是來自於 IUCN 紅色名錄。
   about_the_cc_licenses: 關於創用CC授權
   about_these_licenses: 關於這些許可協議
   about_this_bioblitz: 有關此 bioblitz
@@ -897,7 +900,6 @@ zh-TW:
       組織單位已宣告此保育狀態。在新增一個之前，請使用自動補齊來選擇既有的職權單位。如果*您*想被列為職權單位的話，您可以略過這一步。
     place: 狀態被限制的地點。
     url: 描述此狀態的頁面 URL。
-    geoprivacy: 用於此物種分類觀察的預設位置隱私
     iucn: |
       相當於 IUCN 紅色名錄的等級。這不是實際 IUCN 的評估等級結果，只是最符合此狀態下所對應的 IUCN 受脅等級。若等級為「安全(Least Concern)」或低於「安全」，這將會覆蓋地理資訊隱私權，所以若您想要遮蔽此分類群的觀察記錄座標，請設定此選項為「接近受脅(Near Threatened)」或更瀕危的等級。
   conservation_status_geoprivacy_desc: |
@@ -1256,6 +1258,8 @@ zh-TW:
   delete_icon?: 刪除圖示？
   delete_photo: 刪除照片
   delete_project: 刪除此專案
+  #Label for a button to delete a taxon range
+  delete_range: 刪除分布範圍
   delete_selected: 刪除所選
   delete_taxon_and_merge_most_data_html: |
     刪除<i>%{taxon}</i>和合併資料多數內容至其它物種分類。使用此工具在<strong>移除重複內容物種分類群</strong>上。若您想要移除過時的同種異名，請先建立一個物種分類對換。<strong>請留意！</strong>刪除物種分類群可能會造成嚴重後果，請查看<a href="%{curator_url}">策展人指南</a>來取得更多詳細資訊。
@@ -1282,6 +1286,8 @@ zh-TW:
   deviation: 偏差
   devise:
     confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
         如果我們的資料庫中有您的 email 地址，您將會在幾分鐘內收到一封 email，裡頭有確認您 email 方法的說明。
     failure:
@@ -1433,7 +1439,7 @@ zh-TW:
   editing_taxon: 編輯 %{taxon} 中
   editing_taxon_link: 物種分類連結編輯中
   editing_taxon_name_for_taxon_html: 修改 %{taxon} 的分類群名稱「%{name}」
-  editing_taxon_range: 物種分類範圍編輯中
+  editing_taxon_range_for_taxon_html: 修改 %{taxon} 的分類群分布範圍
   editing_this: 正編輯 %{elem}
   editing_x_in_y: "正編輯 %{x} 於 %{y}"
   editors: 編輯者
@@ -2018,6 +2024,7 @@ zh-TW:
     ilokano: 伊洛卡諾語
     italian: 義大利語
     japanese: 日語
+    kannada: 康納達文
     korean: 韓語
     latvian: 拉脫維亞文
     lithuanian: 立陶宛語
@@ -2067,7 +2074,7 @@ zh-TW:
   #Text inserted into a textarea when the link button is clicked but no text was selected
   linked_text: 連結文字
   linkedin: LinkedIn
-  list: 名錄
+  list: 列表
   list_deleted: 列表已刪除。
   list_saved: 已儲存名錄。
   list_tooltip: 顯示清單檢視
@@ -2127,6 +2134,7 @@ zh-TW:
     id: 印尼語
     it: 義大利語
     ja: 日語
+    kn: 康納達文
     ko: 韓語
     lb: 盧森堡語
     lt: 立陶宛語
@@ -2535,6 +2543,7 @@ zh-TW:
   no_project_to_admin_current_user: "您沒有管理任何專案"
   no_project_to_admin_login: "%{login} 沒有管理任何專案"
   no_projects_yet: 尚無專案
+  no_attached_range: 未附有分布範圍
   no_range_data_available: 無可用的資料範圍。
   no_recent_activity: 沒有近期活動
   no_relevant_annotations: 沒有相關註解
@@ -2738,7 +2747,6 @@ zh-TW:
     absent: 沒有發生在區域
     common: 發生頻率
     doubtful: 推定有發生，但對證據有疑慮
-    irregular: 存在不可預測，包含流浪生物。可能會在某些年份很常見、某些年份不存在
     present: 發生在區域
     uncommon: 定期發生；但次數不多，需要仔細尋找正確的棲息地
   occurrence_status_establishment_means: 事件狀態，定居方式
@@ -2790,6 +2798,8 @@ zh-TW:
       </ul>
   one_by_one: "一個接一個"
   one_of_your_lists: "您的名錄之一..."
+  one_or_more_input_taxa_have_more_than_1000: |
+    一個或多個輸入的分類群有多於 1000 筆觀察紀錄。提交更動也許需要一些時間來處理，您確定此分類群更改是必要的嗎？還有分類群更改無法復原。
   only_a_project_manager_can_add: 僅有專案負責人可添加專案策展人狀態
   only_administrators_may_access_that_page: 僅有管理員可存取該頁面
   only_an_admin_can_remove_project_users: 僅有管理員可移除專案用戶
@@ -3629,6 +3639,8 @@ zh-TW:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: 種內雜交
   ranges: 範圍
+  #Text to link to a taxon range as a KML file
+  range_file: 分布範圍檔案
   ray_finned_fishes: 輻鰭魚類
   re_order_photos: "重新排序照片&raquo;"
   read_more: 閱讀更多
@@ -3890,6 +3902,8 @@ zh-TW:
   showing_x_of_y: 顯示 %{y} 的 %{x}
   showing_x_of_y_listings: "顯示 %{y} 份名錄中的 %{x} 份"
   sign_in: 登入
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: 使用 Apple id 登入
   sign_in_with_provider: "以 %{provider} 登入"
   sign_in_with_google: 使用 Google 帳號登入
   sign_out: 登出
@@ -4176,6 +4190,14 @@ zh-TW:
   taxon_photos_updated: 分類群照片已更新！
   taxon_range: 分類群範圍
   taxon_range_created_notice: 分類群範圍已建立成功。請等待幾分鐘來讓內容呈現在地圖上。
+  taxon_range_for_taxon_html: '%{taxon} 的分類群分布範圍'
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: 這是 IUCN 的紅色名錄分布範圍地圖嗎？如果不是的話請說明原因？
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: 這是 IUCN 紅色名錄分布範圍的地圖
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: 這不是 IUCN 紅色名錄的分布範圍地圖，因為該地圖不適合
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: 這不是 IUCN 的紅色名錄分布範圍地圖，因為此分類群不在 IUCN 紅色名錄中
+  taxon_range_guidelines_each_taxon_can_have: 每個分類群只能有一筆分布範圍。分類群的分布範圍必須代表全世界的分布。
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: 此分類群不在 IUCN 紅色名錄中
+  taxon_range_guidelines_learn_more_about_taxon_ranges: 閱覽更多有關分類群分布範圍的資訊
   taxon_range_updated_notice: 分類群範圍已更新成功。請等待幾分鐘來讓變更內容呈現在地圖上。
   taxon_ranks: 分類群階層
   taxon_removed_from_list: 分類群已從名錄中移除。
@@ -5455,9 +5477,6 @@ zh-TW:
         </ol>
       dna_help: |
         要啟用 BOLD DNA 條碼符合功能，請確定您的欄位名稱包含「COI」、「COX1」、「ITS」、 或「matK,」字詞來對應欄位目標的基因。
-      merge:
-        warning_html: |
-          請尊重其他人的資料，並在合併觀察欄位前<strong>通知創建者</strong>。此工具將會消去被合併的觀察欄位，以及移動所有觀察至保有者。<strong>此處理過程無法復原</strong>，因此請小心。
     emailer:
       bulk_import_success:
         success_message: |
@@ -7028,6 +7047,12 @@ zh-TW:
             taxon:
               too_many_photos: |
                 不能超過 %{max} 張照片
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: 必須是可接受的值
+            taxon_id:
+              already_has_a_range: 已經有分布範圍了
         user:
           attributes:
             login:

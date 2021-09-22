@@ -175,6 +175,9 @@ es-MX:
   #should work here
   about_place: "Acerca de %{place}"
   about_places: Acerca de Lugares
+  about_taxon_ranges: Acerca de los Rangos de Distribución
+  about_taxon_ranges_desc: |
+    Los rangos de distribución muestran la distribución global de un taxón. Los rangos de distribución son típicamente provistos por la Lista Roja de la IUCN.
   about_the_cc_licenses: Acerca de las licencias de Creative Commons
   about_these_licenses: Acerca de estas licencias
   about_this_bioblitz: Acerca de esta maratón naturalista
@@ -190,6 +193,8 @@ es-MX:
     Solo tus observaciones en este proyecto que tengan coordenadas oscurecidas debido a que corresponden a taxones en riesgo
   about_trusting_projects_options_taxon_desc: |-
     Muchos proyectos solo necesitan acceso a coordenadas oscurecidas porque la observación corresponde a un taxón en riesgo.
+  about_trusting_projects_overview: |-
+    Al conceder acceso a tus coordenadas ocultas, los administradores de este proyecto podrán ver la ubicación real, no oscurecida, de tus observaciones en este proyecto. Esto es extremadamente importante en situaciones en las que un científico o administrador de recursos necesite tener acceso a las coordenadas exactas para el análisis o la toma de decisiones.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -490,6 +495,7 @@ es-MX:
   alphabetical_order: Orden alfabético
   already_have_an_account_log_in_html: '¿Ya tienes una cuenta? <strong>Inicia sesión.</strong>'
   amphibians: Anfibios
+  analyze_ids: Analizar IDs
   ancestor_taxon: Taxón ancestro
   and: "y"
   and_other_taxa: "&amp; otros taxa"
@@ -633,6 +639,7 @@ es-MX:
   assessment_x: "Evaluación de %{assessment}"
   assessments: Evaluaciones
   associations: Asociaciones
+  atlased: Con Atlas
   atlas_for_taxon_html: Atlas para %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -968,7 +975,8 @@ es-MX:
       *tú* quieres ser considerado como dicha autoridad.
     place: Lugar en el cual el estatus esta restringido.
     url: URL que describa este estaus.
-    geoprivacy: Geoprivacidad predeterminada para esta especie o grupo.
+    geoprivacy: |
+      Geoprivacidad predeterminada para esta especie o grupo.
     iucn: |
       Código equivalente a la Lista roja de IUCN.
   conservation_status_geoprivacy_desc: |
@@ -1336,6 +1344,8 @@ es-MX:
   delete_icon?: '¿Borrar el ícono?'
   delete_photo: Elimina foto
   delete_project: Borra este proyecto
+  #Label for a button to delete a taxon range
+  delete_range: Eliminar rango de distribución
   delete_selected: Borra seleccionado
   delete_taxon_and_merge_most_data_html: |
     Borra<i>%{taxon}</i> y combina su información con otra especie o grupo. Usa esta herramienta para remover especies o grupos duplicados y nombres desactualizados . <strong>¡SE CUIDADOSO!</strong> La eliminación de especies o grupos puede ser muy destructiva.
@@ -1357,10 +1367,17 @@ es-MX:
   description_slash_tags: Descripción / Etiquetas
   description_tags_more: "Descripción, Etiquetas, &amp; Más"
   desription: Descripción
+  destination: Destino
   destroy: Destruye
   details: Detalles
   deviation: Desviacion
   devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Si tu dirección de correo electrónico ya existe en nuestra base de datos, recibirás un correo electrónico con instrucciones para confirmar tu dirección de correo en unos
+        minutos.
     failure:
       already_authenticated: 'Ya has iniciado sesión.'
       unauthenticated: 'Debes iniciar sesión o registrarte antes de continuar.'
@@ -1511,7 +1528,7 @@ es-MX:
   editing_taxon: Editando %{taxon}
   editing_taxon_link: Edita el enlace de la especie o grupo
   editing_taxon_name_for_taxon_html: Editando el nombre "%{name}" para el taxón %{taxon}
-  editing_taxon_range: Edita la distribución potencial de la especie o grupo
+  editing_taxon_range_for_taxon_html: Editando el rango de distribución para %{taxon}
   editing_this: Editando %{elem}
   editing_x_in_y: "Editando %{x} en %{y}"
   editors: Editores
@@ -1550,6 +1567,8 @@ es-MX:
   establishment_means: Distribución
   establishment_means_describes_how: |
     La distribución describe como la especie o grupo se estableció en un área. Ve el DarwinCore para <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">más información sobre terminología</a>.
+  estimate_which_input: |
+    Estimar qué identificaciones de taxón de entrada serán reemplazados con qué taxones de salida y cuales serán agregados a un antepasado común una vez que la separación se haya realizado. Esto puede tardar un momento en calcular. Los enlaces a las observaciones se truncan en subconjuntos de 200.
   event_in_progress: Evento en curso
   event_stats: Estadísticas del evento
   event_url: URL del evento
@@ -2103,12 +2122,14 @@ es-MX:
     ilokano: Ilocano
     italian: Italiano
     japanese: Japonés
+    kannada: Canarés
     korean: Coreano
     latvian: Letón
     lithuanian: Lituano
     luxembourgish: Luxemburgués
     maltese: Maltés
     maori: Maorí
+    marathi: Maratí
     misima_paneati: Misima-paneati
     norwegian: Noruego
     occitan: Occitano
@@ -2211,11 +2232,13 @@ es-MX:
     id: Indonesio
     it: Italiano
     ja: Japonés
+    kn: Canarés
     ko: Coreano
     lb: Luxemburgués
     lt: Lituano
     lv: Letón
     mk: Macedonio
+    mr: Maratí
     nb: Noruego Bokmål
     nl: Holandés
     oc: Occitano
@@ -2588,6 +2611,7 @@ es-MX:
   no_identifications_added:
     current_user: Aún no has identificado las observaciones de alguien más.
     user: "%{user}, aún no has identificado las observaciones de alguien más."
+  no_ids: "Número de IDs"
   no_ids_have_been_suggested_yet: Aún no se ha sugerido ningún ID
   no_interaction_data_available: Datos de interacción no disponibles
   no_its_as_good_as_it_can_be: No, es tan bueno como puede ser
@@ -2629,6 +2653,7 @@ es-MX:
   no_project_to_admin_current_user: "No administras ningún proyecto"
   no_project_to_admin_login: "%{login} no administra ningún proyecto"
   no_projects_yet: Todavía no hay proyectos
+  no_attached_range: Sin rango de distribución agregado
   no_range_data_available: No hay información disponible de distribución.
   no_recent_activity: No hay actividad reciente
   no_relevant_annotations: No hay anotaciones relevantes
@@ -2643,6 +2668,8 @@ es-MX:
   no_species_on_this_list_for_owner: |
     Puedes empezar a añadir especies a esta lista usando la herramienta "Añadir a tu lista" a la derecha.
   no_subject_parens: "(Sin tema)"
+  no_such_wiki_page: Esta página no existe
+  no_such_wiki_page_html: No existe esta página. ¿Quieres <a href="%{new_url}">crearla</a>?
   no_suggestions_available: No hay sugerencias disponibles
   no_summary_from_wikipedia: No hay resumen de Wikipedia
   no_summary_has_been_set: No se ha incluido un resumen
@@ -2659,6 +2686,7 @@ es-MX:
   none: Ninguno
   none_found: No se encontró ninguno
   normal: normal
+  not_atlased: Sin Atlas
   not_completed: Sin completar
   not_confident: No estamos lo suficientemente seguros para hacer una recomendación.
   not_confident_top_suggestions: 'No estamos lo suficientemente seguros para hacer una recomendación, pero nuestras mejores sugerencias son:'
@@ -2834,7 +2862,6 @@ es-MX:
     absent: No ocurre en el área
     common: Ocurre frecuentemente
     doubtful: Se presume que sucedió pero hay dudas sobre la evidencia
-    irregular: Presencia impredecible, incluyendo nómades; puede ser común en algunos años y estar ausente en otros.
     present: Ocurre en el área
     uncommon: Ocurre regularmente pero en pequeñas cantidades; requiere búsqueda cautelosa del hábitat apropiado
   occurrence_status_establishment_means: estatus de ocurrencia, medio de establecimiento
@@ -2894,6 +2921,9 @@ es-MX:
       </ul>
   one_by_one: "Uno per uno"
   one_of_your_lists: "una de tus listas..."
+  one_or_more_input_taxa_have_more_than_1000: |
+    Uno o más taxones de entrada tienen más de 1000 observaciones asignadas.
+    El llevarlo a cabo puede tardar algún tiempo en procesarse, ¿estás seguro de que este cambio de taxón es necesario? Además, los cambios de taxón no se pueden deshacer.
   only_a_project_manager_can_add: Solo un Gerente del proyecto puede darle una clasificación a un curador de proyecto
   only_administrators_may_access_that_page: Solo los administradores pueden acceder a esa página
   only_an_admin_can_remove_project_users: Solo el administrador puede eliminar usuarios del proyecto.
@@ -2965,9 +2995,11 @@ es-MX:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Otros taxones comúnmente identificados erróneamente como este subgénero en <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_subsection: Otros taxones identificados erróneamente como esta subsección
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Otros taxones comúnmente identificados erróneamente como esta subsección en <a href="%{url}">%{place}</a>
+  outside_of_all_atlases: Fuera de todos los Atlas
   our_blog: nuestro blog
   output_taxon: Taxón de salida
   overview: Visión general
+  overlapping_atlases: Atlas sobrepuestos
   overlapping_downstream_taxon_frameworks_html: "Superposición de los marcos de referencia de taxones descendentes: %{count}"
   owner: Propietario
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -3743,6 +3775,8 @@ es-MX:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infrahíbrido
   ranges: Distribuciones
+  #Text to link to a taxon range as a KML file
+  range_file: Archivo de rango
   ray_finned_fishes: Peces con aletas radiadas
   re_order_photos: "Reordena las fotos  &raquo;"
   read_more: Leer más
@@ -4006,6 +4040,8 @@ es-MX:
   showing_x_of_y: Mostrando %{x} de %{y}
   showing_x_of_y_listings: "Mostrando %{x} de %{y} listados"
   sign_in: Entra
+  #Button to sign in to iNat with your Apple account
+  sign_in_with_apple: Regístrate con Apple
   sign_in_with_provider: "Entra con %{provider}"
   sign_in_with_google: Iniciar sesión con Google
   sign_out: Termina la sesión
@@ -4311,6 +4347,25 @@ es-MX:
   taxon_photos_updated: '¡Las fotos de la especie o grupo fueron actualizadas!'
   taxon_range: Distribución potencial
   taxon_range_created_notice: El área de distribución del taxón se ha creado correctamente. Por favor, espere unos minutos para que aparezca en los mapas.
+  taxon_range_for_taxon_html: Rango de distribución para %{taxon}
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: '¿Es este un mapa de rango de la Lista Roja de la IUCN?, y si no es, ¿por qué?'
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: Este es un mapa de rango de la Lista Roja de IUCN
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Este no es un mapa de rango de la Lista Roja de la IUCN porque ese mapa no es adecuado
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: Este no es un mapa de rango de la Lista Roja de IUCN porque este taxón no está en la Lista Roja de IUCN
+  taxon_range_guidelines_each_taxon_can_have: Cada taxón puede tener solo un rango de distribución. Los rangos de distribución deben representar su distribución global.
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    La %{link_start_tag}Lista Roja de la IUCN%{link_end_tag} es la fuente típica de los rangos de distribución de los taxones.
+    Por favor, indique si está añadiendo un rango de la Lista Roja de la IUCN, y si no ¿cómo se relaciona con la Lista Roja de la IUCN?. Esto ayudará a informar sobre los procesos de los rangos actualizados automáticamente que son obtenidos de la Lista Roja de la IUCN. Si está añadiendo un rango de la Lista Roja de la IUCN por favor indica correctamente la versión de la Lista Roja IUCN (por ejemplo, 2021-2) en la fuente.
+  taxon_range_guidelines_if_you_are_not_uploading: "Si no está subiendo un mapa de rango de la Lista Roja de la IUCN, esto debería ser porque:"
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: El mapa de rango de la Lista Roja de la IUCN para este taxón no es adecuado
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    por ejemplo, lo has reducido manualmente para reflejar una división taxonómica no representada en la Lista Roja de la IUCN, o el mapa de rango de la Lista Roja de la IUCN tiene errores importantes que hacen que su visualización sea inapropiada.
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Este taxón no está en la Lista Roja de la IUCN
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    por ejemplo, el taxón es fuzionado con otro taxón en la Lista Roja IUCN así que lo has separado manualmente aquí, o si el taxón carece de una evaluación de la Lista Roja de la IUCN y del mapa de rango.
+  taxon_range_guidelines_please_provide_details: |
+    Por favor utiliza la descripción para explicar cómo se derivó el mapa y enlace a cualquier advertencia relevante, divisiones taxonómicas, u otras discusiones de por qué el rango de la Lista Roja de la IUCN publicada requiere alteración.
+  taxon_range_guidelines_learn_more_about_taxon_ranges: Más información sobre los rangos de distribución
   taxon_range_updated_notice: El área de distribución del taxón se ha actualizado correctamente. Por favor, espere unos minutos para que los cambios aparezcan en los mapas.
   taxon_ranks: Categoria taxonómica del taxón
   taxon_removed_from_list: Especie o grupo eliminado de la lista.
@@ -4447,6 +4502,7 @@ es-MX:
   this_taxon_change_has_been_commited: |
     <strong>¡Este cambio de taxonomía en la especie o grupo ha sido guradado!</strong> Porfavor no edites la especie o grupo. Puedes editar los demas campos.
   this_taxon_concept_is_inactive: esta especie o grupo esta inactiva
+  this_taxon_has_more_than_1000: Este taxón tiene más de 1000 observaciones asignadas. La edición puede tardar algún tiempo en procesarse, ¿estás seguro de que es necesario?
   this_taxon_has_no_default_photo: '¡Esta especie o grupo no tiene foto predeterminada!'
   this_taxon_is_inactive_this_means: |
     Esta especie o grupo esta <strong>inactiva</strong>. Esto sigifica que los curadores de %{site_name} lo han reemplazado por un concepto mas actualizado.
@@ -4490,6 +4546,7 @@ es-MX:
     Acepto los <a href="/terms" target="_blank">Términos de servicio</a> y la <a href="/privacy" target="_blank">Política de privacidad</a>, y he revisado los <a href="/pages/community+guidelines" target="_blank">Lineamientos de la comunidad</a>.
   total: Total
   totals: Totales
+  total_ids_on_input_taxon: "Total de IDs del taxón de entrada:"
   total_members: Total de miembros
   total_observations: Total de observaciones
   total_observations_caps: TOTAL DE OBSERVACIONES
@@ -4799,6 +4856,10 @@ es-MX:
   were_pretty_sure_this_is_in_the_family: 'Estamos bastante seguros de que está en esta familia:'
   #Label for the most probable taxon in the automated suggestions when that taxon is an order
   were_pretty_sure_this_is_in_the_order: 'Estamos bastante seguros de que está en este orden:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: 'Estamos bastante seguros de que está en esta subfamilia:'
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: 'Estamos bastante seguros de que está en esta superfamilia:'
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
@@ -7161,6 +7222,13 @@ es-MX:
               is_too_large_to_edit: es demasiado grande para editarse
               is_too_large_to_import: es demasiado grande para importar
               contains_too_many_observations: contiene demasiadas observaciones para importar
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: no puede estar en blanco
+              invalid_point: tiene un punto inválido, por ejemplo, longitud mayor a 180 o latitud menor que -90
+              must_have_more_than_three_points: debe tener más de 3 puntos
+              polygon_with_fewer_than_four_points: tiene un polígono con menos de 4 puntos
         post:
           attributes:
             parent:
@@ -7237,6 +7305,12 @@ es-MX:
             taxon:
               too_many_photos: |
                 No puede tener más de %{max} fotos
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: debe ser un valor aceptado
+            taxon_id:
+              already_has_a_range: ya tiene un rango
         user:
           attributes:
             login:
@@ -7306,6 +7380,7 @@ es-MX:
       "@vow_or_con":
         vow: vocal
         con: consonante
+        a: "@vow"
       "@gender":
         m: Macho
         f: Hembra
