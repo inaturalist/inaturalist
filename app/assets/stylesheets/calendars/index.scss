@@ -9,7 +9,7 @@
     right: 0;
   }
   select {
-    margin-top: 10px;
+    margin-top: 7px;
   }
 } 
 
@@ -19,7 +19,8 @@ table.column {
 }
 
 .calendar {
-  display:inline-table;
+  display: inline-table;
+  table-layout: fixed;
 
   caption {
     text-align: center;
@@ -28,11 +29,12 @@ table.column {
     text-align: center;
   }
   td {
-    font-size:12px;
+    font-size: 12px;
+    line-height: 30px;
   }
 }
 
 .calendar-container {
   text-align: center;
-  margin:0 auto;
+  margin: 0 auto;
 }

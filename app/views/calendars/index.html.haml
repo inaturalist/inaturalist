@@ -33,8 +33,8 @@
         = link_to "&lsaquo; #{@year - 1}".html_safe, :year => @year - 1
     .col-xs-4
       %h4.center
-        %form( method="get" )
-          = select_tag :year, options_for_select(1950..Date.today.year, :selected => @year), "data-autosubmit" => true
+        %form{ method: "get", class: "form-inline" }
+          = select_tag :year, options_for_select( 1950..Date.today.year, selected: @year ), "data-autosubmit" => true, class: "form-control"
     .col-xs-4
       - if @year < Date.today.year
         %h2.right
