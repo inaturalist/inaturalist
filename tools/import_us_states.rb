@@ -1,4 +1,7 @@
-# Add country places and boundaries from naturalearthdata.org
+# Add US states as places and boundaries from the US Census. Note that the US
+# Census may block access to this file from outside the US. You should be able
+# to adapt import_natural_earth_countries.rb to work with sub-national places,
+# though.
 
 def system_call(cmd)
   puts "Running #{cmd}"
@@ -22,7 +25,9 @@ system_call "curl -Lo #{tmp_path}/#{filename} #{url}"
 system_call "unzip -d #{tmp_path} #{tmp_path}/#{filename}"
 
 Place.import_from_shapefile("#{work_path}/#{shapefile_name}", 
-    :place_type_name => 'State', 
-    :source => 'census',
-    :skip_woeid => true,
-    :test => test)
+  place_type_name: 'State', 
+  admin_level: Place::STATE_LEVEL,
+  source: 'census',
+  skip_woeid: true,
+  test: test
+)

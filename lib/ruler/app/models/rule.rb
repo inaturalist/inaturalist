@@ -1,4 +1,4 @@
-class Rule < ActiveRecord::Base
+class Rule < ApplicationRecord
   belongs_to :ruler, :polymorphic => true
   belongs_to :operand, :polymorphic => true
   validates_presence_of :operator

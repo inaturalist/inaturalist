@@ -1,4 +1,4 @@
-class UpdateAction < ActiveRecord::Base
+class UpdateAction < ApplicationRecord
 
   include ActsAsElasticModel
 

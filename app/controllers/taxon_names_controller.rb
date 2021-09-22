@@ -1,11 +1,11 @@
 class TaxonNamesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :load_taxon_name, :only => [:show, :edit, :update, :destroy, :destroy_synonyms]
-  before_filter :load_taxon, :except => [:index, :destroy_synonyms]
-  before_filter :curator_required_for_sciname, :only => [:create, :update, :destroy, :destroy_synonyms]
-  before_filter :curator_or_creator_required, only: [:edit, :update, :destroy]
-  before_filter :curator_required, only: [:taxon, :destroy_synonyms]
-  before_filter :load_lexicons, :only => [:new, :create, :edit, :update]
+  before_action :authenticate_user!, :except => [:index, :show]
+  before_action :load_taxon_name, :only => [:show, :edit, :update, :destroy, :destroy_synonyms]
+  before_action :load_taxon, :except => [:index, :destroy_synonyms]
+  before_action :curator_required_for_sciname, :only => [:create, :update, :destroy, :destroy_synonyms]
+  before_action :curator_or_creator_required, only: [:edit, :update, :destroy]
+  before_action :curator_required, only: [:taxon, :destroy_synonyms]
+  before_action :load_lexicons, :only => [:new, :create, :edit, :update]
   
   cache_sweeper :taxon_name_sweeper, :only => [:create, :update, :destroy]
 
@@ -64,7 +64,11 @@ class TaxonNamesController < ApplicationController
   end
   
   def new
-    @taxon_name = TaxonName.new(:taxon => @taxon, :is_valid => true)
+    @taxon_name = TaxonName.new(
+      taxon: @taxon,
+      is_valid: true,
+      lexicon: TaxonName.normalize_lexicon( TaxonName.language_for_locale( current_user.locale ) )
+    )
   end
   
   def create
@@ -74,7 +78,6 @@ class TaxonNamesController < ApplicationController
     
     respond_to do |format|
       if @taxon_name.save
-        Taxon.refresh_es_index
         flash[:notice] = t(:your_name_was_saved)
         format.html { redirect_to taxon_path(@taxon) }
         format.xml  { render :json => @taxon_name, :status => :created, :location => @taxon_name }
@@ -91,11 +94,10 @@ class TaxonNamesController < ApplicationController
   
   def update
     # Set the last editor
-    params[:taxon_name].update( updater_id: current_user.id )
+    params[:taxon_name][:updater_id] = current_user.id
     
     respond_to do |format|
       if @taxon_name.update_attributes( params[:taxon_name] )
-        Taxon.refresh_es_index
         flash[:notice] = t(:taxon_name_was_successfully_updated)
         format.html { redirect_to( taxon_name_path( @taxon_name ) ) }
         format.json  { head :ok }
@@ -115,7 +117,6 @@ class TaxonNamesController < ApplicationController
       EOT
       flash[:error] = msg
     elsif @taxon_name.destroy
-      Taxon.refresh_es_index
       flash[:notice] = t(:taxon_name_was_deleted)
     else
       flash[:error] = t(:something_went_wrong_deleting_the_taxon_name, :taxon_name => @taxon_name.name)

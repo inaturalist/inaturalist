@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import Identifiers from "../components/identifiers";
+import { fetchTaxonIdentifiers } from "../ducks/observation";
 import { updateSession } from "../ducks/users";
 
 function mapStateToProps( state ) {
@@ -12,7 +13,8 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    updateSession: params => { dispatch( updateSession( params ) ); }
+    updateSession: params => { dispatch( updateSession( params ) ); },
+    fetchTaxonIdentifiers: ( ) => { dispatch( fetchTaxonIdentifiers( ) ); }
   };
 }
 

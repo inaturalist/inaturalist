@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import moment from "moment-timezone";
 import CoverImage from "../../../shared/components/cover_image";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserImage from "../../../shared/components/user_image";
-import moment from "moment-timezone";
 
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
 if ( shortRelativeTime ) {
@@ -17,19 +17,20 @@ const Observation = ( {
   className,
   size,
   backgroundSize,
-  config
+  config,
+  hideUserIcon
 } ) => {
   const observedDate = observation.time_observed_at || observation.observed_on;
-  let caption = (
-    <div className="caption">
+  const caption = (
+    <div className={`caption ${hideUserIcon ? "no-icon" : ""}`}>
       <SplitTaxon
-        taxon={ observation.taxon }
+        taxon={observation.taxon}
         noParens
-        user={ config.currentUser }
-        url={ `/observations/${observation.id}` }
+        user={config.currentUser}
+        url={`/observations/${observation.id}`}
         noInactive
       />
-      <UserImage user={ observation.user } />
+      { !hideUserIcon && ( <UserImage user={observation.user} /> ) }
       <div className="meta">
         { observation.non_owner_ids.length > 0 && (
           <span
@@ -45,14 +46,14 @@ const Observation = ( {
         { observation.comments.length > 0 && (
           <span
             className="count comments"
-            title={ I18n.t( "x_comments", { count: observation.comments.length } ) }
+            title={I18n.t( "x_comments", { count: observation.comments.length } )}
           >
             <i className="icon-chatbubble" />
             { observation.comments.length }
           </span>
         ) }
         { observedDate && (
-          <span className="time" title={ `${I18n.t( "observed_on" )} ${observedDate}` }>
+          <span className="time" title={`${I18n.t( "observed_on" )} ${observedDate}`}>
             { moment( observedDate ).fromNow( ) }
           </span>
         ) }
@@ -65,41 +66,55 @@ const Observation = ( {
     const photo = observation.photos[0];
     img = (
       <CoverImage
-        src={ photo.photoUrl( size ) || photo.photoUrl( "small" ) }
-        low={ photo.photoUrl( "small" ) }
-        height={ height }
-        backgroundSize={ backgroundSize }
+        src={photo.photoUrl( size ) || photo.photoUrl( "small" )}
+        low={photo.photoUrl( "small" )}
+        height={height}
+        backgroundSize={backgroundSize}
       />
     );
-  } else {
-    const iconicTaxonClass = observation.taxon && observation.taxon.iconic_taxon_name ?
-      observation.taxon.iconic_taxon_name.toLowerCase( ) : "unknown";
+  } else if ( observation.hasSounds( ) ) {
     img = (
       <div className="photo" style={{ height, lineHeight: `${height}px` }}>
-        <i className={ `icon-iconic-${iconicTaxonClass}`} />
+        <i className="sound-icon fa fa-volume-up" />
+      </div>
+    );
+  } else {
+    const iconicTaxonClass = observation.taxon && observation.taxon.iconic_taxon_name
+      ? observation.taxon.iconic_taxon_name.toLowerCase( ) : "unknown";
+    img = (
+      <div className="photo" style={{ height, lineHeight: `${height}px` }}>
+        <i className={`icon-iconic-${iconicTaxonClass}`} />
       </div>
     );
   }
   return (
     <div
       className="ObservationsGridCell"
-      style={ style }
-      key={ `observation-grid-cell-${observation.id}` }
+      style={style}
+      key={`observation-grid-cell-${observation.id}`}
     >
       <div
         className={`Observation ${className}`}
       >
-        <a href={ `/observations/${observation.id}` }>
+        <a
+          href={`/observations/${observation.id}`}
+          className={`media ${observation.hasPhotos( ) ? "photo" : ""} ${observation.hasMedia( ) ? "" : "iconic"} ${observation.hasSounds( ) ? "sound" : ""}`}
+        >
           { img }
         </a>
         { observation.quality_grade === "research" && (
           <div
             className="quality research"
-            title={ I18n.t( "research_grade" ) }
-            dangerouslySetInnerHTML={ { __html:
-              I18n.t( "research_grade_short_html" )
-            } }
+            title={I18n.t( "research_grade" )}
+            dangerouslySetInnerHTML={
+              { __html: I18n.t( "research_grade_short_html" ) }
+            }
           />
+        ) }
+        { observation.hasSounds( ) && observation.hasPhotos( ) && (
+          <span className="with-sounds">
+            <i className="sound-icon fa fa-volume-up" />
+          </span>
         ) }
         { caption }
       </div>
@@ -114,10 +129,7 @@ Observation.propTypes = {
   className: PropTypes.string,
   size: PropTypes.string,
   backgroundSize: PropTypes.string,
-  showTaxon: PropTypes.bool,
-  linkTaxon: PropTypes.bool,
-  onClickTaxon: PropTypes.func,
-  photoKey: PropTypes.string,
+  hideUserIcon: PropTypes.bool,
   config: PropTypes.object
 };
 

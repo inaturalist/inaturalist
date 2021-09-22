@@ -1,4 +1,4 @@
-class Identification < ActiveRecord::Base
+class Identification < ApplicationRecord
 
   include ActsAsElasticModel
 

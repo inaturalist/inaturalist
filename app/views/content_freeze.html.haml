@@ -1,0 +1,14 @@
+- content_for( :extracss ) do
+  = stylesheet_link_tag "shared/404"
+- content_for( :title ) do
+  403 Forbidden
+#wrapper.clear
+  %img{ src: asset_path( "404mole.png" ) }
+  #message
+    %h1= t( "views.content_freeze.content_freeze" )
+    .readable.description
+      = t( "views.content_freeze.during_this_time" )
+      - if CONFIG.content_freeze_end_date
+        = t( "views.content_freeze.we_expect_this_functionality_will_return_by_date", date: l( Date.parse( CONFIG.content_freeze_end_date ), format: :long ) )
+      - else
+        = t( "views.content_freeze.this_functionality_will_return" )

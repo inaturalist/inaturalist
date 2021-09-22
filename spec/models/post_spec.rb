@@ -1,6 +1,13 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Post do
+  it { is_expected.to belong_to :parent }
+  it { is_expected.to belong_to :user }
+  it { is_expected.to have_many(:comments).dependent :destroy }
+
+  it { is_expected.to validate_length_of(:title).is_at_least(1).is_at_most 2000 }
+  it { is_expected.to validate_presence_of :parent }
+
   before { enable_has_subscribers }
   after { disable_has_subscribers }
 
@@ -105,6 +112,21 @@ describe Post do
         u.reload
         expect( u.journal_posts_count ).to eq 1
         p.update_attributes( published_at: nil )
+        u.reload
+        expect( u.journal_posts_count ).to eq 0
+      end
+    end
+  end
+  
+  describe "destroy" do
+    describe "for a user" do 
+      it "should decrement the user's counter cache" do
+        u = User.make!
+        expect( u.journal_posts_count ).to eq 0
+        p = Post.make!( parent: u, user: u )
+        u.reload
+        expect( u.journal_posts_count ).to eq 1
+        p.destroy
         u.reload
         expect( u.journal_posts_count ).to eq 0
       end

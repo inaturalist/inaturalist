@@ -17,9 +17,15 @@ const updateLoadingForItemInObs = ( item, observation, isLoading ) => {
   const obs = _.cloneDeep( observation );
   let existingItem;
   if ( item.className === "Identification" ) {
-    existingItem = _.find( obs.identifications, i => i.id === item.id );
+    existingItem = _.find(
+      obs.identifications,
+      i => i.id === item.id || ( item.uuid && item.uuid === i.uuid )
+    );
   } else {
-    existingItem = _.find( obs.comments, i => i.id === item.id );
+    existingItem = _.find(
+      obs.comments,
+      i => i.id === item.id || ( item.uuid && item.uuid === i.uuid )
+    );
   }
   if ( existingItem ) {
     existingItem.loading = isLoading;
@@ -73,10 +79,9 @@ const currentObservationReducer = ( state = { tab: "info" }, action ) => {
     case LOADING_DISCUSSION_ITEM: {
       return Object.assign( {}, state, {
         observation:
-          action.item ?
-            updateLoadingForItemInObs( action.item, state.observation, true )
-            :
-            state.observation,
+          action.item
+            ? updateLoadingForItemInObs( action.item, state.observation, true )
+            : state.observation,
         loadingDiscussionItem: true,
         identificationFormVisible: false,
         commentFormVisible: false
@@ -85,10 +90,9 @@ const currentObservationReducer = ( state = { tab: "info" }, action ) => {
     case STOP_LOADING_DISCUSSION_ITEM: {
       return Object.assign( {}, state, {
         observation:
-          action.item ?
-            updateLoadingForItemInObs( action.item, state.observation, false )
-            :
-            state.observation,
+          action.item
+            ? updateLoadingForItemInObs( action.item, state.observation, false )
+            : state.observation,
         loadingDiscussionItem: false,
         identificationFormVisible: false,
         commentFormVisible: false

@@ -12,7 +12,7 @@ import FlaggingModalContainer from "../containers/flagging_modal_container";
 import DisagreementAlertContainer from "../containers/disagreement_alert_container";
 import ModeratorActionModalContainer from "../containers/moderator_action_modal_container";
 
-const App = ( { blind } ) => (
+const App = ( { blind, sideBarHidden, setSideBarHidden } ) => (
   <div id="Identify" className={blind ? "blind" : ""}>
     <Grid fluid>
       <Row>
@@ -25,15 +25,17 @@ const App = ( { blind } ) => (
           <SearchBarContainer />
         </Col>
       </Row>
-      <Row className="mainrow">
-        <Col xs={9} className="main-col">
+      <Row className={`mainrow ${sideBarHidden && "side-bar-hidden"}`}>
+        <div className="main-col">
           <ObservationsGridContainer />
           <PaginationControlContainer />
           <FinishedModalContainer />
-        </Col>
-        <Col xs={3} className="sidebar-col">
-          <SideBar blind={blind} />
-        </Col>
+        </div>
+        <SideBar
+          blind={blind}
+          hidden={sideBarHidden}
+          setSideBarHidden={setSideBarHidden}
+        />
       </Row>
       <ObservationModalContainer />
       <AlertModalContainer />
@@ -45,7 +47,9 @@ const App = ( { blind } ) => (
 );
 
 App.propTypes = {
-  blind: PropTypes.bool
+  blind: PropTypes.bool,
+  sideBarHidden: PropTypes.bool,
+  setSideBarHidden: PropTypes.func
 };
 
 export default App;

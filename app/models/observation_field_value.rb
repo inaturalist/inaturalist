@@ -1,11 +1,11 @@
-class ObservationFieldValue < ActiveRecord::Base
+class ObservationFieldValue < ApplicationRecord
 
   blockable_by lambda {|ofv| ofv.observation.try(:user_id) }
   
   belongs_to :observation, :inverse_of => :observation_field_values
   belongs_to :observation_field
   belongs_to :user
-  belongs_to :updater, :class_name => 'User'
+  has_updater
   has_one :annotation
   
   before_validation :strip_value
@@ -41,8 +41,6 @@ class ObservationFieldValue < ActiveRecord::Base
   auto_subscribes :user, :to => :observation, :if => lambda {|record, subscribable| 
     record.user_id != subscribable.user_id
   }
-
-  attr_accessor :updater_user_id
 
   include Shared::TouchesObservationModule
   include ActsAsUUIDable
@@ -96,12 +94,11 @@ class ObservationFieldValue < ActiveRecord::Base
   end
 
   def set_user
-    if updater_user_id
-      self.user_id ||= updater_user_id
-      self.updater_id = updater_user_id
+    if updater
+      self.user ||= updater
     elsif observation
-      self.user_id ||= observation.user_id
-      self.updater_id ||= user_id
+      self.user ||= observation.user
+      self.updater ||= user
     end
     true
   end
@@ -162,15 +159,19 @@ class ObservationFieldValue < ActiveRecord::Base
   end
 
   def observer_prefers_fields_by_user
-    return true unless user && observation
+    return true unless observation
     return true if observation.user.preferred_observation_fields_by === User::PREFERRED_OBSERVATION_FIELDS_BY_ANYONE
     if observation.user.preferred_observation_fields_by === User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER
-      if observation.user_id != user_id
-        errors.add(:observation_id, :user_does_not_accept_fields_from_others )
+      creator_is_not_observer = observation.user_id != user_id
+      updater_is_not_observer = observation.user_id != updater_id
+      if ( new_record? && creator_is_not_observer ) || ( persisted? && updater_is_not_observer )
+        errors.add( :observation_id, :user_does_not_accept_fields_from_others )
       end
     elsif observation.user.preferred_observation_fields_by === User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS
-      unless user.is_curator?
-        errors.add(:observation_id, :user_only_accepts_fields_from_site_curators )
+      creation_by_non_observer_non_curator = new_record? && user_id != observation.user_id && !user&.is_curator?
+      update_by_non_observer_non_curator = updater_id != observation.user_id && !updater&.is_curator?
+      if creation_by_non_observer_non_curator || update_by_non_observer_non_curator
+        errors.add( :observation_id, :user_only_accepts_fields_from_site_curators )
       end
     end
     true
@@ -185,18 +186,27 @@ class ObservationFieldValue < ActiveRecord::Base
   end
 
   def index_observation
+    return if observation.skip_indexing
+    return if observation.new_record?
+    observation.wait_for_index_refresh ||= !!wait_for_obs_index_refresh
     observation.try( :elastic_index! )
   end
 
   def create_annotation
     attr_val = annotation_attribute_and_value
     return if attr_val.blank?
-    Annotation.create!(observation_field_value: self,
+    a = Annotation.create(
+      observation_field_value: self,
       resource: observation,
       controlled_attribute: attr_val[:controlled_attribute],
       controlled_value: attr_val[:controlled_value],
       user_id: user_id,
-      created_at: created_at) rescue nil
+      created_at: created_at
+    )
+    unless a.persisted?
+      Rails.logger.error "[ERROR] Failed to created annotation for #{self}: #{a.errors.full_messages.to_sentence}"
+    end
+    a
   end
 
   def annotation_attribute_and_value
@@ -209,12 +219,62 @@ class ObservationFieldValue < ActiveRecord::Base
       controlled_value = ControlledTerm.first_term_by_label(stripped_value)
     elsif ( observation_field.name =~ /phenology/i && value =~ /^flower(s|ing)?$/i ) ||
           ( observation_field.name == "Plant flowering" && value == "Yes" )
-      controlled_attribute = ControlledTerm.first_term_by_label("Plant Phenology")
-      controlled_value = ControlledTerm.first_term_by_label("Flowering")
+      controlled_attribute = ControlledTerm.first_term_by_label( "Plant Phenology" )
+      controlled_value = ControlledTerm.first_term_by_label( "Flowering" )
     elsif observation_field.name =~ /phenology/i && value =~ /fruit(s|ing)?$/i &&
           value !~ /[0-9]/
-      controlled_attribute = ControlledTerm.first_term_by_label("Plant Phenology")
-      controlled_value = ControlledTerm.first_term_by_label("Fruiting")
+      controlled_attribute = ControlledTerm.first_term_by_label( "Plant Phenology" )
+      controlled_value = ControlledTerm.first_term_by_label( "Fruiting" )
+    elsif ( observation_field.name =~ /life stage/i && value == "teneral" ) ||
+          ( observation_field.name.downcase == "teneral" && value.downcase == "yes" )
+      controlled_attribute = ControlledTerm.first_term_by_label( "Life Stage" )
+      controlled_value = ControlledTerm.first_term_by_label( "Teneral" )
+    elsif ( observation_field.name =~ /dead or alive/i ||
+            observation_field.name =~ /alive( or |\/)dead/i ||
+            observation_field.name =~ /was it alive/i ||
+            observation_field.name =~ /alive \(aor\), dead \(dor\)/i )
+      value_term_label = case value.downcase
+      when "yes", "alive", "aor"
+        "Alive"
+      when "no", "dead", "dor"
+        "Dead"
+      when "maybe", "not sure", "unknown"
+        "Cannot Be Determined"
+      end
+      return unless value_term_label
+      controlled_attribute = ControlledTerm.first_term_by_label( "Alive or Dead" )
+      controlled_value = ControlledTerm.first_term_by_label( value_term_label )
+    elsif observation_field.name.downcase == "roadkill" && value == "yes"
+      controlled_attribute = ControlledTerm.first_term_by_label( "Alive or Dead" )
+      controlled_value = ControlledTerm.first_term_by_label( "Dead" )
+    elsif observation_field.name =~ /animal sign/i
+      value_term_label = case value.downcase
+      when "tracks"
+        "track"
+      when "scat"
+        "scat"
+      when "bone", "bones"
+        "bone"
+      when "fur/feathers"
+        "feather"
+      when "shed skin"
+        "molt"
+      end
+      return unless value_term_label
+      controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
+      controlled_value = ControlledTerm.first_term_by_label( value_term_label )
+    elsif observation_field.name.downcase === "scat/excreta" && value.downcase == "yes"
+      controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
+      controlled_value = ControlledTerm.first_term_by_label( "scat" )
+    elsif observation_field.name.downcase === "scat?" && value.downcase == "yes"
+      controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
+      controlled_value = ControlledTerm.first_term_by_label( "scat" )
+    elsif observation_field.name.downcase === "bone(s)" && value.downcase == "yes"
+      controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
+      controlled_value = ControlledTerm.first_term_by_label( "bone" )
+    elsif observation_field.name.downcase === "tracks" && value.downcase == "yes"
+      controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
+      controlled_value = ControlledTerm.first_term_by_label( "track" )
     end
     return unless controlled_attribute && controlled_value
     { controlled_attribute: controlled_attribute,
@@ -266,6 +326,7 @@ class ObservationFieldValue < ActiveRecord::Base
     obs_ids = Set.new
     scope.find_each do |ofv|
       next unless output_taxon = taxon_change.output_taxon_for_record( ofv )
+      next if !taxon_change.automatable_for_output?( output_taxon.id )
       ofv.update_attributes( value: output_taxon.id )
       obs_ids << ofv.observation_id
     end

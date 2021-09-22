@@ -23,7 +23,7 @@ module Privileges
         callback_types = [callback_types].flatten
         callback_types.each do |callback_type|
           validate on: callback_type, if: options[:if] do |record|
-            unless record.user.privileged_with?( privilege )
+            unless record.user && record.user.privileged_with?( privilege )
               errors.add( :user_id, "requires_privilege_#{privilege}".to_sym )
             end
           end
@@ -56,7 +56,7 @@ module Privileges
     end
     module ClassMethods
       def requires_privilege( privilege, options = {} )
-        before_filter( options ) do
+        before_action( options ) do
           if current_user && !current_user.privileged_with?( privilege ) && !current_user.is_admin? && !current_user.is_curator?
             msg = t( "errors.messages.requires_privilege_#{privilege}" )
             respond_to do |format|

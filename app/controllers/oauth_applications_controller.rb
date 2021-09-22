@@ -1,7 +1,7 @@
 class OauthApplicationsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :load_application, :only => [:show, :edit, :update, :destroy]
-  before_filter :require_owner_or_admin, :only => [:edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :load_application, :only => [:show, :edit, :update, :destroy]
+  before_action :require_owner_or_admin, :only => [:edit, :update, :destroy]
   respond_to :html
 
   def index
@@ -13,7 +13,7 @@ class OauthApplicationsController < ApplicationController
   end
 
   def create
-    @application = OauthApplication.new(params[:application] || params[:oauth_application])
+    @application = OauthApplication.new( allowed_params )
     @application.owner = current_user
     if @application.save
       flash[:notice] = I18n.t(:notice, :scope => [:doorkeeper, :flash, :applications, :create])
@@ -30,7 +30,7 @@ class OauthApplicationsController < ApplicationController
   end
 
   def update
-    if @application.update_attributes(params[:application] || params[:oauth_application])
+    if @application.update_attributes( allowed_params )
       flash[:notice] = I18n.t(:notice, :scope => [:doorkeeper, :flash, :applications, :update])
       redirect_to oauth_application_path(@application)
     else
@@ -55,5 +55,20 @@ class OauthApplicationsController < ApplicationController
       flash[:error] = "You don't have permission to do that"
       return redirect_to root_url
     end
+  end
+
+  def allowed_params
+    permitted = [
+      :image,
+      :name,
+      :redirect_uri,
+      :confidential,
+      :description,
+      :url
+    ]
+    if current_user.is_admin?
+      permitted += [:official, :trusted]
+    end
+    params.require(:oauth_application).permit( *permitted )
   end
 end

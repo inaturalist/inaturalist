@@ -14,18 +14,26 @@ import StatsTabContainer from "../containers/stats_tab_container";
 import StatsHeaderContainer from "../containers/stats_header_container";
 import AboutContainer from "../containers/about_container";
 import BeforeEventTabContainer from "../containers/before_event_tab_container";
+import InsufficientRequirementsContainer from "../containers/insufficient_requirements_container";
 import ConfirmModalContainer from "../../shared/containers/confirm_modal_container";
+import FlagAnItemContainer from "../../../shared/containers/flag_an_item_container";
 import FlaggingModalContainer from "../containers/flagging_modal_container";
 import UsersPopover from "../../../observations/show/components/users_popover";
 import FlashMessagesContainer from "../../../shared/containers/flash_messages_container";
+import ProjectMembershipButtonContainer from "../containers/project_membership_button_container";
 
-const App = ( { config, project, leave, setSelectedTab, convertProject } ) => {
+const App = ( {
+  config, project, leave, setSelectedTab, convertProject
+} ) => {
   let view;
   let tab = config.selectedTab;
-  const showingCountdown = ( project.startDate && !project.started && tab !== "about" &&
-    !( project.recent_observations && !_.isEmpty( project.recent_observations.results ) ) );
+  const showingCountdown = ( project.startDate && !project.started && tab !== "about"
+    && !( project.recent_observations && !_.isEmpty( project.recent_observations.results ) ) );
   if ( showingCountdown ) {
     tab = "before_event";
+  }
+  if ( project.hasInsufficientRequirements( ) && tab !== "about" ) {
+    tab = "insufficient_requirements";
   }
   switch ( tab ) {
     case "observations":
@@ -46,19 +54,22 @@ const App = ( { config, project, leave, setSelectedTab, convertProject } ) => {
     case "before_event":
       view = ( <BeforeEventTabContainer /> );
       break;
+    case "insufficient_requirements":
+      view = ( <InsufficientRequirementsContainer /> );
+      break;
     case "about":
       return ( <AboutContainer /> );
     default:
-      view = project.project_type === "umbrella" ?
-        ( <UmbrellaOverviewTabContainer /> ) :
-        ( <OverviewTabContainer /> );
+      view = project.project_type === "umbrella"
+        ? ( <UmbrellaOverviewTabContainer /> )
+        : ( <OverviewTabContainer /> );
   }
   const loggedIn = config.currentUser;
   const userIsOwner = loggedIn && config.currentUser.id === project.user_id;
-  const userIsManager = loggedIn &&
-    _.find( project.admins, a => a.user.id === config.currentUser.id );
-  const viewerIsAdmin = loggedIn && config.currentUser.roles &&
-    config.currentUser.roles.indexOf( "admin" ) >= 0;
+  const userIsManager = loggedIn
+    && _.find( project.admins, a => a.user.id === config.currentUser.id );
+  const viewerIsAdmin = loggedIn && config.currentUser.roles
+    && config.currentUser.roles.indexOf( "admin" ) >= 0;
   const hasIcon = !project.hide_title && project.customIcon && project.customIcon( );
   const hasBanner = !!project.header_image_url;
   const colorRGB = tinycolor( project.banner_color || "#28387d" ).toRgb( );
@@ -82,36 +93,41 @@ const App = ( { config, project, leave, setSelectedTab, convertProject } ) => {
         window.location = `/projects/${project.slug}/join`;
       };
     }
+  } else {
+    membershipAction = ( ) => {
+      $( ".header-members-button .UsersPopover" ).click( );
+    };
   }
 
   const headerButton = (
     <div className="header-members-button">
-      <div
-        className={ `action ${membershipLabel !== I18n.t( "members" ) && "clicky"}` }
-        onClick={ membershipAction }
+      <button
+        type="button"
+        className="btn btn-nostyle action clicky"
+        onClick={membershipAction}
       >
         { membershipLabel }
-      </div>
+      </button>
       <UsersPopover
-        users={ project.members_loaded ?
-          _.compact( _.map( project.members.results, "user" ) ) : null }
+        users={project.members_loaded
+          ? _.compact( _.map( project.members.results, "user" ) ) : null}
         keyPrefix="members-popover"
         placement="bottom"
-        containerPadding={ 20 }
+        containerPadding={20}
         returnContentsWhenEmpty
-        contentAfterUsers={
+        contentAfterUsers={(
           <div className="view-all-members">
-            <a href={ `/projects/${project.slug}/members` } className="linky">
+            <a href={`/projects/${project.slug}/members`} className="linky">
               { I18n.t( "view_all_members" ) }
             </a>
           </div>
-        }
-        contents={ (
+        )}
+        contents={(
           <div className="count">
             <i className="fa fa-user" />
             { project.members_loaded ? project.members.total_results : "---" }
           </div>
-        ) }
+        )}
       />
     </div>
   );
@@ -121,7 +137,7 @@ const App = ( { config, project, leave, setSelectedTab, convertProject } ) => {
   } else if ( project.rule_d1 && project.rule_d2 && project.startDate && project.endDate ) {
     const start = project.startDate.format( "MMM D, YYYY" );
     const end = project.endDate.format( "MMM D, YYYY" );
-    eventDates = `${start} - ${end}`;
+    eventDates = I18n.t( "date_to_date", { d1: start, d2: end } );
   }
   const headerDates = eventDates ? (
     <div className="header-dates">
@@ -133,7 +149,7 @@ const App = ( { config, project, leave, setSelectedTab, convertProject } ) => {
       { hasIcon && (
         <div
           className="title-icon"
-          style={ { backgroundImage: `url( '${project.icon}' )` } }
+          style={{ backgroundImage: `url( '${project.icon}' )` }}
         />
       ) }
       <div className="title-text">
@@ -149,16 +165,16 @@ const App = ( { config, project, leave, setSelectedTab, convertProject } ) => {
   ) : null;
   let bannerContainer = (
     <Col
-      xs={ hasBanner ? 12 : 8 }
+      xs={hasBanner ? 12 : 8}
       className={
         `title-container ${eventDates && "event"} ${hasIcon && "icon"} ${!hasBanner && "no-banner"}`
       }
-      style={ project.header_image_url ? {
+      style={project.header_image_url ? {
         backgroundImage: `url( '${project.header_image_url}' )`,
         backgroundSize: project.header_image_contain ? "contain" : "cover"
       } : {
         backgroundColor: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},0.6)`
-      } }
+      }}
     >
       { headerTitle }
       { headerDates }
@@ -169,27 +185,32 @@ const App = ( { config, project, leave, setSelectedTab, convertProject } ) => {
     // when there is a banner, create an additional container with a solid background
     bannerContainer = (
       <Col
-        xs={ 8 }
+        xs={8}
         className="title-container background"
-        style={ { backgroundColor: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},1)` } }
+        style={{ backgroundColor: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},1)` }}
       >
         { bannerContainer }
       </Col>
     );
   }
+  const userCanEdit = ( userIsManager || viewerIsAdmin );
   return (
     <div id="ProjectsShow">
       { project.is_traditional && (
         <Grid>
           <Row>
-            <Col xs={ 12 }>
+            <Col xs={12}>
               <div className="box text-center upstacked">
                 { I18n.t( "views.projects.show.this_is_a_preview" ) }
                 { ( userIsManager || viewerIsAdmin ) && (
                   <div>
-                    <a onClick={ convertProject } className="linky">
+                    <button
+                      type="button"
+                      onClick={convertProject}
+                      className="btn btn-nostyle linky"
+                    >
                       { I18n.t( "views.projects.show.click_here_to_convert_this_project" ) }
-                    </a>
+                    </button>
                   </div>
                 ) }
               </div>
@@ -198,25 +219,25 @@ const App = ( { config, project, leave, setSelectedTab, convertProject } ) => {
         </Grid>
       ) }
       <FlashMessagesContainer
-        item={ project }
-        manageFlagsPath={ `/flags?project_id=${project.id}` }
+        item={project}
+        manageFlagsPath={`/flags?project_id=${project.id}`}
       />
-      <div className={ `project-header ${hasBanner && "with-banner"}` }>
+      <div className={`project-header ${hasBanner && "with-banner"}`}>
         <div
           className="project-header-background"
-          style={ project.header_image_url ? {
+          style={project.header_image_url ? {
             backgroundImage: `url( '${project.header_image_url}' )`
-          } : null }
+          } : null}
         />
         <Grid className="header-grid">
           <Row>
             { bannerContainer }
             <Col
-              xs={ 4 }
+              xs={4}
               className="header-about"
-              style={ {
+              style={{
                 background: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},1)`
-              } }
+              }}
             >
               <div className="header-about-content">
                 <div className="header-about-title">
@@ -227,42 +248,64 @@ const App = ( { config, project, leave, setSelectedTab, convertProject } ) => {
                 </div>
                 <div className="header-about-text">
                   <UserText
-                    text={ project.description }
-                    truncate={ 500 }
-                    moreToggle={ false }
+                    text={project.description}
+                    truncate={500}
+                    moreToggle={false}
                   />
                 </div>
-                <div
-                  className="header-about-read-more"
-                  onClick={ () => setSelectedTab( "about" ) }
-                >
-                  { I18n.t( "read_more" ) }
-                  <i className="fa fa-chevron-right" />
+                <div>
+                  <button
+                    type="button"
+                    className="header-about-read-more header-link-btn btn btn-nostyle"
+                    onClick={() => setSelectedTab( "about" )}
+                  >
+                    { I18n.t( "read_more" ) }
+                    <i className="fa fa-chevron-right" />
+                  </button>
+                  <div className="pull-right">
+                    <ProjectMembershipButtonContainer />
+                  </div>
                 </div>
-                { ( userIsManager || viewerIsAdmin ) && (
-                  <div className="header-about-edit">
-                    <a href={ `/projects/${project.slug}/edit` }>
-                      <button className="btn btn-default btn-white">
+                <div>
+                  { userCanEdit && (
+                    <div className="header-about-edit">
+                      <a href={`/projects/${project.slug}/edit`} className="btn btn-default btn-white">
                         <i className="fa fa-cog" />
                         { I18n.t( "edit_project" ) }
-                      </button>
+                      </a>
+                    </div>
+                  ) }
+                  { !userCanEdit && project.rule_members_only && (
+                    <div className="header-about-members-only">
+                      { I18n.t( "project_members_only" ) }
+                    </div>
+                  ) }
+                  <div className="header-about-news">
+                    <a href={`/projects/${project.slug}/journal`}>
+                      <span className="glyphicon glyphicon-book" />
+                      { I18n.t( "project_journal" ) }
                     </a>
                   </div>
-                ) }
-                <div className="header-about-news">
-                  <a href={ `/projects/${project.slug}/journal` }>
-                    <i className="fa fa-bell" />
-                    { I18n.t( "news" ) }
-                  </a>
                 </div>
               </div>
             </Col>
           </Row>
         </Grid>
       </div>
-      { !showingCountdown && ( <StatsHeaderContainer /> ) }
+      { !showingCountdown && !project.hasInsufficientRequirements( )
+        && ( <StatsHeaderContainer /> ) }
       <div className="Content">
         { view }
+        <Grid>
+          <Row>
+            <Col xs={12}>
+              <FlagAnItemContainer
+                item={project}
+                manageFlagsPath={`/projects/${project.id}/flags`}
+              />
+            </Col>
+          </Row>
+        </Grid>
       </div>
       <FlaggingModalContainer />
       <ConfirmModalContainer />

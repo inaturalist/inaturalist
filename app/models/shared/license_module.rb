@@ -31,6 +31,13 @@ module Shared::LicenseModule
     CC_BY_NC_SA,
     CC0
   ]
+
+  # licenses eligible for the AWS open dataset program
+  ODP_LICENSES = [
+    CC_LICENSES,
+    PD
+  ].flatten
+
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
 
   attr_accessor :make_license_default
@@ -74,6 +81,17 @@ module Shared::LicenseModule
   
   def license_code
     LICENSE_INFO[license.to_i].try(:[], :code)
+  end
+
+  def license_code=( license_code )
+    if license_code.blank?
+      self.license = COPYRIGHT
+    else
+      self.license = LICENSE_INFO.detect {|number, info|
+        info[:code] === license_code.to_s.upcase
+      }.try(:[], 0)
+    end
+    self.license
   end
 
   def index_license_code

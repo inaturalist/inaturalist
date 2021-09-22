@@ -62,7 +62,6 @@
         <td>
           <ul>
             <li><%= pluralize taxon.observations_count, "observation" %></li>
-            <li><%= pluralize taxon.listed_taxa_count, "listed taxon" %></li>
             <li><%= pluralize taxon.identifications.count, "identification" %></li>
             <li><%= pluralize taxon.taxon_links.count, "taxon_link" %></li>
           </ul>
@@ -112,15 +111,6 @@
       <% for taxon in [@keeper, @taxon] %>
         <td>
           <%= render :partial => 'classification_list', :object => taxon %>
-        </td>
-      <% end %>
-    </tr>
-    
-    <tr>
-      <th><%= t(:colors) %></th>
-      <% for taxon in [@keeper, @taxon] %>
-        <td>
-          <%= taxon.colors.blank? ? "&nbsp;" : taxon.colors.map(&:value).join(', ') %>
         </td>
       <% end %>
     </tr>

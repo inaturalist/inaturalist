@@ -17,7 +17,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    onDelete: ( item ) => {
+    onDelete: item => {
       dispatch( loadingDiscussionItem( ) );
       if ( item.className === "Identification" ) {
         dispatch( deleteIdentification( item ) )
@@ -34,7 +34,7 @@ function mapDispatchToProps( dispatch ) {
           } );
       }
     },
-    onRestore: ( identification ) => {
+    onRestore: identification => {
       dispatch( loadingDiscussionItem( ) );
       dispatch( updateIdentification( { id: identification.id, current: true } ) )
         .catch( ( ) => {

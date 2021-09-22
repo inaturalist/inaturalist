@@ -38,9 +38,9 @@ describe WelcomeController do
       site.save!
       get :index
       expect( assigns[:page] ).to eq @home
-      get :index, locale: "es"
+      get :index, params: { locale: "es" }
       expect( assigns[:page] ).to eq @homeES
-      get :index, locale: "fr"
+      get :index, params: { locale: "fr" }
       expect( assigns[:page] ).to eq @homeFR
     end
 

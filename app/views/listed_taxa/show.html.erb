@@ -18,8 +18,7 @@
     <%= link_to @taxon do %>
       <%= render :partial => "shared/taxon" %>
     <% end %>
-    <%=raw t(:on_).downcase %>
-        <%= link_to @list_title, @list %>
+    (<%= link_to @list_title, @list %>)
   <% end -%>
   <%= strip_tags(@title).html_safe %>
 <%- end -%>
@@ -80,68 +79,62 @@
     <% end -%>
   </div>
   
-  <div class="observationcounts stacked">
-    <div class="ui description">
-      <strong><%= link_to listed_taxon.observations_count, obs_url %></strong>
-      <%= (listed_taxon.observations_count == 1 ? t(:observation).downcase : t(:observations).downcase) -%>
+  <% if @list.is_a?( CheckList ) -%>
+    <div class="observationcounts stacked">
+      <div class="ui description">
+        <strong><%= link_to listed_taxon.observations_count, obs_url %></strong>
+        <%= (listed_taxon.observations_count == 1 ? t(:observation).downcase : t(:observations).downcase) -%>
 
-    <% if logged_in? -%>
-      <span class="button">
-        <%= link_to t(:refresh).downcase, {
-            :controller => 'listed_taxa',
-            :action => 'refresh_observationcounts',
-            :listed_taxon_id => listed_taxon.id },
-          :method => :post,
-          "data-loading-click" => t(:refreshing) -%></span>
-    <% end -%>
+      <% if logged_in? -%>
+        <span class="button">
+          <%= link_to t(:refresh).downcase, {
+              :controller => 'listed_taxa',
+              :action => 'refresh_observationcounts',
+              :listed_taxon_id => listed_taxon.id },
+            :method => :post,
+            "data-loading-click" => t(:refreshing) -%></span>
+      <% end -%>
+      </div>
     </div>
-  </div>
+  <% end -%>
 
-  <% if listed_taxon.first_observation -%>
-    <p class="ui description">
-      <%=t :first_inat_observation, :site_name => @site.preferred_site_name_short %>
-      <%= link_to one_line_observation(listed_taxon.first_observation, :skip => %w(user taxon)), listed_taxon.first_observation %>
-      <% if @list.is_a?(CheckList) -%>
+  <% if @list.is_a?( CheckList ) -%>
+    <% if listed_taxon.first_observation -%>
+      <p class="ui description">
+        <%=t :first_inat_observation, :site_name => @site.preferred_site_name_short %>
+        <%= link_to one_line_observation(listed_taxon.first_observation, :skip => %w(user taxon)), listed_taxon.first_observation %>
         <%= t(:by).downcase %>
         <%= link_to user_image(listed_taxon.first_observation.user), listed_taxon.first_observation.user %>
         <%= link_to you_or_login(listed_taxon.first_observation.user), listed_taxon.first_observation.user %>,
         <%= t(:added).downcase %> <%= l(listed_taxon.first_observation.created_at.to_date, :format => :long) %>
-      <% end -%>
-    </p>
-  <% end -%>
+      </p>
+    <% end -%>
   
-  <% if listed_taxon.last_observation -%>
-    <p class="ui description">
-      <%=t :last_observation %>
-      <%= link_to one_line_observation(listed_taxon.last_observation, :skip => %w(user taxon)), listed_taxon.last_observation %>
-      <% if @list.is_a?(CheckList) -%>
+    <% if listed_taxon.last_observation -%>
+      <p class="ui description">
+        <%=t :last_observation %>
+        <%= link_to one_line_observation(listed_taxon.last_observation, :skip => %w(user taxon)), listed_taxon.last_observation %>
         <%= t(:by).downcase %>
         <%= link_to user_image(listed_taxon.last_observation.user), listed_taxon.last_observation.user %>
         <%= link_to you_or_login(listed_taxon.last_observation.user), listed_taxon.last_observation.user %>
-      <% end -%>
-    </p>
+      </p>
+    <% end -%>
   <% end -%>
-  
+
   <%= separator %>
   
   <p class="ui description">
-    <%= t(:added).titleize %>
-    <% if @listed_taxon.user %>
-      <%= t(:by).downcase %>
-      <%= link_to user_image(@listed_taxon.user), @listed_taxon.user %>
-      <%= link_to you_or_login(@listed_taxon.user), @listed_taxon.user %>
-    <% end %>
-    <%=t :on_day %> <%= l(@listed_taxon.created_at.to_date, :format => :long) %>
+    <%=t :added_by_user_on_date_html,
+      user: link_to_user( @listed_taxon.user, missing: t(:site_admins) ),
+      date: @listed_taxon.created_at.to_s(:long)
+    %>
   </p>
   
   <p class="ui description">
-    <%=t :updated %>
-    <% if @listed_taxon.updater %>
-      <%= t(:by).downcase %>
-      <%= link_to user_image(@listed_taxon.updater), @listed_taxon.updater %>
-      <%= link_to you_or_login(@listed_taxon.updater), @listed_taxon.updater %>
-    <% end %>
-    <%=t :on_day %> <%= l(@listed_taxon.updated_at.to_date, :format => :long) %>
+    <%=t :updated_by_user_on_date_html,
+      user: link_to_user( @listed_taxon.updater, missing: t(:site_admins) ),
+      date: @listed_taxon.updated_at.to_s(:long)
+    %>
   </p>
   
   <%- if(@related_listed_taxa.present?) %>
@@ -207,10 +200,10 @@
         obs_url = observations_path(:place_id => @listed_taxon.place_id, :taxon_id => @listed_taxon.taxon_id)
       when 'ProjectList'
         obs_tab_txt = t(:observations_from_this_project)
-        obs_url = project_observations_path(@list.project_id, :taxon_id => @listed_taxon.taxon_id)
+        obs_url = observations_path(@list.project_id, :taxon_id => @listed_taxon.taxon_id, project_id: @list.project_id)
       else
         obs_tab_txt = is_me?(@list.user) ? t(:observations_by_you) : t(:observations_by_user, :user => @list.user.login)
-        obs_url = observations_by_login_path(@list.user.login, :taxon_id => @listed_taxon.taxon_id, :place_id => @list.place_id)
+        obs_url = observations_path( user_id: @list.user.login, taxon_id: @listed_taxon.taxon_id, place_id: @list.place_id )
       end
     -%>
     <ul>

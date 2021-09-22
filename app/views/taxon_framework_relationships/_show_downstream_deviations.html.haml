@@ -10,4 +10,4 @@
         = t :downstream_deviations_for_taxon, taxon: downstream_deviations_count[:internal_taxon].name
       = link_to |
       downstream_deviations_count[:count], |
-      taxon_framework_relationships_path( TaxonFrameworkRelationship::RELATIONSHIPS.select{ |r| r!="match" }.map{ |r| [r, "1"] }.to_h.merge( { taxon_id: downstream_deviations_count[:internal_taxon].id, taxon_framework_id: taxon_framework.id } ) ) |
+      taxon_framework_relationships_path( TaxonFrameworkRelationship::RELATIONSHIPS.select{ |r| r!="match" && r!="alternate_position" }.map{ |r| [r, "1"] }.to_h.merge( { taxon_id: downstream_deviations_count[:internal_taxon].id, taxon_framework_id: taxon_framework.id } ) ) |

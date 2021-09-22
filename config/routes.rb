@@ -1,10 +1,21 @@
 Rails.application.routes.draw do
+  resources :moderator_notes
+  resources :data_partners
   resources :saved_locations
-  apipie
+  # apipie
 
-  resources :sites
+  resources :sites do
+    collection do
+      get :network
+      get :affiliation
+    end
+    member do
+      get :export
+    end
+  end
 
-  id_param_pattern = %r(\d+([\w\-\%]*))
+  uuid_pattern = BelongsToWithUuid::UUID_PATTERN.to_s.gsub( /[\^\$]/, "" )
+  id_param_pattern = /(\d+([\w\-\%]*))|#{uuid_pattern}/
   simplified_login_regex = /\w[^\.,\/]+/  
   root :to => 'welcome#index'
 
@@ -18,9 +29,12 @@ Rails.application.routes.draw do
   get "/donate", to: "donate#index"
   get "/monthly-supporters", to: "donate#monthly_supporters", as: :monthly_supporters
 
+  get "/donate-seek", to: redirect( "https://donorbox.org/support-seek-by-inaturalist", status: 302 )
+
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]
   resources :controlled_term_values, only: [:create, :destroy]
+  resources :curator_applications, only: [:new, :create]
   resources :annotations
 
   get "/search" => "search#index", as: "search"
@@ -44,7 +58,6 @@ Rails.application.routes.draw do
   resources :guide_photos
   resources :guide_taxa do
     member do
-      get :edit_photos
       post :update_photos
       post :sync
     end
@@ -87,10 +100,12 @@ Rails.application.routes.draw do
   use_doorkeeper do
     controllers applications: "oauth_applications",
                 authorizations: "oauth_authorizations",
+                authorized_applications: "oauth_authorized_applications",
                 tokens: "oauth_tokens"
   end
 
   wiki_root '/pages'
+  get '/pages' => "wiki_pages#all", as: "wiki_all"
 
   # Riparian routes
   resources :flow_tasks do
@@ -123,24 +138,37 @@ Rails.application.routes.draw do
     post "session", :to => "users/sessions#create"
     get "signup", :to => "users/registrations#new"
     get "users/new", to: redirect( "signup" ), as: "new_user"
+    # This *should* be a redirect, but that is messing with the way we're doing
+    # get "/forgot_password", to: redirect( "/users/password/new" ), as: "forgot_password"
     get "/forgot_password", :to => "devise/passwords#new", :as => "forgot_password"
     put "users/update_session", :to => "users#update_session"
   end
   
   get '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
-  get '/help' => 'help#index', :as => :help
   get '/auth/failure' => 'provider_authorizations#failure', :as => :omniauth_failure
   post '/auth/:provider' => 'provider_authorizations#blank'
   get '/auth/:provider/callback' => 'provider_authorizations#create', :as => :omniauth_callback
   post '/auth/:provider/callback' => 'provider_authorizations#create', :as => :omniauth_callback_post
   delete '/auth/:provider/disconnect' => 'provider_authorizations#destroy', :as => :omniauth_disconnect
+  delete "/provider_authorizations/:id" => 'provider_authorizations#destroy'
   get '/users/edit_after_auth' => 'users#edit_after_auth', :as => :edit_after_auth
   get '/facebook/photo_fields' => 'facebook#photo_fields'
   get "/eol/photo_fields" => "eol#photo_fields"
   get '/wikimedia_commons/photo_fields' => 'wikimedia_commons#photo_fields'
   post '/facebook' => 'facebook#index'
-  
-  resources :announcements
+
+  resource :help, controller: :help, only: :index do
+    collection do
+      get :index
+      get :getting_started
+    end
+  end
+
+  resources :announcements do
+    member do
+      put :dismiss
+    end
+  end
   get '/users/dashboard' => 'users#dashboard', :as => :dashboard
   get '/users/curation' => 'users#curation', :as => :curate_users
   get '/users/updates_count' => 'users#updates_count', :as => :updates_count
@@ -167,17 +195,23 @@ Rails.application.routes.draw do
   # resources :passwords
   resources :people, :controller => :users, :except => [:create] do
     collection do
-      get :search
       get 'leaderboard(/:year(/:month))' => :leaderboard, :as => 'leaderboard_for'
     end
+    member do
+      get :moderation
+    end
   end
-  resources :relationships, controller: :friendships, only: [:index, :update, :destroy]
+  resources :relationships, controller: :relationships, only: [:index, :update, :destroy]
   get '/users/:id/suspend' => 'users#suspend', :as => :suspend_user, :constraints => { :id => /\d+/ }
   get '/users/:id/unsuspend' => 'users#unsuspend', :as => :unsuspend_user, :constraints => { :id => /\d+/ }
   post 'users/:id/add_role' => 'users#add_role', :as => :add_role, :constraints => { :id => /\d+/ }
   post 'users/set_spammer' => 'users#set_spammer'
   post 'users/:id/set_spammer' => 'users#set_spammer', :as => :set_spammer, :constraints => { :id => /\d+/ }
   delete 'users/:id/remove_role' => 'users#remove_role', :as => :remove_role, :constraints => { :id => /\d+/ }
+  post "users/:id/mute" => "users#mute", as: :mute_user
+  delete "users/:id/mute" => "users#unmute", as: :unmute_user
+  post "users/:id/block" => "users#block", as: :block_user
+  delete "users/:id/block" => "users#unblock", as: :unblock_user
   get 'photos/local_photo_fields' => 'photos#local_photo_fields', :as => :local_photo_fields
   put '/photos/:id/repair' => "photos#repair", :as => :photo_repair
   resources :photos, :only => [:show, :update, :destroy, :create] do
@@ -190,11 +224,12 @@ Rails.application.routes.draw do
       put :rotate
     end
   end
-  delete 'google_photos/unlink' => 'picasa#unlink'
   
   post 'flickr/unlink_flickr_account' => 'flickr#unlink_flickr_account'
   get 'flickr/photos.:format' => 'flickr#photos'
   get "flickr/options" => "flickr#options", as: "flickr_options"
+  get "flickr/photo_fields" => "flickr#photo_fields", as: "flickr_photo_fields"
+  delete "flickr/remove_tag" => "flickr/remove_tag", as: "flickr_remove_tag"
 
   resources :observation_photos, :only => [:show, :create, :update, :destroy]
   resources :observation_sounds, :only => [:show, :create, :update, :destroy]
@@ -259,11 +294,9 @@ Rails.application.routes.draw do
   get 'observations/:login' => 'observations#by_login', :as => :observations_by_login, :constraints => { :login => simplified_login_regex }
   get 'observations/:login.all' => 'observations#by_login_all', :as => :observations_by_login_all, :constraints => { :login => simplified_login_regex }
   get 'observations/:login.:format' => 'observations#by_login', :as => :observations_by_login_feed, :constraints => { :login => simplified_login_regex }
-  get 'observations/project/:id' => 'observations#project', :as => :project_observations
+  get "observations/project/:id.:format" => "observations#project", as: :observations_for_project
   get 'observations/project/:id.all' => 'observations#project_all', :as => :all_project_observations
-  get 'observations/of/:id.:format' => 'observations#of', :as => :observations_of
   match 'observations/:id/quality/:metric' => 'quality_metrics#vote', :as => :observation_quality, :via => [:post, :delete]
-  
 
   match 'projects/:id/join' => 'projects#join', :as => :join_project, :via => [:get, :post]
   delete 'projects/:id/leave' => 'projects#leave', :as => :leave_project
@@ -334,15 +367,15 @@ Rails.application.routes.draw do
   resources :lists, :constraints => { :id => id_param_pattern } do
     resources :flags
     get 'batch_edit'
+    member do
+      get :icon_preview
+    end
   end
   get 'lists/:id/taxa' => 'lists#taxa', :as => :list_taxa
   get 'lists/:id/taxa.:format' => 'lists#taxa', :as => :formatted_list_taxa
   get 'lists/:id.:view_type.:format' => 'lists#show',
     :as => 'list_show_formatted_view',
     :requirements => { :id => id_param_pattern }
-  resources :life_lists, :controller => :lists do
-    resources :flags
-  end
   resources :check_lists do
     resources :flags
   end
@@ -356,20 +389,15 @@ Rails.application.routes.draw do
   get 'lists/:id/compare' => 'lists#compare', :as => :compare_lists, :constraints => { :id => /\d+([\w\-\%]*)/ }
   delete 'lists/:id/remove_taxon/:taxon_id' => 'lists#remove_taxon', :as => :list_remove_taxon, :constraints => { :id => /\d+([\w\-\%]*)/ }
   post 'lists/:id/add_taxon_batch' => 'lists#add_taxon_batch', :as => :list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  post 'check_lists/:id/add_taxon_batch' => 'check_lists#add_taxon_batch', :as => :check_list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  post 'lists/:id/reload_from_observations' => 'lists#reload_from_observations', :as => :list_reload_from_observations, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  post 'lists/:id/reload_and_refresh_now' => 'lists#reload_and_refresh_now', :as => :list_reload_and_refresh_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  post 'lists/:id/refresh_now_without_reload' => 'lists#refresh_now_without_reload', :as => :list_refresh_now_without_reload, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  post 'lists/:id/refresh' => 'lists#refresh', :as => :list_refresh, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  post 'lists/:id/add_from_observations_now' => 'lists#add_from_observations_now', :as => :list_add_from_observations_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  post 'lists/:id/refresh_now' => 'lists#refresh_now', :as => :list_refresh_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
   post 'lists/:id/generate_csv' => 'lists#generate_csv', :as => :list_generate_csv, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  resources :comments do
+  post 'lists/:id/refresh_now' => 'lists#refresh_now', :as => :list_refresh_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  post 'lists/:id/add_from_observations_now' => 'lists#add_from_observations_now', :as => :list_add_from_observations_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  post 'check_lists/:id/add_taxon_batch' => 'check_lists#add_taxon_batch', :as => :check_list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  resources :comments, constraints: { id: id_param_pattern } do
     resources :flags
   end
   get 'comments/user/:login' => 'comments#user', :as => :comments_by_login, :constraints => { :login => simplified_login_regex }
-  resources :project_invitations, :except => [:index, :show]
-  post 'project_invitation/:id/accept' => 'project_invitations#accept', :as => :accept_project_invitation
+  resources :taxon_photos, constraints: { id: id_param_pattern }, only: [:new, :create]
   get 'taxa/names' => 'taxon_names#index'
   resources :taxa, constraints: { id: id_param_pattern } do
     resources :flags
@@ -392,6 +420,7 @@ Rails.application.routes.draw do
     end
     collection do
       get 'synonyms'
+      get :autocomplete
     end
   end
   resources :taxon_names do
@@ -403,10 +432,8 @@ Rails.application.routes.draw do
   patch 'taxa/:id/graft' => 'taxa#graft', :as => :graft_taxon
   get 'taxa/:id/children' => 'taxa#children', :as => :taxon_children
   get 'taxa/:id/children.:format' => 'taxa#children', :as => :formatted_taxon_children
-  get 'taxa/:id/photos' => 'taxa#photos', :as => :taxon_photos
-  get 'taxa/:id/edit_photos' => 'taxa#edit_photos', :as => :edit_taxon_photos
+  get 'taxa/:id/photos' => 'taxa#photos', as: :photos_of_taxon
   put 'taxa/:id/update_colors' => 'taxa#update_colors', :as => :update_taxon_colors
-  match 'taxa/:id/add_places' => 'taxa#add_places', :as => :add_taxon_places, :via => [:get, :post]
   get 'taxa/flickr_tagger' => 'taxa#flickr_tagger', :as => :flickr_tagger
   get 'taxa/flickr_tagger.:format' => 'taxa#flickr_tagger', :as => :formatted_flickr_tagger
   post 'taxa/tag_flickr_photos'
@@ -414,7 +441,6 @@ Rails.application.routes.draw do
   post 'taxa/tag_flickr_photos_from_observations'
   get 'taxa/search' => 'taxa#search', :as => :search_taxa
   get 'taxa/search.:format' => 'taxa#search', :as => :formatted_search_taxa
-  get 'taxa/:action.:format' => 'taxa#index', :as => :formatted_taxa_action
   match 'taxa/:id/merge' => 'taxa#merge', :as => :merge_taxon, :via => [:get, :post]
   get 'taxa/:id/merge.:format' => 'taxa#merge', :as => :formatted_merge_taxon
   get 'taxa/:id/observation_photos' => 'taxa#observation_photos', :as => :taxon_observation_photos
@@ -425,9 +451,9 @@ Rails.application.routes.draw do
   get 'taxa/auto_complete_name' => 'taxa#auto_complete_name'
   get 'taxa/occur_in' => 'taxa#occur_in'
   get '/taxa/curation' => 'taxa#curation', :as => :curate_taxa
-  get "taxa/*q" => 'taxa#try_show'
+  get "taxa/*q" => 'taxa#try_show', as: :taxa_try_show
   
-  resources :sources, :except => [:new, :create]
+  resources :sources
   get 'journal' => 'posts#browse', :as => :journals
   get 'journal/:login' => 'posts#index', :as => :journal_by_login, :constraints => { :login => simplified_login_regex }
   get 'journal/:login/archives/' => 'posts#archives', :as => :journal_archives, :constraints => { :login => simplified_login_regex }
@@ -473,8 +499,6 @@ Rails.application.routes.draw do
   get 'identifications/bold' => 'identifications#bold'
   post 'identifications/agree' => 'identifications#agree'
   get 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }
-  get 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
-  post 'emailer/invite/send' => 'emailer#invite_send', :as => :emailer_invite_send
   resources :taxon_links
   
   get 'places/:id/widget' => 'places#widget', :as => :place_widget
@@ -488,7 +512,9 @@ Rails.application.routes.draw do
   get 'places/guide' => 'places#guide', :as => :idendotron_guide
   get 'places/cached_guide/:id' => 'places#cached_guide', :as => :cached_place_guide
   get 'places/autocomplete' => 'places#autocomplete', :as => :places_autocomplete
+  get 'places/wikipedia/:id' => 'places#wikipedia', :as => :places_wikipedia
   resources :places do
+    resources :flags
     collection do
       get :planner
     end
@@ -506,7 +532,12 @@ Rails.application.routes.draw do
       get :stop_query
       get :users
       get "users/:id" => "admin#user_detail", as: :user_detail
+      get "login_as/:id" => "admin#login_as", as: :login_as
       get :deleted_users
+      put :grant_user_privilege
+      put :revoke_user_privilege
+      put :restore_user_privilege
+      put :reset_user_privilege
     end
     resources :delayed_jobs, only: :index, controller: "admin/delayed_jobs" do
       member do
@@ -520,6 +551,9 @@ Rails.application.routes.draw do
       end
     end
   end
+  get 'admin/user_content/:id/(:type)', :to => 'admin#user_content', :as => "admin_user_content"
+  delete 'admin/destroy_user_content/:id/:type', :to => 'admin#destroy_user_content', :as => "destroy_user_content"
+  put 'admin/update_user/:id', :to => 'admin#update_user', :as => "admin_update_user"
 
   resources :site_admins, only: [:create, :destroy] do
     collection do
@@ -535,7 +569,6 @@ Rails.application.routes.draw do
       get :nps_bioblitz
       get :cnc2016
       get :cnc2017
-      get :cnc2017_taxa
       get :cnc2017_stats
       get :canada_150
       get :parks_canada_2017
@@ -546,10 +579,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'admin/user_content/:id/(:type)', :to => 'admin#user_content', :as => "admin_user_content"
-  delete 'admin/destroy_user_content/:id/:type', :to => 'admin#destroy_user_content', :as => "destroy_user_content"
-  put 'admin/update_user/:id', :to => 'admin#update_user', :as => "admin_update_user"
-  resources :taxon_ranges, :except => [:show]
+  resources :taxon_ranges
   
   resources :atlases do
     member do
@@ -593,7 +623,9 @@ Rails.application.routes.draw do
     get :commit_for_user
     put "commit_record/:type/:record_id/to/:taxon_id" => "taxon_changes#commit_records", as: :commit_record
     put "commit_records/:type/(to/:taxon_id)" => "taxon_changes#commit_records", as: :commit_records
+    post :analyze_ids
   end
+  post "/taxon_changes/analyze_ids" => "taxon_changes#analyze_ids", as: :analyze_ids
   resources :taxon_schemes, :only => [:index, :show], :constraints => {:format => [:html]}
   get 'taxon_schemes/:id/mapped_inactive_taxa' => 'taxon_schemes#mapped_inactive_taxa', :as => :mapped_inactive_taxa
   get 'taxon_schemes/:id/orphaned_inactive_taxa' => 'taxon_schemes#orphaned_inactive_taxa', :as => :orphaned_inactive_taxa
@@ -611,24 +643,41 @@ Rails.application.routes.draw do
   resources :conservation_statuses, :only => [:autocomplete]
 
   resource :computer_vision_demo, only: :index, controller: :computer_vision_demo do
+    collection do
+      get :index
+    end
   end
+
   resources :computer_vision_demo_uploads do
     member do
       post :score
     end
   end
-  resources :user_parents, only: [:index, :new, :create] do
+  resources :user_parents, only: [:index, :new, :create, :destroy] do
     member do
       get :confirm
     end
   end
   resources :moderator_actions, only: [:create]
 
-  get "/google_photos(/:action(/:id))", controller: :picasa
+  resource :lifelists, only: [] do
+    collection do
+      get ":login", to: "lifelists#by_login", as: "by_login"
+    end
+  end
+
+  resources :google_photos, controller: :picasa do
+    collection do
+      get :options
+      delete :unlink
+    end
+  end
 
   get 'translate' => 'translations#index', :as => :translate_list
   post 'translate/translate' => 'translations#translate', :as => :translate
   get 'translate/reload' => 'translations#reload', :as => :translate_reload
+
+  get "apple-app-site-association" => "apple_app_site_association#index", as: :apple_app_site_association
 
   # Hack to enable mail previews. You could also remove get
   # '/:controller(/:action(/:id))' but that breaks a bunch of other stuff. You
@@ -637,7 +686,7 @@ Rails.application.routes.draw do
   unless Rails.env.production?
     get '/rails/mailers/*path' => 'rails/mailers#preview'
   end
-  get '/:controller(/:action(/:id))'
+  # get "/:controller(/:action(/:id))", defaults: { from_dynamic_route: true}
 
   match '/404', to: 'errors#error_404', via: :all
   match '/422', to: 'errors#error_422', via: :all

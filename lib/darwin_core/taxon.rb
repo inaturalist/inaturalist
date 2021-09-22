@@ -4,6 +4,7 @@ module DarwinCore
       %w(id id),
       %w(taxonID http://rs.tdwg.org/dwc/terms/taxonID),
       %w(identifier http://purl.org/dc/terms/identifier),
+      %w(parentNameUsageID http://rs.tdwg.org/dwc/terms/parentNameUsageID),
       %w(kingdom http://rs.tdwg.org/dwc/terms/kingdom),
       %w(phylum http://rs.tdwg.org/dwc/terms/phylum),
       ['class', 'http://rs.tdwg.org/dwc/terms/class', nil, 'find_class_name'],
@@ -47,6 +48,10 @@ module DarwinCore
       
       def taxonID
         identifier
+      end
+
+      def parentNameUsageID
+        view.taxon_url(parent_id) if parent_id
       end
       
       def specificEpithet

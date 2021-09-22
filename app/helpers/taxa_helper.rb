@@ -56,7 +56,7 @@ module TaxaHelper
       return iconic_taxon_image(taxon, params)
     end
     params[:size] ||= "square"
-    image_params = params.merge(:alt => default_taxon_name(taxon))
+    image_params = params.except(:size).merge(:alt => default_taxon_name(taxon))
     unless taxon.default_photo.blank?
       image_params[:alt] += " - Photo #{taxon.default_photo.attribution}"
     end
@@ -271,7 +271,7 @@ module TaxaHelper
     end
     html = content_tag(:div, t(:loading_images), :id => element_id, :class => "loading status")
     js = <<-JS
-      $('##{element_id}').load('#{taxon_photos_path(taxon, :partial => "photo", :limit => limit)}', function() {
+      $('##{element_id}').load('#{photos_of_taxon_path(taxon, :partial => "photo", :limit => limit)}', function() {
         $('.zoomable', this).zoomify();
         $('##{element_id}').removeClass('loading status');
       });

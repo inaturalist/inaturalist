@@ -5,7 +5,8 @@ module ElasticModel
   ASCII_SNOWBALL_ANALYZER = {
     ascii_snowball_analyzer: {
       tokenizer: "standard",
-      filter: [ "lowercase", "asciifolding", "stop", "snowball" ]
+      filter: [ "lowercase", "asciifolding", "stop", "snowball" ],
+      char_filter: [ "inat_char_filter" ]
     }
   }
   # basic autocomplete analyzer. Avoids diacritic variations, will find
@@ -13,7 +14,8 @@ module ElasticModel
   AUTOCOMPLETE_ANALYZER = {
     autocomplete_analyzer: {
       tokenizer: "standard",
-      filter: [ "lowercase", "asciifolding", "edge_ngram_filter" ]
+      filter: [ "lowercase", "asciifolding", "edge_ngram_filter" ],
+      char_filter: [ "inat_char_filter" ]
     }
   }
   # autocomplete analyzer for Japanese strings
@@ -49,7 +51,7 @@ module ElasticModel
   # for autocomplete analyzers. Needs at least 2 letters (e.g. `P` doesn't find `Park`)
   EDGE_NGRAM_FILTER =  {
     edge_ngram_filter: {
-      type: "edgeNGram",
+      type: "edge_ngram",
       min_gram: 1,
       max_gram: 20
     }
@@ -65,7 +67,17 @@ module ElasticModel
       STANDARD_ANALYZER,
       KEYWORD_ANALYZER
     ].reduce(&:merge),
-    filter: EDGE_NGRAM_FILTER
+    filter: EDGE_NGRAM_FILTER,
+    char_filter: {
+      inat_char_filter: {
+        type: "mapping",
+        mappings: [
+          # map ʻokina to nothing so searches for ʻokina, 'okina, and okina would all return the same things
+          "ʻ => ",
+          "× => x"
+        ]
+      }
+    }
   }
 
   def self.search_criteria(options={})
@@ -108,7 +120,20 @@ module ElasticModel
       query[:bool][:must_not] = options[:inverse_filters]
     end
     elastic_hash = { query: { constant_score: { filter: query } } }
-    elastic_hash[:sort] = options[:sort] if options[:sort]
+    if options[:sort]
+      if options[:sort] === "random"
+        elastic_hash[:query] = {
+          function_score: {
+            query: { constant_score: { filter: query } },
+            random_score: {
+              field: "_seq_no"
+            }
+          }
+        }
+      else
+        elastic_hash[:sort] = options[:sort] if options[:sort]
+      end
+    end
     elastic_hash[:size] = options[:size] if options[:size]
     elastic_hash[:from] = options[:from] if options[:from]
     elastic_hash[:_source] = options[:source] if options[:source]

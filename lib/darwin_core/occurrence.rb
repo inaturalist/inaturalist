@@ -1,6 +1,22 @@
 module DarwinCore
   class Occurrence
 
+    # Terms are tuples of (
+    #   term name,
+    #   term URI,
+    #   default value,
+    #   Observation method to call to get the value if it differs from the term name,
+    #   vocabulary URI
+    # )
+    # The easiest way to find new term URI's is to use
+    # http://tools.gbif.org/dwca-assistant/. Vocabularies that GBIF understands
+    # are at https://rs.gbif.org/vocabulary, though it's probably only best to
+    # specify one if we're actually adhering to it.
+    ANNOTATION_TERMS = [
+      ["sex", "http://rs.tdwg.org/dwc/terms/sex", nil, "gbif_sex", "http://rs.gbif.org/vocabulary/gbif/sex"],
+      ["lifeStage", "http://rs.tdwg.org/dwc/terms/lifeStage", nil, "gbif_lifeStage", "http://rs.gbif.org/vocabulary/gbif/life_stage"],
+      ["reproductiveCondition", "http://rs.tdwg.org/dwc/terms/reproductiveCondition", nil]
+    ]
     TERMS = [
       %w(id id),
       %w(occurrenceID http://rs.tdwg.org/dwc/terms/occurrenceID),
@@ -15,7 +31,9 @@ module DarwinCore
       %w(occurrenceRemarks http://rs.tdwg.org/dwc/terms/occurrenceRemarks),
       %w(occurrenceDetails http://rs.tdwg.org/dwc/terms/occurrenceDetails),
       %w(recordedBy http://rs.tdwg.org/dwc/terms/recordedBy),
-      %w(recordedByOrcid http://rs.gbif.org/terms/1.0/recordedByOrcid),
+      %w(recordedByID http://rs.gbif.org/terms/1.0/recordedByID),
+      %w(identifiedBy http://rs.tdwg.org/dwc/terms/identifiedBy),
+      %w(identifiedByID http://rs.gbif.org/terms/1.0/identifiedByID),
       %w(establishmentMeans http://rs.tdwg.org/dwc/terms/establishmentMeans),
       %w(eventDate http://rs.tdwg.org/dwc/terms/eventDate),
       %w(eventTime http://rs.tdwg.org/dwc/terms/eventTime),
@@ -24,6 +42,7 @@ module DarwinCore
       %w(decimalLatitude http://rs.tdwg.org/dwc/terms/decimalLatitude),
       %w(decimalLongitude http://rs.tdwg.org/dwc/terms/decimalLongitude),
       %w(coordinateUncertaintyInMeters http://rs.tdwg.org/dwc/terms/coordinateUncertaintyInMeters),
+      %w(geodeticDatum http://rs.tdwg.org/dwc/terms/geodeticDatum EPSG:4326),
       %w(countryCode http://rs.tdwg.org/dwc/terms/countryCode),
       %w(stateProvince http://rs.tdwg.org/dwc/terms/stateProvince),
       %w(identificationID http://rs.tdwg.org/dwc/terms/identificationID),
@@ -42,7 +61,10 @@ module DarwinCore
       %w(rights http://purl.org/dc/terms/rights),
       %w(rightsHolder http://purl.org/dc/terms/rightsHolder),
       %w(inaturalistLogin http://xmlns.com/foaf/0.1/nick)
-    ]
+    ] + ANNOTATION_TERMS
+    cattr_accessor :annotation_controlled_attributes do
+      {}
+    end
     TERM_NAMES = TERMS.map{|name, uri, default, method| name}
 
     ALA_EXTRA_TERMS = [
@@ -52,6 +74,66 @@ module DarwinCore
       %w(positioningDevice https://www.inaturalist.org/terms/positioningDevice),
       %w(positioningMethod https://www.inaturalist.org/terms/positioningMethod)
     ]
+
+    GBIF_LIFE_STAGES = %w(
+      adult
+      agamont
+      ammocoete
+      bipinnaria
+      blastomere
+      calf
+      caterpillar
+      chick
+      eft
+      egg
+      elver
+      embryo
+      fawn
+      foal
+      fry
+      gamete
+      gametophyte
+      gamont
+      glochidium
+      grub
+      hatchling
+      imago
+      infant
+      juvenile
+      kit
+      kitten
+      larva
+      larvae
+      leptocephalus
+      maggot
+      nauplius
+      nymph
+      ovule
+      ovum
+      planula
+      polewig
+      pollen
+      polliwig
+      polliwog
+      pollywog
+      polwig
+      protonema
+      pup
+      pupa
+      puppe
+      seed
+      seedling
+      sperm
+      spore
+      sporophyte
+      tadpole
+      trochophore
+      veliger
+      whelp
+      wriggler
+      zoea
+      zygote
+    )
 
     # Extend observation with DwC methods.  For reasons unclear to me, url
     # methods are protected if you instantiate a view *outside* a model, but not
@@ -120,7 +202,9 @@ module DarwinCore
       end
 
       def informationWithheld
-        if geoprivacy_private?
+        if @show_private_coordinates
+          nil
+        elsif geoprivacy_private?
           "Coordinates hidden at the request of the observer"
         elsif geoprivacy_obscured?
           "Coordinate uncertainty increased to #{public_positional_accuracy}m at the request of the observer"
@@ -151,10 +235,37 @@ module DarwinCore
         user.login
       end
 
-      def recordedByOrcid
+      def recordedByID
         orcid_id = user.provider_authorizations.detect{|pa| pa.provider_name == "orcid"}.try(:provider_uid)
         return unless orcid_id
         "https://orcid.org/#{orcid_id}"
+      end
+
+      def identifiedBy
+        return unless first_improving = first_improving_identification
+        first_improving.user.name.blank? ? first_improving.user.login : first_improving.user.name
+      end
+
+      def identifiedByID
+        return unless first_improving = first_improving_identification
+        orcid_id = first_improving.user.provider_authorizations.detect{|pa|
+          pa.provider_name == "orcid"
+        }.try(:provider_uid)
+        return if orcid_id.blank?
+        "https://orcid.org/#{orcid_id}"
+      end
+
+      # As noted in https://github.com/gbif/occurrence/issues/89, identifiedBy
+      # and identifiedByID are primarily meant to provide attribution to the
+      # person who first provided the "correct" identification and not
+      # necessarily to track all people who may have agreed with that
+      # identification, sp we are only including the person who added the first
+      # improving identification that matches the observation taxon
+      def first_improving_identification
+        return unless dwc_taxon
+        taxon_id = dwc_taxon.id
+        idents = identifications.select(&:current?).sort_by(&:id)
+        idents.detect{|i| i.taxon_id == dwc_taxon.id && i.category == Identification::IMPROVING }
       end
 
       def establishmentMeans
@@ -171,11 +282,15 @@ module DarwinCore
       end
 
       def verbatimEventDate
-        dwc_filter_text(observed_on_string) unless observed_on_string.blank?
+        dwc_filter_text( observed_on_string ) unless observed_on_string.blank?
       end
 
       def verbatimLocality
-        dwc_filter_text(place_guess) unless place_guess.blank?
+        if @show_private_coordinates
+          dwc_filter_text(private_place_guess || place_guess) unless place_guess.blank?
+        else
+          dwc_filter_text( place_guess ) unless place_guess.blank?
+        end
       end
 
       def decimalLatitude
@@ -191,7 +306,6 @@ module DarwinCore
       end
 
       def decimalLongitude
-        # longitude.to_f unless longitude.blank?
         if @show_private_coordinates
           if private_longitude.blank?
             longitude.to_f unless longitude.blank?
@@ -204,7 +318,15 @@ module DarwinCore
       end
 
       def coordinateUncertaintyInMeters
-        public_positional_accuracy
+        if @show_private_coordinates
+          positional_accuracy
+        else
+          public_positional_accuracy
+        end
+      end
+
+      def geodeticDatum
+        "EPSG:4326"
       end
 
       def countryCode
@@ -218,15 +340,15 @@ module DarwinCore
       end
 
       def identificationID
-        owners_identification.try(:id)
+        first_improving_identification.try(:id)
       end
 
       def dateIdentified
-        owners_identification.updated_at.iso8601 if owners_identification
+        first_improving_identification.created_at.iso8601 if first_improving_identification
       end
 
       def identificationRemarks
-        dwc_filter_text(owners_identification.body) if owners_identification
+        dwc_filter_text(first_improving_identification.body) if first_improving_identification
       end
 
       def taxonID
@@ -299,6 +421,49 @@ module DarwinCore
 
       def positioningMethod
         positioning_method
+      end
+
+      # Attempting to match terms used on iNat to https://rs.gbif.org/vocabulary/gbif/sex.xml
+      def gbif_sex
+        winning_value = winning_annotation_value_for_term( "sex" )
+        case winning_value
+        when "cannot be determined"
+          "undetermined"
+        else
+          winning_value
+        end
+      end
+
+      def gbif_lifeStage
+        winning_value = winning_annotation_value_for_term( "lifeStage", inat_term: "Life Stage" )
+        return winning_value if GBIF_LIFE_STAGES.include?( winning_value )
+        nil
+      end
+
+      def reproductiveCondition
+        v = winning_annotations_for_term( "reproductiveCondition", inat_term: "Plant Phenology" ).map {|a|
+          a.controlled_value.label.downcase
+        }.join( "|" )
+        v == "cannot be determined" ? nil : v
+      end
+
+      def winning_annotations_for_term( term, options = {} )
+        return [] if annotations.blank?
+        inat_term = options.delete(:inat_term) || term
+        DarwinCore::Occurrence.annotation_controlled_attributes[term] ||= ControlledTerm.
+          joins(:labels).
+          where( is_value: false, active: true ).
+          where( "LOWER(controlled_term_labels.label) = ?", inat_term.downcase ).
+          first
+        controlled_attribute = DarwinCore::Occurrence.annotation_controlled_attributes[term]
+        return [] unless controlled_attribute
+        annotations.select{|a| a.controlled_attribute_id == controlled_attribute.id && a.vote_score >= 0}
+      end
+
+      def winning_annotation_value_for_term( term, options = {} )
+        winning_anno = winning_annotations_for_term( term, options ).first
+        return unless winning_anno
+        winning_anno.controlled_value.label.downcase
       end
 
     end

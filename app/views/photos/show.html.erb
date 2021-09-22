@@ -119,7 +119,7 @@
               <% %w(small medium large original).each do |size| %>
                 <%- next if @photo.send("#{size}_url").blank? -%>
                 <li>
-                  <%= link_to t( "photos_size.#{size}", default: t( size ) ), url_for( size: size ) %>
+                  <%= link_to t( "photos_size.#{size}", default: t( size ) ), photo_url( @photo, size: size ) %>
                 </li>
               <% end -%>
             </ul>
@@ -150,22 +150,29 @@
                 :class => "delete button" %>
             </td>
           </tr>
+          <% if @photo.file_file_name.to_s !~ /^open-uri/ %>
+            <tr>
+              <th><%=t :filename %></th>
+              <td><%= @photo.file_file_name %></td>
+            </tr>
+          <% end %>
         <% end -%>
-        <% if logged_in? && !@photo.metadata.blank? %>
+        <% if !@photo.metadata.blank? %>
           <%- coords_viewable = @photo.observations.detect{|o| !o.coordinates_viewable_by?(current_user)}.blank? -%>
           <% for k,v in @photo.metadata %>
             <%- next if !coords_viewable && k.to_s =~ /(gps|date)/i -%>
-            <%- next if k.to_s == 'dc' || k.to_s =~ /description/ || k.to_s == "dimensions" %>
+            <%- next if k.to_s == 'dc' || k.to_s =~ /description/i || k.to_s == "dimensions" -%>
+            <%- next if !logged_in? && k.to_s !~ /copyright/i -%>
             <tr>
               <% if k.to_s =~ /gps/i -%>
                 <th><%= k.to_s.humanize.gsub(/Gps/, 'GPS') %></th>
                 <td><%= v.is_a?(EXIFR::TIFF::Degrees) || v.is_a?(Rational) ? v.to_f : v %></td>
               <% else %>
                 <th><%= k.to_s.humanize %></th>
-                <td>
+                <td class="ui">
                   <%= case
                   when v.is_a?(EXIFR::TIFF::Orientation) then v.to_i
-                  when v.is_a?(String) then v.utf_safe
+                  when v.is_a?(String) then formatted_user_text( v.utf_safe )
                   else v
                   end %>
                 </td>

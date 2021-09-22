@@ -1,6 +1,7 @@
 module ObservationSearch
 
   LIST_FILTER_SIZE_CAP = 5000
+  SEARCH_IN_BATCHES_BATCH_SIZE = 500
 
   def self.included(base)
     base.extend ClassMethods
@@ -35,8 +36,13 @@ module ObservationSearch
 
     def search_in_batches(raw_params, options={}, &block)
       search_params = Observation.get_search_params(raw_params, options)
-      search_params.merge!({ min_id: 1, per_page: 500, preload: [ ],
-        order_by: "id", order: "asc" })
+      search_params.merge!(
+        min_id: raw_params[:min_id] || 1,
+        per_page: SEARCH_IN_BATCHES_BATCH_SIZE,
+        preload: [ ],
+        order_by: "id",
+        order: "asc"
+      )
       loop do
         batch = try_and_try_again( PG::ConnectionBad, logger: options[:logger] ) do
           Observation.page_of_results(search_params)
@@ -52,7 +58,7 @@ module ObservationSearch
     end
 
     def get_search_params(raw_params, options={})
-      raw_params = raw_params.clone.symbolize_keys
+      raw_params = raw_params.to_hash.symbolize_keys
       if options[:site] && options[:site].is_a?(Site)
         raw_params = Observation.site_search_params(options[:site], raw_params)
       end
@@ -70,7 +76,7 @@ module ObservationSearch
 
     def apply_pagination_options(params, options={})
       params ||= { }
-      search_params = params.clone.symbolize_keys
+      search_params = params.to_h.symbolize_keys
       search_params[:page] = search_params[:page].to_i
       # don't allow sub 0 page
       search_params[:page] = 1 if search_params[:page] <= 0
@@ -171,7 +177,8 @@ module ObservationSearch
         mapped_params = map_params_for_node_api(params)
         rsp = INatAPIService.observations(mapped_params.merge(only_id: true))
         return WillPaginate::Collection.create(rsp.page, rsp.per_page, rsp.total_results) do |pager|
-          pager.replace(Observation.where(id: rsp.results.map{ |r| r["id"] }).to_a)
+          observations = Observation.where(id: rsp.results.map{ |r| r["id"] }).to_a
+          pager.replace( observations )
         end
       end
       Observation.elastic_paginate(elastic_params)
@@ -236,7 +243,7 @@ module ObservationSearch
     # normalizes them for use in our search methods like query (database) or
     # elastic_query (ES)
     def query_params(params)
-      p = params.clone.symbolize_keys
+      p = params.to_hash.symbolize_keys
       unless p[:apply_project_rules_for].blank?
         if proj = Project.find_by_id(p[:apply_project_rules_for])
           p.merge!(proj.observations_url_params(extended: true))
@@ -291,6 +298,10 @@ module ObservationSearch
       if !p[:observations_taxon] && !p[:taxon_ids].blank?
         p[:observations_taxon_ids] = [p[:taxon_ids]].flatten.join(',').split(',').map(&:to_i)
         p[:observations_taxa] = Taxon.where(id: p[:observations_taxon_ids]).limit(100)
+      end
+
+      unless p[:without_taxon_id].blank?
+        p[:without_observations_taxon] = Taxon.find_by_id( p[:without_taxon_id].to_i )
       end
 
       if p[:has]
@@ -489,7 +500,6 @@ module ObservationSearch
       scope = scope.in_projects(params[:projects]) if params[:projects]
       scope = scope.in_places(place_ids) unless place_ids.empty?
       scope = scope.created_on(params[:created_on]) if params[:created_on]
-      scope = scope.out_of_range if params[:out_of_range] == 'true'
       scope = scope.in_range if params[:out_of_range] == 'false'
       scope = scope.license(params[:license]) unless params[:license].blank?
       scope = scope.photo_license(params[:photo_license]) unless params[:photo_license].blank?

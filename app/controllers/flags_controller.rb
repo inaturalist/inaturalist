@@ -1,37 +1,33 @@
 class FlagsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show]
-  before_filter :set_model, :except => [:update, :show, :destroy, :on]
-  before_filter :model_required, :except => [:index, :update, :show, :destroy, :on]
-  before_filter :load_flag, :only => [:show, :destroy, :update]
-  before_filter :curator_or_owner_required, only: [ :update, :destroy ]
-  
-  # put the parameters for the foreign keys here
-  FLAG_MODELS = [ "Observation", "Taxon", "Post", "Comment", "Identification",
-    "Message", "Photo", "List", "Project", "Guide", "GuideSection", "LifeList",
-    "User", "CheckList", "Sound" ]
-  FLAG_MODELS_ID = [ "observation_id","taxon_id","post_id", "comment_id",
-    "identification_id", "message_id", "photo_id", "list_id", "project_id",
-    "guide_id", "guide_section_id", "life_list_id", "user_id", "check_list_id",
-    "sound_id" ]
+  before_action :doorkeeper_authorize!, if: lambda { authenticate_with_oauth? }, except: [:show]
+  before_action :authenticate_user!, unless: lambda { authenticated_with_oauth? }, except: [:show]
+  before_action :set_model, except: [:update, :show, :destroy, :on]
+  before_action :model_required, except: [:index, :update, :show, :on, :destroy]
+  before_action :load_flag, only: [:show, :destroy, :update]
+  before_action :curator_or_owner_required, only: [:update]
+
   PARTIALS = %w(dialog)
 
   def index
-    if request.path != "/flags" && @model && @object = @model.find_by_id(params[@param])
-      # The default acts_as_flaggable index route
-      @object = @object.becomes(Photo) if @object.is_a?(Photo)
-      @object = @object.becomes(Sound) if @object.is_a?(Sound)
-      @flags = @object.flags.includes(:user, :resolver).
-        paginate(page: params[:page]).
-        order(id: :desc)
-      @unresolved = @flags.select {|f| not f.resolved }
-      @resolved = @flags.select {|f| f.resolved }
-      @moderator_actions = if @object.respond_to?(:moderator_actions)
-        @object.moderator_actions.limit( 100 ).to_a
+    if request.path != "/flags" && @model
+      @object = find_object
+      if @object
+        # The default acts_as_flaggable index route
+        @object = @object.becomes(Photo) if @object.is_a?(Photo)
+        @object = @object.becomes(Sound) if @object.is_a?(Sound)
+        @flags = @object.flags.includes(:user, :resolver).
+          paginate(page: params[:page]).
+          order(id: :desc)
+        @unresolved = @flags.select {|f| not f.resolved }
+        @resolved = @flags.select {|f| f.resolved }
+        @moderator_actions = if @object.respond_to?(:moderator_actions)
+          @object.moderator_actions.limit( 100 ).to_a
+        end
+        respond_to do |format|
+          format.html { render layout: "bootstrap" }
+        end
+        return
       end
-      respond_to do |format|
-        format.html { render layout: "bootstrap" }
-      end
-      return
     end
     # a real index of all flags, which can be filtered by flag type
     @flag_type = params[:flag].to_s.tr("_", " ")
@@ -46,7 +42,16 @@ class FlagsController < ApplicationController
     elsif params[:resolved].noish?
       "no"
     end
-    @flaggable_type = params[:flaggable_type] if FLAG_MODELS.include?( params[:flaggable_type] )
+    @deleted = if params[:deleted].blank?
+      "any"
+    elsif params[:deleted] == "any"
+      "any"
+    elsif params[:deleted].yesish?
+      "yes"
+    elsif params[:deleted].noish?
+      "no"
+    end
+    @flaggable_type = params[:flaggable_type] if Flag::TYPES.include?( params[:flaggable_type] )
     @user = User.where( login: params[:user_id] ).first || User.where( id: params[:user_id] ).first
     @user ||= User.where( login: params[:user_name] ).first
     @resolver = User.where( login: params[:resolver_id] ).first || User.where( id: params[:resolver_id] ).first
@@ -73,6 +78,19 @@ class FlagsController < ApplicationController
     elsif @resolved == "no"
       @flags = @flags.where( "NOT resolved" )
     end
+    if @flaggable_type
+      if @deleted == "yes"
+        flaggable_klass = Object.const_get( @flaggable_type )
+        @flags = @flags.
+          joins( "LEFT JOIN #{flaggable_klass.table_name} ON #{flaggable_klass.table_name}.id = flags.flaggable_id" ).
+          where( "#{flaggable_klass.table_name}.id IS NULL" )
+      elsif @deleted == "no"
+        flaggable_klass = Object.const_get( @flaggable_type )
+        @flags = @flags.
+          joins( "LEFT JOIN #{flaggable_klass.table_name} ON #{flaggable_klass.table_name}.id = flags.flaggable_id" ).
+          where( "#{flaggable_klass.table_name}.id IS NOT NULL" )
+      end
+    end
     if @flagger_type == "auto"
       @flags = @flags.where( "flags.user_id = 0 OR flags.user_id IS NULL" )
     elsif @flagger_type == "user"
@@ -84,8 +102,7 @@ class FlagsController < ApplicationController
     end
     if @taxon && @flaggable_type == "Taxon"
       @flags = @flags.
-        joins( "LEFT OUTER JOIN taxon_ancestors ta ON ta.taxon_id = flags.flaggable_id" ).
-        where( "ta.ancestor_taxon_id = ?", @taxon )
+        joins( "JOIN taxa ON (taxa.id = flags.flaggable_id AND #{@taxon.subtree_conditions.to_sql})" )
     end
     if @resolver
       @flags = @flags.where( resolver_id: @resolver )
@@ -109,7 +126,7 @@ class FlagsController < ApplicationController
   
   def new
     @flag = Flag.new(params[:flag])
-    @object = @model.find(params[@param])
+    @object = @model.find(params[@object_key])
     @object = @object.becomes(Photo) if @object.is_a?(Photo)
     @flag.flaggable ||= @object
     @flags = @object.flags.where(resolved: false).includes(:user)
@@ -142,10 +159,7 @@ class FlagsController < ApplicationController
       flash[:error] = t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence.downcase)
     end
 
-    if @object.is_a?(Identification) || @object.is_a?(Observation) ||
-       @object.is_a?(Comment) || @object.is_a?(Photo)
-      Observation.refresh_es_index
-    elsif @object.is_a?(Project)
+    if @object.is_a?(Project)
       Project.refresh_es_index
     end
 
@@ -164,7 +178,6 @@ class FlagsController < ApplicationController
         end
       end
       format.json do
-        Observation.refresh_es_index if @object.is_a?(Observation)
         render :json => @flag.to_json
       end
     end
@@ -174,40 +187,62 @@ class FlagsController < ApplicationController
   
   def update
     if resolver_id = params[:flag].delete("resolver_id")
-      params[:flag]["resolver"] = User.find(resolver_id)
+      params[:flag]["resolver"] = User.find_by_id(resolver_id)
     end
     respond_to do |format|
-      if @flag.update_attributes(params[:flag])
-        flash[:notice] = t(:flag_saved)
-      else
-        flash[:notice] = t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence)
+      msg = begin
+        if @flag.update_attributes(params[:flag])
+          t(:flag_saved)
+        else
+          t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence)
+        end
+      rescue Photo::MissingPhotoError
+        "Flag resolved, but the photo in question is gone and cannot be restored"
       end
-      if @object.is_a?(Identification) || @object.is_a?(Observation) ||
-         @object.is_a?(Comment) || @object.is_a?(Photo)
-        Observation.refresh_es_index
-      elsif @object.is_a?(Project)
+      if @object.is_a?(Project)
         Project.refresh_es_index
       end
       format.html do 
+        flash[:notice] = msg
         redirect_back_or_default(@flag)
+      end
+      format.json do
+        if @flag.valid?
+          render json: @flag
+        else
+          render status: :unprocessable_entity, json: @flag.errors
+        end
       end
     end
     
   end
   
   def destroy
+    unless @flag.deletable_by?( current_user )
+      msg = t(:you_dont_have_permission_to_do_that)
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          if session[:return_to] == request.fullpath
+            redirect_to root_url
+          else
+            redirect_back_or_default( root_url )
+          end
+        end
+        format.json do
+          render status: :unprocessable_entity, json: { error: msg }
+        end
+      end
+      return
+    end
     @object = @flag.flaggable
     @flag.destroy
-    if @object.is_a?(Identification) || @object.is_a?(Observation) ||
-       @object.is_a?(Comment) || @object.is_a?(Photo)
-      Observation.refresh_es_index
-    elsif @object.is_a?(Project)
+    if @object.is_a?(Project)
       Project.refresh_es_index
     end
     respond_to do |format|
       format.html { redirect_back_or_default(admin_path) }
       format.json do
-        Observation.refresh_es_index if @object.is_a?(Observation)
         head :ok
       end
     end
@@ -218,19 +253,17 @@ class FlagsController < ApplicationController
   def load_flag
     render_404 unless @flag = Flag.where(id: params[:id] || params[:flag_id]).includes(:user, :resolver).first
   end
+
+  def find_object
+    object = @model.find_by_uuid(params[@object_key]) if @model.respond_to?(:find_by_uuid)
+    object ||= @model.find_by_slug(params[@object_key]) if @model.respond_to?(:find_by_slug)
+    object ||= @model.find_by_id( params[@object_key] )
+  end
   
   def set_model
-    params.each do |key,value|
-      if FLAG_MODELS_ID.include? key
-        @param = key
-        object_name = key.split("_id")[0]
-        @model = eval(object_name.camelcase)
-        return
-      end
-    end
-    if (@model ||= Object.const_get(params[:flag][:flaggable_type]) rescue nil)
-      return
-    end
+    @object_key = (params.keys & Flag::TYPES.map(&:foreign_key)).first
+    @model = @object_key.split("_id")[0].classify.constantize if @object_key
+    @model ||= Object.const_get(params[:flag][:flaggable_type]) rescue nil
   end
 
   def model_required

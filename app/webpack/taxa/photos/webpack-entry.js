@@ -1,4 +1,5 @@
 import "@babel/polyfill";
+import _ from "lodash";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
@@ -41,7 +42,7 @@ if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
 }
 
 if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
-  // we use this for requesting localized taoxn names
+  // we use this for requesting localized taxon names
   store.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
   } ) );
@@ -69,8 +70,18 @@ store.dispatch( setTaxon( taxon ) );
 // fetch taxon terms before rendering the photo browser, in case
 // we need to verify a term grouping by termID
 store.dispatch( fetchTerms( ) ).then( ( ) => {
-  const urlParams = $.deparam( window.location.search.replace( /^\?/, "" ) );
-  store.dispatch( hydrateFromUrlParams( urlParams ) );
+  let urlParams = {};
+  if ( window.location.search && window.location.search.length > 0 ) {
+    urlParams = $.deparam( window.location.search.replace( /^\?/, "" ) );
+  } else if (
+    serverPayload.preferred_taxon_photos_query
+    && serverPayload.preferred_taxon_photos_query.length > 0
+  ) {
+    urlParams = $.deparam( serverPayload.preferred_taxon_photos_query );
+  }
+  if ( !_.isEmpty( urlParams ) ) {
+    store.dispatch( hydrateFromUrlParams( urlParams ) );
+  }
   window.onpopstate = e => {
     // user returned from BACK
     store.dispatch( hydrateFromUrlParams( e.state ) );

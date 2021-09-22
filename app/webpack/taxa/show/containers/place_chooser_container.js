@@ -13,7 +13,7 @@ function mapStateToProps( state ) {
 }
 
 function mapDispatchToProps( dispatch ) {
-  const setPlace = ( place ) => {
+  const setPlace = place => {
     dispatch( setConfig( { chosenPlace: place } ) );
     updateSession( { preferred_taxon_page_place_id: place ? place.id : null } );
     dispatch( fetchTaxon( ) );

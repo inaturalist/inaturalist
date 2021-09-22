@@ -1,4 +1,4 @@
-class Comment < ActiveRecord::Base
+class Comment < ApplicationRecord
 
   acts_as_spammable fields: [ :body ],
                     comment_type: "comment"
@@ -12,11 +12,13 @@ class Comment < ActiveRecord::Base
   #   c.parent.respond_to?(:user) && c.parent.user.id != user.id
   # }
 
-  belongs_to :parent, polymorphic: true
+  belongs_to_with_uuid :parent, polymorphic: true
   belongs_to :user
 
-  validates_length_of :body, within: 1..5000
+  MAX_LENGTH = 5000
+  validates_length_of :body, within: 1..MAX_LENGTH
   validates_presence_of :parent
+  validate :parent_prefers_comments
 
   after_create :update_parent_counter_cache
   after_destroy :update_parent_counter_cache
@@ -44,7 +46,7 @@ class Comment < ActiveRecord::Base
 
   include ActsAsUUIDable
 
-  attr_accessor :html, :bulk_delete
+  attr_accessor :html, :bulk_delete, :wait_for_obs_index_refresh
 
   def to_s
     "<Comment #{id} user_id: #{user_id} parent_type: #{parent_type} parent_id: #{parent_id}>"
@@ -67,10 +69,6 @@ class Comment < ActiveRecord::Base
       moderator_actions: moderator_actions.map(&:as_indexed_json),
       hidden: hidden?
     }
-  end
-
-  def formatted_body
-    BlueCloth::new(self.body).to_html
   end
 
   def update_parent_counter_cache
@@ -101,6 +99,9 @@ class Comment < ActiveRecord::Base
     return if @parent_indexed
     return if bulk_delete
     if parent && parent.respond_to?(:elastic_index!)
+      if parent.is_a?( Observation )
+        parent.wait_for_index_refresh = !!wait_for_obs_index_refresh
+      end
       parent.elastic_index!
       @parent_indexed = true
     end
@@ -109,6 +110,13 @@ class Comment < ActiveRecord::Base
   def flagged_with(flag, options)
     evaluate_new_flag_for_spam(flag)
     index_parent
+  end
+
+  def parent_prefers_comments
+    if parent && parent.respond_to?( :prefers_no_comments? ) && parent.prefers_no_comments?
+      errors.add( :parent, :prefers_no_comments )
+    end
+    true
   end
 
 end

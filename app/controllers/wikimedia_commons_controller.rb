@@ -1,6 +1,6 @@
 class WikimediaCommonsController < ApplicationController
-  before_filter :return_here, :only => [:options]
-  before_filter :authenticate_user!
+  before_action :return_here, :only => [:options]
+  before_action :authenticate_user!
 
   # Return an HTML fragment containing checkbox inputs for Wikimedia Commons photos.
   # Params:

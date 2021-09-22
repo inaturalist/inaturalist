@@ -2,6 +2,10 @@ module TaxonDescribers
   class Base
 
     class_attribute :describer
+
+    def initialize( options = {} )
+    end
+
     def describe(taxon)
       taxon.wikipedia_summary || "No description"
     end

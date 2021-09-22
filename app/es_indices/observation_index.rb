@@ -1,8 +1,9 @@
-class Observation < ActiveRecord::Base
+class Observation < ApplicationRecord
 
   include ActsAsElasticModel
 
-  DEFAULT_ES_BATCH_SIZE = 200
+  DEFAULT_ES_BATCH_SIZE = 100
+  DEFAULT_ES_BATCH_SLEEP = 2
 
   attr_accessor :indexed_place_ids, :indexed_private_place_ids, :indexed_private_places
 
@@ -78,6 +79,7 @@ class Observation < ActiveRecord::Base
             indexes :login, type: "keyword"
             indexes :spam, type: "boolean"
             indexes :suspended, type: "boolean"
+            indexes :site_id, type: "integer"
           end
         end
         indexes :user do
@@ -159,6 +161,7 @@ class Observation < ActiveRecord::Base
         indexes :value, type: "keyword"
         indexes :value_ci, type: "text", analyzer: "keyword_analyzer"
       end
+      # TODO Remove out_of_range from the index
       indexes :out_of_range, type: "boolean"
       indexes :outlinks do
         indexes :source, type: "keyword"
@@ -292,7 +295,6 @@ class Observation < ActiveRecord::Base
         for_identification: options[:for_identification]) : nil
     }
 
-
     current_ids = identifications.select(&:current?)
     if options[:no_details]
       json.merge!({
@@ -301,7 +303,7 @@ class Observation < ActiveRecord::Base
     else
       json.merge!({
         uuid: uuid,
-        user: user ? user.as_indexed_json(no_details: true) : nil,
+        user: user ? user.as_indexed_json(no_details: true).merge( site_id: user.site_id ) : nil,
         captive: captive,
         created_time_zone: timezone_object.blank? ? "UTC" : timezone_object.tzinfo.name,
         updated_at: updated_at.in_time_zone(timezone_object || "UTC"),
@@ -314,19 +316,19 @@ class Observation < ActiveRecord::Base
         place_guess: place_guess.blank? ? nil : place_guess,
         private_place_guess: private_place_guess.blank? ? nil : private_place_guess,
         observed_on_string: observed_on_string,
-        id_please: id_please,
-        out_of_range: out_of_range,
         license_code: license ? license.downcase : nil,
         geoprivacy: geoprivacy,
         taxon_geoprivacy: taxon_geoprivacy,
-        context_geoprivacy: context_geoprivacy,
-        context_user_geoprivacy: context_user_geoprivacy,
-        context_taxon_geoprivacy: context_taxon_geoprivacy,
         map_scale: map_scale,
         oauth_application_id: application_id_to_index,
         community_taxon_id: community_taxon_id,
         faves_count: faves_count,
-        cached_votes_total: cached_votes_total,
+        # cached_votes_total is a count of *all* votes on the obs, which
+        # includes things voting whether the obs still needs an ID, so using
+        # that actually throws off the sorting when what we really want to do is
+        # sort by faves. We're not losing anything performance-wise by loading
+        # the votes since we're doing that in the `votes` attribute anyway
+        cached_votes_total: votes_for.select{|v| v.vote_scope.blank?}.size,
         num_identification_agreements: num_identification_agreements,
         num_identification_disagreements: num_identification_disagreements,
         identifications_most_agree:
@@ -346,7 +348,9 @@ class Observation < ActiveRecord::Base
         tags: tags.map(&:name).compact.uniq,
         ofvs: observation_field_values.uniq.map(&:as_indexed_json),
         annotations: annotations.map(&:as_indexed_json),
-        photos_count: photos.any? ? photos.length : nil,
+        photos_count: photos.any? ? photos.select{|p|
+          p.flags.detect{|f| f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved?}.blank?
+        }.length : nil,
         sounds_count: sounds.any? ? sounds.length : nil,
         photo_licenses: photos.map(&:index_license_code).compact.uniq,
         sound_licenses: sounds.map(&:index_license_code).compact.uniq,
@@ -446,8 +450,8 @@ class Observation < ActiveRecord::Base
         AND place_id IN (#{ uniq_obs_place_ids })
         AND establishment_means IS NOT NULL
         GROUP BY taxon_id, establishment_means").to_a.each do |r|
-        taxon_establishment_places[r["taxon_id"]] ||= {}
-        taxon_establishment_places[r["taxon_id"]][r["establishment_means"]] = r["place_ids"].split( "," )
+        taxon_establishment_places[r["taxon_id"].to_s] ||= {}
+        taxon_establishment_places[r["taxon_id"].to_s][r["establishment_means"]] = r["place_ids"].split( "," )
       end
       place_ids = taxon_establishment_places.values.map(&:values).flatten.uniq.map(&:to_i)
       return if place_ids.empty?
@@ -455,7 +459,7 @@ class Observation < ActiveRecord::Base
       Place.connection.execute("
         SELECT id, bbox_area
         FROM places WHERE id IN (#{ place_ids.join(',') })").to_a.each do |r|
-        places[r["id"]] = {
+        places[r["id"].to_s] = {
           id: r["id"].to_i,
           bbox_area: r["bbox_area"].to_f
         }
@@ -606,7 +610,9 @@ class Observation < ActiveRecord::Base
       { http_param: :threatened, es_field: "taxon.threatened" },
       { http_param: :native, es_field: "taxon.native" },
       { http_param: :endemic, es_field: "taxon.endemic" },
+      # TODO remove id_please when we remove it from the ES index
       { http_param: :id_please, es_field: "id_please" },
+      # TODO remove out_of_range when we remove it from the ES index
       { http_param: :out_of_range, es_field: "out_of_range" },
       { http_param: :mappable, es_field: "mappable" },
       { http_param: :captive, es_field: "captive" }
@@ -647,20 +653,34 @@ class Observation < ActiveRecord::Base
       search_filters << { terms: {
         "taxon.ancestor_ids" => p[:observations_taxon_ids] } }
     end
+    if p[:without_observations_taxon]
+      inverse_filters << {
+        term: {
+          "taxon.ancestor_ids" => ElasticModel.id_or_object( p[:without_observations_taxon] )
+        }
+      }
+    end
     if p[:license] == "any"
       search_filters << { exists: { field: "license_code" } }
     elsif p[:license] == "none"
       inverse_filters << { exists: { field: "license_code" } }
-    elsif p[:license]
+    elsif p[:license].is_a?( String )
       search_filters << { terms: { license_code:
-        [ p[:license] ].flatten.map{ |l| l.downcase } } }
+        [ p[:license].to_s.split( "," ) ].flatten.compact.map{ |l| l.downcase } } }
+    elsif p[:license].is_a?( Array )
+      search_filters << { terms: { license_code:
+        [ p[:license] ].flatten.compact.map{ |l| l.downcase } } }
     end
     if p[:photo_license] == "any"
       search_filters << { exists: { field: "photo_licenses" } }
     elsif p[:photo_license] == "none"
       inverse_filters << { exists: { field: "photo_licenses" } }
     elsif p[:photo_license]
-      licenses = [ p[:photo_license] ].flatten.map{ |l| l.downcase }
+      licenses = if p[:photo_license].is_a?( String )
+        [ p[:photo_license].to_s.split( "," ) ].flatten.compact.map{ |l| l.downcase }
+      else
+        [ p[:photo_license] ].flatten.compact.map{ |l| l.downcase }
+      end
       search_filters << { terms: { "photo_licenses" => licenses } }
     end
     if p[:sound_license] == "any"
@@ -771,12 +791,14 @@ class Observation < ActiveRecord::Base
     end
 
     if p[:d1] || p[:d2]
+      p[:d1] = p[:d1].to_s
       d1 = DateTime.parse(p[:d1]) rescue DateTime.parse("1800-01-01")
+      p[:d2] = p[:d2].to_s
       d2 = DateTime.parse(p[:d2]) rescue Time.now
       # d2 = Time.now if d2 && d2 > Time.now # not sure why we need to prevent queries into the future
       query_by_date = (
-        (p[:d1] && d1.to_s =~ /00:00:00/ && p[:d1] !~ /00:00:00/) ||
-        (p[:d2] && d2.to_s =~ /00:00:00/ && p[:d2] !~ /00:00:00/))
+        (!p[:d1].blank? && d1.to_s =~ /00:00:00/ && p[:d1] !~ /00:00:00/) ||
+        (!p[:d2].blank? && d2.to_s =~ /00:00:00/ && p[:d2] !~ /00:00:00/))
       date_filter = { "observed_on_details.date": {
         gte: d1.strftime("%F"),
         lte: d2.strftime("%F") }}
@@ -899,6 +921,26 @@ class Observation < ActiveRecord::Base
       end
     end
 
+    if p[:ofv_datatype]
+      vals = p[:ofv_datatype].to_s.split( "," )
+      search_filters << {
+        nested: {
+          path: "ofvs",
+          query: {
+            bool: {
+              filter: [
+                {
+                  terms: {
+                    "ofvs.datatype" => vals
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    end
+
     if p[:ident_user_id]
       vals = p[:ident_user_id].to_s.split( "," )
       search_filters << { terms: { identifier_user_ids: vals } }
@@ -938,6 +980,8 @@ class Observation < ActiveRecord::Base
       { cached_votes_total: sort_order }
     when "id", "observations.id"
       { id: sort_order }
+    when "random"
+      "random"
     else
       { created_at: sort_order }
     end
@@ -961,9 +1005,10 @@ class Observation < ActiveRecord::Base
       search_filters << { term: { cached_votes_total: 0 } }
     end
     if p[:min_id]
-      search_filters << { range: { id: { gte: p[:min_id] } } }
-    end
-    if p[:max_id]
+      id_filter = { range: { id: { gte: p[:min_id] } } }
+      id_filter[:range][:id][:lte] = p[:max_id] if p[:max_id]
+      search_filters << id_filter
+    elsif p[:max_id]
       search_filters << { range: { id: { lte: p[:max_id] } } }
     end
     if p[:id_above]

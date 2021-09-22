@@ -1,0 +1,156 @@
+- content_for( :extracss ) do
+  = stylesheet_link_tag "taxon_changes"
+  :css
+    .taxon_change_taxon input.text { width: 300px; }
+    textarea { width:455px; }
+    fieldset.span-8 { width:274px; }
+    fieldset.span-16 { width:594px; }
+    fieldset.span-12 { width:434px; }
+    fieldset.span-24 { width:915px; }
+    #singletaxon { margin-left: 0; margin-right: 0 }
+    #multiple_taxa { margin-left: 0; margin-right: 0 }
+    .add_taxon_link { margin-right: 10px; }
+    #errorExplanation { clear:both; }
+- content_for( :extrajs ) do
+  = javascript_include_tag "taxon_changes/form"
+:ruby
+  taxon_change ||= @taxon_change
+  taxon_change_type = taxon_change.class.name
+
+= form_for taxon_change, as: :taxon_change,
+    url: taxon_change.new_record? ? taxon_changes_path : taxon_change_path( taxon_change ),
+    builder: DefaultFormBuilder,
+    html: { multipart: true } do |f|
+  = error_messages_for :taxon_change
+  
+  .column.span-24
+    - if taxon_change.committed?
+      .alert.box.clear
+        = t( :this_taxon_change_has_been_commited ).html_safe
+    - unless taxon_change.committed?
+      %fieldset.column.span-8
+        %legend
+          = t :type
+          - helptip_for "type" do
+            = t :choose_what_kind_of_change_youre_creating
+        = f.radio_button :type, "TaxonSplit", label_after: true, label: t( "change_types.split" ),
+          description: t( "change_descriptions.split" )
+        = f.radio_button :type, "TaxonMerge", label_after: true, label: t( "change_types.merge" ),
+          description: t( "change_descriptions.merge" )
+        = f.radio_button :type, "TaxonSwap", label_after: true, label: t( "change_types.swap" ),
+          description: t( "change_descriptions.swap" )
+        = f.radio_button :type, "TaxonDrop", label_after: true, label: t( "change_types.drop" ),
+          description: t( "change_descriptions.drop" )
+        = f.radio_button :type, "TaxonStage", label_after: true, label: t( "change_types.stage" ),
+          description: t( "change_descriptions.stage" )
+    - else
+      = f.hidden_field :type
+
+    %fieldset#sourcing{ class: ( taxon_change.committed? ? "last column span-24" : "last column span-16" ) }
+      %legend
+        = t :sourcing
+        - helptip_for "source" do
+          = t :please_add_a_citation_for_this_change
+      .stacked
+        = render partial: "sources/nested_form_fields", locals: { f: f }
+
+      = f.select :change_group, @change_groups, include_blank: t( :none ), selected: taxon_change.try( :change_group ), label: t( :change_group )
+      - new_change_group_field = capture do
+        = f.text_field :change_group, description: t( :label_to_group_a_batch_of_taxon_changes ), label: t( :change_group )
+      = link_to_function t( :add_a_new_change_group ), "$( '.change_group_field' ).replaceWith( '#{ escape_javascript new_change_group_field }' ); $( this ).remove()"
+    - unless taxon_change.committed?
+      %fieldset#id_analysis.last.column.span-16
+        - if params[:id]
+          = hidden_field_tag :current_id, params[:id]
+        = link_to t( :analyze_ids ), "#", class: "analyze_ids_button", data: { taxon_change_id: taxon_change }
+        - helptip_for "analyze" do
+          = t :estimate_which_input
+        = image_tag "spinner.gif", class: "spinner"
+        .analysis
+          = t( :total_ids_on_input_taxon )
+          = link_to 0, "#", target: "_blank", class: "analysis_input"
+          %table.analysis
+            %tr.headers
+              %td= t( :no_ids )
+              %td= t( :destination )
+              %td= t( :atlas )
+          = link_to_function t( :reset ), "resetFunction()"
+  .column.span-24
+    %fieldset#singletaxon.column.span-12
+      %legend= taxon_change_type == "TaxonSplit" ? t( :input_taxon ) : t( :output_taxon )
+      - if @taxon_change.committed?
+        .taxon_links
+          =render "shared/taxon", taxon: @taxon_change.taxon, link_url: @taxon_change.taxon, include_id: true, taxon_class: "inlineblock"
+      - else
+        = f.text_field :taxon_id, class: "text", id: "taxon_change_taxon_id", label: t( :taxon_id )
+        %br
+        = label_tag t(:taxon_name)
+        %br
+        = text_field_tag :taxon_name, taxon_change.taxon ? taxon_change.taxon.name : "", id: "taxon_name", class: "text"
+        = link_to_function t( :browse_all_species ), "$( '#taxonchooser' ).jqmShow();"
+        .description.stacked
+          = t :this_is_a_more_convenient_way_to_find_a_taxon_id
+        = link_to t( :create_a_new_taxon ), new_taxon_url, target: "_blank"
+
+    - if taxon_change.new_record? || taxon_change_type == "TaxonSplit" || taxon_change_type == "TaxonMerge" || taxon_change_type == "TaxonSwap"
+      %fieldset#multiple_taxa.last.column.span-12
+        - if taxon_change.new_record?
+          %legend=t :multiple_taxa_for_taxon_change
+        - else
+          %legend
+            -case taxon_change_type
+            -when "TaxonSplit"
+              = "Output taxa"
+            -when "TaxonMerge"
+              ="Input taxa"
+            -when "TaxonSwap"
+              ="Input taxon"
+            -else
+              =" "
+        - if @taxon_change.committed?
+          %ul.taxon_links.plain
+            -for taxon in @taxon_change.taxa
+              %li
+                =render "shared/taxon", taxon: taxon, link_url: taxon, include_id: true, taxon_class: "inlineblock"
+        - else
+          = f.fields_for :taxon_change_taxa, builder: DefaultFormBuilder do |tct|
+            .taxon_change_taxon
+              = tct.hidden_field :taxon_change_id
+              = tct.hidden_field "_destroy", value: false
+              = link_to_function t( :remove ), "removeFunction($( this ))", class: "right"
+              = tct.form_field :taxon_name, label: t(:taxon_name) do
+                %input{ type: "text", class: "text" }
+                = tct.hidden_field :taxon_id
+          - tct_form_fields = capture do
+            = f.fields_for :taxon_change_taxa, taxon_change.taxon_change_taxa.build, builder: DefaultFormBuilder do |tct|
+              .taxon_change_taxon
+                = tct.hidden_field :taxon_change_id
+                = tct.hidden_field "_destroy", value: false
+                = link_to_function t( :remove ), "removeFunction($( this ))", class: "right"
+                = tct.form_field :taxon_name, label: t( :taxon_name ) do
+                  %input{ type: "text", class: "text" }
+                  = tct.hidden_field :taxon_id
+          #new_taxon_change_taxa
+          %span.add_taxon_link.inlineblock
+            = link_to_function t( :add_a_taxon ), "addTaxonChangeTaxonField( '#{ escape_javascript( tct_form_fields ) }' )"
+          = link_to t( :create_a_new_taxon ), new_taxon_url, target: "_blank"
+  .column.span-24#move-children
+    %fieldset
+      %legend=t :more
+      = f.check_box :move_children,
+        label_after: true,
+        label: t( :move_input_children_to_output? ),
+        description: t( "views.taxon_changes.form.move_children_desc_html" ),
+        disabled: taxon_change.committed?
+  
+  .column.span-24
+    = f.text_area :description, label: t( :description )
+  
+  .column.span-24.buttonrow
+    = f.submit t( :save ), class: "default button", "data-loading-click" => t( :saving )
+    = link_to t( :cancel ), taxon_change, class: "button"
+    - unless taxon_change.committed?
+      = link_to t( :delete ), taxon_change,
+        method: :delete,
+        data: { confirm: t( :are_you_sure_you_want_to_delete_this_taxon_change ) },
+        class: "minor delete button"

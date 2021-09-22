@@ -29,7 +29,7 @@
   if js_link
     taxon_json ||= json_escape(taxon_to_json(taxon, :iconic_taxon => iconic_taxon).html_safe)
   end
-  photo ||= taxon.taxon_photos.sort_by{|tp| tp.id}.first.try(:photo)
+  photo ||= taxon.default_photo
   after_image ||= nil
 -%>
 
@@ -102,7 +102,7 @@
       <div class="wikipedia_summary">
         <% if summary = taxon.wikipedia_summary -%>
           <%= summary.html_safe %>
-          <span class="small description">(<%= t(:from) %> <%= link_to "Wikipedia", "http://wikipedia.org/wiki/#{taxon.name}" %>)</span>
+          <span class="small description">(<%= link_to "Wikipedia", "http://wikipedia.org/wiki/#{taxon.name}" %>)</span>
         <% else %>
           <span class="description">
             <%= t(:no_wikipedia_page_for_taxon) %> <%= link_to t(:start_one_now), "http://wikipedia.org/wiki/#{taxon.name}" %>

@@ -1,9 +1,10 @@
 class SitesController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :load_site, only: [:show, :edit, :update, :destroy]
-  before_filter :admin_or_any_site_admin_required, only: [:index, :show]
-  before_filter :require_admin_of_viewed_site, except: [:index, :show]
-  before_filter :setup_pref_groups, only: [:new, :create, :edit, :update, :show]
+  before_action :authenticate_user!, except: %w(network affiliation)
+  before_action :load_site, only: [:show, :edit, :update, :destroy, :export]
+  before_action :admin_or_any_site_admin_required, only: [:index, :show]
+  before_action :require_admin_of_viewed_site, except: [:index, :show,
+    :network, :affiliation]
+  before_action :setup_pref_groups, only: [:new, :create, :edit, :update, :show]
 
   layout "bootstrap"
 
@@ -22,6 +23,16 @@ class SitesController < ApplicationController
   # GET /sites/1.json
   def show
     @record = Site.find(params[:id])
+    @record_admin ||= @record.site_admins.where( user_id: current_user ).first
+
+    if current_user.is_admin? || @record_admin
+      export_path = @record.export_path
+      if File.exists?( export_path )
+        @export_url = export_site_url( @record )
+        @export_mtime = File.mtime( export_path )
+        @export_bytes = File.size( export_path )
+      end
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -89,6 +100,23 @@ class SitesController < ApplicationController
       format.html { redirect_to sites_url }
       format.json { head :no_content }
     end
+  end
+
+  def network
+    @page_title = t( "views.stats.year.inaturalist_network" )
+    @sites = Site.live.order( "id asc" ).limit( 500 ).all
+    render layout: "bootstrap-container"
+  end
+
+  def affiliation
+    @page_title = t(:inaturalist_network_affiliation)
+    render layout: "bootstrap-container"
+  end
+
+  def export
+    path = @record.export_path
+    return render_404 unless File.exists?( path )
+    send_file path
   end
 
   private

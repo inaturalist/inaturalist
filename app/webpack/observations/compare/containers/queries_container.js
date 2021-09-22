@@ -26,6 +26,9 @@ function mapDispatchToProps( dispatch ) {
     },
     updateQueryAtIndex: ( i, updates ) => {
       dispatch( updateQueryAtIndex( i, updates ) );
+    },
+    updateQueryAtIndexAndFetchData: ( i, updates ) => {
+      dispatch( updateQueryAtIndex( i, updates ) );
       dispatch( fetchDataForTab( ) );
     },
     moveQueryUp: i => {

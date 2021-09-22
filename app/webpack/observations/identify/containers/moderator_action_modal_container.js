@@ -13,7 +13,8 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     submit: ( item, action, reason ) => {
-      dispatch( submitModeratorAction( item, action, reason ) ).then( ( ) => dispatch( fetchCurrentObservation( ) ) );
+      dispatch( submitModeratorAction( item, action, reason ) )
+        .then( ( ) => dispatch( fetchCurrentObservation( ) ) );
       dispatch( hideModeratorActionForm( ) );
     },
     hide: ( ) => dispatch( hideModeratorActionForm( ) )

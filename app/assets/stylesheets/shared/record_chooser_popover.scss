@@ -43,18 +43,22 @@
     min-width: 5px;
   }
   li {
-    padding: 5px 0;
-    border-bottom: 1px solid #ddd;
-    i {
-      color: #999;
-      width: 20px;
-      text-align: center;
-      margin-top: 2px;
-      line-height: 1;
+    > button.btn.btn-nostyle {
+      padding: 5px 0;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+      width: 100%;
+      i {
+        color: #999;
+        width: 20px;
+        text-align: center;
+        margin-top: 2px;
+        line-height: 1;
+      }
     }
-  }
-  li:last-child {
-    border-bottom: 0 transparent;
+    &:last-child > button.btn.btn-nostyle {
+      border-bottom: 0 transparent;
+    }
   }
   li.current {
     background-color: #eee;

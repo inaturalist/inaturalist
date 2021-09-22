@@ -1,18 +1,14 @@
 #encoding: utf-8
 class ObservationsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: :index, if: :json_request?
+  skip_before_action :verify_authenticity_token, only: :index, if: :json_request?, raise: false
   protect_from_forgery unless: -> { request.format.widget? } #, except: [:stats, :user_stags, :taxa]
-  before_filter :decide_if_skipping_preloading, only: [ :index, :show, :taxon_summary ]
-  before_filter :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
-  before_filter :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
+  before_action :decide_if_skipping_preloading, only: [ :index, :show, :taxon_summary, :review ]
+  before_action :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
+  before_action :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
 
   WIDGET_CACHE_EXPIRATION = 15.minutes
-  caches_action :of,
-    :expires_in => 1.day,
-    :cache_path => Proc.new {|c| c.params.merge(:locale => I18n.locale)},
-    :if => Proc.new {|c| c.request.format != :html }
   cache_sweeper :observation_sweeper, :only => [:create, :update, :destroy]
-  
+
   rescue_from ::AbstractController::ActionNotFound  do
     unless @selected_user = User.find_by_login(params[:action])
       return render_404
@@ -24,10 +20,10 @@ class ObservationsController < ApplicationController
     only: [ :create, :update, :destroy, :viewed_updates, :update_fields, :review ],
     if: lambda { authenticate_with_oauth? }
   
-  before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
-  after_filter :return_here, :only => [:index, :by_login, :show, 
+  before_action :load_user_by_login, :only => [:by_login, :by_login_all, :lifelist_by_login]
+  after_action :return_here, :only => [:index, :by_login, :show, 
     :import, :export, :add_from_list, :new, :project]
-  before_filter :authenticate_user!,
+  before_action :authenticate_user!,
                 :unless => lambda { authenticated_with_oauth? },
                 :except => [:explore,
                             :index,
@@ -45,26 +41,26 @@ class ObservationsController < ApplicationController
                             :map,
                             :taxon_summary,
                             :observation_links,
-                            :torquemap]
+                            :torquemap,
+                            :lifelist_by_login]
   load_only = [ :show, :edit, :edit_photos, :update_photos, :destroy,
     :fields, :viewed_updates, :community_taxon_summary, :update_fields,
     :review, :taxon_summary, :observation_links ]
-  before_filter :load_observation, :only => load_only
+  before_action :load_observation, :only => load_only
   blocks_spam :only => load_only - [ :taxon_summary, :observation_links ],
     :instance => :observation
   check_spam only: [:create, :update], instance: :observation
-  before_filter :require_owner, :only => [:edit, :edit_photos,
+  before_action :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
-  before_filter :curator_required, :only => [:curation, :accumulation, :phylogram]
-  before_filter :load_photo_identities, :only => [:new, :new_batch, :show,
+  before_action :curator_required, :only => [:curation, :accumulation, :phylogram]
+  before_action :load_photo_identities, :only => [:new, :new_batch, :show,
     :new_batch_csv,:edit, :update, :edit_batch, :create, :import, 
     :import_photos, :import_sounds, :new_from_list]
-  before_filter :load_sound_identities, :only => [:new, :new_batch, :show,
+  before_action :load_sound_identities, :only => [:new, :new_batch, :show,
     :new_batch_csv,:edit, :update, :edit_batch, :create, :import, 
     :import_photos, :import_sounds, :new_from_list]
-  before_filter :photo_identities_required, :only => [:import_photos]
-  after_filter :refresh_lists_for_batch, :only => [:create, :update]
-  before_filter :load_prefs, :only => [:index, :project, :by_login]
+  before_action :photo_identities_required, :only => [:import_photos]
+  before_action :load_prefs, :only => [:index, :project, :by_login]
   
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess votes id"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
@@ -95,11 +91,19 @@ class ObservationsController < ApplicationController
     end
     params = request.params
     showing_partial = (params[:partial] && PARTIALS.include?(params[:partial]))
+    # Humans should see this, but scrapers like social media sites and curls
+    # will set Accept: */*
+    human_or_scraper = request.format.html? || request.format == "*/*"
     # the new default /observations doesn't need any observations
     # looked up now as it will use Angular/Node. This is for legacy
     # API methods, and HTML/views and partials
-    if request.format.html? && !showing_partial
-      params = params
+    if human_or_scraper && !showing_partial
+      @shareable_description = begin
+        generate_shareable_description
+      rescue StandardError => e
+        Logstasher.write_exception( e, request: request, session: session, user: current_user )
+        ""
+      end
     else
       h = observations_index_search(params)
       params = h[:params]
@@ -187,37 +191,6 @@ class ObservationsController < ApplicationController
       format.all { @observations = [] }
     end
   end
-  
-  def of
-    if request.format == :html
-      redirect_to observations_path(:taxon_id => params[:id])
-      return
-    end
-    unless @taxon = Taxon.find_by_id(params[:id].to_i)
-      render_404 && return
-    end
-    @observations = Observation.of(@taxon).
-      includes([ :user,
-                    :iconic_taxon,
-                    { :taxon => :taxon_descriptions },
-                    { :observation_photos => :photo } ]).
-      order("observations.id desc").
-      limit(500).sort_by{|o| [o.quality_grade == "research" ? 1 : 0, o.id]}
-    respond_to do |format|
-      format.json do
-        render :json => @observations.to_json(
-          :methods => [ :user_login, :iconic_taxon_name, :obs_image_url],
-          :include => [ { :user => { :only => :login } },
-                        :taxon, :iconic_taxon ] )
-        end
-      format.geojson do
-        render :json => @observations.to_geojson(:except => [
-          :geom, :latitude, :longitude, :map_scale, 
-          :num_identification_agreements, :num_identification_disagreements, 
-          :delta, :location_is_exact])
-      end
-    end
-  end
 
   def taxon_summary
     Observation.preload_associations( @observation, { observations_places: :place } )
@@ -231,7 +204,7 @@ class ObservationsController < ApplicationController
           joins(:place).
           where([ "taxon_id = ? AND place_id IN (?) AND establishment_means IS NOT NULL",
             taxon.id, @places ]).
-          order("establishment_means IN ('endemic', 'introduced') DESC, places.bbox_area ASC").
+          order( Arel.sql( "establishment_means IN ('endemic', 'introduced') DESC, places.bbox_area ASC" ) ).
           first
         conservation_status_in_place_scope = ConservationStatus.
           where("place_id IN (?)", @places).
@@ -269,6 +242,10 @@ class ObservationsController < ApplicationController
     }
   end
 
+  def lifelist_by_login
+    return render layout: "bootstrap"
+  end
+
   # GET /observations/1
   # GET /observations/1.xml
   def show
@@ -281,10 +258,7 @@ class ObservationsController < ApplicationController
         @next = Observation.page_of_results({ user_id: @observation.user.id,
           per_page: 1, min_id: @observation.id + 1, order_by: "id", order: "asc" }).first
         @user_quality_metrics = @observation.quality_metrics.select{|qm| qm.user_id == current_user.id}
-        @project_invitations = @observation.project_invitations.limit(100).to_a
-        @project_invitations_by_project_id = @project_invitations.index_by(&:project_id)
       end
-      @coordinates_viewable = @observation.coordinates_viewable_by?(current_user)
     end
     respond_to do |format|
       format.html do
@@ -292,24 +266,26 @@ class ObservationsController < ApplicationController
           return render(partial: "cached_component",
             object: @observation, layout: false)
         end
-        
+        @coordinates_viewable = @observation.coordinates_viewable_by?( current_user )
         user_viewed_updates(delay: true) if logged_in?
         @observer_provider_authorizations = @observation.user.provider_authorizations
         @shareable_image_url = FakeView.iconic_taxon_image_url( @observation.taxon, size: 200 )
         if op = @observation.observation_photos.sort_by{|op| op.position.to_i || op.id }.first
-          @shareable_image_url = FakeView.image_url( op.photo.best_url(:original) )
+          @shareable_image_url = FakeView.image_url( op.photo.best_url(:large) )
         end
         @shareable_title = if @observation.taxon
-          if comname = FakeView.common_taxon_name( @observation.taxon, user: current_user, site: @site ).try(:name)
-            "#{comname} (#{@observation.taxon.name})"
-          else
-            @observation.taxon.name
-          end
+          Taxon.preload_associations( @observation.taxon, { taxon_names: :place_taxon_names } )
+          render_to_string( partial: "taxa/taxon.txt", locals: { taxon: @observation.taxon } )
         else
           I18n.t( "something" )
         end
-        @shareable_description = @observation.to_plain_s( no_place_guess: !@coordinates_viewable )
-        @shareable_description += ".\n\n#{@observation.description}" unless @observation.description.blank?
+        @shareable_description = @observation.to_plain_s(
+          no_place_guess: !@coordinates_viewable,
+          viewer: current_user
+        )
+        unless @observation.description.blank?
+          @shareable_description += ".\n\n#{FakeView.truncate( @observation.description, length: 100 )}"
+        end
 
         @skip_application_js = true
         @flash_js = true
@@ -400,9 +376,6 @@ class ObservationsController < ApplicationController
       end
       copy_obs.observation_sounds.each do |os|
         @observation.observation_sounds.build( sound: os.sound )
-      end
-      copy_obs.observation_field_values.each do |ofv|
-        @observation.observation_field_values.build(:observation_field => ofv.observation_field, :value => ofv.value)
       end
     end
     
@@ -521,6 +494,12 @@ class ObservationsController < ApplicationController
       @observation.interpolate_coordinates
     end
 
+    # If the value of time_zone is actually the zic or IANA time zone, make sure
+    # it gets set to the Rails time zone name for editing purposes
+    if ActiveSupport::TimeZone::MAPPING.invert[@observation.time_zone]
+      @observation.time_zone = ActiveSupport::TimeZone::MAPPING.invert[@observation.time_zone]
+    end
+
     respond_to do |format|
       format.html do
         if params[:partial] && EDIT_PARTIALS.include?(params[:partial])
@@ -548,9 +527,21 @@ class ObservationsController < ApplicationController
       return
     end
     
-    @observations = params[:observations].map do |fieldset_index, observation|
+    @observations = params[:observations].to_h.map do |fieldset_index, observation|
       next if observation.blank?
       observation.delete('fieldset_index') if observation[:fieldset_index]
+      unless observation.is_a?( ActionController::Parameters )
+        observation = ActionController::Parameters.new( observation )
+      end
+
+      # If the client is trying to create an observation that already exists,
+      # update that observation instead of returning an error. This is meant to
+      # handle cases where the client submits a create request, the server
+      # receives it, but the client loses its connection before receiving a
+      # response. The client then thinks the request was not successful and
+      # tries to submit a create request again when it has network. We are not
+      # simply returning the existing state of the observation here because the
+      # client might have changed its copy of the observation in the interim.
       o = unless observation[:uuid].blank?
         current_user.observations.where( uuid: observation[:uuid] ).first
       end
@@ -559,6 +550,7 @@ class ObservationsController < ApplicationController
       if o.blank? && !observation[:uuid].blank?
         o = current_user.observations.where( uuid: observation[:uuid].downcase ).first
       end
+
       o ||= Observation.new
       o.assign_attributes(observation_params(observation))
       o.user = current_user
@@ -581,42 +573,57 @@ class ObservationsController < ApplicationController
         end
       end
 
-      # Get photos
-      photos = []
-      Photo.subclasses.each do |klass|
-        klass_key = klass.to_s.underscore.pluralize.to_sym
-        if params[klass_key] && params[klass_key][fieldset_index]
-          photos += retrieve_photos(params[klass_key][fieldset_index],
-            :user => current_user, :photo_class => klass)
-        end
-        if params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
-          if photo = photos.to_a.compact.last
-            photo_o = photo.to_observation
-            PHOTO_SYNC_ATTRS.each do |a|
-              o.send("#{a}=", photo_o.send(a)) if o.send(a).blank?
+      # We will process the photos if this is really a new observation or if the
+      # client actually specified some photos. Without this, there's a
+      # significant risk clients will resubmit photos without the local_photos
+      # param and we'll assume its absence means the client wants to remove
+      # existing photos
+      if o.new_record? || !params[:local_photos].blank?
+        # Get photos
+        # This is kind of double-protection against deleting existing photos
+        photos = o.photos
+        Photo.subclasses.each do |klass|
+          klass_key = klass.to_s.underscore.pluralize.to_sym
+          if params[klass_key] && params[klass_key][fieldset_index]
+            photos += retrieve_photos(params[klass_key][fieldset_index],
+              :user => current_user, :photo_class => klass)
+          end
+          if params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
+            if photo = photos.to_a.compact.last
+              photo_o = photo.to_observation
+              PHOTO_SYNC_ATTRS.each do |a|
+                o.send("#{a}=", photo_o.send(a)) if o.send(a).blank?
+              end
             end
           end
         end
-      end
-      photo = photos.compact.last
-      if o.new_record? && photo && photo.respond_to?(:to_observation) && !params[:uploader] &&
-          (o.observed_on_string.blank? || o.latitude.blank? || o.taxon.blank?)
-        photo_o = photo.to_observation
-        if o.observed_on_string.blank?
-          o.observed_on_string = photo_o.observed_on_string
-          o.observed_on = photo_o.observed_on
-          o.time_observed_at = photo_o.time_observed_at
+        photo = photos.compact.last
+        if o.new_record? && photo && photo.respond_to?(:to_observation) && !params[:uploader] &&
+            (o.observed_on_string.blank? || o.latitude.blank? || o.taxon.blank?)
+          photo_o = photo.to_observation
+          if o.observed_on_string.blank?
+            o.observed_on_string = photo_o.observed_on_string
+            o.observed_on = photo_o.observed_on
+            o.time_observed_at = photo_o.time_observed_at
+          end
+          if o.latitude.blank?
+            o.latitude = photo_o.latitude
+            o.longitude = photo_o.longitude
+          end
+          o.taxon = photo_o.taxon if o.taxon.blank?
+          o.species_guess = photo_o.species_guess if o.species_guess.blank?
         end
-        if o.latitude.blank?
-          o.latitude = photo_o.latitude
-          o.longitude = photo_o.longitude
-        end
-        o.taxon = photo_o.taxon if o.taxon.blank?
-        o.species_guess = photo_o.species_guess if o.species_guess.blank?
+        o.photos = ensure_photos_are_local_photos( photos )
+        o.will_be_saved_with_photos = true
       end
-      o.photos = ensure_photos_are_local_photos( photos )
-      new_sounds = Sound.from_observation_params(params, fieldset_index, current_user)
-      o.sounds << ensure_sounds_are_local_sounds( new_sounds )
+
+      # Same logic we use for photos: try to avoid deleting sounds if they
+      # weren't specified, but make sure we add them for new reocrds
+      if o.new_record? || !params[:local_sounds].blank?
+        new_sounds = Sound.from_observation_params(params, fieldset_index, current_user)
+        o.sounds << ensure_sounds_are_local_sounds( new_sounds )
+      end
+
       # make sure the obs get a valid observed_on, needed to determine research grade
       o.munge_observed_on_with_chronic
       o.set_quality_grade
@@ -625,6 +632,9 @@ class ObservationsController < ApplicationController
     
     @observations.compact.each do |o|
       o.user = current_user
+      # all observations will be indexed later, after all associated records
+      # have been created, just before responding
+      o.skip_indexing = true
       o.save
     end
     create_project_observations
@@ -640,6 +650,10 @@ class ObservationsController < ApplicationController
     else
       @observations.compact.each { |obs| errors = true unless obs.valid? }
     end
+    Observation.elastic_index!(
+      ids: @observations.compact.map( &:id ),
+      wait_for_index_refresh: params[:force_refresh]
+    )
     respond_to do |format|
       format.html do
         unless errors
@@ -660,7 +674,7 @@ class ObservationsController < ApplicationController
           elsif @observations.size == 1
             redirect_to observation_path(@observations.first)
           else
-            redirect_to :action => self.current_user.login
+            redirect_to observations_by_login_path( self.current_user.login )
           end
         else
           if @observations.size == 1
@@ -686,7 +700,6 @@ class ObservationsController < ApplicationController
           end
           render :json => json, :status => :unprocessable_entity
         else
-          Observation.refresh_es_index
           if @observations.size == 1 && is_iphone_app_2?
             render :json => @observations[0].to_json(
               :viewer => current_user,
@@ -731,7 +744,7 @@ class ObservationsController < ApplicationController
       return
     end
 
-    @observations = Observation.where(id: params[:observations].map{ |k,v| k },
+    @observations = Observation.where(id: params[:observations].to_h.map{ |k,v| k },
       user_id: observation_user)
     
     # Make sure there's no evil going on
@@ -753,39 +766,46 @@ class ObservationsController < ApplicationController
     end
     
     # Convert the params to a hash keyed by ID.  Yes, it's weird
-    hashed_params = Hash[*params[:observations].to_a.flatten]
+    hashed_params = Hash[*params[:observations].to_h.to_a.flatten]
     errors = false
     extra_msg = nil
     @observations.each_with_index do |observation,i|
       fieldset_index = observation.id.to_s
+      observation.skip_indexing = true
       
-      # Update the flickr photos
       # Note: this ignore photos thing is a total hack and should only be
       # included if you are updating observations but aren't including flickr
       # fields, e.g. when removing something from ID please
       if !params[:ignore_photos] && !is_mobile_app?
         # Get photos
-        updated_photos = []
+        keeper_photos = []
         old_photo_ids = observation.photo_ids
         Photo.subclasses.each do |klass|
           klass_key = klass.to_s.underscore.pluralize.to_sym
           next if klass_key.blank?
           if params[klass_key] && params[klass_key][fieldset_index]
-            updated_photos += retrieve_photos(params[klass_key][fieldset_index], 
+            keeper_photos += retrieve_photos(params[klass_key][fieldset_index],
               :user => current_user, :photo_class => klass, :sync => true)
           end
         end
-        
-        if updated_photos.empty?
-          observation.photos.clear
+
+        if keeper_photos.empty?
+          observation.observation_photos.destroy_all
         else
-          observation.photos = ensure_photos_are_local_photos( updated_photos )
+          keeper_photos = ensure_photos_are_local_photos( keeper_photos )
+          reject_obs_photos = observation.observation_photos.select{|op| !keeper_photos.map(&:id).include?( op.photo_id )}
+          reject_obs_photos.each(&:destroy)
+          keeper_photos.each do |p|
+            if p.new_record? || !observation.observation_photos.detect{|op| op.photo_id == p.id }
+              observation.observation_photos.build( photo: p )
+            end
+          end
         end
 
         Photo.subclasses.each do |klass|
           klass_key = klass.to_s.underscore.pluralize.to_sym
           next unless params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
-          next unless photo = observation.photos.last
+          next unless photo = observation.observation_photos.last.try(:photo)
           photo_o = photo.to_observation
           PHOTO_SYNC_ATTRS.each do |a|
             hashed_params[observation.id.to_s] ||= {}
@@ -812,8 +832,8 @@ class ObservationsController < ApplicationController
       observation.editing_user_id = current_user.id
 
       observation.force_quality_metrics = true unless hashed_params[observation.id.to_s][:captive_flag].blank?
-      
-      unless observation.update_attributes(observation_params(hashed_params[observation.id.to_s]))
+      permitted_params = ActionController::Parameters.new( hashed_params[observation.id.to_s].to_h )
+      unless observation.update_attributes( observation_params( permitted_params ) )
         errors = true
       end
 
@@ -828,6 +848,10 @@ class ObservationsController < ApplicationController
         end
       end
     end
+
+    Observation.elastic_index!(
+      ids: @observations.to_a.compact.map( &:id )
+    )
 
     respond_to do |format|
       if errors
@@ -869,7 +893,6 @@ class ObservationsController < ApplicationController
         format.xml  { head :ok }
         format.js { render :json => @observations }
         format.json do
-          Observation.refresh_es_index
           if @observations.size == 1 && is_iphone_app_2?
             render :json => @observations[0].to_json(
               viewer: current_user,
@@ -913,7 +936,7 @@ class ObservationsController < ApplicationController
   end
   
   def update_photos
-    @observation_photos = ObservationPhoto.where(id: params[:observation_photos].map{|k,v| k})
+    @observation_photos = ObservationPhoto.where(id: params[:observation_photos].to_h.map{|k,v| k})
     @observation_photos.each do |op|
       next unless @observation.observation_photo_ids.include?(op.id)
       op.update_attributes(params[:observation_photos][op.id.to_s])
@@ -926,6 +949,7 @@ class ObservationsController < ApplicationController
   # DELETE /observations/1
   # DELETE /observations/1.xml
   def destroy
+    @observation.wait_for_index_refresh = true
     @observation.destroy
     respond_to do |format|
       format.html do
@@ -934,7 +958,6 @@ class ObservationsController < ApplicationController
       end
       format.xml  { head :ok }
       format.json do
-        Observation.refresh_es_index
         head :ok
       end
     end
@@ -1012,7 +1035,8 @@ class ObservationsController < ApplicationController
     Delayed::Job.enqueue(
       bof, 
       priority: USER_PRIORITY,
-      unique_hash: unique_hash
+      unique_hash: unique_hash,
+      queue: "csv"
     )
 
     # Notify the user that it's getting processed and return them to the upload screen.
@@ -1029,7 +1053,11 @@ class ObservationsController < ApplicationController
   def edit_batch
     observation_ids = params[:o].is_a?(String) ? params[:o].split(',') : []
     @observations = Observation.where("id in (?) AND user_id = ?", observation_ids, current_user).
-      includes(:quality_metrics, {:observation_photos => :photo}, :taxon)
+      includes(
+        :quality_metrics, :observation_field_values, :sounds, :taggings,
+        { observation_photos: :photo },
+        { taxon: { taxon_photos: :photo } },
+      )
     @observations.map do |o|
       if o.coordinates_obscured?
         o.latitude = o.private_latitude
@@ -1056,7 +1084,7 @@ class ObservationsController < ApplicationController
         flash[:notice] = t(:observations_deleted)
         redirect_to observations_by_login_path(current_user.login)
       end
-      format.js { render :text => "Observations deleted.", :status => 200 }
+      format.js { render :plain => "Observations deleted.", :status => 200 }
     end
   end
   
@@ -1072,7 +1100,8 @@ class ObservationsController < ApplicationController
     end
     @project = Project.find(params[:project_id].to_i) if params[:project_id]
     if logged_in?
-      @projects = current_user.project_users.joins(:project).includes(:project).order('lower(projects.title)').collect(&:project)
+      @projects = current_user.project_users.joins(:project).includes(:project).
+        order( Arel.sql( "lower(projects.title)" ) ).collect(&:project)
       @project_templates = {}
       @projects.each do |p|
         @project_templates[p.title] = p.observation_fields.order(:position) if @project && p.id == @project.id
@@ -1117,14 +1146,32 @@ class ObservationsController < ApplicationController
 
   def export
     if params[:flow_task_id]
-      if @flow_task = ObservationsExportFlowTask.find_by_id(params[:flow_task_id])
+      if @flow_task = ObservationsExportFlowTask.
+          where( id: params[:flow_task_id], user_id: current_user ).first
         output = @flow_task.outputs.first
         @export_url = output ? FakeView.uri_join(root_url, output.file.url).to_s : nil
       end
     end
     @recent_exports = ObservationsExportFlowTask.
-      where(user_id: current_user).order(id: :desc).limit(20)
-    @observation_fields = ObservationField.recently_used_by(current_user).limit(50).sort_by{|of| of.name.downcase}
+      where( user_id: current_user ).order( id: :desc ).limit( 20 ).includes( :outputs )
+    @recent_export_jobs_by_flow_task_id = @recent_exports.select{|ft| ft.outputs.blank?}.inject( {} ) do |memo, ft|
+      memo[ft.id] = Delayed::Job.find_by_unique_hash( ft.enqueue_options[:unique_hash].to_s )
+      memo
+    end
+    if params[:projects] && params[:projects].is_a?( String )
+      @projects = params[:projects].to_s.split( "," ).collect{|id| Project.find( id ) rescue nil}.compact
+    elsif params[:projects] && params[:projects].is_a?( Array )
+      @projects = params[:projects].collect{|id| Project.find( id ) rescue nil}.compact
+    end
+    if @projects
+      @observation_fields = @projects.collect do |proj|
+        proj.project_observation_fields.collect(&:observation_field)
+      end.flatten
+    end
+    if @observation_fields.blank?
+      @observation_fields = ObservationField.recently_used_by(current_user).
+        limit(50).sort_by{ |of| of.name.downcase }
+    end
     set_up_instance_variables(Observation.get_search_params(params, current_user: current_user, site: @site))
     @identification_fields = if @ident_user
       %w(taxon_id taxon_name taxon_rank category).map{|a| "ident_by_#{@ident_user.login}:#{a}"}
@@ -1181,10 +1228,11 @@ class ObservationsController < ApplicationController
   # gets observations by user login
   def by_login
     block_if_spammer(@selected_user) && return
-    params.update(:user_id => @selected_user.id,
-      :viewer => current_user, 
-      :filter_spam => (current_user.blank? || current_user != @selected_user)
-    )
+    params[:user_id] = @selected_user.id
+    params[:viewer] = current_user
+    params[:filter_spam] = (current_user.blank? || current_user != @selected_user)
+    params[:order_by] ||= @prefs["edit_observations_order"] if @prefs["edit_observations_order"]
+    params[:order] ||= @prefs["edit_observations_sort"] if @prefs["edit_observations_sort"]
     search_params = Observation.get_search_params(params,
       current_user: current_user)
     search_params = Observation.apply_pagination_options(search_params,
@@ -1192,6 +1240,17 @@ class ObservationsController < ApplicationController
     @observations = Observation.page_of_results(search_params)
     set_up_instance_variables(search_params)
     Observation.preload_for_component(@observations, logged_in: !!current_user)
+    if @selected_user != current_user
+      filtered_obs = @observations.select {|o| o.coordinates_viewable_by?( current_user )}
+      diff = @observations.size - filtered_obs.size
+      @observations = WillPaginate::Collection.create(
+        @observations.current_page,
+        @observations.per_page,
+        @observations.total_entries - diff
+      ) do |pager|
+        pager.replace( filtered_obs )
+      end
+    end
     respond_to do |format|
       format.html do
         prepare_map(search_params)
@@ -1307,7 +1366,7 @@ class ObservationsController < ApplicationController
     elsif @taxon
       observations_url(url_params.merge(:taxon_id => @taxon.id))
     elsif @project
-      project_observations_url(@project.id, url_params)
+      observations_for_project_url( @project.id, url_params )
     elsif logged_in?
       observations_by_login_feed_url(current_user.login, url_params)
     end
@@ -1318,7 +1377,7 @@ class ObservationsController < ApplicationController
       format.html
     end
   end
-  
+
   def project
     @project = Project.find(params[:id]) rescue nil
     unless @project
@@ -1326,9 +1385,7 @@ class ObservationsController < ApplicationController
       redirect_to request.env["HTTP_REFERER"] || projects_path
       return
     end
-    
     params[:projects] = @project.id
-
     search_params = Observation.get_search_params(params,
       current_user: current_user)
     search_params = Observation.apply_pagination_options(search_params,
@@ -1337,50 +1394,28 @@ class ObservationsController < ApplicationController
     @observations = Observation.page_of_results(search_params)
     set_up_instance_variables(search_params)
     Observation.preload_for_component(@observations, logged_in: !!current_user)
-    
     @project_observations = @project.project_observations.where(observation: @observations.map(&:id)).
       includes([ { :curator_identification => [ :taxon, :user ] } ])
-    @project_observations_by_observation_id = @project_observations.index_by(&:observation_id)
-    
-    @kml_assets = @project.project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
-    
     respond_to do |format|
-      format.html do
-        prepare_map(search_params)
-        if (partial = params[:partial]) && PARTIALS.include?(partial)
-          return render_observations_partial(partial)
-        end
-      end
       format.json do
         render_observations_to_json
       end
-      format.atom do
-        @updated_at = Observation.last.updated_at
-        render :action => "index"
-      end
       format.csv do
         pagination_headers_for(@observations)
-        render :text => ProjectObservation.to_csv(@project_observations, :user => current_user)
-      end
-      format.kml do
-        render_observations_to_kml(
-          :snippet => "#{@project.title.html_safe} Observations", 
-          :description => "Observations feed for the #{@site.name} project '#{@project.title.html_safe}'",
-          :name => "#{@project.title.html_safe} Observations"
-        )
+        render :plain => ProjectObservation.to_csv(@project_observations, :user => current_user)
       end
       format.widget do
-        if params[:markup_only] == 'true'
-          render :js => render_to_string(:partial => "widget.html.erb", :locals => {
-            :show_user => true, 
-            :target => params[:target], 
-            :default_image => params[:default_image], 
-            :silence => params[:silence]
+        if params[:markup_only] == "true"
+          render js: render_to_string( partial: "widget.html.erb", locals: {
+            show_user: true,
+            target: params[:target],
+            default_image: params[:default_image],
+            silence: params[:silence]
           })
         else
-          render :js => render_to_string(:partial => "widget.js.erb", :locals => {
-            :show_user => true
-          })
+          render js: render_to_string( partial: "widget.js.erb", locals: {
+            show_user: true
+          } )
         end
       end
     end
@@ -1486,7 +1521,7 @@ class ObservationsController < ApplicationController
 
     ofv_attrs = params[:observation][:observation_field_values_attributes]
     ofv_attrs.each do |k,v|
-      ofv_attrs[k][:updater_user_id] = current_user.id
+      ofv_attrs[k][:updater_id] = current_user.id
     end
     o = { :observation_field_values_attributes =>  ofv_attrs}
     respond_to do |format|
@@ -1610,9 +1645,8 @@ class ObservationsController < ApplicationController
         render :layout => "bootstrap"
       end
       format.csv do
-        Taxon.preload_associations(@taxa, [
-          :ancestor_taxa, { taxon_names: :place_taxon_names }])
-        render :text => @taxa.to_csv(
+        Taxon.preload_associations(@taxa, { taxon_names: :place_taxon_names })
+        render :plain => @taxa.to_csv(
           :only => [:id, :name, :rank, :rank_level, :ancestry, :is_active],
           :methods => [:common_name_string, :iconic_taxon_name, 
             :taxonomic_kingdom_name,
@@ -1718,11 +1752,33 @@ class ObservationsController < ApplicationController
   end
 
   def moimport
-    if @api_key = params[:api_key]
-      @mo_import_task = MushroomObserverImportFlowTask.new
-      @mo_user_id = @mo_import_task.mo_user_id( @api_key )
-      @mo_user_name = @mo_import_task.mo_user_name( @api_key )
-      @results = @mo_import_task.get_results_xml( api_key: @api_key ).map{ |r| [r, @mo_import_task.observation_from_result( r, skip_images: true )] }
+    if @api_key = params[:api_key]&.strip
+      @mo_import_task = MushroomObserverImportFlowTask.new( user: current_user )
+      @mo_url_field = @mo_import_task.mo_url_observation_field
+      @mo_import_task.inputs.build( extra: { api_key: @api_key } )
+      begin
+        @mo_user_id = @mo_import_task.mo_user_id
+        @mo_user_name = @mo_import_task.mo_user_name
+        if @mo_user_id
+          begin
+            @results = @mo_import_task.get_results_xml.map do |r|
+              [r, @mo_import_task.observation_from_result( r, skip_images: true )]
+            end
+          rescue RestClient::BadGateway
+            @errors ||= []
+            @errors << "Failed to connect to Mushroom Observer"
+          rescue MushroomObserverImportFlowTask::MushroomObserverImportFlowTaskError => e
+            @errors ||= []
+            @errors << e.message
+          end
+        else
+          @errors ||= []
+          @errors << "No Mushroom Observer use associated with that API key"
+        end
+      rescue MushroomObserverImportFlowTask::MushroomObserverImportFlowTaskError => e
+        @errors ||= []
+        @errors << e.message
+      end
     end
     respond_to do |format|
       format.html { render layout: "bootstrap" }
@@ -1753,6 +1809,7 @@ class ObservationsController < ApplicationController
       :iconic_taxon_id,
       :latitude,
       :license,
+      :license_code,
       :location_is_exact,
       :longitude,
       :make_license_default,
@@ -1765,7 +1822,6 @@ class ObservationsController < ApplicationController
       :positioning_device,
       :positioning_method,
       :prefers_community_taxon,
-      :prefers_auto_obscuration,
       :quality_grade,
       :species_guess,
       :tag_list,
@@ -1905,7 +1961,6 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @observation }
       format.json do
-        Observation.refresh_es_index
         head :no_content
       end
     end
@@ -1913,27 +1968,27 @@ class ObservationsController < ApplicationController
 
   def email_export
     unless flow_task = current_user.flow_tasks.find_by_id(params[:id])
-      render status: :unprocessable_entity, text: "Flow task doesn't exist"
+      render status: :unprocessable_entity, plain: "Flow task doesn't exist"
       return
     end
     if flow_task.user_id != current_user.id
-      render status: :forbidden, text: "You don't have permission to do that"
+      render status: :forbidden, plain: "You don't have permission to do that"
       return
     end
     if flow_task.outputs.exists?
       Emailer.observations_export_notification(flow_task).deliver_now
-      render status: :ok, text: ""
+      render status: :ok, plain: ""
       return
     elsif flow_task.error
       Emailer.observations_export_failed_notification(flow_task).deliver_now
-      render status: :ok, text: ""
+      render status: :ok, plain: ""
       return
     end
     flow_task.options = flow_task.options.merge(:email => true)
     if flow_task.save
-      render status: :ok, text: ""
+      render status: :ok, plain: ""
     else
-      render status: :unprocessable_entity, text: flow_task.errors.full_messages.to_sentence
+      render status: :unprocessable_entity, plain: flow_task.errors.full_messages.to_sentence
     end
   end
 
@@ -1975,7 +2030,7 @@ class ObservationsController < ApplicationController
     @elastic_params = valid_map_params
     @default_color = params[:color] || (@taxa.empty? ? "heatmap" : nil)
     @map_style = (( params[:color] || @taxa.any? ) &&
-                    params[:color] != "heatmap" ) ? "colored_heatmap" : "heatmap"
+                    params[:color] != "heatmap" ) ? "grid" : "heatmap"
     @map_type = ( params[:type] == "map" ) ? "MAP" : "SATELLITE"
     @default_color = params[:heatmap_colors] if @map_style == "heatmap"
     @about_url = @site.map_about_url.blank? ? view_context.wiki_page_url('help', anchor: 'mapsymbols') : @site.map_about_url
@@ -2007,7 +2062,7 @@ class ObservationsController < ApplicationController
       params[:reviewed] === "false" ? false : true
     end
     review.update_attributes({ user_added: true, reviewed: reviewed })
-    review.observation.elastic_index!
+    review.update_observation_index( wait_for_refresh: params[:wait_for_refresh] )
   end
 
   def stats_adequately_scoped?(search_params = { })
@@ -2048,7 +2103,7 @@ class ObservationsController < ApplicationController
     native_photo_ids = photo_list.map{|p| p.to_s}.uniq
     # the photos may exist in their native photo_class, or cached
     # as a LocalPhoto, so lookup both and combine results
-    existing = LocalPhoto.where( subtype: photo_class, native_photo_id: native_photo_ids, user_id: current_user.id )
+    existing = LocalPhoto.where( subtype: photo_class.name, native_photo_id: native_photo_ids, user_id: current_user.id )
     if photo_class && photo_class != LocalPhoto
       existing += photo_class.includes(:user).where( native_photo_id: native_photo_ids, user_id: current_user.id )
     end
@@ -2079,8 +2134,8 @@ class ObservationsController < ApplicationController
         photo = if photo_class == LocalPhoto
           if photo_id.is_a?(Integer) || photo_id.is_a?(String)
             LocalPhoto.find_by_id(photo_id)
-          else
-            LocalPhoto.new(:file => photo_id, :user => current_user) unless photo_id.blank?
+          elsif !photo_id.blank?
+            LocalPhoto.new( file: photo_id, user: current_user) unless photo_id.blank?
           end
         else
           api_response ||= begin
@@ -2122,6 +2177,7 @@ class ObservationsController < ApplicationController
     @iconic_taxa = search_params[:iconic_taxa_instances]
     @observations_taxon_id = search_params[:observations_taxon_id]
     @observations_taxon = search_params[:observations_taxon]
+    @without_observations_taxon = search_params[:without_observations_taxon]
     @observations_taxon_name = search_params[:taxon_name]
     @observations_taxon_ids = search_params[:taxon_ids] || search_params[:observations_taxon_ids]
     @observations_taxa = search_params[:observations_taxa]
@@ -2138,7 +2194,6 @@ class ObservationsController < ApplicationController
     @reviewed = search_params[:reviewed]
     @captive = search_params[:captive]
     @identifications = search_params[:identifications]
-    @out_of_range = search_params[:out_of_range]
     @license = search_params[:license]
     @photo_license = search_params[:photo_license]
     @sound_license = search_params[:sound_license]
@@ -2177,6 +2232,7 @@ class ObservationsController < ApplicationController
       !@q.nil? ||
       !@observations_taxon_id.blank? ||
       !@observations_taxon_name.blank? ||
+      !@without_observations_taxon.blank? ||
       !@iconic_taxa.blank? ||
       @id_please == true ||
       !@with_photos.blank? ||
@@ -2184,7 +2240,6 @@ class ObservationsController < ApplicationController
       !@identifications.blank? ||
       !@quality_grade.blank? ||
       !@captive.blank? ||
-      !@out_of_range.blank? ||
       !@observed_on.blank? ||
       !@place.blank? ||
       !@ofv_params.blank? ||
@@ -2196,17 +2251,6 @@ class ObservationsController < ApplicationController
     @filters_open = search_params[:filters_open] == 'true' if search_params.has_key?(:filters_open)
   end
 
-  # Refresh lists affected by taxon changes in a batch of new/edited
-  # observations.  Note that if you don't set @skip_refresh_lists on the records
-  # in @observations before this is called, this won't do anything
-  def refresh_lists_for_batch
-    return true if @observations.blank?
-    taxa = @observations.to_a.compact.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
-    return true if taxa.blank?
-    List.delay(:priority => USER_PRIORITY).refresh_for_user(current_user, :taxa => taxa.map(&:id))
-    true
-  end
-  
   # Tries to create a new observation from the specified Facebook photo ID and
   # update the existing @observation with the new properties, without saving
   def sync_facebook_photo
@@ -2463,10 +2507,16 @@ class ObservationsController < ApplicationController
   end
   
   def load_observation
-    scope = Observation.where(id: params[:id] || params[:observation_id])
+    obs_id = params[:id] || params[:observation_id]
+    scope = if obs_id.to_s =~ BelongsToWithUuid::UUID_PATTERN
+      Observation.where( uuid: obs_id )
+    else
+      scope = Observation.where( id: obs_id )
+    end
     includes = [ :quality_metrics,
       :flags,
       { photos: :flags },
+      :sounds,
       :identifications,
       :projects,
       { taxon: :taxon_names }
@@ -2485,7 +2535,65 @@ class ObservationsController < ApplicationController
     end
     render_404 unless @observation
   end
+
+  def search_taxon
+    return if params[:taxon_id].blank?
+
+    @search_taxon ||= Taxon.find_by_id(params[:taxon_id].to_i)
+  end
+
+  def search_place
+    return if params[:place_id].blank?
+
+    @search_place ||= Place.find_by_id( params[:place_id].to_i )
+  end
+
+  def search_user
+    return if params[:user_id].blank?
+
+    @search_user ||= ( User.find_by_id( params[:user_id].to_i ) || User.find_by_login( params[:user_id] ) )
+  end
   
+  def search_date
+    return if params[:on].blank?
+
+    begin
+      @search_date ||= Date.parse( params[:on] )
+    rescue ArgumentError
+      nil
+    end
+  end
+
+  def generate_shareable_description
+    if search_taxon
+      key = "observation_brief_taxon"
+      i18n_vars = {}
+      i18n_vars[:taxon] = search_taxon.common_name( locale: I18n.locale ).try(:name)
+      i18n_vars[:taxon] = search_taxon.name if i18n_vars[:taxon].blank?
+      if search_place
+        key += "_from_place"
+        i18n_vars[:place] = search_place.localized_name
+      end
+      if search_date
+        key += "_on_day"
+        i18n_vars[:day] = I18n.l( search_date, format: :long )
+      end
+      if search_user
+        key += "_by_user"
+        i18n_vars[:user] = search_user.try_methods(:name, :login)
+      end
+      I18n.t( key, i18n_vars.merge( default: I18n.t( :observations_of_taxon, taxon_name: i18n_vars[:taxon] ) ) )
+    elsif search_user
+      if search_date
+        I18n.t( :observations_by_user_on_date, user: search_user.try_methods(:name, :login), date: I18n.l( search_date, format: :long ) )
+      else
+        I18n.t( :observations_by_user, user: search_user.try_methods(:name, :login) )
+      end
+    else
+      I18n.t( :x_site_is_a_social_network_for_naturalist, site: @site.name )
+    end
+  end
+
   def require_owner
     unless ( logged_in? && current_user.id == @observation.user_id ) || current_user.is_admin?
       msg = t(:you_dont_have_permission_to_do_that)
@@ -2596,7 +2704,7 @@ class ObservationsController < ApplicationController
     only = (first + Observation::CSV_COLUMNS).uniq
     except = %w(map_scale timeframe iconic_taxon_id delta geom user_agent cached_tag_list)
     unless options[:show_private] == true
-      except += %w(private_latitude private_longitude private_positional_accuracy)
+      except += %w(private_latitude private_longitude private_place_guess)
     end
     only = only - except
     unless @ofv_params.blank?
@@ -2607,7 +2715,7 @@ class ObservationsController < ApplicationController
     end
     Observation.preload_associations(@observations, [ :tags, :taxon, :photos, :user, :quality_metrics ])
     pagination_headers_for(@observations)
-    render :text => Observation.as_csv(@observations, only.map{|c| c.to_sym},
+    render :plain => Observation.as_csv(@observations, only.map{|c| c.to_sym},
       { ssl: request.protocol =~ /https/ })
   end
   
@@ -2681,7 +2789,7 @@ class ObservationsController < ApplicationController
   
   def render_observations_partial(partial)
     if @observations.empty?
-      render(:text => '')
+      render(:plain => '')
     else
       render(partial: "partial_renderer",
         locals: { partial: partial, collection: @observations }, layout: false)
@@ -2712,11 +2820,15 @@ class ObservationsController < ApplicationController
       else
         # no job id, no job, let's get this party started
         Rails.cache.delete(cache_key)
-        job = Observation.delay(:priority => NOTIFICATION_PRIORITY).generate_csv_for(parent, :path => path_for_csv, :user => current_user)
+        job = Observation.delay(
+          priority: NOTIFICATION_PRIORITY,
+          queue: "csv",
+          unique_hash: "Observations::delayed_csv::#{cache_key}"
+        ).generate_csv_for( parent, path: path_for_csv, user: current_user )
         Rails.cache.write(cache_key, job.id, :expires_in => 1.hour)
       end
       prevent_caching
-      render :status => :accepted, :text => "This file takes a little while to generate. It should be ready shortly at #{request.url}"
+      render :status => :accepted, :plain => "This file takes a little while to generate. It should be ready shortly at #{request.url}"
     end
   end
 
@@ -2862,7 +2974,8 @@ class ObservationsController < ApplicationController
       ( params[:partial] == "cached_component" ) ||
       ( action_name == "taxon_summary" ) ||
       ( action_name == "observation_links" ) ||
-      ( action_name == "show" )
+      ( action_name == "show" ) ||
+      ( action_name == "review" )
   end
 
   def observations_index_search(params)
@@ -2904,7 +3017,7 @@ class ObservationsController < ApplicationController
         Photo.turn_remote_photo_into_local_photo( photo )
         Photo.find_by_id( photo.id ) # || photo.becomes( LocalPhoto ) # ensure we have an object loaded with the right class
       end
-    }.compact
+    }.compact.uniq
   end
 
   def ensure_sounds_are_local_sounds( sounds )

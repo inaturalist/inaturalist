@@ -24,3 +24,28 @@ if caller.last =~ /delayed_job/
   ActiveSupport::Cache::Store.logger = Delayed::Worker.logger
   Rails.logger.level = Logger::WARN if Rails.env.production?
 end
+
+# enable a limit on how many jobs a worker can do before its forced to stop
+if CONFIG.delayed_jobs && CONFIG.delayed_jobs.job_limit
+  module Delayed
+    class Worker
+      cattr_accessor :job_limit, :jobs_run
+      self.job_limit = CONFIG.delayed_jobs.job_limit
+      self.jobs_run = 0
+
+      protected
+
+      def reserve_and_run_one_job
+        job = reserve_job
+        success = self.class.lifecycle.run_callbacks(:perform, self, job) { run(job) } if job
+        self.jobs_run += 1
+        # stop the worker if it has reached its job_limi
+        if self.job_limit && self.jobs_run >= self.job_limit
+          stop
+        end
+        success
+      end
+
+    end
+  end
+end

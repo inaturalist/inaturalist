@@ -6,10 +6,15 @@ module MakeHelpers
       controlled_attribute: attribute,
       controlled_value: value
     )
-    Annotation.make( options.merge(
+    make_method = options.delete(:create) ? :make! : :make
+    Annotation.send( make_method, options.merge(
       controlled_attribute: attribute,
       controlled_value: value  
     ) )
+  end
+
+  def make_annotation!( options = {} )
+    make_annotation( options.merge( create: true ) )
   end
 
   def make_curator(opts = {})
@@ -22,21 +27,20 @@ module MakeHelpers
   
   def make_user_with_role(role_name, opts = {})
     user = User.make!(opts)
-    user.roles << Role.make!(:name => role_name.to_s)
+    role = Role.find_by_name( role_name ) || Role.make!( name: role_name.to_s )
+    user.roles << role
     user
   end
 
   def make_user_with_privilege( privilege, options = {} )
     UserPrivilege.make!( privilege: privilege, user: User.make!( options ) ).user
   end
-  
-  def make_life_list_for_taxon(taxon, options = {})
-    list = LifeList.make!(options)
-    list.rules << ListRule.new(
-      :operand => taxon, 
-      :operator => 'in_taxon?'
-    )
-    list
+
+  def make_observations_export_flow_task( options = {} )
+    ft = ObservationsExportFlowTask.make( options )
+    ft.inputs.build( extra: { query: "user_id=#{ft.user.id}" } )
+    ft.save!
+    ft
   end
   
   def make_observation_of_threatened(options = {})
@@ -58,8 +62,20 @@ module MakeHelpers
   end
   
   def make_research_grade_observation(options = {})
+    user = if options[:user]
+      options[:user]
+    elsif u = User.find_by_id( options[:user_id] )
+      u
+    else
+      User.make!
+    end
     options = {
-      :taxon => Taxon.make!(:species), :latitude => 1, :longitude => 1, :observed_on_string => "yesterday"
+      taxon: Taxon.make!(:species),
+      latitude: 1,
+      longitude: 1,
+      observed_on_string: "yesterday",
+      user: user,
+      editing_user_id: user.id
     }.merge(options)
     o = Observation.make!(options)
     i = Identification.make!(:observation => o, :taxon => o.taxon)
@@ -91,13 +107,6 @@ module MakeHelpers
     lp = LocalPhoto.make!(options)
     lp.observations << Observation.make!(:user => lp.user)
     lp
-  end
-  
-  def make_project_invitation(options = {})
-    pu = ProjectUser.make!
-    o = Observation.make!
-    pi = ProjectInvitation.create!(options.merge(:user => pu.user, :project => pu.project, :observation => o))
-    pi
   end
 
   def make_project_observation(options = {})
@@ -224,7 +233,7 @@ module MakeHelpers
     set_taxon_with_rank_and_parent( "Myrtales", Taxon::ORDER, @Magnoliopsida )
     set_taxon_with_rank_and_parent( "Onagraceae", Taxon::FAMILY, @Myrtales )
     set_taxon_with_rank_and_parent( "Clarkia", Taxon::GENUS, @Onagraceae )
-    set_taxon_with_rank_and_parent( "Clarkia amoena", Taxon::GENUS, @Clarkia )
+    set_taxon_with_rank_and_parent( "Clarkia amoena", Taxon::SPECIES, @Clarkia )
 
     Taxon.reset_iconic_taxa_constants_for_tests
 
@@ -242,7 +251,7 @@ module MakeHelpers
       return instance_variable_get( "@#{varname}" )
     end
     instance_variable_set( "@#{varname}", Taxon.make!( options.merge( name: name, rank: rank ) ) )
-    instance_variable_get( "@#{varname}" ).update_attributes( parent: parent )
+    instance_variable_get( "@#{varname}" ).update_attributes!( parent: parent )
     if common_name
       instance_variable_get( "@#{varname}" ).taxon_names << TaxonName.make!(
         name: common_name, 
@@ -250,6 +259,7 @@ module MakeHelpers
         lexicon: TaxonName::LEXICONS[:ENGLISH]
       )
     end
+    instance_variable_get( "@#{varname}" ).reload
     instance_variable_get( "@#{varname}" )
   end
 
@@ -262,7 +272,6 @@ module MakeHelpers
     taxon = options[:taxon]
     presence_place = options.delete(:place) || make_place_with_geom( place_type: Place::COUNTRY, admin_level: Place::COUNTRY_LEVEL )
     listed_taxon = presence_place.check_list.add_taxon( taxon )
-    AncestryDenormalizer.denormalize
     PlaceDenormalizer.denormalize
     Atlas.make!( options )
   end

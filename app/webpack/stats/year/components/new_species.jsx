@@ -4,7 +4,7 @@ import moment from "moment";
 import _ from "lodash";
 import inatjs from "inaturalistjs";
 import ObservationsGrid from "./observations_grid";
-import DateHistogram from "./date_histogram";
+import DateHistogram from "../../../shared/components/date_histogram";
 
 class NewSpecies extends React.Component {
   constructor( props ) {
@@ -36,6 +36,7 @@ class NewSpecies extends React.Component {
     if ( user ) {
       params.user_id = user.id;
     }
+    /* global DEFAULT_SITE_ID */
     if ( site && site.id !== DEFAULT_SITE_ID ) {
       if ( site.place_id ) {
         params.place_id = site.place_id;
@@ -105,7 +106,25 @@ class NewSpecies extends React.Component {
       accumulated_species_count: 0,
       novel_species_ids: []
     } );
-    const grayColor = "rgba( 40%, 40%, 40%, 0.5 )";
+    series.novel = {
+      title: I18n.t( "newly_added" ),
+      data: _.map( data, i => ( {
+        date: i.date,
+        value: i.novel_species_ids.length,
+        novel_species_ids: i.novel_species_ids,
+        offset: showAccumulation ? i.accumulated_species_count - i.novel_species_ids.length : 0,
+        highlight: (
+          focusYear
+          && focusMonth
+          && moment( i.date ).year( ) === focusYear
+          && moment( i.date ).add( 2, "days" ).month( ) + 1 === focusMonth
+        )
+      } ) ),
+      style: "bar",
+      label: d => `<strong>${
+        moment( d.date ).add( 2, "days" ).format( I18n.t( "momentjs.month_year" ) )
+      }</strong>: ${I18n.t( "x_new_species", { count: I18n.toNumber( d.value, { precision: 0 } ) } )}`
+    };
     if ( showAccumulation ) {
       series.accumulated = {
         title: I18n.t( "running_total" ),
@@ -114,31 +133,24 @@ class NewSpecies extends React.Component {
           value: i.accumulated_species_count
         } ) ),
         style: "bar",
-        color: grayColor,
+        color: "rgba( 40%, 40%, 40%, 0.5 )",
         label: d => `<strong>${
-          moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" )
+          moment( d.date ).add( 2, "days" ).format( I18n.t( "momentjs.month_year" ) )
         }</strong>: ${I18n.t( "x_species", { count: I18n.toNumber( d.value, { precision: 0 } ) } )}`
       };
     }
-    series.novel = {
-      title: I18n.t( "newly_added" ),
-      data: _.map( data, i => ( {
-        date: i.date,
-        value: i.novel_species_ids.length,
-        novel_species_ids: i.novel_species_ids,
-        offset: showAccumulation ? i.accumulated_species_count - i.novel_species_ids.length : 0
-      } ) ),
-      style: "bar",
-      label: d => `<strong>${
-        moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" )
-      }</strong>: ${I18n.t( "x_new_species", { count: I18n.toNumber( d.value, { precision: 0 } ) } )}`
-    };
     return (
       <div className="NewSpecies">
-        <h3><span>{ I18n.t( "newly_added_species" ) }</span></h3>
+        <h3>
+          <a name="new-species" href="#new-species">
+            <span>{ I18n.t( "newly_added_species" ) }</span>
+          </a>
+        </h3>
         <p
           className="text-muted"
-          dangerouslySetInnerHTML={{ __html: I18n.t( "views.stats.year.new_species_desc_html", { site_name: SITE.name } ) }}
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "views.stats.year.new_species_desc_html", { site_name: SITE.name } )
+          }}
         />
         <DateHistogram
           id="accumulation"
@@ -186,13 +198,13 @@ class NewSpecies extends React.Component {
                 <a href={`/observations?${_.map( obsParams, ( v, k ) => `${k}=${v}` ).join( "&" )}`}>
                   { observations.length < totalSpeciesIDsForMonth ? (
                     I18n.t( "new_species_added_in_interval_x_of_y", {
-                      interval: moment( `${focusYear}-${focusMonth}-10` ).format( "MMMM YYYY" ),
+                      interval: moment( `${focusYear}-${focusMonth}-10` ).format( I18n.t( "momentjs.month_year" ) ),
                       x: observations.length,
                       y: totalSpeciesIDsForMonth
                     } )
                   ) : (
                     I18n.t( "new_species_added_in_interval", {
-                      interval: moment( `${focusYear}-${focusMonth}-10` ).format( "MMMM YYYY" )
+                      interval: moment( `${focusYear}-${focusMonth}-10` ).format( I18n.t( "momentjs.month_year" ) )
                     } )
                   ) }
                 </a>

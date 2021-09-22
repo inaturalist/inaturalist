@@ -1,4 +1,4 @@
-class Announcement < ActiveRecord::Base
+class Announcement < ApplicationRecord
   PLACEMENTS = %w(users/dashboard#sidebar users/dashboard welcome/index)
   has_and_belongs_to_many :sites
   validates_presence_of :placement, :start, :end, :body
@@ -21,6 +21,13 @@ class Announcement < ActiveRecord::Base
     self.locales = ( locales || [] ).reject(&:blank?).compact
   end
 
+  def dismissed_by?( user )
+    return false unless dismissible?
+    user_id = user.id if user.is_a?( User )
+    user_id = user_id.to_i
+    dismiss_user_ids.include?( user_id )
+  end
+
   def self.active_in_placement( placement, site )
     scope = Announcement.
       joins( "LEFT OUTER JOIN announcements_sites ON announcements_sites.announcement_id = announcements.id").
@@ -36,7 +43,7 @@ class Announcement < ActiveRecord::Base
     if @announcements.blank?
       @announcements = base_scope.in_specific_locale( I18n.locale ).where( "sites.id IS NULL" )
       @announcements = base_scope.where( "sites.id IS NULL AND locales IS NULL" ) if @announcements.blank?
-      @announcements = @announcements.flatten
+      @announcements = @announcements.to_a.flatten
     end
     @announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" ) if @announcements.blank?
     @announcements = @announcements.sort_by {|a| [

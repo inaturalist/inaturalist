@@ -3,15 +3,16 @@ import _ from "lodash";
 import moment from "moment-timezone";
 
 // Light wrapper around fetch to ensure credentials are always passed through
-const fetch = ( url, options = {} ) =>
-  baseFetch( url, Object.assign( {}, options, { credentials: "same-origin" } ) );
+const fetch = ( url, options = {} ) => baseFetch( url, Object.assign( {}, options, {
+  credentials: "same-origin"
+} ) );
 
 function updateSession( params ) {
   const data = new FormData( );
   data.append( "authenticity_token", $( "meta[name=csrf-token]" ).attr( "content" ) );
-  for ( const key in params ) {
-    data.append( key, params[key] );
-  }
+  _.forEach( params, ( value, key ) => {
+    data.append( key, value );
+  } );
   fetch( "/users/update_session", {
     method: "PUT",
     body: data
@@ -23,9 +24,10 @@ function updateSession( params ) {
 function objectToComparable( object = {} ) {
   return _.map( _.keys( object ).sort( ), k => {
     const v = object[k];
-    if ( typeof( v ) === "object" ) {
+    if ( typeof ( v ) === "object" ) {
       return `(${k}-${objectToComparable( v )})`;
-    } else if ( _.isNil( v ) ) {
+    }
+    if ( _.isNil( v ) ) {
       return `(${k}-)`;
     }
     return `(${k}-${v})`;
@@ -42,18 +44,13 @@ function resizeUpload( file, opts, callback ) {
       // Resize the image
       const canvas = document.createElement( "canvas" );
       const maxDimension = 400;
-      let width = image.width;
-      let height = image.height;
-      if ( width > height ) {
-        if ( width > maxDimension ) {
-          height *= maxDimension / width;
-          width = maxDimension;
-        }
-      } else {
-        if ( height > maxDimension ) {
-          width *= maxDimension / height;
-          height = maxDimension;
-        }
+      let { width, height } = image;
+      if ( width > height && width > maxDimension ) {
+        height *= maxDimension / width;
+        width = maxDimension;
+      } else if ( height > maxDimension ) {
+        width *= maxDimension / height;
+        height = maxDimension;
       }
       canvas.width = width * 2;
       canvas.height = height * 2;
@@ -133,6 +130,71 @@ const formattedDateTimeInTimeZone = ( dateTime, timeZone ) => {
   return d.format( format );
 };
 
+
+const inatreact = {
+  // Interpolate a translated string with React components as interpolation
+  // variables. I18n-js accepts interpolations but will only return a string, so
+  // if you want to have variables in that string that have complicated markup
+  // or (worse) interactive elements, you're either screwed or you're forced to
+  // patch together a bunch of smaller pieces of text in a way that makes the
+  // whole impossible to translate.
+  //
+  // This method will accept a key and interpolations like I18n.t, but it will return an array.
+  //
+  // All React components passed in as interpolations *must* have keys
+  //
+  // Non-interpolation params like defaultValue are not supported.
+  translate: ( key, interpolations = {} ) => {
+    if ( _.size( interpolations ) === 0 ) {
+      return I18n.t( key );
+    }
+    const stubInterpolations = {};
+    const reactInterpolations = {};
+    _.each( interpolations, ( v, k ) => {
+      if ( typeof ( v ) === "object" || typeof ( v ) === "function" ) {
+        stubInterpolations[k] = `{${k}}`;
+        reactInterpolations[k] = v;
+      } else {
+        stubInterpolations[k] = v;
+      }
+    } );
+    const stubTranslation = I18n.t( key, stubInterpolations );
+    let arr = [stubTranslation];
+    _.each( reactInterpolations, ( component, k ) => {
+      _.each( arr, ( piece, i ) => {
+        if ( typeof ( piece ) === "string" ) {
+          const bits = piece.split( `{${k}}` );
+          if ( bits.length === 2 ) {
+            arr[i] = [
+              bits[0],
+              component,
+              bits[1]
+            ];
+          }
+        }
+      } );
+      arr = _.flatten( arr );
+    } );
+    return _.filter( _.flatten( arr ), i => typeof ( i ) !== "string" || i.length > 0 );
+  }
+};
+inatreact.t = inatreact.translate;
+
+const stripTags = text => text.replace( /<.+?>/g, "" );
+
+const shortFormattedNumber = d => {
+  if ( d >= 1000000000 ) {
+    return I18n.t( "number.format.si.giga", { number: _.round( d / 1000000000, 3 ) } );
+  }
+  if ( d >= 1000000 ) {
+    return I18n.t( "number.format.si.mega", { number: _.round( d / 1000000, 3 ) } );
+  }
+  if ( d >= 1000 ) {
+    return I18n.t( "number.format.si.kilo", { number: _.round( d / 1000, 3 ) } );
+  }
+  return d;
+};
+
 // Duplicating stylesheets/colors
 const COLORS = {
   inatGreen: "#74ac00",
@@ -160,7 +222,20 @@ const COLORS = {
     Mammalia: "#1E90FF",
     Actinopterygii: "#1E90FF",
     Chromista: "#993300"
-  }
+  },
+
+  // 2019 branding guidelines colors
+  successGreen: "#A8CC09",
+  warningYellow: "#FFEE91",
+  blue: "#2E78B8",
+  darkGreen: "#228A22",
+  orange: "#E66C39",
+  mediumGray: "#999999",
+  maroon: "#842203",
+  purple: "#801A80",
+  darkMagenta: "#AA0044",
+  pink: "#E65C93",
+  yellow: "#E6A939"
 };
 
 export {
@@ -172,5 +247,8 @@ export {
   numberWithCommas,
   addImplicitDisagreementsToActivity,
   formattedDateTimeInTimeZone,
-  COLORS
+  COLORS,
+  inatreact,
+  stripTags,
+  shortFormattedNumber
 };

@@ -34,10 +34,10 @@
         <%=t :observed_by %> <%= link_to observation.user.login, observations_by_login_url(observation.user.login) %>
 
         <% if observation.observed_on %>
-          <span class="observed_on"> <%=t :on %> <span class="date"><%=l observation.observed_on %></span></span>
+          <span class="observed_on"><span class="date"><%=l observation.observed_on %></span></span>
         <% end %>
         <% unless observation.place_guess.blank? %>
-          <span class="place_guess">in <%=h observation.place_guess %></span>
+          <span class="place_guess"><%=h observation.place_guess %></span>
         <% end %>
         <br/>
         <br/>

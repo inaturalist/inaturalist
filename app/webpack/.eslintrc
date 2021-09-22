@@ -32,11 +32,13 @@
     "comma-dangle": [2, "never"],
     "consistent-return": [2, { "treatUndefinedAsUnspecified": true }],
     "func-names": 0,
+    "no-alert": 0,
     "no-underscore-dangle": 0,
     "no-void": 0,
     "prefer-destructuring": [2, { "object": true, "array": false }],
     "quotes": [2, "double"],
     "space-in-parens": [2, "always"],
+    "no-restricted-globals": 0,
     "no-param-reassign": 0,
     "prefer-const": [2, { "destructuring": "all" }],
     "react/forbid-prop-types": 0,
@@ -44,6 +46,7 @@
     "jsx-a11y/label-has-associated-control": "off",
     "jsx-a11y/label-has-for": "off",
     "jsx-a11y/media-has-caption": "off",
-    "react/no-find-dom-node": 0
+    "react/no-find-dom-node": 0,
+    "react/destructuring-assignment": 0
   }
 }

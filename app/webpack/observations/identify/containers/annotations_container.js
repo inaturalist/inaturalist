@@ -6,14 +6,14 @@ import {
   voteAnnotation,
   unvoteAnnotation
 } from "../actions/current_observation_actions";
+import { updateSession } from "../../show/ducks/users";
 
 function mapStateToProps( state ) {
   return {
     observation: state.currentObservation.observation,
     config: state.config,
     controlledTerms: state.controlledTerms.allTerms,
-    collapsible: false,
-    showEmptyState: true
+    collapsible: false
   };
 }
 
@@ -22,13 +22,12 @@ function mapDispatchToProps( dispatch ) {
     addAnnotation: ( controlledAttribute, controlledValue ) => {
       dispatch( addAnnotation( controlledAttribute, controlledValue ) );
     },
-    deleteAnnotation: ( id ) => { dispatch( deleteAnnotation( id ) ); },
+    deleteAnnotation: id => dispatch( deleteAnnotation( id ) ),
     voteAnnotation: ( id, vote ) => {
       dispatch( voteAnnotation( id, vote ) );
     },
-    unvoteAnnotation: ( id ) => {
-      dispatch( unvoteAnnotation( id ) );
-    }
+    unvoteAnnotation: id => dispatch( unvoteAnnotation( id ) ),
+    updateSession: params => { dispatch( updateSession( params ) ); }
   };
 }
 

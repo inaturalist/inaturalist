@@ -1,5 +1,7 @@
 = content_for :title do
   = @title = t(:editing_site, :default => "Editing site")
+= content_for :extracss do
+  = stylesheet_link_tag "sites"
 .container
   .row
     .col-md-12

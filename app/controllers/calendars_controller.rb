@@ -1,5 +1,5 @@
 class CalendarsController < ApplicationController
-  before_filter :load_user_by_login
+  before_action :load_user_by_login
   
   def index
     @year = (params[:year] || Time.now.year).to_i
@@ -36,6 +36,13 @@ class CalendarsController < ApplicationController
         { taxon: { taxon_names: :place_taxon_names } },
         { photos: :flags }
       )
+      if @selected_user != current_user
+        filtered_obs = @observations.select {|o| o.coordinates_viewable_by?( current_user )}
+        diff = @observations.total_entries - filtered_obs.size
+        @observations = WillPaginate::Collection.create( 1, 200, @observations.total_entries - diff ) do |pager|
+          pager.replace( filtered_obs )
+        end
+      end
       @taxa = @observations.map{|o| o.taxon}.uniq.compact
       @taxa_count = @taxa.size
       @taxa_by_iconic_taxon_id = @taxa.group_by{|t| t.iconic_taxon_id}
@@ -43,6 +50,8 @@ class CalendarsController < ApplicationController
         next unless @taxa_by_iconic_taxon_id[iconic_taxon.id]
         [iconic_taxon.id, @taxa_by_iconic_taxon_id[iconic_taxon.id].size]
       end.compact
+      @life_list_firsts = @selected_user.taxa_unobserved_before_date( Date.parse( @date ), @taxa ).
+        sort_by{|t| t.ancestry || "" }
     else
       iconic_counts_conditions = Observation.conditions_for_date("observations.observed_on", @date)
       iconic_counts_conditions[0] += " AND observations.user_id = ?"
@@ -51,10 +60,7 @@ class CalendarsController < ApplicationController
         where(iconic_counts_conditions).
         group("taxa.iconic_taxon_id").count
     end
-    
-    @life_list_firsts = @selected_user.life_list.listed_taxa.where(first_observation_id: @observations).
-      sort_by{|lt| lt.ancestry.to_s + '/' + lt.id.to_s}
-    
+
     unless @observations.blank?
       @place_name_counts = {}
       @places = Set.new

@@ -1,3 +1,4 @@
+/* eslint-disable */
 $(document).ready(function() {
   $('.species_guess').taxonAutocomplete({
     idEl: $("#observation_taxon_id"),
@@ -7,7 +8,8 @@ $(document).ready(function() {
   var map = iNaturalist.Map.createMap({
     div: $('#map').get(0),
     mapTypeId: google.maps.MapTypeId.HYBRID,
-    bounds: BOUNDS
+    bounds: BOUNDS,
+    gestureHandling: "auto"
   })
   window.map = map;
 

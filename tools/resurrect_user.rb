@@ -76,7 +76,7 @@ resurrection_cmds << "psql #{dbname} -c \"\\COPY listed_taxa (#{column_names.joi
 
 puts "Exporting from guide_taxa..."
 fname = "resurrect_#{user_id}-guide_taxa.csv"
-column_names = Guide.column_names
+column_names = GuideTaxon.column_names
 sql = <<-SQL
 SELECT #{column_names.map{|cn| "guide_taxa.#{cn}" }.join( ", " ) }
 FROM 

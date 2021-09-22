@@ -15,30 +15,30 @@ const BulkActions = ( {
     <ButtonGroup justified>
       <OverlayTrigger
         placement="bottom"
-        overlay={
+        overlay={(
           <Tooltip id="review-all-btn-tooltip">
             { I18n.t( "views.observations.identify.review_all_tooltip" ) }
           </Tooltip>
-        }
-        container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+        )}
+        container={$( "#wrapper.bootstrap" ).get( 0 )}
       >
         <Button
-          onClick={ ( ) => { reviewAll(); } }
+          onClick={( ) => reviewAll( )}
         >
           { I18n.t( "review_all" ) }
         </Button>
       </OverlayTrigger>
       <OverlayTrigger
         placement="bottom"
-        overlay={
+        overlay={(
           <Tooltip id="unreview-all-btn-tooltip">
             { I18n.t( "views.observations.identify.unreview_all_tooltip" ) }
           </Tooltip>
-        }
-        container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+        )}
+        container={$( "#wrapper.bootstrap" ).get( 0 )}
       >
         <Button
-          onClick={ ( ) => { unreviewAll(); } }
+          onClick={( ) => unreviewAll( )}
         >
           { I18n.t( "unreview_all" ) }
         </Button>

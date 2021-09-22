@@ -16,7 +16,7 @@ class RegularForm extends React.Component {
   constructor( props ) {
     super( props );
     this.state = {
-      inverseFiltersOpen: false
+      inverseFiltersOpen: null
     };
   }
 
@@ -32,29 +32,32 @@ class RegularForm extends React.Component {
       updateProject,
       allControlledTerms
     } = this.props;
-    const { inverseFiltersOpen } = this.state;
+    let { inverseFiltersOpen } = this.state;
     const monthNames = ( "january february march april may june july august "
       + "september october november december" ).split( " " );
     const inverseFilterCount = _.size( project.notTaxonRules )
       + _.size( project.notPlaceRules ) + _.size( project.notUserRules );
+    if ( inverseFiltersOpen === null && inverseFilterCount > 0 ) {
+      inverseFiltersOpen = true;
+    }
     const chosenTerm = project.rule_term_id
       ? allControlledTerms.find( t => t.id === _.toInteger( project.rule_term_id ) ) : null;
-    const qualityEmpty = _.isEmpty( project.rule_quality_grade );
     return (
       <div id="RegularForm" className="Form">
         <Grid>
           <Row className="text">
             <Col xs={12}>
               <h2>{ I18n.t( "observation_requirements" ) }</h2>
-              <div
-                className="help-text"
-                dangerouslySetInnerHTML={{
-                  __html: I18n.t(
-                    "views.projects.new.please_specify_the_requirements_html",
-                    { url: "/pages/managing-projects#collectionsettings" }
-                  )
-                }}
-              />
+              <div className="help-text">
+                <p>
+                  { I18n.t( "views.projects.new.specify_project_filters" ) }
+                </p>
+                <p>
+                  <b>
+                    { I18n.t( "views.projects.new.note_about_unselected_filters" ) }
+                  </b>
+                </p>
+              </div>
             </Col>
           </Row>
           <Row>
@@ -106,9 +109,33 @@ class RegularForm extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col xs={6}>
+            <Col xs={12} className="members-only">
+              <label className="sectionlabel">
+                { I18n.t( "project_members_only" ) }
+              </label>
+              <div className="help-text">
+                { I18n.t( "views.projects.new.check_the_box_to_include_member_observations" ) }
+              </div>
+              <div className="checkbox">
+                <label>
+                  <input
+                    type="checkbox"
+                    id="project-members-only"
+                    defaultChecked={project.rule_members_only}
+                    onChange={e => setRulePreference( "members_only", e.target.checked || null )}
+                  />
+                  { I18n.t( "views.projects.new.only_display_member_observations" ) }
+                </label>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
               <div className="form-group annotations-form-group">
                 <label className="sectionlabel">{ I18n.t( "with_annotation" ) }</label>
+                <div className="help-text">
+                  { I18n.t( "views.projects.new.include_annotated_observations" ) }
+                </div>
                 <select
                   id="project-term-id"
                   className="form-control"
@@ -146,7 +173,7 @@ class RegularForm extends React.Component {
                       }}
                     >
                       <option value="">
-                        { I18n.t( "any_" ) }
+                        { I18n.t( "any_annotation_value" ) }
                       </option>
                       { chosenTerm.values.map( t => (
                         <option value={t.id} key={`annotation-term-value-id-${t.id}`}>
@@ -162,6 +189,15 @@ class RegularForm extends React.Component {
           <Row>
             <Col xs={4}>
               <label>{ I18n.t( "data_quality" ) }</label>
+              <div
+                className="help-text"
+                dangerouslySetInnerHTML={{
+                  __html: I18n.t(
+                    "views.projects.new.select_quality_grade",
+                    { url: "/pages/help#quality" }
+                  )
+                }}
+              />
               <label className="inline checkboxradio" htmlFor="project-quality-research">
                 <input
                   type="checkbox"
@@ -171,7 +207,7 @@ class RegularForm extends React.Component {
                   defaultChecked={project.rule_quality_grade.research}
                   onChange={( ) => setRulePreference( "quality_grade", this.qualityGradeValues( ) )}
                 />
-                { I18n.t( "research_" ) }
+                { I18n.t( "research_grade" ) }
               </label>
               <label className="inline checkboxradio" htmlFor="project-quality-needs-id">
                 <input
@@ -198,6 +234,9 @@ class RegularForm extends React.Component {
             </Col>
             <Col xs={4}>
               <label>{ I18n.t( "media_type" ) }</label>
+              <div className="help-text">
+                { I18n.t( "views.projects.new.optionally_filter_media" ) }
+              </div>
               <label className="inline checkboxradio" htmlFor="project-media-any">
                 <input
                   type="radio"
@@ -209,7 +248,7 @@ class RegularForm extends React.Component {
                     setRulePreference( "sounds", null );
                   }}
                 />
-                { I18n.t( "any_" ) }
+                { I18n.t( "any_media" ) }
               </label>
               <label className="inline checkboxradio" htmlFor="project-media-sounds">
                 <input
@@ -253,6 +292,9 @@ class RegularForm extends React.Component {
             </Col>
             <Col xs={4}>
               <label>{ I18n.t( "establishment_means" ) }</label>
+              <div className="help-text">
+                { I18n.t( "views.projects.new.select_native_to_include" ) }
+              </div>
               <label
                 key="project-establishment-any"
                 className="inline checkboxradio"
@@ -274,7 +316,7 @@ class RegularForm extends React.Component {
                     }
                   }}
                 />
-                { I18n.t( "any_" ) }
+                { I18n.t( "any_establishment" ) }
               </label>
               <label
                 key="project-establishment-native"
@@ -321,6 +363,9 @@ class RegularForm extends React.Component {
           <Row className="date-row">
             <Col xs={12}>
               <label>{ I18n.t( "date_observed_" ) }</label>
+              <div className="help-text">
+                { I18n.t( "views.projects.new.use_this_for_a_time_limited_event" ) }
+              </div>
               <label className="inline checkboxradio" htmlFor="project-date-type-any">
                 <input
                   type="radio"
@@ -328,7 +373,7 @@ class RegularForm extends React.Component {
                   checked={project.date_type === "any"}
                   onChange={( ) => updateProject( { date_type: "any" } )}
                 />
-                { I18n.t( "any_" ) }
+                { I18n.t( "any_date" ) }
               </label>
               <input
                 type="radio"
@@ -340,6 +385,7 @@ class RegularForm extends React.Component {
                 { I18n.t( "exact" ) }
               </label>
               <DateTimeFieldWrapper
+                className="datefield"
                 mode="date"
                 ref="exactDate"
                 inputFormat="YYYY-MM-DD"

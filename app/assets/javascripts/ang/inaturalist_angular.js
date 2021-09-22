@@ -39,6 +39,17 @@ function( $http, $rootScope, $filter ) {
     return I18n.t( k, options );
   };
 
+  var l = function( format, value ) {
+    return I18n.l( format, moment( value ) );
+  };
+
+  var pluralWithoutCount = function( key, count ) {
+    var s = I18n.t( key, { count: count } );
+    s = s.replace( /\<span.*?\>.+?\<\/span\>/g, "" );
+    s = s.replace( count, "" );
+    return s;
+  }
+
   var taxonStatusTitle = function( taxon ) {
     if( !taxon.conservation_status ) { return; }
     var title = $filter( "capitalize" )( taxon.conservationStatus( ), "title" );
@@ -125,6 +136,8 @@ function( $http, $rootScope, $filter ) {
     basicGet: basicGet,
     numberWithCommas: numberWithCommas,
     t: t,
+    l: l,
+    pluralWithoutCount: pluralWithoutCount,
     taxonStatusTitle: taxonStatusTitle,
     taxonMeansTitle: taxonMeansTitle,
     backgroundIf: backgroundIf,
@@ -141,12 +154,21 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
     scope: {
       time: "=",
       date: "=",
-      timezone: "="
+      timezone: "=",
+      obscured: "=",
+      short: "="
     },
     link: function(scope, elt, attr) {
       scope.dateString = function() {
         if( !scope.date ) {
-          return shared.t('unknown');
+          return shared.t( "missing_date" );
+        }
+        if ( scope.obscured ) {
+           return moment(scope.date).format(
+             scope.short
+               ? I18n.t( "momentjs.month_year_short" )
+               : I18n.t( "momentjs.month_year" )
+           );
         }
         var date = moment(scope.date),
             now = moment(new Date()),
@@ -161,9 +183,10 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
         return dateString;
       }
       scope.timeString = function() {
-        if( !scope.time ) { return; }
+        if ( !scope.time ) return "";
+        if ( scope.obscured ) return "";
         scope.timezone = scope.timezone || "UTC";
-        return moment(scope.time).tz(scope.timezone).format("LT z");
+        return moment( scope.time.replace( /[+-]\d\d:\d\d/, "" ) ).tz( scope.timezone ).format( "LT z" );
       }
     },
     template: '<span class="date">{{ dateString() }}</span><span class="time">{{ timeString() }}</span>'

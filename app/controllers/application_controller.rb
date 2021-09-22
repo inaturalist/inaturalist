@@ -10,27 +10,29 @@ class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
   protect_from_forgery
-  before_filter :whitelist_params
-  around_filter :set_time_zone
-  around_filter :logstash_catchall
-  before_filter :return_here, :only => [:index, :show, :by_login]
-  before_filter :return_here_from_url
-  before_filter :preload_user_preferences
-  before_filter :user_logging
-  before_filter :check_user_last_active
-  after_filter :user_request_logging
-  before_filter :remove_header_and_footer_for_apps
-  before_filter :login_from_param
-  before_filter :set_site
-  before_filter :draft_site_requires_login
-  before_filter :draft_site_requires_admin
-  before_filter :set_ga_trackers
-  before_filter :set_request_locale
-  before_filter :check_preferred_place
-  before_filter :sign_out_spammers
+  before_action :permit_params
+  around_action :set_time_zone
+  around_action :logstash_catchall
+  before_action :return_here, :only => [:index, :show, :by_login]
+  before_action :return_here_from_url
+  before_action :preload_user_preferences
+  before_action :user_logging
+  before_action :check_user_last_active
+  after_action :user_request_logging
+  before_action :remove_header_and_footer_for_apps
+  before_action :login_from_param
+  before_action :set_site
+  before_action :draft_site_requires_login
+  before_action :draft_site_requires_admin
+  before_action :set_ga_trackers
+  before_action :set_request_locale
+  before_action :check_preferred_place
+  before_action :check_preferred_site
+  before_action :sign_out_spammers
+  before_action :set_session_oauth_application_id
 
   # /ping should skip all before filters and just render
-  skip_filter *_process_action_callbacks.map(&:filter), only: :ping
+  skip_before_action *_process_action_callbacks.map(&:filter), only: :ping, raise: false
 
   PER_PAGES = [10,30,50,100,200]
   HEADER_VERSION = 21
@@ -83,6 +85,8 @@ class ApplicationController < ActionController::Base
 
   def set_ga_trackers
     return true unless request.format.blank? || request.format.html?
+    return true if request.env["HTTP_DNT"] == "1"
+    return true if current_user && current_user.prefers_no_tracking?
     trackers = [ ]
     if Site.default && !Site.default.google_analytics_tracker_id.blank?
       trackers << [ "default", Site.default.google_analytics_tracker_id ]
@@ -95,18 +99,67 @@ class ApplicationController < ActionController::Base
 
   def check_preferred_place
     return true unless current_user
-    return true if current_user.prefers_no_place?
+    if current_user.prefers_no_place?
+      session.delete(:potential_place)
+      return true
+    end
     return true unless session[:potential_place].blank?
     if current_user.latitude && current_user.longitude && current_user.place.blank?
       potential_place = Place.
         containing_lat_lng( current_user.latitude, current_user.longitude ).
         where( admin_level: Place::COUNTRY_LEVEL ).first
       if potential_place
-        place_name = t( "places_name.#{potential_place.name.to_s.parameterize.underscore}", default: potential_place.name )
+        place_name = potential_place.translated_name
         session[:potential_place] = {
           id: potential_place.id,
           name: place_name == "United States" ? "the United States" : place_name
         }
+      end
+    end
+    true
+  end
+
+  def check_preferred_site
+    return true unless flash.empty?
+    return true unless current_user
+    if current_user.prefers_no_site?
+      session.delete(:potential_site)
+      return true
+    end
+    return true unless session[:potential_place].blank?
+    if params[:test].to_s =~ /network/
+      session.delete(:potential_site)
+      n, lat, lon = params[:test].split( "|" )
+      if lat && lon
+        current_user.latitude = lat.to_f
+        current_user.longitude = lon.to_f
+      end
+    end
+    viewing_non_default_site = @site != Site.default
+    viewer_affiliated_with_non_default_site = (
+      !current_user.site.blank? && current_user.site != Site.default
+    )
+    if viewing_non_default_site || viewer_affiliated_with_non_default_site
+      session.delete(:potential_site)
+      return true
+    end
+    if current_user.latitude && current_user.longitude
+      potential_place = Place.
+        containing_lat_lng( current_user.latitude, current_user.longitude ).
+        where( "places.id IN (?)", Site.where( "NOT draft" ).pluck(:place_id).compact ).first
+      unless potential_place
+        session.delete(:potential_site)
+        return true
+      end
+      potential_site = Site.where( "NOT draft" ).where( place_id: potential_place.id ).first
+      if potential_site && potential_site != current_user.site
+        session[:potential_site] = {
+          id: potential_site.id,
+          name: potential_site.name,
+          place_name: potential_place.translated_name
+        }
+      else
+        session.delete(:potential_site)
       end
     end
     true
@@ -120,7 +173,7 @@ class ApplicationController < ActionController::Base
 
   # Redirect to the URI stored by the most recent store_location call or
   # to the passed default.  Set an appropriately modified
-  #   after_filter :store_location, :only => [:index, :new, :show, :edit]
+  #   after_action :store_location, :only => [:index, :new, :show, :edit]
   # for any controller you want to be bounce-backable.
   def redirect_back_or_default(default)
     back_url = session[:return_to] # || request.env['HTTP_REFERER']
@@ -219,7 +272,7 @@ class ApplicationController < ActionController::Base
       else
         redirect_back_or_default(root_url)
       end
-      return false
+      throw :abort
     end
   end
   
@@ -392,39 +445,7 @@ class ApplicationController < ActionController::Base
       render_404
     end
   end
-  
-  def search_for_places
-    @q = params[:q].to_s.sanitize_encoding
-    if params[:limit]
-      @limit ||= params[:limit].to_i
-      @limit = 50 if @limit > 50
-    end
-    site_place = @site.place if @site
-    filters = [ { match: { display_name: { query: @q, operator: "and" } } } ]
-    inverse_filters = [ ]
-    if site_place
-      filters << { term: { ancestor_place_ids: site_place.id } }
-    end
-    if params[:with_geom].yesish?
-      filters << { exists: { field: "geometry_geojson" } }
-    elsif params[:with_geom].noish?
-      inverse_filters << { exists: { field: "geometry_geojson" } }
-    end
-    search_params = {
-      filters: filters,
-      inverse_filters: inverse_filters,
-      per_page: @limit, 
-      page: params[:page]
-    }
-    @places = Place.elastic_paginate(search_params)
-    Place.preload_associations(@places, :place_geometry_without_geom)
-    if logged_in? && @places.blank? && !params[:q].blank?
-      if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
-        new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid, user: current_user)}.compact
-        @places = Place.where("id in (?)", new_places.map(&:id).compact).page(1).to_a
-      end
-    end
-  end
+
   
   # Get current_user's preferences, prefs in the session, or stash new prefs in the session
   def current_preferences(update_params = nil)
@@ -439,7 +460,7 @@ class ApplicationController < ActionController::Base
       end
     end
     
-    update_params = update_params.reject{|k,v| v.blank?} if update_params
+    update_params = update_params.to_h.reject{|k,v| v.blank?} if update_params
     if update_params.is_a?(Hash) && !update_params.empty?
       # prefs.update_attributes(update_params)
       if logged_in?
@@ -539,13 +560,13 @@ class ApplicationController < ActionController::Base
         redirect_back_or_default( root_url )
       end
       format.js do
-        render :status => :unprocessable_entity, :text => msg
+        render :status => :unprocessable_entity, :plain => msg
       end
       format.json do
         render :status => :unprocessable_entity, :json => {:error => msg}
       end
     end
-    return false
+    throw :abort
   end
 
   def site_admin_required
@@ -558,13 +579,13 @@ class ApplicationController < ActionController::Base
         redirect_to observations_path
       end
       format.js do
-        render status: :unprocessable_entity, text: msg
+        render status: :unprocessable_entity, plain: msg
       end
       format.json do
         render status: :unprocessable_entity, json: { error: msg }
       end
     end
-    return false
+    throw :abort
   end
 
   def remove_header_and_footer_for_apps
@@ -642,6 +663,21 @@ class ApplicationController < ActionController::Base
     response.headers['X-Per-Page'] = collection.per_page.to_s
   end
 
+  def set_session_oauth_application_id
+    if doorkeeper_token && doorkeeper_token.accessible? && (a = doorkeeper_token.try(:application))
+      session["oauth_application_id"] = a.id
+    elsif ( auth_header = request.headers["Authorization"] ) && ( token = auth_header.split(" ").last )
+      jwt_claims = begin
+        ::JsonWebToken.decode(token)
+      rescue JWT::DecodeError => e
+        nil
+      end
+      if jwt_claims && ( oauth_application_id = jwt_claims["oauth_application_id"] )
+        session["oauth_application_id"] = oauth_application_id
+      end
+    end
+  end
+
   # Encapsulates common pattern for actions that start a bg task get called 
   # repeatedly to check progress
   # Key is required, and a block that assigns a new Delayed::Job to @job
@@ -677,7 +713,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def whitelist_params
+  def permit_params
     params.permit!
   end
 
@@ -686,7 +722,7 @@ class ApplicationController < ActionController::Base
     options = args.last.is_a?(Hash) ? args.last : {}
     default = options[:default] ? options[:default].to_sym : :html
     formats = [args].flatten.map(&:to_sym)
-    before_filter(options) do
+    before_action(options) do
       request.format = default if request.format.blank? || !formats.include?(request.format.to_sym)
     end
   end
@@ -712,7 +748,7 @@ class ApplicationController < ActionController::Base
   def append_info_to_payload(payload)
     super
     payload.merge!(Logstasher.payload_from_request( request ))
-    payload.merge!(Logstasher.payload_from_session( session ))
+    payload.merge!( { session: session } )
     if logged_in?
       payload.merge!(Logstasher.payload_from_user( current_user ))
     end
@@ -728,12 +764,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def blocked_by_content_freeze
+    if CONFIG.content_freeze_enabled
+      render template: "content_freeze", status: 403, layout: "application"
+    end
+  end
+
 end
 
 # Override the Google Analytics insertion code so it won't track admins
 module Rubaidh # :nodoc:
   module GoogleAnalyticsMixin
-    # An after_filter to automatically add the analytics code.
+    # An after_action to automatically add the analytics code.
     def add_google_analytics_code
       return if logged_in? && current_user.has_role?(User::JEDI_MASTER_ROLE)
       

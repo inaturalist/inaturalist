@@ -1,0 +1,6 @@
+.row
+  .col-xs-6.col-xs-offset-3
+    %h2
+      Editing data partner:
+      = @data_partner.name
+    = render "data_partners/form", data_partner: @data_partner

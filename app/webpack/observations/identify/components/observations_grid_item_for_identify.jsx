@@ -12,7 +12,8 @@ const ObservationsGridItemForIdentify = ( {
   onObservationClick,
   onAgree,
   toggleReviewed,
-  currentUser
+  currentUser,
+  imageSize
 } ) => {
   const agreeButton = (
     <OverlayTrigger
@@ -39,9 +40,12 @@ const ObservationsGridItemForIdentify = ( {
       </Button>
     </OverlayTrigger>
   );
-  let showAgree = observation.taxon && observation.taxon.rank_level <= 10
+  let showAgree = observation.taxon
+    && observation.taxon.rank_level <= 10
+    && observation.user
+    && observation.user.id !== currentUser.id
     && observation.taxon.is_active;
-  if ( currentUser && currentUser.id === observation.user.id ) {
+  if ( currentUser && observation.user && currentUser.id === observation.user.id ) {
     showAgree = false;
   }
   const controls = (
@@ -68,6 +72,7 @@ const ObservationsGridItemForIdentify = ( {
       <label>
         <input
           type="checkbox"
+          key={`review-checkbox-${observation.id}-${observation.reviewedByCurrentUser}`}
           defaultChecked={observation.reviewedByCurrentUser}
           onChange={( ) => {
             toggleReviewed( observation );
@@ -90,6 +95,7 @@ const ObservationsGridItemForIdentify = ( {
       user={currentUser}
       splitTaxonOptions={{ noParens: true }}
       showAllPhotosPreview
+      photoSize={imageSize === "large" ? "medium" : "small"}
     />
   );
 };
@@ -99,7 +105,8 @@ ObservationsGridItemForIdentify.propTypes = {
   onObservationClick: PropTypes.func,
   onAgree: PropTypes.func,
   toggleReviewed: PropTypes.func,
-  currentUser: PropTypes.object
+  currentUser: PropTypes.object,
+  imageSize: PropTypes.string
 };
 
 export default ObservationsGridItemForIdentify;

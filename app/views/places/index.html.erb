@@ -6,7 +6,7 @@
   <style type="text/css" media="screen">
     #map { width: 100%; height: 600px; }
     #mapcol h3 { margin-bottom: 0; position: relative; }
-    #places { position: absolute; top: 475px; text-align:center; left: 50%; margin-left: -425px; width: 850px; padding: 10px; }
+    #places { position: absolute; top: 575px; text-align:center; left: 50%; margin-left: -425px; width: 850px; padding: 10px; }
     #places .place { background-color: white; text-align: left; vertical-align: top; box-shadow: #888 0px 0px 5px; background-color: white; margin: 5px; opacity: 0.8; }
     #places .place:hover { opacity: 1; }
     #places .placeinfo { padding: 5px 10px 10px 10px; }
@@ -71,16 +71,6 @@
   <div id="places">
     <% @places.each_with_index do |place, i| %>
       <div class="place inlineblock span-4">
-        <%= link_to(
-          google_static_map_for_place(
-            place, 
-            {
-              :zoom => map_zoom_for_place(place, 150, 93),
-              :size => '150x93', 
-              :maptype => 'satellite', 
-              :markers => "color:blue|label:#{i+1}|#{place.latitude},#{place.longitude}"}, 
-            :class => 'map'
-          ), place) %>
         <div class="placeinfo">
           <h3>
             <%= link_to h(truncate(place.name, :length => 30)), place %>
@@ -102,13 +92,6 @@
 <div id="aboutcol" class="column span-24">
   <div class="column span-16">
     <h3> <%= t(:about_places) %> </h3>
-    <p>
-      <%= t(:the_world_is_full_of_interesting_places_short) %>
-    </p>
-
-    <p>
-      <%= t(:inaturalist_places_are_way_record_what_lives_where, :site_name => @site.name) %>
-    </p>
     
     <div class="column span-5">
       <%= image_tag "place_preview.jpg" %>
@@ -128,16 +111,6 @@
     </div>
     <div class="last column span-5">
       <%= image_tag "listed_taxon_preview.jpg" %>
-    </div>
-    
-    <div class="column span-5">
-      <%= image_tag "place_map_preview.jpg" %>
-    </div>
-    <div class="last column span-11">
-      <h3> <%= t(:click_the_map_to_jump_new_place) %> </h3>
-      <p>
-      	<%= t(:blue_icons_represent_political_units) %>
-      </p>
     </div>
   </div>
   <div class="last column span-8">

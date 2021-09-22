@@ -1,12 +1,12 @@
 class IdentificationsController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :except => [:by_login], :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_user_by_login, :only => [:by_login]
+  before_action :authenticate_user!, :except => [:by_login], :unless => lambda { authenticated_with_oauth? }
+  before_action :load_user_by_login, :only => [:by_login]
   load_only = [ :show, :edit, :update, :destroy ]
-  before_filter :load_identification, :only => load_only
+  before_action :load_record, only: load_only
   blocks_spam :only => load_only, :instance => :identification
   check_spam only: [:create, :update], instance: :identification
-  before_filter :require_owner, :only => [:edit, :update, :destroy]
+  before_action :require_owner, :only => [:edit, :update, :destroy]
   cache_sweeper :comment_sweeper, :only => [:create, :update, :destroy, :agree]
   caches_action :bold, :expires_in => 6.hours, :cache_path => Proc.new {|c| 
     c.params.merge(:sequence => Digest::MD5.hexdigest(c.params[:sequence]))
@@ -51,8 +51,6 @@ class IdentificationsController < ApplicationController
       api_response.total_results) do |pager|
       pager.replace(ids)
     end
-
-
     counts_response = INatAPIService.identifications_categories(search_params)
     @counts = Hash[counts_response.results.map{ |r| [ r["category"], r["count"] ] }]
     respond_to do |format|
@@ -61,7 +59,7 @@ class IdentificationsController < ApplicationController
   end
     
   def show
-    redirect_to observation_url(@identification.observation, :anchor => "identification-#{@identification.id}")
+    redirect_to observation_url(@identification.observation, :anchor => "identification-#{@identification.uuid}")
   end
   
   def by_login
@@ -110,6 +108,7 @@ class IdentificationsController < ApplicationController
       format.html do
         @identifications_by_obs_id = @identifications.index_by(&:observation_id)
         @observations = @identifications.collect(&:observation)
+        render layout: "bootstrap"
       end
       format.json do
         pagination_headers_for( @identifications )
@@ -174,7 +173,6 @@ class IdentificationsController < ApplicationController
         end
         
         format.json do
-          Observation.refresh_es_index
           @identification.html = view_context.render_in_format(:html, :partial => "identifications/identification")
           render :json => @identification.to_json(
             :methods => [:html, :vision], 
@@ -206,7 +204,7 @@ class IdentificationsController < ApplicationController
   
   def update
     @identification.assign_attributes( params[:identification] )
-    if @identification.body_changed? && @identification.hidden?
+    if @identification.will_save_change_to_body? && @identification.hidden?
       respond_to do |format|
         msg = t(:cant_edit_or_delete_hidden_content)
         format.html do
@@ -214,7 +212,7 @@ class IdentificationsController < ApplicationController
           redirect_to @identification.observation
         end
         format.json do
-          render statys: :unprocessable_entity, json: { error: msg }
+          render status: :unprocessable_entity, json: { error: msg }
         end
       end
       return
@@ -227,7 +225,6 @@ class IdentificationsController < ApplicationController
           redirect_to @identification.observation
         end
         format.json do
-          Observation.refresh_es_index
           render :json => @identification
         end
       end
@@ -277,11 +274,9 @@ class IdentificationsController < ApplicationController
         redirect_to observation
       end
       format.js do
-        Observation.refresh_es_index
         render :status => :ok, :json => nil
       end
       format.json do
-        Observation.refresh_es_index
         render :status => :ok, :json => nil
       end
     end
@@ -357,10 +352,6 @@ class IdentificationsController < ApplicationController
       return redirect_to(params[:return_to])
     end
     redirect_to @identification.observation
-  end
-  
-  def load_identification
-    render_404 unless @identification = Identification.find_by_id(params[:id])
   end
   
   def require_owner

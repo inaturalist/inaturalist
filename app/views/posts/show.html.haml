@@ -86,9 +86,9 @@
       = separator
       #comments
         - if @post.published_at
-          = render :partial => 'comments/comments', :locals => { :parent => @post }
+          = render "comments/comments", parent: @post, hide_form: @post.prefers_no_comments?
         - else
-          = render :partial => 'comments/comments', :locals => { :parent => @post, :hide_form => true }
+          = render "comments/comments", parent: @post, hide_form: true
     #sidecol.col-md-4
       - if !@observations.blank?
         %h3= t(:observations)

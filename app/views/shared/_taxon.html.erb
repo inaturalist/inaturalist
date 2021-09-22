@@ -9,23 +9,23 @@
   comname ||= common_taxon_name(taxon, locale: I18n.locale, place: place || @site.try(:place)).try(:name) unless no_common
   comname = capitalize_name( comname ) if comname
   if taxon.species_or_lower?
-    pieces = taxon.name.split
+    pieces = taxon.name.split.map{|piece| h( piece) }
     sciname = if taxon.variety? && pieces.size == 3
       "<span class=\"sciname #{taxon.rank}\">#{pieces[0..1].join(' ')} <span class=\"rank\">var.</span> #{pieces[2..-1].join(' ')}</span>"
     elsif taxon.subspecies? && pieces.size == 3
       "<span class=\"sciname #{taxon.rank}\">#{pieces[0..1].join(' ')} <span class=\"rank\">ssp.</span> #{pieces[2..-1].join(' ')}</span>"
     else
-      "<span class=\"sciname\">#{taxon.name}</span>"
+      "<span class=\"sciname\">#{h taxon.name}</span>"
     end
   elsif taxon.root?
-    sciname = "<span class=\"sciname\">#{taxon.name == 'Life' ? t(:life) : taxon.name}</span>"
+    sciname = "<span class=\"sciname\">#{taxon.name == 'Life' ? t(:life) : h( taxon.name )}</span>"
   else
     if exclude_rank
-      sciname = "<span class=\"sciname\">#{taxon.name}</span>" 
+      sciname = "<span class=\"sciname\">#{h( taxon.name )}</span>" 
     else
-      rank = taxon.rank ? t("ranks.#{taxon.rank.downcase}", :default => taxon.rank).capitalize : t(:unknown_rank)
+      rank = taxon.rank ? t("ranks.#{taxon.rank.downcase}", default: taxon.rank).capitalize : t(:unknown_rank)
       rank = content_tag(:span, rank, :class => 'rank')
-      sciname = "#{rank} <span class=\"sciname\">#{taxon.name}</span>"
+      sciname = "#{rank} <span class=\"sciname\">#{h taxon.name}</span>"
     end
   end
   include_id ||= false
@@ -39,7 +39,7 @@
   taxon_class = "taxon taxon-#{taxon.id} #{taxon_class}"
   taxon_class << " #{taxon.rank.downcase}" if taxon.rank
   if iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
-    taxon_class << " #{iconic_taxon.name}"
+    taxon_class << " #{h iconic_taxon.name}"
   end
   named_ancestor ||= nil
   if named_ancestor == true

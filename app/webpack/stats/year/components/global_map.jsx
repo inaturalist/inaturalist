@@ -54,10 +54,10 @@ class GlobalMap extends React.Component {
       color: "#ffee91"
     } );
     const thisYear = L.tileLayer(
-      `${apiURL}/colored_heatmap/{z}/{x}/{y}.png?${$.param( thisYearOptions )}`
+      `${apiURL}/grid/{z}/{x}/{y}.png?${$.param( thisYearOptions )}`
     ).addTo( map );
     const lastYear = L.tileLayer(
-      `${apiURL}/colored_heatmap/{z}/{x}/{y}.png?${$.param( lastYearOptions )}`
+      `${apiURL}/grid/{z}/{x}/{y}.png?${$.param( lastYearOptions )}`
     ).addTo( map );
     L.control.layers( { },
       {
@@ -107,7 +107,11 @@ class GlobalMap extends React.Component {
   render( ) {
     return (
       <div className="TorqueMap">
-        <h3><span>{ I18n.t( "map" ) }</span></h3>
+        <h3>
+          <a name="map" href="#map">
+            <span>{ I18n.t( "map" ) }</span>
+          </a>
+        </h3>
         <div className="map" />
       </div>
     );

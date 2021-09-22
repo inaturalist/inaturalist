@@ -18,20 +18,20 @@ const UsersPopover = ( {
     return returnContentsWhenEmpty ? contents : ( <span /> );
   }
   const popover = (
-    <Popover className="UsersPopoverOverlay" id={ `popover-${keyPrefix}` }>
+    <Popover className="UsersPopoverOverlay" id={`popover-${keyPrefix}`}>
       { users.map( u => {
         if ( _.isEmpty( u ) ) {
           return (
-            <span key={ `popover-${keyPrefix}-${SITE.name}` } className="user">
-              <img className="site" src={ SITE.logo_square } title={ SITE.name } />
+            <span key={`popover-${keyPrefix}-${SITE.name}`} className="user">
+              <img className="site" src={SITE.logo_square} title={SITE.name} alt={SITE.name} />
               { SITE.name }
             </span>
           );
         }
         return (
-          <span key={ `popover-${keyPrefix}-${u.id}` } className="user">
-            <UserImage user={ u } />
-            <a href={ `/people/${u.login}` }>{ u.login }</a>
+          <span key={`popover-${keyPrefix}-${u.id}`} className="user">
+            <UserImage user={u} />
+            <a href={`/people/${u.login}`}>{ u.login }</a>
           </span>
         );
       } ) }
@@ -42,7 +42,7 @@ const UsersPopover = ( {
     <OverlayTrigger
       trigger="click"
       rootClose
-      placement={ placement || "top" }
+      placement={placement || "top"}
       animation={false}
       overlay={popover}
       containerPadding={containerPadding}

@@ -1,4 +1,4 @@
-class Taxon < ActiveRecord::Base
+class Taxon < ApplicationRecord
 
   include ActsAsElasticModel
 
@@ -88,6 +88,7 @@ class Taxon < ActiveRecord::Base
       end
       indexes :observations_count, type: "integer"
       indexes :parent_id, type: "integer"
+      indexes :photos_locked, type: "boolean", index: false
       indexes :place_ids, type: "integer"
       indexes :rank, type: "keyword"
       indexes :rank_level, type: "scaled_float", scaling_factor: 100
@@ -96,6 +97,7 @@ class Taxon < ActiveRecord::Base
         indexes :geoprivacy, type: "keyword"
         indexes :iucn, type: "byte"
         indexes :place_id, type: "integer"
+        indexes :user_id, type: "integer"
         indexes :source_id, type: "short"
         indexes :status, type: "keyword"
         indexes :status_name, type: "keyword"
@@ -135,6 +137,8 @@ class Taxon < ActiveRecord::Base
       end
       indexes :taxon_schemes_count, type: "byte"
       indexes :universal_search_rank, type: "integer"
+      # This will require rebuilding the index ~~kueda 2030-03-24
+      # indexes :uuid, type: "keyword"
       indexes :wikipedia_url, type: "keyword", index: false
     end
   end
@@ -195,6 +199,7 @@ class Taxon < ActiveRecord::Base
         taxon_changes_count: taxon_changes_count,
         taxon_schemes_count: taxon_schemes_count,
         observations_count: observations_count,
+        photos_locked: photos_locked,
         universal_search_rank: observations_count,
         flag_counts: {
           resolved: flag_counts[true] || 0,

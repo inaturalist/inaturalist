@@ -6,12 +6,12 @@ import {
   fetchCurrentObservation,
   loadingDiscussionItem,
   fetchObservationsStats,
-  fetchIdentifiers,
   stopLoadingDiscussionItem,
   showAlert,
   addIdentification
 } from "../actions";
 import { showDisagreementAlert } from "../../shared/ducks/disagreement_alert";
+import { updateEditorContent } from "../../shared/ducks/text_editors";
 
 // ownProps contains data passed in through the "tag", so in this case
 // <IdentificationFormContainer observation={foo} />
@@ -19,7 +19,8 @@ function mapStateToProps( state, ownProps ) {
   return {
     observation: ownProps.observation,
     currentUser: state.config.currentUser,
-    blind: state.config.blind
+    blind: state.config.blind,
+    content: state.textEditor.obsIdentifyIdComment
   };
 }
 
@@ -40,11 +41,12 @@ function mapDispatchToProps( dispatch, ownProps ) {
             dispatch( stopLoadingDiscussionItem( ident ) );
           } )
           .then( ( ) => {
+            dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
             dispatch( fetchCurrentObservation( ownProps.observation ) ).then( ( ) => {
               $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
             } );
             dispatch( fetchObservationsStats( ) );
-            dispatch( fetchIdentifiers( ) );
+            // dispatch( fetchIdentifiers( ) );
           } );
       };
       if ( options.confirmationText ) {
@@ -80,6 +82,9 @@ function mapDispatchToProps( dispatch, ownProps ) {
       } else {
         boundPostIdentification( );
       }
+    },
+    updateEditorContent: ( editor, content ) => {
+      dispatch( updateEditorContent( editor, content ) );
     }
   };
 }

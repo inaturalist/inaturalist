@@ -1,0 +1,48 @@
+:ruby
+  assoc_name ||= "source"
+  foreign_key ||= "#{assoc_name}_id" || :source_id
+  if source = f.object.send(assoc_name)
+    source.html = render( partial: "sources/chooser", object: source )
+  end
+  source_options = []
+  user_sources ||= current_user.sources.limit(100).order(:title)
+  source_options << [t(:sources_youve_added) , user_sources] unless user_sources.blank?
+  source_options << [t(:all) , Source.limit(100).order(:title)]
+  sources = source_options.map(&:last).compact.flatten.map do |src|
+    src.html = render(:partial => "sources/chooser", :object => src)
+    src
+  end.compact
+  label_text ||= nil
+  chooser_options = {
+    label: t(label_text, :default => t(:source)),
+    placeholder: t(:type_source_title),
+    class: "existing",
+    "data-chooser-default-sources" => sources.to_json( methods: [:html] )
+  }
+  if source && source.persisted?
+    chooser_options["data-chooser-chosen"] = source.to_json( methods: [:html] )
+  end
+.source_nested_form_fields
+  - if source && source.new_record?
+    %fieldset
+      %legend= t(:new_source)
+      = f.fields_for assoc_name, :builder => DefaultFormBuilder do |s|
+        = s.text_field :title, description: t("source_eg.title"), required: true
+        = s.text_field :in_text, description: t("source_eg.in_text")
+        = s.text_field :url, description: t("source_eg.url")
+        = s.text_area :citation, description: t("source_eg.citation")
+  - else
+    - new_source_fields = capture do
+      %fieldset
+        %legend= t(:new_source)
+        = f.fields_for assoc_name, builder: DefaultFormBuilder, object: f.object.send( "build_#{assoc_name}" ) do |s|
+          = s.hidden_field :user_id, value: current_user.id
+          = s.text_field :title, description: t("source_eg.title"), required: true
+          = s.text_field :in_text, description: t("source_eg.in_text")
+          = s.text_field :url, description: t("source_eg.url")
+          = s.text_area :citation, description: t("source_eg.citation")
+        = link_to_function t(:cancel), "$(this).parents('.source_nested_form_fields').find('.choicefields').show(); $(this).parents('fieldset:first').remove();"
+    .choicefields
+      = f.text_field foreign_key, chooser_options
+      = t :or
+      = link_to_function t(:add_new_source).downcase, "$(this).parents('.choicefields').after('#{escape_javascript new_source_fields}'); $(this).parents('.choicefields').hide(); $(this).parents('.source_nested_form_fields').find('.existing').chooser('clear')", id: "new_source_link"

@@ -38,7 +38,7 @@
     $( document ).ready( function() {      
       $( "#filters_user_id" ).chooser( {
         queryParam: "q",
-        collectionUrl: "/people/search.json",
+        collectionUrl: collectionUrl: $( "meta[name='config:inaturalist_api_url']" ).attr( "content" ) + "/search?sources=users",
         resourceUrl: "/people/{{id}}.json",
         chosen: user,
         defaultSources: defaultUsers
@@ -56,7 +56,7 @@
     .col-xs-12
       - if !current_user.blank? && current_user.is_curator?
         .pull-right
-          = link_to "new taxon framework relationship", new_taxon_framework_relationship_path, class: "btn btn-default"
+          = link_to "new taxon framework relationship", ( @taxon_framework ? new_taxon_framework_relationship_path( taxon_framework_id: @taxon_framework.id ) : new_taxon_framework_relationship_path ), class: "btn btn-default"
       %h2= @title
       .panel.panel-info
         .panel-heading
@@ -80,14 +80,14 @@
               label_after: true,                                                   |
               label: t("relationships.#{relationship}"),                           |
               checked: @relationships.include?( relationship )                     |
-        = f.select :taxon_framework_id, @taxon_frameworks.map{ |er| [er.taxon.name, er.id] }, include_blank: t( :any ), selected: @taxon_framework.try( :id ), label: t(:taxon_framework_taxon)
+        = f.select :taxon_framework_id, @taxon_frameworks.map{ |er| [er.name, er.id] }, include_blank: t( :any ), selected: @taxon_framework.try( :id ), label: t(:taxon_framework_taxon)
         = f.text_field :taxon_name, placeholder: t(:type_taxon_name), label: t(:internal_taxon_including_descendants)
         = f.hidden_field :taxon_id, value: @internal_taxon ? @internal_taxon.id : nil
         = f.text_field :external_taxon_name, value: @external_taxon_name ? @external_taxon_name : nil, place_holder: t(:type_taxon_name), label: t(:external_taxon_including_children)
         = f.select :internal_rank, Taxon::RANKS, include_blank: t( :any ), selected: @internal_rank, label: t( :internal_taxon_rank )
         = f.select :external_rank, [Taxon::RANKS,ExternalTaxon::ADDITIONAL_RANKS].flatten, include_blank: t( :any ), selected: @external_rank, label: t( :external_taxon_rank )
         = f.text_field :user_id, value: @user ? @user.id : nil, placeholder: t( :start_typing_someones_name ), label: t( :added_by )
-        = f.select :is_active, [t( :true ), t( :false )], include_blank: t( :either ), selected: @is_active, label: t( :active )
+        = f.select :is_active, [t( :true ), t( :false )], include_blank: t( :any_ ), selected: @is_active, label: t( :active )
         = f.submit t( :filter ), class: "default button", "data-loading-click": t( :filtering )
         = link_to t( :clear_filters ), taxon_framework_relationships_url, class: "minor button"
     .col-xs-9
@@ -115,4 +115,15 @@
             = render partial: "show_taxon_framework_relationship", object: { taxon_framework_relationship: taxon_framework_relationship }
             - if taxon_framework_relationship.description
               %p= formatted_user_text stripped_first_paragraph_of_text( taxon_framework_relationship.description,"\n" ), tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
+            .pull-right
+              - if taxon_framework_relationship && taxon_framework_relationship.updater
+                = t(:updated_by)
+                = link_to taxon_framework_relationship.updater.login, taxon_framework_relationship.updater
+                = t :on_day
+                = l(taxon_framework_relationship.updated_at.to_date, :format => :long)
+              - elsif taxon_framework_relationship && taxon_framework_relationship.user
+                = t(:created_by, gender: 'taxon')
+                = link_to taxon_framework_relationship.user.login,taxon_framework_relationship.user
+                = t :on_day
+                = l(taxon_framework_relationship.created_at.to_date, :format => :long)
       = will_paginate @taxon_framework_relationships

@@ -1,3 +1,40 @@
+$gutter: 20px;
+#wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  > div {
+    margin: 0 $gutter $gutter;
+  }
+  #pageheader {
+    width: auto;
+    margin-bottom: $gutter / 2;
+    #tools {
+      display: flex;
+      align-items: flex-start;
+      .button, .inter {
+        float: none;
+      }
+      .buttoncontainer {
+        display: flex;
+      }
+    }
+  }
+}
+
+#maincol {
+  display: flex;
+  clear: both;
+  flex-wrap: wrap;
+}
+
+#listcol {
+  flex-basis: 65%;
+  flex-grow: 2;
+  margin-right: $gutter;
+  margin-bottom: $gutter;
+}
+
 .observations.table {
   margin-bottom:2em;
 }
@@ -7,14 +44,10 @@
 .observations.table .observation .icon img.marker {
   cursor:pointer;
 }
-#mapsizectrl {
-  // Temporary,for testing
-  display:none;
-  text-align:right;
-  margin-bottom:0.4em;
-}
 #mapcol {
   min-height:500px;
+  flex-basis: 30%;
+  flex-grow: 1;
 }
 #map {
   height:500px;

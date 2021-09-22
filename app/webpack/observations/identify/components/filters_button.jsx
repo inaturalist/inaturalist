@@ -3,18 +3,18 @@ import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import {
   Button,
-  Popover,
-  Overlay,
+  Col,
   Grid,
-  Row,
-  Col
+  Overlay,
+  Popover,
+  Row
 } from "react-bootstrap";
 import _ from "lodash";
 import PlaceAutocomplete from "./place_autocomplete";
 import ProjectAutocomplete from "./project_autocomplete";
 import UserAutocomplete from "./user_autocomplete";
 import DateFilters from "./date_filters";
-import { isBlank } from "../../../shared/util";
+import FilterCheckbox from "./filter_checkbox";
 
 class FiltersButton extends React.Component {
   constructor( props ) {
@@ -26,6 +26,7 @@ class FiltersButton extends React.Component {
       show: false
     };
     this.clickOffEventNamespace = "click.FiltersButtonClickOff";
+    this.target = React.createRef( );
   }
 
   toggle( ) {
@@ -63,19 +64,17 @@ class FiltersButton extends React.Component {
 
   render( ) {
     const {
+      config,
       params,
       updateSearchParams,
       replaceSearchParams,
       defaultParams,
-      terms,
-      config
+      terms
     } = this.props;
     const {
       moreFiltersHidden,
       show
     } = this.state;
-    const viewerIsAdmin = config.currentUser.roles
-      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     const paramsForUrl = ( ) => window.location.search.replace( /^\?/, "" );
     const closeFilters = ( ) => {
       // yes it's a horrible hack
@@ -86,54 +85,20 @@ class FiltersButton extends React.Component {
       const diffs = _.difference( _.values( params ), _.values( defaultParams ) );
       return diffs.length > 0 ? diffs.length.toString() : "";
     };
-    const filterCheckbox = checkbox => {
-      const checkedVal = ( checkbox.checked || true ).toString( );
-      const vals = params[checkbox.param] ? params[checkbox.param].toString( ).split( "," ) : [];
-      const thisValChecked = vals.indexOf( checkedVal ) >= 0;
-      let cssClass = "checkbox";
-      if ( params[checkbox.param] !== defaultParams[checkbox.param] && thisValChecked ) {
-        cssClass += " filter-changed";
-      }
-      let disabled = false;
-      if (
-        checkbox.disabled
-        || (
-          checkbox.noBlank
-          && vals.length === 1
-          && vals[0] === checkedVal
-        )
-      ) {
-        disabled = true;
-      }
-      return (
-        <div
-          className={cssClass}
-          key={`filters-${checkbox.param}-${checkbox.label}`}
-        >
-          <label>
-            <input
-              type="checkbox"
-              checked={thisValChecked}
-              disabled={disabled}
-              onChange={e => {
-                let newVal = checkbox.unchecked;
-                let newVals = _.map( vals );
-                if ( e.target.checked ) newVal = checkedVal;
-                if ( isBlank( newVal ) ) {
-                  newVals = _.filter( vals, v => v !== checkedVal );
-                  updateSearchParams( { [checkbox.param]: newVals.join( "," ) } );
-                } else if ( !thisValChecked ) {
-                  newVals.push( newVal );
-                  updateSearchParams( { [checkbox.param]: newVals.join( "," ) } );
-                }
-              }}
-            />
-            { " " }
-            { I18n.t( checkbox.label || checkbox.param ) }
-          </label>
-        </div>
+    const viewerCuratesProject = config && config.currentUser
+      && _.find(
+        config.currentUser.curator_projects,
+        p => [p.id, p.slug].includes( params.project_id )
       );
-    };
+    const FilterCheckboxWrapper = checkbox => (
+      <FilterCheckbox
+        {...Object.assign( {}, checkbox, {
+          defaultParams,
+          params,
+          updateSearchParams
+        } )}
+      />
+    );
     const visibleRanks = [
       "kingdom",
       "phylum",
@@ -141,10 +106,15 @@ class FiltersButton extends React.Component {
       "superclass",
       "class",
       "subclass",
+      "infraclass",
+      "subterclass",
       "superorder",
       "order",
       "suborder",
       "infraorder",
+      "parvorder",
+      "zoosection",
+      "zoosubsection",
       "superfamily",
       "epifamily",
       "family",
@@ -154,11 +124,16 @@ class FiltersButton extends React.Component {
       "subtribe",
       "genus",
       "genushybrid",
+      "subgenus",
+      "section",
+      "subsection",
+      "complex",
       "species",
       "hybrid",
       "subspecies",
       "variety",
-      "form"
+      "form",
+      "infrahybrid"
     ];
     const orderByFields = [
       { value: "observations.id", default: "date added", label: "date_added" },
@@ -224,24 +199,24 @@ class FiltersButton extends React.Component {
         </Row>
         <Row>
           <Col className="quality-filters" xs="12">
-            { filterCheckbox( {
-              param: "quality_grade",
-              label: "casual_",
-              checked: "casual",
-              noBlank: true
-            } ) }
-            { filterCheckbox( {
-              param: "quality_grade",
-              label: "needs_id_",
-              checked: "needs_id",
-              noBlank: true
-            } ) }
-            { filterCheckbox( {
-              param: "quality_grade",
-              label: "research_grade",
-              checked: "research",
-              noBlank: true
-            } ) }
+            <FilterCheckboxWrapper
+              param="quality_grade"
+              label={I18n.t( "casual_" )}
+              checked="casual"
+              noBlank
+            />
+            <FilterCheckboxWrapper
+              param="quality_grade"
+              label={I18n.t( "needs_id_" )}
+              checked="needs_id"
+              noBlank
+            />
+            <FilterCheckboxWrapper
+              param="quality_grade"
+              label={I18n.t( "research_grade" )}
+              checked="research"
+              noBlank
+            />
           </Col>
         </Row>
         <Row>
@@ -254,18 +229,23 @@ class FiltersButton extends React.Component {
         <Row className="show-filters">
           <Col className="filters-left-col" xs="6">
             { [
-              { param: "captive" },
-              { param: "threatened" },
-              { param: "introduced" },
-              { param: "popular" }
-            ].map( filterCheckbox ) }
+              { param: "captive", key: "show-filter-captive" },
+              { param: "threatened", key: "show-filter-threatened" },
+              { param: "introduced", key: "show-filter-introduced" },
+              { param: "popular", key: "show-filter-popular" }
+            ].map( FilterCheckboxWrapper ) }
           </Col>
           <Col className="filters-left-col" xs="6">
             { [
-              { param: "sounds", label: "has_sounds" },
-              { param: "photos", label: "has_photos" },
-              { param: "user_id", label: "your_observations", checked: CURRENT_USER.id }
-            ].map( filterCheckbox ) }
+              { param: "sounds", key: "show-filter-sounds", label: I18n.t( "has_sounds" ) },
+              { param: "photos", key: "show-filter-photos", label: I18n.t( "has_photos" ) },
+              {
+                param: "user_id",
+                key: "show-filter-user_id",
+                label: I18n.t( "your_observations" ),
+                checked: CURRENT_USER.id
+              }
+            ].map( FilterCheckboxWrapper ) }
           </Col>
         </Row>
         <Row>
@@ -553,6 +533,14 @@ class FiltersButton extends React.Component {
             />
             <input value={params.project_id} type="hidden" name="project_id" />
           </div>
+          { params.project_id && viewerCuratesProject && (
+            <FilterCheckboxWrapper
+              param="coords_viewable_for_proj"
+              label={I18n.t( "coords_viewable_for_proj_label" )}
+              tipText={I18n.t( "coords_viewable_for_proj_desc" )}
+              checked="true"
+            />
+          ) }
         </div>
         <div className="form-group">
           <label className="sectionlabel">
@@ -638,7 +626,7 @@ class FiltersButton extends React.Component {
           <select
             id="params-without-term-id"
             className={`form-control ${params.without_term_id ? "filter-changed" : ""}`}
-            defaultValue={params.without_term_id}
+            defaultValue={params.without_term_id || params.term_id}
             onChange={e => {
               if ( _.isEmpty( e.target.value ) ) {
                 updateSearchParams( { without_term_id: "", without_term_value_id: "" } );
@@ -656,7 +644,7 @@ class FiltersButton extends React.Component {
               </option>
             ) ) }
           </select>
-          { rejectedTerm ? (
+          { ( rejectedTerm || chosenTerm ) && (
             <div className="term-value">
               <big>=</big>
               <select
@@ -668,14 +656,14 @@ class FiltersButton extends React.Component {
                 <option value="">
                   { I18n.t( "any_" ) }
                 </option>
-                { rejectedTerm.values.map( t => (
+                { ( rejectedTerm || chosenTerm ).values.map( t => (
                   <option value={t.id} key={`without-term-value-id-${t.id}`}>
                     { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
                   </option>
                 ) ) }
               </select>
             </div>
-          ) : null }
+          ) }
         </div>
         <div className="form-group recent-users-form-group">
           <label htmlFor="account-creation" className="sectionlabel">{ I18n.t( "account_creation" ) }</label>
@@ -785,7 +773,7 @@ class FiltersButton extends React.Component {
           bsRole="toggle"
           bsStyle="default"
           className="FiltersButton"
-          ref="target"
+          ref={this.target}
           onClick={( ) => this.toggle( )}
         >
           <i className="fa fa-sliders" />
@@ -801,7 +789,7 @@ class FiltersButton extends React.Component {
           onHide={( ) => this.setState( { show: false } )}
           container={$( "#wrapper.bootstrap" ).get( 0 )}
           placement="bottom"
-          target={( ) => ReactDOM.findDOMNode( this.refs.target )}
+          target={( ) => ReactDOM.findDOMNode( this.target.current )}
         >
           <Popover
             id="FiltersButtonPopover"
@@ -817,12 +805,12 @@ class FiltersButton extends React.Component {
 }
 
 FiltersButton.propTypes = {
+  config: PropTypes.object,
   params: PropTypes.object,
   defaultParams: PropTypes.object,
   updateSearchParams: PropTypes.func,
   replaceSearchParams: PropTypes.func,
-  terms: PropTypes.array,
-  config: PropTypes.object
+  terms: PropTypes.array
 };
 
 FiltersButton.defaultProps = {

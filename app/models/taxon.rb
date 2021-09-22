@@ -1,5 +1,5 @@
 #encoding: utf-8
-class Taxon < ActiveRecord::Base
+class Taxon < ApplicationRecord
   # Sometimes you don't want to make a new taxon name with a taxon, like when
   # you're saving a new taxon name with a new associated taxon. Hence, this.
   attr_accessor :skip_new_taxon_name
@@ -23,9 +23,16 @@ class Taxon < ActiveRecord::Base
 
   # set this when you want methods to respond with user-specific content
   attr_accessor :current_user
+  attr_accessor :skip_observation_indexing
 
   include ActsAsElasticModel
-
+  # include ActsAsUUIDable
+  before_validation :set_uuid
+  def set_uuid
+    self.uuid ||= SecureRandom.uuid
+    self.uuid = uuid.downcase
+    true
+  end
   acts_as_flaggable
   has_ancestry orphan_strategy: :adopt
 
@@ -48,17 +55,14 @@ class Taxon < ActiveRecord::Base
     through: :listed_taxa
   has_many :identifications, :dependent => :destroy
   has_many :taxon_links, :dependent => :delete_all 
-  has_many :taxon_ranges, :dependent => :destroy
-  has_many :taxon_ranges_without_geom, -> { select(TaxonRange.column_names - ['geom']) }, :class_name => 'TaxonRange'
+  has_one :taxon_range, inverse_of: :taxon, :dependent => :destroy
+  has_one :taxon_range_without_geom, -> { select(TaxonRange.column_names - ['geom']) }, :class_name => 'TaxonRange'
   has_many :taxon_photos, -> { order("position ASC NULLS LAST, id ASC") }, :dependent => :destroy
   has_many :photos, :through => :taxon_photos
   has_many :assessments, :dependent => :nullify
   has_many :conservation_statuses, :dependent => :destroy
   has_many :guide_taxa, :inverse_of => :taxon, :dependent => :nullify
   has_many :guides, :inverse_of => :taxon, :dependent => :nullify
-  has_many :taxon_ancestors, :dependent => :delete_all
-  has_many :taxon_ancestors_as_ancestor, :class_name => "TaxonAncestor", :foreign_key => :ancestor_taxon_id, :dependent => :delete_all
-  has_many :ancestor_taxa, :class_name => "Taxon", :through => :taxon_ancestors
   has_one :atlas, inverse_of: :taxon, dependent: :destroy
   has_one :taxon_framework, inverse_of: :taxon, dependent: :destroy
   has_many :listed_taxon_alterations, inverse_of: :taxon, dependent: :delete_all
@@ -68,17 +72,18 @@ class Taxon < ActiveRecord::Base
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
-  belongs_to :updater, :class_name => 'User'
+  has_updater
   belongs_to :conservation_status_source, :class_name => "Source"
   belongs_to :taxon_framework_relationship, touch: true
-  has_and_belongs_to_many :colors, -> { uniq }
+  has_and_belongs_to_many :colors, -> { distinct }
   has_many :taxon_descriptions, :dependent => :destroy
   has_one :en_wikipedia_description,
     -> { where("locale='en' AND provider='Wikipedia'") },
     class_name: "TaxonDescription"
   has_many :controlled_term_taxa, inverse_of: :taxon, dependent: :destroy
   has_many :taxon_curators, inverse_of: :taxon  # deprecated, remove when we're sure transition to taxon frameworks is complete
-  
+  has_one :simplified_tree_milestone_taxon, dependent: :destroy
+
   accepts_nested_attributes_for :conservation_status_source
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :conservation_statuses, :reject_if => :all_blank, :allow_destroy => true
@@ -89,20 +94,24 @@ class Taxon < ActiveRecord::Base
               :strip_name,
               :capitalize_name,
               :remove_wikipedia_summary_unless_auto_description,
-              :ensure_parent_ancestry_in_ancestry
-  after_create :denormalize_ancestry
+              :ensure_parent_ancestry_in_ancestry,
+              :unfeature_inactive
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
+             :reindex_identifications_after_save,
              :handle_after_move,
+             :handle_after_activate,
              :update_taxon_framework_relationship
   after_destroy :update_taxon_framework_relationship
   after_save :index_observations
 
   validates_presence_of :name, :rank, :rank_level
-  validates_uniqueness_of :name, 
-                          :scope => [:ancestry, :is_active],
-                          :unless => Proc.new { |taxon| (taxon.ancestry.blank? || !taxon.is_active)},
-                          :message => "already used as a child of this taxon's parent"
+  validates_uniqueness_of :name, scope: %i[ancestry is_active],
+                          unless: -> { (ancestry.blank? || !is_active || complex?) }, # If a complex, allow duplicate sibling name for species...
+                          message: "already used as a child of this taxon's parent"
+  validates_uniqueness_of :name, scope: %i[ancestry is_active rank],
+                          if: -> { complex? },  # ... but do not allow duplicate sibling complex name
+                          message: "already used as a child complex of this taxon's parent"
   # validates_uniqueness_of :source_identifier,
   #                         :scope => [:source_id],
   #                         :message => "already exists",
@@ -120,11 +129,15 @@ class Taxon < ActiveRecord::Base
   validate :only_inactive_children_if_inactive
   validate :active_parent_if_active
   validate :has_ancestry_and_active_if_taxon_framework
+  validate :cannot_edit_parent_during_content_freeze
 
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
   }
   
+  NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT = 200000
+  NUM_OBSERVATIONS_TRIGGERING_WARNING = 1000
+
   NAME_PROVIDER_TITLES = {
     'ColNameProvider' => 'Catalogue of Life',
     'NZORNameProvider' => 'New Zealand Organisms Register',
@@ -174,8 +187,7 @@ class Taxon < ActiveRecord::Base
     define_method "find_#{rank}" do
       return self if self.rank == rank
       return nil if rank_level.to_i > level.to_i
-      @cached_ancestors ||= ancestor_taxa.loaded? ? ancestor_taxa :
-        ancestors.select("id, name, rank, ancestry,
+      @cached_ancestors ||= ancestors.select("id, name, rank, ancestry,
           iconic_taxon_id, rank_level, created_at, updated_at, is_active,
           observations_count").all
       @cached_ancestors.detect{|a| a.rank == rank}
@@ -227,6 +239,66 @@ class Taxon < ActiveRecord::Base
     'subspecies',
     'variety'
   ]
+
+  WIKIPEDIA_RANKS = {
+    "infratribe" => "infratribus",
+    "infraphylum" => "infraphylum",
+    "infraorder" => "infraordo",
+    "cohort" => "cohort",
+    "microrder" => "micrordo",
+    "genus" => "genus",
+    "grandorder" => "grandordo",
+    "microphylum" => "microphylum",
+    "sublegion" => "sublegio",
+    "parvclass" => "parvclassis",
+    "supercohort" => "supercohort",
+    "nanorder" => "nanordo",
+    "parafamily" => "parafamilia",
+    "superdivision" => "superdivisio",
+    "superlegion" => "superlegio",
+    "magnorder" => "magnordo",
+    "variety" => "varietas",
+    "tribe" => "tribus",
+    "parvorder" => "parvordo",
+    "superfamily" => "superfamilia",
+    "subphylum" => "subphylum",
+    "superphylum" => "superphylum",
+    "infrakingdom" => "infraregnum",
+    "mb" => "grandordo",
+    "supertribe" => "supertribus",
+    "hyperfamily" => "hyperfamilia",
+    "superclass" => "superclassis",
+    "subtribe" => "subtribus",
+    "subterclass" => "subterclassis",
+    "division" => "divisio",
+    "subspecies" => "subspecies",
+    "class" => "classis",
+    "subsection" => "subsectio",
+    "infraclass" => "infraclassis",
+    "subcohort" => "subcohort",
+    "subfamily" => "subfamilia",
+    "subkingdom" => "subregnum",
+    "superkingdom" => "superregnum",
+    "species" => "species",
+    "suborder" => "subordo",
+    "subgenus" => "subgenus",
+    "subdivision" => "subdivisio",
+    "order" => "ordo",
+    "subclass" => "subclassis",
+    "section" => "sectio",
+    "legion" => "legio",
+    "kingdom" => "regnum",
+    "domain" => "domain",
+    "superdomain" => "superdomain",
+    "superorder" => "superordo",
+    "nanophylum" => "nanophylum",
+    "family" => "familia",
+    "mirordo" => "mirordo-mb",
+    "infralegion" => "infralegio",
+    "form" => "forma",
+    "mirorder" => "mirordo",
+    "phylum" => "phylum"
+  }
   
   # In case you don't feel like looking up TaxonNames
   ICONIC_TAXON_NAMES = {
@@ -292,31 +364,43 @@ class Taxon < ActiveRecord::Base
     [IUCN_STATUS_CODES[name], value]
   }]
   
+  # Names we don't use when trying to extract a taxon from text because they
+  # usually map to the wrong thing. Also including all place names for
+  # state-level places and above that are also taoxn names, since they often get
+  # used in photo tags
+  abbr_date_names = I18N_SUPPORTED_LOCALES.map{|locale|
+    [
+      I18n.t( "date.abbr_month_names", locale: locale ),
+      I18n.t( "date.abbr_day_names", locale: locale )
+    ]
+  }.flatten.select{|n| !n.blank? && n.to_f == 0}.map{|n| n.to_s.downcase }.uniq
+  place_names_that_are_taxon_names = Taxon.select( "DISTINCT taxa.name" ).
+    joins( "JOIN places ON places.name = taxa.name" ).
+    where( "places.admin_level < 2" ).
+    pluck(:name).uniq.sort.map(&:downcase)
   PROBLEM_NAMES = [
-    "arizona",
+    "aba",
+    "america",
+    "asa",
     "bee hive",
-    "california",
+    "canon",
     "caterpillar",
     "caterpillars",
     "chiton",
     "cicada",
     "creeper",
+    "eos",
     "gall",
     "hong kong",
     "larva",
     "lichen",
     "lizard",
-    "mexico",
-    "oman",
     "pinecone",
     "pupa",
     "pupae",
     "sea",
-    "sinaloa",
-    "tanzania",
-    "virginia",
     "winged insect"
-  ]
+  ] + place_names_that_are_taxon_names + abbr_date_names
   
   PROTECTED_ATTRIBUTES_FOR_CURATED_TAXA = %w(
     ancestry
@@ -347,7 +431,7 @@ class Taxon < ActiveRecord::Base
   scope :of_rank_equiv_or_lower, lambda {|rank_level| where("taxa.rank_level <= ?", rank_level)}
   scope :is_locked, -> { where(:locked => true) }
   scope :containing_lat_lng, lambda {|lat, lng|
-    joins(:taxon_ranges).where("ST_Intersects(taxon_ranges.geom, ST_Point(?, ?))", lng, lat)
+    joins(:taxon_range).where("ST_Intersects(taxon_ranges.geom, ST_Point(?, ?))", lng, lat)
   }
   
   # Like it's counterpart in Place, this is potentially VERY expensive/slow
@@ -374,25 +458,14 @@ class Taxon < ActiveRecord::Base
     select("DISTINCT ON (taxa.id) taxa.*")
   }
   
-  scope :colored, lambda {|colors|
-    colors = [colors] unless colors.is_a?(Array)
-    if colors.first.to_i == 0
-      joins(:colors).where("colors.value IN (?)", colors)
-    else
-      joins(:colors).where("colors.id IN (?)", colors)
-    end
-  }
-  
   scope :has_photos, -> { joins(:taxon_photos).where("taxon_photos.id IS NOT NULL") }
   scope :among, lambda {|ids| where("taxa.id IN (?)", ids)}
   
   scope :self_and_descendants_of, lambda{|taxon|
     if taxon
-      conditions = taxon.descendant_conditions.to_sql
-      conditions += " OR taxa.id = #{ taxon.id }"
-      where(conditions)
+      where( taxon.subtree_conditions )
     else
-      where("1 = 2")
+      where( "1 = 2" )
     end
   }
   
@@ -448,14 +521,34 @@ class Taxon < ActiveRecord::Base
     const_set('ICONIC_TAXA_BY_NAME', Taxon::ICONIC_TAXA.index_by(&:name))
   end
 
-  # Callbacks ###############################################################  
+  # Callbacks ###############################################################
+
+  def cannot_edit_parent_during_content_freeze
+    return unless CONFIG.content_freeze_enabled
+    return if new_record?
+    return unless ancestry_changed?
+    errors.add( :parent_id, I18n.t( "cannot_be_changed_during_a_content_freeze" ) )
+  end
+
+  def reindex_identifications_after_save
+    return if new_record?
+    reindex_needed = %w(rank rank_level iconic_taxon_id ancestry).detect do |a|
+      send("saved_change_to_#{a}?")
+    end
+    if reindex_needed
+      Identification.delay(
+        priority: INTEGRITY_PRIORITY,
+        queue: "slow",
+        unique_hash: { "Identification::reindex_for_taxon": id }
+      ).reindex_for_taxon( id )
+    end
+  end
+
   def handle_after_move
-    return true unless ancestry_changed?
+    return true unless saved_change_to_ancestry?
     set_iconic_taxon
     return true if skip_after_move
-    denormalize_ancestry
-    return true if id_changed?
-    update_life_lists
+    return true if saved_change_to_id?
     update_obs_iconic_taxa
     Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
       unique_hash: { "Observation::update_stats_for_observations_of": id }).
@@ -483,6 +576,14 @@ class Taxon < ActiveRecord::Base
     if has_taxon_framework_relationship
       reasess_taxon_framework_relationship_after_move
     end
+    true
+  end
+
+  def handle_after_activate
+    return true unless saved_change_to_is_active?
+    Observation.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
+      unique_hash: { "Observation::update_stats_for_observations_of": id } ).
+      update_stats_for_observations_of( id )
     true
   end
 
@@ -519,7 +620,10 @@ class Taxon < ActiveRecord::Base
   
   def update_taxon_framework_relationship
     return true unless self.taxon_framework_relationship
-    taxon_framework_relationship.set_relationship if (destroyed? || name_changed? || rank_changed? || ancestry_changed? || taxon_framework_relationship_id_changed?)
+    if destroyed? || saved_change_to_name? || saved_change_to_rank? ||
+      saved_change_to_ancestry? || saved_change_to_taxon_framework_relationship_id?
+      taxon_framework_relationship.set_relationship
+    end
     attrs = {}
     attrs[:relationship] = taxon_framework_relationship.relationship
     taxon_framework_relationship.update_attributes(attrs)
@@ -531,27 +635,30 @@ class Taxon < ActiveRecord::Base
       upstream_framework = upstream_taxon_framework
       return nil unless ( upstream_framework && upstream_framework.complete && upstream_framework.rank_level <= SPECIES_LEVEL )
     end
-    scope = taxon_ancestors_as_ancestor.
-      select("distinct taxon_ancestors.taxon_id").
-      joins(:taxon).
-      where( "taxon_ancestors.taxon_id != ? AND rank = ? AND is_active", id, SPECIES ).
+    scope = descendants.
+      select( :id ).distinct.
+      where( "rank = ? AND is_active", SPECIES ).
       where( "(select count(*) from conservation_statuses cs
         WHERE cs.taxon_id = taxa.id AND cs.place_id IS NULL AND cs.iucn = ?) = 0", Taxon::IUCN_EXTINCT )
     scope.count
   end
 
-  def denormalize_ancestry
-    Taxon.transaction do
-      TaxonAncestor.where( taxon_id: id ).delete_all
-      unless self_and_ancestor_ids.blank?
-        sql = "INSERT INTO taxon_ancestors VALUES " + self_and_ancestor_ids.map {|aid| "(#{id},#{aid})" }.join( "," )
-        ActiveRecord::Base.connection.execute( sql )
-      end
-    end
-  end
-
   def index_observations
-    Observation.elastic_index!(scope: observations.select(:id), delay: true)
+    return if skip_observation_indexing
+    # changing some fields doesn't require reindexing observations
+    return if ( saved_changes.keys - [
+      "photos_locked",
+      "taxon_framework_relationship_id",
+      "updater_id",
+      "updated_at"
+    ] ).empty?
+    if saved_changes[:ancestry]
+      # using Taxon.find since the ancestry gem uses the before save
+      # ancestry and descendants' ancestries have already been updated
+      Observation.elastic_index!( scope: Observation.of( Taxon.find( id ) ), delay: true )
+    else
+      Observation.elastic_index!( scope: observations.select( :id ), delay: true )
+    end
   end
 
   def normalize_rank
@@ -573,7 +680,7 @@ class Taxon < ActiveRecord::Base
   # Set the iconic taxon if it hasn't been set
   #
   def set_iconic_taxon(options = {})
-    unless iconic_taxon_id_changed?
+    unless will_save_change_to_iconic_taxon_id? || saved_change_to_iconic_taxon_id?
       self.iconic_taxon = if is_iconic?
         self
       else
@@ -581,7 +688,7 @@ class Taxon < ActiveRecord::Base
       end
     end
     
-    if !new_record? && (iconic_taxon_id_changed? || options[:force])
+    if !new_record? && (will_save_change_to_iconic_taxon_id? || saved_change_to_iconic_taxon_id? || options[:force])
       new_child_ancestry = "#{ancestry}/#{id}"
       conditions = ["(ancestry LIKE ? OR ancestry = ?)", "#{new_child_ancestry}/%", new_child_ancestry]
       conditions[0] += " AND (iconic_taxon_id IN (?) OR iconic_taxon_id IS NULL)"
@@ -593,13 +700,13 @@ class Taxon < ActiveRecord::Base
   end
   
   def set_wikipedia_summary_later
-    delay(:priority => OPTIONAL_PRIORITY).set_wikipedia_summary if wikipedia_title_changed?
+    delay(:priority => OPTIONAL_PRIORITY).set_wikipedia_summary if saved_change_to_wikipedia_title?
     true
   end
 
   def self.set_conservation_status(id)
     return unless t = Taxon.find_by_id(id)
-    s = t.conservation_statuses.where("place_id IS NULL").map(&:iucn).max
+    s = t.conservation_statuses.where("place_id IS NULL").pluck(:iucn).max
     Taxon.where(id: t).update_all(conservation_status: s)
   end
   
@@ -714,7 +821,11 @@ class Taxon < ActiveRecord::Base
   end
 
   def descendants_count
-    taxon_ancestors_as_ancestor.count
+    subtree.count
+  end
+
+  def subtree_conditions
+    descendant_conditions.or( Taxon.arel_table[:id].eq( id ) )
   end
 
   def taxon_changes_count
@@ -1035,13 +1146,14 @@ class Taxon < ActiveRecord::Base
   def graftable_destination_relative_to_taxon_framework_coverage
     return true unless new_record? || ancestry_changed?
     return true if ancestry.nil? || !is_active
-    destination_taxon_framework = parent.taxon_framework
-    if !skip_taxon_framework_checks && destination_taxon_framework && destination_taxon_framework.covers? && destination_taxon_framework.taxon_curators.any? && ( current_user.blank? || ( !current_user.blank? && !destination_taxon_framework.taxon_curators.where( user: current_user ).exists? ) )
-      errors.add( :ancestry, "destination #{destination_taxon_framework.taxon} has a curated taxon framework attached to it. Contact the curators of that taxon to request changes." )
-    end
-    destination_upstream_taxon_framework = parent.get_upstream_taxon_framework
-    if !skip_taxon_framework_checks && destination_upstream_taxon_framework && parent.rank_level > destination_upstream_taxon_framework.rank_level && destination_upstream_taxon_framework.taxon_curators.any? && ( current_user.blank? || ( !current_user.blank? && !destination_upstream_taxon_framework.taxon_curators.where( user: current_user ).exists? ) ) 
-      errors.add( :ancestry, "destination #{destination_upstream_taxon_framework.taxon} covered by a curated taxon framework. Contact the curators of that taxon to request changes." )
+    if destination_taxon_framework = parent.taxon_framework
+      if !skip_taxon_framework_checks && destination_taxon_framework && destination_taxon_framework.covers? && destination_taxon_framework.taxon_curators.any? && ( current_user.blank? || ( !current_user.blank? && !destination_taxon_framework.taxon_curators.where( user: current_user ).exists? ) )
+        errors.add( :ancestry, "destination #{destination_taxon_framework.taxon} has a curated taxon framework attached to it. Contact the curators of that taxon to request changes." )
+      end
+    elsif destination_upstream_taxon_framework = parent.get_upstream_taxon_framework
+      if !skip_taxon_framework_checks && destination_upstream_taxon_framework && parent.rank_level > destination_upstream_taxon_framework.rank_level && destination_upstream_taxon_framework.taxon_curators.any? && ( current_user.blank? || ( !current_user.blank? && !destination_upstream_taxon_framework.taxon_curators.where( user: current_user ).exists? ) ) 
+        errors.add( :ancestry, "destination #{destination_upstream_taxon_framework.taxon} covered by a curated taxon framework. Contact the curators of that taxon to request changes." )
+      end
     end
     true
   end
@@ -1063,7 +1175,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def reasess_taxon_framework_relationship_after_move
-    tfr = taxon_framework_relationship
+    return unless tfr = taxon_framework_relationship
     if tf = tfr.taxon_framework
       unless upstream_taxon_framework == tf
         tfr.destroy
@@ -1110,29 +1222,48 @@ class Taxon < ActiveRecord::Base
     true
   end
 
+  def curated_taxon_framework?( taxon_framework )
+    return false unless taxon_framework
+    return taxon_framework.taxon_curators.any?
+  end
+
+  def current_user_curates_taxon?( user, taxon_framework )
+      current_user_curates_taxon = false
+      if user && taxon_framework
+        current_user_curates_taxon = taxon_framework.taxon_curators.where( user: user ).exists?
+      end
+      current_user_curates_taxon
+  end
+
+  def observose_branch?
+    return false unless observations_count
+    return observations_count > NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT
+  end
+
+  def observose_warning_branch?
+    return false if new_record?
+    return false unless observations_count
+    return observations_count > NUM_OBSERVATIONS_TRIGGERING_WARNING
+  end
+
   def protected_attributes_editable_by?( user )
     return true unless is_active
     return true if user && user.is_admin?
     upstream_taxon_framework = get_upstream_taxon_framework
-    return true unless upstream_taxon_framework
-    return true unless upstream_taxon_framework.taxon_curators.any?
-    current_user_curates_taxon = false
-    if user
-      current_user_curates_taxon = upstream_taxon_framework.taxon_curators.where( user: user ).exists?
+    if observose_branch?
+      return false unless curated_taxon_framework?( upstream_taxon_framework )
+      return current_user_curates_taxon?( user, upstream_taxon_framework )
+    else 
+      return true unless curated_taxon_framework?( upstream_taxon_framework )
+      return current_user_curates_taxon?( user, upstream_taxon_framework )
     end
-    current_user_curates_taxon
   end
   
   def activated_protected_attributes_editable_by?( user )
     return true if user && user.is_admin?
     upstream_taxon_framework = get_upstream_taxon_framework
-    return true unless upstream_taxon_framework
-    return true unless upstream_taxon_framework.taxon_curators.any?
-    current_user_curates_taxon = false
-    if user
-      current_user_curates_taxon = upstream_taxon_framework.taxon_curators.where( user: user ).exists?
-    end
-    current_user_curates_taxon
+    return true unless curated_taxon_framework?( upstream_taxon_framework )
+    return current_user_curates_taxon?( user, upstream_taxon_framework )
   end
   
   #
@@ -1146,18 +1277,6 @@ class Taxon < ActiveRecord::Base
   def infraspecies?
     return false if rank_level.blank?
     rank_level < SPECIES_LEVEL
-  end
-
-  def update_life_lists(options = {})
-    ids = options[:skip_ancestors] ? [id] : [id, ancestor_ids].flatten.compact
-    if ListRule.exists?([
-        "operator LIKE 'in_taxon%' AND operand_type = ? AND operand_id IN (?)", 
-        Taxon.to_s, ids])
-      LifeList.delay(priority: INTEGRITY_PRIORITY,
-        unique_hash: { "LifeList::update_life_lists_for_taxon": id }).
-        update_life_lists_for_taxon(self)
-    end
-    true
   end
   
   def update_obs_iconic_taxa
@@ -1271,6 +1390,11 @@ class Taxon < ActiveRecord::Base
     true
   end
 
+  def unfeature_inactive
+    self.featured_at = nil unless is_active?
+    true
+  end
+
   def auto_summary
     return if LIFE && id == LIFE.id
     translated_rank = if rank.blank?
@@ -1311,8 +1435,6 @@ class Taxon < ActiveRecord::Base
     reject_taxon_names = reject.taxon_names.all.to_a
     reject_taxon_scheme_taxa = reject.taxon_scheme_taxa.all.to_a
     # otherwise it will screw up merge_has_many_associations
-    TaxonAncestor.where(:taxon_id => reject.id).delete_all
-    TaxonAncestor.where(:ancestor_taxon_id => reject.id).delete_all
     merge_has_many_associations(reject)
     
     # Merge ListRules and other polymorphic assocs
@@ -1343,23 +1465,19 @@ class Taxon < ActiveRecord::Base
     # Update or destroy merged taxon_names
     reject_taxon_names.each do |taxon_name|
       taxon_name.reload
-      unless taxon_name.valid?
-        Rails.logger.info "[INFO] Destroying #{taxon_name} while merging taxon " + 
-          "#{reject.id} into taxon #{id}: #{taxon_name.errors.full_messages.to_sentence}"
-        taxon_name.destroy 
-        next
-      end
       if taxon_name.is_scientific_names? && taxon_name.is_valid?
         taxon_name.update_attributes(:is_valid => false)
       end
+      unless taxon_name.valid?
+        Rails.logger.info "[INFO] Destroying #{taxon_name} while merging taxon " + 
+          "#{reject.id} into taxon #{id}: #{taxon_name.errors.full_messages.to_sentence}"
+        taxon_name.destroy
+      end
     end
     
-    LifeList.delay(:priority => INTEGRITY_PRIORITY).update_life_lists_for_taxon(self)
-    
-    %w(flags).each do |association|
-      send(association, :reload => true).each do |associate|
-        associate.destroy unless associate.valid?
-      end
+    flags.reload
+    flags.each do |flag|
+      flag.destroy unless flag.valid?
     end
 
     Taxon.delay(:priority => INTEGRITY_PRIORITY).set_iconic_taxon_for_observations_of(id)
@@ -1419,7 +1537,11 @@ class Taxon < ActiveRecord::Base
   def descendant_of?(taxon)
     ancestor_ids.include?(taxon.id)
   end
-  
+
+  def descendant_conditions
+    Taxon.descendant_conditions( self )
+  end
+
   # TODO make this work for different conservation status sources
   def conservation_status_name
     return nil if conservation_status.blank?
@@ -1516,15 +1638,61 @@ class Taxon < ActiveRecord::Base
       taxon_ids,
       Taxon.where( "id IN (?)", taxon_ids).pluck(:ancestry).map{|a| a.to_s.split( "/" ).map(&:to_i)}
     ].flatten.compact.uniq
-    global_status = ConservationStatus.where("place_id IS NULL AND taxon_id IN (?)", target_taxon_ids).order("iucn ASC").last
-    if global_status && global_status.geoprivacy == Observation::PRIVATE
-      return global_status.geoprivacy
-    end
-    geoprivacies = []
-    geoprivacies << global_status.geoprivacy if global_status
-    geoprivacies += ConservationStatus.
+    global_statuses = ConservationStatus.
+      where("place_id IS NULL AND taxon_id IN (?)", target_taxon_ids).
+      order("iucn ASC")
+    place_statuses = ConservationStatus.
       where( "taxon_id IN (?)", target_taxon_ids ).
-      for_lat_lon( options[:latitude], options[:longitude] ).pluck( :geoprivacy )
+      for_lat_lon( options[:latitude], options[:longitude] ).
+      includes(:place)
+    # If it's just global statuses, just choose the most conservative one
+    if place_statuses.blank? && !global_statuses.blank?
+      geoprivacies = global_statuses.map(&:geoprivacy)
+      return Observation::PRIVATE if geoprivacies.include?( Observation::PRIVATE )
+      return Observation::OBSCURED if geoprivacies.include?( Observation::OBSCURED )
+      return Observation::OPEN
+    end
+    # We have some place-based statuses, so now things get complicated
+    # Some admin levels can override a global status or a coarser admin level
+    override_admin_levels = [
+      Place::CONTINENT_LEVEL,
+      Place::COUNTRY_LEVEL,
+      Place::STATE_LEVEL
+    ]
+    # Since overrides only apply within a taxon, we need to assess the geoprivacy for each taxon
+    geoprivacies = target_taxon_ids.map do |taxon_id|
+      global_statuses_for_taxon = global_statuses.select {|cs| cs.taxon_id == taxon_id}
+      place_statuses_for_taxon = place_statuses.select {|cs| cs.taxon_id == taxon_id}
+      override_statuses = place_statuses_for_taxon.select {|cs|
+        override_admin_levels.include?( cs.place.admin_level )
+      }
+      non_override_statuses = place_statuses_for_taxon.reject {|cs|
+        override_admin_levels.include?( cs.place.admin_level )
+      }
+      if non_override_statuses.size == 0 && override_statuses.size > 0
+        # If an override status exists, and there are no other kinds of statuses
+        # to consider, use the geoprivacy from the finest admin level status
+        finest_status = override_statuses.sort_by {|cs| cs.place.admin_level }.last
+        finest_status.try(:geoprivacy)
+      else
+        # Otherwise it's a free-for-all and we need to choose the most
+        # conservative geoprivacy available from all statuses
+        status_geoprivacies = (
+          global_statuses_for_taxon.map(&:geoprivacy) + place_statuses_for_taxon.map(&:geoprivacy)
+        ).compact
+        if status_geoprivacies.include?( Observation::PRIVATE )
+          Observation::PRIVATE
+        elsif status_geoprivacies.include?( Observation::OBSCURED )
+          Observation::OBSCURED
+        elsif status_geoprivacies.size > 0
+          Observation::OPEN
+        else
+          nil
+        end
+      end
+    end.compact
+    # So now that we have geoprivacies for each of the taxa under consideration,
+    # choose the most conservative geoprivacy among them
     return Observation::PRIVATE if geoprivacies.include?( Observation::PRIVATE )
     return Observation::OBSCURED if geoprivacies.include?( Observation::OBSCURED )
     geoprivacies.size == 0 ? nil : Observation::OPEN
@@ -1579,7 +1747,6 @@ class Taxon < ActiveRecord::Base
     Taxon.where(taxon.descendant_conditions).find_in_batches do |batch|
       batch.each do |t|
         t.without_ancestry_callbacks do
-          t.update_life_lists(:skip_ancestors => true)
           t.set_iconic_taxon
           t.update_obs_iconic_taxa
         end
@@ -1625,9 +1792,8 @@ class Taxon < ActiveRecord::Base
   end
 
   def taxon_range_kml_url
-    return nil unless ranges = taxon_ranges_without_geom
-    tr = ranges.detect{|tr| !tr.range.blank?} || ranges.first
-    tr ? FakeView.image_url( tr.kml_url ) : nil
+    return nil unless tr = taxon_range_without_geom
+    tr ? tr.kml_url : nil
   end
 
   def all_names
@@ -1665,7 +1831,8 @@ class Taxon < ActiveRecord::Base
   def editable_by?( user )
     return false unless user.is_a?( User )
     return true if user.is_admin?
-    user.is_curator? && rank_level.to_i < ORDER_LEVEL
+    return true if user.is_curator?
+    return false
   end
 
   def mergeable_by?(user, reject)
@@ -1680,9 +1847,15 @@ class Taxon < ActiveRecord::Base
 
   def deleteable_by?(user)
     return true if user.is_admin?
+    return true if new_record?
     return false if taxon_changes.exists? || taxon_change_taxa.exists?
-    return false if TaxonChange.joins( taxon: :taxon_ancestors ).where( "taxon_ancestors.ancestor_taxon_id = ?", id ).exists?
-    return false if TaxonChangeTaxon.joins( taxon: :taxon_ancestors ).where( "taxon_ancestors.ancestor_taxon_id = ?", id ).exists?
+    return false if children.exists?
+    return false if identifications.exists?
+    return false if controlled_term_taxa.exists?
+    return false if ProjectObservationRule.where( operand_type: "Taxon", operand_id: id ).exists?
+    return false if ObservationFieldValue.joins(:observation_field).where( "observation_fields.datatype = 'taxon' AND value = ?", id.to_s ).exists?
+    return false if TaxonChange.joins( :taxon ).where( subtree_conditions ).exists?
+    return false if TaxonChangeTaxon.joins( :taxon ).where( subtree_conditions ).exists?
     creator_id == user.id
   end
 
@@ -1762,7 +1935,8 @@ class Taxon < ActiveRecord::Base
   end
 
   def atlased?
-    atlas && atlas.is_active?
+    return @atlased unless @atlased.nil?
+    @atlased = atlas && atlas.is_active? && atlas.presence_places.exists?
   end
 
   def cached_atlas_presence_places
@@ -1853,7 +2027,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def self.remove_rank_from_name(name)
-    pieces = name.split
+    pieces = name.to_s.split
     return name if pieces.size == 1
     pieces.map! {|p| p.gsub('.', '')}
     pieces.reject! {|p| (RANKS + RANK_EQUIVALENTS.keys).include?(p.downcase)}
@@ -1875,7 +2049,11 @@ class Taxon < ActiveRecord::Base
   # Convert an array of strings to taxa
   def self.tags_to_taxa(tags, options = {})
     scope = TaxonName.joins(:taxon)
-    scope = scope.where(:lexicon => options[:lexicon]) if options[:lexicon]
+    if options[:lexicon]
+      scope = scope.where(
+        lexicon: [options[:lexicon]].flatten.map{|l| [l, TaxonName.normalize_lexicon( l ) ]}.flatten
+      )
+    end
     scope = scope.where("taxon_names.is_valid = ?", true) if options[:valid]
     names = tags.map do |tag|
       next if tag.blank?
@@ -1894,12 +2072,13 @@ class Taxon < ActiveRecord::Base
     taxon_names = taxon_names.select do |tn|
       names.include?(tn.name) || !tn.name.match(/^([A-Z]|\d)+$/)
     end
+    taxon_names = taxon_names.select{|tn| !tn.scientific? || tn.name.size > 2}
     taxon_names = taxon_names.compact.sort do |tn1,tn2|
       tn1_exact = names.include?(tn1.name) ? 1 : 0
       tn2_exact = names.include?(tn2.name) ? 1 : 0
       [tn2_exact, tn2.name.size] <=> [tn1_exact, tn1.name.size]
     end
-    taxon_names.map{|tn| tn.taxon}.compact
+    taxon_names.map{|tn| tn.taxon}.compact.uniq
   end
   
   def self.find_duplicates

@@ -86,6 +86,12 @@ ControlledTermValue.blueprint do
   controlled_value { ControlledTerm.make!(is_value: true) }
 end
 
+DataPartner.blueprint do
+  name { Faker::Lorem.sentence }
+  description { Faker::Lorem.sentence }
+  url { "https://#{Faker::Internet.domain_name}" }
+end
+
 ExplodedAtlasPlace.blueprint do
   atlas { Atlas.make! }
   place { make_place_with_geom }
@@ -165,10 +171,6 @@ List.blueprint do
   title { Faker::Lorem.sentence }
 end
 
-LifeList.blueprint do
-  user { User.make! }
-end
-
 ListRule.blueprint do
   list { List.make! }
 end
@@ -199,6 +201,12 @@ ModeratorAction.blueprint do
   resource { Comment.make! }
   action { ModeratorAction::HIDE }
   reason { Faker::Lorem.sentence }
+end
+
+ModeratorNote.blueprint do
+  user { make_curator }
+  body { Faker::Lorem.paragraph }
+  subject_user { User.make! }
 end
 
 MushroomObserverImportFlowTask.blueprint do
@@ -300,12 +308,6 @@ end
 
 Project.blueprint(:collection) do
   project_type { "collection" }
-end
-
-ProjectInvitation.blueprint do
-  user { User.make! }
-  project { Project.make! }
-  observation { Observation.make! }
 end
 
 ProjectList.blueprint do
@@ -536,6 +538,11 @@ end
 UserBlock.blueprint do
   user { User.make! }
   blocked_user { User.make! }
+end
+
+UserMute.blueprint do
+  user { User.make! }
+  muted_user { User.make! }
 end
 
 UserParent.blueprint do

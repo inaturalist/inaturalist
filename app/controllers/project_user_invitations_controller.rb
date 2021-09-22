@@ -1,7 +1,7 @@
 class ProjectUserInvitationsController < ApplicationController
-  before_filter :load_record, :only => [:destroy]
-  before_filter :load_project
-  before_filter :ensure_project_curator
+  before_action :load_record, :only => [:destroy]
+  before_action :load_project
+  before_action :ensure_project_curator
   
   def create
     @project_user_invitation = ProjectUserInvitation.new(params[:project_user_invitation])

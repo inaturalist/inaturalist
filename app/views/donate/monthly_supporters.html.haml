@@ -1,8 +1,3 @@
-:ruby
-  donorbox_params = params.slice( :utm_source, :utm_campaign, :utm_content, :utm_medium )
-  donorbox_params[:utm_source] = @site.name if donorbox_params[:utm_source].blank?
-  donorbox_params[:utm_medium] = "web" if donorbox_params[:utm_medium].blank?
-  donorbox_params[:amount] = 15
 - content_for :title do
   =t "views.donate.monthly_supporters.become_a_monthly_supporter_of_inaturalist"
 - content_for :extrajs do
@@ -25,7 +20,8 @@
       %h1=t "views.donate.monthly_supporters.become_a_monthly_supporter_of_inaturalist"
   .row
     .col-md-5.col-md-offset-1.col-xs-12
-      %iframe#donorbox-iframe{ src: "https://donorbox.org/embed/inaturalist-monthly-supporters?#{donorbox_params.to_query}", seamless: "seamless", name: "donorbox", frameborder: "0", scrolling: "no", allowpaymentrequest: true }
+      - # Note: the donorbox iframe supports an amount param in the URL, but it does *not* support utm params as of 2020-12-17. It retrieves those from the URL of the parent window. ~~~kueda 20201217
+      %iframe#donorbox-iframe{ src: "https://donorbox.org/embed/inaturalist-monthly-supporters?amount=30", seamless: "seamless", name: "donorbox", frameborder: "0", scrolling: "no", allowpaymentrequest: true }
     .col-md-5.col-xs-12
       =t "views.donate.monthly_supporters.desc_html", donate_url: donate_url( utm_campaign: "monthly-supporters", utm_medium: "web", utm_source: @site.domain, utm_content: "inline-link", utm_term: "one-time" )
       .sharing

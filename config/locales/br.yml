@@ -7,19 +7,18 @@ br:
   about: Diwar-benn
   about_community_taxa: Diwar-benn taksonioù ar gumuniezh
   about_licenses: Diwar-bennn aotreoù-implijout
-  about_licensing: Diwar-benn aotreoù-implijout
   about_places: Diwar-benn al lec'hioù
   about_the_cc_licenses: Diwar-benn an aotreoù-implijout Creative Commons
   about_these_licenses: Diwar-benn an aotroù-implijout-se
   about_this_map: Diwar-benn ar gartenn-maÆ
   about_this_project: Diwar-benn ar raktres-mañ
-  about_x: "Diwar-benn %{x}"
   account: Kont
   accept: Degemer
   accept_community_identifications: Degemer anaoudurioù ar gumuniezh
   accuracy: Pizhder
   accuracy_meters: Pizhder (metroù)
-  accuracy_of_the_coordinates: 'Pizhder ar roadennoù e metr. Gallout a reot kemmañ ar roadennoù en ur glikañ war al liamm «  kemmit » amañ a-us pe en ur glikañ war merker ar gartenn hag o tilec''hiañ anezhañ d''al lec''h mat. Gwiriit e vo bras a-walc''h ar c''helc''h evit bezañ sur en em gavfet e-barzh.'
+  accuracy_of_the_coordinates: |
+    Pizhder ar roadennoù e metr. Gallout a reot kemmañ ar roadennoù en ur glikañ war al liamm «  kemmit » amañ a-us pe en ur glikañ war merker ar gartenn hag o tilec'hiañ anezhañ d'al lec'h mat. Gwiriit e vo bras a-walc'h ar c'helc'h evit bezañ sur en em gavfet e-barzh.
   actions: Oberoù
   active: oberiant
   activity_settings: Arventennoù obererezh
@@ -37,7 +36,6 @@ br:
   add_an_assessment: Ouzhpennañ ur priziadur
   add_an_identification: Ouzhpennañ un anaoudadur
   add_an_observation: Ouzhpennañ un evezhiadenn
-  add_an_observation?: Ouzhpennañ un evezhiadenn ?
   add_an_observation_of: "Ouzhpennañ un evezhiadenn diwar-benn %{taxon}"
   add_another_flag: Ouzhpennañ ur merk all
   add_another_photo: Ouzhpennañ ur poltred all
@@ -48,7 +46,6 @@ br:
   add_batch: Ouzpennañ ul lod
   add_comma_separated_tags: "Ouzhpennañ tikedennoù dispartiet gant skejoù"
   add_comment: Ouzhpennañ un evezhiadenn
-  add_countries: Ouzhpennañ broioù
   add_custom_project_fields: Ouzhpennañ maeziennoù raktres personelaet
   add_description: "Ouzhpennañ %{description_name}"
   add_from_your_observations: Ouzhpennañ diwar hoc'h evezhiadennoù
@@ -73,7 +70,6 @@ br:
   #"one" refers to a photo
   add_one_now: Ouzhpennañ unan bremañ
   add_photos: Ouzhpennañ skeudennoù
-  add_photos_to_this_observation: Ouzhpennañ luc'hskeudennoù d'an evezhaiadenn-mañ
   add_place: Ouzhpennañ ul lec'h
   add_several_observations_at_once: Ouzhepnnañ meur a evezhiadenn war un dro.
   add_some_now: Ouzhpennañ un dra bremañ
@@ -90,7 +86,6 @@ br:
   add_to_favorites: Ouzhpennañ d'ar pennrolloù
   add_to_list: Ouzhpennañ d'ul listenn
   add_to_project: Ouzhpennañ d'ar raktres
-  add_to_your_life_list: Ouzhpennañ d'ho listenn vev!
   add_to_your_list: Ouzhpennañ d'ho listenn
   add_your_email_to_get: |
     Ouzhpennañ ho chomlec'h postel evit kaout un ali war hoc'h evezhiadenn a-berzh ar gumuniezh. Ma kavit gwelloc'h chom hep rannañ anezhi, gwiriit en-dro a-benn nebeut, mar plij
@@ -99,20 +94,15 @@ br:
   added!: Ouzhpennet!
   added_by: Ouzhpennet gant
   added_by_user_on_date_html: "Ouzhpennet gant %{user} d'an %{date}"
-  added_on: Ouzhpennet d'an
   added_to_favorites_html: |
     Ouzhpennet d'ar<a href="%{url}">pennrolloù</a>
   adding: "Oc'h ouzhpennañ..."
-  additional_range: Lijorenn ouzhpenn
-  additional_range_data_from_an_unknown_source: Pajennad roadennoù ouzhpenn adalek un tarzh dianav
   admin: Merour
   admin_tools: Binvioù merañ
-  agree: Degemer
   agree?: Degemeret?
   agreeing: O tegemer...
   aka: alias
   all: An holl
-  all_colors: "&laquo; An holl livioù"
   all_comments: An holl evezhiadennoù
   all_life: An holl vev
   all_names: An holl anvioù
@@ -122,12 +112,6 @@ br:
   all_projects: An holl raktresoù
   all_rights_reserved: Pep gwir miret strizh
   all_taxa:
-    rank:
-      kingdom: Rouantelezh
-      class: Rummad
-      phylum: Skourrad
-      species: Spesadoù
-      order: Urzh
     amphibians: Divelfenneged
     animals: Loened
     arachnids: Araknid
@@ -147,8 +131,6 @@ br:
   all_updates: An holl hizivadurioù
   all_your_observations_will_default_this_time_zone: Holl hoc'h evezhiadennoù a vo er werzhid-eur-mañ dre ziouer, nemet e termenit anezhi mod-all
   all_your_observations_will_default_to_this_time_zone: Holl hoc'h evezhiadennoù a vo er werzhid-eur-mañ dre ziouer, nemet e termenit anezhi mod-all
-  #Option to allow any taxa on a list
-  allow_any: aotren n'eus forzh peseurt
   allow_project_curators_to_view_your_private_coordinates: Aotren goursellerien ar raktres da welet hoc'h evezhiadennoù prevez
   allowed_html: HTML aotreet
   allowed_values: Talvoudoù aotreet
@@ -161,6 +143,10 @@ br:
   announcement_was_successfully_created: Krouet mat eo bet ar c'hemenn.
   announcement_was_successfully_updated: Hizivaet mat eo bet ar c'hemenn.
   announcements: Kemennoù
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: forzh pehini
   apply_to_selected: Arloet ouzh an dibab
   apply_fields: Arloañ ar maeziennoù
@@ -207,12 +193,10 @@ br:
   assessment_x: "Priziadur %{assessment}"
   assessments: priziadurioù
   associations: Kevredigezhioù
-  at_time: "e %{time}"
   authority_list:
     iucn_red_list: Listenn ruz an UICN
   back: Distreiñ
   back_to_all_species: Distreiñ d'an Holl spesadoù
-  back_to_browsing_people: Distreiñ d'ar merdeiñ etre an dud
   back_to_calendar: "Distreiñ da zeiziadur %{user}"
   back_to_lists: "Disro d'an %{name}"
   back_to_observation: Distro d'an evzezhiadenn
@@ -235,11 +219,11 @@ br:
   back_to_your_projects: Distreiñ d'ho raktresoù
   batch: Lod
   batch_edit: Kemmañ lod
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Lod kemmañ taksonoù evit %{x}"
   batch_operations: Oberiadennoù dre lod
   because_of: en abeg da
   before_importing_photos: a-raok enporzhiañ luc'hskeudennoù
-  belives_this_is_a_comprehensive_list_of: a soñj dezhañ ez eo ur roll klok eus
   bg_color: Liv an drekleur
   birds: laboused
   black: du
@@ -305,7 +289,6 @@ br:
   choose_a_list_above: Dibab ul listenn a-us.
   choose_a_place: Dibab ul lec'h
   choose_a_taxon: Dibab un takson (diret)
-  choose_cc_licensed_photos_html: 'Dibabit <a href="http://creativecommons.org/">digeriñ</a>  al luc''hskeudennoù dindan aotre pe dibabit diwar an evezhiadennoù %{site_name}. Klaskit dibab skeudennoù hag a<em>laka wel arc''hwelioù diagnostik</em> hag a zo diskwelet mat evel arlunioù</em>. An <em>hini gentañ eo an arlun kentañ</em>'
   choose_from_your_lists: Dibab adalek ho listennoù
   choose_photos_for_this_taxon: Dibabit ho luc'hskeudennoù evit an takson-mañ
   choose_rule: Dibab ur reolenn
@@ -313,14 +296,11 @@ br:
   choose_tags: Dibab tikedennoù
   choose_taxon: Dibab un takson
   choose_what_kind_of_change_youre_creating: "Dibabit ar seurt kemm emaoc'h o krouiñ."
-  choose_your_username: Dibab hoc'h anv implijer
   citation: Arroudenn
   classification: Rummatadur
   clear: riñsañ
-  clear_color_filters: Diverkañ ar silioù liv
   clear_search: Diverkañ an enklask
   click_the_map: "<strong>Klikit war gartenn</strong> evit ouzhpennañ ul lec'hiadur."
-  click_the_map_to_jump_new_place: Klikit war ar gartenn evit mont d'ul lec'h nevez
   code: Kod
   colors: Livioù
   columns: Bannoù
@@ -330,9 +310,11 @@ br:
   comment_deleted: Evezhiadenn dilamet
   comments: Evezhiadennoù
   comments_by_me: Ma evezhiadennoù
-  comments_on: Evezhiadennoù war
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Kadarnaat
+  #Adjective describing a taxon change that has been committed
   committed: Kadarnaet
+  #Status message while a taxon change is being committed
   committing: O kadarnaat...
   community_moderation_settings: Arventennoù evit kemmañ ar gumuniezh
   community_supported_id: ID kumuniezh degemeret ?
@@ -344,7 +326,8 @@ br:
   compiled_by_name: "Kempunet gant %{name}"
   completed: Klokaet
   completed_at: Klokaet e
-  comprehensive: Klok
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
   comprehensive?: Klok?
   comprehensive_list: Roll klok
   concept_status: Stad ar meizad
@@ -353,8 +336,8 @@ br:
   confirm_membership: Kadarnaat an emezeladur
   confirm_new_password: Kadarnaat ar ger-tremen nevez
   confirm_now: Kadarnaat bremañ
-  confirmed: kadarnaet
   connect_to_provider: "Kevreañ ouzh %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Kontoù kevreet
   connecting_flickr: "O kevreañ ouzh Flickr..."
   connecting_to_facebook: "O kevreañ ouzh Facebook..."
@@ -376,10 +359,8 @@ br:
   couldnt_change_your_password: "Ne c'haller ket kemmañ ho ker-tremen : %{e}"
   couldnt_find_a_user_matching_x_param: "Ne c'haller ket kavout un implijer a glot gant %{id}"
   couldnt_find_that_taxon: Ne c'haller ket kavout an takson-mañ.
-  countries: Broioù
   create: Krouiñ
   create_a_guide: Krouiñ ur sturlevr
-  create_a_list: Krouiñ ul listenn
   create_a_new_field: Krouiñ ur vaezienn nevez
   create_a_new_place: Krouiñ ul lec'h nevez
   create_a_new_taxon: Krouiñ un takson nevez
@@ -435,10 +416,13 @@ br:
   date_picker:
     closeText: Serriñ
     currentText: Hiziv
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Kent
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: War-lerc'h
   date_time: Deiz/Eur
   day: Deiz
+  #Default option
   default: dre ziouer
   default_invite_comment: "Nag ur gaer a luc'hskeudenn ! Ret e vefe deoc'h embann anezhi e %{site_name}} :"
   default_observation_license: Aotre-implijout an evezhiadennoù dre ziouer
@@ -448,6 +432,7 @@ br:
   delete: Dilemel
   delete_all: Dilemel pep tra
   delete_conversation: Dilemel ar gaozeadenn
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: Lemel ar golo ?
   delete_icon?: Lemel an arlun ?
   delete_photo: Lemel al luc'hskeudenn
@@ -476,17 +461,15 @@ br:
     failure:
       user:
         suspended: Astalet eo bet ho kont
-  did_not_send_invitations_because: N'hoc'h eus kaset pedadenn ebet d'an dud-mañ peogwir...
   did_you_mean: 'N''hoc''h eus ket soñjet kentoc''h e'
   did_you_photos_flickr?: Lakaet ho peus luc'hskeudennoù war Fickr ?
   disconnect_provider: "Digevreañ %{provider}"
   dont_send_me_email: "Arabat kas posteloù din!"
   dont_use_double_quotes: Arabat ober gant "daouaskoù" e lec'h all
-  double_click_to_finish: (daouglikit evit echuiñ)
   download: Pellgargañ
   download_bulk_import_template_html: |
     <a href="%{url}">Pellgargañ ar patrom</a> evit implijout anezhañ er
-    <a href="/observations/import#csv_import">c'harger dre lod</a>
+    <a href="/observations/import?project_id=%{project_id}#csv_import">c'harger dre lod</a>
   download_csv: Pellgargit ar furmad CSV
   download_csv_template: Pellgargit ar patrom "CSV"
   download_kml: Pellgargañ KML
@@ -526,17 +509,12 @@ br:
   editing_project: Kemmañ %{project}
   editing_subscription_to_x_html: "Kemmañ ar c'houmanant da %{x}"
   editing_taxon_link: Kemmañ al liamm a denn d'an takson
-  editing_taxon_name: Kemmañ anv an takson
   editing_this: Kemmañ %{elem}
   editing_x_in_y: "Kemmañ %{x} e%{y}"
-  eg: 'dre sk.'
-  either: Pe
   either_that_user_doesnt_exist_or: "N'eus ket eus an implijer-mañ pe emaoc'h o heuliañ anezhañ dija"
   eligible_for_research_grade: A c'hall bezañ degemeret el live enklask
   email: Postel
-  email_addresses_description: Chomlec'hioù Kenrouedad dispartiet gant skejoù, bevennet da 60 bep 30 deiz
   email_address_for_comments_and_other_feedback: Chomlec'h elektronek evit an evezhiadennoù
-  email_addresses_to_receive_invites: Chomlec'hioù elektronek evit resev ar pedadennoù
   email_copyright: "Copyright &copy; %{x}, pep gwir miret strizh"
   email_settings: Arventennoù ar postel
   embed: 'Enframmañ'
@@ -556,7 +534,6 @@ br:
   every_species_seen_by: Pep spesad gwelet gant
   everyone: An holl dud
   everywhere: E pep lec'h
-  exact_location: Lec'hiadur resis
   exact_rank: Renk resis
   existing_flags: Banieloù zo anezho
   exit_full_screen: "Kuitaat ar mod skramm leun"
@@ -575,6 +552,7 @@ br:
   Family: Kerentiad
   featured: Lakaet da dalvezout
   feedback: Evezhiadennoù
+  #Plural noun, as in Atom and RSS feeds
   feeds: 'Gwazh'
   failed: C'hwitet
   field_note: |
@@ -626,16 +604,12 @@ br:
   flickr_tags: Liketennoù Flickr
   follow_user: "Heuliañ %{user}"
   following: Emaoc'h o heuliañ
-  for: evit
   for_a_taxon: evit un takson
   forgot_your_password: Ankouaet ho ker-tremen ganeoc'h ?
-  from: Eus
   from_a_place: Eus ul lec'h
   from_list: Eus ar roll-mañ
-  from_this: diwar an dra-mañ
   from_photos: Diwar luc'hskeudennoù
   from_place: Diwar al lec'h
-  from_your_site_observations: "Diwar evezhiadennoù %{site_name}"
   full_screen: Skramm leun
   generate_taxonomic_tags_for_flickr: Genel al liketennoù taksonomek evit ho luc'hskeudennoù Flickr.
   generate_widget: Genel ar widged
@@ -644,7 +618,6 @@ br:
   georeferenced: Douarlec'hiet ?
   get_started: Kregiñ
   getting_started_guide: Sturlevr evit kregiñ ganti
-  give_it_some_detail: Roit titouroù !
   global_names: Anvioù hollek
   go: Mont
   go_back: Distreiñ
@@ -664,7 +637,6 @@ br:
   help: Skoazell
   here_are_3_examples: Setu 3 skouer a roadennoù stummet mat
   hex_color_eg: Liv e niver c'hwezekredel, da sk. 65644F
-  hi: Demat,
   hi_user: "Demat, %{user}"
   high: uhel
   highest_rank: Renk uhelañ
@@ -701,11 +673,7 @@ br:
   internal_server_error: Fazi diabarzh ar servijer
   invitation: Pedadenn
   invite: pediñ
-  invite_more: Pediñ muioc'h
   invite_people: Pediñ tud
-  invite_someone_to: "Pediñ unan bennak da %{name}!"
-  invite_your_friends: Pediñ ho mignoned
-  invite_your_friends_description: "Sikourit ac'hanomp da greskiñ ha da wellaat kumuniezh  %{site_name} en ur bediñ ho mignoned d'en em gavout ganimp !"
   invited_x: "%{x} den pedet"
   jpg_png_or_gif: "JPG, PNG pe GIF"
   just_added!: Ouzpennadennoù nevez
@@ -724,14 +692,13 @@ br:
   layers: Gwiskadoù
   layout: Pajennaozañ
   leaderboards: Renkadurioù
-  leaderboard_most:
-    species: Ar muiañ a spesadoù e %{time}
   learn_about_the_species_live_in: Deskit muioc'h a draoù diwar-benn ar spesadoù zo o vevañ e
   learn_more: Gouzout hiroc'h
   learn_more_raquo: "Gouzout hiroc'h %raquo;"
   learn_what_these_licenses_mean: Deskit muioc'h diwar-benn talvoudegezh an aotroù-implijout-mañ
   leave_a_comment: Lezel un evezhiadenn
   leave_this_project: Kuitaat ar raktres-mañ
+  #Terminal nodes in a taxonomic tree
   leaves: delioù
   legacy_authentication_notice_html: |
     Seblantout a ra emaoc'h oc'h implijout ur ger-tremen eus un doare kozh eus al lec'hienn Genrouedad-mañ. Dalc'hit mat <a href="%{url}">kemmañ ho ker-tremen</a> evit an doare nevez.
@@ -758,7 +725,6 @@ br:
   licensing: Aotre-implijout
   life: Bev
   life_list: "Roll ar bevien %{user}"
-  life_list_updated: Roll hizivaet ar bevien!
   link: Liamm
   link_or_unlink_your_facebook_account: Liammañ pe diliammañ ho kont Facebook
   link_or_unlink_your_flickr_account: Liammañ pe diliammañ ho kot Flickr
@@ -779,7 +745,6 @@ br:
   loading: "O kargañ..."
   loading_flickr_photos: "O kargañ luc'hskeudennoù Flickr..."
   loading_images: O kargañ skeudennoù...
-  loading_map: O kargañ ar gartenn...
   loading_preview_and_code: O kargañ an dalberzh hag ar c'hod...
   loading_tags: "O kargañ al liketennoù..."
   loading_taxa_from_your: "O kargañ an taksonoù adalek hoc'h evezhiadennoù..."
@@ -787,7 +752,6 @@ br:
   locales:
     ca: Katalaneg
     en: Saozneg
-    en-US: Saozneg (Stadoù Unanet)
     es: Spagnoleg
     es-MX: Spagnoleg (Mec'hiko)
     eu: Euskareg
@@ -820,7 +784,6 @@ br:
   manager: Merañ
   managers: Merourien
   map: Kartenn
-  map_legend: alc'hwez ar gartenn
   map_marker_size: ment ar merker war ar gartenn
   maps:
     overlays:
@@ -834,6 +797,7 @@ br:
   medium: etre
   member_of_the_inaturalist_network_html: |
     Ezel eus ar restr <a href="%{url}">Rouedad iNaturalist</a>
+  #As in members of a project
   members: Izili
   merge: Kendeuziñ
   merge_it_with_another_place: Kendeuziñ en ul lec'h all
@@ -890,7 +854,6 @@ br:
   next_page: Pajenn war-lerc'h
   'no': 'Ket'
   no_comments_yet: Evezhiaden ebet goulennet
-  no_countries_added_yet: Bro ebet n'eo bet ouzhpennet betek-henn
   no_creative_commons_flickr_photos_tagged_x: 'Luc''hskeudenn Flickr Creative Commons ebet n''eo bet liketennet %{x}'
   no_photos: Luc'hskeudenn ebet
   no_post_yet: Notenn ebet betek-henn!
@@ -898,7 +861,6 @@ br:
   no_project_to_admin_current_user: "Ne verit rakres ebet"
   no_project_to_admin_login: "%{login} ne ver raktres ebet"
   no_projects_yet: Raktres ebet betek-henn
-  no_x_this_y: "%{x}evet e-pad %{y}"
   none: Hini ebet
   normal: reizh
   not_found: N'eo ket bet kavet
@@ -915,13 +877,9 @@ br:
     uncommon: rouez
     irregular: dizingal
     absent: ezvezant
-  of: eus
   offline_access_enabled: Moned ezlinenn gweredekaet
   ok: "Mat eo"
-  on_: "gweredekaet"
-  on_date: "d'an %{date}"
   on_day: "gweredekaet"
-  on_your_life_list: en ho rollad bevien
   one_of_your_lists: "Unan eus ho rolloù..."
   open: digor
   or: pe
@@ -942,7 +900,6 @@ br:
   password_confirmation: 'Kadarnaat ar ger-tremen'
   paste: Pegañ
   paste_in_a_bunch_of_names: Pegit en ur strollad anvioù, 1 dre linenn, ha pouezit war ar bouton!
-  paste_in_a_comma_separated_list: Pegañ en ur rollad broioù disrannet gant skejoù
   people: Tud
   people_following_user: "Tud war-lerc'h %{user}"
   people_user_follows: "Tud heuliet gant %{user}"
@@ -952,7 +909,6 @@ br:
   per_month: Bep miz
   per_week: Dre sizhun
   person: den
-  personal_message: Kemennadenn bersonel
   per_page: "Dre bajenn"
   photo: Luc'hskeudenn
   photo_attribution: "Luc'hskeudenn %{attribution}"
@@ -968,12 +924,9 @@ br:
     medium: etre
     large: bras
     original: Orin
-  photos_size_photos: "luc'hskeudennoù %{photos_size}"
   photos_updated: Luc'hskeudennoù hizivaet
-  pick_a_username: Dibabit un anv implijer
   pink: roz
   place: Lec'h
-  place_added_to_inat_by: "Lec'h ouzhpennet da %{site_name} gant"
   place_deleted: Lec'h dilamet
   place_geo:
     geo_planet_place_types:
@@ -1107,8 +1060,6 @@ br:
   please_add_this_to_x_html: "Ouzhpennit anezhañ da %{x}, mar plij"
   position: Lec'hiadur
   possessive_user: "%{user}"
-  preview_your_message: Alberz eus ho kemennadenn
-  previous: Kent
   prev: kent
   previous_page: Pajenn gent
   privacy: Reolennoù prevezded
@@ -1138,14 +1089,6 @@ br:
       - Oct
       - Nov
       - Dec
-    day_names_min:
-      1: Su
-      2: Mo
-      3: Tu
-      4: We
-      5: Th
-      6: Fr
-      7: Sa
     month_names:
       - 
       - January

@@ -24,7 +24,7 @@ describe ActsAsElasticModel do
 
     it "properly deletes the document on commit" do
       obs = Observation.make!
-      expect(obs).to receive(:elastic_delete!).twice
+      expect(obs).to receive(:elastic_delete!).at_least(:twice)
       # we need to destroy to make sure we hit the after_commit on: destroy
       obs.destroy!
       # forcing the commit, which doesn't usually happen in specs
@@ -185,13 +185,13 @@ describe ActsAsElasticModel do
 
     end
 
-    describe "elastic_delete!" do
+    describe "elastic_delete_by_ids!" do
       it "deletes instances of a class from ES" do
         Observation.destroy_all
         obs = Observation.make!
         expect( Observation.count ).to eq 1
         expect( Observation.elastic_search( where: { id: obs.id } ).count ).to eq 1
-        Observation.elastic_delete!( where: { id: obs.id } )
+        Observation.elastic_delete_by_ids!( [obs.id] )
         expect( Observation.elastic_search( where: { id: obs.id } ).count ).to eq 0
         expect( Observation.count ).to eq 1
       end
@@ -236,6 +236,21 @@ describe ActsAsElasticModel do
         obs.elastic_index!
         obs.reload
         expect( obs.last_indexed_at ).to be > 1.minute.ago
+      end
+
+      it "does not wait for refresh by default" do
+        obs = Observation.make!
+        expect( obs.__elasticsearch__ ).to_not receive(
+          :index_document ).with( { refresh: "wait_for" } )
+        obs.elastic_index!
+      end
+
+      it "waits for refresh if requested" do
+        obs = Observation.make!
+        obs.wait_for_index_refresh = true
+        expect( obs.__elasticsearch__ ).to receive(
+          :index_document ).with( { refresh: "wait_for" } )
+        obs.elastic_index!
       end
     end
 

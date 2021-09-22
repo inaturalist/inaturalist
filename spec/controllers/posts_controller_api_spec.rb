@@ -14,7 +14,7 @@ shared_examples_for "a PostsController" do
     it "should list journal posts for a project" do
       project = Project.make!
       post = Post.make!(parent: project, user: project.user)
-      get :index, format: :json, project_id: project.id
+      get :index, format: :json, params: { project_id: project.id }
       json = JSON.parse(response.body)
       json_post = json.detect{ |p| p['id'] == post.id }
       expect( json_post ).not_to be_blank
@@ -121,12 +121,12 @@ shared_examples_for "a PostsController" do
         expect( p2.published_at ).to be < p3.published_at
       end
       it "should show posts older than the selected post" do
-        get :for_user, format: :json, older_than: p2.id
+        get :for_user, format: :json, params: { older_than: p2.id }
         json = JSON.parse( response.body )
         expect( json.detect{|p|  p[ 'id' ] == p1.id } ).not_to be_blank
       end
       it "should not show posts newer than the selected post" do
-        get :for_user, format: :json, older_than: p2.id
+        get :for_user, format: :json, params: { older_than: p2.id }
         json = JSON.parse( response.body )
         expect( json.detect{|p|  p[ 'id' ] == p3.id } ).to be_blank
       end
@@ -141,12 +141,12 @@ shared_examples_for "a PostsController" do
         expect( p2.published_at ).to be < p3.published_at
       end
       it "should show posts newer than the selected post" do
-        get :for_user, format: :json, newer_than: p2.id
+        get :for_user, format: :json, params: { newer_than: p2.id }
         json = JSON.parse( response.body )
         expect( json.detect{|p|  p[ 'id' ] == p3.id } ).not_to be_blank
       end
       it "should not show posts older than the selected post" do
-        get :for_user, format: :json, newer_than: p2.id
+        get :for_user, format: :json, params: { newer_than: p2.id }
         json = JSON.parse( response.body )
         expect( json.detect{|p|  p[ 'id' ] == p1.id } ).to be_blank
       end
@@ -156,17 +156,11 @@ end
 
 describe PostsController, "oauth authentication" do
   elastic_models( Observation )
-  let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id, :application => OauthApplication.make! }
+  let(:token) { double acceptable?: true, accessible?: true, resource_owner_id: user.id, application: OauthApplication.make! }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow(controller).to receive(:doorkeeper_token) { token }
   end
-  it_behaves_like "a PostsController"
-end
-
-describe PostsController, "devise authentication" do
-  elastic_models( Observation )
-  before { http_login(user) }
   it_behaves_like "a PostsController"
 end
 

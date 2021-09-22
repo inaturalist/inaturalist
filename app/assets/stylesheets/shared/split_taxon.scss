@@ -51,9 +51,6 @@
 
 // Kind of related to use of SplitTaxon in map legend
 .gmapv3control.overlaycontrol li.taxon label {
-  width: 150px;
+  max-width: 200px;
   vertical-align: top;
-  a {
-    color: black;
-  }
 }

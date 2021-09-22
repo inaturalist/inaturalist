@@ -3,15 +3,18 @@ class PlacesController < ApplicationController
   include Shared::WikipediaModule
   include Shared::GuideModule
   
-  before_filter :authenticate_user!, :except => [:index, :show, :search, 
+  before_action :authenticate_user!, :except => [:index, :show, :search, 
     :wikipedia, :taxa, :children, :autocomplete, :geometry, :guide,
     :cached_guide, :guide_widget]
-  before_filter :return_here, :only => [:show]
-  before_filter :load_place, :only => [:show, :edit, :update, :destroy, 
+  before_action :return_here, :only => [:show]
+  before_action :load_place, :only => [:show, :edit, :update, :destroy, 
     :children, :taxa, :geometry, :cached_guide, :guide_widget, :widget, :merge]
-  before_filter :limit_page_param_for_search, :only => [:search]
-  before_filter :editor_required, :only => [:edit, :update, :destroy]
-  before_filter :curator_required, :only => [:planner]
+  before_action :limit_page_param_for_search, :only => [:search]
+  before_action :editor_required, :only => [:edit, :update, :destroy]
+  before_action :curator_required, :only => [:planner]
+  before_action :check_quota, only: [:create]
+  
+  QUOTA = 3
   
   caches_page :geometry
   caches_action :cached_guide,
@@ -20,7 +23,7 @@ class PlacesController < ApplicationController
     if: Proc.new {|c| c.session.blank? || c.session["warden.user.user.key"].blank? }
   cache_sweeper :place_sweeper, :only => [:update, :destroy, :merge]
 
-  before_filter :allow_external_iframes, only: [:guide_widget, :cached_guide]
+  before_action :allow_external_iframes, only: [:guide_widget, :cached_guide]
 
   requires_privilege :organizer, only: [:new, :create, :edit, :update, :destroy],
     if: Proc.new{|c|
@@ -44,12 +47,12 @@ class PlacesController < ApplicationController
       format.html do
         place = @site.place
         key = place ? "random_place_ids_#{place.id}" : 'random_place_ids'
-        place_ids = Rails.cache.fetch(key, :expires_in => 15.minutes) do
+        place_ids = Rails.cache.fetch(key, expires_in: 15.minutes) do
           places = if place
-            place.children.select('id').order("RANDOM()").limit(50)
+            place.children.select('id').order( Arel.sql( "RANDOM()" ) ).limit(50)
           else
-            Place.where("place_type = ?", Place::COUNTRY_LEVEL).select(:id).
-              order("RANDOM()").limit(50)
+            Place.where( "admin_level IS NOT NULL" ).select(:id).
+              order( Arel.sql( "RANDOM()" ) ).limit(50)
           end
           places.map{|p| p.id}
         end
@@ -102,16 +105,28 @@ class PlacesController < ApplicationController
   end
   
   def search
-    search_for_places
+    @q = params[:q].to_s.sanitize_encoding
+    if params[:limit]
+      @limit ||= params[:limit].to_i
+      @limit = 100 if @limit > 100
+    else
+      @limit = 30
+    end
+    response = INatAPIService.get(
+      "/search",
+      q: @q,
+      page: params[:page].to_i <= 0 ? 1 : params[:page].to_i,
+      per_page: @limit,
+      sources: "places",
+      ttl: logged_in? ? "-1" : nil
+    )
+    places = Place.where( id: response.results.map{|r| r["record"]["id"]} ).index_by(&:id)
+    @places = WillPaginate::Collection.create( response["page"] || 1, response["per_page"] || 0, response["total_results"] || 0 ) do |pager|
+      pager.replace( response.results.map{|r| places[r["record"]["id"]]} )
+    end
+    Place.preload_associations(@places, :place_geometry_without_geom)
     respond_to do |format|
-      format.html do
-        if @places.size == 1
-          redirect_to @places.first
-        end
-      end
-      format.json do
-        render(:json => @places.to_json(:methods => [ :html, :kml_url ]))
-      end
+      format.html
     end
   end
   
@@ -124,7 +139,11 @@ class PlacesController < ApplicationController
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
     respond_to do |format|
       format.html do
-        @projects = Project.in_place(@place).page(1).order("projects.title").per_page(50)
+        @projects = Project.in_place(@place).page(1).order("projects.title").per_page(50).to_a
+        @projects += Project.joins( "JOIN rules ON rules.ruler_type = 'Project' AND rules.ruler_id = projects.id" )
+          .where( "rules.operand_type = 'Place' AND rules.operand_id = ?", @place.id )
+          .page( 1 ).per_page( 50 ).to_a
+        @projects = @projects[0..50].sort_by{|p| p.title.downcase}
         @wikipedia = WikipediaService.new
         if logged_in?
           @subscriptions = @place.update_subscriptions.where(:user_id => current_user)
@@ -161,29 +180,26 @@ class PlacesController < ApplicationController
   
   def new
     @place = Place.new
+    @user_quota_reached = quota_reached?
   end
   
   def create
-    if params[:woeid]
-      @place = Place.import_by_woeid(params[:woeid], user: current_user)
-    else
-      @place = Place.new(params[:place])
-      @place.user = current_user
-      if params[:file]
-        assign_geometry_from_file
-      elsif !params[:geojson].blank?
-        @geometry = geometry_from_geojson(params[:geojson])
-        @place.validate_with_geom( @geometry, user: current_user )
-      end
+    @place = Place.new(params[:place])
+    @place.user = current_user
+    if params[:file]
+      assign_geometry_from_file
+    elsif !params[:geojson].blank?
+      @geometry = geometry_from_geojson(params[:geojson])
+      @place.validate_with_geom( @geometry, user: current_user )
+    end
 
-      if @geometry # && @place.valid?
-        @place.save_geom(@geometry, user: current_user)
-        @place.save
-        if @place.too_big_for_check_list?
-          notice = t(:place_too_big_for_check_list)
-          @place.check_list.destroy if @place.check_list
-          @place.update_attributes(:prefers_check_lists => false)
-        end
+    if @geometry # && @place.valid?
+      @place.save_geom(@geometry, user: current_user)
+      @place.save
+      if @place.too_big_for_check_list?
+        notice = t(:place_too_big_for_check_list)
+        @place.check_list.destroy if @place.check_list
+        @place.update_attributes(:prefers_check_lists => false)
       end
     end
     
@@ -196,7 +212,7 @@ class PlacesController < ApplicationController
       flash[:notice] = notice
       return redirect_to @place
     else
-      flash[:error] = t(:there_were_problems_importing_that_place, :place_error => @place.errors.full_messages.join(', '))
+      flash.now[:error] = t(:there_were_problems_importing_that_place, :place_error => @place.errors.full_messages.join(', '))
       render :action => :new
     end
   end
@@ -216,9 +232,6 @@ class PlacesController < ApplicationController
       redirect_to place_path(@place)
       return
     end
-    
-    r = Place.connection.execute("SELECT st_npoints(geom) from place_geometries where place_id = #{@place.id}")
-    @npoints = r[0]['st_npoints'].to_i unless r.num_tuples == 0
   end
   
   def update
@@ -229,11 +242,6 @@ class PlacesController < ApplicationController
         @place.add_custom_error(:place_geometry, :is_too_large_to_edit)
       elsif params[:file]
         assign_geometry_from_file
-      elsif !params[:geojson].blank?
-        @geometry = geometry_from_geojson(params[:geojson])
-        if @place.validate_with_geom( @geometry, user: current_user )
-          @place.save_geom(@geometry, user: current_user) if @geometry
-        end
       end
 
       if @place.errors.any?
@@ -241,12 +249,8 @@ class PlacesController < ApplicationController
           error: @place.errors.full_messages.join(', '))
       end
 
-      if params[:remove_geom] && @place.place_geometry_without_geom
-        @place.place_geometry_without_geom.delete
-      end
-
       if !@place.valid?
-        render :action => :edit
+        render action: :edit, status: :unprocessable_entity
         return
       end
       
@@ -260,7 +264,7 @@ class PlacesController < ApplicationController
       flash[:notice] = t(:place_updated)
       redirect_to @place
     else
-      render :action => :edit
+      render action: :edit, status: :unprocessable_entity
     end
   end
   
@@ -278,23 +282,6 @@ class PlacesController < ApplicationController
     else
       flash[:error] = "Couldn't delete place: #{errors.to_sentence}"
       redirect_back_or_default places_path
-    end
-  end
-  
-  def find_external
-    @places = if @ydn_places = GeoPlanet::Place.search(params[:q], :count => 10)
-      @ydn_places.map {|ydnp| Place.new_from_geo_planet(ydnp)}
-    else
-      []
-    end
-    
-    respond_to do |format|
-      format.json do
-        @places.each_with_index do |place, i|
-          @places[i].html = view_context.render_in_format(:html, :partial => "create_external_place_link", :object => place, :locals => {:i => i})
-        end
-        render :json => @places.to_json(:methods => [:html])
-      end
     end
   end
   
@@ -356,12 +343,17 @@ class PlacesController < ApplicationController
     @merge_target = Place.find(params[:with]) rescue nil
     
     if request.post?
-      keepers = params.map do |k,v|
+      keepers = params.to_hash.map do |k,v|
         k.gsub('keep_', '') if k =~ /^keep_/ && v == 'left'
       end.compact
       keepers = nil if keepers.blank?
       unless @merge_target
         flash[:error] = t(:you_must_select_a_place_to_merge_with)
+        return
+      end
+
+      if !current_user.is_admin? && ( !@place.admin_level.nil? || !@merge_target.admin_level.nil? )
+        flash[:error] = t(:you_cant_merge_standard_places)
         return
       end
       
@@ -507,7 +499,7 @@ class PlacesController < ApplicationController
         @places = Place.joins(:place_geometry).
           where(place_type: Place::OPEN_SPACE).
           where("place_geometries.id IS NOT NULL").
-          order("ST_Distance(ST_Point(places.longitude,places.latitude), ST_Point(#{@longitude},#{@latitude}))").
+          order( Arel.sql( "ST_Distance(ST_Point(places.longitude,places.latitude), ST_Point(#{@longitude},#{@latitude}))" ) ).
           page(1)
         @data = []
         @places.each do |p|
@@ -610,5 +602,18 @@ class PlacesController < ApplicationController
         @place.add_custom_error(:base, "File was invalid or did not contain any polygons")
       end
     end
+  end
+
+  def check_quota
+    if quota_reached?
+      flash[:error] = t(:place_create_quota_exceeded, quota: QUOTA)
+      redirect_back_or_default places_path
+      return false
+    end
+    true
+  end
+
+  def quota_reached?
+    @quota_reached ||= Place.where( user: current_user ).where( "created_at > ?", 1.day.ago ).count >= QUOTA
   end
 end

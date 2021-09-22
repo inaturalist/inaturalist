@@ -9,7 +9,7 @@ import {
 } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonomicBranch from "../../../shared/components/taxonomic_branch";
-import { urlForTaxon } from "../../../taxa/shared/util";
+import { urlForTaxon, taxonLayerForTaxon } from "../../../taxa/shared/util";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 import PlaceChooserPopover from "../../../taxa/shared/components/place_chooser_popover";
 import ObservationPhotoAttribution from "../../../shared/components/observation_photo_attribution";
@@ -94,8 +94,6 @@ class Suggestions extends React.Component {
       updateCurrentUser
     } = this.props;
     let detailTaxonImages;
-    const currentUserPrefersMedialessObs = config.currentUser
-      && config.currentUser.prefers_medialess_obs_maps;
     if ( detailTaxon && detailTaxon.taxonPhotos && detailTaxon.taxonPhotos.length > 0 ) {
       // Note key is critical here. See comment below on renderItem
       detailTaxonImages = detailTaxon.taxonPhotos.map( taxonPhoto => ( {
@@ -180,10 +178,10 @@ class Suggestions extends React.Component {
       query.source === "checklist"
       && response
       && response.results.length > 0
-      && _.uniq( response.results.map( r => r.sourceKey ) ).length === 1
-      && response.results[0].sourceDetails.listedTaxon.list.comprehensive
+      && response.comprehensiveness
+      && response.comprehensiveness.list
     ) {
-      comprehensiveList = response.results[0].sourceDetails.listedTaxon.list;
+      comprehensiveList = response.comprehensiveness.list;
     }
     let defaultPlaces = observation.places;
     if ( query.place && query.place.ancestors ) {
@@ -196,10 +194,26 @@ class Suggestions extends React.Component {
     } else if ( response.results.length > 0 ) {
       title = I18n.t( "x_suggestions_filtered_by_colon", { count: response.results.length } );
     }
+    const sources = [
+      "observations",
+      "rg_observations",
+      "captive_observations",
+      "checklist"
+    ];
+    if ( query && query.taxon && query.taxon.rank_level <= 20 ) {
+      sources.push( "misidentifications" );
+    }
+    if (
+      observation
+      && observation.observation_photos
+      && observation.observation_photos.length > 0
+    ) {
+      sources.push( "visual" );
+    }
     return (
       <div className="Suggestions">
         <div className={`suggestions-wrapper ${detailTaxon ? "with-detail" : null}`}>
-          <div className="suggestions-list">
+          <div className="suggestions-list" tabIndex="-1">
             <div className="suggestions-inner">
               <ChooserPopover
                 id="suggestions-sort-chooser"
@@ -207,8 +221,9 @@ class Suggestions extends React.Component {
                 className="pull-right"
                 container={$( ".ObservationModal" ).get( 0 )}
                 chosen={query.order_by}
-                choices={["frequency", "taxonomy"]}
-                defaultChoice="frequency"
+                choices={["default", "taxonomy", "sciname"]}
+                choiceLabels={{ default: "default_", sciname: "scientific_name" }}
+                defaultChoice="default"
                 preIconClass={false}
                 postIconClass="fa fa-angle-down"
                 hideClear
@@ -228,7 +243,7 @@ class Suggestions extends React.Component {
                   label={I18n.t( "source" )}
                   container={$( ".ObservationModal" ).get( 0 )}
                   chosen={query.source}
-                  choices={["observations", "rg_observations", "checklist", "misidentifications", "visual"]}
+                  choices={sources}
                   choiceLabels={{ visual: "visually_similar" }}
                   defaultChoice="observations"
                   preIconClass={false}
@@ -292,16 +307,19 @@ class Suggestions extends React.Component {
                     href={`/lists/${comprehensiveList.id}`}
                   >
                     { comprehensiveList.title }
-                    { " "}
-                    { comprehensiveList.source ? (
-                      <span>
-                        { "(" }
-                        { I18n.t( "label_colon", { label: I18n.t( "source_" ) } )}
-                        { " " }
-                        { comprehensiveList.source.in_text }
-                        { ")" }
-                      </span>
-                    ) : null }
+                    { " " }
+                    { comprehensiveList.source && comprehensiveList.source.in_text && (
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html: `(${
+                            I18n.t( "bold_label_colon_value_html", {
+                              label: I18n.t( "source" ),
+                              value: comprehensiveList.source.in_text
+                            } )
+                          })`
+                        }}
+                      />
+                    ) }
                   </a>
                 </div>
               ) : null }
@@ -310,7 +328,7 @@ class Suggestions extends React.Component {
                   key={`suggestion-row-${r.taxon.id}`}
                   taxon={r.taxon}
                   observation={observation}
-                  details={r.sourceDetails}
+                  details={r.source_details}
                   chooseTaxon={chooseTaxon}
                   source={query.source}
                   config={config}
@@ -326,8 +344,9 @@ class Suggestions extends React.Component {
           <div className="suggestions-detail">
             <div className="suggestions-inner">
               <div className="column-header">
-                <a
-                  href="#"
+                <button
+                  type="button"
+                  className="btn btn-nostyle header-text"
                   onClick={e => {
                     e.preventDefault( );
                     setDetailTaxon( null );
@@ -338,7 +357,7 @@ class Suggestions extends React.Component {
                   <i className="fa fa-chevron-circle-left" />
                   { " " }
                   { I18n.t( "back_to_suggestions" ) }
-                </a>
+                </button>
                 <div className="prevnext pull-right">
                   <Button
                     disabled={prevTaxon === null}
@@ -347,14 +366,14 @@ class Suggestions extends React.Component {
                   >
                     <i className="fa fa-chevron-circle-left" />
                     { " " }
-                    { I18n.t( "prev" ) }
+                    { I18n.t( "previous_taxon_short" ) }
                   </Button>
                   <Button
                     disabled={nextTaxon === null}
                     onClick={( ) => setDetailTaxon( nextTaxon )}
                     className="next"
                   >
-                    { I18n.t( "next" ) }
+                    { I18n.t( "next_taxon_short" ) }
                     { " " }
                     <i className="fa fa-chevron-circle-right" />
                   </Button>
@@ -382,28 +401,19 @@ class Suggestions extends React.Component {
                   }
                   <h4>{ I18n.t( "observations_map" ) }</h4>
                   <TaxonMap
+                    placement="suggestion-detail"
                     showAllLayer={false}
                     minZoom={2}
                     gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
                     observations={[observation]}
                     gestureHandling="auto"
-                    taxonLayers={[{
-                      taxon: detailTaxon,
-                      observationLayers: [
-                        { label: I18n.t( "verifiable_observations" ), verifiable: true },
-                        {
-                          label: I18n.t( "observations_without_media" ),
-                          verifiable: false,
-                          disabled: !currentUserPrefersMedialessObs,
-                          onChange: e => updateCurrentUser( {
-                            prefers_medialess_obs_maps: e.target.checked
-                          } )
-                        }
-                      ],
-                      gbif: { disabled: true },
-                      places: true,
-                      ranges: true
-                    }]}
+                    reloadKey={`taxondetail-${detailTaxon.id}`}
+                    taxonLayers={[
+                      taxonLayerForTaxon( detailTaxon, {
+                        currentUser: config.currentUser,
+                        updateCurrentUser
+                      } )
+                    ]}
                     currentUser={config.currentUser}
                     updateCurrentUser={updateCurrentUser}
                   />

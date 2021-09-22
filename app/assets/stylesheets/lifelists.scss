@@ -1,0 +1,673 @@
+@import "./shared/loading_spinner";
+@import "./shared/split_taxon";
+@import "./users/user_image";
+@import "./shared/taxon_autocomplete";
+@import "./projects/observations_grid";
+@import "./shared/flash_message";
+
+#bodywrapper {
+  // background: #ddd;
+  min-height: auto;
+  height: 100%;
+  margin-bottom: -15px;
+}
+
+#bodywrapper:after {
+  height: 0;
+}
+
+#wrapper.bootstrap {
+  position: inherit;
+}
+
+#initial-loading {
+  width: 100%;
+}
+
+#app {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  right: 0;
+  bottom: 15px;
+  display: flex;
+}
+
+body.modal-open #app {
+  right: 15px;
+}
+
+#Lifelist {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  min-width: 980px;
+  padding: 0px 30px;
+  .lifelist-title button.export {
+    float: right;
+    vertical-align: middle;
+    border-radius: 20px;
+  }
+  .view-selectors {
+    padding: 5px 0 15px;
+  }
+  .pill-button {
+    border-radius: 20px;
+    border: 1px solid #e7e7e7;
+    letter-spacing: 0.02em;
+    background: inherit;
+    .icon-treeview {
+      float: left;
+      line-height: 16px;
+    }
+    .fa, .icon-treeview {
+      margin-right: 6px;
+      color: $inat-green;
+    }
+    &.selected {
+      border: none;
+      background: $inat-green;
+      color: white;
+      .fa, .icon-treeview {
+        color: white;
+      }
+    }
+    &:not(:first-child) {
+      margin-left: 15px;
+    }
+  }
+}
+
+.bootstrap h2 {
+  font-size: 24px;
+  margin-top: 15px;
+}
+
+div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
+  outline: none;
+}
+
+.bootstrap button {
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.bootstrap .more button.btn {
+  border-radius: 20px;
+  padding: 5px 15px;
+  i.fa {
+    margin-right: 5px;
+  }
+}
+
+.iconic-taxa-selectors {
+  margin-bottom: 10px;
+  .jump-to {
+    display: inline-block;
+    margin-bottom: 5px;
+    vertical-align: middle;
+  }
+  .iconic-taxon-icon {
+    border: 1px solid #e7e7e7;
+    background: inherit;
+    display: inline-block;
+    border-radius: 20px;
+    font-size: 23px;
+    padding: 1px 1px;
+    color: #979797;
+    width: 28px;
+    height: 28px;
+    text-align: center;
+    margin-left: 4px;
+    outline: none;
+    &:focus {
+      outline: none;
+    }
+    &.selected, &:hover {
+      color: $inat-green;
+      border: 1px solid #aaa;
+    }
+    &[disabled] {
+      opacity: 0.2;
+      cursor: default;
+    }
+  }
+}
+
+.FlexGrid {
+  display: flex;
+  flex: 1;
+  background: #fff;
+  overflow: hidden;
+}
+
+.FlexCol {
+  &.tree-col {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    max-width: 633px;
+    padding-right: 20px;
+  }
+  &.details-col {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 50%;
+    border-left: 1px solid #ddd;
+    padding-left: 20px;
+    .Details {
+      height: 80%;
+    }
+  }
+  .loading_spinner {
+    margin: 0px auto;
+    margin-top: 60px;
+    display: flex;
+  }
+  h3 {
+    text-align: center;
+    margin-top: 5px;
+    button.nostyle {
+      outline: none;
+    }
+    .fa {
+      font-size: 13px;
+      font-weight: 100;
+      line-height: 24px;
+      vertical-align: text-top;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+  }
+  #TaxaTree, #TaxaList, .ObservationsGrid, .ObservationsTab, .SpeciesGrid {
+    height: 100%;
+    overflow: auto;
+    overscroll-behavior-y: contain;
+  }
+}
+
+#TaxaList ul {
+  padding: 0;
+  li {
+    list-style: none;
+  }
+}
+
+.name-row {
+  white-space: nowrap;
+  & > .name-label, & > .fa, & > span {
+    cursor: pointer;
+  }
+  & > .fa.disabled {
+    cursor: default;
+    color: #ddd;
+  }
+  & > .fa {
+    font-size: 13px;
+    vertical-align: middle;
+  }
+  & > .fa-binoculars {
+    font-size: 12px;
+    vertical-align: text-top;
+  }
+  & > span {
+    margin-left: 5px;
+    color: #979797;
+    &[class*=" icon-"]:before {
+      vertical-align: inherit;
+      font-size: 11px;
+    }
+  }
+  .icon-collapse, .icon-expand, .icon-focus {
+    font-size: 12px;
+    line-height: 12px;
+    vertical-align: text-top;
+    color: #ccc;
+    &:hover {
+      color: inherit;
+    }
+  }
+  .icon-collapse + .icon-expand {
+    margin-left: 2px;
+  }
+  .icon-focus {
+    font-size: 10px;
+  }
+  & > .fa-chevron-down {
+    margin-left: 2px;
+  }
+  .descendants {
+    color: $inat-green;
+  }
+}
+.name-label {
+  display: inline-block;
+  &.featured .display-name {
+    font-weight: 600;
+    color: $inat-green;
+  }
+  &.featured-ancestor .display-name {
+    font-weight: 600;
+  }
+}
+
+.bootstrap .badge.green {
+  padding: 3px 7px 1px 7px;
+  vertical-align: inherit;
+  background-color: $inat-green;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+
+.Details {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  h3 .SplitTaxon .display-name {
+    color: inherit;
+  }
+  .stats {
+    text-align: center;
+    margin-bottom: 10px;
+    .loading_spinner {
+      display: inline-block;
+      margin: 0;
+    }
+  }
+  .stat {
+    padding: 0 15px;
+    display: block;
+    outline: none;
+    margin: 0px auto;
+    &.clicky{
+      cursor: pointer;
+    }
+    &:not(:first-child) {
+      margin-top: 3px;
+    }
+    .attr {
+      font-weight: 700;
+      margin-right: 4px;
+      &:after {
+        content: ":"
+      }
+    }
+    &.selected .attr {
+      font-weight: 800;
+    }
+    .value {
+      margin-left: 3px;
+    }
+  }
+  .flex-container {
+    height: 100%;
+    overflow: hidden;
+  }
+  .empty {
+    margin: 0px auto;
+    margin-top: 30px;
+    font-size: 16px;
+    text-align: center;
+    max-width: 60%;
+    button {
+      border-radius: 30px;
+      display: block;
+      margin: 0px auto;
+      margin-top: 20px;
+    }
+  }
+  .SpeciesGrid.unobserved .empty {
+    margin-top: 74px;
+  }
+}
+
+.more {
+  width: 100%;
+  margin: 30px 0px;
+  text-align: center;
+  .loading_spinner {
+    margin-top: 0px;
+    width: 30px;
+    height: 30px;
+    border-width: 6px;
+  }
+}
+
+.taxon-image {
+  width: 25px;
+  height: 25px;
+  margin: 1px;
+}
+
+.tree {
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+
+.tree, .tree > * ul {
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+
+.tree > * ul.nested {
+  margin: 0 0 0 1em;
+}
+
+.tree ul.nested:before {
+  content: "";
+  display: block;
+  width: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-left: 1px solid;
+  color: #ddd;
+}
+
+.tree ul.nested li {
+  margin: 0;
+  padding: 0 1em;
+  line-height: 1.5em;
+  position: relative;
+}
+
+.tree ul.nested li:before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 0;
+  border-top: 1px solid;
+  margin-top: -1px;
+  position: absolute;
+  top: .75em;
+  left: 0;
+  color: #ddd;
+}
+
+.tree ul.nested li:last-child:before {
+  background: white;
+  height: auto;
+  top: .75em;
+  bottom: 0;
+}
+
+.tree ul.nested li:last-child {
+  margin-bottom: 10px;
+}
+
+#TaxaList .tree > li > .name-row {
+  font-size: 18px;
+  padding: 3px 0px 4px 0px;
+  font-weight: 300;
+}
+
+#TaxaList .tree ul.nested li:last-child {
+  margin-bottom: 20px;
+}
+
+#TaxaList ul.nested {
+  font-size: 15px;
+}
+
+#TaxaList .ancestry {
+  margin-right: 3px;
+  .expander {
+    padding-right: 3px;
+    cursor: pointer;
+  }
+  .SplitTaxon {
+    cursor: pointer;
+    .secondary-name {
+      display: none;
+    }
+    &:not(:first-child):before {
+      content: "\203A";
+      padding: 0px 4px 0px 1px;
+      font-size: 16px;
+      cursor: auto;
+    }
+  }
+}
+
+#TaxaList .name-row .SplitTaxon > a {
+  color: inherit;
+}
+
+
+.bootstrap .form-group.TaxonAutocomplete, .bootstrap .place-search {
+  .ac-select-thumb {
+    float: left;
+    border: none;
+    background: inherit;
+    text-align: left;
+    width: 23px;
+    color: #979797;
+    margin: 0;
+  }
+  input.form-control.ui-autocomplete-input {
+    border-radius: 20px;
+  }
+}
+
+.bootstrap .search-options {
+  display: flex;
+  margin-bottom: 10px;
+  min-height: 34px;
+  .place-search {
+    display: inline-block;
+    margin-right: 20px;
+    flex-grow: 1;
+    .icon-state {
+      .glyphicon {
+        font-size: 17px;
+      }
+      color: #979797;
+      float: left;
+      line-height: 34px;
+      margin-right: 8px;
+    }
+    .badge {
+      height: 32px;
+      border-radius: 34px;
+      line-height: 28px;
+      background-color: $inat-green;
+      font-weight: 500;
+      font-size: 14px;
+      padding: 3px 4px 3px 14px;
+      .clear {
+        padding: 0 8px;
+        font-size: 20px;
+        float: right;
+        cursor: pointer;
+        outline: none;
+      }
+    }
+    .PlaceAutocomplete .form-group {
+      margin-bottom: 0;
+    }
+  }
+  .dropdown {
+    margin-left: auto;
+    line-height: 33px;
+    &:not(:first-child) {
+      margin-left: 10px;
+    }
+    button.btn {
+      border-radius: 20px;
+      background: #ddd;
+      border: none;
+      font-weight: 700;
+      padding: 5px 12px;
+      font-size: 12px;
+      margin-top: 5px;
+      .caret {
+        margin-left: 5px;
+      }
+    }
+    .dropdown-menu {
+      left: auto;
+      right: 0;
+      white-space: nowrap;
+      line-height: 22px;
+      li {
+        padding: 3px 20px;
+        cursor: pointer;
+        a {
+          padding: 0;
+          line-height: inherit;
+          outline: none;
+        }
+        &:not(:first-child) {
+          margin-top: 2px;
+        }
+        &.divider {
+          padding: 0;
+          margin: 10px 0;
+        }
+        &.selected, &:hover {
+          background-color: #f5f5f5;
+        }
+        &[disabled] {
+          cursor: default;
+          color: #ccc;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}
+
+.ExportModal {
+  .modal-header {
+    font-size: 24px;
+  }
+  .modal-body {
+    font-size: 16px;
+    .export-filters .intro:after {
+      content: ":"
+    }
+    ul {
+      list-style: none;
+      padding-left: 10px;
+      margin: 10px 0 0 0;
+      li {
+        input {
+          margin-right: 10px;
+        }
+        label {
+          font-weight: normal;
+          .filter-label {
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+  .modal-footer {
+    button {
+      min-width: 80px;
+    }
+    .taxa-count {
+      float: left;
+      font-size: 16px;
+      line-height: 34px;
+    }
+  }
+  button.btn-primary .loading_spinner {
+    border: 3px solid rgba(221, 221, 221, 0.2);
+    border-top: 3px solid white;
+  }
+}
+
+.ui-autocomplete {
+  .ac-result, .category {
+    font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+    .ac-label {
+      color: #333;
+    }
+  }
+  .ac-thumb i.icon {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 3px;
+  }
+}
+
+.SpeciesGrid {
+  display: flex;
+  flex-wrap: wrap;
+  .result {
+    flex-grow: 1;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    min-width: 160px;
+    max-width: 300px;
+    margin-right: 0;
+    .thumbnail {
+      padding: 0;
+      margin-bottom: 0;
+      position: relative;
+      .overlay {
+        position: absolute;
+        background-color: rgba(0,0,0,0.3);
+        color: white;
+        width: 100%;
+        line-height: 30px;
+        padding: 0 9px;
+        margin-top: -30px;
+        a {
+          color: white;
+        }
+      }
+      .display-name {
+        display: block;
+        font-weight: 700;
+        color: inherit;
+        font-size: 16px;
+      }
+      .caption {
+        height: 58px;
+        .display-name, .secondary-name {
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+      &.TaxonThumbnail .photo {
+        line-height: 170px !important;
+        font-size: 170px;
+        text-align: center;
+        background-color: #ccc;
+        color: white;
+      }
+    }
+  }
+}
+
+.FlashMessage .alert {
+  margin: 10px 0px 0px;
+}
+
+@media (min-width: 1345px) {
+  .FlexCol {
+    &.tree-col {
+      min-width: 633px;
+      width: 633px;
+    }
+    &.details-col {
+      width: 100%;
+    }
+  }
+}

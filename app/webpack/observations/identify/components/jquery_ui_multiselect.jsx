@@ -5,32 +5,39 @@ import _ from "lodash";
 
 class JQueryUIMultiselect extends React.Component {
   componentDidMount( ) {
+    const { onOpen, onChange } = this.props;
     const domNode = ReactDOM.findDOMNode( this );
     const opts = {
       checkAllText: I18n.t( "all" ),
       uncheckAllText: I18n.t( "none" )
     };
-    if ( typeof( this.props.onOpen ) === "function" ) {
-      opts.open = this.props.onOpen;
+    if ( typeof ( onOpen ) === "function" ) {
+      opts.open = onOpen;
     }
-    if ( typeof( this.props.onChange ) === "function" ) {
-      $( domNode ).change( ( ) => this.props.onChange( $( domNode ).val( ) ) );
+    if ( typeof ( onChange ) === "function" ) {
+      $( domNode ).change( ( ) => onChange( $( domNode ).val( ) ) );
     }
     $( domNode ).multiselect( opts );
   }
 
   render( ) {
+    const {
+      className,
+      defaultValue,
+      data,
+      id
+    } = this.props;
     return (
       <select
-        className={this.props.className}
+        className={className}
         id="filters-dates-month"
         multiple
-        defaultValue={this.props.defaultValue}
+        defaultValue={defaultValue}
       >
-        { _.map( this.props.data, ( opt, i ) => (
+        { _.map( data, ( opt, i ) => (
           <option
             value={opt.value}
-            key={`${this.props.id}-${i}`}
+            key={`${id}-${i}`}
           >
             { opt.label }
           </option>
@@ -43,7 +50,6 @@ class JQueryUIMultiselect extends React.Component {
 JQueryUIMultiselect.propTypes = {
   className: PropTypes.string,
   onChange: PropTypes.func,
-  onClick: PropTypes.func,
   onOpen: PropTypes.func,
   id: PropTypes.string,
   data: PropTypes.array,

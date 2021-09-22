@@ -5,6 +5,13 @@ import { Panel } from "react-bootstrap";
 import ProjectListing from "./project_listing";
 
 class Projects extends React.Component {
+  static chooseFirstProject( e ) {
+    e.preventDefault( );
+    const input = $( ".Projects .panel-group input" );
+    if ( input.data( "uiAutocomplete" ) ) {
+      input.trigger( "selectFirst" );
+    }
+  }
 
   constructor( props ) {
     super( props );
@@ -55,71 +62,93 @@ class Projects extends React.Component {
     } );
   }
 
-  chooseFirstProject( e ) {
-    e.preventDefault( );
-    const input = $( ".Projects .panel-group input" );
-    if ( input.data( "uiAutocomplete" ) ) {
-      input.trigger( "selectFirst" );
-    }
-  }
-
   render( ) {
-    const observation = this.props.observation;
-    const config = this.props.config;
+    const { observation, config } = this.props;
     const loggedIn = config && config.currentUser;
 
     const projectsOrProjObs = observation.non_traditional_projects || [];
     _.each( observation.project_observations, po => {
       // trying to avoid duplicate project listing. This can happen for formerly
       // traditional projects that have been turned into collection projects
-      if ( !_.find( projectsOrProjObs, ppo => ( ppo.project_id === po.project_id ) ) ) {
+      const duplicate = _.find( projectsOrProjObs, ppo => (
+        ( ppo.project_id && po.project_id && ppo.project_id === po.project_id )
+        || (
+          ppo.project && po.project && ppo.project.id === po.project.id
+        )
+      ) );
+      if ( !duplicate ) {
         projectsOrProjObs.push( po );
       }
     } );
-    if ( !observation || !observation.user ||
-         ( !loggedIn &&
-           projectsOrProjObs.length === 0 ) ) {
+    if (
+      !observation
+      || !observation.user
+      || (
+        !loggedIn
+        && projectsOrProjObs.length === 0
+      )
+    ) {
       return ( <span /> );
     }
     let addProjectInput;
     if ( loggedIn ) {
-      addProjectInput = (
-        <form onSubmit={ this.chooseFirstProject }>
+      let projectAdditionNotice;
+      if ( config.currentUser.id !== observation.user.id && observation.user.preferences ) {
+        if ( observation.user.preferences.prefers_project_addition_by === "none" ) {
+          addProjectInput = (
+            <p className="text-muted">{ I18n.t( "observer_prefers_no_project_addition" ) }</p>
+          );
+        } else if ( observation.user.preferences.prefers_project_addition_by === "joined" ) {
+          projectAdditionNotice = (
+            <p className="text-muted">{ I18n.t( "observer_prefers_addition_to_projects_joined" ) }</p>
+          );
+        }
+      }
+      addProjectInput = addProjectInput || (
+        <form onSubmit={Projects.chooseFirstProject}>
           <div className="form-group">
             <input
               type="text"
               className="form-control"
-              placeholder={ I18n.t( "add_to_a_project" ) }
+              placeholder={I18n.t( "add_to_a_project" )}
             />
           </div>
+          { projectAdditionNotice }
         </form>
       );
     }
-    const count = projectsOrProjObs.length > 0 ?
-      `(${projectsOrProjObs.length})` : "";
+    const count = projectsOrProjObs.length > 0
+      ? `(${projectsOrProjObs.length})`
+      : "";
+    const sectionOpen = this.state.open;
     return (
       <div className="Projects collapsible-section">
-        <h4
-          className="collapsible"
-          onClick={ ( ) => {
+        <button
+          type="button"
+          className="btn btn-nostyle"
+          onClick={( ) => {
             if ( loggedIn ) {
-              this.props.updateSession( { prefers_hide_obs_show_projects: this.state.open } );
+              this.props.updateSession( { prefers_hide_obs_show_projects: sectionOpen } );
             }
-            this.setState( { open: !this.state.open } );
-          } }
+            this.setState( { open: !sectionOpen } );
+          }}
         >
-          <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
-          { I18n.t( "projects" ) } { count }
-        </h4>
-        <Panel id="projects-panel" expanded={ this.state.open } onToggle={ () => null }>
+          <h4 className="collapsible">
+            <i className={`fa fa-chevron-circle-${this.state.open ? "down" : "right"}`} />
+            { I18n.t( "projects" ) }
+            { " " }
+            { count }
+          </h4>
+        </button>
+        <Panel id="projects-panel" expanded={this.state.open} onToggle={() => null}>
           <Panel.Collapse>
             <Panel.Body>
               { addProjectInput }
               { projectsOrProjObs.map( obj => (
                 <ProjectListing
-                  key={ obj.project.id }
-                  displayObject={ obj }
-                  { ...this.props }
+                  key={obj.project.id}
+                  displayObject={obj}
+                  {...this.props}
                 />
               ) ) }
             </Panel.Body>

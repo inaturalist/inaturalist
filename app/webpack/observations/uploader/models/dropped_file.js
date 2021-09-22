@@ -1,7 +1,7 @@
 import _ from "lodash";
 import piexif from "piexifjs";
 import moment from "moment-timezone";
-import util from "../models/util";
+import util, { DATETIME_WITH_TIMEZONE, DATETIME_WITH_TIMEZONE_OFFSET } from "./util";
 
 const BRANDED_DESCRIPTIONS = [
   "OLYMPUS DIGITAL CAMERA",

@@ -14,6 +14,8 @@
     var parsableString = pieces.join( "." );
     if ( pieces.length === 2 ) {
       parsableString = pieces[0].replace( delimiter, "" ) + "." + pieces[1];
+    } else {
+      parsableString = pieces[0].replace( delimiter, "" );
     }
     return parseFloat( parsableString );
   }
@@ -23,19 +25,20 @@
     var n = normalizeCount( count, locale ) || 0;
     var mod10 = n % 10;
     var mod100 = n % 100;
+    var isWhole = parseInt( n, 0 ) === n;
     if ( mod10 === 1 && mod100 !== 11 ) {
       return ["one"];
     }
     if (
-      ( mod10 >= 2 && mod10 <= 4 )
-      && !( mod100 >= 12 && mod100 <= 14 )
+      ( mod10 >= 2 && mod10 <= 4 && isWhole )
+      && !( mod100 >= 12 && mod100 <= 14 && isWhole )
     ) {
       return ["few"];
     }
     if (
       mod10 === 0
-      || ( mod10 >= 5 && mod10 <= 9 )
-      || ( mod100 >= 11 && mod100 <= 14 )
+      || ( mod10 >= 5 && mod10 <= 9 && isWhole )
+      || ( mod100 >= 11 && mod100 <= 14 && isWhole )
     ) {
       return ["many"];
     }
@@ -44,34 +47,46 @@
 
   function westSlavic( count, locale ) {
     var n = normalizeCount( count, locale ) || 0;
+    var isWhole = parseInt( n, 0 ) === n;
     if ( n === 1 ) return ["one"];
-    if ( n >= 2 && n <= 4 ) return ["few"];
+    if ( n >= 2 && n <= 4 && isWhole ) return ["few"];
     return ["other"];
   }
 
   function oneUptoTwoOther( count, locale ) {
     var n = normalizeCount( count, locale ) || 0;
-    return n && n >= 0 && n < 2 ? ["one"] : ["other"];
+    var isWhole = parseInt( n, 0 ) === n;
+    return n && n >= 0 && n < 2 && isWhole ? ["one"] : ["other"];
   }
 
   function other( ) {
     return ["other"];
   }
 
+  // Override default to deal with English-style delimiters
+  I18n.pluralization.default = function ( count ) {
+    switch ( normalizeCount( count, I18n.locale || "en" ) ) {
+      case 0: return ["zero", "other"];
+      case 1: return ["one"];
+      default: return ["other"];
+    }
+  };
+
   // Add pluralization rules for locales
   I18n.pluralization.ar = function ( count ) {
     var n = normalizeCount( count, "ar" ) || 0;
     var mod100 = n % 100;
+    var isWhole = parseInt( n, 0 ) === n;
     if ( n === 0 ) {
       return ["zero"];
     }
     if ( n === 1 ) {
       return ["one"];
     }
-    if ( mod100 >= 3 && mod100 <= 10 ) {
+    if ( isWhole && mod100 >= 3 && mod100 <= 10 ) {
       return ["few"];
     }
-    if ( mod100 >= 11 && mod100 <= 99 ) {
+    if ( isWhole && mod100 >= 11 && mod100 <= 99 ) {
       return ["many"];
     }
     return ["other"];
@@ -100,17 +115,32 @@
     var n = normalizeCount( count, "lt" ) || 0;
     var mod10 = n % 10;
     var mod100 = n % 100;
-    if ( mod10 === 1 && !( mod100 >= 11 && mod100 <= 19 ) ) {
+    var isWhole = parseInt( n, 0 ) === n;
+    if (
+      mod10 === 1
+      && !( mod100 >= 11 && mod100 <= 19 )
+      && isWhole
+    ) {
       return ["one"];
     }
-    if ( mod10 >= 2 && mod10 <= 9 && !( mod100 >= 11 && mod100 <= 19 ) ) {
+    if (
+      mod10 >= 2
+      && mod10 <= 9
+      && !( mod100 >= 11 && mod100 <= 19 )
+      && isWhole
+    ) {
       return ["few"];
     }
     return ["other"];
   };
   I18n.pluralization.mk = function ( count ) {
     var n = normalizeCount( count, "mk" ) || 0;
-    if ( n % 10 === 1 && n !== 11 ) {
+    var isWhole = parseInt( n, 0 ) === n;
+    if (
+      n % 10 === 1
+      && n !== 11
+      && isWhole
+    ) {
       return ["one"];
     }
     return ["other"];
@@ -119,12 +149,14 @@
     var n = normalizeCount( count, "pl" ) || 0;
     var mod10 = n % 10;
     var mod100 = n % 100;
+    var isWhole = parseInt( n, 0 ) === n;
     if ( n === 1 ) {
       return ["one"];
     }
     if (
       ( mod10 >= 2 && mod10 <= 4 )
       && !( mod100 >= 12 && mod100 <= 14 )
+      && isWhole
     ) {
       return ["few"];
     }
@@ -133,6 +165,21 @@
       || [12, 13, 14].indexOf( mod100 ) >= 0
     ) {
       return ["many"];
+    }
+    return ["other"];
+  };
+  I18n.pluralization.ro = function ( count ) {
+    var n = normalizeCount( count, "ro" ) || 0;
+    var mod100 = n % 100;
+    var isWhole = parseInt( n, 0 ) === n;
+    if ( n === 1 ) {
+      return ["one"];
+    }
+    if (
+      n === 0
+      || ( mod100 >= 1 && mod100 <= 19 && isWhole )
+    ) {
+      return ["few"];
     }
     return ["other"];
   };

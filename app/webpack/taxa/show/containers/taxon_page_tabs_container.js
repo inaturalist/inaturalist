@@ -8,8 +8,6 @@ import {
   fetchNames,
   fetchInteractions,
   fetchTrending,
-  fetchWanted,
-  fetchRecent,
   fetchSimilar,
   showPhotoChooser
 } from "../../shared/ducks/taxon";
@@ -27,7 +25,7 @@ function mapStateToProps( state ) {
       && aboveGenusTabs.indexOf( state.config.chosenTab ) >= 0
     )
   ) {
-    chosenTab = state.config.chosenTab;
+    ( { chosenTab } = state.config );
   }
   return {
     taxon: state.taxon.taxon,
@@ -51,8 +49,6 @@ function mapDispatchToProps( dispatch ) {
         break;
       case "highlights":
         dispatch( fetchTrending( ) );
-        dispatch( fetchWanted( ) );
-        dispatch( fetchRecent( ) );
         break;
       case "similar":
         dispatch( fetchSimilar( ) );

@@ -7,7 +7,6 @@ import {
   fetchCurrentObservation,
   loadingDiscussionItem,
   fetchObservationsStats,
-  fetchIdentifiers,
   stopLoadingDiscussionItem,
   submitIdentificationWithConfirmation,
   deleteComment,
@@ -49,7 +48,6 @@ function mapDispatchToProps( dispatch, ownProps ) {
               $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
             } );
             dispatch( fetchObservationsStats( ) );
-            dispatch( fetchIdentifiers( ) );
           } );
       } else {
         const ident = {
@@ -85,8 +83,15 @@ function mapDispatchToProps( dispatch, ownProps ) {
     },
     restoreID: id => {
       const ident = { id, className: "Identification" };
+      const updateIdent = { id, current: true };
+      if ( id.toString( ).match( /A-z/ ) ) {
+        ident.uuid = id;
+        delete ident.id;
+        updateIdent.uuid = id;
+        delete updateIdent.id;
+      }
       dispatch( loadingDiscussionItem( ident ) );
-      dispatch( updateIdentification( { id, current: true } ) )
+      dispatch( updateIdentification( updateIdent ) )
         .catch( ( ) => {
           dispatch( stopLoadingDiscussionItem( ident ) );
         } )

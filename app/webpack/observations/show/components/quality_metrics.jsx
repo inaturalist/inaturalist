@@ -12,7 +12,8 @@ class QualityMetrics extends React.Component {
     this.needsIDRow = this.needsIDRow.bind( this );
   }
 
-  voteCell( metric, isAgree, isMajority, className, usersChoice, voters, loading, disabled ) {
+  voteCell( metric, isAgree, isMajority, className, usersChoice, voters,
+    loading, disabled, options = {} ) {
     const {
       config,
       unvoteMetric,
@@ -27,21 +28,28 @@ class QualityMetrics extends React.Component {
         contents={( <span>{voters.length === 0 ? null : voters.length}</span> )}
       />
     );
-    const thumb = config && config.currentUser ? (
-      <i
-        className={`fa ${className}`}
+    // Disable voting if requested, but always allow unvoting
+    const thumb = config && config.currentUser && (
+      <button
+        type="button"
+        className="btn btn-nostyle"
+        disabled={options.disableVoting && !usersChoice}
         onClick={( ) => {
           if ( disabled ) { return; }
           if ( usersChoice ) {
             unvoteMetric( metric );
+          } else if ( options.disableVoting ) {
+            // Don't do anything if voting is disabled
           } else if ( isAgree ) {
             voteMetric( metric );
           } else {
             voteMetric( metric, { agree: "false" } );
           }
         }}
-      />
-     ) : null;
+      >
+        <i className={`fa ${className}`} />
+      </button>
+    );
     return (
       <span>
         <span className="check">
@@ -76,7 +84,7 @@ class QualityMetrics extends React.Component {
       <UsersPopover
         users={needsIDInfo.votersFor}
         keyPrefix="metric-needs_id-agree"
-        contents={<span>({needsIDInfo.votersFor.length})</span>}
+        contents={<span>{`(${needsIDInfo.votersFor.length})`}</span>}
       />
     );
     const votesAgainstCount = needsIDInfo.voteAgainstLoading ? (
@@ -85,7 +93,7 @@ class QualityMetrics extends React.Component {
       <UsersPopover
         users={needsIDInfo.votersAgainst}
         keyPrefix="metric-needs_id-disagree"
-        contents={<span>({needsIDInfo.votersAgainst.length})</span>}
+        contents={<span>{`(${needsIDInfo.votersAgainst.length})`}</span>}
       /> );
     const checkboxYes = loggedIn ? (
       <input
@@ -125,7 +133,10 @@ class QualityMetrics extends React.Component {
           <div className="inputs">
             <div className="yes">
               { checkboxYes }
-              <label htmlFor="improveYes" className={ needsIDInfo.mostAgree ? "bold" : "" }>
+              <label
+                htmlFor="improveYes"
+                className={needsIDInfo.mostAgree ? "bold" : ""}
+              >
                 { I18n.t( "yes" ) }
               </label>
               { " " }
@@ -133,7 +144,10 @@ class QualityMetrics extends React.Component {
             </div>
             <div className="no">
               { checkboxNo }
-              <label htmlFor="improveNo" className={ needsIDInfo.mostDisagree ? "bold" : "" }>
+              <label
+                htmlFor="improveNo"
+                className={needsIDInfo.mostDisagree ? "bold" : ""}
+              >
                 { I18n.t( "no_its_as_good_as_it_can_be" ) }
               </label>
               { " " }
@@ -193,16 +207,16 @@ class QualityMetrics extends React.Component {
     };
   }
 
-  voteCellsForMetric( metric ) {
+  voteCellsForMetric( metric, options = {} ) {
     const info = this.infoForMetric( metric );
     return {
       agreeCell: this.voteCell(
         metric, true, info.mostAgree, info.agreeClass, info.userVotedFor,
-        info.votersFor, info.voteForLoading, info.loading
+        info.votersFor, info.voteForLoading, info.loading, options
       ),
       disagreeCell: this.voteCell(
         metric, false, info.mostDisagree, info.disagreeClass, info.userVotedAgainst,
-        info.votersAgainst, info.voteAgainstLoading, info.loading
+        info.votersAgainst, info.voteAgainstLoading, info.loading, options
       ),
       loading: info.loading
     };
@@ -216,20 +230,41 @@ class QualityMetrics extends React.Component {
     if ( !observation || !observation.user ) { return ( <div /> ); }
     const checkIcon = ( <i className="fa fa-check check" /> );
     const xIcon = ( <i className="fa fa-times check" /> );
-    const hasMedia = ( observation.photos.length + observation.sounds.length ) > 0;
-    const atLeastSpecies = ( observation.taxon && observation.taxon.rank_level <= 10 );
-    const atLeastGenus = ( observation.taxon && observation.taxon.rank_level <= 20 );
+    const hasMedia = (
+      ( observation.photos ? observation.photos.length : 0 )
+      + ( observation.sounds ? observation.sounds.length : 0 )
+    ) > 0;
+    const communityTaxonAtLeastSpecies = (
+      observation.communityTaxon
+      && observation.communityTaxon.rank_level <= 10
+    );
+    const communityTaxonAtLeastSubfamily = (
+      observation.taxon
+      && observation.taxon.rank_level < 30
+    );
     const mostAgree = observation.identifications_most_agree;
+    let locationSpecified = false;
+    if ( observation.geojson ) {
+      locationSpecified = true;
+    } else if (
+      observation.obscured
+      && (
+        observation.geoprivacy === "private"
+        || observation.taxon_geoprivacy === "private"
+      )
+    ) {
+      locationSpecified = true;
+    }
     const wildCells = this.voteCellsForMetric( "wild" );
-    const locationCells = this.voteCellsForMetric( "location" );
-    const dateCells = this.voteCellsForMetric( "date" );
+    const locationCells = this.voteCellsForMetric( "location", { disableVoting: !locationSpecified } );
+    const dateCells = this.voteCellsForMetric( "date", { disableVoting: !observation.observed_on } );
     const evidenceCells = this.voteCellsForMetric( "evidence" );
     const recentCells = this.voteCellsForMetric( "recent" );
     const needsIDInfo = this.infoForMetric( "needs_id" );
     const rankText = needsIDInfo.mostDisagree
-      ? I18n.t( "community_id_at_genus_level_or_lower" )
+      ? I18n.t( "community_id_is_precise" )
       : I18n.t( "community_id_at_species_level_or_lower" );
-    const rankPassed = needsIDInfo.mostDisagree ? atLeastGenus : atLeastSpecies;
+    const rankPassed = needsIDInfo.mostDisagree ? communityTaxonAtLeastSubfamily : communityTaxonAtLeastSpecies;
     return (
       <div className="QualityMetrics">
         { tableOnly ? null : (
@@ -267,8 +302,8 @@ class QualityMetrics extends React.Component {
                 <i className="fa fa-map-marker" />
                 { I18n.t( "location_specified" ) }
               </td>
-              <td className="agree">{ observation.location || observation.obscured ? checkIcon : null }</td>
-              <td className="disagree">{ observation.location || observation.obscured ? null : xIcon }</td>
+              <td className="agree">{ locationSpecified ? checkIcon : null }</td>
+              <td className="disagree">{ locationSpecified ? null : xIcon }</td>
             </tr>
             <tr>
               <td className="metric_title">
@@ -286,7 +321,7 @@ class QualityMetrics extends React.Component {
               <td className="agree">{ mostAgree ? checkIcon : null }</td>
               <td className="disagree">{ mostAgree ? null : xIcon }</td>
             </tr>
-            <tr className={dateCells.loading ? "disabled" : ""}>
+            <tr className={dateCells.loading || !observation.observed_on ? "disabled" : ""}>
               <td className="metric_title">
                 <i className="fa fa-calendar-check-o" />
                 { I18n.t( "date_is_accurate" ) }
@@ -294,7 +329,7 @@ class QualityMetrics extends React.Component {
               <td className="agree">{ dateCells.agreeCell }</td>
               <td className="disagree">{ dateCells.disagreeCell }</td>
             </tr>
-            <tr className={locationCells.loading ? "disabled" : ""}>
+            <tr className={locationCells.loading || !locationSpecified ? "disabled" : ""}>
               <td className="metric_title">
                 <i className="fa fa-bullseye" />
                 { I18n.t( "location_is_accurate" ) }

@@ -13,4 +13,8 @@ describe OauthApplication do
   it "should not allow params in the redirect_uri" do
     expect( OauthApplication.make( redirect_uri: "http://www.inaturalist.org/foo?bar=baz" ) ).not_to be_valid
   end
+
+  it "should have default scopes by default" do
+    expect( OauthApplication.make!.scopes.to_s ).to eq Doorkeeper.configuration.default_scopes.to_s
+  end
 end

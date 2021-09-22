@@ -31,12 +31,6 @@ base: &base
         # http://www.ubio.org/index.php?pagename=form
         key: 09af09af09af09af09af09af09af09af09af09af
 
-    yahoo_dev_network:
-        # first need Yahoo account: https://edit.yahoo.com/registration
-        # then need to sign up for Yahoo Developers Network app interface:
-        # https://developer.apps.yahoo.com/wsregapp/
-        app_id: 09azAZ09azAZ09azAZ09azAZ09azAZ09azAZ09az09azAZ09azAZ09azAZ09
-
     tile_servers:
         # EXPERIMENTAL: These endpoints should return map tiles when hit with
         # requests like /{Z}/{X}/{Y}.png.
@@ -89,8 +83,13 @@ base: &base
         secret: 09af09af09af09af09af09af09af09af
 
     google:
+        # This should be a Google API key that can use Google maps
         # https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key
         browser_api_key: 09af09af09af09af09af09af09af09af
+        # client_id and secret should come from a Google OAuth 2.0 client ID
+        # https://console.developers.google.com/apis/credentials
+        client_id: 09af09af09af09af09af09af09af09af
+        secret: 09af09af09af09af09af09af09af09af
 
     metadata_provider:
 
@@ -121,11 +120,59 @@ base: &base
     # same code running at CONFIG.tile_servers.elasticsearch
     node_api_url: http://localhost:4000/v1
 
+    # The secrets used to sign the JWT for authenticated requests to the
+    # iNaturalistAPI. These need to be same as in the API's config.js.
+    jwt_secret: secret
+    jwt_application_secret: application_secret
+
+    # # Path to the CA .crt file
+    # ca_file: "/path/to/certs/ca-bundle.crt"
+    # # Path to the certificates directory
+    # ca_path: "/path/to/certs/"
+
+    # # Options for interacting with orcid.org
+    # orcid:
+    #     client_id: YOUR_CLIENT_ID
+    #     client_secret: YOUR_CLIENT_SECRET
+
+    # # Options for interacting with donorbox.org donation platform
+    # donorbox:
+    #     email: you@domain.com
+    #     key: YOUR_DONORBOX_KEY
+
+
+    # Options for interacting with crowdin.com translation projects
+    # crowdin:
+    #     projects:
+    #         web:
+    #             identifier: inaturalistweb
+    #             key: 1234
+    #         mobile:
+    #             identifier: inaturalistios
+    #             key: 5678
+    #         seek:
+    #             identifier: seek
+    #             key: 4321
+
+    # # Sendgrid-specific options if using sendgrid.com to send email
+    # sendgrid:
+    #     # Unsubscribe groups configured on Sendgrid
+    #     asm_group_ids:
+    #         # The unsubscribe group used as a default for all emails sent from
+    #         # the web app
+    #         default: 1234
+
 development:
     <<: *base
 
 test:
     <<: *base
+    # We shouldn't assume a working instance of the node API is running in a
+    # test environment, so use different defaults to ensure we don't get fooled
+    # when a test passes in a development environment where the node API *is*
+    # running
+    node_api_host: "localhost:5000/v1"
+    node_api_url: http://localhost:5000/v1
 
 production:
     <<: *base

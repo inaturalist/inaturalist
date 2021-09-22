@@ -14,7 +14,7 @@
 
   <% if params[:preview].blank? # don't show comments for preview %>
     <div class="assessment-section-comments comments_wrapper">
-      <h4><%=t :comments_on %> <%= section.title %></h4>
+      <h4><%=t :comments %></h4>
       <%- section_comments_count = section.comments.count %>
       <div class="comments">
         <% if section_comments_count == 0 -%>

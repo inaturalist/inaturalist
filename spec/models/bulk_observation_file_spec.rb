@@ -112,7 +112,6 @@ species guess,Date,Description,Location,Latitude / y coord / northing,Longitude 
   end
   
   describe "with project" do
-    elastic_models( Observation )
     before do
       @project_user = ProjectUser.make!
       @project = @project_user.project

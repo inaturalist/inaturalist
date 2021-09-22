@@ -1,8 +1,13 @@
-class PlaceTaxonName < ActiveRecord::Base
+class PlaceTaxonName < ApplicationRecord
   belongs_to :place, :inverse_of => :place_taxon_names
   belongs_to :taxon_name, :inverse_of => :place_taxon_names
   validates_uniqueness_of :place_id, :scope => :taxon_name_id
-  validates_presence_of :place_id, :taxon_name_id
+  validates_presence_of :place_id, :taxon_name
+
+  before_create do |ptn|
+    ptn.position = PlaceTaxonName.where( place: ptn.place ).joins(:taxon_name).
+      where( "taxon_names.taxon_id = ?", ptn.taxon_name.taxon_id ).count + 1
+  end
 
   def to_s
     "<PlaceTaxonName #{id}, place_id: #{place_id}, taxon_name_id: #{taxon_name_id}>"

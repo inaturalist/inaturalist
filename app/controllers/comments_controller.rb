@@ -2,44 +2,46 @@ class CommentsController < ApplicationController
   before_action :doorkeeper_authorize!,
     only: [ :create, :update, :destroy ],
     if: lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
-  before_filter :admin_required, :only => [:user]
-  before_filter :load_comment, :only => [:show, :edit, :update, :destroy]
-  before_filter :owner_required, :only => [:edit, :update]
+  before_action :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
+  before_action :admin_required, :only => [:user]
+  before_action :load_record, :only => [:show, :edit, :update, :destroy]
+  before_action :owner_required, :only => [:edit, :update]
   check_spam only: [:create, :update], instance: :comment
   
   def index
-    find_options = {
-      :select => "MAX(comments.id) AS id, parent_id",
-      :page => params[:page],
-      :order => "id DESC",
-      :group => "parent_id"
-    }
-    @paging_comments = Comment.all
+    @comments = Comment.includes(:user).order( "comments.id DESC" ).page( params[:page] )
     if logged_in? && (!params[:mine].blank? || !params[:for_me].blank? || !params[:q].blank?)
       filtering = true
       if !params[:mine].blank?
-        @paging_comments = @paging_comments.by(current_user)
+        @comments = @comments.by(current_user)
       elsif !params[:for_me].blank?
-        @paging_comments = @paging_comments.for_observer(current_user)
+        @comments = @comments.for_observer(current_user)
       end
-      @paging_comments = @paging_comments.dbsearch(params[:q]) unless params[:q].blank?
+      @comments = @comments.dbsearch(params[:q]) unless params[:q].blank?
     end
     if !filtering && @site && @site.site_only_users
-      @paging_comments = @paging_comments.joins(:user).where("users.site_id = ?", @site)
+      @comments = @comments.joins(:user).where("users.site_id = ?", @site)
     end
-    @paging_comments = @paging_comments.select(find_options[:select]).
-      group(find_options[:group]).paginate(page: find_options[:page]).
-      order(find_options[:order])
-    @comments = Comment.where("comments.id IN (?)", @paging_comments.map{|c| c.id}).includes(:user).order("comments.id desc")
-    @extra_comments = Comment.where(parent_id: @comments.map(&:parent_id))
-    @extra_ids = Identification.where(observation_id: @comments.map(&:parent_id)).includes(:observation)
-    @extra_comments_and_ids = [@extra_comments,@extra_ids].flatten
-    @comments_by_parent_id = @extra_comments_and_ids.sort_by{|c| c.created_at}.group_by{|c| (c.respond_to? :observation_id) ? [c.observation.class.to_s,c.observation_id].join("_") : [c.parent.class.to_s,c.parent_id].join("_") }
+    parent_ids = @comments.map(&:parent_id)
+    @extra_comments = Comment.where( parent_id: parent_ids ).
+      where( "comments.id NOT IN (?)", @comments.map(&:id) ).includes(:user)
+    @extra_ids = Identification.where( observation_id: parent_ids ).includes(:observation)
+    comments_and_ids = [@comments, @extra_comments, @extra_ids].flatten.uniq
+    @comments_by_parent_id = comments_and_ids.sort_by(&:created_at).group_by do |c|
+      if c.respond_to? :observation_id
+        [c.observation.class.to_s, c.observation_id].join( "_" )
+      else
+        [c.parent.class.to_s, c.parent_id].join( "_" )
+      end
+    end
+    @latest_comments = @comments_by_parent_id.map {|g,items|
+      items.select {|i| i.is_a?( Comment ) }.compact.sort_by(&:created_at).last
+    }.compact.sort_by(&:created_at).reverse
     respond_to do |format|
       format.html do
         if params[:partial]
-          render :partial => 'listing_for_dashboard', :collection => @comments, :layout => false
+          render partial: "listing_for_dashboard",
+            collection: @latest_comments, layout: false
         end
       end
     end
@@ -78,7 +80,6 @@ class CommentsController < ApplicationController
           else
             @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
           end
-          Observation.refresh_es_index
           render :json => @comment.to_json(:methods => [:html])
         else
           render :status => :unprocessable_entity, :json => {:errors => @comment.errors.full_messages}
@@ -114,7 +115,6 @@ class CommentsController < ApplicationController
         redirect_to_parent
       end
       format.json do
-        Observation.refresh_es_index
         @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
         render :json => @comment.to_json(:methods => [:html])
       end
@@ -158,7 +158,6 @@ class CommentsController < ApplicationController
         redirect_back_or_default(parent)
       end
       format.any(:js, :json) do
-        Observation.refresh_es_index
         head :ok
       end
     end
@@ -166,7 +165,7 @@ class CommentsController < ApplicationController
   
   private
   def redirect_to_parent
-    anchor = "activity_comment_#{@comment.id}"
+    anchor = "activity_comment_#{@comment.uuid}"
     if @comment.parent.is_a?( Trip )
       trip = @comment.parent
       redirect_to( trip_path( trip, anchor: anchor ) )
@@ -175,6 +174,9 @@ class CommentsController < ApplicationController
       redirect_to( post_path( post, anchor: anchor ) )
     elsif @comment.parent.is_a?( TaxonLink )
       redirect_to( edit_taxon_link_path( @comment.parent, anchor: anchor ) )
+    elsif @comment.parent.is_a?( Observation )
+      anchor = "activity_comment_#{@comment.uuid}"
+      redirect_to( url_for( @comment.parent ) + "##{anchor}" )
     else
       redirect_to( url_for( @comment.parent ) + "##{anchor}" )
     end
@@ -188,10 +190,6 @@ class CommentsController < ApplicationController
       flash[:error] = "#{t(:we_had_trouble_saving_comment)} #{@comment.errors.full_messages.join(', ')}"
     end
     redirect_to_parent
-  end
-
-  def load_comment
-    render_404 unless @comment = Comment.find_by_id(params[:id] || params[:comment_id])
   end
   
   def owner_required

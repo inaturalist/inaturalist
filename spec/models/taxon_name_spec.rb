@@ -1,6 +1,16 @@
 # encoding: UTF-8
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+describe TaxonName do
+  it { is_expected.to belong_to :taxon }
+  it { is_expected.to belong_to :source }
+  it { is_expected.to belong_to(:creator).class_name 'User' }
+  it { is_expected.to have_many(:taxon_scheme_taxa).dependent :destroy }
+  it { is_expected.to have_many(:place_taxon_names).dependent(:delete_all).inverse_of :taxon_name }
+  it { is_expected.to have_many(:places).through :place_taxon_names }
+  it { is_expected.to validate_length_of(:name).is_at_least(1).is_at_most(256) }
+end
+
 describe TaxonName, 'creation' do
   before(:each) do
     @taxon_name = TaxonName.new(:name => 'Physeter catodon', 
@@ -63,10 +73,10 @@ describe TaxonName, 'creation' do
     expect(@taxon_name.lexicon).to eq TaxonName::LEXICONS[:ENGLISH]
   end
   
-  it "should not allow synonyms within a lexicon" do
+  it "should not allow synonyms within a parameterized lexicon" do
     taxon = Taxon.make!
-    name1 = TaxonName.make!(:taxon => taxon, :name => "foo", :lexicon => TaxonName::LEXICONS[:ENGLISH])
-    name2 = TaxonName.new(:taxon => taxon, :name => "Foo", :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    _name1 = TaxonName.make!(:taxon => taxon, :name => "foo", :lexicon => TaxonName::LEXICONS[:CHINESE_SIMPLIFIED])
+    name2 = TaxonName.new(:taxon => taxon, :name => "Foo", :lexicon => TaxonName::LEXICONS[:CHINESE_SIMPLIFIED].upcase)
     expect(name2).not_to be_valid
   end
   
@@ -77,6 +87,35 @@ describe TaxonName, 'creation' do
 
   it "should strip the lexicon" do
     expect( TaxonName.make!( lexicon: " Foo" ).lexicon ).to eq "Foo"
+  end
+
+  it "should not be valid with a non-English translation of a lexicon" do
+    tn = TaxonName.make(lexicon: I18n.with_locale(:"zh-CN") { I18n.t("lexicons.finnish") }, name: "common")
+    expect(tn).to_not be_valid
+    expect(tn.errors.messages[:lexicon]).to include(
+      I18n.t("activerecord.errors.models.taxon_name.attributes.lexicon.should_match_english_translation", 
+             suggested: I18n.with_locale(:en) { I18n.t("lexicons.finnish") }, 
+             suggested_locale: I18n.t("locales.zh-CN")
+      )
+    )
+  end
+  
+  it "should parameterize and store lexicon" do
+    tn = TaxonName.make!(lexicon: TaxonName::LEXICONS[:CHINESE_SIMPLIFIED], name: "common")
+    expect(tn.parameterized_lexicon).to eq "chinese-simplified"
+  end
+  
+  it "should not parameterize and store lexicon with invalid characters" do
+    tn = TaxonName.make(lexicon: "测试", name: "common")
+    expect(tn).to_not be_valid
+    expect(tn.errors.messages[:lexicon]).to include(
+      I18n.t("activerecord.errors.models.taxon_name.attributes.lexicon.should_be_in_english")
+    )
+  end
+  
+  it "should not validate presence of a parameterizable lexicon if lexicon not present" do
+    tn = TaxonName.make(lexicon: nil, name: "common")
+    expect(tn).to be_valid
   end
 
   it "should set is_valid to true for common names by default" do
@@ -95,8 +134,8 @@ describe TaxonName, 'creation' do
     expect(tn1.position).to eq 1
     tn2 = TaxonName.make!(name: "second", taxon: t)
     expect(tn2.position).to eq 2
-    tn2 = TaxonName.make!(name: "third", taxon: t)
-    expect(tn2.position).to eq 3
+    tn3 = TaxonName.make!(name: "third", taxon: t)
+    expect(tn3.position).to eq 3
   end
 
   it "should not allow species names that match the taxon name that are non-scientific" do
@@ -104,6 +143,16 @@ describe TaxonName, 'creation' do
     tn = TaxonName.make( taxon: t, lexicon: TaxonName::LEXICONS[:ENGLISH], name: t.name )
     expect( tn ).not_to be_valid
     expect( tn.errors[:name] ).not_to be_blank
+  end
+
+  it "should not allow two valid scientific names per taxon" do
+    t = Taxon.make!
+    tn1 = t.taxon_names.where( lexicon: TaxonName::LEXICONS[:SCIENTIFIC_NAMES] ).first
+    expect( tn1 ).to be_is_valid
+    tn2 = TaxonName.make( taxon: t, lexicon: TaxonName::LEXICONS[:SCIENTIFIC_NAMES], is_valid: true )
+    expect( tn2 ).not_to be_valid
+    puts "errors: #{tn2.errors.full_messages.to_sentence}"
+    expect( tn2.errors[:name] ).not_to be_blank
   end
 end
 
@@ -158,7 +207,13 @@ describe TaxonName, "choose_common_name" do
     expect(TaxonName.choose_common_name([tn_en, tn_zh_cn], :locale => "zh-CN")).to eq tn_zh_cn
   end
 
-  it "should choose respect position when choosing a locale-specific name" do
+  it "should choose a Norwegian name for a Bokmal locale" do
+    tn_norwegian = TaxonName.make!( lexicon: "Norwegian" )
+    tn_bokmal = TaxonName.make!( lexicon: "Norwegian Bokmal" )
+    expect( TaxonName.choose_common_name( [tn_norwegian, tn_bokmal], locale: "nb" ) ).to eq tn_norwegian
+  end
+
+  it "should respect position when choosing a locale-specific name" do
     tn_romanji = TaxonName.make!( name: "Hamachi", lexicon: "Japanese", taxon: t )
     tn_ja = TaxonName.make!( name: "ブリ", lexicon: "Japanese", taxon: t )
     tn_ja.update_attributes( position: 1 )

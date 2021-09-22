@@ -26,6 +26,7 @@ $.fn.userAutocomplete = function( options ) {
         data: {
           q: request.term,
           per_page: options.per_page || 10,
+          project_id: options.projectID,
           order: "activity"
         },
         success: function( data ) {

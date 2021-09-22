@@ -1,4 +1,4 @@
-class Subscription < ActiveRecord::Base
+class Subscription < ApplicationRecord
   belongs_to :resource, :polymorphic => true, :inverse_of => :update_subscriptions
   belongs_to :user
   belongs_to :taxon # in case this subscription has taxonomic specifity

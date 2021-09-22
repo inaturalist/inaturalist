@@ -1,6 +1,6 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
+
 require 'rails/all'
-require 'rack/mobile-detect'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -8,11 +8,15 @@ Bundler.require(*Rails.groups)
 
 module Inaturalist
   class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.0
+    config.active_record.belongs_to_required_by_default = false
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    config.enable_dependency_loading = true
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(#{config.root}/lib)
 
@@ -32,7 +36,7 @@ module Inaturalist
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
+    # config.active_record.raise_in_transactional_callbacks = true
     
     # config.active_record.observers = :user_observer, :listed_taxon_sweeper # this might have to come back, was running into probs with Preferences
     config.active_record.observers = [ :observation_sweeper, :user_sweeper ]
@@ -51,7 +55,7 @@ module Inaturalist
     config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '2.0'
+    config.assets.version = '3.1'
 
     # Compile localized CSS:
     config.assets.precompile += ['*.css', '*.js']
@@ -60,7 +64,6 @@ module Inaturalist
     config.assets.initialize_on_precompile = true
 
     # Ensure bower components are included in the asset pipeline
-    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
 
     config.i18n.enforce_available_locales = false
 
@@ -71,20 +74,57 @@ module Inaturalist
 
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
+      # Rails 5 is more strict about what classes are allowed to be subclasses.
+      # If a subclass constant gets reloaded but the parent doesn't, the
+      # subclass is no longer considered a subclass of the parent and you end
+      # up with ActiveRecord::SubclassNotFound errors, which is probably going
+      # to happen a lot in a development and maybe a test environment.
+      # According to https://github.com/rails/rails/issues/29542, this is
+      # expected behavior and the way to deal with it is to preload all these
+      # classes.
+      require_dependency "list"
+      require_dependency "check_list"
+      require_dependency "project_list"
+      require_dependency "source"
+      require_dependency "photo"
+      require_dependency "local_photo"
+      require_dependency "flickr_photo"
+      require_dependency "eol_photo"
+      require_dependency "wikimedia_commons_photo"
+      require_dependency "facebook_photo"
+      require_dependency "google_street_view_photo"
+      require_dependency "picasa_photo"
     end
 
     config.action_mailer.preview_path = "#{Rails.root}/test/mailers/previews"
 
-    config.middleware.insert_before "ActionDispatch::DebugExceptions", "LogstasherCatchAllErrors"
     config.middleware.use Rack::MobileDetect
 
-    config.middleware.insert_before 0, "Rack::Cors" do
+    config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
         resource '/oauth/token', :headers => :any, :methods => [:post]
         resource '/oauth/revoke', :headers => :any, :methods => [:post]
         resource '/users/api_token', :headers => :any, :methods => [:get]
       end
+    end
+
+    config.middleware.use( Rack::Tracker ) do
+      handler :google_global, {
+        anonymize_ip: true,
+        # working around the limitations of Rack::Tracker's ability to generate dynamic tracker IDs
+        trackers: [
+          {
+            id: lambda { |env|
+              return env["inat_ga_trackers"][0][1] if env["inat_ga_trackers"] && env["inat_ga_trackers"][0]
+            }
+          }, {
+            id: lambda { |env|
+              return env["inat_ga_trackers"][1][1] if env["inat_ga_trackers"] && env["inat_ga_trackers"][1]
+            }
+          }
+        ]
+      }
     end
   end
 
@@ -110,9 +150,6 @@ USER_INTEGRITY_PRIORITY = 2     # maintains data integrity for stuff user's care
 INTEGRITY_PRIORITY = 3          # maintains data integrity for everything else, needs to happen, eventually
 OPTIONAL_PRIORITY = 4           # inconsequential stuff like updating wikipedia summaries
 
-# Yahoo Developer Network
-GeoPlanet.appid = CONFIG.yahoo_dev_network.app_id
-
 # flickr api keys - these need to be set before Flickraw gets included
 FlickRaw.api_key = CONFIG.flickr.key
 FlickRaw.shared_secret = CONFIG.flickr.shared_secret
@@ -132,7 +169,7 @@ require 'geo_ruby/shp4r/shp'
 require 'geo_ruby/kml'
 # geojson via RGeo
 require 'rgeo/geo_json'
-require 'google/api_client'
+# require 'google/api_client'
 require 'pp'
 require 'to_csv'
 require 'elasticsearch/model'

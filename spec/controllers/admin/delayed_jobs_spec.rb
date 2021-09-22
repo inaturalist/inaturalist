@@ -11,7 +11,7 @@ describe Admin::DelayedJobsController do
       dj = Delayed::Job.create(locked_at: Time.now, locked_by: "someone")
       expect(dj.locked_at).to_not be_nil
       expect(dj.locked_by).to_not be_nil
-      get :unlock, id: dj.id
+      get :unlock, params: { id: dj.id }
       dj.reload
       expect(dj.locked_at).to be_nil
       expect(dj.locked_by).to be_nil

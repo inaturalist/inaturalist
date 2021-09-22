@@ -1,3 +1,7 @@
+# NOTE: pleary 2021-08-11: this script uses `taxon_ancestors` which I just removed. This is an
+# older script we don't use anymore, and if we want to use it again we'll have to update
+# some queries here.
+
 require "rubygems"
 require "optimist"
 

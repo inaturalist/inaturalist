@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include ActsAsElasticModel
 
   scope :load_for_index, -> { includes( :roles, :flags, :provider_authorizations ) }
@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
       indexes :created_at, type: "date"
       indexes :icon, type: "keyword", index: false
       indexes :id, type: "integer"
+      # This will require rebuilding the index ~~kueda 2030-03-24
+      # indexes :uuid, type: "keyword"
       indexes :identifications_count, type: "integer"
       indexes :journal_posts_count, type: "integer"
       indexes :login, analyzer: "ascii_snowball_analyzer"
@@ -20,6 +22,7 @@ class User < ActiveRecord::Base
       indexes :name_autocomplete, analyzer: "autocomplete_analyzer",
         search_analyzer: "standard_analyzer"
       indexes :observations_count, type: "integer"
+      indexes :species_count, type: "integer"
       indexes :orcid, type: "keyword"
       indexes :roles, type: "keyword"
       indexes :site_id, type: "short"
@@ -52,8 +55,9 @@ class User < ActiveRecord::Base
         identifications_count: ident_count,
         journal_posts_count: post_count,
         activity_count: obs_count + ident_count + post_count,
+        species_count: species_count,
         universal_search_rank: obs_count,
-        roles: roles.map(&:name),
+        roles: roles.map(&:name).uniq,
         site_id: site_id
       })
     end

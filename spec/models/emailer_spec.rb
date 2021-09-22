@@ -14,13 +14,6 @@ describe Emailer, "updates_notification" do
     @user = @observation.user
   end
   after { disable_has_subscribers }
-  
-  it "should work when recipient has a blank locale" do
-    @user.update_attributes(:locale => "")
-    expect( UpdateAction.unviewed_by_user_from_query(@user.id, notifier: @comment) ).to eq true
-    mail = Emailer.updates_notification(@user, @user.recent_notifications)
-    expect(mail.body).not_to be_blank
-  end
 
   it "should use common names for a user's place" do
     p = make_place_with_geom
@@ -54,7 +47,7 @@ describe Emailer, "updates_notification" do
   describe "with a site" do
     before do
       @site = Site.make!(:preferred_locale => "es-MX")
-      expect(@site.logo_email_banner).to receive(:url).at_least(:once).and_return("foo.png")
+      expect(@site.logo_email_banner).to receive(:url).at_least(:once).and_return("bird.png")
       @user.site = @site
       @user.save!
     end
@@ -69,14 +62,7 @@ describe Emailer, "updates_notification" do
       expect(mail.body).to match @site.url
     end
 
-    it "should default to the user's site locale if the user has no locale" do
-      @user.update_attributes(:locale => "")
-      mail = Emailer.updates_notification(@user, @user.recent_notifications)
-      expect(mail.body).to match /Nuevas actualizaciones/
-    end
-
     it "should include site name in subject" do
-      @user.update_attributes(:locale => "")
       mail = Emailer.updates_notification(@user, @user.recent_notifications)
       expect(mail.subject).to match @site.name
     end
@@ -151,19 +137,6 @@ describe Emailer, "new_message" do
 
 end
 
-describe Emailer, "invite" do
-  it "should work" do
-    user = User.make!
-    address = "foo@bar.com"
-    params = {
-      :sender_name => "Admiral Akbar",
-      :personal_message => "it's a twap"
-    }
-    mail = Emailer.invite_user(address, params, user)
-    expect(mail.body).not_to be_blank
-  end
-end
-
 describe Emailer, "project_user_invitation" do
   it "should work if the sender no longer exists" do
     pui = ProjectUserInvitation.make!
@@ -186,7 +159,7 @@ describe Emailer, "bulk_observation_success" do
   describe "with a site" do
     before do
       @site = Site.make!( preferred_locale: "es-MX", name: "Superbo" )
-      expect( @site.logo_email_banner ).to receive(:url).and_return( "foo.png" )
+      expect( @site.logo_email_banner ).to receive(:url).and_return( "bird.png" )
       user.site = @site
       user.save!
     end

@@ -1,4 +1,4 @@
-class SiteFeaturedProject < ActiveRecord::Base
+class SiteFeaturedProject < ApplicationRecord
 
   belongs_to :site
   belongs_to :project
@@ -15,6 +15,7 @@ class SiteFeaturedProject < ActiveRecord::Base
 
   def index_project
     project.reload
+    project.wait_for_index_refresh = true
     project.elastic_index!
   end
 

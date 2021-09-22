@@ -10,9 +10,22 @@ function updateObservationsStats( stats ) {
   };
 }
 
-function fetchObservationsStats( ) {
+function resetObservationsStats( ) {
+  return dispatch => {
+    dispatch( updateObservationsStats( {
+      status: null
+    } ) );
+  };
+}
+
+function fetchObservationsStats( force = false ) {
   return function ( dispatch, getState ) {
     const s = getState();
+    if ( !force && (
+      s.observationsStats.status === "loading" || s.observationsStats.status === "loaded"
+    ) ) {
+      return;
+    }
     const apiParams = Object.assign(
       {
         viewer_id: s.config.currentUser ? s.config.currentUser.id : null,
@@ -29,10 +42,14 @@ function fetchObservationsStats( ) {
       page: 1,
       per_page: 0
     } );
+    dispatch( updateObservationsStats( {
+      status: "loading"
+    } ) );
     iNaturalistJS.observations.search( reviewedParams )
       .then( response => {
         dispatch( updateObservationsStats( {
-          reviewed: response.total_results
+          reviewed: response.total_results,
+          status: "loaded"
         } ) );
       } );
     const anyReviewedParams = Object.assign( {}, apiParams, {
@@ -43,14 +60,40 @@ function fetchObservationsStats( ) {
     iNaturalistJS.observations.search( anyReviewedParams )
       .then( response => {
         dispatch( updateObservationsStats( {
-          total: response.total_results
+          total: response.total_results,
+          status: "loaded"
         } ) );
       } );
+  };
+}
+
+function incrementReviewed( ) {
+  return function ( dispatch, getState ) {
+    const state = getState( ).observationsStats;
+    if ( state.reviewed < state.total ) {
+      dispatch( updateObservationsStats( {
+        reviewed: state.reviewed + 1
+      } ) );
+    }
+  };
+}
+
+function decrementReviewed( ) {
+  return function ( dispatch, getState ) {
+    const state = getState( ).observationsStats;
+    if ( state.reviewed > 0 ) {
+      dispatch( updateObservationsStats( {
+        reviewed: state.reviewed - 1
+      } ) );
+    }
   };
 }
 
 export {
   UPDATE_OBSERVATIONS_STATS,
   updateObservationsStats,
-  fetchObservationsStats
+  fetchObservationsStats,
+  incrementReviewed,
+  decrementReviewed,
+  resetObservationsStats
 };

@@ -330,7 +330,11 @@ class CountryGrowth extends React.Component {
     window.d3 = d3;
     return (
       <div id={id} className={`CountryGrowth ${className}`}>
-        <h3><span>{ I18n.t( "views.stats.year.growth_by_country_title" ) }</span></h3>
+        <h3>
+          <a name="country-growth" href="#country-growth">
+            <span>{ I18n.t( "views.stats.year.growth_by_country_title" ) }</span>
+          </a>
+        </h3>
         <p
           className="text-muted"
           dangerouslySetInnerHTML={{

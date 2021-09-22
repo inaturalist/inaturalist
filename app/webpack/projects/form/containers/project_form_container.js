@@ -5,7 +5,8 @@ import {
   addProjectRule,
   removeProjectRule,
   addManager,
-  removeProjectUser,
+  removeProjectManager,
+  changeOwner,
   setDescription,
   setTitle,
   confirmSubmitProject,
@@ -36,7 +37,7 @@ function mapDispatchToProps( dispatch ) {
       removeProjectRule( operator, operandType, operand )
     ),
     addManager: user => dispatch( addManager( user ) ),
-    removeProjectUser: user => dispatch( removeProjectUser( user ) ),
+    removeProjectManager: user => dispatch( removeProjectManager( user ) ),
     setDescription: description => dispatch( setDescription( description ) ),
     setTitle: title => dispatch( setTitle( title ) ),
     removeProject: ( ) => dispatch( removeProject( ) ),
@@ -44,7 +45,8 @@ function mapDispatchToProps( dispatch ) {
     updateProject: attrs => dispatch( updateProject( attrs ) ),
     deleteProject: ( ) => dispatch( deleteProject( ) ),
     duplicateProject: ( ) => dispatch( duplicateProject( ) ),
-    setRulePreference: ( field, value ) => dispatch( setRulePreference( field, value ) )
+    setRulePreference: ( field, value ) => dispatch( setRulePreference( field, value ) ),
+    changeOwner: projectUser => dispatch( changeOwner( projectUser ) )
   };
 }
 

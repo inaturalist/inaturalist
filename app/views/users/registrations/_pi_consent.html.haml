@@ -1,0 +1,10 @@
+#pi-consent.form-group.checkbox
+  %label
+    = f.check_box :pi_consent, required: true
+    %span
+      - if child
+        =t :pi_consent_child_label
+      - else 
+        =t :pi_consent_label
+      %a{ href: "#", onclick: "return false;", data: { toggle: "popover", content: t(:pi_consent_desc_html, privacy_url: privacy_policy_url, terms_url: terms_of_service_url ), placement: "top" }, title: t(:pi_consent_desc_title) }
+        =t :learn_more

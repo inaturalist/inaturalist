@@ -1,6 +1,13 @@
-class ObservationField < ActiveRecord::Base
+class ObservationField < ApplicationRecord
 
   include ActsAsElasticModel
+  # include ActsAsUUIDable
+  before_validation :set_uuid
+  def set_uuid
+    self.uuid ||= SecureRandom.uuid
+    self.uuid = uuid.downcase
+    true
+  end
 
   belongs_to :user
   has_many :observation_field_values, :dependent => :destroy
@@ -14,7 +21,7 @@ class ObservationField < ActiveRecord::Base
   
   validates_uniqueness_of :name, :case_sensitive => false
   validates_presence_of :name
-  validates_length_of :name, :maximum => 255, :allow_blank => true
+  validates_length_of :name, :maximum => 255
   validates_length_of :description, :maximum => 255, :allow_blank => true
   
   before_validation :strip_tags
@@ -24,6 +31,7 @@ class ObservationField < ActiveRecord::Base
   validate :allowed_values_has_pipes
 
   after_save :reindex_observations_if_name_changed
+  after_save :reindex_associated_projects
 
   scope :recently_used_by, lambda {|user|
     user_id = user.is_a?(User) ? user.id : user.to_i
@@ -131,11 +139,15 @@ class ObservationField < ActiveRecord::Base
   end
 
   def reindex_observations_if_name_changed
-    if name_changed?
+    if saved_change_to_name?
       Observation.elastic_index!(ids:
         ObservationFieldValue.where( observation_field_id: self.id).pluck(:observation_id),
         delay: true)
     end
+  end
+
+  def reindex_associated_projects
+    Project.elastic_index!( ids: project_observation_fields.map( &:project_id ) )
   end
 
   def self.default_json_options

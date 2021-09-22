@@ -5,9 +5,9 @@
       xmlns:fb="http://www.facebook.com/2008/fbml"
       xmlns:og="http://ogp.me/ns#">
   <head>
-    <title><%= content_for(:title) ? "#{content_for(:title)} · " : "" %> <%= @site.try(:name) %> </title>
+    <title><%= content_for(:title) ? "#{content_for(:title)} · " : ( @page_title && "#{@page_title} · " ) %> <%= @site.try(:name) %> </title>
     <meta http-equiv="Content-Language" content="<%= I18n.locale %>">
-    <%= favicon_link_tag %>
+    <%= favicon_link_tag @site && @site.favicon? ? @site.favicon.url : "favicon.png" %>
     <% if responsive? %>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <% else %>
@@ -25,6 +25,7 @@
       <meta name="twitter:site" content="<%= @site.twitter_username %>">
     <% end -%>
     <meta property="og:site_name" content="<%= @site.name %>"/>
+    <meta property="og:type" content="website"/>
     <% if CONFIG.facebook && CONFIG.facebook.app_id -%>
       <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" />
     <% end %>
@@ -33,8 +34,8 @@
     <% end -%>
     <%= yield :extrahead %>
     <%= yield :extracss %>
-    <% if @site && @shareable_image_url.blank? %>
-      <meta property="og:image" content="<%= image_url @site.logo_square.url %>"/>
+    <% if @site && @shareable_image_url.blank? && @site.shareable_image? %>
+      <meta property="og:image" content="<%= image_url @site.shareable_image.url %>"/>
     <% end %>
   </head>
   <body>
@@ -63,14 +64,51 @@
         </div>
       <% end %>
 
-      <% if current_user && session[:potential_place] && flash.empty? %>
-        <div class="bootstrap">
-          <div id="full-width-notice" class="container-fluid bg-warning">
-            <%=t :would_you_prefer_to_view_common_names_used_in_place_html, place: session[:potential_place][:name] %>
-            <%= link_to t(:yes), user_path( current_user, user: { place_id: session[:potential_place][:id] }, from_potential_place: true ), method: "PUT", class: "btn btn-success btn-xs" %>
-            <%= link_to t(:no), user_path( current_user,  user: { prefers_no_place: true }, from_potential_place: true ), method: "PUT", class: "btn btn-default btn-xs" %>
+      <% if !@headless && flash.empty? %>
+        <% if current_user && session[:potential_place] %>
+          <div class="bootstrap">
+            <div id="full-width-notice" class="container-fluid bg-warning">
+              <%=t :would_you_prefer_to_view_common_names_used_in_place_html, place: session[:potential_place][:name] %>
+              <%= link_to t(:yes), user_path( current_user, user: { place_id: session[:potential_place][:id] }, from_potential_place: true ), method: "PUT", class: "btn btn-success btn-xs" %>
+              <%= link_to t(:no), user_path( current_user,  user: { prefers_no_place: true }, from_potential_place: true ), method: "PUT", class: "btn btn-default btn-xs" %>
+            </div>
           </div>
-        </div>
+        <% elsif current_user && session[:potential_site] %>
+          <div class="bootstrap">
+            <div id="full-width-notice" class="bg-warning">
+              <div class="container">
+                <%= t(
+                  "network_affiliation_prompt_from_inat_to_#{session[:potential_site][:name].parameterize.underscore}_html",
+                  inat_site_name: Site.default.name,
+                  default: t( :network_affiliation_prompt_from_inat_html,
+                    site_name: session[:potential_site][:name],
+                    inat_site_name: Site.default.name,
+                    place: session[:potential_site][:place_name],
+                    vow_or_con: session[:potential_site][:place_name].first.downcase
+                  )
+                ) %>
+                <span class="nobr">
+                  <%= link_to t(:yes), user_path( current_user,  user: { site_id: session[:potential_site][:id] }, from_potential_site: true ), method: "PUT", class: "btn btn-default btn-xs" %>
+                  <%= link_to t(:learn_more), affiliation_sites_path, class: "btn btn-default btn-xs" %>
+                  <%= link_to t(:no), user_path( current_user,  user: { prefers_no_site: true }, from_potential_site: true ), method: "PUT", class: "btn btn-default btn-xs" %>
+                </span>
+              </div>
+            </div>
+          </div>
+        <% elsif current_user && !current_user.prefers_no_site? && @site != Site.default && current_user.site != @site %>
+          <div class="bootstrap">
+            <div id="full-width-notice" class="bg-warning">
+              <div class="container">
+                <%=t :network_affiliation_prompt_from_other_site_html, site_name: @site.name, other_site_name: ( current_user.site || Site.default ).name %>
+                <span class="nobr">
+                  <%= link_to t(:yes), user_path( current_user,  user: { site_id: @site.id }, from_potential_site: true ), method: "PUT", class: "btn btn-default btn-xs" %>
+                  <%= link_to t(:learn_more), affiliation_sites_path, class: "btn btn-default btn-xs" %>
+                  <%= link_to t(:no), user_path( current_user,  user: { prefers_no_site: true }, from_potential_site: true ), method: "PUT", class: "btn btn-default btn-xs" %>
+                </span>
+              </div>
+            </div>
+          </div>
+        <% end %>
       <% end %>
 
       <div id="wrapper" class="bootstrap">
@@ -101,14 +139,10 @@
 
     <div id="inat-universal-autocomplete"></div>
 
-    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js' %>
-    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js' %>
+    <%= javascript_include_tag "jquery/jquery-1.11.3.min.js" %>
+    <%= javascript_include_tag "jquery/jquery-ui-1.11.4.min.js" %>
+    <%= render "shared/i18n" %>
     <script type="text/javascript">
-      I18n = { }
-      <% # Don't set this to CONFIG.default_locale, b/c I18n-js needs en as the final fallback %>
-      I18n.defaultLocale = "en";
-      I18n.locale = "<%= I18n.locale %>";
-      I18n.fallbacks = true;
       <% site_place = @site && @site.place
          user_place = current_user && current_user.place
          user_search_place = current_user && current_user.search_place -%>
@@ -134,12 +168,16 @@
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
           prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>,
           prefers_medialess_obs_maps: <%= current_user.prefers_medialess_obs_maps %>,
+          prefers_captive_obs_maps: <%= current_user.prefers_captive_obs_maps %>,
           preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>",
+          prefers_not_nearby_suggestions: <%= !!session[:prefers_not_nearby_suggestions] %>,
+          testGroups: <%= current_user.test_groups_array.to_json.html_safe %>
         };
       <% end -%>
       var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;
       var TIMEZONE = "<%= Time.zone.tzinfo.name %>";
       var SITE = {
+        id: <%= @site.id %>,
         name: "<%= @site.name %>",
         short_name: "<%= @site.site_name_short %>",
         help_email: "<%= @site.email_help %>",
@@ -156,23 +194,27 @@
           square: "<%= image_url(LocalPhoto.new.file.url(:square)) %>"
         }
       };
+      var CONTROLLER_ACTION = "<%= controller.class.to_s %>::<%= action_name %>";
+      var CONFIG = {
+        content_freeze_enabled: <%= !!CONFIG.content_freeze_enabled %>
+      };
     </script>
-    <%= javascript_include_tag 'application_bundle' %>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <%= javascript_include_tag "bootstrap_bundle" %>
     <script type="text/javascript">
       // stop conflict btwn jqueryui button and bootstrap button
-      var btn = $.fn.button.noConflict()
-      $.fn.btn = btn
+      if ( $ && $.fn && $.fn.button && typeof( $.fn.button.noConflict ) === "function" ) {
+        var btn = $.fn.button.noConflict( );
+        $.fn.btn = btn;
+      }
     </script>
-    <%= google_maps_js libraries: %w(places geometry drawing) %>
-    <%= javascript_include_tag "map_bundle" unless @minimal_header %>
+    <%= google_maps_js( libraries: %w(places geometry drawing) ) unless @skip_external_connections %>
+    <%= javascript_include_tag "map_bundle" unless @minimal_header || @skip_external_connections %>
     <%= yield :extrajs %>
     <% if logged_in? && !@minimal_header -%>
       <script type="text/javascript" charset="utf-8">
         setUpdatesCount(<%= session[:updates_count].to_i %>)
-        setTimeout(getUpdatesCount, 1000)
         setMessagesCount(<%= session[:messages_count].to_i %>)
-        setTimeout(getMessagesCount, 1000)
+        setTimeout( getHeaderCounts, 1000 )
       </script>
     <% end -%>
   </body>

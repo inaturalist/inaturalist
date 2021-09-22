@@ -3,7 +3,7 @@ require "spec_helper"
 describe CloudfrontInvalidator do
 
   before :all do
-    class User < ActiveRecord::Base
+    class User < ApplicationRecord
       invalidate_cloudfront_caches :icon, "attachments/users/icons/:id/*"
     end
   end

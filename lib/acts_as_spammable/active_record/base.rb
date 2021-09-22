@@ -62,12 +62,6 @@ module ActiveRecord
             self.class.flagged_as_spam.exists?(self.id)
         end
 
-        define_method(:default_life_list?) do
-          self.is_a?(LifeList) &&
-          self.title == self.default_title &&
-          self.description == self.default_description
-        end
-
         define_method(:has_spammable_content?) do
           # when all the fields we care about are blank, we don't have spam
           # and don't need to call the akismet API.
@@ -78,14 +72,13 @@ module ActiveRecord
           # if there is any overlap between the fields that could be spam
           # and the fields that have been changed this time around
           # & is the set intersection operator
-          ( self.changed.map(&:to_sym) & rakismet_fields ).any?
+          ( self.saved_changes.keys.map(&:to_sym) & rakismet_fields ).any?
         end
 
         # If any of the rakismet fields have been modified, then
         # call the akismet API and update the flags on this object.
         # Flags are made with user_id = 0, representing automated flags
         define_method(:check_for_spam) do |options = {}|
-          return if default_life_list?
           # leveraging the new attribute `disabled`, which we set to
           # true if we are running tests. This can be overridden by using
           # before and after blocks and manually changing Rakismet.disabled

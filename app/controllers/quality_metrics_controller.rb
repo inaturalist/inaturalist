@@ -1,8 +1,8 @@
 class QualityMetricsController < ApplicationController
   before_action :doorkeeper_authorize!, if: lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, unless: lambda { authenticated_with_oauth? }
-  before_filter :return_here, except: [:vote]
-  before_filter :load_observation
+  before_action :authenticate_user!, unless: lambda { authenticated_with_oauth? }
+  before_action :return_here, except: [:vote]
+  before_action :load_observation
   
   def vote
     if @existing = @observation.quality_metrics.where(user_id: current_user.id, metric: params[:metric]).first
@@ -19,7 +19,6 @@ class QualityMetricsController < ApplicationController
   private
   
   def respond_to_destroy
-    Observation.refresh_es_index
     respond_to do |format|
       format.html do
         flash[:notice] = "Metric removed."
@@ -43,7 +42,6 @@ class QualityMetricsController < ApplicationController
     qm = @observation.quality_metrics.build(:user_id => current_user.id, 
       :metric => params[:metric], :agree => params[:agree] != "false")
     if qm.save
-      Observation.refresh_es_index
       respond_to do |format|
         format.html do
           flash[:notice] = "Metric added."

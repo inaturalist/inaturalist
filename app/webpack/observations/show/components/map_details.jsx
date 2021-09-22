@@ -21,7 +21,9 @@ class MapDetails extends React.Component {
       return (
         <span className="place" key={`place-${p.id}`}>
           <a href={`/observations?place_id=${p.id}`}>
-            { p.display_name || p.name }
+            { I18n.t( `places_name.${_.snakeCase( p.name )}`, {
+              defaultValue: p.display_name || p.name
+            } ) }
           </a>
           { label }
         </span>
@@ -40,17 +42,11 @@ class MapDetails extends React.Component {
     const {
       observation,
       observationPlaces,
-      config,
-      disableAutoObscuration,
-      restoreAutoObscuration
+      config
     } = this.props;
     if ( !observation || !observation.user ) { return ( <div /> ); }
-    const viewerIsAdmin = config && config.currentUser && config.currentUser.roles
-      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     const { showAllPlaces } = this.state;
     const { currentUser } = config;
-    const testingContextGeoprivacy = currentUser
-      && currentUser.prefers_coordinate_interpolation_protection_test;
     let accuracy = observation.private_geojson
       ? observation.positional_accuracy : observation.public_positional_accuracy;
     let accuracyUnits = "m";
@@ -65,24 +61,41 @@ class MapDetails extends React.Component {
       geoprivacy = I18n.t( "obscured" );
     } else if ( observation.geoprivacy ) {
       geoprivacy = I18n.t( observation.geoprivacy );
-    } else if ( !testingContextGeoprivacy && observation.context_geoprivacy === "obscured" ) {
-      geoprivacy = I18n.t( "obscured" );
-    }
-    let currentUserHasProjectCuratorCoordinateAccess;
-    if ( currentUser && currentUser.id ) {
-      currentUserHasProjectCuratorCoordinateAccess = _.find(
-        observation.project_observations,
-        po => (
-          po.preferences
-          && po.preferences.allows_curator_coordinate_access
-          && po.project.admins.map( a => a.user_id ).indexOf( currentUser.id ) >= 0
-        )
-      );
     }
     const projectObservationsWithCoordinateAccess = _.filter(
       observation.project_observations,
       po => po.preferences && po.preferences.allows_curator_coordinate_access
     );
+    const projectsWithCoordinateAccess = _.map(
+      projectObservationsWithCoordinateAccess, po => po.project
+    );
+    _.forEach( observation.non_traditional_projects, ntp => {
+      if ( ntp.project_user ) {
+        const observerTrustsProjectWithAnyObservation = ntp.project_user
+          .prefers_curator_coordinate_access_for === "any";
+        const observerTrustsProjectWithThreatenedTaxa = ntp.project_user
+          .prefers_curator_coordinate_access_for === "taxon";
+        const obscuredByObserver = ["obscured", "private"].includes( observation.geoprivacy );
+        const obscuredByTaxon = ["obscured", "private"].includes( observation.taxon_geoprivacy );
+        if (
+          observerTrustsProjectWithAnyObservation
+          || (
+            observerTrustsProjectWithThreatenedTaxa
+            && !obscuredByObserver
+            && obscuredByTaxon
+          )
+        ) {
+          projectsWithCoordinateAccess.push( ntp.project );
+        }
+      }
+    } );
+    let currentUserHasProjectCuratorCoordinateAccess;
+    if ( currentUser && currentUser.id ) {
+      currentUserHasProjectCuratorCoordinateAccess = _.find(
+        projectsWithCoordinateAccess,
+        project => project.admins.map( a => a.user_id ).includes( currentUser.id )
+      );
+    }
     const adminPlaces = observationPlaces.filter( op => ( op.admin_level !== null ) );
     const communityPlaces = observationPlaces.filter( op => ( op.admin_level === null ) );
     const defaultNumberOfCommunityPlaces = 10;
@@ -96,26 +109,6 @@ class MapDetails extends React.Component {
         { I18n.t( "geoprivacy_is_obscured_desc" ) }
       </li>
     );
-    let sameDayLinks;
-    if ( currentUser && currentUser.id === observation.user.id ) {
-      let obscuredObsURL = `/observations?user_id=${observation.user.login}&on=${observation.observed_on}&taxon_geoprivacy=obscured,private`;
-      if ( currentUser.prefers_coordinate_interpolation_protection ) {
-        obscuredObsURL += "&geoprivacy=obscured,private";
-      }
-      sameDayLinks = (
-        <ul>
-          <li>
-            <a
-              href={obscuredObsURL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              { I18n.t( "view_observations_causing_this_observation_to_be_obscured" ) }
-            </a>
-          </li>
-        </ul>
-      );
-    }
     return (
       <div className="MapDetails">
         <div className="top_info">
@@ -176,7 +169,6 @@ class MapDetails extends React.Component {
         { observation.obscured && (
           observation.geoprivacy
           || observation.taxon_geoprivacy
-          || observation.context_geoprivacy
         ) && (
           <div className="obscured">
             <h4>{ I18n.t( "why_the_coordinates_are_obscured" ) }</h4>
@@ -212,36 +204,6 @@ class MapDetails extends React.Component {
                   { I18n.t( "taxon_is_threatened_coordinates_hidden_desc" ) }
                 </li>
               ) }
-              {
-                observation.context_geoprivacy === "obscured" && (
-                  testingContextGeoprivacy ? (
-                    <li>
-                      <p>
-                        <strong>
-                          <i className="fa fa-calendar" />
-                          { I18n.t( "label_colon", { label: I18n.t( "same_day_obscured" ) } ) }
-                        </strong>
-                        { " " }
-                        { I18n.t( "same_day_obscured_desc" ) }
-                      </p>
-                      { sameDayLinks }
-                    </li>
-                  ) : (
-                    obscurationExplanationGeoprivacy
-                  )
-                )
-              }
-              { testingContextGeoprivacy && observation.context_geoprivacy === "private" && (
-                <li>
-                  <strong>
-                    <i className="fa fa-calendar" />
-                    { I18n.t( "label_colon", { label: I18n.t( "same_day_private" ) } ) }
-                  </strong>
-                  { " " }
-                  { I18n.t( "same_day_private_desc" ) }
-                  { sameDayLinks }
-                </li>
-              ) }
             </ul>
             <h4>{ I18n.t( "who_can_see_the_coordinates" ) }</h4>
             <ul className="plain">
@@ -253,16 +215,16 @@ class MapDetails extends React.Component {
                 <i className="icon-people" />
                 { I18n.t( "who_can_see_the_coordinates_trusted" ) }
               </li>
-              { projectObservationsWithCoordinateAccess
-                && projectObservationsWithCoordinateAccess.length > 0 && (
+              { projectsWithCoordinateAccess
+                && projectsWithCoordinateAccess.length > 0 && (
                 <li>
                   <i className="fa fa-briefcase" />
                   { I18n.t( "label_colon", { label: I18n.t( "who_can_see_the_coordinates_projects" ) } ) }
                   <ul>
-                    { projectObservationsWithCoordinateAccess.map( po => (
-                      <li key={`map-details-projects-${po.id}`}>
-                        <a href={`/projects/${po.project.slug}`}>
-                          { po.project.title }
+                    { projectsWithCoordinateAccess.map( project => (
+                      <li key={`map-details-projects-${project.id}`}>
+                        <a href={`/projects/${project.slug}`}>
+                          { project.title }
                         </a>
                       </li>
                     ) ) }
@@ -274,7 +236,7 @@ class MapDetails extends React.Component {
               <div>
                 <h4>{ I18n.t( "why_you_can_see_the_coordinates" ) }</h4>
                 <ul className="plain">
-                  { currentUser && currentUser.id === observation.user.id && (
+                  { currentUser && observation.user && currentUser.id === observation.user.id && (
                     <li>
                       <strong>
                         <i className="icon-person" />
@@ -308,33 +270,6 @@ class MapDetails extends React.Component {
                 </ul>
               </div>
             ) }
-          </div>
-        ) }
-        { viewerIsAdmin && currentUser && currentUser.id === observation.user.id && (
-          ( observation.taxon_geoprivacy === "open" || _.isEmpty( observation.taxon_geoprivacy ) )
-          && ["obscured", "private"].indexOf( observation.context_geoprivacy ) >= 0
-        ) && (
-          <div className="auto-obscuration-preference admin">
-            { observation.preferences.auto_obscuration === false ? (
-              <button
-                type="button"
-                className="btn btn-default btn-xs"
-                onClick={( ) => restoreAutoObscuration( )}
-              >
-                Restore Auto-obscuration
-              </button>
-            ) : (
-              <button
-                type="button"
-                className="btn btn-default btn-xs"
-                onClick={( ) => disableAutoObscuration( )}
-              >
-                Disable Auto-obscuration
-              </button>
-            ) }
-            <p>
-              For now this will only let you disable auto-obscuration for same-day obscuration.
-            </p>
           </div>
         ) }
         <div className="links">
@@ -376,8 +311,6 @@ MapDetails.propTypes = {
   observation: PropTypes.object,
   observationPlaces: PropTypes.array,
   config: PropTypes.object,
-  disableAutoObscuration: PropTypes.func,
-  restoreAutoObscuration: PropTypes.func
 };
 
 MapDetails.defaultProps = {

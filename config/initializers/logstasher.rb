@@ -7,7 +7,7 @@ module Logstasher
     "HTTP_X_FORWARDED_FOR", "HTTP_X_FORWARDED_PROTO", "ORIGINAL_FULLPATH",
     "HTTP_ACCEPT_LANGUAGE", "HTTP_REFERER", "REMOTE_ADDR", "REQUEST_METHOD",
     "SERVER_ADDR", "CONTENT_LENGTH", "HTTP_ORIGIN", "HTTP_AUTHORIZATION",
-    "HTTP_SSLSESSIONID", "X_MOBILE_DEVICE", "HTTP_X_COUNTRY_CODE" ]
+    "HTTP_SSLSESSIONID", "X_MOBILE_DEVICE", "HTTP_X_COUNTRY_CODE", "HTTP_DNT" ]
 
   IP_PARAMS = [
     "HTTP_X_CLUSTER_CLIENT_IP", "HTTP_X_FORWARDED_FOR", "REMOTE_ADDR",
@@ -17,12 +17,7 @@ module Logstasher
   def self.logger
     return if Rails.env.test?
     return @logger if @logger
-    @logger = Logger.new("log/#{ Rails.env }.logstash.log")
-    @logger.formatter = proc do |severity, datetime, progname, msg|
-      # strings get written to the log file verbatim
-      "#{ msg }\n"
-    end
-    @logger
+    @logger = ActiveSupport::Logger.new("log/#{ Rails.env }.logstash.log")
   end
 
   def self.ip_from_request_env(request_env)
@@ -64,7 +59,7 @@ module Logstasher
   def self.payload_from_session(session)
     return { } unless session.is_a?(ActionDispatch::Request::Session)
     { session: session.to_hash.select{ |k,v|
-      [ :session_id, :_csrf_token ].include?(k.to_sym) } }
+      [ :session_id, :_csrf_token, :oauth_application_id ].include?(k.to_sym) } }
   end
 
   def self.payload_from_user(user)
@@ -106,6 +101,7 @@ module Logstasher
         delete_if{ |k,v| v.blank? }.merge(hash_to_write)
       Logstasher.logger.debug(stash_hash.to_json)
     rescue Exception => e
+      # TODO Rails 5: this is failing consistently with `Logstasher.write_hash failed: stack level too deep`
       Rails.logger.error "[ERROR] Logstasher.write_hash failed: #{e}"
     end
   end
@@ -146,6 +142,20 @@ module Logstasher
     end
   end
 
+  def self.write_custom_log(message, custom={})
+    return if Rails.env.test?
+    Logstasher.replace_known_types!(custom)
+    begin
+      Logstasher.write_hash( custom.merge({
+        "@timestamp": Time.now,
+        subtype: "Custom",
+        error_message: message
+      }))
+    rescue Exception => e
+      Rails.logger.error "[ERROR] Logstasher.write_custom_log failed: #{e}"
+    end
+  end
+
   def self.delayed_job(job, custom={})
     return if Rails.env.test?
     begin
@@ -160,7 +170,7 @@ module Logstasher
   def self.write_action_controller_log(args)
     return if Rails.env.test?
     begin
-      payload = args[4].deep_dup
+      payload = args[4].except(:headers).deep_dup
       format = payload[:format] || "all"
       format = "all" if format == "*/*"
       saved_params = Hash[
@@ -202,7 +212,7 @@ module Logstasher
   end
 
   def self.is_user_agent_a_bot?(user_agent)
-    !![ "(bot|spider|pinger)\/", "(yahoo|ruby|newrelicpinger|python|lynx|crawler)" ].
+    !![ "(bot|spider|pinger)\/", "(yahoo|ruby|newrelicpinger|python|lynx|crawler|facebookexternalhit)" ].
       detect { |bot| user_agent =~ /#{ bot }/i }
   end
 

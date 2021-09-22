@@ -1,7 +1,7 @@
 <%- @title = capture do -%>
   <%=t :new_check_list %>
   <% if @check_list.place -%>
-    <%= t :for %> <%=h @check_list.place.name %>
+    (<%=h @check_list.place.name %>)
   <% end -%>
 <%- end -%>
 <% content_for(:title) do -%>

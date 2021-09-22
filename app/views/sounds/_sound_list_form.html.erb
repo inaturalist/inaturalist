@@ -1,6 +1,6 @@
 <%- 
   index ||= @i
-  Rails.logger.debug "[DEBUG] in partial, index: #{index}"
+  sounds ||= @sounds || []
   checked ||= false
   synclink_base ||= nil
   sound_identity ||= nil

@@ -1,5 +1,5 @@
 class PicasaController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   
   # Configure Picasa linkage
   def options
@@ -9,7 +9,7 @@ class PicasaController < ApplicationController
           goog = GooglePhotosApi.new( current_user.picasa_identity.token )
           goog.media_items( pageSize: 24 )["mediaItems"].map{|mi| PicasaPhoto.new_from_api_response( mi ) }
         end
-      rescue RestClient::Forbidden
+      rescue RestClient::Forbidden, RestClient::Unauthorized
         flash.now[:error] = "Failed to access your Google Photos. Try unlinking and re-linking your accounts."
         nil
       end

@@ -17,6 +17,84 @@ bad_logins = [
   "^foo"
 ]
 
+describe User, "associations" do
+  it { is_expected.to belong_to(:curator_sponsor).class_name "User" }
+  it { is_expected.to belong_to(:place).inverse_of :users }
+  it { is_expected.to belong_to(:search_place).inverse_of(:search_users).class_name "Place" }
+  it { is_expected.to belong_to(:site).inverse_of :users }
+  it { is_expected.to belong_to(:suspended_by_user).class_name "User" }
+  it { is_expected.to have_many(:annotations).dependent :destroy }
+  it { is_expected.to have_many(:atlases).inverse_of(:user).dependent :nullify }
+  it { is_expected.to have_many(:comments).dependent :destroy }
+  it { is_expected.to have_many(:created_guide_sections).class_name("GuideSection").with_foreign_key("creator_id").inverse_of(:creator).dependent :nullify }
+  it { is_expected.to have_many :deleted_observations }
+  it { is_expected.to have_many :deleted_photos }
+  it { is_expected.to have_many :deleted_sounds }
+  it { is_expected.to have_many(:editing_guides).through(:guide_users) }
+  it { is_expected.to have_many(:flags_as_flaggable_user).inverse_of(:flaggable_user).class_name("Flag").with_foreign_key("flaggable_user_id").dependent :nullify }
+  it { is_expected.to have_many(:flags_as_flagger).inverse_of(:user).class_name "Flag" }
+  it { is_expected.to have_many :flow_tasks }
+  it { is_expected.to have_many(:friendships).dependent :destroy }
+  it { is_expected.to have_many(:friendships_as_friend).class_name("Friendship").with_foreign_key("friend_id").inverse_of(:friend).dependent :destroy }
+  it { is_expected.to have_many(:guide_users).inverse_of(:user).dependent :delete_all }
+  it { is_expected.to have_many(:guides).dependent(:destroy).inverse_of :user }
+  it { is_expected.to have_many(:identifications).dependent :destroy }
+  it { is_expected.to have_many(:journal_posts).class_name("Post").dependent :destroy }
+  it { is_expected.to have_many(:listed_taxa).dependent :nullify }
+  it { is_expected.to have_many(:lists).dependent :destroy }
+  it { is_expected.to have_many(:messages).dependent :destroy }
+  it { is_expected.to have_many(:moderator_actions).inverse_of :user }
+  it { is_expected.to have_many(:moderator_notes).inverse_of :user }
+  it { is_expected.to have_many(:moderator_notes_as_subject).class_name("ModeratorNote").with_foreign_key("subject_user_id").inverse_of(:subject_user).dependent :destroy }
+  it { is_expected.to have_many(:observation_field_values).dependent(:nullify).inverse_of :user }
+  it { is_expected.to have_many(:observation_fields).dependent(:nullify).inverse_of :user }
+  it { is_expected.to have_many(:observations).dependent :destroy }
+  it { is_expected.to have_many(:parentages).class_name("UserParent").with_foreign_key("parent_user_id").inverse_of :parent_user }
+  it { is_expected.to have_many(:photos).dependent :destroy }
+  it { is_expected.to have_many(:places).dependent :nullify }
+  it { is_expected.to have_many :posts }
+  it { is_expected.to have_many :projects }
+  it { is_expected.to have_many(:project_observations).dependent :nullify }
+  it { is_expected.to have_many(:project_user_invitations).dependent :nullify }
+  it { is_expected.to have_many(:project_user_invitations_received).dependent(:delete_all).class_name "ProjectUserInvitation" }
+  it { is_expected.to have_many(:project_users).dependent :destroy }
+  it { is_expected.to have_many(:provider_authorizations).dependent :delete_all }
+  it { is_expected.to have_many(:quality_metrics).dependent :destroy }
+  it { is_expected.to have_many(:saved_locations).inverse_of(:user).dependent :destroy }
+  it { is_expected.to have_many(:site_admins).inverse_of :user }
+  it { is_expected.to have_many(:sounds).dependent :destroy }
+  it { is_expected.to have_many(:sources).dependent :nullify }
+  it { is_expected.to have_many(:subscriptions).dependent :delete_all }
+  it { is_expected.to have_many(:taxa).with_foreign_key("creator_id").inverse_of :creator }
+  it { is_expected.to have_many(:taxon_changes).inverse_of :user }
+  it { is_expected.to have_many(:taxon_curators).inverse_of(:user).dependent :destroy }
+  it { is_expected.to have_many :taxon_framework_relationships }
+  it { is_expected.to have_many(:taxon_links).dependent :nullify }
+  it { is_expected.to have_many(:taxon_names).with_foreign_key("creator_id").inverse_of :creator }
+  it { is_expected.to have_many(:updated_guide_sections).class_name("GuideSection").with_foreign_key("updater_id").inverse_of(:updater).dependent :nullify }
+  it { is_expected.to have_many(:updated_observation_field_values).dependent(:nullify).inverse_of(:updater).with_foreign_key("updater_id").class_name "ObservationFieldValue" }
+  it { is_expected.to have_many(:user_blocks).inverse_of(:user).dependent :destroy }
+  it { is_expected.to have_many(:user_blocks_as_blocked_user).class_name("UserBlock").with_foreign_key("blocked_user_id").inverse_of(:blocked_user).dependent :destroy }
+  it { is_expected.to have_many(:user_mutes).inverse_of(:user).dependent :destroy }
+  it { is_expected.to have_many(:user_mutes_as_muted_user).class_name("UserMute").with_foreign_key("muted_user_id").inverse_of(:muted_user).dependent :destroy }
+  it { is_expected.to have_many(:user_privileges).inverse_of(:user).dependent :delete_all }
+  it { is_expected.to have_one(:flickr_identity).dependent :delete }
+  it { is_expected.to have_one(:soundcloud_identity).dependent :delete }
+  it { is_expected.to have_one(:user_parent).dependent(:destroy).inverse_of :user }
+end
+
+describe User, "validations" do
+  it { is_expected.to validate_exclusion_of(:login).in_array %w(password new edit create update delete destroy) }
+  it { is_expected.to validate_exclusion_of(:password).in_array %w(password) }
+  it { is_expected.to validate_length_of(:login).is_at_least(User::MIN_LOGIN_SIZE).is_at_most User::MAX_LOGIN_SIZE }
+  it { is_expected.to validate_length_of(:name).is_at_most(100).allow_blank }
+  it { is_expected.to validate_length_of(:time_zone).is_at_least(3).allow_nil }
+  it { is_expected.to validate_presence_of :login }
+  it { is_expected.to validate_presence_of :password }
+  it { is_expected.to validate_presence_of :email }
+  it { is_expected.to validate_uniqueness_of(:login).case_insensitive }
+end
+
 describe User do
   before(:all) do
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
@@ -39,25 +117,6 @@ describe User do
       @creating_user.call
       @user.reload
       expect(@user.confirmation_token).not_to be_blank
-    end
-    
-    it 'should create a life list' do
-      @creating_user.call
-      @user.reload
-      expect(@user.life_list).not_to be_blank
-    end
-    
-    it 'should create a life list that is among this users lists' do
-      @creating_user.call
-      @user.reload
-      expect(@user.lists).to include(@user.life_list)
-    end
-    
-    it "should enforce unique login regardless of a case" do
-      u1 = User.make!(:login => 'foo')
-      expect {
-        User.make!(:login => 'FOO')
-      }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
     it "should require email under normal circumstances" do
@@ -97,12 +156,8 @@ describe User do
       expect(u).to be_valid
     end
 
-    it "should allow time_zone to be nil" do
-      expect( User.make( time_zone: nil ) ).to be_valid
-    end
-
     it "should not allow time_zone to be a blank string" do
-      expect( User.make( time_zone: "" ) ).not_to be_valid
+      expect( User.make!( time_zone: "" ).time_zone ).to be_nil
     end
     
     it "should set latitude and longitude" do
@@ -173,6 +228,19 @@ describe User do
       expect( u.name ).to eq name
     end
 
+    it "should strip an email out of the name" do
+      email = "foo@bar.com"
+      u = User.make!( name: email )
+      expect( u.name ).not_to include email
+      u = User.make!( name: "this is my email: #{email}" )
+      expect( u.name ).not_to include email
+      u = User.make!( name: "#{email} is my email" )
+      expect( u.name ).not_to include email
+    end
+
+    it "should allow @ sign in name if it doesn't look like an email" do
+      expect( User.make!( name: "@username" ) ).to be_valid
+    end
   end
 
   describe "update" do
@@ -228,15 +296,6 @@ describe User do
       expect( p.native_username ).to eq new_login
     end
 
-    it "should update the life list title if the login changed" do
-      u = User.make!
-      expect( u.life_list.title ).to eq "#{u.login}'s Life List"
-      new_login = "zolophon"
-      without_delay { u.update_attributes( login: new_login ) }
-      u.reload
-      expect( u.life_list.title ).to eq "#{new_login}'s Life List"
-    end
-
     it "should not update photos by other users when the name changes" do
       target_o = make_research_grade_observation
       target_u = target_o.user
@@ -266,18 +325,6 @@ describe User do
   # Validations
   #
 
-  it 'requires login' do
-    expect {
-      u = create_user(:login => nil)
-      expect(u.errors[:login]).to_not be_blank
-    }.to_not change(User, :count)
-    
-    expect {
-      u = create_user(:login => "")
-      expect(u.errors[:login]).to_not be_blank
-    }.to_not change(User, :count)
-  end
-
   it "should not allow duplicate emails" do
     existing = User.make!
     u = User.make(:email => existing.email)
@@ -303,24 +350,10 @@ describe User do
     end
   end
 
-  it 'requires password' do
-    expect {
-      u = create_user(:password => nil)
-      expect(u.errors[:password]).to_not be_blank
-    }.to_not change(User, :count)
-  end
-
   it 'requires password confirmation' do
     expect {
       u = create_user(:password_confirmation => "")
       expect(u.errors[:password_confirmation]).to_not be_blank
-    }.to_not change(User, :count)
-  end
-
-  it 'requires email' do
-    expect {
-      u = create_user(:email => nil)
-      expect(u.errors[:email]).to_not be_blank
     }.to_not change(User, :count)
   end
 
@@ -502,6 +535,12 @@ describe User do
       es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
       expect( es_response.votes.size ).to eq 0
     end
+
+    it "should destroy friendships where user is the friend" do
+      f = Friendship.make!
+      f.friend.destroy
+      expect( Friendship.find_by_id( f.id ) ).to be_blank
+    end
   end
 
   describe "sane_destroy" do
@@ -540,6 +579,30 @@ describe User do
             longitude: place.longitude
           )
         end
+
+        # stubbing GET
+        response_json = <<-JSON
+        {
+          "count_without_taxon": 0,
+          "size": 1,
+          "results": [
+            {
+              "id": #{o.taxon_id},
+              "name": "Animalia",
+              "rank": "kingdom",
+              "rank_level": 70,
+              "is_active": true,
+              "parent_id": 48460,
+              "descendant_obs_count": 6,
+              "direct_obs_count": 0
+            }
+          ]
+        }
+        JSON
+        stub_request(:get, /#{INatAPIService::ENDPOINT}/).
+          to_return(status: 200, body: response_json,
+            headers: {"Content-Type" => "application/json"})
+
         user.sane_destroy
         jobs = Delayed::Job.all
         # jobs.map(&:handler).each{|h| puts h}
@@ -556,6 +619,30 @@ describe User do
             longitude: place.longitude
           )
         end
+
+        # stubbing GET
+        response_json = <<-JSON
+        {
+          "count_without_taxon": 0,
+          "size": 1,
+          "results": [
+            {
+              "id": #{o.taxon_id},
+              "name": "Animalia",
+              "rank": "kingdom",
+              "rank_level": 70,
+              "is_active": true,
+              "parent_id": 48460,
+              "descendant_obs_count": 6,
+              "direct_obs_count": 0
+            }
+          ]
+        }
+        JSON
+        stub_request(:get, /#{INatAPIService::ENDPOINT}/).
+          to_return(status: 200, body: response_json,
+            headers: {"Content-Type" => "application/json"})
+        
         expect( place.check_list.listed_taxa.find_by_taxon_id( t.id ) ).not_to be_blank
         user.sane_destroy
         Delayed::Worker.new.work_off
@@ -584,13 +671,13 @@ describe User do
     describe "for owner of a project" do
       let(:project) { without_delay { Project.make!( user: user ) } }
 
-      it "should queue jobs to refresh project lists" do
+      it "should not queue jobs to refresh project lists" do
         expect( project.project_list ).not_to be_blank
         Delayed::Job.delete_all
         user.sane_destroy
         jobs = Delayed::Job.all
         # jobs.map(&:handler).each{|h| puts h}
-        expect(jobs.select{|j| j.handler =~ /'ProjectList'.*\:refresh/m}).not_to be_blank
+        expect(jobs.select{|j| j.handler =~ /'ProjectList'.*\:refresh/m}).to be_blank
       end
 
       it "should destroy projects with no observations" do
@@ -661,9 +748,6 @@ describe User do
     end
 
     describe "user with identifications" do
-      before(:all) { DatabaseCleaner.strategy = :truncation }
-      after(:all)  { DatabaseCleaner.strategy = :transaction }
-
       it "should reassess the community taxon of observations the user has identified" do
         o = make_research_grade_candidate_observation( taxon: Taxon.make!( rank: Taxon::SPECIES ) )
         expect( o.community_taxon ).to be_blank
@@ -685,6 +769,19 @@ describe User do
         o.reload
         expect( o.quality_grade ).to eq Observation::NEEDS_ID
       end
+    end
+
+    it "should not delete taxa the user created" do
+      t = Taxon.make!( creator: user )
+      Delayed::Job.delete_all
+      user.sane_destroy
+      expect( Taxon.find_by_id( t.id ) ).not_to be_blank
+    end
+    it "should not delete taxon names the user created" do
+      tn = TaxonName.make!( creator: user )
+      Delayed::Job.delete_all
+      user.sane_destroy
+      expect( TaxonName.find_by_id( tn.id ) ).not_to be_blank
     end
   end
 
@@ -756,8 +853,6 @@ describe User do
   end
 
   describe "merge" do
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
     elastic_models( Observation, Identification )
     
     let(:keeper) { User.make! }
@@ -835,19 +930,20 @@ describe User do
       ).to eq Observation.by( keeper ).count
     end
 
-    it "should merge life lists" do
-      t = Taxon.make!
-      reject.life_list.add_taxon(t)
-      keeper.merge(reject)
-      keeper.reload
-      expect(keeper.life_list.taxon_ids).to include(t.id)
-    end
-
-    it "should remove self frienships" do
+    it "should remove self friendships" do
       f = Friendship.make!(:user => reject, :friend => keeper)
       keeper.merge(reject)
       expect(Friendship.find_by_id(f.id)).to be_blank
       expect(keeper.friendships.map(&:friend_id)).not_to include(keeper.id)
+    end
+
+    it "should remove duplicate friendships" do
+      friend = User.make!
+      f_reject = Friendship.make!( user: reject, friend: friend )
+      f_keeper = Friendship.make!( user: keeper, friend: friend )
+      keeper.merge( reject )
+      expect( Friendship.find_by_id( f_reject.id ) ).to be_blank
+      expect( Friendship.find_by_id( f_keeper.id ) ).not_to be_blank
     end
 
     it "should queue a job to do the slow stuff" do
@@ -857,6 +953,46 @@ describe User do
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       # puts jobs.map(&:handler).inspect
       expect(jobs.select{|j| j.handler =~ /User.*\:merge_cleanup/m}).not_to be_blank
+    end
+
+    it "should not result in duplicate project users" do
+      project = Project.make!
+      keeper_pu = ProjectUser.make!( project: project, user: keeper )
+      reject_pu = ProjectUser.make!( project: project, user: reject )
+      expect( keeper.project_users.count ).to eq 1
+      keeper.merge( reject )
+      keeper.reload
+      expect( keeper.project_users.count ).to eq 1
+    end
+
+    describe "matching identifications on the same observation" do
+      let(:observation) { Observation.make! }
+      let(:keeper_ident) { Identification.make!( observation: observation, user: keeper ) }
+      let(:reject_ident) { Identification.make!( observation: observation, user: reject, taxon: keeper_ident.taxon ) }
+      it "should withdraw the reject's identification" do
+        expect( reject_ident.user_id ).not_to eq keeper_ident.user_id
+        keeper.merge( reject )
+        Delayed::Worker.new.work_off
+        reject_ident.reload
+        expect( reject_ident ).not_to be_current
+      end
+      it "should not destroy the reject's other identifications" do
+        expect( reject_ident.user_id ).not_to eq keeper_ident.user_id
+        other_ident = Identification.make!( user: reject )
+        keeper.merge( reject )
+        Delayed::Worker.new.work_off
+        expect( Identification.find_by_id( other_ident.id ) ).not_to be_blank
+      end
+    end
+
+    it "should update flaggable_user_id" do
+      o = Observation.make!( user: reject )
+      f = Flag.make!( flaggable: o )
+      expect( f.flaggable_user_id ).to eq reject.id
+      keeper.merge( reject )
+      Delayed::Worker.new.work_off
+      f.reload
+      expect( f.flaggable_user_id ).to eq keeper.id
     end
   end
 
@@ -904,8 +1040,6 @@ describe User do
   end
 
   describe "community taxa preference" do
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
     elastic_models( Identification )
 
     it "should not remove community taxa when set to false" do
@@ -974,6 +1108,28 @@ describe User do
       Delayed::Worker.new.work_off
       o.reload
       expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+    end
+
+    it "should not create new identifications for the observer when set to true" do
+      user = User.make!( prefers_community_taxa: false )
+      family = Taxon.make!( rank: Taxon::FAMILY )
+      genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+      o = Observation.make!( user: user )
+      owners_ident = Identification.make!( user: user, observation: o, taxon: family )
+      2.times do
+        Identification.make!( observation: o, taxon: species )
+      end
+      o.reload
+      expect( o.taxon ).to eq owners_ident.taxon
+      expect( o.community_taxon ).to eq species
+      expect( o.identifications.by( user ).count ).to eq 1
+      user.update_attributes( prefers_community_taxa: true )
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o.identifications.by( user ).count ).to eq 1
+      owners_ident.reload
+      expect( owners_ident ).to be_current
     end
   end
 
@@ -1108,6 +1264,8 @@ describe User do
       expect( es_o.spam ).to be false
       user.add_flag( flag: Flag::SPAM, user_id: flagger.id )
       Delayed::Worker.new.work_off
+      o.reload
+      expect( o.as_indexed_json[:spam] ).to be true
       es_o = Observation.elastic_search( where: { id: o.id } ).results[0]
       expect( es_o.spam ).to be true
     end
@@ -1151,82 +1309,115 @@ describe User do
     end
   end
 
-  describe "coordinate_interpolation_protection" do
-    let(:user) { User.make!( prefers_coordinate_interpolation_protection_test: true ) }
-    let(:obscured_o) {
-      Observation.make!(
-        user: user,
-        geoprivacy: "obscured",
-        observed_on_string: "2018-05-01",
-        latitude: 1,
-        longitude: 1
-      )
-    }
-    describe "becomes true" do
-      it "should obscure an observation on the same day as an observation where geoprivacy is obscured" do
-        o = Observation.make!(
-          user: user,
-          observed_on_string: obscured_o.observed_on_string,
-          latitude: 1,
-          longitude: 1
-        )
-        expect( o.geoprivacy ).to be_blank
-        expect( o.private_latitude ).to be_blank
-        user.update_attributes( prefers_coordinate_interpolation_protection: true )
-        o.reload
-        Delayed::Worker.new.work_off
-        o.reload
-        expect( o ).to be_coordinates_obscured
-        expect( o.private_latitude ).to eq 1
-      end
-      it "should not obscure an observation not on the same day as an observation where geoprivacy is obscured" do
-        o = Observation.make!(
-          user: user,
-          observed_on_string: "2017-04-01",
-          latitude: 1,
-          longitude: 1
-        )
-        expect( o.geoprivacy ).to be_blank
-        expect( o.private_latitude ).to be_blank
-        user.update_attributes( prefers_coordinate_interpolation_protection: true )
-        Delayed::Worker.new.work_off
-        o.reload
-        expect( o.private_latitude ).to be_blank
-      end
+  describe "forget" do
+    elastic_models( Observation )
+    it "changes user_id in flags to -1" do
+      f = Flag.make!
+      other_f = Flag.make!
+      flag_user_id = f.user.id
+      expect( flag_user_id ).not_to be_blank
+      User.forget( f.user_id, skip_aws: true )
+      f.reload
+      expect( f.user_id ).to eq -1
+      other_f.reload
+      expect( other_f.user_id ).to be > 0
     end
-    describe "becomes false" do
-      it "should unobscure an observation on the same day as an observation where geoprivacy is obscured" do
-        o = Observation.make!(
-          user: user,
-          observed_on_string: obscured_o.observed_on_string,
-          latitude: 1,
-          longitude: 1
-        )
-        user.update_attributes( prefers_coordinate_interpolation_protection: true )
-        Delayed::Worker.new.work_off
-        o.reload
-        expect( o.private_latitude ).to eq 1
-        user.update_attributes( prefers_coordinate_interpolation_protection: false )
-        Delayed::Worker.new.work_off
-        o.reload
-        expect( o.private_latitude ).to be_blank
-        expect( o.latitude ).to eq 1
-      end
+  end
+
+  describe "ip_address_is_often_suspended" do
+    let( :ip ) { "127.0.0.1" }
+    it "nils are OK" do
+      expect( User.ip_address_is_often_suspended( nil ) ).to be false
     end
 
-    describe "forget" do
-      elastic_models( Observation )
-      it "changes user_id in flags to -1" do
-        f = Flag.make!
-        other_f = Flag.make!
-        flag_user_id = f.user.id
-        expect( flag_user_id ).not_to be_blank
-        User.forget( f.user_id, skip_aws: true )
-        f.reload
-        expect( f.user_id ).to eq -1
-        other_f.reload
-        expect( other_f.user_id ).to be > 0
-      end
+    it "uknown IPs are OK" do
+      expect( User.where( last_ip: ip ).count ).to be 0
+      expect( User.ip_address_is_often_suspended( ip ) ).to be false
+    end
+
+    it "unsuspended IPs are OK" do
+      # 0 suspended, 10 active: 0% suspended, returns false
+      10.times{ User.make!( last_ip: ip ) }
+      expect( User.where( last_ip: ip ).count ).to be 10
+      expect( User.ip_address_is_often_suspended( ip ) ).to be false
+    end
+
+    it "less than two total occurrences is OK" do
+      # 2 suspended, 0 active: 100% suspended, but less than 3 total, returns false
+      2.times{ User.make!( last_ip: ip, suspended_at: Time.now ) }
+      expect( User.ip_address_is_often_suspended( ip ) ).to be false
+    end
+
+    it "three or more suspended accounts is not OK" do
+      # 3 suspended, 0 active: 100% suspended, returns false
+      3.times{ User.make!( last_ip: ip, suspended_at: Time.now ) }
+      expect( User.ip_address_is_often_suspended( ip ) ).to be true
+    end
+
+    it "under 90% suspended is OK" do
+      # 3 suspended, 1 active: 75% suspended, returns false
+      3.times{ User.make!( last_ip: ip, suspended_at: Time.now ) }
+      User.make!( last_ip: ip )
+      expect( User.ip_address_is_often_suspended( ip ) ).to be false
+    end
+
+    it "returns true when over 90% of accounts are suspended" do
+      # 9 suspended, 1 active: 90% suspended, returns true
+      9.times{ User.make!( last_ip: ip, suspended_at: Time.now ) }
+      User.make!( last_ip: ip )
+      expect( User.ip_address_is_often_suspended( ip ) ).to be true
+    end
+  end
+
+  describe "taxa_unobserved_before_date" do
+    elastic_models( Observation )
+    let( :user ) { User.make! }
+    it "returns an empty array by default" do
+      expect( user.taxa_unobserved_before_date( Date.today ) ).to eq []
+    end
+
+    it "returns taxa not observed by the user" do
+      taxon = Taxon.make!
+      expect( user.taxa_unobserved_before_date( Date.today, [taxon] ) ).to eq [taxon]
+    end
+
+    it "does not return taxa previously observed by the user" do
+      taxon = Taxon.make!
+      obs = Observation.make!(
+        user: user,
+        taxon: taxon,
+        observed_on_string: 1.week.ago.to_s
+      )
+      expect( user.taxa_unobserved_before_date( Date.today, [taxon] ) ).to eq []
+    end
+  end
+
+  describe "create_from_omniauth" do
+    let(:email) { Faker::Internet.email }
+    let(:auth_info) { {
+      "info" => {
+        "email" => email,
+        "name" => email
+      },
+      "extra" => {
+        "user_hash" => {
+          "email" => email
+        }
+      }
+    } }
+    it "should not allow an email in the name field" do
+      u = User.create_from_omniauth( auth_info )
+      expect( u.email ).to eq email
+      expect( u.name ).not_to include email
+    end
+    it "should not automatically suggest something like the email in the name field" do
+      u = User.create_from_omniauth( auth_info )
+      expect( u.name ).to be_blank
+    end
+    it "should not automatically suggest something like the email in the login field" do
+      email_login_suggestion = User.suggest_login( email )
+      u = User.create_from_omniauth( auth_info )
+      expect( u.login ).not_to include email_login_suggestion
     end
   end
 

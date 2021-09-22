@@ -20,10 +20,19 @@ const TaxonThumbnail = ( {
   config,
   noInactive
 } ) => {
-  const img = taxon.defaultPhoto ? (
+  let mediumURL;
+  let squareURL;
+  if ( taxon.defaultPhoto && _.isFunction( taxon.defaultPhoto.constructor ) ) {
+    mediumURL = taxon.defaultPhoto.photoUrl( "medium" );
+    squareURL = taxon.defaultPhoto.photoUrl( "square" );
+  } else if ( _.isObject( taxon.default_photo ) ) {
+    mediumURL = taxon.default_photo.medium_url;
+    squareURL = taxon.default_photo.square_url;
+  }
+  const img = mediumURL ? (
     <CoverImage
-      src={taxon.defaultPhoto.photoUrl( "medium" )}
-      low={taxon.defaultPhoto.photoUrl( "square" )}
+      src={mediumURL}
+      low={squareURL}
       height={height}
       className="photo"
     />

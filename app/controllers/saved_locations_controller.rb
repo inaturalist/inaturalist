@@ -1,9 +1,9 @@
 class SavedLocationsController < ApplicationController
   before_action :doorkeeper_authorize!,
     if: lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, unless: lambda { authenticated_with_oauth? }
-  before_filter :load_record, only: [:destroy]
-  before_filter :require_owner, only: [:destroy]
+  before_action :authenticate_user!, unless: lambda { authenticated_with_oauth? }
+  before_action :load_record, only: [:destroy]
+  before_action :require_owner, only: [:destroy]
 
   def index
     page = params[:page].to_i <= 0 ? 1 : params[:page].to_i

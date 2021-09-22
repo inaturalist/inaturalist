@@ -1,4 +1,4 @@
-class TaxonChange < ActiveRecord::Base
+class TaxonChange < ApplicationRecord
   belongs_to :taxon, inverse_of: :taxon_changes
   has_many :taxon_change_taxa, inverse_of: :taxon_change, dependent: :destroy
   has_many :taxa, :through => :taxon_change_taxa
@@ -8,14 +8,16 @@ class TaxonChange < ActiveRecord::Base
   belongs_to :user
   belongs_to :committer, :class_name => 'User'
 
-  has_subscribers
+  has_subscribers to: {
+    comments: { notification: "activity" }
+  }
   after_create :index_taxon
   after_destroy :index_taxon
   after_update :commit_records_later
   
   validates_presence_of :taxon_id
   validate :uniqueness_of_taxa
-  validate :taxa_below_order
+  validate :uniqueness_of_output_taxa
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :taxon_change_taxa, :allow_destroy => true,
     :reject_if => lambda { |attrs| attrs[:taxon_id].blank? }
@@ -26,7 +28,11 @@ class TaxonChange < ActiveRecord::Base
     notification: "mention",
     if: lambda {|u| u.prefers_receive_mentions? }
 
-  TAXON_JOINS = [
+  TAXON_CHANGE_TAXA_JOINS = [
+    "LEFT OUTER JOIN taxon_change_taxa tct ON tct.taxon_change_id = taxon_changes.id"
+  ]
+
+  TAXON_JOINS = TAXON_CHANGE_TAXA_JOINS + [
     "LEFT OUTER JOIN taxon_change_taxa tct ON tct.taxon_change_id = taxon_changes.id",
     "LEFT OUTER JOIN taxa t1 ON taxon_changes.taxon_id = t1.id",
     "LEFT OUTER JOIN taxa t2 ON tct.taxon_id = t2.id"
@@ -56,9 +62,15 @@ class TaxonChange < ActiveRecord::Base
       "#{taxon.ancestry}/#{taxon.id}/%", "#{taxon.ancestry}/#{taxon.id}/%"
     )
   }
+
   scope :taxon, lambda{|taxon|
     joins(TAXON_JOINS).
     where("t1.id = ? OR t2.id = ?", taxon, taxon)
+  }
+
+  scope :with_taxon, lambda{|taxon|
+    joins(TAXON_CHANGE_TAXA_JOINS).
+    where("taxon_changes.taxon_id = ? OR tct.taxon_id = ?", taxon, taxon)
   }
   
   scope :input_taxon, lambda{|taxon|
@@ -116,6 +128,7 @@ class TaxonChange < ActiveRecord::Base
     # inputs can't have active children
     if ["TaxonSwap", "TaxonSplit", "TaxonDrop"].include? type
       return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active }}.any?
+      return false if is_a?( TaxonSplit ) && is_branching?
     # unless they are also inputs
     elsif type == "TaxonMerge"
       return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active && (!input_taxa.map(&:id).include? e.id) }}.any?
@@ -124,7 +137,13 @@ class TaxonChange < ActiveRecord::Base
     end
     return true
   end
-    
+
+  def automatable_for_output?( output_taxon )
+    return true unless is_a?( TaxonSplit ) && is_branching?
+    output_taxon_id = output_taxon.is_a?( Taxon ) ? output_taxon.id : output_taxon
+    input_taxon.id != output_taxon_id
+  end
+
   def committable_by?( u )
     return false unless u
     return false unless u.is_curator?
@@ -164,6 +183,9 @@ class TaxonChange < ActiveRecord::Base
 
   # Override in subclasses
   def commit
+    if CONFIG.content_freeze_enabled
+      raise I18n.t( "cannot_be_changed_during_a_content_freeze" )
+    end
     unless committable_by?( committer )
       raise PermissionError, "Committing user doesn't have permission to commit"
     end
@@ -175,8 +197,11 @@ class TaxonChange < ActiveRecord::Base
       raise RankLevelError, "Output taxon rank level not coarser than rank level of an input taxon's active children"
       return
     end
-    input_taxa.each {|t| t.update_attributes!(is_active: false, skip_only_inactive_children_if_inactive: (move_children? || !active_children_conflict?) )}
+    unless is_a?( TaxonSplit ) && is_branching?
+      input_taxa.each {|t| t.update_attributes!(is_active: false, skip_only_inactive_children_if_inactive: (move_children? || !active_children_conflict?) )}
+    end
     output_taxa.each do |t|
+      next if is_a?( TaxonSplit ) && t.id == input_taxon.id && input_taxon.is_active
       t.update_attributes!(
         is_active: true,
         skip_only_inactive_children_if_inactive: move_children?,
@@ -191,6 +216,9 @@ class TaxonChange < ActiveRecord::Base
   # the change
   def commit_records( options = {} )
     # unless draft?
+    if CONFIG.content_freeze_enabled
+      raise I18n.t( "cannot_be_changed_during_a_content_freeze" )
+    end
     unless valid?
       msg = "Failed to commit records for #{self}: #{errors.full_messages.to_sentence}"
       # Rails.logger.error "[ERROR #{Time.now}] #{msg}"
@@ -211,19 +239,13 @@ class TaxonChange < ActiveRecord::Base
       Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}"
       find_batched_records_of( reflection ) do |batch|
         auto_updatable_records = []
+        batch_users_to_notify = []
         Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, batch starting with #{batch[0]}" if options[:debug]
         batch.each do |record|
           record_has_user = record.respond_to?(:user) && record.user
           if !options[:skip_updates] && record_has_user && !notified_user_ids.include?(record.user.id)
-            action_attrs = {
-              resource: self,
-              notifier: self,
-              notification: "committed"
-            }
-            if action = UpdateAction.first_with_attributes(action_attrs)
-              action.append_subscribers( [record.user.id] )
-              notified_user_ids << record.user.id
-            end
+            batch_users_to_notify << record.user.id
+            notified_user_ids << record.user.id
           end
           if automatable? && (!record_has_user || record.user.prefers_automatic_taxonomic_changes?)
             auto_updatable_records << record
@@ -233,13 +255,24 @@ class TaxonChange < ActiveRecord::Base
         unless auto_updatable_records.blank?
           update_records_of_class( reflection.klass, records: auto_updatable_records )
         end
+        if !batch_users_to_notify.empty?
+          action_attrs = {
+            resource: self,
+            notifier: self,
+            notification: "committed"
+          }
+          if action = UpdateAction.first_with_attributes(action_attrs)
+            action.append_subscribers( batch_users_to_notify.uniq )
+          end
+        end
       end
     end
     [input_taxa, output_taxa].flatten.compact.each do |taxon|
       Rails.logger.info "[INFO #{Time.now}] #{self}: updating counts for #{taxon}"
       Taxon.where(id: taxon.id).update_all(
         observations_count: Observation.of(taxon).count,
-        listed_taxa_count: ListedTaxon.where(:taxon_id => taxon).count)
+        listed_taxa_count: ListedTaxon.where(taxon_id: taxon).count)
+      taxon.elastic_index!
     end
     Rails.logger.info "[INFO #{Time.now}] #{self}: finished commit_records"
   end
@@ -330,6 +363,9 @@ class TaxonChange < ActiveRecord::Base
     debug = options[:debug]
     logger = options[:logger] || Rails.logger
     logger.info "[INFO #{Time.now}] Starting partial revert for #{self}"
+    if committed_on.nil? && !debug
+      raise "Reverting requires committed_on not to be nil"
+    end
     logger.info "[INFO #{Time.now}] Destroying identifications..."
     unless debug
       identifications.find_each(&:destroy)
@@ -356,7 +392,9 @@ class TaxonChange < ActiveRecord::Base
     end
     if options[:deactivate_output_taxa]
       output_taxa.each do |output_taxon|
-        output_taxon.update_attributes( is_active: false ) unless debug
+        unless input_taxa.include? output_taxon
+          output_taxon.update_attributes( is_active: false ) unless debug
+        end
       end
     end
     # output taxa may or may not need to be made inactive, impossible to say in code
@@ -368,7 +406,7 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def commit_records_later
-    return true unless committed_on_changed? && committed?
+    return true unless saved_change_to_committed_on? && committed?
     delay(:priority => USER_INTEGRITY_PRIORITY).commit_records
     true
   end
@@ -381,18 +419,19 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def uniqueness_of_taxa
+    return true if type == "TaxonSplit"
     taxon_ids = [taxon_id, taxon_change_taxa.map(&:taxon_id)].flatten.compact
     if taxon_ids.size != taxon_ids.uniq.size
       errors.add(:base, "input and output taxa must be unique")
     end
   end
 
-  def taxa_below_order
-    return true if user && user.is_admin?
-    if [taxon, taxon_change_taxa.map(&:taxon)].flatten.compact.detect{|t| t.rank_level.to_i >= Taxon::ORDER_LEVEL }
-      errors.add(:base, "only admins can move around taxa at order-level and above")
+  def uniqueness_of_output_taxa
+    return true unless type == "TaxonSplit"
+    taxon_ids = taxon_change_taxa.map(&:taxon_id)
+    if taxon_ids.size != taxon_ids.uniq.size
+      errors.add(:base, "output taxa must be unique")
     end
-    true
   end
 
   def move_input_children_to_output( target_input_taxon )

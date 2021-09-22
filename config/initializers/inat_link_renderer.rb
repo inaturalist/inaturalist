@@ -36,7 +36,7 @@ class INatLinkRenderer < WillPaginate::ViewHelpers::LinkRenderer
 
   def merge_get_params(url_params)
     if @template.respond_to?(:request) && @template.request && @template.request.get?
-      symbolized_update(url_params, @template.params.select{|k,v| k.to_s != 'host'}.symbolize_keys)
+      symbolized_update(url_params.to_h, @template.params.to_unsafe_h.select{|k,v| k.to_s != 'host'}.symbolize_keys)
     end
     url_params
   end

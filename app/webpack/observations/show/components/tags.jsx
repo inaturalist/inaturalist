@@ -17,61 +17,70 @@ class Tags extends React.Component {
   submitTag( e ) {
     e.preventDefault( );
     const input = $( e.target ).find( "input" );
-    this.props.addTag( _.trim( input.val( ) ) );
+    const { addTag } = this.props;
+    addTag( _.trim( input.val( ) ) );
     input.val( "" );
   }
 
   removeTag( tag ) {
-    this.props.removeTag( tag );
+    const { removeTag } = this.props;
+    removeTag( tag );
   }
 
   render( ) {
-    const observation = this.props.observation;
-    const config = this.props.config;
+    const {
+      config,
+      observation,
+      updateSession
+    } = this.props;
+    const { open } = this.state;
     const loggedIn = config && config.currentUser;
     if ( !observation || !observation.user ) { return ( <div /> ); }
+    const tags = observation.tags || [];
     const viewerIsObserver = loggedIn && config.currentUser.id === observation.user.id;
     if ( _.isEmpty( observation.tags ) && !viewerIsObserver ) { return ( <div /> ); }
     let addTagInput;
     if ( viewerIsObserver ) {
       addTagInput = (
-        <form onSubmit={ this.submitTag }>
+        <form onSubmit={this.submitTag}>
           <div className="form-group">
-            <input type="text" placeholder={ I18n.t( "add_tag" ) } className="form-control" />
+            <input type="text" placeholder={I18n.t( "add_tag" )} className="form-control" />
           </div>
         </form>
       );
     }
-    const count = observation.tags.length > 0 ? `(${observation.tags.length})` : "";
+    const count = tags.length > 0 ? `(${tags.length})` : "";
     return (
       <div className="Tags collapsible-section">
         <h4
           className="collapsible"
-          onClick={ ( ) => {
+          onClick={( ) => {
             if ( loggedIn ) {
-              this.props.updateSession( { prefers_hide_obs_show_tags: this.state.open } );
+              updateSession( { prefers_hide_obs_show_tags: open } );
             }
-            this.setState( { open: !this.state.open } );
-          } }
+            this.setState( { open: !open } );
+          }}
         >
-          <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
-          { I18n.t( "tags" ) } { count }
+          <i className={`fa fa-chevron-circle-${open ? "down" : "right"}`} />
+          { I18n.t( "tags" ) }
+          { " " }
+          { count }
         </h4>
-        <Panel expanded={ this.state.open } onToggle={ () => {} }>
+        <Panel expanded={open} onToggle={() => {}}>
           <Panel.Collapse>
             { addTagInput }
             {
-              _.sortBy( observation.tags, t => ( _.lowerCase( t.tag || t ) ) ).map( t => {
+              _.sortBy( tags, t => ( _.lowerCase( t.tag || t ) ) ).map( t => {
                 let remove;
                 const tag = t.tag || t;
                 if ( viewerIsObserver ) {
                   remove = t.api_status ? ( <div className="loading_spinner" /> ) : (
-                    <Glyphicon glyph="remove-circle" onClick={ () => { this.removeTag( tag ); } } />
+                    <Glyphicon glyph="remove-circle" onClick={() => { this.removeTag( tag ); }} />
                   );
                 }
                 return (
-                  <div className={ `tag ${t.api_status ? "loading" : ""}` } key={ tag }>
-                    <a href={ `/observations?q=${t}&search_on=tags` }>
+                  <div className={`tag ${t.api_status ? "loading" : ""}`} key={tag}>
+                    <a href={`/observations?q=${t}&search_on=tags`}>
                       { tag }
                     </a>
                     { remove }

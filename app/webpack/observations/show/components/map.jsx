@@ -4,9 +4,11 @@ import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
 import { Dropdown } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import { urlForTaxon } from "../../../taxa/shared/util";
+import { urlForTaxon, taxonLayerForTaxon } from "../../../taxa/shared/util";
 import TaxonMap from "../../identify/components/taxon_map";
 import MapDetails from "./map_details";
+
+/* global LIFE_TAXON */
 
 class Map extends React.Component {
   constructor( ) {
@@ -20,27 +22,27 @@ class Map extends React.Component {
       observation,
       observationPlaces,
       config,
-      updateCurrentUser,
-      disableAutoObscuration,
-      restoreAutoObscuration
+      updateCurrentUser
     } = this.props;
-    const currentUserPrefersMedialessObs = config.currentUser
-      && config.currentUser.prefers_medialess_obs_maps;
     let geoprivacyIconClass = "fa fa-map-marker";
     let geoprivacyTitle = I18n.t( "location_is_public" );
     let geoprivacyLabel = I18n.t( "location_unknown" );
+    // Note this is based on the currently confusing nature of obscured, which
+    // at present means coordinates_obscured? OR geoprivacy == "obscured", so if
+    // there are no coordinates and geoprivacy is obscured, we set the
+    // geoprivacy icon and title, but the location is legitimately unknown. If
+    // there are no coordinates and the geoprivacy is private, then
+    // observation.obscured will be false
     if (
       observation.obscured
       && (
         observation.geoprivacy
         || observation.taxon_geoprivacy
-        || observation.context_geoprivacy
       )
     ) {
       if (
         observation.geoprivacy === "private"
         || observation.taxon_geoprivacy === "private"
-        || observation.context_geoprivacy === "private"
       ) {
         geoprivacyIconClass = "icon-icn-location-private";
         geoprivacyTitle = I18n.t( "location_is_private" );
@@ -52,6 +54,14 @@ class Map extends React.Component {
     } else if ( !observation.latitude && !observation.private_geojson ) {
       geoprivacyIconClass = "icon-no-location";
       geoprivacyLabel = I18n.t( "location_unknown" );
+    }
+    let placeGuess = I18n.t( "location_unknown" );
+    if ( observation ) {
+      if ( !observation.private_geojson && observation.geoprivacy === "private" ) {
+        placeGuess = I18n.t( "private_" );
+      } else {
+        placeGuess = observation.private_place_guess || observation.place_guess;
+      }
     }
     if ( !observation || !observation.latitude ) {
       return (
@@ -68,7 +78,7 @@ class Map extends React.Component {
               title={geoprivacyTitle}
               alt={geoprivacyTitle}
             />
-            <div className="place-guess">{ observation && observation.place_guess }</div>
+            <div className="place-guess">{ placeGuess }</div>
             <div className="details_menu">
               <Dropdown
                 id="grouping-control"
@@ -105,7 +115,7 @@ class Map extends React.Component {
         "user",
         "map_scale"
       ] );
-      if ( observation.taxon ) {
+      if ( observation.taxon && ( LIFE_TAXON && observation.taxon.id !== LIFE_TAXON.id ) ) {
         obsForMap.taxon = Object.assign( { }, observation.taxon, {
           forced_name: ReactDOMServer.renderToString(
             <SplitTaxon
@@ -120,29 +130,19 @@ class Map extends React.Component {
       }
       obsForMap.coordinates_obscured = observation.obscured && !observation.private_geojson;
       const mapKey = `map-for-${observation.id}-${observation.taxon ? observation.taxon.id : null}`;
+      const taxonLayer = taxonLayerForTaxon( obsForMap.taxon, {
+        currentUser: config.currentUser,
+        updateCurrentUser,
+        observation
+      } );
+      taxonLayer.places = false;
+      taxonLayer.ranges = false;
       taxonMap = (
         <TaxonMap
           key={mapKey}
+          placement="observations-show"
           reloadKey={mapKey}
-          taxonLayers={[{
-            taxon: obsForMap.taxon,
-            observationLayers: [
-              {
-                label: I18n.t( "verifiable_observations" ),
-                verifiable: true,
-                observation_id: observation.obscured && observation.private_geojson && obsForMap.id
-              },
-              {
-                label: I18n.t( "observations_without_media" ),
-                verifiable: false,
-                disabled: !currentUserPrefersMedialessObs,
-                observation_id: observation.obscured && observation.private_geojson && obsForMap.id,
-                onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
-              }
-            ],
-            places: { disabled: true },
-            gbif: { disabled: true }
-          }]}
+          taxonLayers={[taxonLayer]}
           observations={[obsForMap]}
           zoomLevel={observation.map_scale || 8}
           showAccuracy
@@ -156,7 +156,6 @@ class Map extends React.Component {
       );
     }
     let placeGuessElement;
-    let placeGuess = observation.private_place_guess || observation.place_guess;
     if ( placeGuess ) {
       let showMore;
       const obscured = observation.obscured && !observation.private_geojson
@@ -215,8 +214,6 @@ class Map extends React.Component {
                     observation={observation}
                     observationPlaces={observationPlaces}
                     config={config}
-                    disableAutoObscuration={disableAutoObscuration}
-                    restoreAutoObscuration={restoreAutoObscuration}
                   />
                 </li>
               </Dropdown.Menu>
@@ -232,9 +229,7 @@ Map.propTypes = {
   observation: PropTypes.object,
   observationPlaces: PropTypes.array,
   config: PropTypes.object,
-  updateCurrentUser: PropTypes.func,
-  disableAutoObscuration: PropTypes.func,
-  restoreAutoObscuration: PropTypes.func
+  updateCurrentUser: PropTypes.func
 };
 
 export default Map;

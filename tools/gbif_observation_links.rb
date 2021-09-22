@@ -29,7 +29,7 @@ delete_count = 0
 count = 0
 
 def system_call(cmd)
-  puts "Running #{cmd}"
+  puts "[#{Time.now}] Running #{cmd}"
   system cmd
   puts
 end
@@ -47,9 +47,9 @@ def request
       :type => "and",
       :predicates => [
         {
-          :type => "equals",
-          :key => "INSTITUTION_CODE",
-          :value => "iNaturalist"
+          type: "equals",
+          key: "DATASET_KEY",
+          value: "50c9509d-22c7-4a22-a47d-8c48425ef4a7"
         }
         # {
         #   :type => "equals",
@@ -69,7 +69,7 @@ def generating
   zip_url = "http://api.gbif.org/v0.9/occurrence/download/request/#{@key}.zip"
   status_url = "http://api.gbif.org/v0.9/occurrence/download/#{@key}"
   @num_checks ||= 0
-  puts "Checking #{status_url}" if @opts.debug && @num_checks == 0
+  puts "[#{Time.now}] Checking #{status_url}" if @opts.debug && @num_checks == 0
   # begin
   #   RestClient.head url
   #   @num_checks += 1
@@ -91,19 +91,19 @@ def download
   work_path = @tmp_path
   FileUtils.mkdir_p @tmp_path, :mode => 0755
   unless File.exists?("#{@tmp_path}/#{filename}")
-    system_call "curl -o #{@tmp_path}/#{filename} #{url}"
+    system_call "curl -L -o #{@tmp_path}/#{filename} #{url}"
   end
   system_call "unzip -d #{@tmp_path} #{@tmp_path}/#{filename}"
 end
 
 request
-puts "Waiting for archive to generate..."
+puts "[#{Time.now}] Waiting for archive to generate..."
 while generating
   print '.'
   sleep 3
 end
 puts
-puts "Downloading archive..."
+puts "[#{Time.now}] Downloading archive..."
 download
 obs_ids_to_index = []
 # "\x00" is an unprintable character that I hope we can assume will never appear in the data. If it does, CSV will choke
@@ -115,10 +115,10 @@ CSV.foreach(File.join(@tmp_path, "occurrence.txt"), col_sep: "\t", headers: true
     gbif_id.to_s.ljust(20), 
     "#{count} of #{@status['totalRecords']} (#{(count / @status['totalRecords'].to_f * 100).round(2)}%)".ljust(30),
     "#{((Time.now - start_time) / 60.0).round(2)} mins"
-    ].join(' ')
+    ].join(' ') if @opts[:debug]
   observation = Observation.find_by_id(observation_id)
   if observation.blank?
-    puts "\tobservation #{observation_id} doesn't exist, skipping..."
+    puts "\tobservation #{observation_id} doesn't exist, skipping..." if @opts[:debug]
     next
   end
   href = "http://www.gbif.org/occurrence/#{gbif_id}"
@@ -126,7 +126,7 @@ CSV.foreach(File.join(@tmp_path, "occurrence.txt"), col_sep: "\t", headers: true
   if existing
     existing.touch unless @opts[:debug]
     old_count += 1
-    puts "\tobservation link already exists for observation #{observation_id}, skipping"
+    puts "\tobservation link already exists for observation #{observation_id}, skipping" if @opts[:debug]
   else
     ol = ObservationLink.new(:observation => observation, :href => href, :href_name => "GBIF", :rel => "alternate")
     ol.save unless @opts[:debug]
@@ -137,17 +137,29 @@ CSV.foreach(File.join(@tmp_path, "occurrence.txt"), col_sep: "\t", headers: true
   count += 1
 end
 
-delete_count = ObservationLink.where(href_name: "GBIF").where("updated_at < ?", start_time).count
+puts
+puts "#{new_count} created, #{old_count} updated"
+
 links_to_delete_scope = ObservationLink.where("href_name = 'GBIF' AND updated_at < ?", start_time)
-obs_ids_to_index += links_to_delete_scope.pluck(:observation_id)
+delete_count = links_to_delete_scope.count
+puts
+puts "[#{Time.now}] Deleting #{delete_count} observation links..."
 links_to_delete_scope.delete_all unless @opts[:debug]
 
 puts
-puts "Re-indexing #{obs_ids_to_index.size} observations..."
+obs_ids_to_index += links_to_delete_scope.pluck(:observation_id)
 obs_ids_to_index = obs_ids_to_index.compact.uniq
-obs_ids_to_index.in_groups_of( 500 ) do |group|
-  print '.'
-  Observation.elastic_index!( ids: group.compact )
+puts "[#{Time.now}] Re-indexing #{obs_ids_to_index.size} observations..."
+num_indexed = 0
+group_size = 500
+obs_ids_to_index.in_groups_of( group_size ) do |group|
+  begin
+    Observation.elastic_index!( ids: group.compact, wait_for_index_refresh: true ) unless @opts[:debug]
+    num_indexed += group_size
+    puts "[#{Time.now}] #{num_indexed} re-indexed (#{( num_indexed / obs_ids_to_index.size.to_f * 100 ).round( 2 )})"
+  rescue => e
+    puts "[#{Time.now}] Failed to index batch, ids: #{group}, error: #{e}"
+  end
 end
 puts
 puts

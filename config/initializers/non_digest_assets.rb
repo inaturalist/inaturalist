@@ -1,4 +1,5 @@
 NonStupidDigestAssets.whitelist += [
+  "bird.png",
   /logo\..*$/,
   /logo-small.*/,
   "inat-logo-pb.png",
@@ -7,5 +8,6 @@ NonStupidDigestAssets.whitelist += [
   /\.kml$/,
   /iconic_taxa/,
   /^homepage-/,
-  /^donate-/
+  /^donate-/,
+  /^copyright-infringement/
 ]

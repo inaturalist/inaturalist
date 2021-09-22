@@ -1,5 +1,5 @@
 #encoding: utf-8
-class Identification < ActiveRecord::Base
+class Identification < ApplicationRecord
   include ActsAsElasticModel
   acts_as_spammable fields: [ :body ],
                     comment_type: "comment",
@@ -7,15 +7,16 @@ class Identification < ActiveRecord::Base
 
   blockable_by lambda {|identification| identification.observation.try(:user_id) }
   has_moderator_actions
-  belongs_to :observation
+  belongs_to_with_uuid :observation
   belongs_to :user
-  belongs_to :taxon
+  belongs_to_with_uuid :taxon
   belongs_to :taxon_change
   belongs_to :previous_observation_taxon, class_name: "Taxon"
   has_many :project_observations, :foreign_key => :curator_identification_id, :dependent => :nullify
   validates_presence_of :observation, :user
   validates_presence_of :taxon, 
                         :message => "for an ID must be something we recognize"
+  validates_length_of :body, within: 0..Comment::MAX_LENGTH, on: :create, allow_blank: true
   
   before_create :replace_inactive_taxon
 
@@ -25,18 +26,19 @@ class Identification < ActiveRecord::Base
               :update_other_identifications
               
   before_create :set_disagreement
-  after_create :update_observation,
+  after_create :update_observation_if_test_env,
                :create_observation_review,
-               :update_obs_stats, 
                :update_curator_identification,
                :update_quality_metrics
-  after_update :update_obs_stats, 
-               :update_curator_identification,
+  after_update :update_curator_identification,
                :update_quality_metrics
-  after_commit :skip_observation_indexing,
-                 :update_categories,
-                 :update_observation,
-                 :update_user_counter_cache,
+
+  # Note: update_categories must run last, or at least after update_observation,
+  # b/c it relies on the community taxon being up to date
+  after_commit :update_categories,
+               :update_obs_stats,
+               :update_observation,
+               :update_user_counter_cache,
                unless: Proc.new { |i| i.observation.destroyed? }
   
   # Rails 3.x runs after_commit callbacks in reverse order from after_destroy.
@@ -44,7 +46,7 @@ class Identification < ActiveRecord::Base
   # because of the unique index constraint on current, which will complain if
   # you try to set the last ID as current when this one hasn't really been
   # deleted yet, i.e. before the transaction is complete.
-  after_commit :update_obs_stats,
+  after_commit :update_obs_stats_after_destroy,
                  :update_observation_after_destroy,
                  :revisit_curator_identification, 
                  :set_last_identification_as_current,
@@ -64,6 +66,7 @@ class Identification < ActiveRecord::Base
   attr_accessor :skip_set_previous_observation_taxon
   attr_accessor :skip_set_disagreement
   attr_accessor :bulk_delete
+  attr_accessor :wait_for_obs_index_refresh
 
   preference :vision, :boolean, default: false
 
@@ -152,20 +155,13 @@ class Identification < ActiveRecord::Base
   end
 
   def update_other_identifications
-    return true unless ( current_changed? || new_record? ) && current?
+    return true unless ( will_save_change_to_current? || new_record? ) && current?
     scope = if id
       Identification.where("observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id)
     else
       Identification.where("observation_id = ? AND user_id = ?", observation_id, user_id)
     end
     scope.update_all( current: false )
-    begin
-      Identification.elastic_index!( scope: scope )
-    rescue Elasticsearch::Transport::Transport::Errors::NotFound => e
-      # Saves us having to load this index in a million places for tests, but
-      # might cause some testing problems if we're testing indexing...
-      raise e unless Rails.env.test?
-    end
     true
   end
 
@@ -183,8 +179,12 @@ class Identification < ActiveRecord::Base
     end
     unless previous_observation_taxon_id
       working_created_at = created_at || Time.now
-      previous_ident = observation.identifications.select{|i| i.persisted? && i.current && i.created_at < working_created_at }.last
-      previous_ident ||= observation.identifications.select{|i| i.persisted? && i.created_at < working_created_at }.last
+      previous_ident = observation.identifications.select do |i|
+        i.persisted? && i.current && i.created_at < working_created_at && i.user_id == user_id
+      end.last
+      previous_ident ||= observation.identifications.select do |i|
+        i.persisted? && i.created_at < working_created_at && i.user_id == user_id
+      end.last
       self.previous_observation_taxon_id = previous_ident.try(:taxon_id) || observation.taxon_id
     end
     true
@@ -195,6 +195,12 @@ class Identification < ActiveRecord::Base
 
     # Can't disagree with nothing or roots
     if !previous_observation_taxon || !previous_observation_taxon.grafted?
+      self.disagreement = nil
+      return true
+    end
+
+    # Can't disagree if no current identifications
+    if observation.identifications.current.empty?
       self.disagreement = nil
       return true
     end
@@ -218,7 +224,15 @@ class Identification < ActiveRecord::Base
 
     true
   end
-  
+
+  def update_observation_if_test_env
+    # this model uses an after_commit callback for method update_observation to keep
+    # the obs ES index in sync. But in the test env when running specs there are no
+    # commits with the transactional db cleaning strategy. Use this method to run
+    # update_observation for specs
+    update_observation if Rails.env.test?
+  end
+
   # Update the observation
   def update_observation
     return true unless observation
@@ -240,9 +254,12 @@ class Identification < ActiveRecord::Base
           observation.id, observation.user_id ] }
       ).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, observation.user_id)
     end
+    observation.wait_for_index_refresh ||= !!wait_for_obs_index_refresh
     observation.identifications.reload
     observation.set_community_taxon(force: true)
     observation.set_taxon_geoprivacy
+    observation.skip_identification_indexing = true
+    observation.skip_indexing = true
     observation.update_attributes(attrs)
     true
   end
@@ -287,6 +304,10 @@ class Identification < ActiveRecord::Base
     observation.update_stats(:include => self)
     true
   end
+
+  def update_obs_stats_after_destroy
+    update_obs_stats
+  end
   
   # Set the project_observation curator_identification_id if the
   # identifier is a curator of a project that the observation is submitted to
@@ -306,7 +327,7 @@ class Identification < ActiveRecord::Base
   def update_user_counter_cache
     return true unless self.user && self.observation
     return true if user.destroyed?
-    return if bulk_delete
+    return true if bulk_delete
     if self.user_id != self.observation.user_id
       User.delay(unique_hash: { "User::update_identifications_counter_cache": user_id }).
         update_identifications_counter_cache(user_id)
@@ -333,14 +354,20 @@ class Identification < ActiveRecord::Base
   # Revise the project_observation curator_identification_id if the
   # a curator's identification is deleted to be nil or that of another curator
   def revisit_curator_identification
-    Identification.delay(:priority => INTEGRITY_PRIORITY).run_revisit_curator_identification(self.observation_id, self.user_id)
+    Identification.delay(
+      priority: INTEGRITY_PRIORITY,
+      unique_hash: {
+        "Identification::revisit_curator_identification": [ observation_id, user_id ]
+      }
+    ).run_revisit_curator_identification( self.observation_id, self.user_id )
     true
   end
 
   def create_observation_review
     return true if skip_observation || bulk_delete
-    ObservationReview.where(observation_id: observation_id,
-      user_id: user_id).first_or_create.touch
+    ObservationReview.where(observation_id: observation_id, user_id: user_id).
+      first_or_create.
+      update_attributes( reviewed: true, updated_at: Time.now )
     true
   end
 
@@ -449,26 +476,25 @@ class Identification < ActiveRecord::Base
     unless options[:skip_indexing]
       Identification.elastic_index!( ids: idents.map(&:id) )
       o.reload
+      o.wait_for_index_refresh ||= !!options[:wait_for_obs_index_refresh]
       o.elastic_index!
     end
   end
 
   def update_categories
-    return if bulk_delete
+    return true if bulk_delete
     if skip_observation
       Identification.delay.update_categories_for_observation( observation_id )
     else
-      Identification.update_categories_for_observation( observation )
+      # update_categories_for_observation will reindex all the observation's
+      # identifications, so we both do not need to re-index this individual
+      # identification after that happens, and in fact that may result in
+      # indexing stale data, e.g. a blank category
+      self.skip_indexing = true
+      Identification.update_categories_for_observation( observation, {
+        wait_for_obs_index_refresh: wait_for_obs_index_refresh
+      } )
     end
-    true
-  end
-
-  # Should only run after commit and should be the final thing to run before
-  # commit. If the observation attached to this instance is dirty for some
-  # reason, ignore those changes b/c they've probably already been set in the
-  # database in an obs callback
-  def skip_observation_indexing
-    observation.skip_indexing = true
     true
   end
 
@@ -572,15 +598,18 @@ class Identification < ActiveRecord::Base
     scope = scope.includes( { observation: :observations_places }, :user )
     scope = scope.where( "identifications.created_at < ?", Time.now )
     observation_ids = []
+    ident_ids = []
     scope.find_each do |ident|
       next unless output_taxon = taxon_change.output_taxon_for_record( ident )
+      next if !taxon_change.automatable_for_output?( output_taxon.id )
       new_ident = Identification.new(
         observation_id: ident.observation_id,
         taxon: output_taxon, 
         user_id: ident.user_id,
         taxon_change: taxon_change,
         disagreement: false,
-        skip_set_disagreement: true
+        skip_set_disagreement: true,
+        skip_indexing: true
       )
       if ident.disagreement && ident.previous_observation_taxon && ( current_synonym = ident.previous_observation_taxon.current_synonymous_taxon )
         new_ident.disagreement = true
@@ -590,17 +619,23 @@ class Identification < ActiveRecord::Base
       new_ident.skip_observation = true
       new_ident.save
       observation_ids << ident.observation_id
+      ident_ids << ident.id
       yield( new_ident ) if block_given?
     end
     Identification.current.where( "disagreement AND identifications.previous_observation_taxon_id IN (?)", input_taxon_ids ).find_each do |ident|
       ident.skip_observation = true
       if taxon_change.is_a?( TaxonMerge ) || taxon_change.is_a?( TaxonSwap )
-        ident.update_attributes( skip_set_previous_observation_taxon: true, previous_observation_taxon: taxon_change.output_taxon )
+        ident.update_attributes(
+          skip_set_previous_observation_taxon: true,
+          previous_observation_taxon: taxon_change.output_taxon,
+          skip_indexing: true
+        )
         observation_ids << ident.observation_id
       elsif taxon_change.is_a?( TaxonSplit )
-        ident.update_attributes( disagreement: false )
+        ident.update_attributes( disagreement: false, skip_indexing: true )
         observation_ids << ident.observation_id
       end
+      ident_ids << ident.id
     end
     observation_ids.uniq.compact.sort.in_groups_of( 100 ) do |obs_ids|
       obs_ids.compact!
@@ -615,14 +650,23 @@ class Identification < ActiveRecord::Base
         ).update_taxa_obs_and_observed_taxa_count_after_update_observation( obs.id, obs.user_id )
         obs.set_community_taxon( force: true )
         obs.skip_indexing = true
-        obs.skip_refresh_lists = true
         obs.skip_refresh_check_lists = true
         obs.skip_identifications = true
         obs.save
-        Identification.update_categories_for_observation( obs, skip_reload: true )
+        Identification.update_categories_for_observation( obs, skip_reload: true, skip_indexing: true )
+        ident_ids += obs.identification_ids
       end
-      Observation.elastic_index!( ids: obs_ids )
     end
+    # Get observations that may have received new identifications from this
+    # change from a previous attempt to commit records for this change, in case
+    # a previous attempt hit an error and stopped before indexing some records
+    observation_ids += Identification.connection.execute(
+      "SELECT DISTINCT observation_id FROM identifications WHERE taxon_change_id = #{taxon_change.id}"
+    ).select {|r| r["observation_id"].to_i }
+    observation_ids.uniq!
+    ident_ids.uniq!
+    Identification.elastic_index!( ids: ident_ids )
+    Observation.elastic_index!( ids: observation_ids )
   end
 
   def self.update_disagreement_identifications_for_taxon( taxon )
@@ -632,14 +676,88 @@ class Identification < ActiveRecord::Base
         ident.update_attributes( disagreement: false )
       end
     }
-    Identification.
-        includes( :taxon ).
-        where( "disagreement" ).
-        joins( taxon: :taxon_ancestors ).
-        where( "taxon_ancestors.ancestor_taxon_id = ?", taxon ).
-        find_each( &block )
+    batch_size = 200
+    batch_start_id = 0
+    results_remaining = true
+    while results_remaining
+      begin
+        ident_response = Identification.elastic_search(
+          size: batch_size,
+          filters: [
+            { term: { "taxon.ancestor_ids": taxon.id } },
+            { term: { disagreement: true } },
+            { range: { id: { gt: batch_start_id } } }
+          ],
+          sort: { id: :asc },
+          source: [:id]
+        )
+        if !ident_response.response || ident_response.response.hits.total.value < batch_size
+          results_remaining = false
+        end
+        ids = ident_response.response.hits.hits.map{ |h| h._source.id }
+        Identification.
+          where( id: ids ).
+          includes( :taxon ).
+          find_each( &block )
+        batch_start_id = ids.last
+      rescue
+        results_remaining = false
+      end
+    end
   end
-  
-  # /Static #################################################################
-  
+
+  def self.reindex_for_taxon( taxon_id )
+    page = 1
+    ident_ids = []
+    while true
+      r = Identification.elastic_search(
+        source: {
+          includes: ["id"],
+        },
+        filters: [
+          { terms: { "taxon.ancestor_ids" => [taxon_id] } }
+        ],
+        track_total_hits: true
+      ).page( page ).per_page( 1000 )
+      break unless r.response && r.response.hits && r.response.hits.hits
+      new_ident_ids = r.response.hits.hits.map(&:_id)
+      break if new_ident_ids.blank?
+      ident_ids += new_ident_ids
+      page += 1
+    end
+    Identification.elastic_index!( ids: ident_ids )
+  end
+
+  def self.merge_future_duplicates( reject, keeper )
+    Rails.logger.debug "[DEBUG] Identification.merge_future_duplicates, reject: #{reject}, keeper: #{keeper}"
+    unless reject.is_a?( keeper.class )
+      raise "reject and keeper must by of the same class"
+    end
+    unless reject.is_a?( User )
+      raise "Identification.merge_future_duplicates only works for observations right now"
+    end
+    k, reflection = reflections.detect{|k,r| r.klass == reject.class && r.macro == :belongs_to }
+    sql = <<-SQL
+      SELECT
+        observation_id,
+        array_agg(id) AS ids
+      FROM
+        identifications
+      WHERE
+        current
+        AND #{reflection.foreign_key} IN (#{reject.id},#{keeper.id})
+      GROUP BY
+        observation_id
+      HAVING
+        count(*) > 1
+    SQL
+    connection.execute( sql.gsub(/\s+/, " " ).strip ).each do |row|
+      to_merge_ids = row['ids'].to_s.gsub(/[\{\}]/, '').split(',').sort
+      idents = Identification.where( id: to_merge_ids )
+      if reject_ident = idents.detect{|i| i.send(reflection.foreign_key) == reject.id }
+        reject_ident.update_attributes( current: false )
+      end
+    end
+  end
+
 end

@@ -39,7 +39,7 @@ namespace :inaturalist do
     Comment.where(user_id: spammer_ids).destroy_all
     Guide.where(user_id: spammer_ids).destroy_all
     Identification.where(user_id: spammer_ids).destroy_all
-    List.where(user_id: spammer_ids).where("lists.type != 'LifeList'").destroy_all
+    List.where(user_id: spammer_ids).destroy_all
     Observation.where(user_id: spammer_ids).destroy_all
     Post.where(user_id: spammer_ids).destroy_all
     Project.where(user_id: spammer_ids).destroy_all
@@ -75,35 +75,46 @@ namespace :inaturalist do
 
   desc "Delete expired S3 photos"
   task :delete_expired_photos => :environment do
-    S3_CONFIG = YAML.load_file(File.join(Rails.root, "config", "s3.yml"))
-    # Aws.config(access_key_id: S3_CONFIG["access_key_id"],
-    #   secret_access_key: S3_CONFIG["secret_access_key"], region: "us-east-1")
-    # bucket = Aws::S3.new.buckets[CONFIG.s3_bucket]
-    client = ::Aws::S3::Client.new(
-      access_key_id: S3_CONFIG["access_key_id"],
-      secret_access_key: S3_CONFIG["secret_access_key"],
-      region: CONFIG.s3_region
-    )
-
+    client = LocalPhoto.new.s3_client
     fails = 0
     DeletedPhoto.still_in_s3.
       joins("LEFT JOIN photos ON (deleted_photos.photo_id = photos.id)").
       where("photos.id IS NULL").
       where("(orphan=false AND deleted_photos.created_at <= ?)
         OR (orphan=true AND deleted_photos.created_at <= ?)",
-        6.months.ago, 1.month.ago).select(:id, :photo_id).find_each do |p|
-      images = client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ p.photo_id }/" ).contents
-      if images.any?
-        pp images
-        begin
-          client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
-          p.update_attributes(removed_from_s3: true)
-        rescue
-          fails += 1
-          break if fails >= 5
+        6.months.ago, 1.month.ago).select(:id, :photo_id).find_each do |dp|
+      begin
+        dp.remove_from_s3( s3_client: client )
+      rescue
+        fails += 1
+        break if fails >= 5
+      end
+    end
+    # Delete user profile pics for users that were deleted over a month ago
+    DeletedUser.where( "created_at < ?", 1.month.ago ).each do |du|
+      begin
+        User.remove_icon_from_s3( du.user_id )
+      rescue
+        fails += 1
+        break if fails >= 5
+      end
+    end
+  end
+
+  desc "Delete expired local photos"
+  task :delete_expired_local_photos => :environment do
+    return unless Rails.env.development?
+    deleted = []
+    DeletedPhoto.find_each do |dp|
+      path = File.join( Rails.root, "public", "attachments", "local_photos", "files", dp.photo_id.to_s )
+      if File.exists?( path )
+        deleted_paths = FileUtils.rm_rf( path )
+        if deleted_paths.size > 0
+          deleted << dp.photo_id
         end
       end
     end
+    puts "Deleted #{deleted.size} expired local photo directories"
   end
 
   desc "Delete expired S3 sounds"
@@ -140,8 +151,8 @@ namespace :inaturalist do
   task :delete_orphaned_photos => :environment do
     first_id = Photo.minimum(:id)
     last_id = Photo.maximum(:id) - 10000
-    index = 0
-    batch_size = 5000
+    index = first_id
+    batch_size = 10000
     # using `where id BETWEEN` instead of .find_each or similar, which use
     # LIMIT and create fewer, but longer-running queries
     orphans_count = 0
@@ -151,7 +162,8 @@ namespace :inaturalist do
         joins("left join taxon_photos tp on (photos.id=tp.photo_id)").
         joins("left join guide_photos gp on (photos.id=gp.photo_id)").
         where("op.id IS NULL and tp.id IS NULL and gp.id IS NULL").
-        where("photos.id BETWEEN ? AND ?", index, index + batch_size)
+        where("photos.id BETWEEN ? AND ?", index, index + batch_size).
+        where("photos.created_at <= ?", 1.week.ago)
       photos.each do |p|
         # set the orphan attribute on Photo, which will set the same on DeletedPhoto
         begin
@@ -171,21 +183,27 @@ namespace :inaturalist do
   desc "Delete orphaned sounds"
   task :delete_orphaned_sounds => :environment do
     first_id = Sound.minimum(:id)
-    last_id = Sound.maximum(:id)
+    last_id = Sound.maximum(:id) - 10000
     index = 0
     batch_size = 10000
+    orphans_count = 0
+    last_orphan_id = 0
     # using `where id BETWEEN` instead of .find_each or similar, which use
     # LIMIT and create fewer, but longer-running queries
     while index <= last_id
       sounds = Sound.joins("left join observation_sounds os on (sounds.id=os.sound_id)").
         where("os.id IS NULL").
-        where("sounds.id BETWEEN ? AND ?", index, index + batch_size)
+        where("sounds.id BETWEEN ? AND ?", index, index + batch_size).
+        where("sounds.created_at <= ?", 1.week.ago)
       sounds.each do |s|
         # set the orphan attribute on sound, which will set the same on Deletedsound
         s.orphan = true
         s.destroy
+        last_orphan_id = p.id
+        orphans_count += 1
       end
       index += batch_size
+      puts "#{index} :: total #{orphans_count} :: last #{last_orphan_id}"
     end
   end
 
@@ -240,9 +258,9 @@ namespace :inaturalist do
       "blue",
       "brown",
       "browse",
+      "captive_observations",
       "casual",
       "checklist",
-      "colors",
       "copyright",
       "data_quality",
       "date.formats.month_day_year",
@@ -250,6 +268,7 @@ namespace :inaturalist do
       "date_format.month",
       "date_picker",
       "date_updated",
+      "default_",
       "desc",
       "edit_license",
       "endemic",
@@ -312,6 +331,42 @@ namespace :inaturalist do
       "purple",
       "random",
       "ranks",
+      "ranks_lowercase_stateofmatter",
+      "ranks_lowercase_kingdom",
+      "ranks_lowercase_subkingdom",
+      "ranks_lowercase_phylum",
+      "ranks_lowercase_subphylum",
+      "ranks_lowercase_superclass",
+      "ranks_lowercase_class",
+      "ranks_lowercase_subclass",
+      "ranks_lowercase_infraclass",
+      "ranks_lowercase_superorder",
+      "ranks_lowercase_order",
+      "ranks_lowercase_suborder",
+      "ranks_lowercase_infraorder",
+      "ranks_lowercase_subterclass",
+      "ranks_lowercase_parvorder",
+      "ranks_lowercase_zoosection",
+      "ranks_lowercase_zoosubsection",
+      "ranks_lowercase_superfamily",
+      "ranks_lowercase_epifamily",
+      "ranks_lowercase_family",
+      "ranks_lowercase_subfamily",
+      "ranks_lowercase_supertribe",
+      "ranks_lowercase_tribe",
+      "ranks_lowercase_subtribe",
+      "ranks_lowercase_genus",
+      "ranks_lowercase_genushybrid",
+      "ranks_lowercase_subgenus",
+      "ranks_lowercase_section",
+      "ranks_lowercase_subsection",
+      "ranks_lowercase_complex",
+      "ranks_lowercase_species",
+      "ranks_lowercase_hybrid",
+      "ranks_lowercase_subspecies",
+      "ranks_lowercase_variety",
+      "ranks_lowercase_form",
+      "ranks_lowercase_infrahybrid",
       "ray_finned_fishes",
       "red",
       "reload_timed_out",
@@ -322,6 +377,7 @@ namespace :inaturalist do
       "something_went_wrong_adding",
       "status_globally",
       "status_in_place",
+      "subscribe_to_observations_from_this_place_html",
       "supporting",
       "taxon_drop",
       "taxon_merge",
@@ -335,13 +391,17 @@ namespace :inaturalist do
       "white",
       "vulnerable",
       "yellow",
-      "you_are_setting_this_project_to_aggregate"
+      "you_are_setting_this_project_to_aggregate",
+      "i18n.inflections.@gender",
+      "i18n.inflections.@vow_or_con"
     ]
     %w(
       all_rank_added_to_the_database
       all_taxa
       controlled_term_labels
+      controlled_term_definitions
       establishment
+      locales
     ).each do |key|
       all_keys += I18n.t( key ).map{|k,v| "#{key}.#{k}" }
     end
@@ -359,7 +419,7 @@ namespace :inaturalist do
       # Ignore an existing translations file
       next if paths_to_ignore.include?( f )
       contents = IO.read( f )
-      results = contents.scan(/(I18n|shared).t\(\s*(["'])(.*?)\2/i)
+      results = contents.scan(/(I18n|shared|inatreact).t\(\s*(["'])(.*?)\2/i)
       unless results.empty?
         all_keys += results.map{ |r| r[2].chomp(".") }.select{|k| k =~ /^[A-z]/ }
       end
@@ -374,6 +434,7 @@ namespace :inaturalist do
       next if paths_to_ignore.include?( f )
       contents = IO.read( f )
       results = contents.scan(/\{\{.*?(I18n|shared).t\( ?(.)(.*?)\2.*?\}\}/i)
+      # TODO make this work for I18n.l, I18n.localize, I18n.translate
       unless results.empty?
         all_keys += results.map{ |r| r[2].chomp(".") }.select{|k| k =~ /^[A-z]/ }
       end
@@ -406,6 +467,8 @@ namespace :inaturalist do
             elsif Rails.env.development?
               puts "WARNING: Failed to translate #{locale}.#{key}"
             end
+          elsif h[key].is_a?( String )
+            raise "Expected a nested object but got a string. You probably have a typo in this translation string: #{split_keys.join( "." )}"
           else
             h[key] ||= { }
           end
@@ -414,11 +477,23 @@ namespace :inaturalist do
       end
     end
 
-    # output what should be the new contents of app/assets/javascripts/i18n/translations.js
-    File.open(output_path, "w") do |file|
-      file.puts "I18n.translations || (I18n.translations = {});"
-      all_translations.sort.each do |locale, translations|
+    # Make a JS file for translations in each locale
+    all_translations.sort.each do |locale, translations|
+      locale_file_path = "app/assets/javascripts/i18n/translations/#{locale}.js"
+      File.open( locale_file_path, "w" ) do |file|
+        file.puts "I18n.translations || (I18n.translations = {});"
         file.puts "I18n.translations[\"#{ locale }\"] = #{ JSON.pretty_generate( translations ) };"
+        # Add translations for each locale name translated into that locale's
+        # language so we can show language pickers that show the language
+        # translated into that language
+        all_translations.each do |locale_name_locale, locale_name_translations|
+          next if locale_name_locale == locale
+          file.puts "I18n.translations[\"#{locale_name_locale}\"] = I18n.translations[\"#{locale_name_locale}\"] || {};"
+          json = JSON.pretty_generate( locale_name_translations[:locales].select{ |k,v|
+            k == locale_name_locale
+          } )
+          file.puts "I18n.translations[\"#{locale_name_locale}\"][\"locales\"] = #{json};"
+        end
       end
     end
   end
@@ -437,6 +512,9 @@ namespace :inaturalist do
       # incorrectly omitted by this
       /\./,
       /^add_life_stage_/,
+      /^add_alive_or_dead_/,
+      /^add_plant_phenology_/,
+      /^add_sex_/,
       /^admin$/,
       /^alphabetical$/,
       /^are_you_sure_want_delete_taxon/,
@@ -456,6 +534,7 @@ namespace :inaturalist do
       /^message_from_user_/,
       /^most_agree$/,
       /^most_disagree$/,
+      /^network_affiliation_prompt_from_inat_to_inaturalist_suomi_html/,
       /^observation_field_type_/,
       /^open$/,
       /^other_taxa_commonly_misidentified_as_this_/,
@@ -470,6 +549,10 @@ namespace :inaturalist do
       /^user_added_a/,
       /^you_are_subscribed_to_/,
     ]
+    model_name_patterns = Dir.glob( File.join( Rails.root, "app", "models", "*.rb" ) ).map do |path|
+      /^#{File.basename( path ).split(".")[0]}$/
+    end
+    patterns_to_ignore += model_name_patterns
     all_keys_in_use = (get_i18n_keys_in_js + get_i18n_keys_in_rb).uniq
 
     def traverse(obj, branch = nil, &blk)

@@ -1,6 +1,13 @@
-class Post < ActiveRecord::Base
+class Post < ApplicationRecord
   acts_as_spammable :fields => [ :title, :body ],
                     :comment_type => "blog-post"
+  # include ActsAsUUIDable
+  before_validation :set_uuid
+  def set_uuid
+    self.uuid ||= SecureRandom.uuid
+    self.uuid = uuid.downcase
+    true
+  end
 
   has_subscribers to: {
     comments: { notification: "activity", include_owner: true }
@@ -15,7 +22,7 @@ class Post < ActiveRecord::Base
         UpdateAction.delete_and_purge(conditions)
         return false
       end
-      return !post.draft? && existing_updates_count == 0 && post.published_at_changed?
+      return !post.draft? && existing_updates_count == 0 && post.saved_change_to_published_at?
     },
     :if => lambda{|post, project, subscription|
       return true unless post.parent_type == 'Project'
@@ -36,9 +43,9 @@ class Post < ActiveRecord::Base
   belongs_to :parent, :polymorphic => true
   belongs_to :user
   has_many :comments, :as => :parent, :dependent => :destroy
-  has_and_belongs_to_many :observations, -> { uniq }
-  
-  validates_length_of :title, :in => 1..2000
+  has_and_belongs_to_many :observations, -> { distinct }
+
+  validates_length_of :title, in: 1..2000
   validates_presence_of :parent
   validate :user_must_be_on_site_long_enough
   
@@ -53,17 +60,80 @@ class Post < ActiveRecord::Base
   FORMATTING_NONE = "none"
   preference :formatting, :string, default: FORMATTING_SIMPLE
 
+  preference :no_comments, :boolean, default: false
+
   ALLOWED_TAGS = %w(
-    a abbr acronym b blockquote br cite code dl dt em embed h1 h2 h3 h4 h5 h6 hr i
-    iframe img li object ol p param pre s small strike strong sub sup tt ul
-    table thead tfoot tr td th
-    audio source
+    a
+    abbr
+    acronym
+    audio
+    b
+    blockquote
+    br
+    cite
+    code
+    del
     div
+    dl
+    dt
+    em
+    embed
+    h1
+    h2
+    h3
+    h4
+    h5
+    h6
+    hr
+    i
+    iframe
+    img
+    ins
+    li
+    object
+    ol
+    p
+    param
+    pre
+    s
+    small
+    source
+    strike
+    strong
+    sub
+    sup
+    table
+    td
+    tfoot
+    th
+    thead
+    tr
+    tt
+    ul
   )
 
   ALLOWED_ATTRIBUTES = %w(
-    href src width height alt cite title class name xml:lang abbr value align style controls preload
-    frameborder frameBorder seamless
+    abbr
+    align
+    alt
+    cite
+    class
+    controls
+    frameborder
+    frameBorder
+    height
+    href
+    name
+    preload
+    rel
+    seamless
+    src
+    style
+    target
+    title
+    value
+    width
+    xml:lang
   )
 
   def user_must_be_on_site_long_enough
@@ -78,7 +148,7 @@ class Post < ActiveRecord::Base
   end
   
   def update_user_counter_cache
-    if parent_type == "User" && published_at_changed?
+    if parent_type == "User" && (saved_change_to_published_at? || destroyed?)
       User.where( id: user_id, ).update_all( journal_posts_count: user.journal_posts.published.count )
     end
     true
@@ -106,8 +176,12 @@ class Post < ActiveRecord::Base
     !published_at.blank? && errors[:published_at].blank?
   end
 
-  def editable_by?(u)
-    return false unless u
+  def editable_by?( u )
+    return false unless u.is_a?( User )
+    return true if user_id == u.id
+    return true if parent.is_a?( Project ) && parent.curated_by?( u )
+    return true if parent.is_a?( Site ) && parent.editable_by?( u )
+    return true if parent.is_a?( User ) && parent == u
     user_id == u.id
   end
 

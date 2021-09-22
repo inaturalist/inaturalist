@@ -22,7 +22,10 @@ const TaxonomyTab = ( {
   const viewerIsCurator = currentUser && currentUser.roles && (
     currentUser.roles.indexOf( "admin" ) >= 0 || currentUser.roles.indexOf( "curator" ) >= 0
   );
-  const sortedNames = _.sortBy( names, n => [n.lexicon, n.name] );
+  const sortedNames = _.sortBy( names, n => [
+    I18n.t( `lexicons.${_.snakeCase( n.lexicon )}`, { defaultValue: n.lexicon } ),
+    n.name
+  ] );
   return (
     <Grid className="TaxonomyTab">
       <Row className="tab-section">

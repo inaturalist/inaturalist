@@ -1,5 +1,5 @@
 #encoding: utf-8
-class Photo < ActiveRecord::Base
+class Photo < ApplicationRecord
   acts_as_flaggable
   belongs_to :user
   has_many :observation_photos, :dependent => :destroy
@@ -12,11 +12,18 @@ class Photo < ActiveRecord::Base
   serialize :metadata
 
   include Shared::LicenseModule
+  # include ActsAsUUIDable
+  before_validation :set_uuid
+  def set_uuid
+    self.uuid ||= SecureRandom.uuid
+    self.uuid = uuid.downcase
+    true
+  end
   
   before_save :set_license, :trim_fields
   after_save :update_default_license,
-             :update_all_licenses,
-             :index_observations
+             :update_all_licenses
+  after_commit :index_observations, :index_taxa, on: [:create, :update]
   after_destroy :create_deleted_photo
 
   SQUARE = 75
@@ -24,6 +31,10 @@ class Photo < ActiveRecord::Base
   SMALL = 240
   MEDIUM = 500
   LARGE = 1024
+
+  MIME_PATTERNS = [/jpe?g/i, /png/i, /gif/i, /octet-stream/]
+
+  class MissingPhotoError < StandardError; end
 
   def original_url
     self["original_url"] && self["original_url"].with_fixed_https
@@ -66,9 +77,11 @@ class Photo < ActiveRecord::Base
   end
 
   def set_license
-    return true unless license.blank?
+    return true unless license.nil?
     return true unless user
-    self.license = Shared::LicenseModule.license_number_for_code(user.preferred_photo_license)
+    if license.nil?
+      self.license = Shared::LicenseModule.license_number_for_code(user.preferred_photo_license)
+    end
     true
   end
 
@@ -84,8 +97,16 @@ class Photo < ActiveRecord::Base
   def to_taxon
     return unless respond_to?(:to_taxa)
     photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES, :valid => true, :active => true)
-    photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES) if photo_taxa.blank?
-    photo_taxa = to_taxa if photo_taxa.blank?
+    if photo_taxa.blank?
+      photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES)
+    end
+    if photo_taxa.blank?
+      photo_taxa = if user && !user.locale.blank? && ( lexicon = TaxonName.language_for_locale( user.locale ) )
+        to_taxa( lexicon: lexicon )
+      else
+        to_taxa
+      end
+    end
     return if photo_taxa.blank?
     photo_taxa = photo_taxa.sort_by{|t| t.rank_level || Taxon::ROOT_LEVEL + 1}
     candidate = photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
@@ -128,12 +149,22 @@ class Photo < ActiveRecord::Base
   
   def update_all_licenses
     return true unless [true, "1", "true"].include?(@make_licenses_same)
-    Photo.where(user_id: user_id).update_all(license: license)
+    Photo.where( user_id: user_id ).update_all( license: license )
+    User.delay(
+      queue: "photos",
+      unique_hash: { "User::enqueue_photo_bucket_moving_jobs": user_id }
+    ).enqueue_photo_bucket_moving_jobs( user_id )
+    user.index_observations_later
     true
   end
 
   def index_observations
-    Observation.elastic_index!(scope: observations)
+    Observation.elastic_index!( scope: observations )
+  end
+
+  def index_taxa
+    return if taxon_ids.empty?
+    Taxon.delay( unique_hash: { "Photo::index_taxa" => id } ).elastic_index!( ids: taxon_ids )
   end
 
   def editable_by?(user)
@@ -149,7 +180,6 @@ class Photo < ActiveRecord::Base
   end
 
   def source_title
-    Rails.logger.debug "[DEBUG] subtype: #{subtype}"
     t = if subtype == "PicasaPhoto" || is_a?( PicasaPhoto )
       "Google"
     end
@@ -185,13 +215,32 @@ class Photo < ActiveRecord::Base
       :file_file_size, :file_processing, :file_updated_at, :mobile,
       :original_url]
     options[:methods] ||= []
-    options[:methods] += [:license_name, :license_url, :attribution, :type]
+    options[:methods] += [
+      :license_code,
+      :license_name,
+      :license_url,
+      :attribution,
+      :type
+    ]
     super(options)
   end
 
   def flagged_with(flag, options = {})
-    if flag.flag == Flag::COPYRIGHT_INFRINGEMENT
-      if options[:action] == "created"
+    flag_is_copyright = flag.flag == Flag::COPYRIGHT_INFRINGEMENT
+    other_unresolved_copyright_flags_exist = flags.detect do |f|
+      f.id != flag.id && f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved?
+    end
+    # flagged photos should move to the public bucket, so make sure they end up in the right place
+    # resolved copyright flags include an additional step later to restore the photo
+    if self.is_a?( LocalPhoto ) && (
+      %w(created unresolved).include?(options[:action]) || !flag_is_copyright
+    )
+      change_photo_bucket_if_needed
+    end
+    # For copyright flags, we need to change the photo URLs when flagged, and
+    # reset them when there are no more copyright flags
+    if flag_is_copyright && !other_unresolved_copyright_flags_exist
+      if %w(created unresolved).include?(options[:action])
         styles = %w(original large medium small thumb square)
         updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
         updates += styles.map do |s|
@@ -205,6 +254,7 @@ class Photo < ActiveRecord::Base
     end
     observations.each do |o|
       o.update_mappable
+      Observation.set_quality_grade( o.id )
       o.elastic_index!
     end
   end
@@ -311,7 +361,7 @@ class Photo < ActiveRecord::Base
     if head = fetch_head(remote_photo_url)
       # image must return 200 and have a valid image mime-type
       return head.code == "200" &&
-        head.to_hash["content-type"].any?{ |t| t =~ /(jpe?g|png|gif|octet-stream)/i }
+        head.to_hash["content-type"].any?{ |t| MIME_PATTERNS.any?{|mime_pattern| t =~ mime_pattern } }
     end
     false
   end
@@ -337,7 +387,7 @@ class Photo < ActiveRecord::Base
     if %w(301 302 303 307 308).include?( head.code ) && headers["location"]
       return valid_remote_photo_url( headers["location"][0], depth: depth + 1 )
     end
-    if head.code == "200" && headers["content-type"].any?{ |t| t =~ /(jpe?g|png|gif|octet-stream)/i }
+    if head.code == "200" && headers["content-type"].any?{ |t| MIME_PATTERNS.any?{|mime_pattern| t =~ mime_pattern } }
       return remote_photo_url
     end
     false

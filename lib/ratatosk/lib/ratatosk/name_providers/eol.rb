@@ -36,7 +36,14 @@ module Ratatosk
             next
           end
           names[tn.name] ||= tn
-          if synonym = page.xpath('//synonym').detect{|s| TaxonName.strip_author(Taxon.remove_rank_from_name(s.text)) == name} 
+          synonyms = page.xpath('//synonyms/synonym').select {|s|
+            if r = s.at( "relationship")
+              !%w(doubtful misapplied).include?( r.text )
+            else
+              true
+            end
+          }.map{|s| s.at("synonym")}
+          if synonym = synonyms.detect{|s| TaxonName.strip_author(Taxon.remove_rank_from_name(s.text)) == name}
             stn = names[tn.name].dup
             stn.name = TaxonName.strip_author(Taxon.remove_rank_from_name(synonym.text))
             stn.source_identifier = nil
@@ -53,7 +60,10 @@ module Ratatosk
             names[ctn.name] = ctn
           end
         end
-        names.values[0..9]
+        taxon_names = names.values.sort_by do |tn|
+          tn.taxon.name.downcase == name.downcase ? 0 : 1
+        end
+        taxon_names[0..9]
       end
 
       #
@@ -198,12 +208,12 @@ module Ratatosk
       # Initialize with an Hpricot object of a single Eol XML response
       #
       def initialize(hxml, params = {})
-        parser = ::ScientificNameParser.new
+        parser = ::Biodiversity::Parser
         @adaptee = Taxon.new(params)
         @hxml = hxml
         original_name = @hxml.at_xpath('.//scientificName').inner_text
-        if (parsed_name = parser.parse(original_name)) && parsed_name[:scientificName]
-          @adaptee.name = parsed_name[:scientificName][:canonical]
+        if parsed_name = parser.parse(original_name)
+          @adaptee.name = parsed_name[:normalized]
         end
         if @adaptee.name.blank?
           raise NameProviderError, "Failed to parse the response from the EOL: #{original_name}"
@@ -214,8 +224,12 @@ module Ratatosk
         }.sort_by(&:last).last.try(:first).try(:downcase)
         if @adaptee.rank.blank? && @adaptee.name.split.size == 2
           @adaptee.rank = ::Taxon::SPECIES
+        elsif @adaptee.rank.blank? && @adaptee.name.split.size == 3
+          @adaptee.rank = ::Taxon::SUBSPECIES
         end
-        @adaptee.rank = nil unless Taxon::RANKS.include?( @adaptee.rank )
+        unless Taxon::RANKS.include?( @adaptee.rank )
+          raise NameProviderError, "Failed to parse taxon rank from the response from the EOL: #{original_name}"
+        end
         @adaptee.source = EolNameProvider.source
         @adaptee.name_provider = "EolNameProvider"
         @adaptee.source_identifier = begin

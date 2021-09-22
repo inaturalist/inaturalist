@@ -1,23 +1,19 @@
-require File.dirname( __FILE__ ) + '/../spec_helper.rb'
+require "spec_helper"
 
 describe CheckList do
-  
-  before( :each ) do
-    @check_list = CheckList.make!( taxon: Taxon.make! )
+
+  it { is_expected.to belong_to :taxon }
+  it { is_expected.to belong_to :source }
+
+  it do
+    is_expected.to validate_uniqueness_of(:taxon_id).scoped_to(:place_id).allow_nil
+                                                    .with_message "already has a check list for this place."
   end
-  
-  it "should have one and only place" do
-    @check_list.place = nil
-    expect( @check_list ).not_to be_valid
-  end
+
+  before { @check_list = CheckList.make!(taxon: Taxon.make!) }
   
   it "should completable" do
     expect( @check_list ).to respond_to( :comprehensive )
-  end
-  
-  it "should have a unique taxon for its place" do
-    @new_check_list = CheckList.new( place: @check_list.place, taxon: @check_list.taxon )
-    expect( @new_check_list ).not_to be_valid
   end
   
   it "should create a new in_taxon? rule if taxon_id has been set" do
@@ -54,9 +50,8 @@ describe CheckList, "creation" do
   it "should populate with taxa from RG observations within place boundary" do
     obs = make_research_grade_observation( latitude: 0.5, longitude: 0.5 )
     place = make_place_with_geom
-    without_delay do
-      place.save_geom( GeoRuby::SimpleFeatures::Geometry.from_ewkt( "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))" ) )
-    end
+    place.save_geom( GeoRuby::SimpleFeatures::Geometry.from_ewkt( "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))" ) )
+    Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
     expect( place.check_list.taxa ).to include obs.taxon
   end
 end
@@ -144,6 +139,7 @@ describe CheckList, "refresh_with_observation" do
     expect( lt ).not_to be_auto_removable_from_check_list
     o = Observation.find( o.id )
     o.taxon = Taxon.make!
+    o.editing_user_id = o.user_id
     o.save
     without_delay { CheckList.refresh_with_observation( o, :taxon_id => o.taxon_id, :taxon_id_was => @taxon.id ) }
     @check_list.reload
@@ -299,7 +295,7 @@ describe CheckList, "refresh_with_observation" do
     expect( lt.observations_count ).to eq 3
     
     o2 = Observation.find( o2.id )
-    o2.update_attributes( taxon: Taxon.make! )
+    o2.update_attributes( taxon: Taxon.make!, editing_user_id: o2.user_id )
     without_delay { CheckList.refresh_with_observation( o2, :taxon_id_was => @taxon.id ) }
     lt = @check_list.listed_taxa.find_by_taxon_id( @taxon.id )
     expect( lt ).not_to be_blank

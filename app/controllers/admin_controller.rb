@@ -4,9 +4,9 @@ require_relative "../models/delayed_job" if Rails.env.development?
 #
 class AdminController < ApplicationController
 
-  before_filter :authenticate_user!
-  before_filter :admin_required
-  before_filter :return_here, :only => [:stats, :index, :user_content]
+  before_action :authenticate_user!
+  before_action :admin_required
+  before_action :return_here, only: [:stats, :index, :user_content, :user_detail]
 
   layout "application"
 
@@ -29,8 +29,21 @@ class AdminController < ApplicationController
   def user_detail
     @display_user = User.find_by_id(params[:id].to_i)
     @display_user ||= User.find_by_login(params[:id])
-    @display_user ||= User.find_by_email(params[:id])
-    @observations = Observation.page_of_results( user_id: @display_user.id ) if @display_user
+    @display_user ||= User.find_by_email(params[:id]) unless params[:id].blank?
+    if @display_user
+      @observations = Observation.page_of_results( user_id: @display_user.id )
+      geoip_response = INatAPIService.geoip_lookup( { ip: @display_user.last_ip } )
+      if geoip_response && geoip_response.results && geoip_response.results.country
+        @geoip_location = [
+          geoip_response.results.city,
+          geoip_response.results.region,
+          geoip_response.results.country
+        ].join( ", " )
+        if geoip_response.results.ll
+          @geoip_latitude, @geoip_longitude = geoip_response.results.ll
+        end
+      end
+    end
 
     respond_to do |format|
       format.html do
@@ -55,7 +68,13 @@ class AdminController < ApplicationController
 
   def user_content
     return unless load_user_content_info
-    @records = @display_user.send(@reflection_name).page(params[:page]) rescue []
+    @order = params[:order]
+    @order = "desc" unless %w(asc desc).include?( @order )
+    @order_by = params[:order_by]
+    @order_by = "created_at" unless %w(created_at updated_at).include?( @order_by )
+    @records = @display_user.send( @reflection_name ).order( "#{@order_by} #{@order}" ) rescue []
+
+    render layout: "bootstrap"
   end
 
   def update_user
@@ -63,13 +82,60 @@ class AdminController < ApplicationController
       flash[:error] = "User doesn't exist"
       redirect_back_or_default(curate_users_path)
     end
-    u.update_attributes(params[:user]) if params[:user]
     if params[:icon_delete]
       u.icon = nil
+      u.icon_url = nil
+    end
+    if params[:user]
+      u.update_attributes( params[:user] )
+    else
       u.save
     end
-    flash[:notice] = "Updated attributes for #{u.login}"
-    redirect_back_or_default(curate_users_path(:user_id => u.id))
+    if u.valid?
+      flash[:notice] = "Updated attributes for #{u.login}"
+    else
+      flash[:error] = "Failed to update attributes for #{u.login}: #{u.errors.full_messages.to_sentence}"
+    end
+    redirect_back_or_default(curate_users_path( user_id: u.id ) )
+  end
+
+  def grant_user_privilege
+    @up = UserPrivilege.new( user_id: params[:user_id], privilege: params[:privilege] )
+    unless @up.save
+      flash[:error] = "Failed to grant privilege: #{@up.errors.full_messages.to_sentence}"
+    end
+    redirect_to user_detail_admin_path( id: params[:user_id] )
+  end
+
+  def revoke_user_privilege
+    unless @up = UserPrivilege.where( user_id: params[:user_id], privilege: params[:privilege] ).first
+      flash[:error] = "User #{params[:user_id]} doesn't have the #{params[:privilege]} privilege"
+      return redirect_to user_detail_admin_path( id: params[:user_id] )
+    end
+    @up.revoke!( revoke_user: current_user, revoke_reason: params[:reason] )
+    flash[:notice] = "Revoked #{params[:privilege]} privilege for user #{@up.user.login}"
+    redirect_to user_detail_admin_path( id: params[:user_id] )
+  end
+
+  def restore_user_privilege
+    unless @up = UserPrivilege.where( user_id: params[:user_id], privilege: params[:privilege] ).first
+      flash[:error] = "User #{params[:user_id]} doesn't have the #{params[:privilege]} privilege"
+      return redirect_to user_detail_admin_path( id: params[:user_id] )
+    end
+    unless @up.restore!
+      flash[:error] = "Failed to restore privilege: #{@up.errors.full_messages.to_sentence}"
+    end
+    redirect_to user_detail_admin_path( id: params[:user_id] )
+  end
+
+  def reset_user_privilege
+    unless @up = UserPrivilege.where( user_id: params[:user_id], privilege: params[:privilege] ).first
+      flash[:error] = "User #{params[:user_id]} doesn't have the #{params[:privilege]} privilege"
+      return redirect_to user_detail_admin_path( id: params[:user_id] )
+    end
+    @up.destroy if @up
+    UserPrivilege.check( params[:user_id], params[:privilege] )
+    redirect_to user_detail_admin_path( id: params[:user_id] )
   end
 
   def destroy_user_content
@@ -100,23 +166,27 @@ class AdminController < ApplicationController
 
   def stop_query
     if params[:pid] && params[:pid].match( /^\d+$/ )
-      kill_postgresql_pid( params[:pid].to_i )
+      kill_postgresql_pid( params[:pid].to_i, params[:state] )
     end
     redirect_to :queries_admin
   end
 
   private
 
-  def kill_postgresql_pid( pid )
+  def kill_postgresql_pid( pid, state = nil )
     return unless pid && pid.is_a?( Integer )
-    ActiveRecord::Base.connection.execute( "SELECT pg_cancel_backend(#{ pid })" )
+    if state == "idle in transaction"
+      ActiveRecord::Base.connection.execute( "SELECT pg_terminate_backend(#{ pid })" )
+    else
+      ActiveRecord::Base.connection.execute( "SELECT pg_cancel_backend(#{ pid })" )
+    end
   end
 
   def load_user_content_info
     user_id = params[:id] || params[:user_id]
     @display_user = User.find_by_id(user_id)
     @display_user ||= User.find_by_login(user_id)
-    @display_user ||= User.find_by_email(user_id)
+    @display_user ||= User.find_by_email(user_id) unless user_id.blank?
     unless @display_user
       flash[:error] = "User #{user_id} doesn't exist"
       redirect_back_or_default(:action => "index")
@@ -126,7 +196,7 @@ class AdminController < ApplicationController
     @type = params[:type] || "observations"
     @reflection_name, @reflection = User.reflections.detect{|k,r| k.to_s == @type}
     @klass = Object.const_get(@reflection.class_name) rescue nil
-    @klass = nil unless @klass.try(:base_class).try(:superclass) == ActiveRecord::Base
+    @klass = nil unless @klass < ActiveRecord::Base
     unless @klass
       flash[:error] = "#{params[:type]} doesn't exist"
       redirect_back_or_default(:action => "index")

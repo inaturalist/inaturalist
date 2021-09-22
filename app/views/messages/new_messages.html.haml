@@ -8,18 +8,12 @@
         = user_image(message.from_user, :size => 'thumb')
         %span.inlineblock
           %span.small.meta
-            - if true
-              = t(:from)
-              = message.from_user.try(:login) || t(:deleted_user)
-              - date = compact_date(message.created_at)
-              = message.created_at.today? ? t(:at_time, :time => date) : t(:on_date, :date => date)
+            - date = compact_date(message.created_at)
+            - from_user_name = message.from_user.try(:login) || t(:deleted_user)
+            - if message.created_at.today?
+              =t :message_from_user_at_time, user: from_user_name, time: date
             - else
-              - date = compact_date(message.created_at)
-              - from_user_name = message.from_user.try(:login) || t(:deleted_user)
-              - msg_header_key = message.created_at.today? ? :message_from_user_at_time : :message_from_user_on_date
-              - msg_header_vars = { user: from_user_name, date: date }
-              - msg_header_vars = { user: from_user_name, time: date } if message.created_at.today?
-              =t msg_header_key, msg_header_vars
+              =t :message_from_user_on_date, user: from_user_name, date: date
           %br/
           = message.subject
   %li

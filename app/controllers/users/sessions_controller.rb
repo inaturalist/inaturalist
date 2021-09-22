@@ -1,6 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
 
-  before_filter :load_registration_form_data, only: [:new, :create]
+  before_action :load_registration_form_data, only: [:new, :create]
 
   layout "registrations"
 
@@ -17,7 +17,7 @@ class Users::SessionsController < Devise::SessionsController
       format.html do
         flash.delete(:notice)
         if session[:return_to]
-          redirect_to session[:return_to]
+          redirect_to session[:return_to].gsub( /(%20|\s)/, "+" )
         else
           redirect_to after_sign_in_path_for(resource)
         end
@@ -69,7 +69,7 @@ class Users::SessionsController < Devise::SessionsController
       password ||= params[:user][:password]
     end
     user = User.find_by_login(login)
-    user ||= User.find_by_email(login)
+    user ||= User.find_by_email(login) unless login.blank?
     return false unless user
     pepper = @site.legacy_rest_auth_key
     stretches = 10

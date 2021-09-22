@@ -10,6 +10,13 @@ var application =  angular.module( "ObservationSearch", [
   "truncate"
 ]);
 
+// used for displaying HTML returned from methods
+application.filter( "sanitize", [ "$sce", function( $sce ) {
+  return function( safeHTML ) {
+    return $sce.trustAsHtml( safeHTML );
+  };
+}]);
+
 // Load translations for moment if available
 // http://stackoverflow.com/a/22965260
 var shortRelativeTime = ( I18n.t( "momentjs" ) || {} ).shortRelativeTime;
@@ -67,7 +74,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     "nelat", "nelng", "place_id", "taxon_id", "page", "view", "subview",
     "locale", "preferred_place_id", "ident_user_id", "spam" ];
   $scope.defaultView = "observations";
-  $scope.defaultSubview = "map";
+  $scope.defaultSubview = "grid";
   $rootScope.mapType = "map";
   $rootScope.mapLabels = true;
   $rootScope.mapTerrain = false;
@@ -536,26 +543,34 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if( processedParams.place_id || processedParams.swlat ) {
       $scope.hideRedoSearch = true;
     }
-    if( _.isEqual( $scope.defaultProcessedParams, processedParamsWithoutLocale ) ) {
+    var isDefaultSearch = _.isEqual( $scope.defaultProcessedParams, processedParamsWithoutLocale );
+    if ( isDefaultSearch ) {
       processedParams.ttl = 3600;
     }
     var statsParams = _.omit( processedParams, [ "order_by", "order", "page" ] );
     var searchParams = _.extend( { }, processedParams, {
       page: $scope.apiPage( ) || 1,
-      per_page: $scope.pagination.perSection,
-      return_bounds: true });
+      per_page: $scope.pagination.perSection
+    } );
+    // Only request the bounds if this isn't a default search
+    if (
+      ( options.browserStateOnly || !$scope.mapLayersInitialized ) &&
+      !isDefaultSearch
+    ) {
+      searchParams.return_bounds = true;
+    }
     // prevent slow searches from overwriting current results
     var thisSearchTime = new Date( ).getTime( );
     $scope.lastSearchTime = thisSearchTime;
-    ObservationsFactory.search( searchParams ).
-                        then( function( response ) {
+    ObservationsFactory.search( searchParams ).then( function( response ) {
       if( $scope.lastSearchTime != thisSearchTime ) { return; }
-
       // this is an initial search, and not the default no-params search,
       // and we have bounds of the results, so focus the map on the results
-      if( response.data.total_bounds &&
-          ( options.browserStateOnly || !$scope.mapLayersInitialized ) &&
-          !_.isEqual( $scope.defaultProcessedParams, processedParamsWithoutLocale ) ) {
+      if (
+        response.data.total_bounds
+        && ( options.browserStateOnly || !$scope.mapLayersInitialized )
+        && !isDefaultSearch
+      ) {
         var bounds = response.data.total_bounds;
         var swlat = bounds.swlat;
         var swlng = bounds.swlng;
@@ -682,7 +697,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     }
     if ( urlParams.created_on ) {
       $scope.params.createdDateType = 'exact';
-    } else if ( urlParams.created_d1 ) {
+    } else if ( urlParams.created_d1 || urlParams.created_d2 ) {
       $scope.params.createdDateType = 'range';
     }
     $scope.currentView = $scope.currentView || $scope.defaultView;
@@ -1156,6 +1171,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     if( $scope.map ) { return; }
     var defaultMapType = PREFERRED_MAP_TYPE || google.maps.MapTypeId.LIGHT;
     $( "#map" ).taxonMap({
+      placement: "observations-search",
       urlCoords: false,
       mapType: defaultMapType,
       showAllLayer: false,
@@ -1374,7 +1390,15 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     }
     var ll = o.location.split(",");
     var latLng = new google.maps.LatLng( ll[0], ll[1] );
-    $scope.infoWindowCallback( $scope.map, iw, latLng, o.id );
+    var iwOpts = { };
+    if( $scope.map.zoom > 9 && o.geoprivacy != "obscured" && !o.obscured ) {
+      // if we're showing points and the marker isn't obscured then leave
+      // a small margin under the infowindow so it show above the marker
+      iwOpts.pixelOffset = new google.maps.Size( 0, -11 );
+    } else {
+      iwOpts.pixelOffset = new google.maps.Size( 0, 0 );
+    }
+    $scope.infoWindowCallback( $scope.map, iw, latLng, o.id, iwOpts );
   });
   $rootScope.$on( "hideInfowindow", function( event, o ) {
     $scope.snippetInfoWindowObservation = null;
@@ -1409,12 +1433,13 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     if( !$scope.$parent.parametersInitialized ) { return };
     window.inatTaxonMap.removeObservationLayers( $scope.map, { title: "Observations" } );
     var layerParams = ObservationsFactory.processParamsForAPI( $scope.params, $scope.possibleFields );
+    layerParams.color = "iconic";
     if( _.isEqual( $scope.$parent.defaultProcessedParams, layerParams ) ) {
       layerParams.ttl = 86400;
     }
     window.inatTaxonMap.addObservationLayers( $scope.map, {
       title: "Observations",
-      mapStyle: "colored_heatmap",
+      mapStyle: "grid",
       observationLayers: [ layerParams ],
       infoWindowCallback: $scope.infoWindowCallback
     });

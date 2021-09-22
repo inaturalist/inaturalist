@@ -1,6 +1,6 @@
 :ruby
   photo ||= change_taxon.photos.first
-  taxon_range ||= change_taxon.taxon_ranges_without_geom.first
+  taxon_range ||= change_taxon.taxon_range_without_geom
   taxon_change ||= nil
   swaps = if @swaps_by_taxon_id
     @swaps_by_taxon_id[change_taxon.id].try(:clone) || []
@@ -40,10 +40,10 @@
         = link_to t(:range), taxon_path(change_taxon, :anchor => 'taxon_range')
       - if change_taxon.is_active?
         |
-        %span.active= t(:active).humanize
+        %span.active_taxon_status= t(:active_taxon_status)
       - else
         |
-        %span.inactive= t(:inactive).humanize
+        %span.inactive_taxon_status= t(:inactive_taxon_status)
       - if change_taxon.flagged?
         |
         %span#flaggings_heads_up.description
@@ -56,9 +56,9 @@
       - if show_atlas_alert && taxon_change && taxon_change.is_a?( TaxonSplit )
         |
         - if change_taxon.atlased?
-          %span.text-success Atlased
+          = link_to t(:atlased), atlas_path( change_taxon.atlas ), {class: "text-success"}
         - else
-          %span.text-danger Not Atlased!
+          = link_to t(:not_atlased), ( change_taxon.atlas ? atlas_path( change_taxon.atlas ) : new_atlas_path( taxon_id: change_taxon.id) ), {class: "text-danger"}
     .meta
       .small
         - if taxon_framework
@@ -75,9 +75,9 @@
               %p.bg-info.padding
                 = t( :relationship_html, link: link_to( t( :unknown ).capitalize, taxonomy_details_for_taxon_path( change_taxon ) ) )
             - else
-              %p.padding{ :class => ( taxon_framework_relationship.relationship == "match" ? 'bg-success' : 'bg-warning' ) }
+              %p.padding{ :class => ( ( taxon_framework_relationship.relationship == "match" || taxon_framework_relationship.relationship == "alternate_position" ) ? 'bg-success' : 'bg-warning' ) }
                 = t( :relationship_html, 
-              link: link_to( ( taxon_framework_relationship.relationship == "match" ? t( "relationships.match" ).capitalize : t( :deviation ).capitalize ),
+              link: link_to( ( ( taxon_framework_relationship.relationship == "match" || taxon_framework_relationship.relationship == "alternate_position" ) ? t( "relationships.#{taxon_framework_relationship.relationship}" ).capitalize : t( :deviation ).capitalize ),
               taxonomy_details_for_taxon_path( change_taxon ) ) )
             
     - if show_change_links && taxon_change && @type

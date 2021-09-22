@@ -32,7 +32,7 @@ const Summary = ( {
   }
   return (
     <Row className="Summary">
-      <Col xs={4}>
+      <Col sm={12} md={4}>
         { data.observations.quality_grade_counts ? (
           <div className="summary-panel">
             <div
@@ -82,7 +82,7 @@ const Summary = ( {
           </div>
         ) : null }
       </Col>
-      <Col xs={4}>
+      <Col sm={12} md={4}>
         { data.taxa && data.taxa.iconic_taxa_counts ? (
           <div className="summary-panel">
             <div
@@ -117,7 +117,7 @@ const Summary = ( {
           </div>
         ) : null }
       </Col>
-      <Col xs={4}>
+      <Col sm={12} md={4}>
         { data.identifications && data.identifications.category_counts ? (
           <div className="summary-panel">
             <div

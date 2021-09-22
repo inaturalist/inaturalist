@@ -1,6 +1,6 @@
+import _ from "lodash";
 import iNaturalistJS from "inaturalistjs";
-import { fetchObservationsStats } from "./observations_stats_actions";
-import { fetchIdentifiers } from "./identifiers_actions";
+import { fetchObservationsStats, resetObservationsStats } from "./observations_stats_actions";
 import { setConfig } from "../../../shared/ducks/config";
 import { showAlert, hideAlert } from "./alert_actions";
 import { paramsForSearch } from "../reducers/search_params_reducer";
@@ -9,9 +9,42 @@ const RECEIVE_OBSERVATIONS = "receive_observations";
 const UPDATE_OBSERVATION_IN_COLLECTION = "update_observation_in_collection";
 const UPDATE_ALL_LOCAL = "update_all_local";
 const SET_REVIEWING = "identify/observations/set-reviewing";
+const SET_PLACES_BY_ID = "identify/observations/set-places-by-id";
+const SET_LAST_REQUEST_AT = "identify/observations/set-last-request-at";
 
 function receiveObservations( results ) {
   return Object.assign( { type: RECEIVE_OBSERVATIONS }, results );
+}
+
+function setPlacesByID( placesByID ) {
+  return { type: SET_PLACES_BY_ID, placesByID };
+}
+
+function setLastRequestAt( lastRequestAt ) {
+  return { type: SET_LAST_REQUEST_AT, lastRequestAt };
+}
+
+function fetchObservationPlaces( ) {
+  return function ( dispatch, getState ) {
+    const observations = getState( ).observations.results;
+    let placeIDs = _.compact( _.flattenDeep( observations.map(
+      o => [o.place_ids, o.private_place_ids]
+    ) ) );
+    const existingPlaceIDs = _.keys( getState( ).observations.placesByID )
+      .map( pid => parseInt( pid, 0 ) );
+    placeIDs = _.take(
+      _.uniq( _.without( placeIDs, ...existingPlaceIDs ) ),
+      100
+    );
+    if ( placeIDs.length === 0 ) {
+      return Promise.resolve( );
+    }
+    return iNaturalistJS.places.fetch(
+      placeIDs, { per_page: 100, no_geom: true }
+    ).then( response => {
+      dispatch( setPlacesByID( _.keyBy( response.results, "id" ) ) );
+    } );
+  };
 }
 
 function fetchObservations( ) {
@@ -31,8 +64,14 @@ function fetchObservations( ) {
       apiParams.quality_grade = "any";
       apiParams.page = 1;
     }
+    const thisRequestSentAt = new Date( );
+    dispatch( setLastRequestAt( thisRequestSentAt ) );
     return iNaturalistJS.observations.search( apiParams )
       .then( response => {
+        const { lastRequestAt } = getState( ).observations;
+        if ( lastRequestAt && lastRequestAt > thisRequestSentAt ) {
+          return;
+        }
         let obs = response.results;
         if ( currentUser.id ) {
           obs = response.results.map( o => {
@@ -51,9 +90,32 @@ function fetchObservations( ) {
           totalPages: Math.ceil( response.total_results / response.per_page ),
           results: obs
         } ) );
-        dispatch( fetchObservationsStats( ) );
-        dispatch( fetchIdentifiers( ) );
+        if ( s.config.sideBarHidden ) {
+          dispatch( resetObservationsStats( ) );
+        } else {
+          dispatch( fetchObservationsStats( true ) );
+        }
+        dispatch( fetchObservationPlaces( ) );
+        if ( _.isEmpty( _.filter( obs, o => !o.reviewedByCurrentUser ) ) ) {
+          dispatch( setConfig( { allReviewed: true } ) );
+        }
       } ).catch( e => {
+        const { lastRequestAt } = getState( ).observations;
+        if ( lastRequestAt && lastRequestAt > thisRequestSentAt ) {
+          return;
+        }
+        if ( !e.response ) {
+          dispatch(
+            showAlert(
+              "",
+              {
+                title: I18n.t( "unknown_error" ),
+                onClose: dispatch( hideAlert( ) )
+              }
+            )
+          );
+          return;
+        }
         e.response.json( ).then( json => {
           if ( json.error.match( /window is too large/ ) ) {
             dispatch(
@@ -88,11 +150,9 @@ function setReviewing( reviewing ) {
   return { type: SET_REVIEWING, reviewing };
 }
 
-function reviewAll( ) {
-  return function ( dispatch, getState ) {
-    dispatch( setConfig( { allReviewed: true } ) );
-    dispatch( setReviewing( true ) );
-    dispatch( updateAllLocal( { reviewedByCurrentUser: true } ) );
+function setReviewed( results, apiMethod ) {
+  return dispatch => {
+    const lastResult = results.pop( );
     // B/c this was new to me, Promise.all takes an array of Promises and
     // creates another Promise that is fulfilled if all the promises in the
     // array are fulfilled. So here, we only want to fetch the obs stats after
@@ -102,8 +162,14 @@ function reviewAll( ) {
     // updating the stats after each request, so this might not last, but now
     // I know how to do this
     Promise.all(
-      getState( ).observations.results.map( o => iNaturalistJS.observations.review( { id: o.id } ) )
+      results.map( o => apiMethod( { id: o.id } ) )
     )
+      .then( ( ) => {
+        if ( lastResult ) {
+          return apiMethod( { id: lastResult.id, wait_for_refresh: true } );
+        }
+        return null;
+      } )
       .catch( ( ) => {
         dispatch( setReviewing( false ) );
         dispatch( showAlert(
@@ -113,8 +179,18 @@ function reviewAll( ) {
       } )
       .then( ( ) => {
         dispatch( setReviewing( false ) );
-        dispatch( fetchObservationsStats( ) );
       } );
+  };
+}
+
+function reviewAll( ) {
+  return function ( dispatch, getState ) {
+    dispatch( setConfig( { allReviewed: true } ) );
+    dispatch( setReviewing( true ) );
+    const unreviewedResults = _.filter( getState( ).observations.results,
+      o => !o.reviewedByCurrentUser );
+    dispatch( updateAllLocal( { reviewedByCurrentUser: true } ) );
+    dispatch( setReviewed( unreviewedResults, iNaturalistJS.observations.review ) );
   };
 }
 
@@ -122,22 +198,10 @@ function unreviewAll( ) {
   return function ( dispatch, getState ) {
     dispatch( setConfig( { allReviewed: false } ) );
     dispatch( setReviewing( true ) );
+    const reviewedResults = _.filter( getState( ).observations.results,
+      o => o.reviewedByCurrentUser );
     dispatch( updateAllLocal( { reviewedByCurrentUser: false } ) );
-    Promise.all(
-      getState( ).observations.results
-        .map( o => iNaturalistJS.observations.unreview( { id: o.id } ) )
-    )
-      .catch( ( ) => {
-        dispatch( setReviewing( false ) );
-        dispatch( showAlert(
-          I18n.t( "failed_to_save_record" ),
-          { title: I18n.t( "request_failed" ) }
-        ) );
-      } )
-      .then( ( ) => {
-        dispatch( setReviewing( false ) );
-        dispatch( fetchObservationsStats( ) );
-      } );
+    dispatch( setReviewed( reviewedResults, iNaturalistJS.observations.unreview ) );
   };
 }
 
@@ -146,11 +210,14 @@ export {
   UPDATE_OBSERVATION_IN_COLLECTION,
   UPDATE_ALL_LOCAL,
   SET_REVIEWING,
+  SET_PLACES_BY_ID,
+  SET_LAST_REQUEST_AT,
   receiveObservations,
   fetchObservations,
   updateObservationInCollection,
   reviewAll,
   unreviewAll,
   updateAllLocal,
-  setReviewing
+  setReviewing,
+  setLastRequestAt
 };

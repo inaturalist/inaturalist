@@ -4,7 +4,7 @@ if ( typeof CURRENT_USER === "undefined" ) {
 }
 
 $.fn.projectAutocomplete = function ( opts ) {
-  var options = Object.assign( { }, opts );
+  var options = _.assign( { }, opts );
   if ( !options.idEl ) { return; }
   var field = this;
   field.genericAutocomplete( _.extend( options, {

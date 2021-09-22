@@ -6,6 +6,7 @@ ENV["RAILS_ENV"] = 'test'
 require File.expand_path("../../config/environment", __FILE__)
 
 require 'rspec/rails'
+require 'factory_bot_rails'
 require 'capybara/rails'
 require 'webmock/rspec'
 WebMock.allow_net_connect!
@@ -87,12 +88,21 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include RSpecHtmlMatchers
+  config.include FactoryBot::Syntax::Methods
   config.fixture_path = "#{::Rails.root}/spec/fixtures/"
   config.infer_spec_type_from_file_location!
   # disable certain specs. Useful for travis
   config.filter_run_excluding disabled: true
 end
 
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+
+# Pretend Delayed Job doesn't exist and run all jobs when they are queued
 def without_delay
   Delayed::Worker.delay_jobs = false
   r = yield
@@ -100,9 +110,16 @@ def without_delay
   r
 end
 
-def after_delayed_job_finishes
+# Invoke jobs *after* the block executes, which is closer to what happens in
+# production. ignore_run_at will ignore any run_at scheduling, so *all* queued
+# jobs get invoked immediately after the block
+def after_delayed_job_finishes( ignore_run_at = false )
   r = yield
-  Delayed::Worker.new.work_off
+  if ignore_run_at
+    Delayed::Job.find_each {|j| j.invoke_job }
+  else
+    Delayed::Worker.new.work_off
+  end
   r
 end
 
@@ -234,6 +251,15 @@ def elastic_models(*args)
     enable_elastic_indexing(*args)
     example.run
     disable_elastic_indexing(*args)
+  end
+end
+
+def stub_elastic_index!(*models)
+  before do
+    models.flatten.each do |model|
+      allow_any_instance_of(model).to receive(:elastic_index!).and_return true
+      allow(model).to receive(:elastic_index!).and_return true
+    end
   end
 end
 

@@ -1,10 +1,10 @@
 - of_name = t(@observation_field.name, :default => @observation_field.name)
-- @attrs = %w(name datatype description allowed_values observations_count projects_count)
+- attrs = %w(name datatype description allowed_values observations_count projects_count).freeze
 - content_for :title do
   = @title = t(:merge_observation_field_x_into, :x => of_name)
 - content_for :extrajs do
   :javascript
-    var ATTRS = #{@attrs.inspect}
+    var ATTRS = #{raw(attrs.to_json)}
     $(document).ready(function() {
       $('#merge_target_id').chooser({
         collectionUrl: '/observation_fields.json?extra=counts',
@@ -15,7 +15,7 @@
           }
         },
         afterClear: function() {
-          $('.keeper').html('')
+          $('.keeper').html("<div class='meta'>#{t :you_must_choose_an_observation_field}</div>")
         }
       })
     })
@@ -36,7 +36,7 @@
         %th
           %input{:type => "text", :name => 'with', :id => "merge_target_id", :class => "text", :placeholder => t(:start_typing_field_name), :value => @keeper.try(:id)}
     %tbody
-      - @attrs.each do |a|
+      - attrs.each do |a|
         %tr{:id => "#{a}_row"}
           %td
             %strong= t(a, :default => a.humanize)

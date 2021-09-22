@@ -38,7 +38,7 @@ class SearchController < ApplicationController
       records = response.results.map do |result|
         next unless klass = Object.const_get( result["type"] )
         record = records_by_type_id[result["type"]][result["record"]["id"]]
-        Rails.logger.debug "[DEBUG] result[matches]: #{result["matches"]}"
+        next unless record
         @results_matched_terms["#{record.class.name}-#{record.id}"] = result["matches"]
         record
       end.compact

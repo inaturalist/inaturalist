@@ -46,7 +46,16 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     provider :twitter, CONFIG.twitter.key , CONFIG.twitter.secret
   end
   if fb_cfg = CONFIG.facebook
-    opts = { scope: "email,user_photos", image_size: "large" }
+    # Facebook requires app approval for the user_photos scope, and we're still
+    # pending as of 20201110
+    # opts = { scope: "email,user_photos", image_size: "large" }
+    opts = {
+      scope: "email",
+      client_options: {
+        site: 'https://graph.facebook.com/v10.0',
+        authorize_url: "https://www.facebook.com/v10.0/dialog/oauth"
+      }
+    }
     provider :facebook, fb_cfg["app_id"], fb_cfg["app_secret"], opts
   end
 
@@ -75,7 +84,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     opts = {
       # Apparently this just triggers scary permissions errors until we're a "verified" app on Google
       # :scope => "userinfo.email,userinfo.profile,plus.me,https://picasaweb.google.com/data/,https://www.googleapis.com/auth/photoslibrary.readonly",
-      :scope => "userinfo.email,userinfo.profile,plus.me,https://picasaweb.google.com/data/",
+      :scope => "userinfo.email,userinfo.profile,plus.me,https://www.googleapis.com/auth/photoslibrary.readonly",
       :prompt => "consent",
       :access_type => "offline"
     }
@@ -84,6 +93,16 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
   if CONFIG.orcid
     provider :orcid, CONFIG.orcid.client_id, CONFIG.orcid.client_secret
+  end
+
+  if CONFIG.apple
+    provider :apple, CONFIG.apple.client_id, "", {
+      scope: "email name",
+      team_id: CONFIG.apple.team_id,
+      key_id: CONFIG.apple.key_id,
+      pem: CONFIG.apple.pem,
+      provider_ignores_state: true
+    }
   end
 
 end

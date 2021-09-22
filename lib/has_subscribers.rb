@@ -22,12 +22,12 @@ module HasSubscribers
 
       Subscription.subscribable_classes << to_s
       
-      after_destroy do |record|
-        UpdateAction.transaction do
-          UpdateAction.delete_and_purge(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
-          Subscription.delete_all(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
-        end
-        true
+      if options[:destroy_callback] == :commit
+        after_commit :delete_update_actions, on: :destroy
+        after_commit :delete_subscriptions, on: :destroy
+      else
+        after_destroy :delete_update_actions
+        after_destroy :delete_subscriptions
       end
     end
     
@@ -179,8 +179,11 @@ module HasSubscribers
           resource = options[:to] ? record.send(options[:to]) : record
           user = record.auto_subscriber || record.send(subscriber)
           if user && resource
-            Subscription.delete_all(:user_id => user.id,
-              :resource_type => resource.class.name, :resource_id => resource.id)
+            Subscription.where(
+              user_id: user.id,
+              resource_type: resource.class.name,
+              resource_id: resource.id
+            ).delete_all
           else
             Rails.logger.error "[ERROR #{Time.now}] Couldn't delete auto subscription for #{record}"
           end
@@ -263,29 +266,28 @@ module HasSubscribers
     def create_callback(subscribable_association, options = {})
       callback_types = []
       options_on = options[:on] ? [options[:on]].flatten.map(&:to_s) : %w(after_create)
-      callback_types << :after_update if options_on.detect{|o| o =~ /update/}
-      callback_types << :after_create if options_on.detect{|o| o =~ /create/}
-      callback_types << :after_save   if options_on.detect{|o| o =~ /save/}
+      callback_types << :update if options_on.detect{|o| o =~ /update/}
+      callback_types << :create if options_on.detect{|o| o =~ /create/}
+      callback_types << [:update, :create]   if options_on.detect{|o| o =~ /save/}
       callback_method = options[:with] || :notify_subscribers_of
       attr_accessor :skip_updates
-      callback_types.each do |callback_type|
-        send callback_type do |record|
-          unless record.skip_updates || record.try(:unsubscribable?)
-            if options[:queue_if].blank? || options[:queue_if].call(record)
-              if options[:delay] == false
-                record.send(callback_method, subscribable_association)
-              else
-                record.delay(priority: options[:priority]).
-                  send(callback_method, subscribable_association)
-              end
+      after_commit on: callback_types.flatten.uniq do |record|
+        unless_skipped = options[:unless] ? options[:unless].call( self ) : false
+        unless record.skip_updates || record.try(:unsubscribable?) || unless_skipped
+          if options[:queue_if].blank? || options[:queue_if].call(record)
+            if options[:delay] == false
+              record.send(callback_method, subscribable_association)
+            else
+              record.delay(priority: options[:priority]).
+                send(callback_method, subscribable_association)
             end
           end
-          true
         end
+        true
       end
     end
   end
-  
+
   module InstanceMethods
     def notify_subscribers_of(subscribable_association)
       return if CONFIG.has_subscribers == :disabled
@@ -331,6 +333,23 @@ module HasSubscribers
         action.append_subscribers( user_ids_to_notify )
         action.restrict_to_subscribers( user_ids_to_notify )
       end
+    end
+
+    def delete_update_actions
+      # some classes, like ListedTaxa, have tons of records but barely any UpdateActions or
+      # Subscriptions. Check to make sure there are some subscriptions for this record before
+      # initiating a delete query. We've seen longer-running deletes lead to table lock issues
+      if UpdateAction.where(["resource_type = ? AND resource_id = ?", self.class.base_class.name, self.id]).any?
+        UpdateAction.delete_and_purge(["resource_type = ? AND resource_id = ?", self.class.base_class.name, self.id])
+      end
+      true
+    end
+
+    def delete_subscriptions
+      if Subscription.where(["resource_type = ? AND resource_id = ?", self.class.base_class.name, self.id]).any?
+        Subscription.where(["resource_type = ? AND resource_id = ?", self.class.base_class.name, self.id]).delete_all
+      end
+      true
     end
 
   end

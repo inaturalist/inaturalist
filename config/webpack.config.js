@@ -10,6 +10,7 @@ const config = {
     // list out the various bundles we need to make for different apps
     "observations-identify": "./observations/identify/webpack-entry",
     "observations-uploader": "./observations/uploader/webpack-entry",
+    "lifelists-show": "./lifelists/show/webpack-entry",
     "project-slideshow": "./project_slideshow/webpack-entry",
     "taxa-show": "./taxa/show/webpack-entry",
     "taxa-photos": "./taxa/photos/webpack-entry",
@@ -20,7 +21,8 @@ const config = {
     "stats-year": "./stats/year/webpack-entry",
     "projects-form": "./projects/form/webpack-entry",
     "projects-show": "./projects/show/webpack-entry",
-    "observations-compare": "./observations/compare/webpack-entry"
+    "observations-compare": "./observations/compare/webpack-entry",
+    "users-edit": "./users/edit/webpack-entry"
   },
   output: {
     // each bundle will be stored in app/assets/javascripts/[name].output.js
@@ -36,7 +38,6 @@ const config = {
       // run everything through babel
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
         loader: "babel-loader",
         query: { presets: ["@babel/preset-env", "@babel/preset-react"] }
       }

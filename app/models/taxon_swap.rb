@@ -35,7 +35,7 @@ class TaxonSwap < TaxonChange
   end
 
   def input_taxa
-    taxon_change_taxa.select{|tct| !tct._destroy}.map(&:taxon)
+    taxon_change_taxa.select{|tct| !tct._destroy}.map(&:taxon).compact
   end
 
   def output_taxa
@@ -107,8 +107,8 @@ class TaxonSwap < TaxonChange
     end
     
     # duplicate taxon_range
-    if output_taxon.taxon_ranges.count == 0
-      input_taxon.taxon_ranges.each do |taxon_range|
+    if output_taxon.taxon_range.nil?
+      if taxon_range = input_taxon.taxon_range
         new_taxon_range = taxon_range.dup
         new_taxon_range.taxon_id = output_taxon.id
         unless new_taxon_range.save

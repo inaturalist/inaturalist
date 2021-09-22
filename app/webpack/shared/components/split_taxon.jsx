@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
 import _ from "lodash";
 import { objectToComparable } from "../util";
@@ -9,6 +10,7 @@ const SplitTaxon = props => {
     url,
     target,
     noParens,
+    noRank,
     placeholder,
     displayClassName,
     showIcon,
@@ -17,17 +19,21 @@ const SplitTaxon = props => {
     noInactive,
     showMemberGroup,
     user,
-    iconLink
+    iconLink,
+    sciFirst
   } = props;
-  const showScinameFirst = user && user.prefers_scientific_name_first;
+  const showScinameFirst = sciFirst || ( user && user.prefers_scientific_name_first );
   const LinkElement = ( url || onClick ) ? "a" : "span";
   const keyBase = objectToComparable( props );
   let title = "";
   if ( taxon ) {
+    title = taxon.name;
     if ( taxon.rank && taxon.rank_level > 10 ) {
-      title += I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } );
+      title = I18n.t( "rank_sciname", {
+        rank: I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } ),
+        name: taxon.name
+      } );
     }
-    title += ` ${taxon.name}`;
     if ( taxon.preferred_common_name ) {
       const comName = iNatModels.Taxon.titleCaseName( taxon.preferred_common_name );
       if ( user && user.prefers_scientific_name_first ) {
@@ -137,6 +143,9 @@ const SplitTaxon = props => {
       sciNameClass += " secondary-name";
     }
     let { name } = taxon;
+    if ( taxon.rank === "stateofmatter" ) {
+      name = I18n.t( "all_taxa.life" );
+    }
     if ( taxon.rank_level < 10 ) {
       const namePieces = name.split( " " );
       let rankPiece;
@@ -170,10 +179,12 @@ const SplitTaxon = props => {
           onClick={onClick}
           target={target}
         >
-          <span className="rank">
-            { I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } ) }
-          </span>
-          &nbsp;
+          { !noRank && (
+            <span className="rank">
+              { I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } ) }
+            </span>
+          ) }
+          { !noRank && "\u00A0" }
           { truncateText( name ) }
         </LinkElement>
       );
@@ -240,15 +251,21 @@ const SplitTaxon = props => {
     }
     if ( groupAncestor ) {
       memberGroup = (
-        <span key={`${keyBase}-memberGroup`} className="member-group">
-          { I18n.t( "a_member_of" ) }
-          { " " }
-          <SplitTaxon
-            taxon={groupAncestor}
-            url={`/taxa/${groupAncestor.id}`}
-            user={user}
-          />
-        </span>
+        <span
+          key={`${keyBase}-memberGroup`}
+          className="member-group"
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "a_member_of_taxon_html", {
+              taxon: ReactDOMServer.renderToString(
+                <SplitTaxon
+                  taxon={groupAncestor}
+                  url={`/taxa/${groupAncestor.id}`}
+                  user={user}
+                />
+              )
+            } )
+          }}
+        />
       );
     }
   }
@@ -295,6 +312,7 @@ SplitTaxon.propTypes = {
   url: PropTypes.string,
   target: PropTypes.string,
   noParens: PropTypes.bool,
+  noRank: PropTypes.bool,
   placeholder: PropTypes.string,
   displayClassName: PropTypes.string,
   showIcon: PropTypes.bool,
@@ -303,7 +321,8 @@ SplitTaxon.propTypes = {
   noInactive: PropTypes.bool,
   showMemberGroup: PropTypes.bool,
   user: PropTypes.object,
-  iconLink: PropTypes.bool
+  iconLink: PropTypes.bool,
+  sciFirst: PropTypes.bool
 };
 SplitTaxon.defaultProps = {
   target: "_self"

@@ -14,15 +14,16 @@ class UserAutocomplete extends React.Component {
   }
 
   componentDidUpdate( prevProps ) {
-    if ( this.props.initialUserID &&
-         this.props.initialUserID !== prevProps.initialUserID ) {
+    const { initialUserID } = this.props;
+    if ( initialUserID && initialUserID !== prevProps.initialUserID ) {
       this.fetchUser( );
     }
   }
 
   fetchUser( ) {
-    if ( this.props.initialUserID ) {
-      inaturalistjs.users.fetch( this.props.initialUserID ).then( r => {
+    const { initialUserID } = this.props;
+    if ( initialUserID ) {
+      inaturalistjs.users.fetch( initialUserID ).then( r => {
         if ( r.results.length > 0 ) {
           this.updateUser( { user: r.results[0] } );
         }
@@ -33,8 +34,8 @@ class UserAutocomplete extends React.Component {
   updateUser( options = { } ) {
     const domNode = ReactDOM.findDOMNode( this );
     if ( options.user ) {
-      $( "input[name='user_login']", domNode ).
-        trigger( "assignSelection", Object.assign(
+      $( "input[name='user_login']", domNode )
+        .trigger( "assignSelection", Object.assign(
           {},
           options.user,
           { title: options.user.login }
@@ -48,13 +49,14 @@ class UserAutocomplete extends React.Component {
   }
 
   render( ) {
+    const { className, placeholder } = this.props;
     return (
       <span className="UserAutocomplete form-group">
         <input
           type="search"
           name="user_login"
-          className={`form-control ${this.props.className}`}
-          placeholder={ this.props.placeholder || I18n.t( "username_or_user_id" ) }
+          className={`form-control ${className}`}
+          placeholder={placeholder || I18n.t( "username_or_user_id" )}
         />
         <input type="hidden" name="user_id" />
       </span>
@@ -64,17 +66,24 @@ class UserAutocomplete extends React.Component {
 
 
 UserAutocomplete.propTypes = {
+  // eslint-disable-next-line react/no-unused-prop-types
   resetOnChange: PropTypes.bool,
+  // eslint-disable-next-line react/no-unused-prop-types
   bootstrapClear: PropTypes.bool,
+  // eslint-disable-next-line react/no-unused-prop-types
   afterSelect: PropTypes.func,
+  // eslint-disable-next-line react/no-unused-prop-types
   afterUnselect: PropTypes.func,
+  // eslint-disable-next-line react/no-unused-prop-types
   initialSelection: PropTypes.object,
   initialUserID: PropTypes.oneOfType( [
     PropTypes.string,
     PropTypes.number
   ] ),
   className: PropTypes.string,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  // eslint-disable-next-line react/no-unused-prop-types
+  projectID: PropTypes.number
 };
 
 export default UserAutocomplete;

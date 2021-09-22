@@ -16,6 +16,8 @@ class SoundcloudSoundsController < ApplicationController
           raise e
         end
       end
+    else
+      @reauthorization_needed = true
     end
     render :partial => 'sounds/sound_list_form', :locals => {:sounds => @sounds, :index => params[:index]}
   end

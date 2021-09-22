@@ -3,9 +3,52 @@ import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import _ from "lodash";
 import c3 from "c3";
+import { schemeCategory10 } from "d3";
 import moment from "moment";
 import { Modal } from "react-bootstrap";
 import { objectToComparable } from "../../../shared/util";
+import "@formatjs/intl-locale/polyfill";
+import "@formatjs/intl-numberformat/polyfill";
+import "@formatjs/intl-numberformat/locale-data/en";
+import "@formatjs/intl-numberformat/locale-data/ar";
+import "@formatjs/intl-numberformat/locale-data/bg";
+import "@formatjs/intl-numberformat/locale-data/br";
+import "@formatjs/intl-numberformat/locale-data/ca";
+import "@formatjs/intl-numberformat/locale-data/cs";
+import "@formatjs/intl-numberformat/locale-data/da";
+import "@formatjs/intl-numberformat/locale-data/de";
+import "@formatjs/intl-numberformat/locale-data/el";
+import "@formatjs/intl-numberformat/locale-data/eo";
+import "@formatjs/intl-numberformat/locale-data/es";
+import "@formatjs/intl-numberformat/locale-data/es-AR";
+import "@formatjs/intl-numberformat/locale-data/es-MX";
+import "@formatjs/intl-numberformat/locale-data/et";
+import "@formatjs/intl-numberformat/locale-data/eu";
+import "@formatjs/intl-numberformat/locale-data/fi";
+import "@formatjs/intl-numberformat/locale-data/fr";
+import "@formatjs/intl-numberformat/locale-data/fr-CA";
+import "@formatjs/intl-numberformat/locale-data/gl";
+import "@formatjs/intl-numberformat/locale-data/he";
+import "@formatjs/intl-numberformat/locale-data/id";
+import "@formatjs/intl-numberformat/locale-data/it";
+import "@formatjs/intl-numberformat/locale-data/ja";
+import "@formatjs/intl-numberformat/locale-data/ko";
+import "@formatjs/intl-numberformat/locale-data/lb";
+import "@formatjs/intl-numberformat/locale-data/lt";
+import "@formatjs/intl-numberformat/locale-data/lv";
+import "@formatjs/intl-numberformat/locale-data/mk";
+import "@formatjs/intl-numberformat/locale-data/nb";
+import "@formatjs/intl-numberformat/locale-data/nl";
+import "@formatjs/intl-numberformat/locale-data/pl";
+import "@formatjs/intl-numberformat/locale-data/pt";
+import "@formatjs/intl-numberformat/locale-data/ru";
+import "@formatjs/intl-numberformat/locale-data/sk";
+import "@formatjs/intl-numberformat/locale-data/sq";
+import "@formatjs/intl-numberformat/locale-data/sv";
+import "@formatjs/intl-numberformat/locale-data/tr";
+import "@formatjs/intl-numberformat/locale-data/uk";
+import "@formatjs/intl-numberformat/locale-data/zh";
+import "@formatjs/intl-numberformat/locale-data/zh-Hant";
 
 class Charts extends React.Component {
   constructor( ) {
@@ -22,12 +65,14 @@ class Charts extends React.Component {
 
   shouldComponentUpdate( nextProps, nextState ) {
     const {
+      noAnnotationHidden,
       scaled,
       seasonalityColumns,
       historyColumns
     } = this.props;
     if (
       scaled === nextProps.scaled
+      && noAnnotationHidden === nextProps.noAnnotationHidden
       && _.isEqual(
         objectToComparable( seasonalityColumns ),
         objectToComparable( nextProps.seasonalityColumns )
@@ -68,14 +113,28 @@ class Charts extends React.Component {
     if ( number > 0 && number < 0.0001 ) {
       return number.toExponential( 2 );
     }
-    if ( number > 9999 ) {
-      return number.toExponential( precision );
+    if ( number > 999 ) {
+      try {
+        // this falls back to English for Occitan on all browsers
+        // all other iNat locales appear to be supported
+        return new Intl.NumberFormat( I18n.locale, {
+          maximumSignificantDigits: 3,
+          notation: "compact"
+        } ).format( number );
+      } catch ( e ) {
+        if ( e.message.match( /Intl/ ) ) {
+          console.log( "This browser does not support modern number formatting. Please consider upgrading." );
+        } else {
+          throw e;
+        }
+      }
     }
     return I18n.toNumber( number, { precision } );
   }
 
   resetChartTabEvents( ) {
     const domNode = ReactDOM.findDOMNode( this );
+    const { loadFieldValueChartData } = this.props;
     $( "a[data-toggle=tab]", domNode ).unbind( "shown.bs.tab" );
     $( "a[data-toggle=tab]", domNode ).bind( "shown.bs.tab", e => {
       if ( e.target.hash === "#charts-seasonality" ) {
@@ -83,12 +142,14 @@ class Charts extends React.Component {
           this.seasonalityChart.flush( );
         }
       } else if ( e.target.hash === "#charts-history" ) {
+        this.props.fetchMonthFrequency( );
         if ( this.historyChart ) {
           this.historyChart.flush( );
         }
       } else {
         const match = e.target.hash.match( /field-values-([0-9]+)$/ );
         if ( match && this.fieldValueCharts[Number( match[1] )] ) {
+          loadFieldValueChartData( );
           this.fieldValueCharts[Number( match[1] )].flush( );
         }
       }
@@ -96,7 +157,14 @@ class Charts extends React.Component {
   }
 
   defaultC3Config( ) {
-    const { colors } = this.props;
+    const { colors, chartedFieldValues } = this.props;
+    _.each( chartedFieldValues, values => {
+      _.each( values, value => {
+        if ( value.controlled_value.label === "No Annotation" ) {
+          colors[`${value.controlled_attribute.label}=No Annotation`] = colors.unannotated;
+        }
+      } );
+    } );
     return {
       data: {
         colors,
@@ -149,17 +217,25 @@ class Charts extends React.Component {
     if ( unAnnotatedItem ) {
       items.push( unAnnotatedItem );
     }
-    const tipRows = items.map( item => `
-      <div class="series">
-        <span class="swatch" style="background-color: ${color( item )}"></span>
-        <span class="column-label">
-          ${I18n.t( `views.taxa.show.frequency.${item.name}`, { defaultValue: item.name.split( "=" )[1] } )}:
-        </span>
-        <span class="value">
-          ${this.formatNumber( item.value )}
-        </span>
-      </div>
-    ` );
+    const tipRows = items.map( item => {
+      let columnLabel = I18n.t( `views.taxa.show.frequency.${item.name}`, {
+        defaultValue: item.name.split( "=" )[1]
+      } );
+      if ( item.name.match( /No Annotation/ ) ) {
+        columnLabel = I18n.t( "views.taxa.show.frequency.unannotated" );
+      }
+      return `
+        <div class="series">
+          <span class="swatch" style="background-color: ${color( item )}"></span>
+          <span class="column-label">
+            ${columnLabel}:
+          </span>
+          <span class="value">
+            ${this.formatNumber( item.value )}
+          </span>
+        </div>
+      `;
+    } );
     return `
       <div class="frequency-chart-tooltip">
         <div class="title">${tipTitle}</div>
@@ -220,27 +296,26 @@ class Charts extends React.Component {
 
   renderFieldValueCharts( ) {
     this.fieldValueCharts = this.fieldValueCharts || { };
-    const { chartedFieldValues, seasonalityColumns } = this.props;
+    const { chartedFieldValues, seasonalityColumns, noAnnotationHidden } = this.props;
     if ( !chartedFieldValues ) { return; }
-    _.each( chartedFieldValues, ( values, termID ) => {
-      const columns = _.filter(
+    _.each( chartedFieldValues, ( values, attributeId ) => {
+      let columns = _.filter(
         seasonalityColumns,
         column => _.startsWith( column[0], `${values[0].controlled_attribute.label}=` )
       );
-      const verifiableColumn = _.find( seasonalityColumns, c => c[0] === "verifiable" );
-      if ( verifiableColumn ) {
-        const unAnnotatedColumn = verifiableColumn.slice( 0 );
-        unAnnotatedColumn[0] = "unannotated";
-        _.each( columns, column => {
-          for ( let i = 1; i < column.length; i += 1 ) {
-            unAnnotatedColumn[i] -= column[i];
-          }
-        } );
-        columns.unshift( unAnnotatedColumn );
+      if ( noAnnotationHidden ) {
+        columns = _.filter(
+          columns,
+          column => !column[0].match( /No Annotation/ )
+        );
       }
+      columns = _.sortBy( columns, c => ( -1 * _.sum( c.slice( 1 ) ) ) );
       const labelsToValueIDs = _.fromPairs( _.map( values, v => (
-        [`${v.controlled_attribute.label}=${v.controlled_value.label}`,
-          v.controlled_value.id] ) ) );
+        [
+          `${v.controlled_attribute.label}=${v.controlled_value.label}`,
+          v.controlled_value.id
+        ]
+      ) ) );
       const config = this.seasonalityConfigForColumns( columns, {
         controlled_attribute: values[0].controlled_attribute,
         labels_to_value_ids: labelsToValueIDs
@@ -250,8 +325,8 @@ class Charts extends React.Component {
         config.data.types[columns[i][0]] = "area-spline";
       }
       config.data.order = null;
-      const mountNode = $( `#FieldValueChart${termID}`, ReactDOM.findDOMNode( this ) ).get( 0 );
-      this.fieldValueCharts[termID] = c3.generate(
+      const mountNode = $( `#FieldValueChart${attributeId}`, ReactDOM.findDOMNode( this ) ).get( 0 );
+      this.fieldValueCharts[attributeId] = c3.generate(
         Object.assign( { bindto: mountNode }, config )
       );
     } );
@@ -323,10 +398,14 @@ class Charts extends React.Component {
       chartedFieldValues,
       config,
       historyKeys,
+      noAnnotationHidden,
       scaled,
       seasonalityKeys,
+      setNoAnnotationHiddenPreference,
       setScaledPreference,
-      taxon
+      taxon,
+      historyLoading,
+      seasonalityLoading
     } = this.props;
     const { helpModalVisible } = this.state;
     const noHistoryData = _.isEmpty( historyKeys );
@@ -335,6 +414,7 @@ class Charts extends React.Component {
     const fieldValuePanels = [];
     if ( chartedFieldValues ) {
       _.each( chartedFieldValues, ( values, termID ) => {
+        const loading = !values[0].month_of_year;
         fieldValueTabs.push( (
           <li role="presentation" key={`charts-field-values-${termID}`}>
             <a
@@ -361,6 +441,13 @@ class Charts extends React.Component {
               }
             >
               { I18n.t( "no_observations_yet" ) }
+            </div>
+            <div
+              className={
+                `no-content text-muted text-center ${loading ? "" : "hidden"}`
+              }
+            >
+              { I18n.t( "loading" ) }
             </div>
             <div
               id={`FieldValueChart${termID}`}
@@ -408,8 +495,12 @@ class Charts extends React.Component {
               <ul className="dropdown-menu dropdown-menu-right">
                 <li>
                   { scaled ? (
+                    // Note that Bootstrap expects this to be an anchor element,
+                    // and won't style the dropdown correctly if it's a button
+                    // eslint-disable-next-line jsx-a11y/anchor-is-valid
                     <a
                       href="#"
+                      role="button"
                       onClick={e => {
                         e.preventDefault( );
                         setScaledPreference( false );
@@ -419,8 +510,10 @@ class Charts extends React.Component {
                       { I18n.t( "show_total_counts" ) }
                     </a>
                   ) : (
+                    // eslint-disable-next-line jsx-a11y/anchor-is-valid
                     <a
                       href="#"
+                      role="button"
                       onClick={e => {
                         e.preventDefault( );
                         setScaledPreference( true );
@@ -430,6 +523,23 @@ class Charts extends React.Component {
                       { I18n.t( "show_relative_proportions_of_all_observations" ) }
                     </a>
                   ) }
+                </li>
+                <li>
+                  { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
+                  <a
+                    href="#"
+                    role="button"
+                    onClick={e => {
+                      e.preventDefault( );
+                      setNoAnnotationHiddenPreference( !noAnnotationHidden );
+                      return false;
+                    }}
+                  >
+                    { noAnnotationHidden
+                      ? I18n.t( "show_no_annotation" )
+                      : I18n.t( "hide_no_annotation" )
+                    }
+                  </a>
                 </li>
                 { chartedFieldValues && config && config.currentUser && config.currentUser.id ? (
                   _.map( chartedFieldValues, ( values, termID ) => (
@@ -470,7 +580,7 @@ class Charts extends React.Component {
                 `no-content text-muted text-center ${noSeasonalityData ? "" : "hidden"}`
               }
             >
-              { I18n.t( "no_observations_yet" ) }
+              { seasonalityLoading ? I18n.t( "loading" ) : I18n.t( "no_observations_yet" ) }
             </div>
             <div id="SeasonalityChart" className="SeasonalityChart FrequencyChart" />
           </div>
@@ -480,7 +590,7 @@ class Charts extends React.Component {
                 `no-content text-muted text-center ${noHistoryData ? "" : "hidden"}`
               }
             >
-              { I18n.t( "no_observations_yet" ) }
+              { historyLoading ? I18n.t( "loading" ) : I18n.t( "no_observations_yet" ) }
             </div>
             <div id="HistoryChart" className="HistoryChart FrequencyChart" />
           </div>
@@ -527,16 +637,29 @@ Charts.propTypes = {
   historyKeys: PropTypes.array,
   colors: PropTypes.object,
   scaled: PropTypes.bool,
+  noAnnotationHidden: PropTypes.bool,
+  setNoAnnotationHiddenPreference: PropTypes.func,
   setScaledPreference: PropTypes.func,
   taxon: PropTypes.object,
-  config: PropTypes.object
+  config: PropTypes.object,
+  loadFieldValueChartData: PropTypes.func,
+  fetchMonthFrequency: PropTypes.func,
+  historyLoading: PropTypes.bool,
+  seasonalityLoading: PropTypes.bool
 };
 
 Charts.defaultProps = {
   colors: {
     research: "#74ac00",
     verifiable: "#dddddd",
-    unannotated: "#dddddd"
+    unannotated: "#dddddd",
+
+    // d3 schemeCategory10 colors are what c3 will use by default. Here's we're
+    // just ensuring consistent color for each of these series
+    "Plant Phenology=Flower Budding": schemeCategory10[1],
+    "Plant Phenology=Flowering": schemeCategory10[3],
+    "Plant Phenology=Fruiting": schemeCategory10[0],
+    "Plant Phenology=No Evidence of Flowering": schemeCategory10[2]
   }
 };
 

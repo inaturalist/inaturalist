@@ -1,4 +1,5 @@
 import _ from "lodash";
+import moment from "moment";
 import React from "react";
 import PropTypes from "prop-types";
 import {
@@ -13,6 +14,7 @@ import RegularForm from "./regular_form";
 import UmbrellaForm from "./umbrella_form";
 import SharedForm from "./shared_form";
 import ConfirmModalContainer from "../../shared/containers/confirm_modal_container";
+import UserImage from "../../../shared/components/user_image";
 
 class ProjectForm extends React.Component {
   constructor( props ) {
@@ -23,14 +25,20 @@ class ProjectForm extends React.Component {
 
   render( ) {
     const {
+      config,
       project,
       addManager,
-      removeProjectUser,
+      removeProjectManager,
       confirmSubmitProject,
-      removeProject
+      removeProject,
+      changeOwner,
+      updateProject
     } = this.props;
     if ( !project ) { return ( <span /> ); }
     const thereAreErrors = !_.isEmpty( _.compact( _.values( project.errors ) ) );
+    const coordinatesAccessible = project.prefers_user_trust
+      && project.observation_requirements_updated_at
+      && moment( project.observation_requirements_updated_at ) < moment( ).subtract( 1, "week" );
     return (
       <div className="Form">
         <SharedForm {...this.props} />
@@ -47,16 +55,80 @@ class ProjectForm extends React.Component {
                   onClick={( ) => window.open( `/observations?${project.previewSearchParamsString}`, "_blank" )}
                 >
                   <i className="fa fa-external-link" />
-                  { I18n.t( "preview_observations" ) }
+                  { I18n.t( "preview_observations_with_these_observation_requirements" ) }
                 </button>
               </div>
             </Col>
           </Row>
+          <Row>
+            <Col xs={12}>
+              <h2>{ I18n.t( "members" ) }</h2>
+              <label className="section-label">
+                { I18n.t( "trust" ) }
+              </label>
+              <p className="help-text">
+                { I18n.t( "views.projects.edit.trust_help_desc" ) }
+              </p>
+              <p className="help-text">
+                { I18n.t( "views.projects.edit.trust_help_notification2" ) }
+              </p>
+              <div className="checkbox">
+                <label>
+                  <input
+                    type="checkbox"
+                    defaultChecked={project.prefers_user_trust}
+                    onChange={e => updateProject( {
+                      prefers_user_trust: e.target.checked || null
+                    } )}
+                  />
+                  { I18n.t( "views.projects.edit.trust_allow_members_to_trust" )}
+                </label>
+              </div>
+              { project.prefers_user_trust && project.observation_requirements_updated_at && (
+                <div className={coordinatesAccessible ? "alert alert-success" : "alert alert-info"}>
+                  { moment( project.observation_requirements_updated_at ) > moment( project.crteated_at ) && (
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: I18n.t( "bold_label_colon_value_html", {
+                          label: I18n.t( "observation_requirements_updated_at" ),
+                          value: moment( project.observation_requirements_updated_at )
+                            .format( I18n.t( "momentjs.datetime_with_zone" ) )
+                        } )
+                      }}
+                    />
+                  ) }
+                  { coordinatesAccessible
+                    ? (
+                      <p>
+                        <i className="fa fa-check-circle" />
+                        { " " }
+                        { I18n.t( "project_coordinate_access_enabled" ) }
+                      </p>
+                    )
+                    : (
+                      <p>
+                        <i className="fa fa-info-circle" />
+                        { " " }
+                        { I18n.t( "project_coordinate_access_disabled_until_datetime", {
+                          datetime: moment( project.observation_requirements_updated_at )
+                            .add( 1, "week" )
+                            .format( I18n.t( "momentjs.datetime_with_zone" ) )
+                        } ) }
+                      </p>
+                    )
+                  }
+                </div>
+              ) }
+            </Col>
+          </Row>
           <Row className="admins-row">
             <Col xs={12}>
-              <label>{ I18n.t( "admin_s" ) }</label>
+              <label className="section-label">
+                { I18n.t( "admin_s" ) }
+              </label>
               <div className="help-text">
                 { I18n.t( "views.projects.new.note_these_users_will_be_able_to_edit" ) }
+                { project.id && I18n.t( "views.projects.edit.admins_must_be_existing_members" ) }
               </div>
               <UserAutocomplete
                 ref={this.ua}
@@ -67,25 +139,52 @@ class ProjectForm extends React.Component {
                 }}
                 bootstrapClear
                 placeholder={I18n.t( "user_autocomplete_placeholder" )}
+                projectID={project.id}
               />
               { !_.isEmpty( project.undestroyedAdmins ) && (
                 <div className="icon-previews">
-                  { _.map( project.undestroyedAdmins, admin => (
-                    <div className="badge-div" key={`user_rule_${admin.user.id}`}>
-                      <span className="badge">
-                        { admin.user.login }
-                        { ( admin.user.id === project.user_id ) ? " (owner)" : (
-                          <button
-                            type="button"
-                            className="btn btn-nostyle"
-                            onClick={( ) => removeProjectUser( admin )}
-                          >
-                            <i className="fa fa-times-circle-o" />
-                          </button>
-                        ) }
-                      </span>
-                    </div>
-                  ) ) }
+                  <table className="table">
+                    <tbody>
+                      { _.map( project.undestroyedAdmins, admin => (
+                        <tr className="badge-div" key={`user_rule_${admin.user.id}`}>
+                          <td>
+                            <UserImage user={admin.user} />
+                          </td>
+                          <td>
+                            <span className="badge">
+                              { admin.user.login }
+                              { ( project.user && admin.user.id === project.user.id ) ? " (owner)" : (
+                                <button
+                                  type="button"
+                                  className="btn btn-nostyle"
+                                  onClick={( ) => removeProjectManager( admin )}
+                                >
+                                  <i className="fa fa-times-circle-o" />
+                                </button>
+                              ) }
+                            </span>
+                          </td>
+                          <td>
+                            {
+                              project.user
+                                && config.currentUser.id === project.user.id
+                                && admin.id
+                                && admin.user.id !== config.currentUser.id
+                                && (
+                                  <button
+                                    className="btn btn-sm btn-default"
+                                    type="button"
+                                    onClick={( ) => changeOwner( admin )}
+                                  >
+                                    { I18n.t( "views.projects.edit.make_owner" ) }
+                                  </button>
+                                )
+                            }
+                          </td>
+                        </tr>
+                      ) ) }
+                    </tbody>
+                  </table>
                 </div>
               ) }
             </Col>
@@ -146,11 +245,12 @@ ProjectForm.propTypes = {
   project: PropTypes.object,
   onFileDrop: PropTypes.func,
   addManager: PropTypes.func,
-  removeProjectUser: PropTypes.func,
+  removeProjectManager: PropTypes.func,
   showObservationPreview: PropTypes.func,
   confirmSubmitProject: PropTypes.func,
   removeProject: PropTypes.func,
-  updateProject: PropTypes.func
+  updateProject: PropTypes.func,
+  changeOwner: PropTypes.func
 };
 
 export default ProjectForm;

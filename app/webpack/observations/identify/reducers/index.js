@@ -31,9 +31,9 @@ import observationsStats from "./observations_stats_reducer";
 import currentObservation from "./current_observation_reducer";
 import config from "../../../shared/ducks/config";
 import searchParams from "./search_params_reducer";
-import identifiers from "./identifiers_reducer";
 import finishedModal from "./finished_modal_reducer";
 import alert from "./alert_reducer";
+import textEditor from "../../shared/ducks/text_editors";
 import suggestions from "../ducks/suggestions";
 import controlledTerms from "../../show/ducks/controlled_terms";
 import qualityMetrics from "../../show/ducks/quality_metrics";
@@ -41,6 +41,7 @@ import flaggingModal from "../../show/ducks/flagging_modal";
 import subscriptions from "../../show/ducks/subscriptions";
 import disagreementAlert from "../../shared/ducks/disagreement_alert";
 import moderatorActions from "../../../shared/ducks/moderator_actions";
+import brightnesses from "../ducks/brightnesses";
 
 const rootReducer = combineReducers( {
   config,
@@ -48,16 +49,17 @@ const rootReducer = combineReducers( {
   observationsStats,
   currentObservation,
   searchParams,
-  identifiers,
   finishedModal,
   alert,
+  textEditor,
   suggestions,
   controlledTerms,
   qualityMetrics,
   flaggingModal,
   subscriptions,
   disagreementAlert,
-  moderatorActions
+  moderatorActions,
+  brightnesses
 } );
 
 export default rootReducer;

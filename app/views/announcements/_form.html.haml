@@ -1,0 +1,27 @@
+- content_for :extracss do
+  :css
+    #new_announcement textarea,
+    .edit_announcement textarea {
+      width: 100%;
+      min-height: 300px;
+    }
+= form_for @announcement, :builder => DefaultFormBuilder do |f|
+  = f.error_messages
+  = f.select :placement, Announcement::PLACEMENTS
+  :ruby
+    month_names = I18n.t( "date.month_names" )
+    if month_names.is_a?( Hash )
+      month_names = [nil, I18n.t( "date.month_names" ).values].flatten
+    end
+  = f.datetime_select :start, use_month_names: month_names, order: [:year, :month, :day]
+  = f.datetime_select :end, use_month_names: month_names, order: [:year, :month, :day]
+  - if current_user.is_admin?
+    = f.select :site_ids, @sites.map{ |s| [s.name, s.id] }, { include_blank: t(:all) }, multiple: true
+  - else
+    = f.hidden_field :site_ids
+  = f.check_box :dismissible, label_after: true
+  = f.select :locales, I18N_SUPPORTED_LOCALES, {}, { multiple: true, label: I18n.t( "locales_" ), description: t( "views.announcements.locales_desc" ) }
+  = f.text_area :body
+  .actions.buttons
+    = f.submit f.object.new_record? ? t(:create) : t(:update), :class => "default button"
+    = link_to t(:cancel), announcements_path, :class => "button"

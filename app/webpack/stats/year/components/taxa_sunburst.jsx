@@ -10,7 +10,6 @@ import * as d3 from "d3";
 
 // Based on https://bl.ocks.org/maybelinot/5552606564ef37b5de7e47ed2b7dc099
 class TaxaSunburst extends React.Component {
-
   componentDidMount( ) {
     this.renderHistogram( );
   }
@@ -241,7 +240,11 @@ class TaxaSunburst extends React.Component {
   render( ) {
     return (
       <div className="TaxaSunburst">
-        <h3><span>{ I18n.t( "views.welcome.index.species_observed" ) }</span></h3>
+        <h3>
+          <a name="species-observed" href="#species-observed">
+            <span>{ I18n.t( "views.welcome.index.species_observed" ) }</span>
+          </a>
+        </h3>
         <p
           className="text-muted"
           dangerouslySetInnerHTML={{ __html: I18n.t( "views.stats.year.sunburst_desc_html" ) }}

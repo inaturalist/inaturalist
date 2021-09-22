@@ -39,12 +39,15 @@
 
 <%- content_for(:extrahead) do -%>
   <meta property="og:image" content="<%= html_attributize @shareable_image_url %>"/> 
+  <meta property="og:type" content="profile"/>
+  <meta property="og:profile:username" content="<%= @user.login %>"/>
+  <meta property="og:url" content="<%= person_by_login_url( login: @user.login ) %>"/>
   <meta property="twitter:image" content="<%= html_attributize @shareable_image_url %>"/> 
   <meta property="og:description" content="<%= html_attributize @shareable_description %>"/> 
-  <meta name="twitter:card" content="summary">
-  <meta name="og:title" content="<%= html_attributize @title %>">
+  <meta name="twitter:card" content="summary" />
+  <meta name="og:title" content="<%= html_attributize @title %>" />
   <% if twitter_pa = @user.provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>
-    <meta property="twitter:creator:id" content="<%= twitter_pa.provider_uid %>">
+    <meta property="twitter:creator:id" content="<%= twitter_pa.provider_uid %>" />
   <% end -%>
 <%- end -%>
 
@@ -52,7 +55,7 @@
   <%-
     # show only the suspended message (no user profile) to everyone but curators.
     # curators should be able to see the profile to change spammer status
-    if (@user.spammer? || @user.suspended?) && !(current_user && current_user.is_curator?) %>
+    if (@user.spammer? || @user.suspended?) && !(current_user && ( current_user.is_curator? || current_user.is_site_admin_of?( @user.site ) ) ) %>
     <%= render :partial => "suspended" %>
   <%- else %>
     <%- if @user.suspended? %>

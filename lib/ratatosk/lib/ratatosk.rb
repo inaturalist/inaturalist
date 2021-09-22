@@ -296,6 +296,11 @@ module Ratatosk
           lineage = new_lineage
           break
         end
+
+        if existing_homonyms.size > 0
+          # Do not import ancestors that probably already exist in the db
+          break
+        end
         
         new_lineage << ancestor
       end

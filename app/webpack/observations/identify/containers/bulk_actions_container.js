@@ -8,12 +8,8 @@ function mapStateToProps( ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    reviewAll: ( ) => {
-      dispatch( reviewAll( ) );
-    },
-    unreviewAll: ( ) => {
-      dispatch( unreviewAll( ) );
-    }
+    reviewAll: ( ) => dispatch( reviewAll( ) ),
+    unreviewAll: ( ) => dispatch( unreviewAll( ) )
   };
 }
 

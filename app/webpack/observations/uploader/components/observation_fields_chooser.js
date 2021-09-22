@@ -6,6 +6,7 @@ import { Glyphicon, Badge, OverlayTrigger, Tooltip, Button } from "react-bootstr
 import TaxonAutocomplete from "./taxon_autocomplete";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import SelectionBasedComponent from "./selection_based_component";
+import { DATETIME_WITH_TIMEZONE } from "../models/util";
 
 class LeftMenu extends SelectionBasedComponent {
 
@@ -160,7 +161,7 @@ class LeftMenu extends SelectionBasedComponent {
     } else if ( datatype === "date" ) {
       mode = "date";
     }
-    let format = "YYYY/MM/DD h:mm A z";
+    let format = DATETIME_WITH_TIMEZONE;
     if ( datatype === "time" ) {
       format = "HH:mm";
     } else if ( datatype === "date" ) {

@@ -5,8 +5,8 @@
   .row
     .col-md-6.col-md-offset-3.col-xs-12
       %h1=t :are_you_sure?
-      %p=t "views.users.delete.by_deleting_your_account_you_will_remove"
       - if @observations_count > 0 || @identifications_count > 0 || @comments_count > 0
+        %p=t "views.users.delete.by_deleting_your_account_you_will_remove"
         %ul
           - if @observations_count > 0
             %li=t "views.users.delete.x_observations_html", count: number_with_delimiter( @observations_count ), helpers_count: number_with_delimiter( @helpers_count )

@@ -1,9 +1,15 @@
 #encoding: utf-8
 class ObservationsExportFlowTask < FlowTask
   validate :must_have_query
-  validate :must_have_primary_filter
   validate :must_have_reasonable_number_of_rows
+  validate :must_be_the_only_active_export, on: :create
   validates_presence_of :user_id
+
+  MAX_OBSERVATIONS = 200000
+
+  class ObservationsExportError < StandardError; end
+  class ObservationsExportNotSaved < ObservationsExportError; end
+  class ObservationsExportDeleted < ObservationsExportError; end
 
   before_save do |record|
     record.redirect_url = FakeView.export_observations_path
@@ -11,26 +17,21 @@ class ObservationsExportFlowTask < FlowTask
 
   def must_have_query
     if params.keys.blank?
-      errors.add(:base, "Query cannot be blank")
+      errors.add( :base, :must_have_query )
     end  
   end
 
-  def must_have_primary_filter
-    unless params[:iconic_taxa] || 
-           params[:iconic_taxon_id] || 
-           params[:taxon_id] || 
-           params[:place_id] || 
-           params[:user_id] || 
-           params[:q] || 
-           params[:projects] ||
-           params.keys.detect{|k| k =~ /^field:/}
-      errors.add(:base, "You must specify a taxon, place, user, or search query")
+  def must_have_reasonable_number_of_rows
+    if observations_count > MAX_OBSERVATIONS
+      errors.add( :base, :must_have_reasonable_number_of_rows )
     end
   end
 
-  def must_have_reasonable_number_of_rows
-    if observations_count > 200000
-      errors.add(:base, "Exports cannot contain more than 200,000 observations")
+  def must_be_the_only_active_export
+    if ObservationsExportFlowTask.where( user_id: user_id ).
+        where( "finished_at IS NULL AND error IS NULL" ).
+        exists?
+      errors.add( :user_id, :already_has_an_export_in_progress )
     end
   end
 
@@ -41,6 +42,9 @@ class ObservationsExportFlowTask < FlowTask
   def run(run_options = {})
     @logger = run_options[:logger] if run_options[:logger]
     @debug = run_options[:debug]
+    unless persisted?
+      raise ObservationsExportNotSaved.new( "Export must be saved before being run" )
+    end
     update_attributes(finished_at: nil, error: nil, exception: nil)
     outputs.each(&:destroy)
     outputs.reload
@@ -97,24 +101,46 @@ class ObservationsExportFlowTask < FlowTask
     Observation.elastic_query( search_params ).total_entries
   end
 
+  def for_each_observation( search_params )
+    batch_i = 0
+    obs_i = 0
+    site = user.site || Site.default
+    Observation.search_in_batches( search_params ) do |batch|
+      if @debug
+        logger.info
+        logger.info "BATCH #{batch_i}"
+        logger.info
+      end
+      unless FlowTask.where( id: id ).exists?
+        raise ObservationsExportDeleted.new( "Export was deleted during its run" )
+      end
+      Observation.preload_associations(batch, preloads)
+      batch.each do |observation|
+        logger.info "Obs #{obs_i} (#{observation.id})" if @debug
+        observation.localize_locale = user.locale || site.locale
+        observation.localize_place = user.place || site.place
+        yield observation
+        obs_i += 1
+        logger.info "Finished Obs #{obs_i} (#{observation.id})" if @debug
+      end
+      batch_i += 1
+    end
+  end
+
   def json_archive
     json_path = File.join(work_path, "#{basename}.json")
     json_opts = { only: export_columns, include: [ :observation_field_values, :photos ] }
     site = user.site || Site.default
     FileUtils.mkdir_p(File.dirname(json_path), mode: 0755)
+    search_params = params.merge( viewer: user, authenticate: user )
     open(json_path, "w") do |f|
       f << "["
       first = true
-      Observation.search_in_batches(params) do |batch|
-        Observation.preload_associations(batch, preloads)
-        batch.each do |observation|
-          f << ',' unless first
-          observation.localize_locale = user.locale || site.locale
-          observation.localize_place = user.place || site.place
-          first = false
-          json = observation.to_json(json_opts).sub(/^\[/, "").sub(/\]$/, "")
-          f << json
-        end
+      for_each_observation( search_params ) do |observation|
+        f << ',' unless first
+        first = false
+        json = observation.to_json(json_opts).sub(/^\[/, "").sub(/\]$/, "")
+        f << json
       end
       f << "]"
     end
@@ -129,34 +155,19 @@ class ObservationsExportFlowTask < FlowTask
     fpath = csv_path
     FileUtils.mkdir_p(File.dirname(fpath), mode: 0755)
     columns = export_columns
-    site = user.site || Site.default
-    search_params = params.merge( viewer: user )
+    search_params = params.merge( viewer: user, authenticate: user )
     CSV.open(fpath, "w") do |csv|
-      csv << columns
-      batch_i = 0
-      obs_i = 0
-      Observation.search_in_batches( search_params ) do |batch|
-        if @debug
-          logger.info
-          logger.info "BATCH #{batch_i}"
-          logger.info
-        end
-        Observation.preload_associations(batch, preloads)
-        batch.each do |observation|
-          logger.info "Obs #{obs_i} (#{observation.id})" if @debug
-          observation.localize_locale = user.locale || site.locale
-          observation.localize_place = user.place || site.place
-          csv << columns.map do |c|
-            c = "cached_tag_list" if c == "tag_list"
-            if c =~ /^private_/ && !observation.coordinates_viewable_by?( user )
-              nil
-            else
-              observation.send(c) rescue nil
-            end
+      csv << columns.map {|c| CGI.unescape( c ) }
+      for_each_observation( search_params ) do |observation|
+        coordinates_viewable = observation.coordinates_viewable_by?( user )
+        csv << columns.map do |c|
+          c = "cached_tag_list" if c == "tag_list"
+          if c =~ /^private_/ && !coordinates_viewable
+            nil
+          else
+            observation.send(c) rescue nil
           end
-          obs_i += 1
         end
-        batch_i += 1
       end
     end
     zip_path = File.join(work_path, "#{basename}.csv.zip")
@@ -189,7 +200,7 @@ class ObservationsExportFlowTask < FlowTask
 
   def export_columns
     exp_columns = options[:columns] || []
-    exp_columns = exp_columns.select{|k,v| v == "1"}.keys if exp_columns.is_a?(Hash)
+    exp_columns = exp_columns.to_h.select{|k,v| v == "1"}.keys if exp_columns.is_a?(Hash) || exp_columns.is_a?(ActionController::Parameters)
     exp_columns = Observation::CSV_COLUMNS if exp_columns.blank?
     ofv_columns = exp_columns.select{|c| c.index("field:")}
     ident_columns = exp_columns.select{|c| c.index("ident_by_" )}
@@ -220,7 +231,7 @@ class ObservationsExportFlowTask < FlowTask
     else
       NOTIFICATION_PRIORITY
     end
-    opts[:queue] = "slow" if count > 10000
+    opts[:queue] = "csv" if count > 1000
     opts[:unique_hash] = {'ObservationsExportFlowTask': id}
     opts
   end

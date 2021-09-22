@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
-import { updateCurrentUser } from "../../../shared/ducks/config";
+import { updateCurrentUser, setConfig } from "../../../shared/ducks/config";
 import ObservationModal from "../components/observation_modal";
+import { updateEditorContent } from "../../shared/ducks/text_editors";
 import {
   hideCurrentObservation,
   addIdentification,
@@ -14,6 +15,11 @@ import {
   fetchDataForTab,
   submitIdentificationWithConfirmation
 } from "../actions";
+import {
+  increaseBrightness,
+  decreaseBrightness,
+  resetBrightness
+} from "../ducks/brightnesses";
 
 function mapStateToProps( state ) {
   let images;
@@ -30,11 +36,25 @@ function mapStateToProps( state ) {
       originalDimensions: photo.original_dimensions
     } ) );
   }
+  const currentObsBrightnessKeys = {};
+  const brightnessKeys = Object.keys( state.brightnesses );
+  const id = observation && observation.id;
+  brightnessKeys.forEach( key => {
+    if ( key.includes( id ) ) {
+      currentObsBrightnessKeys[key] = state.brightnesses[key];
+    }
+  } );
+
   return Object.assign( {}, {
     images,
     blind: state.config.blind,
+    brightnesses: currentObsBrightnessKeys,
     controlledTerms: state.controlledTerms.terms,
-    currentUser: state.config.currentUser
+    currentUser: state.config.currentUser,
+    mapZoomLevel: state.config.mapZoomLevel,
+    mapZoomLevelLocked: state.config.mapZoomLevelLocked === undefined
+      ? false
+      : state.config.mapZoomLevelLocked
   }, state.currentObservation );
 }
 
@@ -42,6 +62,7 @@ function mapDispatchToProps( dispatch ) {
   return {
     onClose: ( ) => {
       dispatch( hideCurrentObservation( ) );
+      dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
     },
     toggleCaptive: ( ) => {
       dispatch( toggleCaptive( ) );
@@ -87,7 +108,13 @@ function mapDispatchToProps( dispatch ) {
         confirmationText: options.confirmationText
       } ) );
     },
-    updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) )
+    updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) ),
+    updateEditorContent: ( editor, content ) => dispatch( updateEditorContent( "obsIdentifyIdComment", content ) ),
+    onMapZoomChanged: ( e, map ) => dispatch( setConfig( { mapZoomLevel: map.getZoom( ) } ) ),
+    setMapZoomLevelLocked: locked => dispatch( setConfig( { mapZoomLevelLocked: locked } ) ),
+    increaseBrightness: ( ) => dispatch( increaseBrightness( ) ),
+    decreaseBrightness: ( ) => dispatch( decreaseBrightness( ) ),
+    resetBrightness: ( ) => dispatch( resetBrightness( ) )
   };
 }
 

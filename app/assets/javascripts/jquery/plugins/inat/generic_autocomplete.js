@@ -8,7 +8,7 @@ var genericAutocomplete = { };
 $.widget( "ui.autocomplete", $.ui.autocomplete, {
   _create: function ( ) {
     this._super( );
-    this.widget( ).menu( "option", "items", "> :not(.category)" );
+    this.widget( ).menu( "option", "items", "> :not(.non-option)" );
   }
 } );
 
@@ -131,7 +131,7 @@ $.fn.genericAutocomplete = function ( acOptions ) {
 
   ac = field.autocomplete( {
     minLength: ( options.minLength || options.minLength === 0 ) ? options.minLength : 1,
-    delay: 0,
+    delay: options.delay || 250,
     source: options.source,
     select: options.select || field.select,
     focus: options.focus || genericAutocomplete.focus,
@@ -193,8 +193,17 @@ $.fn.genericAutocomplete = function ( acOptions ) {
   // a reason for it to exist in React. It seems to just generate a ton of
   // unecessary resetSelection events, which end up firing afterUnselect even
   // when nothing has been unselected.
-  if ( !options.react ) {
-    field.keydown( function ( e ) {
+  field.keydown( function ( e ) {
+    if ( field.searchClear && !options.resetOnChange === false ) {
+      setTimeout( function ( ) {
+        if ( field.val( ) ) {
+          $( field.searchClear ).show( );
+        } else {
+          $( field.searchClear ).hide( );
+        }
+      }, 1 );
+    }
+    if ( !options.react ) {
       var key = e.keyCode || e.which;
       // return key
       if ( key === 13 ) {
@@ -211,24 +220,21 @@ $.fn.genericAutocomplete = function ( acOptions ) {
         }
         return false;
       }
-      if ( field.searchClear ) {
-        setTimeout( function ( ) {
-          field.val( ) ? $( field.searchClear ).show( ) : $( field.searchClear ).hide( );
-        }, 1 );
-      }
-      if ( field.val( ) && options.resetOnChange === false ) { return; }
+      if ( options.resetOnChange === false ) { return; }
       // keys like arrows, tab, shift, caps-lock, etc. won't change
       // the value of the field so we don't need to reset the selection
       var nonCharacters = [9, 16, 17, 18, 19, 20, 27, 33,
         34, 35, 36, 37, 38, 39, 40, 91, 93, 144, 145];
       if ( _.includes( nonCharacters, key ) ) { return; }
       field.trigger( "resetSelection" );
-    } );
-  }
+    }
+  } );
   field.keyup( function ( e ) {
     if ( !field.val( ) ) {
-      field.trigger( "resetSelection" );
       ac._close( );
+      if ( options.resetOnChange !== false ) {
+        field.trigger( "resetSelection" );
+      }
     }
   } );
   // show the results anytime the text field gains focus

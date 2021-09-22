@@ -5,45 +5,13 @@ class Emailer < ActionMailer::Base
   helper :taxa
   helper :users
 
-  after_action :set_sendgrid_headers
+  before_action :set_x_smtpapi_headers
+
+  include Shared::MailerModule
 
   default from: "#{Site.default.try(:name)} <#{Site.default.try(:email_noreply)}>",
           reply_to: Site.default.try(:email_noreply)
-  
-  def invite_user(address, params, user) 
-    Invite.create(:user => user, :invite_address => address)
-    @user = user
-    set_locale
-    @subject = "#{subject_prefix} #{params[:sender_name]} wants you to join them on #{@site.name}"
-    @personal_message = params[:personal_message]
-    @sending_user = params[:sender_name]
-    mail(set_site_specific_opts.merge(
-      :to => address,
-      :subject => @subject
-    ))
-    reset_locale
-  end
-  
-  def project_invitation_notification(project_invitation)
-    return unless project_invitation
-    return if project_invitation.observation.user.prefers_no_email
-    obs_str = project_invitation.observation.to_plain_s(:no_user => true, 
-      :no_time => true, :no_place_guess => true)
-    @subject = "#{subject_prefix} #{project_invitation.user.login} invited your " + 
-      "observation of #{project_invitation.observation.species_guess} " + 
-      "to #{project_invitation.project.title}"
-    @project = project_invitation.project
-    @observation = project_invitation.observation
-    @user = project_invitation.observation.user
-    set_locale
-    @inviter = project_invitation.user
-    mail(set_site_specific_opts.merge(
-      :to => project_invitation.observation.user.email, 
-      :subject => @subject
-    ))
-    reset_locale
-  end
-  
+
   def updates_notification(user, updates)
     return if user.blank? || updates.blank?
     return if user.email.blank?
@@ -232,7 +200,39 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
+  def collection_project_changed_for_trusting_member( project_user )
+    @project = project_user.project
+    return unless @project.project_type == "collection"
+    @user = project_user.user
+    mail_with_defaults(
+      subject: t(
+        "views.emailer.collection_project_changed_for_trusting_member.subject",
+        project: @project.title
+      )
+    )
+  end
+
+  def curator_application( user, application )
+    set_site
+    opts = set_site_specific_opts
+    # Always send this email to iNat staff
+    opts[:to] = Site.default.email_help.to_s.sub( "@", "+curator@" )
+    opts[:subject] = "Curator Application from #{user.login} (#{user.id})"
+    @user = user
+    @application = application
+    mail( opts )
+  end
+
   private
+  def mail_with_defaults( defaults = {} )
+    set_site
+    opts = set_site_specific_opts.merge( defaults )
+    opts[:to] ||= @user.name.blank? ? @user.email : "#{@user.name} <#{@user.email}>"
+    set_locale
+    mail( opts )
+    reset_locale
+  end
+
   def default_url_options
     opts = (Rails.application.config.action_mailer.default_url_options || {}).dup
     site = @user.try(:site) || @site || Site.default
@@ -288,11 +288,18 @@ class Emailer < ActionMailer::Base
     }
   end
 
-  def set_sendgrid_headers
-    mailer = self.class.name
-    headers "X-SMTPAPI" => {
-      category:    [ mailer, "#{mailer}##{action_name}" ],
-      unique_args: { environment: Rails.env }
-    }.to_json
+  def set_x_smtpapi_headers
+    @x_smtpapi_headers = {
+      # This is an identifier specifying the Sendgrid Unsubscribe Group this
+      # email belongs to. This assumes we're using one for all email sent from
+      # the webapp
+      asm_group_id: CONFIG.sendgrid && CONFIG.sendgrid.asm_group_ids ? CONFIG.sendgrid.asm_group_ids.default : nil,
+      # We're having Sendgrid perform this substitution because ERB freaks out
+      # when you put tags like this in a template
+      sub: {
+        "{{asm_group_unsubscribe_raw_url}}" => ['<%asm_group_unsubscribe_raw_url%>'.html_safe]
+      }
+    }
   end
+
 end

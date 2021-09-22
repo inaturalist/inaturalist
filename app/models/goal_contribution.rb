@@ -1,4 +1,4 @@
-class GoalContribution < ActiveRecord::Base
+class GoalContribution < ApplicationRecord
   belongs_to :contribution, :polymorphic => true
   belongs_to :goal_participant
   belongs_to :goal

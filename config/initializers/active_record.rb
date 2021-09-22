@@ -1,7 +1,7 @@
 module ActiveRecord
   class Base
     # Move has many associates from a reject to the current record.  Note this 
-    # uses update_all, so you need to deal with integreity issues yourself, or 
+    # uses update_all, so you need to deal with integrity issues yourself, or 
     # in a Class.merge_duplicates method
     def merge_has_many_associations(reject)
       has_many_reflections = self.class.reflections.select{|k,v| v.macro == :has_many}
@@ -21,6 +21,12 @@ module ActiveRecord
             reflection.klass.where(where).update_all(["#{reflection.foreign_key} = ?", id])
           end
         rescue ActiveRecord::RecordNotUnique => e
+          raise e unless reflection.klass.respond_to?(:merge_future_duplicates)
+          Rails.logger.debug(
+            "[DEBUG] Failed to merge associated for #{k} with update_all, " + 
+            "falling back to #{reflection.klass.name}.merge_future_duplicates"
+          )
+          reflection.klass.merge_future_duplicates( reject, self )
         end
 
         if reflection.klass.respond_to?(:merge_duplicates)
@@ -131,11 +137,11 @@ module ActiveRecord
     end
   end
 
-  class ActiveRecord::ConnectionAdapters::PostGISAdapter::MainAdapter
+  class ActiveRecord::ConnectionAdapters::PostGISAdapter
     def active_queries
       User.connection.execute("SELECT *
         FROM pg_stat_activity
-        WHERE state = 'active'
+        WHERE state != 'idle'
         AND backend_type != 'parallel worker'
         AND backend_type != 'background worker'
         ORDER BY state_change ASC").to_a.delete_if{ |r| r["query"] =~ /SELECT \* FROM pg_stat_activity/ }

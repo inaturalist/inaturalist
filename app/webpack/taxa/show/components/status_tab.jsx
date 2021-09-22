@@ -1,6 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Row, Col, Popover, OverlayTrigger } from "react-bootstrap";
+import ReactDOMServer from "react-dom/server";
+import {
+  Col,
+  Grid,
+  OverlayTrigger,
+  Popover,
+  Row
+} from "react-bootstrap";
 import _ from "lodash";
 import UserText from "../../../shared/components/user_text";
 
@@ -81,6 +88,16 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
             } else if ( status.geoprivacy === "private" ) {
               geoprivacy = I18n.t( "private_" );
             }
+            let source = I18n.t( "unknown" );
+            if ( status.url && status.authority ) {
+              source = (
+                <a href={status.url}>{ status.authority }</a>
+              );
+            } else if ( status.authority ) {
+              source = status.authority;
+            } else if ( status.user ) {
+              source = <a href={`/people/${status.user.login}`}>{ status.user.login }</a>;
+            }
             return (
               <tr
                 key={`statuses-${status.authority}-${status.place ? status.place.id : "global"}`}
@@ -117,29 +134,49 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                   <i className={`glyphicon glyphicon-flag ${flagClass}`} />
                   { " " }
                   { text }
-                  { status.description && status.description.length > 0 ? (
+                  { status.description && status.description.length > 0 && (
                     <UserText
                       truncate={550}
                       className="text-muted"
                       text={status.description}
                     />
-                  ) : null }
+                  ) }
+                  { status.user && status.created_at && (
+                    <div
+                      className="small text-muted"
+                      dangerouslySetInnerHTML={{
+                        __html: I18n.t( "added_by_user_on_date_html", {
+                          user: ReactDOMServer.renderToString( <a href={`/people/${status.user.login}`}>{status.user.login}</a> ),
+                          date: I18n.localize( "date.formats.month_day_year", status.created_at )
+                        } )
+                      }}
+                    />
+                  ) }
+                  { status.updater && status.updated_at && (
+                    <div
+                      className="small text-muted"
+                      dangerouslySetInnerHTML={{
+                        __html: I18n.t( "updated_by_user_on_date_html", {
+                          user: ReactDOMServer.renderToString( <a href={`/people/${status.updater.login}`}>{status.updater.login}</a> ),
+                          date: I18n.localize( "date.formats.month_day_year", status.updated_at )
+                        } )
+                      }}
+                    />
+                  ) }
                 </td>
                 <td>
-                  { status.url ? (
-                    <div className="media">
-                      <div className="media-body">
-                        <a href={status.url}>
-                          { status.authority }
-                        </a>
-                      </div>
+                  <div className="media">
+                    <div className="media-body">
+                      { source }
+                    </div>
+                    { status.url && (
                       <div className="media-right">
                         <a href={status.url}>
                           <i className="glyphicon glyphicon-new-window" />
                         </a>
                       </div>
-                    </div>
-                  ) : null }
+                    ) }
+                  </div>
                 </td>
                 <td>
                   { geoprivacy }
@@ -245,7 +282,7 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                     },
                     {
                       id: 2,
-                      url: "http://explorer.natureserve.org/ranking.htm",
+                      url: "https://explorer.natureserve.org/AboutTheData/Statuses",
                       host: "explorer.natureserve.org",
                       text: "NatureServe"
                     }

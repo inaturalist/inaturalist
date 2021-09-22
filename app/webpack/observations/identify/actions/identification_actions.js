@@ -1,13 +1,13 @@
 import inatjs from "inaturalistjs";
+import _ from "lodash";
 import {
   loadingDiscussionItem,
   stopLoadingDiscussionItem,
   fetchCurrentObservation,
+  fetchObservation,
   addIdentification
 } from "./current_observation_actions";
-import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
-import { fetchIdentifiers } from "./identifiers_actions";
 import { showAlert } from "./alert_actions";
 
 const POST_IDENTIFICATION = "post_identification";
@@ -49,16 +49,17 @@ function updateIdentification( ident, updates ) {
 }
 
 function agreeWithObservaiton( observation ) {
-  return function ( dispatch ) {
+  return ( dispatch, getState ) => {
     dispatch( loadingDiscussionItem( ) );
     dispatch( updateObservationInCollection( observation, { agreeLoading: true } ) );
     return dispatch(
       postIdentification( { observation_id: observation.id, taxon_id: observation.taxon.id } )
     ).then( ( ) => {
-      dispatch( updateObservationInCollection( observation, { agreeLoading: false } ) );
-      dispatch( fetchCurrentObservation( observation ) );
-      dispatch( fetchObservationsStats( ) );
-      dispatch( fetchIdentifiers( ) );
+      const observations = getState( ).observations.results || [];
+      if ( _.find( observations, o => o.id === observation.id ) ) {
+        dispatch( updateObservationInCollection( observation, { agreeLoading: false } ) );
+        dispatch( fetchObservation( observation ) );
+      }
     } );
   };
 }
@@ -81,7 +82,23 @@ function agreeWithCurrentObservation( ) {
       return null;
     }
     const currentObservation = s.currentObservation.observation;
-    if ( !currentObservation || !currentObservation.id || !currentObservation.taxon ) {
+    const { currentUser } = s.config;
+    const existingIdent = currentObservation.taxon && (
+      _.find( currentObservation.identifications, i => (
+        i.current
+        && i.user.id === currentUser.id
+        && i.taxon.id === currentObservation.taxon.id
+      ) )
+    );
+    if (
+      !currentObservation
+      || !currentObservation.id
+      || !currentObservation.taxon
+      || !currentObservation.user
+      || currentObservation.user.id === currentUser.id
+      || ( currentObservation.taxon && !currentObservation.taxon.is_active )
+      || existingIdent
+    ) {
       return null;
     }
     dispatch( agreeingWithObservation( ) );
@@ -105,8 +122,6 @@ function submitIdentificationWithConfirmation( identification, options = {} ) {
           dispatch( fetchCurrentObservation( identification.observation ) ).then( ( ) => {
             $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
           } );
-          dispatch( fetchObservationsStats( ) );
-          dispatch( fetchIdentifiers( ) );
         } );
     };
     if ( options.confirmationText ) {

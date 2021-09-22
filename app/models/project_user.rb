@@ -1,15 +1,15 @@
-class ProjectUser < ActiveRecord::Base
+class ProjectUser < ApplicationRecord
   
-  belongs_to :project, inverse_of: :project_users
+  belongs_to :project, inverse_of: :project_users, touch: true
   belongs_to :user, touch: true
   auto_subscribes :user, :to => :project
   
   after_save :check_role,
              :remove_updates,
              :subscribe_to_assessment_sections_later,
-             :index_project,
              :update_project_observations_later
-  after_destroy :remove_updates, :index_project
+  after_commit :index_project, on: [:create, :update]
+  after_destroy :remove_updates
   validates_uniqueness_of :user_id, :scope => :project_id, :message => "already a member of this project"
   validates_presence_of :project, :user
   validates_rules_from :project, :rule_methods => [:has_time_zone?]
@@ -25,7 +25,19 @@ class ProjectUser < ActiveRecord::Base
     CURATOR_COORDINATE_ACCESS_ANY,
     CURATOR_COORDINATE_ACCESS_NONE
   ]
+  # Specifies whether curators can see hidden coordinates based on who added the observation to the project
   preference :curator_coordinate_access, :string, :default => CURATOR_COORDINATE_ACCESS_OBSERVER
+
+  # Specifies whether curators can see hidden coordinates based on why the coordinates were hidden
+  CURATOR_COORDINATE_ACCESS_FOR_NONE = "none"     # Curators cannot view hidden coords
+  CURATOR_COORDINATE_ACCESS_FOR_TAXON = "taxon"   # Curators can view coords hidden by threatened taxon
+  CURATOR_COORDINATE_ACCESS_FOR_ANY = "any"       # Curators can view coords hidden for any reason
+  preference :curator_coordinate_access_for, :string, default: CURATOR_COORDINATE_ACCESS_FOR_NONE
+
+  # The period of time a collection project curator must wait between changing
+  # the observation requirements and accessing hidden coordinates
+  CURATOR_COORDINATE_ACCESS_WAIT_PERIOD = 1.week
+
   preference :updates, :boolean, :default => true
   
   CURATOR_CHANGE_NOTIFICATION = "curator_change"
@@ -40,7 +52,7 @@ class ProjectUser < ActiveRecord::Base
     # don't bother queuing this if there's no relevant role change
     queue_if: Proc.new{ |pu|
       !pu.project.is_new_project? &&
-        pu.role_changed? &&
+        pu.previous_changes[:role] &&
         ( ROLES.include?(pu.role) || pu.user_id == pu.project.user_id )
     },
     # check to make sure role status hasn't changed since queuing
@@ -60,7 +72,7 @@ class ProjectUser < ActiveRecord::Base
   end
 
   def remove_updates
-    return true unless role_changed? && role.blank?
+    return true unless saved_change_to_role? && role.blank?
     UpdateAction.delete_and_purge(
       notifier_type: "ProjectUser",
       notifier_id: id,
@@ -70,7 +82,7 @@ class ProjectUser < ActiveRecord::Base
   end
 
   def subscribe_to_assessment_sections_later
-    return true unless role_changed? && !role.blank?
+    return true unless saved_change_to_role? && !role.blank?
     delay(:priority => USER_INTEGRITY_PRIORITY).subscribe_to_assessment_sections
     true
   end
@@ -82,10 +94,14 @@ class ProjectUser < ActiveRecord::Base
   end
 
   def update_project_observations_curator_coordinate_access
-    project.project_observations.joins(:observation).where( "observations.user_id = ?", user ).find_each do |po|
-      po.set_curator_coordinate_access( force: true )
-      unless po.save
-        Rails.logger.error "[ERROR #{Time.now}] Failed to update #{po}: #{po.errors.full_messages.to_sentence}"
+    Observation.search_in_batches( project_id: project_id, user_id: user_id ) do |batch|
+      Observation.preload_associations( batch, [:project_observations] )
+      project_observations = batch.collect{|o| o.project_observations.select{|po| po.project_id == project_id }}.flatten
+      project_observations.each do |po|
+        po.set_curator_coordinate_access( force: true )
+        unless po.save
+          Rails.logger.error "[ERROR #{Time.now}] Failed to update #{po}: #{po.errors.full_messages.to_sentence}"
+        end
       end
     end
   end
@@ -133,8 +149,9 @@ class ProjectUser < ActiveRecord::Base
   end
 
   def check_role
-    return true unless role_changed?
-    if role_was.blank?
+    return true unless saved_change_to_role?
+    # TODO Rails 6: use role_previously_was?
+    if previous_changes[:role] && previous_changes[:role][0].blank?
       Project.delay(:priority => USER_INTEGRITY_PRIORITY).update_curator_idents_on_make_curator(project_id, id)
     elsif role.blank?
       Project.delay(:priority => USER_INTEGRITY_PRIORITY).update_curator_idents_on_remove_curator(project_id, id)
@@ -180,6 +197,59 @@ class ProjectUser < ActiveRecord::Base
         project_user.update_taxa_counter_cache
         project_user.update_observations_counter_cache
         Project.update_observed_taxa_count(po.project_id)
+      end
+    end
+  end
+
+  # This will remove all duplicates by grouping on project_id and user_id.
+  # Probably only useful when it gets used by User.merge, otherwise probably
+  # rather dangerous
+  def self.merge_duplicates( options = {} )
+    debug = options.delete(:debug)
+    where = options.map{|k,v| "#{k} = #{v}"}.join(" AND ") unless options.blank?
+    sql = <<-SQL
+      SELECT project_id, user_id, array_agg(id) AS ids, count(*)
+      FROM project_users
+      #{"WHERE #{where}" if where}
+      GROUP BY project_id, user_id HAVING count(*) > 1
+    SQL
+    puts "Finding project_users WHERE #{where}" if debug
+    connection.execute( sql.gsub(/\s+/, " " ).strip ).each do |row|
+      to_merge_ids = row["ids"].to_s.gsub( /[\{\}]/, "" ).split( "," ).sort
+      pu = ProjectUser.find_by_id( to_merge_ids.first )
+      puts "pu: #{pu}, merging #{to_merge_ids}" if debug
+      rejects = ProjectUser.where( id: to_merge_ids[1..-1] )
+      rejects.destroy_all
+    end
+  end
+
+  def self.merge_future_duplicates( reject, keeper )
+    Rails.logger.debug "[DEBUG] ProjectUser.merge_future_duplicates, reject: #{reject}, keeper: #{keeper}"
+    unless reject.is_a?( keeper.class )
+      raise "reject and keeper must by of the same class"
+    end
+    unless reject.is_a?( User )
+      raise "ProjectUser.merge_future_duplicates only works for observations right now"
+    end
+    k, reflection = reflections.detect{|k,r| r.klass == reject.class && r.macro == :belongs_to }
+    sql = <<-SQL
+      SELECT
+        project_id,
+        array_agg(id) AS ids
+      FROM
+        project_users
+      WHERE
+        #{reflection.foreign_key} IN (#{reject.id},#{keeper.id})
+      GROUP BY
+        project_id
+      HAVING
+        count(*) > 1
+    SQL
+    connection.execute( sql.gsub(/\s+/, " " ).strip ).each do |row|
+      to_merge_ids = row['ids'].to_s.gsub(/[\{\}]/, '').split(',').sort
+      project_users = ProjectUser.where( id: to_merge_ids )
+      if reject_pu = project_users.detect{|i| i.send(reflection.foreign_key) == reject.id }
+        reject_pu.destroy
       end
     end
   end

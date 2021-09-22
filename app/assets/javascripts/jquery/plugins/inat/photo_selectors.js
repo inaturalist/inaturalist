@@ -34,6 +34,22 @@
 //    }
 //
 (function($){
+  var MAX_FILE_SIZE = 20971520; // 20 MB in bytes
+
+  function bindMaxFileSizeValidation( wrapper ) {
+    $( ".photo_file_field input:file", wrapper ).not( ".max-file-sized" ).change( function( e ) {
+      $( e.currentTarget ).addClass( "max-file-sized" );
+      var files = e.currentTarget.files;
+      for( var k in files ) {
+        if ( files[k].size > MAX_FILE_SIZE) {
+          alert( I18n.t( "uploader.errors.file_too_big", { megabytes: MAX_FILE_SIZE / 1024 / 1024 } ) );
+          $( e.currentTarget ).val( null );
+          break;
+        }
+      }
+    } );
+  }
+
   $.fn.photoSelector = function(options) {
     var options = $.extend(true, {}, $.fn.photoSelector.defaults, options);
     
@@ -64,6 +80,8 @@
     
     // Insert all existing content into the container
     $(container).append(existing);
+
+    bindMaxFileSizeValidation( wrapper );
     
     // Fill with photos
     if (options.queryOnLoad) {
@@ -346,11 +364,11 @@
     // Append next & prev links
     var page = $('<input class="photoSelectorPage" type="hidden" value="1"/>')
     if (options.bootstrap) {
-      var prev = $('<button type="button" class="prevlink btn btn-default">&laquo; '+I18n.t('prev')+'</button>')
-      var next = $('<button type="button" class="nextlink btn btn-default">'+I18n.t('next')+' &raquo;</button>')
+      var prev = $('<button type="button" class="prevlink btn btn-default">&laquo; '+I18n.t('previous_page_short')+'</button>')
+      var next = $('<button type="button" class="nextlink btn btn-default">'+I18n.t('next_page_short')+' &raquo;</button>')
     } else {
-      var prev = $('<a href="#" class="prevlink button">&laquo; '+I18n.t('prev')+'</a>')
-      var next = $('<a href="#" class="nextlink button">'+I18n.t('next')+' &raquo;</a>')
+      var prev = $('<a href="#" class="prevlink button">&laquo; '+I18n.t('previous_page_short')+'</a>')
+      var next = $('<a href="#" class="nextlink button">'+I18n.t('next_page_short')+' &raquo;</a>')
     }
     prev.click(function(e) {
       var prevOpts = $.extend({}, $(wrapper).data('photoSelectorOptions'));
@@ -560,6 +578,8 @@
         if (options.baseURL && options.baseURL.match(/local_photo/)) {
           $('.nextlink, .prevlink, .allNone, .photoSelectorSearch', wrapper).hide()
           $(wrapper).find('.local_photos').show()
+          // Prevent adding files that are too big
+          bindMaxFileSizeValidation( wrapper );
         } else {
           if ( options.baseURL && options.baseURL.match( /picasa/ ) ) {
             $('.nextlink, .allNone, .photoSelectorSearch', wrapper).show( );

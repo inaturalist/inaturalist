@@ -1,0 +1,14 @@
+#licensing.form-group.checkbox
+  %label
+    %input#license-all{ type: "checkbox", checked: true }
+    #license-fields
+      = f.check_box :preferred_observation_license, { checked: true }, Observation::CC_BY_NC
+      = f.check_box :preferred_photo_license, { checked: true }, Observation::CC_BY_NC
+      = f.check_box :preferred_sound_license, { checked: true }, Observation::CC_BY_NC
+    %span
+      - if child
+        =t :yes_license_my_childs_observations
+      - else 
+        =t :yes_license_my_observations_so_scientists_can_use
+      %a{ href: "#", onclick: "return false;", data: { toggle: "popover", content: t(:check_this_box_if_html), placement: "top" }, title: t(:about_licenses) }
+        =t :learn_more

@@ -4,8 +4,9 @@ import inaturalistjs from "inaturalistjs";
 import * as types from "../constants/constants";
 import DroppedFile from "../models/dropped_file";
 import ObsCard from "../models/obs_card";
-import util, { MAX_FILE_SIZE } from "../models/util";
+import util from "../models/util";
 import { resizeUpload } from "../../../shared/util";
+import RejectedFilesError from "../../../shared/components/rejected_files_error";
 
 const actions = class actions {
   static setState( attrs ) {
@@ -26,6 +27,31 @@ const actions = class actions {
       dispatch( { type: types.APPEND_OBS_CARDS, obsCards } );
       // select the first card in any new batch
       dispatch( actions.selectObsCards( { [firstKey]: true } ) );
+    };
+  }
+
+  static fileCounts( files ) {
+    return {
+      photos: _.filter( files, f => /^image\//.test( f.type ) ).length,
+      sounds: _.filter( files, f => /^audio\//.test( f.type ) ).length
+    };
+  }
+
+  static enforceLimit( src, dest ) {
+    const cardFileDropLimit = 20;
+    const obeysLimit = ( src + dest <= cardFileDropLimit );
+    return function ( dispatch ) {
+      if ( !obeysLimit ) {
+        dispatch( actions.setState( {
+          confirmModal: {
+            show: true,
+            message: I18n.t( "observations_can_only_have_n_photos", { limit: cardFileDropLimit } ),
+            confirmText: I18n.t( "ok" ),
+            hideCancel: true
+          }
+        } ) );
+      }
+      return obeysLimit;
     };
   }
 
@@ -69,6 +95,14 @@ const actions = class actions {
     return { type: types.SELECT_ALL };
   }
 
+  static insertCardsBefore( cardIds, beforeCardId ) {
+    return {
+      type: types.INSERT_CARDS_BEFORE,
+      cardIds,
+      beforeCardId
+    };
+  }
+
   static createBlankObsCard( ) {
     return function ( dispatch, getState ) {
       dispatch( { type: types.CREATE_BLANK_OBS_CARD } );
@@ -102,11 +136,9 @@ const actions = class actions {
     };
   }
 
-  static onFileDrop( droppedFiles, e ) {
+  static onFileDrop( droppedFiles, options = {} ) {
     return function ( dispatch ) {
       if ( droppedFiles.length === 0 ) { return; }
-      // skip drops onto cards
-      if ( $( "ul.obs li" ).has( e.nativeEvent.target ).length > 0 ) { return; }
       const obsCards = { };
       const files = { };
       let i = 0;
@@ -131,13 +163,23 @@ const actions = class actions {
         dispatch( actions.appendObsCards( obsCards ) );
         dispatch( actions.appendFiles( files ) );
         dispatch( actions.uploadFiles( ) );
+        if ( options.beforeCardId ) {
+          dispatch( actions.insertCardsBefore(
+            Object.keys( obsCards ),
+            options.beforeCardId
+          ) );
+        }
       }
     };
   }
 
-  static onFileDropOnCard( droppedFiles, e, obsCard ) {
+  static onFileDropOnCard( droppedFiles, obsCard ) {
     return function ( dispatch ) {
       if ( droppedFiles.length === 0 ) { return; }
+      const { photos: targetPhotos, sounds: targetSounds } = actions.fileCounts( obsCard.files );
+      const { photos: droppedPhotos, sounds: droppedSounds } = actions.fileCounts( droppedFiles );
+      if ( !dispatch( actions.enforceLimit( droppedPhotos, targetPhotos ) ) ) { return; }
+      if ( !dispatch( actions.enforceLimit( droppedSounds, targetSounds ) ) ) { return; }
       const files = { };
       let i = 0;
       const startTime = new Date( ).getTime( );
@@ -207,7 +249,18 @@ const actions = class actions {
       const ids = _.keys( obsCards );
       const targetIDString = targetCard ? targetCard.id : _.min( ids );
       const targetID = parseInt( targetIDString, 10 );
-
+      const targetFiles = obsCards[targetID].files;
+      const { photos: targetPhotos, sounds: targetSounds } = actions.fileCounts( targetFiles );
+      let { remainingPhotos, remainingSounds } = { remainingPhotos: 0, remainingSounds: 0 };
+      _.each( obsCards, c => {
+        if ( c.id !== targetID ) {
+          const { photos: toAddPhotos, sounds: toAddSounds } = actions.fileCounts( c.files );
+          remainingPhotos += toAddPhotos;
+          remainingSounds += toAddSounds;
+        }
+      } );
+      if ( !dispatch( actions.enforceLimit( remainingPhotos, targetPhotos ) ) ) { return; }
+      if ( !dispatch( actions.enforceLimit( remainingSounds, targetSounds ) ) ) { return; }
       let i = 0;
       const startTime = new Date( ).getTime( );
       _.each( obsCards, c => {
@@ -221,6 +274,97 @@ const actions = class actions {
         }
       } );
       dispatch( actions.selectObsCards( { [targetID]: true } ) );
+    };
+  }
+
+  static duplicateObsCards( obsCards ) {
+    return function ( dispatch, getState ) {
+      let serialId = new Date( ).getTime( );
+      const { files, obsPositions } = getState( ).dragDropZone;
+      const newCards = [];
+      // for each obs card
+      _.each( obsCards, c => {
+        // make a new card
+        const id = serialId;
+        const newCard = new ObsCard( Object.assign( { },
+          _.pick( c, [
+            "accuracy",
+            "bounds",
+            "captive",
+            "date",
+            "description",
+            "geoprivacy",
+            "latitude",
+            "locality_notes",
+            "longitude",
+            "manualPlaceGuess",
+            "modified",
+            "positional_accuracy",
+            "tags",
+            "zoom"
+          ] ),
+          { id } ) );
+        // update that card with the old card's attributes
+        dispatch( actions.appendObsCards( { [newCard.id]: newCard } ) );
+        newCards.push( newCard );
+        // insert the new card after the old one
+        const cardPosition = obsPositions.indexOf( c.id );
+        const beforeCardId = cardPosition === obsPositions.length - 1
+          ? null
+          : obsPositions[cardPosition + 1];
+        dispatch( actions.insertCardsBefore( [newCard.id], beforeCardId ) );
+        const cardFiles = _.filter( files, f => f.cardID === c.id );
+        if ( cardFiles.length > 0 ) {
+          const newFiles = {};
+          _.each( cardFiles, cf => {
+            // make a new file and update with the old file's attributes
+            // TODO Make it so you don't upload a file twice. Responding to an
+            // upload event should just upload all the local file records
+            // associated with that upload
+            if ( cf.uploadState === "uploaded" ) {
+              newFiles[serialId] = new DroppedFile( Object.assign( {},
+                _.pick( cf, [
+                  "metadata",
+                  "name",
+                  "photo",
+                  "serverMetadata",
+                  "sort",
+                  "sound",
+                  "type",
+                  "uploadState",
+                  "visionThumbnail"
+                ] ), {
+                  id: serialId,
+                  cardID: newCard.id
+                } ) );
+            } else {
+              newFiles[serialId] = new DroppedFile( Object.assign( {},
+                _.pick( cf, [
+                  "file",
+                  "metadata",
+                  "name",
+                  "photo",
+                  "preview",
+                  "sort",
+                  "sound",
+                  "type",
+                  "visionThumbnail"
+                ] ), {
+                  id: serialId,
+                  cardID: newCard.id,
+                  uploadState: "pending"
+                } ) );
+            }
+            serialId += 1;
+          } );
+          dispatch( actions.appendFiles( newFiles ) );
+        }
+        serialId += 1;
+      } );
+      dispatch( actions.selectObsCards( _.reduce( newCards, ( o, card ) => {
+        o[card.id] = true;
+        return o;
+      }, { } ) ) );
     };
   }
 
@@ -254,6 +398,10 @@ const actions = class actions {
 
   static movePhoto( photo, toObsCard ) {
     return function ( dispatch ) {
+      const { photos: targetPhotos, sounds: targetSounds } = actions.fileCounts( toObsCard.files );
+      const { photos: movedPhotos, sounds: movedSounds } = actions.fileCounts( [photo.file] );
+      if ( !dispatch( actions.enforceLimit( movedPhotos, targetPhotos ) ) ) { return; }
+      if ( !dispatch( actions.enforceLimit( movedSounds, targetSounds ) ) ) { return; }
       const time = new Date( ).getTime( );
       dispatch( actions.updateFile( photo.file, { cardID: toObsCard.id, sort: time } ) );
 
@@ -267,16 +415,19 @@ const actions = class actions {
     };
   }
 
-  static newCardFromMedia( media ) {
+  static newCardFromMedia( media, options = {} ) {
     return function ( dispatch ) {
       const time = new Date( ).getTime( );
       const obsCards = { [time]: new ObsCard( { id: time } ) };
       dispatch( actions.appendObsCards( obsCards ) );
       dispatch( actions.updateFile( media.file, { cardID: time, sort: time } ) );
+      if ( options.beforeCardId !== undefined ) {
+        dispatch( actions.insertCardsBefore( [time], options.beforeCardId ) );
+      }
 
       const fromCard = new ObsCard( Object.assign( { }, media.obsCard ) );
       delete fromCard.files[media.file.id];
-      // the card from where the photo was move can be removed if it has no data
+      // the card from where the photo was moved can be removed if it has no data
       // or if its data is untouched from when it was imported
       if ( fromCard.blank( ) || ( _.isEmpty( fromCard.files ) && !fromCard.modified ) ) {
         dispatch( actions.removeObsCard( fromCard ) );
@@ -288,7 +439,7 @@ const actions = class actions {
     return function ( dispatch ) {
       util.isOnline( online => {
         if ( online ) {
-          dispatch( actions.submitCheckNoPhotoNoID( ) );
+          dispatch( actions.submitCheckNoPhotoOrNoID( ) );
         } else {
           dispatch( actions.setState( {
             confirmModal: {
@@ -303,16 +454,14 @@ const actions = class actions {
     };
   }
 
-  static submitCheckNoPhotoNoID( ) {
+  static submitCheckNoPhotoOrNoID( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
       let failed;
       _.each( s.dragDropZone.obsCards, c => {
         if (
           !failed
-          && _.size( c.files ) === 0
-          && !c.taxon_id
-          && !c.species_guess
+          && ( _.size( c.files ) === 0 || ( !c.taxon_id && !c.species_guess ) )
         ) {
           failed = true;
         }
@@ -323,7 +472,8 @@ const actions = class actions {
             show: true,
             cancelText: I18n.t( "go_back" ),
             confirmText: I18n.t( "continue" ),
-            message: I18n.t( "you_are_submitting_obs_without_photos_and_names" ),
+            title: I18n.t( "some_observations_are_missing_media_or_identifications" ),
+            message: I18n.t( "some_observations_are_missing_media_or_identifications_desc" ),
             onConfirm: () => {
               setTimeout( () => dispatch( actions.submitCheckPhotoNoDateOrLocation( ) ), 50 );
             }
@@ -382,7 +532,8 @@ const actions = class actions {
         failed: 0
       };
       let nextToSave;
-      _.each( s.dragDropZone.obsCards, c => {
+      _.each( s.dragDropZone.obsPositions, cardID => {
+        const c = s.dragDropZone.obsCards[cardID];
         stateCounts[c.saveState] = stateCounts[c.saveState] || 0;
         stateCounts[c.saveState] += 1;
         if ( c.saveState === "pending" && !nextToSave ) {
@@ -391,7 +542,7 @@ const actions = class actions {
       } );
       dispatch( { type: types.SET_STATE, attrs: { saveCounts: stateCounts } } );
       if ( nextToSave && stateCounts.saving < s.dragDropZone.maximumNumberOfUploads ) {
-        nextToSave.save( dispatch );
+        nextToSave.save( dispatch, { refresh: stateCounts.pending === 1 } );
       } else if ( nextToSave ) {
         // waiting for existing uploads to finish;
       } else if ( stateCounts.pending === 0 && stateCounts.saving === 0 ) {
@@ -562,7 +713,31 @@ const actions = class actions {
           }
         }, 100 );
       } ).catch( e => {
-        console.log( "Upload failed:", e );
+        // console.log( "Upload failed:", e );
+        file.saveTries = ( parseInt( file.saveTries, 0 ) || 0 ) + 1;
+        if (
+          e.response
+          && e.response.status === 503
+          && [
+            // Request Timeout: we probably never respond with this, but just in case
+            408,
+            // Too Many Requests: theoretically normal users might hit our rate
+            // limits, but unlikely
+            429,
+            // Service Unavailable: this might happen during downtime, but is
+            // intended to handle intermittent cases where Varnish doesn't seem to
+            // find a working app server
+            503
+          ].indexOf( e.response.status ) >= 0
+          && file.saveTries <= 4
+        ) {
+          const waitFor = file.saveTries * 3000;
+          setTimeout( ( ) => {
+            dispatch( actions.uploadImage( file ) );
+          }, waitFor );
+          return;
+        }
+        file.saveTries = 0;
         dispatch( actions.updateFile( file, { uploadState: "failed" } ) );
         setTimeout( ( ) => {
           dispatch( actions.uploadFiles( ) );
@@ -598,48 +773,10 @@ const actions = class actions {
 
   static onRejectedFiles( rejectedFiles ) {
     return function ( dispatch ) {
-      const errors = {};
-      let showResizeTip = false;
-      let showModal = false;
-      const namedRejectedFiles = _.filter( rejectedFiles, f => f.name && f.name.length > 0 );
-      _.forEach( namedRejectedFiles, file => {
-        errors[file.name] = errors[file.name] || [];
-        if ( file.size > MAX_FILE_SIZE ) {
-          errors[file.name].push(
-            I18n.t( "uploader.errors.file_too_big", { megabytes: MAX_FILE_SIZE / 1024 / 1024 } )
-          );
-          showResizeTip = true;
-          showModal = true;
-        }
-        if ( file.type && !file.type.match( /gif|png|jpe?g|wav|mpe?g|mp3|aac|3gpp|amr/i ) ) {
-          errors[file.name].push(
-            I18n.t( "uploader.errors.unsupported_file_type" )
-          );
-          showModal = true;
-        }
-        if ( window.location.search.match( /debug=true/ ) ) {
-          console.log( "[DEBUG] rejected file: ", file );
-        }
-      } );
-      if ( !showModal ) {
+      const message = <RejectedFilesError rejectedFiles={rejectedFiles} />;
+      if ( message === null ) {
         return;
       }
-      const message = (
-        <div>
-          { I18n.t( "there_were_some_problems_with_these_files" ) }
-          { _.map( errors, ( fileErrors, fileName ) => (
-            <div key={`file-errors-${fileName}`}>
-              <code>{ fileName }</code>
-              <ul>
-                { _.map( fileErrors, ( error, i ) => <li key={`file-errors-${fileName}-${i}`}>{ error }</li> )}
-              </ul>
-            </div>
-          ) )}
-          <p className="small text-muted">
-            { showResizeTip && I18n.t( "uploader.resize_tip" ) }
-          </p>
-        </div>
-      );
       dispatch( actions.setState( {
         confirmModal: {
           show: true,
@@ -648,6 +785,13 @@ const actions = class actions {
           hideCancel: true
         }
       } ) );
+    };
+  }
+
+  static duplicateSelected( ) {
+    return function ( dispatch, getState ) {
+      const s = getState( );
+      dispatch( actions.duplicateObsCards( s.dragDropZone.selectedObsCards ) );
     };
   }
 };

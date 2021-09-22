@@ -39,15 +39,15 @@ EOS
   opt :taxon, "Only export observations of this taxon", type: :string, short: "-t"
   opt :project, "Only export observations from this project", type: :string, short: "-o"
   opt :core,
-    "Core type. Options: occurrence, taxon. Default: occurrence.",
+    "Core type. Options: occurrence, taxon",
     type: :string, short: "-c", default: "occurrence"
-  opt :extensions, "Extensions to include. Options: EolMedia, SimpleMultimedia, ObservationFields, ProjectObservations, User",
+  opt :extensions, "Extensions to include. Options: EolMedia, SimpleMultimedia, ObservationFields, ProjectObservations, User, VernacularNames (taxon core only)",
     type: :strings, short: "-x"
   opt :metadata, "
-    Path to metadata template. Default: observations/gbif.eml.erb. \"skip\" will skip EML file generation.
-  ".strip.gsub( /\s+/m, " " ), type: :string, short: "-m", default: "observations/gbif.eml.erb"
-  opt :descriptor, "Path to descriptor template. Default: observations/gbif.descriptor.builder",
-    type: :string, short: "-r", default: "observations/gbif.descriptor.builder"
+    Path to metadata template. Default: {core}/dwc.eml.erb. \"skip\" will skip EML file generation.
+  ".strip.gsub( /\s+/m, " " ), type: :string, short: "-m"
+  opt :descriptor, "Path to descriptor template",
+    type: :string, short: "-r", default: "observations/dwc.descriptor.builder"
   opt :quality, "
     Quality grade of observation output.  This will also filter EolMedia
     exports. Options: research, casual, verifiable, any.
@@ -63,6 +63,7 @@ EOS
   ".strip.gsub( /\s+/m, " " ), type: :strings
   opt :photos, "Whether or not to include obs with photos", type: :string
   opt :private_coordinates, "Include private coordinates", type: :boolean, default: false
+  opt :taxon_private_coordinates, "Include private coordinates if obscured by taxon geoprivacy but not user geoprivacy", type: :boolean, default: false
   opt :site_id, "Only include obs from a particular site", type: :integer
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
   opt :benchmark, "Print benchmarks", type: :boolean, short: "-b"
@@ -76,9 +77,17 @@ EOS
   opt :created_d2, "Maximum date of observation creation", type: :string
   opt :photographed_taxa, "When core is taxon, only include taxa with observation photos", type: :boolean, default: false
   opt :ala, "Add ALA requested fields", type: :boolean, default: false
+  opt :ofv_datatype, "Filter obs by datatype of observation field values", type: :string
+  opt :freq, "Frequency with which this archive gets updated. See MaintUpFreqType in http://rs.gbif.org/schema/eml-2.1.1/eml-dataset.xsd for values.", type: :string
+  opt :swlng, "Bounding box left longitude", type: :double
+  opt :swlat, "Bounding box bottom latitude", type: :double
+  opt :nelng, "Bounding box right longitude", type: :double
+  opt :nelat, "Bounding box top latitude", type: :double
 end
 
 if opts.debug
   opts[:logger] = Logger.new(STDOUT, level: Logger::DEBUG)
+else
+  opts[:logger] = Logger.new(STDOUT, level: Logger::INFO)
 end
 DarwinCore::Archive.generate(opts)

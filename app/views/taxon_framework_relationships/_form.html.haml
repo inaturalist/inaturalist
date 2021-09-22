@@ -28,7 +28,7 @@
 = form_for @taxon_framework_relationship do |f|
   .form-group
     = label_tag 'taxon_framework_id', t( :taxon_framework_taxon)
-    = f.collection_select( :taxon_framework_id, @taxon_frameworks, :id, :taxon_framework_taxon_name, {}, { :class => "form-control" } )
+    = f.collection_select( :taxon_framework_id, @taxon_frameworks, :id, :name, {}, { :class => "form-control" } )
     %smalll#taxonFrameworkHelp.form-text.text-muted Ancestor taxon with an attached Taxon Framework
   .form-group
     %label= t( :internal_taxa )
@@ -64,14 +64,14 @@
                 = et.text_field :name, { :class => "form-control" }
               .form-group.col-xs-2
                 = et.label :rank, "Rank"
-                = et.collection_select :rank, [Taxon::RANKS,ExternalTaxon::ADDITIONAL_RANKS].flatten, :to_s, :to_s, include_blank: t( :other ).downcase
+                = et.collection_select :rank, [Taxon::RANKS,ExternalTaxon::ADDITIONAL_RANKS].flatten, :to_s, :to_s, {:selected => et.object.rank || "species"}
             .row
               .form-group.col-xs-8
                 = et.label :parent_name, "Parent Name"
                 = et.text_field :parent_name, { :class => "form-control" }
               .form-group.col-xs-2
                 = et.label :parent_rank, "Parent Rank"
-                = et.collection_select :parent_rank, [Taxon::RANKS,ExternalTaxon::ADDITIONAL_RANKS].flatten, :to_s, :to_s, include_blank: t( :other ).downcase
+                = et.collection_select :parent_rank, [Taxon::RANKS,ExternalTaxon::ADDITIONAL_RANKS].flatten, :to_s, :to_s, {:selected => et.object.parent_rank || "genus"}
             .form-group
               = et.label :url, "URL"
               = et.text_field :url, { :class => "form-control" }
@@ -88,14 +88,14 @@
                   = et.text_field :name, { :class => "form-control" }
                 .form-group.col-xs-2
                   = et.label :rank, "Rank"
-                  = et.collection_select :rank, [Taxon::RANKS,ExternalTaxon::ADDITIONAL_RANKS].flatten, :to_s, :to_s, include_blank: t( :other ).downcase
+                  = et.collection_select :rank, [Taxon::RANKS,ExternalTaxon::ADDITIONAL_RANKS].flatten, :to_s, :to_s, {:selected => et.object.rank || "species"}
               .row
                 .form-group.col-xs-8
                   = et.label :parent_name, "Parent Name"
                   = et.text_field :parent_name, { :class => "form-control" }
                 .form-group.col-xs-2
                   = et.label :parent_rank, "Parent Rank"
-                  = et.collection_select :parent_rank, [Taxon::RANKS,ExternalTaxon::ADDITIONAL_RANKS].flatten, :to_s, :to_s, include_blank: t( :other ).downcase
+                  = et.collection_select :parent_rank, [Taxon::RANKS,ExternalTaxon::ADDITIONAL_RANKS].flatten, :to_s, :to_s, {:selected => et.object.parent_rank || "genus"}
               .form-group
                 = et.label :url, "URL"
                 = et.text_field :url, { :class => "form-control" }

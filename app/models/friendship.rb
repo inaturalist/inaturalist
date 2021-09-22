@@ -1,4 +1,4 @@
-class Friendship < ActiveRecord::Base
+class Friendship < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: "User", foreign_key: "friend_id"
   
@@ -12,10 +12,10 @@ class Friendship < ActiveRecord::Base
   blockable_by lambda {|friendship| friendship.friend_id }
 
   after_update :remove_subscription_to_friend, if: Proc.new{|friendship|
-    friendship.following_changed? && !friendship.following?
+    friendship.saved_change_to_following? && !friendship.following?
   }
   after_update :create_subscription_after_update, if: Proc.new{|friendship|
-    friendship.following_changed? && friendship.following?
+    friendship.saved_change_to_following? && friendship.following?
   }
   after_destroy :remove_subscription_to_friend
   
@@ -24,13 +24,18 @@ class Friendship < ActiveRecord::Base
   end
 
   def remove_subscription_to_friend
-    Subscription.where( user_id: id, resource: friend ).destroy_all
+    Subscription.where( user_id: user.id, resource: friend ).destroy_all
     true
   end
 
   def create_subscription_after_update
     Subscription.create( user: user, resource: friend )
     true
+  end
+
+  def self.merge_future_duplicates( reject, keeper )
+    reject.friendships.where( friend_id: keeper.friendships.pluck(:friend_id) ).delete_all
+    reject.friendships.update_all( user_id: keeper.id )
   end
 
 end

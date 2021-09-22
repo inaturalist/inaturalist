@@ -1,29 +1,26 @@
 import _ from "lodash";
 import React from "react";
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import { Button, Tabs, Tab } from "react-bootstrap";
+import {
+  Button,
+  OverlayTrigger,
+  Tooltip
+} from "react-bootstrap";
 import moment from "moment-timezone";
 import { addImplicitDisagreementsToActivity } from "../../../shared/util";
-import TaxonAutocomplete from "../../uploader/components/taxon_autocomplete";
 import UserImage from "../../../shared/components/user_image";
 import ActivityItem from "./activity_item";
+import ActivityCreatePanelContainer from "../containers/activity_create_panel_container";
 
 class Activity extends React.Component {
-  constructor( ) {
-    super( );
-    this.setUpMentionsAutocomplete = this.setUpMentionsAutocomplete.bind( this );
-  }
-
   componentDidMount( ) {
-    this.setUpMentionsAutocomplete( );
     if ( window.location.hash ) {
       // I really wish this timeout wasn't necessary but without it Chrome just
       // seems to scroll back to the top. Note that $.scrollTo doesn't seem to
       // work in Safari.
       let targetHash = window.location.hash;
       if ( $( targetHash ).length === 0 ) {
-        targetHash = _.snakeCase( `activity_${targetHash.replace( "#", "" )}` );
+        targetHash = _.replace( `activity_${targetHash.replace( "#", "" )}`, "-", "_" );
         targetHash = `#${targetHash}`;
       }
       const isFirefox = navigator.userAgent.toLowerCase( ).indexOf( "firefox" ) > -1;
@@ -40,15 +37,6 @@ class Activity extends React.Component {
     }
   }
 
-  componentDidUpdate( ) {
-    this.setUpMentionsAutocomplete( );
-  }
-
-  setUpMentionsAutocomplete( ) {
-    const domNode = ReactDOM.findDOMNode( this );
-    $( ".comment_id_panel textarea", domNode ).textcompleteUsers( );
-  }
-
   currentUserIcon( ) {
     const { config } = this.props;
     return config ? (
@@ -60,8 +48,27 @@ class Activity extends React.Component {
     );
   }
 
+  postIdentification( ) {
+    const { addID, content, updateEditorContent } = this.props;
+    const input = $( ".id_tab input[name='taxon_name']" );
+    const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
+    if ( selectedTaxon ) {
+      addID( selectedTaxon, { body: content } );
+      input.trigger( "resetSelection" );
+      input.val( "" );
+      input.data( "uiAutocomplete" ).selectedItem = null;
+
+      updateEditorContent( "activity", "" );
+    }
+  }
+
   doneButton( ) {
-    const { config, addComment, addID } = this.props;
+    const {
+      addComment,
+      config,
+      content,
+      updateEditorContent
+    } = this.props;
     return config && config.currentUser ? (
       <Button
         className="comment_id"
@@ -69,21 +76,13 @@ class Activity extends React.Component {
         onClick={
           ( ) => {
             if ( $( ".comment_tab" ).is( ":visible" ) ) {
-              const comment = $( ".comment_tab textarea" ).val( );
+              const comment = content;
               if ( comment ) {
-                addComment( $( ".comment_tab textarea" ).val( ) );
-                $( ".comment_tab textarea" ).val( "" );
+                addComment( comment );
+                updateEditorContent( "activity", "" );
               }
             } else {
-              const input = $( ".id_tab input[name='taxon_name']" );
-              const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
-              if ( selectedTaxon ) {
-                addID( selectedTaxon, { body: $( ".id_tab textarea" ).val( ) } );
-                input.trigger( "resetSelection" );
-                input.val( "" );
-                input.data( "uiAutocomplete" ).selectedItem = null;
-                $( ".id_tab textarea" ).val( "" );
-              }
+              this.postIdentification( );
             }
           }
         }
@@ -99,33 +98,48 @@ class Activity extends React.Component {
       review,
       unreview
     } = this.props;
-    return config && config.currentUser ? (
-      <div className="review">
-        <input
-          type="checkbox"
-          id="reviewed"
-          name="reviewed"
-          checked={_.includes( observation.reviewed_by, config.currentUser.id )}
-          onChange={( ) => {
-            if ( $( "#reviewed" ).is( ":checked" ) ) {
-              review( );
-            } else {
-              unreview( );
-            }
-          }}
-        />
-        <label htmlFor="reviewed">
-          { I18n.t( "mark_as_reviewed" ) }
-        </label>
-      </div> ) : null;
+    return config && config.currentUser && (
+      <OverlayTrigger
+        placement="top"
+        trigger={["hover", "focus"]}
+        delayShow={1000}
+        overlay={(
+          <Tooltip id="mark-as-reviewed-tooltip">
+            <span
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "mark_as_reviewed_desc" )
+              }}
+            />
+          </Tooltip>
+        )}
+        container={$( "#wrapper.bootstrap" ).get( 0 )}
+      >
+        <div className="review">
+          <label>
+            <input
+              type="checkbox"
+              id="reviewed"
+              name="reviewed"
+              checked={_.includes( observation.reviewed_by, config.currentUser.id )}
+              onChange={( ) => {
+                if ( $( "#reviewed" ).is( ":checked" ) ) {
+                  review( );
+                } else {
+                  unreview( );
+                }
+              }}
+            />
+            { I18n.t( "mark_as_reviewed" ) }
+          </label>
+        </div>
+      </OverlayTrigger>
+    );
   }
 
   render( ) {
     const {
       observation,
-      config,
-      commentIDPanel,
-      setActiveTab
+      config
     } = this.props;
     if ( !observation ) { return ( <div /> ); }
     const loggedIn = config && config.currentUser;
@@ -137,90 +151,6 @@ class Activity extends React.Component {
     activity = _.sortBy( activity, a => ( moment.parseZone( a.created_at ) ) );
     // attempting to match the logic in the computervision/score_observation endpoint
     // so we don't attempt to fetch vision results for obs which will have no results
-    const visionEligiblePhotos = _.compact( _.map( observation.photos, p => {
-      if ( !p.url || p.preview ) { return null; }
-      const mediumUrl = p.photoUrl( "medium" );
-      if ( mediumUrl && mediumUrl.match( /static\.inaturalist.*\/medium\./i ) ) {
-        return p;
-      }
-      return null;
-    } ) );
-    const commentContent = loggedIn
-      ? (
-        <div className="form-group">
-          <textarea
-            placeholder={I18n.t( "leave_a_comment" )}
-            className="form-control"
-          />
-        </div>
-      ) : (
-        <span className="log-in">
-          <a href="/login">
-            { I18n.t( "log_in" ) }
-          </a>
-          { " " }
-          { I18n.t( "or" ) }
-          { " " }
-          <a href="/signup">
-            { I18n.t( "sign_up" ) }
-          </a>
-          { " " }
-          { I18n.t( "to_add_comments" ) }
-          { "." }
-        </span>
-      );
-    const idContent = loggedIn
-      ? (
-        <div>
-          <TaxonAutocomplete
-            bootstrap
-            searchExternal
-            perPage={6}
-            resetOnChange={false}
-            visionParams={
-              visionEligiblePhotos.length > 0 ? { observationID: observation.id } : null
-            }
-            config={config}
-          />
-          <div className="form-group">
-            <textarea
-              placeholder={I18n.t( "tell_us_why" )}
-              className="form-control"
-            />
-          </div>
-        </div>
-      ) : (
-        <span className="log-in">
-          <a href="/login">
-            { I18n.t( "log_in" ) }
-          </a>
-          { " " }
-          { I18n.t( "or" ) }
-          { " " }
-          <a href="/signup">
-            { I18n.t( "sign_up" ) }
-          </a>
-          { " " }
-          { I18n.t( "to_suggest_an_identification" ) }
-          { "." }
-        </span>
-      );
-    const tabs = (
-      <Tabs
-        id="comment-id-tabs"
-        activeKey={commentIDPanel.activeTab}
-        onSelect={key => {
-          setActiveTab( key );
-        }}
-      >
-        <Tab eventKey="comment" title={I18n.t( "comment_" )} className="comment_tab">
-          { commentContent }
-        </Tab>
-        <Tab eventKey="add_id" title={I18n.t( "suggest_an_identification" )} className="id_tab">
-          { idContent }
-        </Tab>
-      </Tabs>
-    );
     activity = addImplicitDisagreementsToActivity( activity );
     return (
       <div className="Activity">
@@ -228,17 +158,19 @@ class Activity extends React.Component {
         <div className={`activity ${activity.length === 0 ? "empty" : ""}`}>
           { activity.map( item => (
             <ActivityItem
-              key={`activity-${item.id}`}
+              key={`activity-${item.id}-${item.created_at}`}
               item={item}
               currentUserID={currentUserID}
+              inlineEditing
               {...this.props}
             />
           ) ) }
         </div>
         { this.currentUserIcon( ) }
-        <div className="comment_id_panel">
-          { tabs }
-        </div>
+        <ActivityCreatePanelContainer
+          key={`activity-create-panel-${observation.id}`}
+          {...this.props}
+        />
         { this.doneButton( ) }
         { this.review( ) }
       </div>
@@ -249,22 +181,25 @@ class Activity extends React.Component {
 Activity.propTypes = {
   observation: PropTypes.object,
   config: PropTypes.object,
-  commentIDPanel: PropTypes.object,
   observation_places: PropTypes.object,
   addComment: PropTypes.func,
   addID: PropTypes.func,
+  content: PropTypes.string,
   createFlag: PropTypes.func,
   deleteComment: PropTypes.func,
+  editComment: PropTypes.func,
   deleteFlag: PropTypes.func,
   deleteID: PropTypes.func,
+  confirmDeleteID: PropTypes.func,
+  editID: PropTypes.func,
   restoreID: PropTypes.func,
   review: PropTypes.func,
-  setActiveTab: PropTypes.func,
   setFlaggingModalState: PropTypes.func,
   unreview: PropTypes.func,
   onClickCompare: PropTypes.func,
   trustUser: PropTypes.func,
   untrustUser: PropTypes.func,
+  updateEditorContent: PropTypes.func,
   showHidden: PropTypes.func
 };
 

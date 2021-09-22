@@ -275,16 +275,6 @@ img.mini.usericon {
   background: image-url('silk/help.png') 0% 50% no-repeat;
 }
 
-#subnav #follow_button {
-  padding-left: 20px;
-  background: image-url('follow-icon-eee-15px.png') 0% 50% no-repeat;
-}
-
-#subnav #follow_button:hover,
-#subnav #follow_button.active {
-  background: image-url('follow-icon-nm-15px.png') 0% 50% no-repeat;
-}
-
 #subnav .message_link {background: none;padding-left:5px;}
 #subnav .message_link:hover {background: none;}
 #subnav .message_link .ui-icon {background-image: image-url('jquery-ui/ui-icons_888888_256x240.png');}
@@ -574,20 +564,25 @@ ul.leafylist li li:first-child {
   }
   p:last-child { margin-bottom: 0; }
 
+  .links-col {
+    column-count: 2;
+    @media (min-width: 992px) {
+      column-count: 2;
+    }
+  }
+
   .one-line {
     margin-bottom: 20px;
     display: flex;
     align-items: flex-end;
     .btn-donate {
-      margin-left: 10px;
+      max-width: 158px;
+      margin: auto;
       font-weight: bold;
       overflow: hidden;
       text-overflow: ellipsis;
       font-size: 9px;
       padding-top: 9px;
-      @media (min-width: 768px) {
-        font-size: 9px;
-      }
       @media (min-width: 992px) {
         font-size: 12px;
         padding-top: 7px;
@@ -597,11 +592,29 @@ ul.leafylist li li:first-child {
         padding-top: 7px;
       }
     }
-    .btn-donate:first-child {
-      margin-left: 0px;
-    }
   }
-  .with-store {
+  .buttons-col {
+    .one-line {
+      display: block;
+    }
+    .btn-donate {
+      margin-bottom: 10px;
+      font-size: 16px;
+      padding-top: 7px;
+    }
+    &.short-text {
+      @media (min-width: 992px) {
+        .one-line {
+          display: flex;
+          align-items: flex-end;
+        }
+        .btn-donate {
+          margin-left: 10px;
+          font-size: 16px;
+          padding-top: 7px;
+        }
+      }
+    }
     .btn-donate {
       letter-spacing: 1px;
     }
@@ -619,12 +632,8 @@ ul.leafylist li li:first-child {
     display: flex;
     justify-content: space-around;
   }
-  $social-media-link-dim: 32px;
-  $social-media-link-font-size: 16px;
-  $social-media-link-dim-768: 36px;
-  $social-media-link-font-size-768: 18px;
-  $social-media-link-dim-992: 38px;
-  $social-media-link-font-size-992: 21px;
+  $social-media-link-dim: 38px;
+  $social-media-link-font-size: 21px;
   $social-media-link-dim-1200: 42px;
   $social-media-link-font-size-1200: 23px;
   .social-media-link {
@@ -635,14 +644,6 @@ ul.leafylist li li:first-child {
     text-align: center;
     width: $social-media-link-dim;
     height: $social-media-link-dim;
-    @media (min-width: 768px) {
-      width: $social-media-link-dim-768;
-      height: $social-media-link-dim-768;
-    }
-    @media (min-width: 992px) {
-      width: $social-media-link-dim-992;
-      height: $social-media-link-dim-992;
-    }
     @media (min-width: 1200px) {
       width: $social-media-link-dim-1200;
       height: $social-media-link-dim-1200;
@@ -659,14 +660,6 @@ ul.leafylist li li:first-child {
     color: white;
     line-height: $social-media-link-dim + 2px;
     font-size: $social-media-link-font-size;
-    @media (min-width: 768px) {
-      line-height: $social-media-link-dim-768 + 2px;
-      font-size: $social-media-link-font-size-768;
-    }
-    @media (min-width: 992px) {
-      line-height: $social-media-link-dim-992 + 2px;
-      font-size: $social-media-link-font-size-992;
-    }
     @media (min-width: 1200px) {
       line-height: $social-media-link-dim-1200 + 2px;
       font-size: $social-media-link-font-size-1200;
@@ -678,26 +671,30 @@ ul.leafylist li li:first-child {
   .social-media-link.twitter:before {
     content: "\f099";
     position: relative;
-    top: -1px;
-    @media (min-width: 768px) {
-      top: 0px;
-    }
-    @media (min-width: 992px) {
-      top: 0px;
-      left: 1px;
-    }
+    top: 0px;
+    left: 1px;
     @media (min-width: 1200px) {
       top: 0px;
       left: 1px;
     }
   }
   .social-media-link.facebook {
-    background-color: #3b5998;
+    background-color: #1877f2;
+    line-height: $social-media-link-dim - 2px;
+    @media (min-width: 1200px) {
+      line-height: $social-media-link-dim-1200 - 1px;
+    }
+    img {
+      width: $social-media-link-dim - 18px;
+      height: $social-media-link-dim - 18px;
+      @media (min-width: 1200px) {
+        width: $social-media-link-dim-1200 - 18px;
+        height: $social-media-link-dim-1200 - 18px;
+      }
+    }
   }
   .social-media-link.facebook:before {
-    content: "\f09a";
-    position: relative;
-    left: -0.5px;
+    display: none;
   }
   .social-media-link.instagram {
     background: white;
@@ -709,16 +706,8 @@ ul.leafylist li li:first-child {
     -webkit-text-fill-color: transparent;
     content: "\f16d";
     $instagram-icon-size-bump: 2px;
-    line-height: $social-media-link-dim + $instagram-icon-size-bump;
+    line-height: $social-media-link-dim + $instagram-icon-size-bump - 1;
     font-size: $social-media-link-font-size + $instagram-icon-size-bump;
-    @media (min-width: 768px) {
-      line-height: $social-media-link-dim-768 + $instagram-icon-size-bump;
-      font-size: $social-media-link-font-size-768 + $instagram-icon-size-bump - 1;
-    }
-    @media (min-width: 992px) {
-      line-height: $social-media-link-dim-992 + $instagram-icon-size-bump - 1;
-      font-size: $social-media-link-font-size-992 + $instagram-icon-size-bump;
-    }
     @media (min-width: 1200px) {
       line-height: $social-media-link-dim-1200 + $instagram-icon-size-bump;
       font-size: $social-media-link-font-size-1200 + $instagram-icon-size-bump;
@@ -916,15 +905,6 @@ ul.leafylist li li:first-child {
 .count, .count a { color: #74AC00; }
 .good  { color: #74AC00; }
 .bad  { color: deeppink; }
-
-.feeds a {
-  background: image-url('silk/feed.png') no-repeat 0 50%;
-  padding: 2px 0px 2px 20px;
-  margin-right: 0.25em;
-}
-a.kmllink{background-image:image-url('google_earth.png');}
-a.csvlink{background-image:image-url('silk/table.png');}
-
 
 /* Modal Links */
 .modal_link,
@@ -1308,6 +1288,7 @@ ul input.providerlink, ul input.button.providerlink { width: 230px; }
 .providerlink.flickr { background-image: image-url('external/flickr_favicon.png'); }
 .providerlink.soundcloud { background-image: image-url('external/soundcloud_favicon.png');}
 .providerlink.orcid { background-image: image-url( 'https://orcid.org/sites/default/files/images/orcid_16x16.png' ); }
+.providerlink.apple { background-image: image-url('external/apple_favicon.png');}
 
 .quality_assessment .loading.status { padding-left: 16px;}
 .quality_assessment .status { margin: 0;}
@@ -1658,7 +1639,7 @@ ul.plain {list-style:none;margin:0;padding:0}
 .leftmenu .count.right {
   margin: 5px 10px 0 0;
 }
-.topmenu {float: right; list-style: none; padding:0; margin:0;}
+.topmenu {float: right; list-style: none; padding:0; margin:0;position: relative; z-index: 1;}
 .topmenu  li { display: inline-block;}
 .topmenu li a {display:inline-block; padding: 5px 10px; margin-left: 10px;}
 .topmenu li a.active {font-weight:bold; border-bottom: 2px solid #eee;}
@@ -1961,7 +1942,7 @@ user-icon .icon-person:before {
         img {
           width: 28px;
           height: 28px;
-          margin: 10px 0 0 0;
+          margin: 0;
           border: 1px solid #ddd;
           border-radius: 1px;
         }
@@ -1971,7 +1952,7 @@ user-icon .icon-person:before {
         .fa {
           width: auto;
           height: 30px;
-          margin: 10px 0 0 0;
+          margin: 5px 0 0 0;
         }
       }
       .ac-label {
@@ -1992,6 +1973,7 @@ user-icon .icon-person:before {
       .ac-view {
         padding: 0 10px;
         background: none;
+        display: flex;
 
         &.view-observations {
           padding-right: 0;
@@ -2003,7 +1985,6 @@ user-icon .icon-person:before {
       }
       &.ac-result-Taxon {
         .no-photo {
-          display: inline-block;
           width: 28px;
           height: 28px;
           border: 1px solid #ddd;
@@ -2021,14 +2002,12 @@ user-icon .icon-person:before {
       }
       &.ac-result-Project {
         .no-photo {
-          margin-top: 9px;
-          display: inline-block;
           width: 28px;
           height: 28px;
           border: 1px solid #ddd;
           border-radius: 1px;
           background-color: #aaa;
-          line-height: 23px;
+          line-height: 25px;
           i {
             font-size: 16px;
             color: white;
@@ -2044,13 +2023,12 @@ user-icon .icon-person:before {
         }
       }
       div.usericon {
-        display: inline-block;
         border-radius: 50%;
         width: 28px;
         height: 28px;
         border: 1px solid #ddd;
         background-color: #aaa;
-        line-height: 20px;
+        line-height: 23px;
         i {
           font-size: 20px;
           color: white;
@@ -2356,4 +2334,23 @@ $header-line-height: 34px;
 }
 #header #initiative-branding {
   line-height: 0;
+}
+
+.announcement {
+  position: relative;
+  .dismiss-announcement-link {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: $text-grey;
+    color: white;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    text-align: center;
+    line-height: 20px;
+    padding: 0;
+    border: 0 transparent;
+  }
 }

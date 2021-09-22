@@ -1,4 +1,4 @@
-class ControlledTerm < ActiveRecord::Base
+class ControlledTerm < ApplicationRecord
 
   include ActsAsElasticModel
 

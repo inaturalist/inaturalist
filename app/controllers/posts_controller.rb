@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :for_project_user, :for_user ], :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :except => [:index, :show, :browse, :for_user, :archives ], :unless => lambda { authenticated_with_oauth? }
+  before_action :authenticate_user!, :except => [:index, :show, :browse, :for_user, :archives ], :unless => lambda { authenticated_with_oauth? }
   load_only = [ :show, :edit, :update, :destroy ]
-  before_filter :load_post, :only => load_only
+  before_action :load_post, :only => load_only
   blocks_spam :only => load_only, :instance => :post
   check_spam only: [:create, :update], instance: :post
-  before_filter :load_parent, :except => [:browse, :for_project_user, :for_user]
-  before_filter :load_new_post, :only => [:new, :create]
-  before_filter :owner_required, :only => [:create, :edit, :update, :destroy]
+  before_action :load_parent, :except => [:browse, :for_project_user, :for_user]
+  before_action :load_new_post, :only => [:new, :create]
+  before_action :owner_required, :only => [:create, :edit, :update, :destroy]
 
   # Might want to try this if /journal becomes a problem.
   # caches_action :browse,
@@ -49,7 +49,9 @@ class PostsController < ApplicationController
     end
 
     pagination_headers_for( @posts )
-    
+
+    # TODO: Rails 5 - pleary 06/30/21: I removed :site_name_short from methods as Rails 5 throws
+    # an error for missing methods. We should only use methods shared by all post parent classes
     respond_to do |format|
       format.html
       format.atom
@@ -61,7 +63,7 @@ class PostsController < ApplicationController
           },
           parent: {
             only: [ :id, :title, :name ],
-            methods: [ :icon_url, :site_name_short ]
+            methods: [ :icon_url ]
           }
         }
       end
@@ -267,6 +269,8 @@ class PostsController < ApplicationController
       @posts = @posts.where( "posts.published_at < ?", older_than_post.published_at )
     end
     Post.preload_associations(@posts, [{ user: :site }, :stored_preferences, :parent])
+    # TODO: Rails 5 - pleary 06/30/21: I removed :site_name_short from methods as Rails 5 throws
+    # an error for missing methods. We should only use methods shared by all post parent classes
     respond_to do |format|
       format.json do
         json = @posts.as_json(:include => {
@@ -276,7 +280,7 @@ class PostsController < ApplicationController
           },
           parent: {
             only: [ :id, :title, :name ],
-            methods: [ :icon_url, :site_name_short ]
+            methods: [ :icon_url ]
           }
         })
         json.each_with_index do |post, i|

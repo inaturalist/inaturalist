@@ -142,7 +142,7 @@ class FlickrPhoto < Photo
     # Get the geo fields
     if fp.respond_to?(:location)
       observation.place_guess = %w"locality region country".map do |level|
-        fp.location[level].try(:_content)
+         fp.location[level].try(:_content) || fp.location[level].to_s
       end.compact.join(', ').strip
       observation.latitude  = fp.location.latitude
       observation.longitude = fp.location.longitude

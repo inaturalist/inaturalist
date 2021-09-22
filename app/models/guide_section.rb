@@ -1,10 +1,10 @@
-class GuideSection < ActiveRecord::Base
+class GuideSection < ApplicationRecord
   acts_as_spammable :fields => [ :title, :description ],
     checks_spam_unless: :is_imported
   attr_accessor :modified_on_create
   belongs_to :guide_taxon, :inverse_of => :guide_sections
   belongs_to :creator, :class_name => 'User', :inverse_of => :created_guide_sections
-  belongs_to :updater, :class_name => 'User', :inverse_of => :updated_guide_sections
+  has_updater
   has_one :guide, :through => :guide_taxon
   has_one :user, :through => :guide_taxon
   before_create :set_license

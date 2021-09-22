@@ -1,5 +1,37 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+describe Taxon, "associations" do
+  it { is_expected.to belong_to(:conservation_status_source).class_name "Source" }
+  it { is_expected.to belong_to(:creator).class_name 'User' }
+  it { is_expected.to belong_to(:iconic_taxon).class_name('Taxon').with_foreign_key 'iconic_taxon_id' }
+  it { is_expected.to belong_to :source }
+  it { is_expected.to belong_to(:taxon_framework_relationship).touch true }
+  it { is_expected.to have_many(:assessments).dependent :nullify }
+  it { is_expected.to have_many(:conservation_statuses).dependent :destroy }
+  it { is_expected.to have_many(:controlled_term_taxa).inverse_of(:taxon).dependent :destroy }
+  it { is_expected.to have_many(:guide_taxa).inverse_of(:taxon).dependent :nullify }
+  it { is_expected.to have_many(:guides).inverse_of(:taxon).dependent :nullify }
+  it { is_expected.to have_many(:identifications).dependent :destroy }
+  it { is_expected.to have_many(:listed_taxa).dependent :destroy }
+  it { is_expected.to have_many(:listed_taxon_alterations).inverse_of(:taxon).dependent :delete_all }
+  it { is_expected.to have_many(:lists).through :listed_taxa }
+  it { is_expected.to have_many(:observations).dependent :nullify }
+  it { is_expected.to have_many(:photos).through :taxon_photos }
+  it { is_expected.to have_many(:taxon_change_taxa).inverse_of :taxon }
+  it { is_expected.to have_many(:taxon_curators).inverse_of :taxon }
+  it { is_expected.to have_many(:taxon_descriptions).dependent :destroy }
+  it { is_expected.to have_many :taxon_changes }
+  it { is_expected.to have_many(:taxon_links).dependent :delete_all }
+  it { is_expected.to have_many(:taxon_names).dependent :destroy }
+  it { is_expected.to have_many(:taxon_photos).dependent :destroy }
+  it { is_expected.to have_one(:taxon_range).dependent :destroy }
+  it { is_expected.to have_many(:taxon_scheme_taxa).dependent :destroy }
+  it { is_expected.to have_many(:taxon_schemes).through :taxon_scheme_taxa }
+  it { is_expected.to have_one(:atlas).inverse_of(:taxon).dependent :destroy }
+  it { is_expected.to have_one(:simplified_tree_milestone_taxon).dependent :destroy }
+  it { is_expected.to have_one(:taxon_framework).inverse_of(:taxon).dependent :destroy }
+end
+
 describe Taxon do
   elastic_models( Observation, Taxon )
 
@@ -134,13 +166,6 @@ describe Taxon, "creation" do
     expect( t.name ).to eq name
   end
 
-  it "should create TaxonAncestors" do
-    parent = Taxon.make!( rank: Taxon::GENUS )
-    t = Taxon.make!( rank: Taxon::SPECIES, parent: parent )
-    t.reload
-    expect( t.taxon_ancestors ).not_to be_blank
-  end
-
   it "should strip trailing space" do
     expect( Taxon.make!( name: "Trailing space  " ).name ).to eq "Trailing space"
   end
@@ -202,7 +227,27 @@ describe Taxon, "creation" do
     taxon.reload
     expect(taxon.parent_id).to be(output_taxon.id)
   end
-  
+
+  context "for complex" do
+    before(:all) { load_test_taxa }
+
+    let(:child_species) { Taxon.make! name: "Lontra canadensis", rank: "species", parent: @Hylidae }
+    let(:child_complex) { Taxon.make! name: "Lontra canadensis", rank: "complex", parent: @Hylidae }
+    let(:child_complex2) { Taxon.make! name: "Lontra canadensis", rank: "complex", parent: @Hylidae }
+
+    it "should validate unique name scoped to ancestry and rank" do
+      child_complex
+
+      expect{ child_complex2 }.to raise_exception ActiveRecord::RecordInvalid,
+                                                  "Validation failed: Name already used as a child complex of this taxon's parent"
+    end
+
+    it "should allow sibling if no other complex shares name" do
+      child_species
+
+      expect{ child_complex }.not_to raise_exception
+    end
+  end
 end
 
 describe Taxon, "updating" do
@@ -270,7 +315,6 @@ describe Taxon, "updating" do
     expect(taxon.errors).to be_blank
   end
   
-  
   it "should prevent updating a taxon to be active if it has an inactive parent" do
     parent = Taxon.make!(name: 'balderdash', rank: Taxon::GENUS, is_active: false )
     taxon = Taxon.make!(name: 'balderdash foo', rank: Taxon::SPECIES, parent: parent, is_active: false )
@@ -302,6 +346,47 @@ describe Taxon, "updating" do
       t.update_attributes( auto_description: false )
       t.reload
       expect( t.wikipedia_summary ).to be_blank
+    end
+  end
+
+  it "should assign the updater if explicitly assigned" do
+    creator = make_curator
+    updater = make_curator
+    t = Taxon.make!( creator: creator, updater: creator, rank: Taxon::FAMILY )
+    expect( t.updater ).to eq creator
+    t.reload
+    t.update_attributes( rank: Taxon::GENUS, updater: updater )
+    t.reload
+    expect( t.updater ).to eq updater
+  end
+  
+  it "should nilify the updater if not explicitly assigned" do
+    creator = make_curator
+    updater = make_curator
+    t = Taxon.make!( creator: creator, updater: creator, rank: Taxon::FAMILY )
+    expect( t.updater ).to eq creator
+    t = Taxon.find_by_id( t.id )
+    t.update_attributes( rank: Taxon::GENUS )
+    t.reload
+    expect( t.updater ).to be_blank
+  end
+
+  describe "reindexing identifications" do
+    elastic_models( Identification )
+    it "should happen when the rank_level changes" do
+      t = Taxon.make!( rank: Taxon::SUBCLASS )
+      i = Identification.make!( taxon: t )
+      Delayed::Worker.new.work_off
+      t.reload
+      expect( t.rank_level ).to eq Taxon::SUBCLASS_LEVEL
+      i_es = Identification.elastic_search( where: { id: i.id } ).results.results.first
+      expect( i_es.taxon.rank_level ).to eq t.rank_level
+      t.update_attributes( rank: Taxon::CLASS )
+      Delayed::Worker.new.work_off
+      t.reload
+      expect( t.rank_level ).to eq Taxon::CLASS_LEVEL
+      i_es = Identification.elastic_search( where: { id: i.id } ).results.results.first
+      expect( i_es.taxon.rank_level ).to eq t.rank_level
     end
   end
 end
@@ -615,8 +700,24 @@ describe Taxon, "tags_to_taxa" do
 
   it "should not match problematic names" do
     Taxon::PROBLEM_NAMES.each do |name|
-      t = Taxon.make!(:name => name.capitalize)
-      expect(Taxon.tags_to_taxa([name, name.capitalize])).to be_blank
+      t = Taxon.make(:name => name.capitalize)
+      if t.valid?
+        expect( Taxon.tags_to_taxa( [name, name.capitalize] ) ).to be_blank
+      end
+    end
+  end
+
+  it "should not match scientifc names that are 2 letters or less" do
+    %w(Aa Io La).each do |name|
+      t = Taxon.make!( name: name, rank: Taxon::GENUS )
+      expect( Taxon.tags_to_taxa( [name, name.downcase ] ) ).to be_blank
+    end
+  end
+
+  it "should not match abbreviated month names" do
+    %w(Mar May Jun Nov).each do |name|
+      t = Taxon.make!( name: name, rank: Taxon::GENUS )
+      expect( Taxon.tags_to_taxa( [name, name.downcase ] ) ).to be_blank
     end
   end
 
@@ -639,7 +740,7 @@ describe Taxon, "merging" do
       parent: @Calypte
     )
     @has_many_assocs = Taxon.reflections.select{|k,v| v.macro == :has_many}.map{|k,v| k}
-    @has_many_assocs.each {|assoc| @reject.send(assoc, :force_reload => true)}
+    @has_many_assocs.each {|assoc| @reject.send(assoc).reload}
   end
     
   it "should move the reject's children to the keeper" do
@@ -763,7 +864,9 @@ describe Taxon, "merging" do
   
   it "should delete duplicate taxon_names from the reject" do
     old_sciname = @reject.scientific_name
-    @keeper.taxon_names << old_sciname.dup
+    synonym = old_sciname.dup
+    synonym.is_valid = false
+    @keeper.taxon_names << synonym
     @keeper.merge(@reject)
     expect(TaxonName.find_by_id(old_sciname.id)).to be_nil
   end
@@ -843,21 +946,12 @@ describe Taxon, "merging" do
     s.reload
     expect(s.resource).to eq(o)
   end
-
-  it "should work with denormalized ancestries" do
-    AncestryDenormalizer.truncate
-    expect(TaxonAncestor.count).to eq 0
-    AncestryDenormalizer.denormalize
-    expect {
-      @keeper.merge(@reject)
-    }.not_to raise_error
-  end
 end
 
 describe Taxon, "moving" do
 
   elastic_models( Observation, Taxon, Identification )
-  
+
   before(:all) do
     load_test_taxa
   end
@@ -965,22 +1059,6 @@ describe Taxon, "moving" do
     expect(o.taxon).to eq sp
   end
 
-  it "should create TaxonAncestors" do
-    t = Taxon.make!( rank: Taxon::SPECIES, name: "Ronica vestrit" )
-    expect( t.taxon_ancestors.count ).to eq 1 # should always make one for itself
-    t.move_to_child_of( @Calypte )
-    t.reload
-    expect( t.taxon_ancestors.count ).to be > 1
-    expect( t.taxon_ancestors.detect{ |ta| ta.ancestor_taxon_id == @Calypte.id } ).not_to be_blank
-  end
-
-  it "should remove existing TaxonAncestors" do
-    t = Taxon.make!( rank: Taxon::SPECIES, parent: @Calypte )
-    expect( TaxonAncestor.where( taxon_id: t.id, ancestor_taxon_id: @Calypte.id ).count ).to eq 1
-    t.move_to_child_of( @Pseudacris )
-    expect( TaxonAncestor.where( taxon_id: t.id, ancestor_taxon_id: @Calypte.id ).count ).to eq 0
-  end
-
   it "should reindex descendants" do
     g = Taxon.make!( rank: Taxon::GENUS, parent: @Trochilidae )
     s = Taxon.make!( rank: Taxon::SPECIES, parent: g )
@@ -994,6 +1072,52 @@ describe Taxon, "moving" do
     es_response = Taxon.elastic_search( where: { id: s.id } ).results.results.first
     expect( es_response.ancestor_ids ).to include @Hylidae.id
   end
+
+  it "should reindex identifications of the taxon" do
+    g = Taxon.make!( rank: Taxon::GENUS, parent: @Trochilidae )
+    s = Taxon.make!( rank: Taxon::SPECIES, parent: g )
+    g_ident = Identification.make!( taxon: g )
+    s_ident = Identification.make!( taxon: s )
+    Delayed::Worker.new.work_off
+    s.reload
+    g_ident_es = Identification.elastic_search( where: { id: g_ident.id } ).results.results.first
+    s_ident_es = Identification.elastic_search( where: { id: s_ident.id } ).results.results.first
+    expect( g_ident_es.taxon.ancestor_ids ).to include @Trochilidae.id
+    expect( s_ident_es.taxon.ancestor_ids ).to include @Trochilidae.id
+    expect( s_ident_es.taxon.rank_level ).to eq s.rank_level
+    g.move_to_child_of( @Hylidae )
+    Delayed::Worker.new.work_off
+    s.reload
+    g_ident_es = Identification.elastic_search( where: { id: g_ident.id } ).results.results.first
+    s_ident_es = Identification.elastic_search( where: { id: s_ident.id } ).results.results.first
+    expect( g_ident_es.taxon.ancestor_ids ).to include @Hylidae.id
+    expect( s_ident_es.taxon.ancestor_ids ).to include @Hylidae.id
+    expect( s_ident_es.taxon.rank_level ).to eq s.rank_level
+    g_obs_es = Observation.elastic_search( where: { id: g_ident.observation_id } ).results.results.first
+    s_obs_es = Observation.elastic_search( where: { id: s_ident.observation_id } ).results.results.first
+    expect( g_obs_es.taxon.ancestor_ids ).to include @Hylidae.id
+    expect( s_obs_es.taxon.ancestor_ids ).to include @Hylidae.id
+  end
+
+  # This is a sanity spec written while trying to investigate claims that adding
+  # a complex alters the previous_observation_taxon on identicications. It
+  # doesn't seem to, at least under these conditions. ~~~kueda 20201216
+  # it "should not interfere with previous_observation_taxon on identifications when the previous_observation_taxon gets moved into an interstitial taxon" do
+  #   g = Taxon.make!( rank: Taxon::GENUS, parent: @Trochilidae )
+  #   s = Taxon.make!( rank: Taxon::SPECIES, parent: g )
+  #   o = Observation.make!( taxon: s )
+  #   Delayed::Worker.new.work_off
+  #   i = Identification.make!( observation: o, taxon: @Trochilidae, disagreement: true )
+  #   Delayed::Worker.new.work_off
+  #   i.reload
+  #   expect( i.previous_observation_taxon ).to eq s
+  #   c = Taxon.make!( rank: Taxon::COMPLEX, parent: g )
+  #   Delayed::Worker.new.work_off
+  #   s.update_attributes( parent_id: c.id )
+  #   Delayed::Worker.new.work_off
+  #   i.reload
+  #   expect( i.previous_observation_taxon ).to eq s
+  # end
   
 end
 
@@ -1094,36 +1218,6 @@ describe Taxon, "grafting" do
     expect( s.ancestor_ids ).to include g.id
     expect( s.ancestor_ids ).to include f.id
   end
-
-  describe "indexing" do
-    elastic_models( Identification )
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
-
-    it "should re-index identifications in the observations index" do
-      o = make_research_grade_candidate_observation
-      3.times { Identification.make!( observation: o, taxon: @Pseudacris ) }
-      i = Identification.make!( observation: o )
-      i.reload
-      expect( i.taxon ).not_to be_grafted
-      expect( i.category ).to eq Identification::MAVERICK
-      categories = Observation.elastic_search( where: { id: o.id } ).results.
-        results[0].identification_categories.uniq.sort
-      expect( categories[0] ).to eq Identification::IMPROVING
-      expect( categories[1] ).to eq Identification::MAVERICK
-      expect( categories[2] ).to eq Identification::SUPPORTING
-      without_delay { i.taxon.update_attributes( rank: Taxon::SPECIES ) }
-      without_delay { i.taxon.update_attributes( parent: @Pseudacris ) }
-      i.reload
-      expect( i.taxon.ancestor_ids ).to include( @Pseudacris.id)
-      expect( i.category ).to eq Identification::LEADING
-      categories = Observation.elastic_search( where: { id: o.id } ).results.
-        results[0].identification_categories.uniq.sort
-      expect( categories[0] ).to eq Identification::IMPROVING
-      expect( categories[1] ).to eq Identification::LEADING
-      expect( categories[2] ).to eq Identification::SUPPORTING
-    end
-  end
 end
 
 describe Taxon, "single_taxon_for_name" do
@@ -1172,19 +1266,6 @@ describe Taxon, "single_taxon_for_name" do
   end
 end
 
-describe Taxon, "update_life_lists" do
-  it "should not queue jobs if they already exist" do
-    t = Taxon.make!
-    l = make_life_list_for_taxon(t)
-    Delayed::Job.delete_all
-    expect {
-      2.times do
-        t.update_life_lists
-      end
-    }.to change(Delayed::Job, :count).by(1)
-  end
-end
-
 describe Taxon, "threatened?" do
   elastic_models( Observation, Taxon )
   it "should work for a place"
@@ -1217,17 +1298,17 @@ describe Taxon, "geoprivacy" do
 end
 
 describe Taxon, "max_geoprivacy" do
-  let(:t1) { Taxon.make!(rank: Taxon::SPECIES) }
-  let(:t2) { Taxon.make!(rank: Taxon::SPECIES) }
+  let(:t1) { create :taxon, :as_species }
+  let(:t2) { create :taxon, :as_species }
   let(:taxon_ids) { [t1.id, t2.id] }
   elastic_models( Observation, Identification )
   it "should be private if one of the taxa has a private global status" do
-    cs_global = ConservationStatus.make!( taxon: t1, geoprivacy: Observation::PRIVATE )
+    cs_global = create :conservation_status, taxon: t1, geoprivacy: Observation::PRIVATE
     expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq Observation::PRIVATE
   end
   it "should be private if one of the ancestor taxa has a private global status" do
-    parent = Taxon.make!( rank: Taxon::GENUS )
-    cs_global = ConservationStatus.make!( taxon: parent, geoprivacy: Observation::PRIVATE )
+    parent = create :taxon, :as_genus
+    cs_global = create :conservation_status, taxon: parent, geoprivacy: Observation::PRIVATE
     without_delay do
       t1.update_attributes( parent: parent )
     end
@@ -1236,6 +1317,84 @@ describe Taxon, "max_geoprivacy" do
   end
   it "should be nil if none of the taxa have global status" do
     expect( Taxon.max_geoprivacy( taxon_ids ) ).to be_nil
+  end
+  it "should be open if the global status is obscured but a local country status is open" do
+    place = make_place_with_geom( admin_level: Place::COUNTRY_LEVEL )
+    cs_local = create :conservation_status, taxon: t1, geoprivacy: Observation::OPEN, place: place
+    cs_global = create :conservation_status, taxon: t1
+    expect(
+      Taxon.max_geoprivacy( [t1.id], latitude: place.latitude, longitude: place.longitude )
+    ).to eq Observation::OPEN
+  end
+  it "should be open if the global status is obscured but a local continent status is open" do
+    place = make_place_with_geom( admin_level: Place::CONTINENT_LEVEL )
+    cs_local = create :conservation_status, taxon: t1, geoprivacy: Observation::OPEN, place: place
+    cs_global = create :conservation_status, taxon: t1
+    expect(
+      Taxon.max_geoprivacy( [t1.id], latitude: place.latitude, longitude: place.longitude )
+    ).to eq Observation::OPEN
+  end
+  it "should be obscured if the global status is obscured but a local town status is open" do
+    place = make_place_with_geom( admin_level: Place::TOWN_LEVEL )
+    cs_local = create :conservation_status, taxon: t1, geoprivacy: Observation::OPEN, place: place
+    cs_global = create :conservation_status, taxon: t1
+    expect(
+      Taxon.max_geoprivacy( [t1.id], latitude: place.latitude, longitude: place.longitude )
+    ).to eq Observation::OBSCURED
+  end
+  it "should be obscured if a country status is open and a non-admin place status is obscured" do
+    place = make_place_with_geom( admin_level: Place::COUNTRY_LEVEL )
+    non_admin_place = make_place_with_geom
+    cs_country = create :conservation_status,
+      taxon: t1,
+      geoprivacy: Observation::OPEN,
+      place: place
+    non_admin_status = create :conservation_status,
+      taxon: t1,
+      geoprivacy: Observation::OBSCURED,
+      place: non_admin_place
+    expect(
+      Taxon.max_geoprivacy( [t1.id], latitude: place.latitude, longitude: place.longitude )
+    ).to eq Observation::OBSCURED
+  end
+  it "should be obscured if a country status is obscured a non-admin place status is open" do
+    place = make_place_with_geom( admin_level: Place::COUNTRY_LEVEL )
+    non_admin_place = make_place_with_geom
+    cs_country = create :conservation_status,
+      taxon: t1,
+      geoprivacy: Observation::OBSCURED,
+      place: place
+    non_admin_status = create :conservation_status,
+      taxon: t1,
+      geoprivacy: Observation::OPEN,
+      place: non_admin_place
+    expect(
+      Taxon.max_geoprivacy( [t1.id], latitude: place.latitude, longitude: place.longitude )
+    ).to eq Observation::OBSCURED
+  end
+  it "should be obscured if both taxa are globally obscured but only one is locally open" do
+    place = make_place_with_geom
+    cs1_global = create :conservation_status, taxon: t1
+    cs2_global = create :conservation_status, taxon: t2
+    cs2_local = create :conservation_status, taxon: t2, geoprivacy: Observation::OPEN, place: place
+    expect(
+      Taxon.max_geoprivacy( [t1.id], latitude: place.latitude, longitude: place.longitude )
+    ).to eq Observation::OBSCURED
+  end
+  it "should be open if a continent status is obscured a country status is open" do
+    continent = make_place_with_geom( admin_level: Place::CONTINENT_LEVEL )
+    country = make_place_with_geom( admin_level: Place::COUNTRY_LEVEL )
+    cs_continent = create :conservation_status,
+      taxon: t1,
+      geoprivacy: Observation::OBSCURED,
+      place: continent
+    cs_country = create :conservation_status,
+      taxon: t1,
+      geoprivacy: Observation::OPEN,
+      place: country
+    expect(
+      Taxon.max_geoprivacy( [t1.id], latitude: country.latitude, longitude: country.longitude )
+    ).to eq Observation::OPEN
   end
 end
 
@@ -1281,15 +1440,20 @@ end
 describe Taxon, "editable_by?" do
   let(:admin) { make_admin }
   let(:curator) { make_curator }
+  let(:t) do
+    Taxon.make!
+  end
   it "should be editable by admins if class" do
-    expect( Taxon.make!( rank: Taxon::CLASS ) ).to be_editable_by( admin )
+    t.update_attributes( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT + 10 )
+    expect( t ).to be_protected_attributes_editable_by( admin )
   end
-  it "should be editable by curators if below order" do
-    taxon = Taxon.make!( rank: Taxon::FAMILY )
-    expect( taxon ).to be_editable_by( curator )
+  it "should be editable by curators if below threshold" do
+    t.update_attributes( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT - 10 )
+    expect( t ).to be_protected_attributes_editable_by( curator )
   end
-  it "should not be editable by curators if order or above" do
-    expect( Taxon.make!( rank: Taxon::CLASS ) ).not_to be_editable_by( curator )
+  it "should not be editable by curators if above threshold" do
+    t.update_attributes( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT + 10 )
+    expect( t ).not_to be_protected_attributes_editable_by( curator )
   end
   describe "when taxon framework" do
     let(:second_curator) { make_curator }
@@ -1533,6 +1697,10 @@ describe "complete_species_count" do
     it "should not count inactive taxa" do
       species = Taxon.make!( rank: Taxon::SPECIES, parent: taxon, is_active: false, current_user: taxon_curator.user )
       expect( taxon.complete_species_count ).to eq 0
+    end
+    it "should be nil for species" do
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: taxon, current_user: taxon_curator.user )
+      expect( species.complete_species_count ).to eq nil
     end
   end
 end

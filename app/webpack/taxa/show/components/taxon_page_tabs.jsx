@@ -1,7 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
-import { Grid, Row, Col, Dropdown, MenuItem } from "react-bootstrap";
+import {
+  Grid,
+  Row,
+  Col,
+  Dropdown,
+  MenuItem
+} from "react-bootstrap";
+import LazyLoad from "react-lazy-load";
 import _ from "lodash";
 import TaxonPageMapContainer from "../containers/taxon_page_map_container";
 import StatusTab from "./status_tab";
@@ -44,7 +51,7 @@ class TaxonPageTabs extends React.Component {
       currentUser,
       showPhotoChooserModal
     } = this.props;
-    const test = $.deparam.querystring( ).test;
+    const { test } = $.deparam.querystring( );
     const speciesOrLower = taxon && taxon.rank_level <= 10;
     const genusOrSpecies = taxon && ( taxon.rank_level === 20 || taxon.rank_level === 10 );
     let curationTab;
@@ -53,6 +60,7 @@ class TaxonPageTabs extends React.Component {
       : 0;
     if ( currentUser && currentUser.id ) {
       const isCurator = currentUser.roles.indexOf( "curator" ) >= 0 || currentUser.roles.indexOf( "admin" ) >= 0;
+      const isAdmin = currentUser.roles.indexOf( "admin" ) >= 0;
       let atlasItem;
       if ( isCurator && taxon.rank_level <= 10 ) {
         atlasItem = taxon.atlas_id ? (
@@ -84,6 +92,9 @@ class TaxonPageTabs extends React.Component {
                   break;
                 case "edit-photos":
                   showPhotoChooserModal( );
+                  break;
+                case "edit-photos-locked":
+                  // If photos are locked, do nothing
                   break;
                 case "edit-atlas":
                   window.location = `/atlases/${taxon.atlas_id}`;
@@ -119,13 +130,28 @@ class TaxonPageTabs extends React.Component {
                 { " " }
                 <span className="text-muted">{ `(${flagsCount})` }</span>
               </MenuItem>
-              <MenuItem
-                eventKey="edit-photos"
-              >
-                <i className="fa fa-picture-o" />
-                { " " }
-                { I18n.t( "edit_photos" ) }
-              </MenuItem>
+              { taxon.photos_locked && !isAdmin
+                ? (
+                  <MenuItem
+                    className="disabled"
+                    title={I18n.t( "photos_locked_desc" )}
+                    eventKey="edit-photos-locked"
+                  >
+                    <i className="fa fa-picture-o" />
+                    { " " }
+                    { I18n.t( "photos_locked" ) }
+                  </MenuItem>
+                )
+                : (
+                  <MenuItem
+                    eventKey="edit-photos"
+                  >
+                    <i className="fa fa-picture-o" />
+                    { " " }
+                    { I18n.t( "edit_photos" ) }
+                  </MenuItem>
+                )
+              }
               <MenuItem
                 className={isCurator ? "" : "hidden"}
                 eventKey="edit-taxon"
@@ -206,8 +232,20 @@ class TaxonPageTabs extends React.Component {
             className={`tab-pane ${chosenTab === "map" ? "active" : ""}`}
             id="map-tab"
           >
-            <TaxonPageMapContainer />
-            <RecentObservationsContainer />
+            <LazyLoad
+              debounce={false}
+              height={630}
+              offset={100}
+            >
+              <TaxonPageMapContainer />
+            </LazyLoad>
+            <LazyLoad
+              debounce={false}
+              height={120}
+              offset={100}
+            >
+              <RecentObservationsContainer />
+            </LazyLoad>
           </div>
           <div
             role="tabpanel"
@@ -271,7 +309,7 @@ TaxonPageTabs.propTypes = {
 };
 
 TaxonPageTabs.defaultProps = {
-  chosenTab: "map"
+  chosenTab: "articles"
 };
 
 export default TaxonPageTabs;

@@ -184,6 +184,30 @@ describe "Observation Index" do
     expect( o.faves_count ).to eq 1
   end
 
+  describe "photos_count" do
+    it "should not count photos with copyright infringement flags" do
+      o = Observation.make!
+      3.times { make_observation_photo( observation: o ) }
+      Flag.make!( flag: Flag::COPYRIGHT_INFRINGEMENT, flaggable: o.photos.last )
+      o.reload
+      expect( o.photos.length ).to eq 3
+      expect( o.as_indexed_json[:photos_count] ).to eq 2
+    end
+    it "should count photos with resolved copyright infringement flags" do
+      o = Observation.make!
+      3.times { make_observation_photo( observation: o ) }
+      f = Flag.make!( flag: Flag::COPYRIGHT_INFRINGEMENT, flaggable: o.photos.last )
+      o.reload
+      expect( o.photos.length ).to eq 3
+      expect( o.as_indexed_json[:photos_count] ).to eq 2
+      allow( f.flaggable ).to receive(:flagged_with).and_return( true )
+      f.update_attributes( resolved: true )
+      expect( f ).to be_resolved
+      o.reload
+      expect( o.as_indexed_json[:photos_count] ).to eq 3
+    end
+  end
+
   describe "place_ids" do
     it "should include places that contain the uncertainty cell" do
       place = make_place_with_geom

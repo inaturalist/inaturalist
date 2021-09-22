@@ -1,4 +1,4 @@
-class ProjectObservationField < ActiveRecord::Base
+class ProjectObservationField < ApplicationRecord
   belongs_to :project, :inverse_of => :project_observation_fields
   belongs_to :observation_field, :inverse_of => :project_observation_fields
   validates :project, :presence => true

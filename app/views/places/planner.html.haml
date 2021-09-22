@@ -83,11 +83,3 @@
             %th Directions
             %th=t :observations
             %th=t :taxa
-        / %tbody
-        /   - for row in @data
-        /     %tr
-        /       %td= link_to row[:name], place_path(row[:id])
-        /       %td
-        /         = link_to "Google Maps", "http://maps.google.com/?q=#{row[:latitude]},#{row[:longitude]}"
-        /       %td= row[:observations_count]
-        /       %td= row[:taxa_count]

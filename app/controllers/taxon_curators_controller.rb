@@ -1,6 +1,6 @@
 class TaxonCuratorsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :admin_required
+  before_action :authenticate_user!
+  before_action :admin_required
   before_action :set_taxon_curator, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -16,7 +16,9 @@ class TaxonCuratorsController < ApplicationController
   # end
 
   def new
-    @taxon_frameworks = TaxonFramework.includes( :taxon ).where( "taxon_frameworks.rank_level IS NOT NULL" ).order( "taxa.name" ).limit( 100 )
+    @taxon_frameworks = TaxonFramework.select("taxon_frameworks.id, t.name").
+        joins( "JOIN taxa t ON t.id = taxon_frameworks.taxon_id" ).
+        where( "taxon_frameworks.rank_level IS NOT NULL" ).order( "t.name" ).limit( 1000 )
     @taxon_curator = TaxonCurator.new
     respond_with( @taxon_curator )
   end

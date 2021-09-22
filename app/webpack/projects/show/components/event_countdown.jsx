@@ -20,6 +20,9 @@ class EventCountdown extends Component {
     const minutes = durationToEvent.minutes( );
     const seconds = durationToEvent.seconds( );
     setTimeout( ( ) => {
+      if ( !this.isMounted ) {
+        return;
+      }
       if ( timeDiff <= 0 ) {
         // trigger a refresh of the overview component now that
         // the event has started

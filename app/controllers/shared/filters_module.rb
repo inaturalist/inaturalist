@@ -6,11 +6,15 @@ module Shared::FiltersModule
     # otherwise use the session, user's preferred, or site default,
     # or application default locale
     locale = params[:locale]
-    locale = session[:locale] if locale.blank?
     locale = current_user.try(:locale) if locale.blank?
+    locale = session[:locale] if locale.blank?
     locale = @site.locale if @site && locale.blank?
     locale = locale_from_header if locale.blank?
     locale = I18n.default_locale if locale.blank?
+    if locale =~ /\-[a-z]/
+      pieces = locale.split( "-" )
+      locale = "#{pieces[0].downcase}-#{pieces[1].upcase}"
+    end
     I18n.locale = locale
     if I18n.locale.to_s == "iw"
       I18n.locale = I18n.locale.to_s.sub( "iw", "he" ).to_sym

@@ -13,8 +13,8 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    onFileDrop: ( droppedFiles, e ) => {
-      dispatch( onFileDrop( droppedFiles, e ) );
+    onFileDrop: ( droppedFiles, rejectedFiles, e ) => {
+      dispatch( onFileDrop( droppedFiles, rejectedFiles, e ) );
     },
     setMediaViewerState: ( key, value ) => {
       dispatch( setMediaViewerState( key, value ) );

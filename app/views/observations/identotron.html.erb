@@ -84,23 +84,7 @@
         defaultSources: defaultTaxa,
         chosen: currentState.taxon ? taxon : null
       })
-      $('#controls select[multiple]').val(currentState.colors)
-      $('#controls select[multiple]').multiselect({
-        header: false,
-        minWidth: 100,
-        noneSelectedText: I18n.t('none'),
-        selectedText: function(selected, total, elts) {
-          if (selected > 2) {
-            return '<strong>'+selected+' '+I18n.t('colors')+'</strong>'
-          }
-          var html = ''
-          for (var i=0; i < elts.length; i++) {
-            html += '<span class="colorfield '+elts[i].value+'">'+I18n.t(elts[i].value)+'</span>'
-          }
-          return html
-        }
-      })
-      
+
       $('#controls').submit(function() {
         var state = $.deparam.querystring(TaxonGuide.cleanParamString($(this).serialize()))
         delete state.page
@@ -272,7 +256,6 @@
       <%= link_to t(:back_to_observation), @observation, :class => 'back crumb' %>
     </div><!-- /#breadcrumbs -->
   <% end -%>
-  <h2 class="fadednowrap"><%= t :identotron %> <%= t(:for) + ' ' + @observation.to_plain_s if @observation %></h2>
   <p class="description"><%= t :browse_species_that_occur_near_this_observation %></p>
 </div>
 

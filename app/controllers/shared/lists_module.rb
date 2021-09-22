@@ -92,10 +92,6 @@ module Shared::ListsModule
 
         @listed_taxa_editble_by_current_user = @list.listed_taxa_editable_by?(current_user)
         @taxon_rule = @list.rules.detect{|lr| lr.operator == 'in_taxon?' && lr.operand.is_a?(Taxon)}
-
-        if @list.show_obs_photos
-          load_listed_taxon_photos
-        end
         
         if logged_in?
           @current_user_lists = current_user.lists.limit(100)
@@ -111,6 +107,7 @@ module Shared::ListsModule
       end
       
       format.csv do
+        authenticate_user! unless ( authenticated_with_oauth? || logged_in? )
         path_for_taxonomic_csv = "public/lists/#{@list.to_param}.taxonomic.csv"
         path_for_normal_csv = "public/lists/#{@list.to_param}.csv"
         if @list.listed_taxa.count < 1000
@@ -122,29 +119,30 @@ module Shared::ListsModule
           if path
             render :file => path
           else
-            render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
+            render :status => :accepted, :plain => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
           end
         else
-          job_id = Rails.cache.read(@list.generate_csv_cache_key(:view => @view))
+          job_id = Rails.cache.read(@list.generate_csv_cache_key(view: @view, user_id: current_user.id))
           job = Delayed::Job.find_by_id(job_id)
           if job
             # Still working
           else
             # no job id, no job, let's get this party started
-            Rails.cache.delete(@list.generate_csv_cache_key(:view => @view))
+            Rails.cache.delete(@list.generate_csv_cache_key(view: @view, user_id: current_user.id))
             job = if @view == "taxonomic"
               @list.delay(:priority => NOTIFICATION_PRIORITY).generate_csv(:path => path_for_taxonomic_csv, :taxonomic => true)
             else
               @list.delay(:priority => NOTIFICATION_PRIORITY).generate_csv(:path => path_for_normal_csv)
             end
-            Rails.cache.write(@list.generate_csv_cache_key(:view => @view), job.id, :expires_in => 1.hour)
+            Rails.cache.write(@list.generate_csv_cache_key(view: @view, user_id: current_user.id), job.id, :expires_in => 1.hour)
           end
           prevent_caching
-          render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
+          render :status => :accepted, :plain => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
         end
       end
       
       format.json do
+        authenticate_user! unless ( authenticated_with_oauth? || logged_in? )
         @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
         if @listed_taxa.respond_to?(:scoped) && params[:order_by].blank?
           @listed_taxa = @listed_taxa.reorder("listed_taxa.observations_count DESC")
@@ -225,11 +223,6 @@ module Shared::ListsModule
 
     @list.user = current_user
     
-    # add rules for all selected taxa
-    if params[:taxa] && @list.is_a?(LifeList)
-      update_rules(@list, params)
-    end
-    
     # TODO: add a rule for a place, if one was specified
     
     respond_to do |format|
@@ -245,12 +238,8 @@ module Shared::ListsModule
   # PUT /lists/1
   # PUT /lists/1.xml
   def update
-    # add rules for all selected taxa
-    if params[:taxa] && @list.is_a?(LifeList)
-      update_rules(@list, params)
-    end
     
-    list_attributes = params[:list] || params[:life_list] || params[:check_list]
+    list_attributes = params[:list] || params[:check_list]
     
     if @list.update_attributes(list_attributes)
       flash[:notice] = t(:list_saved)
@@ -261,15 +250,6 @@ module Shared::ListsModule
   end
   
   def destroy
-    if @list.id == current_user.life_list_id
-      respond_to do |format|
-        format.html do
-          flash[:notice] = t(:sorry_you_cant_delete_your_own_life_list)
-          redirect_to @list
-        end
-      end
-      return
-    end
 
     if @list.is_a?(ProjectList)
       respond_to do |format|
@@ -426,7 +406,7 @@ private
     end
   end
   
-  def load_list #before_filter
+  def load_list #before_action
     @list = List.find_by_id(params[:id].to_i)
     @list ||= List.find_by_id(params[:list_id].to_i)
     List.preload_associations(@list, :user)
@@ -446,7 +426,7 @@ private
     list
   end
 
-  def set_iconic_taxa #before_filter
+  def set_iconic_taxa #before_action
     @iconic_taxa = Taxon::ICONIC_TAXA
     @iconic_taxa_by_id = @iconic_taxa.index_by(&:id)
   end
@@ -504,10 +484,6 @@ private
         unpaginated_listed_taxa = unpaginated_listed_taxa.unconfirmed
       end
     end
-    if params[:observed].blank? && list.is_a?(LifeList) && list.id == list.user.life_list_id
-      @observed = 't'
-      unpaginated_listed_taxa = unpaginated_listed_taxa.confirmed
-    end
 
     if filter_by_param?(params[:rank])
       @rank = params[:rank]
@@ -521,9 +497,6 @@ private
     elsif list.is_a?(CheckList)
       @rank = "species"
       unpaginated_listed_taxa = unpaginated_listed_taxa.with_species
-    elsif list.is_a?(LifeList) && list.id == list.user.life_list_id
-      @rank = "leaves"
-      unpaginated_listed_taxa = unpaginated_listed_taxa.with_leaves(unpaginated_listed_taxa.to_sql)
     else
       @rank = "all"
     end
@@ -595,7 +568,7 @@ private
   end
 
   def set_options_order(find_options)
-    find_options[:order] = case params[:order_by]
+    options_order = case params[:order_by]
     when "name"
       order = params[:order]
       order = "asc" unless %w(asc desc).include?(params[:order])
@@ -608,6 +581,7 @@ private
       # TODO: somehow make the following not cause a filesort...
       "taxa.ancestry || '/' || listed_taxa.taxon_id"
     end
+    find_options[:order] = Arel.sql( options_order )
     find_options
   end
 
@@ -651,10 +625,6 @@ private
 
   def require_listed_taxa_editor
     @list.listed_taxa_editable_by?(current_user)
-  end
-  
-  def load_listed_taxon_photos
-    # override
   end
   
   def set_taxon_names_by_taxon_id(listed_taxa, iconic_taxa, taxa)

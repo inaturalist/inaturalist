@@ -1,13 +1,16 @@
 import _ from "lodash";
+import React from "react";
 import inatjs from "inaturalistjs";
 import moment from "moment";
 import { fetchObservationPlaces, setObservationPlaces } from "./observation_places";
-import { fetchControlledTerms, setControlledTerms } from "./controlled_terms";
-import { fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade,
+import { resetControlledTerms } from "./controlled_terms";
+import {
+  fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade,
   setEarlierUserObservations, setLaterUserObservations, setNearby,
-  setMoreFromClade } from "./other_observations";
+  setMoreFromClade
+} from "./other_observations";
 import { fetchQualityMetrics, setQualityMetrics } from "./quality_metrics";
-import { fetchSubscriptions, setSubscriptions } from "./subscriptions";
+import { fetchSubscriptions, resetSubscriptions, setSubscriptions } from "./subscriptions";
 import { fetchIdentifiers, setIdentifiers } from "./identifications";
 import { setFlaggingModalState } from "./flagging_modal";
 import { setConfirmModalState, handleAPIError } from "./confirm_modal";
@@ -15,15 +18,243 @@ import { setProjectFieldsModalState } from "./project_fields_modal";
 import { updateSession } from "./users";
 import util from "../util";
 import { showDisagreementAlert } from "../../shared/ducks/disagreement_alert";
+import RejectedFilesError from "../../../shared/components/rejected_files_error";
 
 const SET_OBSERVATION = "obs-show/observation/SET_OBSERVATION";
 const SET_ATTRIBUTES = "obs-show/observation/SET_ATTRIBUTES";
 let lastAction;
 
+const USER_FIELDS = {
+  login: true,
+  icon_url: true
+};
+const MODERATOR_ACTION_FIELDS = {
+  action: true,
+  id: true,
+  created_at: true,
+  reason: true,
+  user: USER_FIELDS
+};
+const TAXON_FIELDS = {
+  ancestry: true,
+  ancestor_ids: true,
+  ancestors: {
+    id: true,
+    uuid: true,
+    name: true,
+    iconic_taxon_name: true,
+    is_active: true,
+    preferred_common_name: true,
+    rank: true,
+    rank_level: true
+  },
+  default_photo: {
+    attribution: true,
+    license_code: true,
+    url: true,
+    square_url: true
+  },
+  iconic_taxon_name: true,
+  id: true,
+  is_active: true,
+  name: true,
+  preferred_common_name: true,
+  rank: true,
+  rank_level: true
+};
+const CONTROLLED_TERM_FIELDS = {
+  id: true,
+  label: true,
+  multivalued: true
+};
+const PROJECT_FIELDS = {
+  admins: {
+    user_id: true
+  },
+  icon: true,
+  project_observation_fields: {
+    id: true,
+    observation_field: {
+      allowed_values: true,
+      datatype: true,
+      description: true,
+      id: true,
+      name: true
+    }
+  },
+  slug: true,
+  title: true
+};
+const FIELDS = {
+  annotations: {
+    controlled_attribute: CONTROLLED_TERM_FIELDS,
+    controlled_value: CONTROLLED_TERM_FIELDS,
+    user: USER_FIELDS,
+    vote_score: true,
+    votes: {
+      vote_flag: true,
+      user: USER_FIELDS
+    }
+  },
+  application: {
+    icon: true,
+    name: true,
+    url: true
+  },
+  comments: {
+    body: true,
+    created_at: true,
+    flags: { id: true },
+    hidden: true,
+    id: true,
+    moderator_actions: MODERATOR_ACTION_FIELDS,
+    spam: true,
+    user: USER_FIELDS
+  },
+  community_taxon: TAXON_FIELDS,
+  created_at: true,
+  description: true,
+  faves: {
+    user: USER_FIELDS
+  },
+  flags: {
+    id: true
+  },
+  geojson: true,
+  geoprivacy: true,
+  id: true,
+  identifications: {
+    body: true,
+    category: true,
+    created_at: true,
+    current: true,
+    disagreement: true,
+    flags: { id: true },
+    hidden: true,
+    moderator_actions: MODERATOR_ACTION_FIELDS,
+    previous_observation_taxon: TAXON_FIELDS,
+    spam: true,
+    taxon: TAXON_FIELDS,
+    taxon_change: { id: true, type: true },
+    updated_at: true,
+    user: Object.assign( { }, USER_FIELDS, { id: true } ),
+    uuid: true,
+    vision: true
+  },
+  identifications_most_agree: true,
+  // TODO refactor to rely on geojson instead of lat and lon
+  latitude: true,
+  license_code: true,
+  location: true,
+  longitude: true,
+  map_scale: true,
+  non_traditional_projects: {
+    current_user_is_member: true,
+    project_user: {
+      user: USER_FIELDS
+    },
+    project: PROJECT_FIELDS
+  },
+  obscured: true,
+  observed_on: true,
+  observed_time_zone: true,
+  ofvs: {
+    observation_field: {
+      datatype: true,
+      description: true,
+      name: true,
+      taxon: {
+        name: true
+      },
+      uuid: true
+    },
+    user: USER_FIELDS,
+    uuid: true,
+    value: true,
+    taxon: TAXON_FIELDS
+  },
+  outlinks: {
+    source: true,
+    url: true
+  },
+  photos: {
+    id: true,
+    uuid: true,
+    url: true,
+    license_code: true
+  },
+  place_guess: true,
+  place_ids: true,
+  positional_accuracy: true,
+  preferences: {
+    prefers_community_taxon: true
+  },
+  private_geojson: true,
+  private_place_guess: true,
+  private_place_ids: true,
+  project_observations: {
+    current_user_is_member: true,
+    preferences: {
+      allows_curator_coordinate_access: true
+    },
+    project: PROJECT_FIELDS,
+    uuid: true
+  },
+  public_positional_accuracy: true,
+  quality_grade: true,
+  reviewed_by: true,
+  sounds: {
+    file_url: true,
+    file_content_type: true,
+    id: true,
+    license_code: true,
+    play_local: true,
+    url: true,
+    uuid: true
+  },
+  tags: true,
+  taxon: TAXON_FIELDS,
+  taxon_geoprivacy: true,
+  time_observed_at: true,
+  time_zone: true,
+  user: Object.assign( {}, USER_FIELDS, {
+    id: true,
+    name: true,
+    observations_count: true,
+    preferences: {
+      prefers_community_taxa: true,
+      prefers_observation_fields_by: true
+    }
+  } ),
+  viewer_trusted_by_observer: true,
+  votes: {
+    id: true,
+    user: Object.assign( {}, USER_FIELDS, { id: true } ),
+    vote_flag: true,
+    vote_scope: true
+  }
+};
+
 export default function reducer( state = { }, action ) {
   switch ( action.type ) {
-    case SET_OBSERVATION:
+    case SET_OBSERVATION: {
+      // If we're just updating the same observation, make sure we preserve the
+      // existing taxon summaries if the new data doesn't replace them
+      if ( action.observation && action.observation.id === state.id ) {
+        _.each( ["taxon", "community_taxon", "communityTaxon"], attr => {
+          if (
+            state[attr]
+            && state[attr].taxon_summary
+            && action.observation
+            && action.observation[attr]
+            && !action.observation[attr].taxon_summary
+          ) {
+            action.observation[attr].taxon_summary = state[attr].taxon_summary;
+          }
+        } );
+      }
       return action.observation;
+    }
     case SET_ATTRIBUTES:
       return Object.assign( { }, state, action.attributes );
     default:
@@ -52,7 +283,9 @@ export function windowStateForObservation( observation, state, opts = { } ) {
   const observationState = {
     observation: {
       id: observation.id,
+      uuid: observation.uuid,
       observed_on: observation.observed_on,
+      obscured: observation.obscured,
       user: {
         login: observation.user.login
       }
@@ -77,9 +310,14 @@ export function windowStateForObservation( observation, state, opts = { } ) {
   } else {
     title = `${I18n.t( "something" )} ${title}`;
   }
-  if ( observation.observed_on ) {
-    const date = moment( observation.observed_on ).format( "MMMM D, YYYY" );
-    title = `${title} on ${date}`;
+  if (
+    observation.observed_on
+    && observation.obscured
+    && !observation.private_geojson
+  ) {
+    title = `${title} in ${moment( observation.observed_on ).format( I18n.t( "momentjs.month_year" ) )}`;
+  } else if ( observation.observed_on ) {
+    title = `${title} on ${moment( observation.observed_on ).format( "ll" )}`;
   }
   let url = `/observations/${observation.id}`;
   if ( window.location.search ) {
@@ -107,16 +345,18 @@ export function hasObsAndLoggedIn( state ) {
 }
 
 export function userIsObserver( state ) {
-  return ( hasObsAndLoggedIn( state ) &&
-           state.config.currentUser.id === state.observation.user.id );
+  return (
+    hasObsAndLoggedIn( state )
+    && state.config.currentUser.id === state.observation.user.id
+  );
 }
 
 export function resetStates( ) {
   return dispatch => {
     dispatch( setObservation( { } ) );
-    dispatch( setIdentifiers( [] ) );
+    dispatch( setIdentifiers( null ) );
     dispatch( setObservationPlaces( [] ) );
-    dispatch( setControlledTerms( [] ) );
+    dispatch( resetControlledTerms( ) );
     dispatch( setQualityMetrics( [] ) );
     dispatch( setEarlierUserObservations( [] ) );
     dispatch( setLaterUserObservations( [] ) );
@@ -130,7 +370,7 @@ export function fetchTaxonSummary( ) {
   return ( dispatch, getState ) => {
     const { observation } = getState( );
     if ( !observation || !observation.taxon ) { return null; }
-    const params = { id: observation.id, ttl: -1, locale: I18n.locale };
+    const params = { id: observation.uuid, ttl: -1, locale: I18n.locale };
     return inatjs.observations.taxonSummary( params ).then( response => {
       dispatch( setAttributes( {
         taxon: Object.assign( { }, observation.taxon, { taxon_summary: response } )
@@ -144,7 +384,7 @@ export function fetchCommunityTaxonSummary( ) {
     const { observation } = getState( );
     if ( !observation || !observation.communityTaxon ) { return null; }
     const params = {
-      id: observation.id,
+      id: observation.uuid,
       ttl: -1,
       community: true,
       locale: I18n.locale
@@ -166,7 +406,7 @@ export function fetchNewProjects( ) {
       locale: I18n.locale,
       ttl: -1
     };
-    return inatjs.observations.fetch( observation.id, params ).then( response => {
+    return inatjs.observations.fetch( observation.uuid, params ).then( response => {
       const responseObservation = response.results[0];
       if ( responseObservation && _.has( responseObservation, "non_traditional_projects" ) ) {
         dispatch( setAttributes( {
@@ -179,30 +419,38 @@ export function fetchNewProjects( ) {
 
 export function renderObservation( observation, options = { } ) {
   return ( dispatch, getState ) => {
-    if ( !observation || !observation.id ) {
+    if ( !observation || !observation.uuid ) {
       console.log( "observation not found" );
       return;
     }
     const s = getState( );
     const originalObservation = s.observation;
-    const fetchAll = options.fetchAll;
-    const taxonUpdated = ( originalObservation &&
-      originalObservation.id === observation.id &&
-      ( ( !originalObservation.taxon && observation.taxon ) ||
-        ( originalObservation.taxon && !observation.taxon ) ||
-        ( originalObservation.taxon && observation.taxon &&
-          originalObservation.taxon.id !== observation.taxon.id ) ) );
+    const { fetchAll } = options;
+    const taxonUpdated = (
+      originalObservation
+      && originalObservation.id === observation.id
+      && (
+        ( !originalObservation.taxon && observation.taxon )
+        || ( originalObservation.taxon && !observation.taxon )
+        || (
+          originalObservation.taxon
+          && observation.taxon
+          && originalObservation.taxon.id !== observation.taxon.id
+        )
+      )
+    );
     dispatch( setObservation( observation ) );
     if ( taxonUpdated ) {
-      dispatch( setIdentifiers( [] ) );
+      dispatch( setIdentifiers( null ) );
       dispatch( setMoreFromClade( [] ) );
     }
-    dispatch( fetchTaxonSummary( ) );
-    dispatch( fetchCommunityTaxonSummary( ) );
-    if ( fetchAll || options.fetchControlledTerms ) { dispatch( fetchControlledTerms( ) ); }
+    if ( taxonUpdated || fetchAll ) {
+      dispatch( fetchTaxonSummary( ) );
+      dispatch( fetchCommunityTaxonSummary( ) );
+    }
     if ( fetchAll || options.fetchQualityMetrics ) { dispatch( fetchQualityMetrics( ) ); }
     if ( hasObsAndLoggedIn( s ) && ( fetchAll || options.fetchSubscriptions ) ) {
-      dispatch( fetchSubscriptions( ) );
+      dispatch( resetSubscriptions( ) );
     }
     if ( fetchAll || options.fetchPlaces ) { dispatch( fetchObservationPlaces( ) ); }
     if ( fetchAll || options.replaceState ) {
@@ -221,20 +469,12 @@ export function renderObservation( observation, options = { } ) {
       if ( fetchAll || options.fetchOtherObservations || taxonUpdated ) {
         dispatch( fetchMoreFromClade( ) );
       }
-      if ( ( fetchAll || options.fetchIdentifiers || taxonUpdated ) &&
-           observation.taxon && observation.taxon.rank_level <= 50 ) {
-        dispatch( fetchIdentifiers( {
-          taxon_id: observation.taxon.id, quality_grade: "research", per_page: 10 } ) );
-      }
-      if ( fetchAll || options.fetchControlledTerms || taxonUpdated ) {
-        dispatch( fetchControlledTerms( ) );
-      }
       if ( ( fetchAll || taxonUpdated ) && !_.has( observation, "non_traditional_projects" ) ) {
         dispatch( fetchNewProjects( ) );
       }
     }, taxonUpdated ? 1 : 500 );
     if ( s.flaggingModal && s.flaggingModal.item && s.flaggingModal.show ) {
-      const item = s.flaggingModal.item;
+      const { item } = s.flaggingModal;
       let newItem;
       if ( observation.id === item.id ) { newItem = observation; }
       newItem = newItem || _.find( observation.comments, c => c.id === item.id );
@@ -247,16 +487,23 @@ export function renderObservation( observation, options = { } ) {
   };
 }
 
-export function fetchObservation( id, options = { } ) {
+export function fetchObservation( uuid, options = { } ) {
   return ( dispatch, getState ) => {
+    if ( !uuid ) {
+      return;
+    }
     const s = getState( );
+    const { testingApiV2 } = s.config;
     const params = {
       include_new_projects: "true",
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale,
       ttl: -1
     };
-    return inatjs.observations.fetch( id, params ).then( response => {
+    if ( testingApiV2 ) {
+      params.fields = FIELDS;
+    }
+    inatjs.observations.fetch( uuid, params ).then( response => {
       dispatch( renderObservation( response.results[0], options ) );
     } ).catch( e => console.log( e ) );
   };
@@ -265,16 +512,28 @@ export function fetchObservation( id, options = { } ) {
 export function afterAPICall( options = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
+    const { testingApiV2 } = state.config;
     if ( options.error ) {
-      dispatch( handleAPIError( options.error,
-        options.errorMessage || I18n.t( "failed_to_save_record" ) ) );
+      dispatch(
+        handleAPIError(
+          options.error,
+          options.errorMessage || I18n.t( "failed_to_save_record" )
+        )
+      );
     }
     if ( options.callback ) {
       options.callback( );
     } else {
-      if ( options.actionTime && lastAction !== options.actionTime ) { return; }
+      if ( options.actionTime && lastAction !== options.actionTime ) {
+        return;
+      }
       if ( state.observation ) {
-        dispatch( fetchObservation( state.observation.id, options ) );
+        dispatch(
+          fetchObservation(
+            testingApiV2 ? state.observation.uuid : state.observation.id,
+            options
+          )
+        );
       }
     }
   };
@@ -346,13 +605,12 @@ export function addTag( tag ) {
     if ( !tag || !hasObsAndLoggedIn( state ) ) { return; }
     if ( _.find( state.observation.tags, t => (
       _.lowerCase( t.tag || t ) === _.lowerCase( tag ) ) ) ) { return; }
-    dispatch( setAttributes( { tags: state.observation.tags.concat( [{
-      tag,
-      api_status: "saving"
-    }] ) } ) );
+    dispatch( setAttributes( {
+      tags: state.observation.tags.concat( [{ tag, api_status: "saving" }] )
+    } ) );
 
     let newTagList = tag;
-    const tags = state.observation.tags;
+    const { tags } = state.observation;
     if ( !_.isEmpty( tags ) ) {
       const currentTags = _.filter( tags, t => ( t.api_status !== "deleting" ) );
       const currentTagList = _.map( currentTags, t => ( t.tag || t ) ).join( ", " );
@@ -381,11 +639,13 @@ export function review( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    dispatch( setAttributes( { reviewed_by: state.observation.reviewed_by.concat( [
-      state.config.currentUser.id
-    ] ) } ) );
+    dispatch( setAttributes( {
+      reviewed_by: state.observation.reviewed_by.concat( [
+        state.config.currentUser.id
+      ] )
+    } ) );
 
-    const payload = { id: state.observation.id };
+    const payload = { uuid: state.observation.uuid };
     dispatch( callAPI( inatjs.observations.review, payload ) );
   };
 }
@@ -397,7 +657,7 @@ export function unreview( ) {
     const newReviewedBy = _.without( state.observation.reviewed_by, state.config.currentUser.id );
     dispatch( setAttributes( { reviewed_by: newReviewedBy } ) );
 
-    const payload = { id: state.observation.id };
+    const payload = { uuid: state.observation.uuid };
     dispatch( callAPI( inatjs.observations.unreview, payload ) );
   };
 }
@@ -406,44 +666,63 @@ export function addComment( body ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    dispatch( setAttributes( { comments: state.observation.comments.concat( [{
-      created_at: moment( ).format( ),
-      user: state.config.currentUser,
-      body,
-      api_status: "saving"
-    }] ) } ) );
+    dispatch(
+      setAttributes( {
+        comments: state.observation.comments.concat( [{
+          created_at: moment( ).format( ),
+          user: state.config.currentUser,
+          body,
+          api_status: "saving"
+        }] )
+      } )
+    );
 
     const payload = {
-      parent_type: "Observation",
-      parent_id: state.observation.id,
-      body
+      comment: {
+        parent_type: "Observation",
+        parent_id: state.observation.uuid,
+        body
+      }
     };
     dispatch( callAPI( inatjs.comments.create, payload ) );
   };
 }
 
-export function deleteComment( id ) {
+export function deleteComment( uuid ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newComments = _.map( state.observation.comments, c => (
-      c.id === id ?
-        Object.assign( { }, c, { api_status: "deleting" } ) : c
+      c.uuid === uuid ? Object.assign( { }, c, { api_status: "deleting" } ) : c
     ) );
     dispatch( setAttributes( { comments: newComments } ) );
-    dispatch( callAPI( inatjs.comments.delete, { id } ) );
+    dispatch( callAPI( inatjs.comments.delete, { uuid } ) );
   };
 }
 
+export function editComment( uuid, body ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newComments = state.observation.comments.map( c => (
+      c.uuid === uuid ? Object.assign( { }, c, { body } ) : c
+    ) );
+    dispatch( setAttributes( { comments: newComments } ) );
+    dispatch( callAPI( inatjs.comments.update, {
+      uuid,
+      comment: { body }
+    } ) );
+  };
+}
 
-export function confirmDeleteComment( id ) {
-  return ( dispatch ) => {
+export function confirmDeleteComment( uuid ) {
+  return dispatch => {
     dispatch( setConfirmModalState( {
       show: true,
       message: I18n.t( "you_sure_delete_comment?" ),
       confirmText: "Yes",
       onConfirm: ( ) => {
-        dispatch( deleteComment( id ) );
+        dispatch( deleteComment( uuid ) );
       }
     } ) );
   };
@@ -457,26 +736,29 @@ export function doAddID( taxon, confirmForm, options = { } ) {
       dispatch( updateSession( { prefers_skip_coarer_id_modal: true } ) );
     }
     const newIdentifications = _.map( state.observation.identifications, i => (
-      i.user.id === state.config.currentUser.id ?
-        Object.assign( { }, i, { current: false } ) : i
+      i.user.id === state.config.currentUser.id ? Object.assign( { }, i, { current: false } ) : i
     ) );
-    dispatch( setAttributes( { identifications: newIdentifications.concat( [{
-      created_at: moment( ).format( ),
-      user: state.config.currentUser,
-      body: options.body,
-      agreedTo: options.agreedTo,
-      disagreement: options.disagreement,
-      taxon,
-      current: true,
-      api_status: "saving"
-    }] ) } ) );
+    dispatch( setAttributes( {
+      identifications: newIdentifications.concat( [{
+        created_at: moment( ).format( ),
+        user: state.config.currentUser,
+        body: options.body,
+        agreedTo: options.agreedTo,
+        disagreement: options.disagreement,
+        taxon,
+        current: true,
+        api_status: "saving"
+      }] )
+    } ) );
 
     const payload = {
-      observation_id: state.observation.id,
-      taxon_id: taxon.id,
-      body: options.body,
-      vision: !!taxon.isVisionResult,
-      disagreement: options.disagreement
+      identification: {
+        observation_id: state.observation.id,
+        taxon_id: taxon.id,
+        body: options.body,
+        vision: !!taxon.isVisionResult,
+        disagreement: options.disagreement
+      }
     };
     dispatch( callAPI( inatjs.identifications.create, payload ) );
   };
@@ -488,19 +770,29 @@ export function addID( taxon, options = { } ) {
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const o = state.observation;
     let observationTaxon = o.taxon;
-    if ( o.preferences.prefers_community_taxon === false || o.user.preferences.prefers_community_taxa === false ) {
+    if (
+      o.preferences.prefers_community_taxon === false
+      || o.user.preferences.prefers_community_taxa === false
+    ) {
       observationTaxon = o.community_taxon || o.taxon;
     }
     if (
-      observationTaxon && taxon.id !== observationTaxon.id &&
-      _.includes( observationTaxon.ancestor_ids, taxon.id )
+      observationTaxon
+      && taxon.id !== observationTaxon.id
+      && _.includes( observationTaxon.ancestor_ids, taxon.id )
     ) {
       dispatch( showDisagreementAlert( {
         onDisagree: ( ) => {
           dispatch( doAddID( taxon, { }, Object.assign( { disagreement: true }, options ) ) );
         },
         onBestGuess: ( ) => {
-          dispatch( doAddID( taxon, { disagreement: false }, Object.assign( { disagreement: false }, options ) ) );
+          dispatch(
+            doAddID(
+              taxon,
+              { disagreement: false },
+              Object.assign( { disagreement: false }, options )
+            )
+          );
         },
         oldTaxon: observationTaxon,
         newTaxon: taxon
@@ -511,29 +803,62 @@ export function addID( taxon, options = { } ) {
   };
 }
 
-export function deleteID( id ) {
+export function deleteID( uuid, options = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    const newIdentifications = _.map( state.observation.identifications, i => (
-      i.id === id ?
-        Object.assign( { }, i, { current: false, api_status: "deleting" } ) : i
-    ) );
+    let newIdentifications;
+    if ( options.delete ) {
+      newIdentifications = state.observation.identifications.filter( i => ( i.uuid !== uuid ) );
+    } else {
+      newIdentifications = _.map( state.observation.identifications, i => (
+        i.uuid === uuid ? Object.assign( { }, i, { current: false, api_status: "deleting" } ) : i
+      ) );
+    }
     dispatch( setAttributes( { identifications: newIdentifications } ) );
-    dispatch( callAPI( inatjs.identifications.delete, { id } ) );
+    dispatch( callAPI( inatjs.identifications.delete, Object.assign( {}, { uuid }, options ) ) );
   };
 }
 
-export function restoreID( id ) {
+export function editID( uuid, body ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newIdentifications = state.observation.identifications.map( i => (
+      i.uuid === uuid ? Object.assign( { }, i, { body } ) : i
+    ) );
+    dispatch( setAttributes( { identifications: newIdentifications } ) );
+    dispatch( callAPI( inatjs.identifications.update, { uuid, identification: { body } } ) );
+  };
+}
+
+export function confirmDeleteID( uuid ) {
+  return dispatch => {
+    dispatch( setConfirmModalState( {
+      show: true,
+      message: I18n.t( "you_sure_delete_identification?" ),
+      confirmText: "Yes",
+      onConfirm: ( ) => {
+        dispatch( deleteID( uuid, { delete: true } ) );
+      }
+    } ) );
+  };
+}
+
+export function restoreID( uuid ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newIdentifications = _.map( state.observation.identifications, i => (
-      i.id === id ?
-        Object.assign( { }, i, { current: true, api_status: "saving" } ) : i
+      i.uuid === uuid ? Object.assign( { }, i, { current: true, api_status: "saving" } ) : i
     ) );
     dispatch( setAttributes( { identifications: newIdentifications } ) );
-    dispatch( callAPI( inatjs.identifications.update, { id, current: true } ) );
+    dispatch( callAPI( inatjs.identifications.update, {
+      uuid,
+      identification: {
+        current: true
+      }
+    } ) );
   };
 }
 
@@ -545,12 +870,13 @@ export function vote( scope, params = { } ) {
     if ( scope ) {
       payload.scope = scope;
       const newVotes = _.filter( state.observation.votes, v => (
-        !( v.user.id === state.config.currentUser.id && v.vote_scope === scope ) ) ).concat( [{
-          vote_flag: ( params.vote === "yes" ),
-          vote_scope: payload.scope,
-          user: state.config.currentUser,
-          api_status: "saving"
-        }] );
+        !( v.user.id === state.config.currentUser.id && v.vote_scope === scope )
+      ) ).concat( [{
+        vote_flag: ( params.vote === "yes" ),
+        vote_scope: payload.scope,
+        user: state.config.currentUser,
+        api_status: "saving"
+      }] );
       dispatch( setAttributes( { votes: newVotes } ) );
     }
     dispatch( callAPI( inatjs.observations.fave, payload ) );
@@ -564,8 +890,9 @@ export function unvote( scope ) {
     if ( scope ) {
       payload.scope = scope;
       const newVotes = _.map( state.observation.votes, v => (
-        ( v.user.id === state.config.currentUser.id && v.vote_scope === scope ) ?
-          Object.assign( { }, v, { api_status: "deleting" } ) : v
+        ( v.user.id === state.config.currentUser.id && v.vote_scope === scope )
+          ? Object.assign( { }, v, { api_status: "deleting" } )
+          : v
       ) );
       dispatch( setAttributes( { votes: newVotes } ) );
     }
@@ -604,7 +931,7 @@ export function followUser( ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     if ( userIsObserver( state ) ) { return; }
-    const newSubscriptions = state.subscriptions.concat( [{
+    const newSubscriptions = state.subscriptions.subscriptions.concat( [{
       resource_type: "User",
       resource_id: state.observation.user.id,
       user_id: state.config.currentUser.id,
@@ -612,9 +939,9 @@ export function followUser( ) {
     }] );
     dispatch( setSubscriptions( newSubscriptions ) );
     const payload = { id: state.config.currentUser.id, friend_id: state.observation.user.id };
-    dispatch( callAPI( inatjs.users.update, payload, { callback: ( ) => {
-      dispatch( fetchSubscriptions( ) );
-    } } ) );
+    dispatch( callAPI( inatjs.users.update, payload, {
+      callback: ( ) => dispatch( fetchSubscriptions( ) )
+    } ) );
   };
 }
 
@@ -624,8 +951,9 @@ export function unfollowUser( ) {
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     if ( userIsObserver( state ) ) { return; }
     const newSubscriptions = _.map( state.subscriptions, s => (
-      s.resource_type === "User" ?
-        Object.assign( { }, s, { api_status: "deleting" } ) : s
+      s.resource_type === "User"
+        ? Object.assign( { }, s, { api_status: "deleting" } )
+        : s
     ) );
     dispatch( setSubscriptions( newSubscriptions ) );
 
@@ -633,9 +961,11 @@ export function unfollowUser( ) {
       id: state.config.currentUser.id,
       remove_friend_id: state.observation.user.id
     };
-    dispatch( callAPI( inatjs.users.update, payload, { callback: ( ) => {
-      dispatch( fetchSubscriptions( ) );
-    } } ) );
+    dispatch( callAPI( inatjs.users.update, payload, {
+      callback: ( ) => {
+        dispatch( fetchSubscriptions( ) );
+      }
+    } ) );
   };
 }
 
@@ -648,12 +978,11 @@ export function subscribe( ) {
       s.resource_type === "Observation" ) );
     if ( obsSubscription ) {
       const newSubscriptions = _.map( state.subscriptions, s => (
-        s.resource_type === "Observation" ?
-          Object.assign( { }, s, { api_status: "deleting" } ) : s
+        s.resource_type === "Observation" ? Object.assign( { }, s, { api_status: "deleting" } ) : s
       ) );
       dispatch( setSubscriptions( newSubscriptions ) );
     } else {
-      const newSubscriptions = state.subscriptions.concat( [{
+      const newSubscriptions = state.subscriptions.subscriptions.concat( [{
         resource_type: "Observation",
         resource_id: state.observation.id,
         user_id: state.config.currentUser.id,
@@ -661,10 +990,10 @@ export function subscribe( ) {
       }] );
       dispatch( setSubscriptions( newSubscriptions ) );
     }
-    const payload = { id: state.observation.id };
-    dispatch( callAPI( inatjs.observations.subscribe, payload, { callback: ( ) => {
-      dispatch( fetchSubscriptions( ) );
-    } } ) );
+    const payload = { id: state.observation.uuid };
+    dispatch( callAPI( inatjs.observations.subscribe, payload, {
+      callback: ( ) => dispatch( fetchSubscriptions( ) )
+    } ) );
   };
 }
 
@@ -695,8 +1024,9 @@ export function deleteAnnotation( id ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newAnnotations = _.map( state.observation.annotations, a => (
-      ( a.user.id === state.config.currentUser.id && a.uuid === id ) ?
-        Object.assign( { }, a, { api_status: "deleting" } ) : a
+      ( a.user.id === state.config.currentUser.id && a.uuid === id )
+        ? Object.assign( { }, a, { api_status: "deleting" } )
+        : a
     ) );
     dispatch( setAttributes( { annotations: newAnnotations } ) );
     dispatch( callAPI( inatjs.annotations.delete, { id } ) );
@@ -708,15 +1038,16 @@ export function voteAnnotation( id, voteValue ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newAnnotations = _.map( state.observation.annotations, a => (
-      ( a.uuid === id ) ?
-        Object.assign( { }, a, {
+      ( a.uuid === id )
+        ? Object.assign( { }, a, {
           api_status: "voting",
           votes: ( a.votes || [] ).concat( [{
             vote_flag: ( voteValue !== "bad" ),
             user: state.config.currentUser,
             api_status: "saving"
           }] )
-        } ) : a
+        } )
+        : a
     ) );
     dispatch( setAttributes( { annotations: newAnnotations } ) );
     dispatch( callAPI( inatjs.annotations.vote, { id, vote: voteValue } ) );
@@ -728,14 +1059,16 @@ export function unvoteAnnotation( id ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newAnnotations = _.map( state.observation.annotations, a => (
-      ( a.uuid === id ) ?
-        Object.assign( { }, a, {
+      ( a.uuid === id )
+        ? Object.assign( { }, a, {
           api_status: "voting",
           votes: _.map( a.votes, v => (
-            v.user.id === state.config.currentUser.id ?
-              Object.assign( { }, v, { api_status: "deleting" } ) : v
+            v.user.id === state.config.currentUser.id
+              ? Object.assign( { }, v, { api_status: "deleting" } )
+              : v
           ) )
-        } ) : a
+        } )
+        : a
     ) );
     dispatch( setAttributes( { annotations: newAnnotations } ) );
     dispatch( callAPI( inatjs.annotations.unvote, { id } ) );
@@ -750,19 +1083,25 @@ export function voteMetric( metric, params = { } ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newMetrics = _.filter( state.qualityMetrics, qm => (
-      !( qm.user && qm.user.id === state.config.currentUser.id && qm.metric === metric ) ) ).concat( [{
-        observation_id: state.observation.id,
-        metric,
-        agree: ( params.agree !== "false" ),
-        created_at: moment( ).format( ),
-        user: state.config.currentUser,
-        api_status: "saving"
-      }] );
+      !( qm.user && qm.user.id === state.config.currentUser.id && qm.metric === metric )
+    ) ).concat( [{
+      metric,
+      agree: ( params.agree !== "false" ),
+      created_at: moment( ).format( ),
+      user: state.config.currentUser,
+      api_status: "saving"
+    }] );
     dispatch( setQualityMetrics( newMetrics ) );
-
-    const payload = Object.assign( { }, { id: state.observation.id, metric }, params );
-    dispatch( callAPI( inatjs.observations.setQualityMetric, payload, {
-      fetchQualityMetrics: true } ) );
+    const { testingApiV2 } = state.config;
+    const obsID = testingApiV2 ? state.observation.uuid : state.observation.id;
+    const payload = Object.assign( { }, { id: obsID, metric }, params );
+    dispatch(
+      callAPI(
+        inatjs.observations.setQualityMetric,
+        payload,
+        { fetchQualityMetrics: true }
+      )
+    );
   };
 }
 
@@ -774,14 +1113,21 @@ export function unvoteMetric( metric ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newMetrics = _.map( state.qualityMetrics, qm => (
-      ( qm.user && qm.user.id === state.config.currentUser.id && qm.metric === metric ) ?
-        Object.assign( { }, qm, { api_status: "deleting" } ) : qm
+      ( qm.user && qm.user.id === state.config.currentUser.id && qm.metric === metric )
+        ? Object.assign( { }, qm, { api_status: "deleting" } )
+        : qm
     ) );
     dispatch( setQualityMetrics( newMetrics ) );
-
-    const payload = { id: state.observation.id, metric };
-    dispatch( callAPI( inatjs.observations.deleteQualityMetric, payload, {
-      fetchQualityMetrics: true } ) );
+    const { testingApiV2 } = state.config;
+    const obsID = testingApiV2 ? state.observation.uuid : state.observation.id;
+    const payload = { id: obsID, metric };
+    dispatch(
+      callAPI(
+        inatjs.observations.deleteQualityMetric,
+        payload,
+        { fetchQualityMetrics: true }
+      )
+    );
   };
 }
 
@@ -798,20 +1144,35 @@ export function addToProjectSubmit( project ) {
     } );
     dispatch( setAttributes( { project_observations: newProjectObs } ) );
 
-    const payload = { id: project.id, observation_id: state.observation.id };
     const actionTime = getActionTime( );
-    inatjs.projects.add( payload ).then( ( ) => {
-      dispatch( afterAPICall( { actionTime } ) );
-    } ).catch( e => {
+    const { testingApiV2 } = state.config;
+    const errorHandler = e => {
       dispatch( handleAPIError( e, `Failed to add to project ${project.title}`, {
         onConfirm: ( ) => {
           const currentProjObs = getState( ).observation.project_observations;
-          dispatch( setAttributes( { project_observations:
-            _.filter( currentProjObs, po => ( po.project.id !== project.id ) )
+          dispatch( setAttributes( {
+            project_observations:
+              _.filter( currentProjObs, po => ( po.project.id !== project.id ) )
           } ) );
         }
       } ) );
-    } );
+    };
+    if ( testingApiV2 ) {
+      const payload = {
+        project_observation: {
+          project_id: project.id,
+          observation_id: state.observation.uuid
+        }
+      };
+      inatjs.project_observations.create( payload ).then( ( ) => {
+        dispatch( afterAPICall( { actionTime } ) );
+      } ).catch( errorHandler );
+    } else {
+      const payload = { id: project.id, observation_id: state.observation.id };
+      inatjs.projects.add( payload ).then( ( ) => {
+        dispatch( afterAPICall( { actionTime } ) );
+      } ).catch( errorHandler );
+    }
   };
 }
 
@@ -819,8 +1180,7 @@ export function addToProject( project, options = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    const missingFields =
-      util.observationMissingProjectFields( state.observation, project );
+    const missingFields = util.observationMissingProjectFields( state.observation, project );
     if ( !_.isEmpty( missingFields ) && !options.ignoreMissing ) {
       // there are empty required project fields, so show the modal
       dispatch( setProjectFieldsModalState( {
@@ -843,22 +1203,31 @@ export function removeFromProject( project ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const poToDelete = _.find( state.observation.project_observations,
+      po => po.project.id === project.id );
     const newProjectObs = state.observation.project_observations.filter( po => (
       po.project.id !== project.id
     ) );
     dispatch( setAttributes( { project_observations: newProjectObs } ) );
-
-    const payload = { id: project.id, observation_id: state.observation.id };
-    dispatch( callAPI( inatjs.projects.remove, payload ) );
+    const { testingApiV2 } = state.config;
+    if ( testingApiV2 ) {
+      dispatch( callAPI(
+        inatjs.project_observations.delete,
+        { id: poToDelete.uuid || poToDelete.id }
+      ) );
+    } else {
+      const payload = { id: project.id, observation_id: state.observation.id };
+      dispatch( callAPI( inatjs.projects.remove, payload ) );
+    }
   };
 }
 
 export function confirmRemoveFromProject( project ) {
-  return ( dispatch ) => {
+  return dispatch => {
     dispatch( setConfirmModalState( {
       show: true,
-      message: `Are you sure you want to remove this observation from ${project.title}?`,
-      confirmText: "Yes",
+      message: I18n.t( "are_you_sure_you_want_to_remove_this_observation_from_project", { project: project.title } ),
+      confirmText: I18n.t( "yes" ),
       onConfirm: ( ) => {
         dispatch( removeFromProject( project ) );
       }
@@ -925,9 +1294,20 @@ export function removeObservationFieldValue( id ) {
   };
 }
 
-export function onFileDrop( droppedFiles ) {
+export function onFileDrop( droppedFiles, rejectedFiles, dropEvent ) {
   return ( dispatch, getState ) => {
-    const observation = getState( ).observation;
+    const { observation } = getState( );
+    if ( rejectedFiles && rejectedFiles.length > 0 ) {
+      // eslint-disable-next-line react/jsx-filename-extension
+      const message = <RejectedFilesError rejectedFiles={rejectedFiles} />;
+      if ( message ) {
+        dispatch( setConfirmModalState( {
+          show: true,
+          message,
+          confirmText: I18n.t( "ok" )
+        } ) );
+      }
+    }
     if ( !observation || droppedFiles.length === 0 ) { return; }
     const newPhotos = [];
     const newSounds = [];
@@ -940,7 +1320,9 @@ export function onFileDrop( droppedFiles ) {
           file: f
         };
         promises.push( inatjs.observation_photos.create(
-          params, { same_origin: true } ) );
+          params,
+          { same_origin: true }
+        ) );
       } else if ( f.type.match( /^audio\// ) ) {
         newSounds.push( { file_url: f.preview } );
         const params = {
@@ -948,7 +1330,9 @@ export function onFileDrop( droppedFiles ) {
           file: f
         };
         promises.push( inatjs.observation_sounds.create(
-          params, { same_origin: true } ) );
+          params,
+          { same_origin: true }
+        ) );
       }
     } );
     if ( newPhotos.length > 0 ) {
@@ -968,16 +1352,36 @@ export function onFileDrop( droppedFiles ) {
 export function showNewObservation( observation, options = { } ) {
   return ( dispatch, getState ) => {
     window.scrollTo( 0, 0 );
-    const s = windowStateForObservation( observation, getState( ) );
+    const s = getState( );
+    const { testingApiV2 } = s.config;
+    const combinedState = windowStateForObservation( observation, getState( ) );
     if ( !( options && options.skipSetState ) ) {
-      history.pushState( s.state, s.title, s.url );
+      history.pushState( combinedState.state, combinedState.title, combinedState.url );
     }
-    document.title = s.title;
+    document.title = combinedState.title;
     dispatch( resetStates( ) );
     if ( options.useInstance ) {
       dispatch( renderObservation( observation, { fetchAll: true } ) );
     } else {
-      dispatch( fetchObservation( observation.id, { fetchAll: true } ) );
+      dispatch(
+        fetchObservation(
+          testingApiV2 ? ( observation.uuid || observation.id ) : observation.id,
+          { fetchAll: true }
+        )
+      );
     }
+  };
+}
+
+export function fetchTaxonIdentifiers( ) {
+  return ( dispatch, getState ) => {
+    const { observation } = getState( );
+    if ( !( observation.taxon && observation.taxon.rank_level <= 50 ) ) {
+      dispatch( setIdentifiers( [] ) );
+      return;
+    }
+    dispatch( fetchIdentifiers( {
+      taxon_id: observation.taxon.id, quality_grade: "research", per_page: 10
+    } ) );
   };
 }

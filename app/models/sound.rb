@@ -1,4 +1,4 @@
-class Sound < ActiveRecord::Base
+class Sound < ApplicationRecord
   belongs_to :user
   has_many :observation_sounds, :dependent => :destroy
   has_many :observations, :through => :observation_sounds
@@ -7,6 +7,13 @@ class Sound < ActiveRecord::Base
 
   include Shared::LicenseModule
   acts_as_flaggable
+  # include ActsAsUUIDable
+  before_validation :set_uuid
+  def set_uuid
+    self.uuid ||= SecureRandom.uuid
+    self.uuid = uuid.downcase
+    true
+  end
 
   attr_accessor :orphan
   
@@ -156,6 +163,35 @@ class Sound < ActiveRecord::Base
     return if records.blank?
     records.each do |record|
       record.destroy if record.orphaned?
+    end
+  end
+
+  def flagged_with(flag, options = {})
+    flag_is_copyright = flag.flag == Flag::COPYRIGHT_INFRINGEMENT
+    other_unresolved_copyright_flags_exist = flags.detect do |f|
+      f.id != flag.id && f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved?
+    end
+    # For copyright flags, we need to change the photo URLs when flagged, and
+    # reset them when there are no more copyright flags
+    if flag_is_copyright && !other_unresolved_copyright_flags_exist
+      # TODO this is copypasta from photo.rb, but we should do something to
+      # replace sounds with something equivalent to the copyright infringement
+      # notice
+      # if options[:action] == "created"
+      #   styles = %w(original large medium small thumb square)
+      #   updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
+      #   updates += styles.map do |s|
+      #     FakeView.image_url("copyright-infringement-#{s}.png").to_s
+      #   end
+      #   Photo.where(id: id).update_all(updates)
+      # elsif %w(resolved destroyed).include?(options[:action])
+      #   Photo.repair_single_photo(self)
+      # end
+      observations.each(&:update_stats)
+    end
+    observations.each do |o|
+      o.update_mappable
+      o.elastic_index!
     end
   end
 

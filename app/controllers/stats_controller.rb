@@ -1,11 +1,15 @@
 class StatsController < ApplicationController
+  before_action :set_time_zone_to_utc
+  before_action :load_params, except: [:year, :generate_year]
+  before_action :doorkeeper_authorize!,
+    only: [ :generate_year ],
+    if: lambda { authenticate_with_oauth? }
+  before_action :authenticate_user!,
+    only: [:cnc2017_taxa, :cnc2017_stats, :generate_year],
+    unless: lambda { authenticated_with_oauth? }
+  before_action :allow_external_iframes, only: [:wed_bioblitz]
 
-  before_filter :set_time_zone_to_utc
-  before_filter :load_params, except: [:year, :generate_year]
-  before_filter :authenticate_user!, only: [:cnc2017_taxa, :cnc2017_stats, :generate_year]
-  before_filter :allow_external_iframes, only: [:wed_bioblitz]
-
-  caches_action :summary, expires_in: 1.hour
+  caches_action :summary, expires_in: 1.day
   caches_action :observation_weeks_json, expires_in: 1.day
   caches_action :nps_bioblitz, expires_in: 5.minutes
   caches_action :cnc2016, expires_in: 5.minutes
@@ -34,7 +38,7 @@ class StatsController < ApplicationController
     observers = INatAPIService.observations_observers(params)
     species_counts = INatAPIService.observations_species_counts(params)
     user_count_scope = User.where("suspended_at IS NULL")
-    if @site.name != "iNaturalist.org"
+    if @site && @site != Site.default
       user_count_scope = user_count_scope.where(site_id: @site.id)
     end
     @stats = {
@@ -59,6 +63,9 @@ class StatsController < ApplicationController
     if !params[:login].blank? && !@display_user
       return render_404
     end
+    if @display_user && !current_user && !@display_user.locale.blank?
+      I18n.locale = @display_user.locale
+    end
     @year_statistic = if @display_user
       YearStatistic.where( "user_id = ? AND year = ?", @display_user, @year ).first
     elsif Site.default.try(:id) == @site.id
@@ -71,12 +78,21 @@ class StatsController < ApplicationController
       @year_statistic.shareable_image
     elsif @display_user && @display_user.icon?
       @display_user.icon.url(:large)
-    else
-      @site.logo_square.url
+    elsif @site.shareable_image?
+      @site.shareable_image.url
     end
     respond_to do |format|
-      format.html { render layout: "bootstrap" }
-      format.json { render json: @year_statistic.data }
+      format.html do
+        @responsive = true
+        render layout: "bootstrap"
+      end
+      format.json {
+        if @year_statistic.blank?
+          render_404
+          return
+        end
+        render json: @year_statistic.data
+      }
     end
   end
 
@@ -98,7 +114,10 @@ class StatsController < ApplicationController
       return render_404
     end
     delayed_progress( "stats/generate_year?user_id=#{current_user.id}&year=#{@year}" ) do
-      @job = YearStatistic.delay( priority: USER_PRIORITY ).generate_for_user_year( current_user.id, @year )
+      @job = YearStatistic.delay(
+        priority: USER_PRIORITY,
+        unique_hash: "YearStatistic::generate_for_user_year::#{current_user.id}::#{@year}"
+      ).generate_for_user_year( current_user.id, @year )
     end
     respond_to do |format|
       format.json do
@@ -173,70 +192,6 @@ class StatsController < ApplicationController
       title: "Parks Canada Bioblitz 2017"
     ) do |all_project_data|
       all_project_data[12851][:place_id] = 6712 if all_project_data[12851]
-    end
-  end
-
-  def cnc2017_taxa
-    @projects = Project.where( id: [10931, 11013, 11053, 11126, 10768, 10769, 10752, 10764,
-      11047, 11110, 10788, 10695, 10945, 10917, 10763, 11042] )
-    # @projects = Project.where( id: [3,4] )
-    @project = @projects.detect{ |p| p.id == params[:project_id].to_i }
-    if @project
-      target_place_id = params[:place_id]
-      @target_place = Place.find( target_place_id ) rescue nil
-      month = [@project.preferred_start_date_or_time.month, @project.preferred_end_date_or_time.month].uniq
-      @potential_params = { month: month.join(","), place_id: @project.rule_places.map(&:id), quality_grade: "research" }
-      if @target_place
-        @potential_params[:place_id] = @target_place.id
-      end
-      potential_elastic_params = Observation.params_to_elastic_query( @potential_params )
-      potential_leaf_taxon_ids = Observation.elastic_taxon_leaf_ids( potential_elastic_params )
-      potential_taxon_ids = (
-        potential_leaf_taxon_ids + 
-        TaxonAncestor.where( taxon_id: potential_leaf_taxon_ids ).pluck( :ancestor_taxon_id )
-      ).uniq
-      @in_project_params = { projects: [@project.id] }
-      in_project_elastic_params = Observation.params_to_elastic_query( @in_project_params )
-      in_project_leaf_taxon_ids = Observation.elastic_taxon_leaf_ids( in_project_elastic_params )
-      in_project_taxon_ids = (
-        in_project_leaf_taxon_ids + 
-        TaxonAncestor.where( taxon_id: in_project_leaf_taxon_ids ).pluck( :ancestor_taxon_id )
-      ).uniq
-      @missing_taxon_ids = potential_leaf_taxon_ids - in_project_taxon_ids
-      @novel_taxon_ids = in_project_leaf_taxon_ids - potential_taxon_ids
-      @taxa = if params[:status] == "Missing"
-        Taxon.where( is_active: true, id: @missing_taxon_ids )
-      elsif params[:status] == "Novel"
-        Taxon.where( is_active: true, id: @novel_taxon_ids )
-      else
-        Taxon.where( is_active: true, id: (@missing_taxon_ids + @novel_taxon_ids).uniq )
-      end
-      # @taxa.group_by(&:iconic_taxon_id).each do |iconic_taxon_id, group|
-      #   iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[iconic_taxon_id]
-      #   puts
-      #   puts iconic_taxon.name.upcase
-      #   puts
-      #   # group.sort_by{|t| t.self_and_ancestor_ids.to_s + t.name }.each do |taxon|
-      #   group.sort_by{|t| t.observations_count * -1 }.each do |taxon|
-      #     if taxon.common_name
-      #       puts "#{taxon.common_name.name} (#{taxon.name})"
-      #     else
-      #       puts taxon.name
-      #     end
-      #   end
-      # end
-    end
-    respond_to do |format|
-      format.html{ render layout: "bootstrap" }
-      format.csv do
-        csv_text = CSV.generate( headers: true ) do |csv|
-          csv << %w{scientific_name common_name iconic_taxon_name status}
-          @taxa.each do |t|
-            csv << [t.name, t.common_name.try(:name), t.iconic_taxon_name, @missing_taxon_ids.index( t.id ) ? "Missing" : "Novel"]
-          end
-        end
-        render text: csv_text
-      end
     end
   end
 
@@ -331,7 +286,7 @@ class StatsController < ApplicationController
       where( "project_observations.project_id = ?", @project ).
       where( "observations.taxon_id IN (?)", unique_taxon_ids ).
       group( "users.id" ).
-      order( "count(*) DESC" ).
+      order( Arel.sql( "count(*) DESC" ) ).
       limit( 100 )
     if params[:quality] == "research"
       @unique_contributors = @unique_contributors.where ( "observations.quality_grade = 'research'" )
@@ -462,7 +417,7 @@ class StatsController < ApplicationController
     projs = Project.select("projects.*, count(po.observation_id)").
       joins("LEFT JOIN project_observations po ON (projects.id=po.project_id)").
       group(:id).
-      order("count(po.observation_id) desc")
+      order( Arel.sql( "count(po.observation_id) desc" ) )
     projs = if options[:group]
       projs.where("projects.group = ? OR projects.id = ? OR projects.id IN (?)", options[:group], params[:project_id], all_project_ids)
     else

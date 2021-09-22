@@ -1,0 +1,62 @@
+- content_for :title do
+  =t :curator_application_title
+- content_for :extracss do
+  :css
+    .container .field {
+      margin-bottom: 20px;
+    }
+.container
+  .row
+    .col-xs-8.col-xs-offset-2
+      %h1=t :curator_application_title
+      %p=t :curator_application_about_site_curators_desc_html
+      %h3=t :curator_application_what_curators_can_do
+      %ul
+        %li
+          %p=t :curator_application_what_curators_can_do_edit_taxonomy_html
+        %li
+          %p=t :curator_application_what_curators_can_do_hide_comments_html
+        %li
+          %p=t :curator_application_what_curators_can_do_resolve_flags_html
+        %li
+          %p=t :curator_application_what_curators_can_do_edit_wiki_html
+        %li
+          %p=t :curator_application_what_curators_can_do_edit_places_html
+      %h3=t :curator_application_what_curators_cannot_do
+      %ul
+        %li
+          %p=t :curator_application_what_curators_cannot_do_delete_html
+        %li
+          %p=t :curator_application_what_curators_cannot_do_change_observations_html
+        %li
+          %p=t :curator_application_what_curators_cannot_do_read_messages_html
+        %li
+          %p=t :curator_application_what_curators_cannot_do_commit_complete_html
+      %h3=t :curator_application_how_curators_lose_their_powers
+      %p=t :curator_application_how_curators_lose_their_powers_desc
+      %ul
+        %li
+          %p=t :curator_application_how_curators_lose_ignore_policies
+        %li
+          %p=t :curator_application_how_curators_bad_behavior
+      %h3=t :curator_application_you_should_apply_if
+      %ul
+        %li
+          %p=t :curator_application_you_should_apply_if_you_are_a_regular_user
+        %li
+          %p=t :curator_application_you_should_apply_if_committed
+        %li
+          %p=t :curator_application_you_should_apply_if_you_can_behave
+      - if @eligible
+        %h2=t :apply_curator
+        = form_for :application, url: curator_applications_path, builder: BootstrapFormBuilder do |f|
+          - [:explanation, :taxonomy_examples, :name_examples, :moderation_examples].each_with_index do |a,i|
+            / t :curator_application_fields_explanation_html
+            / t :curator_application_fields_taxonomy_examples_html
+            / t :curator_application_fields_name_examples_html
+            / t :curator_application_fields_moderation_examples_html
+            = f.text_area a, value: @application[a], label: t( "curator_application_fields_#{a}_html" ), style: "min-height: 100px", required: i == 0, minlength: i == 0 ? CuratorApplicationsController::MIN_EXPLANATION_LENGTH : nil
+          = f.submit t(:apply_curator), class: "btn btn-primary"
+      - else
+        .alert.alert-warning
+          %p=t :curator_application_inelligible, num_idents: @num_improving_idents

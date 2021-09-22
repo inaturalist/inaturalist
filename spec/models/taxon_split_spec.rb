@@ -1,13 +1,24 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe TaxonSplit, "validation" do
-  it "should not allow the same taxon on both sides of the split" do
+  it "should allow the same taxon on both sides of the split" do
     old_taxon = Taxon.make!( rank: Taxon::FAMILY )
     new_taxon = Taxon.make!( rank: Taxon::FAMILY )
     tc = TaxonSplit.make
     tc.add_input_taxon(old_taxon)
     tc.add_output_taxon(new_taxon)
     tc.add_output_taxon(old_taxon)
+    tc.save
+    expect(tc).to be_valid
+  end
+
+  it "should not allow both output taxa to be the same" do
+    old_taxon = Taxon.make!( rank: Taxon::FAMILY )
+    new_taxon = Taxon.make!( rank: Taxon::FAMILY )
+    tc = TaxonSplit.make
+    tc.add_input_taxon(old_taxon)
+    tc.add_output_taxon(new_taxon)
+    tc.add_output_taxon(new_taxon)
     tc.save
     expect(tc).not_to be_valid
   end
@@ -138,6 +149,18 @@ describe TaxonSplit, "commit_records" do
   describe "with unatlased taxa" do
     describe "identifications" do
       let(:observation) { Observation.make!( taxon: @split.input_taxon ) }
+      it "should not fail when identification has no identification" do
+        ancestor = Taxon.make!( rank: Taxon::ORDER )
+        ident = observation.identifications.first
+        ident.update_attributes(observation_id: nil, skip_set_previous_observation_taxon: true)
+        expect( ident.observation_id ).to be_nil
+        @split.output_taxa.each{ |t| t.update_attributes( parent: ancestor ) }
+        @split.reload
+        @split.commit_records
+        ident.reload
+        expect( ident ).to be_current
+      end
+
       it "should be replaced with the nearest common ancestor of all output taxa if there is ambiguity" do
         ancestor = Taxon.make!( rank: Taxon::ORDER )
         ident = observation.identifications.first

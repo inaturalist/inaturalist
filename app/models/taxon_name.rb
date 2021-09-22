@@ -1,20 +1,20 @@
 #encoding: utf-8
-class TaxonName < ActiveRecord::Base
-  belongs_to :taxon, touch: true
+class TaxonName < ApplicationRecord
+  belongs_to :taxon
   belongs_to :source
   belongs_to :creator, :class_name => 'User'
-  belongs_to :updater, :class_name => 'User'
+  has_updater
   has_many :taxon_scheme_taxa, :dependent => :destroy
   has_many :place_taxon_names, :dependent => :delete_all, :inverse_of => :taxon_name
   has_many :places, :through => :place_taxon_names
   validates_presence_of :taxon
   validates_length_of :name, :within => 1..256, :allow_blank => false
-  validates_uniqueness_of :name, 
-                          :scope => [:lexicon, :taxon_id], 
-                          :message => "already exists for this taxon in this lexicon",
-                          :case_sensitive => false
+  validates_uniqueness_of :name, scope: %i[parameterized_lexicon taxon_id], message: :already_exists, case_sensitive: false
   validates_format_of :lexicon, with: /\A[^\/,]+\z/, message: :should_not_contain_commas_or_slashes, allow_blank: true
-  validate :species_name_cannot_match_taxon_name
+  validate :species_common_name_cannot_match_taxon_name
+  validate :valid_scientific_name_must_match_taxon_name
+  validate :english_lexicon_if_exists, if: Proc.new { |tn| tn.lexicon && tn.lexicon_changed? }
+  validate :parameterized_lexicon_present, if: Proc.new { |tn| tn.lexicon.present? }
   NAME_FORMAT = /\A([A-z]|\s|\-|×)+\z/
   validates :name, format: { with: NAME_FORMAT, message: :bad_format }, on: :create, if: Proc.new {|tn| tn.lexicon == SCIENTIFIC_NAMES}
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
@@ -22,6 +22,7 @@ class TaxonName < ActiveRecord::Base
   #   tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
   # end
   before_validation :capitalize_scientific_name
+  before_validation :parameterize_lexicon
   before_create {|name| name.position = name.taxon.taxon_names.size}
   before_save :set_is_valid
   after_create {|name| name.taxon.set_scientific_taxon_name}
@@ -36,13 +37,16 @@ class TaxonName < ActiveRecord::Base
     :SCIENTIFIC_NAMES    =>  'Scientific Names',
     :AFRIKAANS           =>  'Afrikaans',
     :ALBANIAN            =>  'Albanian',
-    :BENGALI             =>  'Bengali',
+    :BELARUSIAN          =>  "Belarusian",
+    :BENGALI             =>  "Bengali",
     :CATALAN             =>  'Catalan',
     :CEBUANO             =>  'Cebuano',
-    :CHINESE_TRADITIONAL =>  'Chinese (Traditional)',
-    :CHINESE_SIMPLIFIED  =>  'Chinese (Simplified)',
+    :CHINESE_SIMPLIFIED  =>  "Chinese (Simplified)",
+    :CHINESE_TRADITIONAL =>  "Chinese (Traditional)",
     :CREOLE_FRENCH       =>  'creole (French)',
     :CREOLE_PORTUGUESE   =>  'creole (Portuguese)',
+    :CZECH               =>  "Czech",
+    :DANISH              =>  "Danish",
     :DAVAWENYO           =>  'Davawenyo',
     :DUTCH               =>  'Dutch',
     :ENGLISH             =>  'English',
@@ -51,31 +55,42 @@ class TaxonName < ActiveRecord::Base
     :FRENCH              =>  'French',
     :GELA                =>  'Gela',
     :GERMAN              =>  'German',
+    :GREEK               =>  "Greek",
     :HAWAIIAN            =>  'Hawaiian',
     :HEBREW              =>  'Hebrew',
     :HILIGAYNON          =>  'Hiligaynon',
+    :HUNGARIAN           =>  'Hungarian',
     :ICELANDIC           =>  'Icelandic',
     :ILOKANO             =>  'Ilokano',
     :ITALIAN             =>  'Italian',
     :JAPANESE            =>  'Japanese',
+    :KANNADA             =>  "Kannada",
     :KOREAN              =>  'Korean',
+    :LATVIAN             =>  "Latvian",
     :LITHUANIAN          =>  'Lithuanian',
+    :LUXEMBOURGISH       =>  "Luxembourgish",
     :MALTESE             =>  'Maltese',
     :MAORI               =>  'Maori',
+    :MARATHI             =>  "Marathi",
     :MISIMA_PANEATI      =>  'Misima-paneati',
     :NORWEGIAN           =>  'Norwegian',
+    :OCCITAN             =>  "Occitan",
     :PANGASINAN          =>  'Pangasinan',
     :POLISH              =>  'Polish',
     :PORTUGUESE          =>  'Portuguese',
-    :RUMANIAN            =>  'Rumanian',
+    :ROMANIAN            =>  'Romanian',
     :RUSSIAN             =>  'Russian',
+    :SINHALA             =>  'Sinhala',
     :SLOVAK              =>  'Slovak',
+    :SLOVENIAN           =>  "Slovenian",
     :SPANISH             =>  'Spanish',
     :SWEDISH             =>  'Swedish',
     :TAGALOG             =>  'Tagalog',
     :TAHITIAN            =>  'Tahitian',
+    :THAI                =>  'Thai',
     :TOKELAUAN           =>  'Tokelauan',
     :TURKISH             =>  'Turkish',
+    :UKRAINIAN           =>  'Ukrainian',
     :WARAY_WARAY         =>  'Waray-Waray'
   }
   
@@ -84,14 +99,17 @@ class TaxonName < ActiveRecord::Base
       def is_#{k.to_s.downcase}?
         lexicon == "#{v}"
       end
+      alias :#{k.to_s.downcase}? :is_#{k.to_s.downcase}?
     EOT
     const_set k.to_s.upcase, v
   end
 
   LOCALES = {
+    "afrikaans"             => "af",
     "albanian"              => "sq",
     "arabic"                => "ar",
     "basque"                => "eu",
+    "belarusian"            => "be",
     "breton"                => "br",
     "bulgarian"             => "bg",
     "catalan"               => "ca",
@@ -112,26 +130,37 @@ class TaxonName < ActiveRecord::Base
     "greek"                 => "el",
     "hawaiian"              => "haw",
     "hebrew"                => "he",
+    "hungarian"             => "hu",
     "indonesian"            => "id",
     "italian"               => "it",
     "japanese"              => "ja",
+    "kannada"               => "kn",
     "korean"                => "ko",
+    "latvian"               => "lv",
     "lithuanian"            => "lt",
     "luxembourgish"         => "lb",
     "macedonian"            => "mk",
     "maori"                 => "mi",
+    "marathi"               => "mr",
     "maya"                  => "myn",
     "norwegian"             => "nb",
     "norwegian_bokmal"      => "nb",
+    "ojibwe"                => "oj",
     "occitan"               => "oc",
     "polish"                => "pl",
     "portuguese"            => "pt",
+    "romanian"              => "ro",
     "russian"               => "ru",
     "scientific_names"      => "sci",
+    "sinhala"               => "si",
     "slovak"                => "sk",
+    "slovenian"             => "sl",
     "spanish"               => "es",
     "swedish"               => "sv",
-    "turkish"               => "tr"
+    "thai"                  => "th",
+    "turkish"               => "tr",
+    "ukrainian"             => "uk",
+    "vietnamese"            => "vi"
   }
   LEXICONS_BY_LOCALE = LOCALES.invert.merge( "zh-TW" => "chinese_traditional" )
 
@@ -140,6 +169,7 @@ class TaxonName < ActiveRecord::Base
   }.compact
 
   alias :is_scientific? :is_scientific_names?
+  alias :scientific? :is_scientific_names?
   
   def to_s
     "<TaxonName #{self.id}: #{self.name} in #{self.lexicon}>"
@@ -151,7 +181,7 @@ class TaxonName < ActiveRecord::Base
   end
   
   def strip_tags
-    self.name.gsub!(/<.*?>/, '')
+    self.name.gsub!(/<.*?>/, '') unless name.blank?
     true
   end
 
@@ -168,6 +198,11 @@ class TaxonName < ActiveRecord::Base
   end
 
   def self.normalize_lexicon(lexicon)
+    return nil if lexicon.blank?
+    return TaxonName::NORWEGIAN if lexicon == "norwegian_bokmal"
+    return TaxonName::ROMANIAN if lexicon.to_s.downcase.strip == "rumanian"
+    # Correct a common misspelling
+    return TaxonName::UKRAINIAN if lexicon.to_s.downcase.strip == "ukranian"
     ( LEXICONS[lexicon.underscore.upcase.to_sym] || lexicon.titleize ).strip
   end
   
@@ -178,7 +213,7 @@ class TaxonName < ActiveRecord::Base
   end
   
   def update_unique_names
-    return true unless name_changed?
+    return true unless saved_change_to_name?
     non_unique_names = TaxonName.includes(:taxon).where(name: name).select("DISTINCT ON (taxon_id) *")
     non_unique_names.each do |taxon_name|
       taxon_name.taxon.update_unique_name if taxon_name.taxon
@@ -304,9 +339,15 @@ class TaxonName < ActiveRecord::Base
     taxon.elastic_index! if taxon
   end
 
-  def species_name_cannot_match_taxon_name
+  def species_common_name_cannot_match_taxon_name
     if !is_scientific_names? && taxon && taxon.rank_level.to_i <= Taxon::SPECIES_LEVEL && taxon.name == name
       errors.add(:name, :cannot_match_the_scientific_name_of_a_species_for_this_lexicon)
+    end
+  end
+
+  def valid_scientific_name_must_match_taxon_name
+    if is_valid? && is_scientific_names? && taxon && name != taxon.name
+      errors.add(:name, :must_match_the_taxon_if_valid)
     end
   end
 
@@ -320,6 +361,7 @@ class TaxonName < ActiveRecord::Base
       return "chinese_simplified" if locale.to_s =~ /zh.CN/i
       return language if locale.to_s =~ /^#{language_locale}/
     end
+    nil
   end
 
   def self.choose_scientific_name(taxon_names)
@@ -356,6 +398,15 @@ class TaxonName < ActiveRecord::Base
         nil
       end
     end.compact
+    ext_names.each do |ext_name|
+      matching_tn_exists = ext_name.taxon.taxon_names.detect do |tn|
+        tn.is_valid? && tn.name === ext_name.taxon.name
+      end
+      if !ext_name.valid? && ext_name.errors[:name] && matching_tn_exists
+        ext_name.update_attributes( is_valid: false )
+      end
+    end
+    ext_names
   end
   
   def self.find_single(name, options = {})
@@ -386,5 +437,42 @@ class TaxonName < ActiveRecord::Base
     name = name.gsub(/\w[\.,]+.*/, '')
     name = name.gsub(/\s+[A-Z].*/, '')
     name.strip
+  end
+  
+  def self.find_lexicons_by_translation(translation)
+    lex_by_loc = I18n.available_locales.each_with_object({}) do |loc, hash|
+      hash[loc] = I18n.with_locale(loc) { I18n.t(:lexicons) }
+    end
+    match_loc, match_lexes = lex_by_loc.reject{|l| l.match("en") }
+                                 .transform_values { |loc| loc.transform_values { |lex| lex.downcase.strip } }
+                                 .find { |_loc, lexes| lexes.values.include?(translation.downcase.strip) }
+    
+    { locale: match_loc, lexicons: match_lexes }
+  end
+
+  private
+
+  def english_lexicon_if_exists
+    en_lexicons = I18n.with_locale(:en) { I18n.t(:lexicons) }.values
+    translated_lexicons = I18n.available_locales.map { |loc| I18n.with_locale(loc) { I18n.t(:lexicons) } }
+    non_en_lexicons = (translated_lexicons.collect(&:values).flatten.uniq - en_lexicons).map!{ |l| l.downcase.strip }
+    match = TaxonName.find_lexicons_by_translation(lexicon)
+
+    if non_en_lexicons.include?(lexicon.downcase.strip)
+      errors.add(:lexicon, :should_match_english_translation, {
+        suggested:  I18n.with_locale(:en) { I18n.t("lexicons.#{match[:lexicons].key(lexicon.downcase.strip)}")},
+        suggested_locale: I18n.t("locales.#{match[:locale]}")
+      })
+    end
+  end
+
+  def parameterize_lexicon
+    return unless lexicon.present?
+
+    self.parameterized_lexicon = lexicon.parameterize
+  end
+
+  def parameterized_lexicon_present
+    errors.add(:lexicon, :should_be_in_english) if lexicon.parameterize.empty?
   end
 end

@@ -6,32 +6,47 @@ module DarwinCore
     end
 
     def initialize(opts = {})
-      @opts = opts
+      @opts = opts.clone.symbolize_keys
       @opts[:path] ||= "dwca.zip"
-      @opts[:core] ||= "occurrence"
-      @opts[:metadata] ||= File.join(Rails.root, "app", "views", "observations", "gbif.eml.erb")
-      @opts[:descriptor] ||= File.join(Rails.root, "app", "views", "observations", "gbif.descriptor.builder")
+      @opts[:core] ||= DarwinCore::Cores::OCCURRENCE
+      @opts[:extensions] = [@opts[:extensions]].flatten.compact
+      @opts[:metadata] ||= if @opts[:core] == DarwinCore::Cores::OCCURRENCE
+        File.join(Rails.root, "app", "views", "observations", "dwc.eml.erb")
+      else
+        File.join(Rails.root, "app", "views", "taxa", "dwc.eml.erb")
+      end
+      @opts[:descriptor] ||= File.join(Rails.root, "app", "views", "observations", "dwc.descriptor.builder")
       @opts[:quality] ||= @opts[:quality_grade] || "research"
       @opts[:photo_licenses] ||= ["CC0", "CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
       @opts[:licenses] ||= ["any"]
       @opts[:licenses] = @opts[:licenses].first if @opts[:licenses].size == 1
       @opts[:private_coordinates] ||= false
+      @opts[:taxon_private_coordinates] ||= false
       @opts[:photographed_taxa] ||= false
       @logger = @opts[:logger] || Rails.logger
       @logger.level = Logger::DEBUG if @opts[:debug]
 
       # Make a unique dir to put our files
-      @work_path = Dir.mktmpdir
-      FileUtils.mkdir_p @work_path, :mode => 0755
+      @opts[:work_path] = Dir.mktmpdir
+      FileUtils.mkdir_p @opts[:work_path], :mode => 0755
 
       @place = Place.find_by_id(@opts[:place].to_i) || Place.find_by_name(@opts[:place])
       logger.debug "Found place: #{@place}"
-      @taxon = if @opts[:taxon].is_a?(::Taxon)
-        @opts[:taxon]
-      else
-        ::Taxon.find_by_id(@opts[:taxon].to_i) || ::Taxon.active.find_by_name(@opts[:taxon])
+      @taxa = [@opts[:taxon]].flatten.compact.map do |taxon|
+        if taxon.is_a?( Taxon )
+          taxon
+        else
+          taxon.to_s.split( "," ).map do |t|
+            ::Taxon.find_by_id( t.to_i ) || ::Taxon.active.find_by_name( t )
+          end
+        end
+      end.flatten.compact
+      logger.debug "Found taxa: "
+      unless @taxa.blank?
+        @taxa.each do |t|
+          logger.debug "\t#{t}"
+        end
       end
-      logger.debug "Found taxon: #{@taxon}"
       @project = if @opts[:project].is_a?(::Project)
         @opts[:project]
       else
@@ -59,7 +74,7 @@ module DarwinCore
       paths = [metadata_path, descriptor_path, data_paths].flatten.compact
       if @opts[:with_taxa]
         logger.info "Making taxa extension..."
-        paths << make_api_all_taxon_data
+        paths += make_api_all_taxon_data
       end
       archive_path = make_archive(*paths)
       logger.debug "Archive: #{archive_path}"
@@ -97,10 +112,14 @@ module DarwinCore
     end
 
     def make_metadata
+      metadata_observation_params = observations_params
+      if !metadata_observation_params[:created_d2]
+        metadata_observation_params[:created_d2] = Time.now
+      end
       m = DarwinCore::Metadata.new( @opts.merge(
-        observations_params: observations_params
+        observations_params: metadata_observation_params
       ) )
-      tmp_path = File.join(@work_path, "metadata.eml.xml")
+      tmp_path = File.join(@opts[:work_path], "metadata.eml.xml")
       open(tmp_path, 'w') do |f|
         f << m.render(:file => @opts[:metadata])
       end
@@ -115,38 +134,40 @@ module DarwinCore
           when "EolMedia"
             extensions << {
               :row_type => "http://eol.org/schema/media/Document",
-              :file_location => "media.csv",
+              :files => ["media.csv"],
               :terms => DarwinCore::EolMedia::TERMS
             }
           when "SimpleMultimedia"
             extensions << {
               row_type: "http://rs.gbif.org/terms/1.0/Multimedia",
-              file_location: "media.csv",
+              files: ["media.csv"],
               terms: DarwinCore::SimpleMultimedia::TERMS
             }
           when "ObservationFields"
             extensions << {
               row_type: "http://www.inaturalist.org/observation_fields",
-              file_location: "observation_fields.csv",
+              files: ["observation_fields.csv"],
               terms: DarwinCore::ObservationFields::TERMS
             }
           when "ProjectObservations"
             extensions << {
               row_type: "http://www.inaturalist.org/project_observations",
-              file_location: "project_observations.csv",
+              files: ["project_observations.csv"],
               terms: DarwinCore::ProjectObservations::TERMS
             }
           when "User"
             extensions << {
               row_type: "http://www.inaturalist.org/user",
-              file_location: "users.csv",
+              files: ["users.csv"],
               terms: DarwinCore::User::TERMS
             }
+          when "VernacularNames"
+            extensions << DarwinCore::VernacularName.descriptor
           end
         end
       end
       d = DarwinCore::Descriptor.new(core: @opts[:core], extensions: extensions, ala: @opts[:ala])
-      tmp_path = File.join(@work_path, "meta.xml")
+      tmp_path = File.join(@opts[:work_path], "meta.xml")
       open(tmp_path, 'w') do |f|
         f << d.render(:file => @opts[:descriptor])
       end
@@ -159,7 +180,7 @@ module DarwinCore
         @opts[:extensions].each do |ext|
           ext = ext.underscore.downcase
           logger.info "Making #{ext} extension..."
-          paths << send("make_#{ext}_data")
+          paths += send("make_#{ext}_data")
         end
       end
       paths
@@ -167,18 +188,25 @@ module DarwinCore
 
     def observations_params
       params = {}
-      params[:license] = @opts[:licenses] unless @opts[:licenses].include?( "ignore" )
+      params[:license] = [@opts[:licenses]].flatten.compact.join( "," ) unless @opts[:licenses].include?( "ignore" )
       params[:place_id] = @place.id if @place
-      params[:taxon_id] = @taxon.id if @taxon
+      params[:taxon_ids] = @taxa.map(&:id) if @taxa
       params[:projects] = [@project.id] if @project
       params[:quality_grade] = @opts[:quality] === "verifiable" ? "research,needs_id" : @opts[:quality]
       params[:site_id] = @opts[:site_id]
       params[:created_d1] = @opts[:created_d1]
-      params[:created_d2] = @opts[:created_d2] || ( @generate_started_at || Time.now ).iso8601
+      params[:created_d2] = @opts[:created_d2]
       if @opts[:photos].to_s == "true"
         params[:with_photos] = true
       elsif @opts[:photos].to_s == "false"
         params[:with_photos] = false
+      end
+      params[:ofv_datatype] = @opts[:ofv_datatype]
+      if !( @opts[:swlat].blank? || @opts[:swlng].blank? || @opts[:nelat].blank? || @opts[:nelng].blank? )
+        params[:swlat] = @opts[:swlat]
+        params[:swlng] = @opts[:swlng]
+        params[:nelat] = @opts[:nelat]
+        params[:nelng] = @opts[:nelng]
       end
       params
     end
@@ -202,27 +230,33 @@ module DarwinCore
       end
       headers = DarwinCore::Occurrence.term_names( terms )
       fname = "observations.csv"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
       fake_view = FakeView.new
       
       preloads = [
-        { taxon: :ancestor_taxa },
+        :taxon,
         { user: [:stored_preferences, :provider_authorizations] }, 
         :quality_metrics, 
-        :identifications,
-        { observations_places: :place }
+        { identifications: { user: [:provider_authorizations] } },
+        { observations_places: :place },
+        { annotations: { controlled_value: [:labels], votes_for: {} } }
       ]
 
       if @opts[:community_taxon]
-        preloads  << { community_taxon: :ancestor_taxa }
+        preloads << :community_taxon
       end
       try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, logger: logger ) do
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers
-          observations_in_batches(observations_params, preloads, label: 'make_occurrence_data') do |o|
+          observations_in_batches( observations_params, preloads, label: "make_occurrence_data" ) do |o|
             benchmark(:obs) do
+              private_coordinates = if @opts[:private_coordinates]
+                true
+              elsif @opts[:taxon_private_coordinates]
+                [nil, Observation::OPEN].include?( o.geoprivacy )
+              end
               o = DarwinCore::Occurrence.adapt(o, view: fake_view,
-                private_coordinates: @opts[:private_coordinates],
+                private_coordinates: private_coordinates,
                 community_taxon: @opts[:community_taxon]
               )
               row = terms.map do |field, uri, default, method|
@@ -235,13 +269,13 @@ module DarwinCore
         end
       end
       
-      tmp_path
+      [tmp_path]
     end
 
     def make_taxon_data
       headers = DarwinCore::Taxon::TERM_NAMES
       fname = "taxa.csv"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
       
       scope = ::Taxon.select( "DISTINCT ON (taxa.id) taxa.*" )
       
@@ -266,24 +300,32 @@ module DarwinCore
       else
         scope = scope.where( "is_active" )
       end
-      
-      scope = scope.where(@taxon.descendant_conditions[0]) if @taxon
-      
+
       CSV.open(tmp_path, 'w') do |csv|
         csv << headers
-        scope.find_each do |t|
-          DarwinCore::Taxon.adapt(t)
-          csv << DarwinCore::Taxon::TERMS.map{|field, uri, default, method| t.send(method || field)}
+        if @taxa.blank?
+          scope.find_each do |t|
+            DarwinCore::Taxon.adapt(t)
+            csv << DarwinCore::Taxon::TERMS.map{|field, uri, default, method| t.send(method || field)}
+          end
+        else
+          @taxa.each do |taxon|
+            taxon_scope = scope.where( taxon.descendant_conditions[0] )
+            taxon_scope.find_each do |t|
+              DarwinCore::Taxon.adapt(t)
+              csv << DarwinCore::Taxon::TERMS.map{|field, uri, default, method| t.send(method || field)}
+            end
+          end
         end
       end
       
-      tmp_path
+      [tmp_path]
     end
 
     def make_eol_media_data
       headers = DarwinCore::EolMedia::TERM_NAMES
       fname = "media.csv"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
       licenses = @opts[:photo_licenses].map do |license_code|
         Photo.license_number_for_code(license_code)
       end
@@ -299,29 +341,37 @@ module DarwinCore
       elsif @opts[:quality] == "verifiable"
         scope = scope.where("observations.quality_grade IN (?, ?)", Observation::RESEARCH_GRADE, Observation::NEEDS_ID)
       end
-      
-      scope = scope.where(@taxon.descendant_conditions) if @taxon
 
       if @place
         scope = scope.joins("JOIN place_geometries ON place_geometries.place_id = #{@place.id}")
         scope = scope.where("ST_Intersects(place_geometries.geom, observations.private_geom)")
       end
-      
+
       CSV.open(tmp_path, 'w') do |csv|
         csv << headers
-        scope.find_each do |record|
-          DarwinCore::EolMedia.adapt(record)
-          csv << DarwinCore::EolMedia::TERMS.map{|field, uri, default, method| record.send(method || field)}
+        if @taxa.blank?
+          scope.find_each do |record|
+            DarwinCore::EolMedia.adapt(record)
+            csv << DarwinCore::EolMedia::TERMS.map{|field, uri, default, method| record.send(method || field)}
+          end
+        else
+          @taxa.each do |taxon|
+            taxon_scope = scope.where( taxon.descendant_conditions )
+            taxon_scope.find_each do |record|
+              DarwinCore::EolMedia.adapt(record)
+              csv << DarwinCore::EolMedia::TERMS.map{|field, uri, default, method| record.send(method || field)}
+            end
+          end
         end
       end
       
-      tmp_path
+      [tmp_path]
     end
 
     def make_simple_multimedia_data
       headers = DarwinCore::SimpleMultimedia::TERM_NAMES
       fname = "media.csv"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
       
       params = observations_params
       media_licenses = @opts[:photo_licenses].map(&:downcase)
@@ -372,13 +422,13 @@ module DarwinCore
         end
       end
       
-      tmp_path
+      [tmp_path]
     end
 
     def make_observation_fields_data
       headers = DarwinCore::ObservationFields::TERM_NAMES
       fname = "observation_fields.csv"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
       
       params = observations_params
       preloads = [ { observation_field_values: :observation_field } ]
@@ -398,13 +448,13 @@ module DarwinCore
         end
       end
       
-      tmp_path
+      [tmp_path]
     end
 
     def make_project_observations_data
       headers = DarwinCore::ProjectObservations::TERM_NAMES
       fname = "project_observations.csv"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
       
       params = observations_params
       preloads = [ { project_observations: :project } ]
@@ -423,13 +473,13 @@ module DarwinCore
         end
       end
       
-      tmp_path
+      [tmp_path]
     end
 
     def make_user_data
       headers = DarwinCore::User::TERM_NAMES
       fname = "users.csv"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
       
       params = observations_params
       preloads = [ :user ]
@@ -444,13 +494,17 @@ module DarwinCore
         end
       end
       
-      tmp_path
+      [tmp_path]
+    end
+
+    def make_vernacular_names_data
+      DarwinCore::VernacularName.data( @opts )
     end
 
     def make_api_all_taxon_data
       headers = [ "taxonID", "scientificName", "parentNameUsageID", "taxonRank" , "vernacularName", "wikipedia_url" ]
       fname = "taxa.csv"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
 
       params = { is_active: true }
       last_id = 0
@@ -505,36 +559,59 @@ module DarwinCore
 
     def observations_in_batches(params, preloads, options = {}, &block)
       batch_times = []
-      Observation.search_in_batches( params, logger: logger ) do |batch|
-        start = Time.now
-        avg_batch_time = if batch_times.size > 0
-          (batch_times.inject{|sum, num| sum + num}.to_f / batch_times.size).round(3)
-        else
-          0
-        end
-        avg_observation_time = avg_batch_time / 500
-        msg = "Observation batch #{batch_times.size}"
-        msg += " for #{options[:label]}" if options[:label]
-        msg += " (avg batch: #{avg_batch_time}s, avg obs: #{avg_observation_time}s)"
-        logger.debug msg
-        try_and_try_again( [PG::ConnectionBad, ActiveRecord::StatementInvalid], logger: logger ) do
-          Observation.preload_associations(batch, preloads)
-        end
-        batch.each do |observation|
-          if @opts[:community_taxon] && observation.community_taxon.blank?
-            next
+      max_id = Observation.maximum( :id )
+      search_chunk_size = 500000
+      chunk_start_id = 1
+      if !params[:created_d1] && !params[:created_d2]
+        # no date limits provided. We want to set a default upper limit of roughly when
+        # the archive started exporting. Don't add created_d2 to the ES query, which
+        # creates slower queries, rather check the date in Ruby
+        max_observation_created = ( @generate_started_at || Time.now )
+      end
+      observations_start = Time.now
+      # initial loop splits queries into batches by setting the search param
+      # `id_below`. This make queries with very large result sets faster overall
+      # with little overhead for small queries.
+      while chunk_start_id <= max_id
+        params[:min_id] = chunk_start_id
+        params[:max_id] = chunk_start_id + search_chunk_size - 1
+        Observation.search_in_batches( params, logger: logger ) do |batch|
+          avg_batch_time = if batch_times.size > 0
+            (batch_times.inject{|sum, num| sum + num}.to_f / batch_times.size).round(3)
+          else
+            0
           end
-          yield observation
+          avg_observation_time = avg_batch_time / ObservationSearch::SEARCH_IN_BATCHES_BATCH_SIZE
+          msg = "Observation batch #{batch_times.size}"
+          msg += " for #{options[:label]}" if options[:label]
+          msg += " (avg batch: #{avg_batch_time}s, avg obs: #{avg_observation_time}s, obs in batch: #{batch.size})"
+          if batch_times.size % 100 == 0
+            logger.info msg
+          else
+            logger.debug msg
+          end
+          try_and_try_again( [PG::ConnectionBad, ActiveRecord::StatementInvalid], logger: logger ) do
+            Observation.preload_associations(batch, preloads)
+          end
+          batch.each do |observation|
+            if ( @opts[:community_taxon] && observation.community_taxon.blank? ||
+                 max_observation_created && observation.created_at > max_observation_created )
+              next
+            end
+            yield observation
+          end
+          batch_times << (Time.now - observations_start)
+          observations_start = Time.now
         end
-        batch_times << (Time.now - start)
+        chunk_start_id += search_chunk_size
       end
     end
 
     def make_archive(*args)
       fname = "dwca.zip"
-      tmp_path = File.join(@work_path, fname)
+      tmp_path = File.join(@opts[:work_path], fname)
       fnames = args.map{|f| File.basename(f)}
-      system "cd #{@work_path} && zip -D #{tmp_path} #{fnames.join(' ')}"
+      system "cd #{@opts[:work_path]} && zip -D #{tmp_path} #{fnames.join(' ')}"
       tmp_path
     end
   end

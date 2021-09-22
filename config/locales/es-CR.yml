@@ -1,0 +1,83 @@
+es-CR:
+  add_annotations_for_controlled_attribute:
+    evidence_of_presence: Añadir Anotaciones para "Evidencia de Presencia"
+  add_evidence_of_presence_organism_annotation: 'Añadir anotación "Evidencia de Presencia: organismo"'
+  add_evidence_of_presence_feather_annotation: 'Añadir anotación "Evidencia de Presencia: pluma"'
+  add_evidence_of_presence_scat_annotation: 'Añadir anotación "Evidencia de Presencia: heces"'
+  add_evidence_of_presence_track_annotation: 'Añadir anotación "Evidencia de Presencia: huella"'
+  add_evidence_of_presence_bone_annotation: 'Añadir anotación "Evidencia de Presencia: hueso"'
+  add_evidence_of_presence_molt_annotation: 'Añadir anotación "Evidencia de Presencia: muda"'
+  controlled_term_labels:
+    evidence_of_presence: Evidencia de Presencia
+    #As in the feather on a bird
+    feather: Pluma
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organismo
+    #Fecal matter, not regurgitated matter
+    scat: Heces
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: huella
+    #Endoskeletal remains, like a deer bone
+    bone: hueso
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: muda
+  controlled_term_definitions:
+    feather: Una o más plumas no unidas a un organismo
+    organism: Organismo total o parcial
+    scat: Materia fecal (no egagrópilas de búho u otra materia regurgitada)
+    track: Impresión en suelo o nieve hecha por el organismo
+    bone: |
+      Predominantemente restos endoesqueletales; la exposición parcial de huesos en un organismo casi intacto debería etiquetarse "organismo"
+    molt: Piel descartada o exoesqueleto
+  #The name of a computer file
+  filename: Nombre de archivo
+  flag_for_place_title_html: |
+    Marca para Lugar: %{title}
+  flag_this_place: Marcar este lugar
+  leaderboard_most:
+    species_in_month_year: La mayoría de las especies en %{month_year}
+    species_in_year: La mayoría de las especies en %{year}
+    observations_in_month_year: La mayoría de las observaciones en %{month_year}
+    observations_in_year: La mayoría de las observaciones en %{year}
+    identifications_in_month_year: La mayoría de identificaciones en %{month_year}
+    identifications_in_year: La mayoría de identificaciones en %{year}
+  #Status message shown while logging in
+  logging_in: Iniciando sesión ...
+  no_species_on_this_list_for_owner: |
+    Podés empezar a añadir especies a esta lista usando la herramienta "Añadir a tu lista" a la derecha.
+  date:
+    abbr_month_names:
+      - 
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+    month_names:
+      - 
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+  number:
+    human:
+      format:
+        significant: true
+        strip_insignificant_zeros: true

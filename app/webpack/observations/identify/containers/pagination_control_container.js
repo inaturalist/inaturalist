@@ -1,10 +1,6 @@
 import { connect } from "react-redux";
 import PaginationControl from "../components/pagination_control";
-import {
-  updateSearchParams,
-  reviewAll,
-  unreviewAll
-} from "../actions";
+import { updateSearchParams } from "../actions";
 
 function mapStateToProps( state ) {
   return {

@@ -317,7 +317,6 @@ $(document).ready(function() {
       $( "#messagessubnav" ).load( "/messages/new_messages", function( data ) {
         $( this ).html( data );
         $( "#messagessubnav" ).data( "loaded", true );
-        setMessagesCount( 0, { skipAnimation: true } );
       } );
     }
   } );
@@ -447,11 +446,13 @@ $(document).ready(function() {
       $( "#headersearch" ).addClass( "open" );
       $( "#header" ).addClass( "search-open" );
       $( "#headersearch input" ).focus( );
+      $( "#headersearch input" ).attr( "tabindex", null );
       updateSession( { header_search_open: true } );
     }
     function hideHeaderSearch() {
       $( "#headersearch" ).removeClass( "open" );
       $( "#header" ).removeClass( "search-open" );
+      $( "#headersearch input" ).attr( "tabindex", -1 );
       updateSession( { header_search_open: false } );
     }
     $( "#header .show-btn" ).click( showHeaderSearch );
@@ -472,6 +473,11 @@ $(document).ready(function() {
       showHeaderSearch( );
     } );
   }
+
+  // Set this attribute on buttons that require JS to operate normally. You will
+  // also need to disable them in the HTML so they are unclickable before this
+  // JS runs
+  $( "button[data-enable-with-js]" ).attr( "disabled", false );
 } );
 
 
@@ -684,25 +690,6 @@ function currentTimeZone() {
     offsetHours: parseInt(timeZoneOffsetHours),
     offsetMinutes: parseInt(timeZoneOffsetMinutes)
   }
-}
-
-$.fn.selectLocalTimeZone = function() {
-  $(this).each(function() {
-    var option,
-        tz = currentTimeZone()
-    if (tz.abbreviation) {
-      var matches = $("option[data-time-zone-abbr='"+tz.abbreviation+"']", this)
-      option = matches.first()
-    } else if (tz.timeZoneOffsetHours) {
-      var formattedOffset = tz.timeZoneOffsetHours + ':' + tz.timeZoneOffsetMinutes
-      var matches = $("option[data-time-zone-formatted-offset='"+formattedOffset+"']", this)
-      option = matches.first()
-    }
-    if (option) {
-      $(this).val(option.val())
-    }
-  })
-  return this
 }
 
 $.fn.disable = function() { $(this).attr('disabled', true).addClass('disabled'); return this }
@@ -1018,6 +1005,21 @@ function getMessagesCount() {
   })
 }
 
+function getHeaderCounts() {
+  var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
+  $.ajax({
+    url: "<%= CONFIG.node_api_url %>/users/notification_counts",
+    headers: {
+      Authorization: apiToken
+    },
+    success: function( data ) {
+      setUpdatesCount( data.updates_count );
+      setMessagesCount( data.messages_count );
+    }
+  });
+
+}
+
 $.fn.subscriptionSettings = function() {
   var options = $.extend(true, {
     position: {
@@ -1203,6 +1205,9 @@ $(document).on('ajax:before', '.project_user_invitation .acceptlink', function()
   $(this).hide()
   $(this).siblings('.status').html(I18n.t('loading')).show().addClass('loading')
 })
+$( document ).on( "ajax:before", ".announcement .dismiss-announcement", function ( ) {
+  $( this ).parents( ".announcement" ).fadeOut( );
+} );
 
 function showJoinProjectDialog(projectId, options) {
   options = options || {}
@@ -1451,10 +1456,17 @@ $.fn.textcompleteUsers = function( ) {
     index: 1,
     match: /\B@([A-z][\\\w\\\-_]*)$/,
     search: function( term, callback ) {
-      $.getJSON( "/people/search.json", { q: term, order: "activity" } ).
+      $.getJSON( "<%= CONFIG.node_api_url %>/users/autocomplete", { q: term } ).
         done(function( data ) {
-          callback( $.map( data, function( user ) {
-            return user.html;
+          callback( $.map( data.results, function( user ) {
+            var icon = user.icon || "/attachment_defaults/users/icons/defaults/mini.png";
+            icon = icon.replace( "/thumb.", "/mini." );
+            var label = user.login;
+            if ( user.name ) {
+              label = user.name + " (" + label + ")";
+            }
+            return '<div class="chooseritem"><img alt="' + user.login + '" title="' + user.login
+              + '" class="user_image  usericon" src="' + icon + '" />' + label + '</div>';
           }));
         }
       );
@@ -1470,7 +1482,7 @@ $.fn.textcompleteUsers = function( ) {
       // setTimeout(function(){ field.data("highlighter").highlight() }, 10);
       return "@" + login + " ";
     }
-  }]);
+  }], { debounce: 500 });
 }
 
 $.fn.boldId = function() {
@@ -1715,6 +1727,6 @@ $(document).ready(function() {
   $('.bootstrap .inter').addClass('btn btn-link').removeClass('inter');
   $('.bootstrap .button').addClass('btn btn-default').removeClass('button');
 })
-if (typeof($.fn.button) != 'undefined' && typeof($.fn.button.noConflict) != 'undefined') { 
+if ($ && $.fn && typeof($.fn.button) != 'undefined' && typeof($.fn.button.noConflict) != 'undefined') {
   var bootstrapButton = $.fn.button.noConflict();
 }

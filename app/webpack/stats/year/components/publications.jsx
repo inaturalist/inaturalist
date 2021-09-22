@@ -24,15 +24,14 @@ const Publications = ( { data, year } ) => {
           />
         </Col>
         <Col xs={9}>
-          <p>
-            { authors }
-            { pub.year }
-            { ". " }
-            <a href={pub.websites[0]}>{ `"${pub.title}." ` }</a>
-            <i>{ pub.source }</i>
-            { ". " }
+          <div className="publication stacked">
+            <div className="authors">
+              { authors }
+            </div>
+            <a className="title" href={pub.websites[0]}>{ pub.title }</a>
+            <i className="source">{ pub.source }</i>
             { pub._gbifDOIs && (
-              <span className="data-dois">
+              <div className="data-dois">
                 { I18n.t( "data_used" )}
                 { " " }
                 { pub._gbifDOIs.map( doi => (
@@ -43,16 +42,26 @@ const Publications = ( { data, year } ) => {
                     { doi }
                   </a>
                 ) ) }
-              </span>
+              </div>
             ) }
-          </p>
+          </div>
         </Col>
       </Row>
     );
   };
   return (
     <div className="Publications">
-      <h3><span>{I18n.t( "studies_that_used_inaturalist_data_in_year", { year } )}</span></h3>
+      <h3>
+        <a name="publications" href="#publications">
+          <span>{I18n.t( "studies_that_used_inaturalist_data_in_year", { year } )}</span>
+        </a>
+      </h3>
+      <p
+        className="text-muted"
+        dangerouslySetInnerHTML={{
+          __html: I18n.t( "views.stats.year.publications_desc_short_html", { numStudies: data.count } )
+        }}
+      />
       { _.chunk( data.results, 2 ).map( chunk => (
         <Row key={`publications-row-${chunk[0].id}`}>
           { chunk.map( pub => (
@@ -66,12 +75,15 @@ const Publications = ( { data, year } ) => {
           ) ) }
         </Row>
       ) ) }
-      <p
-        className="lead text-center"
-        dangerouslySetInnerHTML={{
-          __html: I18n.t( "views.stats.year.publications_desc_html", { numStudies: data.count, url: data.url } )
-        }}
-      />
+      <div className="row">
+        <div className="xs-col-12">
+          <center>
+            <a href={data.url} className="btn btn-default btn-bordered inlineblock">
+              { I18n.t( "view_all" ) }
+            </a>
+          </center>
+        </div>
+      </div>
     </div>
   );
 };

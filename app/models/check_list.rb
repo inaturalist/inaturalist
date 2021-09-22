@@ -7,6 +7,7 @@ class CheckList < List
   
   before_validation :set_title
   before_create :set_last_synced_at
+  after_create :refresh
   before_save :update_taxon_list_rule
   # after_save :mark_non_comprehensive_listed_taxa_as_absent
   
@@ -54,6 +55,7 @@ class CheckList < List
   
   def set_title
     return true unless title.blank?
+    return unless taxon || place
     unless taxon
       self.title = "#{place.name} Check List"
       return true
@@ -90,41 +92,49 @@ class CheckList < List
     Rails.logger.info "[INFO #{Time.now}] Finished syncing check list #{id} with parent #{parent_check_list.id}"
   end
   
+  def refresh_cache_key
+    "refresh_list_#{id}"
+  end
+
+  def reload_from_observations_cache_key
+    "rfo_list_#{id}"
+  end
+
   def add_taxon(taxon, options = {})
     options[:place_id] = place_id
     super(taxon, options)
-  end
-  
-  # This is a loaded gun.  Please fire with discretion.
-  def add_intersecting_taxa(options = {})
-    return nil unless PlaceGeometry.exists?(["place_id = ?", place_id])
-    if place.straddles_date_line?
-      raise "Can't add intersecting taxa for places that span the dateline. Maybe it would work if we switched from geometries to geographies."
-    end
-    ancestor = options[:ancestor].is_a?(Taxon) ? options[:ancestor] : Taxon.find_by_id(options[:ancestor])
-    if options[:ancestor] && ancestor.blank?
-      return nil
-    end
-    scope = Taxon.intersecting_place(place)
-    scope = scope.descendants_of(ancestor) if ancestor
-    scope.find_each(:select => "taxa.*, taxon_ranges.id AS taxon_range_id") do |taxon|
-      add_taxon(taxon.id, :taxon_range_id => taxon.taxon_range_id, 
-        :skip_update_cache_columns => options[:skip_update_cache_columns],
-        :skip_sync_with_parent => options[:skip_sync_with_parent])
-    end
   end
   
   def add_observed_taxa(options = {})
     # TODO remove this when we move to GEOGRAPHIES and our dateline woes have (hopefully) ended
     return if place.straddles_date_line?
 
-    Observation.where("observations.quality_grade = ? AND ST_Intersects(place_geometries.geom, observations.private_geom)",
-                  Observation::RESEARCH_GRADE).
-                select("DISTINCT ON (observations.taxon_id) observations.id, observations.taxon_id, observations.user_id").
-                order("observations.taxon_id").
-                includes(:taxon, :user).
-                joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").each do |observation|
-      add_taxon(observation.taxon, options)
+    observed_taxon_ids = []
+    search_params = {
+      place_id: place_id,
+      quality_grade: Observation::RESEARCH_GRADE,
+      taxon_geoprivacy: "open",
+      geoprivacy: "open"
+    }
+    if taxon
+      search_params[:taxon_id] = taxon.id
+    end
+    Observation.search_in_batches( search_params ) do |batch|
+      observed_taxon_ids += batch.map(&:taxon_id)
+      observed_taxon_ids.uniq!
+    end
+    # Don't index the taxon with each new ListedTaxon. Instead do it in batches
+    # and give ES a break
+    options_without_indexing = options.merge(
+      skip_index_taxon: true,
+      place: place
+    )
+    observed_taxon_ids.in_groups_of( 500 ) do |taxon_ids|
+      taxa = Taxon.where( id: taxon_ids )
+      taxa.each do |taxon|
+        add_taxon( taxon, options_without_indexing )
+      end
+      Taxon.elastic_index!( ids: taxon_ids )
     end
   end
   
@@ -186,35 +196,13 @@ class CheckList < List
           listed_taxon.destroy
         end
       end
-      Taxon.elastic_index!(scope: Taxon.where(id: batch.map(&:taxon_id).uniq))
+      batch.map( &:taxon_id ).uniq.each do |taxon_id|
+        Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 1.hour.from_now,
+          unique_hash: { "Taxon::elastic_index": taxon_id }).
+          elastic_index!(ids: [taxon_id])
+      end
     end
     true
-  end
-  
-  def reload_and_refresh_now
-    if job = CheckList.delay(priority: USER_PRIORITY,
-      unique_hash: { "CheckList::reload_and_refresh_now": self.id }
-    ).reload_and_refresh_now(self)
-      Rails.cache.write(reload_and_refresh_now_cache_key, job.id)
-      job
-    end
-  end
-  
-  def reload_and_refresh_now_cache_key
-    "reload_and_refresh_now_#{id}"
-  end
-  
-  def refresh_now_without_reload
-    if job = CheckList.delay(priority: USER_PRIORITY,
-      unique_hash: { "CheckList::refresh_now_without_reload": self.id }
-    ).refresh_now_without_reload(self)
-      Rails.cache.write(refresh_now_without_reload_cache_key, job.id)
-      job
-    end
-  end
-  
-  def refresh_now_without_reload_cache_key
-    "refresh_now_without_reload_#{id}"
   end
   
   def refresh_now(options = {})
@@ -282,10 +270,10 @@ class CheckList < List
     
     old_listed_taxa = ListedTaxon.where(place_id: (old_place_ids - current_place_ids), taxon_id: taxon_ids)
     listed_taxa = (current_listed_taxa + old_listed_taxa).compact.uniq
-    unless listed_taxa.blank?
+    unless listed_taxa.blank? || options[:new]
       Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, updating #{listed_taxa.size} existing listed taxa"
       listed_taxa.each do |lt|
-        CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow", run_at: 30.minutes.from_now,
+        CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow", run_at: 2.hours.from_now,
           unique_hash: { "CheckList::refresh_listed_taxon": lt.id }
         ).refresh_listed_taxon( lt.id )
       end
@@ -382,6 +370,32 @@ class CheckList < List
         list.add_taxon( taxon.species, force_update_cache_columns: true )
       end
     end
+  end
+
+  def self.refresh(options = {})
+    start = Time.now
+    log_key = "#{name}.refresh #{start}"
+    Rails.logger.info "[INFO #{Time.now}] Starting #{log_key}, options: #{options.inspect}"
+    lists = options.delete(:lists)
+    lists ||= [options] if options.is_a?(self)
+    lists ||= [find_by_id(options)] unless options.is_a?(Hash)
+    if options[:taxa]
+      lists ||= self.joins(:listed_taxa).
+        where("lists.type = ? AND listed_taxa.taxon_id IN (?)", self.name, options[:taxa])
+    end
+
+    if lists.blank?
+      Rails.logger.error "[ERROR #{Time.now}] Failed to refresh lists for #{options.inspect} " + 
+        "because there are no matching lists."
+    else
+      lists.each do |list|
+        Rails.logger.info "[INFO #{Time.now}] #{log_key}, refreshing #{list}"
+        list.delay(priority: INTEGRITY_PRIORITY, queue: list.is_a?(CheckList) ? "slow" : "default",
+          unique_hash: { "#{ list.class.name }::refresh": { list_id: list.id, options: options } }
+        ).refresh(options)
+      end
+    end
+    Rails.logger.info "[INFO #{Time.now}] #{log_key}, finished in #{Time.now - start}s"
   end
 
   def find_listed_taxa_and_ancestry_as_hashes

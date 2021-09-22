@@ -1,14 +1,15 @@
 #encoding: utf-8
-class ConservationStatus < ActiveRecord::Base
+class ConservationStatus < ApplicationRecord
   belongs_to :taxon
   belongs_to :user
+  has_updater
   belongs_to :place
   belongs_to :source
 
   before_create :set_geoprivacy
   before_save :normalize_geoprivacy
   after_save :update_observation_geoprivacies, :if => lambda {|record|
-    record.id_changed? || record.geoprivacy_changed? || record.place_id_changed?
+    record.saved_change_to_id? || record.saved_change_to_geoprivacy? || record.saved_change_to_place_id?
   }
   after_save :update_taxon_conservation_status
   after_destroy :update_observation_geoprivacies
@@ -20,6 +21,7 @@ class ConservationStatus < ActiveRecord::Base
   attr_accessor :skip_update_observation_geoprivacies
   validates_presence_of :status, :iucn
   validates_uniqueness_of :authority, :scope => [:taxon_id, :place_id], :message => "already set for this taxon in that place"
+  validates :iucn, inclusion: Taxon::IUCN_STATUS_VALUES.values
 
   scope :for_taxon, lambda {|taxon| where(:taxon_id => taxon)}
   scope :for_lat_lon, lambda {|lat,lon|
@@ -103,30 +105,41 @@ class ConservationStatus < ActiveRecord::Base
   end
 
   def set_geoprivacy
-    if !iucn.nil? && iucn <= Taxon::IUCN_LEAST_CONCERN
+    if !iucn.nil? && iucn <= Taxon::IUCN_LEAST_CONCERN && user_id.blank?
       self.geoprivacy = Observation::OPEN
     end
     true
   end
 
   def normalize_geoprivacy
-    self.geoprivacy = nil if geoprivacy.blank?
+    if geoprivacy.blank?
+      self.geoprivacy = nil
+    else
+      self.geoprivacy = geoprivacy.to_s.downcase.underscore
+    end
+    geoprivacies = [Observation::OPEN, Observation::OBSCURED, Observation::PRIVATE]
+    self.geoprivacy = nil unless geoprivacies.include?( geoprivacy )
     true
   end
 
   def update_observation_geoprivacies
     return true if skip_update_observation_geoprivacies
     Observation.delay(priority: USER_INTEGRITY_PRIORITY,
+      queue: "throttled",
       unique_hash: {
         "Observation::reassess_coordinates_for_observations_of": [ taxon_id, place: place_id ]
       }
     ).reassess_coordinates_for_observations_of( taxon_id, place: place_id )
-    if place_id_changed?
+    # If the place changed *and* we're updating we need to reassess obs that
+    # were affected by the old values. This doesn't apply to newly-added
+    # statuses
+    if saved_change_to_place_id? && !saved_change_to_id?
       Observation.delay(priority: USER_INTEGRITY_PRIORITY,
+        queue: "throttled",
         unique_hash: {
-          "Observation::reassess_coordinates_for_observations_of": [ taxon_id, place: place_id_was ]
+          "Observation::reassess_coordinates_for_observations_of": [ taxon_id, place: place_id_before_last_save ]
         }
-      ).reassess_coordinates_for_observations_of( taxon_id, place: place_id_was )
+      ).reassess_coordinates_for_observations_of( taxon_id, place: place_id_before_last_save )
     end
     true
   end
@@ -139,6 +152,7 @@ class ConservationStatus < ActiveRecord::Base
     {
       place_id: place_id,
       source_id: source_id,
+      user_id: user_id,
       authority: authority,
       status: status ? status.downcase : nil,
       status_name: status_name,

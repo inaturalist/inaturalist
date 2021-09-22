@@ -1,0 +1,24 @@
+@import "./colors";
+
+.TextEditor {
+  &.with-preview {
+    textarea,
+    .chars-remaining {
+      display: none !important;
+    }
+  }
+  .preview {
+    border: 1px dotted $border-grey;
+    padding: 6px 12px;
+  }
+  .btn-toolbar {
+    margin-bottom: 5px;
+    .btn {
+      min-width: 30px;
+    }
+    .btn-edit,
+    .btn-preview {
+      min-width: 75px;
+    }
+  }
+}

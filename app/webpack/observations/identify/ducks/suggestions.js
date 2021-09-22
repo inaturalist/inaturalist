@@ -13,10 +13,31 @@ const SET_SUGGESTIONS = "observations-identify/suggestions/SET_SUGGESTIONS";
 const SET_DETAIL_TAXON = "observations-identify/suggestions/SET_DETAIL_TAXON";
 const UPDATE_WITH_OBSERVATION = "observations-identify/suggestions/UPDATE_WITH_OBSERVATION";
 
+const TAXON_FIELDS = {
+  ancestor_ids: true,
+  id: true,
+  name: true,
+  rank: true,
+  rank_level: true,
+  iconic_taxon_name: true,
+  is_active: true,
+  preferred_common_name: true
+};
+
+const PHOTO_FIELDS = {
+  attribution: true,
+  id: true,
+  license_code: true,
+  medium_url: true,
+  original_dimensions: "all",
+  url: true
+};
+
 export default function reducer(
   state = {
     query: {
-      source: "observations"
+      source: "observations",
+      order_by: "default"
     },
     loading: false,
     response: {
@@ -29,10 +50,10 @@ export default function reducer(
   },
   action
 ) {
-  let newState = Object.assign( {}, state );
+  const newState = Object.assign( {}, state );
   switch ( action.type ) {
     case RESET:
-      newState = {};
+      // Reset suggestions, just use the default state
       break;
     case START_LOADING:
       newState.loading = true;
@@ -57,43 +78,59 @@ export default function reducer(
       }
       break;
     case UPDATE_WITH_OBSERVATION: {
+      const { observation } = action;
+      const isFeaturedObs = observation.uuid === state.query.featured_observation_uuid
+        || observation.id === state.query.featured_observation_id;
       newState.query = {
         source: state.query.source,
         order_by: state.query.order_by
       };
-      const observation = action.observation;
-      if ( observation.taxon ) {
-        let indexOfTaxonInAncestors = observation.taxon.ancestor_ids.indexOf( observation.taxon.id );
-        if ( indexOfTaxonInAncestors < 0 ) {
-          indexOfTaxonInAncestors = observation.taxon.ancestor_ids.length;
-        }
-        if ( observation.taxon.rank_level === 10 ) {
-          newState.query.taxon_id =
-            observation.taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 1, 0 )];
-        } else if ( observation.taxon.rank_level < 10 ) {
-          newState.query.taxon_id =
-            observation.taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 2, 0 )];
-        } else {
-          newState.query.taxon_id = observation.taxon.id;
-        }
-      }
-      let placeIDs;
-      if ( observation.private_place_ids && observation.private_place_ids.length > 0 ) {
-        placeIDs = observation.private_place_ids;
+      // If observation currently in query (tab change in modal), preserve taxon and place filters
+      if ( observation && isFeaturedObs ) {
+        newState.query = Object.assign( newState.query, {
+          taxon: state.query.taxon,
+          taxon_id: state.query.taxon.id,
+          place: state.query.place,
+          place_id: state.query.place_id
+        } );
       } else {
-        placeIDs = observation.place_ids;
-      }
-      if ( observation.places ) {
-        const place = _
-          .sortBy( observation.places, p => p.bbox_area )
-          .find( p => p.admin_level !== null && p.admin_level < 3 );
-        if ( place ) {
-          newState.query.place_id = place.id;
-          newState.query.place = place;
-          newState.query.defaultPlace = place;
+        if ( observation.taxon ) {
+          let indexOfTaxonInAncestors = observation.taxon.ancestor_ids
+            .indexOf( observation.taxon.id );
+          if ( indexOfTaxonInAncestors < 0 ) {
+            indexOfTaxonInAncestors = observation.taxon.ancestor_ids.length;
+          }
+          if ( observation.taxon.rank_level === 10 ) {
+            newState.query.taxon_id = observation
+              .taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 1, 0 )];
+          } else if ( observation.taxon.rank_level < 10 ) {
+            newState.query.taxon_id = observation
+              .taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 2, 0 )];
+          } else {
+            newState.query.taxon_id = observation.taxon.id;
+          }
+        } else {
+          newState.query.taxon_id = null;
+          newState.query.taxon = null;
         }
-      } else if ( placeIDs && placeIDs.length > 0 ) {
-        newState.query.place_id = placeIDs[placeIDs.length - 1];
+        let placeIDs;
+        if ( observation.private_place_ids && observation.private_place_ids.length > 0 ) {
+          placeIDs = observation.private_place_ids;
+        } else {
+          placeIDs = observation.place_ids;
+        }
+        if ( observation.places ) {
+          const place = _
+            .sortBy( observation.places, p => p.bbox_area )
+            .find( p => p.admin_level !== null && p.admin_level < 3 );
+          if ( place ) {
+            newState.query.place_id = place.id;
+            newState.query.place = place;
+            newState.query.defaultPlace = place;
+          }
+        } else if ( placeIDs && placeIDs.length > 0 ) {
+          newState.query.place_id = placeIDs[placeIDs.length - 1];
+        }
       }
       newState.detailTaxon = null;
       newState.detailPhotoIndex = 0;
@@ -101,6 +138,7 @@ export default function reducer(
       // Don't use the current observation when making suggestions based on nearby
       // observations
       newState.query.featured_observation_id = observation.id;
+      newState.query.featured_observation_uuid = observation.uuid;
       break;
     }
     case UPDATE_CURRENT_OBSERVATION: {
@@ -108,9 +146,11 @@ export default function reducer(
         const place = _
           .sortBy( action.updates.places, p => p.bbox_area )
           .find( p => p.admin_level !== null && p.admin_level < 3 );
-        newState.query.place_id = place.id;
-        newState.query.place = place;
-        newState.query.defaultPlace = place;
+        if ( place ) {
+          newState.query.place_id = place.id;
+          newState.query.place = place;
+          newState.query.defaultPlace = place;
+        }
       }
       break;
     }
@@ -139,6 +179,7 @@ function stopLoading( ) {
 export function updateQuery( query ) {
   return ( dispatch, getState ) => {
     const s = getState( );
+    const { testingApiV2 } = s.config;
     const newQuery = Object.assign( { }, s.suggestions.query, query );
     if ( query.place && !query.place_id ) {
       newQuery.place_id = query.place.id;
@@ -147,16 +188,20 @@ export function updateQuery( query ) {
       newQuery.taxon_id = query.taxon.id;
     }
     if (
-      query.taxon_id &&
-      !query.taxon &&
-      s.suggestions.observation &&
-      s.suggestions.observation.taxon &&
-      s.suggestions.observation.taxon.id === query.taxon_id
+      query.taxon_id
+      && !query.taxon
+      && s.suggestions.observation
+      && s.suggestions.observation.taxon
+      && s.suggestions.observation.taxon.id === query.taxon_id
     ) {
       newQuery.taxon = s.suggestions.observation.taxon;
     }
     if ( query.taxon_id && !query.taxon ) {
-      inatjs.taxa.fetch( query.taxon_id )
+      const params = {};
+      if ( testingApiV2 ) {
+        params.fields = Object.assign( {}, TAXON_FIELDS, { ancestors: TAXON_FIELDS } );
+      }
+      inatjs.taxa.fetch( query.taxon_id, params )
         .then( response => {
           if ( response.results[0] ) {
             dispatch( updateQuery( {
@@ -167,7 +212,18 @@ export function updateQuery( query ) {
         } );
     }
     if ( query.place_id && !query.place ) {
-      inatjs.places.fetch( query.place_id, { no_geom: true } )
+      const params = { no_geom: true };
+      if ( testingApiV2 ) {
+        params.fields = {
+          admin_level: true,
+          id: true,
+          uuid: true,
+          name: true,
+          display_name: true,
+          place_type: true
+        };
+      }
+      inatjs.places.fetch( query.place_id, params )
         .then( response => {
           if ( response.results[0] ) {
             dispatch( updateQuery( {
@@ -192,9 +248,14 @@ function sanitizeQuery( query ) {
   return _.pick( query, ["place_id", "taxon_id", "source", "order_by", "featured_observation_id"] );
 }
 
+export function reset( ) {
+  return { type: RESET };
+}
+
 export function fetchSuggestions( query ) {
   return function ( dispatch, getState ) {
     const s = getState( );
+    const { testingApiV2 } = s.config;
     let newQuery = {};
     if ( query && _.keys( query ).length > 0 ) {
       newQuery = query;
@@ -204,9 +265,12 @@ export function fetchSuggestions( query ) {
     if ( _.keys( newQuery ).length === 0 ) {
       return null;
     }
+    if ( testingApiV2 ) {
+      newQuery.featured_observation_id = newQuery.featured_observation_uuid;
+    }
     if (
-      _.isEqual( sanitizeQuery( s.suggestions.responseQuery, newQuery ) ) &&
-      s.suggestions.response.results.length > 0
+      _.isEqual( sanitizeQuery( s.suggestions.responseQuery, newQuery ) )
+      && s.suggestions.response.results.length > 0
     ) {
       // already loaded results for this query
       return null;
@@ -221,6 +285,15 @@ export function fetchSuggestions( query ) {
     const payload = Object.assign( {}, sanitizedQuery, {
       locale: I18n.locale
     } );
+    if ( testingApiV2 ) {
+      payload.fields = {
+        taxon: Object.assign( {}, TAXON_FIELDS, {
+          taxon_photos: {
+            photo: PHOTO_FIELDS
+          }
+        } )
+      };
+    }
     if ( payload.source === "visual" ) {
       const photo = s.suggestions.observation.photos[0];
       if ( !photo ) {
@@ -235,7 +308,7 @@ export function fetchSuggestions( query ) {
         payload.lng = s.suggestions.observation.geojson.coordinates[0];
       }
     }
-    return inatjs.taxa.suggest( payload ).then( suggestions => {
+    return inatjs.taxa.suggest( _.omitBy( payload, _.isNull ) ).then( suggestions => {
       const currentQuery = getState( ).suggestions.query;
       if ( _.isEqual( sanitizeQuery( currentQuery ), sanitizedQuery ) ) {
         dispatch( stopLoading( ) );
@@ -250,11 +323,21 @@ export function fetchSuggestions( query ) {
 
 export function fetchDetailTaxon( ) {
   return function ( dispatch, getState ) {
-    const detailTaxon = getState( ).suggestions.detailTaxon;
+    const { detailTaxon } = getState( ).suggestions;
     if ( !detailTaxon ) {
       return;
     }
-    inatjs.taxa.fetch( detailTaxon.id ).then( response => {
+    const params = {};
+    const { testingApiV2 } = getState( ).config;
+    if ( testingApiV2 ) {
+      params.fields = Object.assign( {}, TAXON_FIELDS, {
+        wikipedia_summary: true,
+        ancestors: TAXON_FIELDS,
+        children: TAXON_FIELDS,
+        taxon_photos: { photo: PHOTO_FIELDS }
+      } );
+    }
+    inatjs.taxa.fetch( detailTaxon.id, params ).then( response => {
       dispatch( setDetailTaxon( response.results[0] ) );
     } ).catch( e => alert( e ) );
   };

@@ -1,4 +1,4 @@
-class Message < ActiveRecord::Base
+class Message < ApplicationRecord
   acts_as_spammable fields: [ :subject, :body ],
     user: :from_user
 
@@ -13,7 +13,9 @@ class Message < ActiveRecord::Base
   belongs_to :from_user, :class_name => "User"
   belongs_to :to_user, :class_name => "User"
 
-  validates_presence_of :user, :from_user_id, :to_user_id
+  validates_presence_of :user
+  validates :from_user_id, presence: true, numericality: { greater_than: 0 }
+  validates :to_user_id, presence: true, numericality: { greater_than: 0 }
   validate :validate_to_not_from
   validates :body, :presence => true
   before_create :set_read_at, :set_subject_for_reply
@@ -36,6 +38,7 @@ class Message < ActiveRecord::Base
   end
 
   def send_message
+    return if from_user.suspended? || known_spam?
     reload
     new_message = dup
     new_message.user = to_user
@@ -67,6 +70,13 @@ class Message < ActiveRecord::Base
     true
   end
 
+  def thread_flags
+    Flag.where( flaggable_type: "Message" ).
+      joins( "JOIN messages ON messages.id = flags.flaggable_id" ).
+      where( "messages.thread_id = ?", thread_id ).
+      where( "flags.user_id = ?", user_id )
+  end
+
   def set_subject_for_reply
     return true if thread_id.blank?
     first = Message.where(:thread_id => thread_id, :user_id => user_id).order("id asc").first
@@ -87,12 +97,13 @@ class Message < ActiveRecord::Base
     return true if user_id == from_user_id
     return true if skip_email
     return true if UserMute.where( user_id: to_user, muted_user_id: from_user ).exists?
+    return true if UserBlock.where( user_id: to_user, blocked_user_id: from_user ).exists?
+    return true if from_user.suspended? || known_spam?
     Emailer.delay(:priority => USER_INTEGRITY_PRIORITY).new_message(id)
     true
   end
 
   def flagged_with(flag, options = {})
     evaluate_new_flag_for_spam(flag)
-    Message.where(:user_id => to_user_id, :thread_id => thread_id).destroy_all
   end
 end

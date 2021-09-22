@@ -37,20 +37,19 @@
           %label.inline
             = n.radio_button :is_valid, false, :skip_builder => true
             = t(:false)
-      - unless @taxon_name.new_record?
-        .stacked.clear
-          %h3
-            =t :places
-            %span.meta
-              = surround '(', ')' do
-                =t :optional
-          %p.help-block=t 'views.taxon_names.form.places_help_html', :url => names_taxon_url(@taxon)
-          #place_taxon_names.clearfix
-            = n.fields_for :place_taxon_names, :builder => ActionView::Helpers::FormBuilder do |ptn|
-              = render "place_taxon_name_fields", :f => ptn
-          .stacked
-            = fields_for @taxon_name do |tn|
-              = link_to_add_association t(:add_place), tn, :place_taxon_names, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#place_taxon_names", :class => "btn btn-sm"
+      .stacked.clear
+        %h3
+          =t :places
+          %span.meta
+            = surround '(', ')' do
+              =t :optional
+        %p.help-block=t 'views.taxon_names.form.places_help_html', :url => names_taxon_url(@taxon)
+        #place_taxon_names.clearfix
+          = n.fields_for :place_taxon_names, :builder => ActionView::Helpers::FormBuilder do |ptn|
+            = render "place_taxon_name_fields", :f => ptn
+        .stacked
+          = fields_for @taxon_name do |tn|
+            = link_to_add_association t(:add_place), tn, :place_taxon_names, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#place_taxon_names", :class => "btn btn-sm"
       .clear.buttonrow.upstacked
         = n.submit t(:save), :class => 'default button', "data-loading-click" => t(:saving)
         = link_to t(:cancel), @taxon || @taxon_name.taxon, :class => 'button'

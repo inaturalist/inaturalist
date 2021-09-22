@@ -7,6 +7,7 @@
 @import "../shared/flash_message";
 @import "../shared/modals";
 @import "../shared/flag_an_item";
+@import "./observations_grid";
 
 $background-color: #1A1A1A;
 
@@ -79,9 +80,8 @@ a.UserImage {
     margin-left: 10px;
     cursor: pointer;
   }
-  button {
+  button.btn-green {
     font-size: 14px;
-    float: right;
     line-height: 20px;
   }
 }
@@ -98,6 +98,10 @@ a.UserImage {
 
 button {
   outline: none;
+}
+
+button,
+a {
   &.btn-green {
     font-weight: 700;
     color: white;
@@ -200,7 +204,7 @@ button {
         position: absolute;
         bottom: 15px;
         left: 35px;
-        background: rgba(0,0,0,0.7);
+        background: rgba(0, 0, 0, 0.7);
         color: rgba(255, 255, 255, 0.8);
         padding: 5px 15px;
         text-transform: uppercase;
@@ -233,6 +237,14 @@ button {
           font-size: 25px;
           margin-top: 5px;
         }
+        .header-about-members-only {
+          text-transform: uppercase;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          letter-spacing: 1px;
+          max-width: 170px;
+        }
         .header-members-button {
           border: 1px solid rgba(255, 255, 255, 0.3);
           border-radius: 100px;
@@ -240,9 +252,14 @@ button {
           background: rgba(255, 255, 255, 0.1);
           .action {
             display: inline-block;
-            padding: 2px 8px 2px 10px;
+            padding: 0px 8px 0px 10px;
             min-width: 72px;
             text-align: center;
+            &:hover,
+            &:active,
+            &:focus {
+              color: white;
+            }
           }
           .count {
             cursor: pointer;
@@ -261,7 +278,7 @@ button {
           position: absolute;
           top: 0;
           right: 0;
-          button {
+          > button {
             background: rgba(255, 255, 255, 0.2);
             border-color: rgba(255, 255, 255, 0.3);
             border-radius: 30px;
@@ -284,10 +301,17 @@ button {
             text-decoration: underline;
           }
         }
-        .header-about-read-more {
+        .header-link-btn {
           font-weight: 700;
           font-size: 15px;
           cursor: pointer;
+          &:hover,
+          &:active,
+          &:focus {
+            color: white;
+          }
+        }
+        .header-about-read-more {
           i {
             font-size: 9px;
             margin-left: 3px;
@@ -301,15 +325,21 @@ button {
           .btn-white {
             border-radius: 2px;
             color: #333;
+            padding: 6px 8px;
           }
         }
         .header-about-news {
           position: absolute;
           bottom: 4px;
           right: 0;
-          text-transform: uppercase;
-          font-size: 16px;
-          i {
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 100px;
+          overflow: hidden;
+          background: rgba(255, 255, 255, 0.1);
+          padding: 2px 14px;
+          .glyphicon {
+            top: 2px;
+            font-size: 12px;
             margin-right: 5px;
           }
         }
@@ -423,6 +453,7 @@ button {
 }
 
 .ObservationsList {
+  width: 100%;
   thead {
     tr {
       border-bottom: 2px solid #ddd;
@@ -482,13 +513,15 @@ button {
           display: block;
         }
       }
-      .icon, .sound-icon {
+      .icon,
+      .sound-icon {
         display: none;
         color: white;
         font-size: 50px;
         line-height: 70px;
       }
-      a.sound .sound-icon, a.iconic .icon {
+      a.sound .sound-icon,
+      a.iconic .icon {
         display: inline-block;
       }
     }
@@ -768,90 +801,6 @@ button {
   color: #858585;
 }
 
-.ObservationsGrid {
-  display: flex;
-  flex-wrap: wrap;
-  .ObservationsGridCell {
-    flex-grow: 1;
-    padding: 2px;
-    min-width: 260px;
-    margin: 0px auto;
-  }
-  .Observation {
-    position: relative;
-    .quality {
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding: 5px 10px;
-      font-size: 16px;
-      &.research {
-        background: $inat-green;
-        color: white;
-      }
-      .full {
-        display: none;
-      }
-    }
-    .photo {
-      background: #ccc;
-      text-align: center;
-      i {
-        color: white;
-        font-size: 180px;
-      }
-    }
-    .caption {
-      background: #464646;
-      color: white;
-      height: 60px;
-      padding: 10px;
-      position: relative;
-      padding-right: 86px;
-      white-space: nowrap;
-      .display-name {
-        font-size: 17px;
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: inherit;
-      }
-      .secondary-name {
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: inherit;
-      }
-      .UserImage {
-        position: absolute;
-        right: 10px;
-        bottom: 40px;
-        border: 2px solid white;
-        height: 45px;
-        width: 45px;
-        i.icon-person {
-          font-size: 36px;
-        }
-        &:hover {
-          opacity: 1;
-        }
-      }
-      .meta {
-        position: absolute;
-        bottom: 10px;
-        right: 8px;
-        color: white;
-        .count {
-          i {
-            margin-right: 1px;
-          }
-          margin-right: 5px;
-        }
-      }
-    }
-  }
-}
-
 .UmbrellaOverviewTab {
   .UmbrellaLeaderboard {
     h2, .sort {
@@ -966,22 +915,18 @@ button {
       a {
         color: inherit;
       }
-      & > a:not(:last-of-type)::after,
-      & > .except > a:not(:last-of-type)::after,
-      & .SplitTaxon:not(:last-of-type)::after {
-       content: ", ";
-      }
-      .term-value {
-        .separator::before, .separator::after {
-          content: " ";
-        }
+      > a,
+      > .except > a,
+      > .SplitTaxon,
+      > .except > .SplitTaxon {
+        display: block;
+        margin-bottom: 10px;
       }
       .except {
         .bold {
           font-weight: 700;
-          &::before, &::after {
-            content: " "
-          }
+          margin-bottom: 10px;
+          margin-top: 20px;
         }
       }
     }
@@ -1085,9 +1030,15 @@ button {
     .type {
       margin-right: 5px;
     }
-    .project-admin {
+    .project-admin,
+    .owner {
+      display: inline-block;
       .project-admin-span {
         white-space: nowrap;
+      }
+      .icon-person {
+        font-size: 16px;
+        line-height: 16px;
       }
       &:not(:last-child) {
         .project-admin-span {
@@ -1181,11 +1132,17 @@ button {
         height: 264px;
         padding: 20px;
         width: 313px;
-        .header-about-content .header-about-text {
-          margin-top: 15px;
-          font-size: 15px;
-          line-height: 19px;
-          max-height: 114px;
+        .header-about-content {
+          .header-about-text {
+            margin-top: 15px;
+            font-size: 15px;
+            line-height: 19px;
+            max-height: 114px;
+          }
+          .header-about-members-only {
+            max-width: 130px;
+            bottom: 0;
+          }
         }
       }
     }
@@ -1633,4 +1590,20 @@ $tip-opacity: 1;
   white-space: nowrap;
   max-height: 60px;
   box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.2);
+}
+
+.collapsible-section {
+  i.fa {
+    margin-right: 5px;
+    color: $inat-green;
+  }
+  .collapsible-content {
+    overflow: hidden;
+  }
+  .collapsible-content.closed {
+    display: none;
+  }
+  .collapsible-content.open {
+    display: block;
+  }
 }

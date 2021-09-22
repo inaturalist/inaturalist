@@ -30,18 +30,12 @@
           <%- if notifier.is_a?(Identification) %>
             <div style="margin-bottom:10px;">
               <%= taxon_image(notifier.taxon, :style => "max-width:32px; vertical-align:middle;") %>
-              <span><%= t(:user_s_id, :user => user.login, :id => t(:id)) %>:</span>
+              <span><%= t(:users_id, user: user.login) %>:</span>
               <%= render :partial => 'shared/taxon', 
                          :locals => { taxon: notifier.taxon,
                                       link_url: taxon_url(notifier.taxon),
                                       viewer: viewing_user } %>
             </div>
-          <% elsif notifier.is_a?(ProjectInvitation) %>
-            <p>
-              <%=t :please_add_this_to_x_html, :x => "<strong>#{notifier.project.title}</strong>".html_safe %>
-              <br/>
-              <%= link_to t(:view_invitation), observation_url(resource) %>
-            </p>
           <% elsif notifier.is_a? Flag %>
             <div class="stacked body">
               <%=t :flag_marked_as_resolved_html %>
@@ -87,10 +81,10 @@
               <% end %>
             <% end -%>
           <% end -%>
-          <% unless no_meta -%>
+          <% if !no_meta && user && viewing_user -%>
             <div style="color:#aaaaaa;font-size:smaller;margin-bottom:10px;">
               <%=t :posted_by %>
-              <%= link_to(truncate(user.id == viewing_user.id ? t(:you).downcase : user.login, :length => 20), 
+              <%= link_to(truncate(user.id == viewing_user.id ? t(:you) : user.login, :length => 20),
                 person_url(user)) %>
               <span class="when">
                 <span class="date"><%=t :n_ago, :n => time_ago_in_words(notifier.created_at) %></span>

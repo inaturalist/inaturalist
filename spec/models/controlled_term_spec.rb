@@ -3,6 +3,33 @@ require "spec_helper.rb"
 describe ControlledTerm do
   elastic_models( ControlledTerm )
 
+  it { is_expected.to have_many(:labels).class_name("ControlledTermLabel").dependent :destroy }
+  it { is_expected.to have_many(:controlled_term_taxa).inverse_of(:controlled_term).dependent :destroy }
+  it { is_expected.to have_many(:values).through(:controlled_term_values).source :controlled_value }
+  it { is_expected.to have_many(:attrs).through(:controlled_term_value_attrs).source :controlled_attribute }
+  it { is_expected.to have_many(:value_annotations).class_name("Annotation").with_foreign_key :controlled_value_id }
+  it { is_expected.to belong_to :user }
+  it do
+    is_expected.to have_many(:attribute_annotations).class_name("Annotation").with_foreign_key :controlled_attribute_id
+  end
+  it do
+    is_expected.to have_many(:controlled_term_values).with_foreign_key(:controlled_attribute_id)
+                                                     .class_name("ControlledTermValue").dependent :destroy
+  end
+  it do
+    is_expected.to have_many(:controlled_term_value_attrs).with_foreign_key(:controlled_value_id)
+                                                     .class_name("ControlledTermValue").dependent :destroy
+  end
+  it do
+    is_expected.to have_many(:taxa).conditions(["controlled_term_taxa.exception = ?", false])
+                                   .through(:controlled_term_taxa)
+  end
+  it do
+    is_expected.to have_many(:excepted_taxa).conditions(["controlled_term_taxa.exception = ?", true])
+                                            .through(:controlled_term_taxa).source :taxon
+  end
+
+
   describe "values" do
     it "returns all values for a term" do
       atr = ControlledTerm.make!
@@ -20,7 +47,6 @@ describe ControlledTerm do
   
     describe "for_taxon" do
       it "returns terms for taxa and their ancestors" do
-        AncestryDenormalizer.denormalize
         ControlledTerm.make!
         [mammalia, primates, plantae].each do |t|
           ControlledTermTaxon.make!( taxon: t )

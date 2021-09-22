@@ -1,6 +1,6 @@
 $( document ).ready( function( ) {
 
-  $( "#map" ).taxonMap( { preserveViewport: PRESERVE_VIEWPORT } );
+  $( "#map" ).taxonMap( { preserveViewport: PRESERVE_VIEWPORT, placement: "projects-show-traditional" } );
   window.map = $( "#map" ).data( "taxonMap" );
   for ( var i=0; i < KML_ASSET_URLS.length; i++ ) {
     lyr = new google.maps.KmlLayer( KML_ASSET_URLS[i], { preserveViewport: PRESERVE_VIEWPORT } );

@@ -5,9 +5,9 @@ const UserImage = ( { user, linkTarget } ) => {
   const icon = (
     <i
       className="icon-person"
-      style={ {
+      style={{
         display: user && user.icon_url ? "none" : "inline-block"
-      } }
+      }}
     />
   );
   const style = {
@@ -19,14 +19,14 @@ const UserImage = ( { user, linkTarget } ) => {
         className="userimage UserImage"
         href={`/people/${user.login || user.id}`}
         title={user.login}
-        style={ style }
-        target={ linkTarget }
+        style={style}
+        target={linkTarget}
       >
         { icon }
       </a>
     );
   }
-  return <span className="userimage UserImage" style={ style }>{ icon }</span>;
+  return <span className="userimage UserImage" style={style}>{ icon }</span>;
 };
 
 UserImage.propTypes = {

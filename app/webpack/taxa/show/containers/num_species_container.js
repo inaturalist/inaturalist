@@ -9,7 +9,7 @@ function mapStateToProps( state ) {
   const props = {
     iconClassName: `icon icon-iconic-${state.taxon.taxon.iconicTaxonName( ).toLowerCase( )}`,
     className: "NumSpecies",
-    label: I18n.t( "total_species_observed" ),
+    label: I18n.t( "total_species_observed_caps" ),
     name: I18n.t( "x_of_y", { x: "?", y: state.taxon.taxon.complete_species_count } ),
     linkText: I18n.t( "view_all" ),
     noContent: true

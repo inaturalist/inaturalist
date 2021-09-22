@@ -1,0 +1,10 @@
+.container
+  .row
+    .col-xs-8.col-xs-offset-2
+      %h2=t :new_source
+      = form_for @source, builder: BootstrapFormBuilder do |f|
+        = f.text_field :title
+        = f.text_field :in_text
+        = f.text_field :url
+        = f.text_area :citation
+        = f.submit t(:save), class: "btn btn-primary"

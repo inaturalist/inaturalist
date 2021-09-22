@@ -11,19 +11,23 @@
       <meta name="authenticators" content="<%= @provider_authorizations.map{|pa| pa.provider}.join(',') %>">
     <% end -%>
     <title><%= content_for(:title) ? "#{content_for(:title)} · " : "" %> <%= @site.try(:name) %> </title>
-    <%= favicon_link_tag %>
+    <%= favicon_link_tag @site && @site.favicon? ? @site.favicon.url : "favicon.png" %>
     <%= stylesheet_link_tag 'blueprint_bundle' %>
     <%= render :partial => 'shared/common_stylesheets'%>
     <%= stylesheet_link_tag "blueprint-inat" %>
     <%= stylesheet_link_tag "blueprint-bootstrap" %>
-    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js' %>
-    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js' %>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <%= javascript_include_tag "jquery/jquery-1.9.1.min" %>
+    <%= javascript_include_tag "jquery/jquery-ui-1.9.1.min" %>
+    <%= javascript_include_tag "bootstrap.min" %>
+    <%= render "shared/i18n" %>
     <script type="text/javascript">
-      I18n = { }
-      I18n.defaultLocale = "en"
-      I18n.locale = "<%= I18n.locale %>"
-      I18n.fallbacks = true
+      <% if @site %>
+        var SITE = {
+          name: "<%= @site.name %>",
+          short_name: "<%= @site.site_name_short %>",
+          logo_square: "<%= @site.logo_square.url %>"
+        };
+      <% end %>
       <% site_place = @site && @site.place
          user_place = current_user && current_user.place -%>
       <% if site_place -%>
@@ -44,10 +48,15 @@
           preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>"
         };
       <% end -%>
+      var CONTROLLER_ACTION = "<%= controller.class.to_s %>::<%= action_name %>";
+      var CONFIG = {
+        content_freeze_enabled: <%= !!CONFIG.content_freeze_enabled %>
+      };
     </script>
     <%= javascript_include_tag 'application_bundle' %>
     <%= csrf_meta_tag %>
     <meta name="config:inaturalist_api_url" content="<%= CONFIG.node_api_url %>">
+    <meta property="og:type" content="website"/>
     <% if current_user %>
       <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode( user_id: current_user.id ) %>" />
     <% end %>
@@ -66,8 +75,8 @@
     <%= yield :extrahead %>
     <%= yield :extracss %>
     <%= yield :extrajs %>
-    <% if @site && @shareable_image_url.blank? %>
-      <meta property="og:image" content="<%= image_url @site.logo_square.url %>"/>
+    <% if @site && @shareable_image_url.blank? && @site.shareable_image? %>
+      <meta property="og:image" content="<%= image_url @site.shareable_image.url %>"/>
     <% end %>
   </head>
 <body class="browser">
@@ -117,9 +126,8 @@
   <% if logged_in? -%>
     <script type="text/javascript" charset="utf-8">
       setUpdatesCount(<%= session[:updates_count].to_i %>)
-      setTimeout(getUpdatesCount, 1000)
       setMessagesCount(<%= session[:messages_count].to_i %>)
-      setTimeout(getMessagesCount, 1000)
+      setTimeout( getHeaderCounts, 1000 )
     </script>
   <% end -%>
   <script type="text/javascript">

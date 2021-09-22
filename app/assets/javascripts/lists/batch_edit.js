@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 $.fn.setupListedTaxonRow = function() {
   $('.removelink', this).bind('ajax:beforeSend', function() {
     $(this).parents('tr:first').fadeOut()

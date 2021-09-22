@@ -1,6 +1,6 @@
 <%-
   taxon ||= scheme_taxon || @taxon
-  taxon_range ||= taxon.taxon_ranges_without_geom.first
+  taxon_range ||= taxon.taxon_range_without_geom
   swaps = if @swaps_by_taxon_id
     @swaps_by_taxon_id[taxon.id] || []
   end

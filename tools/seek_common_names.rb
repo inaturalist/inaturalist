@@ -2,9 +2,13 @@ require "rubygems"
 require "optimist"
 
 # The official list of locales current supported by Seek can be found at:
-# https://github.com/inaturalist/SeekReactNative/blob/master/i18n.js
+# https://github.com/inaturalist/SeekReactNative/blob/main/i18n.js
 
-SEEK_LOCALES = ["da", "de", "en", "es", "fr", "hi", "nl", "pt", "pt-BR", "zh"]
+SEEK_LOCALES = [
+  "af", "ar", "ca", "cs", "da", "de", "en", "es", "eu", 
+  "fi", "fr", "he", "it", "ja", "nl", "nb", "pl", "ptBR", "ro", 
+  "ru", "si", "sv", "tr", "zh"
+]
 
 OPTS = Optimist::options do
     banner <<-EOS
@@ -19,7 +23,9 @@ Usage:
 
 where [options] are:
 EOS
-  opt :taxonomy_csv_path, "Path to taxonomy CSV containing the taxa whose names will be exported.",
+  # taxonomy_csv_path should be the taxonomy.csv file included in the deployed "slim" vision model
+  opt :taxonomy_csv_path,
+    "Path to taxonomy CSV containing the taxa whose names will be exported. It should have a `taxon_id` column containing taxon IDs for all relevant taxa.",
     type: :string, short: "-t"
   opt :names_per_file, "Maximum number of common names to put in each file.",
     type: :integer, short: "-n", default: 10000
@@ -51,13 +57,21 @@ if relevant_taxa.blank?
   exit( 0 )
 end
 
+places_by_locale = SEEK_LOCALES.inject( {} ) do |memo,locale|
+  locale, lang, region = locale.match( /([a-z]{2})([A-Z]{2})?/ ).to_a
+  memo[locale] = if region
+    Place.where( admin_level: Place::COUNTRY_LEVEL, code: region ).first
+  end
+  memo
+end
+
 common_names = []
 taxon_ids = relevant_taxa.keys
 taxon_ids.in_groups_of( 1000, false ) do |group|
   taxa = Taxon.where( id: group ).includes( :taxon_names )
   taxa.each do |taxon|
     SEEK_LOCALES.each do |locale|
-      common_name = taxon.common_name( locale: locale )
+      common_name = taxon.common_name( locale: locale, place: places_by_locale[locale] )
       if common_name
         common_names << { i: taxon.id, l: locale, n: common_name.name }
       end

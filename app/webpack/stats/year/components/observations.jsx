@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
 import moment from "moment";
-import DateHistogram from "./date_histogram";
+import DateHistogram from "../../../shared/components/date_histogram";
 import TorqueMap from "../../../shared/components/torque_map";
 import GlobalMap from "./global_map";
 import ObservationsGrid from "./observations_grid";
+import Streaks from "./streaks";
 
 const Observations = ( {
   data,
@@ -16,12 +17,19 @@ const Observations = ( {
   const series = {};
   const grayColor = "rgba( 40%, 40%, 40%, 0.5 )";
   if ( data.month_histogram ) {
+    const monthHistogramThisYear = _.pickBy(
+      data.month_histogram,
+      ( value, date ) => date.indexOf( `${year}-` ) >= 0
+    );
     series.month = {
       title: I18n.t( "per_month" ),
-      data: _.map( data.month_histogram, ( value, date ) => ( { date, value } ) ),
+      data: _.map( monthHistogramThisYear, ( value, date ) => ( { date, value } ) ),
       style: "bar",
       color: grayColor,
-      label: d => `<strong>${moment( d.date ).add( 2, "days" ).format( "MMMM" )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`
+      label: d => I18n.t( "bold_label_colon_value_html", {
+        label: moment( d.date ).add( 2, "days" ).format( "MMMM" ),
+        value: I18n.t( "x_observations", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
+      } )
     };
   }
   if ( data.week_histogram ) {
@@ -30,14 +38,22 @@ const Observations = ( {
       data: _.map( data.week_histogram, ( value, date ) => ( { date, value } ) ),
       color: "rgba( 168, 204, 9, 0.2 )",
       style: "bar",
-      label: d => `<strong>${I18n.t( "week_of_date", { date: moment( d.date ).format( "LL" ) } )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`
+      label: d => I18n.t( "bold_label_colon_value_html", {
+        label: I18n.t( "week_of_date", { date: moment( d.date ).format( "LL" ) } ),
+        value: I18n.t( "x_observations", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
+      } )
     };
   }
+  const dailyLabel = d => I18n.t( "bold_label_colon_value_html", {
+    label: moment( d.date ).format( "ll" ),
+    value: I18n.t( "x_observations", { count: I18n.toNumber( d.value, { precision: 0 } ) } )
+  } );
   if ( data.day_histogram ) {
     series.day = {
       title: I18n.t( "per_day" ),
       data: _.map( data.day_histogram, ( value, date ) => ( { date, value } ) ),
-      color: "#74ac00"
+      color: "#74ac00",
+      label: dailyLabel
     };
   }
   const comparisonSeries = {};
@@ -45,7 +61,8 @@ const Observations = ( {
     comparisonSeries.this_year = {
       title: I18n.t( "this_year" ),
       data: _.map( data.day_histogram, ( value, date ) => ( { date, value } ) ),
-      color: "#74ac00"
+      color: "#74ac00",
+      label: dailyLabel
     };
     comparisonSeries.last_year = {
       title: I18n.t( "last_year" ),
@@ -55,19 +72,40 @@ const Observations = ( {
         const newDate = date.replace( lastYear, newYear );
         return { date: newDate, value };
       } ),
-      color: grayColor
+      color: grayColor,
+      label: dailyLabel
     };
   }
   let popular;
   if ( data.popular && data.popular.length > 0 ) {
+    const obsWithActivity = _.filter(
+      data.popular,
+      o => o.faves_count || o.cached_votes_total || o.comments_count
+    );
+    const maxPopular = 36;
+    const perPage = 12;
     popular = (
-      <ObservationsGrid observations={data.popular} identifier="popular" />
+      <ObservationsGrid
+        observations={
+          obsWithActivity.length < perPage
+            ? data.popular.slice( 0, maxPopular )
+            : obsWithActivity
+        }
+        max={maxPopular}
+        perPage={perPage}
+        identifier="popular"
+        moreButton
+      />
     );
   }
   moment.locale( I18n.locale );
   return (
     <div className="Observations">
-      <h3><span>{ I18n.t( "verifiable_observations_by_observation_date" ) }</span></h3>
+      <h3>
+        <a name="observations" href="#observations">
+          <span>{ I18n.t( "verifiable_observations_by_observation_date" ) }</span>
+        </a>
+      </h3>
       <DateHistogram
         series={series}
         tickFormatBottom={d => moment( d ).format( "MMM D" )}
@@ -98,7 +136,11 @@ const Observations = ( {
           window.open( url, "_blank" );
         }}
       />
-      <h3><span>{ I18n.t( "observations_this_year_vs_last_year" ) }</span></h3>
+      <h3>
+        <a name="obs-vs-last-year" href="#obs-vs-last-year">
+          <span>{ I18n.t( "observations_this_year_vs_last_year" ) }</span>
+        </a>
+      </h3>
       <DateHistogram
         series={comparisonSeries}
         tickFormatBottom={d => moment( d ).format( "MMM D" )}
@@ -133,8 +175,19 @@ const Observations = ( {
         /> )
         : ( <GlobalMap year={year} site={site} /> )
       }
-      <h3><span>{ I18n.t( "most_comments_and_faves" ) }</span></h3>
+      <h3>
+        <a name="popular" href="#popular">
+          <span>{ I18n.t( "most_comments_and_faves" ) }</span>
+        </a>
+      </h3>
       { popular }
+      { data.streaks && data.streaks.length > 0 && (
+        <Streaks
+          year={year}
+          data={data.streaks.slice( 0, 20 )}
+          hideUsers={!!user}
+        />
+      ) }
     </div>
   );
 };

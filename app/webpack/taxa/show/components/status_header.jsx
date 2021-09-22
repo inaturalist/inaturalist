@@ -1,10 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
 import _ from "lodash";
+import React from "react";
+import ReactDOMServer from "react-dom/server";
+import PropTypes from "prop-types";
 
 const StatusHeader = ( { status } ) => {
   let text = status.statusText( );
-  text = I18n.t( text, { defaultValue: text } );
+  text = I18n.t( _.snakeCase( text ), { defaultValue: text } );
   let alertClass;
   switch ( status.iucnStatusCode( ) ) {
     case "LC":
@@ -25,6 +26,18 @@ const StatusHeader = ( { status } ) => {
     default:
       // ok
   }
+  let sourceText = I18n.t( "unknown" );
+  if ( status.url && status.authority ) {
+    sourceText = ReactDOMServer.renderToString(
+      <a href={status.url}>{ status.authority }</a>
+    );
+  } else if ( status.authority ) {
+    sourceText = status.authority;
+  } else if ( status.user ) {
+    sourceText = ReactDOMServer.renderToString(
+      <a href={`/people/${status.user.login}`}>{ status.user.login }</a>
+    );
+  }
   return (
     <div className={`alert ${alertClass} StatusHeader`}>
       <i className="glyphicon glyphicon-flag" />
@@ -32,14 +45,15 @@ const StatusHeader = ( { status } ) => {
       <strong>
         {
           status.place
-            ? I18n.t( "status_in_place", { status: I18n.t( text, { defaultValue: text } ), place: status.place.display_name } )
-            : I18n.t( "status_globally", { status: I18n.t( text, { defaultValue: text } ) } )
+            ? I18n.t( "status_in_place", { status: text, place: status.place.display_name } )
+            : I18n.t( "status_globally", { status: text } )
         }
       </strong>
-      { " " }
-      { I18n.t( "label_colon", { label: I18n.t( "source" ) } ) }
-      { " " }
-      <a href={status.url}>{ status.authority }</a>
+      <span
+        dangerouslySetInnerHTML={{
+          __html: ` (${I18n.t( "bold_label_colon_value_html", { label: I18n.t( "source" ), value: sourceText } )})`
+        }}
+      />
     </div>
   );
 };

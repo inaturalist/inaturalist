@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import DateTimeField from "react-bootstrap-datetimepicker";
 import moment from "moment-timezone";
+import { DATETIME_WITH_TIMEZONE, DATETIME_WITH_TIMEZONE_OFFSET } from "../models/util";
 
 class DateTimeFieldWrapper extends Component {
 
@@ -14,6 +15,7 @@ class DateTimeFieldWrapper extends Component {
   }
 
   componentDidMount( ) {
+    moment.locale( I18n.locale );
     // the datetime picker prevents a card drag preview without this
     this.close( );
   }
@@ -56,13 +58,14 @@ class DateTimeFieldWrapper extends Component {
       <DateTimeField
         ref="datetime"
         key="datetime"
+        className="datetime"
         mode={ this.props.mode }
         size={ this.props.size }
         maxDate={ this.props.allowFutureDates ? null : moment( ) }
         inputProps={ this.props.inputProps }
         defaultText={ this.props.defaultText || "" }
         dateTime={ this.props.dateTime }
-        inputFormat={this.props.inputFormat || "YYYY/MM/DD h:mm A ZZ"}
+        inputFormat={this.props.inputFormat || DATETIME_WITH_TIMEZONE_OFFSET}
         onChange={ this.onChange }
       />
     );

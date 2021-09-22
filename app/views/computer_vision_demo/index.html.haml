@@ -2,10 +2,9 @@
   = stylesheet_link_tag "jquery-ui"
   = stylesheet_link_tag "autocomplete"
   = stylesheet_link_tag "font-awesome"
-  = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+  = stylesheet_link_tag "bootstrap"
   = stylesheet_link_tag "observations/uploader"
   = stylesheet_link_tag "computer_vision/index"
-  = javascript_include_tag "i18n"
   %meta{ name: "viewport", content: "width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" }
   %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
   :javascript
@@ -18,12 +17,12 @@
 = google_maps_js libraries: %w(places geometry drawing)
 - content_for :delayed_js do
   = javascript_include_tag "i18n/translations"
-  = javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
-  = javascript_include_tag "//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"
+  = javascript_include_tag "jquery/jquery-1.11.3.min.js"
+  = javascript_include_tag "jquery/jquery-ui-1.11.4.min.js"
   = javascript_include_tag "inaturalist"
   = javascript_include_tag "ang/models/taxon"
   = javascript_include_tag "inaturalist/map3"
   = javascript_include_tag "jquery/plugins/inat/generic_autocomplete"
   = javascript_include_tag "jquery/plugins/inat/taxon_autocomplete"
   = javascript_include_tag "computer-vision-webpack"
-  = javascript_include_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+  = javascript_include_tag "bootstrap.min"

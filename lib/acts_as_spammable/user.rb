@@ -11,7 +11,7 @@ module ActsAsSpammable::User
   DELETE_SPAM_AFTER = 7.days
 
   def suspend_if_spammer
-    if self.spammer_changed? && self.spammer?
+    if self.saved_change_to_spammer? && self.spammer?
       self.suspend!
     end
   end
@@ -21,6 +21,7 @@ module ActsAsSpammable::User
   def update_spam_count
     self.spam_count = content_flagged_as_spam.length
     unless self.known_non_spammer?
+      self.flags.reload
       if self.spam_count >= User::SPAMMER_COUNT_THRESHOLD || self.flags.detect{|f| f.flag == Flag::SPAM}
         # anyone with a high spam count is a spammer, except the good eggs
         self.spammer = true

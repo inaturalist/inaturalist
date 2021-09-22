@@ -17,6 +17,14 @@ import PhotoChooserDropArea from "./photo_chooser_drop_area";
 
 
 class PhotoChooserModal extends React.Component {
+  static keyForPhoto( photo ) {
+    return `${photo.type || "Photo"}-${photo.id || photo.native_photo_id}`;
+  }
+
+  static infoURL( photo ) {
+    return photo.id ? `/photos/${photo.id}` : photo.native_page_url;
+  }
+
   constructor( props ) {
     super( props );
     this.movePhoto = this.movePhoto.bind( this );
@@ -24,7 +32,7 @@ class PhotoChooserModal extends React.Component {
       photos: [],
       loading: true,
       submitting: false,
-      provider: "inat",
+      provider: "inat-rg",
       chosen: [],
       page: 1
     };
@@ -46,7 +54,7 @@ class PhotoChooserModal extends React.Component {
     if ( newProps.chosen ) {
       this.setState( {
         chosen: newProps.chosen.map(
-          p => Object.assign( {}, p, { chooserID: this.keyForPhoto( p ) } )
+          p => Object.assign( {}, p, { chooserID: PhotoChooserModal.keyForPhoto( p ) } )
         )
       } );
     }
@@ -65,8 +73,8 @@ class PhotoChooserModal extends React.Component {
 
   fetchPhotos( props, options = {} ) {
     const { provider } = this.state;
-    this.setState( { loading: true } );
-    const chosenProvider = options.provider || provider || "inat";
+    this.setState( { loading: true, isLastPage: false } );
+    const chosenProvider = options.provider || provider || "inat-rg";
     this.setState( { page: options.page || 1, photos: [] } );
     switch ( chosenProvider ) {
       case "inat":
@@ -101,13 +109,16 @@ class PhotoChooserModal extends React.Component {
       queryParams.search_on = "taxon_page_obs_photos";
     }
     inatjs.observations.search( queryParams ).then( response => {
-      const obsPhotos = _.compact( _.flatten( _.map( response.results, "photos" ) ) );
+      const isLastPage = ( response.page * response.per_page ) >= response.total_results;
+      const obsPhotos = _.filter( _.compact( _.flatten( _.map( response.results, "photos" ) ) ),
+        p => p.url );
       const photos = _.map( obsPhotos, p => Object.assign( {}, p, {
         small_url: p.url.replace( "square", "small" ),
-        chooserID: this.keyForPhoto( p )
+        chooserID: PhotoChooserModal.keyForPhoto( p )
       } ) );
       this.setState( {
         loading: false,
+        isLastPage,
         photos: _.uniqBy( photos, photo => photo.chooserID )
       } );
     } ).catch( ( ) => {
@@ -134,7 +145,7 @@ class PhotoChooserModal extends React.Component {
       )
       .then( json => {
         const photos = json.map( p => Object.assign( {}, p, {
-          chooserID: this.keyForPhoto( p )
+          chooserID: PhotoChooserModal.keyForPhoto( p )
         } ) );
         this.setState( {
           loading: false,
@@ -144,17 +155,19 @@ class PhotoChooserModal extends React.Component {
   }
 
   fetchNextPhotos( ) {
-    this.fetchPhotos( this.props, { page: this.state.page + 1 } );
+    const { page } = this.state;
+    this.fetchPhotos( this.props, { page: page + 1 } );
   }
 
   fetchPrevPhotos( ) {
+    const { page } = this.state;
     this.fetchPhotos( this.props, {
-      page: Math.max( this.state.page - 1, 1 )
+      page: Math.max( page - 1, 1 )
     } );
   }
 
   movePhoto( dragIndex, hoverIndex ) {
-    const { chosen, photos } = this.state;
+    const { chosen } = this.state;
     const dragPhoto = chosen[dragIndex];
     if ( !dragPhoto ) {
       return;
@@ -215,17 +228,11 @@ class PhotoChooserModal extends React.Component {
     this.setState( { chosen: chosen.filter( p => p.chooserID !== chooserID ) } );
   }
 
-  keyForPhoto( photo ) {
-    return `${photo.type || "Photo"}-${photo.id || photo.native_photo_id}`;
-  }
-
-  infoURL( photo ) {
-    return photo.id ? `/photos/${photo.id}` : photo.native_page_url;
-  }
-
   submit( ) {
     this.setState( { submitting: true } );
-    this.props.onSubmit( this.state.chosen );
+    const { onSubmit } = this.props;
+    const { chosen } = this.state;
+    onSubmit( chosen );
   }
 
   render( ) {
@@ -237,29 +244,34 @@ class PhotoChooserModal extends React.Component {
       photos,
       loading,
       chosen,
-      submitting
+      submitting,
+      isLastPage
     } = this.state;
     let searchPlaceholder = I18n.t( "type_species_name" );
-    if ( provider === "inat" ) {
+    if ( provider === "inat" || provider === "inat-rg" ) {
       searchPlaceholder = I18n.t( "search_by_taxon_name_or_observation_id" );
     } else if ( provider === "flickr" ) {
       searchPlaceholder = I18n.t( "search_by_taxon_name_or_flickr_photo_id" );
     }
+    const photosToDisplay = _.filter(
+      photos,
+      p => p.small_url.match( /\.(jpe?g|gif|png)/i )
+    );
     const prevNextButtons = (
       <ButtonGroup className="pull-right">
         <Button
           disabled={page === 1}
           onClick={( ) => this.fetchPrevPhotos( )}
-          title={I18n.t( "prev" )}
+          title={I18n.t( "previous_page" )}
         >
-          { I18n.t( "prev" ) }
+          { I18n.t( "previous_page_short" ) }
         </Button>
         <Button
-          disabled={photos.length < 24}
+          disabled={photos.length < 24 || isLastPage}
           onClick={( ) => this.fetchNextPhotos( )}
-          title={I18n.t( "next" )}
+          title={I18n.t( "next_page" )}
         >
-          { I18n.t( "next" ) }
+          { I18n.t( "next_page_short" ) }
         </Button>
       </ButtonGroup>
     );
@@ -313,24 +325,24 @@ class PhotoChooserModal extends React.Component {
                       className="form-control"
                       onChange={e => this.setProvider( e.target.value )}
                     >
-                      <option value="inat">{ I18n.t( "observations" ) }</option>
                       <option value="inat-rg">{ I18n.t( "rg_observations" ) }</option>
+                      <option value="inat">{ I18n.t( "observations" ) }</option>
                       <option value="flickr">Flickr</option>
                       <option value="eol">EOL</option>
                       <option value="wikimedia_commons">Wikimedia Commons</option>
                     </select>
                   </div>
-                  { photos.length > 0 && prevNextButtons }
+                  { ( photos.length > 0 || page > 1 ) && prevNextButtons }
                 </form>
                 <div className="photos">
-                  { photos.map( photo => (
+                  { photosToDisplay.map( photo => (
                     <ExternalPhoto
-                      key={this.keyForPhoto( photo )}
-                      chooserID={this.keyForPhoto( photo )}
+                      key={PhotoChooserModal.keyForPhoto( photo )}
+                      chooserID={PhotoChooserModal.keyForPhoto( photo )}
                       src={photo.small_url}
                       movePhoto={this.movePhoto}
                       didNotDropPhoto={( ) => this.newPhotoExit( )}
-                      infoURL={this.infoURL( photo )}
+                      infoURL={PhotoChooserModal.infoURL( photo )}
                     />
                   ) ) }
                   { loading ? (
@@ -363,8 +375,8 @@ class PhotoChooserModal extends React.Component {
                 <div className="stacked photos">
                   { _.map( chosen, ( photo, i ) => (
                     <ChosenPhoto
-                      key={this.keyForPhoto( photo )}
-                      chooserID={this.keyForPhoto( photo )}
+                      key={PhotoChooserModal.keyForPhoto( photo )}
+                      chooserID={PhotoChooserModal.keyForPhoto( photo )}
                       src={photo.small_url}
                       index={i}
                       movePhoto={this.movePhoto}
@@ -372,7 +384,7 @@ class PhotoChooserModal extends React.Component {
                       dropNewPhoto={chooserID => this.choosePhoto( chooserID )}
                       removePhoto={chooserID => this.removePhoto( chooserID )}
                       candidate={photo.candidate}
-                      infoURL={this.infoURL( photo )}
+                      infoURL={PhotoChooserModal.infoURL( photo )}
                       isDefault={i === 0}
                       totalChosenPhotos={totalChosenPhotos}
                     />
@@ -402,9 +414,9 @@ class PhotoChooserModal extends React.Component {
 }
 
 PhotoChooserModal.propTypes = {
-  initialQuery: PropTypes.string,
-  initialTaxon: PropTypes.object,
-  photos: PropTypes.array,
+  // Both of these props *are* used in lifecycle methods
+  initialQuery: PropTypes.string, // eslint-disable-line
+  initialTaxon: PropTypes.object, // eslint-disable-line
   chosen: PropTypes.array,
   visible: PropTypes.bool,
   onSubmit: PropTypes.func,

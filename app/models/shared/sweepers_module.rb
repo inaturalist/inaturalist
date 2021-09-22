@@ -1,5 +1,6 @@
 module Shared::SweepersModule
   def expire_listed_taxon(listed_taxon)
+    return unless listed_taxon.list.is_a?(CheckList)
     listed_taxon.expire_caches
   end
 
@@ -21,6 +22,7 @@ module Shared::SweepersModule
       [true, false].each do |ssl|
         ctrl.send( :expire_action, FakeView.url_for( controller: "taxa", action: "show", id: taxon.id, locale: locale, ssl: ssl ) )
         ctrl.send( :expire_action, FakeView.url_for( controller: "taxa", action: "show", id: taxon.to_param, locale: locale, ssl: ssl ) )
+        ctrl.send( :expire_action, FakeView.taxon_path( id: taxon.id, locale: locale, format: "json" ) )
       end
     end
     Rails.cache.delete( taxon.photos_cache_key )

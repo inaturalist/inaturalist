@@ -44,6 +44,7 @@ Some notes:
   elsif observation.quality_grade == Observation::RESEARCH_GRADE
     css_class += ' research_grade'
   end
+  coordinates_viewable ||= observation.coordinates_viewable_by?( current_user )
 -%>
 <div id="observation-<%= observation.id rescue rand(999) %>" class="<%= css_class %>" 
     data-taxon-id=<%= observation.taxon_id %>
@@ -88,14 +89,14 @@ Some notes:
               "data-medium-url" => photo.medium_url
             ), obs_url, :class => 'flickr photo'%>
             <% if photo_count > 1 -%>
-              <% link_text << t(:photos_size_photos, :photos_size => photos.size).downcase %>
+              <% link_text << t(:x_photos, count: photos.size) %>
             <% end -%>
           <% end %>
         <% end -%>
         <% if sound_count > 0 %>
           <%= link_to '<i class="fa fa-volume-up fa-4x"></i>'.html_safe, obs_url, :class => "sound-icon#{' with-photo' if photo}" %>
           <% if sound_count > 1 %>
-            <% link_text << t(:'sounds.sounds_size_sounds', :sounds_size => sound_count).downcase %>
+            <% link_text << t(:x_sounds, count: sound_count) %>
           <% end -%>
         <% end %>
         <% unless link_text.blank? -%>
@@ -125,24 +126,25 @@ Some notes:
   </div>
   <div class="user attribute">
     <h4 class="label"><%=t :observer_short %></h4>
-    <%= link_to(observation.user.login, observations_by_login_path(observation.user.login)) %>
+    <%= link_to( observation.user.login, observations_path( user_id: observation.user.login ) ) %>
   </div>
   <div class="observed_on attribute">
     <h4 class="label"><%=t :observation_date %></h4>
-    <span class="date" title="<%= observation.observed_on ? observation.observed_on.strftime("%Y-%m-%d") : '' %>">
-      <%#= observation.observed_on ? observation.observed_on.strftime("%b. %e, %Y") : 'the past' %>
+    <span class="date" title="<%= observation.observed_on && coordinates_viewable ? observation.observed_on.strftime("%Y-%m-%d") : '' %>">
       <% if observation.observed_on -%>
         <%= link_to t("date_format.month.#{observation.observed_on.strftime('%B').downcase}").titleize,
-          observations_by_login_path(observation.user.login, :on => "#{observation.observed_on.year}-#{observation.observed_on.month}") %>
-        <%= link_to observation.observed_on.day, 
-          observations_by_login_path(observation.user.login, :on => "#{observation.observed_on.year}-#{observation.observed_on.month}-#{observation.observed_on.day}") %>,
-        <%= link_to observation.observed_on.year, 
-          observations_by_login_path(observation.user.login, :on => observation.observed_on.year) %>
+          observations_path( user_id: observation.user.login, on: "#{observation.observed_on.year}-#{observation.observed_on.month}") %>
+        <% if coordinates_viewable %>
+          <%= link_to observation.observed_on.day,
+            observations_path( user_id: observation.user.login, on: "#{observation.observed_on.year}-#{observation.observed_on.month}-#{observation.observed_on.day}") %>,
+        <% end %>
+        <%= link_to observation.observed_on.year,
+          observations_path( user_id: observation.user.login, on: observation.observed_on.year) %>
       <% else %>
-        <%=t :the_past %>
+        <%=t :missing_date %>
       <% end -%>
     </span>
-    <% if observation.time_observed_at %>
+    <% if observation.time_observed_at && coordinates_viewable %>
     <span class="time">
       <%= observation.time_observed_at.in_time_zone(observation.time_zone).strftime("%I:%M %p %Z")  %>
     </span>
@@ -150,6 +152,27 @@ Some notes:
   </div>
   <div class="place attribute">
     <h4 class="label"><%=t :place %></h4>
+    <% if observation.coordinates_obscured? %>
+      <% if observation.geoprivacy == "private" %>
+        <i
+          class="geoprivacy-icon icon-icn-location-private"
+          title="<%=t :location_is_private %>"
+          alt="<%=t :location_is_private %>"
+        ></i>
+      <% else %>
+        <i
+          class="geoprivacy-icon icon-icn-location-obscured"
+          title="<%=t :location_is_obscured %>"
+          alt="<%=t :location_is_obscured %>"
+        ></i>
+      <% end %>
+    <% elsif observation.latitude %>
+      <i
+        class="fa fa-map-marker"
+        title="<%=t :location_is_public %>"
+        alt="<%=t :location_is_public %>"
+      ></i>
+    <% end %>
     <%= observation_place_guess observation, :truncate_coordinates => true %>
   </div>
   <% unless observation.created_at.blank? -%>
