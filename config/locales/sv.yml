@@ -907,6 +907,7 @@ sv:
   committed_by_user_on_date_html: Bekräftad av %{user} den %{date}
   #Label for date the taxon change was committed
   committed_on: Bekräftad den %{date}
+  committed_taxon_changes_cannot_be_deleted: Bekräftade taxonändringar kan inte raderas
   #Status message while a taxon change is being committed
   committing: Bekräftar...
   common_name: Vardagligt namn
@@ -1869,6 +1870,31 @@ sv:
   header_your_projects: Dina projekt
   header_your_profile: Din profil
   heads_up: Obs
+  heads_up_automatable_draft_split_notice_html: |
+    <strong>OBS!</strong> När du bekräftar denna ändring kommer bestämningar
+    att fördelas till uttaxa baserat på deras atlaser. Om några eller alla
+    uttaxa saknar atlaser, eller om atlaser överlappar för en viss post,
+    kommer bestämningarna att läggas på närmast gemensamma
+    föräldrataxon (%{taxon})
+  heads_up_non_automatable_draft_split_notice_html: |
+    <strong>OBS!</strong> Denna taxonuppdelning har uttaxa som antingen
+    inte har atlaser eller inte delar en gemensam förfader, så posterna knutna till dess intaxa kan inte automatiskt tilldelas uttaxa när denna uppdelning är bekräftad och communityn kommer att behöva göra nya bestämningar för dessa poster.
+  heads_up_automatable_split_notice_html: |
+    <strong>OBS!</strong> Vissa eller alla av bestämningarna som påverkas av
+    denna uppdelning kan ha ersatts med bestämningar av %{taxon}. Detta
+    händer när vi inte automatiskt kan tilldela en bestämning till ett
+    uttaxon.
+  heads_up_observose_taxon_change_html: |
+    <strong>OBS!</strong> Ett eller flera av de intaxa som berörs av denna
+    ändring har mer än %{observose_taxon_threshold} underliggande fynd.
+    Endast administratörer eller förvaltare av den taxonkontexten kan bekräfta denna ändring.
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+    <strong>OBS!</strong> Ett eller flera av de intaxa som berörs av denna
+    ändring är del av en <a href="%{framework_url}">taxonkontext</a>. Endast
+    administratörer eller förvaltare av den taxonkontexten kan bekräfta ändringar som påverkar ingående taxa. Kontakta en av detta taxons förvaltare för att bekräfta ändringen.
+  heads_up_there_are_other_draft_taxon_changes_html:
+    one: "<strong>OBS!</strong> det finns %{count} annat utkast till taxonändring med samma intaxa:"
+    other: "<strong>OBS!</strong> det finns %{count} andra utkast till taxonändring med samma intaxa:"
   heads_up_this_photo_has_been_flagged: "OBS: denna bild har flaggats."
   heads_up_this_photo_is_already_associated_with: "Obs: denna bild är redan knuten till <a target='_blank' href='%{url}'>ett annat fynd</a>"
   heads_up_you_have_multiple: "Obs: Du har flera taxonomiska maskintaggningar för identiska ranger. De är färgkodade efter rang nedan."
@@ -2165,6 +2191,7 @@ sv:
     russian: Ryska
     sinhala: Singalesiska
     slovak: Slovakiska
+    slovenian: Slovenska
     spanish: Spanska
     swedish: Svenska
     tagalog: Tagalog
@@ -2276,6 +2303,7 @@ sv:
     pt-BR: Portugisiska (Brasilien)
     ru: Ryska
     sk: Slovakiska
+    sl: Slovenska
     sq: Albanska
     sv: Svenska
     th: Thailändska
@@ -3924,6 +3952,8 @@ sv:
   restore: Återställ
   restoring: Återställer...
   review_all: Granska alla
+  review_identifications_of_taxon_html: |
+    Granska bestämningar av <span class="sciname">%{taxon}</span> %{taxon_id}
   reviewed: Granskad
   revoke: Återkalla
   revoke_caps: ÅTERKALLA
@@ -4339,6 +4369,11 @@ sv:
     Taxonbedömningar är dokument som bedömer artens nuvarande status, vanligen bevarandestatus.
     Till exempel kan en regional bevarandeorganisation använda dem för att organisera information och be om feedback på statusen för flera hotade taxa i regionen.
   taxon_change_must_be_committed_to_update_records: En taxonändring måste genomföras för att uppdatera data
+  taxon_change_title_taxon_drop: Taxoninaktivering %{id}
+  taxon_change_title_taxon_merge: Taxonhopslagning %{id}
+  taxon_change_title_taxon_split: Taxonuppdelning %{id}
+  taxon_change_title_taxon_stage: Taxonförberedelse %{id}
+  taxon_change_title_taxon_swap: Taxonbyte %{id}
   taxon_deleted: Taxon raderat.
   taxon_doesnt_have_a_range: Taxon saknar område
   taxon_drop: taxoninaktivering
@@ -4457,6 +4492,8 @@ sv:
   the_identotron_is_a_tool_to: |
     Identomaten är ett verktyg för att hjälpa dig att bestämma fynd baserat på %{site_name}s checklistedata. Givet ett taxon på högre nivå och en plats (t.ex. däggdjur i Indien), kommer %{site_name} att leta efter poster i checklistan som matchar detta taxon på den fyndplatsen, lite som en dynamisk fältguide till hela planeten. De flesta checklistor är under utarbetande, men om det finns en som är fullständig, dvs den listar <em>alla</em> representanter för ett taxon på en fyndplats, kommer Identomaten att visa ett meddelande.
   the_name_of_the_taxon_including_space: Ett taxons namn, inklusive mellanslag för art och lägre.
+  the_name_of_the_taxon_dashes: Taxonnamn, mellanslag ersatta med bindestreck.
+  the_name_of_the_taxon_underscores: Taxonnamn, mellanslag ersatta med understreck.
   the_observation_was_already_added_to_that_project: Fyndet hade redan lagts till i det projektet.
   the_people_of_inat: "Människorna på %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
@@ -5071,6 +5108,9 @@ sv:
   you_need_to_select_some_observations_first: Du måste välja några fynd först.
   you_retain_full_copyright: "Du behåller full upphovsrätt till ditt innehåll förutom de rättigheter som %{site_name} beviljas i våra användarvillkor."
   you_retain_full_copyright_over_your_content: "Du behåller full upphovsrätt till ditt innehåll förutom de rättigheter som %{site_name} beviljas i våra användarvillkor."
+  you_should_delete_this_taxon_change: |
+    Du bör förmodligen ta bort denna taxonändring, eller åtminstone komma på någon
+    typ av lösning med den(de) person(-er) som gjort den(de) andra förändringen(-arna).
   you_sure_delete_asset?: Är du säker på att du vill ta bort denna projekttillgång?
   you_sure_delete_check_list: "Är du säker på att du vill ta bort denna lista? En del personer kan ha lagt ner mycket arbete på den..."
   you_sure_delete_comment?: Är du säker på att du vill ta bort den här kommentaren?
