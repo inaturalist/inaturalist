@@ -755,7 +755,7 @@ fi:
   calendar: Kalenteri
   calendars_only_show_x_observations_at_time: Kalenterit näyttävät vain %{x} havaintoa kerrallaan
   cancel: Peruuta
-  cant_edit_or_delete_hidden_content: Et voi muokata tai poistaa sisältöä jonka sivuston kuraattorit ovat piilottaneet
+  cant_edit_or_delete_hidden_content: Et voi muokata tai poistaa sisältöä, jonka sivuston kuraattorit ovat piilottaneet
   cant_flag_an_object_that_doesnt_exist: Olematonta kohdetta ei voi liputtaa.
   cant_merge_a_taxon_with_itself: Ei voi yhdistää taksonia itsensä kanssa.
   captive: Vangittu
@@ -1687,7 +1687,7 @@ fi:
   flagged_taxon: Liputettu taksoni
   flagged_thing_explanation: "Käyttäjät ovat liputtaneet tämän: %{thing}, koska"
   flagging_desc: |
-    Liputus merkitsee havainnon niin että kuraattorit voivat tarkistaa sen. Ole hyvä äläkä liputa ongelmia, jotka voisit ratkaista tunnistuksilla, laatuarviolla tai ottamalla yhteyttä havainnon tekijään.
+    Liputus merkitsee havainnon niin, että kuraattorit voivat tarkistaa sen. Ole hyvä äläkä liputa ongelmia, jotka voisit ratkaista tunnistuksilla, laatuarviolla tai ottamalla yhteyttä havainnon tekijään.
   flagger: Liputtaja
   flags: Liput
   flags_with_count: (%{count}) lippua
@@ -2243,7 +2243,7 @@ fi:
   manage_your_relationships: Hallitse suhteitasi
   manager: Manageri
   managers: Managerit
-  managers_can_do: Managerit voivat tehdä kaiken mitä kuraattoritkin, kuten myös muokata projektin asetuksia ja kirjoittaa projektin päiväkirjajulkaisuja.
+  managers_can_do: Managerit voivat tehdä saman mitä kuraattoritkin, mutta myös muokata projektin asetuksia ja kirjoittaa projektin päiväkirjajulkaisuja.
   managing_projects: Projektien hallinta
   map: Kartta
   map_legend: karttamerkkien selitteet
@@ -4075,7 +4075,7 @@ fi:
   that_was_the_last_observation_matching_the_current_filters: Tämä oli viimeinen valitsemiasi suodattimia vastaava havainto.
   thats_not_a_real_date: Tuo ei ole oikea päivämäärä!
   the_admin_is_the_person_who: |
-    Ylläpitäjä on henkilö joka loi projektin. He voivat tehdä kaiken mitä managerit ja kuraattorit voivat tehdä, yhtä hyvin poistaa projektin.
+    Ylläpitäjä on henkilö, joka loi projektin. He voivat tehdä saman mitä managerit ja kuraattorit, ja myös poistaa projektin.
   the_below_items_are_needed_to_achieve: |
     <span className="bold">Tutkimustason</span> saavuttamiseen tarvitaan:
   the_community_id_requires_at_least_two_identifications: Yhteisön tekemä tunnistus edellyttää ainakin kahta tunnistusta.
