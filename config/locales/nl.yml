@@ -176,6 +176,7 @@ nl:
   about_place: "Over %{place}"
   about_places: Over plaatsen
   about_the_cc_licenses: Over Creative Commons-licenties
+  about_the_network: Over het netwerk
   about_these_licenses: Over deze licenties
   about_this_bioblitz: Over deze bioblitz
   about_this_map: Over deze kaart
@@ -512,6 +513,7 @@ nl:
   alphabetical_order: Alfabetische volgorde
   already_have_an_account_log_in_html: Heb je al een account? <strong>Log in.</strong>
   amphibians: amfibieën
+  analyze_ids: ID's analyseren
   ancestor_taxon: Voorouder-taxon
   and: en
   and_other_taxa: "&amp; Andere Taxa"
@@ -1354,6 +1356,8 @@ nl:
   delete_icon?: Icoon verwijderen?
   delete_photo: Foto verwijderen
   delete_project: Dit project verwijderen
+  #Label for a button to delete a taxon range
+  delete_range: Verspreiding verwijderen
   delete_selected: Verwijder geselecteerde items
   delete_taxon_and_merge_most_data_html: |
     Verwijder <i>%{taxon}</i> en voeg het grootste deel van de gegevens samen met een ander taxon. Gebruik deze tool voor <strong>het verwijderen van dubbele taxa</strong>. Maak een taxonwissel aan als je een verouderd synoniem wilt verwijderen. <strong>KIJK UIT!</strong> Het verwijderen van taxa kan erg destructief zijn! Bekijk de <a href="%{curator_url}">richtlijn voor curatoren</a> voor meer details.
@@ -1375,6 +1379,7 @@ nl:
   description_slash_tags: Beschrijving / Tags
   description_tags_more: "Beschrijving, labels, en meer"
   desription: Beschrijving
+  destination: Bestemming
   destroy: Vernietigen
   details: Details
   deviation: Afwijking
@@ -1534,6 +1539,7 @@ nl:
   editing_taxon: Bewerk %{taxon}
   editing_taxon_link: Taxonkoppeling bewerken
   editing_taxon_name_for_taxon_html: Taxonnaam "%{name}" voor %{taxon} bewerken
+  editing_taxon_range_for_taxon_html: Taxonverspreiding voor %{taxon} bewerken
   editing_this: '%{elem} aan het bewerken'
   editing_x_in_y: "%{x} in %{y} bewerken"
   editors: Redacteurs
@@ -1572,6 +1578,8 @@ nl:
   establishment_means: Vestigingswijze
   establishment_means_describes_how: |
     Vestigingswijze beschrijft hoe het taxon zich heeft kunnen vestigen in een gebied. Zie DarwinCore voor <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">meer informatie over terminologie</a>.
+  estimate_which_input: |
+    Schat welke invoertaxonid's zullen worden vervangen met welke uitvoertaxa en welke zullen worden gekoppeld aan een gemeenschappelijke voorouder zodra de splitsing wordt doorgevoerd. Het kan even duren om dit te berekenen. Links naar waarnemingen worden ingekort naar subsets van 200.
   event_in_progress: Gebeurtenis aan de gang
   event_stats: Evenement statistieken
   event_url: Evenement URL
@@ -1846,6 +1854,11 @@ nl:
   header_your_projects: Jouw projecten
   header_your_profile: Jouw profiel
   heads_up: Opgelet
+  heads_up_non_automatable_draft_split_notice_html: |
+    <strong>Let op:</strong> Deze taxonsplitsing heeft output taxa die ofwel geen atlassen hebben of geen gemeenschappelijke voorouder delen, dus de records geassocieerd met de invoertaxa kunnen niet automatisch worden toegewezen aan outputtaxa als deze splitsing wordt doorgevoerd en de gemeenschap zal nieuwe ID's moeten toevoegen voor deze records.
+  heads_up_there_are_other_draft_taxon_changes_html:
+    one: "<strong>Let op:</strong> er is %{count} andere voorlopige taxonwijziging met dezelfde inputtaxa:"
+    other: "<strong>Let op:</strong> er zijn %{count} andere voorlopige taxonwijzigingen met dezelfde inputtaxa:"
   heads_up_this_photo_has_been_flagged: "OPGELET: deze foto is gemeld."
   heads_up_this_photo_is_already_associated_with: "Opgelet: deze foto is al gelinkt aan een <a target='_blank' href='%{url}'>andere waarneming</a>"
   heads_up_you_have_multiple: "Let op: je hebt meerdere taxonomische machine-tags voor identieke niveaus. Ze zijn hieronder gekleurd per niveau."
@@ -1948,6 +1961,7 @@ nl:
   improving: Verbeterend
   in_n: "in %{n}"
   in_place_x: in %{place}
+  inaturalist_network: iNaturalist netwerk
   inaturalist_network_affiliation: iNaturalist netwerk affiliatie
   #Label for messages you've received
   inbox: Postvak IN
@@ -2127,6 +2141,7 @@ nl:
     ilokano: Ilokano
     italian: Italiaans
     japanese: Japans
+    kannada: Kannada
     korean: Koreaans
     latvian: Lets
     lithuanian: Litouws
@@ -2138,9 +2153,12 @@ nl:
     norwegian: Noors
     occitan: Provençaals
     pangasinan: Pangasinan
+    polish: Pools
     portuguese: Portugees
     romanian: Roemeens
     russian: Russisch
+    slovak: Slowaaks
+    slovenian: Sloveens
     spanish: Spaans
     swedish: Zweeds
     tagalog: Tagalog
@@ -2148,6 +2166,7 @@ nl:
     thai: Thai
     tokelauan: Tokelaus
     turkish: Turks
+    ukrainian: Oekraïens
     waray_waray: Winaray
   less: Minder
   licensed_site_photos: "Foto's van %{site_name} met licentie"
@@ -2236,6 +2255,7 @@ nl:
     id: Indonesisch
     it: Italiaans
     ja: Japans
+    kn: Kannada
     ko: Koreaans
     lb: Luxemburgs
     lt: Litouws
@@ -2250,6 +2270,7 @@ nl:
     pt-BR: Portugees (Brazilië)
     ru: Russisch
     sk: Slowaaks
+    sl: Sloveens
     sq: Albanees
     sv: Zweeds
     th: Thai
@@ -2457,6 +2478,7 @@ nl:
     <a href="%{url}">Maandelijkse Supporter</a> sinds %{date}
   months: Maanden
   more: Meer
+  more_about_sharing: Meer over delen
   more_fields: Meer velden
   more_filters: Meer filters
   more_from_x: Meer van %{x}
@@ -2545,6 +2567,8 @@ nl:
   network_affiliation_prompt_from_other_site_html: |
     Wil je je affiliatie veranderen van <strong>%{other_site_name}</strong> naar
     <strong>%{site_name}</strong>?
+  #Column header in a table listing iNaturalist Network members
+  network_member: Netwerklid
   new: Nieuw
   new_and_noteworthy: Nieuw & opmerkelijk
   new_announcement: Nieuwe aankondiging
@@ -2612,6 +2636,7 @@ nl:
   no_identifications_added:
     current_user: Je hebt geen determinaties aan iemands waarnemingen toegevoegd.
     user: "%{user} heeft aan niemands waarnemingen determinaties toegevoegd."
+  no_ids: "Aantal ID's"
   no_ids_have_been_suggested_yet: Er werden nog geen ID's voorgesteld
   no_interaction_data_available: Geen interactiegegevens beschikbaar
   no_its_as_good_as_it_can_be: Nee, beter kan het niet worden
