@@ -38,6 +38,9 @@ kn:
   x_misidentifications_of_this_species:
     one: "%{count} ಈ ಪ್ರಭೇಧದ ತಪ್ಪಾದ ಗುರುತಿಸುವಿಕೆ"
     other: "%{count} ಈ ಪ್ರಭೇಧದ ತಪ್ಪಾದ ಗುರುತಿಸುವಿಕೆಗಳು"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} ಈ ಕುಲದಲ್ಲಿ ತಪ್ಪಾಗಿ ಗುರುತಿಸಲಾಗಿರುವ ಪ್ರಭೇದ"
+    other: "%{count} ಈ ಕುಲದಲ್ಲಿ ತಪ್ಪಾಗಿ ಗುರುತಿಸಲಾಗಿರುವ ಪ್ರಭೇದಗಳು"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -133,7 +136,10 @@ kn:
   about_place: "%{place} ಬಗ್ಗೆ"
   about_places: ಸ್ಥಳಗಳ ಬಗ್ಗೆ
   about_taxon_ranges: ಜೀವಿವರ್ಗದ ವ್ಯಾಪ್ತಿಗಳ ಕುರಿತು
+  about_taxon_ranges_desc: |
+    ಜೀವಿವರ್ಗದ ವ್ಯಾಪ್ತಿಗಳು ಆ ಜೀವಿವರ್ಗದ ಜಾಗತಿಕ ವಿತರಣೆಯನ್ನು ಸೂಚಿಸುತ್ತವೆ. ಜೀವಿವರ್ಗದ ವ್ಯಾಪ್ತಿಗಳನ್ನು ಸಾಮಾನ್ಯವಾಗಿ IUCN ಕೆಂಪು ಪಟ್ಟಿಯಿಂದ ಉಲ್ಲೇಖಿಸಲಾಗುತ್ತದೆ.
   about_the_cc_licenses: ಕ್ರಿಯೇಟೀವ್ ಕಾಮನ್ಸ್ ಪರವಾನಿಗೆ ಬಗ್ಗೆ
+  about_the_network: ಜಾಲದ ಬಗ್ಗೆ ಮಾಹಿತಿ
   about_these_licenses: ಈ ಪರವಾನಿಗೆಗಳ ಬಗ್ಗೆ
   about_this_bioblitz: ಈ Bioblitz ಬಗ್ಗೆ
   about_this_map: ಈ ಭೂಪಟದ ಬಗ್ಗೆ
@@ -188,6 +194,7 @@ kn:
   add_a_taxon: ಜೀವಿವರ್ಗವೊಂದನ್ನು ಸೇರಿಸಿ
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
     ನೀವು ಹೆಸರನ್ನು ಬದಲಿಸಲು ಬಯಸಿದ್ದಲ್ಲಿ <a target="_blank" href="%{url}">ಜೀವಿವರ್ಗದ ಬದಲಿಕೆ</a> ಯನ್ನು ಸೇರಿಸಿ
+  add_an_assessment: ಮೌಲ್ಯಮಾಪನವೊಂದನ್ನು ಸೇರಿಸಿ
   add_an_identification: ಗುರುತಿಸುವಿಕೆಯೊಂದನ್ನು ಸೇರಿಸಿ
   add_an_observation: ವೀಕ್ಷಣೆಯೊಂದನ್ನು ಸೇರಿಸಿ
   add_an_observation_of: "%{taxon} ನ ವೀಕ್ಷಣೆಯೊಂದನ್ನು ಸೇರಿಸಿ"
@@ -275,6 +282,7 @@ kn:
   add_taxon_batch_to: "%{list} ಗೆ ಜೀವಿವರ್ಗದ ಬ್ಯಾಚ್ ಅನ್ನು ಸೇರಿಸಿ"
   add_taxon_range: ಜೀವಿವರ್ಗದ ವ್ಯಾಪ್ತಿಯನ್ನು ಸೇರಿಸಿ
   add_taxonomic_tags_to: "ಆಯ್ಕೆಮಾಡಿದ ಫ್ಲಿಕರ್ ಚಿತ್ರಗಳಿಗೆ ವರ್ಗೀಕರಣದ ಟ್ಯಾಗ್ ಗಳನ್ನು ಸೇರಿಸಿ &raquo;"
+  add_to_a_scheme: ಕಾರ್ಯಯೋಜನೆಯೊಂದನ್ನು ಸೇರಿಸಿ
   add_to_a_project: ಪ್ರಾಯೋಜನೆಯೊಂದಕ್ಕೆ ಸೇರಿಸಿ
   add_to_calendar: ದಿನದರ್ಶಿಕೆಗೆ ಸೇರಿಸಿ
   add_to_checklist: ತಾಳೆಪಟ್ಟಿಗೆ ಸೇರಿಸಿ
@@ -306,6 +314,8 @@ kn:
   admin_s: ನಿರ್ವಾಹಕರು(ಗಳು)
   admin_only: ನಿರ್ವಾಹಕರಿಗೆ ಮಾತ್ರ
   admin_tools: ನಿರ್ವಾಹಕರ ಪರಿಕರಗಳು
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: ಸಹಭಾಗಿತ್ವದ ಸಂಸ್ಥೆಗಳು
   agree_: ಸಮ್ಮತಿಸಿ
   agree?: ಸಮ್ಮತಿಸಿ?
   agree_with_current_taxon: ಪ್ರಸ್ತುತ ಜೀವಿವರ್ಗವನ್ನು ಸಮ್ಮತಿಸಿ
@@ -419,6 +429,7 @@ kn:
   alphabetical_order: ಅಕ್ಷರಸಂಕೇತದ ಅನುಸಾರ
   already_have_an_account_log_in_html: ಈಗಾಗಲೇ ಖಾತೆಯನ್ನು ಹೊಂದಿರುವಿರಾ? <strong>ಲಾಗಿನ್ ಆಗಿ.</strong>
   amphibians: ಉಭಯಚರಿಗಳು
+  analyze_ids: IDಗಳನ್ನು ವಿಶ್ಲೇಷಿಸಿ
   and: ಹಾಗೂ
   and_other_taxa: "&amp; ಇತರೇ ಜೀವಿವರ್ಗಗಳು"
   android: ಆಂಡ್ರಾಯ್ಡ್
@@ -505,6 +516,7 @@ kn:
   are_you_sure_want_delete_this_range: ಈ ವ್ಯಾಪ್ತಿಯನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
   are_you_sure_you_want_to_commit_this_change: ನೀವು ಈ ಬದಲಾವಣೆಗಳನ್ನು ಸಲ್ಲಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುತ್ತೀರಾ? ಇದನ್ನು ಹಿಂಪಡೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ
   are_you_sure_you_want_to_delete_this: ನೀವು ಇದನ್ನು ಖಚಿತವಾಗಿಯೂ ಅಳಿಸಬಯಸುವಿರಾ?
+  are_you_sure_you_want_to_delete_this_assessment?: ಈ ಮೌಲ್ಯಮಾಪನವನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
   are_you_sure_you_want_to_delete_this_photo?: ಈ ಚಿತ್ರವನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
   are_you_sure_you_want_to_delete_this_post: ಈ ಪೋಸ್ಟ್ ಅನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
   are_you_sure_you_want_to_delete_this_taxon_change: ಈ ಜೀವಿವರ್ಗದ ಬದಲಾವಣೆಯನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
@@ -795,6 +807,7 @@ kn:
   cannot_be_changed_during_a_content_freeze: ವಸ್ತುವಿಷಯದ ಸ್ಥಿರೀಕರಣದ ಸಮಯದಲ್ಲಿ ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ
   conservation_status: ಸಂರಕ್ಷಣೆ ಸ್ಥಿತಿ
   conservation_status_descriptions:
+    status: ಸ್ಥಿತಿ ಸಂಕೇತ, ಶ್ರೇಣಿ, ಇತ್ಯಾದಿ. E ಅಥವಾ CR ನಂತಹ ಕಿರಿ ಸಂಕೇತಗಳು ಲಭ್ಯವಿದ್ದಲ್ಲಿ, ದಯವಿಟ್ಟು ಅವನ್ನು ಬಳಸಿ, ಇಲ್ಲದಿದ್ದಲ್ಲಿ ಪೂರ್ಣ ಸ್ಥಿತಿಯನ್ನು ಬಳಸಿ, ಉದಾ. ಅಪಾಯದಂಚಿನಲ್ಲಿರುವ ಅಥವಾ ಅಳಿವಿನಂಚಿನಲ್ಲಿರುವ.
     description: ಇದನ್ನು ಏತಕ್ಕೆ ಪಟ್ಟಿಮಾಡಲಾಗಿದೆಯೆಂಬುದಕ್ಕೆ ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ
     place: ಈ ಸ್ಥಿತಿಯನ್ನು ಸೀಮಿತಗೊಳಿಸಿರುವ ಪ್ರದೇಶಗಳು.
     url: ಈ ಸ್ಥಿತಿಯನ್ನು ವಿವರಿಸುವ ಪುಟದ URL
@@ -1284,6 +1297,7 @@ kn:
   event_stats: ಕಾರ್ಯಕ್ರಮದ ಅಂಕಿಅಂಶಗಳು
   event_url: ಕಾರ್ಯಕ್ರಮದ URL
   events_only: ಕಾರ್ಯಕ್ರಮಗಳು ಮಾತ್ರ
+  every_species_seen_by: ಇವರ ಮೂಲಕ ವೀಕ್ಷಣೆಯಾದ ಎಲ್ಲಾ ಪ್ರಭೇದಗಳು
   everyone: ಎಲ್ಲರೂ
   everyone_: ಎಲ್ಲರೂ
   everyone_journal_posts: ಇದು ಎಲ್ಲರ ನಿಯತಕಾಲಿಕೆ ಲೇಖನಗಳು
@@ -1296,7 +1310,10 @@ kn:
   exclude_projects: ಪ್ರಾಯೋಜನೆಗಳನ್ನು ಹೊರತುಪಡಿಸಿ
   exclude_taxa: ಜೀವಿವರ್ಗವನ್ನು ಹೊರತುಪಡಿಸಿ
   exclude_users: ಬಳಕೆದಾರರನ್ನು ಹೊರತುಪಡಿಸಿ
+  exclusion_filters: ಹೊರತುಪಡಿಸಿದ ಶೋಧಕಗಳು
   exit_full_screen: "ಪೂರ್ಣಪರದೆಯಿಂದ ಹೊರಬನ್ನಿ"
+  examples_of_data_use_by_network_members: ಜಾಲದ ಸದಸ್ಯರಿಂದ ಬಳಸಲಾಗುವ ದತ್ತಾಂಶದ ಉದಾಹರಣೆಗಳು
+  examples_of_ranking_organizations: ಶ್ರೇಣಿಗಳನ್ನು ಮಾನ್ಯಮಾಡುವ ಸಂಸ್ಥೆಗಳಿಗೆ ಉದಾಹರಣೆಗಳು
   explore: ಅನ್ವೇಷಿಸಿ
   export: ರಫ್ತು
   export_observations: ವೀಕ್ಷಣೆಗಳನ್ನು ರಫ್ತುಮಾಡಿ
@@ -1311,6 +1328,7 @@ kn:
   evidence_of_organism: ಜೀವಿಯ ಕುರುಹು
   facebook: ಫೇಸ್‍‌ಬುಕ್
   facebook_account_information: ನಿಮ್ಮ ಫೇಸ್‍‌ಬುಕ್ ಖಾತೆಯ ಮಾಹಿತಿ
+  facebook_account_not_linked: "%{user} ಫೇಸ್‍ಬುಕ್ ಗೆ ಜೋಡಣೆಯಾದ ಖಾತೆಯನ್ನು ಹೊಂದಿಲ್ಲ, ಹಾಗಾಗಿ %{site_name} ಗೆ ಈ ಚಿತ್ರವನ್ನು ಬಳಸಲು ಅನುಮತಿಯಿಲ್ಲ."
   facebook_needs_the_owner_of_that_photo_to: ಫೇಸ್‍ಬುಕ್ ಗೆ ಆ ಚಿತ್ರದ ಮಾಲೀಕರಿಂದ %{site_name_short} ಗೆ ಸಂಪರ್ಕಿಸಲು ಅವರ ಮರು-ಧೃಢೀಕರಣದ ಅಗತ್ಯವಿದೆ.
   facebook_options: ಫೇಸ್‍‌ಬುಕ್ ಆಯ್ಕೆಗಳು
   failed_to_find_your_location: ನಿಮ್ಮ ಸ್ಥಳ ಪತ್ತೆ ಮಾಡಲಾಗಲಿಲ್ಲ
@@ -1338,6 +1356,7 @@ kn:
   filter: ಶೋಧಕ
   filter_by_place: ಸ್ಥಳದಂತೆ ಶೋಧಿಸಿ
   filter_by_taxon: ಜೀವಿವರ್ಗದಂತೆ ಶೋಧಿಸಿ
+  filter_by_place_taxon_and_color: ನಿಯಂತ್ರಕಗಳನ್ನು ಬಳಸಿ ಸ್ಥಳ, ಜೀವಿವರ್ಗ ಮತ್ತು ಬಣ್ಣಗಳಂತೆ ಶೋಧಿಸಿ.
   filter_list_by_this_taxon: ಈ ಜೀವಿವರ್ಗದಂತೆ ಶೋಧನಾ ಪಟ್ಟಿ
   filtering: ಶೋಧಿಸಲಾಗುತ್ತಿದೆ
   filters: ಶೋಧಕಗಳು
@@ -1355,6 +1374,7 @@ kn:
   find_unsuitable_observations: ಸೂಕ್ತವಲ್ಲದ ವೀಕ್ಷಣೆಗಳನ್ನು ಹುಡುಕಿ
   find_your_current_location: ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸ್ಥಳವನ್ನು ಕಂಡುಹಿಡಿಯಿರಿ
   finished: ಮುಕ್ತಾಯಗೊಂಡಿದೆ
+  finished_with_page: ಪುಟದೊಂದಿಗೆ ಸಂಪೂರ್ಣಗೊಳಿಸಲಾಗಿದೆ
   first_confirmed_inat_observation: "ಮೊದಲು ಖಚಿತವಾದ %{site_name} ವೀಕ್ಷಣೆ"
   first_connect_your_provider_account_to_your_site: "ಮೊದಲು ನಿಮ್ಮ %{provider} ಖಾತೆಯನ್ನು %{site_name} ಗೆ ಜೋಡಿಸಿ:"
   first_inat_observation: "ಮೊದಲ %{site_name} ವೀಕ್ಷಣೆ"
@@ -1367,6 +1387,8 @@ kn:
   flickr_needs_to_confirm: "ನೀವು ನಿಮ್ಮ ಖಾತೆಯನ್ನು %{site_name} ಗೆ ಸಂಪರ್ಕಿಸಲು ಬಯಸುವುದನ್ನು ಫ್ಲಿಕರ್ ಖಚಿತಪಡಿಸಬೇಕಾಗಿದೆ."
   flickr_photo: Flickr ಚಿತ್ರ
   flickr_photos: Flickr ಚಿತ್ರಗಳು
+  flickr_style: ಫ್ಲಿಕರ್-ಶೈಲಿ
+  flickr_tagger: ಫ್ಲಿಕರ್ ಟ್ಯಾಗರ್
   flickr_tags: ಫ್ಲಿಕರ್ ಟ್ಯಾಗ್‍ಗಳು
   follow: ಅನುಸರಿಸಿ
   follow_receive_updates_about_new_observations: ಅನುಸರಿಸಿ ( ಹೊಸ ವೀಕ್ಷಣೆಗಳ ಬಗ್ಗೆ ನವೀಕರಣಗಳನ್ನು ಪಡೆಯಿರಿ)
@@ -1376,11 +1398,13 @@ kn:
   following_x_people:
     one: '1 ವ್ಯಕ್ತಿಯನ್ನು ಅನುಸರಿಸಲಾಗುತ್ತಿದೆ'
     other: '%{count} ವ್ಯಕ್ತಿಗಳನ್ನು ಅನುಸರಿಸಲಾಗುತ್ತಿದೆ'
+  for_a_taxon: ಜೀವಿವರ್ಗವೊಂದಕ್ಕಾಗಿ
   forgot_your_password: ನಿಮ್ಮ ಗುಪ್ತಪದ ಮರೆತಿರುವಿರಾ?
   forum: ಚರ್ಚಾ ವೇದಿಕೆ
   forum_categories:
     bug_reports: ದೋಷ ವರದಿಗಳು
     feature_requests: ವೈಶಿಷ್ಟ್ಯ ವಿನಂತಿಗಳು
+    forum_feedback: ಚರ್ಚಾಕೂಟದ ಅಭಿಪ್ರಾಯ
     nature_talk: ಪರಿಸರ ಮಾತುಕತೆ
     news_and_updates: ಸುದ್ದಿಗಳು & ನವೀಕರಣಗಳು
   frequency: ಆವರ್ತನ
@@ -1427,6 +1451,7 @@ kn:
   grid_layout: ಗ್ರಿಡ್ ವಿನ್ಯಾಸ
   grid_tooltip: ಗ್ರಿಡ್ ನೋಟ ಪ್ರದರ್ಶಿಸಿ
   group: ಗುಂಪು
+  grouping: ಗುಂಪುಗೂಡಿಸುತ್ತಿದೆ
   guides: ಕೈಪಿಡಿಗಳು
   guide_compiled_by: ಕೈಪಿಡಿ ಸಂಪಾದನೆ
   guide_deleted: ಕೈಪಿಡಿಯನ್ನು ಅಳಿಸಲಾಗಿದೆ
@@ -1470,9 +1495,12 @@ kn:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: '"ಕಿರು ಟಿಪ್ಪಣಿಗಳಿಲ್ಲ" ವನ್ನು ಮರೆಮಾಡಿ'
+  #Label for a button to hide the running total of an accumulation chart
+  hide_running_total: ಕ್ರೋಢೀಕೃತ ಮೊತ್ತವನ್ನು ಮರೆಮಾಡಿ
   hide_uncountable_species: ಎಣಿಸಲಾಗದ ಪ್ರಭೇದಗಳನ್ನು ಮರೆಮಾಡಿ
   high: ಉನ್ನತ
   highest_rank: ಅತ್ಯುನ್ನತ ಶ್ರೇಣಿ
+  highlights_and_stats_from_year_on_site: "%{year} ನಲ್ಲಿ %{site} ನ ಮುಖ್ಯಾಂಶಗಳು ಮತ್ತು ಅಂಕಿಅಂಶಗಳು"
   history: ಇತಿಹಾಸ
   home: ಮುಖಪುಟ
   #Label showing hours adjusted in the time shifter in the Uploader
@@ -1481,7 +1509,12 @@ kn:
   i_dont_know_but_i_am_sure_this_is_taxon: ನನಗೆ ತಿಳಿದಿಲ್ಲ ಆದರೆ ನನಗೆ ಇದು %{taxon} ಎಂದು ಖಚಿತವಿದೆ.
   icon: ಐಕಾನ್‌
   icon_size: ಐಕಾನ್ ಗಾತ್ರ
+  iconic_taxon: ಸಾಂಪ್ರದಾಯಿಕ ಜೀವಿವರ್ಗ
   id: ID
+  id_categories:
+    tooltips:
+      improving: |
+        ಸಮುದಾಯವು ಸಮ್ಮತಿಸಿರುವ ಈ ಜೀವಿವರ್ಗದ ಪ್ರಥಮ ಸಲಹೆ. ಇದು ಸಮುದಾಯ ಜೀವಿವರ್ಗವನ್ನು ಪರಿಷ್ಕರಿಸುವಲ್ಲಿ ಸಹಕಾರಿಯಾಗಿದೆ.
   id_withdrawn: ID ಹಿಂಪಡೆಯಲಾಗಿದೆ
   ids_by_taxon: ಜೀವಿವರ್ಗದಂತೆ IDಗಳು
   identify: ಗುರುತಿಸಿ
@@ -1493,6 +1526,7 @@ kn:
   identification_deleted: ಗುರುತಿಸುವಿಕೆಯನ್ನು ಅಳಿಸಲಾಗಿದೆ.
   identification_saved: "ಗುರುತಿಸುವಿಕೆಯನ್ನು ಉಳಿಸಲಾಗಿದೆ!"
   identification_updated: ಗುರುತಿಸುವಿಕೆಯನ್ನು ನವೀಕರಿಸಲಾಗಿದೆ!
+  identification_user_short: ಗುರುತಿಸುವಿಕೆ ಬಳಕೆದಾರರು
   identification_withdrawn: ಗುರುತಿಸುವಿಕೆಯನ್ನು ಹಿಂಪಡೆಯಲಾಗಿದೆ.
   identifications: ಗುರುತುಗಳು
   identifications_by: "%{user} ರಿಂದ ಗುರುತಿಸುವಿಕೆಗಳು"
@@ -1501,7 +1535,10 @@ kn:
   ids_made_for_others: ಇತರರಿಗೆ ಮಾಡಿದ ಗುರುತಿಸುವಿಕೆಗಳು
   if_for_some_reason_a_user_doesnt_agree: |
     ಯಾವುದೇ ಕಾರಣದಿಂದಾಗಿ ನೀವು ಸಮುದಾಯ ಸಲಹೆ ಮಾಡಿದ ಜೀವಿವರ್ಗಕ್ಕೆ ಸಮ್ಮತಿಸದಿದ್ದರೆ, ನೀವು ಅದನ್ನು ನಿರಾಕರಿಸಬಹುದು, ಹಾಗೆಂದಾಗ ಇತರೆ ವೀಕ್ಷಣೆಗಳಿಗೆ ಲಿಂಕ್ ಮಾಡಲು, ಜೀವಜಾಲದ ಪಟ್ಟಿಗಳನ್ನು ನವೀಕರಿಸಲು, ಇತ್ಯಾದಿಗಾಗಿ ನಿಮ್ಮ ID ಯನ್ನೇ ಬಳಸಲಾಗುವುದು. ಇದಲ್ಲದೇ ನಿಮ್ಮ ID ಯನ್ನು ಸಮುದಾಯ ಸಮ್ಮತಿಸಿದಲ್ಲಿ ಮಾತ್ರ ನಿಮ್ಮ ವೀಕ್ಷಣೆ ಸಂಶೋಧನಾ ದರ್ಜೆಗೆ ಪರಿಗಣನೆಯಾಗುವುದು.
+  if_matches_come_from_a_comprehensive_list: ವ್ಯಾಪಕವಾದ ಪಟ್ಟಿಯಿಂದ ಹೋಲಿಕೆಗಳು ದೊರೆತರೆ ಹಸಿರು ಬಣ್ಣದ ಪಟ್ಟಿ ಇಲ್ಲಿ ಪ್ರದರ್ಶಿತವಾಗುವುದು.
   if_this_is_a_scientific_name: ಇದೊಂದು ವೈಜ್ಞಾನಿಕ ಹೆಸರಾಗಿದ್ದಲ್ಲಿ, ಇದನ್ನು ಪ್ರಸ್ತುತ ಅಂಗೀಕರಿಸಲಾಗಿದೆಯೇ?
+  if_you_have_any_trouble_with_the_site_check_out: 'ನಿಮ್ಮಲ್ಲಿ ಯಾವುದೇ ಪ್ರಶ್ನೆಗಳಿದ್ದಲ್ಲಿ, ದಯವಿಟ್ಟು ನಮ್ಮ <a href="%{help_url}">ಸಹಾಯ ವಿಭಾಗ</a>ದಲ್ಲಿ ಪರಿಶೀಲಿಸಿ ಅಥವಾ ನಮ್ಮ <a href="%{feedback_url}">ವಿಮರ್ಶಾ ಗುಂಪು</a>ಗೆ ಸಂದೇಶವನ್ನು ಪೋಸ್ಟ್ ಮಾಡಿ.'
+  if_your_project_is: ನಿಮ್ಮ ಪ್ರಾಯೋಜನೆ ನಿರ್ದಿಷ್ಟ ಸ್ಥಳದ ಬಗ್ಗೆಯಾಗಿದ್ದರೆ, ಭೂಪಟವನ್ನು ಕ್ಲಿಕ್ ಮಾಡುವುದರ ಮೂಲಕ ಅಥವಾ ನಮೂದಿಸುವ ಮೂಲಕ ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ಹೊಂದಿಸಿ.
   ignore: ನಿರ್ಲಕ್ಷಿಸಿ
   ignore_and_continue: ನಿರ್ಲಕ್ಷಿಸಿ ಮತ್ತು ಮುಂದುವರೆಯಿರಿ
   image_must_be_exactly: ಚಿತ್ರವು ಕರಾರುವಕ್ಕಾಗಿ 950px ಅಗಲ ಮತ್ತು 400px ಎತ್ತರವಿರಬೇಕು
@@ -1523,6 +1560,8 @@ kn:
   improving: ಸುಧಾರಿಸುತ್ತಿದೆ
   in_n: "%{n} ನಲ್ಲಿ"
   in_place_x: '%{place} ನಲ್ಲಿ'
+  inaturalist_network: iNaturalist ಜಾಲ
+  inaturalist_network_affiliation: iNaturalist ಜಾಲದ ಸಹಭಾಗಿತ್ವ
   #Label for messages you've received
   inbox: ಇನ್‌ಬಾಕ್ಸ್‌
   include_places: ಸ್ಥಳಗಳನ್ನು ಸೇರಿಸಿಕೊಳ್ಳಿ
@@ -1530,6 +1569,7 @@ kn:
   include_suggestions_not_seen_nearby: ಸಮೀಪದಲ್ಲಿ ಕಾಣದ ಸಲಹೆಗಳನ್ನು ಸೇರಿಸಿಕೊಳ್ಳಿ
   include_taxa: ಜೀವಿವರ್ಗವನ್ನು ಸೇರಿಸಿಕೊಳ್ಳಿ
   include_users: ಬಳಕೆದಾರರನ್ನು ಸೇರಿಸಿಕೊಳ್ಳಿ
+  including: ಒಳಗೊಂಡಂತೆ
   increase_brightness: ಪ್ರಖರತೆ ಹೆಚ್ಚಿಸಿ
   in_progress: ಪ್ರಗತಿಯಲ್ಲಿದೆ
   in_the_past: ಈ ಹಿಂದೆ
@@ -1555,6 +1595,8 @@ kn:
   insects: ಕೀಟಗಳು
   insect_life_stage: ಕೀಟದ ಜೈವಿಕ ಹಂತ
   instagram: ಇನ್ಸ್ಟಾಗ್ರಾಮ್
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: ಉದ್ಧರಣ ಚಿನ್ಹೆಯನ್ನು ಸೇರಿಸಿ
   interactions: ಒಡನಾಟಗಳು
   internal_server_error: ಆಂತರಿಕ ಸರ್ವರ್ ದೋಷ
   internal_taxon_rank: ಆಂತರಿಕ ಜೀವಿವರ್ಗದ ಶ್ರೇಣಿ
@@ -1700,6 +1742,7 @@ kn:
     russian: ರಷ್ಯನ್
     sinhala: ಸಿಂಹಳ
     slovak: ಸ್ಲೋವಾಕ್
+    slovenian: ಸ್ಲೋವೇನಿಯನ್
     spanish: ಸ್ಪಾನಿಶ್
     swedish: ಸ್ವೀಡಿಷ್
     tagalog: ಟ್ಯಾಗಲೊಂಗ್
@@ -1724,9 +1767,13 @@ kn:
   link_your_flickr_account: ನಿಮ್ಮ Flickr ಖಾತೆ ಜೋಡಿಸಿ
   link_your_google_account: ನಿಮ್ಮ Google ಖಾತೆ ಜೋಡಿಸಿ
   linked_facebook: "ನಿಮ್ಮ %{site_name} ಖಾತೆ ಪ್ರಸ್ತುತ ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಖಾತೆಗೆ ಲಿಂಕ್ ಆಗಿದೆ."
+  linked_facebook_automaticaly: "ಹಾಗೆ, ನೀವು %{site_name} ಗೆ ಫೇಸ್‍ಬುಕ್ ಮೂಲಕ ಲಾಗಿನ್ ಆದರೆ, ನಾವು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನಿಮ್ಮ %{site_name} ಮತ್ತು ಫೇಸ್‍ಬುಕ್ ಖಾತೆಗಳನ್ನು ಲಿಂಕ್ ಮಾಡುತ್ತೇವೆಂಬುದನ್ನು ಗಮನಿಸಿ. ನೀವು ಫೇಸ್‍ಬುಕ್ ಬಳಸುವಾಗ ಫೇಸ್‍ಬುಕ್ ಚಿತ್ರಗಳನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಲು ಬಯಸುವುದು ಸರ್ವೇಸಾಮಾನ್ಯ ಅಲ್ಲವೇ?"
+  linked_facebook_description: "ನಿಮ್ಮ %{site_name} ಖಾತೆಯನ್ನು ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಖಾತೆಗೆ ಲಿಂಕ್ ಮಾಡಿಟ್ಟಿರುವುದು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳಿಗೆ ಹಲವು ಚಿತ್ರಗಳನ್ನು ಒಮ್ಮೆಲೆ ಸೇರಿಸಲು ಸಹಕಾರಿಯಾಗುತ್ತದೆ. ನೀವು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ %{site_name} ಮತ್ತು ಫೇಸ್‍ಬುಕ್ ಖಾತೆಗಳನ್ನು ಬೇರೆಮಾಡಲು ಬಯಸಿದಲ್ಲಿ, ಖಂಡಿತಾ ನಾವು ನಿಮ್ಮ ತಡೆಯುವುದಿಲ್ಲ. ನೀವು ಹೊಸ ಫೇಸ್‍ಬುಕ್  ಖಾತೆ ರಚಿಸಿ ಅದನ್ನು %{site_name} ಲಿಂಕ್ ಮಾಡಬಯಸುವ ಸಂದರ್ಭಗಳಲ್ಲಿ ಇದು ಕೆಲಸಮಯ ಒಳ್ಳೆಯ ಆಯ್ಕೆಯೇ ಆಗಿರುತ್ತದೆ."
   linked_facebook_howto: "%{site_name} ನೊಂದಿಗೆ ಫೇಸ್‍ಬುಕ್ ಅನ್ನು ಸಂಪರ್ಕಿಸಲು, ಬಲಭಾಗದಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ ಮತ್ತು ಫೇಸ್‍ಬುಕ್.ಕಾಂ ಗೆ ಲಾಗಿನ್ ಆಗಿ."
   linked_facebook_password: "ನಾವು ನಿಮ್ಮ ಫೇಸ್‍ಬುಕ್ ಗುಪ್ತಪದವನ್ನು ಎಂದೆಂದಿಗೂ ಕೇಳುವುದಿಲ್ಲ ( ಆದರೆ ಫೇಸ್‍ಬುಕ್ ಕೇಳಬಹುದು, ಹಾಗಾಗಿ ನಿಮಗೆ ಒದಗಿಸಿರುವ ಗುಂಡಿಯ url ಅನ್ನು ಪರೀಕ್ಷಿಸಿ ಮತ್ತು ಅದು Facebook.com ಎಂದು ಖಾತ್ರಿಮಾಡಿಕೊಳ್ಳಿ). ಅದಲ್ಲದೇ \nನೀವು ಸೂಚಿಸದ ಹೊರತು ನಾವು ಫೇಸ್‍ಬುಕ್ ದತ್ತಾಂಶವನ್ನು ಬದಲಿಸುವುದಿಲ್ಲ ಸಹ."
   linked_flickr: "ನಿಮ್ಮ %{site_name} ಖಾತೆ ಪ್ರಸ್ತುತ ನಿಮ್ಮ Flickr ಖಾತೆಗೆ ಲಿಂಕ್ ಆಗಿದೆ."
+  linked_flickr_automatically: "ಹಾಗೆ, ನೀವು %{site_name} ಗೆ ಫ್ಲಿಕರ್ ಮೂಲಕ ಲಾಗಿನ್ ಆದರೆ, ನಾವು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನಿಮ್ಮ %{site_name} ಮತ್ತು ಫ್ಲಿಕರ್ ಖಾತೆಗಳನ್ನು ಮರು-ಲಿಂಕ್ ಮಾಡುತ್ತೇವೆಂಬುದನ್ನು ಗಮನಿಸಿ. ನೀವು ಫ್ಲಿಕರ್ ಬಳಸುವಾಗ ಫ್ಲಿಕರ್ ಚಿತ್ರಗಳನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಲು ಬಯಸುವುದು ಸರ್ವೇಸಾಮಾನ್ಯ ಅಲ್ಲವೇ?"
+  linked_flickr_description: "ನಿಮ್ಮ %{site_name} ಖಾತೆಯನ್ನು ನಿಮ್ಮ ಫ್ಲಿಕರ್ ಖಾತೆಗೆ ಲಿಂಕ್ ಮಾಡಿಟ್ಟಿರುವುದು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳಿಗೆ ಹಲವು ಚಿತ್ರಗಳನ್ನು ಒಮ್ಮೆಲೆ ಸೇರಿಸಲು ಸಹಕಾರಿಯಾಗುತ್ತದೆ. ನೀವು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ %{site_name} ಮತ್ತು ಫ್ಲಿಕರ್ ಖಾತೆಗಳನ್ನು ಬೇರೆಮಾಡಲು ಬಯಸಿದಲ್ಲಿ, ಖಂಡಿತಾ ನಾವು ನಿಮ್ಮ ತಡೆಯುವುದಿಲ್ಲ. ನೀವು ಹೊಸ ಫ್ಲಿಕರ್ ಖಾತೆ ರಚಿಸಿ ಅದನ್ನು %{site_name} ಲಿಂಕ್ ಮಾಡಬಯಸುವ ಸಂದರ್ಭಗಳಲ್ಲಿ ಇದು ಕೆಲಸಮಯ ಒಳ್ಳೆಯ ಆಯ್ಕೆಯೇ ಆಗಿರುತ್ತದೆ."
   linked_flickr_password_html: "<strong>ನಾವು ನಿಮ್ಮ ಫ್ಲಿಕರ್ ಗುಪ್ತಪದವನ್ನು ಎಂದೆಂದಿಗೂ ಕೇಳುವುದಿಲ್ಲ</strong> ( ಆದರೆ ಫ್ಲಿಕರ್ ಕೇಳಬಹುದು, ಹಾಗಾಗಿ ನಿಮಗೆ ಒದಗಿಸಿರುವ ಗುಂಡಿಯ url ಅನ್ನು ಪರೀಕ್ಷಿಸಿ ಮತ್ತು ಅದು Flickr.com ಎಂದು ಖಾತ್ರಿಮಾಡಿಕೊಳ್ಳಿ)."
   #Text inserted into a textarea when the link button is clicked but no text was selected
   linked_text: ಸಂಪರ್ಕಿಸಿದ ಪಠ್ಯ
@@ -1738,6 +1785,7 @@ kn:
   list_updated: ಪಟ್ಟಿಯನ್ನು ನವೀಕರಿಸಲಾಗಿದೆ!
   list_views:
     plain: ಸಾದಾ
+    taxonomic: ಜೀವಿವರ್ಗೀಕರಣ
     photo: ಚಿತ್ರ
   list_was_successfully_created: ಪಟ್ಟಿಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ರಚಿಸಲಾಗಿದೆ.
   listed_taxa: ಪಟ್ಟಿಮಾಡಿದ ಜೀವಿವರ್ಗಗಳು
@@ -1805,6 +1853,7 @@ kn:
     pt-BR: ಪೋರ್ಚುಗೀಸ್ (ಬ್ರಜಿಲ್)
     ru: ರಷ್ಯನ್
     sk: ಸ್ಲೋವಾಕ್
+    sl: ಸ್ಲೋವೇನಿಯನ್
     sq: ಅಲ್ಬೇನಿಯನ್
     sv: ಸ್ವೀಡಿಷ್
     th: ಥಾಯ್
@@ -1873,6 +1922,7 @@ kn:
   managers_can_do: ಮೇಲ್ವಿಚಾರಕರು ಮಾಡುವ ಎಲ್ಲವನ್ನೂ ವ್ಯವಸ್ಥಾಪಕರು ಮಾಡಬಲ್ಲರು ಅದಲ್ಲದೇ ಅವರು ಪ್ರಾಯೋಜನೆಯ ಸಂಯೋಜನೆಗಳನ್ನು ಸಂಪಾದಿಸಬಹುದು ಹಾಗೂ ಪ್ರಾಯೋಜನೆಯ ನಿಯತಕಾಲಿಕೆಗೆ ಲೇಖನಗಳನ್ನು ಬರೆಯಬಹುದು.
   managing_projects: ಪ್ರಾಯೋಜನೆ ನಿರ್ವಹಿಸಿ
   map: ಭೂಪಟ
+  map_legend: ಭೂಪಟದ ವಿವರ ಸಂಕೇತ
   map_marker_size: ಭೂಪಟ ಮಾರ್ಕರ್ ನ ಗಾತ್ರ
   map_of_observations: ವೀಕ್ಷಣೆಗಳ ಭೂಪಟ
   maps:
@@ -1985,6 +2035,7 @@ kn:
     %{date} ರಿಂದ <a href="%{url}">ತಿಂಗಳ ಬೆಂಬಲಿಗರು</a>
   months: ತಿಂಗಳುಗಳು
   more: ಇನ್ನಷ್ಟು
+  more_about_sharing: ಹಂಚಿಕೊಳ್ಳುವಿಕೆಯ ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ಮಾಹಿತಿ
   more_filters: ಹೆಚ್ಚಿನ ಶೋಧಕಗಳು
   more_from_x: '%{x} ಅವರಿಂದ ಇನ್ನೂ ಹೆಚ್ಚು'
   more_import_options: ಹೆಚ್ಚಿನ ಆಮದು ಆಯ್ಕೆಗಳು
@@ -2053,6 +2104,8 @@ kn:
   needs_id_expandable_html: "ID<span class='full'>ಅಗತ್ಯವಿದೆ</span>"
   needs_id_tooltip_html: '"ID ಅಗತ್ಯವಿದೆ" ವೀಕ್ಷಣೆಗಳು ಮಾಧ್ಯಮ, ಸ್ಥಳ ಮತ್ತು ದಿನಾಂಕವನ್ನು ಹೊಂದಿರುತ್ತವೆ, ಆದರೆ ನಿಖರವಾದ ಗುರುತಿಸುವಿಕೆಗೆ ಇನ್ನೂ ಸಮುದಾಯದ ಒಮ್ಮತದ ಅಗತ್ಯವಿರುತ್ತದೆ. <a href="https://www.inaturalist.org/pages/help#quality">ಗುಣಮಟ್ಟದ ದರ್ಜೆಗಳ ಬಗ್ಗೆ ಹೆಚ್ಚು ತಿಳಿಯಿರಿ</a>'
   needs_to_be_identified: ಗುರುತಿಸುವಿಕೆಯ ಅಗತ್ಯವಿದೆ
+  #Column header in a table listing iNaturalist Network members
+  network_member: ಜಾಲದ ಸದಸ್ಯರು
   new: ಹೊಸತು
   new_and_noteworthy: ಹೊಸತು & ಗಮನಾರ್ಹ
   new_announcement: ಹೊಸ ಪ್ರಕಟಣೆ
@@ -2367,6 +2420,7 @@ kn:
     follow_panel_body: ನೀವು ಈ ಪರಿಚಯಿಕೆಗಳನ್ನು ಭೇಟಿಮಾಡಿ ಹಾಗು ಅನುಸರಿಸಿ ಗುಂಡಿಯನ್ನು ಒತ್ತಿದಲ್ಲಿ, ಅವರು ವೀಕ್ಷಣೆಗಳನ್ನು ಪೋಸ್ಟ್ ಮಾಡಿದಾಗ ನಿಮಗೆ ಸೂಚನೆಗಳು ದೊರೆಯುತ್ತವೆ.
     following_panel_title: ವ್ಯಕ್ತಿಗಳ, ಜೀವಿವರ್ಗಗಳ ಹಾಗೂ ಸ್ಥಳಗಳ ಜಾಡುಹಿಡಿದಿರಿ
     comments_panel_title: '%{site_name} ನಲ್ಲಿ ಯಾವ ರೀತಿಯ ಚರ್ಚೆಗಳಾಗುತ್ತಿವೆಯೆಂಬ ಕುತೂಹಲವೇ?'
+    comments_panel_body: "<p>%{site_name} ಎಂದರೆ ಜೀವಜಾಲದ ಕುರಿತ ವೀಕ್ಷಣಾ ವಿವರಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳುವ ಮತ್ತು ಚರ್ಚಿಸುವ ವೇದಿಕೆ. ಪ್ರಸ್ತುತ ಈ ಕೆಳಗಿನ ಚರ್ಚೆಗಳು ನೆಡೆಯುತ್ತಲಿವೆ. (ಸೂಚನೆ: ನೀವು ಪ್ರತಿಕ್ರಿಯಿಸುವ ಅಥವಾ ಗುರುತಿಸುವಿಕೆಗಳನ್ನು ನೀಡುವ \nಯಾವುದೇ ಚರ್ಚೆಗಳಿಗೆ ನೀವು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಚಂದಾದಾರರಾಗುವಿರಿ. ಈ ನವೀಕರಣಗಳನ್ನು ಬಲಭಾಗದಲ್ಲಿರುವ 'ಚಂದಾದಾರಿಕೆಗಳು' ವಿಭಾಗದಲ್ಲಿ ನಿರ್ವಹಿಸಬಹುದು.)</p>"
     youve_got_updates_panel_title: ನಿಮಗೆ ನವೀಕರಣಗಳಿವೆ!
     youve_got_updates_panel_body_p1: ಈ ಕೆಳಗಿನವುಗಳ ನವೀಕರಣದಿಂದ ಪ್ರಸ್ತುತದಿಂದಿರಿ...
   one_by_one: "ಒಂದರ-ನಂತರ-ಇನ್ನೊಂದು"
@@ -2465,6 +2519,9 @@ kn:
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
       without_observation: ಒಂದು <strong>ID</strong> ಯನ್ನು ಸೇರಿಸಲಾಗಿದೆ
+    comment:
+      with_by: '%{by_link} ಅವರು @vow_or_con{vow:an|a} %{comment_subject_link} ಕ್ಕೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.'
+      without_by: '@vow_or_con{vow:an|a} %{comment_subject_link} ಕ್ಕೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.'
   per_day: ದಿನಂಪ್ರತಿ
   per_month: ಪ್ರತಿ ತಿಂಗಳಿಗೆ
   per_week: ಪ್ರತಿ ವಾರಕ್ಕೆ
@@ -2917,6 +2974,8 @@ kn:
     zimbabwe: ಜಿಂಬಾಬ್ವೆ
   places_of_interest: ಆಸಕ್ತಿಕರ ಸ್ಥಳಗಳು
   places_merged_successfully: ಸ್ಥಳಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ವಿಲೀನಗೊಳಿಸಲಾಗಿದೆ!
+  places_warning_look_for_existing_html: |
+    ನೀವು ನಕಲು ಸ್ಥಳಗಳನ್ನು ರಚಿಸುತ್ತಿಲ್ಲವೆಂಬುದನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಲು <a href="/search?source[]=places">ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಸ್ಥಳಗಳು</a> ಅನ್ನು ನೋಡಿ. ನಾವು ಈಗಾಗಲೇ ಎಲ್ಲಾ ಭೂಖಂಡಗಳ ಹಾಗೂ ರಾಷ್ಟ್ರಗಳಲ್ಲಿನ ಸ್ಥಳಗಳನ್ನಲ್ಲದೇ, ರಾಷ್ಟ್ರಕ್ಕಿಂತ ಎರಡು ಆಡಳಿತಾತ್ಮಕ ಹಂತದ ಕೆಳಗಿನ ಸ್ಥಳಗಳನ್ನೂ ಹೊಂದಿಸಿದ್ದೇವೆ.
   places_warning_new_places_are_slow_html: |
     iNat ತಾಣದ ನಿಧಾನಗತಿಗೆ ಹೊಸ ಸ್ಥಳಗಳು ಹಿರಿದಾದ ಕೊಡುಗೆ ನೀಡುತ್ತವೆ, ಹಾಗಾಗಿ <strong>ಹೊಸ ಸ್ಥಳಗಳನ್ನು ರಚಿಸದಿರಲು ದಯವಿಟ್ಟು ಪರಿಗಣಿಸಿ</strong>. ಕೆಲವೇ ಸಾವಿರ ವೀಕ್ಷಣೆಗಳನ್ನು ಮಾತ್ರ ಒಳಗೊಂಡಿರುವ ಸಣ್ಣ ಸ್ಥಳಗಳು ಸಾಮಾನ್ಯವಾಗಿ ಓಕೆ, ನೀವು ಹಲವಾರು ಹೆಚ್ಚಿನ ವೀಕ್ಷಣೆಗಳನ್ನು ಒಳಗೊಂಡಿರುವ ಹೊಸ ಸ್ಥಳಗಳನ್ನು ರಚಿಸುತ್ತಿದ್ದಲ್ಲಿ ಅದು iNat ತಾಣವನ್ನು ಇತರರಿಗೆ ನಿಧಾನಗೊಳಿಸಬಹುದು. ಇದಕ್ಕಾಗಿ ಕೆಲವು ಪರ್ಯಾಯ ಮಾರ್ಗಗಳು ಇಲ್ಲಿವೆ :
   places_warning_editing_places_is_slow: |
@@ -3451,6 +3510,16 @@ kn:
   site_staff: "%{site_name} ಸಿಬ್ಬಂದಿ"
   site_stats: ತಾಣದ ಅಂಕಿಅಂಶಗಳು
   site_taxon_page: "%{site_name} ಜೀವಿವರ್ಗದ ಪುಟ"
+  sites_affiliation_about_desc_html: |
+    ನಿಮ್ಮ ಸಂಸ್ಥೆ iNaturalist ಜಾಲದ ಜೊತೆ ಸೇರಲು ಇಚ್ಚಿಸಿದಲ್ಲಿ ನೀವು ಹೆಚ್ಚಿನ ಮಾಹಿತಿಯನ್ನು %{start_tag_join} ಇಲ್ಲಿ%{end_tag_join} ಪಡೆಯಬಹುದು.
+  sites_affiliation_more_email_addresses: |
+    ಮಿಂಚೆ ವಿಳಾಸಗಳನ್ನು ಕೇವಲ ಜಾಲತಾಣ ಸಂಬಂಧಿತ ಸಂವಹನದ ಉದ್ದೇಶಗಳಿಗಾಗಿ ಮಾತ್ರ ಜಾಲದ ಸದಸ್ಯರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗಿದೆ.
+  sites_affiliation_overview_current_member_list_html: |
+    ನೀವು %{start_tag_network}iNaturalist ಜಾಲ%{end_tag_network}ದ ಪ್ರಸ್ತುತ ಸದಸ್ಯರ ಪಟ್ಟಿಯನ್ನು ವೀಕ್ಷಿಸಬಹುದು.
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    %{start_tag_network}iNaturalist ಜಾಲ%{end_tag_network}ವು %{start_tag_global}ಜಾಗತಿಕ iNaturalist ಸಮುದಾಯ%{end_tag_global} ದಲ್ಲಿ ಪ್ರಾದೇಶೀಕರಣಗೊಂಡ ಜಾಲತಾಣಗಳ ಗುಂಪುಗಳಾಗಿದೆ.
+  sites_affiliation_title: ಜಾಲದ ಸಹಭಾಗಿತ್ವದ ಬಗ್ಗೆ ಹೆಚ್ಚು ತಿಳಿಯಿರಿ
+  sites_network_consists_of: "iNaturalist ಜಾಲವು ಹಲವಾರು ಸಂಘಸಂಸ್ಥೆಗಳನ್ನು ಒಳಗೊಂಡಿದೆ:"
   some_agree: ಕೆಲವರು ಸಮ್ಮತಿಸಿದ್ದಾರೆ
   some_observations_are_missing_media_or_identifications: |
     ಕೆಲವು ವೀಕ್ಷಣೆಗಳಲ್ಲಿ ಮಾಧ್ಯಮ ಅಥವಾ ಗುರುತಿಸುವಿಕೆಗಳು ಕಾಣೆಯಾಗಿವೆ
@@ -3707,6 +3776,7 @@ kn:
   taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: ಇದು IUCN ಕೆಂಪುಪಟ್ಟಿ ವ್ಯಾಪ್ತಿ ಭೂಪಟವಾಗಿಲ್ಲ ಏಕೆಂದರೆ ಆ ಭೂಪಟ ಸೂಕ್ತವಾಗಿಲ್ಲ
   taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: ಇದು IUCN ಕೆಂಪುಪಟ್ಟಿ ವ್ಯಾಪ್ತಿ ಭೂಪಟವಾಗಿಲ್ಲ ಏಕೆಂದರೆ ಈ ಜೀವಿವರ್ಗ IUCN ಕೆಂಪುಪಟ್ಟಿಯಲ್ಲಿಲ್ಲ
   taxon_range_guidelines_each_taxon_can_have: ಪ್ರತಿಯೊಂದು ಜೀವಿವರ್ಗ ಕೇವಲ ಒಂದು ಜೀವಿವರ್ಗದ ವ್ಯಾಪ್ತಿಯನ್ನು ಮಾತ್ರ ಹೊಂದಿರಬಹುದು. ಜೀವಿವರ್ಗದ ವ್ಯಾಪ್ತಿಗಳು ಜಾಗತಿಕ ಹಂಚಿಕೆಯನ್ನು ಪ್ರತಿನಿಧಿಸಬೇಕು.
+  taxon_range_guidelines_if_you_are_not_uploading: "ನೀವು IUCN ಕೆಂಪುಪಟ್ಟಿ ವ್ಯಾಪ್ತಿಯ ಭೂಪಟವನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡದೇ ಇದ್ದಲ್ಲಿ, ಅದು ಈ ಕಾರಣದಿಂದಾಗಿರಬಹುದು:"
   taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: ಈ ಜೀವಿವರ್ಗದ IUCN ಕೆಂಪುಪಟ್ಟಿ ಭೂಪಟ ಸೂಕ್ತವಾಗಿಲ್ಲ
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: ಈ ಜೀವಿವರ್ಗ IUCN ಕೆಂಪುಪಟ್ಟಿಯಲ್ಲಿಲ್ಲ
   taxon_range_guidelines_learn_more_about_taxon_ranges: ಜೀವಿವರ್ಗದ ವ್ಯಾಪ್ತಿಗಳ ಬಗ್ಗೆ ಹೆಚ್ಚು ತಿಳಿಯಿರಿ
@@ -3766,6 +3836,9 @@ kn:
     ಕುರುಹುಗಳ ಆಧಾರದ ಮೇರೆಗೆ ಸಮುದಾಯದ ಜೀವಿವರ್ಗವು ಸಾಧ್ಯವಿರುವ ಮಟ್ಟಿಗೆ ಅತ್ಯುತ್ತಮವಾದುದೆಂದು ಸಮುದಾಯದ ಅನಿಸಿಕೆಯಾಗಿರಬೇಕು
   the_following_observations_could: "ಈ ಕೆಳಗಿನ ವೀಕ್ಷಣೆಗಳನ್ನು %{link} ಗೆ ಸೇರಿಸಲಾಗಲಿಲ್ಲ"
   the_following_photos_have_been_tagged: "ಈ ಕೆಳಗಿನ ಚಿತ್ರಗಳನ್ನು ಟ್ಯಾಗ್ ಮಾಡಲಾಗಿದೆ :"
+  the_name_of_the_taxon_including_space: ಜೀವಿವರ್ಗದ ಹೆಸರು, ಪ್ರಭೇದಗಳಿಗೆ ಮತ್ತು ಕೆಳಪ್ರಭೇದಗಳಿಗೆ ಜಾಗವನ್ನು ಒಳಗೊಂಡಂತೆ.
+  the_name_of_the_taxon_dashes: ಜೀವಿವರ್ಗದ ಹೆಸರಿನಲ್ಲಿ ಖಾಲಿಜಾಗಗಳು ಅಡ್ಡಗೆರೆಗಳಿಂದ ಬದಲಿಸಲ್ಪಟ್ಟಿವೆ.
+  the_name_of_the_taxon_underscores: ಜೀವಿವರ್ಗದ ಹೆಸರಿನಲ್ಲಿ ಖಾಲಿಜಾಗಗಳು ಅಡಿಗೆರೆಗಳಿಂದ ಬದಲಿಸಲ್ಪಟ್ಟಿವೆ.
   the_observation_was_already_added_to_that_project: ಆ ಪ್ರಾಯೋಜನೆಗೆ ಈ ವೀಕ್ಷಣೆಯನ್ನು ಈಗಾಗಲೇ ಸೇರಿಸಲಾಗಿದೆ.
   the_people_of_inat: "%{site_name} ನ ವ್ಯಕ್ತಿಗಳು"
   the_species_listed_below_were_not_found_in_the_site_database: |
@@ -3778,6 +3851,9 @@ kn:
   the_world_is_full_of_interesting_places: |
     ಈ ಜಗತ್ತು ಸ್ವಾರಸ್ಯಕರವಾದ ಸ್ಥಳಗಳಿಂದ ತುಂಬಿಹೋಗಿದೆ, ಅದ್ಭುತ ಹಾಗು ಅವ್ಯಕ್ತವಾದ ಜೀವವೈವಿಧ್ಯ ಪ್ರತಿಯೊಂದು ಸ್ಥಳದಲ್ಲೂ ನೆಲೆಯಾಗಿದೆ. ಕೆಲವು ಪ್ರಪಂಚದ ಮತ್ತೊಂದು ಭಾಗದಲ್ಲಿದ್ದರೆ ಕೆಲವೊಂದು ಇಲ್ಲೇ ನಿಮ್ಮ ಪಕ್ಕದ ಬೀದಿಯಲ್ಲಿವೆ! %{site_name} ಸ್ಥಳಗಳು ಜಗತ್ತಿನಾದ್ಯಂತದ ಜೀವಜಾಲವನ್ನು ಜಾಲಾಡಲು ಸಾಧ್ಯವಾಗಿಸುತ್ತಿವೆ. ಬನ್ನಿ ಅನ್ವೇಷಣೆಯನ್ನು ಆರಂಭಿಸಿ!
   then_keybord_sequence: ಆಗ
+  there_are_x_synonyms_html:
+    one: "<span class='count'>1</span> ಸಮಾನಾರ್ಥಕ ಪದ</span> ವಿದೆ"
+    other: "<span class='count'>%{count}</span> ಸಮಾನಾರ್ಥಕ ಪದ</span> ಗಳಿವೆ"
   there_is_no_wikipedia_page_matching: ಸರಿಹೊಂದುವ ವಿಕಿಪೀಡಿಯಾ ಪುಟ ಯಾವುದೂ ಇಲ್ಲ
   there_isnt_a_wikipedia_article_titled_x_html: |
     '%{x}' ಶೀರ್ಷಿಕೆಯುಳ್ಳ ಯಾವುದೇ ವಿಕಿಪೀಡಿಯಾ ಲೇಖನ ಅಥವಾ ಮರುನಿರ್ದೇಶಿಕೆಗಳಿಲ್ಲ. ಬಹುಶಃ <a href='http://en.wikipedia.org/wiki/%{x}'>ಒಂದನ್ನು ರಚಿಸಿ</a> ಲು ಬಯಸುವಿರಾ?
@@ -3940,6 +4016,10 @@ kn:
     other: '%{count} ರಲ್ಲಿ %{num} ಚಿತ್ರಗಳನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...'
   url_of_this_taxon_on_the_source_website: ಮೂಲ ಜಾಲತಾಣದಲ್ಲಿ ಈ ಜೀವಿವರ್ಗದ URL
   usage_stats: ಬಳಕೆಯ ಅಂಕಿಅಂಶಗಳು
+  use_name_as_a_placeholder: |
+    <span class='ac-placeholder'>"%{name}"</span> ಅನ್ನು ಸ್ಥಳಸೂಚಕವನ್ನಾಗಿ ಬಳಸಿ
+  use_this_if_the_url_needs_genus_species_separated: |
+    ಕುಲ ಮತ್ತು ಪ್ರಭೇದಗಳು ಒಂದು ನಿರ್ದಿಷ್ಟ ಕ್ರಮದಲ್ಲಿ ಬೇರೆಯಾಗಿರುವುದು URLಗೆ ಅಗತ್ಯವಿದ್ದರೆ ಇದನ್ನು ಬಳಸಿ. ಜೀವಿವರ್ಗ ಪ್ರಭೇದ ಅಥವಾ ಕೆಳಪ್ರಭೇದವಾಗಿಲ್ಲದಿದ್ದರೆ, [GENUS] ಮತ್ತು [SPECIES] ನಡುವಿನ ಎಲ್ಲವೂ ಜೀವಿವರ್ಗದ ಹೆಸರಿನಿಂದ ಬದಲಿಸ್ಪಡುತ್ತದೆ, ಹಾಗಾಗಿ ಇದನ್ನು ಮಿತವಾಗಿ ಬಳಸಿ.
   use_unique_file_names_for_separate_uploads: ಅನನ್ಯ ಕಡತದ ಹೆಸರುಗಳನ್ನು ಪ್ರತ್ಯೇಕವಾದ ಅಪ್ಲೋಡ್‍ಗಳಿಗೆ ಬಳಸಿ
   used_x_times:
     one: 1 ಬಾರಿ ಬಳಸಲಾಗಿದೆ
@@ -3964,6 +4044,10 @@ kn:
   user_added_x_observations_html: "%{user} ಅವರು %{x} ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
   user_already_authenticated: ಬಳಕೆದಾರರನ್ನು ಈಗಾಗಲೇ ಧೃಢೀಕರಿಸಲಾಗಿದೆ
   user_autocomplete_placeholder: ಸಲೀಂ, ಆಲಿ123, ಇತ್ಯಾದಿ
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{place} ನಲ್ಲಿ ಇದು %{taxon} ನ ವಿಸ್ತೃತವಾದ ಪಟ್ಟಿಯೆಂದು %{user} ಅವರು ನಂಬಿದ್ದಾರೆ
   user_blocked: ಬಳಕೆದಾರನನ್ನು ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ
   user_commented: "%{user} ಅಭಿಪ್ರಾಯ ಸೇರಿಸಿದ್ದಾರೆ"
   user_commented_on: "ನಿಮ್ಮ %{title} %{time} ಗೆ %{user} ಅವರು ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ"
@@ -3998,6 +4082,7 @@ kn:
   users: ಬಳಕೆದಾರರು
   users_contributions_to_project_html: '%{project_title} ಗೆ <a href="%{url}">%{login}</a> ಅವರ ಕೊಡುಗೆ'
   users_favorites: "%{user} ಅವರ ಮೆಚ್ಚಿನವುಗಳು"
+  users_highlights_and_stats_from_year_on_site: "%{user} ಅವರ %{year} ನಲ್ಲಿನ %{site} ನ ಮುಖ್ಯಾಂಶಗಳು ಮತ್ತು ಅಂಕಿಅಂಶಗಳು"
   users_id: "%{user} ರ ID"
   users_latest_observations_on_site: "%{site} ನಲ್ಲಿ %{user} ಅವರ ಇತ್ತೀಚಿನ ವೀಕ್ಷಣೆಗಳು"
   users_profile: "%{user} ರ ಪರಿಚಯ"
@@ -4011,6 +4096,7 @@ kn:
   view_all_n: "ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ %{n}"
   view_all_observations: ಎಲ್ಲಾ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ
   view_all_photocount_photos: "ಎಲ್ಲಾ %{photo_count} ಚಿತ್ರಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
+  view_assessment: ಮೌಲ್ಯಮಾಪನವನ್ನು ವೀಕ್ಷಿಸಿ
   view_check_list_page: ತಾಳೆಪಟ್ಟಿ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ
   view_contributions: ಕೊಡುಗೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ
   view_details: ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ
@@ -4091,8 +4177,12 @@ kn:
   were_pretty_sure_this_is_in_the_genus: ಇದು ಈ ಕುಲದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ
   #Label for the most probable taxon in the automated suggestions when that taxon is a family
   were_pretty_sure_this_is_in_the_family: ಇದು ಈ ಕುಟುಂಬದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: ಇದು ಈ ಗಣದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ
   #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
   were_pretty_sure_this_is_in_the_subfamily: ಇದು ಈ ಉಪಕುಟುಂಬದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: ಇದು ಈ ಮೇಲ್‍ಕುಟುಂಬದಲ್ಲಿ ಇದೆಯೆಂದು ನಮಗೆ ಸಾಕಷ್ಟು ಖಚಿತತೆಯಿದೆ
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
@@ -4129,6 +4219,8 @@ kn:
   widget_for: ಇದಕ್ಕಾಗಿ ವಿಜೆಟ್
   wikipedia_attribution_cc_by_sa_3: |
     ಆಧಾರ: ವಿಕಿಪೀಡಿಯಾ, "%{title}", %{url}, CC BY-SA 3.0
+  wikipedia_attribution_cc_by_sa_3_html: |
+    ಈ ಲೇಖನವು ವಿಕಿಪೀಡಿಯಾದ <a href="https://creativecommons.org/licenses/by-sa/3.0/">ಕ್ರಿಯೇಟೀವ್ ಕಾಮನ್ಸ್ Attribution-Share-Alike ಪರವಾನಿಗೆ 3.0</a> ನ ಅಡಿಯಲ್ಲಿ ಬಿಡುಗಡೆಯಾಗಿರುವ <a href="%{url}">"%{title}"</a> ಲೇಖನದಿಂದ ವಿಷಯವನ್ನು ಬಳಸಿಕೊಂಡಿದೆ. ಮೂಲ ಲೇಖನದಿಂದ ವಿಷಯವನ್ನು ಕೈಬಿಡಲಾಗಿರಬಹುದು, ಆದರೆ ಯಾವುದೇ ವಿಷಯವನ್ನು ಬದಲಿಸಲಾಗಿಲ್ಲ ಅಥವಾ ವಿಸ್ತರಿಸಲಾಗಿಲ್ಲ.
   with: ಜೊತೆಗೆ
   withdraw: ಹಿಂಪಡೆಯಿರಿ
   withdrawing: ಹಿಂಪಡೆಯಲಾಗುತ್ತಿದೆ...
@@ -4199,6 +4291,8 @@ kn:
     ನೀವು ಯಾವುದೇ ಕೈಪಿಡಿಗಳನ್ನು ಸಂಪಾದಿಸುತ್ತಿಲ್ಲ. <a href="/guides/new">ಒಂದನ್ನು ಸೇರಿಸಿ</a>
   you_are_already_a_member_of_this_project: "ನೀವು ಈಗಾಗಲೇ ಈ ಪ್ರಾಯೋಜನೆಯ ಸದಸ್ಯ!"
   you_are_no_longer_following_x: "%{friend} ಅವರನ್ನು ನೀವು ಮತ್ತಿನ್ನೆಂದೂ ಅನುಸರಿಸುತ್ತಿಲ್ಲ."
+  you_are_setting_this_project_to_aggregate: |
+    ನೀವು ಈ ಕೆಳಕಂಡ ನಿಯಮಗಳಿಗೆ ಸರಿಹೊಂದುವ ಎಲ್ಲಾ ವೀಕ್ಷಣೆಗಳನ್ನು ಕ್ರೋಢೀಕರಿಸಲು ಈ ಪ್ರಾಯೋಜನೆಯನ್ನು ಸಜ್ಜುಗೊಳಿಸುತ್ತಿದ್ದೀರಿ : %{rules}. ನೀವು ಮುಂದುವರೆಯಲು ಬಯಸುವಿರಾ?
   you_are_submitting_obs_with_no_date_or_no_location: |
     ನೀವು ದಿನಾಂಕ ಅಥವಾ ಸ್ಥಳಗಳಿಲ್ಲದೆ ವೀಕ್ಷಣೆಗಳನ್ನು ಸಲ್ಲಿಸುತಿದ್ದೀರಿ. ಹಲವುಬಾರಿ ಈ ಮಾಹಿತಿಗಳಿಲ್ಲದ ವೀಕ್ಷಣೆಗಳನ್ನು ಗುರುತಿಸಲು ಅಸಾಧ್ಯ ಮತ್ತು ಇವು ನಿಯೋಜಿತ ವೀಕ್ಷಣಾ ಹುಡುಕಾಟಗಳಿಗೆ ಕಂಡುಬರುವುದಿಲ್ಲ.
   you_are_subscribed_to_comments_on_this_post: ನೀವು ಈ ಪೋಸ್ಟ್ ನ ಪ್ರತಿಕ್ರಿಯೆಗಳಿಗೆ ಚಂದಾದಾರರಾಗಿದ್ದೀರಿ.
@@ -4348,10 +4442,16 @@ kn:
         welcome_message_html: |
           ಕೈಪಿಡಿಗಳು ಜಗತ್ತಿನಾದ್ಯಂತ ಕಾಣಸಿಗುವ ಜೀವಿವೈವಿಧ್ಯತೆಯ ಬಗ್ಗೆ ತಿಳಿಯಲು ಸಹಾಯ ಮಾಡುತ್ತವೆ. ನೀವು ಸೆರೆಂಗೇಟಿಯನ್ನೇ ಅನ್ವೇಷಿಸುತ್ತಿರಿ ಅಥವಾ ನಿಮ್ಮ ಸ್ಥಳೀಯ ಉದ್ಯಾನವನವನ್ನೇ (ಇದು ಸೆರಂಗೇಟಿಯೇ ಅಗಿರಬಹುದು) ಅನ್ವೇಷಿಸುತ್ತಿರಿ, ಕೈಪಿಡಿಗಳು ನಮ್ಮ ಭೂಗ್ರಹದ ಅಮೋಘವಾದ ಜೀವಿವೈವಿಧ್ಯತೆಯನ್ನು ಅರ್ಥೈಸಿಕೊಳ್ಳಲು ನೆರವಾಗುತ್ತವೆ.
       edit:
+        add_eol_content: |
+          ಆಯ್ಕೆಮಾಡಿದ ಜೀವಿವರ್ಗಗಳಿಗೆ EOL ವಿಷಯಗಳನ್ನು ಬ್ಯಾಚ್‍ನಂತೆ ಸೇರಿಸಿ. ಇದು ಕೆಲಸಮಯ ತೆಗೆದುಕೊಳ್ಳಬಹುದು, ಹಾಗಾಗಿ ಸಾವಾಧಾನದಿಂದಿರಿ.
         add_color_tags_help: |
           ಆಯ್ಕೆಮಾಡಿದ ಜೀವಿವರ್ಗಗಳ ಜೊತೆ ಹೊಂದಿಕೊಂಡಿರುವ ಬಣ್ಣಗಳಿಂದ ಬಣ್ಣದ ಟ್ಯಾಗ್‍ಗಳನ್ನು ಸೇರಿಸಿ.
         coordinates_desc: |
           ನೀವು ನಿಮ್ಮ ಕೈಪಿಡಿಗಳಿಗೆ ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನೀಡುವುದರಿಂದ, ಜನರ ಸ್ಥಳಾಧಾರಿತ ಹುಡುಕಾಟಕ್ಕೆ ಸಹಾಯವಾಗುತ್ತದೆ.
+        eol_collection_desc_html: |
+          <a href="http://eol.org/" target="_blank">ಜೀವಜಾಲದ ವಿಶ್ವಕೋಶ (EOL)</a> ಭೂಮಿಯ ಮೇಲಿನ ಜೀವಜಾಲದ ಮಾಹಿತಿಯ ಒಂದು ಬೃಹತ್ ಭಂಡಾರವಾಗಿದೆ. EOL ನಲ್ಲಿ ನೀವು ಪ್ರಭೇದಗಳ <a href="http://eol.org/info/252" target="_blank">ಸಂಗ್ರಹಗಳು</a> ಅನ್ನು ರಚಿಸಬಹುದು. ನೀವು EOL ಸಂಗ್ರಹದಿಂದ ಪ್ರಭೇದಗಳನ್ನು ಆಮದುಮಾಡಲು ಬಯಸಿದಲ್ಲಿ, ಆ ಸಂಗ್ರಹದ URLಅನ್ನು ಇಲ್ಲಿ ಅಂಟಿಸಿ.
+        paste_note_html: |
+          ಸಾಲಿಗೊಂದರಂತೆ 500 ರವರೆಗೆ ಪ್ರಭೇದದ ಹೆಸರುಗಳನ್ನು ಅಂಟಿಸಿ. ಸಾಮಾನ್ಯ ಹೆಸರುಗಳಿಗೆ ಪ್ರಭೇದದ ಪರಿಕಲ್ಪನೆಗಳನ್ನು ಹೊಂದಿಸಲು %{site_name} ಸಾಧ್ಯವಿರುವ ಮಟ್ಟಿಗೆ ಉತ್ತಮ ಪ್ರಯತ್ನ ಮಾಡುತ್ತದೆ, ಆದರೆ ಯಾವುದೇ ಗೊಂದಲದ ನಿವಾರಣೆಗೆ ವೈಜ್ಞಾನಿಕ ಹೆಸರುಗಳ ಬಳಕೆ ಸೂಕ್ತ. ನೀವು ಆ ಎರಡನ್ನೂ ಸೂಚಿಸಲು ಬಯಸಿದಲ್ಲಿ, ವೈಜ್ಞಾನಿಕ ಹೆಸರನ್ನು ಹಾಗೂ ಸಾಮಾನ್ಯ ಹೆಸರನ್ನು ಕಾಮಾದಿಂದ ಪ್ರತ್ಯೇಕಿಸಿ, ಉದಾ. <code>Homo sapiens,Human</code>.
         places_note: |
           ಸೂಚನೆ: ಎಲ್ಲಾ ಸ್ಥಳಗಳೂ ಜೀವಿವರ್ಗಗಳ ಜೊತೆಗೆ ತಾಳೆಪಟ್ಟಿಯನ್ನು ಹೊಂದಿರುವುದಿಲ್ಲ. ನಿಮಗೆ ಜೀವಿವರ್ಗಗಳ ಜೊತೆಗೆ ಸ್ಥಳವನ್ನು ಹುಡುಕಲು ತೊಂದರೆಯಾದಲ್ಲಿ, ರಾಷ್ಟ್ರಗಳು, ರಾಜ್ಯಗಳು, ಪ್ರಾಂತ್ಯಗಳು ಅಥವಾ ಕೌಂಟಿಗಳಂತಹ ರಾಜಕೀಯ ಗಡಿರೇಖೆಗಳುಳ್ಳ ವಿಶಾಲ ಪ್ರದೇಶಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ.
         replace_existing_eol_desc: EOL ನಿಂದ ಆಮದುಮಾಡಿಕೊಳ್ಳುವ ಮುನ್ನ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ವಸ್ತುವಿಷಯವನ್ನು ಅಳಿಸಿ
@@ -4359,6 +4459,8 @@ kn:
           ನೀವು ಹುಡುಕಾಟವನ್ನು ಕಿರಿದುಗೊಳಿಸಲು ಇಚ್ಛಿಸಿದ್ದಲ್ಲಿ ಇದರಂತೆ ಶೋಧಿಸುವುದಕ್ಕೆ ಜೀವಿವರ್ಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ, ಉದಾ. "ಸಸ್ಯಗಳು"
       eolupdate_notice: |
         ದಯವಿಟ್ಟು ತಾಳ್ಮೆಯಿಂದಿರಿ, EOL ನಿಂದ ವಿಷಯಗಳನ್ನು ಆಮದು ಮಾಡಲಾಗುತ್ತಿದೆ ಹಲವು ನಿಮಿಷಗಳಾಗಬಹುದು.
+      generating_mobile_archive_tip_html: |
+        ಇದು ಕೆಲಸಮಯ ತೆಗೆದುಕೊಳ್ಳಬಹುದು, ಹಾಗಾಗಿ ಕೆಲವು ನಿಮಿಷಗಳ ನಂತರ ಈ ಪುಟವನ್ನು ಹೊಸತಾಗಿಸಲು ಪ್ರಯತ್ನಿಸಿ.
       mobile_downloads_tip_html: |
         ಆಫ್‍ಲೈನ್ ಬಳಕೆಗಾಗಿ ಈ ಕೈಪಿಡಿಯನ್ನು ಮೊಬೈಲ್ ಆಪ್‍ಗೆ ಡೌನ್‍ಲೋಡ್ ಮಾಡಿಕೊಳ್ಳಬಹುದಾಗಿದೆ.
       pdf_layouts:
@@ -4368,6 +4470,8 @@ kn:
       pdf_layout_notes:
         grid: |
           ಏಕ ಚಿತ್ರಗಳ ಗ್ರಿಡ್, ವಿವರಣೆಗಳಿಲ್ಲ
+        journal: |
+          ಪುಟ ವಿಭಜನೆ, ಪ್ರಭೇದಗಳ ಮಾಹಿತಿ ಎಡಕ್ಕೆ, ಟಿಪ್ಪಣಿಗಳಿಗೆ ಜಾಗ ಬಲಕ್ಕೆ. ಪುಟದ ಗಾತ್ರಕ್ಕೆ ಸರಿಹೊಂದುವಂತೆ ಪ್ರಭೇದಗಳ ಮಾಹಿತಿಯನ್ನು ಮೊಟಕುಗೊಳಿಸಲಾಗುತ್ತದೆ.
         book: |
           ಎಲ್ಲಾ ಚಿತ್ರಗಳನ್ನು ಹಾಗೂ ವಿವರಣೆಗಳನ್ನು ಒಳಗೊಂಡ ಸಂಪೂರ್ಣ ಕೈಪಿಡಿ, ಹಲವು ಪುಟಗಳಗಳಲ್ಲಿ ಹರವಿಕೊಂಡಿದೆ.
       pdf_generation_notice: |
@@ -4493,6 +4597,7 @@ kn:
           #Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} ಅನನ್ಯ"
       export:
+        choose_columns_desc: ರಫ್ತು ಮಾಡಲು ನೀವು ಬಯಸುವ ಲಂಬಸಾಲುಗಳನ್ನು ಆರಿಸಿ
         export_in_progress_notice_html: |
           ನಿಮ್ಮ ಒಂದು <a href="%{url}">ರಫ್ತು ಪ್ರಗತಿಯಲ್ಲಿದೆ</a>. ನೀವು ಇನ್ನೊಂದು ರಫ್ತನ್ನು ಸರದಿಯಲ್ಲಿರಿಸಲು ಇದು ಮುಗಿಯುವವರೆಗೂ ಕಾಯಬೇಕಾಗುತ್ತದೆ.
         limit_alert: ನಿಮ್ಮ ರಫ್ತು ಬಹಳ ದೊಡ್ಡದಾಗುವುದಿದೆ. ನಿಮ್ಮ ಶೋಧಕಗಳನ್ನು 200,000 ಕ್ಕಿಂತ ಕಡಿಮೆ ವೀಕ್ಷಣೆಗಳವರೆಗೆ ಬದಲಿಸಿ.
@@ -4524,7 +4629,10 @@ kn:
         license: ಈ ವೀಕ್ಷಣೆಗಾಗಿ ವೀಕ್ಷಕರು ಆರಿಸಿಕೊಂಡಿರುವ ಪರವಾನಿಗೆ
         url: ವೀಕ್ಷಣೆಗಾಗಿ URL
         image_url: ನಿಯೋಜಿತ ಚಿತ್ರಕ್ಕಾಗಿ URL
+        sound_url: ನಿಯೋಜಿತ ಧ್ವನಿಗಾಗಿ URL. ಗಮನಿಸಿ ಇದು ನೇರ ಅಪ್ಲೋಡ್‍ಗಳಿಗೆ ಮಾತ್ರ ಕೆಲಸ ಮಾಡುತ್ತದೆ, 3rd-party ಸೇವೆಗಳಲ್ಲಿ ಹೋಸ್ಟ್ ಮಾಡಿದ ಧ್ವನಿಗಳಿಗಲ್ಲ.
         tag_list: ಕಾಮಾ-ವಿಭಜಿತ ಟ್ಯಾಗ್‍ಗಳ ಪಟ್ಟಿ
+        place_admin1_name: ರಾಷ್ಟ್ರದ ಹಂತಕ್ಕಿಂತ ಒಂದು ಶ್ರೇಣಿ ಕೆಳಗಿರುವ ಆಡಳಿತ ಪ್ರದೇಶದ ಹೆಸರು
+        place_admin2_name: ರಾಷ್ಟ್ರದ ಹಂತಕ್ಕಿಂತ ಎರಡು ಶ್ರೇಣಿ ಕೆಳಗಿರುವ ಆಡಳಿತ ಪ್ರದೇಶದ ಹೆಸರು
         positioning_method: ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ಹೇಗೆ ನಿರ್ಧರಿಸಲಾಯಿತು
         positioning_device: ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನಿರ್ಣಯಿಸಲು ಬಳಸುವ ಸಾಧನ
       identify:
@@ -4892,6 +5000,11 @@ kn:
       delete:
         by_deleting_your_account_you_will_remove: |
           ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸುವ ಮೂಲಕ ನೀವು ತೆಗೆದುಹಾಕುವಿರಿ
+        x_observations_html:
+          one: |
+            ಗುರುತಿಸುವಿಕೆಯಲ್ಲಿ ನಿಮಗೆ ಸಹಾಯನೀಡಿದ <strong class="count">%{helpers_count} ವ್ಯಕ್ತಿ</strong>ಗಳ ಕೆಲಸವೂ ಸೇರಿದಂತೆ <strong class="count">%{count} ವೀಕ್ಷಣೆ</strong>
+          other: |
+            ಗುರುತಿಸುವಿಕೆಯಲ್ಲಿ ನಿಮಗೆ ಸಹಾಯನೀಡಿದ <strong class="count">%{helpers_count} ವ್ಯಕ್ತಿ</strong>ಗಳ ಕೆಲಸವೂ ಸೇರಿದಂತೆ <strong class="count">%{count} ವೀಕ್ಷಣೆಗಳು</strong>
         x_comments_html:
           one: ನೀವು ಸೇರಿಸಿರುವ <strong class="count">%{count} ಪ್ರತಿಕ್ರಿಯೆ</strong>
           other: ನೀವು ಸೇರಿಸಿರುವ <strong class="count">%{count} ಪ್ರತಿಕ್ರಿಯೆಗಳು</strong>
@@ -4956,6 +5069,7 @@ kn:
         scientific_name_first_desc: |
           ವೈಜ್ಞಾನಿಕ ಹೆಸರನ್ನು ಸಾಮಾನ್ಯ ಹೆಸರಿನ ಮೊದಲು ಪ್ರದರ್ಶಿಸಿ.
         thanks_for_supporting_us!: ನಮ್ಮನ್ನು ಬೆಂಬಲಿಸಿದ್ದಕ್ಕೆ ಧನ್ಯವಾದಗಳು!
+        youve_used_all_of_your_blocks: ನೀವು ನಿಮ್ಮ ಎಲ್ಲಾ ಬ್ಲಾಕ್‍ಗಳನ್ನು ಬಳಸಿದ್ದೀರಿ. ಮತ್ತೊಂದನ್ನು ಸೇರಿಸಲು ಬ್ಲಾಕ್‍‍ವೊಂದನ್ನು ತೆಗೆದುಹಾಕಿ.
       recent:
         about_recent_users: ಕುರಿತು
       show:
@@ -4965,6 +5079,16 @@ kn:
           ನಿಮ್ಮ ಮೆಚ್ಚಿನ ಕೆಲವು ಜೀವಿವರ್ಗಗಳನ್ನು ಪ್ರದರ್ಶಿಸಬೇಕೆ? "ಮೆಚ್ಚಿನವುಗಳು" ಶೀರ್ಷಿಕೆಯುಳ್ಳ %{link_start_tag}ಪಟ್ಟಿಯನ್ನು ರಚಿಸಿ%{link_end_tag} ಹಾಗೂ ತೀರ ಇತ್ತೀಚಿನ ಸೇರ್ಪಡೆಗಳು ಈ ಜಾಗದಲ್ಲಿ ಕಾಣಸಿಗುತ್ತವೆ.
     user_parents:
       confirm:
+        thanks_donor_html: |
+          <p>
+          iNaturalist ಕೊಡುಗೆದಾರರಾಗಿರುವುದಕ್ಕೆ ಧನ್ಯವಾದಗಳು! ನಿಮ್ಮ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ದೇಣಿಗೆಗಳನ್ನು ಬಳಸಿ ನಾವು ನಿಮ್ಮನ್ನು ಗುರುತಿಸಲು ಸಾಧ್ಯವಾಗಿದೆ, ಹಾಗೂ ನಮಗೆ ನಿಮ್ಮ ಇನ್ಯಾವ ಕ್ರಿಯೆಗಳ ಅಗತ್ಯವೂ ಇರುವುದಿಲ್ಲ. <strong>ನಿಮ್ಮ ಮಗುವಿನ ಖಾತೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ.</strong>
+          </p>
+          <p>
+          ನಿಮ್ಮ ಮಗುವಿನ Seek ಆಪ್‍ನಲ್ಲಿ ಮೆನುವಿನಲ್ಲಿರುವ "iNaturalist" ಗುಂಡಿಯನ್ನು ಟ್ಯಾಪ್ ಮಾಡುವ ಮೂಲಕ ದಯವಿಟ್ಟು ಖಾತೆಗೆ ಲಾಗಿನ್ ಆಗಿ ಹಾಗೂ ಆನಂತರ ಪರದೆಯ ಕೆಳಭಾಗದಲ್ಲಿರುವ "iNaturalist ನೊಂದಿಗೆ ಲಾಗಿನ್ ಆಗಿ" ಅನ್ನು ಆಯ್ಕೆಮಾಡಿ.
+          </p>
+          <p>
+          ನಿಮ್ಮ ಮಗು ನಂತರದಲ್ಲಿ Seek ಆಪ್ ಬಳಸಿಕೊಂಡು ಅವರ iNaturalist ಖಾತೆಗೆ ವೀಕ್ಷಣೆಗಳನ್ನು ಪೋಸ್ಟ್ ಮಾಡಬಹುದು ಅವು ಆಗ iNaturalist.org ನಲ್ಲಿ ಕಂಡುಬರುತ್ತವೆ.
+          </p>
         thanks_for_creating_a_minor_account: ಕಿಶೋರ ಖಾತೆಯೊಂದನ್ನು ರಚಿಸಿದ್ದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು!
         we_will_send_you_an_email: |
           ನಿಮ್ಮ ಮಗುವಿನ ಖಾತೆಯು ಸಕ್ರಿಯವಾದಾಗ ನಾವು ನಿಮಗೆ ಒಂದು ಮಿಂಚೆಯನ್ನು ಕಳುಹಿಸುತ್ತೇವೆ.
@@ -5306,6 +5430,7 @@ kn:
           other: ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷಗಳು ತಡೆಹಿಡಿದಿವೆ
   activerecord:
     models:
+      AssessmentSection: ಮೌಲ್ಯಮಾಪನ ವಿಭಾಗ
       Atlas: ಭೂಪಟ
       BlockedUser: ನಿರ್ಬಂಧಿತ ಬಳಕೆದಾರರು
       TaxonLink: ಜೀವಿವರ್ಗದ ಲಿಂಕ್
