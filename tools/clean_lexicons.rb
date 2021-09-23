@@ -128,7 +128,7 @@ synonyms = {
 }
 
 synonyms.each do |lexicon,synonyms|
-  puts "Synonymizing lexicons for #{lexicon}: #{synonyms.join( ", " )}"
+  puts "#{lexicon} synonyms: #{synonyms.join( ", " )}"
   TaxonName.where( lexicon: synonyms ).find_each do |tn|
     print "."
     tn.lexicon = lexicon
