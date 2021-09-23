@@ -7,6 +7,7 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 import { urlForTaxon, taxonLayerForTaxon } from "../../../taxa/shared/util";
 import TaxonMap from "../../identify/components/taxon_map";
 import MapDetails from "./map_details";
+import ErrorBoundary from "../../../shared/components/error_boundary";
 
 /* global LIFE_TAXON */
 
@@ -149,7 +150,9 @@ class Map extends React.Component {
           enableShowAllLayer={false}
           overlayMenu
           clickable={false}
-          zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
+          zoomControlOptions={{
+            position: typeof ( google ) !== "undefined" && google.maps.ControlPosition.TOP_LEFT
+          }}
           currentUser={config.currentUser}
           updateCurrentUser={updateCurrentUser}
         />

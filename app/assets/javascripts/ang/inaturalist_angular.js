@@ -83,6 +83,7 @@ function( $http, $rootScope, $filter ) {
 
   var offsetCenter = function( options, callback ) {
     if( !options.map ) { return callback( ); }
+    if ( typeof ( google ) === "undefined" ) { return callback( ); }
     var overlay = new google.maps.OverlayView( );
     overlay.draw = function( ) { };
     overlay.onAdd = function( ) { };
@@ -110,6 +111,7 @@ function( $http, $rootScope, $filter ) {
 
   var processPoints = function( geometry, callback, thisArg ) {
     if( !geometry ) { return; }
+    if ( typeof ( google ) === "undefined" ) { return callback( ); }
     if( geometry instanceof google.maps.LatLng ) {
       callback.call( thisArg, geometry );
     } else if( geometry instanceof google.maps.Data.Point ) {

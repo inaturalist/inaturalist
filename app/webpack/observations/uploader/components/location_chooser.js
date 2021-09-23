@@ -12,6 +12,7 @@ import SelectionBasedComponent from "./selection_based_component";
 import LocationChooserMap from "./location_chooser_map";
 import SavedLocationChooser from "./saved_location_chooser";
 import util from "../models/util";
+import ErrorBoundary from "../../../shared/components/error_boundary";
 
 class LocationChooser extends SelectionBasedComponent {
   constructor( props, context ) {
@@ -139,11 +140,13 @@ class LocationChooser extends SelectionBasedComponent {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <LocationChooserMap
-            {...this.props}
-            containerElement={<div className="map" />}
-            mapElement={<div className="map-inner" />}
-          />
+          <ErrorBoundary key="uploader-location-chooser-map">
+            <LocationChooserMap
+              {...this.props}
+              containerElement={<div className="map" />}
+              mapElement={<div className="map-inner" />}
+            />
+          </ErrorBoundary>
           <div className="form">
             <div className="form-group">
               <label className="control-label">
