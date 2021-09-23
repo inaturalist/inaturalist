@@ -1,6 +1,6 @@
-pt:
+pt-BR:
   x_comments:
-    one: '1 comentário'
+    one: '%{count} comentário'
     other: '%{count} comentários'
   x_comments_html:
     one: '<span class="count">%{count}</span> comentário'
@@ -181,6 +181,7 @@ pt:
   about_taxon_ranges_desc: |
     Mapas de distribuição mostram a área de ocorrência global de um táxon. Normalmente são provenientes da Lista Vermelha da IUCN.
   about_the_cc_licenses: Sobre as licenças Creative Commons
+  about_the_network: Sobre a Rede
   about_these_licenses: Sobre estas licenças
   about_this_bioblitz: Sobre este bioblitz
   about_this_map: Sobre este mapa
@@ -243,7 +244,7 @@ pt:
   add_a_link: Adicionar link
   add_a_name: Adicione um nome
   add_a_note: Adicionar uma nota
-  add_a_new_change_group: Adicionar uma nova alteração no grupo
+  add_a_new_change_group: Adicionar um novo Grupo de Mudanças
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Adicionar uma lista numerada
   add_a_single_observation: Adicione uma única observação.
@@ -378,6 +379,8 @@ pt:
   admin_s: Administrador(es)
   admin_only: Somente administrador
   admin_tools: Ferramentas Administrativas
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Organizações Afiliadas
   agree_: Concordar
   agree?: Concordar?
   agree_with_current_taxon: Concordar com o táxon atual
@@ -641,7 +644,7 @@ pt:
   assessment_x: "%{assessment} avaliação"
   assessments: avaliações
   associations: Associações
-  atlased: Com mapa
+  atlased: Com atlas
   atlas_for_taxon_html: Atlas para %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -783,23 +786,23 @@ pt:
     merge: Diversas espécies foram reunidas em um único grupo
     swap: Substituir táxon de entrada com táxon de saída
     drop: O conceito de táxon ou grupo é totalmente inválido, seu uso está vinculado  a razões históricas e compatibilidades de pares
-    stage: Inativa um conceito devido a alterações da taxonomia de um grupo de espécies.
+    stage: Prepara um conceito inativo para ser lançado como parte de um grupo de mudanças
   change_geoprivacy: 'Mude geroprivacidade'
-  change_group: Alterar grupo
+  change_group: Grupo de Mudanças
   change_icon: Alterar ícone
   change_password: Alterar senha
   change_types:
     activated_soon: será ativado logo
     change_types: Mudar os Tipos
-    split: Separar
+    split: Dividir
     merge: Mesclar
     swap: Substituir
-    stage: Etapa
+    stage: Preparar
     drop: Descartar
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    split_from: originado de
+    split_from: dividido a partir de
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    split_into: se dividi em
+    split_into: foi dividido em
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merge_into: convergir em
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
@@ -811,7 +814,7 @@ pt:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: substituído por
     dropped: descartado
-    staged: etapa concluída
+    staged: preparado
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon} dividiu-se em %{output_taxa}"
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} será dividido em %{output_taxa}"
     input_taxon_was_dropped_html: "%{input_taxon} foi abandonado"
@@ -887,12 +890,13 @@ pt:
   #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Salvar.
   #Adjective describing a taxon change that has been committed
-  committed: Salvar.
-  committed_by_user_on_date_html: Criada por {{user}} em {{date}}
+  committed: Submetido
+  committed_by_user_on_date_html: Submetido por %{user} em %{date}
   #Label for date the taxon change was committed
   committed_on: Submetido em %{date}
+  committed_taxon_changes_cannot_be_deleted: Mudanças de táxon submetidas não podem ser excluídas
   #Status message while a taxon change is being committed
-  committing: Enviando...
+  committing: Submetendo...
   common_name: Nome Comum
   community: Comunidade
   community_curated: Supervisionado pela Comunidade
@@ -1573,6 +1577,8 @@ pt:
   establishment_means_describes_how: |
     Meios de Estabelecimento descrevem como o táxon foi implantado nesta área.  
     Veja o DarwinCore para <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">mais informações sobre a terminologia</a>.
+  estimate_which_input: |
+    Avaliação de quais IDs do táxon de origem serão substituidos por quais táxons de saída e quais serão atribuidos a um táxon inferior comum quando for efetuada a separação. Este processo de avaliação pode demorar. Links para as observações serão apresentadas em grupos de 200.
   event_in_progress: Evento em andamento
   event_stats: Estatísticas do evento
   event_url: URL do evento
@@ -1593,6 +1599,7 @@ pt:
   exclusion_filters: Filtros de Exclusão
   existing_flags: Sinalizações Existentes
   exit_full_screen: "Sair do modo tela inteira"
+  examples_of_data_use_by_network_members: Exemplos de Uso de Dados por Membros da Rede
   examples_of_ranking_organizations: Exemplos de Organizações de Classificação
   explore: Explorar
   export: Exportar
@@ -1847,6 +1854,34 @@ pt:
   header_your_projects: Seus Projetos
   header_your_profile: Seu Perfil
   heads_up: Aviso
+  heads_up_automatable_draft_split_notice_html: |
+    <strong>Atenção:</strong> Quando você submeter essa mudança, identificações serão
+    reatribuídas para o táxon de saída baseado em seus atlas. Se algum ou todos os táxons
+    de saída não possuírem atlas, ou se certos atlas se sobreponham para certa observação,
+    identificações serão substituídas por identificações do táxon ancestral mais próximo (%{taxon}).
+  heads_up_non_automatable_draft_split_notice_html: |
+    <strong>Atenção:</strong> Esta divisão de táxon possui táxons de saída que ou
+    não possuem atlas, ou não compartilham um ancestral comum, portanto, os registros
+    associados com seus táxons de entrada não podem ser automaticamente atribuídos a táxons
+    de saída quando essa divisão for submetida, e a comunidade terá de adicionar novos
+    IDs para esses registros.
+  heads_up_automatable_split_notice_html: |
+    <strong>Atenção:</strong> Algumas ou todas as identificações afetadas por
+    esta divisão podem ter sido substituídas por identificações de %{taxon}. Isto
+    acontece quando não podemos atribuir automaticamente uma identificação para um dos
+    táxons de saída.
+  heads_up_observose_taxon_change_html: |
+    <strong>Atenção:</strong> Um ou mais dos táxons de entrada envolvidos nesta
+    mudança têm mais de %{observose_taxon_threshold} observações descendentes.
+    Apenas os administradores ou os curadores desse framework de táxon podem realizar esta mudança.
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+    <strong>Atenção:</strong> Um ou mais dos táxons de entrada envolvidos nesta
+    alteração estão dentro de um <a href="%{framework_url}">framework de táxon</a>. Apenas
+    administradores ou curadores desse framework de táxon podem submeter alterações que
+    afetem os táxons cobertos. Contate um dos curadores do táxon para realizar essa alteração.
+  heads_up_there_are_other_draft_taxon_changes_html:
+    one: "<strong>Atenção:</strong> há %{count} outra mudança de táxon com o mesmo táxon de entrada:"
+    other: "<strong>Atenção:</strong> há %{count} outras mudanças de táxon com o mesmo táxon de entrada:"
   heads_up_this_photo_has_been_flagged: "ATENÇÃO: esta fotografia foi sinalizada."
   heads_up_this_photo_is_already_associated_with: "Atenção: esta foto já esta associada com <a target='_blank' href='%{url}'>outra observação</a>"
   heads_up_you_have_multiple: "Atenção: Existem várias marcações taxonômicas para categorias idênticas."
@@ -1953,6 +1988,7 @@ pt:
   improving: Melhorando
   in_n: "em %{n}"
   in_place_x: no %{place}
+  inaturalist_network: Rede iNaturalist
   inaturalist_network_affiliation: Filiação da Rede iNaturalist
   #Label for messages you've received
   inbox: Caixa de entrada
@@ -2147,6 +2183,7 @@ pt:
     russian: Russo
     sinhala: Cingalês
     slovak: Eslovaco
+    slovenian: Esloveno
     spanish: Espanhol
     swedish: Sueco
     tagalog: Análogo
@@ -2258,6 +2295,7 @@ pt:
     pt-BR: Português (Brasil)
     ru: Russo
     sk: Eslovaco
+    sl: Esloveno
     sq: Albanês
     sv: Sueco
     th: Tailandês
@@ -2464,6 +2502,7 @@ pt:
     <a href="%{url}">Apoiador Mensal</a> desde %{date}
   months: Meses
   more: Mais
+  more_about_sharing: Mais sobre compartilhamento
   more_fields: Mais campos
   more_filters: Mais filtros
   more_from_x: Mais de %{x}
@@ -2550,6 +2589,8 @@ pt:
   network_affiliation_prompt_from_other_site_html: |
     Você gostaria de mudar a sua afiliação de <strong>%{other_site_name}</strong> para
     <strong>%{site_name}</strong>?
+  #Column header in a table listing iNaturalist Network members
+  network_member: Membro da Rede
   new: Novidades
   new_and_noteworthy: Novo e Notável
   new_announcement: Novo anúncio
@@ -2692,6 +2733,7 @@ pt:
   none: Nenhum
   none_found: Não encontrado
   normal: normal
+  not_atlased: Sem Atlas
   not_completed: Incompleto
   not_confident: Não temos confiança suficiente para fazer uma recomendação.
   not_confident_top_suggestions: Não temos confiança suficiente para fazer uma recomendação, mas aqui estão as nossas melhores sugestões
@@ -2780,7 +2822,7 @@ pt:
   observations_by_user_on_date: "Observações por %{user} em %{date}"
   observations_by_you: "Suas observações"
   observations_by_you_on_date: "Observações suas em %{date}"
-  observation_calendar_for: "Calendário de Observação de %{user} em %{year}"
+  observation_calendar_for: "Calendário de Observações de %{user} em %{year}"
   #The limit is currently 20
   observations_can_only_have_n_photos: Observações só podem ter %{limit} fotos
   observation_curation: Moderar observações
@@ -2994,9 +3036,11 @@ pt:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Outro táxons comumente identificado erroneamente como este subgênero em <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_subsection: Outros táxons comumente identificados erroneamente como esta subseção
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Outro táxon comumente identificado erroneamente como este híbrido em <a href="%{url}">%{place}</a>
+  outside_of_all_atlases: Fora de todos os atlas
   our_blog: Nosso Blog
   output_taxon: Taxón de saída
   overview: Visão geral
+  overlapping_atlases: Sobreposição de atlas
   overlapping_downstream_taxon_frameworks_html: "Superposição dos quadros de táxon descendente: %{count}"
   owner: Proprietário
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -3708,9 +3752,9 @@ pt:
       other: Espécies
     hybrid: Híbrido
     #Singular
-    subspecies: Subespécies
+    subspecies: Subespécie
     variety: Variedade
-    form: Formulário
+    form: Forma
     infrahybrid: Infra-híbrido
     leaves: Folhas
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
@@ -3907,6 +3951,8 @@ pt:
   restore: Restaurar
   restoring: Restaurando...
   review_all: Revisar todas
+  review_identifications_of_taxon_html: |
+    Revisar identificações de <span class="sciname">%{taxon}</span> %{taxon_id}
   reviewed: Revisado
   revoke: Anular
   revoke_caps: ANULAR
@@ -4074,6 +4120,96 @@ pt:
   site_staff: "Equipe %{site_name}"
   site_stats: Estatísticas do site
   site_taxon_page: "%{site_name} página do táxon"
+  sites_affiliation_about_desc_html: |
+    Se a sua organização está interessada em aderir à Rede iNaturalist, você pode encontrar mais detalhes %{start_tag_join}aqui%{end_tag_join}.
+  sites_affiliation_examples_canada_cdc_html: |
+    O %{start_tag_inat_canada}iNaturalist Canada%{end_tag_inat_canada} permite que
+    dados do iNaturalist sejam incorporados em sistemas seguros e de nível provincial
+    gerenciados pelos Conservation Data Centers (CDCs). Esses sistemas são
+    usados quando as avaliações são realizadas (duas vezes por ano) para determinar o
+    status de risco das espécies, bem como na determinação do habitat crítico das espécies
+    ameaçadas e em perigo.   Como resultado, foi também possível localizar e mitigar
+    pontos com alta taxa de mortalidade em ruas para espécies de risco;
+    delinear e eventualmente proteger as principais Áreas-Chave de Biodiversidade e;
+    reconfirmar a presença de espécies que não foram reportadas há décadas.
+  sites_affiliation_examples_ecuardor_bndb_html: |
+    O %{start_tag_ecuador}iNaturalist Ecuador%{end_tag_ecuador} alimenta a
+    Base de Datos y Sistema de Biodiversidad del Ecuador – BNDB –, um grande repositório
+    de dados de registros científicos, bem como de ciência cidadã. O objetivo é
+    integrar o conhecimento e os dados que ajudam a fortalecer a
+    compreensão ambiental da flora e fauna do Equador.
+  sites_affiliation_examples_mexico_nbis_html: |
+    As observações do %{start_tag_naturalista}Naturalista%{end_tag_naturalista}, do México,
+    alimentam o Sistema Nacional de Información
+    sobre Biodiversidad de México (no CONABIO, a Comissão Nacional da Biodiversidade)
+    juntamente com registos do eBird. As pessoas podem encontrar registros científicos e
+    de ciência cidadã em
+    %{start_tag_enciclovida}Enciclovida%{end_tag_enciclovida}.
+  sites_affiliation_examples_portugal_atlas_html: |
+    O membro da rede iNaturalist de Portugal, %{start_tag_portugal}BioDiversity4All%{end_tag_portugal}, compartilhou dados dos atlas portugueses de aves migratórias e de mamíferos, bem como vários outros documentos científicos portugueses.
+  sites_affiliation_more_automatically_hidden_coordinates: |
+    Coordenadas automaticamente ocultadas (obscurecidas ou privadas por conta da "geoprivacidade do táxon")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    O iNaturalist oculta automaticamente as coordenadas de algumas espécies para protegê-las
+    de perturbações, coleções ou caça furtiva. Se as coordenadas
+    da observação só foram ocultadas automaticamente para proteger as espécies,
+    o iNaturalist compartilha as coordenadas verdadeiras de todas as observações de seus
+    países respectivos com membros da Rede.
+  sites_affiliation_more_email_addresses: |
+    Os endereços de e-mail são compartilhados com os Membros da Rede apenas para fins de comunicações relacionadas com o site.
+  sites_affiliation_more_twice_per_year: |
+    Duas vezes por ano, o iNaturalist compartilha endereços de e-mail de contas afiliadas e algumas coordenadas ocultas (por exemplo, coordenadas publicamente obscurecidas ou privadas) com os membros da Rede iNaturalist para facilitar o uso de dados do iNaturalist para pesquisa, conservação e gestão em suas respectivas áreas. As duas maneiras que as coordenadas podem ser ocultas são compartilhadas de forma diferente, como descrito abaixo.
+  sites_affiliation_more_user_hidden_coordinates: |
+    Coordenadas ocultas pelo usuário (obscurecidas ou privadas devido à configuração de "geoprivacidade")
+  sites_affiliation_more_user_hidden_coordinates_desc: |
+    Observações com coordenadas ocultas devido às escolhas individuais dos usuários
+    são compartilhadas de uma forma muito mais limitada e específica. Por se afiliar a um
+    site da Rede, o iNaturalist irá compartilhar com os administradores desse site as
+    coordenadas precisas de observações com geoprivacidade que você definiu como
+    obscurecidas ou privadas, além daquelas que são publicamente obscurecidas ou
+    privadas devido à geoprivacidade do táxon. Isso permite que suas observações se tornem
+    mais valiosas para os esforços locais de conservação.
+  sites_affiliation_overview_current_member_list_html: |
+    Você pode ver a lista atual de membros para a
+    %{start_tag_network}rede iNaturalist%{end_tag_network}.
+  sites_affiliation_overview_in_order_to_advance: |
+    A fim de promover a pesquisa e a conservação em suas respectivas áreas, membros da Rede iNaturalist podem compartilhar data do iNaturalist. Eles têm a responsabilidade de avaliar a validade e a adequação das solicitações de dados e dos seus potenciais resultados; afirmar por escrito a responsabilidade de garantir também a segurança desses dados e de não os expor publicamente, seja de que forma for, ou partilhá-los ou usá-los além do seu propósito original; documentar todas as instâncias de partilha, juntamente com os resultados ou usos pretendidos; e reportar anualmente ao iNaturalist.
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    A %{start_tag_network}Rede iNaturalist%{end_tag_network} é uma
+    coleção de sites localizados na %{start_tag_global}comunidade
+    global iNaturalist%{end_tag_global}.
+  sites_affiliation_overview_when_you_affiliate: |
+    Quando você se associa a um membro da Rede iNaturalist, o seu endereço de e-mail
+    e as verdadeiras localizações das suas localizações ocultas e privadas são compartilhadas
+    com o membro da Rede. Isso permite que suas observações se tornem mais
+    valiosas para os esforços locais de conservação. Se você mora ou visita frequentemente
+    uma área que é membro da Rede, você é encorajado a escolher
+    isso como sua afiliação para facilitar o compartilhamento de dados.
+  sites_affiliation_overview_you_can_continue_html: |
+    Você pode continuar fazendo login através do iNaturalist.org ou através de seu site
+    específico da rede. Não importando sua afiliação, todos os seus dados serão
+    hospedados no mesmo lugar e você continuará capaz de interagir com
+    a ampla comunidade internacional do iNaturalist. Cada conta iNaturalist
+    pode ser afiliada apenas a um membro da Rede. Você pode rever ou alterar
+    sua afiliação em suas %{start_tag_settings}configurações da conta%{end_tag_settings}.
+  sites_affiliation_title: Saiba Mais Sobre a Afiliação à Rede
+  sites_network_cas_and_nat_geo_html: |
+    A %{start_tag_cas}Academia de Ciências da Califórnia%{end_tag_cas} e a
+    %{start_tag_nat_geo}Sociedade Geográfica Nacional%{end_tag_nat_geo} têm
+    acordos formais com organizações em cada uma destas áreas geográficas para apoiar
+    o uso da plataforma iNaturalist. <strong>Se a sua organização estiver
+    interessada em aderir à Rede iNaturalist, você pode encontrar mais detalhes
+    %{start_tag_join}aqui%{end_tag_join}.</strong>
+  sites_network_consists_of: "A Rede iNaturalist consiste em várias organizações:"
+  sites_network_inaturalist_network_collection: |
+    A Rede iNaturalist é uma coleção de sites localizados que estão totalmente
+    conectados à comunidade global iNaturalist. Os sites da Rede são apoiados
+    por instituições locais que promovem a utilização local e facilitam o uso de dados
+    do iNaturalist para beneficiar a biodiversidade local. Eles têm acesso às verdadeiras
+    coordenadas dentro das suas áreas geográficas que são automaticamente obscurecidas da
+    visão pública, a fim de melhor proteger as espécies ameaçadas.
+  sites_network_your_username: |
+    Se optar por se afiliar a um site da Rede, as instituições locais que apoiam cada site terão acesso ao seu endereço de e-mail (apenas para se comunicarem com você sobre atividades do site) e acesso às coordenadas verdadeiras das observações que você escolheu tornar publicamente ocultas ou privadas.
   some_agree: alguns concordam
   some_observations_are_missing_media_or_identifications: |
     Algumas observações não possuem mídia ou identificações
@@ -4201,7 +4337,7 @@ pt:
   stuff_just_added: "Oque você acabou de adicionar..."
   subject_resolved_noun_html: "%{subject} solucionado %{noun}"
   subject_affecting_stuff_html: "%{subject} afeta a %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} dedicado @vow_or_con{vow:an|a} %{thing} afetado %{stuff}"
+  subject_committed_thing_affecting_stuff_html: "%{subject} submeteu @vow_or_con{vow:an|a} %{thing} afetando %{stuff}"
   submission_model: Modelo de carregamento
   submission_model_description: Quem pode adicionar observações ao seu projeto?
   submit_observations:
@@ -4323,6 +4459,11 @@ pt:
     Arquivos de avaliação de táxon são documentos conectados diretamente dados como por exemplo o status de conservação de uma espécie. 
     Por exemplo, um comitê regional de avaliação da conservação de espécies locais podem utilizá-los para organizar as informações e solicitar feedback sobre o status de diversas espécies listadas como ameaçadas para a região.
   taxon_change_must_be_committed_to_update_records: A mudança de táxon deve ser confirmada para atualizar registros
+  taxon_change_title_taxon_drop: Descarte Taxonômico %{id}
+  taxon_change_title_taxon_merge: Mescla Taxonômica %{id}
+  taxon_change_title_taxon_split: Divisão Taxonômica %{id}
+  taxon_change_title_taxon_stage: Preparo Taxonômico %{id}
+  taxon_change_title_taxon_swap: Substituição Taxonômica %{id}
   taxon_deleted: Táxon apagado.
   taxon_doesnt_have_a_range: Táxon não possui distribuição
   taxon_drop: queda de táxon
@@ -4381,9 +4522,9 @@ pt:
   taxon_schemes: "Esquemas do Táxon"
   taxon_search: Busca por táxon
   taxon_search_results_for: Resultados da busca por táxon
-  taxon_split: Divisão de táxon
+  taxon_split: divisão de táxon
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
-  taxon_stage: Criar a partir do táxon
+  taxon_stage: preparo de táxon
   taxon_swap: Substituição de táxon
   taxon_swap_only_has_one_input: apenas uma entrada é permitida em trocas
   taxon_swap_has_inputs_and_outputs: trocas devem ter tanto entradas como saídas
@@ -4439,6 +4580,8 @@ pt:
   the_identotron_is_a_tool_to: |
     O Identitron é uma ferramenta que te ajuda a identificar suas observações baseado na lista de dados de %{site_name}. Dado um classificação alta de um táxon e um lugar (ex.: mamíferos da Índia), %{site_name} irá procurar por entradas em listas de checagem que correspondam com o táxon e o local, como um guia de campo dinâmico para todo o planeta. A maioria das listas são trabalhos em andamento, mas, se existir uma que seja compatível, ex.: ela lista <em>todos</em> os representantes deste táxon em um local, o Identitron lhe avisará.
   the_name_of_the_taxon_including_space: O nome do táxon, incluindo o espaço para espécie e infraespécie.<br/><br/> <strong>Exemplo:</strong><br/>
+  the_name_of_the_taxon_dashes: O nome do táxon, com espaços substituídos por hifén.
+  the_name_of_the_taxon_underscores: O nome do táxon, com espaços substituídos por sublinhados.
   the_observation_was_already_added_to_that_project: Esta observação já foi adicionada neste projeto.
   the_people_of_inat: "As pessoas de %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
@@ -4503,7 +4646,7 @@ pt:
   this_photo_is_already_associated: Esta foto já está associada com uma de suas observações.
   this_place_has_no_check_list: "Este lugar não tem lista de verificação."
   this_taxon_change_has_been_commited: |
-    <strong>Esta alteração de táxon foi salva!</strong>
+    <strong>Esta alteração de táxon foi submetida!</strong>
     Por favor não edite os táxons. A edição de outros campos é permitida.
   this_taxon_concept_is_inactive: o conceito de táxons está inativo
   this_taxon_has_more_than_1000: Este táxon tem mais de 1000 observações descendentes. A edição pode levar algum tempo para ser processada, tem certeza de que isso é necessário?
@@ -5046,6 +5189,9 @@ pt:
   you_need_to_select_some_observations_first: Você tem que selecionar algumas observações primeiro.
   you_retain_full_copyright: "Você possui total direito sobre o seu conteúdo a parte daqueles que são de direito concedido ao %{site_name} em nossos Termos de Serviço."
   you_retain_full_copyright_over_your_content: "Você detém total direito sobre seu conteúdo a parte dos direitos garantidos ao %{site_name} segundo nossos Termos de Serviços."
+  you_should_delete_this_taxon_change: |
+    Você provavelmente deve excluir esta mudança de táxon, ou pelo menos chegar em algum
+    tipo de solução com a(s) pessoa(s) que fizeram as outras alterações.
   you_sure_delete_asset?: Tem certeza que deseja excluir este arquivo?
   you_sure_delete_check_list: "Você tem certeza que deseja apagar esta lista? Algumas pessoas podem ter dedicado muito trabalho nela..."
   you_sure_delete_comment?: Você tem certeza que deseja apagar este comentário?
