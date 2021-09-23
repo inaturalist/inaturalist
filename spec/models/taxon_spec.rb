@@ -765,7 +765,7 @@ describe Taxon, "merging" do
   end
   
   it "should move the reject's taxon_names to the keeper even if they don't have a lexicon" do
-    @reject.taxon_names << TaxonName.new(:name => "something")
+    @reject.taxon_names << build( :taxon_name )
     rejected_taxon_names = @reject.taxon_names
     expect(rejected_taxon_names).not_to be_empty
     @keeper.merge(@reject)
