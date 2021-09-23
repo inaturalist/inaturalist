@@ -138,6 +138,7 @@ id:
   about_taxon_ranges_desc: |
     Jangkauan Takson menampilkan penyebaran global dari sebuah takson. Jangkauan takson biasanya diambil dari Daftar Merah IUCN.
   about_the_cc_licenses: Tentang lisensi Creative Commons
+  about_the_network: Tentang Jaringan
   about_these_licenses: Tentang lisensi ini
   about_this_bioblitz: Tentang bioblitz ini
   about_this_map: Tentang Peta Ini
@@ -352,6 +353,8 @@ id:
   admin_s: Pengelola
   admin_only: Khusus pengelola
   admin_tools: Peralatan Pengelola
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Organisasi Terafiliasi
   agree_: Setuju
   agree?: Setuju?
   agree_with_current_taxon: Setuju dengan takson saat ini
@@ -1547,6 +1550,7 @@ id:
   exclusion_filters: Saringan Yang Dikecualikan
   existing_flags: Tanda Yang Ada
   exit_full_screen: "Keluar Dari Layar Penuh"
+  examples_of_data_use_by_network_members: Contoh Penggunaan Data Oleh Anggota Jaringan
   examples_of_ranking_organizations: Contoh Organisasi Penggolongan
   explore: Jelajah
   export: Ekspor
@@ -1915,6 +1919,7 @@ id:
   improving: Pengembang
   in_n: "di %{n}"
   in_place_x: di %{place}
+  inaturalist_network: Jaringan iNaturalist
   inaturalist_network_affiliation: Afiliasi Jaringan iNaturalist
   #Label for messages you've received
   inbox: Kotak Masuk
@@ -2421,6 +2426,7 @@ id:
     <a href="%{url}">Pendukung Bulanan</a> sejak %{date}
   months: Bulan
   more: Lainnya
+  more_about_sharing: Lebih Lanjut Perihal Pembagian
   more_fields: Bidang Lainnya
   more_filters: Saringan Lainnya
   more_from_x: Lebih lanjut dari %{x}
@@ -2511,6 +2517,8 @@ id:
   network_affiliation_prompt_from_other_site_html: |
     Apakah Anda ingin mengganti afiliasi Anda dari <strong>%{other_site_name}</strong> menjadi 
     <strong>%{site_name}</strong>?
+  #Column header in a table listing iNaturalist Network members
+  network_member: Anggota Jaringan
   new: Baru
   new_and_noteworthy: Baru & Perlu Perhatian
   new_announcement: Pengumuman baru
@@ -4010,6 +4018,46 @@ id:
   site_staff: "Staf %{site_name}"
   site_stats: Statistik Situs
   site_taxon_page: "Halaman takson %{site_name}"
+  sites_affiliation_about_desc_html: |
+    Jika organisasi Anda tertarik untuk bergabung dengan Jaringan iNaturalist, Anda bisa mendapatkan info lebih lanjut di %{start_tag_join}sini%{end_tag_join}.
+  sites_affiliation_examples_canada_cdc_html: |
+    %{start_tag_inat_canada}iNaturalist Kanada%{end_tag_inat_canada} mengizinkan data dari iNaturalist untuk dimasukkan ke sistem provinsi yang aman yang dikelola oleh Pusat Data Konservasi (CDC). Sistem-sistem ini dipakai ketika penilaian sedang dilakukan (dua kali setahun) untuk menentukan status spesies yang berada dalam bahaya, serta menentukan habitat kritis yang dihuni oleh spesies berstatus terancam maupun genting. Hasilnya, hal ini memungkinkan penemuan dan mitigasi titik-titik di mana terjadi banyak tabrakan jalanan untuk spesies yang terancam; penggambaran dan perlindungan Area Keanekaragaman Utama, dan; pemastian kembali keberadaan spesies yang belum pernah dilaporkan sejak puluhan tahun yang lampau.
+  sites_affiliation_examples_ecuardor_bndb_html: |
+    %{start_tag_ecuador}iNaturalist Ekuador%{end_tag_ecuador} memasukkan data ke Basis Data Keanekaragaman Hayati Nasional Ekuador – BNDB – sebuah penyimpanan data yang besar yang berisi catatan-catatan ilmiah maupun sains sipil. Tujuannya adalah untuk mengintegrasi pengetahuan dan data yang membantu memperkuat pemahaman lingkungan flora dan fauna Ekuador.
+  sites_affiliation_examples_mexico_nbis_html: |
+    Pengamatan %{start_tag_naturalista}Naturalista%{end_tag_naturalista} Meksiko dimasukkan ke dalam Sistem Informasi Keanekaragaman Hayati Nasional (di CONABIO, Komisi Keanekaragaman Hayati Nasional) bersama catatan dari eBird. Orang-orang dapat menemukan catatan ilmiah maupun sains sipil di %{start_tag_enciclovida}Enciclovida%{end_tag_enciclovida}.
+  sites_affiliation_examples_portugal_atlas_html: |
+    Anggota jaringan iNaturalist Portugal %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} membagikan data catatan untuk atlas migrasi burung Portugis, atlas mamalia, juga untuk beberapa dokumen penelitian ilmiah Portugis lainnya.
+  sites_affiliation_more_automatically_hidden_coordinates: |
+    Koordinat yang disembunyikan secara otomatis (dikaburkan atau dibuat hanya untuk pribadi akibat "geoprivasi takson")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist secara otomatis menyembunyikan koordinat untuk beberapa spesies untuk melindungi mereka dari gangguan, upaya koleksi, maupun perburuan ilegal. Jika koordinat pengamatan hanya disembunyikan secara otomatis dengan tujuan untuk melindungi spesies, iNaturalist membagikan koordinat sebenarnya untuk semua pengamatan dari negara yang terkait dengan Anggota Jaringan.
+  sites_affiliation_more_email_addresses: |
+    Alamat surel dibagikan kepada Anggota Jaringan hanya untuk tujuan komunikasi yang berkaitan dengan situs.
+  sites_affiliation_more_twice_per_year: |
+    iNaturalist membagikan alamat surel akun-akun yang terafiliasi dan koordinat yang disembunyikan (seperti koordinat yang dikaburkan untuk publik atau koordinat pribadi) tiap dua tahun sekali dengan Anggota Jaringan iNaturalist untuk mendukung penggunaan data iNaturalist untuk penelitian, konservasi, dan manajemen di negara yang terkait. Dua cara koordinat dapat disembunyikan dibagikan dengan cara yang berbeda, yang akan dijelaskan di bawah ini.
+  sites_affiliation_more_user_hidden_coordinates: |
+    Koordinat yang disembunyikan oleh pengguna (dikaburkan atau dibuat hanya untuk pribadi akibat pengaturan "geoprivasi")
+  sites_affiliation_more_user_hidden_coordinates_desc: |
+    Pengamatan dengan koordinat yang disembunyikan dikarenakan pilihan pengguna akan dibagikan dengan cara yang lebih terbatas dan spesifik. Dengan berafiliasi dengan situs Jaringan tertentu, iNaturalist akan membagikan dengan pengelola situs koordinat yang tepat daripada pengamatan dengan geoprivasi yang sudah kamu atur untuk dikaburkan atau dibuat hanya untuk pribadi, selain pengamatan-pengamatan lainnya yang dikaburkan untuk publik atau dibuat hanya untuk pribadi akibat geoprivasi takson. Hal ini memungkinkan pengamatanmu menjadi semakin berguna dalam mendukung upaya konservasi lokal.
+  sites_affiliation_overview_current_member_list_html: |
+    Anda dapat melihat daftar anggota yang terkini untuk %{start_tag_network}Jaringan iNaturalist%{end_tag_network}.
+  sites_affiliation_overview_in_order_to_advance: |
+    Untuk mendorong riset dan konservasi di negara-negara yang terkait, Anggota Jaringan dapat membagikan data dari iNaturalist. Mereka memiliki tanggung jawab untuk menilai keabsahan dan kecocokan permohonan data beserta hasil yang bisa didapatkan; menyatakan dengan menulis tanggung jawab untuk memastikan keamanan data tersebut dan tidak mengungkapkannya dengan cara apapun, maupun membagikannya atau menggunakannya di luar tujuan yang dimaksud; mendokumentasikan semua hal yang berkaitan dengan pembagian beserta hasil dan penggunaan yang dimaksud; dan melapor tiap tahunnya kepada iNaturalist.
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    %{start_tag_network}Jaringan iNaturalist%{end_tag_network} adalah kumpulan situs web terlokalisasi yang terhubung sepenuhnya dengan %{start_tag_global}komunitas iNaturalist secara global%{end_tag_global}.
+  sites_affiliation_overview_when_you_affiliate: |
+    Ketika Anda berafiliasi dengan Anggota Jaringan iNaturalist, alamat surel Anda dan lokasi Anda yang sebenarnya, yaitu lokasi yang dikaburkan serta lokasi yang disimpan secara pribadi, dibagikan dengan Anggota Jaringan. Hal ini memungkinkan pengamatan Anda menjadi semakin berguna dalam mendukung upaya konservasi lokal. Jika Anda tinggal di atau sering mengunjungi daerah yang merupakan anggota Jaringan, Anda didorong untuk memilihnya sebagai afiliasi Anda untuk memfasilitasi pembagian data.
+  sites_affiliation_overview_you_can_continue_html: |
+    Anda bisa melanjutkan dengan masuk melalui iNaturalist.org atau melalui situs jaringanmu. Semua data Anda akan disimpan di tempat yang sama dan Anda dapat terus berinteraksi dengan komunitas iNaturalist internasional yang lebih luas, tidak peduli apa afiliasi Anda. Setiap akun iNaturalist hanya dapat diafiliasikan dengan satu Anggota Jaringan. Anda dapat mempertimbangkan kembali atau mengganti afiliasi Anda di %{start_tag_settings}pengaturan akun%{end_tag_settings}.
+  sites_affiliation_title: Pelajari Lebih Lanjut Tentang Afiliasi Jaringan
+  sites_network_cas_and_nat_geo_html: |
+    %{start_tag_cas}California Academy of Sciences%{end_tag_cas} dan %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} memiliki perjanjian formal dengan organisasi pada tiap-tiap negara untuk mendukung penggunaan platform iNaturalist. <strong>Jika organisasi Anda tertarik untuk bergabung dengan Jaringan iNaturalist, Anda dapat menemukan detail lainnya di %{start_tag_join}sini%{end_tag_join}.</strong>
+  sites_network_consists_of: "Jaringan iNaturalist terdiri dari beberapa organisasi:"
+  sites_network_inaturalist_network_collection: |
+    Jaringan iNaturalist adalah kumpulan situs web terlokalisasi yang terhubung sepenuhnya dengan komunitas iNaturalist secara global. Jaringan situs didukung oleh institusi-institusi lokal yang mempromosikan penggunaan lokal dan memfasilitasi penggunaan data dari iNaturalist untuk kebaikan keanekaragaman hayati lokal. Mereka memiliki akses ke koordinat yang tepat dari negara masing-masing yang terkaburkan secara otomatis dari publik untuk melindungi spesies yang terancam punah dengan baik.
+  sites_network_your_username: |
+    Nama pengguna dan kata sandi Anda dapat digunakan ke dalam seluruh situs yang merupakan bagian dari iNaturalist Network. Jika Anda memilih untuk mengafiliasikan diri dengan situs Network tertentu, institusi lokal yang mendukung situs terkait juga akan memiliki akses ke surel Anda (hanya untuk berkomunikasi dengan Anda mengenai aktivitas di situs) dan mengakses koordinat yang tepat untuk pengamatan yang Anda pilih untuk dikaburkan atau diperuntukkan secara pribadi.
   some_agree: beberapa setuju
   some_observations_are_missing_media_or_identifications: |
     Beberapa pengamatan tidak memiliki media atau identifikasi
