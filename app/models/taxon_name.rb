@@ -10,13 +10,15 @@ class TaxonName < ApplicationRecord
   validates_presence_of :taxon
   validates_length_of :name, :within => 1..256, :allow_blank => false
   validates_uniqueness_of :name, scope: %i[parameterized_lexicon taxon_id], message: :already_exists, case_sensitive: false
+  validates :lexicon, presence: true
+  validate :no_forbidden_lexicons
   validates_format_of :lexicon, with: /\A[^\/,]+\z/, message: :should_not_contain_commas_or_slashes, allow_blank: true
   validate :species_common_name_cannot_match_taxon_name
   validate :valid_scientific_name_must_match_taxon_name
   validate :english_lexicon_if_exists, if: Proc.new { |tn| tn.lexicon && tn.lexicon_changed? }
   validate :parameterized_lexicon_present, if: Proc.new { |tn| tn.lexicon.present? }
   NAME_FORMAT = /\A([A-z]|\s|\-|×)+\z/
-  validates :name, format: { with: NAME_FORMAT, message: :bad_format }, on: :create, if: Proc.new {|tn| tn.lexicon == SCIENTIFIC_NAMES}
+  validates :name, format: { with: NAME_FORMAT, message: :bad_format }, if: Proc.new {|tn| tn.lexicon == SCIENTIFIC_NAMES}
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
   # before_validation do |tn|
   #   tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
@@ -37,6 +39,7 @@ class TaxonName < ApplicationRecord
     :SCIENTIFIC_NAMES    =>  'Scientific Names',
     :AFRIKAANS           =>  'Afrikaans',
     :ALBANIAN            =>  'Albanian',
+    :ARABIC              =>  "Arabic",
     :BELARUSIAN          =>  "Belarusian",
     :BENGALI             =>  "Bengali",
     :CATALAN             =>  'Catalan',
@@ -103,6 +106,8 @@ class TaxonName < ApplicationRecord
     EOT
     const_set k.to_s.upcase, v
   end
+
+  FORBIDDEN_LEXICONS = %w(unknown lexicon other)
 
   LOCALES = {
     "afrikaans"             => "af",
@@ -348,6 +353,15 @@ class TaxonName < ApplicationRecord
   def valid_scientific_name_must_match_taxon_name
     if is_valid? && is_scientific_names? && taxon && name != taxon.name
       errors.add(:name, :must_match_the_taxon_if_valid)
+    end
+  end
+
+  def no_forbidden_lexicons
+    if lexicon =~ /(#{FORBIDDEN_LEXICONS.join( "|" )})/i
+      errors.add(
+        :lexicon,
+        I18n.t( "lexicon_cannot_contain_words", words: FORBIDDEN_LEXICONS.join( ", " ) )
+      )
     end
   end
 

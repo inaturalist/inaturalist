@@ -81,7 +81,7 @@ describe TaxonName, 'creation' do
   end
   
   it "should strip html" do
-    tn = TaxonName.make!(:name => "Foo <i>")
+    tn = create :taxon_name, name: "Foo <i>"
     expect(tn.name).to eq 'Foo'
   end
 
@@ -112,10 +112,23 @@ describe TaxonName, 'creation' do
       I18n.t("activerecord.errors.models.taxon_name.attributes.lexicon.should_be_in_english")
     )
   end
-  
-  it "should not validate presence of a parameterizable lexicon if lexicon not present" do
-    tn = TaxonName.make(lexicon: nil, name: "common")
-    expect(tn).to be_valid
+
+  it "should not allow the lexicon to be nil" do
+    expect( TaxonName.make( lexicon: nil ) ).not_to be_valid
+  end
+
+  it "should not allow the lexicon to be an empty string" do
+    expect( TaxonName.make( lexicon: "" ) ).not_to be_valid
+  end
+
+  it "should not allow the lexicon to be 'unknown'" do
+    expect( TaxonName.make( lexicon: "unknown" ) ).not_to be_valid
+    expect( TaxonName.make( lexicon: "Unknown" ) ).not_to be_valid
+  end
+
+  it "should not allow the lexicon to contain 'lexicon'" do
+    expect( TaxonName.make( lexicon: "lexicon" ) ).not_to be_valid
+    expect( TaxonName.make( lexicon: "Lexicon 1" ) ).not_to be_valid
   end
 
   it "should set is_valid to true for common names by default" do
@@ -129,13 +142,13 @@ describe TaxonName, 'creation' do
   end
     
   it "should create new name positions that will place them at the end of lists" do
-    t = Taxon.make!
-    tn1 = TaxonName.make!(name: "first", taxon: t)
-    expect(tn1.position).to eq 1
-    tn2 = TaxonName.make!(name: "second", taxon: t)
-    expect(tn2.position).to eq 2
-    tn3 = TaxonName.make!(name: "third", taxon: t)
-    expect(tn3.position).to eq 3
+    t = create :taxon
+    tn1 = create :taxon_name, name: "first", taxon: t
+    expect( tn1.position ).to eq 1
+    tn2 = create :taxon_name, name: "second", taxon: t
+    expect( tn2.position ).to eq 2
+    tn3 = create :taxon_name, name: "third", taxon: t
+    expect( tn3.position ).to eq 3
   end
 
   it "should not allow species names that match the taxon name that are non-scientific" do

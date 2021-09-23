@@ -1,0 +1,195 @@
+require "rubygems"
+require "optimist"
+
+@opts = Optimist::options do
+    banner <<-EOS
+Clean up lexicons, try to remove synonyms, apply Place Taxon Names to regional
+lexicons.
+
+Usage:
+
+  rails runner tools/clean_taxon_names.rb
+
+where [options] are:
+EOS
+  opt :debug, "Print debug statements", type: :boolean, short: "-d"
+  opt :dry, "Dry run, don't make changes, just report", type: :boolean
+end
+
+start = Time.now
+deleted = []
+updated = []
+created_ptns = []
+invalid_ptns = []
+
+puts
+puts "== REGIONALIZING LEXICONS =="
+puts
+puts <<-EOT
+Sometimes people add separate lexicons for a language in a region that should
+be handled with PlaceTaxonNames instead, so this will try and convert those
+and delete names that are no longer valid after being updated
+(generally because a correct version of the name already exists)
+EOT
+language_place_lexicons = [
+  { wrong_lexicon: "Australian", right_lexicon: TaxonName::ENGLISH, country_name: "Australia" },
+  { wrong_lexicon: "Egyptian Arabic", right_lexicon: TaxonName::ARABIC, country_name: "Egypt" },
+  { wrong_lexicon: "Español (Argentina)", right_lexicon: TaxonName::SPANISH, country_name: "Argentina" },
+  { wrong_lexicon: "Español (Chile)", right_lexicon: TaxonName::SPANISH, country_name: "Chile" },
+  { wrong_lexicon: "Español (Costa Rica)", right_lexicon: TaxonName::SPANISH, country_name: "Costa Rica" },
+  { wrong_lexicon: "Español (Ecuador)", right_lexicon: TaxonName::SPANISH, country_name: "Ecuador" },
+  { wrong_lexicon: "Español Chileno", right_lexicon: TaxonName::SPANISH, country_name: "Chile" },
+  { wrong_lexicon: "Español Perú", right_lexicon: TaxonName::SPANISH, country_name: "Peru" },
+  { wrong_lexicon: "Moroccan Arabic", right_lexicon: TaxonName::ARABIC, country_name: "Morocco" },
+  { wrong_lexicon: "Português (Brasil)", right_lexicon: TaxonName::PORTUGUESE, country_name: "Brazil" },
+  { wrong_lexicon: "Spanish (Chile)", right_lexicon: TaxonName::SPANISH, country_name: "Chile" }
+]
+language_place_lexicons.each do |x|
+  puts "Changing #{x[:wrong_lexicon]} to #{x[:right_lexicon]} and assigning to #{x[:country_name]}"
+  unless country = Place.where( name: x[:country_name], admin_level: Place::COUNTRY_LEVEL ).first
+    puts "Couldn't find country, skipping"
+    next
+  end
+  TaxonName.where( lexicon: x[:wrong_lexicon] ).find_each do |tn|
+    print "."
+    tn.lexicon = x[:right_lexicon]
+    if tn.valid?
+      tn.save unless @opts.dry
+      updated << tn
+      ptn = tn.place_taxon_names.build( place: country )
+      if ptn.valid?
+        ptn.save unless @opts.dry
+        created_ptns << ptn
+      else
+        puts "Failed to save #{ptn}, errors: #{ptn.errors.full_messages.to_sentence}" if @opts.debug
+        invalid_ptns << ptn
+      end
+    else
+      puts "Failed to save #{tn}, errors: #{tn.errors.full_messages.to_sentence}" if @opts.debug
+      tn.destroy unless @opts.dry
+      deleted << tn
+    end
+  end
+  puts
+end
+
+puts
+puts "== SYNONYMIZING LEXICONS =="
+puts
+puts <<-EOT
+We get A LOT of lexicons that are variations of existing lexicons, so this
+tries to make some of the more common ones conform to conventional versions.
+EOT
+synonyms = {
+  "Bunun" => ["Bunun (Taiwan)"], # this is regional but doesn't really need to be since this is only spoken in Taiwan
+  TaxonName::BELARUSIAN => ["Беларуская"],
+  TaxonName::CATALAN => ["Català"],
+  # Not sure we should do this, but there are rather a lot of "Mandarin Chinese"
+  # names that are not being shown to anyone with a Chinese locale preference
+  # TaxonName::CHINESE_SIMPLIFIED => ["Mandarin Chinese"],
+  TaxonName::CHINESE_TRADITIONAL => ["Chinese Traditional"],
+  "Choctaw" => ["Chochtaw"],
+  "Cree" => ["American Indian (Cree)"],
+  TaxonName::CREOLE_PORTUGUESE => ["Creole (Portuguese)"],
+  TaxonName::ENGLISH => ["Simple English"],
+  TaxonName::FRENCH => ["Français"],
+  TaxonName::GERMAN => ["Deutsch"],
+  "Greek" => ["Greek (Modern)", "Modern Greek (1453 )"],
+  "Gujarati" => ["Gujarātī. ગુજરાતી,", "ગુજરાતી"],
+  TaxonName::ITALIAN => ["Italiano"],
+  "Indonesian" => ["Bahasa Indonesia"],
+  "Irish" => ["Irish Gaelic"],
+  TaxonName::JAPANESE => ["Japanese (Kanji)"],
+  "Malay" => ["Malay (Individual Language)", "Malayan"],
+  "Nahuatl" => ["Náhuatl"],
+  TaxonName::NORWEGIAN => ["Norwegian Bokmal", "Norsk"],
+  TaxonName::PORTUGUESE => ["Português"],
+  TaxonName::RUSSIAN => ["Русски", "Русский"],
+  TaxonName::SCIENTIFIC_NAMES => [
+    "Nombres Científicos",
+    "Nomi Scientifici",
+    "Noms Scientifiques",
+    "Nomes Científicos",
+    "學名",
+    "学名",
+    "Научные названия",
+    "Tieteelliset Nimet",
+    "Videnskabelige Navne",
+    "Wetenschappelijke Namen"
+  ],
+  TaxonName::SLOVAK => ["Slovakian"],
+  TaxonName::SLOVENIAN => ["Slovene"],
+  "Sotho (Northern)" => ["Northern Sotho", "Sotho ( Northern)"],
+  TaxonName::SPANISH => ["Español"],
+  "Swahili" => ["Swahili (Individual Language)"],
+  "Uyghur" => ["Uyghurche / ئۇيغۇرچە", "Uyghurche", "ئۇيغۇرچە"],
+  TaxonName::WARAY_WARAY => ["Waray", "Waray (Philippines)"],
+  "Yaqui" => ["yaqui"]
+}
+
+synonyms.each do |lexicon,synonyms|
+  puts "Synonymizing lexicons for #{lexicon}: #{synonyms.join( ", " )}"
+  TaxonName.where( lexicon: synonyms ).find_each do |tn|
+    print "."
+    tn.lexicon = lexicon
+    if tn.valid?
+      tn.save unless @opts.dry
+      updated << tn
+    else
+      puts "Failed to save #{tn}, errors: #{tn.errors.full_messages.to_sentence}" if @opts.debug
+      tn.destroy unless @opts.dry
+      deleted << tn
+    end
+  end
+  puts
+end
+
+puts
+puts "== PROBLEM LEXICONS =="
+puts
+puts <<-EOT
+Just a place to put lexicons that seem less than great but it's not clear what
+to do about them.
+EOT
+problem_lexicons = [
+  { lexicon: nil, comment: "We used to allow blank lexicons, not sure what to do with these now" },
+  { lexicon: "", comment: "We used to allow blank lexicons, not sure what to do with these now" },
+  { lexicon: "Other", comment: "We banned this, but not sure what to do with existing ones" },
+  { lexicon: "Chinese", comment: "Which version of Chinese does this mean?" },
+  {
+    lexicon: "Informal Latinized Name (Vernacular Concept Only)",
+    comment: "Might be names added just so things have a common name. Most seem English-y, so... delete?"
+  },
+  {
+    lexicon: "Latin",
+    comment: "This is mostly used to mistakenly add scientific names, but there are a few legit Latin names",
+  },
+  {
+    lexicon: "Manx English Dialect",
+    comment: "This might just be English that should have a PlaceTaxonName set to the Isle of Man, as opposed to Manx which seems like a variant of Gaelic endemic to the Isle of Man"
+  },
+  {
+    lexicon: "Scots",
+    comment: "Seems like a mix of regional English names and Scots Gaelic names"
+  },
+  { lexicon: "Unknown", comment: "We banned this, but not sure what to do with existing ones" },
+  { lexicon: "New Zealand", comment: "Not clear if these are English or Maori" },
+  { lexicon: "Lexicon", comment: "We banned this, but not sure what to do with existing ones" },
+  { lexicon: "Lexicon 1", comment: "We banned this, but not sure what to do with existing ones" },
+  { lexicon: "Brazil", comment: "Probably Portuguese, but can we be sure?" }
+]
+problem_lexicons.each do |l|
+  puts l[:lexicon].inspect
+  puts "\t#{l[:comment]}"
+  puts "\t#{TaxonName.where( lexicon: l[:lexicon] ).count} names"
+end
+
+puts
+puts "== REPORT =="
+puts
+puts "#{updated.size} names updated"
+puts "#{deleted.size} names deleted"
+puts "#{created_ptns.size} place taxon names created"
+puts "#{invalid_ptns.size} place taxon names not created"
+puts "#{Time.now - start} s elapsed"
+puts
