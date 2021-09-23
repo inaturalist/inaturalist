@@ -128,6 +128,7 @@ lb:
   about_places: Iwwer Plazen
   about_taxon_ranges: Iwwer Taxon-Verbreedungsgebiett
   about_the_cc_licenses: Iwwer Creative Commons Lizenzen
+  about_the_network: Iwwert d'Netzwierk
   about_these_licenses: Iwwer dës Lizenzen
   about_this_bioblitz: Iwwer dëse Bioblitz
   about_this_map: Iwwer dës Kaart
@@ -259,6 +260,8 @@ lb:
   admin_s: Administrateur(en)
   admin_only: Just fir Administrateuren
   admin_tools: Geschier fir Administrateuren
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Organisatiounen déi Member vum Netzwierk sinn
   agree_: Akzeptéieren
   agree?: Zoustëmmen?
   agree_with_current_taxon: Si mam aktuellen Taxon d'accord
@@ -816,6 +819,7 @@ lb:
   exact: Genee
   exact_date: Geneeën Datum
   exact_rank: Genaue Rang
+  examples_of_data_use_by_network_members: Beispiller vum Benotze vun den Donnéeën duerch Netzwierk Memberen
   explore: Entdecken
   export: Exportéieren
   export_observations: Observatiounen exportéieren
@@ -953,6 +957,7 @@ lb:
   import_photos: Fotoen importéieren
   improving: Verbesseren
   in_n: "a(n) %{n}"
+  inaturalist_network: iNaturalist Netzwierk
   include_projects: Projet aschléissen
   include_suggestions_not_seen_nearby: Suggestiounen abegräifen déi net an der Géigend gesi gi sinn
   include_taxa: Taxa aschléissen
@@ -1235,6 +1240,7 @@ lb:
   month: Mount
   months: Méint
   more: Méi
+  more_about_sharing: Méi iwwert Deele vun Donnéeën
   more_fields: Méi Felder
   more_filters: Méi Filteren
   more_from_x: Méi iwwer %{x}
@@ -1280,6 +1286,8 @@ lb:
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, ass Deel vum internationalen iNaturalist Netzwierk, a fokusséiert sech ob d'Notzer zu %{place}. Wëllt Dir Äer Konto-Zougehéieregkeet änneren vun <strong>%{inat_site_name}</strong> ob <strong>%{site_name}</strong> an Är Donnéeën esou mat de Lokalen Institutiounen deelen?
+  #Column header in a table listing iNaturalist Network members
+  network_member: Netzwierk Memberen
   new: Nei
   new_and_noteworthy: Nei & Bemierkenswäert
   new_announcement: Nei Ukënnegung
@@ -1941,6 +1949,14 @@ lb:
   site_admin_tools: Säiten Administratortoolen
   site_staff: "%{site_name} Personal"
   site_stats: Satistiken vum Site
+  sites_affiliation_about_desc_html: |
+    Wann Är Organisatioun interesséiert ass sech dem iNaturalist Netzwierk unzeschléissen, kënnt Dir %{start_tag_join}hei%{end_tag_join} méi Detailer fannen.
+  sites_affiliation_examples_portugal_atlas_html: |
+    Dem Portugal säin iNaturalist Netzwierk Member %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} deelt Donnéeë mam portugiseschen Atlas vun den Zuchvullen, dem Atlas vu Mamendéieren, a verschidden aner portugisesch Fuerschungsprojeten
+  sites_affiliation_title: Méi iwwert d'iNaturalist Netzwierk Memberschaft gewuer ginn
+  sites_network_consists_of: "D'iNaturalist Netzwierk besteet aus verschiddene Organisatiounen:"
+  sites_network_your_username: |
+    Wann Dir Iech dem Portal vun engem lokalen iNaturalist Partner affiliéiert (z.B. iNaturalist.LU), hunn déi lokal Institutiounen déi dëst Portal ënnerstëtzen Zougang zu Ärer E-Mail Adress (nëmme fir mat Iech iwwer Sujete bezüglech dem Portal ze korrespondéieren) an Zougang zu de genaue Koordinate vun Observatiounen déi Dir ob verstoppt oder privat gesat hutt.
   some_observations_failed_to_save: Verschidden Observatioune konnten net gespäichert ginn
   sorry_we_didnt_find_that_photo: "Pardon, mir hunn déi Foto net fonnt."
   sort: Zortéieren
