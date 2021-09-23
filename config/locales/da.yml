@@ -898,6 +898,7 @@ da:
   committed_by_user_on_date_html: Effektueret af %{user} d. %{date}
   #Label for date the taxon change was committed
   committed_on: Udført den %{date}
+  committed_taxon_changes_cannot_be_deleted: Kommittede taksonændringer kan ikke slettes
   #Status message while a taxon change is being committed
   committing: Engagerer
   common_name: Almindeligt navn
@@ -1865,6 +1866,19 @@ da:
   header_your_projects: Dine Projekter
   header_your_profile: Din Profil
   heads_up: OBS
+  heads_up_automatable_draft_split_notice_html: |
+    <strong>Bemærk:</strong> Når denne ændring foretages, gentildeles identifikationer til output-taksa baseret på deres atlas. Mangler nogle eller alle
+    output atlas, eller overlapper atlas hinanden for en given post,
+    bliver identifikationer erstattet med identifikationer af den nærmeste fælles
+    stamfadertakson (%{taxon})
+  heads_up_non_automatable_draft_split_notice_html: |
+    <strong>Bemærk:</strong> Denne taksonsplitning har output-taksa, som enten 
+    ikke har atlas eller ikke deler en fælles forfader, så optegnelserne
+    forbundet med dens input-taksa kan ikke automatisk tildeles output-taksa, når denne opdeling er effektueret, og fællesskabet vil skulle tilføje nye
+    ID'er til disse optegnelser.
+  heads_up_automatable_split_notice_html: |
+    <strong>Bemærk:</strong> Nogle eller alle identifikationerne berørt af
+    denne opdeling kan være blevet erstattet med identifikationer af %{taxon}. Dette sker, når vi ikke automatisk kan tildele én af output-taksa en identifikation.
   heads_up_this_photo_has_been_flagged: "BEMÆRK: dette foto er blevet markeret."
   heads_up_this_photo_is_already_associated_with: "BEMÆRK: Dette billede er allerede forbundet med <a target='_blank' href='%{url}'> en anden observation</a>"
   heads_up_you_have_multiple: "Bemærk: Du har flere taksonomiske maskintags for identiske rangeringer. De er farvekodet nedenfor efter rang."
