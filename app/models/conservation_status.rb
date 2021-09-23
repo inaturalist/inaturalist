@@ -125,7 +125,7 @@ class ConservationStatus < ApplicationRecord
   def update_observation_geoprivacies
     return true if skip_update_observation_geoprivacies
     # Don't reassess obs for newly created or destroyed non-obscuring global statuses
-    return true if ( saved_change_to_id? || destroyed? ) && geoprivacy == Observation::OPEN && place_id.nil?
+    return true if ( saved_change_to_id? || destroyed? ) && ( geoprivacy.nil? || geoprivacy == Observation::OPEN ) && place_id.nil?
     Observation.delay(priority: USER_INTEGRITY_PRIORITY,
       queue: "throttled",
       unique_hash: {

@@ -71,8 +71,19 @@ describe ConservationStatus do
       species = Taxon.make!( rank: Taxon::SPECIES )
       Delayed::Job.delete_all
       stamp = Time.now
-      cs = ConservationStatus.make!( taxon: species, geoprivacy: "Open" )
+      cs = ConservationStatus.make!( taxon: species, geoprivacy: Observation::OPEN )
       expect( cs.geoprivacy ).to eq Observation::OPEN
+      expect( cs.place_id ).to be_nil
+      jobs = Delayed::Job.where( "created_at >= ?", stamp )
+      expect( jobs.select{ |j| j.handler =~ /reassess_coordinates_for_observations_of/m } ).to be_blank
+    end
+
+    it "should not reassess observations of taxon if geoprivacy nil and global" do
+      species = Taxon.make!( rank: Taxon::SPECIES )
+      Delayed::Job.delete_all
+      stamp = Time.now
+      cs = ConservationStatus.make!( taxon: species, geoprivacy: nil )
+      expect( cs.geoprivacy ).to be_blank
       expect( cs.place_id ).to be_nil
       jobs = Delayed::Job.where( "created_at >= ?", stamp )
       expect( jobs.select{ |j| j.handler =~ /reassess_coordinates_for_observations_of/m } ).to be_blank
@@ -133,6 +144,18 @@ describe ConservationStatus do
       species = Taxon.make!( rank: Taxon::SPECIES )
       cs = without_delay { ConservationStatus.make!( taxon: species, geoprivacy: "Open" ) }
       expect( cs.geoprivacy ).to eq Observation::OPEN
+      expect( cs.place_id ).to be_nil
+      Delayed::Job.delete_all
+      stamp = Time.now
+      cs.destroy
+      jobs = Delayed::Job.where( "created_at >= ?", stamp )
+      expect( jobs.select{ |j| j.handler =~ /reassess_coordinates_for_observations_of/m } ).to be_blank
+    end
+
+    it "should not reassess observations of taxon if geoprivacy nil and global" do
+      species = Taxon.make!( rank: Taxon::SPECIES )
+      cs = without_delay { ConservationStatus.make!( taxon: species, geoprivacy: nil ) }
+      expect( cs.geoprivacy ).to be_blank
       expect( cs.place_id ).to be_nil
       Delayed::Job.delete_all
       stamp = Time.now
