@@ -1408,7 +1408,7 @@ el:
   edit_photos: Επεξεργασία φωτογραφιών
   edit_photos_for_observation_id: "Επεξεργασία φωτογραφιών για την παρατήρηση %{obs_id}"
   edit_place: Επεξεργασία Τόπου
-  edit_project: Επεξεργασία Πρότζεκτ
+  edit_project: Επεξεργασία
   edit_remove: Επεξεργασία/Αφαίρεση
   edit_selected: Επεξεργασία επιλεγμένων
   edit_source: Επεξεργασία κώδικα
@@ -3365,7 +3365,7 @@ el:
   project_group_description: Το πρότζεκτ ανήκει στον χρήστη
   project_home: Αρχική του εγχειρήματος
   project_icon: Εικονίδιο πρότζεκτ
-  project_journal: Ημερολόγιο του Πρότζεκτ
+  project_journal: Ημερολόγιο Πρότζεκτ
   project_id_or_url_slug: Ταυτότητα πρότζεκτ ή αργκό URL, π.χ. 333 ή my-project
   project_list: Λίστα πρότζεκτ
   project_list_defaults:
@@ -6497,7 +6497,7 @@ el:
         one: "1 δευτερόλεπτο"
         other: '%{count} δευτερόλεπτα'
     countdown_x_days:
-      one: ημέρα)
+      one: ημέρα
       other: ημέρες)
     countdown_x_hours:
       one: ώρα
@@ -6513,7 +6513,7 @@ el:
       hour: Ώρα
       minute: Λεπτό
       month: Μήνας
-      second: δευτερόλεπτα
+      second: δεύτερα
       year: Έτος
   errors:
     format: '%{attribute} %{message}'
