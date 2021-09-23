@@ -112,11 +112,8 @@ class Taxon < ApplicationRecord
   validates_uniqueness_of :name, scope: %i[ancestry is_active rank],
                           if: -> { complex? },  # ... but do not allow duplicate sibling complex name
                           message: "already used as a child complex of this taxon's parent"
-  # validates_uniqueness_of :source_identifier,
-  #                         :scope => [:source_id],
-  #                         :message => "already exists",
-  #                         :allow_blank => true
-  validates :name, format: { with: TaxonName::NAME_FORMAT, message: :bad_format }, on: :create
+  validates :name,
+    format: { with: TaxonName::SCIENTIFIC_NAME_FORMAT, message: :bad_format }
   validate :taxon_cant_be_its_own_ancestor
   validate :can_only_be_featured_if_photos
   validate :validate_locked

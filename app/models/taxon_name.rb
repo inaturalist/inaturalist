@@ -15,12 +15,10 @@ class TaxonName < ApplicationRecord
   validate :valid_scientific_name_must_match_taxon_name
   validate :english_lexicon_if_exists, if: Proc.new { |tn| tn.lexicon && tn.lexicon_changed? }
   validate :parameterized_lexicon_present, if: Proc.new { |tn| tn.lexicon.present? }
-  NAME_FORMAT = /\A([A-z]|\s|\-|×)+\z/
-  validates :name, format: { with: NAME_FORMAT, message: :bad_format }, on: :create, if: Proc.new {|tn| tn.lexicon == SCIENTIFIC_NAMES}
+  SCIENTIFIC_NAME_FORMAT = /\A([A-z]|\s|\-|×)+\z/
+  validates :name, format: { with: SCIENTIFIC_NAME_FORMAT, message: :bad_format },
+    if: Proc.new {|tn| tn.lexicon == SCIENTIFIC_NAMES}
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
-  # before_validation do |tn|
-  #   tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
-  # end
   before_validation :capitalize_scientific_name
   before_validation :parameterize_lexicon
   before_create {|name| name.position = name.taxon.taxon_names.size}
