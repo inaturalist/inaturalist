@@ -29,7 +29,12 @@ class TaxonName < ApplicationRecord
   before_save :set_is_valid
   after_create {|name| name.taxon.set_scientific_taxon_name}
   after_save :update_unique_names
-  after_destroy {|name| name.taxon.delay(:priority => OPTIONAL_PRIORITY).update_unique_name if name.taxon}
+  after_destroy {|name|
+    name.taxon.delay(
+      priority: OPTIONAL_PRIORITY,
+      unique_hash: { "Taxon::update_unique_name": name.taxon_id }
+    ).update_unique_name if name.taxon
+  }
   after_save :index_taxon
   after_destroy :index_taxon
 

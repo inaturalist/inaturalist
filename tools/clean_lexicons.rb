@@ -21,6 +21,7 @@ deleted = []
 updated = []
 created_ptns = []
 invalid_ptns = []
+taxon_ids_to_index = []
 
 puts
 puts "== REGIONALIZING LEXICONS =="
@@ -50,9 +51,11 @@ language_place_lexicons.each do |x|
     puts "Couldn't find country, skipping"
     next
   end
-  TaxonName.where( lexicon: x[:wrong_lexicon] ).find_each do |tn|
+  TaxonName.where( lexicon: x[:wrong_lexicon] ).includes( :taxon ).find_each do |tn|
     print "."
     tn.lexicon = x[:right_lexicon]
+    tn.taxon.skip_indexing
+    taxon_ids_to_index << tn.taxon_id
     if tn.valid?
       tn.save unless @opts.dry
       updated << tn
@@ -129,9 +132,11 @@ synonyms = {
 
 synonyms.each do |lexicon,synonyms|
   puts "#{lexicon} synonyms: #{synonyms.join( ", " )}"
-  TaxonName.where( lexicon: synonyms ).find_each do |tn|
+  TaxonName.where( lexicon: synonyms ).includes( :taxon ).find_each do |tn|
     print "."
     tn.lexicon = lexicon
+    tn.taxon.skip_indexing = true
+    taxon_ids_to_index << tn.taxon_id
     if tn.valid?
       tn.save unless @opts.dry
       updated << tn
@@ -183,6 +188,13 @@ problem_lexicons.each do |l|
   puts "\t#{l[:comment]}"
   puts "\t#{TaxonName.where( lexicon: l[:lexicon] ).count} names"
 end
+
+taxon_ids_to_index.uniq!
+puts
+puts "== REINDEXING #{taxon_ids_to_index.size} TAXA =="
+puts
+Taxon.elastic_index!( ids: taxon_ids_to_index ) unless @opts.dry
+
 
 puts
 puts "== REPORT =="
