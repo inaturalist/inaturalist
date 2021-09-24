@@ -179,6 +179,7 @@ da:
   about_taxon_ranges_desc: |
     Taksonudbredelse formidler den globale udbredelse/fordeling af en takson baseret på data typisk indhentet fra IUCNs rødliste.
   about_the_cc_licenses: Om Creative Commons licenser
+  about_the_network: Om Netværket
   about_these_licenses: Om disse licenser
   about_this_bioblitz: Om denne bioblitz
   about_this_map: Om dette kort
@@ -381,6 +382,8 @@ da:
   admin_s: Administrator(er)
   admin_only: Kun admin.
   admin_tools: Administrator værktøjer
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Tilknyttede organisationer
   agree_: Enig
   agree?: Enig?
   agree_with_current_taxon: Enig i den aktuelle takson
@@ -1610,6 +1613,7 @@ da:
   exclusion_filters: Eksklusionsfiltre
   existing_flags: Eksisterende markeringer
   exit_full_screen: "Afslut fuld skærm"
+  examples_of_data_use_by_network_members: Eksempler på Dataanvendelse af netværksmedlemmer
   examples_of_ranking_organizations: Eksempler på naturbeskyttelsesorganisationer
   explore: Udforsk
   export: Eksportér
@@ -1827,6 +1831,8 @@ da:
   going_to_your_observations: Går til dine observationer ...
   good_choice_for_sharing: Godt valg til deling med forskere
   google: Google
+  google_maps_not_loaded_error: |
+    Google Maps blev ikke initialiseret. Adgangen til Google Maps er muligvis blokeret med en browserudvidelse eller firewall, eller noget andet, f.eks. en ISP, blokerer adgangen.
   got_it!: Forstået!
   got_your_data_somewhere_else?: Har du dine data et andet sted? Vi kan hjælpe.
   graft: Pode
@@ -1879,6 +1885,17 @@ da:
   heads_up_automatable_split_notice_html: |
     <strong>Bemærk:</strong> Nogle eller alle identifikationerne berørt af
     denne opdeling kan være blevet erstattet med identifikationer af %{taxon}. Dette sker, når vi ikke automatisk kan tildele én af output-taksa en identifikation.
+  heads_up_observose_taxon_change_html: |
+    <strong>Bemærk:</strong> En eller flere input-taksa involveret i denne
+    ændring har flere end %{observose_taxon_threshold} downstream-observationer.
+    Kun admins eller kuratorer for denne takson-ramme kan foretage denne ændring.
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+    <strong>Bemærk:</strong> En eller flere input-taxa involveret i denne
+    ændringer er indenfor en <a href="%{framework_url}">takson-ramme</a>. Kun
+    admins eller kuratorer for denne takson-ramme kan foretage ændringer, som påvirker indbefattede taksa. Kontakt en af taksons kuratorer for at foretage denne ændring.
+  heads_up_there_are_other_draft_taxon_changes_html:
+    one: "<strong>Bemærk:</strong> Der er %{count} anden taksonændringsudkast med samme input-taksa:"
+    other: "<strong>Bemærk:</strong> Der er %{count} andre taksonændringsudkast med samme input-taksa:"
   heads_up_this_photo_has_been_flagged: "BEMÆRK: dette foto er blevet markeret."
   heads_up_this_photo_is_already_associated_with: "BEMÆRK: Dette billede er allerede forbundet med <a target='_blank' href='%{url}'> en anden observation</a>"
   heads_up_you_have_multiple: "Bemærk: Du har flere taksonomiske maskintags for identiske rangeringer. De er farvekodet nedenfor efter rang."
@@ -1979,6 +1996,7 @@ da:
   improving: Forbedring
   in_n: "i %{n}"
   in_place_x: i %{place}
+  inaturalist_network: iNaturalist Network
   inaturalist_network_affiliation: iNaturalist Network-tilknytning
   #Label for messages you've received
   inbox: Indbakke
@@ -2174,6 +2192,7 @@ da:
     russian: Russisk
     sinhala: Singalesisk
     slovak: Slovakisk
+    slovenian: Slovensk
     spanish: Spansk
     swedish: Svensk
     tagalog: Tagalog
@@ -2285,6 +2304,7 @@ da:
     pt-BR: Portugisisk (Brasilien)
     ru: Russisk
     sk: Slovakisk
+    sl: Slovensk
     sq: Albansk
     sv: Svensk
     th: Thailandsk
@@ -2493,6 +2513,7 @@ da:
     <a href="%{url}">Månedlig Supporter</a> sinden %{date}
   months: Måneder
   more: Mere
+  more_about_sharing: Mere om Deling
   more_fields: Flere felter
   more_filters: Flere filtre
   more_from_x: Flere af %{x}
@@ -2583,6 +2604,8 @@ da:
   network_affiliation_prompt_from_other_site_html: |
     Ønsker du at skifte din tilknytning fra <strong>%{other_site_name}</strong> til
     <strong>%{site_name}</strong>?
+  #Column header in a table listing iNaturalist Network members
+  network_member: Netværksmedlem
   new: Ny
   new_and_noteworthy: Nyt og bemærkelsesværdigt
   new_announcement: Ny meddelelse
@@ -3954,6 +3977,8 @@ da:
   restore: Gendan
   restoring: Gendanner...
   review_all: Gennemgå alle
+  review_identifications_of_taxon_html: |
+    Gennemgå identifikationer af <span class="sciname">%{taxon}</span> %{taxon_id}
   reviewed: Gennemgået
   revoke: Tilbagekald
   revoke_caps: TILBAGEKALD
@@ -4121,6 +4146,22 @@ da:
   site_staff: "%{site_name}Personale"
   site_stats: Side statistik
   site_taxon_page: "%{site_name} takson side"
+  sites_affiliation_about_desc_html: |
+    Er din organisation interesseret i at deltage i iNaturalist Network, kan yderligere information findes %{start_tag_join}hér%{end_tag_join}.
+  sites_affiliation_examples_canada_cdc_html: |
+    %{start_tag_inat_canada}iNaturalist Canada%{end_tag_inat_canada} muliggør indarbejdelse af data fra iNaturalist i sikre provinsniveausystemer, som håndteret af Conservation Data Centers (CDC'er). Disse systemer bruges, når vurderinger udføres (to gange årligt) til bestemmelse af risikostatus for arter, samt ved bestemmelse af det kritiske levested for truede arter. Som et resultat har det også været det muligt at lokalisere og afbøde hotspots for vejdødelighed for udsatte arter, afgrænse og til sidst beskytte vigtige biodiversitetsområder, samt genbekræfte tilstedeværelsen af arter, som ikke var blevet indrapporteret i årtier.
+  sites_affiliation_examples_ecuardor_bndb_html: |
+    %{start_tag_ecuador}iNaturalist Ecuador%{end_tag_ecuador} føder ind i
+    National Database of Biodiversity of Ecuador - BNDB - et stort depot
+    af data fra videnskabelige optegnelser samt borgervidenskab. Formålet er
+    at integrere den viden og data, som er med til at styrke
+    miljøforståelse af flora og fauna i Ecuador.
+  sites_affiliation_examples_mexico_nbis_html: |
+    Mexico's %{start_tag_naturalista}Naturalista%{end_tag_naturalista}
+    observationer føder ind i den nationale biodiversitet
+    Informationssystem (hos CONABIO, National Biodiversity Commision)
+    sammen med optegnelser fra eBird. Folk kan finde både videnskabelige og
+    borgervidenskab optegnelser i %{start_tag_enciclovida}Enciclovida%{end_tag_enciclovida}.
   some_agree: nogle er enige
   some_observations_are_missing_media_or_identifications: |
     Nogle observationer mangler medier eller identifikationer
@@ -4375,6 +4416,11 @@ da:
     Takson vurderinger er dokumenter, der vurderer den aktuelle status for en art, normalt bevaringsstatus.
     For eksempel kan en regional bevarelses organisation bruge dem til at organisere oplysninger og anmode om feedback på status for flere truede taksa i regionen.
   taxon_change_must_be_committed_to_update_records: Taksonændring skal udføres for at opdatere registreringer
+  taxon_change_title_taxon_drop: Taksonomisk fald %{id}
+  taxon_change_title_taxon_merge: Taksonomisk sammenfletning %{id}
+  taxon_change_title_taxon_split: Taksonomisk opdeling %{id}
+  taxon_change_title_taxon_stage: Taksonomisk forberedelse %{id}
+  taxon_change_title_taxon_swap: Taksonomisk ombytning %{id}
   taxon_deleted: Takson slettet
   taxon_doesnt_have_a_range: Takson har har ikke et område
   taxon_drop: takson drop
@@ -4504,6 +4550,8 @@ da:
     der er omfattende, den oplister f.eks. <em>alle</em> repræsentanterne for
     dens taxon et sted, vil Identotron vise en meddelelse.
   the_name_of_the_taxon_including_space: Taksonens navn, inklusiv pladsen til arter og infra arter.
+  the_name_of_the_taxon_dashes: Navnet på taksonen, mellemrum erstattet med streger.
+  the_name_of_the_taxon_underscores: Navnet på taksonen, mellemrum erstattet med understregninger.
   the_observation_was_already_added_to_that_project: Observationen var allerede tilføjet til dette projekt
   the_people_of_inat: "Personerne i %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
@@ -5129,6 +5177,9 @@ da:
   you_need_to_select_some_observations_first: Du skal først vælge nogle observationer.
   you_retain_full_copyright: "Du beholder fuld ophavsret over dit indhold bortset fra de rettigheder, der er givet til %{site_name} i vores Servicevilkår."
   you_retain_full_copyright_over_your_content: "Du beholder fuld ophavsret over dit indhold bortset fra de rettigheder, der er givet til %{site_name} i vores Servicevilkår."
+  you_should_delete_this_taxon_change: |
+    Du bør sikkert slette denne taksonændring, eller i det mindste finde ud af en
+    form for løsning med vedkommende, som har foretaget den anden ændring(er).
   you_sure_delete_asset?: Er du sikker på at du vil slette dette aktiv?
   you_sure_delete_check_list: "Er du sikker på, at du vil slette denne liste? Nogle personer kan have lagt meget arbejde i den ..."
   you_sure_delete_comment?: Er du sikker på, at du vil slette denne kommentar?
