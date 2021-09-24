@@ -1,0 +1,41 @@
+- content_for(:title) do
+  = @title = t(:observation_calendar_for, :user => @login, :year => @year)
+- content_for(:extracss) do
+  = stylesheet_link_tag "calendars/index"
+
+- content_for(:extrajs) do
+  = javascript_include_tag "d3.min", "calendars"
+
+.container
+  .row
+    = render :partial => 'shared/by_login_header_bootstrap', :locals => {:title => @title}
+
+  .row.yearnav
+    .col-xs-4
+      %h2.left
+        = link_to "&lsaquo; #{@year - 1}".html_safe, :year => @year - 1
+    .col-xs-4
+      %h2.center
+        = @year
+    .col-xs-4
+      - if @year < Date.today.year
+        %h2.right
+          = link_to "#{@year + 1} &rsaquo;".html_safe, :year => @year + 1
+
+  .row
+    .col-xs-12.calendar-container
+      - [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december].each_with_index do |month, i|
+        = render :partial => 'calendar', :locals => { :observations => @observations_by_month[i+1], :year => @year, :month => i+1, :month_name => t("date_format.month.#{month}") }
+
+  .row.yearnav
+    .col-xs-4
+      %h2.left
+        = link_to "&lsaquo; #{@year - 1}".html_safe, :year => @year - 1
+    .col-xs-4
+      %h4.center
+        %form{ method: "get", class: "form-inline" }
+          = select_tag :year, options_for_select( 1950..Date.today.year, selected: @year ), "data-autosubmit" => true, class: "form-control"
+    .col-xs-4
+      - if @year < Date.today.year
+        %h2.right
+          = link_to "#{@year + 1} &rsaquo;".html_safe, :year => @year + 1

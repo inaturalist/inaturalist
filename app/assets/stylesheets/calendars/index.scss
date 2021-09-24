@@ -1,0 +1,40 @@
+.yearnav {
+  .left {
+    left: 0;
+  }
+  .center {
+    text-align: center;
+  }
+  .right {
+    right: 0;
+  }
+  select {
+    margin-top: 7px;
+  }
+} 
+
+table.column {
+  margin: 0 10px;
+  margin-bottom: 1.4em;
+}
+
+.calendar {
+  display: inline-table;
+  table-layout: fixed;
+
+  caption {
+    text-align: center;
+  }
+  th {
+    text-align: center;
+  }
+  td {
+    font-size: 12px;
+    line-height: 30px;
+  }
+}
+
+.calendar-container {
+  text-align: center;
+  margin: 0 auto;
+}
