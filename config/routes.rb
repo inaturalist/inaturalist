@@ -699,9 +699,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :google_photos, controller: :picasa do
+  resources :picasa do
     collection do
       get :options
+      get :photo_fields
       delete :unlink
     end
   end

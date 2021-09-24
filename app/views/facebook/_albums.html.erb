@@ -9,6 +9,9 @@
   <% if @albums.empty? %>
     <br />
     <p class="meta ui">We can't find any albums from Facebook.</p>
+    <div class="notice box">
+      <%=t :facebook_photo_import_disabled_notice %>
+    </div>
   <% else %>
     <h4>Select one of <%= (@friend_name ? "#{@friend_name}'s" : 'your') %> albums</h4>
     <table>

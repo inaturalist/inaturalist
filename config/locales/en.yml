@@ -1775,6 +1775,11 @@ en:
   facebook_access_token_expired: "Access token has expired. %{user} needs to re-link their Facebook account."
   facebook_needs_the_owner_of_that_photo_to: Facebook needs the owner of that photo to re-confirm their connection to %{site_name_short}.
   facebook_options: Facebook Options
+  facebook_photo_import_disabled_notice: |
+    In November 2020 Facebook required us to verify that we really needed
+    access to photos, and we were unable to complete the process due to
+    problems with Facebook's verification system. As a result, we can no longer
+    support importing photos from Facebook.
   failed_to_find_your_location: Failed to find your location.
   failed_to_repair_photo: "Failed to repair photo: %{errors}"
   failed_to_save_record: "Failed to save record. Please try again later."
