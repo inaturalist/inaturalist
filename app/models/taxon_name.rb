@@ -180,6 +180,8 @@ class TaxonName < ApplicationRecord
 
   alias :is_scientific? :is_scientific_names?
   alias :scientific? :is_scientific_names?
+
+  attr_accessor :skip_indexing
   
   def to_s
     "<TaxonName #{self.id}: #{self.name} in #{self.lexicon}>"
@@ -346,7 +348,7 @@ class TaxonName < ApplicationRecord
   end
 
   def index_taxon
-    taxon.elastic_index! if taxon
+    taxon.elastic_index! if taxon && !skip_indexing
   end
 
   def species_common_name_cannot_match_taxon_name

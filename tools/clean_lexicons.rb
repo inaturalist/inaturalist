@@ -54,6 +54,7 @@ language_place_lexicons.each do |x|
   TaxonName.where( lexicon: x[:wrong_lexicon] ).includes( :taxon ).find_each do |tn|
     print "."
     tn.lexicon = x[:right_lexicon]
+    tn.skip_indexing = true
     tn.taxon.skip_indexing
     taxon_ids_to_index << tn.taxon_id
     if tn.valid?
@@ -135,6 +136,7 @@ synonyms.each do |lexicon,synonyms|
   TaxonName.where( lexicon: synonyms ).includes( :taxon ).find_each do |tn|
     print "."
     tn.lexicon = lexicon
+    tn.skip_indexing = true
     tn.taxon.skip_indexing = true
     taxon_ids_to_index << tn.taxon_id
     if tn.valid?
