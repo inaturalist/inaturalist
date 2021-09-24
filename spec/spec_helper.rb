@@ -292,8 +292,12 @@ end
 
 def load_time_zone_geometries
   table_name = TimeZoneGeometry.table_name
-  db_config = Rails.configuration.database_configuration[Rails.env]
-  pg_string = "dbname=#{db_config["database"]} host=#{db_config["host"]}"
+  pg_string = {
+    dbname: ApplicationRecord.connection_config[:database],
+    host: ApplicationRecord.connection_config[:host],
+    user: ApplicationRecord.connection_config[:username],
+    password: ApplicationRecord.connection_config[:password],
+  }.map { |k,v| "#{k}=#{v}" }.join( " " )
   tgz_fname = "western-us-time-zones.geojson.tgz"
   geojson_fname = "western-us-time-zones.geojson"
   fixtures_path = File.join( Rails.root, "spec", "fixtures" )

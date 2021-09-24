@@ -11,20 +11,6 @@ SET row_security = off;
 
 
 --
--- Name: fuzzystrmatch; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS fuzzystrmatch WITH SCHEMA public;
-
-
---
--- Name: EXTENSION fuzzystrmatch; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION fuzzystrmatch IS 'determine similarities and distance between strings';
-
-
---
 -- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -36,7 +22,6 @@ CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
 --
 
 COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial types and functions';
-
 
 
 --
@@ -9150,6 +9135,7 @@ CREATE INDEX index_taxon_ranges_on_geom ON public.taxon_ranges USING gist (geom)
 
 CREATE INDEX index_taxon_ranges_on_taxon_id ON public.taxon_ranges USING btree (taxon_id);
 
+
 --
 -- Name: index_taxon_ranges_on_updater_id; Type: INDEX; Schema: public; Owner: -
 --
@@ -9940,6 +9926,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190702063435'),
 ('20190820224224'),
 ('20190918161513'),
+('20191101004413'),
 ('20191104233418'),
 ('20191115201008'),
 ('20191203201511'),
@@ -9981,6 +9968,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210908061217'),
 ('20210908070001');
 
-
-INSERT INTO schema_migrations (version) VALUES ('20191101004413');
 

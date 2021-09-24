@@ -1,7 +1,6 @@
 import _ from "lodash";
 import piexif from "piexifjs";
 import moment from "moment-timezone";
-import util, { DATETIME_WITH_TIMEZONE, DATETIME_WITH_TIMEZONE_OFFSET } from "./util";
 
 const BRANDED_DESCRIPTIONS = [
   "OLYMPUS DIGITAL CAMERA",
@@ -25,7 +24,6 @@ const DroppedFile = class DroppedFile {
     const updates = { };
     const obs = photo.to_observation;
     if ( obs.time_observed_at ) {
-      updates.time_zone = obs.zic_time_zone;
       updates.date = moment( obs.time_observed_at )
         .format( "YYYY/MM/DD h:mm A" );
       updates.selected_date = updates.date;

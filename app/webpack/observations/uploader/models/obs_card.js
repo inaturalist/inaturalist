@@ -1,6 +1,6 @@
 import _ from "lodash";
 import inaturalistjs from "inaturalistjs";
-import moment from "moment-timezone";
+import moment from "moment";
 import uuidv4 from "uuid/v4";
 import actions from "../actions/actions";
 import util from "./util";

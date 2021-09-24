@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import DateTimeField from "react-bootstrap-datetimepicker";
-import moment from "moment-timezone";
-import { DATETIME_WITH_TIMEZONE, DATETIME_WITH_TIMEZONE_OFFSET } from "../models/util";
+import moment from "moment";
+import { parsableDatetimeFormat } from "../models/util";
 
 class DateTimeFieldWrapper extends Component {
-
   constructor( props, context ) {
     super( props, context );
     this.onClick = this.onClick.bind( this );
@@ -35,10 +34,11 @@ class DateTimeFieldWrapper extends Component {
     const { inputFormat } = this.props;
     let value = inputValue;
     const eInt = parseInt( e, 10 );
+    const dateTimeFormat = parsableDatetimeFormat( );
     if ( e && eInt ) {
       const pickedDate = new Date( eInt );
       if ( pickedDate ) {
-        value = moment( pickedDate ).format( inputFormat || "YYYY/MM/DD h:mm A" );
+        value = moment( pickedDate ).format( inputFormat || dateTimeFormat );
       }
     }
     this.props.onChange( value );
@@ -65,7 +65,7 @@ class DateTimeFieldWrapper extends Component {
         inputProps={ this.props.inputProps }
         defaultText={ this.props.defaultText || "" }
         dateTime={ this.props.dateTime }
-        inputFormat={this.props.inputFormat || DATETIME_WITH_TIMEZONE_OFFSET}
+        inputFormat={this.props.inputFormat || parsableDatetimeFormat( )}
         onChange={ this.onChange }
       />
     );

@@ -6,8 +6,12 @@
 #  rails r tools/load_time_zone_geometries.rb /path/to/combined-with-oceans.geojson
 #
 table_name = TimeZoneGeometry.table_name
-db_config = Rails.configuration.database_configuration[Rails.env]
-pg_string = "dbname=#{db_config["database"]} host=#{db_config["host"]}"
+pg_string = {
+  dbname: ApplicationRecord.connection_config[:database],
+  host: ApplicationRecord.connection_config[:host],
+  user: ApplicationRecord.connection_config[:username],
+  password: ApplicationRecord.connection_config[:password],
+}.map { |k,v| "#{k}=#{v}" }.join( " " )
 
 unless File.exists?( ARGV[0] )
   puts "No file at #{ARGV[0]}"

@@ -154,7 +154,6 @@ class LeftMenu extends SelectionBasedComponent {
   }
 
   datetimeInput( datatype ) {
-    /* global TIMEZONE */
     let mode;
     if ( datatype === "time" ) {
       mode = "time";
