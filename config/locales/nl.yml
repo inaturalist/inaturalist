@@ -1815,6 +1815,10 @@ nl:
   going_to_your_observations: Naar je waarnemingen...
   good_choice_for_sharing: Een goede keuze om met wetenschappers te delen
   google: Google
+  google_maps_not_loaded_error: |
+    Google Maps is niet geïnitialiseerd. Je hebt wellicht de toegang tot Google Maps
+    geblokkeerd met een browserextensie of firewall, of iets anders blokkeert de
+    toegang, zoals een Internet Service Provider.
   got_it!: Begrepen!
   got_your_data_somewhere_else?: Heb je je data ergens anders? We kunnen helpen.
   graft: Enten
@@ -1856,6 +1860,10 @@ nl:
   heads_up: Opgelet
   heads_up_non_automatable_draft_split_notice_html: |
     <strong>Let op:</strong> Deze taxonsplitsing heeft output taxa die ofwel geen atlassen hebben of geen gemeenschappelijke voorouder delen, dus de records geassocieerd met de invoertaxa kunnen niet automatisch worden toegewezen aan outputtaxa als deze splitsing wordt doorgevoerd en de gemeenschap zal nieuwe ID's moeten toevoegen voor deze records.
+  heads_up_observose_taxon_change_html: |
+    <strong>Let op:</strong> Een of meer van de invoertaxa die betrokken zijn bij deze
+    verandering hebben meer dan %{observose_taxon_threshold} downstream waarnemingen.
+    Alleen beheerders of curatoren van dat taxonkader kunnen deze verandering doorvoeren.
   heads_up_there_are_other_draft_taxon_changes_html:
     one: "<strong>Let op:</strong> er is %{count} andere voorlopige taxonwijziging met dezelfde inputtaxa:"
     other: "<strong>Let op:</strong> er zijn %{count} andere voorlopige taxonwijzigingen met dezelfde inputtaxa:"
