@@ -4162,6 +4162,36 @@ da:
     Informationssystem (hos CONABIO, National Biodiversity Commision)
     sammen med optegnelser fra eBird. Folk kan finde både videnskabelige og
     borgervidenskab optegnelser i %{start_tag_enciclovida}Enciclovida%{end_tag_enciclovida}.
+  sites_affiliation_examples_portugal_atlas_html: |
+    Portugals iNaturalist-netværksmedlem
+    %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} delte optegnelsesdata for det portugisiske atlas af trækfugle, af pattedyr
+    samt flere andre portugisiske videnskabelige forskningsartikler.
+  sites_affiliation_more_automatically_hidden_coordinates: |
+    Automatisk skjulte koordinater (slørede eller fortrolige grundet "takson-geofortrolighed ")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist skjuler automatisk koordinaterne for visse arter, for at beskytte
+    disse mod forstyrrelser, indsamling eller krybskytteri. Er observationskoordinater kun blevet skjult automatisk for at beskytte arter, deler
+    iNaturalist de sande koordinater for alle observationer fra deres
+    respektive lande med netværksmedlemmer.
+  sites_affiliation_more_email_addresses: |
+    E-mailadresser deles med netværksmedlemmer alene mhp.
+    kommunikation relateret til webstedet.
+  sites_affiliation_more_twice_per_year: |
+    To gange årligt deler iNaturalist e -mailadresser på tilknyttede konti
+    og visse skjulte koordinater (dvs. koordinater offentligt sløret eller fortrolige)
+    med medlemmerne af iNaturalist Network for at lette brugen af iNaturalist-data til forskning, bevarelse og håndtering i deres respektive
+    områder. De to måder, hvorpå koordinater kan skjules, deles
+    forskelligt, som beskrevet nedenfor.
+  sites_affiliation_more_user_hidden_coordinates: |
+    Brugerskjulte koordinater (slørede eller fortrolige grundet indstillingen "geo-fortrolighed")
+  sites_affiliation_more_user_hidden_coordinates_desc: |
+    Observationer med skjulte koordinater, grundet den enkelte brugers valg,
+    deles på en meget mere begrænset og specifik måde. Ved tilknytning til et
+    Netværkswebsted, deler iNaturalist med webstedets administratorer
+    præcise koordinater for observationer med geo-fortrolighed, som du har indstillet til sløret eller fortrolig, ud over dem, som er offentligt slørede eller
+    fortrolige grundet takson geo-fortrolighed. Dette kan gøre dine observationer mere værdifulde ift. lokale bevaringsbestræbelser.
+  sites_affiliation_overview_current_member_list_html: |
+    Her finder du den aktuelle medlemsliste for %{start_tag_network}iNaturalist Network%{end_tag_network}.
   some_agree: nogle er enige
   some_observations_are_missing_media_or_identifications: |
     Nogle observationer mangler medier eller identifikationer
