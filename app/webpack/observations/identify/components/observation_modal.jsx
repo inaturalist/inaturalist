@@ -21,6 +21,7 @@ import ObservationFieldsContainer from "../containers/observation_fields_contain
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonMap from "./taxon_map";
 import UserText from "../../../shared/components/user_text";
+import ErrorBoundary from "../../../shared/components/error_boundary";
 import { formattedDateTimeInTimeZone } from "../../../shared/util";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 import FollowButtonContainer from "../containers/follow_button_container";
@@ -59,6 +60,7 @@ class ObservationModal extends React.Component {
       const that = this;
       setTimeout( ( ) => {
         const map = $( ".TaxonMap", ReactDOM.findDOMNode( that ) ).data( "taxonMap" );
+        if ( typeof ( google ) === "undefined" ) { return; }
         google.maps.event.trigger( map, "resize" );
         if ( observation && observation.latitude ) {
           map.setCenter( new google.maps.LatLng(
@@ -192,31 +194,35 @@ class ObservationModal extends React.Component {
         taxonLayer.gbif = { disabled: true };
       }
       taxonMap = (
-        <TaxonMap
-          key={`map-for-${obsForMap.id}`}
-          placement="obs-modal"
-          reloadKey={`map-for-${obsForMap.id}-${obsForMap.private_latitude ? "full" : ""}`}
-          taxonLayers={[taxonLayer]}
-          observations={[obsForMap]}
-          clickable={!blind}
-          latitude={obsForMap.latitude}
-          longitude={obsForMap.longitude}
-          zoomLevel={
-            mapZoomLevelLocked && mapZoomLevel ? mapZoomLevel : ( obsForMap.map_scale || 5 )
-          }
-          onZoomChanged={onMapZoomChanged}
-          mapTypeControl
-          mapTypeControlOptions={{
-            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-            position: google.maps.ControlPosition.TOP_RIGHT
-          }}
-          showAccuracy
-          showAllLayer={false}
-          overlayMenu={false}
-          zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
-          currentUser={currentUser}
-          updateCurrentUser={updateCurrentUser}
-        />
+        <ErrorBoundary key="observation-modal-map">
+          <TaxonMap
+            key={`map-for-${obsForMap.id}`}
+            placement="obs-modal"
+            reloadKey={`map-for-${obsForMap.id}-${obsForMap.private_latitude ? "full" : ""}`}
+            taxonLayers={[taxonLayer]}
+            observations={[obsForMap]}
+            clickable={!blind}
+            latitude={obsForMap.latitude}
+            longitude={obsForMap.longitude}
+            zoomLevel={
+              mapZoomLevelLocked && mapZoomLevel ? mapZoomLevel : ( obsForMap.map_scale || 5 )
+            }
+            onZoomChanged={onMapZoomChanged}
+            mapTypeControl
+            mapTypeControlOptions={{
+              style: typeof ( google ) !== "undefined" && google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+              position: typeof ( google ) !== "undefined" && google.maps.ControlPosition.TOP_RIGHT
+            }}
+            showAccuracy
+            showAllLayer={false}
+            overlayMenu={false}
+            zoomControlOptions={{
+              position: typeof ( google ) !== "undefined" && google.maps.ControlPosition.TOP_LEFT
+            }}
+            currentUser={currentUser}
+            updateCurrentUser={updateCurrentUser}
+          />
+        </ErrorBoundary>
       );
     } else if ( observation.obscured ) {
       taxonMap = (

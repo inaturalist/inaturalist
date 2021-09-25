@@ -179,6 +179,7 @@ sv:
   about_taxon_ranges_desc: |
     Taxons utbredningsområde förmedlar den globala utbredningen av ett taxon. Källan till dessa utbredningsområden är oftast IUCNs Rödlista.
   about_the_cc_licenses: Om Creative Commons-licenser
+  about_the_network: Om Nätverket
   about_these_licenses: Om dessa licenser
   about_this_bioblitz: Om denna bioblitz
   about_this_map: Om denna karta
@@ -392,6 +393,8 @@ sv:
   admin_s: Administratör(er)
   admin_only: Endast admin
   admin_tools: Admin-verktyg
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Anknutna organisationer
   agree_: Håller med
   agree?: Håller du med?
   agree_with_current_taxon: Håll med om aktuellt taxon
@@ -907,6 +910,7 @@ sv:
   committed_by_user_on_date_html: Bekräftad av %{user} den %{date}
   #Label for date the taxon change was committed
   committed_on: Bekräftad den %{date}
+  committed_taxon_changes_cannot_be_deleted: Bekräftade taxonändringar kan inte raderas
   #Status message while a taxon change is being committed
   committing: Bekräftar...
   common_name: Vardagligt namn
@@ -1614,6 +1618,7 @@ sv:
   exclusion_filters: Exkluderingsfilter
   existing_flags: Befintliga flaggor
   exit_full_screen: "Avsluta helskärmsläge"
+  examples_of_data_use_by_network_members: Exempel på dataanvändning av Nätverksmedlemmar
   examples_of_ranking_organizations: Exempel på hotbedömande organisationer
   explore: Utforska
   export: Exportera
@@ -1869,6 +1874,31 @@ sv:
   header_your_projects: Dina projekt
   header_your_profile: Din profil
   heads_up: Obs
+  heads_up_automatable_draft_split_notice_html: |
+    <strong>OBS!</strong> När du bekräftar denna ändring kommer bestämningar
+    att fördelas till uttaxa baserat på deras atlaser. Om några eller alla
+    uttaxa saknar atlaser, eller om atlaser överlappar för en viss post,
+    kommer bestämningarna att läggas på närmast gemensamma
+    föräldrataxon (%{taxon})
+  heads_up_non_automatable_draft_split_notice_html: |
+    <strong>OBS!</strong> Denna taxonuppdelning har uttaxa som antingen
+    inte har atlaser eller inte delar en gemensam förfader, så posterna knutna till dess intaxa kan inte automatiskt tilldelas uttaxa när denna uppdelning är bekräftad och communityn kommer att behöva göra nya bestämningar för dessa poster.
+  heads_up_automatable_split_notice_html: |
+    <strong>OBS!</strong> Vissa eller alla av bestämningarna som påverkas av
+    denna uppdelning kan ha ersatts med bestämningar av %{taxon}. Detta
+    händer när vi inte automatiskt kan tilldela en bestämning till ett
+    uttaxon.
+  heads_up_observose_taxon_change_html: |
+    <strong>OBS!</strong> Ett eller flera av de intaxa som berörs av denna
+    ändring har mer än %{observose_taxon_threshold} underliggande fynd.
+    Endast administratörer eller förvaltare av den taxonkontexten kan bekräfta denna ändring.
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+    <strong>OBS!</strong> Ett eller flera av de intaxa som berörs av denna
+    ändring är del av en <a href="%{framework_url}">taxonkontext</a>. Endast
+    administratörer eller förvaltare av den taxonkontexten kan bekräfta ändringar som påverkar ingående taxa. Kontakta en av detta taxons förvaltare för att bekräfta ändringen.
+  heads_up_there_are_other_draft_taxon_changes_html:
+    one: "<strong>OBS!</strong> det finns %{count} annat utkast till taxonändring med samma intaxa:"
+    other: "<strong>OBS!</strong> det finns %{count} andra utkast till taxonändring med samma intaxa:"
   heads_up_this_photo_has_been_flagged: "OBS: denna bild har flaggats."
   heads_up_this_photo_is_already_associated_with: "Obs: denna bild är redan knuten till <a target='_blank' href='%{url}'>ett annat fynd</a>"
   heads_up_you_have_multiple: "Obs: Du har flera taxonomiska maskintaggningar för identiska ranger. De är färgkodade efter rang nedan."
@@ -1970,6 +2000,7 @@ sv:
   improving: Förbättrar
   in_n: "i %{n}"
   in_place_x: i %{place}
+  inaturalist_network: iNaturalist-nätverket
   inaturalist_network_affiliation: iNaturalist-nätverksanknytning
   #Label for messages you've received
   inbox: Inkorg
@@ -2165,6 +2196,7 @@ sv:
     russian: Ryska
     sinhala: Singalesiska
     slovak: Slovakiska
+    slovenian: Slovenska
     spanish: Spanska
     swedish: Svenska
     tagalog: Tagalog
@@ -2276,6 +2308,7 @@ sv:
     pt-BR: Portugisiska (Brasilien)
     ru: Ryska
     sk: Slovakiska
+    sl: Slovenska
     sq: Albanska
     sv: Svenska
     th: Thailändska
@@ -2484,6 +2517,7 @@ sv:
     <a href="%{url}">Månatlig supporter</a> sedan %{date}
   months: Månader
   more: Mer
+  more_about_sharing: Mer om delning
   more_fields: Fler fält
   more_filters: Fler filter
   more_from_x: Mer från %{x}
@@ -2573,6 +2607,8 @@ sv:
   network_affiliation_prompt_from_other_site_html: |
     Vill du ändra din anknytning från <strong>%{other_site_name}</strong> till
     <strong>%{site_name}</strong>?
+  #Column header in a table listing iNaturalist Network members
+  network_member: Nätverksmedlem
   new: Ny
   new_and_noteworthy: Nytt & anmärkningsvärt
   new_announcement: Nytt meddelande
@@ -3924,6 +3960,8 @@ sv:
   restore: Återställ
   restoring: Återställer...
   review_all: Granska alla
+  review_identifications_of_taxon_html: |
+    Granska bestämningar av <span class="sciname">%{taxon}</span> %{taxon_id}
   reviewed: Granskad
   revoke: Återkalla
   revoke_caps: ÅTERKALLA
@@ -4091,6 +4129,66 @@ sv:
   site_staff: "%{site_name}s personal"
   site_stats: Webbplatsstatistik
   site_taxon_page: "%{site_name}-taxonsida"
+  sites_affiliation_about_desc_html: |
+    Om din institution är intresserad av att gå med i iNaturalist-nätverket, kan du hitta mer information %{start_tag_join}här%{end_tag_join}.
+  sites_affiliation_examples_canada_cdc_html: |
+    %{start_tag_inat_canada}iNaturalist Canada%{end_tag_inat_canada} gör det möjligt för
+    data från iNaturalist att införlivas i säkra, provinsiella system som förvaltas av Naturvårdsdatacentra (CDCs). Dessa system används när bedömningar görs (två gånger per år) för att fastställa arters hotstatus, samt för att bestämma avgörande livsmiljöer för hotade arter. Som ett resultat har det också varit
+    möjligt att lokalisera och åtgärda högriskområden för arter som är särskilt utsatt för biltrafik; redogöra för och så småningom skydda Nyckelbiotoper, samt;
+    bekräfta förekomsten av arter som inte rapporterats på årtionden.
+  sites_affiliation_examples_ecuardor_bndb_html: |
+    %{start_tag_ecuador}iNaturalist Ecuador%{end_tag_ecuador} bidrar till
+    Ecuadors nationella biodiversitetsdatabas – BNDB – en stor samling data från såväl vetenskapliga som medborgarforskningsrapporter. Syftet är att integrera kunskap och data som bidrar till att stärka förståelsen av Ecuadors flora och faunas livsmiljö.
+  sites_affiliation_examples_mexico_nbis_html: |
+    Mexikos %{start_tag_naturalista}Naturalista%{end_tag_naturalista}-fynd sparas i Nationella Biodiversitetsinformationssystemet (vid CONABIO, Nationella biodiversitetskommissionen) tillsammans med poster från eBird. Allmänheten kan hitta både vetenskapliga och medborgarforskningsrapporter i
+    %{start_tag_enciclovida}Enciclovida%{end_tag_enciclovida}.
+  sites_affiliation_examples_portugal_atlas_html: |
+    Portugals iNaturalist-nätverksmedlem %{start_tag_portugal}BioDiversity4Alla%{end_tag_portugal} delade dataposter från den portugisiska atlasen över flyttfåglar, från däggdjursatlasen såväl som flera andra portugisiska vetenskapliga forskningsartiklar.
+  sites_affiliation_more_automatically_hidden_coordinates: |
+    Automatiskt dolda koordinater (diffuserade eller privata på grund av ett "taxons
+    koordinatsekretess")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist döljer automatiskt koordinaterna för vissa arter för att skydda dem från störning, insamling eller tjuvjakt. Om observationskoordinaterna bara har dolts automatiskt för att skydda arter, delar iNaturalist de exakta koordinaterna för alla observationer från deras respektive länder med Nätverksmedlemmar.
+  sites_affiliation_more_email_addresses: |
+    E-postadresser delas med Nätverksmedlemmar enbart för kommunikation relaterad till webbplatsen.
+  sites_affiliation_more_twice_per_year: |
+    Två gånger per år delar iNaturalist e-postadresser till anknutna konton och några dolda koordinater (dvs. publikt diffuserade eller privata koordinater) med iNaturalist-nätverkets medlemmar för att underlätta användningen av iNaturalist-data för forskning, bevarande och förvaltning i respektive områden. De två sätt på vilka koordinater kan döljas delas olika, som beskrivet nedan.
+  sites_affiliation_more_user_hidden_coordinates: |
+    Användardolda koordinater (diffuserade eller privata på grund av "koordinatsekretess"-inställningar)
+  sites_affiliation_more_user_hidden_coordinates_desc: |
+    Observationer med dolda koordinater på grund av enskilda användares val
+    delas på ett mycket mer begränsat och specifikt sätt. Genom att anknyta till en
+    Nätverkswebbplats, kommer iNaturalist att dela exakta koordinater för observationer med koordinatsekretess som du har satt till diffuserad eller privat med den webbplatsens administratörer, utöver de som är offentligt diffuserade eller privata på grund av ett taxons koordinatsekretess. Detta gör att dina observationer blir mer värdefulla för lokala bevarandeinsatser.
+  sites_affiliation_overview_current_member_list_html: |
+    Du kan se den aktuella medlemslistan för
+    %{start_tag_network}iNaturalist-nätverket%{end_tag_network}.
+  sites_affiliation_overview_in_order_to_advance: |
+    För att främja forskning och bevarande inom deras respektive områden kan
+    Nätverksmedlemmar dela data från iNaturalist. De har ett ansvar att bedöma giltigheten och lämpligheten av förfrågningar om uppgifter och deras möjliga konsekvenser; skriftligen förmedla ansvaret för att även säkerställa säkerheten för sådana uppgifter och inte avslöja dem offentligt på något sätt, eller dela eller använda dem utöver dess ursprungligaen avsedda syfte; dokumentera alla tillfällen så data delas och tillhörande resultat, konsekvenser, eller avsedda användningar; samt
+    årligen rapportera till iNaturalist.
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    %{start_tag_network}iNaturalist-nätverket%{end_tag_network} är en samling lokala webbplatser i den %{start_tag_global}globala iNaturalist-communityn%{end_tag_global}.
+  sites_affiliation_overview_when_you_affiliate: |
+    När du anknyter till en iNaturalist-nätverksmedlem, delas din e-postadress och den exakta positionen för dina diffuserade och privata platser med nätverksmedlemmen. Detta gör att dina observationer blir mer värdefulla för lokala bevarandeinsatser. Om du bor i eller ofta besöker ett område som är medlem i nätverket, uppmuntras du att välja det som din anknytning för att underlätta datadelning.
+  sites_affiliation_overview_you_can_continue_html: |
+    Du kan fortsätta att logga in via iNaturalist.org eller via din nätverksspecifika webbplats. Oavsett din anknytning, kommer alla dina data att sparas på samma ställe och du kommer fortsätta att kunna interagera med hela den internationella iNaturalist-communityn. Varje iNaturalist-konto kan endast anknytas till en Nätverksmedlem. Du kan granska eller ändra din anknytning i dina 
+    %{start_tag_settings}kontoinställningar%{end_tag_settings}.
+  sites_affiliation_title: Läs mer om Nätverksanknytning
+  sites_network_cas_and_nat_geo_html: |
+    %{start_tag_cas}California Academy of Sciences%{end_tag_cas} och
+    %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} har
+    formella avtal med organisationer i vart och ett av dessa geografiska områden för att stöda användningen av iNaturalist-plattformen. <strong>Om din organisation är
+    intresserad av att gå med i iNaturalist-nätverket, kan du hitta mer information
+    %{start_tag_join}här%{end_tag_join}.</strong>
+  sites_network_consists_of: "iNaturalist-nätverket består av ett flertal organisationer:"
+  sites_network_inaturalist_network_collection: |
+    iNaturalist-nätverket är en samling anpassade webbplatser som är fullt kopplade till den globala iNaturalist-communityn. Nätverksplatser stöds av lokala institutioner som främjar lokal användning och underlättar användningen av data från iNaturalist för att gynna lokal biologisk mångfald. De har tillgång till exakta koordinater inom sina geografiska områden som automatiskt diffuseras vid publik visning för att bättre skydda hotade arter.
+  sites_network_your_username: |
+    Ditt användarnamn och lösenord fungerar på alla webbplatser som ingår i
+    iNaturalist-nätverket. Om du väljer att anknyta dig till en nätverkswebbplats, kommer de
+    lokala institutioner som stödjer varje webbplats också att ha tillgång till din
+    e-postadress (endast för att kommunicera med dig om webbplatsaktiviteter) och
+    tillgång till de exakta koordinaterna för fynd som du har valt att göra offentligt diffuserade eller privata.
   some_agree: några håller med
   some_observations_are_missing_media_or_identifications: |
     Vissa fynd saknar media eller bestämningar
@@ -4339,6 +4437,11 @@ sv:
     Taxonbedömningar är dokument som bedömer artens nuvarande status, vanligen bevarandestatus.
     Till exempel kan en regional bevarandeorganisation använda dem för att organisera information och be om feedback på statusen för flera hotade taxa i regionen.
   taxon_change_must_be_committed_to_update_records: En taxonändring måste genomföras för att uppdatera data
+  taxon_change_title_taxon_drop: Taxoninaktivering %{id}
+  taxon_change_title_taxon_merge: Taxonhopslagning %{id}
+  taxon_change_title_taxon_split: Taxonuppdelning %{id}
+  taxon_change_title_taxon_stage: Taxonförberedelse %{id}
+  taxon_change_title_taxon_swap: Taxonbyte %{id}
   taxon_deleted: Taxon raderat.
   taxon_doesnt_have_a_range: Taxon saknar område
   taxon_drop: taxoninaktivering
@@ -4457,6 +4560,8 @@ sv:
   the_identotron_is_a_tool_to: |
     Identomaten är ett verktyg för att hjälpa dig att bestämma fynd baserat på %{site_name}s checklistedata. Givet ett taxon på högre nivå och en plats (t.ex. däggdjur i Indien), kommer %{site_name} att leta efter poster i checklistan som matchar detta taxon på den fyndplatsen, lite som en dynamisk fältguide till hela planeten. De flesta checklistor är under utarbetande, men om det finns en som är fullständig, dvs den listar <em>alla</em> representanter för ett taxon på en fyndplats, kommer Identomaten att visa ett meddelande.
   the_name_of_the_taxon_including_space: Ett taxons namn, inklusive mellanslag för art och lägre.
+  the_name_of_the_taxon_dashes: Taxonnamn, mellanslag ersatta med bindestreck.
+  the_name_of_the_taxon_underscores: Taxonnamn, mellanslag ersatta med understreck.
   the_observation_was_already_added_to_that_project: Fyndet hade redan lagts till i det projektet.
   the_people_of_inat: "Människorna på %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
@@ -5071,6 +5176,9 @@ sv:
   you_need_to_select_some_observations_first: Du måste välja några fynd först.
   you_retain_full_copyright: "Du behåller full upphovsrätt till ditt innehåll förutom de rättigheter som %{site_name} beviljas i våra användarvillkor."
   you_retain_full_copyright_over_your_content: "Du behåller full upphovsrätt till ditt innehåll förutom de rättigheter som %{site_name} beviljas i våra användarvillkor."
+  you_should_delete_this_taxon_change: |
+    Du bör förmodligen ta bort denna taxonändring, eller åtminstone komma på någon
+    typ av lösning med den(de) person(-er) som gjort den(de) andra förändringen(-arna).
   you_sure_delete_asset?: Är du säker på att du vill ta bort denna projekttillgång?
   you_sure_delete_check_list: "Är du säker på att du vill ta bort denna lista? En del personer kan ha lagt ner mycket arbete på den..."
   you_sure_delete_comment?: Är du säker på att du vill ta bort den här kommentaren?

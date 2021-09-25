@@ -2137,6 +2137,7 @@ fr:
     ilokano: Ilocano
     italian: Italien
     japanese: Japonais
+    kannada: Kannada
     korean: Coréen
     latvian: letton
     lithuanian: Lithuanien
@@ -2246,6 +2247,7 @@ fr:
     id: Indonésien
     it: Italien
     ja: Japonais
+    kn: Kannada
     ko: Coréen
     lb: Luxembourgeois
     lt: Lithuanien
@@ -2675,6 +2677,8 @@ fr:
   no_species_on_this_list_for_owner: |
     Vous pouvez commencer à ajouter des espèces à cette liste en utilisant l'outil "Ajouter à votre liste" sur la droite.
   no_subject_parens: "(Aucun sujet)"
+  no_such_wiki_page: Cette page n'existe pas.
+  no_such_wiki_page_html: Cette page n'existe pas. Voulez-vous <a href="%{new_url}">la créer</a> ?
   no_suggestions_available: Aucune suggestion disponible
   no_summary_from_wikipedia: Aucun résumé de Wikipédia
   no_summary_has_been_set: Aucun résumé n’a été fourni.
@@ -5845,6 +5849,12 @@ fr:
         </ol>
       dna_help: |
         Pour activer la fonctionnalité de correspondance du code-barre ADN GRAS, assurez-vous que le nom du champ inclut les mots « COI », « COX1 », « ITS » ou « matK », correspondant au gène visé par le champ.
+      merge:
+        warning_html: |
+          Veuillez respecter les données des autres personnes et <strong>parler au créateur
+          d’un champ d’observation avant de le fusionner</strong>. Cet outil détruira
+          le champ d’observation fusionné et déplacera toutes les observations qui l’utilisent
+          vers le responsable. <strong>Ce processus ne peut pas être annulé</strong>, donc soyez prudent.
     emailer:
       bulk_import_success:
         success_message: |

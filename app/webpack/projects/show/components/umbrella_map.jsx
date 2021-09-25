@@ -20,7 +20,7 @@ class UmbrellaMap extends Component {
         ps.project.id, colors[index % colors.length]] ) );
       _.each( project.projectRules, rule => {
         const color = projectColors[rule.project.id];
-        if ( rule.project.place && rule.project.place.point_geojson ) {
+        if ( rule.project.place && rule.project.place.point_geojson && typeof ( google ) !== "undefined" ) {
           const coords = rule.project.place.point_geojson.coordinates;
           const popup = new Popup(
             new google.maps.LatLng( coords[1], coords[0] ),
@@ -66,10 +66,12 @@ class UmbrellaMap extends Component {
               overlayMenu={false}
               mapTypeControl
               mapTypeControlOptions={{
-                style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-                position: google.maps.ControlPosition.TOP_LEFT
+                style: typeof ( google ) !== "undefined" && google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+                position: typeof ( google ) !== "undefined" && google.maps.ControlPosition.TOP_LEFT
               }}
-              zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
+              zoomControlOptions={{
+                position: typeof ( google ) !== "undefined" && google.maps.ControlPosition.TOP_LEFT
+              }}
               placeLayers={[{ place: { id: placeIDs.join( "," ), name: "Places" } }]}
               minZoom={2}
               maxX={totalBounds && totalBounds.nelng}

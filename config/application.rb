@@ -82,18 +82,22 @@ module Inaturalist
       # According to https://github.com/rails/rails/issues/29542, this is
       # expected behavior and the way to deal with it is to preload all these
       # classes.
-      require_dependency "list"
-      require_dependency "check_list"
-      require_dependency "project_list"
-      require_dependency "source"
-      require_dependency "photo"
-      require_dependency "local_photo"
-      require_dependency "flickr_photo"
-      require_dependency "eol_photo"
-      require_dependency "wikimedia_commons_photo"
-      require_dependency "facebook_photo"
-      require_dependency "google_street_view_photo"
-      require_dependency "picasa_photo"
+      begin
+        require_dependency "list"
+        require_dependency "check_list"
+        require_dependency "project_list"
+        require_dependency "source"
+        require_dependency "photo"
+        require_dependency "local_photo"
+        require_dependency "flickr_photo"
+        require_dependency "eol_photo"
+        require_dependency "wikimedia_commons_photo"
+        require_dependency "facebook_photo"
+        require_dependency "google_street_view_photo"
+        require_dependency "picasa_photo"
+      rescue ActiveRecord::NoDatabaseError, PG::ConnectionBad
+        puts "Database not connected. Ignore if getting set up for the first time."
+      end
     end
 
     config.action_mailer.preview_path = "#{Rails.root}/test/mailers/previews"

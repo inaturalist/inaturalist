@@ -1,5 +1,9 @@
 class CommentSweeper  < ActionController::Caching::Sweeper
-  observe Comment, Identification
+  begin
+    observe Comment, Identification
+  rescue ActiveRecord::NoDatabaseError
+    puts "Database not connected, failed to observe Comment or Identification. Ignore if setting up for the first time"
+  end
   include Shared::SweepersModule
   
   def after_save(item)

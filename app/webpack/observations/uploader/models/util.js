@@ -34,7 +34,7 @@ const util = class util {
 
   // returns a Promise
   static reverseGeocode( lat, lng ) {
-    /* global google */
+    if ( typeof ( google ) === "undefined" ) return new Promise( );
     const geocoder = new google.maps.Geocoder( );
     return new Promise( resolve => {
       geocoder.geocode( { location: { lat, lng } }, ( results, status ) => {

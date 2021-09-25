@@ -1,0 +1,22 @@
+:ruby 
+  observations ||= []
+  year ||= Date.today.year
+  month ||= Date.today.month
+  if month_name.blank?
+    month_name = %w(january february march april may june july august september october november december)[month-1]
+    month_name = t( "date_format.month.#{month_name}" )
+  end
+  login ||= @login || current_user.try(:login)
+  day_names = (0..6).map{|d| t( "date.abbr_day_names" )[d] rescue t( "date.abbr_day_names", locale: "en" )[d] }
+
+= calendar_for(observations, :year => year, :month => month, :html => {:class => "calendar column"}) do |t|
+  %caption
+    = month_name
+  = t.head(*day_names)
+  = t.day(:day_method => :observed_on) do |day, observations|
+    - if observations.size > 0
+      = link_to day.day, calendar_date_path(login, year, day.month, day.day), |
+        :class => "daylink inlineblock", "data-count" => observations.size,   |
+        "data-tip" => t(:x_observations, :count => observations.size) 
+    - else
+      = day.day

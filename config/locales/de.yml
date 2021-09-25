@@ -180,6 +180,7 @@ de:
   about_taxon_ranges_desc: |
     Verbreitungsgebiete stellen das globale Auftreten eines Taxons dar. Verbreitungsgebiete innerhalb von iNaturalist entstammen normalerweise aus der Roten Liste der IUCN.
   about_the_cc_licenses: Über Creative-Commons-Lizenzen
+  about_the_network: Über das Netzwerk
   about_these_licenses: Über diese Lizenzen
   about_this_bioblitz: Über diesen Bioblitz
   about_this_map: Über diese Karte
@@ -384,6 +385,8 @@ de:
   admin_s: Admin(s)
   admin_only: Nur Administratoren
   admin_tools: Verwaltungswerkzeuge
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Organisationen, die diesem Netzwerk angehören
   agree_: Zustimmen
   agree?: Zustimmen?
   agree_with_current_taxon: Bin mit aktuellem Taxon einverstanden
@@ -1573,6 +1576,7 @@ de:
   exclusion_filters: Ausschluss-Filter
   existing_flags: Vorhandene Meldungen
   exit_full_screen: "Vollbild beenden"
+  examples_of_data_use_by_network_members: Beispiele der Verwendung von Daten durch Netzwerk-Mitglieder
   examples_of_ranking_organizations: Beispiele für Verzeichnisse gefährdeter Arten
   explore: Entdecken
   export: Exportieren
@@ -1923,6 +1927,7 @@ de:
   improving: Verbesserung
   in_n: "in %{n}"
   in_place_x: in %{place}
+  inaturalist_network: iNaturalist-Netzwerk
   inaturalist_network_affiliation: iNaturalist-Netzwerk
   #Label for messages you've received
   inbox: Posteingang
@@ -2117,6 +2122,7 @@ de:
     russian: Russisch
     sinhala: Singhalesisch
     slovak: Slowakisch
+    slovenian: Slowenisch
     spanish: Spanisch
     swedish: Schwedisch
     tagalog: Tagalog
@@ -2227,6 +2233,7 @@ de:
     pt-BR: Portugiesisch (Brasilien)
     ru: Russisch
     sk: Slowakisch
+    sl: Slowenisch
     sq: Albanisch
     sv: Schwedisch
     th: Thailändisch
@@ -2438,6 +2445,7 @@ de:
     <a href="%{url}">Monatlicher Unterstützer</a> seit %{date}
   months: Monate
   more: Mehr
+  more_about_sharing: Mehr Informationen über Datenaustausch
   more_fields: Mehr Felder
   more_filters: Mehr Filter
   more_from_x: Mehr von %{x}
@@ -2523,6 +2531,8 @@ de:
   network_affiliation_prompt_from_other_site_html: |
     Möchtest du deine Zugehörigkeit von <strong>%{other_site_name}</strong> auf
     <strong>%{site_name}</strong> ändern?
+  #Column header in a table listing iNaturalist Network members
+  network_member: Netzwerkmitglied
   new: Neu
   new_and_noteworthy: Neu & Nennenswert
   new_announcement: Neue Ankündigungen
@@ -3864,6 +3874,8 @@ de:
   restore: Wiederherstellen
   restoring: Stelle wieder her …
   review_all: Alle Überprüfen
+  review_identifications_of_taxon_html: |
+    Überprüfe Bestimmungen von <span class="sciname">%{taxon}</span> %{taxon_id}
   reviewed: begutachtet
   revoke: Ablehnen
   revoke_caps: ABLEHNEN
@@ -4031,6 +4043,67 @@ de:
   site_staff: "%{site_name}-Mitarbeiter"
   site_stats: Seitenstatistik
   site_taxon_page: "%{site_name} Taxonseite"
+  sites_affiliation_about_desc_html: |
+    Wenn Ihre Organisation daran interessiert ist, dem iNaturalist-Netzwerk beizutreten, können %{start_tag_join}hier%{end_tag_join} weitere Details nachgelesen werden.
+  sites_affiliation_examples_canada_cdc_html: |
+    %{start_tag_inat_canada}iNaturalist Kanada%{end_tag_inat_canada} ermöglicht den Übertrag von 
+    iNaturalist-Daten in sichere, regionale Systeme, die von CDCs (Conservation Data Centers) verwaltet werden. Diese Systeme werden verwendet, wenn Evaluierungen durchgeführt werden (zweimal im Jahr), um den Gefährdungsstatus von Arten zu ermitteln, sowie bei der Bewertung des kritischen Lebensraums von bedrohten und seltenen Arten. Infolgedessen war es auch möglich, Hotspots der Gefahren im Straßenverkehr für gefährdete Arten zu finden und das Risiko zu mildern; die Skizzierung und in Folge den Schutz von Schlüsselgebieten der biologischen Vielfalt in die Wege zu leiten sowie 
+    das Vorkommen von Arten zu bestätigen, die seit Jahrzehnten nicht mehr gemeldet wurden.
+  sites_affiliation_examples_ecuardor_bndb_html: |
+    %{start_tag_ecuador}iNaturalist Ecuador%{end_tag_ecuador} integriert sich in die
+    Nationale Datenbank der Biodiversität Ecuadors – BNDB – ein großes Datenarchiv
+    aus wissenschaftlichen Aufzeichnungen sowie Citizen Science Projekten. Der Zweck ist das Wissen und die Daten zu integrieren, das dazu beiträgt, das Umweltverständnis der Flora und Fauna Ecuadors zu stärken.
+  sites_affiliation_examples_mexico_nbis_html: |
+    Mexikos %{start_tag_naturalista}Naturalista%{end_tag_naturalista}
+    Beobachtungen werden in das Nationale Biodiversitäts-Informationssystem (bei CONABIO, die Nationale Kommission für biologische Vielfalt) eingespeist, zusammen mit Datensätzen von eBird. In %{start_tag_enciclovida}Enciclovida%{end_tag_enciclovida} lassen sich sowohl wissenschaftliche wie auch Citizen Science-Beobachtungen suchen.
+  sites_affiliation_examples_portugal_atlas_html: |
+    Portugals iNaturalist-Netzwerkmitglied %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} teilt Daten für den portugiesischen Atlas von Zugvögeln, für den Atlas der Säugetiere, sowie mehrere andere wissenschaftliche portugiesiche Forschungsprojekte.
+  sites_affiliation_more_automatically_hidden_coordinates: |
+    Automatisch versteckte Koordinaten (verdeckt oder privat aufgrund von "Taxon-
+    Geoprivatsphäre")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist versteckt automatisch die Koordinaten für einige Arten, um sie vor Störungen, Sammlung oder Wilderei zu schützen. Wenn die Beobachtung automatisch versteckt wurde, um Arten zu schützen, teilt iNaturalist die konkreten Koordinaten aller Beobachtungen mit den Netzwerkmitgliedern aus den jeweiligen Ländern .
+  sites_affiliation_more_email_addresses: |
+    E-Mail-Adressen werden ausschließlich zum Zwecke der Kommunikation mit den Mitgliedern des Netzwerks weitergegeben.
+  sites_affiliation_more_twice_per_year: |
+    Zweimal pro Jahr teilt iNaturalist Email-Adressen und einige versteckte Koordinaten (d.h. öffentlich verdeckte oder private Koordinaten) mit den Mitgliedern des iNaturalist-Netzwerks, um die Verwendung von iNaturalist-Daten für Forschung, Naturschutz und Management in ihren jeweiligen Ländern zu erleichtern. Die zwei Möglichkeiten, wie Standorte verdeckt werden können, werden unterschiedlich gehandhabt, wie im Folgenden beschrieben.
+  sites_affiliation_more_user_hidden_coordinates: |
+    Versteckte Koordinaten durch den Benutzer (verdeckt oder privat aufgrund von "Geoprivatsphäre"-Einstellung)
+  sites_affiliation_more_user_hidden_coordinates_desc: |
+    Beobachtungen mit versteckten Koordinaten aufgrund der individuellen Entscheidung des Benutzers werden sehr viel eingeschränkter und spezifischer geteilt. Durch Zugehörigkeit zu einer
+    Netzwerkseite teilt iNaturalist die genauen Koordinaten solcher Beobachtungen mit Geoprivatsphäre, die auf verdeckt oder privat eingestellt wurden, mit den Administratoren dieser Site. Zusätzlich werden  die Standorte von Beobachtungen geteilt, die aufgrund von Taxon-Geoprivatsphäre öffentlich verdeckt oder privat sind. So können Beobachtungen wertvoller für lokale Naturschutzmaßnahmen werden.
+  sites_affiliation_overview_current_member_list_html: |
+    Hier kannst du die aktuelle Mitgliederliste für das
+    %{start_tag_network}iNaturalist-Network%{end_tag_network} sehen.
+  sites_affiliation_overview_in_order_to_advance: |
+    Um Forschung und Naturschutz in den jeweiligen Regionen zu unterstützen, können Netzwerk-Mitglieder Daten von iNaturalist teilen. Diese Organisationen sind dafür verantwortlich, die Richtigkeit und Zweckmäßigkeit von Datenanfragen und deren mögliche Auswirkungen zu bewerten; schriftlich die Verantwortung übertragen, auch die Sicherheit solcher Daten zu gewährleisten und sie in keiner Weise öffentlich zugänglich zu machen oder teilen oder sie über ihren ursprünglichen Zweck hinaus zu verwenden; alle Fälle zu dokumentieren, die mit den zugehörigen Ergebnissen, Ergebnissen oder Verwendungszwecken geteilt werden; und jährlich an iNaturalist Bericht zu erstatten.
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    Das %{start_tag_network}iNaturalist-Netzwerk%{end_tag_network} ist eine
+    Sammlung von regionalen Websites innerhalb der %{start_tag_global}globalen
+    iNaturalist-Community%{end_tag_global}.
+  sites_affiliation_overview_when_you_affiliate: |
+    Wenn du einem Mitglied des iNaturalist-Netzwerkes beitrittst, werden deine E-Mail-Adresse
+    sowie die konkreten Standorte deiner verdeckten und privaten Beobachtungen mit der Netzwerk-Organisation geteilt. Dadurch können deine Beobachtungen wertvoller für lokale Naturschutzmaßnahmen werden. Wenn du in einem Land lebst oder es häufig besuchst, welches Mitglied des Netzwerks ist, kannst du die Mitgliedschaft wählen, um zur Erleichterung des Datenaustauschs beizutragen.
+  sites_affiliation_overview_you_can_continue_html: |
+    Du kannst dich weiterhin über iNaturalist.org oder über deine netzwerkspezifische Website anmelden. Unabhängig von deiner Mitgliedschaft werden alle Daten am gleichen Ort gehostet und du wirst weiterhin in der Lage sein, mit der internationalen iNaturalist-Community zu interagieren. Jedes iNaturalist-Konto kann nur einem Netzwerk-Mitglied zugeordnet werden. Du kannst die Zugehörigkeit in deinen %{start_tag_settings}Kontoeinstellungen%{end_tag_settings} überprüfen oder ändern.
+  sites_affiliation_title: Erfahre mehr über die Netzwerk-Zugehörigkeit
+  sites_network_cas_and_nat_geo_html: |
+    Die %{start_tag_cas}California Academy of Sciences%{end_tag_cas} und die
+    %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} haben
+    formelle Vereinbarungen mit Organisationen in jedem dieser geografischen Gebiete getroffen, um
+    die Nutzung der iNaturalist-Plattform zu unterstützen. <strong>Wenn Ihre Organisation
+    daran interessiert ist, dem iNaturalist-Netzwerk beizutreten, finden Sie weitere Details
+    %{start_tag_join}hier%{end_tag_join}.</strong>
+  sites_network_consists_of: "Das iNaturalist-Netzwerk besteht aus mehreren Organisationen:"
+  sites_network_inaturalist_network_collection: |
+    Das iNaturalist-Netwerk ist eine Sammlung von regionalen Websites, die vollständig
+    mit der globalen iNaturalist-Community verbunden sind. Netzwerk-Standorte werden
+    von lokalen Institutionen unterstützt, die die lokale Nutzung fördern und die Verwendung von Daten
+    von iNaturalist zum Nutzen der örtlichen Biodiversität erleichtern. Sie haben Zugang zu echten
+    Koordinaten innerhalb ihrer geografischen Gebieten, die automatisch vor der Öffentlichkeit
+    verborgen sind, um bedrohte Arten besser zu schützen.
+  sites_network_your_username: |
+    Dein Benutzername und Passwort ist für alle Webseiten gültig, die Teil des iNaturalist-Netzwerks sind. Wenn du dich für eine Netzwerk-Webseite entscheidest, haben die lokalen Institutionen, die die jeweilige Webseite unterstützen, auch Zugriff auf deine E-Mail-Adresse (nur um mit dir über die Aktivitäten der Website zu kommunizieren) und Zugriff auf die wahren Koordinaten für Beobachtungen, die du als öffentlich verdeckt oder privat eingestellt hast.
   some_agree: einige stimmen zu
   some_observations_are_missing_media_or_identifications: |
     Bei einigen Beobachtungen fehlt die Bestimmung oder Fotos/Audios.
@@ -4404,6 +4477,8 @@ de:
     Planeten. Die meisten Checklisten sind in Arbeit, aber wenn es eine
     gibt, die umfassend ist, d.h. es enthält <em>sämtliche</em> Vertreter von
     einem Taxon an einem Ort, wird Identotron eine Nachricht anzeigen.
+  the_name_of_the_taxon_dashes: Der Name des Taxons, Leerzeichen durch Bindestriche ersetzt.
+  the_name_of_the_taxon_underscores: Der Name des Taxons, Leerzeichen durch Unterstriche ersetzt.
   the_observation_was_already_added_to_that_project: Die Beobachtung wurde bereits zu diesem Projekt hinzugefügt.
   the_people_of_inat: "Menschen auf %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |

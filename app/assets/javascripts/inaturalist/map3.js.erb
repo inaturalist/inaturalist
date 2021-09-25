@@ -10,7 +10,10 @@
  */
 
 // requires GoogleMap classes
-if (typeof(google) == 'undefined' || typeof(google.maps) == 'undefined') throw "The Google Maps libraries must be loaded to use the iNaturalist Map extensions.";
+if (typeof(google) == 'undefined' || typeof(google.maps) == 'undefined') {
+  console.log( "The Google Maps libraries must be loaded to use the iNaturalist Map extensions." );
+  return;
+}
 
 var deselectText = function() {
   if (window.getSelection) {

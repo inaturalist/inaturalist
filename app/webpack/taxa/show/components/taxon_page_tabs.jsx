@@ -39,8 +39,12 @@ class TaxonPageTabs extends React.Component {
     // not visible
     if ( chosenTab === "map" && prevProps.chosenTab !== "map" ) {
       const taxonMap = $( ".TaxonMap", ReactDOM.findDOMNode( this ) );
-      google.maps.event.trigger( taxonMap.data( "taxonMap" ), "resize" );
-      taxonMap.taxonMap( taxonMap.data( "taxonMapOptions" ) );
+      // If google wasn't initialized for some reason, doing any of this will
+      // crash, and we can't use an ErrorBoundary in a callback like this
+      if ( typeof ( google ) !== "undefined" ) {
+        google.maps.event.trigger( taxonMap.data( "taxonMap" ), "resize" );
+        taxonMap.taxonMap( taxonMap.data( "taxonMapOptions" ) );
+      }
     }
   }
 
