@@ -392,6 +392,8 @@ class ObservationModal extends React.Component {
       { keys: ["z"], label: I18n.t( "zoom_photo" ) },
       { keys: ["&larr;"], label: I18n.t( "previous_observation" ) },
       { keys: ["&rarr;"], label: I18n.t( "next_observation" ) },
+      { keys: ["&uarr;"], label: I18n.t( "scroll_up" ) },
+      { keys: ["&darr;"], label: I18n.t( "scroll_down" ) },
       { keys: ["SHIFT", "&larr;"], label: I18n.t( "previous_tab" ) },
       { keys: ["SHIFT", "&rarr;"], label: I18n.t( "next_tab" ) },
       { keys: ["ALT/CMD", "&larr;"], label: I18n.t( "previous_photo" ) },
