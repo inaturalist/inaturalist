@@ -13,5 +13,56 @@ class TimeZoneGeometry < ActiveRecord::Base
       end
     end
     alias_method :time_zone_from_lat_lng, :time_zone_for_lat_lng
+
+    def load_geojson_file( geojson_path, options = {} )
+      logger = options[:logger] || Rails.logger
+      return unless File.exist?( geojson_path )
+      pg_string = {
+        dbname: ApplicationRecord.connection_config[:database],
+        host: ApplicationRecord.connection_config[:host],
+        user: ApplicationRecord.connection_config[:username],
+        password: ApplicationRecord.connection_config[:password]
+      }.map { |k, v| "#{k}=#{v}" }.join( " " )
+      # Note that ogr2ogr will automatically create a spatial index on the geom column
+      cmd = <<-BASH
+        ogr2ogr -f "PostgreSQL" PG:"#{pg_string}" \
+          #{geojson_path} \
+          -nln #{table_name} \
+          -nlt MULTIPOLYGON \
+          -lco GEOMETRY_NAME=geom \
+          -overwrite
+      BASH
+      logger.info "Loading time zones..."
+      if system( cmd ) && TimeZoneGeometry.count > 0
+        logger.info "Loaded #{TimeZoneGeometry.count} time zones with ogr2ogr"
+      else
+        logger.info "ogr2ogr failed for some reason, try to load and process with RGeo instead"
+        File.open( geojson_path ) do |f|
+          logger.info "Reading GeoJSON from #{geojson_path}..."
+          json = RGeo::GeoJSON.decode( f.read )
+          TimeZoneGeometry.transaction do
+            logger.info "Truncating #{table_name}..."
+            TimeZoneGeometry.connection.execute( "TRUNCATE TABLE #{table_name} RESTART IDENTITY" )
+            logger.info "Loading #{json.size} time zones"
+            json.each do |zone|
+              print "." if options[:debug]
+              geom = if zone.geometry.geometry_type == ::RGeo::Feature::Polygon
+                factory = RGeo::Cartesian.simple_factory( srid: 0 )
+                factory.multi_polygon( [zone.geometry] )
+              else
+                zone.geometry
+              end
+              TimeZoneGeometry.create!( tzid: zone.properties["tzid"], geom: geom )
+            end
+            logger.info
+          end
+        end
+        logger.info "Loaded #{TimeZoneGeometry.count} time zones with RGeo"
+      end
+
+      # By default the SRID is 4326, and all ours are 0 for some reason
+      logger.info "Resetting SRID..."
+      ActiveRecord::Base.connection.execute "SELECT UpdateGeometrySRID('#{table_name}', 'geom', 0)"
+    end
   end
 end
