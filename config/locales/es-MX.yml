@@ -179,6 +179,7 @@ es-MX:
   about_taxon_ranges_desc: |
     Los rangos de distribución muestran la distribución global de un taxón. Los rangos de distribución son típicamente provistos por la Lista Roja de la IUCN.
   about_the_cc_licenses: Acerca de las licencias de Creative Commons
+  about_the_network: Acerca de la Red
   about_these_licenses: Acerca de estas licencias
   about_this_bioblitz: Acerca de esta maratón naturalista
   about_this_map: Acerca de este mapa
@@ -375,6 +376,8 @@ es-MX:
   admin_s: Administrador(es)
   admin_only: Solamente administrador
   admin_tools: Herramientas de administrador
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Organizaciones afiliadas
   agree_: De acuerdo
   agree?: '¿Estás de acuerdo?'
   agree_with_current_taxon: De acuerdo con la especie o grupo
@@ -893,6 +896,7 @@ es-MX:
   committed_by_user_on_date_html: Resuelto por %{user} en %{date}
   #Label for date the taxon change was committed
   committed_on: Guardado el %{date}
+  committed_taxon_changes_cannot_be_deleted: No se pueden eliminar los cambios en los taxones
   #Status message while a taxon change is being committed
   committing: Guardando...
   common_name: Nombre común
@@ -1589,6 +1593,7 @@ es-MX:
   exclusion_filters: Filtros para excluir
   existing_flags: Advertencias presentes
   exit_full_screen: "Salir de la pantalla completa"
+  examples_of_data_use_by_network_members: Ejemplos del uso de datos por los miembros de la red
   examples_of_ranking_organizations: Ejemplos de organizaciones clasificatorias
   explore: Explora
   export: Exporta
@@ -1805,6 +1810,8 @@ es-MX:
   going_to_your_observations: Dirigiéndote a tus observaciones ...
   good_choice_for_sharing: Buena selección para compartir con investigadores
   google: Google
+  google_maps_not_loaded_error: |
+    Google Maps no se inicializó. Puede que hayas bloqueado el acceso a Google Maps con una extensión del navegador o firewall, o algo más está bloqueando el acceso como un proveedor de servicios de Internet.
   got_it!: Entendido
   got_your_data_somewhere_else?: '¿Tienes tus datos en algún lado? Te podemos ayudar.'
   graft: Injerto
@@ -1844,6 +1851,18 @@ es-MX:
   header_your_projects: Tus proyectos
   header_your_profile: Tu perfil
   heads_up: Atención
+  heads_up_automatable_draft_split_notice_html: |
+    <strong>Atención:</strong> Cuando confirmes este cambio, las identificaciones serán reasignadas a los taxones de salida basados en sus atlas. Si algunos o todos de los resultados carecen de atlas, o si los atlas se superponen para un registro determinado, las identificaciones serán reemplazadas por identificaciones del taxón antepasado más cercano (%{taxon})
+  heads_up_non_automatable_draft_split_notice_html: |
+    <strong>Atención:</strong> Esta división del taxón tiene taxones de salida que, o no tienen atlas o no comparten un antepasado común, por lo que los registros asociados con sus taxones de entrada no pueden asignarse automáticamente a los taxones de salida cuando esta división sea confirmada y la comunidad tendrá que agregar nuevos IDs para estos registros.
+  heads_up_automatable_split_notice_html: |
+    <strong>Atención:</strong> Algunas o todas las identificaciones afectadas por esta división puede haber sido reemplazada por identificaciones de %{taxon}. Esto ocurre cuando no podemos asignar automáticamente una identificación a uno de los taxones de salida.
+  heads_up_observose_taxon_change_html: |
+    <strong>Atención:</strong> Uno o más de los taxa de entrada implicados en este cambio
+    tiene más de %{observose_taxon_threshold} observaciones incluidas abajo.
+    Sólo los administradores o curadores de ese marco taxonómico pueden realizar este cambio.
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+    <strong>Atención:</strong> Uno o más de los taxa de entrada involucrados en este cambio están dentro de un <a href="%{framework_url}">marco taxonómico</a>. Sólo administradores o curadores de ese marco taxonómico pueden confrimar cambios que afecten a los taxones cubiertos. Póngase en contacto con uno de los curadores de ese taxón para realizar este cambio.
   heads_up_this_photo_has_been_flagged: "ATENCIÓN: esta foto tiene una advertencia."
   heads_up_this_photo_is_already_associated_with: "ATENCIÓN: esta foto ya esta asociada con <a target='_blank' href='%{url}'>otra observación</a>"
   heads_up_you_have_multiple: "Atención: tienes etiquetas taxonómicas múltiples para identificar rangos. Tienen código de color abajo del rango."
@@ -1944,6 +1963,7 @@ es-MX:
   improving: Mejorando
   in_n: "en %{n}"
   in_place_x: en %{place}
+  inaturalist_network: Red de iNaturalist
   inaturalist_network_affiliation: Afiliación de Red iNaturalist
   #Label for messages you've received
   inbox: buzón
@@ -2134,9 +2154,13 @@ es-MX:
     norwegian: Noruego
     occitan: Occitano
     pangasinan: Pangasinán
+    polish: Polaco
     portuguese: Portugués
     romanian: Rumano
     russian: Ruso
+    sinhala: Cingalés
+    slovak: Eslovaco
+    slovenian: Esloveno
     spanish: Español
     swedish: Sueco
     tagalog: Tagalo
@@ -2144,6 +2168,7 @@ es-MX:
     thai: Tailandés
     tokelauan: Tokelauano
     turkish: Turco
+    ukrainian: Ucraniano
     waray_waray: Samareño
   less: Menos
   licensed_site_photos: "Fotos con licencia de %{site_name}"
@@ -2247,6 +2272,7 @@ es-MX:
     pt-BR: Portugués (Brasil)
     ru: Ruso
     sk: Eslovaco
+    sl: Esloveno
     sq: Albanés
     sv: Sueco
     th: Tailandés
@@ -2456,6 +2482,7 @@ es-MX:
     <a href="%{url}">Patrocinador mensual</a> desde %{date}
   months: Meses
   more: Más
+  more_about_sharing: Más sobre compartir
   more_fields: Más campos
   more_filters: Más filtros
   more_from_x: Más de %{x}
@@ -2544,6 +2571,8 @@ es-MX:
   network_affiliation_prompt_from_other_site_html: |
     ¿Quieres cambiar tu afiliación de <strong>%{other_site_name}</strong> a
     <strong>%{site_name}</strong>?
+  #Column header in a table listing iNaturalist Network members
+  network_member: Miembro de la red
   new: Nuevo
   new_and_noteworthy: Nuevo y notable
   new_announcement: Nuevo anuncio
@@ -3896,6 +3925,8 @@ es-MX:
   restore: Restaurar
   restoring: Restaurando...
   review_all: Revisar todas
+  review_identifications_of_taxon_html: |
+    Revisar identificaciones de <span class="sciname">%{taxon}</span> %{taxon_id}
   reviewed: Revisada
   revoke: Revocar
   revoke_caps: REVOCAR
@@ -4063,6 +4094,57 @@ es-MX:
   site_staff: "%{site_name} Personal"
   site_stats: Estadísticas del sitio
   site_taxon_page: "%{site_name} página del taxón"
+  sites_affiliation_about_desc_html: |
+    Si tu organización está interesada en unirse a la Red de iNaturalist, puedes encontrar más detalles %{start_tag_join}aquí%{end_tag_join}.
+  sites_affiliation_examples_canada_cdc_html: |
+    %{start_tag_inat_canada}iNaturalist Canada%{end_tag_inat_canada} permite que
+    los datos de iNaturalist sean incorporados a sistemas provinciales seguros que son gestionados por Centros de Datos de Conservación (CDC). Estos sistemas se utilizan cuando se realizan evaluaciones (dos veces al año) para determinar el estado de riesgo de la especie, así como para determinar el hábitat crítico de especies amenazadas y en peligro de extinción. Como resultado, también ha sido posible localizar y mitigar los puntos conflictivos de mortalidad en carreteras para las especies en riesgo; delinear y eventualmente proteger Áreas Clave de Biodiversidad, y; reconfirmar la presencia de especies que no habían sido reportadas durante décadas.
+  sites_affiliation_examples_ecuardor_bndb_html: |
+    %{start_tag_ecuador}iNaturalist Ecuador%{end_tag_ecuador} alimenta la Base de Datos y Sistema de Biodiversidad del Ecuador - BNDB - un enorme repositorio de datos de registros científicos asi como de ciencia ciudadana. Su propósito es integrar conocimiento y datos que ayuden a fortalecer el entendimiento ambienatl de la flora y fauna de Ecuador.
+  sites_affiliation_examples_mexico_nbis_html: |
+    Las observaciones de %{start_tag_naturalista}Naturalista%{end_tag_naturalista}
+    en México alimentan al Sistema Nacional de Información de la Biodiversidad
+    (en CONABIO, la Comisión Nacional para el Conocimiento y Uso de la Biodiversidad) junto con los registros de eBird. Las personas puede encontrar registros científicos y de ciencia ciudadana en %{start_tag_enciclovida}Enciclovida%{end_tag_enciclovida}.
+  sites_affiliation_examples_portugal_atlas_html: |
+    El miembro de Portugal de la red iNaturalist %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} ha compartido datos para el atlas portugués de aves migratorias, para el atlas de mamíferos, y para varios artículos de investigación científica en este país.
+  sites_affiliation_more_automatically_hidden_coordinates: |
+    Coordenadas ocultas automáticamente (oscurecidas o privadas debido a la "geoprivacidad del taxón")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist oculta automáticamente las coordenadas de algunas especies para protegerlas
+    de la perturbación, recolección o colecta ilegal. Si las coordenadas de la observación se han ocultado automáticamente para proteger las especies, iNaturalist comparte las verdaderas coordenadas de todas las observaciones de los países respectivos con Miembros de la Red.
+  sites_affiliation_more_email_addresses: |
+    Las direcciones de correo electrónico se comparten con los miembros de la red únicamente con propósitos de comunicaciones relacionadas con el sitio.
+  sites_affiliation_more_twice_per_year: |
+    Dos veces al año, iNaturalist comparte direcciones de correo electrónico de cuentas afiliadas
+    y algunas coordenadas ocultas (i.e. coordenadas públicamente oscurecidas o privadas) con los miembros de la Red iNaturalist para facilitar el uso de los datos de iNaturalist para la investigación, conservación, y gestión en sus respectivas áreas . Las dos formas en que las coordenadas pueden ser ocultadas se comparten de forma diferente, como se describe a continuación.
+  sites_affiliation_more_user_hidden_coordinates: |
+    Coordenadas ocultas por el usuario (oscurecidas o privadas debido a la configuración de "geoprivacidad")
+  sites_affiliation_more_user_hidden_coordinates_desc: |
+    Las observaciones con coordenadas ocultas debido a las decisiones individuales del usuario
+    se comparten de una manera mucho más limitada y específica. Al afiliarse con un sitio de
+    la Red, iNaturalist compartirá con los administradores del sitio las coordenadas precisas de las observaciones con geoprivacidad que se han establecido como oculta o privada, además de aquellos que están ocultos públicamente o privados debido a la geoprivacidad del taxón. Esto permite que tus observaciones se vuelvan más valiosas para los esfuerzos de conservación locales.
+  sites_affiliation_overview_current_member_list_html: |
+    Puede ver la lista actual de miembros de la
+    %{start_tag_network}Red de iNaturalist%{end_tag_network}.
+  sites_affiliation_overview_in_order_to_advance: |
+    Para avanzar en la investigación y conservación en sus respectivas áreas, los miembros de la red pueden compartir datos de iNaturalist. Tienen la responsabilidad de evaluar la validez y la pertinencia de las solicitudes de datos y sus resultados potenciales; transmitir por escrito la responsabilidad de garantizar también la seguridad de dichos datos y no exponerlos públicamente de ninguna manera, o compartir o utilizarlo más allá de su propósito original; para documentar todas las instancias donde se compartido y junto con los resultados asociados, productos o usos previstos; y para informar anualmente a iNaturalist.
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    La %{start_tag_network}Red de iNaturalist%{end_tag_network} es una colección
+    de sitios web localizados en la %{start_tag_global}comunidad global
+    iNaturalist%{end_tag_global}.
+  sites_affiliation_overview_when_you_affiliate: |
+    Cuando te afilias con un Miembro de la Red iNaturalist, tu dirección de correo electrónico y las ubicaciones reales de tus ubicaciones ocultas y privadas se comparten con el Miembro de la Red. Esto permite que tus observaciones se vuelvan más valiosas para los esfuerzos de conservación locales. Si vives o visitas con frecuencia un área que es miembro de la red, se le anima a elegir que como su afiliación para facilitar el intercambio de datos.
+  sites_affiliation_overview_you_can_continue_html: |
+    Puedes continuar iniciando sesión a través de iNaturalist.org o a través de tu sitio web específico para la Red. Sin importa tu afiliación, todos tus datos estarán alojados en el mismo lugar y continuarás interactuando con la amplia comunidad internacional de iNaturalist. Cada cuenta de iNaturalist puede ser afiliada solo con un miembro de la Red. Puedes revisar o cambiar
+    tu afiliación en la %{start_tag_settings}configuración de su cuenta%{end_tag_settings}.
+  sites_affiliation_title: Más información sobre la afiliación de la Red
+  sites_network_cas_and_nat_geo_html: |
+    La %{start_tag_cas}Academia de Ciencias de California%{end_tag_cas} y la %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} tienen acuerdos formales con organizaciones en cada una de estas áreas geográficas para apoyar el uso de la plataforma iNaturalist. <strong>Si tu organización está interesada en unirse a la Red de iNaturalist, puedes encontrar más detalles %{start_tag_join}aquí%{end_tag_join}.</strong>
+  sites_network_consists_of: "La Red de iNaturalist está conformada por varias organizaciones:"
+  sites_network_inaturalist_network_collection: |
+    La Red de iNaturalist es una colección de sitios web localizados que están completamente conectados a la comunidad global de iNaturalist. Los sitios de la Red están apoyados por instituciones locales que promueven el uso local y facilitan el uso de datos de iNaturalist para beneficiar la biodiversidad en cada sitio. Tienen acceso a las coordenadas verdaderas dentro de sus áreas geográficas que se ocultan automáticamente de la vista pública con el fin de proteger mejor las especies amenazadas.
+  sites_network_your_username: |
+    Tu nombre de usuario y contraseña funcionan en todos los sitios que forman parte de la Red de iNaturalist. Si eliges afiliarte a un sitio específico de la Red, las instituciones locales que apoyan cada sitio también tendrán acceso a tu dirección de correo electrónico (sólo para comunicarse contigo acerca de las actividades del sitio) y acceso a las coordenadas verdaderas para las observaciones que ha elegido hacer ocultas o privada.
   some_agree: Algunos están de acuerdo
   some_observations_are_missing_media_or_identifications: |
     Algunas observaciones carecen de fotografías o identificaciones
@@ -4314,6 +4396,11 @@ es-MX:
     el estado de conservación. Por ejemplo, una organización de conservación regional puede usar esto para organizar
     su información solicitando el estado de conservación de varios grupos o especies que se encuentren bajo amenaza en determinada región.
   taxon_change_must_be_committed_to_update_records: El cambio de taxón debe ejecutarse para actualizar los registros
+  taxon_change_title_taxon_drop: Eliminación taxonómica %{id}
+  taxon_change_title_taxon_merge: Combinación taxonómica %{id}
+  taxon_change_title_taxon_split: División taxonómica %{id}
+  taxon_change_title_taxon_stage: Activación taxonómica %{id}
+  taxon_change_title_taxon_swap: Intercambio taxonómico %{id}
   taxon_deleted: Especie o grupo borrado.
   taxon_doesnt_have_a_range: La especie o grupo no tiene una clasificación
   taxon_drop: qutar taxón
@@ -4431,6 +4518,8 @@ es-MX:
   the_identotron_is_a_tool_to: |
     El identotrón es una herramienta para identificar observaciones basadas en las listas de comprobación de %{site_name}. Dada una clase y un lugar (ej. mamíferos y la India), %{site_name} buscará por listas de comprobación que coincidan con ese taxón en ese lugar, es como una guía de campo dinámica del planeta entero. En la mayoría de las listas de comprobación aún se esta trabajando, pero si existe alguna lista que sea exhaustiva, es decir que liste <em>todos</em> los taxones representativos de ese lugar, el identotrón mostrará un aviso.
   the_name_of_the_taxon_including_space: El nombre de la especie o grupo, incluyendo el espacio para especies e infraespecies. <br/><br/> <strong>Ejemplo:</strong><br/>
+  the_name_of_the_taxon_dashes: El nombre del taxón, espacios reemplazados por guiones.
+  the_name_of_the_taxon_underscores: El nombre del taxón, espacios reemplazados por guiones bajos.
   the_observation_was_already_added_to_that_project: La observación fue añadida recientemente al proyecto.
   the_people_of_inat: "La gente de %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
@@ -5040,6 +5129,8 @@ es-MX:
   you_need_to_select_some_observations_first: Primero, necesitas seleccionar algunas observaciones.
   you_retain_full_copyright: "Tú retienes los derechos de autor sobre tu contenido con reserva de los que conferiste a %{site_name} en nuestras Condiciones de Servicio."
   you_retain_full_copyright_over_your_content: "Tu retienes los derechos de autor sobre tu contenido con reserva de los que conferiste a %{site_name} en nuestras Condiciones de Servicio."
+  you_should_delete_this_taxon_change: |
+    Probablemente deberías eliminar este cambio de taxón, o al menos encontar algún tipo de solución con la persona / personas que hicieron el otro(s) cambio(s).
   you_sure_delete_asset?: '¿Estás seguro que quieres borrar este recurso?'
   you_sure_delete_check_list: "¿Estás seguro que quieres borrar esta lista de comprobación? Algunas personas pudieron poner mucho trabajo en ella..."
   you_sure_delete_comment?: '¿Estás seguro que quieres borrar este comentario?'
