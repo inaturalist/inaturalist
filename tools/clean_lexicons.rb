@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 require "rubygems"
 require "optimist"
 
-@opts = Optimist::options do
-    banner <<-EOS
-Clean up lexicons, try to remove synonyms, apply Place Taxon Names to regional
-lexicons.
+@opts = Optimist.options do
+  banner <<~HELP
+    Clean up lexicons, try to remove synonyms, apply Place Taxon Names to regional
+    lexicons.
 
-Usage:
+    Usage:
 
-  rails runner tools/clean_taxon_names.rb
+      rails runner tools/clean_taxon_names.rb
 
-where [options] are:
-EOS
+    where [options] are:
+  HELP
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
   opt :dry, "Dry run, don't make changes, just report", type: :boolean
 end
@@ -25,12 +27,12 @@ invalid_ptns = []
 puts
 puts "== REGIONALIZING LEXICONS =="
 puts
-puts <<-EOT
-Sometimes people add separate lexicons for a language in a region that should
-be handled with PlaceTaxonNames instead, so this will try and convert those
-and delete names that are no longer valid after being updated
-(generally because a correct version of the name already exists)
-EOT
+puts <<-TXT
+  Sometimes people add separate lexicons for a language in a region that should
+  be handled with PlaceTaxonNames instead, so this will try and convert those
+  and delete names that are no longer valid after being updated
+  (generally because a correct version of the name already exists)
+TXT
 language_place_lexicons = [
   { wrong_lexicon: "Australian", right_lexicon: TaxonName::ENGLISH, country_name: "Australia" },
   { wrong_lexicon: "Egyptian Arabic", right_lexicon: TaxonName::ARABIC, country_name: "Egypt" },
@@ -44,13 +46,13 @@ language_place_lexicons = [
   { wrong_lexicon: "Português (Brasil)", right_lexicon: TaxonName::PORTUGUESE, country_name: "Brazil" },
   { wrong_lexicon: "Spanish (Chile)", right_lexicon: TaxonName::SPANISH, country_name: "Chile" }
 ]
-language_place_lexicons.each do |x|
+language_place_lexicons.each do | x |
   puts "Changing #{x[:wrong_lexicon]} to #{x[:right_lexicon]} and assigning to #{x[:country_name]}"
-  unless country = Place.where( name: x[:country_name], admin_level: Place::COUNTRY_LEVEL ).first
+  unless ( country = Place.where( name: x[:country_name], admin_level: Place::COUNTRY_LEVEL ).first )
     puts "Couldn't find country, skipping"
     next
   end
-  TaxonName.where( lexicon: x[:wrong_lexicon] ).find_each do |tn|
+  TaxonName.where( lexicon: x[:wrong_lexicon] ).find_each do | tn |
     print "."
     tn.lexicon = x[:right_lexicon]
     if tn.valid?
@@ -76,11 +78,12 @@ end
 puts
 puts "== SYNONYMIZING LEXICONS =="
 puts
-puts <<-EOT
-We get A LOT of lexicons that are variations of existing lexicons, so this
-tries to make some of the more common ones conform to conventional versions.
-EOT
+puts <<-TXT
+  We get A LOT of lexicons that are variations of existing lexicons, so this
+  tries to make some of the more common ones conform to conventional versions.
+TXT
 synonyms = {
+  "Aou 4 Letter Codes" => ["Aou 4 Letter Codes"],
   "Bunun" => ["Bunun (Taiwan)"], # this is regional but doesn't really need to be since this is only spoken in Taiwan
   TaxonName::BELARUSIAN => ["Беларуская"],
   TaxonName::CATALAN => ["Català"],
@@ -127,9 +130,9 @@ synonyms = {
   "Yaqui" => ["yaqui"]
 }
 
-synonyms.each do |lexicon,synonyms|
-  puts "#{lexicon} synonyms: #{synonyms.join( ", " )}"
-  TaxonName.where( lexicon: synonyms ).find_each do |tn|
+synonyms.each do | lexicon, syns |
+  puts "#{lexicon} synonyms: #{syns.join( ', ' )}"
+  TaxonName.where( lexicon: syns ).find_each do | tn |
     print "."
     tn.lexicon = lexicon
     if tn.valid?
@@ -147,10 +150,10 @@ end
 puts
 puts "== PROBLEM LEXICONS =="
 puts
-puts <<-EOT
-Just a place to put lexicons that seem less than great but it's not clear what
-to do about them.
-EOT
+puts <<~TXT
+  Just a place to put lexicons that seem less than great but it's not clear what
+  to do about them.
+TXT
 problem_lexicons = [
   { lexicon: nil, comment: "We used to allow blank lexicons, not sure what to do with these now" },
   { lexicon: "", comment: "We used to allow blank lexicons, not sure what to do with these now" },
@@ -162,11 +165,15 @@ problem_lexicons = [
   },
   {
     lexicon: "Latin",
-    comment: "This is mostly used to mistakenly add scientific names, but there are a few legit Latin names",
+    comment: "This is mostly used to mistakenly add scientific names, but there are a few legit Latin names"
   },
   {
     lexicon: "Manx English Dialect",
-    comment: "This might just be English that should have a PlaceTaxonName set to the Isle of Man, as opposed to Manx which seems like a variant of Gaelic endemic to the Isle of Man"
+    comment: <<~TXT
+      This might just be English that should have a PlaceTaxonName set to the
+      Isle of Man, as opposed to Manx which seems like a variant of Gaelic
+      endemic to the Isle of Man"
+    TXT
   },
   {
     lexicon: "Scots",
@@ -178,7 +185,7 @@ problem_lexicons = [
   { lexicon: "Lexicon 1", comment: "We banned this, but not sure what to do with existing ones" },
   { lexicon: "Brazil", comment: "Probably Portuguese, but can we be sure?" }
 ]
-problem_lexicons.each do |l|
+problem_lexicons.each do | l |
   puts l[:lexicon].inspect
   puts "\t#{l[:comment]}"
   puts "\t#{TaxonName.where( lexicon: l[:lexicon] ).count} names"
