@@ -306,6 +306,7 @@ def load_time_zone_geometries
     ogr2ogr -f "PostgreSQL" PG:"#{pg_string}" \
       #{File.join( fixtures_path, geojson_fname)} \
       -nln #{table_name} \
+      -nlt MULTIPOLYGON \
       -lco GEOMETRY_NAME=geom \
       -overwrite
   BASH
