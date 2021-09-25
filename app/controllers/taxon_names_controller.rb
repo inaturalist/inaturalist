@@ -93,7 +93,12 @@ class TaxonNamesController < ApplicationController
   end
 
   def edit
-    @synonyms = TaxonName.where( name: @taxon_name.name ).where( "id != ?", @taxon_name.id ).page( 1 )
+    @synonyms = TaxonName.
+      joins( "LEFT OUTER JOIN taxa ON taxa.id = taxon_names.taxon_id" ).
+      where( "taxa.id IS NOT NULL" ).
+      where( name: @taxon_name.name ).
+      where( "taxon_names.id != ?", @taxon_name.id ).
+      page( 1 )
   end
 
   def update
