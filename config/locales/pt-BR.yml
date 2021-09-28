@@ -780,14 +780,14 @@ pt-BR:
   cc_used_under_a: "Creative Commons, utilizada sob uma"
   change_admin: Mudar Administrador
   #Button to change the cover (or banner) image for a project
-  change_cover: Altere a capa
+  change_cover: Alterar a capa
   change_descriptions:
     split: A espécie ou grupo foi subdividida em outras
     merge: Diversas espécies foram reunidas em um único grupo
     swap: Substituir táxon de entrada com táxon de saída
     drop: O conceito de táxon ou grupo é totalmente inválido, seu uso está vinculado  a razões históricas e compatibilidades de pares
     stage: Prepara um conceito inativo para ser lançado como parte de um grupo de mudanças
-  change_geoprivacy: 'Mude geroprivacidade'
+  change_geoprivacy: 'Alterar geoprivacidade'
   change_group: Grupo de Mudanças
   change_icon: Alterar ícone
   change_password: Alterar senha
@@ -1484,7 +1484,7 @@ pt-BR:
   duration_value: "Duração: %{duration} minutos"
   each_place_displays_all_species_inat_knows: "Cada pagina do local mostra todas as espécies que %{site_name} conhece daquele lugar, incluindo informação sobre sua abundância, estado de conservação, e quem foi o primeiro a observar aquela espécie naquele local no %{site_name}. Você pode filtrar as espécies por grupo taxonômico, cor, estado de conservação, ou buscando da maneira comum."
   earliest_added: Adicionados Primeiro
-  edit: Alterar
+  edit: Editar
   edit_a_batch_of_observations: Editar um grupo de observações
   edit_account_settings_and_profile: "Edite as configurações da conta &amp; perfil"
   edit_assessment: Editar avaliação
@@ -1500,11 +1500,11 @@ pt-BR:
   edit_multiple_descriptions: Editar múltiplas descrições
   edit_multiple_locations: Editar múltiplas localizações
   edit_multiple_species: Editar múltiplas espécies
-  edit_notes: Alterar anotações
+  edit_notes: Editar notas
   edit_observations: Editar Observações
-  edit_photos: Alterar fotos
+  edit_photos: Editar fotos
   edit_photos_for_observation_id: "Editar fotos da Observação %{obs_id}"
-  edit_place: Alterar lugar
+  edit_place: Editar lugar
   edit_project: Editar projeto
   edit_remove: Editar/Remover
   edit_selected: Editar selecionado
@@ -1621,6 +1621,8 @@ pt-BR:
   facebook_access_token_expired: "Token de acesso expirou. %{user} precisa reconectar sua conta do Facebook."
   facebook_needs_the_owner_of_that_photo_to: Facebook precisa que o proprietário desta imagem reconfirme a conexão com %{site_name_short}.
   facebook_options: Opções do Facebook
+  facebook_photo_import_disabled_notice: |
+    Em novembro de 2020 o Facebook nos exigiu para verificar se precisávamos mesmo de acesso às fotos, e fomos incapazes de completar o processo devido a problemas com o sistema de verificação do Facebook. Como resultado, não podemos mais oferecer suporte à importação de fotos do Facebook.
   failed_to_find_your_location: Falha ao buscar localização.
   failed_to_repair_photo: "Falha ao reparar a foto:  %{errors}"
   failed_to_save_record: "Falha ao salvar registro. Tente novamente mais tarde."
@@ -2141,22 +2143,28 @@ pt-BR:
     scientific_names: Nomes Científicos
     afrikaans: Africâner
     albanian: Albanês
+    arabic: Árabe
+    armenian: Armênio
     belarusian: Bielorrusso
     bengali: Bengalês
+    bulgarian: Búlgaro
     catalan: Catalão
     cebuano: Cebuano
     chinese_simplified: Chinês (Simplificado)
     chinese_traditional: Chinês (tradicional)
     creole_french: Crioulo (Francês)
     creole_portuguese: Crioulo (Português)
+    croatian: Croata
     czech: Tcheco
     danish: Dinamarquês
     davawenyo: Davao Chavacano
     dutch: Holandês
     english: Inglês
     estonian: Estônio
+    faroese: Ferôes
     finnish: Finlandês
     french: Francês
+    galician: Galego
     gela: Gela
     german: Alemão
     greek: Grego
@@ -2166,6 +2174,7 @@ pt-BR:
     hungarian: Húngaro
     icelandic: Islandês
     ilokano: Ilocano
+    indonesian: Indonésio
     italian: Italiano
     japanese: Japonês
     kannada: canarês
@@ -2173,17 +2182,25 @@ pt-BR:
     latvian: Letão
     lithuanian: Lituano
     luxembourgish: Luxemburguês
+    malay: Malaio
+    malayalam: Malaiala
     maltese: Maltês
     maori: Maori
     marathi: Marata
+    maya: Maia
     misima_paneati: Misima-paneati
+    mongolian: Mongol
+    nahuatl: Náuatle
     norwegian: Norueguês
     occitan: Occitano
+    ojibwe: Ojibwe
+    palauan: Palauano
     pangasinan: Pangasinán
     polish: Polonês
     portuguese: Português
     romanian: Romano
     russian: Russo
+    setswana: Setswana
     sinhala: Cingalês
     slovak: Eslovaco
     slovenian: Esloveno
@@ -2196,6 +2213,7 @@ pt-BR:
     turkish: Turco
     ukrainian: Ucraniano
     waray_waray: Samarenho
+    visayan: Cebuano
   less: Menos
   licensed_site_photos: "Fotos com licença %{site_name}"
   license: Licença
@@ -2890,7 +2908,7 @@ pt-BR:
   observations_total: Total de Observações
   observations_w: Observações com
   observations_w_field: Campo de Observação
-  observations_was_successfully_updated: A(s) observação(ões) foram atualizadas com sucesso.
+  observations_was_successfully_updated: A(s) observação(ões) foi atualizada com sucesso.
   observations_widget: Widget de Observações
   observations_with_this_field: Observações com este campo
   observations_with_this_field_and_value: Observações com este campo e valor
