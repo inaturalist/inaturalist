@@ -77,7 +77,17 @@ module FlagsHelper
   def flaggable_edit( flaggable )
     return "" unless editable?( flaggable )
 
-    link_to( send( "edit_#{flaggable.class.name.underscore}_path", flaggable ) ) do
+    edit_path = case flaggable.class.name
+    when "Sound", "LocalSound"
+      sound_path( flaggable )
+    when "Photo", "LocalPhoto"
+      photo_path( flaggable )
+    else
+      return "" unless respond_to? "edit_#{flaggable.class.name.underscore}_path"
+
+      send( "edit_#{flaggable.class.name.underscore}_path", flaggable )
+    end
+    link_to( edit_path ) do
       content_tag :i, "", class: "fa fa-pencil"
     end
   end
