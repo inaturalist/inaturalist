@@ -1793,6 +1793,8 @@ it:
   going_to_your_observations: Stai andando alle tue osservazioni...
   good_choice_for_sharing: Buona scelta condividere con gli scienziati
   google: Google
+  google_maps_not_loaded_error: |
+    Google Maps non si inizializza. Potresti aver bloccato l'accesso a Google Maps con un'estensione del browser o un firewall, o qualcos'altro, come un Internet Service Provider, sta bloccando l'accesso.
   got_it!: Capito!
   got_your_data_somewhere_else?: Avete ottenuto i dati in un altro modo? Vi possiamo aiutare.
   graft: Innesta
@@ -4087,6 +4089,16 @@ it:
     Le osservazioni con coordinate nascoste a causa delle scelte individuali dell'utente sono condivise in un modo più limitato e specifico. Affiliandosi a un sito della Rete, iNaturalist condividerà con gli amministratori del sito le coordinate precise delle osservazioni con la geoprivacy che hai impostato a oscurata o privata, oltre a quelle pubblicamente oscurate o private a causa della geoprivacy del taxon. Questo consente alle tue osservazioni di divenire più preziose per gli sforzi di conservazione locali.
   sites_affiliation_overview_current_member_list_html: |
     Puoi vedere l'elenco dei membri corrente per la %{start_tag_network}Rete di iNaturalist%{end_tag_network}.
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    La %{start_tag_network}Rete di iNaturalist%{end_tag_network} è una raccolta di siti web locali nella %{start_tag_global}community globale di iNaturalist%{end_tag_global}.
+  sites_affiliation_title: Scopri di Più sull'Affiliazione della Rete
+  sites_network_cas_and_nat_geo_html: |
+    L'%{start_tag_cas}Accademia di Scienze della California%{end_tag_cas} e la %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} hanno accordi formali con le organizzazioni in ognuna di queste aree geografiche per supportare l'uso della piattaforma di iNaturalist. <strong>Se la tua organizzazione è interessata a unirsi alla Rete di iNaturalist, puoi trovare ulteriori dettagli %{start_tag_join}qui%{end_tag_join}.</strong>
+  sites_network_consists_of: "La Rete di iNaturalist consiste in diverse organizzazioni:"
+  sites_network_inaturalist_network_collection: |
+    La Rete di iNaturalist è una raccolta di siti web localizzati, completamente connessi alla community globale di iNaturalist. I siti della rete sono supportati dalle istituzioni locali che promuovono l'uso locale e facilitano l'uso dei dati da iNaturalist per beneficiare la biodiversità locale. Hanno accesso alle vere coordinate nelle aree geografiche automaticamente oscurate dalla vista pubblica per meglio proteggere le specie minacciate.
+  sites_network_your_username: |
+    Il tuo nome utente e la tua password su tutti i siti parte della Rete di iNaturalist. Se scegli di affiliarti con un sito della Rete, le istituzioni locali che supportano ogni sito avranno anche accesso al tuo indirizzo email (solo per comunicare con te sulle attività del sito) e accedere alle vere coordinate per le osservazioni che hai scelto di rendere pubblicamente oscurate o private.
   some_agree: alcuni concordano
   some_observations_are_missing_media_or_identifications: |
     Alcune osservazioni mancano di allegato multimediale o di identificazioni
@@ -4334,8 +4346,10 @@ it:
     Le valutazioni di un taxon sono dei documenti che stabiliscono lo stato corrente di una specie, in genere lo stato conservazionistico.
     Per esempio, una organizzazione conservazionistica regionale potrebbe usarle per organizzare le informazioni e sollecitare feedback sullo stato di diversi taxa minacciati nella regione.
   taxon_change_must_be_committed_to_update_records: Per aggiornare i contenuti occorre confermare la modifica del taxon
+  taxon_change_title_taxon_drop: Disattivazione Tassonomica %{id}
   taxon_change_title_taxon_merge: Fusione Tassonomica %{id}
   taxon_change_title_taxon_split: Divisione Tassonomica %{id}
+  taxon_change_title_taxon_stage: Attivazione Tassonomica %{id}
   taxon_change_title_taxon_swap: Scambio Tassonomico %{id}
   taxon_deleted: Taxon eliminato.
   taxon_doesnt_have_a_range: Il Taxon non ha un areale definito

@@ -262,6 +262,7 @@ be:
   about_taxon_ranges_desc: |
     Арэалы таксона адлюстроўваюць глабальнае распаўсюджванне таксона. Арэалы таксонаў звычайна бяруцца з Чырвонага спісу IUCN.
   about_the_cc_licenses: Пра ліцэнзіі Creative Commons
+  about_the_network: Пра сетку
   about_these_licenses: Пра гэтыя ліцэнзіі
   about_this_bioblitz: Пра гэты біябліц
   about_this_map: Пра гэтую мапу
@@ -492,6 +493,8 @@ be:
   admin_s: Адміністратар(ы)
   admin_only: Толькі адміністратары
   admin_tools: Інструменты адміністратара
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Арганізацыі-чальцы
   agree_: Згадзіцца
   agree?: Згодны?
   agree_with_current_taxon: Згадзіцца з дадзеным таксонам
@@ -640,6 +643,7 @@ be:
   alphabetical_order: Па алфавіце
   already_have_an_account_log_in_html: Ужо ёсць уліковы запіс? <strong>Увайсці.</strong>
   amphibians: земнаводныя
+  analyze_ids: Аналіз вызначэнняў
   ancestor_taxon: Бацькоўскі таксон
   and: і
   and_other_taxa: "&amp; Іншыя таксоны"
@@ -782,6 +786,7 @@ be:
   assessment_x: "%{assessment} ацэнка"
   assessments: ацэнкі
   associations: Сувязі
+  atlased: У атласе
   atlas_for_taxon_html: Атлас для %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -1031,6 +1036,7 @@ be:
   committed_by_user_on_date_html: Пацверджана %{user} %{date}
   #Label for date the taxon change was committed
   committed_on: Пацверджана %{date}
+  committed_taxon_changes_cannot_be_deleted: Зафіксаваныя змены таксона не могуць быць выдалены
   #Status message while a taxon change is being committed
   committing: Пацверджанне...
   common_name: Агульная назва
@@ -1259,17 +1265,148 @@ be:
   created: Створана
   created_by: Створана
   created_by_user_on_date: Створана %{user} %{date}
+  created_on: Дата стварэння
+  creating_your_account: "Стварэнне ўліковага запісу..."
+  creative_commons_flickr_tagged: Фота з Flickr пад ліцэнзіяй Creative Commons
+  creative_commons_unless_otherwise_noted: "Creative Commons, калі іншае не пазначана."
   critically_endangered: На мяжы знікнення
+  css_description: Гэта будзе ўключана пасля ўсіх іншых CSS на гэтай старонцы.
   csv: CSV
   csv_file: Файл CSV
   csv_should_not_contain_a_header_row: CSV не павінене змяшчаць радок з загалоўкам
+  cumulative_ids: "Агульны лік вызначэнняў: %{count} of %{total}"
   curate_observations: Курыраваць назіранні
   curate_taxa: Курыраваць таксоны
   curate_user: Курыраваць карыстальніка
   curating: Куратарства
   curation: Куратарства
   curator: Куратар
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    Куратары сайту iNaturalist - гэта давераныя валантэры, якія маюць магчымасць рэдагаваць таксанамію iNaturalist і мадэрыраваць карыстальніцкі змест. Куратары сайту з'яўляюцца неад'емнай часткай iNaturalist, паколькі яны падтрымліваюць нашую таксанамію ў актуальным стане і робяць зносіны на iNaturalist дарэчнымі і цывілізаванымі. Ніжэй прыводзіцца апісанне таго, што значыць быць куратарам. Калі ласка, азнаёмцеся з гэтым, і, калі вы хочаце стаць куратарам, уважліва прачытайце <a href="/pages/curator+guide" target="_blank">Кіраўніцтва куратара</a>, а пасля запоўніце заяўку на гэтай старонцы.
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Вы павінны растулмачыць, чаму вы хочаце стаць куратарам
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Чаму вы хочаце быць куратарам?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Калі вы хочаце рэдагаваць таксанамію iNaturalist, калі ласка, прывядзіце адзін ці два прыклады змен, якія вы бы зрабілі, і прывядзіце крыніцы для вашых прапанованых зменаў. Калі магчыма, прывядзіце цытаты з аўтарэтэтных таксанамічных крыніц <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">як пералічана ў Кіраўніцтве куратара</a>. Калі вы не ўключыце ніводнай крыніцы, вашая заяўка не будзе разглядацца.
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Калі вы хочаце рэдагаваць агульныя назвы, калі ласка, прывядзіце прыклад адной ці двух зменаў, які вы б зрабілі
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Калі вы хочаце мадэрыраваць паводзіны на iNaturalist, калі ласка, прывядзіце адзін ці два прыклады парушэнняў Правілаў супольніцтва і прапануйце, што б вы зрабілі ў дадзеных сітуацыях
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Як куратары могуць страціць свае паўнамоцтвы
+  curator_application_how_curators_lose_their_powers_desc: |
+    Супрацоўнікі iNat могуць пазбавіць куратара паўнамоцтваў, калі куратар неаднаразова:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Грэбуе правіламі, выкладзенымі ў Кіраўніцтве куратара.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    Сам не дэманструе адпаведных паводзінаў.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+    Каб падаць заяўку на пасаду куратара сайту, вы павінны маць рахунак на працягу не менш як 60
+    дзён і дадаць не менш як 100 паляпшаючых вызначэнняў да чыіх-небудзь
+    назіранняў, у тым ліку вашых (вы дадалі %{num_idents}). Калі вы
+    выканаеце абодва гэтыя патрабаванні, вярніцеся сюды, і вы зможаце падаць заяўку.
+  curator_application_inelligible_error: |
+    Каб падаць заяўку на пасаду куратара сайту, вы павінны маць рахунак на працягу не менш як 60
+    дзён і дадаць не менш як 100 паляпшаючых вызначэнняў да чыіх-небудзь
+    назіранняў, у тым ліку вашых.
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Заяўка на пасаду куратара пададзена
+  #Header
+  curator_application_what_curators_can_do: Што могуць рабіць куратары
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Рэдагаваць таксанамію iNaturalist''s адпаведна правілаў <a href="/pages/curator+guide#policies" target="_blank">падзелу "Правілы" Кіраўніцтва куратара</a>. Гэта значыць, што яны могуць дадаваць, раздзяляць, замяняць, аб''ядноўваць, дэактываваць і выдаляць таксоны iNaturalist. Яны таксама могуць рэдагаваць ахоўныя статусы і гэапрыватнасць таксонаў, а таксама рэдагаваць і кіраваць агульнымі назвамі, якія былі дададзены любым карыстальнікам.'
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Схаваць каментары і блакаваць карыстальніка за парушэнне <a
+    href="/pages/community+guidelines" target="_blank">Правілаў супольніцтва</a>.
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    Вырашаць <a href="/flags" target="_blank">сцяжкамі</a> таксоны і карыстальніцкі змест.
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Ствараць і рэдагаваць wiki-старонкі, такія як <a href="/pages/help"
+    target="_blank">iNaturalist ЧаПы</a>.
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    Рэдагаваць месцы, што куруюцца супольніцтвам і запампоўваць KML-файлы памерам больш за 1 MB (але менш 5 MB).
+  #Header
+  curator_application_what_curators_cannot_do: Што куратаы не могуць рабіць
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Уплываць на таксон супольніцтва або якасць дадзеных назірання больш чым іншыя карыстальнікі.
+  #Description of the fact that a curator cannot commit taxon changes for
+  #complete taxa; part of a list of things curators can do, so you might
+  #imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+    Фіксаваць змены тасона для <a href="/pages/curator+guide#completetaxa"
+    target="_blank">поўных таксонаў</a>.
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Выдаляць змест, створаны іншымі карыстальнікамі.
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Чытаць прыватныя паведамленні іншых людзей.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Заяўка на пасаду куратара
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Вы можаце падаць заяву на пасаду куратара толькі калі:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    Вы дадаеце вызначэнні ці/або назіранні на працягу некалькіх месяцаў і маеце намер працягваць.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+    Вы жадаеце і маеце магчымасць выконваць куратарскую працу рэгулярна. Калі вы хочаце толькі дадаць некалькі таксонаў, калі ласка, папрасіце аб гэтым існуючых куратараў, пазначыўшы сцяжкамі таксоны вышэйшага ўзроўню.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    Вы можаце прытрымліваццца адпавядных паводзінаў на iNaturalist і выконваць Правілы супольніцтва. Пасля нададзення куратарскіх паўнамоцтваў ад вас будуць чакаць, што вы будзеце ўзорным карыстальнікам iNaturalist.
+  curators_changed_for_x_html: "Куратары зменены для %{x}"
   curators: Куратары
+  curators_can_remove_observations_from: Куратары могуць выдаляць назіранні з праекта, а іхнія вызначэнні паказваюцца побач з назіраннямі на старонках, спецыфічных для праекту. Куратары таксама могуць бачыць сапраўдныя каардынаты прыватных і прыхаваных назіранняў у гэтым праекце.
+  curator_identification: Вызначэння куратара
+  current_flags: Цяпераншія сцяжкі
+  custom_project_fields: Карыстальніцкія палі праекту
+  custom_project_was_successfully_created: Наладжванні праекту дадазены
+  custom_project_was_successfully_updated: Наладжванні праекту адноўлены
+  customize_location: Наладзіць местазнаходжанне
+  darr_apply_darr: "&darr; Ужыць &darr;"
+  daily_users: Карыстальнікі за дзень
+  danger_zone: Небяспечная зона
+  dashboard: Панэль кіравання
+  data_deficient: Дадзеных недастаткова
+  data_quality: Якасць дадзеных
+  data_quality_assessment: Ацэнка якасці дадзеных
   data_used: "Выкарыстана дадзеных:"
   datatype: Тып дадзеных
   date_: Дата
@@ -1375,6 +1512,7 @@ be:
   description_slash_tags: Апісанне / меты
   description_tags_more: "Апісанне, Меты, &amp; Больш"
   desription: Апісанне
+  destination: Прызначэнне
   destroy: Знішчыць
   details: Падрабязнасці
   deviation: Адхіленне
@@ -1393,15 +1531,87 @@ be:
       invalid_token: 'Няправільны токен аўтэнтыфікацыі.'
       user:
         suspended: Ваш уліковы запіс быў прыпынены
+    sessions:
+      signed_in: 'Уваход паспешна выкананы'
+      signed_out: 'Выхад паспешна выкананы'
+    passwords:
+      send_instructions: 'Вы атрымаеце ліст з інструкцыямі аб тым, як скінуць пароль, праз некалькіх хвілін.'
+      updated: 'Ваш пароль быў паспяхова зменены. Вы ўвайшлі ў сістэмы.'
+      updated_not_active: 'Ваш пароль быў паспяхова зменены.'
+      send_paranoid_instructions: "Калі ваш адрас электроннай пошты існуе ў нашай базе дадзеных, вы атрымаеце спасылку на свой адрас электроннай пошты за некалькі\nхвілін."
+      no_token: "Вы можаце перайсці на гэтую старонку толькі па спасылцы з электронна ліста для змены паролю. Калі вы сапраўды пераходзіце з электроннага ліста для змены паролю, пераканайцеся, што вы выкарыстоўваеце поўны URL-адрас."
+    registrations:
+      signed_up: 'Сардэчна запрашаем! Вы паспяхова зарэгістраваліся.'
+      updated: 'Вы паспяхова аднавілі свой уліковы запіс.'
+      destroyed: 'Да пабачэння. Ваш уліковы запіс быў паспяхова выдалены. Мы спадзяемся хутка пабачыць вас зноў.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Інструцыі па пацвярджэнню'
+      reset_password_instructions:
+        subject: 'Інструкцыі па скіду паролю'
   devise_reset_password_instructions_hello_email: Прывітанне, %{email}
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Нехта запытаў спасылку каб змяніць ваш пароль. Вы можаце зрабіць гэта праз спасылку ніжэй.
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    Калі вы не рабілі гэты запыт, вы можаце праігнараваць гэты ліст.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Ваш пароль не будзе зменены, да той пары, калі вы не скарыстаецеся спасылкай вышэй, каб стварыць новы.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Ваш уліковы запіс быў заблакаваны з-за празмерна вялікай колькасці непаспяховых спробаў уваходу.
+  devise_unlock_instructions_click_the_link: |
+    Пстрыкніце па спасылцы ніжэй, каб разблакаваць ваш уліковы запіс
+  devise_unlock_instructions_unlock: Разблакаваць ваш уліковы запіс
   discoveries: Адкрыцці
   did_you_mean: 'Вы мелі на ўвазе'
+  did_you_photos_flickr?: Ці запампоўвалі вы якія-небудзь фота на Flickr?
+  disable: Адключыць
+  disable_comments: Адключыць каментары
+  disable_comments_desc: Забараніць людзям дадаваць новыя каментары
+  disagree_: Не згодзен
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Ад'яднаць
+  disconnect_caps: АД'ЯДНАЦЬ
+  disconnect_provider: "Ад'яднаць %{provider}"
+  display: Адлюстраванне
+  display_link_to_checklist: Паказваць спасылку на спіс праектаў з старонкі праекта
+  display_monthly_supporter_badge: Пакзаваць значок "Штомесяцовы спонсар" у маім профілі
+  display_name: Адлюстроўваемае імя
+  display_name_description: Гэта імя, якое будзе паказвацца ў вашым профілі, а таксама пазначацца ў аўтарскіх правах
+  distance_traveled_value: "Пройдзеная адлеграсць: %{distance}м"
+  distance_traveled: "Пройдзеная адлегласць (м)"
+  documentation_for_developers_html: Дакументацыя для <a href="/pages/developers">распрацоўшчыкаў</a>
+  do_not_show_this_message_again: Больш не паказваць гэтае паведамленне
+  do_you_study_nematodes_worlds_foremost_expert_barnacle: |
+    Вы вывучаеце нематоды? Вы самы вядомы ў свеце эксперт па таксанаміі малюскаў? Вам проста падабаецца глядзець на прыгожыя кветкі? Запаўненне вашага профілю мусіць дадаць пэўнай індывідуальнасці і дадапоможа іншжым ацаніць ваш аўтарытэт калі вы дапамагаеце іншым з вызначэннямі.
+  doesnt_have_default_photo: пакуль няма стандартнага фота
+  doh_something_went_wrong: Нешта пайшло не так.
+  doh_something_went_wrong_error: "Нешта пайшло не так: %{error}"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: УНЁСАК
+  done: Гатова
+  dont_have_an_account_sign_up_html: Няма уліковага запісу? <strong>Зарэгістравацца.</strong>
+  dont_send_me_email: "Не дасылаць мне ніякіх лістоў!"
+  dont_use_double_quotes: Не выкарыстоўваць падвойных лапак нідзе больш
+  #Prompt shown when you are dragging a file somewhere and should release it to
+  #add the file as, for example, a new photo in the Uploader
+  drop_it: Удпусціце
   download: Спампаваць
+  download_bulk_import_template_html: |
+    <a href="%{url}">Спампаваць узор</a> для выкарыстання ў
+    <a href="/observations/import?project_id=%{project_id}#csv_import">пакетнай запампоўцы</a>
   download_csv: Спампаваць як CSV
   download_csv_template: Спампаваць узро CSV
   download_kml: Спампаваць як KML
   downstream_coverage_rank: Ранг ніжэйшага таксона
   downstream_coverage_colon_rank: "Ахоп у ніжідучым накірунку: ранг %{rank}"
+  downstream_deviations: Адхіленні ў накірунку ўніз
+  downstream_deviations_for_taxon: "Адхіленні ў накірунку ўніз для %{taxon}"
+  #Label for a link to taxa that are descendants ("downstream") of the current
+  #taxon that are covered by the same Taxon Framework
+  downstream_flagged_covered_taxa: Таксоны ў на ніжэйшых узроўнях, пазначыня сцяжком
+  draft: чарнавік
   draft_: Чарнавік
   draft_saved: Чарнавiк захаваны!
   drafts: Чарнавікі
@@ -1409,7 +1619,319 @@ be:
   drawings: Малюнкі
   duplicate_verb: Дубляваць
   duration_value: "Працягласць: %{duration} хвілін"
+  each_place_displays_all_species_inat_knows: "Старонка кожнага месца адлюстроўвае ўсе віды з %{site_name}, якія вядомыя для месца, уключаючы інфармацыю пра іх сустракаемасць, прыродаахоўны статус, і хто ўпершыню назіраў гэты від у месцы на %{site_name}. Вы можаце адфільтраваць віды па таксанамічных групах, колеру, прыродаахоўнаму статусу або ажыцяўляць звычайны пошук."
+  earliest_added: Дададзеныя раней першыя
   edit: Рэдагаваць
+  edit_a_batch_of_observations: Рэдагаваць групу назіранняў
+  edit_account_settings_and_profile: "Рэдагаваць налады ўліковага запісу &amp; профіль"
+  edit_assessment: Рэдагаваць аценку
+  edit_atlas: Рэдагаваць атлас
+  edit_atlas_for_taxon_html: Рэдагаваць атлас для %{taxon}
+  edit_body: Рэдагаваць тэкст
+  edit_comment: Рэдагаваць ваш каментар
+  edit_complete_set_for_taxon_in_place_html: "Рэдагваць поўны набор для %{taxon} у %{place}"
+  edit_custom_project_fields: Рэдагаваць карыстальніцкія палі праекта
+  edit_field: Рэдагаваць поле
+  edit_license: Рэдагаваць ліцэнзію
+  edit_multiple_dates: Рэдагаваць некалькі датаў
+  edit_multiple_descriptions: Рэдагаваць некалькі нататак
+  edit_multiple_locations: Рэдагаваць некалькі месцазнаходжанняў
+  edit_multiple_species: Рэдагаваць некалькі відаў
+  edit_notes: Рэдагаваць нататкі
+  edit_observations: Рэдагаваць назіранні
+  edit_photos: Рэдагаваць фатаграфіі
+  edit_photos_for_observation_id: "Рэдагаваць фот для назірання %{obs_id}"
+  edit_place: Рэдагаваць месца
+  edit_project: Рэдагаваць праект
+  edit_remove: Рэдагаваць/выдаліць
+  edit_selected: Рэдагаваць абранае
+  edit_source: Рэдагаваць крыніцу
+  edit_taxa: Рэдагаваць таксоны
+  edit_taxon: Рэдагаваць таксон
+  edit_taxon_framework: Рэдагаваць канцэпцыю таксона
+  edit_taxon_link: Рэдагаваць спасылку на таксон
+  edit_taxon_range: Рэдагаваць арэал таксона
+  edit_the_observation: Рэдагаваць назіранне
+  edit_your_account_and_profile_html: "Рэдагаваць ваш уліковы запіс і профіль"
+  edit_your_default_settings: "Рэдагаваць вашыя стандартныя налады"
+  edit_your_global_project_settings: Рэдагаваць вашыя глабальныя налады праекту
+  edit_your_identification: Рэдагаваць вашае вызначэнне
+  edit_your_settings_for_this_project: Рэдагаваць вашыя налаы для гэтага праекту
+  edited_by_name_html: "Адрэдагавана %{name}"
+  edited_by_name_some_rights_reserved_html: |
+    Адрэдагавана %{name}, некаторыя правы абаронены (%{license})
+  editing: Рэдагаванне
+  editing_announcement: Рэдагаванне абвестак
+  editing_custom_project_fields_for: Рэдагаванне карыстальніцкіх палёў праекта
+  editing_observation_field: Рэдагаванне поля назірання
+  editing_observation_id: "Рэдагаванне назірання %{obs_id}"
+  editing_observations:
+    one: 'Рэдагаванне <span class="count">1</span> назірання:'
+    few: 'Рэдагаванне <span class="count">%{count}</span> назіранняў:'
+    many: 'Рэдагаванне <span class="count">%{count}</span> назіранняў:'
+    other: 'Рэдагаванне <span class="count">%{count}</span> назіранняў:'
+  editing_project: Рэдагаванне %{project}
+  editing_project_asset: Рэдагаванне рэсурсаў праекта
+  editing_subscription_to_x_html: "Рэдагаванне падпіскі на %{x}"
+  editing_taxon: Рэдагаванне %{taxon}
+  editing_taxon_link: Рэдагаванне спасылкі на таксон
+  editing_taxon_name_for_taxon_html: Рэдагаванне імя таксона "%{name}" для %{taxon}
+  editing_taxon_range_for_taxon_html: Рэдагаванне арэалу таксона для %{taxon}
+  editing_this: Рэдагаванне %{elem}
+  editing_x_in_y: "Рэдагаванне %{x} у %{y}"
+  editors: Рэдактары
+  either_that_user_doesnt_exist_or: "Або такі карыстальнік не існуе, або вы ўжо падпісаны на яго."
+  eligible_for_research_grade: Прыдатнае для "Класа даследвання"
+  email: Эл. пошта
+  email_description: Вашая э-пошта не бачная іншым карыстальнікам iNaturalist
+  email_address_for_comments_and_other_feedback: Адрас электроннай пошты для каментараў і іншых водгукаў
+  email_copyright: "Аўтраскія правы &copy; %{x}, усе правы абаронены"
+  email_notifications: Апавяшчэнні па электроннай пошце
+  email_settings: Налады электроннай пошты
+  embed: 'Убудаваць'
+  embed_place_widget: Убудаваць віджэт месца
+  embed_this_assessment: Убудваць гэтую ацэнку
+  embed_widget_project: Убудаваць віджэт гэтага праекта ў ваш вэб-сайт
+  enable_offline_access: Дазволіць доступ офлайн
+  enable_offline_access_for_mobile: Дазволіць доступ офлайн для мабільных прыладаў
+  encompassing_places: Ахопленыя месцы
+  end: Канец
+  end_date_time: Дата/час канцу
+  endangered: Пад пагрозай знішчэння
+  endemic: Эндэмічны
+  endemic_to_x: "Эндэмічны для %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
+  eol: EOL
+  eol_collection_url: "URL калекцыі EOL"
+  error_updating_photo: "Памылка аднаўлення фота: %{photo_errors}"
+  establishment:
+    endemic: Эндэмічны
+    establishment: Шляхі ўзнікнення
+    introduced: Інтрадуцэнт
+    invasive: Інвазіўны
+    managed: Культывуецца
+    native: Мясцовы
+    naturalised: Натуралізаваны
+  establishment_means: Шляхі ўзнікнення
+  establishment_means_describes_how: |
+    Шляхі ўзнікнення апісваюць, якім чынам таксон тасон з'явіўся на дадзенай тэррыторыі.
+    На DarwinCore вы можаце знайсці <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">больш інфармацыі па тэрміналогіі</a>.
+  estimate_which_input: |
+    Ацаніце, якія ідэнтыфікатары ўваходных таксонаў будуць замененыя на якія выходныя таксоны, а якія будуць убуйняцца да агульнага продка пасля завяршэння падзелу. Разлік можа заняць некаторы час. Спасылкі на назіранні ўсечаны на падмноства з 200.
+  event_in_progress: Падзея зараз выконваецца
+  event_stats: Статыстыка падзеі
+  event_url: URL падзеі
+  events_only: Толькі падзеі
+  every_species_seen_by: Кожны від быў убачаны
+  everyone: усе
+  everyone_: Усе
+  everyone_journal_posts: Усе допісы ў часопісах
+  everywhere: усюды
+  exact: Дакладна
+  exact_date: Дакладная дата
+  exact_rank: Дакладны ранг
+  except: акрамя
+  exclude_places: Выключыць месцы
+  exclude_projects: Выключыць праекты
+  exclude_taxa: Выключыць таксоны
+  exclude_users: Выключыць карыстальнікаў
+  exclusion_filters: Фільтры выключэнняў
+  existing_flags: Існуючыя пазнакі
+  exit_full_screen: "Выйсці з поўнаэкраннага рэжыму"
+  examples_of_data_use_by_network_members: Прыклады выкарыстання дадзеных удзельнікамі сеткі
+  examples_of_ranking_organizations: Прыклады арганізацый, што надаюць статусы
+  explore: Даследаваць
+  export: Экспарт
+  export_observations: Экспартаваць назіранні
+  export_with_private_coordinates: Экспартаваць са схаванымі назіраннямі
+  exporting: "Экспартаванне..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
+  external_applications: Знешнія прыкладанні
+  external_applications_description: Знешнія прыкладанні - гэта прыкладанні 3га боку, якім вы дазволілі доступ да вашага ўліковага запісу на iNaturalist ад вашага імя. Яны могуць рабіць з вашым уліковым запісам усё тое, што і вы самі, таму ўпэўніцеся, што вы давяраеце распрацоўшчыкам прыкладання перад тым, як даць ім гэты дазвол.
+  external_taxon_including_children: Знешні таксон (улючаючы даччыныя)
+  extinct: вымерлы
+  extinct_in_the_wild: Вымерлы ў прыродзе
+  extra_properties: Дадатковыя ўласцівасці
+  evidence_of_organism: Сведчанне існавання арганізму
+  facebook: Facebook
+  facebook_account_information: Інфармацыя пра ваш уліковы запіс Facebook
+  facebook_account_not_linked: "%{user} больш не мае далучанага ўліковага запісу facebook, таму %{site_name} не мае дазволу на доступ да гэтага фота."
+  facebook_access_token_expired: "Тэрмін дзеяння токену доступу скончыўся. %{user} павінен перападлучыць свой уліковы запіс Facebook."
+  facebook_needs_the_owner_of_that_photo_to: Facebook патрабуе, каб уласнік гэтага фота зноў пацеврдзіў сваеre падлучэння да %{site_name_short}.
+  facebook_options: Наладжванні Facebook
+  failed_to_find_your_location: Не атрымалася знайсці ваш уліковы запіс
+  failed_to_repair_photo: "Не атрымалася аднавіць фота: %{errors}"
+  failed_to_save_record: "Не атрымалася захаваць запіс. Калі ласка, паспрабуйце зноў пазней."
+  failed_to_save_record_with_errors: "Не атрымалася захаваць запіс: %{errors}"
+  failed_to_unlink_your_account: Не атрымалася адлучыць ваш уліковы запіс
+  'false': 'Не'
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
+  faves: Упадабанні
+  Family: Сям'я
+  favorite_taxa: Упадабаныя таксоны
+  favorites: "Упадабанні"
+  feature_this_project_: "Рэкамендаваць гэты праект"
+  featured: Рэкамендацыі
+  #Title for a button or section describing the "featured" status of a project
+  featuring: Рэкамендуем
+  feedback: Зваротная сувязь
+  #Plural noun, as in Atom and RSS feeds
+  feeds: 'Стужкі (feeds)'
+  failed: Не атрымалася
+  field_note: |
+    <strong>Заўвага:</strong> Калі вы хочаце стварыць поле, праверце, ці не зрабіў гэта хто небудзь да вас, каб унікнуць дублявання.
+  fields: палі
+  fields_: Палі
+  fields_can_only_be_edited_by_the_people_who: Палі могуць быць адрэдагаваны толькі людзьмі, якія стварылі іх, або куратарамі
+  fields_merged: Палі аб'яднаны
+  file: Файл
+  file_size: Памер файла
+  file_should_be_in_the_following_format: "Файл павінен быць у адным з наступных фарматаў: імя такосна, апісанне"
+  fill_out_project_observation_fields: Запоўніць палі назірання праекту
+  fill_out_your_profile: запоўніце ваш профіль
+  #The name of a computer file
+  filename: Назва файла
+  filter: Фільтр
+  filter_by_curator_identification: Фільтраваць па назіранням куратара
+  filter_by_place: Фільтраваць па месцы
+  filter_by_taxon: Фільтраваць па таксоне
+  filter_by_place_taxon_and_color: Фільтраваць па месцы, таксоне і колеры, выкарыстоўваюцы элементы кіравання.
+  filter_list_by_this_taxon: Фільтраваць спіс па гэтаму таксону
+  filtering: Фільтраванне
+  filters: Фільтры
+  find: Знайсці
+  find_a_guide: Знайсці дапаможнік
+  find_a_place: Знайсці месца
+  find_guides: Знайсці дапаможнікі
+  find_new_place_to_explore: Знайсці новае месца для даследвання!
+  find_observations: Знайсці назіранні
+  find_photos: Знайсці фота
+  find_places: Знайсці месцы
+  find_some_people_to_follow: "Знайсці людзей, каб падпісацца"
+  find_species: Знайсці віды
+  find_suitable_observations: Знайсці адпаведныя назіранні
+  find_unsuitable_observations: Знайсці недарэчныя назіранні
+  find_your_current_location: Знайсці вашае месцазнаходжанне
+  finished: Скончана
+  finished_with_page: Скончана на старонцы
+  first_confirmed_inat_observation: "Першае пацверджанае %{site_name} назіранне"
+  first_connect_your_provider_account_to_your_site: "Спачатку падлучыце ваш уліковы запіс %{provider} з %{site_name}:"
+  first_inat_observation: "Першае назіранне з %{site_name}"
+  first_observer: 1ы назіральнік
+  #Verb form, as in "Flag this item"
+  flag: Пазначыць сцяжком
+  flag_as_inappropriate: Пазначыць як недарэчнае
+  flag_an_item: Пазначыць элемент
+  flag_as_spammer: Пазначыць як спамера
+  flag_as_non_spammer: Пазначыць як не спамера
+  #Label for the date/time when a flag was created
+  flag_created: Пазнака створана
+  flag_description: Пазначыць гэты змест каб паведаміць куратарам, што з ім неште не так.
+  flag_for_check_list_title_html: |
+    Пазначыць для таксанамічнага спісу: %{title}
+  flag_for_comment_id_html: Пазначыць для <a href="%{url}">каментара %{id}</a>
+  flag_for_comment_id_deleted: Пазначыць ля каментара %{id} (выдалена)
+  flag_for_curation: Пазначыць для куратараў
+  flag_for_guide_title_html: |
+    Пазначыць для дапаможніка: %{title}
+  flag_for_identification_id_html: Пазначыць для <a href="%{url}">вызначэння %{id}</a>
+  flag_for_life_list_title_html: |
+    Пазнака для спісу Жыцця: %{title}
+  flag_for_list_title_html: |
+    Пазначыць для спісу: %{title}
+  flag_for_message_id_html: Пазначыць для <a href="%{url}>"паведамлення %{id}</a>
+  formatting: Фарматаванне
+  forgot_your_password: Забыліся на пароль?
+  forum: Форум
+  forum_categories:
+    bug_reports: Справаздачы пра памылкі
+    feature_requests: Запыт новай функцыі
+    forum_feedback: Зваротная сувяз на форуме
+    forum_moderation: Мадэрацыя форуму
+    nature_talk: Размовы пра прыроду
+    news_and_updates: Навіны і апдэйты
+    tutorials: Навучальныя матэрыялы
+  forum_desc: |
+    Форум - гэта месца дзе можна абмеркаваць iNat itself, уключаючы дапамогу і падтрымку,
+    запыты новых функцый, справаздачы аб памылках, абвесткі, і шмат чаго іншага.
+  frequency: Частата
+  from_a_place: з месца
+  from_eol_collection: З калекцыі EOL
+  from_flickr_facebook_etc: З Flickr, Facebook і г.д.
+  from_list: З спісу
+  from_photos: З фота
+  from_place: З месца
+  from_soundcloud: З Soundcloud
+  full_screen: Поўны экран
+  fungi:
+    one: грыб
+    few: грыба
+    many: грыбоў
+    other: грыба
+  gbif: GBIF
+  gbif_occurrences: Знаходкі GBIF
+  generate_taxonomic_tags_for_flickr: Стварыць таксанамічныя тэгі для вашых фота Flickr.
+  generate_widget: Стварыць Widget
+  generate_your_stats: Генерыраваць вашую статыстыку
+  generating_mobile_archive: "Стварэнне мабільнага архіва"
+  Genus: Род
+  geoprivacy: Геапрыватнасць
+  geoprivacy_is_obscured: Геапрыватнасць прыхавана
+  geoprivacy_is_obscured_desc: Назіральнік вырашыў прыхаваць гэтыя каардынаты.
+  geoprivacy_is_private: 'Геапрыватнасць: прыватнае'
+  geoprivacy_is_private_desc: Назіральнік вырашыў схаваць гэтыя каардынаты.
+  georeferenced: Мае гэапрывязку?
+  get_started: Пачаць
+  getting_started_guide: Дапаможнік для пачынаючых
+  #Prompt to donate money on a montly basis
+  give_monthly_caps: ШТОМЕСЯЧНЫ ЎНЁСАК
+  #Prompt to donate money once
+  give_now_caps: ЗРАБІЦЬ УНЁСАК ЗАРАЗ
+  global_names: Глабальныя назвы
+  globally: Глабальна
+  go: Шукаць
+  go_back: Назад
+  going_to_your_observations: Пераходзім да вашых назіранняў...
+  good_choice_for_sharing: Добры выбар, каб дзяліцца з вучонымі
+  google: Google
+  google_maps_not_loaded_error: |
+    Google Maps не ініцыялізаваныя. Магчыма, вы заблакавалі доступ да Google Maps
+    у вашым дастасаванні праглядальніка або файерволе, альбо нешта іншае, накшталт Internet Service Provider, блакуе доступ.
+  got_it!: Зразумела!
+  got_your_data_somewhere_else?: Вашыя данныя ў іншым месцы?  Мы можам дапамагчы.
+  graft: Прышчэпка
+  graft_taxon: Прышчапіць %{taxon}
+  grafting_attemps_to_insert_this_taxon: Прышчапленне спрабуе ўставіць гэты таксон у нашае таксанамічнае дрэва, шукаючы бацькоўскі таксон або ствараючы ўсе неабходныя прамежкавыя таксоны для таго каб дастасаваць яго да існуючага таксона вышэйшага ўзроўню.
+  grant_role: "%{grant} ролю %{role}"
+  grid: Сетка
+  grid_layout: Размяшчэнне па сетцы
+  grid_tooltip: Паказаць у выглядзе сеткі
+  group: Група
+  grouping: Групаванне
+  guides: Дапаможнікі
+  guide_compiled_by: Дапаможнік скампіляваны
+  guide_deleted: Дапаможнік выдалены
+  guide_will_be_deleted: Дапаможнік будзе выдалены. Для вялікіх дапаможнікаў.гэта можа заняць працяглы час.
+  guide_taxon: Дапаможнік па таксону
+  guide_was_successfully_created: Дапаможнік быў паспяхова створаны.
+  guide_was_successfully_published: Дапаможнік быў паспяхова апублікаваны.
+  guide_was_successfully_updated: Дапаможнік быў паспяхова адноўлены.
+  guidelines: Правілы
+  has_already_been_flagged_by: ужо было пазначана
+  has_id_supported_by_two_or_more: Мае вызначэнне ад дзвух або болей удзельнікаў
+  has_one_or_more_faves: Мае адно ці болей упадабанняў
+  has_photo: Мае фота
+  has_photos: Мае некалькі фота
+  has_photo_and_sound: Мае і фота, і гук
+  has_photos_or_sounds: Мае фатаграфіі або гукі
+  has_sound: Мае гук
+  has_sounds: Мае гукі
+  hasnt_contributed_any_observations: не дадалі ніводнага назірання да гэтага праекту.
+  header_your_observations: Вашыя назіранні
+  header_your_calendar: Ваш календар
+  header_your_favorites: Вашыя ўпадабанні
+  identify_title: "Вызначыць"
   date:
     abbr_month_names:
       - 
