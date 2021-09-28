@@ -1640,6 +1640,11 @@ sv:
   facebook_access_token_expired: "Åtkomsttoken har löpt ut. %{user} måste länka sitt Facebook-konto igen."
   facebook_needs_the_owner_of_that_photo_to: Facebook behöver få ägaren av den bilden att bekräfta sin koppling till %{site_name_short}.
   facebook_options: Facebook-inställningar
+  facebook_photo_import_disabled_notice: |
+    I november 2020 krävde Facebook att vi skulle visa att vi verkligen behövde
+    tillgång till bilder, och vi kunde inte genomföra det på grund av
+    problem med Facebooks verifieringssystem. Det innebär att vi inte längre kan
+    stödja import av bilder från Facebook.
   failed_to_find_your_location: Kunde inte att hitta din position.
   failed_to_repair_photo: "Lyckades inte reparera bild: %{errors}"
   failed_to_save_record: "Lyckades inte att spara posten. Försök igen senare."
@@ -2155,22 +2160,28 @@ sv:
     scientific_names: Vetenskapliga namn
     afrikaans: Afrikaans
     albanian: Albanska
+    arabic: Arabiska
+    armenian: Armeniska
     belarusian: Belarusiska
     bengali: Bengaliska
+    bulgarian: Bulgariska
     catalan: Katalanska
     cebuano: Cebuano
     chinese_simplified: Kinesiska (förenklad)
     chinese_traditional: Kinesiska (traditionell)
     creole_french: kreol (Franska)
     creole_portuguese: kreol (Portugisiska)
+    croatian: Kroatiska
     czech: Tjeckiska
     danish: Danska
     davawenyo: Davawenyo
     dutch: Holländska
     english: Engelska
     estonian: Estniska
+    faroese: Färöiska
     finnish: Finska
     french: Franska
+    galician: Galiciska
     gela: Gela
     german: Tyska
     greek: Grekiska
@@ -2180,6 +2191,7 @@ sv:
     hungarian: Ungerska
     icelandic: Isländska
     ilokano: Ilokano
+    indonesian: Indonesiska
     italian: Italienska
     japanese: Japanska
     kannada: Kannada
@@ -2187,17 +2199,25 @@ sv:
     latvian: Lettiska
     lithuanian: Litauiska
     luxembourgish: Luxemburgiska
+    malay: Malajiska
+    malayalam: Malayalam
     maltese: Maltesiska
     maori: Maori
     marathi: Marathi
+    maya: Maya
     misima_paneati: Misima-paneati
+    mongolian: Mongoliska
+    nahuatl: Nahuatl
     norwegian: Norska
     occitan: Occitanska
+    ojibwe: Ojibwe
+    palauan: Palauiska
     pangasinan: Pangasinan
     polish: Polska
     portuguese: Portugisiska
     romanian: Rumänska
     russian: Ryska
+    setswana: Setswana
     sinhala: Singalesiska
     slovak: Slovakiska
     slovenian: Slovenska
@@ -2210,6 +2230,7 @@ sv:
     turkish: Turkiska
     ukrainian: Ukrainska
     waray_waray: Waray-Waray
+    visayan: Cebuano
   less: Mindre
   licensed_site_photos: "Licensierade %{site_name}-bilder"
   license: Licens
