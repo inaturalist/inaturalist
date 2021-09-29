@@ -1,3 +1,5 @@
+# Contains a time zone geometry as defined by
+# https://github.com/evansiroky/timezone-boundary-builder/releases
 class TimeZoneGeometry < ActiveRecord::Base
   class << self
     def tzid_for_lat_lng( lat, lng )
