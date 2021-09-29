@@ -19,7 +19,7 @@ class Photo < ApplicationRecord
     self.uuid = uuid.downcase
     true
   end
-  
+
   before_save :set_license, :trim_fields
   after_save :update_default_license,
              :update_all_licenses
@@ -36,28 +36,56 @@ class Photo < ApplicationRecord
 
   class MissingPhotoError < StandardError; end
 
+  def extension
+    return unless self["original_url"]
+    if matches = self["original_url"].match(/original\.([^?]*)(\?|$)/)
+      return matches[1]
+    end
+    nil
+  end
+
+  def url_prefix
+    return unless self["original_url"]
+    if matches = self["original_url"].match( /^(.*)\/#{id}\/original/ )
+      return matches[1]
+    end
+    nil
+  end
+
   def original_url
-    self["original_url"] && self["original_url"].with_fixed_https
+    sized_url( :original )
   end
 
   def large_url
-    self["large_url"] && self["large_url"].with_fixed_https
+    sized_url( :large )
   end
 
   def medium_url
-    self["medium_url"] && self["medium_url"].with_fixed_https
+    sized_url( :medium )
   end
 
   def small_url
-    self["small_url"] && self["small_url"].with_fixed_https
+    sized_url( :small )
   end
 
   def square_url
-    self["square_url"] && self["square_url"].with_fixed_https
+    sized_url( :square )
   end
 
   def thumb_url
-    self["thumb_url"] && self["thumb_url"].with_fixed_https
+    sized_url( :thumb )
+  end
+
+  def sized_url( size = "original" )
+    if flags.any?{ |f| f.flag == Flag::COPYRIGHT_INFRINGEMENT }
+      return FakeView.image_url( "copyright-infringement-#{size}.png" )
+    end
+    if self.is_a?( LocalPhoto )
+      return unless url_prefix
+      return ( "#{url_prefix}/#{id}/#{size}.#{extension}" ).with_fixed_https
+    end
+    return unless self["#{size}_url"]
+    return self["#{size}_url"].with_fixed_https
   end
 
   def to_s
