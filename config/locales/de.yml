@@ -1598,6 +1598,11 @@ de:
   facebook_access_token_expired: "Zugriffstoken ist abgelaufen. %{user} muss sein Facebook-Konto erneut verknüpfen."
   facebook_needs_the_owner_of_that_photo_to: Facebook benötigt den Besitzer dieses Fotos, um seine Verbindung zu %{site_name_short} erneut zu bestätigen.
   facebook_options: Facebook-Optionen
+  facebook_photo_import_disabled_notice: |
+    Im November 2020 forderte uns Facebook dazu auf, nachzuweisen, dass wir unbedingt
+    Zugang zu Fotos benötigten, und wir konnten den Prozess wegen
+    Problemen mit dem Facebook-Verifizierungssystem nicht abschließen. Daher können wir das Importieren von Fotos von Facebook nicht mehr
+    unterstützen.
   failed_to_find_your_location: Dein Standort konnte nicht gefunden werden.
   failed_to_repair_photo: "Fehler bei der Reparatur des Fotos: %{errors}"
   failed_to_save_record: "Speichern fehlgeschlagen. Bitte später erneut versuchen."
@@ -2081,22 +2086,28 @@ de:
     scientific_names: Wissenschaftlicher Name
     afrikaans: Afrikaans
     albanian: Albanisch
+    arabic: Arabisch
+    armenian: Armenisch
     belarusian: Weißrussisch
     bengali: Bengali
+    bulgarian: Bulgarisch
     catalan: Katalanisch
     cebuano: Cebuano
     chinese_simplified: Chinesisch (vereinfacht)
     chinese_traditional: Chinesisch (traditionell)
     creole_french: Kreol (Französisch)
     creole_portuguese: Kreol (Portugiesisch)
+    croatian: Kroatisch
     czech: Tschechisch
     danish: Dänisch
     davawenyo: Davawenyo
     dutch: Niederländisch
     english: Englisch
     estonian: Estnisch
+    faroese: Färöisch
     finnish: Finnisch
     french: Französisch
+    galician: Galizisch
     gela: Gela
     german: Deutsch
     greek: Griechisch
@@ -2106,6 +2117,7 @@ de:
     hungarian: Ungarisch
     icelandic: Isländisch
     ilokano: Ilokano
+    indonesian: Indonesisch
     italian: Italienisch
     japanese: Japanisch
     kannada: Kannada
@@ -2113,17 +2125,25 @@ de:
     latvian: Lettisch
     lithuanian: Litauisch
     luxembourgish: Luxemburgisch
+    malay: Malaiisch
+    malayalam: Malayalam
     maltese: Maltesisch
     maori: Maori
     marathi: Marathi
+    maya: Maya
     misima_paneati: Misima-Paneati
+    mongolian: Mongolisch
+    nahuatl: Nahuatl
     norwegian: Norwegisch
     occitan: Okzitanisch
+    ojibwe: Ojibwe
+    palauan: Palauisch
     pangasinan: Pangasinensisch
     polish: Polnisch
     portuguese: Portugiesisch
     romanian: Rumänisch
     russian: Russisch
+    setswana: Setswana
     sinhala: Singhalesisch
     slovak: Slowakisch
     slovenian: Slowenisch
@@ -2136,6 +2156,7 @@ de:
     turkish: Türkisch
     ukrainian: Ukrainisch
     waray_waray: Wáray-Wáray
+    visayan: Visayan
   less: Weniger
   licensed_site_photos: "Lizenzierte %{site_name} Fotos"
   license: Lizenz
