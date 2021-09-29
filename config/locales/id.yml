@@ -1572,6 +1572,8 @@ id:
   facebook_access_token_expired: "Akses token telah berakhir. %{user} harus menghubungkan kembali akun Facebook mereka."
   facebook_needs_the_owner_of_that_photo_to: Facebook membutuhkan pemilik foto tersebut untuk mengonfirmasi ulang hubungan mereka dengan %{site_name_short}.
   facebook_options: Opsi Facebook
+  facebook_photo_import_disabled_notice: |
+    Pada November 2020, Facebook mengharuskan kami untuk memverifikasi bahwa kami benar-benar memerlukan akses untuk foto-foto, dan kami tidak bisa memenuhi prosesnya karena masalah dengan sistem verifikasi Facebook. Akibatnya, sekarang kami tidak bisa mendukung impor foto dari Facebook.
   failed_to_find_your_location: Gagal menemukan lokasi Anda.
   failed_to_repair_photo: "Gagal untuk memperbaiki foto: %{errors}"
   failed_to_save_record: "Gagal menyimpan catatan. Silakan coba lagi nanti."
@@ -2070,22 +2072,28 @@ id:
     scientific_names: Nama Ilmiah
     afrikaans: Afrika
     albanian: Albania
+    arabic: Arab
+    armenian: Armenia
     belarusian: Belarusia
     bengali: Benggala
+    bulgarian: Bulgaria
     catalan: Katalan
     cebuano: Cebuano
     chinese_simplified: Mandarin (sederhana)
     chinese_traditional: Mandarin (tradisional)
     creole_french: Creole (Prancis)
     creole_portuguese: Creole (Portugis)
+    croatian: Kroasia
     czech: Ceko
     danish: Denmark
     davawenyo: Davawenyo
     dutch: Belanda
     english: Inggris
     estonian: Estonia
+    faroese: Faroe
     finnish: Finlandia
     french: Prancis
+    galician: Galisia
     gela: Gela
     german: Jerman
     greek: Yunani
@@ -2095,6 +2103,7 @@ id:
     hungarian: Hungaria
     icelandic: Islandia
     ilokano: Ilokano
+    indonesian: Indonesia
     italian: Italia
     japanese: Jepang
     kannada: Kannada
@@ -2102,17 +2111,25 @@ id:
     latvian: Latvia
     lithuanian: Lithuania
     luxembourgish: Luksemburg
+    malay: Melayu
+    malayalam: Malayalam
     maltese: Malta
     maori: Maori
     marathi: Marathi
+    maya: Maya
     misima_paneati: Misima-paneati
+    mongolian: Mongolia
+    nahuatl: Nahuatl
     norwegian: Norwegia
     occitan: Occitan
+    ojibwe: Ojibwe
+    palauan: Palau
     pangasinan: Pangasinan
     polish: Polandia
     portuguese: Portugis
     romanian: Romania
     russian: Rusia
+    setswana: Setswana
     sinhala: Sinhala
     slovak: Slovakia
     slovenian: Slovenia
@@ -2125,6 +2142,7 @@ id:
     turkish: Turki
     ukrainian: Ukraina
     waray_waray: Waray-Waray
+    visayan: Visaya
   less: Kurang
   licensed_site_photos: "Foto %{site_name} berlisensi"
   license: Lisensi
