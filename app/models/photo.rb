@@ -346,11 +346,13 @@ class Photo < ApplicationRecord
   # necessary attributes
   def self.local_photo_from_remote_photo(remote_photo)
     # inherit native_* and other attributes from remote photos
+    return unless remote_photo && remote_photo.is_a?( Photo ) && remote_photo.type != "LocalPhoto"
     remote_photo_attrs = remote_photo.attributes.select do |k,v|
       k =~ /^native/ ||
         [ "user_id", "license", "mobile", "metadata" ].include?(k)
     end
     photo_url = remote_photo.try_methods(:original_url, :large_url, :medium_url, :small_url)
+    return unless photo_url
     if photo_url.size <= 512
       remote_photo_attrs["native_original_image_url"] = photo_url
     end
