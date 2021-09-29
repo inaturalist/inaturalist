@@ -1600,6 +1600,8 @@ it:
   facebook_access_token_expired: "Il token di accesso è scaduto. %{user} deve ricollegare il proprio account Facebook."
   facebook_needs_the_owner_of_that_photo_to: Facebook ha bisogno che il proprietario di quella foto ri-confermi la propria connessione a %{site_name_short}.
   facebook_options: Opzioni di Facebook
+  facebook_photo_import_disabled_notice: |
+    Nel novembre 2020 Facebook ci ha richiesto di verificare che ci fosse davvero bisogno di accesso alle foto, e non siamo stati in grado di completare il processo a causa di problemi con il sistema di verifica di Facebook. Di conseguenza, non possiamo più supportare l'importazione di foto da Facebook.
   failed_to_find_your_location: Impossibile trovare la tua posizione.
   failed_to_repair_photo: "Errore nel riparare la foto: %{errors}"
   failed_to_save_record: "Impossibile salvare l'osservazione. Per favore riprova più tardi."
@@ -2097,22 +2099,28 @@ it:
     scientific_names: Nomi scientifici
     afrikaans: Africano
     albanian: Albanese
+    arabic: Arabo
+    armenian: Armeno
     belarusian: Bielorusso
     bengali: Bengalese
+    bulgarian: Bulgaro
     catalan: Catalano
     cebuano: Cebuano
     chinese_simplified: Cinese (semplificato)
     chinese_traditional: Cinese (tradizionale)
     creole_french: creolo (francese)
     creole_portuguese: creolo (portoghese)
+    croatian: Croato
     czech: Ceco
     danish: Danese
     davawenyo: Davaoeño
     dutch: Olandese
     english: Inglese
     estonian: Estone
+    faroese: Faroese
     finnish: Finlandese
     french: Francese
+    galician: Galiziano
     gela: Gela
     german: Tedesco
     greek: Greco
@@ -2122,6 +2130,7 @@ it:
     hungarian: Ungherese
     icelandic: Islandese
     ilokano: Ilokano
+    indonesian: Indonesiano
     italian: Italiano
     japanese: Giapponese
     kannada: Kannada
@@ -2129,17 +2138,25 @@ it:
     latvian: Lettone
     lithuanian: Lituano
     luxembourgish: Lussemburghese
+    malay: Malese
+    malayalam: Malayalam
     maltese: Maltese
     maori: Maori
     marathi: Marathi
+    maya: Maya
     misima_paneati: Misima-Panaeati
+    mongolian: Mongolo
+    nahuatl: Nahuatl
     norwegian: Norvegese
     occitan: Occitano
+    ojibwe: Ojibwe
+    palauan: Palauano
     pangasinan: Pangasinan
     polish: Polacco
     portuguese: Portoghese
     romanian: Rumeno
     russian: Russo
+    setswana: Setswana
     sinhala: Singalese
     slovak: Slovacco
     slovenian: Sloveno
@@ -2152,6 +2169,7 @@ it:
     turkish: Turco
     ukrainian: Ucraino
     waray_waray: Wáray-Wáray
+    visayan: Visayan
   less: Meno
   licensed_site_photos: "Foto con licenza di %{site_name}"
   license: Licenza
@@ -4089,8 +4107,14 @@ it:
     Le osservazioni con coordinate nascoste a causa delle scelte individuali dell'utente sono condivise in un modo più limitato e specifico. Affiliandosi a un sito della Rete, iNaturalist condividerà con gli amministratori del sito le coordinate precise delle osservazioni con la geoprivacy che hai impostato a oscurata o privata, oltre a quelle pubblicamente oscurate o private a causa della geoprivacy del taxon. Questo consente alle tue osservazioni di divenire più preziose per gli sforzi di conservazione locali.
   sites_affiliation_overview_current_member_list_html: |
     Puoi vedere l'elenco dei membri corrente per la %{start_tag_network}Rete di iNaturalist%{end_tag_network}.
+  sites_affiliation_overview_in_order_to_advance: |
+    Per avanzare nella ricerca e conservazione nelle rispettive aree, i Membri della Rete potrebbero condividere i dati da iNaturalist. Hanno la responsabilità di valutare la validità e appropriatezza delle richieste di dati e dei loro potenziali risultati; trasmettono per iscritto la responsabilità di assicurare anche la sicurezza di tali dati e di non esporli pubblicamente in alcun modo, né condividerli o usarli oltre al loro scopo originalmente inteso; per documentare tutte le istanze di condivisione insieme ai risultati associati o gli usi intesi; e segnalarli annualmente a iNaturalist.
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
     La %{start_tag_network}Rete di iNaturalist%{end_tag_network} è una raccolta di siti web locali nella %{start_tag_global}community globale di iNaturalist%{end_tag_global}.
+  sites_affiliation_overview_when_you_affiliate: |
+    Quando ti affili a un Membro della Rete di iNaturalist, il tuo indirizzo email e le posizioni reali delle tue posizioni oscurate e private sono condivise con il Membro della Rete. Questo consente alle tue osservazioni di divenire più preziose per gli sforzi di conservazione locali. Se vivi o visiti frequentemente un'area di un membro della Rete, sei incoraggiato a sceglierla come tua affiliazione per facilitare la condivisione dei dati.
+  sites_affiliation_overview_you_can_continue_html: |
+    Puoi continuare ad accedere tramite iNaturalist.org o tramite il tuo sito web specifico della rete. Non importa la tua affiliazione, tutti i tuoi dati saranno hostati nello stesso luogo e continuerai a poter interagire con la più ampia community internazionale di iNaturalist. Ogni profilo di iNaturalist è affiliabile con un solo Membro della Rete. Puoi revisionare o modificare la tua affiliazione nelle %{start_tag_settings}impostazioni del tuo profilo%{end_tag_settings}.
   sites_affiliation_title: Scopri di Più sull'Affiliazione della Rete
   sites_network_cas_and_nat_geo_html: |
     L'%{start_tag_cas}Accademia di Scienze della California%{end_tag_cas} e la %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} hanno accordi formali con le organizzazioni in ognuna di queste aree geografiche per supportare l'uso della piattaforma di iNaturalist. <strong>Se la tua organizzazione è interessata a unirsi alla Rete di iNaturalist, puoi trovare ulteriori dettagli %{start_tag_join}qui%{end_tag_join}.</strong>
