@@ -25,7 +25,7 @@
           %th=t :network_member
           %th=t :affiliated_organizations
       %tbody
-        - Site.all.each do |site|
+        - @sites.each do |site|
           %tr
             %td
               = link_to site.url do
