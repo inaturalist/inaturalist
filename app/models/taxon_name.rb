@@ -35,7 +35,12 @@ class TaxonName < ApplicationRecord
   before_save :set_is_valid
   after_create {| name | name.taxon.set_scientific_taxon_name }
   after_save :update_unique_names
-  after_destroy {| name | name.taxon&.delay( priority: OPTIONAL_PRIORITY )&.update_unique_name }
+  after_destroy do | name |
+    name&.taxon&.delay(
+      priority: OPTIONAL_PRIORITY,
+      unique_hash: { "Taxon::update_unique_name": name.taxon_id }
+    )&.update_unique_name
+  end
   after_save :index_taxon
   after_destroy :index_taxon
 
@@ -180,6 +185,8 @@ class TaxonName < ApplicationRecord
 
   alias is_scientific? is_scientific_names?
   alias scientific? is_scientific_names?
+
+  attr_accessor :skip_indexing
 
   def to_s
     "<TaxonName #{id}: #{name} in #{lexicon}>"
@@ -354,7 +361,7 @@ class TaxonName < ApplicationRecord
   end
 
   def index_taxon
-    taxon&.elastic_index!
+    taxon.elastic_index! if taxon && !skip_indexing
   end
 
   def species_common_name_cannot_match_taxon_name
