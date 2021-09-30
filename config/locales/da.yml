@@ -1635,6 +1635,9 @@ da:
   facebook_access_token_expired: "Adgangstoken er udløbet. %{user} skal re-linke deres Facebook-konto."
   facebook_needs_the_owner_of_that_photo_to: Facebook ønsker at ejeren af dette foto bekræfter deres forbindelse til %{site_name_short}
   facebook_options: Facebook valg
+  facebook_photo_import_disabled_notice: |
+    I november 2020 krævede Facebook godtgørelse af, at vi virkelig behøvede adgang til fotos, og vi kunne ikke fuldføre processen grundet
+    problemer med Facebooks bekræftelsesssystem. Som konsekvens heraf, er import af fotos fra Facebook ikke længere understøttet.
   failed_to_find_your_location: Kunne ikke finde din placering.
   failed_to_repair_photo: "Kunne ikke reparere foto: %{errors}"
   failed_to_save_record: "Kunne ikke gemme registreringen. Prøv igen senere."
@@ -2147,22 +2150,28 @@ da:
     scientific_names: Videnskabelige navne
     afrikaans: Afrikaans
     albanian: Albansk
+    arabic: Arabisk
+    armenian: Armensk
     belarusian: Hviderussisk
     bengali: Bengalsk
+    bulgarian: Bulgarsk
     catalan: Catalansk
     cebuano: Cebuano
     chinese_simplified: Kinesisk (Simplificeret)
     chinese_traditional: Kinesisk (traditionelt)
     creole_french: kreol (Fransk)
     creole_portuguese: kreol (Portugisisk)
+    croatian: Kroatisk
     czech: Tjekkisk
     danish: Dansk
     davawenyo: Davawenyo
     dutch: Hollandsk
     english: Engelsk
     estonian: Estisk
+    faroese: Færøsk
     finnish: Finsk
     french: Fransk
+    galician: Galicisk
     gela: Gela
     german: Tysk
     greek: Græsk
@@ -2172,6 +2181,7 @@ da:
     hungarian: Ungarsk
     icelandic: Islandsk
     ilokano: Ilokano
+    indonesian: Indonesisk
     italian: Italiensk
     japanese: Japansk
     kannada: Kannaresisk
@@ -2179,17 +2189,25 @@ da:
     latvian: Lettisk
     lithuanian: Litauisk
     luxembourgish: Luxembursk
+    malay: Malajisk
+    malayalam: Malayisk
     maltese: Maltesisk
     maori: Maori
     marathi: Marathi
+    maya: Maya
     misima_paneati: Misima-paneati
+    mongolian: Mongolsk
+    nahuatl: Nahuatl
     norwegian: Norsk
     occitan: Occitansk
+    ojibwe: Ojibwe
+    palauan: Palauansk
     pangasinan: Pangasinan
     polish: Polsk
     portuguese: Portugisisk
     romanian: Rumænsk
     russian: Russisk
+    setswana: Setswana
     sinhala: Singalesisk
     slovak: Slovakisk
     slovenian: Slovensk
@@ -2202,6 +2220,7 @@ da:
     turkish: Tyrkisk
     ukrainian: Ukrainsk
     waray_waray: Waray-Waray
+    visayan: Visayansk
   less: Mindre
   licensed_site_photos: "Licenserede %{site_name} fotos"
   license: Licens
@@ -4192,6 +4211,45 @@ da:
     fortrolige grundet takson geo-fortrolighed. Dette kan gøre dine observationer mere værdifulde ift. lokale bevaringsbestræbelser.
   sites_affiliation_overview_current_member_list_html: |
     Her finder du den aktuelle medlemsliste for %{start_tag_network}iNaturalist Network%{end_tag_network}.
+  sites_affiliation_overview_in_order_to_advance: |
+    For at fremme forskning og bevarelse inden for deres respektive områder,
+    kan Netværksmedlemmer dele data fra iNaturalist. De har et ansvar for
+    at vurdere gyldigheden og hensigtsmæssigheden af dataanmodninger og deres potentielle resultater; skriftligt formidle ansvaret for også at sikre
+    sikkerheden for sådanne data og ikke at afsløre dem offentligt på nogen måde, eller dele eller bruge dem ud over det oprindelige tilsigtede formål; at dokumentere alle forekomster af deling sammen med de tilhørende resultater, resultater eller påtænkte anvendelser; samt at indrapportere årligt til iNaturalist.
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    %{start_tag_network}iNaturalist Network%{end_tag_network} er en
+    samling af lokaliserede websteder i det %{start_tag_global}globale
+    iNaturalist-fællesskab%{end_tag_global}.
+  sites_affiliation_overview_when_you_affiliate: |
+    Når du affilierer med et iNaturalist Network-medlem, deles din e-mailadresse
+    og de reelle placeringer af dine slørede og fortrolige placeringer med netværksmedlemmet. Dette kan gøre dine observationer mere
+    værdifulde for den lokale bevaringsindsats. Bor du i/besøger ofte
+    et område, der er medlem af netværket, opfordres du til at vælge dette
+    som din affiliering for at lette datadeling.
+  sites_affiliation_overview_you_can_continue_html: |
+    Du kan fortsætte med at logge ind via iNaturalist.org eller via din netværksspecifikke websted. Uanset din tilknytning vil alle dine data blive hostet samme sted, og du vil fortsat kunne interagere med det bredere internationale iNaturalistiske-fællesskab. Hver iNaturalistisk-konto kan kun være tilknyttet ét netværksmedlem. Du kan gennemgå eller ændre din tilknytning via dine 
+    %{start_tag_settings}kontoindstillinger%{end_tag_settings}.
+  sites_affiliation_title: Få mere at vide om Netværkstilknytning
+  sites_network_cas_and_nat_geo_html: |
+    %{start_tag_cas}California Academy of Sciences%{end_tag_cas} og
+    %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} har
+    formelle aftaler med organisationer i hvert af disse geografiske områder at støtte
+    brugen af iNaturalistisk-platformen. <strong>Er din organisation
+    interesseret i at deltage i iNaturalist Network, kan der findes flere oplysninger
+    %{start_tag_join}hér%{end_tag_join}.</strong>
+  sites_network_consists_of: "INaturalist Network består af flere organisationer:"
+  sites_network_inaturalist_network_collection: |
+    INaturalist Network er en samling af lokaliserede websteder, som er fuldt
+    forbundne til det globale iNaturalist-fællesskab. Netværkssteder understøttes
+    af lokale institutioner, som fremmer lokal brug og letter brugen af data
+    fra iNaturalist til gavn for den lokale biodiversitet. De har inden for deres geografiske områder adgang til reelle koordinater, som automatisk skjules for offentligheden for bedre at beskytte truede arter.
+  sites_network_your_username: |
+    Dit brugernavn og adgangskode fungerer på alle websteder, som er en del af
+    iNaturalistisk Network. Vælger du at affiliere med et netværkswebsted, vil
+    lokale institutioner, som understøtter hvert websted, også have adgang til din
+    e-mailadresse (kun for at kommunikere med dig om webstedsaktiviteter) og
+    adgang til de reelle koordinater for observationer, som du har valgt at
+    gøre offentligt tilslørede eller fortrolige.
   some_agree: nogle er enige
   some_observations_are_missing_media_or_identifications: |
     Nogle observationer mangler medier eller identifikationer
