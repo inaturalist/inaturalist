@@ -376,7 +376,7 @@ class Taxon < ApplicationRecord
   }.flatten.select{|n| !n.blank? && n.to_f == 0}.map{|n| n.to_s.downcase }.uniq
   place_names_that_are_taxon_names = Taxon.select( "DISTINCT taxa.name" ).
     joins( "JOIN places ON places.name = taxa.name" ).
-    where( "places.admin_level < 2" ).
+    where( "places.admin_level < 20" ).
     pluck(:name).uniq.sort.map(&:downcase)
   PROBLEM_NAMES = [
     "aba",

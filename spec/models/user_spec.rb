@@ -176,7 +176,7 @@ describe User do
       u.save
       expect(u.latitude).to eq 41.6318
       expect(u.longitude).to eq -70.8801
-      expect(u.lat_lon_acc_admin_level).to eq 2
+      expect(u.lat_lon_acc_admin_level).to eq Place::COUNTY_LEVEL
     end
 
     it "should validate email address domains" do

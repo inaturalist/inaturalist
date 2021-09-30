@@ -122,7 +122,7 @@ export default function reducer(
         if ( observation.places ) {
           const place = _
             .sortBy( observation.places, p => p.bbox_area )
-            .find( p => p.admin_level !== null && p.admin_level < 3 );
+            .find( p => p.admin_level !== null && p.admin_level < 30 );
           if ( place ) {
             newState.query.place_id = place.id;
             newState.query.place = place;
@@ -145,7 +145,7 @@ export default function reducer(
       if ( action.updates.places ) {
         const place = _
           .sortBy( action.updates.places, p => p.bbox_area )
-          .find( p => p.admin_level !== null && p.admin_level < 3 );
+          .find( p => p.admin_level !== null && p.admin_level < 30 );
         if ( place ) {
           newState.query.place_id = place.id;
           newState.query.place = place;

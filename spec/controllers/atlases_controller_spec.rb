@@ -15,7 +15,7 @@ describe AtlasesController do
     let( :user ) { make_curator }
     let( :genus ) { Taxon.make!( rank: Taxon::GENUS ) }
     let( :taxon ) { Taxon.make!( rank: Taxon::SPECIES, parent: genus ) }
-    let( :place ) { make_place_with_geom( admin_level: 1 ) }
+    let( :place ) { make_place_with_geom( admin_level: Place::STATE_LEVEL ) }
     let( :atlas ) { Atlas.make!( taxon: taxon, user: user ) }
     it "should create a listing if one doesn't exist" do
       sign_in user
