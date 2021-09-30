@@ -169,6 +169,43 @@ describe TaxonName, "creation" do
   end
 end
 
+describe TaxonName, "update" do
+  it "should allow an update to position even if a scientific name has a number" do
+    t = create :taxon
+    name = "#{t.name}1"
+    expect(
+      build( :taxon_name, taxon: t, name: name, lexicon: TaxonName::SCIENTIFIC_NAMES )
+    ).not_to be_valid
+    tn = create :taxon_name, taxon: t, lexicon: TaxonName::SCIENTIFIC_NAMES
+    TaxonName.where( id: tn.id ).update_all( name: name )
+    tn.reload
+    tn.update_attributes( position: 10 )
+    expect( tn ).to be_valid
+    expect( tn.position ).to eq 10
+  end
+
+  it "should allow an update to position even if the lexicon is forbidden" do
+    lexicon = "Lexicon"
+    expect( build( :taxon_name, lexicon: lexicon ) ).not_to be_valid
+    tn = create :taxon_name
+    TaxonName.where( id: tn.id ).update_all( lexicon: lexicon )
+    tn.reload
+    tn.update_attributes( position: 10 )
+    expect( tn ).to be_valid
+    expect( tn.position ).to eq 10
+  end
+
+  it "should allow an update to position even if the lexicon is blank" do
+    tn = create :taxon_name
+    TaxonName.where( id: tn.id ).update_all( lexicon: nil )
+    tn.reload
+    tn.update_attributes( position: 10 )
+    tn.valid?
+    expect( tn ).to be_valid
+    expect( tn.position ).to eq 10
+  end
+end
+
 describe TaxonName, "strip_author" do
   it "should work" do
     [

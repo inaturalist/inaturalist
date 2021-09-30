@@ -10,11 +10,14 @@ class TaxonName < ApplicationRecord
   has_many :places, through: :place_taxon_names
   validates_presence_of :taxon
   validates_length_of :name, within: 1..256, allow_blank: false
-  validates_uniqueness_of :name, scope: %i[parameterized_lexicon taxon_id], message: :already_exists,
-case_sensitive: false
-  validates :lexicon, presence: true
+  validates_uniqueness_of :name, scope: %i[parameterized_lexicon taxon_id],
+    message: :already_exists,
+    case_sensitive: false
+  validates :lexicon, presence: true, if: proc {| tn | tn.lexicon_changed? || tn.new_record? }
   validate :no_forbidden_lexicons
-  validates_format_of :lexicon, with: %r{\A[^/,]+\z}, message: :should_not_contain_commas_or_slashes, allow_blank: true
+  validates_format_of :lexicon, with: %r{\A[^/,]+\z},
+    message: :should_not_contain_commas_or_slashes,
+    if: proc {| tn | tn.lexicon_changed? }
   validate :species_common_name_cannot_match_taxon_name
   validate :valid_scientific_name_must_match_taxon_name
   validate :english_lexicon_if_exists, if: proc {| tn | tn.lexicon && tn.lexicon_changed? }
@@ -22,7 +25,9 @@ case_sensitive: false
   NAME_FORMAT = /\A([A-z]|\s|-|×)+\z/.freeze
   validates :name,
     format: { with: NAME_FORMAT, message: :bad_format },
-    if: proc {| tn | tn.lexicon == SCIENTIFIC_NAMES }
+    if: proc {| tn |
+      tn.lexicon == SCIENTIFIC_NAMES && ( tn.name_changed? || tn.new_record? )
+    }
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
   before_validation :capitalize_scientific_name
   before_validation :parameterize_lexicon
@@ -365,6 +370,7 @@ case_sensitive: false
   end
 
   def no_forbidden_lexicons
+    return unless new_record? || lexicon_changed?
     return unless lexicon =~ /(#{FORBIDDEN_LEXICONS.join( "|" )})/i
 
     errors.add(
