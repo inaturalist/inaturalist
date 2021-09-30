@@ -16,64 +16,6 @@
       // Reveal columns
       $('.created_at').show();
     });
-
-    function editSelected() {
-      actOnSelected("<%= url_for(:action => 'edit_batch') %>");
-    }
-
-    function actOnSelected(baseURL, options) {
-      var options = $.extend({}, options);
-      var obs_inputs = $.makeArray($('.observation .control input:checkbox:checked'));
-      var obs_ids = $.map(obs_inputs, function(input) { return $(input).val(); });
-      if (obs_ids.length > 0) {
-        if (options.method == "post") {
-          var form = $('<form method="post" style="display:none"></form>').attr('action', baseURL).append(
-            $('<input type="hidden" name="o">').val(obs_ids.join(',')),
-            $('<input type="hidden" name="authenticity_token">').val('<%= form_authenticity_token.html_safe %>')
-          );
-          $('body').append(form);
-          $(form).submit();
-        } else {
-          window.location = baseURL + "?o=" + obs_ids.join(',');
-        }
-      } else {
-        alert('<%=t :you_need_to_select_some_observations_first %>');
-      }
-    }
-
-    function flickrTagger() {
-      if (!confirm('<%=t :this_will_try_to_add_tags_to_your_flickr %>')) return;
-
-      actOnSelected(
-        '<%= url_for :controller => "taxa", :action => "tag_flickr_photos_from_observations" %>',
-        {method: "post"}
-      );
-    }
-
-    function deleteSelected() {
-      var obs_inputs = $.makeArray($('.observation .control input:checkbox:checked'));
-      var obs_ids = $.map(obs_inputs, function(input) { return $(input).val(); });
-      if (obs_ids.length > 0) {
-        iNaturalist.restfulDelete("<%= url_for(:action => 'delete_batch') %>", {
-          plural: true,
-          data: {
-            o: obs_ids.join(',')
-          }, 
-          complete: function() {
-            $.each(obs_inputs, function() {
-              $(this).parents('.observation').fadeOut('normal', function() {
-                $(this).remove()
-              });
-            });
-
-            $('#delete_selected_button').show();
-            $('#delete_selected_button').next('.loading.status').remove();
-          }
-        }, $('#delete_selected_button'));
-      } else {
-        alert('<%=t :you_need_to_select_some_observations_first %>');
-      }
-    }
   = javascript_include_tag 'observations/by_login_bundle', 'map_bundle', 'observations/by_login'
 
 - content_for(:extrahead) do
@@ -130,7 +72,7 @@
 
         = link_to_function t(:flickr_tagger), "flickrTagger()", :id => "flickr_tagger_button", :class => "minor button", :title => t(:add_taxonomic_tags_to_the_fickr_photos)
         - unless @project_users.blank?
-          = link_to_toggle_menu( t(:add_to_project), 
+          - link_to_toggle_menu( t(:add_to_project), 
             :id => "add_to_project_button",
             :class => "minor button", 
             :wrapper => {:class => "inter toggle_menu_list", :style => "padding: 0"} ) do

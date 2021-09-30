@@ -57,3 +57,62 @@ function redoSearchInMapArea() {
   $('#filters input[name=nelng]').val(bounds.getNorthEast().lng());
   $('#submit_filters_button').click();
 }
+
+function editSelected() {
+  actOnSelected("/observations/edit/batch");
+}
+
+function actOnSelected(baseURL, options) {
+  var options = $.extend({}, options);
+  var obs_inputs = $.makeArray($('.observation .control input:checkbox:checked'));
+  var obs_ids = $.map(obs_inputs, function(input) { return $(input).val(); });
+  if (obs_ids.length > 0) {
+    if (options.method == "post") {
+      var token = $( "meta[name=csrf-param]" ).attr( "content" );
+      var form = $('<form method="post" style="display:none"></form>').attr('action', baseURL).append(
+        $('<input type="hidden" name="o">').val(obs_ids.join(',')),
+        $('<input type="hidden" name="authenticity_token">').val( token )
+      );
+      $('body').append(form);
+      $(form).submit();
+    } else {
+      window.location = baseURL + "?o=" + obs_ids.join(',');
+    }
+  } else {
+    alert(I18n.t('you_need_to_select_some_observations_first'));
+  }
+}
+
+function flickrTagger() {
+  if (!confirm(I18n.t('this_will_try_to_add_tags_to_your_flickr'))) return;
+
+  actOnSelected(
+    '/taxa/tag_flickr_photos_from_observations',
+    {method: "post"}
+  );
+}
+
+function deleteSelected() {
+  var obs_inputs = $.makeArray($('.observation .control input:checkbox:checked'));
+  var obs_ids = $.map(obs_inputs, function(input) { return $(input).val(); });
+  if (obs_ids.length > 0) {
+    iNaturalist.restfulDelete("/observations/delete_batch", {
+      plural: true,
+      data: {
+        o: obs_ids.join(',')
+      }, 
+      complete: function() {
+        $.each(obs_inputs, function() {
+          $(this).parents('.observation').fadeOut('normal', function() {
+            $(this).remove()
+          });
+        });
+
+        $('#delete_selected_button').show();
+        $('#delete_selected_button').next('.loading.status').remove();
+      }
+    }, $('#delete_selected_button'));
+  } else {
+    alert(I18n.t('you_need_to_select_some_observations_first'));
+  }
+}
