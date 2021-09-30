@@ -54,7 +54,12 @@
             %div
               = raw @proj_obs_errors[:errors][o.id].join("<br/>")
 
-- tools = capture do
+.bootstrap
+  .container
+    .row
+      = render "shared/by_login_header_bootstrap", title: @title
+
+.tools-wrapper
   #tools.buttonrow
     - if is_me?(@selected_user)
       = link_to t(:add_observations), upload_observations_path, :id => "newobsbutton", :class => "default button"
@@ -94,9 +99,7 @@
   #filters.clear{ @filters_open ? {} : { style: "display: none" } }
     = form_tag observations_by_login_path(@login), :method => :get do
       = render :partial => 'filter_fields', :locals => { :selected_taxa => @iconic_taxa }
-
-= render "shared/by_login_header", after: tools, title: @title
-
+    
 #maincol
   #listcol
     .observations.table
