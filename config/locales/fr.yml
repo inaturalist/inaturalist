@@ -180,6 +180,7 @@ fr:
   about_taxon_ranges_desc: |
     Par aire de répartition d'un taxon, on entend sa distribution dans le monde. En général, les aires de répartition viennent de la liste rouge de l'UICN.
   about_the_cc_licenses: À propos des licences Creative Commons
+  about_the_network: À propos du réseau
   about_these_licenses: À propos de ces licences
   about_this_bioblitz: À propos de ce bioblitz
   about_this_map: À propos de cette carte
@@ -1617,6 +1618,10 @@ fr:
   facebook_access_token_expired: "Le jeton d’accès a expiré. %{user} doit rétablir le lien avec son compte Facebook."
   facebook_needs_the_owner_of_that_photo_to: Facebook exige que le propriétaire de cette photo reconfirme sa connexion à %{site_name_short}.
   facebook_options: Options de Facebook
+  facebook_photo_import_disabled_notice: |
+    En novembre 2020, Facebook nous a demandé de vérifier que nous avions vraiment besoin
+    d'un accès aux photos, et nous n'avons pas pu valider le processus en raison de
+    problèmes avec le système de vérification de Facebook. Par conséquent, il n'est plus possible d'importer de photos depuis Facebook.
   failed_to_find_your_location: Échec à la localisation de votre position.
   failed_to_repair_photo: "Échec de réparation de la photo : %{errors}"
   failed_to_save_record: "Échec à la sauvegarde de l’enregistrement. Veuillez réessayer ultérieurement."
@@ -1811,6 +1816,10 @@ fr:
   going_to_your_observations: Aller à vos observations…
   good_choice_for_sharing: Excellent choix pour échanger avec les scientifiques
   google: Google
+  google_maps_not_loaded_error: |
+    Google Maps ne s'est pas initialisé. Vous avez peut-être bloqué l'accès à Google Maps
+    avec une extension de navigateur ou un pare-feu, ou bien quelque chose d'autre bloque l'accès
+    comme un fournisseur d'accès Internet par exemple.
   got_it!: Ok !
   got_your_data_somewhere_else?: Avez-vous obtenu vos données ailleurs ? Nous pouvons vous aider.
   graft: Greffer
@@ -2110,22 +2119,28 @@ fr:
     scientific_names: Noms scientifiques
     afrikaans: Afrikaans
     albanian: Albanais
+    arabic: arabe
+    armenian: arménien
     belarusian: Biélorusse
     bengali: Bengali
+    bulgarian: bulgare
     catalan: Catalan
     cebuano: Cebuano
     chinese_simplified: Chinois (simplifié)
     chinese_traditional: Chinois (traditionnel)
     creole_french: Créole (Français)
     creole_portuguese: Créole (Portugais)
+    croatian: croate
     czech: Tchèque
     danish: Danois
     davawenyo: davawenyo
     dutch: Néerlandais
     english: Anglais
     estonian: Estonien
+    faroese: féroïen
     finnish: Finnois
     french: Français
+    galician: galicien
     gela: Gela
     german: Allemand
     greek: Grec
@@ -2135,6 +2150,7 @@ fr:
     hungarian: Hongrois
     icelandic: Islandais
     ilokano: Ilocano
+    indonesian: indonésien
     italian: Italien
     japanese: Japonais
     kannada: Kannada
@@ -2142,10 +2158,13 @@ fr:
     latvian: letton
     lithuanian: Lithuanien
     luxembourgish: Luxembourgeois
+    malay: malais
     maltese: Maltais
     maori: Maori
     marathi: Marathi
+    maya: maya
     misima_paneati: Misima-paneati
+    mongolian: mongol
     norwegian: Norvégien
     occitan: Occitan
     pangasinan: Pangasinan
