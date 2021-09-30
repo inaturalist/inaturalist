@@ -256,6 +256,13 @@ describe Taxon, "updating" do
 
   it "should update the ancestry col of all associated listed_taxa"
 
+  it "should not allow a name with a number" do
+    t = create :taxon
+    t.update_attributes( name: "#{t.name}4" )
+    expect( t ).not_to be_valid
+    expect( t.errors[:name] ).not_to be_blank
+  end
+
   it "should not destroy photos that have observations" do
     t = Taxon.make!
     o = Observation.make!

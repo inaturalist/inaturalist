@@ -22,9 +22,9 @@ class TaxonName < ApplicationRecord
   validate :valid_scientific_name_must_match_taxon_name
   validate :english_lexicon_if_exists, if: proc {| tn | tn.lexicon && tn.lexicon_changed? }
   validate :parameterized_lexicon_present, if: proc {| tn | tn.lexicon.present? }
-  NAME_FORMAT = /\A([A-z]|\s|-|×)+\z/.freeze
+  SCIENTIFIC_NAME_FORMAT = /\A([A-z]|\s|-|×)+\z/.freeze
   validates :name,
-    format: { with: NAME_FORMAT, message: :bad_format },
+    format: { with: SCIENTIFIC_NAME_FORMAT, message: :bad_format },
     if: proc {| tn |
       tn.lexicon == SCIENTIFIC_NAMES && ( tn.name_changed? || tn.new_record? )
     }

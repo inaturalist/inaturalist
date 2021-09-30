@@ -112,17 +112,16 @@ class Taxon < ApplicationRecord
   validates_presence_of :name, :rank, :rank_level
   validates_uniqueness_of :name, scope: %i[ancestry is_active],
                           unless: lambda {
-                                    ( ancestry.blank? || !is_active || complex? )
-                                  }, # If a complex, allow duplicate sibling name for species...
+                            # If a complex, allow duplicate sibling name for species...
+                            ( ancestry.blank? || !is_active || complex? )
+                          },
                           message: "already used as a child of this taxon's parent"
   validates_uniqueness_of :name, scope: %i[ancestry is_active rank],
                           if: -> { complex? }, # ... but do not allow duplicate sibling complex name
                           message: "already used as a child complex of this taxon's parent"
-  # validates_uniqueness_of :source_identifier,
-  #                         :scope => [:source_id],
-  #                         :message => "already exists",
-  #                         :allow_blank => true
-  validates :name, format: { with: TaxonName::NAME_FORMAT, message: :bad_format }, on: :create
+  validates :name,
+    format: { with: TaxonName::SCIENTIFIC_NAME_FORMAT, message: :bad_format },
+    if: proc {| t | t.new_record? || t.name_changed? }
   validate :taxon_cant_be_its_own_ancestor
   validate :can_only_be_featured_if_photos
   validate :validate_locked
