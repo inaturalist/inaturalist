@@ -174,6 +174,10 @@ zh-CN:
   action: 操作
   actions: 操作
   active: 激活
+  #Status of a complete set that is available for use
+  active_complete_set_status: 有效的
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: 有效的
   active_users: 活跃用户
   activity: 活跃
   activity_settings: 活跃设置
@@ -834,6 +838,11 @@ zh-CN:
   comprehensive_check_list_for_taxon_html: |
     <span class="comprehensive_notice" data-tip="%{tip}">完整的</span> %{taxon} 名录
   comprehensive_list: 综合分析列表
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: 计算机视觉模型
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: 包含
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: 待确认
   concept_status: 概念状态
@@ -2592,6 +2601,7 @@ zh-CN:
     absent: 在区域内未发生
     common: 频繁发生
     doubtful: 假定会发生，但对证据存在疑虑。
+    irregular: 存在不可预测，包含流浪生物。可能会在某些年份很常见而另一些年份不存在
     present: 在此区域发生
     uncommon: 定期发生，但数量较少，需要仔细寻找正确栖息地
   occurrence_status_establishment_means: 发生状况，建立手段
