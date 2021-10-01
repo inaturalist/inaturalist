@@ -2750,6 +2750,7 @@ tr:
     absent: Bu alanda ortaya çıkmaz
     common: Sık sık ortaya çıkar
     doubtful: Ortaya çıktığı varsayılıyor ancak kanıtlar şüpheli
+    irregular: Göçenlerde olmak üzere öngörülemeyen varlık; bazı yıllarda yaygın olabilir ve diğerlerinde olmayabilir
     present: Bu alanda ortaya çıkar
     uncommon: Düzenli olarak ortaya çıkar ancak az sayılarda; uygun yaşam alanlarının dikkatlice aranmasını gerektirir
   occurrence_status_establishment_means: oluşum durumu, kuruluş varlığı
@@ -5538,6 +5539,11 @@ tr:
         BOLD DNA barkod eşleştirme işlevini etkinleştirmek için alan adınızın, 
         bu alanın hedeflediği gene karşılık gelen "COI", "COX1", "ITS" veya "matK" 
         kelimelerini içerdiğinden emin olun.
+      merge:
+        warning_html: |
+          Lütfen diğer kişilerin verilerine saygılı olun ve <strong>birleştirmeden önce bir gözlem
+          alanının yaratıcısıyla konuşun</strong>. Bu araç birleştirilen gözlem alanını imha edecek ve
+          tüm gözlemleri onu kullanan kişiye taşıyacak. <strong> Bu işlem geri alınamaz </strong>, bu yüzden dikkatli olun.
     emailer:
       bulk_import_success:
         success_message: |
