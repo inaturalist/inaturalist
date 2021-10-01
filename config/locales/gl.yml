@@ -2804,6 +2804,7 @@ gl:
     absent: Non aparece no área
     common: Aparece frecuentemente
     doubtful: Presúmese a súa presencia, pero hai dúbidas sobre a evidencia.
+    irregular: Presencia impredecible, incluíndo vadíos; pode ser común nuns anos e ausente noutros
     present: Aparece no área
     uncommon: Aparece regularmente, pero en números pequenos; require unha busca meticulosa no hábitat apropiado
   occurrence_status_establishment_means: estado de ocorrencia, medio de establecemento
@@ -5534,6 +5535,9 @@ gl:
         </ol>
       dna_help: |
         Para habilitar as funcionalidades correspondentes ó código de barras BOLD DNA, asegúrate de incluir no nome de campo as palabras "COI", "COX1", "ITS", ou "matK" correspondentes ao xen obxectivo dese campo.
+      merge:
+        warning_html: |
+          Por favor, respecta os dados de outras persoas e <strong>fala có creador dun campo de observación antes de o combinar</strong>. Esta ferramenta destruirá o campo de observación sendo combiando e movendo tódalas observacións ó campo mantido. <strong>Este proceso non se pode desfacer</strong>, así que ten tino.
     emailer:
       bulk_import_success:
         success_message: |
