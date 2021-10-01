@@ -172,6 +172,9 @@ fi:
   #should work here
   about_place: "Tietoja %{place}"
   about_places: Tietoja paikoista
+  about_taxon_ranges: Tietoja taksonin alueesta
+  about_taxon_ranges_desc: |
+    Taksonin alue kuvaa taksonin maailmanlaajuista levinneisyyttä. Tiedot tulevat tyypillisesti IUCN Punaisesta kirjasta.
   about_the_cc_licenses: Tietoja Creative Commons -lisensseistä
   about_these_licenses: Tietoja näistä lisensseistä
   about_this_bioblitz: Tietoja tästä projektista
@@ -387,6 +390,8 @@ fi:
   admin_s: Ylläpitäjä(t)
   admin_only: Vain ylläpidolle
   admin_tools: Hallintatyökalut
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Kumppaniorganisaatiot
   agree_: Samaa mieltä
   agree?: Samaa mieltä?
   agree_with_current_taxon: Samaa mieltä tämän tunnistuksen kanssa
@@ -1327,6 +1332,8 @@ fi:
   delete_icon?: Poista kuvake?
   delete_photo: Poista kuva
   delete_project: Poista tämä projekti
+  #Label for a button to delete a taxon range
+  delete_range: Poista alue
   delete_selected: Poista valitut
   delete_taxon_and_merge_most_data_html: |
     Poista taksoni %{taxon} ja yhdistä valtaosa sen tiedoista toiseen taksoniin. Käytä tätä työkalua <strong>poistaaksesi kaksinkertaiset taksonit</strong>. Jos haluat poistaa vanhentuneen synonyymin, ole ystävällinen ja luo taksonin vaihto. <strong>OLE VAROVAINEN!</strong> Taksoneiden poisto voi olla erittäin tuhoisaa. Tarkista <a href="%{curator_url}">Kuraattorioppaasta</a> lisätietoja.
@@ -1498,6 +1505,7 @@ fi:
   editing_subscription_to_x_html: "Muokataan tilausta kohteelle %{x}"
   editing_taxon: Muokataan taksonia %{taxon}
   editing_taxon_link: Muokataan Taksonin Linkkiä
+  editing_taxon_range_for_taxon_html: Muokkaa taksonin %{taxon} aluetta
   editing_this: Muokataan %{elem}
   editing_x_in_y: "Muokataan %{x} %{y}:ssä"
   editors: Muokkaajat
@@ -2455,6 +2463,8 @@ fi:
     <strong>iNaturalist Suomi</strong> on osa kansainvälistä iNaturalist-verkostoa, ja on mukautettu suomalaiseen käyttöön. Haluatko liittää tilisi iNaturalist Suomeen kansainvälisen iNaturalist.org:in (%{inat_site_name}) sijasta? 
   network_affiliation_prompt_from_other_site_html: |
     Haluatko liittää tunnuksesi verkostoon <strong>%{site_name}</strong> nykyisen <strong>%{other_site_name}</strong> sijasta?
+  #Column header in a table listing iNaturalist Network members
+  network_member: iNaturalist-verkoston jäsen
   new: Uusi
   new_and_noteworthy: Uutta ja huomionarvoista
   new_announcement: Uusi ilmoitus
@@ -2556,6 +2566,7 @@ fi:
   no_project_to_admin_current_user: "Et ylläpidä mitään projektia"
   no_project_to_admin_login: "%{login} ei ylläpidä mitään projekteja"
   no_projects_yet: Ei vielä projekteja
+  no_attached_range: Ei liitettyä aluetta
   no_range_data_available: Tietoja ei saatavilla.
   no_recent_activity: Ei viimeaikaista toimintaa
   no_relevant_annotations: Ei oleellisia merkintöjä
@@ -3557,6 +3568,8 @@ fi:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
   ranks_lowercase_form: muoto
   ranges: Vaihteluvälit
+  #Text to link to a taxon range as a KML file
+  range_file: Aluetiedosto
   ray_finned_fishes: viuhkaeväiset
   re_order_photos: "Uudelleenjärjestä valokuvat &raquo;"
   read_more: Lue lisää
@@ -3827,6 +3840,13 @@ fi:
   site_staff: "%{site_name} ylläpitäjät"
   site_stats: Sivuston tilastot
   site_taxon_page: "%{site_name} taksonisivu"
+  sites_network_cas_and_nat_geo_html: |
+    The %{start_tag_cas}Kalifornian Tiedeakatemia%{end_tag_cas} ja
+    %{start_tag_nat_geo}National Geographic%{end_tag_nat_geo} ovat solmineet 
+    sopimuksen kaikkien niiden organisaatioiden kanssa, jotka ylläpitävät kansallista iNaturalist-sivustoa. <strong>Jos organisaatiosi on kiinnostunut liittymään iNaturalist-verkostoon, löydät lisätietoja %{start_tag_join}täältä%{end_tag_join}.</strong>
+  sites_network_consists_of: "iNaturalist-verkosto koostuu useista organisaatioista:"
+  sites_network_your_username: |
+    Käyttäjätunnuksesi ja salasanasi toimivat kaikilla sivustoilla, jotka ovat mukana iNaturalist-verkostossa. Jos liität tunnuksesi paikalliseen verkostoon, paikallinen instituutio pääsee käsiksi sähköpostiosoitteeseesi (viestiäkseen sinulle sivustoon liittyvistä asioista) ja karkeistettujen ja yksitysten havaintojesi tarkkoihin koodinaatteihin.
   some_agree: jotkut ovat samaa mieltä
   some_observations_are_missing_media_or_identifications_desc: |
     Havainnot, joissa ei ole kuvia tai ääniä eivät näy oletuksena hauissa. Jos havainnossa ei ole tunnistusta, lajiryhmän asiantuntijat eivät välttämättä koskaan katso sitä. Lisää havaintoon ainakin karkea tunnistus, esim. "kasvit" - tämä auttaa muita löytämään havaintosi.
@@ -4031,6 +4051,26 @@ fi:
   taxon_observed_by_user: "%{taxon} havaittu käyttäjän %{user} toimesta"
   taxon_photos_updated: Taksonikuvat päivitetty
   taxon_range: Taksonin levinneisyys
+  taxon_range_for_taxon_html: Alue taksonille %{taxon}
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: Onko tämä IUCN Red List -aluekartta, ja jos ei, niin miksei?
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: Tämä on IUCN Red List -aluekartta
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Tämä ei ole IUCN Red List -aluekartta, koska kartta on soveltumaton
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: Tämä ei ole IUCN Red List -aluekartta, koska tämä taksoni ei ole IUCN Red List -luettelossa
+  taxon_range_guidelines_each_taxon_can_have: Jokaisella taksonilla voi olla vain yksi alue. Alueiden on edustettava maailmanlaajuista levinneisyyttä.
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    %{link_start_tag}IUCN Red List%{link_end_tag} on tyypillinen alueiden lähde.
+    Kerro, lisäätkö IUCN Red List -alueita ja jos et, niin miten se, mitä olet
+    lisäämässä suhtautuu IUCN Red List -luetteloon. Se auttaa IUCN Red List -luettelon alueiden automaattisessa päivittämisessä. Jos lisäät IUCN Red List -luettelon alueen, ilmoita lähteessä oikea IUCN Red List -versio (esim. 2021-2).
+  taxon_range_guidelines_if_you_are_not_uploading: "Jos et ole lataamassa IUCN Red List -luettelon aluekarttaa, tämän syynä on, koska:"
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: IUCN Red List -luettelon aluekartta ei sovi tälle taksonille
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    esimerkiksi, olet manuaalisesti kaventanut sitä heijastamaan taksonomista jakoa, jota ei vielä ole huomioitu IUCN Red List-luettelossa, tai IUCN Red List -luettelon kartassa on suuria virheitä.
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Tämä taksoni ei ole IUCN Red List -luettelossa
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    Esimerkiksi, taksoni on niputettu yhteen toisen taksonin kanssa, joka on IUCN Red List -luettelossa, joten olet manuaalisesti poistanut sen täältä, tai jos taksonilta puuttuu IUCN Red List -arviointi ja aluekartta.
+  taxon_range_guidelines_please_provide_details: |
+    Käyttäkää kuvausta selittääksenne, miten kartta on johdettu, ja linkittäkää kaikki merkitykselliset liput, taksonomiset jaot, tai muut keskustelut, miksi julkaistu IUCN Red List alue tarvitsee muutoksen.
+  taxon_range_guidelines_learn_more_about_taxon_ranges: Lue lisää taksonin alueista
   taxon_ranks: Taksoniluokat
   taxon_removed_from_list: Taksoni poistettu luettelosta.
   taxon_scheme: Taksonirakenne
@@ -6273,6 +6313,12 @@ fi:
             taxon:
               too_many_photos: |
                 ei saa sisältää enempää kuin %{max} valokuvaa
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: on oltava hyväksytty arvo
+            taxon_id:
+              already_has_a_range: on jo alue
         user:
           attributes:
             login:
