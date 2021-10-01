@@ -1583,6 +1583,11 @@ fi:
   facebook_access_token_expired: "Pääsyoikeus on vanhentunut. Käyttäjän %{user} täytyy linkittää Facebook-tilinsä uudelleen."
   facebook_needs_the_owner_of_that_photo_to: Facebook haluaa että kuvan omistaja vahvistaa yhteyden %{site_name_short}iin uudelleen.
   facebook_options: Facebook-asetukset
+  facebook_photo_import_disabled_notice: |
+    Marraskuussa 2020 Facebook vaati meitä vahvistamaan, että todella tarvitsimme
+    pääsyn valokuviin, emmekä pystyneet viemään vahvistusprosessia loppuun
+    Facebookin varmentamisjärjestelmän ongelmien vuoksi. Tämän seurauksena emme voi enää
+    tukea kuvien tuomista Facebookista.
   failed_to_find_your_location: Sijaintisi paikantaminen epäonnistui.
   failed_to_repair_photo: "Kuvan korjaus epäonnistui: %{errors}"
   failed_to_save_record: "Tallennus epäonnistui. Ole hyvä ja kokeile myöhemmin uudelleen."
@@ -1902,6 +1907,7 @@ fi:
   improving: Parannus
   in_n: "paikassa %{n}"
   in_place_x: paikassa %{place}
+  inaturalist_network: iNaturalist-verkosto
   inaturalist_network_affiliation: Verkosto, johon tunnuksesi on liitetty
   #Label for messages you've received
   inbox: Saapuneet
@@ -2046,22 +2052,28 @@ fi:
     scientific_names: Tieteelliset nimet
     afrikaans: Afrikaans
     albanian: Albania
+    arabic: Arabia
+    armenian: Armenia
     belarusian: Valkovenäjä
     bengali: Bengali
+    bulgarian: Bulgaria
     catalan: Katalaani
     cebuano: Cebuano
     chinese_simplified: Kiina (yksinkertaistettu)
     chinese_traditional: Kiina (perinteinen)
     creole_french: kreoli (Ranska)
     creole_portuguese: kreoli (Portugali)
+    croatian: Kroatia
     czech: Tsekki
     danish: Tanska
     davawenyo: Davawenyo
     dutch: Hollanti
     english: Englanti
     estonian: Viro
+    faroese: Fääri
     finnish: Suomi
     french: Ranska
+    galician: Galicia
     german: Saksa
     greek: Kreikka
     hawaiian: Havaiji
@@ -2070,22 +2082,35 @@ fi:
     hungarian: Unkari
     icelandic: Islanti
     ilokano: Ilokano
+    indonesian: Indonesia
     italian: Italia
     japanese: Japani
+    kannada: Kannada
     korean: Korea
     latvian: Latvia
     lithuanian: Liettua
     luxembourgish: Luksemburgi
+    malay: Malaiji
+    malayalam: Malajalam
     maltese: Malta
     maori: Maori
     marathi: Marathi
+    maya: Maya
     misima_paneati: Misima-paneati
+    mongolian: Mongolia
+    nahuatl: Nahuatlkieli
     norwegian: Norja
     occitan: Oksitaani
+    ojibwe: Ojibwe
+    palauan: Palau
     pangasinan: Pangasinan
+    polish: Puola
     portuguese: Portugali
     romanian: Romania
     russian: Venäjä
+    setswana: Setswana
+    sinhala: Sinhala
+    slovak: Slovakia
     spanish: Espanja
     swedish: Ruotsi
     tagalog: Tagalog
@@ -2093,7 +2118,9 @@ fi:
     thai: Thai
     tokelauan: Tokelau
     turkish: Turkki
+    ukrainian: Ukraina
     waray_waray: Waray-waray
+    visayan: Visaya
   less: Vähemmän
   licensed_site_photos: "Lisensoidut %{site_name}-kuvat"
   license: Lisenssi
@@ -2178,6 +2205,7 @@ fi:
     id: indonesia
     it: italia
     ja: japani
+    kn: Kannada
     ko: korea
     lb: luxemburg
     lt: liettua
@@ -2580,6 +2608,8 @@ fi:
   no_species_on_this_list_for_owner: |
     Voit alkaa lisätä lajeja tähän luetteloon käyttämällä oikealla olevaa "Lisää luetteloosi"-työkalua.
   no_subject_parens: "(Ei otsikkoa)"
+  no_such_wiki_page: Sellaista sivua ei ole.
+  no_such_wiki_page_html: Tällaista sivua ei ole. Haluatko <a href="%{new_url}">luoda sellaisen</a>?
   no_suggestions_available: Ehdotuksia ei saatavissa
   no_summary_from_wikipedia: Ei yhteenvetoa Wikipediasta
   no_taxa: Ei taksoneita
@@ -2747,6 +2777,7 @@ fi:
     absent: Ei esiinny alueella
     common: Esiintyy säännöllisesti
     doubtful: Oletettavasti esiintyy, mutta näyttö on epävarmaa
+    irregular: Esiintyminen ennalta-arvaamatonta, mukaanlukien vaeltajat; voi olla tavallinen joinain vuosina ja kadoksissa muulloin
     present: Esiintyy alueella
     uncommon: Esiintyy säännöllisesti, mutta pieninä määrinä; vatii huolellista sopivan ympäristön etsimistä
   occurrence_status_establishment_means: esiintymisen tila, vakiintuneisuus
@@ -3845,6 +3876,8 @@ fi:
     %{start_tag_nat_geo}National Geographic%{end_tag_nat_geo} ovat solmineet 
     sopimuksen kaikkien niiden organisaatioiden kanssa, jotka ylläpitävät kansallista iNaturalist-sivustoa. <strong>Jos organisaatiosi on kiinnostunut liittymään iNaturalist-verkostoon, löydät lisätietoja %{start_tag_join}täältä%{end_tag_join}.</strong>
   sites_network_consists_of: "iNaturalist-verkosto koostuu useista organisaatioista:"
+  sites_network_inaturalist_network_collection: |
+    iNaturalist-verkosto koostuu kansallisista sivustoista, jotka toimivat yhteistyössä maailmanlaajuisen iNaturalist-yhteisön kanssa. Paikalliset instituutiot ylläpitävät verkkosivustoja, jotka edistävät iNaturalistin käyttöä alueellisesti. Nämä instituutiot ovat allekirjoittaneet sopimuksen iNaturalistin kanssa ja edistävät sen paikallista käyttöä luonnon monimuotoisuuden hyväksi. Paikalliset instituutiot pääsevät käsiksi havaintojen tarkkoihin koordinaatteihin oman valtionsa alueelta, vaikka koordinaatit muuten olisivat karkeistettuja uhattujen eliölajien suojelemiseksi.
   sites_network_your_username: |
     Käyttäjätunnuksesi ja salasanasi toimivat kaikilla sivustoilla, jotka ovat mukana iNaturalist-verkostossa. Jos liität tunnuksesi paikalliseen verkostoon, paikallinen instituutio pääsee käsiksi sähköpostiosoitteeseesi (viestiäkseen sinulle sivustoon liittyvistä asioista) ja karkeistettujen ja yksitysten havaintojesi tarkkoihin koodinaatteihin.
   some_agree: jotkut ovat samaa mieltä
@@ -4993,6 +5026,9 @@ fi:
         <li>Älä poista kenttiä, joita ihmiset käyttävät</li>
         <li>Älä käännä olemassa olevia kenttiä eri kielille. Englanti on tämän sivuston vakiintunut yleiskieli. Jos välttämättä tarvitset kentän joka tarkoittaa samaa asiaa mutta eri kielellä, ole hyvä ja tee uusi havaintokenttä.</li>
         </ol>
+      merge:
+        warning_html: |
+          Ole hyvä ja kunnioita toisten käyttäjien itselleen tallentamia tietoja ja <strong>ota yhteyttä kentän alkuperäiseen luojaan ennen kenttien yhdistämistä</strong>. Tämä työkalu tuhoaa kentän, jota ollaan liittämässä ja siirtää tiedot toiseen kenttään. <strong>Toimintoa ei voi perua</strong>, joten ole tarkkaavainen.
     emailer:
       bulk_import_error:
         taxon_spelling_notice_html: |
