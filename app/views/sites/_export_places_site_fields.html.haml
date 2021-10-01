@@ -1,0 +1,11 @@
+.col-md-12
+  .nested-fields.form-inline.stacked.lined
+    .form-group
+      - if f.object.new_record?
+        = f.text_field :place_id, label: false
+      - else
+        = f.object.try( :place ).try( :name )
+      = f.hidden_field :site_id, value: f.object.try( :site_id )
+      = f.hidden_field :scope, value: PlacesSite::EXPORTS
+    .form-group
+      = link_to_remove_association "Remove", f, class: "btn btn-danger btn-sm"

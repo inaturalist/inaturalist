@@ -3153,6 +3153,40 @@ CREATE SEQUENCE public.places_id_seq
 ALTER SEQUENCE public.places_id_seq OWNED BY public.places.id;
 
 
+
+--
+-- Name: places_sites; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.places_sites (
+    id bigint NOT NULL,
+    site_id integer NOT NULL,
+    place_id integer NOT NULL,
+    scope character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: places_sites_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.places_sites_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: places_sites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.places_sites_id_seq OWNED BY public.places_sites.id;
+
+
 --
 -- Name: posts; Type: TABLE; Schema: public; Owner: -
 --
@@ -3860,8 +3894,7 @@ CREATE TABLE public.sites (
     logo_blog_file_name character varying,
     logo_blog_content_type character varying,
     logo_blog_file_size bigint,
-    logo_blog_updated_at timestamp without time zone,
-    extra_place_id integer
+    logo_blog_updated_at timestamp without time zone
 );
 
 
@@ -5713,6 +5746,13 @@ ALTER TABLE ONLY public.places ALTER COLUMN id SET DEFAULT nextval('public.place
 
 
 --
+-- Name: places_sites id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.places_sites ALTER COLUMN id SET DEFAULT nextval('public.places_sites_id_seq'::regclass);
+
+
+--
 -- Name: posts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6312,6 +6352,14 @@ ALTER TABLE ONLY public.deleted_users
 
 ALTER TABLE ONLY public.exploded_atlas_places
     ADD CONSTRAINT exploded_atlas_places_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: places_sites places_sites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.places_sites
+    ADD CONSTRAINT places_sites_pkey PRIMARY KEY (id);
 
 
 --
@@ -8554,6 +8602,13 @@ CREATE UNIQUE INDEX index_places_on_uuid ON public.places USING btree (uuid);
 
 
 --
+-- Name: index_places_sites_on_site_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_places_sites_on_site_id ON public.places_sites USING btree (site_id);
+
+
+--
 -- Name: index_posts_on_place_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9969,6 +10024,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210819164339'),
 ('20210819214533'),
 ('20210908061217'),
-('20210908070001');
+('20210908070001'),
+('20211001151300');
 
 

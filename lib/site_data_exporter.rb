@@ -246,7 +246,7 @@ class SiteDataExporter
     # Export observations in place by non-site users *only* obscured by taxon geoprivacy with private coordinates
     export_observations(
       not_site_id: @site.id,
-      place_id: [@site.place_id, @site.extra_place_id].compact,
+      place_id: ( [@site.place_id] + @site.places_sites.pluck( :place_id ) ).compact,
       taxon_geoprivacy: ["obscured", "private"],
       geoprivacy: ["open"],
       force_coordinate_visibility: true,
@@ -254,7 +254,7 @@ class SiteDataExporter
     )
     export_observations(
       not_site_id: @site.id,
-      place_id: [@site.place_id, @site.extra_place_id].compact,
+      place_id: ( [@site.place_id] + @site.places_sites.pluck( :place_id ) ).compact,
       taxon_geoprivacy: ["obscured", "private"],
       geoprivacy: ["obscured", "private"],
       debug_label: "by non-site users of w/ taxon_geoprivacy AND geoprivacy"
@@ -262,7 +262,7 @@ class SiteDataExporter
     # Export observations in place by non-site users *not* obscured by taxon geoprivacy *without* private coordinates
     export_observations(
       not_site_id: @site.id,
-      place_id: [@site.place_id, @site.extra_place_id].compact,
+      place_id: ( [@site.place_id] + @site.places_sites.pluck( :place_id ) ).compact,
       not_taxon_geoprivacy: ["obscured", "private"],
       debug_label: "by non-site users of un-threatened taxa"
     )
