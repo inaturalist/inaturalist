@@ -180,6 +180,7 @@ ca:
   about_taxon_ranges_desc: |
     La distribució dels tàxons indica la distribució d'un tàxon. La distribució dels tàxons està basada, normalment, de la Llista Vermella de la UICN.
   about_the_cc_licenses: Sobre les llicències de Creative Commons
+  about_the_network: Sobre Network
   about_these_licenses: Sobre aquestes llicències
   about_this_bioblitz: Quant aquest bioblitz
   about_this_map: Quant a aquest mapa
@@ -373,6 +374,8 @@ ca:
   admin_s: Administrador/s
   admin_only: Només Administrador
   admin_tools: Eines administratives
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Organitzacions afiliades
   agree_: D'acord
   agree?: Hi estàs d'acord?
   agree_with_current_taxon: D'acord amb actual taxon
@@ -887,6 +890,7 @@ ca:
   committed_by_user_on_date_html: Compromès per %{user} el %{date}
   #Label for date the taxon change was committed
   committed_on: Validat el %{date}
+  committed_taxon_changes_cannot_be_deleted: Els canvis de tàxon compromesos no es poden suprimir
   #Status message while a taxon change is being committed
   committing: Desant...
   common_name: Nom Comú
@@ -1568,6 +1572,7 @@ ca:
   exclusion_filters: Filtres d'exclusió
   existing_flags: Marques existents.
   exit_full_screen: "Surt del mode de pantalla completa."
+  examples_of_data_use_by_network_members: Exemples d'Ús de Dades per Membres de la Xarxa
   examples_of_ranking_organizations: Exemples de Classificació d'Organitzacions
   explore: Exploreu-ne
   export: Exportar
@@ -1783,6 +1788,8 @@ ca:
   going_to_your_observations: Anant a les vostres observacions...
   good_choice_for_sharing: Bona alternativa per compartir amb els científics
   google: Google
+  google_maps_not_loaded_error: |
+    Google Maps no s’inicia. Potser heu blocat l'accés a Google Maps amb una extensió del navegador o el firewall, o alguna altra cosa està blocant l'accés com el Proveïdor de Serveis d'Internet.
   got_it!: Entesos!
   got_your_data_somewhere_else?: Heu obtingut les dades a un altre lloc? Us podem ajudar.
   graft: Insereix
@@ -2117,6 +2124,7 @@ ca:
     russian: Rus
     sinhala: Singalès
     slovak: Eslovac
+    slovenian: Eslovè
     spanish: Castellà
     swedish: Suec
     tagalog: Tagal
