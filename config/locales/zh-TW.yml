@@ -2645,7 +2645,9 @@ zh-TW:
   observation_brief_something_on_day_at_time: "在 %{day} %{time} 所記錄的某些生物"
   observation_brief_something_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 所記錄的"
   observation_brief_something_on_day_by_user: "由使用者 %{user} 在 %{day} 所記錄的"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "在 %{month} 月的某些觀察"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "由使用者 %{user} 在 %{month} 月所記錄的"
   observation_brief_something_by_user: "由使用者 %{user} 所記錄的"
   observation_brief_something_from_place: "在 %{place} 所記錄的"
@@ -2654,13 +2656,17 @@ zh-TW:
   observation_brief_something_from_place_on_day_by_user: "由使用者 %{user} 於 %{day} 在 %{place} 所記錄的"
   observation_brief_something_from_place_on_day_at_time: "於 %{day} %{time} 在 %{place} 所記錄的"
   observation_brief_something_from_place_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 在 %{place} 所記錄的"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "%{month} 在 %{place} 所記錄的"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "由使用者 %{user} 於 %{month} 在 %{place} 所記錄的"
   observation_brief_taxon_on_day: "在 %{day} 所記錄的 %{taxon}"
   observation_brief_taxon_on_day_at_time: "在 %{day} %{time} 所記錄的 %{taxon}"
   observation_brief_taxon_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 所記錄的"
   observation_brief_taxon_on_day_by_user: "由 %{user} 在 %{day} 所記錄的 %{taxon}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "在 %{month} 所記錄的 %{taxon}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "由 %{user} 在 %{month} 所記錄的 %{taxon}"
   observation_brief_taxon_by_user: "%{user} 所建立的 %{taxon}"
   observation_brief_taxon_from_place: "位於 %{place} 的 %{taxon}"
@@ -2669,7 +2675,9 @@ zh-TW:
   observation_brief_taxon_from_place_on_day_by_user: "由 %{user} 於 %{day} 在 %{place} 所記錄的 %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time: "%{day} %{time} 在 %{place} 所記錄的 %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "由 %{user} 於 %{day} %{time} 在 %{place} 所記錄的 %{taxon}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{month} 在 %{place} 所記錄的 %{taxon}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "由 %{user} 於 %{month} 在 %{place} 所記錄的 %{taxon}"
   observations_by_category: "依分類區分觀察"
   observations_by_app: 依應用程式區分觀察
@@ -7106,8 +7114,6 @@ zh-TW:
           attributes:
             base:
               user_already_blocked: 您已經封鎖該使用者
-              user_cannot_be_staff: |
-                您無法封鎖網站工作人員。iNat 工作人員需要和所有網站上的人溝通，在 iNat 上有存取所有資料的權限，而且他們是調解爭議的重要人物，所以封鎖他們無法防止他們與您溝通。如果您對工作人員中某人有任何問題，請向 iNat 共同理事之一回報，或是您對共同理事之一有問題的話，您還可以向加州科學院的生物多樣性與永續科學研究所(Institute for Biodiviersity and Sustainability Science)的科學主任(Chief of Science)聯絡。
         user_parent:
           attributes:
             email:
