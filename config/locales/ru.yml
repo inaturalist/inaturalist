@@ -2884,7 +2884,9 @@ ru:
   observation_brief_something_on_day_at_time: "Некоторые за %{day} в %{time}"
   observation_brief_something_on_day_at_time_by_user: "Некоторые от %{user} за %{day} в %{time}"
   observation_brief_something_on_day_by_user: "Некоторые за %{day} от %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Некоторые за %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Некоторые за %{month} от %{user}"
   observation_brief_something_by_user: "Некоторые от %{user}"
   observation_brief_something_from_place: "Некоторые из %{place}"
@@ -2893,13 +2895,17 @@ ru:
   observation_brief_something_from_place_on_day_by_user: "Некоторые из %{place} за %{day} от %{user}"
   observation_brief_something_from_place_on_day_at_time: "Некоторые из %{place} за %{day} в %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Некоторые из %{place} за %{day} в %{time} от %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Некоторые из %{place} за %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Некоторые из %{place} за %{month} от %{user}"
   observation_brief_taxon_on_day: "%{taxon} за %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} за %{day} в %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} от %{user} за %{day} в %{time}"
   observation_brief_taxon_on_day_by_user: "%{taxon} %{day} от %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} за %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} за %{month} от %{user}"
   observation_brief_taxon_by_user: "%{taxon} от %{user}"
   observation_brief_taxon_from_place: "%{taxon} из %{place}"
@@ -2908,7 +2914,9 @@ ru:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} из %{place} за %{day} от %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} из %{place} за %{day} в %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} из %{place} за %{day} в %{time} от %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} из %{place} за %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} из %{place} за %{month} от %{user}"
   observations_by_category: "Наблюдения по категориям"
   observations_by_app: Наблюдения по приложениям
@@ -7565,8 +7573,6 @@ ru:
           attributes:
             base:
               user_already_blocked: Вы уже заблокировали этого пользователя
-              user_cannot_be_staff: |
-                Вы не можете блокировать персонал. Персонал iNat должен иметь возможность общаться со всеми на iNat, иметь доступ ко всем данным на iNat и быть окончательным посредником в спорах, так, чтобы блокировка не помешала ему общаться с вами. Если у вас возникли проблемы с сотрудником, пожалуйста, сообщите об этом одному из содиректоров iNat, или, если у вас возникли проблемы с одним из содиректоров, вы можете связаться с научным руководителем Института биоразнообразия и устойчивого развития науки Калифорнийской академии наук.
         user_parent:
           attributes:
             email:
