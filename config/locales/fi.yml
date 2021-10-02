@@ -2666,7 +2666,9 @@ fi:
   observation_brief_something_on_day_at_time: "Jotakin %{day} päivänä %{time} aikaan"
   observation_brief_something_on_day_at_time_by_user: "Jotakin %{day} päivänä %{time} aikaan henkilöltä %{user}"
   observation_brief_something_on_day_by_user: "Jotain %{day} käyttäjältä %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Jotain %{month}ssa"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Jotain %{month}ssa käyttäjältä %{user}"
   observation_brief_something_by_user: "Jotain käyttäjältä %{user}"
   observation_brief_something_from_place: "Jotain paikasta %{place}"
@@ -2675,13 +2677,17 @@ fi:
   observation_brief_something_from_place_on_day_by_user: "Jotain paikasta %{place} päivänä %{day} käyttäjältä %{user}"
   observation_brief_something_from_place_on_day_at_time: "Jotain paikasta %{place} päivänä %{day} aikana %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Jotain paikasta %{place} päivänä %{day} aikana %{time} käyttäjältä %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Jotain paikasta %{place} %{month}ssa"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Jotain paikasta %{place} %{month}ssa käyttäjältä %{user}"
   observation_brief_taxon_on_day: "%{taxon} %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} %{day} päivänä %{time} aikaan"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} %{day} päivänä %{time} aikaan henkilöltä %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} %{day} käyttäjältä %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} %{month}ssa"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} %{month}ssa käyttäjältä %{user}"
   observation_brief_taxon_by_user: "%{taxon} käyttäjältä %{user}"
   observation_brief_taxon_from_place: "%{taxon} paikasta %{place}"
@@ -2690,7 +2696,9 @@ fi:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} paikasta %{place} %{day} käyttäjältä %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} paikasta %{place} %{day} %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} paikasta %{place} %{day} %{time} käyttäjältä %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} paikasta %{place} %{month}ssa"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} paikasta %{place} %{month}ssa käyttäjältä %{user}"
   observations_by_category: "Havainnot luokittain"
   observations_by_app: Havainnot sovelluksittain
