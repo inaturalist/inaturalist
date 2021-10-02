@@ -2738,7 +2738,9 @@ id:
   observation_brief_something_on_day_at_time: "Sesuatu pada %{day} pukul %{time}"
   observation_brief_something_on_day_at_time_by_user: "Sesuatu pada %{day} pukul %{time} oleh %{user}"
   observation_brief_something_on_day_by_user: "Sesuatu pada hari %{day} oleh %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Sesuatu pada %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Sesuatu pada %{month} oleh %{user}"
   observation_brief_something_by_user: "Sesuatu oleh %{user}"
   observation_brief_something_from_place: "Sesuatu dari %{place}"
@@ -2747,13 +2749,17 @@ id:
   observation_brief_something_from_place_on_day_by_user: "Sesuatu dari %{place} pada hari %{day} oleh %{user}"
   observation_brief_something_from_place_on_day_at_time: "Sesuatu dari %{place} pada hari %{day} pukul %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Sesuatu dari %{place} pada hari %{day} pukul %{time} oleh %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Sesuatu dari %{place} pada %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Sesuatu dari %{place} pada %{month} oleh %{user}"
   observation_brief_taxon_on_day: "%{taxon} pada hari %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} pada hari %{day} pukul %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} pada hari %{day} pukul %{time} oleh %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} pada hari %{day} oleh %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} pada %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} pada %{month} oleh %{user}"
   observation_brief_taxon_by_user: "%{taxon} oleh %{user}"
   observation_brief_taxon_from_place: "%{taxon} dari %{place}"
@@ -2762,7 +2768,9 @@ id:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} dari %{place} pada hari %{day} oleh %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} dari %{place} pada hari %{day} pukul %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} dari %{place} pada hari %{day} pukul %{time} oleh %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} dari %{place} pada %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} dari %{place} pada %{month} oleh %{user}"
   observations_by_category: "Pengamatan Berdasarkan Kategori"
   observations_by_app: Pengamatan Berdasarkan Aplikasi
@@ -7131,8 +7139,6 @@ id:
           attributes:
             base:
               user_already_blocked: Anda sudah memblokir pengguna tersebut
-              user_cannot_be_staff: |
-                Anda tidak bisa memblokir staf. Staf iNat harus bisa berkomunikasi dengan semua orang di iNat, memiliki akses kepada semua data di iNat, dan adalah penengah perselisihan lapisan terakhir, jadi memblokir tidak akan menghalangi mereka untuk berkomunikasi dengan Anda. Jika Anda memiliki masalah dengan seorang anggota staf, silakan melaporkannya kepada salah satu wakil direktur iNat, atau, jika Anda memiliki masalah dengan seorang wakil direktur, Anda bisa menghubungi Kepala Bidang Sains di Institute for Biodiviersity and Sustainability Science di California Academy of Sciences.
         user_parent:
           attributes:
             email:
