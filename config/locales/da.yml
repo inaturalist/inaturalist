@@ -2146,6 +2146,7 @@ da:
     Husk at <a href="%{url}"> ændre din adgangskode </a> til den nye version.
   let_us_walk_you_through: Lad os gennemgå hovedfunktionerne på dette websted.
   lexicon: Leksikon
+  lexicon_cannot_contain_words: "kan ikke indeholde flg. ord: %{words}"
   lexicons:
     scientific_names: Videnskabelige navne
     afrikaans: Afrikaans
@@ -2824,7 +2825,9 @@ da:
   observation_brief_something_on_day_at_time: "Noget %{day} kl. %{time}"
   observation_brief_something_on_day_at_time_by_user: "Noget %{day} kl. %{time} af %{user}"
   observation_brief_something_on_day_by_user: "Noget fra %{day} af %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Noget i %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Noget i %{month} af %{user}"
   observation_brief_something_by_user: "Noget af %{user}"
   observation_brief_something_from_place: "Noget fra %{place}"
@@ -2833,13 +2836,17 @@ da:
   observation_brief_something_from_place_on_day_by_user: "Noget fra %{place} den %{day} af %{user}"
   observation_brief_something_from_place_on_day_at_time: "Noget fra %{place} den %{day} klokken %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Noget fra %{place} den %{day} klokken %{time} af %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Noget fra %{place} i %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Noget fra %{place} i %{month} af %{user}"
   observation_brief_taxon_on_day: "%{taxon} %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} %{day} kl. %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} %{day} kl. %{time} af %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} fra %{day} af %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} i %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} i %{month} af %{user}"
   observation_brief_taxon_by_user: "%{taxon} af %{user}"
   observation_brief_taxon_from_place: "%{taxon} fra %{place}"
@@ -2848,7 +2855,9 @@ da:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} fra %{place} %{day} af %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} fra %{place} %{day} kl. %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} fra %{place} %{day} kl. %{time} af %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} fra %{place} i %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} fra %{place} i %{month} af %{user}"
   observations_by_category: "Observationer efter kategori"
   observations_by_app: Observationer via App
@@ -7835,14 +7844,14 @@ da:
             base:
               user_already_blocked: Du har allerede blokeret dén bruger
               user_cannot_be_staff: |
-                Du kan ikke blokere personale. iNat-personale skal kunne
-                kommunikere med alle på iNat, har adgang til alle data på
-                iNat, og er de endelige mæglere af tvister, så blokering
-                vil ikke forhindre dem i at kommunikere med dig. Hvis du har et
-                problem med et medlem af personalet, bedes du rapportere dette til en af 
-                iNat-underdirektørerne eller, hvis du har et problem med en af 
-                underdirektørerne, kan du kontakte Videnskabschef på
-                Institute for Biodiviersity and Sustainability Science på
+                Personale kan ikke blokeres, da de skal kunne
+                kommunikere med alle/tilgå alle data på
+                iNat samt er de endelige mæglere af tvister, hvorfor blokering
+                vil ikke forhindre dem i at kommunikere med dig. Har du et
+                problem med et personalemedlem, bedes du rapportere dette til en af
+                iNat-meddirektørerne, eller har du har et problem med en af
+                meddirektørerne, kan du kontakte Videnskabschefen på
+                Institute for Biodiversity and Sustainability Science på
                 California Academy of Sciences.
         user_parent:
           attributes:
