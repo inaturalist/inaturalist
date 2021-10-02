@@ -2414,7 +2414,9 @@ kn:
   observation_brief_something_on_day_at_time: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ ಒಂದಿಷ್ಟು"
   observation_brief_something_on_day_at_time_by_user: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
   observation_brief_something_on_day_by_user: "%{day} ರಂದು %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "%{month} ತಿಂಗಳಲ್ಲಿ ಒಂದಿಷ್ಟು"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "%{month} ತಿಂಗಳಲ್ಲಿ %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
   observation_brief_something_by_user: "%{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
   observation_brief_something_from_place: "%{place} ನಲ್ಲಿ ಒಂದಿಷ್ಟು"
@@ -2423,13 +2425,17 @@ kn:
   observation_brief_something_from_place_on_day_by_user: "%{place} ನಲ್ಲಿ %{day} ರಂದು %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
   observation_brief_something_from_place_on_day_at_time: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{place} ನಲ್ಲಿ ಒಂದಿಷ್ಟು"
   observation_brief_something_from_place_on_day_at_time_by_user: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{place} ನಲ್ಲಿ %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "%{place} ನಲ್ಲಿ %{month} ತಿಂಗಳಲ್ಲಿ ಒಂದಿಷ್ಟು"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "%{place} ನಲ್ಲಿ %{month} ತಿಂಗಳಲ್ಲಿ %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
   observation_brief_taxon_on_day: "%{day} ರಂದು %{taxon}"
   observation_brief_taxon_on_day_at_time: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{taxon}"
   observation_brief_taxon_on_day_at_time_by_user: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{user} ಮೂಲಕ %{taxon}"
   observation_brief_taxon_on_day_by_user: "%{day} ರಂದು %{user} ಮೂಲಕ %{taxon}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{month} ತಿಂಗಳಲ್ಲಿ %{taxon}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{month} ತಿಂಗಳಲ್ಲಿ %{user} ಮೂಲಕ %{taxon}"
   observation_brief_taxon_by_user: "%{user} ಮೂಲಕ %{taxon}"
   observation_brief_taxon_from_place: "%{place} ನಲ್ಲಿ %{taxon}"
@@ -2438,7 +2444,9 @@ kn:
   observation_brief_taxon_from_place_on_day_by_user: "%{place} ನಲ್ಲಿ %{day} ರಂದು %{user} ಮೂಲಕ %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time: "%{place} ನಲ್ಲಿ %{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{place} ನಲ್ಲಿ %{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{user} ಮೂಲಕ %{taxon}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{place} ನಲ್ಲಿ %{month} ತಿಂಗಳಲ್ಲಿ %{taxon}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{place} ನಲ್ಲಿ %{month} ತಿಂಗಳಲ್ಲಿ %{user} ಮೂಲಕ %{taxon}"
   observations_by_category: "ವಿಭಾಗಗಳ ಪ್ರಕಾರ ವೀಕ್ಷಣೆಗಳು"
   observations_by_app: ಆಪ್ ಮೂಲಕ ಆದ ವೀಕ್ಷಣೆಗಳು
