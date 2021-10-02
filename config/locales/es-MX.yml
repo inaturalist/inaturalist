@@ -2789,7 +2789,9 @@ es-MX:
   observation_brief_something_on_day_at_time: "Algo el %{day} a las %{time}"
   observation_brief_something_on_day_at_time_by_user: "Algo el %{day} a las %{time} por %{user}"
   observation_brief_something_on_day_by_user: "Algo el %{day} por %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Algo en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Algo en %{month} por %{user}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
@@ -2798,13 +2800,17 @@ es-MX:
   observation_brief_something_from_place_on_day_by_user: "Algo desde %{place} el %{day} de %{user}"
   observation_brief_something_from_place_on_day_at_time: "Algo desde %{place} el %{day} a las %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Algo desde %{place} el %{day} a las %{time} de %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Algo de %{place} en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Algo de %{place} en %{month} por %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} el %{day} a las %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} el %{day} a las %{time} por %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} el %{day} por %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} en %{month} por %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
@@ -2813,7 +2819,9 @@ es-MX:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} desde %{place} el%{day} de %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} desde %{place} el%{day} a las %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} desde %{place} el %{day} a las %{time} de %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} de %{place} en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} de %{place} en %{month} por %{user}"
   observations_by_category: "Observaciones por categoría"
   observations_by_app: Observaciones por App
@@ -7433,8 +7441,6 @@ es-MX:
           attributes:
             base:
               user_already_blocked: Ya has bloqueado a ese usuario
-              user_cannot_be_staff: |
-                No puedes bloquear al personal. El personal de iNat necesita poder comunicarse con todos los usuarios y tener acceso a todos los datos. Ellos son los principales mediadores en disputas, por lo que bloquearlos no les impedirá comunicarse contigo. Si tienes algún problema con un miembro del personal, por favor repórtalo a uno de los codirectores de iNat, y si el problema es con uno de los codirectores, puedes ponerte en contacto con el Jefe de Ciencia en el Instituto de Ciencias de la Biodiversidad y Sostenibilidad en la Academia de Ciencias de California.
         user_parent:
           attributes:
             email:
