@@ -2636,7 +2636,9 @@ tr:
   observation_brief_something_on_day_at_time: "%{day} tarihi %{time} zamanından bir şeyler"
   observation_brief_something_on_day_at_time_by_user: "%{user} kullanıcısı tarafından %{time} zamanında ve %{day} gününde bir şeyler"
   observation_brief_something_on_day_by_user: "%{day} gününde %{user} kullanıcısından bir şeyler"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "%{month} ayından bir şeyler"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "%{user} tarafından %{month} ayından bir şeyler"
   observation_brief_something_by_user: "%{user} kullanıcısından bir şeyler"
   observation_brief_something_from_place: "%{place} yerinden bir şeyler"
@@ -2649,6 +2651,7 @@ tr:
   observation_brief_taxon_on_day_at_time: "%{day} gününde %{time} zamanında %{taxon}"
   observation_brief_taxon_on_day_at_time_by_user: "%{user} tarafından %{time} zamanında %{day} gününde %{taxon}"
   observation_brief_taxon_on_day_by_user: "%{day} gününde %{user} tarafından %{taxon}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{month} ayında %{taxon}"
   observation_brief_taxon_by_user: "%{user} tarafından %{taxon}"
   observation_brief_taxon_from_place: "%{place} yerinden %{taxon}"
@@ -7363,8 +7366,6 @@ tr:
           attributes:
             base:
               user_already_blocked: Bu kullanıcıyı zaten engellediniz
-              user_cannot_be_staff: |
-                Yetkiliyi engelleyemezsiniz. iNat yetkilisinin iNat üzerindeki herkesle iletişim kurabilmesi, iNat üzerindeki tüm verilere erişebilmesi ve anlaşmazlıkların nihai aracıları olması gerekir; bu nedenle, engelleme onların sizinle iletişim kurmasını engellemez. Bir yetkiliyle sorununuz varsa, lütfen bunu iNat yardımcı yöneticilerine birine bildirin ya da yardımcı yöneticilerden biriyle sorun yaşarsanız, Kaliforniya Bilimler Akademisi'ndeki Biyoçeşitlilik Sürdürülebilirlik Bilimi Enstitüsündeki Bilim Şefi ile iletişime geçebilirsiniz.
         user_parent:
           attributes:
             email:
