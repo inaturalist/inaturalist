@@ -2095,6 +2095,7 @@ it:
     Ricordati di <a href="%{url}">cambiare la tua password</a> per la nuova versione.
   let_us_walk_you_through: Permettici di spiegarti le principali caratteristiche del sito.
   lexicon: Lessico
+  lexicon_cannot_contain_words: "non può contenere le seguenti parole: %{words}"
   lexicons:
     scientific_names: Nomi scientifici
     afrikaans: Africano
@@ -2766,7 +2767,9 @@ it:
   observation_brief_something_on_day_at_time: "Qualcosa il %{day} alle %{time}"
   observation_brief_something_on_day_at_time_by_user: "Qualcosa il %{day} alle %{time} da %{user}"
   observation_brief_something_on_day_by_user: "Qualcosa il %{day} da %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Qualcosa a %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Qualcosa a %{month} da %{user}"
   observation_brief_something_by_user: "Qualcosa da %{user}"
   observation_brief_something_from_place: "Qualcosa in %{place}"
@@ -2775,13 +2778,17 @@ it:
   observation_brief_something_from_place_on_day_by_user: "Qualcosa in %{place} il %{day} da %{user}"
   observation_brief_something_from_place_on_day_at_time: "Qualcosa in %{place} il %{day} alle %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Qualcosa in %{place} il %{day} alle %{time} da %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Qualcosa a %{place} a %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Qualcosa a %{place} a %{month} da %{user}"
   observation_brief_taxon_on_day: "%{taxon} il %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} il %{day} alle %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} il %{day} alle %{time} da %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} il %{day} da %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} a %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} a %{month} da %{user}"
   observation_brief_taxon_by_user: "%{taxon} da %{user}"
   observation_brief_taxon_from_place: "%{taxon} in %{place}"
@@ -2790,7 +2797,9 @@ it:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} in %{place} il %{day} da %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} in %{place} il %{day} alle %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} in %{place} il %{day} alle %{time} da %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} a %{place} a %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} a %{place} a %{month} da %{user}"
   observations_by_category: "Osservazioni Per categoria"
   observations_by_app: Osservazioni Per App
@@ -7283,7 +7292,7 @@ it:
             base:
               user_already_blocked: Hai già bloccato questo utente
               user_cannot_be_staff: |
-                Non puoi bloccare lo staff. Il personale iNat deve essere in grado di comunicare con tutti su iNat, di avere accesso a tutti i dati su iNat, e rappresentano i mediatori finali delle controversie, quindi bloccarli non impedirà loro di comunicare con voi. Se avete un problema con un membro del personale, siete pregati di segnalarlo a uno dei co-direttori di iNat, o, se avete un problema con uno dei co-direttori, potete contattare il Direttore scientifico dell'Institute for Biodiviersity and Sustainability Science della California Academy of Sciences.
+                Non puoi bloccare lo staff. Il personale iNat deve essere in grado di comunicare con tutti su iNat, di avere accesso a tutti i dati su iNat, e rappresentano i mediatori finali delle controversie, quindi bloccarli non impedirà loro di comunicare con voi. Se avete un problema con un membro del personale, siete pregati di segnalarlo a uno dei co-direttori di iNat, o, se avete un problema con uno dei co-direttori, potete contattare il Direttore scientifico dell'Institute for Biodiversity and Sustainability Science della California Academy of Sciences.
         user_parent:
           attributes:
             email:
