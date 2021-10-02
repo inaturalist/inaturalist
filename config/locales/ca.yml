@@ -2722,7 +2722,9 @@ ca:
   observation_brief_something_on_day_at_time: "Alguna cosa el %{day} a les %{time}"
   observation_brief_something_on_day_at_time_by_user: "Alguna cosa el %{day} a les %{time} per %{user}"
   observation_brief_something_on_day_by_user: "Alguna cosa el %{day} per %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Quelcom al %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Quelcom al %{month} de %{user}"
   observation_brief_something_by_user: "Quelcom de %{user}"
   observation_brief_something_from_place: "Quelcom a %{place}"
@@ -2731,13 +2733,17 @@ ca:
   observation_brief_something_from_place_on_day_by_user: "Quelcom a %{place} el %{day} per %{user}"
   observation_brief_something_from_place_on_day_at_time: "Quelcom a %{place} el %{day} a les %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Quelcom a %{place} el %{day} a les %{time} per %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Quelcom a %{place} al %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Quelcom de %{place} al %{month} de %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} el %{day} a les %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} el %{day} a les %{time} per %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} el %{day} per %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} al %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} al %{month} per %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} a %{place}"
@@ -2746,7 +2752,9 @@ ca:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} a %{place} el %{day} per %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} a %{place} el %{day} a les %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} a %{place} el %{day} a les %{time} per %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} de %{place} al %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} de %{place} al %{month} per %{user}"
   observations_by_category: "Observacions Per categoria"
   observations_by_app: Observacions Per App
@@ -7147,9 +7155,6 @@ ca:
           attributes:
             base:
               user_already_blocked: Ja heu blocat aquest usuari
-              user_cannot_be_staff: |
-                No podeu blocar el personal d'iNat. El personal d'iNat s'ha de poder comunicar amb tots els usuaris d'iNat, tenir accés a totes les dades d'iNat i són els mediadors últims de les disputes, per tant, blocar-los no impedeix que es puguin comunicar amb vostè. Si teniu algun problema amb alguna persona d'iNat, si us plau, informeu algun dels codirectors d'iNat, o, si el problema és amb algun dels codirectors, podeu contactar amb el Responsable Científic del Institute for Biodiversity and Sustainability Science de la 
-                California Academy of Sciences.
         user_parent:
           attributes:
             email:
