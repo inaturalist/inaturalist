@@ -2808,7 +2808,9 @@ fr:
   observation_brief_something_on_day_at_time: "Quelque chose le %{day} à %{time}"
   observation_brief_something_on_day_at_time_by_user: "Quelque chose le %{day} à %{time} par %{user}"
   observation_brief_something_on_day_by_user: "Quelque chose le %{day} par %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Quelque chose en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Quelque chose en %{month} par %{user}"
   observation_brief_something_by_user: "Quelque chose par %{user}"
   observation_brief_something_from_place: "Quelque chose de %{place}"
@@ -2817,13 +2819,17 @@ fr:
   observation_brief_something_from_place_on_day_by_user: "Quelque chose de %{place} le %{day} par %{user}"
   observation_brief_something_from_place_on_day_at_time: "Quelque chose de %{place} le %{day} à %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Quelque chose de %{place} le %{day} à %{time} par %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Quelque chose @vow_or_con{vow:d'|de }%{place} en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Quelque chose @vow_or_con{vow:d'|de }%{place} en %{month} par %{user}"
   observation_brief_taxon_on_day: "%{taxon} le %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} le %{day} à %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} le %{day} par %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} le %{day} par %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} en %{month} par %{user}"
   observation_brief_taxon_by_user: "%{taxon} par %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
@@ -2832,7 +2838,9 @@ fr:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} de %{place} le %{day} par %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} de %{place} le %{day} à %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} de %{place} le %{day} à %{time} par %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} @vow_or_con{vow:d'|de }%{place} en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} @vow_or_con{vow:d'|de }%{place} en %{month} par %{user}"
   observations_by_category: "Observations par catégorie"
   observations_by_app: Observations par application
@@ -7881,16 +7889,6 @@ fr:
           attributes:
             base:
               user_already_blocked: Vous avez déjà bloqué cet utilisateur
-              user_cannot_be_staff: |
-                Vous ne pouvez pas bloquer le personnel. Les membres de l'équipe iNat doivent pouvoir
-                communiquer avec tout le monde sur iNat, avoir accès à toutes les données sur
-                iNat, et sont les médiateurs ultimes des différends, donc les bloquer
-                ne les empêchera pas de communiquer avec vous. Si vous avez un problème
-                avec un membre du personnel, veuillez le signaler à l'un des
-                codirecteurs iNat, ou, si vous avez un problème avec l'un des
-                codirecteurs, vous pouvez contacter le directeur scientifique à l’Institut
-                de Biodiviersité et de Science de la durabilité à la
-                California Academy of Sciences.
         user_parent:
           attributes:
             email:
