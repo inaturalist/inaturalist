@@ -2785,7 +2785,9 @@ de:
   observation_brief_something_on_day_at_time: "Etwas am %{day} um %{time}"
   observation_brief_something_on_day_at_time_by_user: "Etwas am %{day} um %{time} von %{user}"
   observation_brief_something_on_day_by_user: "Etwas am %{day} von %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Irgendetwas im %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Irgendetwas im %{month} von %{user}"
   observation_brief_something_by_user: "Irgendetwas von %{user}"
   observation_brief_something_from_place: "Etwas aus %{place}"
@@ -2794,13 +2796,17 @@ de:
   observation_brief_something_from_place_on_day_by_user: "Etwas aus %{place} am %{day} von %{user}"
   observation_brief_something_from_place_on_day_at_time: "Etwas von %{place} am %{day} um %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Etwas von %{place} am %{day} um %{time} von %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Irgendetwas aus %{place} im %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Irgendetwas aus %{place} im %{month} von %{user}"
   observation_brief_taxon_on_day: "%{taxon} am %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} am %{day} um %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} am %{day} um %{time} von %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} am %{day} von %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} im %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} im %{month} von %{user}"
   observation_brief_taxon_by_user: "%{taxon} von %{user}"
   observation_brief_taxon_from_place: "%{taxon} von %{place}"
@@ -2809,7 +2815,9 @@ de:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} von %{place} am %{day} von %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} von %{place} am %{day} um %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} von %{place} am %{day} um %{time} von %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} aus %{place} im %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} aus %{place} im %{month} von %{user}"
   observations_by_category: "Beobachtungen nach Kategorie"
   observations_by_app: Beobachtungen nach App
@@ -7409,16 +7417,6 @@ de:
           attributes:
             base:
               user_already_blocked: Du hast diesen Benutzer bereits blockiert
-              user_cannot_be_staff: |
-                Du kannst iNat-Mitarbeiter nicht blockieren. Sie müssen in der Lage sein,
-                mit allen auf iNat zu kommunizieren, haben Zugriff auf alle Daten auf
-                iNat, und sind die ultimativen Vermittler von Streitigkeiten, so dass eine Blockierung
-                sie nicht daran hindert, mit dir zu kommunizieren. Wenn du ein
-                Problem mit einem Mitarbeiter habst, melden es bitte an einen der
-                iNat Co-Direktoren, Oder, wenn du ein Problem mit einem der
-                Co-Direktoren haben, kannst du den Wissenschafts-Leiter am
-                Institute for Biodiviersity and Sustainability Science der
-                California Academy of Sciences kontaktieren.
         user_parent:
           attributes:
             email:
