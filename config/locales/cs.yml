@@ -2909,7 +2909,9 @@ cs:
   observation_brief_something_on_day_at_time: "Něco v %{day} v %{time}"
   observation_brief_something_on_day_at_time_by_user: "Něco dne %{day} v %{time} od %{user}"
   observation_brief_something_on_day_by_user: "Něco na %{day} od %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Něco v %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Něco v %{month} od %{user}"
   observation_brief_something_by_user: "Něco od %{user}"
   observation_brief_something_from_place: "Něco z %{place}"
@@ -2918,13 +2920,17 @@ cs:
   observation_brief_something_from_place_on_day_by_user: "Něco z %{place} z %{day} od %{user}"
   observation_brief_something_from_place_on_day_at_time: "Něco z %{place} dne %{day} v %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Něco od %{place} dne %{day} v %{time} od %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Něco z %{place} v %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Něco z %{place} v %{month} od %{user}"
   observation_brief_taxon_on_day: "%{taxon} na %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} dne %{day} v %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} dne %{day} v %{time} podle %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} dne %{day} od %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} v %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} v %{month} od %{user}"
   observation_brief_taxon_by_user: "%{taxon} od %{user}"
   observation_brief_taxon_from_place: "%{taxon} od %{place}"
@@ -2933,7 +2939,9 @@ cs:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} od %{place} dne %{day} od %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} od %{place} dne %{day} v %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} od %{place} dne %{day} v %{time} od %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} z %{place} v %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} z %{place} v %{month} od %{user}"
   observations_by_category: "Pozorování podle kategorie"
   observations_by_app: Pozorování podle aplikace
@@ -7692,9 +7700,6 @@ cs:
           attributes:
             base:
               user_already_blocked: Tohoto uživatele již blokujete
-              user_cannot_be_staff: |
-                Nemůžete blokovat zaměstnance. Zaměstnanci iNat musí být schopni
-                komunikovat se všemi na iNat, mít přístup ke všem údajům na iNat, a jsou konečnými mediátory sporů, takže blokování jim nebrání v komunikaci s Vámi. Pokud máte problém se zaměstnancem, prosím, nahlaste jej jednomu ze spoluředitelů iNat, nebo se, pokud máte problém s jedním ze spoluředitelů, můžete obrátit na vědeckého ředitele Institutu pro biologickou a udržitelnou vědu Kalifornské akademie věd.
         user_parent:
           attributes:
             email:
