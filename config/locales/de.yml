@@ -216,7 +216,7 @@ de:
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
-  acc: 'Genauigkeit(m)'
+  acc: 'Genauigk.(m)'
   account: Benutzerkonto
   account_creation: Benutzerkontenerstellung
   account_settings: Kontoeinstellungen
@@ -632,7 +632,7 @@ de:
   are_you_sure_you_want_to_remove_these_x_taxa?: "Sollen diese %{x} Taxa wirklich entfernt werden?"
   are_you_sure_you_want_to_remove_this_invitation: Bist du sicher, dass du diese Einladung entfernen willst?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
-    Bist du sicher, dass du diese Beobachtung aus %{project} entfernen möchtest?
+    Bist du sicher, dass du diese Beobachtung aus "%{project}" entfernen möchtest?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Bist du sicher, dass du dieses Taxon aus der Prüfliste von %{place} entfernen willst?"
   associated_observations: Verbundene Beobachtungen
   associated_taxa: Verbundene Taxa
@@ -4277,7 +4277,7 @@ de:
   species_unknown: Art unbekannt
   specify_the_reason_youre_flagging: Gib den Grund an, warum du diesen Eintrag meldest
   #Abbreviation for "source"
-  src: 'aus:'
+  src: aus
   standard: Standard
   start: Beginn
   start_a_new_project: Neues Projekt beginnen
