@@ -1594,6 +1594,8 @@ ca:
   facebook_access_token_expired: "L'accés ha caducat. %{user} ha de tornar a enllaçar amb el seu compte de Facebook."
   facebook_needs_the_owner_of_that_photo_to: Facebook necessita la confirmació del propietari d'aquesta foto %@ per poder realitzar la connexió a %{site_name_short}.
   facebook_options: Opcions de Facebook
+  facebook_photo_import_disabled_notice: |
+    A partir de novembre de 2020 Facebook ens demana verificar que realment necessitem accedir a les fotos, però no hem estat capaços de completar el procés a causa de problemes amb el sistema de verificació de Facebook. Com a resultat, no podem donar suport a la importació de fotografies de Facebook.
   failed_to_find_your_location: No ha estat possible trobar la vostra localització
   failed_to_repair_photo: "Ha fallat la reparació de la fotografia: %{errors}"
   failed_to_save_record: "No s'ha pogut desar el registre. Intenteu-ho de nou."
@@ -1829,6 +1831,19 @@ ca:
   header_your_projects: Els vostres projectes
   header_your_profile: El vostre perfil
   heads_up: Avís
+  heads_up_automatable_draft_split_notice_html: |
+    <strong>Vigileu:</strong> Quan feu aquest canvi, les identificacions seran reassignades al tàxon de sortida basant-se en les seves distribucions. Si alguna o totes les sortides manquen de distribució, o les seves distribucions d'un registre donat, les identificacions seran substituïdes amb les identificacions de l'ancestre comú més pròxim (%{taxon})
+  heads_up_non_automatable_draft_split_notice_html: |
+    <strong> Atenció: </strong> Aquesta divisió del tàxon té tàxon de sortida que, o no tenen atles o no comparteixen un ancestre comú, de manera que els registres associats amb els seus tàxons d'entrada no es poden assignar automàticament al tàxon de sortida quan aquesta divisió hagi estat confirmada i la comunitat haurà d'afegir les noves identificacions per a aquests registres.
+  heads_up_automatable_split_notice_html: |
+    <strong>Atenció:</strong> Algunes o totes les identificacions afectades per aquesta divisió pot haver estat reemplaçada per identificacions de %{taxon}. Això succeeix quan no es poden assignar automàticament a un dels tàxons de sortida.
+  heads_up_observose_taxon_change_html: |
+    <strong>Atenció</strong>Un o més dels tàxons d'entrada implicats en aquest canvi té més de %{observose_taxon_threshold} observacions dependents. Només els administradors o supervisors d'aquest marc de tàxons poden efectuar aquest canvi.
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+    <strong>Atenció:</strong> Un o més dels tàxons d'entrada involucrats en aquests canvis estan dins d'un <a href="%{framework_url}">marc de tàxons</a>. Només els administradors o supervisors d'aquest marc de tàxons podem realitzar canvis que afectin els tàxons coberts. Posa't en contacte amb un dels supervisors d'aquest tàxon per fer aquest canvi.
+  heads_up_there_are_other_draft_taxon_changes_html:
+    one: "<strong>Atenció:</strong> hi ha %{count} canvi de tàxon esborrany amb els mateixos tàxons d'entrada:"
+    other: "<strong>Atenció:</strong> hi ha %{count} canvis de tàxon esborrany amb els mateixos tàxons d'entrada:"
   heads_up_this_photo_has_been_flagged: "ATENCIÓ: s’ha marcat aquesta foto."
   heads_up_this_photo_is_already_associated_with: "ATENCIÓ: aquesta foto ja està associada amb <a target='_blank' href='%{url}'>una altra observació</a>"
   heads_up_you_have_multiple: "Vigileu. Heu generat diverses etiquetes taxonòmiques per a rangs idèntics. Estan codificades a sota per colors segons el rang."
@@ -1928,6 +1943,7 @@ ca:
   improving: Millorant
   in_n: "a %{n}"
   in_place_x: a %{place}
+  inaturalist_network: Xarxa iNaturalist
   inaturalist_network_affiliation: Afiliació a la Xarxa d'iNaturalist
   #Label for messages you've received
   inbox: bústia
@@ -2075,26 +2091,33 @@ ca:
     Recordeu que heu de <a href="%{url}">canviar la vostra contrasenya</a> per a la nova versió.
   let_us_walk_you_through: Deixeu-nos explicar-vos les principals característiques d'aquest lloc.
   lexicon: Lèxic
+  lexicon_cannot_contain_words: "no pot contenir les següents paraules: %{words}"
   lexicons:
     scientific_names: Noms científics
     afrikaans: Afrikaans
     albanian: Albanès
+    arabic: Àrab
+    armenian: Armeni
     belarusian: Bielorús
     bengali: Bengalí
+    bulgarian: Búlgar
     catalan: Català
     cebuano: Cebuà
     chinese_simplified: Xinès (simplificat)
     chinese_traditional: Xinès (tradicional)
     creole_french: Crioll (francès)
     creole_portuguese: Crioll (portuguès)
+    croatian: Croat
     czech: Txec
     danish: Danès
     davawenyo: Davawenyo
     dutch: Holandès
     english: Anglès
     estonian: Estonià
+    faroese: Feroès
     finnish: Finès
     french: Francès
+    galician: Gallec
     gela: Gela
     german: Alemany
     greek: Grec
@@ -2104,6 +2127,7 @@ ca:
     hungarian: Hongarès
     icelandic: Islandès
     ilokano: Ilocano
+    indonesian: Indonesi
     italian: Italià
     japanese: Japonès
     kannada: Kanarès
@@ -2111,17 +2135,25 @@ ca:
     latvian: Letó
     lithuanian: Lituà
     luxembourgish: Luxemburguès
+    malay: Malai
+    malayalam: Malaiàlam
     maltese: Maltès
     maori: Maorí
     marathi: Marathi
+    maya: Maia
     misima_paneati: Misima-paneati
+    mongolian: Mongol
+    nahuatl: Nàhuatl
     norwegian: Noruec
     occitan: Occità
+    ojibwe: Ojibwa
+    palauan: Palauès
     pangasinan: Pangasinan
     polish: Polonès
     portuguese: Portuguès
     romanian: Romanès
     russian: Rus
+    setswana: Setsuana
     sinhala: Singalès
     slovak: Eslovac
     slovenian: Eslovè
@@ -2134,6 +2166,7 @@ ca:
     turkish: Turc
     ukrainian: Ucraïnès
     waray_waray: Samarà
+    visayan: Visayà
   less: Menys
   licensed_site_photos: "Fotos amb llicència de %{site_name}"
   license: Llicència
@@ -2236,6 +2269,7 @@ ca:
     pt-BR: Portuguès (Brasil)
     ru: Rus
     sk: Eslovac
+    sl: Eslovè
     sq: Albanès
     sv: Suec
     th: Tailandès
@@ -2437,6 +2471,7 @@ ca:
     <a href="%{url}">Patrocinador mensual</a> des de %{date}
   months: Mesos
   more: Més
+  more_about_sharing: Més Sobre Compartir
   more_fields: Més camps
   more_filters: Més filtres
   more_from_x: Més de %{x}
@@ -2525,6 +2560,8 @@ ca:
   network_affiliation_prompt_from_other_site_html: |
     Vols canviar la teva afiliació des de <strong>%{other_site_name}</strong> a
     <strong>%{site_name}</strong>?
+  #Column header in a table listing iNaturalist Network members
+  network_member: Membre de la Xarxa
   new: Nou
   new_and_noteworthy: Nou i Notable
   new_announcement: Nou anunci
@@ -3874,6 +3911,8 @@ ca:
   restore: Restaura
   restoring: Restaurant...
   review_all: Revisar-ho tot
+  review_identifications_of_taxon_html: |
+    Revisar les identificacions de <span class="sciname">%{taxon}</span>%{taxon_id}
   reviewed: Revisat
   revoke: Revoca
   revoke_caps: REVOCAR
@@ -4041,6 +4080,48 @@ ca:
   site_staff: "%{site_name} Personal"
   site_stats: Estadístiques del lloc
   site_taxon_page: "pàgina del tàxon a %{site_name}"
+  sites_affiliation_about_desc_html: |
+    Si la vostra organització està interessada a unir-se a la Xarxa iNaturalist, podeu trobar més detalls %{start_tag_join}aquí%{end_tag_join}.
+  sites_affiliation_examples_canada_cdc_html: |
+    %{start_tag_inat_canada}iNaturalist Canada%{end_tag_inat_canada} permet que les dades d'iNaturalist siguin incorporats a sistemes de seguretat provincials gestionats pels Centres de Dades de Conservació. Aquests sistemes s'utilizen quan es fan avaluacions (dies vegades a l'any) per determinar l'estat de risc de l'espècie, així com  per determinar l'hàbitat crític de les espècies amenaçades i en perill d'extinció. Com a resultat, també ha estat possible localitzar i corregir els punts conflictius de mortalitat per carretera per a les espècies en risc i, eventualment, protegir les Àrees Clau de Biodiversitat i, reconèixer la presència d'espècies que no havien estat informades al llarg de dècades.
+  sites_affiliation_examples_ecuardor_bndb_html: |
+    %{start_tag_ecuador}iNaturalist Ecuador%{end_tag_ecuador} subministra dades a la Base Nacional de Datos de Biodiversidad (BNDB), un gran repositori de dades de registres científics i de ciència ciutadana. El seu propòsit és integrar el coneixement i les dades que ajuden a enfortir el coneixement ambiental de la flora i fauna de l’Equador.
+  sites_affiliation_examples_mexico_nbis_html: |
+    Les observacions de %{start_tag_naturalista}Naturalista de Mèxic%{end_tag_naturalista}
+    alimenten el Sistema Nacional de Información de la Biodiversidad
+    (a la Comisión Nacional para el Conocimiento y Uso de la Biodiversidad, CONABIO) amb els registres d'AverAves (eBird). Els intessats poden trobar els registres científics i dels ciutadans a %{start_tag_enciclovida}Enciclovida%{end_tag_enciclovida}.
+  sites_affiliation_examples_portugal_atlas_html: |
+    El membre de la xarxa d'iNaturalist a Portugal %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} comparteix dades per l'atles portuguès d'aus migratòries, l'atles de mamífers, així com per diversos articles portuguesos d'investigació científica.
+  sites_affiliation_more_automatically_hidden_coordinates: |
+    Coordenades ocultes automàticament (enfosquides o privades a causa de la "geoprivacitat del tàxon")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist oculta automàticament les coordenades d'algunes espècies per protegir-les de les molèsties, la recol·lecció o la caça furtiva. Si les coordenades de l'observació s'han ocultat automàticament únicament per a protegir l'espècie, iNaturalist comparteix les coordenades correctes de totes les observacions amb els Membres de la Xarxa dels respectius països.
+  sites_affiliation_more_email_addresses: |
+    Les adreces de correu electrònic són compartides amb Membres de la Xarxa amb l'únic objectiu de permetre comunicacions relatives a aquest lloc.
+  sites_affiliation_more_twice_per_year: |
+    Dues vegades l'any, iNaturalist comparteix les adreces de correu electrònic de comptes d'afiliats i algunes coordenades ocultes (p.e. coordenades públicament enfosquides o privades) amb Membres de la Xarxa iNaturalist per facilitar l'ús de dades d'iNaturalist per a la recerca, conservació i gestió en les seves respectives àrees. Les dues formes com es poden ocultar les coordenades suposen una forma de compartició diferent, com es descriu a sota.
+  sites_affiliation_more_user_hidden_coordinates: |
+    Coordenades ocultes per l'usuari (enfosquides o privades per la configuració de "geoprivacitat")
+  sites_affiliation_more_user_hidden_coordinates_desc: |
+    Les observacions amb coordenades ocultes per les opcions dels usuaris individuals es comparteixen d’una forma molt més limitada i específica. En afiliar-se a un lloc de la xarxa, iNaturalist compartirà amb els administradors del lloc les coordenades precises d’observacions amb geoprivacitat que hàgiu definit com a ocultes o privades, a més de les que estiguin ocultes públicament o privades a causa de la geoprivacitat del tàxon. Això permet que les vostres observacions siguin més valuoses per als esforços de conservació locals.
+  sites_affiliation_overview_current_member_list_html: |
+    Podeu veure la relació actual de membres de la %{start_tag_network}Xarxa iNaturalist%{end_tag_network}.
+  sites_affiliation_overview_in_order_to_advance: |
+    Per avançar en la investigació i conservació a les seves àrees respectives, els membres de la xarxa poden compartir dades d’iNaturalist. Tenen la responsabilitat d’avaluar la validesa i adequació de les sol·licituds de dades i els seus possibles resultats; transmetre per escrit la responsabilitat per garantir també la seguretat d’aquestes dades i no exposar-les públicament de cap manera, ni compartir-les o utilitzar-les més enllà de la finalitat prevista originalment; documentar tots els casos d’intercanvi juntament amb els resultats, resultats o usos previstos associats; i informar anualment a iNaturalist.
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    La %{start_tag_network}Xarxa iNaturalist%{end_tag_network} és un conjunt de llocs web localitzats de la %{start_tag_global}comunitat global iNaturalist%{end_tag_global}.
+  sites_affiliation_overview_when_you_affiliate: |
+    Quan us afilieu a un membre de la xarxa iNaturalist, la vostra adreça de correu electrònic i les ubicacions reals de les vostres ubicacions privades i ocultes es comparteixen amb aquest membre de la xarxa. Això permet que les vostres observacions siguin més valuoses per als esforços de conservació locals. Si viviu o visiteu amb freqüència l'àrea d'un membre de la xarxa, us recomanem que l'escolliu per afiliar-vos per facilitar l’intercanvi de dades.
+  sites_affiliation_overview_you_can_continue_html: |
+    Podeu continuar iniciant la sessió a través d’iNaturalist.org o a través del vostre lloc web específic de la xarxa. Independentment de la vostra afiliació, totes les vostres dades s’allotjaran al mateix lloc i podreu continuar interactuant amb la comunitat iNaturalist internacional, més àmplia. Cada compte d'iNaturalist només es pot afiliar a un únic membre de la xarxa. Podeu revisar o canviar la vostra afiliació a la %{start_tag_settings}configuració del compte%{end_tag_settings}.
+  sites_affiliation_title: Coneix més sobre l'Afiliació a la Xarxa
+  sites_network_cas_and_nat_geo_html: |
+    L' %{start_tag_cas}Acadèmia de Ciències de Califòrnia%{end_tag_cas} i el %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} tenen acords formals amb organitzacions de cadascuna d’aquestes àrees geogràfiques per donar suport a l’ús de la plataforma iNaturalist. <strong> Si la vostra organització està interessada a unir-se a la xarxa iNaturalist, podeu obtenir més detalls %{start_tag_join} aquí%{end_tag_join}. </strong>
+  sites_network_consists_of: "La Xarxa iNaturalist està formada per moltes organitzacions:"
+  sites_network_inaturalist_network_collection: |
+    La xarxa iNaturalist és un conjunt de llocs web localitzats totalment connectats a la comunitat iNaturalist global. Els llocs de la xarxa tenen el suport d’institucions locals que promouen el seu ús local i faciliten l’ús de les dades d’iNaturalist per beneficiar la biodiversitat local. Tenen accés a les coordenades autèntiques dins de les seves àrees geogràfiques, les quals s’amaguen automàticament de la vista pública per protegir millor les espècies amenaçades.
+  sites_network_your_username: |
+    El vostre nom d'usuari i contrasenya funciona a tots els llocs que formen part de la xarxa iNaturalist. Si decidiu afiliar-vos a un lloc de la xarxa, les institucions locals que donin suport a aquell lloc també tindran accés a la vostra adreça de correu electrònic (només per comunicar-se amb vosaltres sobre les activitats del lloc) i accés a les coordenades reals de les observacions que hàgiu triat ocultar de forma pública o privada.
   some_agree: alguns usuaris hi estan d’acord
   some_observations_are_missing_media_or_identifications: |
     Algunes observacions no tenen contingut multimèdia o identificacions
@@ -4289,6 +4370,11 @@ ca:
     Les valoracions de tàxons són documents que avaluen l'estat actual d'una espècie, normalment el seu estat de conservació.
     Per exemple, una organització conservacionista local pot utilitzar-los per organitzar i recollir la informació l'estat de diversos tàxons amenaçats de la seva regió.
   taxon_change_must_be_committed_to_update_records: Cal canviar el tàxon per actualitzar els registres
+  taxon_change_title_taxon_drop: Eliminació taxonómica %{id}
+  taxon_change_title_taxon_merge: Fusió taxonómica %{id}
+  taxon_change_title_taxon_split: Divisió taxonòmica %{id}
+  taxon_change_title_taxon_stage: Estat taxonòmic %{id}
+  taxon_change_title_taxon_swap: Bescanvi taxonòmic %{id}
   taxon_deleted: El tàxon s’ha esborrat.
   taxon_doesnt_have_a_range: El tàxon no té un rang
   taxon_drop: abandona tàxon
@@ -4406,6 +4492,8 @@ ca:
   the_identotron_is_a_tool_to: |
     L'Identotron és una eina que us ajuda a identificar observacions basades en les llistes de %{site_name}. Donat un nivell taxonòmic superior i un lloc (p. ex. mamífers i la Índia), %{site_name} buscarà en llistes de verificació que hagin identificat el tàxon en aquest lloc, com una guia dinàmica d'espècies de tot el planeta. La majoria de llistes de verificació estan en desenvolupament, però hi ha alguna que és exhaustiva, per exemple llista <em>tots</em> els representants d'un tàxon en un lloc, l'Identotron mostrarà un avís.
   the_name_of_the_taxon_including_space: El nom del tàxon, incloent-hi l'espai per a les espècies i infraespècies.
+  the_name_of_the_taxon_dashes: El nom del tàxon, els espais són substituïts per guionets.
+  the_name_of_the_taxon_underscores: El nom del tàxon, els espais són substituïts per guions baixos.
   the_observation_was_already_added_to_that_project: L'observació es va afegir recentment al projecte.
   the_people_of_inat: "Els usuaris d’%{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
@@ -5008,6 +5096,8 @@ ca:
   you_need_to_select_some_observations_first: Primer heu de seleccionar les observacions.
   you_retain_full_copyright: "Tal com indiquen les nostres condicions de servei, sou el titular de tots els drets d'autor pel que fa al vostre contingut, a part d'aquells drets concedits a %{site_name}."
   you_retain_full_copyright_over_your_content: "Tal com indiquen les nostres condicions de servei, sou titular dels drets d'autor complets pel que fa al vostre contingut, a part d'aquells drets atorgats a %{site_name}."
+  you_should_delete_this_taxon_change: |
+    Probablement hauries d'eliminar aquest canvi de tàxon, o si més no cercar alguna mena de solució amb la persona o persones que van fer l'altre canvi.
   you_sure_delete_asset?: Esteu segur que voleu eliminar aquest arxiu?
   you_sure_delete_check_list: "Esteu segur que voleu eliminar aquesta llista? Algunes persones podrien haver-hi treballat molt..."
   you_sure_delete_comment?: Esteu segur que voleu esborrar el comentari?
@@ -7155,6 +7245,8 @@ ca:
           attributes:
             base:
               user_already_blocked: Ja heu blocat aquest usuari
+              user_cannot_be_staff: |
+                No podeu blocar el personal d'iNat. El personal d'iNat s'ha de poder comunicar amb tots els usuaris d'iNat, tenir accés a totes les dades d'iNat i són els mediadors últims de les disputes, per tant, blocar-los no impedeix que es puguin comunicar amb vostè. Si teniu algun problema amb alguna persona d'iNat, si us plau, informeu algun dels codirectors d'iNat, o, si el problema és amb algun dels codirectors, podeu contactar amb el Responsable Científic de l'Institute for Biodiversity and Sustainability Science de la California Academy of Sciences.
         user_parent:
           attributes:
             email:
