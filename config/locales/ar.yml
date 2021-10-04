@@ -8,6 +8,9 @@ ar:
     عند حفظ هذه الأصنوفة الجديدة، ستتمكن من إضافة أسماء أخرى هنا (الأسماء الشائعة والأسماء العلمية القديمة وغير ذلك).
   a_flag_for_x: "علم ل%{x}"
   a_member_of_taxon_html: "عضو في %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A إلى Z"
   about: حول
   about_blocking: حول الحظر
   about_charts: حول الرسوم البيانية
@@ -1924,6 +1927,7 @@ ar:
     absent: لا يحدث في المنطقة
     common: يحدث كثيرا
     doubtful: يُفترَض أن يحدث، ولكن هناك شك حول الأدلة
+    irregular: حضور لا يمكن التنبؤ به، بما في ذلك المتشردين، قد تكون شائعة في بعض السنوات وتغيب في الأخرى
     present: يحدث في المنطقة
     uncommon: يحدث بانتظام ، ولكن بأعداد صغيرة. يتطلب البحث الدقيق عن الموطن المناسب
   occurrence_status_establishment_means: حالة حدوث، وسائل إنشاء
@@ -4227,6 +4231,12 @@ ar:
         لتمكين وظيفة مطابقة الرمز الشريطي لـBOLD DNA  الباركود; تأكد من أن
         اسم حقلك يتضمن الكلمات "COI" أو "COX1" أو "ITS"، 
         المقابلة للجين أهداف هذا الحقل.
+      merge:
+        warning_html: |
+          يُرجَى احترام بيانات الأشخاص الآخرين و<strong>التحدث إلى منشئ
+          حقل الملاحظة قبل الدمج </strong>، هذه الأداة سوف تدمر
+          حقل الملاحظة الذي يتم دمجه وسينقل جميع الملاحظات التي تستخدمه
+          للصائن، <strong>لا يمكن التراجع عن هذه العملية </strong>; لذا كن حذرا.
     emailer:
       bulk_import_success:
         success_message: |

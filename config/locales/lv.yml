@@ -15,10 +15,18 @@ lv:
     zero: "<span class='count'>%{count}</span> atrisināti ziņojumi"
     one: "<span class='count'>%{count}</span> atrisināts ziņojums"
     other: "<span class='count'>%{count}</span> atrisināti ziņojumi"
+  x_identifications:
+    zero: '%{count} identifikācijas'
+    one: '%{count} identifikāciju'
+    other: '%{count} identifikācijas'
   x_identifications_html:
     zero: '<span class="count">%{count}</span> identifikācijas'
     one: '<span class="count">%{count}</span> identifikācija'
     other: '<span class="count">%{count}</span> identifikācijas'
+  x_identifications_:
+    zero: '%{count} identifikācijas'
+    one: '%{count} identifikāciju'
+    other: '%{count} identifikācijas'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -2715,6 +2723,7 @@ lv:
     absent: Nav sastopams šajā apkārtnē
     common: Bieži sastopams
     doubtful: Vajadzētu būt sastopamam, bet ir šaubas pierādījumu dēļ
+    irregular: Sastopamība ir neparedzama, tai skaitā klejotāji. Vienu gadu var būt sastopami, bet citu ne.
     present: Sastopams šajā apkārtnē
     uncommon: Sastopams bieži, bet nelielā skaitā. Uzmanīgi jāmeklē atbilstoša dzīvotne.
   occurrence_status_establishment_means: sastopamības statuss, izplatības skaidrojums
@@ -4856,11 +4865,28 @@ lv:
   you_must_fill_out_the_required_fields: Jāaizpilda nepieciešamie lauki!
   you_must_have_a_header_row: Jāaizpilda galvenes rinda!
   you_must_select_a_place_to_merge_with: Jāizvēlas vieta apvienošanai
+  you_must_select_at_least_one_taxon: Jāizvēlas vismaz viens taksons
+  you_must_select_dates_to_compare: Lai salīdzinātu, jānorāda datums
+  you_must_specify_and_confirm_a_new_password: Jāievada un jāapstiprina jauna parole.
+  you_need_to_have_linked_flickr_account: Lai saglabātu fotogrāfiju tagus, Flickr konts jāsavieno ar iNat kontu.
+  you_need_to_select_some_observations_first: Vispirms jāizvēlas kāds novērojums.
+  you_retain_full_copyright: "Tev saglabāsies pilnas sava satura autortiesības, izņemot tās autortiesības, kas piešķirtas %{site_name} vietnei, kā tas norādīts mūsu lietošanas noteikumos."
+  you_retain_full_copyright_over_your_content: "Tev saglabāsies pilnas sava satura autortiesības, izņemot tās autortiesības, kas piešķirtas %{site_name} vietnei, kā tas norādīts mūsu lietošanas noteikumos."
+  you_sure_delete_asset?: Vai tiešām vēlaties dzēst projekta pielikumu?
+  you_sure_delete_check_list: "Vai tiešām vēlies dzēst sarakstu? Iespējams, ka daudzi lietotāji tajā ir ieguldījuši daudz darba..."
+  you_sure_delete_comment?: Vai tiešām vēlies dzēst komentāru?
+  you_sure_delete_identification?: Vai tiešām vēlies dzēst identifikāciju?
+  you_sure_delete_custom_field?: Vai tiešām vēlies dzēst pielāgojamos laukus?
+  you_sure_delete_flag?: Vai tiešām vēlies dzēst šo karodziņu?
+  you_sure_delete_project?: Vai tiešām vēlies dzēst projektu?
+  you_sure_delete_this_observation: "Vai tiešām vēlies dzēst novērojumu?"
+  you_sure_remove_taxon_from?: "Vai tiešām vēlies izņemt taksonu no %{list}?"
   you_unlinked_your_provider_account: "%{provider} konts atvienots"
   youll_need_to_link: Jāsavieno
   youve_joined_the_x_project: "Esi pievienojies %{project_invitation} projektam un tavs novērojums ir saglabāts"
   your_account_has_been_activated: Tavs konts ir aktivizēts.
   your_account_has_been_verified: "Tavs %{site_name} konts ir apstiptināts. Lūdzu, pieraksties, lai turpinātu."
+  your_activation_code_was_missing: "Aktivizācijas kods nav ievadīts. Lūdzu, atver savu e-pastu, uz kuru nosūtījām URL."
   your_browser_does_not_support_the_audio_element: Tavs pārlūks neatbalsta šo audiofailu.
   your_comment_was_saved: Tavs saturs ir saglabāts
   your_content: Tavs saturs
@@ -4884,6 +4910,11 @@ lv:
   your_google_account: Tavs Google konts
   your_google_account_info: Tava Google konta informācija
   your_pinned_locations: Tavas atzīmētās atrašanās vietas
+  your_profile_was_successfully_updated: Tavs profils ir veiksmīgi izlabots.
+  your_recent_projects: Pēdējie projekti
+  your_relationships: Attiecības
+  your_site_needs_your_to_authorize_more_permissions_from_provider: "Lai turpinātu, %{site_name} vietnei jāļauj piekļuvi no %{provider}:"
+  your_subscriptions_to_this_place: Tavi abonementi saistībā ar šo vietu
   your_tags: Tavi tagi
   yours: Tavi
   youre_not_following_anyone: |-
@@ -4931,6 +4962,41 @@ lv:
       sorts:
         alphaname: Alfabētiskā secībā pēc zinātniskā nosaukuma
         alphadisplay: Alfabētiskā secībā pēc ekrānā attēlotā nosaukuma
+    lifelists:
+      list_view: Saraksta skats
+      tree_view: Koka skats
+      observed_species: Novērotās sugas
+      observed_rank: Novēr. %{rank}
+      unobserved_species: Nenovērotās sugas
+      all_species: Visas sugas
+      all_unobserved_species: Visas nenovērotās sugas
+      observations_at_this_taxon: Taksona novērojumi
+      observations_within_this_taxon: Šajā taksonā iekļaujamie novērojumi
+      all_observations: Visi novērojumi
+      no_species_found_within_this_taxon_in_place: Šajā taksonā un %{place} nav atrastas sugas.
+      no_species_found_in_place: Iekš %{place} nav atrastas sugas.
+      no_unobserved_species_in_place: Iekš %{place} nenovēroto sugu nav.
+      no_unobserved_species_within_this_taxon: Šajā taksonā nav nenovēroto sugu.
+      no_unobserved_species_within_this_taxon_in_place: Šajā taksonā nav nenovēroto sugu iekš %{place}.
+      reset_place_filter: Nodzēst vietas filtrus
+      all_observations_in_this_taxon: Visi taksona novērojumi
+      observations_of_exactly_this_taxon: Novērojumi tieši ar šo taksonu
+      focus_tree_on_this_taxon: Centrēt šī taksona koku
+      expand_all_nodes_in_this_branch: Izvērst visus zara mezglus
+      collapse_this_branch: Savērst zaru
+      dropdowns:
+        sort: Kārtot
+        taxonomic: Taksonomisks
+        name: Nosaukums
+        most_observed: Visvairāk novērots
+        least_observed: Vismazāk novērots
+        date_added_newest: Pievienošanas datums, no jaunākā uz vecāko
+        date_added_oldest: Pievienošanas datums, no vecākā uz jaunāko
+        ancestry: Priekštecība
+        show: Rādīt
+        children: Pēcnācēji
+        simplified_tree: Vienkāršots koks
+        full_taxonomy: Pilna taksonomija
     messages:
       from: "No"
       to: Kam

@@ -1600,6 +1600,8 @@ it:
   facebook_access_token_expired: "Il token di accesso è scaduto. %{user} deve ricollegare il proprio account Facebook."
   facebook_needs_the_owner_of_that_photo_to: Facebook ha bisogno che il proprietario di quella foto ri-confermi la propria connessione a %{site_name_short}.
   facebook_options: Opzioni di Facebook
+  facebook_photo_import_disabled_notice: |
+    Nel novembre 2020 Facebook ci ha richiesto di verificare che ci fosse davvero bisogno di accesso alle foto, e non siamo stati in grado di completare il processo a causa di problemi con il sistema di verifica di Facebook. Di conseguenza, non possiamo più supportare l'importazione di foto da Facebook.
   failed_to_find_your_location: Impossibile trovare la tua posizione.
   failed_to_repair_photo: "Errore nel riparare la foto: %{errors}"
   failed_to_save_record: "Impossibile salvare l'osservazione. Per favore riprova più tardi."
@@ -2093,26 +2095,33 @@ it:
     Ricordati di <a href="%{url}">cambiare la tua password</a> per la nuova versione.
   let_us_walk_you_through: Permettici di spiegarti le principali caratteristiche del sito.
   lexicon: Lessico
+  lexicon_cannot_contain_words: "non può contenere le seguenti parole: %{words}"
   lexicons:
     scientific_names: Nomi scientifici
     afrikaans: Africano
     albanian: Albanese
+    arabic: Arabo
+    armenian: Armeno
     belarusian: Bielorusso
     bengali: Bengalese
+    bulgarian: Bulgaro
     catalan: Catalano
     cebuano: Cebuano
     chinese_simplified: Cinese (semplificato)
     chinese_traditional: Cinese (tradizionale)
     creole_french: creolo (francese)
     creole_portuguese: creolo (portoghese)
+    croatian: Croato
     czech: Ceco
     danish: Danese
     davawenyo: Davaoeño
     dutch: Olandese
     english: Inglese
     estonian: Estone
+    faroese: Faroese
     finnish: Finlandese
     french: Francese
+    galician: Galiziano
     gela: Gela
     german: Tedesco
     greek: Greco
@@ -2122,6 +2131,7 @@ it:
     hungarian: Ungherese
     icelandic: Islandese
     ilokano: Ilokano
+    indonesian: Indonesiano
     italian: Italiano
     japanese: Giapponese
     kannada: Kannada
@@ -2129,17 +2139,25 @@ it:
     latvian: Lettone
     lithuanian: Lituano
     luxembourgish: Lussemburghese
+    malay: Malese
+    malayalam: Malayalam
     maltese: Maltese
     maori: Maori
     marathi: Marathi
+    maya: Maya
     misima_paneati: Misima-Panaeati
+    mongolian: Mongolo
+    nahuatl: Nahuatl
     norwegian: Norvegese
     occitan: Occitano
+    ojibwe: Ojibwe
+    palauan: Palauano
     pangasinan: Pangasinan
     polish: Polacco
     portuguese: Portoghese
     romanian: Rumeno
     russian: Russo
+    setswana: Setswana
     sinhala: Singalese
     slovak: Slovacco
     slovenian: Sloveno
@@ -2152,6 +2170,7 @@ it:
     turkish: Turco
     ukrainian: Ucraino
     waray_waray: Wáray-Wáray
+    visayan: Visayan
   less: Meno
   licensed_site_photos: "Foto con licenza di %{site_name}"
   license: Licenza
@@ -2748,7 +2767,9 @@ it:
   observation_brief_something_on_day_at_time: "Qualcosa il %{day} alle %{time}"
   observation_brief_something_on_day_at_time_by_user: "Qualcosa il %{day} alle %{time} da %{user}"
   observation_brief_something_on_day_by_user: "Qualcosa il %{day} da %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Qualcosa a %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Qualcosa a %{month} da %{user}"
   observation_brief_something_by_user: "Qualcosa da %{user}"
   observation_brief_something_from_place: "Qualcosa in %{place}"
@@ -2757,13 +2778,17 @@ it:
   observation_brief_something_from_place_on_day_by_user: "Qualcosa in %{place} il %{day} da %{user}"
   observation_brief_something_from_place_on_day_at_time: "Qualcosa in %{place} il %{day} alle %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Qualcosa in %{place} il %{day} alle %{time} da %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Qualcosa a %{place} a %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Qualcosa a %{place} a %{month} da %{user}"
   observation_brief_taxon_on_day: "%{taxon} il %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} il %{day} alle %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} il %{day} alle %{time} da %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} il %{day} da %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} a %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} a %{month} da %{user}"
   observation_brief_taxon_by_user: "%{taxon} da %{user}"
   observation_brief_taxon_from_place: "%{taxon} in %{place}"
@@ -2772,7 +2797,9 @@ it:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} in %{place} il %{day} da %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} in %{place} il %{day} alle %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} in %{place} il %{day} alle %{time} da %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} a %{place} a %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} a %{place} a %{month} da %{user}"
   observations_by_category: "Osservazioni Per categoria"
   observations_by_app: Osservazioni Per App
@@ -4089,8 +4116,14 @@ it:
     Le osservazioni con coordinate nascoste a causa delle scelte individuali dell'utente sono condivise in un modo più limitato e specifico. Affiliandosi a un sito della Rete, iNaturalist condividerà con gli amministratori del sito le coordinate precise delle osservazioni con la geoprivacy che hai impostato a oscurata o privata, oltre a quelle pubblicamente oscurate o private a causa della geoprivacy del taxon. Questo consente alle tue osservazioni di divenire più preziose per gli sforzi di conservazione locali.
   sites_affiliation_overview_current_member_list_html: |
     Puoi vedere l'elenco dei membri corrente per la %{start_tag_network}Rete di iNaturalist%{end_tag_network}.
+  sites_affiliation_overview_in_order_to_advance: |
+    Per avanzare nella ricerca e conservazione nelle rispettive aree, i Membri della Rete potrebbero condividere i dati da iNaturalist. Hanno la responsabilità di valutare la validità e appropriatezza delle richieste di dati e dei loro potenziali risultati; trasmettono per iscritto la responsabilità di assicurare anche la sicurezza di tali dati e di non esporli pubblicamente in alcun modo, né condividerli o usarli oltre al loro scopo originalmente inteso; per documentare tutte le istanze di condivisione insieme ai risultati associati o gli usi intesi; e segnalarli annualmente a iNaturalist.
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
     La %{start_tag_network}Rete di iNaturalist%{end_tag_network} è una raccolta di siti web locali nella %{start_tag_global}community globale di iNaturalist%{end_tag_global}.
+  sites_affiliation_overview_when_you_affiliate: |
+    Quando ti affili a un Membro della Rete di iNaturalist, il tuo indirizzo email e le posizioni reali delle tue posizioni oscurate e private sono condivise con il Membro della Rete. Questo consente alle tue osservazioni di divenire più preziose per gli sforzi di conservazione locali. Se vivi o visiti frequentemente un'area di un membro della Rete, sei incoraggiato a sceglierla come tua affiliazione per facilitare la condivisione dei dati.
+  sites_affiliation_overview_you_can_continue_html: |
+    Puoi continuare ad accedere tramite iNaturalist.org o tramite il tuo sito web specifico della rete. Non importa la tua affiliazione, tutti i tuoi dati saranno hostati nello stesso luogo e continuerai a poter interagire con la più ampia community internazionale di iNaturalist. Ogni profilo di iNaturalist è affiliabile con un solo Membro della Rete. Puoi revisionare o modificare la tua affiliazione nelle %{start_tag_settings}impostazioni del tuo profilo%{end_tag_settings}.
   sites_affiliation_title: Scopri di Più sull'Affiliazione della Rete
   sites_network_cas_and_nat_geo_html: |
     L'%{start_tag_cas}Accademia di Scienze della California%{end_tag_cas} e la %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} hanno accordi formali con le organizzazioni in ognuna di queste aree geografiche per supportare l'uso della piattaforma di iNaturalist. <strong>Se la tua organizzazione è interessata a unirsi alla Rete di iNaturalist, puoi trovare ulteriori dettagli %{start_tag_join}qui%{end_tag_join}.</strong>
@@ -7259,7 +7292,7 @@ it:
             base:
               user_already_blocked: Hai già bloccato questo utente
               user_cannot_be_staff: |
-                Non puoi bloccare lo staff. Il personale iNat deve essere in grado di comunicare con tutti su iNat, di avere accesso a tutti i dati su iNat, e rappresentano i mediatori finali delle controversie, quindi bloccarli non impedirà loro di comunicare con voi. Se avete un problema con un membro del personale, siete pregati di segnalarlo a uno dei co-direttori di iNat, o, se avete un problema con uno dei co-direttori, potete contattare il Direttore scientifico dell'Institute for Biodiviersity and Sustainability Science della California Academy of Sciences.
+                Non puoi bloccare lo staff. Il personale iNat deve essere in grado di comunicare con tutti su iNat, di avere accesso a tutti i dati su iNat, e rappresentano i mediatori finali delle controversie, quindi bloccarli non impedirà loro di comunicare con voi. Se avete un problema con un membro del personale, siete pregati di segnalarlo a uno dei co-direttori di iNat, o, se avete un problema con uno dei co-direttori, potete contattare il Direttore scientifico dell'Institute for Biodiversity and Sustainability Science della California Academy of Sciences.
         user_parent:
           attributes:
             email:

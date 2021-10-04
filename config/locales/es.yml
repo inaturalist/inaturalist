@@ -175,7 +175,11 @@ es:
   #should work here
   about_place: "Acerca de %{place}"
   about_places: Acerca de los Lugares
+  about_taxon_ranges: Acerca de los cambios taxonómicos
+  about_taxon_ranges_desc: |
+    Los rangos de taxón transmiten la distribución global de un taxón. Los rangos de taxa son típicamente obtenidos de la Lista Roja UICN.
   about_the_cc_licenses: Acerca de las licencias de Creative Commons
+  about_the_network: Acerca de la red
   about_these_licenses: Acerca de estas licencias
   about_this_bioblitz: Acerca de esta maratón naturalista
   about_this_map: Acerca de este mapa
@@ -375,6 +379,8 @@ es:
   admin_s: Administrador(es)
   admin_only: Solamente administrador
   admin_tools: Herramientas administrativas
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Organizaciones afiliadas
   agree_: Aceptar
   agree?: '¿De acuerdo?'
   agree_with_current_taxon: De acuerdo con el taxón actual
@@ -495,6 +501,7 @@ es:
   alphabetical_order: Orden alfabético
   already_have_an_account_log_in_html: '¿Ya tienes una cuenta? <strong>Inicia sesión.</strong>'
   amphibians: anfibios
+  analyze_ids: Analiza IDs
   ancestor_taxon: Taxón Antepasado
   and: "y"
   and_other_taxa: "&amp; Otros taxones"
@@ -638,6 +645,7 @@ es:
   assessment_x: "%{assessment} evaluación"
   assessments: evaluaciones
   associations: Asociaciones
+  atlased: Atlas
   atlas_for_taxon_html: Atlas para %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -886,6 +894,7 @@ es:
   committed_by_user_on_date_html: Comprometido por %{user} el %{date}
   #Label for date the taxon change was committed
   committed_on: Guardado el %{date}
+  committed_taxon_changes_cannot_be_deleted: No se pueden eliminar los cambios en los taxa
   #Status message while a taxon change is being committed
   committing: Guardando...
   common_name: Nombre vulgar
@@ -967,6 +976,8 @@ es:
       *tú* quieres ser considerado como dicha autoridad.
     place: Lugar en el cual el estatus está restringido.
     url: URL de una página que describa este estado.
+    geoprivacy: |
+      Geoprivacidad predeterminada para las observaciones de este taxón. Ten en cuenta que la geoprivacidad de un status asociado a un continente, país, o el lugar de nivel estado puede reemplazar un status que es global o que está asociado con un lugar de nivel superior.
     iucn: |
       Código de la lista roja IUCN equivalente. Esta no es la evaluación real del IUCN,
       únicamente el código IUCN que se ajusta mejor a la amenazaque supone la divulgación de coordenadas
@@ -1337,6 +1348,8 @@ es:
   delete_icon?: '¿Elimina ícono?'
   delete_photo: Elimina foto
   delete_project: Elimina este proyecto
+  #Label for a button to delete a taxon range
+  delete_range: Elimina rango
   delete_selected: Elimina seleccionados
   delete_taxon_and_merge_most_data_html: |
     Eliminar <i>%{taxon}</i> y combinar la mayoría de sus datos con otro taxón. Utiliza esta herramienta para <strong>eliminar taxones duplicados</strong>. Si deseas eliminar un sinónimo desactualizado, por favor crea un intercambio de taxones. <strong>¡TEN CUIDADO!</strong> Eliminar taxones puede ser muy destructivo. Revisa la <a href="%{curator_url}">Guía de curadores</a> para obtener más detalles.
@@ -1358,6 +1371,7 @@ es:
   description_slash_tags: Descripción / Etiquetas
   description_tags_more: "Descripción, etiquetas y más"
   desription: Descripción
+  destination: Destino
   destroy: Destruye
   details: Detalles
   deviation: Desviación
@@ -1517,6 +1531,7 @@ es:
   editing_taxon: Editando %{taxon}
   editing_taxon_link: Modificando vínculo del taxón
   editing_taxon_name_for_taxon_html: Editando el nombre "%{name}" para el taxón %{taxon}
+  editing_taxon_range_for_taxon_html: Editando la distribución del taxón %{taxon}
   editing_this: Modificando %{elem}
   editing_x_in_y: "Editando %{x} en%{y}"
   editors: Editores
@@ -1555,6 +1570,9 @@ es:
   establishment_means: Medio de establecimiento
   establishment_means_describes_how: |
     El medio de establecimiento describe cómo se estableció el taxón en un área. Ver DarwinCore para <a href="http: //rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">más información en terminología</a>.
+  estimate_which_input: |
+    Estimar qué identificadores de taxón de entrada serán reemplazados con qué taxones de salida y que serán añadidos a un antepasado común cuando la división se haya efectuado. Esto puede requerir
+    un tiempo para calcularlo. Los enlaces a las observaciones se truncan en subconjuntos de 200.
   event_in_progress: Evento en curso
   event_stats: Estadísticas del evento
   event_url: URL del evento
@@ -1575,6 +1593,7 @@ es:
   exclusion_filters: Filtros para excluir
   existing_flags: Advertencias existentes
   exit_full_screen: "Sal de la pantalla completa"
+  examples_of_data_use_by_network_members: Ejemplos de uso de datos por miembros de la red
   examples_of_ranking_organizations: Ejemplos de organizaciones clasificatorias
   explore: Explora
   export: Exporta
@@ -1791,6 +1810,9 @@ es:
   going_to_your_observations: Dirigiéndote a tus observaciones ...
   good_choice_for_sharing: Buena alternativa para compartir con los científicos
   google: Google
+  google_maps_not_loaded_error: |
+    Google Maps no se inicializó. Puede que hayas bloqueado el acceso a Google Maps con una extensión del navegador o firewall, o algo más está bloqueando el acceso
+    como un proveedor de servicios de Internet.
   got_it!: Entendido
   got_your_data_somewhere_else?: '¿Obtuviste tus datos en otro lugar? Podemos ayudarte.'
   graft: Injertar
@@ -1830,6 +1852,29 @@ es:
   header_your_projects: Tus proyectos
   header_your_profile: Tu perfil
   heads_up: Aviso
+  heads_up_automatable_draft_split_notice_html: |
+    <strong>Atención:</strong> Cuando confirmes este cambio, las identificaciones
+    serán reasignadas a los taxones de salida basados en sus atlas. Si algunos o todos 
+    los resultados carecen de atlas, o si los atlas se superponen para un registro determinado, las identificaciones serán reemplazadas por identificaciones del
+    taxa ancestro más cercano (%{taxon})
+  heads_up_non_automatable_draft_split_notice_html: |
+    <strong>Atención:</strong> Esta división del taxón tiene taxa de salida que o no tienen atlas o que no comparten un ancestro común, por lo que los registros
+    asociados con sus taxa de entrada no pueden asignarse automáticamente a la salida
+    de taxa cuando esta división es confirmada y la comunidad tendrá que agregar nuevas
+    identificaciones para estos registros.
+  heads_up_automatable_split_notice_html: |
+    <strong>Atención:</strong> Algunas o todas las identificaciones afectadas por
+    esta división puede haber sido reemplazada por identificaciones de %{taxon}. Esto
+    ocurre cuando no podemos asignar automáticamente una identificación a uno de los
+    taxa de salida.
+  heads_up_observose_taxon_change_html: |
+    <strong>Aviso:</strong> Uno o más de los taxa de entrada implicados en este cambio
+    tiene más de %{observose_taxon_threshold} observaciones descendientes.
+    Sólo los administradores o curadores de ese marco de taxa pueden realizar este cambio.
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+    <strong>Aviso:</strong> Uno o más de los taxa de entrada involucrados en este
+    cambio están dentro de un marco <a href="%{framework_url}">de taxones</a>. Sólo
+    administradores o curadores de ese marco de taxa pueden comprometer cambios que afecten a los taxa cubiertos. Ponte en contacto con uno de los curadores de ese taxón para realizar este cambio.
   heads_up_this_photo_has_been_flagged: "ATENCIÓN: esta foto ha sido marcada."
   heads_up_this_photo_is_already_associated_with: "ATENCIÓN: esta foto ya está asociada con <a target='_blank' href='%{url}'>otra observación</a>"
   heads_up_you_have_multiple: "Avisos. Tienes varias etiquetas taxonómicas generadas para rangos idénticos. Están codificadas debajo por colores según el rango."
@@ -1931,6 +1976,7 @@ es:
   improving: Mejorando
   in_n: "en %{n}"
   in_place_x: en %{place}
+  inaturalist_network: Red iNaturalist
   inaturalist_network_affiliation: Afiliación de Red iNaturalist
   #Label for messages you've received
   inbox: Buzón de entrada
@@ -2109,6 +2155,7 @@ es:
     ilokano: Ilocano
     italian: Italiano
     japanese: Japonés
+    kannada: Canarés
     korean: Coreano
     latvian: Letón
     lithuanian: Lituano
@@ -2120,9 +2167,13 @@ es:
     norwegian: Noruego
     occitan: Occitano
     pangasinan: Pangasinán
+    polish: Polaco
     portuguese: Portugués
     romanian: Rumano
     russian: Ruso
+    sinhala: Cingalés
+    slovak: Eslovaco
+    slovenian: Esloveno
     spanish: Español
     swedish: Sueco
     tagalog: Tagalo
@@ -2130,6 +2181,7 @@ es:
     thai: Tailandés
     tokelauan: Tokelauano
     turkish: Turco
+    ukrainian: Ucraniano
     waray_waray: Samareño
   less: Menos
   licensed_site_photos: "Fotos con licencia de %{site_name}"
@@ -2218,6 +2270,7 @@ es:
     id: Indonesio
     it: Italiano
     ja: Japonés
+    kn: Canarés
     ko: Coreano
     lb: Luxemburgués
     lt: Lituano
@@ -2232,6 +2285,7 @@ es:
     pt-BR: Portugués (Brasil)
     ru: Ruso
     sk: Eslovaco
+    sl: Esloveno
     sq: Albanés
     sv: Sueco
     th: Tailandés
@@ -2443,6 +2497,7 @@ es:
     <a href="%{url}">Patrocinador mensual</a> desde %{date}
   months: Meses
   more: Más
+  more_about_sharing: Más sobre compartir
   more_fields: Más campos
   more_filters: Más filtros
   more_from_x: Más de %{x}
@@ -2530,6 +2585,8 @@ es:
   network_affiliation_prompt_from_other_site_html: |
     ¿Quieres cambiar tu afiliación de <strong>%{other_site_name}</strong> a
     <strong>%{site_name}</strong>?
+  #Column header in a table listing iNaturalist Network members
+  network_member: Miembro de la red
   new: Nuevo
   new_and_noteworthy: Nuevo y notable
   new_announcement: Nuevo anuncio
@@ -2597,6 +2654,7 @@ es:
   no_identifications_added:
     current_user: No has añadido identificaciones a ninguna observación.
     user: "%{user} no ha añadido identificaciones a ninguna observación."
+  no_ids: "Número de IDs"
   no_ids_have_been_suggested_yet: Aún no se ha sugerido ningún ID
   no_interaction_data_available: Datos de interacción no disponibles
   no_its_as_good_as_it_can_be: No, es tan bueno como puede ser
@@ -2638,6 +2696,7 @@ es:
   no_project_to_admin_current_user: "No administras ningún proyecto"
   no_project_to_admin_login: "%{login} no administra ningún proyecto"
   no_projects_yet: No hay proyectos todavía
+  no_attached_range: No hay distribución asociada
   no_range_data_available: No hay ningún dato sobre áreas de distribución disponible.
   no_recent_activity: No hay actividad reciente
   no_relevant_annotations: No hay anotaciones relevantes
@@ -2652,6 +2711,8 @@ es:
   no_species_on_this_list_for_owner: |
     Puedes empezar añadiendo especies a esta lista usando la herramienta "Añadir a tu lista" a la derecha.
   no_subject_parens: "(No tema)"
+  no_such_wiki_page: No existe esta página
+  no_such_wiki_page_html: No existe esta página. ¿Quieres <a href="%{new_url}">crearla</a>?
   no_suggestions_available: No hay sugerencias disponibles
   no_summary_from_wikipedia: No hay resumen de Wikipedia
   no_summary_has_been_set: No se ha hecho un resumen
@@ -2668,6 +2729,7 @@ es:
   none: Ninguno
   none_found: No se encontró ninguno
   normal: normal
+  not_atlased: Sin Atlas
   not_completed: No completado
   not_confident: No estamos lo suficientemente seguros para hacer una recomendación.
   not_confident_top_suggestions: 'No estamos suficientemente seguros para hacer una recomendación, pero he aquí nuestras mejores sugerencias:'
@@ -2722,7 +2784,9 @@ es:
   observation_brief_something_on_day_at_time: "Algo el %{day} a las %{time}"
   observation_brief_something_on_day_at_time_by_user: "Algo el %{day} a las %{time} por %{user}"
   observation_brief_something_on_day_by_user: "Algo el %{day} por %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Algo en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Algo de %{month} por %{user}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
@@ -2731,13 +2795,17 @@ es:
   observation_brief_something_from_place_on_day_by_user: "Algo desde %{place} el %{day} de %{user}"
   observation_brief_something_from_place_on_day_at_time: "Algo desde %{place} el %{day} a las %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Algo desde %{place} el %{day} a las %{time} de %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Algo de %{place} en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Algo de %{place} en %{month} por %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} el %{day} a las %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} el %{day} a las %{time} por %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} el %{day} por %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} en %{month} por %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
@@ -2746,7 +2814,9 @@ es:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} desde %{place} el%{day} de %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} desde %{place} el%{day} a las %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} desde %{place} el %{day} a las %{time} de %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} de %{place} en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} de %{place} en %{month} por %{user}"
   observations_by_category: "Observaciones por categoría"
   observations_by_app: Observaciones por App
@@ -2845,6 +2915,7 @@ es:
     absent: No ocurre en el área
     common: Ocurre frecuentemente
     doubtful: Se presume que sucedió pero hay dudas sobre la evidencia.
+    irregular: De presencia imprevisible, incluyendo divagantes; puede ser común algunos años y ausente otros
     present: Ocurre en el área
     uncommon: Ocurre regularmente, pero en números pequeños; hay que buscar el hábitat apropiado con cuidado
   occurrence_status_establishment_means: estado de ocurrencia, medio de establecimiento
@@ -2970,9 +3041,11 @@ es:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Otros taxones comúnmente identificados erróneamente como este subgénero en <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_subsection: Otros taxones identificados erróneamente como esta subsección
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Otros taxones comúnmente identificados erróneamente como esta subsección en <a href="%{url}">%{place}</a>
+  outside_of_all_atlases: Fuera de todos los atlas
   our_blog: Nuestro blog
   output_taxon: Taxón de salida
   overview: Visión de conjunto
+  overlapping_atlases: Solapando atlas
   overlapping_downstream_taxon_frameworks_html: "Superposición de los marcos de referencia de taxones descendentes: %{count}"
   owner: Propietario
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -3752,6 +3825,8 @@ es:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infrahíbrido
   ranges: Distribuciónes
+  #Text to link to a taxon range as a KML file
+  range_file: Archivo de distribución
   ray_finned_fishes: peces con aletas radiadas
   re_order_photos: "Reordenar fotos &raquo;"
   read_more: Conocer más
@@ -3871,6 +3946,8 @@ es:
   restore: Restaurar
   restoring: Restaurando...
   review_all: Revisar todas
+  review_identifications_of_taxon_html: |
+    Revisar identificaciones de <span class="sciname">%{taxon}</span> %{taxon_id}
   reviewed: Revisada
   revoke: Revocar
   revoke_caps: REVOCAR
@@ -4038,6 +4115,63 @@ es:
   site_staff: "%{site_name} Personal"
   site_stats: Estadísticas del sitio
   site_taxon_page: "%{site_name} página del taxón"
+  sites_affiliation_about_desc_html: |
+    Si su organización está interesada en unirse a la Red iNaturalist, puede encontrar más detalles %{start_tag_join}aquí%{end_tag_join}.
+  sites_affiliation_examples_canada_cdc_html: |
+    %{start_tag_inat_canada}iNaturalist Canada%{end_tag_inat_canada} permite que
+    los datos de iNaturalist sean incorporados a sistemas de seguridad
+    provinciales gestionados por Centros de Datos de Conservación (CDC). Estos sistemas se utilizan cuando las evaluaciones se realizan (dos veces al año) para determinar el estado de en riesgo de la especie, así como para determinar el hábitat crítico de especies amenazadas y en peligro de extinción. Como resultado, también ha sido posible localizar y mitigar los puntos conflictivos de mortalidad por carretera para las especies en riesgo y eventualmente proteger las Áreas Clave de Biodiversidad, y;
+    reconocer la presencia de especies que no habían sido reportadas durante décadas.
+  sites_affiliation_examples_mexico_nbis_html: |
+    Las observaciones de %{start_tag_naturalista}Naturalista%{end_tag_naturalista}
+    de México se alimentan del Sistema Nacional de Información de la Biodiversidad
+    (en la Comisión Nacional para el Conocimiento y Uso de la Biodiversidad, CONABIO) junto con los registros de AverAves (eBird). La gente puede encontrar registros científicos y de los ciudadanos en %{start_tag_enciclovida}Enciclovida%{end_tag_enciclovida}.
+  sites_affiliation_examples_portugal_atlas_html: |
+    En Portugal, el miembro de la red iNaturalist %{start_tag_portugal}BioDiversity4All%{end_tag_portugal}compartió datos para el atlas portugués de aves migratorias, para el atlas de mamíferos, así como para varios artículos de investigación científica portugueses.
+  sites_affiliation_more_automatically_hidden_coordinates: |
+    Coordenadas ocultas automáticamente (ocultas o privadas debido a la "geoprivacidad del taxón")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist oculta automáticamente las coordenadas de algunas especies para protegerlas de la perturbación, recolección o caza furtiva. Si las coordenadas de observación sólo se han ocultado automáticamente para proteger las especies,
+    iNaturalist comparte las verdaderas coordenadas de todas las observaciones de sus
+    países respectivos con Miembros de la Red.
+  sites_affiliation_more_email_addresses: |
+    Las direcciones de correo electrónico se comparten con los administradores locales, miembros de la red, únicamente con el propósito de facilitar la comunicación relacionada con iNaturalist, en el caso de que sea necesario.
+  sites_affiliation_more_twice_per_year: |
+    Dos veces al año, iNaturalist comparte las direcciones de correo electrónico de cuentas afiliadas y algunas coordenadas ocultas (p.ej. coordenadas públicas difuminadas o privadas) con los miembros de la Red iNaturalist para facilitar el uso de los datos de iNaturalist para la investigación, conservación, y gestión en sus respectivos países.
+  sites_affiliation_more_user_hidden_coordinates: |
+    Coordenadas ocultas por el usuario (ocultas o privadas debido a la configuración de "geoprivacidad")
+  sites_affiliation_more_user_hidden_coordinates_desc: |
+    Las observaciones con coordenadas ocultas debido a las opciones individuales del usuario se comparten de una manera mucho más limitada y específica. Afiliándose con un sitio de Network iNaturalist compartirá con los administradores del sitio las
+    coordenadas precisas de las observaciones con geoprivacidad que has establecido en
+    oculto o privado, además de aquellos que están ocultos públicamente o privados debido a la geoprivacidad del taxón. Esto permite que tus observaciones se vuelvan
+    más valiosas para los esfuerzos de conservación locales.
+  sites_affiliation_overview_current_member_list_html: |
+    Puedes ver la lista actual de miembros de la
+    %{start_tag_network}Red Naturalista%{end_tag_network}.
+  sites_affiliation_overview_in_order_to_advance: |
+    Los administradores locales tienen la responsabilidad de evaluar la validez y la idoneidad de las solicitudes de datos y sus posibles resultados; transmitir por escrito la responsabilidad de garantizar la seguridad de dichos datos y no exponerlos públicamente, compartirlos o utilizarlos más allá de su propósito original. Además de documentar los resultados o usos previstos asociados y reportar anualmente a iNaturalist.
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    La red %{start_tag_network}iNaturalist%{end_tag_network} es una colección de sitios web localizados en la comunidad %{start_tag_global}global iNaturalist%{end_tag_global}.
+  sites_affiliation_overview_when_you_affiliate: |
+    Cuando te afilias a un miembro de la Red iNaturalist tu dirección de correo electrónico y las ubicaciones reales de tus ubicaciones ocultas y privadas se comparten con el miembro de la red. Esto permite que tus observaciones se vuelvan más valiosas para los esfuerzos de conservación locales. Si vives o visitas con frecuencia un área que es miembro de la red, te motivamos a elegirla como tu afiliación para facilitar el intercambio de datos.
+  sites_affiliation_overview_you_can_continue_html: |
+    Puedes continuar iniciando sesión a través de iNaturalist.org o a través del sitio web
+    específico para la red. No importa tu afiliación, todos tus datos estarán alojados en el mismo lugar y continuarás interactuando con la comunidad internacional iNaturalist más amplia. Cada cuenta de NaturaLista puede ser afiliada con un solo miembro de la red. Puedes revisar o cambiar tu afiliación en la configuración de tu cuenta
+    %{start_tag_settings}%{end_tag_settings}.
+  sites_affiliation_title: Más información sobre afiliación de red
+  sites_network_cas_and_nat_geo_html: |
+    La %{start_tag_cas}Academia de Ciencias de California%{end_tag_cas} y la
+    %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} tienen
+    acuerdos formales con organizaciones en cada una de estas áreas geográficas para apoyar el uso de la plataforma iNaturalista. <strong>Si tu organización está
+    interesada en unirse a la Red iNaturalista, puedes encontrar más detalles
+    %{start_tag_join}aquí%{end_tag_join}.</strong>
+  sites_network_consists_of: "La red iNaturalist está formada por varias organizaciones:"
+  sites_network_inaturalist_network_collection: |
+    La red iNaturalist es una colección de sitios web localizados que están completamente conectados a la comunidad iNaturalist global. Los sitios de red están soportados por instituciones locales que promueven el uso local y facilitan el uso de datos de 
+     iNaturalist para beneficiar la biodiversidad local. Tienen acceso a verdaderas coordenadas dentro de sus áreas geográficas que se ocultan automáticamente de vista pública con el fin de proteger mejor las especies en riesgo.
+  sites_network_your_username: |
+    Si eliges afiliarte a un sitio de red, las instituciones locales que apoyan cada sitio también tendrán acceso a tu dirección de correo electrónico (sólo para comunicarse 
+    contigo sobre las actividades del sitio) y el acceso a las coordenadas reales de las observaciones que hayas seleccionado para ocultarla al público o hacerla privada.
   some_agree: Algunos la apoyan
   some_observations_are_missing_media_or_identifications: |
     Algunas observaciones carecen de fotografías o identificaciones
@@ -4290,6 +4424,11 @@ es:
   taxon_assessments_are: |
     Las evaluaciones del taxón son documentos que evalúan el estado actual de una especie, generalmente su estado de conservación. Por ejemplo, una organización regional de conservación puede utilizarlos para organizar la información y solicitar comentarios acerca del estado de varias especies en riesgo en la región.
   taxon_change_must_be_committed_to_update_records: El cambio de taxón debe ejecutarse para actualizar los registros
+  taxon_change_title_taxon_drop: Gota taxonómica %{id}
+  taxon_change_title_taxon_merge: Fusión taxonómica %{id}
+  taxon_change_title_taxon_split: División taxonómica %{id}
+  taxon_change_title_taxon_stage: Etapa taxonómica %{id}
+  taxon_change_title_taxon_swap: Intercambio taxonómico %{id}
   taxon_deleted: Taxon fue borrado.
   taxon_doesnt_have_a_range: El taxón no tiene una área
   taxon_drop: dejar de taxón
@@ -4323,6 +4462,25 @@ es:
   taxon_photos_updated: '¡Las fotos del taxón fueron actualizadas!'
   taxon_range: Área del taxón
   taxon_range_created_notice: El área de distribución del taxón se ha creado correctamente. Por favor, espere unos minutos para que aparezca en los mapas.
+  taxon_range_for_taxon_html: Distribución del taxón %{taxon}
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: '¿Es este un mapa de distribución de la Lista Roja de la UICN, y si no lo es, por qué?'
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: Este es un mapa de distribución de Lista Roja de la UICN
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Este no es un mapa de distribución de Lista Roja de la UICN porque su mapa no es adecuado
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: Este no es un mapa de distribución de la Lista Roja de la UICN porque este taxón no está en la Lista Roja de la UICN
+  taxon_range_guidelines_each_taxon_can_have: Cada taxón puede tener una única Distribución del Taxón. La distribución del taxón debe representar su distribución global.
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    La %{link_start_tag}Lista Roja de la UICN%{link_end_tag} es la fuente habitual de las distribuciones de taxones.
+    Por favor, indique si está añadiendo un rango de lista roja de IUCN y si no de dónde la obtiene en relación con la lista roja de la UICN. Esto ayudará a informar en los procesos de actualización automática de las distribuciones obtenidas de la Lista Roja de la UICN. Si está añadiendo una distribución de la Lista Roja de la UICN, por favor indique correctamente la versión de la Lista Roja IUCN (por ejemplo, 2021-2) en la fuente.
+  taxon_range_guidelines_if_you_are_not_uploading: "Si no está subiendo un mapa de distribución de la Lista Roja de la UICN, podría ser porque:"
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: El mapa de distribución de la Lista Roja de la UICN para este taxón no es el adecuado
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    por ejemplo, la ha reducido manualmente para reflejar una división taxonómica no representada en la Lista Roja de la UICN, o el mapa de distribución de la Lista Roja de la UICN presenta errores importantes que hacen que su presentación no sea apropiada.
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Este taxón no está en la Lista Roja de la UICN
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    por ejemplo, el taxón se ha combinado con otro taxón de la Lista Roja de la UICN, así que lo has recortado manualmente aquí, o si el taxón carece de una evaluación y un mapa de distribución de la Lista Roja de la UICN.
+  taxon_range_guidelines_please_provide_details: |
+    Por favor, utilice la descripción para explicar cómo se ha modificado el mapa y enlace a cualquier indicación relevante, divisiones taxonómicas, u otras discusiones sobre por qué la distribución de la Lista Roja de la UICN publicada requiere ser alterada
+  taxon_range_guidelines_learn_more_about_taxon_ranges: Más información sobre distribución de taxones
   taxon_range_updated_notice: El área de distribución del taxon se ha actualizado correctamente. Por favor, espere unos minutos para que los cambios aparezcan en los mapas.
   taxon_ranks: Filas de taxón
   taxon_removed_from_list: Especie o grupo eliminado de la lista.
@@ -4388,6 +4546,8 @@ es:
   the_identotron_is_a_tool_to: |
     El identotrón es una herramienta para identificar observaciones basadas en las listas de comprobación de %{site_name}. Dada una clase y un lugar (ej. mamíferos y la India), %{site_name} buscará por listas de comprobación que coincidan con ese taxón en ese lugar, es como una guía de campo dinámica del planeta entero. En la mayoría de las listas de comprobación aún se esta trabajando, pero si existe alguna lista que sea exhaustiva, es decir que liste <em>todos</em> los taxones representativos de ese lugar, el identotrón mostrará un aviso.
   the_name_of_the_taxon_including_space: El nombre de especie/grupo, incluyendo el espacio para especies e infraespecies.
+  the_name_of_the_taxon_dashes: El nombre del taxón, espacios reemplazados por guiones.
+  the_name_of_the_taxon_underscores: El nombre del taxón, espacios reemplazados por guiones bajos.
   the_observation_was_already_added_to_that_project: La observación fue añadida recientemente al proyecto.
   the_people_of_inat: "La gente de %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
@@ -4498,6 +4658,7 @@ es:
     Acepto los <a href="/terms" target="_blank">Términos de servicio</a> y la <a href="/privacy" target="_blank">Política de privacidad</a>, y he revisado los <a href="/pages/community+guidelines" target="_blank">Lineamientos de la comunidad</a>.
   total: total
   totals: Totales
+  total_ids_on_input_taxon: "Total IDs del taxón de entrada:"
   total_members: Total de miembros
   total_observations: Total de observaciones
   total_observations_caps: TOTAL DE OBSERVACIONES
@@ -4994,6 +5155,8 @@ es:
   you_need_to_select_some_observations_first: Debe seleccionar algunas observaciones primero.
   you_retain_full_copyright: "Tu mantienes todos los derechos de autor sobre tu contenido aparte de aquellos derechos concedidos a %{site_name} en nuestros Términos de Servicio"
   you_retain_full_copyright_over_your_content: "Tu retienes derechos de autor totales sobre tu contenido aparte de aquellos derechos otorgados a %{site_name} en nuestros Términos de Servicio."
+  you_should_delete_this_taxon_change: |
+    Probablemente deberías eliminar este cambio de taxón, o al menos averiguar algún tipo de solución con la persona / personas que hicieron el otro cambio.
   you_sure_delete_asset?: '¿Confirmas que quieres eliminar este activo?'
   you_sure_delete_check_list: "¿Está seguro que desea eliminar esta lista? Algunas personas podrían haber aportado mucho trabajo a ella..."
   you_sure_delete_comment?: '¿Confirmas que quieres eliminar el comentario?'
@@ -5640,6 +5803,9 @@ es:
         </ol>
       dna_help: |
         Para habilitar la funcionalidad de coincidencia con el código de barras BOLD ADN, asegúrate de que tu nombre de campo incluya las palabras "COI", "COX1", "SUS", o "matK," correspondiente al gen que este campo busca.
+      merge:
+        warning_html: |
+          Por favor sé respetuoso con los datos de otras personas y <strong>habla con el creador de un campo de observación, antes de una fusión</strong>. Esta herramienta destruirá el campo de observación que se va a combinar y moverá todas las observaciones al campo que se mantiene. <strong>Este proceso no se puede deshacer</strong>, así que ten cuidado.
     emailer:
       bulk_import_success:
         success_message: |
@@ -7255,6 +7421,12 @@ es:
             taxon:
               too_many_photos: |
                 No puede tener más de %{max} fotos
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: debe ser un valor aceptado
+            taxon_id:
+              already_has_a_range: ya tiene una distribución
         user:
           attributes:
             login:
@@ -7268,9 +7440,6 @@ es:
           attributes:
             base:
               user_already_blocked: Ya has bloqueado a ese usuario
-              user_cannot_be_staff: |
-                No puedes bloquear al personal. El personal de iNat necesita poder comunicarse con todos los usuarios y tener acceso a todos los datos. Son los principales mediadores en disputas, por lo que bloquearles no les impedirá comunicarse contigo. Si tienes algún problema con un miembro del personal, por favor repórtalo a uno de los codirectores de iNat, y si el problema es con uno de los codirectores, puedes ponerte en contacto con el Jefe de Ciencia en el Instituto de Ciencias de la Biodiversidad y Sostenibilidad en la
-                Academia de Ciencias de California.
         user_parent:
           attributes:
             email:

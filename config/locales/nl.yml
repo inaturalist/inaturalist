@@ -175,6 +175,10 @@ nl:
   #should work here
   about_place: "Over %{place}"
   about_places: Over plaatsen
+  about_taxon_ranges: Over taxonverspreidingen
+  about_taxon_ranges_desc: |
+    Taxonverspreiding geeft de globale verdeling van een taxon weer. Taxonverspreiding zijn
+    meestal afkomstig uit de IUCN Rode Lijst.
   about_the_cc_licenses: Over Creative Commons-licenties
   about_the_network: Over het netwerk
   about_these_licenses: Over deze licenties
@@ -393,6 +397,8 @@ nl:
   admin_s: Administrator(en)
   admin_only: Alleen administratoren
   admin_tools: Administrator-hulpmiddelen
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Verbonden organisaties
   agree_: Akkoord
   agree?: Akkoord?
   agree_with_current_taxon: Akkoord gaan met huidige taxon
@@ -656,6 +662,7 @@ nl:
   assessment_x: "%{assessment} beoordeling"
   assessments: beoordelingen
   associations: Koppelingen
+  atlased: Opgenomen in een kaart
   atlas_for_taxon_html: Atlas voor %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -907,6 +914,7 @@ nl:
   committed_by_user_on_date_html: Vastgelegd door %{user} op %{date}
   #Label for date the taxon change was committed
   committed_on: Vastgelegd op %{date}
+  committed_taxon_changes_cannot_be_deleted: Vastgelegde taxonwijzigingen kunnen niet worden verwijderd
   #Status message while a taxon change is being committed
   committing: Vastleggen...
   common_name: Algemene naam
@@ -984,6 +992,11 @@ nl:
       Organisatie die deze status heeft vastgesteld. Gebruik alsjeblieft de autocomplete-functie om een bestaande autoriteit te kiezen voordat je een nieuwe toevoegt. Je kunt dit overslaan als *jij* als de autoriteit wilt worden aangemerkt.
     place: Plek tot waar deze status is beperkt.
     url: URL naar de website die deze status beschrijft
+    geoprivacy: |
+      Standaard geoprivacy voor waarnemingen van dit taxon. Merk op dat de
+      geoprivacy van een status geassocieerd met een continent, land of
+      plaats op staatsniveau een status kan overschrijven die globaal is of geassocieerd is
+      met een plaats op een hoger niveau.
     iucn: |
       Equivalent van de IUCN Rode Lijst code. Dit is niet de huidige IUCN-beoordeling maar de IUCN-code die het beste overeenkomt met de dreiging van het openbaar maken van de coördinaten door deze status. Dit zal de geoprivacy overschrijven als het Niet bedreigd (veilig) is of lager. Dus als je waarnemingen van dit taxon wilt vervagen, stel deze in op "Gevoelig" of hoger.
   conservation_status_geoprivacy_desc: |
@@ -1600,6 +1613,7 @@ nl:
   exclusion_filters: Uitsluitingsfilters
   existing_flags: Bestaande meldingen
   exit_full_screen: "Volledig Schermmodus Verlaten"
+  examples_of_data_use_by_network_members: Voorbeelden van gebruik van gegevens door leden van het netwerk
   examples_of_ranking_organizations: Voorbeelden van organisaties die statussen vaststellen
   explore: Verkennen
   export: Exporteren
@@ -1621,6 +1635,8 @@ nl:
   facebook_access_token_expired: "Access token is verlopen. %{user} moet zijn of haar Facebook account opnieuw linken."
   facebook_needs_the_owner_of_that_photo_to: Facebook vereist dat de eigenaar van die foto hun verbinding met %{site_name_short} opnieuw bevestigt.
   facebook_options: Facebookopties
+  facebook_photo_import_disabled_notice: |
+    In november 2020 vroeg Facebook ons te verifiëren of we echt toegang tot foto's nodig hadden en we konden het proces niet voltooien vanwege problemen met Facebook's verificatiesysteem. Als gevolg daarvan kunnen we niet langer het importeren van foto's vanuit Facebook ondersteunen.
   failed_to_find_your_location: Locatie niet gevonden.
   failed_to_repair_photo: "Foto herstellen niet geslaagd: %{errors}"
   failed_to_save_record: "Fout bij het opslaan van gegevens. Probeer het later opnieuw."
@@ -1858,12 +1874,22 @@ nl:
   header_your_projects: Jouw projecten
   header_your_profile: Jouw profiel
   heads_up: Opgelet
+  heads_up_automatable_draft_split_notice_html: |
+    <strong>Let op:</strong> Wanneer je deze wijziging bevestigt zullen de determinaties
+    opnieuw worden toegewezen aan de uitvoertaxa op basis van hun verspreiding. Als bij sommige of alle outputs de verspreidingsgegevens ontbreken of als de verspreidingskaarten overlappen voor een bepaalde record, zullen determinaties worden vervangen door determinaties van het dichtstbijzijnde gemeenschappelijke oudertaxon (%{taxon})
   heads_up_non_automatable_draft_split_notice_html: |
     <strong>Let op:</strong> Deze taxonsplitsing heeft output taxa die ofwel geen atlassen hebben of geen gemeenschappelijke voorouder delen, dus de records geassocieerd met de invoertaxa kunnen niet automatisch worden toegewezen aan outputtaxa als deze splitsing wordt doorgevoerd en de gemeenschap zal nieuwe ID's moeten toevoegen voor deze records.
+  heads_up_automatable_split_notice_html: |
+    <strong>Let op:</strong> Sommige of alle determinaties die beïnvloed worden door
+    deze splitsing zijn vervangen door determinaties van %{taxon}. Dit gebeurt wanneer we geen automatische determinatie kunnen toewijzen aan één van de uitvoertaxa.
   heads_up_observose_taxon_change_html: |
     <strong>Let op:</strong> Een of meer van de invoertaxa die betrokken zijn bij deze
     verandering hebben meer dan %{observose_taxon_threshold} downstream waarnemingen.
     Alleen beheerders of curatoren van dat taxonkader kunnen deze verandering doorvoeren.
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+    <strong>Let op:</strong> één of meer van de invoertaxa die betrokken zijn bij deze
+    wijziging vallen in een <a href="%{framework_url}">taxon framework</a>. Alleen
+    beheerders of curatoren van dat taxon famework kunnen veranderingen doorvoeren die invloed hebben op betreffende taxa. Neem contact op met één van de curatoren van dit taxon om deze verandering door te voeren.
   heads_up_there_are_other_draft_taxon_changes_html:
     one: "<strong>Let op:</strong> er is %{count} andere voorlopige taxonwijziging met dezelfde inputtaxa:"
     other: "<strong>Let op:</strong> er zijn %{count} andere voorlopige taxonwijzigingen met dezelfde inputtaxa:"
@@ -2118,26 +2144,33 @@ nl:
     Vergeet niet <a href="%{url}">je wachtwoord te veranderen</a> voor de nieuwe versie.
   let_us_walk_you_through: Laten we de belangrijkste functies van de site doorlopen.
   lexicon: Lexicon
+  lexicon_cannot_contain_words: "kan de volgende woorden niet bevatten: %{words}"
   lexicons:
     scientific_names: Wetenschappelijke namen
     afrikaans: Afrikaans
     albanian: Albanees
+    arabic: Arabisch
+    armenian: Armeens
     belarusian: Wit-Russisch
     bengali: Bengaals
+    bulgarian: Bulgaars
     catalan: Catalaans
     cebuano: Creools (Frans)
     chinese_simplified: Chinees (vereenvoudigd)
     chinese_traditional: Chinees (traditioneel)
     creole_french: Creools (Frans)
     creole_portuguese: Creools (Portugees)
+    croatian: Kroatisch
     czech: Tsjechisch
     danish: Deens
     davawenyo: Davaoeño
     dutch: Nederlands
     english: Engels
     estonian: Estlands
+    faroese: Faeröers
     finnish: Fins
     french: Frans
+    galician: Galicisch
     gela: Gela
     german: Duits
     greek: Grieks
@@ -2147,6 +2180,7 @@ nl:
     hungarian: Hongaars
     icelandic: IJslands
     ilokano: Ilokano
+    indonesian: Indonesisch
     italian: Italiaans
     japanese: Japans
     kannada: Kannada
@@ -2154,17 +2188,26 @@ nl:
     latvian: Lets
     lithuanian: Litouws
     luxembourgish: Luxemburgs
+    malay: Maleis
+    malayalam: Malayalam
     maltese: Maltees
     maori: Maori
     marathi: Marathi
+    maya: Maya
     misima_paneati: Misima-paneati
+    mongolian: Mongools
+    nahuatl: Nahuatl
     norwegian: Noors
     occitan: Provençaals
+    ojibwe: Ojibwe
+    palauan: Palaus
     pangasinan: Pangasinan
     polish: Pools
     portuguese: Portugees
     romanian: Roemeens
     russian: Russisch
+    setswana: Setswana
+    sinhala: Singalees
     slovak: Slowaaks
     slovenian: Sloveens
     spanish: Spaans
@@ -2176,6 +2219,7 @@ nl:
     turkish: Turks
     ukrainian: Oekraïens
     waray_waray: Winaray
+    visayan: Visayan
   less: Minder
   licensed_site_photos: "Foto's van %{site_name} met licentie"
   license: Licentie
@@ -2686,6 +2730,7 @@ nl:
   no_project_to_admin_current_user: "Je administreert geen enkel project"
   no_project_to_admin_login: "%{login} administreert geen enkel project"
   no_projects_yet: Nog geen projecten
+  no_attached_range: Geen bijgevoegde verspreiding
   no_range_data_available: Geen datareeks beschikbaar.
   no_recent_activity: Geen recente activiteit
   no_relevant_annotations: Geen relevante annotaties
@@ -2700,6 +2745,8 @@ nl:
   no_species_on_this_list_for_owner: |
     Je kunt beginnen met het toevoegen van soorten aan deze lijst via de optie "Toevoegen aan je lijst" aan de rechterkant.
   no_subject_parens: "(Geen onderwerp)"
+  no_such_wiki_page: Deze pagina bestaat niet.
+  no_such_wiki_page_html: Deze pagina bestaat niet. Wilt u de pagina <a href="%{new_url}">aanmaken</a>?
   no_suggestions_available: Geen suggesties beschikbaar
   no_summary_from_wikipedia: Geen overzicht in Wikipedia
   no_summary_has_been_set: Er is geen samenvatting beschikbaar.
@@ -2716,6 +2763,7 @@ nl:
   none: Geen
   none_found: Niet gevonden
   normal: normaal
+  not_atlased: Niet opgenomen in de atlas
   not_completed: Niet voltooid
   not_confident: We hebben er onvoldoende vertrouwen in dat we een goede aanbeveling zullen doen.
   not_confident_top_suggestions: 'We zijn niet zeker genoeg om een aanbeveling te doen maar dit zijn onze belangrijkste voorstellen:'
@@ -2772,7 +2820,9 @@ nl:
   observation_brief_something_on_day_at_time: "Iets op %{day} om %{time}"
   observation_brief_something_on_day_at_time_by_user: "Iets op %{day} om %{time} door %{user}"
   observation_brief_something_on_day_by_user: "Iets op %{day} door %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Iets in %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Iets in %{month} door %{user}"
   observation_brief_something_by_user: "Iets door %{user}"
   observation_brief_something_from_place: "Iets uit %{place}"
@@ -2781,13 +2831,17 @@ nl:
   observation_brief_something_from_place_on_day_by_user: "Iets uit %{place} op %{day} door %{user}"
   observation_brief_something_from_place_on_day_at_time: "Iets uit %{place} op %{day} om %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Iets uit %{place} op %{day} om %{time} door %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Iets uit %{place} in %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Iets uit %{place} in %{month} door %{user}"
   observation_brief_taxon_on_day: "%{taxon} op %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} op %{day} om %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} op %{day} om %{time} door %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} op %{day} door %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} in %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} in %{month} door %{user}"
   observation_brief_taxon_by_user: "%{taxon} door %{user}"
   observation_brief_taxon_from_place: "%{taxon} uit %{place}"
@@ -2796,7 +2850,9 @@ nl:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} uit %{place} op %{day} door %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} uit %{place} op %{day} om %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} uit %{place} op %{day} om %{time} door %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} uit %{place} in %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} uit %{place} in %{month} door %{user}"
   observations_by_category: "Waarnemingen per categorie"
   observations_by_app: Waarnemingen volgens App
@@ -2904,6 +2960,7 @@ nl:
     absent: Komt niet voor in het gebied
     common: Komt vaak voor
     doubtful: Komt waarschijnlijk wel wel voor, maar er bestaat twijfel over het bewijsmateriaal
+    irregular: Aanwezigheid onvoorspelbaar, inclusief zwervers; kan in sommige jaren algemeen zijn en in andere jaren afwezig
     present: Komt voor in het gebied
     uncommon: Komt regelmatig voor, maar in kleine aantallen; goed zoeken in het juiste habitat
   occurrence_status_establishment_means: voorkomststatus, vestigingswijze
@@ -3032,9 +3089,11 @@ nl:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Andere taxa die vaak ten onrechte worden gedetermineerd als dit ondergeslacht in <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_subsection: Andere taxa die vaak ten onrechte worden gedetermineerd als deze ondersectie
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Andere taxa die vaak ten onrechte worden gedetermineerd als deze ondersectie in <a href="%{url}">%{place}</a>
+  outside_of_all_atlases: Niet opgenomen op een kaart
   our_blog: Ons blog
   output_taxon: Uitvoer taxon
   overview: Overzicht
+  overlapping_atlases: Overlappende kaarten
   overlapping_downstream_taxon_frameworks_html: "Overlappende onderliggende taxonkaders: %{count}"
   owner: Eigenaar
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -3828,6 +3887,8 @@ nl:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infrahybride
   ranges: Bereik
+  #Text to link to a taxon range as a KML file
+  range_file: Verspreidingsbestand
   ray_finned_fishes: Straalvinnigen
   re_order_photos: "Foto's herschikken &raquo;"
   read_more: Meer lezen
@@ -3947,6 +4008,8 @@ nl:
   restore: Herstellen
   restoring: Aan het herstellen ...
   review_all: Alles nakijken
+  review_identifications_of_taxon_html: |
+    Controleer de determinaties van <span class="sciname">%{taxon}</span> %{taxon_id}
   reviewed: Nagekeken
   revoke: Intrekken
   revoke_caps: INTREKKEN
@@ -4115,6 +4178,39 @@ nl:
   site_staff: "%{site_name} Staf"
   site_stats: Site statistieken
   site_taxon_page: "%{site_name} taxonpagina"
+  sites_affiliation_about_desc_html: |
+    Als jouw organisatie geïnteresseerd is in toetreding tot het iNaturalist Netwerk kan je %{start_tag_join}hier%{end_tag_join} meer details vinden.
+  sites_affiliation_more_email_addresses: |
+    E-mailadressen worden gedeeld met leden van het netwerk uitsluitend voor communicatie met betrekking tot de site.
+  sites_affiliation_more_twice_per_year: |
+    Twee keer per jaar deelt iNaturalist emailadressen van gekoppelde accounts en een aantal verborgen coördinaten (d.w.z. coördinaten die vervaagd of verborgen zijn) met iNaturalist Network Members om het gebruik van iNaturalist gegevens voor onderzoek, behoud en beheer te vergemakkelijken in hun respectievelijke gebieden. De twee manieren waarop coördinaten verborgen kunnen worden worden verschillend gedeeld, zoals hieronder beschreven.
+  sites_affiliation_more_user_hidden_coordinates: |
+    Door de gebruiker verborgen coördinaten (vervaagd of privé als gevolg van de "geoprivacy" instelling)
+  sites_affiliation_more_user_hidden_coordinates_desc: |
+    Waarnemingen met verborgen coördinaten (een keuze van de individuele gebruiker) worden op een veel beperktere en specifieke manier gedeeld. Door lid te zijn van een lokale 
+    netwerksite zal iNaturalist met de beheerders van deze site de precieze coördinaten van waarnemingen delen met geoprivacy die je hebt ingesteld op vervaagd of privé, naast die  verborgen of privé zijn vanwege taxon-geoprivacy. Hierdoor kunnen je waarnemingen
+    waardevoller worden voor lokale instandhoudingsinspanningen.
+  sites_affiliation_overview_current_member_list_html: |
+    Je kunt de huidige ledenlijst van %{start_tag_network}iNaturalist Network%{end_tag_network} zien.
+  sites_affiliation_overview_you_can_continue_html: |
+    Je kunt inloggen via iNaturalist.org of via jouw netwerkspecifieke website. Ongeacht het lidmaatschap dat je gebruikt wordt al jouw data gehost op dezelfde plek en je blijft in staat om te communiceren met de volledige internationale iNaturalist gemeenschap. Elk iNaturalist-account kan slechts gekoppeld zijn met één netwerklid. Je kunt jouw koppeling bekijken of
+    wijzigen in de instellingen %{start_tag_settings}account%{end_tag_settings}.
+  sites_affiliation_title: Meer informatie over netwerklidmaatschap
+  sites_network_cas_and_nat_geo_html: |
+    De %{start_tag_cas}California Academy of Sciences%{end_tag_cas} en de
+    %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} hebben
+    formele overeenkomsten met organisaties in elk van deze geografische gebieden om
+    het gebruik van het iNaturalist platform te ondersteunen. <strong>Als jouw organisatie
+    geïnteresseerd is in het toetreden tot het iNaturalist Network, dan kunt je 
+    %{start_tag_join}hier%{end_tag_join} meer details vinden.</strong>
+  sites_network_consists_of: "Het iNaturalist netwerk bestaat uit verschillende organisaties:"
+  sites_network_inaturalist_network_collection: |
+    Het iNaturalist netwerk is een verzameling van gelokaliseerde websites die volledig
+    verbonden zijn met de wereldwijde iNaturalist gemeenschap. Netwerksites worden
+    ondersteund door lokale instellingen die lokaal gebruik bevorderen en het gebruik van gegevens mogelijk maken van iNaturalist om de lokale biodiversiteit te bevorderen. Ze hebben toegang tot echte coördinaten binnen hun geografische gebieden die automatisch uit publieke weergave worden vervaagd om bedreigde soorten beter te beschermen.
+  sites_network_your_username: |
+    Je gebruikersnaam en wachtwoord werken op alle websites die deel uitmaken van het iNaturalist netwerk. Als je kiest om lid te worden van een lokale netwerksite hebben de
+    lokale instellingen die jouw site ondersteunen ook toegang tot je e-mailadres (alleen om met je te communiceren over activiteiten van de site) en toegang tot de echte coördinaten van waarnemingen die verborgen, vervaagd of privé zijn.
   some_agree: sommigen gaan akkoord
   some_observations_are_missing_media_or_identifications: |
     Een aantal waarnemingen missen media of determinaties
@@ -4366,6 +4462,11 @@ nl:
     Taxonbeoordelingen zijn documenten die de huidige status van een soort beoordelen, meestal de beschermingstatus.
     Een regionale organisatie voor natuurbehoud kan deze bijvoorbeeld gebruiken om informatie in te delen en om feedback te vragen over de status van verschillende bedreigde taxa in de regio.
   taxon_change_must_be_committed_to_update_records: Er moet een taxonwijziging worden vastgelegd om records bij te werken
+  taxon_change_title_taxon_drop: Taxonomisch vervallen %{id}
+  taxon_change_title_taxon_merge: Taxonomisch samenvoegen %{id}
+  taxon_change_title_taxon_split: Taxonomische splitsing %{id}
+  taxon_change_title_taxon_stage: Taxonomische fase %{id}
+  taxon_change_title_taxon_swap: Taxonomisch omwisselen %{id}
   taxon_deleted: Taxon verwijderd.
   taxon_doesnt_have_a_range: Taxon heeft geen reeks
   taxon_drop: taxonverwijdering
@@ -4399,6 +4500,25 @@ nl:
   taxon_photos_updated: Taxon foto's bijgewerkt!
   taxon_range: Taxon reeks
   taxon_range_created_notice: Het taxon-bereik is succesvol gemaakt. Wacht een paar minuten voordat dit op de kaarten verschijnt.
+  taxon_range_for_taxon_html: Taxonverspreiding voor %{taxon}
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: Is dit een verspreidingskaart van de IUCN Rode Lijst en zo niet waarom niet?
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: Dit is een verspreidingskaart van de IUCN Rode Lijst
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Dit is geen verspreidingskaart van de IUCN Rode Lijst omdat die kaart niet geschikt is
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: Dit is geen IUCN Rode Lijst verspreidingskaart omdat dit taxon niet op de IUCN Rode Lijst staat
+  taxon_range_guidelines_each_taxon_can_have: Elk taxon kan slechts één verspreiding van dat taxon hebben. De verspreiding moet de wereldwijde verspreiding weergeven.
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    De %{link_start_tag}IUCN Rode Lijst%{link_end_tag} is de standaardbron voor verspreidingen van een taxon. Geef aan of je een verspreiding uit de Rode Lijst van IUCN toevoegt en zo niet wat de verschillen zijn met de verspreiding uit de Rode Lijst. Dit zal de processen informeren die de verspreidingen automatisch bijwerken van de Rode Lijst van de IUCN. Als je een verspreiding uit de IUCN Rode Lijst toevoegt geef dan de IUCN Rode Lijst versie (bijv. 2021-2) aan in de bron.
+  taxon_range_guidelines_if_you_are_not_uploading: "Als je geen IUCN Rode Lijst verspreidingskaart uploadt moet dit zijn omdat:"
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: IUCN Rode Lijst verspreidingskaart voor dit taxon is niet geschikt
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    bijvoorbeeld je hebt het handmatig beperkt tot een taxonomische splitsing die niet op de Rode lijst van de IUCN wordt weergegeven of de IUCN Rode Lijst verspreidingskaart bevat grote fouten waardoor het niet geschikt is om te tonen.
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Dit taxon staat niet op de IUCN Rode Lijst
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    bijvoorbeeld wordt het taxon samengevoegd met een ander taxon op de Rode lijst van de IUCN zodat je het hier handmatig verwijderd hebt of als het taxon
+    geen IUCN Rode Lijst beoordeling en verspreidingskaart heeft.
+  taxon_range_guidelines_please_provide_details: |
+    Gebruik de beschrijving om uit te leggen hoe de kaart is afgeleid en link naar alle relevante vlaggen, taxonomische splitsingen of andere discussies of waarom de gepubliceerde IUCN Rode Lijst verspreiding moet worden gewijzigd.
+  taxon_range_guidelines_learn_more_about_taxon_ranges: Meer informatie over de verspreiding van het taxon
   taxon_range_updated_notice: Het taxon-bereik is succesvol bijgewerkt. Wacht een paar minuten totdat de wijzigingen op de kaarten worden weergegeven.
   taxon_ranks: Taxon Rangen
   taxon_removed_from_list: Taxon uit lijst verwijderd.
@@ -4468,6 +4588,8 @@ nl:
     planeet. De meeste checklists zijn nog niet af, maar als er eentje wel compleet is, d.w.z. dat het <em>alle</em> vertegenwoordigers van
     dat taxon op een plaats bevat, dan zal de Identotron dat vermelden.
   the_name_of_the_taxon_including_space: De naam van het taxon, inclusief de ruimte voor soorten en infraspecies.
+  the_name_of_the_taxon_dashes: De naam van het taxon, spaties vervangen door streepjes.
+  the_name_of_the_taxon_underscores: De naam van het taxon, spaties vervangen door onderstrepingstekens.
   the_observation_was_already_added_to_that_project: De waarneming werd reeds aan dit project toegevoegd.
   the_people_of_inat: "De mensen van %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
@@ -4589,6 +4711,7 @@ nl:
     de <a href="/pages/community+guidelines" target="_blank">gemeenschapsrichtlijnen</a> doorgenomen.
   total: Totaal
   totals: Totalen
+  total_ids_on_input_taxon: "Totaal aantal IDs van invoertaxon:"
   total_members: Totaal aantal leden
   total_observations: Totaal aantal waarnemingen
   total_observations_caps: TOTAAL AANTAL WAARNEMINGEN
@@ -5081,6 +5204,8 @@ nl:
   you_need_to_select_some_observations_first: Je moet eerste enkele waarnemingen selecteren.
   you_retain_full_copyright: "Je behoudt het volledige auteursrecht op je inhoud met uitzondering van de rechten die zijn verleend aan %{site_name} in onze Servicevoorwaarden."
   you_retain_full_copyright_over_your_content: "Je behoudt het volledige auteursrecht op je inhoud met uitzondering van de rechten die zijn verleend aan %{site_name} in onze Servicevoorwaarden."
+  you_should_delete_this_taxon_change: |
+    Je zou waarschijnlijk deze taxonwijziging moeten verwijderen of stel ten minste een oplossing voor met de persoon / mensen die de andere veranderingen hebben aangebracht.
   you_sure_delete_asset?: Weet je zeker dat je dit projectbestand wilt verwijderen?
   you_sure_delete_check_list: "Weet je zeker dat je deze lijst wilt verwijderen? Sommige mensen hebben er misschien veel werk in gestopt..."
   you_sure_delete_comment?: Weet je zeker dat je deze reactie wilt verwijderen?
@@ -5716,6 +5841,12 @@ nl:
       dna_help: |
         Om BOLD DNA-barcodeaanpassingsfunctionaliteit in te schakelen, moet je ervoor zorgen dat jouw veldnaam de woorden "COI", "COX1", "ITS" of "matK" bevat,
         overeenkomend met het gen dat dit veld beoogt.
+      merge:
+        warning_html: |
+          Respecteer de gegevens van andere mensen en <strong> praat met de maker
+          van een waarnemingsveld vóór samenvoeging </strong>. Deze tool zal het
+          waarnemingsveld samengevoegen en verplaatst alle waarnemingen die het gebruiken
+          naar de keeper. <strong> Dit proces kan niet ongedaan worden gemaakt </strong>, dus wees voorzichtig.
     emailer:
       bulk_import_success:
         success_message: |
@@ -7337,6 +7468,12 @@ nl:
             taxon:
               too_many_photos: |
                 mag niet meer dan %{max} foto's bevatten
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: moet een geaccepteerde waarde zijn
+            taxon_id:
+              already_has_a_range: heeft al een verspreiding
         user:
           attributes:
             login:
@@ -7349,16 +7486,6 @@ nl:
           attributes:
             base:
               user_already_blocked: Je hebt deze gebruiker al geblokkeerd
-              user_cannot_be_staff: |
-                Medewerkers kunnen niet worden geblokkeerd. iNat personeel moet
-                kunnen communiceren met iedereen op iNat, moet toegang hebben tot alle gegevens op
-                iNat en zijn de uiteindelijke bemiddelaars van geschillen. Het blokkeren van
-                hen zal hen niet verhinderen om met jou te communiceren. Als je een
-                probleem hebt met een medewerker rapporteer dat dan aan één van de
-                iNat co-directeurs, of als je een probleem hebt met één van de
-                co-directeuren, kun je contact opnemen met het hoofd van de Wetenschap op het
-                Instituut voor Biodiviersity en Duurzaamheid Wetenschap op de
-                California Academy of Science.
         user_parent:
           attributes:
             email:

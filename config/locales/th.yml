@@ -5,6 +5,8 @@ th:
     other: '<span class="count">%{count}</span> คอมเมนต์'
   x_faves:
     other: '%{count} ชอบ'
+  x_flags_resolved_html:
+    other: "<span class='count'>%{count}</span> flag resolved แก้ปัญหารายงานแล้ว"
   x_identifications:
     other: '%{count} การจำแนก'
   x_identifications_html:
@@ -17,12 +19,16 @@ th:
     other: '<span class="count">%{count}</span> ผู้จำแนก'
   x_languages:
     other: "%{count} ภาษา"
+  x_journal_posts_html:
+    other: '<span class="count">%{count}</span> โพสต์บทความ'
   x_matching_taxa:
     other: '%{count} ลำดับอนุกรมวิธานที่ตรงกัน'
   x_matching_taxa_html:
     other: '<span class="count">%{count}</span> ลำดับอนุกรมวิธานที่ตรงกัน'
   x_misidentifications_of_this_species:
     other: "%{count} การจำแนกชนิดนี้ผิด"
+  x_misidentifications_of_species_in_this_genus:
+    other: "%{count} สกุลนี้มีการจำแนกผิด"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -504,6 +510,247 @@ th:
   are_you_sure_you_want_to_delete_this: คุณแน่ใจไหมที่จะลบทิ้ง?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "คุณแน่ใจหรือไม่ว่าต้องการนำอันดับอนุกรมวิธานออกจาก %{place} รายการ?"
   assessment: การประเมินผล
+  captive: ถูกจับมา
+  captive_cultivated: ถูกจับมา / เพาะปลูก
+  captive_observations: ผลการสำรวจสิ่งมีชีวิตที่ถูกจับมา
+  change_admin: เปลี่ยนผู้ดูแล
+  #Button to change the cover (or banner) image for a project
+  change_cover: เปลี่ยนภาพหน้าปก
+  change_descriptions:
+    split: แยกหน่วยอนุกรมวิธานเก่าเป็นหลายหน่วยฯ ใหม่
+    merge: หลายหน่วยอนุกรมวิธานเก่ารวมเป็นหนึ่งหน่วยฯ ใหม่
+  change_geoprivacy: 'เปลี่ยนความเป็นส่วนตัวของพิกัด'
+  change_group: เปลี่ยนกลุ่ม
+  change_icon: เปลี่ยนไอคอน
+  change_password: เปลี่ยนรหัสผ่าน
+  change_types:
+    split: แยก
+    merge: ยุบรวม
+    swap: เปลี่ยน
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_from: แยกจาก
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_into: แยกเป็น
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    merge_into: ยุบรวมเป็น
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    merged_into: ถูกยุบรวมเป็น
+  change_your_password: เปลี่ยนรหัสผ่านของคุณ
+  colors: สี
+  comment: ความคิดเห็น
+  #Verb, generally a label on a button that allows the user to add a comment
+  comment_: ความคิดเห็น
+  comment_deleted: ความคิดเห็นที่ถูกลบ
+  comments: ความคิดเห็น
+  comments_by_me: ความคิดเห็นของฉัน
+  comments_on_my_observations: ความคิดเห็นในการสำรวจของฉัน
+  community: ชุมชน
+  community_guidelines: วิธีใช้งานสำหรับชุมชน
+  community_id_heading: หน่วยอนุกรมวิธานที่เสนอโดยชุมชน
+  community_id_at_species_or_lower?: หน่วยนอนุกรมวิธานที่เสนอโดยชุมชนที่ระดับชนิดหรือต่ำกว่า?
+  community_id_at_species_level_or_lower: หน่วยนอนุกรมวิธานที่เสนอโดยชุมชนที่ระดับชนิดหรือต่ำกว่า?
+  compare: เปรียบเทียบ
+  compare_with: เปรียบเทียบกับ
+  comparing: เปรียบเทียบ
+  comparing_list_to_list: "เปรียบเทียบ %{list1} กับ %{list2}"
+  comparing_versions_x_and_y: "เปรียบเทียบเวอร์ชัน %{x} กับ %{y}"
+  comparing_observations_from: "เปรียบเทียบการสำรวจของ %{user} เมื่อ %{dates}"
+  confirm_now: ยืนยันเลย
+  controlled_term_labels:
+    male: เพศผู้
+    female: เพศเมีย
+    plant_phenology: ชีพลักษณ์ของพืช
+    budding: แตกตา
+    flower_budding: แตกตาดอก
+    flowering: ออกดอก
+    fruiting: ออกผล
+    life_stage: ระยะการเจริญ
+    adult: ตัวเต็มวัย
+    teneral: หลังลอกคราบ
+    subimago: ตัวรองตัวเต็มวัย
+    pupa: ดักแด้
+    no_evidence_of_flowering: ไม่พบการออกดอก
+    nymph: ตัวอ่อน
+    larva: หนอน
+    egg: ไข่
+    juvenile: วัยเด็ก
+    alive_or_dead: มีชีวิตหรือตาย
+    alive: มีชีวิต
+    dead: ตาย
+    cannot_be_determined: ระบุไม่ได้
+    evidence_of_presence: หลักฐานที่พบ
+    #As in the feather on a bird
+    feather: ขนนก
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: ตัวสิ่งมีชีวิต
+    #Fecal matter, not regurgitated matter
+    scat: มูลสัตว์
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: ร่องรอยตามทาง
+    #Endoskeletal remains, like a deer bone
+    bone: กระดูก
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: คราบ
+  controlled_term_definitions:
+    feather: ขนที่หลุดออกจากตัวนก
+    organism: ตัวสิ่งมีชีวิตทั้งหมดหรือบางส่วน
+    molt: ผิวหนังหรือเปลือกนอกที่ลอกทิ้งไว้
+  coordinate_systems: ระบบพิกัด
+  coordinates: พิกัด
+  copy: คัดลอก
+  copyright:
+    some_rights_reserved: สงวนลิขสิทธิ์บางประการ
+    no_rights_reserved: ไม่สงวนลิขสิทธิ์
+    anonymous: ไม่ระบุชื่อ
+    public_domain: โดเมนสาธารณะ
+    copyright: ลิขสิทธิ์
+    no_copyright: ไม่มีลิขสิทธิ์
+  create: สร้าง
+  create_a_guide: สร้างคู่มือ
+  create_a_new_place: สร้างสถานที่ใหม่
+  create_a_new_taxon: สร้างหน่วยอนุกรมวิธานใหม่
+  create_an_account: สร้างบัญชีใหม่
+  curator: ผู้ดูแล
+  curators: ผู้ดูแล
+  date_: วันที่
+  date_added: วันที่เพิ่ม
+  date_created: วันที่สร้าง
+  date_format:
+    date_long:
+      january: มกราคม %{day} %{year}
+      february: กุมภาพันธ์ %{day} %{year}
+      march: มีนาคม %{day} %{year}
+      april: เมษายน %{day} %{year}
+      may: พฤษภาคม %{day} %{year}
+      june: มิถุนายน %{day} %{year}
+      july: กรกฎาคม %{day} %{year}
+      august: สิงหาคม %{day} %{year}
+      september: กันยายน %{day} %{year}
+      october: ตุลาคม %{day} %{year}
+      november: พฤศจิกายน %{day} %{year}
+      december: ธันวาคม %{day} %{year}
+    month:
+      january: มกราคม
+      february: กุมภาพันธ์
+      march: มีนาคม
+      april: เมษายน
+      may: พฤษภาคม
+      june: มิถุนายน
+      july: กรกฎาคม
+      august: สิงหาคม
+      september: กันยายน
+      october: ตุลาคม
+      november: พฤศจิกายน
+      december: ธันวาคม
+  date_is_accurate: วันที่ถูกต้อง
+  date_joined: วันที่เข้าร่วม
+  date_obscured_notice: ปิดบังวันที่เพื่อรักษาความเป็นส่วนตัวของผู้สำรวจหรือสิ่งมีชีวิต
+  date_observed: วันที่สำรวจ
+  date_observed_: วันที่สำรวจ
+  date_observed_on: สำรวจในวันที่
+  date_picker:
+    currentText: วันนี้
+  date_range: ช่วงวันที่
+  date_time: วันที่/เวลา
+  date_updated: วันที่อัปเดต
+  day: วัน
+  decrease_brightness: ลดความสว่าง
+  #Default option
+  default: ค่าเริ่มต้น
+  #Default option
+  default_: ค่าเริ่มต้น
+  default_invite_comment: "ภาพนี้อย่างแจ่ม! คุณน่าจะเอาไปโพสต์ที่ %{site_name}: {{INVITE_LINK}}"
+  definitions: คำนิยาม
+  delete: ลบ
+  delete_all: ลบทั้งหมด
+  delete_conversation: ลบการสนทนา
+  #Button to delete the cover (or banner) image for a project
+  delete_cover?: ลบภาพหน้าปก?
+  delete_icon?: ลบไอคอน?
+  delete_photo: ลบรูป
+  delete_project: ลบโครงการนี้
+  delete_user: ลบผู้ใช้
+  delete_your_account: ลบบัญชีของคุณ
+  deleted_synonyms: ชื่อพ้องที่ลบไป
+  deleted_user: ผู้ใช้ที่ถูกลบ
+  deleted_vote: โหวตที่ถูกลบ
+  deleting: กำลังลบ...
+  deleting_verb: กำลังลบ
+  deny: ปฏิเสธ
+  descending: มากไปน้อย
+  description_slash_tags: คำอธิบาย / แท็ก
+  desription: คำอธิบาย
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: บริจาค
+  duplicate_verb: คัดลอก
+  edit: แก้ไข
+  edit_taxa: แก้ไขหน่วยอนุกรมวิธาน
+  edit_taxon: แก้ไขหน่วยอนุกรมวิธาน
+  edit_taxon_framework: แก้ไขโครงร่างของหน่วยอนุกรมวิธาน
+  establishment:
+    endemic: ประจำถิ่นเดียว
+    introduced: ถูกนำเข้ามา
+    invasive: รุกราน
+    managed: ถูกควบคุม
+    native: พื้นเมือง
+    naturalised: ปรับตัวเข้ากับท้องถิ่น
+  extinct: สูญพันธุ์
+  extinct_in_the_wild: สูญพันธุ์จากธรรมชาติ
+  Family: วงศ์
+  favorite_taxa: หน่วยอนุกรมวิธานที่ชอบ
+  favorites: "สิ่งที่ชอบ"
+  find_observations: ค้นหาการสำรวจ
+  find_photos: ค้นหาภาพ
+  find_places: ค้นหาสถานที่
+  find_some_people_to_follow: "ค้นหาผู้คนที่จะติดตาม"
+  find_species: ค้นหาชนิด
+  find_suitable_observations: ค้นหาการสำรวจที่เหมาะสม
+  find_unsuitable_observations: ค้นหาการสำรวจที่ไม่เหมาะสม
+  find_your_current_location: ค้นหาตำแหน่งปัจจุบันของคุณ
+  finished: เสร็จสิ้น
+  #Verb form, as in "Flag this item"
+  flag: รายงาน
+  flag_as_inappropriate: รายงานว่าไม่เหมาะสม
+  flag_as_spammer: รายงานว่าเป็นสแปม
+  flag_as_non_spammer: รายงานว่าไม่เป็นสแปม
+  #Label for the date/time when a flag was created
+  flag_created: รายงานที่สร้าง
+  flag_it!: รายงานเลย!
+  flag_this_photo: รายงานภาพนี้
+  flag_this_place: รายงานสถานที่นี้
+  flag_this_sound: รายงานเสียงนี้
+  flagged: ถูกรายงาน
+  flagged_: ถูกรายงาน
+  flagged_taxon: หน่วยอนุกรมวิธานที่ถูกรายงาน
+  flagger: ผู้รายงาน
+  flags: รายงาน
+  flags_with_count: รายงาน (%{count})
+  fungi:
+    other: เห็ดรา
+  Genus: สกุล
+  geoprivacy: ความเป็นส่วนตัวของพิกัด
+  geoprivacy_is_obscured: พิกัดถูกปิดบังไว้
+  geoprivacy_is_obscured_desc: ผู้สำรวจเลือกปิดบังพิกัดเอาไว้
+  has_sound: มีเสียง
+  has_sounds: มีเสียง
+  header_your_observations: การสำรวจของฉัน
+  header_your_calendar: ปฏิทินของฉัน
+  header_your_favorites: สิ่งที่คุณชอบ
+  header_your_lists: รายการของคุณ
+  join: เข้าร่วม
+  #Terminal nodes in a taxonomic tree
+  leaves: ใบ
+  longitude: ลองจิจูด
+  longitude_slash_x_coord_slash_easting: ลองจิจูด / แกน x / ตะวันออก
+  longitude_value: "ลองจิจูด: %{longitude}"
+  look_up_name: "ค้นหาชื่อ"
+  observation_date: วันที่
+  observations_by: การสำรวจโดย
+  observations_by_user: "การสำรวจโดย %{user}"
+  observations_deleted: ลบการสำรวจแล้ว
   these_observations_have_not_been_uploaded_yet: |
     การสังเกตเหล่านี้ยังไม่ถูกอัปโหลด
   upload: อัปโหลด

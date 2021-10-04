@@ -2636,7 +2636,9 @@ tr:
   observation_brief_something_on_day_at_time: "%{day} tarihi %{time} zamanından bir şeyler"
   observation_brief_something_on_day_at_time_by_user: "%{user} kullanıcısı tarafından %{time} zamanında ve %{day} gününde bir şeyler"
   observation_brief_something_on_day_by_user: "%{day} gününde %{user} kullanıcısından bir şeyler"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "%{month} ayından bir şeyler"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "%{user} tarafından %{month} ayından bir şeyler"
   observation_brief_something_by_user: "%{user} kullanıcısından bir şeyler"
   observation_brief_something_from_place: "%{place} yerinden bir şeyler"
@@ -2649,6 +2651,7 @@ tr:
   observation_brief_taxon_on_day_at_time: "%{day} gününde %{time} zamanında %{taxon}"
   observation_brief_taxon_on_day_at_time_by_user: "%{user} tarafından %{time} zamanında %{day} gününde %{taxon}"
   observation_brief_taxon_on_day_by_user: "%{day} gününde %{user} tarafından %{taxon}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{month} ayında %{taxon}"
   observation_brief_taxon_by_user: "%{user} tarafından %{taxon}"
   observation_brief_taxon_from_place: "%{place} yerinden %{taxon}"
@@ -2750,6 +2753,7 @@ tr:
     absent: Bu alanda ortaya çıkmaz
     common: Sık sık ortaya çıkar
     doubtful: Ortaya çıktığı varsayılıyor ancak kanıtlar şüpheli
+    irregular: Göçenlerde olmak üzere öngörülemeyen varlık; bazı yıllarda yaygın olabilir ve diğerlerinde olmayabilir
     present: Bu alanda ortaya çıkar
     uncommon: Düzenli olarak ortaya çıkar ancak az sayılarda; uygun yaşam alanlarının dikkatlice aranmasını gerektirir
   occurrence_status_establishment_means: oluşum durumu, kuruluş varlığı
@@ -5538,6 +5542,11 @@ tr:
         BOLD DNA barkod eşleştirme işlevini etkinleştirmek için alan adınızın, 
         bu alanın hedeflediği gene karşılık gelen "COI", "COX1", "ITS" veya "matK" 
         kelimelerini içerdiğinden emin olun.
+      merge:
+        warning_html: |
+          Lütfen diğer kişilerin verilerine saygılı olun ve <strong>birleştirmeden önce bir gözlem
+          alanının yaratıcısıyla konuşun</strong>. Bu araç birleştirilen gözlem alanını imha edecek ve
+          tüm gözlemleri onu kullanan kişiye taşıyacak. <strong> Bu işlem geri alınamaz </strong>, bu yüzden dikkatli olun.
     emailer:
       bulk_import_success:
         success_message: |
@@ -7357,8 +7366,6 @@ tr:
           attributes:
             base:
               user_already_blocked: Bu kullanıcıyı zaten engellediniz
-              user_cannot_be_staff: |
-                Yetkiliyi engelleyemezsiniz. iNat yetkilisinin iNat üzerindeki herkesle iletişim kurabilmesi, iNat üzerindeki tüm verilere erişebilmesi ve anlaşmazlıkların nihai aracıları olması gerekir; bu nedenle, engelleme onların sizinle iletişim kurmasını engellemez. Bir yetkiliyle sorununuz varsa, lütfen bunu iNat yardımcı yöneticilerine birine bildirin ya da yardımcı yöneticilerden biriyle sorun yaşarsanız, Kaliforniya Bilimler Akademisi'ndeki Biyoçeşitlilik Sürdürülebilirlik Bilimi Enstitüsündeki Bilim Şefi ile iletişime geçebilirsiniz.
         user_parent:
           attributes:
             email:

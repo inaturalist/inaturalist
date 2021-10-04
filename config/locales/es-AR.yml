@@ -153,8 +153,15 @@ es-AR:
   about_muting: Acerca de silenciar
   #Header for a section describing taxon names
   about_names: Acerca de los nombres
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Acerca de %{place}"
   about_places: Acerca de los Lugares
+  about_taxon_ranges: Acerca de los cambios taxonómicos
+  about_taxon_ranges_desc: |
+    Los rangos de taxón transmiten la distribución global de un taxón. Los rangos de taxones por lo general son obtenidos de la Lista Roja UICN.
   about_the_cc_licenses: Acerca de las licencias de Creative Commons
+  about_the_network: Acerca de la Red iNaturalist
   about_these_licenses: Acerca de estas licencias
   about_this_bioblitz: Acerca de esta maratón naturalista
   about_this_map: Acerca de este mapa
@@ -199,6 +206,10 @@ es-AR:
   action: Acción
   actions: Acciones
   active: Activo
+  #Status of a complete set that is available for use
+  active_complete_set_status: Activo
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Activo
   active_users: Usuarios activos
   activity: Actividad
   activity_settings: Configuración de la actividad
@@ -295,6 +306,7 @@ es-AR:
   add_evidence_of_presence_organism_annotation: 'Añadir anotación "Evidencia de Presencia: organismo"'
   add_evidence_of_presence_feather_annotation: 'Añadir anotación "Evidencia de Presencia: plumas"'
   add_evidence_of_presence_scat_annotation: 'Añadir anotación "Evidencia de Presencia: excrementos"'
+  add_evidence_of_presence_track_annotation: 'Añadir anotación "Evidencia de Presencia: huellas"'
   add_evidence_of_presence_bone_annotation: 'Añadir anotación "Evidencia de Presencia: huesos"'
   add_evidence_of_presence_molt_annotation: 'Añadir anotación "Evidencia de Presencia: mudas"'
   #As in a Taxon Framework Relationship
@@ -349,6 +361,8 @@ es-AR:
   admin_s: Administrador(es)
   admin_only: Solamente administrador
   admin_tools: Herramientas administrativas
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Organizaciones afiliadas
   agree_: Aceptar
   agree?: '¿De acuerdo?'
   agree_with_current_taxon: De acuerdo con el taxón actual
@@ -469,6 +483,7 @@ es-AR:
   alphabetical_order: Orden alfabético
   already_have_an_account_log_in_html: '¿Ya tienes una cuenta? <strong>Inicia sesión.</strong>'
   amphibians: anfibios
+  analyze_ids: Analizá IDs
   ancestor_taxon: Taxón Antepasado
   and: "y"
   and_other_taxa: "&amp; Otros taxones"
@@ -612,6 +627,7 @@ es-AR:
   assessment_x: "%{assessment} evaluación"
   assessments: evaluaciones
   associations: Asociaciones
+  atlased: Atlas
   atlas_for_taxon_html: Atlas para %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -861,6 +877,7 @@ es-AR:
   committed_by_user_on_date_html: Comprometido por %{user} el %{date}
   #Label for date the taxon change was committed
   committed_on: Guardado el %{date}
+  committed_taxon_changes_cannot_be_deleted: No se pueden eliminar los cambios en los taxones
   #Status message while a taxon change is being committed
   committing: Guardando...
   common_name: Nombre común
@@ -892,6 +909,20 @@ es-AR:
     <span class="comprehensive_notice" data-tip="%{tip}">Lista exhaustiva</span>
     de %{taxon}
   comprehensive_list: Lista completa
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Modelo de Visión Artificial
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Incluido
+  computer_vision_model_included_desc: |
+    El Modelo de Visión Artificial actual conoce este taxón, así que podría
+    ser incluido en sugerencias automáticas con la etiqueta "Visualmente Similar".
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Pendiente
+  computer_vision_model_pending_desc: |
+    El Modelo de Visión Artificial actual no conoce sobre este taxón, así que aunque
+    pueda ser incluido en sugerencias automatizadas con la etiqueta "Observado cerca",
+    no tendrá la etiqueta "Visualmente similar". Aunque los requisitos para la inclusión cambian con cada modelo, generalmente ésta se basa en el número de observaciones, así que para aumentar la probabilidad de que este taxón se incluya en el siguiente entrenamiento del modelo, agregá o identificá más observaciones de este taxón.
   concept_status: Concepto de la situación
   configure: Configurar
   configure_a_widget_to_show: Configura el widget para mostrar las observaciones de %{site_name} en tu sitio web o blog. También puedes incluir el estilo CSS en la <code>&lt;head&gt;</code> de tu código HTML. Siéntete libre de modificar el CSS.
@@ -925,6 +956,11 @@ es-AR:
       *tú* quieres ser considerado como dicha autoridad.
     place: Lugar en el cual el estatus está restringido.
     url: URL de una página que describa este estado.
+    geoprivacy: |
+      Geoprivacidad predeterminada para esta especie o grupo.
+    iucn: |
+      Código equivalente de la Lista Roja UICN equivalente. Esta no es la evaluación real de la UICN,
+      únicamente el código UICN que se ajusta mejor a la amenaza que supone la divulgación de coordenadas implícita por este estado. Esto anulará la geoprivacidad si es de "Preocupación menor" o inferior, así que si querés ocultar las observaciones de este taxón, marcá esto como "Cercano a la amenaza" o superior.
   conservation_status_geoprivacy_desc: |
     La geoprivacidad predeterminada se aplica a todas las observaciones de este taxón en este lugar
   contact_support: Contactar el servicio técnico
@@ -1093,6 +1129,11 @@ es-AR:
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: '¿Por qué quieres ser un curador?'
   #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Si querés editar la taxonomía de ArgentiNat, por favor proporcioná un ejemplo o dos
+    de cambios taxonómicos que te gustaría hacer, e incluí fuentes para tus cambios propuestos. Si aplica, por favor citá la autoridad taxonónica que corresponda <a
+    href="https://www.argentinat.org/pages/guia+para+curadores-ar#authorities">según como aparecen listadas en la Guía de Curadores</a>. Si no incluís ninguna fuente, tu aplicación no será considerada. Nota: tené en cuenta que modificar la taxonomía de ArgentiNat repercute en toda la red iNaturalist, por lo que no serán tomados en cuenta ejemplos locales.
+  #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Si querés editar nombres comunes, envíanos uno o dos ejemplos de cambios que te gustaría realizar
   #Prompt for information when applying to be a curator
@@ -1144,6 +1185,34 @@ es-AR:
   curator_application_what_curators_can_do_edit_wiki_html: |
     Crear y editar páginas wiki, como la de las <a href="/pages/help"
     target="_blank">Preguntas frecuentes de iNaturalist</a>.
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    Editar lugares supervisados por la comunidad y subir archivos KML mayores de 1 MB (pero
+    menores de 5 MB).
+  #Header
+  curator_application_what_curators_cannot_do: Qué no pueden hacer los y las curadores
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Afectar los Taxones comunitarios o la Calidad de los Datos de una observación más que cualquier otro usuario.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Solicitud para ser curador/a
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Sólo deberías solicitar ser curador/a si:
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+    Estás dispuesto/a y sos capaz de realizar tareas de supervisión regularmente. Si solamente querés añadir algunos taxones, por favor solicitá a los/as curadores/as existentes que
+    estos taxones agregando marcas a los taxones de nivel superior.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    Puedas dar el ejemplo de comportamiento correcto en la red iNaturalist y cumplir los Lineamientos de la Comunidad. Los poderes de curador conllevan la responsabilidad de ser un usuario ejemplar de iNaturalist.
   curators_changed_for_x_html: "Curadores cambiado para %{x}"
   curators: Curadores
   curators_can_remove_observations_from: Los curadores pueden quitar observaciones del proyecto y sus identificaciones son mostradas en ciertas vistas (como referencia). Además pueden ver las coordenadas oscurecidas o privadas del proyecto.
@@ -1154,6 +1223,8 @@ es-AR:
   custom_project_was_successfully_updated: El proyecto personalizado fue actualizado exitosamente.
   customize_location: Personaliza la ubicación
   darr_apply_darr: "&darr; Aplica &darr;"
+  daily_users: Usuarios Diarios
+  danger_zone: Zona de Peligro
   dashboard: Tablero
   data_deficient: Datos insuficientes
   data_quality: Calidad de datos
@@ -1162,6 +1233,7 @@ es-AR:
   datatype: Tipo de datos
   date_: Fecha
   date_added: Fecha añadida
+  date_authorized: Fecha de autorización
   date_created: Fecha de creación
   date_format:
     date_long:
@@ -1192,6 +1264,7 @@ es-AR:
       december: Diciembre
   date_is_accurate: La fecha es correcta
   date_joined: Fecha de Registro
+  date_obscured_notice: Fecha oculta para proteger la privacidad personal o del organismo
   date_observed: Fecha de observación
   date_observed_: Fecha de observación
   date_observed_on: fecha que se observó
@@ -1216,6 +1289,8 @@ es-AR:
   decrease_brightness: Reducir brillo
   #Default option
   default: Predeterminada
+  #Default option
+  default_: Predeterminada
   default_invite_comment: "¡Que gran foto! Debe enviarla a %{site_name}: {{INVITE_LINK}}"
   default_observation_license: 'Licencia predeterminada para tus observaciones:'
   default_photo_license: 'Licencia para sus fotos:'
@@ -1260,6 +1335,7 @@ es-AR:
     failure:
       user:
         suspended: Tu cuenta ha sido suspendida
+  devise_unlock_instructions_unlock: Desbloquear tu cuenta
   discoveries: Descubrimientos
   did_you_mean: '¿Te refieres a'
   did_you_photos_flickr?: '¿Has colocado fotos en Flickr?'
@@ -1268,7 +1344,10 @@ es-AR:
   disable_comments_desc: Evitar que la gente agregue nuevos comentarios
   disagree_: No aceptar
   disconnect_provider: "Desconectarse de %{provider}"
+  display: Mostrar
   display_link_to_checklist: Mostrar enlace a la lista del proyecto desde la página del proyecto
+  display_monthly_supporter_badge: Mostrar el estado de Patrocinador mensual en mi perfil
+  display_name_description: Este es el nombre que se mostrará en tu perfil, junto a la atribución de derechos de autor
   distance_traveled_value: "Distancia recorrida: %{distance}m"
   distance_traveled: "Distancia recorrida (m)"
   documentation_for_developers_html: Documentación para <a href="/pages/developers">desarrolladores</a>
@@ -1311,6 +1390,7 @@ es-AR:
   duplicate_verb: Duplicado
   duration_value: "Duración: %{duration} minutos"
   each_place_displays_all_species_inat_knows: "Cada página de lugar muestra todas las especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia, estado de conservación y quién observó esa especie por primera vez en ese lugar en %{site_name}. Puede filtrar la especie por grupo taxonómico, color, estado de conservación o búsqueda sencilla."
+  earliest_added: Añadidos primero
   edit: Edita
   edit_a_batch_of_observations: Editá un grupo de observaciones
   edit_account_settings_and_profile: "Edita la cuenta y perfil"
@@ -1412,6 +1492,7 @@ es-AR:
   exclusion_filters: Filtros para excluir
   existing_flags: Advertencias existentes
   exit_full_screen: "Sal de la pantalla completa"
+  examples_of_data_use_by_network_members: Ejemplos de usos de datos por miembros de la Red
   examples_of_ranking_organizations: Ejemplos de organizaciones clasificatorias
   explore: Explorá
   export: Exporta
@@ -1429,6 +1510,11 @@ es-AR:
   facebook_access_token_expired: "El acceso de muestra ha expirado. El %{user} requiere volver a enlazar su cuenta de Facebook."
   facebook_needs_the_owner_of_that_photo_to: Facebook necesita la confirmación del propietario de esa foto para poder realizar la conexión a %{site_name_short}.
   facebook_options: Opciones de Facebook
+  facebook_photo_import_disabled_notice: |
+    En noviembre de 2020 Facebook nos obligó a verificar que realmente necesitábamos
+    acceso a fotos, y no pudimos completar el proceso debido a
+    problemas con el sistema de verificación de Facebook. Como resultado, ya no podemos
+    contar con la importación de fotos desde Facebook.
   failed_to_find_your_location: No ha sido posible encontrar tu ubicación.
   failed_to_repair_photo: "No se pudo reparar la foto: %{errors}"
   failed_to_save_record: "No se pudo guardar el registro. Inténtalo de nuevo más tarde."
@@ -1741,9 +1827,11 @@ es-AR:
   improving: Mejorando
   in_n: "en %{n}"
   in_place_x: en %{place}
+  inaturalist_network: Red iNaturalist
   inaturalist_network_affiliation: Afiliación de Red iNaturalist
   #Label for messages you've received
   inbox: Buzón de entrada
+  include_suggestions_not_seen_nearby: Incluir sugerencias que no hayan sido vistas cerca de acá
   including: incluyendo
   increase_brightness: Aumentar brillo
   in_progress: en curso
@@ -1856,22 +1944,28 @@ es-AR:
     scientific_names: Nombres científicos
     afrikaans: Afrikáans
     albanian: Albanés
+    arabic: Árabe
+    armenian: Armenio
     belarusian: Bielorruso
     bengali: Bengalí
+    bulgarian: Búlgaro
     catalan: Catalán
     cebuano: Cebuano
     chinese_simplified: Chino (simplificado)
     chinese_traditional: Chino (tradicional)
     creole_french: Criollo (Francés)
     creole_portuguese: Criollo (Portugués)
+    croatian: Croata
     czech: Checo
     danish: Danés
     davawenyo: Davaoeño
     dutch: Holandés
     english: Inglés
     estonian: Estonio
+    faroese: Faroés
     finnish: Finés
     french: Francés
+    galician: Gallego
     gela: Gela
     german: Alemán
     greek: Griego
@@ -1880,20 +1974,29 @@ es-AR:
     hiligaynon: Hiligainón
     icelandic: Islandés
     ilokano: Ilocano
+    indonesian: Indonesio
     italian: Italiano
     japanese: Japonés
     korean: Coreano
     lithuanian: Lituano
     luxembourgish: Luxemburgués
+    malay: Malayo
+    malayalam: Malabar
     maltese: Maltés
     maori: Maorí
+    maya: Maya
     misima_paneati: Misima-paneati
+    mongolian: Mongol
+    nahuatl: Nahuatl
     norwegian: Noruego
     occitan: Occitano
+    ojibwe: Ojibwe
+    palauan: Palauano
     pangasinan: Pangasinán
     portuguese: Portugués
     romanian: Rumano
     russian: Ruso
+    setswana: Setsuana
     spanish: Español
     swedish: Sueco
     tagalog: Tagalo
@@ -1901,6 +2004,7 @@ es-AR:
     tokelauan: Tokelauano
     turkish: Turco
     waray_waray: Samareño
+    visayan: Bisayo
   less: Menos
   licensed_site_photos: "Fotos con licencia de %{site_name}"
   license: Licencia
@@ -2144,6 +2248,7 @@ es-AR:
     <a href="%{url}">Patrocinador mensual</a> desde %{date}
   months: Meses
   more: Más
+  more_about_sharing: Más sobre compartir
   more_fields: Más campos
   more_filters: Más filtros
   more_from_x: Más de %{x}
@@ -2215,6 +2320,8 @@ es-AR:
   needs_id_: '¡Necesita identificación!'
   needs_id_expandable_html: "<span class='full'>Necesita </span>identificador"
   needs_to_be_identified: Necesita identificarse
+  #Column header in a table listing iNaturalist Network members
+  network_member: Miembro de la red
   new: Nuevos
   new_and_noteworthy: Nuevo y notable
   new_announcement: Nuevo anuncio
@@ -2379,7 +2486,9 @@ es-AR:
   #name. @vow_or_con will work here and use the first letter of the name used
   observation_attribution: Observación hecha por %{user}
   observation_brief_something_on_day: "Algo el %{day}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Algo en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Algo en %{month} por %{user}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
@@ -2388,10 +2497,14 @@ es-AR:
   observation_brief_something_from_place_on_day_by_user: "Algo desde %{place} el %{day} de %{user}"
   observation_brief_something_from_place_on_day_at_time: "Algo desde %{place} el %{day} a las %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Algo desde %{place} el %{day} a las %{time} de %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Algo de %{place} en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Algo de %{place} en %{month} por %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} en %{month} por %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
@@ -2400,7 +2513,9 @@ es-AR:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} desde %{place} el%{day} de %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} desde %{place} el%{day} a las %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} desde %{place} el %{day} a las %{time} de %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} de %{place} en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} de %{place} en %{month} por %{user}"
   observations_by_category: "Observaciones por categoría"
   observations_by_app: Observaciones por App
@@ -2491,6 +2606,7 @@ es-AR:
     absent: No ocurre en el área
     common: Ocurre frecuentemente
     doubtful: Se presume que sucedió pero hay dudas sobre la evidencia.
+    irregular: La presencia imprevisible, incluyendo los vagabundos; puede ser común en algunos años y ausente en otros
     present: Ocurre en el área
     uncommon: Ocurre regularmente, pero en números pequeños; hay que buscar el hábitat apropiado con cuidado
   occurrence_status_establishment_means: estado de ocurrencia, medio de establecimiento
@@ -3408,7 +3524,7 @@ es-AR:
   seasonality: Estacionalidad
   second_person_possessive_singular: "Tu %{noun}"
   see_something_wrong_with_taxon: '¿Vé algo malo con este taxón? Infórmelo a los curadores.'
-  seen_nearby: Visto en la cercanías
+  seen_nearby: Observado cerca
   seen_one: '¿Has visto uno?'
   select: Selecciona
   select_all: Selecciona todo
@@ -3479,6 +3595,61 @@ es-AR:
   site_staff: "%{site_name} Personal"
   site_stats: Estadísticas del sitio
   site_taxon_page: "%{site_name} página del taxón"
+  sites_affiliation_about_desc_html: |
+    Si tu organización está interesada en unirse a la Red iNaturalist, podés encontrar más detalles %{start_tag_join}acá%{end_tag_join}.
+  sites_affiliation_examples_canada_cdc_html: |
+    %{start_tag_inat_canada}iNaturalist Canada%{end_tag_inat_canada} permite que los datos de iNaturalist sean incorporados a sistemas de seguridad provinciales gestionados por Centros de Datos de Conservación (CDC). Estos sistemas se utilizan al realizarse las evaluaciones (dos veces al año) para determinar el estado de amenaza de las especies, así como para determinar el hábitat crítico de especies amenazadas y en peligro de extinción. Como resultado, también ha sido posible localizar y mitigar los puntos conflictivos de mortalidad en rutas para las especies en riesgo y eventualmente proteger las Áreas Clave de Biodiversidad, así como reconocer la presencia de especies que no habían sido reportadas durante décadas.
+  sites_affiliation_examples_ecuardor_bndb_html: |
+    %{start_tag_ecuador}iNaturalist Ecuador%{end_tag_ecuador} alimenta la Base Nacional de Datos de Biodiversidad (BNDB), un gran repositorio de datos de registros científicos y ciencia ciudadana. El propósito es integrar el conocimiento y los datos que ayudan a fortalecer el conocimiento ambiental de la flora y fauna de Ecuador.
+  sites_affiliation_examples_mexico_nbis_html: |
+    Las observaciones de %{start_tag_naturalista}Naturalista%{end_tag_naturalista}
+    de México se alimentan del Sistema Nacional de Información de la Biodiversidad
+    (en la Comisión Nacional para el Conocimiento y Uso de la Biodiversidad, CONABIO) junto con los registros de AverAves (eBird). Las personas pueden encontrar registros científicos y de los ciudadanos en %{start_tag_enciclovida}Enciclovida%{end_tag_enciclovida}.
+  sites_affiliation_examples_portugal_atlas_html: |
+    En Portugal, el miembro de la red iNaturalist %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} compartió datos para el Atlas portugués de aves migratorias o el Atlas de mamíferos, así como para varios artículos de investigación científica portugueses.
+  sites_affiliation_more_automatically_hidden_coordinates: |
+    Coordenadas ocultas automáticamente (ocultas o privadas debido a la "geoprivacidad del taxón")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist oculta automáticamente las coordenadas de algunas especies para protegerlas de la perturbación, recolección o caza furtiva. Si las coordenadas de observación sólo se ocultaron automáticamente para proteger las especies, iNaturalist comparte las verdaderas coordenadas de todas las observaciones de sus países respectivos con Miembros de la Red.
+  sites_affiliation_more_email_addresses: |
+    Las direcciones de correo electrónico se comparten con los administradores locales de los miembros de la red, únicamente con el propósito de facilitar la comunicación relacionada con iNaturalist, en el caso de que sea necesario.
+  sites_affiliation_more_twice_per_year: |
+    Dos veces al año, iNaturalist comparte las direcciones de correo electrónico de cuentas afiliadas y algunas coordenadas ocultas (por ejemplo, coordenadas públicas oscurecidas o privadas) con los miembros de la Red, para facilitar el uso de los datos de iNaturalist para la investigación, conservación y gestión en sus respectivos países.
+  sites_affiliation_more_user_hidden_coordinates: |
+    Coordenadas ocultas por el usuario (ocultas o privadas debido a la configuración de "geoprivacidad")
+  sites_affiliation_more_user_hidden_coordinates_desc: |
+    Las observaciones con coordenadas ocultas por una preferencia del usuario se comparten de una manera mucho más limitada y específica. Al afiliarte a un sitio de la Red, iNaturalist compartirá con los administradores de ese sitio las coordenadas precisas de las observaciones con geoprivacidad que hayas establecido como ocultas o privadas, junto a aquellas que están ocultas debido a la geoprivacidad del taxón. Esto permite que tus observaciones se vuelvan más valiosas para los esfuerzos de conservación locales.
+  sites_affiliation_overview_current_member_list_html: |
+    Podés ver la lista actual de miembros de la
+    %{start_tag_network}Red iNaturalist%{end_tag_network}.
+  sites_affiliation_overview_in_order_to_advance: |
+    Para colaborar con la investigación y la conservación en sus respectivas áreas, los miembros de la Red iNaturalist pueden compartir datos de la plataforma. Tienen la responsabilidad de evaluar la validez y la legitimidad de los pedidos de datos y sus potenciales resultados; de asentar por escrito esa responsabilidad, para asegurar la seguridad de esos datos y no exponerlos públicamente de ninguna manera, o que sean usados más allá de la intención del propósito original; de documentar todas las instancias de compartimiento, junto con los resultados asociados o usos esperados; y reportar anualmente a iNaturalist.
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    La %{start_tag_network}Red iNaturalist%{end_tag_network} es un conjunto de sitios web localizados en la %{start_tag_global}comunidad global
+    iNaturalist%{end_tag_global}.
+  sites_affiliation_overview_when_you_affiliate: |
+    Al afiliarte a un sitio miembro de la Red iNaturalist, tu dirección de correo electrónico y las ubicaciones reales de tus coordenadas ocultas y privadas se comparten con ese sitio miembro de la red. Esto permite que tus observaciones se vuelvan más valiosas para los esfuerzos de conservación locales. Si vivís o visitás con frecuencia un área que es miembro de la red, te recomendamos elegirla como tu afiliación para facilitar el intercambio de datos.
+  sites_affiliation_overview_you_can_continue_html: |
+    Podés seguir iniciando sesión a través de iNaturalist.org o a través del sitio web
+    específico para la red. No importa tu afiliación, todos tus datos estarán alojados en el mismo lugar y vas a seguir interactuando con la comunidad internacional iNaturalist más amplia. Cada cuenta de iNaturalist puede estar afiliada a un solo miembro de la red. Podés revisar o cambiar tu afiliación en la configuración de tu cuenta
+    %{start_tag_settings}%{end_tag_settings}.
+  sites_affiliation_title: Más información sobre afiliación de red
+  sites_network_cas_and_nat_geo_html: |
+    La %{start_tag_cas}Academia de Ciencias de California%{end_tag_cas} y la
+    %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} tienen
+    acuerdos formales con organizaciones en cada una de estas áreas geográficas para apoyar el uso de la plataforma iNaturalist. <strong>Si tu organización está
+    interesada en unirse a la Red iNaturalist, podés encontrar más detalles
+    %{start_tag_join}acá%{end_tag_join}.</strong>
+  sites_network_consists_of: "La Red iNaturalist está formada por varias organizaciones:"
+  sites_network_inaturalist_network_collection: |
+    La Red iNaturalist es una colección de sitios web localizados que están completamente
+    conectados a la comunidad iNaturalist global. Los sitios de la Red son impulsados
+    por instituciones locales que promueven el uso local y facilitan el uso de datos
+    de iNaturalist para beneficiar la biodiversidad local. Tienen acceso a las
+    coordenadas reales dentro de sus áreas geográficas, que se ocultan automáticamente de
+    vista pública con el fin de proteger mejor las especies amenazadas.
+  sites_network_your_username: |
+    Si elegís afiliarte a un sitio de red, las instituciones locales que apoyan cada sitio también tendrán acceso a tu dirección de correo electrónico (sólo para comunicarse con vos sobre las actividades del sitio) y el acceso a las coordenadas reales de las observaciones que hayas seleccionado para ocultarla al público o hacerla privada.
   some_agree: Algunos la apoyan
   some_observations_failed_to_be_added: Algunas observaciones no pudieron añadirse a los proyectos
   some_observations_failed_to_save: Algunas observaciones no se guardaron
@@ -4831,6 +5002,10 @@ es-AR:
         </ol>
       dna_help: |
         Para habilitar la funcionalidad de coincidencia con el código de barras BOLD ADN, asegúrate de que tu nombre de campo incluya las palabras "COI", "COX1", "SUS", o "matK," correspondiente al gen que este campo busca.
+      merge:
+        warning_html: |
+          Por favor se respetuoso con los datos de otras personas y <strong>habla con el creador de un campo de observación, antes de una fusión</strong>. Esta herramienta destruirá el
+          campo de observación que se va a combinar y moverá todas las observaciones al campo mantenido. <strong>Este proceso no se puede deshacer</strong>, así que ten cuidado..
     emailer:
       bulk_import_success:
         success_message: |
