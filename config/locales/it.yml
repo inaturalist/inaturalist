@@ -5876,8 +5876,6 @@ it:
       edit:
         complex_boundary_note_html: |
           Questo perimetro è un po' troppo complesso per essere editato sul web. Puoi <a href="%{url}">scaricare il KML</a>, editarlo con applicazioni GIS a tua scelta, e caricare direttamente il tuo KML modificato.
-        admin_level_desc: |
-          Deve essere impostato solo per confini politici. Con riferimento agli USA, 0 = nazione, 1 = regione, 2 = provincia, 3 = comune
       new:
         check_list_note: "Ricorda: le checklist saranno automaticamente disabilitate per luoghi molto estesi."
         coordinates_desc: Devi specificare le coordinate se non tracci i confini o non carichi un file KML.
