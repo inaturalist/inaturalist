@@ -115,7 +115,7 @@ $.fn.genericAutocomplete = function ( acOptions ) {
     if ( options.extraClass ) {
       li.addClass( options.extraClass );
     }
-    li.find( "a[rel*='noopener']" ).click( e => {
+    li.find( "a[rel*='noopener']" ).click( function ( e ) {
       e.stopPropagation( );
     } );
     return li;

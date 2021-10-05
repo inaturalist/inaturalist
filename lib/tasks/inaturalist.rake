@@ -582,25 +582,6 @@ namespace :inaturalist do
     ( all_keys - all_keys_in_use ).sort.each do |key|
       puts key
     end
-
-  end
-
-  desc "Fetch missing image dimensions"
-  task :fetch_image_dimensions => :environment do
-    scope = LocalPhoto.where("original_url IS NOT NULL").
-      where("metadata IS NULL OR metadata !~ 'dimensions: *\n *:orig'")
-    batch_num = 0
-    batch_size = 100
-    total_batches = (scope.count / batch_size.to_f).ceil
-    scope.find_in_batches(batch_size: batch_size) do |batch|
-      batch_num += 1
-      puts "batch #{ batch_num } of #{ total_batches }"
-      batch.each do |photo|
-        photo.metadata ||= { }
-        photo.metadata[:dimensions] = photo.extrapolate_dimensions_from_original
-        photo.update_column(:metadata, photo.metadata)
-      end
-    end
   end
 
   desc "Remove expired sessions"

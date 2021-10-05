@@ -2317,6 +2317,7 @@ en:
     Please remember to <a href="%{url}">change your password</a> for the new version.
   let_us_walk_you_through: Let us walk you through the main features of this site.
   lexicon: Lexicon
+  lexicon_cannot_contain_words: "cannot contain the following words: %{words}"
   lexicons:
     scientific_names: Scientific Names
     afrikaans: Afrikaans
@@ -3010,7 +3011,9 @@ en:
   observation_brief_something_on_day_at_time: "Something on %{day} at %{time}"
   observation_brief_something_on_day_at_time_by_user: "Something on %{day} at %{time} by %{user}"
   observation_brief_something_on_day_by_user: "Something on %{day} by %{user}"
+  # %{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Something in %{month}"
+  # %{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Something in %{month} by %{user}"
   observation_brief_something_by_user: "Something by %{user}"
   observation_brief_something_from_place: "Something from %{place}"
@@ -3019,13 +3022,17 @@ en:
   observation_brief_something_from_place_on_day_by_user: "Something from %{place} on %{day} by %{user}"
   observation_brief_something_from_place_on_day_at_time: "Something from %{place} on %{day} at %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Something from %{place} on %{day} at %{time} by %{user}"
+  # %{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Something from %{place} in %{month}"
+  # %{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Something from %{place} in %{month} by %{user}"
   observation_brief_taxon_on_day: "%{taxon} on %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} on %{day} at %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} on %{day} at %{time} by %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} on %{day} by %{user}"
+  # %{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} in %{month}"
+  # %{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} in %{month} by %{user}"
   observation_brief_taxon_by_user: "%{taxon} by %{user}"
   observation_brief_taxon_from_place: "%{taxon} from %{place}"
@@ -3034,7 +3041,9 @@ en:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} from %{place} on %{day} by %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} from %{place} on %{day} at %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} from %{place} on %{day} at %{time} by %{user}"
+  # %{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} from %{place} in %{month}"
+  # %{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} from %{place} in %{month} by %{user}"
   observations_by_category: "Observations By category"
   observations_by_app: Observations By App
@@ -8529,7 +8538,7 @@ en:
                 problem with a member of staff, please report it to one of the
                 iNat co-directors, or, if you have a problem with one of the
                 co-directors, you can contact the Chief of Science at the
-                Institute for Biodiviersity and Sustainability Science at the
+                Institute for Biodiversity and Sustainability Science at the
                 California Academy of Sciences.
         user_parent:
           attributes:

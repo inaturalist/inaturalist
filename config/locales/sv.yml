@@ -2156,6 +2156,7 @@ sv:
     Kom ihåg att <a href="%{url}">ändra ditt lösenord</a> för den nya versionen.
   let_us_walk_you_through: Låt oss gå igenom de viktigaste funktionerna på denna webbplats.
   lexicon: Lexikon
+  lexicon_cannot_contain_words: "kan inte innehålla följande ord: %{words}"
   lexicons:
     scientific_names: Vetenskapliga namn
     afrikaans: Afrikaans
@@ -2831,7 +2832,9 @@ sv:
   observation_brief_something_on_day_at_time: "Något på %{day} kl. %{time}"
   observation_brief_something_on_day_at_time_by_user: "Något på %{day} kl. %{time} av %{user}"
   observation_brief_something_on_day_by_user: "Något på %{day} av %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Något i %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Något i %{month} av %{user}"
   observation_brief_something_by_user: "Något av %{user}"
   observation_brief_something_from_place: "Något från %{place}"
@@ -2840,13 +2843,17 @@ sv:
   observation_brief_something_from_place_on_day_by_user: "Något från %{place} på %{day} av %{user}"
   observation_brief_something_from_place_on_day_at_time: "Något från %{place} på %{day} kl. %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Något från %{place} på %{day} kl. %{time} av %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Något från %{place} i %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Något från %{place} i %{month} av %{user}"
   observation_brief_taxon_on_day: "%{taxon} på %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} på %{day} kl. %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} den %{day} kl. %{time} av %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} den %{day} av %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} i %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} i %{month} av %{user}"
   observation_brief_taxon_by_user: "%{taxon} av %{user}"
   observation_brief_taxon_from_place: "%{taxon} från %{place}"
@@ -2855,7 +2862,9 @@ sv:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} från %{place} på %{day} av %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} från %{place} på %{day} kl. %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} från %{place} på %{day} kl. %{time} av %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} från %{place} i %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} från %{place} i %{month} av %{user}"
   observations_by_category: "Fynd per kategori"
   observations_by_app: Fynd efter app
@@ -7444,7 +7453,7 @@ sv:
             base:
               user_already_blocked: Du har redan blockerat den användaren
               user_cannot_be_staff: |
-                Du kan inte blockera personal. iNat-personal måste kunna kommunicera med alla på iNat, ha tillgång till all data på iNat, och är de slutgiltiga medlarna av tvister, så blockering kommer inte att hindra dem från att kommunicera med dig. Om du har ett problem med en anställd kan du rapportera det till en av iNats biträdande chefer, eller, om du har problem med en av de biträdande cheferna, kan du kontakta forskningschefen på Institute for Biodiversity and Sustainability Science vid California Academy of Sciences.
+                Du kan inte blockera personal. iNat-personal måste kunna kommunicera med alla på iNat, ha tillgång till all data på iNat, och är de slutgiltiga medlarna i tvister, så blockering kommer inte att hindra dem från att kommunicera med dig. Om du har ett problem med någon i personalen kan du rapportera det till en av iNats biträdande chefer, eller, om du har problem med en av de biträdande cheferna, kontakta forskningschefen på Institute for Biodiversity and Sustainability Science vid California Academy of Sciences.
         user_parent:
           attributes:
             email:

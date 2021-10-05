@@ -55,6 +55,9 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Enabled: false
 
+Naming/AccessorMethodName:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
@@ -65,8 +68,15 @@ Style/PercentLiteralDelimiters:
   PreferredDelimiters:
     "%w": "()"
 
+# Not sure why but this causes some weird failures
+Style/RedundantSort:
+  Enabled: false
+
 Style/SymbolArray:
   Enabled: false
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+
+Style/WordArray:
+  Enabled: false
