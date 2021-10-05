@@ -110,10 +110,16 @@
                 = f.text_field "preferred_#{pref.name}", label: pref.name.humanize, class: "col-md-4", disabled: disabled, description: pref_descriptions[pref.name.to_sym]
       - if grp == 'geo'
         .row
-          .col-md-6
+          .col-md-12
             = f.text_field :place_id, description: "Primary place the site is associated with, generally the place used for default searches etc."
-          .col-md-6
-            = f.text_field :extra_place_id, description: "An additional place used for data export"
+          .col-md-12
+            .inlabel
+              %label Extra Places for Exports
+          = f.fields_for :export_places_sites do |eps|
+            = render "export_places_site_fields", f: eps
+          .col-md-12
+            = link_to_add_association "Add an extra place", f, :export_places_sites, class: "btn btn-success btn-sm"
+
   .row
     .col-md-12
       = f.submit t(:save), :class => 'btn btn-primary'

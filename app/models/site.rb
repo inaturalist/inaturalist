@@ -44,7 +44,15 @@ class Site < ApplicationRecord
   # default place ID for place filters. Presently only used on /places, but use may be expanded
   belongs_to :place, inverse_of: :sites
 
-  belongs_to :extra_place, inverse_of: :extra_place_sites, class_name: "Place"
+  has_many :places_sites, dependent: :destroy
+  has_many :export_places_sites,
+    -> { where( scope: PlacesSite::EXPORTS ) },
+    class_name: "PlacesSite"
+  has_many :export_places,
+    through: :export_places_sites,
+    source: "place"
+  accepts_nested_attributes_for :export_places_sites, allow_destroy: true
+
 
   # header logo, should be at least 118x22
   if CONFIG.usingS3

@@ -48,10 +48,10 @@
                   %li
                     Observations in 
                     = link_to @record.place.display_name, @record.place
-                - if @record.extra_place
+                - for place in @record.export_places
                   %li
                     Observations in 
-                    = link_to @record.extra_place.display_name, @record.extra_place
+                    = link_to place.display_name, place
       - for grp, prefs in @pref_groups
         - prefs = prefs.select{|p| !@record.preferences[p.name].blank?}
         - next if prefs.blank?
