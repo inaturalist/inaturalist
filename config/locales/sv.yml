@@ -6008,9 +6008,6 @@ sv:
       edit:
         complex_boundary_note_html: |
           Denna gräns är lite för komplex för att redigera på webben. Men du kan <a href="%{url}">ladda ner KML:en</a>, redigera den i valfri GIS-applikation och sedan ladda upp din redigerade KML direkt.
-        admin_level_desc: |
-          Bör endast sättas för politiska områden. Jämför med
-          USA, 0 = land, 1 = stat, 2 = county/län, 3 = stad
       new:
         check_list_note: "Obs: checklistor kommer automatiskt att vara avstängt för mycket stora platser."
         coordinates_desc: Du måste ange koordinater om du inte ritar en gräns eller laddar upp KML.
