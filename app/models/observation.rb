@@ -2662,7 +2662,7 @@ class Observation < ApplicationRecord
   end
 
   # Actually referring to Place::STATE_LEVEL seems to cause trouble here
-  [1, 2].each do |admin_level|
+  [10, 20].each do |admin_level|
     define_method "place_admin#{admin_level}" do
       public_places.detect{|p| p.admin_level == admin_level}
     end

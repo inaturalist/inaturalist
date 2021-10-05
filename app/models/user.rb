@@ -698,13 +698,13 @@ class User < ApplicationRecord
         longitude = ll[1]
         if geoip_response.results.city
           # also probably know the county
-          lat_lon_acc_admin_level = 2
+          lat_lon_acc_admin_level = Place::COUNTY_LEVEL
         elsif geoip_response.results.region
           # also probably know the state
-          lat_lon_acc_admin_level = 1
+          lat_lon_acc_admin_level = Place::STATE_LEVEL
         else
           # probably just know the country
-          lat_lon_acc_admin_level = 0
+          lat_lon_acc_admin_level = Place::COUNTRY_LEVEL
         end
       end
     end

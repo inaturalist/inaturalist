@@ -6678,7 +6678,7 @@ en:
           upload your edited KML directly.
         admin_level_desc: |
           Should only be set for political bodies. In terms of 
-          USA-equivalents, 0 = country, 1 = state, 2 = county, 3 = town
+          USA-equivalents, 0 = country, 10 = state, 20 = county, 30 = town
       new:
         check_list_note: "Note: check lists will be automatically disabled for very large places."
         coordinates_desc: You must specify coordinates if you don't draw a boundary or upload KML.

@@ -2805,17 +2805,17 @@ describe Observation do
 
   describe "public_places" do
     it "should include system places that do contain the public_positional_accuracy circle" do
-      p = make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))", admin_level: 1 )
+      p = make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))", admin_level: Place::STATE_LEVEL )
       o = Observation.make!( latitude: p.latitude, longitude: p.longitude, taxon: make_threatened_taxon )
       expect( o.public_places ).to include p
     end
     it "should include system places that don't contain public_positional_accuracy circle" do
-      p = make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0)))", admin_level: 1 )
+      p = make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0)))", admin_level: Place::STATE_LEVEL )
       o = Observation.make!( latitude: p.latitude, longitude: p.longitude, taxon: make_threatened_taxon )
       expect( o.public_places ).to include p
     end
     it "should be blank if taxon has conservation status with private geoprivacy" do
-      p = make_place_with_geom( admin_level: 1 )
+      p = make_place_with_geom( admin_level: Place::STATE_LEVEL )
       cs = ConservationStatus.make!( geoprivacy: Observation::PRIVATE )
       o = make_research_grade_candidate_observation( taxon: cs.taxon, latitude: p.latitude, longitude: p.longitude )
       expect( o ).to be_georeferenced
