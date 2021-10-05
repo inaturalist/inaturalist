@@ -171,7 +171,7 @@ taxonomy = ActiveRecord::Base.connection.execute( sql_query )
 test_obs_counts = taxonomy.map{|row| [row["taxa_id"], row["count"].to_i]}.to_h
 
 sql_query = <<-SQL
-  SELECT t.id AS taxa_id, COUNT( * )
+  SELECT t.id AS taxa_id, t.ancestry, COUNT( * )
   FROM taxa t
   JOIN ( #{CANDIDATE_OBSERVATIONS_SQL} ) o ON o.taxon_id = t.id
   WHERE t.is_active = true
@@ -183,6 +183,7 @@ puts "Looking up taxon obs counts..."
 taxonomy = ActiveRecord::Base.connection.execute( sql_query )
 total_obs_counts = taxonomy.map{|row| [row["taxa_id"], row["count"].to_i]}.to_h
 
+nodes_and_ancestors = taxonomy.map{|i| [i["taxa_id"],( i["ancestry"] ? i["ancestry"].split( "/" ).map{|j| j.to_i} : nil ) ]}.flatten.compact.uniq
 
 # Keep only the leaves with enough downstream data
 puts "Trimming taxonomy based on obs counts..."
@@ -193,7 +194,9 @@ species_and_above_rank_levels.each do |rank_level|
   enough_set = enough.map{ |row| row[:taxon_id] }.to_set
   taxa_scope = Taxon.where( "( ancestry = '#{ ancestry_string }' OR ancestry LIKE ( '#{ ancestry_string }/%' ) )" ).
     where( "is_active = true AND rank_level = ?", rank_level ).
-    where( "id NOT IN ( ? )", extinct_and_hybrid_taxon_ids )
+    where( "id NOT IN ( ? )", extinct_and_hybrid_taxon_ids ).
+    where( "id IN ( ? )", nodes_and_ancestors )
+
   if filter_taxon_ids
     taxa_scope = taxa_scope.where(id: filter_taxon_ids + filter_taxon_ancestor_ids)
   end
@@ -327,10 +330,10 @@ def process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
 
   cid_oids = raw_photos_cid.map{|i| i[:oid]}.uniq.select{|i| !( BAD_OBSERVATION_SET.include? i )}.shuffle
   no_cid_oids = raw_photos_no_cid.map{|i| i[:oid]}.uniq.select{|i| !( BAD_OBSERVATION_SET.include? i )}.shuffle
-  if cid_oids.count >= ( TEST_CEIL + VAL_CEIL )
+  if cid_oids.count >= ( TEST_CEIL + VAL_CEIL ) && (cid_oids.count + no_cid_oids.count) > ( TEST_CEIL + VAL_CEIL + TRAIN_FLOOR )
     val_num = VAL_CEIL
     test_num = TEST_CEIL
-  elsif cid_oids.count >= ( TEST_CEIL + VAL_FLOOR )
+  elsif cid_oids.count >= ( TEST_CEIL + VAL_FLOOR ) && (cid_oids.count + no_cid_oids.count) > ( TEST_CEIL + VAL_FLOOR + TRAIN_FLOOR )
     val_num = VAL_FLOOR
     test_num = TEST_CEIL
   else
