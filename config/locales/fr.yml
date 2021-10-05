@@ -6176,9 +6176,6 @@ fr:
           Cette limite géographique est un peu trop complexe à modifier sur le web. Toutefois, vous pouvez
           <a href="%{url}">télécharger le KML</a>, le modifier dans l’application SIG de votre choix et
           uploader directement votre KML modifié.
-        admin_level_desc: |
-          Doit être établi uniquement pour les entités politiques. En terme
-          d’équivalents aux É.-U., 0 = pays, 1 = état, 2 = comté, 3 = ville
       new:
         check_list_note: "Remarque : les check-list seront désactivées automatiquement pour les lieux très vastes."
         coordinates_desc: Vous devez préciser des coordonnées si vous n’avez pas tracé les limites géographiques ou uploadé un KML.
