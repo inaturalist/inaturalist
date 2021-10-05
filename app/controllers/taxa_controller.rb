@@ -917,7 +917,23 @@ class TaxaController < ApplicationController
         subclass = Object.const_get( photo[:type].camelize )
       end
       record = Photo.find_by_id( photo[:id] )
-      record ||= subclass.find_by_native_photo_id( photo[:native_photo_id] )
+      # attempt to lookup photo with native_photo_id
+      if photo[:native_photo_id]
+        # look within the custom subclass
+        record ||= Photo.where(
+          native_photo_id: photo[:native_photo_id],
+          type: photo[:type],
+          subtype: nil
+        ).first
+        unless subclass == LocalPhoto
+          # look at LocalPhotos whose subtype is the custom subclass
+          record ||= Photo.where(
+            native_photo_id: photo[:native_photo_id],
+            type: "LocalPhoto",
+            subtype: subclass.name
+          ).first
+        end
+      end
       unless record
         if api_response = subclass.get_api_response( photo[:native_photo_id] )
           record = subclass.new_from_api_response( api_response )
@@ -925,6 +941,10 @@ class TaxaController < ApplicationController
       end
       unless record
         Rails.logger.debug "[DEBUG] failed to find record for #{photo}"
+      end
+      unless record.is_a?( LocalPhoto )
+        # turn all remote photos into LocalPhotos
+        record = Photo.local_photo_from_remote_photo( record )
       end
       record
     }.compact

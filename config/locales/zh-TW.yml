@@ -437,6 +437,7 @@ zh-TW:
   alphabetical_order: 依字母排序
   already_have_an_account_log_in_html: 已經有帳號了嗎？現在就<strong>登入</strong>。
   amphibians: 兩棲類
+  analyze_ids: 分析 ID
   ancestor_taxon: 祖先分類
   and: 和
   and_other_taxa: "&amp;其它物種分類"
@@ -579,6 +580,7 @@ zh-TW:
   assessment_x: "%{assessment} 評估"
   assessments: 評估
   associations: 關聯
+  atlased: 有地圖集
   atlas_for_taxon_html: '%{taxon} 的地圖集'
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -1069,6 +1071,10 @@ zh-TW:
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: 為什麼您想要成為策展人？
   #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    如果您想要編輯 iNaturalist 的分類法，請提供一或兩個您想要做出的分類方面更改例子，並包含您提議更改的來源。若適用的話，請引用恰當的分類依據，如同列在<a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">策展人指南</a>裡的方針內容。如果您沒有包含任何來源，您的申請不會被列入考慮。
+  #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     如果您想編輯俗名，請提供您會如何編輯的一至兩個範例
   #Prompt for information when applying to be a curator
@@ -1281,6 +1287,7 @@ zh-TW:
   description_slash_tags: 描述/標籤
   description_tags_more: "描述、標記、&amp;更多"
   desription: 描述
+  destination: 目標
   destroy: 刪除
   details: 詳細資料
   deviation: 偏差
@@ -1478,6 +1485,8 @@ zh-TW:
   establishment_means: 定居方式
   establishment_means_describes_how: |
     定居方式描述著物種分類如何在地區上出現。請查看達爾文核心集（Darwin Core）更多<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">關於術語</a>的訊息。
+  estimate_which_input: |
+    估計哪些輸入的分類群 ID 會被哪些輸出的分類群給替換掉，一旦拆分提交完成後，會被簡化為共同的祖先。這可能會需要一點時間來計算。觀察的連結會被截斷成 200 個子集。
   event_in_progress: 進行中的活動
   event_stats: 活動統計資料
   event_url: 活動 URL
@@ -2036,9 +2045,12 @@ zh-TW:
     norwegian: 挪威語
     occitan: 奧克語
     pangasinan: 邦阿西楠語
+    polish: 波蘭語
     portuguese: 葡萄牙語
     romanian: 羅馬尼亞語
     russian: 俄語
+    sinhala: 僧伽羅語
+    slovak: 斯洛伐克語
     spanish: 西班牙語
     swedish: 瑞典語
     tagalog: 他加祿語
@@ -2046,6 +2058,7 @@ zh-TW:
     thai: 泰文
     tokelauan: 托克勞語
     turkish: 土耳其語
+    ukrainian: 烏克蘭語
     waray_waray: 瓦瑞瓦瑞語
   less: 較少
   licensed_site_photos: "已授權的 %{site_name} 照片"
@@ -2502,6 +2515,7 @@ zh-TW:
   no_identifications_added:
     current_user: 您還沒有為任何人的觀察添加鑑定。
     user: "%{user} 還沒有為任何人的觀察添加鑑定。"
+  no_ids: "ID 號碼"
   no_ids_have_been_suggested_yet: 尚未有鑑定被建議
   no_interaction_data_available: 沒有可用的互動資料
   no_its_as_good_as_it_can_be: 不。這已可行
@@ -2558,6 +2572,8 @@ zh-TW:
   no_species_on_this_list_for_owner: |
     您可以使用在右方的「新增到您的名錄」工具來開始增加物種到此名錄中。
   no_subject_parens: "（無主題）"
+  no_such_wiki_page: 沒有這樣的頁面。
+  no_such_wiki_page_html: 沒有這樣的頁面。您要來<a href="%{new_url}">創建一個</a>嗎？
   no_suggestions_available: 沒有可用建議
   no_summary_from_wikipedia: 未有來自於維基百科的摘要
   no_summary_has_been_set: 未有設定摘要。
@@ -2574,6 +2590,7 @@ zh-TW:
   none: 無
   none_found: 未找到
   normal: 一般
+  not_atlased: 沒有地圖集
   not_completed: 未完成
   not_confident: 我們信心不足以致於無法提出鑑定上的建議。
   not_confident_top_suggestions: 我們信心不足以致於無法提出關於此物種鑑定上的建議，但以下是我們最佳的建議
@@ -2628,7 +2645,9 @@ zh-TW:
   observation_brief_something_on_day_at_time: "在 %{day} %{time} 所記錄的某些生物"
   observation_brief_something_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 所記錄的"
   observation_brief_something_on_day_by_user: "由使用者 %{user} 在 %{day} 所記錄的"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "在 %{month} 月的某些觀察"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "由使用者 %{user} 在 %{month} 月所記錄的"
   observation_brief_something_by_user: "由使用者 %{user} 所記錄的"
   observation_brief_something_from_place: "在 %{place} 所記錄的"
@@ -2637,13 +2656,17 @@ zh-TW:
   observation_brief_something_from_place_on_day_by_user: "由使用者 %{user} 於 %{day} 在 %{place} 所記錄的"
   observation_brief_something_from_place_on_day_at_time: "於 %{day} %{time} 在 %{place} 所記錄的"
   observation_brief_something_from_place_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 在 %{place} 所記錄的"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "%{month} 在 %{place} 所記錄的"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "由使用者 %{user} 於 %{month} 在 %{place} 所記錄的"
   observation_brief_taxon_on_day: "在 %{day} 所記錄的 %{taxon}"
   observation_brief_taxon_on_day_at_time: "在 %{day} %{time} 所記錄的 %{taxon}"
   observation_brief_taxon_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 所記錄的"
   observation_brief_taxon_on_day_by_user: "由 %{user} 在 %{day} 所記錄的 %{taxon}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "在 %{month} 所記錄的 %{taxon}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "由 %{user} 在 %{month} 所記錄的 %{taxon}"
   observation_brief_taxon_by_user: "%{user} 所建立的 %{taxon}"
   observation_brief_taxon_from_place: "位於 %{place} 的 %{taxon}"
@@ -2652,7 +2675,9 @@ zh-TW:
   observation_brief_taxon_from_place_on_day_by_user: "由 %{user} 於 %{day} 在 %{place} 所記錄的 %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time: "%{day} %{time} 在 %{place} 所記錄的 %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "由 %{user} 於 %{day} %{time} 在 %{place} 所記錄的 %{taxon}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{month} 在 %{place} 所記錄的 %{taxon}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "由 %{user} 於 %{month} 在 %{place} 所記錄的 %{taxon}"
   observations_by_category: "依分類區分觀察"
   observations_by_app: 依應用程式區分觀察
@@ -2747,6 +2772,7 @@ zh-TW:
     absent: 沒有發生在區域
     common: 發生頻率
     doubtful: 推定有發生，但對證據有疑慮
+    irregular: 存在不可預測，包含流浪生物。可能會在某些年份很常見、某些年份不存在
     present: 發生在區域
     uncommon: 定期發生；但次數不多，需要仔細尋找正確的棲息地
   occurrence_status_establishment_means: 事件狀態，定居方式
@@ -2871,9 +2897,11 @@ zh-TW:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: 常在 <a href="%{url}">%{place}</a> 被誤認為此亞種的其他分類群
   other_taxa_commonly_misidentified_as_this_subsection: 常被誤認為此亞節的其他分類群
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: 常在 <a href="%{url}">%{place}</a> 被誤認為此亞節的其他分類群
+  outside_of_all_atlases: 在所有地圖集之外
   our_blog: 我們的部落格
   output_taxon: 輸出物種分類
   overview: 概要
+  overlapping_atlases: 地圖集重疊
   overlapping_downstream_taxon_frameworks_html: "重複的下游物種分類框架數量：%{count}"
   owner: 擁有者
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -4196,7 +4224,19 @@ zh-TW:
   taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: 這不是 IUCN 紅色名錄的分布範圍地圖，因為該地圖不適合
   taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: 這不是 IUCN 的紅色名錄分布範圍地圖，因為此分類群不在 IUCN 紅色名錄中
   taxon_range_guidelines_each_taxon_can_have: 每個分類群只能有一筆分布範圍。分類群的分布範圍必須代表全世界的分布。
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    %{link_start_tag}國際自然保護聯盟瀕危物種紅色名錄%{link_end_tag}是分類群範圍的典型來源。
+    請指明您是否要添加到紅色名錄範圍，如果沒有的話，請告訴您是如何添加相關內容到紅色名錄裡。這會有助於通知自動更新範圍來源到 IUCN 紅色名錄裡的流程。如果您要添加紅色名錄範圍，請正確指示紅色名錄的版本（例如：2021-2）。
+  taxon_range_guidelines_if_you_are_not_uploading: "如果您沒有上傳國際自然保護聯盟瀕危物種紅色名錄的範圍地圖，原因應該是："
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: 用於此分類群的國際自然保護聯盟瀕危物種紅色名錄範圍地圖不恰當
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    例如：您手動縮小了分類拆分；但未表示在紅色名錄裡，或是紅色名錄範圍地圖有主要錯誤導致顯示不恰當。
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: 此分類群不在 IUCN 紅色名錄中
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    例如：該分類與紅色名錄上的另一個分類混為一談，因此您在此處手動將其拆分，或者是如果該分類
+    缺乏紅色名錄的評估和範圍地圖。
+  taxon_range_guidelines_please_provide_details: |
+    請使用描述來解釋地圖是如何衍生的，與連結到任何相關標誌、分類拆分，或是其它為什麼發布的紅色名錄範圍需要更改的討論。
   taxon_range_guidelines_learn_more_about_taxon_ranges: 閱覽更多有關分類群分布範圍的資訊
   taxon_range_updated_notice: 分類群範圍已更新成功。請等待幾分鐘來讓變更內容呈現在地圖上。
   taxon_ranks: 分類群階層
@@ -4328,6 +4368,7 @@ zh-TW:
     <strong>此物種分類更改已提交！</strong>
     請不要再編輯編輯物種分類群，但可編輯其它欄位。
   this_taxon_concept_is_inactive: 此物種分類概念是無效的
+  this_taxon_has_more_than_1000: 此分類群底下有超過 1000 個觀察內容。編輯可能會花上一段時間處理，您確定有需要嗎？
   this_taxon_has_no_default_photo: 此物種分類沒有預設照片！
   this_taxon_is_inactive_this_means: |
     此物種分類是<strong>無效</strong>的。這代表 %{site_name} 的策展人已將此替換成更貼近目前分類上的概念。
@@ -4371,6 +4412,7 @@ zh-TW:
     我同意<a href="/terms" target="_blank">服務條款</a>和<a href="/privacy" target="_blank">隱私權政策</a>，而且我已經審閱過<a href="/pages/community+guidelines" target="_blank">社群守則</a>。
   total: 總計
   totals: 總計
+  total_ids_on_input_taxon: "輸入分類群的所有 ID："
   total_members: 會員總數
   total_observations: 觀察總數
   total_observations_caps: 觀察紀錄總數
@@ -5227,6 +5269,10 @@ zh-TW:
         taxa_observed_in_all_queries: 在所有查詢中所觀察到的分類群
         taxa_observed_in_only_one_query: 僅在一筆查詢中所觀察到的分類群
         total_taxa: 分類群總計
+        total_taxa_desc: |
+          這是查詢中表示「葉」分類群的總數。
+          有時您會在計數不為零的結果裡看到更多的內容，這是因為有來自別的查詢裡所添加的更高階層分類群。
+          例如：如果查詢 1 是觀察智人，查詢 2 是觀察人屬，兩者的分類群都會出現在表中，不過沒有將查詢 1 觀察智人的額外行數其包括在總數裡，那是因為僅計算了該屬裡的智人物種。這也是因為「葉」是樹木的其中一部分。
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: 垂直方向
         #Count of how many taxa several observation searches have in common
@@ -5477,6 +5523,9 @@ zh-TW:
         </ol>
       dna_help: |
         要啟用 BOLD DNA 條碼符合功能，請確定您的欄位名稱包含「COI」、「COX1」、「ITS」、 或「matK,」字詞來對應欄位目標的基因。
+      merge:
+        warning_html: |
+          請尊重其他人的資料，並在合併觀察欄位前<strong>通知創建者</strong>。此工具將會消去被合併的觀察欄位，以及移動所有觀察至保有者。<strong>此處理過程無法復原</strong>，因此請小心。
     emailer:
       bulk_import_success:
         success_message: |
@@ -7065,8 +7114,6 @@ zh-TW:
           attributes:
             base:
               user_already_blocked: 您已經封鎖該使用者
-              user_cannot_be_staff: |
-                您無法封鎖網站工作人員。iNat 工作人員需要和所有網站上的人溝通，在 iNat 上有存取所有資料的權限，而且他們是調解爭議的重要人物，所以封鎖他們無法防止他們與您溝通。如果您對工作人員中某人有任何問題，請向 iNat 共同理事之一回報，或是您對共同理事之一有問題的話，您還可以向加州科學院的生物多樣性與永續科學研究所(Institute for Biodiviersity and Sustainability Science)的科學主任(Chief of Science)聯絡。
         user_parent:
           attributes:
             email:

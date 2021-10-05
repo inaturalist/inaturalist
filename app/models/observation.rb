@@ -775,6 +775,7 @@ class Observation < ApplicationRecord
     # I18n.t( :observation_brief_something_by_user )
     # I18n.t( :observation_brief_something_from_place )
     # I18n.t( :observation_brief_something_from_place_by_user )
+    # I18n.t( :observation_brief_something_from_place_in_month_by_user )
     # I18n.t( :observation_brief_something_from_place_on_day )
     # I18n.t( :observation_brief_something_from_place_on_day_at_time )
     # I18n.t( :observation_brief_something_from_place_on_day_at_time_by_user )
@@ -786,6 +787,7 @@ class Observation < ApplicationRecord
     # I18n.t( :observation_brief_taxon_by_user )
     # I18n.t( :observation_brief_taxon_from_place )
     # I18n.t( :observation_brief_taxon_from_place_by_user )
+    # I18n.t( :observation_brief_taxon_from_place_in_month_by_user )
     # I18n.t( :observation_brief_taxon_from_place_on_day )
     # I18n.t( :observation_brief_taxon_from_place_on_day_at_time )
     # I18n.t( :observation_brief_taxon_from_place_on_day_at_time_by_user )
@@ -2660,7 +2662,7 @@ class Observation < ApplicationRecord
   end
 
   # Actually referring to Place::STATE_LEVEL seems to cause trouble here
-  [1, 2].each do |admin_level|
+  [10, 20].each do |admin_level|
     define_method "place_admin#{admin_level}" do
       public_places.detect{|p| p.admin_level == admin_level}
     end

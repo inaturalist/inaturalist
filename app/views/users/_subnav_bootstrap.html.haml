@@ -8,7 +8,7 @@
     = link_to person_by_login_path(:login => user.login) do
       %span.glyphicon.glyphicon-user
       =t :profile
-  %li{:class => ( "active" if current_page?( observations_by_login_path( login: user.login ) ) )}
+  %li
     = link_to observations_path( user_id: user.login, verifiable: "any", place_id: "any" ) do
       %i.fa.fa-binoculars
       =t :observations

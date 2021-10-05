@@ -4061,6 +4061,9 @@ et:
         </ol>
       dna_help: |
         Et lülitada sisse BOLD DNA triipkoodide võrdlemise võimalus, peab su välja nime sisaldama sõnu "COI", "COX1", "ITS" või "matK", mis vastab geenile, millega see väli tegeleb.
+      merge:
+        warning_html: |
+          Palun austa teiste kasutajate andmeid ja <strong>suhtle enne vaatlusvälja ühendamist selle loojaga</strong>. See tööriist hävitab ühendatava vaatlusvälja ning liigitab kõik seda kasutavad vaatlused alles jääva välja alle. <strong>Seda ei saa tagasi võtta!</strong> Ole ettevaatlik!
     emailer:
       bulk_import_success:
         success_message: |

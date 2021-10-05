@@ -1572,6 +1572,8 @@ id:
   facebook_access_token_expired: "Akses token telah berakhir. %{user} harus menghubungkan kembali akun Facebook mereka."
   facebook_needs_the_owner_of_that_photo_to: Facebook membutuhkan pemilik foto tersebut untuk mengonfirmasi ulang hubungan mereka dengan %{site_name_short}.
   facebook_options: Opsi Facebook
+  facebook_photo_import_disabled_notice: |
+    Pada November 2020, Facebook mengharuskan kami untuk memverifikasi bahwa kami benar-benar memerlukan akses untuk foto-foto, dan kami tidak bisa memenuhi prosesnya karena masalah dengan sistem verifikasi Facebook. Akibatnya, sekarang kami tidak bisa mendukung impor foto dari Facebook.
   failed_to_find_your_location: Gagal menemukan lokasi Anda.
   failed_to_repair_photo: "Gagal untuk memperbaiki foto: %{errors}"
   failed_to_save_record: "Gagal menyimpan catatan. Silakan coba lagi nanti."
@@ -2066,26 +2068,33 @@ id:
     Harap <a href="%{url}">mengubah password Anda</a> untuk versi yang baru.
   let_us_walk_you_through: Persilakan kami untuk memandu Anda mengenai fitur-fitur utama situs ini.
   lexicon: Kamus
+  lexicon_cannot_contain_words: "tidak boleh mengandung kata-kata berikut: %{words}"
   lexicons:
     scientific_names: Nama Ilmiah
     afrikaans: Afrika
     albanian: Albania
+    arabic: Arab
+    armenian: Armenia
     belarusian: Belarusia
     bengali: Benggala
+    bulgarian: Bulgaria
     catalan: Katalan
     cebuano: Cebuano
     chinese_simplified: Mandarin (sederhana)
     chinese_traditional: Mandarin (tradisional)
     creole_french: Creole (Prancis)
     creole_portuguese: Creole (Portugis)
+    croatian: Kroasia
     czech: Ceko
     danish: Denmark
     davawenyo: Davawenyo
     dutch: Belanda
     english: Inggris
     estonian: Estonia
+    faroese: Faroe
     finnish: Finlandia
     french: Prancis
+    galician: Galisia
     gela: Gela
     german: Jerman
     greek: Yunani
@@ -2095,6 +2104,7 @@ id:
     hungarian: Hungaria
     icelandic: Islandia
     ilokano: Ilokano
+    indonesian: Indonesia
     italian: Italia
     japanese: Jepang
     kannada: Kannada
@@ -2102,17 +2112,25 @@ id:
     latvian: Latvia
     lithuanian: Lithuania
     luxembourgish: Luksemburg
+    malay: Melayu
+    malayalam: Malayalam
     maltese: Malta
     maori: Maori
     marathi: Marathi
+    maya: Maya
     misima_paneati: Misima-paneati
+    mongolian: Mongolia
+    nahuatl: Nahuatl
     norwegian: Norwegia
     occitan: Occitan
+    ojibwe: Ojibwe
+    palauan: Palau
     pangasinan: Pangasinan
     polish: Polandia
     portuguese: Portugis
     romanian: Romania
     russian: Rusia
+    setswana: Setswana
     sinhala: Sinhala
     slovak: Slovakia
     slovenian: Slovenia
@@ -2125,6 +2143,7 @@ id:
     turkish: Turki
     ukrainian: Ukraina
     waray_waray: Waray-Waray
+    visayan: Visaya
   less: Kurang
   licensed_site_photos: "Foto %{site_name} berlisensi"
   license: Lisensi
@@ -2719,7 +2738,9 @@ id:
   observation_brief_something_on_day_at_time: "Sesuatu pada %{day} pukul %{time}"
   observation_brief_something_on_day_at_time_by_user: "Sesuatu pada %{day} pukul %{time} oleh %{user}"
   observation_brief_something_on_day_by_user: "Sesuatu pada hari %{day} oleh %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Sesuatu pada %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Sesuatu pada %{month} oleh %{user}"
   observation_brief_something_by_user: "Sesuatu oleh %{user}"
   observation_brief_something_from_place: "Sesuatu dari %{place}"
@@ -2728,13 +2749,17 @@ id:
   observation_brief_something_from_place_on_day_by_user: "Sesuatu dari %{place} pada hari %{day} oleh %{user}"
   observation_brief_something_from_place_on_day_at_time: "Sesuatu dari %{place} pada hari %{day} pukul %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Sesuatu dari %{place} pada hari %{day} pukul %{time} oleh %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Sesuatu dari %{place} pada %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Sesuatu dari %{place} pada %{month} oleh %{user}"
   observation_brief_taxon_on_day: "%{taxon} pada hari %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} pada hari %{day} pukul %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} pada hari %{day} pukul %{time} oleh %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} pada hari %{day} oleh %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} pada %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} pada %{month} oleh %{user}"
   observation_brief_taxon_by_user: "%{taxon} oleh %{user}"
   observation_brief_taxon_from_place: "%{taxon} dari %{place}"
@@ -2743,7 +2768,9 @@ id:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} dari %{place} pada hari %{day} oleh %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} dari %{place} pada hari %{day} pukul %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} dari %{place} pada hari %{day} pukul %{time} oleh %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} dari %{place} pada %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} dari %{place} pada %{month} oleh %{user}"
   observations_by_category: "Pengamatan Berdasarkan Kategori"
   observations_by_app: Pengamatan Berdasarkan Aplikasi
@@ -7112,8 +7139,6 @@ id:
           attributes:
             base:
               user_already_blocked: Anda sudah memblokir pengguna tersebut
-              user_cannot_be_staff: |
-                Anda tidak bisa memblokir staf. Staf iNat harus bisa berkomunikasi dengan semua orang di iNat, memiliki akses kepada semua data di iNat, dan adalah penengah perselisihan lapisan terakhir, jadi memblokir tidak akan menghalangi mereka untuk berkomunikasi dengan Anda. Jika Anda memiliki masalah dengan seorang anggota staf, silakan melaporkannya kepada salah satu wakil direktur iNat, atau, jika Anda memiliki masalah dengan seorang wakil direktur, Anda bisa menghubungi Kepala Bidang Sains di Institute for Biodiviersity and Sustainability Science di California Academy of Sciences.
         user_parent:
           attributes:
             email:

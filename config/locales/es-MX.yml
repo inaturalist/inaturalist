@@ -1615,6 +1615,8 @@ es-MX:
   facebook_access_token_expired: "El acceso de muestra ha expirado. El %{user} requiere volver a enlazar su cuenta de Facebook."
   facebook_needs_the_owner_of_that_photo_to: Facebook necesita la confirmación del propietario de esa foto para poder realizar la conexión a %{site_name_short}.
   facebook_options: Opciones de Facebook
+  facebook_photo_import_disabled_notice: |
+    En noviembre de 2020 Facebook nos requirió verificar que realmente necesitábamos acceso a fotos, y no hemos podido completar el proceso debido a problemas con el sistema de verificación de Facebook. Como resultado, ya no podemos apoyar la importación de fotos de Facebook.
   failed_to_find_your_location: No ha sido posible encontrar tu ubicación.
   failed_to_repair_photo: "No se pudo reparar la foto: %{errors}"
   failed_to_save_record: "No se pudo guardar el registro. Inténtalo de nuevo más tarde."
@@ -2111,26 +2113,33 @@ es-MX:
     Por favor, recuerda <a href="%{url}">cambiar tu contraseña</a> para la nueva versión.
   let_us_walk_you_through: Conoce las principales características de la plataforma NaturaLista.
   lexicon: Léxico
+  lexicon_cannot_contain_words: "no se pueden contener las siguientes palabras: %{words}"
   lexicons:
     scientific_names: Nombres científicos
     afrikaans: Afrikáans
     albanian: Albanés
+    arabic: Árabe
+    armenian: Armenio
     belarusian: Bielorruso
     bengali: Bengalí
+    bulgarian: Búlgaro
     catalan: Catalán
     cebuano: Cebuano
     chinese_simplified: Chino (simplificado)
     chinese_traditional: Chino (tradicional)
     creole_french: Criollo (Francés)
     creole_portuguese: Criollo (Portugués)
+    croatian: Croata
     czech: Checo
     danish: Danés
     davawenyo: Davawenyo
     dutch: Holandés
     english: Inglés
     estonian: Estonio
+    faroese: Feroés
     finnish: Finés
     french: Francés
+    galician: Gallego
     gela: Gela
     german: Alemán
     greek: Griego
@@ -2140,6 +2149,7 @@ es-MX:
     hungarian: Húngaro
     icelandic: Islandés
     ilokano: Ilocano
+    indonesian: Indonesio
     italian: Italiano
     japanese: Japonés
     kannada: Canarés
@@ -2147,17 +2157,25 @@ es-MX:
     latvian: Letón
     lithuanian: Lituano
     luxembourgish: Luxemburgués
+    malay: Malayo
+    malayalam: Malayalam
     maltese: Maltés
     maori: Maorí
     marathi: Maratí
+    maya: Maya
     misima_paneati: Misima-paneati
+    mongolian: Mongol
+    nahuatl: Nahuatl
     norwegian: Noruego
     occitan: Occitano
+    ojibwe: Ojibwe
+    palauan: Palauan
     pangasinan: Pangasinán
     polish: Polaco
     portuguese: Portugués
     romanian: Rumano
     russian: Ruso
+    setswana: Setswana
     sinhala: Cingalés
     slovak: Eslovaco
     slovenian: Esloveno
@@ -2170,6 +2188,7 @@ es-MX:
     turkish: Turco
     ukrainian: Ucraniano
     waray_waray: Samareño
+    visayan: Visayo
   less: Menos
   licensed_site_photos: "Fotos con licencia de %{site_name}"
   license: Licencia
@@ -2770,7 +2789,9 @@ es-MX:
   observation_brief_something_on_day_at_time: "Algo el %{day} a las %{time}"
   observation_brief_something_on_day_at_time_by_user: "Algo el %{day} a las %{time} por %{user}"
   observation_brief_something_on_day_by_user: "Algo el %{day} por %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month: "Algo en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_in_month_by_user: "Algo en %{month} por %{user}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
@@ -2779,13 +2800,17 @@ es-MX:
   observation_brief_something_from_place_on_day_by_user: "Algo desde %{place} el %{day} de %{user}"
   observation_brief_something_from_place_on_day_at_time: "Algo desde %{place} el %{day} a las %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Algo desde %{place} el %{day} a las %{time} de %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month: "Algo de %{place} en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_something_from_place_in_month_by_user: "Algo de %{place} en %{month} por %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} el %{day} a las %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} el %{day} a las %{time} por %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} el %{day} por %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month: "%{taxon} en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_in_month_by_user: "%{taxon} en %{month} por %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
@@ -2794,7 +2819,9 @@ es-MX:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} desde %{place} el%{day} de %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} desde %{place} el%{day} a las %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} desde %{place} el %{day} a las %{time} de %{user}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month: "%{taxon} de %{place} en %{month}"
+  #%{month} will be filled in with date.formats.month_year
   observation_brief_taxon_from_place_in_month_by_user: "%{taxon} de %{place} en %{month} por %{user}"
   observations_by_category: "Observaciones por categoría"
   observations_by_app: Observaciones por App
@@ -7414,8 +7441,6 @@ es-MX:
           attributes:
             base:
               user_already_blocked: Ya has bloqueado a ese usuario
-              user_cannot_be_staff: |
-                No puedes bloquear al personal. El personal de iNat necesita poder comunicarse con todos los usuarios y tener acceso a todos los datos. Ellos son los principales mediadores en disputas, por lo que bloquearlos no les impedirá comunicarse contigo. Si tienes algún problema con un miembro del personal, por favor repórtalo a uno de los codirectores de iNat, y si el problema es con uno de los codirectores, puedes ponerte en contacto con el Jefe de Ciencia en el Instituto de Ciencias de la Biodiversidad y Sostenibilidad en la Academia de Ciencias de California.
         user_parent:
           attributes:
             email:
