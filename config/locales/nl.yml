@@ -5965,9 +5965,6 @@ nl:
         complex_boundary_note_html: |
           Deze grens is een beetje te complex om op het web te bewerken. Je kunt wel
           <a href="%{url}">de KML downloaden</a>, deze vervolgens bewerken in een GIS-applicatie van jouw keuze, en de bewerkte KML uploaden.
-        admin_level_desc: |
-          Moet alleen worden ingesteld voor politieke eenheden. In termen van VS-equivalenten, 
-          0 = land, 1 = staat, 2 = county, 3 = stad
       new:
         check_list_note: "Opmerking: checklists worden automatisch uitgeschakeld voor zeer grote plaatsen."
         coordinates_desc: Je moet coördinaten opgeven als je geen grens trekt of een KML uploadt.
