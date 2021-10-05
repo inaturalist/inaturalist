@@ -25,6 +25,8 @@ class ModifyPlaceAdminLevels < ActiveRecord::Migration[5.2]
   end
 
   def down
+    # Removing user updates from migration to run separately
+    #
     # max_id = User.maximum( :id )
     # batch_size = 1000
     # batch_count = ( max_id / batch_size )
