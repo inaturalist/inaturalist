@@ -1,4 +1,5 @@
 class ModifyPlaceAdminLevels < ActiveRecord::Migration[5.2]
+  disable_ddl_transaction!
   def up
     max_id = User.maximum( :id )
     batch_size = 1000
