@@ -239,6 +239,7 @@ class LocalPhoto < Photo
   end
 
   def set_urls
+    return if new_record?
     styles = %w(original large medium small thumb square)
     updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
     # the original_url will be blank when initially saving any file
@@ -249,9 +250,7 @@ class LocalPhoto < Photo
       url = file.queued_for_write[s].blank? ? file.url(s) : blank_file.url(s)
       url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
     end
-    unless new_record?
-      updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'" if native_page_url.blank?
-    end
+    updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'" if native_page_url.blank?
     Photo.where(id: id).update_all(updates)
     true
   end
