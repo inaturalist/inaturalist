@@ -1,10 +1,12 @@
-require_relative 'boot'
+# frozen_string_literal: true
 
-require 'rails/all'
+require_relative "boot"
+
+require "rails/all"
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(*Rails.groups)
+Bundler.require( *Rails.groups )
 
 module Inaturalist
   class Application < Rails::Application
@@ -18,7 +20,7 @@ module Inaturalist
 
     config.enable_dependency_loading = true
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W[#{config.root}/lib]
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -37,12 +39,13 @@ module Inaturalist
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     # config.active_record.raise_in_transactional_callbacks = true
-    
-    # config.active_record.observers = :user_observer, :listed_taxon_sweeper # this might have to come back, was running into probs with Preferences
-    config.active_record.observers = [ :observation_sweeper, :user_sweeper ]
-    
-    config.time_zone = 'UTC'
-    
+
+    # this might have to come back, was running into probs with Preferences
+    # config.active_record.observers = :user_observer, :listed_taxon_sweeper
+    config.active_record.observers = [:observation_sweeper, :user_sweeper]
+
+    config.time_zone = "UTC"
+
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
@@ -55,10 +58,10 @@ module Inaturalist
     config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '3.1'
+    config.assets.version = "3.1"
 
     # Compile localized CSS:
-    config.assets.precompile += ['*.css', '*.js']
+    config.assets.precompile += ["*.css", "*.js"]
 
     # in case assets reference application objects or methods
     config.assets.initialize_on_precompile = true
@@ -70,7 +73,7 @@ module Inaturalist
     # new for Rails 4.2 as per https://github.com/collectiveidea/delayed_job
     config.active_job.queue_adapter = :delayed_job
 
-    config.exceptions_app = self.routes
+    config.exceptions_app = routes
 
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
@@ -106,10 +109,10 @@ module Inaturalist
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'
-        resource '/oauth/token', :headers => :any, :methods => [:post]
-        resource '/oauth/revoke', :headers => :any, :methods => [:post]
-        resource '/users/api_token', :headers => :any, :methods => [:get]
+        origins "*"
+        resource "/oauth/token", headers: :any, methods: [:post]
+        resource "/oauth/revoke", headers: :any, methods: [:post]
+        resource "/users/api_token", headers: :any, methods: [:get]
       end
     end
 
@@ -119,11 +122,11 @@ module Inaturalist
         # working around the limitations of Rack::Tracker's ability to generate dynamic tracker IDs
         trackers: [
           {
-            id: lambda { |env|
+            id: lambda {| env |
               return env["inat_ga_trackers"][0][1] if env["inat_ga_trackers"] && env["inat_ga_trackers"][0]
             }
           }, {
-            id: lambda { |env|
+            id: lambda {| env |
               return env["inat_ga_trackers"][1][1] if env["inat_ga_trackers"] && env["inat_ga_trackers"][1]
             }
           }
@@ -131,7 +134,6 @@ module Inaturalist
       }
     end
   end
-
 end
 
 ActiveRecord::Base.include_root_in_json = false
@@ -165,18 +167,27 @@ Encoding.default_external = Encoding::UTF_8
 
 # TODO: is the geo_ruby stuff still used?
 # make sure we have geojson support
-require 'georuby'
-require 'geo_ruby/ewk'
-require 'geo_ruby/geojson'
-require 'geo_ruby/shp'
-require 'geo_ruby/shp4r/shp'
-require 'geo_ruby/kml'
+require "georuby"
+require "geo_ruby/ewk"
+require "geo_ruby/geojson"
+require "geo_ruby/shp"
+require "geo_ruby/shp4r/shp"
+require "geo_ruby/kml"
 # geojson via RGeo
-require 'rgeo/geo_json'
+require "rgeo/geo_json"
 # require 'google/api_client'
-require 'pp'
-require 'to_csv'
-require 'elasticsearch/model'
-require 'elasticsearch/rails/instrumentation'
-require 'inat_api_service'
-require 'google_recaptcha'
+require "pp"
+require "to_csv"
+require "elasticsearch/model"
+require "elasticsearch/rails/instrumentation"
+require "inat_api_service"
+require "google_recaptcha"
+
+# elasticsearch-model won't load its WillPaginate support unless WillPaginate is
+# loaded before it is. You can do this by specifying will_paginate before
+# elasticsearch-model in the Gemfile, but that's a pretty opaque way to
+# configure things. IMO, if we have to configure, we should configure
+# explicitly. ~~~ kueda 20211006
+Elasticsearch::Model::Response::Response.include(
+  Elasticsearch::Model::Response::Pagination::WillPaginate
+)

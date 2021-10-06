@@ -27,9 +27,11 @@ class FakeView < ActionView::Base
     end
   end
 
-  def initialize(options = {})
-    super
-    self.view_paths = [File.join(Rails.root, 'app/views'), options[:view_paths]].flatten.compact
+  def initialize( options = {} )
+    view_paths = [File.join( Rails.root, "app/views" ), options[:view_paths]].flatten.compact
+    lookup_context = lookup_context || options[:lookup_context] || ActionView::LookupContext.new( view_paths )
+    assigns = options[:assigns] || {}
+    super( lookup_context, assigns, fake_controller )
   end
   
   def self.method_missing(method, *args)
