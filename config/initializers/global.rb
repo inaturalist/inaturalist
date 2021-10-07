@@ -57,7 +57,7 @@ end
 def ratatosk(options = {})
   src = options[:src]
   site = options[:site] || Site.default
-  providers = ( options[:site] && options[:site].ratatosk_name_providers ) || [ "col", "eol" ]
+  providers = ( options[:site] && options[:site].ratatosk_name_providers ) || [ "col" ]
   if !providers.blank?
     if providers.include?(src.to_s.downcase)
       Ratatosk::Ratatosk.new(:name_providers => [src])
