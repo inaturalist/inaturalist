@@ -6291,32 +6291,6 @@ sv:
           Detta projekt har inte definierat några fyndkrav. Projekt måste välja ett eller flera taxa (t.ex. fåglar, barrträd), platser (t.ex. Brasilien, Yellowstone), användare och/eller datum för att börja visa fynd.
       updates_desc: |
         Få uppdateringar om detta projekt på din anslagstavla och i e-post om dagens uppdateringar.
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>Det finns några alternativ:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Lägg till en flagga på ett taxon av högre nivå</strong>
-          <p>
-          T.ex. släktet som innehåller en art. Förhoppningsvis lägger en schysst förvaltare till detta taxon om det är möjligt.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Kontakta forumet</a></strong>
-          <p>
-          Många förvaltare håller reda på meddelanden till forumet.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Kontakta support</a>
-          </strong>
-          <p>
-          Ha tålmod, vi har inte mycket supportpersonal på heltid.
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: Du har blivit blockerad
