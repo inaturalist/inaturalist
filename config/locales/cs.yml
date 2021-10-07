@@ -6411,32 +6411,6 @@ cs:
           Tento projekt nedefinoval žádné požadavky na pozorování. Projekty musí zvolit jeden či více taxonů (např. ptáci, jehličnany), místa (např. Brazílie, Yellowstone), uživatele, a/nebo data, aby mohl začít zobrazovat pozorování.
       updates_desc: |
         Získejte aktualizace o tomto projektu na přístrojové desce a v denních aktualizacích e-mailu.
-    search:
-      index:
-        no_taxa_options_html: |
-          p>Máte několik možností:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Přidat štítek k taxonu vyšší úrovně</strong>
-          <p>
-          Např. Rod, který obsahuje druh. Nápomocný kurátor přidá taxon, může být přidán.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Kontaktujte forum</a></strong>
-          <p>
-          Mnoho kurátorů stránek  sleduje zprávy  přidané do fóra.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Kontaktujte podporu</a>
-          </strong>
-          <p>
-          Prosím budťe trpělivý, nemámé tolik spelializovaných zaměstanců.
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: Byl jste zablokován
