@@ -2576,32 +2576,6 @@ sq:
     projects:
       new:
         welcome_to_projects: Mirë se vini te Projektet!
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>Ju keni disa opsione:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Shto shenjim tek një taxon i nivelit më të lartë</strong>
-          <p>
-          Psh. Gjenin që përmban specjet. Me shpresë ndonjë miqësore, kuratori do të shtojë taxon-in nëse mund të shtohet.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">KOntakto grupin e fidbekut</a></strong>
-          <p>
-          Shumë kurator mbajnë evidencë të emaileve në grupin e fidbekut.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Kontakto për mbështetje</a>
-          </strong>
-          <p>
-          Ju lutem jini të durueshëm, ne nuk kemi shumë staf të dedikuar për mbështetje.
-          </p>
-          </li>
-          </ul>
     taxa:
       show:
         wanted_desc: Specjet në këtë taxon nuk janë vëzhguar ende.
