@@ -6304,32 +6304,6 @@ pt-BR:
           Este projeto não definiu quaisquer requisitos de observação. Projetos precisam selecionar um ou mais táxons (ex.: aves, coníferas), lugares (por exemplo: Brasil, Fortaleza), usuários, e/ou datas para começar a exibir observações.
       updates_desc: |
         Receba atualizações sobre este projeto em seu painel de controle e, através de e-mails diários.
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>Você tem algumas opções:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Adicionar uma Sinalização a um Táxon de Nível Superior</strong>
-          <p>
-          Ex.: o gênero que contém tal espécie. Espera-se que um curador amistoso adicione o táxon se ele puder ser adicionado.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Contate o Fórum</a></strong>
-          <p>
-          Muitos curadores do site acompanham as mensagens do Fórum.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Fale com o Suporte</a>
-          </strong>
-          <p>
-          Por favor, seja paciente, não temos muitos funcionários exclusivamente de suporte.
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: Você foi bloqueado
