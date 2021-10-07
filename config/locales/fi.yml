@@ -5405,33 +5405,6 @@ fi:
           Tämä projekti ei ole määritellyt mitään vaatimuksia havainnoille. Jotta projekteissa näytettäisiin havaintojam niiden pitää valita yksi tai useampi taksoni (esim. linnut, havupuut), paikka (esim. Suomi, Turku), käyttäjä ja/tai päivämäärä.
       updates_desc: |
         Vastaanota tiedotteita tästä projektista kojelaudassasi ja päivittäisissä sähköpostiviesteissä.
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>Sinulla on muutamia vaihtoehtoja:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Lisää lippu korkeamman tason taksoniin</strong>
-          <p>
-          Esim. suku joka sisältää lajin. Toivottavasti ystävällinen
-          kuraattori lisää taksonin, jos se voidaan lisätä.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Ota yhteyttä foorumiin</a></strong>
-          <p>
-          Monet sivuston kuraattorit seuraavat sähköpostiviestejä foorumiin.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Ota yhteyttä tukeen</a>
-          </strong>
-          <p>
-          Ole kärsivällinen, meillä ei ole paljon omistautunutta henkilökuntaa.
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: Sinut on estetty
