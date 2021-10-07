@@ -6129,32 +6129,6 @@ ca:
           Aquest projecte no ha definit cap requeriment de les observacions. Els projectes necessiten que se seleccioni un o més tàxons (p.e. ocells, coníferes), llocs (Brasil, Yellowstone), usuaris, i/o dates per començar a mostrar observacions.
       updates_desc: |
         Rebre les actualitzacions d'aquest projecte en el vostre tauler i en el correu electrònic diari d'actualitzacions.
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>Tens algunes opcions:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Afegiu una marca o o un taxó de Nivell Superior</strong>
-          <p>
-          P.e. el gènere que conté una espècie. Possiblement un supervisor podrà afegir el taxó si és possible.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Contacteu el Fòrum</a></strong>
-          <p>
-          Molts supervisors del lloc revisen els missatges al Fòrum.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Contacteu amb el Suport</a>
-          </strong>
-          <p>
-          Si us plau sigueu pacient, no tenim molt personal dedicats al suport.
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: Heu estat blocat
