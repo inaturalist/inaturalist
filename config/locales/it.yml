@@ -6156,32 +6156,6 @@ it:
           Questo progetto non ha definito alcun requisito per le osservazioni. I progetti devono selezionare uno o più taxa (ad es. uccelli, conifere), luoghi (es. Brasile, Yellowstone), utenti, e/o date per iniziare a visualizzare le osservazioni.
       updates_desc: |
         Ricevi gli aggiornamenti relativi a questo progetto sulla tua bacheca e tramite gli aggiornamenti email giornalieri.
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>Hai alcune opzioni:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Aggiungi un contrassegno a un taxon di livello più alto </strong>
-          <p>
-          E.g. il genere che include la specie. Facilmente un curatore disponibile aggiungerà il taxon se è possibile.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Contatta il Forum</a></strong>
-          <p>
-          Molti curatori del sito controllano i messaggi al Forum.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Contatta il Supporto</a>
-          </strong>
-          <p>
-          Sii paziente, non abbiamo molte persone nello staff di supporto.
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: Sei stato bloccato
