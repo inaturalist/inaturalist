@@ -5964,32 +5964,6 @@ gl:
           Este proxecto non ten ningún requisito definido para observacións. Os proxectos precisan seleccionar un ou máis taxons (p.e. aves, coníferas), lugares (p.e. Brasil, Yellowstone), usuarios e/ou datas para comezar a mostrar observacións.
       updates_desc: |
         Recibe novas sobre este proxecto no teu panel e nos correos electrónicos de actualizacións diarios.
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>Tes algunhas opcións:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Engade unha Marca a un Taxon de un Nivel Superior</strong>
-          <p>
-          P.e. o xénero que contén á especie. Cun pouco de sorte, un conservador amigable engadirá o taxon se é posible.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Contacta có Foro</a></strong>
-          <p>
-          Moitos conservadores do sitio seguen as conversacións do Foro.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Contacta có Apoio</a>
-          </strong>
-          <p>
-          Por favor, se paciente, non temos moitos traballadores dedicados.
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: Foches Bloqueado
