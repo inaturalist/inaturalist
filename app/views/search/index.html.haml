@@ -234,15 +234,5 @@
                 - if is_curator?
                   = link_to t(:create_new_taxon), new_taxon_path( name: @q ), class: "btn btn-default"
                 - else
-                  :ruby
-                    feedback_url = @site.discourse_url
-                    feedback_url = @site.feedback_url if feedback_url.blank?
-                    feedback_url = CONFIG.feedback_url if feedback_url.blank?
-                  %p=t "views.search.index.no_taxa_options"
-                  %ul
-                    %li
-                      %strong=t "views.search.index.no_taxa_add_a_flag"
-                      %p=t "views.search.index.no_taxa_add_a_flag_desc"
-                    %li
-                      %strong=t "views.search.index.no_taxa_forum"
-                      %p=t "views.search.index.no_taxa_forum_desc_html", link_start_tag: "<a href='#{feedback_url}'>".html_safe, link_end_tag: "</a>".html_safe
+                  %strong=t "views.search.index.no_taxa_add_a_flag"
+                  %p=t "views.search.index.no_taxa_add_a_flag_desc"
