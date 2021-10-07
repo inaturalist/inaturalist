@@ -46,8 +46,7 @@
                 - if is_admin? || !is_me?( @user )
                   %li
                     = link_to t(:moderation_history), moderation_person_path( @user )
-                %li
-                  = link_to t(:flags_on_users_content, user: @user.login), flags_path( flagger_type: "any", resolved: "any", flags: ["spam", "copyright infringement", "inappropriate", "other"], user_id: @user.login )
+                %li= link_to t(:comments), comments_by_login_path( @user.login )
   .col-sm-8{:style => "background-color:white"}
     %h1
       = @user.name.blank? ? @user.login : @user.name
