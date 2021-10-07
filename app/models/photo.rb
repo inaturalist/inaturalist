@@ -255,6 +255,7 @@ class Photo < ApplicationRecord
 
   def flagged_with(flag, options = {})
     flag_is_copyright = flag.flag == Flag::COPYRIGHT_INFRINGEMENT
+    flags.reload
     other_unresolved_copyright_flags_exist = flags.detect do |f|
       f.id != flag.id && f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved?
     end

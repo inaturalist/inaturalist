@@ -158,7 +158,7 @@ class LocalPhoto < Photo
   end
 
   def in_public_s3_bucket?
-    self.original_url ? !! self.original_url.match( LocalPhoto.s3_bucket( true ) ) :
+    self["original_url"] ? !! self["original_url"].match( LocalPhoto.s3_bucket( true ) ) :
       could_be_public
   end
 
@@ -175,7 +175,7 @@ class LocalPhoto < Photo
 
   def photo_bucket_should_be_changed?
     # must have a URL
-    return false unless original_url
+    return false unless self["original_url"]
     return false unless CONFIG.usingS3
     # the code must be configured to use a public bucket
     return false unless LocalPhoto.odp_s3_bucket_enabled?
@@ -555,7 +555,7 @@ class LocalPhoto < Photo
     # an additional check to make sure the photo URLs contain the expected domain.
     # Later there will be a string substitution replacing the source domain with
     # the target domain
-    return unless photo.original_url.include?( source_domain )
+    return unless photo["original_url"].include?( source_domain )
 
     # fetch list of files at the source
     images = LocalPhoto.aws_images_from_bucket( s3_client, source_bucket, photo )
