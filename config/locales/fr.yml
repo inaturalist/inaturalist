@@ -6522,33 +6522,6 @@ fr:
           pour commencer à afficher des observations.
       updates_desc: |
         Recevoir des notifications pour ce projet sur votre tableau de bord et dans le courriel quotidien
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>Vous avez plusieurs options :</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Ajouter un signalement à un taxon de plus haut niveau</strong>
-          <p>
-          Par ex. le genre qui contient une espèce. Ensuite, un responsable
-          de l'organisation bienveillant ajoutera le taxon s’il peut être ajouté.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Contacter le Forum</a></strong>
-          <p>
-          Beaucoup de responsables du site suivent les messages vers le forum.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Contacter l'équipe d'assistance</a>
-          </strong>
-          <p>
-          Soyez patient, notre équipe d'assistance est restreinte.
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: Vous avez été bloqué
