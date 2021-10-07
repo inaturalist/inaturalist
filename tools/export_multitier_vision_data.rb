@@ -60,12 +60,12 @@ puts "Root taxon: #{root_taxon.name} [#{root_taxon.id}]"
 
 TRAIN_FLOOR = 50
 TRAIN_CEIL = 1000
-TEST_FLOOR = 5
-TEST_CEIL = 25
-VAL_FLOOR = 5
-VAL_CEIL = 25
+TEST_FLOOR = 25
+TEST_CEIL = 100
+VAL_FLOOR = 25
+VAL_CEIL = 100
 TOTAL_CEIL = ( TEST_CEIL + VAL_CEIL + TRAIN_CEIL )
-DATA_CSV_COLUMNS = [:id, :filename, :multitask_labels, :multitask_texts, :file_content_type]
+DATA_CSV_COLUMNS = [:id, :filename, :labels, :texts]
 BAD_OBSERVATION_IDS = { }
 
 puts "Find obs with failing quality_metrics (ex. captive) and unresolved flags..."
@@ -101,20 +101,12 @@ extinct_taxon_ids = ConservationStatus.where( iucn: Taxon::IUCN_EXTINCT, place_i
 hybrid_taxon_ids = Taxon.where( "is_active = true AND rank IN (?)", ["hybrid","genushybrid"]).pluck( :id )
 extinct_and_hybrid_taxon_ids = [extinct_taxon_ids, hybrid_taxon_ids].flatten.uniq
 
-standard_ranks = Taxon::RANK_LEVELS.select do |k,v|
-  Taxon::PREFERRED_RANKS.include?( k ) &&
-  v > Taxon::SUBSPECIES_LEVEL &&
-  v != Taxon::SUPERFAMILY_LEVEL
-end.values.reverse
-
 ancestry_string = root_taxon.rank_level == Taxon::ROOT_LEVEL ?
   "#{ root_taxon.id }" : "#{ root_taxon.ancestry }/#{ root_taxon.id }"
 if root_taxon.rank_level == Taxon::ROOT_LEVEL
   root_ancestors = []
 else
-  root_ancestors = root_taxon.ancestors.select do |ancestor|
-    standard_ranks.include?( ancestor.rank_level )
-  end
+  root_ancestors = root_taxon.ancestors
 end
 
 # Part 1: determine the taxonomy
@@ -232,13 +224,14 @@ end
 
 # Fetch the taxa
 taxa = Taxon.find( enough_set.to_a ); nil
+enough_hash = enough.map{|i| [i[:taxon_id],i[:count]]}.to_h
 export_taxonomy = taxa.map{|i|
     {
       id: i[:id],
       name: i[:name],
       rank_level: i[:rank_level],
       ancestors: i[:ancestry].split( "/" ).map{ |j| j.to_i } - [Taxon::LIFE.id],
-      count: enough.select{|j| j[:taxon_id]==i[:id]}.map{|j| j[:count]}.first
+      count: enough_hash[i[:id]]
     }
   }; nil
 
@@ -277,11 +270,10 @@ puts "#{export_taxonomy.count} nodes: #{taxon_ids.count} leaves and #{INTERNODES
 
 def photo_item_to_csv_row( item, labels, texts )
   row_hash = {
-    filename: item["filename"].sub(/\?.*/,''),
-    id: item["id"],
-    multitask_labels: labels,
-    multitask_texts: texts,
-    file_content_type: item["file_content_type"]
+    filename: item[:filename].sub(/\?.*/,''),
+    id: item[:id],
+    labels: labels,
+    texts: texts
   }
   DATA_CSV_COLUMNS.map{ |c| row_hash[c] }
 end
@@ -294,21 +286,18 @@ def process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
     row_id = FAKE_KEY[row_id]
   end
   ancestry = Taxon.find(row_id).ancestry+"/#{row_id}"
-  multitask_label = LEAF_CLASS_HASH[row[:id]].nil? ? 0 : LEAF_CLASS_HASH[row[:id]]
-  multitask_text = LEAF_CLASS_HASH[row[:id]].nil? ? nil : row[:id].to_s
+  label = LEAF_CLASS_HASH[row[:id]].nil? ? 0 : LEAF_CLASS_HASH[row[:id]]
+  text = LEAF_CLASS_HASH[row[:id]].nil? ? nil : row[:id].to_s
     
   taxon_ids_scope = Taxon.where("taxa.id = #{ row_id } OR taxa.ancestry = '#{ ancestry }' OR taxa.ancestry LIKE ( '#{ ancestry }/%' )").
     where("( select count(*) from conservation_statuses ct where ct.taxon_id=taxa.id AND ct.iucn=70 AND ct.place_id IS NULL ) = 0")
-  if INTERNODES.include? row_id
-    taxon_ids_scope = taxon_ids_scope.where("taxa.rank_level > #{ row[:rank_level] - 10 }")
-  end
   taxon_ids = taxon_ids_scope.pluck( :id )
   if taxon_ids.empty?
     return
   end
   
   base_sql_query = <<-SQL
-      SELECT op.photo_id AS id, o.id AS oid
+      SELECT op.photo_id AS id, o.id AS oid, p.medium_url AS filename
       FROM observations o
       JOIN observation_photos op ON op.observation_id = o.id
       JOIN photos p ON op.photo_id = p.id
@@ -318,24 +307,40 @@ def process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
       AND o.taxon_id IN ( #{taxon_ids.join( "," )} )
   SQL
 
-  sql_query = base_sql_query + "AND ( o.community_taxon_id IS NOT NULL AND o.community_taxon_id = o.taxon_id ) LIMIT #{TOTAL_CEIL * 2};"
-  raw_photos_cid = ActiveRecord::Base.connection.execute( sql_query ).map{ |i| {id: i["id"].to_i, oid: i["oid"].to_i} }; nil
+  sql_query = base_sql_query + "AND ( o.community_taxon_id IS NOT NULL AND o.community_taxon_id = o.taxon_id ) LIMIT #{TOTAL_CEIL * 1.5};"
+  raw_photos_cid = ActiveRecord::Base.connection.execute( sql_query ).
+    map{ |i| {id: i["id"].to_i, oid: i["oid"].to_i, filename: i["filename"]} }; nil
+  raw_photos_cid = raw_photos_cid.uniq {|row| row[:id] }
 
   if raw_photos_cid.uniq {|row| row[:oid] }.count < TOTAL_CEIL
     sql_query = base_sql_query + "AND ( o.community_taxon_id IS NULL OR o.community_taxon_id != o.taxon_id );"
-    raw_photos_no_cid = ActiveRecord::Base.connection.execute( sql_query ).map{ |i| {id: i["id"].to_i, oid: i["oid"].to_i} }; nil
+    raw_photos_no_cid = ActiveRecord::Base.connection.execute( sql_query ).
+      map{ |i| {id: i["id"].to_i, oid: i["oid"].to_i, filename: i["filename"]} }; nil
+    raw_photos_no_cid = raw_photos_no_cid.uniq {|row| row[:id] }
+    raw_photos_no_cid = raw_photos_no_cid.select{|i| !( raw_photos_cid.map{|row| row[:id]}.include? i[:id] )}
   else
     raw_photos_no_cid = []
   end
 
   cid_oids = raw_photos_cid.map{|i| i[:oid]}.uniq.select{|i| !( BAD_OBSERVATION_SET.include? i )}.shuffle
   no_cid_oids = raw_photos_no_cid.map{|i| i[:oid]}.uniq.select{|i| !( BAD_OBSERVATION_SET.include? i )}.shuffle
-  if cid_oids.count >= ( TEST_CEIL + VAL_CEIL ) && (cid_oids.count + no_cid_oids.count) > ( TEST_CEIL + VAL_CEIL + TRAIN_FLOOR )
-    val_num = VAL_CEIL
-    test_num = TEST_CEIL
-  elsif cid_oids.count >= ( TEST_CEIL + VAL_FLOOR ) && (cid_oids.count + no_cid_oids.count) > ( TEST_CEIL + VAL_FLOOR + TRAIN_FLOOR )
-    val_num = VAL_FLOOR
-    test_num = TEST_CEIL
+  if cid_oids.count > ( TEST_FLOOR + VAL_FLOOR ) && ( cid_oids.count + no_cid_oids.count ) > ( TRAIN_CEIL + TEST_FLOOR + VAL_FLOOR )
+    if cid_oids.count >= ( TEST_CEIL + VAL_CEIL ) && ( cid_oids.count + no_cid_oids.count ) >= ( TRAIN_CEIL + TEST_CEIL + VAL_CEIL )
+      val_num = VAL_CEIL
+      test_num = TEST_CEIL
+    else
+      total_surplus = ( cid_oids.count + no_cid_oids.count ) - ( TRAIN_CEIL + TEST_FLOOR + VAL_FLOOR )
+      cid_surplus = cid_oids.count - ( TEST_FLOOR + VAL_FLOOR )
+      available_surplus = [total_surplus, cid_surplus].min
+      #fill up val first
+      if available_surplus > ( VAL_CEIL - VAL_FLOOR )
+        val_num = VAL_CEIL
+        test_num = TEST_FLOOR + ( available_surplus - ( VAL_CEIL - VAL_FLOOR ) )
+      else
+        val_num = VAL_FLOOR + available_surplus
+        test_num = TEST_FLOOR
+      end
+    end
   else
     val_num = VAL_FLOOR
     test_num = TEST_FLOOR
@@ -349,6 +354,7 @@ def process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
   raw_photos_cid.uniq {|row| row[:oid] }.map{|i| i[:pos] = 0}
   raw_photos_no_cid.uniq {|row| row[:oid] }.map{|i| i[:pos] = 0}
   photo_ids = [raw_photos_cid, raw_photos_no_cid].flatten
+  photo_key = photo_ids.map{|i| [i[:id],i[:oid]]}.to_h
   photo_ids.select{|i| ( test_oids.include? i[:oid] ) && ( i[:pos] == 0 )}.map{|i| i[:set] = "test"}
   photo_ids.select{|i| ( val_oids.include? i[:oid] ) && ( i[:pos] == 0 )}.map{|i| i[:set] = "val"}
   photo_ids.select{|i| ( train_oids.include? i[:oid] ) && ( i[:pos] == 0 )}.map{|i| i[:set] = "train"}
@@ -362,40 +368,24 @@ def process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
     photo_ids.select{|i| ( additional_train.include? i[:id] )}.map{|i| i[:set] = "train"}
   end
 
-  base_sql_query = <<-SQL
-    SELECT DISTINCT p.id AS id, p.medium_url AS filename, p.file_content_type AS file_content_type, o.id AS observation_id
-    FROM photos p
-    JOIN observation_photos op ON op.photo_id = p.id
-    JOIN observations o ON op.observation_id = o.id
-  SQL
-
-  ids = photo_ids.select{|i| i[:set]=="train"}.map{|i| i[:id]}.join( "," )
-  oids = photo_ids.select{|i| i[:set]=="train"}.map{|i| i[:oid]}.uniq.join( "," )
-  sql_query = base_sql_query + " AND o.id IN ( #{oids} ) AND p.id IN ( #{ids} );"
-  train_photos = ActiveRecord::Base.connection.execute( sql_query ).map{ |i| i }; nil
-  
-  ids = photo_ids.select{|i| i[:set]=="val"}.map{|i| i[:id]}.join( "," )
-  oids = photo_ids.select{|i| i[:set]=="val"}.map{|i| i[:oid]}.join( "," )
-  sql_query = base_sql_query + " AND o.id IN ( #{oids} ) AND p.id IN ( #{ids} );"
-  val_photos = ActiveRecord::Base.connection.execute( sql_query ).map{ |i| i }; nil
-
-  ids = photo_ids.select{|i| i[:set]=="test"}.map{|i| i[:id]}.join( "," )
-  oids = photo_ids.select{|i| i[:set]=="test"}.map{|i| i[:oid]}.join( "," )
-  sql_query = base_sql_query + " AND o.id IN ( #{oids} ) AND p.id IN ( #{ids} );"
-  test_photos = ActiveRecord::Base.connection.execute( sql_query ).map{ |i| i }; nil
+  train_photos = photo_ids.select{|i| i[:set]=="train"}
+  test_photos = photo_ids.select{|i| i[:set]=="test"}
+  val_photos = photo_ids.select{|i| i[:set]=="val"}
 
   puts "\t #{train_photos.count} training photos"
+  puts "\t #{val_photos.count} val photos"
+  puts "\t #{test_photos.count} test photos"
 
   val_photos.each do |item|
-    out_row = photo_item_to_csv_row( item, multitask_label, multitask_text )
+    out_row = photo_item_to_csv_row( item, label, text )
     val_csv << out_row
   end
   test_photos.each do |item|
-    out_row = photo_item_to_csv_row( item, multitask_label, multitask_text )
+    out_row = photo_item_to_csv_row( item, label, text )
     test_csv << out_row
   end
   train_photos.each do |item|
-    out_row = photo_item_to_csv_row( item, multitask_label, multitask_text )
+    out_row = photo_item_to_csv_row( item, label, text )
     train_csv << out_row
   end
 end
@@ -432,40 +422,3 @@ src = "#{FileUtils.pwd}/tools/export_multitier_vision_data.rb"
 FileUtils.cp( src, "#{export_dir_fullpath}/export_multitier_vision_data.rb" )
 
 puts "Done\n\n"
-
-
-
-# Some code for rendering out json to vizualize here http://loarie.github.io/treenew5.html
-=begin
-def go_deeper( row, nr )
-  children = nr.select{ |i| i[:ancestors].last==row[:id] }
-  fixed_children = []
-  children.each do |child|
-    child[:name] = child[:id] if child[:name].nil?
-    rr = { id: child[:id], name: child[:name] }
-    childd = go_deeper( rr, nr )
-    fixed_children << childd
-  end
-  if fixed_children.count > 0
-    row[:children] = fixed_children
-  end
-  return row
-end
-
-if root_taxon.rank_level == Taxon::ROOT_LEVEL
-  subject = { id: root_taxon.id, name: root_taxon.name, children: [] }
-  export_taxonomy.select{ |i| i[:ancestors].empty? }.each do |row|
-    rr = {id: row[:id], name: row[:name]}
-    subject[:children] << go_deeper( rr, export_taxonomy ); nil
-  end
-else
-  ss = export_taxonomy.select{ |a| a[:id] == root_taxon.ancestor_ids[1]}.first
-  subject = {id: ss[:id], name: ss[:name] }
-  subject = go_deeper( subject, export_taxonomy )
-end
-
-#puts subject.to_json
-File.open( "/home/inaturalist/subject.json", "w" ) do |f|
-  f.write( subject.to_json )
-end
-=end
