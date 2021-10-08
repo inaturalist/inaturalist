@@ -6192,6 +6192,9 @@ da:
           Denne grænse er lidt for kompleks til at redigere på internettet. Du kan dog
           <a href="%{url}"> downloade KML </a>, og redigere det i GIS-applikationen efter eget valg, og
           uploade din redigerede KML direkte.
+        admin_level_desc: |
+          Bør kun angives til politiske organer. Mht.
+          USA-ækvivalenter, 0 = land, 1 = stat, 2 = amt, 3 = by
       new:
         check_list_note: "Bemærk: tjeklisterne deaktiveres automatisk for meget store steder."
         coordinates_desc: Du skal angive koordinater, hvis du ikke tegner et omrids eller uploader KML.
@@ -6518,6 +6521,17 @@ da:
           for at begynde at vise observationer.
       updates_desc: |
         Modtag underretninger om dette projekt på dit betjeningspanel samt i den daglige underretnings e-mail.
+    search:
+      index:
+        no_taxa_options: "Der er et par muligheder:"
+        no_taxa_add_a_flag: Tilføj en Flag til en Højere Niveau Takson
+        no_taxa_add_a_flag_desc: |
+          F.eks. slægten, der omfatter en art. Forhåbentlig vil en frivillig kurator
+          tilføje taksonen, når der har tid, og den stemmer overens med vores taksonomiske politikker.
+        no_taxa_forum: Kontakt Forummet
+        no_taxa_forum_desc_html: |
+          Mange frivillige kuratorer holder styr på beskeder til
+          %{link_start_tag}Forum%{link_end_tag}.
     shared:
       blocked:
         youve_been_blocked: Du er blevet blokeret
