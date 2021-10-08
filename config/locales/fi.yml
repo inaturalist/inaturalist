@@ -5405,6 +5405,17 @@ fi:
           Tämä projekti ei ole määritellyt mitään vaatimuksia havainnoille. Jotta projekteissa näytettäisiin havaintojam niiden pitää valita yksi tai useampi taksoni (esim. linnut, havupuut), paikka (esim. Suomi, Turku), käyttäjä ja/tai päivämäärä.
       updates_desc: |
         Vastaanota tiedotteita tästä projektista kojelaudassasi ja päivittäisissä sähköpostiviesteissä.
+    search:
+      index:
+        no_taxa_options: "Sinulla on muutama vaihtoehto:"
+        no_taxa_add_a_flag: Liputa korkeamman tason taksoni
+        no_taxa_add_a_flag_desc: |
+          esim. suku, johon laji kuuluu. Toivottavasti vapaaehtoinen kuraattori
+          lisää taksonin, jos heillä on aikaa ja se sopii taksonomisiin
+          käytäntöihimme.
+        no_taxa_forum: Ota yhteyttä foorumiin
+        no_taxa_forum_desc_html: |
+          Monet vapaaehtoiset kuraattorit pitävät seuraavat %{link_start_tag}Foorumille%{link_end_tag} viestejä.
     shared:
       blocked:
         youve_been_blocked: Sinut on estetty
