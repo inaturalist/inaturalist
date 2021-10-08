@@ -6411,6 +6411,9 @@ cs:
           Tento projekt nedefinoval žádné požadavky na pozorování. Projekty musí zvolit jeden či více taxonů (např. ptáci, jehličnany), místa (např. Brazílie, Yellowstone), uživatele, a/nebo data, aby mohl začít zobrazovat pozorování.
       updates_desc: |
         Získejte aktualizace o tomto projektu na přístrojové desce a v denních aktualizacích e-mailu.
+    search:
+      index:
+        no_taxa_options: "Máte několik možností:"
     shared:
       blocked:
         youve_been_blocked: Byl jste zablokován
