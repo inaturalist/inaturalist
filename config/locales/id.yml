@@ -6052,6 +6052,15 @@ id:
           Proyek ini belum menentukan persyaratan pengamatan. Proyek memerlukan satu atau lebih taksa (seperti burung, konifer), tempat (seperti Brazil, Yellowstone), pengguna, dan/atau tanggal untuk mulai menampilkan pengamatan.
       updates_desc: |
         Terima kabar tentang proyek ini pada dasbor Anda dan dalam kabar sehari-hari melalui email.
+    search:
+      index:
+        no_taxa_options: "Anda memiliki beberapa pilihan:"
+        no_taxa_add_a_flag: Tambahkan Tanda untuk Takson Bertingkat Lebih Tinggi
+        no_taxa_add_a_flag_desc: |
+          Contohnya genus yang mengandung spesies. Semoga kurator sukarelawan akan menambahkan taksonnya jika mereka memiliki waktu dan itu sesuai dengan kebijakan taksonomi kami.
+        no_taxa_forum: Hubungi Forum
+        no_taxa_forum_desc_html: |
+          Banyak kurator sukarelawan memantau pesan-pesan yang masuk ke %{link_start_tag}Forum%{link_end_tag}.
     shared:
       blocked:
         youve_been_blocked: Anda Telah Diblokir
