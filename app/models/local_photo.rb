@@ -581,7 +581,7 @@ class LocalPhoto < Photo
       # to URLs which his just swap out domains
       styles = %w(original large medium small thumb square)
       url_updates = Hash[styles.map do |s|
-        ["#{s}_url", photo.send( "#{s}_url").sub( source_domain, target_domain )]
+        ["#{s}_url", photo["#{s}_url"].sub( source_domain, target_domain )]
       end]
       photo.update_columns( url_updates )
       photo.reload

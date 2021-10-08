@@ -260,23 +260,12 @@ class Photo < ApplicationRecord
       f.id != flag.id && f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved?
     end
     # flagged photos should move to the public bucket, so make sure they end up in the right place
-    # resolved copyright flags include an additional step later to restore the photo
-    if self.is_a?( LocalPhoto ) && (
-      %w(created unresolved).include?(options[:action]) || !flag_is_copyright
-    )
+    if self.is_a?( LocalPhoto ) && self["original_url"] !~ /copyright/
       change_photo_bucket_if_needed
     end
-    # For copyright flags, we need to change the photo URLs when flagged, and
-    # reset them when there are no more copyright flags
     if flag_is_copyright && !other_unresolved_copyright_flags_exist
-      if %w(created unresolved).include?(options[:action])
-        styles = %w(original large medium small thumb square)
-        updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
-        updates += styles.map do |s|
-          FakeView.image_url("copyright-infringement-#{s}.png").to_s
-        end
-        Photo.where(id: id).update_all(updates)
-      elsif %w(resolved destroyed).include?(options[:action])
+      # For copyright flags reset the URLs if they still point to a copyright placeholder
+      if %w(resolved destroyed).include?(options[:action]) && self["original_url"] =~ /copyright/
         Photo.repair_single_photo(self)
       end
       observations.each(&:update_stats)
@@ -286,6 +275,7 @@ class Photo < ApplicationRecord
       Observation.set_quality_grade( o.id )
       o.elastic_index!
     end
+    taxa.each( &:elastic_index! )
   end
 
   def original_dimensions
