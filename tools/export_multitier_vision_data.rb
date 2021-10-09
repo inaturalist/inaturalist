@@ -175,7 +175,7 @@ puts "Looking up taxon obs counts..."
 taxonomy = ActiveRecord::Base.connection.execute( sql_query )
 total_obs_counts = taxonomy.map{|row| [row["taxa_id"], row["count"].to_i]}.to_h
 
-nodes_and_ancestors = taxonomy.map{|i| [i["taxa_id"],( i["ancestry"] ? i["ancestry"].split( "/" ).map{|j| j.to_i} : nil ) ]}.flatten.compact.uniq
+NODES_AND_ANCESTORS = taxonomy.map{|i| [i["taxa_id"],( i["ancestry"] ? i["ancestry"].split( "/" ).map{|j| j.to_i} : nil ) ]}.flatten.compact.uniq
 
 # Keep only the leaves with enough downstream data
 puts "Trimming taxonomy based on obs counts..."
@@ -187,7 +187,7 @@ species_and_above_rank_levels.each do |rank_level|
   taxa_scope = Taxon.where( "( ancestry = '#{ ancestry_string }' OR ancestry LIKE ( '#{ ancestry_string }/%' ) )" ).
     where( "is_active = true AND rank_level = ?", rank_level ).
     where( "id NOT IN ( ? )", extinct_and_hybrid_taxon_ids ).
-    where( "id IN ( ? )", nodes_and_ancestors )
+    where( "id IN ( ? )", NODES_AND_ANCESTORS )
 
   if filter_taxon_ids
     taxa_scope = taxa_scope.where(id: filter_taxon_ids + filter_taxon_ancestor_ids)
@@ -296,6 +296,7 @@ def process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
     return
   end
   
+
   base_sql_query = <<-SQL
       SELECT op.photo_id AS id, o.id AS oid, p.medium_url AS filename
       FROM observations o
@@ -304,7 +305,7 @@ def process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
       WHERE p.original_url NOT LIKE '%attachment%'
       AND p.original_url NOT LIKE '%copyright%'
       AND p.type = 'LocalPhoto'
-      AND o.taxon_id IN ( #{taxon_ids.join( "," )} )
+      AND o.taxon_id IN ( #{( taxon_ids & NODES_AND_ANCESTORS ).join( "," )} )
   SQL
 
   sql_query = base_sql_query + "AND ( o.community_taxon_id IS NOT NULL AND o.community_taxon_id = o.taxon_id ) LIMIT #{TOTAL_CEIL * 1.5};"
@@ -313,7 +314,7 @@ def process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
   raw_photos_cid = raw_photos_cid.uniq {|row| row[:id] }
 
   if raw_photos_cid.uniq {|row| row[:oid] }.count < TOTAL_CEIL
-    sql_query = base_sql_query + "AND ( o.community_taxon_id IS NULL OR o.community_taxon_id != o.taxon_id );"
+    sql_query = base_sql_query + "AND ( o.community_taxon_id IS NULL OR o.community_taxon_id != o.taxon_id ) LIMIT #{TOTAL_CEIL * 1.5};"
     raw_photos_no_cid = ActiveRecord::Base.connection.execute( sql_query ).
       map{ |i| {id: i["id"].to_i, oid: i["oid"].to_i, filename: i["filename"]} }; nil
     raw_photos_no_cid = raw_photos_no_cid.uniq {|row| row[:id] }
