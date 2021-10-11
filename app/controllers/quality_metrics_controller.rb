@@ -42,7 +42,7 @@ class QualityMetricsController < ApplicationController
 
   def respond_to_create
     qm = @observation.quality_metrics.build( user_id: current_user.id,
-      metric: params[:metric], agree: params[:agree] != "false" )
+      metric: params[:metric], agree: params[:agree].to_s != "false" )
     if qm.save
       respond_to do | format |
         format.html do
