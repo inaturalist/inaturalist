@@ -6233,6 +6233,16 @@ de:
           Dieses Projekt hat keinerlei Kriterien für Beobachtungen definiert. Projekte müssen ein Auswahl von einem oder mehrerer Taxa (z. B. Vögel, Nadelbäume), Orten (z.B. Belgien, Bayern, Bottrop), Benutzern und/oder Datumsangaben treffen, bevor sie Beobachtungen anzeigen können.
       updates_desc: |
         Erhalte Aktualisierungen zu diesem Projekt auf deinem Dashboard und in der täglichen Updates-E-Mail.
+    search:
+      index:
+        no_taxa_options: "Dafür gibt es mehrere Möglichkeiten:"
+        no_taxa_add_a_flag: Eine Meldung hinzufügen zu einem ranghöheren Taxon
+        no_taxa_add_a_flag_desc: |
+          Z.B. für die Gattung, zu welcher diese Art gehört. Dann wird hoffentlich ein freiwilliger Kurator das Taxon hinzufügen, wenn es unseren taxonomischen Richtlinien entspricht.
+        no_taxa_forum: Im Forum darauf hinweisen
+        no_taxa_forum_desc_html: |
+          Viele ehrenamtliche Kuratoren verfolgen die Nachrichten im
+          %{link_start_tag}Forum%{link_end_tag}.
     shared:
       blocked:
         youve_been_blocked: Du wurdest gesperrt
