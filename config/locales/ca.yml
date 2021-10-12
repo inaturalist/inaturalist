@@ -5853,6 +5853,8 @@ ca:
       edit:
         complex_boundary_note_html: |
           Aquest límit és massa complicat per editar-ho al web. Malgrat això podeu <a href="%{url}">descarregar l'arxiu KML</a>, editar-ho en una aplicació SIG i pujar el KML editat directament.
+        admin_level_desc: |
+          Únicament poden establir-se territoris polítics. En termes equivalents als d'USA: 0=país, 1=estat, 2=província, 3=ciutat
       new:
         check_list_note: "Nota: Les llistes de verificació es desactiven automàticament per a llocs molt grans."
         coordinates_desc: Heu d'especificar les coordenades si no dibuixeu un límit o pugeu un arxiu KML.
@@ -6129,6 +6131,16 @@ ca:
           Aquest projecte no ha definit cap requeriment de les observacions. Els projectes necessiten que se seleccioni un o més tàxons (p.e. ocells, coníferes), llocs (Brasil, Yellowstone), usuaris, i/o dates per començar a mostrar observacions.
       updates_desc: |
         Rebre les actualitzacions d'aquest projecte en el vostre tauler i en el correu electrònic diari d'actualitzacions.
+    search:
+      index:
+        no_taxa_options: "Tens algunes opcions:"
+        no_taxa_add_a_flag: Afegir un advertiment a un Taxó d'Alt Nivell
+        no_taxa_add_a_flag_desc: |
+          Per exemple el gènere que conté una espècie. Esperem que un supervisor voluntari afegeixi el tàxon, si té temps i s’ajusta a les nostres polítiques taxonòmiques.
+        no_taxa_forum: Contacteu amb el Fòrum
+        no_taxa_forum_desc_html: |
+          Molts comissaris voluntaris mantenen un registre dels missatges al
+          %{link_start_tag}Fòrum%{link_end_tag}.
     shared:
       blocked:
         youve_been_blocked: Heu estat blocat
