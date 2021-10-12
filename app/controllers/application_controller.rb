@@ -9,7 +9,9 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::UnknownFormat, with: :render_404
 
   helper :all # include all helpers, all the time
-  protect_from_forgery
+  protect_from_forgery unless: lambda {
+    authenticated_with_oauth? || authenticated_with_jwt?
+  }
   before_action :permit_params
   around_action :set_time_zone
   around_action :logstash_catchall
@@ -654,6 +656,20 @@ class ApplicationController < ActionController::Base
 
   def authenticated_with_oauth?
     @doorkeeper_for_called && doorkeeper_token && doorkeeper_token.accessible?
+  end
+
+  def authenticated_with_jwt?
+    return false unless current_user
+    return false unless ( token = request.authorization.to_s.split( /\s+/ ).last )
+
+    jwt_claims = begin
+      ::JsonWebToken.decode( token )
+    rescue JWT::DecodeError
+      nil
+    end
+    return false unless jwt_claims && ( current_user.id == jwt_claims.fetch( "user_id" ) )
+
+    true
   end
 
   def pagination_headers_for(collection)
