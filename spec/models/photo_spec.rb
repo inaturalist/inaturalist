@@ -94,7 +94,7 @@ describe Photo do
       expect( lp.license ).to eq fp.license
       expect( lp.mobile ).to eq fp.mobile
       expect( lp.metadata ).to eq fp.metadata
-      expect( lp.original_url ).to be nil
+      expect( lp["original_url"] ).to be nil
       expect( lp.subtype ).to eq "FlickrPhoto"
       expect( lp.native_original_image_url ).to eq fp.original_url
     end

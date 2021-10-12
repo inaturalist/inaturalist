@@ -345,7 +345,9 @@ class Photo < ApplicationRecord
       k =~ /^native/ ||
         [ "user_id", "license", "mobile", "metadata" ].include?(k)
     end
-    photo_url = remote_photo.try_methods(:original_url, :large_url, :medium_url, :small_url)
+    photo_url = [ :original, :large, :medium, :small ].map do |s|
+      remote_photo["#{ s }_url"]
+    end.compact.first
     return unless photo_url
     if photo_url.size <= 512
       remote_photo_attrs["native_original_image_url"] = photo_url
