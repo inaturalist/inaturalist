@@ -5407,31 +5407,15 @@ fi:
         Vastaanota tiedotteita tästä projektista kojelaudassasi ja päivittäisissä sähköpostiviesteissä.
     search:
       index:
-        no_taxa_options_html: |
-          <p>Sinulla on muutamia vaihtoehtoja:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Lisää lippu korkeamman tason taksoniin</strong>
-          <p>
-          Esim. suku joka sisältää lajin. Toivottavasti ystävällinen
-          kuraattori lisää taksonin, jos se voidaan lisätä.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Ota yhteyttä foorumiin</a></strong>
-          <p>
-          Monet sivuston kuraattorit seuraavat sähköpostiviestejä foorumiin.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Ota yhteyttä tukeen</a>
-          </strong>
-          <p>
-          Ole kärsivällinen, meillä ei ole paljon omistautunutta henkilökuntaa.
-          </p>
-          </li>
-          </ul>
+        no_taxa_options: "Sinulla on muutama vaihtoehto:"
+        no_taxa_add_a_flag: Liputa korkeamman tason taksoni
+        no_taxa_add_a_flag_desc: |
+          esim. suku, johon laji kuuluu. Toivottavasti vapaaehtoinen kuraattori
+          lisää taksonin, jos heillä on aikaa ja se sopii taksonomisiin
+          käytäntöihimme.
+        no_taxa_forum: Ota yhteyttä foorumiin
+        no_taxa_forum_desc_html: |
+          Monet vapaaehtoiset kuraattorit pitävät seuraavat %{link_start_tag}Foorumille%{link_end_tag} viestejä.
     shared:
       blocked:
         youve_been_blocked: Sinut on estetty

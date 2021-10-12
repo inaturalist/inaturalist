@@ -5744,9 +5744,6 @@ tr:
         complex_boundary_note_html: |
           Bu sınır, internette düzenlenemeyecek kadar karışık. Ancak, <a href="%{url}">KML'yi indirebilir</a>,
           seçtiğiniz GIS uygulmasında düzenleyebilir, ve düzenlediğiniz KML'yi doğrudan yükleyebilirsiniz.
-        admin_level_desc: |
-          Yalnızca siyasi kurumlar için ayarlanmalı. 
-          ABD eşdeğerleri açısından, 0 = ülke, 1 = eyalet, 2 = il, 3 = şehir
       new:
         check_list_note: "Not: çok büyük yerler için kontrol listeleri otomatik olarak devre dışı bırakılacaktır."
         coordinates_desc: Sınır çizmezseniz veya KML'yi yüklemezseniz, koordinatları belirtmelisiniz.
@@ -6080,33 +6077,6 @@ tr:
           Bu proje herhangi bir gözlem gerekliliği tanımlamamıştır. Projelerin, gözlem görüntülemeye başlamak için bir ya da daha çok sınıf (ör. kuşlar, kozalaklı ağaçlar), yerler (örneğin Brezilya, Yellowstone), kullanıcılar ve/ya da tarihler seçmesi gerekir.
       updates_desc: |
         Bu proje hakkındaki güncellemeleri kontrol panelinizden ve günlük güncellemeler e-postasında alın.
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>Birkaç seçeneğiniz var:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Üst Seviye bir Sınıfa İşaret Ekle</strong>
-          <p>
-          Örn. bir tür içeren familya. Umarım, dost bir sorumlu eğer 
-          eklenebiliyorsa, sınıfı ekleyecek.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Forum İle İletişime Geç</a></strong>
-          <p>
-          Birçok site sorumlusu Forum'a gönderilen mesajları takip eder.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Destek Ekibi ile İletişime Geç</a>
-          </strong>
-          <p>
-          Lütfen sabırlı olun, çok fazla özel destek ekibimiz yok.
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: Engellendin

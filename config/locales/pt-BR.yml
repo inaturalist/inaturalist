@@ -2139,6 +2139,7 @@ pt-BR:
     Parece que você está utilizando uma senha da versão antiga deste site. Por favor lembre-se de <a href="%{url}">mudar sua senha</a> para a nova versão.
   let_us_walk_you_through: Deixe-nos lhe apresentar as funções principais deste site.
   lexicon: Léxico
+  lexicon_cannot_contain_words: "não pode conter as seguintes palavras: %{words}"
   lexicons:
     scientific_names: Nomes Científicos
     afrikaans: Africâner
@@ -5999,7 +6000,7 @@ pt-BR:
         complex_boundary_note_html: |
           Estes limites de fronteira são um pouco complexos para serem editados na internet. No entanto, você pode fazer o <a href="%{url}">download do KML</a>, e editar elas no aplicativo GIS que você escolher, depois fazer o upload do seu KML editado diretamente.
         admin_level_desc: |
-          Deve somente ser aplicado quando definindo limites geográficos políticos. Em termos equivalentes ao padrão dos EUA utilize 0 = país, 1 = estado, 2 = região, 3 = cidade
+          Somente deve ser aplicado para limites geográficos políticos. Em termos equivalentes ao padrão dos EUA, utilize 0 = país, 10 = estado, 20 = região, 30 = cidade
       new:
         check_list_note: "Nota: as listas de verificação serão automaticamente desabilitadas para áreas muito grandes."
         coordinates_desc: Você deve especificar as coordenadas se você não desenhar um limite ou subir o KML.
@@ -6308,30 +6309,13 @@ pt-BR:
         Receba atualizações sobre este projeto em seu painel de controle e, através de e-mails diários.
     search:
       index:
-        no_taxa_options_html: |
-          <p>Você tem algumas opções:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Adicionar uma Sinalização a um Táxon de Nível Superior</strong>
-          <p>
-          Ex.: o gênero que contém tal espécie. Espera-se que um curador amistoso adicione o táxon se ele puder ser adicionado.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Contate o Fórum</a></strong>
-          <p>
-          Muitos curadores do site acompanham as mensagens do Fórum.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Fale com o Suporte</a>
-          </strong>
-          <p>
-          Por favor, seja paciente, não temos muitos funcionários exclusivamente de suporte.
-          </p>
-          </li>
-          </ul>
+        no_taxa_options: "Você tem algumas opções:"
+        no_taxa_add_a_flag: Adicionar uma sinalização para um táxon de nível superior
+        no_taxa_add_a_flag_desc: |
+          Ex.: o gênero que contém uma espécie. Espera-se que um curador voluntário adicione o táxon se ele tiver tempo, de forma alinhada com as nossas políticas taxonômicas.
+        no_taxa_forum: Acessar o Fórum
+        no_taxa_forum_desc_html: |
+          Muitos curadores voluntários acompanham as mensagens no %{link_start_tag}Fórum%{link_end_tag}.
     shared:
       blocked:
         youve_been_blocked: Você foi bloqueado
@@ -7565,6 +7549,16 @@ pt-BR:
           attributes:
             base:
               user_already_blocked: Você já bloqueou esse usuário
+              user_cannot_be_staff: |
+                Você não pode bloquear a equipe do iNat. A equipe precisa ser capaz de
+                se comunicar com todos no iNat, ter acesso a todos os dados no
+                iNat, e são os mediadores finais de disputas, então bloqueá-los
+                não os impedirá de se comunicar com você. Se você tiver um
+                problema com um membro da equipe, por favor reporte-o a um dos
+                co-diretores do iNat, ou, se você tiver algum problema com um dos
+                co-diretores, você pode entrar em contato com o Chief of Science no
+                Instituto de Biodiversidade e Ciência da Sustentabilidade na
+                Academia de Ciências da Califórnia.
         user_parent:
           attributes:
             email:

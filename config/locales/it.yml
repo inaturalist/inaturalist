@@ -5877,7 +5877,7 @@ it:
         complex_boundary_note_html: |
           Questo perimetro è un po' troppo complesso per essere editato sul web. Puoi <a href="%{url}">scaricare il KML</a>, editarlo con applicazioni GIS a tua scelta, e caricare direttamente il tuo KML modificato.
         admin_level_desc: |
-          Deve essere impostato solo per confini politici. Con riferimento agli USA, 0 = nazione, 1 = regione, 2 = provincia, 3 = comune
+          Deve essere impostato solo per confini politici. Con riferimento agli equivalenti in USA, 0 = nazione, 10 = regione, 20 = provincia, 30 = comune
       new:
         check_list_note: "Ricorda: le checklist saranno automaticamente disabilitate per luoghi molto estesi."
         coordinates_desc: Devi specificare le coordinate se non tracci i confini o non carichi un file KML.
@@ -6160,30 +6160,14 @@ it:
         Ricevi gli aggiornamenti relativi a questo progetto sulla tua bacheca e tramite gli aggiornamenti email giornalieri.
     search:
       index:
-        no_taxa_options_html: |
-          <p>Hai alcune opzioni:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Aggiungi un contrassegno a un taxon di livello più alto </strong>
-          <p>
-          E.g. il genere che include la specie. Facilmente un curatore disponibile aggiungerà il taxon se è possibile.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Contatta il Forum</a></strong>
-          <p>
-          Molti curatori del sito controllano i messaggi al Forum.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Contatta il Supporto</a>
-          </strong>
-          <p>
-          Sii paziente, non abbiamo molte persone nello staff di supporto.
-          </p>
-          </li>
-          </ul>
+        no_taxa_options: "Hai alcune opzioni:"
+        no_taxa_add_a_flag: Aggiungi un Contrassegno ad un Taxon di Livello superiore
+        no_taxa_add_a_flag_desc: |
+          Per esempio il genere che contiene una specie. Speriamo che un curatore volontario aggiunga il taxon se ha tempo e si allinei con le nostre politiche tassonomiche.
+        no_taxa_forum: Contatta il Forum
+        no_taxa_forum_desc_html: |
+          Molti curatori volontari tengono traccia dei messaggi nel
+          %{link_start_tag}Forum%{link_end_tag}.
     shared:
       blocked:
         youve_been_blocked: Sei stato bloccato

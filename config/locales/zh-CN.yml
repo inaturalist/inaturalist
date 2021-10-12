@@ -5106,8 +5106,6 @@ zh-CN:
       edit:
         complex_boundary_note_html: |
           此边界有点太复杂，而不能通过web编辑。然而，您可以<a href="%{url}">下载KML</a>，在您选择GIS应用程序中编辑它，然后直接上传您编辑的KML。
-        admin_level_desc: |
-          只应设为行政单位。以美国为例，0=国家，1=州，2=县，3=镇
       new:
         check_list_note: "注意：对非常大的地方的检查列表将被自动禁用。"
         coordinates_desc: 如果您不画出边界或上传KML的话，您必须指定坐标。
@@ -5359,32 +5357,6 @@ zh-CN:
           此项目尚未定义任何观察要求。项目需要选择一个或个更多分类单元(如：鸟类，针叶树）、地点(如：巴西、黄石)、用户，和/或开始显示观察结果的日期。
       updates_desc: |
         在您的控制面板与每日更新邮件中接收有关此项目的更新。
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>你有几个选择：</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>将标志添加到更高级别的分类单元中</strong>
-          <p>
-          例如，属于一个物种的属。希望友好的馆长会添加分类单元，如果他们可被添加。
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">联系反馈组</a></strong>
-          <p>
-          许多网站馆长会跟踪反馈组的电子邮件。
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">联系支持</a>
-          </strong>
-          <p>
-          请耐心等待，我们没有很多专门的支持人员。
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: 您已被封禁

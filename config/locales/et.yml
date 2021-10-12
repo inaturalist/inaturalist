@@ -4101,8 +4101,6 @@ et:
       edit:
         complex_boundary_note_html: |
           See piirjoon on veebis muutmiseks natuke liiga keeruline. Kuid sa võid siiski <a href="%{url}">KML-faili alla laadida</a>, seda sinu jaoks sobivas GIS-programmis muuta ning uue KML-faili otse üles laadida.
-        admin_level_desc: |
-          Peaks olema määratud vaid poliitiliste kehandite puhul. USA vasted oleksid: 0=riik, 1=osariik, 2=maakond, 3=linn
       new:
         check_list_note: "NB: väga suurte kohtade puhul on kontrollnimekirjad automaatselt välja lülitatud."
         coordinates_desc: Kui sa piirjoont ei joonista või KML-faili üles ei lae, pead määrama koordinaadid.
@@ -4318,32 +4316,6 @@ et:
           See on eelvaade, mis näitab milline antud projekt näeks välja kogumisprojektina.
       updates_desc: |
         Saa teateid selle projekti kohta oma töölauale ning igapäevase uudiste e-kirjaga.
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>Sul on paar valikut:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Lisa märkus kõrgema taseme taksonile</strong>
-          <p>
-          Näiteks liiki sisaldav perekond. Loodetavasti lisab mõni sõbralik kuraator taksoni, kui selle lisamine on võimalik.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Kontakteeru foorumiga</a></strong>
-          <p>
-          Palju lehe kuraatorid jälgivad ka foorumit.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Võta ühendust toega</a>
-          </strong>
-          <p>
-          Ole palun kannatlik, kuna meie tugipersonal pole eriti suur.
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: Sind on blokeeritud
