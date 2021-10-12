@@ -815,6 +815,10 @@ ja:
   #species in the taxon and place it purports to
   comprehensive?: 完全？
   comprehensive_list: 包括リスト
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: 含む
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: 保留
   configure: 設定する
   configure_a_widget_to_show: Webサイトまたはブログに%{site_name} の観察記録を表示するようウィジェットを設定します。埋め込まれたCSSをHTMLの<code>&lt;head&gt;</code>に含める必要があるかもしれません。CSSを自由に編集してください。
   confirm: 確認
