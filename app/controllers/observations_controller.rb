@@ -39,7 +39,7 @@ class ObservationsController < ApplicationController
                             :observation_links,
                             :torquemap,
                             :lifelist_by_login]
-  protect_from_forgery with: :exception, prepend: true, unless: lambda {
+  protect_from_forgery with: :exception, unless: lambda {
     request.format.widget? || authenticated_with_oauth? || authenticated_with_jwt?
   }
   ## /AUTHENTICATION
