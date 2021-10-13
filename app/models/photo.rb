@@ -80,6 +80,9 @@ class Photo < ApplicationRecord
     if flags.any?{ |f| f.flag == Flag::COPYRIGHT_INFRINGEMENT }
       return FakeView.image_url( "copyright-infringement-#{size}.png" )
     end
+    if !self["original_url"] || self["original_url"].match( /attachment_defaults/ )
+      return FakeView.uri_join( FakeView.root_url, LocalPhoto.new.file.url( size ) )
+    end
     if self.is_a?( LocalPhoto )
       return unless url_prefix
       return ( "#{url_prefix}/#{id}/#{size}.#{extension}" ).with_fixed_https
@@ -342,7 +345,9 @@ class Photo < ApplicationRecord
       k =~ /^native/ ||
         [ "user_id", "license", "mobile", "metadata" ].include?(k)
     end
-    photo_url = remote_photo.try_methods(:original_url, :large_url, :medium_url, :small_url)
+    photo_url = [ :original, :large, :medium, :small ].map do |s|
+      remote_photo["#{ s }_url"]
+    end.compact.first
     return unless photo_url
     if photo_url.size <= 512
       remote_photo_attrs["native_original_image_url"] = photo_url
@@ -370,7 +375,7 @@ class Photo < ApplicationRecord
   # to be used primarly for turn_remote_photo_into_local_photo
   def best_available_url
     [ :original, :large, :medium, :small ].each do |s|
-      url = self.send("#{ s }_url")
+      url = self["#{ s }_url"]
       if url && Photo.valid_remote_photo_url?(url)
         return url
       end

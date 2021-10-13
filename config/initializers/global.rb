@@ -148,12 +148,16 @@ def lat_lon_distance_in_meters(lat1, lon1, lat2, lon2)
   d
 end
 
-def fetch_head(url)
+def fetch_head(url, follow_redirects = true)
   begin
     uri = URI(url)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = (url =~ /^https/)
-    return http.head(uri.request_uri)
+    rsp = http.head(uri.request_uri)
+    if rsp.is_a?( Net::HTTPRedirection ) && follow_redirects
+      return fetch_head( rsp["location"], false )
+    end
+    return rsp
   rescue
   end
   nil
