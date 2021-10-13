@@ -1,4 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
+  protect_from_forgery with: :exception, prepend: true
 
   before_action :load_registration_form_data, only: [:new, :create]
 
@@ -21,25 +22,6 @@ class Users::SessionsController < Devise::SessionsController
         else
           redirect_to after_sign_in_path_for(resource)
         end
-      end
-
-      # for reasons that are unclear iPhone requests for /sessions.json are 
-      # considered mobile, even though request.format is text/html, which also 
-      # makes no sense.
-      format.json do
-        render :json => current_user.to_json(:except => [
-          :encrypted_password, 
-          :password_salt,
-          :remember_token,
-          :remember_token_expires_at,
-          :confirmation_token,
-          :confirmed_at,
-          :state,
-          :deleted_at,
-          :old_preferences,
-          :icon_url,
-          :remember_created_at
-        ])
       end
     end
   end

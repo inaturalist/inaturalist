@@ -1,7 +1,9 @@
 class ProjectsController < ApplicationController
   WIDGET_CACHE_EXPIRATION = 15.minutes
 
-  protect_from_forgery unless: -> { request.format.widget? }
+  protect_from_forgery with: :exception, prepend: true, unless: lambda {
+    request.format.widget? || authenticated_with_oauth? || authenticated_with_jwt?
+  }
   before_action :allow_external_iframes, only: [ :show ]
 
   caches_action :observed_taxa_count, :contributors,

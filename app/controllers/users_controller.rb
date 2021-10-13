@@ -49,9 +49,6 @@ class UsersController < ApplicationController
   skip_before_action :check_preferred_site, only: :api_token
   skip_before_action :set_ga_trackers, only: :api_token
 
-  protect_from_forgery unless: -> {
-    request.parameters[:action] == "search" && request.format.json? }
-
   caches_action :dashboard_updates,
     :expires_in => 15.minutes,
     :cache_path => Proc.new {|c|
