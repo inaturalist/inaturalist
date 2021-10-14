@@ -210,17 +210,6 @@ shared_examples_for "a TaxaController without authentication" do
         expect( response_taxon["default_photo"]["license_url"] ).to eq photo.license_url
       end
     end
-
-    it "should return names specific to the user's place" do
-      t = Taxon.make!( rank: Taxon::SPECIES )
-      TaxonName.make!( taxon: t, lexicon: TaxonName::ENGLISH )
-      tn_place = TaxonName.make!( taxon: t, lexicon: TaxonName::ENGLISH )
-      ptn = PlaceTaxonName.make!( taxon_name: tn_place )
-      user.update_attributes( place_id: ptn.place_id )
-      get :show, format: :json, params: { id: t.id }
-      json = JSON.parse( response.body )
-      expect( json["common_name"]["name"] ).to eq tn_place.name
-    end
   end
 
   describe "children" do
@@ -245,6 +234,27 @@ shared_examples_for "a TaxaController without authentication" do
   end
 end
 
+shared_examples_for "a TaxaController with authentication" do
+  describe "show" do
+    it "should return names specific to the user's place" do
+      t = Taxon.make!( rank: Taxon::SPECIES )
+      TaxonName.make!( taxon: t, lexicon: TaxonName::ENGLISH )
+      tn_place = TaxonName.make!( taxon: t, lexicon: TaxonName::ENGLISH )
+      ptn = PlaceTaxonName.make!( taxon_name: tn_place )
+      user.update_attributes( place_id: ptn.place_id )
+      get :show, format: :json, params: { id: t.id }
+      json = JSON.parse( response.body )
+      expect( json["common_name"]["name"] ).to eq tn_place.name
+    end
+  end
+end
+
 describe TaxaController do
   it_behaves_like "a TaxaController without authentication"
+end
+
+describe TaxaController, "with authentication" do
+  let( :user ) { User.make! }
+  before { sign_in( user ) }
+  it_behaves_like "a TaxaController with authentication"
 end
