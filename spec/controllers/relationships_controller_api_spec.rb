@@ -1,8 +1,10 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+# frozen_string_literal: true
+
+require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 shared_examples_for "a RelationshipsController" do
   describe "update" do
-    let(:relationship) { Friendship.make!( user: user ) }
+    let( :relationship ) { Friendship.make!( user: user ) }
 
     it "should update" do
       expect( relationship ).to be_following
@@ -14,7 +16,7 @@ shared_examples_for "a RelationshipsController" do
   end
 
   describe "destroy" do
-    let(:relationship) { Friendship.make!( user: user ) }
+    let( :relationship ) { Friendship.make!( user: user ) }
     it "should destroy" do
       delete :destroy, format: :json, params: { id: relationship.id }
       expect( Friendship.find_by_id( relationship.id ) ).to be_blank
@@ -22,10 +24,10 @@ shared_examples_for "a RelationshipsController" do
   end
 end
 
-describe RelationshipsController, "devise authentication" do
-  let(:user) { User.make! }
+describe RelationshipsController, "with authentication" do
+  let( :user ) { User.make! }
   before do
-    http_login( user )
+    sign_in( user )
   end
   it_behaves_like "a RelationshipsController"
 end
