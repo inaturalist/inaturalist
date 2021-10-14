@@ -19,6 +19,10 @@ require File.expand_path( "#{File.dirname( __FILE__ )}/../lib/eol_service.rb" )
 require File.expand_path( "#{File.dirname( __FILE__ )}/../lib/meta_service.rb" )
 require File.expand_path( "#{File.dirname( __FILE__ )}/../lib/flickr_cache.rb" )
 
+# rubocop:disable Style/MixinUsage
+include MakeHelpers
+# rubocop:enable Style/MixinUsage
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join( "spec/support/**/*.rb" )].sort.each {| f | require f }
@@ -91,7 +95,6 @@ RSpec.configure do | config |
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include RSpecHtmlMatchers
   config.include FactoryBot::Syntax::Methods
-  config.include MakeHelpers
   config.fixture_path = "#{::Rails.root}/spec/fixtures/"
   config.infer_spec_type_from_file_location!
   # disable certain specs. Useful for travis
