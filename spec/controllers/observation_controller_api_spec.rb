@@ -2105,6 +2105,28 @@ shared_examples_for "an ObservationsController" do
   end
 end
 
+shared_examples_for "an ObservationsController for a remembered user" do
+  before do
+    # Forgery protection seems to be turned off by default, so we need to turn it on here
+    ActionController::Base.allow_forgery_protection = true
+    user.update_attributes( remember_token: "foo", remember_created_at: Time.now )
+  end
+
+  after do
+    ActionController::Base.allow_forgery_protection = false
+  end
+
+  describe "create" do
+    it "should not remove the user's remember_token" do
+      expect( user.remember_token ).not_to be_blank
+      post :create, format: "json", params: { observation: { species_guess: "foo" } }
+      expect( response ).to be_successful
+      user.reload
+      expect( user.remember_token ).not_to be_blank
+    end
+  end
+end
+
 describe ObservationsController, "oauth authentication" do
   let(:user) { User.make! }
   before do
@@ -2117,6 +2139,7 @@ describe ObservationsController, "oauth authentication" do
   end
   it_behaves_like "ObservationsController basics"
   it_behaves_like "an ObservationsController"
+  it_behaves_like "an ObservationsController for a remembered user"
 end
 
 describe ObservationsController, "oauth authentication with param" do
@@ -2150,6 +2173,7 @@ describe ObservationsController, "jwt authentication" do
     request.env["HTTP_AUTHORIZATION"] = JsonWebToken.encode(user_id: user.id)
   end
   it_behaves_like "ObservationsController basics"
+  it_behaves_like "an ObservationsController for a remembered user"
 end
 
 describe ObservationsController, "jwt bearer authentication" do

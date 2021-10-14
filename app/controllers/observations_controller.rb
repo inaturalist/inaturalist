@@ -1,7 +1,5 @@
 #encoding: utf-8
 class ObservationsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: :index, if: :json_request?, raise: false
-  protect_from_forgery unless: -> { request.format.widget? } #, except: [:stats, :user_stags, :taxa]
   before_action :decide_if_skipping_preloading, only: [ :index, :show, :taxon_summary, :review ]
   before_action :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
   before_action :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
@@ -16,15 +14,13 @@ class ObservationsController < ApplicationController
     by_login
   end
 
+  ## AUTHENTICATION
   before_action :doorkeeper_authorize!,
     only: [ :create, :update, :destroy, :viewed_updates, :update_fields, :review ],
-    if: lambda { authenticate_with_oauth? }
-  
-  before_action :load_user_by_login, :only => [:by_login, :by_login_all, :lifelist_by_login]
-  after_action :return_here, :only => [:index, :by_login, :show, 
-    :import, :export, :add_from_list, :new, :project]
+    if: -> { authenticate_with_oauth? }
+
   before_action :authenticate_user!,
-                :unless => lambda { authenticated_with_oauth? },
+                unless: -> { authenticated_with_oauth? },
                 :except => [:explore,
                             :index,
                             :of,
@@ -43,6 +39,22 @@ class ObservationsController < ApplicationController
                             :observation_links,
                             :torquemap,
                             :lifelist_by_login]
+  protect_from_forgery with: :exception, unless: lambda {
+    request.format.widget? || authenticated_with_oauth? || authenticated_with_jwt?
+  }
+  ## /AUTHENTICATION
+
+  before_action :load_user_by_login, only: [:by_login, :by_login_all, :lifelist_by_login]
+  after_action :return_here, only: [
+    :index,
+    :by_login,
+    :show,
+    :import,
+    :export,
+    :add_from_list,
+    :new,
+    :project
+  ]
   load_only = [ :show, :edit, :edit_photos, :update_photos, :destroy,
     :fields, :viewed_updates, :community_taxon_summary, :update_fields,
     :review, :taxon_summary, :observation_links ]
