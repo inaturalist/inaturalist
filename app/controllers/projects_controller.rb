@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
     except: [:index, :show, :search, :map, :contributors, :observed_taxa_count,
       :browse, :calendar, :stats_slideshow]
   protect_from_forgery with: :exception, unless: lambda {
-    request.format.widget? || authenticated_with_oauth? || authenticated_with_jwt?
+    request.format.widget? || authenticate_with_oauth? || authenticated_with_jwt?
   }
   ## /AUTHENTICATION
 

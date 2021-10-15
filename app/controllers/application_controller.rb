@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
   protect_from_forgery with: :exception, unless: lambda {
-    authenticate_with_oauth? || authenticated_with_oauth? || authenticated_with_jwt?
+    authenticate_with_oauth? || authenticated_with_jwt?
   }
   before_action :permit_params
   around_action :set_time_zone
