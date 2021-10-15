@@ -5965,9 +5965,6 @@ nl:
         complex_boundary_note_html: |
           Deze grens is een beetje te complex om op het web te bewerken. Je kunt wel
           <a href="%{url}">de KML downloaden</a>, deze vervolgens bewerken in een GIS-applicatie van jouw keuze, en de bewerkte KML uploaden.
-        admin_level_desc: |
-          Moet alleen worden ingesteld voor politieke eenheden. In termen van VS-equivalenten, 
-          0 = land, 1 = staat, 2 = county, 3 = stad
       new:
         check_list_note: "Opmerking: checklists worden automatisch uitgeschakeld voor zeer grote plaatsen."
         coordinates_desc: Je moet coördinaten opgeven als je geen grens trekt of een KML uploadt.
@@ -6261,32 +6258,6 @@ nl:
           Dit project heeft geen vereisten voor waarnemingen opgegeven. Projecten moeten één of meerdere taxa (bijv. vogels, coniferen), plaatsen (bijv. Brazilië, Yellowstone), gebruikers, en/of data selecteren om waarnemingen te beginnen weer te geven.
       updates_desc: |
         Ontvang updates over dit project op je dashboard en de dagelijkse e-mail met nieuws.
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>Er zijn een paar mogelijkheden:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Een melding toevoegen aan een hoger taxon</strong>
-          <p>
-          Bijv. het geslacht dat een soort bevat. Hopelijk zal een curator zo vriendelijk zijn het taxon toe te voegen als het kan worden toegevoegd.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Plaats een bericht op het forum</a></strong>
-          <p>
-          Veel sitecuratoren houden berichten bij op het forum.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Neem contactop met support</a>
-          </strong>
-          <p>
-          Heb alsjeblieft geduld, we hebben weinig vaste supportmedewerkers.
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: Je bent geblokkeerd

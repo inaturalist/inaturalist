@@ -6009,8 +6009,8 @@ sv:
         complex_boundary_note_html: |
           Denna gräns är lite för komplex för att redigera på webben. Men du kan <a href="%{url}">ladda ner KML:en</a>, redigera den i valfri GIS-applikation och sedan ladda upp din redigerade KML direkt.
         admin_level_desc: |
-          Bör endast sättas för politiska områden. Jämför med
-          USA, 0 = land, 1 = stat, 2 = county/län, 3 = stad
+          Bör endast sättas för politiska områden. Jämfört med
+          USA, 0 = land, 10 = stat, 20 = län/region, 30 = stad
       new:
         check_list_note: "Obs: checklistor kommer automatiskt att vara avstängt för mycket stora platser."
         coordinates_desc: Du måste ange koordinater om du inte ritar en gräns eller laddar upp KML.
@@ -6296,30 +6296,15 @@ sv:
         Få uppdateringar om detta projekt på din anslagstavla och i e-post om dagens uppdateringar.
     search:
       index:
-        no_taxa_options_html: |
-          <p>Det finns några alternativ:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Lägg till en flagga på ett taxon av högre nivå</strong>
-          <p>
-          T.ex. släktet som innehåller en art. Förhoppningsvis lägger en schysst förvaltare till detta taxon om det är möjligt.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Kontakta forumet</a></strong>
-          <p>
-          Många förvaltare håller reda på meddelanden till forumet.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Kontakta support</a>
-          </strong>
-          <p>
-          Ha tålmod, vi har inte mycket supportpersonal på heltid.
-          </p>
-          </li>
-          </ul>
+        no_taxa_options: "Du har några olika alternativ:"
+        no_taxa_add_a_flag: Lägg till en flagga till ett taxon på högre nivå
+        no_taxa_add_a_flag_desc: |
+          T.ex. släktet som innehåller en art. Förhoppningsvis kommer en ideell förvaltare
+          lägga till detta taxon om de har tid och det följer vår taxonomiska policyer.
+        no_taxa_forum: Kontakta Forumet
+        no_taxa_forum_desc_html: |
+          Många ideella förvaltare håller reda på meddelanden till 
+          %{link_start_tag}Forumet%{link_end_tag}.
     shared:
       blocked:
         youve_been_blocked: Du har blivit blockerad

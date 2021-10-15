@@ -5688,8 +5688,6 @@ gl:
       edit:
         complex_boundary_note_html: |
           Este límite é demasiado complexo para editalo na web. Aínda así podes<a href="%{url}">descargar o KML</a>, editalo na aplicación GIS da túa escolla e cargar o teu KML editado directamente.
-        admin_level_desc: |
-          Só debería ser posto para áreas políticas. En termos de equivalencias con EEUU: 0 =p aís, 1 = estado, 2 = condado, 3 = cidade
       new:
         check_list_note: "Nota: As listas de verificación desactívanse automaticamente para sitios moi grandes."
         coordinates_desc: Debes especificar as coordenadas se non debuxas límites ou cargas un KML.
@@ -5966,32 +5964,6 @@ gl:
           Este proxecto non ten ningún requisito definido para observacións. Os proxectos precisan seleccionar un ou máis taxons (p.e. aves, coníferas), lugares (p.e. Brasil, Yellowstone), usuarios e/ou datas para comezar a mostrar observacións.
       updates_desc: |
         Recibe novas sobre este proxecto no teu panel e nos correos electrónicos de actualizacións diarios.
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>Tes algunhas opcións:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Engade unha Marca a un Taxon de un Nivel Superior</strong>
-          <p>
-          P.e. o xénero que contén á especie. Cun pouco de sorte, un conservador amigable engadirá o taxon se é posible.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Contacta có Foro</a></strong>
-          <p>
-          Moitos conservadores do sitio seguen as conversacións do Foro.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Contacta có Apoio</a>
-          </strong>
-          <p>
-          Por favor, se paciente, non temos moitos traballadores dedicados.
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: Foches Bloqueado

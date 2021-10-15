@@ -7068,31 +7068,16 @@ en:
         updates email.
     search:
       index:
-        no_taxa_options_html: |
-          <p>You've got a few options:</p>
-          <ul class="list-unstyled">
-            <li>
-              <strong>Add a Flag to a Higher-level Taxon</strong>
-              <p>
-                E.g. the genus that contains a species. Hopefully a friendly
-                curator will add the taxon if it can be added.
-              </p>
-            </li>
-            <li>
-              <strong><a href="%{feedback_url}">Contact the Forum</a></strong>
-              <p>
-                Many site curators keep track of messages to the Forum.
-              </p>
-            </li>
-            <li>
-              <strong>
-                <a href="mailto:%{help_email}">Contact Support</a>
-              </strong>
-              <p>
-                Please be patient, we don't have many dedicated support staff.
-              </p>
-            </li>
-          </ul>
+        no_taxa_options: "You've got a few options:"
+        no_taxa_add_a_flag: Add a Flag to a Higher-level Taxon
+        no_taxa_add_a_flag_desc: |
+          E.g. the genus that contains a species. Hopefully a volunteer curator
+          will add the taxon if they have time and it aligns with our taxonomic
+          policies.
+        no_taxa_forum: Contact the Forum
+        no_taxa_forum_desc_html: |
+          Many volunteer curators keep track of messages to the
+          %{link_start_tag}Forum%{link_end_tag}.
     shared:
       blocked:
         youve_been_blocked: You've Been Blocked

@@ -80,6 +80,9 @@ class Photo < ApplicationRecord
     if flags.any?{ |f| f.flag == Flag::COPYRIGHT_INFRINGEMENT }
       return FakeView.image_url( "copyright-infringement-#{size}.png" )
     end
+    if !self["original_url"] || self["original_url"].match( /attachment_defaults/ )
+      return FakeView.uri_join( FakeView.root_url, LocalPhoto.new.file.url( size ) )
+    end
     if self.is_a?( LocalPhoto )
       return unless url_prefix
       return ( "#{url_prefix}/#{id}/#{size}.#{extension}" ).with_fixed_https
@@ -255,27 +258,17 @@ class Photo < ApplicationRecord
 
   def flagged_with(flag, options = {})
     flag_is_copyright = flag.flag == Flag::COPYRIGHT_INFRINGEMENT
+    flags.reload
     other_unresolved_copyright_flags_exist = flags.detect do |f|
       f.id != flag.id && f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved?
     end
     # flagged photos should move to the public bucket, so make sure they end up in the right place
-    # resolved copyright flags include an additional step later to restore the photo
-    if self.is_a?( LocalPhoto ) && (
-      %w(created unresolved).include?(options[:action]) || !flag_is_copyright
-    )
+    if self.is_a?( LocalPhoto ) && self["original_url"] !~ /copyright/
       change_photo_bucket_if_needed
     end
-    # For copyright flags, we need to change the photo URLs when flagged, and
-    # reset them when there are no more copyright flags
     if flag_is_copyright && !other_unresolved_copyright_flags_exist
-      if %w(created unresolved).include?(options[:action])
-        styles = %w(original large medium small thumb square)
-        updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
-        updates += styles.map do |s|
-          FakeView.image_url("copyright-infringement-#{s}.png").to_s
-        end
-        Photo.where(id: id).update_all(updates)
-      elsif %w(resolved destroyed).include?(options[:action])
+      # For copyright flags reset the URLs if they still point to a copyright placeholder
+      if %w(resolved destroyed).include?(options[:action]) && self["original_url"] =~ /copyright/
         Photo.repair_single_photo(self)
       end
       observations.each(&:update_stats)
@@ -285,6 +278,7 @@ class Photo < ApplicationRecord
       Observation.set_quality_grade( o.id )
       o.elastic_index!
     end
+    taxa.each( &:elastic_index! )
   end
 
   def original_dimensions
@@ -351,7 +345,9 @@ class Photo < ApplicationRecord
       k =~ /^native/ ||
         [ "user_id", "license", "mobile", "metadata" ].include?(k)
     end
-    photo_url = remote_photo.try_methods(:original_url, :large_url, :medium_url, :small_url)
+    photo_url = [ :original, :large, :medium, :small ].map do |s|
+      remote_photo["#{ s }_url"]
+    end.compact.first
     return unless photo_url
     if photo_url.size <= 512
       remote_photo_attrs["native_original_image_url"] = photo_url
@@ -379,7 +375,7 @@ class Photo < ApplicationRecord
   # to be used primarly for turn_remote_photo_into_local_photo
   def best_available_url
     [ :original, :large, :medium, :small ].each do |s|
-      url = self.send("#{ s }_url")
+      url = self["#{ s }_url"]
       if url && Photo.valid_remote_photo_url?(url)
         return url
       end

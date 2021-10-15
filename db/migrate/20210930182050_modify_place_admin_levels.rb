@@ -13,7 +13,7 @@ class ModifyPlaceAdminLevels < ActiveRecord::Migration[5.2]
     #     .update_all( "lat_lon_acc_admin_level = lat_lon_acc_admin_level * 10" )
     # end
 
-    max_id = Place.maximum( :id )
+    max_id = Place.maximum( :id ) || 0
     batch_size = 10000
     batch_count = ( max_id / batch_size )
     for batch_index in ( 0..batch_count ) do
@@ -37,7 +37,7 @@ class ModifyPlaceAdminLevels < ActiveRecord::Migration[5.2]
     #     .update_all( "lat_lon_acc_admin_level = lat_lon_acc_admin_level / 10" )
     # end
 
-    max_id = Place.maximum( :id )
+    max_id = Place.maximum( :id ) || 0
     batch_size = 10000
     batch_count = ( max_id / batch_size )
     for batch_index in ( 0..batch_count ) do
