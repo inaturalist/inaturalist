@@ -1,9 +1,6 @@
 class ProjectsController < ApplicationController
   WIDGET_CACHE_EXPIRATION = 15.minutes
 
-  protect_from_forgery with: :exception, prepend: true, unless: lambda {
-    request.format.widget? || authenticated_with_oauth? || authenticated_with_jwt?
-  }
   before_action :allow_external_iframes, only: [ :show ]
 
   caches_action :observed_taxa_count, :contributors,
@@ -11,17 +8,22 @@ class ProjectsController < ApplicationController
     cache_path: Proc.new {|c| c.params},
     if: Proc.new {|c| c.request.format == :widget}
 
-  before_action :doorkeeper_authorize!, 
-    only: [ :by_login, :join, :leave, :members, :feature, :unfeature ],
-    if: lambda { authenticate_with_oauth? }
+  ## AUTHENTICATION
+  before_action :doorkeeper_authorize!,
+    only: [:by_login, :join, :leave, :members, :feature, :unfeature],
+    if: -> { authenticate_with_oauth? }
+  before_action :authenticate_user!,
+    unless: -> { authenticated_with_oauth? },
+    except: [:index, :show, :search, :map, :contributors, :observed_taxa_count,
+      :browse, :calendar, :stats_slideshow]
+  protect_from_forgery with: :exception, unless: lambda {
+    request.format.widget? || authenticated_with_oauth? || authenticated_with_jwt?
+  }
+  ## /AUTHENTICATION
+
   before_action :admin_or_this_site_admin_required, only: [ :feature, :unfeature ]
-  
   before_action :return_here,
     only: [ :index, :show, :contributors, :members, :show_contributor, :terms, :invite ]
-  before_action :authenticate_user!, 
-    unless: lambda { authenticated_with_oauth? },
-    except: [ :index, :show, :search, :map, :contributors, :observed_taxa_count,
-      :browse, :calendar, :stats_slideshow ]
   load_except = [ :create, :index, :search, :new_traditional, :by_login, :map, :browse, :calendar, :new ]
   before_action :load_project, except: load_except
   blocks_spam except: load_except, instance: :project

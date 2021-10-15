@@ -255,6 +255,8 @@ describe UsersController, "oauth authentication" do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow( controller ).to receive( :doorkeeper_token ) { token }
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
   it_behaves_like "a signed in UsersController"
 end
 
@@ -333,6 +335,9 @@ describe UsersController, "oauth authentication with login scope" do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow( controller ).to receive( :doorkeeper_token ) { token }
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
+
   describe "edit" do
     it "should return email" do
       get :edit, format: :json
@@ -363,6 +368,8 @@ describe UsersController, "oauth authentication with the account_delete scope" d
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow( controller ).to receive( :doorkeeper_token ) { token }
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
 
   describe "destroy" do
     it "should delete the current user" do

@@ -460,7 +460,6 @@ class ObservationsController < ApplicationController
     end
     
     @observation_fields = ObservationField.recently_used_by(current_user).limit(10)
-    
     respond_to do |format|
       format.html do
         @observations = [@observation]
