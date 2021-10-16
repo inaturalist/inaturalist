@@ -4,7 +4,7 @@ class DonateController < ApplicationController
     @responsive = true
     @footless = true
     @no_footer_gap = true
-    @shareable_image_url = FakeView.image_url( "donate-banner.png" )
+    @shareable_image_url = helpers.image_url( "donate-banner.png" )
   end
 
   def index

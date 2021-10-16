@@ -50,7 +50,7 @@ class Emailer < ActionMailer::Base
     return if @user.email.blank?
     return unless fto = @flow_task.outputs.first
     return unless fto.file?
-    @file_url = FakeView.uri_join(root_url, fto.file.url)
+    @file_url = fto.file.url
     attachments[fto.file_file_name] = File.read(fto.file.path)
     mail(set_site_specific_opts.merge(
       to: @user.email,
@@ -66,7 +66,7 @@ class Emailer < ActionMailer::Base
     @user = @flow_task.user
     set_locale
     return if @user.email.blank?
-    @exports_url = FakeView.export_observations_url
+
     mail(set_site_specific_opts.merge(
       to: @user.email,
       subject: t(:site_observations_export_from_date,

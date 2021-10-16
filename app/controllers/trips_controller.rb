@@ -97,11 +97,11 @@ class TripsController < ApplicationController
         @prev = @trip.parent.journal_posts.published.where("published_at < ?", @trip.published_at || @trip.updated_at).order("published_at DESC").first
         @shareable_image_url = @trip.body[/img.+?src="(.+?)"/, 1] if @trip.body
         @shareable_image_url ||= if @trip.parent_type == "Project"
-          FakeView.image_url(@trip.parent.icon.url(:original))
+          helpers.image_url(@trip.parent.icon.url(:original))
         else
-          FakeView.image_url(@trip.user.icon.url(:original))
+          helpers.image_url(@trip.user.icon.url(:original))
         end
-        @shareable_description = FakeView.shareable_description( @trip.body ) if @trip.body
+        @shareable_description = helpers.shareable_description( @trip.body ) if @trip.body
         trip_purpose_taxon_ids = @trip.trip_purposes.where( complete: true ).map( &:resource_id ).flatten.uniq
         if trip_purpose_taxon_ids.include? Taxon::LIFE.id
           @target_list_taxa = [Taxon::LIFE]

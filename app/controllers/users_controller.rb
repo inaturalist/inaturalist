@@ -204,14 +204,14 @@ class UsersController < ApplicationController
     if [ "true", "false" ].include?(params[:spammer])
       @user.update_attributes(spammer: params[:spammer])
       if params[:spammer] === "false"
-        flash[:notice] = t(:user_flagged_as_a_non_spammer_html, user: FakeView.link_to_user( @user ) )
+        flash[:notice] = t(:user_flagged_as_a_non_spammer_html, user: helpers.link_to_user( @user ) )
         @user.flags_on_spam_content.each do |flag|
           flag.update_attributes(resolved: true, resolver: current_user)
         end
         @user.flags.where(flag: Flag::SPAM).update_all(resolved: true, resolver_id: current_user.id )
         @user.unsuspend!
       else
-        flash[:notice] = t(:user_flagged_as_a_spammer_html, user: FakeView.link_to_user( @user ) )
+        flash[:notice] = t(:user_flagged_as_a_spammer_html, user: helpers.link_to_user( @user ) )
         @user.add_flag( flag: Flag::SPAM, user_id: current_user.id )
       end
     end
@@ -315,7 +315,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html do
-        @shareable_image_url = FakeView.image_url(@selected_user.icon.url(:original))
+        @shareable_image_url = helpers.image_url(@selected_user.icon.url(:original))
         @shareable_description = @selected_user.description
         @shareable_description = I18n.t(:user_is_a_naturalist, :user => @selected_user.login) if @shareable_description.blank?
         if @selected_user.last_active.blank?
