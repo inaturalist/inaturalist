@@ -6,7 +6,8 @@
     = stylesheet_link_tag 'blueprint/ie', 'observations-ie'
 
 .container
-  = render :partial => "shared/by_login_header_bootstrap", locals: { model_name: "Identifications" }
+  .row
+    = render :partial => "shared/by_login_header_bootstrap", locals: { model_name: "Identifications" }
   
   #identifications.col-xs-12.col-lg-9
     - if @identifications.empty?

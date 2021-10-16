@@ -5,6 +5,7 @@
     .row
       .col-xs-12
         .pull-right= link_to t( :all_projects ), projects_path, class: "btn btn-default"
+  .row
   = render partial: "shared/by_login_header_bootstrap", locals: { before: before, model_name: "Projects" }
   .col-xs-12.col-md-8
     - if @projects.blank?
