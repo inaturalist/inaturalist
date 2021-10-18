@@ -1,5 +1,6 @@
 class ProviderOauthController < ApplicationController
   before_action :authenticate_user!, :only => [:bounce_back]
+  skip_before_action :verify_authenticity_token
 
   layout "bootstrap"
   
