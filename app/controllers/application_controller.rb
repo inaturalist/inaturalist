@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
   protect_from_forgery with: :exception, unless: lambda {
-    authenticated_with_oauth? || authenticated_with_jwt?
+    authenticate_with_oauth? || authenticated_with_jwt?
   }
   before_action :permit_params
   around_action :set_time_zone
@@ -651,11 +651,11 @@ class ApplicationController < ActionController::Base
       nil
     end
     return false if jwt_claims && jwt_claims.fetch( "user_id" )
-    @doorkeeper_for_called = true
+    @should_authenticate_with_oauth = true
   end
 
   def authenticated_with_oauth?
-    @doorkeeper_for_called && doorkeeper_token && doorkeeper_token.accessible?
+    @should_authenticate_with_oauth && doorkeeper_token && doorkeeper_token.accessible?
   end
 
   def authenticated_with_jwt?

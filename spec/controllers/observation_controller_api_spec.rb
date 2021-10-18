@@ -25,7 +25,6 @@ shared_examples_for "ObservationsController basics" do
       expect do
         post :create, format: :json, params: { observation: { species_guess: "foo" } }
       end.to change( Observation, :count )
-      puts "done"
     end
   end
 
@@ -2146,12 +2145,16 @@ describe ObservationsController, "oauth authentication" do
     )
     request.env["HTTP_AUTHORIZATION"] = "Bearer #{token.token}"
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
   it_behaves_like "ObservationsController basics"
   it_behaves_like "an ObservationsController"
   it_behaves_like "an ObservationsController for a remembered user"
 end
 
 describe ObservationsController, "oauth authentication with param" do
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
   elastic_models( Observation )
 
   let( :user ) { User.make! }
@@ -2168,19 +2171,13 @@ describe ObservationsController, "oauth authentication with param" do
   end
 end
 
-describe ObservationsController, "with authentication" do
-  let( :user ) { User.make! }
-  before do
-    sign_in( user )
-  end
-  it_behaves_like "ObservationsController basics"
-end
-
 describe ObservationsController, "jwt authentication" do
   let( :user ) { User.make! }
   before do
     request.env["HTTP_AUTHORIZATION"] = JsonWebToken.encode( user_id: user.id )
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
   it_behaves_like "ObservationsController basics"
   it_behaves_like "an ObservationsController for a remembered user"
 end
@@ -2190,6 +2187,8 @@ describe ObservationsController, "jwt bearer authentication" do
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer #{JsonWebToken.encode( user_id: user.id )}"
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
   it_behaves_like "ObservationsController basics"
 end
 

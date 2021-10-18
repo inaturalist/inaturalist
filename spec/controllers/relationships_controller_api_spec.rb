@@ -24,10 +24,12 @@ shared_examples_for "a RelationshipsController" do
   end
 end
 
-describe RelationshipsController, "with authentication" do
+describe RelationshipsController, "jwt authentication" do
   let( :user ) { User.make! }
   before do
-    sign_in( user )
+    request.env["HTTP_AUTHORIZATION"] = JsonWebToken.encode( user_id: user.id )
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
   it_behaves_like "a RelationshipsController"
 end

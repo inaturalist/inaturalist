@@ -36,9 +36,8 @@ class PlacesController < ApplicationController
         current_user.id != @place.user_id
       end
     }
-  protect_from_forgery with: :exception, prepend: true, unless: lambda {
-    ( request.parameters[:action] == "autocomplete" && request.format.json? ) ||
-      authenticated_with_oauth? || authenticated_with_jwt?
+  protect_from_forgery with: :exception, unless: lambda {
+    request.parameters[:action] == "autocomplete" && request.format.json?
   }
 
   

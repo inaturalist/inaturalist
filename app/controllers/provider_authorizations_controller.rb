@@ -5,7 +5,7 @@ class ProviderAuthorizationsController < ApplicationController
   before_action :authenticate_user!, only: [ :destroy ],
     unless: lambda { authenticated_with_oauth? }
   protect_from_forgery prepend: true, except: :create, with: :exception, unless: lambda {
-    authenticated_with_oauth? || authenticated_with_jwt?
+    authenticate_with_oauth? || authenticated_with_jwt?
   }
 
   # change the /auth/:provider/callback route to point to this if you want to examine the rack data returned by omniauth

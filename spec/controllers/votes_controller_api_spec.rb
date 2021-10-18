@@ -113,6 +113,8 @@ describe VotesController, "oauth authentication" do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow( controller ).to receive( :doorkeeper_token ) { token }
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
   it_behaves_like "a VotesController"
 end
 

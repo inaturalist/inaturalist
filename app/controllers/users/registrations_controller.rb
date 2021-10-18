@@ -2,6 +2,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   layout "registrations"
 
+  skip_before_action :verify_authenticity_token
+
   before_action :load_registration_form_data, only: [:new, :create]
 
   def permit_params
