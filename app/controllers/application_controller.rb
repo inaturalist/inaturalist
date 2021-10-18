@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
   protect_from_forgery with: :exception, unless: lambda {
-    authenticate_with_oauth? || authenticated_with_jwt?
+    authenticate_with_oauth? || doorkeeper_token&.accessible? || authenticated_with_jwt?
   }
   before_action :permit_params
   around_action :set_time_zone
@@ -639,7 +639,6 @@ class ApplicationController < ActionController::Base
   def authenticate_with_oauth?
     # Don't want OAuth if we're already authenticated
     return false if !session.blank? && !session['warden.user.user.key'].blank?
-    return false if request.authorization.to_s =~ /^Basic /
     # Need an access token for OAuth
     return false unless !params[:access_token].blank? || request.authorization.to_s =~ /^Bearer /
     # If the bearer token is a JWT with a user we don't want to go through
