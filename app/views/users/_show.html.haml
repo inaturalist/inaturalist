@@ -1,4 +1,5 @@
-= render :partial => "shared/by_login_header_bootstrap", :locals => { :model_name => "Profile" }
+.row
+  = render :partial => "shared/by_login_header_bootstrap", :locals => { :model_name => "Profile" }
 .row
   .col-sm-4
     - if @selected_user.icon.file?
