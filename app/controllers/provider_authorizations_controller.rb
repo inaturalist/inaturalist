@@ -4,9 +4,8 @@ class ProviderAuthorizationsController < ApplicationController
     if: lambda { authenticate_with_oauth? }
   before_action :authenticate_user!, only: [ :destroy ],
     unless: lambda { authenticated_with_oauth? }
-  protect_from_forgery prepend: true, except: :create, with: :exception, if: -> {
-    request.headers["Authorization"].blank?
-  }
+  protect_from_forgery prepend: true, except: :create, with: :exception,
+    if: -> { request.headers["Authorization"].blank? }
 
   # change the /auth/:provider/callback route to point to this if you want to examine the rack data returned by omniauth
   def auth_callback_test

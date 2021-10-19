@@ -16,8 +16,8 @@ class ProjectsController < ApplicationController
     unless: -> { authenticated_with_oauth? },
     except: [:index, :show, :search, :map, :contributors, :observed_taxa_count,
       :browse, :calendar, :stats_slideshow]
-  protect_from_forgery with: :exception, if: -> {
-    !request.format.widget? || request.headers["Authorization"].blank?
+  protect_from_forgery with: :exception, if: lambda {
+    !request.format.widget? && request.headers["Authorization"].blank?
   }
   ## /AUTHENTICATION
 

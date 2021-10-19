@@ -39,8 +39,8 @@ class ObservationsController < ApplicationController
                             :observation_links,
                             :torquemap,
                             :lifelist_by_login]
-  protect_from_forgery with: :exception, if: -> {
-    !request.format.widget? || request.headers["Authorization"].blank?
+  protect_from_forgery with: :exception, if: lambda {
+    !request.format.widget? && request.headers["Authorization"].blank?
   }
   ## /AUTHENTICATION
 
