@@ -281,9 +281,9 @@ class ObservationsController < ApplicationController
         @coordinates_viewable = @observation.coordinates_viewable_by?( current_user )
         user_viewed_updates(delay: true) if logged_in?
         @observer_provider_authorizations = @observation.user.provider_authorizations
-        @shareable_image_url = FakeView.iconic_taxon_image_url( @observation.taxon, size: 200 )
+        @shareable_image_url = helpers.iconic_taxon_image_url( @observation.taxon, size: 200 )
         if op = @observation.observation_photos.sort_by{|op| op.position.to_i || op.id }.first
-          @shareable_image_url = FakeView.image_url( op.photo.best_url(:large) )
+          @shareable_image_url = helpers.image_url( op.photo.best_url(:large) )
         end
         @shareable_title = if @observation.taxon
           Taxon.preload_associations( @observation.taxon, { taxon_names: :place_taxon_names } )
@@ -296,7 +296,7 @@ class ObservationsController < ApplicationController
           viewer: current_user
         )
         unless @observation.description.blank?
-          @shareable_description += ".\n\n#{FakeView.truncate( @observation.description, length: 100 )}"
+          @shareable_description += ".\n\n#{helpers.truncate( @observation.description, length: 100 )}"
         end
 
         @skip_application_js = true
@@ -1160,7 +1160,7 @@ class ObservationsController < ApplicationController
       if @flow_task = ObservationsExportFlowTask.
           where( id: params[:flow_task_id], user_id: current_user ).first
         output = @flow_task.outputs.first
-        @export_url = output ? FakeView.uri_join(root_url, output.file.url).to_s : nil
+        @export_url = output ? helpers.uri_join(root_url, output.file.url).to_s : nil
       end
     end
     @recent_exports = ObservationsExportFlowTask.

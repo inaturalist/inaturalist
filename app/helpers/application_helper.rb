@@ -1025,15 +1025,15 @@ module ApplicationHelper
         image_tag(resource.parent.logo_square.url, options.merge(:class => "siteicon"))
       end
     when "Place"
-      image_tag(FakeView.image_url("icon-maps.png"), options)
+      image_tag( image_url( "icon-maps.png" ), options )
     when "Taxon"
       taxon_image(resource, {:style => "square", :width => 48}.merge(options))
     when "TaxonSplit", "TaxonMerge", "TaxonSwap", "TaxonDrop", "TaxonStage"
-      image_tag( FakeView.image_url( "#{resource.class.name.underscore}-aaaaaa-48px.png", options) )
+      image_tag( image_url( "#{resource.class.name.underscore}-aaaaaa-48px.png", options) )
     when "ObservationField"
-      image_tag(FakeView.image_url("notebook-icon-color-155px-shadow.jpg"), options)
+      image_tag( image_url( "notebook-icon-color-155px-shadow.jpg" ), options )
     else
-      image_tag(FakeView.image_url("logo-cccccc-20px.png"), options)
+      image_tag( image_url( "logo-cccccc-20px.png" ), options )
     end
   end
   
