@@ -679,7 +679,12 @@ const actions = class actions {
         }
       } );
       if ( nextToUpload && stateCounts.uploading < s.dragDropZone.maximumNumberOfUploads ) {
-        if ( nextToUpload.type.match( /audio/ ) ) {
+        if ( _.isEmpty( nextToUpload.file ) ) {
+          dispatch( actions.updateFile( nextToUpload, {
+            uploadState: "failed"
+          } ) );
+          dispatch( actions.uploadFiles( ) );
+        } else if ( nextToUpload.type.match( /audio/ ) ) {
           dispatch( actions.uploadSound( nextToUpload ) );
         } else {
           dispatch( actions.uploadImage( nextToUpload ) );
