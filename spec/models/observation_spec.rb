@@ -1606,10 +1606,10 @@ describe Observation do
     let(:observation) { build :observation, taxon: nil, user: user, editing_user_id: user.id }
 
     it "should choose a taxon if the guess corresponds to a unique taxon" do
-      taxon = create :taxon
+      taxon = create :taxon, :as_species
       observation.species_guess = taxon.name
       observation.set_taxon_from_species_guess
-      expect(observation.taxon_id).to eq taxon.id
+      expect( observation.taxon_id ).to eq taxon.id
     end
 
     it "should choose a taxon from species_guess if exact matches form a subtree" do
