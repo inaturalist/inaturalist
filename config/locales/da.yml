@@ -6194,7 +6194,7 @@ da:
           uploade din redigerede KML direkte.
         admin_level_desc: |
           Bør kun angives til politiske organer. Mht.
-          USA-ækvivalenter, 0 = land, 1 = stat, 2 = amt, 3 = by
+          USA-ækvivalenter, 0 = land, 10 = stat, 20 = amt, 30 = by
       new:
         check_list_note: "Bemærk: tjeklisterne deaktiveres automatisk for meget store steder."
         coordinates_desc: Du skal angive koordinater, hvis du ikke tegner et omrids eller uploader KML.
