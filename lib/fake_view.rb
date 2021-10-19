@@ -25,6 +25,11 @@ class FakeView < ActionView::Base
     else
       super
     end
+  # TODO Rails6: fix FakeView and remove this rescue
+  rescue NoMethodError => e
+    Rails.logger.error "[ERROR]"
+    Rails.logger.error "[ERROR] FakeView is broken and needs fixin': #{e}"
+    Rails.logger.error "[ERROR]"
   end
 
   def initialize( options = {} )
@@ -37,6 +42,11 @@ class FakeView < ActionView::Base
   def self.method_missing(method, *args)
     @@fake_view ||= self.new
     @@fake_view.send(method, *args)
+  # TODO Rails6: fix FakeView and remove this rescue
+  rescue NoMethodError => e
+    Rails.logger.error "[ERROR]"
+    Rails.logger.error "[ERROR] FakeView is broken and needs fixin': #{e}"
+    Rails.logger.error "[ERROR]"
   end
 
   def self.default_url_options
