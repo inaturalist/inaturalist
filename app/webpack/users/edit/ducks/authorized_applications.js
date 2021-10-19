@@ -67,9 +67,6 @@ export function deleteProviderApp( ) {
   return ( dispatch, getState ) => {
     const { apps } = getState( );
     const { id } = apps;
-
-    console.log( id, "id in delete provider app" );
-
     return inatjs.provider_authorizations.delete( { id } ).then( ( ) => {
       dispatch( fetchProviderApps( ) );
     } ).catch( e => console.log( `Failed to delete provider authorization: ${e}` ) );

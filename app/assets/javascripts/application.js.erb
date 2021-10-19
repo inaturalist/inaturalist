@@ -1249,6 +1249,9 @@ function preciseRound( num, decimals ) {
 }
 
 function updateSession(params) {
+  var params = params || {};
+  var csrfParam = $( "meta[name=csrf-param]" ).attr( "content" );
+  params[csrfParam] = $('meta[name="csrf-token"]').attr('content');
   $.ajax({
     url: '/users/update_session',
     data: params,

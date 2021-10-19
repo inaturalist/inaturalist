@@ -5344,8 +5344,6 @@ nb:
       edit:
         complex_boundary_note_html: |
           Denne grensen er litt for kompleks til online redigering. Du kan imidlertid <a href="%{url}">laste ned KML-en</a>, redigere den i et valgfritt GIS-program, og laste opp din redigerte KML direkte.
-        admin_level_desc: |
-          Bør kun settes for politiske enheter. Tilsvarende amerikanske enheter, 0 = land, 1 = stat, 2 = county, 3 = by
       new:
         check_list_note: "Merk: sjekklister blir deaktivert automatisk for veldig store steder."
         coordinates_desc: Du må spesifisere koordinater hvis du ikke tegner en grense eller laster opp KML.
@@ -5622,32 +5620,6 @@ nb:
           for å begynne å vise observasjoner.
       updates_desc: |
         Få oppdateringer om dette prosjektet i din oversikt og i den daglige e-posten med oppdateringer.
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>Du har et par valg:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Legg til en markering for et takson av et høyere nivå</strong>
-          <p>
-          F.eks. slekten som inneholder en art. Forhåpentligvis vil en snill kurator legge til taksonet hvis det kan legges til.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Ta kontakt med forumet</a></strong>
-          <p>
-          Mange sidekuratorer følger med på beskjeder på forumet.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Ta kontakt med support</a>
-          </strong>
-          <p>
-          Vennligst vær tålmodig, vi har ikke en stor dedikert stab.
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: Du er blokkert

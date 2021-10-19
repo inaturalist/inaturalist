@@ -2918,6 +2918,7 @@ es-MX:
     absent: No ocurre en el área
     common: Ocurre frecuentemente
     doubtful: Se presume que sucedió pero hay dudas sobre la evidencia
+    irregular: Presencia impredecible, incluyendo nómadas; puede ser común en algunos años y estar ausente en otros.
     present: Ocurre en el área
     uncommon: Ocurre regularmente pero en pequeñas cantidades; requiere búsqueda cautelosa del hábitat apropiado
   occurrence_status_establishment_means: estatus de ocurrencia, medio de establecimiento
@@ -6279,32 +6280,6 @@ es-MX:
       updates_desc: |
         Recibir notificaciones acerca de este proyecto en tu tablero y en los 
         correos diarios.
-    search:
-      index:
-        no_taxa_options_html: |
-          p>Tienes algunas opciones:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Agregar una marca a un taxón de nivel superior</strong>
-          <p>
-          Por ejemplo, el género que contiene a la especie. Con un poco de suerte, un conservador amistoso agregará el taxón si es posible.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Contacta con el Foro</a></strong>
-          <p>
-          Muchos curadores siguen los correos del Foro.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Contacto de Soporte</a>
-          </strong>
-          <p>
-          Por favor, ten paciencia, no tenemos personal de soporte dedicado en forma exclusiva.
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: Has sido bloqueado
@@ -7066,11 +7041,19 @@ es-MX:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%d %b %Y %H:%M:%S %z'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      long: '%d de %B de %Y a las %I:%M %p'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%d %b %H:%M'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       compact: "%I:%M %p"
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      observed_at: 'a las %I:%M %p %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      rfc: "%d %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%d %b. %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      hours: "%l:%M %p"
     pm: pm
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
@@ -7441,6 +7424,8 @@ es-MX:
           attributes:
             base:
               user_already_blocked: Ya has bloqueado a ese usuario
+              user_cannot_be_staff: |
+                No puedes bloquear al personal. El personal de iNat necesita poder comunicarse con todos los usuarios y tener acceso a todos los datos. Ellos son los principales mediadores en disputas, por lo que bloquearlos no les impedirá comunicarse contigo. Si tienes algún problema con un miembro del personal, por favor repórtalo a uno de los codirectores de iNat, y si el problema es con uno de los codirectores, puedes ponerte en contacto con el Jefe de Ciencia en el Instituto de Ciencias de la Biodiversidad y Sostenibilidad en la Academia de Ciencias de California.
         user_parent:
           attributes:
             email:
@@ -7497,10 +7482,47 @@ es-MX:
         vow: vocal
         con: consonante
         a: "@vow"
+        e: "@vow"
+        i: "@vow"
+        o: "@vow"
+        u: "@vow"
+        default: "@con"
       "@gender":
         m: Macho
         f: Hembra
         "n": neutro
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        application: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        assessment_section: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        atlas: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        check_list: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
+        form: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        identification: "@f"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         infraclass: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)

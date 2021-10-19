@@ -5944,8 +5944,6 @@ es:
       edit:
         complex_boundary_note_html: |
           Este límite es demasiado complejo para editar en la web. Sin embargo, puedes <a href="%{url}">descargar el archivo KML</a>, editarlo en una aplicación de SIG, y subir tu KML editado directamente.
-        admin_level_desc: |
-          Sólo se debe establecer para los organismos políticos. En términos de equivalentes de Estados Unidos, 0 = país, 1 = estado, 2 = condado, 3 = ciudad
       new:
         check_list_note: "Nota: Las listas de verificación se desactivan automáticamente para sitios muy grandes."
         coordinates_desc: Debes especificar las coordenadas si no dibujas un límite o subes un archivo KML.
@@ -6238,32 +6236,6 @@ es:
           Este proyecto no ha definido ningún requisito de observación. Los proyectos deben seleccionar uno o más taxones (ej. aves, coníferas), lugares (ej. Brasil, Yellowstone), usuarios y/o fechas para comenzar a mostrar observaciones.
       updates_desc: |
         Recibe actualizaciones de este proyecto en tu tablero y en las actualizaciones diarias de correos.
-    search:
-      index:
-        no_taxa_options_html: |
-          p>Tienes algunas opciones:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Agregar una marca a un taxón de nivel superior</strong>
-          <p>
-          Por ejemplo, el género que contiene a la especie. Con un poco de suerte, un conservador amistoso agregará el taxón si es posible.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Contacta con el Foro</a></strong>
-          <p>
-          Muchos curadores siguen los correos del Foro.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Contacto de Soporte</a>
-          </strong>
-          <p>
-          Por favor, ten paciencia, no tenemos personal de soporte dedicado en forma exclusiva.
-          </p>
-          </li>
-          </ul>
     shared:
       blocked:
         youve_been_blocked: Te han bloqueado

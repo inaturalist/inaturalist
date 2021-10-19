@@ -1,7 +1,5 @@
 #encoding: utf-8
 class ObservationsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: :index, if: :json_request?, raise: false
-  protect_from_forgery unless: -> { request.format.widget? } #, except: [:stats, :user_stags, :taxa]
   before_action :decide_if_skipping_preloading, only: [ :index, :show, :taxon_summary, :review ]
   before_action :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
   before_action :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
@@ -16,15 +14,13 @@ class ObservationsController < ApplicationController
     by_login
   end
 
+  ## AUTHENTICATION
   before_action :doorkeeper_authorize!,
     only: [ :create, :update, :destroy, :viewed_updates, :update_fields, :review ],
-    if: lambda { authenticate_with_oauth? }
-  
-  before_action :load_user_by_login, :only => [:by_login, :by_login_all, :lifelist_by_login]
-  after_action :return_here, :only => [:index, :by_login, :show, 
-    :import, :export, :add_from_list, :new, :project]
+    if: -> { authenticate_with_oauth? }
+
   before_action :authenticate_user!,
-                :unless => lambda { authenticated_with_oauth? },
+                unless: -> { authenticated_with_oauth? },
                 :except => [:explore,
                             :index,
                             :of,
@@ -43,6 +39,22 @@ class ObservationsController < ApplicationController
                             :observation_links,
                             :torquemap,
                             :lifelist_by_login]
+  protect_from_forgery with: :exception, unless: lambda {
+    request.format.widget? || authenticated_with_oauth? || authenticated_with_jwt?
+  }
+  ## /AUTHENTICATION
+
+  before_action :load_user_by_login, only: [:by_login, :by_login_all, :lifelist_by_login]
+  after_action :return_here, only: [
+    :index,
+    :by_login,
+    :show,
+    :import,
+    :export,
+    :add_from_list,
+    :new,
+    :project
+  ]
   load_only = [ :show, :edit, :edit_photos, :update_photos, :destroy,
     :fields, :viewed_updates, :community_taxon_summary, :update_fields,
     :review, :taxon_summary, :observation_links ]
@@ -269,9 +281,9 @@ class ObservationsController < ApplicationController
         @coordinates_viewable = @observation.coordinates_viewable_by?( current_user )
         user_viewed_updates(delay: true) if logged_in?
         @observer_provider_authorizations = @observation.user.provider_authorizations
-        @shareable_image_url = FakeView.iconic_taxon_image_url( @observation.taxon, size: 200 )
+        @shareable_image_url = helpers.iconic_taxon_image_url( @observation.taxon, size: 200 )
         if op = @observation.observation_photos.sort_by{|op| op.position.to_i || op.id }.first
-          @shareable_image_url = FakeView.image_url( op.photo.best_url(:large) )
+          @shareable_image_url = helpers.image_url( op.photo.best_url(:large) )
         end
         @shareable_title = if @observation.taxon
           Taxon.preload_associations( @observation.taxon, { taxon_names: :place_taxon_names } )
@@ -284,7 +296,7 @@ class ObservationsController < ApplicationController
           viewer: current_user
         )
         unless @observation.description.blank?
-          @shareable_description += ".\n\n#{FakeView.truncate( @observation.description, length: 100 )}"
+          @shareable_description += ".\n\n#{helpers.truncate( @observation.description, length: 100 )}"
         end
 
         @skip_application_js = true
@@ -448,7 +460,6 @@ class ObservationsController < ApplicationController
     end
     
     @observation_fields = ObservationField.recently_used_by(current_user).limit(10)
-    
     respond_to do |format|
       format.html do
         @observations = [@observation]
@@ -1149,7 +1160,7 @@ class ObservationsController < ApplicationController
       if @flow_task = ObservationsExportFlowTask.
           where( id: params[:flow_task_id], user_id: current_user ).first
         output = @flow_task.outputs.first
-        @export_url = output ? FakeView.uri_join(root_url, output.file.url).to_s : nil
+        @export_url = output ? helpers.uri_join(root_url, output.file.url).to_s : nil
       end
     end
     @recent_exports = ObservationsExportFlowTask.

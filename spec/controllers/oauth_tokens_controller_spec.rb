@@ -26,6 +26,8 @@ describe OauthTokensController, "with resource owner password credentials" do
     password: user.password
   } }
   it_behaves_like "a token creator that blocks suspended users"
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
   it "should return a 401 for an incorrect password" do
     get :create, format: :json, params: default_params_for_strategy.merge(
       password: "#{user.password}foo"
@@ -52,5 +54,7 @@ describe OauthTokensController, "with an authorization code" do
     redirect_uri: app.redirect_uri,
     code: auth_code
   } }
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
   it_behaves_like "a token creator that blocks suspended users"
 end

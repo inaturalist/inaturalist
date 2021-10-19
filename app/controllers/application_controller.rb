@@ -9,7 +9,9 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::UnknownFormat, with: :render_404
 
   helper :all # include all helpers, all the time
-  protect_from_forgery
+  protect_from_forgery with: :exception, unless: lambda {
+    authenticate_with_oauth? || doorkeeper_token&.accessible? || authenticated_with_jwt?
+  }
   before_action :permit_params
   around_action :set_time_zone
   around_action :logstash_catchall
@@ -637,7 +639,6 @@ class ApplicationController < ActionController::Base
   def authenticate_with_oauth?
     # Don't want OAuth if we're already authenticated
     return false if !session.blank? && !session['warden.user.user.key'].blank?
-    return false if request.authorization.to_s =~ /^Basic /
     # Need an access token for OAuth
     return false unless !params[:access_token].blank? || request.authorization.to_s =~ /^Bearer /
     # If the bearer token is a JWT with a user we don't want to go through
@@ -649,11 +650,25 @@ class ApplicationController < ActionController::Base
       nil
     end
     return false if jwt_claims && jwt_claims.fetch( "user_id" )
-    @doorkeeper_for_called = true
+    @should_authenticate_with_oauth = true
   end
 
   def authenticated_with_oauth?
-    @doorkeeper_for_called && doorkeeper_token && doorkeeper_token.accessible?
+    @should_authenticate_with_oauth && doorkeeper_token && doorkeeper_token.accessible?
+  end
+
+  def authenticated_with_jwt?
+    return false unless current_user
+    return false unless ( token = request.authorization.to_s.split( /\s+/ ).last )
+
+    jwt_claims = begin
+      ::JsonWebToken.decode( token )
+    rescue JWT::DecodeError
+      nil
+    end
+    return false unless jwt_claims && ( current_user.id == jwt_claims.fetch( "user_id" ) )
+
+    true
   end
 
   def pagination_headers_for(collection)

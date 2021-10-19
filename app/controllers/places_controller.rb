@@ -36,8 +36,9 @@ class PlacesController < ApplicationController
         current_user.id != @place.user_id
       end
     }
-  protect_from_forgery unless: -> {
-    request.parameters[:action] == "autocomplete" && request.format.json? }
+  protect_from_forgery with: :exception, unless: lambda {
+    request.parameters[:action] == "autocomplete" && request.format.json?
+  }
 
   
   ALLOWED_SHOW_PARTIALS = %w(autocomplete_item)

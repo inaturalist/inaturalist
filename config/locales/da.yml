@@ -6193,7 +6193,7 @@ da:
           <a href="%{url}"> downloade KML </a>, og redigere det i GIS-applikationen efter eget valg, og
           uploade din redigerede KML direkte.
         admin_level_desc: |
-          Bør kun indstilles til politiske organer. Med hensyn til
+          Bør kun angives til politiske organer. Mht.
           USA-ækvivalenter, 0 = land, 1 = stat, 2 = amt, 3 = by
       new:
         check_list_note: "Bemærk: tjeklisterne deaktiveres automatisk for meget store steder."
@@ -6523,30 +6523,15 @@ da:
         Modtag underretninger om dette projekt på dit betjeningspanel samt i den daglige underretnings e-mail.
     search:
       index:
-        no_taxa_options_html: |
-          <p>Du har følgende muligheder:</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Tilføj en markering til en takson på højere niveau</strong>
-          <p>
-          F.eks slægten, der indeholder arten. Så kan man håbe på at en kurator vil tilføje taksonen, hvis dette er muligt.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Kontakt Feedbackgruppen</a></strong>
-          <p>
-          Mange sidekuratorer holder øje med e-mails til feedbackgruppen.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Kontakt support</a>
-          </strong>
-          <p>
-          Vær tålmodig. Vi har ikke ansatte, der er dedikeret til support.
-          </p>
-          </li>
-          </ul>
+        no_taxa_options: "Der er et par muligheder:"
+        no_taxa_add_a_flag: Tilføj en Flag til en Højere Niveau Takson
+        no_taxa_add_a_flag_desc: |
+          F.eks. slægten, der omfatter en art. Forhåbentlig vil en frivillig kurator
+          tilføje taksonen, når der har tid, og den stemmer overens med vores taksonomiske politikker.
+        no_taxa_forum: Kontakt Forummet
+        no_taxa_forum_desc_html: |
+          Mange frivillige kuratorer holder styr på beskeder til
+          %{link_start_tag}Forum%{link_end_tag}.
     shared:
       blocked:
         youve_been_blocked: Du er blevet blokeret

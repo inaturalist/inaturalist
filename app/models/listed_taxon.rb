@@ -748,9 +748,8 @@ class ListedTaxon < ApplicationRecord
   end
 
   def expire_caches
-    return unless list.is_a?(CheckList)
     ctrl = ActionController::Base.new
-    if !place_id.blank? && manually_added
+    if !place_id.blank? && manually_added && list.is_a?( CheckList )
       I18N_SUPPORTED_LOCALES.each do |locale|
         ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place_id, locale: locale ) )
         ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place.slug, locale: locale ) ) if place

@@ -460,7 +460,7 @@ GEM
     patron (0.13.3)
     pg (1.2.3)
     public_suffix (4.0.6)
-    puma (5.5.0)
+    puma (5.5.1)
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
@@ -671,6 +671,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-17
+  x86_64-darwin-20
 
 DEPENDENCIES
   actionpack-action_caching
@@ -798,4 +799,4 @@ RUBY VERSION
    ruby 2.6.5p114
 
 BUNDLED WITH
-   2.2.24
+   2.2.27

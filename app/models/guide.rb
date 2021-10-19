@@ -342,13 +342,6 @@ class Guide < ApplicationRecord
     ActsAsTaggableOn::Tag.find_by_sql( "SELECT * FROM (#{tag_sql}) AS guide_tags" ).map( &:name ).sort_by( &:downcase )
   end
 
-  def ngz_url
-    return nil unless downloadable?
-    return nil if ngz.url.blank?
-
-    FakeView.uri_join( FakeView.root_url, ngz.url ).to_s
-  end
-
   def ngz_size
     ngz.size
   end

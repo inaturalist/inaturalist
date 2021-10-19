@@ -20,15 +20,6 @@ describe DarwinCore::SimpleMultimedia do
     expect( photo.original_url ).not_to be_blank
     expect( photo.identifier ).to eq photo.original_url
   end
-  it "should return the medium_url if that's the best available" do
-    photo_id = photo.id
-    photo.update_attributes( large_url: nil, original_url: nil, type: "WikimediaCommonsPhoto" )
-    photo = DarwinCore::SimpleMultimedia.adapt( Photo.find( photo_id ) )
-    expect( photo.original_url ).to be_blank
-    expect( photo.large_url ).to be_blank
-    expect( photo.medium_url ).not_to be_blank
-    expect( photo.identifier ).to eq photo.medium_url
-  end
   it "should return photo page URL for references" do
     expect( photo.references ).to eq photo.native_page_url
   end

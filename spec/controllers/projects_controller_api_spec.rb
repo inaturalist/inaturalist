@@ -227,6 +227,8 @@ describe ProjectsController, "oauth authentication" do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow(controller).to receive(:doorkeeper_token) { token }
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
   it_behaves_like "a ProjectsController"
 end
 
@@ -236,5 +238,7 @@ describe ProjectsController, "jwt authentication" do
   before do
     request.env["HTTP_AUTHORIZATION"] = JsonWebToken.encode(user_id: user.id)
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
   it_behaves_like "ProjectsController from node API"
 end

@@ -1,20 +1,22 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+# frozen_string_literal: true
+
+require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 shared_examples_for "a basic MessagesController" do
-  let(:user) { make_user_with_privilege( UserPrivilege::SPEECH ) }
-  let(:to_user) { make_user_with_privilege( UserPrivilege::SPEECH ) }
+  let( :user ) { make_user_with_privilege( UserPrivilege::SPEECH ) }
+  let( :to_user ) { make_user_with_privilege( UserPrivilege::SPEECH ) }
 
   it "should read a message" do
     message = make_message( user: user )
     get :show, format: :json, params: { id: message.id }
     json = JSON.parse( response.body )
-    expect( json["results"].detect{|m| m["id"] == message.id } ).not_to be_blank
+    expect( json["results"].detect {| m | m["id"] == message.id } ).not_to be_blank
   end
 end
 
 shared_examples_for "a MessagesController" do
-  let(:user) { make_user_with_privilege( UserPrivilege::SPEECH ) }
-  let(:to_user) { make_user_with_privilege( UserPrivilege::SPEECH ) }
+  let( :user ) { make_user_with_privilege( UserPrivilege::SPEECH ) }
+  let( :to_user ) { make_user_with_privilege( UserPrivilege::SPEECH ) }
 
   describe "create" do
     def post_message
@@ -131,28 +133,28 @@ shared_examples_for "a MessagesController" do
       message.send_message
       get :index, format: :json
       json = JSON.parse( response.body )
-      expect( json["results"].detect{|m| m["thread_id"] == message.thread_id } ).not_to be_blank
+      expect( json["results"].detect {| m | m["thread_id"] == message.thread_id } ).not_to be_blank
     end
     it "should show sent messages" do
       message = make_message( user: user, from_user: user, to_user: to_user )
       message.send_message
       get :index, format: :json, params: { box: "sent" }
       json = JSON.parse( response.body )
-      expect( json["results"].detect{|m| m["id"] == message.id } ).not_to be_blank
+      expect( json["results"].detect {| m | m["id"] == message.id } ).not_to be_blank
     end
     it "should search messages by subject" do
       subject = "great grievous greaves"
       message = make_message( user: user, from_user: to_user, to_user: user, subject: subject )
       get :index, format: :json, params: { q: "greaves" }
       json = JSON.parse( response.body )
-      expect( json["results"].detect{|m| m["id"] == message.id } ).not_to be_blank
+      expect( json["results"].detect {| m | m["id"] == message.id } ).not_to be_blank
     end
     it "should search messages by body" do
       body = "great grievous greaves"
       message = make_message( user: user, from_user: to_user, to_user: user, body: body )
       get :index, format: :json, params: { q: "greaves" }
       json = JSON.parse( response.body )
-      expect( json["results"].detect{|m| m["id"] == message.id } ).not_to be_blank
+      expect( json["results"].detect {| m | m["id"] == message.id } ).not_to be_blank
     end
     it "should search messages by sender login" do
       login = "arcturus"
@@ -160,7 +162,7 @@ shared_examples_for "a MessagesController" do
       message = make_message( user: user, from_user: to_user, to_user: user )
       get :index, format: :json, params: { q: login }
       json = JSON.parse( response.body )
-      expect( json["results"].detect{|m| m["id"] == message.id } ).not_to be_blank
+      expect( json["results"].detect {| m | m["id"] == message.id } ).not_to be_blank
     end
     it "should search messages by sender name" do
       name = "arcturus"
@@ -168,7 +170,7 @@ shared_examples_for "a MessagesController" do
       message = make_message( user: user, from_user: to_user, to_user: user )
       get :index, format: :json, params: { q: name }
       json = JSON.parse( response.body )
-      expect( json["results"].detect{|m| m["id"] == message.id } ).not_to be_blank
+      expect( json["results"].detect {| m | m["id"] == message.id } ).not_to be_blank
     end
     describe "box=any and search" do
       it "should include inbox messages" do
@@ -176,14 +178,14 @@ shared_examples_for "a MessagesController" do
         message.send_message
         get :index, format: :json, params: { box: "any", q: "ceanothus" }
         json = JSON.parse( response.body )
-        expect( json["results"].detect{|m| m["thread_id"] == message.thread_id } ).not_to be_blank
+        expect( json["results"].detect {| m | m["thread_id"] == message.thread_id } ).not_to be_blank
       end
       it "should include sent messages" do
         message = make_message( user: user, from_user: user, to_user: to_user, body: "is this ceanothus?" )
         message.send_message
         get :index, format: :json, params: { box: "any", q: "ceanothus" }
         json = JSON.parse( response.body )
-        expect( json["results"].detect{|m| m["id"] == message.id } ).not_to be_blank
+        expect( json["results"].detect {| m | m["id"] == message.id } ).not_to be_blank
       end
     end
     describe "threads" do
@@ -196,7 +198,7 @@ shared_examples_for "a MessagesController" do
         @m3.send_message
         get :index, format: :json, params: { box: "any", threads: true }
         json = JSON.parse( response.body )
-        @thread_results = json["results"].select{|m| m["thread_id"] == @m1.thread_id }
+        @thread_results = json["results"].select {| m | m["thread_id"] == @m1.thread_id }
       end
       it "should include only one message per thread" do
         expect( @thread_results.size ).to eq 1
@@ -213,10 +215,10 @@ shared_examples_for "a MessagesController" do
         m2_flag = Flag.make!( flaggable: @m2, user: user )
         get :index, format: :json, params: { box: "any", threads: true }
         json = JSON.parse( response.body )
-        thread_results = json["results"].select{|m| m["thread_id"] == @m1.thread_id }
+        thread_results = json["results"].select {| m | m["thread_id"] == @m1.thread_id }
         expect( thread_results[0]["thread_flags"].size ).to eq 2
-        expect( thread_results[0]["thread_flags"].detect{|f| f["id"] == m1_flag.id } ).not_to be_blank
-        expect( thread_results[0]["thread_flags"].detect{|f| f["id"] == m2_flag.id } ).not_to be_blank
+        expect( thread_results[0]["thread_flags"].detect {| f | f["id"] == m1_flag.id } ).not_to be_blank
+        expect( thread_results[0]["thread_flags"].detect {| f | f["id"] == m2_flag.id } ).not_to be_blank
       end
     end
   end
@@ -241,16 +243,20 @@ shared_examples_for "a MessagesController" do
 end
 
 describe MessagesController, "oauth authentication" do
-  let(:token) { double acceptable?: true, accessible?: true, resource_owner_id: user.id, application: OauthApplication.make! }
+  let( :token ) do
+    double acceptable?: true, accessible?: true, resource_owner_id: user.id, application: OauthApplication.make!
+  end
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
-    allow(controller).to receive(:doorkeeper_token) { token }
+    allow( controller ).to receive( :doorkeeper_token ) { token }
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
   it_behaves_like "a basic MessagesController"
   it_behaves_like "a MessagesController"
 end
 
-describe MessagesController, "devise authentication" do
-  before { http_login(user) }
+describe MessagesController, "with authentication" do
+  before { sign_in( user ) }
   it_behaves_like "a basic MessagesController"
 end
