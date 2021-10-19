@@ -9,9 +9,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::UnknownFormat, with: :render_404
 
   helper :all # include all helpers, all the time
-  protect_from_forgery with: :exception, unless: lambda {
-    authenticate_with_oauth? || doorkeeper_token&.accessible? || authenticated_with_jwt?
-  }
+  protect_from_forgery with: :exception, if: -> { request.headers["Authorization"].blank? }
   before_action :permit_params
   around_action :set_time_zone
   around_action :logstash_catchall
