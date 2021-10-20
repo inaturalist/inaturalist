@@ -75,7 +75,7 @@
           \|
           = link_to_function(t(:none), "$('.observation .control input:checkbox').uncheck()", :id => "select_none_button")
 
-        = link_to_function t(:flickr_tagger), "flickrTagger()", :id => "flickr_tagger_button", :class => "minor button", :title => t(:add_taxonomic_tags_to_the_fickr_photos)
+        = link_to_function t(:flickr_tagger), "flickrTagger()", :id => "flickr_tagger_button", :class => "minor button", :title => t(:add_taxonomic_tags_to)
         - unless @project_users.blank?
           - link_to_toggle_menu( t(:add_to_project), 
             :id => "add_to_project_button",

@@ -1351,22 +1351,24 @@ class TaxaController < ApplicationController
     end
     
     flickr = get_flickraw
-    
+
     flickr_photo_ids = []
-    @observations.each do |observation|
-      observation.photos.each do |photo|
-        next unless photo.is_a?(FlickrPhoto)
+    @observations.each do | observation |
+      observation.photos.each do | photo |
+        next unless photo.is_a?( FlickrPhoto ) || photo.subtype == "FlickrPhoto"
         next unless observation.taxon
+
         tags = observation.taxon.to_tags
         tags << "inaturalist:observation=#{observation.id}"
-        tag_flickr_photo(photo.native_photo_id, tags, :flickr => flickr)
+        tag_flickr_photo( photo.native_photo_id, tags, flickr: flickr )
         unless flash[:error].blank?
           return redirect_back_or_default( flickr_tagger_path )
         end
+
         flickr_photo_ids << photo.native_photo_id
       end
     end
-    
+
     redirect_to :action => 'flickr_photos_tagged', :flickr_photos => flickr_photo_ids
   end
   
