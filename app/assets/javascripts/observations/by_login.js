@@ -68,11 +68,16 @@ function actOnSelected(baseURL, options) {
   var obs_ids = $.map(obs_inputs, function(input) { return $(input).val(); });
   if (obs_ids.length > 0) {
     if (options.method == "post") {
-      var token = $( "meta[name=csrf-param]" ).attr( "content" );
+      const csrfParam = $( "meta[name=csrf-param]" ).attr( "content" );
+      const csrfToken = $( "meta[name=csrf-token]" ).attr( "content" );
       var form = $('<form method="post" style="display:none"></form>').attr('action', baseURL).append(
-        $('<input type="hidden" name="o">').val(obs_ids.join(',')),
-        $('<input type="hidden" name="authenticity_token">').val( token )
+        $('<input type="hidden" name="o">').val(obs_ids.join(','))
       );
+      $( "<input>" ).attr( {
+        type: "hidden",
+        name: csrfParam,
+        value: csrfToken
+      } ).appendTo( form );
       $('body').append(form);
       $(form).submit();
     } else {
