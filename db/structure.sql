@@ -5534,13 +5534,6 @@ ALTER TABLE ONLY public.file_prefixes ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- Name: flaggings id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.flaggings ALTER COLUMN id SET DEFAULT nextval('public.flaggings_id_seq'::regclass);
-
-
---
 -- Name: flags id; Type: DEFAULT; Schema: public; Owner: -
 --
 
