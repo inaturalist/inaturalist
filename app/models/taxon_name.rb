@@ -94,6 +94,7 @@ class TaxonName < ApplicationRecord
     PORTUGUESE: "Portuguese",
     ROMANIAN: "Romanian",
     RUSSIAN: "Russian",
+    SETSWANA: "Setswana",
     SINHALA: "Sinhala",
     SLOVAK: "Slovak",
     SLOVENIAN: "Slovenian",
