@@ -36,7 +36,7 @@
                   = link_to t(:curate_user), user_detail_admin_path( id: @user.id )
               - if is_curator_or_site_admin
                 %li.divider{:role => "separator"}
-                - unless is_me?(@user) || @user.is_admin?
+                - unless is_me?(@user) || @user.is_admin? || current_user.is_site_admin_of?( @user.site )
                   - unless @user.spammer?
                     %li
                       = link_to t(:flag_as_spammer), set_spammer_path(@user, spammer: true), method: :post

@@ -275,7 +275,19 @@ class ApplicationController < ActionController::Base
       throw :abort
     end
   end
-  
+
+  def curator_or_site_admin_of_user?( user )
+    return true if current_user&.is_curator? || current_user&.is_site_admin_of?( user.site )
+
+    flash[:notice] = t( :only_curators_can_access_that_page )
+    if session[:return_to] == request.fullpath
+      redirect_to root_url
+    else
+      redirect_back_or_default( root_url )
+    end
+    false
+  end
+
   # Override Devise implementation so we can set this for oauth2 / doorkeeper requests
   def current_user
     cu = super
