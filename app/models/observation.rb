@@ -1354,8 +1354,8 @@ class Observation < ApplicationRecord
     end
   end
   
-  def quality_metrics_pass?
-    QualityMetric::METRICS.each do |metric|
+  def quality_metrics_pass?( metrics = QualityMetric::METRICS )
+    metrics.each do |metric|
       return false unless passes_quality_metric?(metric)
     end
     true
