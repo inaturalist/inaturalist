@@ -272,10 +272,9 @@ class ApplicationController < ActionController::Base
       else
         redirect_back_or_default(root_url)
       end
-      throw :abort
     end
   end
-  
+
   # Override Devise implementation so we can set this for oauth2 / doorkeeper requests
   def current_user
     cu = super
