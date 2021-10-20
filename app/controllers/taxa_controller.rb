@@ -1,15 +1,19 @@
 #encoding: utf-8
 class TaxaController < ApplicationController
   caches_page :range, :if => Proc.new {|c| c.request.format == :geojson}
-  caches_action :show, :expires_in => 1.day,
-    :cache_path => Proc.new{ |c| {
-      locale: I18n.locale,
-      ssl: c.request.ssl? } },
-    :if => Proc.new {|c|
-      !request.format.json? &&
-      ( c.session.blank? || c.session['warden.user.user.key'].blank? ) &&
-      c.params[:test].blank?
-    }
+  # taxa/show includes a CSRF token, which means you might see someone else's
+  # token while signed out, which makes it impossible to update the session. I
+  # want to see how we do without this. If we need caching, we need to be more
+  # selective than caching the entire page. ~~~kueda 20211019
+  # caches_action :show, :expires_in => 1.day,
+  #   :cache_path => Proc.new{ |c| {
+  #     locale: I18n.locale,
+  #     ssl: c.request.ssl? } },
+  #   :if => Proc.new {|c|
+  #     !request.format.json? &&
+  #     ( c.session.blank? || c.session['warden.user.user.key'].blank? ) &&
+  #     c.params[:test].blank?
+  #   }
 
   caches_action :show, expires_in: 1.day,
     cache_path: Proc.new{ |c| {
