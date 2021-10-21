@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
   # for any format we do not recognize, make sure we render a proper 404
   rescue_from ActionController::UnknownFormat, with: :render_404
 
+  rescue_from ActionController::InvalidAuthenticityToken do | exception |
+    redirect_to_hell
+  end
+
   helper :all # include all helpers, all the time
   protect_from_forgery with: :exception, if: -> { request.headers["Authorization"].blank? }
   before_action :permit_params
@@ -370,8 +374,13 @@ class ApplicationController < ActionController::Base
   # Redirect user to front page when they do something naughty.
   #
   def redirect_to_hell
-    flash[:notice] = t(:you_dont_have_permission_to_do_that)
-    redirect_to root_path, status: :see_other
+    respond_to do | format |
+      format.json { render status: :unauthorized }
+      format.html do
+        flash[:notice] = t(:you_dont_have_permission_to_do_that)
+        redirect_to root_path, status: :see_other
+      end
+    end
   end
 
   # Caching
