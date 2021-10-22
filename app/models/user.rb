@@ -515,6 +515,14 @@ class User < ApplicationRecord
   def friends_with?(user)
     friends.exists?(user)
   end
+
+  def trusts?( user )
+    return false if user.blank?
+    return false unless user.id
+    return true if user.id == id
+
+    friendships.where( friend_user_id: user, trust: true ).exists?
+  end
   
   def picasa_client
     return nil unless (pa = has_provider_auth('google'))
