@@ -4877,6 +4877,7 @@ es-MX:
   view_check_list_page: Ve la página con la lista de comprobación
   view_contributions: Ver contribuciones
   view_details: Ve detalles
+  view_dynamic_lifelist_: VER LISTA DE VIDA DINÁMICA
   view_field_options: Ver las opciones del campo
   view_flag: Ver advertencias
   view_flags: Ver advertencias
@@ -6279,6 +6280,18 @@ es-MX:
       updates_desc: |
         Recibir notificaciones acerca de este proyecto en tu tablero y en los 
         correos diarios.
+    search:
+      index:
+        no_taxa_options: "Tienes algunas opciones:"
+        no_taxa_add_a_flag: Añadir una advertencia a un taxón de alto nivel
+        no_taxa_add_a_flag_desc: |
+          Por ejemplo, el género que contiene una especie. Ojalá un curador voluntario
+          agregue el taxón si tiene tiempo y también con nuestras políticas
+          taxonómicas.
+        no_taxa_forum: Contactar con el Foro
+        no_taxa_forum_desc_html: |
+          Muchos curadores voluntarios mantienen un seguimiento de los mensajes en el 
+          %{link_start_tag}Foro%{link_end_tag}.
     shared:
       blocked:
         youve_been_blocked: Has sido bloqueado
