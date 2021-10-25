@@ -521,7 +521,7 @@ class User < ApplicationRecord
     return false unless user.id
     return true if user.id == id
 
-    friendships.where( friend_user_id: user, trust: true ).exists?
+    friendships.where( friend_id: user, trust: true ).exists?
   end
   
   def picasa_client
