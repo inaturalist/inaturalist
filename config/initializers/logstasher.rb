@@ -63,7 +63,7 @@ module Logstasher
   end
 
   def self.payload_from_user(user)
-    return { } unless user.is_a?(User)
+    return { } unless user&.class.name == "User"
     { user_id: user.id,
       user_name: user.login,
       logged_in: true }

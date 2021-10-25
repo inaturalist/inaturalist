@@ -2272,16 +2272,16 @@ class Observation < ApplicationRecord
     true
   end
   
-  def update_attributes(attributes)
-    # hack around a weird android bug
-    attributes.delete(:iconic_taxon_name)
+  # def update_attributes(attributes)
+  #   # hack around a weird android bug
+  #   attributes.delete(:iconic_taxon_name)
     
-    # MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
-    #   self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
-    #   self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
-    # end
-    super(attributes)
-  end
+  #   # MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
+  #   #   self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
+  #   #   self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
+  #   # end
+  #   super(attributes)
+  # end
   
   def license_name
     return nil if license.blank?

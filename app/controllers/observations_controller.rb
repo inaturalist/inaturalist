@@ -2028,7 +2028,7 @@ class ObservationsController < ApplicationController
     if @taxa.length == 1
       @taxon = @taxa.first
       @taxon_hash = { }
-      common_name = view_context.common_taxon_name(@taxon).try(:name)
+      common_name = view_context.common_taxon_name( @taxon, user: current_user ).try(:name)
       rank_label = @taxon.rank ? t('ranks.#{ @taxon.rank.downcase }',
         default: @taxon.rank).capitalize : t(:unknown_rank)
       display_name = common_name || (rank_label + " " + @taxon.name)

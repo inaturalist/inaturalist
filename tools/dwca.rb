@@ -1,39 +1,40 @@
 require "rubygems"
 require "optimist"
 
-opts = Optimist::options do
-    banner <<-EOS
-Exports a Darwin Core Archive from observations.  Archives will be gzip'd tarballs
+opts = Optimist.options do
+  banner <<-HELP
+    Exports a Darwin Core Archive from observations.  Archives will be gzip'd tarballs
 
-Usage:
+    Usage:
 
-  rails runner dwca.rb
+      rails runner dwca.rb
 
-will output licensed observations to public/observations/dwca.zip.
+    will output licensed observations to public/observations/dwca.zip.
 
-  rails runner tools/dwca.rb -f public/observations/calflora.dwca.zip -t 123635 -p 14
+      rails runner tools/dwca.rb -f public/observations/calflora.dwca.zip -t 123635 -p 14
 
-will output licensed observations of taxon 123635 from place 14 to calflora.dwca.zip
-  
-  rails runner tools/dwca.rb \
-    -f public/taxa/eol_media.dwca.zip \
-    --core taxon \
-    --extensions EolMedia \
-    --photo-licenses CC-BY CC-BY-NC CC-BY-SA CC-BY-NC-SA
+    will output licensed observations of taxon 123635 from place 14 to calflora.dwca.zip
 
-will output taxon records with the EolMedia extension from a limited set of photo 
-licenses.
+      rails runner tools/dwca.rb \
+        -f public/taxa/eol_media.dwca.zip \
+        --core taxon \
+        --extensions EolMedia \
+        --photo-licenses CC-BY CC-BY-NC CC-BY-SA CC-BY-NC-SA
 
-  rails runner tools/dwca.rb \
-    -f public/taxa/CC-BY.dwca.zip \
-    --license CC-BY \
-    --licenses CC-BY
+    will output taxon records with the EolMedia extension from a limited set of photo
+    licenses.
 
-will output observation records that have the CC BY license, and will license
-the entire archive under a CC BY license.
+      rails runner tools/dwca.rb \
+        -f public/taxa/CC-BY.dwca.zip \
+        --license CC-BY \
+        --licenses CC-BY
 
-Options:
-EOS
+    will output observation records that have the CC BY license, and will license
+    the entire archive under a CC BY license.
+
+    Options:
+  HELP
+
   opt :path, "Path to archive", type: :string, short: "-f", default: "public/observations/dwca.zip"
   opt :place, "Only export observations from this place", type: :string, short: "-p"
   opt :taxon, "Only export observations of this taxon", type: :string, short: "-t"
@@ -47,7 +48,8 @@ EOS
     Path to metadata template. Default: {core}/dwc.eml.erb. \"skip\" will skip EML file generation.
   ".strip.gsub( /\s+/m, " " ), type: :string, short: "-m"
   opt :descriptor, "Path to descriptor template",
-    type: :string, short: "-r", default: "observations/dwc.descriptor.builder"
+    type: :string, short: "-r",
+    default: File.join( Rails.root, "app", "views", "observations", "dwc.descriptor.builder" )
   opt :quality, "
     Quality grade of observation output.  This will also filter EolMedia
     exports. Options: research, casual, verifiable, any.

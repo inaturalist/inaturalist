@@ -76,9 +76,9 @@ module DarwinCore
         logger.info "Making taxa extension..."
         paths += make_api_all_taxon_data
       end
-      archive_path = make_archive(*paths)
+      archive_path = make_archive( *paths )
       logger.debug "Archive: #{archive_path}"
-      FileUtils.mv(archive_path, @opts[:path])
+      FileUtils.mv( archive_path, @opts[:path] )
       logger.info "Archive generated: #{@opts[:path]}"
       if @benchmarks
         logger.info %w(BENCHMARK TOTAL AVG).map{|h| h.ljust( 30 )}.join( " " )
@@ -607,11 +607,13 @@ module DarwinCore
       end
     end
 
-    def make_archive(*args)
+    def make_archive( *args )
       fname = "dwca.zip"
-      tmp_path = File.join(@opts[:work_path], fname)
-      fnames = args.map{|f| File.basename(f)}
-      system "cd #{@opts[:work_path]} && zip -D #{tmp_path} #{fnames.join(' ')}"
+      tmp_path = File.join( @opts[:work_path], fname )
+      fnames = args.map {| f | File.basename( f ) }
+      cmd = "cd #{@opts[:work_path]} && zip -D #{tmp_path} #{fnames.join( ' ' )}"
+      logger.debug( "Running #{cmd}")
+      system cmd
       tmp_path
     end
   end
