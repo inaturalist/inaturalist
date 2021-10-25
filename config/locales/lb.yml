@@ -891,8 +891,15 @@ lb:
     other: 'Follgen %{count} Persounen'
   formatting: Formatéierung
   forgot_your_password: Hutt Dir Äert Passwuert vergiess?
+  forum: Forum
   forum_categories:
+    bug_reports: Bug Meldungen
+    feature_requests: Feature Ufroen
+    forum_feedback: Forum Feedback
+    forum_moderation: Forum Moderatioun
+    nature_talk: Natur Diskussioun
     news_and_updates: Neiegkeeten & Aktualisatiounen
+    tutorials: Tutorialen
   frequency: Frequenz
   from_a_place: vun enger Plaz
   from_flickr_facebook_etc: Vu Flickr, Facebook, asw.
@@ -1345,6 +1352,7 @@ lb:
   no_comments_yet: Nach keng Bemierkungen.
   no_description: Keng Beschreiwung
   no_identifications: Keng Bestëmmungen
+  no_ids: "Zuel vun IDen"
   no_favorites_added:
     current_user: Dir hutt nach keng Favoriten derbäigesat.
   no_journal_posts_yet: Nach keng Journal Posts
@@ -2377,6 +2385,10 @@ lb:
         observer: Jo, awer nëmme wann ech selwer d'Observatioun bei de Projet derbäisetzen
         any: Jo, et ass net wichteg wien d'Observatioun bei de Projet derbäisetzt.
         none: Neen.
+    search:
+      index:
+        no_taxa_options: "Dir hutt e puer Optiounen:"
+        no_taxa_forum: Kontaktéiert de Forum
     shared:
       blocked:
         youve_been_blocked: Dir gouft gespaart
@@ -2738,6 +2750,30 @@ lb:
               cannot_be_blank: däerf net eidel sinn
               must_have_more_than_three_points: muss méi wei 3 Punkten hunn
               polygon_with_fewer_than_four_points: huet ee Polygon mat manner wei 4 Punkten
+        project_observation:
+          attributes:
+            user_id:
+              must_be_curator: muss e Curator vun dësem Projet sinn
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kann nëmme vun engem Curator vun dësem Taxon geännert ginn
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kann nëmme vun engem Curator vun dësem Taxon geännert ginn
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kann nëmme vun engem Curator vun dësem Taxon geännert ginn
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kann nëmme vun engem Curator vun dësem Taxon geännert ginn
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kann nëmme vun engem Curator vun dësem Taxon geännert ginn
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kann nëmme vun engem Curator vun dësem Taxon geännert ginn
         taxon_photo:
           attributes:
             taxon:
