@@ -418,7 +418,7 @@ class ProjectsController < ApplicationController
     end
     respond_to do |format|
       @project.wait_for_index_refresh = true
-      if @project.update_attributes(params[:project])
+      if @project.update(params[:project])
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_updated)) }
         format.json { render json: @project }
       else
@@ -1119,18 +1119,18 @@ class ProjectsController < ApplicationController
       redirect_to @project
       return
     end
-    @project.update_attributes( user: new_admin )
+    @project.update( user: new_admin )
     redirect_back_or_default @project
   end
 
   def feature
     feature = SiteFeaturedProject.where(site: @site, project: @project).
       first_or_create(user: @current_user)
-    feature.update_attributes( user: @current_user )
+    feature.update( user: @current_user )
     if feature.noteworthy && ( params[:noteworthy].nil? || params[:noteworthy].noish? )
-      feature.update_attributes( noteworthy: false )
+      feature.update( noteworthy: false )
     elsif !feature.noteworthy && params[:noteworthy].yesish?
-      feature.update_attributes( noteworthy: true )
+      feature.update( noteworthy: true )
     end
     render status: :ok, json: { }
   end

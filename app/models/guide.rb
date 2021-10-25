@@ -172,7 +172,7 @@ class Guide < ApplicationRecord
       if downloadable?
         generate_ngz_later
       else
-        update_attributes( ngz: nil )
+        update( ngz: nil )
       end
     end
     true
@@ -373,7 +373,7 @@ class Guide < ApplicationRecord
   def generate_ngz( options = {} )
     zip_path = to_ngz( options )
     File.open( zip_path ) do | f |
-      unless update_attributes( ngz: f )
+      unless update( ngz: f )
         Rails.logger.error "[ERROR #{Time.now}] Failed to save NGZ attachment " \
           "for guide #{id}: #{errors.full_messages.to_sentence}"
       end

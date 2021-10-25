@@ -238,24 +238,24 @@ describe Annotation do
     end
     describe "changing the observation taxon" do
       it "should happen when the taxon is no longer a descendant of the controlled term taxon" do
-        @observation.update_attributes( taxon: Taxon.make!, editing_user_id: @observation.user_id )
+        @observation.update( taxon: Taxon.make!, editing_user_id: @observation.user_id )
         expect( Annotation.find_by_id( @annotation.id ) ).to be_blank
       end
       it "should not happen if the taxon is still a descendant of the controlled term taxon" do
-        @observation.update_attributes( taxon: @species )
+        @observation.update( taxon: @species )
         expect( Annotation.find_by_id( @annotation.id ) ).not_to be_blank
       end
     end
     describe "moving the observation taxon" do
       it "should happen when the taxon is no longer a descendant of the controlled term taxon" do
         other_family = Taxon.make!( rank: Taxon::FAMILY )
-        @observation.taxon.update_attributes( parent: other_family )
+        @observation.taxon.update( parent: other_family )
         Delayed::Worker.new.work_off
         expect( Annotation.find_by_id( @annotation.id ) ).to be_blank
       end
       it "should not happen if the taxon is still a descendant of the controlled term taxon" do
         subfamily = Taxon.make!( rank: Taxon::SUBFAMILY, parent: @family )
-        @observation.taxon.update_attributes( parent: subfamily )
+        @observation.taxon.update( parent: subfamily )
         Delayed::Worker.new.work_off
         expect( Annotation.find_by_id( @annotation.id ) ).not_to be_blank
       end

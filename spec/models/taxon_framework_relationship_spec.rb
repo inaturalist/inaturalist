@@ -10,10 +10,10 @@ describe TaxonFrameworkRelationship do
     it "should update relationship when external taxon destroyed" do
       genus = Taxon.make!( rank: Taxon::GENUS )
       species = Taxon.make!( rank: Taxon::SPECIES )
-      species.update_attributes( parent: genus )
+      species.update( parent: genus )
       tf = TaxonFramework.make!( taxon: genus )
       tfr = TaxonFrameworkRelationship.make!( taxon_framework: tf )
-      species.update_attributes( taxon_framework_relationship_id: tfr.id )
+      species.update( taxon_framework_relationship_id: tfr.id )
       species.reload
       et = ExternalTaxon.new(
         name: species.name,

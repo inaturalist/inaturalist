@@ -844,7 +844,7 @@ class ObservationsController < ApplicationController
 
       observation.force_quality_metrics = true unless hashed_params[observation.id.to_s][:captive_flag].blank?
       permitted_params = ActionController::Parameters.new( hashed_params[observation.id.to_s].to_h )
-      unless observation.update_attributes( observation_params( permitted_params ) )
+      unless observation.update( observation_params( permitted_params ) )
         errors = true
       end
 
@@ -950,7 +950,7 @@ class ObservationsController < ApplicationController
     @observation_photos = ObservationPhoto.where(id: params[:observation_photos].to_h.map{|k,v| k})
     @observation_photos.each do |op|
       next unless @observation.observation_photo_ids.include?(op.id)
-      op.update_attributes(params[:observation_photos][op.id.to_s])
+      op.update(params[:observation_photos][op.id.to_s])
     end
     
     flash[:notice] = t(:photos_updated)
@@ -1536,7 +1536,7 @@ class ObservationsController < ApplicationController
     end
     o = { :observation_field_values_attributes =>  ofv_attrs}
     respond_to do |format|
-      if @observation.update_attributes(o)
+      if @observation.update(o)
         if !params[:project_id].blank? && @observation.user_id == current_user.id && (@project = Project.find(params[:project_id]) rescue nil)
           @project_observation = @observation.project_observations.create(project: @project, user: current_user)
         end
@@ -2072,7 +2072,7 @@ class ObservationsController < ApplicationController
     else
       params[:reviewed] === "false" ? false : true
     end
-    review.update_attributes({ user_added: true, reviewed: reviewed })
+    review.update({ user_added: true, reviewed: reviewed })
     review.update_observation_index( wait_for_refresh: params[:wait_for_refresh] )
   end
 
@@ -2795,7 +2795,7 @@ class ObservationsController < ApplicationController
   end
   
   def update_user_account
-    current_user.update_attributes(params[:user]) unless params[:user].blank?
+    current_user.update(params[:user]) unless params[:user].blank?
   end
   
   def render_observations_partial(partial)

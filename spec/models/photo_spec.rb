@@ -59,7 +59,7 @@ describe Photo do
 
     it "should nilify if not a license" do
       p = Photo.make!(:license => Photo.license_number_for_code(Observation::CC_BY))
-      p.update_attributes(:license => "on")
+      p.update(:license => "on")
       p.reload
       expect(p.license).to eq Photo::COPYRIGHT
     end

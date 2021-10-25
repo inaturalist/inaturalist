@@ -191,7 +191,7 @@ class FlagsController < ApplicationController
     end
     respond_to do |format|
       msg = begin
-        if @flag.update_attributes(params[:flag])
+        if @flag.update(params[:flag])
           t(:flag_saved)
         else
           t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence)

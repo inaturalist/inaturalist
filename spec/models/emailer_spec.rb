@@ -21,7 +21,7 @@ describe Emailer, "updates_notification" do
     tn_default = TaxonName.make!( taxon: t, lexicon: TaxonName::LEXICONS[:ENGLISH], name: "Default Name" )
     tn_local = TaxonName.make!( taxon: t, lexicon: TaxonName::LEXICONS[:ENGLISH], name: "Localized Name" )
     ptn = PlaceTaxonName.make!( taxon_name: tn_local, place: p )
-    @user.update_attributes( place_id: p.id )
+    @user.update( place_id: p.id )
     identification = without_delay { Identification.make!( taxon: t, observation: @observation ) }
     update_action = UpdateAction.last
     mail = Emailer.updates_notification( @user, @user.recent_notifications )
@@ -33,7 +33,7 @@ describe Emailer, "updates_notification" do
     @ofv = nil
     without_delay { @ofv = ObservationFieldValue.make!(observation: @observation, user: User.make!) }
     I18N_SUPPORTED_LOCALES.each do |loc|
-      @user.update_attributes(locale: loc)
+      @user.update(locale: loc)
       mail = Emailer.updates_notification(@user, @user.recent_notifications)
       expect(mail.body).to include I18n.t(:user_added_an_observation_field_html,
         user: FakeView.link_to(@ofv.user.login, FakeView.person_url(@ofv.user, host: Site.default.url)),
@@ -41,7 +41,7 @@ describe Emailer, "updates_notification" do
         owner: @user.login,
         locale: loc)
     end
-    @user.update_attributes(locale: "en")
+    @user.update(locale: "en")
   end
 
   describe "with a site" do
@@ -78,18 +78,18 @@ describe Emailer, "updates_notification" do
         ProjectUser.make!( user: user, project: project )
       end
       # Test change to curator
-      pu.update_attributes( role: ProjectUser::CURATOR )
+      pu.update( role: ProjectUser::CURATOR )
       Delayed::Worker.new.work_off
       mail = Emailer.updates_notification( viewer, viewer.recent_notifications )
       # puts "body: #{mail.body}"
       expect( mail.body ).to match /curator/
       # Test change to manage
-      pu.update_attributes( role: ProjectUser::MANAGER )
+      pu.update( role: ProjectUser::MANAGER )
       Delayed::Worker.new.work_off
       mail = Emailer.updates_notification( viewer, viewer.recent_notifications )
       expect( mail.body ).to match /manager/
       # Test change to admin
-      project.update_attributes( user: user )
+      project.update( user: user )
       Delayed::Worker.new.work_off
       mail = Emailer.updates_notification( viewer, viewer.recent_notifications )
       expect( mail.body ).to match /admin/

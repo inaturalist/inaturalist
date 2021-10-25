@@ -259,7 +259,7 @@ class TripsController < ApplicationController
       @trip.published_at = nil
     end
     respond_to do |format|
-      if @trip.update_attributes(params[:trip])
+      if @trip.update(params[:trip])
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
         format.json { head :no_content }
       else

@@ -67,7 +67,7 @@ describe Flag, "update" do
     u = make_curator
     expect( UpdateAction.unviewed_by_user_from_query(f.user_id, resource: f) ).to eq false
     without_delay do
-      f.update_attributes(resolver: u, comment: "foo", resolved: true)
+      f.update(resolver: u, comment: "foo", resolved: true)
     end
     expect( UpdateAction.unviewed_by_user_from_query(f.user_id, resource: f) ).to eq true
   end
@@ -76,7 +76,7 @@ describe Flag, "update" do
     t = Taxon.make!
     f = Flag.make!(flaggable: t)
     u = make_curator
-    without_delay { f.update_attributes(resolver: u, comment: "foo", resolved: true) }
+    without_delay { f.update(resolver: u, comment: "foo", resolved: true) }
     expect(u.subscriptions.detect{|s| s.resource_type == "Flag" && s.resource_id == f.id}).to_not be_blank
   end
 
@@ -85,7 +85,7 @@ describe Flag, "update" do
     f = Flag.make!( flaggable: o )
     expect( f ).to be_valid
     UserBlock.make!( user: o.user, blocked_user: f.user )
-    f.update_attributes( resolved: true, resolver: User.make! )
+    f.update( resolved: true, resolver: User.make! )
     expect( f ).to be_valid
     expect( f ).to be_resolved
   end
@@ -99,7 +99,7 @@ describe Flag, "destruction" do
     f = Flag.make!(flaggable: t)
     u = make_curator
     without_delay do
-      f.update_attributes(resolver: u, comment: "foo", resolved: true)
+      f.update(resolver: u, comment: "foo", resolved: true)
     end
     f.reload
     f.destroy
@@ -111,7 +111,7 @@ describe Flag, "destruction" do
     f = Flag.make!( flaggable: c )
     u = make_curator
     without_delay do
-      f.update_attributes( resolver: u, comment: "foo", resolved: true )
+      f.update( resolver: u, comment: "foo", resolved: true )
     end
     f.reload
     expect( UpdateAction.unviewed_by_user_from_query( f.user_id, resource: f ) ).to eq true

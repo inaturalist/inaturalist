@@ -67,7 +67,7 @@ class GuideRangesController < ApplicationController
     @guide_range = GuideRange.find(params[:id])
 
     respond_to do |format|
-      if @guide_range.update_attributes(params[:guide_range])
+      if @guide_range.update(params[:guide_range])
         format.html { redirect_to @guide_range, notice: 'Guide range was successfully updated.' }
         format.json { head :no_content }
       else

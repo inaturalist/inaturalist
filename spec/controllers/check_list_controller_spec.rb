@@ -10,7 +10,7 @@ describe CheckListsController, "show" do
 
   describe "occurrence_status filter" do
     before do
-      @lt_canna.update_attributes(occurrence_status_level: ListedTaxon::ABSENT)
+      @lt_canna.update(occurrence_status_level: ListedTaxon::ABSENT)
       @lt_canna.reload
       expect( @lt_canna ).to be_absent
     end

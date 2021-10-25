@@ -183,7 +183,7 @@ shared_examples_for "an IdentificationsController" do
         expect( hidden_ident ).not_to be_current
       end
       it "should allow the identifier to restore" do
-        hidden_ident.update_attributes( current: false )
+        hidden_ident.update( current: false )
         expect( hidden_ident ).not_to be_current
         put :update, format: :json, params: { id: hidden_ident.id, identification: { current: true } }
         hidden_ident.reload
@@ -191,7 +191,7 @@ shared_examples_for "an IdentificationsController" do
       end
       it "should not allow the identifier to change the body" do
         body = "ermgrd its er mirirge"
-        hidden_ident.update_attributes( body: body )
+        hidden_ident.update( body: body )
         expect( hidden_ident.body ).to eq body
         put :update, format: :json, params: {
           id: hidden_ident.id,
@@ -298,7 +298,7 @@ shared_examples_for "an IdentificationsController" do
     it "should include locale-specific taxon name" do
       ident = Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) )
       tn = TaxonName.make!( taxon: ident.taxon, lexicon: TaxonName::LEXICONS[:SPANISH] )
-      user.update_attributes( locale: "es" )
+      user.update( locale: "es" )
       get :by_login, format: :json, params: { login: user.login }
       json = JSON.parse( response.body )
       json_ident = json.detect {| i | i["id"] == ident.id }
@@ -309,7 +309,7 @@ shared_examples_for "an IdentificationsController" do
       place = make_place_with_geom
       tn = TaxonName.make!( taxon: ident.taxon, lexicon: TaxonName::LEXICONS[:ENGLISH] )
       PlaceTaxonName.make!( taxon_name: tn, place: place )
-      user.update_attributes( place: place, locale: "en" )
+      user.update( place: place, locale: "en" )
       get :by_login, format: :json, params: { login: user.login }
       json = JSON.parse( response.body )
       json_ident = json.detect {| i | i["id"] == ident.id }
@@ -318,7 +318,7 @@ shared_examples_for "an IdentificationsController" do
     it "should include locale-specific observation taxon name" do
       ident = Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) )
       tn = TaxonName.make!( taxon: ident.observation.taxon, lexicon: TaxonName::LEXICONS[:SPANISH] )
-      user.update_attributes( locale: "es" )
+      user.update( locale: "es" )
       get :by_login, format: :json, params: { login: user.login }
       json = JSON.parse( response.body )
       json_ident = json.detect {| i | i["id"] == ident.id }

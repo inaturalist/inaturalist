@@ -30,14 +30,14 @@ class ControlledTermsController < ApplicationController
     if label_attrs = params[:controlled_term].delete(:controlled_term_label)
       existing = ControlledTermLabel.where(id: label_attrs[:id]).first
       if existing
-        existing.update_attributes(label_attrs)
+        existing.update(label_attrs)
       else
         ControlledTermLabel.create(label_attrs)
       end
     end
 
     term = ControlledTerm.find(params[:id])
-    unless term.update_attributes(params[:controlled_term])
+    unless term.update(params[:controlled_term])
       flash[:error] = term.errors.full_messages.to_sentence
     end
     redirect_to :controlled_terms

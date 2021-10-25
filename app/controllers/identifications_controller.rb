@@ -262,7 +262,7 @@ class IdentificationsController < ApplicationController
       end
       @identification.destroy
     else
-      @identification.update_attributes( current: false )
+      @identification.update( current: false )
     end
     respond_to do |format|
       format.html do

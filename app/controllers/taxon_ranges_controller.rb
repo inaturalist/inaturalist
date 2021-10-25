@@ -41,7 +41,7 @@ class TaxonRangesController < ApplicationController
     @taxon_range = TaxonRange.find( params[:id] )
 
     respond_to do |format|
-      if @taxon_range.update_attributes( params[:taxon_range] )
+      if @taxon_range.update( params[:taxon_range] )
         @taxon_range.taxon
         format.html do
           redirect_to(

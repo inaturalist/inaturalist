@@ -69,7 +69,7 @@ class YearStatistic < ApplicationRecord
         donors: donors( year, options )
       }
     end
-    year_statistic.update_attributes( data: json )
+    year_statistic.update( data: json )
     year_statistic.delay( priority: USER_PRIORITY ).generate_shareable_image
     year_statistic
   end
@@ -128,7 +128,7 @@ class YearStatistic < ApplicationRecord
         observations: observations_histogram_by_created_month( user: user ),
       }
     }
-    year_statistic.update_attributes( data: json )
+    year_statistic.update( data: json )
     year_statistic.delay(
       priority: USER_PRIORITY,
       unique_hash: "YearStatistic::generate_shareable_image::#{user.id}::#{year}"

@@ -45,7 +45,7 @@ class ObservationsExportFlowTask < FlowTask
     unless persisted?
       raise ObservationsExportNotSaved.new( "Export must be saved before being run" )
     end
-    update_attributes(finished_at: nil, error: nil, exception: nil)
+    update(finished_at: nil, error: nil, exception: nil)
     outputs.each(&:destroy)
     outputs.reload
     query = inputs.first.extra[:query]
@@ -69,7 +69,7 @@ class ObservationsExportFlowTask < FlowTask
   rescue Exception => e
     exception_string = [ e.class, e.message ].join(" :: ")
     logger.error "ObservationsExportFlowTask #{id}: Error: #{exception_string}" if @debug
-    update_attributes(finished_at: Time.now,
+    update(finished_at: Time.now,
       error: "Error",
       exception: [ exception_string, e.backtrace ].join("\n"))
     if options[:email]

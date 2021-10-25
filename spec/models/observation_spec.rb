@@ -457,13 +457,13 @@ describe Observation do
         expect( o.place_guess ).to match /#{ big_place.name }/
       end
       it "should use codes when available" do
-        big_place.update_attributes(code: "USA")
+        big_place.update(code: "USA")
         o = Observation.make!(latitude: small_place.latitude, longitude: small_place.longitude)
         expect( o.place_guess ).to match /#{ big_place.code }/
         expect( o.place_guess ).not_to match /#{ big_place.name }/
       end
       it "should use names translated for the observer" do
-        big_place.update_attributes( name: "Mexico" )
+        big_place.update( name: "Mexico" )
         user = User.make!( locale: "es-MX" )
         o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude, user: user )
         expect( o.place_guess ).to match /#{ I18n.t( "places_name.mexico", locale: user.locale ) }/
@@ -471,14 +471,14 @@ describe Observation do
       it "should get changed when coordinates are obscured" do
         o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude )
         original_place_guess = o.place_guess
-        o.update_attributes( geoprivacy: Observation::OBSCURED )
+        o.update( geoprivacy: Observation::OBSCURED )
         o.reload
         expect( o.place_guess ).not_to be_blank
         expect( o.place_guess ).not_to eq original_place_guess
       end
       it "should get removed when coordinates are hidden" do
         o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude )
-        o.update_attributes( geoprivacy: Observation::PRIVATE )
+        o.update( geoprivacy: Observation::PRIVATE )
         o.reload
         expect( o.place_guess ).to be_blank
       end
@@ -486,7 +486,7 @@ describe Observation do
         o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude, geoprivacy: Observation::PRIVATE )
         expect( o.place_guess ).to be_blank
         expect( o.latitude ).to be_blank
-        o.update_attributes( geoprivacy: Observation::OBSCURED )
+        o.update( geoprivacy: Observation::OBSCURED )
         o.reload
         expect( o.latitude ).not_to be_blank
         expect( o.place_guess ).not_to be_blank
@@ -657,7 +657,7 @@ describe Observation do
     it "should create an obs review if taxon set but was blank and updated by the observer" do
       o = Observation.make!
       expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 0
-      o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
+      o.update( taxon: Taxon.make!, editing_user_id: o.user_id )
       o.reload
       expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 1
     end
@@ -683,7 +683,7 @@ describe Observation do
       t2 = Taxon.make!
       o = Observation.make!(:taxon => t1)
       old_owners_ident = o.identifications.detect{|ident| ident.user_id == o.user_id}
-      o.update_attributes( taxon: t2, editing_user_id: o.user_id )
+      o.update( taxon: t2, editing_user_id: o.user_id )
       o.reload
       expect(Identification.find_by_id(old_owners_ident.id)).not_to be_blank
     end
@@ -692,7 +692,7 @@ describe Observation do
       t1 = Taxon.make!
       o = Observation.make!(:taxon => t1)
       old_owners_ident = o.identifications.detect{|ident| ident.user_id == o.user_id}
-      o.update_attributes( taxon: nil, editing_user_id: o.user_id )
+      o.update( taxon: nil, editing_user_id: o.user_id )
       o.reload
       expect(Identification.find_by_id(old_owners_ident.id)).to be_blank
     end
@@ -713,21 +713,21 @@ describe Observation do
       end
       
       it "should not save a time if one wasn't specified" do
-        observation.update_attributes(:observed_on_string => "April 2 2008")
+        observation.update(:observed_on_string => "April 2 2008")
         observation.save
         expect(observation.time_observed_at).to be_blank
       end
       
       it "should clear date if observed_on_string blank" do
         expect(observation.observed_on).not_to be_blank
-        observation.update_attributes(:observed_on_string => "")
+        observation.update(:observed_on_string => "")
         expect(observation.observed_on).to be_blank
       end
 
       it "should not allow dates greater that created_at + 1 day when updated by the observer" do
         o_2_days_ago = Observation.make!( created_at: 2.days.ago, observed_on_string: 3.day.ago.to_s )
         expect( o_2_days_ago ).to be_valid
-        o_2_days_ago.update_attributes( observed_on_string: Time.now.to_s, editing_user_id: o_2_days_ago.user_id )
+        o_2_days_ago.update( observed_on_string: Time.now.to_s, editing_user_id: o_2_days_ago.user_id )
         expect( o_2_days_ago ).not_to be_valid
       end
 
@@ -740,7 +740,7 @@ describe Observation do
           )
           expect( o_2_days_ago ).to be_valid
           new_observed_on_string = "2019-01-20 23:00"
-          o_2_days_ago.update_attributes( observed_on_string: new_observed_on_string )
+          o_2_days_ago.update( observed_on_string: new_observed_on_string )
           expect( o_2_days_ago ).to be_valid
         end
       end
@@ -756,7 +756,7 @@ describe Observation do
           expect( o.created_at.to_date ).to eq d.to_date
           expect( o.observed_on ).to eq d.to_date
           observed_on = o.observed_on
-          o.update_attributes( updated_at: Time.now )
+          o.update( updated_at: Time.now )
           o.reload
           expect( o.observed_on.to_s ).to eq observed_on.to_s
         end
@@ -792,7 +792,7 @@ describe Observation do
       po = ProjectObservation.make!(:observation => o, :project => pu.project)
       Delayed::Job.delete_all
       stamp = Time.now
-      o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
+      o.update( taxon: Taxon.make!, editing_user_id: o.user_id )
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       expect(jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}).to be_blank
     end
@@ -801,7 +801,7 @@ describe Observation do
       o = make_research_grade_observation
       Delayed::Job.delete_all
       stamp = Time.now
-      o.update_attributes(:latitude => o.latitude + 1)
+      o.update(:latitude => o.latitude + 1)
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       expect(jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}).not_to be_blank
     end
@@ -811,7 +811,7 @@ describe Observation do
       Delayed::Job.delete_all
       stamp = Time.now
       3.times do
-        o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
+        o.update( taxon: Taxon.make!, editing_user_id: o.user_id )
       end
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       expect(jobs.select{|j| j.handler =~ /LifeList.*refresh_with_observation/m}.size).to eq(0)
@@ -823,7 +823,7 @@ describe Observation do
       Delayed::Job.delete_all
       stamp = Time.now
       3.times do
-        o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
+        o.update( taxon: Taxon.make!, editing_user_id: o.user_id )
       end
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       expect(jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}.size).to eq(0)
@@ -834,7 +834,7 @@ describe Observation do
       Delayed::Job.delete_all
       stamp = Time.now
       3.times do
-        o.update_attributes(:latitude => o.latitude + 1)
+        o.update(:latitude => o.latitude + 1)
       end
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       expect(jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}.size).to eq(1)
@@ -845,7 +845,7 @@ describe Observation do
       Delayed::Job.delete_all
       stamp = Time.now
       o = Observation.find(o.id)
-      o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
+      o.update( taxon: Taxon.make!, editing_user_id: o.user_id )
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       pattern = /CheckList.*refresh_with_observation/m
       job = jobs.detect{|j| j.handler =~ pattern}
@@ -858,7 +858,7 @@ describe Observation do
       o = po.observation
       Delayed::Job.delete_all
       stamp = Time.now
-      o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
+      o.update( taxon: Taxon.make!, editing_user_id: o.user_id )
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       pattern = /ProjectList.*refresh_with_observation/m
       job = jobs.detect{|j| j.handler =~ pattern}
@@ -868,19 +868,19 @@ describe Observation do
   
     it "should not allow impossible coordinates" do
       o = Observation.make!
-      o.update_attributes(:latitude => 100)
+      o.update(:latitude => 100)
       expect(o).not_to be_valid
     
       o = Observation.make!
-      o.update_attributes(:longitude => 200)
+      o.update(:longitude => 200)
       expect(o).not_to be_valid
     
       o = Observation.make!
-      o.update_attributes(:latitude => -100)
+      o.update(:latitude => -100)
       expect(o).not_to be_valid
     
       o = Observation.make!
-      o.update_attributes(:longitude => -200)
+      o.update(:longitude => -200)
       expect(o).not_to be_valid
     end
 
@@ -903,7 +903,7 @@ describe Observation do
         o.photos << LocalPhoto.make!(:user => o.user)
         o.reload
         expect(o.quality_grade).to eq Observation::CASUAL
-        o.update_attributes(:observed_on_string => "yesterday")
+        o.update(:observed_on_string => "yesterday")
         o.reload
         expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
       end
@@ -927,14 +927,14 @@ describe Observation do
         expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
         new_taxon = Taxon.make!
         o = Observation.find(o.id)
-        o.update_attributes( taxon: new_taxon, editing_user_id: o.user_id )
+        o.update( taxon: new_taxon, editing_user_id: o.user_id )
         expect(o.quality_grade).to eq Observation::NEEDS_ID
       end
     
       it "should become casual when date removed" do
         o = make_research_grade_observation
         expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
-        o.update_attributes(:observed_on_string => "")
+        o.update(:observed_on_string => "")
         expect(o.quality_grade).to eq Observation::CASUAL
       end
 
@@ -1280,7 +1280,7 @@ describe Observation do
         cs = create :conservation_status, place: place, taxon: species
         o = create :observation, latitude: place.latitude, longitude: place.longitude
         expect( o ).not_to be_coordinates_obscured
-        o.update_attributes( taxon: species, editing_user_id: o.user_id )
+        o.update( taxon: species, editing_user_id: o.user_id )
         expect( o ).to be_coordinates_obscured
       end
 
@@ -1288,7 +1288,7 @@ describe Observation do
         cs = create :conservation_status, place: place, taxon: species
         o = create :observation, latitude: -1*place.latitude, longitude: place.longitude
         expect( o ).not_to be_coordinates_obscured
-        o.update_attributes( taxon: species, editing_user_id: o.user_id )
+        o.update( taxon: species, editing_user_id: o.user_id )
         expect( o ).not_to be_coordinates_obscured
       end
 
@@ -1301,12 +1301,12 @@ describe Observation do
           geoprivacy: Observation::OPEN
         o = create :observation, latitude: place.latitude, longitude: place.longitude
         expect( o ).not_to be_coordinates_obscured
-        o.update_attributes( taxon: species, editing_user_id: o.user_id )
+        o.update( taxon: species, editing_user_id: o.user_id )
         expect( o ).to be_coordinates_obscured
       end
 
       it "should not obscure coordinates if secure in state but globally threatened" do
-        place.update_attributes( admin_level: Place::STATE_LEVEL )
+        place.update( admin_level: Place::STATE_LEVEL )
         local_cs = create :conservation_status,
           place: place,
           taxon: species,
@@ -1316,12 +1316,12 @@ describe Observation do
         global_cs = create :conservation_status, taxon: species
         o = create :observation, latitude: place.latitude, longitude: place.longitude
         expect( o ).not_to be_coordinates_obscured
-        o.update_attributes( taxon: species, editing_user_id: o.user_id )
+        o.update( taxon: species, editing_user_id: o.user_id )
         expect( o ).not_to be_coordinates_obscured
       end
 
       it "should obscure coordinates if secure in state and globally threatened and another suggested taxon is globally threatened" do
-        place.update_attributes( admin_level: Place::STATE_LEVEL )
+        place.update( admin_level: Place::STATE_LEVEL )
         local_cs1 = create :conservation_status,
           place: place,
           taxon: species,
@@ -1364,7 +1364,7 @@ describe Observation do
         cs_global = create :conservation_status, taxon: species, geoprivacy: Observation::OPEN
         o = create :observation, latitude: -1*place.latitude, longitude: place.longitude
         expect( o ).not_to be_coordinates_obscured
-        o.update_attributes( taxon: species, editing_user_id: o.user_id )
+        o.update( taxon: species, editing_user_id: o.user_id )
         expect( o ).not_to be_coordinates_obscured
       end
 
@@ -1378,7 +1378,7 @@ describe Observation do
           expect( o ).to be_coordinates_obscured
         end
         it "should not obscure coordinates if taxon has a conservation status in another place" do
-          o.update_attributes( latitude: ( place.latitude * -1 ), longitude: ( place.longitude * -1 ) )
+          o.update( latitude: ( place.latitude * -1 ), longitude: ( place.longitude * -1 ) )
           expect( o ).not_to be_coordinates_obscured
           create :conservation_status, place: place, taxon: species
           create :identification, observation: o, taxon: species
@@ -1398,7 +1398,7 @@ describe Observation do
         end
         it "should not obscure coordinates if secure in state but globally threatened" do
           expect( o ).not_to be_coordinates_obscured
-          place.update_attributes( admin_level: Place::STATE_LEVEL )
+          place.update( admin_level: Place::STATE_LEVEL )
           local_cs = create :conservation_status,
             place: place,
             taxon: species,
@@ -1454,7 +1454,7 @@ describe Observation do
       o = Observation.make!
       t = Taxon.make!
       expect(t.observations_count).to eq(0)
-      o.update_attributes( taxon: t, editing_user_id: o.user_id )
+      o.update( taxon: t, editing_user_id: o.user_id )
       Delayed::Job.find_each{|j| j.invoke_job}
       t.reload
       expect(t.observations_count).to eq(1)
@@ -1465,7 +1465,7 @@ describe Observation do
       p = without_delay { Taxon.make!(rank: Taxon::GENUS) }
       t = without_delay { Taxon.make!(parent: p, rank: Taxon::SPECIES) }
       expect(p.observations_count).to eq 0
-      o.update_attributes( taxon: t, editing_user_id: o.user_id )
+      o.update( taxon: t, editing_user_id: o.user_id )
       Delayed::Job.find_each{|j| j.invoke_job}
       p.reload
       expect(p.observations_count).to eq 1
@@ -1479,7 +1479,7 @@ describe Observation do
       o = without_delay {Observation.make!(:taxon => t)}
       t.reload
       expect(t.observations_count).to eq(1)
-      o = without_delay {o.update_attributes( taxon: nil, editing_user_id: o.user_id )}
+      o = without_delay {o.update( taxon: nil, editing_user_id: o.user_id )}
       t.reload
       expect(t.observations_count).to eq(0)
     end
@@ -1490,7 +1490,7 @@ describe Observation do
       o = without_delay {Observation.make!(:taxon => t)}
       p.reload
       expect(p.observations_count).to eq(1)
-      o = without_delay {o.update_attributes( taxon: nil, editing_user_id: o.user_id )}
+      o = without_delay {o.update( taxon: nil, editing_user_id: o.user_id )}
       p.reload
       expect(p.observations_count).to eq(0)
     end
@@ -2050,7 +2050,7 @@ describe Observation do
   
     it "should be set automatically if the taxon's parent is threatened" do
       parent = cs.taxon
-      parent.update_attributes( rank: Taxon::SPECIES, rank_level: Taxon::SPECIES_LEVEL )
+      parent.update( rank: Taxon::SPECIES, rank_level: Taxon::SPECIES_LEVEL )
       child = Taxon.make!( parent: cs.taxon, rank: "subspecies" )
       observation = Observation.make!( defaults.merge( taxon: child ) )
       expect( observation.taxon ).not_to be_threatened
@@ -2063,7 +2063,7 @@ describe Observation do
   
     it "should be unset if the taxon changes to something unthreatened" do
       observation = Observation.make!( defaults )
-      observation.update_attributes( taxon: Taxon.make!, editing_user_id: observation.user_id )
+      observation.update( taxon: Taxon.make!, editing_user_id: observation.user_id )
       observation.reload
       expect( observation.taxon ).not_to be_threatened
       expect( observation.owners_identification.taxon ).not_to be_threatened
@@ -2085,7 +2085,7 @@ describe Observation do
       ].each do |place_guess|
         observation = Observation.make!( place_guess: place_guess )
         expect( observation.latitude ).not_to be_blank
-        observation.update_attributes( taxon: cs.taxon, editing_user_id: observation.user_id )
+        observation.update( taxon: cs.taxon, editing_user_id: observation.user_id )
         expect( observation.place_guess.to_s ).to eq ""
       end
     end
@@ -2119,7 +2119,7 @@ describe Observation do
       expect( po.project_user.preferred_curator_coordinate_access ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER
       expect( po ).to be_prefers_curator_coordinate_access
       o = po.observation
-      o.update_attributes( geoprivacy: Observation::PRIVATE, latitude: 1, longitude: 1 )
+      o.update( geoprivacy: Observation::PRIVATE, latitude: 1, longitude: 1 )
       expect( o ).to be_coordinates_private
       pu = ProjectUser.make!( project: po.project, role: ProjectUser::CURATOR )
       expect( o.coordinates_viewable_by?( pu.user ) ).to be true
@@ -2128,7 +2128,7 @@ describe Observation do
     it "should be visible to managers of projects to which the observation has been added" do
       po = make_project_observation
       o = po.observation
-      o.update_attributes( geoprivacy: Observation::PRIVATE, latitude: 1, longitude: 1 )
+      o.update( geoprivacy: Observation::PRIVATE, latitude: 1, longitude: 1 )
       expect( o ).to be_coordinates_private
       pu = ProjectUser.make!( project: po.project, role: ProjectUser::MANAGER )
       expect( o.coordinates_viewable_by?( pu.user ) ).to be true
@@ -2138,7 +2138,7 @@ describe Observation do
       po = ProjectObservation.make!
       expect( po.observation.user.project_ids ).not_to include po.project_id
       o = po.observation
-      o.update_attributes( geoprivacy: Observation::PRIVATE, latitude: 1, longitude: 1 )
+      o.update( geoprivacy: Observation::PRIVATE, latitude: 1, longitude: 1 )
       expect( o ).to be_coordinates_private
       pu = ProjectUser.make!( project: po.project, role: ProjectUser::MANAGER )
       expect( o.coordinates_viewable_by?( pu.user ) ).to be false
@@ -2148,7 +2148,7 @@ describe Observation do
       po = ProjectObservation.make!( prefers_curator_coordinate_access: true )
       expect( po.observation.user.project_ids ).not_to include po.project_id
       o = po.observation
-      o.update_attributes( geoprivacy: Observation::PRIVATE, latitude: 1, longitude: 1)
+      o.update( geoprivacy: Observation::PRIVATE, latitude: 1, longitude: 1)
       expect( o ).to be_coordinates_private
       pu = ProjectUser.make!( project: po.project, role: ProjectUser::MANAGER )
       expect( o.coordinates_viewable_by?( pu.user ) ).to be true
@@ -2167,7 +2167,7 @@ describe Observation do
       let(:place) { make_place_with_geom }
       let(:project) do
         proj = Project.make(:collection)
-        proj.update_attributes( prefers_user_trust: true )
+        proj.update( prefers_user_trust: true )
         pu = ProjectUser.make!(
           project: proj,
           prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
@@ -2272,7 +2272,7 @@ describe Observation do
           expect( o.coordinates_viewable_by?( non_curator ) ).to be false
         end
         it "should not allow curator access to coordinates of a threatened taxon if geoprivacy is obscured" do
-          o.update_attributes( geoprivacy: Observation::OBSCURED )
+          o.update( geoprivacy: Observation::OBSCURED )
           stub_api_response_for_observation( o )
           expect( o ).to be_in_collection_projects( [project] )
           expect( o ).to be_coordinates_obscured
@@ -2294,7 +2294,7 @@ describe Observation do
           expect( pu.preferred_curator_coordinate_access_for ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
         end
         it "should not allow curator access if disabled" do
-          project.update_attributes( prefers_user_trust: false )
+          project.update( prefers_user_trust: false )
           stub_api_response_for_observation( o )
           expect( o ).to be_in_collection_projects( [project] )
           expect( o ).to be_coordinates_obscured
@@ -2307,7 +2307,7 @@ describe Observation do
           expect( o.coordinates_viewable_by?( curator ) ).to be true
         end
         it "should allow curator access to coordinates of a threatened taxon if geoprivacy is obscured" do
-          o.update_attributes( geoprivacy: Observation::OBSCURED )
+          o.update( geoprivacy: Observation::OBSCURED )
           stub_api_response_for_observation( o )
           expect( o ).to be_in_collection_projects( [project] )
           expect( o ).to be_coordinates_obscured
@@ -2436,7 +2436,7 @@ describe Observation do
       end
 
       it "should remove public coordinates if coords change but not geoprivacy" do
-        subject.update_attributes latitude: 1, longitude: 1
+        subject.update latitude: 1, longitude: 1
 
         expect(subject).to be_coordinates_obscured
         expect(subject.latitude).to be_blank
@@ -2446,7 +2446,7 @@ describe Observation do
       it "should restore public coordinates when removing geoprivacy" do
         expect(subject.latitude).to be_blank
         expect(subject.longitude).to be_blank
-        subject.update_attributes geoprivacy: nil
+        subject.update geoprivacy: nil
         expect(subject.latitude.to_f).to eq latitude
         expect(subject.longitude.to_f).to eq longitude
       end
@@ -2461,7 +2461,7 @@ describe Observation do
       it "should remove public coordinates when moving to private" do
         expect(subject.latitude).not_to be_blank
         expect(subject.longitude).not_to be_blank
-        subject.update_attributes geoprivacy: Observation::PRIVATE
+        subject.update geoprivacy: Observation::PRIVATE
         expect(subject.latitude).to be_blank
         expect(subject.longitude).to be_blank
       end
@@ -2471,7 +2471,7 @@ describe Observation do
 
         it "should not unobscure observations of threatened taxa" do
           expect(subject).to be_coordinates_obscured
-          subject.update_attributes geoprivacy: nil
+          subject.update geoprivacy: nil
           expect(subject.geoprivacy).to be_blank
           expect(subject).to be_coordinates_obscured
         end
@@ -2488,7 +2488,7 @@ describe Observation do
       it "should remove place_guess from to_plain_s when geoprivacy updated" do
         original_place_guess = subject.place_guess
         expect(subject.to_plain_s).to match /#{original_place_guess}/
-        subject.update_attributes geoprivacy: Observation::OBSCURED
+        subject.update geoprivacy: Observation::OBSCURED
         expect(subject.to_plain_s).not_to match /#{original_place_guess}/
         expect(subject.private_place_guess).not_to be_blank
       end
@@ -2499,7 +2499,7 @@ describe Observation do
         it "should remove public coordinates when made private" do
           expect(subject).to be_coordinates_obscured
           expect(subject.latitude).not_to be_blank
-          subject.update_attributes geoprivacy: Observation::PRIVATE
+          subject.update geoprivacy: Observation::PRIVATE
           expect(subject.latitude).to be_blank
           expect(subject.longitude).to be_blank
         end
@@ -2511,11 +2511,11 @@ describe Observation do
       Delayed::Worker.new.work_off
       o.reload
       expect( o.private_latitude ).not_to eq o.latitude
-      o.update_attributes( geoprivacy: Observation::PRIVATE )
+      o.update( geoprivacy: Observation::PRIVATE )
       Delayed::Worker.new.work_off
       o.reload
       expect( o.private_latitude ).not_to eq o.latitude
-      o.update_attributes( geoprivacy: Observation::OBSCURED )
+      o.update( geoprivacy: Observation::OBSCURED )
       Delayed::Worker.new.work_off
       o.reload
       expect( o.private_latitude ).not_to eq o.latitude
@@ -2837,7 +2837,7 @@ describe Observation do
         expect( o.sw_latlon.map(&:to_f) ).to eq uncertainty_cell_sw_latlon
       end
       it "should match the positional_accuracy bounding box corners when positional_accuracy is greater than the obscuration cell" do
-        o.update_attributes( positional_accuracy: 100000 )
+        o.update( positional_accuracy: 100000 )
         o.reload
         positional_accuracy_degrees = o.positional_accuracy.to_i / (2*Math::PI*Observation::PLANETARY_RADIUS) * 360.0
         positional_accuracy_ne_latlon = [
@@ -2880,7 +2880,7 @@ describe Observation do
       o.reload
       expect(o.num_identification_agreements).to eq(0)
       expect(o.num_identification_disagreements).to eq(1)
-      child.update_attributes(:parent => parent)
+      child.update(:parent => parent)
       Observation.update_stats_for_observations_of(parent)
       o.reload
       expect(o.num_identification_agreements).to eq(1)
@@ -2894,7 +2894,7 @@ describe Observation do
       i1 = Identification.make!( observation: o, taxon: child )
       o.reload
       expect( o.community_taxon ).to be_blank
-      child.update_attributes( parent: parent )
+      child.update( parent: parent )
       Observation.update_stats_for_observations_of( parent )
       o.reload
       expect( o.community_taxon ).not_to be_blank
@@ -2917,7 +2917,7 @@ describe Observation do
         }
       }
       ofv.destroy
-      expect { o.update_attributes(attrs) }.not_to raise_error
+      expect { o.update(attrs) }.not_to raise_error
       o.reload
       expect(o.observation_field_values.last.observation_field_id).to eq(of.id)
     end
@@ -2937,7 +2937,7 @@ describe Observation do
         }
       }
       ofv.destroy
-      expect { o.update_attributes(attrs) }.not_to raise_error
+      expect { o.update(attrs) }.not_to raise_error
       o.reload
       expect(o.observation_field_values).to be_blank
     end
@@ -2980,7 +2980,7 @@ describe Observation do
     #   o = without_delay {Observation.make!}
     #   Update.count.should eq 0
     #   without_delay do
-    #     o.update_attributes( taxon: t, editing_user_id: o.user_id )
+    #     o.update( taxon: t, editing_user_id: o.user_id )
     #   end
     #   u = Update.last
     #   u.should_not be_blank
@@ -3129,7 +3129,7 @@ describe Observation do
     it "should vote no on the wild quality metric if 0 and metric exists" do
       o = Observation.make!(:captive_flag => "1")
       expect(o.quality_metrics).not_to be_blank
-      o.update_attributes(:captive_flag => "0")
+      o.update(:captive_flag => "0")
       expect(o.quality_metrics.first).to be_agree
     end
 
@@ -3178,8 +3178,8 @@ describe Observation do
     it "should mark duplicate identifications as not current" do
       t = Taxon.make!
       without_delay do
-        reject.update_attributes( taxon: t, editing_user_id: reject.user_id )
-        keeper.update_attributes( taxon: t, editing_user_id: keeper.user_id )
+        reject.update( taxon: t, editing_user_id: reject.user_id )
+        keeper.update( taxon: t, editing_user_id: keeper.user_id )
       end
       keeper.merge(reject)
       idents = keeper.identifications.where(:user_id => keeper.user_id).order('id asc')
@@ -3254,7 +3254,7 @@ describe Observation do
       i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
       o.reload
       expect(o.taxon).to be_blank
-      o.update_attributes(:prefers_community_taxon => true)
+      o.update(:prefers_community_taxon => true)
       o.reload
       expect(o.community_taxon).to eq(i1.taxon)
     end
@@ -3265,7 +3265,7 @@ describe Observation do
       i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
       o.reload
       expect(o.community_taxon).to eq(i1.taxon)
-      o.update_attributes(:prefers_community_taxon => false)
+      o.update(:prefers_community_taxon => false)
       o.reload
       expect(o.community_taxon).not_to be_blank
     end
@@ -3334,7 +3334,7 @@ describe Observation do
       o.reload
       expect(o.community_taxon).to eq(i1.taxon)
       expect(o.taxon).to eq o.community_taxon
-      o.update_attributes(:prefers_community_taxon => false)
+      o.update(:prefers_community_taxon => false)
       o.reload
       expect(o.taxon).to eq owner_taxon
     end
@@ -3348,7 +3348,7 @@ describe Observation do
       o.reload
       expect(o.community_taxon).to eq(i1.taxon)
       expect(o.taxon).to eq o.community_taxon
-      o.update_attributes(:prefers_community_taxon => false)
+      o.update(:prefers_community_taxon => false)
       o.reload
       expect(o.species_guess).to eq owner_taxon.name
     end
@@ -3394,7 +3394,7 @@ describe Observation do
       i1 = Identification.make!(:observation => o, :taxon => @Animalia)
       expect(o.community_taxon).to be_blank
       o = Observation.find(o.id)
-      o.update_attributes( taxon: @Plantae, editing_user_id: o.user_id )
+      o.update( taxon: @Plantae, editing_user_id: o.user_id )
       expect(o.community_taxon).not_to be_blank
       expect(o.identifications.count).to eq 2
     end
@@ -3407,7 +3407,7 @@ describe Observation do
       expect( o.community_taxon ).not_to be_blank
       t = Taxon.make!( parent: @Hylidae, rank: "genus", is_active: false )
       expect( t.is_active ).to be( false )
-      @Pseudacris_regilla.update_attributes( is_active: false )
+      @Pseudacris_regilla.update( is_active: false )
       expect( @Pseudacris_regilla.is_active ).to be( false )
       @Pseudacris_regilla.parent = t
       @Pseudacris_regilla.save
@@ -3418,7 +3418,7 @@ describe Observation do
       @Pseudacris_regilla.parent = @Pseudacris
       @Pseudacris_regilla.save
       Delayed::Worker.new.work_off
-      @Pseudacris_regilla.update_attributes( is_active: true )
+      @Pseudacris_regilla.update( is_active: true )
       Delayed::Worker.new.work_off
       o = Observation.find( o.id )
       expect( o.community_taxon ).not_to be_blank
@@ -4062,7 +4062,7 @@ describe Observation do
       # mark the generated updates as viewed
       UpdateAction.user_viewed_updates( UpdateAction.where( notifier: o ), u.id )
       after_delayed_job_finishes do
-        o.update_attributes( description: "#{o.description} and some extra" )
+        o.update( description: "#{o.description} and some extra" )
       end
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
     end
@@ -4070,7 +4070,7 @@ describe Observation do
       u = User.make!
       o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
       expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: o ) ).to eq true
-      after_delayed_job_finishes { o.update_attributes( description: "bye" ) }
+      after_delayed_job_finishes { o.update( description: "bye" ) }
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
     end
     it "generates a mention update if the description was updated and the mentioned user was in the new content" do
@@ -4078,7 +4078,7 @@ describe Observation do
       o = without_delay { Observation.make!(description: "hey") }
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
       after_delayed_job_finishes do
-        o.update_attributes( description: "#{o.description} @#{u.login}" )
+        o.update( description: "#{o.description} @#{u.login}" )
       end
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq true
     end
@@ -4106,35 +4106,35 @@ describe Observation do
       expect( Observation.find_by_id(@dupe.id) ).to be_blank
     end
     it "should remove duplicates with obscured coordinates" do
-      @dupe.update_attributes(geoprivacy: Observation::OBSCURED)
+      @dupe.update(geoprivacy: Observation::OBSCURED)
       Observation.dedupe_for_user(@obs.user)
       expect( Observation.find_by_id(@obs.id) ).not_to be_blank
       expect( Observation.find_by_id(@dupe.id) ).to be_blank
     end
     it "should not assume null datetimes are the same" do
-      @obs.update_attributes(observed_on_string: nil)
-      @dupe.update_attributes(observed_on_string: nil)
+      @obs.update(observed_on_string: nil)
+      @dupe.update(observed_on_string: nil)
       Observation.dedupe_for_user(@obs.user)
       expect( Observation.find_by_id(@obs.id) ).not_to be_blank
       expect( Observation.find_by_id(@dupe.id) ).not_to be_blank
     end
     it "should not assume blank datetimes are the same" do
-      @obs.update_attributes(observed_on_string: '')
-      @dupe.update_attributes(observed_on_string: '')
+      @obs.update(observed_on_string: '')
+      @dupe.update(observed_on_string: '')
       Observation.dedupe_for_user(@obs.user)
       expect( Observation.find_by_id(@obs.id) ).not_to be_blank
       expect( Observation.find_by_id(@dupe.id) ).not_to be_blank
     end
     it "should not assume null coordinates are the same" do
-      @obs.update_attributes(latitude: nil, longitude: nil)
-      @dupe.update_attributes(latitude: nil, longitude: nil)
+      @obs.update(latitude: nil, longitude: nil)
+      @dupe.update(latitude: nil, longitude: nil)
       Observation.dedupe_for_user(@obs.user)
       expect( Observation.find_by_id(@obs.id) ).not_to be_blank
       expect( Observation.find_by_id(@dupe.id) ).not_to be_blank
     end
     it "should not assume null taxa are the same" do
-      @obs.update_attributes( taxon: nil, editing_user_id: @obs.user_id )
-      @dupe.update_attributes( taxon: nil, editing_user_id: @dupe.user_id )
+      @obs.update( taxon: nil, editing_user_id: @obs.user_id )
+      @dupe.update( taxon: nil, editing_user_id: @dupe.user_id )
       Observation.dedupe_for_user(@obs.user)
       expect( Observation.find_by_id(@obs.id) ).not_to be_blank
       expect( Observation.find_by_id(@dupe.id) ).not_to be_blank
@@ -4242,7 +4242,7 @@ describe Observation, "probably_captive?" do
         obs = make_non_captive_obs
         QualityMetric.vote( nil, obs, QualityMetric::WILD, true )
       end
-      o.update_attributes( description: "foo" )
+      o.update( description: "foo" )
       o.reload
       expect( o ).not_to be_captive
       expect(
@@ -4306,8 +4306,8 @@ end
 describe Observation, "and update_quality_metrics" do
   it "should not throw an error of owner ID taxon has no rank level" do
     o = make_research_grade_observation
-    o.update_attributes( prefers_community_taxon: false )
-    o.owners_identification.taxon.update_attributes( rank: "nonsense" )
+    o.update( prefers_community_taxon: false )
+    o.owners_identification.taxon.update( rank: "nonsense" )
     expect{
       o.get_quality_grade
     }.to_not raise_error
@@ -4340,10 +4340,10 @@ describe Observation, "taxon_geoprivacy" do
     o.reload
     expect( o ).not_to be_coordinates_private
     expect( o ).to be_coordinates_obscured
-    o.update_attributes( geoprivacy: Observation::PRIVATE )
+    o.update( geoprivacy: Observation::PRIVATE )
     expect( o ).to be_coordinates_private
     o.reload
-    o.update_attributes( geoprivacy: Observation::OPEN, latitude: o.private_latitude, longitude: o.private_longitude )
+    o.update( geoprivacy: Observation::OPEN, latitude: o.private_latitude, longitude: o.private_longitude )
     o.reload
     expect( o ).not_to be_coordinates_private
     expect( o ).to be_coordinates_obscured
@@ -4365,7 +4365,7 @@ describe Observation, "set_observations_taxa_for_user" do
   end
   it "should change the community taxon if the observer's opted out of the community taxon" do
     expect( o.taxon ).to eq species1
-    user.update_attributes( prefers_community_taxa: false )
+    user.update( prefers_community_taxa: false )
     o.reload
     expect( o.taxon ).to eq species1
     Observation.set_observations_taxa_for_user( o.user_id )
@@ -4373,9 +4373,9 @@ describe Observation, "set_observations_taxa_for_user" do
     expect( o.taxon ).to eq genus1
   end
   it "should change the community taxon if the observer's opted in to the community taxon" do
-    user.update_attributes( prefers_community_taxa: false )
+    user.update( prefers_community_taxa: false )
     expect( o.taxon ).to eq genus1
-    user.update_attributes( prefers_community_taxa: true )
+    user.update( prefers_community_taxa: true )
     o.reload
     expect( o.taxon ).to eq genus1
     Observation.set_observations_taxa_for_user( o.user_id )

@@ -77,7 +77,7 @@ class SitesController < ApplicationController
     @record = Site.find(params[:id])
 
     respond_to do |format|
-      if @record.update_attributes(params[:site])
+      if @record.update(params[:site])
         if Site.default && @record.id == Site.default.id
           Site.default( refresh: true )
         end

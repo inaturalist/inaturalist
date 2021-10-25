@@ -327,7 +327,7 @@ class ProviderOauthController < ApplicationController
       if access_token
         # If the user already has a token for this client, ensure that the
         # scopes match what they're requesting
-        access_token.update_attributes( scopes: scopes_from_params( params, client ) )
+        access_token.update( scopes: scopes_from_params( params, client ) )
       else
         access_token = Doorkeeper::AccessToken.create!(
           application_id: client.id,

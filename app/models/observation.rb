@@ -1156,7 +1156,7 @@ class Observation < ApplicationRecord
         end
       elsif taxon.blank? && owners_ident && owners_ident.current?
         if identifications.where( user_id: user_id ).count > 1
-          owners_ident.update_attributes( current: false, skip_observation: true )
+          owners_ident.update( current: false, skip_observation: true )
         else
           owners_ident.skip_observation = true
           owners_ident.destroy
@@ -2259,7 +2259,7 @@ class Observation < ApplicationRecord
     if captive_flag.yesish?
       QualityMetric.vote( user, self, QualityMetric::WILD, false )
     elsif captive_flag.noish? && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
-      qm.update_attributes( agree: true )
+      qm.update( agree: true )
     elsif force_quality_metrics && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
       qm.destroy
     end
@@ -2272,7 +2272,7 @@ class Observation < ApplicationRecord
     true
   end
   
-  # def update_attributes(attributes)
+  # def update(attributes)
   #   # hack around a weird android bug
   #   attributes.delete(:iconic_taxon_name)
     
@@ -2786,7 +2786,7 @@ class Observation < ApplicationRecord
     unless options[:skip_identifications]
       identifications.group_by{|ident| [ident.user_id, ident.taxon_id]}.each do |pair, idents|
         c = idents.sort_by(&:id).last
-        c.update_attributes(:current => true)
+        c.update(:current => true)
       end
     end
     save!

@@ -37,7 +37,7 @@ class CompleteSetsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @complete_set.update_attributes( params[:complete_set] )
+      if @complete_set.update( params[:complete_set] )
         format.html { redirect_to( @complete_set, notice: "Complete Set was successfully updated." ) }
       else
         format.html { render action: "edit" }

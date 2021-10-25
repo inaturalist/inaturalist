@@ -55,7 +55,7 @@ describe Identification, "creation" do
       ident2.reload
       expect( ident1 ).not_to be_current
       expect( ident2 ).to be_current
-      ident1.update_attributes( current: true )
+      ident1.update( current: true )
       ident1.reload
       ident2.reload
       expect( ident1 ).to be_current
@@ -198,7 +198,7 @@ describe Identification, "creation" do
        "the observation's taxon to be in agreement" do
       taxon = Taxon.make!(rank: Taxon::SPECIES)
       parent = Taxon.make!(rank: Taxon::GENUS)
-      taxon.update_attributes(:parent => parent)
+      taxon.update(:parent => parent)
       observation = Observation.make!(:taxon => parent, :prefers_community_taxon => false)
       identification = Identification.make!(:observation => observation, :taxon => taxon)
       expect(identification.user).not_to be(identification.observation.user)
@@ -209,7 +209,7 @@ describe Identification, "creation" do
        "of the observation's taxon to be in agreement" do
       taxon = Taxon.make!
       parent = Taxon.make!
-      taxon.update_attributes(:parent => parent)
+      taxon.update(:parent => parent)
       observation = Observation.make!(:taxon => taxon, :prefers_community_taxon => false)
       identification = Identification.make!(:observation => observation, :taxon => parent)
       expect(identification.user).not_to be(identification.observation.user)
@@ -333,7 +333,7 @@ describe Identification, "creation" do
     it "marks existing unreviewed reviews as reviewed" do
       o = Observation.make!
       r = ObservationReview.make!( observation: o, user: o.user )
-      r.update_attributes( reviewed: false )
+      r.update( reviewed: false )
       Identification.make!( observation: o, user: o.user )
       o.reload
       expect( o.observation_reviews.first ).to eq r
@@ -414,7 +414,7 @@ describe Identification, "updating" do
     i2.reload
     expect(i1).not_to be_current
     expect(i2).to be_current
-    i1.update_attributes(:body => "foo")
+    i1.update(:body => "foo")
     i1.reload
     i2.reload
     expect(i1).not_to be_current
@@ -433,7 +433,7 @@ describe Identification, "updating" do
       o.reload
       expect( o.taxon_geoprivacy ).to be_blank
       i1.reload
-      i1.update_attributes( current: true )
+      i1.update( current: true )
       o.reload
       expect( o.taxon_geoprivacy ).to eq Observation::OBSCURED
     end
@@ -706,7 +706,7 @@ describe Identification, "captive" do
     i = Identification.make!(:captive_flag => "1")
     o = i.observation
     expect(o.quality_metrics).not_to be_blank
-    i.update_attributes(:captive_flag => "0")
+    i.update(:captive_flag => "0")
     o.reload
     expect(o.quality_metrics.first).not_to be_agree
   end
@@ -893,9 +893,9 @@ describe Identification, "category" do
     it "should not change" do
       expect( o.community_taxon ).to eq @Calypte
       expect( @sequence[2].category ).to eq Identification::SUPPORTING
-      @sequence[2].update_attributes( current: false )
+      @sequence[2].update( current: false )
       expect( @sequence[2] ).not_to be_current
-      @sequence[2].update_attributes( current: true )
+      @sequence[2].update( current: true )
       @sequence[2].reload
       expect( @sequence[2].category ).to eq Identification::SUPPORTING
     end
@@ -1117,12 +1117,12 @@ describe Identification, "set_previous_observation_taxon" do
     i = Identification.make!( observation: o, taxon: genus, disagreement: true )
     expect( i.previous_observation_taxon ).to eq species1
     expect( o.taxon ).to eq genus
-    i.update_attributes( current: false )
+    i.update( current: false )
     o.reload
     expect( o.taxon ).to eq species1
     i2 = Identification.make!( observation: o, user: o.user, taxon: species2 )
     expect( o.taxon ).to eq species2
-    i.update_attributes( current: true )
+    i.update( current: true )
     expect( i.previous_observation_taxon ).to eq species1
   end
 end
@@ -1140,7 +1140,7 @@ describe Identification, "update_disagreement_identifications_for_taxon" do
       i = Identification.make!( taxon: t, observation: o )
       expect( i.previous_observation_taxon ).to eq g1
       expect( i ).to be_disagreement
-      without_delay { t.update_attributes( parent: g1 ) }
+      without_delay { t.update( parent: g1 ) }
       i.reload
       expect( i ).not_to be_disagreement
     end
@@ -1150,7 +1150,7 @@ describe Identification, "update_disagreement_identifications_for_taxon" do
       i = Identification.make!( taxon: s1, observation: o )
       expect( i.previous_observation_taxon ).to eq t
       expect( i ).to be_disagreement
-      without_delay { s1.update_attributes( parent: t ) }
+      without_delay { s1.update( parent: t ) }
       i.reload
       expect( i ).not_to be_disagreement
     end

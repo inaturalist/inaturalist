@@ -55,7 +55,7 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
   let(:o) { make_research_grade_observation }
   let(:p) { 
     photo = o.photos.first
-    without_delay { photo.update_attributes(license: Photo::CC_BY) }
+    without_delay { photo.update(license: Photo::CC_BY) }
     DarwinCore::SimpleMultimedia.adapt(photo, observation: o)
   }
 
@@ -99,7 +99,7 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
   end
 
   it "should include CC0-licensed photos by default" do
-    without_delay { p.update_attributes( license: Photo::CC0 ) }
+    without_delay { p.update( license: Photo::CC0 ) }
     expect( p.license ).to eq Photo::CC0
     expect( Photo.count ).to eq 1
     archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
@@ -109,7 +109,7 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
 
   it "should not include unlicensed photos by default" do
     expect( p.license ).not_to eq Photo::COPYRIGHT
-    without_delay { p.update_attributes( license: Photo::COPYRIGHT ) }
+    without_delay { p.update( license: Photo::COPYRIGHT ) }
     expect( p.license ).to eq Photo::COPYRIGHT
     expect( Photo.count ).to eq 1
     archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
@@ -124,7 +124,7 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
       expect( CSV.read( archive.make_simple_multimedia_data[0] ).size ).to eq 2
     end
     it "should include unlicensed images" do
-      without_delay { p.update_attributes( license: nil ) }
+      without_delay { p.update( license: nil ) }
       expect( p.license ).to eq Photo::COPYRIGHT
       p.observations.each(&:elastic_index!)
       archive = DarwinCore::Archive.new( extensions: %w(SimpleMultimedia), photo_licenses: ["ignore"])
@@ -285,7 +285,7 @@ describe DarwinCore::Archive, "make_occurrence_data" do
 
   it "should include unlicensed observations when licenses is ignore" do
     o = make_research_grade_observation
-    without_delay { o.update_attributes( license: nil ) }
+    without_delay { o.update( license: nil ) }
     expect( o.license ).to be_blank
     archive = DarwinCore::Archive.new( licenses: [ "ignore" ] )
     ids = CSV.read(archive.make_occurrence_data[0], headers: true).map{|r| r[0].to_i}
