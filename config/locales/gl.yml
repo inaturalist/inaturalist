@@ -5687,6 +5687,8 @@ gl:
       edit:
         complex_boundary_note_html: |
           Este límite é demasiado complexo para editalo na web. Aínda así podes<a href="%{url}">descargar o KML</a>, editalo na aplicación GIS da túa escolla e cargar o teu KML editado directamente.
+        admin_level_desc: |
+          Só debería ser posto para áreas políticas. En termos de equivalencias con EEUU: 0 =p aís, 10 = estado, 20 = condado, 30 = cidade
       new:
         check_list_note: "Nota: As listas de verificación desactívanse automaticamente para sitios moi grandes."
         coordinates_desc: Debes especificar as coordenadas se non debuxas límites ou cargas un KML.
@@ -7050,6 +7052,8 @@ gl:
           attributes:
             base:
               user_already_blocked: Xa bloquearas a ese usuario.
+              user_cannot_be_staff: |
+                Non podes bloquear ós traballadores. Os traballadores de iNat precisan de ser quen de comunicarense con todos en iNat, ter acceso a tódolos dados en iNat e son os mediadores últimos das disputas, así que bloquealos non evitará que se comuniquen contigo. Se tes un problema con algún traballador, por favor, repórtao a algún dos co-directores de iNat, ou se tes un problema con algún dos co-directores, podes contactar con o Xefe de Ciencia no Instituto de Biodiversidade e Ciencia da Sostibilidade na Academia de Ciencias de California.
         user_parent:
           attributes:
             email:
