@@ -5344,6 +5344,8 @@ nb:
       edit:
         complex_boundary_note_html: |
           Denne grensen er litt for kompleks til online redigering. Du kan imidlertid <a href="%{url}">laste ned KML-en</a>, redigere den i et valgfritt GIS-program, og laste opp din redigerte KML direkte.
+        admin_level_desc: |
+          Bør kun settes for politiske enheter. Tilsvarende amerikanske enheter, 0 = land, 10 = stat, 20 = county, 30 = by
       new:
         check_list_note: "Merk: sjekklister blir deaktivert automatisk for veldig store steder."
         coordinates_desc: Du må spesifisere koordinater hvis du ikke tegner en grense eller laster opp KML.
