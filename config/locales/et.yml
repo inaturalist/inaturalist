@@ -4101,6 +4101,8 @@ et:
       edit:
         complex_boundary_note_html: |
           See piirjoon on veebis muutmiseks natuke liiga keeruline. Kuid sa võid siiski <a href="%{url}">KML-faili alla laadida</a>, seda sinu jaoks sobivas GIS-programmis muuta ning uue KML-faili otse üles laadida.
+        admin_level_desc: |
+          Peaks olema määratud vaid poliitiliste kehandite puhul. USA vasted oleksid: 0=riik, 10=osariik, 20=maakond, 30=linn
       new:
         check_list_note: "NB: väga suurte kohtade puhul on kontrollnimekirjad automaatselt välja lülitatud."
         coordinates_desc: Kui sa piirjoont ei joonista või KML-faili üles ei lae, pead määrama koordinaadid.
