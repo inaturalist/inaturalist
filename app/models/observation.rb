@@ -404,17 +404,17 @@ class Observation < ApplicationRecord
 
   before_update :set_quality_grade
 
-  after_save :refresh_check_lists,
-             :update_default_license,
-             :update_all_licenses,
-             :update_taxon_counter_caches,
-             :update_quality_metrics,
-             :update_public_positional_accuracy,
-             :update_mappable,
-             :set_captive,
-             :set_taxon_photo,
-             :create_observation_review,
-             :reassess_annotations
+  after_save :refresh_check_lists
+  after_save :update_default_license
+  after_save :update_all_licenses
+  after_save :update_taxon_counter_caches
+  after_save :update_quality_metrics
+  after_save :update_public_positional_accuracy
+  after_save :update_mappable
+  after_save :set_captive
+  after_save :set_taxon_photo
+  after_save :create_observation_review
+  after_save :reassess_annotations
   after_create :set_uri
   after_commit :update_user_counter_caches_after_create, on: :create
   after_commit :update_user_counter_caches_after_destroy, on: :destroy
@@ -2178,7 +2178,10 @@ class Observation < ApplicationRecord
   end
 
   def update_taxon_counter_caches
-    return true unless destroyed? || saved_change_to_taxon_id?
+    unless destroyed? || saved_change_to_taxon_id? || transaction_include_any_action?( [:create] )
+      return true
+    end
+
     taxon_ids = [taxon_id_before_last_save, taxon_id].compact.uniq
     unless taxon_ids.blank?
       taxon_ids_including_ancestors = Taxon.where("id IN (?)", taxon_ids).
@@ -2794,7 +2797,7 @@ class Observation < ApplicationRecord
 
   def create_observation_review
     return true unless taxon
-    return true unless taxon_id_before_last_save.blank?
+    return true unless taxon_id_before_last_save.blank? || transaction_include_any_action?( [:create] )
     return true unless editing_user_id && editing_user_id == user_id
     ObservationReview.where( observation_id: id, user_id: user_id ).first_or_create.touch
     true

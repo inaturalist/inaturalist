@@ -43,8 +43,17 @@ RSpec.configure do | config |
   config.before( :suite ) do
     DatabaseCleaner.strategy = :transaction
     Elasticsearch::Model.client.ping
-    es_classes = [ControlledTerm, Identification, ObservationField,
-                  Observation, Place, Project, Taxon, UpdateAction, User].freeze
+    es_classes = [
+      ControlledTerm,
+      Identification,
+      ObservationField,
+      Observation,
+      Place,
+      Project,
+      Taxon,
+      UpdateAction,
+      User
+    ].freeze
     es_classes.each do | klass |
       begin
         klass.__elasticsearch__.delete_index!
