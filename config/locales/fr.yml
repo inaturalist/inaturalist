@@ -979,6 +979,8 @@ fr:
       *vous* voulez être listé comme organisation.
     place: Lieu auquel la situation est limitée.
     url: URL d’une page décrivant la situation.
+    geoprivacy: |
+      Géoconfidentialité par défaut pour les observations de ce taxon. Notez que la géoconfidentialité d'un statut associé à un continent, à un pays ou à une région peut remplacer celle d'un statut mondial ou associé à une étendue géographique plus grande.
     iucn: |
       Code équivalent de la liste rouge de l'UICN. Ce n'est pas l'évaluation de l'UICN,
       mais le code de l'UICN qui correspond le mieux au risque de divulgation des coordonnées
@@ -2197,10 +2199,13 @@ fr:
     ojibwe: ojibwé
     palauan: paluan
     pangasinan: Pangasinan
+    polish: Polonais
     portuguese: Portugais
     romanian: Roumain
     russian: Russe
     setswana: tswana
+    sinhala: Singhalais
+    slovak: Slovaque
     slovenian: slovène
     spanish: Espagnol
     swedish: Suédois
@@ -2209,6 +2214,7 @@ fr:
     thai: Thaï
     tokelauan: Tokelauan
     turkish: Turc
+    ukrainian: Ukrainien
     waray_waray: Waray-Waray
     visayan: cebuano
   less: Moins
@@ -6176,6 +6182,9 @@ fr:
           Cette limite géographique est un peu trop complexe à modifier sur le web. Toutefois, vous pouvez
           <a href="%{url}">télécharger le KML</a>, le modifier dans l’application SIG de votre choix et
           uploader directement votre KML modifié.
+        admin_level_desc: |
+          Doit être établi uniquement pour les entités politiques. En terme
+          d’équivalents aux É.-U., 0 = pays, 10 = état, 20 = comté, 30 = ville
       new:
         check_list_note: "Remarque : les check-list seront désactivées automatiquement pour les lieux très vastes."
         coordinates_desc: Vous devez préciser des coordonnées si vous n’avez pas tracé les limites géographiques ou uploadé un KML.
@@ -6525,6 +6534,14 @@ fr:
     search:
       index:
         no_taxa_options: "Vous avez quelques options :"
+        no_taxa_add_a_flag: Ajouter un signalement à un taxon de niveau supérieur
+        no_taxa_add_a_flag_desc: |
+          Par exemple, le genre qui contient une espèce. Un responsable bénévole de l'organisation pourra ajouter le taxon s'il en a le temps et que l'ajout est conforme à nos politiques
+          taxinomiques.
+        no_taxa_forum: Accéder au forum
+        no_taxa_forum_desc_html: |
+          De nombreux responsables bénévoles de l'organisation suivent les messages sur le
+          %{link_start_tag}forum%{link_end_tag}.
     shared:
       blocked:
         youve_been_blocked: Vous avez été bloqué
@@ -7862,6 +7879,16 @@ fr:
           attributes:
             base:
               user_already_blocked: Vous avez déjà bloqué cet utilisateur
+              user_cannot_be_staff: |
+                Vous ne pouvez pas bloquer le personnel. Les membres de l'équipe iNat doivent pouvoir
+                communiquer avec tout le monde sur iNat, avoir accès à toutes les données sur
+                iNat, et sont les médiateurs ultimes des différends, donc les bloquer
+                ne les empêchera pas de communiquer avec vous. Si vous avez un problème
+                avec un membre du personnel, veuillez le signaler à l'un des
+                codirecteurs iNat, ou, si vous avez un problème avec l'un des
+                codirecteurs, vous pouvez contacter le directeur scientifique à l’Institut
+                de Biodiviersité et de Science de la durabilité à la
+                California Academy of Sciences.
         user_parent:
           attributes:
             email:
