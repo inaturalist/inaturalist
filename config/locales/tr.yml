@@ -4585,6 +4585,7 @@ tr:
   view_check_list_page: Kontrol Listesi Sayfasını Görüntüle
   view_contributions: Katkıları Görüntüle
   view_details: Detayları Görüntüle
+  view_dynamic_lifelist_: DİNAMİK YAŞAMLİSTESİNİ GÖSTER
   view_field_options: Alan Seçeneklerini Görüntüle
   view_flag: İşareti Görüntüle
   view_flags: İşaretleri Görüntüle
@@ -5743,6 +5744,9 @@ tr:
         complex_boundary_note_html: |
           Bu sınır, internette düzenlenemeyecek kadar karışık. Ancak, <a href="%{url}">KML'yi indirebilir</a>,
           seçtiğiniz GIS uygulmasında düzenleyebilir, ve düzenlediğiniz KML'yi doğrudan yükleyebilirsiniz.
+        admin_level_desc: |
+          Yalnızca siyasi kurumlar için ayarlanmalı.
+          ABD eşdeğerleri açısından, 0 = ülke, 10 = eyalet, 20 = il, 30 = şehir
       new:
         check_list_note: "Not: çok büyük yerler için kontrol listeleri otomatik olarak devre dışı bırakılacaktır."
         coordinates_desc: Sınır çizmezseniz veya KML'yi yüklemezseniz, koordinatları belirtmelisiniz.
@@ -7335,6 +7339,8 @@ tr:
           attributes:
             base:
               user_already_blocked: Bu kullanıcıyı zaten engellediniz
+              user_cannot_be_staff: |
+                Yetkiliyi engelleyemezsiniz. iNat yetkilisinin iNat üzerindeki herkesle iletişim kurabilmesi, iNat üzerindeki tüm verilere erişebilmesi ve anlaşmazlıkların nihai aracıları olması gerekir; bu nedenle, engelleme onların sizinle iletişim kurmasını engellemez. Bir yetkiliyle sorununuz varsa, lütfen bunu iNat yardımcı yöneticilerine birine bildirin ya da yardımcı yöneticilerden biriyle sorun yaşarsanız, Kaliforniya Bilimler Akademisi'ndeki Biyoçeşitlilik Sürdürülebilirlik Bilimi Enstitüsündeki Bilim Şefi ile iletişime geçebilirsiniz.
         user_parent:
           attributes:
             email:
