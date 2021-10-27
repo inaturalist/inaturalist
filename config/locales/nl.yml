@@ -4926,6 +4926,7 @@ nl:
   view_check_list_page: Checklist-pagina weergeven
   view_contributions: Bijdragen weergeven
   view_details: Details weergeven
+  view_dynamic_lifelist_: BEKIJK DYNAMISCHE LEVENSLIJST
   view_field_options: Bekijk veldopties
   view_flag: Melding bekijken
   view_flags: Meldingen bekijken
@@ -6260,6 +6261,18 @@ nl:
           Dit project heeft geen vereisten voor waarnemingen opgegeven. Projecten moeten één of meerdere taxa (bijv. vogels, coniferen), plaatsen (bijv. Brazilië, Yellowstone), gebruikers, en/of data selecteren om waarnemingen te beginnen weer te geven.
       updates_desc: |
         Ontvang updates over dit project op je dashboard en de dagelijkse e-mail met nieuws.
+    search:
+      index:
+        no_taxa_options: "Je hebt een paar opties:"
+        no_taxa_add_a_flag: Voeg een melding toe aan een taxon op hoger niveau
+        no_taxa_add_a_flag_desc: |
+          Bijvoorbeeld het geslacht dat een soort bevat. Hopelijk voegt een vrijwillige curator
+          het taxon toe als ze tijd hebben en het in overeenstemming is met ons taxonomisch
+          beleid.
+        no_taxa_forum: Neem contact op via het forum
+        no_taxa_forum_desc_html: |
+          Veel vrijwillige curatoren houden de berichten in het
+          %{link_start_tag}Forum%{link_end_tag} in het oog.
     shared:
       blocked:
         youve_been_blocked: Je bent geblokkeerd
@@ -7459,6 +7472,9 @@ nl:
           attributes:
             base:
               user_already_blocked: Je hebt deze gebruiker al geblokkeerd
+              user_cannot_be_staff: |
+                De staf kan niet worden geblokkeerd. iNat personeel moet kunnen communiceren met iedereen op iNat, moet toegang hebben tot alle gegevens op iNat en zijn de uiteindelijke bemiddelaars van geschillen dus het blokkeren van hen zal hen niet verhinderen om met jou te communiceren. Als je een probleem hebt met een staflid rapporteer dat dan aan één van de
+                iNat co-directeuren of als je een probleem hebt met één van de co-directeuren kun je contact opnemen met de Chief of Science op het Institute for Biodiversity and Sustainability Science van de California Academy of Science.
         user_parent:
           attributes:
             email:
