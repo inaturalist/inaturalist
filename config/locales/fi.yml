@@ -1097,6 +1097,7 @@ fi:
   create_a_query: Luo kysely
   create_an_account: Luo käyttäjätunnus
   create_an_atlas: Luo atlas
+  create_export: Luo havaintotiedosto
   create_new_taxon: Luo uusi taksoni
   create_observations: Luo havaintoja
   created: Luotu
@@ -3624,6 +3625,7 @@ fi:
   receive_updates_from_this_project: Haluan saada tätä projektia koskevia päivityksiä
   recent: Viimeaikainen
   recent_evidence_of_organism: Näyttöä että eliö ollut paikalla lähiaikoina
+  recent_exports: Vimeisimmät havaintotiedostot
   recent_new_users: Viimeaikaiset uudet käyttäjät
   recent_observations: Viimeaikaiset havainnot
   recent_observations_: Viimeaikaiset havainnot
@@ -4929,6 +4931,10 @@ fi:
           other: "%{count} yksilöllistä"
       export:
         choose_columns_desc: Valitse sarakkeet, jotka haluat viedä
+        create_a_query_desc_html: |
+          Tee havaintohaku tavalliseen tapaan. Voit myös kopioida ja liittää tähän havaintohaun osoitteen muualta tältä sivustolta. Haku saa palauttaa <strong>enintään 200.000 havaintoa</strong>.
+        export_in_progress_notice_html: |
+          Sinulla on <a href="%{url}">havaintolataus käynnissä</a>. Odota kunnes se valmistuu ennen kuin laitat uuden latauksen jonoon.
         query_placeholder: "Valitse alla olevat kyselyparametrit tai liitä havainnon URL-osoite"
         taxon_extras_help_html: "Huomautus: nämä sarakkeet hidastavat tiedoston luontia"
         geo_help_html: |
@@ -6128,6 +6134,9 @@ fi:
         observed_on: havaintopäiväys
       observation_field_value:
         value: 'arvo'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: Jonossa
       post:
         title: Otsikko
         body: Sisältö
