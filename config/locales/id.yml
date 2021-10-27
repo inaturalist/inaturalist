@@ -5782,6 +5782,8 @@ id:
       edit:
         complex_boundary_note_html: |
           Batasan ini agak terlalu rumit untuk diubah di web. Namun, Anda dapat <a href="%{url}">mengunduh KMLnya</a>, mengubahnya di aplikasi GIS pilihan Anda, dan langsung mengunggah KML yang sudah diubah.
+        admin_level_desc: |
+          Hanya boleh diatur untuk badan politik. Berdasarkan tingkatan AS, 0 = negara, 10 = negara bagian/provinsi, 20 = county/kabupaten, 30 = town/desa
       new:
         check_list_note: "Catatan: daftar centang akan secara otomatis dinonaktifkan untuk tempat yang sangat besar."
         coordinates_desc: Anda harus menentukan koordinat jika Anda tidak menggambar batas atau mengunggah KML.
@@ -7120,6 +7122,8 @@ id:
           attributes:
             base:
               user_already_blocked: Anda sudah memblokir pengguna tersebut
+              user_cannot_be_staff: |
+                Anda tidak bisa memblokir staf. Staf iNat harus bisa berkomunikasi dengan semua orang di iNat, memiliki akses kepada semua data di iNat, dan adalah penengah perselisihan lapisan terakhir, jadi memblokir tidak akan menghalangi mereka untuk berkomunikasi dengan Anda. Jika Anda memiliki masalah dengan seorang anggota staf, silakan melaporkannya kepada salah satu wakil direktur iNat, atau, jika Anda memiliki masalah dengan seorang wakil direktur, Anda bisa menghubungi Kepala Bidang Sains di Institute for Biodiviersity and Sustainability Science di California Academy of Sciences.
         user_parent:
           attributes:
             email:
