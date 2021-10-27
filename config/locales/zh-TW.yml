@@ -5670,6 +5670,8 @@ zh-TW:
       edit:
         complex_boundary_note_html: |
           此邊界有些太複雜而無法在網頁上編輯。然而您可以<a href="%{url}">下載 KML</a> 來在您所挑選的 GIS 應用程式裡編輯，並直接上傳您所編輯的 KML。
+        admin_level_desc: |
+          應僅用於設定政治機構，以美國環境而言：0 = 國家、10 = 州、20 = 郡、30 = 鎮
       new:
         check_list_note: "註：在特別廣大地點情況下清單將會被自動停用。"
         coordinates_desc: 若您不想畫出邊界或上傳 KML 的話，您必須指定出座標。
@@ -7085,6 +7087,8 @@ zh-TW:
           attributes:
             base:
               user_already_blocked: 您已經封鎖該使用者
+              user_cannot_be_staff: |
+                您無法封鎖網站工作人員。iNat 工作人員需要和所有網站上的人溝通，在 iNat 上有存取所有資料的權限，而且他們是調解爭議的重要人物，所以封鎖他們無法防止他們與您溝通。如果您對工作人員中某人有任何問題，請向 iNat 共同理事之一回報，或是您對共同理事之一有問題的話，您還可以向加州科學院的生物多樣性與永續科學研究所(Institute for Biodiviersity and Sustainability Science)的科學主任(Chief of Science)聯絡。
         user_parent:
           attributes:
             email:
