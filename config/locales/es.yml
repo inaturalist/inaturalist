@@ -1615,6 +1615,8 @@ es:
   facebook_access_token_expired: "El acceso de muestra ha expirado. El %{user} requiere volver a enlazar su cuenta de Facebook."
   facebook_needs_the_owner_of_that_photo_to: Facebook necesita la confirmación del propietario de esa foto para poder realizar la conexión a %{site_name_short}.
   facebook_options: Opciones de Facebook
+  facebook_photo_import_disabled_notice: |
+    A partir de noviembre de 2020, Facebook nos requiere verificar que realmente necesitamos acceder a las fotos, no hemos sido capaces de completar el proceso a causa de problemas con el sistema de verificación de Facebook. En consecuencia, no podemos seguir soportando la importación de fotos de Facebook
   failed_to_find_your_location: No ha sido posible encontrar tu ubicación.
   failed_to_repair_photo: "No se pudo reparar la foto: %{errors}"
   failed_to_save_record: "No se pudo guardar el registro. Inténtalo de nuevo más tarde."
@@ -1875,6 +1877,9 @@ es:
     <strong>Aviso:</strong> Uno o más de los taxa de entrada involucrados en este
     cambio están dentro de un marco <a href="%{framework_url}">de taxones</a>. Sólo
     administradores o curadores de ese marco de taxa pueden comprometer cambios que afecten a los taxa cubiertos. Ponte en contacto con uno de los curadores de ese taxón para realizar este cambio.
+  heads_up_there_are_other_draft_taxon_changes_html:
+    one: "<strong>Atención:</strong> hay %{count} cambio de taxón borrador con los mismos taxones de entrada:"
+    other: "<strong>Atención:</strong> hay %{count} cambios más de taxón borrador con los mismos taxones de entrada:"
   heads_up_this_photo_has_been_flagged: "ATENCIÓN: esta foto ha sido marcada."
   heads_up_this_photo_is_already_associated_with: "ATENCIÓN: esta foto ya está asociada con <a target='_blank' href='%{url}'>otra observación</a>"
   heads_up_you_have_multiple: "Avisos. Tienes varias etiquetas taxonómicas generadas para rangos idénticos. Están codificadas debajo por colores según el rango."
@@ -2124,26 +2129,33 @@ es:
     Por favor, recuerda <a href="%{url}">cambiar tu contraseña</a> para la nueva versión.
   let_us_walk_you_through: Vamos a explicar las principales características de este sitio.
   lexicon: Léxico
+  lexicon_cannot_contain_words: "no puede contener las siguientes palabras: %{words}"
   lexicons:
     scientific_names: Nombres científicos
     afrikaans: Afrikáans
     albanian: Albanés
+    arabic: Árabe
+    armenian: Armenio
     belarusian: Bielorruso
     bengali: Bengalí
+    bulgarian: Búlgaro
     catalan: Catalán
     cebuano: Cebuano
     chinese_simplified: Chino (simplificado)
     chinese_traditional: Chino (tradicional)
     creole_french: Criollo (Francés)
     creole_portuguese: Criollo (Portugués)
+    croatian: Croata
     czech: Checo
     danish: Danés
     davawenyo: Davaoeño
     dutch: Holandés
     english: Inglés
     estonian: Estonio
+    faroese: Feroés
     finnish: Finés
     french: Francés
+    galician: Gallego
     gela: Gela
     german: Alemán
     greek: Griego
@@ -2153,6 +2165,7 @@ es:
     hungarian: Húngaro
     icelandic: Islandés
     ilokano: Ilocano
+    indonesian: Indonesio
     italian: Italiano
     japanese: Japonés
     kannada: Canarés
@@ -2160,17 +2173,25 @@ es:
     latvian: Letón
     lithuanian: Lituano
     luxembourgish: Luxemburgués
+    malay: Malayo
+    malayalam: Malayalam
     maltese: Maltés
     maori: Maorí
     marathi: Maratí
+    maya: Maya
     misima_paneati: Misima-paneati
+    mongolian: Mongol
+    nahuatl: Náhuatl
     norwegian: Noruego
     occitan: Occitano
+    ojibwe: Ojibwa
+    palauan: Palauano
     pangasinan: Pangasinán
     polish: Polaco
     portuguese: Portugués
     romanian: Rumano
     russian: Ruso
+    setswana: Setswana
     sinhala: Cingalés
     slovak: Eslovaco
     slovenian: Esloveno
@@ -2183,6 +2204,7 @@ es:
     turkish: Turco
     ukrainian: Ucraniano
     waray_waray: Samareño
+    visayan: Bisayo
   less: Menos
   licensed_site_photos: "Fotos con licencia de %{site_name}"
   license: Licencia
@@ -4122,6 +4144,8 @@ es:
     los datos de iNaturalist sean incorporados a sistemas de seguridad
     provinciales gestionados por Centros de Datos de Conservación (CDC). Estos sistemas se utilizan cuando las evaluaciones se realizan (dos veces al año) para determinar el estado de en riesgo de la especie, así como para determinar el hábitat crítico de especies amenazadas y en peligro de extinción. Como resultado, también ha sido posible localizar y mitigar los puntos conflictivos de mortalidad por carretera para las especies en riesgo y eventualmente proteger las Áreas Clave de Biodiversidad, y;
     reconocer la presencia de especies que no habían sido reportadas durante décadas.
+  sites_affiliation_examples_ecuardor_bndb_html: |
+    %{start_tag_ecuador}iNaturalist Ecuador%{end_tag_ecuador} alimenta la Base Nacional de Datos de Biodiversidad (BNDB), un gran repositorio de datos de registros científicos y ciencia ciudadana. El propósito es integrar el conocimiento y los datos que ayudan a fortalecer el conocimiento ambiental de la flora y fauna de Ecuador.
   sites_affiliation_examples_mexico_nbis_html: |
     Las observaciones de %{start_tag_naturalista}Naturalista%{end_tag_naturalista}
     de México se alimentan del Sistema Nacional de Información de la Biodiversidad
@@ -4873,6 +4897,7 @@ es:
   view_check_list_page: Ve página de lista de verificación
   view_contributions: Ve contribuciones
   view_details: Ve detalles
+  view_dynamic_lifelist_: VER LISTA DE VIDA DINÁMICA
   view_field_options: Ver las opciones del campo
   view_flag: Ve advertencias
   view_flags: Ve advertencias
@@ -5943,6 +5968,8 @@ es:
       edit:
         complex_boundary_note_html: |
           Este límite es demasiado complejo para editar en la web. Sin embargo, puedes <a href="%{url}">descargar el archivo KML</a>, editarlo en una aplicación de SIG, y subir tu KML editado directamente.
+        admin_level_desc: |
+          Sólo se debe establecer para los organismos políticos. En términos de equivalentes de Estados Unidos, 0 = país, 1 = estado, 2 = condado, 3 = ciudad
       new:
         check_list_note: "Nota: Las listas de verificación se desactivan automáticamente para sitios muy grandes."
         coordinates_desc: Debes especificar las coordenadas si no dibujas un límite o subes un archivo KML.
@@ -6235,6 +6262,16 @@ es:
           Este proyecto no ha definido ningún requisito de observación. Los proyectos deben seleccionar uno o más taxones (ej. aves, coníferas), lugares (ej. Brasil, Yellowstone), usuarios y/o fechas para comenzar a mostrar observaciones.
       updates_desc: |
         Recibe actualizaciones de este proyecto en tu tablero y en las actualizaciones diarias de correos.
+    search:
+      index:
+        no_taxa_options: "Tienes algunas opciones:"
+        no_taxa_add_a_flag: Añadir una marca a un taxón de alto nivel
+        no_taxa_add_a_flag_desc: |
+          Por ejemplo, el género que contiene una especie. Ojalá un supervisor voluntario
+          agregue el taxón si tiene tiempo y se alinea con nuestras políticas taxonómicas.
+        no_taxa_forum: Contactar con el Foro
+        no_taxa_forum_desc_html: |
+          Muchos supervisores voluntarios mantienen un registro de los mensajes %{link_start_tag}en el Foro%{link_end_tag}.
     shared:
       blocked:
         youve_been_blocked: Te han bloqueado
@@ -7411,6 +7448,9 @@ es:
           attributes:
             base:
               user_already_blocked: Ya has bloqueado a ese usuario
+              user_cannot_be_staff: |
+                No puedes bloquear al personal. El personal de iNat necesita poder comunicarse con todos los usuarios y tener acceso a todos los datos. Son los principales mediadores en disputas, por lo que bloquearles no les impedirá comunicarse contigo. Si tienes algún problema con un miembro del personal, por favor repórtalo a uno de los codirectores de iNat, y si el problema es con uno de los codirectores, puedes ponerte en contacto con el Jefe de Ciencia en el Instituto de Ciencias de la Biodiversidad y Sostenibilidad en la
+                Academia de Ciencias de California.
         user_parent:
           attributes:
             email:
