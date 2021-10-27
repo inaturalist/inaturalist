@@ -1507,6 +1507,11 @@ cs:
   details: Podrobnosti
   deviation: Odchylka
   devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Pokud vaše e-mailová adresa existuje v naší databázi, obdržíte během několika minut e-mail s pokyny k potvrzení vaší e-mailové adresy.
     failure:
       already_authenticated: 'Již jste přihlášeni.'
       unauthenticated: 'Pro pokračování se musíte přihlásit nebo zaregistrovat.'
@@ -4281,6 +4286,10 @@ cs:
     Když se přidáte k některému členovi sítě iNaturalist, vaše e-mailová adresa a skutečné umístění vašich skrytých a soukromých lokalit jsou sdíleny s tímto členem sítě. Vaše pozorování se tak stávají cennějšími pro místní ochranářské úsilí. Pokud žijete v oblasti, která je členem sítě, nebo ji často navštěvujete, doporučujeme vám, abyste si ji zvolili jako svou afiliaci a usnadnili tak sdílení dat.
   sites_affiliation_title: Další informace o přiřazování k síti
   sites_network_consists_of: "Síť iNaturalist Network se skládá z několika organizací:"
+  sites_network_inaturalist_network_collection: |
+    Síť iNaturalist je soubor lokalizovaných webových stránek, které jsou plně propojeny s celosvětovou komunitou iNaturalist. Stránky sítě jsou podporovány místními institucemi, které podporují místní využití a usnadňují využívání dat z iNaturalist ve prospěch místní biologické rozmanitosti. Mají přístup ke skutečným souřadnicím v rámci svých zeměpisných oblastí, které jsou automaticky zakryty před zraky veřejnosti, aby se lépe chránily ohrožené druhy.
+  sites_network_your_username: |
+    Vaše uživatelské jméno a heslo funguje na všech stránkách, které jsou součástí sítě iNaturalist. Pokud se rozhodnete přidružit k některému ze stránek Sítě, místní instituce, které jednotlivé stránky podporují, budou mít také přístup k vaší e-mailové adrese (pouze za účelem komunikace s vámi o aktivitách na stránkách) a přístup ke skutečným souřadnicím pozorování, která jste se rozhodli učinit veřejně skrytými nebo soukromými.
   some_agree: někteří souhlasí
   some_observations_are_missing_media_or_identifications: |
     Některým pozorováním chybí média nebo identifikace
@@ -5013,6 +5022,7 @@ cs:
   view_check_list_page: Zobrazit stránku seznamu
   view_contributions: Zobrazit příspěvky
   view_details: Zobrazit podrobnosti
+  view_dynamic_lifelist_: ZOBRAZIT DYNAMICKÝ STROM ŽIVOTA
   view_field_options: Zobrazit možnosti pole
   view_flag: Zobrazit štítky
   view_flags: Zobrazit štítky
@@ -5103,6 +5113,8 @@ cs:
   welcome_to_x_project: "Vítejte v projektu %{project}"
   #Label for the most probable taxon in the automated suggestions when that taxon is a genus
   were_pretty_sure_this_is_in_the_genus: Jsme si docela jistí, že se jedná o rod
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Jsme si docela jistí, že se jedná o rod
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
@@ -6123,6 +6135,8 @@ cs:
         complex_boundary_note_html: |
           Toto ohraničení je pro editování na webu příliš složité. Můžete si ale
           <a href="%{url}">stáhnout KML</a>, upravit ho v aplikaci GIS dle vašeho výběru a nahrát přímo vaše upravené KML.
+        admin_level_desc: |
+          Mělo by se nastavovat pouze pro politické celky. V ekvivalentech USA 0 = země, 10 = stát, 20 = okres, 30 = město
       new:
         check_list_note: "Poznámka: Pro velmi velké oblasti budou seznamy automaticky zakázány."
         coordinates_desc: Pokud nenakreslíte hranici nebo nenahrajete KML, musíte uvést konkrétní souřadnice.
@@ -6413,6 +6427,15 @@ cs:
     search:
       index:
         no_taxa_options: "Máte několik možností:"
+        no_taxa_add_a_flag: Přidat vlajku k vyššímu taxonu
+        no_taxa_add_a_flag_desc: |
+          Např. rod, který obsahuje druh. Doufejme, že dobrovolný kurátor
+          přidá taxon, pokud má čas a odpovídá našim taxonomickým
+          zásadám.
+        no_taxa_forum: Kontaktujte fórum
+        no_taxa_forum_desc_html: |
+          Mnoho dobrovolných kurátorů sleduje zprávy na
+          %{link_start_tag}fóru%{link_end_tag}.
     shared:
       blocked:
         youve_been_blocked: Byl jste zablokován
@@ -7674,6 +7697,9 @@ cs:
           attributes:
             base:
               user_already_blocked: Tohoto uživatele již blokujete
+              user_cannot_be_staff: |
+                Nemůžete blokovat zaměstnance. Zaměstnanci iNat musí být schopni
+                komunikovat se všemi na iNat, mít přístup ke všem údajům na iNat, a jsou konečnými mediátory sporů, takže blokování jim nebrání v komunikaci s Vámi. Pokud máte problém se zaměstnancem, prosím, nahlaste jej jednomu ze spoluředitelů iNat, nebo se, pokud máte problém s jedním ze spoluředitelů, můžete obrátit na vědeckého ředitele Institutu pro biologickou a udržitelnou vědu Kalifornské akademie věd.
         user_parent:
           attributes:
             email:
