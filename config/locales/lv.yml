@@ -1616,7 +1616,7 @@ lv:
   feeds: 'Straumes'
   failed: Neizdevās
   field_note: |
-    <strong>Uzmanību:</strong> Ja vēlies izveidot lauku, pārliecinies, vai kāds to jau nav izdarījis, lai izvairītos no dublikātiem.
+    <strong>Uzmanību!</strong> Ja vēlies izveidot lauku, pārliecinies, vai kāds to jau nav izdarījis, lai izvairītos no dublikātiem.
   fields: lauki
   fields_: Lauki
   fields_can_only_be_edited_by_the_people_who: Laukus var rediģēt tikai to autori vai vietnes pārziņi
@@ -1809,9 +1809,9 @@ lv:
   header_your_projects: Tavi projekti
   header_your_profile: Tavs profils
   heads_up: Uzmanību!
-  heads_up_this_photo_has_been_flagged: "UZMANĪBU: šai fotogrāfijai pievienots karodziņš"
-  heads_up_this_photo_is_already_associated_with: "Uzmanību: šī fotogrāfija jau ir saistīta ar <a target='_blank' href='%{url}'>citu novērojumu</a>"
-  heads_up_you_have_multiple: "Uzmanību: vairāki atšķirīgi taksonomiskie tagi pievienoti identiskām taksonu klasifikācijām. Tos var atšķirt pēc krāsas."
+  heads_up_this_photo_has_been_flagged: "UZMANĪBU! Fotogrāfijai pievienots karodziņš."
+  heads_up_this_photo_is_already_associated_with: "Uzmanību! Fotogrāfija ir saistīta ar <a target='_blank' href='%{url}'>citu novērojumu</a>."
+  heads_up_you_have_multiple: "Uzmanību! Vairāki atšķirīgi taksonomiskie tagi pievienoti identiskām taksonu klasifikācijām. Tos var atšķirt pēc krāsas."
   help: Palīdzība
   help_confirm_observations!: Palīdzi apstiprināt novērojumus!
   help_support_inaturalist: "Atbalsti iNaturalist"
@@ -1891,8 +1891,8 @@ lv:
   import_tags_from_csv: Importēt tagus no CSV
   importing: "Importē..."
   improving: Tiek precizēta
-  in_n: "iekš %{n}"
-  in_place_x: iekš %{place}
+  in_n: "%{n}"
+  in_place_x: '%{place}'
   inaturalist_network: iNaturalist tīkls
   inaturalist_network_affiliation: Piederība iNaturalist tīklam
   #Label for messages you've received
@@ -2654,7 +2654,7 @@ lv:
   not_seeing_what_looking_for: Nevari atrast meklēto?
   note: Piezīme
   notes: Piezīmes
-  note_you_can_modify_the_height_attribute: "Uzmanību: augstumu ir iespējams mainīt, lai tas iederētos tavas tīmekļas vietnes brīvajā vietā."
+  note_you_can_modify_the_height_attribute: "Uzmanību! Augstumu iespējams mainīt, lai tas iederētos tavas tīmekļa vietnes brīvajā vietā."
   notifications: Paziņojumi
   notify_me_of_mentions: Saņemt paziņojumus par pieminēšanu (t.i., @lietotājvārds)
   notify_me_of_mentions_description: "Ja funkcija būs izslēgta, nesaņemsi paziņojumus brīžos, kad kāds pieminēs tevi %{site_name} vietnē."
@@ -2847,7 +2847,7 @@ lv:
     following_panel_body: |
       %{site_name} vietnē iespējams sekot lietotājiem, lai saņemtu aktualitātes par viņu novērojumiem. Vēl iespējams sekot noteiktām sugām un vietām, lai uzzinātu par jaunākajiem novērojumiem.
     comments_panel_title: Tevi interesē diskusijas %{site_name} vietnē?
-    comments_panel_body: "<p>%{site_name} galvenais mērķis ir dalīties un diskutēt par dzīvo būtņu novērojumiem. Zemāk iespējams apskatīt aktuālās diskusijas. (Uzmanību: paziņojumi par diskusijām, kurām esi pievienojis komentārus vai novērojumus, tiek saņemti automātiski. Šīs funkcijas iespējams pielāgot \"Abonementi\" sadaļā labajā pusē).</p>"
+    comments_panel_body: "<p>%{site_name} galvenais mērķis ir dalīties un diskutēt par dzīvo būtņu novērojumiem. Zemāk iespējams apskatīt aktuālās diskusijas. (Uzmanību! Paziņojumi par diskusijām, kurām esi pievienojis komentārus vai novērojumus, tiek saņemti automātiski. Šīs funkcijas iespējams pielāgot \"Abonementi\" sadaļā, izvēlnes labajā pusē).</p>"
     updates_by_you_panel_title: Šo cilni var izmantot, lai ātri izfiltrētu tikai tava satura aktualitātes.
     updates_by_you_panel_body: '"Visas aktualitātes" cilnē saņemsi paziņojumus ne tikai par savu saturu, bet arī par lietotājiem, taksoniem un vietām, kam tu seko, izmantojot labajā pusē atrodamo "Abonementi" rīku.'
     youve_got_updates_panel_title: Saņemti jauni paziņojumi.
@@ -2885,7 +2885,7 @@ lv:
   open_description: "Koordinātas ir redzamas visiem, ja vien taksons nav apdraudēts."
   open_street_map: OpenStreetMap
   optional: pēc izvēles
-  optional_columns_note_for_any: "Izvēles slejas (uzmanību: lai slejas varētu izmantot novērojumos, tās visas jāizmanto reizē)"
+  optional_columns_note_for_any: "Izvēles slejas (Uzmanību! Lai slejas varētu izmantot novērojumos, tās visas jāizmanto reizē.)"
   or: vai
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -4402,7 +4402,7 @@ lv:
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     Šādi atrast taksona ID ir vieglāk. Tieši taksona ID ir tas, kurš tiek saglabāts. Meklēšanā tiek uzrādīti tikai aktīvi taksoni.
   this_is_how_taxon_names_will_be_displayed: '%{site_name} vietnē visi taksonu nosaukumi tiks attēloti šādi.'
-  this_is_taking_forever: Tas jau ir par ilgu! Lūdzu, mēģini vēlreiz nedaudz vēlāk.
+  this_is_taking_forever: Drīz pūcei aste uzziedēs! Lūdzu, pamēģini vēlreiz nedaudz vēlāk.
   this_is_the_primary_listing: Iekļauts saraksta sākumā
   this_is_your_observation: Šis ir tavs novērojums
   this_is_your_observation_desc: Savu novērojumu koordinātas vienmēr ir redzamas.
@@ -5194,13 +5194,26 @@ lv:
           #Count of how many taxa in several observation searches are present in only one of those searches
           other: "%{count} unikāli"
       export:
-        choose_columns_desc: Atlasi eksportējamās kolonnas
+        choose_columns_desc: Atlasi eksportējamās slejas
+        export_in_progress_notice_html: |
+          Tu jau esi uzsācis <a href="%{url}">eksporta procesu</a>. Lai uzsāktu vēl vienu, vispirms jāsagaida, kad beigies jau iesāktais process.
+        limit_alert: Eksportēto failu apjoms būtu pārāk liels. Izmaini filtru iestatījumus tā, lai meklēšanas rezultātos uzrādītos ne vairāk par 200 000 novērojumu.
+        query_placeholder: "Norādi vaicājuma parametrus vai ielīmē novērojuma URL"
+        taxon_extras_help_html: "Uzmanību! Sleju dēļ eksporta process kļūst lēnāks."
         date_range_help: "Sākuma un beigu datums DD-MM-YYYY formātā, piemēram, 17.01.2015."
       field_descriptions:
         observed_on_string: Novērotāja norādītais datums un laiks
         time_zone: Novērojuma laika josla
         place_guess: Novērotāja norādītais vietas apraksts
         out_of_range: Vai šis novērojums atrodas ārpus taksona zināmā izplatības apgabala?
+        updated_at: Laiks un datums, kad novērojums pēdējo reizi labots
+        quality_grade: Novērojuma kvalitātes līmenis. Skatīt sadaļu "Palīdzība", lai iegūtu vairāk informācijas.
+        license: Novērotāja izvēlētā licence šim novērojumam.
+        url: Novērojuma URL
+        image_url: Noklusējuma attēla URL
+        sound_url: Noklusējuma audiofaila URL. Uzmanību! Funkcija darbosies tikai ar tiešām augšupielādēm, nevis ar trešo pušu pakalpojumu sniedzēju uzglabātiem failiem.
+        tag_list: Saraksts ar tagiem, kas atdalīti ar komatu
+        place_admin1_name: Administratīvais vietas nosaukums, kas ir vienu pakāpi konkrētāks par "valsti"
       identify:
         unreview_all_tooltip: "Noņemt statusu \"Pārbaudīts\" visiem lapas novērojumiem"
     emailer:
@@ -5309,11 +5322,11 @@ lv:
         no_need_to_rely_on_manual_addition: |
           Projektiem nav iespējams pievienot novērojumus atsevišķi
         note_these_users_will_be_able_to_edit: |
-          Uzmanību: šie lietotāji varēs redīģēt visus projekta datus, tai skaitā administratoru pieejas.
+          Uzmanību! Izvēlētie lietotāji varēs rediģēt visus projekta datus, tai skaitā administratoru pieejas.
         note_you_can_delete_the_time: |
           (Atceries, ka vari izdzēst laika joslas un precīzu laiku, ja vēlies norādīt pilnas dienas.)
         note_about_unselected_filters: |
-          Uzmanību: ja neatlasīsi taksonus, vietas vai lietotājus, tie tiks izvēlēti, vadoties pēc noklusējuma iestatījumiem.
+          Uzmanību! Ja neatlasīsi taksonus, vietas vai lietotājus, tie tiks izvēlēti, vadoties pēc noklusējuma iestatījumiem.
         only_display_member_observations: |
           Rādīt tikai projekta dalībnieku novērojumus (lietotāju novērojumi, kas pievienojušies projektam).
         optionally_filter_media: Pieejama funkcija filtrēt novērojumus ar fotogrāfijām un/vai audiofailiem.
