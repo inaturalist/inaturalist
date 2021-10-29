@@ -46,15 +46,17 @@ describe Emailer, "updates_notification" do
 
   describe "with a site" do
     before do
-      @site = Site.make!(:preferred_locale => "es-MX")
-      expect(@site.logo_email_banner).to receive(:url).at_least(:once).and_return("bird.png")
+      @site = Site.make!( preferred_locale: "es-MX" )
+      expect( @site.logo_email_banner ).to receive( :url ).at_least( :once ).and_return( "bird.png" )
       @user.site = @site
       @user.save!
     end
 
     it "should use the user's site logo" do
-      mail = Emailer.updates_notification(@user, @user.recent_notifications)
-      expect(mail.body).to match @site.logo_email_banner.url
+      expect( @user.site ).to eq @site
+      expect( @user.site.logo_email_banner.url ).to include( "bird.png" )
+      mail = Emailer.updates_notification( @user, @user.recent_notifications )
+      expect( mail.body ).to match @site.logo_email_banner.url
     end
 
     it "should use the user's site url as the base url" do
@@ -81,7 +83,6 @@ describe Emailer, "updates_notification" do
       pu.update( role: ProjectUser::CURATOR )
       Delayed::Worker.new.work_off
       mail = Emailer.updates_notification( viewer, viewer.recent_notifications )
-      # puts "body: #{mail.body}"
       expect( mail.body ).to match /curator/
       # Test change to manage
       pu.update( role: ProjectUser::MANAGER )
@@ -159,7 +160,7 @@ describe Emailer, "bulk_observation_success" do
   describe "with a site" do
     before do
       @site = Site.make!( preferred_locale: "es-MX", name: "Superbo" )
-      expect( @site.logo_email_banner ).to receive(:url).and_return( "bird.png" )
+      expect( @site.logo_email_banner ).to receive( :url ).at_least( :once ).and_return( "bird.png" )
       user.site = @site
       user.save!
     end

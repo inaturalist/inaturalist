@@ -519,17 +519,28 @@ module ApplicationHelper
     @__serial_id = @__serial_id.to_i + 1
     @__serial_id
   end
-  
-  def image_url(source, options = {})
-    abs_path = source =~ /^\// ? source : asset_path( source ).to_s
+
+  def image_url( source, options = {} )
+    # Here FakeView is necessary again for situations where this gets called
+    # outside of a context with the normal URL and asset helpers
+    abs_path = source =~ %r{^/} ? source : FakeView.asset_path( source ).to_s
     unless abs_path =~ /\Ahttp/
-     abs_path = uri_join(options[:base_url] || @site.try(:url) || root_url, abs_path).to_s
+      the_root_url = begin
+        root_url
+      rescue StandardError => e
+        # If this method gets called outside of the context of a controller, url
+        # helpers like root_url may not be available, so we might need to fall
+        # back to FakeView. Note that rescuing ActionView::Template::Error
+        # doesn't seem to work here.
+        raise e unless e.message =~ /root_url/
+
+        FakeView.root_url
+      end
+      abs_path = uri_join( options[:base_url] || @site&.url || the_root_url, abs_path ).to_s
     end
     abs_path
-  rescue Exception => e
-    nil
   end
-  
+
   def truncate_with_more(text, options = {})
     return text if text.blank?
     more = options.delete(:more) || " ...#{t(:more).downcase} &darr;".html_safe
