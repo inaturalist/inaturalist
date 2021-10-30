@@ -4496,7 +4496,7 @@ lv:
   type_species_name: "Ieraksti sugas nosaukumu"
   type_taxon_name: "Ieraksti taksona nosaukumu"
   uicn_red_list_status: "IUCN Sarkanās grāmatas statuss:"
-  umbrella_projects: Jumta projekti
+  umbrella_projects: Projektu grupas
   unblock: Atbloķēt
   unclassified: Neklasificēts
   ungrafted_taxa: Nepievienoti taksoni
@@ -4801,7 +4801,7 @@ lv:
   where: Kur
   where_were_they?: Kur tie bija?
   where_were_you?: Kur tu biji?
-  which_projects_can_add_your_observations?: Kuriem tradicionālajiem projektiem drīkst pievienot tavus novērojumus?
+  which_projects_can_add_your_observations?: Kuriem standarta projektiem drīkst pievienot tavus novērojumus?
   white: balts
   why_you_can_see_the_coordinates: Kāpēc vari redzēt koordinātas
   who_can_add_observation_fields_to_my_obs: Kam atļauts pievienot novērojumu laukus taviem novērojumiem?
@@ -5284,11 +5284,11 @@ lv:
     projects:
       project_type: Projekta veids
       collection: Kolekcija
-      umbrella: Jumta projekts
+      umbrella: Projektu grupa
       tracks_multiple_projects: seko vairākiem projektiem reizē
       projects_included: Projekti ir iekļauti
       collection_and_umbrellas_do_not_support: |
-        Kolekcija un jumta projekti pagaidām neatbalsta piekļuvi noslēptām koordinātām.
+        Kolekcijas projekti un projektu grupas un pagaidām neatbalsta piekļuvi noslēptām koordinātām.
       edit:
         rules:
           georeferenced: ar koordinātām
@@ -5304,8 +5304,11 @@ lv:
         submission_models:
           curators: projekta pārziņi
       new:
-        collection_projects: Kolekcijas projekti
-        collection_project_features: "Kolekcijas projektu funkcijas:"
+        an_umbrella_project_can_be_used_to: |
+          Projektu grupas izmanto, lai salīdzinātu statistiku starp vairākiem standarta vai kolekciju projektiem. Projektiem jābūt izveidotiem jau pirms to pievienošanas projektu grupai. Vienai projektu grupai iespējams pievienot simtiem projektu. Projektu grupās nevar būt iekļautas citas projektu grupas.
+        can_be_included_in_multiple: Var tikt iekļauti vairākās projektu grupās reizē
+        collection_projects: Kolekciju projekti
+        collection_project_features: "Kolekciju projektu funkcijas:"
         contain_entire_image_without_cropping: Iespējams iekļaut visu attēlu bez apgriešanas
         custom_banner_icon_and_project_description: Pielāgojami reklāmplakāta, ikonu un projektu apraksti
         data_visualizations: Datu vizualizācijas
@@ -5331,12 +5334,42 @@ lv:
           Rādīt tikai projekta dalībnieku novērojumus (lietotāju novērojumi, kas pievienojušies projektam).
         optionally_filter_media: Pieejama funkcija filtrēt novērojumus ar fotogrāfijām un/vai audiofailiem.
         or_drag_and_drop: (vai ievieto un nomet)
+        please_specify_the_requirements: |
+          Lūdzu, norādi kritērijus, lai novērojumus pievienotu projektam.
+        project_background_color: Projekta kopsavilkuma sadaļas fona krāsa
+        project_background_color_help: Fona krāsa jāizvēlas gana tumša, lai baltais teksts būtu salasāms.
+        project_banner: Projekta reklāmplakāts (PNG, JPG, vai GIF)
+        project_banner_help: Reklāmplakāta attēls pēc izvēles. Ideālais attēla izmērs ir 760 x 320 pikseļi.
         project_details: Informācija par projektu
         project_icon: Projekta ikona (PNG, JPG vai GIF)
         project_icon_help: |
           Ikonas iestatīšana ir pēc izvēles. Tai jābūt vismaz 72 x 72 pikseļu izmērā un kvadrāta formā.
+        project_name: Projekta nosaukums
+        project_summary: Projekta kopsavilkums
+        project_summary_help: |
+          Apraksti savu projektu īsi un kodolīgi. Sāc ar svarīgāko, jo pirmās ~ 200 rakstzīmes būs redzamas pa labi no projekta sākuma reklāmplakāta.
+        project_summary_placeholder: Izzini un izseko putnus Goldengeitas parkā.
+        select_native_to_include: |
+          Lai savā projektā iekļautu tikai "vietējos" taksonus, atlasi "Vietējs". Lai iekļautu tikai "introducētos" taksonus, atlasi "Introducēts".
+        select_quality_grade: |
+          Atlasi vismaz vienu kvalitātes līmeni. Vairāk informācijas par katru kvalitātes līmeni iespējams atrast mūsu <a href="%{url}">BUJ sadaļā</a>.
+        show_projects_as_flags: Attēlot projektus kā karodziņus kartē
+        specify_project_filters: |
+          Pielāgo filtrus, lai izvēlētos, kurus novērojumus iekļaut projektā. Lai novērojumus automātiski pievienotu, izvēlies sugas, taksonus, vietas, datumus un citus kritērijus.
+        start_and_end_times_for_bioblitzes: Sākuma un beigu datums un laiks (Bioblitz veida pasākumiem)
+        traditional_projects_cannot_be_copied: Standarta projektus nevar nokopēt
+        trusting_members_will_be_notified: |
+          Tu esi izmainījis projekta prasības vai ieslēdzis funkciju "lietotāju uzticība". Visi projekta dalībnieki, kas jau uzticējuši projektam savas noslēptās koordinātas, saņems brīdinājumu. Tas palīdzēs izlemt, vai ņemot vērā jaunās prasības, viņi vēl aizvien vēlēsies būt projekta dalībnieki.
+        umbrella_project_features: "Projektu grupu funkcijas:"
+        unique_url_for_outreach: Unikāls URL ārējai saziņai
         use_this_for_a_time_limited_event: |
           Šī funkcija paredzēta notikumiem konkrētā laika posmā, "Bioblitz" un sezonas projektiem. Norādi konkrētu datumu, laika periodu vai mēnešus, kuros jāveic novērojumi (neatkarīgi no gada). Ja izmanto datuma perioda sadaļu, pārliecinies, vai izvēlējies pareizo laika joslu. Lai iekļautu novērojumus, kas veikti jebkurā dienas laikā, izdzēs laiku un laika joslas tekstu. Ja ir vajadzība izvēlēties tikai vienu projekta dienu, sākuma un beigu datumu logus atstāj tukšus.
+        users_can_follow_your_project: Lietotājiem ir iespēja lasīt žurnāla ierakstus, tādejādi sekojot tava projekta jaunumiem.
+        visual_comparison_of_data_among: Vizuāls grupas projektu datu salīdzinājums
+        we_have_redesigned_projects: |
+          Projektos iespējams automātiski iekļaut visus novērojumus, kas atbilst lietotāja norādītajai vietai, kvalitātei, datumam, taksoniem vai lietotājiem. Izvēlies no diviem galvenajiem veidiem – kolekciju projekti vai projektu grupas. Abiem ir šādas funkcijas:
+        errors:
+          cannot_have_more_than_x_project_rules: Projektam nevar būt vairāk par %{x} noteikumiem
       project_user_curator_coordinate_access_labels:
         none: Nē.
     stats:
@@ -5447,6 +5480,8 @@ lv:
         notification_preferences_taxon_or_place_observations: Novērojumi ar taksoniem vai vietām, kam es sekoju
         place_preference_changed_notice_html: |
           Vietu iestatījumi izmainīti. Ja pārdomāsi, iestatījumus vienmēr iespējams mainīt <a href='/users/edit'>šeit</a>.
+        this_only_applies_to_traditional_projects: |
+          Tas attiecas tikai uz standarta projektiem. Nav iespējams izlaist kolekciju projektu vai projektu grupu novērojumus, jo tie ir tikai saglabāti meklēšanas rezultāti. Vairāk informācijas <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">šeit</a>.
       recent:
         about_recent_users: Apraksts
       show:
@@ -5857,6 +5892,15 @@ lv:
               date_format: |
                 datuma laukumā vērtībām jābūt DD-MM-YYYY formātā ("%{observation_field_name}"
                 tavā novērojumā ar "%{observation_species_guess}")
+        project_observation:
+          attributes:
+            base:
+              #We show this error message when someone tries to add an
+              #observation to a collection or umbrella project, which are
+              #basically saved searches so you don't have to add anything to
+              #them
+              collection_and_umbrella_projects_do_not_allow_direct_submission: |
+                kolekciju projektiem un projektu grupām tiešā veidā nav iespējams pievienot novērojumus
         user_parent:
           attributes:
             email:
