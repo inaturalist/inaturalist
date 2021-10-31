@@ -17,8 +17,11 @@ export const ACCEPTED_FILE_TYPES = [
 
 export const MAX_FILE_SIZE = 20971520; // 20 MB in bytes
 
-export const DATETIME_WITH_TIMEZONE = "YYYY/MM/DD h:mm A z";
-export const DATETIME_WITH_TIMEZONE_OFFSET = "YYYY/MM/DD h:mm A ZZ";
+export const DATE_ONLY = "YYYY/MM/DD";
+export const TIME_WITH_TIMEZONE = "h:mm A z";
+export const TIME_WITH_TIMEZONE_OFFSET = "h:mm A ZZ";
+export const DATETIME_WITH_TIMEZONE = `${DATE_ONLY} ${TIME_WITH_TIMEZONE}`;
+export const DATETIME_WITH_TIMEZONE_OFFSET = `${DATE_ONLY} ${TIME_WITH_TIMEZONE_OFFSET}`;
 
 const util = class util {
   static isOnline( callback ) {

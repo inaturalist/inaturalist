@@ -5,8 +5,7 @@ import ReactDOM from "react-dom";
 import {
   Grid, Row, Col, Panel
 } from "react-bootstrap";
-import DateTimeFieldWrapper from
-  "../../../observations/uploader/components/date_time_field_wrapper";
+import DateTimeWrapper from  "../../../observations/uploader/components/date_time_wrapper";
 import JQueryUIMultiselect from "../../../observations/identify/components/jquery_ui_multiselect";
 import TaxonSelector from "./taxon_selector";
 import PlaceSelector from "./place_selector";
@@ -384,18 +383,17 @@ class RegularForm extends React.Component {
               <label className="inline" htmlFor="project-date-type-exact">
                 { I18n.t( "exact" ) }
               </label>
-              <DateTimeFieldWrapper
+              <DateTimeWrapper
                 className="datefield"
-                mode="date"
                 ref="exactDate"
-                inputFormat="YYYY-MM-DD"
+                dateFormat="YYYY-MM-DD"
                 defaultText={project.rule_observed_on}
                 onChange={date => setRulePreference( "observed_on", date )}
                 allowFutureDates
                 inputProps={{
                   className: "form-control",
                   placeholder: "YYYY-MM-DD",
-                  onClick: ( ) => this.refs.exactDate.onClick( )
+                  //onClick: ( ) => this.refs.exactDate.onClick( )
                 }}
               />
             </Col>
@@ -411,30 +409,30 @@ class RegularForm extends React.Component {
               <label className="inline" htmlFor="project-date-type-range">
                 { I18n.t( "date_picker.range" ) }
               </label>
-              <DateTimeFieldWrapper
-                mode="datetime"
+              <DateTimeWrapper
                 ref="dateRangeD1"
-                inputFormat="YYYY-MM-DD HH:mm Z"
+                dateFormat="YYYY-MM-DD"
+                timeFormat="HH:mm Z"
                 defaultText={project.rule_d1}
                 onChange={date => setRulePreference( "d1", date )}
                 allowFutureDates
                 inputProps={{
                   className: "form-control",
                   placeholder: I18n.t( "start_date_time" ),
-                  onClick: ( ) => this.refs.dateRangeD1.onClick( )
+                  //onClick: ( ) => this.refs.dateRangeD1.onClick( )
                 }}
               />
-              <DateTimeFieldWrapper
-                mode="datetime"
+              <DateTimeWrapper
                 ref="dateRangeD2"
-                inputFormat="YYYY-MM-DD HH:mm Z"
+                dateFormat="YYYY-MM-DD"
+                timeFormat="HH:mm Z"
                 defaultText={project.rule_d2}
                 onChange={date => setRulePreference( "d2", date )}
                 allowFutureDates
                 inputProps={{
                   className: "form-control",
                   placeholder: I18n.t( "end_date_time" ),
-                  onClick: ( ) => this.refs.dateRangeD2.onClick( )
+                  //onClick: ( ) => this.refs.dateRangeD2.onClick( )
                 }}
               />
               <div className="help-text">
