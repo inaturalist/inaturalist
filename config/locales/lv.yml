@@ -5370,6 +5370,12 @@ lv:
           Projektos iespējams automātiski iekļaut visus novērojumus, kas atbilst lietotāja norādītajai vietai, kvalitātei, datumam, taksoniem vai lietotājiem. Izvēlies no diviem galvenajiem veidiem – kolekciju projekti vai projektu grupas. Abiem ir šādas funkcijas:
         errors:
           cannot_have_more_than_x_project_rules: Projektam nevar būt vairāk par %{x} noteikumiem
+          summary_is_required: Nepieciešams projekta kopsavilkuma teksts
+      project_location_privacy_notice_html: |
+        <p> Jāņem vērā, ka projekta pārziņi var redzēt privātas un noslēptas novērojumu atrašanās vietas kamēr tu viņiem neliedz piekļuvi. Viņi var arī pievienot projektam tavus novērojumus, ja <a href="/users/edit">neesi izmainījis iestatījumus</a>. Vēl iespējams sniegt vai liegt piekļuves katram gadījumam atsevišķi.
+        </p>
+        <p>
+        Ja uztraucies par atrašanās vietu privātumu, nepievienojies projektiem, kuru pārziņiem neuzticies.</p>
       project_user_curator_coordinate_access_labels:
         none: Nē.
     stats:
