@@ -1360,6 +1360,7 @@ lv:
   description_slash_tags: Apraksts un tagi
   description_tags_more: "Apraksts, tagi, &amp; u.c."
   desription: Apraksts
+  destination: Mērķis
   destroy: Dzēst
   details: Apraksts
   deviation: Novirze
@@ -1953,7 +1954,7 @@ lv:
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: slīpraksts
   item_flagged_notice_html: |
-    Šis ir atzīmēts kā mēstule un vairs nav publiski redzams. Tev tas ir redzams, jo esi šī satura autors vai pārzinis. Ja ir pieļauta kļūda, lūdzu,
+    Ieraksts ir atzīmēts kā mēstule un vairs nav publiski redzams nevienam lietotājam, izņemot tevi, jo tu esi satura autors vai pārzinis. Ja ir pieļauta kļūda, lūdzu,
     <a href="mailto:%{help_email}" class="contact">sazinies ar mums</a>.
     <a href="%{manage_flags_path}">Pārvaldīt karodziņus</a>.
   join: Pievienoties
@@ -5288,7 +5289,7 @@ lv:
       tracks_multiple_projects: seko vairākiem projektiem reizē
       projects_included: Projekti ir iekļauti
       collection_and_umbrellas_do_not_support: |
-        Kolekcijas projekti un projektu grupas un pagaidām neatbalsta piekļuvi noslēptām koordinātām.
+        Kolekciju projekti un projektu grupas pagaidām neatbalsta piekļuvi noslēptām koordinātām.
       edit:
         rules:
           georeferenced: ar koordinātām
@@ -5368,6 +5369,8 @@ lv:
         visual_comparison_of_data_among: Vizuāls grupas projektu datu salīdzinājums
         we_have_redesigned_projects: |
           Projektos iespējams automātiski iekļaut visus novērojumus, kas atbilst lietotāja norādītajai vietai, kvalitātei, datumam, taksoniem vai lietotājiem. Izvēlies no diviem galvenajiem veidiem – kolekciju projekti vai projektu grupas. Abiem ir šādas funkcijas:
+        you_have_not_defined_any_observation_requirements: |
+          Tu neesi norādījis novērojumu kritērijus. Lai precizētu, kādus novērojumus vēlies iekļaut savā projektā, atlasi vienu vai vairākus taksonus (putni vai skujkoki), vietas (Brazīlija vai Jeloustona), lietotājus un datumu.
         errors:
           cannot_have_more_than_x_project_rules: Projektam nevar būt vairāk par %{x} noteikumiem
           summary_is_required: Nepieciešams projekta kopsavilkuma teksts
@@ -5378,6 +5381,14 @@ lv:
         Ja uztraucies par atrašanās vietu privātumu, nepievienojies projektiem, kuru pārziņiem neuzticies.</p>
       project_user_curator_coordinate_access_labels:
         none: Nē.
+      show:
+        this_project_has_not_defined_requirements: |
+          Projektam nav pievienoti novērojumu kritēriji. Projekta iestatījumos jānorāda viens vai vairāki taksoni (putni vai skujkoki), vietas (Brazīlija vai Jeloustona), lietotāji un/vai datums.
+    shared:
+      spam:
+        message_for_owner_and_curators_html: |
+          Ieraksts ir atzīmēts kā mēstule un vairs nav publiski redzams nevienam lietotājam, izņemot tevi, jo tu esi satura autors vai pārzinis. Ja ir pieļauta kļūda, lūdzu,
+          <a href="mailto:%{email}">sazinies ar mums</a>.
     stats:
       index:
         obs_desc: Izveidots pēdējās septiņās dienās
