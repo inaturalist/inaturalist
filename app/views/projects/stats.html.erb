@@ -56,7 +56,7 @@
   </table>
   
   <% if @project_user -%>
-    <%- txt = is_me?(@project_user.user) ? t(:view_your_observations) : t(:view_user_observations, :user => possessive(@project_user.user)) -%>
+    <%- txt = is_me?( @project_user.user ) ? t(:view_your_observations) : t(:view_observations) -%>
     <%= link_to txt, 
       project_show_contributor_path(@project, @project_user.user.login),
       :class => "readmore" %>
