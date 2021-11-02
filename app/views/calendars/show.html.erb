@@ -59,7 +59,7 @@
   } %>
   <div class="breadcrumbs">
     <strong>
-      <%- link_txt = is_me? ? t(:back_to_your_calendar) : t(:back_to_users_calendar, user: @selected.login ) -%>
+      <%- link_txt = is_me? ? t(:back_to_your_calendar) : t(:back_to_users_calendar, user: @selected_user.login, vow_or_con: @selected_user.login[0].downcase ) -%>
       <%= link_to "&laquo #{link_txt}".html_safe, calendar_path( @login ), class: "crumb" %>
     </strong>
   </div><!-- /#breadcrumbs -->

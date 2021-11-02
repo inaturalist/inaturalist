@@ -55,7 +55,7 @@
 
     <span class="breadcrumbs">
       <% if @list.user -%>
-        <%= link_to raw( is_me?( @list.user ) ? t(:back_to_your_lists) : t(:back_to_users_lists, user: @list.user.login) ),
+        <%= link_to raw( is_me?( @list.user ) ? t(:back_to_your_lists) : t(:back_to_users_lists, user: @list.user.login, vow_or_con: @list.user.login[0].downcase) ),
                     lists_by_login_path( login: @list.user.login ),
                     class: "back crumb" %>
       <% else %>

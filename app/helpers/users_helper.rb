@@ -75,15 +75,15 @@ module UsersHelper
         noun: t( noun, default: noun ), object_phrase: user.login )
       case noun.underscore.downcase
       when "identifications"
-        t( :users_identifications, user: user.login, default: default_second_person )
+        t( :users_identifications, user: user.login, vow_or_con: user.login[0].downcase, default: default_second_person )
       when "lists"
-        t( :users_lists, user: user.login, default: default_second_person )
+        t( :users_lists, user: user.login, vow_or_con: user.login[0].downcase, default: default_second_person )
       when "journal"
-        t( :x_journal, user: user.login, default: default_second_person )
+        t( :x_journal, user: user.login, vow_or_con: user.login[0].downcase, default: default_second_person )
       when "favorites"
-        t( :users_favorites, user: user.login, default: default_third_person )
+        t( :users_favorites, user: user.login, vow_or_con: user.login[0].downcase, default: default_third_person )
       when "projects"
-        t( :users_projects, user: user.login, default: default_third_person )
+        t( :users_projects, user: user.login, vow_or_con: user.login[0].downcase, default: default_third_person )
       else
         default_third_person
       end
