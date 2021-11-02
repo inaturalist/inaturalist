@@ -323,7 +323,6 @@ cs:
   account: Účet
   account_creation: Vytvoření účtů
   account_settings: Nastavení účtu
-  accept: přijmout
   accept_community_identifications: Přijmout komunitní identifikátory
   accuracy: Přesnost
   accuracy_meters: Přesnost (v metrech)
@@ -759,7 +758,6 @@ cs:
   are_you_sure_you_want_to_remove_spammer: |
     Jste si jistí, že tohoto uživatele považujete za čestného? Veškeré spamové prapory v jeho obsahu budou opraveny.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Jste si jistí, že chcete odstranit tyto %{x} taxony?"
-  are_you_sure_you_want_to_remove_this_invitation: Jste si jistí, že chcete odstranit tuto pozvánku?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Jste si jisti, že chcete odstranit toto pozorování z projektu %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Jste si jistí, že chcete odstranit tento taxon ze seznamu %{place}?"
@@ -804,7 +802,6 @@ cs:
   avg: Prům.
   back: Zpět
   back_to_all_species: Zpět na Všechny Druhy
-  back_to_calendar: "Zpět do kalendáře %{user}"
   back_to_editing_observation: Zpět na editaci pozorování
   back_to_friends: Zpět k přátelům
   back_to_flags_html: "&laquo; Zpět k vlajkám"
@@ -820,18 +817,20 @@ cs:
   back_to_taxon: "Zpět do %{defaulttaxon}"
   back_to_taxon_changes: "Zpět do změn taxonů"
   back_to_taxon_framework_for_x: "Zpět do soustavy taxonů pro %{taxon_name}"
+  back_to_users_calendar: "Zpět do kalendáře %{user}"
+  back_to_users_lists: "Zpět do seznamů %{user}"
   back_to_viewing: "Zpět na prohlížení <i>%{taxon}</i>"
   back_to_x: "Zpět do %{noun}"
   back_to_x_assessment: "Zpět do hodnocení %{project}"
   back_to_x_history: "Zpět na %{x} historii"
   back_to_x_journal: "Zpět do deníku uživatele %{user}"
   back_to_x_blog: "Zpět do blogu uživatele %{x}"
+  back_to_your_calendar: Zpět do vašeho kalendáře
   back_to_your_dashboard: Zpátky na hlavní panel
   back_to_your_lists: Zpátky na vaše seznamy
   back_to_your_journal: Zpátky na váš deník
   back_to_your_observations: Zpátky na vaše pozorování
   back_to_your_profile: Zpátky na váš profil
-  back_to_your_projects: Zpátky na vaše projekty
   badges: Odznaky
   based_on_the_evidence_can_id_be_improved: |
     Může být na základě důkazů komunitní ID stále potvrzeno nebo vylepšeno?
@@ -975,7 +974,6 @@ cs:
   check_list_place: "Seznam pro %{place}"
   check_list_updated: Seznam byl aktualizován!
   check_lists_for: "Další seznamy pro %{place}"
-  check_out_our_blog: Zkoukněte náš blog
   check_out_what_the_observation: Podívejte se, jak vypadá pozorování, které chcete identifikovat.
   check_this_box_if_html: |
     Označte toto pole, pokud chcete pro své fotky použít licenci Creative Commons s uvedením autora pro nekomerční použití <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'></a>. Můžete si zvolit jinou licenci nebo licenci později zrušit, tato licence je však nejvhodnější pro sdílení s výzkumníky.
@@ -1044,7 +1042,6 @@ cs:
   comparing: srovnání
   comparing_list_to_list: "Srovnání seznamů %{list1} s %{list2}"
   comparing_versions_x_and_y: "Porovnání verzí %{x} a %{y}"
-  comparing_observations_from: "Porovnání pozorování uživatele %{user} z %{dates}"
   compiled_by_name: "Sestavil uživatel %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Dokončit
@@ -2050,7 +2047,6 @@ cs:
   identification_user_short: Ident. uživatele
   identification_withdrawn: Identifikace odstraněna.
   identifications: Identifikace
-  identifications_by: "Identifikace uživatelem %{user}"
   computer_vision_suggestion: Návrh počítačového vidění
   computer_vision_suggestion_desc: |
     Počítačové vidění je proces, kterým se počítač učí rozpoznávat vzory v obrazech. Poskytujeme nástroje, které využívají modely počítačového vidění řízené fotografiemi z komunity, aby poskytly návrhy na identifikaci, jako jsou automatické úplnosti a funkce porovnání. Tento štítek označuje, kdy osoba přidala ID pomocí jednoho z těchto nástrojů.
@@ -2067,7 +2063,6 @@ cs:
   if_this_link_will_apply_to_descendant: Pokud bude tento odkaz použit pro následné taxony, můžete použít tagy šablony k vyplnění názvu taxonu v URL
   if_you_have_any_trouble_with_the_site_check_out: 'Máte-li nějaké dotazy, podívejte se prosím do sekce nápovědy <a href="%{help_url}"></a> nebo pošlete zprávu do skupiny zpětné vazby <a href="%{feedback_url}"></a>.'
   if_your_project_is: Pokud je váš projekt zaměřený na konkrétní místo, nastavte souřadnice kliknutím do mapy nebo je zadejte manuálně.
-  ignore: ignorovat
   ignore_and_continue: Ignorovat a pokračovat
   ignore_times: Ignorovat časy
   image_must_be_exactly: obrázek musí být přesně 950px široký a maximálně 400px vysoký
@@ -2160,7 +2155,6 @@ cs:
   join_project: Zapojit se do tohoto projektu
   #Prompt to join a specific project
   join_project?: Připojit se k %{project}?
-  join_some_projects_and_invite_some_observations_html: "Zapojte se do některých <a href='%{join_url}'>projektů</a> a <a href='%{invite_url}'>požádejte o pozorování</a>"
   join_the_largest_group_of_naturalists_in_the_world: Připojte se k největší skupině přírodovědců na světě!
   join_this_project: Zapojit se do tohoto projektu
   'joined!': Připojili jste se!
@@ -2237,6 +2231,7 @@ cs:
     Zdá se, že používáte heslo ze starší verze této webové stránky. Nezapomeňte si prosím pro novou verzi <a href="%{url}">heslo změnit</a>.
   let_us_walk_you_through: Pojďme si nyní projít hlavní funkce této stránky
   lexicon: Slovník
+  lexicon_cannot_contain_words: "nemůže obsahovat následující slova: %{words}"
   lexicons:
     scientific_names: Vědecké názvy
     afrikaans: afrikánsky
@@ -2569,6 +2564,8 @@ cs:
   moderation_history_for_user_html: Historie moderování pro %{user}
   moderation_history_desc_html: |
     Patří sem akce moderátora (např. skrývání nebo rušení skrývání komentářů), poznámky a příznaky u všeho, co tento uživatel vytvořil, kromě taxonů. Toto je <strong>viditelné pouze pro kurátory</strong> a <strong>kurátoři nemohou prohlížet svou vlastní historii</strong>, takže poznámky o dané osobě by nikdy neměly být viditelné pro tuto osobu.
+  moderator_note_desc: |
+    Moderátorské poznámky jsou záznamy o reakcích moderátorů nebo o obavách ohledně uživatele, například o tom, zda se nejedná o falešný účet. Neuvádějte prosím osobní názory nebo pomluvy o uživateli.
   #Person who executed a moderator action or flagged something
   moderator_or_flagger: Moderátor / nahlašovatel
   mollusks: měkkýši
@@ -2794,7 +2791,6 @@ cs:
   no_license_all_rights_reserved: Žádná licence (všechna práva vyhrazena)
   no_managers_set: Žádní vedoucí nejsou nastaveni
   no_matching_article_from_x: "Žádný odpovídající článek z %{x}"
-  no_matching_invitations: Žádné odpovídající pozvánky
   no_matching_observations: Žádná odpovídající pozorování.
   no_matching_places: Žádná odpovídající místa
   no_matching_projects: Žádné odpovídající projekty
@@ -2841,6 +2837,7 @@ cs:
     Do tohoto seznamu můžete začít přidávat druhy pomocí nástroje "Přidat do svého seznamu" na pravé straně.
   no_subject_parens: "(Bez předmětu)"
   no_such_wiki_page: Žádná taková stránka neexistuje.
+  no_such_wiki_page_html: Neexistuje žádná taková stránka. Chcete ji <a href="%{new_url}">vytvořit</a>?
   no_suggestions_available: Žádné dostupné návrhy
   no_summary_from_wikipedia: Žádný souhrn z Wikipedie
   no_summary_has_been_set: Nebyl nastaven žádný souhrn.
@@ -2914,10 +2911,10 @@ cs:
   observation_brief_something_on_day_at_time: "Něco v %{day} v %{time}"
   observation_brief_something_on_day_at_time_by_user: "Něco dne %{day} v %{time} od %{user}"
   observation_brief_something_on_day_by_user: "Něco na %{day} od %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month: "Něco v %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month_by_user: "Něco v %{month} od %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Něco v %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Něco v %{month} %{year} od %{user}"
   observation_brief_something_by_user: "Něco od %{user}"
   observation_brief_something_from_place: "Něco z %{place}"
   observation_brief_something_from_place_by_user: "Něco z %{place} od %{user}"
@@ -2925,18 +2922,18 @@ cs:
   observation_brief_something_from_place_on_day_by_user: "Něco z %{place} z %{day} od %{user}"
   observation_brief_something_from_place_on_day_at_time: "Něco z %{place} dne %{day} v %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Něco od %{place} dne %{day} v %{time} od %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month: "Něco z %{place} v %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month_by_user: "Něco z %{place} v %{month} od %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Něco z %{place} v %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Něco z %{place} v %{month} %{year} od %{user}"
   observation_brief_taxon_on_day: "%{taxon} na %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} dne %{day} v %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} dne %{day} v %{time} podle %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} dne %{day} od %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month: "%{taxon} v %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month_by_user: "%{taxon} v %{month} od %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} v %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} v %{month} %{year} od %{user}"
   observation_brief_taxon_by_user: "%{taxon} od %{user}"
   observation_brief_taxon_from_place: "%{taxon} od %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} od %{place} od %{user}"
@@ -2944,10 +2941,10 @@ cs:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} od %{place} dne %{day} od %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} od %{place} dne %{day} v %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} od %{place} dne %{day} v %{time} od %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month: "%{taxon} z %{place} v %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} z %{place} v %{month} od %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} od %{place} v %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} od %{place} v %{month} %{year} od %{user}"
   observations_by_category: "Pozorování podle kategorie"
   observations_by_app: Pozorování podle aplikace
   observations_by_rank: Pozoování podle pořadí
@@ -2995,7 +2992,6 @@ cs:
   observations_deleted: Pozorování byla smazána.
   observations_fields_are: |
     Pole pozorování jsou doplňující údaje související s pozorováním, například počet pozorovaných jedinců, popis prostředí nebo cokoliv chcete! Jednotlivé projekty mohou také specifikovat pole, jejichž vyplnění požadují.
-  observations_from: Pozorování od %{date}
   observations_from_people_taxa_and_places_youre_following: "Pozorování týkající se lidí, míst a taxonů, které sledujete"
   observations_from_this_place: Pozorování z tohoto místa
   observations_from_this_project: Pozorování z tohoto projektu
@@ -3696,8 +3692,6 @@ cs:
     Možná se Vás to netýká, ale vzhledem k současné míře růstu iNat budeme muset omezit podmínky, za nichž lidé mohou přidávat nová místa.
   plants: rostliny
   please_add_a_citation_for_this_change: Přidejte prosím citaci pro tuto změnu.
-  please_add_this_observation_to: Přidejte prosím toto pozorování k
-  please_add_this_to_x_html: "Přidejte toto prosím k %{x}"
   please_allow_a_few_weeks_for_external_sites: Počkejte prosím pár týdnů, než se změny z tohoto pozorování sesynchronizují s externími stránkami #Title to a section warning a user to exercise caution
   please_be_careful!: Prosím, opatrně!
   please_complete_the_following_to_add_project: |
@@ -3710,7 +3704,6 @@ cs:
   please_hold_on_while_the_file_is_generated: Počkejte prosím, než se soubor vytvoří. U velkých seznamů to může trvat několik minut.
   popular: oblíbené
   position: Pozice
-  possessive_user: "uživatele %{user}"
   #Post is a noun
   post_from_journal_by_parent_html: Příspěvek od <a href="%{url}"> novin od %{parent} </a>
   #Post is a noun
@@ -4457,7 +4450,6 @@ cs:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Vhodné pro Wikipedii a další projekty Wikimedia Foundation
   summary: Přehled
   supporting: Podpora
-  support_inaturalist: Podpora iNaturalist
   suspend_user: Vyloučit uživatele
   sw_lat: z. d. JZ
   sw_lon: z. d. JZ
@@ -4840,7 +4832,6 @@ cs:
   unhide_content: Odkrýt obsah
   unhide_desc: |
     Odkrývání odhalí tento obsah, aby ho mohli vidět všichni. Kurátoři mohou stále obsah v budoucnu skrýt.
-  uninvite: zrušit pozvání
   unique_identifier_of_this_taxon: Jedinečný identifikátor tohoto taxonu v databázi zdrojů.
   unique_observers: jedineční pozorovatelé
   unknown: Neznámý
@@ -4976,7 +4967,6 @@ cs:
   user_invited_you_to_join_html: "Uživatel %{user} vás pozval, abyste se připojili"
   user_invited_you_to_join_project: "Uživatel %{user} vás pozval, abyste se připojili k projektu %{project}"
   user_invited_you_to_join_this_project_on_date_html: "Uživatel %{user} vás pozval, abyste se připojili k tomuto projektu dne %{date}"
-  user_invited_your_x_to_a_project_html: "Uživatel %{user} přizval váš %{x} k projektu"
   user_is_a_naturalist: "Uživatel %{user} je přírodovědec!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> je nyní admin pro %{project}
@@ -5002,7 +4992,9 @@ cs:
   users_favorites: "Oblíbené uživatele %{user}"
   users_highlights_and_stats_from_year_on_site: "významné události a statistiky uživatele %{user} za rok %{year} na %{site}"
   users_id: "ID uživatele %{user}"
+  users_identifications: "Identifikace %{user}"
   users_latest_observations_on_site: "poslední pozorování uživatele %{user} na %{site}"
+  users_lists: "Seznamy uživatele %{user}"
   users_profile: "Profil uživatele %{user}"
   users_projects: "%{user} projekty"
   users_year_on_site: "Rok uživatele %{user} na %{site} %{year}"
@@ -5029,7 +5021,6 @@ cs:
   view_flags_for_x_html: "Zobrazit štítky pro %{x}"
   view_full_observation: Zobrazit celé pozorování
   view_full_size_photo: Zobrazit fotografii v plné velikosti
-  view_invitation: Zobrazit pozvánku
   view_journal: Zobrazit deník
   view_leaderboard_from_last_month: Zobrazit přehled nejlepších za minulý měsíc
   view_leaderboard_from_last_year: Zobrazit přehled nejlepších za minulý rok
@@ -5297,7 +5288,6 @@ cs:
   you_must_have_a_header_row: Musíte mít řádek nadpisu
   you_must_select_a_place_to_merge_with: Musíte vybrat místo, se kterým se má sloučit.
   you_must_select_at_least_one_taxon: Musíte vybrat alespoň jeden taxon
-  you_must_select_dates_to_compare: Musíte vybrat data pro porovnání
   you_must_specify_and_confirm_a_new_password: Musíte uvést a potvrdit nové heslo.
   you_need_to_have_linked_flickr_account: Abyste mohli označovat své fotky, musíte mít propojený účet na Flickru.
   you_need_to_select_some_observations_first: Nejdřív musíte vybrat nějaká pozorování.
