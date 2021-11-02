@@ -230,7 +230,6 @@ es-CO:
   account: Cuenta
   account_creation: Creación de la cuenta
   account_settings: Configuración de la cuenta
-  accept: aceptar
   accept_community_identifications: Aceptar identificaciones de la comunidad
   accuracy: Precisión
   accuracy_meters: Precisión (metros)
@@ -635,7 +634,6 @@ es-CO:
     ¿Estás seguro que este usuario es confiable? 
     Se resolveran cualquier marca de spam de su contenido.
   are_you_sure_you_want_to_remove_these_x_taxa?: "¿Estás seguro de que quieres quitar estos %{x} taxones?"
-  are_you_sure_you_want_to_remove_this_invitation: '¿Estás seguro que deseas eliminar esta invitación?'
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     ¿Estás seguro de que quieres eliminar esta observación de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "¿Está seguro que deseas eliminar a este taxón de la lista de verificación de %{place}?"
@@ -680,7 +678,6 @@ es-CO:
   avg: Media
   back: Atrás
   back_to_all_species: Regresar a todas las especies
-  back_to_calendar: "Regresar al calendario de %{user}"
   back_to_editing_observation: Regresa a editar la observación
   back_to_friends: Volver a amigos
   back_to_flags_html: "&laquo; Volver a las marcas"
@@ -707,7 +704,6 @@ es-CO:
   back_to_your_journal: Regresar a tu diario
   back_to_your_observations: Regresar a tus observaciones
   back_to_your_profile: Regresar a tu perfil
-  back_to_your_projects: Regresar a tus proyectos
   badges: Insignias
   based_on_the_evidence_can_id_be_improved: |
     Basándose en la evidencia, ¿se puede confirmar o mejorar el taxón comunitario?
@@ -850,7 +846,6 @@ es-CO:
   check_list_place: "Lista de chequeo de %{place}"
   check_list_updated: '¡Lista de chequeo actualizada!'
   check_lists_for: "Otras listas de chequeo para %{place}"
-  check_out_our_blog: Échale un vistazo a nuestro blog
   check_out_what_the_observation: Échale un vistazo a cómo se ve la observación que estás tratando de identificar.
   check_this_box_if_html: |
     Selecciona esta casilla si quieres aplicar una
@@ -921,7 +916,6 @@ es-CO:
   comparing: comparando
   comparing_list_to_list: "Comparando %{list1} con %{list2}"
   comparing_versions_x_and_y: "Comparando las versiones %{x} y %{y}"
-  comparing_observations_from: "Comparando observaciones de %{user} en %{dates}"
   compiled_by_name: "Compilado por %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Completo
@@ -1928,7 +1922,6 @@ es-CO:
   identification_updated: '¡Identificación actualizada!'
   identification_withdrawn: Identificación retirada.
   identifications: Identificaciones
-  identifications_by: "Identificaciones por %{user}"
   computer_vision_suggestion: Sugerencia de la visión por computadora
   computer_vision_suggestion_desc: |
     La visión por computadora es el proceso de enseñar a las computadoras a reconocer patrones en imágenes. Proveemos herramientas que utilizan modelos de visión informática entrenados con las fotos de la comunidad para proporcionar sugerencias de identificación, como las características de auto-completar y de comparación. Esta etiqueta indica cuando una persona agregó
@@ -1946,7 +1939,6 @@ es-CO:
   if_this_link_will_apply_to_descendant: Si este vínculo aplicará a los taxones descendientes, puede usar sus plantillas de marcas para llenar el nombre del taxón en la URL
   if_you_have_any_trouble_with_the_site_check_out: 'Si tienes alguna pregunta, echa un vistazo a nuestra <a href="%{help_url}">sección de ayuda</a> o envía un mensaje a nuestro <a href="%{feedback_url}">grupo de comentarios</a>.'
   if_your_project_is: Si tu proyecto es sobre un lugar en particular, configura las coordenadas haciendo clic en el mapa o introduciéndolas manualmente.
-  ignore: ignorar
   ignore_and_continue: Ignorar y continuar
   ignore_times: Ignorar tiempos
   image_must_be_exactly: la imagen debe tener exactamente 950px de ancho y al menos 400px de altura
@@ -2016,7 +2008,6 @@ es-CO:
   join_project: Unirse a este proyecto
   #Prompt to join a specific project
   join_project?: '¿Unirse a %{project}?'
-  join_some_projects_and_invite_some_observations_html: "Únete a algunos <a href='%{join_url}'>proyectos</a> e <a href='%{invite_url}'>invita algunas observaciones</a>"
   join_the_largest_group_of_naturalists_in_the_world: '¡Únete al mayor grupo de naturalistas del mundo!'
   join_this_project: Unirse a este proyecto
   'joined!': '¡Unido!'
@@ -2519,7 +2510,6 @@ es-CO:
   no_license_all_rights_reserved: Sin licencia (todos los derechos reservados)
   no_managers_set: No hay administradores aún
   no_matching_article_from_x: "No hay artículos correspondientes de %{x}"
-  no_matching_invitations: No hay invitaciones que concuerden
   no_matching_observations: No hay observaciones que concuerden
   no_matching_places: No hay lugares que coincidan
   no_matching_projects: No hay proyectos que concuerden
@@ -2622,10 +2612,6 @@ es-CO:
   observation_brief_something_on_day_at_time: "Algo el %{day} a las %{time}"
   observation_brief_something_on_day_at_time_by_user: "Algo el %{day} a las %{time} por %{user}"
   observation_brief_something_on_day_by_user: "Algo el %{day} por %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month: "Algo en %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month_by_user: "Algo en %{month} por %{user}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
   observation_brief_something_from_place_by_user: "Algo de %{place} por %{user}"
@@ -2633,18 +2619,10 @@ es-CO:
   observation_brief_something_from_place_on_day_by_user: "Algo de %{place} el %{day} de %{user}"
   observation_brief_something_from_place_on_day_at_time: "Algo de %{place} el %{day} a las %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Algo de %{place} el %{day} a las %{time} por %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month: "Algo de %{place} en %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month_by_user: "Algo de %{place} en %{month} por %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} el %{day} a las %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} el %{day} a las %{time} por %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} en %{day} por %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month: "%{taxon} en %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month_by_user: "%{taxon} en %{month} por %{user}"
   observation_brief_taxon_by_user: "%{taxon} por %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} de %{place} por %{user}"
@@ -2652,10 +2630,6 @@ es-CO:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} de %{place} el %{day} de %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} de %{place} el %{day} a las %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} de %{place} el %{day} a las %{time} por %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month: "%{taxon} de %{place} en %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} de %{place} en %{month} por %{user}"
   observations_by_category: "Observaciones Por categoría"
   observations_by_app: Observaciones Por Aplicación
   observations_by_rank: Observaciones Por Rango
@@ -2679,7 +2653,6 @@ es-CO:
   observations_deleted: Observaciones eliminadas.
   observations_fields_are: |
     Los campos de observación son piezas adicionales de datos asociados con una observación, como el número de individuos observados, la descripción del hábitat, o ¡lo que quieras! Los proyectos también pueden especificar los campos que les gustaría que rellenaras.
-  observations_from: Observaciones de %{date}
   observations_from_people_taxa_and_places_youre_following: "Observaciones de personas, lugares y taxones que sigues"
   observations_from_this_place: Observaciones desde este lugar
   observations_from_this_project: Observaciones de este proyecto
