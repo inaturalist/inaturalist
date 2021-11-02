@@ -213,7 +213,6 @@ fr:
   account: Compte
   account_creation: Création de compte
   account_settings: Paramètres du compte
-  accept: accepter
   accept_community_identifications: Accepter les identifications de la communauté
   accuracy: Précision
   accuracy_meters: Précision (mètres)
@@ -626,7 +625,6 @@ fr:
   are_you_sure_you_want_to_remove_spammer: |
     Êtes-vous certain que vous considérez cet utilisateur comme fiable ? Tout signalement de spam dans ses contenus sera enlevé.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Êtes-vous certain de vouloir supprimer ces %{x} taxons ?"
-  are_you_sure_you_want_to_remove_this_invitation: Êtes-vous certain de vouloir supprimer cette invitation ?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Êtes-vous sûr de vouloir supprimer cette observation de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Êtes-vous certain de vouloir supprimer ce taxon de la check-list de « %{place} » ?"
@@ -671,7 +669,6 @@ fr:
   avg: Moy.
   back: Précédent
   back_to_all_species: Retourner à la liste des espèces
-  back_to_calendar: "Retourner au calendrier de %{user}"
   back_to_editing_observation: Retourner à la modification des observations
   back_to_friends: Retourner aux amis
   back_to_flags_html: "&laquo; Retour aux signalements"
@@ -687,18 +684,20 @@ fr:
   back_to_taxon: "Retourner à %{defaulttaxon}"
   back_to_taxon_changes: "Retourner aux modifications taxinomiques"
   back_to_taxon_framework_for_x: "Retourner au cadre taxinomique pour %{taxon_name}"
+  back_to_users_calendar: "Retourner au calendrier @vow_or_con{vow:d'|de }%{user}"
+  back_to_users_lists: "Retourner aux listes @vow_or_con{vow:d'|de }%{user}"
   back_to_viewing: "Retourner à <i>%{taxon}</i>"
   back_to_x: "Retourner à %{noun}"
   back_to_x_assessment: "Retourner aux évaluations de %{project}"
   back_to_x_history: "Retourner à l’historique de %{x}"
   back_to_x_journal: "Retourner au journal de %{user}"
   back_to_x_blog: "Retour au blog de %{x}"
+  back_to_your_calendar: Revenir à votre calendrier
   back_to_your_dashboard: Retourner à votre tableau de bord
   back_to_your_lists: Retourner à vos listes
   back_to_your_journal: Retourner à votre journal
   back_to_your_observations: Retourner à vos observations
   back_to_your_profile: Retourner à votre profil
-  back_to_your_projects: Retourner à vos projets
   badges: Badges
   based_on_the_evidence_can_id_be_improved: |
     D’après les données, le taxon de communauté peut-il être encore confirmé ou amélioré ?
@@ -844,7 +843,6 @@ fr:
   check_list_place: "Check-list de %{place}"
   check_list_updated: Check-list mise à jour!
   check_lists_for: "Autres check-lists associées à %{place}"
-  check_out_our_blog: Visitez notre blog
   check_out_what_the_observation: Consulter l’apparence de l’observation que vous tentez d’identifier.
   check_this_box_if_html: |
     Cochez cette case si vous voulez appliquer une
@@ -921,7 +919,6 @@ fr:
   comparing: comparaison
   comparing_list_to_list: "Comparaison de %{list1} avec %{list2}"
   comparing_versions_x_and_y: "Comparaison des versions %{x} et %{y}"
-  comparing_observations_from: "Comparaison des observations de %{user} du %{dates}"
   compiled_by_name: "Compilé par %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Terminer
@@ -1950,7 +1947,6 @@ fr:
   identification_user_short: Identifiant. utilisateur
   identification_withdrawn: Identification retirée.
   identifications: Identifications
-  identifications_by: "Identifications de %{user}"
   computer_vision_suggestion: Suggestion de vision par l’ordinateur
   computer_vision_suggestion_desc: |
     La vision par l’ordinateur est le processus par lequel l'ordinateur apprend à reconnaître les motifs présents dans les images. Nous fournissons des outils qui utilisent des modèles de vision d’ordinateur entraînés sur des photos de la communauté pour fournir des suggestions d’identification, comme les fonctionnalités de complétude automatique et de comparaison. Ce libellé indique quand une personne a ajouté une identification en utilisant un de ces outils.
@@ -1968,7 +1964,6 @@ fr:
   if_this_link_will_apply_to_descendant: Si ce lien s’applique aux taxons descendants, vous pouvez utiliser les étiquettes modèles pour remplir le nom du taxon dans l’URL
   if_you_have_any_trouble_with_the_site_check_out: 'Si vous avez des questions, veuillez consulter notre <a href="%{help_url}">section d’aide</a> ou poster un message sur notre <a href="%{feedback_url}">groupe de commentaires</a>.'
   if_your_project_is: Si votre projet concerne un lieu particulier, fixez ses coordonnées en cliquant sur la carte ou en les saisissant manuellement.
-  ignore: ignorer
   ignore_and_continue: Ignorer et continuer
   ignore_times: Ignorer le nombre de fois
   image_must_be_exactly: la largeur de l’image doit être exactement 950px et la hauteur d’un maximum de 400px
@@ -2063,7 +2058,6 @@ fr:
   join_project: Rejoindre ce projet
   #Prompt to join a specific project
   join_project?: Rejoindre %{project} ?
-  join_some_projects_and_invite_some_observations_html: "Joignez des <a href='%{join_url}'>projets</a> et <a href='%{invite_url}'>invitez des gens à afficher quelques observations</a>"
   join_the_largest_group_of_naturalists_in_the_world: Rejoignez le plus grand groupe de naturalistes du monde !
   join_this_project: Rejoindre ce projet
   'joined!': Vous vous êtes joint!
@@ -2693,7 +2687,6 @@ fr:
   no_license_all_rights_reserved: Aucune licence (tous droits réservés)
   no_managers_set: Aucun gestionnaire n’a été défini
   no_matching_article_from_x: "Aucun article correspondant à %{x}"
-  no_matching_invitations: Aucune invitation correspondante
   no_matching_observations: Aucune observation correspondante.
   no_matching_places: Aucun lieu correspondant
   no_matching_projects: Aucun projet correspondant
@@ -2814,10 +2807,10 @@ fr:
   observation_brief_something_on_day_at_time: "Quelque chose le %{day} à %{time}"
   observation_brief_something_on_day_at_time_by_user: "Quelque chose le %{day} à %{time} par %{user}"
   observation_brief_something_on_day_by_user: "Quelque chose le %{day} par %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month: "Quelque chose en %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month_by_user: "Quelque chose en %{month} par %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Quelque chose en %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Quelque chose en %{month} %{year} par %{user}"
   observation_brief_something_by_user: "Quelque chose par %{user}"
   observation_brief_something_from_place: "Quelque chose de %{place}"
   observation_brief_something_from_place_by_user: "Quelque chose de %{place} par %{user}"
@@ -2825,18 +2818,18 @@ fr:
   observation_brief_something_from_place_on_day_by_user: "Quelque chose de %{place} le %{day} par %{user}"
   observation_brief_something_from_place_on_day_at_time: "Quelque chose de %{place} le %{day} à %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Quelque chose de %{place} le %{day} à %{time} par %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month: "Quelque chose @vow_or_con{vow:d'|de }%{place} en %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month_by_user: "Quelque chose @vow_or_con{vow:d'|de }%{place} en %{month} par %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "%{place} : quelque chose en %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "%{place} : quelque chose en %{month} %{year} par %{user}"
   observation_brief_taxon_on_day: "%{taxon} le %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} le %{day} à %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} le %{day} par %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} le %{day} par %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month: "%{taxon} en %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month_by_user: "%{taxon} en %{month} par %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} en %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} en %{month} %{year} par %{user}"
   observation_brief_taxon_by_user: "%{taxon} par %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} de %{place} par %{user}"
@@ -2844,10 +2837,10 @@ fr:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} de %{place} le %{day} par %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} de %{place} le %{day} à %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} de %{place} le %{day} à %{time} par %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month: "%{taxon} @vow_or_con{vow:d'|de }%{place} en %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} @vow_or_con{vow:d'|de }%{place} en %{month} par %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{place} : %{taxon} en %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{place} : %{taxon} en %{month} %{year} par %{user}"
   observations_by_category: "Observations par catégorie"
   observations_by_app: Observations par application
   observations_by_rank: Observations par rang
@@ -2902,7 +2895,6 @@ fr:
   observations_deleted: Observations supprimées.
   observations_fields_are: |
     Les champs de l’observation sont des données supplémentaires associées à une observation, comme le nombre d’individus observés, la description de l’habitat ou autre. Les projets peuvent aussi préciser les champs qu’ils aimeraient que vous remplissiez.
-  observations_from: Observations depuis %{date}
   observations_from_people_taxa_and_places_youre_following: "Observations des gens, lieux et taxons que vous suivez"
   observations_from_this_place: Observations dans ce lieu
   observations_from_this_project: Observations de ce projet
@@ -3602,8 +3594,6 @@ fr:
     NDLR: compte tenu du taux de croissance actuel d'iNat, nous allons prochainement devoir restreindre les conditions dans lesquelles les gens peuvent créer de nouveaux lieux.
   plants: plantes
   please_add_a_citation_for_this_change: Veuillez ajouter une citation pour cette modification.
-  please_add_this_observation_to: Veuillez ajouter cette observation à
-  please_add_this_to_x_html: "Veuillez l’ajouter à %{x}"
   please_allow_a_few_weeks_for_external_sites: Veuillez accorder quelques semaines aux sites externes pour synchroniser les changements de cette observation #Title to a section warning a user to exercise caution
   please_be_careful!: S'il vous plaît, soyez prudents !
   please_complete_the_following_to_add_project: |
@@ -3616,7 +3606,6 @@ fr:
   please_hold_on_while_the_file_is_generated: Veuillez patienter pendant la génération du fichier. Cette démarche peut prendre quelques minutes pour les grosses listes.
   popular: Populaire
   position: Emplacement
-  possessive_user: "%{user}"
   #Post is a noun
   post_from_journal_by_parent_html: Publié depuis <a href="%{url}">le journal par %{parent}</a>
   #Post is a noun
@@ -4363,7 +4352,6 @@ fr:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Convient à Wikipédia et aux autres projets de la Fondation Wikimédia
   summary: Résumé
   supporting: Soutenir
-  support_inaturalist: Soutenir iNaturalist
   suspend_user: Suspendre l’utilisateur
   sw_lat: Lat. SO
   sw_lon: Long. SO
@@ -4736,7 +4724,6 @@ fr:
   unhide_content: Démasquer le contenu
   unhide_desc: |
     Réafficher ce contenu le révélera à tout le monde. Les responsables pourront toujours choisir de le masquer à nouveau à l’avenir.
-  uninvite: désinviter
   unique_identifier_of_this_taxon: Identifiant unique de ce taxon dans la base de données source.
   unique_observers: observateurs uniques
   unknown: Inconnu
@@ -4870,7 +4857,6 @@ fr:
   user_invited_you_to_join_html: "%{user} vous a invité à vous joindre"
   user_invited_you_to_join_project: "%{user} vous a invité à vvous joindre à %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} vous a invité à vous joindre à ce projet le %{date}"
-  user_invited_your_x_to_a_project_html: "%{user} aimerait votre %{x} dans un projet"
   user_is_a_naturalist: "%{user} est un·e naturaliste!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> est désormais administrateur pour %{project}
@@ -4896,7 +4882,9 @@ fr:
   users_favorites: "Favoris @vow_or_con{vow:d'|con:de }%{user}"
   users_highlights_and_stats_from_year_on_site: "Mises en évidence et statistiques de %{user} pour %{year} sur %{site}"
   users_id: "ID de %{user}"
+  users_identifications: "Identifications @vow_or_con{vow:d'|de }%{user}"
   users_latest_observations_on_site: "dernières observations de %{user} sur %{site}"
+  users_lists: "Listes @vow_or_con{vow:d'|de }%{user}"
   users_profile: "Profil de %{user}"
   users_projects: "Projets de %{user}"
   users_year_on_site: "Année de %{user} sur %{site} %{year}"
@@ -4923,7 +4911,6 @@ fr:
   view_flags_for_x_html: "Afficher les signalements pour %{x}"
   view_full_observation: Afficher l’observation complète
   view_full_size_photo: Afficher la photo en pleine taille
-  view_invitation: Afficher l’invitation
   view_journal: Afficher le journal
   view_leaderboard_from_last_month: Afficher le classement du mois dernier
   view_leaderboard_from_last_year: Afficher le classement de l'année dernière
@@ -5198,7 +5185,6 @@ fr:
   you_must_have_a_header_row: Vous devez avoir une ligne d’entête
   you_must_select_a_place_to_merge_with: Vous devez sélectionner un lieu avec lequel fusionner.
   you_must_select_at_least_one_taxon: Vous devez sélectionner au moins un taxon
-  you_must_select_dates_to_compare: Vous devez sélectionner les dates à comparer
   you_must_specify_and_confirm_a_new_password: Vous devez spécifier et confirmer un nouveau mot de passe.
   you_need_to_have_linked_flickr_account: Vous devez avoir un compte Flickr lié pour étiqueter vos photos.
   you_need_to_select_some_observations_first: Vous devez d’abord sélectionner des observations.
