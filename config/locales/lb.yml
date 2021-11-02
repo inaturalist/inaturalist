@@ -136,7 +136,6 @@ lb:
   about_trusting_projects_options_any: All Är Observatiounen an dësem Projet
   account: Benotzerkont
   account_settings: Astellunge vum Benotzerkont
-  accept: akzeptéieren
   accept_community_identifications: Bestëmmungen vun der Community akzeptéieren
   accuracy: Prezisioun
   accuracy_meters: Genauegkeet (Meter)
@@ -411,7 +410,6 @@ lb:
   are_you_sure_you_want_to_delete_this_photo?: Sidd Dir sécher datt Dir dës Foto läsche wëllt?
   are_you_sure_you_want_to_delete_this_post: Sidd Dir sécher datt Dir dës Matdeelung läsche wëllt?
   are_you_sure_you_want_to_remove_from_project: Sidd Dir sécher datt Dir %{user} vun dësem Projet erofhuele wëllt?
-  are_you_sure_you_want_to_remove_this_invitation: Sidd Dir sécher datt Dir dës Invitatioun ewechhuele wëllt?
   associated_observations: Associéiert Observatiounen
   attention: Opgepasst
   you_sure_delete_list: Sidd Dir sécher datt Dir dës Lëscht läsche wëllt?
@@ -441,7 +439,6 @@ lb:
   automatically_add_observations_to_this_project: Automatesch Observatioune bei dëse Projet derbäisetzen
   back: Zréck
   back_to_all_species: Zréck op all Aarten
-  back_to_calendar: "Zréck op de Kalenner vum %{user}}"
   back_to_editing_observation: Zréck op d'Ännere vun der Observatioun
   back_to_friends: Zréck bei d'Frënn
   back_to_lists: "Zréck op %{name}-Lëschten"
@@ -453,14 +450,16 @@ lb:
   back_to_projects: Zréck op d'Projeten
   back_to_suggestions: Zréck bei d'Proposen
   back_to_taxon: "Zréck op %{defaulttaxon}"
+  back_to_users_calendar: "Zréck op de Kalenner vum %{user}"
+  back_to_users_lists: "Zréck zur Lëschte vum %{user}"
   back_to_x: "Zréck op %{noun}"
   back_to_x_history: "Zeréck zum %{x} Historique"
   back_to_x_blog: "Zeréck op dem %{x} säi Blog"
+  back_to_your_calendar: Zereck zu Ären Kalenner
   back_to_your_dashboard: Zereck ob Ären Dashboard
   back_to_your_lists: Zréck op Är Lëschten
   back_to_your_observations: Zréck bei Är Observatiounen
   back_to_your_profile: Zréck op Äre Profil
-  back_to_your_projects: Zréck op Är Projeten
   badges: Badgen
   batch: Batch
   because_of: well
@@ -526,7 +525,6 @@ lb:
     replaced_with: ersat duerch
   change_your_password: Ännert Äert Passwuert
   check_above_for_errors: Kuckt uewen no de Feeler hei driwwer
-  check_out_our_blog: Besicht eise Blog
   checklist: Check-Lëscht
   choose_a_field: E Feld eraussichen
   choose_a_place: Eng Plaz eraussichen
@@ -959,11 +957,9 @@ lb:
   identification_saved: "Identifikatioun gespäichert!"
   identification_withdrawn: Identifikatioun zréckgezunn.
   identifications: Bestemmungen
-  identifications_by: "Idendifikatioun vum %{user}"
   identifiers: Bestëmmer
   ids: "IDen"
   ids_made_for_others: IDs fir een aneren gemaach
-  ignore: ignoréieren
   ignore_and_continue: Ignoréieren a virufueren
   import: Importéieren
   import_all_photos_as_observations: All Fotoen als Observatiounen importéieren
@@ -1426,28 +1422,28 @@ lb:
   observation_attribution_copyright_html: Observatioune &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     D'Observatioun gehéiert zu engem Projet deen dëst Feld verlaangt. D'Observatioun muss aus deem Projet erausgeholl ginn ier dëst Feld ka geläscht ginn.
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month: "Eppes am %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month_by_user: "Eppes am %{month} vum %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month: "Eppes aus %{place} am %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month_by_user: "Eppes aus %{place} am %{month} vum %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month: "%{taxon} am %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month_by_user: "%{taxon} am %{month} vum %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Eppes am %{month}%{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Eppes am %{month}%{year} vum %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Eppes aus %{place} am %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Eppes aus %{place} am %{month} %{year} vum %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} am %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} am %{month} %{year} vum %{user}"
   observation_brief_taxon_from_place: "%{taxon} vun %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} vun %{place} vum %{user}"
   observation_brief_taxon_from_place_on_day: "%{taxon} vun %{place} vum %{day}"
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} vun %{place} vum %{day} vum %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} vun %{place} vum %{day} um %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} vun %{place} vum %{day} um %{time} vum %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month: "%{taxon} aus %{place} am %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} aus %{place} am %{month} vum %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} aus %{place} am %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} aus %{place} am %{month} %{year} vum %{user}"
   observations_by_category: "Observatioune Pro Kategorie"
   observations_by_app: Observatioune no App
   observations_by_rank: Observatiounen no Rang
@@ -1473,7 +1469,6 @@ lb:
   observations_by: Observatioune vum
   observations_by_user: "Observatioune vum %{user}"
   observations_deleted: Observatioune goufe geläscht.
-  observations_from: Observatioune vum %{date}
   observations_from_people_taxa_and_places_youre_following: "Observatioune vu Leit, Plazen an Taxa, deenen dir suivéiert."
   observations_from_this_place: Observatioune vun dëser Plaz
   observations_from_this_project: Observatioune vun dësem Projet
@@ -1741,7 +1736,6 @@ lb:
   please_explain_why_you_want_to_hide_this: Erkläert w.e.g. firwat Dir dëst verstoppe wëllt
   popular: Beléift
   position: Positioun
-  possessive_user: "%{user}"
   potential_disagreement: Potentiellen Desaccord
   preview: Virschau
   previous_date_short: Vireg
@@ -2048,7 +2042,6 @@ lb:
   suggestions: Virschléi
   summary: Resumé
   supporting: Ënnerstëtzen
-  support_inaturalist: iNaturalist ënnerstëtzen
   suspend_user: Benotzer suspendéieren
   table: Tabell
   taxa: Taxa
@@ -2165,6 +2158,8 @@ lb:
   username_or_email: Benotzernumm oder E-Mail-Adress
   users: Benotzer
   users_favorites: "%{user} seng Favoritten"
+  users_identifications: "Bestëmmung vum %{user}"
+  users_lists: "Lëschte vum %{user}"
   users_profile: "Profil vum %{user}"
   users_projects: "Projete vum %{user}"
   value: Wäert
@@ -2176,7 +2171,6 @@ lb:
   view_all_observations: All Observatioune weisen
   view_details: Detailer weisen
   view_dynamic_lifelist_: DYNAMESCH LIFE-LESCHT KUCKEN
-  view_invitation: Invitatioun weisen
   view_license: Lizenz weisen
   view_lists: Lëschte weisen
   view_more: Méi weisen
