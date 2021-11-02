@@ -229,7 +229,6 @@ sv:
   account: Konto
   account_creation: Att skapa konto
   account_settings: Kontoinställningar
-  accept: acceptera
   accept_community_identifications: Acceptera community-bestämningar
   accuracy: Noggrannhet
   accuracy_meters: Noggrannhet (meter)
@@ -639,7 +638,6 @@ sv:
     Är du säker på att du anser denna användare vara hedervärd?
     Eventuella spam-flaggor på användarens innehåll kommer avlägsnas.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Är du säker på att du vill ta bort dessa %{x} taxa?"
-  are_you_sure_you_want_to_remove_this_invitation: Är du säker på att du vill ta bort denna inbjudan?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Är du säker på att du vill ta bort detta fynd från %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Är du säker på att du vill ta bort detta taxon från %{place}s checklista?"
@@ -684,7 +682,6 @@ sv:
   avg: Medel
   back: Tillbaka
   back_to_all_species: Tillbaka till alla arter
-  back_to_calendar: "Tillbaka till %{user}s kalender"
   back_to_editing_observation: Tillbaka till redigering av fynd
   back_to_friends: Tillbaka till vänner
   back_to_flags_html: "&laquo; Tillbaka till flaggor"
@@ -711,7 +708,6 @@ sv:
   back_to_your_journal: Tillbaka till din dagbok
   back_to_your_observations: Tillbaka till dina fynd
   back_to_your_profile: Tillbaka till din profil
-  back_to_your_projects: Tillbaka till dina projekt
   badges: Märken
   based_on_the_evidence_can_id_be_improved: |
     Baserat på ovan, kan community-bestämningen ytterligare bekräftas eller förbättras?
@@ -856,7 +852,6 @@ sv:
   check_list_place: "%{place}-checklista"
   check_list_updated: Checklistan uppdaterades!
   check_lists_for: "Andra checklistor för %{place}"
-  check_out_our_blog: Kolla vår blogg
   check_out_what_the_observation: Kolla hur fyndet du försöker bestämma ser ut.
   check_this_box_if_html: |
     Markera denna ruta om du vill tillämpa en <a
@@ -928,7 +923,6 @@ sv:
   comparing: jämför
   comparing_list_to_list: "Jämför %{list1} med %{list2}"
   comparing_versions_x_and_y: "Jämför versionerna %{x} och %{y}"
-  comparing_observations_from: "Jämför %{user}s fynd från %{dates}"
   compiled_by_name: "Sammanställt av %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Komplett
@@ -1968,7 +1962,6 @@ sv:
   identification_user_short: Best. användare
   identification_withdrawn: Bestämning ångrad.
   identifications: Bestämningar
-  identifications_by: "Bestämningar av %{user}"
   computer_vision_suggestion: Bildigenkänningsförslag
   computer_vision_suggestion_desc: |
     Bildigenkänning är när man lär datorer att känna igen mönster i bilder. Vi tillhandahåller verktyg som använder bildigenkänningsmodeller tränade på communityns bilder för att kunna ge bestämningsförslag, såsom som autokompletterings- och jämförelsefunktioner. Denna etikett visar när en person lagt till en bestämning med något av dessa verktyg.
@@ -1985,7 +1978,6 @@ sv:
   if_this_link_will_apply_to_descendant: Om denna länk ska gälla för underliggande taxa, kan du använda taggningar enligt mall för att fylla i taxonnamnet i URL:en
   if_you_have_any_trouble_with_the_site_check_out: 'Om du har några frågor, kolla i vår <a href="%{help_url}">hjälpavdelning</a> eller gör ett inlägg i vår <a href="%{feedback_url}">feedback-grupp</a>.'
   if_your_project_is: Om ditt projekt handlar om en viss fyndplats, ange koordinaterna genom att klicka på kartan eller ange dem manuellt.
-  ignore: ignorera
   ignore_and_continue: Ignorera och fortsätt
   ignore_times: Ignorera tider
   image_must_be_exactly: bilden måste vara exakt 950px bred och högst 400px hög
@@ -2078,7 +2070,6 @@ sv:
   join_project: Gå med i detta projekt
   #Prompt to join a specific project
   join_project?: Gå med i %{project}?
-  join_some_projects_and_invite_some_observations_html: "Gå med i några <a href='%{join_url}'>projekt</a> och <a href='%{invite_url}'>bjud in några fynd</a>"
   join_the_largest_group_of_naturalists_in_the_world: Gå med i den största gruppen naturforskare i världen!
   join_this_project: Gå med i detta projekt
   'joined!': Ansluten!
@@ -2713,7 +2704,6 @@ sv:
   no_license_all_rights_reserved: Ingen licens (alla rättigheter förbehållna)
   no_managers_set: Inga ledare angivna
   no_matching_article_from_x: "Ingen matchande artikel från %{x}"
-  no_matching_invitations: Inga matchande inbjudningar
   no_matching_observations: Inga matchande fynd.
   no_matching_places: Inga matchande fyndplatser
   no_matching_projects: Inga matchande projekt
@@ -2832,10 +2822,6 @@ sv:
   observation_brief_something_on_day_at_time: "Något på %{day} kl. %{time}"
   observation_brief_something_on_day_at_time_by_user: "Något på %{day} kl. %{time} av %{user}"
   observation_brief_something_on_day_by_user: "Något på %{day} av %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month: "Något i %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month_by_user: "Något i %{month} av %{user}"
   observation_brief_something_by_user: "Något av %{user}"
   observation_brief_something_from_place: "Något från %{place}"
   observation_brief_something_from_place_by_user: "Något från %{place} av %{user}"
@@ -2843,18 +2829,10 @@ sv:
   observation_brief_something_from_place_on_day_by_user: "Något från %{place} på %{day} av %{user}"
   observation_brief_something_from_place_on_day_at_time: "Något från %{place} på %{day} kl. %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Något från %{place} på %{day} kl. %{time} av %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month: "Något från %{place} i %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month_by_user: "Något från %{place} i %{month} av %{user}"
   observation_brief_taxon_on_day: "%{taxon} på %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} på %{day} kl. %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} den %{day} kl. %{time} av %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} den %{day} av %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month: "%{taxon} i %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month_by_user: "%{taxon} i %{month} av %{user}"
   observation_brief_taxon_by_user: "%{taxon} av %{user}"
   observation_brief_taxon_from_place: "%{taxon} från %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} från %{place} av %{user}"
@@ -2862,10 +2840,6 @@ sv:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} från %{place} på %{day} av %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} från %{place} på %{day} kl. %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} från %{place} på %{day} kl. %{time} av %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month: "%{taxon} från %{place} i %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} från %{place} i %{month} av %{user}"
   observations_by_category: "Fynd per kategori"
   observations_by_app: Fynd efter app
   observations_by_rank: Fynd efter rang
@@ -2913,7 +2887,6 @@ sv:
   observations_deleted: Fynden raderades.
   observations_fields_are: |
     Fyndfält är extra information kopplad till ett fynd, såsom antal observerade individer, habitatbeskrivning eller egentligen vad som helst! Projekt kan också ange vilka fält som bör fyllas i.
-  observations_from: Fynd från %{date}
   observations_from_people_taxa_and_places_youre_following: "Fynd från personer, fyndplatser och arter som du följer"
   observations_from_this_place: Fynd från denna fyndplats
   observations_from_this_project: Fynd från detta projekt
@@ -3606,8 +3579,6 @@ sv:
     Tänk på att vi att vi kommer att behöva begränsa de villkor under vilka användare kan lägga till fyndplatser i framtiden givet iNats nuvarande tillväxttakt.
   plants: växter
   please_add_a_citation_for_this_change: Lägg till en referens för denna ändring.
-  please_add_this_observation_to: Lägg till detta fynd till
-  please_add_this_to_x_html: "Lägg till detta till %{x}"
   please_allow_a_few_weeks_for_external_sites: Vänta några veckor innan externa webbplatser har synkroniserat ändringar från detta fynd #Title to a section warning a user to exercise caution
   please_be_careful!: Var försiktig!
   please_complete_the_following_to_add_project: |
@@ -3620,7 +3591,6 @@ sv:
   please_hold_on_while_the_file_is_generated: Häng kvar medan filen genereras. Det kan ta ett par minuter för stora listor.
   popular: Populär
   position: Position
-  possessive_user: "%{user}s"
   #Post is a noun
   post_from_journal_by_parent_html: Inlägg från <a href="%{url}">%{parent}s dagbok</a>
   #Post is a noun
@@ -4386,7 +4356,6 @@ sv:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Lämpad för Wikipedia och andra Wikimedia Foundation-projekt
   summary: Sammanfattning
   supporting: Stödjer
-  support_inaturalist: Stöd iNaturalist
   suspend_user: Stäng av användare
   sw_lat: SV Lat.
   sw_lon: SV Long.
@@ -4752,7 +4721,6 @@ sv:
   unhide_content: Visa innehåll igen
   unhide_desc: |
     Visa igen gör så att alla kan se innehållet. Förvaltare kan fortfarande välja att dölja det igen i framtiden.
-  uninvite: avbryt inbjudan
   unique_identifier_of_this_taxon: Unik identifierare för detta taxon i databaskällan.
   unique_observers: unika observatörer
   unknown: Okänd
@@ -4883,7 +4851,6 @@ sv:
   user_invited_you_to_join_html: "%{user} bjöd in dig att gå med"
   user_invited_you_to_join_project: "%{user} bjöd in dig till %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} bjöd in dig till detta projekt den %{date}"
-  user_invited_your_x_to_a_project_html: "%{user} bjöd in din %{x} till ett projekt"
   user_is_a_naturalist: "%{user} är en naturforskare!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> är nu administratör för %{project}
@@ -4929,14 +4896,13 @@ sv:
   view_check_list_page: Visa checklistesidan
   view_contributions: Visa bidrag
   view_details: Visa detaljer
-  view_dynamic_lifelist: Visa dynamisk livlista
+  view_dynamic_lifelist_: VISA DYNAMISK LIVSLISTA
   view_field_options: Visa fältalternativ
   view_flag: Visa flagga
   view_flags: Visa flaggor
   view_flags_for_x_html: "Visa flaggor för %{x}"
   view_full_observation: Visa fullständigt fynd
   view_full_size_photo: Visa bild i full storlek
-  view_invitation: Visa inbjudan
   view_journal: Visa dagbok
   view_leaderboard_from_last_month: Visa topplista från förra månaden
   view_leaderboard_from_last_year: Visa topplista från förra året
@@ -5204,7 +5170,6 @@ sv:
   you_must_have_a_header_row: Du måste ha en rubrikrad
   you_must_select_a_place_to_merge_with: Du måste ange en fyndplats att slå ihop med.
   you_must_select_at_least_one_taxon: Du måste välja minst ett taxon
-  you_must_select_dates_to_compare: Du måste välja datum att jämföra
   you_must_specify_and_confirm_a_new_password: Du måste ange och bekräfta ett nytt lösenord.
   you_need_to_have_linked_flickr_account: Du måste ha ett länkat Flickr-konto för att tagga dina bilder.
   you_need_to_select_some_observations_first: Du måste välja några fynd först.

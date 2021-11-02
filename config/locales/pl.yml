@@ -289,7 +289,6 @@ pl:
   account: Konto
   account_creation: Utworzenie konta
   account_settings: Ustawienia konta
-  accept: zaakceptuj
   accept_community_identifications: Zezwalaj na oznaczenia społeczności
   accuracy: Dokładność
   accuracy_meters: Dokładność (w metrach)
@@ -713,7 +712,6 @@ pl:
   are_you_sure_you_want_to_remove_from_project: Czy na pewno chcesz usunąć %{user} z tego projektu?
   are_you_sure_you_want_to_remove_manager: Czy jesteś pewien, że chcesz usunąć %{user} jako menedżera?
   are_you_sure_you_want_to_remove_these_x_taxa?: "Czy jesteś pewien, że chcesz usunąć te %{x} taksonów?"
-  are_you_sure_you_want_to_remove_this_invitation: Czy na pewno chcesz usunąć to zaproszenie?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Czy na pewno chcesz usunąć tę obserwację z projektu %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Czy na pewno chcesz usunąć ten takson z checklisty %{place}?"
@@ -756,7 +754,6 @@ pl:
   avg: Śr.
   back: Wstecz
   back_to_all_species: Wróć do wszystkich gatunków
-  back_to_calendar: "Wróć do kalendarza %{user}"
   back_to_editing_observation: Wróć do edycji obserwacji
   back_to_friends: Wróć do znajomych
   back_to_flags_html: "&laquo; Wróć do zgłoszeń"
@@ -782,7 +779,6 @@ pl:
   back_to_your_journal: Wróć do swojego dziennika
   back_to_your_observations: Wróć do swoich obserwacji
   back_to_your_profile: Wróć do swojego profilu
-  back_to_your_projects: Wróć do swoich projektów
   badges: Odznaki
   based_on_the_evidence_can_id_be_improved: |
     Czy na podstawie dostępnych danych takson społeczności może wciąż zostać sprawdzony lub ulepszony?
@@ -913,7 +909,6 @@ pl:
   check_list_place: "Checklista %{place}"
   check_list_updated: Checklista uaktualniona!
   check_lists_for: "Inne checklisty dla %{place}"
-  check_out_our_blog: Sprawdź nasz blog
   check_out_what_the_observation: Sprawdź jak wygląda obserwacja, którą próbujesz oznaczyć.
   check_this_box_if_html: |
     Zaznacz tutaj, jeśli chcesz dodać licencję <a
@@ -982,7 +977,6 @@ pl:
   comparing: porównanie
   comparing_list_to_list: "Porównanie %{list1} z %{list2}"
   comparing_versions_x_and_y: "Porównanie wersji %{x} z %{y}"
-  comparing_observations_from: "Porównanie obserwacji użytkownika %{user} z %{dates}"
   compiled_by_name: "Sporządzony przez %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Kompletny
@@ -1758,7 +1752,6 @@ pl:
   identification_updated: Oznaczenie zaktualizowane!
   identification_withdrawn: Oznaczenie wycofane.
   identifications: Oznaczenia
-  identifications_by: "Oznaczenia użytkownika %{user}"
   computer_vision_suggestion: Sugestia na podstawie rozpoznawania obrazów
   computer_vision_suggestion_desc: |
     Rozpoznawanie obrazów to proces uczenia komputerów rozpoznawania wzorów w ilustracjach. Dostarczamy narzędzi (np. autouzupełniania czy porównywania), które używają rozpoznawania obrazów wyuczonego na bazie zdjęć społeczności, aby proponować sugestie identyfikacji. Ta etykieta informuje, że osoba dodała identyfikację korzystając z jednego z tych narzędzi.
@@ -1769,7 +1762,6 @@ pl:
   if_this_is_a_scientific_name: Jeśli jest to nazwa naukowa, to czy jest aktualnie akceptowana?
   if_you_have_any_trouble_with_the_site_check_out: 'Jeśli masz jakieś pytania, zobacz <a href="%{help_url}">sekcję pomocy</a> lub napisz wiadomość do naszej <a href="%{feedback_url}">grupy</a>.'
   if_your_project_is: Jeśli Twój projekt dotyczy konkretnej lokalizacji, ustaw współrzędne klikając na mapę lub wprowadzając je ręcznie.
-  ignore: ignoruj
   ignore_and_continue: Ignoruj i kontynuuj
   ignore_times: Ignoruj czasy
   image_must_be_exactly: obraz musi mieć dokładnie 950px szerokości i najwyżej 400px wysokości
@@ -1849,7 +1841,6 @@ pl:
   join_project: Dołącz do tego projektu
   #Prompt to join a specific project
   join_project?: Dołączyć do %{project}?
-  join_some_projects_and_invite_some_observations_html: "Dołącz do <a href='%{join_url}'>projektów</a> i <a href='%{invite_url}'>dodaj obserwacje</a>"
   join_the_largest_group_of_naturalists_in_the_world: Dołącz do największej grupy przyrodników na świecie!
   join_this_project: Dołącz do tego projektu
   'joined!': Dołączono!
@@ -2344,7 +2335,6 @@ pl:
   no_license_all_rights_reserved: Brak licencji (wszelkie prawa zastrzeżone)
   no_managers_set: Brak ustanowionych managerów
   no_matching_article_from_x: "Brak pasującego artykułu z %{x}"
-  no_matching_invitations: Brak pasujących zaproszeń
   no_matching_observations: Brak pasujących obserwacji.
   no_matching_places: Brak pasujących lokalizacji
   no_matching_projects: Brak pasujących projektów
@@ -2487,7 +2477,6 @@ pl:
   observations_by: Obserwacje
   observations_by_user: "Obserwacje użytkownika %{user}"
   observations_deleted: Obserwacje usunięte.
-  observations_from: Obserwacje z %{date}
   observations_from_people_taxa_and_places_youre_following: "Obserwacje od ludzi, z lokalizacji i taksonów, które obserwujesz"
   observations_from_this_place: Obserwacje z tej lokalizacji
   observations_from_this_project: Obserwacje w tym projekcie
@@ -3455,7 +3444,6 @@ pl:
   suggest_an_identification: Zasugeruj oznaczenie
   suggestions: Sugestie
   summary: Podsumowanie
-  support_inaturalist: Wesprzyj iNaturalist
   suspend_user: Zawieś użytkownika
   sync: Zsynchronizować?
   tagging: 'Tagowanie...'
@@ -3595,7 +3583,6 @@ pl:
   type: Typ
   type_source_name: Wpisz nazwę źródła
   type_taxon_name: "Wpisz nazwę taksonu"
-  uninvite: cofnij zaproszenie
   unique_identifier_of_this_taxon: Unikatowy identyfikator tego taksonu w źródłowej bazie danych.
   unique_observers: unikalnych obserwatorów
   unfollow: Przestań obserwować
@@ -3712,13 +3699,11 @@ pl:
   view_assessment: Zobacz ocenę
   view_check_list_page: Zobacz stronę checklisty
   view_details: Zobacz szczegóły
-  view_dynamic_lifelist: Zobacz dynamiczną listę życia
   view_flag: Zobacz zgłoszenie
   view_flags: Zobacz zgłoszenia
   view_flags_for_x_html: "Zobacz zgłoszenie dla %{x}"
   view_full_observation: Zobacz pełną obserwację
   view_full_size_photo: Zobacz zdjęcie w pełnym rozmiarze
-  view_invitation: Zobacz zaproszenie
   view_journal: Zobacz dziennik
   view_leaderboard_from_last_month: Zobacz rankingi z ostatniego miesiąca
   view_leaderboard_from_last_year: Zobacz rankingi z ostatniego roku
@@ -3866,7 +3851,6 @@ pl:
   you_must_have_a_header_row: Musisz mieć wiersz nagłówka
   you_must_select_a_place_to_merge_with: Musisz wybrać miejsce do scalenia.
   you_must_select_at_least_one_taxon: Musisz wybrać przynajmniej jeden takson
-  you_must_select_dates_to_compare: Musisz wybrać daty do porównania
   you_must_specify_and_confirm_a_new_password: Musisz podać i potwierdzić nowe hasło.
   you_need_to_have_linked_flickr_account: Musisz mieć połączone konto Flickr, aby otagować swoje zdjęcia.
   you_need_to_select_some_observations_first: Musisz najpierw wybrać jakieś obserwacje.
