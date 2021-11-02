@@ -225,7 +225,6 @@ fi:
   account: Käyttäjätunnus
   account_creation: Tunnuksen luominen
   account_settings: Tiliasetukset
-  accept: hyväksy
   accept_community_identifications: Hyväksy yhteisömääritykset
   accuracy: Tarkkuus
   accuracy_meters: Tarkkuus (metreinä)
@@ -634,7 +633,6 @@ fi:
     Oletko varma, että pidät tätä käyttäjää kunniallisena?
     Kaikki roskapostiliput hänen sisällössään ratkaistaan.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Haluatko varmasti poistaa nämä %{x} taksonia?"
-  are_you_sure_you_want_to_remove_this_invitation: Haluatko varmasti poistaa tämän kutsun?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Oletko varma että haluat poistaa tämän havainnon projektista %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Haluatko varmasti poistaa tämän taksonin paikan %{place} lajiluettelosta?"
@@ -678,7 +676,6 @@ fi:
   avg: Keskiarvo
   back: Takaisin
   back_to_all_species: Takaisin kaikkiin lajeihin
-  back_to_calendar: "Takaisin käyttäjän %{user} kalenteriin"
   back_to_editing_observation: Takaisin muokkaamaan havaintoa
   back_to_friends: Takaisin ystäviin
   back_to_flags_html: "&laquo; Takaisin lippuihin"
@@ -694,18 +691,20 @@ fi:
   back_to_taxon: "Takaisin %{defaulttaxon}"
   back_to_taxon_changes: "Takaisin taksonin muutoksiin"
   back_to_taxon_framework_for_x: "Takaisin %{taxon_name} taksonomiarunkoon"
+  back_to_users_calendar: "Takaisin käyttäjän %{user} kalenteriin"
+  back_to_users_lists: "Takaisin käyttäjän %{user} listoihin"
   back_to_viewing: "Takaisin katsomaan taksonia <i>%{taxon}</i>"
   back_to_x: "Takaisin %{noun}"
   back_to_x_assessment: "Takaisin projektin %{project} arviointiin"
   back_to_x_history: "Takaisin artikkelin %{x} historiaan"
   back_to_x_journal: "Takaisin käyttäjän %{user} päiväkirjaan"
   back_to_x_blog: "Takaisin sivun %{x} blogiin"
+  back_to_your_calendar: Takaisin kalenteriin
   back_to_your_dashboard: Takaisin omaan kojelautaan
   back_to_your_lists: Takaisin omiin luetteloihin
   back_to_your_journal: Takaisin päiväkirjaasi
   back_to_your_observations: Takaisin omiin havaintoihin
   back_to_your_profile: Takaisin profiiliisi
-  back_to_your_projects: Takaisin projekteihisi
   badges: Merkit
   based_on_the_evidence_can_id_be_improved: |
     Voiko yhteisön tekemää tunnistusta vielä vahvistaa tai parantaa perustuen näyttöön?
@@ -848,7 +847,6 @@ fi:
   check_list_place: "%{place} Lajiluettelo"
   check_list_updated: Lajiluettelo päivitetty!
   check_lists_for: "Muut lajilistat paikalle %{place}"
-  check_out_our_blog: Tutustu blogiimme
   check_out_what_the_observation: Katso, miltä havainnot, joita yrität tunnistaa, näyttävät
   check_this_box_if_html: |
     Laita ruksi tähän jos haluat käyttää <a
@@ -919,7 +917,6 @@ fi:
   comparing: verrataan
   comparing_list_to_list: "Verrataan luetteloa %{list1} luettelosta %{list2}"
   comparing_versions_x_and_y: "Verrataan versioita %{x} ja %{y}"
-  comparing_observations_from: "Verrataan käyttäjän %{user} havaintoja %{dates}"
   compiled_by_name: "Koostanut %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Valmis
@@ -1872,7 +1869,6 @@ fi:
   identification_user_short: Tunnist. käyttäjä
   identification_withdrawn: Tunnistus peruutettu.
   identifications: Tunnistukset
-  identifications_by: "Käyttäjän %{user} tunnistukset"
   computer_vision_suggestion: Automaattisen kuvantunnistuksen ehdotus
   computer_vision_suggestion_desc: |
     Tietokonenäkö on prosessi, jossa tietokonetta opetetaan tunnistamaan kuvista erilaisia muotoja. Meillä on käytössä työkaluja, jotka käyttävät tietokonenäköön perustuvia malleja, jotka pohjautuvat yhteisön tallentamaan kuvamateriaaliin. Näiden työkalujen avulla käyttäjälle tarjotaan lajitunnistusapua kuten automaattista täydennystä ja vertailtavia ominaisuuksia. Tämä merkintä kertoo, että käyttäjä on tunnistanut lajin käyttäen em. työkaluja.
@@ -1886,7 +1882,6 @@ fi:
   if_this_is_a_scientific_name: Jos tämä on tieteellinen nimi, onko se hyväksytty tällä hetkellä?
   if_you_have_any_trouble_with_the_site_check_out: 'Jos sinulla on kysyttävää, tutustu <a href="%{help_url}">apuosioomme</a> tai lähetä viesti <a href="%{feedback_url}">palauteryhmäämme</a>.'
   if_your_project_is: Jos projekti koskee tiettyä paikkaa, aseta koordinaatit klikkaamalla karttaa tai syöttämällä ne manuaalisesti.
-  ignore: hylkää
   ignore_and_continue: Hylkää ja jatka
   ignore_times: Jätä kellonaika huomioimatta
   image_must_be_exactly: kuvan on oltava täsmälleen 950px leveä ja enintään 400px korkea
@@ -1923,7 +1918,14 @@ fi:
   in_the_past: aiemmin
   in_the_past_week: Menneellä viikolla
   inactive: Ei käytössä
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Ei käytössä
   inactive_taxon: Epäaktiivinen taksoni
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Ei käytössä
+  inactive_taxon_concepts_are: Käytöstä poistetut taksonikonseptit ovat joko taksonomisesti vanhentuneita tai ne on luotu taksonimuutoksia varten. Vanhentuneet taksonikonseptit säilytetään historian ja joidenkin kumppanisivujen yhteensopivuuden vuoksi.
   inappropriate_content: Sopimatonta sisältöä?
   inat_account_action: "%{site_name} &#58; Tili &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} uskoo, että tämä on täydellinen luettelo tästä taksonista tässä paikassa."
@@ -1972,7 +1974,6 @@ fi:
   join_project: Liity tähän projektiin
   #Prompt to join a specific project
   join_project?: Liity projektiin %{project}?
-  join_some_projects_and_invite_some_observations_html: "Liity joihinkin <a href='%{join_url}'>projekteihin</a> ja <a href='%{invite_url}'>pyydä joitakin havaintoja</a>"
   join_the_largest_group_of_naturalists_in_the_world: Liity maailman suurimpaan luontoharrastajien yhteisöön!
   join_this_project: Liity tähän projektiin
   'joined!': Liitytty!
@@ -2112,6 +2113,7 @@ fi:
     setswana: Setswana
     sinhala: Sinhala
     slovak: Slovakia
+    slovenian: Slovenia
     spanish: Espanja
     swedish: Ruotsi
     tagalog: Tagalog
@@ -2221,10 +2223,12 @@ fi:
     pt-BR: portugali (Brasilia)
     ru: venäjä
     sk: slovakia
+    sl: Slovenia
     sq: albania
     sv: ruotsi
     th: Thai
     tr: turkki
+    uk: Ukraina
     zh-CN: kiina (yksinkertaistettu)
     zh-TW: kiina (perinteinen)
   locality_notes: Paikkamerkinnät
@@ -2247,6 +2251,8 @@ fi:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Kirjaudu ulos %{site_name}?"
   log_scale_label: Loki
+  #Status message shown while logging in
+  logging_in: Kirjaudutaan sisään...
   login_slash_username: Kirjautumis / käyttäjänimi
   logo:
     logo: Logo
@@ -2418,6 +2424,8 @@ fi:
     date_long_without_year: "D.MM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "h:mm a"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
   month: Kuukausi
   monthly_supporter_since_date_html: |
     <a href="%{url}">Kuukausittainen tukija</a> %{date} lähtien
@@ -2451,6 +2459,10 @@ fi:
   must_be_observed_before: tulee olla havaittu ennen %{operand}
   must_be_less_than_x_MB: "On oltava pienempi kuin %{x} MB"
   must_have_observation_field: "pakollista havaintokenttää '%{operand}' ei saa jättää tyhjäksi"
+  must_have_photos: täytyy olla valokuvia
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "täytyy olla laatuarvosana: %{grades}"
+  must_have_sounds: täytyy olla ääniä
   must_have_x: "täytyy olla %{x}"
   mute_user: Hiljennä käyttäjä
   mute_removed: Hiljennys poistettu
@@ -2565,7 +2577,6 @@ fi:
   no_journal_posts_yet: Ei vielä artikkeleita
   no_license_all_rights_reserved: Ei lisenssiä (kaikki oikeudet pidätetään)
   no_managers_set: Managereita ei asetettu
-  no_matching_invitations: Ei vastaavia kutsuja
   no_matching_observations: Ei vastaavia havaintoja.
   no_matching_places: Ei vastaavia paikkoja
   no_matching_projects: Ei vastaavia projekteja
@@ -2667,10 +2678,10 @@ fi:
   observation_brief_something_on_day_at_time: "Jotakin %{day} päivänä %{time} aikaan"
   observation_brief_something_on_day_at_time_by_user: "Jotakin %{day} päivänä %{time} aikaan henkilöltä %{user}"
   observation_brief_something_on_day_by_user: "Jotain %{day} käyttäjältä %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month: "Jotain %{month}ssa"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month_by_user: "Jotain %{month}ssa käyttäjältä %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Jotain %{month}ssa %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Jotain %{month}ssa %{year} käyttäjältä %{user}"
   observation_brief_something_by_user: "Jotain käyttäjältä %{user}"
   observation_brief_something_from_place: "Jotain paikasta %{place}"
   observation_brief_something_from_place_by_user: "Jotain paikasta %{place} käyttäjältä %{user}"
@@ -2678,18 +2689,18 @@ fi:
   observation_brief_something_from_place_on_day_by_user: "Jotain paikasta %{place} päivänä %{day} käyttäjältä %{user}"
   observation_brief_something_from_place_on_day_at_time: "Jotain paikasta %{place} päivänä %{day} aikana %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Jotain paikasta %{place} päivänä %{day} aikana %{time} käyttäjältä %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month: "Jotain paikasta %{place} %{month}ssa"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month_by_user: "Jotain paikasta %{place} %{month}ssa käyttäjältä %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Jotain paikasta %{place} %{month}ssa %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Jotain paikasta %{place} %{month}ssa %{year} käyttäjältä %{user}"
   observation_brief_taxon_on_day: "%{taxon} %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} %{day} päivänä %{time} aikaan"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} %{day} päivänä %{time} aikaan henkilöltä %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} %{day} käyttäjältä %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month: "%{taxon} %{month}ssa"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month_by_user: "%{taxon} %{month}ssa käyttäjältä %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} %{month}ssa %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} %{month}ssa %{year} käyttäjältä %{user}"
   observation_brief_taxon_by_user: "%{taxon} käyttäjältä %{user}"
   observation_brief_taxon_from_place: "%{taxon} paikasta %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} paikasta %{place} käyttäjältä %{user}"
@@ -2697,10 +2708,10 @@ fi:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} paikasta %{place} %{day} käyttäjältä %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} paikasta %{place} %{day} %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} paikasta %{place} %{day} %{time} käyttäjältä %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month: "%{taxon} paikasta %{place} %{month}ssa"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} paikasta %{place} %{month}ssa käyttäjältä %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} paikasta %{place} %{month}ssa %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} paikasta %{place} %{month}ssa %{year} käyttäjältä %{user}"
   observations_by_category: "Havainnot luokittain"
   observations_by_app: Havainnot sovelluksittain
   observations_by_rank: Havainnot luokittain
@@ -2745,7 +2756,6 @@ fi:
   observations_by: Havainnot käyttäjältä
   observations_by_user: "Käyttäjän %{user} havainnot"
   observations_deleted: Havainnot on poistettu.
-  observations_from: Havainnot päivämäärältä %{date}
   observations_from_people_taxa_and_places_youre_following: "Havainnot seuraamistasi ihmisistä, paikoista ja taksoneista"
   observations_from_this_place: Havainnot tästä paikasta
   observations_from_this_project: Havainnot tästä projektista
@@ -2850,7 +2860,7 @@ fi:
   only_staff_can_edit_large_places: Vain sivuston ylläpitäjät voivat muokata hyvin suuria paikkoja
   only_the_owner_of_this_list_can_do_that: Vain tämän luettelon omistaja voi tehdä sen. Älä ole paha.
   only_the_project_admin_can_delete_this_project: Vain projektin ylläpitäjä voi poistaa tämän projektin.
-  only_view_nearby_suggestions: Näytä vain lähistöllä olevat ehdotukset
+  only_view_nearby_suggestions: Näytä vain ehdotukset lajeista, jotka on havaittu lähistöllä
   only_you: Vain sinä
   open: avoin
   open_: Avoin
@@ -3369,8 +3379,6 @@ fi:
     Meidän täytyy rajoittaa paikkojen lisäämistä tulevaisuudesta, koska iNaturalistin käyttö kasvaa jatkuvasti.
   plants: kasvit
   please_add_a_citation_for_this_change: Lisää viite muutokselle.
-  please_add_this_observation_to: Ole hyvä ja lisää tämä havainto
-  please_add_this_to_x_html: "Lisää tämä projektiin %{x}"
   please_allow_a_few_weeks_for_external_sites: Salli muutama viikko ulkopuolisille sivustoille synkronoida muutokset tästä havainnosta #Title to a section warning a user to exercise caution
   please_be_careful!: Ole varovainen!
   please_complete_the_following_to_add_project: |
@@ -3383,7 +3391,6 @@ fi:
   please_hold_on_while_the_file_is_generated: Ole hyvä ja odota kun tiedostoa muodostetaan. Tämä voi kestää muutaman minuutin, jos luettelo on suuri.
   popular: Suosittu
   position: Sijainti
-  possessive_user: "Käyttäjän %{user}"
   post_published: Viesti julkaistu
   posted_by: Lähettänyt
   posted_on: Lähetetty
@@ -4031,7 +4038,6 @@ fi:
   suggestions: Ehdotukset
   summary: Yhteenveto
   supporting: Tukee määritystä
-  support_inaturalist: Tue iNaturalistia
   suspend_user: Hyllytä käyttäjä
   sw_lat: SW leveysaste
   sw_lon: SW pituusaste
@@ -4277,7 +4283,6 @@ fi:
   unclassified: Luokittelematon
   ungrafted_taxa: Liittämätön taksoni
   unhide_content: Peru sisällön piilottaminen
-  uninvite: poista kutsu
   unique_observers: yksilölliset havainnoijat
   unknown: Tuntematon
   unknown_error: Tuntematon virhe
@@ -4384,7 +4389,6 @@ fi:
   user_invited_you_to_join_html: "%{user} kutsui sinut liittymään"
   user_invited_you_to_join_project: "%{user} kutsui sinut liittymään projektiin %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} kutsui sinut liittymään tähän projektiin %{date}"
-  user_invited_your_x_to_a_project_html: "%{user} kutsui sinun %{x} projektiin"
   user_is_a_naturalist: "%{user} on luontoharrastaja!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> on nyt projektin %{project} ylläpitäjä
@@ -4406,7 +4410,9 @@ fi:
   users_contributions_to_project_html: Käyttäjän <a href="%{url}">%{login}</a> muokkaukset projektiin %{project_title}
   users_highlights_and_stats_from_year_on_site: "Käyttäjän %{user} kohokohdat ja tilastot vuodelta %{year} %{site}issa"
   users_id: "Käyttäjän %{user} tunniste"
+  users_identifications: "Käyttäjän %{user} tunnistukset"
   users_latest_observations_on_site: "Käyttäjän %{user} viimeisimmät havainnot sivustolla %{site}"
+  users_lists: "Käyttäjän %{user} luettelot"
   users_profile: "Käyttäjän %{user} profiili"
   users_projects: "Käyttäjän %{user} projektit"
   users_year_on_site: "Käyttäjän %{user} vuosi %{year} %{site}issa"
@@ -4431,7 +4437,6 @@ fi:
   view_flags_for_x_html: "Näytä liput kohteelle %{x}"
   view_full_observation: Näytä koko havainto
   view_full_size_photo: Näytä täysikokoinen kuva
-  view_invitation: Näytä kutsu
   view_journal: Näytä päiväkirja
   view_leaderboard_from_last_month: Näytä tulostaulukko viime kuulta
   view_leaderboard_from_last_year: Näytä tulostaulukko viime vuodelta
