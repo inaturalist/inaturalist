@@ -191,7 +191,6 @@ bg:
   account: Акаунт
   account_creation: Създаване на акаунт
   account_settings: Настройки на акаунта
-  accept: приеми
   accept_community_identifications: Приемай разпознаванията от общността
   accuracy: Точност
   accuracy_meters: Точност (метри)
@@ -522,7 +521,6 @@ bg:
   are_you_sure_you_want_to_remove_from_project: Сигурни ли сте, че искате да отстраните %{user} от проекта?
   are_you_sure_you_want_to_remove_manager: Сигурни ли сте, че искате да отстраните %{user} като управител?
   are_you_sure_you_want_to_remove_these_x_taxa?: "Сигурни ли сте, че искате да премахнете тези %{x} таксона?"
-  are_you_sure_you_want_to_remove_this_invitation: Сигурни ли сте, че искате да премахнете тази покана?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Сигурни ли сте, че искате да премахнете този таксон от видовия списък (чеклиста) на %{place}?"
   associated_observations: Свързани наблюдения
   associated_taxa: Свързани таксони
@@ -554,7 +552,6 @@ bg:
   avg: Средно
   back: Назад
   back_to_all_species: Обратно към всички видове
-  back_to_calendar: "Обратно към календара на %{user}"
   back_to_editing_observation: Обратно към редактиране на наблюдението
   back_to_friends: Обратно към приятели
   back_to_flags_html: "&laquo; Обратно към маркери"
@@ -578,7 +575,6 @@ bg:
   back_to_your_journal: Обратно към Вашия дневник
   back_to_your_observations: Обратно към Вашите наблюдения
   back_to_your_profile: Обратно към Вашия профил
-  back_to_your_projects: Обратно към Вашите проекти
   badges: Значки
   batch_edit: Групово редактиране
   #Where x is the title of a list of taxa
@@ -736,7 +732,6 @@ bg:
   compare_with: Сравни с
   comparing_list_to_list: "Сравняване на %{list1} със %{list2}"
   comparing_versions_x_and_y: "Сравняване на версии %{x} и %{y}"
-  comparing_observations_from: "Сравняване на наблюденията на %{user} от %{dates}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Изчерпателен
   configure: Конфигуриране
@@ -1418,7 +1413,6 @@ bg:
   identification_updated: Разпознаването е обновено!
   identification_withdrawn: Разпознаването е оттеглено.
   identifications: Разпознавания
-  identifications_by: "Разпознавания от %{user}"
   computer_vision_suggestion_desc: |
     Компютърното зрение е метод за обучаване на компютрите да разпознават обекти в изображенията. Предоставяме инструменти – използващи компютърно зрение обучено чрез снимките направени от общността – които могат да дадат предположения за разпознаване на организмите. Този етикет показва, че потребителят добавил разпознаването е използвал един от тези инструменти.
   identifiers: Разпознавачи
@@ -1487,7 +1481,6 @@ bg:
   join_project: Включи се в проекта
   #Prompt to join a specific project
   join_project?: Присъедини се към %{project}?
-  join_some_projects_and_invite_some_observations_html: "Включете се в някой <a href='%{join_url}'>проект</a> и <a href='%{invite_url}'>добавете няколко наблюдения</a>"
   join_the_largest_group_of_naturalists_in_the_world: Присъедини се към най-голямата общност от естествоизпитатели в света!
   join_this_project: Включи се в проекта
   'joined!': Присъединихте се!
@@ -1954,7 +1947,6 @@ bg:
   no_license_all_rights_reserved: Няма лиценз (всички права запазени)
   no_managers_set: Няма зададени управители
   no_matching_article_from_x: "Няма намерена статия от %{x}"
-  no_matching_invitations: Няма намерени покани
   no_matching_observations: Няма намерени наблюдения
   no_matching_places: Няма намерени места
   no_matching_projects: Няма намерени проекти
@@ -2094,7 +2086,6 @@ bg:
   observations_by_user: "Наблюдения от %{user}"
   observations_fields_are: |
     Полетата на наблюденията са допълнителни данни свързани с наблюдение, като брой наблюдавани екземпляри, описание на местообитание или каквото поискате! Проектите могат да зададат полета които биха искали да попълните.
-  observations_from: Наблюдения от %{date}
   observations_from_people_taxa_and_places_youre_following: "Наблюдения от хора, места и таксони, които следвате"
   observations_from_this_place: Наблюдения от това място
   observations_from_this_project: Наблюдения от този проект
@@ -3190,7 +3181,6 @@ bg:
   suitable_for_the_global_biodiversity_information_facility: Подходящо за Глобалната информационна мрежа за биоразнообразие (GBIF)
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Подходящо за Уикипедия и сродните ѝ проекти
   summary: Резюме
-  support_inaturalist: Подкрепете iNaturalist
   suspend_user: Запорирай потребителя
   sw_lat: ЮЗ шир.
   sw_lon: ЮЗ дълж.
@@ -3488,7 +3478,6 @@ bg:
   user_invited_you_to_join_html: "%{user} Ви покани да се включите"
   user_invited_you_to_join_project: "%{user} Ви покани да се включите в %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} Ви покани да се включите в проекта на %{date}"
-  user_invited_your_x_to_a_project_html: "%{user} покани Ваш(а/е) %{x} в проект"
   user_is_a_naturalist: "%{user} е естествоизпитател!"
   user_is_now_the_admin_for_project_html: |
     Вече <strong>%{user}</strong> е администратор на %{project}
@@ -3527,7 +3516,6 @@ bg:
   view_flags_for_x_html: "Виж маркерите за %{x}"
   view_full_observation: Виж цялото наблюдение
   view_full_size_photo: Виж снимката в пълен размер
-  view_invitation: Виж поканата
   view_journal: Виж дневника
   view_leaderboard_from_last_month: Виж водачеството от миналия месец
   view_leaderboard_from_last_year: Виж водачеството от миналата година
