@@ -23,7 +23,7 @@ end
 
 describe DarwinCore::Archive, "make_descriptor" do
   it "should include the Simple Multimedia extension" do
-    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
+    archive = DarwinCore::Archive.new( extensions: %w(SimpleMultimedia) )
     xml = Nokogiri::XML(open(archive.make_descriptor))
     extension_elt = xml.at_xpath('//xmlns:extension')
     expect( extension_elt['rowType'] ).to eq 'http://rs.gbif.org/terms/1.0/Multimedia'

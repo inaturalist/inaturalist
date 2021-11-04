@@ -223,7 +223,7 @@ describe PlacesController do
         headers: { "Content-Type" => "application/json" }
       )
       get :search, params: { q: place.name }
-      expect( response.content_type ).to eq "text/html"
+      expect( response.content_type ).to include "text/html"
     end
   end
 

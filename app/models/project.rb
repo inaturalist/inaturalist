@@ -662,7 +662,6 @@ class Project < ApplicationRecord
     CSV.open(path, 'w') do |csv|
       csv << columns
       Observation.search_in_batches( projects: id ) do |batch|
-        puts "[#{Time.now}] batch starting with #{batch.first.id}"
         Observation.preload_associations( batch, [:project_observations] )
         project_observations = batch.map {|o| o.project_observations.select{|po|
           po.project_id == id

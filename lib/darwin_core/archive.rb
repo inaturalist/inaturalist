@@ -11,11 +11,11 @@ module DarwinCore
       @opts[:core] ||= DarwinCore::Cores::OCCURRENCE
       @opts[:extensions] = [@opts[:extensions]].flatten.compact
       @opts[:metadata] ||= if @opts[:core] == DarwinCore::Cores::OCCURRENCE
-        File.join(Rails.root, "app", "views", "observations", "dwc.eml.erb")
+        File.join( "observations", "dwc.eml.erb" )
       else
-        File.join(Rails.root, "app", "views", "taxa", "dwc.eml.erb")
+        File.join( "taxa", "dwc.eml.erb" )
       end
-      @opts[:descriptor] ||= File.join(Rails.root, "app", "views", "observations", "dwc.descriptor.builder")
+      @opts[:descriptor] ||= File.join("observations", "dwc.descriptor.builder")
       @opts[:quality] ||= @opts[:quality_grade] || "research"
       @opts[:photo_licenses] ||= ["CC0", "CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
       @opts[:licenses] ||= ["any"]
@@ -117,11 +117,12 @@ module DarwinCore
         metadata_observation_params[:created_d2] = Time.now
       end
       m = DarwinCore::Metadata.new( @opts.merge(
-        observations_params: metadata_observation_params
+        observations_params: metadata_observation_params,
+        template: @opts[:metadata]
       ) )
-      tmp_path = File.join(@opts[:work_path], "metadata.eml.xml")
-      open(tmp_path, 'w') do |f|
-        f << m.render(:file => @opts[:metadata])
+      tmp_path = File.join( @opts[:work_path], "metadata.eml.xml" )
+      File.open( tmp_path, "w" ) do | f |
+        f << m.render
       end
       tmp_path
     end
@@ -166,10 +167,15 @@ module DarwinCore
           end
         end
       end
-      d = DarwinCore::Descriptor.new(core: @opts[:core], extensions: extensions, ala: @opts[:ala])
-      tmp_path = File.join(@opts[:work_path], "meta.xml")
-      open(tmp_path, 'w') do |f|
-        f << d.render(:file => @opts[:descriptor])
+      d = DarwinCore::Descriptor.new(
+        template: @opts[:descriptor],
+        core: @opts[:core],
+        extensions: extensions,
+        ala: @opts[:ala]
+      )
+      tmp_path = File.join( @opts[:work_path], "meta.xml" )
+      File.open( tmp_path , "w" ) do |f|
+        f << d.render
       end
       tmp_path
     end
