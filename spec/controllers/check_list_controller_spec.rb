@@ -45,7 +45,7 @@ describe CheckListsController, "destroy" do
     place.update( prefers_check_lists: false )
     curator = create :user, :as_curator
     sign_in curator
-    delete :destroy, id: list.id
+    delete :destroy, params: { id: list.id }
     expect( List.find_by_id( list.id ) ).to be_blank
   end
 
@@ -54,7 +54,7 @@ describe CheckListsController, "destroy" do
     list = place.check_list
     curator = create :user, :as_curator
     sign_in curator
-    delete :destroy, id: list.id
+    delete :destroy, params: { id: list.id }
     expect( List.find_by_id( list.id ) ).not_to be_blank
   end
 end
