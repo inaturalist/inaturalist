@@ -1,46 +1,10 @@
 sv:
-  x_comments:
-    one: '%{count} kommentar'
-    other: '%{count} kommentarer'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> kommentar'
-    other: '<span class="count">%{count}</span> kommentarer'
-  x_faves:
-    one: '%{count} favorit'
-    other: '%{count} favoriter'
   x_flags_resolved_html:
-    one: "<span class='antal'>%{count}</span> flagga löst"
-    other: "<span class='antal'>%{count}</span> flaggor lösta"
-  x_identifications:
-    one: '%{count} bestämning'
-    other: '%{count} bestämningar'
-  x_identifications_html:
-    one: '<span class="count">%{count}</span> bestämning'
-    other: '<span class="count">%{count}</span> bestämningar'
-  x_identifications_:
-    one: '%{count} bestämning'
-    other: '%{count} bestämningar'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Determinatör'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Determinatörer'
-  x_languages:
-    one: "%{count} språk"
-    other: "%{count} språk"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} först i livslistan"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} första i livslistan"
+    one: "<span class='count'>%{count}</span> flagga löst"
+    other: "<span class='count'>%{count}</span> flaggor lösta"
   x_journal_posts_html:
-    one: '<span class="antal">%{count}</span> dagboksinlägg'
-    other: '<span class="antal">%{count}</span> dagboksinlägg'
-  x_matching_taxa:
-    one: '%{count} matchande taxon'
-    other: '%{count} matchande taxa'
+    one: '<span class="count">%{count}</span> dagboksinlägg'
+    other: '<span class="count">%{count}</span> dagboksinlägg'
   x_matching_taxa_html:
     one: '<span class="count">%{count}</span> matchande taxon'
     other: '<span class="count">%{count}</span> matchande taxa'
@@ -4876,6 +4840,7 @@ sv:
   users_favorites: "%{user}s favoriter"
   users_highlights_and_stats_from_year_on_site: "%{user}s höjdpunkter och statistik från %{year} på %{site}"
   users_id: "%{user}s ID"
+  users_journal: "%{user}s dagbok"
   users_latest_observations_on_site: "%{user}senaste fynd på %{site}"
   users_profile: "%{user}s profil"
   users_projects: "%{user}s projekt"
