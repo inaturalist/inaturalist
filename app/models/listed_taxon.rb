@@ -196,13 +196,9 @@ class ListedTaxon < ApplicationRecord
     end
   end
   PRESENT_EQUIVALENTS = [PRESENT, COMMON, UNCOMMON]
-  
+
   ESTABLISHMENT_MEANS = %w(native endemic introduced)
-  ESTABLISHMENT_MEANS_DESCRIPTIONS = ActiveSupport::OrderedHash.new
-  ESTABLISHMENT_MEANS_DESCRIPTIONS["native"] = "evolved in this region or arrived by non-anthropogenic means"
-  ESTABLISHMENT_MEANS_DESCRIPTIONS["endemic"] = "native and occurs nowhere else"
-  ESTABLISHMENT_MEANS_DESCRIPTIONS["introduced"] = "arrived in the region via anthropogenic means"
-  
+
   ESTABLISHMENT_MEANS.each do |means|
     const_set means.upcase, means
     define_method "#{means}?" do
@@ -960,9 +956,11 @@ class ListedTaxon < ApplicationRecord
   end
 
   def establishment_means_description
-    default = ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS[establishment_means]
     key = default.gsub( "-", "_" ).gsub( " ", "_" ).downcase
-    I18n.t( "establishment_means_descriptions.#{ key }", default: default )
+    # I18n.t( "establishment_means_descriptions.native" )
+    # I18n.t( "establishment_means_descriptions.endemic" )
+    # I18n.t( "establishment_means_descriptions.introduced" )
+    I18n.t( "establishment_means_descriptions.#{key}" )
   end
 
   def reindex_observations_later

@@ -37,3 +37,24 @@ describe CheckListsController, "show" do
     end
   end
 end
+
+describe CheckListsController, "destroy" do
+  it "should be allowed for curators if list is the default but place does not allow checklists" do
+    place = create :place, :with_geom, prefers_check_lists: true
+    list = place.check_list
+    place.update( prefers_check_lists: false )
+    curator = create :user, :as_curator
+    sign_in curator
+    delete :destroy, id: list.id
+    expect( List.find_by_id( list.id ) ).to be_blank
+  end
+
+  it "should not be allowed for curators if list is the default and the place allows checklists" do
+    place = create :place, :with_geom, prefers_check_lists: true
+    list = place.check_list
+    curator = create :user, :as_curator
+    sign_in curator
+    delete :destroy, id: list.id
+    expect( List.find_by_id( list.id ) ).not_to be_blank
+  end
+end
