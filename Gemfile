@@ -91,7 +91,7 @@ gem "rgeo-geojson"
 gem "rgeo-proj4", "~> 2.0.1"
 gem "rgeo-shapefile"
 gem "riparian", git: "https://github.com/inaturalist/riparian.git"
-gem "rubyzip"
+gem "rubyzip", "~> 2.3.0"
 gem "sass-rails"
 gem "savon" # allow to consume soap services with WSDL
 gem "soundcloud"

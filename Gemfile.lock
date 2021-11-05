@@ -408,6 +408,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-darwin)
       racc (~> 1.4)
+    nokogiri (1.12.5-x86_64-linux)
+      racc (~> 1.4)
     non-stupid-digest-assets (1.0.9)
       sprockets (>= 2.0)
     nori (2.6.0)
@@ -671,7 +673,9 @@ GEM
 
 PLATFORMS
   x86_64-darwin-17
+  x86_64-darwin-18
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   actionpack-action_caching
@@ -775,7 +779,7 @@ DEPENDENCIES
   rspec-rails
   rubocop-rails
   rubocop-rspec
-  rubyzip
+  rubyzip (~> 2.3.0)
   sass-rails
   savon
   shoulda-matchers
