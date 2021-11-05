@@ -101,7 +101,6 @@ module Logstasher
         delete_if{ |k,v| v.blank? }.merge(hash_to_write)
       Logstasher.logger.debug(stash_hash.to_json)
     rescue Exception => e
-      # TODO Rails 5: this is failing consistently with `Logstasher.write_hash failed: stack level too deep`
       Rails.logger.error "[ERROR] Logstasher.write_hash failed: #{e}"
     end
   end
@@ -170,7 +169,7 @@ module Logstasher
   def self.write_action_controller_log(args)
     return if Rails.env.test?
     begin
-      payload = args[4].except(:headers).deep_dup
+      payload = args[4].except(:headers, :response).deep_dup
       format = payload[:format] || "all"
       format = "all" if format == "*/*"
       saved_params = Hash[
