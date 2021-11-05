@@ -7552,6 +7552,13 @@ en:
             including the work of the
             <strong class="count">%{helpers_count} people</strong> who have
             helped you out with identifications
+        x_projects_html:
+            one: |
+              <strong class="count">%{count} project</strong> that does not
+              have another manager or admin that can become the new owner
+            other: |
+              <strong class="count">%{count} projects</strong> that do not
+              have other managers or admins that can become the new owner
         x_identifications_html:
           one: |
             <strong class="count">your %{count} identification</strong>

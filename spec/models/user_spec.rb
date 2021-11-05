@@ -680,40 +680,12 @@ describe User do
         expect(jobs.select{|j| j.handler =~ /'ProjectList'.*\:refresh/m}).to be_blank
       end
 
-      it "should destroy projects with no observations" do
-        expect( project.observations ).to be_blank
-        user.sane_destroy
-        expect( Project.find_by_id( project.id ) ).to be_blank
-      end
-
-      it "should not destroy projects with observations" do
-        po = make_project_observation( project: project )
-        user.sane_destroy
-        expect( Project.find_by_id( project.id ) ).not_to be_blank
-      end
-
       it "should assign projects to a manager" do
         po = make_project_observation( project: project )
         m = ProjectUser.make!( role: ProjectUser::MANAGER, project: project )
         user.sane_destroy
         project.reload
         expect( project.user_id ).to eq( m.user_id )
-      end
-
-      it "should assign projects to a site admin if no manager" do
-        a = make_admin
-        expect( User.admins.count ).to eq 1
-        po = make_project_observation( project: project )
-        user.sane_destroy
-        project.reload
-        expect( project.user_id ).to eq a.id
-      end
-
-      it "should not destroy project journal posts" do
-        po = make_project_observation( project: project )
-        pjp = Post.make!( parent: project, user: user )
-        user.sane_destroy
-        expect( Post.find_by_id( pjp.id ) ).not_to be_blank
       end
 
       describe "notifications" do
