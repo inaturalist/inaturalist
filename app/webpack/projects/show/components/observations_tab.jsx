@@ -46,6 +46,8 @@ const ObservationsTab = ( {
           infiniteScrollObservations( scrollIndex + 30 );
         }}
         hasMore={observations && observations.length >= scrollIndex && scrollIndex < 200}
+        showViewMoreLink={observations && observations.length >= scrollIndex && scrollIndex >= 200}
+        viewMoreUrl={`/observations?project_id=${project.slug}&verifiable=any&place_id=any&subview=table`}
       />
     );
   } else {
@@ -58,6 +60,8 @@ const ObservationsTab = ( {
           infiniteScrollObservations( scrollIndex + 30 );
         }}
         hasMore={observations && observations.length >= scrollIndex && scrollIndex < 200}
+        showViewMoreLink={observations && observations.length >= scrollIndex && scrollIndex >= 200}
+        viewMoreUrl={`/observations?project_id=${project.slug}&verifiable=any&place_id=any&subview=grid`}
       />
     );
   }
