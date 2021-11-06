@@ -387,13 +387,13 @@ class RegularForm extends React.Component {
                 className="datefield"
                 ref="exactDate"
                 dateFormat="YYYY-MM-DD"
+                timeFormat={ false }
                 defaultText={project.rule_observed_on}
                 onChange={date => setRulePreference( "observed_on", date )}
                 allowFutureDates
                 inputProps={{
                   className: "form-control",
-                  placeholder: "YYYY-MM-DD",
-                  //onClick: ( ) => this.refs.exactDate.onClick( )
+                  placeholder: "YYYY-MM-DD"
                 }}
               />
             </Col>
@@ -418,8 +418,7 @@ class RegularForm extends React.Component {
                 allowFutureDates
                 inputProps={{
                   className: "form-control",
-                  placeholder: I18n.t( "start_date_time" ),
-                  //onClick: ( ) => this.refs.dateRangeD1.onClick( )
+                  placeholder: I18n.t( "start_date_time" )
                 }}
               />
               <DateTimeWrapper
@@ -431,8 +430,7 @@ class RegularForm extends React.Component {
                 allowFutureDates
                 inputProps={{
                   className: "form-control",
-                  placeholder: I18n.t( "end_date_time" ),
-                  //onClick: ( ) => this.refs.dateRangeD2.onClick( )
+                  placeholder: I18n.t( "end_date_time" )
                 }}
               />
               <div className="help-text">

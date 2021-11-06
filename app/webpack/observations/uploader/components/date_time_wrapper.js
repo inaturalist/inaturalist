@@ -33,16 +33,15 @@ class DateTimeWrapper extends Component {
   onChange( fieldValue ) {
     const { timeZone, dateFormat, timeFormat } = this.props;
     let value = fieldValue;
-    const eInt = parseInt( value, 10 );
-    if ( value && eInt ) {
-      const pickedDate = new Date( eInt );
+    if ( moment.isMoment(value) ) {
+      const pickedDate = value.toDate();
       if ( pickedDate ) {
         let format = dateFormat
         if ( timeFormat ) {
           format = `${ format } ${ timeFormat }`
         }
         if ( timeZone ) {
-          value = moment( pickedDate ).tz( timeZone ).format( format || DATETIME_WITH_TIMEZONE );
+          value = value.tz( timeZone ).format( format || DATETIME_WITH_TIMEZONE );
         } else {
           value = moment.parseZone( pickedDate ).format( format || DATETIME_WITH_TIMEZONE_OFFSET );
         }

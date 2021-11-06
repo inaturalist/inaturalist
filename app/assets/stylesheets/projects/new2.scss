@@ -349,17 +349,10 @@ body>div>.popover[role="tooltip"].popover-error {
       vertical-align: middle;
       margin-left: 5px;
     }
-    .input-group.date {
+    .rdt.datetime {
       width: 190px;
-      .form-control:first-child {
-        border-top-right-radius: 2px;
-        border-bottom-right-radius: 2px;
-      }
-      .input-group-addon {
-        display: none
-      }
     }
-    label[for="project-date-type-exact"] + div .input-group.date {
+    label[for="project-date-type-exact"] + .rdt.datetime {
       width: 120px;
     }
     .date-range-col .help-text {
