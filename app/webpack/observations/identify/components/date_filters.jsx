@@ -66,12 +66,13 @@ const DateFilters = ( {
           >
             <DateTimeWrapper
               inputProps={{
-                className: "filters-dates-exact form-control input-sm date-picker"
+                className: "filters-dates-exact form-control input-sm date-picker",
+                placeholder: "YYYY-MM-DD"
               }}
               dateFormat="YYYY-MM-DD"
               timeFormat={ false }
               openWithButton={ true }
-              defaultText={ params[onField] || "YYYY-MM-DD" }
+              dateTime={ params[onField] }
               onClick={( ) => updateSearchParams( { [dateTypeField]: "exact" } )}
               onChange={date => updateSearchParams( { [onField]: date } )}
             />
@@ -96,12 +97,13 @@ const DateFilters = ( {
           >
             <DateTimeWrapper
               inputProps={{
-                className: "filters-dates-exact form-control input-sm date-picker"
+                className: "filters-dates-exact form-control input-sm date-picker",
+                placeholder: I18n.t( "start" )
               }}
               dateFormat="YYYY-MM-DD"
               timeFormat={ false }
               openWithButton={ true }
-              defaultText={ params[d1Field] || I18n.t( "start" ) }
+              dateTime={ params[d1Field] }
               onClick={( ) => updateSearchParams( { [dateTypeField]: "exact" } )}
               onChange={date => updateSearchParams( { [d1Field]: date } )}
             />
@@ -114,12 +116,13 @@ const DateFilters = ( {
           >
             <DateTimeWrapper
               inputProps={{
-                className: "filters-dates-exact form-control input-sm date-picker"
+                className: "filters-dates-exact form-control input-sm date-picker",
+                placeholder: I18n.t( "end" )
               }}
               dateFormat="YYYY-MM-DD"
               timeFormat={ false }
               openWithButton={ true }
-              defaultText={ params[d2Field] || I18n.t( "end" ) }
+              dateTime={ params[d2Field] }
               onClick={( ) => updateSearchParams( { [dateTypeField]: "exact" } )}
               onChange={date => updateSearchParams( { [d2Field]: date } )}
             />

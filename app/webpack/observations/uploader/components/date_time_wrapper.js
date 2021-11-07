@@ -87,7 +87,7 @@ class DateTimeWrapper extends Component {
         inputProps={ this.props.inputProps }
         renderInput={ this.props.openWithButton ? this.renderInputWithOpenButton : undefined }
         locale={ I18n.locale }
-        value={ this.props.dateTime || this.props.defaultText }
+        initialValue={ this.props.dateTime }
         dateFormat={ this.props.dateFormat }
         timeFormat={ this.props.timeFormat }
         displayTimeZone= { this.props.timezone }
@@ -104,7 +104,6 @@ DateTimeWrapper.propTypes = {
   onChange: PropTypes.func,
   onSelection: PropTypes.func,
   reactKey: PropTypes.string,
-  defaultText: PropTypes.string,
   timeZone: PropTypes.string,
   dateFormat: PropTypes.string,
   timeFormat: PropTypes.oneOfType( [

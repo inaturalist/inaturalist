@@ -387,7 +387,7 @@ class RegularForm extends React.Component {
                 className="datefield"
                 dateFormat="YYYY-MM-DD"
                 timeFormat={ false }
-                defaultText={project.rule_observed_on}
+                dateTime={project.rule_observed_on}
                 onChange={date => setRulePreference( "observed_on", date )}
                 allowFutureDates
                 inputProps={{
@@ -411,7 +411,7 @@ class RegularForm extends React.Component {
               <DateTimeWrapper
                 dateFormat="YYYY-MM-DD"
                 timeFormat="HH:mm Z"
-                defaultText={project.rule_d1}
+                dateTime={project.rule_d1}
                 onChange={date => setRulePreference( "d1", date )}
                 allowFutureDates
                 inputProps={{
@@ -422,7 +422,7 @@ class RegularForm extends React.Component {
               <DateTimeWrapper
                 dateFormat="YYYY-MM-DD"
                 timeFormat="HH:mm Z"
-                defaultText={project.rule_d2}
+                dateTime={project.rule_d2}
                 onChange={date => setRulePreference( "d2", date )}
                 allowFutureDates
                 inputProps={{
