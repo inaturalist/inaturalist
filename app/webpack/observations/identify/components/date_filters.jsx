@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
-import DateTimeFieldWrapper from "../../uploader/components/date_time_field_wrapper";
+import DateTimeWrapper from "../../uploader/components/date_time_wrapper";
 import JQueryUIMultiselect from "./jquery_ui_multiselect";
 
 const DateFilters = ( {
@@ -64,13 +64,14 @@ const DateFilters = ( {
               `${params[dateTypeField] === "exact" ? "" : "collapse"}${params[onField] ? " filter-changed" : ""}`
             }
           >
-            <DateTimeFieldWrapper
-              mode="date"
+            <DateTimeWrapper
               inputProps={{
                 className: "filters-dates-exact form-control input-sm date-picker"
               }}
-              inputFormat="YYYY-MM-DD"
-              defaultText={params[onField] || "YYYY-MM-DD"}
+              dateFormat="YYYY-MM-DD"
+              timeFormat={ false }
+              openWithButton={ true }
+              defaultText={ params[onField] || "YYYY-MM-DD" }
               onClick={( ) => updateSearchParams( { [dateTypeField]: "exact" } )}
               onChange={date => updateSearchParams( { [onField]: date } )}
             />
@@ -93,13 +94,14 @@ const DateFilters = ( {
               `stacked ${params[dateTypeField] === "range" ? "" : "collapse"}${params[d1Field] ? " filter-changed" : ""}`
             }
           >
-            <DateTimeFieldWrapper
-              mode="date"
+            <DateTimeWrapper
               inputProps={{
                 className: "filters-dates-exact form-control input-sm date-picker"
               }}
-              inputFormat="YYYY-MM-DD"
-              defaultText={params[d1Field] || I18n.t( "start" )}
+              dateFormat="YYYY-MM-DD"
+              timeFormat={ false }
+              openWithButton={ true }
+              defaultText={ params[d1Field] || I18n.t( "start" ) }
               onClick={( ) => updateSearchParams( { [dateTypeField]: "exact" } )}
               onChange={date => updateSearchParams( { [d1Field]: date } )}
             />
@@ -110,13 +112,14 @@ const DateFilters = ( {
               `${params[dateTypeField] === "range" ? "" : "collapse"}${params[d2Field] ? " filter-changed" : ""}`
             }
           >
-            <DateTimeFieldWrapper
-              mode="date"
+            <DateTimeWrapper
               inputProps={{
                 className: "filters-dates-exact form-control input-sm date-picker"
               }}
-              inputFormat="YYYY-MM-DD"
-              defaultText={params[d2Field] || I18n.t( "end" )}
+              dateFormat="YYYY-MM-DD"
+              timeFormat={ false }
+              openWithButton={ true }
+              defaultText={ params[d2Field] || I18n.t( "end" ) }
               onClick={( ) => updateSearchParams( { [dateTypeField]: "exact" } )}
               onChange={date => updateSearchParams( { [d2Field]: date } )}
             />

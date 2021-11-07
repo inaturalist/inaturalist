@@ -12,6 +12,8 @@ class DateTimeWrapper extends Component {
     this.onChange = this.onChange.bind( this );
     this.pickerState = this.pickerState.bind( this );
     this.valid = this.valid.bind( this );
+    this.renderInputWithOpenButton = this.renderInputWithOpenButton.bind( this );
+    this.toggleCalendar = this.toggleCalendar.bind( this );
   }
 
   /*componentDidMount( ) {
@@ -55,8 +57,25 @@ class DateTimeWrapper extends Component {
     return undefined;
   }
 
-  valid(current) {
-    return this.props.allowFutureDates || current.isBefore( ); //No param checks for before the current date/time.
+  valid( current ) {
+    return this.props.allowFutureDates || current.isBefore( ); //isBefore( ) checks for before the current date/time.
+  }
+
+  toggleCalendar( openCalendar, closeCalendar ) {
+    this.datetime.isOpen() ? closeCalendar() : openCalendar();
+  }
+
+  renderInputWithOpenButton( props, openCalendar, closeCalendar ) {
+    delete props.onClick;
+    delete props.onFocus;
+    return (
+      <div className="input-group date">
+        <input {...props} />
+        <span className="input-group-addon">
+          <span className="glyphicon glyphicon-calendar" onClick={() => { this.toggleCalendar( openCalendar, closeCalendar ) }}/>
+        </span>
+      </div>
+    );
   }
 
   render( ) {
@@ -66,6 +85,7 @@ class DateTimeWrapper extends Component {
         key="datetime"
         className="datetime"
         inputProps={ this.props.inputProps }
+        renderInput={ this.props.openWithButton ? this.renderInputWithOpenButton : undefined }
         locale={ I18n.locale }
         value={ this.props.dateTime || this.props.defaultText }
         dateFormat={ this.props.dateFormat }
@@ -92,6 +112,7 @@ DateTimeWrapper.propTypes = {
     PropTypes.bool
   ] ),
   allowFutureDates: PropTypes.bool,
+  openWithButton: PropTypes.bool,
   dateTime: PropTypes.oneOfType( [
     PropTypes.string,
     PropTypes.number,

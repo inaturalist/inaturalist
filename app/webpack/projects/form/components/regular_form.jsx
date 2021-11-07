@@ -385,7 +385,6 @@ class RegularForm extends React.Component {
               </label>
               <DateTimeWrapper
                 className="datefield"
-                ref="exactDate"
                 dateFormat="YYYY-MM-DD"
                 timeFormat={ false }
                 defaultText={project.rule_observed_on}
@@ -410,7 +409,6 @@ class RegularForm extends React.Component {
                 { I18n.t( "date_picker.range" ) }
               </label>
               <DateTimeWrapper
-                ref="dateRangeD1"
                 dateFormat="YYYY-MM-DD"
                 timeFormat="HH:mm Z"
                 defaultText={project.rule_d1}
@@ -422,7 +420,6 @@ class RegularForm extends React.Component {
                 }}
               />
               <DateTimeWrapper
-                ref="dateRangeD2"
                 dateFormat="YYYY-MM-DD"
                 timeFormat="HH:mm Z"
                 defaultText={project.rule_d2}
