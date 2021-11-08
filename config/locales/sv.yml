@@ -9,8 +9,8 @@ sv:
     one: '%{count} favorit'
     other: '%{count} favoriter'
   x_flags_resolved_html:
-    one: "<span class='antal'>%{count}</span> flagga löst"
-    other: "<span class='antal'>%{count}</span> flaggor lösta"
+    one: "<span class='count'>%{count}</span> flagga löst"
+    other: "<span class='count'>%{count}</span> flaggor lösta"
   x_identifications:
     one: '%{count} bestämning'
     other: '%{count} bestämningar'
@@ -36,8 +36,8 @@ sv:
     #Count of number of taxa that represent the first addition to a life list
     other: "%{count} första i livslistan"
   x_journal_posts_html:
-    one: '<span class="antal">%{count}</span> dagboksinlägg'
-    other: '<span class="antal">%{count}</span> dagboksinlägg'
+    one: '<span class="count">%{count}</span> dagboksinlägg'
+    other: '<span class="count">%{count}</span> dagboksinlägg'
   x_matching_taxa:
     one: '%{count} matchande taxon'
     other: '%{count} matchande taxa'
@@ -53,7 +53,7 @@ sv:
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
-    one: "%{count} felbestämning av arter i denna %{rank}"
+    one: "%{count} felbestämning av art i denna %{rank}"
     other: "%{count} felbestämningar av arter i denna %{rank}"
   x_observations:
     one: "%{count} fynd"
@@ -68,8 +68,8 @@ sv:
     one: "<a href='%{url}'>%{count} fynd</a>"
     other: "<a href='%{url}'>%{count} fynd</a>"
   x_observations_reviewed_html:
-    one: "<span class='antal'>%{count}</span> fynd granskat"
-    other: "<span class='antal'>%{count}</span> fynd granskade"
+    one: "<span class='count'>%{count}</span> fynd granskat"
+    other: "<span class='count'>%{count}</span> fynd granskade"
   x_observers_html:
     one: '<span class="count">%{count}</span> observatör'
     other: '<span class="count">%{count}</span> observatörer'
@@ -108,23 +108,23 @@ sv:
     one: "<span class='count'>%{count}</span> observerat taxon"
     other: "<span class='count'>%{count}</span> observerade taxa"
   x_research_grade_observations_html:
-    one: "<span class='antal'>%{count}</span> fynd av forskningsklass"
-    other: "<span class='antal'>%{count}</span> fynd av forskningsklass"
+    one: "<span class='count'>%{count}</span> fynd av forskningsklass"
+    other: "<span class='count'>%{count}</span> fynd av forskningsklass"
   x_research_grade_observations_to_species_html:
-    one: "<span class='antal'>%{count}</span> fynd av forskningsklass bestämd till art eller lägre"
-    other: "<span class='antal'>%{count}</span> fynd av forskningsklass bestämda till art eller lägre"
+    one: "<span class='count'>%{count}</span> fynd av forskningsklass bestämt till art eller lägre"
+    other: "<span class='count'>%{count}</span> fynd av forskningsklass bestämda till art eller lägre"
   x_sounds:
     one: "%{count} ljud"
     other: "%{count} ljud"
   x_taxa_curated_html:
-    one: "<span class='antal'>%{count}</span> förvaltat taxon"
-    other: "<span class='antal'>%{count}</span> förvaltade taxa"
+    one: "<span class='count'>%{count}</span> förvaltat taxon"
+    other: "<span class='count'>%{count}</span> förvaltade taxa"
   x_taxa_matching_current_filters:
     one: "%{count} taxon matchar nuvarande filter"
     other: "%{count} taxa matchar nuvarande filter"
   x_taxon_changes_added_html:
-    one: "<span class='antal'>%{count}</span> taxonändring tillagd"
-    other: "<span class='antal'>%{count}</span> taxonändringar tillagda"
+    one: "<span class='count'>%{count}</span> taxonändring tillagd"
+    other: "<span class='count'>%{count}</span> taxonändringar tillagda"
   _100_day_trends: 100-dagarstrend
   _percent_ID_d: "% bestämda"
   a_community_for_naturalist: En community för naturforskare
@@ -697,12 +697,15 @@ sv:
   back_to_taxon: "Tillbaka till %{defaulttaxon}"
   back_to_taxon_changes: "Tillbaka till taxonändringar"
   back_to_taxon_framework_for_x: "Tillbaka till taxonkontexten för %{taxon_name}"
+  back_to_users_calendar: "Tillbaka till %{user}s kalender"
+  back_to_users_lists: "Tillbaka till %{user}s listor"
   back_to_viewing: "Tillbaka till visning av <i>%{taxon}</i>"
   back_to_x: "Tillbaka till %{noun}"
   back_to_x_assessment: "Tillbaka till %{project}-bedömningar"
   back_to_x_history: "Tillbaka till %{x}s historik"
   back_to_x_journal: "Tillbaka till %{user}s dagbok"
   back_to_x_blog: "Tillbaka till %{x}s blogg"
+  back_to_your_calendar: Tillbaka till din kalender
   back_to_your_dashboard: Tillbaka till din anslagstavla
   back_to_your_lists: Tillbaka till dina listor
   back_to_your_journal: Tillbaka till din dagbok
@@ -2822,6 +2825,10 @@ sv:
   observation_brief_something_on_day_at_time: "Något på %{day} kl. %{time}"
   observation_brief_something_on_day_at_time_by_user: "Något på %{day} kl. %{time} av %{user}"
   observation_brief_something_on_day_by_user: "Något på %{day} av %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Något i %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Något i %{month} %{year} av %{user}"
   observation_brief_something_by_user: "Något av %{user}"
   observation_brief_something_from_place: "Något från %{place}"
   observation_brief_something_from_place_by_user: "Något från %{place} av %{user}"
@@ -2829,10 +2836,18 @@ sv:
   observation_brief_something_from_place_on_day_by_user: "Något från %{place} på %{day} av %{user}"
   observation_brief_something_from_place_on_day_at_time: "Något från %{place} på %{day} kl. %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Något från %{place} på %{day} kl. %{time} av %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Något från %{place} i %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Något från %{place} i %{month} %{year} av %{user}"
   observation_brief_taxon_on_day: "%{taxon} på %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} på %{day} kl. %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} den %{day} kl. %{time} av %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} den %{day} av %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} i %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} i %{month} %{year} av %{user}"
   observation_brief_taxon_by_user: "%{taxon} av %{user}"
   observation_brief_taxon_from_place: "%{taxon} från %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} från %{place} av %{user}"
@@ -2840,6 +2855,10 @@ sv:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} från %{place} på %{day} av %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} från %{place} på %{day} kl. %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} från %{place} på %{day} kl. %{time} av %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} från %{place} i %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} från %{place} i %{month} %{year} av %{user}"
   observations_by_category: "Fynd per kategori"
   observations_by_app: Fynd efter app
   observations_by_rank: Fynd efter rang
@@ -4876,7 +4895,10 @@ sv:
   users_favorites: "%{user}s favoriter"
   users_highlights_and_stats_from_year_on_site: "%{user}s höjdpunkter och statistik från %{year} på %{site}"
   users_id: "%{user}s ID"
+  users_identifications: "%{user}s bestämningar"
+  users_journal: "%{user}s dagbok"
   users_latest_observations_on_site: "%{user}senaste fynd på %{site}"
+  users_lists: "%{user}s listor"
   users_profile: "%{user}s profil"
   users_projects: "%{user}s projekt"
   users_year_on_site: "%{user}s år på %{site} %{year}"

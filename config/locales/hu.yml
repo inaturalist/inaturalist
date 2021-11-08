@@ -849,6 +849,7 @@ hu:
   no_new_messages: Nincs új üzenet
   no_observations: Nincsenek megfigyelések
   no_observations_yet: Még nincsenek megfigyelések
+  no_places_available: Nincsenek helyek
   no_project_to_admin_current_user: "Még nem kezelsz projekteket"
   no_relevant_annotations: Nincsenek kapcsolódó megjelölések
   no_reply_yet: Még nincs válasz
@@ -954,10 +955,16 @@ hu:
   place: Hely
   place_geo:
     geo_planet_place_types:
+      Continent: Földrész
+      continent: földrész
       Country: Ország
       country: ország
       County: Megye
       county: megye
+      Province: Tartomány
+      province: tartomány
+      Region: Régió
+      region: régió
       Time_Zone: Időzóna
       time_zone: időzóna
       Unknown: Ismeretlen
@@ -1210,6 +1217,7 @@ hu:
   species_search: Fajok keresése
   species_taxon_name: Faj- / taxonnév
   species_unknown: Ismeretlen fajok
+  standard: Standard
   start: Kezdete
   start_a_new_project: Új projekt indítása
   start_a_project: Projekt indítása

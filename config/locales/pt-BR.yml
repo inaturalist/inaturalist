@@ -108,11 +108,11 @@ pt-BR:
     one: "<span class='count'>1</span> táxon observado"
     other: "<span class='count'>%{count}</span> táxons observados"
   x_research_grade_observations_html:
-    one: "<span class='count'>1</span> observação na categoria de pesquisa</span>"
-    other: "<span class='count'>%{count}</span> observações na categoria de pesquisa"
+    one: "<span class='count'>%{count}</span> observação em Nível de Pesquisa"
+    other: "<span class='count'>%{count}</span> observações em Nível de Pesquisa"
   x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> observação na categoria de pesquisa identificada ao nível de espécie ou menos</span>"
-    other: "<span class='count'>%{count}</span> observações na categoria de pesquisa identificada ao nível de espécie ou menos"
+    one: "<span class='count'>%{count}</span> observação em Nível de Pesquisa identificada a nível de espécie ou menor"
+    other: "<span class='count'>%{count}</span> observações em Nível de Pesquisa identificadas a nível de espécie ou menor"
   x_sounds:
     one: "%{count} som"
     other: "%{count} sons"
@@ -682,12 +682,15 @@ pt-BR:
   back_to_taxon: "Voltar para %{defaulttaxon}"
   back_to_taxon_changes: "Voltar a mudanças de taxón"
   back_to_taxon_framework_for_x: "Voltar para a estrutura do taxon para %{taxon_name}"
+  back_to_users_calendar: "Voltar ao calendário de %{user}"
+  back_to_users_lists: "Voltar às listas de %{user}"
   back_to_viewing: "Voltar para visualização <i>%{taxon}</i>"
   back_to_x: "Voltar para %{noun}"
   back_to_x_assessment: "Volte para as avaliações de %{project}"
   back_to_x_history: "Voltar para %{x} histórico"
   back_to_x_journal: "Voltar ao boletim de %{user}"
   back_to_x_blog: "Voltar ao blog de %{x}"
+  back_to_your_calendar: Voltar ao seu calendário
   back_to_your_dashboard: Voltar ao seu painel
   back_to_your_lists: Voltar para sua lista
   back_to_your_journal: Voltar para seu diário
@@ -3659,7 +3662,7 @@ pt-BR:
   project_icon: Ícone do Projeto
   project_journal: Diário do Projeto
   project_id_or_url_slug: Identificador (ID) ou URL, exemplo 333 ou meu-projeto
-  project_list: Lista de projetos
+  project_list: Lista do projeto
   project_list_defaults:
     title: "Lista de verificação de %{owner_name}"
     description: A lista de espécies para %{owner_name}
@@ -4902,6 +4905,7 @@ pt-BR:
   users_highlights_and_stats_from_year_on_site: "Destaques e estatísticas de %{user} durante %{year} no %{site}"
   users_id: "Identificação de %{user}"
   users_identifications: "Identificações de %{user}"
+  users_journal: "Diário de %{user}"
   users_latest_observations_on_site: "Últimas observações de %{user} em %{site}"
   users_lists: "Listas de %{user}"
   users_profile: "Perfil de %{user}"
@@ -5500,7 +5504,7 @@ pt-BR:
           Carregue automaticamente esta lista com táxons observados neste local. Note que você só pode escolher lugares que tem limites.
       show:
         project_list_desc: |
-          Táxons adicionados manualmente por administradores de projetos e, táxons, representados por observações à Nível de Pesquisa adicionados ao projeto são exibidos na lista do projeto.
+          Táxons adicionados manualmente por administradores de projetos e táxons representados por observações em Nível de Pesquisa adicionadas ao projeto são exibidos em listas de projeto.
     messages:
       from: De
       to: Para
