@@ -708,13 +708,12 @@ describe User do
 
         it "should generate for new project owners even if they're new members" do
           p = Project.make!( user: user )
-          po = make_project_observation( project: p )
-          a = without_delay do
-            make_admin
-          end
-          expect( UpdateAction.unviewed_by_user_from_query( a.id, { } ) ).to eq false
+          make_project_observation( project: p )
+          pu = create( :project_user, project: p, role: ProjectUser::MANAGER )
+          expect( UpdateAction.unviewed_by_user_from_query( pu.user_id, {} ) ).to eq false
           without_delay { user.sane_destroy }
-          expect( UpdateAction.unviewed_by_user_from_query( a.id, resource: p ) ).to eq true
+          expect( Project.find_by_id( p.id ) ).not_to be_blank
+          expect( UpdateAction.unviewed_by_user_from_query( pu.user_id, resource: p ) ).to eq true
         end
       end
     end
