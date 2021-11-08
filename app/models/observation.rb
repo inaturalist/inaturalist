@@ -743,7 +743,7 @@ class Observation < ApplicationRecord
       { taxon: { taxon_names: :place_taxon_names } },
       :iconic_taxon,
       { identifications: :stored_preferences },
-      { photos: [ :flags, :user ] },
+      { photos: [ :flags, :user, :file_extension, :file_prefix ] },
       :stored_preferences, :flags, :quality_metrics,
       :votes_for ]
     # why do we need taxon_descriptions when logged in?

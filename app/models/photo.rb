@@ -10,7 +10,13 @@ class Photo < ApplicationRecord
   has_many :observations, :through => :observation_photos
   has_many :taxa, :through => :taxon_photos
   
-  attr_accessor :api_response, :orphan
+  attr_accessor :api_response, :orphan,
+    :remote_original_url,
+    :remote_large_url,
+    :remote_medium_url,
+    :remote_small_url,
+    :remote_square_url,
+    :remote_thumb_url
   serialize :metadata
 
   include Shared::LicenseModule
@@ -38,17 +44,17 @@ class Photo < ApplicationRecord
 
   class MissingPhotoError < StandardError; end
 
-  def extension
-    return unless self["original_url"]
-    if matches = self["original_url"].match(/original\.([^?]*)(\?|$)/)
+  def parse_extension
+    return unless file.url( :original )
+    if matches = file.url( :original ).match(/original\.([^?]*)(\?|$)/)
       return matches[1]
     end
     nil
   end
 
-  def url_prefix
-    return unless self["original_url"]
-    if matches = self["original_url"].match( /^(.*)\/#{id}\/original/ )
+  def parse_url_prefix
+    return unless file.url( :original )
+    if matches = file.url( :original ).match( /^(.*)\/#{id}\/original/ )
       return matches[1]
     end
     nil
@@ -78,20 +84,21 @@ class Photo < ApplicationRecord
     sized_url( :thumb )
   end
 
+  def processing?
+    file_prefix.nil?
+  end
+
   def sized_url( size = "original" )
     if flags.any?{ |f| f.flag == Flag::COPYRIGHT_INFRINGEMENT }
       return FakeView.image_url( "copyright-infringement-#{size}.png" )
     end
-    if !self["original_url"] || self["original_url"].match( /attachment_defaults/ )
+    if self.instance_variable_get("@remote_#{size}_url")
+      return self.instance_variable_get("@remote_#{size}_url")
+    end
+    if processing?
       return FakeView.uri_join( FakeView.root_url, LocalPhoto.new.file.url( size ) )
     end
-    if self.is_a?( LocalPhoto )
-      #return "#{file_prefix.prefix}/#{id}/#{size}.#{file_extension.extension}"
-      return unless url_prefix
-      return ( "#{url_prefix}/#{id}/#{size}.#{extension}" ).with_fixed_https
-    end
-    return unless self["#{size}_url"]
-    return self["#{size}_url"].with_fixed_https
+    "#{file_prefix.prefix}/#{id}/#{size}.#{file_extension.extension}"
   end
 
   def to_s
@@ -349,7 +356,7 @@ class Photo < ApplicationRecord
         [ "user_id", "license", "mobile", "metadata" ].include?(k)
     end
     photo_url = [ :original, :large, :medium, :small ].map do |s|
-      remote_photo["#{ s }_url"]
+      remote_photo.instance_variable_get( "@remote_#{ s }_url" )
     end.compact.first
     return unless photo_url
     if photo_url.size <= 512

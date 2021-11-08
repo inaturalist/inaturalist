@@ -154,12 +154,12 @@ class LocalPhoto < Photo
   end
 
   def in_public_s3_bucket?
-    self["original_url"] ? !! self["original_url"].match( LocalPhoto.s3_bucket( true ) ) :
+    file_prefix ? !! file_prefix.prefix.match( LocalPhoto.s3_bucket( true ) ) :
       could_be_public
   end
 
   def s3_account
-    return @s3_account if @s3_account
+    return @s3_account if instance_variable_defined?( :@s3_account )
     @s3_account = self.in_public_s3_bucket? ? "public" : nil
   end
 
@@ -180,7 +180,7 @@ class LocalPhoto < Photo
 
   def photo_bucket_should_be_changed?
     # must have a URL
-    return false unless self["original_url"]
+    return false unless file_prefix
     return false unless CONFIG.usingS3
     # the code must be configured to use a public bucket
     return false unless LocalPhoto.odp_s3_bucket_enabled?
@@ -247,21 +247,10 @@ class LocalPhoto < Photo
 
   def set_urls
     return if new_record?
-    styles = %w(original large medium small thumb square)
     updates = { }
-    blank_file = LocalPhoto.new.file
-    styles.map do |s|
-      # photos w/o files will have nil URLs, which will be rendered as "Processing..." placeholders
-      updates["#{s}_url"] = if file.blank? || !file.queued_for_write[s].blank?
-        nil
-      else
-        url = file.url(s)
-        url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
-      end
-    end
     updates[:native_page_url] = FakeView.photo_url(self) if native_page_url.blank?
-    updates[:file_extension_id] = FileExtension.id_for_extension( self.extension )
-    updates[:file_prefix_id] = FilePrefix.id_for_prefix( self.url_prefix )
+    updates[:file_extension_id] = FileExtension.id_for_extension( self.parse_extension )
+    updates[:file_prefix_id] = FilePrefix.id_for_prefix( self.parse_url_prefix )
     Photo.where(id: id).update_all(updates)
     true
   end
@@ -457,10 +446,6 @@ class LocalPhoto < Photo
     self.save
   end
 
-  def processing?
-    square_url.blank? || square_url.include?(LocalPhoto.new.file(:square))
-  end
-
   def extract_dimensions(style)
     if file? && tempfile = file.queued_for_write[style]
       if sizes = FastImage.size(tempfile)
@@ -566,7 +551,7 @@ class LocalPhoto < Photo
     # an additional check to make sure the photo URLs contain the expected domain.
     # Later there will be a string substitution replacing the source domain with
     # the target domain
-    return unless photo["original_url"].include?( source_domain )
+    return unless photo.file_prefix && photo.file_prefix.prefix.include?( source_domain )
 
     # fetch list of files at the source
     images = LocalPhoto.aws_images_from_bucket( s3_client, source_bucket, photo )
@@ -583,18 +568,7 @@ class LocalPhoto < Photo
 
       # override the photo s3_account so its URLs will point to the new bucket
       photo.s3_account = photo_started_in_public_s3_bucket ? nil : "public"
-
-      # do a string substition to replace the source domain with the target domain.
-      # This is necessary for now because we switched how we determine image extensions
-      # in 2016 (see NOTE near the top of this file) and we cannot accurately recreate all
-      # actual file extensions using Paperclip or the `set_urls` method. Only the *_url
-      # attributes contain the accurate file names. So this is doing the minimal update
-      # to URLs which his just swap out domains
-      styles = %w(original large medium small thumb square)
-      url_updates = Hash[styles.map do |s|
-        ["#{s}_url", photo["#{s}_url"].sub( source_domain, target_domain )]
-      end]
-      photo.update_columns( url_updates )
+      photo.update_column( :file_prefix_id, FilePrefix.id_for_prefix( photo.parse_url_prefix ) )
       photo.reload
 
       # if the photo is being removed as a result of a flag being applied,

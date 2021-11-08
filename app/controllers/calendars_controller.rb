@@ -37,7 +37,7 @@ class CalendarsController < ApplicationController
         :quality_metrics,
         :stored_preferences,
         { taxon: { taxon_names: :place_taxon_names } },
-        { photos: :flags }
+        { photos: [:flags, :file_prefix, :file_extension] }
       )
       if @selected_user != current_user
         filtered_obs = @observations.select {|o| o.coordinates_viewable_by?( current_user )}
