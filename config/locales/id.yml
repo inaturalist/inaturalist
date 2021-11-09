@@ -1525,6 +1525,10 @@ id:
   establishment_means_describes_how: |
     Cara pengenalan menjelaskan bagaimana sebuah takson bisa berada di sebuah area.
     Lihat DarwinCore untuk <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">informasi lebih lanjut tentang terminologinya</a>.
+  establishment_means_descriptions:
+    native: berevolusi di area ini atau tiba melalui cara non-antropogenik
+    endemic: asli dan tidak ada di tempat lain
+    introduced: tiba di area ini melalui sarana antropogenik
   estimate_which_input: |
     Memperkirakan id takson input mana diganti dengan taksa output mana dan yang mana yang akan diperkasar menjadi induk yang lebih umum ketika pemisahan diterapkan. Hal ini dapat memerlukan beberapa waktu untuk dihitung. Tautan-tautan ke pengamatan dipotong menjadi subset berisi 200.
   event_in_progress: Acara sedang berlangsung
@@ -6308,6 +6312,11 @@ id:
             <strong class="count">%{count} pengamatan</strong>,
             termasuk pekerjaan dari 
             <strong class="count">%{helpers_count} orang</strong> yang telah membantu Anda dengan identifikasi
+        x_projects_html:
+          other: |
+            <strong class="count">%{count} proyek</strong>
+            yang tidak
+            memiliki manajer atau pengelola yang dapat menjadi pemilik baru
         x_identifications_html:
           other: |
             <strong class="count">%{count} identifikasi Anda</strong>
