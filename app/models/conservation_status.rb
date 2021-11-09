@@ -6,7 +6,6 @@ class ConservationStatus < ApplicationRecord
   belongs_to :place
   belongs_to :source
 
-  before_create :set_geoprivacy
   before_save :normalize_geoprivacy
   after_save :update_observation_geoprivacies, :if => lambda {|record|
     record.saved_change_to_id? || record.saved_change_to_geoprivacy? || record.saved_change_to_place_id?
@@ -102,13 +101,6 @@ class ConservationStatus < ApplicationRecord
     when "Ex" then "probablemente extinta en el medio silvestre"
     else status
     end
-  end
-
-  def set_geoprivacy
-    if !iucn.nil? && iucn <= Taxon::IUCN_LEAST_CONCERN && user_id.blank?
-      self.geoprivacy = Observation::OPEN
-    end
-    true
   end
 
   def normalize_geoprivacy
