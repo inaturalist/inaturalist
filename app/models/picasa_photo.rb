@@ -124,7 +124,7 @@ class PicasaPhoto < Photo
     options[:remote_small_url] = "#{api_response["baseUrl"]}=w240-h240"
     options[:remote_medium_url] = "#{api_response["baseUrl"]}=w500-h500"
     options[:remote_large_url] = "#{api_response["baseUrl"]}=w1024-h1024"
-    options[:original_url] = "#{api_response["baseUrl"]}=d"
+    options[:remote_original_url] = "#{api_response["baseUrl"]}=d"
     options[:native_page_url] = api_response["productUrl"]
     picasa_photo = PicasaPhoto.new( options )
     picasa_photo.api_response = api_response

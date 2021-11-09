@@ -46,15 +46,23 @@ class Photo < ApplicationRecord
 
   def parse_extension
     return unless file.url( :original )
-    if matches = file.url( :original ).match(/original\.([^?]*)(\?|$)/)
+    if CONFIG.usingS3 && matches = file.url( :original ).match(/original\.([^?]*)(\?|$)/)
+      return matches[1]
+    end
+    # the local path is configured to be a little different: ...:id/:style/:basename.:extension
+    if !CONFIG.usingS3 && matches = file.url( :original ).match(/original\/[^\.]+\.([^?]*)(\?|$)/)
       return matches[1]
     end
     nil
   end
 
   def parse_url_prefix
-    return unless file.url( :original )
-    if matches = file.url( :original ).match( /^(.*)\/#{id}\/original/ )
+    original =  file.url( :original )
+    return unless original
+    if original !~ /http/
+      original = FakeView.uri_join( FakeView.root_url, original ).to_s
+    end
+    if matches = original.match( /^(.*)\/#{id}\/original/ )
       return matches[1]
     end
     nil
@@ -292,10 +300,9 @@ class Photo < ApplicationRecord
   end
 
   def original_dimensions
-    return unless metadata && metadata[:dimensions] && metadata[:dimensions][:original]
     {
-      height: metadata[:dimensions][:original][:height],
-      width: metadata[:dimensions][:original][:width]
+      height: height,
+      width: width
     }
   end
 
@@ -385,7 +392,7 @@ class Photo < ApplicationRecord
   # to be used primarly for turn_remote_photo_into_local_photo
   def best_available_url
     [ :original, :large, :medium, :small ].each do |s|
-      url = self["#{ s }_url"]
+      url = self.instance_variable_get("@remote_#{s}_url")
       if url && Photo.valid_remote_photo_url?(url)
         return url
       end
