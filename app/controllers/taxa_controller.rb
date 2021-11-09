@@ -37,7 +37,8 @@ class TaxaController < ApplicationController
   before_action :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :update_photos, :set_photos, :edit_colors,
     :update_colors, :refresh_wikipedia_summary, :merge, 
-    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details]
+    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details,
+    :history]
   before_action :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
   before_action :limit_page_param_for_search, :only => [:index,
@@ -46,6 +47,7 @@ class TaxaController < ApplicationController
     :flickr_photos_tagged, :tag_flickr_photos, 
     :tag_flickr_photos_from_observations]
   before_action :load_form_variables, :only => [:edit, :new]
+  before_action :set_paper_trail_whodunnit
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos, :set_photos]
   
   GRID_VIEW = "grid"
@@ -1164,6 +1166,19 @@ class TaxaController < ApplicationController
         end
       end
     end
+  end
+
+  def history
+    @record = @taxon
+    # @versions = @taxon.versions +
+    #   PaperTrail::Version.where( item_type: "TaxonName", item_id: @taxon.taxon_name_ids ).all +
+    #   PaperTrail::Version.where( item_type: "ConservationStatus", item_id: @taxon.conservation_status_ids ).all
+    @versions = PaperTrail::Version.where( item_type: "Taxon", item_id: @taxon.id ).or(
+      PaperTrail::Version.where( item_type: "TaxonName", item_id: @taxon.taxon_name_ids )
+    ).or(
+      PaperTrail::Version.where( item_type: "ConservationStatus", item_id: @taxon.conservation_status_ids )
+    )
+    render layout: "bootstrap-container"
   end
 
   private

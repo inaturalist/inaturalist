@@ -35,6 +35,7 @@ class Taxon < ApplicationRecord
   end
   acts_as_flaggable
   has_ancestry orphan_strategy: :adopt
+  has_paper_trail ignore: [:created_at, :updated_at, :updater_id, :creator_id]
 
   has_many :taxon_names, dependent: :destroy
   has_many :taxon_changes
@@ -1453,12 +1454,12 @@ class Taxon < ApplicationRecord
     end
 
     if details.blank? || details[:summary].blank?
-      Taxon.where( id: self ).update_all( wikipedia_summary: Date.today ) if locale.to_s =~ /^en-?/
+      update( wikipedia_summary: Date.today ) if locale.to_s =~ /^en-?/
       return nil
     end
 
     if locale.to_s =~ /^en-?/
-      Taxon.where( id: self ).update_all( wikipedia_summary: details[:summary] )
+      update( wikipedia_summary: details[:summary] )
     end
     td = taxon_descriptions.where( locale: locale ).first
     td ||= taxon_descriptions.build( locale: locale )

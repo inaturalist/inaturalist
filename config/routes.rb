@@ -442,6 +442,7 @@ Rails.application.routes.draw do
       get "taxonomy_details", as: "taxonomy_details_for"
       get "show_google"
       get "taxobox"
+      get "history"
     end
     collection do
       get "synonyms"
@@ -451,6 +452,7 @@ Rails.application.routes.draw do
   resources :taxon_names do
     member do
       delete :destroy_synonyms, as: "delete_synonyms_of"
+      get :history
     end
   end
   # get 'taxa/:id/description' => 'taxa#describe', :as => :describe_taxon

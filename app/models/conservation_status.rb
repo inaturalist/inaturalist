@@ -1,5 +1,7 @@
 #encoding: utf-8
 class ConservationStatus < ApplicationRecord
+  has_paper_trail ignore: [:created_at, :updated_at, :id, :taxon_id, :user_id]
+
   belongs_to :taxon
   belongs_to :user
   has_updater

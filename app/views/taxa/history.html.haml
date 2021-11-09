@@ -1,0 +1,55 @@
+= content_for :extracss do
+  :css
+    table.changes td {
+      width: 40%;
+      overflow-wrap: anywhere;
+    }
+    table.changes td.attr {
+      width: 20%;
+    }
+.row
+  #pageheader.col-xs-12
+    %span.breadcrumbs
+      = link_to t(:back), edit_taxon_path( @record ), class: "back crumb"
+    %h2
+      =t :bold_label_colon_value_html, label: t(:history), value: @record.name
+.row
+  .col-xs-12
+    %table.table
+      %thead
+        %tr
+          %th Date
+          %th Event
+          %th Record
+          %th User
+          %th Changes
+      %tbody
+        - for version in @versions
+          %tr
+            %td.nobr
+              .date=l version.created_at.to_date, format: :short_with_year
+              .time.text-muted=l version.created_at, format: :observed_at
+            %td= version.event
+            %td
+              :ruby
+                item_url = case version.item_type
+                  when "TaxonName" then edit_taxon_name_path( version.item )
+                  when "ConservationStatus" then edit_taxon_path( version.item )
+                  else version.item
+                end
+              = link_to version.item.try_methods(:to_plain_s, :to_s) || t( "activerecord.models.#{version.item_type}", default: version.item_type.underscore.humanize ), item_url
+            %td= link_to_user( version.user )
+            %td
+              %table.table.changes
+                %thead
+                  %tr
+                    %th Attribute
+                    %th Previous Value
+                    %th Changed to
+                %tbody
+                  - for changed_attr, changes in version.changeset
+                    - next if changes[0].to_s == changes[1].to_s
+                    %tr
+                      %td.attr=t "activerecord.attributes.#{version.item_type}.#{changed_attr}", default: changed_attr.humanize
+                      %td= changes[0]
+                      %td= changes[1]

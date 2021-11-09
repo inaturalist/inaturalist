@@ -38,7 +38,6 @@ CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
 COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial types and functions';
 
 
-
 --
 -- Name: uuid-ossp; Type: EXTENSION; Schema: -; Owner: -
 --
@@ -3153,7 +3152,6 @@ CREATE SEQUENCE public.places_id_seq
 ALTER SEQUENCE public.places_id_seq OWNED BY public.places.id;
 
 
-
 --
 -- Name: places_sites; Type: TABLE; Schema: public; Owner: -
 --
@@ -5044,13 +5042,14 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 --
 
 CREATE TABLE public.versions (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     item_type character varying NOT NULL,
     item_id bigint NOT NULL,
     event character varying NOT NULL,
     whodunnit character varying,
+    object text,
     created_at timestamp without time zone,
-    object_changes json
+    object_changes text
 );
 
 
@@ -5059,7 +5058,6 @@ CREATE TABLE public.versions (
 --
 
 CREATE SEQUENCE public.versions_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -6355,14 +6353,6 @@ ALTER TABLE ONLY public.exploded_atlas_places
 
 
 --
--- Name: places_sites places_sites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.places_sites
-    ADD CONSTRAINT places_sites_pkey PRIMARY KEY (id);
-
-
---
 -- Name: external_taxa external_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6704,6 +6694,14 @@ ALTER TABLE ONLY public.place_taxon_names
 
 ALTER TABLE ONLY public.places
     ADD CONSTRAINT places_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: places_sites places_sites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.places_sites
+    ADD CONSTRAINT places_sites_pkey PRIMARY KEY (id);
 
 
 --
@@ -9195,6 +9193,7 @@ CREATE INDEX index_taxon_ranges_on_geom ON public.taxon_ranges USING gist (geom)
 
 CREATE INDEX index_taxon_ranges_on_taxon_id ON public.taxon_ranges USING btree (taxon_id);
 
+
 --
 -- Name: index_taxon_ranges_on_updater_id; Type: INDEX; Schema: public; Owner: -
 --
@@ -10026,6 +10025,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210908061217'),
 ('20210908070001'),
 ('20210930182050'),
-('20211001151300');
+('20211001151300'),
+('20211028180147'),
+('20211028180148');
 
 

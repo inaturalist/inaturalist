@@ -427,6 +427,9 @@ GEM
       rack
     optimist (3.0.1)
     orm_adapter (0.5.0)
+    paper_trail (12.1.0)
+      activerecord (>= 5.2)
+      request_store (~> 1.1)
     paperclip (6.1.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
@@ -497,6 +500,8 @@ GEM
     rdoc (6.3.1)
     redcarpet (3.5.1)
     regexp_parser (2.1.1)
+    request_store (1.5.0)
+      rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -727,6 +732,7 @@ DEPENDENCIES
   omniauth-soundcloud!
   omniauth-twitter
   optimist
+  paper_trail
   paperclip
   patron
   pg
@@ -776,4 +782,4 @@ RUBY VERSION
    ruby 2.6.5p114
 
 BUNDLED WITH
-   2.2.24
+   2.2.27

@@ -1,4 +1,5 @@
 class PlaceTaxonName < ApplicationRecord
+  has_paper_trail ignore: [:created_at, :updated_at, :id, :taxon_name_id, :place_id]
   belongs_to :place, :inverse_of => :place_taxon_names
   belongs_to :taxon_name, :inverse_of => :place_taxon_names
   validates_uniqueness_of :place_id, :scope => :taxon_name_id

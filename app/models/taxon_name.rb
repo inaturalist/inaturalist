@@ -4,6 +4,15 @@ class TaxonName < ApplicationRecord
   belongs_to :taxon
   belongs_to :source
   belongs_to :creator, class_name: "User"
+  has_paper_trail ignore: [
+    :created_at,
+    :creator_id,
+    :id,
+    :parameterized_lexicon,
+    :taxon_id,
+    :updated_at,
+    :updater_id,
+  ]
   has_updater
   has_many :taxon_scheme_taxa, dependent: :destroy
   has_many :place_taxon_names, dependent: :delete_all, inverse_of: :taxon_name

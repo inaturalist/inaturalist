@@ -2,12 +2,13 @@
 
 class TaxonNamesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :load_taxon_name, only: [:show, :edit, :update, :destroy, :destroy_synonyms]
+  before_action :load_taxon_name, only: [:show, :edit, :update, :destroy, :destroy_synonyms, :history]
   before_action :load_taxon, except: [:index, :destroy_synonyms]
   before_action :curator_required_for_sciname, only: [:create, :update, :destroy, :destroy_synonyms]
   before_action :curator_or_creator_required, only: [:edit, :update, :destroy]
   before_action :curator_required, only: [:taxon, :destroy_synonyms]
   before_action :load_lexicons, only: [:new, :create, :edit, :update]
+  before_action :set_paper_trail_whodunnit
 
   cache_sweeper :taxon_name_sweeper, only: [:create, :update, :destroy]
 
@@ -143,6 +144,10 @@ class TaxonNamesController < ApplicationController
         redirect_to( edit_taxon_name_path( @taxon_name ) )
       end
     end
+  end
+
+  def history
+    render layout: "bootstrap-container"
   end
 
   private
