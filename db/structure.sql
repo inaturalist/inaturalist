@@ -38,7 +38,6 @@ CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
 COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial types and functions';
 
 
-
 --
 -- Name: uuid-ossp; Type: EXTENSION; Schema: -; Owner: -
 --
@@ -590,6 +589,48 @@ CREATE SEQUENCE public.atlases_id_seq
 --
 
 ALTER SEQUENCE public.atlases_id_seq OWNED BY public.atlases.id;
+
+
+--
+-- Name: audits; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.audits (
+    id bigint NOT NULL,
+    auditable_id integer,
+    auditable_type character varying,
+    associated_id integer,
+    associated_type character varying,
+    user_id integer,
+    user_type character varying,
+    username character varying,
+    action character varying,
+    audited_changes jsonb,
+    version integer DEFAULT 0,
+    comment character varying,
+    remote_address character varying,
+    request_uuid character varying,
+    created_at timestamp without time zone
+);
+
+
+--
+-- Name: audits_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.audits_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: audits_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.audits_id_seq OWNED BY public.audits.id;
 
 
 --
@@ -3153,7 +3194,6 @@ CREATE SEQUENCE public.places_id_seq
 ALTER SEQUENCE public.places_id_seq OWNED BY public.places.id;
 
 
-
 --
 -- Name: places_sites; Type: TABLE; Schema: public; Owner: -
 --
@@ -4710,6 +4750,16 @@ ALTER SEQUENCE public.taxon_versions_id_seq OWNED BY public.taxon_versions.id;
 
 
 --
+-- Name: time_zone_geometries; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.time_zone_geometries (
+    tzid character varying,
+    geom public.geometry(MultiPolygon)
+);
+
+
+--
 -- Name: trip_purposes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5309,6 +5359,13 @@ ALTER TABLE ONLY public.atlas_alterations ALTER COLUMN id SET DEFAULT nextval('p
 --
 
 ALTER TABLE ONLY public.atlases ALTER COLUMN id SET DEFAULT nextval('public.atlases_id_seq'::regclass);
+
+
+--
+-- Name: audits id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.audits ALTER COLUMN id SET DEFAULT nextval('public.audits_id_seq'::regclass);
 
 
 --
@@ -6203,6 +6260,14 @@ ALTER TABLE ONLY public.atlases
 
 
 --
+-- Name: audits audits_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.audits
+    ADD CONSTRAINT audits_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: colors colors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6352,14 +6417,6 @@ ALTER TABLE ONLY public.deleted_users
 
 ALTER TABLE ONLY public.exploded_atlas_places
     ADD CONSTRAINT exploded_atlas_places_pkey PRIMARY KEY (id);
-
-
---
--- Name: places_sites places_sites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.places_sites
-    ADD CONSTRAINT places_sites_pkey PRIMARY KEY (id);
 
 
 --
@@ -6704,6 +6761,14 @@ ALTER TABLE ONLY public.place_taxon_names
 
 ALTER TABLE ONLY public.places
     ADD CONSTRAINT places_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: places_sites places_sites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.places_sites
+    ADD CONSTRAINT places_sites_pkey PRIMARY KEY (id);
 
 
 --
@@ -7139,6 +7204,20 @@ ALTER TABLE ONLY public.year_statistics
 
 
 --
+-- Name: associated_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX associated_index ON public.audits USING btree (associated_type, associated_id);
+
+
+--
+-- Name: auditable_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auditable_index ON public.audits USING btree (auditable_type, auditable_id, version);
+
+
+--
 -- Name: fk_flags_user; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7290,6 +7369,20 @@ CREATE INDEX index_atlases_on_taxon_id ON public.atlases USING btree (taxon_id);
 --
 
 CREATE INDEX index_atlases_on_user_id ON public.atlases USING btree (user_id);
+
+
+--
+-- Name: index_audits_on_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audits_on_created_at ON public.audits USING btree (created_at);
+
+
+--
+-- Name: index_audits_on_request_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audits_on_request_uuid ON public.audits USING btree (request_uuid);
 
 
 --
@@ -9195,6 +9288,7 @@ CREATE INDEX index_taxon_ranges_on_geom ON public.taxon_ranges USING gist (geom)
 
 CREATE INDEX index_taxon_ranges_on_taxon_id ON public.taxon_ranges USING btree (taxon_id);
 
+
 --
 -- Name: index_taxon_ranges_on_updater_id; Type: INDEX; Schema: public; Owner: -
 --
@@ -9585,6 +9679,13 @@ CREATE INDEX taxon_names_lower_name_index ON public.taxon_names USING btree (low
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
+
+
+--
+-- Name: user_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX user_index ON public.audits USING btree (user_id, user_type);
 
 
 --
@@ -9985,6 +10086,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190702063435'),
 ('20190820224224'),
 ('20190918161513'),
+('20191101004413'),
 ('20191104233418'),
 ('20191115201008'),
 ('20191203201511'),
@@ -10026,6 +10128,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210908061217'),
 ('20210908070001'),
 ('20210930182050'),
-('20211001151300');
+('20211001151300'),
+('20211109220615');
 
 

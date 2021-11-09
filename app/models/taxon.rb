@@ -33,6 +33,15 @@ class Taxon < ApplicationRecord
     self.uuid = uuid.downcase
     true
   end
+  audited except: [
+    :creator_id,
+    :delta,
+    :listed_taxa_count,
+    :observations_count,
+    :updater_id,
+    :uuid,
+    :version
+  ]
   acts_as_flaggable
   has_ancestry orphan_strategy: :adopt
 

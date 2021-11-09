@@ -232,6 +232,10 @@
       <%= link_to_add_association t(:add_conservation_status), f, :conservation_statuses %>
     </div>
   </fieldset>
+
+  <div class="clear">
+    <%= f.text_area :audit_comment, label: t(:note), placeholder: "Why are you making this change? (optional)" %>
+  </div>
   
   <div class="clear buttonrow">
     <% if @taxon.observose_warning_branch? -%>

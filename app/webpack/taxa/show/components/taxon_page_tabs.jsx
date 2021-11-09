@@ -106,6 +106,9 @@ class TaxonPageTabs extends React.Component {
                 case "new-atlas":
                   window.location = `/atlases/new?taxon_id=${taxon.id}`;
                   break;
+                case "history":
+                  window.location = `/taxa/${taxon.id}/history`;
+                  break;
                 default:
                   window.location = `/taxa/${taxon.id}/edit`;
               }
@@ -163,6 +166,13 @@ class TaxonPageTabs extends React.Component {
                 <i className="fa fa-pencil" />
                 { " " }
                 { I18n.t( "edit_taxon" ) }
+              </MenuItem>
+              <MenuItem
+                eventKey="history"
+              >
+                <i className="fa fa-history" />
+                { " " }
+                { I18n.t( "history" ) }
               </MenuItem>
               { atlasItem }
             </Dropdown.Menu>

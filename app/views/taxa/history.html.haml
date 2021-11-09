@@ -1,0 +1,68 @@
+= content_for :extracss do
+  :css
+    table.changes td {
+      width: 40%;
+      overflow-wrap: anywhere;
+    }
+    table.changes td.attr {
+      width: 20%;
+    }
+.row
+  #pageheader.col-xs-12
+    %span.breadcrumbs
+      = link_to t(:back), edit_taxon_path( @record ), class: "back crumb"
+    %h2
+      =t :bold_label_colon_value_html, label: t(:history), value: @record.name
+.row
+  .col-xs-12
+    %table.table
+      %thead
+        %tr
+          %th Date
+          %th Action
+          %th Record
+          %th User
+          %th Changes
+      %tbody
+        - for audit in @audits
+          %tr
+            %td.nobr
+              .date=l audit.created_at.to_date, format: :short_with_year
+              .time.text-muted=l audit.created_at, format: :observed_at
+            %td= audit.action
+            %td
+              :ruby
+                item_url = case audit.auditable_type
+                  when "TaxonName" then edit_taxon_name_path( audit.auditable )
+                  when "ConservationStatus" then edit_taxon_path( audit.auditable )
+                  else audit.auditable
+                end
+              = link_to audit.auditable.try_methods(:to_plain_s, :to_s) || t( "activerecord.models.#{audit.auditable_type}", default: audit.auditable_type.underscore.humanize ), item_url
+            %td= link_to_user( audit.user )
+            %td
+              - unless audit.comment.blank?
+                %blockquote= formatted_user_text( audit.comment, skip_simple_format: true )
+              - unless audit.audited_changes.blank?
+                %table.table.changes
+                  - if audit.action == "create"
+                    %thead
+                      %tr
+                        %th Attribute
+                        %th Value
+                    %tbody
+                      - for changed_attr, val in audit.audited_changes
+                        %tr
+                          %td.attr=t "activerecord.attributes.#{audit.auditable_type}.#{changed_attr}", default: changed_attr.humanize
+                          %td= val
+                  - elsif audit.action == "update"
+                    %thead
+                      %tr
+                        %th Attribute
+                        %th Previous Value
+                        %th Changed to
+                    %tbody
+                      - for changed_attr, changes in audit.audited_changes
+                        %tr
+                          %td.attr=t "activerecord.attributes.#{audit.auditable_type}.#{changed_attr}", default: changed_attr.humanize
+                          %td= changes[0]
+                          %td= changes[1]

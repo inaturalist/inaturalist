@@ -159,6 +159,8 @@ GEM
       tilt
     arel (9.0.0)
     ast (2.4.2)
+    audited (5.0.2)
+      activerecord (>= 5.0, < 7.1)
     aws-eventstream (1.1.1)
     aws-partitions (1.470.0)
     aws-sdk-cloudfront (1.51.0)
@@ -662,6 +664,7 @@ DEPENDENCIES
   acts_as_votable
   ancestry
   angular-rails-templates
+  audited (~> 5.0)
   aws-sdk-cloudfront
   aws-sdk-s3
   aws-sdk-waf

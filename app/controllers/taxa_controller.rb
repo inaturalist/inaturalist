@@ -37,7 +37,8 @@ class TaxaController < ApplicationController
   before_action :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :update_photos, :set_photos, :edit_colors,
     :update_colors, :refresh_wikipedia_summary, :merge, 
-    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details]
+    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details,
+    :history]
   before_action :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
   before_action :limit_page_param_for_search, :only => [:index,
@@ -1164,6 +1165,16 @@ class TaxaController < ApplicationController
         end
       end
     end
+  end
+
+  def history
+    @record = @taxon
+    @audits = Audited::Audit.where( auditable_type: "Taxon", auditable_id: @taxon.id ).or(
+      Audited::Audit.where( auditable_type: "TaxonName", auditable_id: @taxon.taxon_name_ids )
+    ).or(
+      Audited::Audit.where( auditable_type: "ConservationStatus", auditable_id: @taxon.conservation_status_ids )
+    )
+    render layout: "bootstrap-container"
   end
 
   private
