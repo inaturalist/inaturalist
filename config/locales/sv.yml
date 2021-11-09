@@ -1593,6 +1593,10 @@ sv:
   establishment_means_describes_how: |
     Invandringshistoria beskriver hur ett taxon etablerades i ett område.
     Se DarwinCore för <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">mer information om terminologi</a>.
+  establishment_means_descriptions:
+    native: utvecklad i denna region eller inkommen utan människans hjälp
+    endemic: inhemsk och förekommer ingen annanstans
+    introduced: inkommen till regionen med människans hjälp
   estimate_which_input: |
     Uppskatta vilka intaxon-id:n som kommer att ersättas med vilka uttaxa och vilka som kommer att hänvisas till en gemensam förfader när uppdelningen är antagen. Detta kan ta en stund att beräkna. Länkar till fynd begränsas till uppsättningar om 200.
   event_in_progress: Händelse pågår
@@ -6579,6 +6583,13 @@ sv:
             inklusive insatsen från
             <strong class="count">%{helpers_count} personer</strong> som har
             hjälpt dig med bestämningar
+        x_projects_html:
+          one: |
+            <strong class="count">%{count} projekt</strong> som inte
+            har annan ledare eller administratör som kan bli nya ägaren
+          other: |
+            <strong class="count">%{count} projekt</strong> som inte
+            har andra ledare eller administratörer som kan bli nya ägaren
         x_identifications_html:
           one: |
             <strong class="count">din %{count} bestämning</strong> av en annan persons fynd, vilket potentiellt kommer att påverka datakvaliteten för det fyndet
