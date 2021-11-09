@@ -15,6 +15,7 @@ export default function reducer( state = {}, action ) {
       return Object.assign( {}, state, { [action.key]: !state[action.key] } );
     case UPDATE_CURRENT_USER: {
       if ( !state.currentUser ) return state;
+      if ( !state.currentUser.id ) return state;
       const prefUpdates = _.pickBy( action.updates, ( v, k ) => ( k.match( /prefers_/ ) || k.match( /preferred_/ ) ) );
       if ( _.keys( prefUpdates ).length > 0 ) {
         const body = new FormData( );

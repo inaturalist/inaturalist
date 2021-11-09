@@ -1727,6 +1727,10 @@ en:
   establishment_means_describes_how: |
     Establishment means describes how the taxon came to be established in an area.  
     See DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
+  establishment_means_descriptions:
+    native: evolved in this region or arrived by non-anthropogenic means
+    endemic: native and occurs nowhere else
+    introduced: arrived in the region via anthropogenic means
   estimate_which_input: |
     Estimate which input taxon ids will be replaced with which output taxa and which will be coarsened to a common ancestor once the split is comitted. This may take
     a moment to calculate. Links to observations are truncated to subsets of 200.
@@ -7548,6 +7552,13 @@ en:
             including the work of the
             <strong class="count">%{helpers_count} people</strong> who have
             helped you out with identifications
+        x_projects_html:
+            one: |
+              <strong class="count">%{count} project</strong> that does not
+              have another manager or admin that can become the new owner
+            other: |
+              <strong class="count">%{count} projects</strong> that do not
+              have other managers or admins that can become the new owner
         x_identifications_html:
           one: |
             <strong class="count">your %{count} identification</strong>

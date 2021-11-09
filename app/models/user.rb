@@ -950,16 +950,11 @@ class User < ApplicationRecord
     end
 
     # transition ownership of projects with observations, delete the rest
-    Project.where(:user_id => id).find_each do |p|
-      if p.observations.exists?
-        if manager = p.project_users.managers.where("user_id != ?", id).first
-          p.user = manager.user
-          manager.role_will_change!
-          manager.save
-        else
-          pu = ProjectUser.create(:user => User.admins.first, :project => p)
-          p.user = pu.user
-        end
+    Project.where( user_id: id ).find_each do | p |
+      if p.observations.exists? && ( manager = p.project_users.managers.where( "user_id != ?", id ).first )
+        p.user = manager.user
+        manager.role_will_change!
+        manager.save
         p.save
       else
         p.destroy

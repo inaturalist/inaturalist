@@ -147,6 +147,13 @@ class UsersController < ApplicationController
     @helpers_count = INatAPIService.get( "/observations/identifiers",
       user_id: current_user.id, per_page: 0 ).total_results
     @comments_count = current_user.comments.count
+    projects_with_managers_count = ProjectUser.
+      joins(:project).
+      where( "projects.user_id = ?", current_user ).
+      where( role: ProjectUser::MANAGER ).
+      where( "project_users.user_id != ?", current_user ).
+      count( "DISTINCT project_id" )
+    @projects_count = current_user.projects.count - projects_with_managers_count
     ident_response = Identification.elastic_search(
       size: 0,
       filters: [
