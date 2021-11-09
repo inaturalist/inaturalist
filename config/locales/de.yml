@@ -1570,6 +1570,10 @@ de:
   establishment_means_describes_how: |
     "Art der Verbreitung" bezeichnet wie das Taxon sich in einem Gebiet verbreitet hat. 
     Siehe DarwinCore für <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">über mehr Informationen zur Terminologie</a>.
+  establishment_means_descriptions:
+    native: In dieser Region heimisch oder ohne menschlichen Einfluss hierher gelangt
+    endemic: Einheimisch und sonst nirgends zu finden
+    introduced: Ist durch anthropogenen Einfluss in die Region gelangt
   event_in_progress: Event läuft
   event_stats: Ereignisstatistiken
   event_url: Ereignis-URL
@@ -6546,6 +6550,13 @@ de:
             <strong class="count">%{count} Beobachtungen</strong>,
             einschließlich der Arbeit der
             <strong class="count">%{helpers_count} Personen</strong> die dir mit Bestimmungen geholfen haben
+        x_projects_html:
+          one: |
+            <strong class="count">%{count} Projekt</strong>, das nicht
+            einen anderen Manager oder Administrator hat, der der neue Besitzer werden kann
+          other: |
+            <strong class="count">%{count} Projekte</strong>, die nicht
+            andere Manager oder Administratoren haben, die die neuen Besitzer werden können
         x_identifications_html:
           one: |
             <strong class="count">Deine %{count} Bestimmung</strong>
