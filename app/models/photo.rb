@@ -269,7 +269,12 @@ class Photo < ApplicationRecord
       :license_name,
       :license_url,
       :attribution,
-      :type
+      :type,
+      :square_url,
+      :thumb_url,
+      :small_url,
+      :medium_url,
+      :large_url
     ]
     super(options)
   end
@@ -459,8 +464,9 @@ class Photo < ApplicationRecord
   
   def self.default_json_options
     {
-      :methods => [:license_code, :attribution],
-      :except => [:original_url, :file_processing, :file_file_size, 
+      :methods => [:license_code, :attribution, :square_url,
+        :thumb_url, :small_url, :medium_url, :large_url],
+      :except => [:file_processing, :file_file_size,
         :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
         :native_realname, :native_photo_id]
     }
