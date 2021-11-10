@@ -1582,6 +1582,9 @@ fr:
   establishment_means_describes_how: |
     Le type d'implantation décrit la façon dont le taxon en est venu à être établi dans la région. 
     Consultez DarwinCore pour <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">obtenir plus d’information sur la terminologie</a>.
+  establishment_means_descriptions:
+    endemic: Indigène et n’existe nulle part ailleurs
+    introduced: Arrivée dans la région par des moyens anthropiques
   estimate_which_input: |
     Estimation des Id de taxon d'entrée qui seront remplacées par des taxons de sortie et de celles qui seront ramenées à un parent commun une fois la scission validée. Le calcul peut prendre
     un moment. Les liens vers les observations sont tronqués à des sous-ensembles de 200.
@@ -6934,6 +6937,13 @@ fr:
             incluant le travail de
             <strong class="count">%{helpers_count} personnes</strong> qui vous ont
             aidé à l’identification
+        x_projects_html:
+          one: |
+            <strong class="count">%{count} projet</strong> qui n'a pas
+            d'autre gestionnaire ou administrateur qui peut en devenir responsable
+          other: |
+            <strong class="count">%{count} projets</strong> qui n'ont pas
+            d'autre gestionnaire ou administrateur qui peut en devenir responsable
         x_identifications_html:
           one: |
             <strong class="count">votre première identification</strong>
