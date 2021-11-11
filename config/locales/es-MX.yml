@@ -1568,6 +1568,10 @@ es-MX:
   establishment_means: Distribución
   establishment_means_describes_how: |
     La distribución describe como la especie o grupo se estableció en un área. Ve el DarwinCore para <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">más información sobre terminología</a>.
+  establishment_means_descriptions:
+    native: evolucionó en esta región o llegó por medios no antropogénicos
+    endemic: nativo y no ocurre en ningún otro lugar
+    introduced: llegó a la región por medios antropogénicos
   estimate_which_input: |
     Estimar qué identificaciones de taxón de entrada serán reemplazados con qué taxones de salida y cuales serán agregados a un antepasado común una vez que la separación se haya realizado. Esto puede tardar un momento en calcular. Los enlaces a las observaciones se truncan en subconjuntos de 200.
   event_in_progress: Evento en curso
@@ -6558,6 +6562,13 @@ es-MX:
           other: |
             <strong class="count">%{count} observaciones</strong>,
             incluyendo el trabajo de <strong class="count">%{helpers_count} peorsonas</strong> que te han ayudado con las identificaciones
+        x_projects_html:
+          one: |
+            <strong class="count">%{count} proyecto</strong> que no
+            tiene otro responsable o administrador que puede convertirse en el nuevo propietario
+          other: |
+            <strong class="count">%{count} proyectos</strong> que no
+            tienen otros responsables o administradores que puedan convertirse en el nuevo propietario
         x_identifications_html:
           one: |
             <strong class="count">tu identificación</strong>
