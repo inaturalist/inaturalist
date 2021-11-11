@@ -258,6 +258,7 @@ class LocalPhoto < Photo
         url = file.url(s)
         url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
       end
+      self["#{s}_url"] = updates["#{s}_url"]
     end
     updates[:native_page_url] = FakeView.photo_url(self) if native_page_url.blank?
     updates[:file_extension_id] = FileExtension.id_for_extension( self.extension )
