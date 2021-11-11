@@ -681,12 +681,15 @@ it:
   back_to_taxon: "Torna a %{defaulttaxon}"
   back_to_taxon_changes: "Torna ai cambiamenti di \"taxon\""
   back_to_taxon_framework_for_x: "Torna al quadro del taxon per %{taxon_name}"
+  back_to_users_calendar: "Torna al calendario di %{user}"
+  back_to_users_lists: "Torna agli elenchi di %{user}"
   back_to_viewing: "Torna alla visualizzazione di <i>%{taxon}</i>"
   back_to_x: "Torna a %{noun}"
   back_to_x_assessment: "Torna alla valutazione di %{project}"
   back_to_x_history: "Torna alla cronologia di %{x}"
   back_to_x_journal: "Torna al diario di %{user}"
   back_to_x_blog: "Torna al blog di %{x}"
+  back_to_your_calendar: Torna al tuo calendario
   back_to_your_dashboard: Torna alla tua bacheca
   back_to_your_lists: Torna alle tue liste
   back_to_your_journal: Torna al tuo diario
@@ -1550,6 +1553,10 @@ it:
   establishment_means_describes_how: |
     L'origine del popolamento indica come un taxon si è stabilito in un'area.  
     Vedi DarwinCore per <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">più informazioni sulla terminologia</a>.
+  establishment_means_descriptions:
+    native: evoluta in questa regione o arrivata con mezzi non antropogenici
+    endemic: nativa e non si trova altrove
+    introduced: arrivata nella regione con mezzi antropogenici
   estimate_which_input: |
     Stima quali id del taxon saranno sostituite con quali taxa in uscita e quali saranno raggruppate in un antenato comune una volta avviata la divisione. Questo potrebbe richiedere un attimo per esser calcolato. I link alle osservazioni sono troncati in sotto-serie da 200.
   event_in_progress: Attività in corso
@@ -2757,6 +2764,10 @@ it:
   observation_brief_something_on_day_at_time: "Qualcosa il %{day} alle %{time}"
   observation_brief_something_on_day_at_time_by_user: "Qualcosa il %{day} alle %{time} da %{user}"
   observation_brief_something_on_day_by_user: "Qualcosa il %{day} da %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Qualcosa a %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Qualcosa a %{month} %{year} da %{user}"
   observation_brief_something_by_user: "Qualcosa da %{user}"
   observation_brief_something_from_place: "Qualcosa in %{place}"
   observation_brief_something_from_place_by_user: "Qualcosa in %{place} da %{user}"
@@ -2764,10 +2775,18 @@ it:
   observation_brief_something_from_place_on_day_by_user: "Qualcosa in %{place} il %{day} da %{user}"
   observation_brief_something_from_place_on_day_at_time: "Qualcosa in %{place} il %{day} alle %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Qualcosa in %{place} il %{day} alle %{time} da %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Qualcosa da %{place} a %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Qualcosa da %{place} a %{month} %{year} dall'utente %{user}"
   observation_brief_taxon_on_day: "%{taxon} il %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} il %{day} alle %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} il %{day} alle %{time} da %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} il %{day} da %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} a %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} a %{month} %{year} da %{user}"
   observation_brief_taxon_by_user: "%{taxon} da %{user}"
   observation_brief_taxon_from_place: "%{taxon} in %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} in %{place} da %{user}"
@@ -2775,6 +2794,10 @@ it:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} in %{place} il %{day} da %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} in %{place} il %{day} alle %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} in %{place} il %{day} alle %{time} da %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} da %{place} a %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} da %{place} a %{month} %{year} da %{user}"
   observations_by_category: "Osservazioni Per categoria"
   observations_by_app: Osservazioni Per App
   observations_by_rank: Osservazioni per rango
@@ -4779,7 +4802,10 @@ it:
   users_favorites: "Preferiti di %{user}"
   users_highlights_and_stats_from_year_on_site: "Sintesi e statistiche di %{user} dal %{year} su %{site}"
   users_id: "ID di %{user}"
+  users_identifications: "Identificazioni di %{user}"
+  users_journal: "Diario di %{user}"
   users_latest_observations_on_site: "Le osservazioni più recenti di %{user} su %{site}"
+  users_lists: "Elenchi di %{user}"
   users_profile: "Il profilo di %{user}"
   users_projects: "I progetti di %{user}"
   users_year_on_site: "Anno di %{user} su %{site} %{year}"
@@ -6405,6 +6431,13 @@ it:
             <strong class="count">1 osservazione</strong>, incluso il lavoro delle <strong class="count">%{helpers_count} persone</strong> che ti hanno aiutato con le identificazioni
           other: |
             <strong class="count">%{count} osservazioni</strong>, incluso il lavoro delle <strong class="count">%{helpers_count} persone</strong> che ti hanno aiutato con le identificazioni
+        x_projects_html:
+          one: |
+            <strong class="count">%{count} project</strong> privo di un altro 
+            manager o admin che possa diventare il nuovo proprietario
+          other: |
+            <strong class="count">%{count} project</strong> privo di altri
+            manager ​o admin che possano diventare il nuovo proprietario
         x_identifications_html:
           one: |
             <strong class="count">%{count} tua identificazione</strong> per un'osservazione di un'altra persona, che potenzialmente influisce sulla qualità dei dati di quell'osservazione
