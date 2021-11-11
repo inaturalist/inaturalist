@@ -2278,7 +2278,11 @@ class ObservationsController < ApplicationController
         # merge facebook_observation with existing observation
         @observation[sync_attr] ||= @facebook_observation[sync_attr]
       end
-      unless @observation.observation_photos.detect {|op| op.photo.native_photo_id == @facebook_photo.native_photo_id}
+      photo_already_exists = @observation.observation_photos.detect do |op|
+        op.photo.native_photo_id == @facebook_photo.native_photo_id &&
+        op.photo.subtype == "FacebookPhoto"
+      end
+      unless photo_already_exists
         @observation.observation_photos.build(:photo => @facebook_photo)
       end
       unless @observation.new_record?
@@ -2323,7 +2327,11 @@ class ObservationsController < ApplicationController
       # need to append a new photo object without saving it, but build() won't
       # work here b/c Photo and its descedents use STI, and type is a
       # protected attributes that can't be mass-assigned.
-      unless @observation.observation_photos.detect {|op| op.photo.native_photo_id == @flickr_photo.native_photo_id}
+      photo_already_exists = @observation.observation_photos.detect do |op|
+        op.photo.native_photo_id == @flickr_photo.native_photo_id &&
+        op.photo.subclass == "FlickrPhoto"
+      end
+      unless photo_already_exists
         @observation.observation_photos.build(:photo => @flickr_photo)
       end
       
@@ -2331,7 +2339,7 @@ class ObservationsController < ApplicationController
         flash.now[:notice] = t(:preview_of_synced_observation, :url => url_for)
       end
       
-      if (@existing_photo = Photo.find_by_native_photo_id(@flickr_photo.native_photo_id)) && 
+      if (@existing_photo = LocalPhoto.where( subtype: "FlickrPhoto", native_photo_id: @flickr_photo.native_photo_id ) ) &&
           (@existing_photo_observation = @existing_photo.observations.first) && @existing_photo_observation.id != @observation.id
         msg = t(:heads_up_this_photo_is_already_associated_with, :url => url_for(@existing_photo_observation))
         flash.now[:notice] = flash.now[:notice].blank? ? msg : "#{flash.now[:notice]}<br/>#{msg}"
@@ -2365,8 +2373,11 @@ class ObservationsController < ApplicationController
       sync_attrs.each do |sync_attr|
         @observation.send("#{sync_attr}=", @picasa_observation.send(sync_attr))
       end
-      
-      unless @observation.observation_photos.detect {|op| op.photo.native_photo_id == @picasa_photo.native_photo_id}
+      photo_already_exists = @observation.observation_photos.detect do |op|
+        op.photo.native_photo_id == @picasa_photo.native_photo_id &&
+        op.photo.subclass == "PicasaPhoto"
+      end
+      unless photo_already_exists
         @observation.observation_photos.build(:photo => @picasa_photo)
       end
       

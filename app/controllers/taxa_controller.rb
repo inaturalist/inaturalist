@@ -1318,7 +1318,7 @@ class TaxaController < ApplicationController
     params[:flickr_photos].each do |flickr_photo_id|
       tags = params[:tags]
       photo = nil
-      if photo = photos.detect{|p| p.native_photo_id == flickr_photo_id}
+      if photo = photos.detect{|p| p.native_photo_id == flickr_photo_id && p.subtype == "FlickrPhoto" }
         tags += " " + photo.observations.map{|o| "inaturalist:observation=#{o.id}"}.join(' ')
         tags.strip!
       end
@@ -1393,7 +1393,7 @@ class TaxaController < ApplicationController
 
     
     @observations = current_user.observations.joins(:photos).
-      where(photos: { native_photo_id: @flickr_photos.map(&:native_photo_id), type: FlickrPhoto.to_s })
+      where(photos: { native_photo_id: @flickr_photos.map(&:native_photo_id), subtype: FlickrPhoto.to_s })
     @observations_by_native_photo_id = {}
     @observations.each do |observation|
       observation.photos.each do |flickr_photo|
@@ -1504,7 +1504,7 @@ class TaxaController < ApplicationController
       param = photo_class.to_s.underscore.pluralize
       next if params[param].blank?
       params[param].reject {|i| i.blank?}.uniq.each do |photo_id|
-        if fp = photo_class.find_by_native_photo_id(photo_id)
+        if fp = LocalPhoto.where( subtype: photo_class.name, native_photo_id: photo_id ).first
           photos << fp 
         else
           pp = photo_class.get_api_response(photo_id) rescue nil

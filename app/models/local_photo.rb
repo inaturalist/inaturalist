@@ -548,6 +548,31 @@ class LocalPhoto < Photo
     end
   end
 
+  def self.update_photo_prefix_and_extension_batch( min_id, max_id )
+    start_time = Time.now
+    counter = 0
+    Photo.where("id > ? AND id <= ?", min_id, max_id ).find_in_batches( batch_size: 100 ) do |batch|
+      Photo.transaction do
+        batch.each do |photo|
+          if counter % 1000 == 0
+            puts "#{counter}, ID: #{photo.id}, Time: #{(Time.now - start_time).round(2)}"
+          end
+          counter += 1
+          if photo.metadata
+            photo.width ||= photo.metadata.dig(:dimensions, :original, :width)
+            photo.height ||= photo.metadata.dig(:dimensions, :original, :height)
+          end
+          photo.update_columns(
+            width: photo.width,
+            height: photo.height,
+            file_extension_id: FileExtension.id_for_extension( photo.extension ),
+            file_prefix_id: FilePrefix.id_for_prefix( photo.url_prefix )
+          )
+        end
+      end
+    end
+  end
+
   private
 
   def self.move_to_appropriate_bucket( p )
