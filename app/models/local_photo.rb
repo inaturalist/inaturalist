@@ -592,10 +592,13 @@ class LocalPhoto < Photo
       # attributes contain the accurate file names. So this is doing the minimal update
       # to URLs which his just swap out domains
       styles = %w(original large medium small thumb square)
-      url_updates = Hash[styles.map do |s|
-        ["#{s}_url", photo["#{s}_url"].sub( source_domain, target_domain )]
+      updates = Hash[styles.map do |s|
+        photo["#{s}_url"] = photo["#{s}_url"].sub( source_domain, target_domain )
+        ["#{s}_url", photo["#{s}_url"]]
       end]
-      photo.update_columns( url_updates )
+      updates[:file_extension_id] = FileExtension.id_for_extension( photo.extension )
+      updates[:file_prefix_id] = FilePrefix.id_for_prefix( photo.url_prefix )
+      photo.update_columns( updates )
       photo.reload
 
       # if the photo is being removed as a result of a flag being applied,
