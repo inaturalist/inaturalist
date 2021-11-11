@@ -39,8 +39,8 @@ class ObservationsController < ApplicationController
                             :observation_links,
                             :torquemap,
                             :lifelist_by_login]
-  protect_from_forgery with: :exception, unless: lambda {
-    request.format.widget? || authenticated_with_oauth? || authenticated_with_jwt?
+  protect_from_forgery with: :exception, if: lambda {
+    !request.format.widget? && request.headers["Authorization"].blank?
   }
   ## /AUTHENTICATION
 
@@ -1248,20 +1248,15 @@ class ObservationsController < ApplicationController
       current_user: current_user)
     search_params = Observation.apply_pagination_options(search_params,
       user_preferences: @prefs)
+    # Since this page is really only intended for the observer, omit obscured
+    # observations unless the viewer is trusted
+    unless @selected_user.trusts?( current_user )
+      search_params[:geoprivacy] = Observation::OPEN
+      search_params[:taxon_geoprivacy] = Observation::OPEN
+    end
     @observations = Observation.page_of_results(search_params)
     set_up_instance_variables(search_params)
     Observation.preload_for_component(@observations, logged_in: !!current_user)
-    if @selected_user != current_user
-      filtered_obs = @observations.select {|o| o.coordinates_viewable_by?( current_user )}
-      diff = @observations.size - filtered_obs.size
-      @observations = WillPaginate::Collection.create(
-        @observations.current_page,
-        @observations.per_page,
-        @observations.total_entries - diff
-      ) do |pager|
-        pager.replace( filtered_obs )
-      end
-    end
     respond_to do |format|
       format.html do
         prepare_map(search_params)

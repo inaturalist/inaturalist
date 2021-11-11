@@ -193,7 +193,6 @@ id:
   account: Akun
   account_creation: Pembentukan Akun
   account_settings: Pengaturan Akun
-  accept: terima
   accept_community_identifications: Terima identifikasi dari komunitas
   accuracy: Akurasi
   accuracy_meters: Akurasi (meter)
@@ -584,7 +583,6 @@ id:
     Apakah Anda yakin Anda menimbang bahwa pengguna ini pengguna yang baik?
     Tanda spam di konten mereka akan diselesaikan.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Apakah Anda yakin ingin menghapus taksa %{x} ini?"
-  are_you_sure_you_want_to_remove_this_invitation: Apakah Anda yakin ingin menghapus undangan ini?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Apakah Anda yakin Anda ingin menghapus pengamatan ini dari %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Apakah Anda yakin ingin menghapus takson ini dari daftar centang %{place}?"
@@ -629,7 +627,6 @@ id:
   avg: Rerata
   back: Kembali
   back_to_all_species: Kembali ke Semua Spesies
-  back_to_calendar: "Kembali ke kalender %{user}"
   back_to_editing_observation: Kembali ke mengubah observasi
   back_to_friends: Kembali ke teman
   back_to_flags_html: "&laquo; Kembali ke tanda"
@@ -645,18 +642,20 @@ id:
   back_to_taxon: "Kembali ke %{defaulttaxon}"
   back_to_taxon_changes: "Kembali ke perubahan taksa"
   back_to_taxon_framework_for_x: "Kembali ke framework takson untuk %{taxon_name}"
+  back_to_users_calendar: "Kembali ke kalender %{user}"
+  back_to_users_lists: "Kembali ke daftar %{user}"
   back_to_viewing: "Kembali ke tampilan <i>%{taxon}</i>"
   back_to_x: "Kembali ke %{noun}"
   back_to_x_assessment: "Kembali ke penilaian %{project}"
   back_to_x_history: "Kembali ke sejarah %{x}"
   back_to_x_journal: "Kembali ke jurnal %{user}"
   back_to_x_blog: "Kembali ke blog %{x}"
+  back_to_your_calendar: Kembali ke kalender Anda
   back_to_your_dashboard: Kembali ke dasbor Anda
   back_to_your_lists: Kembali ke daftar Anda
   back_to_your_journal: Kembali ke jurnal Anda
   back_to_your_observations: Kembali ke pengamatan Anda
   back_to_your_profile: Kembali ke profil Anda
-  back_to_your_projects: Kembali ke proyek Anda
   badges: Lencana
   based_on_the_evidence_can_id_be_improved: |
     Berdasarkan bukti yang ada, dapatkah Takson Komunitasnya dikonfirmasi atau ditingkatkan?
@@ -800,7 +799,6 @@ id:
   check_list_place: "Daftar Centang %{place}"
   check_list_updated: Daftar centang telah diperbarui!
   check_lists_for: "Daftar Centang Lainnya untuk %{place}"
-  check_out_our_blog: Kunjungi Blog kami
   check_out_what_the_observation: Lihat tampilan observasi yang sedang Anda coba identifikasi.
   check_this_box_if_html: |
     Tandai kotak ini jika Anda ingin mengajukan <a
@@ -872,7 +870,6 @@ id:
   comparing: membandingkan
   comparing_list_to_list: "Membandingkan %{list1} dengan %{list2}"
   comparing_versions_x_and_y: "Membandingkan versi %{x} dan %{y}"
-  comparing_observations_from: "Membandingkan pengamatan %{user} dari %{dates}"
   compiled_by_name: "Disusun oleh %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Selesai
@@ -1879,7 +1876,6 @@ id:
   identification_user_short: Pengguna identifikasi
   identification_withdrawn: Identifikasi ditarik.
   identifications: Identifikasi
-  identifications_by: "Diidentifikasi oleh %{user}"
   computer_vision_suggestion: Rekomendasi Penglihatan Komputer
   computer_vision_suggestion_desc: |
     Penglihatan komputer merupakan proses mengajar komputer untuk mengenali pola pada gambar. Kami menyediakan peralatan yang menggunakan model penglihatan komputer yang dilatih dengan foto-foto dari komunitas untuk dapat memberikan rekomendasi identifikasi, seperti otokomplet dan fitur perbandingan. Label ini menunjukkan waktu seseorang menambahkan sebuah identifikasi dengan memakai salah satu peralatan ini.
@@ -1899,7 +1895,6 @@ id:
   if_this_link_will_apply_to_descendant: Jika tautan ini berlaku untuk taksa turunan, Anda dapat menggunakan l label template untuk memasukkan nama takson di URL
   if_you_have_any_trouble_with_the_site_check_out: 'Jika Anda memiliki pertanyaan, silakan melihat <a href="%{help_url}"> bagian bantuan kami </a> atau mengirimkan pesan ke <a href="%{feedback_url}"> grup umpan balik kami</a> .'
   if_your_project_is: Jika proyek Anda berkenaan dengan tempat tertentu, atur koordinat dengan mengeklik peta atau memasukkannya secara manual.
-  ignore: abaikan
   ignore_and_continue: Abaikan dan lanjut
   ignore_times: Abaikan waktu
   image_must_be_exactly: gambar harus memiliki lebar 950px dan tinggi paling banyak 400px
@@ -1990,7 +1985,6 @@ id:
   join_project: Gabung dengan proyek ini
   #Prompt to join a specific project
   join_project?: Gabung dengan %{project}?
-  join_some_projects_and_invite_some_observations_html: "Gabung beberapa <a href='%{join_url}'>proyek</a> dan <a href='%{invite_url}'>undag beberapa pengamatan</a>"
   join_the_largest_group_of_naturalists_in_the_world: Bergabunglah dengan grup naturalis terbesar di dunia!
   join_this_project: Gabung dengan proyek ini
   'joined!': Berhasil bergabung!
@@ -2618,7 +2612,6 @@ id:
   no_license_all_rights_reserved: Tidak ada lisensi (hak cipta dilindungi undang-undang)
   no_managers_set: Manajer belum ditetapkan
   no_matching_article_from_x: "Tidak ada artikel yang sesuai dari %{x}"
-  no_matching_invitations: Tidak ada undangan yang sesuai
   no_matching_observations: Tidak ada pengamatan yang sesuai.
   no_matching_places: Tidak ada tempat yang sesuai
   no_matching_projects: Tidak ada proyek yang sesuai
@@ -2738,10 +2731,10 @@ id:
   observation_brief_something_on_day_at_time: "Sesuatu pada %{day} pukul %{time}"
   observation_brief_something_on_day_at_time_by_user: "Sesuatu pada %{day} pukul %{time} oleh %{user}"
   observation_brief_something_on_day_by_user: "Sesuatu pada hari %{day} oleh %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month: "Sesuatu pada %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month_by_user: "Sesuatu pada %{month} oleh %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Sesuatu pada %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Sesuatu pada %{month} %{year} oleh %{user}"
   observation_brief_something_by_user: "Sesuatu oleh %{user}"
   observation_brief_something_from_place: "Sesuatu dari %{place}"
   observation_brief_something_from_place_by_user: "Sesuatu dari %{place} oleh %{user}"
@@ -2749,18 +2742,18 @@ id:
   observation_brief_something_from_place_on_day_by_user: "Sesuatu dari %{place} pada hari %{day} oleh %{user}"
   observation_brief_something_from_place_on_day_at_time: "Sesuatu dari %{place} pada hari %{day} pukul %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Sesuatu dari %{place} pada hari %{day} pukul %{time} oleh %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month: "Sesuatu dari %{place} pada %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month_by_user: "Sesuatu dari %{place} pada %{month} oleh %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Sesuatu dari %{place} pada %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Sesuatu dari %{place} pada %{month} %{year} oleh %{user}"
   observation_brief_taxon_on_day: "%{taxon} pada hari %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} pada hari %{day} pukul %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} pada hari %{day} pukul %{time} oleh %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} pada hari %{day} oleh %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month: "%{taxon} pada %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month_by_user: "%{taxon} pada %{month} oleh %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} pada %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} pada %{month} %{year} oleh %{user}"
   observation_brief_taxon_by_user: "%{taxon} oleh %{user}"
   observation_brief_taxon_from_place: "%{taxon} dari %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} dari %{place} oleh %{user}"
@@ -2768,10 +2761,10 @@ id:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} dari %{place} pada hari %{day} oleh %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} dari %{place} pada hari %{day} pukul %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} dari %{place} pada hari %{day} pukul %{time} oleh %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month: "%{taxon} dari %{place} pada %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} dari %{place} pada %{month} oleh %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} dari %{place} pada %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} dari %{place} pada %{month} %{year} oleh %{user}"
   observations_by_category: "Pengamatan Berdasarkan Kategori"
   observations_by_app: Pengamatan Berdasarkan Aplikasi
   observations_by_rank: Pengamatan Berdasarkan Tingkat
@@ -2819,7 +2812,6 @@ id:
   observations_deleted: Pengamatan telah dihapus.
   observations_fields_are: |
     Kolom pengamatan adalah potongan-potongan tambahan data yang terkait dengan pengamatan, seperti jumlah individu yang diamati, deskripsi habitat, atau apapun yang Anda inginkan! Proyek juga dapat menentukan kolom yang ingin mereka isi.
-  observations_from: Pengamatan dari %{date}
   observations_from_people_taxa_and_places_youre_following: "Pengamatan dari orang, tempat, dan taksa yang Anda ikuti"
   observations_from_this_place: Pengamatan dari tempat ini
   observations_from_this_project: Pengamatan dari proyek ini
@@ -3502,8 +3494,6 @@ id:
     Setelah dipertimbangkan, kami harus membatasi kondisi di mana orang-orang dapat menambahkan tempat baru di masa yang akan datang dikarenakan tingkat pertumbuhan iNat saat ini.
   plants: tanaman
   please_add_a_citation_for_this_change: Harap tambahkan kutipan untuk perubahan ini.
-  please_add_this_observation_to: Harap tambahkan pengamatan ini untuk
-  please_add_this_to_x_html: "Harap tambahkan ini untuk %{x}"
   please_allow_a_few_weeks_for_external_sites: Harap menunggu beberapa minggu untuk situs eksternal menyinkronisasi perubahan dari pengamatan ini #Title to a section warning a user to exercise caution
   please_be_careful!: Harap Berhati-hati!
   please_complete_the_following_to_add_project: |
@@ -3516,7 +3506,6 @@ id:
   please_hold_on_while_the_file_is_generated: Silahkan tunggu sementara file yang dihasilkan. Ini dapat mengambil beberapa menit untuk daftar besar.
   popular: Populer
   position: Posisi
-  possessive_user: "%{user}"
   #Post is a noun
   post_from_journal_by_parent_html: Postingan dari <a href="%{url}">jurnal oleh %{parent}</a>
   #Post is a noun
@@ -4248,7 +4237,6 @@ id:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Cocok untuk Wikipedia dan proyek Wikimedia Foundation lainnya
   summary: Ringkasan
   supporting: Pendukung
-  support_inaturalist: Dukung iNaturalist
   suspend_user: Tangguhkan pengguna
   sw_lat: Lin. SB
   sw_lon: Buj. SB
@@ -4596,7 +4584,6 @@ id:
   unhide_content: Tampilkan Konten
   unhide_desc: |
     Menampilkan kembali akan menyingkapkan konten ini sehingga dapat dilihat oleh semua orang. Kurator masih bisa memilih untuk menyembunyikannya lagi di kemudian hari.
-  uninvite: batal undang
   unique_identifier_of_this_taxon: Pengidentifikasi unik dari takson ini dalam database sumber.
   unique_observers: pengamat unik
   unknown: Tidak diketahui
@@ -4723,7 +4710,6 @@ id:
   user_invited_you_to_join_html: "%{user} mengundang Anda untuk bergabung"
   user_invited_you_to_join_project: "%{user} mengundang Anda untuk bergabung dengan %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} mengundang Anda untuk bergabung dengan proyek ini pada %{date}"
-  user_invited_your_x_to_a_project_html: "%{user} mengundang %{x} Anda ke sebuah proyek"
   user_is_a_naturalist: "%{user} adalah seorang naturalis!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> kini merupakan pengelola %{project}
@@ -4749,7 +4735,9 @@ id:
   users_favorites: "Favorit %{user}"
   users_highlights_and_stats_from_year_on_site: "Sorotan dan statistik %{user} pada %{year} di %{site}"
   users_id: "ID %{user}"
+  users_identifications: "Identifikasi %{user}"
   users_latest_observations_on_site: "Pengamatan terbaru %{user} di %{site}"
+  users_lists: "Daftar %{user}"
   users_profile: "Profil %{user}"
   users_projects: "Proyek %{user}"
   users_year_on_site: "Tahun %{user} Di %{site} %{year}"
@@ -4769,14 +4757,13 @@ id:
   view_check_list_page: Lihat Halaman Daftar Centang
   view_contributions: Lihat Kontribusi
   view_details: Lihat Detail
-  view_dynamic_lifelist: Lihat daftar kehidupan dinamis
+  view_dynamic_lifelist_: LIHAT DAFTAR KEHIDUPAN DINAMIK
   view_field_options: Lihat Opsi Kolom
   view_flag: Lihat Tanda
   view_flags: Lihat Tanda
   view_flags_for_x_html: "Lihat Tanda untuk %{x}"
   view_full_observation: Lihat Pengamatan Sepenuhnya
   view_full_size_photo: Lihat foto berukuran penuh
-  view_invitation: Lihat Undangan
   view_journal: Lihat Jurnal
   view_leaderboard_from_last_month: Lihat papan peringkat dari bulan kemarin
   view_leaderboard_from_last_year: Lihat papan peringkat dari tahun lalu
@@ -5036,7 +5023,6 @@ id:
   you_must_have_a_header_row: Anda harus memiliki baris header
   you_must_select_a_place_to_merge_with: Anda harus memilih sebuah tempat untuk digabung.
   you_must_select_at_least_one_taxon: Anda harus memilih setidaknya satu takson
-  you_must_select_dates_to_compare: Anda harus memilih tanggal untuk dibandingkan
   you_must_specify_and_confirm_a_new_password: Anda harus menentukan dan mengonfirmasi kata sandi baru.
   you_need_to_have_linked_flickr_account: Anda harus memiliki tautan akun Flickr untuk memberikan tag pada foto Anda.
   you_need_to_select_some_observations_first: Anda perlu memilih beberapa pengamatan terlebih dahulu.
@@ -5782,6 +5768,8 @@ id:
       edit:
         complex_boundary_note_html: |
           Batasan ini agak terlalu rumit untuk diubah di web. Namun, Anda dapat <a href="%{url}">mengunduh KMLnya</a>, mengubahnya di aplikasi GIS pilihan Anda, dan langsung mengunggah KML yang sudah diubah.
+        admin_level_desc: |
+          Hanya boleh diatur untuk badan politik. Berdasarkan tingkatan AS, 0 = negara, 10 = negara bagian/provinsi, 20 = county/kabupaten, 30 = town/desa
       new:
         check_list_note: "Catatan: daftar centang akan secara otomatis dinonaktifkan untuk tempat yang sangat besar."
         coordinates_desc: Anda harus menentukan koordinat jika Anda tidak menggambar batas atau mengunggah KML.
@@ -7120,6 +7108,8 @@ id:
           attributes:
             base:
               user_already_blocked: Anda sudah memblokir pengguna tersebut
+              user_cannot_be_staff: |
+                Anda tidak bisa memblokir staf. Staf iNat harus bisa berkomunikasi dengan semua orang di iNat, memiliki akses kepada semua data di iNat, dan adalah penengah perselisihan lapisan terakhir, jadi memblokir tidak akan menghalangi mereka untuk berkomunikasi dengan Anda. Jika Anda memiliki masalah dengan seorang anggota staf, silakan melaporkannya kepada salah satu wakil direktur iNat, atau, jika Anda memiliki masalah dengan seorang wakil direktur, Anda bisa menghubungi Kepala Bidang Sains di Institute for Biodiviersity and Sustainability Science di California Academy of Sciences.
         user_parent:
           attributes:
             email:

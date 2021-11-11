@@ -171,7 +171,6 @@ zh-TW:
   account: 帳號
   account_creation: 帳號建立
   account_settings: 帳號設定
-  accept: 接受
   accept_community_identifications: 接受社群的物種鑑定
   accuracy: 精度
   accuracy_meters: 精確度 (公尺)
@@ -560,7 +559,6 @@ zh-TW:
     您確定您認為此用戶可信任嗎？
     任何在他們內容裡的垃圾訊息標籤將會被清除。
   are_you_sure_you_want_to_remove_these_x_taxa?: "您確定要刪除這些共 %{x} 個物種分類嗎？"
-  are_you_sure_you_want_to_remove_this_invitation: 您確定要刪除此邀請？
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     您確定要從 %{project} 中移除這筆觀察記錄嗎？
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "您確定要從%{place}的名錄移除此分類群？"
@@ -605,7 +603,6 @@ zh-TW:
   avg: 平均
   back: 返回
   back_to_all_species: 返回至所有物種
-  back_to_calendar: "返回至%{user}行事曆"
   back_to_editing_observation: 返回至編輯觀察
   back_to_friends: 返回好友
   back_to_flags_html: "&laquo; 返回至標記"
@@ -632,7 +629,6 @@ zh-TW:
   back_to_your_journal: 返回至您的日誌
   back_to_your_observations: 返回至您的觀察
   back_to_your_profile: 返回至您的個人檔案
-  back_to_your_projects: 返回至您的專案
   badges: 徽章
   based_on_the_evidence_can_id_be_improved: |
     基於現有證據，仍需要確認或改善社群分類群嗎?
@@ -776,7 +772,6 @@ zh-TW:
   check_list_place: "%{place}的名錄"
   check_list_updated: 檢查列表已更新！
   check_lists_for: "用於%{place}的其它名錄"
-  check_out_our_blog: 看看我們的部落格
   check_out_what_the_observation: 查看您所嘗試鑑定物種的外型模樣。
   check_this_box_if_html: |
     如果您想套用<a
@@ -846,7 +841,6 @@ zh-TW:
   comparing: 比較
   comparing_list_to_list: "比較%{list1}與%{list2}"
   comparing_versions_x_and_y: "比較版本 %{x} 和 %{y}"
-  comparing_observations_from: "比較 %{user} 自 %{dates} 的觀察"
   compiled_by_name: "編譯由%{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: 完成
@@ -1817,7 +1811,6 @@ zh-TW:
   identification_user_short: 識別用戶
   identification_withdrawn: 鑑定撤回
   identifications: 鑑定
-  identifications_by: "由 %{user} 做的鑑定"
   computer_vision_suggestion: 電腦視覺建議
   computer_vision_suggestion_desc: |
     電腦視覺是一種教導電腦識別圖片方面形態的程序。我們所提供的工具，使用了以社群照片所培訓出的電腦視覺模組來提供鑑定建議，像是自動完成與比較的功能。此標籤代表著有人是使用這些工具其一來添加鑑定。
@@ -1834,7 +1827,6 @@ zh-TW:
   if_this_link_will_apply_to_descendant: 如果此連結將套用到後代物種分類，您可以使用模版標籤來填寫 URL 裡的物種分類名稱
   if_you_have_any_trouble_with_the_site_check_out: '若您有任何問題，請查看我們的<a href="%{help_url}">幫助章節</a>，或發佈訊息至我們的<a href="%{feedback_url}">意見回饋群組</a>。'
   if_your_project_is: 若您的專案是在特定地點，請透過點擊地圖或手動輸入內容來設定座標。
-  ignore: 忽略
   ignore_and_continue: 忽略並繼續
   ignore_times: 忽略次數
   image_must_be_exactly: 圖片必須剛好是 950 像素寬度並且最高不超過 400 像素
@@ -1925,7 +1917,6 @@ zh-TW:
   join_project: 加入此專案
   #Prompt to join a specific project
   join_project?: 加入專案嗎?
-  join_some_projects_and_invite_some_observations_html: "加入一些<a href='%{join_url}'>專案</a>並<a href='%{invite_url}'>徵求一些觀察</a>"
   join_the_largest_group_of_naturalists_in_the_world: 加入世界上最大的博物學群組！
   join_this_project: 加入此專案
   'joined!': 已加入！
@@ -2526,7 +2517,6 @@ zh-TW:
   no_license_all_rights_reserved: 無許可協議（保留所有權利）
   no_managers_set: 沒有設定負責人
   no_matching_article_from_x: "沒有來自%{x}的符合條目"
-  no_matching_invitations: 沒有符合的邀請
   no_matching_observations: 沒有符合的觀察
   no_matching_places: 沒有符合的地點
   no_matching_projects: 沒有符合的專案
@@ -2645,10 +2635,6 @@ zh-TW:
   observation_brief_something_on_day_at_time: "在 %{day} %{time} 所記錄的某些生物"
   observation_brief_something_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 所記錄的"
   observation_brief_something_on_day_by_user: "由使用者 %{user} 在 %{day} 所記錄的"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month: "在 %{month} 月的某些觀察"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month_by_user: "由使用者 %{user} 在 %{month} 月所記錄的"
   observation_brief_something_by_user: "由使用者 %{user} 所記錄的"
   observation_brief_something_from_place: "在 %{place} 所記錄的"
   observation_brief_something_from_place_by_user: "由使用者 %{user} 在 %{place} 所記錄的"
@@ -2656,18 +2642,10 @@ zh-TW:
   observation_brief_something_from_place_on_day_by_user: "由使用者 %{user} 於 %{day} 在 %{place} 所記錄的"
   observation_brief_something_from_place_on_day_at_time: "於 %{day} %{time} 在 %{place} 所記錄的"
   observation_brief_something_from_place_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 在 %{place} 所記錄的"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month: "%{month} 在 %{place} 所記錄的"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month_by_user: "由使用者 %{user} 於 %{month} 在 %{place} 所記錄的"
   observation_brief_taxon_on_day: "在 %{day} 所記錄的 %{taxon}"
   observation_brief_taxon_on_day_at_time: "在 %{day} %{time} 所記錄的 %{taxon}"
   observation_brief_taxon_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 所記錄的"
   observation_brief_taxon_on_day_by_user: "由 %{user} 在 %{day} 所記錄的 %{taxon}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month: "在 %{month} 所記錄的 %{taxon}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month_by_user: "由 %{user} 在 %{month} 所記錄的 %{taxon}"
   observation_brief_taxon_by_user: "%{user} 所建立的 %{taxon}"
   observation_brief_taxon_from_place: "位於 %{place} 的 %{taxon}"
   observation_brief_taxon_from_place_by_user: "由 %{user} 在 %{place} 所記錄的 %{taxon}"
@@ -2675,10 +2653,6 @@ zh-TW:
   observation_brief_taxon_from_place_on_day_by_user: "由 %{user} 於 %{day} 在 %{place} 所記錄的 %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time: "%{day} %{time} 在 %{place} 所記錄的 %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "由 %{user} 於 %{day} %{time} 在 %{place} 所記錄的 %{taxon}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month: "%{month} 在 %{place} 所記錄的 %{taxon}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month_by_user: "由 %{user} 於 %{month} 在 %{place} 所記錄的 %{taxon}"
   observations_by_category: "依分類區分觀察"
   observations_by_app: 依應用程式區分觀察
   observations_by_rank: 依級別區分觀察
@@ -2726,7 +2700,6 @@ zh-TW:
   observations_deleted: 觀察已刪除。
   observations_fields_are: |
     專案欄位是與觀察所相關資料的額外資料部份，像是個體所觀察的數目、棲息地描述，或是其它您所想要的內容！專案也可指定出希望您能夠填寫的欄位。
-  observations_from: 自 %{date} 的觀察
   observations_from_people_taxa_and_places_youre_following: "來自您正關注的人們、地點、和物種分類群的觀察"
   observations_from_this_place: 來自此地點的觀察
   observations_from_this_project: 來自此專案的觀察
@@ -3408,8 +3381,6 @@ zh-TW:
     不管怎麼說，有鑑於目前 iNat 成長的速度，我們將會在未來限制大家新增地點的條件。
   plants: 植物
   please_add_a_citation_for_this_change: 請為此次更改添加引用。
-  please_add_this_observation_to: 請添加此觀察至
-  please_add_this_to_x_html: "請添加此至%{x}"
   please_allow_a_few_weeks_for_external_sites: 請允許幾週時間讓外部網站由此筆觀察做同步更改 #Title to a section warning a user to exercise caution
   please_be_careful!: 請務必小心！
   please_complete_the_following_to_add_project: |
@@ -3422,7 +3393,6 @@ zh-TW:
   please_hold_on_while_the_file_is_generated: 請等待檔案產生。較大的物種名錄可能會花費數分鐘。
   popular: 熱門
   position: 位置
-  possessive_user: "%{user} 的"
   #Post is a noun
   post_from_journal_by_parent_html: 來自 <a href="%{url}">%{parent} 的日誌</a>的發佈文章
   #Post is a noun
@@ -4116,7 +4086,6 @@ zh-TW:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: 適用於維基百科和其他維基媒體基金會的專案
   summary: 摘要
   supporting: 支持
-  support_inaturalist: 支持 iNaturalist
   suspend_user: 停用用戶
   sw_lat: 西南緯度
   sw_lon: 西南經度
@@ -4450,7 +4419,6 @@ zh-TW:
   unhide_content: 取消隱藏內容
   unhide_desc: |
     取消隱藏將會揭示此內容讓任何人可見，而策展人仍可在往後選擇將此給再次隱藏。
-  uninvite: 未邀請
   unique_identifier_of_this_taxon: 在來源資料庫裡此物種分類的唯一鑑定。
   unique_observers: 唯一觀察者
   unknown: 未知
@@ -4577,7 +4545,6 @@ zh-TW:
   user_invited_you_to_join_html: "%{user}邀請您加入"
   user_invited_you_to_join_project: "%{user}邀請您加入%{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} 邀請您加入此專案於 %{date}"
-  user_invited_your_x_to_a_project_html: "%{user} 邀請您%{x}一個專案"
   user_is_a_naturalist: "%{user} 是個自然觀察者！"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> 現在是 %{project} 的總管理者了
@@ -4623,14 +4590,12 @@ zh-TW:
   view_check_list_page: 檢視名錄頁面
   view_contributions: 檢視貢獻
   view_details: 檢視詳細資料
-  view_dynamic_lifelist: 顯示動態生涯物種清單
   view_field_options: 檢視欄位選項
   view_flag: 檢視標記
   view_flags: 檢視標記
   view_flags_for_x_html: "檢視用於%{x}的標記"
   view_full_observation: 檢視完整觀察
   view_full_size_photo: 瀏覽全尺寸的照片
-  view_invitation: 檢視邀請
   view_journal: 檢視日誌
   view_leaderboard_from_last_month: 查看上個月的排行榜
   view_leaderboard_from_last_year: 檢視去年的排行榜
@@ -4890,7 +4855,6 @@ zh-TW:
   you_must_have_a_header_row: 您必須要有一個標題列
   you_must_select_a_place_to_merge_with: 您必須選擇一個地點來合併。
   you_must_select_at_least_one_taxon: 您至少要選擇一個物種分類。
-  you_must_select_dates_to_compare: 您必須選擇日期來做出比較
   you_must_specify_and_confirm_a_new_password: 您必須指定且確認一組新密碼。
   you_need_to_have_linked_flickr_account: 您需要一個連結的 Flickr 帳號來標記您的照片。
   you_need_to_select_some_observations_first: 首先您需要選擇一些觀察。
@@ -5671,6 +5635,8 @@ zh-TW:
       edit:
         complex_boundary_note_html: |
           此邊界有些太複雜而無法在網頁上編輯。然而您可以<a href="%{url}">下載 KML</a> 來在您所挑選的 GIS 應用程式裡編輯，並直接上傳您所編輯的 KML。
+        admin_level_desc: |
+          應僅用於設定政治機構，以美國環境而言：0 = 國家、10 = 州、20 = 郡、30 = 鎮
       new:
         check_list_note: "註：在特別廣大地點情況下清單將會被自動停用。"
         coordinates_desc: 若您不想畫出邊界或上傳 KML 的話，您必須指定出座標。
@@ -7086,6 +7052,8 @@ zh-TW:
           attributes:
             base:
               user_already_blocked: 您已經封鎖該使用者
+              user_cannot_be_staff: |
+                您無法封鎖網站工作人員。iNat 工作人員需要和所有網站上的人溝通，在 iNat 上有存取所有資料的權限，而且他們是調解爭議的重要人物，所以封鎖他們無法防止他們與您溝通。如果您對工作人員中某人有任何問題，請向 iNat 共同理事之一回報，或是您對共同理事之一有問題的話，您還可以向加州科學院的生物多樣性與永續科學研究所(Institute for Biodiviersity and Sustainability Science)的科學主任(Chief of Science)聯絡。
         user_parent:
           attributes:
             email:

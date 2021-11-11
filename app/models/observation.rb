@@ -775,7 +775,7 @@ class Observation < ApplicationRecord
     # I18n.t( :observation_brief_something_by_user )
     # I18n.t( :observation_brief_something_from_place )
     # I18n.t( :observation_brief_something_from_place_by_user )
-    # I18n.t( :observation_brief_something_from_place_in_month_by_user )
+    # I18n.t( :observation_brief_something_from_place_in_month_year_by_user )
     # I18n.t( :observation_brief_something_from_place_on_day )
     # I18n.t( :observation_brief_something_from_place_on_day_at_time )
     # I18n.t( :observation_brief_something_from_place_on_day_at_time_by_user )
@@ -787,7 +787,7 @@ class Observation < ApplicationRecord
     # I18n.t( :observation_brief_taxon_by_user )
     # I18n.t( :observation_brief_taxon_from_place )
     # I18n.t( :observation_brief_taxon_from_place_by_user )
-    # I18n.t( :observation_brief_taxon_from_place_in_month_by_user )
+    # I18n.t( :observation_brief_taxon_from_place_in_month_year_by_user )
     # I18n.t( :observation_brief_taxon_from_place_on_day )
     # I18n.t( :observation_brief_taxon_from_place_on_day_at_time )
     # I18n.t( :observation_brief_taxon_from_place_on_day_at_time_by_user )
@@ -821,9 +821,10 @@ class Observation < ApplicationRecord
         key += "_at_time"
         i18n_vars[:time] = I18n.l( time_observed_at_in_zone, format: :compact )
       end
-    elsif !self.observed_on.blank?
-      key += "_in_month"
-      i18n_vars[:month] = I18n.l( self.observed_on, format: :month_year )
+    elsif !observed_on.blank?
+      key += "_in_month_year"
+      i18n_vars[:month] = I18n.l( observed_on, format: "%B" )
+      i18n_vars[:year] = I18n.l( observed_on, format: "%Y" )
     end
     unless options[:no_user]
       key += "_by_user"
@@ -2663,11 +2664,11 @@ class Observation < ApplicationRecord
 
   # Actually referring to Place::STATE_LEVEL seems to cause trouble here
   [10, 20].each do |admin_level|
-    define_method "place_admin#{admin_level}" do
+    define_method "place_admin#{admin_level/10}" do
       public_places.detect{|p| p.admin_level == admin_level}
     end
-    define_method "place_admin#{admin_level}_name" do
-      send( "place_admin#{admin_level}" ).try(:name)
+    define_method "place_admin#{admin_level/10}_name" do
+      send( "place_admin#{admin_level/10}" ).try(:name)
     end
   end
 

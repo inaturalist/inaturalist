@@ -327,7 +327,6 @@ be:
   account: Уліковы запіс
   account_creation: Стварэнне ўліковага запісу
   account_settings: Налады ўліковага запісу
-  accept: пагадзіцца
   accept_community_identifications: Пагадзіцца з вызначэннем супольніцтва
   accuracy: Дакладнасць
   accuracy_meters: Дакладнасць (метры)
@@ -766,7 +765,6 @@ be:
     Вы ўпэўненыя, што лічыце гэтага карыстальніка пачэсным?
     Любыя сцягі, якія сігналізуюць пра спам у іхнім змесціве, будуць вырашаны.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Вы ўпэўнены, што хочаце выдаліць гэтыя %{x} таксоны?"
-  are_you_sure_you_want_to_remove_this_invitation: Вы ўпэўнены, што хочаце выдаліць гэтае запрашэнне?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Вы ўпэўненыя, што хочаце выдаліць гэтае назіранне з %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Вы ўпэўненыя, што хочаце выдаліць гэты таксон з таксанамічнага спісу для месца: %{place}?"
@@ -811,7 +809,6 @@ be:
   avg: Сяр.
   back: Вярнуцца
   back_to_all_species: Вярнуцца да ўсіх відаў
-  back_to_calendar: "Вярнуцца да каляндара %{user}"
   back_to_editing_observation: Вярнуцца да рэдактавання назіранняў
   back_to_friends: Вярнуцца да сяброў
   back_to_flags_html: "&laquo; Вярнуцца да сцяжкоў"
@@ -827,18 +824,20 @@ be:
   back_to_taxon: "Вярнуцца да %{defaulttaxon}"
   back_to_taxon_changes: "Вярнуцца да зменаў таксона"
   back_to_taxon_framework_for_x: "Вярнуцца да таксанамічнай сістэмы %{taxon_name}"
+  back_to_users_calendar: "Вярнуцца да каляндара %{user}"
+  back_to_users_lists: "Вярнуцца да спісаў %{user}"
   back_to_viewing: "Вярнуцца да прагляду <i>%{taxon}</i>"
   back_to_x: "Вярнуцца да %{noun}"
   back_to_x_assessment: "Вярнуцца да ацэнак праекта %{project}"
   back_to_x_history: "Назад да гісторыі %{x}"
   back_to_x_journal: "Назад да часопіса карыстальніка %{user}"
   back_to_x_blog: "Назад да блога карыстальніка %{x}"
+  back_to_your_calendar: Вярнуцца да вашага календара
   back_to_your_dashboard: Вярнуцца да панэлі маніторынга
   back_to_your_lists: Вярнуцца да вашых спісаў
   back_to_your_journal: Вярнуцца да вашых часопісаў
   back_to_your_observations: Вярнуцца да вашых назіранняў
   back_to_your_profile: Вярнуцца да вашага профілю
-  back_to_your_projects: Вярнуцца да вашых праектаў
   badges: Значкі
   based_on_the_evidence_can_id_be_improved: |
     Зыходзячы з доказаў, ці можна таксон супольнасці быць пацверджаны або палепшаны?
@@ -983,7 +982,6 @@ be:
   check_list_place: "Кантрольны спіс %{place}"
   check_list_updated: Кантрольны спіс быў адноўлены!
   check_lists_for: "Іншыя кантрольныя спісы для %{place}"
-  check_out_our_blog: Завітайце ў наш Блог
   check_out_what_the_observation: Праглядзіце, да чаго падобнае назіранне, якое вы спрабуеце вызначыць.
   check_this_box_if_html: |
     Усталюйце пазнаку тут, калі вы хочаце ўжыць <a
@@ -1054,7 +1052,6 @@ be:
   comparing: параўноўванне
   comparing_list_to_list: "Параўнанне %{list1} з %{list2}"
   comparing_versions_x_and_y: "Параўнанне версій %{x} і %{y}"
-  comparing_observations_from: "Параўнанне назіранняў %{user} ад %{dates}"
   compiled_by_name: "Складзена %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Поўны
@@ -1760,6 +1757,8 @@ be:
   facebook_access_token_expired: "Тэрмін дзеяння токену доступу скончыўся. %{user} павінен перападлучыць свой уліковы запіс Facebook."
   facebook_needs_the_owner_of_that_photo_to: Facebook патрабуе, каб уласнік гэтага фота зноў пацеврдзіў сваеre падлучэння да %{site_name_short}.
   facebook_options: Наладжванні Facebook
+  facebook_photo_import_disabled_notice: |
+    У лістападзе 2020 года Facebook запатрабаваў ад нас пацверджваць, што нам сапараўдны патрэбны доступ да фатаграфій, і мы не змаглі скончыць працэс з-за праблем з сістэмай верыфікацыі Facebook. У выніку мы не можам надалей падтрымліваць імпарт фатаграфій з Facebook.
   failed_to_find_your_location: Не атрымалася знайсці ваш уліковы запіс
   failed_to_repair_photo: "Не атрымалася аднавіць фота: %{errors}"
   failed_to_save_record: "Не атрымалася захаваць запіс. Калі ласка, паспрабуйце зноў пазней."
@@ -1841,6 +1840,70 @@ be:
   flag_for_list_title_html: |
     Пазначыць для спісу: %{title}
   flag_for_message_id_html: Пазначыць для <a href="%{url}>"паведамлення %{id}</a>
+  flag_for_observation_title_html: |
+    Пазначыць для назірання: %{title}
+  flag_for_photo_id_html: Пазнака для <a href="%{url}">фота %{id}</a>
+  flag_for_place_title_html: |
+    Пазначыць для месца: %{title}
+  flag_for_post_title_html: |
+    Пазначыць для допісу: %{title}
+  flag_for_project_title_html: |
+    Пазначыць для праекту: %{title}
+  flag_for_guide_section_id_html: Пазначыць для <a href="%{url}">Падзелу дапаможніка %{id}</a>
+  flag_for_sound_id_html: Пазначыць для <a href="%{url}">гуку %{id}</a>
+  flag_for_taxon_title_html: |
+    Пазначыць для таксона: %{title}
+  flag_for_user_title_html: |
+    Пазначыць для карыстальніка: %{title}
+  flag_it!: Пазначыць гэта!
+  flag_marked_as_resolved_html: '<span class="meta">Пазнака адзначана як </span> <strong>вырашанае.</strong>'
+  #Label for the object that was flagged, e.g. a table header
+  flag_object: Аб’ект
+  flag_reason: "&ldquo;Я пазначаю гэтае %{record}, таму што"
+  flag_resolution: Вырашэнне
+  flag_saved: Пазнака захована
+  flag_saved_thanks_html: Пазнака захована. Дзякуй! <a href="%{url}" class="readmore">Праглядзець пазнаку</a>
+  flag_this_observation: Пазначыць гэтае назіранне
+  flag_this_photo: Пазначыць гэтае фота
+  flag_this_place: Пазначыць гэтае месца
+  flag_this_sound: Пазначыць гэты гук
+  flagged: пазначана
+  flagged_: Пазначана
+  flagged_for_curation: Пазначана для куратараў
+  flagged_taxon: Пазначаны таксон
+  flagged_thing_explanation: "Карыстальнікі пазначылі гэтае %{thing}, таму што"
+  flagging_desc: |
+    Пазначэнне створана для прыцягвання ўвагі валанцёраў-куратараў сайту.
+    Калі ласка, не пазначайце праблемы, якія вы можаце вырашыць шляхам вызначэння, адзнакай якасці дадзеных, або камунікацыяй з аўтарам зместу.
+  flagger: Кім пазнчана
+  flags: Пазнакі
+  flags_with_count: Пазнакі (%{count})
+  flags_explanation: "карыстачы %{site_name} пазначаюць праблемы, якія патрабуюць увагі з боку куратараў ці/або адміністратараў сайту."
+  flags_for_x_html: Пазнакі для %{x}
+  flags_on_users_content: "Пазнакі для зместу карыстача %{user}"
+  flickr_account_information: Інфармацыя вашага ўліковага запісу Flickr
+  flickr_has_no_creative_commons: Flickr не мае фота з гэтага месца з ліцэнзіяй Creative Commons.
+  flickr_identity: Ідэнтычнасць на Flickr
+  flickr_needs_to_confirm: "Flickr патрэбна пераканацца, што ваш уліковы запіс падлучаны да %{site_name}."
+  flickr_photo: Фота Flickr
+  flickr_photos: Фота Flickr
+  flickr_style: Стыль Flickr
+  flickr_tagger: Сродак стварэння тэгаў Flickr
+  flickr_tags: Тэгі Flickr
+  fluid_layout: Адаптыўная разметка
+  #Adjective, as in a fluid layout of images
+  fluid: адаптыўны
+  follow: Падпісацца
+  follow_receive_updates_about_new_observations: Падпісацца (атрымліваць аднаўленні пра новыя назіранні)
+  follow_user: "Падпісацца на %{user}"
+  followers: Падпіснікі
+  following: Падпіскі
+  following_x_people:
+    one: 'Падпісаны на 1 асобу'
+    few: 'Падпісаны на %{count} асобы'
+    many: 'Падпісаны на %{count} асобаў'
+    other: 'Падпісаны на %{count} асобы'
+  for_a_taxon: для таксона
   formatting: Фарматаванне
   forgot_your_password: Забыліся на пароль?
   forum: Форум
@@ -1931,7 +1994,294 @@ be:
   header_your_observations: Вашыя назіранні
   header_your_calendar: Ваш календар
   header_your_favorites: Вашыя ўпадабанні
+  header_your_lists: Вашыя спісы
+  header_your_identifications: Вашыя вызначэнні
+  header_your_projects: Вашыя праекты
+  header_your_profile: Ваш профіль
+  heads_up: Увага
+  heads_up_this_photo_has_been_flagged: "УВАГА: гэтае фота было пазначана"
+  help: Дапамога
+  help_confirm_observations!: Дапамажыце пацвердзіць назіранні!
+  help_translate!: Дапамагчы з перакладам!
+  here_are_our_top_suggestions: Вось нашыя лепшыя прапановы
+  here_are_our_top_species_suggestions: Вось нашыя лепшыя прапановы для відаў
+  history: Гісторыя
+  home: Галоўная
+  icon_size: Памер значка
+  id: Вызначэнне
+  id_categories:
+    tooltips:
+      leading: |
+        Таксон паходзіць ад таксона супольніцтва. Гэтае вызначэнне можа прывесці да правільнага адказу.
+      improving: |
+        Першая прапанова гэтага таксона, з якой пагадзілася супольніцтва. Гэта дапамагае ўдакладніць таксон супольніцтва.
   identify_title: "Вызначыць"
+  identifiers: Вызначальнікі
+  if_matches_come_from_a_comprehensive_list: Калі супадзенні паходзяць з поўнага спісу, тут з'явіцца зялёная паласа.
+  if_you_have_any_trouble_with_the_site_check_out: 'Калі ў вас ёсць якія-небудзь пытанні, азнаёмцеся з нашым <a href="%{help_url}">раздзелам дапамогі</a> або апублікуйце паведамленне ў нашай <a href="%{feedback_url}">групе водгукаў</a>.'
+  if_your_project_is: Калі ваш праект датычыцца пэўнага месца, задайце каардынаты, націснуўшы на карту або ўвёўшы іх уручную.
+  ignore_and_continue: Ігнараваць і працягваць
+  image_must_be_exactly: здымак павінен быць роўна 950px у шырыню і не больш за 400px у вышыню
+  image_size_control: Кантроль памеру здымка
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
+  imperiled: Пад пагрозай
+  import: Імпартаваць
+  import_all_photos_as_observations: Імпартаваць усе фотаздымкі як назіранні
+  import_as_an_observation: Імпартаваць як назіранне
+  import_as_another_observation: Імпартаваць як іншае назіранне?
+  import_date_time_location_taxonomic: "Імпартаваць дату, час, месцазнаходжанне, апісанне і таксанамічную інфармацыю з гэтага фота."
+  import_from_csv: Імпартаваць з CSV
+  import_from_other_photo_sites: Імпартаваць з іншых фота-сайтаў
+  import_observations: Імпартаваць назіранні
+  import_observations_from_a_photo: Імпартаваць назіранні з фота-правайдэра або файла на вашым камп'ютары.
+  import_photos: Імпартавать фотаздымкі
+  import_tags_from_csv: Імпартаваць тэгі з CSV
+  importing: "Імпартаванне..."
+  improving: Паляпшэнне
+  include_suggestions_not_seen_nearby: Уключаючы прапановы, якія не сустракаліся паблізу
+  in_progress: выконваецца
+  in_the_past_week: На мінулым тыдні
+  inactive: Неактыўны
+  invite_people: Запрасіць людзей
+  invite_people_to_project: "Запрасіць людзей у %{project}"
+  is_not_following_anyone: падпісак не мае.
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Ці дастаткова прадстаўлена доказаў, каб пацвердзіць, што гэта %{taxon}?
+  is_this_place_a_duplicate: Гэта месцазнаходжанне ўжо было?
+  it_can_now_be_used_for_research: Цяпер яго можна выкарыстоўваць для даследванняў і паказваць на іншых вэб-сайтах
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: тэкст курсівам
+  join: Далучыцца
+  join_and_add_an_observation_to_project_html: Далучыцца і дадаць назіранне да %{project}
+  lexicons:
+    faroese: Фарэрская
+    finnish: Фінская
+    french: Французская
+    galician: Галісійская
+    german: Нямецкая
+    greek: Грэцкая
+    hawaiian: Гавайская
+    hebrew: Іўрыт
+    hiligaynon: Хілігайнон
+    hungarian: Венгерская
+    icelandic: Ісландская
+    ilokano: Ілакана
+    indonesian: Інданезійская
+    italian: Італьянская
+    japanese: Японская
+    kannada: Канадская
+    korean: Карэйская
+    latvian: Латвійская
+    lithuanian: Літоўская
+    luxembourgish: Люксембургская
+    malay: Малайская
+    malayalam: Малаямская
+    maltese: Мальтыйская
+    maori: Маоры
+    marathi: Маратхі
+    maya: Майя
+    mongolian: Мангольская
+    norwegian: Нарвежская
+    occitan: Аксітанская
+    ojibwe: Оджыбвэ
+  list_deleted: Спіс выдалены.
+  list_saved: Спіс захаваны.
+  list_tooltip: Паказаць у выглядзе спісу
+  list_updated: Спіс абноўлены!
+  list_was_successfully_created: Спіс быў паспяхова створаны.
+  lists: Спісы
+  lists_by_login:
+    title:
+      current_user: Вашыя спісы
+  locales:
+    ar: Арабская
+    be: Беларуская
+    bg: Балгарская
+    br: Брэтонская
+    ca: Каталонская
+    cs: Чэшская
+    da: Дацкая
+    de: Нямецкая
+    el: Грэцкая
+    en: Англійская
+    eo: Эсперанта
+    es: Іспанская
+    es-AR: Іспанская (Аргентына)
+  momentjs:
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "HH:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
+  month: Месяц
+  name: Назва
+  name_entered: Назва ўведзена
+  name_or_slug: "Назва або URL-slug, напрыклад, my-project"
+  name_of_the_place_you: Назва месца, дзе вы зрабілі назіранне
+  names: Назвы
+  names_for_taxon_html: "Назвы для %{taxon}"
+  new_message: Новае паведамленне
+  new_observation_field: Новае поле назірання
+  new_observations: Новыя назіранні
+  new_observations_ellispsis: "Новыя назіранні..."
+  new_password: Новы пароль
+  new_post: Новы запіс
+  new_project: Новы праект
+  next_taxon_short: Наступны
+  no_comments_yet: Пакуль няма каментарыяў.
+  no_description: Няма апісання
+  no_matching_observations: Няма адпаведных назіранняў.
+  no_matching_places: Няма адпаведных месцаў
+  no_matching_projects: Няма адпаведных праектаў
+  no_matching_species: Няма адпаведных відаў.
+  no_matching_taxa: Няма адпаведных таксонаў
+  no_matching_users: Няма адпаведных карыстальнікаў.
+  no_observations: Няма назіранняў
+  no_observations_from_this_place_yet: Назіранняў з гэтага месца пакуль няма.
+  no_observations_matching_those_ids: Няма назіранняў, адпаведных гэтым вызначэнням.
+  no_observations_yet: Пакуль няма назіранняў.
+  no_photo: Няма фота
+  no_photos: Няма фотаздымкаў
+  no_suggestions_available: Няма даступных прапаноў
+  no_summary_from_wikipedia: Няма рэзюмэ з Вікіпедыі
+  no_taxa: Няма таксонаў
+  no_taxa_listed: Таксонаў у спісе няма
+  no_taxa_selected: Таксоны не выбраны!
+  not_found: Не знойдзена
+  notes: Нататкі
+  notifications: Апавяшчэнні
+  number_of_observations: Колькасць назіранняў
+  number_of_observers_value: "Колькасць назіральнікаў: %{number}"
+  number_of_observers: "Колькасць назіральнікаў"
+  number_selected: "# абрана"
+  observation_date: Дата
+  observation_date?: Дата?
+  observation_field: Поле назірання
+  observation_field_type_text: Тэкст
+  places_name:
+    cameroon: Камерун
+    canada: Канада
+    cape_verde: Каба-Вердэ
+    cayman_islands: Кайманавы Астравы
+    central_african_republic: Цэнтральна-Афрыканская Рэспубліка
+    central_america: Цэнтральная Амерыка
+    chad: Чад
+    chile: Чылі
+    china: Кітай
+    christmas_island: Востраў Раства
+    clipperton_island: Востраў Кліпертан
+    cocos_islands: Какосавыя астравы
+    colombia: Калумбія
+    commonwealth_of_the_northern_mariana_islands: Садружнасць Паўночных Марыянскіх астравоў
+    comoros: Каморскія астравы
+    cook_islands: Астравы Кука
+    costa_rica: Коста-Рыка
+    cote_d_ivoire: Кот-д'Івуар
+    croatia: Харватыя
+    cuba: Куба
+    curacao: Кюрасао
+    cyprus: Кіпр
+    czech_republic: Чэшская рэспубліка
+    democratic_republic_of_the_congo: Дэмакратычная Рэспубліка Конга
+    denmark: Данія
+    djibouti: Джыбуці
+    japan: Японія
+    jersey: Джэрсі
+    jordan: Іарданія
+    kazakhstan: Казахстан
+    kenya: Кенія
+    kiribati: Кірыбаці
+    korea: Карэя
+    kosovo: Косава
+    kuwait: Кувейт
+    kyrgyzstan: Кыргызстан
+    laos: Лаос
+    latvia: Латвія
+    lebanon: Ліван
+    lesotho: Лесота
+    liberia: Ліберыя
+    libya: Лівія
+    liechtenstein: Ліхтэнштэйн
+    lithuania: Літва
+    luxembourg: Люксембург
+    macao: Макао
+    macedonia: Македонія
+    madagascar: Мадагаскар
+    malawi: Малаві
+    malaysia: Малайзія
+    turks_and_caicos_islands: Астравы Тэркс і Кайкас
+    tuvalu: Тувалу
+    uganda: Уганда
+    ukraine: Украіна
+    united_arab_emirates: Аб'яднаныя Арабскія Эміраты
+    united_kingdom: Злучанае Каралеўства
+    united_states: Злучаныя Штаты Амерыкі
+    united_states_minor_outlying_islands: Малыя Аддаленыя астравы ЗША
+    united_states_virgin_islands: Амерыканскія Віргінскія астравы
+    uruguay: Уругвай
+    uzbekistan: Узбекістан
+    vanuatu: Вануату
+    vatican_city: Ватыкан
+    venezuela: Венесуэла
+    vietnam: В'етнам
+    virgin_islands: Віргінскія астравы (ЗША)
+    wallis_and_futuna: Уоліс і Футуна
+    west_africa: Заходняя Афрыка
+    western_sahara: Заходняя Сахара
+    yemen: Емен
+    zambia: Замбія
+    zimbabwe: Зімбабвэ
+  ranks:
+    genus: Род
+    x_genera:
+      one: Род
+      few: Роды
+      many: Родаў
+      other: Роды
+    subgenus: Падрод
+    complex: Коплекс
+    #Singular
+    species: Від
+    x_species:
+      one: Від
+      few: Відаў
+      many: Відаў
+      other: Віда
+    hybrid: Гібрыд
+    #Singular
+    subspecies: Падвід
+    leaves: Лісце
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: царства
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: падцарства
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: клас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: падклас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: інфраклас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: трыба
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: падтрыба
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: род
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: родавы гібрыд
+  reason: Прычына
+  reason_you_are_flagging_this_item: Прычына, па якой вы пазначаеце гэты элемент.
+  remove: Выдаліць
+  remove_photo: Выдаліць фота
+  remove_place: Выдаліць месца
+  sending: Адпраўка...
+  #Plural
+  species: Віды
+  species_by_category: віды па катэгорыях
+  species_search: Пошук відаў
+  today: Сёння
   date:
     abbr_month_names:
       - 
@@ -1955,14 +2305,176 @@ be:
       - April
       - May
       - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
+      - Ліпень
+      - Жнівень
+      - Верасень
+      - Кастрычнік
+      - Лістапад
+      - Снежань
+  datetime:
+    countdown_x_days:
+      one: дзень
+      few: дні
+      many: дзён
+      other: дня
+    countdown_x_hours:
+      one: гадзіна
+      few: гадзіны
+      many: гадзін
+      other: гадзіны
+    countdown_x_minutes:
+      one: хв
+      few: хв
+      many: хв
+      other: хв
+    countdown_x_seconds:
+      one: сек
+      few: сек
+      many: сек
+      other: сек
+    prompts:
+      day: Дзень
+      hour: Гадзіна
+      minute: Хвіліна
+      month: Месяц
+      second: Секунды
+      year: Год
+  errors:
+    format: '%{attribute} %{message}'
   number:
+    format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
+      delimiter: '.'
+      precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
+      separator: ','
+      significant: false
+      strip_insignificant_zeros: false
     human:
+      decimal_units:
+        units:
+          billion: Мільярд
+          million: Мільён
+          thousand: Тысяча
       format:
+        precision: 3
         significant: true
         strip_insignificant_zeros: true
+      storage_units:
+        format: '%n %u'
+        units:
+          byte:
+            one: Байт
+            few: Байты
+            many: Байтаў
+            other: Байт
+          gb: ГБ
+          kb: КБ
+          mb: МБ
+          tb: TБ
+  support:
+    array:
+      last_word_connector: 'і '
+      two_words_connector: ' і '
+      words_connector: ', '
+  activerecord:
+    attributes:
+      assessment:
+        description: Апісанне
+      assessment_section:
+        title: Загаловак
+      conservation_status:
+        status: Статус
+        description: Апісанне
+        url: URL
+      flag:
+        reason: Прычына
+      observation:
+        description: Нататкі
+      post:
+        title: Загаловак
+      source:
+        title: Загаловак
+        in_text: У тэксце
+        url: URL
+      taxon:
+        locked: Заблакавана
+        wikipedia_title: Назва артыкулу на Вікіпедії
+      user:
+        email: Email
+        login: Імя карыстальніка
+        time_zone: Гадзінны пояс
+    errors:
+      messages:
+        empty: не можа быць пустым
+  i18n:
+    inflections:
+      "@gender":
+        m: Мужчынскі
+        f: Жаночы
+        "n": кастры
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_drop: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_link: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_merge: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_split: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_stage: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_swap: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@f"
+        #Default gender for nouns that aren't listed here
+        default: "@n"
+  #Title of a section warning the user about something
+  warning_title: Увага
+  wikimedia: Wikimedia
+  wild: Дзікае
+  will_paginate:
+    previous_label: "&#8592; Папяр."
+    next_label: "Наст. &#8594;"
+    page_gap: "&hellip;"
+  you_will_no_longer_be_following_or_trusting: "Вы больш не будзеце сачыць або давяраць %{user}"
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: ад Я да А
+  zoom_in: Павялічыць
+  zoom_out: Паменшыць
+  zoom_photo: Павялічыць фота

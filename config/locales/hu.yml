@@ -155,7 +155,6 @@ hu:
   account: Fiók
   account_creation: Fiók létrehozás
   account_settings: Fiók beállításai
-  accept: Elfogadom
   accept_community_identifications: Elfogadom a közösség meghatározásait
   accuracy: Pontosság
   accuracy_meters: Pontosság (méterben)
@@ -319,7 +318,6 @@ hu:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Attribútum
   back_to_all_species: 'Vissza ide: Minden faj'
-  back_to_calendar: "Vissza %{user} naptárához"
   back_to_editing_observation: Vissza a megfigyelés szerkesztéséhez
   back_to_friends: Vissza a barátokhoz
   back_to_flags_html: "&laquo; Vissza a megjelölésekhez"
@@ -346,7 +344,6 @@ hu:
   back_to_your_journal: Vissza a hírmondódhoz
   back_to_your_observations: Vissza a megfigyeléseidhez
   back_to_your_profile: Vissza a profilodhoz
-  back_to_your_projects: Vissza a projekjeidhez
   badges: Jelvények
   based_on_the_evidence_can_id_be_improved: |
     A bizonyíték alapján lehet még javítani a közösségi meghatározáson?
@@ -669,7 +666,6 @@ hu:
   identification_saved: "Meghatározás elmentve!"
   identification_withdrawn: Meghatározás visszavonva
   identifications: Meghatározások
-  identifications_by: "%{user} meghatározásai"
   computer_vision_suggestion_desc: |
     A gépi látás és képfelismerés egy olyan folyamat, melynek során a számítógépeket képek mintázatainak felismerésére tanítják meg. Olyan eszközöket fejlesztettünk, amelyek a közösségünk megfigyelései alapján tanított gépi látási modelleket használnak meghatározások javaslataihoz. Ez a címke azt jelöli, hogy a meghatározás ezen eszközök valamelyikével történt.
   identifiers: Meghatározók
@@ -849,11 +845,11 @@ hu:
     current_user: Még nem adtál hozzá kedvenceket.
     user: "%{user} még nem adott hozzá kedvenceket."
   no_journal_posts_yet: Még nincs hírmondó-bejegyzés
-  no_matching_invitations: Nincsenek meghívók
   no_more_results_found: Nincs több eredmény
   no_new_messages: Nincs új üzenet
   no_observations: Nincsenek megfigyelések
   no_observations_yet: Még nincsenek megfigyelések
+  no_places_available: Nincsenek helyek
   no_project_to_admin_current_user: "Még nem kezelsz projekteket"
   no_relevant_annotations: Nincsenek kapcsolódó megjelölések
   no_reply_yet: Még nincs válasz
@@ -959,10 +955,16 @@ hu:
   place: Hely
   place_geo:
     geo_planet_place_types:
+      Continent: Földrész
+      continent: földrész
       Country: Ország
       country: ország
       County: Megye
       county: megye
+      Province: Tartomány
+      province: tartomány
+      Region: Régió
+      region: régió
       Time_Zone: Időzóna
       time_zone: időzóna
       Unknown: Ismeretlen
@@ -1215,6 +1217,7 @@ hu:
   species_search: Fajok keresése
   species_taxon_name: Faj- / taxonnév
   species_unknown: Ismeretlen fajok
+  standard: Standard
   start: Kezdete
   start_a_new_project: Új projekt indítása
   start_a_project: Projekt indítása
@@ -1319,7 +1322,6 @@ hu:
   view_all: Összes megtekintése
   view_all_members: Tagok megtekintése
   view_details: Részletek
-  view_dynamic_lifelist: Dinamikus életlista megtekintése
   view_full_size_photo: Teljes méretű fénykép megtekintése
   view_journal: Hírmondó megtekintése
   view_leaderboard_from_last_month: Az előző havi ranglista megtekintése

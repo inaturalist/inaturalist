@@ -241,7 +241,7 @@ end
 puts
 puts "== REINDEXING #{@taxon_ids_to_index.size} TAXA =="
 puts
-Taxon.elastic_index!( ids: @taxon_ids_to_index.to_a )
+Taxon.elastic_index!( ids: @taxon_ids_to_index.to_a.uniq )
 
 unless not_created.blank?
   puts
@@ -257,7 +257,7 @@ unless @errors.blank?
   puts
   @errors.group_by( &:last ).each do | grouped_error, grouped_errors |
     puts "\t#{grouped_error}"
-    grouped_errors.each do | name, _error |
+    grouped_errors.map( &:first ).uniq.each do | name |
       puts "\t\t#{name}"
     end
   end

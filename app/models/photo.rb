@@ -79,7 +79,7 @@ class Photo < ApplicationRecord
   end
 
   def sized_url( size = "original" )
-    if flags.any?{ |f| f.flag == Flag::COPYRIGHT_INFRINGEMENT }
+    if flags.any?{ |f| f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved? }
       return FakeView.image_url( "copyright-infringement-#{size}.png" )
     end
     if !self["original_url"] || self["original_url"].match( /attachment_defaults/ )

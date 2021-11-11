@@ -304,7 +304,6 @@ en:
   account: Account
   account_creation: Account Creation
   account_settings: Account Settings
-  accept: accept
   accept_community_identifications: Accept community identifications
   accuracy: Accuracy
   accuracy_meters: Accuracy (meters)
@@ -717,7 +716,6 @@ en:
     Are you sure you consider this user honorable?
     Any spam flags on their content will be resolved.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Are you sure you want to remove these %{x} taxa?"
-  are_you_sure_you_want_to_remove_this_invitation: Are you sure you want to remove this invitation?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Are you sure you want to remove this observation from %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Are you sure you want to remove this taxon from %{place}'s checklist?"
@@ -762,7 +760,6 @@ en:
   avg: Avg
   back: Back
   back_to_all_species: Back to All Species
-  back_to_calendar: "Back to %{user} calendar"
   back_to_editing_observation: Back to editing observation
   back_to_friends: Back to friends
   back_to_flags_html: "&laquo; Back to flags"
@@ -778,18 +775,20 @@ en:
   back_to_taxon: "Back to %{defaulttaxon}"
   back_to_taxon_changes: "Back to taxon changes"
   back_to_taxon_framework_for_x: "Back to taxon framework for %{taxon_name}"
+  back_to_users_calendar: "Back to %{user}'s calendar"
+  back_to_users_lists: "Back to %{user}'s lists"
   back_to_viewing: "Back to viewing <i>%{taxon}</i>"
   back_to_x: "Back to %{noun}"
   back_to_x_assessment: "Back to %{project} assessments"
   back_to_x_history: "Back to %{x} history"
   back_to_x_journal: "Back to %{user}'s journal"
   back_to_x_blog: "Back to %{x}'s blog"
+  back_to_your_calendar: Back to your calendar
   back_to_your_dashboard: Back to your dashboard
   back_to_your_lists: Back to your lists
   back_to_your_journal: Back to your journal
   back_to_your_observations: Back to your observations
   back_to_your_profile: Back to your profile
-  back_to_your_projects: Back to your projects
   badges: Badges
   based_on_the_evidence_can_id_be_improved: |
     Based on the evidence, can the Community Taxon still be confirmed or improved?
@@ -934,7 +933,6 @@ en:
   check_list_place: "%{place} Check List"
   check_list_updated: Check list updated!
   check_lists_for: "Other Check Lists for %{place}"
-  check_out_our_blog: Check out our Blog
   check_out_what_the_observation: Check out what the observation you're trying to identify looks like.
   check_this_box_if_html: |
     Check this box if you want to apply a <a
@@ -1012,7 +1010,6 @@ en:
   comparing: comparing
   comparing_list_to_list: "Comparing %{list1} with %{list2}"
   comparing_versions_x_and_y: "Comparing versions %{x} and %{y}"
-  comparing_observations_from: "Comparing %{user} observations from %{dates}"
   compiled_by_name: "Compiled by %{name}"
   # Adjective, e.g. "this Taxon Framework is complete"
   complete: Complete
@@ -1730,6 +1727,10 @@ en:
   establishment_means_describes_how: |
     Establishment means describes how the taxon came to be established in an area.  
     See DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
+  establishment_means_descriptions:
+    native: evolved in this region or arrived by non-anthropogenic means
+    endemic: native and occurs nowhere else
+    introduced: arrived in the region via anthropogenic means
   estimate_which_input: |
     Estimate which input taxon ids will be replaced with which output taxa and which will be coarsened to a common ancestor once the split is comitted. This may take
     a moment to calculate. Links to observations are truncated to subsets of 200.
@@ -2118,7 +2119,6 @@ en:
   identification_user_short: Ident. user
   identification_withdrawn: Identification withdrawn.
   identifications: Identifications
-  identifications_by: "Identifications by %{user}"
   computer_vision_suggestion: Computer Vision Suggestion
   computer_vision_suggestion_desc: |
     Computer vision is the process of teaching computers to recognize patterns
@@ -2142,7 +2142,6 @@ en:
   if_this_link_will_apply_to_descendant: If this link will apply to descendent taxa, you can use template tags to fill in the taxon name in the URL
   if_you_have_any_trouble_with_the_site_check_out: 'If you have any questions, please check out our <a href="%{help_url}">help section</a> or post a message to our <a href="%{feedback_url}">feedback group</a>.'
   if_your_project_is: If your project is about a particular place, set the coordinates by clicking the map or entering them manually.
-  ignore: ignore
   ignore_and_continue: Ignore and continue
   ignore_times: Ignore times
   image_must_be_exactly: image must be exactly 950px wide and at most 400px tall
@@ -2239,7 +2238,6 @@ en:
   join_project: Join this project
   # Prompt to join a specific project
   join_project?: Join %{project}?
-  join_some_projects_and_invite_some_observations_html: "Join some <a href='%{join_url}'>projects</a> and <a href='%{invite_url}'>invite some observations</a>"
   join_the_largest_group_of_naturalists_in_the_world: Join the largest group of naturalists in the world!
   join_this_project: Join this project
   'joined!': Joined!
@@ -2887,7 +2885,6 @@ en:
   no_license_all_rights_reserved: No license (all rights reserved)
   no_managers_set: No managers set
   no_matching_article_from_x: "No matching article from %{x}"
-  no_matching_invitations: No matching invitations
   no_matching_observations: No matching observations.
   no_matching_places: No matching places
   no_matching_projects: No matching projects
@@ -3011,10 +3008,10 @@ en:
   observation_brief_something_on_day_at_time: "Something on %{day} at %{time}"
   observation_brief_something_on_day_at_time_by_user: "Something on %{day} at %{time} by %{user}"
   observation_brief_something_on_day_by_user: "Something on %{day} by %{user}"
-  # %{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month: "Something in %{month}"
-  # %{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month_by_user: "Something in %{month} by %{user}"
+  # %{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Something in %{month} %{year}"
+  # %{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Something in %{month} %{year} by %{user}"
   observation_brief_something_by_user: "Something by %{user}"
   observation_brief_something_from_place: "Something from %{place}"
   observation_brief_something_from_place_by_user: "Something from %{place} by %{user}"
@@ -3022,18 +3019,18 @@ en:
   observation_brief_something_from_place_on_day_by_user: "Something from %{place} on %{day} by %{user}"
   observation_brief_something_from_place_on_day_at_time: "Something from %{place} on %{day} at %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Something from %{place} on %{day} at %{time} by %{user}"
-  # %{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month: "Something from %{place} in %{month}"
-  # %{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month_by_user: "Something from %{place} in %{month} by %{user}"
+  # %{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Something from %{place} in %{month} %{year}"
+  # %{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Something from %{place} in %{month} %{year} by %{user}"
   observation_brief_taxon_on_day: "%{taxon} on %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} on %{day} at %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} on %{day} at %{time} by %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} on %{day} by %{user}"
-  # %{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month: "%{taxon} in %{month}"
-  # %{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month_by_user: "%{taxon} in %{month} by %{user}"
+  # %{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} in %{month} %{year}"
+  # %{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} in %{month} %{year} by %{user}"
   observation_brief_taxon_by_user: "%{taxon} by %{user}"
   observation_brief_taxon_from_place: "%{taxon} from %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} from %{place} by %{user}"
@@ -3041,10 +3038,10 @@ en:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} from %{place} on %{day} by %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} from %{place} on %{day} at %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} from %{place} on %{day} at %{time} by %{user}"
-  # %{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month: "%{taxon} from %{place} in %{month}"
-  # %{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} from %{place} in %{month} by %{user}"
+  # %{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} from %{place} in %{month} %{year}"
+  # %{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} from %{place} in %{month} %{year} by %{user}"
   observations_by_category: "Observations By category"
   observations_by_app: Observations By App
   observations_by_rank: Observations By Rank
@@ -3102,7 +3099,6 @@ en:
     observation, like number of individuals observed, habitat
     description, or whatever you want! Projects can also specify fields
     they'd like you to fill out.
-  observations_from: Observations from %{date}
   observations_from_people_taxa_and_places_youre_following: "Observations from people, places, and taxa you're following"
   observations_from_this_place: Observations from this place
   observations_from_this_project: Observations from this project
@@ -3825,8 +3821,6 @@ en:
     people can add places in the future given iNat's current rate of growth.
   plants: plants
   please_add_a_citation_for_this_change: Please add a citation for this change.
-  please_add_this_observation_to: Please add this observation to
-  please_add_this_to_x_html: "Please add this to %{x}"
   please_allow_a_few_weeks_for_external_sites:
     Please allow a few weeks for external sites to sync changes from this observation
   # Title to a section warning a user to exercise caution
@@ -3841,7 +3835,6 @@ en:
   please_hold_on_while_the_file_is_generated: Please hold on while the file is generated.  It can take a couple minutes for large lists.
   popular: Popular
   position: Position
-  possessive_user: "%{user}'s"
   # Post is a noun
   post_from_journal_by_parent_html: Post from <a href="%{url}">journal by %{parent}</a>
   # Post is a noun
@@ -4681,7 +4674,6 @@ en:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Suitable for Wikipedia and other Wikimedia Foundation projects
   summary: Summary
   supporting: Supporting
-  support_inaturalist: Support iNaturalist
   suspend_user: Suspend user
   sw_lat: SW Lat.
   sw_lon: SW Lon.
@@ -5084,7 +5076,6 @@ en:
   unhide_desc: |
     Unhiding will reveal this content for everyone to see. Curators can still
     choose to hide it again in the future.
-  uninvite: uninvite
   unique_identifier_of_this_taxon: Unique identifier of this taxon in the source database.
   unique_observers: unique observers
   unknown: Unknown
@@ -5223,7 +5214,6 @@ en:
   user_invited_you_to_join_html: "%{user} invited you to join"
   user_invited_you_to_join_project: "%{user} invited you to join %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} invited you to join this project on %{date}"
-  user_invited_your_x_to_a_project_html: "%{user} invited your %{x} to a project"
   user_is_a_naturalist: "%{user} is a naturalist!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> is now the admin for %{project}
@@ -5250,7 +5240,10 @@ en:
   users_favorites: "%{user}'s Favorites"
   users_highlights_and_stats_from_year_on_site: "%{user}'s highlights and stats from %{year} on %{site}"
   users_id: "%{user}'s ID"
+  users_identifications: "%{user}'s Identifications"
+  users_journal: "%{user}'s Journal"
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
+  users_lists: "%{user}'s Lists"
   users_profile: "%{user}'s Profile"
   users_projects: "%{user}'s Projects"
   users_year_on_site: "%{user}'s Year On %{site} %{year}"
@@ -5270,14 +5263,13 @@ en:
   view_check_list_page: View Check List Page
   view_contributions: View Contributions
   view_details: View Details
-  view_dynamic_lifelist: View dynamic lifelist
+  view_dynamic_lifelist_: VIEW DYNAMIC LIFELIST
   view_field_options: View Field Options
   view_flag: View Flag
   view_flags: View Flags
   view_flags_for_x_html: "View Flags for %{x}"
   view_full_observation: View Full Observation
   view_full_size_photo: View full-size photo
-  view_invitation: View Invitation
   view_journal: View Journal
   view_leaderboard_from_last_month: View leaderboard from last month
   view_leaderboard_from_last_year: View leaderboard from last year
@@ -5565,7 +5557,6 @@ en:
   you_must_have_a_header_row: You must have a header row
   you_must_select_a_place_to_merge_with: You must select a place to merge with.
   you_must_select_at_least_one_taxon: You must select at least one taxon
-  you_must_select_dates_to_compare: You must select dates to compare
   you_must_specify_and_confirm_a_new_password: You must specify and confirm a new password.
   you_need_to_have_linked_flickr_account: You need to have a linked Flickr account to tag your photos.
   you_need_to_select_some_observations_first: You need to select some observations first.
@@ -7561,6 +7552,13 @@ en:
             including the work of the
             <strong class="count">%{helpers_count} people</strong> who have
             helped you out with identifications
+        x_projects_html:
+            one: |
+              <strong class="count">%{count} project</strong> that does not
+              have another manager or admin that can become the new owner
+            other: |
+              <strong class="count">%{count} projects</strong> that do not
+              have other managers or admins that can become the new owner
         x_identifications_html:
           one: |
             <strong class="count">your %{count} identification</strong>

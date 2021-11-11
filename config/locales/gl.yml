@@ -225,7 +225,6 @@ gl:
   account: Conta
   account_creation: Creación Dunha Conta
   account_settings: Configuracións Da Conta
-  accept: Aceptar
   accept_community_identifications: Aceptar as identificacións da comunidade
   accuracy: Exactitude
   accuracy_meters: Exactitude (metros)
@@ -627,7 +626,6 @@ gl:
   are_you_sure_you_want_to_remove_spammer: |
     ¿Seguro que consideras honesto a este usuario? Tódalas marcas de spam no seu contido serán resolvidas.
   are_you_sure_you_want_to_remove_these_x_taxa?: "¿Seguro que queres eliminar estes taxons %{x}?"
-  are_you_sure_you_want_to_remove_this_invitation: '¿Estás seguro de que desexas cancelar a invitación?'
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     ¿Seguro que queres eliminar esta observación de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Estás seguro de que desexas eliminar a esta especie ou grupo da lista de comprobación de %{place}?"
@@ -671,7 +669,6 @@ gl:
   avg: Media
   back: Retornar
   back_to_all_species: Volver a todas as especies
-  back_to_calendar: "Volver a calendario %{user}"
   back_to_editing_observation: Volver a modificar a observación
   back_to_friends: Volver a amigos
   back_to_flags_html: "&laquo; Volver a marcas"
@@ -698,7 +695,6 @@ gl:
   back_to_your_journal: Volver ao teu diario
   back_to_your_observations: Volver ás túas observacións
   back_to_your_profile: Volver ao teu perfil
-  back_to_your_projects: Volver aos teus proxectos
   badges: Insignias
   based_on_the_evidence_can_id_be_improved: |
     Baseándose na evidencia, ¿o Taxon da Comunidade pode ser aínda confirmado ou mellorado?
@@ -842,7 +838,6 @@ gl:
   check_list_place: "Lista de comprobación de %{place}"
   check_list_updated: '¡Lista de verificación actualizada!'
   check_lists_for: "Outras listas de verificación para %{place}"
-  check_out_our_blog: Bota un vistazo ó noso Blog
   check_out_what_the_observation: Bótalle unha ollada ás observacións que estás tratando de identificar.
   check_this_box_if_html: |
     Marca esta casiña se queres aplicar a <a
@@ -915,7 +910,6 @@ gl:
   comparing: Comparando
   comparing_list_to_list: "Comparando %{list1} con %{list2}"
   comparing_versions_x_and_y: "Comparando versións %{x} e %{y}"
-  comparing_observations_from: "Comparación das observacións de %{user} en %{dates}"
   compiled_by_name: "Compilado por %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Completado
@@ -1872,7 +1866,6 @@ gl:
   identification_user_short: Ident. usuario
   identification_withdrawn: Identificación retirada.
   identifications: Identificacións
-  identifications_by: "Identificacións por %{user}"
   computer_vision_suggestion: Suxestión da Visión Artificial
   computer_vision_suggestion_desc: |
     A visión artificial é o proceso de ensinar ós ordenadores a recoñecer patróns en imaxes. Proporcionamos útiles que usan modelos de visión artificial adestrados cás fotos da comunidade para proporcionar suxestións de identificacións, por exemplo as ferramentas auto-completar e de comparanza. Esta etiqueta indica cándo unha persoa engadiu unha identificación usando un destes útiles.
@@ -1889,7 +1882,6 @@ gl:
   if_this_link_will_apply_to_descendant: Se aplicas este vínculo aos taxóns descendentes, podes empregar os seus modelos de etiquetas para introducir o nome do taxón na URL
   if_you_have_any_trouble_with_the_site_check_out: 'Se tes algún problema co sitio, por favor revisa a nosa <a href="%{help_url}">sección de axuda</a> ou escribe unha mensaxe ó noso <a href="%{feedback_url}">grupo de retroalimentación</a>.'
   if_your_project_is: Se o teu proxecto é sobre un lugar específico, engade as coordenadas seleccionando o enlace do mapa ou engádeas manualmente.
-  ignore: Ignorar
   ignore_and_continue: Ignorar e continuar
   ignore_times: Ignorar os tempos
   image_must_be_exactly: a imaxe debe ser exactamente 950px de ancho e como moito 400px de alto
@@ -1979,7 +1971,6 @@ gl:
   join_project: Unirse a este proxecto
   #Prompt to join a specific project
   join_project?: '¿Queres unirte a %{project}?'
-  join_some_projects_and_invite_some_observations_html: "Únete a certos <a href='%{join_url}'>proxectos</a> e <a href='%{invite_url}'>introduce algunhas observacións</a>"
   join_the_largest_group_of_naturalists_in_the_world: '¡Afíliate ó meirande grupo de naturalistas no mundo!'
   join_this_project: unirte a este proxecto.
   'joined!': '¡Afiliado!'
@@ -2568,7 +2559,6 @@ gl:
   no_license_all_rights_reserved: Non hai licenza (todos os dereitos reservados)
   no_managers_set: Aínda non hai xestores
   no_matching_article_from_x: "Non hai artigos coincidentes de %{x}"
-  no_matching_invitations: Non hai invitacións que concorden
   no_matching_observations: Non hai observacións que coincidan
   no_matching_places: Non hai lugares que coincidan
   no_matching_projects: Non hai proxectos que coincidan
@@ -2683,10 +2673,6 @@ gl:
   observation_brief_something_on_day_at_time: "Algo no %{day} ás %{time}"
   observation_brief_something_on_day_at_time_by_user: "Algo no %{day} ás %{time} por %{user}"
   observation_brief_something_on_day_by_user: "Algo no %{day} por %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month: "Algo en %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month_by_user: "Algo en %{month} por %{user}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
   observation_brief_something_from_place_by_user: "Algo de %{place} por %{user}"
@@ -2694,18 +2680,10 @@ gl:
   observation_brief_something_from_place_on_day_by_user: "Algo de %{place} no%{day} por %{user}"
   observation_brief_something_from_place_on_day_at_time: "Algo de %{place} no %{day} ás %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Algo de %{place} no %{day} ás %{time} por %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month: "Algo de %{place} en %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month_by_user: "Algo de %{place} en %{month} por %{user}"
   observation_brief_taxon_on_day: "%{taxon} no %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} no %{day} ás %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} no %{day} ás %{time} por %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} no %{day} por %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month: "%{taxon} en %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month_by_user: "%{taxon} en %{month} por %{user}"
   observation_brief_taxon_by_user: "%{taxon} por %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} de %{place} por %{user}"
@@ -2713,10 +2691,6 @@ gl:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} de %{place} no %{day} por %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} de %{place} no %{day} ás %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} de %{place} no %{day} ás %{time} por %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month: "%{taxon} de %{place} en %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} de %{place} en %{month} por %{user}"
   observations_by_category: "Observacións Por Categoría"
   observations_by_app: Observacións Por App
   observations_by_rank: Observacións Por Rango
@@ -2764,7 +2738,6 @@ gl:
   observations_deleted: As observacións elimináronse.
   observations_fields_are: |
     Os campos son información extra asociada á túa observación, como o número de especies observadas, descrición do hábitat, ou o que queiras comentar.
-  observations_from: Observacións de %{date}
   observations_from_people_taxa_and_places_youre_following: "Observacións de xente, lugares e taxons ós que segues"
   observations_from_this_place: Observacións deste lugar
   observations_from_this_project: Observacións deste proxecto
@@ -3448,8 +3421,6 @@ gl:
     Polo que vale, teremos que restrinxir as condicións para poder engadir lugares no futuro, dado a actual taxa de crecemento de iNat.
   plants: Plantas
   please_add_a_citation_for_this_change: Debes engadir unha referencia para este cambio.
-  please_add_this_observation_to: 'Por favor, engade esta observación a:'
-  please_add_this_to_x_html: "Engade isto a %{x}"
   please_allow_a_few_weeks_for_external_sites: Por favor, dálles unhas semanas ás páxinas externas para sincronizar os cambios desta observación #Title to a section warning a user to exercise caution
   please_be_careful!: '¡Por favor, Ten Coidado!'
   please_complete_the_following_to_add_project: |
@@ -3462,7 +3433,6 @@ gl:
   please_hold_on_while_the_file_is_generated: Espera mentres se xera o arquivo. Pode tardar uns minutos para as listas grandes.
   popular: Popular
   position: Posición
-  possessive_user: "de %{user}"
   #Post is a noun
   post_from_journal_by_parent_html: Publicación do <a href="%{url}">diario de%{parent}</a>
   #Post is a noun
@@ -4162,7 +4132,6 @@ gl:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Apropiado para a Wikipedia e para outros proxectos de Wikimedia Foundation
   summary: Resumo
   supporting: Apoio
-  support_inaturalist: Apoiar a iNaturalist
   suspend_user: Suspender usuario
   sw_lat: lat. S.O.
   sw_lon: lonx. S.O.
@@ -4494,7 +4463,6 @@ gl:
   unhide_content: Desvelar Contido
   unhide_desc: |
     Ó desvelar, revelarase todo o contido ó público. Os conservadores aínda poderán escoller se ocultar o contido de novo no futuro.
-  uninvite: Cancelar invitación
   unique_identifier_of_this_taxon: Identificador único para esta especie ou grupo na base de datos.
   unique_observers: observadores únicos
   unknown: Descoñecido
@@ -4624,7 +4592,6 @@ gl:
   user_invited_you_to_join_html: "%{user} convidoute a uníreste"
   user_invited_you_to_join_project: "%{user} convidoute a uníreste a %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} convidoute a uníreste a este proxecto no %{date}"
-  user_invited_your_x_to_a_project_html: "%{user} convidaches ao teu %{x} a un proxecto"
   user_is_a_naturalist: "%{user} es un naturalista!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> agora é o administrador de %{project}
@@ -4670,14 +4637,12 @@ gl:
   view_check_list_page: Ver páxina de lista de verificación
   view_contributions: Ver Achegas
   view_details: Ver detalles
-  view_dynamic_lifelist: Ver lista de vida dinámica
   view_field_options: Ver Opcións de Campo
   view_flag: Ver Marca
   view_flags: Ver marcas
   view_flags_for_x_html: "Ver Marcas para %{x}"
   view_full_observation: Ver observación completa
   view_full_size_photo: Ver foto en tamaño completo
-  view_invitation: Ver invitación
   view_journal: Ver Diario
   view_leaderboard_from_last_month: Ver o máis activo do mes pasado
   view_leaderboard_from_last_year: Ver o máis activo do ano pasado
@@ -4931,7 +4896,6 @@ gl:
   you_must_have_a_header_row: Debes ter unha fila de cabeceira
   you_must_select_a_place_to_merge_with: Debes seleccionar un lugar para combinar.
   you_must_select_at_least_one_taxon: Debes seleccionar polo menos un taxon
-  you_must_select_dates_to_compare: Debes seleccionar as datas que queres comparar
   you_must_specify_and_confirm_a_new_password: Debes especificar e confirmar un novo contrasinal.
   you_need_to_have_linked_flickr_account: Debes ter unha conta de Flickr vinculada para etiquetar as túas fotos.
   you_need_to_select_some_observations_first: Debes seleccionar algunhas observacións primeiro.
@@ -5688,6 +5652,8 @@ gl:
       edit:
         complex_boundary_note_html: |
           Este límite é demasiado complexo para editalo na web. Aínda así podes<a href="%{url}">descargar o KML</a>, editalo na aplicación GIS da túa escolla e cargar o teu KML editado directamente.
+        admin_level_desc: |
+          Só debería ser posto para áreas políticas. En termos de equivalencias con EEUU: 0 =p aís, 10 = estado, 20 = condado, 30 = cidade
       new:
         check_list_note: "Nota: As listas de verificación desactívanse automaticamente para sitios moi grandes."
         coordinates_desc: Debes especificar as coordenadas se non debuxas límites ou cargas un KML.
@@ -7051,6 +7017,8 @@ gl:
           attributes:
             base:
               user_already_blocked: Xa bloquearas a ese usuario.
+              user_cannot_be_staff: |
+                Non podes bloquear ós traballadores. Os traballadores de iNat precisan de ser quen de comunicarense con todos en iNat, ter acceso a tódolos dados en iNat e son os mediadores últimos das disputas, así que bloquealos non evitará que se comuniquen contigo. Se tes un problema con algún traballador, por favor, repórtao a algún dos co-directores de iNat, ou se tes un problema con algún dos co-directores, podes contactar con o Xefe de Ciencia no Instituto de Biodiversidade e Ciencia da Sostibilidade na Academia de Ciencias de California.
         user_parent:
           attributes:
             email:

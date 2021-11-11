@@ -199,7 +199,6 @@ et:
   account: Konto
   account_creation: Konto loomine
   account_settings: Kontosätted
-  accept: nõustu
   accept_community_identifications: Luba kogukondlikud määratlused
   accuracy: Täpsus
   accuracy_meters: Täpsus (meetrit)
@@ -567,7 +566,6 @@ et:
     Oled sa kindel, et pead seda kasutajat korralikuks?
     Tema lisatud sisult eemaldatakse kõik rämpspostiga seotud märkused.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Oled sa kindel, et soovid eemaldada %{x} taksonit?"
-  are_you_sure_you_want_to_remove_this_invitation: Oled sa kindel, et soovid selle kutse tagasi võtta?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Oled sa kindel, et soovid eemaldada selle taksoni koha %{place} kontrollnimekirjast?"
   associated_observations: Seotud vaatlused
   associated_taxa: Seotud taksonid
@@ -608,7 +606,6 @@ et:
   avg: Keskm.
   back: Tagasi
   back_to_all_species: Tagasi kõigi liikide juurde
-  back_to_calendar: "Tagasi kasutaja %{user} kalendrisse"
   back_to_editing_observation: Tagasi vaatlust muutma
   back_to_friends: Tagasi sõprade juurde
   back_to_flags_html: "&laquo; Tagasi märkuste juurde"
@@ -634,7 +631,6 @@ et:
   back_to_your_journal: Tagasi enda päevikusse
   back_to_your_observations: Tagasi oma vaatluste juurde
   back_to_your_profile: Tagasi oma profiilile
-  back_to_your_projects: Tagasi oma projektide juurde
   based_on_the_evidence_can_id_be_improved: |
     Kas vastavalt tõenditele saab kogukondliku määratluse kinnitada või seda parandada?
   batch: Komplekt
@@ -774,7 +770,6 @@ et:
   check_list_place: "%{place} kontrollnimekiri"
   check_list_updated: Nimekiri uuendatud!
   check_lists_for: "Teised kontrollnimekirjad kohas %{place}"
-  check_out_our_blog: Külasta meie blogi
   check_out_what_the_observation: Külasta vaatlust, mida oled proovinud määratleda.
   check_this_box_if_html: |
     Pane siia kasti linnuke, kui soovid oma fotodele määrata
@@ -842,7 +837,6 @@ et:
   comparing: võrdlen
   comparing_list_to_list: "Võrdlen nimekirja %{list1} nimekirjaga %{list2}"
   comparing_versions_x_and_y: "Võrdlen versiooni %{x} versiooniga %{y}"
-  comparing_observations_from: "Võrdlen kasutaja %{user} vaatlusi kuupäevadel %{dates}"
   compiled_by_name: "Koostanud %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Valmis
@@ -1453,7 +1447,6 @@ et:
   identification_user_short: Määratlenud kasutaja
   identification_withdrawn: Määratlus tagasivõetud.
   identifications: Määratlused
-  identifications_by: "Kasutaja %{user} määratlused"
   computer_vision_suggestion: Masin-nägemise pakkumine
   computer_vision_suggestion_desc: |
     Masin-nägemine on protsess, mille abil õpetatakse arvuteid piltidelt mustreid leidma. Kasutame määratluste pakkumiseks (nt automaatne lõpetamine ja võrdlemine) tööriistu, mis kasutavad masin-nägemise mudeleid, mida on õpetatud kogukondlike fotode abil. Antud silt täistab seda, kui keegi on lisanud määratluse mõne taolise tööriista abil.
@@ -1470,7 +1463,6 @@ et:
   if_this_link_will_apply_to_descendant: Kui see link käib alamtaksonite kohta, saad kasutada malli-koode URLi taksoni nime sisestamiseks
   if_you_have_any_trouble_with_the_site_check_out: 'Kui sul on küsimus, vaata palun meie <a href="%{help_url}">abiteemasid</a> või postita sõnum <a href="%{feedback_url}">tagasiside gruppi</a>.'
   if_your_project_is: Kui su projekt on seotud kindla kohaga, määra selle koordinaadid vajutades kaardile või sisestades need käsitsi.
-  ignore: eira
   ignore_and_continue: Eira ja jätka
   ignore_times: Eira kellaaegu
   image_must_be_exactly: pilt peab olema täpselt 950 pikslit lai ja maksimaalselt 400 pikslit kõrge
@@ -1534,7 +1526,6 @@ et:
     <a href="%{manage_flags_path}">Halda märkuseid</a>
   join: Liitu
   join_project: Liitu selle projektiga
-  join_some_projects_and_invite_some_observations_html: "Liitu mõne <a href='%{join_url}'>projektiga</a> ja<a href='%{invite_url}'>kutsu neisse vaatlusi</a>"
   join_the_largest_group_of_naturalists_in_the_world: Liitu maailma suurima loodusloolaste grupiga!
   join_this_project: Liitu selle projektiga
   'joined!': Liitusid!
@@ -1980,7 +1971,6 @@ et:
   no_license_all_rights_reserved: Litsents puudub (kõik õigused kaitstud)
   no_managers_set: Haldajaid pole määratud
   no_matching_article_from_x: "Sobivat %{x} artiklit ei leitud"
-  no_matching_invitations: Selliseid kutseid ei leitud
   no_matching_observations: Selliseid vaatlusi ei leitud.
   no_matching_places: Selliseid kohti ei leitud
   no_matching_projects: Selliseid projekte ei leitud
@@ -2098,7 +2088,6 @@ et:
   observations_deleted: Vaatlused kustutatud.
   observations_fields_are: |
     Vaatlusväljad on vaatlusega seotud lisaandmed nagu nähtud indiviidide hulk, elukoha kirjeldus või kõik muu sinu poolt soovitav! Projektid võivad samuti määrata välju, mille täitmist nad sinult ootavad.
-  observations_from: Vaatlused kuupäeval %{date}
   observations_from_people_taxa_and_places_youre_following: "Vaatlused inimestelt, kohtadest ja taksonitest, mida sa jälgid"
   observations_from_this_place: Selle koha vaatlused
   observations_from_this_project: Selle projekti vaatlused
@@ -2579,8 +2568,6 @@ et:
   places_merged_successfully: Kohtade ühendamine õnnestus!
   plants: taimed
   please_add_a_citation_for_this_change: Palun lisa selle muudatuse juurde viide.
-  please_add_this_observation_to: Palun lisa see vaatlus
-  please_add_this_to_x_html: "Palun lisa see projekti %{x}"
   please_allow_a_few_weeks_for_external_sites: Palun oota paar nädalat, et välised saidid selle vaatluse muudatused kätte saaksid #Title to a section warning a user to exercise caution
   please_complete_the_following_to_add_project: |
     Vaatluse projektile lisamiseks tee palun ära:
@@ -2590,7 +2577,6 @@ et:
   please_hold_on_while_the_file_is_generated: Palun oota hetk, kuni faili luuakse. Suurte nimekirjade puhul võib see võta paar minutit.
   popular: Levinud
   position: Asukoht
-  possessive_user: "Kasutaja %{user}"
   #Post is a noun
   post_from_journal_by_parent_html: <a href="%{url}">%{parent} päeviku</a> postitused
   #Post is a noun
@@ -3108,7 +3094,6 @@ et:
   suggestions: Pakkumised
   summary: Kokkuvõte
   supporting: Toetab
-  support_inaturalist: Toeta iNaturalisti
   suspend_user: Deaktiveeri kasutajakonto
   sw_lat: Edelalaius
   sw_lon: Edelapikkus
@@ -3389,7 +3374,6 @@ et:
   unblock: Tühista blokeering
   unclassified: Liigitamata
   ungrafted_taxa: Pookimata taksonid
-  uninvite: võta kutse tagasi
   unique_identifier_of_this_taxon: Selle taksoni unikaalne identifikaator allika andmebaasis.
   unique_observers: unikaalseid vaatleid
   unknown: Teadmata
@@ -3488,7 +3472,6 @@ et:
   user_invited_you_to_join_html: "Kasutaja %{user} kutsus sind liituma"
   user_invited_you_to_join_project: "Kasutaja %{user} kutsus sind liituma projektiga %{project}"
   user_invited_you_to_join_this_project_on_date_html: "Kasutaja %{user} kutsus sind liituma selle projektiga kuupäeval %{date}"
-  user_invited_your_x_to_a_project_html: "Kasutaja %{user} kutsus sinu %{x} projekti"
   user_is_a_naturalist: "Kasutaja %{user} on loodusloolane!"
   user_muted: Kasutaja vaigistatud
   user_suggested_an_id: "%{user} pakkus määratlust"
@@ -3526,7 +3509,6 @@ et:
   view_flags: Vaata märkuseid
   view_flags_for_x_html: "Näita %{x} märkuseid"
   view_full_observation: Näita tervet vaatlust
-  view_invitation: Vaata kutset
   view_journal: Näita päevikut
   view_leaderboard_from_last_month: Vaata eelmise kuu edetabelit
   view_leaderboard_from_last_year: Vaata eelmise aasta edetabelit
@@ -3732,7 +3714,6 @@ et:
   you_must_have_a_header_row: Päiserida peab olemas olema
   you_must_select_a_place_to_merge_with: Pead valima ühendamiseks koha.
   you_must_select_at_least_one_taxon: Pead valima vähemalt ühe taksoni
-  you_must_select_dates_to_compare: Pead valima võrreldavad kuupäevad
   you_must_specify_and_confirm_a_new_password: Pead sisestama ja kinnitama uue salasõna.
   you_need_to_have_linked_flickr_account: Fotodele märksõnade lisamiseks peab sulle olema ühendatud Flickr konto.
   you_need_to_select_some_observations_first: Pead esmalt valima mõned vaatlused.
@@ -4101,6 +4082,8 @@ et:
       edit:
         complex_boundary_note_html: |
           See piirjoon on veebis muutmiseks natuke liiga keeruline. Kuid sa võid siiski <a href="%{url}">KML-faili alla laadida</a>, seda sinu jaoks sobivas GIS-programmis muuta ning uue KML-faili otse üles laadida.
+        admin_level_desc: |
+          Peaks olema määratud vaid poliitiliste kehandite puhul. USA vasted oleksid: 0=riik, 10=osariik, 20=maakond, 30=linn
       new:
         check_list_note: "NB: väga suurte kohtade puhul on kontrollnimekirjad automaatselt välja lülitatud."
         coordinates_desc: Kui sa piirjoont ei joonista või KML-faili üles ei lae, pead määrama koordinaadid.

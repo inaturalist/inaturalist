@@ -2113,11 +2113,9 @@ time {
     display: block;
     margin-top: 25px;
     .application {
-      .icon {
+      img {
+        max-height: 14px;
         margin-right: 5px;
-        img {
-          border: 1px solid $border-grey;
-        }
       }
       .name {
         vertical-align: middle;

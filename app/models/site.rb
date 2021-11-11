@@ -398,7 +398,7 @@ class Site < ApplicationRecord
   def dwc_creator
     {
       organization: name,
-      last_name: "#{name} users"
+      last_name: "#{name} contributors"
     }
   end
 
