@@ -75,7 +75,7 @@ loop do
       next
     end
 
-    active_user_ids << user.id
+    active_user_ids << user.id unless plan["status"] == "cancelled"
     user.donorbox_donor_id = donor["id"]
     user.donorbox_plan_type = plan["type"]
     user.donorbox_plan_status = plan["status"]
@@ -86,12 +86,13 @@ loop do
     end
     next unless user.changed?
 
+    # If status changed to cancelled, remove the monthly supporter badge
     if user.donorbox_plan_status_changed? && user.donorbox_plan_status != "active"
       user.prefers_monthly_supporter_badge = false
     end
     user_updated = opts.dry || user.save
     if user_updated
-      puts "\tUpdated #{user}"
+      puts "\tUpdated #{user}: #{user.changes}"
       num_updated_users += 1
     else
       puts "\tFailed to update user: #{user.errors.full_messages.to_sentence}"
