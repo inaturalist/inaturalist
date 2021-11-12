@@ -1587,6 +1587,10 @@ da:
   establishment_means_describes_how: |
     Oprindelse beskriver hvordan taksonet blev etableret i et område.
     Se DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24"> flere oplysninger om terminologi </a>.
+  establishment_means_descriptions:
+    native: opstod i denne region eller ankom via ikke-menneskelig indblanden
+    endemic: hjemmehørende og forekommer intet andet sted
+    introduced: ankom til regionen via menneskelig indblanden
   estimate_which_input: |
     Anslå, hvilke input-takson ID'er, som vil blive erstattet med hvilke output-taksa, og hvilke som vil blive forsimplet til en fælles forfader, når opdelingen er udført. Dette kan tage
     et øjeblik at beregne. Links til observationer afkortes til undersæt á 200.
@@ -6914,6 +6918,13 @@ da:
             <strong class="count">%{count} observationer</strong>,
             herunder arbejdet som
             <strong class="count">%{helpers_count} personer</strong> har hjulpet dig med identifikationer
+        x_projects_html:
+          one: |
+            <strong class="count">%{count} projekt</strong>, det ikke har
+            anden administrator eller admin, der kan blive den nye ejer
+          other: |
+            <strong class="count">%{count} projekter</strong>, som ikke har
+            andre administratorer eller admins, som kan blive den nye ejer
         x_identifications_html:
           one: |
             <strong class="count">din 1 identifikation</strong>
