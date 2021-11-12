@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 require "rubygems"
 require "optimist"
 
-opts = Optimist::options do
-    banner <<-EOS
-Sync donorbox user plans with iNat users. Primarily for letting us know when a
-user is a Monthly Supporter.
+opts = Optimist.options do
+  banner <<~BANNER
+    Sync donorbox user plans with iNat users. Primarily for letting us know when a
+    user is a Monthly Supporter.
 
-Usage:
+    Usage:
 
-  rails runner tools/donorbox-plans.rb
+      rails runner tools/donorbox-plans.rb
 
-where [options] are:
-EOS
+    where [options] are:
+  BANNER
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
   opt :dry, "Dry run, don't actually change anything", type: :boolean
   opt :email, "Filter results by Donorbox donor email", type: :string
@@ -22,6 +24,7 @@ start = Time.now
 if !CONFIG.donorbox || !CONFIG.donorbox.email || !CONFIG.donorbox.key
   raise "Donorbox email an API key haven't been added to config"
 end
+
 donorbox_email = CONFIG.donorbox.email
 donorbox_key = CONFIG.donorbox.key
 page = 1
@@ -30,7 +33,7 @@ num_plans = 0
 num_updated_users = 0
 num_invalid_users = 0
 active_user_ids = []
-while true
+loop do
   url = "https://donorbox.org/api/v1/plans?page=#{page}&per_page=#{per_page}"
   puts url if opts.debug
   response = RestClient.get( url, {
@@ -38,21 +41,23 @@ while true
     "User-Agent" => "iNaturalist/Donorbox"
   } )
   json = JSON.parse( response )
-  break if json.size == 0
-  json.each do |plan|
+  break if json.size.zero?
+
+  json.each do | plan |
     num_plans += 1
-    next unless donor = plan["donor"]
+    next unless ( donor = plan["donor"] )
     if opts.donor_id && opts.donor_id.to_i != donor["id"].to_i
       next
     end
     if opts.email && donor["email"] !~ /#{opts.email}/i
       next
     end
-    puts "Donor #{donor["id"]}"
+
+    puts "Donor #{donor['id']}"
     if opts.debug
       puts plan
     end
-    unless user = User.find_by_email( donor["email"] )
+    unless ( user = User.find_by_email( donor["email"] ) )
       puts "\tNo user"
       next
     end
@@ -69,27 +74,33 @@ while true
       # end
       next
     end
+
     active_user_ids << user.id
     user.donorbox_donor_id = donor["id"]
     user.donorbox_plan_type = plan["type"]
     user.donorbox_plan_status = plan["status"]
-    user.donorbox_plan_started_at = Date.parse( plan["started_at"] ) rescue nil
-    if user.changed?
-      if user.donorbox_plan_status_changed? && user.donorbox_plan_status != "active"
-        user.prefers_monthly_supporter_badge = false
-      end
-      user_updated = opts.dry || user.save
-      if user_updated
-        puts "\tUpdated #{user}"
-        num_updated_users += 1
-      else
-        puts "\tFailed to update user: #{user.errors.full_messages.to_sentence}" 
-        num_invalid_users += 1
-      end
+    user.donorbox_plan_started_at = begin
+      Date.parse( plan["started_at"] )
+    rescue StandardError
+      nil
+    end
+    next unless user.changed?
+
+    if user.donorbox_plan_status_changed? && user.donorbox_plan_status != "active"
+      user.prefers_monthly_supporter_badge = false
+    end
+    user_updated = opts.dry || user.save
+    if user_updated
+      puts "\tUpdated #{user}"
+      num_updated_users += 1
+    else
+      puts "\tFailed to update user: #{user.errors.full_messages.to_sentence}"
+      num_invalid_users += 1
     end
   end
   page += 1
 end
 puts
-puts "#{num_plans} donors, #{num_updated_users} users udpated, #{num_invalid_users} invalid users in #{Time.now - start}s"
+puts "#{num_plans} donors, #{num_updated_users} users udpated, " \
+  "#{num_invalid_users} invalid users in #{Time.now - start}s"
 puts
