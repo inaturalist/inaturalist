@@ -74,11 +74,18 @@ CSV.foreach( csv_path, headers: HEADERS ) do | row |
     skipped << identifier
     next
   end
-  taxon = Taxon.find_by_id( row["taxon_id"] )
-  unless taxon
-    logger.error "#{identifier}: Couldn't find taxon for '#{row['taxon_id']}', skipping..."
-    skipped << identifier
-    next
+  unless ( taxon = Taxon.find_by_id( row["taxon_id"] ) )
+    logger.error "#{identifier}: Couldn't find taxon for '#{row['taxon_id']}'"
+    if row["taxon_name"].blank?
+      logger.error "#{identifier}: No name specified, skipping..."
+      skipped << identifier
+      next
+    end
+    unless ( taxon = Taxon.single_taxon_for_name( row["taxon_name"] ) )
+      logger.error "#{identifier}: Couldn't find taxon for '#{row['taxon_name']}', skipping..."
+      skipped << identifier
+      next
+    end
   end
   place = begin
     Place.find( row["place_id"] )
@@ -118,16 +125,13 @@ CSV.foreach( csv_path, headers: HEADERS ) do | row |
       logger.debug "#{identifier}: Deleted #{identifier}"
     end
     next
-  elsif row["action"] == "UPDATE" && !cs
-    logger.error "#{identifier}: Conservation status does not exist, skipping..."
-    skipped << identifier
-    next
   end
   cs ||= ConservationStatus.new( user: user, taxon: taxon, place: place )
   %w(status authority url geoprivacy).each do | a |
     cs.send( "#{a}=", row[a] ) unless row[a].blank?
   end
   cs.iucn = iucn unless iucn.blank?
+  cs.updater = user if cs.changed?
   if cs.valid?
     cs.save! unless opts.dry
     if cs.new_record?
