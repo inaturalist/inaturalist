@@ -12,7 +12,7 @@ class Observation < ApplicationRecord
     :observation_links, :quality_metrics,
     :votes_for, :stored_preferences, :tags,
     { annotations: :votes_for },
-    :photos,
+    { photos: :flags },
     { sounds: :user },
     { identifications: [ :stored_preferences, :taxon ] }, :project_observations,
     { taxon: [ :conservation_statuses ] },

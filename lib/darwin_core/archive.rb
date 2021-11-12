@@ -293,7 +293,7 @@ module DarwinCore
         if @opts[:quality] == "research"
           scope = scope.where("observations.quality_grade = ?", Observation::RESEARCH_GRADE)
         elsif @opts[:quality] == "casual"
-          scope = scope.where("observations.quality_grade = ?", Observation::CASUAL_GRADE)
+          scope = scope.where("observations.quality_grade = ?", Observation::CASUAL)
         elsif @opts[:quality] == "verifiable"
           scope = scope.where("observations.quality_grade IN (?, ?)", Observation::RESEARCH_GRADE, Observation::NEEDS_ID)
         end
@@ -337,7 +337,7 @@ module DarwinCore
       if @opts[:quality] == "research"
         scope = scope.where("observations.quality_grade = ?", Observation::RESEARCH_GRADE)
       elsif @opts[:quality] == "casual"
-        scope = scope.where("observations.quality_grade = ?", Observation::CASUAL_GRADE)
+        scope = scope.where("observations.quality_grade = ?", Observation::CASUAL)
       elsif @opts[:quality] == "verifiable"
         scope = scope.where("observations.quality_grade IN (?, ?)", Observation::RESEARCH_GRADE, Observation::NEEDS_ID)
       end

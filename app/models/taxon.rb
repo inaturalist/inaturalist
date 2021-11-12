@@ -473,7 +473,7 @@ class Taxon < ApplicationRecord
 
   scope :self_and_descendants_of, lambda {| taxon |
     if taxon
-      where( taxon.subtree_conditions )
+      where( taxon.subtree_conditions.to_sql )
     else
       where( "1 = 2" )
     end
@@ -588,7 +588,7 @@ class Taxon < ApplicationRecord
       next if Taxon::LIFE && taxon_id == Taxon::LIFE.id
 
       Annotation.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
-        run_at: 1.day.from_now,
+        run_at: 3.days.from_now,
         unique_hash: { "Annotation::reassess_annotations_for_taxon_ids": [taxon_id] } ).
         reassess_annotations_for_taxon_ids( [taxon_id] )
     end

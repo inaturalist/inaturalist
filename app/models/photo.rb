@@ -2,6 +2,8 @@
 class Photo < ApplicationRecord
   acts_as_flaggable
   belongs_to :user
+  belongs_to :file_extension
+  belongs_to :file_prefix
   has_many :observation_photos, :dependent => :destroy
   has_many :taxon_photos, :dependent => :destroy
   has_many :guide_photos, :dependent => :destroy, :inverse_of => :photo
@@ -84,6 +86,7 @@ class Photo < ApplicationRecord
       return FakeView.uri_join( FakeView.root_url, LocalPhoto.new.file.url( size ) )
     end
     if self.is_a?( LocalPhoto )
+      #return "#{file_prefix.prefix}/#{id}/#{size}.#{file_extension.extension}"
       return unless url_prefix
       return ( "#{url_prefix}/#{id}/#{size}.#{extension}" ).with_fixed_https
     end
