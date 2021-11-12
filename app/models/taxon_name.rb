@@ -490,11 +490,17 @@ class TaxonName < ApplicationRecord
   private
 
   def english_lexicon_if_exists
-    en_lexicons = I18n.with_locale( :en ) { I18n.t( :lexicons ) }.values
-    translated_lexicons = I18n.available_locales.map {| loc | I18n.with_locale( loc ) { I18n.t( :lexicons ) } }
-    non_en_lexicons = ( translated_lexicons.collect( &:values ).flatten.uniq - en_lexicons ).map! do | l |
-      l.downcase.strip
-    end
+    en_lexicons = I18n.t( :lexicons, locale: :en ).
+      values.
+      map {| l | l.downcase.strip }.
+      uniq
+    translated_lexicons = I18n.available_locales.
+      map {| loc | I18n.t( :lexicons, locale: loc ) }.
+      collect( &:values ).
+      flatten.
+      map {| l | l.downcase.strip }.
+      uniq
+    non_en_lexicons = translated_lexicons - en_lexicons
     match = TaxonName.find_lexicons_by_translation( lexicon )
     return unless non_en_lexicons.include?( lexicon.downcase.strip )
 
