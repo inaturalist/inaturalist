@@ -956,11 +956,10 @@ class ListedTaxon < ApplicationRecord
   end
 
   def establishment_means_description
-    key = default.gsub( "-", "_" ).gsub( " ", "_" ).downcase
     # I18n.t( "establishment_means_descriptions.native" )
     # I18n.t( "establishment_means_descriptions.endemic" )
     # I18n.t( "establishment_means_descriptions.introduced" )
-    I18n.t( "establishment_means_descriptions.#{key}" )
+    I18n.t( "establishment_means_descriptions.#{establishment_means}" )
   end
 
   def reindex_observations_later
