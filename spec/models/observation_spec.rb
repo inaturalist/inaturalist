@@ -1355,7 +1355,6 @@ describe Observation do
         global_cs2 = create :conservation_status
         o = create :observation, latitude: place.latitude, longitude: place.longitude, taxon: species
         expect( o ).not_to be_coordinates_obscured
-        puts "creating ident of #{global_cs2.taxon.id}"
         create :identification, observation: o, taxon: global_cs2.taxon
         expect( o ).to be_coordinates_obscured
       end
@@ -1377,7 +1376,6 @@ describe Observation do
         global_cs = create :conservation_status, taxon: species
         o = create :observation, latitude: place.latitude, longitude: place.longitude, taxon: species
         expect( o ).not_to be_coordinates_obscured
-        puts "creating ident of #{local_cs2.taxon.id}"
         create :identification, observation: o, taxon: local_cs2.taxon
         expect( o ).to be_coordinates_obscured
       end
