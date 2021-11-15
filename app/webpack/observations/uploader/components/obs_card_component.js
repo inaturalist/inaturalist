@@ -7,16 +7,16 @@ import Dropzone from "react-dropzone";
 import _ from "lodash";
 import moment from "moment-timezone";
 import TaxonAutocomplete from "./taxon_autocomplete";
-import DateTimeFieldWrapper from "./date_time_field_wrapper";
+import DateTimeWrapper from "./date_time_wrapper";
 import FileGallery from "./file_gallery";
-import util, { ACCEPTED_FILE_TYPES, DATETIME_WITH_TIMEZONE, DATETIME_WITH_TIMEZONE_OFFSET } from "../models/util";
+import util, { ACCEPTED_FILE_TYPES, TIME_WITH_TIMEZONE, TIME_WITH_TIMEZONE_OFFSET } from "../models/util";
 
 const cardSource = {
   canDrag( props ) {
     if (
       $( `div[data-id=${props.obsCard.id}] input:focus` ).length > 0
       || $( `div[data-id=${props.obsCard.id}] textarea:focus` ).length > 0
-      || $( ".bootstrap-datetimepicker-widget:visible" ).length > 0
+      || $( ".rdtPicker:visible" ).length > 0
     ) {
       return false;
     }
@@ -90,7 +90,6 @@ class ObsCardComponent extends Component {
     super( props, context );
     this.openLocationChooser = this.openLocationChooser.bind( this );
     this.closeDatepicker = this.closeDatepicker.bind( this );
-    this.onDragEnter = this.onDragEnter.bind( this );
   }
 
   shouldComponentUpdate( nextProps ) {
@@ -112,20 +111,6 @@ class ObsCardComponent extends Component {
       || !_.isMatch( obsCard, nextProps.obsCard )
     );
     return b;
-  }
-
-  onDragEnter( ) {
-    const pickerState = this.refs.datetime.pickerState( );
-    // if the datepicker is open
-    if ( pickerState && pickerState.showPicker ) {
-      // close it
-      this.refs.datetime.close( );
-      // and send this card's dropzone a fake drop event to reset it
-      this.refs.dropzone.onDrop( {
-        dataTransfer: { files: [] },
-        preventDefault: () => { }
-      } );
-    }
   }
 
   openLocationChooser( ) {
@@ -215,13 +200,13 @@ class ObsCardComponent extends Component {
       locationIcon = <i className="icon-icn-location-private" />;
     }
 
-    let inputFormat = DATETIME_WITH_TIMEZONE;
+    let timeFormat = TIME_WITH_TIMEZONE;
     if ( obsCard.time_zone ) {
       if (
         parseInt( moment().tz( obsCard.time_zone ).format( "z" ), 0 )
         && parseInt( moment().tz( obsCard.time_zone ).format( "z" ), 0 ) !== 0
       ) {
-        inputFormat = DATETIME_WITH_TIMEZONE_OFFSET;
+        timeFormat = TIME_WITH_TIMEZONE_OFFSET;
       }
     }
 
@@ -237,7 +222,6 @@ class ObsCardComponent extends Component {
           data-id={obsCard.id}
           disableClick
           onDrop={f => onCardDrop( f, obsCard )}
-          onDragEnter={this.onDragEnter}
           activeClassName="hover"
           accept={ACCEPTED_FILE_TYPES}
           key={obsCard.id}
@@ -305,44 +289,23 @@ class ObsCardComponent extends Component {
               }}
               config={config}
             />
-            <DateTimeFieldWrapper
-              key={`datetime${obsCard.selected_date}`}
-              reactKey={`datetime${obsCard.selected_date}`}
-              ref="datetime"
-              inputFormat={inputFormat}
-              dateTime={obsCard.selected_date
-                ? moment( obsCard.selected_date, inputFormat ).format( "x" )
-                : undefined
-              }
-              timeZone={obsCard.time_zone}
-              onChange={dateString => updateObsCard( obsCard, { date: dateString } )}
-              onSelection={
-                dateString => updateObsCard(
-                  obsCard, { date: dateString, selected_date: dateString }
-                )
-              }
-            />
-            <div
-              className={`input-group${invalidDate ? " has-error" : ""}`}
-              onClick={() => {
-                if ( this.refs.datetime ) {
-                  this.refs.datetime.onClick( );
-                }
-              }}
-            >
-              <div className="input-group-addon input-sm">
-                <Glyphicon glyph="calendar" />
-              </div>
-              <input
-                type="text"
-                className="form-control input-sm"
-                value={obsCard.date || ""}
-                onChange={e => {
-                  if ( this.refs.datetime ) {
-                    this.refs.datetime.onChange( undefined, e.target.value );
-                  }
+            <div className={invalidDate ? "has-error" : ""} >
+              <DateTimeWrapper
+                key={`datetime${obsCard.selected_date}`}
+                reactKey={`datetime${obsCard.selected_date}`}
+                timeFormat={timeFormat}
+                timeZone={obsCard.time_zone}
+                dateTime={ obsCard.selected_date }
+                openButton="before"
+                inputProps= {{ 
+                  className: "form-control input-sm", 
+                  placeholder: I18n.t( "date_" ) 
                 }}
-                placeholder={I18n.t( "date_" )}
+                onChange={dateString => updateObsCard(
+                  obsCard, { 
+                    date: dateString, 
+                    selected_date: dateString 
+                  } )}
               />
             </div>
             <div

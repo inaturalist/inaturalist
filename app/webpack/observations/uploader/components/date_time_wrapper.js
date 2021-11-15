@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Glyphicon } from "react-bootstrap";
 import PropTypes from "prop-types";
 import Datetime from "react-datetime";
 import moment from "moment-timezone";
@@ -15,11 +16,6 @@ class DateTimeWrapper extends Component {
     this.renderInputWithOpenButton = this.renderInputWithOpenButton.bind( this );
     this.toggleCalendar = this.toggleCalendar.bind( this );
   }
-
-  /*componentDidMount( ) {
-    // the datetime picker prevents a card drag preview without this
-    this.close( );
-  }*/
 
   shouldComponentUpdate( nextProps ) {
     if ( this.props.reactKey === nextProps.reactKey ) { return false; }
@@ -38,8 +34,8 @@ class DateTimeWrapper extends Component {
     if ( moment.isMoment(value) ) {
       const pickedDate = value.toDate();
       if ( pickedDate ) {
-        let format = dateFormat
-        if ( timeFormat ) {
+        let format = dateFormat || timeFormat;
+        if ( dateFormat && timeFormat ) {
           format = `${ format } ${ timeFormat }`
         }
         if ( timeZone ) {
@@ -66,16 +62,25 @@ class DateTimeWrapper extends Component {
   }
 
   renderInputWithOpenButton( props, openCalendar, closeCalendar ) {
-    delete props.onClick;
-    delete props.onFocus;
+    const openButtonOnClick = () => { this.toggleCalendar( openCalendar, closeCalendar ) };
     return (
       <div className="input-group date">
+        { this.renderOpenButton("before", openButtonOnClick) }
         <input {...props} />
-        <span className="input-group-addon">
-          <span className="glyphicon glyphicon-calendar" onClick={() => { this.toggleCalendar( openCalendar, closeCalendar ) }}/>
-        </span>
+        { this.renderOpenButton("after", openButtonOnClick) }
       </div>
     );
+  }
+
+  renderOpenButton( position, onClick )
+  {
+    if (position === this.props.openButton) {
+      return (
+        <span className="input-group-addon" onClick={ onClick }>
+          <Glyphicon glyph="calendar" />
+        </span>
+      );
+    }
   }
 
   render( ) {
@@ -85,7 +90,7 @@ class DateTimeWrapper extends Component {
         key="datetime"
         className="datetime"
         inputProps={ this.props.inputProps }
-        renderInput={ this.props.openWithButton ? this.renderInputWithOpenButton : undefined }
+        renderInput={ this.props.openButton ? this.renderInputWithOpenButton : undefined }
         locale={ I18n.locale }
         initialValue={ this.props.dateTime }
         dateFormat={ this.props.dateFormat }
@@ -105,13 +110,19 @@ DateTimeWrapper.propTypes = {
   onSelection: PropTypes.func,
   reactKey: PropTypes.string,
   timeZone: PropTypes.string,
-  dateFormat: PropTypes.string,
+  dateFormat: PropTypes.oneOfType( [
+    PropTypes.string,
+    PropTypes.bool
+  ] ),
   timeFormat: PropTypes.oneOfType( [
     PropTypes.string,
     PropTypes.bool
   ] ),
   allowFutureDates: PropTypes.bool,
-  openWithButton: PropTypes.bool,
+  openButton: PropTypes.oneOfType( [
+    PropTypes.string,
+    PropTypes.bool
+  ] ),
   dateTime: PropTypes.oneOfType( [
     PropTypes.string,
     PropTypes.number,
@@ -122,6 +133,7 @@ DateTimeWrapper.propTypes = {
 DateTimeWrapper.defaultProps = {
   dateFormat: DATE_ONLY,
   timeFormat: TIME_WITH_TIMEZONE,
+  openButton: false
 }
 
 export default DateTimeWrapper;

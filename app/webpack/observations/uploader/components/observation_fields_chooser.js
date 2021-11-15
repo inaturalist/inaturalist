@@ -4,9 +4,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Glyphicon, Badge, OverlayTrigger, Tooltip, Button } from "react-bootstrap";
 import TaxonAutocomplete from "./taxon_autocomplete";
-import DateTimeFieldWrapper from "./date_time_field_wrapper";
+import DateTimeWrapper from "./date_time_wrapper";
 import SelectionBasedComponent from "./selection_based_component";
-import { DATETIME_WITH_TIMEZONE } from "../models/util";
+import { DATE_ONLY, TIME_WITH_TIMEZONE } from "../models/util";
 
 class LeftMenu extends SelectionBasedComponent {
 
@@ -155,54 +155,32 @@ class LeftMenu extends SelectionBasedComponent {
 
   datetimeInput( datatype ) {
     /* global TIMEZONE */
-    let mode;
+    let dateFormat = DATE_ONLY;
     if ( datatype === "time" ) {
-      mode = "time";
-    } else if ( datatype === "date" ) {
-      mode = "date";
+      dateFormat = false;
     }
-    let format = DATETIME_WITH_TIMEZONE;
+
+    let timeFormat = TIME_WITH_TIMEZONE;
     if ( datatype === "time" ) {
-      format = "HH:mm";
+      timeFormat = "HH:mm";
     } else if ( datatype === "date" ) {
-      format = "YYYY/MM/DD";
+      timeFormat = false;
     }
     return (
       <div className="input-group">
-        <DateTimeFieldWrapper
-          key={ `datetime${this.props.observationFieldSelectedDate}`}
-          reactKey={ `datetime${this.props.observationFieldSelectedDate}`}
-          ref="datetime"
-          mode={ mode }
-          inputFormat={ format }
-          dateTime={ this.props.observationFieldDateTime ?
-            moment( this.props.observationFieldDateTime, format ).format( "x" )
-            : undefined }
+        <DateTimeWrapper
+          dateFormat={ dateFormat }
+          timeFormat={ timeFormat }
+          initialValue={ this.props.observationFieldValue }
           timeZone={ TIMEZONE }
-          onChange={ dateString =>
-            this.props.setState( { observationFieldValue: dateString } ) }
-          onSelection={ dateString =>
+          inputProps={ {
+            className: "form-control",
+            placeholder: I18n.t( "date_time" )
+          } }
+          onChange={ dateString => 
             this.props.setState( { observationFieldValue: dateString,
               observationFieldSelectedDate: dateString } )
           }
-        />
-        <input
-          type="text"
-          name="value"
-          className="form-control"
-          autoComplete="off"
-          value={ this.props.observationFieldValue || "" }
-          onClick= { () => {
-            if ( this.refs.datetime ) {
-              this.refs.datetime.onClick( );
-            }
-          } }
-          onChange= { e => {
-            if ( this.refs.datetime ) {
-              this.refs.datetime.onChange( undefined, e.target.value );
-            }
-          } }
-          placeholder={ I18n.t( "date_time" ) }
         />
         <span className="input-group-btn">
           <button

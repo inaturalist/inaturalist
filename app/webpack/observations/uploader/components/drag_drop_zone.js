@@ -97,7 +97,7 @@ class DragDropZone extends Component {
     $( "body" ).on( "click", this.unselectAll );
     $( ".uploader" ).selectable( {
       filter: ".card",
-      cancel: ".card, .glyphicon, input, button, .input-group-addon, .input-group-addon, .intro, select, .leftColumn, .bootstrap-datetimepicker-widget, a, li, .rw-datetimepicker, textarea",
+      cancel: ".card, .glyphicon, input, button, .input-group-addon, .input-group-addon, .intro, select, .leftColumn, .rdtPicker, a, li, .rw-datetimepicker, textarea",
       selected: this.selectObsCards,
       unselected: this.selectObsCards,
       start: () => $( "body" ).off( "click" ),
@@ -139,7 +139,7 @@ class DragDropZone extends Component {
   }
 
   unselectAll( e ) {
-    const ignore = "a, .card, button, .modal, span.title, .leftColumn, .bootstrap-datetimepicker-widget, .ui-autocomplete, #lightboxBackdrop, .navbar .select, input, .form-group, select";
+    const ignore = "a, .card, button, .modal, span.title, .leftColumn, .rdtPicker, .ui-autocomplete, #lightboxBackdrop, .navbar .select, input, .form-group, select";
     const target = e.target || e.nativeEvent.target;
     if (
       $( ignore ).has( target ).length > 0

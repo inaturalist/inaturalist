@@ -9,12 +9,12 @@ import {
   Badge
 } from "react-bootstrap";
 import TaxonAutocomplete from "./taxon_autocomplete";
-import DateTimeFieldWrapper from "./date_time_field_wrapper";
+import DateTimeWrapper from "./date_time_wrapper";
 import SelectionBasedComponent from "./selection_based_component";
 import ObservationFieldsChooser from "./observation_fields_chooser";
 import ProjectsChooser from "./projects_chooser";
 import TagsChooser from "./tags_chooser";
-import util, { DATETIME_WITH_TIMEZONE } from "../models/util";
+import util from "../models/util";
 import TimeShifter from "./time_shifter";
 
 class LeftMenu extends SelectionBasedComponent {
@@ -104,7 +104,6 @@ class LeftMenu extends SelectionBasedComponent {
       <option>{ I18n.t( "multiple_select_option" ) }</option>
     );
     const invalidDate = util.dateInvalid( commonDate );
-    const inputFormat = DATETIME_WITH_TIMEZONE;
     return (
       <div>
         <TaxonAutocomplete
@@ -140,45 +139,20 @@ class LeftMenu extends SelectionBasedComponent {
           }
           config={this.props.config}
         />
-        <DateTimeFieldWrapper
-          ref="datetime"
-          inputFormat={inputFormat}
-          key={`multidate${commonDate}`}
-          reactKey={`multidate${commonDate}`}
-          timeZone={config.currentUser.time_zone || moment.tz.guess()}
-          dateTime={commonDate
-            ? moment( commonDate, inputFormat ).format( "x" )
-            : undefined
-          }
-          onChange={dateString => updateSelectedObsCards( {
-            date: dateString,
-            selected_date: dateString
-          } )}
-        />
-        <div
-          className={`input-group${invalidDate ? " has-error" : ""}`}
-          onClick={( ) => {
-            if ( this.refs.datetime ) {
-              this.refs.datetime.onClick( );
-            }
-          }}
-        >
-          <div className="input-group-addon">
-            <Glyphicon glyph="calendar" />
-          </div>
-          <input
-            type="text"
-            className="form-control"
-            value={commonDate || ""}
-            onChange={e => {
-              if ( this.refs.datetime ) {
-                this.refs.datetime.onChange( undefined, e.target.value );
-              }
-            }}
-            placeholder={this.valuesOf( "date" ).length > 1
+        <div className={invalidDate ? "has-error" : ""} >
+          <DateTimeWrapper
+            key={`multidate${commonDate}`}
+            reactKey={`multidate${commonDate}`}
+            timeZone={config.currentUser.time_zone || moment.tz.guess()}
+            dateTime={ commonDate }
+            openButton="before"
+            inputProps= {{ placeholder: this.valuesOf( "date" ).length > 1
               ? I18n.t( "edit_multiple_dates" )
-              : I18n.t( "date_" )
-            }
+              : I18n.t( "date_" ) }}
+            onChange={dateString => updateSelectedObsCards( {
+              date: dateString,
+              selected_date: dateString
+            } )}
           />
         </div>
         <div className="input-group" onClick={this.openLocationChooser}>
