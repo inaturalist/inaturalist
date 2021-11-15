@@ -139,6 +139,7 @@ zh-TW:
   about_taxon_ranges_desc: |
     分類群分布範圍顯示某一分類群的全球分布。分類群分布範圍通常是來自於 IUCN 紅色名錄。
   about_the_cc_licenses: 關於創用CC授權
+  about_the_network: 關於國際網路
   about_these_licenses: 關於這些許可協議
   about_this_bioblitz: 有關此 bioblitz
   about_this_map: 關於此地圖
@@ -330,6 +331,8 @@ zh-TW:
   admin_s: 管理員
   admin_only: 只供管理員使用
   admin_tools: 管理員工具
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: 附屬組織會員
   agree_: 同意
   agree?: 同意嗎？
   agree_with_current_taxon: 同意以目前物種分類(學名)
@@ -618,12 +621,15 @@ zh-TW:
   back_to_taxon: "返回至%{defaulttaxon}"
   back_to_taxon_changes: "返回至分類更改"
   back_to_taxon_framework_for_x: "返回%{taxon_name}的物種分類框架"
+  back_to_users_calendar: "返回到 %{user} 的行事曆"
+  back_to_users_lists: "返回至%{user}的名錄"
   back_to_viewing: "返回至檢視<i>%{taxon}</i>"
   back_to_x: "返回至%{noun}"
   back_to_x_assessment: "返回%{project}評估"
   back_to_x_history: "返回至%{x}歷史"
   back_to_x_journal: "返回至%{user}的日誌"
   back_to_x_blog: "返回至%{x}的部落格"
+  back_to_your_calendar: 返回到您的行事曆
   back_to_your_dashboard: 回到您的控制面板
   back_to_your_lists: 返回至您的名錄
   back_to_your_journal: 返回至您的日誌
@@ -824,6 +830,7 @@ zh-TW:
   committed_by_user_on_date_html: 由 %{user} 於 %{date} 所提交
   #Label for date the taxon change was committed
   committed_on: 提交於 %{date}
+  committed_taxon_changes_cannot_be_deleted: 已提交的分類群更改無法刪除
   #Status message while a taxon change is being committed
   committing: 提交中…
   common_name: 俗名
@@ -1850,6 +1857,7 @@ zh-TW:
   improving: 改進中
   in_n: "在%{n}"
   in_place_x: 於%{place}
+  inaturalist_network: iNaturalist 國際網路
   inaturalist_network_affiliation: iNaturalist 國際網路所屬單位
   #Label for messages you've received
   inbox: 收件匣
@@ -1997,22 +2005,28 @@ zh-TW:
     scientific_names: 學名
     afrikaans: 南非語
     albanian: 阿爾巴尼亞語
+    arabic: 阿拉伯文
+    armenian: 亞美尼亞文
     belarusian: 白羅斯文
     bengali: 孟加拉語
+    bulgarian: 保加利亞文
     catalan: 加泰隆尼亞語
     cebuano: 宿霧語
     chinese_simplified: 簡體中文
     chinese_traditional: 繁體中文
     creole_french: 克里奧爾語 (法語)
     creole_portuguese: 克里奧爾語 (葡萄牙語)
+    croatian: 克羅埃西亞文
     czech: 捷克語
     danish: 丹麥語
     davawenyo: Davawenyo 語
     dutch: 荷蘭語
     english: 英語
     estonian: 愛沙尼亞語
+    faroese: 法羅文
     finnish: 芬蘭語
     french: 法語
+    galician: 加利西亞文
     gela: Gela 語
     german: 德語
     greek: 希臘語
@@ -2022,6 +2036,7 @@ zh-TW:
     hungarian: 匈牙利文
     icelandic: 冰島語
     ilokano: 伊洛卡諾語
+    indonesian: 印尼文
     italian: 義大利語
     japanese: 日語
     kannada: 康納達文
@@ -2029,12 +2044,15 @@ zh-TW:
     latvian: 拉脫維亞文
     lithuanian: 立陶宛語
     luxembourgish: 盧森堡語
+    malay: 馬來文
     maltese: 馬爾他語
     maori: 毛利語
     marathi: 馬拉提語
     misima_paneati: Misima-paneati 語
+    mongolian: 蒙古文
     norwegian: 挪威語
     occitan: 奧克語
+    palauan: 帕勞文
     pangasinan: 邦阿西楠語
     polish: 波蘭語
     portuguese: 葡萄牙語
@@ -2042,6 +2060,7 @@ zh-TW:
     russian: 俄語
     sinhala: 僧伽羅語
     slovak: 斯洛伐克語
+    slovenian: 斯洛維尼亞文
     spanish: 西班牙語
     swedish: 瑞典語
     tagalog: 他加祿語
@@ -2153,6 +2172,7 @@ zh-TW:
     pt-BR: 葡萄牙語 (巴西)
     ru: 俄語
     sk: 斯洛伐克語
+    sl: 斯洛維尼亞文
     sq: 阿爾巴尼亞
     sv: 瑞典語
     th: 泰國
