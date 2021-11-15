@@ -8,10 +8,13 @@
   %p= t :flag_description
 = form_for( [@object,  @flag], html: { class: "clear readable buttonrow" } ) do |f|
   = f.label :reason, raw( t(:flag_reason, :record => @model.name.downcase) ), class: "inter"
-  = f.text_field :flag, class: "inter text", maxlength: 255, style: "max-width: 300px;"
+  = f.text_field :flag, required: true, class: "inter text", maxlength: 255, style: "max-width: 300px;"
   %label &rdquo;
+  .description{ style: "clear: both;" }
+    %p= t :flag_comment_description
+  = f.text_area :initial_comment_body, class: "pull-left", maxlength: 5000, style: "height: 150px;"
   = f.hidden_field :user_id, value: current_user.id
   = f.hidden_field :flaggable_id, value: @object.id
   = f.hidden_field :flaggable_type, value: @model.name
-  = f.submit t(:flag_it!), class: "default button"
+  = f.submit t(:flag_it!), class: "default button", style: "clear: both;"
 = render "flag_list", flags: @flags
