@@ -36,7 +36,6 @@ HEADERS = %w(
 ).freeze
 REQUIRED = %w(
   action
-  taxon_id
 ).freeze
 
 csv_path = ARGV[0]
@@ -74,7 +73,8 @@ CSV.foreach( csv_path, headers: HEADERS ) do | row |
     skipped << identifier
     next
   end
-  unless ( taxon = Taxon.find_by_id( row["taxon_id"] ) )
+  taxon = Taxon.find_by_id( row["taxon_id"] ) unless row["taxon_id"].blank?
+  unless taxon
     logger.error "#{identifier}: Couldn't find taxon for '#{row['taxon_id']}'"
     if row["taxon_name"].blank?
       logger.error "#{identifier}: No name specified, skipping..."
