@@ -1,4 +1,5 @@
 @import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
+@import "../../../../node_modules/react-datetime/css/react-datetime";
 @import "../../../../node_modules/react-image-gallery/styles/scss/image-gallery";
 @import "../shared/disagreement_alert";
 @import "../shared/flash_message";
@@ -109,28 +110,6 @@ button.linky,
   color: $bootstrap-link-color;
   cursor: pointer;
   background: transparent;
-}
-
-.bootstrap-datetimepicker-widget.dropdown-menu.pull-right {
-  position: absolute;
-  top: auto !important;
-  left: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-  height: auto;
-  margin-top: 37px;
-  td span {
-    height: auto;
-  }
-  &:before {
-    right: 110px;
-  }
-  &:after {
-    right: 111px;
-  }
-  .btn {
-    box-shadow: none;
-  }
 }
 
 .gmapv3control.overlaycontrol {
@@ -2445,4 +2424,8 @@ body > [role="dialog"] .easyzoom > a > img {
   .ObservationsHighlight .photo {
     height: 84px;
   }
+}
+
+.rdtPicker {
+  margin-top: 37px;
 }

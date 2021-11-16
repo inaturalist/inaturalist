@@ -95,7 +95,7 @@ class DateTimeWrapper extends Component {
         initialValue={ this.props.dateTime }
         dateFormat={ this.props.dateFormat }
         timeFormat={ this.props.timeFormat }
-        displayTimeZone= { this.props.timezone }
+        displayTimeZone={ this.props.timeZone }
         closeOnSelect={ true }
         isValidDate={ this.valid }
         onChange={ this.onChange }

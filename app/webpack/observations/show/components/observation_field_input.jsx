@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import { Button } from "react-bootstrap";
 import TaxonAutocomplete from "../../uploader/components/taxon_autocomplete";
-import DateTimeFieldWrapper from "../../uploader/components/date_time_field_wrapper";
+import DateTimeWrapper from "../../uploader/components/date_time_wrapper";
+import { DATE_ONLY, TIME_WITH_TIMEZONE } from "../../uploader/models/util";
 
 class ObservationFieldInput extends React.Component {
   static sameValue( v1, v2 ) {
@@ -243,59 +244,37 @@ class ObservationFieldInput extends React.Component {
 
   datetimeInput( datatype ) {
     /* global TIMEZONE */
-    const { observationFieldSelectedDate, observationFieldValue } = this.state;
-    let mode;
+    let dateFormat = DATE_ONLY;
     if ( datatype === "time" ) {
-      mode = "time";
-    } else if ( datatype === "date" ) {
-      mode = "date";
+      dateFormat = false;
     }
-    let format = "YYYY/MM/DD h:mm A z";
+
+    let timeFormat = TIME_WITH_TIMEZONE;
     if ( datatype === "time" ) {
-      format = "HH:mm";
+      timeFormat = "HH:mm";
     } else if ( datatype === "date" ) {
-      format = "YYYY/MM/DD";
+      timeFormat = false;
     }
     return (
       <div className="input-group">
-        <DateTimeFieldWrapper
-          key={`datetime${observationFieldSelectedDate}`}
-          reactKey={`datetime${observationFieldSelectedDate}`}
-          ref="datetime"
-          mode={mode}
-          inputFormat={format}
-          timeZone={TIMEZONE}
-          onChange={dateString => {
-            this.setState( { observationFieldValue: dateString } );
-            this.onChangeHandler( dateString );
-          }}
-          onSelection={dateString => {
+        <DateTimeWrapper
+          dateFormat={ dateFormat }
+          timeFormat={ timeFormat }
+          initialValue={ this.state.observationFieldValue }
+          timeZone={ TIMEZONE }
+          inputProps={ {
+            name: "value",
+            autoComplete: "off",
+            className: "form-control",
+            placeholder: I18n.t( "date_time" )
+          } }
+          onChange={ dateString => {
             this.setState( {
               observationFieldValue: dateString,
               observationFieldSelectedDate: dateString
             } );
             this.onChangeHandler( dateString );
           }}
-        />
-        <input
-          type="text"
-          name="value"
-          className="form-control"
-          autoComplete="off"
-          value={observationFieldValue}
-          onClick={() => {
-            const { datetime } = this.refs;
-            if ( datetime ) {
-              datetime.onClick( );
-            }
-          }}
-          onChange={e => {
-            const { datetime } = this.refs;
-            if ( datetime ) {
-              datetime.onChange( undefined, e.target.value );
-            }
-          }}
-          placeholder={I18n.t( "date_time" )}
         />
         { this.inlineAdd( ) }
       </div>
