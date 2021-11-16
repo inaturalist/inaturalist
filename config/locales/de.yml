@@ -837,7 +837,7 @@ de:
   check_here_to_autoload_photos: Wähle dies aus, wenn Fotos von Flickr automatisch geladen werden sollen. Du solltest es abwählen, wenn der wissenschaftliche Name eines Taxons auch ein nichtwissenschaftliches Wort (z.B. "Mus") oder eine häufige Falschschreibung ist.
   check_list: Checkliste
   check_list_description: Wähle ein höherstufiges Taxon, wie "Aves" für Vögel oder "Amphibia" für Lurche aus, das du in dieser Liste anzeigen möchtest. Wenn gesetzt, erlaubt diese Liste keine Taxa, die nicht in diesem Taxon enthalten sind. Zum Beispiel, wenn du eine Liste mit Vögeln erstellt, wirst dort keine Frösche hinzufügen können.
-  check_list_for_individual_taxa_that: 'Checklisten für individuelle Taxa die hier leben, wie "Vögel in %{place}".'
+  check_list_for_individual_taxa_that: 'Checklisten für das Vorkommen individueller Taxa, wie z.B. "Vögel in %{place}".'
   check_list_for_taxon_html: "Checkliste für %{taxon}"
   check_lists_must_belong_to_a_place: |
     Checklisten müssen zu einem Gebiet gehören. Um eine neue Checkliste zu erstellen, rufe die Standardprüfliste des Ortes auf und klicke auf die Verknüpfung "Neue Checkliste erstellen".
@@ -2589,7 +2589,7 @@ de:
   new_announcement: Neue Ankündigungen
   new_assessment: Neue Bewertung
   new_check_list: Neue Checkliste
-  new_check_list_for: "Eine neue Checkliste für %{place} &raquo; erstellen"
+  new_check_list_for: "Eine neue Checkliste für %{place} erstellen"
   new_check_list_record: "Wenn du diese Liste als <em>umfassend</em> markieren möchtest, erstellen sie, füge die Taxa hinzu, und dann bearbeite es. Dann hast du die Möglichkeit, es hier als 'umfassend' zu kennzeichnen."
   new_comment_on_a_parent_by_user_link: Ein neuer Kommentar zu @vow_or_con{vow:einer|einer} %{parent} von %{user_link}
   new_flag_for: Neue Meldung für
