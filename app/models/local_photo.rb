@@ -247,7 +247,19 @@ class LocalPhoto < Photo
 
   def set_urls
     return if new_record?
+    styles = %w(original large medium small thumb square)
     updates = { }
+    blank_file = LocalPhoto.new.file
+    styles.map do |s|
+      # photos w/o files will have nil URLs, which will be rendered as "Processing..." placeholders
+      updates["#{s}_url"] = if file.blank? || !file.queued_for_write[s].blank?
+        nil
+      else
+        url = file.url(s)
+        url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
+      end
+      self["#{s}_url"] = updates["#{s}_url"]
+    end
     updates[:native_page_url] = FakeView.photo_url(self) if native_page_url.blank?
     updates[:file_extension_id] = FileExtension.id_for_extension( self.parse_extension )
     updates[:file_prefix_id] = FilePrefix.id_for_prefix( self.parse_url_prefix )
@@ -593,7 +605,20 @@ class LocalPhoto < Photo
 
       # override the photo s3_account so its URLs will point to the new bucket
       photo.s3_account = photo_started_in_public_s3_bucket ? nil : "public"
-      photo.update_column( :file_prefix_id, FilePrefix.id_for_prefix( photo.parse_url_prefix ) )
+
+      # do a string substition to replace the source domain with the target domain.
+      # This is necessary for now because we switched how we determine image extensions
+      # in 2016 (see NOTE near the top of this file) and we cannot accurately recreate all
+      # actual file extensions using Paperclip or the `set_urls` method. Only the *_url
+      # attributes contain the accurate file names. So this is doing the minimal update
+      # to URLs which his just swap out domains
+      styles = %w(original large medium small thumb square)
+      updates = Hash[styles.map do |s|
+        photo["#{s}_url"] = photo["#{s}_url"].sub( source_domain, target_domain )
+        ["#{s}_url", photo["#{s}_url"]]
+      end]
+      updates[:file_prefix_id] = FilePrefix.id_for_prefix( photo.parse_url_prefix )
+      photo.update_columns( updates )
       photo.reload
 
       # if the photo is being removed as a result of a flag being applied,

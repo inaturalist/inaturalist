@@ -3017,6 +3017,12 @@ CREATE TABLE public.photos (
     id integer NOT NULL,
     user_id integer,
     native_photo_id character varying(255),
+    square_url character varying(512),
+    thumb_url character varying(512),
+    small_url character varying(512),
+    medium_url character varying(512),
+    large_url character varying(512),
+    original_url character varying(512),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     native_page_url character varying(512),
@@ -10135,7 +10141,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210921160446'),
 ('20210921160504'),
 ('20210930182050'),
-('20211001151300'),
-('20211108162839');
+('20211001151300');
 
 
