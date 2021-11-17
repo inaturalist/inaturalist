@@ -341,7 +341,15 @@ const App = ( {
           </Row>
         </Grid>
       </div>
-      <LazyLoad debounce={false} height={748} verticalOffset={500}>
+      <LazyLoad
+        debounce={false}
+        height={
+          config.currentUser && !config.currentUser.prefers_hide_obs_show_quality_metrics
+            ? 748
+            : 70
+        }
+        verticalOffset={500}
+      >
         <div className="data_quality_assessment">
           <AssessmentContainer />
         </div>

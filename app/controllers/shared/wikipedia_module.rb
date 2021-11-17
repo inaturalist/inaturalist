@@ -12,7 +12,7 @@ module Shared::WikipediaModule
         :rvprop => 'content')
       raw = query_results.blank? ? nil : query_results.at('page')
       unless raw.blank? || raw['missing']
-        parsed = w.parse(:page => raw['title']).at('text').try(:inner_text).to_s
+        parsed = w.parse(:page => raw['title'])&.at('text')&.try(:inner_text)&.to_s
         @decoded = coder.decode(parsed)
         @decoded.gsub!('href="//', 'href="http://')
         @decoded.gsub!('src="//', 'src="http://')

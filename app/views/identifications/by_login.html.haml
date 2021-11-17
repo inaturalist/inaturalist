@@ -1,5 +1,5 @@
 - content_for( :title ) do
-  = t( :identifications_by, :user => @login )
+  =raw possessive_noun( @selected_user, "identifications" )
 - content_for( :extracss ) do
   = stylesheet_link_tag "identifications", "identifications/by_login"
   /[if lte IE 7]

@@ -165,7 +165,6 @@ zh-CN:
   account: 账户
   account_creation: 创建账户
   account_settings: 账户设置
-  accept: 接受
   accept_community_identifications: 接受来自社区的鉴定
   accuracy: 准确性
   accuracy_meters: 精确度（米）
@@ -544,7 +543,6 @@ zh-CN:
     您确定您认为此用户可信吗？
     如果如此，他们所有垃圾邮件标志将会被去除。
   are_you_sure_you_want_to_remove_these_x_taxa?: "您确定要移除这 %{x} 个分类群么？"
-  are_you_sure_you_want_to_remove_this_invitation: 您确定要移除此邀请么？
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     您确定要从%{project}中移除这条观察记录吗？
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "您确定要从%{place}的名录中移除这个分类单元吗？"
@@ -588,7 +586,6 @@ zh-CN:
   avg: 平均值
   back: 返回
   back_to_all_species: 返回所有物种
-  back_to_calendar: "回到 %{user} 日历"
   back_to_editing_observation: 回到编辑观察
   back_to_friends: 返回到朋友
   back_to_flags_html: "&laquo; 返回标记"
@@ -615,7 +612,6 @@ zh-CN:
   back_to_your_journal: 回到您的日记
   back_to_your_observations: 回到您的观察
   back_to_your_profile: 回到您的详细信息
-  back_to_your_projects: 回到您的项目
   badges: 徽章
   based_on_the_evidence_can_id_be_improved: |
     基于现有证据, 社区身份证还能被确认或改进吗？
@@ -759,7 +755,6 @@ zh-CN:
   check_list_place: "%{place} 监视列表"
   check_list_updated: 监视列表已更新！
   check_lists_for: "用于%{place}的其他检查表"
-  check_out_our_blog: 看看我们的博客
   check_out_what_the_observation: 检查您要鉴定的观察记录外形。
   checklist: 检查表
   choose_a_field: 选择字段
@@ -825,7 +820,6 @@ zh-CN:
   comparing: 比较
   comparing_list_to_list: "比较 %{list1} 与 %{list2}"
   comparing_versions_x_and_y: "比较版本 %{x} 和 %{y}"
-  comparing_observations_from: "比较 %{user} 在 %{dates} 做出的观察"
   compiled_by_name: "由 %{name} 编译"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: 完成
@@ -1707,7 +1701,6 @@ zh-CN:
   identification_user_short: 鉴别用户
   identification_withdrawn: 身份验证已放弃。
   identifications: 鉴定
-  identifications_by: "来自 %{user} 的鉴定"
   computer_vision_suggestion: 电脑视觉建议
   identifiers: 标识符
   identotron: 鉴定器
@@ -1722,7 +1715,6 @@ zh-CN:
   if_this_link_will_apply_to_descendant: 如果此链接适用于后代分类群，你可以使用模板标签在URL中填写分类单元名称
   if_you_have_any_trouble_with_the_site_check_out: '如果您有任何问题，请您查看我们的<a href="%{help_url}">帮助区</a>或在我们的<a href="%{feedback_url}">反馈群组</a>提交信息。'
   if_your_project_is: 如果您的项目有关特定地点，请通过点击地图或手动输入设置坐标。
-  ignore: 忽略
   ignore_and_continue: 忽略并继续
   ignore_times: 忽略时间
   image_must_be_exactly: 图片必须恰好是950px宽，并且最高400px
@@ -1810,7 +1802,6 @@ zh-CN:
   join_project: 加入这个项目
   #Prompt to join a specific project
   join_project?: 加入 %{project} 吗？
-  join_some_projects_and_invite_some_observations_html: "加入一些<a href='%{join_url}'>项目</a>，并<a href='%{invite_url}'>邀请一些观察</a>"
   join_the_largest_group_of_naturalists_in_the_world: 加入世界上最大的自然爱好者社群
   join_this_project: 加入这个项目
   'joined!': 已加入！
@@ -2376,7 +2367,6 @@ zh-CN:
   no_license_all_rights_reserved: 无许可协议（保留所有权利）
   no_managers_set: 未设管理员
   no_matching_article_from_x: "没有来自%{x}的匹配的条目"
-  no_matching_invitations: 没有匹配的邀请
   no_matching_observations: 没有匹配的观察
   no_matching_places: 没有匹配的地点
   no_matching_projects: 没有匹配的项目
@@ -2556,7 +2546,6 @@ zh-CN:
   observations_deleted: 观察已删除。
   observations_fields_are: |
     观察区域是与观察相关的额外数据，例如观察到的个体数量，栖息地描述或任何您想记录的东西！ 项目还可指定他们希望您来填写的字段。
-  observations_from: 观察于%{date}
   observations_from_people_taxa_and_places_youre_following: "来自您所关注的人，地点和分类群的观察"
   observations_from_this_place: 来自此地区的观察
   observations_from_this_project: 来自此项目的观察
@@ -3219,8 +3208,6 @@ zh-CN:
   places_merged_successfully: 地点已成功合并！
   plants: 植物
   please_add_a_citation_for_this_change: 请为这次更改添加引用。
-  please_add_this_observation_to: 请将这一观察添加至
-  please_add_this_to_x_html: "请将此添加至 %{x}"
   please_allow_a_few_weeks_for_external_sites: 请耐心等待几周，来让其他网站同步对这个观察的更改 #Title to a section warning a user to exercise caution
   please_be_careful!: 请小心！
   please_complete_the_following_to_add_project: |
@@ -3233,7 +3220,6 @@ zh-CN:
   please_hold_on_while_the_file_is_generated: 请等待文件生成。较大的清单可能需要几分钟。
   popular: 热门
   position: 位置
-  possessive_user: "%{user}的"
   #Post is a noun
   post_from_journal_by_parent_html: 来自<a href="%{url}">%{parent}的日记</a>的帖子
   #Post is a noun
@@ -3910,7 +3896,6 @@ zh-CN:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: 适合维基百科和其他维基百科基金会项目
   summary: 摘要
   supporting: 支持
-  support_inaturalist: 支持 iNaturalist
   suspend_user: 停用用户
   sw_lat: 西南纬度
   sw_lon: 西南经度
@@ -4197,7 +4182,6 @@ zh-CN:
   unhide_content: 取消隐藏内容
   unhide_desc: |
     取消隐藏将会导致此內容让任何人可见，而管理者仍可在之后选择继续隐藏。
-  uninvite: 未邀请
   unique_identifier_of_this_taxon: 来源数据库中此分类的唯一标识符。
   unique_observers: 唯一观察者
   unknown: 未知
@@ -4324,7 +4308,6 @@ zh-CN:
   user_invited_you_to_join_html: "%{user}邀请您加入"
   user_invited_you_to_join_project: "%{user}邀请您加入%{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user}邀请您于%{date}加入此项目"
-  user_invited_your_x_to_a_project_html: "%{user}邀请您的%{x}加入项目"
   user_is_a_naturalist: "%{user}是一个自然主义者！"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> 现在是 %{project} 的管理员了
@@ -4368,14 +4351,12 @@ zh-CN:
   view_check_list_page: 查看检查表页面
   view_contributions: 查看贡献
   view_details: 查看详情
-  view_dynamic_lifelist: 查看动态生涯物种清单
   view_field_options: 查看字段选项
   view_flag: 查看标记
   view_flags: 查看标记
   view_flags_for_x_html: "查看用于 %{x} 的旗帜"
   view_full_observation: 查看完整观察
   view_full_size_photo: 查看全尺寸照片
-  view_invitation: 查看邀请
   view_journal: 查看日记
   view_leaderboard_from_last_month: 查看上个月的排行榜
   view_leaderboard_from_last_year: 查看上个月的排行榜
@@ -4614,7 +4595,6 @@ zh-CN:
   you_must_have_a_header_row: 您必须有一个标题行
   you_must_select_a_place_to_merge_with: 您必须选择合并的目标位置。
   you_must_select_at_least_one_taxon: 您必须选择至少一个类群
-  you_must_select_dates_to_compare: 您必须选择日期以比较
   you_must_specify_and_confirm_a_new_password: 您必须指定一个新密码并确认它。
   you_need_to_have_linked_flickr_account: 您需要连接一个Flickr账户才能标记您的照片。
   you_need_to_select_some_observations_first: 您首先需要选择一些观察。
@@ -5106,6 +5086,8 @@ zh-CN:
       edit:
         complex_boundary_note_html: |
           此边界有点太复杂，而不能通过web编辑。然而，您可以<a href="%{url}">下载KML</a>，在您选择GIS应用程序中编辑它，然后直接上传您编辑的KML。
+        admin_level_desc: |
+          只应设为行政单位。以美国为例，0=国家，10=州，20=县，30=镇
       new:
         check_list_note: "注意：对非常大的地方的检查列表将被自动禁用。"
         coordinates_desc: 如果您不画出边界或上传KML的话，您必须指定坐标。

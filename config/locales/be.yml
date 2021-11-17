@@ -327,7 +327,6 @@ be:
   account: Уліковы запіс
   account_creation: Стварэнне ўліковага запісу
   account_settings: Налады ўліковага запісу
-  accept: пагадзіцца
   accept_community_identifications: Пагадзіцца з вызначэннем супольніцтва
   accuracy: Дакладнасць
   accuracy_meters: Дакладнасць (метры)
@@ -766,7 +765,6 @@ be:
     Вы ўпэўненыя, што лічыце гэтага карыстальніка пачэсным?
     Любыя сцягі, якія сігналізуюць пра спам у іхнім змесціве, будуць вырашаны.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Вы ўпэўнены, што хочаце выдаліць гэтыя %{x} таксоны?"
-  are_you_sure_you_want_to_remove_this_invitation: Вы ўпэўнены, што хочаце выдаліць гэтае запрашэнне?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Вы ўпэўненыя, што хочаце выдаліць гэтае назіранне з %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Вы ўпэўненыя, што хочаце выдаліць гэты таксон з таксанамічнага спісу для месца: %{place}?"
@@ -811,7 +809,6 @@ be:
   avg: Сяр.
   back: Вярнуцца
   back_to_all_species: Вярнуцца да ўсіх відаў
-  back_to_calendar: "Вярнуцца да каляндара %{user}"
   back_to_editing_observation: Вярнуцца да рэдактавання назіранняў
   back_to_friends: Вярнуцца да сяброў
   back_to_flags_html: "&laquo; Вярнуцца да сцяжкоў"
@@ -827,18 +824,20 @@ be:
   back_to_taxon: "Вярнуцца да %{defaulttaxon}"
   back_to_taxon_changes: "Вярнуцца да зменаў таксона"
   back_to_taxon_framework_for_x: "Вярнуцца да таксанамічнай сістэмы %{taxon_name}"
+  back_to_users_calendar: "Вярнуцца да каляндара %{user}"
+  back_to_users_lists: "Вярнуцца да спісаў %{user}"
   back_to_viewing: "Вярнуцца да прагляду <i>%{taxon}</i>"
   back_to_x: "Вярнуцца да %{noun}"
   back_to_x_assessment: "Вярнуцца да ацэнак праекта %{project}"
   back_to_x_history: "Назад да гісторыі %{x}"
   back_to_x_journal: "Назад да часопіса карыстальніка %{user}"
   back_to_x_blog: "Назад да блога карыстальніка %{x}"
+  back_to_your_calendar: Вярнуцца да вашага календара
   back_to_your_dashboard: Вярнуцца да панэлі маніторынга
   back_to_your_lists: Вярнуцца да вашых спісаў
   back_to_your_journal: Вярнуцца да вашых часопісаў
   back_to_your_observations: Вярнуцца да вашых назіранняў
   back_to_your_profile: Вярнуцца да вашага профілю
-  back_to_your_projects: Вярнуцца да вашых праектаў
   badges: Значкі
   based_on_the_evidence_can_id_be_improved: |
     Зыходзячы з доказаў, ці можна таксон супольнасці быць пацверджаны або палепшаны?
@@ -983,7 +982,6 @@ be:
   check_list_place: "Кантрольны спіс %{place}"
   check_list_updated: Кантрольны спіс быў адноўлены!
   check_lists_for: "Іншыя кантрольныя спісы для %{place}"
-  check_out_our_blog: Завітайце ў наш Блог
   check_out_what_the_observation: Праглядзіце, да чаго падобнае назіранне, якое вы спрабуеце вызначыць.
   check_this_box_if_html: |
     Усталюйце пазнаку тут, калі вы хочаце ўжыць <a
@@ -1054,7 +1052,6 @@ be:
   comparing: параўноўванне
   comparing_list_to_list: "Параўнанне %{list1} з %{list2}"
   comparing_versions_x_and_y: "Параўнанне версій %{x} і %{y}"
-  comparing_observations_from: "Параўнанне назіранняў %{user} ад %{dates}"
   compiled_by_name: "Складзена %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Поўны
@@ -1760,6 +1757,8 @@ be:
   facebook_access_token_expired: "Тэрмін дзеяння токену доступу скончыўся. %{user} павінен перападлучыць свой уліковы запіс Facebook."
   facebook_needs_the_owner_of_that_photo_to: Facebook патрабуе, каб уласнік гэтага фота зноў пацеврдзіў сваеre падлучэння да %{site_name_short}.
   facebook_options: Наладжванні Facebook
+  facebook_photo_import_disabled_notice: |
+    У лістападзе 2020 года Facebook запатрабаваў ад нас пацверджваць, што нам сапараўдны патрэбны доступ да фатаграфій, і мы не змаглі скончыць працэс з-за праблем з сістэмай верыфікацыі Facebook. У выніку мы не можам надалей падтрымліваць імпарт фатаграфій з Facebook.
   failed_to_find_your_location: Не атрымалася знайсці ваш уліковы запіс
   failed_to_repair_photo: "Не атрымалася аднавіць фота: %{errors}"
   failed_to_save_record: "Не атрымалася захаваць запіс. Калі ласка, паспрабуйце зноў пазней."
@@ -1841,6 +1840,70 @@ be:
   flag_for_list_title_html: |
     Пазначыць для спісу: %{title}
   flag_for_message_id_html: Пазначыць для <a href="%{url}>"паведамлення %{id}</a>
+  flag_for_observation_title_html: |
+    Пазначыць для назірання: %{title}
+  flag_for_photo_id_html: Пазнака для <a href="%{url}">фота %{id}</a>
+  flag_for_place_title_html: |
+    Пазначыць для месца: %{title}
+  flag_for_post_title_html: |
+    Пазначыць для допісу: %{title}
+  flag_for_project_title_html: |
+    Пазначыць для праекту: %{title}
+  flag_for_guide_section_id_html: Пазначыць для <a href="%{url}">Падзелу дапаможніка %{id}</a>
+  flag_for_sound_id_html: Пазначыць для <a href="%{url}">гуку %{id}</a>
+  flag_for_taxon_title_html: |
+    Пазначыць для таксона: %{title}
+  flag_for_user_title_html: |
+    Пазначыць для карыстальніка: %{title}
+  flag_it!: Пазначыць гэта!
+  flag_marked_as_resolved_html: '<span class="meta">Пазнака адзначана як </span> <strong>вырашанае.</strong>'
+  #Label for the object that was flagged, e.g. a table header
+  flag_object: Аб’ект
+  flag_reason: "&ldquo;Я пазначаю гэтае %{record}, таму што"
+  flag_resolution: Вырашэнне
+  flag_saved: Пазнака захована
+  flag_saved_thanks_html: Пазнака захована. Дзякуй! <a href="%{url}" class="readmore">Праглядзець пазнаку</a>
+  flag_this_observation: Пазначыць гэтае назіранне
+  flag_this_photo: Пазначыць гэтае фота
+  flag_this_place: Пазначыць гэтае месца
+  flag_this_sound: Пазначыць гэты гук
+  flagged: пазначана
+  flagged_: Пазначана
+  flagged_for_curation: Пазначана для куратараў
+  flagged_taxon: Пазначаны таксон
+  flagged_thing_explanation: "Карыстальнікі пазначылі гэтае %{thing}, таму што"
+  flagging_desc: |
+    Пазначэнне створана для прыцягвання ўвагі валанцёраў-куратараў сайту.
+    Калі ласка, не пазначайце праблемы, якія вы можаце вырашыць шляхам вызначэння, адзнакай якасці дадзеных, або камунікацыяй з аўтарам зместу.
+  flagger: Кім пазнчана
+  flags: Пазнакі
+  flags_with_count: Пазнакі (%{count})
+  flags_explanation: "карыстачы %{site_name} пазначаюць праблемы, якія патрабуюць увагі з боку куратараў ці/або адміністратараў сайту."
+  flags_for_x_html: Пазнакі для %{x}
+  flags_on_users_content: "Пазнакі для зместу карыстача %{user}"
+  flickr_account_information: Інфармацыя вашага ўліковага запісу Flickr
+  flickr_has_no_creative_commons: Flickr не мае фота з гэтага месца з ліцэнзіяй Creative Commons.
+  flickr_identity: Ідэнтычнасць на Flickr
+  flickr_needs_to_confirm: "Flickr патрэбна пераканацца, што ваш уліковы запіс падлучаны да %{site_name}."
+  flickr_photo: Фота Flickr
+  flickr_photos: Фота Flickr
+  flickr_style: Стыль Flickr
+  flickr_tagger: Сродак стварэння тэгаў Flickr
+  flickr_tags: Тэгі Flickr
+  fluid_layout: Адаптыўная разметка
+  #Adjective, as in a fluid layout of images
+  fluid: адаптыўны
+  follow: Падпісацца
+  follow_receive_updates_about_new_observations: Падпісацца (атрымліваць аднаўленні пра новыя назіранні)
+  follow_user: "Падпісацца на %{user}"
+  followers: Падпіснікі
+  following: Падпіскі
+  following_x_people:
+    one: 'Падпісаны на 1 асобу'
+    few: 'Падпісаны на %{count} асобы'
+    many: 'Падпісаны на %{count} асобаў'
+    other: 'Падпісаны на %{count} асобы'
+  for_a_taxon: для таксона
   formatting: Фарматаванне
   forgot_your_password: Забыліся на пароль?
   forum: Форум
@@ -1931,38 +1994,1068 @@ be:
   header_your_observations: Вашыя назіранні
   header_your_calendar: Ваш календар
   header_your_favorites: Вашыя ўпадабанні
+  header_your_lists: Вашыя спісы
+  header_your_identifications: Вашыя вызначэнні
+  header_your_projects: Вашыя праекты
+  header_your_profile: Ваш профіль
+  heads_up: Увага
+  heads_up_non_automatable_draft_split_notice_html: |
+    <strong>Увага:</strong> Гэтае раздзяленне таксонаў мае выходныя таксоны, якія або не маюць атласаў, або не маюць агульнага продка. Таму, калі гэтае падзяленне будзе зафіксавана, запісы, якія звязаныя з яго уваходнымі таксонамі, не могуць быць аўтаматычна прызначаны да выходных таксонаў, і супольніцтву патрэбна будзе дадаць новыя вызначэнні для гэтых запісаў.
+  heads_up_automatable_split_notice_html: |
+    <strong>Увага:</strong>Некаторыя, або ўсе вызначэнні, ахопленыя гэтым падзелам, магчыма былі заменены вызначэннямі %{taxon}. Гэта здараецца, калі мы не можам аўтаматычна прызначыць вызначэнне да аднаго з выходных таксонаў.
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+    <strong>Увага:</strong> Адзін або некалькі ўваходных таксонаў, якія ўдзельнічаюць у гэтай змене, знаходзяцца ў <a href="%{framework_url}">сістэме таксонаў</a>. Толькі адміністратары або куратары гэтай сістэмы таксонаў могуць змяняць ахопленыя таксоны. Каб зрабіць змены па гэтаму таксону, звярніцеся да аднаго з яго куратараў.
+  heads_up_this_photo_has_been_flagged: "УВАГА: гэтае фота было пазначана"
+  heads_up_this_photo_is_already_associated_with: "Увага: гэта фота ўжо звязана з <a target='_blank' href='%{url}'>іншым назіраннем</a>"
+  heads_up_you_have_multiple: "Увага: у вас ёсць некалькі таксанамічных машынных тэгаў для аднолькавых рангаў. Яны пазначаны колерам ніжэй па рангу."
+  help: Дапамога
+  help_confirm_observations!: Дапамажыце пацвердзіць назіранні!
+  help_support_inaturalist: "Дапамажыце падтрымаць iNaturalist"
+  help_translate!: Дапамагчы з перакладам!
+  here_are_3_examples: Вось 3 прыклады добра сфармаваных дадзеных
+  here_are_our_top_suggestions: Вось нашыя лепшыя прапановы
+  here_are_our_top_species_suggestions: Вось нашыя лепшыя прапановы для відаў
+  hi_user: "Прывітанне, %{user}"
+  highest_rank: Найвышэйшы ранг
+  highlights_and_stats_from_year_on_site: "Асноўныя моманты і статыстыка з %{year} на %{site}"
+  history: Гісторыя
+  home: Галоўная
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Гадзіны для рэгулявання:"
+  however_there_were_some_issues: "Але былі некаторыя праблемы: %{issues}"
+  i_dont_know_but_i_am_sure_this_is_taxon: Я не ведаю, але здаецца, што гэта %{taxon}
+  icon_size: Памер значка
+  id: Вызначэнне
+  id_categories:
+    tooltips:
+      leading: |
+        Таксон паходзіць ад таксона супольніцтва. Гэтае вызначэнне можа прывесці да правільнага адказу.
+      improving: |
+        Першая прапанова гэтага таксона, з якой пагадзілася супольніцтва. Гэта дапамагае ўдакладніць таксон супольніцтва.
+  identify: Вызначыць
+  identify_observations: "Вызначыць назіранні"
+  identify_observations_by_these_users: Вызначэнне назіранняў гэтых карыстальнікаў
   identify_title: "Вызначыць"
+  identification: вызначэнне
+  identification_deleted: вызначэнне выдалена.
+  identification_saved: "вызначэнне захавана!"
+  identification_withdrawn: Вызначэнне знята.
+  identifications: Вызначэнні
+  identifiers: Вызначальнікі
+  if_matches_come_from_a_comprehensive_list: Калі супадзенні паходзяць з поўнага спісу, тут з'явіцца зялёная паласа.
+  if_this_is_a_scientific_name: Калі гэта навуковая назва, ці з'яўляецца яна агульнапрынятай?
+  if_you_have_any_trouble_with_the_site_check_out: 'Калі ў вас ёсць якія-небудзь пытанні, азнаёмцеся з нашым <a href="%{help_url}">раздзелам дапамогі</a> або апублікуйце паведамленне ў нашай <a href="%{feedback_url}">групе водгукаў</a>.'
+  if_your_project_is: Калі ваш праект датычыцца пэўнага месца, задайце каардынаты, націснуўшы на карту або ўвёўшы іх уручную.
+  ignore_and_continue: Ігнараваць і працягваць
+  image_must_be_exactly: здымак павінен быць роўна 950px у шырыню і не больш за 400px у вышыню
+  image_size_control: Кантроль памеру здымка
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
+  imperiled: Пад пагрозай
+  import: Імпартаваць
+  import_all_photos_as_observations: Імпартаваць усе фотаздымкі як назіранні
+  import_as_an_observation: Імпартаваць як назіранне
+  import_as_another_observation: Імпартаваць як іншае назіранне?
+  import_date_time_location_taxonomic: "Імпартаваць дату, час, месцазнаходжанне, апісанне і таксанамічную інфармацыю з гэтага фота."
+  import_from_csv: Імпартаваць з CSV
+  import_from_other_photo_sites: Імпартаваць з іншых фота-сайтаў
+  import_observations: Імпартаваць назіранні
+  import_observations_from_a_photo: Імпартаваць назіранні з фота-правайдэра або файла на вашым камп'ютары.
+  import_photos: Імпартавать фотаздымкі
+  import_tags_from_csv: Імпартаваць тэгі з CSV
+  importing: "Імпартаванне..."
+  improving: Паляпшэнне
+  include_suggestions_not_seen_nearby: Уключаючы прапановы, якія не сустракаліся паблізу
+  in_progress: выконваецца
+  in_the_past: у мінулым
+  in_the_past_week: На мінулым тыдні
+  inactive: Неактыўны
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Неактыўны
+  inactive_taxon: Неактыўны таксон
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Неактыўны
+  inactive_taxon_concepts_are: Канцэпцыі неактыўных таксонаў або састарэлыя ці якія рыхтуюцца да змены таксоны. Састарэлыя канцэпцыі захоўваюцца для захавання гісторыі і сумяшчальнасці з некаторымі партнёрскімі сайтамі.
+  inappropriate_content: Неадпаведны кантэнт?
+  inat_account_action: "%{site_name} &#58; Уліковы запіс &#58; %{action_name}"
+  info: Інфармацыя
+  insects: насякомыя
+  instagram: Іnstagram
+  introduced: Інтрадуцэнт
+  invitation: Запрашэнне
+  invite_people: Запрасіць людзей
+  invite_people_to_project: "Запрасіць людзей у %{project}"
+  #Type of project where people can only join after they have been invited
+  inviteonly: толькі па запрашэннях
+  iphone: iPhone
+  is_not_following_anyone: падпісак не мае.
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Ці дастаткова прадстаўлена доказаў, каб пацвердзіць, што гэта %{taxon}?
+  is_this_offensive_html: 'Гэта <a href="/help#inappropriate">недапушчальнае</a>, спам альбо абразлівае?'
+  is_this_place_a_duplicate: Гэта месцазнаходжанне ўжо было?
+  it_can_now_be_used_for_research: Цяпер яго можна выкарыстоўваць для даследванняў і паказваць на іншых вэб-сайтах
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text: тэкст курсівам
+  join: Далучыцца
+  join_and_add_an_observation_to_project_html: Далучыцца і дадаць назіранне да %{project}
+  #Prompt to join a specific project
+  join_project?: Далучыцца %{project}?
+  join_the_largest_group_of_naturalists_in_the_world: Далучайцеся да самай вялікай групы натуралістаў у свеце!
+  'joined!': Далучыліся!
+  joined_with_date: "Далучыўся: %{date}"
+  jpg_png_or_gif: "JPG, PNG, або GIF"
+  just_a_reminder: Нагадваем, што магчыма вы далі куратарам праекта дазвол праглядаць схаваныя каардынаты вашых назіранняў у гэтым праекце.
+  just_added!: Дададзена!
+  keyboard_shortcuts: Спалучэнні клавіш
+  kml: KML
+  kml_file_size_error: "Памер KML павінен быць менш за 1 МБ"
+  label_colon: "%{label}:"
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
+  location_private: Прыватнае местцазнаходжанне
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: Месцазнаходжанне адсутнічае
+  language_slash_locale: Мова/Месцазнаходжанне
+  language_slash_locale_description: Гэта задае налады мовы і фарматавання даты ў iNaturalist на аснове Вашага месцазнаходжання. Змены ўступяць у сілу пасля абнаўлення старонкі.
+  language_slash_type: Мова / Тып мовы
+  last_active_with_date: "Апошняя актыўнасць: %{date}"
+  last_confirmed_observation: Апошняе пацверджанае назіранне
+  last_observation: Апошняе назіранне
+  last_observation_caps: АПОШНЯЕ НАЗІРАННЕ
+  last_seen: Апошні раз бачыў
+  lat: Шыр.
+  latitude: Шырата
+  latitude_in_decimals: 'Шырата ў дзесятковых градусах, напр. -122,123'
+  latitude_value: "Шырата: %{latitude}"
+  learn_about_the_species_live_in: Даведайцеся пра віды, якія жывуць у
+  learn_about_third_party_tracking: Даведайцеся больш пра адсочванне трэціх асоб
+  learn_more: Даведацца больш
+  learn_more_raquo: "Даведацца больш &raquo;"
+  learn_what_these_licenses_mean: Даведайцеся, што азначаюць гэтыя ліцэнзіі
+  leave: Пакінуць
+  leave_a_comment: Пакінуць каментарый
+  leave_this_project: Пакінуць гэты праект
+  #Terminal nodes in a taxonomic tree
+  leaves: лісце
+  legacy_authentication_notice_html: |
+    Здаецца, вы выкарыстоўваеце пароль ад старой версіі гэтага вэб-сайта. Не забудзьце <a href="%{url}">змяніць пароль</a> для новай версіі.
+  let_us_walk_you_through: Давайце пазнаёмім вас з асноўнымі функцыямі гэтага сайта.
+  lexicon: Слоўнік
+  lexicons:
+    scientific_names: Навуковая назва
+    albanian: Албанская
+    arabic: Арабская
+    armenian: Армянская
+    belarusian: Беларуская
+    bengali: Бенгальская
+    bulgarian: Балгарская
+    catalan: Каталонская
+    cebuano: Себуанская
+    chinese_simplified: Кітайская (спрошчаны правапіс)
+    chinese_traditional: Кітайская (традыцыйная)
+    creole_french: Крэольская (франц.)
+    creole_portuguese: Крэольская (партуг.)
+    croatian: Харвацкая
+    czech: Чэшская
+    danish: Дацкая
+    davawenyo: Дабавеньё
+    dutch: Галандская
+    english: Англійская
+    estonian: Эстонская
+    faroese: Фарэрская
+    finnish: Фінская
+    french: Французская
+    galician: Галісійская
+    german: Нямецкая
+    greek: Грэцкая
+    hawaiian: Гавайская
+    hebrew: Іўрыт
+    hiligaynon: Хілігайнон
+    hungarian: Венгерская
+    icelandic: Ісландская
+    ilokano: Ілакана
+    indonesian: Інданезійская
+    italian: Італьянская
+    japanese: Японская
+    kannada: Канадская
+    korean: Карэйская
+    latvian: Латвійская
+    lithuanian: Літоўская
+    luxembourgish: Люксембургская
+    malay: Малайская
+    malayalam: Малаямская
+    maltese: Мальтыйская
+    maori: Маоры
+    marathi: Маратхі
+    maya: Майя
+    mongolian: Мангольская
+    norwegian: Нарвежская
+    occitan: Аксітанская
+    ojibwe: Оджыбвэ
+    polish: Польская
+    portuguese: Партугальская
+    romanian: Румынская
+    russian: Руская
+    slovak: Славацкая
+    slovenian: Славенская
+    spanish: Іспанская
+    swedish: Шведская
+    turkish: Турэцкая
+    ukrainian: Украінская
+  linked_facebook: "Ваш уліковы запіс %{site_name} зараз звязаны з вашым уліковым запісам Facebook."
+  linked_facebook_automaticaly: "Акрамя таго, майце на ўвазе, што калі вы ўвойдзеце ў %{site_name} праз Facebook, то мы аўтаматычна паўторна звяжам ваш ўліковы запіс %{site_name} і Facebook. Здаецца абгрунтаваным, што калі вы выкарыстоўваеце Facebook, то захочаце мець магчымасць імпартаваць адтуль фатаграфіі, так?"
+  linked_facebook_howto: "Каб звязаць Facebook з %{site_name}, націсніце на спасылку справа і ўвайдзіце ў Facebook.com."
+  linkedin: LinkedIn
+  list: Спіс
+  list_deleted: Спіс выдалены.
+  list_saved: Спіс захаваны.
+  list_tooltip: Паказаць у выглядзе спісу
+  list_updated: Спіс абноўлены!
+  list_was_successfully_created: Спіс быў паспяхова створаны.
+  lists: Спісы
+  lists_by_login:
+    title:
+      current_user: Вашыя спісы
+  locales:
+    ar: Арабская
+    be: Беларуская
+    bg: Балгарская
+    br: Брэтонская
+    ca: Каталонская
+    cs: Чэшская
+    da: Дацкая
+    de: Нямецкая
+    el: Грэцкая
+    en: Англійская
+    eo: Эсперанта
+    es: Іспанская
+    es-AR: Іспанская (Аргентына)
+    es-CO: Іспанская (Калумбія)
+    es-MX: Іспанская (Мексіка)
+    et: Эстонская
+    eu: Баскская
+    fi: Фінская
+    fr: Французская
+    fr-CA: Французская (Канада)
+    gl: Галісійская
+    hu: Венгерская
+    id: Інданезійская
+    it: Італьянская
+    ja: Японская
+    ko: Карэйская
+    lb: Люксембургская
+    lt: Літоўская
+    lv: Латвійская
+    mk: Македонская
+    mr: Маратхі
+    nl: Галандская
+    pl: Польская
+    pt: Партугальская
+    pt-BR: Партугальская (Бразілія)
+    ru: Руская
+    sk: Славацкая
+    sl: Славенская
+    sq: Албанская
+    sv: Шведская
+    tr: Турэцкая
+    uk: Украінская
+    zh-CN: Кітайская (спрошчаны правапіс)
+    zh-TW: Кітайская (традыцыйная)
+  locality_notes: Нататкі месцазнаходжання
+  location: Месцазнаходжанне
+  location_is_accurate: Месцазнаходжанне з'яўлаецца дакладным
+  location_is_exact: месцазнаходжанне дакладнае
+  location_is_public: Месцазнаходжанне агульнадаступнае
+  location_is_obscured: Месцазнаходжанне схавана
+  location_is_private: Прыватнае местцазнаходжанне
+  log_in: Увайсці
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/login">Увайдзіце</a> або <a href="/signup">зарэгіструйцеся</a>, каб дадаць каментарыі.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/login">Увайдзіце</a> або <a href="/signup">зарэгіструйцеся</a>, каб дадаць вызначэнні.
+  log_out: Выйсці
+  log_out_caps: ВЫЙСЦІ
+  #Application is a mobile app the user has authorized to access their iNat account
+  log_out_of_application: "Выйсці з %{site_name}?"
+  longitude: Даўгата
+  longitude_in_decimal: 'Даўгата ў дзесятковых градусах, напр. -122,123'
+  longitude_value: "Даўгата: %{longitude}"
+  maps:
+    overlays:
+      observations: Назіранні
+  media: Медыя
+  #As in members of a project
+  members: Удзельнікі
+  merge: Аб'яднаць
+  merge_it_with_another_place: Аб'яднаць гэта з іншым месцам
+  merge_two_places_together: Аб'яднаць два месцы разам. Усе віды ў спісах, а таксама ўсе геаграфічныя дадзеныя будуць аб'яднаныя.
+  merge_observation_field_x_into: 'Аб''яднаць поле назірання "%{x}" у...'
+  message: Паведамленне
+  messages: Паведамленні
+  misidentifications: Памылковыя ідэнтыфікацыі
+  #Label shown when a date has not been entered
+  missing_date: Адсутнічае дата
+  mollusks: малюскі
+  momentjs:
+    shortRelativeTime:
+      future: "у %s"
+      past: "%s"
+      #Short text representing 1 second in the past
+      s: "1 сек"
+      #Short text representing 1 minute in the past
+      m: "1 хв"
+      #Short text representing %d minutes in the past
+      mm: "%d м"
+      #Short text representing 1 hour in the past
+      h: "1 гадз."
+      #Short text representing %d hours in the past
+      hh: "%d гадз."
+      #Short text representing 1 day in the past
+      d: "1 дз."
+      #Short text representing %d days in the past
+      dd: "%dдз"
+      #Short text representing 1 year in the past
+      'y': "1 г"
+      #Short text representing %d years in the past
+      yy: "%dг.т."
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "MMMM D, YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "HH:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
+  month: Месяц
+  name: Назва
+  name_entered: Назва ўведзена
+  name_or_slug: "Назва або URL-slug, напрыклад, my-project"
+  name_of_the_place_you: Назва месца, дзе вы зрабілі назіранне
+  names: Назвы
+  names_for_taxon_html: "Назвы для %{taxon}"
+  new_message: Новае паведамленне
+  new_observation_field: Новае поле назірання
+  new_observations: Новыя назіранні
+  new_observations_ellispsis: "Новыя назіранні..."
+  new_password: Новы пароль
+  new_post: Новы запіс
+  new_project: Новы праект
+  next_taxon_short: Наступны
+  no_comments_yet: Пакуль няма каментарыяў.
+  no_description: Няма апісання
+  no_matching_observations: Няма адпаведных назіранняў.
+  no_matching_places: Няма адпаведных месцаў
+  no_matching_projects: Няма адпаведных праектаў
+  no_matching_species: Няма адпаведных відаў.
+  no_matching_taxa: Няма адпаведных таксонаў
+  no_matching_users: Няма адпаведных карыстальнікаў.
+  no_observations: Няма назіранняў
+  no_observations_from_this_place_yet: Назіранняў з гэтага месца пакуль няма.
+  no_observations_matching_those_ids: Няма назіранняў, адпаведных гэтым вызначэнням.
+  no_observations_yet: Пакуль няма назіранняў.
+  no_photo: Няма фота
+  no_photos: Няма фотаздымкаў
+  no_suggestions_available: Няма даступных прапаноў
+  no_summary_from_wikipedia: Няма рэзюмэ з Вікіпедыі
+  no_taxa: Няма таксонаў
+  no_taxa_listed: Таксонаў у спісе няма
+  no_taxa_selected: Таксоны не выбраны!
+  not_found: Не знойдзена
+  notes: Нататкі
+  notifications: Апавяшчэнні
+  number_of_observations: Колькасць назіранняў
+  number_of_observers_value: "Колькасць назіральнікаў: %{number}"
+  number_of_observers: "Колькасць назіральнікаў"
+  number_selected: "# абрана"
+  observation: Назіранне
+  observation_: назіранне
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Назіранне &copy; %{user}
+  observations_by_category: "Назіранні па катэгорыі"
+  observation_calendar_for: "Каляндар назіранняў для %{user} у %{year}"
+  #The limit is currently 20
+  observations_can_only_have_n_photos: У назіраннях можа быць толькі %{limit} фотаздымкаў
+  observation_date: Дата
+  observation_date?: Дата?
+  observation_field: Поле назірання
+  observation_field_type_text: Тэкст
+  observation_field_type_date: Дата
+  observation_field_type_time: Час
+  observation_field_type_taxon: Таксон
+  observation_fields: Палі назіранняў
+  observation_removed_from_the_project: "Назіранне выдалена з праекта \"%{project}\""
+  observation_requirements: Патрабаванні да назіранняў
+  observation_rules: Правілы назіранняў
+  observation_was_deleted: Назіранне было выдалена.
+  observation_without_media: Назіранне без медыа
+  observations: Назіранні
+  observations_: назіранні
+  observations_deleted: Назіранні былі выдалены
+  observer: Назіральнік
+  occurrence_status_descriptions:
+    absent: На тэрыторыі не сустракаецца
+  ok: "ОК"
+  only_administrators_may_access_that_page: Толькі адміністратары маюць доступ да гэтай старонкі
+  only_an_admin_can_remove_project_users: Толькі адміністратар можа выдаляць карыстальнікаў праекта
+  only_curators_can_add_edit_scientific_names: Дадаваць/рэдагаваць навуковыя назвы могуць толькі куратары.
+  only_curators_can_access_that_page: Толькі куратары маюць доступ да гэтай старонкі
+  open_street_map: OpenStreetMap
+  or: або
+  other_animals: іншыя жывёлы
+  owner: Уладальнік
+  password: Пароль
+  photo: Фота
+  photos_or_sounds: Фатаздымкі альбо гукі
+  photos_or_sounds?: Фатаздымкі альбо гукі?
+  place_geo:
+    geo_planet_place_types:
+      Airport: Аэрапорт
+      airport: аэрапорт
+      Building: Пабудова
+      building: пабудова
+      Street: Вуліца
+      street: вуліца
+  places_name:
+    afghanistan: Афганістан
+    africa: Афрыка
+    albania: Албанія
+    algeria: Алжыр
+    american_samoa: Амерыканскае Самоа
+    andorra: Андора
+    angola: Ангола
+    argentina: Аргентына
+    armenia: Арменія
+    aruba: Аруба
+    asia: Азія
+    australia: Аўстралія
+    austria: Аўстрыя
+    azerbaijan: Азербайджан
+    bahamas: Багамскія Астравы
+    bahrain: Бахрэйн
+    bangladesh: Бангладэш
+    barbados: Барбадос
+    belarus: Беларусь
+    belgium: Бельгія
+    belize: Беліз
+    benin: Бенін
+    bermuda: Бермудскія Астравы
+    bhutan: Бутан
+    bolivia: Балівія
+    bonaire_saint_eustatius_and_saba: Бонайрэ, Сэнт-Эстатіус і Саба
+    bosnia_and_herzegovina: Боснія і Герцагавіна
+    botswana: Батсвана
+    bouvet_island: Востраў Буве
+    brazil: Бразілія
+    british_indian_ocean_territory: Брытанская тэрыторыя Індыйскага акіяна
+    british_virgin_islands: Брытанскія Віргінскія астравы
+    brunei: Бруней
+    bulgaria: Балгарыя
+    burkina_faso: Буркіна Фасо
+    burundi: Бурундзі
+    cambodia: Камбоджа
+    cameroon: Камерун
+    canada: Канада
+    cape_verde: Каба-Вердэ
+    cayman_islands: Кайманавы Астравы
+    central_african_republic: Цэнтральна-Афрыканская Рэспубліка
+    central_america: Цэнтральная Амерыка
+    chad: Чад
+    chile: Чылі
+    china: Кітай
+    christmas_island: Востраў Раства
+    clipperton_island: Востраў Кліпертан
+    cocos_islands: Какосавыя астравы
+    colombia: Калумбія
+    commonwealth_of_the_northern_mariana_islands: Садружнасць Паўночных Марыянскіх астравоў
+    comoros: Каморскія астравы
+    cook_islands: Астравы Кука
+    costa_rica: Коста-Рыка
+    cote_d_ivoire: Кот-д'Івуар
+    croatia: Харватыя
+    cuba: Куба
+    curacao: Кюрасао
+    cyprus: Кіпр
+    czech_republic: Чэшская рэспубліка
+    democratic_republic_of_the_congo: Дэмакратычная Рэспубліка Конга
+    denmark: Данія
+    djibouti: Джыбуці
+    dominica: Дамініка
+    dominican_republic: Дамініканская Рэспубліка
+    east_timor: Усходні Тымор
+    ecuador: Эквадор
+    egypt: Егіпет
+    el_salvador: Сальвадор
+    equatorial_guinea: Экватарыяльная Гвінея
+    eritrea: Эрытрэя
+    estonia: Эстонія
+    europe: Еўропа
+    honduras: Гандурас
+    hong_kong: Ганконг
+    hungary: Венгрыя
+    iceland: Ісландыя
+    india: Індыя
+    indonesia: Інданэзія
+    iran: Іран
+    iraq: Ірак
+    ireland: Ірландыя
+    israel: Ізраіль
+    italy: Італія
+    jamaica: Ямайка
+    japan: Японія
+    jersey: Джэрсі
+    jordan: Іарданія
+    kazakhstan: Казахстан
+    kenya: Кенія
+    kiribati: Кірыбаці
+    korea: Карэя
+    kosovo: Косава
+    kuwait: Кувейт
+    kyrgyzstan: Кыргызстан
+    laos: Лаос
+    latvia: Латвія
+    lebanon: Ліван
+    lesotho: Лесота
+    liberia: Ліберыя
+    libya: Лівія
+    liechtenstein: Ліхтэнштэйн
+    lithuania: Літва
+    luxembourg: Люксембург
+    macao: Макао
+    macedonia: Македонія
+    madagascar: Мадагаскар
+    malawi: Малаві
+    malaysia: Малайзія
+    maldives: Мальдывы
+    mali: Малі
+    malta: Мальта
+    marshall_islands: Маршалавы астравы
+    martinique: Марцініка
+    mauritania: Маўрытанія
+    mauritius: Маўрыкій
+    mayotte: Маёта
+    mexico: Мексіка
+    micronesia: Мікранезія
+    moldova: Малдова
+    monaco: Манака
+    mongolia: Манголія
+    montenegro: Чарнагорыя
+    montserrat: Мантсерат
+    morocco: Марока
+    mozambique: Мазамбік
+    myanmar: М’янма
+    namibia: Намібія
+    nauru: Науру
+    nepal: Непал
+    netherlands: Нідэрланды
+    new_caledonia: Новая Каледонія
+    new_guinea: Новая Гвінея
+    new_zealand: Новая Зеландыя
+    nicaragua: Нікарагуа
+    niger: Нігер
+    nigeria: Нігерыя
+    norfolk_island: Востраў Норфалк
+    north_africa: Паўночная Афрыка
+    north_america: Паўночная Амерыка
+    north_korea: Паўночная Карэя
+    northern_cyprus: Паўночны Кіпр
+    norway: Нарвегія
+    oman: Аман
+    pakistan: Пакістан
+    palestine: Палесціна
+    panama: Панама
+    papua_new_guinea: Папуа Новая Гвінея
+    paraguay: Парагвай
+    peru: Перу
+    philippines: Філіпіны
+    poland: Польшча
+    portugal: Партугалія
+    puerto_rico: Пуэрта Рыка
+    qatar: Катар
+    republic_of_congo: Рэспубліка Конга
+    romania: Румынія
+    south_america: Паўднёвая Амерыка
+    south_korea: Паўднёвая Карэя
+    south_sudan: Паўднёвы Судан
+    spain: Іспанія
+    sri_lanka: Шры-Ланка
+    sudan: Судан
+    suriname: Сурынам
+    svalbard_and_jan_mayen: Шпіцберген і Ян-Маен
+    swaziland: Свазіленд
+    sweden: Швецыя
+    switzerland: Швейцарыя
+    syria: Сірыя
+    taiwan: Тайвань
+    tajikistan: Таджыкістан
+    tanzania: Танзанія
+    thailand: Тайланд
+    togo: Тога
+    tokelau: Такелау
+    tonga: Тонга
+    trinidad_and_tobago: Трынідад і Табага
+    tunisia: Туніс
+    turkey: Турцыя
+    turkmenistan: Туркменістан
+    turks_and_caicos_islands: Астравы Тэркс і Кайкас
+    tuvalu: Тувалу
+    uganda: Уганда
+    ukraine: Украіна
+    united_arab_emirates: Аб'яднаныя Арабскія Эміраты
+    united_kingdom: Злучанае Каралеўства
+    united_states: Злучаныя Штаты Амерыкі
+    united_states_minor_outlying_islands: Малыя Аддаленыя астравы ЗША
+    united_states_virgin_islands: Амерыканскія Віргінскія астравы
+    uruguay: Уругвай
+    uzbekistan: Узбекістан
+    vanuatu: Вануату
+    vatican_city: Ватыкан
+    venezuela: Венесуэла
+    vietnam: В'етнам
+    virgin_islands: Віргінскія астравы (ЗША)
+    wallis_and_futuna: Уоліс і Футуна
+    west_africa: Заходняя Афрыка
+    western_sahara: Заходняя Сахара
+    yemen: Емен
+    zambia: Замбія
+    zimbabwe: Зімбабвэ
+  please_confirm_your_inat_username: "Калі ласка, пацвердзіце сваё %{site_name} імя карыстальніка"
+  project_observations: Назіранні праекта
+  project_post: Публікацыі праекта
+  project_requirements: Патрабаванні да праекта
+  project_rules: Правілы праекта
+  project_settings: Налады праекта
+  project_start_time_datetime: "Час пачатку: %{datetime}"
+  project_was_successfully_created: ЗПраект быў паспяхова створаны.
+  project_was_successfully_updated: Праект быў паспяхова адноўлены.
+  project_x_was_delete: "%{project} быў выдалены (калі ласка, пачакайце некалькі хвілін, каб яго выдаліць з вэб-сайта)"
+  projects: Праэкты
+  ranks:
+    class: Клас
+    x_classes:
+      one: Клас
+      few: Класы
+      many: Класаў
+      other: Класаў
+    subclass: Падклас
+    tribe: Трыба
+    subtribe: Падтрыба
+    genus: Род
+    x_genera:
+      one: Род
+      few: Роды
+      many: Родаў
+      other: Роды
+    subgenus: Падрод
+    section: Секцыя
+    subsection: Падсекцыя
+    complex: Коплекс
+    #Singular
+    species: Від
+    x_species:
+      one: Від
+      few: Відаў
+      many: Відаў
+      other: Віда
+    hybrid: Гібрыд
+    #Singular
+    subspecies: Падвід
+    leaves: Лісце
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: царства
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: падцарства
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: клас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: падклас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: інфраклас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: трыба
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: падтрыба
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: род
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: родавы гібрыд
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: падрод
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: секцыя
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: падсекцыя
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: комплекс
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: віды
+  reason: Прычына
+  reason_you_are_flagging_this_item: Прычына, па якой вы пазначаеце гэты элемент.
+  remove: Выдаліць
+  remove_from_project: Выдаліць з праекта
+  remove_photo: Выдаліць фота
+  remove_place: Выдаліць месца
+  remove_selected: Выдаліць выбраныя
+  satellite: спадарожнік
+  save: Захаваць
+  save_all: Захаваць усё
+  save_and_add_another: Захаваць і дадаць іншы
+  save_and_add_taxa: "Захаваць і пачаць дадаваць віды"
+  save_changes: Захаваць змяненні
+  save_comment: Захаваць каментарый
+  save_draft: Захаваць чарнавік
+  save_fields: Захаваць палі
+  save_identification: Захаваць вызначэнне
+  save_observation: Захаваць назіранне
+  save_photos: Захаваць фатаздымкі
+  save_place: Захаваць месца
+  save_settings_caps: Захаваць налады
+  sending: Адпраўка...
+  sounds:
+    add_media: Дадаць медыа
+    add_sounds: Дадаць гукі
+    before_importing_sounds: перад імпартам гукаў
+  #Plural
+  species: Віды
+  species_by_category: віды па катэгорыях
+  species_search: Пошук відаў
+  stats: Статыстыка
+  taxon_changes: Змены таксона
+  taxon_colors: Колеры таксона
+  taxon_curators: Куратары таксона
+  the_admin_is_the_person_who: |
+    Адміністратар - гэта чалавек, які стварыў праект. Яны могуць рабіць усё, што могуць зрабіць менеджэры і куратары, а таксама выдаляць праект.
+  the_following_observations_could: "Наступныя назіранні не могуць быць дададзены да %{link}"
+  the_following_photos_have_been_tagged: "Былі пазначаны наступныя фатаграфіі:"
+  the_observation_was_already_added_to_that_project: Назіранне ўжо было дададзена ў гэты праект.
+  there_is_no_wikipedia_page_matching: Няма адпаведнай старонцы ў Вікіпедыі
+  there_isnt_a_wikipedia_article_titled_x_html: |
+    У Вікіпедыі няма артыкула або перанакіравання пад назвай "%{x}". Магчыма, вы жадаеце <a href='http://en.wikipedia.org/wiki/%{x}'>зрабіць яго</a>?
+  there_merge_problems_with_the_merge: "Узніклі праблемы з аб'яднаннем: %{merged_errors}"
+  there_was_a_problem_creating_this_account: |
+    Узнікла праблема пры стварэнні гэтага ўліковага запісу. Калі ласка, звяжыцеся з намі, калі праблема не знікне
+  there_was_a_problem_saving_your_identification: "Узнікла праблема з захаваннем вашага вызначэння: %{error}"
+  this_is_your_observation: Гэта ваша назіранне
+  this_is_your_observation_desc: Вы заўсёды можаце ўбачыць каардынаты ўласных назіранняў.
+  today: Сёння
+  too_many_taxa_to_render: |
+    Гэты запыт вяртае зашмат таксонаў для адначасовага адлюстравання. Паспрабуйце дадаць больш фільтраў.
+  twitter: Twitter
+  uploader:
+    tooltips:
+      remove: Выдаліць выбраныя назіранні
+      remove_observation: Выдаліць назіранне
+      remove_photo: Выдаліць фатаздымак
+      select_all: Выбраць усе назіранні
+  user: Карыстальнік
+  user_added_an_identification_html: "%{user} дадаў вызначэнне"
+  user_added_an_observation_html: "%{user} дадаў назіранне"
+  username: Імя карыстальніка
+  users: Карыстальнікі
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Мы амаль упэўнены, што гэта належыць да роду
+  what_did_you_see: Што вы бачылі?
+  what_did_you_see?: <em>Што</em> вы бачылі?
+  with_annotation: З анатацыяй
+  without_annotation: Без анатацыі
+  widget: Віджэт
+  year: Год
+  year_month: год/месяц
+  yellow: жоўты
+  'yes': "Так"
+  yes_i_want_to_join: Так, я хачу далучыцца
+  views:
+    taxa:
+      show:
+        frequency:
+          verifiable: Правяраемы
+          "Plant Phenology=Flowering": Квітненне
+          "Plant Phenology=Fruiting": Пладанашэнне
+        trending_desc: Найбольш назіральныя таксоны за апошні месяц
+        wanted_desc: Віды ў гэтым таксоне, якія яшчэ не назіраліся.
+    users:
+      edit:
+        name_place_help_html: |
+          Аддаваць перавагу распаўсюджаным назвам, якія выкарыстоўваюцца ў гэтым месцы.
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Каментарыі
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Вызначэнні
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Згадванні
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Паведамленні
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: Паведамленні ў дзённіку праекта
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Калі праект дадае вашыя назіранні
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
+        notification_preferences_project_curator_changes: Змены ад куратара праекта
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Змены таксаноміі
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: Назіранні людзей, за якімі я сачу
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: Назіранні за таксонамі альбо з месцаў, на якія я падпісваюся
+        project_addition_preferences:
+          joined: Праекты, да якіх вы далучыліся
+    welcome:
+      index:
+        how_it_works: Як гэта працуе
+        record_your_observations: Запішыце свае назіранні
+        share_with_fellow_naturalists: Падзяліцеся з калегамі-натуралістамі
+        discuss_your_findings: Абмяркуйце свае находкі
   date:
+    abbr_day_names:
+      - Нд
+      - Пн
+      - Аўт
+      - Ср
+      - Чц
+      - Пт
+      - Сб
     abbr_month_names:
       - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
+      - Сту
+      - Лют
+      - Сак
+      - Кра
+      - Тра
+      - Чэр
+      - Ліп
+      - Жні
+      - Вер
       - Oct
       - Nov
       - Dec
+    day_names:
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Субота
+    day_names_min:
+      1: Нд
+      2: Пн
+      3: Аў
+      4: Ср
+      5: Чт
+      6: Пт
+      7: Сб
     month_names:
       - 
-      - January
-      - February
-      - March
-      - April
+      - Студзень
+      - Люты
+      - Сакавік
+      - Красавік
       - May
       - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
+      - Ліпень
+      - Жнівень
+      - Верасень
+      - Кастрычнік
+      - Лістапад
+      - Снежань
+  datetime:
+    countdown_x_days:
+      one: дзень
+      few: дні
+      many: дзён
+      other: дня
+    countdown_x_hours:
+      one: гадзіна
+      few: гадзіны
+      many: гадзін
+      other: гадзіны
+    countdown_x_minutes:
+      one: хв
+      few: хв
+      many: хв
+      other: хв
+    countdown_x_seconds:
+      one: сек
+      few: сек
+      many: сек
+      other: сек
+    prompts:
+      day: Дзень
+      hour: Гадзіна
+      minute: Хвіліна
+      month: Месяц
+      second: Секунды
+      year: Год
+  errors:
+    format: '%{attribute} %{message}'
   number:
+    format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
+      delimiter: '.'
+      precision: 3
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
+      separator: ','
+      significant: false
+      strip_insignificant_zeros: false
     human:
+      decimal_units:
+        units:
+          billion: Мільярд
+          million: Мільён
+          thousand: Тысяча
       format:
+        precision: 3
         significant: true
         strip_insignificant_zeros: true
+      storage_units:
+        format: '%n %u'
+        units:
+          byte:
+            one: Байт
+            few: Байты
+            many: Байтаў
+            other: Байт
+          gb: ГБ
+          kb: КБ
+          mb: МБ
+          tb: TБ
+  support:
+    array:
+      last_word_connector: 'і '
+      two_words_connector: ' і '
+      words_connector: ', '
+  activerecord:
+    attributes:
+      assessment:
+        description: Апісанне
+      assessment_section:
+        title: Загаловак
+      conservation_status:
+        status: Статус
+        description: Апісанне
+        url: URL
+      flag:
+        reason: Прычына
+      observation:
+        description: Нататкі
+      post:
+        title: Загаловак
+      source:
+        title: Загаловак
+        in_text: У тэксце
+        url: URL
+      taxon:
+        locked: Заблакавана
+        wikipedia_title: Назва артыкулу на Вікіпедії
+      user:
+        email: Email
+        login: Імя карыстальніка
+        time_zone: Гадзінны пояс
+    errors:
+      messages:
+        empty: не можа быць пустым
+        requires_privilege_speech: для гэтага павінна быць тры правераныя назіранні альбо тры вызначэнні для іншых
+        requires_privilege_organizer: для гэтага павінна быць 50 правераных назіранняў
+        taken: гэта ўжо зроблена
+      template:
+        body: 'Узніклі праблемы з наступнымі палямі:'
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: "не можа ўтрымліваць фрагмент."
+              invalid_uri: "павінен быць валідны URL."
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: павінна быць прымальным значэннем
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: |
+                павінна пачынацца з літары, не ўтрымліваць прабелаў і выкарыстоўваць толькі літары, лічбы, рыскі і падкрэсліванне
+            email:
+              must_look_like_an_email_address: павінна выглядаць як адрас электроннай пошты
+              domain_is_not_supported: дамен не падтрымліваецца
+  i18n:
+    inflections:
+      "@gender":
+        m: Мужчынскі
+        f: Жаночы
+        "n": кастры
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_drop: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_link: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_merge: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_split: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_stage: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_swap: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@f"
+        #Default gender for nouns that aren't listed here
+        default: "@n"
+  #Title of a section warning the user about something
+  warning_title: Увага
+  wikimedia: Wikimedia
+  wild: Дзікае
+  will_paginate:
+    previous_label: "&#8592; Папяр."
+    next_label: "Наст. &#8594;"
+    page_gap: "&hellip;"
+  you_will_no_longer_be_following_or_trusting: "Вы больш не будзеце сачыць або давяраць %{user}"
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: ад Я да А
+  zoom_in: Павялічыць
+  zoom_out: Паменшыць
+  zoom_photo: Павялічыць фота

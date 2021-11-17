@@ -39,8 +39,8 @@ class ObservationsController < ApplicationController
                             :observation_links,
                             :torquemap,
                             :lifelist_by_login]
-  protect_from_forgery with: :exception, unless: lambda {
-    request.format.widget? || authenticated_with_oauth? || authenticated_with_jwt?
+  protect_from_forgery with: :exception, if: lambda {
+    !request.format.widget? && request.headers["Authorization"].blank?
   }
   ## /AUTHENTICATION
 
@@ -1249,20 +1249,15 @@ class ObservationsController < ApplicationController
       current_user: current_user)
     search_params = Observation.apply_pagination_options(search_params,
       user_preferences: @prefs)
+    # Since this page is really only intended for the observer, omit obscured
+    # observations unless the viewer is trusted
+    unless @selected_user.trusts?( current_user )
+      search_params[:geoprivacy] = Observation::OPEN
+      search_params[:taxon_geoprivacy] = Observation::OPEN
+    end
     @observations = Observation.page_of_results(search_params)
     set_up_instance_variables(search_params)
     Observation.preload_for_component(@observations, logged_in: !!current_user)
-    if @selected_user != current_user
-      filtered_obs = @observations.select {|o| o.coordinates_viewable_by?( current_user )}
-      diff = @observations.size - filtered_obs.size
-      @observations = WillPaginate::Collection.create(
-        @observations.current_page,
-        @observations.per_page,
-        @observations.total_entries - diff
-      ) do |pager|
-        pager.replace( filtered_obs )
-      end
-    end
     respond_to do |format|
       format.html do
         prepare_map(search_params)
@@ -2284,7 +2279,11 @@ class ObservationsController < ApplicationController
         # merge facebook_observation with existing observation
         @observation[sync_attr] ||= @facebook_observation[sync_attr]
       end
-      unless @observation.observation_photos.detect {|op| op.photo.native_photo_id == @facebook_photo.native_photo_id}
+      photo_already_exists = @observation.observation_photos.detect do |op|
+        op.photo.native_photo_id == @facebook_photo.native_photo_id &&
+        op.photo.subtype == "FacebookPhoto"
+      end
+      unless photo_already_exists
         @observation.observation_photos.build(:photo => @facebook_photo)
       end
       unless @observation.new_record?
@@ -2329,7 +2328,11 @@ class ObservationsController < ApplicationController
       # need to append a new photo object without saving it, but build() won't
       # work here b/c Photo and its descedents use STI, and type is a
       # protected attributes that can't be mass-assigned.
-      unless @observation.observation_photos.detect {|op| op.photo.native_photo_id == @flickr_photo.native_photo_id}
+      photo_already_exists = @observation.observation_photos.detect do |op|
+        op.photo.native_photo_id == @flickr_photo.native_photo_id &&
+        op.photo.subclass == "FlickrPhoto"
+      end
+      unless photo_already_exists
         @observation.observation_photos.build(:photo => @flickr_photo)
       end
       
@@ -2337,7 +2340,7 @@ class ObservationsController < ApplicationController
         flash.now[:notice] = t(:preview_of_synced_observation, :url => url_for)
       end
       
-      if (@existing_photo = Photo.find_by_native_photo_id(@flickr_photo.native_photo_id)) && 
+      if (@existing_photo = LocalPhoto.where( subtype: "FlickrPhoto", native_photo_id: @flickr_photo.native_photo_id ) ) &&
           (@existing_photo_observation = @existing_photo.observations.first) && @existing_photo_observation.id != @observation.id
         msg = t(:heads_up_this_photo_is_already_associated_with, :url => url_for(@existing_photo_observation))
         flash.now[:notice] = flash.now[:notice].blank? ? msg : "#{flash.now[:notice]}<br/>#{msg}"
@@ -2371,8 +2374,11 @@ class ObservationsController < ApplicationController
       sync_attrs.each do |sync_attr|
         @observation.send("#{sync_attr}=", @picasa_observation.send(sync_attr))
       end
-      
-      unless @observation.observation_photos.detect {|op| op.photo.native_photo_id == @picasa_photo.native_photo_id}
+      photo_already_exists = @observation.observation_photos.detect do |op|
+        op.photo.native_photo_id == @picasa_photo.native_photo_id &&
+        op.photo.subclass == "PicasaPhoto"
+      end
+      unless photo_already_exists
         @observation.observation_photos.build(:photo => @picasa_photo)
       end
       

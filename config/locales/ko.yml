@@ -101,7 +101,6 @@ ko:
   account: 계정
   account_creation: iNaturalist에 가입한 날짜
   account_settings: 계정 및 프로필 편집
-  accept: 승인
   accept_community_identifications: 공동체 동정 승인
   accuracy: 정확성
   accuracy_meters: 정확도 (미터)
@@ -354,7 +353,6 @@ ko:
     이 사용자를 신뢰할 수 있습니까?
     이 사용자의 콘텐츠의 스팸 플래그가 해결됩니다.
   are_you_sure_you_want_to_remove_these_x_taxa?: "%{x}개의 분류군을 삭제하겠습니까?"
-  are_you_sure_you_want_to_remove_this_invitation: 이 초대를 제거하겠습니까?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "이 분류군을 %{place}의 체크리스트에서 제거하겠습니까?"
   associated_observations: 관련된 관찰
   associated_taxa: 관련된 분류군
@@ -387,7 +385,6 @@ ko:
   automatically_update_my_content_for_taxon_changes: 분류군 변화 자동 업데이트
   back: 뒤로 가기
   back_to_all_species: 모든 종으로 돌아가기
-  back_to_calendar: "%{user} 달력으로 돌아가기"
   back_to_editing_observation: 관찰 편집하기로 돌아가기
   back_to_friends: 친구들로 돌아가기
   back_to_lists: "%{name} 목록으로 돌아가기"
@@ -412,7 +409,6 @@ ko:
   back_to_your_journal: 너의 일지로 돌아가기
   back_to_your_observations: 내 관찰로 돌아가기
   back_to_your_profile: 내 프로필로 돌아가기
-  back_to_your_projects: 내 프로젝트로 돌아가기
   batch: 일괄
   batch_edit: 일괄 편집
   #Where x is the title of a list of taxa
@@ -518,7 +514,6 @@ ko:
   check_list_of_species_occuring_in: 여기서 서식하는 종의 체크리스트
   check_list_place: "%{place} 체크리스트"
   check_list_updated: 체크리스트가 업데이트되었습니다!
-  check_out_our_blog: iNaturalist 블로그 둘러보기
   check_out_what_the_observation: 동정하고자 하는 관찰대상의 생김새를 확인합니다.
   checklist: 체크리스트
   choose_a_field: 필드 선택
@@ -564,7 +559,6 @@ ko:
   comparing: 비교 중
   comparing_list_to_list: "%{list1}와 %{list2}를 비교"
   comparing_versions_x_and_y: "%{x}와 %{y} 버전 비교"
-  comparing_observations_from: "%{user} 관찰을 %{dates}에서 비교"
   compiled_by_name: "%{name}에 의해서 편집"
   completed: 완료
   completed_at: 완료
@@ -1087,13 +1081,11 @@ ko:
   identification_saved: "동정 저장됨"
   identification_updated: 동정 업데이트됨
   identifications: 동정
-  identifications_by: "%{user}님이 한 동정"
   identifiers: 동정한 사용자들
   if_this_is_a_scientific_name: 이것이 학명이라면, 현재 받아들여지는 학명인가요?
   if_this_link_will_apply_to_descendant: 이 링크가 후손 분류군들에 적용되는 것이라면, 형식 태그로 URL에 분류군 이름을 기입할 수 있습니다.
   if_you_have_any_trouble_with_the_site_check_out: '질문이 있으시다면, <a href="%{help_url}">도움말 문단</a>을 확인하시거나, <a href="%{feedback_url}">피드백 그룹</a>에 글을 남겨주세요.'
   if_your_project_is: 프로젝트가 특정한 장소에 대한 것이라면 지도를 클릭하여 좌표를 설정하거나 직접 입력해주세요.
-  ignore: 무시
   ignore_and_continue: 무시하고 계속하기
   ignore_times: 시간 무시
   image_must_be_exactly: 그림은 너비의 경우 정확히 950px, 높이는 최대 400px이어야 합니다.
@@ -1464,7 +1456,6 @@ ko:
   no_license_all_rights_reserved: 라이선스 없음 (모든 권한 보유)
   no_managers_set: 정해진 매니저 없음
   no_matching_article_from_x: "%{x}에서 일치하는 글이 없습니다."
-  no_matching_invitations: 일치하는 초대가 없습니다.
   no_matching_observations: 일치하는 관찰이 없습니다.
   no_matching_places: 일치하는 장소가 없습니다.
   no_matching_projects: 일치하는 프로젝트가 없습니다.
@@ -1562,7 +1553,6 @@ ko:
   observations_by: '이 사용자의 관찰들:'
   observations_by_user: "%{user}의 관찰"
   observations_deleted: 관찰 삭제됨.
-  observations_from: '%{date}의 관찰'
   observations_from_people_taxa_and_places_youre_following: "당신이 팔로우하고 있는 사람, 장소, 분류군의 관찰"
   observations_from_this_project: 이 프로젝트 관찰
   observations_in_this_project_must: 이 프로젝트에 있는 관찰은 반드시 다음 기준을 충족시켜야 합니다
@@ -2200,7 +2190,6 @@ ko:
   subscriptions: 알림 받기
   suggest_an_identification: 동정하기
   suggestions: 제안
-  support_inaturalist: iNaturalist 지원
   sync: 동기화하시겠습니까?
   #Noun, as in "add a tag to this observation"
   tag: 태그

@@ -308,7 +308,6 @@ uk:
   account: Обліковий запис
   account_creation: Створення облікового запису
   account_settings: Налаштування облікового запису
-  accept: погодитись
   accept_community_identifications: Погоджуватися з визначенням спільноти
   accuracy: Точність
   accuracy_meters: Точність (метри)
@@ -745,7 +744,6 @@ uk:
     Ви справді вважаєте цього користувача почесним?
     Усі прапорці, що сигналізують про спам у їхніх матеріалах, буде видалено.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Ви впевнені, що хочете видалити ці %{x} таксони?"
-  are_you_sure_you_want_to_remove_this_invitation: Ви впевнені, що хочете видалити це запрошення?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Ви впевнені, що хочете видалити це спостереження з цього проєкта: %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Ви дійсно хочете видалити цей таксон з таксономічного списка такого місця: %{place}?"
@@ -789,7 +787,6 @@ uk:
   avg: Серед.
   back: Назад
   back_to_all_species: Назад до всіх видів
-  back_to_calendar: "Назад до календаря %{user}"
   back_to_editing_observation: Назад до редагування спостереження
   back_to_friends: Назад до друзів
   back_to_flags_html: "&laquo; Назад до прапорців"
@@ -816,7 +813,6 @@ uk:
   back_to_your_journal: Назад до вашого журналу
   back_to_your_observations: Назад до ваших спостережень
   back_to_your_profile: Назад до вашого профілю
-  back_to_your_projects: Назад до ваших проєктів
   badges: Значки
   based_on_the_evidence_can_id_be_improved: |
     Чи можна підтвердити або покращити таксон, визначений спільнотою, на базі наявних даних?
@@ -960,7 +956,6 @@ uk:
   check_list_place: "Таксономічний список %{place}"
   check_list_updated: Таксономічний список оновлено!
   check_lists_for: "Інші таксономічні списки для %{place}"
-  check_out_our_blog: Перегляньте наш блог
   check_out_what_the_observation: Перегляньте, на що схоже спостереження, яке ви намагаєтеся визначити.
   check_this_box_if_html: |
     Встановіть цей прапорець, якщо ви хочете застосувати <a
@@ -1031,7 +1026,6 @@ uk:
   comparing: порівняння
   comparing_list_to_list: "Порівняння %{list1} з %{list2}"
   comparing_versions_x_and_y: "Порівняння версій %{x} та %{y}"
-  comparing_observations_from: "Порівняння %{user} спостережень від %{dates}"
   compiled_by_name: "Скомпільовано %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Завершений
@@ -2019,7 +2013,6 @@ uk:
   identification_user_short: Визн. спостерігач
   identification_withdrawn: Визначення відкликано.
   identifications: Визначення
-  identifications_by: "Визначили: %{user}"
   computer_vision_suggestion: Пропозиція від системи комп'ютерного бачення
   computer_vision_suggestion_desc: |
     Комп'ютерне бачення — процес навчання комп'ютерів розпізнаванню шаблонів
@@ -2039,7 +2032,6 @@ uk:
   if_this_link_will_apply_to_descendant: Якщо це посилання буде застосовуватися до дочірніх таксонів, для заповнення назви таксона у URL ви можете використовувати шаблонні теги.
   if_you_have_any_trouble_with_the_site_check_out: 'Якщо у вас виникли питання, будь ласка, ознайомтеся з <a href="%{help_url}">довідкою</a> або напишіть нам повідомлення у <a href="%{feedback_url}">групу зворотного зв''язку</a>.'
   if_your_project_is: Якщо ваш проєкт стосується певного місця, встановіть його координати, натиснувши на мапу або введіть їх вручну.
-  ignore: ігнорувати
   ignore_and_continue: Ігнорувати та продовжити
   ignore_times: Ігнорувати час
   image_must_be_exactly: зображення має бути рівно 950 пікселів завширшки і не більш ніж 400 пікселів заввишки
@@ -2133,7 +2125,6 @@ uk:
   join_project: Долучитися до цього проєкту
   #Prompt to join a specific project
   join_project?: Долучитися до проєкту %{project}?
-  join_some_projects_and_invite_some_observations_html: "Долучайтеся до деяких <a href='%{join_url}'>проєктів</a> та <a href='%{invite_url}'>залучайте деякі спостереження</a>"
   join_the_largest_group_of_naturalists_in_the_world: Приєднуйтесь до найбільшої групи натуралістів у світі!
   join_this_project: Долучитися до цього проєкту
   'joined!': Долучилися!
@@ -2730,7 +2721,6 @@ uk:
   no_license_all_rights_reserved: Немає ліцензії. Всі права застережено
   no_managers_set: Менеджерів не визначено
   no_matching_article_from_x: "Немає відповідної статті з %{x}"
-  no_matching_invitations: Немає відповідних запрошень
   no_matching_observations: Немає відповідних спостережень.
   no_matching_places: Немає відповідних місць
   no_matching_projects: Немає відповідних проєктів
@@ -2912,7 +2902,6 @@ uk:
   observations_deleted: Спостереження видалені.
   observations_fields_are: |
     Поля спостереження — це додаткові елементи даних, пов'язані зі спостереженням, такі як кількість особин, що спостерігали, харатеристика оселища, або все, що забажаєте! Проєкти також можуть додавати поля, які вони б хотіли, щоб ви заповнили.
-  observations_from: Спостереження з %{date}
   observations_from_people_taxa_and_places_youre_following: "Спостереження таксонів від людей, з місць, за якими ви слідкуєте"
   observations_from_this_place: Спостереження з цього місця
   observations_from_this_project: Спостереження з цього проєкту
@@ -3601,8 +3590,6 @@ uk:
     Як вже на то пішло, якщо темп зростання iNat буде таким і надалі, в майбутньому нам доведеться обмежити умови, за яких люди матимуть змогу додавати місця.
   plants: рослини
   please_add_a_citation_for_this_change: Будь ласка, додайте цитату до цієї зміни.
-  please_add_this_observation_to: Будь ласка, додайте це спостереження до
-  please_add_this_to_x_html: "Будь ласка, додайте це до %{x}"
   please_allow_a_few_weeks_for_external_sites: Будь ласка, почекайте кілька тижнів, аби зовнішні сайти синхронізували зміни, зроблені для цього спостереження #Title to a section warning a user to exercise caution
   please_be_careful!: Будь ласка, будьте уважні!
   please_complete_the_following_to_add_project: |
@@ -3615,7 +3602,6 @@ uk:
   please_hold_on_while_the_file_is_generated: Будь-ласка, зачекайте поки створюється файл. Для великих списків це може зайняти декілька хвилин.
   popular: Популярні
   position: Положення
-  possessive_user: "%{user}"
   #Post is a noun
   post_from_journal_by_parent_html: Допис з <a href="%{url}">журналу %{parent}</a>
   #Post is a noun
@@ -4341,7 +4327,6 @@ uk:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Підходить для Вікіпедії та інших проєктів Фонду Wikimedia
   summary: Підсумок
   supporting: Підтримка
-  support_inaturalist: Підтримка iNaturalist
   suspend_user: Тимчасово заблокувати користувача
   sw_lat: ПівдЗах Шир.
   sw_lon: ПівдЗах Довг.
@@ -4713,7 +4698,6 @@ uk:
   unhide_content: Показувати вміст
   unhide_desc: |
     Скасування приховування зробить цей вміст загальновидимим. За кураторами залишеється можливість приховати його знову в майбутньому.
-  uninvite: скасувати запрошення
   unique_identifier_of_this_taxon: Унікальний ідентифікатор таксону у базі даних джерела.
   unique_observers: унікальні спостерігачі
   unknown: Невідомий
@@ -4850,7 +4834,6 @@ uk:
   user_invited_you_to_join_html: "%{user} запрошує вас долучитися"
   user_invited_you_to_join_project: "%{user} запрошує вас долучитися до проєкту %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} запрошує вас долучитися до проєкту %{date}"
-  user_invited_your_x_to_a_project_html: "%{user} хоче долучити ваше %{x} до проєкту"
   user_is_a_naturalist: "%{user} є натуралістом!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> тепер є адміністратором проєкту %{project}
@@ -4896,14 +4879,12 @@ uk:
   view_check_list_page: На сторінку таксономічного списку
   view_contributions: Переглянути доповнення
   view_details: Переглянути подробиці
-  view_dynamic_lifelist: Переглянути динамічний список живого
   view_field_options: Переглянути параметри поля
   view_flag: Переглянути прапорець
   view_flags: Переглянути прапорці
   view_flags_for_x_html: "Переглянути прапорці для %{x}"
   view_full_observation: Переглянути повне спостереження
   view_full_size_photo: Переглянути повнорозмірне фото
-  view_invitation: Переглянути запрошення
   view_journal: Переглянути журнал
   view_leaderboard_from_last_month: Переглянути таблицю лідерів з минулого місяця
   view_leaderboard_from_last_year: Переглянути таблицю лідерів з минулого року
@@ -5165,7 +5146,6 @@ uk:
   you_must_have_a_header_row: Ви повинні мати рядок заголовків
   you_must_select_a_place_to_merge_with: Вам слід вибрати місце для об'єднання.
   you_must_select_at_least_one_taxon: Ви повинні обрати принаймні один таксон
-  you_must_select_dates_to_compare: Ви маєте обрати дати для порівняння
   you_must_specify_and_confirm_a_new_password: Вам необхідно вказати та підтвердити новий пароль.
   you_need_to_have_linked_flickr_account: Вам потрібно мати обліковий запис Flickr, щоб позначити ваші фото.
   you_need_to_select_some_observations_first: Спочатку потрібно обрати деякі спостереження.
@@ -6000,6 +5980,8 @@ uk:
       edit:
         complex_boundary_note_html: |
           Ці межі занадто складні, щоб бути зміненими засобами сайту. Однак, ви можете <a href="%{url}">завантажити KML</a>, змінити його у геоінформаційній системі на ваш вибір, та вивантажити ваш відредагований KML напряму.
+        admin_level_desc: |
+          Відноситься лише до політичних меж. На прикладі США, 0 = країна, 10 = штат, 20 = округ, 30 = місто
       new:
         check_list_note: "Примітка: таксономічні списки будуть автоматично відключені для дуже великих місць."
         coordinates_desc: Ви маєте вказати координати, якщо не бажаєте малювати межі або завантажувати KML.
@@ -7566,6 +7548,8 @@ uk:
           attributes:
             base:
               user_already_blocked: Ви вже заблокували цього користувача
+              user_cannot_be_staff: |
+                Ви не можете заблокувати співробітників. Співробітники iNat повинні мати можливість зв'язатися з будь-яким користувачем, мати доступ до всіх даних на сайті, і є кінцевими модераторами у суперечках, тож блокування не завадить їм комунікувати з вами. Якщо у вас виникли проблеми з кимось зі співробітників, будь ласка, повідомте одному зі співдиректорів iNat, або, в разі якщо ви маєте проблеми з одним зі співдиректорів, ви можете зв'язатися з Головою наукового напрямку Інституту біорізноманіття та сталого розвитку Каліфорнійської академії наук.
         user_parent:
           attributes:
             email:

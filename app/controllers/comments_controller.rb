@@ -3,9 +3,9 @@ class CommentsController < ApplicationController
     only: [ :create, :update, :destroy ],
     if: lambda { authenticate_with_oauth? }
   before_action :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
-  before_action :admin_required, :only => [:user]
   before_action :load_record, :only => [:show, :edit, :update, :destroy]
   before_action :owner_required, :only => [:edit, :update]
+  before_action :curator_required, only: [:user]
   check_spam only: [:create, :update], instance: :comment
   
   def index
@@ -46,13 +46,14 @@ class CommentsController < ApplicationController
       end
     end
   end
-  
+
   def user
-    @display_user = User.find_by_id(params[:id]) || User.find_by_login(params[:login])
+    @display_user = User.find_by_id( params[:id] ) || User.find_by_login( params[:login] )
     return render_404 unless @display_user
-    @comments = @display_user.comments.order(id: :desc).page(params[:page])
+
+    @comments = @display_user.comments.order( id: :desc ).page( params[:page] )
   end
-  
+
   def show
     redirect_to_parent
   end

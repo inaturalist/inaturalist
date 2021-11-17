@@ -345,3 +345,23 @@ describe IdentificationsController, "with authentication" do
   before { sign_in( user ) }
   it_behaves_like "an IdentificationsController basics"
 end
+
+describe IdentificationsController, "with an invalid JWT" do
+  before do
+    request.env["HTTP_AUTHORIZATION"] = "not-a-valid-jwt"
+  end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
+  describe "create" do
+    it "should response with a 401" do
+      o = create :observation
+      post :create, format: :json, params: {
+        identification: {
+          observation_id: o.id,
+          taxon_id: create(:taxon).id
+        }
+      }
+      expect( response.response_code ).to eq 401
+    end
+  end
+end

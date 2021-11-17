@@ -8,7 +8,11 @@ module Ratatosk
       
       def self.source(options = {})
         return @@source if @@source && !options[:force]
-        @@source = Source.find_by_title("Encyclopedia of Life") || Source.create(
+        @@source = Source.
+          where( title: "Encyclopedia of Life", url: "https://www.eol.org" ).
+          where( "user_id IS NULL" ).
+          first
+        @@source ||= Source.create!(
           title: "Encyclopedia of Life",
           in_text: "EOL",
           url: "https://www.eol.org",

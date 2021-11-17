@@ -220,7 +220,6 @@ de:
   account: Benutzerkonto
   account_creation: Benutzerkontenerstellung
   account_settings: Kontoeinstellungen
-  accept: akzeptieren
   accept_community_identifications: Bestimmung der Community annehmen
   accuracy: Genauigkeit
   accuracy_meters: Genauigkeit (Meter)
@@ -533,7 +532,7 @@ de:
   #Label for an option to show content with any annotation value
   any_annotation_value: Alle
   #Label for an option to show content from any date
-  any_date: Beliebig
+  any_date: Alle
   #Label for an option to show content with any establishment means
   any_establishment: Alle
   #Label for an option to show content with any license
@@ -630,7 +629,6 @@ de:
     Bist du sicher, dass du diesen Benutzer als ehrenwert einschätzt?
     Sämtliche Spammarkierungen seiner Inhalte würden entfernt.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Sollen diese %{x} Taxa wirklich entfernt werden?"
-  are_you_sure_you_want_to_remove_this_invitation: Bist du sicher, dass du diese Einladung entfernen willst?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Bist du sicher, dass du diese Beobachtung aus "%{project}" entfernen möchtest?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Bist du sicher, dass du dieses Taxon aus der Prüfliste von %{place} entfernen willst?"
@@ -675,7 +673,6 @@ de:
   avg: Mittl.
   back: Zurück
   back_to_all_species: Zurück zu Alle Arten
-  back_to_calendar: "Zurück zu %{user}s Kalender"
   back_to_editing_observation: Zurück zur Bearbeitung der Beobachtung
   back_to_friends: Zurück zu den Freunden
   back_to_flags_html: "&laquo; Zurück zu den Meldungen"
@@ -691,18 +688,20 @@ de:
   back_to_taxon: "Zurück zu %{defaulttaxon}"
   back_to_taxon_changes: "Zurück zu Taxonänderungen"
   back_to_taxon_framework_for_x: "Zurück zum Taxon-Framework für %{taxon_name}"
+  back_to_users_calendar: "Zurück zum Kalender von %{user}"
+  back_to_users_lists: "Zurück zu den Listen von %{user}"
   back_to_viewing: "Zurück zu <i>%{taxon}</i>-Ansicht"
   back_to_x: "Zurück zu: %{noun}"
   back_to_x_assessment: "Zurück zu %{project}-Bewertungen"
   back_to_x_history: "Zurück zum %{x}-Verlauf"
   back_to_x_journal: "Zurück zum Journal von %{user}"
   back_to_x_blog: "Zurück zum Blog von %{x}"
+  back_to_your_calendar: Zurück zu deinem Kalender
   back_to_your_dashboard: Zurück zu deinem Dashboard
   back_to_your_lists: Zurück zu deinen Listen
   back_to_your_journal: Zurück zu deinem Journal
   back_to_your_observations: Zurück zu deinen Beobachtungen
   back_to_your_profile: Zurück zu deinem Profil
-  back_to_your_projects: Zurück zu deinen Projekten
   badges: Abzeichen
   based_on_the_evidence_can_id_be_improved: |
     Kann die Community-ID anhand der vorhandenen Belege noch weiter verbessert werden?
@@ -846,7 +845,6 @@ de:
   check_list_place: "Checkliste von %{place}"
   check_list_updated: Checkliste aktualisiert!
   check_lists_for: "Andere Checklisten für %{place}"
-  check_out_our_blog: Teste unseren Blog
   check_out_what_the_observation: Schau dir an, wie die Beobachtung, die Du identifizieren möchtest, aussieht.
   check_this_box_if_html: |
     Wähle dies aus, wenn Du Deine Fotos unter die <a
@@ -918,7 +916,6 @@ de:
   comparing: vergleiche
   comparing_list_to_list: "Vergleiche %{list1} mit %{list2}"
   comparing_versions_x_and_y: "Vergleiche Versionen %{x} und %{y}"
-  comparing_observations_from: "Vergleiche %{user} Beobachtungen von %{dates}"
   compiled_by_name: "Zusammengestellt von %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Vollständig
@@ -1573,6 +1570,10 @@ de:
   establishment_means_describes_how: |
     "Art der Verbreitung" bezeichnet wie das Taxon sich in einem Gebiet verbreitet hat. 
     Siehe DarwinCore für <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">über mehr Informationen zur Terminologie</a>.
+  establishment_means_descriptions:
+    native: In dieser Region heimisch oder ohne menschlichen Einfluss hierher gelangt
+    endemic: Einheimisch und sonst nirgends zu finden
+    introduced: Ist durch anthropogenen Einfluss in die Region gelangt
   event_in_progress: Event läuft
   event_stats: Ereignisstatistiken
   event_url: Ereignis-URL
@@ -1917,7 +1918,6 @@ de:
   identification_user_short: Ident. Benutzer
   identification_withdrawn: Bestimmung zurückgezogen.
   identifications: Bestimmungen
-  identifications_by: "Bestimmungen von %{user}"
   computer_vision_suggestion: Vorschlag der Computer-Vision
   computer_vision_suggestion_desc: |
     Computer-Vision ist der Lernprozess von Computern, Muster in Bildern zu erkennen. Um Vorschläge zur Bestimmung zu geben, stellen wir Instrumente zur Verfügung, die Computer-Vision-Modelle verwenden, die durch Fotos der Community trainiert worden sind, wie z. B. die Autovervollständigung und Vergleichsfunktionen. Dieses Symbol zeigt an, wenn eine Person eine Bestimmung mit einem dieser Instrumente hinzugefügt hat.
@@ -1934,7 +1934,6 @@ de:
   if_this_link_will_apply_to_descendant: Wenn dieser Link auf nachkommende Taxa zutrifft, kannst du Template-Tags verwenden, um den Taxon-Namen in die URL einzutragen
   if_you_have_any_trouble_with_the_site_check_out: 'Wenn du Fragen hast, schau bitte auf unsere <a href="%{help_url}">Hilfe-Seite</a> oder schreib eine Nachricht an unsere <a href="%{feedback_url}">Feedback-Gruppe</a>.'
   if_your_project_is: Wenn es sich bei deinem Projekt um einen bestimmten Ort handelt, gib die Koordinaten ein, indem du auf die Karte klickst oder sie manuell eingibst.
-  ignore: ignorieren
   ignore_and_continue: Ignorieren und fortfahren
   ignore_times: Ignoriere Zeiten
   image_must_be_exactly: Bild muss genau 950 px breit und maximal 400 px hoch sein
@@ -2027,7 +2026,6 @@ de:
   join_project: Diesem Projekt beitreten
   #Prompt to join a specific project
   join_project?: Dem Projekt "%{project}" beitreten?
-  join_some_projects_and_invite_some_observations_html: "Tritt <a href='%{join_url}'>Projekten</a> bei und <a href='%{invite_url}'>importiere passende Beobachtungen</a>"
   join_the_largest_group_of_naturalists_in_the_world: Werde Teil der Gemeinschaft von Naturbeobachtern auf der ganzen Welt!
   join_this_project: Diesem Projekt beitreten
   'joined!': Beigetreten!
@@ -2664,7 +2662,6 @@ de:
   no_license_all_rights_reserved: Keine Lizenz (alle Rechte vorbehalten)
   no_managers_set: Noch keine Manager festgelegt.
   no_matching_article_from_x: "Keine passenden Artikel für %{x}"
-  no_matching_invitations: Keine übereinstimmenden Einladungen
   no_matching_observations: Keine übereinstimmenden Beobachtungen.
   no_matching_places: Keine übereinstimmenden Gebiete
   no_matching_projects: Keine übereinstimmenden Projekte
@@ -2785,10 +2782,10 @@ de:
   observation_brief_something_on_day_at_time: "Etwas am %{day} um %{time}"
   observation_brief_something_on_day_at_time_by_user: "Etwas am %{day} um %{time} von %{user}"
   observation_brief_something_on_day_by_user: "Etwas am %{day} von %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month: "Irgendetwas im %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month_by_user: "Irgendetwas im %{month} von %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Irgendetwas im %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Irgendetwas im %{month} %{year} von %{user}"
   observation_brief_something_by_user: "Irgendetwas von %{user}"
   observation_brief_something_from_place: "Etwas aus %{place}"
   observation_brief_something_from_place_by_user: "Etwas aus %{place} von %{user}"
@@ -2796,18 +2793,18 @@ de:
   observation_brief_something_from_place_on_day_by_user: "Etwas aus %{place} am %{day} von %{user}"
   observation_brief_something_from_place_on_day_at_time: "Etwas von %{place} am %{day} um %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Etwas von %{place} am %{day} um %{time} von %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month: "Irgendetwas aus %{place} im %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month_by_user: "Irgendetwas aus %{place} im %{month} von %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Irgendetwas aus %{place} im %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Irgendetwas aus %{place} im %{month} %{year} von %{user}"
   observation_brief_taxon_on_day: "%{taxon} am %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} am %{day} um %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} am %{day} um %{time} von %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} am %{day} von %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month: "%{taxon} im %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month_by_user: "%{taxon} im %{month} von %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} im %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} im %{month} %{year} von %{user}"
   observation_brief_taxon_by_user: "%{taxon} von %{user}"
   observation_brief_taxon_from_place: "%{taxon} von %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} von %{place} von %{user}"
@@ -2815,10 +2812,10 @@ de:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} von %{place} am %{day} von %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} von %{place} am %{day} um %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} von %{place} am %{day} um %{time} von %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month: "%{taxon} aus %{place} im %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} aus %{place} im %{month} von %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} aus %{place} im %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} aus %{place} im %{month} %{year} von %{user}"
   observations_by_category: "Beobachtungen nach Kategorie"
   observations_by_app: Beobachtungen nach App
   observations_by_rank: Beobachtungen nach Rang
@@ -2867,7 +2864,6 @@ de:
   observations_fields_are: |
     Beobachtungsfelder sind zusätzliche mit einer
     Beobachtung verbundene Daten, wie die Anzahl der beobachteten Individuen, Habitatbeschreibung, oder was immer du willst! Projekte können auch Felder festlegen, die ausgefüllt werden sollen.
-  observations_from: Beobachtungen vom %{date}
   observations_from_people_taxa_and_places_youre_following: "Beobachtungen von Menschen, Orten und Taxa, denen du folgst."
   observations_from_this_place: Beobachtungen aus diesem Gebiet
   observations_from_this_project: Beobachtungen aus diesem Projekt
@@ -3559,8 +3555,6 @@ de:
     Nebenbei bemerkt, unter Berücksichtigung der aktuellen Wachstumsrate von iNat werden wir wohl die Befugnisse einschränken müssen, mit denen Benutzer in Zukunft Gebiete hinzufügen können.
   plants: Pflanzen
   please_add_a_citation_for_this_change: Bitte eine Zitierung zu dieser Veränderung hinzufügen.
-  please_add_this_observation_to: Bitte diese Beobachtung hinzufügen zu
-  please_add_this_to_x_html: "Bitte dies zu %{x} hinzufügen"
   please_allow_a_few_weeks_for_external_sites: Es kann einige Wochen dauern, bis externe Seiten Änderungen aus dieser Beobachtung synchronisiert haben #Title to a section warning a user to exercise caution
   please_be_careful!: Bitte sei vorsichtig!
   please_complete_the_following_to_add_project: |
@@ -3573,7 +3567,6 @@ de:
   please_hold_on_while_the_file_is_generated: Bitte um Geduld während die Datei erstellt wird. Bei großen Listen kann es ein paar Minuten dauern.
   popular: beliebt
   position: Position
-  possessive_user: "%{user}'s"
   #Post is a noun
   post_from_journal_by_parent_html: Beitrag von <a href="%{url}">Journal von %{parent}</a>
   #Post is a noun
@@ -4348,7 +4341,6 @@ de:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Geeignet für Wikipedia und andere Projekte der Wikimedia Foundation
   summary: Zusammenfassung
   supporting: bestätigend
-  support_inaturalist: iNaturalist unterstützen
   suspend_user: Benutzer sperren
   sw_lat: SW Lat.
   sw_lon: SW Lon.
@@ -4713,7 +4705,6 @@ de:
   unhide_content: Inhalt wieder sichtbar machen
   unhide_desc: |
     Durch Einblenden wird dieser Inhalt öffentlich sichtbar. Kuratoren können den Inhalt weiterhin ausblenden.
-  uninvite: ausladen
   unique_identifier_of_this_taxon: Eindeutige Kennung dieses Taxons in der Quelldatenbank.
   unique_observers: Einzelbeobachter
   unknown: Unbekannt
@@ -4845,7 +4836,6 @@ de:
   user_invited_you_to_join_html: "%{user} hat dich zum Beitritt eingeladen"
   user_invited_you_to_join_project: "%{user} hat Dich eingeladen, bei %{project} mitzumachen"
   user_invited_you_to_join_this_project_on_date_html: "%{user} hat Dich eingeladen, diesem Projekt am %{date} beizutreten"
-  user_invited_your_x_to_a_project_html: "%{user} hat deine %{x} zu einem Projekt eingeladen"
   user_is_a_naturalist: "%{user} ist ein Naturalist!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> ist jetzt der Admin für %{project}
@@ -4871,7 +4861,10 @@ de:
   users_favorites: "Favoriten von %{user}"
   users_highlights_and_stats_from_year_on_site: "Highlights und Statistiken aus %{year} von %{user} auf %{site}"
   users_id: "%{user}s ID"
+  users_identifications: "Bestimmungen von %{user}"
+  users_journal: "Journal von %{user}"
   users_latest_observations_on_site: "Die jüngsten Beobachtungen von %{user} bei %{site}"
+  users_lists: "Listen von %{user}"
   users_profile: "%{user}s Profil"
   users_projects: "Projekte von %{user}"
   users_year_on_site: "Das Jahr %{year} von %{user} auf %{site}"
@@ -4891,14 +4884,13 @@ de:
   view_check_list_page: Checkliste für das Gebiet anzeigen
   view_contributions: Beiträge anzeigen
   view_details: Details anzeigen
-  view_dynamic_lifelist: Dynamische Life-Liste anzeigen
+  view_dynamic_lifelist_: DYNAMISCHE LIFE-LISTE ANZEIGEN
   view_field_options: Feldoptionen anzeigen
   view_flag: Meldung anzeigen
   view_flags: Meldungen anzeigen
   view_flags_for_x_html: "Meldungen für %{x} anzeigen"
   view_full_observation: Komplette Beobachtung anzeigen
   view_full_size_photo: Vollbildansicht zeigen
-  view_invitation: Einladung ansehen
   view_journal: Journal anzeigen
   view_leaderboard_from_last_month: Rangliste vom letzten Monat anzeigen
   view_leaderboard_from_last_year: Bestenliste vom letzten Jahr anzeigen
@@ -5166,7 +5158,6 @@ de:
   you_must_have_a_header_row: Sie müssen eine Kopfzeile haben
   you_must_select_a_place_to_merge_with: Du musst einen Ort auswählen zur Zusammenführung wählen.
   you_must_select_at_least_one_taxon: Du musst mindestens ein Taxon auswählen
-  you_must_select_dates_to_compare: Du musst Daten zum Vergleichen auswählen
   you_must_specify_and_confirm_a_new_password: Du musst ein neues Passwort erstellen und bestätigen.
   you_need_to_have_linked_flickr_account: Du benötigst ein verlinkten Flickr-Account, um deine Bilder zu taggen.
   you_need_to_select_some_observations_first: Du musst zuerst eine Beobachtung auswählen.
@@ -5938,6 +5929,9 @@ de:
       edit:
         complex_boundary_note_html: |
           Diese Grenze ist etwas zu komplex, um sie im Web zu bearbeiten. Du kannst jedoch <a href="%{url}">die KML herunterladen</a>, in der GIS-Anwendung deiner Wahl bearbeiten und die bearbeitete KML direkt hochladen.
+        admin_level_desc: |
+          Sollte nur für politische Einheiten festgelegt werden. In Bezug auf
+          USA-Äquivalente, 0 = Staat, 10 = Bundesland, 20 = Bezirk, 30 = Stadt
       new:
         check_list_note: "Achtung: Checklisten werden für sehr große Gebiete automatisch deaktiviert"
         coordinates_desc: Du musst Koordinaten angeben, wenn du keine Grenze zeichnest oder keine KML hochlädst.
@@ -6556,6 +6550,13 @@ de:
             <strong class="count">%{count} Beobachtungen</strong>,
             einschließlich der Arbeit der
             <strong class="count">%{helpers_count} Personen</strong> die dir mit Bestimmungen geholfen haben
+        x_projects_html:
+          one: |
+            <strong class="count">%{count} Projekt</strong>, das nicht
+            einen anderen Manager oder Administrator hat, der der neue Besitzer werden kann
+          other: |
+            <strong class="count">%{count} Projekte</strong>, die nicht
+            andere Manager oder Administratoren haben, die die neuen Besitzer werden können
         x_identifications_html:
           one: |
             <strong class="count">Deine %{count} Bestimmung</strong>
@@ -7424,6 +7425,16 @@ de:
           attributes:
             base:
               user_already_blocked: Du hast diesen Benutzer bereits blockiert
+              user_cannot_be_staff: |
+                Du kannst iNat-Mitarbeiter nicht blockieren. Sie müssen in der Lage sein,
+                mit allen auf iNat zu kommunizieren, haben Zugriff auf alle Daten auf
+                iNat, und sind die ultimativen Vermittler von Streitigkeiten, so dass eine Blockierung
+                sie nicht daran hindert, mit dir zu kommunizieren. Wenn du ein
+                Problem mit einem Mitarbeiter habst, melden es bitte an einen der
+                iNat Co-Direktoren, Oder, wenn du ein Problem mit einem der
+                Co-Direktoren haben, kannst du den Wissenschafts-Leiter am
+                Institute for Biodiviersity and Sustainability Science der
+                California Academy of Sciences kontaktieren.
         user_parent:
           attributes:
             email:

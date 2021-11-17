@@ -69,7 +69,7 @@ module ActsAsElasticModel
           filter_scope : self.all
         # it also accepts an array of IDs to filter by
         if filter_ids = options.delete(:ids)
-          filter_ids.compact!
+          filter_ids = filter_ids.compact.uniq
           batch_sleep = options.delete(:sleep)
           if filter_ids.length > options[:batch_size]
             # call again for each batch, then return

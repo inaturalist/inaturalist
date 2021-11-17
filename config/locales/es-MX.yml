@@ -212,7 +212,6 @@ es-MX:
   account: Cuenta
   account_creation: Creación de cuentas
   account_settings: Configuración de la cuenta
-  accept: aceptar
   accept_community_identifications: Aceptar identificaciones de la comunidad
   accuracy: Precisión
   accuracy_meters: Precisión (metros)
@@ -622,7 +621,6 @@ es-MX:
     ¿Estas seguro que deseas eliminar todas las etiquetas?
     Cualquier alerta de spams en su contenido será resuelta.
   are_you_sure_you_want_to_remove_these_x_taxa?: "¿Estas seguro que quieres eliminar estos %{x} taxa?"
-  are_you_sure_you_want_to_remove_this_invitation: '¿Está seguro que deseas cancelar la invitación?'
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     ¿Estás seguro de que quieres eliminar esta observación de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Estás seguro que deseas quitar a esta especie o grupo de la lista de comprobación de %{place}?"
@@ -667,7 +665,6 @@ es-MX:
   avg: Promedio
   back: Regresar
   back_to_all_species: De regreso a Todas las especies
-  back_to_calendar: "Regresar al calendario de  %{user}"
   back_to_editing_observation: Regresar a editar la observación
   back_to_friends: De regreso a amigos
   back_to_flags_html: "&laquo; Regresa a las advertencias"
@@ -683,18 +680,20 @@ es-MX:
   back_to_taxon: "De regreso a %{defaulttaxon}"
   back_to_taxon_changes: "Vuelve a los cambios del taxón"
   back_to_taxon_framework_for_x: "Regrea al marco de referencia de taxa para %{taxon_name}"
+  back_to_users_calendar: "Regresar al calendario de %{user}"
+  back_to_users_lists: "Volver a las listas de %{user}"
   back_to_viewing: "De regreso a ver <i>%{taxon}</i>"
   back_to_x: "Regresa a %{noun}"
   back_to_x_assessment: "Regresa a evaluaciones de %{project}"
   back_to_x_history: "Regresa a la historia de %{x}"
   back_to_x_journal: "De regreso al diario de %{user}"
   back_to_x_blog: "Regresa al blog de %{x}"
+  back_to_your_calendar: Volver a tu calendario
   back_to_your_dashboard: Regresa a tu tablero
   back_to_your_lists: Regresa a tus listas
   back_to_your_journal: De regreso a tu diario
   back_to_your_observations: De regreso a tus observaciones
   back_to_your_profile: De regreso a tu perfil
-  back_to_your_projects: De regreso a tus proyectos
   badges: Insignias
   based_on_the_evidence_can_id_be_improved: |
     Basándose en la evidencia, ¿Se puede confirmar o mejorar el ID de la comunidad ?
@@ -839,7 +838,6 @@ es-MX:
   check_list_place: "Lista de comprobación de %{place}"
   check_list_updated: '¡Lista de comprobación actualizada!'
   check_lists_for: "Otras listas de comprobación para %{place}"
-  check_out_our_blog: Echa un vistazo a nuestro blog
   check_out_what_the_observation: Revisa como lucen las observaciones que estas tratando de identificar.
   check_this_box_if_html: |
     Selecciona esta caja si quieres aplicar una
@@ -914,7 +912,6 @@ es-MX:
   comparing: Comparando
   comparing_list_to_list: "Comparando  %{list1} con %{list2}"
   comparing_versions_x_and_y: "Comparando las versiones %{x} y %{y}"
-  comparing_observations_from: "Comparando %{user} observaciones de %{dates}"
   compiled_by_name: "Compilado por %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Completo
@@ -1571,6 +1568,10 @@ es-MX:
   establishment_means: Distribución
   establishment_means_describes_how: |
     La distribución describe como la especie o grupo se estableció en un área. Ve el DarwinCore para <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">más información sobre terminología</a>.
+  establishment_means_descriptions:
+    native: evolucionó en esta región o llegó por medios no antropogénicos
+    endemic: nativo y no ocurre en ningún otro lugar
+    introduced: llegó a la región por medios antropogénicos
   estimate_which_input: |
     Estimar qué identificaciones de taxón de entrada serán reemplazados con qué taxones de salida y cuales serán agregados a un antepasado común una vez que la separación se haya realizado. Esto puede tardar un momento en calcular. Los enlaces a las observaciones se truncan en subconjuntos de 200.
   event_in_progress: Evento en curso
@@ -1865,6 +1866,9 @@ es-MX:
     Sólo los administradores o curadores de ese marco taxonómico pueden realizar este cambio.
   heads_up_taxon_change_inputs_covered_by_framework_html: |
     <strong>Atención:</strong> Uno o más de los taxa de entrada involucrados en este cambio están dentro de un <a href="%{framework_url}">marco taxonómico</a>. Sólo administradores o curadores de ese marco taxonómico pueden confrimar cambios que afecten a los taxones cubiertos. Póngase en contacto con uno de los curadores de ese taxón para realizar este cambio.
+  heads_up_there_are_other_draft_taxon_changes_html:
+    one: "<strong>Atención:</strong> hay %{count} borrador de cambio de taxón con el mismo taxón de entrada:"
+    other: "<strong>Atención:</strong> hay %{count} borradores de cambio de taxón con los mismos taxa de entrada:"
   heads_up_this_photo_has_been_flagged: "ATENCIÓN: esta foto tiene una advertencia."
   heads_up_this_photo_is_already_associated_with: "ATENCIÓN: esta foto ya esta asociada con <a target='_blank' href='%{url}'>otra observación</a>"
   heads_up_you_have_multiple: "Atención: tienes etiquetas taxonómicas múltiples para identificar rangos. Tienen código de color abajo del rango."
@@ -1924,7 +1928,6 @@ es-MX:
   identification_user_short: Usuario ident.
   identification_withdrawn: Identificación retirada.
   identifications: Identificaciones
-  identifications_by: "Las identificaciones hechas por %{user}"
   computer_vision_suggestion: Sugerencia de la visión artificial
   computer_vision_suggestion_desc: |
     La visión artificial es el proceso de enseñar a los computadores a reconocer patrones en imágenes. Proporcionamos herramientas que utilizan modelos de visión artificial enfocadas en las fotos de la comunidad para proporcionar sugerencias de identificación, por ejemplo el auto-completar y características de comparación. Esta etiqueta indica cuándo una persona añadió una identificación utilizando una de estas herramientas.
@@ -1941,7 +1944,6 @@ es-MX:
   if_this_link_will_apply_to_descendant: Si este enlace se va aplicar a los grupos descendientes, puedes usar las etiquetas de la plantilla para completar el nombre de la especie o grupo en el URL.
   if_you_have_any_trouble_with_the_site_check_out: 'Si tienes cualquier problema con el sitio, por favor revisa nuestro <a href="%{help_url}">sección de ayuda</a> o incluye un mensaje o nota en nuestro <a href="%{feedback_url}">grupo de retroalimentación</a>.'
   if_your_project_is: Si tu proyecto es acerca de un lugar especifico, añade las coordenadas seleccionando el enlace del mapa o añadelas manualmente.
-  ignore: rechazar
   ignore_and_continue: Ignora y continúa
   ignore_times: Ignora los tiempos
   image_must_be_exactly: del proyecto debe ser exactamente de 950px de ancho y a lo más de 400px de altura
@@ -2035,7 +2037,6 @@ es-MX:
   join_project: Únete a este proyecto
   #Prompt to join a specific project
   join_project?: '¿Quieres unirte a %{project}?'
-  join_some_projects_and_invite_some_observations_html: "Únete a ciertos <a href='%{join_url}'>proyectos</a> e <a href='%{invite_url}'>invita algunas observaciones</a>"
   join_the_largest_group_of_naturalists_in_the_world: '¡Únete al grupo más grande de naturalistas del mundo!'
   join_this_project: unirte a este proyecto
   'joined!': '¡Unido!'
@@ -2670,7 +2671,6 @@ es-MX:
   no_license_all_rights_reserved: Sin licencia (todos los derechos reservados)
   no_managers_set: No hay gerentes aún
   no_matching_article_from_x: "No coincidió ningún artículo en %{x}"
-  no_matching_invitations: No hay invitaciones que coincidan
   no_matching_observations: No hay observaciones que coincidan
   no_matching_places: No hay lugares que coincidan
   no_matching_projects: No hay proyectos que coincidan
@@ -2789,10 +2789,10 @@ es-MX:
   observation_brief_something_on_day_at_time: "Algo el %{day} a las %{time}"
   observation_brief_something_on_day_at_time_by_user: "Algo el %{day} a las %{time} por %{user}"
   observation_brief_something_on_day_by_user: "Algo el %{day} por %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month: "Algo en %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month_by_user: "Algo en %{month} por %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Algo en %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Algo en %{month} %{year} por %{user}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
   observation_brief_something_from_place_by_user: "Algo desde %{place} de %{user}"
@@ -2800,18 +2800,18 @@ es-MX:
   observation_brief_something_from_place_on_day_by_user: "Algo desde %{place} el %{day} de %{user}"
   observation_brief_something_from_place_on_day_at_time: "Algo desde %{place} el %{day} a las %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Algo desde %{place} el %{day} a las %{time} de %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month: "Algo de %{place} en %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month_by_user: "Algo de %{place} en %{month} por %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Algo en %{place} en %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Algo en %{place} en %{month} %{year} por %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} el %{day} a las %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} el %{day} a las %{time} por %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} el %{day} por %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month: "%{taxon} en %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month_by_user: "%{taxon} en %{month} por %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} en %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} en %{month} %{year} por %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} desde %{place} de %{user}"
@@ -2819,10 +2819,10 @@ es-MX:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} desde %{place} el%{day} de %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} desde %{place} el%{day} a las %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} desde %{place} el %{day} a las %{time} de %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month: "%{taxon} de %{place} en %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} de %{place} en %{month} por %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} en %{place} en %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} en %{place} en %{month} %{year} por %{user}"
   observations_by_category: "Observaciones por categoría"
   observations_by_app: Observaciones por App
   observations_by_rank: Observaciones por rango
@@ -2871,7 +2871,6 @@ es-MX:
   observations_fields_are: |
     Los campos incluyen información asociada a tu
     observación, como el número de especies observadas, descripción del hábitat, o lo que quieras comentar.
-  observations_from: Observaciones de %{date}
   observations_from_people_taxa_and_places_youre_following: "Observaciones de personas, sitios, y taxa que estás siguiendo"
   observations_from_this_place: Observaciones de este lugar
   observations_from_this_project: Observaciones de este proyecto
@@ -3567,8 +3566,6 @@ es-MX:
     Por si sirve de algo, en el futuro tendremos que restringir las condiciones para añadir lugares, dada la tasa actual de crecimiento de iNat.
   plants: Plantas
   please_add_a_citation_for_this_change: Porfavor añade una referencia para este cambio.
-  please_add_this_observation_to: 'Porfavor añade esta observación a:'
-  please_add_this_to_x_html: "Por favor añade esto a %{x}"
   please_allow_a_few_weeks_for_external_sites: Por favor, espere alguna semana para que los sitios externos sincronicen los cambios en esta observación #Title to a section warning a user to exercise caution
   please_be_careful!: '¡Por favor, ten cuidado!'
   please_complete_the_following_to_add_project: |
@@ -3581,7 +3578,6 @@ es-MX:
   please_hold_on_while_the_file_is_generated: Por favor espere mientras se genera el archivo. Puede tomar algunos minutos para listas grandes.
   popular: Populares
   position: Posición
-  possessive_user: "de %{user}"
   #Post is a noun
   post_from_journal_by_parent_html: Publicación del <a href="%{url}">diario de %{parent}</a>
   #Post is a noun
@@ -4338,7 +4334,6 @@ es-MX:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Adecuado para Wikipedia y otros proyectos de Wikimedia Foundation
   summary: Resumen
   supporting: Apoyo a
-  support_inaturalist: Apoya a iNaturalist
   suspend_user: Suspender al usuario
   sw_lat: Lat. S.O.
   sw_lon: Long. S.O.
@@ -4701,7 +4696,6 @@ es-MX:
   unhide_content: Mostrar contenido
   unhide_desc: |
     La revelación permitirá que cualquiera pueda ver este contenido. Los curadores aún pueden optar por ocultarlo de nuevo en el futuro.
-  uninvite: cancela invitación
   unique_identifier_of_this_taxon: Identificador único para esta especie o grupo en la base de datos.
   unique_observers: observadores únicos
   unknown: Desconocido
@@ -4831,7 +4825,6 @@ es-MX:
   user_invited_you_to_join_html: "%{user} te invito a unirte"
   user_invited_you_to_join_project: "%{user} te invitó a unirte a %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} te invitó a unirte a este proyecto el %{date}"
-  user_invited_your_x_to_a_project_html: "%{user} invitó su %{x} a un proyecto"
   user_is_a_naturalist: "¡%{user} es un naturalista!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> es ahora administrador/a de %{project}
@@ -4857,7 +4850,10 @@ es-MX:
   users_favorites: "Favoritos de %{user}"
   users_highlights_and_stats_from_year_on_site: "Destacados y estadísticas de %{user} durante %{year} en %{site}"
   users_id: "de %{user}"
+  users_identifications: "Identificaciones de %{user}"
+  users_journal: "Diario de %{user}"
   users_latest_observations_on_site: "Últimas observaciones de %{user} en %{site}"
+  users_lists: "Listas de %{user}"
   users_profile: "Perfil de %{user}"
   users_projects: "Proyectos de %{user}"
   users_year_on_site: "El año %{year} de %{user} en %{site}"
@@ -4877,14 +4873,13 @@ es-MX:
   view_check_list_page: Ve la página con la lista de comprobación
   view_contributions: Ver contribuciones
   view_details: Ve detalles
-  view_dynamic_lifelist: Ver lista dinámica de vida
+  view_dynamic_lifelist_: VER LISTA DE VIDA DINÁMICA
   view_field_options: Ver las opciones del campo
   view_flag: Ver advertencias
   view_flags: Ver advertencias
   view_flags_for_x_html: "Ve advertencias para %{x}"
   view_full_observation: Ve la observación completa
   view_full_size_photo: Ver foto a tamaño completo
-  view_invitation: Ve invitación
   view_journal: Ver Diario
   view_leaderboard_from_last_month: Ver el más activo del mes pasado
   view_leaderboard_from_last_year: Ver el más activo del año pasado
@@ -5151,7 +5146,6 @@ es-MX:
   you_must_have_a_header_row: Debes incluir un fila con títulos
   you_must_select_a_place_to_merge_with: Debes seleccionar un lugar para combinar.
   you_must_select_at_least_one_taxon: Debe seleccionar al menos un taxón
-  you_must_select_dates_to_compare: Debes seleccionar las fechas a comparar
   you_must_specify_and_confirm_a_new_password: Debes especificar y confirmar una nueva contraseña.
   you_need_to_have_linked_flickr_account: Necesitas tener enlazada tu cuenta Flickr para etiquetar tus fotos.
   you_need_to_select_some_observations_first: Primero, necesitas seleccionar algunas observaciones.
@@ -6280,6 +6274,18 @@ es-MX:
       updates_desc: |
         Recibir notificaciones acerca de este proyecto en tu tablero y en los 
         correos diarios.
+    search:
+      index:
+        no_taxa_options: "Tienes algunas opciones:"
+        no_taxa_add_a_flag: Añadir una advertencia a un taxón de alto nivel
+        no_taxa_add_a_flag_desc: |
+          Por ejemplo, el género que contiene una especie. Ojalá un curador voluntario
+          agregue el taxón si tiene tiempo y también con nuestras políticas
+          taxonómicas.
+        no_taxa_forum: Contactar con el Foro
+        no_taxa_forum_desc_html: |
+          Muchos curadores voluntarios mantienen un seguimiento de los mensajes en el 
+          %{link_start_tag}Foro%{link_end_tag}.
     shared:
       blocked:
         youve_been_blocked: Has sido bloqueado
@@ -6556,6 +6562,13 @@ es-MX:
           other: |
             <strong class="count">%{count} observaciones</strong>,
             incluyendo el trabajo de <strong class="count">%{helpers_count} peorsonas</strong> que te han ayudado con las identificaciones
+        x_projects_html:
+          one: |
+            <strong class="count">%{count} proyecto</strong> que no
+            tiene otro responsable o administrador que puede convertirse en el nuevo propietario
+          other: |
+            <strong class="count">%{count} proyectos</strong> que no
+            tienen otros responsables o administradores que puedan convertirse en el nuevo propietario
         x_identifications_html:
           one: |
             <strong class="count">tu identificación</strong>

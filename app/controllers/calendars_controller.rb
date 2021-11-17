@@ -103,25 +103,4 @@ class CalendarsController < ApplicationController
       format.html
     end
   end
-  
-  def compare
-    @dates = params[:dates].split(',')
-    if @dates.blank?
-      flash[:notice] = t(:you_must_select_dates_to_compare)
-      redirect_back_or_default(calendar_path(@login))
-    end
-    @observations_by_date_by_taxon_id = {}
-    @taxon_ids = []
-    @taxon = Taxon.find_by_id(params[:taxon_id].to_i) unless params[:taxon_id].blank?
-    scope = Observation.includes(:iconic_taxon)
-    scope = scope.of(@taxon) if @taxon
-    scope = scope.at_or_below_rank(params[:rank]) if params[:rank]
-    @dates.each do |date|
-      observations = scope.by(@selected_user).on(date).all
-      @taxon_ids += observations.map{|o| o.taxon_id}
-      @observations_by_date_by_taxon_id[date] = observations.group_by{|o| o.taxon_id}
-    end
-    @taxa = Taxon.where(id: @taxon_ids.uniq.compact).includes(:taxon_names)
-    @taxa = Taxon.sort_by_ancestry(@taxa)
-  end
 end
