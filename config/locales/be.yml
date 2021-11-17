@@ -1040,7 +1040,7 @@ be:
   common_name: Агульная назва
   community: Супольнасць
   community_curated: Пад куратарствам суполкі
-  community_guidelines: Правілі суполкі
+  community_guidelines: Правілы суполкі
   community_id_heading: Таксон супольніцтва
   community_id_at_species_or_lower?: Таксон супольніцтва мае ранг віду ці ніжэй?
   community_id_at_species_level_or_lower: Таксон супольніцтва мае ранг віду ці ніжэй
@@ -2039,14 +2039,18 @@ be:
   identification: вызначэнне
   identification_deleted: вызначэнне выдалена.
   identification_saved: "вызначэнне захавана!"
+  identification_updated: Вызначэнне абноўлена!
   identification_withdrawn: Вызначэнне знята.
   identifications: Вызначэнні
   identifiers: Вызначальнікі
+  if_for_some_reason_a_user_doesnt_agree: |
+    Калі па нейкай прычыне вы не згодныя з таксонам супольнасці, вы можаце адхіліць яго, што азначае, што ваш ID выкарыстоўваецца для спасылкі на іншыя назіранні, абнаўлення спісаў жыцця і г.д. Гэта таксама азначае, што ваша назіранне можа атрымаць даследчы ўзровень толькі тады, калі супольнасць згодная з вамі.
   if_matches_come_from_a_comprehensive_list: Калі супадзенні паходзяць з поўнага спісу, тут з'явіцца зялёная паласа.
   if_this_is_a_scientific_name: Калі гэта навуковая назва, ці з'яўляецца яна агульнапрынятай?
   if_you_have_any_trouble_with_the_site_check_out: 'Калі ў вас ёсць якія-небудзь пытанні, азнаёмцеся з нашым <a href="%{help_url}">раздзелам дапамогі</a> або апублікуйце паведамленне ў нашай <a href="%{feedback_url}">групе водгукаў</a>.'
   if_your_project_is: Калі ваш праект датычыцца пэўнага месца, задайце каардынаты, націснуўшы на карту або ўвёўшы іх уручную.
   ignore_and_continue: Ігнараваць і працягваць
+  ignore_times: Ігнараваць час
   image_must_be_exactly: здымак павінен быць роўна 950px у шырыню і не больш за 400px у вышыню
   image_size_control: Кантроль памеру здымка
   #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
@@ -2064,7 +2068,11 @@ be:
   import_tags_from_csv: Імпартаваць тэгі з CSV
   importing: "Імпартаванне..."
   improving: Паляпшэнне
+  include_places: Уключыць месцы
+  include_projects: Уключыць праекты
   include_suggestions_not_seen_nearby: Уключаючы прапановы, якія не сустракаліся паблізу
+  include_taxa: Уключыць таксоны
+  include_users: Уключыць карыстальнікаў
   in_progress: выконваецца
   in_the_past: у мінулым
   in_the_past_week: На мінулым тыдні
@@ -2079,9 +2087,16 @@ be:
   inactive_taxon_concepts_are: Канцэпцыі неактыўных таксонаў або састарэлыя ці якія рыхтуюцца да змены таксоны. Састарэлыя канцэпцыі захоўваюцца для захавання гісторыі і сумяшчальнасці з некаторымі партнёрскімі сайтамі.
   inappropriate_content: Неадпаведны кантэнт?
   inat_account_action: "%{site_name} &#58; Уліковы запіс &#58; %{action_name}"
+  inat_believes_this_is_a_complete_listing: "%{site_name} лічыць, што гэта поўны спіс гэтага таксона ў гэтым месцы."
+  inat_user_profile: "%{site_name}: Профіль %{user}"
+  inaturalist_activity_notifications: "%{site_name} Апавяшчэнні аб дзейнасці"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
+  inaturalist_applications: "Прыкладанні iNaturalist"
+  inaturalist_places: "%{site_name} Месцы"
   info: Інфармацыя
   insects: насякомыя
   instagram: Іnstagram
+  interactions: Узаемадзеянні
   introduced: Інтрадуцэнт
   invitation: Запрашэнне
   invite_people: Запрасіць людзей
@@ -2859,8 +2874,8 @@ be:
       - Люты
       - Сакавік
       - Красавік
-      - May
-      - June
+      - Травень
+      - Чэрвень
       - Ліпень
       - Жнівень
       - Верасень
