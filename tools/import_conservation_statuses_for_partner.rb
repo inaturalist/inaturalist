@@ -75,7 +75,7 @@ CSV.foreach( csv_path, headers: HEADERS ) do | row |
   end
   taxon = Taxon.find_by_id( row["taxon_id"] ) unless row["taxon_id"].blank?
   unless taxon
-    logger.error "#{identifier}: Couldn't find taxon for '#{row['taxon_id']}'"
+    logger.info "#{identifier}: Couldn't find taxon for '#{row['taxon_id']}', trying to find the taxon by the name '#{row["taxon_name"]}"
     if row["taxon_name"].blank?
       logger.error "#{identifier}: No name specified, skipping..."
       skipped << identifier
