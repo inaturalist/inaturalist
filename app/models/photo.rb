@@ -10,7 +10,13 @@ class Photo < ApplicationRecord
   has_many :observations, :through => :observation_photos
   has_many :taxa, :through => :taxon_photos
   
-  attr_accessor :api_response, :orphan
+  attr_accessor :api_response, :orphan,
+    :remote_original_url,
+    :remote_large_url,
+    :remote_medium_url,
+    :remote_small_url,
+    :remote_square_url,
+    :remote_thumb_url
   serialize :metadata
 
   include Shared::LicenseModule
@@ -38,17 +44,25 @@ class Photo < ApplicationRecord
 
   class MissingPhotoError < StandardError; end
 
-  def extension
-    return unless self["original_url"]
-    if matches = self["original_url"].match(/original\.([^?]*)(\?|$)/)
+  def parse_extension
+    return unless file.url( :original )
+    if CONFIG.usingS3 && matches = file.url( :original ).match(/original\.([^?]*)(\?|$)/)
+      return matches[1]
+    end
+    # the local path is configured to be a little different: ...:id/:style/:basename.:extension
+    if !CONFIG.usingS3 && matches = file.url( :original ).match(/original\/[^\.]+\.([^?]*)(\?|$)/)
       return matches[1]
     end
     nil
   end
 
-  def url_prefix
-    return unless self["original_url"]
-    if matches = self["original_url"].match( /^(.*)\/#{id}\/original/ )
+  def parse_url_prefix
+    original =  file.url( :original )
+    return unless original
+    if original !~ /http/
+      original = FakeView.uri_join( FakeView.root_url, original ).to_s
+    end
+    if matches = original.match( /^(.*)\/#{id}\/original/ )
       return matches[1]
     end
     nil
@@ -78,20 +92,21 @@ class Photo < ApplicationRecord
     sized_url( :thumb )
   end
 
+  def processing?
+    file_prefix.nil?
+  end
+
   def sized_url( size = "original" )
     if flags.any?{ |f| f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved? }
       return FakeView.image_url( "copyright-infringement-#{size}.png" )
     end
-    if !self["original_url"] || self["original_url"].match( /attachment_defaults/ )
+    if self.instance_variable_get("@remote_#{size}_url")
+      return self.instance_variable_get("@remote_#{size}_url")
+    end
+    if processing?
       return FakeView.uri_join( FakeView.root_url, LocalPhoto.new.file.url( size ) )
     end
-    if self.is_a?( LocalPhoto )
-      #return "#{file_prefix.prefix}/#{id}/#{size}.#{file_extension.extension}"
-      return unless url_prefix
-      return ( "#{url_prefix}/#{id}/#{size}.#{extension}" ).with_fixed_https
-    end
-    return unless self["#{size}_url"]
-    return self["#{size}_url"].with_fixed_https
+    "#{file_prefix.prefix}/#{id}/#{size}.#{file_extension.extension}"
   end
 
   def to_s
@@ -254,7 +269,12 @@ class Photo < ApplicationRecord
       :license_name,
       :license_url,
       :attribution,
-      :type
+      :type,
+      :square_url,
+      :thumb_url,
+      :small_url,
+      :medium_url,
+      :large_url
     ]
     super(options)
   end
@@ -285,10 +305,9 @@ class Photo < ApplicationRecord
   end
 
   def original_dimensions
-    return unless metadata && metadata[:dimensions] && metadata[:dimensions][:original]
     {
-      height: metadata[:dimensions][:original][:height],
-      width: metadata[:dimensions][:original][:width]
+      height: height,
+      width: width
     }
   end
 
@@ -349,7 +368,7 @@ class Photo < ApplicationRecord
         [ "user_id", "license", "mobile", "metadata" ].include?(k)
     end
     photo_url = [ :original, :large, :medium, :small ].map do |s|
-      remote_photo["#{ s }_url"]
+      remote_photo.instance_variable_get( "@remote_#{ s }_url" )
     end.compact.first
     return unless photo_url
     if photo_url.size <= 512
@@ -378,7 +397,7 @@ class Photo < ApplicationRecord
   # to be used primarly for turn_remote_photo_into_local_photo
   def best_available_url
     [ :original, :large, :medium, :small ].each do |s|
-      url = self["#{ s }_url"]
+      url = self.instance_variable_get("@remote_#{s}_url")
       if url && Photo.valid_remote_photo_url?(url)
         return url
       end
@@ -445,8 +464,9 @@ class Photo < ApplicationRecord
   
   def self.default_json_options
     {
-      :methods => [:license_code, :attribution],
-      :except => [:original_url, :file_processing, :file_file_size, 
+      :methods => [:license_code, :attribution, :square_url,
+        :thumb_url, :small_url, :medium_url, :large_url],
+      :except => [:file_processing, :file_file_size,
         :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
         :native_realname, :native_photo_id]
     }

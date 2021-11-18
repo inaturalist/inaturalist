@@ -25,7 +25,7 @@
       <% end %>
     </td>
     <td class="observations">
-      <%= link_to taxon.observations_count_with_descendents, 
+      <%= link_to taxon.observations_count,
                   observations_path(:taxon_id => taxon.id) %>
     </td>
     <td class="source">

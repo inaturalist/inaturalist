@@ -81,14 +81,19 @@ class FacebookPhoto < Photo
     fp = api_response
     return nil if fp.nil?
     # facebook api provides these sizes in an keyless array, in this order
-    [:large_url, :medium_url, :small_url, :thumb_url].each_with_index{|img_size,i|
+    [
+      :remote_large_url,
+      :remote_medium_url,
+      :remote_small_url,
+      :remote_thumb_url
+    ].each_with_index{|img_size,i|
       next unless fp['images'] && fp['images'][i]
       options.update(img_size => fp['images'][i]['source'])
     }
     options.update(
       :native_photo_id => fp["id"],
-      :square_url => nil, # facebook doesn't provide a square image
-      :original_url => fp['source'],
+      :remote_square_url => nil, # facebook doesn't provide a square image
+      :remote_original_url => fp['source'],
       :native_page_url => fp["link"],
       :native_username => fp["from"]["name"],
       :native_realname => fp["from"]["name"],

@@ -46,7 +46,7 @@ describe WikimediaCommonsPhoto, "new_from_api_response" do
   it "should not retrieve sizes that don't exist" do
     r = WikimediaCommonsPhoto.get_api_response('Doriopsilla_albopunctata.jpg')
     wp = WikimediaCommonsPhoto.new_from_api_response(r)
-    expect(wp.large_url).to be_blank
+    expect(wp).not_to respond_to( :file )
   end
 
   it "should credit photos without a clear author as anonymous" do
@@ -55,10 +55,9 @@ describe WikimediaCommonsPhoto, "new_from_api_response" do
     expect(wp.native_realname).to eq 'anonymous'
   end
 
-  it "should have square and thumb urls even if the photo is tiny" do
+  it "should have a remote_original_url even if the photo is tiny" do
     r = WikimediaCommonsPhoto.get_api_response('Altamira_Yellowthroat_(Geothlypis_flavovelata)_male.jpg')
     wp = WikimediaCommonsPhoto.new_from_api_response(r)
-    expect(wp.square_url).not_to be_blank
-    expect(wp.thumb_url).not_to be_blank
+    expect(wp.remote_original_url).not_to be_blank
   end
 end
