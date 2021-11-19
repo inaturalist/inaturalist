@@ -221,9 +221,6 @@ class LocalPhoto < Photo
     metadata = self.metadata.to_h.clone || {}
     metadata[:dimensions] ||= { }
     begin
-      file.styles.keys.each do |style|
-        metadata[:dimensions][style] = extract_dimensions(style)
-      end
       if ( file_path = ( path || file.queued_for_write[:original].path ) )
         exif_data = ExifMetadata.new( path: file_path, type: file_content_type ).extract
         metadata.merge!( exif_data )
@@ -240,8 +237,9 @@ class LocalPhoto < Photo
       Rails.logger.error "[ERROR #{Time.now}] ExifMetadata failed to extract metadata: #{e}"
     end
     metadata = metadata.force_utf8
-    self.width = metadata.dig(:dimensions, :original, :width)
-    self.height = metadata.dig(:dimensions, :original, :height)
+    dimensions = extract_dimensions( :original )
+    self.width = dimensions[:width]
+    self.height = dimensions[:height]
     self.metadata = metadata
   end
 
