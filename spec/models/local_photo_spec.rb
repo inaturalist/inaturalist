@@ -34,7 +34,7 @@ describe LocalPhoto, "creation" do
     end
 
     it "should not remove metadata" do
-      p = LocalPhoto.new( metadata: { test_attr: "test_val", dimensions: { } } )
+      p = LocalPhoto.new( metadata: { test_attr: "test_val" } )
       expect( p ).to receive( "file=" ).at_least( :once ).and_return( nil )
       p.file = { styles: { } }
       expect( p.metadata[:test_attr] ).to eq "test_val"

@@ -236,9 +236,10 @@ class LocalPhoto < Photo
       Rails.logger.error "[ERROR #{Time.now}] ExifMetadata failed to extract metadata: #{e}"
     end
     metadata = metadata.force_utf8
-    dimensions = extract_dimensions( :original )
-    self.width = dimensions[:width]
-    self.height = dimensions[:height]
+    if dimensions = extract_dimensions( :original )
+      self.width = dimensions[:width]
+      self.height = dimensions[:height]
+    end
     self.metadata = metadata
   end
 
