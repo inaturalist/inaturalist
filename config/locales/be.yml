@@ -2050,6 +2050,10 @@ be:
         Таксон паходзіць ад таксона супольніцтва. Гэтае вызначэнне можа прывесці да правільнага адказу.
       improving: |
         Першая прапанова гэтага таксона, з якой пагадзілася супольніцтва. Гэта дапамагае ўдакладніць таксон супольніцтва.
+      maverick: |
+        Таксон не з'яўляецца нашчадкам або продкам таксона суполкі, гэта значыць суполка не згодная з гэтым таксонам.
+  id_withdrawn: Вызначэнне адменена
+  ids_by_taxon: Вызначэнні па таксону
   identify: Вызначыць
   identify_observations: "Вызначыць назіранні"
   identify_observations_by_these_users: Вызначэнне назіранняў гэтых карыстальнікаў
@@ -2058,9 +2062,11 @@ be:
   identification_deleted: вызначэнне выдалена.
   identification_saved: "вызначэнне захавана!"
   identification_updated: Вызначэнне абноўлена!
+  identification_user_short: Вызн. карыстальнік
   identification_withdrawn: Вызначэнне знята.
   identifications: Вызначэнні
   identifiers: Вызначальнікі
+  ids: "Вызначэнні"
   if_for_some_reason_a_user_doesnt_agree: |
     Калі па нейкай прычыне вы не згодныя з таксонам супольнасці, вы можаце адхіліць яго, што азначае, што ваш ID выкарыстоўваецца для спасылкі на іншыя назіранні, абнаўлення спісаў жыцця і г.д. Гэта таксама азначае, што ваша назіранне можа атрымаць даследчы ўзровень толькі тады, калі супольнасць згодная з вамі.
   if_matches_come_from_a_comprehensive_list: Калі супадзенні паходзяць з поўнага спісу, тут з'явіцца зялёная паласа.
@@ -2087,6 +2093,7 @@ be:
   importing: "Імпартаванне..."
   improving: Паляпшэнне
   inaturalist_network: Сетка iNaturalist
+  inaturalist_network_affiliation: Прыналежнасць да сеткі iNaturalist
   #Label for messages you've received
   inbox: Уваходныя
   include_places: Уключыць месцы
@@ -2118,8 +2125,12 @@ be:
   info: Інфармацыя
   insects: насякомыя
   instagram: Іnstagram
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote: Уставіць цытату
   interactions: Узаемадзеянні
+  internal_server_error: Унутраная памылка сервера
   introduced: Інтрадуцэнт
+  introduced_in_place: "Інтрадуцыраваны ў %{place}"
   invitation: Запрашэнне
   invite_people: Запрасіць людзей
   invite_people_to_project: "Запрасіць людзей у %{project}"
@@ -2133,6 +2144,8 @@ be:
   it_can_now_be_used_for_research: Цяпер яго можна выкарыстоўваць для даследванняў і паказваць на іншых вэб-сайтах
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: тэкст курсівам
+  item_flagged_notice_html: |
+    Гэта было пазначана як спам і больш не бачна. Вы можаце ўбачыць яго, таму што яго стварылі ці вы з'яўляецеся куратарам сайта. Калі вы лічыце, што гэта памылка, калі ласка, <a href="mailto:%{help_email}" class="contact">звяжыцеся з намі</a>. <a href="%{manage_flags_path}">Кіраванне сцяжкамі</a>
   join: Далучыцца
   join_and_add_an_observation_to_project_html: Далучыцца і дадаць назіранне да %{project}
   join_project: Далучыцца да гэтага праекта
@@ -2230,6 +2243,7 @@ be:
     finnish: Фінская
     french: Французская
     galician: Галісійская
+    gela: Гела
     german: Нямецкая
     greek: Грэцкая
     hawaiian: Гавайская
@@ -2252,7 +2266,9 @@ be:
     maori: Маоры
     marathi: Маратхі
     maya: Майя
+    misima_paneati: Місіма-панеаты
     mongolian: Мангольская
+    nahuatl: Науатль
     norwegian: Нарвежская
     occitan: Аксітанская
     ojibwe: Оджыбвэ
@@ -2328,7 +2344,9 @@ be:
     lv: Латвійская
     mk: Македонская
     mr: Маратхі
+    nb: Нарвежскі Букмол
     nl: Галандская
+    oc: Аксітанская
     pl: Польская
     pt: Партугальская
     pt-BR: Партугальская (Бразілія)
@@ -2337,6 +2355,7 @@ be:
     sl: Славенская
     sq: Албанская
     sv: Шведская
+    th: Тайская
     tr: Турэцкая
     uk: Украінская
     zh-CN: Кітайская (спрошчаны правапіс)
@@ -2348,6 +2367,8 @@ be:
   location_is_public: Месцазнаходжанне агульнадаступнае
   location_is_obscured: Месцазнаходжанне схавана
   location_is_private: Прыватнае местцазнаходжанне
+  location_specified: Месцазнаходжанне ўказана
+  locked_taxa_will_not_allow_new: Заблакіраваныя таксоны не дазваляюць дадаваць да іх новыя таксоны-нашчадкі. Такім чынам, калі вы заблакавалі Amphibia і хтосьці паспрабаваў імпартаваць <i>Rana catesbeiana</i> ад знешняга пастаўшчыка імёнаў, новы таксон будзе створаны, але яго нельга будзе класіфікаваць як амфібію. Калі гэта адбудзецца, толькі што дададзеныя таксоны павінны быць пазначаны для ўвагі куратара. Гэта сапраўды варта выкарыстоўваць толькі для таксонаў, для якіх мы лічым, што ў нас ужо ёсць усе нашчадкі. Куратар можа перавызначыць гэта, рэдагуючы таксоны і непасрэдна ўводзячы бацькоўскія ідэнтыфікатары, але, калі ласка, падумайце аб аб'яднанні новых таксонаў з існуючымі.
   log_in: Увайсці
   log_in_or_sign_up_to_add_comments_html: |
     <a href="/login">Увайдзіце</a> або <a href="/signup">зарэгіструйцеся</a>, каб дадаць каментарыі.
@@ -2357,6 +2378,10 @@ be:
   log_out_caps: ВЫЙСЦІ
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Выйсці з %{site_name}?"
+  logo:
+    white_bg_gif: GIF на белым фоне
+    transparent_png: празрысты PNG
+    white_text_transparent_png: празрысты PNG з белым тэкстам
   longitude: Даўгата
   longitude_in_decimal: 'Даўгата ў дзесятковых градусах, напр. -122,123'
   longitude_value: "Даўгата: %{longitude}"
@@ -2368,6 +2393,7 @@ be:
   main_content: Асноўны кантэнт
   make_a_new_place: Стварыць новае месца
   make_sure_the_default_photo_looks_good: Пераканайцеся, што фота па змаўчанні добра выглядае ў вялікім памеры.
+  make_this_your_default_license: "Зрабіце гэта вашай ліцэнзіяй %{type} па змаўчанні"
   mammals: млекакормячыя
   manage_all_your_subscriptions: Кіруйце ўсімі сваімі падпіскамі
   managing_projects: Кіраванне праектамі
@@ -2555,12 +2581,23 @@ be:
   no_matching_species: Няма адпаведных відаў.
   no_matching_taxa: Няма адпаведных таксонаў
   no_matching_users: Няма адпаведных карыстальнікаў.
+  no_members_yet: "Пакуль няма удзельнікаў."
+  no_messages_yet: Пакуль няма паведамленняў
+  no_more_results_found: Больш нічога не знойдзена
+  no_new_messages: Няма новых паведамленьняў
   no_observations: Няма назіранняў
   no_observations_from_this_place_yet: Назіранняў з гэтага месца пакуль няма.
   no_observations_matching_those_ids: Няма назіранняў, адпаведных гэтым вызначэнням.
   no_observations_yet: Пакуль няма назіранняў.
+  no_one_has_added_any: Ніхто не дадаў нататак для гэтага месца
+  no_one_posted_anything_yet: Яшчэ ніхто нічога не апублікаваў!
   no_photo: Няма фота
   no_photos: Няма фотаздымкаў
+  no_photos_of_that_size: Няма фота такога памеру.
+  no_post_yet: Пакуль няма паведамленняў!
+  no_project_selected: Няма выбраных праектаў
+  no_project_to_admin_current_user: "Вы не адмініструеце ніякіх праектаў"
+  no_project_to_admin_login: "%{login} не адмініструе ніякіх праектаў"
   no_projects_yet: Праектаў пакуль няма
   no_attached_range: Няма далучанага арэала
   no_range_data_available: Няма дадзеных аб арэале
@@ -2572,6 +2609,8 @@ be:
   no_results_matching: Няма вынікаў, якія адпавядаюць
   no_species_have_been_listed: Для гэтага месца яшчэ не ўнесены віды!
   no_species_on_this_list: У гэтым спісе пакуль няма відаў!
+  no_species_on_this_list_for_owner: |
+    Вы можаце пачаць дадаваць віды ў гэты спіс, выкарыстоўваючы інструмент «Дадаць у свой спіс» справа.
   no_subject_parens: "(Без тэмы)"
   no_such_wiki_page: Старонка не існуе
   no_such_wiki_page_html: Старонка не існуе. Вы хочаце <a href="%{new_url}">стварыць яе</a>?
@@ -2580,6 +2619,7 @@ be:
   no_taxa: Няма таксонаў
   no_taxa_listed: Таксонаў у спісе няма
   no_taxa_selected: Таксоны не выбраны!
+  no_taxonomic_changes_match_those_criteria: Ніякія таксанамічныя змены не адпавядаюць гэтым крытэрыям
   no_users_found_with_those_filters: Не знойдзена карыстальнікаў з дапамогай гэтых фільтраў
   no_wikipedia_page_for_taxon: На Вікіпедыі няма старонкі для гэтага таксону
   none: Нічога
@@ -2646,6 +2686,9 @@ be:
   observation_fields_are_additional: Палі назірання - гэта дадатковыя палі дадзеных, якія можна дадаваць да назіранняў.
   observation_fields_by_preferences_description: |
     Палі назірання трохі падобныя на тэгі, за выключэннем таго, што кожны можа дадаць іх да вашага назірання па змаўчанні. Змяніце гэта, калі хочаце, каб гэта маглі рабіць толькі вы або толькі куратары сайта.
+  #Help text to show what kind of values you can enter for the date an observation was observed
+  observation_observed_on_examples: |
+    напр. 2019-10-29 13:12:21
   observation_removed_from_the_project: "Назіранне выдалена з праекта \"%{project}\""
   observation_requirements: Патрабаванні да назіранняў
   #Label for a field showing the date when the observation requirements for a
@@ -2674,6 +2717,7 @@ be:
   observations_near_a_place_are: |
     Назіранні "каля" месца знаходзяцца ў прамавугольніку, які намаляваны вакол мяжы месца, што можа прывесці да некаторых недакладных вынікаў для месцаў, якія не нагадваюць прамавугольнікі. Гэта звязана з абмежаваннем нашай базы даных, над якой мы працуем для вырашэння праблем.
   observations_needing_curation: Назіранні, якія патрабуюць куратарства
+  observations_observed_this_month: Назіранні, <em>зробленыя</em> у гэтым месяцы, не дададзеныя ў гэтым месяцы. Выходзьце на вуліцу!
   observations_of_relatives: Назіранні блізкіх відаў
   observations_of_taxon: "Нізіранні %{taxon_name}"
   observations_per_month: Назіранні / Месяц
@@ -2693,7 +2737,10 @@ be:
   observations_with_this_field_and_value: Назіранні з гэтым полем і значэннем
   observations_without_media: Назіранні без медыа
   observationcounts_refreshed: Падлік назіранняў абноўлены
+  observed_by: Назіранне зроблена
+  observed_on: Назіранне зроблена
   observer: Назіральнік
+  observers: Назіральнікі
   occurrence_status_descriptions:
     absent: На тэрыторыі не сустракаецца
   old_observation_form: Старая форма назірання (састарэла)
