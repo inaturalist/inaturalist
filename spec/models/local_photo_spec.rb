@@ -44,42 +44,14 @@ describe LocalPhoto, "creation" do
   end
 
   describe "dimensions" do
-    it "should extract dimension metadata" do
+    it "should extract dimension" do
       p = LocalPhoto.new( user: User.make! )
       p.file.assign( File.new( File.join( Rails.root, "app/assets/images/404mole.png" ) ) )
-      expect( p.metadata ).to be nil
+      expect( p.width ).to be nil
+      expect( p.height ).to be nil
       p.extract_metadata
-      expect( p.metadata[:dimensions][:original] ).to eq( { width: 600, height: 493 } )
-    end
-
-    it "should extrapolate_dimensions_from_original from landscape photos" do
-      p = LocalPhoto.new( user: User.make! )
-      expect( p ).to receive( :original_url ).at_least( :once ).and_return(
-        File.join( Rails.root, "app/assets/images/404mole.png" )
-      )
-      expect( p.extrapolate_dimensions_from_original ).to eq( {
-        original: { width: 600, height: 493 },
-        large: { width: 600, height: 493 },
-        medium: { width: 500, height: 411 },
-        small: { width: 240, height: 197 },
-        thumb: { width: 100, height: 82 },
-        square: { width: 75, height: 75 }
-      } )
-    end
-
-    it "should extrapolate_dimensions_from_original from small portrait photos" do
-      p = LocalPhoto.new( user: User.make! )
-      expect( p ).to receive( :original_url ).at_least( :once ).and_return(
-        File.join( Rails.root, "public/mapMarkers/mm_20_unknown.png" )
-      )
-      expect( p.extrapolate_dimensions_from_original ).to eq( {
-        original: { width: 13, height: 21 },
-        large: { width: 13, height: 21 },
-        medium: { width: 13, height: 21 },
-        small: { width: 13, height: 21 },
-        thumb: { width: 13, height: 21 },
-        square: { width: 75, height: 75 }
-      } )
+      expect( p.width ).to eq 600
+      expect( p.height ).to eq 493
     end
   end
 

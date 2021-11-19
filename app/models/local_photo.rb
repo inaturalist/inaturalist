@@ -219,7 +219,6 @@ class LocalPhoto < Photo
   def extract_metadata(path = nil)
     return unless file && (path || !file.queued_for_write.blank?)
     metadata = self.metadata.to_h.clone || {}
-    metadata[:dimensions] ||= { }
     begin
       if ( file_path = ( path || file.queued_for_write[:original].path ) )
         exif_data = ExifMetadata.new( path: file_path, type: file_content_type ).extract
@@ -462,44 +461,6 @@ class LocalPhoto < Photo
         return { width: sizes[0],
                  height: sizes[1] }
       end
-    end
-  end
-
-  # this method was created for generating dimensions for
-  # all existing images in S3 in mass. It was designed for
-  # performance and not accuracy. It extrapolates the sizes of
-  # all the styles from the original to save on HTTP requests.
-  # Photo.extract_dimensions is the more exact method
-  def extrapolate_dimensions_from_original
-    return unless original_url
-    if original_dimensions = FastImage.size(original_url)
-      sizes = {
-        original: {
-          width: original_dimensions[0],
-          height: original_dimensions[1]
-        }
-      }
-      max_d = original_dimensions.max
-      # extrapolate the scaled dimensions of the other sizes
-      file.styles.each do |key, s|
-        next if key.to_sym == :original
-        if match = s.geometry.match(/([0-9]+)x([0-9]+)([^0-9])?/)
-          style_sizes = {
-            width: match[1].to_i,
-            height: match[2].to_i
-          }
-          modifier = match[3]
-          # the '#' modifier means the resulting image is exactly that size
-          unless modifier == "#"
-            ratio = (max_d < style_sizes[:width]) ?
-              1 : (style_sizes[:width] / max_d.to_f)
-            style_sizes[:width] = (sizes[:original][:width] * ratio).round
-            style_sizes[:height] = (sizes[:original][:height] * ratio).round
-          end
-          sizes[key] = style_sizes
-        end
-      end
-      sizes
     end
   end
 
