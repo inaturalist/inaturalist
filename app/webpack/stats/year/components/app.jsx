@@ -17,6 +17,7 @@ import Growth from "./growth";
 import Compare from "./compare";
 import Sites from "./sites";
 import Donate from "./donate";
+import DonateBanner from "./donate_banner";
 import Donor from "./donor";
 import Translators from "./translators";
 
@@ -192,8 +193,10 @@ const App = ( {
   const isTouchDevice = navigator.userAgent.match(
     /(Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone)/i
   ) !== null;
+
   return (
     <div id="YearStats">
+      { year >= 2021 && <DonateBanner year={year} user={user} /> }
       <div className={`banner ${user ? "for-user" : ""}`}>
         <div className="montage">
           <div className="photos">

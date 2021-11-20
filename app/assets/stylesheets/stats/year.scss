@@ -1361,3 +1361,47 @@ $obs-grid-photo-size: 210px;
     justify-content: center;
   }
 }
+
+.DonateBanner {
+  align-items: center;
+  background-color: $inat-green;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  justify-content: center;
+  padding: 26px;
+
+  > :first-child {
+    line-height: 23px;
+    margin-right: 50px;
+  }
+
+  strong {
+    letter-spacing: 1px;
+  }
+
+  .btn {
+    &.btn-donate {
+      background-color: white;
+      border-color: white;
+      color: $inat-green;
+      font-weight: bold;
+      letter-spacing: 1px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .DonateBanner {
+    flex-direction: column;
+    font-size: 14px;
+
+    > :first-child {
+      margin-bottom: 16px;
+      margin-right: inherit;
+    }
+  }
+}
