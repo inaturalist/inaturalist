@@ -2741,14 +2741,40 @@ be:
   observed_on: Назіранне зроблена
   observer: Назіральнік
   observers: Назіральнікі
+  observer_prefers_no_project_addition: |
+    Назіральнік не дазваляе іншым людзям дадаваць свае назіранні ў праекты.
+  observer_prefers_addition_to_projects_joined: |
+    Назіральнік дазваляе іншым людзям дадаваць свае назіранні толькі ў праекты, да якіх яны далучыліся.
+  observer_short: Назіральнік
   occurrence_status_descriptions:
     absent: На тэрыторыі не сустракаецца
+    common: Сустракаецца часта
+    present: Сустракаецца ў рэгіоне
+  of_this_taxon: Гэтага таксона
+  off_caps: "ВЫКЛ"
+  official_blog: Афіцыйны блог
+  offline_access_enabled: Аўтаномны доступ уключаны
   old_observation_form: Старая форма назірання (састарэла)
   ok: "ОК"
+  on_caps: "УКЛ"
+  onboarding:
+    observe_panel_title: Давайце пачнем з публікацыі некаторых назіранняў
+    observe_panel_body_p1_local: Патрэбна натхненне? Вось некаторыя арганізмы назіраюцца паблізу...
+    observe_panel_body_p1_global: Патрэбна натхненне? Вось некаторыя арганізмы назіраюцца...
+    observe_panel_body_p2: Выйдзіце на вуліцу і паназірайце за асобным арганізмам. Выберыце што-небудзь дзікае і зрабіце выразнае поўнакадравае фота. Калі ў вас ужо ёсць фота чагосьці дзікага, <a href="%{new_observation_path}">дадайце яго зараз</a>. Вы таксама можаце выкарыстоўваць мабільныя прыкладанні %{site_name} для запісу назіранняў.
+    observe_panel_body_p3: Пасля таго, як вы падзяліліся сваімі назіраннямі, гэтая старонка пакажа вам абнаўленні ад суполкі ў выглядзе каментарыяў і вызначэнняў. Хто ведае, што вы адкрыеце!
+    follow_panel_body: Калі вы наведаеце гэтыя профілі і націснеце кнопку "Сачыць", вы атрымаеце абнаўленні, калі яны апублікуюць свае назіранні
+    following_panel_title: Сачыце за людзьмі, таксонамі і месцамі
+    following_panel_body: |
+      На сайце %{site_name} вы можаце сачыць за людзьмі, каб бачыць назіранні, якія яны публікуюць. Вы таксама можаце падпісацца на пэўныя віды, каб сачыць за новымі назіраннямі з гэтымі відамі або зрабіць тое ж самае з месцамі.
+    comments_panel_title: Цікава, якія дыскусіі адбываюцца на сайце %{site_name}?
+    youve_got_updates_panel_title: У вас ёсць абнаўленні!
+  only_a_project_manager_can_add: Толькі кіраўнік праекта можа дадаць статус куратара праекта
   only_administrators_may_access_that_page: Толькі адміністратары маюць доступ да гэтай старонкі
   only_an_admin_can_remove_project_users: Толькі адміністратар можа выдаляць карыстальнікаў праекта
   only_curators_can_add_edit_scientific_names: Дадаваць/рэдагаваць навуковыя назвы могуць толькі куратары.
   only_curators_can_access_that_page: Толькі куратары маюць доступ да гэтай старонкі
+  only_project_curators_can_do_that: Толькі куратары праекта могуць зрабіць гэта.
   open_street_map: OpenStreetMap
   or: або
   other_animals: іншыя жывёлы
@@ -2781,6 +2807,14 @@ be:
       airport: аэрапорт
       Building: Пабудова
       building: пабудова
+      Constituency: Акруга
+      constituency: акруга
+      Continent: Кантынент
+      continent: кантынент
+      Country: Краіна
+      country: краіна
+      District: Раён
+      district: раён
       Street: Вуліца
       street: вуліца
       Street_Segment: Адрэзак вуліцы
