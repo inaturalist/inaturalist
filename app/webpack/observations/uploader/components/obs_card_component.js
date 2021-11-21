@@ -297,6 +297,7 @@ class ObsCardComponent extends Component {
                 timeZone={obsCard.time_zone}
                 dateTime={ obsCard.selected_date }
                 openButton="before"
+                openButtonClassName="input-sm"
                 inputProps= {{ 
                   className: "form-control input-sm", 
                   placeholder: I18n.t( "date_" ) 

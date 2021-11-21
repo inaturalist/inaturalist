@@ -260,7 +260,7 @@ class ObservationFieldInput extends React.Component {
         <DateTimeWrapper
           dateFormat={ dateFormat }
           timeFormat={ timeFormat }
-          initialValue={ this.state.observationFieldValue }
+          dateTime={ this.state.observationFieldValue }
           timeZone={ TIMEZONE }
           inputProps={ {
             name: "value",

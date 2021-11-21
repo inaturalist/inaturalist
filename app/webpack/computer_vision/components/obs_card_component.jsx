@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
-import moment from "moment-timezone";
 import TaxonAutocomplete from "../../observations/uploader/components/taxon_autocomplete";
-import DateTimeFieldWrapper from "../../observations/uploader/components/date_time_field_wrapper";
+import DateTimeWrapper from "../../observations/uploader/components/date_time_wrapper";
 import util from "../../observations/uploader/models/util";
 
 class ObsCardComponent extends Component {
@@ -112,44 +111,25 @@ class ObsCardComponent extends Component {
               }
             }}
           />
-          <DateTimeFieldWrapper
-            ref="datetime"
-            inputFormat="YYYY/MM/DD"
-            mode="date"
-            dateTime={
-              obsCard.selected_date
-                ? moment( obsCard.selected_date, "YYYY/MM/DD" ).format( "x" )
-                : undefined
-            }
-            timeZone={obsCard.time_zone}
-            onChange={dateString => updateObsCard( { date: dateString } )}
-            onSelection={
-              dateString => updateObsCard( { date: dateString, selected_date: dateString } )
-            }
-          />
-          <div
-            className={`input-group${invalidDate ? " has-error" : ""}`}
-            onClick={() => {
-              if ( this.refs.datetime ) {
-                this.refs.datetime.onClick( );
-              }
-            }}
-          >
-            <div className="input-group-addon input-sm">
-              <Glyphicon glyph="calendar" />
+          <div className={invalidDate ? "has-error" : ""} >
+              <DateTimeWrapper
+                key={`datetime${obsCard.selected_date}`}
+                reactKey={`datetime${obsCard.selected_date}`}
+                timeFormat={false}
+                timeZone={obsCard.time_zone}
+                dateTime={ obsCard.selected_date }
+                openButton="before"
+                inputProps= {{ 
+                  className: "form-control input-sm", 
+                  placeholder: I18n.t( "date_" ) 
+                }}
+                onChange={dateString => updateObsCard(
+                  obsCard, { 
+                    date: dateString, 
+                    selected_date: dateString 
+                  } )}
+              />
             </div>
-            <input
-              type="text"
-              className="form-control input-sm"
-              value={obsCard.date || ""}
-              onChange={e => {
-                if ( this.refs.datetime ) {
-                  this.refs.datetime.onChange( undefined, e.target.value );
-                }
-              }}
-              placeholder={this.refs.datetime ? "" : I18n.t( "date_" )}
-            />
-          </div>
           <div
             className="input-group"
             onClick={this.openLocationChooser}

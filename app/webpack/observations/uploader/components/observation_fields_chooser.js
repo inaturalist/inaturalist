@@ -171,7 +171,7 @@ class LeftMenu extends SelectionBasedComponent {
         <DateTimeWrapper
           dateFormat={ dateFormat }
           timeFormat={ timeFormat }
-          initialValue={ this.props.observationFieldValue }
+          dateTime={ this.props.observationFieldValue }
           timeZone={ TIMEZONE }
           inputProps={ {
             className: "form-control",

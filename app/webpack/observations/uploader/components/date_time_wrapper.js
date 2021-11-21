@@ -76,7 +76,7 @@ class DateTimeWrapper extends Component {
   {
     if (position === this.props.openButton) {
       return (
-        <span className="input-group-addon" onClick={ onClick }>
+        <span className={`input-group-addon ${this.props.openButtonClassName}`} onClick={ onClick }>
           <Glyphicon glyph="calendar" />
         </span>
       );
@@ -123,6 +123,7 @@ DateTimeWrapper.propTypes = {
     PropTypes.string,
     PropTypes.bool
   ] ),
+  openButtonClassName: PropTypes.string,
   dateTime: PropTypes.oneOfType( [
     PropTypes.string,
     PropTypes.number,
