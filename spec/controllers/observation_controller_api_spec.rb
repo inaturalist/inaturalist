@@ -569,7 +569,7 @@ shared_examples_for "an ObservationsController" do
       expect( o.observation_field_values.last.value ).to eq "foo"
     end
 
-    it "should updating existing observation_field_values" do
+    it "should update existing observation_field_values" do
       ofv = ObservationFieldValue.make!( value: "foo", observation: o )
       put :update, format: :json, params: { id: ofv.observation_id, observation: {
         observation_field_values_attributes: {
@@ -657,6 +657,22 @@ shared_examples_for "an ObservationsController" do
       put :update, format: :json, params: { id: o.id, observations: [{ latitude: plat, longitude: plon }] }
       o.reload
       expect( o.private_latitude ).to eq plat
+    end
+
+    it "should change coordinates and geoprivacy in a single request" do
+      o = create :observation, user: user, latitude: 1, longitude: 1, geoprivacy: Observation::OBSCURED
+      put :update, format: :json, params: {
+        id: o.id,
+        observation: {
+          latitude: 2,
+          longitude: 2,
+          geoprivacy: Observation::OPEN
+        }
+      }
+      o.reload
+      expect( o.private_latitude ).to be_blank
+      expect( o.geoprivacy ).to be_blank
+      expect( o.latitude ).to eq 2
     end
 
     it "should not change the true coordinates when switching to a threatened taxon and back" do

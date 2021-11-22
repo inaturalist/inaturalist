@@ -677,12 +677,15 @@ ca:
   back_to_taxon: "Torna a %{defaulttaxon}"
   back_to_taxon_changes: "Torna als canvis del tàxon"
   back_to_taxon_framework_for_x: "Tornar al marc taxonòmic de %{taxon_name}"
+  back_to_users_calendar: "Torna al calendari de %{user}"
+  back_to_users_lists: "Tornar a la llista de %{user}"
   back_to_viewing: "Torna a mostrar <i>%{taxon}</i>"
   back_to_x: "Torna a %{noun}"
   back_to_x_assessment: "Torna a les valoracions de %{project}"
   back_to_x_history: "Torna a la història %{x}"
   back_to_x_journal: "Torna al diari de %{user}"
   back_to_x_blog: "Tornar al blog de %{x}"
+  back_to_your_calendar: Torna al teu calendari
   back_to_your_dashboard: Tornar al vostre panell
   back_to_your_lists: Torneu a les vostres llistes
   back_to_your_journal: Torneu al vostre diari
@@ -1544,6 +1547,10 @@ ca:
   establishment_means: Forma d'establir-se.
   establishment_means_describes_how: |
     La forma d'establiment indica com es va implantar el tàxon dins una àrea. Mostra DarwinCore per <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24"> obtenir més informació de terminologia</a>.
+  establishment_means_descriptions:
+    native: desenvolupat en aquesta regió o arribà per mitjans no antropogènics
+    endemic: nadiu i no succeeix a enlloc més
+    introduced: va arribar a la regió per mitjans antropogènics
   estimate_which_input: |
     Estimar quins indicadors de tàxons d'entrada seran substituïts per quins tàxons de sortida i quins seran afegits a un avantpassat comú quan la divisió s'hagi finalitzat. Això pot requerir un temps per calcular-ho. Els enllaços a les observacions es divideixen en subconjunts de 200.
   event_in_progress: Esdeveniment en curs
@@ -2749,6 +2756,10 @@ ca:
   observation_brief_something_on_day_at_time: "Alguna cosa el %{day} a les %{time}"
   observation_brief_something_on_day_at_time_by_user: "Alguna cosa el %{day} a les %{time} per %{user}"
   observation_brief_something_on_day_by_user: "Alguna cosa el %{day} per %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Quelcom al %{month} de %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Quelcom al %{month} de %{year} per %{user}"
   observation_brief_something_by_user: "Quelcom de %{user}"
   observation_brief_something_from_place: "Quelcom a %{place}"
   observation_brief_something_from_place_by_user: "Quelcom a %{place} de %{user}"
@@ -2756,10 +2767,18 @@ ca:
   observation_brief_something_from_place_on_day_by_user: "Quelcom a %{place} el %{day} per %{user}"
   observation_brief_something_from_place_on_day_at_time: "Quelcom a %{place} el %{day} a les %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Quelcom a %{place} el %{day} a les %{time} per %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Quelcom a %{place} al %{month} de %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Quelcom de %{place} al %{month} de %{year} per %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} el %{day} a les %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} el %{day} a les %{time} per %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} el %{day} per %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} al %{month} de %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} el %{month} de %{year} per %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} a %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} a %{place} per %{user}"
@@ -2767,6 +2786,10 @@ ca:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} a %{place} el %{day} per %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} a %{place} el %{day} a les %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} a %{place} el %{day} a les %{time} per %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} a %{place} el %{month} de %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} a %{place} el %{month} de %{year} per %{user}"
   observations_by_category: "Observacions Per categoria"
   observations_by_app: Observacions Per App
   observations_by_rank: Observacions Per rang
@@ -4767,7 +4790,10 @@ ca:
   users_favorites: "Favorits de %{user}"
   users_highlights_and_stats_from_year_on_site: "Destacats i estadístiques de %{user} del %{year} a %{site}"
   users_id: "ID de %{user}"
+  users_identifications: "Identificacions de %{user}"
+  users_journal: "Diari de %{user}"
   users_latest_observations_on_site: "Últimes observacions de %{user} a %{site}"
+  users_lists: "Llistes de %{user}"
   users_profile: "Perfil de %{user}"
   users_projects: "Projectes de %{user}"
   users_year_on_site: "L'any %{year} de %{user} a %{site}"
@@ -6371,6 +6397,13 @@ ca:
             <strong class="count"> 1 observació </strong>, inclou el treball de <strong class = "count">%{helpers_count} persones </strong> que us han ajudat amb les identificacions 
           other: |
             <strong class="count">%{count} observacions </strong>, inclouen el treball de <strong class="count">%{helpers_count} persones </strong> que us han ajudat amb les identificacions
+        x_projects_html:
+          one: |
+            <strong class="count">%{count} projecte</strong> que no
+            té cap altre responsable o administrador que pugui esdevenir el nou propietari
+          other: |
+            <strong class="count">%{count} projectes</strong> que no
+            tenen cap altre responsable o administrador que pugui esdevenir el nou propietari
         x_identifications_html:
           one: |
             <strong class="count"> la vostra identificació </strong> o la d’una altra persona, pot afectar potencialment la qualitat de les dades d’aquesta observació 

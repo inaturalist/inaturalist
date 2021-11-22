@@ -4,9 +4,10 @@ import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroller";
 import Observation from "./observation";
+import ViewMoreFooter from "./view_more_footer";
 
 const ObservationsFlexGridView = ( {
-  config, observations, hasMore, loadMore, scrollIndex, maxWidth
+  config, observations, hasMore, loadMore, scrollIndex, maxWidth, showViewMoreLink, viewMoreUrl
 } ) => {
   if ( _.isEmpty( observations ) ) { return ( <span /> ); }
   const index = scrollIndex || 30;
@@ -47,6 +48,10 @@ const ObservationsFlexGridView = ( {
           </Col>
         </Row>
       </Grid>
+      <ViewMoreFooter
+          showViewMoreLink={showViewMoreLink}
+          viewMoreUrl={viewMoreUrl}
+      />
     </div>
   );
 };
@@ -57,7 +62,9 @@ ObservationsFlexGridView.propTypes = {
   hasMore: PropTypes.bool,
   loadMore: PropTypes.func,
   scrollIndex: PropTypes.number,
-  observations: PropTypes.array
+  observations: PropTypes.array,
+  showViewMoreLink: PropTypes.bool,
+  viewMoreUrl: PropTypes.string
 };
 
 export default ObservationsFlexGridView;

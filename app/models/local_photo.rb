@@ -88,7 +88,7 @@ class LocalPhoto < Photo
   # so grab metadata twice (extract_metadata is purely additive)
   after_post_process :extract_metadata
 
-  after_initialize :set_license, :set_s3_account
+  after_initialize :set_license
 
   # LocalPhotos with subtypes are former remote photos, and subtype
   # is the former subclass. Those subclasses don't validate :user
@@ -96,7 +96,7 @@ class LocalPhoto < Photo
   validates_attachment_content_type :file, content_type: Photo::MIME_PATTERNS,
     :message => "must be JPG, PNG, or GIF"
 
-  attr_accessor :rotation, :skip_delay, :skip_cloudfront_invalidation, :s3_account
+  attr_accessor :rotation, :skip_delay, :skip_cloudfront_invalidation
 
   BRANDED_DESCRIPTIONS = [
     "OLYMPUS DIGITAL CAMERA",
@@ -153,13 +153,18 @@ class LocalPhoto < Photo
     LocalPhoto.s3_permissions( self.s3_account )
   end
 
-  def set_s3_account
-    self.s3_account = self.in_public_s3_bucket? ? "public" : nil
+  def in_public_s3_bucket?
+    file_prefix ? !! file_prefix.prefix.match( LocalPhoto.s3_bucket( true ) ) :
+      could_be_public
   end
 
-  def in_public_s3_bucket?
-    self["original_url"] ? !! self["original_url"].match( LocalPhoto.s3_bucket( true ) ) :
-      could_be_public
+  def s3_account
+    return @s3_account if instance_variable_defined?( :@s3_account )
+    @s3_account = self.in_public_s3_bucket? ? "public" : nil
+  end
+
+  def s3_account=( account )
+    @s3_account = account
   end
 
   def could_be_public
@@ -175,7 +180,7 @@ class LocalPhoto < Photo
 
   def photo_bucket_should_be_changed?
     # must have a URL
-    return false unless self["original_url"]
+    return false unless file_prefix
     return false unless CONFIG.usingS3
     # the code must be configured to use a public bucket
     return false unless LocalPhoto.odp_s3_bucket_enabled?
@@ -214,11 +219,7 @@ class LocalPhoto < Photo
   def extract_metadata(path = nil)
     return unless file && (path || !file.queued_for_write.blank?)
     metadata = self.metadata.to_h.clone || {}
-    metadata[:dimensions] ||= { }
     begin
-      file.styles.keys.each do |style|
-        metadata[:dimensions][style] = extract_dimensions(style)
-      end
       if ( file_path = ( path || file.queued_for_write[:original].path ) )
         exif_data = ExifMetadata.new( path: file_path, type: file_content_type ).extract
         metadata.merge!( exif_data )
@@ -235,23 +236,20 @@ class LocalPhoto < Photo
       Rails.logger.error "[ERROR #{Time.now}] ExifMetadata failed to extract metadata: #{e}"
     end
     metadata = metadata.force_utf8
+    if dimensions = extract_dimensions( :original )
+      self.width = dimensions[:width]
+      self.height = dimensions[:height]
+    end
     self.metadata = metadata
   end
 
   def set_urls
     return if new_record?
-    styles = %w(original large medium small thumb square)
-    updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
-    # the original_url will be blank when initially saving any file
-    # by URL (cached remote photos). We want them to have placeholder
-    # photos, so use a dummy LocalPhoto for initial photo URLs
-    blank_file = LocalPhoto.new.file
-    updates += styles.map do |s|
-      url = file.queued_for_write[s].blank? ? file.url(s) : blank_file.url(s)
-      url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
-    end
-    updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'" if native_page_url.blank?
-    Photo.where(id: id).update_all(updates)
+    updates = { }
+    updates[:native_page_url] = FakeView.photo_url(self) if native_page_url.blank?
+    updates[:file_extension_id] = FileExtension.id_for_extension( self.parse_extension )
+    updates[:file_prefix_id] = FilePrefix.id_for_prefix( self.parse_url_prefix )
+    Photo.where( id: id ).update_all( updates )
     true
   end
 
@@ -446,54 +444,12 @@ class LocalPhoto < Photo
     self.save
   end
 
-  def processing?
-    square_url.blank? || square_url.include?(LocalPhoto.new.file(:square))
-  end
-
   def extract_dimensions(style)
     if file? && tempfile = file.queued_for_write[style]
       if sizes = FastImage.size(tempfile)
         return { width: sizes[0],
                  height: sizes[1] }
       end
-    end
-  end
-
-  # this method was created for generating dimensions for
-  # all existing images in S3 in mass. It was designed for
-  # performance and not accuracy. It extrapolates the sizes of
-  # all the styles from the original to save on HTTP requests.
-  # Photo.extract_dimensions is the more exact method
-  def extrapolate_dimensions_from_original
-    return unless original_url
-    if original_dimensions = FastImage.size(original_url)
-      sizes = {
-        original: {
-          width: original_dimensions[0],
-          height: original_dimensions[1]
-        }
-      }
-      max_d = original_dimensions.max
-      # extrapolate the scaled dimensions of the other sizes
-      file.styles.each do |key, s|
-        next if key.to_sym == :original
-        if match = s.geometry.match(/([0-9]+)x([0-9]+)([^0-9])?/)
-          style_sizes = {
-            width: match[1].to_i,
-            height: match[2].to_i
-          }
-          modifier = match[3]
-          # the '#' modifier means the resulting image is exactly that size
-          unless modifier == "#"
-            ratio = (max_d < style_sizes[:width]) ?
-              1 : (style_sizes[:width] / max_d.to_f)
-            style_sizes[:width] = (sizes[:original][:width] * ratio).round
-            style_sizes[:height] = (sizes[:original][:height] * ratio).round
-          end
-          sizes[key] = style_sizes
-        end
-      end
-      sizes
     end
   end
 
@@ -536,6 +492,31 @@ class LocalPhoto < Photo
     end
   end
 
+  def self.update_photo_prefix_and_extension_batch( min_id, max_id )
+    start_time = Time.now
+    counter = 0
+    Photo.where("id > ? AND id <= ?", min_id, max_id ).find_in_batches( batch_size: 100 ) do |batch|
+      Photo.transaction do
+        batch.each do |photo|
+          if counter % 1000 == 0
+            puts "#{counter}, ID: #{photo.id}, Time: #{(Time.now - start_time).round(2)}"
+          end
+          counter += 1
+          if photo.metadata
+            photo.width ||= photo.metadata.dig(:dimensions, :original, :width)
+            photo.height ||= photo.metadata.dig(:dimensions, :original, :height)
+          end
+          photo.update_columns(
+            width: photo.width,
+            height: photo.height,
+            file_extension_id: FileExtension.id_for_extension( photo.extension ),
+            file_prefix_id: FilePrefix.id_for_prefix( photo.url_prefix )
+          )
+        end
+      end
+    end
+  end
+
   private
 
   def self.move_to_appropriate_bucket( p )
@@ -555,7 +536,7 @@ class LocalPhoto < Photo
     # an additional check to make sure the photo URLs contain the expected domain.
     # Later there will be a string substitution replacing the source domain with
     # the target domain
-    return unless photo["original_url"].include?( source_domain )
+    return unless photo.file_prefix && photo.file_prefix.prefix.include?( source_domain )
 
     # fetch list of files at the source
     images = LocalPhoto.aws_images_from_bucket( s3_client, source_bucket, photo )
@@ -572,18 +553,7 @@ class LocalPhoto < Photo
 
       # override the photo s3_account so its URLs will point to the new bucket
       photo.s3_account = photo_started_in_public_s3_bucket ? nil : "public"
-
-      # do a string substition to replace the source domain with the target domain.
-      # This is necessary for now because we switched how we determine image extensions
-      # in 2016 (see NOTE near the top of this file) and we cannot accurately recreate all
-      # actual file extensions using Paperclip or the `set_urls` method. Only the *_url
-      # attributes contain the accurate file names. So this is doing the minimal update
-      # to URLs which his just swap out domains
-      styles = %w(original large medium small thumb square)
-      url_updates = Hash[styles.map do |s|
-        ["#{s}_url", photo["#{s}_url"].sub( source_domain, target_domain )]
-      end]
-      photo.update_columns( url_updates )
+      photo.update_column( :file_prefix_id, FilePrefix.id_for_prefix( photo.parse_url_prefix ) )
       photo.reload
 
       # if the photo is being removed as a result of a flag being applied,

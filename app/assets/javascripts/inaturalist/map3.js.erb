@@ -1165,6 +1165,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     "acc",
     "acc_above",
     "acc_below",
+    "acc_below_or_unknown",
     "apply_project_rules_for",
     "border_opacity",
     "cache",
@@ -1386,20 +1387,31 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
         if (o.e.type == 'click') {
           // if a native infoWindow was just opened, don't let another one open
           if( infoWindowOpenTime && new Date( ) - infoWindowOpenTime < 500 ) {
+            // console.log( "[DEBUG] skipping duplicate infowindow" );
             return false;
           }
           // this is ugly but works, until Google maps changes and breaks it.
-          // The main map div contains a div with z-index:0 that sets the cursor.
-          // The third element in that div (with z-index: 3) is the lowest level
-          // element that will capture any mouse events from the user.
-          // The main goal here is to only respond to clicks on the map and only
-          // on the map, and nothing that might be shown over the map, like
-          // another infowindow or other Google Maps, or custom map, UI.
-          // needs to be asynchronous so the selector resolves
+          // The main map div contains a div with z-index:0 that sets the
+          // cursor. A child of that div (generally with z-index: 3) is the
+          // lowest level element that will capture any mouse events from the
+          // user. The main goal here is to only respond to clicks on the map
+          // and only on the map, and nothing that might be shown over the
+          // map, like another infowindow or other Google Maps, or custom
+          // map, UI. needs to be asynchronous so the selector resolves. This
+          // will almost certainly break when Google changes things
+          // (symptom will be map markers that don't respond to clicks). When
+          // that happens, find the element that was clicked and look at its
+          // parents until you find a div that contains the map markers but
+          // not things like infowindows
           var googleMainMapDiv = $(map.div).find("div[style*='cursor'][style*='z-index: 0']");
-          var googleMapInteractionsDiv = $(googleMainMapDiv).children()[2];
-          if( !$.contains( googleMapInteractionsDiv, o.e.target ) &&
-            !$( googleMapInteractionsDiv ).is( o.e.target ) ) { return false; }
+          var googleMapInteractionsDiv = $(googleMainMapDiv).find( "div[style*='z-index: 3']");
+          if(
+            !$.contains( googleMapInteractionsDiv, o.e.target ) &&
+            !$( googleMapInteractionsDiv ).is( o.e.target )
+          ) {
+            // console.log( "[DEBUG] googleMapInteractionsDiv does not contain click target: ", o.e.target );
+            return false;
+          }
           // if a native infoWindow is still open, close it
           if( iNaturalist.Map.infoWindow ) { iNaturalist.Map.infoWindow.close( ); }
           // hide the legend if it is open so the infoWindow has room

@@ -71,30 +71,30 @@ class FlickrPhoto < Photo
     # fp could be an OpenStruct or a FlickRaw::Response
     h = (fp.to_hash || fp.to_h).symbolize_keys
     if h[:url_sq]
-      options[:square_url]   ||= h[:url_sq]
-      options[:thumb_url]    ||= h[:url_t]
-      options[:small_url]    ||= h[:url_s]
-      options[:medium_url]   ||= h[:url_m]
-      options[:large_url]    ||= h[:url_l]
-      options[:original_url] ||= h[:url_o]
+      options[:remote_square_url]   ||= h[:url_sq]
+      options[:remote_thumb_url]    ||= h[:url_t]
+      options[:remote_small_url]    ||= h[:url_s]
+      options[:remote_medium_url]   ||= h[:url_m]
+      options[:remote_large_url]    ||= h[:url_l]
+      options[:remote_original_url] ||= h[:url_o]
     end
     
-    if options[:square_url].blank? && options.delete(:skip_sizes)
-      options[:square_url]   ||= "http://farm#{fp.farm}.staticflickr.com/#{fp.server}/#{fp.id}_#{fp.secret}_s.jpg"
-      options[:thumb_url]    ||= "http://farm#{fp.farm}.staticflickr.com/#{fp.server}/#{fp.id}_#{fp.secret}_t.jpg"
-      options[:small_url]    ||= "http://farm#{fp.farm}.staticflickr.com/#{fp.server}/#{fp.id}_#{fp.secret}_m.jpg"
-    elsif options[:square_url].blank?
+    if options[:remote_square_url].blank? && options.delete(:skip_sizes)
+      options[:remote_square_url]   ||= "http://farm#{fp.farm}.staticflickr.com/#{fp.server}/#{fp.id}_#{fp.secret}_s.jpg"
+      options[:remote_thumb_url]    ||= "http://farm#{fp.farm}.staticflickr.com/#{fp.server}/#{fp.id}_#{fp.secret}_t.jpg"
+      options[:remote_small_url]    ||= "http://farm#{fp.farm}.staticflickr.com/#{fp.server}/#{fp.id}_#{fp.secret}_m.jpg"
+    elsif options[:remote_square_url].blank?
       unless sizes = options.delete(:sizes)
         f = FlickrPhoto.flickraw_for_user(options[:user])
         sizes = FlickrCache.fetch(f, "photos", "getSizes", photo_id: fp.id)
       end
       sizes = sizes.blank? ? {} : sizes.index_by{|s| s.label} rescue {}
-      options[:square_url]   ||= sizes['Square'].source rescue nil
-      options[:thumb_url]    ||= sizes['Thumbnail'].source rescue nil
-      options[:small_url]    ||= sizes['Small'].source rescue nil
-      options[:medium_url]   ||= sizes['Medium'].source rescue nil
-      options[:large_url]    ||= sizes['Large'].source rescue nil
-      options[:original_url] ||= sizes['Original'].source rescue nil
+      options[:remote_square_url]   ||= sizes['Square'].source rescue nil
+      options[:remote_thumb_url]    ||= sizes['Thumbnail'].source rescue nil
+      options[:remote_small_url]    ||= sizes['Small'].source rescue nil
+      options[:remote_medium_url]   ||= sizes['Medium'].source rescue nil
+      options[:remote_large_url]    ||= sizes['Large'].source rescue nil
+      options[:remote_original_url] ||= sizes['Original'].source rescue nil
     end
     
     flickr_photo = new(options)

@@ -50,7 +50,7 @@
           end
           data = photo.attributes.merge(:photo_class => photo.class.name).select do |k,v|
             %w(id user_id native_photo_id small_url square_url medium_url large_url type).include?(k)
-          end.to_hash
+          end.to_hash.merge( small_url: photo.small_url || photo.remote_small_url)
         .col-xs-2.photo{:data => data}
           = check_box_tag input_name, native_photo_id, checked, {:id => input_id, :class => "checkbox"}
           - if synclink_base && (synclink_uri = URI.parse(synclink_base) rescue nil)

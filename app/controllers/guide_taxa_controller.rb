@@ -155,7 +155,7 @@ class GuideTaxaController < ApplicationController
       param = photo_class.to_s.underscore.pluralize
       next if params[param].blank?
       params[param].reject {|i| i.blank?}.uniq.each do |photo_id|
-        if fp = photo_class.find_by_native_photo_id(photo_id)
+        if fp = LocalPhoto.where( subtype: photo_class.name, native_photo_id: photo_id )
           photos << fp 
         elsif photo_class != 'LocalPhoto'
           pp = photo_class.get_api_response(photo_id)

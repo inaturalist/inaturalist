@@ -76,9 +76,12 @@ describe TaxonName, "creation" do
 
   it "should not allow synonyms within a parameterized lexicon" do
     taxon = Taxon.make!
-    _name1 = TaxonName.make!( taxon: taxon, name: "foo", lexicon: TaxonName::LEXICONS[:CHINESE_SIMPLIFIED] )
-    name2 = TaxonName.new( taxon: taxon, name: "Foo",
-      lexicon: TaxonName::LEXICONS[:CHINESE_SIMPLIFIED].upcase )
+    TaxonName.make!( taxon: taxon, name: "foo", lexicon: TaxonName::LEXICONS[:CHINESE_SIMPLIFIED] )
+    name2 = TaxonName.new(
+      taxon: taxon,
+      name: "Foo",
+      lexicon: TaxonName::LEXICONS[:CHINESE_SIMPLIFIED].upcase
+    )
     expect( name2 ).not_to be_valid
   end
 
@@ -92,13 +95,25 @@ describe TaxonName, "creation" do
   end
 
   it "should not be valid with a non-English translation of a lexicon" do
-    tn = TaxonName.make( lexicon: I18n.with_locale( :"zh-CN" ) { I18n.t( "lexicons.finnish" ) }, name: "common" )
+    finnish_in_zh_cn = I18n.with_locale( :"zh-CN" ) { I18n.t( "lexicons.finnish" ) }
+    finnish_in_en = I18n.with_locale( :en ) { I18n.t( "lexicons.finnish" ) }
+    tn = TaxonName.make( lexicon: finnish_in_zh_cn )
     expect( tn ).to_not be_valid
     expect( tn.errors.messages[:lexicon] ).to include(
       I18n.t( "activerecord.errors.models.taxon_name.attributes.lexicon.should_match_english_translation",
-        suggested: I18n.with_locale( :en ) { I18n.t( "lexicons.finnish" ) },
+        suggested: finnish_in_en,
         suggested_locale: I18n.t( "locales.zh-CN" ) )
     )
+  end
+
+  it "should be valid with an English translation of a lexicon when another " \
+    "language has an identical translation with different case" do
+    malayalam_in_fr = I18n.t( "lexicons.malayalam", locale: :fr )
+    malayalam_in_en = I18n.t( "lexicons.malayalam", locale: :en )
+    expect( malayalam_in_fr ).not_to eq malayalam_in_en
+    expect( malayalam_in_fr.downcase ).to eq malayalam_in_en.downcase
+    tn = TaxonName.make( lexicon: malayalam_in_fr )
+    expect( tn ).to be_valid
   end
 
   it "should parameterize and store lexicon" do

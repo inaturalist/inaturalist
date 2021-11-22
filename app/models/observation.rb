@@ -743,7 +743,7 @@ class Observation < ApplicationRecord
       { taxon: { taxon_names: :place_taxon_names } },
       :iconic_taxon,
       { identifications: :stored_preferences },
-      { photos: [ :flags, :user ] },
+      { photos: [ :flags, :user, :file_extension, :file_prefix ] },
       :stored_preferences, :flags, :quality_metrics,
       :votes_for ]
     # why do we need taxon_descriptions when logged in?
@@ -1355,8 +1355,8 @@ class Observation < ApplicationRecord
     end
   end
   
-  def quality_metrics_pass?
-    QualityMetric::METRICS.each do |metric|
+  def quality_metrics_pass?( metrics = QualityMetric::METRICS )
+    metrics.each do |metric|
       return false unless passes_quality_metric?(metric)
     end
     true
@@ -1564,9 +1564,10 @@ class Observation < ApplicationRecord
     obscure_coordinates
     self.latitude, self.longitude = [nil, nil]
   end
-  
+
   def obscure_coordinates
-    return unless ( [geoprivacy, taxon_geoprivacy] & [OBSCURED, PRIVATE] ).size > 0
+    return unless ( [geoprivacy, taxon_geoprivacy] & [OBSCURED, PRIVATE] ).size.positive?
+
     geoprivacy_changed_from_private_to_obscured = latitude_was.blank? &&
       ![geoprivacy, taxon_geoprivacy].include?( PRIVATE ) &&
       [geoprivacy, taxon_geoprivacy].include?( OBSCURED )
@@ -1582,15 +1583,14 @@ class Observation < ApplicationRecord
       self.private_longitude ||= longitude
     end
     # In this situation, the true coordinates didn't really change, so just reset them
-    if (
-      ( latitude == private_latitude || longitude == private_longitude ) &&
-      !( private_latitude_changed? || private_longitude_changed? ) &&
-      !geoprivacy_changed_from_private_to_obscured && latitude_was && longitude_was &&
-      !( latitude.blank? && longitude.blank? && private_latitude.blank? && private_longitude.blank? )
-    )
-      self.latitude, self.longitude = [latitude_was, longitude_was]
+    if ( latitude == private_latitude || longitude == private_longitude ) &&
+        !( private_latitude_changed? || private_longitude_changed? ) &&
+        !geoprivacy_changed_from_private_to_obscured && latitude_was && longitude_was &&
+        !( latitude.blank? && longitude.blank? && private_latitude.blank? && private_longitude.blank? )
+      self.latitude = latitude_was
+      self.longitude = longitude_was
       set_geom_from_latlon
-    elsif !private_latitude.blank? && !private_longitude.blank?  && (
+    elsif !private_latitude.blank? && !private_longitude.blank? && (
         private_latitude_changed? ||
         private_longitude_changed? ||
         geoprivacy_changed_from_private_to_obscured
@@ -1601,7 +1601,6 @@ class Observation < ApplicationRecord
     end
     true
   end
-
 
   def obscure_place_guess
     public_place_guess = Observation.place_guess_from_latlon(
@@ -1638,24 +1637,27 @@ class Observation < ApplicationRecord
     end
     true
   end
-  
+
   def lat_lon_in_place_guess?
     !place_guess.blank? && place_guess !~ /[a-cf-mo-rt-vx-z]/i && !place_guess.scan(COORDINATE_REGEX).blank?
   end
-  
+
   def unobscure_coordinates
     return unless coordinates_obscured? || coordinates_private?
+
     return unless geoprivacy.blank?
-    self.latitude = private_latitude
-    self.longitude = private_longitude
+
+    self.latitude = private_latitude unless latitude_changed?
+    self.longitude = private_longitude unless longitude_changed?
     self.private_latitude = nil
     self.private_longitude = nil
     set_geom_from_latlon
     self.obscuration_changed = true
   end
-  
+
   def iconic_taxon_name
     return nil if taxon_id.blank?
+
     if Taxon::ICONIC_TAXA_BY_ID.blank?
       if taxon.association(:iconic_taxon).loaded?
         taxon.iconic_taxon.try(:name)

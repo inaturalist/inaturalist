@@ -133,8 +133,9 @@ class IdentificationsController < ApplicationController
               include: {
                 taxon: taxon_options,
                 photos: {
-                  only: [:id, :square_url, :thumb_url, :small_url, :medium_url, :large_url],
-                  methods: [:license_code, :attribution]
+                  only: [:id],
+                  methods: [:license_code, :attribution, :square_url,
+                    :thumb_url, :small_url, :medium_url, :large_url]
                 }
               }
             }
