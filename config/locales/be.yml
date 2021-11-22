@@ -3312,9 +3312,12 @@ be:
   yellow: жоўты
   'yes': "Так"
   yes_i_want_to_join: Так, я хачу далучыцца
+  yes_license_my_childs_observations: Так, ліцэнзаваць фатаграфіі, гукі і назіранні майго дзіцяці каб навукоўцы маглі выкарыстоўваць гэтыя дадзеныя (рэкамендавана).
+  yes_license_my_observations_so_scientists_can_use: Так, ліцэнзаваць мае фатаграфіі, гукі і назіранні каб навукоўцы маглі выкарыстоўваць гэтыя дадзеныя (рэкамендавана).
   your_id: Вашае вызначэнне
   your_identification: Вашае вызначэнне
   your_observations: Вашыя назіранні
+  your_recent_projects: Вашыя апошнія праэкты
   views:
     taxa:
       show:
@@ -3362,10 +3365,29 @@ be:
         inaturalist_minor_account_signup: Рэгістрацыя ўліковага запісу iNaturalist для дзіцяці
     welcome:
       index:
+        welcome_message_html: |
+          да %{image}, дзе вы можаце <strong>зрабіць запіс</strong> таго, што вы бачыце ў прыродзе,
+          <strong>сустрэць</strong> іншых аматараў прыроды,
+          ды <strong>даведацца больш</strong> пра жывую прыроду.
+        observations_to_date: 'Назіранні на гэты момант'
+        species_observed: 'Назіраемыя віды'
+        people_signed_up: 'Людзей зарэгістравана'
         how_it_works: Як гэта працуе
         record_your_observations: Запішыце свае назіранні
         share_with_fellow_naturalists: Падзяліцеся з калегамі-натуралістамі
         discuss_your_findings: Абмяркуйце свае находкі
+        contribute_to_science: Рабіце ўнёсак у навуку
+        keep_track: Адсочвайце
+        create_useful_data: Стварайце карысныя дадзеныя
+        connect_with_experts: Будзьце на сувязі з экспертамі якія могуць вызначыць арганізмы, якія вы назіраеце.
+        find_a_project: "Знайдзіце праэкт з мэтай, якая вас цікавіць, або пачніце свой уласны."
+        learn_about_nature: Даведайцеся больш пра Прыроду
+        build_your_knowledge: Развівайце свае веды, размаўляючы з іншымі натуралістамі і дапамагаючы іншым.
+        hold_an_event: Правядзіце мерапрыемства, дзе людзі імкнуцца знайсці як мага больш відаў.
+        works_on_all_your_devices: Працуе на ўсіх вашых прыладах
+        who_uses_site_name: "Хто выкарыстоўвае %{site_name}?"
+        what_are_you_waiting_for: Чаго вы чакаеце?
+        join_today: Далучайцеся зараз
   date:
     abbr_day_names:
       - Нд
