@@ -3943,6 +3943,7 @@ zh-TW:
   site_staff: "%{site_name} 人員"
   site_stats: 網站統計
   site_taxon_page: "%{site_name} 分類群頁面"
+  sites_network_consists_of: "iNaturalist 國際網路包含以下許多組織單位："
   some_agree: 部份同意
   some_observations_are_missing_media_or_identifications: |
     有些觀察紀錄沒有多媒體檔案或鑑定資訊
@@ -4590,7 +4591,10 @@ zh-TW:
   users_favorites: "%{user} 的最愛"
   users_highlights_and_stats_from_year_on_site: "%{user} 的精彩內容與在 %{site} 上來自於 %{year} 的統計狀態"
   users_id: "%{user} 的鑑定"
+  users_identifications: "%{user} 的鑑定"
+  users_journal: "%{user} 的日誌"
   users_latest_observations_on_site: "%{user} 在 %{site} 的最新觀察"
+  users_lists: "%{user} 的名錄"
   users_profile: "%{user}的個人檔案"
   users_projects: "%{user} 的專案"
   users_year_on_site: "%{user} 在 %{site} 上的 %{year} 一年"
@@ -4610,6 +4614,7 @@ zh-TW:
   view_check_list_page: 檢視名錄頁面
   view_contributions: 檢視貢獻
   view_details: 檢視詳細資料
+  view_dynamic_lifelist_: 顯示動態生涯物種名錄
   view_field_options: 檢視欄位選項
   view_flag: 檢視標記
   view_flags: 檢視標記
@@ -5947,6 +5952,15 @@ zh-TW:
           這個專案還未設定任何的觀察需求。專案需要選擇一個或多個分類群(例如：鳥、松柏類)、地點(例：巴西、黃石國家公園)、使用者，還有/或開始顯示觀察紀錄的日期。
       updates_desc: |
         在您的控制面板與每日更新電郵裡接收有關此專案之更新。
+    search:
+      index:
+        no_taxa_options: "您有幾個選項："
+        no_taxa_add_a_flag: 新增旗號標誌至較高階層的分類群
+        no_taxa_add_a_flag_desc: |
+          例：該屬包含一個物種。希望有個志願的策展人有空的話能新增該分類群，並且符合我們分類處理的守則。
+        no_taxa_forum: 聯絡論壇
+        no_taxa_forum_desc_html: |
+          許多志願的策展人會在%{link_start_tag}論壇%{link_end_tag}中追蹤訊息。
     shared:
       blocked:
         youve_been_blocked: 您已被封鎖
@@ -6248,6 +6262,9 @@ zh-TW:
           other: |
             <strong class="count">%{count} 個觀察</strong>，為含有
             <strong class="count">%{helpers_count} 名人們</strong>以鑑定協助您的成果
+        x_projects_html:
+          other: |
+            <strong class="count">%{count} 個專案</strong>沒有其他的管理者可轉換成新擁有者
         x_identifications_html:
           other: |
             您在其他 <strong class="count">%{helpees_count} 個人</strong>的觀察裡的 <strong class="count">%{count} 個鑑定</strong>，似乎有影響到這些觀察的資料品質
