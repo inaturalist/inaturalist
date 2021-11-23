@@ -150,6 +150,11 @@ const StoreContent2021 = ( { isTouchDevice } ) => (
   <Grid fluid={isTouchDevice} className="StoreContent2021">
     <Row>
       <Col xs={12}>
+        <h3>
+          <a name="store" href="#store">
+            <span>{I18n.t( "check_out_the_inat_store" )}</span>
+          </a>
+        </h3>
         <a
           href="https://store.inaturalist.org"
           className="img-link"

@@ -45,7 +45,7 @@ class Translators extends React.Component {
     return (
       <div className="Translators">
         <h3>
-          <a name="growth" href="#translators">
+          <a name="translators" href="#translators">
             <span>{ I18n.t( "views.stats.year.translators_title" ) }</span>
           </a>
         </h3>
