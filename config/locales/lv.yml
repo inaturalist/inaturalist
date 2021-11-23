@@ -2424,6 +2424,7 @@ lv:
   most_observed_species: Visvairāk novēroto sugu
   most_observed_introduced_species: Visvairāk novēroto introducēto sugu
   most_observed_threatened_species: Visvairāk novēroto apdraudēto sugu
+  move_input_children_to_output?: Pārvietot apakšgrupu uz izvadi?
   multiple: vairāki
   multiple_select_option: '-- vairāki --'
   multiple_taxa_for_taxon_change: "Vairāki taksoni reizē (izmantot ievadi samainīšanai vai apvienošanai, un izvadmainīgo sadalīšanai)"
@@ -5071,7 +5072,7 @@ lv:
         date_added_oldest: Pievienošanas datums, no vecākā uz jaunāko
         ancestry: Priekštecība
         show: Rādīt
-        children: Pēcnācēji
+        children: Apakšgrupas
         simplified_tree: Vienkāršots koks
         full_taxonomy: Pilna taksonomija
     messages:
@@ -5555,6 +5556,9 @@ lv:
         stats_generated_datetime: '%{datetime} ievākta statistika'
         store_prompt: |
           Vēlies palepoties ar to, ka esi iNat lietotājs it visur, kur dodies? Iemet aci iNat veikalā!
+        sunburst_desc_html: |
+          Novērotie taksoni ir sakārtoti hierarhiskā secībā un attēloti saulveida diagrammā. Hierarhiskā secība sākas diagrammas vidū – no sadaļas "Dzīvība" līdz sugām ārējās malās. Katras arkas izmērs ir proporcionāls taksona novērojumu skaitam. Krāsas atbilst mūsu ierastajām taksonu krāsām – zaļš augiem, oranžs insektiem un zils lielākai daļai cita veida dzīvnieku. Ja redzi daudz zaļās krāsas, tas nozīmē, ka esi novērojis daudz augu.
+          <strong> Nospied uz kādas no arkām, lai novietotu taksonu vidū un tā apakšgrupas apkārt taksonam.</strong> <strong>Nospied ar peli diagrammas vidū, lai virzītos hierarhiskajā secībā uz augšu.</strong>
         translators_title: Tulkotāji
         translators_desc: |
           Vai zināji, ka iNaturalist pārtulkojuši %{x_people} cilvēki %{x_languages} valodās? Daži no viņiem pat paši nemaz nelieto iNat. Šeit redzami visi tie apbrīnojamie tulkotāji, kas šogad pievienojuši tulkojumus, un viņu pārtulkoto vārdu skaits šajās vietnēs un lietotnēs: %{website_link_tag}tīmekļa vietnē%{link_tag_end}, mūsu
@@ -5591,6 +5595,13 @@ lv:
           "Life Stage=Subimago": Subimago
           "Life Stage=Teneral": Tenerāls īpatnis
         rare_in_place_desc_html: Vismazāk novērotie taksoni, kas ir apdraudēti no <a href="%{url}">%{place}</a>
+    taxon_changes:
+      move_children_desc: |
+        Ievades taksona apakšgrupas, kas ir ģints vai vispārējāka līmeņa, tiks pārvietotas uz izvades sadaļu. Sugas, apakšsugas, šķirnes u.c. tiks samainītas ar tās ekvivalentiem, pievienojot jaunās ģints vai sugas nosaukumu.
+      form:
+        move_children_desc_html: |
+          Atzīmē šo lodziņu, lai pārvietotu ievades taksona apakšgrupas uz izvades sadaļu, lai tur izmantotu samainīšanas un apvienošanas funkciju, kad izmaiņas būs apstiptinātas. Ja izmaiņas tiks veiktas ģints vai zemākā līmenī, tad tiks samainīti visi zemāku pakāpju taksonu nosaukumi. Piemēram, ja samainīsi Canidae dzimtu pret Dogidae dzimtu, tad <i>Canis</i> ģints virstaksons tiks nomainīts no Canidae uz Dogidae. Ja samainīsi <i>Canis</i> pret <i>Dogis</i> ģinti, taksons <i>Canis lupus</i> tiks samainīts pret <i>Dogis lupus</i> un <i>Canis lupus</i> ssp. <i>lupus</i> pret <i>Dogis lupus</i> ssp.
+          <i>lupus</i>. Šādi iespējams radīt visai lielu jucekli, tāpēc lieto šīs funkcijas atbildīgi.
     users:
       edit:
         #Checkbox label for user preference about what to receive in the daily email update
@@ -6041,6 +6052,10 @@ lv:
               #them
               collection_and_umbrella_projects_do_not_allow_direct_submission: |
                 kolekciju projektiem un projektu grupām tiešā veidā nav iespējams pievienot novērojumus
+        quality_metric:
+          attributes:
+            base:
+              no_votable_date: Novērojumam nav pievienots datums
         user_parent:
           attributes:
             email:
