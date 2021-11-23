@@ -94,9 +94,11 @@ const App = ( {
                   site={site && site.id !== DEFAULT_SITE_ID ? site : null}
                 />
               ) }
-              { data && data.taxa && data.taxa.accumulation && (
-                <Compare data={data} year={year} forUser />
-              ) }
+              { data
+                && data.taxa
+                && data.taxa.accumulation
+                && data.taxa.accumulation.length > 2
+                && <Compare data={data} year={year} forUser /> }
               { data.publications && (
                 <Publications data={data.publications} year={year} />
               ) }
@@ -115,7 +117,7 @@ const App = ( {
           </Row>
         </Grid>
         { !user && ( !site || site.id === DEFAULT_SITE_ID ) && (
-          <Donate year={year} data={data} />
+          <Donate year={year} data={data} forDonor={currentUser && currentUser.donor} />
         ) }
         <Grid fluid={isTouchDevice}>
           <Row>
@@ -206,7 +208,15 @@ const App = ( {
 
   return (
     <div id="YearStats">
-      { year >= 2021 && <DonateBanner year={year} user={user} /> }
+      {
+        year >= 2021 && (
+          <DonateBanner
+            year={year}
+            forDonor={currentUser && currentUser.donor}
+            forUser={!!user}
+          />
+        )
+      }
       <div className={`banner ${user ? "for-user" : ""}`}>
         <div className="montage">
           <div className="photos">

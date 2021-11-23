@@ -175,12 +175,16 @@ const Observations = ( {
         /> )
         : ( <GlobalMap year={year} site={site} /> )
       }
-      <h3>
-        <a name="popular" href="#popular">
-          <span>{ I18n.t( "most_comments_and_faves" ) }</span>
-        </a>
-      </h3>
-      { popular }
+      { popular && (
+        <div>
+          <h3>
+            <a name="popular" href="#popular">
+              <span>{ I18n.t( "most_comments_and_faves" ) }</span>
+            </a>
+          </h3>
+          { popular }
+        </div>
+      ) }
       { data.streaks && data.streaks.length > 0 && (
         <Streaks
           year={year}

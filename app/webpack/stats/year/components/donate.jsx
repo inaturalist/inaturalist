@@ -84,7 +84,7 @@ StoreContent.propTypes = {
   isTouchDevice: PropTypes.bool
 };
 
-const DonateContent2021 = ( { isTouchDevice, year } ) => (
+const DonateContent2021 = ( { forDonor, isTouchDevice, year } ) => (
   <div className="DonateContent2021">
     <Grid fluid={isTouchDevice}>
       <Row>
@@ -114,7 +114,7 @@ const DonateContent2021 = ( { isTouchDevice, year } ) => (
       <span
         className="btn btn-default btn-inat btn-donate"
       >
-        { I18n.t( "become_a_donor_today_caps" ) }
+        { forDonor ? I18n.t( "donate_again_today_caps" ) : I18n.t( "become_a_donor_today_caps" ) }
       </span>
     </a>
     <Grid fluid={isTouchDevice}>
@@ -133,6 +133,7 @@ const DonateContent2021 = ( { isTouchDevice, year } ) => (
 );
 
 DonateContent2021.propTypes = {
+  forDonor: PropTypes.bool,
   isTouchDevice: PropTypes.bool,
   year: PropTypes.number
 };
@@ -160,7 +161,7 @@ StoreContent2021.propTypes = {
   isTouchDevice: PropTypes.bool
 };
 
-const Donate = ( { year, data } ) => {
+const Donate = ( { forDonor, year, data } ) => {
   let storeContent;
   let donateContent;
   // https://gist.github.com/59naga/ed6714519284d36792ba
@@ -169,7 +170,7 @@ const Donate = ( { year, data } ) => {
   ) !== null;
   if ( year >= 2021 ) {
     storeContent = <StoreContent2021 isTouchDevice={isTouchDevice} />;
-    donateContent = <DonateContent2021 year={year} isTouchDevice={isTouchDevice} />;
+    donateContent = <DonateContent2021 forDonor={forDonor} year={year} isTouchDevice={isTouchDevice} />;
   } else {
     storeContent = <StoreContent isTouchDevice={isTouchDevice} />;
     donateContent = <DonateContent year={year} data={data} isTouchDevice={isTouchDevice} />;
@@ -184,6 +185,7 @@ const Donate = ( { year, data } ) => {
 };
 
 Donate.propTypes = {
+  forDonor: PropTypes.bool,
   year: PropTypes.number,
   data: PropTypes.object
 };

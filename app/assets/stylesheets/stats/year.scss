@@ -1449,6 +1449,12 @@ $ribbon-midfold-width: 40px;
     strong {
       letter-spacing: 1px;
     }
+
+    &:hover,
+    &:active,
+    &:visited {
+      color: white;
+    }
   }
 
   @media (max-width: 500px) {
@@ -1474,7 +1480,9 @@ $ribbon-midfold-width: 40px;
       padding-left: 20px;
       padding-right: 20px;
 
-      &:hover {
+      &:hover,
+      &:active,
+      &:visited {
         background-color: hsl(0, 0, 99%);
         border-color: hsl(0, 0, 99%);
         color: $inat-green;
