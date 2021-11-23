@@ -1451,7 +1451,7 @@ $ribbon-midfold-width: 40px;
     }
 
     &:hover,
-    &:active,
+    &:focus,
     &:visited {
       color: white;
     }
@@ -1479,9 +1479,11 @@ $ribbon-midfold-width: 40px;
       letter-spacing: 1px;
       padding-left: 20px;
       padding-right: 20px;
+      white-space: normal;
+      word-break: break-word;
 
       &:hover,
-      &:active,
+      &:focus,
       &:visited {
         background-color: hsl(0, 0, 99%);
         border-color: hsl(0, 0, 99%);
