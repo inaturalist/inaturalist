@@ -97,7 +97,10 @@ class Translators extends React.Component {
             <tr>
               <th>{ I18n.t( "name" ) }</th>
               { ["website", "mobile", "seek", "total"].map( a => (
-                <th className="number" key={`translators-header-${a}`}>
+                <th
+                  className={`number ${a === "total" ? "" : "hidden-xs hidden-sm"}`}
+                  key={`translators-header-${a}`}
+                >
                   <button
                     type="button"
                     onClick={( ) => this.setState( {
@@ -129,7 +132,7 @@ class Translators extends React.Component {
                     { d.name || d.username}
                   </a>
                 </td>
-                <td className="number">
+                <td className="number hidden-xs hidden-sm">
                   <div
                     className="bar"
                     style={{ width: `${100 * scale( d.words_web || 0 )}%` }}
@@ -137,7 +140,7 @@ class Translators extends React.Component {
                     { I18n.toNumber( d.words_web || 0, { precision: 0 } ) }
                   </div>
                 </td>
-                <td className="number">
+                <td className="number hidden-xs hidden-sm">
                   <div
                     className="bar"
                     style={{ width: `${100 * scale( d.words_mobile || 0 )}%` }}
@@ -145,7 +148,7 @@ class Translators extends React.Component {
                     { I18n.toNumber( d.words_mobile || 0, { precision: 0 } ) }
                   </div>
                 </td>
-                <td className="number">
+                <td className="number hidden-xs hidden-sm">
                   <div
                     className="bar"
                     style={{ width: `${100 * scale( d.words_seek || 0 )}%` }}

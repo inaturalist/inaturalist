@@ -67,9 +67,11 @@ class YearStatistic < ApplicationRecord
     if options[:site].blank?
       json[:publications] = publications( year, options )
       json[:growth][:countries] = observation_counts_by_country( year, options )
-      json[:budget] = {
-        donors: donors( year, options )
-      }
+      if year < 2021
+        json[:budget] = {
+          donors: donors( year, options )
+        }
+      end
     end
     year_statistic.update_attributes( data: json )
     year_statistic.delay( priority: USER_PRIORITY ).generate_shareable_image

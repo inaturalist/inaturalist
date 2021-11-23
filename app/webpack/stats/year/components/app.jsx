@@ -34,6 +34,10 @@ const App = ( {
   let body;
   const inatUser = user ? new inatjs.User( user ) : null;
   const defaultSite = _.find( sites, s => s.id === DEFAULT_SITE_ID );
+  // https://gist.github.com/59naga/ed6714519284d36792ba
+  const isTouchDevice = navigator.userAgent.match(
+    /(Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone)/i
+  ) !== null;
   if ( !year ) {
     body = (
       <p className="alert alert-warning">
@@ -57,117 +61,127 @@ const App = ( {
   } else {
     body = (
       <div>
-        <center>
-          <a href="#sharing" className="btn btn-default btn-share btn-bordered">
-            { I18n.t( "share" ) }
-            { " " }
-            <i className="fa fa-share-square-o" />
-          </a>
-        </center>
-        <Summary data={data} user={user} year={year} site={site} currentUser={currentUser} />
-        <Observations data={data.observations} user={user} year={year} site={site} />
-        <Identifications
-          data={data.identifications}
-          user={user}
-          currentUser={currentUser}
-          year={year}
-        />
-        <Taxa
-          data={data.taxa}
-          rootTaxonID={rootTaxonID}
-          year={year}
-          user={user}
-          site={site}
-          currentUser={currentUser}
-        />
-        { data && data.growth && (
-          <Growth
-            data={Object.assign( {}, data.growth, { taxa: data.taxa.accumulation } )}
-            year={year}
-            site={site && site.id !== DEFAULT_SITE_ID ? site : null}
-          />
-        ) }
-        { data && data.taxa && data.taxa.accumulation && (
-          <Compare data={data} year={year} forUser />
-        ) }
-        { data.publications && (
-          <Publications data={data.publications} year={year} />
-        ) }
-        {
-          data.translators
-          && ( !site || site.id === DEFAULT_SITE_ID || !_.isEmpty( site.locale ) )
-          && (
-            <Translators
-              data={data.translators}
-              siteName={site && site.id !== DEFAULT_SITE_ID ? site.name : null}
-            />
-          )
-        }
-        { !user && <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} /> }
+        <Grid fluid={isTouchDevice}>
+          <Row>
+            <Col xs={12}>
+              <center>
+                <a href="#sharing" className="btn btn-default btn-share btn-bordered">
+                  { I18n.t( "share" ) }
+                  { " " }
+                  <i className="fa fa-share-square-o" />
+                </a>
+              </center>
+              <Summary data={data} user={user} year={year} site={site} currentUser={currentUser} />
+              <Observations data={data.observations} user={user} year={year} site={site} />
+              <Identifications
+                data={data.identifications}
+                user={user}
+                currentUser={currentUser}
+                year={year}
+              />
+              <Taxa
+                data={data.taxa}
+                rootTaxonID={rootTaxonID}
+                year={year}
+                user={user}
+                site={site}
+                currentUser={currentUser}
+              />
+              { data && data.growth && (
+                <Growth
+                  data={Object.assign( {}, data.growth, { taxa: data.taxa.accumulation } )}
+                  year={year}
+                  site={site && site.id !== DEFAULT_SITE_ID ? site : null}
+                />
+              ) }
+              { data && data.taxa && data.taxa.accumulation && (
+                <Compare data={data} year={year} forUser />
+              ) }
+              { data.publications && (
+                <Publications data={data.publications} year={year} />
+              ) }
+              {
+                data.translators
+                && ( !site || site.id === DEFAULT_SITE_ID || !_.isEmpty( site.locale ) )
+                && (
+                  <Translators
+                    data={data.translators}
+                    siteName={site && site.id !== DEFAULT_SITE_ID ? site.name : null}
+                  />
+                )
+              }
+              { !user && <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} /> }
+            </Col>
+          </Row>
+        </Grid>
         { !user && ( !site || site.id === DEFAULT_SITE_ID ) && (
-          <div>
-            <Donate year={year} data={data} />
-          </div>
+          <Donate year={year} data={data} />
         ) }
-        { updatedAt && (
-          <p className="updated-at text-center text-muted">
-            { I18n.t( "views.stats.year.stats_generated_datetime", {
-              datetime: I18n.localize( "time.formats.long", updatedAt )
-            } ) }
-          </p>
-        ) }
-        { user && currentUser && user.id === currentUser.id ? (
-          <GenerateStatsButton user={user} year={year} text={I18n.t( "regenerate_stats" )} />
-        ) : null }
-        <div id="sharing">
-          <h2><a name="sharing" href="#sharing"><span>{ I18n.t( "share" ) }</span></a></h2>
-          <center>
-            <div
-              className="fb-share-button"
-              data-href={window.location.toString( ).replace( /#.+/, "" )}
-              data-layout="button"
-              data-size="large"
-              data-mobile-iframe="true"
-            >
-              <a
-                className="btn btn-primary btn-inat facebook-share-button"
-                target="_blank"
-                rel="noopener noreferrer"
-                href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.toString( ).replace( /#.+/, "" )}&amp;src=sdkpreparse`}
-              >
-                { /* eslint-disable-next-line no-undef */ }
-                <img src={FB_LOGO_URL} alt={I18n.t( "facebook" )} />
-                { I18n.t( "facebook" ) }
-              </a>
-            </div>
-            <a
-              className="btn btn-primary btn-inat twitter-share-button"
-              href={`https://twitter.com/intent/tweet?text=Check+these+${year}+${site.site_name_short || site.name}+stats!&url=${window.location.toString( ).replace( /#.+/, "" )}`}
-              data-size="large"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fa fa-twitter" />
-              { I18n.t( "twitter" ) }
-            </a>
-            { /* eslint-disable-next-line no-undef */ }
-            { SHAREABLE_IMAGE_URL && (
-              <a
-                className="btn btn-bordered"
-                href={
-                  /* eslint-disable-next-line no-undef */
-                  SHAREABLE_IMAGE_URL
-                }
-                download
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fa fa-download" />
-                { I18n.t( "download" ) }
-              </a>
-            ) }
-          </center>
-        </div>
+        <Grid fluid={isTouchDevice}>
+          <Row>
+            <Col xs={12}>
+              { updatedAt && (
+                <p className="updated-at text-center text-muted">
+                  { I18n.t( "views.stats.year.stats_generated_datetime", {
+                    datetime: I18n.localize( "time.formats.long", updatedAt )
+                  } ) }
+                </p>
+              ) }
+              { user && currentUser && user.id === currentUser.id ? (
+                <GenerateStatsButton user={user} year={year} text={I18n.t( "regenerate_stats" )} />
+              ) : null }
+              <div id="sharing">
+                <h2><a name="sharing" href="#sharing"><span>{ I18n.t( "share" ) }</span></a></h2>
+                <center>
+                  <div
+                    className="fb-share-button"
+                    data-href={window.location.toString( ).replace( /#.+/, "" )}
+                    data-layout="button"
+                    data-size="large"
+                    data-mobile-iframe="true"
+                  >
+                    <a
+                      className="btn btn-primary btn-inat facebook-share-button"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.toString( ).replace( /#.+/, "" )}&amp;src=sdkpreparse`}
+                    >
+                      { /* eslint-disable-next-line no-undef */ }
+                      <img src={FB_LOGO_URL} alt={I18n.t( "facebook" )} />
+                      { I18n.t( "facebook" ) }
+                    </a>
+                  </div>
+                  <a
+                    className="btn btn-primary btn-inat twitter-share-button"
+                    href={`https://twitter.com/intent/tweet?text=Check+these+${year}+${site.site_name_short || site.name}+stats!&url=${window.location.toString( ).replace( /#.+/, "" )}`}
+                    data-size="large"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i className="fa fa-twitter" />
+                    { I18n.t( "twitter" ) }
+                  </a>
+                  { /* eslint-disable-next-line no-undef */ }
+                  { SHAREABLE_IMAGE_URL && (
+                    <a
+                      className="btn btn-bordered"
+                      href={
+                        /* eslint-disable-next-line no-undef */
+                        SHAREABLE_IMAGE_URL
+                      }
+                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="fa fa-download" />
+                      { I18n.t( "download" ) }
+                    </a>
+                  ) }
+                </center>
+              </div>
+            </Col>
+          </Row>
+        </Grid>
       </div>
     );
   }
@@ -189,10 +203,6 @@ const App = ( {
       montageObservations = montageObservations.concat( montageObservations );
     }
   }
-  // https://gist.github.com/59naga/ed6714519284d36792ba
-  const isTouchDevice = navigator.userAgent.match(
-    /(Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone)/i
-  ) !== null;
 
   return (
     <div id="YearStats">
@@ -259,9 +269,11 @@ const App = ( {
             </h1>
           </Col>
         </Row>
+      </Grid>
+      { body }
+      <Grid fluid={isTouchDevice}>
         <Row>
           <Col xs={12}>
-            { body }
             <div id="view-stats-buttons">
               { ( !currentUser || !user || ( user.id !== currentUser.id ) ) && (
                 <div>
