@@ -171,7 +171,8 @@
           prefers_captive_obs_maps: <%= current_user.prefers_captive_obs_maps %>,
           preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>",
           prefers_not_nearby_suggestions: <%= !!session[:prefers_not_nearby_suggestions] %>,
-          testGroups: <%= current_user.test_groups_array.to_json.html_safe %>
+          testGroups: <%= current_user.test_groups_array.to_json.html_safe %>,
+          donor: <%= !!current_user.donorbox_donor_id %>
         };
       <% end -%>
       var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;
