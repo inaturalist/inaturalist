@@ -84,53 +84,61 @@ StoreContent.propTypes = {
   isTouchDevice: PropTypes.bool
 };
 
-const DonateContent2021 = ( { forDonor, isTouchDevice, year } ) => (
-  <div className="DonateContent2021">
-    <Grid fluid={isTouchDevice}>
-      <Row>
-        <Col xs={12}>
-          <h3>
-            <a name="donate" href="#donate">
-              <span>{I18n.t( "yir_donate_inaturalist_needs_your_support" )}</span>
-            </a>
-          </h3>
-          <div className="flex-row">
-            <div className="donate-image" />
-            <div>
-              <ul>
-                <li><p>{ I18n.t( "yir_millions_of_people_used_inaturalist" ) }</p></li>
-                <li><p>{ I18n.t( "yir_generating_and_sharing" ) }</p></li>
-                <li><p>{ I18n.t( "yir_your_gift_sustains" ) }</p></li>
-              </ul>
+const DonateContent2021 = ( { forDonor, isTouchDevice, year } ) => {
+  let utmTerm = "become-a-donor-today";
+  let btnText = I18n.t( "become_a_donor_today_caps" );
+  if ( forDonor ) {
+    utmTerm = "donate-again-today";
+    btnText = I18n.t( "donate_again_today_caps" );
+  }
+  return (
+    <div className="DonateContent2021">
+      <Grid fluid={isTouchDevice}>
+        <Row>
+          <Col xs={12}>
+            <h3>
+              <a name="donate" href="#donate">
+                <span>{I18n.t( "yir_donate_inaturalist_needs_your_support" )}</span>
+              </a>
+            </h3>
+            <div className="flex-row">
+              <div className="donate-image" />
+              <div>
+                <ul>
+                  <li><p>{ I18n.t( "yir_millions_of_people_used_inaturalist" ) }</p></li>
+                  <li><p>{ I18n.t( "yir_generating_and_sharing" ) }</p></li>
+                  <li><p>{ I18n.t( "yir_your_gift_sustains" ) }</p></li>
+                </ul>
+              </div>
             </div>
-          </div>
-        </Col>
-      </Row>
-    </Grid>
-    <a
-      className="bar"
-      href={`/donate?utm_campaign=${year}-year-in-review&utm_medium=web&utm_content=banner-global-bottom&utm_term=become-a-donor-today`}
-    >
-      <span
-        className="btn btn-default btn-inat btn-donate"
+          </Col>
+        </Row>
+      </Grid>
+      <a
+        className="bar"
+        href={`/donate?utm_campaign=${year}-year-in-review&utm_medium=web&utm_content=banner-global-bottom&utm_term=${utmTerm}`}
       >
-        { forDonor ? I18n.t( "donate_again_today_caps" ) : I18n.t( "become_a_donor_today_caps" ) }
-      </span>
-    </a>
-    <Grid fluid={isTouchDevice}>
-      <Row>
-        <Col xs={12}>
-          <h3>
-            <a name="thanks" href="#thanks">
-              <span>{I18n.t( "views.stats.year.donate_title" )}</span>
-            </a>
-          </h3>
-          <p>{ I18n.t( "yir_thank_your_for_being_generous" ) }</p>
-        </Col>
-      </Row>
-    </Grid>
-  </div>
-);
+        <span
+          className="btn btn-default btn-inat btn-donate"
+        >
+          { btnText }
+        </span>
+      </a>
+      <Grid fluid={isTouchDevice}>
+        <Row>
+          <Col xs={12}>
+            <h3>
+              <a name="thanks" href="#thanks">
+                <span>{I18n.t( "views.stats.year.donate_title" )}</span>
+              </a>
+            </h3>
+            <p>{ I18n.t( "yir_thank_your_for_being_generous" ) }</p>
+          </Col>
+        </Row>
+      </Grid>
+    </div>
+  );
+}
 
 DonateContent2021.propTypes = {
   forDonor: PropTypes.bool,
