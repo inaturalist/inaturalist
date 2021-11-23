@@ -209,7 +209,7 @@ const App = ( {
   return (
     <div id="YearStats">
       {
-        year >= 2021 && (
+        year >= 2021 && SITE.id === DEFAULT_SITE_ID && (
           <DonateBanner
             year={year}
             forDonor={currentUser && currentUser.donor}
