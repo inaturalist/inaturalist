@@ -2726,6 +2726,8 @@ zh-TW:
   observation_brief_taxon_from_place_on_day_at_time_by_user: "由 %{user} 於 %{day} %{time} 在 %{place} 所記錄的 %{taxon}"
   #%{month} will be filled in the name of the month
   observation_brief_taxon_from_place_in_month_year: "%{year}年%{month} 月在 %{place} 所記錄的 %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "由 %{user} 於%{year} %{month} 在 %{place} 所記錄的 %{taxon}"
   observations_by_category: "依分類區分觀察"
   observations_by_app: 依應用程式區分觀察
   observations_by_rank: 依級別區分觀察
@@ -3998,10 +4000,25 @@ zh-TW:
   site_staff: "%{site_name} 人員"
   site_stats: 網站統計
   site_taxon_page: "%{site_name} 分類群頁面"
+  sites_affiliation_about_desc_html: |
+    如果您的組織有興趣加入iNaturalist 國際網路，您可以在%{start_tag_join}此連結%{end_tag_join}詳閱更多細節。
+  sites_affiliation_examples_canada_cdc_html: |
+    %{start_tag_inat_canada}iNaturalist 加拿大%{end_tag_inat_canada}使從 iNaturalist 中收集的資料納入由保育資料中心 (Conservation Data Centers; CDCs)管理的系統。這些系統是用來評估受脅物種的瀕危狀態(每年兩次)，並判定受脅和瀕危物種的關鍵棲地。評估結果顯示，此系統已能找出並降低受脅物種的路殺熱點；規劃並保護關鍵生物多樣性區域(Key Biodiversity Areas)；還有重新確認近幾十年來沒有被報導過的物種出現紀錄。
+  sites_affiliation_examples_ecuardor_bndb_html: |
+    %{start_tag_ecuador}iNaturalist 厄瓜多%{end_tag_ecuador}的資料將匯入到厄瓜多國家生物多樣性資料庫(National Database of Biodiversity of Ecuador) – BNDB – 一個來自科學研究和公民科學紀錄的大型資料庫。目的是為了整合知識與資料，以協助強化對於厄瓜多動植物相的環境理解。
+  sites_affiliation_examples_mexico_nbis_html: |
+    墨西哥的%{start_tag_naturalista}Naturalista%{end_tag_naturalista}
+    觀察紀錄和從 eBird 擷取的資料會匯入國家生物多樣性資訊系統(在 CONABIO，國家生物多樣性使用及知識委員會)。大眾可在%{start_tag_enciclovida} Enciclovida%{end_tag_enciclovida}中找到科學和公民科學的紀錄。
   sites_affiliation_examples_portugal_atlas_html: |
     葡萄牙的 iNaturalist 網路成員 %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} 共享葡萄牙候鳥地圖、哺乳類動物地圖的資料，以及數篇葡萄牙的科學研究論文。
   sites_affiliation_more_automatically_hidden_coordinates: |
     自動隱藏座標 (依據「受脅分類群的地理資訊隱私權」的遮蔽或是私有座標）
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    《愛自然》會自動隱藏某些物種的座標來保護它們免除干擾、採集或狩獵。
+    如果該觀察紀錄座標被自動隱藏以保護物種的話，
+    《愛自然》會和國際網路成員分享在其國家中所有觀察紀錄之真實座標。
+  sites_affiliation_more_email_addresses: |
+    與國際網路成員共享的電子郵件位址僅會使用於跟本站相關之聯絡目的。
   sites_affiliation_more_twice_per_year: |
     《愛自然》和所屬國際網路的成員每年有兩次會共享附屬帳號的電子郵件和模糊化的座標(即：遮蔽或私有的座標)，以達到促進應用 iNaturalist 資料在各自國家的研究、保育和經營管理上。
     兩種隱藏座標的方式用不同的方式來共享，如下描述。
@@ -4019,8 +4036,25 @@ zh-TW:
     為了促進各領域的研究和保育工作，網路成員可以共享來自愛自然的資料。 他們有責任評估資料請求的有效性、適當性及其潛在結果； 以書面形式表示有責任確保此類資料的安全性，並且不以任何方式公開披露，或超出其原始預期目的共享或使用它； 記錄所有共享申請以及相關結果、成果或預期用途； 並每年向愛自然提出使用報告。
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
     %{start_tag_network}iNaturalist 國際網路%{end_tag_network}是連結至%{start_tag_global}愛自然全球社群%{end_tag_global}的在地化網站。
+  sites_affiliation_overview_when_you_affiliate: |
+    當您是某個 iNaturalist 國際網路的成員時，您的 email、遮蔽與私有的觀察記錄座標將會和所屬網路的成員(註：應為管理者)分享。這會讓您的觀察紀錄對當地保育工作更有價值。
+    如果您居住或常來往該國際網路成員之區域的話，我們鼓勵您選擇加入該區域作為您的隸屬來促進資料的共享。
+  sites_affiliation_overview_you_can_continue_html: |
+    您還是可以繼續透過 iNaturalist.org 網址來登入，或是透過您特定所屬國際網路的網站。
+    不論您隸屬於哪個單位，您所有的資料都會在相同的位置，而您將能繼續與更廣泛的愛自然社群互動。
+    每個愛自然的使用者帳號都只能隸屬於一個國際網路成員。
+    您可以在您的%{start_tag_settings}帳號設定%{end_tag_settings}中審閱或更動您的隸屬網站。
   sites_affiliation_title: 更多關於國際網路所屬成員的內容
+  sites_network_cas_and_nat_geo_html: |
+    %{start_tag_cas}加州科學院(California Academy of Sciences)%{end_tag_cas}和
+    %{start_tag_nat_geo}國家地理學會(National Geographic Society)%{end_tag_nat_geo}
+    和這些個別地理區域的組織有正式的協議來支援使用《愛自然》平台。
+    <strong>如果您的組織對於加入 iNaturalist 國際網路有興趣的話，
+    您可以在%{start_tag_join}此連結%{end_tag_join}中找到更多相關細節。</strong>
   sites_network_consists_of: "iNaturalist 國際網路包含以下許多組織單位："
+  sites_network_inaturalist_network_collection: |
+    《愛自然國際網路》是在地化網站的集合，這些網站全都連結到全球的《愛自然》社群。
+    網站入口由在地的組織機構所支援，以推廣當地使用並促進《愛自然》上的資料使用以裨益本土生物多樣性。在其所屬的地理區域範圍內，他們能存取因保護受脅物種而自動遮蔽之真實座標。
   sites_network_your_username: |
     您的使用者名稱與密碼適用於所有的《愛自然》 網路。如果您選擇加入某個網路分站，運作該站點的當地機構也可以存取您的電子郵件位址（僅和您溝通網站上的活動），以及獲得您的觀察紀錄之真實座標，無論該筆觀察紀錄是選擇公開、遮蔽或是私有座標。
   some_agree: 部份同意
@@ -4256,6 +4290,9 @@ zh-TW:
   taxon_change_must_be_committed_to_update_records: 必須提交物種分類更改以更新紀錄
   taxon_change_title_taxon_drop: 分類群去除 %{id}
   taxon_change_title_taxon_merge: 分類群合併 %{id}
+  taxon_change_title_taxon_split: 分類群切割 %{id}
+  taxon_change_title_taxon_stage: 分類階段 %{id}
+  taxon_change_title_taxon_swap: 分類對換 %{id}
   taxon_deleted: 物種分類已刪除。
   taxon_doesnt_have_a_range: 物種分類沒有包含範圍
   taxon_drop: 物種分類去除
@@ -4374,6 +4411,8 @@ zh-TW:
   the_identotron_is_a_tool_to: |
     Identotron 是用來協助您在 %{site_name} 之物種名錄資料來鑑定觀察的工具。給定一個更高階層的分類群與地點（例如：印度的哺乳類動物），這將會搜尋 %{site_name} 的名錄資料和該地相符的分類群  ，這就好比像是一個包含整個全球的動態野外圖鑑。雖然大多數的名錄都在持續建立中，但只要有一個完整的名錄，即：列出在某地點的<em>所有</em>物種分類群的代表，Identotron 就會跳出通知。
   the_name_of_the_taxon_including_space: 物種分類的名稱，包含物種和次物種的空間。
+  the_name_of_the_taxon_dashes: 在該分類群的學名中，空格以破折號取代。
+  the_name_of_the_taxon_underscores: 在該分類群的學名中，空格以底線取代。
   the_observation_was_already_added_to_that_project: 觀察已準備添加至專案。
   the_people_of_inat: "%{site_name} 的成員"
   the_species_listed_below_were_not_found_in_the_site_database: |
@@ -4966,6 +5005,8 @@ zh-TW:
   you_need_to_select_some_observations_first: 首先您需要選擇一些觀察。
   you_retain_full_copyright: "除了由我們的服務條款授予給 %{site_name} 的這些權限外，您保留了您內容的完整版權。"
   you_retain_full_copyright_over_your_content: "除了由我們的使用條款授予給 %{site_name} 的這些權限外，您保留了您內容的完整版權。"
+  you_should_delete_this_taxon_change: |
+    您也許應該刪除此分類群更改，或是至少與做出此更改的人來找出解決方案。
   you_sure_delete_asset?: 您確定要刪除此可用物件？
   you_sure_delete_check_list: "您確定您要刪除此名錄？有些人可能已經投入大量心血在上面..."
   you_sure_delete_comment?: 您確定要刪除此評論？
