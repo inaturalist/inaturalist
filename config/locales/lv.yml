@@ -730,12 +730,15 @@ lv:
   back_to_taxon: "Atvērt vēlreiz %{defaulttaxon}"
   back_to_taxon_changes: "Atpakaļ pie taksonu izmaiņu sadaļas"
   back_to_taxon_framework_for_x: "Atpakaļ pie %{taxon_name} taksona iedalījuma"
+  back_to_users_calendar: "Atpakaļ uz %{user} kalendāru"
+  back_to_users_lists: "Atgriezties %{user} sarakstā"
   back_to_viewing: "Atpakaļ uz <i>%{taxon}</i> lapu"
   back_to_x: "Atpakaļ uz %{noun}"
   back_to_x_assessment: "Atpakaļ pie %{project} projekta novērtējumiem"
   back_to_x_history: "Atpakaļ uz %{x} vēsturi"
   back_to_x_journal: "Atpakaļ uz lietotāja %{user} žurnālu"
   back_to_x_blog: "Atpakaļ uz lietotāja %{x} emuāru"
+  back_to_your_calendar: Atpakaļ uz manu kalendāru
   back_to_your_dashboard: Atpakaļ uz informācijas paneli
   back_to_your_lists: Atpakaļ pie taviem sarakstiem
   back_to_your_journal: Atpakaļ uz tavu žurnālu
@@ -770,7 +773,7 @@ lv:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: treknraksts
-  bounding_box: Nodzēst atrašanās vietu
+  bounding_box: Rakstzīmju lauks
   breadcrumbs: Adreses josla
   #This is a description of the "head" property of Custom Project Fields, i.e.
   #the customizable content that will replace top section of the project detail
@@ -804,6 +807,7 @@ lv:
   card: Karte
   casual: Hobija līm.
   casual_: Hobija līm.
+  casual_tooltip_html: '"Hobija līmeņa" novērojumi neatbilst "Nepieciešama ID" vai "Pētniecības" līmeņa prasībām, jo tiem nav mediju, atrašanās vietas, datuma u.t.m.l. <a href="https://www.inaturalist.org/pages/help#quality">Vairāk informācijas par novērojumu kvalitātes līmeņiem</a>'
   categories: Kategorijas
   cc_0_description: "Ar šo licenci tavs darbs būs pieejams publikai – tā lai citi to varētu kopēt, labot un izplatīt, tai skaitā arī komerciāliem nolūkiem, nejautājot tavu piekrišanu un nenorādot tavus nopelnus. Šai no visām pieejamajām licencēm ir vismazāk ierobežojumu. Tā paredzēta pēc iespējas atvieglotākai informācijas izplatīšanai."
   cc_0_name: Bez autortiesībām (CC0)
@@ -1548,6 +1552,8 @@ lv:
   establishment_means: Izplatības skaidrojums
   establishment_means_describes_how: |
     Izplatības skaidrojums apraksta to, kā taksons ir izplatījies noteiktā apkārtnē. Skatīt DarwinCore <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">, lai noskaidrotu vairāk par izmantoto terminoloģiju</a>.
+  establishment_means_descriptions:
+    introduced: nonāca reģionā cilvēku darbības rezultātā
   event_in_progress: Pasākums ir procesā
   event_stats: Informācija par pasākumu
   event_url: Pasākuma URL
@@ -1663,6 +1669,13 @@ lv:
   flag_for_check_list_title_html: |
     Pievienot kontrollapas karodziņu: %{title}
   flag_for_comment_id_html: Pievienot karodziņu<a href="%{url}">komentāram %{id}</a>
+  flag_for_comment_id_deleted: Pievienot karodziņu komentāram %{id} (dzēsts)
+  flag_for_curation: Pievienot pārziņa karodziņu
+  flag_for_guide_title_html: |
+    Pievienot karodziņu padomam: %{title}
+  flag_for_identification_id_html: Pievienot karodziņu <a href="%{url}">identifikācijai%{id}</a>
+  flag_for_life_list_title_html: |
+    Pievienot sugu saraksta karodziņu: %{title}
   flag_for_list_title_html: |
     Pievienot saraksta karodziņu: %{title}
   flag_for_message_id_html: Pievienot karodziņu <a href="%{url}">ziņai %{id}</a>
@@ -1685,12 +1698,27 @@ lv:
   flag_marked_as_resolved_html: '<span class="meta">Karodziņa ziņojumam</span> <strong>atrasts risinājums.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekts
+  flag_reason: "&ldquo;Pievienoju šim %{record} karodziņu, jo"
   flag_resolution: Risinājums
+  flag_saved: Karodziņš saglabāts
+  flag_saved_thanks_html: Karodziņš saglabāts. Paldies! <a href="%{url}" class="readmore">Skatīt karodziņu</a>
+  flag_this_observation: Pievienot novērojumam karodziņu
+  flag_this_photo: Pievienot fotogrāfijai karodziņu
+  flag_this_place: Pievienot vietai karodziņu
   flag_this_sound: Pievienot audiofailam karodziņu
   flagged: karodziņš pievienots
   flagged_: Karodziņš pievienots
   flagged_for_curation: Atzīmēts ar karodziņu un nodots pārziņiem
+  flagged_taxon: Taksons ar karodziņu
+  flagged_thing_explanation: "Lietotāji šim %{thing} pievienojuši karodziņu, jo"
+  flagging_desc: |
+    Karodziņu pievienošana pievērš brīvprātīgo vietnes pārziņu uzmanību. Lūdzu, nepievieno karodziņu problēmām, kuras iespējams atrisināt ar identifikāciju, datu kvalitātes pārbaudes vai satura autora palīdzību.
+  flagger: Pievienoja
   flags: Karodziņi
+  flags_with_count: Karodziņi (%{count})
+  flags_explanation: "%{site_name} lietotāji pievieno karodziņus saturam, kuru jāpārskata vietnes pārziņiem un administratoriem."
+  flags_for_x_html: '%{x} karodziņi'
+  flags_on_users_content: "%{user} saturam pievienotie karodziņi"
   flickr_account_information: Tava Flickr konta informācija
   flickr_has_no_creative_commons: Flickr vietnē nav nevienas fotogrāfijas ar Creative Commons licenci no šīs vietas.
   flickr_identity: Flickr identitāte
@@ -1771,6 +1799,7 @@ lv:
   got_your_data_somewhere_else?: Tev ir dati, kas pieejami citur? Varam palīdzēt.
   graft: Atzars
   graft_taxon: '%{taxon} taksona atzars'
+  grafting_attemps_to_insert_this_taxon: Pievieno taksonus mūsu taksonomiskajam kokam ar "potēšanas" funkciju. To iespējams izdarīt, atrodot jau gatavu virstaksonu vai izveidojot visus nepieciešamos starpposmu taksonus, lai to pievienotu jau gatavam augstāka līmeņa taksonam.
   grant_role: "%{grant} %{role} loma"
   grid: Režģis
   grid_layout: Režģa izkārtojums
@@ -1805,6 +1834,12 @@ lv:
   header_your_projects: Tavi projekti
   header_your_profile: Tavs profils
   heads_up: Uzmanību!
+  heads_up_automatable_draft_split_notice_html: |
+    <strong>Uzmanību:</strong> Ja apstiprināsi izmaiņas, novērojumi tiks pārvietoti uz izvades taksona sadaļu, balstoties uz attiecīgajiem atlantiem. Ja kādiem no izvaddatiem nav atlantu vai tad, ja konkrētam ierakstam atlanti pārklājas, identifikācijas tiks aizstātas ar tuvākā kopējā priekšteču taksona identifikācijām (%{taxon})
+  heads_up_non_automatable_draft_split_notice_html: |
+    <strong>Uzmanību:</strong> Taksonu sadalīšanas procesā izveidoti izvades taksoni bez atlantiem vai bez kopīga priekšteča, tādēļ ar ievades taksoniem saistītie ieraksti nevar tikt automātiski piesaistīti pie izvades taksoniem. Kad taksonu samainīšana būs apstiprināta, kopienai būs jāpievieno jaunas identifikācijas šiem ierakstiem.
+  heads_up_automatable_split_notice_html: |
+    <strong>Uzmanību:</strong> Dažas vai visas no sadalīšanas ietekmētajām identifikācijām, iespējāms, ir samainītas ar %{taxon} identifikācijām. Tā notiek tad, kad nav iespējams automātiski sasaistīt identifikāciju ar kādu no izvades taksoniem.
   heads_up_this_photo_has_been_flagged: "UZMANĪBU! Fotogrāfijai pievienots karodziņš."
   heads_up_this_photo_is_already_associated_with: "Uzmanību! Fotogrāfija ir saistīta ar <a target='_blank' href='%{url}'>citu novērojumu</a>."
   heads_up_you_have_multiple: "Uzmanību! Vairāki atšķirīgi taksonomiskie tagi pievienoti identiskām taksonu klasifikācijām. Tos var atšķirt pēc krāsas."
@@ -1825,12 +1860,16 @@ lv:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Noslēpt "Bez piezīmēm"
+  #Label for a button to hide the running total of an accumulation chart
+  hide_running_total: Nerādīt kopējo skaitu
   hide_uncountable_species: Noslēpt nesaskaitāmās sugas
   high: Augsts
   highest_rank: Augstākā klasifikācija
   highlights_and_stats_from_year_on_site: "Būtiskākie momenti un statistika %{year}, gadā %{site} vietnē"
   history: Vēsture
   home: Sākums
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Pielāgojamās stundas:"
   however_there_were_some_issues: "Tomēr radušās problēmas: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Nespēju noteikt sugu, bet organisms %{taxon} taksonam
   icon: Ikona
@@ -1843,6 +1882,8 @@ lv:
         Šis ir viens no kopienas piedāvātajiem taksoniem. Iespējams, ka identifikācija drīz kļūs pavisam precīza.
       improving: |
         Pirmais taksona minējums, kam piekrīt kopiena. Šādi tiek precizēts kopienas piedāvātais taksons.
+      maverick: |
+        Taksons nav kopienas taksona priekštecis vai pēctecis. Kopiena nepiekrīt tam, ka tas ir šis taksons.
   id_withdrawn: ID atsaukta
   ids_by_taxon: ID iedal. pēc taksona
   identify: Identificēt
@@ -1858,6 +1899,8 @@ lv:
   identification_withdrawn: Identifikācija atsaukta.
   identifications: Identifikācijas
   computer_vision_suggestion: Datorredzes sistēmas ieteikums
+  computer_vision_suggestion_desc: |
+    Datorredzes sistēmas māca datoriem atpazīt formas attēlos. Nodrošinām datorredzes sistēmas modeļus ar datiem no kopienas fotogrāfijām, lai piedāvātu lietotājiem identifikāciju ieteikumus ar automatizēto aizpildīšanas un salīdzināšanas funkciju. Šī piespraude norāda uz to, kuru no rīkiem lietotājs izmantoja, lai identificētu kādu taksonu.
   identifiers: Identificētāji
   identotron: Salīdzinātājs
   identotron_for: Salīdzinātājs
@@ -1974,8 +2017,8 @@ lv:
   kml: KML
   kml_file_size_error: "KML jāaizņem mazāk par 1 MB"
   label_colon: "%{label}:"
-  labels: Iezīmes
-  label_to_group_a_batch_of_taxon_changes: Iezīme, kas paredzēta vairāku taksonu izmaiņu grupēšanai reizē
+  labels: Piespraudes
+  label_to_group_a_batch_of_taxon_changes: Piespraude, kas paredzēta vairāku taksonu izmaiņu grupēšanai reizē
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Privāta atrašanās vieta
   #Label shown when a location has not been entered. Originally "unknown" in
@@ -2404,6 +2447,7 @@ lv:
     <a href="%{url}">Ikmēneša atbalstītājs</a> kopš %{date}
   months: Mēneši
   more: Vairāk
+  more_about_sharing: Vairāk informācijas par dalīšanos
   more_fields: Vairāk lauku
   more_filters: Vairāk filtru
   more_from_x: Vairāk no %{x}
@@ -2489,6 +2533,8 @@ lv:
     <strong>iNaturalist Suomi</strong> ir daļa no iNaturalist starptautiskā tīkla ar mērķi pievērst uzmanību bioloģiskajai daudzveidībai un cilvēkiem Somijā. Vai vēlies mainīt sava konta piederību no <strong>%{inat_site_name}</strong> uz <strong>iNaturalist Suomi</strong> un dalīties ar datiem ar vietējām organizācijām?
   network_affiliation_prompt_from_other_site_html: |
     Vai vēlies mainīt sava konta piederību no <strong>%{other_site_name}</strong> uz <strong>%{site_name}</strong>?
+  #Column header in a table listing iNaturalist Network members
+  network_member: Tīkla dalībnieks
   new: Jauns
   new_and_noteworthy: Jauns un ievērojamības cienīgs
   new_announcement: Jauns paziņojums
@@ -2685,6 +2731,10 @@ lv:
   observation_brief_something_on_day_at_time: "Kaut kas šajā dienā: %{day} plkst. %{time}"
   observation_brief_something_on_day_at_time_by_user: "Kaut kas šajā dienā: %{day} plkst. %{time} no %{user}"
   observation_brief_something_on_day_by_user: "Kaut kas šajā dienā: %{day} no %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Kaut kas %{month}%{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Kaut kas %{month}%{year} no %{user}"
   observation_brief_something_by_user: "Kaut kas no %{user}"
   observation_brief_something_from_place: "Kaut kas iekš %{place}"
   observation_brief_something_from_place_by_user: "Kaut kas iekš %{place} no %{user}"
@@ -2692,10 +2742,18 @@ lv:
   observation_brief_something_from_place_on_day_by_user: "Kaut kas iekš %{place} %{day} no %{user}"
   observation_brief_something_from_place_on_day_at_time: "Kaut kas iekš %{place} %{day} plkst. %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Kaut kas iekš %{place} %{day} plkst. %{time} no %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Kaut kas %{month}%{year} iekš %{place}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Kaut kas iekš %{place} %{month}%{year} no %{user}"
   observation_brief_taxon_on_day: "%{taxon} %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} %{day} plkst. %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} %{day} plkst. %{time} no %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} %{day} no %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon}%{month}%{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon}%{month}%{year} no %{user}"
   observation_brief_taxon_by_user: "%{taxon} no %{user}"
   observation_brief_taxon_from_place: "%{taxon} no %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} iekš %{place} no %{user}"
@@ -2703,6 +2761,10 @@ lv:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} no %{place} %{day} no %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} no %{place} %{day} %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} no %{place} %{day} %{time} no %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} iekš %{place} %{month}%{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} iekš %{place} %{month}%{year} no %{user}"
   observations_by_category: "Novērojumi pēc kategorijas"
   observations_by_app: Novērojumi pēc lietotnes
   observations_by_rank: Novērojumi, šķirojot pēc klasifikācijas
@@ -2737,6 +2799,8 @@ lv:
   #project were last updated
   observation_requirements_updated_at: 'Prasības novērojumiem atjauninātas:'
   observation_rules: Novērojumu noteikumi
+  observation_rules_description: |
+    Iespējams izvēlēties to, kādus novērojumus varēs pievienot projektam, piemēram, tikai ar konkrētiem taksoniem vai tikai no noteiktām vietām. Ja izvēlēsies dažādu veidu kritērijus, novērojumi tiks apstiprināti, ja vismaz viens no kritērijiem būs atbilstošs. Piemēram, ja izveidosi kritērijus "jābūt Amphibia klasē" un "jābūt Reptilia klasē", tad projektā tiks pieņemti tikai novērojumi ar abiniekiem un rāpuļiem.
   observation_was_deleted: Novērojums izdzēsts.
   observation_without_media: Novērojums bez medijiem
   observations: Novērojumi
@@ -2754,6 +2818,8 @@ lv:
   observations_in_this_project_must: 'Projekta novērojumiem jāatbilst šiem kritērijiem:'
   observations_map: Novērojumi / Karte
   observation_must_dotdotdot: 'Novērojumam jāatbilst šim kritērijam:'
+  observations_near_a_place_are: |
+    Novērojumi, kuru aprakstā norādīts, ka tie ir kādas vietas tuvumā, atrodas taisnstūra formas apgabalā ap šo konkrēto vietu. Šī metode var izrādīties neprecīza vietās, kuru robežas nav taisnstūra formas. Tas ir mūsu datubāzes ierobežojumu radīto problēmu dēļ, kuras cenšamies atrisināt.
   observations_needing_curation: Novērojumi, kas jāpārskata pārziņiem
   observations_observed_this_month: Novērojumi, kas <em>novēroti</em> šomēnes, nevis pievienoti šomēnes. Dodies pie dabas!
   observations_of_relatives: Radniecisku organismu novērojumi
@@ -2763,6 +2829,8 @@ lv:
   observations_saved: Novērojumi saglabāti.
   observations_specifying_this_field: Novērojumi, kas attiecas uz šo lauku
   observations_specifying_this_field_with_value: Novērojumi, kas attiecas uz šo lauku ar "%{value}"
+  observations_text_search_warning: |
+    Lietojot teksta meklēšanas funkciju kopā ar citiem filtriem, meklēšanas rezultāti var izrādīties kļūdaini. Ja vēlies atrast kādas noteiktas sugas novērojumu, labāk izmanto tikai taksonu filtru.
   observations_this_year_vs_last_year: Šī gada novērojumi salīdzinājumā ar pagājušā gada novērojumiem
   observations_total: Kopējais novērojumu skaits
   observations_w: Novērojumi ar
@@ -2806,6 +2874,10 @@ lv:
   off_caps: "IZSLĒGTS"
   official_blog: Oficiālais emuārs
   offline_access_enabled: Iespējota bezsaistes pieeja
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Nobīdes laiks"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Nobīde
   old_observation_form: Vecā novērojumu veidlapa (neiesakām lietot)
   ok: "Labi"
   on_caps: "IESLĒGTS"
@@ -2987,6 +3059,8 @@ lv:
   place: Vieta
   placeholder: Vietturis
   place_autocomplete_placeholder: Cionas nacionālais parks, Maiami u.t.t.
+  place_create_quota_exceeded: |
+    Esi pārsniedzis 24 stundu limitu jaunu vietu izveidošanai (%{quota})
   place_deleted: Vieta izdzēsta.
   place_geo:
     geo_planet_place_types:
@@ -3397,6 +3471,8 @@ lv:
     zimbabwe: Zimbabve
   places_of_interest: Apskates vietas
   places_merged_successfully: Vietu apvienošana izdevās veiksmīgi.
+  places_warning_export_complex_boundary_html: |
+    Ja mēģini eksportēt novērojumus no apgabala ar sarežģītām robežām, tā vietā apsver iespēju <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">lejupielādēt tos no GBIF</a>, kur robežas iespējams brīvi uzzīmēt. Vēl iespējams tās eksportēt no iNat, izmantojot jau pieejamās vietas vai rakstzīmju lauku, un tad filtrēt datus vēlreiz, kad tie būs lejupielādēti.
   places_warning_look_for_existing_html: |
     Pārbaudi <a href="/search?source[]=places">jau pievienotās vietas</a>, lai pārliecinātos, ka neveido dublikātu. Mūsu sistēmā jau ir vietas no visiem kontinentiem un valstīm, kā arī vietas, kas tiek klasificētas kā divus administratīvos līmeņus zemākas par valsti.
   places_warning_projects_can_have_multiple_places: |
@@ -3405,6 +3481,8 @@ lv:
     Jaunu vietu pievienošana ir viens no lielākajiem cēloņiem iNat darbības ātruma samazinājumam, tāpēc <strong>lūdzu, apsver iespēju neizveidot jaunu vietu</strong>. Lai gan nelielas vietas ar pāris tūkstošiem novērojumu sistēmu parasti nenoslogo, ja izveidosi vietu ar ļoti daudz novērojumiem, pateicoties tev iNat funkcionēs lēnāk arī citiem lietotājiem. Alternatīvas jaunas vietas izveidošanai:
   places_warning_editing_places_is_slow: |
     Vietu robežu mainīšana ir viens no lielākajiem cēloņiem tam, kāpēc iNat darbības ātrums pasliktinās. Ja vien bez tā nekādi nevar iztikt, nepievieno, nemaini un nedzēs vietu robežas.
+  places_warning_quota: |
+    Vienas dienas laikā iespējams izveidot tikai trīs vietas.
   places_warning_the_future: |
     Ņemot vērā iNat straujo attīstības tempu, nākotnē mums nāksies ierobežot lietotāju iespējas pievienot vietas.
   plants: augi
@@ -3679,6 +3757,8 @@ lv:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infrahibrīds
   ranges: Izplatības apgabali
+  #Text to link to a taxon range as a KML file
+  range_file: Izpl. apgabala fails
   ray_finned_fishes: starspurzivis
   re_order_photos: "Sakārtot no jauna fotogrāfijas &raquo;"
   read_more: Uzzināt vairāk
@@ -3799,6 +3879,8 @@ lv:
   restore: Atjaunot
   restoring: Atjauno...
   review_all: Pārbaudīt visu
+  review_identifications_of_taxon_html: |
+    Pārskatīt <span class="sciname">%{taxon}</span> %{taxon_id} novērojumus
   reviewed: Pārbaudīts
   revoke: Atcelt
   revoke_caps: ATCELT
@@ -3967,6 +4049,22 @@ lv:
   site_staff: "%{site_name} vietnes darbinieki"
   site_stats: Vietnes statistika
   site_taxon_page: "%{site_name} taksona lapa"
+  sites_affiliation_about_desc_html: |
+    Ja tavai organizācijai ir vēlme pievienoties iNaturalist tīklam, vairāk informācijas vari atrast %{start_tag_join}šeit%{end_tag_join}.
+  sites_affiliation_examples_canada_cdc_html: |
+    %{start_tag_inat_canada}iNaturalist Canada%{end_tag_inat_canada} nodrošina datus Kanādas provinču sistēmām, kuras uztur Dabas aizsardzības datu centri (CDC). Šīs sistēmas izmanto, divreiz gadā veicot novērtējumus, kas paredzēti sugu apdraudējuma pakāpes un apdraudēto sugu biotopu noteikšanai. Novērtējumu dēļ iespējams noteikt arī vietas, kur uz ceļiem ir vislielākā apdraudēto sugu mirstība un to samazināt, kā arī noteikt un aizsargāt būtiskus bioloģiskās daudzveidības areālus. Vēl iespējams no jauna apstiprināt sugu klātbūtni, par kurām neviens nav ziņojis pat desmitiem gadu ilgi.
+  sites_affiliation_examples_ecuardor_bndb_html: |
+    %{start_tag_ecuador}iNaturalist Ecuador%{end_tag_ecuador} nodrošina datus Ekvadoras nacionālās bioloģiskās daudzveidības datubāzei (BNDB), kas ir liela zinātnisko datu un amatierzinātnes datu glabātuve. Mērķis ir veicināt zināšanu un datu ieguvi, kas palīdz palielināt izpratni par Ekvadoras floru un faunu.
+  sites_affiliation_examples_mexico_nbis_html: |
+    Meksikas %{start_tag_naturalista}Naturalista%{end_tag_naturalista} un eBird nodrošina novērojumu datus Nacionālajai bioloģiskās daudzveidības informācijas sistēmai, kas ir daļa no Nacionālās bioloģiskās daudzveidības komisijas (CONABIO). Gan zinātnieku, gan amatierzinātnieku iegūtos datus Iespējams atrast arī %{start_tag_enciclovida}Enciclovida%{end_tag_enciclovida} vietnē.
+  sites_affiliation_examples_portugal_atlas_html: |
+    Portugāles iNaturalist tīkla dalībnieku organizācija %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} nodrošina novērojumu datus Portugāles migrējošo putnu un zīdītāju atlantiem, kā arī vairākiem citiem zinātniski pētnieciskajiem darbiem Portugālē.
+  sites_affiliation_more_automatically_hidden_coordinates: |
+    Automātiski noslēptas koordinātas (tās ir noslēptas vai privātas taksonu ģeoprivātuma iestatījumu dēļ)
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist automātiski noslēpj noteiktu sugu koordinātas, lai pasargātu tās no tādiem draudiem kā miera traucēšana, transportēšana un malu medniecība. Ja koordinātas ir noslēptas tikai automātiski, lai pasargātu sugas, iNaturalist dalās ar visu novērojumu faktiskajām koordinātām arattiecīgo valstu tīkla dalībniekiem.
+  sites_affiliation_more_email_addresses: |
+    E-pasta adreses ir pieejamas tīkla dalībniekiem tikai ar šo vietni saistītos komunikācijas nolūkos.
   some_agree: daži piekrīt
   some_observations_are_missing_media_or_identifications: |
     Dažiem novērojumiem nav mediju vai identifikāciju
@@ -4261,9 +4359,20 @@ lv:
   taxon_photos_updated: Taksona fotogrāfijas atjaunotas
   taxon_range: Taksona izplatības apgabals
   taxon_range_created_notice: Taksona izplatības apgabals veiksmīgi saglabāts. Paies pāris minūtes līdz tas būs redzams kartēs.
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: Vai šī ir IUCN Sarkanās grāmatas apgabalu karte? Ja ne, tad, lūdzu, paskaidro, kāpēc.
+  taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: Šī nav IUCN Sarkanās grāmatas apgabalu karte, jo tā nav piemērota
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: Šī nav IUCN Sarkanās grāmatas apgabalu karte, jo taksons nav IUCN Sarkanajā grāmatā
+  taxon_range_guidelines_each_taxon_can_have: Katram taksonam var būt tikai viens izplatības apgabals. Taksonu izplatības apgabaliem ir jāattēlo globālā izplatība.
   taxon_range_guidelines_the_iucn_red_list_html: |
     %{link_start_tag}IUCN Sarkanā grāmata%{link_end_tag} ir visbiežākais taksonu izplatības apgabalu avots.
     Lūdzu, norādi, vai pievienosi IUCN Sarkanās grāmatas apgabalu. Ja pievienosi cita veida apgabalu, tad, lūdzu, norādi to, kā tas saskan ar IUCN Sarkano grāmatu. Tas palīdzēs novirzīt datus automātiskajai izpaltības apgabalu atjaunināšanai no IUCN Sarkanās grāmatas datubāzēm. Ja pievienosi IUCN Sarkanās grāmatas izplatības apgabalu, tad, lūdzu, avotā norādi IUCN Sarkanās grāmatas versiju (piemēram 2021-2).
+  taxon_range_guidelines_if_you_are_not_uploading: "Vienīgie iemesli, kāpēc IUCN Sarkanās grāmatas apgabalu karti nevajadzētu augšupielādēt ir:"
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: Šim taksonam IUCN Sarkanās grāmatas apgabalu karte nav piemērota
+  taxon_range_guidelines_for_example_you_have_manually_narrowed: |
+    piemēram, lai atspoguļotu taksonu sadalīšanu, kas nav IUCN Sarkanajā grāmatā, kā arī, lai izvēlētos cita veida apgabalu karti, ja IUCN Sarkanās grāmatas datubāzē ir kļūdas, kas to padara par nepiemērotu.
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Taksons nav iekļauts IUCN Sarkanajā grāmatā
+  taxon_range_guidelines_for_example_the_taxon_is_lumped: |
+    piemēram, lai izņemtu ārā taksonu, kas IUCN Sarkanajā grāmatā ir salikts kopā ar citu taksonu. Arī tad, ja taksonam nav IUCN Sarkanās grāmatas novērtējuma un apgabala kartes, tad IUCN izplatības apgabalu karti var neaugšupielādēt.
   taxon_range_updated_notice: Taksona izplatības apgabals veiksmīgi izlabots. Paies pāris minūtes līdz tas būs redzams kartēs.
   taxon_ranks: Taksonu klasifikācija
   taxon_removed_from_list: Taksons izdzēsts no saraksta.
@@ -5336,6 +5445,8 @@ lv:
         data_visualizations: Datu vizualizācijas
         delete_project: Dzēst projektu
         display_project_name: Publiskais projekta nosaukums
+        do_you_need_features_from_traditional: |
+          Vai tev būs nepieciešamas standarta projektu funkcijas, piemēram, pieeja patiesajām koordinātām, pielāgojami novērojumu lauki vai atsevišķi automātiski nefiltrējami novērojumi?
         duplicate_project: Kopēt projektu
         include_annotated_observations: |
           Iekļaut novērojumus tikai ar konkrētām īpašībām (piemēram, dzīves posms), vai ar ar īpašībām un vērtību (piemēram, dzīves posms = pieaudzis). Viena projekta ietvaros iespējams filtrēt, izmantojot tikai vienu īpašību.
@@ -5419,6 +5530,10 @@ lv:
       project_terms_desc_html: |
         Sniegt pārziņiem piekļuvi pie saviem novērojumiem saskaņā ar <a href="%{url}">projekta nosacījumiem</a>.
       show:
+        are_you_sure_you_want_to_convert: |
+          Vai tiešām vēlies pārveidot projektu par kolekciju projektu?
+        click_here_to_convert_this_project: |
+          Nospied šeit, lai pārveidotu projektu par kolekciju projektu.
         no_journal_blurb_html: |
           <p>Projekta žurnāls paredzēts saziņai ar projekta dalībniekiem. Izmanto žurnālu, lai publicētu paziņojumus vai apspriestu mērķus un projektā notiekošo.
           </p>
@@ -5539,6 +5654,8 @@ lv:
           Nospied uz ziedveida grafikiem, lai iegūtu vairāk informācijas par skaitļu un krāsu nozīmi. Dati un grafiki ģenerēti ar <a href="https://www.altmetric.com">Altmetric</a>. Ieguvām informāciju par datu patērējumu, pateicoties mūsu draugiem no <a href="https://www.gbif.org/">Globālās bioloģiskās daudzveidības informācijas datubāzes (GBIF)</a>.
           <br/>
           <a href="%{url}">Skatīt visus %{numStudies} pētījumus</a>
+        publications_desc_short_html: |
+          Nospied uz ziedveida grafikiem, lai iegūtu vairāk informācijas par skaitļu un krāsu nozīmi. Dati un grafiki ģenerēti ar <a href="https://www.altmetric.com">Altmetric</a>. Ieguvām informāciju par datu patērējumu, pateicoties mūsu draugiem no <a href="https://www.gbif.org/">Globālās bioloģiskās daudzveidības informācijas datubāzes (GBIF)</a>.
         observations_per_year: Novērojumi / gads
         observations_per_year_by_date_added: Pēc pievienošanas datuma
         observations_per_year_by_date_observed: Pēc novērojuma datuma
@@ -5576,6 +5693,8 @@ lv:
           Ja vēlies palīdzēt ar tulkošanu, %{link_tag}nospied šeit%{link_tag_end}.
     taxa:
       show:
+        about_conservation_status_desc: |
+          Aizsardzības statusa kopsavilkumā redzams organismu grupu izmiršanas risks.
         frequency:
           research: Pētniecības līmenis
           verifiable: Pierādāms
@@ -5604,6 +5723,14 @@ lv:
           <i>lupus</i>. Šādi iespējams radīt visai lielu jucekli, tāpēc lieto šīs funkcijas atbildīgi.
     users:
       edit:
+        display_monthly_supporter_status_on_my_profile: |
+          Nerādīt profilā ikmēneša atbalstītāja piespraudīti
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |
+          Ja pārdomāsi, iestatījumus vienmēr iespējams mainīt <a href='/users/edit'>šeit</a>.
+        #Header for the section of the profile settings where you can choose to
+        #show a badge on your profile to indicate that you make a regular,
+        #monthly donation to iNat
+        monthly_supporter: Ikmēneša iNaturalist atbalstītājs
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Komentāri
         #Checkbox label for user preference about what to receive in the daily email update
@@ -5638,11 +5765,43 @@ lv:
           Vēlies parādīt citiem savus mīļākos taksonus? %{link_start_tag}Izveido sarakstu%{link_end_tag} ar nosaukumu "Izlase", lai šajā sadaļā parādītu savu nesen pievienoto saturu.
     user_parents:
       new:
+        child_name_private: Bērna vārds (privāta info.)
+        create_a_minor_account: Izveidot nepilngadīgā kontu
+        create_minor_account: Izveidot nepilngadīgā kontu
+        parent_name_private: Vecāku vai aizbildņa vārds (privāta info.)
+        parent_email: Vecāku vai aizbildņa e-pasta adrese (privāta info.)
         inaturalist_minor_account_signup: Otršķirīga iNaturalist konta reģistrēšana
+        parent_information_private: Informācija par vecākiem (privāta)
+        step1_title: IZVEIDOT KONTU SAVAM BĒRNAM
+        step1_desc: |
+          Lai izpildītu privātuma likumu prasības, konta izveidošanai personām, kas jaunākas par 13 gadiem, nepieciešama vecāku vai aizbildņu piekrišana. Lai savam bērnam sniegtu piekļuvi pie iNaturalist, tev jāuzrāda identifikācijas dokuments un sava kontaktinformācija.
+        step2_title: APSTIPRINI SAVU IDENTITĀTI AR KREDĪTKARTI
     welcome:
       index:
+        connect_with_nature: Pietuvojies dabai
+        explore_and_share: Izzini un dalies ar novērojumiem no dabas.
+        observations_to_date: 'Novērojumi līdz šim brīdim'
+        species_observed: 'Novērotās sugas'
+        people_signed_up: 'Reģistrējušies jauni lietotāji'
+        how_it_works: Kā tas strādā?
+        record_your_observations: Pievieno novērojumus
+        share_with_fellow_naturalists: Dalies ar citiem dabas draugiem
+        discuss_your_findings: Apspried dabā ieraudzīto
+        contribute_to_science: Palīdzi zinātnei
+        science_desc_html: |
+          Katrs novērojums veicina bioloģiskās daudzveidības pētniecību. Tas var būt gan viens no retākajiem taureņiem, gan visparastākais zāles stiebrs tavā pagalmā. Dalāmies ar tevis ieraudzīto ar zinātniskajām datubāzēm, piemēram, ar <a href='http://gbif.org' target='_blank'>Globālo bioloģiskās daudzveidības informācijas datubāzi</a>, lai palīdzētu zinātniekiem atrast un izmantot tavus datus. Tev ir tikai jānovēro.
+        nature_at_your_fingertips: Daba rokas stiepiena attālumā
+        keep_track: Uzkrāj iegūtos datus
+        record_your_encounters: |
+          Mākonī iespējams saglabāt ieraudzītos organismus un veidot sarakstus ar novērojumiem.
+        create_useful_data: Radi noderīgu informāciju
+        help_scientists: Palīdzi zinātniekiem un satura pārvaldītājiem saprast, kad un kur sastopami organismi.
+        crowdsource_identifications: Identifikācijas no kopienas
         hold_an_event: Iespējams izveidot pasākumu, lai kopā ar citiem lietotājiem atrastu pēc iespējas vairāk sugu.
         works_on_all_your_devices: Strādā visās ierīcēs
+        install_our_mobile_apps: |
+          Ar mobilajām lietotnēm vienmēr ir iespējams novērot organismus, arī bez tīkla pārkājuma vai Wifi.
+        who_uses_site_name: "Kas lieto %{site_name}?"
         what_are_you_waiting_for: Kāpēc vēl vilcinies?
         join_today: Pievienojies jau šodien!
     wiki_pages:
@@ -5711,14 +5870,107 @@ lv:
       - Maijs
       - Jūnijs
       - Jūlijs
-      - August
-      - September
-      - October
-      - November
-      - December
+      - Augusts
+      - Septembris
+      - Oktobris
+      - Novembris
+      - Decembris
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        zero: apmēram %{count} stundas
+        one: apmēram %{count} stunda
+        other: apmēram %{count} stundas
+      about_x_months:
+        zero: apmēram %{count} mēneši
+        one: apmēram %{count} mēnesis
+        other: apmēram %{count} mēneši
+      about_x_years:
+        zero: apmēram %{count} gadi
+        one: apmēram %{count} gads
+        other: apmēram %{count} gadi
+      almost_x_years:
+        zero: gandrīz %{count} gadi
+        one: gandrīz %{count} gads
+        other: gandrīz %{count} gadi
+      half_a_minute: pusminūte
+      less_than_x_minutes:
+        zero: mazāk par %{count} minūtēm
+        one: mazāk par %{count} minūti
+        other: mazāk par %{count} minūtēm
+      less_than_x_seconds:
+        zero: mazāk par %{count} sekundēm
+        one: mazāk par %{count} sekundi
+        other: mazāk par %{count} sekundēm
+      over_x_years:
+        zero: vairāk par %{count} gadiem
+        one: vairāk par %{count} gadu
+        other: vairāk par %{count} gadiem
+      x_days:
+        zero: '%{count} dienas'
+        one: "%{count} diena"
+        other: '%{count} dienas'
+      x_minutes:
+        zero: '%{count} minūtes'
+        one: "%{count} minūte"
+        other: '%{count} minūtes'
+      x_months:
+        zero: '%{count} mēneši'
+        one: "%{count} mēnesis"
+        other: '%{count} mēneši'
+      x_seconds:
+        zero: '%{count} sekundes'
+        one: "%{count} sekunde"
+        other: '%{count} sekundes'
+    countdown_x_days:
+      zero: dienas
+      one: diena
+      other: dienas
+    countdown_x_hours:
+      zero: stundas
+      one: stunda
+      other: stundas
+    countdown_x_minutes:
+      zero: min.
+      one: min.
+      other: min.
+    countdown_x_seconds:
+      zero: sek.
+      one: sek.
+      other: sek.
+    prompts:
+      day: Diena
+      hour: Stunda
+      minute: Minūte
+      month: Mēnesis
+      second: Sekundes
+      year: Gads
   errors:
+    format: '%{attribute}%{message}'
     messages:
+      accepted: jābūt apstiprinātām
+      blank: nevar būt tukšs
+      confirmation: nesakrīt ar paroli
+      empty: nevar būt tukšs
+      equal_to: jābūt vienādam ar %{count}
+      even: jābūt vienādam
+      exclusion: ir rezervēts
+      greater_than: jābūt vairāk par %{count}
+      greater_than_or_equal_to: jābūt vairāk vai vienādam ar %{count}
+      inclusion: nav iekļauts sarakstā
+      invalid: ir nederīgs
+      less_than: jābūt mazāk par %{count}
+      less_than_or_equal_to: jābūt mazākam vai vienādam ar %{count}
+      new_project_owner_must_be_a_manager: Jaunajam projekta īpašniekam jābūt administratora statusam
+      not_a_number: nevar būt skaitlis
+      not_an_integer: jābūt veselam skaitlim
+      odd: jābūt nepāra skaitlim
       only_project_owner_can_change_project_owner: Tikai pats projekta īpašnieks var mainīt projekta īpašnieku
+      record_invalid: 'Validācija neizdevās: %{errors}'
+      requires_privilege_speech: |
+        lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām
+      requires_privilege_organizer: lai to izdarītu, tev jabūt 50 pierādāmiem novērojumiem
+      taken: jau ir aizņemts
       too_long:
         zero: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)
         one: pārsniedz garumu (ne vairāk par %{count} rakstzīmi)
@@ -5829,6 +6081,39 @@ lv:
         equal_to: jābūt vienādam ar %{count}
         even: jābūt vienādam
         exclusion: ir rezervēts
+        greater_than: jābūt vairāk par %{count}
+        greater_than_or_equal_to: jābūt vairāk vai vienādam ar %{count}
+        inclusion: nav iekļauts sarakstā
+        invalid: ir nederīgs
+        less_than: jābūt mazāk par %{count}
+        less_than_or_equal_to: jābūt mazākam vai vienādam ar %{count}
+        new_project_owner_must_be_a_manager: Jaunajam projekta īpašniekam jābūt administratora statusam
+        not_a_number: nevar būt skaitlis
+        not_an_integer: jābūt veselam skaitlim
+        odd: jābūt nepāra skaitlim
+        only_project_owner_can_change_project_owner: Tikai pats projekta īpašnieks var mainīt projekta īpašnieku
+        record_invalid: 'Validācija neizdevās: %{errors}'
+        requires_privilege_speech: lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām
+        requires_privilege_organizer: lai to izdarītu, tev jabūt 50 pierādāmiem novērojumiem
+        taken: jau ir aizņemts
+        too_long:
+          zero: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)
+          one: pārsniedz garumu (ne vairāk par %{count} rakstzīmi)
+          other: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)
+        too_short:
+          zero: pārāk īss (ne mazāk par %{count} rakstzīmēm)
+          one: pārāk īss (ne mazāk par %{count} rakstzīmi)
+          other: pārāk īss (ne mazāk par %{count} rakstzīmēm)
+        wrong_length:
+          zero: nepareizs garums (jābūt %{count} rakstzīmēm)
+          one: nepareizs garums (jābūt %{count} rakstzīmei)
+          other: nepareizs garums (jābūt %{count} rakstzīmēm)
+      template:
+        body: 'Radās problēmas ar šiem laukiem:'
+        header:
+          zero: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
+          one: '%{count} kļūdas dēļ šis %{model} netika saglabāts'
+          other: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
   activerecord:
     models:
       AssessmentSection: Novērtējuma sadaļa
@@ -6043,6 +6328,42 @@ lv:
               date_format: |
                 datuma laukumā vērtībām jābūt DD-MM-YYYY formātā ("%{observation_field_name}"
                 tavā novērojumā ar "%{observation_species_guess}")
+              time_format: |
+                laika laukumā vērtībām jābūt hh:mm formātā ("%{observation_field_name}"
+                tavā novērojumā ar "%{observation_species_guess}")
+            observation_id:
+              user_does_not_accept_fields_from_others: lietotājs nepieņem laukus no citiem
+              user_only_accepts_fields_from_site_curators: lietotājs pieņem laukus no tikai no vietnes pārziņiem
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Eksporta procesā nedrīkst būt vairāk par 200 000 novērojumu
+              must_have_query: Vaicājums nevar būt neaizpildīts
+            user_id:
+              already_has_an_export_in_progress: viens eksporta process jau ir iesākts
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_edit: pārāk liela, lai rediģētu
+              is_too_large_to_import: pārāk liela, lai importētu
+              contains_too_many_observations: pārāk daudz novērojumu, lai importētu
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: nevar būt neaizpildīts
+              invalid_point: kļūdains punkts, garumam jābūt lielākam par 180 vai arī platumam jābūt mazākam par -90
+              must_have_more_than_three_points: jābūt vairāk par trīs punktiem
+              polygon_with_fewer_than_four_points: jābūt poligonam ar mazāk par 3 punktiem
+        post:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: nav atļauts pievienot jaunus komentārus
+            user:
+              must_be_on_site_long_enough: |
+                lai publicētu ierakstus, jābūt reģistrētam jau vismaz 24 stundas. Lai ierobežotu neskaitāmos mēstuļotājus, mums jāmeklē arī šādi nedaudz muļķīgi risinājumi. Iespējams saglabāt melnrakstu, lai to publicētu pēc vienas dienas.
         project_observation:
           attributes:
             base:
@@ -6052,10 +6373,37 @@ lv:
               #them
               collection_and_umbrella_projects_do_not_allow_direct_submission: |
                 kolekciju projektiem un projektu grupām tiešā veidā nav iespējams pievienot novērojumus
+            user_id:
+              must_be_curator: jābūt projekta pārzinim
+            observation_id:
+              must_be_observed_after: |
+                jābūt novērotam pēc %{time}
+              must_be_observed_before: |
+                jābūt novērotam pirms %{time}
         quality_metric:
           attributes:
             base:
               no_votable_date: Novērojumam nav pievienots datums
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                tikai taksona pārzinis to var mainīt
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                tikai taksona pārzinis to var mainīt
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                tikai taksona pārzinis to var mainīt
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                tikai taksona pārzinis to var mainīt
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                tikai taksona pārzinis to var mainīt
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                tikai taksona pārzinis to var mainīt
         user_parent:
           attributes:
             email:
