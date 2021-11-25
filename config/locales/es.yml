@@ -683,12 +683,15 @@ es:
   back_to_taxon: "Regresa a %{defaulttaxon}"
   back_to_taxon_changes: "Regresa a los cambios del taxón"
   back_to_taxon_framework_for_x: "Volver a marco de referencia del taxón para %{taxon_name}"
+  back_to_users_calendar: "Volver al calendario de %{user}"
+  back_to_users_lists: "Volver a las listas de %{user}"
   back_to_viewing: "Regresar a ver <i>%{taxon}</i>"
   back_to_x: "Regresar a %{noun}"
   back_to_x_assessment: "Regresar a las evaluaciones de %{project}"
   back_to_x_history: "Regresar a la historia de %{x}"
   back_to_x_journal: "Regresar al diario de %{user}"
   back_to_x_blog: "Regresar al blog de %{x}"
+  back_to_your_calendar: Volver a tu calendario
   back_to_your_dashboard: Regresar a tu tablero
   back_to_your_lists: Regresa a tus listas
   back_to_your_journal: Regresa a tu diario
@@ -1564,6 +1567,10 @@ es:
   establishment_means: Medio de establecimiento
   establishment_means_describes_how: |
     El medio de establecimiento describe cómo se estableció el taxón en un área. Ver DarwinCore para <a href="http: //rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">más información en terminología</a>.
+  establishment_means_descriptions:
+    native: se desarrolló en esta región o llegó por medios no antropogénicos
+    endemic: nativo y no ocurre en ningún otro lugar
+    introduced: llegó a la región por medios antropogénicos
   estimate_which_input: |
     Estimar qué identificadores de taxón de entrada serán reemplazados con qué taxones de salida y que serán añadidos a un antepasado común cuando la división se haya efectuado. Esto puede requerir
     un tiempo para calcularlo. Los enlaces a las observaciones se truncan en subconjuntos de 200.
@@ -2796,6 +2803,10 @@ es:
   observation_brief_something_on_day_at_time: "Algo el %{day} a las %{time}"
   observation_brief_something_on_day_at_time_by_user: "Algo el %{day} a las %{time} por %{user}"
   observation_brief_something_on_day_by_user: "Algo el %{day} por %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Algo de %{month} de %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Algo de %{month} de %{year} por %{user}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
   observation_brief_something_from_place_by_user: "Algo desde %{place} de %{user}"
@@ -2803,10 +2814,18 @@ es:
   observation_brief_something_from_place_on_day_by_user: "Algo desde %{place} el %{day} de %{user}"
   observation_brief_something_from_place_on_day_at_time: "Algo desde %{place} el %{day} a las %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Algo desde %{place} el %{day} a las %{time} de %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Algo de %{place} en %{month} de %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Algo de %{place} en %{month} de %{year}por %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} el %{day} a las %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} el %{day} a las %{time} por %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} el %{day} por %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} en %{month} de %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} en %{month} de %{year} por %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} desde %{place} de %{user}"
@@ -2814,6 +2833,10 @@ es:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} desde %{place} el%{day} de %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} desde %{place} el%{day} a las %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} desde %{place} el %{day} a las %{time} de %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} en %{place} el %{month} de %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} en %{place} de %{month} de %{year} por %{user}"
   observations_by_category: "Observaciones por categoría"
   observations_by_app: Observaciones por App
   observations_by_rank: Observaciones por rango
@@ -4844,7 +4867,10 @@ es:
   users_favorites: "Favoritos de %{user}"
   users_highlights_and_stats_from_year_on_site: "Destaques y estadísticas de %{user} durante %{year} en %{site}"
   users_id: "Identificación de %{user}"
+  users_identifications: "Identificaciones de %{user}"
+  users_journal: "Diario de %{user}"
   users_latest_observations_on_site: "Lates observaciones de %{user} en %{site}"
+  users_lists: "Listas de %{user}"
   users_profile: "Perfil de %{user}"
   users_projects: "Proyectos de %{user}"
   users_year_on_site: "El año %{year} de %{user} en %{site}"
@@ -5067,6 +5093,7 @@ es:
   yes_reject_it: Sí, rechazarlo
   yes_show_this_in_the_box: Sí, muestra esto en la caja grande por arriba de los taxones
   yesterday: Ayer
+  yir_donate_banner_inaturalist_in_year: "INATURALIST EN %{year}:"
   you: tu
   you_: Tú
   you_appear_offline_try_again: |
@@ -6540,6 +6567,12 @@ es:
             <strong class="count">%{count} observaciones</strong>,
             incluyendo el trabajo de
             <strong class="count">%{helpers_count} personas</strong> que te han ayudado con identificaciones
+        x_projects_html:
+          one: |
+            <strong class="count">%{count} proyecto</strong> que no tiene otro gestor o administrador que pueda convertirse en el nuevo propietario
+          other: |
+            <strong class="count">%{count} proyectos</strong> que no
+            tienen otros gestores o administradores que pueden convertirse en el nuevo propietario
         x_identifications_html:
           one: |
             <strong class="count">tu identificación</strong>
