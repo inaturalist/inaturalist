@@ -712,6 +712,8 @@ de:
   batch_operations: Stapeloperationen
   be_the_first_to_fave_this_observation: Sei der erste, der diese Beobachtung favorisiert!
   because_of: because of
+  become_a_donor_caps: Unterstützer werden
+  become_a_donor_today_caps: Werde heute ein Unterstützer
   before_importing_photos: vor dem Importieren von Bildern
   bg_color: Hintergrundfarbe
   bio: Über mich
@@ -845,6 +847,7 @@ de:
   check_list_place: "Checkliste von %{place}"
   check_list_updated: Checkliste aktualisiert!
   check_lists_for: "Andere Checklisten für %{place}"
+  check_out_the_inat_store: Schau dir den iNaturalist-Store an
   check_out_what_the_observation: Schau dir an, wie die Beobachtung, die Du identifizieren möchtest, aussieht.
   check_this_box_if_html: |
     Wähle dies aus, wenn Du Deine Fotos unter die <a
@@ -977,6 +980,8 @@ de:
       Organisation, die diesen Status deklariert hat. Du kannst dies überspringen, wenn *du* als Autorität aufgeführt werden möchtest.
     place: Dieser Status ist auf dieses Gebiet beschränkt.
     url: URL für eine Seite, die diesen Status beschreibt.
+    geoprivacy: |
+      Standardgeoprivität für Beobachtungen dieses Taxons. Beachte, dass der Schutzstatus, der innerhalb eines Kontinents, Landes oder Bundeslandes besteht, die Geoprivität der darüber liegenden Kategorie überschreiben kann.
     iucn: |
       Äquivalenter IUCN-Code der Roten Liste. Dies ist nicht die tatsächliche IUCN-Bewertung,
       nur der IUCN-Code, der am besten mit der Bedrohung der Offenlegung der Koordinaten
@@ -1452,6 +1457,8 @@ de:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: SPENDEN
+  donate_again_caps: Spende noch einmal
+  donate_again_today_caps: SPENDE JETZT
   done: Fertig
   dont_have_an_account_sign_up_html: Du hast noch keinen Account? <br><strong>Hier registrieren</strong>
   dont_send_me_email: "Sende mir keine E-Mails!"
@@ -5085,6 +5092,25 @@ de:
   yes_reject_it: Ja, ablehnen!
   yes_show_this_in_the_box: Ja, zeige dies in der großen Box oben auf /taxa an
   yesterday: Gestern
+  yir_donate_banner_inaturalist_in_year: "INATURALIST %{year}:"
+  yir_donate_banner_reaching_millions: Erreicht Millionen. Macht Biodiversität sichtbar in globaler Zusammenarbeit.
+  yir_donate_banner_all_thanks: Alles dank Menschen wie dir!
+  yir_donate_banner_inaturalist_thrives: iNaturalist hat Erfolg dank Leuten wie dir!
+  yir_donate_inaturalist_needs_your_support: iNaturalist braucht deine Unterstützung
+  yir_generating_and_sharing: |
+    Das Generieren und Bereitstellen von bedeutsamen Daten zur biologischen Vielfalt in dieser beispiellosen Größe und Geschwindigkeit bringt steigende Kosten mit sich
+  yir_millions_of_people_used_inaturalist: |
+    Millionen von Menschen haben iNaturalist und Seek in diesem Jahr benutzt, um
+    sich mit der Natur zu verbinden
+  yir_thank_your_for_being_generous: |
+    Vielen Dank für deine Zeit, Aufmerksamkeit, Fachwissen und deine
+    Spenden! iNaturalist ist eine gemeinnützige Initiative der
+    California Academy of Sciences und der National Geographic Society. Das
+    Programm beruht auf zahlreichen Zuschüssen und Spenden, einschließlich karitativer Geschenke
+    von weniger als einem winzigen Bruchteil der Gemeinschaft. Besonders dankbar sind wir
+    den monatlichen Unterstützern, deren wiederkehrenden Beiträge uns bei der Planung für die Zukunft helfen.
+  yir_your_gift_sustains: |
+    Deine Unterstützung trägt zur Fortsetzung dieses Projekts von globaler Reichweite und tiefgreifender persönlicher und ökologischer Bedeutung bei
   you: Dir
   you_: Du
   you_appear_offline_try_again: |
