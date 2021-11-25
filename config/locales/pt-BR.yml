@@ -706,6 +706,8 @@ pt-BR:
   batch_operations: Operações por lote
   be_the_first_to_fave_this_observation: Seja o primeiro a adicionar esta observação aos favoritos!
   because_of: por causa de
+  become_a_donor_caps: Torne-se um doador
+  become_a_donor_today_caps: Torne-se um doador hoje
   before_importing_photos: antes de importar fotos
   bg_color: Cor BG
   bio: Biografia
@@ -839,6 +841,7 @@ pt-BR:
   check_list_place: "Lista de Verificação de %{place}"
   check_list_updated: Check list Atualizada!
   check_lists_for: "Outras Check Lists para %{place}"
+  check_out_the_inat_store: Sair da Loja iNaturalist
   check_out_what_the_observation: Dê uma olhada a que a observação que você esta tentando identificar se assemelha.
   check_this_box_if_html: |
     Marque esta caixa caso queira aplicar uma
@@ -1451,6 +1454,8 @@ pt-BR:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: Doar
+  donate_again_caps: Doar novamente
+  donate_again_today_caps: Doar novamente hoje
   done: Concluído
   dont_have_an_account_sign_up_html: Não tem uma conta? <strong>Cadastre-se.</strong>
   dont_send_me_email: "Não me envie qualquer e-mail"
@@ -1574,6 +1579,10 @@ pt-BR:
   establishment_means_describes_how: |
     Meios de Estabelecimento descrevem como o táxon foi implantado nesta área.  
     Veja o DarwinCore para <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">mais informações sobre a terminologia</a>.
+  establishment_means_descriptions:
+    native: evoluiu nesta região ou chegou por meios não-antropogênicos
+    endemic: nativo e endêmico
+    introduced: chegou à região por meios antropogênicos
   estimate_which_input: |
     Avaliação de quais IDs do táxon de origem serão substituidos por quais táxons de saída e quais serão atribuidos a um táxon inferior comum quando for efetuada a separação. Este processo de avaliação pode demorar. Links para as observações serão apresentadas em grupos de 200.
   event_in_progress: Evento em andamento
@@ -5130,6 +5139,26 @@ pt-BR:
   yes_reject_it: Sim, rejeite
   yes_show_this_in_the_box: Sim, mostre isto na grande caixa sobre os táxons
   yesterday: Ontem
+  yir_donate_banner_inaturalist_in_year: "INATURALIST EM %{year}:"
+  yir_donate_banner_reaching_millions: Alcançando milhões. Iluminando a biodiversidade. Colaboração global.
+  yir_donate_banner_all_thanks: Tudo graças a pessoas como você!
+  yir_donate_banner_inaturalist_thrives: O iNaturalist prospera graças a pessoas como você!
+  yir_donate_inaturalist_needs_your_support: iNaturalist precisa de seu apoio
+  yir_generating_and_sharing: |
+    Gerar e compartilhar dados de alto impacto sobre a biodiversidade, nesta escala
+    e velocidade sem precedentes, tem custos crescentes
+  yir_millions_of_people_used_inaturalist: |
+    Milhões de pessoas usaram o iNaturalist e o Seek do iNaturalist este ano para se conectar com a natureza
+  yir_thank_your_for_being_generous: |
+    Obrigado por ser generoso com seu tempo, atenção, competência e
+    doações! iNaturalist é uma iniciativa conjunta sem fins lucrativos da
+    Academia de Ciências da Califórnia e da National Geographic Society. O
+    programa depende de inúmeros subsídios e doações, incluindo doações generosas
+    de uma pequena parcela da comunidade. Somos especialmente gratos
+    aos apoiadores mensais, cujos presentes recorrentes nos ajudam a planejar o futuro.
+  yir_your_gift_sustains: |
+    Sua doação sustenta este programa de alcance global e profundos impactos pessoais e
+    ecológicos
   you: você
   you_: Você
   you_appear_offline_try_again: |
