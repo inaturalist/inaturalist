@@ -1261,6 +1261,7 @@ tr:
       december: Aralık
   date_is_accurate: Tarihi doğru
   date_joined: Katılım Tarihi
+  date_obscured_notice: Kişisel veya organizma gizliliğini korumak için tarih gizlendi
   date_observed: Gözlem tarihi
   date_observed_: Gözlem Tarihi
   date_observed_on: gözlem tarihi
@@ -1528,6 +1529,10 @@ tr:
   establishment_means_describes_how: |
     Kuruluş, sınıfın bir alanda nasıl kurulduğunu açıklar. 
     <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">Terminoloji hakkında daha fazla bilgi için</a> DarwinCore'a bakın.
+  establishment_means_descriptions:
+    native: bu bölgede evrimleşti veya bu bölgeye doğal yollarla geldi
+    endemic: endemik ve başka bir yerde görülmez
+    introduced: bu bölgeye beşeri yollar ile geldi
   event_in_progress: Etkinlik sürüyor
   event_stats: Etkinlik İstatistikleri
   event_url: Etkinlik URL'si
@@ -1548,6 +1553,7 @@ tr:
   exclusion_filters: Dışında Tutma Filtreleri
   existing_flags: Mevcut İşaretler
   exit_full_screen: "Tam Ekrandan Çık"
+  examples_of_data_use_by_network_members: Üyeler Tarafından Verilerin Kullanımına İlişkin Örnekler
   examples_of_ranking_organizations: Dereceye giren kuruluşların örnekleri
   explore: Keşfet
   export: Dışa aktar
@@ -1763,6 +1769,8 @@ tr:
   going_to_your_observations: Gözlemlerinize gidiliyor...
   good_choice_for_sharing: Bilim insanlarıyla paylaşmak için iyi bir seçim
   google: Google
+  google_maps_not_loaded_error: |
+    Google Haritalar başlatılamadı. Google Haritalar'a erişimi bir tarayıcı uzantısı veya güvenlik duvarı ile engellemiş olabilirsiniz veya internet servis sağlayıcısı gibi başka bir şey engelliyor olabilir.
   got_it!: Anlaşıldı!
   got_your_data_somewhere_else?: Verilerinizi başka bir yere mi aldınız? Yardımcı olabiliriz.
   graft: Aşılama
@@ -3960,6 +3968,9 @@ tr:
   site_staff: "%{site_name} Yetkilisi"
   site_stats: Sayfa İstatistikleri
   site_taxon_page: "%{site_name} sınıf sayfası"
+  sites_affiliation_about_desc_html: |
+    Kuruluşunuz iNaturalist Ağı'na katılmak ile ilgileniyorsa,
+    daha fazla ayrıntıya %{start_tag_join}buradan%{end_tag_join} ulaşabilirsiniz
   some_agree: kısmi katılma
   some_observations_are_missing_media_or_identifications: |
     Bazı gözlemlerde eksik medya ya da tanımlamalar var
@@ -4607,6 +4618,7 @@ tr:
   users_favorites: "%{user} kullanıcısının favorileri"
   users_highlights_and_stats_from_year_on_site: "%{user} kullanıcısının %{year} yerinde %{site} sayfasındaki öne çıkanları ve istatistikleri"
   users_id: "%{user} Tanımlamaları"
+  users_journal: "%{user} Kullanıcısının Günlüğü"
   users_latest_observations_on_site: "%{user} kullanıcısının %{site} sayfasındaki son gözlemleri"
   users_profile: "%{user} Kullanıcısının Profili"
   users_projects: "%{user} Kullanıcısının Projeleri"
