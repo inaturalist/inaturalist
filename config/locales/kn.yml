@@ -631,12 +631,15 @@ kn:
   back_to_suggestions: ಸಲಹೆಗಳು ಗೆ ಹಿಂದಿರುಗಿ
   back_to_taxon: "%{defaulttaxon} ಗೆ ಹಿಂದಿರುಗಿ"
   back_to_taxon_changes: "ಜೀವಿವರ್ಗದ ಬದಲಾವಣೆಗಳಿಗೆ ಹಿಂದಿರುಗಿ"
+  back_to_users_calendar: "%{user} ದಿನದರ್ಶಿಕೆಗೆ ಹಿಂದಿರುಗಿ"
+  back_to_users_lists: "%{user} ಅವರ ಪಟ್ಟಿಗಳಿಗೆ ಹಿಂದಿರುಗಿ"
   back_to_viewing: "<i>%{taxon}</i> ವೀಕ್ಷಣೆಗೆ ಹಿಂದಿರುಗಿ"
   back_to_x: "%{noun} ಗೆ ಹಿಂದಿರುಗಿ"
   back_to_x_assessment: "%{project} ಮೌಲ್ಯಮಾಪನಗಳಿಗೆ ಹಿಂದಿರುಗಿ"
   back_to_x_history: "%{x} ಇತಿಹಾಸಕ್ಕೆ ಹಿಂದಿರುಗಿ"
   back_to_x_journal: "%{user} ರವರ ನಿಯತಕಾಲಿಕೆಗೆ ಹಿಂದಿರುಗಿ"
   back_to_x_blog: "%{x} ಅವರ ಬ್ಲಾಗ್ ಗೆ ಹಿಂದಿರುಗಿ"
+  back_to_your_calendar: ನಿಮ್ಮ ದಿನದರ್ಶಿಕೆಗೆ ಹಿಂದಿರುಗಿ
   back_to_your_dashboard: ನಿಮ್ಮ ಡ್ಯಾಷ್‍ಬೋರ್ಡ್ ಗೆ ಮರಳಿ
   back_to_your_lists: ನಿಮ್ಮ ಪಟ್ಟಿಗೆ ಹಿಂದಿರುಗಿ
   back_to_your_journal: ನಿಮ್ಮ ನಿಯತಕಾಲಿಕೆಗೆ ಹಿಂದಿರುಗಿ
@@ -1378,6 +1381,8 @@ kn:
   establishment_means: ನೆಲೆಯ ವಿಧಾನ
   establishment_means_describes_how: |
     ಜೀವಿವರ್ಗವು ಪ್ರದೇಶವೊಂದರಲ್ಲಿ ಬಂದು ಹೇಗೆ ನೆಲೆಸಿತು ಎಂಬುದನ್ನು ನೆಲೆಯ ವಿಧಾನವು ವಿವರಿಸುತ್ತದೆ. <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">ಪರಿಭಾಷೆಯ ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ಮಾಹಿತಿ</a>ಗಾಗಿ ಡಾರ್ವಿನ್‍ಕೋರ್ ಅನ್ನು ನೋಡಿ.
+  establishment_means_descriptions:
+    endemic: ಸ್ಥಳೀಯವಾಗಿದೆ ಹಾಗೂ ಮತ್ತೆ ಎಲ್ಲೂ ಕಂಡುಬರುವುದಿಲ್ಲ
   event_in_progress: ಕಾರ್ಯಕ್ರಮ ಪ್ರಗತಿಯಲ್ಲಿದೆ
   event_stats: ಕಾರ್ಯಕ್ರಮದ ಅಂಕಿಅಂಶಗಳು
   event_url: ಕಾರ್ಯಕ್ರಮದ URL
@@ -2405,6 +2410,10 @@ kn:
   observation_brief_something_on_day_at_time: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ ಒಂದಿಷ್ಟು"
   observation_brief_something_on_day_at_time_by_user: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
   observation_brief_something_on_day_by_user: "%{day} ರಂದು %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "%{month} %{year} ನಲ್ಲಿ ಒಂದಿಷ್ಟು"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "%{month} %{year} ನಲ್ಲಿ %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
   observation_brief_something_by_user: "%{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
   observation_brief_something_from_place: "%{place} ನಲ್ಲಿ ಒಂದಿಷ್ಟು"
   observation_brief_something_from_place_by_user: "%{place} ನಲ್ಲಿ %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
@@ -2412,10 +2421,18 @@ kn:
   observation_brief_something_from_place_on_day_by_user: "%{place} ನಲ್ಲಿ %{day} ರಂದು %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
   observation_brief_something_from_place_on_day_at_time: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{place} ನಲ್ಲಿ ಒಂದಿಷ್ಟು"
   observation_brief_something_from_place_on_day_at_time_by_user: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{place} ನಲ್ಲಿ %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "%{place} ಇಲ್ಲಿಂದ %{month} %{year} ನಲ್ಲಿ ಒಂದಿಷ್ಟು"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "%{place} ಇಲ್ಲಿಂದ %{month} %{year} ನಲ್ಲಿ %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
   observation_brief_taxon_on_day: "%{day} ರಂದು %{taxon}"
   observation_brief_taxon_on_day_at_time: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{taxon}"
   observation_brief_taxon_on_day_at_time_by_user: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{user} ಮೂಲಕ %{taxon}"
   observation_brief_taxon_on_day_by_user: "%{day} ರಂದು %{user} ಮೂಲಕ %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{month} %{year} ನಲ್ಲಿ %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{month} %{year} ನಲ್ಲಿ %{user} ಮೂಲಕ %{taxon}"
   observation_brief_taxon_by_user: "%{user} ಮೂಲಕ %{taxon}"
   observation_brief_taxon_from_place: "%{place} ನಲ್ಲಿ %{taxon}"
   observation_brief_taxon_from_place_by_user: "%{place} ನಲ್ಲಿ %{user} ಮೂಲಕ %{taxon}"
@@ -2423,6 +2440,10 @@ kn:
   observation_brief_taxon_from_place_on_day_by_user: "%{place} ನಲ್ಲಿ %{day} ರಂದು %{user} ಮೂಲಕ %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time: "%{place} ನಲ್ಲಿ %{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{place} ನಲ್ಲಿ %{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{user} ಮೂಲಕ %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{place} ಇಲ್ಲಿಂದ %{month} %{year} ನಲ್ಲಿ %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{place} ಇಲ್ಲಿಂದ %{month} %{year} ನಲ್ಲಿ %{user} ಮೂಲಕ %{taxon}"
   observations_by_category: "ವಿಭಾಗಗಳ ಪ್ರಕಾರ ವೀಕ್ಷಣೆಗಳು"
   observations_by_app: ಆಪ್ ಮೂಲಕ ಆದ ವೀಕ್ಷಣೆಗಳು
   observations_by_rank: ಶ್ರೇಣಿಗಳ ಪ್ರಕಾರ ವೀಕ್ಷಣೆಗಳು
@@ -2580,6 +2601,7 @@ kn:
   or_choose_high_level_taxa: "... ಅಥವಾ ಕೆಲವು ಉನ್ನತ-ಮಟ್ಟದ ಜೀವಿವರ್ಗಗಳಿಂದ ಆಯ್ಕೆಮಾಡಿ"
   or_if_you_dont_want_email: "ಅಥವಾ ನಿಮಗೆ ಯಾವುದೇ ಮಿಂಚೆ ಬೇಕಿಲ್ಲ ಎನಿಸಿದ್ದಲ್ಲಿ..."
   orange: ಕಿತ್ತಳೆ
+  order: ಗಣ
   organism_is_wild: ಜೀವಿಯು ವನ್ಯಜೀವಿಯಾಗಿದೆ
   organisms: ಜೀವಿಗಳು
   original: ಮೂಲ
@@ -4245,6 +4267,7 @@ kn:
   users_favorites: "%{user} ಅವರ ಮೆಚ್ಚಿನವುಗಳು"
   users_highlights_and_stats_from_year_on_site: "%{user} ಅವರ %{year} ನಲ್ಲಿನ %{site} ನ ಮುಖ್ಯಾಂಶಗಳು ಮತ್ತು ಅಂಕಿಅಂಶಗಳು"
   users_id: "%{user} ರ ID"
+  users_journal: "%{user} ರ ನಿಯತಕಾಲಿಕೆ"
   users_latest_observations_on_site: "%{site} ನಲ್ಲಿ %{user} ಅವರ ಇತ್ತೀಚಿನ ವೀಕ್ಷಣೆಗಳು"
   users_profile: "%{user} ರ ಪರಿಚಯ"
   users_projects: "%{user} ಅವರ ಪ್ರಾಯೋಜನೆಗಳು"
