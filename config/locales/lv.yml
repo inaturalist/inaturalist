@@ -273,6 +273,8 @@ lv:
   accept_community_identifications: Apstiprināt kopienas identifikācijas
   accuracy: Precizitāte
   accuracy_meters: Precizitāte (metros)
+  accuracy_of_the_coordinates: |
+    Koordinātu precizitāte metros. To iespējams mainīt, nospiežot uz "rediģēt" saites vai nospiežot uz kartes marķiera un to pavelkot. Uzvelc gana lielu apli – tā lai tu būtu pārleicināts, ka atradies apļa iekšpusē.
   action: Darbība
   actions: Darbības
   active: Aktīvs
@@ -313,6 +315,7 @@ lv:
     sex: Pievienot piezīmes par "dzimumu"
     plant_phenology: Pievienot piezīmes par "auga fenoloģiju"
     life_stage: Pievienot piezīmes par "dzīves posmu"
+    evidence_of_presence: Pievienot piezīmes par "Sastopamības pierādījumiem"
   add_another_flag: Vēlreiz pievienot karodziņu
   add_another_photo: Pievienot vēl vienu foto
   add_another_section: Pievienot vēl vienu sadaļu
@@ -372,6 +375,12 @@ lv:
   add_life_stage_larva_annotation: 'Pievienot piezīmi "Dzīves posms: cirmenis"'
   add_life_stage_juvenile_annotation: 'Pievienot piezīmi "Dzīves posms: nepieaudzis"'
   add_life_stage_egg_annotation: 'Pievienot piezīmi "Dzīves posms: ola"'
+  add_evidence_of_presence_organism_annotation: 'Pievienot piezīmi "Sastopamības pierādījums: organisms"'
+  add_evidence_of_presence_feather_annotation: 'Pievienot piezīmi "Sastopamības pierādījums: spalva"'
+  add_evidence_of_presence_scat_annotation: 'Pievienot piezīmi "Sastopamības pierādījums: izkārnijumi"'
+  add_evidence_of_presence_track_annotation: 'Pievienot piezīmi "Sastopamības pierādījums: nospiedumi"'
+  add_evidence_of_presence_bone_annotation: 'Pievienot piezīmi "Sastopamības pierādījums: kauli"'
+  add_evidence_of_presence_molt_annotation: 'Pievienot piezīmi "Sastopamības pierādījums: nomesta āda"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Pievienot taksonu attiecības'
   #As in a Guide Section
@@ -604,6 +613,7 @@ lv:
   apply_fields: Pievienot laukus
   apply_geoprivacy: Pielietot ģeoprivātumu
   apply_darr: "Pielietot &darr;"
+  apply_establishment_means_to_descendant_places: "Pielietot izplatības skaidrojumu vietām, kurās iekļautas citas vietas"
   apply_these_settings_to_all: Pielietot šos iestatījumus visiem zemāk atrodamajiem novērojumiem.
   appropriate?: Piemērots?
   arachnids: zirnekļveidīgie
@@ -754,6 +764,8 @@ lv:
   batch_operations: Vairākas darbības reizē
   be_the_first_to_fave_this_observation: Esi pirmais, kas pievienos šo novērojumu izlasei!
   because_of: ', jo'
+  become_a_donor_caps: KĻŪSTI PAR ZIEDOTĀJU
+  become_a_donor_today_caps: KĻŪSTI PAR ZIEDOTĀJU JAU ŠODIEN
   before_importing_photos: pirms fotogrāfiju augšupielādes
   bg_color: Fona krāsa
   bio: Par sevi
@@ -819,6 +831,12 @@ lv:
   cc_by_nc_nd_description: "Salīdzinājumā ar pārējām sešām licencēm šai licencei piemīt visvairāk ierobežojumu. Šī licence ļauj citiem lejupielādēt un dalīties ar tavu darbu, pieminot tevi kā autoru, taču viņiem nav tiesību tevis radīto jebkādā veidā izmainīt vai lietot komerciāliem nolūkiem."
   cc_by_nc_nd_name: Attribution-NonCommercial-NoDerivs licence
   cc_by_nc_sa_description: "Šī licence ļauj citiem nekomerciāli rediģēt, izmainīt un papildināt tevis radīto, ja viņi piemin tavus nopelnus, un licencējot savus darbus, ievēro vienādus noteikumus."
+  cc_by_nc_sa_name: Attribution-NonCommercial-ShareAlike licence
+  cc_by_nd_description: "Šī licence ļauj izplatīšanu komerciālos un nekomerciālos nolūkos, ja saturs netiek nekā izmainīts un tiek norādīti tavi nopelni."
+  cc_by_nd_name: Attribution-NoDerivs licence
+  cc_by_sa_description: "Šī licence ļauj citiem komerciālos nolūkos rediģēt, izmainīt un papildināt tevis radīto, ja viņi piemin tavus nopelnus, un licencējot savus darbus, ievēro vienādus noteikumus. Viss jaunais saturs, kas balstīts uz tevis radītā, būs ar to pašu licenci, tādēļ arī šis saturs varēs tikt izmantots komerciālos nolūkos."
+  cc_by_sa_name: Attribution-ShareAlike licence
+  cc_used_under_a: "Creative Commons licence, kas izmantota ar "
   change_admin: Mainīt administratoru
   #Button to change the cover (or banner) image for a project
   change_cover: Mainīt titulbildi
@@ -869,6 +887,8 @@ lv:
   changing_the_geoprivacy: 'Ģeoprivātuma iestatījumi izmaina to, kā citiem lietotājiem izskatās tava novērojuma atrašanās vieta.'
   check_above_for_errors: Paritini uz augšu, lai apskatītu kļūdas
   check_back_soon: Pārbaudi vēlreiz vēlāk!
+  check_here_to_autoload_description: Atzīmē lodziņu, lai automātiski ielādētu Vikipēdijas aprakstu. Iesakām neatzīmēt šo lodziņu, ja taksona zinātniskais nosaukums sakrīt ar nezinātnisko nosaukumu vai ar nosaukumu, kas bieži tiek nepareizi uzrakstīts, piemēram, "Parus".
+  check_here_to_autoload_photos: Atzīmē lodziņu, lai automātiski ielādētu Flickr fotogrāfijas. Iesakām neatzīmēt šo lodziņu, ja taksona zinātniskais nosaukums sakrīt ar nezinātnisko nosaukumu vai ar nosaukumu, kas bieži tiek nepareizi uzrakstīts, piemēram, "Parus".
   check_list: Kontrollapa
   check_list_for_taxon_html: "%{taxon} kontrollapa"
   check_lists_must_belong_to_a_place: |
