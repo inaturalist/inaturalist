@@ -1714,6 +1714,7 @@ be:
     Шляхі ўзнікнення апісваюць, якім чынам таксон тасон з'явіўся на дадзенай тэррыторыі.
     На DarwinCore вы можаце знайсці <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">больш інфармацыі па тэрміналогіі</a>.
   establishment_means_descriptions:
+    native: эвалюцыянаваў у гэтым рэгіёне або быў занесены неантрапагенным шляхам
     endemic: мясцовы і больш нідзе не сустракаецца
     introduced: патрапіў ў рэгіён антрапагенным шляхам
   estimate_which_input: |
@@ -2040,6 +2041,7 @@ be:
   hide_no_annotation: Не паказваць "Без анатацый"
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Не паказваць выніковую суму
+  hide_uncountable_species: Схаваць віды, якія немагчыма падлічыць
   high: Найвышэйшы
   highest_rank: Найвышэйшы ранг
   highlights_and_stats_from_year_on_site: "Асноўныя моманты і статыстыка з %{year} на %{site}"
@@ -2071,6 +2073,7 @@ be:
   identification_deleted: вызначэнне выдалена.
   identification_saved: "вызначэнне захавана!"
   identification_updated: Вызначэнне абноўлена!
+  identification_user_short: Вызн. карыстальнік
   identification_withdrawn: Вызначэнне знята.
   identifications: Вызначэнні
   identifiers: Вызначальнікі
@@ -2861,6 +2864,7 @@ be:
     common: Сустракаецца часта
     doubtful: Магчыма сустракаецца, але існуюць сумнёвы адносна доказаў
     present: Сустракаецца ў рэгіоне
+    uncommon: Сустракаецца рэгулярна, але ў невялікай колькасці; патрабуе ўважлівага пошуку ў адпаведным асяроддзі
   occurrence_status_levels:
     present: прысутнічае
     common: звычайны
@@ -2955,6 +2959,7 @@ be:
       Unknown: Невядомае
       unknown: невядомае
   places: Месцы
+  places_added_by_members_of_the_community: Месцы, дадазеныя ўдзельнікамі супольніцтва
   places_name:
     afghanistan: Афганістан
     africa: Афрыка
@@ -3301,6 +3306,7 @@ be:
   search_by_name_or_email: Шукаць па імені або электроннай пошце
   search_by_taxon_name_or_observation_id: Пошук па назве таксона або ідэнтыфікатару назірання
   search_by_taxon_name_or_flickr_photo_id: Пошук па назве таксона або ідэнтыфікатару фота на Flickr
+  search_for_a_location: Пошук месцазнаходжання
   search_observations: "Шукаць назіранні..."
   search_projects: Шукаць праекты
   #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
@@ -3322,6 +3328,8 @@ be:
   sign_up: Зарэгістравацца
   single_observation: Адзінае назіранне
   site_stats: Статыстыка сайта
+  sites_affiliation_more_email_addresses: |
+    Адрасы электроннай пошты абагульняюцца з Удзельнікамі Сеткі выключна для камунікацыйных мэтаў, звязаных з сайтам.
   sounds:
     add_media: Дадаць медыа
     add_sounds: Дадаць гукі
@@ -3421,6 +3429,9 @@ be:
   yes_i_want_to_join: Так, я хачу далучыцца
   yes_license_my_childs_observations: Так, ліцэнзаваць фатаграфіі, гукі і назіранні майго дзіцяці каб навукоўцы маглі выкарыстоўваць гэтыя дадзеныя (рэкамендавана).
   yes_license_my_observations_so_scientists_can_use: Так, ліцэнзаваць мае фатаграфіі, гукі і назіранні каб навукоўцы маглі выкарыстоўваць гэтыя дадзеныя (рэкамендавана).
+  you_are_already_a_member_of_this_project: "Вы ўжо з'яўляецеся ўдзельнікам гэтага праэкту!"
+  you_arent_a_member_of_that_project: Вы не з'яўляецеся ўдзельнікам гэтага праэкту.
+  you_must_be_a_member_of_this_project_to_do_that: Вы павінны быць удзельнікам гэтага праэкту, каб зрабіць гэта
   your_id: Вашае вызначэнне
   your_identification: Вашае вызначэнне
   your_observations: Вашыя назіранні
@@ -3476,6 +3487,7 @@ be:
           да %{image}, дзе вы можаце <strong>зрабіць запіс</strong> таго, што вы бачыце ў прыродзе,
           <strong>сустрэць</strong> іншых аматараў прыроды,
           ды <strong>даведацца больш</strong> пра жывую прыроду.
+        explore_and_share: Даследуйце ды дзяліцеся сваімі назіраннямі жывой прыроды.
         observations_to_date: 'Назіранні на гэты момант'
         species_observed: 'Назіраемыя віды'
         people_signed_up: 'Людзей зарэгістравана'
