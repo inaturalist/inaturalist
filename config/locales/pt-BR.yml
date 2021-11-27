@@ -706,8 +706,8 @@ pt-BR:
   batch_operations: Operações por lote
   be_the_first_to_fave_this_observation: Seja o primeiro a adicionar esta observação aos favoritos!
   because_of: por causa de
-  become_a_donor_caps: Torne-se um doador
-  become_a_donor_today_caps: Torne-se um doador hoje
+  become_a_donor_caps: TORNE-SE UM DOADOR
+  become_a_donor_today_caps: TORNE-SE UM DOADOR HOJE
   before_importing_photos: antes de importar fotos
   bg_color: Cor BG
   bio: Biografia
@@ -841,7 +841,7 @@ pt-BR:
   check_list_place: "Lista de Verificação de %{place}"
   check_list_updated: Check list Atualizada!
   check_lists_for: "Outras Check Lists para %{place}"
-  check_out_the_inat_store: Sair da Loja iNaturalist
+  check_out_the_inat_store: Confira a Loja iNaturalist
   check_out_what_the_observation: Dê uma olhada a que a observação que você esta tentando identificar se assemelha.
   check_this_box_if_html: |
     Marque esta caixa caso queira aplicar uma
@@ -1454,8 +1454,8 @@ pt-BR:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: Doar
-  donate_again_caps: Doar novamente
-  donate_again_today_caps: Doar novamente hoje
+  donate_again_caps: DOE NOVAMENTE
+  donate_again_today_caps: DOE NOVAMENTE HOJE
   done: Concluído
   dont_have_an_account_sign_up_html: Não tem uma conta? <strong>Cadastre-se.</strong>
   dont_send_me_email: "Não me envie qualquer e-mail"
@@ -4354,7 +4354,7 @@ pt-BR:
   still_no_luck?: Ainda sem sorte?
   still_needs_id?: Precisa de ajuda para confirmar esta identificação?
   still_working_on_classifying_taxon: Aínda estamos traballando na classificação deste táxon. Verifique este conteúdo mais tarde.
-  stop_editing: Pare de Editar
+  stop_editing: Parar de Editar
   stop_following_user: "Deixe de seguir %{user}"
   stop_testing: Parar Testes
   stop_trusting_this_person_with_your_private_coordinates: Parar de confiar suas coordenadas ocultadas a esta pessoa
@@ -6665,6 +6665,11 @@ pt-BR:
             incluindo o trabalho das
             <strong class="count">%{helpers_count} pessoas</strong> quem têm
             ajudado você com identificações
+        x_projects_html:
+          one: |
+            <strong class="count">%{count} projeto</strong> que não tem outro gerente ou administrador que possa se tornar o novo responsável
+          other: |
+            <strong class="count">%{count} projetos</strong> que não têm outros gerentes ou administradores que possam se tornar os novos responsáveis
         x_identifications_html:
           one: |
             <strong class="count">sua %{count} identificação</strong> na observação de outra pessoa poderá afetar a qualidade dos dados de tal observação
