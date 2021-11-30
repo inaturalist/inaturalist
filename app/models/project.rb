@@ -168,6 +168,7 @@ class Project < ApplicationRecord
       s3_region: CONFIG.s3_region,
       bucket: CONFIG.s3_bucket,
       styles: { thumb: "48x48#", mini: "16x16#", span1: "30x30#", span2: "70x70#", original: "1024x1024>" },
+      processors: [:deanimator],
       path: "projects/:id-icon-:style.:extension",
       url: ":s3_alias_url",
       default_url: "/attachment_defaults/general/:style.png"
@@ -201,7 +202,7 @@ class Project < ApplicationRecord
       url: "#{ CONFIG.s3_host }/attachments/:class/:id-cover.:extension",
       default_url: ""
   end
-  validates_attachment_content_type :icon, content_type: [/jpe?g/i, /png/i, /octet-stream/], message: "must be JPG or PNG"
+  validates_attachment_content_type :cover, content_type: [/jpe?g/i, /png/i, /octet-stream/], message: "must be JPG or PNG"
   validate :cover_dimensions, unless: Proc.new { |p| p.errors.any? || p.is_new_project? }
   
   ASSESSMENT_TYPE = 'assessment'
