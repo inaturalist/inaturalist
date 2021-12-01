@@ -34,11 +34,12 @@ class Flag < ActiveRecord::Base
   }
 
   blockable_by lambda {|flag| flag.flaggable.try(:user_id) }, on: :create
-  
+
   # NOTE: Flags belong to a user
   belongs_to :user, inverse_of: :flags
   belongs_to :resolver, :class_name => 'User', :foreign_key => 'resolver_id'
-  has_many :comments, :as => :parent, :dependent => :destroy
+  has_many :comments, :as => :parent, :dependent => :destroy, :validate => false
+  attr_accessor :initial_comment_body
 
   before_save :check_resolved
   before_create :set_flaggable_user_id
@@ -47,7 +48,7 @@ class Flag < ActiveRecord::Base
   after_create :notify_flaggable_on_create
   after_update :notify_flaggable_on_update
   after_destroy :notify_flaggable_on_destroy
-  
+
   # A user can flag a specific flaggable with a specific flag once
   validates_length_of :flag, :in => 3..256, :allow_blank => false
   validates_length_of :comment, :maximum => 256, :allow_blank => true
@@ -64,7 +65,7 @@ class Flag < ActiveRecord::Base
   def to_s
     "<Flag #{id} user_id: #{user_id} flaggable_type: #{flaggable_type} flaggable_id: #{flaggable_id}>"
   end
-  
+
   def flaggable_type_valid
     if Flag::TYPES.include?(flaggable_type)
       true
@@ -123,8 +124,8 @@ class Flag < ActiveRecord::Base
       :order => "created_at DESC"
     )
   end
-  
-  # Helper class method to look up all flags for 
+
+  # Helper class method to look up all flags for
   # flaggable class name and flaggable id.
   def self.find_flags_for_flaggable(flaggable_str, flaggable_id)
     find(:all,
@@ -134,11 +135,11 @@ class Flag < ActiveRecord::Base
   end
 
   # Helper class method to look up a flaggable object
-  # given the flaggable class name and id 
+  # given the flaggable class name and id
   def self.find_flaggable(flaggable_str, flaggable_id)
     flaggable_str.constantize.find(flaggable_id)
   end
-  
+
   def flagged_object
     if klass = Object.const_get( flaggable_type )
       klass.find_by_id( flaggable_id )
