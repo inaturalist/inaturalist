@@ -38,12 +38,11 @@ module DarwinCore
       # Make a unique dir to put our files
       @opts[:work_path] = Dir.mktmpdir
       FileUtils.mkdir_p @opts[:work_path], :mode => 0755
-      puts "Path: #{@opts[:work_path]}"
 
       @place = Place.find_by_id(@opts[:place].to_i) || Place.find_by_name(@opts[:place])
       logger.debug "Found place: #{@place}"
       @taxa = [@opts[:taxon]].flatten.compact.map do |taxon|
-        if taxon.is_a?( Taxon )
+        if taxon.is_a?( ::Taxon )
           taxon
         else
           taxon.to_s.split( "," ).map do |t|
@@ -68,6 +67,10 @@ module DarwinCore
 
     def logger
       @logger || Rails.logger
+    end
+
+    def extension_paths
+      @extension_paths || { }
     end
 
     def generate
@@ -186,13 +189,14 @@ module DarwinCore
     end
 
     def make_data
+      @generate_started_at ||= Time.now
+      @extension_paths = { }
       core_and_extensions = [@opts[:core]] + @opts[:extensions]
       core_and_extensions.map!{ |ext| ext.underscore.downcase.to_sym }
       ( obs_based_extensions, custom_extensions ) = core_and_extensions.partition do |ext|
         DarwinCore::Archive::OBS_BASED_EXTENSIONS.include?( ext )
       end
 
-      paths = []
       if obs_based_extensions.any?
         obs_based_extension_info = { }
         preloads = []
@@ -200,7 +204,7 @@ module DarwinCore
           logger.info "Preparing #{ext} extension..."
           obs_based_extension_info[ext] = send("make_#{ext}_file")
           preloads += obs_based_extension_info[ext][:preloads]
-          paths << obs_based_extension_info[ext][:path]
+          @extension_paths[ext] = obs_based_extension_info[ext][:path]
         end
         observations_in_batches( observations_params, preloads, label: "obs_based_extensions" ) do |batch|
           obs_based_extensions.each do |ext|
@@ -214,9 +218,9 @@ module DarwinCore
 
       custom_extensions.each do |ext|
         logger.info "Making #{ext} extension..."
-        paths += send("make_#{ext}_data")
+        @extension_paths[ext] = send("make_#{ext}_data")
       end
-      paths
+      @extension_paths.values
     end
 
     def observations_params
@@ -352,8 +356,7 @@ module DarwinCore
           end
         end
       end
-      
-      [tmp_path]
+      tmp_path
     end
 
     def make_eol_media_data
@@ -398,8 +401,7 @@ module DarwinCore
           end
         end
       end
-      
-      [tmp_path]
+      tmp_path
     end
 
     def make_simple_multimedia_file
@@ -418,6 +420,7 @@ module DarwinCore
     end
 
     def write_simple_multimedia_data( observations, csv )
+      @generate_started_at ||= Time.now
       observations.each do |observation|
         return if observation.observation_photos.blank? && observation.observation_sounds.blank?
         begin
@@ -465,6 +468,7 @@ module DarwinCore
     end
 
     def write_observation_fields_data( observations, csv )
+      @generate_started_at ||= Time.now
       observations.each do |observation|
         observation.observation_field_values.each do |ofv|
           next unless ofv.created_at <= @generate_started_at
@@ -485,6 +489,7 @@ module DarwinCore
     end
 
     def write_project_observations_data( observations, csv )
+      @generate_started_at ||= Time.now
       observations.each do |observation|
         observation.project_observations.each do |po|
           next unless po.created_at <= @generate_started_at
@@ -567,7 +572,6 @@ module DarwinCore
           end
         end
       end
-
       tmp_path
     end
 
