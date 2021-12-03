@@ -124,6 +124,7 @@ synonyms = {
     "Videnskabelige Navne",
     "Wetenschappelijke Namen"
   ],
+  TaxonName::SETSWANA => ["Tswana"],
   TaxonName::SLOVAK => ["Slovakian"],
   TaxonName::SLOVENIAN => ["Slovene"],
   "Sotho (Northern)" => ["Northern Sotho", "Sotho ( Northern)"],

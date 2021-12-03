@@ -46,16 +46,14 @@ describe ConservationStatus do
     it "should have geoprivacy obscured by default" do
       expect( ConservationStatus.make!.geoprivacy ).to eq Observation::OBSCURED
     end
+
     it "should not allow blank string geoprivacy" do
       expect( ConservationStatus.make!(geoprivacy: '').geoprivacy ).to be_nil
     end
+
     it "should normalize case for geoprivacy" do
       expect( ConservationStatus.make!( geoprivacy: "Obscured" ).geoprivacy ).to eq Observation::OBSCURED
       expect( ConservationStatus.make!( geoprivacy: "PRIVATE" ).geoprivacy ).to eq Observation::PRIVATE
-    end
-    it "should have open geoprivacy for a not evaluated status and user is blank" do
-      status = ConservationStatus.make!( status: "NE", iucn: Taxon::IUCN_NOT_EVALUATED, user: nil )
-      expect( status.geoprivacy ).to eq Observation::OPEN
     end
 
     it "should reassess observations of taxon if obscuring" do

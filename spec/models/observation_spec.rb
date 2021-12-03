@@ -377,6 +377,29 @@ describe Observation do
       end
     end
 
+    describe "place_admin_name" do
+      let( :state_place ) do
+        make_place_with_geom(
+          wkt: "MULTIPOLYGON(((1 1,1 2,2 2,2 1,1 1)))",
+          admin_level: Place::STATE_LEVEL,
+          name: "State Place"
+        )
+      end
+      let( :county_place ) do
+        make_place_with_geom(
+          wkt: "MULTIPOLYGON(((1.3 1.3,1.3 1.7,1.7 1.7,1.7 1.3,1.3 1.3)))",
+          parent: state_place,
+          admin_level: Place::COUNTY_LEVEL,
+          name: "County Place"
+        )
+      end
+      it "should return proper place_admin1_name and place_admin2_name" do
+        o = Observation.make!( latitude: county_place.latitude, longitude: county_place.longitude )
+        expect( o.place_admin1_name ).to eq state_place.name
+        expect( o.place_admin2_name ).to eq county_place.name
+      end
+    end
+
     describe "place_guess" do
       let( :big_place ) do
         make_place_with_geom(
@@ -1332,7 +1355,6 @@ describe Observation do
         global_cs2 = create :conservation_status
         o = create :observation, latitude: place.latitude, longitude: place.longitude, taxon: species
         expect( o ).not_to be_coordinates_obscured
-        puts "creating ident of #{global_cs2.taxon.id}"
         create :identification, observation: o, taxon: global_cs2.taxon
         expect( o ).to be_coordinates_obscured
       end
@@ -1354,7 +1376,6 @@ describe Observation do
         global_cs = create :conservation_status, taxon: species
         o = create :observation, latitude: place.latitude, longitude: place.longitude, taxon: species
         expect( o ).not_to be_coordinates_obscured
-        puts "creating ident of #{local_cs2.taxon.id}"
         create :identification, observation: o, taxon: local_cs2.taxon
         expect( o ).to be_coordinates_obscured
       end
@@ -1606,10 +1627,10 @@ describe Observation do
     let(:observation) { build :observation, taxon: nil, user: user, editing_user_id: user.id }
 
     it "should choose a taxon if the guess corresponds to a unique taxon" do
-      taxon = create :taxon
+      taxon = create :taxon, :as_species
       observation.species_guess = taxon.name
       observation.set_taxon_from_species_guess
-      expect(observation.taxon_id).to eq taxon.id
+      expect( observation.taxon_id ).to eq taxon.id
     end
 
     it "should choose a taxon from species_guess if exact matches form a subtree" do

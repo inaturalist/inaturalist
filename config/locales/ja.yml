@@ -156,7 +156,6 @@ ja:
   account: アカウント
   account_creation: アカウント作成
   account_settings: アカウント設定
-  accept: 承諾
   accept_community_identifications: コミュニティ同定を承諾
   accuracy: 精度
   accuracy_meters: 精度（m）
@@ -533,7 +532,6 @@ ja:
   are_you_sure_you_want_to_remove_spammer: |
     このユーザーを信用して本当によろしいですか。これまで付いていたスパムフラグは解消されます。
   are_you_sure_you_want_to_remove_these_x_taxa?: "この%{x}個の分類群を削除して本当によろしいですか？"
-  are_you_sure_you_want_to_remove_this_invitation: この招待を取り消しても本当によろしいですか？
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     %{project} からこの観測記録を削除して本当によろしいですか？
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "%{place}のチェックリストからこの分類群を削除して本当によろしいですか？"
@@ -576,7 +574,6 @@ ja:
   avg: 平均
   back: 戻る
   back_to_all_species: すべての種に戻る
-  back_to_calendar: "%{user}さんのカレンダーに戻る"
   back_to_editing_observation: 観測記録の編集に戻る
   back_to_friends: 友人に戻る
   back_to_flags_html: "&laquo; フラグに戻る"
@@ -603,7 +600,6 @@ ja:
   back_to_your_journal: 自分の日記に戻る
   back_to_your_observations: 自分の観察記録に戻る
   back_to_your_profile: 自分のプロフィールに戻る
-  back_to_your_projects: 自分のプロジェクトに戻る
   based_on_the_evidence_can_id_be_improved: |
     証拠に基づいてコミュニティ分類群を確定しますか、改善しますか？
   batch: 一括
@@ -736,7 +732,6 @@ ja:
   check_list_place: "%{place} チェックリスト"
   check_list_updated: チェックリスト更新されました！
   check_lists_for: "その他の%{place}のチェックリスト"
-  check_out_our_blog: 公式ブログも読んでみてください
   check_out_what_the_observation: あなたが同定しようとしている観察がどのように見えるか確認してみてください。
   check_this_box_if_html: |
     アップロードされたコンテンツに対する<a
@@ -804,7 +799,6 @@ ja:
   comparing: 比較しています
   comparing_list_to_list: "%{list1} と%{list2}を比較しています"
   comparing_versions_x_and_y: "バージョン%{x}とバージョン %{y}を比較しています"
-  comparing_observations_from: "%{dates}の%{user}さんの観察記録を比較しています"
   compiled_by_name: "編集者：%{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: 完了
@@ -815,6 +809,10 @@ ja:
   #species in the taxon and place it purports to
   comprehensive?: 完全？
   comprehensive_list: 包括リスト
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: 含む
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: 保留
   configure: 設定する
   configure_a_widget_to_show: Webサイトまたはブログに%{site_name} の観察記録を表示するようウィジェットを設定します。埋め込まれたCSSをHTMLの<code>&lt;head&gt;</code>に含める必要があるかもしれません。CSSを自由に編集してください。
   confirm: 確認
@@ -1532,7 +1530,6 @@ ja:
   identification_user_short: 同定ユーザー
   identification_withdrawn: 同定が撤回されました。
   identifications: 同定
-  identifications_by: "%{user}さんの同定"
   computer_vision_suggestion: コンピュータビジョンの提案
   computer_vision_suggestion_desc: |
     コンピュータビジョンは、画像のパターン認識をコンピュータに教えるプロセスです。コミュニティの写真で訓練されたコンピュータビジョンモデルを使用して、オートコンプリートや比較機能などの識別候補を提供するツールを提供しています。このラベルは、ユーザーがこれらのツールのいずれかを使用して同定を追加したときに表示されます。
@@ -1547,7 +1544,6 @@ ja:
   if_this_is_a_scientific_name: 学名の場合、現在認められているものでしょうか？
   if_you_have_any_trouble_with_the_site_check_out: 'ご質問がある場合は、<a href="%{help_url}">ヘルプセクション</a>を参照するか、<a href="%{feedback_url}">フィードバックグループ</a>にメッセージを投稿してください。'
   if_your_project_is: プロジェクトが特定の場所に関するものである場合は、マップをクリックするか、手動で座標を入力して設定します。
-  ignore: 無視
   ignore_and_continue: 無視して続行
   ignore_times: 時間を無視する
   image_must_be_exactly: 画像の大きさは高さ400px以下、幅はちょうど950pxでなけれなりません。
@@ -1624,7 +1620,6 @@ ja:
   join_project: このプロジェクトに参加する
   #Prompt to join a specific project
   join_project?: '%{project}に参加しますか？'
-  join_some_projects_and_invite_some_observations_html: "<a href='%{join_url}'>プロジェクト</a>に参加して<a href='%{invite_url}'>意見を求めましょう</a>。"
   join_the_largest_group_of_naturalists_in_the_world: 世界最大のナチュラリストグループに参加してみませんか？
   join_this_project: このプロジェクトに参加
   'joined!': 参加しました！
@@ -2112,7 +2107,6 @@ ja:
   no_license_all_rights_reserved: ライセンスなし（著作権を全て留保する）
   no_managers_set: 管理者が指定されていません
   no_matching_article_from_x: "%{x}に一致する記事がありません"
-  no_matching_invitations: 該当する招待がありません
   no_matching_observations: 一致する観察記録がありません
   no_matching_places: 一致する場所がありません
   no_matching_projects: 一致するプロジェクトがありません
@@ -2249,7 +2243,6 @@ ja:
   observations_deleted: 観察記録が削除されました
   observations_fields_are: |
     観察フィールドとは、観察記録に関わるさまざまな詳細データを記録する任意フィールドのことです。例えば、観察された個体数、生息環境などの説明、なんでも追加できます！プロジェクトでは、観察記録の記入フィールドの指定もできます。
-  observations_from: '%{date}の観察記録'
   observations_from_people_taxa_and_places_youre_following: "フォロー中の場所、人、そして分類群の観察記録"
   observations_from_this_place: この場所からの観察記録
   observations_from_this_project: このプロジェクトの観察記録
@@ -2863,8 +2856,6 @@ ja:
   places_merged_successfully: 場所は無事統合できました！
   plants: 植物
   please_add_a_citation_for_this_change: この変更の参考文献を記入してください
-  please_add_this_observation_to: この観察記録をこちらにご追加ください：
-  please_add_this_to_x_html: "%{x}に追加してください"
   please_allow_a_few_weeks_for_external_sites: 外部サイトがこの観察記録の変更を同期するのに数週間かかります。 #Title to a section warning a user to exercise caution
   please_be_careful!: 気をつけてください！
   please_complete_the_following_to_add_project: |
@@ -2877,7 +2868,6 @@ ja:
   please_hold_on_while_the_file_is_generated: ファイルが生成されるまでしばらくお待ちください。長いリストの場合、数分かかることがあります。
   popular: 人気
   position: 位置
-  possessive_user: "%{user}さんの"
   #Post is a noun
   post_from_journal_by_parent_html: <a href="%{url}">%{parent} による日記</a>からの投稿
   #Post is a noun
@@ -3423,7 +3413,6 @@ ja:
   suggestions: 提案
   summary: 概要
   supporting: サポート
-  support_inaturalist: iNaturalistを支援する
   suspend_user: ユーザーの利用停止
   sw_lat: 南西緯度
   sw_lon: 南西経度
@@ -3673,7 +3662,6 @@ ja:
   uicn_red_list_status: "IUCNレッドリスト状況:"
   unclassified: 未分類
   ungrafted_taxa: 未融合の分類群
-  uninvite: 招待を取り消す
   unknown: 不明
   unknown_error: 不明なエラー
   unknown_rank: '(階級不明）'
@@ -3735,6 +3723,7 @@ ja:
   user: ユーザー
   user1_and_user2_faved_this_observation: "%{user1}さんと%{user2}さんがこの観察記録をお気に入りに追加しました"
   user1_user2_and_x_others_faved_this_observation: "%{user1}さんと%{user2}さんと%{x_others}さんがこの観察記録をお気に入りに追加しました"
+  user_added_a_comment_html: "%{user} さんがコメントを追加しました"
   user_added_a_x: "%{user}さんが%{x}を追加しました"
   user_added_a_x_to_noun_by_html: "%{user}さんは%{by}の%{noun}に%{x}を追加しました"
   user_added_a_x_to_noun_html: "%{user}さんが%{noun}に%{x}を追加しました"
@@ -3752,7 +3741,6 @@ ja:
   user_has_opted_out_of_community_id: 利用者はコミュニティ分類群の通知を受け取りません
   user_invited_you_to_join_html: "%{user}さんから招待が届いています："
   user_invited_you_to_join_project: "%{user}さんから%{project}に参加するように招待されました"
-  user_invited_your_x_to_a_project_html: "%{user}さんがあなたの%{x}をプロジェクトに招待しました"
   user_is_a_naturalist: "%{user}さんはナチュラリストです！"
   user_observed_on_on_date_in_place: |
     %{user} さんが %{date} に %{place} で観察しました
@@ -3787,7 +3775,6 @@ ja:
   view_flags_for_x_html: "%{x}のフラグを表示"
   view_full_observation: 観察記録の全体表示
   view_full_size_photo: フルサイズの写真を表示
-  view_invitation: 招待を表示
   view_journal: 日記を表示
   view_leaderboard_from_last_month: 先月の達人ランキングを表示
   view_leaderboard_from_last_year: 昨年の達人ランキングを表示
@@ -3952,7 +3939,6 @@ ja:
   you_must_choose_an_observation_field: 観察フィールドを選択しなければなりません
   you_must_have_a_header_row: 見出し行が必要です。
   you_must_select_at_least_one_taxon: 一つ以上の分類群を選択しなければなりません
-  you_must_select_dates_to_compare: 比較したい日付お選びください
   you_need_to_select_some_observations_first: まずは観察記録を選択する必要があります
   you_retain_full_copyright: "利用規約により%{site_name}に付与された権利を除き、コンテンツの完全な著作権を保持します。"
   you_retain_full_copyright_over_your_content: "利用規約により%{site_name}に付与された権利を除き、コンテンツの完全な著作権を保持します。"

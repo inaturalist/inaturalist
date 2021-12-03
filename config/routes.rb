@@ -98,8 +98,7 @@ Rails.application.routes.draw do
   end
 
   post "/oauth/assertion_token" => "provider_oauth#assertion"
-  get "/oauth/bounce" => "provider_oauth#bounce", :as => "oauth_bounce"
-  get "/oauth/bounce_back" => "provider_oauth#bounce_back", :as => "oauth_bounce_back"
+
   use_doorkeeper do
     controllers applications: "oauth_applications",
       authorizations: "oauth_authorizations",

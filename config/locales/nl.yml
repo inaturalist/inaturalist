@@ -233,7 +233,6 @@ nl:
   account: Account
   account_creation: Account aangemaakt
   account_settings: Accountinstellingen
-  accept: accepteren
   accept_community_identifications: Gemeenschapsdeterminaties accepteren
   accuracy: Nauwkeurigheid
   accuracy_meters: Nauwkeurigheid (meters)
@@ -642,7 +641,6 @@ nl:
   are_you_sure_you_want_to_remove_spammer: |
     Weet je zeker dat je deze gebruiker als eervol beschouwt? Alle meldingen van spam in inhoud van deze gebruiker worden opgelost.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Weet je zeker dat je deze %{x} taxa wilt verwijderen?"
-  are_you_sure_you_want_to_remove_this_invitation: Weet je zeker dat je deze uitnodiging wilt verwijderen?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Weet je zeker dat je deze waarneming uit %{project} wilt verwijderen?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Weet je zeker dat je dit taxon wilt verwijderen uit de checklist voor %{place}?"
@@ -687,7 +685,6 @@ nl:
   avg: Gem.
   back: Terug
   back_to_all_species: Terug naar Alle Soorten
-  back_to_calendar: "Terug naar %{user} kalender"
   back_to_editing_observation: Terug naar waarneming bewerken
   back_to_friends: Terug naar vrienden
   back_to_flags_html: "&laquo; Terug naar meldingen"
@@ -703,18 +700,20 @@ nl:
   back_to_taxon: "Terug naar %{defaulttaxon}"
   back_to_taxon_changes: "Terug naar aanpassingen van het taxon"
   back_to_taxon_framework_for_x: "Terug naar het taxonkader voor %{taxon_name}"
+  back_to_users_calendar: "Terug naar %{user}'s kalender"
+  back_to_users_lists: "Terug naar %{user}'s lijsten"
   back_to_viewing: "Terug naar <i>%{taxon}</i> bekijken"
   back_to_x: "Terug naar %{noun}"
   back_to_x_assessment: "Terug naar %{project} beoordelingen"
   back_to_x_history: "Terug naar de geschiedenis van %{x}"
   back_to_x_journal: "Terug naar het dagboek van %{user}"
   back_to_x_blog: "Terug naar de blog van %{x}"
+  back_to_your_calendar: Terug naar jouw kalender
   back_to_your_dashboard: Terug naar je dashboard
   back_to_your_lists: Terug naar je lijsten
   back_to_your_journal: Terug naar je dagboek
   back_to_your_observations: Terug naar je waarnemingen
   back_to_your_profile: Terug naar je profiel
-  back_to_your_projects: Terug naar je projecten
   badges: Badges
   based_on_the_evidence_can_id_be_improved: |
     Gebaseerd op het bewijs, kan het gemeenschapstaxon nog steeds bevestigd of verbeterd worden?
@@ -859,7 +858,6 @@ nl:
   check_list_place: "%{place} Checklist"
   check_list_updated: Checklist bijgewerkt!
   check_lists_for: "Andere Checklists voor %{place}"
-  check_out_our_blog: Bekijk ons blog
   check_out_what_the_observation: Bekijk hoe de waarneming die je probeert te determineren eruitziet.
   check_this_box_if_html: |
     Vink dit vakje aan als je een
@@ -932,7 +930,6 @@ nl:
   comparing: vergelijken
   comparing_list_to_list: "%{list1} met %{list2} aan het vergelijken"
   comparing_versions_x_and_y: "Versies %{x} en %{y} vergelijken"
-  comparing_observations_from: "Vergelijken van %{user} waarnemingen van %{dates}"
   compiled_by_name: "Gecompileerd door %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Afgerond
@@ -1954,7 +1951,6 @@ nl:
   identification_user_short: Det. gebr.
   identification_withdrawn: Determinatie ingetrokken.
   identifications: Determinaties
-  identifications_by: "Determinaties door %{user}"
   computer_vision_suggestion: Computer Vision Voorstel
   computer_vision_suggestion_desc: |
     Computervisie is het proces waarbij computers worden geleerd om patronen te herkennen in afbeeldingen. We bieden hulpmiddelen die gebruik maken van computervisie-modellen die zijn getraind met de foto's van de gemeenschap om determinatiesuggesties te doen, zoals functionaliteit voor automatisch aanvullen en vergelijken. Dit pictogram geeft aan dat een persoon een determinatie heeft toegevoegd met behulp van één van deze tools.
@@ -1971,7 +1967,6 @@ nl:
   if_this_link_will_apply_to_descendant: Als deze link van toepassing is op onderliggende taxa kun je sjabloontags gebruiken om de taxonnaam in de URL in te vullen
   if_you_have_any_trouble_with_the_site_check_out: 'Mocht je vragen hebben, ga dan even naar onze <a href="%{help_url}">help sectie</a> of plaats een bericht in onze <a href="%{feedback_url}">feedbackgroep</a>.'
   if_your_project_is: Geef de coördinaten op door op de kaart te klikken of ze handmatig in te voeren als je project betrekking heeft op een specifieke plek.
-  ignore: negeren
   ignore_and_continue: Negeren en verdergaan
   ignore_times: Tijden negeren
   image_must_be_exactly: afbeelding moet exact 950px breed en maximaal 400px hoog zijn
@@ -2066,7 +2061,6 @@ nl:
   join_project: Doe mee aan dit project
   #Prompt to join a specific project
   join_project?: Deelnemen aan %{project}?
-  join_some_projects_and_invite_some_observations_html: "Doe mee aan enkele <a href='%{join_url}'>projecten</a> en <a href='%{invite_url}'>nodig enkele waarnemingen uit</a>"
   join_the_largest_group_of_naturalists_in_the_world: Sluit je aan bij de grootste groep naturalisten ter wereld!
   join_this_project: Doe mee aan dit project
   'joined!': Toegevoegd!
@@ -2699,7 +2693,6 @@ nl:
   no_license_all_rights_reserved: Geen licentie (alle rechten voorbehouden)
   no_managers_set: Geen beheerders ingesteld
   no_matching_article_from_x: "Geen overeenkomend artikel van %{x}"
-  no_matching_invitations: Geen overeenkomende uitnodigingen
   no_matching_observations: Geen overeenkomende waarnemingen.
   no_matching_places: Geen overeenkomende plaatsen
   no_matching_projects: Geen overeenkomende projecten
@@ -2820,10 +2813,10 @@ nl:
   observation_brief_something_on_day_at_time: "Iets op %{day} om %{time}"
   observation_brief_something_on_day_at_time_by_user: "Iets op %{day} om %{time} door %{user}"
   observation_brief_something_on_day_by_user: "Iets op %{day} door %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month: "Iets in %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month_by_user: "Iets in %{month} door %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Iets in %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Iets in %{month} %{year} door %{user}"
   observation_brief_something_by_user: "Iets door %{user}"
   observation_brief_something_from_place: "Iets uit %{place}"
   observation_brief_something_from_place_by_user: "Iets uit %{place} door %{user}"
@@ -2831,18 +2824,18 @@ nl:
   observation_brief_something_from_place_on_day_by_user: "Iets uit %{place} op %{day} door %{user}"
   observation_brief_something_from_place_on_day_at_time: "Iets uit %{place} op %{day} om %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Iets uit %{place} op %{day} om %{time} door %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month: "Iets uit %{place} in %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month_by_user: "Iets uit %{place} in %{month} door %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Iets uit %{place} in %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Iets uit %{place} in %{month} %{year} door %{user}"
   observation_brief_taxon_on_day: "%{taxon} op %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} op %{day} om %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} op %{day} om %{time} door %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} op %{day} door %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month: "%{taxon} in %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month_by_user: "%{taxon} in %{month} door %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} in %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} in %{month} %{year} door %{user}"
   observation_brief_taxon_by_user: "%{taxon} door %{user}"
   observation_brief_taxon_from_place: "%{taxon} uit %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} uit %{place} door %{user}"
@@ -2850,10 +2843,10 @@ nl:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} uit %{place} op %{day} door %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} uit %{place} op %{day} om %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} uit %{place} op %{day} om %{time} door %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month: "%{taxon} uit %{place} in %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} uit %{place} in %{month} door %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} uit %{place} in %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} uit %{place} in %{month} %{year} door %{user}"
   observations_by_category: "Waarnemingen per categorie"
   observations_by_app: Waarnemingen volgens App
   observations_by_rank: Waarnemingen per rang
@@ -2909,7 +2902,6 @@ nl:
     Waarnemingsvelden zijn extra gegevens die zijn gekoppeld aan een
     waarneming, zoals het aantal waargenomen individuen, habitatbeschrijving of wat je maar wilt! projecten kunnen ook velden specificeren
     die ze graag ingevuld willen hebben.
-  observations_from: Waarnemingen op %{date}
   observations_from_people_taxa_and_places_youre_following: "Waarnemingen van mensen, plaatsen en taxa die jij volgt"
   observations_from_this_place: Waarnemingen van deze plaats
   observations_from_this_project: Waarnemingen van dit project
@@ -3615,8 +3607,6 @@ nl:
     mensen in de toekomst plaatsen kunnen toevoegen.
   plants: planten
   please_add_a_citation_for_this_change: Voeg een citaat toe voor deze wijziging.
-  please_add_this_observation_to: Voeg deze waarneming toe aan
-  please_add_this_to_x_html: "Voeg dit alsjeblieft toe aan %{x}"
   please_allow_a_few_weeks_for_external_sites: Wacht een paar weken zodat externe sites de wijzigingen van deze waarneming kunnen synchroniseren #Title to a section warning a user to exercise caution
   please_be_careful!: Wees voorzichtig!
   please_complete_the_following_to_add_project: |
@@ -3629,7 +3619,6 @@ nl:
   please_hold_on_while_the_file_is_generated: Even geduld, het bestand wordt aangemaakt. Voor lange lijsten kan dit enkele minuten duren.
   popular: Populair
   position: Positie
-  possessive_user: "van %{user}"
   #Post is a noun
   post_from_journal_by_parent_html: Post vanuit <a href="%{url}">dagboek van %{parent}</a>
   #Post is a noun
@@ -4377,7 +4366,6 @@ nl:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Geschikt voor Wikipedia en andere Wikimedia Foundation projecten
   summary: Samenvatting
   supporting: Ondersteunend
-  support_inaturalist: Steun iNaturalist
   suspend_user: Gebruiker schorsen
   sw_lat: ZW Lat.
   sw_lon: ZW Lon.
@@ -4750,7 +4738,6 @@ nl:
   unhide_desc: |
     Zichtbaar maken maakt deze inhoud zichtbaar voor iedereen. Curatoren kunnen er nog steeds
     voor kiezen om het in de toekomst opnieuw te verbergen.
-  uninvite: Uitnodiging verwijderen
   unique_identifier_of_this_taxon: Unieke identifier van dit taxon in de brondatabase.
   unique_observers: Unieke waarnemers
   unknown: Onbekend
@@ -4880,7 +4867,6 @@ nl:
   user_invited_you_to_join_html: "%{user} nodigde je uit om aan te sluiten"
   user_invited_you_to_join_project: "%{user} nodigde je uit om aan te sluiten bij %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} nodigde je uit om aan te sluiten bij dit project op %{date}"
-  user_invited_your_x_to_a_project_html: "%{user} heeft je %{x} uitgenodigd voor een project"
   user_is_a_naturalist: "%{user} is een naturalist!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> is nu de administrator voor %{project}
@@ -4906,7 +4892,9 @@ nl:
   users_favorites: "Favorieten van %{user}"
   users_highlights_and_stats_from_year_on_site: "%{user}'s hoogtepunten en statistieken van %{year} op %{site}"
   users_id: "ID van %{user}"
+  users_identifications: "Determinaties van %{user}"
   users_latest_observations_on_site: "Laatste waarnemingen van %{user} op %{site}"
+  users_lists: "Lijsten van %{user}"
   users_profile: "Profiel van %{user}"
   users_projects: "Projecten van %{user}"
   users_year_on_site: "%{user}'s jaar op %{site} %{year}"
@@ -4926,14 +4914,13 @@ nl:
   view_check_list_page: Checklist-pagina weergeven
   view_contributions: Bijdragen weergeven
   view_details: Details weergeven
-  view_dynamic_lifelist: Bekijk dynamische levenslijst
+  view_dynamic_lifelist_: BEKIJK DYNAMISCHE LEVENSLIJST
   view_field_options: Bekijk veldopties
   view_flag: Melding bekijken
   view_flags: Meldingen bekijken
   view_flags_for_x_html: "Meldingen bekijken voor %{x}"
   view_full_observation: Volledige waarneming weergeven
   view_full_size_photo: Toonfull-size foto
-  view_invitation: Uitnodiging weergeven
   view_journal: Dagboek bekijken
   view_leaderboard_from_last_month: Toplijst van vorige maand weergeven
   view_leaderboard_from_last_year: Bekijk Toplijst van vorig jaar
@@ -5198,7 +5185,6 @@ nl:
   you_must_have_a_header_row: Je moet een kopregel hebben
   you_must_select_a_place_to_merge_with: Je moet een plaats selecteren om mee samen te voegen.
   you_must_select_at_least_one_taxon: Je moet ten minste één taxon selecteren
-  you_must_select_dates_to_compare: Je moet datums selecteren om te vergelijken
   you_must_specify_and_confirm_a_new_password: Je moet een nieuw wachtwoord opgeven en bevestigen.
   you_need_to_have_linked_flickr_account: Je moet een Flickr-account hebben om je foto's te kunnen labelen.
   you_need_to_select_some_observations_first: Je moet eerste enkele waarnemingen selecteren.
@@ -5965,6 +5951,9 @@ nl:
         complex_boundary_note_html: |
           Deze grens is een beetje te complex om op het web te bewerken. Je kunt wel
           <a href="%{url}">de KML downloaden</a>, deze vervolgens bewerken in een GIS-applicatie van jouw keuze, en de bewerkte KML uploaden.
+        admin_level_desc: |
+          Moet alleen worden ingesteld voor politieke gebieden. In termen van VS-equivalenten,
+          0 = land, 10 = provincie, 20 = gemeente, 30 = stad
       new:
         check_list_note: "Opmerking: checklists worden automatisch uitgeschakeld voor zeer grote plaatsen."
         coordinates_desc: Je moet coördinaten opgeven als je geen grens trekt of een KML uploadt.
@@ -6258,6 +6247,18 @@ nl:
           Dit project heeft geen vereisten voor waarnemingen opgegeven. Projecten moeten één of meerdere taxa (bijv. vogels, coniferen), plaatsen (bijv. Brazilië, Yellowstone), gebruikers, en/of data selecteren om waarnemingen te beginnen weer te geven.
       updates_desc: |
         Ontvang updates over dit project op je dashboard en de dagelijkse e-mail met nieuws.
+    search:
+      index:
+        no_taxa_options: "Je hebt een paar opties:"
+        no_taxa_add_a_flag: Voeg een melding toe aan een taxon op hoger niveau
+        no_taxa_add_a_flag_desc: |
+          Bijvoorbeeld het geslacht dat een soort bevat. Hopelijk voegt een vrijwillige curator
+          het taxon toe als ze tijd hebben en het in overeenstemming is met ons taxonomisch
+          beleid.
+        no_taxa_forum: Neem contact op via het forum
+        no_taxa_forum_desc_html: |
+          Veel vrijwillige curatoren houden de berichten in het
+          %{link_start_tag}Forum%{link_end_tag} in het oog.
     shared:
       blocked:
         youve_been_blocked: Je bent geblokkeerd
@@ -7457,6 +7458,9 @@ nl:
           attributes:
             base:
               user_already_blocked: Je hebt deze gebruiker al geblokkeerd
+              user_cannot_be_staff: |
+                De staf kan niet worden geblokkeerd. iNat personeel moet kunnen communiceren met iedereen op iNat, moet toegang hebben tot alle gegevens op iNat en zijn de uiteindelijke bemiddelaars van geschillen dus het blokkeren van hen zal hen niet verhinderen om met jou te communiceren. Als je een probleem hebt met een staflid rapporteer dat dan aan één van de
+                iNat co-directeuren of als je een probleem hebt met één van de co-directeuren kun je contact opnemen met de Chief of Science op het Institute for Biodiversity and Sustainability Science van de California Academy of Science.
         user_parent:
           attributes:
             email:

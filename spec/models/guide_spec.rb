@@ -43,12 +43,12 @@ describe Guide do
       @guide_taxon = GuideTaxon.make!(:guide => @guide)
       @photo = FlickrPhoto.create!(
           "native_photo_id" => "6336919400",
-          "square_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_s.jpg",
-          "thumb_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_t.jpg",
-          "small_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_m.jpg",
-          "medium_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116.jpg",
-          "large_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_b.jpg",
-          "original_url" => "http://farm7.staticflickr.com/6220/6336919400_767093042c_o.jpg",
+          "remote_square_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_s.jpg",
+          "remote_thumb_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_t.jpg",
+          "remote_small_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_m.jpg",
+          "remote_medium_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116.jpg",
+          "remote_large_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_b.jpg",
+          "remote_original_url" => "http://farm7.staticflickr.com/6220/6336919400_767093042c_o.jpg",
           "native_page_url" => "http://www.flickr.com/photos/ken-ichi/6336919400/",
           "native_username" => "Ken-ichi",
           "native_realname" => "Ken-ichi Ueda",

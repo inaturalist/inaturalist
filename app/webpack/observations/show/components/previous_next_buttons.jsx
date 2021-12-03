@@ -8,11 +8,11 @@ const PreviousNextButtons = ( {
   config,
   observation
 } ) => {
-  if (
+  if ( (
     observation
     && observation.obscured
     && !observation.private_geojson
-  ) {
+  ) || _.isEmpty( observation ) ) {
     return <div />;
   }
   const previousDisabled = _.isEmpty( otherObservations.earlierUserObservations );

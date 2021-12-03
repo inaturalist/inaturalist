@@ -169,7 +169,7 @@ class GuidesController < ApplicationController
         end
         @guide_taxa = @guide_taxa.page(params[:page]).per_page(100)
         GuideTaxon.preload_associations(@guide_taxa, [
-          { guide_photos: [ :photo, {taggings: :tag} ] } ])
+          { guide_photos: [ { photo: [:flags, :file_prefix, :file_extension] }, { taggings: :tag } ] } ])
         @tag_counts = ActsAsTaggableOn::Tag.joins(:taggings).
           joins("JOIN guide_taxa gt ON gt.id = taggings.taggable_id").
           where("taggings.taggable_type = 'GuideTaxon' AND taggings.context = 'tags' AND gt.guide_id = ?", @guide).

@@ -179,18 +179,12 @@ shared_examples_for "a TaxaController without authentication" do
 
     describe "with default photo" do
       let( :photo ) do
-        Photo.make!(
+        LocalPhoto.make!(
           "id" => 1576,
-          "large_url" => "http://staticdev.inaturalist.org/photos/1576/large.jpg?1369951594",
           "license" => 4,
-          "medium_url" => "http://staticdev.inaturalist.org/photos/1576/medium.jpg?1369951594",
           "native_page_url" => "http://localhost:3000/photos/1576",
           "native_photo_id" => "1576",
-          "native_username" => "kueda",
-          "original_url" => "http://staticdev.inaturalist.org/photos/1576/original.jpg?1369951594",
-          "small_url" => "http://staticdev.inaturalist.org/photos/1576/small.jpg?1369951594",
-          "square_url" => "http://staticdev.inaturalist.org/photos/1576/square.jpg?1369951594",
-          "thumb_url" => "http://staticdev.inaturalist.org/photos/1576/thumb.jpg?1369951594"
+          "native_username" => "kueda"
         )
       end
       let( :taxon_photo ) { TaxonPhoto.make!( photo: photo ) }

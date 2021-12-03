@@ -219,13 +219,6 @@ LocalPhoto.attachment_definitions[:file].tap do | d |
   end
 end
 
-# Override LocalPhoto processing so it always looks like it's done processing
-class LocalPhoto
-  def processing?
-    false
-  end
-end
-
 # Turn on elastic indexing for certain models. We do this selectively b/c
 # updating ES slows down the specs.
 def enable_elastic_indexing( *args )

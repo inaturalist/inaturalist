@@ -1,15 +1,19 @@
 #encoding: utf-8
 class TaxaController < ApplicationController
   caches_page :range, :if => Proc.new {|c| c.request.format == :geojson}
-  caches_action :show, :expires_in => 1.day,
-    :cache_path => Proc.new{ |c| {
-      locale: I18n.locale,
-      ssl: c.request.ssl? } },
-    :if => Proc.new {|c|
-      !request.format.json? &&
-      ( c.session.blank? || c.session['warden.user.user.key'].blank? ) &&
-      c.params[:test].blank?
-    }
+  # taxa/show includes a CSRF token, which means you might see someone else's
+  # token while signed out, which makes it impossible to update the session. I
+  # want to see how we do without this. If we need caching, we need to be more
+  # selective than caching the entire page. ~~~kueda 20211019
+  # caches_action :show, :expires_in => 1.day,
+  #   :cache_path => Proc.new{ |c| {
+  #     locale: I18n.locale,
+  #     ssl: c.request.ssl? } },
+  #   :if => Proc.new {|c|
+  #     !request.format.json? &&
+  #     ( c.session.blank? || c.session['warden.user.user.key'].blank? ) &&
+  #     c.params[:test].blank?
+  #   }
 
   caches_action :show, expires_in: 1.day,
     cache_path: Proc.new{ |c| {
@@ -1314,7 +1318,7 @@ class TaxaController < ApplicationController
     params[:flickr_photos].each do |flickr_photo_id|
       tags = params[:tags]
       photo = nil
-      if photo = photos.detect{|p| p.native_photo_id == flickr_photo_id}
+      if photo = photos.detect{|p| p.native_photo_id == flickr_photo_id && p.subtype == "FlickrPhoto" }
         tags += " " + photo.observations.map{|o| "inaturalist:observation=#{o.id}"}.join(' ')
         tags.strip!
       end
@@ -1347,22 +1351,24 @@ class TaxaController < ApplicationController
     end
     
     flickr = get_flickraw
-    
+
     flickr_photo_ids = []
-    @observations.each do |observation|
-      observation.photos.each do |photo|
-        next unless photo.is_a?(FlickrPhoto)
+    @observations.each do | observation |
+      observation.photos.each do | photo |
+        next unless photo.is_a?( FlickrPhoto ) || photo.subtype == "FlickrPhoto"
         next unless observation.taxon
+
         tags = observation.taxon.to_tags
         tags << "inaturalist:observation=#{observation.id}"
-        tag_flickr_photo(photo.native_photo_id, tags, :flickr => flickr)
+        tag_flickr_photo( photo.native_photo_id, tags, flickr: flickr )
         unless flash[:error].blank?
           return redirect_back_or_default( flickr_tagger_path )
         end
+
         flickr_photo_ids << photo.native_photo_id
       end
     end
-    
+
     redirect_to :action => 'flickr_photos_tagged', :flickr_photos => flickr_photo_ids
   end
   
@@ -1387,7 +1393,7 @@ class TaxaController < ApplicationController
 
     
     @observations = current_user.observations.joins(:photos).
-      where(photos: { native_photo_id: @flickr_photos.map(&:native_photo_id), type: FlickrPhoto.to_s })
+      where(photos: { native_photo_id: @flickr_photos.map(&:native_photo_id), subtype: FlickrPhoto.to_s })
     @observations_by_native_photo_id = {}
     @observations.each do |observation|
       observation.photos.each do |flickr_photo|
@@ -1498,7 +1504,7 @@ class TaxaController < ApplicationController
       param = photo_class.to_s.underscore.pluralize
       next if params[param].blank?
       params[param].reject {|i| i.blank?}.uniq.each do |photo_id|
-        if fp = photo_class.find_by_native_photo_id(photo_id)
+        if fp = LocalPhoto.where( subtype: photo_class.name, native_photo_id: photo_id ).first
           photos << fp 
         else
           pp = photo_class.get_api_response(photo_id) rescue nil

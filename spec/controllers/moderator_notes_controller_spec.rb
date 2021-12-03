@@ -11,9 +11,7 @@ describe ModeratorNotesController, "create" do
   it "should not be possible for non-curators" do
     sign_in User.make!
     expect {
-      expect {
-        post :create, params: { moderator_note: { subject_user_id: subject_user.id, body: "darn it" } }
-      }.to throw_symbol( :abort )
+      post :create, params: { moderator_note: { subject_user_id: subject_user.id, body: "darn it" } }
     }.to change( ModeratorNote, :count ).by( 0 )
   end
 end

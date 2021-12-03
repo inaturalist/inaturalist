@@ -155,7 +155,6 @@ hu:
   account: Fiók
   account_creation: Fiók létrehozás
   account_settings: Fiók beállításai
-  accept: Elfogadom
   accept_community_identifications: Elfogadom a közösség meghatározásait
   accuracy: Pontosság
   accuracy_meters: Pontosság (méterben)
@@ -249,8 +248,10 @@ hu:
   all_rights_reserved: minden jog fenntartva
   all_taxa:
     amphibians: Kétéltűek
+    animals: Állatok
     arachnids: Pókszabásúak
     birds: Madarak
+    chromista: Chromista
     fungi: Gombák
     fungi_including_lichens: Gombák és zuzmók
     insects: Rovarok
@@ -267,6 +268,7 @@ hu:
   already_have_an_account_log_in_html: Van már fiókod? <strong>Jelentkezz be.</strong>
   amphibians: kétéltűek
   and: és
+  animals: Állatok
   annotations: Megjelölések
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
@@ -316,7 +318,6 @@ hu:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Attribútum
   back_to_all_species: 'Vissza ide: Minden faj'
-  back_to_calendar: "Vissza %{user} naptárához"
   back_to_editing_observation: Vissza a megfigyelés szerkesztéséhez
   back_to_friends: Vissza a barátokhoz
   back_to_flags_html: "&laquo; Vissza a megjelölésekhez"
@@ -343,7 +344,6 @@ hu:
   back_to_your_journal: Vissza a hírmondódhoz
   back_to_your_observations: Vissza a megfigyeléseidhez
   back_to_your_profile: Vissza a profilodhoz
-  back_to_your_projects: Vissza a projekjeidhez
   badges: Jelvények
   based_on_the_evidence_can_id_be_improved: |
     A bizonyíték alapján lehet még javítani a közösségi meghatározáson?
@@ -401,6 +401,17 @@ hu:
   community_id_at_species_level_or_lower: Közösségi meghatározás faji szinten vagy alatta
   community_id_is_precise: A közösségi taxon pontos
   compare: Összehasonlít
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Gépi látás modell
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Szerepel
+  computer_vision_model_included_desc: |
+    A jelenlegi Gépi látás model ismeri ezt a taxont, ezért az megjelenhet az automatikus javaslatok között "Kinézetre hasonló" megjelöléssel.
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Függőben
+  computer_vision_model_pending_desc: |
+    A jelenlegi Gépi látás model nem ismeri ezt a taxont, ezért bár az megjelenhet az automatikus javaslatok között "Közeli" megjelöléssel, nem fog mellette szerepelni a "Kinézetre hasonló" címke. A modellek változóak képfelismeréshez támasztott követelményeik terén, viszont az általánosságban elmondható, hogy a megfigyelések és az azonosítások száma növeli annak az esélyét, hogy a taxon bekerül a következő modelltanításba.
   confirm_new_password: Új jelszó megerősítése
   confirming_ids: Egyetértő meghatározások
   confirming_ids_description: Ha ezt kikapcsolod, nem fogsz értesítéseket kapni azokról a meghatározásokról, amelyek megegyeznek a tiéddel.
@@ -655,7 +666,8 @@ hu:
   identification_saved: "Meghatározás elmentve!"
   identification_withdrawn: Meghatározás visszavonva
   identifications: Meghatározások
-  identifications_by: "%{user} meghatározásai"
+  computer_vision_suggestion_desc: |
+    A gépi látás és képfelismerés egy olyan folyamat, melynek során a számítógépeket képek mintázatainak felismerésére tanítják meg. Olyan eszközöket fejlesztettünk, amelyek a közösségünk megfigyelései alapján tanított gépi látási modelleket használnak meghatározások javaslataihoz. Ez a címke azt jelöli, hogy a meghatározás ezen eszközök valamelyikével történt.
   identifiers: Meghatározók
   ids: "azonosítás"
   ids_made_for_others: meghatározás mások számára
@@ -833,17 +845,18 @@ hu:
     current_user: Még nem adtál hozzá kedvenceket.
     user: "%{user} még nem adott hozzá kedvenceket."
   no_journal_posts_yet: Még nincs hírmondó-bejegyzés
-  no_matching_invitations: Nincsenek meghívók
   no_more_results_found: Nincs több eredmény
   no_new_messages: Nincs új üzenet
   no_observations: Nincsenek megfigyelések
   no_observations_yet: Még nincsenek megfigyelések
+  no_places_available: Nincsenek helyek
   no_project_to_admin_current_user: "Még nem kezelsz projekteket"
   no_relevant_annotations: Nincsenek kapcsolódó megjelölések
   no_reply_yet: Még nincs válasz
   no_results_found: Nincs eredmény
   noble_curators: "%{site} tiszteletbeli kurátorai"
   none: Egyik sem
+  none_found: Nincs találat
   not_confident: Nincs kellő bizonyosságú javaslatunk.
   not_confident_top_suggestions: 'Nincs kellő bizonyosságú javaslatunk, de a legjobb tippjeink:'
   notes: Megjegyzések
@@ -942,10 +955,16 @@ hu:
   place: Hely
   place_geo:
     geo_planet_place_types:
+      Continent: Földrész
+      continent: földrész
       Country: Ország
       country: ország
       County: Megye
       county: megye
+      Province: Tartomány
+      province: tartomány
+      Region: Régió
+      region: régió
       Time_Zone: Időzóna
       time_zone: időzóna
       Unknown: Ismeretlen
@@ -1023,6 +1042,9 @@ hu:
     superfamily: Főcsalád
     epifamily: Epifamily
     family: Család
+    x_families:
+      one: Család
+      other: Család
     subfamily: Alcsalád
     genus: Nemzetség
     x_genera:
@@ -1187,6 +1209,7 @@ hu:
   source: Forrás
   source_: 'Forrás:'
   source_wikipedia: "Forrás: Wikipedia"
+  source_list_: "Forrás"
   #Plural
   species: Fajok
   species_from_around_the_world: Fajok a világ minden tájáról
@@ -1194,6 +1217,7 @@ hu:
   species_search: Fajok keresése
   species_taxon_name: Faj- / taxonnév
   species_unknown: Ismeretlen fajok
+  standard: Standard
   start: Kezdete
   start_a_new_project: Új projekt indítása
   start_a_project: Projekt indítása
@@ -1215,6 +1239,7 @@ hu:
   tags: Címkék
   taxa: Taxon
   taxa_info: Taxoninformációk
+  taxon_autocomplete_placeholder: Madarak, pillangók, stb.
   taxon_is_threatened_coordinates_hidden: Veszélyeztetett taxon, a koordináták nem publikusak
   taxon_is_threatened_coordinates_hidden_desc: |
     A meghatározások között van legalább egy olyan taxon, amely (vagy amelynek egy altaxonja) ritkaság és/vagy veszélyeztetett. Emiatt a hely nem publikus.
@@ -1297,7 +1322,6 @@ hu:
   view_all: Összes megtekintése
   view_all_members: Tagok megtekintése
   view_details: Részletek
-  view_dynamic_lifelist: Dinamikus életlista megtekintése
   view_full_size_photo: Teljes méretű fénykép megtekintése
   view_journal: Hírmondó megtekintése
   view_leaderboard_from_last_month: Az előző havi ranglista megtekintése
@@ -1368,7 +1392,9 @@ hu:
     lifelists:
       list_view: Listanézet
       tree_view: Faelrendezés
+      observed_species: Megfigyelt fajok
       unobserved_species: Nem megfigyelt fajok
+      all_species: Minden faj
       all_unobserved_species: Minden nem megfigyelt faj
       all_observations: Minden megfigyelés
       total_observations: Minden megfigyelés
@@ -1388,10 +1414,12 @@ hu:
       dropdowns:
         sort: Rendezés
         taxonomic: Rendszertani
+        name: Név
         most_observed: Leggyakrabban megfigyelt
         least_observed: Legritkábban megfigyelt
         date_added_newest: Hozzáadás dátuma, újaktól kezdve
         date_added_oldest: Hozzáadás dátuma, régiektől kezdve
+        show: Mutat
         simplified_tree: Egyszerűsített fa
         full_taxonomy: Teljes rendszertan
     lists:
@@ -1667,11 +1695,16 @@ hu:
       project:
         title: Név
         zoom_level: Nagyítás mértéke
+      place:
+        name: Név
       source:
         title: Név
+      taxon:
+        name: Név
       user:
         email: Email
         login: Felhasználónév
+        name: Név
         time_zone: Időzóna
     errors:
       template:

@@ -274,18 +274,20 @@ describe Identification, "creation" do
     end
 
     it "should update observation quality grade after disagreement when observer opts out of CID" do
-      o = make_research_grade_observation(:prefers_community_taxon => false)
-      expect(o).to be_research_grade
-      i = Identification.make!(observation: o, taxon: Taxon.make!(:species))
-      Identification.make!(observation: o, taxon: i.taxon)
+      g = create :taxon, :as_genus
+      s1 = create :taxon, :as_species, parent: g
+      s2 = create :taxon, :as_species, parent: g
+      o = make_research_grade_observation( prefers_community_taxon: false, taxon: s1 )
+      expect( o ).to be_research_grade
+      2.times { create( :identification, observation: o, taxon: s2 ) }
       o.reload
-      expect(o).not_to be_research_grade
+      expect( o ).not_to be_research_grade
       o.owners_identification.destroy
       o.reload
-      expect(o.owners_identification).to be_blank
-      Identification.make!(user: o.user, observation: o, taxon: i.taxon)
+      expect( o.owners_identification ).to be_blank
+      create( :identification, user: o.user, observation: o, taxon: s2 )
       o.reload
-      expect(o).to be_research_grade
+      expect( o ).to be_research_grade
     end
 
     it "should obscure the observation's coordinates if the taxon is threatened" do

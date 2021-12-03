@@ -1,9 +1,7 @@
 class ProviderOauthController < ApplicationController
-  before_action :authenticate_user!, :only => [:bounce_back]
   skip_before_action :verify_authenticity_token
 
   layout "bootstrap"
-  
 
   def self.controller_path
     "oauth"
@@ -42,61 +40,6 @@ class ProviderOauthController < ApplicationController
       end
     else
       render :status => :unauthorized, :json => { :error => :access_denied }
-    end
-  end
-
-  def bounce
-    unless ProviderAuthorization::PROVIDERS.include?(params[:provider])
-      return render_404
-    end
-    # store request params in session
-    session[:oauth_bounce] = {
-      :client_id => params[:client_id],
-      :provider => params[:provider]
-    }
-    if logged_in?
-      redirect_to oauth_bounce_back_url
-    end
-    respond_to do |format|
-      format.html do
-        @footless = true
-        @no_footer_gap = true
-        @responsive = true
-      end
-    end
-  end
-
-  def bounce_back
-    # get original request params form session
-    original_params = session.delete(:oauth_bounce)
-    return render_404 if original_params.blank?
-    return render_404 unless client = Doorkeeper::Application.find_by_uid(original_params[:client_id])
-
-    # find or create create an auth token
-    access_token = Doorkeeper::AccessToken.
-      where(:application_id => client.id, :resource_owner_id => current_user.id, :revoked_at => nil).
-      order('created_at desc').
-      limit(1).
-      first
-    if client.trusted?
-      access_token ||= Doorkeeper::AccessToken.create!(
-        application_id: client.id,
-        resource_owner_id: current_user.id,
-        scopes: Doorkeeper.configuration.default_scopes.to_s
-      )
-    end
-
-    if access_token
-      # redirect to client redirect_uri with token
-      uri = URI.parse(access_token.application.redirect_uri)
-      uri.query = Rack::Utils.build_query(
-        :access_token => access_token.token,
-        :token_type   => access_token.token_type,
-        :expires_in   => access_token.expires_in
-      )
-      redirect_to uri.to_s
-    else
-      redirect_to oauth_authorization_url(:client_id => client.uid, :redirect_uri => client.redirect_uri, :response_type => "code")
     end
   end
 

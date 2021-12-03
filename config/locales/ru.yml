@@ -296,7 +296,6 @@ ru:
   account: Учётная запись
   account_creation: Создание учётной записи
   account_settings: Настройки учётной записи
-  accept: принять
   accept_community_identifications: Принять идентификации сообщества
   accuracy: Точность
   accuracy_meters: Точность (метры)
@@ -734,7 +733,6 @@ ru:
     Вы уверены, что считаете этого пользователя почетным?
     Любые флаги спама на его контенте будут разрешены.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Вы уверены, что хотите удалить эти %{x} таксоны?"
-  are_you_sure_you_want_to_remove_this_invitation: Вы уверены, что хотите удалить это приглашение?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Вы уверены что хотите удалить это наблюдение из %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Вы уверены что хотите удалить этот таксон из контрольного списка %{place}?"
@@ -779,7 +777,6 @@ ru:
   avg: Средн
   back: Назад
   back_to_all_species: Назад ко Всем Видам
-  back_to_calendar: "Вернуться к календарю %{user}"
   back_to_editing_observation: Вернуться к редактированию наблюдения
   back_to_friends: Назад к друзьям
   back_to_flags_html: "&laquo; Назад к флагам"
@@ -795,18 +792,20 @@ ru:
   back_to_taxon: "Вернуться к %{defaulttaxon}"
   back_to_taxon_changes: "Вернуться к изменениям таксона"
   back_to_taxon_framework_for_x: "Вернуться к основе таксона для %{taxon_name}"
+  back_to_users_calendar: "Вернуться к календарю %{user}"
+  back_to_users_lists: "Вернуться к спискам пользователя %{user}"
   back_to_viewing: "Вернуться к просмотру <i>%{taxon}</i>"
   back_to_x: "Вернуться к %{noun}"
   back_to_x_assessment: "Вернуться к оценкам %{project}"
   back_to_x_history: "Вернуться к истории %{x}"
   back_to_x_journal: "Вернуться к журналу %{user}"
   back_to_x_blog: "Вернуться к блогу %{x}"
+  back_to_your_calendar: Вернуться к вашему календарю
   back_to_your_dashboard: Вернуться к вашей панели мониторинга
   back_to_your_lists: Назад к вашим спискам
   back_to_your_journal: Вернуться в свой журнал
   back_to_your_observations: Вернуться к вашим наблюдениям
   back_to_your_profile: Вернуться к вашему профилю
-  back_to_your_projects: Вернуться к вашим проектам
   badges: Значки
   based_on_the_evidence_can_id_be_improved: |
     Основываясь на свидетельствах, можно ли подтвердить или улучшить таксон сообщества?
@@ -950,7 +949,6 @@ ru:
   check_list_place: "Контрольный список %{place}"
   check_list_updated: Контрольный список обновлён!
   check_lists_for: "Другие контрольные списки для %{place}"
-  check_out_our_blog: Загляните в наш блог
   check_out_what_the_observation: Проверьте, как выглядит наблюдение, которое вы пытаетесь идентифицировать.
   check_this_box_if_html: |
     Установите этот флажок, если вы хотите использовать
@@ -1021,7 +1019,6 @@ ru:
   comparing: сравнение
   comparing_list_to_list: "Сравнение %{list1} с %{list2}"
   comparing_versions_x_and_y: "Сравнение версий %{x} и %{y}"
-  comparing_observations_from: "Сравнение наблюдений %{user} за %{dates}"
   compiled_by_name: "составлено %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Полный
@@ -2030,7 +2027,6 @@ ru:
   identification_user_short: Идент. пользователя
   identification_withdrawn: Идентификация отозвана.
   identifications: Идентификации
-  identifications_by: "Идентификации %{user}"
   computer_vision_suggestion: Предложение системы компьютерного зрения
   computer_vision_suggestion_desc: |
     Компьютерное зрение — это процесс обучения компьютеров распознаванию образов. Мы предоставляем инструменты, которые используют модели компьютерного зрения, обученные на фотографиях сообщества, предоставляя предложения по идентификации, таких как функции автодополнения и сравнения. Эта метка указывает на то, что человек добавил идентификацию с помощью одного из этих инструментов.
@@ -2047,7 +2043,6 @@ ru:
   if_this_link_will_apply_to_descendant: Если применить эту ссылку к вложенным таксонам, можно использовать теги шаблона для вставки наименования таксона в URL
   if_you_have_any_trouble_with_the_site_check_out: 'Если у вас есть вопросы, пожалуйста зайдите сюда <a href="%{help_url}">раздел помощи</a> или напишите сообщение в нашу <a href="%{feedback_url}">группу обратной связи</a>.'
   if_your_project_is: Если ваш проект связан с определенным местом, задайте координаты на карте или введите их вручную.
-  ignore: игнорировать
   ignore_and_continue: Игнорировать и продолжить
   ignore_times: Пропустите время
   image_must_be_exactly: изображение должно быть ровно 950 пикселей в ширину и не более 400 пикселей в высоту
@@ -2140,7 +2135,6 @@ ru:
   join_project: Присоединиться к этому проекту
   #Prompt to join a specific project
   join_project?: Присоединиться к %{project}?
-  join_some_projects_and_invite_some_observations_html: "Присоединиться к некоторым %{join_url} проектам и %{invite_url} пригласить к участию некоторые наблюдения"
   join_the_largest_group_of_naturalists_in_the_world: Присоединяйтесь к самой большой группе натуралистов в мире!
   join_this_project: Присоединиться к этому проекту
   'joined!': Присоединились!
@@ -2765,7 +2759,6 @@ ru:
   no_license_all_rights_reserved: Нет лицензии (Все права защищены)
   no_managers_set: Менеджеры не назначены
   no_matching_article_from_x: "Нет соответствующей статьи из %{x}"
-  no_matching_invitations: Нет соответствующих приглашений
   no_matching_observations: Нет соответствующих наблюдений.
   no_matching_places: Нет соответствующих мест
   no_matching_projects: Нет соответствующих проектов
@@ -2884,10 +2877,10 @@ ru:
   observation_brief_something_on_day_at_time: "Некоторые за %{day} в %{time}"
   observation_brief_something_on_day_at_time_by_user: "Некоторые от %{user} за %{day} в %{time}"
   observation_brief_something_on_day_by_user: "Некоторые за %{day} от %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month: "Некоторые за %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month_by_user: "Некоторые за %{month} от %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Некоторые за %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Некоторые за %{month} %{year} от %{user}"
   observation_brief_something_by_user: "Некоторые от %{user}"
   observation_brief_something_from_place: "Некоторые из %{place}"
   observation_brief_something_from_place_by_user: "Некоторые из %{place} от %{user}"
@@ -2895,18 +2888,18 @@ ru:
   observation_brief_something_from_place_on_day_by_user: "Некоторые из %{place} за %{day} от %{user}"
   observation_brief_something_from_place_on_day_at_time: "Некоторые из %{place} за %{day} в %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Некоторые из %{place} за %{day} в %{time} от %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month: "Некоторые из %{place} за %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month_by_user: "Некоторые из %{place} за %{month} от %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Некоторые из %{place} за %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Некоторые из %{place} за %{month} %{year} от%{user}"
   observation_brief_taxon_on_day: "%{taxon} за %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} за %{day} в %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} от %{user} за %{day} в %{time}"
   observation_brief_taxon_on_day_by_user: "%{taxon} %{day} от %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month: "%{taxon} за %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month_by_user: "%{taxon} за %{month} от %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} в %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} в %{month} %{year} от %{user}"
   observation_brief_taxon_by_user: "%{taxon} от %{user}"
   observation_brief_taxon_from_place: "%{taxon} из %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} из %{place} от %{user}"
@@ -2914,10 +2907,10 @@ ru:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} из %{place} за %{day} от %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} из %{place} за %{day} в %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} из %{place} за %{day} в %{time} от %{user}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month: "%{taxon} из %{place} за %{month}"
-  #%{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} из %{place} за %{month} от %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} из %{place} в %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} из %{place} за %{month} %{year} от %{user}"
   observations_by_category: "Наблюдения по категориям"
   observations_by_app: Наблюдения по приложениям
   observations_by_rank: Наблюдения по рангу
@@ -2965,7 +2958,6 @@ ru:
   observations_deleted: Наблюдения удалены.
   observations_fields_are: |
     Поля наблюдения - это дополнительные элементы данных, связанных с наблюдением, такие как, например, число наблюдаемых объектов, описание мест обитания или любые другие сведения. Проект позволяет также создавать поля, которые вы хотели бы заполнить.
-  observations_from: Наблюдения за %{date}
   observations_from_people_taxa_and_places_youre_following: "Наблюдения от людей, из мест и таксонов, на которые вы подписаны"
   observations_from_this_place: Наблюдения в этом месте
   observations_from_this_project: Наблюдения из этого проекта
@@ -3650,8 +3642,6 @@ ru:
     Как бы то ни было, нам придется ограничить условия, при которых люди могут добавлять места в будущем, учитывая текущие темпы роста iNat.
   plants: растения
   please_add_a_citation_for_this_change: Пожалуйста, добавьте ссылку на это изменение.
-  please_add_this_observation_to: Пожалуйста, добавьте это наблюдение к
-  please_add_this_to_x_html: "Пожалуйста, добавьте это к %{x}"
   please_allow_a_few_weeks_for_external_sites: Пожалуйста, подождите несколько недель, чтобы внешние сайты синхронизировали изменения с этим наблюдением #Title to a section warning a user to exercise caution
   please_be_careful!: Будьте осторожны!
   please_complete_the_following_to_add_project: |
@@ -3664,7 +3654,6 @@ ru:
   please_hold_on_while_the_file_is_generated: Пожалуйста, подождите, пока файл будет сгенерирован. Для больших списков это может занять несколько минут.
   popular: Популярные
   position: Позиция
-  possessive_user: "%{user}"
   #Post is a noun
   post_from_journal_by_parent_html: Сообщение из <a href="%{url}">журнала от %{parent}</a>
   #Post is a noun
@@ -4434,7 +4423,6 @@ ru:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Подходит для Википедии и других проектов Фонда Викимедиа
   summary: Обзор
   supporting: Поддерживающее мнение
-  support_inaturalist: Поддержи iNaturalist
   suspend_user: Заблокировать пользователя
   sw_lat: ЮЗ шир.
   sw_lon: ЮЗ долг.
@@ -4827,7 +4815,6 @@ ru:
   unhide_content: Отобразить контент
   unhide_desc: |
     Отображение раскроет этот контент для публичного просмотра. Кураторы имеют возможность впоследствии скрыть это опять.
-  uninvite: отменить приглашение
   unique_identifier_of_this_taxon: Уникальный идентификатор этого таксона в базе данных-источнике.
   unique_observers: уникальные наблюдатели
   unknown: Неизвестно
@@ -4963,7 +4950,6 @@ ru:
   user_invited_you_to_join_html: "%{user} приглашает вас присоединиться"
   user_invited_you_to_join_project: "%{user} пригласил вас присоединиться к %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} приглашает вас присоединиться к этому проекту %{date}"
-  user_invited_your_x_to_a_project_html: "%{user} пригласил ваше %{x} в проект"
   user_is_a_naturalist: "%{user} - натуралист!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> теперь является администратором %{project}
@@ -4989,7 +4975,9 @@ ru:
   users_favorites: "Фавориты %{user}"
   users_highlights_and_stats_from_year_on_site: "Основные моменты и статистика %{user} за %{year} на %{site}"
   users_id: "Идентификация %{user}"
+  users_identifications: "идентификации %{user}"
   users_latest_observations_on_site: "последние наблюдения %{user} на %{site}"
+  users_lists: "Списки %{user}"
   users_profile: "Профиль %{user}"
   users_projects: "Проекты %{user}"
   users_year_on_site: "Год %{user}'s на %{site} %{year}"
@@ -5009,14 +4997,13 @@ ru:
   view_check_list_page: Просмотреть страницу контрольного списка
   view_contributions: Посмотреть вклад
   view_details: Посмотреть подробности
-  view_dynamic_lifelist: Посмотреть динамический список жизни
+  view_dynamic_lifelist_: ПОСМОТРЕТЬ ДИНАМИЧЕСКИЙ СПИСОК ЖИЗНИ
   view_field_options: Просмотр параметров поля
   view_flag: Просмотр флага
   view_flags: Посмотреть флаги
   view_flags_for_x_html: "Посмотреть флаги для %{x}"
   view_full_observation: Посмотреть наблюдение полностью
   view_full_size_photo: Просмотреть полноразмерное изображение
-  view_invitation: Посмотреть приглашение
   view_journal: Посмотреть журнал
   view_leaderboard_from_last_month: Посмотреть лидеров прошлого месяца
   view_leaderboard_from_last_year: Посмотреть лидеров прошлого года
@@ -5101,7 +5088,7 @@ ru:
   #Label for the most probable taxon in the automated suggestions when that taxon is a genus
   were_pretty_sure_this_is_in_the_genus: Мы почти уверены, что это род
   #Label for the most probable taxon in the automated suggestions when that taxon is a family
-  were_pretty_sure_this_is_in_the_family: Мы почти уверены, что это отряд
+  were_pretty_sure_this_is_in_the_family: Мы почти уверены, что это семейство
   #Label for the most probable taxon in the automated suggestions when that taxon is an order
   were_pretty_sure_this_is_in_the_order: Мы почти уверены, что это отряд
   #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
@@ -5287,7 +5274,6 @@ ru:
   you_must_have_a_header_row: У вас должна быть строка заголовков
   you_must_select_a_place_to_merge_with: Вы должны выбрать место, чтобы присоединить его.
   you_must_select_at_least_one_taxon: Вы должны выбрать хотя бы один таксон
-  you_must_select_dates_to_compare: Вы должны выбрать даты для сравнения
   you_must_specify_and_confirm_a_new_password: Необходимо задать и подтвердить новый пароль.
   you_need_to_have_linked_flickr_account: Вам нужно иметь привязанную учётную запись Flickr, чтобы добавлять теги к вашим фото.
   you_need_to_select_some_observations_first: Сначала нужно выбрать несколько наблюдений
@@ -6077,6 +6063,8 @@ ru:
       edit:
         complex_boundary_note_html: |
           Эта граница слишком сложна для редактирования в Интернете. Однако вы можете <a href="%{url}">загрузить KML</a>, отредактировать его в приложении GIS по вашему выбору и загрузить свой отредактированный KML напрямую.
+        admin_level_desc: |
+          Должны быть установлены только для политических единиц. Например, для стран, аналогичных США: 0 = страна, 10 = штат, 20 = округ, 30 = город
       new:
         check_list_note: "Примечание: контрольные списки для очень больших мест будут автоматически отключены."
         coordinates_desc: Если Вы не рисуете границу или не загружаете KML, необходимо задать координаты.
@@ -6348,6 +6336,18 @@ ru:
           Этот проект не определил никаких требований к наблюдению. В проекте должен быть выбран один или несколько таксонов (например, птицы, хвойные), мест (например, Бразилия, Йеллоустон), пользователей и/или даты, чтобы наблюдения начали отображаться .
       updates_desc: |
         Получайте последнюю информацию о данном проекте на панели мониторинга и по электронной почте в ежедневных обновлениях.
+    search:
+      index:
+        no_taxa_options: "У вас есть несколько вариантов:"
+        no_taxa_add_a_flag: Добавить флаг к таксону верхнего уровня
+        no_taxa_add_a_flag_desc: |
+          Например, род, который содержит вид. Будем надеяться, что куратор волонтеров
+          добавит таксон, при наличии времени, и он согласуется с нашей таксономической
+          политикой.
+        no_taxa_forum: Связаться с форумом
+        no_taxa_forum_desc_html: |
+          Многие кураторы волонтеров отслеживают сообщения на
+          %{link_start_tag}форуме%{link_end_tag}.
     shared:
       blocked:
         youve_been_blocked: Вы заблокированы
@@ -7545,6 +7545,8 @@ ru:
           attributes:
             base:
               user_already_blocked: Вы уже заблокировали этого пользователя
+              user_cannot_be_staff: |
+                Вы не можете блокировать персонал. Персонал iNat должен иметь возможность общаться со всеми на iNat, иметь доступ ко всем данным на iNat и быть окончательным посредником в спорах, так, чтобы блокировка не помешала ему общаться с вами. Если у вас возникли проблемы с сотрудником, пожалуйста, сообщите об этом одному из содиректоров iNat, или, если у вас возникли проблемы с одним из содиректоров, вы можете связаться с научным руководителем Института биоразнообразия и устойчивого развития науки Калифорнийской академии наук.
         user_parent:
           attributes:
             email:

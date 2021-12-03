@@ -26,9 +26,9 @@ class UsersController < ApplicationController
   before_action :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
   before_action :admin_required, :only => [:curation, :merge]
   before_action :site_admin_of_user_required, only: [:add_role, :remove_role]
-  before_action :curator_required, only: [:recent]
-  before_action :curator_or_site_admin_required, only: [
+  before_action :curator_required, only: [
     :moderation,
+    :recent,
     :set_spammer,
     :suspend,
     :unsuspend
@@ -147,6 +147,13 @@ class UsersController < ApplicationController
     @helpers_count = INatAPIService.get( "/observations/identifiers",
       user_id: current_user.id, per_page: 0 ).total_results
     @comments_count = current_user.comments.count
+    projects_with_managers_count = ProjectUser.
+      joins(:project).
+      where( "projects.user_id = ?", current_user ).
+      where( role: ProjectUser::MANAGER ).
+      where( "project_users.user_id != ?", current_user ).
+      count( "DISTINCT project_id" )
+    @projects_count = current_user.projects.count - projects_with_managers_count
     ident_response = Identification.elastic_search(
       size: 0,
       filters: [
@@ -1269,18 +1276,6 @@ protected
     @sites = Site.live.limit(100)
     if @user = current_user
       @user.site_id ||= Site.first.try(:id) unless @sites.blank?
-    end
-  end
-
-  def curator_or_site_admin_required
-    unless logged_in? && @user && ( current_user.is_curator? || current_user.is_site_admin_of?( @user.site ) )
-      flash[:notice] = t(:only_curators_can_access_that_page)
-      if session[:return_to] == request.fullpath
-        redirect_to root_url
-      else
-        redirect_back_or_default(root_url)
-      end
-      return false
     end
   end
 

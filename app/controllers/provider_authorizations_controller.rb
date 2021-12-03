@@ -4,9 +4,8 @@ class ProviderAuthorizationsController < ApplicationController
     if: lambda { authenticate_with_oauth? }
   before_action :authenticate_user!, only: [ :destroy ],
     unless: lambda { authenticated_with_oauth? }
-  protect_from_forgery prepend: true, except: :create, with: :exception, unless: lambda {
-    authenticate_with_oauth? || authenticated_with_jwt?
-  }
+  protect_from_forgery prepend: true, except: :create, with: :exception,
+    if: -> { request.headers["Authorization"].blank? }
 
   # change the /auth/:provider/callback route to point to this if you want to examine the rack data returned by omniauth
   def auth_callback_test
@@ -89,12 +88,6 @@ class ProviderAuthorizationsController < ApplicationController
     if @provider_authorization && @provider_authorization.valid? && (scope = get_session_omniauth_scope)
       @provider_authorization.update(:scope => scope.to_s)
       session["omniauth_#{request.env['omniauth.strategy'].name}_scope"] = nil
-    end
-
-    # if this is a direct oauth bounce sign in, go directly to bounce_back
-    if !session[:oauth_bounce].blank?
-      redirect_to oauth_bounce_back_url
-      return
     end
     
     if !session[:return_to].blank? && session[:return_to] != login_url

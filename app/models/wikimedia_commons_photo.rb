@@ -70,12 +70,12 @@ class WikimediaCommonsPhoto < Photo
         md5_hash = Digest::MD5.hexdigest(URI.unescape(file_name)) 
         WikimediaCommonsPhoto.new(
           native_photo_id: file_name,
-          original_url: "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}",
-          large_url: "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{1024 > width ? width : 1024}px-#{file_name}",
-          medium_url: "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{500 > width ? width : 500}px-#{file_name}",
-          small_url: "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{240 > width ? width : 240}px-#{file_name}",
-          square_url: "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{100 > width ? width : 100}px-#{file_name}",
-          thumb_url: "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{75 > width ? width : 75}px-#{file_name}",
+          remote_original_url: "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}",
+          remote_large_url: "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{1024 > width ? width : 1024}px-#{file_name}",
+          remote_medium_url: "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{500 > width ? width : 500}px-#{file_name}",
+          remote_small_url: "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{240 > width ? width : 240}px-#{file_name}",
+          remote_square_url: "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{100 > width ? width : 100}px-#{file_name}",
+          remote_thumb_url: "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{75 > width ? width : 75}px-#{file_name}",
           native_page_url: "http://commons.wikimedia.org/wiki/File:#{file_name}"
         )
       end.compact[0...limit]
@@ -162,19 +162,7 @@ class WikimediaCommonsPhoto < Photo
     md5_hash = Digest::MD5.hexdigest(URI.unescape(file_name))
     url_base = "http://upload.wikimedia.org/wikipedia/commons"
     url_identifier = "#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}"
-    photo.original_url = "#{url_base}/#{url_identifier}"
-    %w(large medium).each do |size_name|
-      size = Photo.const_get(size_name.upcase)
-      if width > size
-        photo.send("#{size_name}_url=", "#{url_base}/thumb/#{url_identifier}/#{size}px-#{file_name}")
-      elsif width == size
-        photo.send("#{size_name}_url=", photo.original_url)
-      end
-    end
-    %w(small square thumb).each do |size_name|
-      size = Photo.const_get(size_name.upcase)
-      photo.send("#{size_name}_url=", "#{url_base}/thumb/#{url_identifier}/#{[size, width-1].min}px-#{file_name}")
-    end
+    photo.remote_original_url = "#{url_base}/#{url_identifier}"
     photo
   end
 

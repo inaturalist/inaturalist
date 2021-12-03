@@ -173,7 +173,7 @@ en:
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> taxon curated"
     other: "<span class='count'>%{count}</span> taxa curated"
-  x_taxa_matching_current_filters: 
+  x_taxa_matching_current_filters:
     one: "%{count} taxon matching current filters"
     other: "%{count} taxa matching current filters"
   x_taxon_changes_added_html:
@@ -183,7 +183,7 @@ en:
   _percent_ID_d: "% ID'd"
   a_community_for_naturalist: A Community for Naturalists
   a_default_taxon_name_will_automatically_created: |
-    A default taxon name will automatically be created from the scientific name attribute of this taxon. 
+    A default taxon name will automatically be created from the scientific name attribute of this taxon.
     When you've saved this new taxon, you'll be able to add other names here (common names, outdated scientific names, etc.).
   a_flag_for_x: "a flag for %{x}"
   a_member_of_taxon_html: "a member of %{taxon}"
@@ -304,7 +304,6 @@ en:
   account: Account
   account_creation: Account Creation
   account_settings: Account Settings
-  accept: accept
   accept_community_identifications: Accept community identifications
   accuracy: Accuracy
   accuracy_meters: Accuracy (meters)
@@ -534,46 +533,46 @@ en:
     ray_finned_fishes: Ray-Finned Fishes
     reptiles: Reptiles
     life: Life
-    x_plantae: 
+    x_plantae:
       one: "%{count} plant"
       other: "%{count} plants"
-    x_animalia: 
+    x_animalia:
       one: "%{count} animal"
       other: "%{count} animals"
-    x_mollusca: 
+    x_mollusca:
       one: "%{count} mollusk"
       other: "%{count} mollusks"
-    x_amphibia: 
+    x_amphibia:
       one: "%{count} amphibian"
       other: "%{count} amphibians"
-    x_mammalia: 
+    x_mammalia:
       one: "%{count} mammal"
       other: "%{count} mammals"
-    x_actinopterygii: 
+    x_actinopterygii:
       one: "%{count} ray-finned fish"
       other: "%{count} ray-finned fishes"
-    x_reptilia: 
+    x_reptilia:
       one: "%{count} reptile"
       other: "%{count} reptiles"
-    x_aves: 
+    x_aves:
       one: "%{count} bird"
       other: "%{count} birds"
-    x_insecta: 
+    x_insecta:
       one: "%{count} insect"
       other: "%{count} insects"
-    x_arachnida: 
+    x_arachnida:
       one: "%{count} arachnid"
       other: "%{count} arachnids"
-    x_fungi: 
+    x_fungi:
       one: "%{count} fungus"
       other: "%{count} fungi"
-    x_chromista: 
+    x_chromista:
       one: "%{count} chromist"
       other: "%{count} chromists"
     x_protozoa:
       one: "%{count} protozoan"
       other: "%{count} protozoa"
-    x_other_animals: 
+    x_other_animals:
       one: "%{count} other animal"
       other: "%{count} other animals"
   all_taxa_: All taxa
@@ -717,7 +716,6 @@ en:
     Are you sure you consider this user honorable?
     Any spam flags on their content will be resolved.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Are you sure you want to remove these %{x} taxa?"
-  are_you_sure_you_want_to_remove_this_invitation: Are you sure you want to remove this invitation?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Are you sure you want to remove this observation from %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Are you sure you want to remove this taxon from %{place}'s checklist?"
@@ -762,7 +760,6 @@ en:
   avg: Avg
   back: Back
   back_to_all_species: Back to All Species
-  back_to_calendar: "Back to %{user} calendar"
   back_to_editing_observation: Back to editing observation
   back_to_friends: Back to friends
   back_to_flags_html: "&laquo; Back to flags"
@@ -778,18 +775,20 @@ en:
   back_to_taxon: "Back to %{defaulttaxon}"
   back_to_taxon_changes: "Back to taxon changes"
   back_to_taxon_framework_for_x: "Back to taxon framework for %{taxon_name}"
+  back_to_users_calendar: "Back to %{user}'s calendar"
+  back_to_users_lists: "Back to %{user}'s lists"
   back_to_viewing: "Back to viewing <i>%{taxon}</i>"
   back_to_x: "Back to %{noun}"
   back_to_x_assessment: "Back to %{project} assessments"
   back_to_x_history: "Back to %{x} history"
   back_to_x_journal: "Back to %{user}'s journal"
   back_to_x_blog: "Back to %{x}'s blog"
+  back_to_your_calendar: Back to your calendar
   back_to_your_dashboard: Back to your dashboard
   back_to_your_lists: Back to your lists
   back_to_your_journal: Back to your journal
   back_to_your_observations: Back to your observations
   back_to_your_profile: Back to your profile
-  back_to_your_projects: Back to your projects
   badges: Badges
   based_on_the_evidence_can_id_be_improved: |
     Based on the evidence, can the Community Taxon still be confirmed or improved?
@@ -800,6 +799,8 @@ en:
   batch_operations: Batch Operations
   be_the_first_to_fave_this_observation: Be the first to fave this observation!
   because_of: because of
+  become_a_donor_caps: BECOME A DONOR
+  become_a_donor_today_caps: BECOME A DONOR TODAY
   before_importing_photos: before importing photos
   bg_color: BG Color
   bio: Bio
@@ -924,7 +925,7 @@ en:
   check_here_to_autoload_description: Check here to auto-load the description from Wikipedia. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common mispelling, like "Parus".
   check_here_to_autoload_photos: Check here to auto-load photos from Flickr. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common mispelling, like "Parus".
   check_list: Check list
-  check_list_description: Choose a higher-level taxon you'd like to show in this list, like "Aves" for birds, or "Amphibia" for amphibians. When set, this list won't allow taxa that are not in this taxon. For example, if you create a list of birds, you won't be able to add any frogs to it. 
+  check_list_description: Choose a higher-level taxon you'd like to show in this list, like "Aves" for birds, or "Amphibia" for amphibians. When set, this list won't allow taxa that are not in this taxon. For example, if you create a list of birds, you won't be able to add any frogs to it.
   check_list_for_individual_taxa_that: 'Check lists for individual taxa that live here, e.g. "Birds of %{place}".'
   check_list_for_taxon_html: "Check list for %{taxon}"
   check_lists_must_belong_to_a_place: |
@@ -934,7 +935,7 @@ en:
   check_list_place: "%{place} Check List"
   check_list_updated: Check list updated!
   check_lists_for: "Other Check Lists for %{place}"
-  check_out_our_blog: Check out our Blog
+  check_out_the_inat_store: Check Out the iNaturalist Store
   check_out_what_the_observation: Check out what the observation you're trying to identify looks like.
   check_this_box_if_html: |
     Check this box if you want to apply a <a
@@ -1012,7 +1013,6 @@ en:
   comparing: comparing
   comparing_list_to_list: "Comparing %{list1} with %{list2}"
   comparing_versions_x_and_y: "Comparing versions %{x} and %{y}"
-  comparing_observations_from: "Comparing %{user} observations from %{dates}"
   compiled_by_name: "Compiled by %{name}"
   # Adjective, e.g. "this Taxon Framework is complete"
   complete: Complete
@@ -1196,7 +1196,7 @@ en:
   copy_and_paste_this_into_your_own_html: Copy and paste this into your own HTML.
   copy_guide_taxon_to: Copy guide taxon to...
   copyright:
-    some_rights_reserved: some rights reserved        
+    some_rights_reserved: some rights reserved
     some_rights_reserved_by: "(c) %{name}, some rights reserved (%{license_short})"
     all_rights_reserved: "(c) %{name}, all rights reserved"
     no_known_copyright_restrictions: "%{name}, no known copyright restrictions (%{license_name})"
@@ -1585,7 +1585,7 @@ en:
   # e.g. disconnecting your Flickr account
   disconnect: Disconnect
   disconnect_caps: DISCONNECT
-  disconnect_provider: "Disconnect %{provider}"  
+  disconnect_provider: "Disconnect %{provider}"
   display: Display
   display_link_to_checklist: Display link to project list from project page
   display_monthly_supporter_badge: Display Monthly Supporter Badge on profile
@@ -1606,6 +1606,8 @@ en:
   # Button text to donate to iNaturalist. Please try to keep translations as
   # short as possible
   donate: DONATE
+  donate_again_caps: DONATE AGAIN
+  donate_again_today_caps: DONATE AGAIN TODAY
   done: Done
   dont_have_an_account_sign_up_html: Don't have an account? <strong>Sign up.</strong>
   dont_send_me_email: "Don't send me any email!"
@@ -1728,8 +1730,12 @@ en:
     naturalised: Naturalised
   establishment_means: Establishment Means
   establishment_means_describes_how: |
-    Establishment means describes how the taxon came to be established in an area.  
+    Establishment means describes how the taxon came to be established in an area.
     See DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
+  establishment_means_descriptions:
+    native: evolved in this region or arrived by non-anthropogenic means
+    endemic: native and occurs nowhere else
+    introduced: arrived in the region via anthropogenic means
   estimate_which_input: |
     Estimate which input taxon ids will be replaced with which output taxa and which will be coarsened to a common ancestor once the split is comitted. This may take
     a moment to calculate. Links to observations are truncated to subsets of 200.
@@ -1850,6 +1856,7 @@ en:
   # Label for the date/time when a flag was created
   flag_created: Flag Created
   flag_description: Flag this content to let the curators know something is wrong with it.
+  flag_comment_description: Add an optional comment to this flag that further explains why you are adding it and provides links to supporting evidence.
   flag_for_check_list_title_html: |
     Flag for Check List: %{title}
   flag_for_comment_id_html: Flag for <a href="%{url}">Comment %{id}</a>
@@ -2118,7 +2125,6 @@ en:
   identification_user_short: Ident. user
   identification_withdrawn: Identification withdrawn.
   identifications: Identifications
-  identifications_by: "Identifications by %{user}"
   computer_vision_suggestion: Computer Vision Suggestion
   computer_vision_suggestion_desc: |
     Computer vision is the process of teaching computers to recognize patterns
@@ -2142,7 +2148,6 @@ en:
   if_this_link_will_apply_to_descendant: If this link will apply to descendent taxa, you can use template tags to fill in the taxon name in the URL
   if_you_have_any_trouble_with_the_site_check_out: 'If you have any questions, please check out our <a href="%{help_url}">help section</a> or post a message to our <a href="%{feedback_url}">feedback group</a>.'
   if_your_project_is: If your project is about a particular place, set the coordinates by clicking the map or entering them manually.
-  ignore: ignore
   ignore_and_continue: Ignore and continue
   ignore_times: Ignore times
   image_must_be_exactly: image must be exactly 950px wide and at most 400px tall
@@ -2150,7 +2155,7 @@ en:
   # NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Imperiled
   import: Import
-  import_all_photos_as_observations: Import all photos as observations 
+  import_all_photos_as_observations: Import all photos as observations
   import_as_an_observation: Import as an observation
   import_as_another_observation: Import as another observation?
   import_date_time_location_taxonomic: "Import date, time, location, description, and taxonomic information from this photo."
@@ -2224,7 +2229,7 @@ en:
   is_not_following_anyone: is not following anyone.
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Is the evidence provided enough to confirm this is %{taxon}?
   is_this_offensive_html: 'Is this <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?'
-  is_this_place_a_duplicate: Is this place a duplicate? 
+  is_this_place_a_duplicate: Is this place a duplicate?
   it_can_now_be_used_for_research: It can now be used for research and featured on other websites
   # Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: italic text
@@ -2239,7 +2244,6 @@ en:
   join_project: Join this project
   # Prompt to join a specific project
   join_project?: Join %{project}?
-  join_some_projects_and_invite_some_observations_html: "Join some <a href='%{join_url}'>projects</a> and <a href='%{invite_url}'>invite some observations</a>"
   join_the_largest_group_of_naturalists_in_the_world: Join the largest group of naturalists in the world!
   join_this_project: Join this project
   'joined!': Joined!
@@ -2644,7 +2648,7 @@ en:
   misidentifications: Misidentifications
   misleading_or_illegal_content_html: |
     Misleading or illegal content, racial or ethnic slurs, etc. For more on
-    our definition of "appropriate," see the 
+    our definition of "appropriate," see the
     <a href="/help#inappropriate">FAQ</a>.
   # Label shown when a date has not been entered
   missing_date: Missing Date
@@ -2816,7 +2820,7 @@ en:
   new_check_list_for: "Create a new check list for %{place} &raquo;"
   new_check_list_record: "If you want to mark this list as comprehensive, create it, add the taxa, and then edit it and you'll have the option to mark it as comprehensive here."
   new_comment_on_a_parent_by_user_link: New comment on @vow_or_con{vow:an|a} %{parent} by %{user_link}
-  new_flag_for: New Flag for 
+  new_flag_for: New Flag for
   new_guide: New Guide
   new_journal_post: New Journal Post
   new_lexicon: New Lexicon
@@ -2887,7 +2891,6 @@ en:
   no_license_all_rights_reserved: No license (all rights reserved)
   no_managers_set: No managers set
   no_matching_article_from_x: "No matching article from %{x}"
-  no_matching_invitations: No matching invitations
   no_matching_observations: No matching observations.
   no_matching_places: No matching places
   no_matching_projects: No matching projects
@@ -3011,10 +3014,10 @@ en:
   observation_brief_something_on_day_at_time: "Something on %{day} at %{time}"
   observation_brief_something_on_day_at_time_by_user: "Something on %{day} at %{time} by %{user}"
   observation_brief_something_on_day_by_user: "Something on %{day} by %{user}"
-  # %{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month: "Something in %{month}"
-  # %{month} will be filled in with date.formats.month_year
-  observation_brief_something_in_month_by_user: "Something in %{month} by %{user}"
+  # %{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Something in %{month} %{year}"
+  # %{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Something in %{month} %{year} by %{user}"
   observation_brief_something_by_user: "Something by %{user}"
   observation_brief_something_from_place: "Something from %{place}"
   observation_brief_something_from_place_by_user: "Something from %{place} by %{user}"
@@ -3022,18 +3025,18 @@ en:
   observation_brief_something_from_place_on_day_by_user: "Something from %{place} on %{day} by %{user}"
   observation_brief_something_from_place_on_day_at_time: "Something from %{place} on %{day} at %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Something from %{place} on %{day} at %{time} by %{user}"
-  # %{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month: "Something from %{place} in %{month}"
-  # %{month} will be filled in with date.formats.month_year
-  observation_brief_something_from_place_in_month_by_user: "Something from %{place} in %{month} by %{user}"
+  # %{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Something from %{place} in %{month} %{year}"
+  # %{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Something from %{place} in %{month} %{year} by %{user}"
   observation_brief_taxon_on_day: "%{taxon} on %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} on %{day} at %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} on %{day} at %{time} by %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} on %{day} by %{user}"
-  # %{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month: "%{taxon} in %{month}"
-  # %{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_in_month_by_user: "%{taxon} in %{month} by %{user}"
+  # %{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} in %{month} %{year}"
+  # %{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} in %{month} %{year} by %{user}"
   observation_brief_taxon_by_user: "%{taxon} by %{user}"
   observation_brief_taxon_from_place: "%{taxon} from %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} from %{place} by %{user}"
@@ -3041,10 +3044,10 @@ en:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} from %{place} on %{day} by %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} from %{place} on %{day} at %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} from %{place} on %{day} at %{time} by %{user}"
-  # %{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month: "%{taxon} from %{place} in %{month}"
-  # %{month} will be filled in with date.formats.month_year
-  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} from %{place} in %{month} by %{user}"
+  # %{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} from %{place} in %{month} %{year}"
+  # %{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} from %{place} in %{month} %{year} by %{user}"
   observations_by_category: "Observations By category"
   observations_by_app: Observations By App
   observations_by_rank: Observations By Rank
@@ -3102,7 +3105,6 @@ en:
     observation, like number of individuals observed, habitat
     description, or whatever you want! Projects can also specify fields
     they'd like you to fill out.
-  observations_from: Observations from %{date}
   observations_from_people_taxa_and_places_youre_following: "Observations from people, places, and taxa you're following"
   observations_from_this_place: Observations from this place
   observations_from_this_project: Observations from this project
@@ -3181,12 +3183,12 @@ en:
   on_day: "on"
   onboarding:
       observe_panel_title: Let's Get Started by Posting Some Observations
-      observe_panel_body_p1_local: Need inspiration? Here's some organisms being observed nearby...  
+      observe_panel_body_p1_local: Need inspiration? Here's some organisms being observed nearby...
       observe_panel_body_p1_global: Need inspiration? Here's some organisms being observed...
       observe_panel_body_p2: Get outside, and observe an individual organism. Pick something wild and take a clear, full frame photo. If you already have a photo of something wild, <a href="%{new_observation_path}">add it now</a>. You can also use the %{site_name} mobile apps to record observations.
       observe_panel_body_p3: Once you've shared your observations, this page will show you updates from the community in the form of comments and identifications. Who knows what you'll discover!
       follow_panel_title_local: Follow Some Nearby Naturalists
-      follow_panel_title_global: Follow Some Active Naturalists 
+      follow_panel_title_global: Follow Some Active Naturalists
       follow_panel_body: If you visit these profiles and click the follow button, you'll be updated when they post observations
       following_panel_title: Keep Track of People, Taxa, and Places
       following_panel_body: |
@@ -3825,8 +3827,6 @@ en:
     people can add places in the future given iNat's current rate of growth.
   plants: plants
   please_add_a_citation_for_this_change: Please add a citation for this change.
-  please_add_this_observation_to: Please add this observation to
-  please_add_this_to_x_html: "Please add this to %{x}"
   please_allow_a_few_weeks_for_external_sites:
     Please allow a few weeks for external sites to sync changes from this observation
   # Title to a section warning a user to exercise caution
@@ -3841,7 +3841,6 @@ en:
   please_hold_on_while_the_file_is_generated: Please hold on while the file is generated.  It can take a couple minutes for large lists.
   popular: Popular
   position: Position
-  possessive_user: "%{user}'s"
   # Post is a noun
   post_from_journal_by_parent_html: Post from <a href="%{url}">journal by %{parent}</a>
   # Post is a noun
@@ -4681,7 +4680,6 @@ en:
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Suitable for Wikipedia and other Wikimedia Foundation projects
   summary: Summary
   supporting: Supporting
-  support_inaturalist: Support iNaturalist
   suspend_user: Suspend user
   sw_lat: SW Lat.
   sw_lon: SW Lon.
@@ -5009,8 +5007,8 @@ en:
   this_will_add_listed_taxa: This will add listed taxa from observations. This may take a while so please use sparingly and on small checklists
   this_will_refresh_listed_taxa: This will refresh the listed taxa on this list. This may take a while so please use sparingly and on small checklists
   this_will_remove_inaturalists_ability_to_access_this_account: |
-    This will remove iNaturalist's ability to access this account on your behalf 
-    until you grant access again. You may need to change your settings on the 
+    This will remove iNaturalist's ability to access this account on your behalf
+    until you grant access again. You may need to change your settings on the
     external site to completely prevent access.
   # Application is a third-party app or service the user has authorized to
   # access their iNat account
@@ -5077,6 +5075,7 @@ en:
   type_taxon_name: "Type taxon name"
   uicn_red_list_status: "IUCN Red List status:"
   umbrella_projects: Umbrella Projects
+  unable_to_save_comment: Unfortunately, we were unable to save the comment.
   unblock: Unblock
   unclassified: Unclassified
   ungrafted_taxa: Ungrafted Taxa
@@ -5084,7 +5083,6 @@ en:
   unhide_desc: |
     Unhiding will reveal this content for everyone to see. Curators can still
     choose to hide it again in the future.
-  uninvite: uninvite
   unique_identifier_of_this_taxon: Unique identifier of this taxon in the source database.
   unique_observers: unique observers
   unknown: Unknown
@@ -5117,7 +5115,7 @@ en:
   update_selected_taxa: Update Selected Taxa
   update_subscription: Update Subscription
   update_subscription_preferences: Update subscription preferences
-  update_x_selected_taxa: 
+  update_x_selected_taxa:
     one: "Update 1 selected taxon"
     other: "Update %{count} selected taxa"
   update_your_content: Update your content
@@ -5223,7 +5221,6 @@ en:
   user_invited_you_to_join_html: "%{user} invited you to join"
   user_invited_you_to_join_project: "%{user} invited you to join %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} invited you to join this project on %{date}"
-  user_invited_your_x_to_a_project_html: "%{user} invited your %{x} to a project"
   user_is_a_naturalist: "%{user} is a naturalist!"
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> is now the admin for %{project}
@@ -5250,7 +5247,10 @@ en:
   users_favorites: "%{user}'s Favorites"
   users_highlights_and_stats_from_year_on_site: "%{user}'s highlights and stats from %{year} on %{site}"
   users_id: "%{user}'s ID"
+  users_identifications: "%{user}'s Identifications"
+  users_journal: "%{user}'s Journal"
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
+  users_lists: "%{user}'s Lists"
   users_profile: "%{user}'s Profile"
   users_projects: "%{user}'s Projects"
   users_year_on_site: "%{user}'s Year On %{site} %{year}"
@@ -5270,14 +5270,13 @@ en:
   view_check_list_page: View Check List Page
   view_contributions: View Contributions
   view_details: View Details
-  view_dynamic_lifelist: View dynamic lifelist
+  view_dynamic_lifelist_: VIEW DYNAMIC LIFELIST
   view_field_options: View Field Options
   view_flag: View Flag
   view_flags: View Flags
   view_flags_for_x_html: "View Flags for %{x}"
   view_full_observation: View Full Observation
   view_full_size_photo: View full-size photo
-  view_invitation: View Invitation
   view_journal: View Journal
   view_leaderboard_from_last_month: View leaderboard from last month
   view_leaderboard_from_last_year: View leaderboard from last year
@@ -5381,7 +5380,7 @@ en:
   what_did_you_see?: <em>What</em> did you see?
   what_do_you_think: What do you think?
   what_to_keep: What to keep
-  what_want_to_list?: What do you want to list? 
+  what_want_to_list?: What do you want to list?
   what_were_you_looking_for?: "What were you looking for? (target list)"
   whats_this?: What's this?
   when: When
@@ -5483,6 +5482,27 @@ en:
   yes_reject_it: Yes, reject it
   yes_show_this_in_the_box: Yes, show this in the big box at the top of /taxa
   yesterday: Yesterday
+  yir_donate_banner_inaturalist_in_year: "INATURALIST IN %{year}:"
+  yir_donate_banner_reaching_millions: Reaching millions. Illuminating biodiversity. Global collaboration.
+  yir_donate_banner_all_thanks: All thanks to people like you!
+  yir_donate_banner_inaturalist_thrives: iNaturalist thrives thanks to people like you!
+  yir_donate_inaturalist_needs_your_support: iNaturalist Needs Your Support
+  yir_generating_and_sharing: |
+    Generating and sharing high-impact biodiversity data at this unprecedented
+    scale and speed has increasing costs
+  yir_millions_of_people_used_inaturalist: |
+    Millions of people used iNaturalist and Seek by iNaturalist this year to
+    connect with nature
+  yir_thank_your_for_being_generous: |
+    Thank you for being generous with your time, attention, expertise, and
+    donations! iNaturalist is a not-for-profit joint initiative of the
+    California Academy of Sciences and the National Geographic Society. The
+    program relies on numerous grants and donations, including charitable gifts
+    from less than a tiny fraction of the community. We are especially grateful
+    to Monthly Supporters whose recurring gifts help us plan for the future.
+  yir_your_gift_sustains: |
+    Your gift sustains this program with global reach and profound personal and
+    ecological impacts
   you: you
   you_: You
   you_appear_offline_try_again: |
@@ -5565,7 +5585,6 @@ en:
   you_must_have_a_header_row: You must have a header row
   you_must_select_a_place_to_merge_with: You must select a place to merge with.
   you_must_select_at_least_one_taxon: You must select at least one taxon
-  you_must_select_dates_to_compare: You must select dates to compare
   you_must_specify_and_confirm_a_new_password: You must specify and confirm a new password.
   you_need_to_have_linked_flickr_account: You need to have a linked Flickr account to tag your photos.
   you_need_to_select_some_observations_first: You need to select some observations first.
@@ -5578,7 +5597,7 @@ en:
   you_sure_delete_check_list: "Are you sure you want to delete this list? Some people may have put a lot of work into it..."
   you_sure_delete_comment?: Are you sure you want to delete this comment?
   you_sure_delete_identification?: Are you sure you want to delete this identification?
-  you_sure_delete_custom_field?: Are you sure you want to delete these custom fields? 
+  you_sure_delete_custom_field?: Are you sure you want to delete these custom fields?
   you_sure_delete_flag?: Are you sure you want to delete this flag?
   you_sure_delete_project?: Are you sure you want to delete this project?
   you_sure_delete_this_observation: "Are you sure you want to delete this observation?"
@@ -5749,7 +5768,7 @@ en:
         add_color_tags_help: |
           Add color tags from colors associated with the selected taxa.
         add_rank_tags_help_html: |
-          Add taxon rank tags based on our taxonomy, e.g. 
+          Add taxon rank tags based on our taxonomy, e.g.
           <code>family=Laridae</code>
           or
           <code>family=Gulls and Allies</code>
@@ -5761,10 +5780,10 @@ en:
           will just import the first available text section from EOL, which is
           generally contains a summary when available.
         eol_collection_desc_html: |
-          The <a href="http://eol.org/" target="_blank">Encyclopedia of Life (EOL)</a> 
+          The <a href="http://eol.org/" target="_blank">Encyclopedia of Life (EOL)</a>
           is a repository of information about life on Earth. At EOL you can
           create
-          <a href="http://eol.org/info/252" target="_blank">collections</a> 
+          <a href="http://eol.org/info/252" target="_blank">collections</a>
           of species. If you want to import species from an EOL collection,
           paste in the URL of that collection here.
         guide_place_desc: |
@@ -5941,8 +5960,8 @@ en:
           undoing a lot of work.
         description_html: |
           This will change the establishment means of <em>all</em> listings of
-          this taxon on all descendant places of 
-          <a href="%{place_url}">%{place_name}</a> 
+          this taxon on all descendant places of
+          <a href="%{place_url}">%{place_name}</a>
           to <strong>"%{establishment_means}"</strong>. Only
           curators can use this tool. Changing the establishment means to
           "introduced" will have roughly the same effect, but it won't change
@@ -6211,7 +6230,7 @@ en:
         longitude: Publicly visible longitude
         positional_accuracy: "Coordinate precision (yeah, yeah, accuracy != precision, poor choice of names)"
         private_latitude: "Private latitude, set if observation private or obscured"
-        private_longitude: "Private longitude, set if observation private or obscured" 
+        private_longitude: "Private longitude, set if observation private or obscured"
         geoprivacy: "Whether or not the observer has chosen to obscure or hide the coordinates"
         taxon_geoprivacy: "Most conservative geoprivacy applied due to the conservation statuses of taxa in current identification."
         coordinates_obscured: "Whether or not the coordinates have been obscured, either because of geoprivacy or because of a threatened taxon"
@@ -6272,7 +6291,7 @@ en:
           original files and adding them using the <a
           href="/observations/upload">Uploader</a> is the best workaround.
         project_csv_template_notice_html: |
-          There is a template file for this project that may help you with the structure of the CSV file. 
+          There is a template file for this project that may help you with the structure of the CSV file.
           <a href="%{url}">Download template</a>
         soundcloud_notice_html: |
           In 2018 Soundcloud changed their API and made it impossible for us to
@@ -6357,7 +6376,7 @@ en:
             observations start as <strong>"casual"</strong> grade, and become
             <strong>"needs ID"</strong> when
           </p>
-          
+
           <ul>
             <li>the observation <strong>has a date</strong></li>
             <li>the observation <strong>is georeferenced</strong> (i.e. has lat/lon coordinates)</li>
@@ -6470,7 +6489,7 @@ en:
           before your bulk upload will work. Use the box at the bottom of
           the search page to import new names. If the name is present but
           applies to multiple valid taxa, try to use a more or less specific
-          name that only matches a single taxon. 
+          name that only matches a single taxon.
       collection_project_changed_for_trusting_member:
         # Followed by link to a page showing project managers
         admins_may_have_access_to_more_observations_html: |-
@@ -6677,7 +6696,7 @@ en:
           <a href="%{url}">download the KML</a>, edit it in the GIS application of your choice, and
           upload your edited KML directly.
         admin_level_desc: |
-          Should only be set for political bodies. In terms of 
+          Should only be set for political bodies. In terms of
           USA-equivalents, 0 = country, 10 = state, 20 = county, 30 = town
       new:
         check_list_note: "Note: check lists will be automatically disabled for very large places."
@@ -6719,7 +6738,7 @@ en:
           Remove all your observations from this project
         remove_observations_desc_html: |
           Keep in mind that project curators will still be able to add your
-          observations to their project unless you change your 
+          observations to their project unless you change your
           <a href="/users/edit">account settings</a>.
         revoke_observations_label: |
           Leave your observations in this project but prevent curators from viewing
@@ -6922,7 +6941,7 @@ en:
           this project.
         project_background_color: Project Summary Background Color
         project_background_color_help: Make sure to choose a color dark enough so the white overlaid text is legible.
-        project_banner: Project Banner (PNG, JPG, or GIF)
+        project_banner: Project Banner (PNG or JPG)
         project_banner_help: Optional banner image. Ideal dimensions are 760px by 320px.
         project_details: Project Details
         project_icon: Project Icon (PNG, JPG, or GIF)
@@ -7561,6 +7580,13 @@ en:
             including the work of the
             <strong class="count">%{helpers_count} people</strong> who have
             helped you out with identifications
+        x_projects_html:
+            one: |
+              <strong class="count">%{count} project</strong> that does not
+              have another manager or admin that can become the new owner
+            other: |
+              <strong class="count">%{count} projects</strong> that do not
+              have other managers or admins that can become the new owner
         x_identifications_html:
           one: |
             <strong class="count">your %{count} identification</strong>
@@ -7912,8 +7938,8 @@ en:
     welcome:
       index:
         welcome_message_html: |
-          to %{image}, where you can <strong>record</strong> what you see in nature, 
-          <strong>meet</strong> other nature lovers, 
+          to %{image}, where you can <strong>record</strong> what you see in nature,
+          <strong>meet</strong> other nature lovers,
           and <strong>learn</strong> about the natural world.
         connect_with_nature: Connect with Nature
         explore_and_share: Explore and share your observations from the natural world.
@@ -7967,7 +7993,7 @@ en:
       - Fri
       - Sat
     abbr_month_names:
-      - 
+      -
       - Jan
       - Feb
       - Mar
@@ -8012,7 +8038,7 @@ en:
       # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%B %d, %Y'
     month_names:
-      - 
+      -
       - January
       - February
       - March
@@ -8282,7 +8308,7 @@ en:
         title: Title
         body: Body
       project:
-        title: Title 
+        title: Title
         project_icon: Project icon
         project_type: Project type
         preferred_count_by: Preferred count by
@@ -8387,10 +8413,10 @@ en:
             value:
               dna_only_atcg: "for DNA can only contain the characters A, T, C, or G"
               date_format: |
-                must be in the form YYYY-MM-DD for a date field ("%{observation_field_name}" 
+                must be in the form YYYY-MM-DD for a date field ("%{observation_field_name}"
                 in your observation of "%{observation_species_guess}")
               time_format: |
-                must be in the form hh:mm for a time field ("%{observation_field_name}" 
+                must be in the form hh:mm for a time field ("%{observation_field_name}"
                 in your observation of "%{observation_species_guess}")
             observation_id:
               user_does_not_accept_fields_from_others: user does not accept fields from others
