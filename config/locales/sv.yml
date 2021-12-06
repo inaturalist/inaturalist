@@ -721,6 +721,8 @@ sv:
   batch_operations: Batch-funktioner
   be_the_first_to_fave_this_observation: Var först med att göra det här fyndet till favorit!
   because_of: eftersom
+  become_a_donor_caps: BLI BIDRAGSGIVARE
+  become_a_donor_today_caps: BLI BIDRAGSGIVARE IDAG
   before_importing_photos: innan bildimport
   bg_color: Bakgrundsfärg
   bio: Biografi
@@ -855,6 +857,7 @@ sv:
   check_list_place: "%{place}-checklista"
   check_list_updated: Checklistan uppdaterades!
   check_lists_for: "Andra checklistor för %{place}"
+  check_out_the_inat_store: Kolla in iNaturalist-butiken
   check_out_what_the_observation: Kolla hur fyndet du försöker bestämma ser ut.
   check_this_box_if_html: |
     Markera denna ruta om du vill tillämpa en <a
@@ -1469,6 +1472,8 @@ sv:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: DONERA
+  donate_again_caps: DONERA IGEN
+  donate_again_today_caps: DONERA IGEN IDAG
   done: Klar
   dont_have_an_account_sign_up_html: Har du inte ett konto? <strong>Registrera dig.</strong>
   dont_send_me_email: "Skicka inte någon e-post!"
@@ -5127,6 +5132,20 @@ sv:
   yes_reject_it: Ja, avvisa det
   yes_show_this_in_the_box: Ja, visa detta i den stora rutan högst upp i /taxa
   yesterday: Igår
+  yir_donate_banner_inaturalist_in_year: "INATURALIST %{year}:"
+  yir_donate_banner_reaching_millions: Når miljontals. Uppmärksammar biologisk mångfald. Globalt samarbete.
+  yir_donate_banner_all_thanks: Allt tack vare människor som du!
+  yir_donate_banner_inaturalist_thrives: iNaturalist frodas tack vare människor som du!
+  yir_donate_inaturalist_needs_your_support: iNaturalist behöver ditt stöd
+  yir_generating_and_sharing: |
+    Att skapa och dela så mycket data om biologisk mångfald med sådan genomslagskraft och så snabbt och utan like har stadigt ökande kostnader
+  yir_millions_of_people_used_inaturalist: |
+    I år använde miljontals människor iNaturalist och Seek av iNaturalist för att knyta an till naturen
+  yir_thank_your_for_being_generous: |
+    Tack för att du bidrar med din tid, uppmärksamhet, expertis och donationer! iNaturalist är ett ideellt gemensamt initiativ av California Academy of Sciences och National Geographic Society. Programmet bygger på otaliga bidrag och donationer, inklusive välgörenhetsgåvor från mindre än en liten bråkdel av communityn. Vi är särskilt tacksamma till Månatliga Bidragsgivare vars återkommande gåvor hjälper oss att planera inför framtiden.
+  yir_your_gift_sustains: |
+    Din gåva upprätthåller detta program med global räckvidd och djup personlig och
+    ekologisk inverkan
   you: dig
   you_: Dig
   you_appear_offline_try_again: |
@@ -6186,7 +6205,6 @@ sv:
           Vänligen ange villkoren för de fynd som ska läggas till i detta projekt.
         project_background_color: Bakgrundsfärg för projektsammanställning
         project_background_color_help: Se till att välja en tillräckligt mörk färg mörk så att den vita texten ovanpå blir läsbar.
-        project_banner: Projektbanderoll (PNG, JPG eller GIF)
         project_banner_help: Valfri banderollbild. Idealiska mått är 760px gånger 320px.
         project_details: Projektdetaljer
         project_icon: Projektikon (PNG, JPG eller GIF)
