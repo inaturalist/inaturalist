@@ -5630,6 +5630,8 @@ lv:
         inaturalist_minor_account_signup: Otršķirīga iNaturalist konta reģistrēšana
     welcome:
       index:
+        hold_an_event: Iespējams izveidot pasākumu, lai kopā ar citiem lietotājiem atrastu pēc iespējas vairāk sugu.
+        works_on_all_your_devices: Strādā visās ierīcēs
         what_are_you_waiting_for: Kāpēc vēl vilcinies?
         join_today: Pievienojies jau šodien!
     wiki_pages:
@@ -5705,6 +5707,7 @@ lv:
       - December
   errors:
     messages:
+      only_project_owner_can_change_project_owner: Tikai pats projekta īpašnieks var mainīt projekta īpašnieku
       too_long:
         zero: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)
         one: pārsniedz garumu (ne vairāk par %{count} rakstzīmi)
@@ -5963,7 +5966,7 @@ lv:
         not_a_number: nevar būt skaitlis
         not_an_integer: jābūt veselam skaitlim
         odd: jābūt nepāra
-        only_project_owner_can_change_project_owner: Tikai projekta īpašnieks var mainīt projekta īpašnieku
+        only_project_owner_can_change_project_owner: Tikai pats projekta īpašnieks var mainīt projekta īpašnieku
         record_invalid: 'Validācija neizdevās: %{errors}'
         requires_privilege_speech: lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām
         requires_privilege_organizer: lai to izdarītu, tev jabūt 50 pierādāmiem novērojumiem

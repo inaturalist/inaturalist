@@ -21,25 +21,34 @@ class Assessment extends React.Component {
   }
 
   render( ) {
-    const { observation, config, updateSession } = this.props;
+    const {
+      config,
+      innerWrapper,
+      observation,
+      updateSession
+    } = this.props;
     if ( !observation ) { return ( <span /> ); }
     const loggedIn = config && config.currentUser;
     const { open } = this.state;
+    const InnerWrapper = innerWrapper || <div />;
     return (
       <Grid>
         <div className="QualityMetrics collapsible-section">
           <div>
-            <h3
-              className="collapsible"
-              onClick={( ) => {
-                if ( loggedIn ) {
-                  updateSession( { prefers_hide_obs_show_quality_metrics: open } );
-                }
-                this.setState( { open: !open } );
-              }}
-            >
-              <i className={`fa fa-chevron-circle-${open ? "down" : "right"}`} />
-              { I18n.t( "data_quality_assessment" ) }
+            <h3 className="collapsible">
+              <button
+                type="button"
+                className="btn btn-nostyle"
+                onClick={( ) => {
+                  if ( loggedIn ) {
+                    updateSession( { prefers_hide_obs_show_quality_metrics: open } );
+                  }
+                  this.setState( { open: !open } );
+                }}
+              >
+                <i className={`fa fa-chevron-circle-${open ? "down" : "right"}`} />
+                { I18n.t( "data_quality_assessment" ) }
+              </button>
             </h3>
             <OverlayTrigger
               trigger="click"
@@ -73,14 +82,16 @@ class Assessment extends React.Component {
           </div>
           <Panel expanded={open} onToggle={() => {}}>
             <Panel.Collapse>
-              <Row>
-                <Col xs={7}>
-                  <QualityMetricsContainer />
-                </Col>
-                <Col xs={5}>
-                  <ResearchGradeProgressContainer />
-                </Col>
-              </Row>
+              <InnerWrapper>
+                <Row>
+                  <Col xs={7}>
+                    <QualityMetricsContainer />
+                  </Col>
+                  <Col xs={5}>
+                    <ResearchGradeProgressContainer />
+                  </Col>
+                </Row>
+              </InnerWrapper>
             </Panel.Collapse>
           </Panel>
         </div>
@@ -91,6 +102,7 @@ class Assessment extends React.Component {
 
 Assessment.propTypes = {
   config: PropTypes.object,
+  innerWrapper: PropTypes.element,
   observation: PropTypes.object,
   updateSession: PropTypes.func
 };
