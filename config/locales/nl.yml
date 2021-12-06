@@ -4178,9 +4178,18 @@ nl:
   site_taxon_page: "%{site_name} taxonpagina"
   sites_affiliation_about_desc_html: |
     Als jouw organisatie geïnteresseerd is in toetreding tot het iNaturalist Netwerk kan je %{start_tag_join}hier%{end_tag_join} meer details vinden.
+  sites_affiliation_examples_canada_cdc_html: |
+    %{start_tag_inat_canada}iNaturalist Canada%{end_tag_inat_canada} integreert
+    gegevens van iNaturalist in veilige, provinciale systemen die worden beheerd door Conservation Data Centers (CDCs). Deze systemen worden gebruikt bij het uitvoeren (twee keer per jaar) van beoordelingen om de status van soorten te bepalen, of ze worden bedreigd, evenals bij het bepalen van de kritieke leefomgeving van kwetsbare en bedreigde diersoorten. Als gevolg daarvan is het ook mogelijk geweest hotspots van verkeerssterfte voor bedreigde soorten op te sporen en te elimineren; afbakening en uiteindelijk het beschermen van de belangrijkste biodiversiteitsgebieden;herbevestigen van de aanwezigheid van soorten die al decennialang niet zijn gemeld.
+  sites_affiliation_examples_ecuardor_bndb_html: |
+    %{start_tag_ecuador}iNaturalist Ecuador%{end_tag_ecuador} voed de
+    National Database of Biodiversity of Ecuador – BNDB – een grote repository van data
+    van zowel wetenschappelijke gegevens als burgerwetenschappers. Het doel is de kennis en gegevens te integreren en zo te helpen om het begrip van de omgeving van de flora en fauna van Ecuador te verstevigen.
   sites_affiliation_examples_mexico_nbis_html: |
     Mexico's %{start_tag_naturalista}Naturalista%{end_tag_naturalista}
     waarnemingen worden geimporteerd in de National Biodiversity Information System (bij CONABIO, de National Biodiversity Commision) samen met de dossiers van eBird. Mensen kunnen zowel wetenschappelijke als burgerwetenschapsgegevens vinden in %{start_tag_enciclovida}Enciclovida%{end_tag_enciclovida}.
+  sites_affiliation_examples_portugal_atlas_html: |
+    Portugal's iNaturalist netwerklid %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} deelde gegevens voor de Portugese atlas van trekvogels, voor de atlas van zoogdieren en diverse andere Portugese wetenschappelijke onderzoeksdocumenten.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Automatisch verborgen coördinaten (verborgen of privé als gevolg van "taxon
     geoprivacy")
@@ -4201,10 +4210,20 @@ nl:
     waardevoller worden voor lokale instandhoudingsinspanningen.
   sites_affiliation_overview_current_member_list_html: |
     Je kunt de huidige ledenlijst van %{start_tag_network}iNaturalist Network%{end_tag_network} zien.
+  sites_affiliation_overview_in_order_to_advance: |
+    Om onderzoek en behoud in hun respectievelijke gebieden te bevorderen kunnen 
+    Netwerkleden gegevens van iNaturalist delen. Zij hebben de verantwoordelijkheid
+    om de geldigheid en geschiktheid van verzoeken om gegevens en hun
+    potentiële resultaten te beoordelen; schriftelijk de verantwoordelijkheid om ook de
+    veiligheid van dergelijke gegevens te waarborgen en door ervoor te zorgen dat deze op geen enkele wijze openbaar gemaakt worden of gedeeld of gebruikt worden buiten de oorspronkelijk beoogde doelstelling; het documenteren van alle gegevensleveringen
+    en die te delen samen met de bijbehorende resultaten, uitkomsten of beoogd gebruik en
+    om jaarlijks te rapporteren aan iNaturalist.
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
     Het %{start_tag_network}iNaturalist Netwerk%{end_tag_network} is een
     collectie gelokaliseerde websites in de %{start_tag_global}wereldwijde
     iNaturalist gemeenschap%{end_tag_global}.
+  sites_affiliation_overview_when_you_affiliate: |
+    Wanneer je gekoppeld bent met een iNaturalist netwerklid worden je e-mailadres en de echte locaties van je vervaagde en privé-locaties gedeeld met het netwerklid. Hierdoor kunnen je waarnemingen meer waardevol worden voor de lokale instandhoudingsinspanningen. Als je een gebied dat valt onder een lid van het netwerk regelmatig bezoekt of erin woont in wordt je aangemoedigd om te kiezen voor een koppeling met dit netwerklid zodat het delen van deze gegevens mogelijk wordt.
   sites_affiliation_overview_you_can_continue_html: |
     Je kunt inloggen via iNaturalist.org of via jouw netwerkspecifieke website. Ongeacht het lidmaatschap dat je gebruikt wordt al jouw data gehost op dezelfde plek en je blijft in staat om te communiceren met de volledige internationale iNaturalist gemeenschap. Elk iNaturalist-account kan slechts gekoppeld zijn met één netwerklid. Je kunt jouw koppeling bekijken of
     wijzigen in de instellingen %{start_tag_settings}account%{end_tag_settings}.
@@ -5142,7 +5161,7 @@ nl:
   yesterday: Gisteren
   yir_donate_banner_inaturalist_in_year: "INATURALIST IN %{year}:"
   yir_donate_banner_reaching_millions: Bereik miljoenen mensen. Verlicht de biodiversiteit. Wereldwijde samenwerking.
-  yir_donate_banner_all_thanks: Veel dank aan mensen zoals jij!
+  yir_donate_banner_all_thanks: Dankzij mensen zoals jij!
   yir_donate_banner_inaturalist_thrives: Met iNaturalist gaat het voorspoedig door mensen zoals jij!
   yir_donate_inaturalist_needs_your_support: iNaturalist heeft jouw hulp nodig
   yir_generating_and_sharing: |
@@ -6187,7 +6206,6 @@ nl:
           Geef de vereisten op voor de waarnemingen die moeten worden toegevoegd aan dit project.
         project_background_color: Projectoverzicht Achtergrondkleur
         project_background_color_help: Zorg ervoor dat u een kleur kiest die donker genoeg is zodat de witte overlay leesbaar is.
-        project_banner: Project banner (PNG, JPG, of GIF)
         project_banner_help: Optionele bannerafbeelding. Ideale afmetingen zijn 760px bij 320 px.
         project_details: Projects details
         project_icon: Project icoon (PNG, JPG, of GIF)
