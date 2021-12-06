@@ -707,6 +707,8 @@ es:
   batch_operations: Operaciones por lotes
   be_the_first_to_fave_this_observation: '¡Se el primero en agregar esta observación a favoritos!'
   because_of: debido a
+  become_a_donor_caps: CONVIÉRTETE EN DONANTE
+  become_a_donor_today_caps: CONVIÉRTETE EN DONANTE, AHORA
   before_importing_photos: antes de importar fotos
   bg_color: Color de fondo
   bio: Biografía
@@ -840,6 +842,7 @@ es:
   check_list_place: "Lista de verificación de %{place}"
   check_list_updated: '¡Lista de verificación actualizada!'
   check_lists_for: "Otras listas de verificación para %{place}"
+  check_out_the_inat_store: Echa un vistazo a la tienda de iNaturalist
   check_out_what_the_observation: Échale un vistazo a como aparece la observación que estás tratando de identificar.
   check_this_box_if_html: |
     Selecciona esta casilla si quieres aplicar una
@@ -1444,6 +1447,8 @@ es:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: HACER UNA DONACIÓN
+  donate_again_caps: DONAR DE NUEVO
+  donate_again_today_caps: DONAR DE NUEVO, HOY
   done: Hecho
   dont_have_an_account_sign_up_html: '¿Ya tienes una cuenta? <strong>Inicia sesión.</strong>'
   dont_send_me_email: "No enviarme ningún mensaje de correo electrónico"
@@ -5094,6 +5099,18 @@ es:
   yes_show_this_in_the_box: Sí, muestra esto en la caja grande por arriba de los taxones
   yesterday: Ayer
   yir_donate_banner_inaturalist_in_year: "INATURALIST EN %{year}:"
+  yir_donate_banner_reaching_millions: Llegando a millones. Iluminando la biodiversidad. Colaboración global.
+  yir_donate_banner_all_thanks: '¡Muchas gracias a gente como tú!'
+  yir_donate_banner_inaturalist_thrives: '¡iNaturalist da las gracias a gente como tú!'
+  yir_donate_inaturalist_needs_your_support: iNaturalist necesita tu Apoyo
+  yir_generating_and_sharing: |
+    Generar y compartir datos de biodiversidad de alto impacto, a esta escala y velocidad sin precedentes, tiene un coste creciente
+  yir_millions_of_people_used_inaturalist: |
+    Millones de personas han usado iNaturalist y Seek de iNaturalist durante este año para conectar con la naturaleza
+  yir_thank_your_for_being_generous: |
+    ¡Gracias por ser tan generoso con tu tiempo, atención, experiencia y donaciones! iNaturalist es una iniciativa conjunta sinánimo de lucro de la California Academy of Sciences y la National Geographic Society. El programa se soporta con las numerosas subvenciones y donaciones, incluidas las donaciones caritativas aportadas por una pequeña parte de la comunidad. Estamos especialmente agradecidos con los patrocinadores mensuales cuyas donaciones recurrentes nos ayudan a planificar el futuro.
+  yir_your_gift_sustains: |
+    Tu donación sostiene este programa de alcance global y profundos impactos personales y ecológicos
   you: tu
   you_: Tú
   you_appear_offline_try_again: |
@@ -6155,7 +6172,6 @@ es:
           Especifica los requisitos para las observaciones que se añadirán a este proyecto.
         project_background_color: Color de fondo del resumen del proyecto
         project_background_color_help: Asegúrate de seleccionar un color suficientemente oscuro para que el texto blanco sobrepuesto sea legible.
-        project_banner: Imagen del proyecto (PNG, JPG, o GIF)
         project_banner_help: Imagen opcional. Las dimensiones ideales son 760px por 320px.
         project_details: Detalles del proyecto
         project_icon: Icono del proyecto (PNG, JPG o GIF)
