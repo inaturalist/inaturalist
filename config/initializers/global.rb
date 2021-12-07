@@ -48,9 +48,17 @@ def call_and_rescue_with_partitioner( callable, args, exceptions, options = {}, 
     if options[:exception_checker] && !options[:exception_checker].call( e )
       raise e
     end
-    block.call( args ).map {|partioned_args|
-      call_and_rescue_with_partitioner( callable, partioned_args, exceptions, options, &block )
-    }.flatten
+
+    arg_partitions = block.call( args )
+    if options[:parallel]
+      Parallel.map( arg_partitions ) do | partitioned_args |
+        call_and_rescue_with_partitioner( callable, partitioned_args, exceptions, options, &block )
+      end.flatten
+    else
+      arg_partitions.map do | partitioned_args |
+        call_and_rescue_with_partitioner( callable, partitioned_args, exceptions, options, &block )
+      end.flatten
+    end
   end
 end
 
