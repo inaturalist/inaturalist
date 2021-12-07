@@ -4,6 +4,8 @@ class YearStatistic < ApplicationRecord
   belongs_to :user
   belongs_to :site
 
+  NUM_ES_WORKERS = [1, ( CONFIG.elasticsearch_hosts&.size || 2 ) - 1].max
+
   if CONFIG.usingS3
     has_attached_file :shareable_image,
       storage: :s3,
@@ -982,7 +984,8 @@ class YearStatistic < ApplicationRecord
         Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
         Faraday::TimeoutError
       ],
-      exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception)/ }
+      exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception)/ },
+      parallel: NUM_ES_WORKERS
     ) do | args |
       es_params = args[0].dup
       d1_filter = es_params[:filters].detect {| f | f[:range] && f[:range][date_field] && f[:range][date_field][:gte] }
@@ -1160,7 +1163,7 @@ class YearStatistic < ApplicationRecord
 
   def self.streaks( year, options = {} )
     options = options.clone
-    debug = options.delete( :debug )
+    debug = options[:debug]
     streak_length = 5
     base_query = { quality_grade: "research,needs_id", d2: "#{year}-12-31" }
     if options[:site]
@@ -1198,7 +1201,7 @@ class YearStatistic < ApplicationRecord
         }
       ) ).response.aggregations.histogram.buckets
     end
-    puts "[#{Time.now}] Aggregating all relevant observations by day..." if debug
+    puts "[#{Time.now}] Aggregating all relevant observations by day and user..." if debug
     histogram_buckets = call_and_rescue_with_partitioner(
       streak_bucketer,
       base_query,
@@ -1207,7 +1210,8 @@ class YearStatistic < ApplicationRecord
         Faraday::TimeoutError
       ],
       exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception)/ },
-      parallel: true
+      parallel: NUM_ES_WORKERS,
+      debug: debug
     ) do | args |
       query = args[0]
       # Assume no one has been on a streak since before 2008-01-01
@@ -1222,8 +1226,10 @@ class YearStatistic < ApplicationRecord
       puts "[#{Time.now}] partitioned into #{new_queries}" if debug
       new_queries
     end
+    puts "[#{Time.now}] Processing #{histogram_buckets.size} buckets..." if debug
     histogram_buckets.each_with_index do | bucket, bucket_i |
       date = bucket["key_as_string"]
+      puts "[#{Time.now}] Processing #{date}" if debug
       user_ids = bucket.user_ids.buckets.map {| b | b["key"].to_i }
       user_ids.each do | streaking_user_id |
         current_streaks[streaking_user_id] ||= 0
@@ -1259,6 +1265,7 @@ class YearStatistic < ApplicationRecord
       if bucket_i == ( histogram_buckets.size - 1 ) # && range_i == ( ranges.size - 1 )
         streaking_user_ids = current_streaks.keys
         stop_date = Date.parse( date )
+        puts "[#{Time.now}] Processing final day for #{streaking_user_ids.size} streaking users..." if debug
         streaking_user_ids.each do | user_id |
           if current_streaks[user_id] && current_streaks[user_id] >= streak_length
             streaks << {
@@ -1295,8 +1302,10 @@ class YearStatistic < ApplicationRecord
       end
     end
     top_streaks = top_streaks.sort_by {| s | s[:days] * -1 }[0..100]
-    top_streaks_user_ids = top_streaks.map {| u | u[:user_id] }
+    top_streaks_user_ids = top_streaks.map {| u | u[:user_id] }.uniq
+    puts "[#{Time.now}] Fetching top streak users..." if debug
     top_streaks_users = User.where( id: top_streaks_user_ids )
+    puts "[#{Time.now}] Generating logins and icons for top streak users..." if debug
     top_streaks.map do | s |
       u = top_streaks_users.detect {| streak_user | streak_user.id == s[:user_id] }
       if u.suspended?
