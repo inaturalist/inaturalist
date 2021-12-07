@@ -774,6 +774,8 @@ he:
   batch_operations: מספר פעולות
   be_the_first_to_fave_this_observation: תהיו הראשון להעדיף תצפית זו!
   because_of: בגלל
+  become_a_donor_caps: לתרומה
+  become_a_donor_today_caps: לתרומה עכשיו
   before_importing_photos: לפני ייבוא תמונות
   bg_color: צבע רקע
   bio_description: ספרו למשתמשים האחרים על עצמכם!
@@ -1307,6 +1309,8 @@ he:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: לתרומה
+  donate_again_caps: לתרומה נוספת
+  donate_again_today_caps: לתרומה נוספת עכשיו
   done: בוצע
   dont_have_an_account_sign_up_html: אין לכם חשבון? <strong>להרשמה.</strong>
   dont_send_me_email: "אל תשלחו לי אימיילים!"
@@ -1403,6 +1407,10 @@ he:
   establishment_means: דרכי התבססות
   establishment_means_describes_how: |
     דרכי התבוססות מתאר איך טקסון מסוים הגיע למקום מוגדר. צפו בDarwinCore <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">כדי לקבל מידע נוסף</a>.
+  establishment_means_descriptions:
+    native: שעברו אבולוציה באזור זה או שהגיעו לא באמצעות האדם
+    endemic: מקומי ושאינו מופיע במקומות אחרים
+    introduced: מופיע באזור בעקבות הבאתו על ידי פעילות אדם
   event_in_progress: אירוע בתהליך
   event_stats: סטטיסטיקות האירוע
   event_url: URL של האירוע
@@ -3597,6 +3605,7 @@ he:
   username_or_email: שם משתמש או כתובת מייל
   users: משתמשים
   users_id: "הזיהוי של %{user}"
+  users_journal: "היומן של %{user}"
   users_profile: "הפרופיל של %{user}"
   users_projects: "הפרוייקטים של %{user}"
   valid_options_are: האופציות האפשריות הן
@@ -3739,6 +3748,9 @@ he:
   yes_i_want_to_join: כן, ברצוני להצטרף
   yes_license_my_observations_so_scientists_can_use: כן, החל רישוי לתמונות, קולות ותצפיות על מנת שחוקרים יוכלו להשתמש בנתונים שלי.
   yesterday: אתמול
+  yir_donate_banner_inaturalist_in_year: "INATURALIST ב%{year}"
+  yir_donate_banner_reaching_millions: מגיעים למיליוני בני אדם. מאירים את מגוון המינים. שיתופי פעולה חוצי גבולות.
+  yir_donate_banner_all_thanks: הכל בזכות אנשים כמוך!
   you: אותך
   you_: אתה
   you_appear_offline_try_again: |

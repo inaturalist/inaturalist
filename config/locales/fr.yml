@@ -708,6 +708,8 @@ fr:
   batch_operations: Opérations groupées
   be_the_first_to_fave_this_observation: Soyez le premier à ajouter cette observation comme favori !
   because_of: en raison de
+  become_a_donor_caps: FAITES UN DON
+  become_a_donor_today_caps: DEVENEZ UN DONATEUR AUJOURD'HUI
   before_importing_photos: avant d’importer des photos
   bg_color: Couleur de fond
   bio: Biographie
@@ -843,6 +845,7 @@ fr:
   check_list_place: "Check-list de %{place}"
   check_list_updated: Check-list mise à jour!
   check_lists_for: "Autres check-lists associées à %{place}"
+  check_out_the_inat_store: Visitez la boutique iNaturalist
   check_out_what_the_observation: Consulter l’apparence de l’observation que vous tentez d’identifier.
   check_this_box_if_html: |
     Cochez cette case si vous voulez appliquer une
@@ -1458,6 +1461,8 @@ fr:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: Faire un don
+  donate_again_caps: DONNEZ DE NOUVEAU
+  donate_again_today_caps: DONNEZ DE NOUVEAU AUJOURD'HUI
   done: Validé
   dont_have_an_account_sign_up_html: Vous n'avez pas encore de compte ? <strong>Enregistrez-vous.</strong>
   dont_send_me_email: "Ne m’envoyez pas de courriel !"
@@ -1583,6 +1588,7 @@ fr:
     Le type d'implantation décrit la façon dont le taxon en est venu à être établi dans la région. 
     Consultez DarwinCore pour <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">obtenir plus d’information sur la terminologie</a>.
   establishment_means_descriptions:
+    native: A évolué dans cette région ou bien est arrivée par des moyens non anthropiques
     endemic: Indigène et n’existe nulle part ailleurs
     introduced: Arrivée dans la région par des moyens anthropiques
   estimate_which_input: |
@@ -4886,6 +4892,7 @@ fr:
   users_highlights_and_stats_from_year_on_site: "Mises en évidence et statistiques de %{user} pour %{year} sur %{site}"
   users_id: "ID de %{user}"
   users_identifications: "Identifications @vow_or_con{vow:d'|de }%{user}"
+  users_journal: "Journal @vow_or_con{vow:d'|de }%{user}"
   users_latest_observations_on_site: "dernières observations de %{user} sur %{site}"
   users_lists: "Listes @vow_or_con{vow:d'|de }%{user}"
   users_profile: "Profil de %{user}"
@@ -5112,6 +5119,22 @@ fr:
   yes_reject_it: Oui, le refuser
   yes_show_this_in_the_box: Oui, affichez dans la grande boîte dans le haut de /taxa
   yesterday: Hier
+  yir_donate_banner_inaturalist_in_year: "INATURALIST EN %{year} :"
+  yir_donate_banner_reaching_millions: Atteindre des millions de personnes. Mettre en lumière la biodiversité. Collaborer dans le monde entier.
+  yir_donate_banner_all_thanks: Grâce à des personnes comme vous !
+  yir_donate_banner_inaturalist_thrives: iNaturalist doit son succès à des personnes comme vous !
+  yir_donate_inaturalist_needs_your_support: iNaturalist a besoin de votre appui
+  yir_generating_and_sharing: |
+    Il est de plus en plus coûteux de produire et de transmettre à cette échelle et à cette vitesse sans précédent des données sur la biodiversité à fort impact.
+  yir_millions_of_people_used_inaturalist: |
+    Des millions de personnes ont utilisé iNaturalist et Seek par iNaturalist cette année pour
+    s'immerger dans la nature.
+  yir_thank_your_for_being_generous: |
+    Nous vous remercions pour votre générosité, votre temps, votre attention, votre expertise et votre appui financier ! iNaturalist est une initiative conjointe sans but lucratif de la California Academy of Sciences et de la National Geographic Society. Le programme
+    est rendu possible par de nombreux dons et subventions, y compris des dons de bienfaisance
+    qui proviennent d'une infime fraction de la communauté. Nous sommes particulièrement reconnaissants aux personnes qui donnent chaque mois et dont le soutien récurrent nous aide à préparer l'avenir.
+  yir_your_gift_sustains: |
+    Grâce à votre don, ce programme peut avoir une portée mondiale ainsi que des impacts personnels et écologiques profonds.
   you: vous
   you_: ' Vous'
   you_appear_offline_try_again: |
@@ -6400,7 +6423,6 @@ fr:
           Veuillez spécifier les prérequis des observations à ajouter à ce projet.
         project_background_color: Couleur d'arrière plan du résumé du projet
         project_background_color_help: Assurez-vous de choisir une couleur assez sombre pour que le texte blanc recouvrant soit lisible.
-        project_banner: Entête de projet (PNG, JPG, ou GIF)
         project_banner_help: Image de bannière facultative. Les dimensions idéales sont 760x320px.
         project_details: Détails du projet
         project_icon: Icône du project (PNG, JPG, ou GIF)

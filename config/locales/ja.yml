@@ -893,6 +893,9 @@ ja:
     track: 足跡
     #Endoskeletal remains, like a deer bone
     bone: 骨
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: 抜け殻
   controlled_term_definitions:
     alive: 生物は生きており、差し迫った死の兆候はない
     dead: 生物は死んでいるか、瀕死である
@@ -901,6 +904,10 @@ ja:
     fruiting: 植物に果実が付いている
     no_evidence_of_flowering: メディアは生殖構造の証拠を提供しません
     cannot_be_determined: 提供された証拠から判断することはできません
+    organism: 生物の本体またはその一部
+    scat: 糞（フクロウのペリットやその他の口から吐き出されたものは含まない）
+    track: 地面や雪面に残された生物の圧痕
+    molt: 脱ぎ捨てられた皮膚または外骨格
   controls: 設定
   coordinate_systems: 座標システム
   coordinates: 緯度経度
@@ -3757,6 +3764,7 @@ ja:
   users_latest_observations_on_site: "%{site}における%{user}さんの最新観察記録"
   users_profile: "%{user}さんのプロフィール"
   valid_options_are: 有効な選択肢：
+  value: 値
   verbing_x_of_y: "%{y}部の%{x}を%{verb}中..."
   view: 表示
   view_all: すべて表示
@@ -4166,7 +4174,6 @@ ja:
         or_drag_and_drop: またはドラッグ＆ドロップ
         project_background_color: プロジェクトの概要の背景色
         project_background_color_help: 白いオーバーレイテキストが読みやすいように、十分に暗い色を選択してください。
-        project_banner: プロジェクトバナー (PNG、JPG、またはGIF)
         project_banner_help: 任意のバナー画像。理想的なサイズは760px×320pxです。
         project_details: プロジェクトの詳細
         project_icon: プロジェクトアイコン (PNG、JPG、または GIF)

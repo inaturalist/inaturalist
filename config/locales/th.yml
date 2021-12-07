@@ -507,8 +507,17 @@ th:
   are_you_sure_want_delete_this_name: คุณแน่ใจหรือไม่ว่าต้องการลบชื่อนี้?
   are_you_sure_want_delete_this_range: คุณแน่ใจหรือไม่ว่าต้องการลบช่วงเหล่านี้?
   are_you_sure_you_want_to_delete_this: คุณแน่ใจไหมที่จะลบทิ้ง?
+  are_you_sure_you_want_to_delete_this_assessment?: คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?
+  are_you_sure_you_want_to_delete_this_photo?: คุณแน่ใจหรือไม่ว่าต้องการนำรูปภาพนี้ออก?
+  are_you_sure_you_want_to_delete_this_post: คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?
+  are_you_sure_you_want_to_delete_this_taxon_change: คุณแน่ใจหรือไม่ว่าต้องการลบการเปลี่ยนอันดับอนุกรมวิธานนี้?
   are_you_sure_you_want_to_remove_all_tags: แน่ใจหรือไม่ว่าจะนำแท็กทั้งหมดออก
+  are_you_sure_you_want_to_remove_curator: ยืนยันการลบ %{user} as a curator?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    คุณแน่ใจหรือไม่ว่าต้องการนำการสังเกตนี้ออกจาก %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "คุณแน่ใจหรือไม่ว่าต้องการนำอันดับอนุกรมวิธานออกจาก %{place} รายการ?"
+  you_sure_delete_list: คุณแน่ใจคุณต้องการลบรายการนี้หรือไม่?
+  you_sure_delete_taxon_from_list?: "คุณแน่ใจหรือไม่ว่าต้องการนำ %{taxon} ออกจากรายการ?"
   assessment: การประเมินผล
   back_to_your_calendar: กลับสู่ปฏิทิน
   captive: ถูกจับมา
@@ -740,6 +749,9 @@ th:
   header_your_calendar: ปฏิทินของฉัน
   header_your_favorites: สิ่งที่คุณชอบ
   header_your_lists: รายการของคุณ
+  identify: ระบุชนิด
+  identify_observations: "ระบุการสังเกต"
+  identify_title: "ระบุชนิด"
   join: เข้าร่วม
   #Terminal nodes in a taxonomic tree
   leaves: ใบ

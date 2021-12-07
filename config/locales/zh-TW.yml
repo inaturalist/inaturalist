@@ -903,6 +903,8 @@ zh-TW:
       組織單位已宣告此保育狀態。在新增一個之前，請使用自動補齊來選擇既有的職權單位。如果*您*想被列為職權單位的話，您可以略過這一步。
     place: 狀態被限制的地點。
     url: 描述此狀態的頁面 URL。
+    geoprivacy: |
+      該分類群的觀察紀錄所預設的地理資訊隱私權。 請注意，在大陸(例如歐亞大陸)、國家或州層級設定分類群的地理資訊隱私權，會覆蓋該分類群在全球或更高階層的地理隱私狀態。
     iucn: |
       相當於 IUCN 紅色名錄的等級。這不是實際 IUCN 的評估等級結果，只是最符合此狀態下所對應的 IUCN 受脅等級。若等級為「安全(Least Concern)」或低於「安全」，這將會覆蓋地理資訊隱私權，所以若您想要遮蔽此分類群的觀察記錄座標，請設定此選項為「接近受脅(Near Threatened)」或更瀕危的等級。
   conservation_status_geoprivacy_desc: |
@@ -1486,6 +1488,10 @@ zh-TW:
   establishment_means: 定居方式
   establishment_means_describes_how: |
     定居方式描述著物種分類如何在地區上出現。請查看達爾文核心集（Darwin Core）更多<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">關於術語</a>的訊息。
+  establishment_means_descriptions:
+    native: 在此地區演化出來，或是透過非人為方式到達
+    endemic: 原生物種，並且沒有出現在其它地方
+    introduced: 藉由人為活動而抵達此區域
   estimate_which_input: |
     估計哪些輸入的分類群 ID 會被哪些輸出的分類群給替換掉，一旦拆分提交完成後，會被簡化為共同的祖先。這可能會需要一點時間來計算。觀察的連結會被截斷成 200 個子集。
   event_in_progress: 進行中的活動
@@ -1508,6 +1514,7 @@ zh-TW:
   exclusion_filters: 排除的篩選
   existing_flags: 精確標記
   exit_full_screen: "結束全螢幕"
+  examples_of_data_use_by_network_members: 國際網路成員使用資料的範例
   examples_of_ranking_organizations: 生物階層範例
   explore: 探索
   export: 匯出
@@ -1529,6 +1536,8 @@ zh-TW:
   facebook_access_token_expired: "存取令牌已逾時。%{user} 需要重新連結他們的臉書帳號。"
   facebook_needs_the_owner_of_that_photo_to: 臉書需要照片擁有者再次確認至 %{site_name_short} 的連接。
   facebook_options: 臉書選項
+  facebook_photo_import_disabled_notice: |
+    在 2020 年 11 月，Facebook 要求驗證我們需要自Facebook存取照片，但由於 Facebook 的驗證系統有問題，我們無法完成程序。 因此，我們無法支援從 Facebook 匯入照片。
   failed_to_find_your_location: 無法找到您的位置。
   failed_to_repair_photo: "修復照片失敗：%{errors}"
   failed_to_save_record: "無法儲存記錄。請稍後再重試。"
@@ -1721,6 +1730,8 @@ zh-TW:
   going_to_your_observations: 前往您的觀察…
   good_choice_for_sharing: 與科學家們分享的好選擇
   google: Google
+  google_maps_not_loaded_error: |
+    Google 地圖無法啟用。您電腦的防火牆或是瀏覽器的擴充套件可能阻擋存取 Google 地圖，或是遭到您網路電信業者的阻擋。
   got_it!: 了解！
   got_your_data_somewhere_else?: 在別的地方找到您的資料？我們可以協助。
   graft: 轉移
@@ -1760,6 +1771,24 @@ zh-TW:
   header_your_projects: 您的專案
   header_your_profile: 您的個人帳號資訊
   heads_up: 注意
+  heads_up_automatable_draft_split_notice_html: |
+    <strong>注意:</strong>當您提交這項更動時，所有的相關鑑定將根據其地圖集重新分配輸出分類群。 如果部分或全部輸出缺少圖集，或者如果給定記錄的圖集重疊，則鑑定將替換為最近的共同祖先分類群 (%{taxon})。
+  heads_up_non_automatable_draft_split_notice_html: |
+    <strong>注意：</strong>這個分類群分割的輸出分類群沒有地圖也沒有共同的祖先，
+    所以和此輸入分類群關聯的觀察紀錄無法自動指派到輸出的分類群，當此分割提交後，
+    社群必須新增鑑定到這些觀察紀錄中。
+  heads_up_automatable_split_notice_html: |
+    <strong>注意：</strong>此分割影響到部分或全部的鑑定，也許會被替換成 %{taxon} 的鑑定。
+    當我們無法自動指派一筆鑑定到輸出分類群之中時會發生這樣的情況。
+  heads_up_observose_taxon_change_html: |
+    <strong>注意：</strong>此分類異動涉及一個或多個輸入的分類群中有多於 %{observose_taxon_threshold} 筆下游觀察紀錄。
+    只有管理員或是分類群框架中任一策展人才能提交此異動。
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+    <strong>注意：</strong>此分類異動涉及一個或多個輸入的分類群中包含於<a href="%{framework_url}">分類群框架</a>中。
+    只有管理者或該分類群框架的策展人才能提交受影響而涵蓋的分類群。
+    聯絡該分類群管理者之一來提交此更動。
+  heads_up_there_are_other_draft_taxon_changes_html:
+    other: "<strong>注意：</strong>有 %{count} 筆與輸入分類群相同的其他分類群更改草稿："
   heads_up_this_photo_has_been_flagged: "注意：此照片已被標記。"
   heads_up_this_photo_is_already_associated_with: "注意：此照片已關聯於<a target='_blank' href='%{url}'>其它觀察</a>"
   heads_up_you_have_multiple: "注意：您有多個用於鑑定級別的分類標籤。它們的色彩代碼是依照以下作排名。"
@@ -2001,6 +2030,7 @@ zh-TW:
     看起來您正在使用此網站的舊版本密碼。請記得為新版本來<a href="%{url}">更改您的密碼</a>。
   let_us_walk_you_through: 讓我們帶您看一看此網站的主要功能吧。
   lexicon: 詞彙
+  lexicon_cannot_contain_words: "不能包括以下文字: %{words}"
   lexicons:
     scientific_names: 學名
     afrikaans: 南非語
@@ -2045,19 +2075,24 @@ zh-TW:
     lithuanian: 立陶宛語
     luxembourgish: 盧森堡語
     malay: 馬來文
+    malayalam: 馬拉雅拉姆文
     maltese: 馬爾他語
     maori: 毛利語
     marathi: 馬拉提語
+    maya: 瑪雅文
     misima_paneati: Misima-paneati 語
     mongolian: 蒙古文
+    nahuatl: 納瓦特爾文
     norwegian: 挪威語
     occitan: 奧克語
+    ojibwe: 奧傑布瓦文
     palauan: 帕勞文
     pangasinan: 邦阿西楠語
     polish: 波蘭語
     portuguese: 葡萄牙語
     romanian: 羅馬尼亞語
     russian: 俄語
+    setswana: 札那文
     sinhala: 僧伽羅語
     slovak: 斯洛伐克語
     slovenian: 斯洛維尼亞文
@@ -2070,6 +2105,7 @@ zh-TW:
     turkish: 土耳其語
     ukrainian: 烏克蘭語
     waray_waray: 瓦瑞瓦瑞語
+    visayan: 維薩亞斯文
   less: 較少
   licensed_site_photos: "已授權的 %{site_name} 照片"
   license: 許可協議
@@ -2374,6 +2410,7 @@ zh-TW:
     <a href="%{url}">每月捐款者</a> since %{date}
   months: 月
   more: 更多
+  more_about_sharing: 更多關於分享的內容
   more_fields: 更多欄位
   more_filters: 更多篩選
   more_from_x: 更多來自 %{x} 的貢獻內容
@@ -2459,6 +2496,8 @@ zh-TW:
     <strong>iNaturalist Suomi</strong>，是 iNaturalist 國際網路的一部分，針對芬蘭的生物多樣性和大眾。您想要把您的帳號所屬單位從<strong>%{inat_site_name}</strong>更改為<strong>iNaturalist Suomi</strong>以及與當地機構共享資料嗎？
   network_affiliation_prompt_from_other_site_html: |
     您想要該把您的附屬網路從 <strong>%{other_site_name}</strong> 更改為 <strong>%{site_name}</strong> 嗎？
+  #Column header in a table listing iNaturalist Network members
+  network_member: 國際網路成員
   new: 新增
   new_and_noteworthy: 新事物與關注事項
   new_announcement: 新公告
@@ -2655,6 +2694,10 @@ zh-TW:
   observation_brief_something_on_day_at_time: "在 %{day} %{time} 所記錄的某些生物"
   observation_brief_something_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 所記錄的"
   observation_brief_something_on_day_by_user: "由使用者 %{user} 在 %{day} 所記錄的"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "在 %{year} 年 %{month} 月的某些觀察"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "使用者 %{user} 於 %{year} 年 %{month} 月所記錄的"
   observation_brief_something_by_user: "由使用者 %{user} 所記錄的"
   observation_brief_something_from_place: "在 %{place} 所記錄的"
   observation_brief_something_from_place_by_user: "由使用者 %{user} 在 %{place} 所記錄的"
@@ -2662,10 +2705,18 @@ zh-TW:
   observation_brief_something_from_place_on_day_by_user: "由使用者 %{user} 於 %{day} 在 %{place} 所記錄的"
   observation_brief_something_from_place_on_day_at_time: "於 %{day} %{time} 在 %{place} 所記錄的"
   observation_brief_something_from_place_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 在 %{place} 所記錄的"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "%{year} 年 %{month} 月在 %{place} 所記錄的"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "由使用者 %{user} 於 %{year} 年 %{month} 月在 %{place} 所記錄的"
   observation_brief_taxon_on_day: "在 %{day} 所記錄的 %{taxon}"
   observation_brief_taxon_on_day_at_time: "在 %{day} %{time} 所記錄的 %{taxon}"
   observation_brief_taxon_on_day_at_time_by_user: "由使用者 %{user} 於 %{day} %{time} 所記錄的"
   observation_brief_taxon_on_day_by_user: "由 %{user} 在 %{day} 所記錄的 %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "在 %{year} 年 %{month} 月所記錄的 %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "由 %{user} 在 %{year} 年 %{month} 月所記錄的 %{taxon}"
   observation_brief_taxon_by_user: "%{user} 所建立的 %{taxon}"
   observation_brief_taxon_from_place: "位於 %{place} 的 %{taxon}"
   observation_brief_taxon_from_place_by_user: "由 %{user} 在 %{place} 所記錄的 %{taxon}"
@@ -2673,6 +2724,10 @@ zh-TW:
   observation_brief_taxon_from_place_on_day_by_user: "由 %{user} 於 %{day} 在 %{place} 所記錄的 %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time: "%{day} %{time} 在 %{place} 所記錄的 %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "由 %{user} 於 %{day} %{time} 在 %{place} 所記錄的 %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{year}年%{month} 月在 %{place} 所記錄的 %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "由 %{user} 於%{year} %{month} 在 %{place} 所記錄的 %{taxon}"
   observations_by_category: "依分類區分觀察"
   observations_by_app: 依應用程式區分觀察
   observations_by_rank: 依級別區分觀察
@@ -3777,6 +3832,8 @@ zh-TW:
   restore: 還原
   restoring: 正在還原...
   review_all: 檢閱全部
+  review_identifications_of_taxon_html: |
+    檢閱<span class="sciname">%{taxon}</span>%{taxon_id}的鑑定
   reviewed: 已檢閱
   revoke: 撤銷
   revoke_caps: 撤銷
@@ -3943,7 +4000,63 @@ zh-TW:
   site_staff: "%{site_name} 人員"
   site_stats: 網站統計
   site_taxon_page: "%{site_name} 分類群頁面"
+  sites_affiliation_about_desc_html: |
+    如果您的組織有興趣加入iNaturalist 國際網路，您可以在%{start_tag_join}此連結%{end_tag_join}詳閱更多細節。
+  sites_affiliation_examples_canada_cdc_html: |
+    %{start_tag_inat_canada}iNaturalist 加拿大%{end_tag_inat_canada}使從 iNaturalist 中收集的資料納入由保育資料中心 (Conservation Data Centers; CDCs)管理的系統。這些系統是用來評估受脅物種的瀕危狀態(每年兩次)，並判定受脅和瀕危物種的關鍵棲地。評估結果顯示，此系統已能找出並降低受脅物種的路殺熱點；規劃並保護關鍵生物多樣性區域(Key Biodiversity Areas)；還有重新確認近幾十年來沒有被報導過的物種出現紀錄。
+  sites_affiliation_examples_ecuardor_bndb_html: |
+    %{start_tag_ecuador}iNaturalist 厄瓜多%{end_tag_ecuador}的資料將匯入到厄瓜多國家生物多樣性資料庫(National Database of Biodiversity of Ecuador) – BNDB – 一個來自科學研究和公民科學紀錄的大型資料庫。目的是為了整合知識與資料，以協助強化對於厄瓜多動植物相的環境理解。
+  sites_affiliation_examples_mexico_nbis_html: |
+    墨西哥的%{start_tag_naturalista}Naturalista%{end_tag_naturalista}
+    觀察紀錄和從 eBird 擷取的資料會匯入國家生物多樣性資訊系統(在 CONABIO，國家生物多樣性使用及知識委員會)。大眾可在%{start_tag_enciclovida} Enciclovida%{end_tag_enciclovida}中找到科學和公民科學的紀錄。
+  sites_affiliation_examples_portugal_atlas_html: |
+    葡萄牙的 iNaturalist 網路成員 %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} 共享葡萄牙候鳥地圖、哺乳類動物地圖的資料，以及數篇葡萄牙的科學研究論文。
+  sites_affiliation_more_automatically_hidden_coordinates: |
+    自動隱藏座標 (依據「受脅分類群的地理資訊隱私權」的遮蔽或是私有座標）
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    《愛自然》會自動隱藏某些物種的座標來保護它們免除干擾、採集或狩獵。
+    如果該觀察紀錄座標被自動隱藏以保護物種的話，
+    《愛自然》會和國際網路成員分享在其國家中所有觀察紀錄之真實座標。
+  sites_affiliation_more_email_addresses: |
+    與國際網路成員共享的電子郵件位址僅會使用於跟本站相關之聯絡目的。
+  sites_affiliation_more_twice_per_year: |
+    《愛自然》和所屬國際網路的成員每年有兩次會共享附屬帳號的電子郵件和模糊化的座標(即：遮蔽或私有的座標)，以達到促進應用 iNaturalist 資料在各自國家的研究、保育和經營管理上。
+    兩種隱藏座標的方式用不同的方式來共享，如下描述。
+  sites_affiliation_more_user_hidden_coordinates: |
+    使用者自行隱藏的座標(從地理資訊隱私權中選擇「遮蔽」或「私有」)
+  sites_affiliation_more_user_hidden_coordinates_desc: |
+    由於個人自行選擇而隱藏座標的觀察紀錄將以更侷限和特定的方式來共享。
+    透過與隸屬國際網路之網站，愛自然將與該網站的管理者共享您在地理資訊隱私權中，
+    設定為隱藏或私有的精確座標，除此之外，還有因為受脅物種地理資訊隱私權設定中，
+    自動設為隱藏和私有的座標。此方式將能讓您的觀察紀錄用來使當地的保育工作變得更有價值。
+  sites_affiliation_overview_current_member_list_html: |
+    您可以在%{start_tag_network}iNaturalist 國際網路%{end_tag_network}
+    中看到目前的成員名單。
+  sites_affiliation_overview_in_order_to_advance: |
+    為了促進各領域的研究和保育工作，網路成員可以共享來自愛自然的資料。 他們有責任評估資料請求的有效性、適當性及其潛在結果； 以書面形式表示有責任確保此類資料的安全性，並且不以任何方式公開披露，或超出其原始預期目的共享或使用它； 記錄所有共享申請以及相關結果、成果或預期用途； 並每年向愛自然提出使用報告。
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    %{start_tag_network}iNaturalist 國際網路%{end_tag_network}是連結至%{start_tag_global}愛自然全球社群%{end_tag_global}的在地化網站。
+  sites_affiliation_overview_when_you_affiliate: |
+    當您是某個 iNaturalist 國際網路的成員時，您的 email、遮蔽與私有的觀察記錄座標將會和所屬網路的成員(註：應為管理者)分享。這會讓您的觀察紀錄對當地保育工作更有價值。
+    如果您居住或常來往該國際網路成員之區域的話，我們鼓勵您選擇加入該區域作為您的隸屬來促進資料的共享。
+  sites_affiliation_overview_you_can_continue_html: |
+    您還是可以繼續透過 iNaturalist.org 網址來登入，或是透過您特定所屬國際網路的網站。
+    不論您隸屬於哪個單位，您所有的資料都會在相同的位置，而您將能繼續與更廣泛的愛自然社群互動。
+    每個愛自然的使用者帳號都只能隸屬於一個國際網路成員。
+    您可以在您的%{start_tag_settings}帳號設定%{end_tag_settings}中審閱或更動您的隸屬網站。
+  sites_affiliation_title: 更多關於國際網路所屬成員的內容
+  sites_network_cas_and_nat_geo_html: |
+    %{start_tag_cas}加州科學院(California Academy of Sciences)%{end_tag_cas}和
+    %{start_tag_nat_geo}國家地理學會(National Geographic Society)%{end_tag_nat_geo}
+    和這些個別地理區域的組織有正式的協議來支援使用《愛自然》平台。
+    <strong>如果您的組織對於加入 iNaturalist 國際網路有興趣的話，
+    您可以在%{start_tag_join}此連結%{end_tag_join}中找到更多相關細節。</strong>
   sites_network_consists_of: "iNaturalist 國際網路包含以下許多組織單位："
+  sites_network_inaturalist_network_collection: |
+    《愛自然國際網路》是在地化網站的集合，這些網站全都連結到全球的《愛自然》社群。
+    網站入口由在地的組織機構所支援，以推廣當地使用並促進《愛自然》上的資料使用以裨益本土生物多樣性。在其所屬的地理區域範圍內，他們能存取因保護受脅物種而自動遮蔽之真實座標。
+  sites_network_your_username: |
+    您的使用者名稱與密碼適用於所有的《愛自然》 網路。如果您選擇加入某個網路分站，運作該站點的當地機構也可以存取您的電子郵件位址（僅和您溝通網站上的活動），以及獲得您的觀察紀錄之真實座標，無論該筆觀察紀錄是選擇公開、遮蔽或是私有座標。
   some_agree: 部份同意
   some_observations_are_missing_media_or_identifications: |
     有些觀察紀錄沒有多媒體檔案或鑑定資訊
@@ -4175,6 +4288,11 @@ zh-TW:
   taxon_assessments_are: |
     分類群評估是評估物種目前狀態的文獻，通常是保育狀態。例如，區域保育組織可能會使用此來組織訊息，並徵求有關在區域裡數種受威脅之分類群狀態的意見回饋。
   taxon_change_must_be_committed_to_update_records: 必須提交物種分類更改以更新紀錄
+  taxon_change_title_taxon_drop: 分類群去除 %{id}
+  taxon_change_title_taxon_merge: 分類群合併 %{id}
+  taxon_change_title_taxon_split: 分類群切割 %{id}
+  taxon_change_title_taxon_stage: 分類階段 %{id}
+  taxon_change_title_taxon_swap: 分類對換 %{id}
   taxon_deleted: 物種分類已刪除。
   taxon_doesnt_have_a_range: 物種分類沒有包含範圍
   taxon_drop: 物種分類去除
@@ -4293,6 +4411,8 @@ zh-TW:
   the_identotron_is_a_tool_to: |
     Identotron 是用來協助您在 %{site_name} 之物種名錄資料來鑑定觀察的工具。給定一個更高階層的分類群與地點（例如：印度的哺乳類動物），這將會搜尋 %{site_name} 的名錄資料和該地相符的分類群  ，這就好比像是一個包含整個全球的動態野外圖鑑。雖然大多數的名錄都在持續建立中，但只要有一個完整的名錄，即：列出在某地點的<em>所有</em>物種分類群的代表，Identotron 就會跳出通知。
   the_name_of_the_taxon_including_space: 物種分類的名稱，包含物種和次物種的空間。
+  the_name_of_the_taxon_dashes: 在該分類群的學名中，空格以破折號取代。
+  the_name_of_the_taxon_underscores: 在該分類群的學名中，空格以底線取代。
   the_observation_was_already_added_to_that_project: 觀察已準備添加至專案。
   the_people_of_inat: "%{site_name} 的成員"
   the_species_listed_below_were_not_found_in_the_site_database: |
@@ -4885,6 +5005,8 @@ zh-TW:
   you_need_to_select_some_observations_first: 首先您需要選擇一些觀察。
   you_retain_full_copyright: "除了由我們的服務條款授予給 %{site_name} 的這些權限外，您保留了您內容的完整版權。"
   you_retain_full_copyright_over_your_content: "除了由我們的使用條款授予給 %{site_name} 的這些權限外，您保留了您內容的完整版權。"
+  you_should_delete_this_taxon_change: |
+    您也許應該刪除此分類群更改，或是至少與做出此更改的人來找出解決方案。
   you_sure_delete_asset?: 您確定要刪除此可用物件？
   you_sure_delete_check_list: "您確定您要刪除此名錄？有些人可能已經投入大量心血在上面..."
   you_sure_delete_comment?: 您確定要刪除此評論？
@@ -5847,7 +5969,6 @@ zh-TW:
           請指定添加至此專案的觀察之需求。
         project_background_color: 專案摘要背景顏色
         project_background_color_help: 請確認挑選顏色的暗度足夠讓所覆蓋白色文字能辨識出。
-        project_banner: 專案橫幅（PNG、JPG、或 GIF 檔案）
         project_banner_help: 選用的橫幅圖片。理想尺寸是 760 x 320 像素。
         project_details: 專案細節
         project_icon: 專案圖標（PNG、JPG、或 GIF 檔案）
