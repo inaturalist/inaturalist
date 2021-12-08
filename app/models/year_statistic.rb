@@ -499,7 +499,7 @@ class YearStatistic < ApplicationRecord
     image_urls.each_with_index do | url, i |
       ext = File.extname( URI.parse( url ).path )
       outpath = File.join( work_path, "photo-#{i}#{ext}" )
-      run_cmd "curl -s -o #{outpath} #{url}"
+      run_cmd "curl -f -s -o #{outpath} #{url}"
     end
     inpaths = File.join( work_path, "photo-*" )
     montage_path = File.join( work_path, "montage.jpg" )
@@ -517,7 +517,7 @@ class YearStatistic < ApplicationRecord
     end
     icon_ext = File.extname( URI.parse( icon_url ).path )
     icon_path = File.join( work_path, "icon#{icon_ext}" )
-    run_cmd "curl -s -o #{icon_path} #{icon_url}"
+    run_cmd "curl -f -s -o #{icon_path} #{icon_url}"
 
     # Resize icon to a 500x500 square
     square_icon_path = File.join( work_path, "square_icon.jpg" )
@@ -637,7 +637,7 @@ class YearStatistic < ApplicationRecord
     icon_url = icon_url.sub( "staticdev", "static" ) # basically just for testing
     icon_ext = File.extname( URI.parse( icon_url ).path )
     icon_path = File.join( work_path, "icon#{icon_ext}" )
-    run_cmd "curl -s -o #{icon_path} \"#{icon_url}\""
+    run_cmd "curl -f -s -o #{icon_path} \"#{icon_url}\""
 
     # Resize icon to a 500x500 square
     square_icon_path = File.join( work_path, "square_icon.png" )
@@ -680,9 +680,11 @@ class YearStatistic < ApplicationRecord
       run_cmd "convert #{square_icon_path} -resize 212x212 #{final_logo_path}"
     end
 
-    background_url = FakeView.image_url( "yir-background.png" ).to_s.gsub( %r{([^:])//}, "\\1/" )
+    background_url = FakeView.image_url( "yir-background.png" ).to_s.
+      gsub( %r{([^:])//}, "\\1/" ).
+      gsub( "staging.inaturalist", "www.inaturalist" )
     background_path = File.join( work_path, "background.png" )
-    run_cmd "curl -s -o #{background_path} #{background_url}"
+    run_cmd "curl -f -s -o #{background_path} #{background_url}"
 
     left_vertical_offset = if user
       0
@@ -702,7 +704,7 @@ class YearStatistic < ApplicationRecord
     wordmark_url = wordmark_url.sub( "staticdev", "static" )
     wordmark_ext = File.extname( URI.parse( wordmark_url ).path )
     wordmark_path = File.join( work_path, "wordmark#{wordmark_ext}" )
-    run_cmd "curl -s -o #{wordmark_path} #{wordmark_url}"
+    run_cmd "curl -f -s -o #{wordmark_path} #{wordmark_url}"
     wordmark_composite_bg_path = File.join( work_path, "wordmark-composite-bg.png" )
     run_cmd "convert -size 500x562 xc:transparent -type TrueColorAlpha #{wordmark_composite_bg_path}"
     wordmark_resized_path = File.join( work_path, "wordmark-resized.png" )
