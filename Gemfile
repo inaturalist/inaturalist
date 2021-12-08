@@ -65,6 +65,7 @@ gem "omniauth-soundcloud", git: "https://github.com/ratafire/omniauth-soundcloud
 gem "omniauth-twitter"
 gem "omniauth-apple"
 gem "paperclip"
+gem "parallel"
 gem "optimist"
 gem "patron"
 gem "pg"
