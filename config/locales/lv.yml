@@ -1301,6 +1301,7 @@ lv:
     Esi spējīgs mudināt iNaturalist kopienu uz kopienas vadlīniju ievērošanu un atbilstošu izturēšanos. Ja iegūsi pārziņa statusu, tev jārāda piemērs citiem un jābūt apzinīgam iNaturalist lietotājam.
   curators_changed_for_x_html: "Pārziņu maiņa iekš %{x}"
   curators: Pārziņi
+  curators_can_remove_observations_from: Pārziņiem ir atļauja izņemt novērojumus no projekta. Projektu skatījuma režīmā pārziņu identifikācijas tiek rādītas blakus novērojumiem. Turklāt pārziņiem ir pieeja pie privātā un noslēptā satura faktiskajām koordinātām.
   curator_identification: Pārziņa identifikācija
   current_flags: Pašreizējie karodziņi
   custom_project_fields: Pielāgojamie projekta lauki
@@ -1737,6 +1738,7 @@ lv:
   #Label for the date/time when a flag was created
   flag_created: Karodziņš izveidots
   flag_description: Pievieno šim saturam karodziņu, lai pārziņi zinātu, ka kaut kas nav kārtībā.
+  flag_comment_description: Ja vēlies, pievieno karodziņam komentāru ar pamatojumu un saitēm uz pierādījumiem.
   flag_for_check_list_title_html: |
     Pievienot kontrollapas karodziņu: %{title}
   flag_for_comment_id_html: Pievienot karodziņu<a href="%{url}">komentāram %{id}</a>
@@ -1991,6 +1993,7 @@ lv:
   if_for_some_reason_a_user_doesnt_agree: |
     Ja kāda iemesla dēļ izvēlies nepiekrist kopienas taksonam, to iespējams noraidīt. Tādā gadījumā tava ID tiks izmantota, lai sasaistītu citus novērojumus un atjaunotu sarakstus. Tas nozīmē arī to, ka tavs novērojums var iegūt pētniecības līmeņa statusu tikai tad, ja kopiena piekrīt tev.
   if_matches_come_from_a_comprehensive_list: Ja atbilstīgo taksonu avots ir pilnīgs saraksts, šeit parādīsies zaļa josla.
+  if_this_is_a_scientific_name: Vai šis ir pašreiz apstiprināts zinātniskais nosaukums?
   ignore_and_continue: Ignorēt un turpināt
   ignore_times: Ignorēšanas laiki
   image_must_be_exactly: Attēlam jābūt tieši 950px platam un 400px augstam
@@ -3979,7 +3982,6 @@ lv:
   rules_and_formatting: "Noteikumi un formatēšana"
   rules_for_adding_observations: Novērojumu pievienošanas noteikumi
   rules_for_becoming_a_member: Noteikumi, kas jāievēro, lai kļūtu par dalībnieku
-  rules_for_becoming_memner: Noteikumi, kas jāievēro, lai kļūtu par dalībnieku
   rules_types:
     must_be_captive: jābūt nebrīvē vai kultivētam
     must_be_georeferenced: jāsatur ģeogrāfiskā atsauce
@@ -5073,8 +5075,11 @@ lv:
   yesterday: Vakar
   yir_donate_banner_inaturalist_in_year: "INATURALIST %{year}. GADĀ:"
   yir_donate_banner_reaching_millions: Pateicoties globālajai sadarbībai esam pievienojuši miljoniem novērojumu, kas pievērš uzmanību bioloģiskajai daudzveidībai.
+  #"You" is singular
   yir_donate_banner_all_thanks: Tas viss sasniegts, pateicoties tādiem cilvēkiem kā tev.
+  #"You" is singular
   yir_donate_banner_inaturalist_thrives: iNaturalist dzeļ un plaukst, pateicoties tādiem cilvēkiem kā tev.
+  #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist nepieciešams tavs atbalsts
   yir_generating_and_sharing: |
     Dalīšanās ar tik nozīmīgiem bioloģiskās daudzveidības datiem un to iegūšana šādā vēl iepriekš nepieredzētā mērogā un ātrumā ar katru dienu izmaksā ar vien vairāk
