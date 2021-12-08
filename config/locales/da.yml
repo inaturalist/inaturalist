@@ -1712,6 +1712,7 @@ da:
   #Label for the date/time when a flag was created
   flag_created: Flag oprettet
   flag_description: Markér dette indhold så kuratorer ved at der er noget galt med det.
+  flag_comment_description: Tilføj en valgfri kommentar til dette flag, der yderligere forklarer, hvorfor du tilføjer det samt giver links til understøttende beviser.
   flag_for_check_list_title_html: |
     Markér til Tjekliste: %{title}
   flag_for_comment_id_html: Markér til <a href="%{url}">Kommentar %{id}</a>
@@ -2562,6 +2563,9 @@ da:
   multiple_select_option: '-- flere --'
   multiple_taxa_for_taxon_change: "Flere taksa (input for skifte/sammenlægning, output for deling)"
   multiple_taxon_ids_separated_by_commas: 'Flere takson IDer separeret med komma, f.eks. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: skal befinde sig i projektet %{project}
   must_be_in_taxon: skal være i %{taxon}- takson
   must_be_not_in_taxon: må ikke være i %{taxon}- takson
   must_be_not_observed_by_user: må ikke være observeret af %{user}
@@ -4019,7 +4023,6 @@ da:
   rules_and_formatting: "Regler og formatering"
   rules_for_adding_observations: Regler for tilføjelse af observationer
   rules_for_becoming_a_member: Regler for medlemsskab
-  rules_for_becoming_memner: Regler for medlemsskab
   rules_types:
     must_be_captive: skal være i fangenskab/dyrket
     must_be_georeferenced: skal geo refereres
@@ -4803,6 +4806,7 @@ da:
   type_taxon_name: "Indtast taksonnavn"
   uicn_red_list_status: "IUCN rødliste status:"
   umbrella_projects: Paraplyprojekter
+  unable_to_save_comment: Beklager, kommentaren kunne ikke gemmes.
   unblock: Ophæv blokering
   unclassified: Uklassificeret
   ungrafted_taxa: Ikke podede taksa
@@ -5194,8 +5198,13 @@ da:
   yesterday: I går
   yir_donate_banner_inaturalist_in_year: "INATURALIST I %{year}:"
   yir_donate_banner_reaching_millions: Når ud til millioner. Belyser biodiversitet. Globalt samarbejde.
+  #"You" is singular
   yir_donate_banner_all_thanks: Alt sammen takket være folk som dig!
+  #"You" is singular
   yir_donate_banner_inaturalist_thrives: iNaturalist trives takket være folk som dig!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Du hjalp iNaturalist med at trives i år. Tak!
+  #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist behøver din støtte
   yir_generating_and_sharing: |
     Generering og deling af højeffekts biodiversitetsdata i denne hidtil usete
@@ -6425,6 +6434,7 @@ da:
           Præcisér venligst betingelserne for at observationerne kan tilføjes til projektet.
         project_background_color: Projektoversigt baggrundsfarve
         project_background_color_help: Sørg for at vælge en farve, der er mørk nok, så den hvide overlejrede tekst er læselig.
+        project_banner: Projektbanner (PNG eller JPG)
         project_banner_help: Valgfri bannerbillede. Ideel størrelse er 760 x 320 pixel.
         project_details: Projektdetaljer
         project_icon: Projekt ikon (PNG, JPG eller GIF)
