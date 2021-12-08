@@ -1670,6 +1670,7 @@ ca:
   #Label for the date/time when a flag was created
   flag_created: Marca creada
   flag_description: Marca aquest contingut perquè els supervisors sàpiguen que alguna cosa no va bé.
+  flag_comment_description: Afegiu un comentari addicional a aquesta marca que ajudi a explicar per què l'esteu afegint i proporcionar enllaços que donin suport a la seva evidència.
   flag_for_check_list_title_html: |
     Marca per a la Llista de Comprovació: %{title}
   flag_for_comment_id_html: Marqueu per <a href="%{url}">Comentar %{id}</a>
@@ -2500,6 +2501,9 @@ ca:
   multiple_select_option: '-- múltiple --'
   multiple_taxa_for_taxon_change: "Múltiples tàxons (entrar per intercanviar/barrejar, sortir per separar)"
   multiple_taxon_ids_separated_by_commas: 'Moltes ID de tàxons separades per comes, p.e. 123,456'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: ha d'estar en el projecte %{project}
   must_be_in_taxon: ha d'estar en el tàxon %{taxon}
   must_be_not_in_taxon: no pot en estar en el tàxon %{taxon}
   must_be_not_observed_by_user: no pot haver estat observat per %{user}
@@ -2940,6 +2944,8 @@ ca:
       <li><strong>Les discussions que us interessen:</strong> Si comenteu o afegiu identificacions a algun contingut, automàticament estareu subscrits a qualsevol nova activitat sobre aquests continguts. Podeu utilitzar l'eina de 'Gestió de les vostres subscripcions' per deixar de rebre les actualitzacions.</li>
       </ul>
   one_by_one: "Un a un"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "una de les següents ha de ser certa:"
   one_of_your_lists: "una de les teves llistes..."
   one_or_more_input_taxa_have_more_than_1000: |
     Un o més dels tàxons introduïts té més de 1000 observacions. Modificar-lo pot necessitar molt temps, esteu segur que aquest canvi del tàxon és necessari? A més, els canvis de tàxon no es pot desfer.
@@ -3925,7 +3931,6 @@ ca:
   rules_and_formatting: "Normes i format"
   rules_for_adding_observations: Normes per agregar observacions
   rules_for_becoming_a_member: Normes per ser membre
-  rules_for_becoming_memner: Regles per ser un Membre
   rules_types:
     must_be_captive: ha de ser captiva / conreada
     must_be_georeferenced: han d'estar georeferenciades
@@ -4635,6 +4640,7 @@ ca:
   type_taxon_name: "Escriviu el nom del tàxon"
   uicn_red_list_status: "Estat de la llista vermella d'UICN:"
   umbrella_projects: Projectes Paraigua
+  unable_to_save_comment: Malauradament, no hem pogut desar el comentari.
   unblock: Desbloca
   unclassified: Sense classificar
   ungrafted_taxa: Tàxons no inserits
@@ -5020,8 +5026,13 @@ ca:
   yesterday: Ahir
   yir_donate_banner_inaturalist_in_year: "INATURALIST EL %{year}:"
   yir_donate_banner_reaching_millions: Arribant a milions. Il·luminant la biodiversitat. Col·laboració global.
+  #"You" is singular
   yir_donate_banner_all_thanks: Moltes gràcies a persones com tu!
+  #"You" is singular
   yir_donate_banner_inaturalist_thrives: iNaturalist dona les gràcies a persones com tu!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Heu ajudat a millorar iNaturalist aquest any. Gràcies!
+  #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist Necessita el teu Suport
   yir_generating_and_sharing: |
     Generar i compartir dades sobre biodiversitat d'alt impacte, a aquesta escala i velocitat sense precedents, té un cost creixent
@@ -6048,6 +6059,7 @@ ca:
           Si us plau, especifiqueu els requisits que han de complir les observacions per poder incorporar-les en aquest projecte.
         project_background_color: Color de fons del resum del Projecte
         project_background_color_help: Assegureu-vos d'escollir un color prou fosc perquè el text blanc sobreposar sigui llegible.
+        project_banner: Imatge del projecte (PNG o JPG)
         project_banner_help: Imatge del banner opcional. Les dimensions ideals són 760px per 320px.
         project_details: Detalls de projecte
         project_icon: Icona del projecte (PNG, JPG, o GIF)
