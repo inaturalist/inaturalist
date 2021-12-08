@@ -1697,6 +1697,7 @@ de:
   #Label for the date/time when a flag was created
   flag_created: Meldung berichtet
   flag_description: Melde diesen Inhalt, um Kuratoren wissen zu lassen, dass etwas nicht stimmt (Begründung am besten auf englisch verfassen).
+  flag_comment_description: Erläutere in einem optionalen Kommentar den Sachverhalt näher und füge ggf. einen unterstützenden Link hinzu.
   flag_for_check_list_title_html: |
     Meldung für die Checkliste: %{title}
   flag_for_comment_id_html: Meldung dieses <a href="%{url}">Kommentars %{id}</a>
@@ -3965,7 +3966,6 @@ de:
   rules_and_formatting: "Regeln & Formatierung"
   rules_for_adding_observations: Regeln für das Hinzufügen von Beobachtungen
   rules_for_becoming_a_member: Regeln für die Mitgliedschaft
-  rules_for_becoming_memner: Regeln für die Mitgliedschaft
   rules_types:
     must_be_captive: muss in Haltung/kultiviert sein
     must_be_georeferenced: muss georeferenziert sein
@@ -4706,6 +4706,7 @@ de:
   type_taxon_name: "Name des Taxons eingeben"
   uicn_red_list_status: "Rote-Listen-Status der IUCN"
   umbrella_projects: Dach-Projekte
+  unable_to_save_comment: Leider konnten wir den Kommentar nicht speichern.
   unblock: Entsperren
   unclassified: Nicht klassifiziert
   ungrafted_taxa: nicht zugeordnete Taxa
@@ -5094,8 +5095,11 @@ de:
   yesterday: Gestern
   yir_donate_banner_inaturalist_in_year: "INATURALIST %{year}:"
   yir_donate_banner_reaching_millions: Erreicht Millionen. Macht Biodiversität sichtbar in globaler Zusammenarbeit.
+  #"You" is singular
   yir_donate_banner_all_thanks: Alles dank Menschen wie dir!
+  #"You" is singular
   yir_donate_banner_inaturalist_thrives: iNaturalist hat Erfolg dank Leuten wie dir!
+  #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist braucht deine Unterstützung
   yir_generating_and_sharing: |
     Das Generieren und Bereitstellen von bedeutsamen Daten zur biologischen Vielfalt in dieser beispiellosen Größe und Geschwindigkeit bringt steigende Kosten mit sich
