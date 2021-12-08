@@ -1720,6 +1720,7 @@ sv:
   #Label for the date/time when a flag was created
   flag_created: Flagga skapad
   flag_description: Flagga detta innehåll så att förvaltarna får reda på att det är något fel med det.
+  flag_comment_description: Lägg till en valfri kommentar till denna flagga som ytterligare förklarar varför du lägger till den och länkar till bevis som stöd.
   flag_for_check_list_title_html: |
     Flagga för checklista: %{title}
   flag_for_comment_id_html: Flagga för <a href="%{url}">kommentar %{id}</a>
@@ -4742,6 +4743,7 @@ sv:
   type_taxon_name: "Ange taxonnamn"
   uicn_red_list_status: "IUCN:s rödlistestatus:"
   umbrella_projects: Paraplyprojekt
+  unable_to_save_comment: Tyvärr lyckades vi inte spara kommentaren.
   unblock: Avblockera
   unclassified: Oklassificerad
   ungrafted_taxa: Oplacerade taxa
