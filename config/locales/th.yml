@@ -27,8 +27,6 @@ th:
     other: '<span class="count">%{count}</span> ลำดับอนุกรมวิธานที่ตรงกัน'
   x_misidentifications_of_this_species:
     other: "%{count} การจำแนกชนิดนี้ผิด"
-  x_misidentifications_of_species_in_this_genus:
-    other: "%{count} สกุลนี้มีการจำแนกผิด"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -522,7 +520,6 @@ th:
   back_to_your_calendar: กลับสู่ปฏิทิน
   captive: ถูกจับมา
   captive_cultivated: ถูกจับมา / เพาะปลูก
-  captive_observations: ผลการสำรวจสิ่งมีชีวิตที่ถูกจับมา
   change_admin: เปลี่ยนผู้ดูแล
   #Button to change the cover (or banner) image for a project
   change_cover: เปลี่ยนภาพหน้าปก
@@ -553,7 +550,6 @@ th:
   comment_deleted: ความคิดเห็นที่ถูกลบ
   comments: ความคิดเห็น
   comments_by_me: ความคิดเห็นของฉัน
-  comments_on_my_observations: ความคิดเห็นในการสำรวจของฉัน
   community: ชุมชน
   community_guidelines: วิธีใช้งานสำหรับชุมชน
   community_id_heading: หน่วยอนุกรมวิธานที่เสนอโดยชุมชน
@@ -655,10 +651,6 @@ th:
       december: ธันวาคม
   date_is_accurate: วันที่ถูกต้อง
   date_joined: วันที่เข้าร่วม
-  date_obscured_notice: ปิดบังวันที่เพื่อรักษาความเป็นส่วนตัวของผู้สำรวจหรือสิ่งมีชีวิต
-  date_observed: วันที่สำรวจ
-  date_observed_: วันที่สำรวจ
-  date_observed_on: สำรวจในวันที่
   date_picker:
     currentText: วันนี้
   date_range: ช่วงวันที่
@@ -711,13 +703,10 @@ th:
   Family: วงศ์
   favorite_taxa: หน่วยอนุกรมวิธานที่ชอบ
   favorites: "สิ่งที่ชอบ"
-  find_observations: ค้นหาการสำรวจ
   find_photos: ค้นหาภาพ
   find_places: ค้นหาสถานที่
   find_some_people_to_follow: "ค้นหาผู้คนที่จะติดตาม"
   find_species: ค้นหาชนิด
-  find_suitable_observations: ค้นหาการสำรวจที่เหมาะสม
-  find_unsuitable_observations: ค้นหาการสำรวจที่ไม่เหมาะสม
   find_your_current_location: ค้นหาตำแหน่งปัจจุบันของคุณ
   finished: เสร็จสิ้น
   #Verb form, as in "Flag this item"
@@ -742,10 +731,8 @@ th:
   Genus: สกุล
   geoprivacy: ความเป็นส่วนตัวของพิกัด
   geoprivacy_is_obscured: พิกัดถูกปิดบังไว้
-  geoprivacy_is_obscured_desc: ผู้สำรวจเลือกปิดบังพิกัดเอาไว้
   has_sound: มีเสียง
   has_sounds: มีเสียง
-  header_your_observations: การสำรวจของฉัน
   header_your_calendar: ปฏิทินของฉัน
   header_your_favorites: สิ่งที่คุณชอบ
   header_your_lists: รายการของคุณ
@@ -760,9 +747,6 @@ th:
   longitude_value: "ลองจิจูด: %{longitude}"
   look_up_name: "ค้นหาชื่อ"
   observation_date: วันที่
-  observations_by: การสำรวจโดย
-  observations_by_user: "การสำรวจโดย %{user}"
-  observations_deleted: ลบการสำรวจแล้ว
   these_observations_have_not_been_uploaded_yet: |
     การสังเกตเหล่านี้ยังไม่ถูกอัปโหลด
   upload: อัปโหลด
