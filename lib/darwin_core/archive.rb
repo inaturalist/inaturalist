@@ -604,8 +604,9 @@ module DarwinCore
             msg = "Observation batch #{batch_times.size}"
             msg += " for #{options[:label]}" if options[:label]
             msg += " (avg batch: #{avg_batch_time}s, avg obs: #{avg_observation_time}s, obs in batch: #{batch.size})"
-            if batch_times.size % 100 == 0
+            if batch_times.size % 20 == 0
               logger.info msg
+              logger.flush if logger.respond_to?( :flush )
             else
               logger.debug msg
             end
