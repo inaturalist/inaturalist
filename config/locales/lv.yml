@@ -1993,7 +1993,9 @@ lv:
   if_for_some_reason_a_user_doesnt_agree: |
     Ja kāda iemesla dēļ izvēlies nepiekrist kopienas taksonam, to iespējams noraidīt. Tādā gadījumā tava ID tiks izmantota, lai sasaistītu citus novērojumus un atjaunotu sarakstus. Tas nozīmē arī to, ka tavs novērojums var iegūt pētniecības līmeņa statusu tikai tad, ja kopiena piekrīt tev.
   if_matches_come_from_a_comprehensive_list: Ja atbilstīgo taksonu avots ir pilnīgs saraksts, šeit parādīsies zaļa josla.
-  if_this_is_a_scientific_name: Vai šis ir pašreiz apstiprināts zinātniskais nosaukums?
+  if_this_is_a_scientific_name: Vai šis ir zinātniskais nosaukums? Vai tas ir pašreiz apstiprināts?
+  if_you_have_any_trouble_with_the_site_check_out: 'Ja radušies jautājumi, lūdzu, atver, <a href="%{help_url}">palīdzības sadaļu</a> vai nosūti ziņojumu mūsu <a href="%{feedback_url}">atsauksmju grupai</a>.'
+  if_your_project_is: Ja tavam projektam ir noteikta atrašanās vieta, norādi koordinātas kartē vai ievadi tās manuāli.
   ignore_and_continue: Ignorēt un turpināt
   ignore_times: Ignorēšanas laiki
   image_must_be_exactly: Attēlam jābūt tieši 950px platam un 400px augstam
@@ -2039,6 +2041,7 @@ lv:
   #Status of a taxon that is not available for general use on iNat, e.g. an
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: Neaktīvs
+  inactive_taxon_concepts_are: Neaktīviem taksonu jēdzienu skaidrojumiem ir novecojusi taksonomija vai iesākts taksonu izmaiņu process. Novecojušie jēdzienu skaidrojumi tiek paturēti, lai saglabātu vēsturi un saderību ar partneru tīmekļa vietnēm.
   inappropriate_content: Nepieņemams saturs?
   inat_account_action: "%{site_name} &#58; Konts &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} vietnes lietotāji uzskata, ka šis ir pilnīgs taksona saraksts šajā vietā."
@@ -2162,6 +2165,7 @@ lv:
     Lūdzu, neaizmirsti <a href="%{url}">nomainīt savu paroli</a> jaunajā versijā.
   let_us_walk_you_through: Apskatīsim galvenās vietnes funkcijas.
   lexicon: Leksikons
+  lexicon_cannot_contain_words: "nedrīkst saturēt šos vārdus: %{words}"
   lexicons:
     scientific_names: Zinātniskie nosaukumi
     afrikaans: Afrikandu
@@ -2560,6 +2564,9 @@ lv:
   multiple_select_option: '-- vairāki --'
   multiple_taxa_for_taxon_change: "Vairāki taksoni reizē (izmantot ievadi samainīšanai vai apvienošanai, un izvadmainīgo sadalīšanai)"
   multiple_taxon_ids_separated_by_commas: 'Vairākas taksonu identifikācijas, kas jāatdala ar komatiem, piemēram, 123,654.'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: 'jābūt projektā: %{project}'
   must_be_in_taxon: jābūt iekļautam taksonā %{taxon}
   must_be_not_in_taxon: nedrīkst būt iekļauts taksonā %{taxon}
   must_be_not_observed_by_user: nedrīkst būt novērojis lietotājs %{user}
@@ -2992,7 +2999,11 @@ lv:
       <li><strong>Organismi, projekti un vietas:</strong> Jauni novērojumi ar konkrētiem organismiem vai vietām, kam tu seko. Vēl ir iespējams pievienoties projektiem, lai saņemtu paziņojumus, kad tiek publicēti jauni žurnāla ieraksti.</li>
       <li><strong>Tavas diskusijas:</strong> Ja pievienosi komentārus vai novērojumus citu lietotāju saturam, automātiski saņemsi paziņojumus par jauniem notikumiem ar minēto saturu. Lai pārstātu saņemt paziņojumus, pielāgo iestatījumus "Pielāgot abonementus" sadaļā. </li></ul>
   one_by_one: "Vienu reizē"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "vienam jābūt patiesam:"
   one_of_your_lists: "viens no taviem sarakstiem..."
+  one_or_more_input_taxa_have_more_than_1000: |
+    Vienam vai vairākiem taksoniem ir vairāk nekā 1000 novērojumu ar pašreiz aktīvā taksona pēctečiem. Taksona rediģēšanas process var aizņemt daudz laika. Vai esi pārliecināts, ka šī darbība ir nepieciešama? Taksonu izmaiņas nevar vēlāk atcelt.
   only_a_project_manager_can_add: Tikai projekta menedžeris var piešķirt projekta pārziņa statusu
   only_administrators_may_access_that_page: Tikai administratoriem ir piekļuve šai lapai
   only_an_admin_can_remove_project_users: Tikai administratori var izslēgt lietotājus no projektiem
@@ -3069,6 +3080,7 @@ lv:
   output_taxon: Galējais taksons
   overview: Pārskats
   overlapping_atlases: Atlantu pārklāšanās
+  overlapping_downstream_taxon_frameworks_html: "Pašreiz aktīvo taksonu pēcteču iedalījums: %{count}"
   owner: Īpašnieks
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Augstāks
@@ -4151,6 +4163,12 @@ lv:
     iNaturalist automātiski noslēpj noteiktu sugu koordinātas, lai pasargātu tās no tādiem draudiem kā miera traucēšana, transportēšana un malu medniecība. Ja koordinātas ir noslēptas tikai automātiski, lai pasargātu sugas, iNaturalist dalās ar visu novērojumu faktiskajām koordinātām arattiecīgo valstu tīkla dalībniekiem.
   sites_affiliation_more_email_addresses: |
     E-pasta adreses ir pieejamas tīkla dalībniekiem tikai ar šo vietni saistītos komunikācijas nolūkos.
+  sites_affiliation_more_twice_per_year: |
+    Divreiz gadā iNaturalist dalās ar saistīto kontu e-pasta adresēm un daļu no noslēptajām koordinātām (publikai noslēptās un privātās koordinātas) ar iNaturalist tīkla dalībniekiem, lai veicinātu iNaturalist datu pielietojumu zinātnē, dabas aizsardzībā un pārvaldībā. Koordinātas var noslēpt divos dažādos veidos. Dalīšanās ar koordinātām arī var notikt divos dažādos veidos. Tas aprakstīts šeit:
+  sites_affiliation_more_user_hidden_coordinates: |
+    Lietotāju noslēptās koordinātas (noslēptas vai privātas izvēlēto ģeoprivātuma iestatījumu dēļ)
+  sites_affiliation_more_user_hidden_coordinates_desc: |
+    Ar individuālo lietotāju noslēptajām koordinātām dalāmies ļoti ierobežotā daudzumā un tikai noteiktā veidā. Sadarbība ar tīkla dalībnieku tīmekļa vietnēm paredz to, ka iNaturalist vietņu administratoriem sniedz pieeju pie novērojumiem ar noslēptu, privātu un publiski noslēptu ģeoprivātumu, kā arī tādiem, kas noslēpti paša taksona ģeoprivātuma dēļ. Tas padara tavus novērojumus noderīgākus tiem, kas cenšas aizsargāt vietējo dabu.
   some_agree: daži piekrīt
   some_observations_are_missing_media_or_identifications: |
     Dažiem novērojumiem nav mediju vai identifikāciju
