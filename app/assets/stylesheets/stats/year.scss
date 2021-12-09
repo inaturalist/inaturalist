@@ -967,7 +967,7 @@ $tip-opacity: 1;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      $site-size: 100px;
+      $site-size: 150px;
       .site {
         width: $site-size;
         height: $site-size + $user-image-overhang;
@@ -1002,6 +1002,11 @@ $tip-opacity: 1;
           box-shadow: 0 0 10px $dark-gray;
           display: block;
           color: white;
+
+          .ribbon-content {
+            max-height: none;
+            word-break: break-word;
+          }
         }
         a.ribbon:hover {
           opacity: 1;
