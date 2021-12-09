@@ -5751,15 +5751,12 @@ es-AR:
       year:
         include_usa: Incluir Estados Unidos
         growth_by_country_desc_html: |
-          ¿Dónde está hay crecimiento? Este mapa y gráfico intentan segmentar esta información por país, lo cual resulta complicado porque el crecimiento por
-          país puede ser muy desequilidrado. Hemos optado por omitir a los Estados Unidos y utilizar una escala de registro por defecto para acentuar diferencias
-          entre países. Si un país aparece en negro esto significa que no contribuyó significativamente a un porcentaje, o que no se presentó ningún crecimiento
-          este año, o no ha tenido más observaciones este año que el año pasado
-          (pasa el cursor sobre un país para ver un poco más de detalle). <strong>"% del crecimiento total"<strong> significa cuánto del crecimiento mundial provino de un país particular, por ejemplo si hubo 20 observaciones en 2018 y 10
+          ¿Dónde ocurre el crecimiento? Este mapa y gráfico intentan segmentar esta información por país, lo cual resulta complicado porque el crecimiento a nivel nacional puede ser muy desequilibrado. Optamos por omitir a los Estados Unidos y usar una escala de registro por defecto para acentuar las diferencias entre países. Si un país aparece en negro, significa que no contribuyó significativamente a un porcentaje, o que no presentó ningún crecimiento
+          este año, o que no tuvo más observaciones este año que el año pasado
+          (pasá el cursor sobre un país para ver un poco más EN detalle). <strong>"% del crecimiento total"</strong> significa cuánto del crecimiento mundial provino de un país particular. Por ejemplo, si hubo 20 observaciones en 2018 y 10
           en 2017, eso serían 10 observaciones de crecimiento, y si 5 de ellas
           se dieron en Benín, quiere decir que Benín contribuyó 50% del total
-          del crecimiento. <strong>"% del crecimiento"<strong> significa el número de observaciones este año en ese país como porcentaje de las observaciones del año pasado en ese país, así que si hubo 10 observaciones en Laos el año pasado pero 20 este año, eso sería un crecimiento del 100%, y si hubo 0 el año
-          pasado y 1 este año, eso sería un % de crecimiento infinito.
+          del crecimiento. <strong>"% del crecimiento"</strong> refiere al número de observaciones este año en ese país como porcentaje de las observaciones del año pasado en ese país, así que si hubo 10 observaciones en Laos el año pasado pero 20 este año, sería un crecimiento del 100%; y si hubo 0 el año pasado y 1 este año, eso sería un % de crecimiento infinito.
         growth_by_country_title: Crecimiento por país
         growth_in_year_obs: "Crecimiento en %{year} (obs)"
         growth_title: Crecimiento
