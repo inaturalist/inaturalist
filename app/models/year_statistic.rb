@@ -495,7 +495,7 @@ class YearStatistic < ApplicationRecord
   end
 
   def generate_shareable_image_obs_grid
-    return unless ( popular_obs = data&.dig( observations, :popular ) )
+    return unless ( popular_obs = data&.dig( :observations, :popular ) )
     return if popular_obs.blank?
 
     work_path = File.join( Dir.tmpdir, "year-stat-#{id}-#{Time.now.to_i}" )

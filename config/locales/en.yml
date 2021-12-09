@@ -7579,6 +7579,13 @@ en:
       delete:
         by_deleting_your_account_you_will_remove: |
           By deleting your account you will remove
+        caching: |
+          If you are deleting your account because you tried to delete some
+          of your content but you could still see it on a map or elsewhere
+          on the Internet, keep in mind that map data may be cached for up to
+          a day even after records are deleted, and that deleting content on
+          this platform may not have any effect on copies that exist on other
+          sites and platforms (like GBIF).
         x_observations_html:
           one: |
             <strong class="count">%{count} observation</strong>,
