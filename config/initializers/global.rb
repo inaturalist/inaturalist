@@ -67,7 +67,7 @@ def call_and_rescue_with_partitioner( callable, args, exceptions, options = {}, 
     puts "options[:depth]: #{options[:depth]}" if debug
     if options[:parallel] && options[:depth].to_i < max_parallel_depth
       puts "processing partitions in parallel for args: #{args}" if debug
-      Parallel.map( arg_partitions ) do | partitioned_args |
+      Parallel.map( arg_partitions, in_threads: arg_partitions.size ) do | partitioned_args |
         call_and_rescue_with_partitioner(
           callable,
           partitioned_args,

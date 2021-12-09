@@ -43,8 +43,7 @@ class YearStatistic < ApplicationRecord
         week_histogram: observations_histogram( year, options.merge( interval: "week" ) ),
         day_histogram: observations_histogram( year, options.merge( interval: "day" ) ),
         day_last_year_histogram: observations_histogram( year - 1, options.merge( interval: "day" ) ),
-        popular: popular_observations( year, options ),
-        streaks: streaks( year, options )
+        popular: popular_observations( year, options )
       },
       identifications: {
         category_counts: identification_counts_by_category( year, options ),
@@ -77,6 +76,17 @@ class YearStatistic < ApplicationRecord
     end
     year_statistic.update_attributes( data: json )
     year_statistic.generate_shareable_image
+
+    # Streaks are the longest-running and most memory intensive piece to
+    # calculate, and are probably not sustainable for the whole site in the
+    # long term. In 2021, it doesn't seem like any available production machine
+    # has enough memory to do it. Putting it here ensures that everything else
+    # gets calculated first, and if streaks fail, they don't take down
+    # everything else. They're also pretty boring as of 2021 since it's
+    # basically just a lot of people on year+ long streaks. Yet another thing I
+    # never should have built....
+    json[:observations][:streaks] = streaks( year, options )
+    year_statistic.update_attributes( data: json )
     year_statistic
   end
 
@@ -156,12 +166,14 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.regenerate_defaults_for_year( year )
-    generate_for_year( year )
     Site.live.find_each do | site |
       next if Site.default && Site.default.id == site.id
 
       YearStatistic.generate_for_site_year( site, year )
     end
+    # The global YIR will always be the slowest and the most prone to failure so
+    # do it last
+    generate_for_year( year )
   end
 
   def self.tree_taxa( year, options = {} )
@@ -532,7 +544,7 @@ class YearStatistic < ApplicationRecord
     circle_path = File.join( work_path, "circle.png" )
     run_cmd <<~BASH
       convert -size 500x500 xc:black -fill white \
-        -draw "translate 250,250 circle 0,0 0,250" -alpha off #{circle_path}"
+        -draw "translate 250,250 circle 0,0 0,250" -alpha off #{circle_path}
     BASH
     circle_icon_path = File.join( work_path, "circle-user-icon.png" )
     run_cmd <<~BASH
@@ -668,7 +680,7 @@ class YearStatistic < ApplicationRecord
       circle_path = File.join( work_path, "circle.png" )
       run_cmd <<~BASH
         convert -size 500x500 xc:black -fill white \
-          -draw "translate 250,250 circle 0,0 0,250" -alpha off #{circle_path}"
+          -draw "translate 250,250 circle 0,0 0,250" -alpha off #{circle_path}
       BASH
       run_cmd <<~BASH
         convert #{square_icon_path} #{circle_path} \
@@ -721,7 +733,7 @@ class YearStatistic < ApplicationRecord
       retry
     end
     wordmark_composite_path = File.join( work_path, "wordmark-composite.png" )
-    run_cmd <<-BASH
+    run_cmd <<~BASH
       convert #{wordmark_composite_bg_path} \
         #{wordmark_resized_path} \
         -type TrueColorAlpha \
@@ -1220,11 +1232,53 @@ class YearStatistic < ApplicationRecord
       puts "[#{Time.now}] partitioning #{query}" if debug
       d1 = ( query[:d1] && Date.parse( query[:d1] ) ) || Date.parse( "2008-01-01" )
       d2 = ( query[:d2] && Date.parse( query[:d2] ) ) || Date.today
-      half = ( d2 - d1 ) / 2
-      new_queries = [
-        query.merge( d1: d1.to_s, d2: ( d1 + half.days ).to_s ),
-        query.merge( d1: ( d1 + ( half + 1 ).days ).to_s, d2: d2.to_s )
-      ]
+
+      # Even n-ary partitioner (splits into n even partitions)
+      # num_breaks = 8
+      # break_interval = ( d2 - d1 ) / num_breaks
+      # new_queries = []
+      # num_breaks.times do | i |
+      #   interval_d1 = d1 + ( i * break_interval ).days
+      #   interval_d2 = interval_d1 + break_interval.days - 1.day
+      #   interval_query = query.dup
+      #   new_queries << interval_query.merge( d1: interval_d1.to_s, d2: interval_d2.to_s )
+      # end
+
+      # If we're partitioning more than a year, assume a lot more buckets in
+      # more recent partitions
+      if d2 - d1 > 365
+        # Weighted binary partitioner
+        weight = 0.9
+        break_point = ( ( d2 - d1 ) * weight ).ceil
+        new_queries = [
+          query.merge( d1: d1.to_s, d2: ( d1 + break_point.days ).to_s ),
+          query.merge( d1: ( d1 + ( break_point + 1 ).days ).to_s, d2: d2.to_s )
+        ]
+      # If we're partitioning less than a year, assume variance has more to do
+      # with seasonality and events like CNC, so take a simple even approach
+      else
+        # Even binary partitioner
+        half = ( d2 - d1 ) / 2
+        new_queries = [
+          query.merge( d1: d1.to_s, d2: ( d1 + half.days ).to_s ),
+          query.merge( d1: ( d1 + ( half + 1 ).days ).to_s, d2: d2.to_s )
+        ]
+      end
+
+      # # Logarithmic n-ary partitioner
+      # num_breaks = 4
+      # # break_interval = ( d2 - d1 ) / num_breaks
+      # new_queries = []
+      # num_breaks.times do | i |
+      #   d2_offset = i**Math.log( d2 - d1, num_breaks )
+      #   d1_offset = ( i + 1 )**Math.log( d2 - d1, num_breaks )
+      #   interval_d1 = d2 - d1_offset.days
+      #   interval_d1 += 1.day unless i == 0
+      #   interval_d2 = d2 - d2_offset.days
+      #   interval_query = query.dup
+      #   new_queries << interval_query.merge( d1: interval_d1.to_s, d2: interval_d2.to_s )
+      # end
+
       puts "[#{Time.now}] partitioned into #{new_queries}" if debug
       new_queries
     end
