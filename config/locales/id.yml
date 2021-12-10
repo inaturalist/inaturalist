@@ -6329,6 +6329,8 @@ id:
       delete:
         by_deleting_your_account_you_will_remove: |
           Dengan menghapus akun Anda, Anda akan menghapus
+        caching: |
+          Jika Anda ingin menghapus akun Anda karena Anda mencoba menghapus konten Anda, tetapi Anda masih bisa melihatnya di peta atau tempat lainnya di Internet, harap diingat bahwa data peta dapat disimpan di tembolok hingga satu hari bahkan setelah catatan telah dihapus, dan penghapusan konten di platform ini mungkin tidak memengaruhi salinan yang ada di situs-situs dan platform lainnya (seperti GBIF).
         x_observations_html:
           other: |
             <strong class="count">%{count} pengamatan</strong>,
