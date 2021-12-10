@@ -1709,6 +1709,7 @@ fr:
   #Label for the date/time when a flag was created
   flag_created: Signalement créé
   flag_description: Signaler ce contenu aux responsables de l’organisation pour les informer d'un problème.
+  flag_comment_description: Ajoutez un commentaire facultatif à cet indication pour expliquer plus en détail pourquoi vous l'ajoutez et pour fournir des liens vers des données qui étayent votre point de vue.
   flag_for_check_list_title_html: |
     Signalement de la check-list : %{title}
   flag_for_comment_id_html: Signaler pour <a href="%{url}">Commentaire %{id}</a>
@@ -4013,6 +4014,7 @@ fr:
     must_be_observed_in_place: doit être observé fans le lieu
     must_be_in: doit être dans le taxon
     must_be_coordinates_shareable_by_project_curators: l’observateur doit autoriser les responsables du projet à voir les coordonnées.
+    must_be_verifiable: doit être vérifiable
   running_total: Total actuel
   said: a dit
   satellite: satellite
@@ -6951,6 +6953,8 @@ fr:
       delete:
         by_deleting_your_account_you_will_remove: |
           En supprimant votre compte vous supprimerez
+        caching: |
+          Si vous supprimez votre compte parce que vous avez essayé de supprimer des éléments de votre contenu et que ceux-ci restent visibles sur une carte ou ailleurs sur Internet, gardez à l'esprit que les données cartographiques peuvent rester en cache jusqu'à un jour entier après la suppression des enregistrements et que supprimer du contenu sur cette plateforme peut n'avoir aucun effet sur les copies qui existent sur d'autres sites et plateformes (comme le GBIF).
         x_observations_html:
           one: |
             <strong class="count">1 observation</strong>,
