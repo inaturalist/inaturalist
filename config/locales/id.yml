@@ -1649,6 +1649,7 @@ id:
   #Label for the date/time when a flag was created
   flag_created: Tanda Telah Dibuat
   flag_description: Tandai konten ini untuk memberi tahu kurator bahwa ada sesuatu yang salah dengan konten tersebut.
+  flag_comment_description: Tambahkan komentar opsional kepada tanda ini untuk menjelaskan alasan Anda menambahkannya dan sediakan tautan sebagai bukti pendukung.
   flag_for_check_list_title_html: |
     Tanda untuk Daftar Centang: %{title}
   flag_for_comment_id_html: Tanda untuk <a href="%{url}">Komentar %{id}</a>
@@ -3893,7 +3894,6 @@ id:
   rules_and_formatting: "Aturan & Format"
   rules_for_adding_observations: Aturan untuk Penambahan Pengamatan
   rules_for_becoming_a_member: Aturan untuk Menjadi Anggota
-  rules_for_becoming_memner: Aturan untuk Menjadi Anggota
   rules_types:
     must_be_captive: harus peliharaan / dibudidayakan
     must_be_georeferenced: harus diberi georeferensi
@@ -3902,6 +3902,7 @@ id:
     must_be_observed_in_place: harus diamati di dalam Tempat
     must_be_in: harus di dalam takson
     must_be_coordinates_shareable_by_project_curators: pengamat harus mengizinkan kurator proyek untuk melihat koordinat.
+    must_be_verifiable: harus bisa diverifikasi
   running_total: Total Akumulasi
   said: mengatakan
   satellite: satelit
@@ -4587,6 +4588,7 @@ id:
   type_taxon_name: "Ketik nama takson"
   uicn_red_list_status: "Status Daftar Merah IUCN:"
   umbrella_projects: Proyek Payung
+  unable_to_save_comment: Maaf, kami tidak dapat menyimpan komentar ini.
   unblock: Cabut Blokiran
   unclassified: Tidak diklasifikasi
   ungrafted_taxa: Taksa Yang Tidak Dicangkok
@@ -4963,8 +4965,11 @@ id:
   yesterday: Kemarin
   yir_donate_banner_inaturalist_in_year: "INATURALIST PADA %{year}:"
   yir_donate_banner_reaching_millions: Mencapai jutaan. Menerangkan keanekaragaman hayati. Kolaborasi global.
+  #"You" is singular
   yir_donate_banner_all_thanks: Semuanya berkat orang-orang sepertimu!
+  #"You" is singular
   yir_donate_banner_inaturalist_thrives: iNaturalist berkembang karena orang-orang sepertimu!
+  #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist Membutuhkan Dukunganmu
   yir_generating_and_sharing: |
     Menghasilkan dan membagikan data keanekaragaman hayati dengan skala dan kecepatan yang tidak pernah terbayangkan sebelumnya telah meningkatkan biaya-biaya
@@ -6324,6 +6329,8 @@ id:
       delete:
         by_deleting_your_account_you_will_remove: |
           Dengan menghapus akun Anda, Anda akan menghapus
+        caching: |
+          Jika Anda ingin menghapus akun Anda karena Anda mencoba menghapus konten Anda, tetapi Anda masih bisa melihatnya di peta atau tempat lainnya di Internet, harap diingat bahwa data peta dapat disimpan di tembolok hingga satu hari bahkan setelah catatan telah dihapus, dan penghapusan konten di platform ini mungkin tidak memengaruhi salinan yang ada di situs-situs dan platform lainnya (seperti GBIF).
         x_observations_html:
           other: |
             <strong class="count">%{count} pengamatan</strong>,

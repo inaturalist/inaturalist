@@ -28,7 +28,7 @@ th:
   x_misidentifications_of_this_species:
     other: "%{count} การจำแนกชนิดนี้ผิด"
   x_misidentifications_of_species_in_this_genus:
-    other: "%{count} สกุลนี้มีการจำแนกผิด"
+    other: "%{count} สกุลนี้มีการระบุผิด"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -519,10 +519,15 @@ th:
   you_sure_delete_list: คุณแน่ใจคุณต้องการลบรายการนี้หรือไม่?
   you_sure_delete_taxon_from_list?: "คุณแน่ใจหรือไม่ว่าต้องการนำ %{taxon} ออกจากรายการ?"
   assessment: การประเมินผล
+  authority_list:
+    iucn_red_list: บัญชีแดง IUCN
   back_to_your_calendar: กลับสู่ปฏิทิน
+  birds: นก
+  block_user: บล็อกผู้ใช้
+  blocked_users: ผู้ใช้ที่ถูกบล็อก
   captive: ถูกจับมา
   captive_cultivated: ถูกจับมา / เพาะปลูก
-  captive_observations: ผลการสำรวจสิ่งมีชีวิตที่ถูกจับมา
+  captive_observations: การสังเกตของสิ่งมีชีวิตที่ถูกจับมา
   change_admin: เปลี่ยนผู้ดูแล
   #Button to change the cover (or banner) image for a project
   change_cover: เปลี่ยนภาพหน้าปก
@@ -553,7 +558,7 @@ th:
   comment_deleted: ความคิดเห็นที่ถูกลบ
   comments: ความคิดเห็น
   comments_by_me: ความคิดเห็นของฉัน
-  comments_on_my_observations: ความคิดเห็นในการสำรวจของฉัน
+  comments_on_my_observations: ความคิดเห็นในการสังเกตของฉัน
   community: ชุมชน
   community_guidelines: วิธีใช้งานสำหรับชุมชน
   community_id_heading: หน่วยอนุกรมวิธานที่เสนอโดยชุมชน
@@ -566,6 +571,7 @@ th:
   comparing_versions_x_and_y: "เปรียบเทียบเวอร์ชัน %{x} กับ %{y}"
   confirm_now: ยืนยันเลย
   controlled_term_labels:
+    sex: เพศ
     male: เพศผู้
     female: เพศเมีย
     plant_phenology: ชีพลักษณ์ของพืช
@@ -603,6 +609,9 @@ th:
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: คราบ
   controlled_term_definitions:
+    flower_budding: เห็นตาดอกที่ยังไม่บาน
+    flowering: เห็นดอกบานและยังอยู่ติดกับลำต้น
+    fruiting: เห็นผลที่ยังอยู่ติดกับลำต้น
     feather: ขนที่หลุดออกจากตัวนก
     organism: ตัวสิ่งมีชีวิตทั้งหมดหรือบางส่วน
     molt: ผิวหนังหรือเปลือกนอกที่ลอกทิ้งไว้
@@ -623,6 +632,7 @@ th:
   create_an_account: สร้างบัญชีใหม่
   curator: ผู้ดูแล
   curators: ผู้ดูแล
+  danger_zone: พิจารณาให้ดีก่อนเลือก
   date_: วันที่
   date_added: วันที่เพิ่ม
   date_created: วันที่สร้าง
@@ -655,13 +665,14 @@ th:
       december: ธันวาคม
   date_is_accurate: วันที่ถูกต้อง
   date_joined: วันที่เข้าร่วม
-  date_obscured_notice: ปิดบังวันที่เพื่อรักษาความเป็นส่วนตัวของผู้สำรวจหรือสิ่งมีชีวิต
-  date_observed: วันที่สำรวจ
-  date_observed_: วันที่สำรวจ
-  date_observed_on: สำรวจในวันที่
+  date_obscured_notice: ปิดบังวันที่เพื่อรักษาความเป็นส่วนตัวของผู้สังเกตหรือสิ่งมีชีวิต
+  date_observed: วันที่สังเกต
+  date_observed_: วันที่สังเกต
+  date_observed_on: สังเกตในวันที่
   date_picker:
     currentText: วันนี้
   date_range: ช่วงวันที่
+  date_specified: วันที่ระบุ
   date_time: วันที่/เวลา
   date_updated: วันที่อัปเดต
   day: วัน
@@ -671,6 +682,8 @@ th:
   #Default option
   default_: ค่าเริ่มต้น
   default_invite_comment: "ภาพนี้อย่างแจ่ม! คุณน่าจะเอาไปโพสต์ที่ %{site_name}: {{INVITE_LINK}}"
+  default_search_place_description: |
+    สถานที่นี้จะเป็นค่าตั้งต้นในการสำรวจและการระบุชนิดทั้งหมด
   definitions: คำนิยาม
   delete: ลบ
   delete_all: ลบทั้งหมด
@@ -706,18 +719,22 @@ th:
     managed: ถูกควบคุม
     native: พื้นเมือง
     naturalised: ปรับตัวเข้ากับท้องถิ่น
+  exact_date: เฉพาะวันที่
+  explore: สำรวจ
   extinct: สูญพันธุ์
   extinct_in_the_wild: สูญพันธุ์จากธรรมชาติ
   Family: วงศ์
   favorite_taxa: หน่วยอนุกรมวิธานที่ชอบ
   favorites: "สิ่งที่ชอบ"
-  find_observations: ค้นหาการสำรวจ
+  filters: ตัวกรอง
+  find_new_place_to_explore: ค้นหาสถานที่ใหม่เพื่อสำรวจ
+  find_observations: ค้นหาการสังเกต
   find_photos: ค้นหาภาพ
   find_places: ค้นหาสถานที่
   find_some_people_to_follow: "ค้นหาผู้คนที่จะติดตาม"
   find_species: ค้นหาชนิด
-  find_suitable_observations: ค้นหาการสำรวจที่เหมาะสม
-  find_unsuitable_observations: ค้นหาการสำรวจที่ไม่เหมาะสม
+  find_suitable_observations: ค้นหาการสังเกตที่เหมาะสม
+  find_unsuitable_observations: ค้นหาการสังเกตที่ไม่เหมาะสม
   find_your_current_location: ค้นหาตำแหน่งปัจจุบันของคุณ
   finished: เสร็จสิ้น
   #Verb form, as in "Flag this item"
@@ -737,34 +754,78 @@ th:
   flagger: ผู้รายงาน
   flags: รายงาน
   flags_with_count: รายงาน (%{count})
+  follow_receive_updates_about_new_observations: ติดตาม (รับข้อมูลเกี่ยวกับการสังเกตใหม่ ๆ)
+  following: กำลังติดตาม
+  following_x_people:
+    other: 'กำลังติดตาม %{count} คน'
   fungi:
     other: เห็ดรา
   Genus: สกุล
   geoprivacy: ความเป็นส่วนตัวของพิกัด
   geoprivacy_is_obscured: พิกัดถูกปิดบังไว้
-  geoprivacy_is_obscured_desc: ผู้สำรวจเลือกปิดบังพิกัดเอาไว้
+  geoprivacy_is_obscured_desc: ผู้สังเกตปิดบังพิกัดไว้
+  go: ค้นหา
+  go_back: ย้อนกลับ
+  going_to_your_observations: กำลังไปที่การสังเกตของคุณ...
   has_sound: มีเสียง
   has_sounds: มีเสียง
-  header_your_observations: การสำรวจของฉัน
+  header_your_observations: การสังเกตของฉัน
   header_your_calendar: ปฏิทินของฉัน
   header_your_favorites: สิ่งที่คุณชอบ
   header_your_lists: รายการของคุณ
   identify: ระบุชนิด
   identify_observations: "ระบุการสังเกต"
+  identify_observations_by_these_users: ผู้ใช้งานเหล่านี้ได้ระบุการสังเกต
   identify_title: "ระบุชนิด"
+  import_all_photos_as_observations: เพิ่มการสังเกตจากรูปภาพทั้งหมด
+  import_observations: นำเข้าการสังเกต
   join: เข้าร่วม
   #Terminal nodes in a taxonomic tree
   leaves: ใบ
+  lexicons:
+    mongolian: มองโกเลีย
   longitude: ลองจิจูด
   longitude_slash_x_coord_slash_easting: ลองจิจูด / แกน x / ตะวันออก
   longitude_value: "ลองจิจูด: %{longitude}"
   look_up_name: "ค้นหาชื่อ"
+  map_of_observations: แผนที่แสดงพิกัดการสังเกต
+  maps:
+    overlays:
+      all_observations: การสังเกตทั้งหมด
+      observations: การสังเกต
+  mark_all_as_reviewed: ทำเครื่องหมายทั้งหมดว่าดูแล้ว
+  mark_all_as_unreviewed: ทำเครื่องหมายทั้งหมดว่ายังไม่ดู
+  media_type: ประเภทสื่อ
+  more: เพิ่มเติม
+  more_about_sharing: ข้อมูลเพิ่มเติมในการแชร์
+  more_filters: ตัวกรองเพิ่มเติม
+  more_import_options: ตัวเลือกนำเข้าเพิ่มเติม
+  more_info: ข้อมูลเพิ่มเติม
+  more_info_title: ข้อมูลเพิ่มเติม
+  more_journal_posts: โพสต์บันทึกเพิ่มเติม
+  needs_id: รอระบุชนิด
+  needs_id_: รอระบุชนิด
+  no_ids_have_been_suggested_yet: ยังไม่ได้รับการแนะนำ
   observation_date: วันที่
-  observations_by: การสำรวจโดย
-  observations_by_user: "การสำรวจโดย %{user}"
-  observations_deleted: ลบการสำรวจแล้ว
+  observations_by: การสังเกตโดย
+  observations_by_user: "การสังเกตโดย %{user}"
+  observations_deleted: ลบการสังเกตแล้ว
+  observations_from_people_taxa_and_places_youre_following: "การสังเกตจากผู้คน สถานที่ และหน่วยอนุกรมวิธานที่คุณกำลังติดตาม"
+  places_name:
+    thailand: ประเทศไทย
+  real_time_discussions: การถกเถียงที่กำลังเกิดขึ้น
+  research_grade: ระดับงานวิจัย
+  research_grade_qualification: คุณสมบัติระดับงานวิจัย
+  rules_types:
+    must_be_verifiable: ต้องพิสูจน์ได้
+  show_more: แสดงเพิ่ม
+  sounds:
+    select_one_or_more_sounds: เลือกอย่างน้อยหนึ่งเสียง
+  stop_following_user: "เลิกติดตาม %{user}"
+  taxonomy: อนุกรมวิธาน
   these_observations_have_not_been_uploaded_yet: |
     การสังเกตเหล่านี้ยังไม่ถูกอัปโหลด
+  this_observation_is_research_grade: การสังเกตนี้เป็นระดับงานวิจัย!
   upload: อัปโหลด
   upload_a_csv_file: อัปโหลดไฟล์ CSV
   upload_a_csv_file_with_observation: |
@@ -772,6 +833,24 @@ th:
   upload_new_photo: อัพโหลดรูปภาพใหม่
   upload_photo: อัปโหลดรูปภาพ
   uploaded_by: อัปโหลดโดย
+  uploader:
+    tooltips:
+      select_all: เลือกการสังเกตทั้งหมด
+  user_suggested_an_id: "%{user} แนะนำว่าเป็น"
+  view_all_observations: ดูการสังเกตทั้งหมด
+  view_all_of_your_observations_from_x: "ดูการสังเกตทั้งหมดของคุณจาก %{x}"
+  your_content: เนื้อหาของคุณ
+  views:
+    lifelists:
+      all_observations: การสังเกตทั้งหมด
+      all_observations_in_this_taxon: การสังเกตทั้งหมดในหน่วยอนุกรมวิธานนี้
+    taxa:
+      show:
+        frequency:
+          research: ระดับงานวิจัย
+    welcome:
+      index:
+        explore_and_share: สำรวจและแชร์การสังเกตของคุณจากโลกธรรมชาติ
   date:
     abbr_month_names:
       - 

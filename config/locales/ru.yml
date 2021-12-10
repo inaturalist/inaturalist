@@ -1791,6 +1791,7 @@ ru:
   #Label for the date/time when a flag was created
   flag_created: Флаг создан
   flag_description: Пометить этот контент, чтобы дать знать кураторам, что с ним что-то не так.
+  flag_comment_description: Добавьте необязательный комментарий к этому флагу, который объясняет, почему вы его добавляете, и предоставляет ссылки на подтверждающие доказательства.
   flag_for_check_list_title_html: |
     Флаг для чек-листа: %{title}
   flag_for_comment_id_html: Флаг для <a href="%{url}">комментария %{id}</a>
@@ -2627,6 +2628,9 @@ ru:
   multiple_select_option: '-- множественный --'
   multiple_taxa_for_taxon_change: "Несколько таксонов (ввод для замены/слияния, вывод для разделения)"
   multiple_taxon_ids_separated_by_commas: 'Множественные идентификации таксона, разделённые запятыми, например, 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: должно быть в проекте %{project}
   must_be_in_taxon: должен принадлежать таксону %{taxon}
   must_be_not_in_taxon: не должен принадлежать таксону %{taxon}
   must_be_not_observed_by_user: не должен наблюдаться %{user}
@@ -3063,6 +3067,8 @@ ru:
       <li><strong>Обсуждения, в которых вы участвуете:</strong> подписывает вас на любую новую активность этого контента. Добавление комментариев или идентификаций к чужому контенту автоматически подписывает вас на любую новую активность этого контента. Используйте средство управления подписками, чтобы перестать получать обновления.</li>
       </ul>
   one_by_one: "По одному"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "одно из следующих условий должно быть выполнено:"
   one_of_your_lists: "одним из ваших списков"
   one_or_more_input_taxa_have_more_than_1000: |
     Один или несколько входных таксонов имеют более 1000 нижеследующих наблюдений. Процесс обновления может занять некоторое время, вы уверены, что это изменение таксона необходимо? Кроме того, изменения таксона не могут быть отменены.
@@ -4068,7 +4074,6 @@ ru:
   rules_and_formatting: "Правила и форматирование"
   rules_for_adding_observations: Правила добавления наблюдений
   rules_for_becoming_a_member: Как стать участником
-  rules_for_becoming_memner: Как стать участником
   rules_types:
     must_be_captive: должно быть в неволе / культивируемое
     must_be_georeferenced: должен иметь геолокацию
@@ -4077,6 +4082,7 @@ ru:
     must_be_observed_in_place: должен наблюдаться в месте
     must_be_in: должен быть привязан к таксону
     must_be_coordinates_shareable_by_project_curators: наблюдатель должен разрешить куратору проекта видеть координаты.
+    must_be_verifiable: должно быть проверяемым
   running_total: Текущий итог
   said: добавил
   satellite: спутниковый
@@ -4818,6 +4824,7 @@ ru:
   type_taxon_name: "Введите наименование таксона"
   uicn_red_list_status: "Статус в Красном списке МСОП:"
   umbrella_projects: Зонтичные проекты
+  unable_to_save_comment: К сожалению, мы не смогли сохранить комментарий.
   unblock: Разблокировать
   unclassified: Неклассифицированные
   ungrafted_taxa: Непривязанные таксоны
@@ -5217,8 +5224,13 @@ ru:
   yesterday: Вчера
   yir_donate_banner_inaturalist_in_year: "INATURALIST В %{year}:"
   yir_donate_banner_reaching_millions: Достижение миллионов. Освещение биоразнообразия. Глобальное сотрудничество.
+  #"You" is singular
   yir_donate_banner_all_thanks: И все благодаря таким людям, как вы!
+  #"You" is singular
   yir_donate_banner_inaturalist_thrives: iNaturalist процветает благодаря таким, как вы!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Вы помогли iNaturalist преуспеть в этом году. Спасибо!
+  #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist нужна ваша поддержка
   yir_generating_and_sharing: |
     Создание и обмен данными о биоразнообразии с высокой отдачей в таких беспрецедентных масштабах и с такой скоростью сопряжены с растущими затратами
@@ -6266,6 +6278,7 @@ ru:
           Пожалуйста, укажите требования к наблюдениям, которые будут добавлены в этот проект.
         project_background_color: Цвет фона описания проекта
         project_background_color_help: Не забудьте выбрать цвет достаточно темным, чтобы белый наложенный текст был разборчивым.
+        project_banner: Баннер проекта (PNG или JPG)
         project_banner_help: Дополнительный баннер. Идеальные размеры 760х320пикс.
         project_details: Детали проекта
         project_icon: Иконка проекта (PNG, JPG или GIF)
@@ -6660,6 +6673,8 @@ ru:
       delete:
         by_deleting_your_account_you_will_remove: |
           Удаляя ваш аккаунт, вы удаляете
+        caching: |
+          Если вы удаляете свою учетную запись, по причине того, что вы пытались удалить часть своего контента, но все равно свё ещеё можете видеть его на карте или в другом месте в Интернете, имейте в виду, что данные карты могут кэшироваться в течение одного дня даже после удаления записей, и что удаление контента на этой платформе может не повлиять на копии, существующие на других сайтах и платформах (например, GBIF).
         x_observations_html:
           one: |
             <strong class="count">%{count} наблюдение</strong>, в том числе помощь<strong class="count">%{helpers_count} человек,</strong> которые помогли вам с идентификациями

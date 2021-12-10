@@ -1697,6 +1697,7 @@ pt-BR:
   #Label for the date/time when a flag was created
   flag_created: Sinalização Criada
   flag_description: Sinalizar este conteúdo para que os coordenadores saibam que algo está errado.
+  flag_comment_description: Adicione um comentário opcional a este sinalizador que explica mais o porquê de você estar adicionando-o e fornece links para evidências.
   flag_for_check_list_title_html: |
     Sinalização para Lista de Verificação: %{title}
   flag_for_comment_id_html: Sinalização para <a href="%{url}">Comentário%{id}</a>
@@ -2553,6 +2554,9 @@ pt-BR:
   multiple_select_option: '-- múltiplo --'
   multiple_taxa_for_taxon_change: "Diversas espécies e grupos (entrada de dados para alterar/fundir, saída de dados para dividir)"
   multiple_taxon_ids_separated_by_commas: 'Várias IDs de táxons separadas por vírgula, e.g. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: deve estar no projeto %{project}
   must_be_in_taxon: deve estar no táxon %{taxon}
   must_be_not_in_taxon: não deve estar no táxon %{taxon}
   must_be_not_observed_by_user: não deve ser observado por %{user}
@@ -2991,6 +2995,8 @@ pt-BR:
       <li><strong>Discussões em que você participa:</strong> Ao comentar ou adicionar identificações as observações de alguém você se inscreve, automaticamente, para receber notificações sobre qualquer atividade neste conteúdo. Utilize a ferramenta 'Administre suas inscrições' para interromper o recebimento de atualizações.</li>
       </ul>
   one_by_one: "Um por um"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "um dos seguintes deve ser verdadeiro:"
   one_of_your_lists: "uma de suas listas"
   one_or_more_input_taxa_have_more_than_1000: |
     Um ou mais táxons de entrada têm mais de 1000 observações descendentes.
@@ -3995,7 +4001,6 @@ pt-BR:
   rules_and_formatting: "Regras & Formatação"
   rules_for_adding_observations: Regras para Adicionar Observações
   rules_for_becoming_a_member: Regras para se tornar um membro
-  rules_for_becoming_memner: Regras para se tornar um membro
   rules_types:
     must_be_captive: deve estar em cativeiro / cultivado
     must_be_georeferenced: Georreferenciamento obrigatório
@@ -4004,6 +4009,7 @@ pt-BR:
     must_be_observed_in_place: deve ser observado neste lugar
     must_be_in: deve estar presente na espécie ou grupo
     must_be_coordinates_shareable_by_project_curators: observador deve autorizar que administradores de projetos acessem as coordenadas.
+    must_be_verifiable: Deve ser verificável
   running_total: Total acumulado
   said: disse
   satellite: satélite
@@ -4753,6 +4759,7 @@ pt-BR:
   type_taxon_name: "Digite o nome do taxon"
   uicn_red_list_status: "Status na Lista Vermelha IUCN:"
   umbrella_projects: Projetos Umbrella
+  unable_to_save_comment: Infelizmente, não conseguimos salvar o comentário.
   unblock: Desbloquear
   unclassified: Não classificado
   ungrafted_taxa: Táxons ainda não abordados
@@ -5141,8 +5148,13 @@ pt-BR:
   yesterday: Ontem
   yir_donate_banner_inaturalist_in_year: "INATURALIST EM %{year}:"
   yir_donate_banner_reaching_millions: Alcançando milhões. Iluminando a biodiversidade. Colaboração global.
+  #"You" is singular
   yir_donate_banner_all_thanks: Tudo graças a pessoas como você!
+  #"You" is singular
   yir_donate_banner_inaturalist_thrives: O iNaturalist prospera graças a pessoas como você!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Você ajudou o iNaturalist a prosperar este ano. Obrigado!
+  #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist precisa de seu apoio
   yir_generating_and_sharing: |
     Gerar e compartilhar dados de alto impacto sobre a biodiversidade, nesta escala
@@ -6212,6 +6224,7 @@ pt-BR:
           Por favor especifique os requisitos para as observações a serem adicionadas este projeto.
         project_background_color: Cor de fundo do resumo do projeto
         project_background_color_help: Certifique-se de selecionar uma cor que seja escura o suficiente para que o texto branco sobreposto seja legível.
+        project_banner: Banner do projeto (PNG ou JPG)
         project_banner_help: Imagem de banner opcional. Dimensões ideais são 760px por 320px.
         project_details: Detalhes do Projeto
         project_icon: Ícone do Projeto (PNG, JPG ou GIF)
@@ -6653,6 +6666,13 @@ pt-BR:
       delete:
         by_deleting_your_account_you_will_remove: |
           Ao excluir sua conta, você removerá
+        caching: |
+          Se você está excluindo sua conta porque tentou excluir parte
+          do seu conteúdo, mas você ainda pode vê-los no mapa ou em outro lugar
+          na Internet, tenha em mente que os dados do mapa podem ser armazenados em cache por até
+          um dia, mesmo depois que os registros tenham sido excluídos, e que excluir conteúdo na
+          plataforma pode não ter qualquer efeito nas cópias que existem em outros
+          sites e plataformas (como GBIF).
         x_observations_html:
           one: |
             <strong class="count">1 observação</strong>,

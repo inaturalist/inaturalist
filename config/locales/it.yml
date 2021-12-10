@@ -1676,6 +1676,7 @@ it:
   #Label for the date/time when a flag was created
   flag_created: Contrassegno Creato
   flag_description: Contrassegna il contenuto per segnalare ai curatori che c'è qualcosa che non va al riguardo.
+  flag_comment_description: Aggiungi un commento facoltativo a questo flag che spieghi ulteriormente perché lo stai aggiungendo e fornisca link per supportarlo.
   flag_for_check_list_title_html: |
     Contrassegno per la Checklist: %{title}
   flag_for_comment_id_html: Contrassegno per il <a href="%{url}">Commento %{id}</a>
@@ -2508,6 +2509,9 @@ it:
   multiple_select_option: '-- più --'
   multiple_taxa_for_taxon_change: "Taxa multipli (entra per scambiare/unire, esci per dividere)"
   multiple_taxon_ids_separated_by_commas: 'Multiple ID del taxon separate da virgola, e.g 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: dev'essere nel progetto %{project}
   must_be_in_taxon: dev'essere nel taxon %{taxon}
   must_be_not_in_taxon: non dev'essere nel taxon %{taxon}
   must_be_not_observed_by_user: non dev'essere osservato da %{user}
@@ -2946,6 +2950,8 @@ it:
       <li><strong>Discussioni in cui sei coinvolto:</strong> Commentando o aggiungendo identificazioni alle osservazioni degli altri sei automaticamente iscritto a tutte le nuove attività relative a quelle osservazioni. Usa lo strumento 'Gestisci le iscrizioni' per interrompere gli aggiornamenti.</li>
       </ul>
   one_by_one: "Uno per uno"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "una delle seguenti deve essere vera:"
   one_of_your_lists: "una delle tue liste..."
   one_or_more_input_taxa_have_more_than_1000: |
     Uno o più taxa a monte hanno più di 1000 osservazioni a valle.
@@ -3936,7 +3942,6 @@ it:
   rules_and_formatting: "Regole & Formattazione"
   rules_for_adding_observations: Regole per l'aggiunta di osservazioni
   rules_for_becoming_a_member: Regole per diventare un Membro
-  rules_for_becoming_memner: Regole per diventare un Membro
   rules_types:
     must_be_captive: Deve essere in cattività / coltivato
     must_be_georeferenced: deve essere georeferenziata
@@ -3945,6 +3950,7 @@ it:
     must_be_observed_in_place: deve essere osservata nel Luogo
     must_be_in: deve essere nel taxon
     must_be_coordinates_shareable_by_project_curators: l'osservatore deve permettere ai curatori del progetto di visualizzare le coordinate.
+    must_be_verifiable: dev'esser verificabile
   running_total: Totale attuale
   said: detto
   satellite: satellite
@@ -4647,6 +4653,7 @@ it:
   type_taxon_name: "Scrivi il nome del taxon"
   uicn_red_list_status: "Stato della IUCN Red List:"
   umbrella_projects: Progetti Ombrello
+  unable_to_save_comment: Sfortunatamente, non siamo riusciti a salvare il commento.
   unblock: Sblocca
   unclassified: Non classificato
   ungrafted_taxa: Taxa senza relazioni tassonomiche
@@ -5034,8 +5041,13 @@ it:
   yesterday: Ieri
   yir_donate_banner_inaturalist_in_year: "INATURALIST IN %{year}:"
   yir_donate_banner_reaching_millions: Raggiungere milioni. Illuminare la biodiversità. Collaborazione globale.
+  #"You" is singular
   yir_donate_banner_all_thanks: Grazie a tutte le persone come te!
+  #"You" is singular
   yir_donate_banner_inaturalist_thrives: iNaturalist prospera grazie a persone come te!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Hai aiutato iNaturalist a prosperare quest'anno. Grazie!
+  #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist Ha Bisogno del Tuo Supporto
   yir_generating_and_sharing: |
     Generare e condividere dati sulla biodiversità ad alto impatto a questa scala e velocità senza precedenti ha costi sempre maggiori
@@ -6070,6 +6082,7 @@ it:
           Per favore specifica i requisiti per le osservazioni da aggiungere a questo progetto.
         project_background_color: Colore di sfondo dell'indice del progetto
         project_background_color_help: Assicurati di scegliere un colore abbastanza scuro in modo che il testo bianco sia visibile.
+        project_banner: Banner del Progetto (PNG o JPG)
         project_banner_help: Immagine del banner opzionale. Le dimensioni ideali sono 760px per 320px.
         project_details: Dettagli del progetto
         project_icon: Icona del Progetto (PNG, JPG o GIF)
@@ -6443,6 +6456,8 @@ it:
       delete:
         by_deleting_your_account_you_will_remove: |
           Cancellando la tua utenza tu rimuoverai
+        caching: |
+          Se stai cancellando il tuo account perché hai cercato di eliminare alcuni dei tuoi contenuti ma puoi ancora vederli sulla mappa o altrove su Internet, ricordati che i dati della mappa possono essere memorizzati nella cache fino ad anche un giorno dopo che i record sono stati eliminati, e che l'eliminazione di contenuti su questa piattaforma non può avere alcun effetto sulle copie che esistono su altri siti e piattaforme (come GBIF).
         x_observations_html:
           one: |
             <strong class="count">1 osservazione</strong>, incluso il lavoro delle <strong class="count">%{helpers_count} persone</strong> che ti hanno aiutato con le identificazioni

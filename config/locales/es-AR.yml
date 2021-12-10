@@ -3401,8 +3401,22 @@ es-AR:
     zimbabwe: Zimbabue
   places_of_interest: Lugares de Interés
   places_merged_successfully: '¡Los lugares se combinaron satisfactoriamente!'
+  places_warning_export_complex_boundary_html: |
+    Si estás intentando exportar observaciones a partir de un límite geográfico complejo, considerá
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">descargarlas de GBIF</a>, donde podés dibujar los límites, o exportarlos desde iNat usando lugares existentes o un límite en forma de caja, y luego filtrar los datos de nuevo una vez que los hayas descargado.
+  places_warning_look_for_existing_html: |
+    Buscá en los <a href="/search?source[]=places">lugares creados</a> para asegurarte de que no estás creando un duplicado. Ya tenemos lugares para todos los continentes y países, así como dos niveles administrativos por debajo del de país.
+  places_warning_projects_can_have_multiple_places: |
+    Si estás intentando crear un lugar para un límite de proyecto, los proyectos pueden estar compuestos por múltiples lugares. Por ejemplo, si querés hacer un proyecto para Argentina y Uruguay, puedes añadir requisitos para esos dos lugares en lugar de hacer uno nuevo.
+  places_warning_new_places_are_slow_html: |
+    Los nuevos lugares son una de las mayores fuentes de lentitud en iNat, así que <strong>por favor, considerá no crearlos</strong>. No hay problema con lugares pequeños que contienen sólo unos pocos miles de observaciones, pero si creás un nuevo lugar que contenga muchas observaciones, vas a ralentizar iNat para todos los demás. Acá, algunas alternativas:
+  places_warning_editing_places_is_slow: |
+    La edición de los límites de lugar es una de las mayores fuentes de lentitud en iNat.
+    Si podés evitarlo, no añadas, cambies o elimines límites a menos que sea absolutamente necesario.
   places_warning_quota: |
     Sólo puedes crear tres lugares por día.
+  places_warning_the_future: |
+    Por si sirve de algo, en el futuro tendremos que restringir las condiciones para añadir lugares, dada la tasa actual de crecimiento de iNat.
   plants: plantas
   please_add_a_citation_for_this_change: Añade una referencia para este cambio.
   please_allow_a_few_weeks_for_external_sites: Por favor, espere alguna semana para que los sitios externos sincronicen los cambios en esta observación #Title to a section warning a user to exercise caution
@@ -3431,6 +3445,7 @@ es-AR:
   present: nativo
   press: Prensa
   preview: Vista previa
+  preview_observations_with_these_observation_requirements: Previsualizar Observaciones con estos Requerimientos de Observación
   preview_of_synced_observation: "<strong>Previo</strong> de la observación.  <a href=\"%{url}\">¿Revertir?</a>"
   previewing: "Previzualizando..."
   previous_date_short: Anterior
@@ -3748,6 +3763,8 @@ es-AR:
   restore: Restaurar
   restoring: Restaurando...
   review_all: Revisar todas
+  review_identifications_of_taxon_html: |
+    Revisar identificaciones de <span class="sciname">%{taxon}</span> %{taxon_id}
   reviewed: Revisada
   revoke: Revocar
   revoke_caps: REVOCAR
@@ -3759,7 +3776,6 @@ es-AR:
   rules_and_formatting: "Reglas & Formato"
   rules_for_adding_observations: Reglas para agregar observaciones
   rules_for_becoming_a_member: Reglas para ser miembro
-  rules_for_becoming_memner: Reglas para ser miembro
   rules_types:
     must_be_georeferenced: deben estar con georeferencia
     must_be_identified: deben estar identificadas
@@ -4380,6 +4396,8 @@ es-AR:
   top_identifiers_of_taxon: Identificadores principales de %{taxon}
   top_observer_caps: OBSERVADOR PRINCIPAL
   top_observers: Mejores observadores
+  tos_privacy_guidelines_label: |
+    Acepto los <a href="/terms" target="_blank">Términos de servicio</a> y la <a href="/privacy" target="_blank">Política de privacidad</a>, y he revisado las <a href="/pages/community+guidelines" target="_blank">Directrices de la comunidad</a>.
   total: Total
   totals: Totales
   total_members: Total de miembros
@@ -4750,6 +4768,24 @@ es-AR:
   yes_reject_it: Sí, rechazarlo
   yes_show_this_in_the_box: Sí, muestra esto en la caja grande por arriba de los taxones
   yesterday: Ayer
+  yir_donate_banner_inaturalist_in_year: "INATURALIST EN %{year}:"
+  yir_donate_banner_reaching_millions: Alcanzando a millones. Poniendo en valor la biodiversidad. Colaboración global.
+  #"You" is singular
+  yir_donate_banner_all_thanks: Todo gracias a personas como vos
+  #"You" is singular
+  yir_donate_banner_inaturalist_thrives: '¡iNaturalist crece gracias a las personas como vos!'
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Ayudaste a que iNaturalist avance durante este año. ¡Muchas gracias!
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist necesita tu apoyo
+  yir_generating_and_sharing: |
+    Generar y compartir datos de biodiversidad de alto impacto, a esta escala y velocidad sin precedentes, tiene un costo creciente
+  yir_millions_of_people_used_inaturalist: |
+    Millones de personas usaron iNaturalist y Seek de iNaturalist durante este año para conectar con la naturaleza
+  yir_thank_your_for_being_generous: |
+    ¡Gracias por ser tan generoso/a con tu tiempo, atención, experiencia y donaciones! iNaturalist es una iniciativa conjunta sin ánimo de lucro de la California Academy of Sciences y la National Geographic Society. El programa depende de varios subsidios y donaciones, incluidas aquellas que aporta una pequeña parte de la comunidad. Estamos especialmente agradecidos con los patrocinadores mensuales cuyas donaciones recurrentes nos ayudan a planificar el futuro.
+  yir_your_gift_sustains: |
+    Tu aporte sostiene este programa de alcance global y profundos impactos personales y ecológicos.
   you: tu
   you_: Tú
   you_appear_offline_try_again: |
@@ -5326,6 +5362,10 @@ es-AR:
       bulk_import_error:
         taxon_spelling_notice_html: |
           Comprueba la ortografía de cada entrada. Si tu ortografía es correcta, busca la especie en %{search_taxa_url}. Si el nombre aún no está en la base de datos de %{site_name}, deberás agregarlo antes para que funcione la subida masiva. Utiliza el cuadro en la parte inferior de la página de búsqueda para importar los nuevos nombres. Si el nombre está presente pero aplica a varios taxones válidos, intenta usar uno menos específico que corresponda solo a un único taxon.
+      collection_project_changed_for_trusting_member:
+        #Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          Como le confiaste a este proyecto las coordenadas ocultas de <a href="%{obs_url}">algunas de tus observaciones</a>, ahora los/as administradores/as pueden tener acceso a más coordenadas ocultas que antes de que confiaras en el proyecto. Recomendamos que revises la lista de administradores/as y los requisitos del proyecto para asegurarte de que seguís confiando en este proyecto:
       observations_export_notification:
         your_observations_export_is_ready_html: |
           Tus observaciones de exportación están listas. Hay una copia  adjunta a este correo, o puedes <a href="%{url}">descargar tu exportación</a>.
@@ -5750,17 +5790,18 @@ es-AR:
           Creado vía <a href="https://www.naturalista.mx">NaturaList</a>
           o <a href="%{url}">la red iNaturalist</a>
       year:
+        compare_desc: |
+          ¿Cómo fue este año en comparación con tus años anteriores? Con tres o más años de uso de la plataforma, podemos empezar a comparar estadísticas de tu actividad anual. La barra verde muestra este año, la barra vertical blanca muestra el año pasado, y las áreas grises del fondo muestran los años más bajos y altos, así como el promedio para todos los años. Las estadísticas no incluyen los años donde el conteo sea cero.
+        inaturalist_network_desc: |
+          Conocé la Revisión del Año para miembros de la Red de iNaturalist.
         include_usa: Incluir Estados Unidos
         growth_by_country_desc_html: |
-          ¿Dónde está hay crecimiento? Este mapa y gráfico intentan segmentar esta información por país, lo cual resulta complicado porque el crecimiento por
-          país puede ser muy desequilidrado. Hemos optado por omitir a los Estados Unidos y utilizar una escala de registro por defecto para acentuar diferencias
-          entre países. Si un país aparece en negro esto significa que no contribuyó significativamente a un porcentaje, o que no se presentó ningún crecimiento
-          este año, o no ha tenido más observaciones este año que el año pasado
-          (pasa el cursor sobre un país para ver un poco más de detalle). <strong>"% del crecimiento total"<strong> significa cuánto del crecimiento mundial provino de un país particular, por ejemplo si hubo 20 observaciones en 2018 y 10
+          ¿Dónde ocurre el crecimiento? Este mapa y gráfico intentan segmentar esta información por país, lo cual resulta complicado porque el crecimiento a nivel nacional puede ser muy desequilibrado. Optamos por omitir a los Estados Unidos y usar una escala de registro por defecto para acentuar las diferencias entre países. Si un país aparece en negro, significa que no contribuyó significativamente a un porcentaje, o que no presentó ningún crecimiento
+          este año, o que no tuvo más observaciones este año que el año pasado
+          (pasá el cursor sobre un país para ver un poco más EN detalle). <strong>"% del crecimiento total"</strong> significa cuánto del crecimiento mundial provino de un país particular. Por ejemplo, si hubo 20 observaciones en 2018 y 10
           en 2017, eso serían 10 observaciones de crecimiento, y si 5 de ellas
           se dieron en Benín, quiere decir que Benín contribuyó 50% del total
-          del crecimiento. <strong>"% del crecimiento"<strong> significa el número de observaciones este año en ese país como porcentaje de las observaciones del año pasado en ese país, así que si hubo 10 observaciones en Laos el año pasado pero 20 este año, eso sería un crecimiento del 100%, y si hubo 0 el año
-          pasado y 1 este año, eso sería un % de crecimiento infinito.
+          del crecimiento. <strong>"% del crecimiento"</strong> refiere al número de observaciones este año en ese país como porcentaje de las observaciones del año pasado en ese país, así que si hubo 10 observaciones en Laos el año pasado pero 20 este año, sería un crecimiento del 100%; y si hubo 0 el año pasado y 1 este año, eso sería un % de crecimiento infinito.
         growth_by_country_title: Crecimiento por país
         growth_in_year_obs: "Crecimiento en %{year} (obs)"
         growth_title: Crecimiento
@@ -5775,6 +5816,9 @@ es-AR:
         obs_in_year: Obs En %{year}
         percent_growth_in_year: "% Crecimiento en %{year}"
         percent_of_total_growth: "% del Crecimiento Total"
+        observation_streaks_desc2: |
+          Una racha de observaciones es un período de al menos cinco días cuando alguien se acercó a la naturaleza y registró observaciones nuevas y verificables cada día particular. Acá mostramos las rachas más largas que comenzaron este año o estaban en progreso cuando estas estadísticas se generaron (para usuarios individuales, también incluímos rachas que terminaron este año).
+        stats_generated_datetime: Estadísticas generadas el %{datetime}
         sunburst_desc_html: |
           Taxones observados dispuestos como un diagrama jerárquico de "resplandor solar". La base de la jerarquía está en el centro, comenzando con "Vida" y terminando con especies en los bordes exteriores. El tamaño de cada arco es proporcional al número de observaciones de ese taxón, y los colores se corresponden con los colores de nuestro taxón "icónico" habitual (verde para las plantas, naranja para los insectos, azul para la mayoría de los otros animales, etc.), así que si ves mucho verde, eso significa que has observado muchas plantas. <strong>Has clic en un arco para colocar ese taxón en el centro</strong> y sus dependentes a su alrededor, o <strong>has clic en el centro para volver a subir la jerarquía.</strong>
     taxa:
@@ -6034,6 +6078,7 @@ es-AR:
 
           Traducción realizada con el traductor www.DeepL.com/Translator
       show:
+        take_a_moment_to_review_html: 'Aprovechá para revisar <a href="%{link}">nuestras directrices</a>.'
         this_user_was_banned: Este usuario fue suspendido
     user_parents:
       confirm:

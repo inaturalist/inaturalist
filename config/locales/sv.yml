@@ -1720,6 +1720,7 @@ sv:
   #Label for the date/time when a flag was created
   flag_created: Flagga skapad
   flag_description: Flagga detta innehåll så att förvaltarna får reda på att det är något fel med det.
+  flag_comment_description: Lägg till en valfri kommentar till denna flagga som ytterligare förklarar varför du lägger till den och länkar till bevis som stöd.
   flag_for_check_list_title_html: |
     Flagga för checklista: %{title}
   flag_for_comment_id_html: Flagga för <a href="%{url}">kommentar %{id}</a>
@@ -2572,6 +2573,9 @@ sv:
   multiple_select_option: '-- flera --'
   multiple_taxa_for_taxon_change: "Flera taxa (indata för byte/hopslagning, utdata för uppdelning)"
   multiple_taxon_ids_separated_by_commas: 'Flera taxonID åtskiljda av kommatecken, t.ex. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: måste vara i projekt %{project}
   must_be_in_taxon: måste inluderas i taxon %{taxon}
   must_be_not_in_taxon: får inte inkluderas i %{taxon}
   must_be_not_observed_by_user: får inte ha observerats av %{user}
@@ -3011,6 +3015,8 @@ sv:
       <li><strong>Diskussioner du bidrar till:</strong> Genom att kommentera eller lägga till bestämningar till någon annans innehåll prenumererar du automatiskt på all ny aktivitet för detta innehåll. Använd verktyget "Hantera dina prenumerationer" för att sluta få meddelanden.</li>
       </ul>
   one_by_one: "En-efter-en"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "ett av följande måste vara sant:"
   one_of_your_lists: "en av dina listor..."
   one_or_more_input_taxa_have_more_than_1000: |
     Ett eller flera inmatningstaxa har mer än 1000 underliggande observationer.
@@ -4008,7 +4014,6 @@ sv:
   rules_and_formatting: "Regler och formatering"
   rules_for_adding_observations: Regler för att lägga till fynd
   rules_for_becoming_a_member: Regler för att bli medlem
-  rules_for_becoming_memner: Regler för att bli medlem
   rules_types:
     must_be_captive: måste vara i fångenskap / odlad
     must_be_georeferenced: måste vara koordinatsatt
@@ -4017,6 +4022,7 @@ sv:
     must_be_observed_in_place: måste vara observerad på Fyndplats
     must_be_in: måste finnas i taxon
     must_be_coordinates_shareable_by_project_curators: observatören måste tillåta projekthandläggare att se koordinater.
+    must_be_verifiable: måste gå att verifiera
   running_total: Ackumulerat
   said: sade
   satellite: satellit
@@ -4743,6 +4749,7 @@ sv:
   type_taxon_name: "Ange taxonnamn"
   uicn_red_list_status: "IUCN:s rödlistestatus:"
   umbrella_projects: Paraplyprojekt
+  unable_to_save_comment: Tyvärr lyckades vi inte spara kommentaren.
   unblock: Avblockera
   unclassified: Oklassificerad
   ungrafted_taxa: Oplacerade taxa
@@ -5134,8 +5141,13 @@ sv:
   yesterday: Igår
   yir_donate_banner_inaturalist_in_year: "INATURALIST %{year}:"
   yir_donate_banner_reaching_millions: Når miljontals. Uppmärksammar biologisk mångfald. Globalt samarbete.
+  #"You" is singular
   yir_donate_banner_all_thanks: Allt tack vare människor som du!
+  #"You" is singular
   yir_donate_banner_inaturalist_thrives: iNaturalist frodas tack vare människor som du!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Du har hjälpt iNaturalist att frodas i år. Tack!
+  #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist behöver ditt stöd
   yir_generating_and_sharing: |
     Att skapa och dela så mycket data om biologisk mångfald med sådan genomslagskraft och så snabbt och utan like har stadigt ökande kostnader
@@ -6205,6 +6217,7 @@ sv:
           Vänligen ange villkoren för de fynd som ska läggas till i detta projekt.
         project_background_color: Bakgrundsfärg för projektsammanställning
         project_background_color_help: Se till att välja en tillräckligt mörk färg mörk så att den vita texten ovanpå blir läsbar.
+        project_banner: Projektbanderoll (PNG eller JPG)
         project_banner_help: Valfri banderollbild. Idealiska mått är 760px gånger 320px.
         project_details: Projektdetaljer
         project_icon: Projektikon (PNG, JPG eller GIF)
@@ -6590,6 +6603,9 @@ sv:
       delete:
         by_deleting_your_account_you_will_remove: |
           Genom att radera ditt konto kommer du att ta bort
+        caching: |
+          Om du raderar ditt konto för att du försökte radera en del av ditt innehåll men fortfarande kunde se det på en karta eller någon annanstans
+          på Internet, tänk på att kartdata kan cachas i upp till ett dygn även efter att poster raderats, och att radera innehåll på denna plattform kanske inte har någon effekt på kopior som finns på andra webbplatser och plattformar (som GBIF).
         x_observations_html:
           one: |
             <strong class="count">%{count} fynd</strong>,
