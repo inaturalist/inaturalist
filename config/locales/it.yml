@@ -3950,6 +3950,7 @@ it:
     must_be_observed_in_place: deve essere osservata nel Luogo
     must_be_in: deve essere nel taxon
     must_be_coordinates_shareable_by_project_curators: l'osservatore deve permettere ai curatori del progetto di visualizzare le coordinate.
+    must_be_verifiable: dev'esser verificabile
   running_total: Totale attuale
   said: detto
   satellite: satellite
@@ -6455,6 +6456,8 @@ it:
       delete:
         by_deleting_your_account_you_will_remove: |
           Cancellando la tua utenza tu rimuoverai
+        caching: |
+          Se stai cancellando il tuo account perché hai cercato di eliminare alcuni dei tuoi contenuti ma puoi ancora vederli sulla mappa o altrove su Internet, ricordati che i dati della mappa possono essere memorizzati nella cache fino ad anche un giorno dopo che i record sono stati eliminati, e che l'eliminazione di contenuti su questa piattaforma non può avere alcun effetto sulle copie che esistono su altri siti e piattaforme (come GBIF).
         x_observations_html:
           one: |
             <strong class="count">1 osservazione</strong>, incluso il lavoro delle <strong class="count">%{helpers_count} persone</strong> che ti hanno aiutato con le identificazioni
