@@ -2527,6 +2527,9 @@ de:
   multiple_select_option: '--mehrfach--'
   multiple_taxa_for_taxon_change: "Mehrere Taxa (Eingabe zum Tausch/Zusammenführen, Ausgabe zum Auftrennen)"
   multiple_taxon_ids_separated_by_commas: 'Mehrere Taxon-IDs getrennt durch Kommas, z.B. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: muss im Projekt %{project} sein
   must_be_in_taxon: muss im Taxon %{taxon} sein
   must_be_not_in_taxon: darf nicht im Taxon %{taxon} sein
   must_be_not_observed_by_user: darf nicht von %{user} beobachtet worden sein
@@ -2969,6 +2972,8 @@ de:
       <li><strong>Diskussionen, an denen du teilgenommen hast:</strong> Das Kommentieren oder Hinzufügen von Bestimmungen zum Inhalt eines anderen Benutzers hat zur Folge, dass du automatisch über jede neue Aktivität zu diesem Inhalt benachrichtigt wirst. Benutze die Schaltfläche 'Abonnements verwalten', um keine Updates mehr zu erhalten.</li>
       </ul>
   one_by_one: "einer nach dem anderen"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "Einer der folgenden Punkte muss zutreffen:"
   one_of_your_lists: "einer deiner Listen..."
   only_a_project_manager_can_add: Nur ein Projektmanager kann den Status eines Projektkurators hinzufügen.
   only_administrators_may_access_that_page: Nur Administratoren dürfen auf diese Seite zugreifen
@@ -5100,6 +5105,8 @@ de:
   yir_donate_banner_all_thanks: Alles dank Menschen wie dir!
   #"You" is singular
   yir_donate_banner_inaturalist_thrives: iNaturalist hat Erfolg dank Leuten wie dir!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Du hast iNaturalist geholfen, dieses Jahr zu gedeihen. Vielen Dank!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist braucht deine Unterstützung
   yir_generating_and_sharing: |
@@ -6571,6 +6578,10 @@ de:
       delete:
         by_deleting_your_account_you_will_remove: |
           Durch das Löschen deines Kontos wirst du entfernen:
+        caching: |
+          Wenn du dein Konto löschen möchtest, weil du einen bestimmten Inhalten löschen wolltest, aber ihn trotzdem noch auf einer Karte oder anderswo
+          im Internet siehst, bedenke, dass Kartendaten bis zu
+          einen Tag lang zwischengespeichert werden, auch nachdem Datensätze gelöscht wurden, und dass das Löschen von Inhalten auf dieser Plattform möglicherweise keine Auswirkungen auf Kopien hat, die auf anderen Websites und Plattformen existieren (wie GBIF).
         x_observations_html:
           one: |
             <strong class="count">%{count} Beobachtung</strong>,
