@@ -6603,6 +6603,9 @@ sv:
       delete:
         by_deleting_your_account_you_will_remove: |
           Genom att radera ditt konto kommer du att ta bort
+        caching: |
+          Om du raderar ditt konto för att du försökte radera en del av ditt innehåll men fortfarande kunde se det på en karta eller någon annanstans
+          på Internet, tänk på att kartdata kan cachas i upp till ett dygn även efter att poster raderats, och att radera innehåll på denna plattform kanske inte har någon effekt på kopior som finns på andra webbplatser och plattformar (som GBIF).
         x_observations_html:
           one: |
             <strong class="count">%{count} fynd</strong>,
