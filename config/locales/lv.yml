@@ -1187,7 +1187,7 @@ lv:
   csv: CSV
   csv_file: CSV fails
   csv_should_not_contain_a_header_row: CSV nav jāsatur virsraksta rinda
-  cumulative_ids: "Cumulative IDs: %{count} no %{total}"
+  cumulative_ids: "Kopējais ID skaits: %{count} no %{total}"
   curate_observations: Pārbaudīti novērojumi
   curate_taxa: Pārbaudīti taksoni
   curate_user: Pārbaudīts lietotājs
@@ -2359,6 +2359,7 @@ lv:
   location_is_obscured: Atrašanās vieta ir noslēpta
   location_is_private: Atrašanās vieta ir privāta
   location_specified: Norādīta atrašanās vieta
+  locked_taxa_will_not_allow_new: Aizslēgtiem taksoniem nevar pievienot jaunus zemāku pakāpju taksonus. Ja nobloķēji, piemēram, Amphibia, bet kāds mēģinās importēt <i>Rana catesbeiana</i> no ārēja nosaukumu avota, jaunais taksons izveidosies, bet iespējams, netiks iekļauts abinieku klasē. Ja tā notiek, no jauna pievienotajiem taksoniem jāpievieno karodziņš, lai pievērstu pārziņu uzmanību. Aizslēgt taksonus vajadzētu tikai tad, ja ir pārliecība, ka attiecīgajiem taksoniem ir pievienoti visi zemāko līmeņu taksoni. Pārziņi var rediģēt taksonus un ierakstīt augstākas pakāpes taksonus, bet, lūdzu, apdomā, vai tā vietā nav iespējams apvienot jaunus taksonus ar jau sistēmā pieejamajiem.
   log_in: Pieslēgties
   log_in_or_sign_up_to_add_comments_html: |
     <a href="/login">Pieraksties</a> vai <a href="/signup">reģistrējies</a>, lai pievienotu komentārus.
@@ -4002,6 +4003,7 @@ lv:
     must_be_observed_in_place: jābūt novērotam noteiktā vietā
     must_be_in: jābūt iekļautam taksonā
     must_be_coordinates_shareable_by_project_curators: novērotājam jāsniedz projekta pārziņiem piekļuve pie koordinātām.
+    must_be_verifiable: jābūt pierādāmam
   running_total: Kopējais skaits
   said: teica
   satellite: satelīts
@@ -4169,6 +4171,8 @@ lv:
     Lietotāju noslēptās koordinātas (noslēptas vai privātas izvēlēto ģeoprivātuma iestatījumu dēļ)
   sites_affiliation_more_user_hidden_coordinates_desc: |
     Ar individuālo lietotāju noslēptajām koordinātām dalāmies ļoti ierobežotā daudzumā un tikai noteiktā veidā. Sadarbība ar tīkla dalībnieku tīmekļa vietnēm paredz to, ka iNaturalist vietņu administratoriem sniedz pieeju pie novērojumiem ar noslēptu, privātu un publiski noslēptu ģeoprivātumu, kā arī tādiem, kas noslēpti paša taksona ģeoprivātuma dēļ. Tas padara tavus novērojumus noderīgākus tiem, kas cenšas aizsargāt vietējo dabu.
+  sites_affiliation_overview_current_member_list_html: |
+    Pašreizējais %{start_tag_network}iNaturalist Network%{end_tag_network} dalībnieku saraksts.
   some_agree: daži piekrīt
   some_observations_are_missing_media_or_identifications: |
     Dažiem novērojumiem nav mediju vai identifikāciju
@@ -5274,8 +5278,16 @@ lv:
         book: grāmatas
         journal: Žurnāls
       sorts:
+        default: Padomu secība
         alphaname: Alfabētiskā secībā pēc zinātniskā nosaukuma
         alphadisplay: Alfabētiskā secībā pēc ekrānā attēlotā nosaukuma
+    guide_taxa:
+      edit:
+        eol_explanation: "Pievienot tautā pieņemto nosaukumu ar līdz pieciem attēliem, vienu apraksta sadaļu un vienu karti no EOL."
+        site_explanation: "Pievienot tautā pieņemto nosaukumu ar līdz pieciem licencētiem attēliem un Vikipēdijas kopsavilkumu no %{site_name}."
+      show:
+        reuse_desc: |
+          Taksonu iespējams iekopēt citā padomu lapā. Ja esi viens no padoma izveidotājiem, jānokopējas visam. Ja neesi neviens no izveidotājiem, tad nokopēsies tikai licencētais saturs.
     lifelists:
       list_view: Saraksta skats
       tree_view: Koka skats
@@ -5303,6 +5315,7 @@ lv:
         one: Eksportē %{count} taksonu
         other: Eksportē %{count} taksonus
       no_observations_found_in_place: '%{place} teritorijā nav atrodams neviens novērojums.'
+      no_observations_found_within_this_taxon_in_place: Taksonam no %{place} nav atrasti novērojumi.
       no_species_found_within_this_taxon_in_place: Šajā taksonā un %{place} nav atrastas sugas.
       no_species_found_in_place: Iekš %{place} nav atrastas sugas.
       no_unobserved_species_in_place: Iekš %{place} nenovēroto sugu nav.
@@ -5327,6 +5340,22 @@ lv:
         children: Apakšgrupas
         simplified_tree: Vienkāršots koks
         full_taxonomy: Pilna taksonomija
+    listed_taxa:
+      establishment_field:
+        confirmation: |
+          Vai esi pārliecināts? Šī darbība izmainīs izplatības skaidrojumus VISIEM saraksta taksoniem, kas atrodas šajā vietā iekļautajās vietās. Šīs darbības rezultātā var pazust daudz padarītā darba.
+        description_html: |
+          Šī darbība izmainīs <em>visus</em>taksona izplatības skaidrojumus visās zemākas pakāpes vietās <a href="%{place_url}">%{place_name}</a>
+          uz <strong>"%{establishment_means}"</strong>. Šī funkcija pieejama tikai pārziņiem. Ja izplatības skaidrojumā norādīsi "introducēts", rezultāts būs līdzīgs, bet jau saglabātas vērtības netiks mainītas. Tikai tukšās vērtības tiks aizpildītas.
+    lists:
+      edit:
+        lifelist_titles_cannot_be_changed: Saraksta nosaukumi nevar tikt izmainīti
+      new:
+        place_desc: |
+          Automātiski pievienot sarakstā šajā vietā novērotos taksonus. Jāņem vērā, ka iespējams izvēlēties tikai vietas ar robežām.
+      show:
+        project_list_desc: |
+          Projektā iekļautie projekta pārziņu manuāli pievienotie taksoni un pētniecības līmeņa novērojumu taksoni attēloti projekta sarakstu lapā.
     messages:
       from: "No"
       to: Kam
@@ -5357,11 +5386,18 @@ lv:
       community_id:
         agreement: Piekrišana
         algorithm_summary: Algoritma apraksts
+        ancestor_disagreements: Domstarpības par taksonu priekštečiem
         cumulative_count: Kopējais skaits
         disagreement: Domstarpības
         disagreement_count: Domstarpību skaits
         identification_count: Identifikāciju skaits
         score: Rezultāts
+        explanation: |
+          <p>Ja kāda iemesla dēļ lietotājs izvēlas nepiekrist kopienas taksonam, to iespējams noraidīt. Tādā gadījumā lietotāja ID tiks izmantota, lai sasaistītu citus novērojumus un atjaunotu sarakstus. Tas nozīmē arī to, ka lietotāja novērojums var iegūt pētniecības līmeņa statusu tikai tad, ja kopiena tam piekrīt.
+          </p>
+          <p>
+          Kopienas ID arī tiks uzrādīts, lai visi varētu redzēt to, ka ir ieteiktas atšķirīgas ID.
+          </p>
         you_have_opted_out: Esi izstājies no kopienas identifikācijas
         opt_in_for_this_observation: Iesaistīties novērojumā
         your_id_does_not_match: |
@@ -5437,6 +5473,8 @@ lv:
         limit_alert: Eksportēto failu apjoms būtu pārāk liels. Izmaini filtru iestatījumus tā, lai meklēšanas rezultātos uzrādītos ne vairāk par 200 000 novērojumu.
         query_placeholder: "Norādi vaicājuma parametrus vai ielīmē novērojuma URL"
         taxon_extras_help_html: "Uzmanību! Sleju dēļ eksporta process kļūst lēnāks."
+        geo_help_html: |
+          Informācija lauciņos par pilsētu, novadu, štatu un valstu administratīvajām teritorijām iegūta no koordinātām. Ja noteiktā gadījumā, šie vietu veidi nav derīgi, tiek lietoti citi administratīvo teritoriju veidi. private_* koordinātas tiks iekļautas tikai tad, ja tu esi lietotājs, kura filtrs tiek izmantots vai tad, ja tu esi projekta pārzinis un tiek lietoti projekta filtri.
         be_patient: |
           Lūgums saglabāt pacietību. Process var ilgt vairākas minūtes. Ja tas prasa pārāk daudz laika, iespējams
         check_back: |
@@ -5447,6 +5485,38 @@ lv:
         taking_a_while: "Nu jau ir pagājis kāds brīdis... Lūdzu, pamēģini kādu no šīm iespējām:"
         date_range_help: "Sākuma un beigu datums DD-MM-YYYY formātā, piemēram, 17.01.2015."
         created_on_help: "Novērojumu radīšanas, nevis novērošanas datums, piemēram, 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3>Alternatīvas</h3>
+          <p>
+          Apjomīgi eksporta procesi palēlina mūsu sistēmas darbību un apgrūtina jaunu izmaiņu ieviešanu. Dažas alternatīvas:
+          </p>
+          <ul>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
+          GBIF uzkrāj lielāko daļu mūsu licencēto pētniecības līmeņa novērojumu. Viņu eksporta rīki funkcionē lieliski. GBIF eksportētajos datos ir iekļauts digitālo objektu identifikators <a href="https://www.doi.org/">DOI</a>, ko iespējams citēt pētījumos, kas ir ļoti noderīgi arī mums, jo tad varam redzēt, kā iNat dati tiek izmantoti.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">DarwinCore
+          Archive (DwC-A) priekš GBIF</a>: šis ir <a
+          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a>
+          fails, ko ģenerējam priekš GBIF. Fails nedrīkst saturēt neko citu, kas nav GBIF. Ja vēlies iegūt visu arhīvu, to iespējams lejupielādēt. Tas ir ļoti liels zip. arhīvs ar CSV ierakstiem, kas tiek atjaunots katru nedēļu
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">FGVC 2017 iNaturalist
+          Challenge</a>: saites uz 675 000 licencētu iNaturalist fotogrāfiju, kas tiek izmantotas datorredzes trenēšanā. Izveidots 2017. gada jūnijā, nav atjaunots.
+          </p>
+          </li>
+          </ul>
       field_descriptions:
         id: "Vienīgais novērojuma identificētājs"
         species_guess: "Norādi taksona novērotāja vārdu"
@@ -5506,6 +5576,75 @@ lv:
         project_csv_template_notice_html: |
           Projektam pieejams fails ar veidni, kas var noderēt CSV faila struktūras veidošanai.
           <a href="%{url}">Lejupielādēt veidni</a>
+        soundcloud_notice_html: |
+          2018. gadā Soundcloud izmainīja savu lietojumprogrammas saskarni (API), kas liedza mums izveidot jaunus savienojumus ar Soundcloud kontiem. Ja viņi atjaunos šo funkcionalitāti, varēsim turpināt savienot kontus ar Soundcloud. Kamēr tas nav noticis, audiofailus iespējams augšupielādēt, izmantojot <a href="/observations/upload">Augšupielādētāju</a>.
+      show:
+        allow_curator_coordinate_access_desc_html: |
+          Sniegt projekta pārziņiem piekļuvi pie novērojuma noslēptajām koordinātām.
+        ancestor_disagreements_desc: "Starp taksona priekštečiem identificēto taksonu skaits, kas nesakrīt ar taksonu, piemēram, uzskatu, ka taksons ir noteiktā ģintī, bet nepiekrītu tam, ka tā ir noteikta suga."
+        community_taxon_desc_html: |
+          <p class="ui">
+          Kopienas taksons jeb kopienas identifikācija attēlo to, kas pēc %{site_name} kopienas domām redzams novērojumā. Ja vēlies uzzināt vairāk par to, kā izvēlamies kopienas taksonu, apskati zemāk atrodamo algoritma aprakstu. <strong>Cenšamies izvēlēties taksonus, kam piekrīt vismaz 2/3 identificētāju.</strong> Reizēm tas var nozīmēt to, ka nākas izvēlēties augstākas pakāpes taksonu ar vairākiem pretrunīgiem taksoniem, piemēram, pēc tavām domām tā ir karaļčūska, bet pēc manām klaburčūska. Šādā gadījumā iNat norādītu apakškārtu Serpentes, kurā iekļautas visas čūskas. Algoritms dod priekšroku identifikācijām, kas nesakrīt ar pārējām, jo bieži vien pierādas, ka tās ir pareizas.
+          </p>
+          <p class="ui">
+          Lai novērojumam piešķirtu pētniecības līmeni, kopienai tas ir jāidentificē (tas ir tikai viens no kritērijiem). Ja novērojumam ir tikai viena identifikācija, tam nav kopienas taksona. Visiem novērojumiem ar vismaz vienu identifikāciju, ir arī novērojuma taksons. Novērojuma taksonus izmantojam, lai dalītos ar novērojumiem ar mūsu datu partneriem, lai savienotu tā paša taksona novērojumus, kā arī, lai atjaunotu tavu taksonu sarakstu. Vairumā gadījumu novērojumu taksoni agrāk vai vēlāk kļūst par kopienas taksoniem, bet dažreiz tie var būt atšķirīgi, it sevišķi, tad, ja kopiena vēl nav vienojusies par identifikāciju. Piemēram, ja pēc tavām domām tā ir čuska (apakškārta Serpentes), bet pēc manām domām tā ir karaļčūska (<i>Lampropeltis</i> ģints), novērojuma taksons būtu "karaļčūska" (vadoties tikai pēc manas ID), bet kopienas taksons būtu Serpentes (vadoties pēc vismaz divām identifikācijām). Ja kāda iemesla dēļ nepiekrīti kopienas taksonam, savos novērojumos to ir iespējams noraidīt, kas nozīmē to, ka novērojuma taksons nekad nekļūs par kopienas taksonu (tā vietā par pamatu tiks ņemta tava ID). Tas nozīmē arī to, ka novērojums varēs piešķirt pētniecības līmeni tikai tad, ja kopiena piekritīs <em>tavam viedoklim</em>. Ja tev nepatīk ideja par kopienas taksonu, tad no tās iespējams atteikties <a href="/users/edit" target="_blank">pielāgojot iestatījumus</a>.
+          </p><p class="ui"><strong>Algoritms</strong> visiem identificētajiem taksoniem un taksoniem, kas tos satur (piemēram, ģintī <i>Homo</i> ir <i>Homo sapiens</i>): katru vērtē kā attiecību starp "piekrišanu" skaitu – pavisam atšķirīgo ID skaits (piemēram, taksonu ID, kas nesatur vērtējamo taksonu), kā arī domstarpības par taksonu priekštečiem – piesardzīgāku ID skaits, kas nesakrīt ar smalkākās pakāpes taksonu. Identificētajiem taksoniem, kas novērtēti vismaz ar 2/3 un satur vismaz 2 ID, izvēlies zemākās pakāpes taksonu.
+          </p>
+        cumulative_count_desc: 'Individuāla taksona un tā zemāku pakāpju taksonu identifikāciju skaits'
+        disagreement_count_desc: "Identificēto taksonu skaits, kas nav daļa no taksona priekštečiem"
+        quality_assessment_help_html: |
+          <p>
+          Datu kvalitātes novērtējumā aprakstīta novērojuma precizitāte. Sākumā visiem novērojumiem ir<strong>"hobija"</strong> līmeņa statuss, kas kļūst par
+          <strong>"nepieciešama ID"</strong>statusu, ja
+          </p>
+
+          <ul>
+          <li>novērojumam <strong>ir datums</strong></li>
+          <li>novērojumam ir <strong>koordinātas</strong> (augstums un platums)</li>
+          <li>novērojumam ir<strong>fotogrāfijas vai audiofaili</strong></li>
+          <li>novērojumā nav redzams <strong>cilvēks</strong></li>
+          </ul>
+          <p>
+          Novērojumi sasniedz <strong>"pētniecības līmeni"</strong>, ja
+          </p>
+          <ul>
+          <li>
+          %{site_name} <strong>kopiena vienojas par sugas vai zemākas pakāpes ID</strong>, t.i., kad vairāk par 2/3 identificētāju vienojas par vienu taksonu (ja kopiena nobalso par to, ka kopienas taksons vairāk nevar tikt precizēts, sistēma atjaunos apakšdzimtas vai zemākas pakāpes taksona statusu)
+          </li>
+          </ul>
+          <p>
+          Sistēma atjauno <strong>"hobija līmeņa"</strong>statusu arī tad, ja iepriekšminētie kritēriji netiek izpildīti vai kopiena vienojas par to, ka
+          </p>
+          <ul>
+          <li>
+          <strong>novērojuma atrašanās vieta nešķiet precīza</strong> (piemēram, pērtiķi okeāna vidū vai nīlzirgi ēkās utt.)
+          </li>
+          <li>
+          <strong>organisms nav savvaļas vai tas ir naturalizēts</strong> ( cilvēku vai citplanētiešu ieslodzīts vai kultivēts)
+          </li>
+          <li>
+          novērojumā <strong>nav organisma klātbūtnes pierādījumu</strong>, piemēram, attēli ar ainavām, ūdenstilpnēm, akmeņiem utt.
+          </li>
+          <li>
+          novērojums<strong>nesatur nesenus organisma klātbūtnes pierādījumus (~100 gadi) </strong> (fosīlijas nav pieņemamas, bet nospiedumi, izkārnījumi vai nokritušas lapas ir pieņemamas)
+          </li>
+          <li>
+          novērojumam vairs nav nepieciešama ID <em>un</em> kopienas ID ir virs dzimtas pakāpes
+          </li>
+          <li>
+          novērotājs ir atteicies no kopienas ID funkcijas. Turklāt kopiena un kopienas ID taksons nav ar novērotāja ID saistīts priekštecis vai pēctecis.
+          </li>
+          </ul>
+          <p>
+          Lai gan šis process jau tā ir visai sarežģīts, noteiktās situācijās sistēma izvērtē arī to, vai organisms nav nebrīvē vai naturalizēts.
+          </p>
+          <ul>
+          <li>
+          Sistēma pievieno novērojumam "nebrīvē/naturalizēts" statusu, ja
+          novadā, štatā vai valstī ir pievienoti vismaz 10 citi novērojumi ģints vai zemākā pakāpē ar konkrēto taksonu un 80% vai vairāk no šiem novērojumiem ir atzīmēti kā nebrīvē vai naturalizēti.
+          </li>
+          </ul>
+        score_desc: "aprēķins = kopējais skaits / (kopējais skaits + domstarpību skaits + domstarpības par taksonu priekštečiem)"
     emailer:
       parental_consent:
         content_html: |
@@ -5654,6 +5793,7 @@ lv:
           Lūdzu, norādi kritērijus, lai novērojumus pievienotu projektam.
         project_background_color: Projekta kopsavilkuma sadaļas fona krāsa
         project_background_color_help: Fona krāsa jāizvēlas gana tumša, lai baltais teksts būtu salasāms.
+        project_banner: Projekta plakāts (PNG, JPG vai GIF)
         project_banner_help: Plakāta attēls pēc izvēles. Ideālais attēla izmērs ir 760 x 320 pikseļi.
         project_details: Informācija par projektu
         project_icon: Projekta ikona (PNG, JPG vai GIF)
@@ -5910,6 +6050,28 @@ lv:
         move_children_desc_html: |
           Atzīmē šo lodziņu, lai pārvietotu ievades taksona apakšgrupas uz izvades sadaļu, lai tur izmantotu samainīšanas un apvienošanas funkciju, kad izmaiņas būs apstiptinātas. Ja izmaiņas tiks veiktas ģints vai zemākā līmenī, tad tiks samainīti visi zemāku pakāpju taksonu nosaukumi. Piemēram, ja samainīsi Canidae dzimtu pret Dogidae dzimtu, tad <i>Canis</i> ģints virstaksons tiks nomainīts no Canidae uz Dogidae. Ja samainīsi <i>Canis</i> pret <i>Dogis</i> ģinti, taksons <i>Canis lupus</i> tiks samainīts pret <i>Dogis lupus</i> un <i>Canis lupus</i> ssp. <i>lupus</i> pret <i>Dogis lupus</i> ssp.
           <i>lupus</i>. Šādi iespējams radīt visai lielu jucekli, tāpēc lieto šīs funkcijas atbildīgi.
+    taxon_names:
+      form:
+        new_name_guidelines_html: |
+          <ul><li><p>Centies pievienot nosaukumus, kas citur jau tiek izmantoti. Lūdzu, neizgudro jaunus nosaukumus.</p></li>
+          <li><p>Nepievieno nosaukumus dublikātus, piemēram, nevajadzētu nosaukt vairākus vanagus par "vanagu".</p></li>
+          <li><p>Pievienojot augstākas pakāpes taksonu nosaukumus, centies iekļaut visus zemāko pakāpju taksonus, piemēram, "Gārņu dzimta" vai "Ēriku dzimta"</p></li>
+          <li>
+          <p>
+          Lūdzu, pievieno tikai nosaukumu, nevis citu informāciju, piemēram, savas domas par to, kā nosaukums būtu jāizmanto nav jāraksta.
+          </p>
+          </li>
+          <li>
+          <p>
+          Jauniem leksikoniem jābūt angļu valodā. Lūdzu, nepievieno pārtulkotus valodu nosaukumus, piemēram "French, Français", jo tas liegs mums iespēju rādīt lokalizētus nosaukumus cilvēkiem, kas lieto mūsu vietni dažādās valodās.
+          </p>
+          </li>
+          <li>
+          <p>
+          Noklusējuma režīmā tiek attēloti pārtulkoto valodu tautā pieņemtie nosaukumi (vietu atsauksmju un nosaukumu kārtošanas u.c. funkcijas tiek dezaktivizētas). <a class="readmore" href="/pages/translate">Vairāk informācijas par tulkošanu</a>
+          </p>
+          </li>
+          </ul>
     users:
       edit:
         display_monthly_supporter_status_on_my_profile: |
