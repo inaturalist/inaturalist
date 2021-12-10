@@ -2085,6 +2085,9 @@ he:
   most_observed_threatened_species: המינים שבסכנת הכחדה הנצפים ביותר
   multiple: בחירה מרובה
   multiple_select_option: '-- בחירה מרובה --'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: נדרש להיות תחת פרויקט %{project}
   must_be_observed_after: שנצפה אחרי %{operand}
   must_be_observed_before: שנצפה לפני %{operand}
   must_be_less_than_x_MB: "חייב להיות קטן מ %{x} MB"
@@ -3514,6 +3517,7 @@ he:
   type_taxon_name: "הקלד שם הטקסון"
   uicn_red_list_status: "סטטוס הרשימה האדומה של IUCN:"
   umbrella_projects: פרוייקטי מטריה
+  unable_to_save_comment: לצערנו ההודעה לא נשמרה.
   unblock: הסרת חסימה
   unclassified: לא מסווג
   unique_identifier_of_this_taxon: מזהה ייחודי של טקסון זה במסד הנתונים של מקור זה
@@ -3752,6 +3756,8 @@ he:
   yir_donate_banner_reaching_millions: מגיעים למיליוני בני אדם. מאירים את מגוון המינים. שיתופי פעולה חוצי גבולות.
   #"You" is singular
   yir_donate_banner_all_thanks: הכל בזכות אנשים כמוך!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: עזרת להעצים את iNaturalist השנה. תודה!
   you: אותך
   you_: אתה
   you_appear_offline_try_again: |
