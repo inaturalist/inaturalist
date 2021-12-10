@@ -1711,6 +1711,7 @@ nl:
   #Label for the date/time when a flag was created
   flag_created: Melding aangemaakt
   flag_description: Meld deze inhoud zodat de curatoren weten dat er iets mis mee is.
+  flag_comment_description: Voeg een optionele opmerking toe aan deze markering die verder verklaart waarom je deze toevoegt en die links geeft naar het bewijsmateriaal.
   flag_for_check_list_title_html: |
     Melding voor checklist: %{title}
   flag_for_comment_id_html: Melding voor <a href="%{url}">reactie %{id}</a>
@@ -2559,6 +2560,9 @@ nl:
   multiple_select_option: '-- meerdere --'
   multiple_taxa_for_taxon_change: "Meerdere taxa (invoer voor wisseling/samenvoeging, uitvoer voor opsplitsing)"
   multiple_taxon_ids_separated_by_commas: 'Meerdere taxonID''s gescheiden door komma''s, bijv. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: moet in project %{project} zijn
   must_be_in_taxon: moet in het taxon %{taxon} zitten
   must_be_not_in_taxon: mag niet in het taxon %{taxon} zitten
   must_be_not_observed_by_user: mag niet zijn waargenomen door %{user}
@@ -3014,6 +3018,8 @@ nl:
       <li><strong>Discussies waaraan je deelneemt:</strong>Wanneer je opmerkingen of determinaties toevoegt aan de inhoud van iemand anders, abonneer je je automatisch op nieuwe activiteiten bij deze inhoud. Gebruik de tool 'Beheer je abonnementen' om geen updates meer te ontvangen. </li>
       </ul>
   one_by_one: "Eén voor één"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "een van de volgende zaken moet waar zijn:"
   one_of_your_lists: "één van je lijsten..."
   one_or_more_input_taxa_have_more_than_1000: |
     Eén of meer ingevoerde taxa hebben meer dan 1000 downstreamwaarnemingen.
@@ -4030,6 +4036,7 @@ nl:
     must_be_observed_in_place: moet waargenomen worden in Gebied
     must_be_in: moet in het taxon zitten
     must_be_coordinates_shareable_by_project_curators: waarnemer moet projectcuratoren toestaan om coordinaten te bekijken.
+    must_be_verifiable: moet controleerbaar zijn
   running_total: Lopend Totaal
   said: gezegd
   satellite: satelliet
@@ -4773,6 +4780,7 @@ nl:
   type_taxon_name: "Tik taxonnaam"
   uicn_red_list_status: "Status op de IUCN Rode Lijst:"
   umbrella_projects: Overkoepelende projecten
+  unable_to_save_comment: Helaas konden we de opmerking niet opslaan.
   unblock: Deblokkeren
   unclassified: Niet gerangschikt
   ungrafted_taxa: Loshangende taxa
@@ -5164,6 +5172,8 @@ nl:
   yir_donate_banner_all_thanks: Dankzij mensen zoals jij!
   #"You" is singular
   yir_donate_banner_inaturalist_thrives: Met iNaturalist gaat het voorspoedig door mensen zoals jij!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Je hebt iNaturalist dit jaar laten opbloeien. Bedankt!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist heeft jouw hulp nodig
   yir_generating_and_sharing: |
@@ -6208,6 +6218,7 @@ nl:
           Geef de vereisten op voor de waarnemingen die moeten worden toegevoegd aan dit project.
         project_background_color: Projectoverzicht Achtergrondkleur
         project_background_color_help: Zorg ervoor dat u een kleur kiest die donker genoeg is zodat de witte overlay leesbaar is.
+        project_banner: Projectbanner (PNG of JPG)
         project_banner_help: Optionele bannerafbeelding. Ideale afmetingen zijn 760px bij 320 px.
         project_details: Projects details
         project_icon: Project icoon (PNG, JPG, of GIF)
@@ -6642,6 +6653,8 @@ nl:
       delete:
         by_deleting_your_account_you_will_remove: |
           Door je account te verwijderen, verwijder je
+        caching: |
+          Als je je account verwijdert omdat je geprobeerd hebt gegevens van jou te verwijderen maar je kon het nog steeds zien op een kaart of elders op het internet houd er dan rekening mee dat kaartgegevens kunnen worden gecached voor maximaal een dag, zelfs nadat records zijn verwijderd. Het verwijderen van inhoud op dit platform heeft mogelijk geen effect op kopieën die bestaan op andere sites en platforms (zoals GBIF).
         x_observations_html:
           one: |
             <strong class="count">%{count} waarneming</strong>,
