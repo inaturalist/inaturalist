@@ -79,6 +79,11 @@ cs:
     few: "%{count} chybné identifikace tohoto druhu"
     many: "%{count} chybných identifikací tohoto druhu"
     other: "%{count} chybných identifikací tohoto druhu"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} chybná identifikace druhu v tomto rodu"
+    few: "%{count} chybné identifikace druhu v tomto rodu"
+    many: "%{count} chybných identifikací druhu v tomto rodu"
+    other: "%{count} chybných identifikací druhu v tomto rodu"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -636,6 +641,7 @@ cs:
   alphabetical_order: Abecední pořadí
   already_have_an_account_log_in_html: Máte již účet? <strong> Přihlášení. </strong>
   amphibians: obojživelníci
+  analyze_ids: Analyzovat ID
   ancestor_taxon: Předek taxonu
   and: a
   and_other_taxa: "&amp; Další taxony"
@@ -1107,6 +1113,11 @@ cs:
       Organizace, která tento stav vyhlásila. Před přidáním nového si prosím zvolte již existujícího představitele pomocí automatického dokončování. Můžete přeskočit, pokud chcete být *vy* uvedeni jako autorita.
     place: Místo, na které je tento status omezen.
     url: URL stránky popisující tento status.
+    geoprivacy: |
+      Výchozí geosoukromí pro pozorování tohoto taxonu. Všimněte si, že
+      geosoukromí statusu spojeného s kontinentem, zemí; nebo
+      státem umístěné místo může přepsat stav globální nebo přidružený
+      k vyšší úrovni.
   conservation_status_geoprivacy_desc: |
     Na všechna pozorování tohoto taxonu v tomto místě se použilo výchozí soukromí zeměpisné polohy
   contact_support: Kontaktovat podporu
@@ -1704,6 +1715,10 @@ cs:
   establishment_means: Způsob vzniku
   establishment_means_describes_how: |
     Způsob vzniku popisuje, jak začal daný taxon v oblasti existovat. Více informací o terminologii najdete v DarwinCore <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24"></a>.
+  establishment_means_descriptions:
+    native: vyvinutý v této oblasti nebo přijatý neantropogenními prostředky
+    endemic: nativní a nikde jinde se neobjevuje
+    introduced: Do regionu přišel prostřednictvím antropogenního působení
   estimate_which_input: |
     Odhadněte, které vstupní taxony budou nahrazeny kterými výstupními taxony a které budou po dokončení rozdělení zestručněny na společného předka. Výpočet může chvíli trvat. Odkazy na pozorování jsou zkráceny na podmnožiny 200.
   event_in_progress: Událost probíhá
@@ -1835,6 +1850,8 @@ cs:
   flag_for_observation_title_html: |
     Označit pro pozorování: %{title}
   flag_for_photo_id_html: Označit pro <a href="%{url}">Fotka %{id}</a>
+  flag_for_place_title_html: |
+    Označit pro místo: %{title}
   flag_for_post_title_html: |
     Označit pro poštu: %{title}
   flag_for_project_title_html: |
@@ -3938,6 +3955,8 @@ cs:
   ranks_lowercase_suborder: podřád
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
   ranks_lowercase_infraorder: infrařád
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: podřád
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
   ranks_lowercase_zoosection: zoosekce
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
@@ -4126,6 +4145,7 @@ cs:
     must_be_observed_in_place: musí být pozorován v místě
     must_be_in: musí být v taxonu
     must_be_coordinates_shareable_by_project_curators: pozorovatel musí kurátorům projektu zpřístupnit náhled souřadnic.
+    must_be_verifiable: musí být ověřitelné
   running_total: Spuštění celkem
   said: řekl/a
   satellite: satelitní
@@ -5118,6 +5138,8 @@ cs:
   were_pretty_sure_this_is_in_the_genus: Jsme si docela jistí, že se jedná o rod
   #Label for the most probable taxon in the automated suggestions when that taxon is a family
   were_pretty_sure_this_is_in_the_family: Jsme si docela jistí, že se jedná o rod
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: Jsme si docela jistí, že se jedná o řád
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
