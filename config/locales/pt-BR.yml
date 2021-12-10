@@ -4009,6 +4009,7 @@ pt-BR:
     must_be_observed_in_place: deve ser observado neste lugar
     must_be_in: deve estar presente na espécie ou grupo
     must_be_coordinates_shareable_by_project_curators: observador deve autorizar que administradores de projetos acessem as coordenadas.
+    must_be_verifiable: Deve ser verificável
   running_total: Total acumulado
   said: disse
   satellite: satélite
@@ -6665,6 +6666,13 @@ pt-BR:
       delete:
         by_deleting_your_account_you_will_remove: |
           Ao excluir sua conta, você removerá
+        caching: |
+          Se você está excluindo sua conta porque tentou excluir parte
+          do seu conteúdo, mas você ainda pode vê-los no mapa ou em outro lugar
+          na Internet, tenha em mente que os dados do mapa podem ser armazenados em cache por até
+          um dia, mesmo depois que os registros tenham sido excluídos, e que excluir conteúdo na
+          plataforma pode não ter qualquer efeito nas cópias que existem em outros
+          sites e plataformas (como GBIF).
         x_observations_html:
           one: |
             <strong class="count">1 observação</strong>,
