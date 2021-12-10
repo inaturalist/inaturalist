@@ -384,48 +384,76 @@ $tip-opacity: 1;
     .Identifications {
       .UserWithIcon {
         margin-bottom: 10px;
+
         .icon {
           margin-right: 10px;
         }
-        .title a {
-          color: white;
-          font-size: 120%;
+
+        .title {
+          a {
+            color: white;
+            font-size: 120%;
+          }
         }
+
         .subtitle {
-          margin-top: 0;
           font-size: 80%;
+          margin-top: 0;
+          text-transform: uppercase;
+
           a {
             color: $medium-gray;
           }
+
           i {
             margin-right: 3px;
           }
-          text-transform: uppercase;
         }
       }
-      .idents-users-helped {
-        .UserWithIcon {
-          flex-direction: row-reverse;
-        }
-        text-align: right;
-        h3 {
+
+      @media (min-width: 501px) {
+        .idents-users-helped {
           text-align: right;
-          span {
-            padding-right: 0;
+
+          h3 {
+            text-align: right;
+
+            span {
+              padding-right: 0;
+            }
           }
-        }
-        .UserWithIcon {
-          .icon {
-            margin-right: 0px;
-            margin-left: 10px;
+
+          .UserWithIcon {
+            flex-direction: row-reverse;
+
+            .icon {
+              margin-left: 10px;
+              margin-right: 0;
+            }
           }
         }
       }
+
       .idents-users-who-helped {
         h3 {
-          text-align: left;
+          @media (min-width: 501px) {
+            text-align: left;
+          }
+
           span {
             padding-left: 0;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 500px) {
+      .Identifications {
+        .helped-row {
+          flex-direction: column;
+
+          &> * {
+            margin-left: 0;
           }
         }
       }

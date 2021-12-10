@@ -88,7 +88,7 @@ const Identifications = ( {
         </div>
       ) }
       { user && ( data.users_helped || data.users_who_helped ) ? (
-        <div className="flex-row">
+        <div className="flex-row helped-row">
           { data.users_helped && data.users_helped.length > 0 ? (
             <div className="idents-users-helped">
               <h3>
