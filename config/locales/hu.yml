@@ -605,7 +605,7 @@ hu:
     public_domain: közkincs
     copyright: Szerzői jog
     no_copyright: közkincs (CC0)
-    attribution_noncommercial_sharealike_license: Imenovanje-Nekomercijalno-Dijeli pod istim uvjetima licenc
+    attribution_noncommercial_sharealike_license: Nevezd meg! - Ne add el! - Így add tovább! licenc
   copyright_info_and_more: Szerzői jogi információk és egyebek
   create: Létrehozás
   create_a_new_field: Új mező létrehozása
@@ -1288,6 +1288,15 @@ hu:
   on_caps: "BE"
   onboarding:
     follow_panel_body: Ha meglátogatod ezeket a profilokat és a Követés gombra kattintasz, értesítéseket kapsz a felhasználó megfigyeléseiről
+    youve_got_updates_panel_title: Új híreid vannak!
+    youve_got_updates_panel_body_p1: Légy naprakész az alábbiakkal...
+    youve_got_updates_panel_body_p2: |
+      <ul>
+      <li><strong>Tartalmaid:</strong> Aktivitás a megfigyeléseidről, mint például megjegyzések, meghatározások vagy kedvencek a %{site_name} közösségtől. Akkor is kapsz frissítést amikor valaki hozzáadja megfigyelésedet egy projekthez vagy más adatmezőkkel kiegészíti azt. </li>
+      <li><strong>Emberek:</strong> Új megfigyelések vagy naplóbejegyzések felhasználóktól akiket követsz.</li>
+      <li><strong>Élőlények, projektek és helyek:</strong> Új megfigyelések élőlényekről és helyekről amikre feliratkoztál. Projektekben is részt vehetsz és akkor fejleményeket kapsz ezek naplóbejegyzéseiből.</li>
+      <li><strong>Beszélgetések melyekben részt vettél:</strong> Amikor megjegyzést fűzől mások megfigyeléseihez vagy ezeket azonosítod automatikusan feliratkozol, hogy új fejleményeket kapj minden ezekkel kapcsolatos aktivitásról. Használd a 'Feliratkozások kezelése' eszközt ha nem akarsz a fejleményekről értesülni.</li>
+      </ul>
   one_by_one: "Egyenként"
   open: nyilvános
   open_: Nyilvános
