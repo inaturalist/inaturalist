@@ -5311,6 +5311,20 @@ lv:
       post_donate_social_media_text: Es atbalstu iNaturalist, jo...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Kļūsti par ikmēneša iNaturalist atbalstītāju
+        desc_html: |
+          <p class="lead">
+          <strong>iNaturalist ir viena no pasaulē lielākajām bioloģiskās daudzveidības pētniecības kopienām. Paldies tev par līdzdalību! </strong>
+          </p>
+          <p class="lead">
+          Vēlamies, lai iNaturalist lietošana vienmēr būtu bez maksas. Diemžēl sistēmu uzturēšana gan nav bez maksas. Ja tev patīk iNaturalist, lūdzu, apsver iespēju kļūt par ikmēneša iNaturalist atbalstītāju. Regulāri ziedojumi nodrošina stabilus ienākumus, kas palīdz turpināt attīstīt iNaturalist infrastruktūru un atbalstīt mūsu darbiniekus. Piedāvājam iespēju savam profilam pievienot ikmēneša atbalstītāja piespraudīti.
+          </p>
+          <p class="lead">
+          iNaturalist kopiena aug un ziedojumi mums palīdz uzturēt, piemēram, serverus, darbiniekus, datorredzes izstrādi un jaunu funkciju ieviešanu. Ja labāk vēlies noziedot vienreiz, lūdzu, <a href="%{donate_url}">nospied šeit</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist ir California Academy of Sciences un National Geographic Society kopdarbs. Visus ziedojumus saņems
+          California Academy of Sciences, 501(c)(3) no nodokļiem atbrīvota bezpeļņas organizācija Amerikas Savienotajās Valstīs.
+          </p>
     guides:
       index:
         deprecated_banner: |
