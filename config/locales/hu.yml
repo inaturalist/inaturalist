@@ -76,7 +76,7 @@ hu:
   x_people:
     one: "%{count} személy"
     other: "%{count} személy"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} személy</strong> segített %{user}<strong>%{y} meghatározással</strong>"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} személy</strong> segített %{user} <strong>%{y} meghatározással</strong>"
   x_photos:
     one: "%{count} fénykép"
     other: "%{count} fénykép"
@@ -420,6 +420,8 @@ hu:
   batch_edit: Tömeges szerkesztés
   batch_operations: Tömeges műveletek
   be_the_first_to_fave_this_observation: Elsőként kedvencelheted ezt a megfigyelést...
+  become_a_donor_caps: TÁMOGATÁS
+  become_a_donor_today_caps: TÁMOGATÁS
   bg_color: Háttérszín
   bio: Leírás
   bio_description: Mutatkozz be az iNaturalist többi felhasználójának!
@@ -817,6 +819,8 @@ hu:
   favorite_taxa: Kedvenc taxonok
   favorites: "Kedvencek"
   featured: Kiemelt
+  fields: mezők
+  fields_: Mezők
   file: Fájl
   file_size: Fájl mérete
   fill_out_project_observation_fields: A projekt adatmezőinek kitöltése
@@ -869,6 +873,7 @@ hu:
   go: Mehet
   go_back: Vissza
   google: Google
+  got_it!: Rendben!
   grid: Rács
   grid_layout: Rácselrendezés
   grid_tooltip: Rácselrendezés megtekintése
@@ -887,13 +892,18 @@ hu:
   help: Súgó
   here_are_our_top_suggestions: Íme a legjobb javaslataink
   here_are_our_top_species_suggestions: Íme a legjobb javaslataink
+  #Label for a button to hide the running total of an accumulation chart
+  hide_running_total: Kumulatív elrejtése
   high: Felső
   history: Idővonal
   home: Kezdőlap
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Óraeltérés:"
   i_dont_know_but_i_am_sure_this_is_taxon: Nem tudom, de bizonyosan %{taxon} taxon tagja
   icon: Ikon
   id: Azonosító
   id_withdrawn: Azonosítás visszavonva
+  ids_by_taxon: Meghatározás taxon szerint
   identify: Azonosítás
   identify_title: "Azonosítás"
   identification_saved: "Meghatározás elmentve!"
@@ -903,7 +913,9 @@ hu:
     A gépi látás és képfelismerés egy olyan folyamat, melynek során a számítógépeket képek mintázatainak felismerésére tanítják meg. Olyan eszközöket fejlesztettünk, amelyek a közösségünk megfigyelései alapján tanított gépi látási modelleket használnak meghatározások javaslataihoz. Ez a címke azt jelöli, hogy a meghatározás ezen eszközök valamelyikével történt.
   identifiers: Meghatározók
   ids: "Azonosítás"
-  ids_made_for_others: meghatározás mások számára
+  ids_made_for_others: Meghatározás mások számára
+  if_for_some_reason_a_user_doesnt_agree: |
+    Ha valamilyen okból nem értesz egyet a közösségi taxonnal visszautasíthatod, ez azt jelenti, hogy a te meghatározásod fogja más megfigyelésekkel társítani, életlistát frissíteni, stb. Ez még azt jelenti, hogy a megfigyelésed csak akkor lehet tudományos szintű ha a közösség egyetért veled.
   if_this_is_a_scientific_name: Ha ez tudományos név, jelenleg elfogadott?
   include_suggestions_not_seen_nearby: Földrajzilag távolabb eső javaslatok megjelenítése
   increase_brightness: Fényerő növelése
@@ -959,6 +971,7 @@ hu:
   language_slash_type: Nyelv / Típus
   last_active_with_date: "Utolsó aktivitás: %{date}"
   last_observation: Utóljára megfigyelte
+  last_year: Tavaly
   #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Rétegek
   leaderboards: Ranglisták
@@ -970,6 +983,8 @@ hu:
     identifications_in_month_year: Legtöbb meghatározás %{month_year} hónapban
     identifications_in_year: Legtöbb meghatározás %{year} évben
   learn: Tanulj
+  learn_more: Tudj meg többet
+  learn_more_raquo: "Bővebben"
   leave: Kilépés
   leave_a_comment: Írd ide a megjegyzést
   leave_this_project: Kilépés a projektből
@@ -1144,6 +1159,8 @@ hu:
   more_journal_posts: Több hírmondó-bejegyzés
   more_photos: További fotók
   more_than_a_week_ago: Több, mint egy hete
+  most_agree: legtöbben egyetértenek
+  most_disagree: legtöbben nem értenek egyet
   most_comments_and_faves: A legtöbb megjegyzés vagy kedvenc
   most_observations: Legtöbb megfigyelés
   most_species: Legtöbb faj
@@ -1156,6 +1173,10 @@ hu:
   mute_user: Felhasználó Némítása
   muted_users: Némított felhasználók
   n_ago: "%{n}"
+  n_people_agrees: "%{amount} ember egyetért"
+  n_people_disagrees: "%{amount} ember nem ért egyet"
+  n_person_agrees: "%{amount} személy egyetért"
+  n_person_disagrees: "%{amount} személy nem ért egyet"
   name: Név
   name_entered: Név beírva
   names: Nevek
@@ -1175,6 +1196,10 @@ hu:
   new_list: Új lista
   new_message: Új üzenet
   new_observation_field: Új adatmező
+  new_observations: Új megfigyelések
+  new_observations_in_year: "%{year} évi új megfigyelések"
+  new_observations_ellispsis: "Új megfigyelések..."
+  new_observations_from_place_html: "Új megfigyelések innen: %{place}"
   new_password: Új jelszó
   new_project: Új projekt
   new_source: Új forrás
@@ -1272,6 +1297,7 @@ hu:
   observations_saved: Megfigyelés(ek) elmentve!
   observations_specifying_this_field: Megfigyelések ezzel az adatmezővel
   observations_specifying_this_field_with_value: Megfigyelések "%{value}" értékkel ebben az adatmezőben
+  observations_this_year_vs_last_year: Megfigyelések idén és tavaly
   observations_total: Minden megfigyelés
   observations_w_field: Megfigyelések adatmezővel
   observations_with_this_field: Megfigyelések ezzel az adatmezővel
@@ -1284,6 +1310,8 @@ hu:
   observers: Megfigyelők
   observer_short: Megfigyelő
   off_caps: "KI"
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Idő igazítása"
   old_observation_form: Régi megfigyelési űrlap (elavult)
   on_caps: "BE"
   onboarding:
@@ -1339,6 +1367,15 @@ hu:
   password: Jelszó
   password_confirmation: 'Jelszó megerősítése'
   people: Emberek
+  people_added:
+    identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
+      with_observation: <strong>Meghatározást</strong> csatolt %{user_link} %{observation_link}jéhez
+  per_day: Naponta
+  per_month: Havonta
+  per_week: Hetente
   person: Személy
   per_page: "Oldalanként"
   photo_browser: Fényképtár
@@ -1702,8 +1739,10 @@ hu:
   recently_observed: Nemrég megfigyelt
   redo_search_in_map: Újrakeresés a térképen
   redo_search_in_map_area: Újrakeresés a térképterületen
+  regenerate_stats: Statisztikák újragenerálása
   relationships_user_settings: Kapcsolatok
   remember_me: Emlékezz rám
+  remove: Eltávolítás
   remove_from_featured: Törlés a kiemeltek közül
   remove_photo: Fénykép eltávolítása
   removed: Eltávolítva
@@ -1713,10 +1752,12 @@ hu:
   research_: Kutatási
   research_grade: Tudományos szintű
   research_grade_short_html: "T<span class='full'>udományos </span>Sz<span class='full'>intű</span>"
+  research_grade_tooltip_html: 'A "Tudományos szintű" megfigyelés multimédia anyaggal, hellyel, dátummal és a pontos meghatározásában közösségi egyetértéssel kell rendelkeznie (általában a faj szintjén). <a href="https://www.inaturalist.org/pages/help#quality">Tudj meg többet a minőségi értékelésről</a>'
   research_grade_qualification: A tudományos szint követelményei
   reset_search_filters: Szűrők visszaállítása
   reviewed: Átnézett
   rules_for_adding_observations: Megfigyelések hozzáadására vonatkozó szabályok
+  running_total: Kumulatív
   satellite: műholdkép
   save: Mentés
   save_all: Minden mentése
@@ -1748,14 +1789,20 @@ hu:
   seasonality: Szezonalitás
   seen_nearby: A közelben látták
   select: Kiválasztás
+  select_all: Összes kijelölése
   select_one_or_more_photos: 'Fénykép(ek) kiválasztása'
+  select_observations_to_edit: Válassz ki megfigyelést a szerkesztéshez
   select_options: válassz
   selected_photos: Kiválasztott fényképek
   select_this_taxon: E taxon kiválasztása
   send: küldés
   settings: Beállítások
+  share: Megosztás
   show: Megjelenítés
   show_more: Továbbiak
+  show_off_your_recent_observations: Mutasd meg legújabb megfigyeléseidet saját blogodon vagy honlapodon!
+  #Label for a button to show the running total of an accumulation chart
+  show_running_total: Kumulatív megjelenítése
   sign_in_with_provider: "Bejelentkezés %{provider}-profillal"
   sign_in_with_google: Bejelentkezés Google-fiókkal
   sign_out: Kijelentkezés
@@ -1766,6 +1813,7 @@ hu:
   simple: Egyszerű
   skip_to_next_page: "Ugrás a következő oldalra"
   site_stats: Webhelyforgalom
+  some_agree: néhányan egyetértenek
   sort: Rendezés
   sort_by: Rendezés
   sorting_by: Rendezés
@@ -1797,6 +1845,9 @@ hu:
   #can buy merchandise. Please try to keep translations as short as possible
   store: BOLT
   subject_committed_thing_affecting_stuff_html: "%{subject} általi %{thing} érinti ezt: %{stuff}"
+  submit_observations:
+    one: Egy megfigyelés feltöltése
+    other: '%{count} megfigyelés feltöltése'
   submitted: Feltöltve
   subscribe_to_a_taxon: Feliratkozás taxonhoz
   subscribe_to_a_place: Feliratkozás helyhez
@@ -1815,11 +1866,13 @@ hu:
   taxonomy: Besorolás
   taxon_map:
     overlays: Rétegek
+  taxon_range_guidelines_learn_more_about_taxon_ranges: További információk a taxonintervallumokról
   taxon_ranks: Rendszertani besorolás
   taxonomic: Rendszertani
   taxonomic_groups: Rendszertani csoportok
   tell_us_why: Miért gondolod?
   terms_service: Felhasználási feltételek
+  thanks_from_all_of_us_here_at: Köszönjük a hozzájárulásokat
   the_below_items_are_needed_to_achieve: |
     A következőkre van szükség a <span className="bold">Tudományos szint</span> eléréséhez:
   the_community_id_requires_at_least_two_identifications: A közösségi taxonhoz legalább két felhasználó meghatározása szükséges.
@@ -1833,6 +1886,7 @@ hu:
     other: Ez a megfigyelés kiemelést kapott az %{count} oldalakon
   this_observation_is_research_grade: Ez a megfigyelés tudományos szintű!
   this_observation_was_created_using: "A megfigyelés ezzel készült:"
+  this_year: Idén
   threatened: Veszélyeztetett
   time_ago: "%{time}"
   #As in the title of a book or a blog post
@@ -1874,8 +1928,13 @@ hu:
   user_added_an_identification_html: "%{user} meghatározást javasolt"
   user_added_an_observation_field_html: '%{user} kitöltötte a(z) "%{field_name}" adatmezőt %{owner} megfigyeléséhez'
   user_added_an_observation_field_value_html: "%{user} értéket adott meg egy adatmezőben"
+  user_added_an_x_to_noun_by_html: "%{user} hozzáadott egy %{x}t a %{by} %{noun}hez"
+  user_added_an_x_to_noun_by_user_html: "%{user} hozzáadott egy %{x}t a %{by} %{noun}hez"
   user_added_an_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
+  user_added_an_x_to_noun_html: "%{user} hozzáadott egy %{x}t a %{noun}hoz"
   user_disagrees_this_is_taxon: "%{user} nem ért egyet azzal, hogy ez %{taxon}"
+  user_disagrees_with_previous_finer_identifications: "%{user} nem ért egyet az előző finomabb meghatározásokkal"
+  user_helped_x_people_with_y_ids_html: "%{user} <strong>%{x} embernek</strong> segített, <strong>%{y} meghatározással</strong>"
   user_suggested_an_id: "%{user} javasolt meghatározása"
   username: Felhasználónév
   username_description: Ezzel a felhasználónévvel jelentkezhetsz be, és ennek révén tud az iNaturalist többi felhasználója azonosítani.
@@ -1886,10 +1945,12 @@ hu:
   users_profile: "%{user} profilja"
   value: Érték
   values: Értékek
+  verifiable_observations_by_observation_date: Megerősíthető megfigyelések a megfigyelés dátuma szerint
   view: Megtekintés
   view_all: Összes megtekintése
   view_all_members: Tagok megtekintése
   view_details: Részletek
+  view_field_options: Mező beállítások
   view_full_size_photo: Teljes méretű fénykép megtekintése
   view_journal: Hírmondó megtekintése
   view_leaderboard_from_last_month: Az előző havi ranglista megtekintése
@@ -1899,8 +1960,10 @@ hu:
   view_original: "Eredeti megtekintése"
   view_sample: Példa megtekintése
   view_stats: Statisztikák megtekintése
+  view_year_stats_for_site: "%{site} %{year} évi statisztikáinak megtekintése"
   view_your_dashboard: Vezérlőpult megtekintése
   view_your_dashboard_for_more_updates_html: "További információkért <a href='%{url}'>irány a vezérlőpult</a>"
+  view_your_year_stats: "%{year} évi statisztikáid megtekintése"
   view_yours: Sajátok megtekintése
   visually_similar: Kinézetre hasonló
   w_photos_only: fotókkal
@@ -1925,6 +1988,8 @@ hu:
   where_were_you?: Hol voltál?
   white: fehér
   who_can_add_observation_fields_to_my_obs: Ki adhat adatmezőket a megfigyeléseimhez?
+  who_helped_user_the_most: "%{user} tőlük kapott a legtöbb segítséget"
+  who_user_helped_the_most: "%{user} nekik segített a legtöbbet"
   with_annotation: Megjelölés
   withdraw: Visszavonás
   withdrawing: Visszavonás...
@@ -1934,8 +1999,10 @@ hu:
   x_journal_archives_for_y: "%{user} hírmondója • Archívum"
   x_journal_middot: "%{user} hírmondója •"
   x_journal_new_post: "%{user} hírmondója • Új bejegyzés"
+  x_of_y_people_over_two_thirds_agree_it_is: "%{x} %{y} emberből (2/3 fölött) egyetért, hogy ez"
   x_project_journal: "%{project} project %{name}"
   year: Év
+  year_in_review: "%{year} áttekintése"
   yellow: sárga
   'yes': "Igen"
   #Used when trusting a project and the user is agreeing to trust the project
@@ -1944,8 +2011,12 @@ hu:
   yes_i_want_to_join: Igen, szeretnék csatlakozni
   yes_license_my_observations_so_scientists_can_use: Engedélyezem, hogy a megfigyeléseimet, a képeket és a hangokat a tudósok felhasználják (ajánlott).
   yesterday: Tegnap
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Nagy szereped volt idén az iNaturalist sikerében. Köszönjük szépen!
   you: te
   you_: Te
+  you_are_submitting_obs_with_no_date_or_no_location: |
+    Dátum és hely nélkül töltesz fel megfigyeléseket. Az ilyen megfigyeléseket lehetetlen azonosítani, ezért ezek alapértelmezetten nem jelennek meg a kereséseknél.
   you_cant_delete_observation_fields_that_people_are_using: "Nem lehet használatban lévő adatmezőket törölni"
   you_faved_this: A kedvenced!
   you_must_choose_an_observation_field: Ki kell választanod egy adatmezőt
@@ -2005,6 +2076,10 @@ hu:
       edit:
         lifelist_titles_cannot_be_changed: Az életlisták nevén nem lehet módosítani
     observations:
+      community_id:
+        agreement: Egyetértés
+        disagreement: Ellenkezés
+        disagreement_count: Ellenkezések száma
       field_descriptions:
         time_zone: A megfigyelés időzónája
       show:
@@ -2129,6 +2204,22 @@ hu:
         recent_w_7_obs: Legújabb 7+ megfigyeléssel
         recent_w_7_obs_desc: Az utóbbi hét nap alatt regisztrált és 7+ megfigyelése van
       year:
+        compare_desc: |
+          Hogy alakult ez az év az előzőekhez képest? Három vagy több év használat révén össze tudjuk hasonlítani az éves aktivitásaidat. A zöld csík jelzi az idei évet, a fehér függőleges vonal mutatja a tavalyi évet, a szürke mezők pedig a legalacsonyabb, legmagasabb és átlagos aktivitás évét. Az aktivitás nélküli éveket nem jelenítjük meg.
+        compared_to_previous_years: Összehasonlítás az előző évekkel
+        growth_title: Növekedés
+        new_species_per_year: Új faj / Év
+        new_species_per_year_by_date_added: Hozzáadás dátuma szerint
+        percent_growth_in_year: "%{year} évi növekedés"
+        observations_per_year: Megfigyelés / Év
+        observations_per_year_by_date_added: Hozzáadás dátuma szerint
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: A megfigyelések huzama
+        observation_streaks_desc2: |
+          Egy megfigyelési huzam egy legalább öt napból álló periódus, ami alatt valaki minden nap kimegy a természetbe és új, megerősíthető megfigyeléseket végez minden egyes napon. Itt a leghosszabb huzamokat mutatjuk meg, amelyek az idén kezdődtek, vagy amelyek folyamatban voltak a statisztikák generálásának időpontjában. (Egyéni felhasználóknak azokat a huzamokat is mutatjuk, amelyek idén értek véget.)
+        species_per_year: Faj / Év
+        species_per_year_by_date_added: Hozzáadás dátuma szerint
+        stats_generated_datetime: A statisztikák a %{datetime} időpontot tükrözik.
         translators_title: Fordítók
     taxa:
       show:
