@@ -2181,6 +2181,9 @@ kn:
   most_observed_threatened_species: ಅತಿಹೆಚ್ಚು ವೀಕ್ಷಿಸಿರುವ ಅಪಾಯದಂಚಿನಲ್ಲಿರುವ ಪ್ರಭೇದಗಳು
   multiple: ಹಲವಾರು
   multiple_select_option: '--ಹಲವಾರು--'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: '%{project} ಪ್ರಾಯೋಜನೆಯಲ್ಲಿರಲೇಬೇಕು'
   must_be_in_taxon: '%{taxon} ಜೀವಿವರ್ಗದಲ್ಲಿರಲೇಬೇಕು'
   must_be_not_in_taxon: '%{taxon} ಜೀವಿವರ್ಗದಲ್ಲಿರಲೇಬಾರದು'
   must_be_not_observed_by_user: '%{user} ಅವರಿಂದ ವಿಕ್ಷಣೆಯಾಗಿರಲೇಬಾರದು'
@@ -2568,6 +2571,8 @@ kn:
     youve_got_updates_panel_title: ನಿಮಗೆ ನವೀಕರಣಗಳಿವೆ!
     youve_got_updates_panel_body_p1: ಈ ಕೆಳಗಿನವುಗಳ ನವೀಕರಣದಿಂದ ಪ್ರಸ್ತುತದಿಂದಿರಿ...
   one_by_one: "ಒಂದರ-ನಂತರ-ಇನ್ನೊಂದು"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "ಈ ಕೆಳಕಂಡವುಗಳಲ್ಲಿ ಯಾವುದಾದರೊಂದು ನಿಜವಿರಲೇಬೇಕು:"
   one_of_your_lists: "ನಿಮ್ಮ ಪಟ್ಟಿಗಳಲ್ಲೊಂದು..."
   only_a_project_manager_can_add: ಪ್ರಾಯೋಜನೆಯ ಮೇಲ್ವಿಚಾರಣೆ ಸ್ಥಿತಿಯನ್ನು ಕೇವಲ ಪ್ರಾಯೋಜನೆ ವ್ಯವಸ್ಥಾಪಕರು ಮಾತ್ರ ಸೇರಿಸಬಹುದು
   only_administrators_may_access_that_page: ಆ ಪುಟಕ್ಕೆ ಕೇವಲ ನಿರ್ವಾಹಕರಿಗೆ ಮಾತ್ರ ಪ್ರವೇಶವಿದೆ
@@ -3517,6 +3522,7 @@ kn:
     must_be_observed_in_place: ಸ್ಥಳದಲ್ಲಿ ವೀಕ್ಷಣೆಯಾಗಿರಲೇಬೇಕು
     must_be_in: ಜೀವಿವರ್ಗದಲ್ಲಿರಲೇಬೇಕು
     must_be_coordinates_shareable_by_project_curators: ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನೋಡಲು ಪ್ರಾಯೋಜನೆಯ ಮೇಲ್ವಿಚಾರಕರಿಗೆ ವೀಕ್ಷಕರು ಅನುಮತಿಸಲೇಬೇಕು.
+    must_be_verifiable: ಪರಿಶೀಲಿಸಬಲ್ಲದಾಗಿರಬೇಕು
   running_total: ಕ್ರೋಢೀಕೃತ ಮೊತ್ತ
   said: ಹೇಳಿದ್ದಾರೆ
   satellite: ಉಪಗ್ರಹ
@@ -4471,6 +4477,8 @@ kn:
   yir_donate_banner_inaturalist_in_year: "%{year} ನೇ ವರ್ಷದಲ್ಲಿ INATURALIST"
   #"You" is singular
   yir_donate_banner_all_thanks: ನಿಮ್ಮಂಥ ಎಲ್ಲಾ ವ್ಯಕ್ತಿಗಳಿಗೆ ಧನ್ಯವಾದಗಳು!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: ಈ ವರ್ಷ iNaturalist ನ ಅಭಿವೃದ್ಧಿಗೆ ನೀವು ಸಹಕರಿಸಿದ್ದೀರಿ. ಧನ್ಯವಾದಗಳು!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist ಗೆ ನಿಮ್ಮ ಸಹಾಯದ ಅಗತ್ಯವಿದೆ
   you: ನೀವು
