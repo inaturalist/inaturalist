@@ -3117,6 +3117,7 @@ he:
     must_be_identified: חייב להיות מזוהה
     must_be_on_list: חייב להיות ברשימה
     must_be_coordinates_shareable_by_project_curators: מדווח חייב לאפשר לאוצרי הפרוייקט לראות את הקואורדינטות
+    must_be_verifiable: חייב להיות בר-אימות
   running_total: סך הכל
   said: נאמר
   satellite: לוויין
@@ -4186,6 +4187,8 @@ he:
       delete:
         by_deleting_your_account_you_will_remove: |
           במחיקת החשבון שלך יוסרו גם
+        caching: |
+          במידה ומתצבעת מחיקת חשבון מכיוון שניסית למחוק תוכן כלשהו ועדיין ניתן לצפות בו במפה או במקום אחר במרשתת, יש לזכור שמידע ממופה עשוי להישמר באופן זמני במשך יום נוסף לאחר שהרשומות נמחקו, ושמחיחקת רשומות בפלטפורמה זו עשוייה שלא להשפיע על עותקים של המידע שנמצא באתרים או פלטפורמות אחרות כדוגמת GBIF.
         furthermore_cannot_undo_html: |
           ומה עוד, <strong>לא ניתן לבטל פעילות הזאת.</strong> אם תשנה את דעתך, לא ניתן יהיה לקבל את התוכן שלך בחזרה.
         type_confirmation_code: הקלדת %{confirmation_code}

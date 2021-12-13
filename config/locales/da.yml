@@ -3018,6 +3018,8 @@ da:
          <li><strong>Diskussioner, du har deltaget i: </strong> Kommentering eller tilføjelse af identifikationer til andres indhold, tilmelder dig automatisk enhver ny aktivitet på dette indhold. Brug værktøjet 'Administrer dit abonnement' for at stoppe modtagelsen af underretninger. </li>
       </ul>
   one_by_one: "En efter en"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "et af flg. skal være sandt:"
   one_of_your_lists: "en af dine lister..."
   one_or_more_input_taxa_have_more_than_1000: |
     En eller flere input-taksa har flere end 1.000 nedstrømsobservationer.
@@ -6943,6 +6945,13 @@ da:
       delete:
         by_deleting_your_account_you_will_remove: |
           Ved at slette din konto vil du fjerne
+        caching: |
+          Sletter du din konto, fordi du forsøgte at slette noget
+          af dit indhold, men du kan stadig se det på et kort eller andre steder
+          på Internet, så husk, at kortdata kan være cachet i op til
+          én dag efter registreringer er slettet, samt at sletning af indhold på
+          denne platform måske ingen effekt har på kopier på andre
+          websteder og platforme (såsom GBIF).
         x_observations_html:
           one: |
             <strong class="count">1 observation</strong>,

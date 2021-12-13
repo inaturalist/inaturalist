@@ -3939,6 +3939,7 @@ ca:
     must_be_observed_in_place: ha de ser observada en aquest lloc
     must_be_in: ha d'estar en el tàxon
     must_be_coordinates_shareable_by_project_curators: l'observador ha de permetre als supervisors del projecte veure les coordenades.
+    must_be_verifiable: ha de ser verificable
   running_total: Acumulat total
   said: deia
   satellite: satèl·lit
@@ -6421,6 +6422,8 @@ ca:
       delete:
         by_deleting_your_account_you_will_remove: |
           Esborrant el vostre compte eliminareu
+        caching: |
+          Si esteu suprimint el vostre compte perquè heu intentat suprimir part del vostre contingut, però encara podeu veure'l en un mapa o en qualsevol altre lloc d'Internet, tingueu en compte que les dades del mapa es poden emmagatzemar a la memòria cau fins i tot un dia després que s'hagin suprimit els registres, però també que la supressió de contingut d'aquesta plataforma pot no afectar les còpies que existeixen en altres llocs i plataformes (com GBIF).
         x_observations_html:
           one: |
             <strong class="count"> 1 observació </strong>, inclou el treball de <strong class = "count">%{helpers_count} persones </strong> que us han ajudat amb les identificacions 

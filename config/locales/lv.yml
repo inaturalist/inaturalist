@@ -435,7 +435,7 @@ lv:
   admin_only: Tikai administratori
   admin_tools: Administratora rīki
   #Organizations affiliated with an iNaturalist Network member or similar entity
-  affiliated_organizations: Saistītās organizācijas
+  affiliated_organizations: Partnerorganizācijas
   agree_: Piekrist
   agree?: Piekrist?
   agree_with_current_taxon: Piekrist pašreizējam taksonam
@@ -1862,7 +1862,7 @@ lv:
   global_names: Globāli nosaukumi
   globally: Globāli
   go: Meklēt
-  go_back: Atgriezties
+  go_back: Atpakaļ
   going_to_your_observations: Ielādē tavus novērojumus...
   good_choice_for_sharing: Laba izvēle, lai dalītos ar zinātniekiem
   google: Google
@@ -1988,8 +1988,8 @@ lv:
   identotron: Salīdzinātājs
   identotron_for: Salīdzinātājs
   identotron_help: Salīdzinātāja palīdzība
-  ids: "IDs"
-  ids_made_for_others: Citiem radītas IDs
+  ids: "ID"
+  ids_made_for_others: Citu novērojumiem pievienotās ID
   if_for_some_reason_a_user_doesnt_agree: |
     Ja kāda iemesla dēļ izvēlies nepiekrist kopienas taksonam, to iespējams noraidīt. Tādā gadījumā tava ID tiks izmantota, lai sasaistītu citus novērojumus un atjaunotu sarakstus. Tas nozīmē arī to, ka tavs novērojums var iegūt pētniecības līmeņa statusu tikai tad, ja kopiena piekrīt tev.
   if_matches_come_from_a_comprehensive_list: Ja atbilstīgo taksonu avots ir pilnīgs saraksts, šeit parādīsies zaļa josla.
@@ -2020,7 +2020,7 @@ lv:
   in_n: "%{n}"
   in_place_x: '%{place}'
   inaturalist_network: iNaturalist tīkls
-  inaturalist_network_affiliation: Piederība iNaturalist tīklam
+  inaturalist_network_affiliation: Piederība kādam iNaturalist tīkla partnerim
   #Label for messages you've received
   inbox: Iesūtne
   include_places: Iekļaut vietas
@@ -2080,7 +2080,7 @@ lv:
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: slīpraksts
   item_flagged_notice_html: |
-    Ieraksts ir atzīmēts kā mēstule un vairs nav publiski redzams nevienam lietotājam, izņemot tevi, jo tu esi satura autors vai pārzinis. Ja ir pieļauta kļūda, lūdzu,
+    Ieraksts atzīmēts kā mēstule un vairs nav publiski redzams nevienam lietotājam, izņemot tevi, jo tu esi satura autors vai pārzinis. Ja pieļauta kļūda, lūdzu,
     <a href="mailto:%{help_email}" class="contact">sazinies ar mums</a>.
     <a href="%{manage_flags_path}">Pārvaldīt karodziņus</a>.
   join: Pievienoties
@@ -2487,8 +2487,12 @@ lv:
   missing_date: Trūkst datuma
   mobile: Mob.
   moderation_history_for_user_html: '%{user} pārvaldības vēsture'
+  moderation_history_desc_html: |
+    Tai skaitā moderatoru veiktās darbības, piemēram, komentāru noslēpšana vai rādīšana, lietotāju veidotā satura piezīmes un karodziņi, bet ne taksoni. Tas <strong>redzams tikai pārziņiem</strong> un <strong>pārziņi nevar apskatīt paši savu vēsturi</strong>, kas nozīmē to, ka konkrētais lietotājs nekad nevarēs apskatīt par viņu pašu pievienotās piezīmes.
+  moderator_note_desc: |
+    Moderatora piezīmēs tiek pierakstītas uz pierādījumiem balstītas aizdomas par lietotājiem. Piemēram, aizdomas par lietotāja izveidotu kontu, kas paredzēts citu maldināšanai.
   #Person who executed a moderator action or flagged something
-  moderator_or_flagger: Pārvaldnieks / karodziņu pievienotājs
+  moderator_or_flagger: Moderators / karodziņu pievienotājs
   mollusks: gliemji
   momentjs:
     shortRelativeTime:
@@ -2627,7 +2631,7 @@ lv:
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
     <strong>iNaturalist Suomi</strong> ir daļa no iNaturalist starptautiskā tīkla ar mērķi pievērst uzmanību bioloģiskajai daudzveidībai un cilvēkiem Somijā. Vai vēlies mainīt sava konta piederību no <strong>%{inat_site_name}</strong> uz <strong>iNaturalist Suomi</strong> un dalīties ar datiem ar vietējām organizācijām?
   network_affiliation_prompt_from_other_site_html: |
-    Vai vēlies mainīt sava konta piederību no <strong>%{other_site_name}</strong> uz <strong>%{site_name}</strong>?
+    Vai vēlies saistīt savu kontu ar <strong>%{site_name}</strong>, nevis <strong>%{other_site_name}</strong>?
   #Column header in a table listing iNaturalist Network members
   network_member: Tīkla dalībnieks
   new: Jauns
@@ -2994,7 +2998,7 @@ lv:
     updates_by_you_panel_title: Šo cilni var izmantot, lai ātri izfiltrētu tikai tava satura aktualitātes.
     updates_by_you_panel_body: '"Visas aktualitātes" cilnē saņemsi paziņojumus ne tikai par savu saturu, bet arī par lietotājiem, taksoniem un vietām, kam tu seko, izmantojot labajā pusē atrodamo "Abonementi" rīku.'
     youve_got_updates_panel_title: Saņemti jauni paziņojumi.
-    youve_got_updates_panel_body_p1: 'Esi lietas kursā par notiekošo ar paziņojumiem:'
+    youve_got_updates_panel_body_p1: 'Uzzini par jaunākajiem notikumiem ar paziņojumu palīdzību:'
     youve_got_updates_panel_body_p2: |
       <ul><li><strong>Tavs saturs:</strong> Aktivitāte pie taviem novērojumiem, piemēram, komentāri, identifikācijas un izlase no %{site_name} kopienas. Paziņojumi tiek saņemti arī tad, kad kāds pievieno tavu novērojumu kādam projektam vai pievieno tam papildu laukus.</li><li><strong>Lietotāji:</strong> Jauni novērojumi vai žurnāla ieraksti no lietotājiem, kam tu seko.</li>
       <li><strong>Organismi, projekti un vietas:</strong> Jauni novērojumi ar konkrētiem organismiem vai vietām, kam tu seko. Vēl ir iespējams pievienoties projektiem, lai saņemtu paziņojumus, kad tiek publicēti jauni žurnāla ieraksti.</li>
@@ -4162,17 +4166,36 @@ lv:
   sites_affiliation_more_automatically_hidden_coordinates: |
     Automātiski noslēptas koordinātas (tās ir noslēptas vai privātas taksonu ģeoprivātuma iestatījumu dēļ)
   sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist automātiski noslēpj noteiktu sugu koordinātas, lai pasargātu tās no tādiem draudiem kā miera traucēšana, transportēšana un malu medniecība. Ja koordinātas ir noslēptas tikai automātiski, lai pasargātu sugas, iNaturalist dalās ar visu novērojumu faktiskajām koordinātām arattiecīgo valstu tīkla dalībniekiem.
+    iNaturalist automātiski noslēpj noteiktu sugu koordinātas, lai pasargātu tās no tādiem draudiem kā miera traucēšana, transportēšana un malu medniecība. Ja koordinātas ir noslēptas tikai automātiski, lai pasargātu sugas, iNaturalist dalās ar visu novērojumu faktiskajām koordinātām ar attiecīgo valstu tīkla dalībniekiem.
   sites_affiliation_more_email_addresses: |
     E-pasta adreses ir pieejamas tīkla dalībniekiem tikai ar šo vietni saistītos komunikācijas nolūkos.
   sites_affiliation_more_twice_per_year: |
-    Divreiz gadā iNaturalist dalās ar saistīto kontu e-pasta adresēm un daļu no noslēptajām koordinātām (publikai noslēptās un privātās koordinātas) ar iNaturalist tīkla dalībniekiem, lai veicinātu iNaturalist datu pielietojumu zinātnē, dabas aizsardzībā un pārvaldībā. Koordinātas var noslēpt divos dažādos veidos. Dalīšanās ar koordinātām arī var notikt divos dažādos veidos. Tas aprakstīts šeit:
+    Divreiz gadā iNaturalist dalās ar saistīto kontu e-pasta adresēm un daļu no noslēptajām koordinātām (publikai noslēptās un privātās koordinātas) ar iNaturalist tīkla partneriem, lai veicinātu iNaturalist datu pielietojumu zinātnē, dabas aizsardzībā un pārvaldībā. Koordinātas var noslēpt divos dažādos veidos. Dalīšanās ar koordinātām arī var notikt divos dažādos veidos. Tas aprakstīts šeit:
   sites_affiliation_more_user_hidden_coordinates: |
     Lietotāju noslēptās koordinātas (noslēptas vai privātas izvēlēto ģeoprivātuma iestatījumu dēļ)
   sites_affiliation_more_user_hidden_coordinates_desc: |
-    Ar individuālo lietotāju noslēptajām koordinātām dalāmies ļoti ierobežotā daudzumā un tikai noteiktā veidā. Sadarbība ar tīkla dalībnieku tīmekļa vietnēm paredz to, ka iNaturalist vietņu administratoriem sniedz pieeju pie novērojumiem ar noslēptu, privātu un publiski noslēptu ģeoprivātumu, kā arī tādiem, kas noslēpti paša taksona ģeoprivātuma dēļ. Tas padara tavus novērojumus noderīgākus tiem, kas cenšas aizsargāt vietējo dabu.
+    Ar individuālo lietotāju noslēptajām koordinātām dalāmies ļoti ierobežotā daudzumā un tikai noteiktā veidā. Sadarbība ar tīkla partneru tīmekļa vietnēm paredz to, ka iNaturalist vietņu administratoriem sniedz pieeju pie novērojumiem ar noslēptu, privātu un publiski noslēptu ģeoprivātumu, kā arī tādiem, kas noslēpti paša taksona ģeoprivātuma dēļ. Tas padara tavus novērojumus noderīgākus tiem, kas cenšas aizsargāt vietējo dabu.
   sites_affiliation_overview_current_member_list_html: |
     Pašreizējais %{start_tag_network}iNaturalist Network%{end_tag_network} dalībnieku saraksts.
+  sites_affiliation_overview_in_order_to_advance: |
+    Mūsu tīkla dalībnieki var dalīties ar iNaturalist datiem, lai veicinātu pētniecību un dabas aizsardzību. Viņiem katrā konkrētajā gadījumā jāizvērtē tas, cik pamatota un piemērota ir dalīšanās ar šiem datiem. Jāapdomā arī tas, kāds varētu būt potenciālais iznākums. Viņiem jāuzmana arī datu drošība un jānodrošina tas, lai dati netiktu atklāti publiski un tie netiktu lietoti nekādā citā veidā, kas nesakrīt ar sākotnējo mērķi. Turklāt viņu pienākums ir katru gadu atskaitē dokumentēt visus potenciālos iznākumus, iecerēto pielietojumu un gadījumus, kad ar datiem kāds dalās.
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    e %{start_tag_network}iNaturalist Tīkls%{end_tag_network} ir %{start_tag_global}globālās
+    iNaturalist kopienas%{end_tag_global} lokalizēto tīmekļa vietņu apkopojums.
+  sites_affiliation_overview_when_you_affiliate: |
+    Ja izvēlies saistīt savu kontu ar kādu no iNaturalist tīkla partneriem, tava e-pasta adrese un noslēpto un privāto novērojumu faktiskās koordinātas būs pieejamas šim tīkla dalībniekam. Tādējādi tavi novērojumi vairāk veicina vietējo dabas aizsardzību. Ja tu dzīvo vai bieži apmeklēt kādu vietu, kas iekļauta kādā no tīkla partneru sistēmām, ieteicam saistīt savu kontu ar to, lai veicinātu dalīšanos ar datiem.
+  sites_affiliation_overview_you_can_continue_html: |
+    Vari turpināt pieslēgties gan ar iNaturalist.org, gan ar konkrētā iNaturalist tīkla partnera tīmekļa vietni. Visi tavi dati tiks glabāti vienā un tajā pašā vietā, kā arī varēsi sazināties ar visu starptautisko iNaturalist kopienu neatkarīgi no tā, ar kura partnera vietni tavs konts būs saistīts. Katrs iNaturalist konts var būt saistīts tikai ar vienu tīkla partnera tīmekļa vietni. To iespējams apskatīt un izmainīt pēc vajadzības %{start_tag_settings}konta iestatījumos%{end_tag_settings}.
+  sites_affiliation_title: Vairāk informācijas par tīkla partnerorganizācijām
+  sites_network_cas_and_nat_geo_html: |
+    %{start_tag_cas}California Academy of Sciences%{end_tag_cas} un
+    %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} ir oficiāli vienojušies ar katru organizāciju konkrētajā reģionā, lai veicinātu iNaturalist platformas lietošanu. <strong> Ja tavai organizācijai ir interese pievienoties iNaturalist tīklam, vairāk informācijas pieejams
+    %{start_tag_join}šeit%{end_tag_join}.</strong>
+  sites_network_consists_of: "iNaturalist tīkls sastāv no vairākām organizācijām:"
+  sites_network_inaturalist_network_collection: |
+    iNaturalist tīkls ir globālās iNaturalist kopienas lokalizēto tīmekļa vietņu apkopojums, kas savienots ar globālo iNaturalist kopienu. Vietējās organizācijas atbalsta mūsu tīmekļa vietnes, lai veicinātu iNaturalist lietošanu noteiktajā valstī un aizsargātu vietējo bioloģisko daudzveidību. Organizācijām ir pieeja pie viņu reģionā reģistrēto novērojumu faktiskajām koordinātām, kas veicina efektīvāku apdraudēto sugu aizsardzību.
+  sites_network_your_username: |
+    Tavs lietotājvārds un parole funkcionē visās tīmekļa vietnēs, kas ir daļa no iNaturalist tīkla. Ja izvēlies saistīt savu kontu ar kādu no iNaturalist tīkla partneriem, tava e-pasta adrese (tikai, lai sazinātos ar tevi par vietnes aktivitātēm) un noslēpto un privāto novērojumu faktiskās koordinātas būs pieejamas šīm organizācijām, kas uztur attiecīgās tīmekļa vietnes.
   some_agree: daži piekrīt
   some_observations_are_missing_media_or_identifications: |
     Dažiem novērojumiem nav mediju vai identifikāciju
@@ -4703,6 +4726,7 @@ lv:
   type_taxon_name: "Ieraksti taksona nosaukumu"
   uicn_red_list_status: "IUCN Sarkanās grāmatas statuss:"
   umbrella_projects: Projektu grupas
+  unable_to_save_comment: Diemžēl neizdevās saglabāt komentāru.
   unblock: Atbloķēt
   unclassified: Neklasificēts
   ungrafted_taxa: Nepievienoti taksoni
@@ -5101,6 +5125,8 @@ lv:
   yir_donate_banner_all_thanks: Tas viss sasniegts, pateicoties tādiem cilvēkiem kā tev.
   #"You" is singular
   yir_donate_banner_inaturalist_thrives: iNaturalist dzeļ un plaukst, pateicoties tādiem cilvēkiem kā tev.
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Tu šogad palīdzēji ziedēt un plaukt iNaturalist tīklam. Paldies!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist nepieciešams tavs atbalsts
   yir_generating_and_sharing: |
@@ -5214,7 +5240,7 @@ lv:
   your_flickr_photos_have_been_tagged: Tavām Flickr fotogrāfijām pievienoti tagi.
   your_hard_drive: tavs cietais disks
   your_home: Sākumlapa
-  your_id: Tavs ID
+  your_id: Tava ID
   your_identification: Tava identifikācija
   your_membership: Tava piederība
   your_name_was_saved: Tavs vārds ir saglabāts.
@@ -5241,6 +5267,9 @@ lv:
   verifiable_observations: Pierādāmi novērojumi
   views:
     views: 'Skatījumi'
+    announcements:
+      locales_desc: |
+        Nospied CMD vai SHIFT taustiņu un peles kreiso taustiņu, lai atlasītu vairākus reizē. Ja neatlasīsi nevienu valodu, paziņojums būs redzams visiem lietotājiem neatkarīgi no atrašanās vietas. Ja atlasīsi valodu bez konkrēta reģiona, tad paziņojums netiks rādīts noteiktos reģionos. Piemēram, ja izvēlēsies "en" (angļu valodu), lietotāji, kas izmanto en-US (ASV angļu valodu) neredzēs paziņojumus. Ja nevēlies, lai tā notiktu, atlasi abas valodas. Ja vēlies, lai visi vietnes lietotāji redzētu paziņojumu, atstāj lauku tukšu.
     content_freeze:
       content_freeze: Satura iesaldēšana
       during_this_time: |
@@ -5264,19 +5293,75 @@ lv:
             Ja plāno darbu klasē, lūdzu, izlasi <a href="%{url}">padomus skolotājiem</a>, lai uzzinātu dažādus ieteikumus %{site_name} vietnes izmantošanai darbā ar studentiem un skolniekiem.
     donate:
       donate_short_desc: "Noziedo jau tagad, lai izrādītu savu atbalstu."
+      donate_desc_html: |
+        <p class="lead">
+        <strong>iNaturalist ir viena no pasaulē lielākajām bioloģiskās daudzveidības pētniecības kopienām. Paldies tev par līdzdalību! </strong>
+        </p>
+        <p class="lead">
+        Mūsu globālajā dabas mīlētāju kopienā dalāmies ar zināšanām un ģenerējam datus par bioloģisko daudzveidību. Ja tevi uzrunā mūsu padarītais, lūdzu, apsver iespēju noziedot vienreiz vai atkārtoti. Vēl vari apskatīt<a
+        href="https://www.inaturalist.org/pages/giving">citus veidus, kā mums palīdzēt.</a>
+        </p>
+        <p class="lead">
+        iNaturalist kopiena aug un ziedojumi mums palīdz uzturēt, piemēram, serverus, darbiniekus, datorredzes izstrādi un jaunu funkciju ieviešanu.
+        </p>
+        <p class="text-muted">
+        iNaturalist ir California Academy of Sciences un National Geographic Society kopdarbs. Visus ziedojumus saņems
+        California Academy of Sciences, 501(c)(3) no nodokļiem atbrīvota bezpeļņas organizācija Amerikas Savienotajās Valstīs nodokļu maksātāja Nr. (Tax ID): 94-1156258).
+        </p>
       post_donate_social_media_text: Es atbalstu iNaturalist, jo...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Kļūsti par ikmēneša iNaturalist atbalstītāju
+        desc_html: |
+          <p class="lead">
+          <strong>iNaturalist ir viena no pasaulē lielākajām bioloģiskās daudzveidības pētniecības kopienām. Paldies tev par līdzdalību! </strong>
+          </p>
+          <p class="lead">
+          Vēlamies, lai iNaturalist lietošana vienmēr būtu bez maksas. Diemžēl sistēmu uzturēšana gan nav bez maksas. Ja tev patīk iNaturalist, lūdzu, apsver iespēju kļūt par ikmēneša iNaturalist atbalstītāju. Regulāri ziedojumi nodrošina stabilus ienākumus, kas palīdz turpināt attīstīt iNaturalist infrastruktūru un atbalstīt mūsu darbiniekus. Piedāvājam iespēju savam profilam pievienot ikmēneša atbalstītāja piespraudīti.
+          </p>
+          <p class="lead">
+          iNaturalist kopiena aug un ziedojumi mums palīdz uzturēt, piemēram, serverus, darbiniekus, datorredzes izstrādi un jaunu funkciju ieviešanu. Ja labāk vēlies noziedot vienreiz, lūdzu, <a href="%{donate_url}">nospied šeit</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist ir California Academy of Sciences un National Geographic Society kopdarbs. Visus ziedojumus saņems
+          California Academy of Sciences, 501(c)(3) no nodokļiem atbrīvota bezpeļņas organizācija Amerikas Savienotajās Valstīs.
+          </p>
+    flags:
+      show:
+        flags_that_should_not_be_resolved_desc_html: |
+          Lūdzu, mēģini atrisināt ar karodziņiem atzīmētos<code>mēstuļu</code> un <code>autortiesību pārkāpumus</code> tikai tad, ja tās patiesībā nav mēstules vai autortiesību pārkāpumi.
     guides:
       index:
         deprecated_banner: |
           Jāņem vērā, ka kopš 2019. gada janvāra "Padomu" sadaļa vairs netiek atjaunota. Neplānojam sadaļu dzēst, bet tā vairāk netiks attīstīta.
+        funding_html: |
+          Padomu sadaļas izstrādi finansēja <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        welcome_message_html: |
+          Padomu sadaļa veicina bioloģiskās daudzveidības iepazīšanu visā pasaulē. Vienalga, vai esi devies izzināt Serengeti nacionālo parku vai kādu vietējo parku, padomu sadaļā atradīsi informāciju, kas palīdzēs aptvert mūsu planētas neiedomājami skaisto dzīvās dabas dažādību.
       edit:
         add_eol_content: |
           Pievienot EOL saturu visiem atlasītajiem taksoniem reizē. Esi pacietīgs, var paiet kāds brīdis.
+        add_color_tags_help: |
+          Pievienot atlasītajiem taksoniem krāsu tagus.
+        add_rank_tags_help_html: |
+          Pievienot taksonu klasifikācijas tagus, kas balstīti uz mūsu izstrādāto taksonomiju, e.g.
+          <code>family=Laridae</code>
+          or
+          <code>family=Gulls and Allies</code>
+        coordinates_desc: |
+          Pievieno padomam koordinātas, lai lietotājiem būtu vieglāk to atrast, meklējot pēc vietas.
+        eol_subjects_desc: |
+          EOL publicē saturu ar dažādiem subjekta virsrakstiem, bet ne visi no tiem ir pieejami katram taksonam. Funkcija "Pārskats" importēs no EOL pirmo pieejamo teksta daļu, kas ierasti sastāv no kopsavilkuma.
+        eol_collection_desc_html: |
+          <a href="http://eol.org/" target="_blank">Dzīvības enciklopēdija (EOL)</a> ir dzīvās dabas informācijas glabātuve. Tā sniedz iespēju izveidot sugu <a href="http://eol.org/info/252" target="_blank">kolekcijas</a>. Ja vēlies importēt sugas no kādas EOL kolekcijas, ielīmē šeit kolekcijas URL.
+        guide_place_desc: |
+          Pievieno savus padomus kādai atrašanās vietai, lai lietotāji to varētu atrast. Atliekot vietas robežas, tās rādās %{site_name} kartēs (piemēram, kartes skatījumā, taksonu lapās utt.)
       pdf_layouts:
+        grid: režģis
         book: grāmatas
         journal: Žurnāls
+      pdf_layout_notes:
+        grid: |
+          Režģis ar attēliem un bez apraksta
       sorts:
         default: Padomu secība
         alphaname: Alfabētiskā secībā pēc zinātniskā nosaukuma
@@ -5369,7 +5454,7 @@ lv:
         flag_notice_html: |
           %{date} tu pievienoji šai sarunai karodziņu. Karodziņš tiks salgabāts pat tad, ja tu izdzēsīsi savu sarunas kopiju, tāpēc, ja vairs nevēlies uz to skatīties, vari to izdzēst.
         privacy_notice_html: |
-          Lai gan piekļuve ziņām ir tikai tev un to saņēmējam, arī iNaturalist darbinieki ziņām var piekļūt gadījumā, ja tām ir pievienots moderatoriem paredzētais karodziņš. Ja vēlies patiešām privātu saziņu, tad būs jameklē citi komunikācijas veidi, kas sniedz drošu šifrēšanu.
+          Lai gan piekļuve ziņām ir tikai tev un to saņēmējam, arī iNaturalist darbinieki ziņām var piekļūt gadījumā, ja tām pievienots moderatoriem paredzētais karodziņš. Ja vēlies patiešām privātu saziņu, tad būs jameklē citi komunikācijas veidi, kas sniedz drošu šifrēšanu.
     oauth:
       authorizations:
         new:
@@ -5645,8 +5730,15 @@ lv:
           </li>
           </ul>
         score_desc: "aprēķins = kopējais skaits / (kopējais skaits + domstarpību skaits + domstarpības par taksonu priekštečiem)"
+        observation_flagged_notice_html: |
+          Novērojums atzīmēts kā mēstule un vairs nav publiski redzams nevienam lietotājam, izņemot tevi, jo tu esi satura autors vai pārzinis. Ja pieļauta kļūda, lūdzu,
+          <a href="mailto:%{help_email}" class="contact">sazinies ar mums</a>.
+          <a href="/observations/%{observation_id}/flags">Pārvaldīt karodziņus</a>.
+        observer_does_not_allow_observation_fields: Novērotājs nav devis atļauju pievienot papildu novērojuma laukus.
+        observer_only_allows_curators_to_add_fields: Novērotājs devis atļauju pievienot papildu novērojuma laukus tikai vietnes pārziņiem.
     emailer:
       parental_consent:
+        subject: Tavs bērns vēlas izmantot iNaturalist
         content_html: |
           <p>
           Tavs bērns izmanto <strong>iNaturalist Seek</strong> izglītojošo lietotni un vēlas dalīties ar saviem datiem iNaturalist amatierzinātnes platformā. Ierakstu publicēšana iNaturalist atklāj informāciju, kas var palīdzēt identificēt lietotājus, tāpēc personām, kas jaunākas par 13 gadiem, iNaturalist atļauts lietot tikai ar vecāku piekrišanu.
@@ -5710,6 +5802,8 @@ lv:
           Iespējams, ka lietotāji paši savā saturā var iekļaut informāciju, kas var palīdzēt viņus identificēt.
           </p><p> Uzzināt vairāk par iNaturalist privātuma politiku <a href="%{privacy_policy_url}">šeit</a>.
           </p>
+      user_parent_confirmation:
+        subject: Tava bērna iNaturalist konts ir aktivizēts
     posts:
       formatting_simple_help: "Automātiski pievienot URL saites un pārnest jaunā rindā."
     projects:
@@ -5732,6 +5826,8 @@ lv:
           Tavi novērojumi paliks projektā un pārziņi varēs apskatīt noslēptās koordinātas.
         project_requires_curator_coordinate_access_desc: |
           Projektā nav atļauts pievienot novērojumus ar koordinātām, kas nav pieejamas projekta pārziņiem. Ja nevēlies sniegt pārziņiem piekļuvi pie savu novērojumu koordinātām, tev nāksies izņemt savus novērojumus no šī projekta.
+        remove_observations_label: |
+          Izņemt visus savus novērojumus no projekta
       edit:
         cover_desc: "Plakāta attēls pēc izvēles. Tas tiks attēlots projekta lapas augšpusē. Tam jābūt 950 pikseļus platam un ne vairāk par 400 pikseļiem augstam."
         custom_project_fields_means: "Projekta plakātu iespējams pielāgot, pievienojot papildu saturu un rediģējot CSS."
@@ -5751,7 +5847,10 @@ lv:
           verifiable: jābūt pierādāmam
           wild: jābūt savvaļas vai naturalizētam
         submission_models:
+          any: jebkurš
           curators: projekta pārziņi
+        trust_allow_members_to_trust: |-
+          Uzticēties dalībniekiem ar savām noslēptajām koordinātām
         trusted_project_means: |
           Uzticot citiem savu projektu, sniegsi iespēju projekta menedžeriem pievienot pielikumus un rediģēt tādu informāciju kā projekta plakāta HTML un CSS. Piekļuve pie pielāgojamās projekta informācijas var sniegt menedžeriem iespēju pievienot kaitīgu Javascript kodu, tāpēc uztici projektus tikai atbildīgiem un tehniski kompetentiem menedžeriem.
       new:
@@ -5759,6 +5858,7 @@ lv:
           Projektu grupas izmanto, lai salīdzinātu statistiku starp vairākiem standarta vai kolekciju projektiem. Projektiem jābūt izveidotiem jau pirms to pievienošanas projektu grupai. Vienai projektu grupai iespējams pievienot simtiem projektu. Projektu grupās nevar būt iekļautas citas projektu grupas.
         are_you_ready_to_duplicate: |
           Vai esi gatavs iziet no projekta lapas un to nokopēt? Jāņem vērā, ka projekta ikona un plākāti netiks nokopēti, tādēļ nokopētajā projektā tos nāksies no jauna augšupielādēt.
+        are_you_sure_you_want_to_delete: Vai tiešām vēlies dzēst projektu?
         can_be_included_in_multiple: Var tikt iekļauti vairākās projektu grupās reizē
         collection_projects: Kolekciju projekti
         collection_project_features: "Kolekciju projektu funkcijas:"
@@ -5890,7 +5990,7 @@ lv:
           Saziņa ar lietotāju nav iespējama, jo tu esi nobloķējis lietotāju, kas ir šī satura īpašnieks. Lielākā daļa lapas funkciju nedarbosies.
       spam:
         message_for_owner_and_curators_html: |
-          Ieraksts ir atzīmēts kā mēstule un vairs nav publiski redzams nevienam lietotājam, izņemot tevi, jo tu esi satura autors vai pārzinis. Ja ir pieļauta kļūda, lūdzu,
+          Ieraksts atzīmēts kā mēstule un vairs nav publiski redzams nevienam lietotājam, izņemot tevi, jo tu esi satura autors vai pārzinis. Ja pieļauta kļūda, lūdzu,
           <a href="mailto:%{email}">sazinies ar mums</a>.
         this_has_been_flagged_as_spam: Pievienots mēstuļu karodziņš
       not_found:
@@ -6042,7 +6142,10 @@ lv:
         max_photos_desc: |
           Vienam taksonam var būt %{max} fotogrāfijas. Lai pievienotu vēl fotogrāfijas, nāksies dzēst kādu no jau pievienotajām.
         no_trending_desc: Pēdējā mēness laikā nekas saistīts ar šo taksonu nav novērots
+        rare_desc: Vismazāk novēroto apdraudēto sugu
         rare_in_place_desc_html: Vismazāk novērotie taksoni, kas ir apdraudēti no <a href="%{url}">%{place}</a>
+        trending_in_place_desc_html: Pēdējā mēnesī visvairāk novērotie taksoni no <a href="%{url}">%{place}</a>
+        wanted_desc: Taksona sugas vēk nav nekad novērotas.
     taxon_changes:
       move_children_desc: |
         Ievades taksona apakšgrupas, kas ir ģints vai vispārējāka līmeņa, tiks pārvietotas uz izvades sadaļu. Sugas, apakšsugas, šķirnes u.c. tiks samainītas ar tās ekvivalentiem, pievienojot jaunās ģints vai sugas nosaukumu.
@@ -6082,6 +6185,8 @@ lv:
         #show a badge on your profile to indicate that you make a regular,
         #monthly donation to iNat
         monthly_supporter: Ikmēneša iNaturalist atbalstītājs
+        name_place_help_html: |
+          Izvēlēties tautā pieņemtos nosaukumus no šīs vietas.
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Komentāri
         #Checkbox label for user preference about what to receive in the daily email update
@@ -6856,7 +6961,8 @@ lv:
             base:
               user_already_blocked: Tu jau esi nobloķējis šo lietotāju
               user_cannot_be_staff: |
-                iNat darbiniekus nevar nobloķēt, jo viņiem jāspēj sazināties ar visiem iNat tīklā, piekļūt visiem datiem un izšķirt citu lietotāju strīdus. Ja tev ir radušās problēmas ar kādu no darbiniekiem, lūdzu, paziņo par to kādam no iNat līdzdirektoriem. Ja radušās problēmas ar kādu no līdzdirektoriem, sazinies ar Kalifornijas Zinātņu Akadēmijas Bioloģiskās daudzveidības un ilgtspējīguma institūta vadītāju.
+                iNat darbiniekus nevar nobloķēt, jo viņiem jāspēj sazināties ar visiem iNat tīklā, piekļūt visiem datiem un izšķirt citu lietotāju strīdus. Ja tev ir radušās problēmas ar kādu no darbiniekiem, lūdzu, paziņo par to kādam no iNat līdzdirektoriem. Ja radušās problēmas ar kādu no līdzdirektoriem, sazinies ar Kalifornijas Zinātņu Akadēmijas Bioloģiskās daudzveidības un ilgtspējīguma institūta vadītāju (Institute for Biodiversity and Sustainability Science at the
+                California Academy of Sciences).
         user_parent:
           attributes:
             email:
