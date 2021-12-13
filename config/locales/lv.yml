@@ -5325,13 +5325,31 @@ lv:
           iNaturalist ir California Academy of Sciences un National Geographic Society kopdarbs. Visus ziedojumus saņems
           California Academy of Sciences, 501(c)(3) no nodokļiem atbrīvota bezpeļņas organizācija Amerikas Savienotajās Valstīs.
           </p>
+    flags:
+      show:
+        flags_that_should_not_be_resolved_desc_html: |
+          Lūdzu, mēģini atrisināt ar karodziņiem atzīmētos<code>mēstuļu</code> un <code>autortiesību pārkāpumus</code> tikai tad, ja tās patiesībā nav mēstules vai autortiesību pārkāpumi.
     guides:
       index:
         deprecated_banner: |
           Jāņem vērā, ka kopš 2019. gada janvāra "Padomu" sadaļa vairs netiek atjaunota. Neplānojam sadaļu dzēst, bet tā vairāk netiks attīstīta.
+        funding_html: |
+          Padomu sadaļas izstrādi finansēja <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        welcome_message_html: |
+          Padomu sadaļa veicina bioloģiskās daudzveidības iepazīšanu visā pasaulē. Vienalga, vai esi devies izzināt Serengeti nacionālo parku vai kādu vietējo parku, padomu sadaļā atradīsi informāciju, kas palīdzēs aptvert mūsu planētas neiedomājami skaisto dzīvās dabas dažādību.
       edit:
         add_eol_content: |
           Pievienot EOL saturu visiem atlasītajiem taksoniem reizē. Esi pacietīgs, var paiet kāds brīdis.
+        add_color_tags_help: |
+          Pievienot atlasītajiem taksoniem krāsu tagus.
+        coordinates_desc: |
+          Pievieno padomam koordinātas, lai lietotājiem būtu vieglāk to atrast, meklējot pēc vietas.
+        eol_subjects_desc: |
+          EOL publicē saturu ar dažādiem subjekta virsrakstiem, bet ne visi no tiem ir pieejami katram taksonam. Funkcija "Pārskats" importēs no EOL pirmo pieejamo teksta daļu, kas ierasti sastāv no kopsavilkuma.
+        eol_collection_desc_html: |
+          <a href="http://eol.org/" target="_blank">Dzīvības enciklopēdija (EOL)</a> ir dzīvās dabas informācijas glabātuve. Tā sniedz iespēju izveidot sugu <a href="http://eol.org/info/252" target="_blank">kolekcijas</a>. Ja vēlies importēt sugas no kādas EOL kolekcijas, ielīmē šeit kolekcijas URL.
+        guide_place_desc: |
+          Pievieno savus padomus kādai atrašanās vietai, lai lietotāji to varētu atrast. Atliekot vietas robežas, tās rādās %{site_name} kartēs (piemēram, kartes skatījumā, taksonu lapās utt.)
       pdf_layouts:
         grid: režģis
         book: grāmatas
