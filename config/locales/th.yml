@@ -523,6 +523,7 @@ th:
     iucn_red_list: บัญชีแดง IUCN
   back_to_your_calendar: กลับสู่ปฏิทิน
   birds: นก
+  birthday: วันเกิด
   block_user: บล็อกผู้ใช้
   blocked_users: ผู้ใช้ที่ถูกบล็อก
   captive: ถูกจับมา
@@ -551,6 +552,14 @@ th:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: ถูกยุบรวมเป็น
   change_your_password: เปลี่ยนรหัสผ่านของคุณ
+  choose_a_field: เลือกข้อมูลภาคสนาม
+  choose_a_place: เลือกสถานที่
+  choose_file: เลือกไฟล์
+  choose_files: เลือกไฟล์
+  choose_from_your_lists: เลือกจากรายการของคุณ
+  choose_tags: เลือกแท็ก
+  choose_taxon: เลือกหน่วยอนุกรมวิธาน
+  classification: การจัดจำแนก
   colors: สี
   comment: ความคิดเห็น
   #Verb, generally a label on a button that allows the user to add a comment
@@ -630,6 +639,7 @@ th:
   create_a_new_place: สร้างสถานที่ใหม่
   create_a_new_taxon: สร้างหน่วยอนุกรมวิธานใหม่
   create_an_account: สร้างบัญชีใหม่
+  curation: จัดการอนุกรมวิธาน
   curator: ผู้ดูแล
   curators: ผู้ดูแล
   danger_zone: พิจารณาให้ดีก่อนเลือก
@@ -637,6 +647,19 @@ th:
   date_added: วันที่เพิ่ม
   date_created: วันที่สร้าง
   date_format:
+    date_long:
+      january: '%{day} มกราคม %{year}'
+      february: '%{day} กุมภาพันธ์ %{year}'
+      march: '%{day} มีนาคม %{year}'
+      april: '%{day} เมษายน %{year}'
+      may: '%{day} พฤษภาคม %{year}'
+      june: '%{day} มิถุนายน %{year}'
+      july: '%{day} กรกฎาคม %{year}'
+      august: '%{day} สิงหาคม %{year}'
+      september: '%{day} กันยายน %{year}'
+      october: '%{day} ตุลาคม %{year}'
+      november: '%{day} พฤศจิกายน %{year}'
+      december: '%{day} ธันวาคม %{year}'
     month:
       january: มกราคม
       february: กุมภาพันธ์
@@ -694,8 +717,11 @@ th:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: บริจาค
+  donate_again_today_caps: บริจาคอีกครั้งในวันนี้
   duplicate_verb: คัดลอก
   edit: แก้ไข
+  edit_photos: แก้ไขรูปภาพ
+  edit_photos_for_observation_id: "แก้ไขรูปภาพของการสังเกต %{obs_id}"
   edit_taxa: แก้ไขหน่วยอนุกรมวิธาน
   edit_taxon: แก้ไขหน่วยอนุกรมวิธาน
   edit_taxon_framework: แก้ไขโครงร่างของหน่วยอนุกรมวิธาน
@@ -710,6 +736,8 @@ th:
   explore: สำรวจ
   extinct: สูญพันธุ์
   extinct_in_the_wild: สูญพันธุ์จากธรรมชาติ
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
+  faves: รายการโปรด
   Family: วงศ์
   favorite_taxa: หน่วยอนุกรมวิธานที่ชอบ
   favorites: "สิ่งที่ชอบ"
@@ -731,12 +759,14 @@ th:
   flag_as_non_spammer: รายงานว่าไม่เป็นสแปม
   #Label for the date/time when a flag was created
   flag_created: รายงานที่สร้าง
+  flag_for_curation: รายงานอนุกรมวิธาน
   flag_it!: รายงานเลย!
   flag_this_photo: รายงานภาพนี้
   flag_this_place: รายงานสถานที่นี้
   flag_this_sound: รายงานเสียงนี้
   flagged: ถูกรายงาน
   flagged_: ถูกรายงาน
+  flagged_for_curation: รายงานอนุกรมวิธานแล้ว
   flagged_taxon: หน่วยอนุกรมวิธานที่ถูกรายงาน
   flagger: ผู้รายงาน
   flags: รายงาน
@@ -745,6 +775,12 @@ th:
   following: กำลังติดตาม
   following_x_people:
     other: 'กำลังติดตาม %{count} คน'
+  from_eol_collection: จาก EOL collection
+  from_flickr_facebook_etc: จาก Flickr, Facebook และอื่น ๆ
+  from_list: จากรายการ
+  from_photos: จากรูปถ่าย
+  from_place: จากสถานที่
+  from_soundcloud: จาก Soundcloud
   fungi:
     other: เห็ดรา
   Genus: สกุล
@@ -767,6 +803,8 @@ th:
   import_all_photos_as_observations: เพิ่มการสังเกตจากรูปภาพทั้งหมด
   import_observations: นำเข้าการสังเกต
   join: เข้าร่วม
+  last_observation: การสังเกตล่าสุด
+  last_observation_caps: การสังเกตล่าสุด
   #Terminal nodes in a taxonomic tree
   leaves: ใบ
   lexicons:
@@ -775,6 +813,8 @@ th:
   longitude_slash_x_coord_slash_easting: ลองจิจูด / แกน x / ตะวันออก
   longitude_value: "ลองจิจูด: %{longitude}"
   look_up_name: "ค้นหาชื่อ"
+  map: แผนที่
+  map_legend: คำอธิบายสัญลักษณ์
   map_of_observations: แผนที่แสดงพิกัดการสังเกต
   maps:
     overlays:
@@ -783,6 +823,8 @@ th:
   mark_all_as_reviewed: ทำเครื่องหมายทั้งหมดว่าดูแล้ว
   mark_all_as_unreviewed: ทำเครื่องหมายทั้งหมดว่ายังไม่ดู
   media_type: ประเภทสื่อ
+  message_from_user_at_time: จาก %{user} เมื่อ %{time}
+  message_from_user_on_date: จาก %{user} เมื่อ %{date}
   more: เพิ่มเติม
   more_about_sharing: ข้อมูลเพิ่มเติมในการแชร์
   more_filters: ตัวกรองเพิ่มเติม
@@ -790,29 +832,153 @@ th:
   more_info: ข้อมูลเพิ่มเติม
   more_info_title: ข้อมูลเพิ่มเติม
   more_journal_posts: โพสต์บันทึกเพิ่มเติม
+  more_than_a_week_ago: มากกว่าหนึ่งสัปดาห์ที่ผ่านมา
+  n_ago: "%{n} ที่แล้ว"
   needs_id: รอระบุชนิด
   needs_id_: รอระบุชนิด
   no_ids_have_been_suggested_yet: ยังไม่ได้รับการแนะนำ
   observation_date: วันที่
+  observation_field: ข้อมูลภาคสนาม
+  observation_field_details: รายละเอียดข้อมูลภาคสนาม
+  observation_fields: ข้อมูลภาคสนาม
   observations_by: การสังเกตโดย
   observations_by_user: "การสังเกตโดย %{user}"
   observations_deleted: ลบการสังเกตแล้ว
   observations_from_people_taxa_and_places_youre_following: "การสังเกตจากผู้คน สถานที่ และหน่วยอนุกรมวิธานที่คุณกำลังติดตาม"
+  observations_map: การสังเกต / แผนที่
+  observations_this_year_vs_last_year: การสังเกตในปีนี้กับปีที่แล้ว
+  observations_total: การสังเกตทั้งหมด
+  observed: สังเกตเมื่อ
+  observed_by: สังเกตโดย
+  order: อันดับ
+  order_by: เรียงลำดับตาม
+  per_day: ต่อวัน
   places_name:
     thailand: ประเทศไทย
+    trinidad_and_tobago: ตรินิแดดและโตเบโก
+    united_kingdom: สหราชอาณาจักร
+  ranks:
+    kingdom: อาณาจักร
+    x_kingdoms:
+      other: อาณาจักร
+    subkingdom: อาณาจักรย่อย
+    phylum: ไฟลัม
+    x_phyla:
+      other: ไฟลัม
+    subphylum: ไฟลัมย่อย
+    superclass: ชั้นใหญ่
+    class: ชั้น
+    x_classes:
+      other: ชั้น
+    subclass: ชั้นย่อย
+    infraclass: ชั้นฐาน
+    superorder: อันดับใหญ่
+    order: อันดับ
+    x_orders:
+      other: อันดับ
+    suborder: อันดับย่อย
+    infraorder: อันดับฐาน
+    subterclass: ชั้นใต้
+    parvorder: อนุอันดับ
+    superfamily: วงศ์ใหญ่
+    epifamily: วงศ์บน
+    family: วงศ์
+    x_families:
+      other: วงศ์
+    subfamily: วงศ์ย่อย
+    genus: สกุล
+    x_genera:
+      other: สกุล
+    genushybrid: สกุลผสม
+    subgenus: สกุลย่อย
+    #Singular
+    species: ชนิด
+    x_species:
+      other: ชนิด
+    #Singular
+    subspecies: ชนิดย่อย
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: อาณาจักร
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: อาณาจักรย่อย
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: ไฟลัม
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: ไฟลัมย่อย
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: ชั้นใหญ่
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: ชั้น
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: ชั้นย่อย
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: ชั้นฐาน
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: อันดับใหญ่
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: อันดับ
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: อันดับย่อย
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: อันดับฐาน
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: ชั้นใต้
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: อนุอันดับ
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: วงศ์ใหญ่
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: วงศ์บน
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: วงศ์
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: วงศ์ย่อย
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: สกุล
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: สกุลผสม
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: สกุลย่อย
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: ชนิด
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: ชนิดย่อย
   real_time_discussions: การถกเถียงที่กำลังเกิดขึ้น
+  redo_search_in_map: ค้นหาในแผนที่อีกครั้ง
+  redo_search_in_map_area: ค้นหาในขอบเขตแผนที่อีกครั้ง
   research_grade: ระดับงานวิจัย
   research_grade_qualification: คุณสมบัติระดับงานวิจัย
   rules_types:
     must_be_verifiable: ต้องพิสูจน์ได้
+  search_for_species: ค้นหาชนิด
+  search_species: ค้นหาชนิด
+  search_species_: กำลังค้นหาชนิด...
+  search_the_map: ค้นหาแผนที่
   show_more: แสดงเพิ่ม
+  similar_species: ชนิดที่คล้ายกัน
   sounds:
     select_one_or_more_sounds: เลือกอย่างน้อยหนึ่งเสียง
+  #Plural
+  species: ชนิด
+  species_from_around_the_world: ชนิดจากทั่วโลก
+  species_name_cap: ชื่อชนิด
+  species_names: ชื่อชนิด
+  species_search: การค้นหาชนิด
+  species_taxon_name: ชนิด / ชื่อหน่วยอนุกรมวิธาน
+  species_unknown: ไม่ทราบชนิด
   stop_following_user: "เลิกติดตาม %{user}"
+  taxon_is_kingdom_of_life_with_x_observations:
+    other: "%{taxon} เป็นอาณาจักรที่มี %{count} การสังเกต"
   taxonomy: อนุกรมวิธาน
   these_observations_have_not_been_uploaded_yet: |
     การสังเกตเหล่านี้ยังไม่ถูกอัปโหลด
   this_observation_is_research_grade: การสังเกตนี้เป็นระดับงานวิจัย!
+  time_ago: "%{time} ที่แล้ว"
+  today: วันนี้
+  total_observations: การสังเกตทั้งหมด
+  total_observations_caps: การสังเกตทั้งหมด
+  total_species_observed_caps: ชนิดที่ถูกสังเกตทั้งหมด
+  unclassified: ไม่ถูกจัดจำแนก
   upload: อัปโหลด
   upload_a_csv_file: อัปโหลดไฟล์ CSV
   upload_a_csv_file_with_observation: |
@@ -824,20 +990,36 @@ th:
     tooltips:
       select_all: เลือกการสังเกตทั้งหมด
   user_suggested_an_id: "%{user} แนะนำว่าเป็น"
+  view_all_flags: ดูการรายงานทั้งหมด
   view_all_observations: ดูการสังเกตทั้งหมด
+  view_flags: ดูการรายงาน
+  view_flags_for_x_html: "ดูการรายงานสำหรับ %{x}"
+  view_observation_flags: ดูการรายงานการสังเกต
   view_all_of_your_observations_from_x: "ดูการสังเกตทั้งหมดของคุณจาก %{x}"
+  yesterday: เมื่อวาน
   your_content: เนื้อหาของคุณ
   views:
     lifelists:
+      all_species: ชนิดทั้งหมด
       all_observations: การสังเกตทั้งหมด
+      total_observations: การสังเกตทั้งหมด
       all_observations_in_this_taxon: การสังเกตทั้งหมดในหน่วยอนุกรมวิธานนี้
+    messages:
+      from: จาก
+    stats:
+      year:
+        new_species_per_year: ชนิดใหม่ / ปี
+        species_per_year: ชนิด / ปี
     taxa:
       show:
         frequency:
           research: ระดับงานวิจัย
+          "Life Stage=Subimago": ตัวรองตัวเต็มวัย
     welcome:
       index:
         explore_and_share: สำรวจและแชร์การสังเกตของคุณจากโลกธรรมชาติ
+        species_observed: 'ชนิดที่ถูกสังเกต'
+        join_today: เข้าร่วมวันนี้
   date:
     abbr_month_names:
       - 
@@ -853,6 +1035,14 @@ th:
       - Oct
       - Nov
       - Dec
+    day_names:
+      - อาทิตย์
+      - จันทร์
+      - อังคาร
+      - พุธ
+      - พฤหัสบดี
+      - ศุกร์
+      - เสาร์
     month_names:
       - 
       - January
@@ -866,9 +1056,21 @@ th:
       - September
       - October
       - November
-      - December
+      - ธันวาคม
+  datetime:
+    distance_in_words:
+      x_days:
+        other: '%{count} วัน'
+    countdown_x_days:
+      other: วัน
+    prompts:
+      day: วัน
   number:
     human:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    attributes:
+      project:
+        map_type: ประเภทแผนที่
