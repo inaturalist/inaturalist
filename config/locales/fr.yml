@@ -2556,6 +2556,9 @@ fr:
   multiple_select_option: '-- multiple --'
   multiple_taxa_for_taxon_change: "Taxons multiples (entrée aux fins d’échange/fusion, sortie aux fins de séparation)"
   multiple_taxon_ids_separated_by_commas: 'IDs de taxon multiples séparés par des virgules, par ex. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: doit être dans le projet %{project}
   must_be_in_taxon: doit être dans le taxon %{taxon}
   must_be_not_in_taxon: ne doit pas être dans le taxon %{taxon}
   must_be_not_observed_by_user: ne doit pas faire partie des observations @vow_or_con{vow:d'|con:de }%{user}
@@ -3004,6 +3007,8 @@ fr:
       <li><strong>Discussions auxquelles vous participez :</strong> Commentaire ou ajout d’identifications au contenu de quelqu’un d’autre vous abonne automatiquement à toute nouvelle activité sur ce contenu. Utilisez l’outil 'Gérer vos abonnements' pour arrêter de recevoir les notifications.</li>
       </ul>
   one_by_one: "Un par un"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "l'un des éléments suivants doit être vrai:"
   one_of_your_lists: "une de vos listes…"
   one_or_more_input_taxa_have_more_than_1000: |
     Un ou plusieurs des taxons d'entrée ont plus de 1000 observations en aval. Le traitement de l'opération risque de prendre un certain temps. Avez-vous la certitude que ce changement de taxon est nécessaire ? Les changements de taxon ne peuvent pas être annulés.
@@ -5127,6 +5132,8 @@ fr:
   yir_donate_banner_all_thanks: Grâce à des personnes comme vous !
   #"You" is singular
   yir_donate_banner_inaturalist_thrives: iNaturalist doit son succès à des personnes comme vous !
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Vous avez aidé iNaturalist à prospérer cette année. Merci !
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist a besoin de votre appui
   yir_generating_and_sharing: |
@@ -6428,6 +6435,7 @@ fr:
           Veuillez spécifier les prérequis des observations à ajouter à ce projet.
         project_background_color: Couleur d'arrière plan du résumé du projet
         project_background_color_help: Assurez-vous de choisir une couleur assez sombre pour que le texte blanc recouvrant soit lisible.
+        project_banner: Bannière du projet (PNG ou JPG)
         project_banner_help: Image de bannière facultative. Les dimensions idéales sont 760x320px.
         project_details: Détails du projet
         project_icon: Icône du project (PNG, JPG, ou GIF)
