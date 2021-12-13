@@ -6587,6 +6587,8 @@ es:
       delete:
         by_deleting_your_account_you_will_remove: |
           Al borrar tu cuenta se eliminarán
+        caching: |
+          Si estás eliminando tu cuenta porque intentaste eliminar parte de tu contenido, pero aún puedes verlo en un mapa o en otro lugar de Internet, ten en cuenta que los datos del mapa pueden almacenarse en nuestra caché un día e incluso más, tras eliminarlos de nuestros registros, y que la eliminación del contenido en nuestra plataforma puede no afectar las copias que existan en otros sitios y plataformas (como GBIF).
         x_observations_html:
           one: |
             <strong class="count">1 observación</strong>,
