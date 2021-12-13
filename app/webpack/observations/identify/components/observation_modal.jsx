@@ -739,15 +739,15 @@ class ObservationModal extends React.Component {
                               ) : I18n.t( "somewhere_on_earth" ) }
                             </li>
                             { observation.application && observation.application.name && (
-                                <li>
-                                  <a href={observation.application.url}>
-                                    <i className="fa fa-square bullet-icon" />
-                                    <span className="name">
-                                      { observation.application.name }
-                                    </span>
-                                  </a>
-                                </li>
-                              )
+                              <li>
+                                <a href={observation.application.url}>
+                                  <i className="fa fa-square bullet-icon" />
+                                  <span className="name">
+                                    { observation.application.name }
+                                  </span>
+                                </a>
+                              </li>
+                            )
                             }
                             { blind ? null : (
                               <li className="view-follow">
