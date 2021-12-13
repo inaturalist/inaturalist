@@ -188,7 +188,11 @@ class FlagsController < ApplicationController
         end
       end
       format.json do
-        render :json => @flag.to_json
+        if @flag.valid?
+          render json: @flag
+        else
+          render status: :unprocessable_entity, json: @flag.errors
+        end
       end
     end
 
