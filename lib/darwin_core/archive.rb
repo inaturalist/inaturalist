@@ -613,11 +613,11 @@ module DarwinCore
             try_and_try_again( [PG::ConnectionBad, ActiveRecord::StatementInvalid], logger: logger ) do
               Observation.preload_associations(batch, preloads)
             end
-            batch.select! do |observation|
+            filtered_obs = batch.select do |observation|
               ! ( @opts[:community_taxon] && observation.community_taxon.blank? ||
                    max_observation_created && observation.created_at > max_observation_created )
             end
-            yield batch
+            yield filtered_obs
             batch_times << (Time.now - observations_start)
             observations_start = Time.now
           end
