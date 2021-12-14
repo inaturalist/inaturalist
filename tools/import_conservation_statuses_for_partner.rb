@@ -75,7 +75,8 @@ CSV.foreach( csv_path, headers: HEADERS ) do | row |
   end
   taxon = Taxon.find_by_id( row["taxon_id"] ) unless row["taxon_id"].blank?
   unless taxon
-    logger.info "#{identifier}: Couldn't find taxon for '#{row['taxon_id']}', trying to find the taxon by the name '#{row["taxon_name"]}"
+    logger.info "#{identifier}: Couldn't find taxon for '#{row['taxon_id']}', " \
+      "trying to find the taxon by the name '#{row['taxon_name']}"
     if row["taxon_name"].blank?
       logger.error "#{identifier}: No name specified, skipping..."
       skipped << identifier
@@ -134,7 +135,7 @@ CSV.foreach( csv_path, headers: HEADERS ) do | row |
   cs.updater = user if cs.changed?
   if cs.valid?
     cs.save! unless opts.dry
-    if cs.new_record?
+    if cs.id_previously_changed? || cs.new_record?
       logger.debug "#{identifier}: Created #{cs}"
       created << identifier
     else
