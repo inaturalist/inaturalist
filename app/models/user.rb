@@ -721,6 +721,17 @@ class User < ApplicationRecord
     self.lat_lon_acc_admin_level = lat_lon_acc_admin_level
   end
   
+  def suppressed_emails( suppressed_groups )
+    unsuppressed_groups = [
+      EmailSuppression::ACCOUNT_EMAILS,
+      EmailSuppression::DONATION_EMAILS,
+      EmailSuppression::NEWS_EMAILS,
+      EmailSuppression::TRANSACTIONAL_EMAILS 
+    ].select{ |i| !( suppressed_groups.include? i ) }
+    return true if EmailSuppression.where( "email = ? AND suppression_type NOT IN (?)", email, unsuppressed_groups ).first
+    return false
+  end
+
   def get_lat_lon_from_ip_if_last_ip_changed
     return true if last_ip.nil?
     if last_ip_changed? || latitude.nil?
