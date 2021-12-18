@@ -5355,6 +5355,27 @@ lv:
           <a href="http://eol.org/" target="_blank">Dzīvības enciklopēdija (EOL)</a> ir dzīvās dabas informācijas glabātuve. Tā sniedz iespēju izveidot sugu <a href="http://eol.org/info/252" target="_blank">kolekcijas</a>. Ja vēlies importēt sugas no kādas EOL kolekcijas, ielīmē šeit kolekcijas URL.
         guide_place_desc: |
           Pievieno savus padomus kādai atrašanās vietai, lai lietotāji to varētu atrast. Atliekot vietas robežas, tās rādās %{site_name} kartēs (piemēram, kartes skatījumā, taksonu lapās utt.)
+        paste_note_html: |
+          Iespējams ielīmēt līdz pat 500 sugu nosaukumiem, vienu katrā rindā. %{site_name} centīsies piemeklēt sugu jēdzieniem tautā pieņemtos nosaukumus. Lai izvairītos no neskaidrības, labāj izmantot zinātniskos nosaukumus. Ja vēlies norādīt abus, atdali zinātniskos un tautā pieņemtos nosaukumus ar komatiem, piemēram, <code>Homo sapiens, Cilvēks</code>.
+        places_note: |
+          Jāņem vērā, ka ne visām vietām ir pieejamas taksonu kontrollapas. Ja neizdodas atrast vietu ar taksoniem, pamēģini atlasīt lielākus apgabalus ar politiskām robežām, piemēram, valstis, štatus, provinces vai novadus.
+        replace_existing_eol_desc: Izdzēs pašreizējo saturu pirms cita importēšanas no EOL
+        place_choose_taxon_note: |
+          Filtrē pēc taksona, lai sašaurinātu meklēšanas rezultātus, piemēram "augi".
+      eolupdate_notice: |
+        Lūdzu, esi pacietīgs, jo satura importēšana no EOL var aizņemt kādu brīdi.
+      show:
+        draft_desc: |
+          Kamēr vēl nebūsi padomu publicējis, tas būs redzams tikai lietotājiem ar piekļuvi tā rediģēšanai.
+      generating_mobile_archive_tip_html: |
+        Var paiet kāds brīdis, mēģini pārlādēt lapu pēc pāris minūtēm.
+      mobile_downloads_tip_html: |
+        Padomu iespējams lejupielādēt mobilajā lietotnē, lai vēlāk to varētu lietot arī bezsaistē.
+      mobile_downloads_help_html: |
+        <p>Izveidosies lejupielādējams arhīvs ar visiem datiem un medijiem, kas saistīti ar padomu. Tas paredzēts, lai padoms būtu pieejams mobilās lietotnes lietotājiem arī bezsaistē. Arhīva ģenerēšana var aizņemt kādu brīdi. Ja izmainīsi kaut ko padomā, arhīvs atjaunosies automātiski.</p>
+        <p class="alert status">
+        Lūdzu, <strong>neiespējo bezsaistes mobilās lietotnes lejupielādes, ja neplāno tās izmantot.</strong> Tās mūsu sistēmā patērē daudz resursu.
+        </p>
       pdf_layouts:
         grid: režģis
         book: grāmatas
