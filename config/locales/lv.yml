@@ -4681,7 +4681,7 @@ lv:
   today: Šodien
   too_many_results: Par daudz rezultātu
   too_many_taxa_to_render: |
-    Meklētājs atrada pārāk daudz taksonu, lai tos visus attēlotu vienā reizē. Pamēģini aktivizēt vairāk filtru.
+    Vaicājumā pārāk daudz taksonu, lai tos visus attēlotu vienā reizē. Pamēģini aktivizēt vairāk filtru.
   tools: Rīki
   top_contributors: Lielākie atbalstītāji
   top_identifier_caps: NR. 1. IDENTIFICĒTĀJS
@@ -5355,6 +5355,8 @@ lv:
           <a href="http://eol.org/" target="_blank">Dzīvības enciklopēdija (EOL)</a> ir dzīvās dabas informācijas glabātuve. Tā sniedz iespēju izveidot sugu <a href="http://eol.org/info/252" target="_blank">kolekcijas</a>. Ja vēlies importēt sugas no kādas EOL kolekcijas, ielīmē šeit kolekcijas URL.
         guide_place_desc: |
           Pievieno savus padomus kādai atrašanās vietai, lai lietotāji to varētu atrast. Atliekot vietas robežas, tās rādās %{site_name} kartēs (piemēram, kartes skatījumā, taksonu lapās utt.)
+        licensing_explanation: |
+          Piešķirot savam saturam licenci, sniegsi cilvēkiem iespēju kopēt un pārveidot tavu saturu bez tavas atļaujas lūgšanas. Izmantojot šo metodi, citiem ir daudz vieglāk dalīties ar tavu saturu. Turklāt, ja izmanto trešo pušu saturu no citiem avotiem, kas izmanto Creative Commons ShareAlike licences, piemēram, Wikipedia, tad tev ir tiesisks pienākums izmantot līdzīgu licenci. Šeit iespējams uzzināt vairāk par Creative Commons licencēm:
         paste_note_html: |
           Iespējams ielīmēt līdz pat 500 sugu nosaukumiem, vienu katrā rindā. %{site_name} centīsies piemeklēt sugu jēdzieniem tautā pieņemtos nosaukumus. Lai izvairītos no neskaidrības, labāj izmantot zinātniskos nosaukumus. Ja vēlies norādīt abus, atdali zinātniskos un tautā pieņemtos nosaukumus ar komatiem, piemēram, <code>Homo sapiens, Cilvēks</code>.
         places_note: |
@@ -5383,6 +5385,15 @@ lv:
       pdf_layout_notes:
         grid: |
           Režģis ar attēliem un bez apraksta
+        journal: |
+          Sadalīta lapa. Sugas informācija kreisajā pusē, bet pieraksti labajā. Sugas informācija tiek pielāgota lapas izmēram.
+        book: |
+          Pilnīgs padoms ar visām fotogrāfijām, aprakstiem vairāku lapu garumā.
+      pdf_generation_notice: |
+        Lūdzu, esi pacietīgs, jo lielu PDF failu izveidošana var aizņemt kādu brīdi.
+      tags_help_html: |
+        Tagi funkcionē kā kategorijas, pēc kurām tiek sadalītas tavos padomos iekļautās sugas. Jāņem gan vērā, ka vairākām sugām var būt viens un tas pats tags. Ievadi tagus saraksta formā, kurā katrs tags atdalīts ar komatu, piemēram <code>mazs, pūkains</code>. Lai pievienotu kategorijas ar nosaukumiem, izmanto tādus tagus kā <code>category_name=category_value</code> 
+        un <code>krāsa=dzeltena</code>.
       sorts:
         default: Padomu secība
         alphaname: Alfabētiskā secībā pēc zinātniskā nosaukuma
@@ -5527,9 +5538,9 @@ lv:
         interval_limit_warning_week: Tiek uzrādītas nedēļas 10 gadu periodā
         interval_limit_warning_month: Tiek uzrādīti mēneši 100 gadu periodā
         interval_limit_warning_year: Tiek uzrādīti gadi 100 gadu periodā
-        some_queries_missing_taxa: Vairākos no pieprasījumiem trūkst taksonu
+        some_queries_missing_taxa: Vairākos no vaicājumiem trūkst taksonu
         some_queries_missing_taxa_desc: |
-          Ar vienu pieprasījumu var ielādēt tikai 500 visvairāk novērotos taksonus. Ja pieprasījumā ir vairāk taksonu, tie nebūs redzami vai tiks apzīmēti ar "?", ja tie ir daļa no citiem pieprasījumiem. Lai veiktu optimālākus salīdzinājumus, ieteicams precizēt meklēšanas kritērijus tā, lai uzrādītos ne vairāk par 500 taksoniem.
+          Ar vienu vaicājumu var ielādēt tikai 500 visvairāk novēroto taksonu. Ja vaicājumā ir vairāk taksonu, tie nebūs redzami vai tiks apzīmēti ar "?", ja tie ir daļa no citiem vaicājumiem. Lai veiktu optimālākus salīdzinājumus, ieteicams precizēt meklēšanas kritērijus tā, lai uzrādītos ne vairāk par 500 taksoniem.
         taxa_not_observed_in_all_queries: Taksoni nav novēroti visos vaicājumos
         taxa_observed_in_all_queries: Taksoni novēroti visos vaicājumos
         taxa_observed_in_only_one_query: Taksoni novēroti tikai vienā vaicājumā
@@ -5572,6 +5583,8 @@ lv:
           other: "%{count} unikāli"
       export:
         choose_columns_desc: Atlasi eksportējamās slejas
+        create_a_query_desc_html: |
+          Šeit iespējams izveidot novērojuma vaicājumu gluži kā citviet mūsu vietnē. Vēl iespējams kopēt un ielīmēt novērojuma URL no citām vietnes sadaļām. Vaicājumā vajadzētu būt <strong>ne vairāk par 200 000 novērojumiem</strong>.
         export_in_progress_notice_html: |
           Tu jau esi uzsācis <a href="%{url}">eksporta procesu</a>. Lai uzsāktu vēl vienu, vispirms jāsagaida, kad beigies jau iesāktais process.
         ident_by_user_desc_html: |
@@ -5698,6 +5711,11 @@ lv:
           </p>
         cumulative_count_desc: 'Individuāla taksona un tā zemāku pakāpju taksonu identifikāciju skaits'
         disagreement_count_desc: "Identificēto taksonu skaits, kas nav daļa no taksona priekštečiem"
+        identification_count_desc: 'Individuāla taksona identifikāciju skaits'
+        flagged_photos_desc_html: |
+          Dažām fotogrāfijām pievienots nepieņemama satura vai autortiesību pārkāpuma karodziņš. Vairāk informācijas: %{links}
+        join_project_desc_html: |
+          Ja pievienosies projektam, tā pārziņiem būs redzamas šīs vai citu projekta novērojumu noslēptās koordinātas. Pievienojoties projektam, tu piekrīti projekta <a href="%{url}" target="_blank">notiekumiem</a>.
         quality_assessment_help_html: |
           <p>
           Datu kvalitātes novērtējumā aprakstīta novērojuma precizitāte. Sākumā visiem novērojumiem ir<strong>"hobija"</strong> līmeņa statuss, kas kļūst par
@@ -5757,7 +5775,51 @@ lv:
           <a href="/observations/%{observation_id}/flags">Pārvaldīt karodziņus</a>.
         observer_does_not_allow_observation_fields: Novērotājs nav devis atļauju pievienot papildu novērojuma laukus.
         observer_only_allows_curators_to_add_fields: Novērotājs devis atļauju pievienot papildu novērojuma laukus tikai vietnes pārziņiem.
+      user_stats:
+        user_stats_desc: |
+          Lietotāju statistikā uzrāda ne vairāk par 500 pirmajiem novērojumiem vai sugām. Kopējais skaits parasti nedaudz pārsniedz 500, jo abi saraksti, visticamāk, nav tiem pašiem lietotājiem. Vienības, kas atzīmētas ar "*", neiekļuva 500 pirmo novērojumu vai sugu sarakstā.
+    observation_fields:
+      about_editing_observation_fields_desc_html: |
+        <p class='ui'>
+        Tu vari rediģēt novērojuma lauku, jo esi tā autors vai vietnes pārzinis. Ja esi pārzinis, lūdzu, ņem vērā vadlīnijas:
+        </p>
+        <ol>
+        <li>Neveic patvaļīgas izmaiņas nosaukumos (piemēram, nomainīt "ēšanu" pret "nektāra ievākšanu"</li>
+        <li>Jāņem vērā, ka novērojuma laukus var izmantot jebkuram taksonam, tāpēc nelieto tikai tam konkrētajam taksonam raksturīgu terminoloģiju!</li>
+        <li>Nedzēs laukus, ko izmanto citi lietotāji</li>
+        <li>Netulko pieejamos lauku nosaukumus citās valodās. Angļu valoda ir mūsu vietnes lingua franca. Ja vēlies izveidot lauku, kas iekļauj to pašu jēdzienu, bet citā valodā, lūdzu, izveido jaunu novērojuma lauku.</li>
+        </ol>
+      dna_help: |
+        Lai iespējotu BOLD DNA svītru koda meklēšanas funkciju, pārliecinies, lai laukuma nosaukumā būtu vārdi "COI", "COX1", "ITS", vai "matK," kas attiecas uz gēnu, kam paredzēts šis lauks.
+      merge:
+        warning_html: |
+          Lūdzu, cieni citu datus un <strong>sazinies ar novērojuma lauka autoru pirms apvienošanas funkcijas izmantošanas</strong>. Šī funkcija iznīcinās novērojuma lauku, ko iecerēts apvienot un pārvietos visus novērojumus uz jauni izveidoto lauku. <strong>Esi piesardzīgs, jo šī darbība ir neatgriezeniska</strong>.
     emailer:
+      bulk_import_success:
+        success_message: |
+          %{filename} lielapjoma importēšana izdevusies. Tavi novērojumi tagad tiek apstrādāti un drīz tiks pievienoti mūsu tīmekļa vietnei.
+      bulk_import_error:
+        taxon_spelling_notice_html: |
+          Lūdzu, pārbaudi katra ieraksta pareizrakstību. Ja pareizrakstībā nav kļūdu, meklē sugas, izmantojot %{search_taxa_url}. Ja nosaukums vēl nav iekļauts %{site_name} datubāzē, tas būs jāpievieno, lai funkcionētu lielapjoma augšupielāde. Izmanto meklēšanas lapas lejā atrodamo lauciņu, lai importētu jaunus nosaukumus. Ja nosaukums ir atrodams, bet attiecas uz vairākiem taksoniem, pamēģini izmantot precizāku nosaukumu, kas atbilst vienam taksonam.
+      collection_project_changed_for_trusting_member:
+        #Followed by link to a page showing project managers
+        admins_may_have_access_to_more_observations_html: |-
+          Iespējams, ka administratoriem tagad ir pieeja vairāk no <a
+          href="%{obs_url}">tavu novērojumu</a> noslēptajām koordinātām nekā tad, kad vēl nebiji uzticējies šim projektam. Iesakām pārskatīt administratoru sarakstus un projekta prasības, lai pārliecinātos par to, ka tiešām vari projektam uzticēt savus novērojumus.
+        #Followed by the project icon and a link to the project
+        requirements_have_changed: |-
+          Projekta novērojumu prasības ir nesen izmainītas:
+        subject: '%{project} projekta novērojumu prasības ir izmainījušās'
+        wondering_what_this_means_html: |
+          Interesē, kas ir "ģeoprivātums"?
+          <a href="%{url}">Vairāk informācijas mūsu dokumentācijā</a>.
+        you_can_change_html: |-
+          Pielāgo iestatījumus vai pamet projektu <a href="%{url}">projekta lapā</a>.
+      observations_export_notification:
+        your_observations_export_is_ready_html: |
+          Tavu novērojumu eksporta process ir pabeigts. E-pastam pievienota kopija. Vēl iespējams to <a href="%{url}">lejupielādēt</a>.
+        your_observations_export_failed_html: |
+          Tavu novērojumu eksporta process neizdevās. Apskati visus savus eksportētos novērojumus <a href="%{url}">novērojumu eksporta lapā</a>.
       parental_consent:
         subject: Tavs bērns vēlas izmantot iNaturalist
         content_html: |
@@ -5823,6 +5885,18 @@ lv:
           Iespējams, ka lietotāji paši savā saturā var iekļaut informāciju, kas var palīdzēt viņus identificēt.
           </p><p> Uzzināt vairāk par iNaturalist privātuma politiku <a href="%{privacy_policy_url}">šeit</a>.
           </p>
+      photos_missing:
+        subject: Dažas fotogrāfijas jālabo
+        we_have_been_housekeeping: |
+          Veicot ikdienas uzturēšanas darbus, uzgājām dažas tavu novērojumu fotogrāfijas, kas vairs nav pieejamas sākotnējā avotā. Fotogrāfijas uztur %{providers}.
+        we_would_like_to_remove: |
+          Tuvākajā nākotnē vēlamies dzēst visas atsauces uz nepieejamām fotogrāfijām. Lai gan nevēlamies dzēst neko, kas vēl ir glābjams. Iespējams, ka kāda fotogrāfija vēl ir pieejama sākotnējā avotā un to var salabot. Iespējams, ka daļa fotogrāfiju augšupielādēta, savienojot <a href='%{account_url}'>%{site_name} kontu</a> ar citu fotogrāfiju izvietošanas kontu. Pastāv iespēja, ka savienojuma termiņš ir beidzies un tas jāatjauno.
+        you_can_attempt_repair: |
+          Nospied uz %{repair_link_text} saites, lai fotogrāfiju lapā mēģinātu salabot fotogrāfijas. Ja zini, ka fotogrāfija vairs neeksistē, vari to izdzēst.
+        please_address: |
+          Lūdzu, atrisini problēmas <b>nākamajās 30 dienās</b>. Pēc 30 dienām sāksim dzēst nepieejamās fotogrāfijas. Neviens no taviem novērojumiem netiks dzēsts. Tie tiks no jauna novērtēti pēc fotogrāfiju dzēšanas. Iespējams, ka daļa no pētniecības līmeņa novērojumiem bez fotogrāfijām iegūs hobija līmeni.
+        we_included_links: |
+          Zemāk pieejamas ietekmēto fotogrāfiju saites.
       user_parent_confirmation:
         subject: Tava bērna iNaturalist konts ir aktivizēts
     posts:
