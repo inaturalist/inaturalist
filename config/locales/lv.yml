@@ -5899,7 +5899,30 @@ lv:
           Zemāk pieejamas ietekmēto fotogrāfiju saites.
       user_parent_confirmation:
         subject: Tava bērna iNaturalist konts ir aktivizēts
+      users_updates_suspended:
+        message: |
+          Apturējām jaunumu saņemšanu, jo kādu laiku %{site_name} vietnē esi bijis neaktīvs. Lai atkal saņemtu jaunumus par notikumiem, lūdzu, no jauna <a href="%{login_url}">pieslēdzies savam kontam</a>.
+    photos:
+      forbidden_notice_html: |
+        Šobrīd mums nav atļaujas piekļūt šīm fotogrāfijām. Lai sniegtu mums papildu piekļuvi, iespējams, ka <a href="/users/edit">iestatījumos</a> jāatvieno un jāsavieno konts.
+      show:
+        view_original_html: |
+          Oriģinālu iespējams apskatīt šeit: <a href="%{url}">%{url}</a> Ja fotogrāfija nepārkāpj autortiesības, lūdzu, atstāj autortiesību pārkāpumu karodziņu ziņojumos norādītās problēmas neatrisinātas.
+    places:
+      kml_field_desc: |
+        Vietas robežu KML. To iespējams izveidot, izmantojot Google Maps, Google
+        Earth un lielāko daļu citu GIS lietotņu. KML jāsatur vismaz viens poligons, kas nav lielāks par 1MB (5 MB pārziņiem) un tas nedrīkst pārsniegt, ASV štata, Teksasas izmēru.
+      edit:
+        complex_boundary_note_html: |
+          Robežas ir pārāk sarežģītas rediģēšanai pārlūkā. Tā vietā iespējams <a href="%{url}">lejupielādēt KML</a> un rediģēt to kādā no tevis izvēlētām GIS lietotnēm, un tad to augšupielādēt.
+        admin_level_desc: |
+          Jāizmanto tikai politiski apgabali. ASV mēroga ekvivalenti: 10 = štats, 20 = novads, 30 = mazpilsēta
+      new:
+        check_list_note: "Uzmanību: ļoti lielās vietās kontrollapas tiek automātiski dezaktivizētas"
+        coordinates_desc: Ja nezīmēsi robežu vai neaugšupielādēsi KML, jānorāda koordinātas.
+        map_instruction: Izmanto poligona rīku, lai uzzīmētu vietas robežas.
     posts:
+      formatting_none_help: "Nav HTML, tiek izmantoti tikai tevis norādītie tagi."
       formatting_simple_help: "Automātiski pievienot URL saites un pārnest jaunā rindā."
     projects:
       project_type: Projekta veids
@@ -5923,9 +5946,31 @@ lv:
           Projektā nav atļauts pievienot novērojumus ar koordinātām, kas nav pieejamas projekta pārziņiem. Ja nevēlies sniegt pārziņiem piekļuvi pie savu novērojumu koordinātām, tev nāksies izņemt savus novērojumus no šī projekta.
         remove_observations_label: |
           Izņemt visus savus novērojumus no projekta
+        remove_observations_desc_html: |
+          Ņem vērā, ka projekta pārziņi savam projektam tāpat varēs pievienot tavus novērojumus, ja vien neizmainīsi <a href="/users/edit">konta iestatījumus</a>.
+        revoke_observations_label: |
+          Atstāt savus novērojumus projektā, bet nesniegt pārziņiem piekļuvi pie noslēptajām koordinātām
+        revoke_observations_desc: |
+          Ja pamet projektu tikai, lai nesniegtu pārziņiem piekļuvi pie noslēptajām koordinātām.
       edit:
+        admins_must_be_existing_members: Par administratoriem var kļūt tikai pašreizējie projekta dalībnieki.
+        aggregation_pending: Apkopošanas process iesākts
+        new_place_desc_html: |
+          Pamēģini pārskatīt <a href="%{places_url}" target="_blank">jau saglabātās vietas</a>
+          un pārliecinies, vai esi pareizi ievadījis vietas nosaukumu. Ja nevari to atrast, apsver iespēju
+          <a href="%{new_place_url}" target="_blank">izveidot jaunu vietu</a>,
+          bet, lūdzu, neveido vietu dublikātus.
+        bioblitz_desc_html: |
+          <p> Bioblitz ir pasākums, kurā dalībnieki noteiktā laika posmā mēģina novērot pēc iespējas vairāk sugu. Jautrs veids, kā iepazīstināt cilvēkus ar bioloģisko daudzveidību un ievākt vērtīgus datus.
+          </p>
+        change_admin_desc: Izvēlies projekta pārzini, kuram piešķirt administratora statusu.
+        change_owner_alert: |
+          Šī darbība atņems tev tiesības dzēst un nodot projektu citiem. Vai vēlies turpināt?
         cover_desc: "Plakāta attēls pēc izvēles. Tas tiks attēlots projekta lapas augšpusē. Tam jābūt 950 pikseļus platam un ne vairāk par 400 pikseļiem augstam."
         custom_project_fields_means: "Projekta plakātu iespējams pielāgot, pievienojot papildu saturu un rediģējot CSS."
+        end_time_desc: "Bioblitz beigu laiks. Jābūt drīzāk par vienu gadu pēc sākšanās laika"
+        event_url_desc: |
+          Tava Bioblitz dalībnieku reģistrācijas URL. Ja izmanto Eventbrite URL ar skaitlisku ID, līdz Bioblitz sākumam nodrošināsim tava projekta lapā reģistrācijas rīku.
         #Label for button to make another user the owner of a project
         make_owner: Piešķirt īpašnieka statusu
         no_curators: |
@@ -6271,6 +6316,16 @@ lv:
           </li>
           </ul>
     users:
+      dashboard:
+        you_may_want_to_update: Jāatjaunina ar šiem taksoniem saistītais saturs.
+        cannot_update_your_content: "%{site_name} tavu izmaiņām paredzēto saturu nevar automātiski atjaunināt."
+        new_project_admin_html: |
+          Nav skaidrs, kāpēc esi kļuvis par projekta administratoru? Iepriekšējais īpašnieks tev piešķīra administratora statusu vai izdzēsa savu kontu. Ja konts tika izdzēsts, %{site_name} izvēlējās tevi, jo esi projekta menedžeris vai vietnes pārzinis. Ja nevēlies kļūt par projekta administratoru, lūdzu, sazinies ar <a href="mailto:%{help_email}">%{help_email}</a>
+        curators_can_see: |
+          Atgādinājums: Pārziņiem ir piekļuve tevis projektā pievienoto novērojumu noslēptajām koordinātām.
+      delete:
+        by_deleting_your_account_you_will_remove: |
+          Izdzēšot kontu, izdzēsīsies arī
       edit:
         display_monthly_supporter_status_on_my_profile: |
           Nerādīt profilā ikmēneša atbalstītāja piespraudīti
