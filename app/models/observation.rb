@@ -30,6 +30,7 @@ class Observation < ApplicationRecord
       return false unless observation.georeferenced?
       return true if subscription.taxon_id.blank?
       return false if observation.taxon.blank?
+      return true if observation.taxon_id == subscription.taxon_id
       observation.taxon.ancestor_ids.include?(subscription.taxon_id)
     }
   notifies_subscribers_of :taxon_and_ancestors, :notification => "new_observations", 

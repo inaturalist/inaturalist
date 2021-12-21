@@ -44,4 +44,36 @@ describe HasSubscribers do
     end
   end
 
+  describe "place subscriptions with taxon" do
+    let( :user ) { User.make! }
+    let( :genus ) { Taxon.make!( rank: Taxon::GENUS ) }
+    let( :species ) { Taxon.make!( rank: Taxon::SPECIES, parent: genus ) }
+    let( :place ) { make_place_with_geom( admin_level: Place::STATE_LEVEL ) }
+
+    it "notifies subscribers of descendants of the taxon" do
+      s = Subscription.make!(resource: place, user: user, taxon: genus )
+      expect( UpdateAction.unviewed_by_user_from_query(user.id, { }) ).to eq false
+      expect( UpdateAction.count ).to eq 0
+      # make an observation of a species within the subscribed genus
+      make_research_grade_observation(
+        latitude: place.latitude, longitude: place.longitude, taxon: species)
+      Delayed::Worker.new.work_off
+      expect( UpdateAction.unviewed_by_user_from_query(user.id, { }) ).to eq true
+      expect( UpdateAction.count ).to be > 1
+    end
+
+    it "notifies subscribers of the taxon" do
+      s = Subscription.make!(resource: place, user: user, taxon: genus )
+      expect( UpdateAction.unviewed_by_user_from_query(user.id, { }) ).to eq false
+      expect( UpdateAction.count ).to eq 0
+      # make an observation o the subscribed genus
+      make_research_grade_observation(
+        latitude: place.latitude, longitude: place.longitude, taxon: genus)
+      Delayed::Worker.new.work_off
+      expect( UpdateAction.unviewed_by_user_from_query(user.id, { }) ).to eq true
+      expect( UpdateAction.count ).to be > 1
+    end
+
+  end
+
 end
