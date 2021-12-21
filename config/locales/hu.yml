@@ -431,6 +431,7 @@ hu:
   block_user: Felhasználó tiltása
   block_removed: Tiltás visszavonva
   blocked_users: Letiltott felhasználók
+  blog_widget: Blog modul
   blue: kék
   blue_butterfly_etc: "kék, pillangó, stb."
   #Text inserted into a textarea when the bold button is clicked but no text was selected
@@ -441,6 +442,7 @@ hu:
   browse_all_projects: Böngészés a projektek között
   browse_observations: Megfigyelések megtekintése
   browse_projects: Böngészés a projektek között
+  by_you: Tőled
   calendar: Naptár
   cancel: Mégse
   captive: Fogságban
@@ -497,8 +499,8 @@ hu:
   community_id_heading: Közösségi taxon
   community_id_at_species_level_or_lower: Közösségi meghatározás faji szinten vagy alatta
   community_id_is_precise: A közösségi taxon pontos
-  compare: Összehasonlít
-  compare_with: Hasonlítsa össze
+  compare: Összehasonlítás
+  compare_with: 'Összehasonlítás ezzel:'
   comparing: összehasonlítás
   comparing_versions_x_and_y: "Verziók összehasonlítása - %{x} és %{y}"
   #Adjective, e.g. "this Taxon Framework is complete"
@@ -515,6 +517,8 @@ hu:
   computer_vision_model_pending: Függőben
   computer_vision_model_pending_desc: |
     A jelenlegi Gépi látás model nem ismeri ezt a taxont, ezért bár az megjelenhet az automatikus javaslatok között "Közeli" megjelöléssel, nem fog mellette szerepelni a "Kinézetre hasonló" címke. A modellek változóak képfelismeréshez támasztott követelményeik terén, viszont az általánosságban elmondható, hogy a megfigyelések és az azonosítások száma növeli annak az esélyét, hogy a taxon bekerül a következő modelltanításba.
+  configure: Konfigurálás
+  configure_a_widget_to_show: A modul konfigurálásával az %{site_name} megfigyeléseit közzéteheted a weboldaladon vagy blogodon. Ehhez szükség lehet a CSS-kódrészlet beillesztésére a HTML <code>&lt;head&gt;</code> részébe. A CSS tetszőlegesen módosítható.
   confirm: Megerősítés
   confirm_new_password: Új jelszó megerősítése
   confirming_ids: Egyetértő meghatározások
@@ -625,7 +629,7 @@ hu:
     href="/pages/community+guidelines" target="_blank">Közösségi irányelveket</a> sértő felhasználók felfüggesztése és megjegyzéseinek elrejtése.
   darr_apply_darr: "&darr; Alkalmaz &darr;"
   daily_users: Napi felhasználók
-  danger_zone: Veszélyes Zóna
+  danger_zone: Veszélyes zóna
   dashboard: Vezérlőpult
   data_deficient: Adathiányos
   data_quality: Adatminőség
@@ -665,6 +669,7 @@ hu:
   date_is_accurate: A dátum pontos
   date_observed: Megfigyelés dátuma
   date_observed_: Megfigyelés dátuma
+  date_observed_on: megfigyelés dátuma
   date_picker:
     closeText: Bezárás
     currentText: Ma
@@ -790,6 +795,7 @@ hu:
   email: Email
   email_description: Az email címedet nem osztjuk meg más felhasználókkal az iNaturalist oldalon
   email_notifications: Email értesítések
+  embed_widget_project: E projekt moduljának megjelenítése a weboldaladon
   end: Vége
   establishment:
     introduced: Behurcolt
@@ -856,15 +862,18 @@ hu:
   following_x_people:
     one: 'Egy felhasználót követ'
     other: '%{count} felhasználót követ'
+  for_a_taxon: egy taxonról
   forgot_your_password: Elfelejtetted a jelszavadat?
   forum: Fórum
   forum_categories:
     feature_requests: Funkciójavaslatok
     news_and_updates: Hírek & Újdonságok
   frequency: Gyakoriság
+  from_a_place: egy helyről
   from_flickr_facebook_etc: Flickr, Facebook stb. oldalakról
   from_soundcloud: Soundcloudról
   full_screen: Teljes képernyő
+  generate_widget: Modul létrehozása
   Genus: Nemzetség
   geoprivacy: Pozíció láthatósága
   geoprivacy_is_private: A pozíció nem publikus
@@ -906,7 +915,11 @@ hu:
   ids_by_taxon: Meghatározás taxon szerint
   identify: Azonosítás
   identify_title: "Azonosítás"
+  identification: meghatározás
+  identification_by_user: '%{user} meghatározásai'
+  identification_deleted: Meghatározás törölve.
   identification_saved: "Meghatározás elmentve!"
+  identification_updated: Meghatározás módosítva!
   identification_withdrawn: Meghatározás visszavonva
   identifications: Meghatározások
   computer_vision_suggestion_desc: |
@@ -974,6 +987,7 @@ hu:
   last_year: Tavaly
   #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Rétegek
+  layout: Elrendezés
   leaderboards: Ranglisták
   leaderboard_most:
     species_in_month_year: Legtöbb faj %{month_year} hónapban
@@ -983,7 +997,7 @@ hu:
     identifications_in_month_year: Legtöbb meghatározás %{month_year} hónapban
     identifications_in_year: Legtöbb meghatározás %{year} évben
   learn: Tanulj
-  learn_more: Tudj meg többet
+  learn_more: További információ
   learn_more_raquo: "Bővebben"
   leave: Kilépés
   leave_a_comment: Írd ide a megjegyzést
@@ -1098,6 +1112,10 @@ hu:
   log_scale_label: Logaritmus
   login_slash_username: Login / felhasználónév
   logo:
+    logo: Logó
+    white_bg_gif: Fehér hátterű GIF
+    transparent_png: Átlátszó PNG
+    white_text_transparent_png: Fehér szöveg, átlátszó PNG
     none: egyik sem
   lookup: Keresés
   low: Alsó
@@ -1125,7 +1143,7 @@ hu:
   #As in members of a project
   members: Tagok
   merge_observation_field_x_into: '"%{x}" adatmező összevonása ezzel...'
-  merging_places: Összevon helyeket
+  merging_places: Helyek összevonása
   message: Üzenet
   message_deleted: Üzenet kitörölve
   message_from_user_at_time: '%{user}-tól ekkor %{time}'
@@ -1170,7 +1188,7 @@ hu:
   must_have_photos: kell legyen kép
   must_have_sounds: kell legyen hang
   must_have_x: "kell legyen %{x}"
-  mute_user: Felhasználó Némítása
+  mute_user: Felhasználó némítása
   muted_users: Némított felhasználók
   n_ago: "%{n}"
   n_people_agrees: "%{amount} ember egyetért"
@@ -1200,6 +1218,7 @@ hu:
   new_observations_in_year: "%{year} évi új megfigyelések"
   new_observations_ellispsis: "Új megfigyelések..."
   new_observations_from_place_html: "Új megfigyelések innen: %{place}"
+  new_observations_may_take_up_to: Az új megfigyelések megjelenése a modulban %{widget_expiration} késedelemmel történik.
   new_password: Új jelszó
   new_project: Új projekt
   new_source: Új forrás
@@ -1262,11 +1281,15 @@ hu:
   none_found: Nincs találat
   not_confident: Nincs kellő bizonyosságú javaslatunk.
   not_confident_top_suggestions: 'Nincs kellő bizonyosságú javaslatunk, de a legjobb tippjeink:'
+  note: Megjegyzés
   notes: Megjegyzések
   notifications: Értesítések
   notify_me_of_mentions: Értesítések említésekről (pl. @felhasználónév)
   notify_me_of_mentions_description: "Ha ezt kikapcsolod, nem fogsz értesítéseket kapni, ha valaki megemlít az %{site_name} oldalon."
+  number_of_observations: Megfigyelések száma
   obscured: Kitakart
+  observation: Megfigyelés
+  observation_: megfigyelés
   observation_belongs_to_project_requiring_field: |
     Ez a megfigyelés egy olyan projekthez tartozik, amelynél kötelező ezen adatmező kitöltése. A megfigyelést el kell távolítani a projektből, és csak azután lehet az adatmező értéket törölni.
   observations_by_app: Megfigyelések applikáció szerint
@@ -1300,6 +1323,7 @@ hu:
   observations_this_year_vs_last_year: Megfigyelések idén és tavaly
   observations_total: Minden megfigyelés
   observations_w_field: Megfigyelések adatmezővel
+  observations_widget: Megfigyelésmodul
   observations_with_this_field: Megfigyelések ezzel az adatmezővel
   observations_with_this_field_and_value: Megfigyelések ezzel az adatmezővel és értékkel
   observations_without_media: Megfigyelés fénykép/hang nélkül
@@ -1752,7 +1776,7 @@ hu:
   research_: Kutatási
   research_grade: Tudományos szintű
   research_grade_short_html: "T<span class='full'>udományos </span>Sz<span class='full'>intű</span>"
-  research_grade_tooltip_html: 'A "Tudományos szintű" megfigyelés multimédia anyaggal, hellyel, dátummal és a pontos meghatározásában közösségi egyetértéssel kell rendelkeznie (általában a faj szintjén). <a href="https://www.inaturalist.org/pages/help#quality">Tudj meg többet a minőségi értékelésről</a>'
+  research_grade_tooltip_html: 'A "Tudományos szintű" megfigyelések médiaanyaggal, hellyel, dátummal és a pontos meghatározásában közösségi egyetértéssel rendelkeznek (általában a faj szintjén). <a href="https://www.inaturalist.org/pages/help#quality">További információ a minőségi értékelésről</a>'
   research_grade_qualification: A tudományos szint követelményei
   reset_search_filters: Szűrők visszaállítása
   reviewed: Átnézett
@@ -1891,6 +1915,7 @@ hu:
   time_ago: "%{time}"
   #As in the title of a book or a blog post
   title: név
+  to_configure_your_widget: a modulod konfigurálásához.
   today: Ma
   top_identifiers: Legtöbbször azonosította
   top_identifiers_of_taxon: '%{taxon} taxon legaktívabb meghatározói'
@@ -1903,6 +1928,7 @@ hu:
   trending: Népszerű
   trends: Trendek
   two_thirds: 2/3
+  type_place_name: Írd be a helyet
   umbrella_projects: Ernyőprojektek
   unknown: Ismeretlen
   unknown_error: Ismeretlen hiba
@@ -1928,10 +1954,10 @@ hu:
   user_added_an_identification_html: "%{user} meghatározást javasolt"
   user_added_an_observation_field_html: '%{user} kitöltötte a(z) "%{field_name}" adatmezőt %{owner} megfigyeléséhez'
   user_added_an_observation_field_value_html: "%{user} értéket adott meg egy adatmezőben"
-  user_added_an_x_to_noun_by_html: "%{user} hozzáadott egy %{x}t a %{by} %{noun}hez"
-  user_added_an_x_to_noun_by_user_html: "%{user} hozzáadott egy %{x}t a %{by} %{noun}hez"
+  user_added_an_x_to_noun_by_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
+  user_added_an_x_to_noun_by_user_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
   user_added_an_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
-  user_added_an_x_to_noun_html: "%{user} hozzáadott egy %{x}t a %{noun}hoz"
+  user_added_an_x_to_noun_html: "%{noun}: %{user} hozzáadott egy %{x}t"
   user_disagrees_this_is_taxon: "%{user} nem ért egyet azzal, hogy ez %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nem ért egyet az előző finomabb meghatározásokkal"
   user_helped_x_people_with_y_ids_html: "%{user} <strong>%{x} embernek</strong> segített, <strong>%{y} meghatározással</strong>"
@@ -1942,6 +1968,7 @@ hu:
   username_or_user_id: Felhasználói név vagy azonosító
   users: Felhasználók
   users_favorites: "%{user} kedvencei"
+  users_identifications: "%{user} meghatározásai"
   users_profile: "%{user} profilja"
   value: Érték
   values: Értékek
@@ -1960,6 +1987,7 @@ hu:
   view_original: "Eredeti megtekintése"
   view_sample: Példa megtekintése
   view_stats: Statisztikák megtekintése
+  view_user_observations: "%{user} megfigyelései"
   view_year_stats_for_site: "%{site} %{year} évi statisztikáinak megtekintése"
   view_your_dashboard: Vezérlőpult megtekintése
   view_your_dashboard_for_more_updates_html: "További információkért <a href='%{url}'>irány a vezérlőpult</a>"
@@ -1991,6 +2019,9 @@ hu:
   who_helped_user_the_most: "%{user} tőlük kapott a legtöbb segítséget"
   who_user_helped_the_most: "%{user} nekik segített a legtöbbet"
   with_annotation: Megjelölés
+  widget: Modul
+  widget_code: Modul kódrészlet
+  widget_for: 'Modul:'
   withdraw: Visszavonás
   withdrawing: Visszavonás...
   x_deleted: "%{x} törölve"
@@ -1999,7 +2030,7 @@ hu:
   x_journal_archives_for_y: "%{user} hírmondója • Archívum"
   x_journal_middot: "%{user} hírmondója •"
   x_journal_new_post: "%{user} hírmondója • Új bejegyzés"
-  x_of_y_people_over_two_thirds_agree_it_is: "%{x} %{y} emberből (2/3 fölött) egyetért, hogy ez"
+  x_of_y_people_over_two_thirds_agree_it_is: "%{y} emberből %{x} egyetért (2/3 fölött), hogy ez"
   x_project_journal: "%{project} project %{name}"
   year: Év
   year_in_review: "%{year} áttekintése"
@@ -2078,8 +2109,8 @@ hu:
     observations:
       community_id:
         agreement: Egyetértés
-        disagreement: Ellenkezés
-        disagreement_count: Ellenkezések száma
+        disagreement: Egyetnemértés
+        disagreement_count: Egyetnemértések száma
       field_descriptions:
         time_zone: A megfigyelés időzónája
       show:
@@ -2266,6 +2297,8 @@ hu:
         monthly_supporter: Havi támogató
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Megjegyzések
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Meghatározások
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: Üzenetek
         #Checkbox label for user preference about what to receive in the daily email update

@@ -1282,7 +1282,7 @@ de:
   date_: Datum
   date_added: Hinzugefügt
   date_authorized: Autorisierungsdatum
-  date_created: Datum erstellt
+  date_created: Erstelldatum
   date_format:
     date_long:
       january: '%{day}. Januar %{year}'
@@ -2907,7 +2907,7 @@ de:
   observed: Beobachtet
   observed_by: Beobachtet von
   observed_on: Gesehen am
-  observer: Beobachter
+  observer: beob. von
   observers: Beobachter
   observer_prefers_no_project_addition: |
     Beobachter erlaubt es anderen Personen nicht, ihre Beobachtungen zu Projekten hinzuzufügen.
@@ -4283,7 +4283,7 @@ de:
   species_unknown: Art unbekannt
   specify_the_reason_youre_flagging: Gib den Grund an, warum du diesen Eintrag meldest
   #Abbreviation for "source"
-  src: aus
+  src: Quelle
   standard: Standard
   start: Beginn
   start_a_new_project: Neues Projekt beginnen
@@ -4859,7 +4859,7 @@ de:
     <strong>%{user}</strong> ist jetzt ein Kurator für %{project}
   user_muted: Benutzer gesperrt
   user_observed_on_on_date_in_place: |
-    %{user} beobachtete dies am %{date} in %{place}
+    Von %{user} beobachtet am %{date} in %{place}
   user_suggested_an_id: "%{user} hat eine Bestimmung (ID) vorgeschlagen"
   user_thinks_yours_is: "%{user} %{noun} deine Beobachtung %{observation} ist"
   user_trusts_you_with_their_private_coordinates: "%{user} vertraut Dir seine/ihre verborgenen Koordinaten an"
@@ -6901,7 +6901,7 @@ de:
       7: Sa
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      default: '%Y-%m-%d'
+      default: '%d. %b. %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%B %d, %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
