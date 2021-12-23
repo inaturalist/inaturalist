@@ -554,6 +554,15 @@ body > [role="dialog"] .ObservationModal {
             top: 1px;
           }
         }
+        img.app-thumbnail {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 15px;
+          text-align: center;
+          display: block;
+          line-height: 16px;
+        }
         .user-obs-count {
           .fa-binoculars {
             font-size: 11px;
