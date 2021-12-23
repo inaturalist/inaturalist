@@ -741,7 +741,14 @@ class ObservationModal extends React.Component {
                             { observation.application && observation.application.name && (
                               <li>
                                 <a href={observation.application.url}>
-                                  <i className="fa fa-square bullet-icon" />
+                                  { DISPLAYABLE_APP_IDS.includes( observation.application.id ) ? (
+                                    <img
+                                      className="app-thumbnail"
+                                      src={observation.application.icon}
+                                      alt={observation.application.name}
+                                    />
+                                  ) : <i className="fa fa-cloud-upload bullet-icon" />
+                                  }
                                   <span className="name">
                                     { observation.application.name }
                                   </span>
