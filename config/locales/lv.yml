@@ -5710,6 +5710,8 @@ lv:
           </p><p class="ui"><strong>Algoritms</strong> visiem identificētajiem taksoniem un taksoniem, kas tos satur (piemēram, ģintī <i>Homo</i> ir <i>Homo sapiens</i>): katru vērtē kā attiecību starp "piekrišanu" skaitu – pavisam atšķirīgo ID skaits (piemēram, taksonu ID, kas nesatur vērtējamo taksonu), kā arī domstarpības par taksonu priekštečiem – piesardzīgāku ID skaits, kas nesakrīt ar smalkākās pakāpes taksonu. Identificētajiem taksoniem, kas novērtēti vismaz ar 2/3 un satur vismaz 2 ID, izvēlies zemākās pakāpes taksonu.
           </p>
         cumulative_count_desc: 'Individuāla taksona un tā zemāku pakāpju taksonu identifikāciju skaits'
+        curator_coordinate_access_disabled_desc_html: |
+          Projektā nav atļauts pievienot novērojumus ar koordinātām, kas nav pieejamas projekta pārziņiem. Ja nevēlies sniegt pārziņiem piekļuvi pie savu novērojumu koordinātām, tev nāksies viņus no šī projekta izslēgt.
         disagreement_count_desc: "Identificēto taksonu skaits, kas nav daļa no taksona priekštečiem"
         identification_count_desc: 'Individuāla taksona identifikāciju skaits'
         flagged_photos_desc_html: |
