@@ -9,6 +9,33 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+--
+-- Name: tiger; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA tiger;
+
+
+--
+-- Name: tiger_data; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA tiger_data;
+
+
+--
+-- Name: topology; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA topology;
+
+
+--
+-- Name: SCHEMA topology; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON SCHEMA topology IS 'PostGIS Topology schema';
+
 
 --
 -- Name: fuzzystrmatch; Type: EXTENSION; Schema: -; Owner: -
@@ -37,6 +64,33 @@ CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
 
 COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial types and functions';
 
+
+--
+-- Name: postgis_tiger_geocoder; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS postgis_tiger_geocoder WITH SCHEMA tiger;
+
+
+--
+-- Name: EXTENSION postgis_tiger_geocoder; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION postgis_tiger_geocoder IS 'PostGIS tiger geocoder and reverse geocoder';
+
+
+--
+-- Name: postgis_topology; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS postgis_topology WITH SCHEMA topology;
+
+
+--
+-- Name: EXTENSION postgis_topology; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION postgis_topology IS 'PostGIS topology spatial types and functions';
 
 
 --
@@ -1240,37 +1294,6 @@ ALTER SEQUENCE public.deleted_users_id_seq OWNED BY public.deleted_users.id;
 
 
 --
--- Name: exploded_atlas_places; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.exploded_atlas_places (
-    id integer NOT NULL,
-    atlas_id integer,
-    place_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: exploded_atlas_places_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.exploded_atlas_places_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: exploded_atlas_places_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.exploded_atlas_places_id_seq OWNED BY public.exploded_atlas_places.id;
-
---
 -- Name: email_suppressions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1300,6 +1323,38 @@ CREATE SEQUENCE public.email_suppressions_id_seq
 --
 
 ALTER SEQUENCE public.email_suppressions_id_seq OWNED BY public.email_suppressions.id;
+
+
+--
+-- Name: exploded_atlas_places; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.exploded_atlas_places (
+    id integer NOT NULL,
+    atlas_id integer,
+    place_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: exploded_atlas_places_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.exploded_atlas_places_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: exploded_atlas_places_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.exploded_atlas_places_id_seq OWNED BY public.exploded_atlas_places.id;
 
 
 --
@@ -3250,7 +3305,6 @@ CREATE SEQUENCE public.places_id_seq
 --
 
 ALTER SEQUENCE public.places_id_seq OWNED BY public.places.id;
-
 
 
 --
@@ -5537,17 +5591,17 @@ ALTER TABLE ONLY public.deleted_users ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- Name: exploded_atlas_places id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.exploded_atlas_places ALTER COLUMN id SET DEFAULT nextval('public.exploded_atlas_places_id_seq'::regclass);
-
-
---
 -- Name: email_suppressions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.email_suppressions ALTER COLUMN id SET DEFAULT nextval('public.email_suppressions_id_seq'::regclass);
+
+
+--
+-- Name: exploded_atlas_places id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.exploded_atlas_places ALTER COLUMN id SET DEFAULT nextval('public.exploded_atlas_places_id_seq'::regclass);
 
 
 --
@@ -6467,26 +6521,19 @@ ALTER TABLE ONLY public.deleted_users
 
 
 --
--- Name: exploded_atlas_places exploded_atlas_places_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.exploded_atlas_places
-    ADD CONSTRAINT exploded_atlas_places_pkey PRIMARY KEY (id);
-
-
---
 -- Name: email_suppressions email_suppressions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.email_suppressions
     ADD CONSTRAINT email_suppressions_pkey PRIMARY KEY (id);
 
+
 --
--- Name: places_sites places_sites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: exploded_atlas_places exploded_atlas_places_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.places_sites
-    ADD CONSTRAINT places_sites_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.exploded_atlas_places
+    ADD CONSTRAINT exploded_atlas_places_pkey PRIMARY KEY (id);
 
 
 --
@@ -6847,6 +6894,14 @@ ALTER TABLE ONLY public.place_taxon_names
 
 ALTER TABLE ONLY public.places
     ADD CONSTRAINT places_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: places_sites places_sites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.places_sites
+    ADD CONSTRAINT places_sites_pkey PRIMARY KEY (id);
 
 
 --
@@ -7643,6 +7698,13 @@ CREATE INDEX index_deleted_users_on_login ON public.deleted_users USING btree (l
 --
 
 CREATE INDEX index_deleted_users_on_user_id ON public.deleted_users USING btree (user_id);
+
+
+--
+-- Name: index_email_suppressions_on_email_and_suppression_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_email_suppressions_on_email_and_suppression_type ON public.email_suppressions USING btree (email, suppression_type);
 
 
 --
@@ -9351,6 +9413,7 @@ CREATE INDEX index_taxon_ranges_on_geom ON public.taxon_ranges USING gist (geom)
 --
 
 CREATE INDEX index_taxon_ranges_on_taxon_id ON public.taxon_ranges USING btree (taxon_id);
+
 
 --
 -- Name: index_taxon_ranges_on_updater_id; Type: INDEX; Schema: public; Owner: -

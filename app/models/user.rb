@@ -720,16 +720,21 @@ class User < ApplicationRecord
     self.longitude = longitude
     self.lat_lon_acc_admin_level = lat_lon_acc_admin_level
   end
-  
-  def suppressed_emails( suppressed_groups )
+
+  def email_suppressed_in_group?( suppressed_groups )
+    unless suppressed_groups.is_a?( Array )
+      suppressed_groups = [suppressed_groups]
+    end
     unsuppressed_groups = [
       EmailSuppression::ACCOUNT_EMAILS,
       EmailSuppression::DONATION_EMAILS,
       EmailSuppression::NEWS_EMAILS,
-      EmailSuppression::TRANSACTIONAL_EMAILS 
-    ].select{ |i| !( suppressed_groups.include? i ) }
-    return true if EmailSuppression.where( "email = ? AND suppression_type NOT IN (?)", email, unsuppressed_groups ).first
-    return false
+      EmailSuppression::TRANSACTIONAL_EMAILS
+    ].reject {| i | ( suppressed_groups.include? i ) }
+    return true if EmailSuppression.where( "email = ? AND suppression_type NOT IN (?)",
+      email, unsuppressed_groups ).first
+
+    false
   end
 
   def get_lat_lon_from_ip_if_last_ip_changed
@@ -1475,20 +1480,21 @@ class User < ApplicationRecord
     spammers = []
     num_checks = {}
     User.order( "id desc" ).limit( limit ).
-        where( "spammer is null " ).
-        where( "created_at < ? ", 12.hours.ago ). # half day grace period
-        where( "description is not null and description != '' and description ilike '%http%'" ).
-        where( "observations_count = 0 and identifications_count = 0" ).
-        pluck(:id).
-        in_groups_of( 10 ) do |ids|
+      where( "spammer is null " ).
+      where( "created_at < ? ", 12.hours.ago ). # half day grace period
+      where( "description is not null and description != '' and description ilike '%http%'" ).
+      where( "observations_count = 0 and identifications_count = 0" ).
+      pluck( :id ).
+      in_groups_of( 10 ) do | ids |
       puts
       puts "BATCH #{ids[0]}"
       puts
-      3.times do |i|
+      3.times do | i |
         batch = User.where( "id IN (?)", ids )
         puts "Try #{i}"
-        batch.each do |u|
+        batch.each do | u |
           next if spammers.include?( u.login )
+
           num_checks[u.login] ||= 0
           puts "#{u}, checked #{num_checks[u.login]} times already"
           num_checks[u.login] += 1
@@ -1509,11 +1515,12 @@ class User < ApplicationRecord
 
   def self.ip_address_is_often_suspended( ip )
     return false if ip.blank?
+
     count_suspended = User.where( last_ip: ip ).where( "suspended_at IS NOT NULL" ).count
     count_active = User.where( last_ip: ip ).where( "suspended_at IS NULL" ).count
     total = count_suspended + count_active
     return false if total < 3
-    return count_suspended.to_f / ( count_suspended + count_active ).to_f >= 0.9
-  end
 
+    count_suspended.to_f / ( count_suspended + count_active ) >= 0.9
+  end
 end
