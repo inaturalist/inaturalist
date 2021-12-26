@@ -5712,6 +5712,8 @@ lv:
         cumulative_count_desc: 'Individuāla taksona un tā zemāku pakāpju taksonu identifikāciju skaits'
         curator_coordinate_access_disabled_desc_html: |
           Projektā nav atļauts pievienot novērojumus ar koordinātām, kas nav pieejamas projekta pārziņiem. Ja nevēlies sniegt pārziņiem piekļuvi pie savu novērojumu koordinātām, tev nāksies viņus no šī projekta izslēgt.
+        data_quality_assessment_desc_html: |
+          Datu kvalitātes novērtējumā izvērtē novērojuma precizitāti. Pētniecības līmeņa novērojumus izmanto zinātnieki. Nobalso šeit:
         disagreement_count_desc: "Identificēto taksonu skaits, kas nav daļa no taksona priekštečiem"
         identification_count_desc: 'Individuāla taksona identifikāciju skaits'
         flagged_photos_desc_html: |
@@ -5976,11 +5978,25 @@ lv:
         icon_desc: "Tiks izgriezts kvadrāta formā"
         it_looks_like_this_project_can_be_converted: |
           Izskatās, ka projektu var pārveidot par jaunu <a href="%{url}">Kolekciju projektu</a>.
+        last_aggregated_at_desc: |
+          Laiks, kad lietotājs pēdējo reizi pabeidza novērojumu pievienošanu šim projektam
         #Label for button to make another user the owner of a project
         make_owner: Piešķirt īpašnieka statusu
         no_curators: |
           Nav neviena projekta pārziņa. Ja vēlies piešķirt kādam administratora statusu, lietotājam vispirms jāpievienojas projektam un tev jāpiešķir šim lietotājam pārziņa statuss.
+        project_assets_desc_html: |
+          <p class="description">Projekta pielikumi ir tavam projektam pievienotie faili, ievērojot šādus noteikumus:</p>
+          <ol class="description">
+          <li>Projekta ikonu iespējams samainīt pret projekta logo. Logo failu nosaukuma beigās jābūt .logo.jpg vai .logo.png</li>
+          <li>Projekta lapā KML un KMZ faili tiek pievienoti kartei.</li>
+          </ol>
+        project_list_desc_html: |
+          <p class="description">
+          Projektam iespējams pievienot pielāgojamu projekta taksonu sarakstu. Izmantojot "taksonam jābūt iekļautam" noteikumu, iespējams parocīgi atlasīt projektam pievienotos novērojumus, kas sakrīt ar sarakstā norādītajiem taksoniem.
+          </p>
         rules:
+          captive: jābūt nebrīvē vai kultivētam
+          coordinates_shareable_by_project_curators: koordinātām jābūt pieejamām projekta pārziņiem
           georeferenced: ar koordinātām
           has_a_photo: ar fotogrāfijām
           has_a_sound: ar audiofailiem
@@ -5991,13 +6007,20 @@ lv:
           on_list: jābūt iekļautam taksonā, kas pievienots projekta sarakstam
           verifiable: jābūt pierādāmam
           wild: jābūt savvaļas vai naturalizētam
+        start_time_desc: "Tava Bioblitz sākuma laiks. Formāts: YYYY-MM-DDThh:mm:ss±hh:mm"
         submission_models:
           any: jebkurš
           curators: projekta pārziņi
         trust_allow_members_to_trust: |-
           Uzticēties dalībniekiem ar savām noslēptajām koordinātām
+        trust_help_desc: |-
+          Lai sniegtu lietotājiem pieeju pie noslēptu novērojumu koordinātām, izmanto šo funkciju, kas paredzēta, lai piedāvātu projekta dalībniekiem iespēju uzticēt noslēptās koordinātas projekta administratoriem.
+        trust_help_notification2: |-
+          Jāņem vērā, ka minētās darbības rezultātā visiem projekta dalībniekiem tiks nosūtīts paziņojums par izmaiņām projekta novērojumu prasībās. Tas nepieciešams, lai lietotāji varētu izlemt, vai vēl aizvien var uzticēties projektam, ņemot vērā izmaiņas. Lai lietotājiem pietiktu tam laika, tava pieeja pie noslēptajām koordinātām tiks atcelta vienu nedēļu pēc izmaiņu veikšanas.
         trusted_project_means: |
           Uzticot citiem savu projektu, sniegsi iespēju projekta menedžeriem pievienot pielikumus un rediģēt tādu informāciju kā projekta plakāta HTML un CSS. Piekļuve pie pielāgojamās projekta informācijas var sniegt menedžeriem iespēju pievienot kaitīgu Javascript kodu, tāpēc uztici projektus tikai atbildīgiem un tehniski kompetentiem menedžeriem.
+        you_can_preview: |
+          <a href="%{url}">Šeit</a> iespējams iepriekš aplūkot, kā projekts izskatītos, izvēloties kolekciju projekta veidu.
       new:
         an_umbrella_project_can_be_used_to: |
           Projektu grupas izmanto, lai salīdzinātu statistiku starp vairākiem standarta vai kolekciju projektiem. Projektiem jābūt izveidotiem jau pirms to pievienošanas projektu grupai. Vienai projektu grupai iespējams pievienot simtiem projektu. Projektu grupās nevar būt iekļautas citas projektu grupas.
