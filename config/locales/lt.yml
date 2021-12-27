@@ -229,8 +229,12 @@ lt:
   about_muting: Apie nutildymą
   #Header for a section describing taxon names
   about_names: Apie pavadinimus
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Apie %{place}"
   about_places: Apie vietas
   about_the_cc_licenses: Apie Creative Commons licencijas
+  about_the_network: Apie tinklą
   about_these_licenses: Apie šias licencijas
   about_this_bioblitz: Apie šį bioblicą
   about_this_map: Apie šį žemėlapį
@@ -295,6 +299,10 @@ lt:
   action: Veiksmas
   actions: Veiksmai
   active: Aktyvus
+  #Status of a complete set that is available for use
+  active_complete_set_status: Aktyvus
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Aktyvus
   active_users: Aktyvūs vartotojai
   activity: Veikla
   activity_settings: Veiklos parametrai
@@ -310,6 +318,7 @@ lt:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Pridėti nuorodą
   add_a_name: Pridėti pavadinimą
+  add_a_note: Pridėti pastabą
   add_a_new_change_group: Pridėti naują kaitos grupė
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Pridėti sunumeruotą sąrašą
@@ -1030,6 +1039,16 @@ lt:
   contributor_cannot_be_found: Įnašai negali būti rasti
   contributors_to_project: "%{project} įnašai"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Nesvarbu
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Nesvarbu
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Nesvarbu
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Nesvarbu
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Nesvarbu
     sex: Lytis
     male: Vyr.
     female: Mot.
@@ -1052,6 +1071,21 @@ lt:
     alive: Gyvas
     dead: Miręs
     cannot_be_determined: Negali būti nustatyta
+    evidence_of_presence: Organizmo buvimo įrodymai
+    #As in the feather on a bird
+    feather: Plunksna
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organizmas
+    #Fecal matter, not regurgitated matter
+    scat: Išmatos
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Pėdsakai
+    #Endoskeletal remains, like a deer bone
+    bone: Kaulas
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Išnara
   controlled_term_definitions:
     alive: Organizmas yra gyvas ir nėra jokių artėjančios mirties ženklų
     dead: Organizmas yra miręs arba yra artėjančios mirties ženklų
@@ -1724,6 +1758,7 @@ lt:
   import_tags_from_csv: Importuoti žymes iš CSV
   importing: "Importuojama..."
   improving: Patobulintas
+  inaturalist_network: iNaturalist tinklas
   inaturalist_network_affiliation: Pasirinkite iNaturalist tinklo priskyrimą
   #Label for messages you've received
   inbox: Žinutės
@@ -1737,7 +1772,13 @@ lt:
   in_the_past: praeityje
   in_the_past_week: praėjusioje savaitėje
   inactive: Neaktyvus
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Neaktyvus
   inactive_taxon: Neaktyvus taksonas
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Neaktyvus
   inappropriate_content: Nepriimtinas turinys?
   inat_account_action: "%{site_name} &#58; Vartotojas &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} mano, jog tai yra pilnas šio taksono sąrašas šioje vietoje."
@@ -1804,6 +1845,7 @@ lt:
   last_active_with_date: "Paskutinį kartą aktyvus: %{date}"
   last_confirmed_observation: Paskutinis patvirtintas stebėjimas
   last_observation: Paskutinis stebėjimas
+  last_observation_caps: PASKUTINIS STEBĖJIMAS
   last_seen: Paskutinį kartą matytas
   last_year: Praeitais Metais
   lat: Pl
@@ -1950,6 +1992,7 @@ lt:
     fr-CA: Prancūzų (kanadiečių)
     gl: Galisų
     he: Hebrajų
+    hu: Vengrų
     id: Indoneziečių
     it: Italų
     ja: Japonų
@@ -1966,6 +2009,7 @@ lt:
     pt-BR: Portugalų (Brazilija)
     ru: Rusų
     sk: Slovakų
+    sl: Slovėnų
     sq: Albanų
     sv: Švedų
     tr: Turkų
@@ -1986,6 +2030,8 @@ lt:
     <a href="/login">Prisijunkite</a> arba <a href="/signup">prisiregistruokite</a>, kad galėtumėte pridėti komentarus.
   log_in_or_sign_up_to_add_identifications_html: |
     <a href="/login">Prisijunkite</a> arba <a href="/signup">prisiregistruokite</a>, kad galėtumėte pridėti identifikacijas.
+  log_out: Atsijungti
+  log_out_caps: ATSIJUNGTI
   log_scale_label: Įrašas
   login_slash_username: Prisijungimo / vartotojo vardas
   logo:
@@ -2024,6 +2070,7 @@ lt:
   managers_can_do: Vadovai gali daryti viską, ką gali kuratoriai, taip pat redaguoti projektų nustatymus ir kurti projektų žurnalų įrašus.
   managing_projects: Projektų tvarkymas
   map: Žemėlapis
+  map_legend: Žemėlapio legenda
   map_marker_size: žemėlapio žymeklio dydis
   map_of_observations: Stebėjimų žemėlapis
   maps:
@@ -2284,6 +2331,7 @@ lt:
   no_species_have_been_listed: Dar jokia rūšis nebuvo įtraukta į šios vietos rūšių sąrašą!
   no_species_on_this_list: Šiame sąraše dar nėra rūšių!
   no_subject_parens: "(Nėra temos)"
+  no_such_wiki_page: Nėra tokio puslapio.
   no_suggestions_available: Nėra pasiūlymų
   no_summary_from_wikipedia: Nėra aprašymo iš Vikipedijos
   no_summary_has_been_set: Joks aprašymas nebuvo išsiųstas.
@@ -2392,10 +2440,12 @@ lt:
   of_places: vietos
   of_this_taxon: Šio taksono
   offensive_inappropriate: Įžeidžiantis / Nepriimtinas
+  off_caps: "IŠJUNGTA"
   official_blog: Oficialus tinklaraštis
   offline_access_enabled: Prieiga neprisijungus įgalinta
   old_observation_form: Sena stebėjimo forma (nebenaudojama)
   ok: "Gerai"
+  on_caps: "ĮJUNGTA"
   onboarding:
     observe_panel_title: Pradėkime įkeldami keletą stebėjimų
     observe_panel_body_p1_local: Reikia įkvėpimo? Štai kokie organizmai buvo stebėti netoliese...
@@ -2661,6 +2711,7 @@ lt:
     argentina: Argentina
     armenia: Armėnija
     aruba: Aruba
+    asia: Azija
     australia: Australija
     austria: Austrija
     azerbaijan: Azerbaidžanas
@@ -3062,6 +3113,44 @@ lt:
     subspecies: Porūšis
     variety: Varietetas
     form: Forma
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: karalystė
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: pokaralystė
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: tipas
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: potipis
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: antklasis
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: klasė
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: poklasis
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: infraklasė
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: antbūris
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: būrys
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: pobūris
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: infrabūrys
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: kompleksas
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: rūšis
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: hibridas
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: porūšis
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: varietetas
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: forma
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: infrahibridas
   ray_finned_fishes: stipinpelekės žuvys
   re_order_photos: "Pertvarkyti nuotraukas &raquo;"
   read_more: Skaityti daugiau
@@ -3199,6 +3288,7 @@ lt:
   save_observation: Saugoti stebėjimą
   save_photos: Saugoti nuotraukas
   save_place: Išsaugoti vietą
+  save_settings_caps: IŠSAUGOTI NUSTATYMUS
   saved: Išsaugota
   saving: "Išsaugoma..."
   saving_num_of_count_observations:
@@ -3692,8 +3782,10 @@ lt:
   too_many_results: Per daug rezultatų
   tools: Įrankiai
   top_contributors: Daugiausiai prisidėję
+  top_identifier_caps: TOP IDENTIFIKUOTOJAS
   top_identifiers: Top identifikuotojai
   top_identifiers_of_taxon: 'Top identifikuotojai taksono: %{taxon}'
+  top_observer_caps: TOP STEBĖTOJAS
   top_observers: Top stebėtojai
   tos_privacy_guidelines_label: |
     Sutinku su <a href="/terms" target="_blank">Paslaugų teikimo sąlygomis</a> ir <a href="/privacy" target="_blank">Privatumo politika</a>, susipažinau su <a href="/pages/community+guidelines" target="_blank">Bendruomenės gairėmis</a>.
@@ -3701,6 +3793,8 @@ lt:
   totals: iš viso
   total_members: Iš viso narių
   total_observations: Visi stebėjimai
+  total_observations_caps: IŠ VISO STEBĖJIMŲ
+  total_species_observed_caps: IŠ VISO STEBĖTA RŪŠIŲ
   total_unique_observers: Iš viso skirtingų stebėtojų
   translated_languages: Išverstos kalbos
   'true': 'Taip'
@@ -4023,6 +4117,7 @@ lt:
   yes_i_want_to_join: Taip, aš noriu prisijungti
   yes_reject_it: Taip, atstatykite
   yesterday: Vakar
+  yir_donate_banner_inaturalist_in_year: "INATURALIST %{year} METAIS:"
   you: jūs
   you_: Jūs
   you_are_now_following_x: "Jūs dabar sekate %{friend_user}."
@@ -4184,8 +4279,10 @@ lt:
         alphaname: Abėcėlės tvarka, pagal mokslinį pavadinimą
         alphadisplay: Abėcėlės tvarka, pagal rodomą pavadinimą
     lifelists:
+      observed_species: Stebėtos rūšys
       all_species: Visos rūšys
       all_observations: Visi stebėjimai
+      total_observations: Visi stebėjimai
       filter_by: Filtruoti pagal
       filtered_by: Filtruota pagal
     lists:
@@ -4318,7 +4415,16 @@ lt:
           Rodyti tik projekto narių (žmonių, kurie prisijungė prie projekto) stebėjimus
         optionally_filter_media: Pasirinktinai filtruokite stebėjimus su nuotraukomis, garsais arba abiem.
         or_drag_and_drop: (arba užtempkite ir įmeskite)
+        project_background_color: Projekto santraukos fono spalva
+        project_background_color_help: Įsitikinkite, kad spalva pakankamai tamsi, kad ant jos būtų įskaitomas baltas tekstas.
+        project_banner: Projekto baneris (PNG or JPG)
+        project_banner_help: Neprivalomas projekto baneris. Idealūs matmenys yra 760px iš 320px.
+        project_details: Projekto informacija
+        project_icon: Projekto piktograma (PNG, JPG, or GIF)
+        project_icon_help: |
+          Neprivaloma projekto piktograma. Turi būti bent 72px iš 72px dydžio ir bus apkirpta iki kvadrato.
         project_name: Projekto pavadinimas
+        project_summary: Projekto santrauka
         project_summary_placeholder: Tyrinėkite paukščius Vingio parke...
         show_projects_as_flags: Žemėlapyje projektus žymėti vėliavomis
         specify_project_filters: |
@@ -4398,6 +4504,13 @@ lt:
           "Plant Phenology=Flower Budding": Su sprogstančiais žiedais
           "Plant Phenology=Flowering": Žydi
           "Plant Phenology=Fruiting": Dera
+          "Plant Phenology=No Evidence": Nėra įrodymų
+          "Life Stage=Adult": Suaugęs
+          "Life Stage=Egg": Kiaušinis
+          "Life Stage=Larva": Lerva
+          "Life Stage=Juvenile": Jauniklis
+          "Life Stage=Nymph": Nimfa
+          "Life Stage=Pupa": Lėliukė
           unannotated: Be papildomos informacijos
     taxon_names:
       form:
