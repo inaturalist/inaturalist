@@ -194,6 +194,7 @@ hu:
     sex: '"Nem" megjelölés hozzáadása'
     life_stage: '"Életszakasz" megjelölés hozzáadása'
     evidence_of_presence: '"Megjelenési bizonyíték" megjelölés hozzáadása'
+  add_another_flag: Még egy bejelentés
   add_another_photo: Másik fénykép hozzáadása
   add_another_subscription: További feliratkozás
   add_batch: Kötegelt hozzáadás
@@ -202,6 +203,7 @@ hu:
   add_bold_text: Félkövér szöveg hozzáadása
   add_comment: Megjegyzés hozzáadása
   add_from_your_observations: Hozzáadás a megfigyeléseidből
+  add_id: Azonosítás
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Dőlt betűs szöveg hozzáadása
   add_new_lexicon: Új szókészlet hozzáadása
@@ -249,6 +251,7 @@ hu:
   added_as_a_part_of_a_taxon_swap_html: |
     <a target="%{target}" class="%{class}" href="%{url}">Taxoncsere</a>ként hozzáadva
   added_by: 'Hozzáadta:'
+  added_by_user_on_date_html: "Hozzáadta %{user} ekkor: %{date}"
   added_on_datetime: "Hozzáadás dátuma: %{datetime}"
   added_to_favorites_html: |
     A <a href="%{url}">kedvencekhez</a> hozzáadva
@@ -298,6 +301,7 @@ hu:
   alphabetical_order: ABC-sorrend
   already_have_an_account_log_in_html: Van már fiókod? <strong>Jelentkezz be.</strong>
   amphibians: kétéltűek
+  analyze_ids: Azonosítások elemzése
   and: és
   android: Android
   animals: Állatok
@@ -588,6 +592,7 @@ hu:
     flower_budding: A virágbimbók látszanak de nincsenek kinyílva
     flowering: A virág látszik, ki van nyílva, még mindig a növényen van
     fruiting: A gyümölcs látszik és még mindig a növényen van
+    cannot_be_determined: Nem lehet meghatározni a megadott bizonyítékból
     organism: Teljes vagy részleges élőlény
     scat: Széklet, ürülék (nem bagolyköpet vagy más, kiöklendezett anyag)
     molt: Levedlett bőr vagy más kültakaró
@@ -612,6 +617,7 @@ hu:
     copyright: Szerzői jog
     no_copyright: közkincs (CC0)
     attribution_noncommercial_sharealike_license: Nevezd meg! - Ne add el! - Így add tovább! licenc
+  copyright_info: Szerzői jogi információ
   copyright_info_and_more: Szerzői jogi információk és egyebek
   create: Létrehozás
   create_a_new_field: Új mező létrehozása
@@ -786,6 +792,8 @@ hu:
   edit_selected: Kijelöltek szerkesztése
   edit_the_observation: Megfigyelés szerkesztése
   edit_your_account_and_profile_html: "Fiókod és profilod módosítása"
+  edited_by_name_some_rights_reserved_html: |
+    %{name} módosította, néhány jog fenntartva (%{license})
   editing_observation_field: Az adatmezők szerkesztése
   editing_observation_id: "%{obs_id} megfigyelés módosítása"
   editing_observations:
@@ -849,13 +857,25 @@ hu:
   find_your_current_location: A jelenlegi tartózkodási helyed lekérése
   finished: Befejezve
   first_observer: első megfigyelő
+  #Verb form, as in "Flag this item"
+  flag: Bejelentés
   flag_as_inappropriate: Megjelölés kifogásolhatóként
+  flag_it!: Bejelentés!
   flag_saved: Bejelölés elmentve
   flag_saved_thanks_html: Bejelölés elmentve. Köszönjük! <a href="%{url}" class="readmore">Bejelölések megtekintése</a>
+  flag_this_observation: Megfigyelés bejelentése
+  flag_this_photo: Kép bejelentése
+  flag_this_place: Hely bejelentése
+  flag_this_sound: Hang bejelentése
+  flagged: bejelentett
+  flagged_: Bejelentett
+  flagged_taxon: Bejelentett taxon
+  flagger: Bejelentő
   flickr_photo: Flickr fotó
   flickr_photos: Flickr fotók
   fluid_layout: Rugalmas elrendezés
   follow: Követ
+  follow_receive_updates_about_new_observations: Kövesd (kapj értesítést új megfigyelésekről)
   follow_user: "%{user} követése"
   followers: Követők
   following: Követve
@@ -930,6 +950,7 @@ hu:
   if_for_some_reason_a_user_doesnt_agree: |
     Ha valamilyen okból nem értesz egyet a közösségi taxonnal visszautasíthatod, ez azt jelenti, hogy a te meghatározásod fogja más megfigyelésekkel társítani, életlistát frissíteni, stb. Ez még azt jelenti, hogy a megfigyelésed csak akkor lehet tudományos szintű ha a közösség egyetért veled.
   if_this_is_a_scientific_name: Ha ez tudományos név, jelenleg elfogadott?
+  improving: Javuló
   include_suggestions_not_seen_nearby: Földrajzilag távolabb eső javaslatok megjelenítése
   increase_brightness: Fényerő növelése
   in_progress: folyamatban
@@ -946,6 +967,8 @@ hu:
   inappropriate_content: Kifogásolható tartalom?
   inat_user_profile: "%{site_name}: %{user} profilja"
   inaturalist_activity_notifications: "Értesítések %{site_name}-tevékenységekről"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
+  inaturalist_applications: "iNaturalist Alkalmazások"
   inaturalist_is_a_joint_initiative: "Az %{site_name} a California Academy of Sciences és a National Geographic Society közös kezdeményezése."
   info: Leírás
   insects: rovarok
@@ -958,6 +981,7 @@ hu:
   inviteonly: csak meghívással
   iphone: iPhone
   is_not_following_anyone: nem követ senkit.
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Elégséges bizonyíték ez arra, hogy megerősítsd, hogy ez egy %{taxon}?
   it_can_now_be_used_for_research: Már tudományos célra is felhasználható, és kiemelhető más oldalakon
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: dõlt szöveg
@@ -1149,6 +1173,7 @@ hu:
   message_from_user_at_time: '%{user}-tól ekkor %{time}'
   message_from_user_on_date: '%{user}-tól ekkor %{date}'
   messages: Üzenetek
+  misidentifications: Téves azonosítás
   #Label shown when a date has not been entered
   missing_date: Hiányzó dátum
   mollusks: puhatestűek
@@ -1204,6 +1229,7 @@ hu:
   nearby_observations_: Közeli megfigyelések
   needs_id: Meghatározásra vár
   needs_id_: Meghatározásra vár
+  needs_id_expandable_html: "Azonosítás <span class='full'>kell</span>"
   needs_to_be_identified: Kell azonosítani
   new: Új
   new_and_noteworthy: Újdonságok
@@ -1226,6 +1252,7 @@ hu:
   new_taxon_link: Új taxon hivatkozás
   new_taxon_name_for: 'Új taxonnév: '
   new_taxon_range: Új taxon intervallum
+  new_updates_in_the_last_24_hours_from: "Új hírek az %{site_name}tól az utolsó 24 órában"
   new_users: Új felhasználó
   new_users_in_year: "Új felhasználó - %{year}"
   new_users_w_7_obs: Új felhasználók 7 megfigyeléssel
@@ -1247,6 +1274,10 @@ hu:
   no_comments_yet: Még nincsenek megjegyzések.
   no_description: Nincs leírás
   no_identifications: Nincsenek meghatározások
+  no_identifications_added:
+    current_user: Nem csatoltál azonosítást még senki megfigyeléséhez sem
+  no_ids: "Azonosítások száma"
+  no_ids_have_been_suggested_yet: Még nem javasoltak azonosítást
   no_its_as_good_as_it_can_be: Nem, ettől már nem lehet jobb
   no_favorites_added:
     current_user: Még nem adtál hozzá kedvenceket.
@@ -1268,6 +1299,7 @@ hu:
   no_new_messages: Nincs új üzenet
   no_observations: Nincsenek megfigyelések
   no_observations_from_this_place_yet: Még nincs megfigyelés erről a helyről.
+  no_observations_matching_those_ids: Nincs az azonosításnak megfelelő megfigyelés.
   no_observations_yet: Még nincsenek megfigyelések
   no_one_has_been_invited_yet: Még senkit sem hívtál meg.
   no_places_available: Nincsenek helyek
@@ -1280,16 +1312,23 @@ hu:
   none: Egyik sem
   none_found: Nincs találat
   not_confident: Nincs kellő bizonyosságú javaslatunk.
-  not_confident_top_suggestions: 'Nincs kellő bizonyosságú javaslatunk, de a legjobb tippjeink:'
+  not_confident_top_suggestions: Nincs kellő bizonyosságú javaslatunk, de a legjobb tippjeink
   note: Megjegyzés
   notes: Megjegyzések
   notifications: Értesítések
   notify_me_of_mentions: Értesítések említésekről (pl. @felhasználónév)
   notify_me_of_mentions_description: "Ha ezt kikapcsolod, nem fogsz értesítéseket kapni, ha valaki megemlít az %{site_name} oldalon."
   number_of_observations: Megfigyelések száma
+  obs_cid_d: Közösség által azonosított megfigyelés
+  obs_id_d: Azonosított megfigyelés
   obscured: Kitakart
   observation: Megfigyelés
   observation_: megfigyelés
+  observation_added_to_the_project: "A megfigyelést hozzáadták a \"%{project}\" projekthez"
+  observation_aggregation: Megfigyelés összevonás
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: '%{user} megfigyelése'
   observation_belongs_to_project_requiring_field: |
     Ez a megfigyelés egy olyan projekthez tartozik, amelynél kötelező ezen adatmező kitöltése. A megfigyelést el kell távolítani a projektből, és csak azután lehet az adatmező értéket törölni.
   observations_by_app: Megfigyelések applikáció szerint
@@ -1315,6 +1354,7 @@ hu:
   observations_fields_are: |
     Az adatmezők a megfigyelésekhez tartozó extra adatok, amely bármi lehet, például a megfigyelők száma, élőhelyleírás, stb. A projektek meghatározhatják, hogy mely adatmezők kitöltése kötelező.
   observations_in_this_project_must: E projekt megfigyeléseire a következő kritériumok vonatkoznak
+  observations_map: Megfigyelések / Térkép
   observations_observed_this_month: A <em>megfigyelések</em> dátuma (és nem a feltöltés dátuma) alapján. Rajta, ki a természetbe!
   observations_of_relatives: Rokon fajok megfigyelései
   observations_saved: Megfigyelés(ek) elmentve!
@@ -1352,6 +1392,7 @@ hu:
   one_by_one: "Egyenként"
   open: nyilvános
   open_: Nyilvános
+  open_street_map: OpenStreetMap
   optional: opcionális
   or: vagy
   #Usually used to separate buttons or functional areas of the interface, e.g.
@@ -1397,6 +1438,10 @@ hu:
       #kueda
       #added an ID to an observation by loarie
       with_observation: <strong>Meghatározást</strong> csatolt %{user_link} %{observation_link}jéhez
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
+      without_observation: <strong>azonosítást</strong> csatolt
   per_day: Naponta
   per_month: Havonta
   per_week: Hetente
@@ -1607,6 +1652,7 @@ hu:
   post_from_journal_by_parent_html: <a href="%{url}">%{parent} hírmondó</a> bejegyzései
   #Post is a noun
   post_from_your_journal_html: <a href="%{url}">Hírmondód</a> bejegyzései
+  posted_by: Írta
   potential_disagreement: Lehetséges konfliktus
   powered_by_inaturalist_open_source_software_html: 'Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist open source software</a>'
   press: Sajtó
@@ -1838,6 +1884,9 @@ hu:
   skip_to_next_page: "Ugrás a következő oldalra"
   site_stats: Webhelyforgalom
   some_agree: néhányan egyetértenek
+  some_observations_are_missing_media_or_identifications: |
+    Néhány megfigyelésből hiányzik a média vagy az asonosítás
+  some_rights_reserved: néhány jog fenntartva
   sort: Rendezés
   sort_by: Rendezés
   sorting_by: Rendezés
@@ -1902,6 +1951,7 @@ hu:
   the_community_id_requires_at_least_two_identifications: A közösségi taxonhoz legalább két felhasználó meghatározása szükséges.
   the_people_of_inat: "Emberek az %{site_name} mögött"
   the_world: A világ
+  there_was_a_problem_saving_your_identification: "Gond volt az azonosítás mentésekor: %{error}"
   these_folks_kindly_volunteer_to: Ők azok, akik önkéntesen gondozzák a taxonómiát és megoldanak különféle problémákat.
   these_observations_have_not_been_uploaded_yet: |
     Ezek a megfigyelések még nem kerültek feltöltésre.
@@ -1917,6 +1967,7 @@ hu:
   title: név
   to_configure_your_widget: a modulod konfigurálásához.
   today: Ma
+  top_identifier_caps: FŐ AZONOSÍTÓ
   top_identifiers: Legtöbbször azonosította
   top_identifiers_of_taxon: '%{taxon} taxon legaktívabb meghatározói'
   top_observers: Legtöbbször megfigyelte
@@ -1932,6 +1983,7 @@ hu:
   umbrella_projects: Ernyőprojektek
   unknown: Ismeretlen
   unknown_error: Ismeretlen hiba
+  updates_notification_email_subject: "%{prefix} Új hírek %{date}"
   unsubscribe: Leiratkozás
   unsubscribe_from_emails_like_this: Leiratkozás az ehhez hasonló emailekről
   update_search: Keresés frissítése
@@ -2051,6 +2103,7 @@ hu:
   you_cant_delete_observation_fields_that_people_are_using: "Nem lehet használatban lévő adatmezőket törölni"
   you_faved_this: A kedvenced!
   you_must_choose_an_observation_field: Ki kell választanod egy adatmezőt
+  you_sure_delete_identification?: Biztosan törlöd ezt az azonosítást?
   you_sure_delete_this_observation: "Biztosan törlöd ezt a megfigyelést?"
   your_comment_was_saved: A taralmad elmentve
   your_content: Tartalmaid
@@ -2058,6 +2111,7 @@ hu:
   your_favorites: Kedvenceid
   your_hard_drive: saját meghajtó
   your_id: Meghatározásod
+  your_identification: Az azonosításod
   your_membership: Tagságod
   your_observations: Megfigyeléseim
   your_profile_was_successfully_updated: A profilod sikeresen módosítva.
@@ -2111,6 +2165,7 @@ hu:
         agreement: Egyetértés
         disagreement: Egyetnemértés
         disagreement_count: Egyetnemértések száma
+        identification_count: Azonosítások száma
       field_descriptions:
         time_zone: A megfigyelés időzónája
       show:
@@ -2225,7 +2280,9 @@ hu:
     stats:
       index:
         active_desc: Meghatárott, megfigyelt, hozzászólt vagy posztolt az elmúlt 30 napban
+        android_desc_html: Létrehozva az <a href="%{url}">iNaturalist Android alkalmazásával</a>
         identifiers_desc: Meghatározást adott e napon más valaki megfigyeléséhez
+        iphone_desc_html: Létrehozva az <a href="%{url}">iNaturalist iPhone alkalmazásból</a>
         new_users_desc: Regisztrált ezen a napon
         observations_1_week_moving_window: Megfigyelések (egyhetes mozgóátlag)
         observers_desc: Megfigyelést adott hozzá ezen a napon
@@ -2234,6 +2291,8 @@ hu:
         recent_w_0_obs_desc: Az utóbbi hét nap alatt regisztrált és 0 megfigyelése van
         recent_w_7_obs: Legújabb 7+ megfigyeléssel
         recent_w_7_obs_desc: Az utóbbi hét nap alatt regisztrált és 7+ megfigyelése van
+        TTCID: Közösségi azonosítási idő
+        TTID: Azonosítási idő
       year:
         compare_desc: |
           Hogy alakult ez az év az előzőekhez képest? Három vagy több év használat révén össze tudjuk hasonlítani az éves aktivitásaidat. A zöld csík jelzi az idei évet, a fehér függőleges vonal mutatja a tavalyi évet, a szürke mezők pedig a legalacsonyabb, legmagasabb és átlagos aktivitás évét. Az aktivitás nélküli éveket nem jelenítjük meg.
