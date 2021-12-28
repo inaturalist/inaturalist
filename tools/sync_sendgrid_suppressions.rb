@@ -15,7 +15,7 @@ start = Time.now
 
 def get_response( url )
   RestClient.get( url, {
-    "Authorization" => "Bearer #{CONFIG.sendgrid_api_key}"
+    "Authorization" => "Bearer #{CONFIG.sendgrid.api_key}"
   } )
 end
 
