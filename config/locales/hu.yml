@@ -478,6 +478,8 @@ hu:
   change_your_password: Jelszó módosítása
   check_back_soon: Jöjjön vissza hamarosan!
   choose_a_field: Adatmező kiválasztása
+  choose_a_place: Válassz helyet
+  choose_a_taxon: Válassz taxont (opcionális)
   choose_files: Válassz fájlokat
   choose_tags: Cimke választása
   choose_taxon: Taxon választása
@@ -1437,7 +1439,7 @@ hu:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
       #added an ID to an observation by loarie
-      with_observation: <strong>Meghatározást</strong> csatolt %{user_link} %{observation_link}jéhez
+      with_observation: <strong>meghatározást</strong> adott %{user_link} %{observation_link}éhez
       #The same as people_added.identification.with_observation, except it
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
@@ -1818,6 +1820,9 @@ hu:
   removed: Eltávolítva
   reply: Válasz
   reptiles: hüllők
+  required: kötelező
+  required_: Kötelező
+  required_field: kötelező adat
   research: kutatási
   research_: Kutatási
   research_grade: Tudományos szintű
@@ -1924,6 +1929,10 @@ hu:
   submitted: Feltöltve
   subscribe_to_a_taxon: Feliratkozás taxonhoz
   subscribe_to_a_place: Feliratkozás helyhez
+  subscribe_to_observations_in_a_taxon: Értesítés kérése a fajhoz vagy taxonhoz (pl. skorpiók) tartozó minden megfigyelésről.
+  subscribe_to_observations_in_a_place: 'Értesítés kérése minden megfigyelésről ezen a földrajzi helyen. Opcionális: taxon megadásával leszűkítheted az értesítéseket (pl. kosborfélék Nógrád megyéből).'
+  subscribe_to_places_to: |
+    Ha feliratkozol egy helyhez, értesítéseket kapsz az ottani új megfigyelésekről. Az általad követett felhasználókról és a hozzászólásaidról érkező értesítéseket ugyancsak feliratkozásaokkal lehet kezelni. A feliratkozásaid megtekintéséhez és megszüntetéséhez kattints a Feliratkozások kezelése linkre. Bármiről leiratkozhatsz azoknak a dolgoknak az oldalairól is, ahonnan az értesítések érkeznek.
   subscribe_to_this: Feliratkozás erre
   subscriptions: Feliratkozások
   suggest_an_identification: Meghatározás hozzáadása
