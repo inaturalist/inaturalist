@@ -318,7 +318,7 @@ lt:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Pridėti nuorodą
   add_a_name: Pridėti pavadinimą
-  add_a_note: Pridėti pastabą
+  add_a_note: Pridėti užrašą
   add_a_new_change_group: Pridėti naują kaitos grupė
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Pridėti sunumeruotą sąrašą
@@ -334,8 +334,9 @@ lt:
   add_annotations_for_x: Pridėti papildomos informacijos apie "%{x}"
   add_annotations_for_controlled_attribute:
     sex: Pridėti papildomos informacijos apie „lytį“
-    plant_phenology: Pridėti pastabą "Augalų fenologija"
-    life_stage: Pridėti pastabą "Gyvenimo stadija"
+    plant_phenology: Pridėti pastabą prie „Augalų fenologija“
+    life_stage: Pridėti pastabą prie „Gyvenimo stadija“
+    evidence_of_presence: Pridėti pastabas prie "Organizmo buvimo įrodymai"
   add_another_flag: Pridėti dar vieną žymę
   add_another_photo: Pridėti dar vieną nuotrauką
   add_another_section: Pridėti dar vieną skyrių
@@ -366,7 +367,7 @@ lt:
   add_new_rule: Pridėti naują taisyklę
   add_new_source: "Pridėti naują šaltinį..."
   add_new_taxon_name: Pridėti naują taksono pavadinimą
-  add_notes_about_this_taxon: 'Pridėti pastabas apie šį taksoną šioje vietoje, pvz.: kur ir kada jis randamas.'
+  add_notes_about_this_taxon: 'Pridėti užrašų apie šį taksoną šioje vietoje, pvz.: kur ir kada jis randamas.'
   add_obs_from_a_link: "Pridėti stebėjimus iš sąrašo: %{link}"
   add_obs_from_a_list: Pridėti stebėjimus iš sąrašo
   add_observations: Pridėti stebėjimus
@@ -385,7 +386,7 @@ lt:
   add_plant_phenology_budding_annotation: 'Pridėti „Augalų fenologija: sprogsta“ pastabą'
   add_plant_phenology_flower_budding_annotation: 'Pridėti „Augalų fenologija: sprogsta žiedai“ pastabą'
   add_plant_phenology_flowering_annotation: 'Pridėti „Augalų fenologija: žydi“ pastabą'
-  add_plant_phenology_fruiting_annotation: 'Pridėti pastabą "Augalo fenologija: vaisių vedimas"'
+  add_plant_phenology_fruiting_annotation: 'Pridėti pastabą „Augalo fenologija: vaisių vedimas“'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Pridėti „Augalų fenologija: Nėra žydėjimo požymių“ pastabą'
   add_life_stage_adult_annotation: 'Pridėti „Amžiaus tarpsnis: Suaugęs“ papildomą informaciją'
   add_life_stage_teneral_annotation: 'Pridėti „Amžiaus tarpsnis: išsinėręs“ papildomą informaciją'
@@ -395,13 +396,19 @@ lt:
   add_life_stage_larva_annotation: 'Pridėti „Amžiaus tarpsnis: Lerva“ papildomą informaciją'
   add_life_stage_juvenile_annotation: 'Pridėti „Amžiaus tarpsnis: Jauniklis“ papildomą informaciją'
   add_life_stage_egg_annotation: 'Pridėti „Amžiaus tarpsnis: Kiaušinis“ papildomą informaciją'
+  add_evidence_of_presence_organism_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: pats organizmas“'
+  add_evidence_of_presence_feather_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: plunksna“'
+  add_evidence_of_presence_scat_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: išmatos“'
+  add_evidence_of_presence_track_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: pėdsakai“'
+  add_evidence_of_presence_bone_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: kaulas“'
+  add_evidence_of_presence_molt_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: išnara“'
   #As in a Taxon Framework Relationship
   add_relationship: 'Pridėti ryšį'
   #As in a Guide Section
   add_section: Pridėti skyrių
   add_several_observations_at_once: Pridėti keletą stebėjimų vienu metu.
-  add_sex_female_annotation: 'Pridėti "Lytis: patelė" pastabą'
-  add_sex_male_annotation: 'Pridėti "Lytis: patinėlis" pastabą'
+  add_sex_female_annotation: 'Pridėti „Lytis: patelė“ pastabą'
+  add_sex_male_annotation: 'Pridėti „Lytis: patinėlis“ pastabą'
   add_sex_cannot_be_determined_annotation: 'Pridėti „Lytis: negali būti nustatyta“ pastabą'
   add_some_now: Pridėti keletą dabar
   add_tag: Pridėti žymą
@@ -448,6 +455,8 @@ lt:
   admin_s: Administratorius(-iai)
   admin_only: Tik administratorius
   admin_tools: Administratoriaus Įrankiai
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Susijusios organizacijos
   agree_: Sutikti
   agree?: Sutinkate?
   agree_with_current_taxon: Pritarti esamam taksonui
@@ -776,12 +785,15 @@ lt:
   back_to_taxon: "Atgal į %{defaulttaxon}"
   back_to_taxon_changes: "Atgal į taksonų pakeitimus"
   back_to_taxon_framework_for_x: "Sugrįžti prie taksono %{taxon_name} struktūros"
+  back_to_users_calendar: "Atgal į %{user} kalendorių"
+  back_to_users_lists: "Atgal į %{user} sąrašus"
   back_to_viewing: "Atgal į <i>%{taxon}</i> peržiūrą"
   back_to_x: "Atgal į %{noun}"
   back_to_x_assessment: "Atgal į %{project} vertinimus"
   back_to_x_history: "Atgal į %{x} istoriją"
   back_to_x_journal: "Atgal į %{user} žurnalą"
   back_to_x_blog: "Atgal į %{x} tinklaraštį"
+  back_to_your_calendar: Atgal į jūsų kalendorių
   back_to_your_dashboard: Grįžti į valdymo skydą
   back_to_your_lists: Atgal į savo sąrašus
   back_to_your_journal: Atgal į savo žurnalą
@@ -1002,6 +1014,8 @@ lt:
   confirm_new_password: Patvirtinkite Naują Slaptažodį
   confirm_now: Patvirtinti dabar
   confirm_your_info: Patvirtinkite savo informaciją
+  confirming_ids: Identifikacijų patvirtinimai
+  confirming_ids_description: Jei išjungsite, daugiau nebegausite pranešimų apie jūsų identifikacijų patvirtinimus.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Sujungti
@@ -1353,7 +1367,7 @@ lt:
   edit_field: Redaguoti lauką
   edit_license: Redaguoti licenciją
   edit_multiple_dates: Redaguoti kelias datas
-  edit_multiple_descriptions: Redaguoti kelius aprašymus
+  edit_multiple_descriptions: Redaguoti kelius užrašus
   edit_multiple_locations: Redaguoti kelias vietas
   edit_multiple_species: Redaguoti kelias rūšis
   edit_notes: Redaguoti užrašus
@@ -1783,6 +1797,7 @@ lt:
   inat_account_action: "%{site_name} &#58; Vartotojas &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} mano, jog tai yra pilnas šio taksono sąrašas šioje vietoje."
   inat_user_profile: "%{site_name}: %{user} profilis"
+  inaturalist_activity_notifications: "Pranešimai apie %{site_name} veiklą"
   inaturalist_is_a_joint_initiative: "%{site_name} yra bendra California Academy of Sciences ir National Geographic Society iniciatyva."
   inaturalist_places: "%{site_name} vietos"
   info: Informacija
@@ -2357,8 +2372,10 @@ lt:
   not_resolved: Neišspręsta
   not_seeing_what_looking_for: Nerandate to, ko ieškote?
   note: Pastaba
-  notes: Pastabos
+  notes: Užrašai
   notifications: Pranešimai
+  notify_me_of_mentions: 'Pranešti apie jūsų paminėjimą (pvz.: @vartotojovardas)'
+  notify_me_of_mentions_description: "Jei išjungsite, negausite pranešimo, kai %{site_name} platformoje būsite paminėti."
   notify_me_about_redundant_identifications: Praneškite, kai patvirtinamos identifikacijos
   number_of_observations: Stebėjimų skaičius
   number_of_observers_value: "Stebėtojų skaičius: %{number}"
@@ -3159,6 +3176,8 @@ lt:
   reason: Priežastis
   reason_you_are_flagging_this_item: Priežastis, kodėl tai pažymėjote.
   recaptcha_verification_failed: reCAPTCHA patvirtinimas nesėkmingas
+  receive_email_notifications: Gauti pranešimus į el. paštą
+  receive_email_notifications_description: "Jeigu išjungsite, nebegausite jokių el. laiškų iš %{site_name} su pranešimais."
   receive_email_notifications_when_people_leave_you: Gauti el. pašto pranešimus apie
   receive_updates_from_this_project: Gaukite šio projekto naujienas
   recent: Naujausi
@@ -3859,7 +3878,7 @@ lt:
       file_too_big: Failas turi būti mažesnis nei %{megabytes} MB
       unsupported_file_type: Failo tipas nepalaikomas. Mes priimame JPG, PNG, GIF, WAV, AAC, MP3 ir MP4 (tik garsas)
     tooltips:
-      add: Pridėti pastabą(-s)
+      add: Pridėti stebėjimą(-us)
       combine: Sujungti pasirinktus stebėjimus
       duplicate: Sukurti pasirinktų stebėjimų kopijas
       photo_failed: Nepavyko įkelti nuotraukos
