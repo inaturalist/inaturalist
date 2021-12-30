@@ -162,6 +162,7 @@ hu:
   accuracy_meters: Pontosság (méterben)
   action: Művelet
   actions: Műveletek
+  active: Aktív
   #Status of a complete set that is available for use
   active_complete_set_status: Aktív
   #Status of a taxon that is available for use on iNat
@@ -184,6 +185,7 @@ hu:
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Számozott lista hozzáadása
   add_a_single_observation: Egy megfigyelés hozzáadása
+  add_a_taxon: Taxon hozzáadása
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
     A név módosításához végezz el <a target="_blank" href="%{url}">taxoncserét</a>
   add_an_identification: Meghatározás hozzáadása
@@ -202,13 +204,18 @@ hu:
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Félkövér szöveg hozzáadása
   add_comment: Megjegyzés hozzáadása
+  add_editor: Szerkesztő hozzáadása
+  add_description: "%{description_name} hozzáadása"
   add_from_your_observations: Hozzáadás a megfigyeléseidből
+  add_link: Hivatkozás hozzáadása
+  add_higher_level_taxon: Magasabbrendű taxon hozzáadása (pl. "madarak")
   add_id: Azonosítás
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Dőlt betűs szöveg hozzáadása
   add_new_lexicon: Új szókészlet hozzáadása
   add_new_place: Új hely hozzáadása
   add_new_rule: Új szabály hozzáadása
+  add_new_taxon_name: Új taxonnév hozzáadása
   add_observations: Megfigyelés hozzáadása
   add_observations_by_checking_off: Megfigyelés hozzáadása egy fajlista alapján
   add_observations_project: Megfigyelések hozzáadása ehhez a projekthez
@@ -239,8 +246,10 @@ hu:
   add_sex_cannot_be_determined_annotation: '"Nem: Nem meghatározható" megjelölés hozzáadása'
   add_tag: Címke hozzáadása
   add_tags: Címkék hozzáadása
+  add_taxa: Taxonok hozzáadása
   add_to_a_project: Hozzáadás projekthez
   add_to_calendar: Add hozzá a Naptárhoz
+  add_to_checklist: Hozzáadás listához
   add_to_favorites: Hozzáadás a kedvencekhez
   add_to_list: Hozzáadás listához
   add_to_project: Hozzáadás a projekthez
@@ -269,6 +278,15 @@ hu:
   all_comments: Minden megjegyzés
   all_life: Minden életforma
   all_observations: Minden megfigyelés
+  all_photos: Az összes fotó
+  all_places: "Az összes hely"
+  all_projects: Minden projekt
+  all_rank_added_to_the_database:
+    class: Minden osztály hozzáadva az adatbázishoz
+    family: Minden család hozzáadva az adatbázishoz
+    tribe: Minden törzs hozzáadva az adatbázishoz
+    species: Minden faj hozzáadva az adatbázishoz
+    subspecies: Minden alfaj hozzáadva az adatbázishoz
   all_rights_reserved: minden jog fenntartva
   all_taxa:
     amphibians: Kétéltűek
@@ -499,6 +517,7 @@ hu:
   comments_by_me: Megjegyzések tőlem
   comments_have_been_disabled: Megjegyzések letiltva
   comments_on_my_observations: Megjegyzések a megfigyeléseimhez
+  commercial_solicitation: Üzleti ajánlat, nemműködő linkek, stb.
   common_name: Köznyelvi név
   community: Közösség
   community_guidelines: Közösségi irányelvek
@@ -635,6 +654,7 @@ hu:
   curator_application_what_curators_can_do_hide_comments_html: |
     A <a
     href="/pages/community+guidelines" target="_blank">Közösségi irányelveket</a> sértő felhasználók felfüggesztése és megjegyzéseinek elrejtése.
+  custom_project_was_successfully_created: Projekt testreszabások hozzáadva
   darr_apply_darr: "&darr; Alkalmaz &darr;"
   daily_users: Napi felhasználók
   danger_zone: Veszélyes zóna
@@ -783,6 +803,7 @@ hu:
   draft_saved: Piszkozat elmentve!
   drag_and_drop_some_photos_or_sounds: Húzz ide néhány fényképet vagy hangot
   duplicate_verb: Másolás
+  earliest_added: Legkorábban hozzáadott
   edit: Módosítás
   edit_a_batch_of_observations: Megfigyelések tömeges szerkesztése
   edit_account_settings_and_profile: "Fiókbeállítások és profil módosítása"
@@ -810,6 +831,8 @@ hu:
   establishment:
     introduced: Behurcolt
     native: Őshonos
+  establishment_means_descriptions:
+    introduced: a területre emberi beavatkozással érkezett
   everyone: mindenki
   everyone_: Mindenki
   everyone_journal_posts: Mindenki hírmondó-bejegyzése
@@ -862,6 +885,7 @@ hu:
   #Verb form, as in "Flag this item"
   flag: Bejelentés
   flag_as_inappropriate: Megjelölés kifogásolhatóként
+  flag_an_item: Megjelölés kifogásolhatóként
   flag_it!: Bejelentés!
   flag_saved: Bejelölés elmentve
   flag_saved_thanks_html: Bejelölés elmentve. Köszönjük! <a href="%{url}" class="readmore">Bejelölések megtekintése</a>
@@ -872,6 +896,8 @@ hu:
   flagged: bejelentett
   flagged_: Bejelentett
   flagged_taxon: Bejelentett taxon
+  flagging_desc: |
+    A megjelöléssel felhívhatod az önkéntes moderátoraink figyelmét egyes tartalmakra. Kérkük, hogy ne jelölj meg kifogásolhatóként olyan dolgokat, amelyeket magad is megoldhatsz, például meghatározás hozzáadásával, az Adatminőségi kiértékeléssel, vagy kapcsolatfelvétel révén azzal, aki a kifogásolt tartalmat létrehozta.
   flagger: Bejelentő
   flickr_photo: Flickr fotó
   flickr_photos: Flickr fotók
@@ -999,6 +1025,7 @@ hu:
   journal_post: Hírmondó bejegyzések
   journal_post_deleted: Hírmondó-bejegyzés törölve.
   journal_posts: Bejegyzések
+  just_added!: Most adták hozzá!
   labels: Címkék
   #Label shown when a location has not been entered. Originally "unknown" in
   #English but we switched to "missing" to convey that a complete observation
@@ -1168,6 +1195,14 @@ hu:
     Az <a href="%{url}">iNaturalist Network</a> tagja
   #As in members of a project
   members: Tagok
+  mentioned_you_in_a_x_on_noun_html: "%{user} megemlített (%{x}, %{noun})"
+  mentioned_you_in_an_x_on_noun_html: "%{user} megemlített (%{x}, %{noun})"
+  mentioned_you_in_a_x_on_noun_by_html: "%{user} megemlített (%{by}: %{x}, %{noun})"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} megemlített (%{by}: %{x}, %{noun})"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} megemlített (te: %{x}, %{noun})"
+  mentioned_you_in_an_x_on_noun_by_html: "%{user} megemlített (%{by}: %{x}, %{noun})"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} megemlített (%{by}: %{x}, %{noun})"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} megemlített (te: %{x}, %{noun})"
   merge_observation_field_x_into: '"%{x}" adatmező összevonása ezzel...'
   merging_places: Helyek összevonása
   message: Üzenet
@@ -1176,6 +1211,8 @@ hu:
   message_from_user_on_date: '%{user}-tól ekkor %{date}'
   messages: Üzenetek
   misidentifications: Téves azonosítás
+  misleading_or_illegal_content_html: |
+    Félrevezető vagy illegális tartalom, rasszista vagy kiközösítő megnyilvánulás, stb. További információ a <a href="/help#inappropriate">Gyakran Ismételt Kérdések</a> között.
   #Label shown when a date has not been entered
   missing_date: Hiányzó dátum
   mollusks: puhatestűek
@@ -1224,6 +1261,7 @@ hu:
   n_person_disagrees: "%{amount} személy nem ért egyet"
   name: Név
   name_entered: Név beírva
+  name_or_slug: "Név vagy URL-paraméter, pl. magyarorszag-biodiverzitasa"
   names: Nevek
   native: őshonos
   native_to_place: "Őshonos itt: %{place}"
@@ -1278,6 +1316,7 @@ hu:
   no_identifications: Nincsenek meghatározások
   no_identifications_added:
     current_user: Nem csatoltál azonosítást még senki megfigyeléséhez sem
+    user: "%{user} még nem adott meghatározást senki megfigyeléséhez."
   no_ids: "Azonosítások száma"
   no_ids_have_been_suggested_yet: Még nem javasoltak azonosítást
   no_its_as_good_as_it_can_be: Nem, ettől már nem lehet jobb
@@ -1303,6 +1342,7 @@ hu:
   no_observations_from_this_place_yet: Még nincs megfigyelés erről a helyről.
   no_observations_matching_those_ids: Nincs az azonosításnak megfelelő megfigyelés.
   no_observations_yet: Még nincsenek megfigyelések
+  no_one_has_added_any: Még senki sem adott megjegyzést ehhez a helyhez
   no_one_has_been_invited_yet: Még senkit sem hívtál meg.
   no_places_available: Nincsenek helyek
   no_project_to_admin_current_user: "Még nem kezelsz projekteket"
@@ -1351,6 +1391,7 @@ hu:
   observation_without_media: Megfigyelés fénykép/hang nélkül
   observations: Megfigyelések
   observations_: megfigyelés
+  observations_added_by_x_html: "Megfigyeléseket hozzáadta %{x}"
   observations_by_user: "Megfigyelések %{user}-tól"
   observations_deleted: Megfigyelések kitörölve.
   observations_fields_are: |
@@ -1375,6 +1416,7 @@ hu:
   observer: Megfigyelő
   observers: Megfigyelők
   observer_short: Megfigyelő
+  offensive_inappropriate: Erőszakos / Felháborodástkeltő
   off_caps: "KI"
   #Header label for hiding or unhiding the time shifter in the Uploader
   offset_time: "Idő igazítása"
@@ -1435,6 +1477,10 @@ hu:
   password_confirmation: 'Jelszó megerősítése'
   people: Emberek
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: hozzáadott egy <a href="%{observation_url}">megfigyelést</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -1515,6 +1561,7 @@ hu:
   place_name: Hely neve
   placement: Elhelyezés
   places: Helyek
+  places_added_by_members_of_the_community: Közösség tagjai által hozzáadott helyek
   places_name:
     afghanistan: Afganisztán
     africa: Afrika
@@ -1677,6 +1724,9 @@ hu:
     Annak érdekében, hogy a spamelőket távol tartsuk az %{site_name} oldaltól, a felhasználói profilok csak azután lesznek láthatók, miután a felhasználó számos kutatási szintű megfigyelést tett közzé.
   project_curators: A projekt kurátorai
   project_journal: Hírmondó
+  project_id_or_url_slug: Projektazonosító vagy URL-paraméter, pl. 333 vagy magyarorszag-biodiverzitasa
+  project_curators_added_some_of_your_observations_html: |
+    <a href="%{url}">%{project}</a> gondozói hozzáadták pár megfigyelésedet
   project_requirements: Kritériumok
   projects: Projektek
   projects_description: |
@@ -1807,11 +1857,13 @@ hu:
   recent_observations: Új megfigyelések
   recent_observations_: Új megfigyelések
   recently_active: Nemrég aktív
+  recently_added: Újonnan hozzáadva
   recently_created: Legutóbb létrehozott
   recently_observed: Nemrég megfigyelt
   redo_search_in_map: Újrakeresés a térképen
   redo_search_in_map_area: Újrakeresés a térképterületen
   regenerate_stats: Statisztikák újragenerálása
+  reject?: Elutasítod?
   relationships_user_settings: Kapcsolatok
   remember_me: Emlékezz rám
   remove: Eltávolítás
@@ -1891,6 +1943,8 @@ hu:
   some_agree: néhányan egyetértenek
   some_observations_are_missing_media_or_identifications: |
     Néhány megfigyelésből hiányzik a média vagy az asonosítás
+  some_observations_failed_to_be_added: Pár megfigyelés nem lett hozzáadva a projektekhez
+  some_other_reason: Egyéb ok, alább meghatározva.
   some_rights_reserved: néhány jog fenntartva
   sort: Rendezés
   sort_by: Rendezés
@@ -1904,6 +1958,8 @@ hu:
   source_: 'Forrás:'
   source_wikipedia: "Forrás: Wikipedia"
   source_list_: "Forrás"
+  sources_youve_added: Források, melyeket hozzáadtál
+  spam: Spam
   #Plural
   species: Fajok
   species_from_around_the_world: Fajok a világ minden tájáról
@@ -1911,6 +1967,7 @@ hu:
   species_search: Fajok keresése
   species_taxon_name: Faj- / taxonnév
   species_unknown: Ismeretlen fajok
+  specify_the_reason_youre_flagging: A bejelentés okának leírása
   standard: Standard
   start: Kezdete
   start_a_new_project: Új projekt indítása
@@ -1922,6 +1979,7 @@ hu:
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: BOLT
+  stuff_just_added: "Dolgok amiket nemrég adtál hozzá"
   subject_committed_thing_affecting_stuff_html: "%{subject} általi %{thing} érinti ezt: %{stuff}"
   submit_observations:
     one: Egy megfigyelés feltöltése
@@ -1955,9 +2013,11 @@ hu:
   tell_us_why: Miért gondolod?
   terms_service: Felhasználási feltételek
   thanks_from_all_of_us_here_at: Köszönjük a hozzájárulásokat
+  that_observation_hasnt_been_added_this_project: A megfigyelést nem adtuk hozzá ehhez a projekthez.
   the_below_items_are_needed_to_achieve: |
     A következőkre van szükség a <span className="bold">Tudományos szint</span> eléréséhez:
   the_community_id_requires_at_least_two_identifications: A közösségi taxonhoz legalább két felhasználó meghatározása szükséges.
+  the_observation_was_already_added_to_that_project: A megfigyelés már hozzá volt adva ahhoz a projekthez.
   the_people_of_inat: "Emberek az %{site_name} mögött"
   the_world: A világ
   there_was_a_problem_saving_your_identification: "Gond volt az azonosítás mentésekor: %{error}"
@@ -2011,14 +2071,24 @@ hu:
     one: Fénykép feltöltése...
     other: Fényképek feltöltése (%{count}/%{num})
   user: Felhasználó
+  user_added_a_comment_html: "%{user} hozzászólt"
+  user_added_a_fave_html: "%{user} kedvencelte"
+  user_added_a_flag_html: "%{user} bejelentést adott hozzá"
+  user_added_a_x: "%{user} hozzáadott egy %{x}t"
+  user_added_a_x_to_noun_by_html: "%{noun} (%{by}): %{user} hozáadott egy %{x}t"
+  user_added_a_x_to_noun_by_user_html: "%{noun} (%{by}): %{user} hozáadott egy %{x}t"
   user_added_a_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
+  user_added_a_x_to_noun_html: "%{noun}: %{user} hozzáadott egy %{x}t"
   user_added_an_identification_html: "%{user} meghatározást javasolt"
   user_added_an_observation_field_html: '%{user} kitöltötte a(z) "%{field_name}" adatmezőt %{owner} megfigyeléséhez'
   user_added_an_observation_field_value_html: "%{user} értéket adott meg egy adatmezőben"
+  user_added_an_observation_html: "%{user} hozzáadott egy megfigyelést"
+  user_added_an_x: "%{user} hozzáadott egy %{x}t"
   user_added_an_x_to_noun_by_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
   user_added_an_x_to_noun_by_user_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
   user_added_an_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
   user_added_an_x_to_noun_html: "%{noun}: %{user} hozzáadott egy %{x}t"
+  user_added_x_observations_html: "%{user} %{x} megfigyelést adott hozzá"
   user_disagrees_this_is_taxon: "%{user} nem ért egyet azzal, hogy ez %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nem ért egyet az előző finomabb meghatározásokkal"
   user_helped_x_people_with_y_ids_html: "%{user} <strong>%{x} embernek</strong> segített, <strong>%{y} meghatározással</strong>"
@@ -2102,6 +2172,7 @@ hu:
   yes_for_any_of_my_observations: "Igen, bármely megfigyelésemre"
   yes_i_want_to_join: Igen, szeretnék csatlakozni
   yes_license_my_observations_so_scientists_can_use: Engedélyezem, hogy a megfigyeléseimet, a képeket és a hangokat a tudósok felhasználják (ajánlott).
+  yes_reject_it: Igen, elutasítom
   yesterday: Tegnap
   #"You" is singular
   yir_donate_banner_you_helped_inaturalist_thrive: Nagy szereped volt idén az iNaturalist sikerében. Köszönjük szépen!
@@ -2123,6 +2194,7 @@ hu:
   your_identification: Az azonosításod
   your_membership: Tagságod
   your_observations: Megfigyeléseim
+  your_observations_couldnt_be_added_to_that_project: "Megfigyeléseidet nem lehetett hozzáadni ahhoz a projekthez: %{errors}"
   your_profile_was_successfully_updated: A profilod sikeresen módosítva.
   your_recent_projects: Legutóbbi projektjeid
   your_subscriptions_to_this_place: E helyhez tartozó feliratkozásaid
@@ -2175,6 +2247,11 @@ hu:
         disagreement: Egyetnemértés
         disagreement_count: Egyetnemértések száma
         identification_count: Azonosítások száma
+        your_id_does_not_match: |
+          Az azonosításod (<span class="bold">%{taxon_name}</span>) nem egyezik a közösségi azonosítással
+      compare:
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Dátummező
       field_descriptions:
         time_zone: A megfigyelés időzónája
       show:
@@ -2320,6 +2397,20 @@ hu:
         species_per_year_by_date_added: Hozzáadás dátuma szerint
         stats_generated_datetime: A statisztikák a %{datetime} időpontot tükrözik.
         translators_title: Fordítók
+        translators_desc: |2
+          Tudtad, hogy az iNaturalist szinte teljes fordítását %{x_people} végezte el %{x_languages}re, és ezek közül egy páran nem is használják az iNatot? Itt vannak a csodálatos fordítók, akik idén fordítottak, valamint a lefordított szavak száma a
+           %{website_link_tag}webes felületre%{link_tag_end}, a
+          %{iphone_link_tag}iPhone%{link_tag_end} és
+          %{android_link_tag}Android%{link_tag_end} alkalmazásra, valamint a
+          %{seek_link_tag}Seekre%{link_tag_end}. Minden fordítót megtekinthetsz, beleértve a múlt évek fordítóit és a Translatewiki családot a mi %{view_all_web_link_tag}webes%{link_tag_end} és
+          %{view_all_mobile_link_tag}mobil%{link_tag_end} forráskód tárunkban.
+        translators_desc_for_site: |
+          Tudtad, hogy az %{site_name} szinte teljes fordítását %{x_people} végezte? Itt vannak a csodálatos fordítók, akik idén fordítottak, valamint a lefordított szavak száma a 
+          %{website_link_tag}webes felületre%{link_tag_end}, a
+          %{iphone_link_tag}iPhone%{link_tag_end} és
+          %{android_link_tag}Android%{link_tag_end} alkalmazásra, valamint a
+          %{seek_link_tag}Seekre%{link_tag_end}. Minden fordítót megtekinthetsz, beleértve az előző évek fordítóit és a Translatewiki családot a mi %{view_all_web_link_tag}webes%{link_tag_end} és
+          %{view_all_mobile_link_tag}mobil%{link_tag_end} forráskód tárunkban.
     taxa:
       show:
         about_names_desc: |
@@ -2555,6 +2646,8 @@ hu:
       observation_field_value:
         value: 'érték'
       observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: Sorba állítva
         #Date/time the task began processing
         started_at: Elkezdődött
         #Date/time the task finished processing
