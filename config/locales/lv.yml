@@ -6021,13 +6021,35 @@ lv:
           Uzticot citiem savu projektu, sniegsi iespēju projekta menedžeriem pievienot pielikumus un rediģēt tādu informāciju kā projekta plakāta HTML un CSS. Piekļuve pie pielāgojamās projekta informācijas var sniegt menedžeriem iespēju pievienot kaitīgu Javascript kodu, tāpēc uztici projektus tikai atbildīgiem un tehniski kompetentiem menedžeriem.
         you_can_preview: |
           <a href="%{url}">Šeit</a> iespējams iepriekš aplūkot, kā projekts izskatītos, izvēloties kolekciju projekta veidu.
+      invite:
+        description_html: |
+          <h3>Ielūgumi</h3>
+          <p class="ui">
+          Lietotāju uzaicināšana projektā nedaudz atšķiras no atsevišķu novērojumu uzaicināšanas. Uzaicinot lietotājus, tiek veiktas šādas darbības:
+          </p>
+          <ol>
+          <li>Tiek nosūtīta e-pasta ziņa ar uzaicinājumu</li>
+          <li> Uzaicinājums tiek rādīts arī informācijas panelī</li>
+          <li>Lietotāji iegūst pieeju projektam, ja projekta iestatījumos aktivizēti tikai uzaicinājumi</li>
+          </ol>
+          <p class="ui">
+          Tikai projekta pārziņi var uzaicināt lietotājus. Iesakām meklēt cilvēkus pēc iNat lietotājvārdiem vai viņu <em>pilnas</em> e-pasta adreses, pieņemot, ka tā ir mūsu sistēmā.
+          </p>
+      join:
+        invite_only_description: |
+          Kļūt par projekta dalībnieku var tikai ar uzaicinājumu. Ja vēlies pievienoties projektam, sazinies ar kādu projekta pārzini, lai lūgtu uzaicinājumu.
       new:
+        a_project_allows_you_to_gather: |
+          iNaturalist kolekcijas projektu meklētājā iespējams apkopot un vizualizēt novērojumus. Visi novērojumi, kas atbilst kritērījiem tiek automātiski iekļauti.
         an_umbrella_project_can_be_used_to: |
           Projektu grupas izmanto, lai salīdzinātu statistiku starp vairākiem standarta vai kolekciju projektiem. Projektiem jābūt izveidotiem jau pirms to pievienošanas projektu grupai. Vienai projektu grupai iespējams pievienot simtiem projektu. Projektu grupās nevar būt iekļautas citas projektu grupas.
         are_you_ready_to_duplicate: |
           Vai esi gatavs iziet no projekta lapas un to nokopēt? Jāņem vērā, ka projekta ikona un plākāti netiks nokopēti, tādēļ nokopētajā projektā tos nāksies no jauna augšupielādēt.
         are_you_sure_you_want_to_delete: Vai tiešām vēlies dzēst projektu?
         can_be_included_in_multiple: Var tikt iekļauti vairākās projektu grupās reizē
+        check_the_box_to_include_member_observations: |
+          Atzīmē lodziņu, lai iekļautu novērojumus tikai no lietotājiem, kas pievienojušies projektam. Izmanto filtru "Neiekļaut lietotājus", lai neiekļautu konkrētu lietotāju novērojumus, tai skaitā projekta izveidotāju un administratoru novērojumus.
+        click_through_to_individual_projects: Pāriet uz atsevišķiem projektiem
         collection_projects: Kolekciju projekti
         collection_project_features: "Kolekciju projektu funkcijas:"
         contain_entire_image_without_cropping: Iespējams iekļaut visu attēlu bez apgriešanas
@@ -6282,6 +6304,11 @@ lv:
         translators_prompt: |
           Ja vēlies palīdzēt ar tulkošanu, %{link_tag}nospied šeit%{link_tag_end}.
     taxa:
+      edit:
+        high_status_conservation_status_notice_html: |
+          Augstākas pakāpes taksonu aizsardzības statusa norādīšana ietekmē visus taksona novērojumus. Lūdzu, nenorādi statusu taksoniem, kas satur sugas bez noteikta statusa, jo tādā gadījumā šo sugu novērojumu koordinātas tiks kļūdaini noslēptas.
+        complete_desc_html: |
+          Pilnīgs taksons satur <em>visus</em> zināmos zemāku pakāpju taksonus ar konkrētu klasifikāciju, kas atbilst iNaturalist taksonu pārvaldības noteikumiem neatkarīgi no tā, vai taksoni ir vai nav novēroti. Pašlaik tikai vietnes administratori var piešķirt pilnīga taksona statusu.
       show:
         about_conservation_status_desc: |
           Aizsardzības statusa kopsavilkumā redzams organismu grupu izmiršanas risks.
