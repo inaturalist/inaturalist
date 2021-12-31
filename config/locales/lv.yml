@@ -6309,9 +6309,17 @@ lv:
           Augstākas pakāpes taksonu aizsardzības statusa norādīšana ietekmē visus taksona novērojumus. Lūdzu, nenorādi statusu taksoniem, kas satur sugas bez noteikta statusa, jo tādā gadījumā šo sugu novērojumu koordinātas tiks kļūdaini noslēptas.
         complete_desc_html: |
           Pilnīgs taksons satur <em>visus</em> zināmos zemāku pakāpju taksonus ar konkrētu klasifikāciju, kas atbilst iNaturalist taksonu pārvaldības noteikumiem neatkarīgi no tā, vai taksoni ir vai nav novēroti. Pašlaik tikai vietnes administratori var piešķirt pilnīga taksona statusu.
+        wikipedia_summary_desc_html: |
+          Īss taksona apraksts, atsaucoties uz <a target="_blank"
+          href="%{url}">Vikipēdijas lapu</a>. Glabājam to kešatmiņā līdz tas tiek manuāli pārlādēts. Pārlādējot aprakstu, tiek atjaunota arī Vikipēdijas satura kešatmiņa, kas tiek pārlādēta automātiski reizi nedēļā.
       show:
         about_conservation_status_desc: |
           Aizsardzības statusa kopsavilkumā redzams organismu grupu izmiršanas risks.
+        about_establishment_desc: |
+          Izplatības skaidrojumā aprakstīts, kā sugas nonāk konkrētās vietās. "Introducētās" sugas atrodas kādā konkrētā vietā cilvēku ietekmes dēļ, bet "vietējās" sugas bez cilvēku ietekmes. "Endēmiskās" sugas atrodamas tikai kādā konkrētā vietā un nekur citur.
+        about_taxon_curators_desc: |
+          Šie cilvēki pārvalda taksonomiskā koka daļu, kas ietver taksonu. Ja vēlies veikt izmaiņas, lūdzu, pievieno karodziņu vai saziņies ar kādu no viņiem.
+        discoveries_desc: "Pēdējās jauni identificētās taksona sugas"
         frequency:
           research: Pētniecības līmenis
           verifiable: Pierādāms
@@ -6337,6 +6345,8 @@ lv:
         max_photos_desc: |
           Vienam taksonam var būt %{max} fotogrāfijas. Lai pievienotu vēl fotogrāfijas, nāksies dzēst kādu no jau pievienotajām.
         no_trending_desc: Pēdējā mēness laikā nekas saistīts ar šo taksonu nav novērots
+        photo_chooser_modal_desc: |
+          Velc attēlus šeit no kreisās puses. Šeit tos iespējams arī pārkārtot.
         rare_desc: Vismazāk novēroto apdraudēto sugu
         rare_in_place_desc_html: Vismazāk novērotie taksoni, kas ir apdraudēti no <a href="%{url}">%{place}</a>
         trending_in_place_desc_html: Pēdējā mēnesī visvairāk novērotie taksoni no <a href="%{url}">%{place}</a>
