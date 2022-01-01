@@ -6309,6 +6309,8 @@ lv:
           Augstākas pakāpes taksonu aizsardzības statusa norādīšana ietekmē visus taksona novērojumus. Lūdzu, nenorādi statusu taksoniem, kas satur sugas bez noteikta statusa, jo tādā gadījumā šo sugu novērojumu koordinātas tiks kļūdaini noslēptas.
         complete_desc_html: |
           Pilnīgs taksons satur <em>visus</em> zināmos zemāku pakāpju taksonus ar konkrētu klasifikāciju, kas atbilst iNaturalist taksonu pārvaldības noteikumiem neatkarīgi no tā, vai taksoni ir vai nav novēroti. Pašlaik tikai vietnes administratori var piešķirt pilnīga taksona statusu.
+        complete_rank_desc_html: |
+          Taksons pabeigtības klasifikācija. Piemēram, ja dzimtā ir visas ģintis, bet ne visas sugas, klasifikācija ir "ģints", bet noklusējuma režīmā tā ir "suga".
         wikipedia_summary_desc_html: |
           Īss taksona apraksts, atsaucoties uz <a target="_blank"
           href="%{url}">Vikipēdijas lapu</a>. Glabājam to kešatmiņā līdz tas tiek manuāli pārlādēts. Pārlādējot aprakstu, tiek atjaunota arī Vikipēdijas satura kešatmiņa, kas tiek pārlādēta automātiski reizi nedēļā.
