@@ -421,7 +421,7 @@ lt:
   add_to_a_scheme: Pridėti prie schemos
   add_to_a_project: Pridėti į projektą
   add_to_calendar: Pridėti į kalendorių
-  add_to_checklist: Pridėti į stebimųjų sąrašą
+  add_to_checklist: Pridėti prie kontrolinio sąrašo
   add_to_favorites: Pridėti į mėgstamiausius
   add_to_list: Pridėti į sąrašą
   add_to_project: Pridėti į projektą
@@ -729,7 +729,7 @@ lt:
   are_you_sure_you_want_to_remove_these_x_taxa?: "Ar tikrai norite ištrinti šiuos %{x} taksonus?"
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Ar tikrai norite panaikinti šį stebėjimą iš projekto %{project}?
-  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Ar tikrai norite ištrinti šį taksoną iš %{place} stebimųjų sąrašo?"
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Ar tikrai norite ištrinti šį taksoną iš %{place} kontrolinio sąrašo?"
   associated_observations: Susiję stebėjimai
   associated_taxa: Susiję taksonai
   attention: Dėmesio
@@ -925,14 +925,15 @@ lt:
   check_here_to_autoload_photos: Pažymėkite, kad automatiškai užsikrautų nuotraukos iš Flickr. Atžymėkite, jeigu taksono mokslinis pavadinimas taip pat yra nemokslinis žodis arba dažnai klaidingai įvedamas žodis, pavyzdžiui „Parus“.
   check_list: Kontrolinis sąrašas
   check_list_description: Pasirinkite aukštesnio lygio taksoną, kurį norėtumėte matyti šiame sąraše, pvz. "Aves" paukščiams ar "Amphibia" varliagyviams. Taip nustačius, šiame sąraše nebus galimi taksonai, nepriklausantys nuradytam taksonui. Pavyzdžiui, jei sukursite paukščių sąrašą, jūs negalėsite pridėti prie jo varlių.
-  check_list_for_individual_taxa_that: 'Patikrinkite atskirus, čia gyvenančius, taksonus, pvz. "%{place} paukščiai".'
+  check_list_for_individual_taxa_that: 'Patikrinkite atskirus taksonus, kurie čia gyvena, pvz.: „%{place} paukščiai“.'
   check_list_for_taxon_html: "%{taxon} kontrolinis sąrašas"
   check_lists_must_belong_to_a_place: |
     Kontrolinis sąrašas turi priklausyti kokia nors vietai. Jei norite sukurti naują kontrolinį sąrašą, apsilankykite vietos numatytame kontroliniame sąraše ir paspauskite „Sukurti naują kontrolinį sąrašą“.
   check_list_of_species_occuring_in: Kontrolinis sąrašas rūšių, aptinkamų
-  check_list_place: "%{place} Kontrolinis Sąrašas"
+  check_list_place: "%{place} kontrolinis sąrašas"
   check_list_updated: Kontrolinis sąrašas atnaujintas!
-  check_lists_for: "Kiti %{place} Kontroliniai Sąrašai"
+  check_lists_for: "Kiti %{place} kontroliniai sąrašai"
+  check_out_the_inat_store: Apsilankykite iNaturalist parduotuvėje
   check_out_what_the_observation: Patikrinkite kaip atrodo stebėjimas, kurį bandote įdentifikuoti.
   checklist: Kontrolinis sąrašas
   choose_a_field: Pasirinkite lauką
@@ -987,6 +988,7 @@ lt:
   community_id_heading: Bendruomenės taksonas
   community_id_at_species_or_lower?: Bendruomenės ID rūšies lygmenyje ar žemiau?
   community_id_at_species_level_or_lower: Bendruomenės ID rūšies lygmenyje ar žemiau
+  community_id_is_precise: Bendruomenės taksonas yra tikslus
   community_moderation_settings: Bendruomenės Moderavimo Nustatymai
   community_supported_id: Bendruomenės patvirtintas taksonas?
   compare: Palyginti
@@ -1006,6 +1008,17 @@ lt:
   comprehensive_check_list_for_taxon_html: |
     <span class="comprehensive_notice" data-tip="%{tip}">Išsamus</span> %{taxon} kontrolinis sąrašas
   comprehensive_list: Išsamus sąrašas
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Kompiuterinio matymo modelis
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Įtrauktas
+  computer_vision_model_included_desc: |
+    Dabartinis kompiuterinio matymo modelis žino apie šį taksoną, todėl jis gali būti įtrauktas į automatinius pasiūlymus su etikete „vizualiai panašus“.
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Laukiama
+  computer_vision_model_pending_desc: |
+    Dabartinis kompiuterinio matymo modelis nežino apie šį taksoną, taigi, nors šis taksonas gali būti įtrauktas į automatinių pasiūlymų sąrašą su etikete „netoliese“, prie jo nebus etiketės „vizualiai panašus“. Kiekvienam modeliui galioja skirtingos įtrauktimo taisyklės, tačiau dažniausiai įtraukimas priklauso nuo stebėjimų skaičiaus, todėl, norint padidinti galimybę šiam taksonui būti įtrauktam kito modelio mokymo metu, įkelkite arba identifikuokite daugiau šio taksono stebėjimų.
   concept_status: Koncepcijos Būsena
   configure: Konfigūruoti
   configure_a_widget_to_show: Konfiguruoti valdiklį, kad jis rodytų %{site_name} stebėjimus jūsų tinklalapyje ar tinklaraštyje. Jums gali reikėti įtraukti įterptą CSS <code>&lt;head&gt;</code> jūsų HTML. Nesivaržykite perrašyti CSS.
@@ -1022,6 +1035,7 @@ lt:
   connect_to_provider: "Prisijungti prie %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Prijungtos paskyros
+  connected_accounts_description: Prijungtos paskyros yra kitų programėlių ar tinklalapių paskyros, kurias leidote pasiekti iNaturalist prisijungimo, nuotraukų įkėlimo ar kitais tikslais.
   connected_accounts_titlecase: Prijungtos paskyros
   connecting_flickr: "Prisijungiama prie Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Dar kartą prisijunkite prie „Flickr“, kad galėtumėte autorizuoti rašymo teises
@@ -1032,13 +1046,17 @@ lt:
   conservation_status_descriptions:
     status: 'Statuso kodas, rangas ir t. t. Jeigu sutrumpinimai, kaip E ar CR egzistuoja, naudokite juos. Kitu atveju naudokite pilną statusą, pvz.: nykstantis arba grėsmingai nykstantis.'
     description: Trumpas aprašymas, kodėl tai buvo įtraukta į sąrašą.
+    authority: |
+      Organizacija, kuri paskelbė šį statusą. Naudokite automatinio užbaigimo funkciją, kad pasirinktumėte egzistuojantį autoritetą, prieš pridedant naują. Galite praleisti, jeigu *jūs* norite būti laikomas autoritetu.
     place: Vietovė, kurioje galioja šis statusas.
     url: Puslapio, apibūdinančio šią būseną, URL.
   conservation_status_geoprivacy_desc: |
     Numatytasis vietos privatumas taikomas visiems šio taksono stebėjimams šioje vietovėje
   contact_support: Susisiekti su pagalba
+  contain_all_descendants?: Ar šiame kontroliniame sąraše yra visi čia aptinkami šio taksono palikuonys?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Turinys
+  content_and_display: Turinys ir rodymas
   content_author: Turinio autorius
   content_hidden: Turinys paslėptas
   content_hidden_by_user_on_date_because_reason_html: |
@@ -1107,11 +1125,24 @@ lt:
     flowering: Žiedai matomi, prasiskleidę ir vis dar prisitvirtinę prie augalo
     fruiting: Vaisiai matomi ir vis dar prisitvirtinę prie augalo
     no_evidence_of_flowering: Nuotraukoje nesimato jokių dauginimosi struktūrų
+    teneral: Suaugėlis neseniai išsinėrė, bet dar nepasiekė pilnos brandos
     cannot_be_determined: Negali būti nustatyta iš pateiktų įrodymų
+    feather: Viena ar daugiau plunksnų, neprisitvirtinusių prie organizmo
+    organism: Visas organizmas arba jo dalis
+    scat: Išmatos (ne pelėdų išvamos ar kitos nesuvirškitos medžiagos)
+    track: Organimo palikta žymė žemėje arba sniege
+    bone: |
+      Daugiausia endoskeleto liekanos; dalinis kaulo atsidengimas daugiau nepažeistame organizme turėtų būti įvardijamas kaip „organizmas“
+    molt: Numesta oda arba egzoskeletas
   controls: Valdikliai
   convert: Konvertuoti
   coordinate_systems: Koordinačių sistemos
   coordinates: Koordinatės
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: Tik su pilnomis koordinatėmis
   copy: Kopijuoti
   copy_and_paste_the_following_code_to: Nukopijuokite ir įklijuokite šį kodą, kad įterptumėte šį vertinimą į kitą tinklalapį.
   copy_and_paste_this_into_your_own_html: Nukopijuokite ir įklijuokite tai į savo HTML.
@@ -1132,6 +1163,7 @@ lt:
   copyright_info: Autorinių teisių informacija
   copyright_info_and_more: Autorinių teisių informacija ir daugiau
   copyright_infringement: Autorinių teisių pažeidimas
+  copyright_infringement_desc: Pažeidžia autorių teisių įstatymą ar buvo sukurtas kito asmens nei stebėtojas, bet trūksta atribucijos
   covered_by_a_taxon_framework_html: "Apimamas %{link}"
   covered_by_a_taxon_framework_link: "%{taxon_framework_rank}%{taxon_framework_name} taksono struktūra"
   couldnt_change_your_password: "Negalima pakeisti jūsų slaptažodžio: %{e}"
@@ -1145,6 +1177,7 @@ lt:
   create_a_query: Kurti užklausą
   create_an_account: Kurti paskyrą
   create_an_atlas: Sukurti atlasą
+  create_export: Sukurti eksportą
   create_new_taxon: Sukurti naują taksoną
   create_observations: Sukurti stebėjimą
   created: Sukurta
@@ -1163,6 +1196,22 @@ lt:
   curating: Kuruojama
   curation: Kuravimas
   curator: Kuratorius
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Turite paaiškinti, kodėl norite tapti kuratoriumi
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Kodėl norite tapti kuratoriumi?
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Kaip kuratorius praranda savo galias
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Kuratoriaus paraiška pateikta
+  #Header
+  curator_application_what_curators_can_do: Ką gali kuratoriai
+  #Header
+  curator_application_what_curators_cannot_do: Ko negali kuratoriai
+  #Title of a page where people apply to become a curator
+  curator_application_title: Kuratoriaus paraiška
   curators: Kuratoriai
   curator_identification: Kuratorius identifikavimas
   current_flags: Dabartinės žymės
@@ -1170,6 +1219,7 @@ lt:
   customize_location: Pasirinkti vietą
   darr_apply_darr: "&darr; Taikyti &darr;"
   daily_users: Vartotojų kasdien
+  danger_zone: Pavojinga zona
   dashboard: Valdymo skydas
   data_deficient: Trūksta duomenų
   data_quality: Duomenų kokybė
@@ -1178,6 +1228,7 @@ lt:
   datatype: Duomenų Tipas
   date_: Data
   date_added: Įkėlimo data
+  date_authorized: Įgaliojimo data
   date_created: data sukurta
   date_format:
     date_long:
