@@ -196,7 +196,7 @@ lv:
   #to add masculine, feminine, and neuter forms of articles. I realize this is
   #an awkward way to translate something, but fixing it will have to wait for
   #an overhaul of our notification system.
-  activity_snipped_resource_with_indefinite_article: "@vow_or_con{vow:an|a} %{resource}"
+  activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: Apraksts
   about_blocking: Vairāk par bloķēšanu
   about_charts: Vairāk par grafikiem
@@ -945,6 +945,8 @@ lv:
   colors: Krāsas
   columns: Slejas
   combine: Kombinēt
+  comma_separated_list_of_tracking_codes: |
+    Ar komatu atdalīti izsekošanas kodi. Ja vēlies sūtot lietotājiem jaunas novērojumu veidlapas, pievienot izekošanas kodu, izmanto šo saiti %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123. Tā iespējams izsekot līdzdalības aktivitāti no dažādiem avotiem. Kodiem iespējams piekļūt lejupielādējot projekta novērojumus CSV formātā.
   comma_separated_please: Lūdzu, atdalīt ar komatu
   comment: komentēt
   #Verb, generally a label on a button that allows the user to add a comment
@@ -1034,6 +1036,8 @@ lv:
       Organizācija, kas norādīja šo statusu. Pirms jaunas organizācijas pievienošanas, lūdzu, izmanto automātisko nosaukuma pabeigšanu, lai izvēlētos kādu no jau pieejamajām organizācijām. Izlaid šo soli, ja vēlies, lai tu pats tiktu iekļauts organizāciju sarakstā.
     place: Vieta, kurā nav atļauts norādīt šo statusu.
     url: URL vietrādis uz lapu ar šī statusa aprakstu.
+    geoprivacy: |
+      Taksona novērojumu noklusējuma ģeoprivātuma iestatījumi. Jāņem vērā, ka statusa ģeoprivātums, kas saistīts ar kontinentu, valsti vai pavalsti var aizvietot citu globālo vai ar augstākas pakāpes vietu saistītu statusu.
     iucn: |
       Līdzvērtīgs IUCN Sarkanās grāmatas kods. Šis nav IUCN veikts novērtējums, bet gan tikai IUCN kods, kas vislabāk atbilst statusā norādītajai koordinātu atklāšanas draudu pakāpei. Ja taksona statuss ir "Zems risks", ģeoprivātuma iestatījumi tiks automātiski pielāgoti. Ja vēlies, lai taksona novērojumu koordinātas būtu noslēptas, atzīmē taksonu kā "Gandrīz apdraudēts" vai kā vēl apdraudētāku.
   conservation_status_geoprivacy_desc: |
@@ -1994,6 +1998,7 @@ lv:
     Ja kāda iemesla dēļ izvēlies nepiekrist kopienas taksonam, to iespējams noraidīt. Tādā gadījumā tava ID tiks izmantota, lai sasaistītu citus novērojumus un atjaunotu sarakstus. Tas nozīmē arī to, ka tavs novērojums var iegūt pētniecības līmeņa statusu tikai tad, ja kopiena piekrīt tev.
   if_matches_come_from_a_comprehensive_list: Ja atbilstīgo taksonu avots ir pilnīgs saraksts, šeit parādīsies zaļa josla.
   if_this_is_a_scientific_name: Vai šis ir zinātniskais nosaukums? Vai tas ir pašreiz apstiprināts?
+  if_this_link_will_apply_to_descendant: Ja saite attiecas uz zemāku pakāpju taksoniem, tad iespējams izmantot tagus no veidnes, lai URL vietrādī aizpildītu taksona nosaukumu.
   if_you_have_any_trouble_with_the_site_check_out: 'Ja radušies jautājumi, lūdzu, atver, <a href="%{help_url}">palīdzības sadaļu</a> vai nosūti ziņojumu mūsu <a href="%{feedback_url}">atsauksmju grupai</a>.'
   if_your_project_is: Ja tavam projektam ir noteikta atrašanās vieta, norādi koordinātas kartē vai ievadi tās manuāli.
   ignore_and_continue: Ignorēt un turpināt
@@ -2352,6 +2357,7 @@ lv:
     zh-CN: Ķīniešu (vienkāršota)
     zh-TW: Ķīniešu (tradicionāla)
   locality_notes: Piezīmes par atrašanās vietu
+  localized_species_accounts: Konti lokalizētām sugām
   location: Atrašanās vieta
   location_is_accurate: Atrašanās vieta ir precīza
   location_is_exact: atrašanās vieta ir precīza
@@ -5327,6 +5333,8 @@ lv:
           </p>
     flags:
       show:
+        flaggable_content_desc: |
+          Saturs ar karodziņu ir galvenais teksta avots objektam ar karodziņu. Tikai pārziņi un darbinieki var to redzēt. Tikai darbiniekiem ir pieeja ziņām par karodziņiem.
         flags_that_should_not_be_resolved_desc_html: |
           Lūdzu, mēģini atrisināt ar karodziņiem atzīmētos<code>mēstuļu</code> un <code>autortiesību pārkāpumus</code> tikai tad, ja tās patiesībā nav mēstules vai autortiesību pārkāpumi.
     guides:
@@ -5355,6 +5363,38 @@ lv:
           <a href="http://eol.org/" target="_blank">Dzīvības enciklopēdija (EOL)</a> ir dzīvās dabas informācijas glabātuve. Tā sniedz iespēju izveidot sugu <a href="http://eol.org/info/252" target="_blank">kolekcijas</a>. Ja vēlies importēt sugas no kādas EOL kolekcijas, ielīmē šeit kolekcijas URL.
         guide_place_desc: |
           Pievieno savus padomus kādai atrašanās vietai, lai lietotāji to varētu atrast. Atliekot vietas robežas, tās rādās %{site_name} kartēs (piemēram, kartes skatījumā, taksonu lapās utt.)
+        import_tags_from_csv_help_html: |
+          <p>
+          Augšupielādē CSV failu ar padomā atrodamo taksonu tagiem. CSV failam jāizskatās šādi:
+          </p>
+          <table class="table">
+          <tbody>
+          <tr>
+          <th>Nosaukums</th>
+          <th>krāsa</th>
+          <th>Roku skaits</th>
+          <th></th>
+          </tr>
+          <tr>
+          <td>Homo sapiens</td>
+          <td></td>
+          <td>2</td>
+          <td>divkājains</td>
+          </tr>
+          <tr>
+          <td>Vulpes vulpes</td>
+          <td>sarkans|melns</td>
+          <td>0</td>
+          <td>četrkājains</td>
+          </tr>
+          </tbody>
+          </table>
+          <p>
+          Pirmā rinda sākas ar "Nosaukumu". Nākamās ir tagu kategorijas un predikāti. Tad katra nākamā rinda sākas ar taksona nosaukumu. Slejas augšpusē ir predikātu tagi. Šajā piemērā, <i>Homo sapiens</i> taksonam ir tagi <code>divkājains</code> un <code>Roku skaits=2</code>,
+          and <i>Vulpes vulpes</i> taksonam ir <code>četrkājains</code>,
+          <code>krāsa=sarkana</code>, <code>krāsa=melna</code> un
+          <code>Roku skaits=0</code>. Tukšās vietas netiek ņemtas vērā. Katram taksonam iespējams pievienot vairākas rindas. Vēl iespējams pievienot vairākas vērtības katrā šūnā, atdalot tās ar rakstzīmi "|".
+          </p>
         licensing_explanation: |
           Piešķirot savam saturam licenci, sniegsi cilvēkiem iespēju kopēt un pārveidot tavu saturu bez tavas atļaujas lūgšanas. Izmantojot šo metodi, citiem ir daudz vieglāk dalīties ar tavu saturu. Turklāt, ja izmanto trešo pušu saturu no citiem avotiem, kas izmanto Creative Commons ShareAlike licences, piemēram, Wikipedia, tad tev ir tiesisks pienākums izmantot līdzīgu licenci. Šeit iespējams uzzināt vairāk par Creative Commons licencēm:
         paste_note_html: |
@@ -5504,6 +5544,7 @@ lv:
         agreement: Piekrišana
         algorithm_summary: Algoritma apraksts
         ancestor_disagreements: Domstarpības par taksonu priekštečiem
+        below_cutoff: Neatbilst kritērījiem
         cumulative_count: Kopējais skaits
         disagreement: Domstarpības
         disagreement_count: Domstarpību skaits
@@ -5984,6 +6025,21 @@ lv:
         make_owner: Piešķirt īpašnieka statusu
         no_curators: |
           Nav neviena projekta pārziņa. Ja vēlies piešķirt kādam administratora statusu, lietotājam vispirms jāpievienojas projektam un tev jāpiešķir šim lietotājam pārziņa statuss.
+        observation_aggregation_desc_html: |
+          <p class="description">
+          Novērojumu apkopošanas funkcija automātiski pievieno projektiem novērojumus, kas atbilst projekta noteikumiem. No projekta nav iespējams izņemt vairākus novērojumus reizē, jo tas var būt bīstami. Pārliecinies, vai tiešām esi norādījis vēlamo vietu un taksonu noteikumus, jo citādi var izrādīties, ka nāksies manuāli dzēst daudzus nepiemērotus novērojumus.
+          </p>
+          <p class="description">
+          Funkcija strādās tikai tad, ja būs izpildīti šādi nosacījumi:
+          </p>
+          <ol>
+          <li class="readable description">
+          Projektam jābūt vismaz vienam "jābūt novērotam kādā vietā" noteikumam, kas attiecas uz maza līdz vidēja izmēra vietu (apmēram Teksasas vai Ukrainas izmērā)
+          </li>
+          <li class="readable description">
+          VAI projektam jābūt vismaz vienam "jābūt taksonā" noteikumam
+          </li>
+          </ol>
         project_assets_desc_html: |
           <p class="description">Projekta pielikumi ir tavam projektam pievienotie faili, ievērojot šādus noteikumus:</p>
           <ol class="description">
@@ -6144,6 +6200,13 @@ lv:
       show:
         are_you_sure_you_want_to_convert: |
           Vai tiešām vēlies pārveidot projektu par kolekciju projektu?
+        bioblitz_results_desc_html: |
+          <p>
+          Atšķirībā no standarta projektiem, Bioblitz projektos tiek attēlota statistika no <em>visiem</em> novērojumiem kādā vietā un laika posmā, nevis tikai no novērojumiem, kas pievienoti projektam ar nodomu. Tas ir tā izstrādāts, lai projektam nebūtu jāpievieno novērojumi tikai tāpēc, lai iegūtu statistiku reālajā laikā. Jāņem vērā, ka novērojumi nebūs eksportējami vai attēlojami vairākos projekta skatā, piemēram, dalībnieku snieguma skatā un mobilās lietotnes projekta novērojumu meklētājā. Tas būs izdarāms tikai tad, ja dalībnieki pievienos novērojumus, kā standarta projektā.
+          </p>
+          <p>
+          Lai gan šāda veida projektā tiek rādīta statistika novērojumiem, kas nav manuāli pievienoti projektam, pārziņiem nav pieejas novērojumu privātajām vai noslēptajām koordinātām. Pārziņi nevar arī nezinot pieņemt to, ka novērotāji piekrīt projekta noteikumiem. Ja esi pārzinis un tev vajadzīga privātu koordinātu pieeja, jāpanāk, lai dalībnieki piekristu projekta noteikumiem. Ja vēlies pievienot novērojumus pārbaudītajai projekta kontrollapai, pārliecinies, lai dalībnieki pievienotos projektam un saglabātu novērojumus, kā standarta projektā.
+          </p>
         click_here_to_convert_this_project: |
           Nospied šeit, lai pārveidotu projektu par kolekciju projektu.
         no_journal_blurb_html: |
@@ -6315,12 +6378,26 @@ lv:
           Īss taksona apraksts, atsaucoties uz <a target="_blank"
           href="%{url}">Vikipēdijas lapu</a>. Glabājam to kešatmiņā līdz tas tiek manuāli pārlādēts. Pārlādējot aprakstu, tiek atjaunota arī Vikipēdijas satura kešatmiņa, kas tiek pārlādēta automātiski reizi nedēļā.
       show:
+        about_names_desc: |
+          <p>
+          Lielākai daļai organismu kategoriju dažādās valodās ir "tautā pieņemtie nosaukumi". Šie nosaukumi lielākoties ir atpazīstami, viegli izrunājami un nemainīgi, bet daudziem organismiem atkarībā no vietas pat vienā un tajā pašā valodā ir vairāki nosaukumi. Tas var apgrūtināt organismu apspriešanu. Tādēļ zinātnieki izmanto vienotus zinātniskos nosaukumus katrai organismu kategorijai, kas atbilst <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">binārās nomenklatūras</a> noteikumiem. Šie nosaukumi ir latīņu valodā, kurā vairs neviens nerunā, tāpēc salīdzinājumā ar tautā pieņemtajiem nosaukumiem daudziem cilvēkiem tos ir grūtāk atcerēties. Zinātniskie nosaukumi mēdz ietvert organismu taksonomisko novietojumu, tāpēc tie var mainīties, kad zinātnieki nāk klajā ar precīzākām teorijām par organismu evolucionārajām attiecībām. Šis iemesls apgrūtina organismu apspriešanu pat starp cilvēkiem, kas pazīst zinātniskos nosaukumus.
+          </p>
+          <p>
+          Vecais labais teiciens labi paskaidro šo situāciju – "Tautā pieņemtie nosaukumi mainās atkarībā no vietas, bet zinātniskie laikam ritot."
+          </p>
+          <p>
+          Mēs risinām šo problēmu, rādot gan tautā pieņemtos, gan zinātniskos nosaukumus, kad vien iespējams, kā arī izvēloties tautā pieņemtos nosaukumus atkarībā no lietotāja valodas un atrašanās vietas.
+          </p>
         about_conservation_status_desc: |
           Aizsardzības statusa kopsavilkumā redzams organismu grupu izmiršanas risks.
         about_establishment_desc: |
           Izplatības skaidrojumā aprakstīts, kā sugas nonāk konkrētās vietās. "Introducētās" sugas atrodas kādā konkrētā vietā cilvēku ietekmes dēļ, bet "vietējās" sugas bez cilvēku ietekmes. "Endēmiskās" sugas atrodamas tikai kādā konkrētā vietā un nekur citur.
         about_taxon_curators_desc: |
           Šie cilvēki pārvalda taksonomiskā koka daļu, kas ietver taksonu. Ja vēlies veikt izmaiņas, lūdzu, pievieno karodziņu vai saziņies ar kādu no viņiem.
+        charts_help_seasonality: |
+          Grafikā attēlots taksona novērojumu skaits, kas sakārtots pēc mēneša. Jāņem vērā, ka novērojumu skaits ir atkarīgs no tā, kad organisms ir novērojams, kā arī no tā, kad cilvēki izlemj iet novērot. Kāda putnu suga var šķist ļoti aktīva maijā, kas var būt tāpēc, ka maijā ir lielāka novērotāju aktivitāte, bet nākamajos mēnešos šie novērotāji var potenciāli nepievērst sugai tik lielu uzmanību. Līdzīgs piemērs varētu būt ar spāru novērošanu – ja jūnijā novērots vairāk spāru nekā Janvārī, tas nenozīmē, ka spāru aktivitāte ir lielāka jūnijā, bet drīzāk to, ka ziemeļu puslodē ir vairāk novērotāju nekā dienvidu puslodē. Šo iemeslu dēļ vienmēr pārbaudi karti. Ja grafikos attēloti zemi rādītāji un/vai nesakritības starp pierādāmiem un pētniecības līmeņa novērojumiem, prātīgāk skatīties uz šiem grafikiem ar skepsi.
+        charts_help_history: |
+          Grafikā attēlots taksona novērojumu skaits pēc mēneša pēdējo 10 gadu laikā. Atkal jāpiebilst, ka tas ir atkarīgs no novērotāju skaita. Grafikā attēlotas arī neierastas izmaiņas novērojumu skaitā. Ja tās izskatās nemainīgas vai samazinās, lai gan novērotāju skaits palielinās, tas var liecināt par izmaiņām taksona sastopamībā.
         discoveries_desc: "Pēdējās jauni identificētās taksona sugas"
         frequency:
           research: Pētniecības līmenis
