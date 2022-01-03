@@ -4663,14 +4663,11 @@ en:
   subscribe_to_observations_from_this_place_html: <a>Subscribe</a> to observations from this place
   subscribe_to_observations_in_a_taxon: Subscribe to all observations posted of a species or group of organisms (e.g. 'scorpions').
   subscribe_to_observations_in_a_place: Subscribe to all observations posted within this place. You can also add an optional taxon filter (e.g. 'scorpions from Texas').
-  subscribe_to_places_to: |
-                            Subscribe to places to receive updates about new observations made
-                            there.  Updates from people you follow and things you've commented
-                             on are also managed through subscriptions, so if you want to see
-                            what you're subscribed to and unsubscribe from things, you can
-                            click "Manage all of your subscriptions" below.  You should also
-                            be able to unsubscribe from anything on the site by viewing it's
-                            page.
+  subscribe_to_places_help: |
+    Subscriptions control what you see in your updates and on your dashboard.
+    For example, you can subscribe to a taxon to get updates about new
+    observations of that taxon. You are automatically subscribed to updates
+    about observations you comment on or identify.
   subscribe_to_this: Subscribe to this
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Subscribe</a>
