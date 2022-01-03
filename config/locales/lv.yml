@@ -1516,8 +1516,8 @@ lv:
   download_csv: Lejupielādēt CSV
   download_csv_template: Lejupielādēt CSV veidni
   download_kml: Lejupielādēt KML
-  downstream_coverage_rank: Pašreiz aktīvo taksonu pēcteču iedalījums
-  downstream_coverage_colon_rank: "Pašreiz aktīvo taksonu pēcteču iedalījums: %{rank}"
+  downstream_coverage_rank: Pašreiz aktīvo taksonu pēcteču klasifikācija
+  downstream_coverage_colon_rank: "Pašreiz aktīvo taksonu pēcteču klasifikācija: %{rank}"
   downstream_deviations: Novirze no pašreiz aktīvo taksonu pēctečiem
   downstream_deviations_for_taxon: "Novirze no pašreiz aktīvā taksona %{taxon} pēctečiem"
   #Label for a link to taxa that are descendants ("downstream") of the current
@@ -4349,8 +4349,6 @@ lv:
   subscribe_to_observations_from_this_place_html: <a>Sekot</a> šīs vietas novērojumiem
   subscribe_to_observations_in_a_taxon: Sekot visiem sugas vai organismu grupas (piemēram, "skorpioni") novērojumiem
   subscribe_to_observations_in_a_place: Sekot visiem vietas novērojumiem. Iespējams pievienot papildu taksonu filtru (piemēram, Teksasas skorpioni)
-  subscribe_to_places_to: |
-    Seko vietām, lai saņemtu paziņojumus par jauniem novērojumiem no šīm vietām. Abonementi sniedz iespēju saņemt paziņojumus arī par lietotājiem un taviem komentāriem. Ja vēlies apskatīt, kam tu seko, un pārstāt sekošanu, nospied uz zemāk redzamā "Pārvaldīt visus abonementus". Vēl ir iespējams pārtraukt sekošanu, apskatot kāda objekta konkrēto lapu.
   subscribe_to_this: Sekot šim
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Sekot</a>
@@ -5944,6 +5942,24 @@ lv:
           Zemāk pieejamas ietekmēto fotogrāfiju saites.
       user_parent_confirmation:
         subject: Tava bērna iNaturalist konts ir aktivizēts
+        content_html: |
+          <p>
+          Paldies, ka izveidoji savam bērnam iNaturalist kontu. Konts ir aktivizēts. Šeit vari apskatīt saglabātos datus:
+          </p>
+          <ul>
+          <li><strong>Vecāku vai aizbildņa vārds:</strong>%{parent_name}</li>
+          <li><strong>Vecāku vai aizbildņa e-pasta adrese:</strong> %{parent_email}</li>
+          <li><strong>Bērna vārds:</strong> %{child_name}</li>
+          <li><strong>Bērna dzimšanas dienas datums:</strong> %{child_birthday}</li>
+          <li><strong>Bērna konta e-pasta adrese</strong> %{child_email}</li>
+          <li><strong>Bērna konta lietotājvārds:</strong> %{child_username}</li>
+          </ul>
+          <p>
+          Lai pieslēgtos kontam no bērna Seek lietotnes, nospied izvēlnē "iNaturalist" un "Pieslēgties ar iNaturalist" pogu lapas apakšā.
+          </p>
+          <p>
+          Bērns varēs pievienot savam iNaturalist kontam novērojumus, izmantojot Seek lietotni, kas būs apskatāmi arī iNaturalist.org vietnē.
+          </p>
       users_updates_suspended:
         message: |
           Apturējām jaunumu saņemšanu, jo kādu laiku %{site_name} vietnē esi bijis neaktīvs. Lai atkal saņemtu jaunumus par notikumiem, lūdzu, no jauna <a href="%{login_url}">pieslēdzies savam kontam</a>.
@@ -6398,6 +6414,12 @@ lv:
           Grafikā attēlots taksona novērojumu skaits, kas sakārtots pēc mēneša. Jāņem vērā, ka novērojumu skaits ir atkarīgs no tā, kad organisms ir novērojams, kā arī no tā, kad cilvēki izlemj iet novērot. Kāda putnu suga var šķist ļoti aktīva maijā, kas var būt tāpēc, ka maijā ir lielāka novērotāju aktivitāte, bet nākamajos mēnešos šie novērotāji var potenciāli nepievērst sugai tik lielu uzmanību. Līdzīgs piemērs varētu būt ar spāru novērošanu – ja jūnijā novērots vairāk spāru nekā Janvārī, tas nenozīmē, ka spāru aktivitāte ir lielāka jūnijā, bet drīzāk to, ka ziemeļu puslodē ir vairāk novērotāju nekā dienvidu puslodē. Šo iemeslu dēļ vienmēr pārbaudi karti. Ja grafikos attēloti zemi rādītāji un/vai nesakritības starp pierādāmiem un pētniecības līmeņa novērojumiem, prātīgāk skatīties uz šiem grafikiem ar skepsi.
         charts_help_history: |
           Grafikā attēlots taksona novērojumu skaits pēc mēneša pēdējo 10 gadu laikā. Atkal jāpiebilst, ka tas ir atkarīgs no novērotāju skaita. Grafikā attēlotas arī neierastas izmaiņas novērojumu skaitā. Ja tās izskatās nemainīgas vai samazinās, lai gan novērotāju skaits palielinās, tas var liecināt par izmaiņām taksona sastopamībā.
+        charts_help_other: |
+          Pieejami arī novērojumu sezionalitātes piezīmju grafiki. Ar piezīmēm iespējams novērojumiem pievienot metadatus ar pārbaudītu terminoloģiju, piemēram, vai novērojumā redzams ziedošs augs vai augs ar augļiem.
+        charts_help_relative_observations: |
+          Novērojumu biežums attēlo visu novērojumu relatīvo proporciju, kas palīdz izlīdzināt mūsu vietnes izaugsmes efektu. Piemēram, ja vietne katru gadu aug pieaugošā novērojumu skaita dēļ, iegūstam vairāk individuālo taksonu novērojumu. Tas nepalīdz saprast, vai taksons apkārtnē ir biežāk sastopams. Tas drīzāk nozīmē to, ka apkārtnē ir vairāk novērotāju. Ja kopumā ir 100 novērojumu, bet 20 no tiem ir ar konkrētu taksonu, tad relatīvās proporcija ir 0,2 (20 / 100). Ja nākamajā gadā novēroti 2000, no kuriem 400 ir ar šo taksonu, tad proporcija tāpat būtu 0,2 (400 / 2000). Ja kādā vietā ir maz novērotāju vai kāds taksons tiek novērots ļoti neregulāri, rodas nobīdes. Šī problēma novērojama arī kopējo skaitu sadaļās.
+        complete_taxon_desc: |
+          Pilnīgs taksons satur visus eksistējošos zemāku pakāpju taksonus, kas saskan ar noteiktu klasifikāciju no vietnes datubāzes. Ja taksonā ir visas sugas, varam noteikt, cik daudz sugu ir jau novērots un cik daudz vēl jānovēro. Pilnīgu taksonu sugu skaits neietver tādas nesaskaitāmas sugas kā izmirušas sugas vai neaktīvus sugu jēdzienus. Vēl jāmin, ka tiek iekļautas tikai sugas, nevis tādi infraspecifiski takson kā apakšsugas un šķirnes.
         discoveries_desc: "Pēdējās jauni identificētās taksona sugas"
         frequency:
           research: Pētniecības līmenis
@@ -6426,6 +6448,8 @@ lv:
         no_trending_desc: Pēdējā mēness laikā nekas saistīts ar šo taksonu nav novērots
         photo_chooser_modal_desc: |
           Velc attēlus šeit no kreisās puses. Šeit tos iespējams arī pārkārtot.
+        photo_chooser_modal_explanation: |
+          Taksona lapā rādīsies taksona un tā zemāku pakāpju fotogrāfijas. Paša taksona fotogrāfijas būs redzamas pirmās. Pati pirmā redzamā fotogrāfija ir noklusējuma fotogrāfija, kas tiek lietota visā vietnē.
         rare_desc: Vismazāk novēroto apdraudēto sugu
         rare_in_place_desc_html: Vismazāk novērotie taksoni, kas ir apdraudēti no <a href="%{url}">%{place}</a>
         trending_in_place_desc_html: Pēdējā mēnesī visvairāk novērotie taksoni no <a href="%{url}">%{place}</a>
