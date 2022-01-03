@@ -79,14 +79,16 @@ class YearStatistic < ApplicationRecord
 
     # Streaks are the longest-running and most memory intensive piece to
     # calculate, and are probably not sustainable for the whole site in the
-    # long term. In 2021, it doesn't seem like any available production machine
-    # has enough memory to do it. Putting it here ensures that everything else
-    # gets calculated first, and if streaks fail, they don't take down
-    # everything else. They're also pretty boring as of 2021 since it's
-    # basically just a lot of people on year+ long streaks. Yet another thing I
-    # never should have built....
-    json[:observations][:streaks] = streaks( year, options )
-    year_statistic.update_attributes( data: json )
+    # long term. In 2021, it doesn't seem like any available production
+    # machine has enough memory to do it for all users. Putting it here
+    # ensures that everything else gets calculated first, and if streaks
+    # fail, they don't take down everything else. They're also pretty boring
+    # as of 2021 since it's basically just a lot of people on year+ long
+    # streaks. Yet another thing I never should have built...
+    if year <= 2021 || !options[:site].blank?
+      json[:observations][:streaks] = streaks( year, options )
+      year_statistic.update_attributes( data: json )
+    end
     year_statistic
   end
 
