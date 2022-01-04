@@ -377,7 +377,7 @@ cs:
   add_another_flag: Označit další
   add_another_photo: Vložit další foto
   add_another_section: Vložit další oddíl
-  add_another_subscription: Vložit další předplatné
+  add_another_subscription: Přidat další odběr
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Přidejte položku
   add_batch: Vložit skupinu
@@ -1585,7 +1585,7 @@ cs:
   display_name_description: Toto je jméno, které se zobrazí na Vašem profilu a také pro autorská práva
   distance_traveled_value: "Ujetá vzdálenost: %{distance}m"
   distance_traveled: "Ujetá vzdálenost (m)"
-  documentation_for_developers_html: Dokumentace pro <a href="/pages/developers">developery</a>
+  documentation_for_developers_html: Dokumentace pro <a href="/pages/developers">vývojáře</a>
   do_not_show_this_message_again: Nezobrazovat znovu toto upozornění
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     Studujete hlístice? Jste předním světovým odborníkem na taxonomii svijonožců? Jen se rádi díváte na hezké květiny? Vyplněním profilu si vytvoříte osobnost a zvýšíte svou důvěryhodnost, až budete pomáhat ostatním s identifikací.
@@ -1678,7 +1678,7 @@ cs:
     other: 'Úprava <span class="count">%{count}</span> pozorování:'
   editing_project: Editování %{project}
   editing_project_asset: Editování položky projektu pro
-  editing_subscription_to_x_html: "Editovat přihlášení k %{x}"
+  editing_subscription_to_x_html: "Editovat odebírání %{x}"
   editing_taxon: Editace %{taxon}
   editing_taxon_link: Editování odkazu na taxon
   editing_taxon_name_for_taxon_html: Úprava názvu taxonu "%{name}" pro %{taxon}
@@ -2545,7 +2545,7 @@ cs:
   mark_all_as_reviewed: Označit vše za zkontrolované
   mark_all_as_unreviewed: Označit všechny za nezkontrolované
   matching_species_will_shown_up_here: Zde se zobrazí odpovídající druhy. Pokud má %{place} pro daný druh rozsah, zobrazí se na mapě.
-  maverick: Maverick
+  maverick: Samorost
   media: Média
   media_type: Typ média
   medium: střední
@@ -2663,7 +2663,7 @@ cs:
   more_about_sharing: Další informace o sdílení
   more_fields: Další pole
   more_filters: Další filtry
-  more_from_x: Více z %{x}
+  more_from_x: Více od %{x}
   more_import_options: Další možnosti nahrání
   more_info: Více informací
   more_info_title: Více informací
@@ -3104,7 +3104,7 @@ cs:
   #Button label to offset the date/time of observations by a set number of hours
   offset_time_verb: Časový posun
   old_observation_form: Původní formulář pozorování (zastaralý)
-  ok: "Jo"
+  ok: "Dobře"
   on_caps: "ZAP"
   on_day: "dne"
   onboarding:
@@ -4639,12 +4639,14 @@ cs:
   taxon_assessments_are: |
     Hodnocení taxonů jsou dokumenty hodnotící aktuální status druhu, obvykle status ochrany. Může je využít například regionální ochranářská organizace při organizování informací a vyžadování zpětné vazby o statusu několika ohrožených taxonů v regionu.
   taxon_change_must_be_committed_to_update_records: Pro aktualizaci záznamů musí být provedena změna taxonu
+  taxon_change_title_taxon_drop: Zahození taxonu %{id}
   taxon_change_title_taxon_merge: Taxonomické sloučení %{id}
   taxon_change_title_taxon_split: Taxonomické rozdělení %{id}
+  taxon_change_title_taxon_stage: Příprava taxonu %{id}
   taxon_change_title_taxon_swap: Taxonomická výměna %{id}
   taxon_deleted: Taxon smazán.
   taxon_doesnt_have_a_range: Taxon nemá rozsah.
-  taxon_drop: odložit taxon
+  taxon_drop: zahodit taxon
   taxon_id: ID taxonu
   taxon_ids: ID taxonů
   taxon_map:
@@ -5154,7 +5156,7 @@ cs:
   view_user_observations: "Zobrazit pozorování uživatele %{user}"
   view_x: "Zobrazit %{x}"
   view_year_stats_for_site: "Zobrazit statistiku za rok %{year} pro %{site}"
-  view_your_dashboard: Zobrazit váš přehled nejlepších
+  view_your_dashboard: Zobrazit vaši nástěnku
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Zobrazit váš přehled nejlepších</a> a aktualizace"
   view_your_inbox: Zobrazit vaši příchozí poštu
   view_your_observations: Zobrazit vaše pozorování
