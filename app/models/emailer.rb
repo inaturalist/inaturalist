@@ -39,7 +39,7 @@ class Emailer < ActionMailer::Base
     return unless @user.prefers_message_email_notification
     return if @user.prefers_no_email
     return if @message.from_user.suspended?
-    return if ( fmc = @message.from_user_copy ) && fmc.flags.where( "resolver_id IS NULL" ).positive?
+    return if ( fmc = @message.from_user_copy ) && fmc.flags.where( "resolver_id IS NULL" ).count.positive?
 
     mail( set_site_specific_opts.merge( to: @user.email, subject: "#{subject_prefix} #{@message.subject}" ) )
     reset_locale
