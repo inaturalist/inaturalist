@@ -255,7 +255,10 @@ class FlagsController < ApplicationController
       Project.refresh_es_index
     end
     respond_to do |format|
-      format.html { redirect_back_or_default(admin_path) }
+      format.html do
+        flash[:notice] = t(:flag_deleted)
+        redirect_back_or_default( flags_path )
+      end
       format.json do
         head :ok
       end
