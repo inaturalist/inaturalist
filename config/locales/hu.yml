@@ -47,6 +47,9 @@ hu:
   x_misidentifications_of_this_species:
     one: "%{count} hibás meghatározás e fajhoz"
     other: "%{count} hibás meghatározás e fajhoz"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} hibás fajmeghatározás ennél a nemzetségnél"
+    other: "%{count} hibás fajmeghatározás ennél a nemzetségnél"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -130,6 +133,26 @@ hu:
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "ABC-sorrend"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: Leírás
   about_blocking: A tiltásról
   about_charts: A grafikonokról
@@ -170,6 +193,7 @@ hu:
   active_users: Aktív felhasználó
   activity: Tevékenység
   activity_settings: Tevékenység beállításai
+  adapted_by_name_from_a_work_by_original: "%{original} munkája alapján adaptálta %{name}"
   add: Hozzáadás
   add_a_batch_of_observations: Megfigyelések tömeges hozzáadása
   add_a_batch_of_taxa: Taxonok tömeges hozzáadása
@@ -327,6 +351,12 @@ hu:
     ray_finned_fishes: Sugarasúszójú halak
     reptiles: Hüllők
     life: Élet
+    x_mollusca:
+      one: "%{count} puhatestű"
+      other: "%{count} puhatestű"
+    x_actinopterygii:
+      one: "%{count} sugarasúszójú hal"
+      other: "%{count} sugarasúszójú hal"
     x_other_animals:
       one: "%{count} egyéb állat"
       other: "%{count} egyéb állat"
@@ -415,6 +445,8 @@ hu:
   ascending: Növekvő
   assessment: értékelések
   associations: Társítások
+  atlased: Térképezett
+  atlas_for_taxon_html: '%{taxon}-térkép'
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -520,6 +552,10 @@ hu:
     split_into: Felosztva ezekre
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: Cserélve erre
+    input_taxon_was_dropped_html: "%{input_taxon} ejtve"
+    input_taxon_will_be_dropped_html: "%{input_taxon} ejtve lesz"
+    input_taxon_will_be_activated_soon_html: "%{input_taxon} hamarosan aktiválva lesz"
+    input_taxon_was_replaced_by_output_taxon_html: "%{input_taxon} le lett cserélve erre: %{output_taxon}"
   change_your_password: Jelszó módosítása
   check_back_soon: Jöjjön vissza hamarosan!
   choose_a_field: Adatmező kiválasztása
@@ -675,6 +711,7 @@ hu:
   create: Létrehozás
   create_a_new_field: Új mező létrehozása
   create_an_account: Fiók létrehozása
+  create_an_atlas: Térkép készítése
   create_export: Exportálás létrehozása
   created: Létrehozva
   created_by: Létrehozta
@@ -819,6 +856,7 @@ hu:
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Kapcsolat bontása
+  disconnect_provider: "%{provider} lecsatlakoztatása"
   display: Megjelenítés
   display_monthly_supporter_badge: A havi támogatói jelvény megjelenítése a profilon
   display_name: Megjelenített név
@@ -847,6 +885,8 @@ hu:
   edit: Módosítás
   edit_a_batch_of_observations: Megfigyelések tömeges szerkesztése
   edit_account_settings_and_profile: "Fiókbeállítások és profil módosítása"
+  edit_atlas: Térkép szerkesztése
+  edit_atlas_for_taxon_html: '%{taxon} térképének szerkesztése'
   edit_comment: A megjegyzésed szerkesztése
   edit_field: Mező szerkesztése
   edit_license: Licenc módosítása
@@ -1003,6 +1043,8 @@ hu:
   header_your_journal: A te hírmondód
   header_your_identifications: Meghatározásaid
   header_your_profile: Profilod
+  heads_up_automatable_draft_split_notice_html: |
+    <strong>Figyelem!</strong> Ennek a változtatásnak az élesítésével a meghatározások a céltaxonok térképei alapján újra azonosításra kerülnek. Ha egy vagy több céltaxon nem rendelkezik térképpel, vagy ha a térképek átfedést mutatnak az adott meghatározásnál, a meghatározások lecserélődnek a legközelebbi közös felmenő taxonnal (%{taxon}).
   help: Súgó
   here_are_our_top_suggestions: Íme a legjobb javaslataink
   here_are_our_top_species_suggestions: Íme a legjobb javaslataink
@@ -1020,6 +1062,14 @@ hu:
   icon: Ikon
   icon_size: Ikon méret
   id: Azonosító
+  id_categories:
+    tooltips:
+      leading: |
+        A meghatározási taxon szűkebb, mint a közösségi taxon. Ez a meghatározás vezethet a helyes, fajszintű azonosításhoz.
+      improving: |
+        Az első meghatározási javaslat erre a taxonra, amellyel a közösség egyetért. Ez segít a közösségi taxon pontosításában.
+      maverick: |
+        A meghatározási taxon nem illeszkedik a közösségi taxonhoz, vagyis a közösség nem ért egyet ezzel a taxonnal.
   id_withdrawn: Azonosítás visszavonva
   ids_by_taxon: Meghatározás taxon szerint
   identify: Azonosítás
@@ -1040,7 +1090,7 @@ hu:
     Ha valamilyen okból nem értesz egyet a közösségi taxonnal visszautasíthatod, ez azt jelenti, hogy a te meghatározásod fogja más megfigyelésekkel társítani, életlistát frissíteni, stb. Ez még azt jelenti, hogy a megfigyelésed csak akkor lehet tudományos szintű ha a közösség egyetért veled.
   if_this_is_a_scientific_name: Ha ez tudományos név, jelenleg elfogadott?
   import: Importálás
-  improving: Javuló
+  improving: Javító
   in_n: "%{n}ben"
   include_suggestions_not_seen_nearby: Földrajzilag távolabb eső javaslatok megjelenítése
   increase_brightness: Fényerő növelése
@@ -1371,6 +1421,9 @@ hu:
   most_observed_species: Legtöbbet megfigyelt fajok
   most_observed_threatened_species: A leggyakrabban megfigyelt veszélyeztetett fajok
   multiple: többszörös
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: szerepelnie kell %{project} projektben
   must_have_observation_field: "'%{operand}' adatmező nem lehet üres"
   must_have_photos: kell legyen kép
   must_have_sounds: kell legyen hang
@@ -1490,6 +1543,7 @@ hu:
   none: Egyik sem
   none_found: Nincs találat
   normal: normál
+  not_atlased: Nem térképezett
   not_confident: Nincs kellő bizonyosságú javaslatunk.
   not_confident_top_suggestions: Nincs kellő bizonyosságú javaslatunk, de a legjobb tippjeink
   not_found: Nincs találat
@@ -1510,8 +1564,31 @@ hu:
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
   observation_attribution: '%{user} megfigyelése'
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Megfigyelés &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     Ez a megfigyelés egy olyan projekthez tartozik, amelynél kötelező ezen adatmező kitöltése. A megfigyelést el kell távolítani a projektből, és csak azután lehet az adatmező értéket törölni.
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Valami ekkor: %{year} %{month}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Valami %{user} felhasználótól ekkor: %{year} %{month}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Valami %{place} helyről, ekkor: %{year} %{month}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Valami %{place} helyről, ekkor: %{year} %{month}, %{user} felhasználótól"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon}, %{year} %{month}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon}, %{year} %{month}, %{user} felhasználótól"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} %{place} helyről, %{year} %{month}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} %{place} helyről, ekkor: %{year} %{month}, %{user} felhasználótól"
   observations_by_app: Megfigyelések applikáció szerint
   observations_by_rank: Megfigyelések besorolás szerint
   observations_by_you: "Megfigyeléseid"
@@ -1622,8 +1699,11 @@ hu:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: 'Ezen alnemzetségként gyakran tévesen meghatározott egyéb taxonok itt: <a href="%{url}">%{place}</a>'
   other_taxa_commonly_misidentified_as_this_subsection: Ezen alszekcióként gyakran tévesen meghatározott egyéb taxonok
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: 'Ezen alszekcióként gyakran tévesen meghatározott egyéb taxonok itt: <a href="%{url}">%{place}</a>'
+  outside_of_all_atlases: Minden térképen kívül esik
   our_blog: Blogunk
+  output_taxon: Céltaxon
   overview: Áttekintés
+  overlapping_atlases: Átfedő térképek
   owner: Tulajdonos
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Szülő
@@ -2428,6 +2508,8 @@ hu:
   user_added_x_observations_html: "%{user} %{x} megfigyelést adott hozzá"
   user_disagrees_this_is_taxon: "%{user} nem ért egyet azzal, hogy ez %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nem ért egyet az előző finomabb meghatározásokkal"
+  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
+  user_faved_a_noun_by_owner: "%{user} kedvencelte %{owner} %{noun}ét"
   user_helped_x_people_with_y_ids_html: "%{user} <strong>%{x} embernek</strong> segített, <strong>%{y} meghatározással</strong>"
   user_muted: A felhasználó némítva van
   user_suggested_an_id: "%{user} javasolt meghatározása"
@@ -2445,6 +2527,8 @@ hu:
   view: Megtekintés
   view_all: Összes megtekintése
   view_all_members: Tagok megtekintése
+  view_all_n: "Minden %{n} megtekintése"
+  view_all_observations: Minden megfigyelés megtekintése
   view_details: Részletek
   view_field_options: Mező beállítások
   view_flags: Bejelentések megjelenítése
@@ -3036,6 +3120,7 @@ hu:
           other: '%{count} hiba miatt %{model} nem menthető el'
   activerecord:
     models:
+      Atlas: Térkép
       BlockedUser: Letiltott felhasználó
       CompleteSet: Teljes sorozat
     attributes:
@@ -3155,6 +3240,8 @@ hu:
         con: mássalhangzó
       "@gender":
         "n": semleges
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        atlas: "@n"
   #Title of a section warning the user about something
   warning_title: Figyelem
   wikimedia: Wikimedia
