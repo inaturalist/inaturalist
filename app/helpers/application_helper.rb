@@ -343,7 +343,7 @@ module ApplicationHelper
     end
     # Ensure all tags are closed
     text = Nokogiri::HTML::DocumentFragment.parse( text ).to_s
-    text.html_safe
+    text.gsub(/^<p><\/p>/, "").html_safe
   end
 
   def formatted_error_sentence_for( record, attribute )

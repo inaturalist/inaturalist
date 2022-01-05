@@ -52,6 +52,10 @@
                 = link_to @object.to_plain_s, @object
               - else
                 =t "deleted_#{@flag.flaggable_type.underscore}"
+                - if @flag.flaggable_parent
+                  %br
+                  = surround "[", "]" do
+                    =t :bold_label_colon_value_html, label: t(:parent), value: link_to( @flag.flaggable_parent.to_plain_s, @flag.flaggable_parent )
             %td
               - if @flag.user
                 = link_to @flag.user.login, @flag.user
