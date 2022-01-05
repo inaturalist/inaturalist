@@ -142,7 +142,8 @@ class ObservationModal extends React.Component {
       mapZoomLevel,
       onMapZoomChanged,
       mapZoomLevelLocked,
-      setMapZoomLevelLocked
+      setMapZoomLevelLocked,
+      officialAppIds
     } = this.props;
     if ( !observation ) {
       return <div />;
@@ -741,7 +742,7 @@ class ObservationModal extends React.Component {
                             { observation.application && observation.application.name && (
                               <li>
                                 <a href={observation.application.url}>
-                                  { DISPLAYABLE_APP_IDS.includes( observation.application.id ) ? (
+                                  { officialAppIds.includes( observation.application.id ) ? (
                                     <img
                                       className="app-thumbnail"
                                       src={observation.application.icon}
