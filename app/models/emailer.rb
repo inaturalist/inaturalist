@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Emailer < ActionMailer::Base
   helper :application
   helper :observations
@@ -37,8 +39,8 @@ class Emailer < ActionMailer::Base
     return unless @user.prefers_message_email_notification
     return if @user.prefers_no_email
     return if @message.from_user.suspended?
-    return if ( fmc = @message.from_user_copy ) && fmc.flags.where( "resolver_id IS NULL" ).count.positive?
-    
+    return if ( fmc = @message.from_user_copy ) && fmc.flags.where( "resolver_id IS NULL" ).positive?
+
     mail( set_site_specific_opts.merge( to: @user.email, subject: "#{subject_prefix} #{@message.subject}" ) )
     reset_locale
   end
@@ -48,7 +50,7 @@ class Emailer < ActionMailer::Base
     @user = @flow_task.user
     set_locale
     return if @user.email.blank?
-    return unless fto == @flow_task.outputs.first
+    return unless ( fto = @flow_task.outputs.first )
     return unless fto.file?
 
     @file_url = fto.file.url
@@ -254,9 +256,9 @@ class Emailer < ActionMailer::Base
   def default_url_options
     opts = ( Rails.application.config.action_mailer.default_url_options || {} ).dup
     site = @user.try( :site ) || @site || Site.default
-    if site_uri == URI.parse( site.url )
+    if ( site_uri = URI.parse( site.url ) )
       opts[:host] = site_uri.host
-      if port == site_uri.port && ![80, 443].include?( port )
+      if ( port = site_uri.port ) && ![80, 443].include?( port )
         opts[:port] = port
       end
     end
@@ -269,7 +271,7 @@ class Emailer < ActionMailer::Base
   end
 
   def site_name
-    if site == @user.site
+    if ( site = @user.site )
       site.name
     else
       @site.name

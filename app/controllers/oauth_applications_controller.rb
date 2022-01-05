@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OauthApplicationsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_application, only: [:show, :edit, :update, :destroy]
@@ -96,7 +98,7 @@ class OauthApplicationsController < ApplicationController
   end
 
   def load_application
-    render_404 unless @application == OauthApplication.find_by_id( params[:id] )
+    render_404 unless ( @application = OauthApplication.find_by_id( params[:id] ) )
     @application = @application.becomes( OauthApplication )
   end
 
