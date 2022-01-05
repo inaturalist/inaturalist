@@ -1261,6 +1261,7 @@ tr:
       december: Aralık
   date_is_accurate: Tarihi doğru
   date_joined: Katılım Tarihi
+  date_obscured_notice: Kişisel veya organizma gizliliğini korumak için tarih gizlendi
   date_observed: Gözlem tarihi
   date_observed_: Gözlem Tarihi
   date_observed_on: gözlem tarihi
@@ -1405,6 +1406,8 @@ tr:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: BAĞIŞ YAP
+  donate_again_caps: TEKRAR BAĞIŞTA BULUNUN
+  donate_again_today_caps: BUGÜN TEKRAR BAĞIŞTA BULUNUN
   done: Gönder
   dont_have_an_account_sign_up_html: Bir hesabınız yok mu? <strong>Kayıt olun.</strong>
   dont_send_me_email: "Bana herhangi bir e-posta gönderme!"
@@ -1528,6 +1531,10 @@ tr:
   establishment_means_describes_how: |
     Kuruluş, sınıfın bir alanda nasıl kurulduğunu açıklar. 
     <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">Terminoloji hakkında daha fazla bilgi için</a> DarwinCore'a bakın.
+  establishment_means_descriptions:
+    native: bu bölgede evrimleşti veya bu bölgeye doğal yollarla geldi
+    endemic: endemik ve başka bir yerde görülmez
+    introduced: bu bölgeye beşeri yollar ile geldi
   event_in_progress: Etkinlik sürüyor
   event_stats: Etkinlik İstatistikleri
   event_url: Etkinlik URL'si
@@ -1548,6 +1555,7 @@ tr:
   exclusion_filters: Dışında Tutma Filtreleri
   existing_flags: Mevcut İşaretler
   exit_full_screen: "Tam Ekrandan Çık"
+  examples_of_data_use_by_network_members: Üyeler Tarafından Verilerin Kullanımına İlişkin Örnekler
   examples_of_ranking_organizations: Dereceye giren kuruluşların örnekleri
   explore: Keşfet
   export: Dışa aktar
@@ -1763,6 +1771,8 @@ tr:
   going_to_your_observations: Gözlemlerinize gidiliyor...
   good_choice_for_sharing: Bilim insanlarıyla paylaşmak için iyi bir seçim
   google: Google
+  google_maps_not_loaded_error: |
+    Google Haritalar başlatılamadı. Google Haritalar'a erişimi bir tarayıcı uzantısı veya güvenlik duvarı ile engellemiş olabilirsiniz veya internet servis sağlayıcısı gibi başka bir şey engelliyor olabilir.
   got_it!: Anlaşıldı!
   got_your_data_somewhere_else?: Verilerinizi başka bir yere mi aldınız? Yardımcı olabiliriz.
   graft: Aşılama
@@ -2164,6 +2174,7 @@ tr:
   locales_: Yerel Ayarlar
   locales:
     ar: Arapça
+    be: Belarusça
     bg: Bulgarca
     br: Bretonca
     ca: Katalanca
@@ -3807,7 +3818,6 @@ tr:
   rules_and_formatting: "Kurallar & Biçimlendirme"
   rules_for_adding_observations: Gözlem Ekleme için Kurallar
   rules_for_becoming_a_member: Üye Olmak için Kurallar
-  rules_for_becoming_memner: Üye Olmak için Kurallar
   rules_types:
     must_be_captive: kısıtlanmış / ekili olmalı
     must_be_georeferenced: coğrafi ilişikli olmalı
@@ -3816,6 +3826,7 @@ tr:
     must_be_observed_in_place: bir yerde gözlemlenmiş olmalı
     must_be_in: bir sınıfta olmalı
     must_be_coordinates_shareable_by_project_curators: gözlemci, proje sorumlularının koordinatları görmesine izin vermelidir.
+    must_be_verifiable: doğrulanabilir olmalı
   running_total: Toplam Bulunan
   said: şunu dedi
   satellite: uydu
@@ -3960,6 +3971,9 @@ tr:
   site_staff: "%{site_name} Yetkilisi"
   site_stats: Sayfa İstatistikleri
   site_taxon_page: "%{site_name} sınıf sayfası"
+  sites_affiliation_about_desc_html: |
+    Kuruluşunuz iNaturalist Ağı'na katılmak ile ilgileniyorsa,
+    daha fazla ayrıntıya %{start_tag_join}buradan%{end_tag_join} ulaşabilirsiniz
   some_agree: kısmi katılma
   some_observations_are_missing_media_or_identifications: |
     Bazı gözlemlerde eksik medya ya da tanımlamalar var
@@ -4607,6 +4621,7 @@ tr:
   users_favorites: "%{user} kullanıcısının favorileri"
   users_highlights_and_stats_from_year_on_site: "%{user} kullanıcısının %{year} yerinde %{site} sayfasındaki öne çıkanları ve istatistikleri"
   users_id: "%{user} Tanımlamaları"
+  users_journal: "%{user} Kullanıcısının Günlüğü"
   users_latest_observations_on_site: "%{user} kullanıcısının %{site} sayfasındaki son gözlemleri"
   users_profile: "%{user} Kullanıcısının Profili"
   users_projects: "%{user} Kullanıcısının Projeleri"
@@ -4827,6 +4842,8 @@ tr:
   yes_reject_it: Evet, bunu reddet
   yes_show_this_in_the_box: Evet, bunu /sınıfların üstündeki büyük kutuda göster
   yesterday: Dün
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist'in sizin yardımınıza ihtiyacı var
   you: sen
   you_: Sen
   you_appear_offline_try_again: |
@@ -5998,7 +6015,7 @@ tr:
           Lütfen bu projeye eklenecek gözlemlerin gerekliliklerini belirtiniz.
         project_background_color: Proje Özeti Arka Plan Rengi
         project_background_color_help: Beyaz kaplanmış metnin okunaklı olması için yeterince koyu bir renk seçtiğinize emin olun.
-        project_banner: Proje Afişi (PNG, JPG, veya GIF)
+        project_banner: Proje Afişi (PNG veya JPG)
         project_banner_help: İsteğe bağlı afiş resmi. İdeal boyutlar 760px x 320px'dir.
         project_details: Proje Detayları
         project_icon: Proje Simgesi (PNG, JPG, veya GIF)

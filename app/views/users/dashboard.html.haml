@@ -159,7 +159,7 @@
       #subscriptions
         %h3.page-header
           = t :subscriptions
-          %span.glyphicon.glyphicon-info-sign.info-link{ "data-content" => t(:subscribe_to_places_to), "data-placement" => "top", "data-toggle" => "popover" }
+          %span.glyphicon.glyphicon-info-sign.info-link{ "data-content" => t(:subscribe_to_places_help), "data-placement" => "top", "data-toggle" => "popover" }
           = link_to subscriptions_path, class: "pull-right" do
             %i.glyphicon.glyphicon-cog
         - unless @subscriptions.blank?

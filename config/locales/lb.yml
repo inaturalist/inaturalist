@@ -463,6 +463,8 @@ lb:
   badges: Badgen
   batch: Batch
   because_of: well
+  become_a_donor_caps: GITT EEN DONATEUR
+  become_a_donor_today_caps: GITT HAUT EEN DONATEUR
   before_importing_photos: virum Import vu Fotoen
   bg_color: Hannergrondfaarf
   bio: Bio
@@ -525,6 +527,7 @@ lb:
     replaced_with: ersat duerch
   change_your_password: Ännert Äert Passwuert
   check_above_for_errors: Kuckt uewen no de Feeler hei driwwer
+  check_out_the_inat_store: Besicht och den iNaturalist Store
   checklist: Check-Lëscht
   choose_a_field: E Feld eraussichen
   choose_a_place: Eng Plaz eraussichen
@@ -760,6 +763,8 @@ lb:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: SPENDEN
+  donate_again_caps: NACH EEMOL SPENDEN
+  donate_again_today_caps: HAUT NACH EEMOL SPENDEN
   done: Fäerdeg
   dont_send_me_email: "Schéckt mir keng E-Mailen!"
   download: Eroflueden
@@ -1289,6 +1294,9 @@ lb:
   most_observed_threatened_species: Bedroten Aarten déi am dacksten observéiert goufen
   multiple: méi
   multiple_select_option: '-- méi --'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: muss am Projet %{project} sinn
   must_be_in_taxon: muss am Taxon %{taxon} sinn
   must_be_not_in_taxon: muss net am Taxon %{taxon} sinn
   must_be_not_observed_by_user: muss net observéiert sinn vum %{user}
@@ -1505,6 +1513,8 @@ lb:
     following_panel_body: |
       Op %{site_name} kënnt Dir Leit erausichen deenen hir gepoust Observatiounen Dir verfollege wëllt. Dir kënnt Iech och op verschidden Aarten abonnéieren, fir nei Observatioune vun dësen Aarten am A ze halen, oder datselwecht och mat Plaze maachen.
     youve_got_updates_panel_title: Dir hutt Aktualisatiounen!
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "ee vun de folgende muss richteg sinn:"
   only_administrators_may_access_that_page: Nëmmen Administrateure kënnen op déi Säit kommen
   only_letters_numbers: "Nëmme Buschtawen an Zifferen, keng Eidelzeechen, muss mat engem Buschtaf ufänken"
   only_the_project_admin_can_delete_this_project: Nëmmen den Administrateur vum Projet kann dëse Projet läschen.
@@ -1928,6 +1938,7 @@ lb:
   role: Roll
   rules_types:
     must_be_captive: muss Gefaangen / Kultivéiert sinn
+    must_be_verifiable: muss iwwerpréifbar sinn
   said: gesot
   satellite: Satellit
   save: Späicheren
@@ -2111,6 +2122,7 @@ lb:
   two_thirds: 2/3tel
   #As in a category, not as in a keyboard
   type: Typ
+  unable_to_save_comment: Leider konnte mir de Kommentar net späicheren.
   unblock: Spär ophiewen
   unknown: Onbekannt
   unknown_error: Onbekannte Feeler
@@ -2262,6 +2274,24 @@ lb:
   yes_license_my_observations_so_scientists_can_use: Jo, lizenzéiert meng Fotoen, Sounds an Observatiounen, sou datt d'Wëssenschaftler meng Donnéeë benotze kënnen (recommandéiert).
   yes_reject_it: Jo, refuséiert et
   yesterday: Gëschter
+  yir_donate_banner_inaturalist_in_year: "INATURALIST WÄREND %{year}:"
+  yir_donate_banner_reaching_millions: Erreecht Milliounen. Hiew d'Biodiversitéit ervir. Global Zesummenaarbecht.
+  #"You" is singular
+  yir_donate_banner_all_thanks: Villmools Merci u Léit wéi Iech!
+  #"You" is singular
+  yir_donate_banner_inaturalist_thrives: iNaturalist floréieren Dank Léit wei Iech!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Dir hutt dëst Joer gehollef dass den iNaturalist floréiert. Merci!
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist brauch Är Ënnerstëtzung
+  yir_generating_and_sharing: |
+    Generéiere an Deele vun esou ville Biodiversitéitsdonnéeë verursaacht ëmmer méi Käschten.
+  yir_millions_of_people_used_inaturalist: |
+    Millioune Leit hunn dëst Joer iNaturalist a Seek vun iNaturalist benotzt fir sech mat der Natur ze verbannen
+  yir_thank_your_for_being_generous: |
+    Merci datt Dir esou generéis mat Ärer Zäit, Opmierksamkeet, Expertise a Spende sidd! iNaturalist ass eng nonprofit gemeinsam Initiativ vun der California Academy of Sciences an der National Geographic Society. De Programm hänkt vu ville Boursen a Spenden of, dorënner karitativ Kaddoe vu enger ganz klenger Fraktioun vun der Gemeinschaft. Mir si besonnesch dankbar un déi di all Mount spenden, des widderhuelend Bäiträg hëllefen eis  fir d'Zukunft ze plangen.
+  yir_your_gift_sustains: |
+    Äre Kaddo ënnerstëtzt dëse Programm mat globaler Reechwäit an déiwem perséinlechen an ekologeschen Impakt
   you: Iech
   you_: Iech
   you_are_already_a_member_of_this_project: "Dir sidd scho Member vun dësem Projet!"

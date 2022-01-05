@@ -4,6 +4,8 @@ class YearStatistic < ApplicationRecord
   belongs_to :user
   belongs_to :site
 
+  NUM_ES_WORKERS = [1, ( CONFIG.elasticsearch_hosts&.size || 2 ) - 1].max
+
   if CONFIG.usingS3
     has_attached_file :shareable_image,
       storage: :s3,
@@ -41,8 +43,7 @@ class YearStatistic < ApplicationRecord
         week_histogram: observations_histogram( year, options.merge( interval: "week" ) ),
         day_histogram: observations_histogram( year, options.merge( interval: "day" ) ),
         day_last_year_histogram: observations_histogram( year - 1, options.merge( interval: "day" ) ),
-        popular: popular_observations( year, options ),
-        streaks: streaks( year, options )
+        popular: popular_observations( year, options )
       },
       identifications: {
         category_counts: identification_counts_by_category( year, options ),
@@ -74,7 +75,20 @@ class YearStatistic < ApplicationRecord
       end
     end
     year_statistic.update( data: json )
-    year_statistic.delay( priority: USER_PRIORITY ).generate_shareable_image
+    year_statistic.generate_shareable_image
+
+    # Streaks are the longest-running and most memory intensive piece to
+    # calculate, and are probably not sustainable for the whole site in the
+    # long term. In 2021, it doesn't seem like any available production
+    # machine has enough memory to do it for all users. Putting it here
+    # ensures that everything else gets calculated first, and if streaks
+    # fail, they don't take down everything else. They're also pretty boring
+    # as of 2021 since it's basically just a lot of people on year+ long
+    # streaks. Yet another thing I never should have built...
+    if year <= 2021 || !options[:site].blank?
+      json[:observations][:streaks] = streaks( year, options )
+      year_statistic.update( data: json )
+    end
     year_statistic
   end
 
@@ -154,12 +168,14 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.regenerate_defaults_for_year( year )
-    generate_for_year( year )
     Site.live.find_each do | site |
       next if Site.default && Site.default.id == site.id
 
       YearStatistic.generate_for_site_year( site, year )
     end
+    # The global YIR will always be the slowest and the most prone to failure so
+    # do it last
+    generate_for_year( year )
   end
 
   def self.tree_taxa( year, options = {} )
@@ -481,12 +497,12 @@ class YearStatistic < ApplicationRecord
   end
 
   def generate_shareable_image_obs_grid
-    return unless data && data["observations"] && data["observations"]["popular"]
-    return if data["observations"]["popular"].size.zero?
+    return unless ( popular_obs = data&.dig( :observations, :popular ) )
+    return if popular_obs.blank?
 
     work_path = File.join( Dir.tmpdir, "year-stat-#{id}-#{Time.now.to_i}" )
     FileUtils.mkdir_p work_path, mode: 0o755
-    image_urls = data["observations"]["popular"].map {| o | o["photos"].try( :[], 0 ).try( :[], "url" ) }.compact
+    image_urls = popular_obs.map {| o | o["photos"].try( :[], 0 ).try( :[], "url" ) }.compact
     return if image_urls.size.zero?
 
     target_size = 200
@@ -497,11 +513,11 @@ class YearStatistic < ApplicationRecord
     image_urls.each_with_index do | url, i |
       ext = File.extname( URI.parse( url ).path )
       outpath = File.join( work_path, "photo-#{i}#{ext}" )
-      system "curl -s -o #{outpath} #{url}"
+      run_cmd "curl -f -s -o #{outpath} #{url}"
     end
     inpaths = File.join( work_path, "photo-*" )
     montage_path = File.join( work_path, "montage.jpg" )
-    system "montage #{inpaths} -tile 20x -geometry 50x50+0+0 #{montage_path}"
+    run_cmd "montage #{inpaths} -tile 20x -geometry 50x50+0+0 #{montage_path}"
 
     # Get the icon
     icon_url = if user
@@ -515,11 +531,11 @@ class YearStatistic < ApplicationRecord
     end
     icon_ext = File.extname( URI.parse( icon_url ).path )
     icon_path = File.join( work_path, "icon#{icon_ext}" )
-    system "curl -s -o #{icon_path} #{icon_url}"
+    run_cmd "curl -f -s -o #{icon_path} #{icon_url}"
 
     # Resize icon to a 500x500 square
     square_icon_path = File.join( work_path, "square_icon.jpg" )
-    system <<-BASH
+    run_cmd <<~BASH
       convert #{icon_path} -resize "500x500^" \
                         -gravity Center  \
                         -extent 500x500  \
@@ -528,36 +544,32 @@ class YearStatistic < ApplicationRecord
 
     # Apply circle mask and white border
     circle_path = File.join( work_path, "circle.png" )
-    cmd = <<~BASH
+    run_cmd <<~BASH
       convert -size 500x500 xc:black -fill white \
-        -draw "translate 250,250 circle 0,0 0,250" -alpha off #{circle_path}"
+        -draw "translate 250,250 circle 0,0 0,250" -alpha off #{circle_path}
     BASH
-    system cmd, exception: true
     circle_icon_path = File.join( work_path, "circle-user-icon.png" )
-    cmd = <<-BASH
+    run_cmd <<~BASH
       convert #{square_icon_path} #{circle_path} \
         -alpha Off -compose CopyOpacity -composite \
         -stroke white -strokewidth 20 -fill transparent -draw "translate 250,250 circle 0,0 0,240" \
         -scale 50% \
         #{circle_icon_path}
     BASH
-    system cmd, exception: true
 
     # Apply mask to the montage
     ellipse_mask_path = File.join( work_path, "ellipse_mask.png" )
-    system "convert -size 1000x500 radial-gradient:\"#ccc\"-\"#111\" #{ellipse_mask_path}", exception: true
+    run_cmd "convert -size 1000x500 radial-gradient:\"#ccc\"-\"#111\" #{ellipse_mask_path}"
     ellipse_montage_path = File.join( work_path, "ellipse_montage.jpg" )
-    cmd = <<-BASH
+    run_cmd <<~BASH
       convert #{montage_path} #{ellipse_mask_path} \
         -alpha Off -compose multiply -composite\
         #{ellipse_montage_path}
     BASH
-    system cmd, exception: true
 
     # Overlay the icon onto the montage
     montage_with_icon_path = File.join( work_path, "montage_with_icon.jpg" )
-    system "composite -gravity center #{circle_icon_path} #{ellipse_montage_path} #{montage_with_icon_path}",
-      exception: true
+    run_cmd "composite -gravity center #{circle_icon_path} #{ellipse_montage_path} #{montage_with_icon_path}"
 
     # Add the text
     light_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Light-Pro.otf" )
@@ -585,8 +597,8 @@ class YearStatistic < ApplicationRecord
     end
     title = title.mb_chars.upcase
     obs_count = begin
-      data["observations"]["quality_grade_counts"]["research"].to_i +
-        data["observations"]["quality_grade_counts"]["needs_id"].to_i
+      quality_grade_counts = data.dig( "observations", "quality_grade_counts" )
+      quality_grade_counts["research"].to_i + quality_grade_counts["needs_id"].to_i
     rescue StandardError
       nil
     end
@@ -596,10 +608,13 @@ class YearStatistic < ApplicationRecord
       locale = user.locale if user
       locale ||= site.locale if site
       locale ||= I18n.locale
-      obs_text = I18n.t( "x_observations", count: FakeView.number_with_delimiter( obs_count, locale: locale ),
-locale: locale ).mb_chars.upcase
+      obs_text = I18n.t(
+        "x_observations",
+        count: FakeView.number_with_delimiter( obs_count, locale: locale ),
+        locale: locale
+      ).mb_chars.upcase
       medium_font_path = "Lato-Regular" if obs_text.non_latin_chars?
-      system <<-BASH
+      run_cmd <<~BASH
         convert #{montage_with_icon_path} \
           -fill white -font #{medium_font_path} -pointsize 24 -gravity north -annotate 0x0+0+30 "#{owner}" \
           -fill white -font #{light_font_path} -pointsize 65 -gravity north -annotate 0x0+0+60 "#{title}" \
@@ -607,7 +622,7 @@ locale: locale ).mb_chars.upcase
           #{final_path}
       BASH
     else
-      system <<-BASH
+      run_cmd <<~BASH
         convert #{montage_with_icon_path} \
           -fill white -font #{medium_font_path} -pointsize 24 -gravity north -annotate 0x0+0+30 "#{owner}" \
           -fill white -font #{light_font_path} -pointsize 65 -gravity north -annotate 0x0+0+60 "#{title}" \
@@ -621,8 +636,6 @@ locale: locale ).mb_chars.upcase
 
   def generate_shareable_image_no_obs( options = {} )
     debug = options.delete( :debug )
-    return unless data && data["observations"]
-
     work_path = File.join( Dir.tmpdir, "year-stat-#{id}-#{Time.now.to_i}" )
     FileUtils.mkdir_p work_path, mode: 0o755
     # Get the icon
@@ -638,12 +651,12 @@ locale: locale ).mb_chars.upcase
     icon_url = icon_url.sub( "staticdev", "static" ) # basically just for testing
     icon_ext = File.extname( URI.parse( icon_url ).path )
     icon_path = File.join( work_path, "icon#{icon_ext}" )
-    system "curl -s -o #{icon_path} \"#{icon_url}\"", exception: true
+    run_cmd "curl -f -s -o #{icon_path} \"#{icon_url}\""
 
     # Resize icon to a 500x500 square
     square_icon_path = File.join( work_path, "square_icon.png" )
-    if user
-      system <<-BASH
+    resize_cmd = if user
+      <<~BASH
         convert #{icon_path} \
           -fill transparent \
           -resize "500x500^" \
@@ -652,7 +665,7 @@ locale: locale ).mb_chars.upcase
           #{square_icon_path}
       BASH
     else
-      system <<-BASH
+      <<~BASH
         convert #{icon_path} \
           -fill transparent \
           -resize 500x500 \
@@ -661,28 +674,31 @@ locale: locale ).mb_chars.upcase
           #{square_icon_path}
       BASH
     end
+    run_cmd resize_cmd
 
     final_logo_path = File.join( work_path, "final-logo.png" )
     if user
       # Apply circle mask
       circle_path = File.join( work_path, "circle.png" )
-      system <<-BASH
+      run_cmd <<~BASH
         convert -size 500x500 xc:black -fill white \
-          -draw "translate 250,250 circle 0,0 0,250" -alpha off #{circle_path}"
+          -draw "translate 250,250 circle 0,0 0,250" -alpha off #{circle_path}
       BASH
-      system <<-BASH
+      run_cmd <<~BASH
         convert #{square_icon_path} #{circle_path} \
           -alpha Off -compose CopyOpacity -composite \
           -scale 212x212 \
           #{final_logo_path}
       BASH
     else
-      system "convert #{square_icon_path} -resize 212x212 #{final_logo_path}", exception: true
+      run_cmd "convert #{square_icon_path} -resize 212x212 #{final_logo_path}"
     end
 
-    background_url = FakeView.image_url( "yir-background.png" ).to_s.gsub( %r{([^:])//}, "\\1/" )
+    background_url = FakeView.image_url( "yir-background.png" ).to_s.
+      gsub( %r{([^:])//}, "\\1/" ).
+      gsub( "staging.inaturalist", "www.inaturalist" )
     background_path = File.join( work_path, "background.png" )
-    system "curl -s -o #{background_path} #{background_url}", exception: true
+    run_cmd "curl -f -s -o #{background_path} #{background_url}"
 
     left_vertical_offset = if user
       0
@@ -692,34 +708,34 @@ locale: locale ).mb_chars.upcase
 
     # Overlay the icon onto the montage
     background_with_icon_path = File.join( work_path, "background_with_icon.png" )
-    cmd = <<~BASH
+    run_cmd <<~BASH
       composite -gravity northwest \
         -geometry +145+#{left_vertical_offset + 230} \
         #{final_logo_path} #{background_path} #{background_with_icon_path}
     BASH
-    system cmd, exception: true
     wordmark_site = user&.site || site || Site.default
     wordmark_url = FakeView.image_url( wordmark_site.logo.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
     wordmark_url = wordmark_url.sub( "staticdev", "static" )
     wordmark_ext = File.extname( URI.parse( wordmark_url ).path )
     wordmark_path = File.join( work_path, "wordmark#{wordmark_ext}" )
-    system "curl -s -o #{wordmark_path} #{wordmark_url}"
+    run_cmd "curl -f -s -o #{wordmark_path} #{wordmark_url}"
     wordmark_composite_bg_path = File.join( work_path, "wordmark-composite-bg.png" )
-    system "convert -size 500x562 xc:transparent -type TrueColorAlpha #{wordmark_composite_bg_path}", exception: true
+    run_cmd "convert -size 500x562 xc:transparent -type TrueColorAlpha #{wordmark_composite_bg_path}"
     wordmark_resized_path = File.join( work_path, "wordmark-resized.png" )
     density = 1024
     begin
-      cmd = <<~BASH
+      run_cmd <<~BASH
         convert -resize x65 -background none +antialias -density #{density} \
           #{wordmark_path} #{wordmark_resized_path}
       BASH
-      system cmd, exception: true
-    rescue RuntimeError
+    rescue RuntimeError => e
       density /= 2
+      raise e if density <= 8
+
       retry
     end
     wordmark_composite_path = File.join( work_path, "wordmark-composite.png" )
-    wordmark_cmd = <<-BASH
+    run_cmd <<~BASH
       convert #{wordmark_composite_bg_path} \
         #{wordmark_resized_path} \
         -type TrueColorAlpha \
@@ -727,13 +743,11 @@ locale: locale ).mb_chars.upcase
         -composite \
         #{wordmark_composite_path}
     BASH
-    system wordmark_cmd, exception: true
     background_icon_wordmark_path = File.join( work_path, "background-icon-wordmark.png" )
-    cmd = <<~BASH
+    run_cmd <<~BASH
       convert #{background_with_icon_path} #{wordmark_composite_path} \
         -gravity west -composite #{background_icon_wordmark_path}
     BASH
-    system cmd, exception: true
 
     # Add the text
     # background_with_icon_and_text_path = File.join( work_path, "background_with_icon_and_text.jpg" )
@@ -748,30 +762,28 @@ locale: locale ).mb_chars.upcase
     end
     title = if user
       user_site = user.site || Site.default
-      locale = user.locale || user_site.locale || I18n.locale
+      locale = user.locale.presence || user_site.locale.presence || I18n.locale
       site_name = user_site.site_name_short.blank? ? user_site.name : user_site.site_name_short
       I18n.t( :year_on_site, year: year, site: site_name, locale: locale )
     elsif site
-      locale = site.locale || I18n.locale
+      locale = site.locale.presence || I18n.locale
       site_name = site.site_name_short.blank? ? site.name : site.site_name_short
       I18n.t( :year_on_site, year: year, locale: locale, site: site_name )
     else
       default_site = Site.default
-      locale = default_site.locale || I18n.locale
-      site_name = default_site.site_name_short.blank? ? default_site.name : default_site.site_name_short
+      locale = default_site.locale.presence || I18n.locale
+      site_name = default_site.site_name_short.presence || default_site.name
       I18n.t( :year_on_site, year: year, locale: locale, site: site_name )
     end
     title = title.mb_chars.upcase
-    obs_count = if data["observations"]["quality_grade_counts"]
-      data["observations"]["quality_grade_counts"]["research"].to_i +
-        data["observations"]["quality_grade_counts"]["needs_id"].to_i
+    obs_count = if ( qg_counts = data.dig( "observations", "quality_grade_counts" ) )
+      qg_counts["research"].to_i + qg_counts["needs_id"].to_i
     else
       0
     end
-    species_count = ( data["taxa"] && data["taxa"]["leaf_taxa_count"] ).to_i
+    species_count = data.dig( "taxa", "leaf_taxa_count" ).to_i
     identifications_count = (
-      data["identifications"] && data["identifications"]["category_counts"] &&
-      data["identifications"]["category_counts"].inject( 0 ) do | sum, keyval |
+      ( data.dig( "identifications", "category_counts" ) || {} ).inject( 0 ) do | sum, keyval |
         sum += keyval[1].to_i
         sum
       end
@@ -829,7 +841,7 @@ locale: locale ).mb_chars.upcase
       identifications_count_txt = "<span size='#{1024 * 24}'>#{identifications_count_txt}</span>"
       identifications_label_txt = "<span size='#{1024 * 20}'>#{identifications_label_txt}</span>"
     end
-    title_composite = <<-BASH
+    title_composite = <<~BASH
       \\( \
         -size 500x30 \
         -background transparent \
@@ -844,7 +856,7 @@ locale: locale ).mb_chars.upcase
       -geometry +0+#{left_vertical_offset + 165} \
       -composite
     BASH
-    owner_composite = <<-BASH
+    owner_composite = <<~BASH
       \\( \
         -size 500x40 \
         -background transparent \
@@ -871,7 +883,7 @@ locale: locale ).mb_chars.upcase
       text_width = 312 # this provides a bit of margin
       # Note that the use of label below will automatically try to choose the
       # best font size to fit the space
-      composites << <<-BASH
+      composites << <<~BASH
         \\( \
           -size #{text_width}x55 \
           -background transparent \
@@ -901,12 +913,11 @@ locale: locale ).mb_chars.upcase
         -composite
       BASH
     end
-    cmd = <<-BASH
+    run_cmd <<~BASH
       convert #{background_icon_wordmark_path} \
         #{composites.map( &:strip ).join( " \\\n" )} \
         #{final_path}
     BASH
-    system cmd, exception: true
     puts "final_path: #{final_path}" if debug
     self.shareable_image = File.open( final_path )
     save!
@@ -989,7 +1000,8 @@ locale: locale ).mb_chars.upcase
         Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
         Faraday::TimeoutError
       ],
-      exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception)/ }
+      exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception)/ },
+      parallel: NUM_ES_WORKERS
     ) do | args |
       es_params = args[0].dup
       d1_filter = es_params[:filters].detect {| f | f[:range] && f[:range][date_field] && f[:range][date_field][:gte] }
@@ -1167,7 +1179,7 @@ locale: locale ).mb_chars.upcase
 
   def self.streaks( year, options = {} )
     options = options.clone
-    debug = options.delete( :debug )
+    debug = options[:debug]
     streak_length = 5
     base_query = { quality_grade: "research,needs_id", d2: "#{year}-12-31" }
     if options[:site]
@@ -1205,6 +1217,7 @@ locale: locale ).mb_chars.upcase
         }
       ) ).response.aggregations.histogram.buckets
     end
+    puts "[#{Time.now}] Aggregating all relevant observations by day and user..." if debug
     histogram_buckets = call_and_rescue_with_partitioner(
       streak_bucketer,
       base_query,
@@ -1212,23 +1225,69 @@ locale: locale ).mb_chars.upcase
         Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
         Faraday::TimeoutError
       ],
-      exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception)/ }
+      exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception)/ },
+      parallel: NUM_ES_WORKERS,
+      debug: debug
     ) do | args |
       query = args[0]
       # Assume no one has been on a streak since before 2008-01-01
-      puts "partitioning #{query}" if debug
+      puts "[#{Time.now}] partitioning #{query}" if debug
       d1 = ( query[:d1] && Date.parse( query[:d1] ) ) || Date.parse( "2008-01-01" )
       d2 = ( query[:d2] && Date.parse( query[:d2] ) ) || Date.today
-      half = ( d2 - d1 ) / 2
-      new_queries = [
-        query.merge( d1: d1.to_s, d2: ( d1 + half.days ).to_s ),
-        query.merge( d1: ( d1 + ( half + 1 ).days ).to_s, d2: d2.to_s )
-      ]
-      puts "partitioned into #{new_queries}" if debug
+
+      # Even n-ary partitioner (splits into n even partitions)
+      # num_breaks = 8
+      # break_interval = ( d2 - d1 ) / num_breaks
+      # new_queries = []
+      # num_breaks.times do | i |
+      #   interval_d1 = d1 + ( i * break_interval ).days
+      #   interval_d2 = interval_d1 + break_interval.days - 1.day
+      #   interval_query = query.dup
+      #   new_queries << interval_query.merge( d1: interval_d1.to_s, d2: interval_d2.to_s )
+      # end
+
+      # If we're partitioning more than a year, assume a lot more buckets in
+      # more recent partitions
+      if d2 - d1 > 365
+        # Weighted binary partitioner
+        weight = 0.9
+        break_point = ( ( d2 - d1 ) * weight ).ceil
+        new_queries = [
+          query.merge( d1: d1.to_s, d2: ( d1 + break_point.days ).to_s ),
+          query.merge( d1: ( d1 + ( break_point + 1 ).days ).to_s, d2: d2.to_s )
+        ]
+      # If we're partitioning less than a year, assume variance has more to do
+      # with seasonality and events like CNC, so take a simple even approach
+      else
+        # Even binary partitioner
+        half = ( d2 - d1 ) / 2
+        new_queries = [
+          query.merge( d1: d1.to_s, d2: ( d1 + half.days ).to_s ),
+          query.merge( d1: ( d1 + ( half + 1 ).days ).to_s, d2: d2.to_s )
+        ]
+      end
+
+      # # Logarithmic n-ary partitioner
+      # num_breaks = 4
+      # # break_interval = ( d2 - d1 ) / num_breaks
+      # new_queries = []
+      # num_breaks.times do | i |
+      #   d2_offset = i**Math.log( d2 - d1, num_breaks )
+      #   d1_offset = ( i + 1 )**Math.log( d2 - d1, num_breaks )
+      #   interval_d1 = d2 - d1_offset.days
+      #   interval_d1 += 1.day unless i == 0
+      #   interval_d2 = d2 - d2_offset.days
+      #   interval_query = query.dup
+      #   new_queries << interval_query.merge( d1: interval_d1.to_s, d2: interval_d2.to_s )
+      # end
+
+      puts "[#{Time.now}] partitioned into #{new_queries}" if debug
       new_queries
     end
+    puts "[#{Time.now}] Processing #{histogram_buckets.size} buckets..." if debug
     histogram_buckets.each_with_index do | bucket, bucket_i |
       date = bucket["key_as_string"]
+      puts "[#{Time.now}] Processing #{date}" if debug
       user_ids = bucket.user_ids.buckets.map {| b | b["key"].to_i }
       user_ids.each do | streaking_user_id |
         current_streaks[streaking_user_id] ||= 0
@@ -1240,14 +1299,14 @@ locale: locale ).mb_chars.upcase
       # with the stop date set to the previous day
       stop_date = ( Date.parse( date ) - 1.day )
       finished_user_ids = previous_user_ids - user_ids
-      puts "\t#{date}: #{user_ids.size} users, #{finished_user_ids.size} finished" if debug
+      puts "[#{Time.now}] \t#{date}: #{user_ids.size} users, #{finished_user_ids.size} finished" if debug
       finished_user_ids.each do | user_id |
         if debug && options[:user]
-          puts "\tFinished streak of length #{current_streaks[user_id]}"
+          puts "[#{Time.now}] \tFinished streak of length #{current_streaks[user_id]}"
         end
         if current_streaks[user_id] && current_streaks[user_id] >= streak_length
           if debug && options[:user]
-            puts "\tAdding streak #{stop_date + 1.day - ( current_streaks[user_id] ).days} - #{stop_date}"
+            puts "[#{Time.now}] \tAdding streak #{stop_date + 1.day - ( current_streaks[user_id] ).days} - #{stop_date}"
           end
           streaks << {
             user_id: user_id,
@@ -1264,6 +1323,7 @@ locale: locale ).mb_chars.upcase
       if bucket_i == ( histogram_buckets.size - 1 ) # && range_i == ( ranges.size - 1 )
         streaking_user_ids = current_streaks.keys
         stop_date = Date.parse( date )
+        puts "[#{Time.now}] Processing final day for #{streaking_user_ids.size} streaking users..." if debug
         streaking_user_ids.each do | user_id |
           if current_streaks[user_id] && current_streaks[user_id] >= streak_length
             streaks << {
@@ -1300,8 +1360,10 @@ locale: locale ).mb_chars.upcase
       end
     end
     top_streaks = top_streaks.sort_by {| s | s[:days] * -1 }[0..100]
-    top_streaks_user_ids = top_streaks.map {| u | u[:user_id] }
+    top_streaks_user_ids = top_streaks.map {| u | u[:user_id] }.uniq
+    puts "[#{Time.now}] Fetching top streak users..." if debug
     top_streaks_users = User.where( id: top_streaks_user_ids )
+    puts "[#{Time.now}] Generating logins and icons for top streak users..." if debug
     top_streaks.map do | s |
       u = top_streaks_users.detect {| streak_user | streak_user.id == s[:user_id] }
       if u.suspended?
@@ -1662,5 +1724,13 @@ locale: locale ).mb_chars.upcase
     return "UTC" unless ( tz = ActiveSupport::TimeZone[options[:user].time_zone] )
 
     tz.tzinfo.name
+  end
+
+  def self.run_cmd( cmd, options = {} )
+    system cmd, options.merge( exception: true )
+  end
+
+  def run_cmd( cmd, options = {} )
+    self.class.run_cmd( cmd, options )
   end
 end

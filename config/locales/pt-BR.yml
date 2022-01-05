@@ -323,7 +323,7 @@ pt-BR:
   add_evidence_of_presence_organism_annotation: 'Adicionar anotação "Evidência de Presença: organismo"'
   add_evidence_of_presence_feather_annotation: 'Adicionar anotação "Evidência de Presença: pena"'
   add_evidence_of_presence_scat_annotation: 'Adicionar anotação "Evidência de Presença: fezes"'
-  add_evidence_of_presence_track_annotation: 'Adicionar anotação "Evidência de Presença: pegada"'
+  add_evidence_of_presence_track_annotation: 'Adicionar anotação "Evidência de Presença: rastro"'
   add_evidence_of_presence_bone_annotation: 'Adicionar anotação "Evidência de Presença: osso"'
   add_evidence_of_presence_molt_annotation: 'Adicionar anotação "Evidência de Presença: muda"'
   #As in a Taxon Framework Relationship
@@ -706,6 +706,8 @@ pt-BR:
   batch_operations: Operações por lote
   be_the_first_to_fave_this_observation: Seja o primeiro a adicionar esta observação aos favoritos!
   because_of: por causa de
+  become_a_donor_caps: TORNE-SE UM DOADOR
+  become_a_donor_today_caps: TORNE-SE UM DOADOR HOJE
   before_importing_photos: antes de importar fotos
   bg_color: Cor BG
   bio: Biografia
@@ -839,6 +841,7 @@ pt-BR:
   check_list_place: "Lista de Verificação de %{place}"
   check_list_updated: Check list Atualizada!
   check_lists_for: "Outras Check Lists para %{place}"
+  check_out_the_inat_store: Confira a Loja iNaturalist
   check_out_what_the_observation: Dê uma olhada a que a observação que você esta tentando identificar se assemelha.
   check_this_box_if_html: |
     Marque esta caixa caso queira aplicar uma
@@ -1042,7 +1045,7 @@ pt-BR:
     #Fecal matter, not regurgitated matter
     scat: Fezes
     #Impression made by the organism on the ground or in snow, like a footprint
-    track: Pegada
+    track: Rastro
     #Endoskeletal remains, like a deer bone
     bone: Osso
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
@@ -1451,6 +1454,8 @@ pt-BR:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: Doar
+  donate_again_caps: DOE NOVAMENTE
+  donate_again_today_caps: DOE NOVAMENTE HOJE
   done: Concluído
   dont_have_an_account_sign_up_html: Não tem uma conta? <strong>Cadastre-se.</strong>
   dont_send_me_email: "Não me envie qualquer e-mail"
@@ -1574,6 +1579,10 @@ pt-BR:
   establishment_means_describes_how: |
     Meios de Estabelecimento descrevem como o táxon foi implantado nesta área.  
     Veja o DarwinCore para <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">mais informações sobre a terminologia</a>.
+  establishment_means_descriptions:
+    native: evoluiu nesta região ou chegou por meios não-antropogênicos
+    endemic: nativo e endêmico
+    introduced: chegou à região por meios antropogênicos
   estimate_which_input: |
     Avaliação de quais IDs do táxon de origem serão substituidos por quais táxons de saída e quais serão atribuidos a um táxon inferior comum quando for efetuada a separação. Este processo de avaliação pode demorar. Links para as observações serão apresentadas em grupos de 200.
   event_in_progress: Evento em andamento
@@ -1688,6 +1697,7 @@ pt-BR:
   #Label for the date/time when a flag was created
   flag_created: Sinalização Criada
   flag_description: Sinalizar este conteúdo para que os coordenadores saibam que algo está errado.
+  flag_comment_description: Adicione um comentário opcional a este sinalizador que explica mais o porquê de você estar adicionando-o e fornece links para evidências.
   flag_for_check_list_title_html: |
     Sinalização para Lista de Verificação: %{title}
   flag_for_comment_id_html: Sinalização para <a href="%{url}">Comentário%{id}</a>
@@ -2544,6 +2554,9 @@ pt-BR:
   multiple_select_option: '-- múltiplo --'
   multiple_taxa_for_taxon_change: "Diversas espécies e grupos (entrada de dados para alterar/fundir, saída de dados para dividir)"
   multiple_taxon_ids_separated_by_commas: 'Várias IDs de táxons separadas por vírgula, e.g. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: deve estar no projeto %{project}
   must_be_in_taxon: deve estar no táxon %{taxon}
   must_be_not_in_taxon: não deve estar no táxon %{taxon}
   must_be_not_observed_by_user: não deve ser observado por %{user}
@@ -2636,7 +2649,7 @@ pt-BR:
   new_project_asset_for: Novo arquivo de projeto
   new_source: Nova Fonte
   new_species_added_in_interval: Novas espécies adicionadas em %{interval}
-  new_species_added_in_interval_x_of_y: Novas espécies adicionadas em %{interval} (Mostrando %{x} de%{y})
+  new_species_added_in_interval_x_of_y: Novas espécies adicionadas em %{interval} (Mostrando %{x} de %{y})
   new_taxon_change: Nova alteração de táxon
   new_taxon_link: Novo link de Táxon
   new_taxon_name_for: Novo nome de táxon para
@@ -2982,6 +2995,8 @@ pt-BR:
       <li><strong>Discussões em que você participa:</strong> Ao comentar ou adicionar identificações as observações de alguém você se inscreve, automaticamente, para receber notificações sobre qualquer atividade neste conteúdo. Utilize a ferramenta 'Administre suas inscrições' para interromper o recebimento de atualizações.</li>
       </ul>
   one_by_one: "Um por um"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "um dos seguintes deve ser verdadeiro:"
   one_of_your_lists: "uma de suas listas"
   one_or_more_input_taxa_have_more_than_1000: |
     Um ou mais táxons de entrada têm mais de 1000 observações descendentes.
@@ -3986,7 +4001,6 @@ pt-BR:
   rules_and_formatting: "Regras & Formatação"
   rules_for_adding_observations: Regras para Adicionar Observações
   rules_for_becoming_a_member: Regras para se tornar um membro
-  rules_for_becoming_memner: Regras para se tornar um membro
   rules_types:
     must_be_captive: deve estar em cativeiro / cultivado
     must_be_georeferenced: Georreferenciamento obrigatório
@@ -3995,6 +4009,7 @@ pt-BR:
     must_be_observed_in_place: deve ser observado neste lugar
     must_be_in: deve estar presente na espécie ou grupo
     must_be_coordinates_shareable_by_project_curators: observador deve autorizar que administradores de projetos acessem as coordenadas.
+    must_be_verifiable: Deve ser verificável
   running_total: Total acumulado
   said: disse
   satellite: satélite
@@ -4345,7 +4360,7 @@ pt-BR:
   still_no_luck?: Ainda sem sorte?
   still_needs_id?: Precisa de ajuda para confirmar esta identificação?
   still_working_on_classifying_taxon: Aínda estamos traballando na classificação deste táxon. Verifique este conteúdo mais tarde.
-  stop_editing: Pare de Editar
+  stop_editing: Parar de Editar
   stop_following_user: "Deixe de seguir %{user}"
   stop_testing: Parar Testes
   stop_trusting_this_person_with_your_private_coordinates: Parar de confiar suas coordenadas ocultadas a esta pessoa
@@ -4390,7 +4405,7 @@ pt-BR:
   suitable_for_the_global_biodiversity_information_facility: Adequado para o GBIF (Global Biodiversity Information Facility)
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Adequado para Wikipédia e outros projetos da Fundação Wikimedia
   summary: Resumo
-  supporting: Suortando
+  supporting: Concordante
   suspend_user: Suspender usuário
   sw_lat: Lat. S.O.
   sw_lon: Lon. S.O.
@@ -4744,6 +4759,7 @@ pt-BR:
   type_taxon_name: "Digite o nome do taxon"
   uicn_red_list_status: "Status na Lista Vermelha IUCN:"
   umbrella_projects: Projetos Umbrella
+  unable_to_save_comment: Infelizmente, não conseguimos salvar o comentário.
   unblock: Desbloquear
   unclassified: Não classificado
   ungrafted_taxa: Táxons ainda não abordados
@@ -4872,7 +4888,7 @@ pt-BR:
   user_faved_this_observation: "%{user} favoritou esta observação"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como não difusor de spam"
   user_flagged_as_a_spammer_html: "%{user} marcado como difusor de spam"
-  user_has_opted_out_of_community_id: O usuário desativou o Ttáxon da comunidade
+  user_has_opted_out_of_community_id: O usuário desativou o táxon da comunidade
   user_hasnt_joined_any_projects: "%{user} não entrou em nenhum projeto"
   user_helped_x_people_with_y_ids_html: "%{user} ajudou <strong>%{x} pessoas</strong> com <strong>%{y} IDs</strong>"
   user_invite_observation_to_project: '%{user} gostaria de convidar sua observação "%{observation}" para o projeto %{project}.'
@@ -5130,6 +5146,31 @@ pt-BR:
   yes_reject_it: Sim, rejeite
   yes_show_this_in_the_box: Sim, mostre isto na grande caixa sobre os táxons
   yesterday: Ontem
+  yir_donate_banner_inaturalist_in_year: "INATURALIST EM %{year}:"
+  yir_donate_banner_reaching_millions: Alcançando milhões. Iluminando a biodiversidade. Colaboração global.
+  #"You" is singular
+  yir_donate_banner_all_thanks: Tudo graças a pessoas como você!
+  #"You" is singular
+  yir_donate_banner_inaturalist_thrives: O iNaturalist prospera graças a pessoas como você!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Você ajudou o iNaturalist a prosperar este ano. Obrigado!
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist precisa de seu apoio
+  yir_generating_and_sharing: |
+    Gerar e compartilhar dados de alto impacto sobre a biodiversidade, nesta escala
+    e velocidade sem precedentes, tem custos crescentes
+  yir_millions_of_people_used_inaturalist: |
+    Milhões de pessoas usaram o iNaturalist e o Seek do iNaturalist este ano para se conectar com a natureza
+  yir_thank_your_for_being_generous: |
+    Obrigado por ser generoso com seu tempo, atenção, competência e
+    doações! iNaturalist é uma iniciativa conjunta sem fins lucrativos da
+    Academia de Ciências da Califórnia e da National Geographic Society. O
+    programa depende de inúmeros subsídios e doações, incluindo doações generosas
+    de uma pequena parcela da comunidade. Somos especialmente gratos
+    aos apoiadores mensais, cujos presentes recorrentes nos ajudam a planejar o futuro.
+  yir_your_gift_sustains: |
+    Sua doação sustenta este programa de alcance global e profundos impactos pessoais e
+    ecológicos
   you: você
   you_: Você
   you_appear_offline_try_again: |
@@ -6183,7 +6224,7 @@ pt-BR:
           Por favor especifique os requisitos para as observações a serem adicionadas este projeto.
         project_background_color: Cor de fundo do resumo do projeto
         project_background_color_help: Certifique-se de selecionar uma cor que seja escura o suficiente para que o texto branco sobreposto seja legível.
-        project_banner: Banner de projeto (PNG, JPG ou GIF)
+        project_banner: Banner do projeto (PNG ou JPG)
         project_banner_help: Imagem de banner opcional. Dimensões ideais são 760px por 320px.
         project_details: Detalhes do Projeto
         project_icon: Ícone do Projeto (PNG, JPG ou GIF)
@@ -6625,6 +6666,13 @@ pt-BR:
       delete:
         by_deleting_your_account_you_will_remove: |
           Ao excluir sua conta, você removerá
+        caching: |
+          Se você está excluindo sua conta porque tentou excluir parte
+          do seu conteúdo, mas você ainda pode vê-los no mapa ou em outro lugar
+          na Internet, tenha em mente que os dados do mapa podem ser armazenados em cache por até
+          um dia, mesmo depois que os registros tenham sido excluídos, e que excluir conteúdo na
+          plataforma pode não ter qualquer efeito nas cópias que existem em outros
+          sites e plataformas (como GBIF).
         x_observations_html:
           one: |
             <strong class="count">1 observação</strong>,
@@ -6636,6 +6684,11 @@ pt-BR:
             incluindo o trabalho das
             <strong class="count">%{helpers_count} pessoas</strong> quem têm
             ajudado você com identificações
+        x_projects_html:
+          one: |
+            <strong class="count">%{count} projeto</strong> que não tem outro gerente ou administrador que possa se tornar o novo responsável
+          other: |
+            <strong class="count">%{count} projetos</strong> que não têm outros gerentes ou administradores que possam se tornar os novos responsáveis
         x_identifications_html:
           one: |
             <strong class="count">sua %{count} identificação</strong> na observação de outra pessoa poderá afetar a qualidade dos dados de tal observação

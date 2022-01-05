@@ -2742,6 +2742,9 @@ en:
   multiple_select_option: -- multiple --
   multiple_taxa_for_taxon_change: "Multiple taxa (input for swap/merge, output for split)"
   multiple_taxon_ids_separated_by_commas: 'Multiple taxon IDs separated by commas, e.g. 123,654'
+  # Project rule for an umbrella project. %{project} is the title of the project
+  # the observation must be in
+  must_be_in_project: must be in project %{project}
   must_be_in_taxon: must be in taxon %{taxon}
   must_be_not_in_taxon: must not be in taxon %{taxon}
   must_be_not_observed_by_user: must not be observed by %{user}
@@ -3210,6 +3213,8 @@ en:
           <li><strong>Discussions you've engaged in:</strong> Commenting or adding identifications to someone else's content automatically subscribes you to any new activity on this content. Use the 'Manage your subscriptions' tool to stop receiving updates.</li>
         </ul>
   one_by_one: "One-by-one"
+  # Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "one of the following must be true:"
   one_of_your_lists: "one of your lists..."
   one_or_more_input_taxa_have_more_than_1000: |
     One or more input taxa have more than 1000 downstream observations.
@@ -4238,7 +4243,6 @@ en:
   rules_and_formatting: "Rules & Formatting"
   rules_for_adding_observations: Rules for Adding Observations
   rules_for_becoming_a_member: Rules for Becoming a Member
-  rules_for_becoming_memner: Rules for Becoming a Member
   rules_types:
     must_be_captive: must be captive / cultivated
     must_be_georeferenced: must be georeferenced
@@ -4247,6 +4251,7 @@ en:
     must_be_observed_in_place: must be observed in Place
     must_be_in: must be in taxon
     must_be_coordinates_shareable_by_project_curators: observer must allow project curators to view coordinates.
+    must_be_verifiable: must be verifiable
   running_total: Running Total
   said: said
   satellite: satellite
@@ -4658,14 +4663,11 @@ en:
   subscribe_to_observations_from_this_place_html: <a>Subscribe</a> to observations from this place
   subscribe_to_observations_in_a_taxon: Subscribe to all observations posted of a species or group of organisms (e.g. 'scorpions').
   subscribe_to_observations_in_a_place: Subscribe to all observations posted within this place. You can also add an optional taxon filter (e.g. 'scorpions from Texas').
-  subscribe_to_places_to: |
-                            Subscribe to places to receive updates about new observations made
-                            there.  Updates from people you follow and things you've commented
-                             on are also managed through subscriptions, so if you want to see
-                            what you're subscribed to and unsubscribe from things, you can
-                            click "Manage all of your subscriptions" below.  You should also
-                            be able to unsubscribe from anything on the site by viewing it's
-                            page.
+  subscribe_to_places_help: |
+    Subscriptions control what you see in your updates and on your dashboard.
+    For example, you can subscribe to a taxon to get updates about new
+    observations of that taxon. You are automatically subscribed to updates
+    about observations you comment on or identify.
   subscribe_to_this: Subscribe to this
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Subscribe</a>
@@ -5484,8 +5486,13 @@ en:
   yesterday: Yesterday
   yir_donate_banner_inaturalist_in_year: "INATURALIST IN %{year}:"
   yir_donate_banner_reaching_millions: Reaching millions. Illuminating biodiversity. Global collaboration.
+  # "You" is singular
   yir_donate_banner_all_thanks: All thanks to people like you!
+  # "You" is singular
   yir_donate_banner_inaturalist_thrives: iNaturalist thrives thanks to people like you!
+  # "You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: You helped iNaturalist thrive this year. Thank you!
+  # "Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist Needs Your Support
   yir_generating_and_sharing: |
     Generating and sharing high-impact biodiversity data at this unprecedented
@@ -5777,7 +5784,7 @@ en:
         eol_subjects_desc: |
           EOL publishes content under a number of different subject headings,
           not all of which are available for every taxon. Choosing "Overview"
-          will just import the first available text section from EOL, which is
+          will just import the first available text section from EOL, which
           generally contains a summary when available.
         eol_collection_desc_html: |
           The <a href="http://eol.org/" target="_blank">Encyclopedia of Life (EOL)</a>
@@ -7569,6 +7576,13 @@ en:
       delete:
         by_deleting_your_account_you_will_remove: |
           By deleting your account you will remove
+        caching: |
+          If you are deleting your account because you tried to delete some
+          of your content but you could still see it on a map or elsewhere
+          on the Internet, keep in mind that map data may be cached for up to
+          a day even after records are deleted, and that deleting content on
+          this platform may not have any effect on copies that exist on other
+          sites and platforms (like GBIF).
         x_observations_html:
           one: |
             <strong class="count">%{count} observation</strong>,

@@ -60,6 +60,8 @@ class ProjectObservationRule < Rule
       I18n.t( :must_be_in_taxon, taxon: operand.name )
     elsif operator == "not_in_taxon?" && operand
       I18n.t( :must_be_not_in_taxon, taxon: operand.name )
+    elsif operator == "in_project?" && operand
+      I18n.t( :must_be_in_project, project: operand.title )
     elsif operator =~ /has.+/
       thing_it_has = operator.split('_')[1..-1].join('_').gsub(/\?/, '')
       I18n.t(:must_have_x, :x => I18n.t(thing_it_has, :default => thing_it_has.humanize.downcase))

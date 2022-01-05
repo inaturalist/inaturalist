@@ -58,15 +58,19 @@ const Observations = ( {
   }
   const comparisonSeries = {};
   if ( data.day_histogram && data.day_last_year_histogram ) {
+    // Since we're comparing two series, we need to remove the leap days so the
+    // days of the two years always line up
+    const dayHistogram = _.omit( data.day_histogram, `${year}-02-29` );
+    const dayLastYearHistogram = _.omit( data.day_last_year_histogram, `${year - 1}-02-29` );
     comparisonSeries.this_year = {
       title: I18n.t( "this_year" ),
-      data: _.map( data.day_histogram, ( value, date ) => ( { date, value } ) ),
+      data: _.map( dayHistogram, ( value, date ) => ( { date, value } ) ),
       color: "#74ac00",
       label: dailyLabel
     };
     comparisonSeries.last_year = {
       title: I18n.t( "last_year" ),
-      data: _.map( data.day_last_year_histogram, ( value, date ) => {
+      data: _.map( dayLastYearHistogram, ( value, date ) => {
         const lastYear = parseInt( date.match( /\d{4}/ )[0], 0 );
         const newYear = lastYear + 1;
         const newDate = date.replace( lastYear, newYear );

@@ -11,7 +11,9 @@ const DonateBanner = ( { forDonor, forUser, year } ) => {
     >
       <div>
         { forUser
-          ? I18n.t( "yir_donate_banner_inaturalist_thrives" )
+          ? I18n.t( "yir_donate_banner_you_helped_inaturalist_thrive", {
+            defaultValue: I18n.t( "yir_donate_banner_inaturalist_thrives" )
+          } )
           : (
             <span>
               <strong>

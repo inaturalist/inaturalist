@@ -1,7 +1,4 @@
 es-MX:
-  x_comments:
-    one: '1 comentario'
-    other: '%{count} comentarios'
   x_comments_html:
     one: '<span class="count">%{count}</span> comentario'
     other: '<span class="count">%{count}</span> comentarios'
@@ -2528,6 +2525,9 @@ es-MX:
   multiple_select_option: '--- Múltiple ---'
   multiple_taxa_for_taxon_change: "Más de una especie o grupo (entrada de datos para intercambiar/mezclar, salida de datos para separar)"
   multiple_taxon_ids_separated_by_commas: 'IDs múltiples separados por comas, p.e. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: debe estar en el proyecto %{project}
   must_be_in_taxon: debe estar en el taxón %{taxon}
   must_be_not_in_taxon: no debe estar en el taxón %{taxon}
   must_be_not_observed_by_user: no debe ser observado por %{user}
@@ -2976,6 +2976,8 @@ es-MX:
       </li>
       </ul>
   one_by_one: "Uno per uno"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "una de las siguientes opciones debe ser cierta:"
   one_of_your_lists: "una de tus listas..."
   one_or_more_input_taxa_have_more_than_1000: |
     Uno o más taxones de entrada tienen más de 1000 observaciones asignadas.
@@ -3965,7 +3967,6 @@ es-MX:
   rules_and_formatting: "Reglas & formato"
   rules_for_adding_observations: Reglas para añadir observaciones
   rules_for_becoming_a_member: Reglas para convertirse en miembro
-  rules_for_becoming_memner: Reglas para convertirse en miembro
   rules_types:
     must_be_captive: debe ser en cautiverio / cultivado
     must_be_georeferenced: deben estar con georeferencia
@@ -3974,6 +3975,7 @@ es-MX:
     must_be_observed_in_place: deben ser observaciones en este lugar
     must_be_in: deben estar dentro de la especie o grupo
     must_be_coordinates_shareable_by_project_curators: el observador debe permitir a los curadores del proyecto ver las coordenadas.
+    must_be_verifiable: debe ser verificable
   running_total: Total acumulado
   said: decia
   satellite: satélite
@@ -5076,6 +5078,8 @@ es-MX:
   yes_reject_it: Sí, rechazarlo
   yes_show_this_in_the_box: Si, muestra esto en la caja  grande por arriba de /grupos (taxa)
   yesterday: Ayer
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Has ayudado a iNaturalist a existir durante este año. ¡Gracias!
   you: Ti
   you_: Tú
   you_appear_offline_try_again: |
@@ -5296,12 +5300,6 @@ es-MX:
         coordinates_desc: |
           Dando a sus coordenadas guía ayudará a las personas les resulta en
           la búsqueda según la ubicación.
-        eol_subjects_desc: |
-          EOL publica el contenido en una serie de diferentes encabezamientos
-          de materia, no todos los cuales están disponibles para cada taxón.
-          La elección de "Panorama" se acaba de importar la primera sección de
-          texto disponible de EOL, que generalmente contiene un resumen cuando
-          esté disponible.
         eol_collection_desc_html: |
           La <a href="http://eol.org/" target="_blank"> Enciclopedia de la
           Vida (EOL)</a> es un repositorio de información sobre la vida en la Tierra.
@@ -6162,7 +6160,6 @@ es-MX:
           Especifica los requisitos para las observaciones que se añadirán a este proyecto.
         project_background_color: Color de fondo del resumen del proyecto
         project_background_color_help: Asegúrate de seleccionar un color suficientemente oscuro para que el texto blanco sobrepuesto sea legible.
-        project_banner: Imagen del proyecto (PNG, JPG o GIF)
         project_banner_help: Imagen opcional. Las dimensiones ideales son 760px por 320px.
         project_details: Detalles del proyecto
         project_icon: Icono del proyecto (PNG, JPG o GIF)
@@ -6555,6 +6552,9 @@ es-MX:
       delete:
         by_deleting_your_account_you_will_remove: |
           Al borrar su cuenta se eliminarán
+        caching: |
+          Si eliminas tu cuenta porque intentaste borrar algo de tu contenido, pero aún así podías verla en un mapa o en cualquier otro lugar en Internet, ten en cuenta que los datos del mapa pueden almacenarse en caché hasta al día incluso después de eliminar los registros, y que la eliminación de contenido en esta plataforma puede no tener ningún efecto en las copias que existen en otros
+          sitios y plataformas (como GBIF).
         x_observations_html:
           one: |
             <strong class="count">1 observación</strong>,

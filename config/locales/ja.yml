@@ -893,6 +893,9 @@ ja:
     track: 足跡
     #Endoskeletal remains, like a deer bone
     bone: 骨
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: 抜け殻
   controlled_term_definitions:
     alive: 生物は生きており、差し迫った死の兆候はない
     dead: 生物は死んでいるか、瀕死である
@@ -901,6 +904,10 @@ ja:
     fruiting: 植物に果実が付いている
     no_evidence_of_flowering: メディアは生殖構造の証拠を提供しません
     cannot_be_determined: 提供された証拠から判断することはできません
+    organism: 生物の本体またはその一部
+    scat: 糞（フクロウのペリットやその他の口から吐き出されたものは含まない）
+    track: 地面や雪面に残された生物の圧痕
+    molt: 脱ぎ捨てられた皮膚または外骨格
   controls: 設定
   coordinate_systems: 座標システム
   coordinates: 緯度経度
@@ -1993,6 +2000,7 @@ ja:
   most_species: 最多の種
   most_observed_species: 最も観察された種
   most_observed_threatened_species: 最も多く観察された絶滅危惧種
+  move_input_children_to_output?: 下位分類群を置換先へ移行しますか？
   multiple: 複数
   multiple_select_option: '--複数--'
   multiple_taxa_for_taxon_change: "複数の分類群（スワップ/マージの入力、分割の出力）"
@@ -2276,6 +2284,8 @@ ja:
   observed_on: 観測日時
   observer: 観察者
   observers: 観察者
+  observer_prefers_no_project_addition: |
+    他の人によって観察記録をプロジェクトへ追加することを許可していません。
   observer_short: 観察者
   occurence_status_describes_how: '分布状況とは、特定のエリアにおいてある分類群がどれだけ珍しいかを示すものです。それぞれの<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">用語の詳しい説明</a>をDarwinCoreでご覧いただけます（英語）'
   occurrence_status: 分布状況
@@ -3123,7 +3133,6 @@ ja:
   rules_and_formatting: "ルールとフォーマット"
   rules_for_adding_observations: 観測記録の追加に関するルール
   rules_for_becoming_a_member: 新規メンバーに関するルール
-  rules_for_becoming_memner: 新規メンバーに関するルール
   rules_types:
     must_be_captive: 飼育/栽培されている必要があります
     must_be_georeferenced: 位置情報が必要です
@@ -3757,6 +3766,7 @@ ja:
   users_latest_observations_on_site: "%{site}における%{user}さんの最新観察記録"
   users_profile: "%{user}さんのプロフィール"
   valid_options_are: 有効な選択肢：
+  value: 値
   verbing_x_of_y: "%{y}部の%{x}を%{verb}中..."
   view: 表示
   view_all: すべて表示
@@ -4152,6 +4162,8 @@ ja:
       new:
         check_the_box_to_include_member_observations: |
           このプロジェクトに参加したユーザーによる観察のみを含めるには、下のチェックボックスをオンにしてください。 上記の除外フィルターを使用して、プロジェクトの所有者や管理者を含む特定のユーザーからの観測を除外します。
+        delete_project: プロジェクトを削除
+        duplicate_project: プロジェクトの複製
         include_annotated_observations: |
           特定の属性（例：ライフステージ）、または特定の属性と値（例：ライフステージ＝成体）で注釈がつけられた観察記録のみを含めます。1つのプロジェクトにつき、1つの注釈のフィルターに制限されます。
         note_these_users_will_be_able_to_edit: |
@@ -4166,7 +4178,7 @@ ja:
         or_drag_and_drop: またはドラッグ＆ドロップ
         project_background_color: プロジェクトの概要の背景色
         project_background_color_help: 白いオーバーレイテキストが読みやすいように、十分に暗い色を選択してください。
-        project_banner: プロジェクトバナー (PNG、JPG、またはGIF)
+        project_banner: プロジェクトバナー (PNGまたはJPG)
         project_banner_help: 任意のバナー画像。理想的なサイズは760px×320pxです。
         project_details: プロジェクトの詳細
         project_icon: プロジェクトアイコン (PNG、JPG、または GIF)

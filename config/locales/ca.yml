@@ -701,6 +701,8 @@ ca:
   batch_operations: Operacions de grups
   be_the_first_to_fave_this_observation: Sigueu el primer en fer aquesta observació favorita!
   because_of: a causa de
+  become_a_donor_caps: SIGUEU UN DONANT
+  become_a_donor_today_caps: SIGUEU UN DONANT, AVUI
   before_importing_photos: abans d'importar fotos.
   bg_color: Color BG
   bio: Biografia
@@ -834,6 +836,7 @@ ca:
   check_list_place: "Llista de comprovació de %{place}"
   check_list_updated: Llista de comprovació actualitzada!
   check_lists_for: "Altres llistes de comprovació per a %{place}"
+  check_out_the_inat_store: Dona-li una ullada a la botiga d'iNaturalist
   check_out_what_the_observation: Feu un cop d'ull a les observacions que esteu intentant identificar.
   check_this_box_if_html: |
     Seleccioneu aquest botó si voleu aplicar una
@@ -1425,6 +1428,8 @@ ca:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: DONAR
+  donate_again_caps: DONEU DE NOU
+  donate_again_today_caps: DONEU DE NOU, AVUI
   done: Fet
   dont_have_an_account_sign_up_html: No teniu un compte?<strong>Registreu-vos</strong>
   dont_send_me_email: "No m'envieu cap correu electrònic!"
@@ -1665,6 +1670,7 @@ ca:
   #Label for the date/time when a flag was created
   flag_created: Marca creada
   flag_description: Marca aquest contingut perquè els supervisors sàpiguen que alguna cosa no va bé.
+  flag_comment_description: Afegiu un comentari addicional a aquesta marca que ajudi a explicar per què l'esteu afegint i proporcionar enllaços que donin suport a la seva evidència.
   flag_for_check_list_title_html: |
     Marca per a la Llista de Comprovació: %{title}
   flag_for_comment_id_html: Marqueu per <a href="%{url}">Comentar %{id}</a>
@@ -2495,6 +2501,9 @@ ca:
   multiple_select_option: '-- múltiple --'
   multiple_taxa_for_taxon_change: "Múltiples tàxons (entrar per intercanviar/barrejar, sortir per separar)"
   multiple_taxon_ids_separated_by_commas: 'Moltes ID de tàxons separades per comes, p.e. 123,456'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: ha d'estar en el projecte %{project}
   must_be_in_taxon: ha d'estar en el tàxon %{taxon}
   must_be_not_in_taxon: no pot en estar en el tàxon %{taxon}
   must_be_not_observed_by_user: no pot haver estat observat per %{user}
@@ -2935,6 +2944,8 @@ ca:
       <li><strong>Les discussions que us interessen:</strong> Si comenteu o afegiu identificacions a algun contingut, automàticament estareu subscrits a qualsevol nova activitat sobre aquests continguts. Podeu utilitzar l'eina de 'Gestió de les vostres subscripcions' per deixar de rebre les actualitzacions.</li>
       </ul>
   one_by_one: "Un a un"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "una de les següents ha de ser certa:"
   one_of_your_lists: "una de les teves llistes..."
   one_or_more_input_taxa_have_more_than_1000: |
     Un o més dels tàxons introduïts té més de 1000 observacions. Modificar-lo pot necessitar molt temps, esteu segur que aquest canvi del tàxon és necessari? A més, els canvis de tàxon no es pot desfer.
@@ -3920,7 +3931,6 @@ ca:
   rules_and_formatting: "Normes i format"
   rules_for_adding_observations: Normes per agregar observacions
   rules_for_becoming_a_member: Normes per ser membre
-  rules_for_becoming_memner: Regles per ser un Membre
   rules_types:
     must_be_captive: ha de ser captiva / conreada
     must_be_georeferenced: han d'estar georeferenciades
@@ -3929,6 +3939,7 @@ ca:
     must_be_observed_in_place: ha de ser observada en aquest lloc
     must_be_in: ha d'estar en el tàxon
     must_be_coordinates_shareable_by_project_curators: l'observador ha de permetre als supervisors del projecte veure les coordenades.
+    must_be_verifiable: ha de ser verificable
   running_total: Acumulat total
   said: deia
   satellite: satèl·lit
@@ -4630,6 +4641,7 @@ ca:
   type_taxon_name: "Escriviu el nom del tàxon"
   uicn_red_list_status: "Estat de la llista vermella d'UICN:"
   umbrella_projects: Projectes Paraigua
+  unable_to_save_comment: Malauradament, no hem pogut desar el comentari.
   unblock: Desbloca
   unclassified: Sense classificar
   ungrafted_taxa: Tàxons no inserits
@@ -5013,6 +5025,24 @@ ca:
   yes_reject_it: Sí, refusa'l
   yes_show_this_in_the_box: Sí, mostrar-ho al requadre superior sobre els tàxons
   yesterday: Ahir
+  yir_donate_banner_inaturalist_in_year: "INATURALIST EL %{year}:"
+  yir_donate_banner_reaching_millions: Arribant a milions. Il·luminant la biodiversitat. Col·laboració global.
+  #"You" is singular
+  yir_donate_banner_all_thanks: Moltes gràcies a persones com tu!
+  #"You" is singular
+  yir_donate_banner_inaturalist_thrives: iNaturalist dona les gràcies a persones com tu!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Heu ajudat a millorar iNaturalist aquest any. Gràcies!
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist Necessita el teu Suport
+  yir_generating_and_sharing: |
+    Generar i compartir dades sobre biodiversitat d'alt impacte, a aquesta escala i velocitat sense precedents, té un cost creixent
+  yir_millions_of_people_used_inaturalist: |
+    Milions de persones han emprat iNaturalist i Seek d'iNaturalist al llarg d'aquest any per connectar amb la natura
+  yir_thank_your_for_being_generous: |
+    Gràcies per ser generós amb el vostre temps, atenció, experiència i donacions! iNaturalist és una iniciativa conjunta sense ànim de lucre la California Academy of Sciences i la National Geographic Society. El programa es basa en nombroses subvencions i donacions, incloses les donacions benèfiques d'una petita part de la comunitat. Estem especialment agraïts als patrocinadors mensuals, les donacions recurrents dels quals ens ajuden a planificar el futur.
+  yir_your_gift_sustains: |
+    La vostra donació sosté aquest programa d'abast global i profunds impactes personals i ecològics
   you: vós
   you_: Vostè
   you_appear_offline_try_again: |
@@ -6030,7 +6060,7 @@ ca:
           Si us plau, especifiqueu els requisits que han de complir les observacions per poder incorporar-les en aquest projecte.
         project_background_color: Color de fons del resum del Projecte
         project_background_color_help: Assegureu-vos d'escollir un color prou fosc perquè el text blanc sobreposar sigui llegible.
-        project_banner: Banner del projecte (PNG, JPG, o GIF)
+        project_banner: Imatge del projecte (PNG o JPG)
         project_banner_help: Imatge del banner opcional. Les dimensions ideals són 760px per 320px.
         project_details: Detalls de projecte
         project_icon: Icona del projecte (PNG, JPG, o GIF)
@@ -6392,6 +6422,8 @@ ca:
       delete:
         by_deleting_your_account_you_will_remove: |
           Esborrant el vostre compte eliminareu
+        caching: |
+          Si esteu suprimint el vostre compte perquè heu intentat suprimir part del vostre contingut, però encara podeu veure'l en un mapa o en qualsevol altre lloc d'Internet, tingueu en compte que les dades del mapa es poden emmagatzemar a la memòria cau fins i tot un dia després que s'hagin suprimit els registres, però també que la supressió de contingut d'aquesta plataforma pot no afectar les còpies que existeixen en altres llocs i plataformes (com GBIF).
         x_observations_html:
           one: |
             <strong class="count"> 1 observació </strong>, inclou el treball de <strong class = "count">%{helpers_count} persones </strong> que us han ajudat amb les identificacions 

@@ -74,6 +74,7 @@ gem "omniauth-soundcloud", git: "https://github.com/ratafire/omniauth-soundcloud
 gem "omniauth-twitter"
 gem "optimist"
 gem "paperclip"
+gem "parallel"
 gem "patron"
 gem "pg"
 gem "rack-cors"

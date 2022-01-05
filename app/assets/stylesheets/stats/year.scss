@@ -7,9 +7,9 @@
 @import "../shared/user_with_icon";
 
 $background-color: #1A1A1A;
-$gray: #999999;
-$medium-gray: #666666;
-$dark-gray: #333333;
+$gray: #999;
+$medium-gray: #666;
+$dark-gray: #333;
 $user-image-size: 240px;
 $user-image-overhang: 0.25 * $user-image-size / 2;
 
@@ -18,6 +18,74 @@ $ribbon-y-offset: 12px;
 $ribbon-backfold-width: 59px;
 $ribbon-backfold-x-offset: 2em;
 $ribbon-midfold-width: 40px;
+
+// d3-tips get rendered outside of the bootstrap element, so they need styles
+// outside of those definitions
+
+$tip-opacity: 1;
+
+.d3-tip {
+  background: rgba(0, 0, 0, $tip-opacity);
+  border-radius: 2px;
+  color: #FFF;
+  line-height: 1;
+  padding: 5px;
+  pointer-events: none;
+
+  // Creates a small triangle extender for the tooltip
+  &::after {
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, $tip-opacity);
+    display: inline;
+    font-size: 10px;
+    line-height: 1;
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+  }
+
+  // Northward tooltips
+  &.n {
+    &::after {
+      content: "\25BC";
+      left: 0;
+      margin: -2px 0 0;
+      text-align: center;
+      top: 100%;
+    }
+  }
+
+  // Eastward tooltips
+  &.e {
+    &::after {
+      content: "\25C0";
+      left: -8px;
+      margin: -4px 0 0;
+      top: 50%;
+    }
+  }
+
+  // Southward tooltips
+  &.s {
+    &::after {
+      content: "\25B2";
+      left: 0;
+      margin: 0 0 1px;
+      text-align: center;
+      top: -8px;
+    }
+  }
+
+  // Westward tooltips
+  &.w {
+    &::after {
+      content: "\25B6";
+      left: 100%;
+      margin: -4px 0 0 -1px;
+      top: 50%;
+    }
+  }
+}
 
 #bodywrapper:after {
   height: 0px;
@@ -316,48 +384,76 @@ $ribbon-midfold-width: 40px;
     .Identifications {
       .UserWithIcon {
         margin-bottom: 10px;
+
         .icon {
           margin-right: 10px;
         }
-        .title a {
-          color: white;
-          font-size: 120%;
+
+        .title {
+          a {
+            color: white;
+            font-size: 120%;
+          }
         }
+
         .subtitle {
-          margin-top: 0;
           font-size: 80%;
+          margin-top: 0;
+          text-transform: uppercase;
+
           a {
             color: $medium-gray;
           }
+
           i {
             margin-right: 3px;
           }
-          text-transform: uppercase;
         }
       }
-      .idents-users-helped {
-        .UserWithIcon {
-          flex-direction: row-reverse;
-        }
-        text-align: right;
-        h3 {
+
+      @media (min-width: 501px) {
+        .idents-users-helped {
           text-align: right;
-          span {
-            padding-right: 0;
+
+          h3 {
+            text-align: right;
+
+            span {
+              padding-right: 0;
+            }
           }
-        }
-        .UserWithIcon {
-          .icon {
-            margin-right: 0px;
-            margin-left: 10px;
+
+          .UserWithIcon {
+            flex-direction: row-reverse;
+
+            .icon {
+              margin-left: 10px;
+              margin-right: 0;
+            }
           }
         }
       }
+
       .idents-users-who-helped {
         h3 {
-          text-align: left;
+          @media (min-width: 501px) {
+            text-align: left;
+          }
+
           span {
             padding-left: 0;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 500px) {
+      .Identifications {
+        .helped-row {
+          flex-direction: column;
+
+          &> * {
+            margin-left: 0;
           }
         }
       }
@@ -393,62 +489,6 @@ $ribbon-midfold-width: 40px;
         height: 400px;
       }
     }
-  }
-
-  $tip-opacity: 1;
-  .d3-tip {
-    line-height: 1;
-    padding: 5px;
-    background: rgba(0, 0, 0, $tip-opacity);
-    color: #fff;
-    border-radius: 2px;
-    pointer-events: none;
-  }
-
-  /* Creates a small triangle extender for the tooltip */
-  .d3-tip:after {
-    box-sizing: border-box;
-    display: inline;
-    font-size: 10px;
-    width: 100%;
-    line-height: 1;
-    color: rgba(0, 0, 0, $tip-opacity);
-    position: absolute;
-    pointer-events: none;
-  }
-
-  /* Northward tooltips */
-  .d3-tip.n:after {
-    content: "\25BC";
-    margin: -2px 0 0 0;
-    top: 100%;
-    left: 0;
-    text-align: center;
-  }
-
-  /* Eastward tooltips */
-  .d3-tip.e:after {
-    content: "\25C0";
-    margin: -4px 0 0 0;
-    top: 50%;
-    left: -8px;
-  }
-
-  /* Southward tooltips */
-  .d3-tip.s:after {
-    content: "\25B2";
-    margin: 0 0 1px 0;
-    top: -8px;
-    left: 0;
-    text-align: center;
-  }
-
-  /* Westward tooltips */
-  .d3-tip.w:after {
-    content: "\25B6";
-    margin: -4px 0 0 -1px;
-    top: 50%;
-    left: 100%;
   }
 
   .Summary {
@@ -955,7 +995,7 @@ $ribbon-midfold-width: 40px;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      $site-size: 100px;
+      $site-size: 150px;
       .site {
         width: $site-size;
         height: $site-size + $user-image-overhang;
@@ -990,6 +1030,11 @@ $ribbon-midfold-width: 40px;
           box-shadow: 0 0 10px $dark-gray;
           display: block;
           color: white;
+
+          .ribbon-content {
+            max-height: none;
+            word-break: break-word;
+          }
         }
         a.ribbon:hover {
           opacity: 1;

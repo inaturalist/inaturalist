@@ -724,6 +724,8 @@ nl:
   batch_operations: Batchbewerkingen
   be_the_first_to_fave_this_observation: Sla als eerste deze waarneming op als een favoriet!
   because_of: wegens
+  become_a_donor_caps: WORD DONATEUR
+  become_a_donor_today_caps: WORD VANDAAG DONATEUR
   before_importing_photos: vóór het importeren van foto's
   bg_color: Achtergrondkleur
   bio: Bio
@@ -858,6 +860,7 @@ nl:
   check_list_place: "%{place} Checklist"
   check_list_updated: Checklist bijgewerkt!
   check_lists_for: "Andere Checklists voor %{place}"
+  check_out_the_inat_store: Bekijk de iNaturalist Winkel
   check_out_what_the_observation: Bekijk hoe de waarneming die je probeert te determineren eruitziet.
   check_this_box_if_html: |
     Vink dit vakje aan als je een
@@ -1465,6 +1468,8 @@ nl:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: DONEREN
+  donate_again_caps: DONEER OPNIEUW
+  donate_again_today_caps: DONEER VANDAAG OPNIEUW
   done: Klaar
   dont_have_an_account_sign_up_html: Heb je nog geen account?<strong>Meld je aan.</strong>
   dont_send_me_email: "Stuur me geen e-mail!"
@@ -1588,6 +1593,10 @@ nl:
   establishment_means: Vestigingswijze
   establishment_means_describes_how: |
     Vestigingswijze beschrijft hoe het taxon zich heeft kunnen vestigen in een gebied. Zie DarwinCore voor <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">meer informatie over terminologie</a>.
+  establishment_means_descriptions:
+    native: evolueerde in deze regio of kwam op niet-antropogene wijze aan
+    endemic: inheems en komt nergens anders voor
+    introduced: in de regio gekomen op antropogene wijze
   estimate_which_input: |
     Schat welke invoertaxonid's zullen worden vervangen met welke uitvoertaxa en welke zullen worden gekoppeld aan een gemeenschappelijke voorouder zodra de splitsing wordt doorgevoerd. Het kan even duren om dit te berekenen. Links naar waarnemingen worden ingekort naar subsets van 200.
   event_in_progress: Gebeurtenis aan de gang
@@ -1702,6 +1711,7 @@ nl:
   #Label for the date/time when a flag was created
   flag_created: Melding aangemaakt
   flag_description: Meld deze inhoud zodat de curatoren weten dat er iets mis mee is.
+  flag_comment_description: Voeg een optionele opmerking toe aan deze markering die verder verklaart waarom je deze toevoegt en die links geeft naar het bewijsmateriaal.
   flag_for_check_list_title_html: |
     Melding voor checklist: %{title}
   flag_for_comment_id_html: Melding voor <a href="%{url}">reactie %{id}</a>
@@ -2550,6 +2560,9 @@ nl:
   multiple_select_option: '-- meerdere --'
   multiple_taxa_for_taxon_change: "Meerdere taxa (invoer voor wisseling/samenvoeging, uitvoer voor opsplitsing)"
   multiple_taxon_ids_separated_by_commas: 'Meerdere taxonID''s gescheiden door komma''s, bijv. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: moet in project %{project} zijn
   must_be_in_taxon: moet in het taxon %{taxon} zitten
   must_be_not_in_taxon: mag niet in het taxon %{taxon} zitten
   must_be_not_observed_by_user: mag niet zijn waargenomen door %{user}
@@ -3005,6 +3018,8 @@ nl:
       <li><strong>Discussies waaraan je deelneemt:</strong>Wanneer je opmerkingen of determinaties toevoegt aan de inhoud van iemand anders, abonneer je je automatisch op nieuwe activiteiten bij deze inhoud. Gebruik de tool 'Beheer je abonnementen' om geen updates meer te ontvangen. </li>
       </ul>
   one_by_one: "Eén voor één"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "een van de volgende zaken moet waar zijn:"
   one_of_your_lists: "één van je lijsten..."
   one_or_more_input_taxa_have_more_than_1000: |
     Eén of meer ingevoerde taxa hebben meer dan 1000 downstreamwaarnemingen.
@@ -4013,7 +4028,6 @@ nl:
   rules_and_formatting: "Regels & Opmaak"
   rules_for_adding_observations: Regels voor toevoegen waarnemingen
   rules_for_becoming_a_member: Voorwaarden om lid te kunnen worden
-  rules_for_becoming_memner: Voorwaarden om lid te kunnen worden
   rules_types:
     must_be_captive: moet in gevangenschap / gecultiveerd zijn
     must_be_georeferenced: moet worden geogereferentieerd
@@ -4022,6 +4036,7 @@ nl:
     must_be_observed_in_place: moet waargenomen worden in Gebied
     must_be_in: moet in het taxon zitten
     must_be_coordinates_shareable_by_project_curators: waarnemer moet projectcuratoren toestaan om coordinaten te bekijken.
+    must_be_verifiable: moet controleerbaar zijn
   running_total: Lopend Totaal
   said: gezegd
   satellite: satelliet
@@ -4169,6 +4184,26 @@ nl:
   site_taxon_page: "%{site_name} taxonpagina"
   sites_affiliation_about_desc_html: |
     Als jouw organisatie geïnteresseerd is in toetreding tot het iNaturalist Netwerk kan je %{start_tag_join}hier%{end_tag_join} meer details vinden.
+  sites_affiliation_examples_canada_cdc_html: |
+    %{start_tag_inat_canada}iNaturalist Canada%{end_tag_inat_canada} integreert
+    gegevens van iNaturalist in veilige, provinciale systemen die worden beheerd door Conservation Data Centers (CDCs). Deze systemen worden gebruikt bij het uitvoeren (twee keer per jaar) van beoordelingen om de status van soorten te bepalen, of ze worden bedreigd, evenals bij het bepalen van de kritieke leefomgeving van kwetsbare en bedreigde diersoorten. Als gevolg daarvan is het ook mogelijk geweest hotspots van verkeerssterfte voor bedreigde soorten op te sporen en te elimineren; afbakening en uiteindelijk het beschermen van de belangrijkste biodiversiteitsgebieden;herbevestigen van de aanwezigheid van soorten die al decennialang niet zijn gemeld.
+  sites_affiliation_examples_ecuardor_bndb_html: |
+    %{start_tag_ecuador}iNaturalist Ecuador%{end_tag_ecuador} voed de
+    National Database of Biodiversity of Ecuador – BNDB – een grote repository van data
+    van zowel wetenschappelijke gegevens als burgerwetenschappers. Het doel is de kennis en gegevens te integreren en zo te helpen om het begrip van de omgeving van de flora en fauna van Ecuador te verstevigen.
+  sites_affiliation_examples_mexico_nbis_html: |
+    Mexico's %{start_tag_naturalista}Naturalista%{end_tag_naturalista}
+    waarnemingen worden geimporteerd in de National Biodiversity Information System (bij CONABIO, de National Biodiversity Commision) samen met de dossiers van eBird. Mensen kunnen zowel wetenschappelijke als burgerwetenschapsgegevens vinden in %{start_tag_enciclovida}Enciclovida%{end_tag_enciclovida}.
+  sites_affiliation_examples_portugal_atlas_html: |
+    Portugal's iNaturalist netwerklid %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} deelde gegevens voor de Portugese atlas van trekvogels, voor de atlas van zoogdieren en diverse andere Portugese wetenschappelijke onderzoeksdocumenten.
+  sites_affiliation_more_automatically_hidden_coordinates: |
+    Automatisch verborgen coördinaten (verborgen of privé als gevolg van "taxon
+    geoprivacy")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist verbergt automatisch de coördinaten voor sommige soorten om
+    ze te beschermen tegen storingen, verzamelen of stroperij. Als de coördinaten van een waarneming alleen automatisch zijn verborgen om soorten te beschermen,
+    dan deelt iNaturalist de werkelijke coördinaten van alle waarnemingen van hun
+    respectievelijke leden met Netwerkleden.
   sites_affiliation_more_email_addresses: |
     E-mailadressen worden gedeeld met leden van het netwerk uitsluitend voor communicatie met betrekking tot de site.
   sites_affiliation_more_twice_per_year: |
@@ -4181,6 +4216,20 @@ nl:
     waardevoller worden voor lokale instandhoudingsinspanningen.
   sites_affiliation_overview_current_member_list_html: |
     Je kunt de huidige ledenlijst van %{start_tag_network}iNaturalist Network%{end_tag_network} zien.
+  sites_affiliation_overview_in_order_to_advance: |
+    Om onderzoek en behoud in hun respectievelijke gebieden te bevorderen kunnen 
+    Netwerkleden gegevens van iNaturalist delen. Zij hebben de verantwoordelijkheid
+    om de geldigheid en geschiktheid van verzoeken om gegevens en hun
+    potentiële resultaten te beoordelen; schriftelijk de verantwoordelijkheid om ook de
+    veiligheid van dergelijke gegevens te waarborgen en door ervoor te zorgen dat deze op geen enkele wijze openbaar gemaakt worden of gedeeld of gebruikt worden buiten de oorspronkelijk beoogde doelstelling; het documenteren van alle gegevensleveringen
+    en die te delen samen met de bijbehorende resultaten, uitkomsten of beoogd gebruik en
+    om jaarlijks te rapporteren aan iNaturalist.
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    Het %{start_tag_network}iNaturalist Netwerk%{end_tag_network} is een
+    collectie gelokaliseerde websites in de %{start_tag_global}wereldwijde
+    iNaturalist gemeenschap%{end_tag_global}.
+  sites_affiliation_overview_when_you_affiliate: |
+    Wanneer je gekoppeld bent met een iNaturalist netwerklid worden je e-mailadres en de echte locaties van je vervaagde en privé-locaties gedeeld met het netwerklid. Hierdoor kunnen je waarnemingen meer waardevol worden voor de lokale instandhoudingsinspanningen. Als je een gebied dat valt onder een lid van het netwerk regelmatig bezoekt of erin woont in wordt je aangemoedigd om te kiezen voor een koppeling met dit netwerklid zodat het delen van deze gegevens mogelijk wordt.
   sites_affiliation_overview_you_can_continue_html: |
     Je kunt inloggen via iNaturalist.org of via jouw netwerkspecifieke website. Ongeacht het lidmaatschap dat je gebruikt wordt al jouw data gehost op dezelfde plek en je blijft in staat om te communiceren met de volledige internationale iNaturalist gemeenschap. Elk iNaturalist-account kan slechts gekoppeld zijn met één netwerklid. Je kunt jouw koppeling bekijken of
     wijzigen in de instellingen %{start_tag_settings}account%{end_tag_settings}.
@@ -4190,7 +4239,7 @@ nl:
     %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} hebben
     formele overeenkomsten met organisaties in elk van deze geografische gebieden om
     het gebruik van het iNaturalist platform te ondersteunen. <strong>Als jouw organisatie
-    geïnteresseerd is in het toetreden tot het iNaturalist Network, dan kunt je 
+    geïnteresseerd is in het toetreden tot het iNaturalist Network, dan kun je 
     %{start_tag_join}hier%{end_tag_join} meer details vinden.</strong>
   sites_network_consists_of: "Het iNaturalist netwerk bestaat uit verschillende organisaties:"
   sites_network_inaturalist_network_collection: |
@@ -4731,6 +4780,7 @@ nl:
   type_taxon_name: "Tik taxonnaam"
   uicn_red_list_status: "Status op de IUCN Rode Lijst:"
   umbrella_projects: Overkoepelende projecten
+  unable_to_save_comment: Helaas konden we de opmerking niet opslaan.
   unblock: Deblokkeren
   unclassified: Niet gerangschikt
   ungrafted_taxa: Loshangende taxa
@@ -4893,6 +4943,7 @@ nl:
   users_highlights_and_stats_from_year_on_site: "%{user}'s hoogtepunten en statistieken van %{year} op %{site}"
   users_id: "ID van %{user}"
   users_identifications: "Determinaties van %{user}"
+  users_journal: "Dagboek van %{user}"
   users_latest_observations_on_site: "Laatste waarnemingen van %{user} op %{site}"
   users_lists: "Lijsten van %{user}"
   users_profile: "Profiel van %{user}"
@@ -5003,15 +5054,15 @@ nl:
   welcome_to_guides: "Welkom bij  %{site_name} Gidsen!"
   welcome_to_x_project: "Welkom bij %{project}"
   #Label for the most probable taxon in the automated suggestions when that taxon is a genus
-  were_pretty_sure_this_is_in_the_genus: 'We zijn er vrij zeker van dat het in dit genus is:'
+  were_pretty_sure_this_is_in_the_genus: We zijn er vrij zeker van dat dit in dit genus zit
   #Label for the most probable taxon in the automated suggestions when that taxon is a family
-  were_pretty_sure_this_is_in_the_family: 'We zijn er vrij zeker van dat het in deze familie is:'
+  were_pretty_sure_this_is_in_the_family: We zijn er vrij zeker van dat dit in deze familie zit
   #Label for the most probable taxon in the automated suggestions when that taxon is an order
-  were_pretty_sure_this_is_in_the_order: 'We zijn er vrij zeker van dat het in deze orde is:'
+  were_pretty_sure_this_is_in_the_order: We zijn er vrij zeker van dat dit in deze orde zit
   #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
-  were_pretty_sure_this_is_in_the_subfamily: 'We zijn er vrij zeker van dat het in deze subfamilie is:'
+  were_pretty_sure_this_is_in_the_subfamily: We zijn er vrij zeker van dat dit in deze subfamilie zit
   #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
-  were_pretty_sure_this_is_in_the_superfamily: 'We zijn er vrij zeker van dat het in deze superfamilie is:'
+  were_pretty_sure_this_is_in_the_superfamily: We zijn er vrij zeker van dat dit in deze superfamilie zit
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
@@ -5115,6 +5166,28 @@ nl:
   yes_reject_it: Ja, verwerp het
   yes_show_this_in_the_box: Ja, toon dit in het grote vak bovenaan/taxa
   yesterday: Gisteren
+  yir_donate_banner_inaturalist_in_year: "INATURALIST IN %{year}:"
+  yir_donate_banner_reaching_millions: Bereik miljoenen mensen. Verlicht de biodiversiteit. Wereldwijde samenwerking.
+  #"You" is singular
+  yir_donate_banner_all_thanks: Dankzij mensen zoals jij!
+  #"You" is singular
+  yir_donate_banner_inaturalist_thrives: Met iNaturalist gaat het voorspoedig door mensen zoals jij!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Je hebt iNaturalist dit jaar laten opbloeien. Bedankt!
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist heeft jouw hulp nodig
+  yir_generating_and_sharing: |
+    Het genereren en delen van gegevens met een hoge impact op biodiversiteit op deze ongekende
+    schaal en snelheid heeft hoge kosten
+  yir_millions_of_people_used_inaturalist: |
+    Miljoenen mensen hebben iNaturalist en 'Seek door iNaturalist' gebruikt om
+    de natuur te beleven
+  yir_thank_your_for_being_generous: |
+    Bedankt dat je genereus bent met je tijd, aandacht, kennis en donaties! iNaturalist is een not-for-profit gezamenlijk initiatief van de California Academy of Sciences en de National Geographic Society. De website is afhankelijk van talrijke subsidies en donaties, inclusief charitatieve giften van minder dan een klein deel van de gemeenschap. Wij zijn in het bijzonder 
+    de Maandelijkse Supporters dankbaar wiens terugkerende giften ons helpen met het plannen van de toekomst.
+  yir_your_gift_sustains: |
+    Je gift ondersteunt deze website met een wereldwijd bereik en diepgaande persoonlijke en
+    ecologische effecten
   you: Jou
   you_: Jou
   you_appear_offline_try_again: |
@@ -6145,7 +6218,7 @@ nl:
           Geef de vereisten op voor de waarnemingen die moeten worden toegevoegd aan dit project.
         project_background_color: Projectoverzicht Achtergrondkleur
         project_background_color_help: Zorg ervoor dat u een kleur kiest die donker genoeg is zodat de witte overlay leesbaar is.
-        project_banner: Project banner (PNG, JPG, of GIF)
+        project_banner: Projectbanner (PNG of JPG)
         project_banner_help: Optionele bannerafbeelding. Ideale afmetingen zijn 760px bij 320 px.
         project_details: Projects details
         project_icon: Project icoon (PNG, JPG, of GIF)
@@ -6580,6 +6653,8 @@ nl:
       delete:
         by_deleting_your_account_you_will_remove: |
           Door je account te verwijderen, verwijder je
+        caching: |
+          Als je je account verwijdert omdat je geprobeerd hebt gegevens van jou te verwijderen maar je kon het nog steeds zien op een kaart of elders op het internet houd er dan rekening mee dat kaartgegevens kunnen worden gecached voor maximaal een dag, zelfs nadat records zijn verwijderd. Het verwijderen van inhoud op dit platform heeft mogelijk geen effect op kopieën die bestaan op andere sites en platforms (zoals GBIF).
         x_observations_html:
           one: |
             <strong class="count">%{count} waarneming</strong>,
@@ -6589,6 +6664,13 @@ nl:
             <strong class="count">%{count} waarnemingen</strong>,
             inclusief het werk van de
             <strong class="count">%{helpers_count} personen</strong> die je hebben geholpen met determinaties
+        x_projects_html:
+          one: |
+            <strong class="count">%{count} project</strong> die niet
+            een andere manager of admin heeft die de nieuwe eigenaar kan worden
+          other: |
+            <strong class="count">%{count} projecten</strong> die geen
+            andere managers of admins hebben die de nieuwe eigenaar kunnen worden
         x_identifications_html:
           one: |
             <strong class="count">%{count} determinatie door jou</strong> van iemand anders' waarneming, die mogelijk van invloed kan zijn op de datakwaliteit van die waarneming

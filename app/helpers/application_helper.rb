@@ -1062,18 +1062,23 @@ module ApplicationHelper
     ]
     # Find the key that is lowercase in English, b/c we're maddeningly
     # inconsistent about this
-    lowercase_key = potential_keys.detect do |k|
+    lowercase_key = potential_keys.detect do | k |
       en_t = I18n.t( k, locale: "en", default: nil )
       en_t && en_t[0].downcase == en_t[0]
     end
     lowercase_model_name = if lowercase_key
+      # puts "using lowercase key: #{lowercase_key}"
       I18n.t( lowercase_key, default: nil )
     end
-    lowercase_model_name ||= potential_keys.map{|k| I18n.t( k, default: nil ) }.compact.first
+    lowercase_model_name ||= potential_keys.map do | k |
+      lmn = I18n.t( k, default: nil )
+      # puts "trying key #{k}: #{lmn}"
+      lmn
+    end.compact.first
     lowercase_model_name ||= class_name
     lowercase_model_name
   end
-    
+
   def update_tagline_for(update, options = {})
     resource = update.resource
     notifier = update.notifier
@@ -1238,7 +1243,6 @@ module ApplicationHelper
   def activity_snippet(update, notifier, notifier_user, options = {})
     opts = {}
     if update.notification == "activity" && notifier_user
-      notifier_class_name_key = notifier.class.to_s.underscore
       notifier_class_name = lowercase_equivalent_model_name_for( notifier.class )
       key = "user_added_"
       opts = {
@@ -1276,7 +1280,6 @@ module ApplicationHelper
       end
     end
     key += '_html'
-
     t(key, opts)
   end
   

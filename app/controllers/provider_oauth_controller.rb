@@ -26,11 +26,13 @@ class ProviderOauthController < ApplicationController
     end
 
     if access_token
-      auth = Doorkeeper::OAuth::TokenResponse.new(access_token)
-      if request.format && request.format.json?
-        render :json => auth.body, :status => auth.status
+      auth = Doorkeeper::OAuth::TokenResponse.new( access_token )
+      # The following frmat stuff is a hack around a bug in the Android app;
+      # remove when possible
+      if request&.format&.json? || ( params[:frmat] && params[:frmat] == "json" )
+        render json: auth.body, status: auth.status
       else
-        uri = URI.parse(access_token.application.redirect_uri)
+        uri = URI.parse( access_token.application.redirect_uri )
         uri.query = Rack::Utils.build_query(
           :access_token => auth.token.token,
           :token_type   => auth.token.token_type,

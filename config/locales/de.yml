@@ -712,6 +712,8 @@ de:
   batch_operations: Stapeloperationen
   be_the_first_to_fave_this_observation: Sei der erste, der diese Beobachtung favorisiert!
   because_of: because of
+  become_a_donor_caps: Unterstützer werden
+  become_a_donor_today_caps: Werde heute ein Unterstützer
   before_importing_photos: vor dem Importieren von Bildern
   bg_color: Hintergrundfarbe
   bio: Über mich
@@ -845,6 +847,7 @@ de:
   check_list_place: "Checkliste von %{place}"
   check_list_updated: Checkliste aktualisiert!
   check_lists_for: "Andere Checklisten für %{place}"
+  check_out_the_inat_store: Schau dir den iNaturalist-Store an
   check_out_what_the_observation: Schau dir an, wie die Beobachtung, die Du identifizieren möchtest, aussieht.
   check_this_box_if_html: |
     Wähle dies aus, wenn Du Deine Fotos unter die <a
@@ -977,6 +980,8 @@ de:
       Organisation, die diesen Status deklariert hat. Du kannst dies überspringen, wenn *du* als Autorität aufgeführt werden möchtest.
     place: Dieser Status ist auf dieses Gebiet beschränkt.
     url: URL für eine Seite, die diesen Status beschreibt.
+    geoprivacy: |
+      Standardgeoprivität für Beobachtungen dieses Taxons. Beachte, dass der Schutzstatus, der innerhalb eines Kontinents, Landes oder Bundeslandes besteht, die Geoprivität der darüber liegenden Kategorie überschreiben kann.
     iucn: |
       Äquivalenter IUCN-Code der Roten Liste. Dies ist nicht die tatsächliche IUCN-Bewertung,
       nur der IUCN-Code, der am besten mit der Bedrohung der Offenlegung der Koordinaten
@@ -1277,7 +1282,7 @@ de:
   date_: Datum
   date_added: Hinzugefügt
   date_authorized: Autorisierungsdatum
-  date_created: Datum erstellt
+  date_created: Erstelldatum
   date_format:
     date_long:
       january: '%{day}. Januar %{year}'
@@ -1452,6 +1457,8 @@ de:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: SPENDEN
+  donate_again_caps: Spende noch einmal
+  donate_again_today_caps: SPENDE JETZT
   done: Fertig
   dont_have_an_account_sign_up_html: Du hast noch keinen Account? <br><strong>Hier registrieren</strong>
   dont_send_me_email: "Sende mir keine E-Mails!"
@@ -1690,6 +1697,7 @@ de:
   #Label for the date/time when a flag was created
   flag_created: Meldung berichtet
   flag_description: Melde diesen Inhalt, um Kuratoren wissen zu lassen, dass etwas nicht stimmt (Begründung am besten auf englisch verfassen).
+  flag_comment_description: Erläutere in einem optionalen Kommentar den Sachverhalt näher und füge ggf. einen unterstützenden Link hinzu.
   flag_for_check_list_title_html: |
     Meldung für die Checkliste: %{title}
   flag_for_comment_id_html: Meldung dieses <a href="%{url}">Kommentars %{id}</a>
@@ -1814,7 +1822,7 @@ de:
   go: Los
   go_back: Zurück gehen
   going_to_your_observations: Gehe zu Deinen Beobachtungen...
-  good_choice_for_sharing: Gute Auswahl zum teilen mit Wissenschaftler
+  good_choice_for_sharing: Gute Wahl zum Teilen für wissenschaftliche Zwecke
   google: Google
   google_maps_not_loaded_error: |
     Google Maps konnte nicht gestartet werden. Möglicherweise wurde der Zugriff auf Google Maps
@@ -2339,7 +2347,7 @@ de:
   make_curator: Kurator machen
   make_manager: Zum Manager machen
   make_sure_the_default_photo_looks_good: Vergewissere dich, dass das Standardfoto in großer Größe gut aussieht.
-  make_this_your_default_license: "Mach dies zu deiner Standard-%{type}-Lizenz."
+  make_this_your_default_license: "Zu deiner Standard-%{type}-Lizenz machen"
   make_this_the_primary_listing: "Dies zur primären Auflistung machen"
   mammals: Säugetiere
   manage_all_your_subscriptions: Alle deine Abos verwalten
@@ -2519,6 +2527,9 @@ de:
   multiple_select_option: '--mehrfach--'
   multiple_taxa_for_taxon_change: "Mehrere Taxa (Eingabe zum Tausch/Zusammenführen, Ausgabe zum Auftrennen)"
   multiple_taxon_ids_separated_by_commas: 'Mehrere Taxon-IDs getrennt durch Kommas, z.B. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: muss im Projekt %{project} sein
   must_be_in_taxon: muss im Taxon %{taxon} sein
   must_be_not_in_taxon: darf nicht im Taxon %{taxon} sein
   must_be_not_observed_by_user: darf nicht von %{user} beobachtet worden sein
@@ -2896,7 +2907,7 @@ de:
   observed: Beobachtet
   observed_by: Beobachtet von
   observed_on: Gesehen am
-  observer: Beobachter
+  observer: beob. von
   observers: Beobachter
   observer_prefers_no_project_addition: |
     Beobachter erlaubt es anderen Personen nicht, ihre Beobachtungen zu Projekten hinzuzufügen.
@@ -2961,6 +2972,8 @@ de:
       <li><strong>Diskussionen, an denen du teilgenommen hast:</strong> Das Kommentieren oder Hinzufügen von Bestimmungen zum Inhalt eines anderen Benutzers hat zur Folge, dass du automatisch über jede neue Aktivität zu diesem Inhalt benachrichtigt wirst. Benutze die Schaltfläche 'Abonnements verwalten', um keine Updates mehr zu erhalten.</li>
       </ul>
   one_by_one: "einer nach dem anderen"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "Einer der folgenden Punkte muss zutreffen:"
   one_of_your_lists: "einer deiner Listen..."
   only_a_project_manager_can_add: Nur ein Projektmanager kann den Status eines Projektkurators hinzufügen.
   only_administrators_may_access_that_page: Nur Administratoren dürfen auf diese Seite zugreifen
@@ -3958,7 +3971,6 @@ de:
   rules_and_formatting: "Regeln & Formatierung"
   rules_for_adding_observations: Regeln für das Hinzufügen von Beobachtungen
   rules_for_becoming_a_member: Regeln für die Mitgliedschaft
-  rules_for_becoming_memner: Regeln für die Mitgliedschaft
   rules_types:
     must_be_captive: muss in Haltung/kultiviert sein
     must_be_georeferenced: muss georeferenziert sein
@@ -3967,6 +3979,7 @@ de:
     must_be_observed_in_place: muss im Gebiet beobachtet worden sein
     must_be_in: 'muss in diesem Taxon sein:'
     must_be_coordinates_shareable_by_project_curators: Der Beobachter muss den Projektkuratoren erlauben, die Koordinaten einzusehen.
+    must_be_verifiable: muss verifizierbar sein
   running_total: Gesamtzahl
   said: sagte
   satellite: Satellit
@@ -4270,7 +4283,7 @@ de:
   species_unknown: Art unbekannt
   specify_the_reason_youre_flagging: Gib den Grund an, warum du diesen Eintrag meldest
   #Abbreviation for "source"
-  src: aus
+  src: Quelle
   standard: Standard
   start: Beginn
   start_a_new_project: Neues Projekt beginnen
@@ -4699,6 +4712,7 @@ de:
   type_taxon_name: "Name des Taxons eingeben"
   uicn_red_list_status: "Rote-Listen-Status der IUCN"
   umbrella_projects: Dach-Projekte
+  unable_to_save_comment: Leider konnten wir den Kommentar nicht speichern.
   unblock: Entsperren
   unclassified: Nicht klassifiziert
   ungrafted_taxa: nicht zugeordnete Taxa
@@ -4731,7 +4745,7 @@ de:
   update_existing_photos_with_new_license: Bestehende Bilder mit der neuen Lizenzauswahl aktualisieren
   update_existing_sounds_with_new_license: Bestehende Sounds mit der neuen Lizenzauswahl aktualisieren
   update_observations: Beobachtungen aktualisieren
-  update_past: "Letzten %{type} aktualisieren"
+  update_past: "Einstellungen der %{type} aktualisieren"
   update_photos: Fotos aktualisieren
   update_search: Suche aktualisieren
   update_selected_taxa: Ausgewählte Taxa aktualisieren
@@ -4845,7 +4859,7 @@ de:
     <strong>%{user}</strong> ist jetzt ein Kurator für %{project}
   user_muted: Benutzer gesperrt
   user_observed_on_on_date_in_place: |
-    %{user} beobachtete dies am %{date} in %{place}
+    Von %{user} beobachtet am %{date} in %{place}
   user_suggested_an_id: "%{user} hat eine Bestimmung (ID) vorgeschlagen"
   user_thinks_yours_is: "%{user} %{noun} deine Beobachtung %{observation} ist"
   user_trusts_you_with_their_private_coordinates: "%{user} vertraut Dir seine/ihre verborgenen Koordinaten an"
@@ -5085,6 +5099,30 @@ de:
   yes_reject_it: Ja, ablehnen!
   yes_show_this_in_the_box: Ja, zeige dies in der großen Box oben auf /taxa an
   yesterday: Gestern
+  yir_donate_banner_inaturalist_in_year: "INATURALIST %{year}:"
+  yir_donate_banner_reaching_millions: Erreicht Millionen. Macht Biodiversität sichtbar in globaler Zusammenarbeit.
+  #"You" is singular
+  yir_donate_banner_all_thanks: Alles dank solcher Menschen wie dir!
+  #"You" is singular
+  yir_donate_banner_inaturalist_thrives: iNaturalist hat Erfolg dank Leuten wie dir!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Du hast iNaturalist geholfen, dieses Jahr zu gedeihen. Vielen Dank!
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist braucht deine Unterstützung
+  yir_generating_and_sharing: |
+    Das Generieren und Bereitstellen von bedeutsamen Daten zur biologischen Vielfalt in dieser beispiellosen Größe und Geschwindigkeit bringt steigende Kosten mit sich
+  yir_millions_of_people_used_inaturalist: |
+    Millionen von Menschen haben iNaturalist und Seek in diesem Jahr benutzt, um
+    sich mit der Natur zu verbinden
+  yir_thank_your_for_being_generous: |
+    Vielen Dank für deine Zeit, Aufmerksamkeit, Fachwissen und deine
+    Spenden! iNaturalist ist eine gemeinnützige Initiative der
+    California Academy of Sciences und der National Geographic Society. Das
+    Programm beruht auf zahlreichen Zuschüssen und Spenden, einschließlich karitativer Geschenke
+    von weniger als einem winzigen Bruchteil der Gemeinschaft. Besonders dankbar sind wir
+    den monatlichen Unterstützern, deren wiederkehrenden Beiträge uns bei der Planung für die Zukunft helfen.
+  yir_your_gift_sustains: |
+    Deine Unterstützung trägt zur Fortsetzung dieses Projekts von globaler Reichweite und tiefgreifender persönlicher und ökologischer Bedeutung bei
   you: Dir
   you_: Du
   you_appear_offline_try_again: |
@@ -6132,7 +6170,6 @@ de:
           diesem Projekt an.
         project_background_color: Projektübersicht Hintergrundfarbe
         project_background_color_help: Achte darauf, dass eine Farbe dunkel genug ist, so dass der weiße überlagerte Text lesbar ist.
-        project_banner: Projektbanner (PNG, JPG oder GIF)
         project_banner_help: Optionales Banner. Ideale Abmessungen sind 760px x 320px.
         project_details: Projektdetails
         project_icon: Projektsymbol (PNG, JPG oder GIF)
@@ -6541,6 +6578,10 @@ de:
       delete:
         by_deleting_your_account_you_will_remove: |
           Durch das Löschen deines Kontos wirst du entfernen:
+        caching: |
+          Wenn du dein Konto löschen möchtest, weil du einen bestimmten Inhalten löschen wolltest, aber ihn trotzdem noch auf einer Karte oder anderswo
+          im Internet siehst, bedenke, dass Kartendaten bis zu
+          einen Tag lang zwischengespeichert werden, auch nachdem Datensätze gelöscht wurden, und dass das Löschen von Inhalten auf dieser Plattform möglicherweise keine Auswirkungen auf Kopien hat, die auf anderen Websites und Plattformen existieren (wie GBIF).
         x_observations_html:
           one: |
             <strong class="count">%{count} Beobachtung</strong>,
@@ -6860,7 +6901,7 @@ de:
       7: Sa
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      default: '%Y-%m-%d'
+      default: '%d. %b. %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%B %d, %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes

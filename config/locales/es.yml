@@ -683,12 +683,15 @@ es:
   back_to_taxon: "Regresa a %{defaulttaxon}"
   back_to_taxon_changes: "Regresa a los cambios del taxón"
   back_to_taxon_framework_for_x: "Volver a marco de referencia del taxón para %{taxon_name}"
+  back_to_users_calendar: "Volver al calendario de %{user}"
+  back_to_users_lists: "Volver a las listas de %{user}"
   back_to_viewing: "Regresar a ver <i>%{taxon}</i>"
   back_to_x: "Regresar a %{noun}"
   back_to_x_assessment: "Regresar a las evaluaciones de %{project}"
   back_to_x_history: "Regresar a la historia de %{x}"
   back_to_x_journal: "Regresar al diario de %{user}"
   back_to_x_blog: "Regresar al blog de %{x}"
+  back_to_your_calendar: Volver a tu calendario
   back_to_your_dashboard: Regresar a tu tablero
   back_to_your_lists: Regresa a tus listas
   back_to_your_journal: Regresa a tu diario
@@ -704,6 +707,8 @@ es:
   batch_operations: Operaciones por lotes
   be_the_first_to_fave_this_observation: '¡Se el primero en agregar esta observación a favoritos!'
   because_of: debido a
+  become_a_donor_caps: CONVIÉRTETE EN DONANTE
+  become_a_donor_today_caps: CONVIÉRTETE EN DONANTE, AHORA
   before_importing_photos: antes de importar fotos
   bg_color: Color de fondo
   bio: Biografía
@@ -837,6 +842,7 @@ es:
   check_list_place: "Lista de verificación de %{place}"
   check_list_updated: '¡Lista de verificación actualizada!'
   check_lists_for: "Otras listas de verificación para %{place}"
+  check_out_the_inat_store: Echa un vistazo a la tienda de iNaturalist
   check_out_what_the_observation: Échale un vistazo a como aparece la observación que estás tratando de identificar.
   check_this_box_if_html: |
     Selecciona esta casilla si quieres aplicar una
@@ -1441,6 +1447,8 @@ es:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: HACER UNA DONACIÓN
+  donate_again_caps: DONAR DE NUEVO
+  donate_again_today_caps: DONAR DE NUEVO, HOY
   done: Hecho
   dont_have_an_account_sign_up_html: '¿Ya tienes una cuenta? <strong>Inicia sesión.</strong>'
   dont_send_me_email: "No enviarme ningún mensaje de correo electrónico"
@@ -1564,6 +1572,10 @@ es:
   establishment_means: Medio de establecimiento
   establishment_means_describes_how: |
     El medio de establecimiento describe cómo se estableció el taxón en un área. Ver DarwinCore para <a href="http: //rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">más información en terminología</a>.
+  establishment_means_descriptions:
+    native: se desarrolló en esta región o llegó por medios no antropogénicos
+    endemic: nativo y no ocurre en ningún otro lugar
+    introduced: llegó a la región por medios antropogénicos
   estimate_which_input: |
     Estimar qué identificadores de taxón de entrada serán reemplazados con qué taxones de salida y que serán añadidos a un antepasado común cuando la división se haya efectuado. Esto puede requerir
     un tiempo para calcularlo. Los enlaces a las observaciones se truncan en subconjuntos de 200.
@@ -1679,6 +1691,7 @@ es:
   #Label for the date/time when a flag was created
   flag_created: Marca creada
   flag_description: Marca este contenido para hacer saber a los curadores que algo no anda bien.
+  flag_comment_description: Añadir un comentario opcional a esta marca que explique el por qué la estás añadiendo y proporciona enlaces que ayuden a su evidencia.
   flag_for_check_list_title_html: |
     Marca para la lista de verificación: %{title}
   flag_for_comment_id_html: Marcar para <a href="%{url}">comentario %{id}</a>
@@ -2536,6 +2549,9 @@ es:
   multiple_select_option: '-- múltiples --'
   multiple_taxa_for_taxon_change: "Más de una especie o grupo (entrada de datos para intercambiar/mezclar, salida de datos para separar)"
   multiple_taxon_ids_separated_by_commas: 'Varias IDs de taxones separadas por comas, p.e. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: debe estar en el proyecto %{project}
   must_be_in_taxon: debe estar en el taxón %{taxon}
   must_be_not_in_taxon: no debe estar en el taxón %{taxon}
   must_be_not_observed_by_user: no debe ser observado por %{user}
@@ -2796,6 +2812,10 @@ es:
   observation_brief_something_on_day_at_time: "Algo el %{day} a las %{time}"
   observation_brief_something_on_day_at_time_by_user: "Algo el %{day} a las %{time} por %{user}"
   observation_brief_something_on_day_by_user: "Algo el %{day} por %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Algo de %{month} de %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Algo de %{month} de %{year} por %{user}"
   observation_brief_something_by_user: "Algo por %{user}"
   observation_brief_something_from_place: "Algo de %{place}"
   observation_brief_something_from_place_by_user: "Algo desde %{place} de %{user}"
@@ -2803,10 +2823,18 @@ es:
   observation_brief_something_from_place_on_day_by_user: "Algo desde %{place} el %{day} de %{user}"
   observation_brief_something_from_place_on_day_at_time: "Algo desde %{place} el %{day} a las %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Algo desde %{place} el %{day} a las %{time} de %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Algo de %{place} en %{month} de %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Algo de %{place} en %{month} de %{year}por %{user}"
   observation_brief_taxon_on_day: "%{taxon} el %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} el %{day} a las %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} el %{day} a las %{time} por %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} el %{day} por %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} en %{month} de %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} en %{month} de %{year} por %{user}"
   observation_brief_taxon_by_user: "%{taxon} de %{user}"
   observation_brief_taxon_from_place: "%{taxon} de %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} desde %{place} de %{user}"
@@ -2814,6 +2842,10 @@ es:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} desde %{place} el%{day} de %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} desde %{place} el%{day} a las %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} desde %{place} el %{day} a las %{time} de %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} en %{place} el %{month} de %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} en %{place} de %{month} de %{year} por %{user}"
   observations_by_category: "Observaciones por categoría"
   observations_by_app: Observaciones por App
   observations_by_rank: Observaciones por rango
@@ -2961,6 +2993,8 @@ es:
       <li><strong>Debates en los que has participado:</strong> al comentar o añadir identificaciones al contenido de otros te subscribes automáticamente a su contenido y recibirás información sobre cualquier actividad nueva en este contenido. El uso de 'Gestionar mis suscripciones" permite dejar de recibir actualizaciones.</li>
       </ul>
   one_by_one: "Uno por uno"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "una de las siguientes opciones debe ser cierta:"
   one_of_your_lists: "una de tus listas..."
   one_or_more_input_taxa_have_more_than_1000: |
     Uno o más taxones introducidos tiene más de 1000 observaciones.
@@ -3954,7 +3988,6 @@ es:
   rules_and_formatting: "Reglas & Formato"
   rules_for_adding_observations: Reglas para agregar observaciones
   rules_for_becoming_a_member: Reglas para ser miembro
-  rules_for_becoming_memner: Reglas para ser miembro
   rules_types:
     must_be_captive: debe ser cautivo / cultivado
     must_be_georeferenced: deben estar con georeferencia
@@ -3963,6 +3996,7 @@ es:
     must_be_observed_in_place: deben ser observaciones en este lugar
     must_be_in: deben estar dentro de la especie o grupo
     must_be_coordinates_shareable_by_project_curators: el observador debe permitir a los curadores del proyecto ver las coordenadas.
+    must_be_verifiable: debe ser verificable
   running_total: Total acumulado
   said: decia
   satellite: satélite
@@ -4683,6 +4717,7 @@ es:
   type_taxon_name: "Escriba el nombre del taxón"
   uicn_red_list_status: "Estado de la Lista Roja de UICN"
   umbrella_projects: Proyectos paraguas
+  unable_to_save_comment: Lamentablemente, no hemos podido guardar el comentario.
   unblock: Desbloquear
   unclassified: Sin clasificar
   ungrafted_taxa: Taxones sin injertar
@@ -4844,7 +4879,10 @@ es:
   users_favorites: "Favoritos de %{user}"
   users_highlights_and_stats_from_year_on_site: "Destaques y estadísticas de %{user} durante %{year} en %{site}"
   users_id: "Identificación de %{user}"
+  users_identifications: "Identificaciones de %{user}"
+  users_journal: "Diario de %{user}"
   users_latest_observations_on_site: "Lates observaciones de %{user} en %{site}"
+  users_lists: "Listas de %{user}"
   users_profile: "Perfil de %{user}"
   users_projects: "Proyectos de %{user}"
   users_year_on_site: "El año %{year} de %{user} en %{site}"
@@ -5067,6 +5105,24 @@ es:
   yes_reject_it: Sí, rechazarlo
   yes_show_this_in_the_box: Sí, muestra esto en la caja grande por arriba de los taxones
   yesterday: Ayer
+  yir_donate_banner_inaturalist_in_year: "INATURALIST EN %{year}:"
+  yir_donate_banner_reaching_millions: Llegando a millones. Iluminando la biodiversidad. Colaboración global.
+  #"You" is singular
+  yir_donate_banner_all_thanks: '¡Muchas gracias a gente como tú!'
+  #"You" is singular
+  yir_donate_banner_inaturalist_thrives: '¡iNaturalist da las gracias a gente como tú!'
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Has ayudado a avanzar iNaturalist durante este año. ¡Gracias!
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist necesita tu Apoyo
+  yir_generating_and_sharing: |
+    Generar y compartir datos de biodiversidad de alto impacto, a esta escala y velocidad sin precedentes, tiene un coste creciente
+  yir_millions_of_people_used_inaturalist: |
+    Millones de personas han usado iNaturalist y Seek de iNaturalist durante este año para conectar con la naturaleza
+  yir_thank_your_for_being_generous: |
+    ¡Gracias por ser tan generoso con tu tiempo, atención, experiencia y donaciones! iNaturalist es una iniciativa conjunta sinánimo de lucro de la California Academy of Sciences y la National Geographic Society. El programa se soporta con las numerosas subvenciones y donaciones, incluidas las donaciones caritativas aportadas por una pequeña parte de la comunidad. Estamos especialmente agradecidos con los patrocinadores mensuales cuyas donaciones recurrentes nos ayudan a planificar el futuro.
+  yir_your_gift_sustains: |
+    Tu donación sostiene este programa de alcance global y profundos impactos personales y ecológicos
   you: tu
   you_: Tú
   you_appear_offline_try_again: |
@@ -6128,7 +6184,7 @@ es:
           Especifica los requisitos para las observaciones que se añadirán a este proyecto.
         project_background_color: Color de fondo del resumen del proyecto
         project_background_color_help: Asegúrate de seleccionar un color suficientemente oscuro para que el texto blanco sobrepuesto sea legible.
-        project_banner: Imagen del proyecto (PNG, JPG, o GIF)
+        project_banner: Imagen del proyecto (PNG o JPG)
         project_banner_help: Imagen opcional. Las dimensiones ideales son 760px por 320px.
         project_details: Detalles del proyecto
         project_icon: Icono del proyecto (PNG, JPG o GIF)
@@ -6531,6 +6587,8 @@ es:
       delete:
         by_deleting_your_account_you_will_remove: |
           Al borrar tu cuenta se eliminarán
+        caching: |
+          Si estás eliminando tu cuenta porque intentaste eliminar parte de tu contenido, pero aún puedes verlo en un mapa o en otro lugar de Internet, ten en cuenta que los datos del mapa pueden almacenarse en nuestra caché un día e incluso más, tras eliminarlos de nuestros registros, y que la eliminación del contenido en nuestra plataforma puede no afectar las copias que existan en otros sitios y plataformas (como GBIF).
         x_observations_html:
           one: |
             <strong class="count">1 observación</strong>,
@@ -6540,6 +6598,12 @@ es:
             <strong class="count">%{count} observaciones</strong>,
             incluyendo el trabajo de
             <strong class="count">%{helpers_count} personas</strong> que te han ayudado con identificaciones
+        x_projects_html:
+          one: |
+            <strong class="count">%{count} proyecto</strong> que no tiene otro gestor o administrador que pueda convertirse en el nuevo propietario
+          other: |
+            <strong class="count">%{count} proyectos</strong> que no
+            tienen otros gestores o administradores que pueden convertirse en el nuevo propietario
         x_identifications_html:
           one: |
             <strong class="count">tu identificación</strong>

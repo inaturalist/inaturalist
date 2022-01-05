@@ -410,8 +410,6 @@ GEM
       racc (~> 1.4)
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
-    nokogiri (1.12.5-x86_64-linux)
-      racc (~> 1.4)
     non-stupid-digest-assets (1.0.9)
       sprockets (>= 2.0)
     nori (2.6.0)
@@ -757,6 +755,7 @@ DEPENDENCIES
   omniauth-twitter
   optimist
   paperclip
+  parallel
   patron
   pg
   puma

@@ -708,6 +708,8 @@ fr:
   batch_operations: Opérations groupées
   be_the_first_to_fave_this_observation: Soyez le premier à ajouter cette observation comme favori !
   because_of: en raison de
+  become_a_donor_caps: FAITES UN DON
+  become_a_donor_today_caps: DEVENEZ UN DONATEUR AUJOURD'HUI
   before_importing_photos: avant d’importer des photos
   bg_color: Couleur de fond
   bio: Biographie
@@ -843,6 +845,7 @@ fr:
   check_list_place: "Check-list de %{place}"
   check_list_updated: Check-list mise à jour!
   check_lists_for: "Autres check-lists associées à %{place}"
+  check_out_the_inat_store: Visitez la boutique iNaturalist
   check_out_what_the_observation: Consulter l’apparence de l’observation que vous tentez d’identifier.
   check_this_box_if_html: |
     Cochez cette case si vous voulez appliquer une
@@ -1458,6 +1461,8 @@ fr:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: Faire un don
+  donate_again_caps: DONNEZ DE NOUVEAU
+  donate_again_today_caps: DONNEZ DE NOUVEAU AUJOURD'HUI
   done: Validé
   dont_have_an_account_sign_up_html: Vous n'avez pas encore de compte ? <strong>Enregistrez-vous.</strong>
   dont_send_me_email: "Ne m’envoyez pas de courriel !"
@@ -1583,6 +1588,7 @@ fr:
     Le type d'implantation décrit la façon dont le taxon en est venu à être établi dans la région. 
     Consultez DarwinCore pour <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">obtenir plus d’information sur la terminologie</a>.
   establishment_means_descriptions:
+    native: A évolué dans cette région ou bien est arrivée par des moyens non anthropiques
     endemic: Indigène et n’existe nulle part ailleurs
     introduced: Arrivée dans la région par des moyens anthropiques
   estimate_which_input: |
@@ -1703,6 +1709,7 @@ fr:
   #Label for the date/time when a flag was created
   flag_created: Signalement créé
   flag_description: Signaler ce contenu aux responsables de l’organisation pour les informer d'un problème.
+  flag_comment_description: Ajoutez un commentaire facultatif à cet indication pour expliquer plus en détail pourquoi vous l'ajoutez et pour fournir des liens vers des données qui étayent votre point de vue.
   flag_for_check_list_title_html: |
     Signalement de la check-list : %{title}
   flag_for_comment_id_html: Signaler pour <a href="%{url}">Commentaire %{id}</a>
@@ -2549,6 +2556,9 @@ fr:
   multiple_select_option: '-- multiple --'
   multiple_taxa_for_taxon_change: "Taxons multiples (entrée aux fins d’échange/fusion, sortie aux fins de séparation)"
   multiple_taxon_ids_separated_by_commas: 'IDs de taxon multiples séparés par des virgules, par ex. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: doit être dans le projet %{project}
   must_be_in_taxon: doit être dans le taxon %{taxon}
   must_be_not_in_taxon: ne doit pas être dans le taxon %{taxon}
   must_be_not_observed_by_user: ne doit pas faire partie des observations @vow_or_con{vow:d'|con:de }%{user}
@@ -2997,6 +3007,8 @@ fr:
       <li><strong>Discussions auxquelles vous participez :</strong> Commentaire ou ajout d’identifications au contenu de quelqu’un d’autre vous abonne automatiquement à toute nouvelle activité sur ce contenu. Utilisez l’outil 'Gérer vos abonnements' pour arrêter de recevoir les notifications.</li>
       </ul>
   one_by_one: "Un par un"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "l'un des éléments suivants doit être vrai:"
   one_of_your_lists: "une de vos listes…"
   one_or_more_input_taxa_have_more_than_1000: |
     Un ou plusieurs des taxons d'entrée ont plus de 1000 observations en aval. Le traitement de l'opération risque de prendre un certain temps. Avez-vous la certitude que ce changement de taxon est nécessaire ? Les changements de taxon ne peuvent pas être annulés.
@@ -3999,7 +4011,6 @@ fr:
   rules_and_formatting: "Règles et mise en forme"
   rules_for_adding_observations: Règles pour l’ajout d’observations
   rules_for_becoming_a_member: Règles pour devenir membre
-  rules_for_becoming_memner: Règles pour devenir membre
   rules_types:
     must_be_captive: doit être en captivité / cultivé
     must_be_georeferenced: doit être géoréférencé
@@ -4008,6 +4019,7 @@ fr:
     must_be_observed_in_place: doit être observé fans le lieu
     must_be_in: doit être dans le taxon
     must_be_coordinates_shareable_by_project_curators: l’observateur doit autoriser les responsables du projet à voir les coordonnées.
+    must_be_verifiable: doit être vérifiable
   running_total: Total actuel
   said: a dit
   satellite: satellite
@@ -4721,6 +4733,7 @@ fr:
   type_taxon_name: "Saisissez un nom de taxon"
   uicn_red_list_status: "Situation selon la liste rouge de UICN :"
   umbrella_projects: Projets cadres
+  unable_to_save_comment: Malheureusement, nous n'avons pas pu enregistrer le commentaire.
   unblock: Débloquer
   unclassified: Non classifié
   ungrafted_taxa: Taxons non greffés
@@ -4886,6 +4899,7 @@ fr:
   users_highlights_and_stats_from_year_on_site: "Mises en évidence et statistiques de %{user} pour %{year} sur %{site}"
   users_id: "ID de %{user}"
   users_identifications: "Identifications @vow_or_con{vow:d'|de }%{user}"
+  users_journal: "Journal @vow_or_con{vow:d'|de }%{user}"
   users_latest_observations_on_site: "dernières observations de %{user} sur %{site}"
   users_lists: "Listes @vow_or_con{vow:d'|de }%{user}"
   users_profile: "Profil de %{user}"
@@ -5112,6 +5126,27 @@ fr:
   yes_reject_it: Oui, le refuser
   yes_show_this_in_the_box: Oui, affichez dans la grande boîte dans le haut de /taxa
   yesterday: Hier
+  yir_donate_banner_inaturalist_in_year: "INATURALIST EN %{year} :"
+  yir_donate_banner_reaching_millions: Atteindre des millions de personnes. Mettre en lumière la biodiversité. Collaborer dans le monde entier.
+  #"You" is singular
+  yir_donate_banner_all_thanks: Grâce à des personnes comme vous !
+  #"You" is singular
+  yir_donate_banner_inaturalist_thrives: iNaturalist doit son succès à des personnes comme vous !
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Vous avez aidé iNaturalist à prospérer cette année. Merci !
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist a besoin de votre appui
+  yir_generating_and_sharing: |
+    Il est de plus en plus coûteux de produire et de transmettre à cette échelle et à cette vitesse sans précédent des données sur la biodiversité à fort impact.
+  yir_millions_of_people_used_inaturalist: |
+    Des millions de personnes ont utilisé iNaturalist et Seek par iNaturalist cette année pour
+    s'immerger dans la nature.
+  yir_thank_your_for_being_generous: |
+    Nous vous remercions pour votre générosité, votre temps, votre attention, votre expertise et votre appui financier ! iNaturalist est une initiative conjointe sans but lucratif de la California Academy of Sciences et de la National Geographic Society. Le programme
+    est rendu possible par de nombreux dons et subventions, y compris des dons de bienfaisance
+    qui proviennent d'une infime fraction de la communauté. Nous sommes particulièrement reconnaissants aux personnes qui donnent chaque mois et dont le soutien récurrent nous aide à préparer l'avenir.
+  yir_your_gift_sustains: |
+    Grâce à votre don, ce programme peut avoir une portée mondiale ainsi que des impacts personnels et écologiques profonds.
   you: vous
   you_: ' Vous'
   you_appear_offline_try_again: |
@@ -6400,7 +6435,7 @@ fr:
           Veuillez spécifier les prérequis des observations à ajouter à ce projet.
         project_background_color: Couleur d'arrière plan du résumé du projet
         project_background_color_help: Assurez-vous de choisir une couleur assez sombre pour que le texte blanc recouvrant soit lisible.
-        project_banner: Entête de projet (PNG, JPG, ou GIF)
+        project_banner: Bannière du projet (PNG ou JPG)
         project_banner_help: Image de bannière facultative. Les dimensions idéales sont 760x320px.
         project_details: Détails du projet
         project_icon: Icône du project (PNG, JPG, ou GIF)
@@ -6926,6 +6961,8 @@ fr:
       delete:
         by_deleting_your_account_you_will_remove: |
           En supprimant votre compte vous supprimerez
+        caching: |
+          Si vous supprimez votre compte parce que vous avez essayé de supprimer des éléments de votre contenu et que ceux-ci restent visibles sur une carte ou ailleurs sur Internet, gardez à l'esprit que les données cartographiques peuvent rester en cache jusqu'à un jour entier après la suppression des enregistrements et que supprimer du contenu sur cette plateforme peut n'avoir aucun effet sur les copies qui existent sur d'autres sites et plateformes (comme le GBIF).
         x_observations_html:
           one: |
             <strong class="count">1 observation</strong>,
