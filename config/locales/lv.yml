@@ -1741,6 +1741,7 @@ lv:
   flag_as_non_spammer: Pievienot nemēstuļotāja karodziņu
   #Label for the date/time when a flag was created
   flag_created: Karodziņš izveidots
+  flag_deleted: Karodziņš izdzēsts
   flag_description: Pievieno šim saturam karodziņu, lai pārziņi zinātu, ka kaut kas nav kārtībā.
   flag_comment_description: Ja vēlies, pievieno karodziņam komentāru ar pamatojumu un saitēm uz pierādījumiem.
   flag_for_check_list_title_html: |
@@ -6572,6 +6573,9 @@ lv:
           Nerādīt profilā ikmēneša atbalstītāja piespraudīti
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Ja pārdomāsi, iestatījumus vienmēr iespējams mainīt <a href='/users/edit'>šeit</a>.
+        license_description_attribution_html: |
+          Licenču apraksti un attēli &copy; %{year} Creative Commons, tiek izmantoti ar <a href="http://creativecommons.org/licenses/by/3.0/">Creative
+          Commons Attribution licenci</a>
         #Header for the section of the profile settings where you can choose to
         #show a badge on your profile to indicate that you make a regular,
         #monthly donation to iNat
@@ -6654,6 +6658,16 @@ lv:
           Vēlies parādīt citiem savus mīļākos taksonus? %{link_start_tag}Izveido sarakstu%{link_end_tag} ar nosaukumu "Izlase", lai šajā sadaļā parādītu savu nesen pievienoto saturu.
     user_parents:
       confirm:
+        thanks_donor_html: |
+          <p>
+          Paldies par taviem ziedojumiem iNaturalist tīklam. Jau izmantojām tavu ziedojumu, lai pārbaudītu tavu identitāti, tāpēc tev vairs nav jāveic nekādas papildu darbības. <strong>Tava bērna konts ir aktivizēts.</strong>
+          </p>
+          <p>
+          Lai pieslēgtos kontam no Seek lietotnes, nospied izvēlnē "iNaturalist" un "Pieslēgties ar iNaturalist" pogu lapas apakšā.
+          </p>
+          <p>
+          Izmantojot Seek lietotni, bērns varēs pievienot savam iNaturalist kontam novērojumus, kas būs apskatāmi arī iNaturalist.org vietnē.
+          </p>
         thanks_for_creating_a_minor_account: PALDIES PAR BĒRNU KONTA IZVEIDOŠANU!
         we_will_send_you_an_email: |
           Nosūtīsim ziņu uz tavu e-pastu, kad tava bērna konts būs aktivizēts.
