@@ -3641,7 +3641,7 @@ lv:
   private: privāta
   private_: Privāta
   private_description: "Šīs ir no publiskajām kartēm pilnīgi noslēptas koordinātas. Patiesās koordinātas ir redzamas tikai tev un to projektu pārziņiem, kuriem esi pievienojis novērojumu. Jāpiebilst gan, ka novērojumi ar noslēptām koordinātām tiek izmantoti, lai pārbaudītu vietu kontrollapas."
-  probably_spam: Visticamāk, mēstules
+  probably_spam: Potenciāls mēstuļotājs
   proceed: Turpināt
   processing: Apstrādā
   processing3p: "Apstrādā..."
@@ -6651,6 +6651,7 @@ lv:
         youve_used_all_of_your_blocks: Esi izmantojis visas savas lietotāju bloķēšanas iespējas. Atsauc kādu no tām, lai pievienotu citu.
       recent:
         about_recent_users: Apraksts
+        definitions_html: <dl> <dt>Potenciāls mēstuļotājs</dt> <dd> Lietotājs, visticamāk, ir mēstuļotājs bez novērojumiem vai identifikācijām, bet ar profila aprakstu.</dd> <dt>Automātiskā mēstuļotāju noteikšana</dt> <dd> Sistēma automātiski atpazina mēstuļotāju. </dd> <dt>Manuālā mēstuļotāju noteikšana</dt> <dd> Mēstuļotāju atpazinis vietnes pārzinis. </dd> <dt>Kļūdaina atbilsme</dt> <dd> Pārziņu pārbaudīti lietotāji, kuriem pievienots mēstuļotāja karodziņš, kas patiesībā nav mēstuļotāji.</dd> </dl>
       show:
         take_a_moment_to_review_html: 'Velti brīdi sava laika, lai apskatītu mūsu <a href="%{link}">vadlīnijas</a>.'
         this_user_was_banned: Lietotājs tika uz laiku bloķēts
