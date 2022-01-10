@@ -521,11 +521,14 @@ th:
   assessment: การประเมินผล
   authority_list:
     iucn_red_list: บัญชีแดง IUCN
+  back_to_all_species: กลับไปที่ชนิดทั้งหมด
   back_to_your_calendar: กลับสู่ปฏิทิน
   birds: นก
   birthday: วันเกิด
   block_user: บล็อกผู้ใช้
   blocked_users: ผู้ใช้ที่ถูกบล็อก
+  browse_all_species: ค้นดูชนิดทั้งหมด
+  browse_species_that_occur_near_this_observation: ค้นดูชนิดที่พบใกล้กับการสังเกตนี้
   captive: ถูกจับมา
   captive_cultivated: ถูกจับมา / เพาะปลูก
   captive_observations: การสังเกตของสิ่งมีชีวิตที่ถูกจับมา
@@ -571,6 +574,8 @@ th:
   community: ชุมชน
   community_guidelines: วิธีใช้งานสำหรับชุมชน
   community_id_heading: หน่วยอนุกรมวิธานที่เสนอโดยชุมชน
+  community_id_at_species_or_lower?: หน่วยอนุกรมวิธานที่เสนอโดยชุมชนที่ระดับชนิดหรือต่ำกว่า?
+  community_id_at_species_level_or_lower: หน่วยอนุกรมวิธานที่เสนอโดยชุมชนที่ระดับชนิดหรือต่ำกว่า
   compare: เปรียบเทียบ
   compare_with: เปรียบเทียบกับ
   comparing: เปรียบเทียบ
@@ -671,6 +676,7 @@ th:
       october: ตุลาคม
       november: พฤศจิกายน
       december: ธันวาคม
+  date_is_accurate: วันที่สังเกตถูกต้อง
   date_joined: วันที่เข้าร่วม
   date_obscured_notice: ปิดบังวันที่เพื่อรักษาความเป็นส่วนตัวของผู้สังเกตหรือสิ่งมีชีวิต
   date_observed: วันที่สังเกต
@@ -679,6 +685,7 @@ th:
   date_picker:
     currentText: วันนี้
   date_range: ช่วงวันที่
+  date_specified: มีการระบุวันที่สังเกต
   date_time: วันที่/เวลา
   date_updated: วันที่อัปเดต
   day: วัน
@@ -716,11 +723,14 @@ th:
   donate_again_today_caps: บริจาคอีกครั้งในวันนี้
   duplicate_verb: คัดลอก
   edit: แก้ไข
+  edit_multiple_species: แก้ไขหลายชนิด
   edit_photos: แก้ไขรูปภาพ
   edit_photos_for_observation_id: "แก้ไขรูปภาพของการสังเกต %{obs_id}"
   edit_taxa: แก้ไขหน่วยอนุกรมวิธาน
   edit_taxon: แก้ไขหน่วยอนุกรมวิธาน
   edit_taxon_framework: แก้ไขโครงร่างของหน่วยอนุกรมวิธาน
+  endangered: ใกล้สูญพันธุ์
+  endemic: เฉพาะถิ่น
   establishment:
     endemic: ประจำถิ่นเดียว
     introduced: ถูกนำเข้ามา
@@ -728,14 +738,31 @@ th:
     managed: ถูกควบคุม
     native: พื้นเมือง
     naturalised: ปรับตัวเข้ากับท้องถิ่น
+  everyone: ทุกคน
+  everyone_: ทุกคน
+  everywhere: ทุกที่
   exact_date: เฉพาะวันที่
+  except: ยกเว้น
+  exclude_places: ไม่รวมสถานที่นี้
+  exclude_projects: ไม่รวมโครงการนี้
+  exclude_taxa: ไม่รวมหน่วยอนุกรมวิธานนี้
+  exclude_users: ไม่รวมผู้ใช้นี้
+  exclusion_filters: ไม่รวมเงื่อนไขเหล่านี้
+  exit_full_screen: "ออกจากโหมดเต็มจอ"
+  examples_of_data_use_by_network_members: ตัวอย่างการใช้ข้อมูลโดยสมาชิกเครือข่าย
+  examples_of_ranking_organizations: ตัวอย่างการจัดลำดับองค์กร
   explore: สำรวจ
+  export: ส่งออก
+  export_observations: ส่งออกการสังเกต
+  exporting: "กำลังส่งออก..."
   extinct: สูญพันธุ์
   extinct_in_the_wild: สูญพันธุ์จากธรรมชาติ
+  evidence_of_organism: มีหลักฐานของสิ่งมีชีวิต
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: รายการโปรด
   Family: วงศ์
   favorite_taxa: หน่วยอนุกรมวิธานที่ชอบ
+  favorites: "รายการโปรด"
   filters: ตัวกรอง
   find_new_place_to_explore: ค้นหาสถานที่ใหม่เพื่อสำรวจ
   find_observations: ค้นหาการสังเกต
@@ -785,17 +812,23 @@ th:
   go: ค้นหา
   go_back: ย้อนกลับ
   going_to_your_observations: กำลังไปที่การสังเกตของคุณ...
+  has_id_supported_by_two_or_more: มีการระบุตั้งแต่สองคนขึ้นไป
+  has_photos_or_sounds: มีรูปถ่ายหรือเสียง
   has_sound: มีเสียง
   has_sounds: มีเสียง
   header_your_observations: การสังเกตของฉัน
   header_your_calendar: ปฏิทินของฉัน
+  header_your_favorites: รายการโปรดของคุณ
   header_your_lists: รายการของคุณ
+  here_are_our_top_species_suggestions: นี่คือชนิดที่ได้รับการแนะนำเป็นอันดับต้น ๆ
+  hide_uncountable_species: ซ่อนชนิดที่นับไม่ได้
   identify: ระบุชนิด
   identify_observations: "ระบุการสังเกต"
   identify_observations_by_these_users: ผู้ใช้งานเหล่านี้ได้ระบุการสังเกต
   identify_title: "ระบุชนิด"
   import_all_photos_as_observations: เพิ่มการสังเกตจากรูปภาพทั้งหมด
   import_observations: นำเข้าการสังเกต
+  inappropriate_content: เนื้อหาไม่เหมาะสมใช่ไหม?
   join: เข้าร่วม
   last_observation: การสังเกตล่าสุด
   last_observation_caps: การสังเกตล่าสุด
@@ -803,10 +836,15 @@ th:
   leaves: ใบ
   lexicons:
     mongolian: มองโกเลีย
+  location_is_accurate: สถานที่สังเกตถูกต้อง
+  location_is_exact: มีหลักฐานของสิ่งมีชีวิต
+  location_is_private: สถานที่นี้เป็นส่วนตัว
+  location_specified: มีการระบุสถานที่สังเกต
   longitude: ลองจิจูด
   longitude_slash_x_coord_slash_easting: ลองจิจูด / แกน x / ตะวันออก
   longitude_value: "ลองจิจูด: %{longitude}"
   look_up_name: "ค้นหาชื่อ"
+  looks_like_no_species_in_guide: ดูเหมือนว่ายังไม่มีรายชื่อชนิดในคู่มือของคุณ
   map: แผนที่
   map_legend: คำอธิบายสัญลักษณ์
   map_of_observations: แผนที่แสดงพิกัดการสังเกต
@@ -822,15 +860,27 @@ th:
   more: เพิ่มเติม
   more_about_sharing: ข้อมูลเพิ่มเติมในการแชร์
   more_filters: ตัวกรองเพิ่มเติม
+  more_from_x: การสังเกตเพิ่มเติมจาก %{x}
   more_import_options: ตัวเลือกนำเข้าเพิ่มเติม
   more_info: ข้อมูลเพิ่มเติม
   more_info_title: ข้อมูลเพิ่มเติม
   more_journal_posts: โพสต์บันทึกเพิ่มเติม
   more_than_a_week_ago: มากกว่าหนึ่งสัปดาห์ที่ผ่านมา
+  most_species: ผู้ที่พบจำนวนชนิดมากสุด
+  most_observed_species: ชนิดที่พบมากสุด
+  most_observed_introduced_species: ชนิดพันธุ์ต่างถิ่นที่พบมากสุด
+  most_observed_threatened_species: ชนิดที่เสี่ยงต่อการสูญพันธุ์ที่พบมากสุด
   n_ago: "%{n} ที่แล้ว"
+  nearby_observations_: การสังเกตในบริเวณใกล้เคียง
   needs_id: รอระบุชนิด
   needs_id_: รอระบุชนิด
+  new_species_added_in_interval: ชนิดใหม่ที่เพิ่มใน %{interval}
+  new_species_added_in_interval_x_of_y: ชนิดใหม่ที่เพิ่มใน %{interval} (แสดง %{x} จาก %{y})
+  newly_added_species: ชนิดที่เพิ่มใหม่
+  newly_observed_species: ชนิดที่พบใหม่
+  newly_observed_species_in_year: "ชนิดที่เพิ่มใหม่ในปี %{year}"
   no_ids_have_been_suggested_yet: ยังไม่ได้รับการแนะนำ
+  no_species_on_this_list: ยังไม่มีชนิดในรายการนี้!
   observation_date: วันที่
   observation_field: ข้อมูลภาคสนาม
   observation_field_details: รายละเอียดข้อมูลภาคสนาม
@@ -846,11 +896,17 @@ th:
   observed_by: สังเกตโดย
   order: อันดับ
   order_by: เรียงลำดับตาม
+  organism_is_wild: สิ่งมีชีวิตพบตามธรรมชาติ
+  other_species_commonly_misidentified_as_this_species: ชนิดอื่น ๆ ที่มักถูกระบุผิดว่าเป็นชนิดนี้
+  other_species_commonly_misidentified_as_this_species_in_place_html: ชนิดอื่น ๆ ที่มักถูกระบุผิดว่าเป็นชนิดนี้ใน <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_species: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกระบุผิดว่าเป็นชนิดนี้
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกระบุผิดว่าเป็นชนิดนี้ใน <a href="%{url}">%{place}</a>
   per_day: ต่อวัน
   places_name:
     thailand: ประเทศไทย
     trinidad_and_tobago: ตรินิแดดและโตเบโก
     united_kingdom: สหราชอาณาจักร
+  private_: ส่วนตัว
   ranks:
     kingdom: อาณาจักร
     x_kingdoms:
@@ -880,6 +936,9 @@ th:
     x_families:
       other: วงศ์
     subfamily: วงศ์ย่อย
+    supertribe: เผ่าใหญ่
+    tribe: เผ่า
+    subtribe: เผ่าย่อย
     genus: สกุล
     x_genera:
       other: สกุล
@@ -927,6 +986,12 @@ th:
   ranks_lowercase_family: วงศ์
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
   ranks_lowercase_subfamily: วงศ์ย่อย
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: เผ่าใหญ่
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: เผ่า
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: เผ่าย่อย
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
   ranks_lowercase_genus: สกุล
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
@@ -938,10 +1003,12 @@ th:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
   ranks_lowercase_subspecies: ชนิดย่อย
   real_time_discussions: การถกเถียงที่กำลังเกิดขึ้น
+  recent_evidence_of_organism: หลักฐานไม่เก่าเกินไป (ไม่เป็นซากดึกดำบรรพ์)
   redo_search_in_map: ค้นหาในแผนที่อีกครั้ง
   redo_search_in_map_area: ค้นหาในขอบเขตแผนที่อีกครั้ง
   research_grade: ระดับงานวิจัย
   research_grade_qualification: คุณสมบัติระดับงานวิจัย
+  review_all: ทบทวนทั้งหมด
   rules_types:
     must_be_verifiable: ต้องพิสูจน์ได้
   search_for_species: ค้นหาชนิด
@@ -973,6 +1040,7 @@ th:
   total_observations_caps: การสังเกตทั้งหมด
   total_species_observed_caps: ชนิดที่ถูกสังเกตทั้งหมด
   unclassified: ไม่ถูกจัดจำแนก
+  unreview_all: เลิกทบทวนทั้งหมด
   upload: อัปโหลด
   upload_a_csv_file: อัปโหลดไฟล์ CSV
   upload_a_csv_file_with_observation: |
@@ -983,8 +1051,11 @@ th:
   uploader:
     tooltips:
       select_all: เลือกการสังเกตทั้งหมด
+  user_disagrees_this_is_taxon: "%{user} ไม่เห็นด้วยว่านี่เป็น %{taxon}"
   user_suggested_an_id: "%{user} แนะนำว่าเป็น"
+  view_all: ดูทั้งหมด
   view_all_flags: ดูการรายงานทั้งหมด
+  view_all_members: ดูสมาชิกทุกคน
   view_all_observations: ดูการสังเกตทั้งหมด
   view_flags: ดูการรายงาน
   view_flags_for_x_html: "ดูการรายงานสำหรับ %{x}"
@@ -992,6 +1063,7 @@ th:
   view_all_of_your_observations_from_x: "ดูการสังเกตทั้งหมดของคุณจาก %{x}"
   yesterday: เมื่อวาน
   your_content: เนื้อหาของคุณ
+  your_recent_projects: โครงการล่าสุดของคุณ
   views:
     lifelists:
       all_species: ชนิดทั้งหมด
@@ -1009,6 +1081,10 @@ th:
         frequency:
           research: ระดับงานวิจัย
           "Life Stage=Subimago": ตัวรองตัวเต็มวัย
+    users:
+      show:
+        favorites_list_prompt_html: |
+          อยากอวดหน่วยอนุกรมวิธานที่คุณชอบไหมล่ะ? ถ้าอย่างนั้นก็%{link_start_tag}สร้างรายการ%{link_end_tag}ที่ชื่อว่า "รายการโปรด" เพื่อให้สิ่งที่คุณชอบล่าสุดมาปรากฏที่นี่
     welcome:
       index:
         explore_and_share: สำรวจและแชร์การสังเกตของคุณจากโลกธรรมชาติ

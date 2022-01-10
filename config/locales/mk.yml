@@ -5,6 +5,9 @@ mk:
   x_identifications:
     one: '1 назнака'
     other: '%{count} назнаки'
+  x_languages:
+    one: "%{count} јазик"
+    other: "%{count} јазици"
   x_matching_taxa:
     one: '1 совпаднат таксон'
     other: '%{count} совпаднати таксони'
@@ -83,6 +86,10 @@ mk:
   action: Дејство
   actions: Дејства
   active: Активен
+  #Status of a complete set that is available for use
+  active_complete_set_status: Активен
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Активен
   active_users: Активни корисници
   activity: Активност
   activity_settings: Поставки за активноста

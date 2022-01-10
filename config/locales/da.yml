@@ -4411,9 +4411,11 @@ da:
   subscribe_to_observations_from_this_place_html: <a>Abonnér</a> på observationer fra dette sted
   subscribe_to_observations_in_a_taxon: Abonnér på alle observationer indsendt af en art eller gruppe af organismer (f.eks. 'skorpioner').
   subscribe_to_observations_in_a_place: Abonnér på alle observationer indsendt inden for dette sted. Du kan også tilføje et valgfrit takson filter (f.eks. 'skorpioner fra Texas').
-  subscribe_to_places_to: |
-    Abonnér på steder for at modtage underretninger om nye observationer
-    derfra. Underretninger om personer du følger og emner, du har kommenteret på, administreres også gennem abonnementer. Hvis du vil se hvad du abonnerer på eller afmelde dig fra emner, kan du klikke på "Administrer alle dine abonnementer" nedenfor. Du kan også afmelde alt direkte på den respektive side.
+  subscribe_to_places_help: |
+    Abonnementer styrer, hvad man ser i sine opdateringer og på betjeningspanelet.
+    Man kan f.eks. abonnere på en takson for at få opdateringer om nye
+    observationer af denne. Man abonnerer automatisk på opdateringer
+    om observationer, man kommenterer eller identificerer.
   subscribe_to_this: Abonnér på dette
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).overordnet('form:first').indsend(); return false;">Abonnér</a>
@@ -7225,7 +7227,7 @@ da:
         contribute_to_science: Bidrag til videnskaben
         science_desc_html: |
           Hver observation kan bidrage til videnskaben om biodiversitet, fra de
-          mest sjældne sommerfugle til det mest almindelige ukrudt baggården. Vi deler dine fund med videnskabelige databaser som
+          mest sjældne sommerfugle til det mest almindelige haveukrudt. Vi deler dine fund med videnskabelige databaser som
           <a href='http://gbif.org' target='_blank'> Global Biodiversity Information Facility </a>
           for at hjælpe forskere med at finde og bruge dine data. Alt du behøver at gøre er at observere.
         nature_at_your_fingertips: Naturen ved hånden

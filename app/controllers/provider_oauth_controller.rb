@@ -13,16 +13,23 @@ class ProviderOauthController < ApplicationController
     assertion_type = params[:assertion_type] || params[:grant_type]
     client = Doorkeeper::Application.find_by_uid(params[:client_id])
     if assertion_type.blank? || client.blank?
-      render :status => :unauthorized, :json => { :error => :access_denied }
+      render :status => :unauthorized, :json => { :error => t( "doorkeeper.errors.messages.access_denied" ) }
       return
     end
-    access_token = case assertion_type
-    when /facebook/
-      oauth_access_token_from_facebook_token( params[:client_id], params[:assertion] )
-    when /google/
-      oauth_access_token_from_google_token( params[:client_id], params[:assertion] )
-    when /apple/
-      oauth_access_token_from_apple_assertion( params[:client_id], params[:assertion] )
+    access_token = begin
+      Timeout::timeout( 10 ) do
+        case assertion_type
+        when /facebook/
+          oauth_access_token_from_facebook_token( params[:client_id], params[:assertion] )
+        when /google/
+          oauth_access_token_from_google_token( params[:client_id], params[:assertion] )
+        when /apple/
+          oauth_access_token_from_apple_assertion( params[:client_id], params[:assertion] )
+        end
+      end
+    rescue Timeout::Error
+      render status: :gateway_timeout, json: { error: t( "doorkeeper.errors.messages.temporarily_unavailable" ) }
+      return
     end
 
     if access_token
@@ -41,7 +48,7 @@ class ProviderOauthController < ApplicationController
         redirect_to uri.to_s
       end
     else
-      render :status => :unauthorized, :json => { :error => :access_denied }
+      render :status => :unauthorized, :json => { :error => t( "doorkeeper.errors.messages.access_denied" ) }
     end
   end
 
