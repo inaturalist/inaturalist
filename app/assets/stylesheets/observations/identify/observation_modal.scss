@@ -550,9 +550,18 @@ body > [role="dialog"] .ObservationModal {
           text-align: center;
           display: block;
           line-height: 16px;
-          &.fa-globe {
+          &.fa-globe, &.fa-cloud-upload {
             top: 1px;
           }
+        }
+        img.app-thumbnail {
+          position: absolute;
+          left: 0;
+          top: 1px;
+          width: 15px;
+          text-align: center;
+          display: block;
+          line-height: 16px;
         }
         .user-obs-count {
           .fa-binoculars {
