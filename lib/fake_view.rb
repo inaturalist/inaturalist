@@ -7,6 +7,13 @@
 class FakeView
   include Rails.application.routes.url_helpers
 
+  def initialize( options = {} )
+    super()
+    return unless options[:view_paths]
+
+    controller.view_paths += options[:view_paths]
+  end
+
   def default_url_options
     @default_url_options ||= {
       host: Site.default ? Site.default.url.sub( "http://", "" ) : "http://localhost",
