@@ -636,26 +636,30 @@ en:
   any_user: Any
   anyone: Anyone
   app_owner_application_about_p1_html:  |
-    iNaturalist third party apps allow authenticated use of the iNaturalist API. 
+    iNaturalist third party apps allow authenticated use of the iNaturalist API.
     This allows you to make API calls that do things like create observations or
     identifications. Usual use cases are apps such as desktop apps or mobile apps
-    that include functionality for their user(s) to create iNaturalist observations. 
-    This content must be generated with real humans in the loop. Please read our
-    community guidelines prohibiting machine generated observations, identifications,
-    and comments for more details.
+    that include functionality for their user(s) to create iNaturalist observations.
+    This content must be generated with real human involvement or oversight. Please
+    read our <a href="/pages/community+guidelines" target="_blank">Community
+    Guidelines</a> prohibiting machine generated observations, identifications, and
+    comments for more details.
   app_owner_application_about_p2_html:  |
-    In order to create third party apps, you must first submit an application to earn
-    the role of ‘app owner’. This application should describe the functionality your app
-    will have and how you plan to use it. In order to submit an application your account
-    must be at least 2 months old and must have made at least 10 improving identifications
-    a week for each of the last 4 consecutive weeks. We may ask followup questions about your
-    plan and we reserve the right to turn down applications for any reason.
+    As of 2022 we are requiring manual approval for users wishing to make API clients.
+    In order to create third-party apps, you must first submit an application to become
+    an "app owner." This application should describe the functionality of your proposed app
+    and how you plan to use it. In order to submit an application your account must be at
+    least 2 months old and must have made at least 10 < href="/pages/help#identification"
+    target="_blank">improving identifications</a> a week for each of the last 4 consecutive
+    weeks. We may ask follow-up questions about your plan and we reserve the right to turn
+    down applications for any reason.
   app_owner_application_inelligible: |
     In order to submit an application your account
     must be at least 2 months old and must have made at least 10 improving identifications
     a week for each of the last 4 consecutive weeks.
   app_owner_application_fields_explanation_html: Describe the functionality your app
     will have and how you plan to use it.
+  app_owner_application_success: App owner application submitted
   # An app or service the user has authorized to access their iNat account, e.g.
   # the iNaturalist Android app or Flickr
   application: Application
@@ -5235,6 +5239,7 @@ en:
   user_added_an_x_to_noun_html: "%{user} added an %{x} to %{noun}"
   user_added_x_observations_html: "%{user} added %{x} observations"
   user_already_authenticated: User is already authenticated
+  user_already_app_owner: User is already an app owner
   user_autocomplete_placeholder: kueda, simon123, etc.
   # Label for comprehensive check lists. @vow_or_con will work for the taxon but
   # not the place. Gender for all variables is not known..

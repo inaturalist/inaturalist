@@ -79,22 +79,19 @@ class OauthApplicationsController < ApplicationController
   private
 
   def set_eligible
-    weekly_improving_ids_counts = []
-    ( 1..4 ).each do | i |
-      weekly_improving_ids_counts << Identification.elastic_search(
-        filters:
-          [
-            { term: { current: true } },
-            { term: { "user.id" => current_user.id } },
-            { term: { category: "improving" } },
-            { term: { own_observation: false } },
-            { range: { created_at: { gte: i.weeks.ago } } },
-            { range: { created_at: { lte: ( i - 1 ).weeks.ago } } }
-          ]
-      ).total_entries
-    end
+    last_months_improving_ids_count = Identification.elastic_search(
+      filters:
+        [
+          { term: { current: true } },
+          { term: { "user.id" => current_user.id } },
+          { term: { category: "improving" } },
+          { term: { own_observation: false } },
+          { range: { created_at: { gte: 1.month.ago } } },
+          { range: { created_at: { lte: 0.months.ago } } }
+        ]
+    ).total_entries
     @eligible = current_user.is_admin? ||
-      ( weekly_improving_ids_counts.min >= 10 && current_user.created_at < 2.months.ago )
+      ( last_months_improving_ids_count >= 10 && current_user.created_at < 2.months.ago )
   end
 
   def load_application
