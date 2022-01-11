@@ -41,7 +41,8 @@ GIT
 
 GIT
   remote: https://github.com/inaturalist/riparian.git
-  revision: 083846b15272cb8f4979d2bd331140fe868735cb
+  revision: 71e956bfb975d48d7b54f4da0ad21eba572748d6
+  ref: rails6
   specs:
     riparian (0.4.0)
       activesupport (> 3.0.0)
@@ -519,7 +520,7 @@ GEM
     rainbow (3.0.0)
     rake (13.0.6)
     rakismet (1.5.4)
-    rdoc (6.3.2)
+    rdoc (6.3.3)
     redcarpet (3.5.1)
     regexp_parser (2.1.1)
     responders (3.0.1)
@@ -768,6 +769,7 @@ DEPENDENCIES
   rails-i18n
   rails-observers
   rakismet
+  rdoc (< 6.4.0)
   redcarpet
   rest-client
   rgeo
