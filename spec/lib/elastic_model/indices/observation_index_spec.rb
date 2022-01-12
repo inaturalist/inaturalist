@@ -17,7 +17,7 @@ describe "Observation Index" do
 
   it "sets location based on private coordinates if exist" do
     o = Observation.make!(latitude: 3.0, longitude: 4.0)
-    o.update_attributes(private_latitude: 1.0, private_longitude: 2.0)
+    o.update(private_latitude: 1.0, private_longitude: 2.0)
     json = o.as_indexed_json
     expect( json[:location] ).to eq "1.0,2.0"
   end
@@ -72,7 +72,7 @@ describe "Observation Index" do
       status: Taxon::IUCN_NEAR_THREATENED)
     o.reload
     expect( o.as_indexed_json[:taxon][:threatened] ).to be false
-    cs.update_attributes(place: present_place)
+    cs.update(place: present_place)
     o.reload
     expect( o.as_indexed_json[:taxon][:threatened] ).to be true
   end
@@ -142,10 +142,10 @@ describe "Observation Index" do
     OauthApplication.make!(name: "iNaturalist iPhone App")
     o = Observation.make!( oauth_application_id: 11 )
     expect( o.as_indexed_json[:oauth_application_id] ).to eq 11
-    o.update_attributes( oauth_application_id: nil,
+    o.update( oauth_application_id: nil,
       user_agent: "iNaturalist/1.5.1 (Build 195; Android 3.18..." )
     expect( o.as_indexed_json[:oauth_application_id] ).to eq OauthApplication.inaturalist_android_app.id
-    o.update_attributes( user_agent: "iNaturalist/2.7 (iOS iOS 10.3.2 iPhone)" )
+    o.update( user_agent: "iNaturalist/2.7 (iOS iOS 10.3.2 iPhone)" )
     expect( o.as_indexed_json[:oauth_application_id] ).to eq OauthApplication.inaturalist_iphone_app.id
   end
 
@@ -201,7 +201,7 @@ describe "Observation Index" do
       expect( o.photos.length ).to eq 3
       expect( o.as_indexed_json[:photos_count] ).to eq 2
       allow( f.flaggable ).to receive(:flagged_with).and_return( true )
-      f.update_attributes( resolved: true )
+      f.update( resolved: true )
       expect( f ).to be_resolved
       o.reload
       expect( o.as_indexed_json[:photos_count] ).to eq 3

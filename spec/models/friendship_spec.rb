@@ -36,14 +36,14 @@ describe Friendship do
       it "should be removed if following changes to false" do
         friendship = Friendship.make!( following: true )
         expect( friendship.user.subscriptions.where( resource: friendship.friend ).count ).to eq 1
-        friendship.update_attributes( following: false )
+        friendship.update( following: false )
         friendship.reload
         expect( friendship.user.subscriptions.where( resource: friendship.friend ).count ).to eq 0
       end
       it "should be added if following changes to true" do
         friendship = Friendship.make!( following: false )
         expect( friendship.user.subscriptions.where( resource: friendship.friend ).count ).to eq 0
-        friendship.update_attributes( following: true )
+        friendship.update( following: true )
         expect( friendship.user.subscriptions.where( resource: friendship.friend ).count ).to eq 1
       end
     end

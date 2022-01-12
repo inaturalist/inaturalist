@@ -62,7 +62,7 @@ describe ProjectObservationRule do
       p.project_observation_rules.create(operand: place, operator: "observed_in_place?")
       # invalid because obs is not in the place
       expect(ProjectObservation.make(project: p, observation: o)).not_to be_valid
-      o.update_attributes(latitude: place.latitude, longitude: place.longitude)
+      o.update(latitude: place.latitude, longitude: place.longitude)
       # valid when obs is in the place
       expect(ProjectObservation.make(project: p, observation: o)).to be_valid
       ProjectObservation.destroy_all

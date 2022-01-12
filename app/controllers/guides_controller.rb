@@ -306,7 +306,7 @@ class GuidesController < ApplicationController
     end
     create_default_guide_taxa
     respond_to do |format|
-      if @guide.update_attributes(guide_params)
+      if @guide.update(guide_params)
         format.html do
           notice = if params[:publish]
             t( :guide_was_successfully_published )
@@ -478,7 +478,7 @@ class GuidesController < ApplicationController
 
     @guide.guide_taxa.find_each do |gt|
       next unless tags[gt.name]
-      gt.update_attributes(tag_list: gt.tag_list + tags[gt.name])
+      gt.update(tag_list: gt.tag_list + tags[gt.name])
     end
     respond_to do |format|
       format.html { redirect_back_or_default(@guide) }

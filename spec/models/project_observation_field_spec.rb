@@ -21,14 +21,14 @@ describe ProjectObservationField do
   describe "updating" do
     it "should create a project observation rule if required" do
       pof = ProjectObservationField.make!
-      pof.update_attributes( required: true )
+      pof.update( required: true )
       expect( pof.project.project_observation_rules ).not_to be_blank
       expect( pof.project.project_observation_rules.last.operator ).to eq "has_observation_field?"
     end
 
     it "should remove a project observation rule if not required" do
       pof = ProjectObservationField.make!( required: true )
-      pof.update_attributes(:required => false)
+      pof.update(:required => false)
       expect( pof.project.project_observation_rules ).to be_blank
     end
   end

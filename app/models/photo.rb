@@ -182,7 +182,7 @@ class Photo < ApplicationRecord
     nil
   end
   
-  def update_attributes(attributes)
+  def update(attributes)
     MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
       self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
       self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)

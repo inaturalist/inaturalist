@@ -405,17 +405,17 @@ class Observation < ApplicationRecord
 
   before_update :set_quality_grade
 
-  after_save :refresh_check_lists,
-             :update_default_license,
-             :update_all_licenses,
-             :update_taxon_counter_caches,
-             :update_quality_metrics,
-             :update_public_positional_accuracy,
-             :update_mappable,
-             :set_captive,
-             :set_taxon_photo,
-             :create_observation_review,
-             :reassess_annotations
+  after_save :refresh_check_lists
+  after_save :update_default_license
+  after_save :update_all_licenses
+  after_save :update_taxon_counter_caches
+  after_save :update_quality_metrics
+  after_save :update_public_positional_accuracy
+  after_save :update_mappable
+  after_save :set_captive
+  after_save :set_taxon_photo
+  after_save :create_observation_review
+  after_save :reassess_annotations
   after_create :set_uri
   after_commit :update_user_counter_caches_after_create, on: :create
   after_commit :update_user_counter_caches_after_destroy, on: :destroy
@@ -1158,7 +1158,7 @@ class Observation < ApplicationRecord
         end
       elsif taxon.blank? && owners_ident && owners_ident.current?
         if identifications.where( user_id: user_id ).count > 1
-          owners_ident.update_attributes( current: false, skip_observation: true )
+          owners_ident.update( current: false, skip_observation: true )
         else
           owners_ident.skip_observation = true
           owners_ident.destroy
@@ -2182,7 +2182,10 @@ class Observation < ApplicationRecord
   end
 
   def update_taxon_counter_caches
-    return true unless destroyed? || saved_change_to_taxon_id?
+    unless destroyed? || saved_change_to_taxon_id? || transaction_include_any_action?( [:create] )
+      return true
+    end
+
     taxon_ids = [taxon_id_before_last_save, taxon_id].compact.uniq
     unless taxon_ids.blank?
       taxon_ids_including_ancestors = Taxon.where("id IN (?)", taxon_ids).
@@ -2263,7 +2266,7 @@ class Observation < ApplicationRecord
     if captive_flag.yesish?
       QualityMetric.vote( user, self, QualityMetric::WILD, false )
     elsif captive_flag.noish? && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
-      qm.update_attributes( agree: true )
+      qm.update( agree: true )
     elsif force_quality_metrics && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
       qm.destroy
     end
@@ -2276,16 +2279,16 @@ class Observation < ApplicationRecord
     true
   end
   
-  def update_attributes(attributes)
-    # hack around a weird android bug
-    attributes.delete(:iconic_taxon_name)
+  # def update(attributes)
+  #   # hack around a weird android bug
+  #   attributes.delete(:iconic_taxon_name)
     
-    # MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
-    #   self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
-    #   self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
-    # end
-    super(attributes)
-  end
+  #   # MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
+  #   #   self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
+  #   #   self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
+  #   # end
+  #   super(attributes)
+  # end
   
   def license_name
     return nil if license.blank?
@@ -2790,7 +2793,7 @@ class Observation < ApplicationRecord
     unless options[:skip_identifications]
       identifications.group_by{|ident| [ident.user_id, ident.taxon_id]}.each do |pair, idents|
         c = idents.sort_by(&:id).last
-        c.update_attributes(:current => true)
+        c.update(:current => true)
       end
     end
     save!
@@ -2798,7 +2801,7 @@ class Observation < ApplicationRecord
 
   def create_observation_review
     return true unless taxon
-    return true unless taxon_id_before_last_save.blank?
+    return true unless taxon_id_before_last_save.blank? || transaction_include_any_action?( [:create] )
     return true unless editing_user_id && editing_user_id == user_id
     ObservationReview.where( observation_id: id, user_id: user_id ).first_or_create.touch
     true

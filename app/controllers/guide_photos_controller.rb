@@ -60,7 +60,7 @@ class GuidePhotosController < ApplicationController
   # PUT /guide_photos/1.json
   def update
     respond_to do |format|
-      if @guide_photo.update_attributes(params[:guide_photo])
+      if @guide_photo.update(params[:guide_photo])
         format.html { redirect_to @guide_photo, notice: 'Guide photo was successfully updated.' }
         format.json { head :no_content }
       else

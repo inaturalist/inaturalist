@@ -820,7 +820,7 @@ class User < ApplicationRecord
     unless user_saved
       suggestion = User.suggest_login(u.login)
       Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
-      u.update_attributes(:login => suggestion)
+      u.update(:login => suggestion)
     end
     u.add_provider_auth(auth_info)
     u

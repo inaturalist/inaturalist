@@ -216,7 +216,7 @@ class CheckList < List
       if listed_taxon.primary_listing
         ListedTaxon.update_cache_columns_for(listed_taxon)
       else
-        listed_taxon.primary_listed_taxon.update_attributes_on_related_listed_taxa
+        listed_taxon.primary_listed_taxon.update_on_related_listed_taxa
       end
       if !listed_taxon.valid?
         Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +

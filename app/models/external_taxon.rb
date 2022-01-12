@@ -26,7 +26,7 @@ class ExternalTaxon < ApplicationRecord
     taxon_framework_relationship.set_relationship if ( name_changed? || new_record? )
     attrs = {}
     attrs[:relationship] = taxon_framework_relationship.relationship
-    taxon_framework_relationship.update_attributes( attrs )
+    taxon_framework_relationship.update( attrs )
   end
   
   private

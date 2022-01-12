@@ -331,7 +331,7 @@ class TaxaController < ApplicationController
 
   def update
     return unless presave
-    if @taxon.update_attributes(params[:taxon])
+    if @taxon.update(params[:taxon])
       flash[:notice] = t(:taxon_was_successfully_updated)
       if locked_ancestor = @taxon.ancestors.is_locked.first
         flash[:notice] += " Heads up: you just added a descendant of a " + 
@@ -1559,7 +1559,7 @@ class TaxaController < ApplicationController
     @external_taxa.each do |external_taxon|
       external_taxon.delay(:priority => USER_INTEGRITY_PRIORITY).graft_silently unless external_taxon.grafted?
       if external_taxon.created_at > start
-        external_taxon.update_attributes( creator: current_user )
+        external_taxon.update( creator: current_user )
       end
     end
 

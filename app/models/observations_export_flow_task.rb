@@ -45,7 +45,7 @@ class ObservationsExportFlowTask < FlowTask
     unless persisted?
       raise ObservationsExportNotSaved.new( "Export must be saved before being run" )
     end
-    update_attributes(finished_at: nil, error: nil, exception: nil)
+    update(finished_at: nil, error: nil, exception: nil)
     outputs.each(&:destroy)
     outputs.reload
     query = inputs.first.extra[:query]
@@ -69,7 +69,7 @@ class ObservationsExportFlowTask < FlowTask
   rescue Exception => e
     exception_string = [ e.class, e.message ].join(" :: ")
     logger.error "ObservationsExportFlowTask #{id}: Error: #{exception_string}" if @debug
-    update_attributes(finished_at: Time.now,
+    update(finished_at: Time.now,
       error: "Error",
       exception: [ exception_string, e.backtrace ].join("\n"))
     if options[:email]
@@ -88,7 +88,7 @@ class ObservationsExportFlowTask < FlowTask
       includes[1][:identifications] = [:stored_preferences, :user]
     end
     includes << { observation_field_values: :observation_field }
-    includes << { photos: :user } if export_columns.detect{ |c| c == "image_url" }
+    includes << { photos: [:user, :flags, :file_prefix, :file_extension] } if export_columns.detect{ |c| c == "image_url" }
     includes << :sounds if export_columns.detect{ |c| c == "sound_url" }
     includes << :quality_metrics if export_columns.detect{ |c| c == "captive_cultivated" }
     includes

@@ -7,7 +7,7 @@ describe DarwinCore::SimpleMultimedia do
   let( :o ) { make_research_grade_observation }
   let( :photo ) do
     first_photo = o.photos.first
-    first_photo.update_attributes( license: Photo::CC_BY )
+    first_photo.update( license: Photo::CC_BY )
     DarwinCore::SimpleMultimedia.adapt( first_photo, observation: o )
   end
   it "should return StillImage for dwc_type" do
@@ -28,8 +28,8 @@ describe DarwinCore::SimpleMultimedia do
     expect( photo.creator ).to eq photo.user.name
   end
   it "should return user login for creator if name blank" do
-    photo.update_attributes( native_realname: nil )
-    photo.user.update_attributes( name: nil )
+    photo.update( native_realname: nil )
+    photo.user.update( name: nil )
     expect( photo.creator ).to eq photo.user.login
   end
   it "should return iNaturalist for publisher of LocalPhoto" do
@@ -48,8 +48,8 @@ describe DarwinCore::SimpleMultimedia do
     expect( photo.rightsHolder ).to eq photo.user.name
   end
   it "should return user login for rightsHolder if name blank" do
-    photo.update_attributes( native_realname: "" )
-    photo.user.update_attributes( name: "" )
+    photo.update( native_realname: "" )
+    photo.user.update( name: "" )
     photo.reload
     expect( photo.native_realname ).to be_blank
     expect( photo.user.name ).to be_blank

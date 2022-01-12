@@ -102,7 +102,7 @@ describe GuideTaxon do
     end
 
     it "should set a common name" do
-      gt.update_attributes(:display_name => nil)
+      gt.update(:display_name => nil)
       expect(gt.display_name).to be_blank
       gt.sync_site_content(:names => true)
       expect(gt.display_name).to eq gt.taxon.common_name.name
@@ -150,7 +150,7 @@ describe GuideTaxon do
 
     it "should not replace existing content if not requested" do
       original_name = "foo1"
-      gt.update_attributes(:display_name => original_name)
+      gt.update(:display_name => original_name)
       gp = GuidePhoto.make!(:guide_taxon => gt)
       gr = GuideRange.make!(:guide_taxon => gt)
       gs = GuideSection.make!(:guide_taxon => gt)

@@ -114,7 +114,7 @@ class UsersController < ApplicationController
 
     @user.roles << @role
     if @role.name === Role::CURATOR
-      @user.update_attributes( curator_sponsor: current_user )
+      @user.update( curator_sponsor: current_user )
     end
     flash[:notice] = "Added #{@role.name} status to #{@user.login}"
     redirect_back_or_default @user
@@ -134,7 +134,7 @@ class UsersController < ApplicationController
     if @user.roles.delete(@role)
       flash[:notice] = "Removed #{@role.name} status from #{@user.login}"
       if @role.name === Role::CURATOR
-        @user.update_attributes( curator_sponsor: nil )
+        @user.update( curator_sponsor: nil )
       end
     else
       flash[:error] = "#{@user.login} doesn't have #{@role.name} status"
@@ -206,11 +206,11 @@ class UsersController < ApplicationController
 
   def set_spammer
     if [ "true", "false" ].include?(params[:spammer])
-      @user.update_attributes(spammer: params[:spammer])
+      @user.update(spammer: params[:spammer])
       if params[:spammer] === "false"
         flash[:notice] = t(:user_flagged_as_a_non_spammer_html, user: helpers.link_to_user( @user ) )
         @user.flags_on_spam_content.each do |flag|
-          flag.update_attributes(resolved: true, resolver: current_user)
+          flag.update(resolved: true, resolver: current_user)
         end
         @user.flags.where(flag: Flag::SPAM).update_all(resolved: true, resolver_id: current_user.id )
         @user.unsuspend!
@@ -823,7 +823,7 @@ class UsersController < ApplicationController
       v = false if v.noish?
       session[k] = v
       if (k =~ /^prefers_/ || k =~ /^preferred_/) && logged_in? && current_user.respond_to?(k)
-        current_user.update_attributes(k => v)
+        current_user.update(k => v)
       end
     end
     head :no_content
@@ -845,19 +845,19 @@ class UsersController < ApplicationController
       groups -= [params[:leave]].flatten
     end
     groups = ( groups + [params[:test]] ).compact.uniq
-    current_user.update_attributes( test_groups: groups.join( "|" ) )
+    current_user.update( test_groups: groups.join( "|" ) )
     redirect_back_or_default( root_path )
   end
 
   def leave_test
     groups = ( current_user.test_groups_array - [params[:test]].flatten ).compact.uniq
-    current_user.update_attributes( test_groups: groups.join( "|" ) )
+    current_user.update( test_groups: groups.join( "|" ) )
     redirect_back_or_default( root_path )
   end
 
   def trust
     if friendship = current_user.friendships.where( friend_id: params[:id] ).first
-      friendship.update_attributes( trust: true )
+      friendship.update( trust: true )
     else
       friendship = current_user.friendships.create!( friend: @user, trust: true, following: false )
     end
@@ -868,7 +868,7 @@ class UsersController < ApplicationController
 
   def untrust
     if friendship = current_user.friendships.where( friend_id: params[:id] ).first
-      friendship.update_attributes( trust: false )
+      friendship.update( trust: false )
     end
     respond_to do |format|
       format.json { render json: { friendship: friendship } }
@@ -1037,7 +1037,7 @@ protected
     else
       notice_msg = t(:you_are_now_following_x, :friend_user => friend_user.login)
       if friendship = current_user.friendships.where( friend_id: friend_user.id ).first
-        friendship.update_attributes( following: true )
+        friendship.update( following: true )
       else
         friendship = current_user.friendships.create( friend: friend_user, following: true )
       end
@@ -1057,7 +1057,7 @@ protected
     if friendship = current_user.friendships.find_by_friend_id(params[:remove_friend_id])
       notice_msg = t(:you_are_no_longer_following_x, :friend => friendship.friend.login)
       if friendship.trust?
-        friendship.update_attributes( following: false )
+        friendship.update( following: false )
       else
         friendship.destroy
       end

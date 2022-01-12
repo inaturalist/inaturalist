@@ -40,7 +40,7 @@ class ProjectAssetsController < ApplicationController
   # PUT /project_assets/1.xml
   def update
     respond_to do |format|
-      if @project_asset.update_attributes(params[:project_asset])
+      if @project_asset.update(params[:project_asset])
         format.html { redirect_to(@project, :notice => 'ProjectAsset was successfully updated.') }
         format.xml  { head :ok }
       else

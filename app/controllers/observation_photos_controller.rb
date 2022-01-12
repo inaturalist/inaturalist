@@ -105,7 +105,7 @@ class ObservationPhotosController < ApplicationController
       @observation_photo.photo = @photo
     end
     respond_to do |format|
-      if @observation_photo.update_attributes( allowed_params )
+      if @observation_photo.update( allowed_params )
         @observation_photo.observation.elastic_index!
         format.json { render :json => @observation_photo.to_json(:include => [:photo]) }
       else

@@ -52,7 +52,7 @@ describe ObservationField do
       of = ObservationField.make!(name: "oldname")
       ofv = ObservationFieldValue.make!(observation: o, observation_field: of)
       expect( Observation.page_of_results({ "field:oldname": nil }).total_entries ).to eq 1
-      without_delay{ of.update_attributes(name: "newname") }
+      without_delay{ of.update(name: "newname") }
       new_of_with_oldname = ObservationField.make!(name: "oldname")
       expect( Observation.page_of_results({ "field:oldname": nil }).total_entries ).to eq 0
       expect( Observation.page_of_results({ "field:newname": nil }).total_entries ).to eq 1
@@ -65,7 +65,7 @@ describe ObservationField do
       Project.elastic_index!( ids: [proj.id] )
       expect( Project.elastic_search( id: proj.id ).results.results.first.
         project_observation_fields.first.observation_field.datatype ).to eq "numeric"
-      without_delay{ of.update_attributes( datatype: "text" ) }
+      without_delay{ of.update( datatype: "text" ) }
       expect( Project.elastic_search( id: proj.id ).results.results.first.
         project_observation_fields.first.observation_field.datatype ).to eq "text"
     end
