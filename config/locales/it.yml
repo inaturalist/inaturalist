@@ -1675,6 +1675,7 @@ it:
   flag_as_non_spammer: Contrassegna come non-spam
   #Label for the date/time when a flag was created
   flag_created: Contrassegno Creato
+  flag_deleted: Contrassegno eliminato
   flag_description: Contrassegna il contenuto per segnalare ai curatori che c'è qualcosa che non va al riguardo.
   flag_comment_description: Aggiungi un commento facoltativo a questo flag che spieghi ulteriormente perché lo stai aggiungendo e fornisca link per supportarlo.
   flag_for_check_list_title_html: |
@@ -4282,6 +4283,11 @@ it:
   subscribe_to_observations_from_this_place_html: <a>Iscriviti</a> alle osservazioni da questo luogo
   subscribe_to_observations_in_a_taxon: Iscriviti a tutte le osservazioni per una specie o un gruppo di organismi (ad esempio, 'scorpioni').
   subscribe_to_observations_in_a_place: Iscriviti a tutte le osservazioni all'interno di questo luogo. È inoltre possibile aggiungere un filtro di taxon (ad esempio 'scorpioni dal Texas').
+  subscribe_to_places_help: |
+    Le sottoscrizioni controllano quello che vedi nei tuoi aggiornamenti e sulla tua bacheca.
+    Ad esempio, puoi iscriverti ad un taxon per ottenere aggiornamenti sulle nuove
+    osservazioni di quel taxon. Sei automaticamente iscritto agli aggiornamenti
+    sulle osservazioni che hai commentato o identificato.
   subscribe_to_this: Iscriviti
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Iscriviti</a>

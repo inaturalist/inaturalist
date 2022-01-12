@@ -54,7 +54,10 @@ function mapStateToProps( state ) {
     mapZoomLevel: state.config.mapZoomLevel,
     mapZoomLevelLocked: state.config.mapZoomLevelLocked === undefined
       ? false
-      : state.config.mapZoomLevelLocked
+      : state.config.mapZoomLevelLocked,
+    officialAppIds: state.config.officialAppIds === undefined 
+      ? [] 
+      : state.config.officialAppIds
   }, state.currentObservation );
 }
 

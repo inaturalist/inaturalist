@@ -1741,6 +1741,7 @@ lv:
   flag_as_non_spammer: Pievienot nemēstuļotāja karodziņu
   #Label for the date/time when a flag was created
   flag_created: Karodziņš izveidots
+  flag_deleted: Karodziņš izdzēsts
   flag_description: Pievieno šim saturam karodziņu, lai pārziņi zinātu, ka kaut kas nav kārtībā.
   flag_comment_description: Ja vēlies, pievieno karodziņam komentāru ar pamatojumu un saitēm uz pierādījumiem.
   flag_for_check_list_title_html: |
@@ -3640,7 +3641,7 @@ lv:
   private: privāta
   private_: Privāta
   private_description: "Šīs ir no publiskajām kartēm pilnīgi noslēptas koordinātas. Patiesās koordinātas ir redzamas tikai tev un to projektu pārziņiem, kuriem esi pievienojis novērojumu. Jāpiebilst gan, ka novērojumi ar noslēptām koordinātām tiek izmantoti, lai pārbaudītu vietu kontrollapas."
-  probably_spam: Visticamāk, mēstules
+  probably_spam: Potenciāls mēstuļotājs
   proceed: Turpināt
   processing: Apstrādā
   processing3p: "Apstrādā..."
@@ -6572,10 +6573,30 @@ lv:
           Nerādīt profilā ikmēneša atbalstītāja piespraudīti
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Ja pārdomāsi, iestatījumus vienmēr iespējams mainīt <a href='/users/edit'>šeit</a>.
+        inaturalist_network_affiliation_desc_html: |
+          <p><a href="%{url}" target="_blank">iNaturalist tīkls</a> ir lokalizētu tīmekļa vietņu apkopojums, kas savienots ar globālo iNaturalist kopienu. Vietējās organizācijas, kas parakstījušas vienošanos ar iNaturalist, atbalsta mūsu tīmekļa vietnes, lai veicinātu iNaturalist lietošanu noteiktajā valstī, kas nāk par labu vietējai bioloģiskai daudzveidībai. Organizācijām ir pieeja pie savās valstīs reģistrētām koordinātām, kas tiek automātiski noslēptas no publikas, lai aizsargātu apdraudētas sugas.
+          </p>
+          <p>
+          Tavs lietotājvārds un parole funkcionē visās tīmekļa vietnēs, kas ir daļa no iNaturalist tīkla. Ja izvēlies saistīt savu kontu ar kādu no iNaturalist tīkla partneriem, tava e-pasta adrese (tikai, lai sazinātos ar tevi par vietnes aktivitātēm) un noslēpto un privāto novērojumu faktiskās koordinātas būs pieejamas šīm organizācijām, kas uztur attiecīgās tīmekļa vietnes.
+          </p>
+          <p>
+          Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu.
+          </p>
+        licensing_desc_html: |
+          Licencējot savu saturu, tu sniedz jebkuram tiesības izmantot šo saturu bez tavas piekrišanas lūgšanas ar nosacījumu, ka tiek ievēroti licences noteikumi. Turklāt %{site_name} iekļauj tavu ar Creative Commons licencēto saturu regulāri atjaunotos arhīvos, kas paredzēti noteiktām partnerorganizācijām. Piemēram, iekļaujam ar No
+          Copyright (CC0), Attribution (CC BY) un Attribution-NonCommercial
+          (CC BY-NC) licencēto saturu arhīvā, kas paredzēts <a href="http://www.gbif.org/">Globālajai bioloģiskās daudzveidības informācijas datubāzei</a> (GBIF). Tā ir starptautiska, starpvaldību organizācija, kas apkopo un izplata biloģiskās daudzveidības datus no visas pasaules.
+        license_description_attribution_html: |
+          Licenču apraksti un attēli &copy; %{year} Creative Commons, tiek izmantoti ar <a href="http://creativecommons.org/licenses/by/3.0/">Creative
+          Commons Attribution licenci</a>
         #Header for the section of the profile settings where you can choose to
         #show a badge on your profile to indicate that you make a regular,
         #monthly donation to iNat
         monthly_supporter: Ikmēneša iNaturalist atbalstītājs
+        monthly_supporter_desc_html: |
+          Lietotāji ar iNaturalist ikmēnēša atbalstītāja statusu katru mēnesi automātiski ziedo, lai atbalstītu California Academy of Sciences (United States IRS EIN 94-1156258) un iNaturalist un iNaturalist tīkla vietņu uzturēšanu, kas nenes peļņu.
+          <a href="%{url}">Lai kļūtu par ikmēneša atbalstītāju, nospied šeit</a>.
+          Kad būsim saņēmuši tavu ziedojumu, varēsi atzīmēt lodziņu, lai rādītu savā profilā ziedotāja statusu. Lai mēs varētu pārbaudīt to, ka esi kļuvis par ikmēneša atbalstītāju, tev jānorāda vienādu e-pasta adresi gan Donorbox, gan iNaturalist vietnē.
         muting_desc_html: |
           <p>
           Apklusinot kādu lietotāju, nesaņemsi paziņojumus par viņa darbībām, tai skaitā tavu novērojumu komentēšanu, sazināšanos ar tevi, tevis pieminēšanu utt. Apklusināšana sniedz iespēju kādu ignorēt, neierobežojot lietotāju veikt citas darbības.
@@ -6610,6 +6631,7 @@ lv:
         place_preference_changed_notice_html: |
           Vietu iestatījumi izmainīti. Ja pārdomāsi, iestatījumus vienmēr iespējams mainīt <a href='/users/edit'>šeit</a>.
         project_addition_preferences:
+          any: Nenorādīt
           joined: Projekti, kuriem esi pievienojies
           none: "Neviens, tikai tu pats vari pievienot projektiem novērojumus"
         prefers_community_taxa_desc: |
@@ -6641,12 +6663,15 @@ lv:
           Noklusējuma vieta novērojumu meklēšanai
         scientific_name_first_desc: |
           Vispirms rādīt zinātniskos, nevis tautā pieņemtos nosaukumus.
+        taxon_change_desc: |
+          Kad taksoni tiek apvienoti vai pārsaukti %{site_name} vietnē, tavas identifikācijas, novērojumi, sarakstā iekļautie taksoni, u.c. tiks automātiski atjaunoti un samainīti pret jauni izveidotajiem taksoniem, bet ar nosacījumu, ka izmaiņas taksonos ir viennozīmīgas. Ja atspējo šo funkciju vai izmaiņas ir viennozīmīgas (piemēram, taksonu sadalīšanas rezultātā), saņemsi paziņojumu par izmaiņām kopā ar saiti uz rīku, kuru var izmantot, lai manuāli atjaunotu savu saturu.
         thanks_for_supporting_us!: Paldies par atbalstu!
         this_only_applies_to_traditional_projects: |
           Tas attiecas tikai uz standarta projektiem. Nav iespējams izlaist kolekciju projektu vai projektu grupu novērojumus, jo tie ir tikai saglabāti meklēšanas rezultāti. Vairāk informācijas <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">šeit</a>.
         youve_used_all_of_your_blocks: Esi izmantojis visas savas lietotāju bloķēšanas iespējas. Atsauc kādu no tām, lai pievienotu citu.
       recent:
         about_recent_users: Apraksts
+        definitions_html: <dl> <dt>Potenciāls mēstuļotājs</dt> <dd> Lietotājs, visticamāk, ir mēstuļotājs bez novērojumiem vai identifikācijām, bet ar profila aprakstu.</dd> <dt>Automātiskā mēstuļotāju noteikšana</dt> <dd> Sistēma automātiski atpazina mēstuļotāju. </dd> <dt>Manuālā mēstuļotāju noteikšana</dt> <dd> Mēstuļotāju atpazinis vietnes pārzinis. </dd> <dt>Kļūdaina atbilsme</dt> <dd> Pārziņu pārbaudīti lietotāji, kuriem pievienots mēstuļotāja karodziņš, kas patiesībā nav mēstuļotāji.</dd> </dl>
       show:
         take_a_moment_to_review_html: 'Velti brīdi sava laika, lai apskatītu mūsu <a href="%{link}">vadlīnijas</a>.'
         this_user_was_banned: Lietotājs tika uz laiku bloķēts
@@ -6654,6 +6679,16 @@ lv:
           Vēlies parādīt citiem savus mīļākos taksonus? %{link_start_tag}Izveido sarakstu%{link_end_tag} ar nosaukumu "Izlase", lai šajā sadaļā parādītu savu nesen pievienoto saturu.
     user_parents:
       confirm:
+        thanks_donor_html: |
+          <p>
+          Paldies par taviem ziedojumiem iNaturalist tīklam. Jau izmantojām tavu ziedojumu, lai pārbaudītu tavu identitāti, tāpēc tev vairs nav jāveic nekādas papildu darbības. <strong>Tava bērna konts ir aktivizēts.</strong>
+          </p>
+          <p>
+          Lai pieslēgtos kontam no Seek lietotnes, nospied izvēlnē "iNaturalist" un "Pieslēgties ar iNaturalist" pogu lapas apakšā.
+          </p>
+          <p>
+          Izmantojot Seek lietotni, bērns varēs pievienot savam iNaturalist kontam novērojumus, kas būs apskatāmi arī iNaturalist.org vietnē.
+          </p>
         thanks_for_creating_a_minor_account: PALDIES PAR BĒRNU KONTA IZVEIDOŠANU!
         we_will_send_you_an_email: |
           Nosūtīsim ziņu uz tavu e-pastu, kad tava bērna konts būs aktivizēts.

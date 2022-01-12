@@ -142,7 +142,8 @@ class ObservationModal extends React.Component {
       mapZoomLevel,
       onMapZoomChanged,
       mapZoomLevelLocked,
-      setMapZoomLevelLocked
+      setMapZoomLevelLocked,
+      officialAppIds
     } = this.props;
     if ( !observation ) {
       return <div />;
@@ -738,6 +739,24 @@ class ObservationModal extends React.Component {
                                 I18n.t( `places_name.${_.snakeCase( country.name )}`, { defaultValue: country.name } ) || I18n.t( "somewhere_on_earth" )
                               ) : I18n.t( "somewhere_on_earth" ) }
                             </li>
+                            { observation.application && observation.application.name && (
+                              <li>
+                                <a href={observation.application.url}>
+                                  { officialAppIds.includes( observation.application.id ) ? (
+                                    <img
+                                      className="app-thumbnail"
+                                      src={observation.application.icon}
+                                      alt={observation.application.name}
+                                    />
+                                  ) : <i className="fa fa-cloud-upload bullet-icon" />
+                                  }
+                                  <span className="name">
+                                    { observation.application.name }
+                                  </span>
+                                </a>
+                              </li>
+                            )
+                            }
                             { blind ? null : (
                               <li className="view-follow">
                                 <a

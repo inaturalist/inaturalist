@@ -72,9 +72,11 @@
 <div id="maincol" class="column span-17">
   <%= render :partial => 'tools' %>
 
-  <div id="description" class="readable description">
-    <%= formatted_user_text(@list.description =~ /^Every species seen by / ? @list.description.gsub('Every species seen by', t(:every_species_seen_by)) : @list.description) %>
-  </div>
+  <%- unless @list.description.blank? %>
+    <div id="description" class="readable description">
+      <%= formatted_user_text @list.description %>
+    </div>
+  <% end -%>
 
   <% if @list.rank_rule != "any" -%>
     <div id="list_rank_rule" class="description">
