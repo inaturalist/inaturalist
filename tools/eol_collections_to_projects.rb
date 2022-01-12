@@ -200,7 +200,7 @@ def work_on_collection(eol_collection_id)
         where("LOWER(taxon_names.name) = ?", list_item.strip.downcase).first
       if existing
         puts "\t\t#{list_item} already on #{the_list}, updating..."
-        existing.update_attributes(:description => annotation) unless opts[:test]
+        existing.update(:description => annotation) unless opts[:test]
         listed_taxa_taxon_ids.delete(existing.taxon_id)
       else
         #find the taxon to make a listed taxon

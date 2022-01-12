@@ -150,8 +150,6 @@ module TaxaHelper
     return nil if taxon.blank?
     user = if options[:user]
       options[:user]
-    elsif defined? current_user
-      current_user
     else
       @user
     end

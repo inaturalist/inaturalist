@@ -245,7 +245,7 @@ module Shared::ListsModule
     
     list_attributes = params[:list] || params[:check_list]
     
-    if @list.update_attributes(list_attributes)
+    if @list.update(list_attributes)
       flash[:notice] = t(:list_saved)
       redirect_to @list
     else

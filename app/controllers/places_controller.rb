@@ -200,7 +200,7 @@ class PlacesController < ApplicationController
       if @place.too_big_for_check_list?
         notice = t(:place_too_big_for_check_list)
         @place.check_list.destroy if @place.check_list
-        @place.update_attributes(:prefers_check_lists => false)
+        @place.update(:prefers_check_lists => false)
       end
     end
     
@@ -236,7 +236,7 @@ class PlacesController < ApplicationController
   end
   
   def update
-    if @place.update_attributes(params[:place])
+    if @place.update(params[:place])
       if !current_user.is_admin? &&
           ( place_geometry = PlaceGeometry.where( place_id: @place.id ).select( "id, ST_Area(geom) AS area" ).first ) &&
           place_geometry.area > Place::MAX_PLACE_AREA_FOR_NON_STAFF

@@ -138,7 +138,7 @@ namespace :inaturalist do
         pp sounds
         begin
           client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: sounds.map{|s| { key: s.key } } } )
-          s.update_attributes(removed_from_s3: true)
+          s.update(removed_from_s3: true)
         rescue
           fails += 1
           break if fails >= 5

@@ -84,9 +84,9 @@ class BulkObservationFile
         end
 
         # Check the validity of the observation
-        obs = new_observation(row)
+        obs = new_observation( row )
         unless obs.valid?
-          errors << BulkObservationException.new('Observation is not valid', row_count + 1, obs.errors)
+          errors << BulkObservationException.new( "Observation is not valid", row_count + 1, obs.errors )
         end
 
         # Increment the row count.
@@ -124,6 +124,8 @@ class BulkObservationFile
         row[6] = tags.join(',')
 
         obs = new_observation(row)
+        # Not sure why but without this the OFVs won't save as of Rails 6 ~~~kueda 20211028
+        obs.observation_field_values.to_a
         begin
           # Try to save the observation
           obs.save!
@@ -186,7 +188,10 @@ class BulkObservationFile
             obs.custom_field_errors << "#{pof.observation_field.name} is required"
           end
         else
-          obs.observation_field_values.build(:observation_field_id => pof.observation_field_id, :value => value)
+          obs.observation_field_values.build(
+            observation_field_id: pof.observation_field_id,
+            value: value
+          )
         end
       end
     end

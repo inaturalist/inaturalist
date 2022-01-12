@@ -87,7 +87,7 @@ class AdminController < ApplicationController
       u.icon_url = nil
     end
     if params[:user]
-      u.update_attributes( params[:user] )
+      u.update( params[:user] )
     else
       u.save
     end

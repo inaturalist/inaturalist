@@ -658,7 +658,7 @@ class Taxon < ApplicationRecord
     end
     attrs = {}
     attrs[:relationship] = taxon_framework_relationship.relationship
-    taxon_framework_relationship.update_attributes( attrs )
+    taxon_framework_relationship.update( attrs )
   end
 
   def complete_species_count
@@ -897,7 +897,7 @@ class Taxon < ApplicationRecord
       if parent&.can_be_grafted_to && rank_level && parent&.rank_level && parent.rank_level > rank_level && [
         GENUS, SPECIES
       ].include?( parent.rank )
-        update_attributes( parent: parent )
+        update( parent: parent )
       end
     end
     raise e unless grafted?
@@ -930,7 +930,7 @@ class Taxon < ApplicationRecord
   end
 
   def move_to_child_of( taxon )
-    update_attributes( parent: taxon )
+    update( parent: taxon )
   end
 
   def default_name( options = {} )
@@ -1268,7 +1268,7 @@ class Taxon < ApplicationRecord
     return unless ( tf = tfr.taxon_framework ) && upstream_taxon_framework != tf
 
     tfr.destroy
-    update_attributes( taxon_framework_relationship_id: nil )
+    update( taxon_framework_relationship_id: nil )
   end
 
   def upstream_taxon_framework
@@ -1436,7 +1436,7 @@ class Taxon < ApplicationRecord
 
   def set_wikipedia_summary( options = {} )
     unless auto_description?
-      update_attributes( wikipedia_summary: false )
+      update( wikipedia_summary: false )
       taxon_descriptions.destroy_all
       return
     end
@@ -1462,7 +1462,7 @@ class Taxon < ApplicationRecord
     end
     td = taxon_descriptions.where( locale: locale ).first
     td ||= taxon_descriptions.build( locale: locale )
-    td&.update_attributes(
+    td&.update(
       title: details[:title],
       body: details[:summary],
       provider_taxon_id: details[:id],
@@ -1564,7 +1564,7 @@ class Taxon < ApplicationRecord
       reject_tst_name = reject_tst.taxon_name
       taxon_name = taxon_names.where( lexicon: TaxonName::SCIENTIFIC_NAMES, name: reject_tst_name.name ).first
       if taxon_name
-        reject_tst.update_attributes( taxon_name_id: taxon_name.id )
+        reject_tst.update( taxon_name_id: taxon_name.id )
       end
       next if reject_tst.valid?
 
@@ -1578,7 +1578,7 @@ class Taxon < ApplicationRecord
     reject_taxon_names.each do | taxon_name |
       taxon_name.reload
       if taxon_name.is_scientific_names? && taxon_name.is_valid?
-        taxon_name.update_attributes( is_valid: false )
+        taxon_name.update( is_valid: false )
       end
       next if taxon_name.valid?
 
@@ -2483,12 +2483,13 @@ class Taxon < ApplicationRecord
     scope.select( :id ).find_in_batches do | batch |
       taxon_ids = []
       batch.each do | t |
-        Taxon.where( id: t.id ).update_all( observations_count:
-          Observation.elastic_search(
+        Taxon.where( id: t.id ).update_all(
+          observations_count: Observation.elastic_search(
             filters: [{ term: { "taxon.ancestor_ids" => t.id } }],
             size: 0,
             track_total_hits: true
-          ).total_entries )
+          ).total_entries
+        )
         taxon_ids << t.id
       end
       Taxon.elastic_index!( ids: taxon_ids )

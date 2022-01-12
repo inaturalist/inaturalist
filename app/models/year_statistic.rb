@@ -74,7 +74,7 @@ class YearStatistic < ApplicationRecord
         }
       end
     end
-    year_statistic.update_attributes( data: json )
+    year_statistic.update( data: json )
     year_statistic.generate_shareable_image
 
     # Streaks are the longest-running and most memory intensive piece to
@@ -87,7 +87,7 @@ class YearStatistic < ApplicationRecord
     # streaks. Yet another thing I never should have built...
     if year <= 2021 || !options[:site].blank?
       json[:observations][:streaks] = streaks( year, options )
-      year_statistic.update_attributes( data: json )
+      year_statistic.update( data: json )
     end
     year_statistic
   end
@@ -147,7 +147,7 @@ class YearStatistic < ApplicationRecord
         observations: observations_histogram_by_created_month( user: user )
       }
     }
-    year_statistic.update_attributes( data: json )
+    year_statistic.update( data: json )
     year_statistic.delay(
       priority: USER_PRIORITY,
       unique_hash: "YearStatistic::generate_shareable_image::#{user.id}::#{year}"

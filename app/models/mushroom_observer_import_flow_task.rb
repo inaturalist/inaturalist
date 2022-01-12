@@ -58,7 +58,7 @@ class MushroomObserverImportFlowTask < FlowTask
   end
 
   def run
-    update_attributes(finished_at: nil, error: nil, exception: nil)
+    update(finished_at: nil, error: nil, exception: nil)
     log "Importing observations from Mushroom Observer for #{user}"
     page = 1
     errors = {}
@@ -82,7 +82,7 @@ class MushroomObserverImportFlowTask < FlowTask
   rescue Exception => e
     exception_string = [ e.class, e.message ].join(" :: ")
     log "Error: #{exception_string}\n#{e.backtrace}"
-    update_attributes(
+    update(
       finished_at: Time.now,
       error: "Error",
       exception: user.is_admin? ? [exception_string, e.backtrace].join("\n") : exception_string

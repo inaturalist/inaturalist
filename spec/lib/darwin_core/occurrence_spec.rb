@@ -62,7 +62,7 @@ describe DarwinCore::Occurrence do
       end
 
       it "should be the login of the person who added the first improving identification that matches the obs taxon if the name is blank" do
-        pa.user.update_attributes( name: nil )
+        pa.user.update( name: nil )
         expect( DarwinCore::Occurrence.adapt( o ).identifiedBy ).to eq improving_ident_species.user.login
       end
     end

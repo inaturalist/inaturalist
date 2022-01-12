@@ -1,9 +1,13 @@
 <%- 
 place ||= @place
-comname = common_taxon_name(taxon, place: place || @site.try(:place)).try(:name)
-comname = capitalize_name( comname ) if comname
 no_common ||= false
-viewer ||= defined?( current_user ) ? current_user : nil
+viewer ||= ( defined?( current_user ) ? current_user : nil ) rescue nil
+comname = common_taxon_name(
+  taxon,
+  place: place || @site.try(:place),
+  user: viewer
+).try(:name)
+comname = capitalize_name( comname ) if comname
 if taxon.rank == 'species' or taxon.rank == 'infraspecies'
   sciname = taxon.name
 else

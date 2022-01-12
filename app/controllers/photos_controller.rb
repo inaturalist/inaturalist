@@ -33,7 +33,7 @@ class PhotosController < ApplicationController
   end
   
   def update
-    if @photo.update_attributes( photo_params( params[:photo] ) )
+    if @photo.update( photo_params( params[:photo] ) )
       respond_to do |format|
         format.html do
           flash[:notice] = t(:updated_photo)

@@ -287,7 +287,7 @@ class Emailer < ActionMailer::Base
     @site_name = @site.name
     # Can't have unicode chars in email headers
     {
-      from: "#{@site.name.mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').to_s} <#{@site.email_noreply}>",
+      from: "#{@site.name.mb_chars.unicode_normalize.gsub(/[^\x00-\x7F]/n,'').to_s} <#{@site.email_noreply}>",
       reply_to: @site.email_noreply
     }
   end
