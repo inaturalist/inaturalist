@@ -10,10 +10,16 @@
 
 <%- content_for(:extrahead) do -%>
   <meta property="og:title" content="<%= @list.title %>"/>
-  <%- og_description = @list.description -%>
+  <%-
+    og_description = if @list.description.blank?
+      t(:check_list_of_species_occuring_in) + " #{@place.display_name}"
+    else
+      @list.description
+    end
+  -%>
   <% if @representative_photo -%>
     <%-
-      og_description += " &mdash; Photo: #{@representative_photo.attribution}"
+      og_description += " - Photo: #{@representative_photo.attribution}"
       @shareable_image_url = @representative_photo.medium_url
     -%>
     <meta property="og:image" content="<%= @shareable_image_url %>"/> 
