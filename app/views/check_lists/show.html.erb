@@ -10,13 +10,7 @@
 
 <%- content_for(:extrahead) do -%>
   <meta property="og:title" content="<%= @list.title %>"/>
-  <%-
-    og_description = if @list.description.blank?
-      t(:check_list_of_species_occuring_in) + " #{@place.display_name}"
-    else
-      @list.description
-    end
-  -%>
+  <%- og_description = @list.description -%>
   <% if @representative_photo -%>
     <%-
       og_description += " &mdash; Photo: #{@representative_photo.attribution}"

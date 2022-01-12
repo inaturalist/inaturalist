@@ -1675,6 +1675,7 @@ it:
   flag_as_non_spammer: Contrassegna come non-spam
   #Label for the date/time when a flag was created
   flag_created: Contrassegno Creato
+  flag_deleted: Contrassegno eliminato
   flag_description: Contrassegna il contenuto per segnalare ai curatori che c'è qualcosa che non va al riguardo.
   flag_comment_description: Aggiungi un commento facoltativo a questo flag che spieghi ulteriormente perché lo stai aggiungendo e fornisca link per supportarlo.
   flag_for_check_list_title_html: |
@@ -4282,8 +4283,11 @@ it:
   subscribe_to_observations_from_this_place_html: <a>Iscriviti</a> alle osservazioni da questo luogo
   subscribe_to_observations_in_a_taxon: Iscriviti a tutte le osservazioni per una specie o un gruppo di organismi (ad esempio, 'scorpioni').
   subscribe_to_observations_in_a_place: Iscriviti a tutte le osservazioni all'interno di questo luogo. È inoltre possibile aggiungere un filtro di taxon (ad esempio 'scorpioni dal Texas').
-  subscribe_to_places_to: |
-    Iscriviti a un luogo per ricevere gli aggiornamenti sulle osservazioni che lo riguardano. Gli aggiornamenti delle persone che segui e sulle cose che hai commentato sono gestiti attraverso le iscrizioni; perciò se vuoi vedere a cosa sei iscritto oppure per disiscriverti da alcune cose, puoi cliccare su "Gestisci tutte le tue iscrizioni" qui sotto. Tu puoi anche disdire le iscrizioni sul sito visualizzando le pagine di riferimento.
+  subscribe_to_places_help: |
+    Le sottoscrizioni controllano quello che vedi nei tuoi aggiornamenti e sulla tua bacheca.
+    Ad esempio, puoi iscriverti ad un taxon per ottenere aggiornamenti sulle nuove
+    osservazioni di quel taxon. Sei automaticamente iscritto agli aggiornamenti
+    sulle osservazioni che hai commentato o identificato.
   subscribe_to_this: Iscriviti
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Iscriviti</a>
@@ -6457,7 +6461,7 @@ it:
         by_deleting_your_account_you_will_remove: |
           Cancellando la tua utenza tu rimuoverai
         caching: |
-          Se stai cancellando il tuo account perché hai cercato di eliminare alcuni dei tuoi contenuti ma puoi ancora vederli sulla mappa o altrove su Internet, ricordati che i dati della mappa possono essere memorizzati nella cache fino ad anche un giorno dopo che i record sono stati eliminati, e che l'eliminazione di contenuti su questa piattaforma non può avere alcun effetto sulle copie che esistono su altri siti e piattaforme (come GBIF).
+          Se stai eliminando il tuo profilo perché hai provato a eliminare alcuni dei tuoi contenuti, ma puoi ancora vederlo su una mappa o altrove su Internet, tieni a mente che i dati della mappa potrebbero rimanere nella cache fino a un giorno dopo l'eliminazione dei dati e che eliminare i contenuti su questa piattaforma potrebbe non influenzare le copie esistenti su altri siti e piattaforme (come GBIF).
         x_observations_html:
           one: |
             <strong class="count">1 osservazione</strong>, incluso il lavoro delle <strong class="count">%{helpers_count} persone</strong> che ti hanno aiutato con le identificazioni

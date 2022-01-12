@@ -17,7 +17,8 @@ class Emailer < ActionMailer::Base
     return if user.blank? || updates.blank?
     return if user.email.blank?
     return if user.prefers_no_email
-
+    return if user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
+    
     @user = user
     set_locale
     @grouped_updates = UpdateAction.group_and_sort( updates, skip_past_activity: true )
@@ -38,6 +39,7 @@ class Emailer < ActionMailer::Base
     return if @user.email.blank?
     return unless @user.prefers_message_email_notification
     return if @user.prefers_no_email
+    return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
     return if @message.from_user.suspended?
     return if ( fmc = @message.from_user_copy ) && fmc.flags.where( "resolver_id IS NULL" ).count.positive?
 
@@ -89,6 +91,7 @@ class Emailer < ActionMailer::Base
     return if @user.email.blank?
     return unless @user.prefers_project_invitation_email_notification?
     return if @user.prefers_no_email?
+    return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
     return if @project.user.suspended?
 
     mail( set_site_specific_opts.merge(
@@ -105,6 +108,7 @@ class Emailer < ActionMailer::Base
     set_locale
     return if @user.email.blank?
     return if @user.prefers_no_email?
+    return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
     return if @user.suspended?
 
     @site_name = site_name

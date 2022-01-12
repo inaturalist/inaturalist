@@ -1696,6 +1696,7 @@ de:
   flag_as_non_spammer: Als Nicht-Spammer markieren
   #Label for the date/time when a flag was created
   flag_created: Meldung berichtet
+  flag_deleted: Meldung gelöscht
   flag_description: Melde diesen Inhalt, um Kuratoren wissen zu lassen, dass etwas nicht stimmt (Begründung am besten auf englisch verfassen).
   flag_comment_description: Erläutere in einem optionalen Kommentar den Sachverhalt näher und füge ggf. einen unterstützenden Link hinzu.
   flag_for_check_list_title_html: |
@@ -4334,12 +4335,8 @@ de:
   subscribe_to_observations_from_this_place_html: Beobachtungen von diesem Ort <a>abonnieren</a>
   subscribe_to_observations_in_a_taxon: Abonniere alle Beobachtungen einer Art oder Gruppe von Organismen (z.B. "Heuschrecken").
   subscribe_to_observations_in_a_place: Abonniere alle in diesem Gebiet veröffentlichten Beobachtungen. Du kannst auch einen optionalen Taxonfilter hinzufügen (z.B. 'Moose aus Baden-Württemberg').
-  subscribe_to_places_to: |
-    Du kannst bestimmte Gebiete abonnieren, um über neue Beobachtungen informiert zu werden, die dort gemacht wurden.
-    Mittels Abonnements siehst du auch die Aktivitäten von Personen, denen du folgst, und Sachen,
-    die du kommentiert hast. Um zu sehen, was du abonniert hast, und um Abonnements abzubestellen,
-    klicke unten auf „Verwalte deine Abonnements“. Du kannst auch einzelne Abonnements abbestellen,
-    indem du die jeweilige Seite aufrufst.
+  subscribe_to_places_help: |
+    Durch Abonnements bestimmst du, welche Updates und Dashboard-Meldungen dir angezeigt werden. Wenn du zum Beispiel ein Taxon abonnierst, siehst du entsprechend aktuelle Beobachtungen auf deinem Dashboard. Beobachtungen, die du kommentierst oder zu welchen du Bestimmungen abgibst, werden automatisch abonniert.
   subscribe_to_this: Abonnieren
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Abonniere</a>
@@ -6579,9 +6576,7 @@ de:
         by_deleting_your_account_you_will_remove: |
           Durch das Löschen deines Kontos wirst du entfernen:
         caching: |
-          Wenn du dein Konto löschen möchtest, weil du einen bestimmten Inhalten löschen wolltest, aber ihn trotzdem noch auf einer Karte oder anderswo
-          im Internet siehst, bedenke, dass Kartendaten bis zu
-          einen Tag lang zwischengespeichert werden, auch nachdem Datensätze gelöscht wurden, und dass das Löschen von Inhalten auf dieser Plattform möglicherweise keine Auswirkungen auf Kopien hat, die auf anderen Websites und Plattformen existieren (wie GBIF).
+          Wenn du dein Konto löschen möchtest, weil du versucht hast, bestimmte Inhalte zu löschen, aber sie trotzdem noch auf einer Karte oder anderswo im Internet siehst, bedenke, dass Kartendaten bis zu einem Tag zwischengespeichert werden, auch nachdem Datensätze gelöscht wurden, und dass das Löschen von Inhalten auf dieser Plattform möglicherweise keine Auswirkungen auf Kopien hat, die auf anderen Websites und Plattformen existieren (wie GBIF).
         x_observations_html:
           one: |
             <strong class="count">%{count} Beobachtung</strong>,
