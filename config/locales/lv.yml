@@ -1629,6 +1629,8 @@ lv:
     native: Attīstījās šajā reģionā vai nonāca šeit dabiskā ceļā
     endemic: vietējs un nav atrodams nekur citur
     introduced: nonāca reģionā cilvēku darbības rezultātā
+  estimate_which_input: |
+    Iecerētie ievades taksoni, kas tiks aizstāti ar izvades taksoniem. Kad taksonu sadalīšana būs pabeigta, jauni izveidotajiem taksoniem tiks pielīdzināts kopējs priekšteču taksons. Var paiet kāds brīdis līdz aprēķini būs pabeigti. Saites uz novērojumiem tiks saīsinātas uz 200 apakškopām.
   event_in_progress: Pasākums ir procesā
   event_stats: Informācija par pasākumu
   event_url: Pasākuma URL
@@ -6498,6 +6500,8 @@ lv:
           Vienam taksonam var būt daudz tautā pieņemto nosaukumu. Mēs globālā mērogā katram taksonam izmantojam vienu noklusējuma tautā pieņemto nosaukumu. To iespējams nomainīt, velkot nosaukumu saraksta sākumā. Iespējams arī norādīt noklusējuma nosaukumus dažādās vietās, rediģējot nosaukumu un pievienojot vietu datubāzei, bet, lūdzu, dari to tikai tad, ja pamani vairākas vietas ar pretrunīgiem nosaukumiem.
     users:
       dashboard:
+        taxon_change_desc: |
+          Izmaiņas taksonos attēlo %{site_name} vietnes taksonomiskās izmaiņas. Kad notiek šādas izmaiņas, vairumā gadījumu %{site_name} automātiski atjaunina lietotāju saturu. Pat, ja atspējosi šo funkciju, mēs tev paziņosim par izmaiņām tavos datos.
         your_content_will_be_updated: Tavs saturs, kas saistīts ar šiem taksoniem, tiks automātiski atjaunināts.
         you_may_want_to_update: Jāatjaunina ar šiem taksoniem saistītais saturs.
         cannot_update_your_content: "%{site_name} tavu izmaiņām paredzēto saturu nevar automātiski atjaunināt."
@@ -6670,6 +6674,11 @@ lv:
       recent:
         about_recent_users: Apraksts
         definitions_html: <dl> <dt>Potenciāls mēstuļotājs</dt> <dd> Lietotājs, visticamāk, ir mēstuļotājs bez novērojumiem vai identifikācijām, bet ar profila aprakstu.</dd> <dt>Automātiskā mēstuļotāju noteikšana</dt> <dd> Sistēma automātiski atpazina mēstuļotāju. </dd> <dt>Manuālā mēstuļotāju noteikšana</dt> <dd> Mēstuļotāju atpazinis vietnes pārzinis. </dd> <dt>Kļūdaina atbilsme</dt> <dd> Pārziņu pārbaudīti lietotāji, kuriem pievienots mēstuļotāja karodziņš, kas patiesībā nav mēstuļotāji.</dd> </dl>
+        recent_users_desc_html: |
+          <p>
+          Cerams, ka šis rīks palīdzēs gan laipni sagaidīt jaunus lietotājus, gan cīņā ar mēstuļotājiem. Izmantojot <a
+          href="https://akismet.com/">Akismet</a>, daudziem lietotājiem tiek automātiski pievienots mēstuļotāju karodziņš. Diemžēl Akismet nav perfekts rīks. Ja vēlies palīdzēt, vari veltīt pāris minūtes, lai pārbaudītu jaunos kontus un pievienotu mēstuļotāju karodziņus lietotājiem, par kuriem ir aizdomas.
+          </p>
       show:
         take_a_moment_to_review_html: 'Velti brīdi sava laika, lai apskatītu mūsu <a href="%{link}">vadlīnijas</a>.'
         this_user_was_banned: Lietotājs tika uz laiku bloķēts
