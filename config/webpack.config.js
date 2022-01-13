@@ -31,7 +31,11 @@ const config = {
     path: path.resolve( __dirname, "../assets/javascripts" )
   },
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".jsx"],
+    fallback: {
+      querystring: require.resolve( "querystring-es3" ),
+      punycode: require.resolve( "punycode" )
+    }
   },
   module: {
     rules: [
@@ -39,7 +43,15 @@ const config = {
       {
         test: /\.jsx?$/,
         loader: "babel-loader",
-        query: { presets: ["@babel/preset-env", "@babel/preset-react"] }
+        resolve: {
+          fullySpecified: false
+        },
+        options: {
+          presets: [
+            "@babel/preset-env",
+            "@babel/preset-react"
+          ]
+        }
       }
     ]
   },
