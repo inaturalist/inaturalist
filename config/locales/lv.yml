@@ -306,7 +306,7 @@ lv:
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
     Pievienot <a target="_blank" href="%{url}">izmaiņas taksonos</a>, lai pārdēvētu
   add_an_assessment: Pievienot novērtējumu
-  add_an_identification: Pievienot identifikāciju
+  add_an_identification: Identificēt
   add_an_observation: Pievienot novērojumu
   add_an_observation_of: "Pievienot %{taxon} novērojumu"
   add_an_observation_to_project_html: Pievienot novērojumu %{project} projektam
@@ -774,7 +774,7 @@ lv:
   #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Labot vairākus %{x} taksonus reizē"
   batch_operations: Vairākas darbības reizē
-  be_the_first_to_fave_this_observation: Esi pirmais, kas pievienos šo novērojumu izlasei!
+  be_the_first_to_fave_this_observation: Pievieno novērojumu izlasei pirmais!
   because_of: ', jo'
   become_a_donor_caps: KĻŪSTI PAR ZIEDOTĀJU
   become_a_donor_today_caps: KĻŪSTI PAR ZIEDOTĀJU JAU ŠODIEN
@@ -917,7 +917,7 @@ lv:
     href='http://creativecommons.org/licenses/by-nc/4.0/'
     target='_blank'>Creative Commons Attribution-NonCommercial licenci</a>. Jebkurš bez prasīšanas varēs kopēt un atkārtoti izmantot tavas fotogrāfijas un novērojumus, bet ar noteikumu, ka tu tiksi norādīts pie nopelniem un tas netiks darīts komerciālos nolūkos. Licenci iespējams dezaktivizēt vai izvēlēties citu, bet jāņem vērā, ka šī licence ir visparocīgākā, lai dalītos ar savu materiālu ar pētniekiem.
   checklist: Kontrollapa
-  choose_a_field: Izvēlēties lauku
+  choose_a_field: Pievienot lauku
   choose_a_list_above: Izvēlēties kādu no augšējiem laukiem
   choose_a_place: Izvēlēties vietu
   choose_a_taxon: Izvēlēties taksonu (pēc izvēles)
@@ -1119,9 +1119,9 @@ lv:
     feather: Viena vai vairākas spalvas, kas atdalītas no organisma
     organism: Vesels organisms vai tā daļa
     scat: Izkārnijumi (neskaitot pūču atrijas vai citu atvemtu barību)
-    track: Nospiedumi uz zemes, ko atstājis kāds organisms
+    track: Kāda organisma uz zemes atstāti nospiedumi
     bone: |
-      Pārsvarā ārskeleta atliekas, piemēram, daļēji atsegti kauli citādi nesabojātā organismā jāsauc par "organismu".
+      Ārskeleta atliekas. Jāņem vērā, ka daļēji atsegti kauli citādi nesabojātā organismā tomēr jāsauc par organismu.
     molt: Nomesta āda vai ārskelets
   controls: Vadīklas
   convert: Konvertēt
@@ -1533,6 +1533,8 @@ lv:
   each_place_displays_all_species_inat_knows: "Vietu lapās tiek uzrādītas visas sugas, kas reģistrētas %{site_name} vietnē un atrodamas konkrētajā vietā, tai skaitā informācija par sugas izplatību, aizsardzības statusu un to, kurš bija pirmais, kas novēroja kādu no sugām konkrētajā vietā un reģistrēja to %{site_name} vietnē. Sugas ir iespējams meklēt ierastajā veidā vai filtrēt pēc taksonomiskās grupas, krāsas vai aizsardzības statusa."
   earliest_added: Vissenāk pievienotie
   edit: Rediģēt
+  #Title of the moderation note editor
+  edit_moderator_note: Rediģēt moderatora piezīmi
   edit_a_batch_of_observations: Rediģēt vairākus novērojumus reizē
   edit_account_settings_and_profile: "Mainīt konta un profila iestatījumus"
   edit_assessment: Rediģēt novērtējumu
@@ -1873,7 +1875,7 @@ lv:
   google: Google
   google_maps_not_loaded_error: |
     Google Maps nespēja uzsākt darbību. Iespējams, ka piekļuve pie Google Maps ir bloķēta pārlūka paplašinājuma, ugunsmūra, interneta pakalpojumu sniedzēja vai kāda cita iemesla dēļ.
-  got_it!: Skaidrs!
+  got_it!: Aizvērt
   got_your_data_somewhere_else?: Tev ir dati, kas pieejami citur? Varam palīdzēt.
   graft: Atzars
   graft_taxon: '%{taxon} taksona atzars'
@@ -2031,7 +2033,7 @@ lv:
   inbox: Iesūtne
   include_places: Iekļaut vietas
   include_projects: Iekļaut projektus
-  include_suggestions_not_seen_nearby: Iekļaut indivīdu minējumus, kas nav novēroti tuvumā
+  include_suggestions_not_seen_nearby: Rādīt organismus, kas nav novēroti tuvumā
   include_taxa: Iekļaut taksonus
   include_users: Iekļaut lietotājus
   including: iekļaujot
@@ -2706,8 +2708,8 @@ lv:
   no_flickr_photos_tagged: Neviena Flickr fotogrāfija nav izvēlēta!
   no_identifications: Nav identifikāciju
   no_identifications_added:
-    current_user: Neesi pievienojis nevienu identifikāciju neviena lietotāja novērojumam.
-    user: "%{user}nav pievienojis nevienu identifikāciju neviena lietotāja novērojumam."
+    current_user: Vēl neesi identificējis nevienu novērojumu.
+    user: "%{user} vēl nav identificējis nevienu novērojumu."
   no_ids: "ID skaits"
   no_ids_have_been_suggested_yet: Neviena ID vēl nav ieteikta
   no_interaction_data_available: Saskarsmes dati nav pieejami
@@ -2752,7 +2754,7 @@ lv:
   no_attached_range: Izplatības dati nav pievienoti
   no_range_data_available: Nav pieejamu datu par izplatības apgabalu.
   no_recent_activity: Nav nesenas aktivitātes
-  no_relevant_annotations: Nav atbilstošu piezīmju
+  no_relevant_annotations: Nav piezīmju
   no_reply_yet: Pagaidām atbildes nav
   no_results_found: Nekas netika atrasts
   no_results_for: 'Nekas netika atrasts, meklējot '
@@ -4359,7 +4361,7 @@ lv:
   subscriptions: Abonementi
   subscriptions_arent_available_for: Vietām bez robežām nav iespējams sekot.
   successfully_changed_your_password: Parole veiksmīgi nomainīta.
-  suggest_an_identification: Pievieno identifikāciju
+  suggest_an_identification: Identificēt
   suggest_or_require_that: Iesaki vai pieprasi, lai tavā projektā novērojumu pievienotāji aizpilda šos laukus.
   suggestions: Minējumi
   suitable_for_the_global_biodiversity_information_facility: Derīgs Globālajai bioloģiskās daudzveidības informācijas datubāzei (GBIF)
@@ -4837,16 +4839,16 @@ lv:
   user_added_a_x: "%{user} pievienoja %{x}"
   user_added_a_x_to_noun_by_html: "%{user} pievienoja %{x} pie %{noun} no %{by}"
   user_added_a_x_to_noun_by_user_html: "%{user} pievienoja %{x} pie %{noun} no %{by}"
-  user_added_a_x_to_noun_by_you_html: "%{user} pievienoja %{x} pie %{noun} no tevis"
+  user_added_a_x_to_noun_by_you_html: "%{user} pievienoja %{x} pie tava %{noun}"
   user_added_a_x_to_noun_html: "%{user} pievienoja %{x} pie %{noun}"
   user_added_an_identification_html: "%{user} pievienoja identifikāciju"
   user_added_an_observation_field_html: '%{user} pievienoja vērtību "%{field_name}" laukā lietotāja %{owner} novērojumam'
   user_added_an_observation_field_value_html: "%{user} pievienoja novērojuma lauka vērtību"
   user_added_an_observation_html: "%{user} pievienoja novērojumu"
   user_added_an_x: "%{user} pievienoja %{x}"
-  user_added_an_x_to_noun_by_html: "%{user} pievienoja %{x} pie %{noun} no %{by}"
-  user_added_an_x_to_noun_by_user_html: "%{user} pievienoja %{x} pie %{noun} no %{by}"
-  user_added_an_x_to_noun_by_you_html: "%{user} pievienoja %{x} pie %{noun} no tevis"
+  user_added_an_x_to_noun_by_html: "%{user} pievienoja %{x} pie %{by} %{noun}"
+  user_added_an_x_to_noun_by_user_html: "%{user} pievienoja %{x} pie %{by} %{noun}"
+  user_added_an_x_to_noun_by_you_html: "%{user} pievienoja %{x} pie tava %{noun}"
   user_added_an_x_to_noun_html: "%{user} pievienoja %{x} pie %{noun}"
   user_added_x_observations_html: "%{user} pievienoja %{x} novērojumus"
   user_already_authenticated: Lietotājs jau ir autentificēts
@@ -5144,7 +5146,7 @@ lv:
     Paldies par veltīto laiku, uzmanību, zināšanām un ziedojumiem! iNaturalist ir California Academy of Sciences un National Geographic Society bezpeļņas kopdarbs. Gūstam atbalstu no dažādām subsīdijām un ziedojumiem, no kuriem liela daļa nāk arī no kopienas. It īpaši pateicamies ikmēneša atbalstītājiem, jo viņu dāvātais sniedz mums iespēju plānot uz priekšu.
   yir_your_gift_sustains: |
     Tevis dāvātais palīdz uzturēt mūsu programmu globālā mērogā un tas atstāj pozitīvu ietekmi uz ekoloģiju un lietotāju personīgo dzīvi
-  you: tevis
+  you: tu
   you_: No tevis
   you_appear_offline_try_again: |
     Izskatās, ka esi bezsaistē. Pamēģini vēlreiz, kad būs pieejams interneta pieslēgums.
@@ -6585,9 +6587,9 @@ lv:
           Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu.
           </p>
         licensing_desc_html: |
-          Licencējot savu saturu, tu sniedz jebkuram tiesības izmantot šo saturu bez tavas piekrišanas lūgšanas ar nosacījumu, ka tiek ievēroti licences noteikumi. Turklāt %{site_name} iekļauj tavu ar Creative Commons licencēto saturu regulāri atjaunotos arhīvos, kas paredzēti noteiktām partnerorganizācijām. Piemēram, iekļaujam ar No
+          Licencē savu saturu, lai sniegtu lietotājiem tiesības to izmantot, nelūdzot tavu piekrišanu, bet ievērojot norādītos licences noteikumus. %{site_name} glabā tavu ar Creative Commons licencēto saturu partnerorganizācijām paredzētos arhīvos, kas tiek regulāri atjaunoti. Piemēram, ar No
           Copyright (CC0), Attribution (CC BY) un Attribution-NonCommercial
-          (CC BY-NC) licencēto saturu arhīvā, kas paredzēts <a href="http://www.gbif.org/">Globālajai bioloģiskās daudzveidības informācijas datubāzei</a> (GBIF). Tā ir starptautiska, starpvaldību organizācija, kas apkopo un izplata biloģiskās daudzveidības datus no visas pasaules.
+          (CC BY-NC) licencētais saturs tiek glabāts arhīvā, kas paredzēts <a href="http://www.gbif.org/">Globālajai bioloģiskās daudzveidības informācijas datubāzei</a> (GBIF). Tā ir starptautiska starpvaldību organizācija, kas apkopo un izplata bioloģiskās daudzveidības datus no visas pasaules.
         license_description_attribution_html: |
           Licenču apraksti un attēli &copy; %{year} Creative Commons, tiek izmantoti ar <a href="http://creativecommons.org/licenses/by/3.0/">Creative
           Commons Attribution licenci</a>
