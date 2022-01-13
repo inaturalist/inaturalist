@@ -1759,6 +1759,9 @@ class ObservationsController < ApplicationController
   end
 
   def moimport
+    @removal_date = MushroomObserverImportFlowTask::REMOVAL_DATE
+    return render_404 if Date.today >= @removal_date
+
     if @api_key = params[:api_key]&.strip
       @mo_import_task = MushroomObserverImportFlowTask.new( user: current_user )
       @mo_url_field = @mo_import_task.mo_url_observation_field
