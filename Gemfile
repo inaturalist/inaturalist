@@ -110,7 +110,7 @@ gem "yajl-ruby", require: "yajl"
 gem "yui-compressor"
 
 group :production do
-  gem "newrelic_rpm", "~> 6.2.0"
+  gem "newrelic_rpm"
 end
 
 group :test, :development, :prod_dev do

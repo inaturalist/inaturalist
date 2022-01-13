@@ -405,7 +405,7 @@ GEM
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
     netrc (0.11.0)
-    newrelic_rpm (6.2.0.354)
+    newrelic_rpm (8.3.0)
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-darwin)
       racc (~> 1.4)
@@ -739,7 +739,7 @@ DEPENDENCIES
   koala
   lefthook
   machinist!
-  newrelic_rpm (~> 6.2.0)
+  newrelic_rpm
   nokogiri
   non-stupid-digest-assets
   objectify-xml!
