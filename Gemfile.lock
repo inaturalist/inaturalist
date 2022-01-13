@@ -397,6 +397,7 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.1.1)
+    mini_portile2 (2.6.1)
     minitest (5.14.4)
     multi_json (1.13.1)
     multi_xml (0.6.0)
@@ -407,6 +408,9 @@ GEM
     netrc (0.11.0)
     newrelic_rpm (8.3.0)
     nio4r (2.5.8)
+    nokogiri (1.12.5)
+      mini_portile2 (~> 2.6.1)
+      racc (~> 1.4)
     nokogiri (1.12.5-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.12.5-x86_64-linux)
@@ -673,6 +677,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+  ruby
   x86_64-darwin-17
   x86_64-darwin-18
   x86_64-darwin-20
