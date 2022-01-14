@@ -546,13 +546,34 @@ da:
   #Label for an option to show/include content by any user
   any_user: Hvilken som helst
   anyone: Enhver
+  app_owner_application_about_p1_html: |
+    iNaturalist tredjeparts-apps tillader godkendt brug af iNaturalist API'en, hvilket muliggør brug af API'en til ting såsom at oprette observationer eller
+    identifikationer. Almindelige brugsscenarier er apps såsom computer- eller mobil-apps, hvis funktionalitet bl.a. tillader deres bruger(e) at oprette iNaturalist-observationer.
+    Dette indhold skal genereres via menneskelig involvering eller tilsyn. For yderligere oplysninger, læs venligst vores <a href="/pages/community+guidelines" target="_blank">Fællesskabsretningslinjer</a>, som forbyder maskingenererede observationer, identifikationer og
+    kommentarer.
+  app_owner_application_about_p2_html: |
+    Fra og med 2022 kræver vi manuel godkendelse af brugere, som ønsker at kode API-klienter.
+    For at kode tredjeparts-apps, skal der først indsendes en ansøgning for at blive
+    en "app-ejer. Denne ansøgning skal beskrive funktionaliteten i den foreslåede app,
+    samt hvordan den planlægges brugt. For at kunne indsende en ansøgning skal din konto være
+    mindst 2 måneder gammel og skal have foretaget mindst 10 <a href="/pages/help#identification"
+    target="_blank">forbedrende identifikationer</a> den seneste måned. Vi kan stille opfølgende
+    spørgsmål om din plan og forbeholder os retten til at afvise ansøgninger uanset årsag.
+  app_owner_application_inelligible: |
+    For at kunne indsende en ansøgning skal din konto være mindst 2 måneder gammel og skal
+    have foretaget mindst 10 forbedrende identifikationer den seneste måned.
+  app_owner_application_fields_explanation_html: Beskriv funktionalitet, din app vil have, og hvordan du planlægger den brugt.
+  app_owner_application_success: App-ejeransøgning indsendt
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Program
   applications: Applikationer
+  apply_app_owner: Ansøg
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Anvend
+  apply_to_be_an_app_owner: Ansøg om at blive App-ejer
+  apply_to_create_third_party_applications_title: Ansøg om at kreere tredjeparts-applikationer
   apply_to_selected: Tilføj til valgte
   apply_captive_cultivated: "Tilføj i fangenskab / dyrket"
   apply_fields: Tilføj felter
@@ -670,6 +691,7 @@ da:
   #of values, and not a synonym of "typical" or "normal"
   avg: Gns.
   back: Tilbage
+  back_to_applications: "&laquo; Retur til applikationer"
   back_to_all_species: Tilbage til Alle arter
   back_to_editing_observation: Tilbage til redigering af observation
   back_to_friends: Tilbage til venner
@@ -755,6 +777,7 @@ da:
   by_you: Af dig
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalendere viser kun %{x} observationer ad gangen
+  callback_url: Callback URL
   cancel: Annullér
   cant_edit_or_delete_hidden_content: Du kan ikke redigere eller slette indhold, som er blevet skjult af sidens kuratorer
   cant_flag_an_object_that_doesnt_exist: Kan ikke markere et objekt, som ikke eksisterer
@@ -946,6 +969,7 @@ da:
     antal observationer, så for at forøge denne taksons chance for inkludering under den næste modeloptræning, så tilføj eller identificér flere observationer
     af denne takson.
   concept_status: Koncept status
+  confidential: Fortrolig
   configure: Konfigurér
   configure_a_widget_to_show: Konfigurér en widget for at vise %{site_name} observationer på din hjemmeside eller i din blog. Det kan være nødvendigt at medtage den integrerede CSS i <code>&lt;head&gt;</code> din HTML. Du kan ændre i CSS'en som du vil.
   confirm: Bekræft
@@ -2389,6 +2413,7 @@ da:
   make_sure_the_default_photo_looks_good: Sørg for, at standard billedet ser godt ud i stor størrelse.
   make_this_your_default_license: "Gør dette til din standard %{type} licens"
   make_this_the_primary_listing: "Gør dette til den primære liste"
+  make_your_app_confidential: Gør din app fortrolig, hvis du kan gemme din app-hemmeligt sikkert, dvs. ikke i en offentligt tilgængelig binær, der kan dekompileres. Afmarkér feltet, hvis dette ikke er tilfældet, og du planlægger at bruge PKCE-flowet
   mammals: pattedyr
   manage_all_your_subscriptions: Administrer alle dine abonnementer
   manage_names: Administrér navne
@@ -4892,6 +4917,7 @@ da:
   uploading_num_of_count_photos:
     one: Uploader foto...
     other: Uploader %{num} af %{count} foto´s...
+  url_for_your_app_outside_of_inaturalist: URL til din app uden for iNaturalist
   url_identifier_of_a_project_derived_from: "URL / identifikator for et projekt afledt af en ekstern ressource"
   url_of_this_taxon_on_the_source_website: URL for denne takson på kildens hjemmeside
   usage_stats: Anvendelses statistik
@@ -4930,6 +4956,7 @@ da:
   user_added_an_x_to_noun_html: "%{user} tilføjede en %{x} til %{noun}"
   user_added_x_observations_html: "%{user} tilføjede %{x} observationer"
   user_already_authenticated: Brugeren er allerede godkendt
+  user_already_app_owner: Bruger er allerede en app-ejer
   user_autocomplete_placeholder: kueda, simon123, osv.
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
   #not the place. Gender for all variables is not known..
