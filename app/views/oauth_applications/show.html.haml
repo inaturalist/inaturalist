@@ -4,7 +4,7 @@
     %h2= @application.name
   .row
     .col-sm-6
-      = image_tag @application.image.url( :medium ), style: "max-width:310px;"
+      = image_tag @application.image.url( :medium ), class: "img-responsive center-block"
     .col-sm-6
       .stacked
         - if @application.description.blank?
@@ -21,25 +21,25 @@
               =t :n_ago, n: time_ago_in_words( @application.created_at )
       - if ( is_admin? || is_me?( @application.owner ) )
         .ui.notice.box
-          %h4=t( :callback_url )
+          %h4=t "activerecord.attributes.oauth_application.callback_url"
           %p
             %code#callback_url= @application.redirect_uri
-          %h4=t( :application_d )
+          %h4=t "activerecord.attributes.oauth_application.uid"
           %p
             %code#application_id= @application.uid
-          %h4=t( :secret )
+          %h4=t "activerecord.attributes.oauth_application.secret"
           %p
             %code#secret= @application.secret
-          %h4=t( :confidential )
+          %h4=t "activerecord.attributes.oauth_application.confidential"
           %p
             %code#confidential= @application.confidential
           %h4=t( :link_to_authorization_code )
           %p= link_to t( :authorize ), oauth_authorization_path( client_id: @application.uid, redirect_uri: @application.redirect_uri, response_type: "code" )
           - if !@application.confidential
             %p
-              = link_to 'Authorize with PKCE', oauth_authorization_path(:client_id => @application.uid, :redirect_uri => @application.redirect_uri, :response_type => 'code', :code_challenge_method => 'plain', :code_challenge => 'some_terrible_challenge' )
-              %span (Use <code>some_terrible_challenge</code> as the <code>code_verifier</code>) Note: this is a basic example. In real code, you MUST use <code>code_challenge_method=S256</code> and correctly hash the <code>code_challenge</code>.
+              = link_to t(:authorize_with_pkce), oauth_authorization_path(:client_id => @application.uid, :redirect_uri => @application.redirect_uri, :response_type => 'code', :code_challenge_method => 'plain', :code_challenge => 'some_terrible_challenge' )
+              %span=t :authorize_with_pkce_desc_html, code_challenge: "some_terrible_challenge", code_verifier_param: "code_verifier", code_challenge_method: "code_challenge_method=S256", code_challenge_param: "code_challenge"
           %h3=t( :actions )
           .inline.buttonrow
             = link_to t( :edit ), edit_oauth_application_path( @application ), class: "inline button"
-            = link_to t( :remove ), oauth_application_path( @application ), method : :delete, data: { confirm: t( :are_you_sure? ) }, class: "inline button"
+            = link_to t( :remove ), oauth_application_path( @application ), method: :delete, data: { confirm: t( :are_you_sure? ) }, class: "btn btn-danger pull-right"

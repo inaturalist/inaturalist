@@ -1,5 +1,5 @@
 - content_for :title do
-  =t :apply_to_create_third_party_applications_title
+  = @title = t( :apply_to_create_applications_title )
 - content_for :extracss do
   :css
     .container .field {
@@ -8,8 +8,8 @@
 .container
   .row
     .col-xs-8.col-xs-offset-2
-      %h1=t :apply_to_create_third_party_applications_title
-      %p=t :app_owner_application_about_p1_html
+      %h1= @title
+      %p=t :app_owner_application_about_p1a_html
       %p=t :app_owner_application_about_p2_html
       - if @eligible
         %h2=t :apply_app_owner

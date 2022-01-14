@@ -1,5 +1,5 @@
 = content_for :title do
-  = @title = t(:third_party_x_application, :x => @site.site_name_short)
+  = @title = t(:applications)
 .container
   %header.page-header
     - if current_user.is_app_owner?
