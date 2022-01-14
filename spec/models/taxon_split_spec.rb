@@ -111,9 +111,9 @@ describe TaxonSplit, "commit_records" do
   describe "for identification disagreements" do
     before do
       superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
-      @input_taxon.update_attributes( parent: superfamily )
-      @output_taxon1.update_attributes( parent: superfamily )
-      @output_taxon2.update_attributes( parent: superfamily )
+      @input_taxon.update( parent: superfamily )
+      @output_taxon1.update( parent: superfamily )
+      @output_taxon2.update( parent: superfamily )
       @input_taxon.reload
       @split.reload
     end
@@ -152,9 +152,9 @@ describe TaxonSplit, "commit_records" do
       it "should not fail when identification has no identification" do
         ancestor = Taxon.make!( rank: Taxon::ORDER )
         ident = observation.identifications.first
-        ident.update_attributes(observation_id: nil, skip_set_previous_observation_taxon: true)
+        ident.update(observation_id: nil, skip_set_previous_observation_taxon: true)
         expect( ident.observation_id ).to be_nil
-        @split.output_taxa.each{ |t| t.update_attributes( parent: ancestor ) }
+        @split.output_taxa.each{ |t| t.update( parent: ancestor ) }
         @split.reload
         @split.commit_records
         ident.reload
@@ -164,7 +164,7 @@ describe TaxonSplit, "commit_records" do
       it "should be replaced with the nearest common ancestor of all output taxa if there is ambiguity" do
         ancestor = Taxon.make!( rank: Taxon::ORDER )
         ident = observation.identifications.first
-        @split.output_taxa.each{ |t| t.update_attributes( parent: ancestor ) }
+        @split.output_taxa.each{ |t| t.update( parent: ancestor ) }
         @split.reload
         expect( ident.taxon ).not_to eq ancestor
         @split.commit_records
@@ -178,7 +178,7 @@ describe TaxonSplit, "commit_records" do
       let(:observation) { Observation.make!( taxon: @split.input_taxon ) }
       it "should change to the nearest common ancestor of all output taxa if there is ambiguity" do
         ancestor = Taxon.make!( rank: Taxon::ORDER )
-        @split.output_taxa.each{ |t| t.update_attributes( parent: ancestor ) }
+        @split.output_taxa.each{ |t| t.update( parent: ancestor ) }
         @split.reload
         expect( observation.taxon ).not_to eq ancestor
         @split.commit_records
@@ -199,7 +199,7 @@ describe TaxonSplit, "commit_records" do
         of = ObservationField.make!( datatype: ObservationField::TAXON )
         ofv = ObservationFieldValue.make!( observation_field: of, value: @split.input_taxon.id )
         ancestor = Taxon.make!( rank: Taxon::ORDER )
-        @split.output_taxa.each{ |t| t.update_attributes( parent: ancestor ) }
+        @split.output_taxa.each{ |t| t.update( parent: ancestor ) }
         @split.reload
         @split.commit_records
         ofv.reload
@@ -275,7 +275,7 @@ describe TaxonSplit, "commit_records" do
           ).not_to be_blank
         end
         it "should not be replaced if the observation has no coordinates" do
-          @observation.update_attributes( latitude: nil, longitude: nil )
+          @observation.update( latitude: nil, longitude: nil )
           expect( @split.output_taxon_for_record( @observation ) ).to be_blank
           prev_ident_count = @observation.identifications.size
           @split.commit_records
@@ -301,9 +301,9 @@ describe TaxonSplit, "commit_records" do
           it "should update the iconic taxon" do
             input_iconic_taxon = Taxon.make!( is_iconic: true, name: "Input Iconic Taxon", rank: Taxon::ORDER )
             output_iconic_taxon = Taxon.make!( is_iconic: true, name: "Output Iconic Taxon", rank: Taxon::ORDER )
-            @input_taxon.update_attributes( parent: input_iconic_taxon, iconic_taxon: input_iconic_taxon )
-            @output_taxon1.update_attributes( parent: output_iconic_taxon, iconic_taxon: output_iconic_taxon )
-            @output_taxon2.update_attributes( parent: output_iconic_taxon, iconic_taxon: output_iconic_taxon )
+            @input_taxon.update( parent: input_iconic_taxon, iconic_taxon: input_iconic_taxon )
+            @output_taxon1.update( parent: output_iconic_taxon, iconic_taxon: output_iconic_taxon )
+            @output_taxon2.update( parent: output_iconic_taxon, iconic_taxon: output_iconic_taxon )
             @split.reload
             expect( @split.input_taxon.iconic_taxon ).to eq input_iconic_taxon
             @split.output_taxa.each do |t|
@@ -365,7 +365,7 @@ describe TaxonSplit, "commit_records" do
         end
         it "should not change the taxon if the place is an ancestor of a non-overlapping presence place" do
           ancestor_place = make_place_with_geom
-          presence_place1.update_attributes( parent: ancestor_place )
+          presence_place1.update( parent: ancestor_place )
           lt = ancestor_place.check_list.add_taxon( @split.input_taxon )
           @split.commit_records
           lt.reload
@@ -392,7 +392,7 @@ describe TaxonSplit, "commit_records" do
       describe "and a common output ancestor" do
         before do
           ancestor = Taxon.make!( rank: Taxon::ORDER )
-          @split.output_taxa.each {|t| t.update_attributes( parent: ancestor ) }
+          @split.output_taxa.each {|t| t.update( parent: ancestor ) }
           expect( @split.output_ancestor ).to eq ancestor
         end
         describe "identifications" do

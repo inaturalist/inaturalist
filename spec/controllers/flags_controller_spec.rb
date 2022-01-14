@@ -100,7 +100,7 @@ describe FlagsController do
 
     it "does not allow the flag creator to destroy if resolved" do
       sign_in( user )
-      flag.update_attributes( resolved: true, resolver: make_curator )
+      flag.update( resolved: true, resolver: make_curator )
       post :destroy, params: { id: flag.id }
       expect( Flag.find_by_id( flag.id ) ).not_to be_blank
     end

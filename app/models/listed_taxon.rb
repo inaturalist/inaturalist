@@ -40,7 +40,7 @@ class ListedTaxon < ApplicationRecord
   after_save :update_cache_columns_for_check_list
   after_save :propagate_establishment_means
   after_save :remove_other_primary_listings
-  after_save :update_attributes_on_related_listed_taxa
+  after_save :update_on_related_listed_taxa
   after_save :index_taxon
   after_save :log_create_if_taxon_id_changed
   after_commit :expire_caches
@@ -454,7 +454,7 @@ class ListedTaxon < ApplicationRecord
           update_cache_columns_for(id)
       end
     elsif primary_listed_taxon
-      primary_listed_taxon.update_attributes_on_related_listed_taxa
+      primary_listed_taxon.update_on_related_listed_taxa
     end
     true
   end
@@ -839,7 +839,7 @@ class ListedTaxon < ApplicationRecord
           end
         else
           lt.skip_index_taxon = true
-          lt.update_attributes( taxon: output_taxon )
+          lt.update( taxon: output_taxon )
         end
       end
       yield(lt) if block_given?
@@ -888,7 +888,7 @@ class ListedTaxon < ApplicationRecord
     related_listed_taxon.update_attribute(:primary_listing, true) if related_listed_taxon && related_listed_taxon.list_id && related_listed_taxon.place_id && can_set_as_primary?
   end
 
-  def update_attributes_on_related_listed_taxa
+  def update_on_related_listed_taxa
     return true unless primary_listing
     related_listed_taxa.each do |related_listed_taxon|
       related_listed_taxon.primary_listing = false
@@ -929,11 +929,11 @@ class ListedTaxon < ApplicationRecord
     primary_listed_taxon.try(:establishment_means)
   end
 
-  def update_attributes_and_primary(listed_taxon, current_user)
+  def update_and_primary(listed_taxon, current_user)
     transaction do
-      update_attributes(listed_taxon.merge(:updater_id => current_user.id))
+      update(listed_taxon.merge(:updater_id => current_user.id))
       if primary_listed_taxon && primary_listed_taxon != self
-        primary_listed_taxon.update_attributes(
+        primary_listed_taxon.update(
           occurrence_status_level: listed_taxon['occurrence_status_level'],
           establishment_means: listed_taxon['establishment_means']
         )

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rubygems"
 require "optimist"
 
@@ -91,10 +93,6 @@ successful_groups = []
 failed_to_save = []
 status = work_on_group( EmailSuppression::BOUNCES )
 successful_groups << EmailSuppression::BOUNCES if status[:success]
-failed_to_save << status[:failed_to_save]
-
-status = work_on_group( EmailSuppression::BLOCKS )
-successful_groups << EmailSuppression::BLOCKS if status[:success]
 failed_to_save << status[:failed_to_save]
 
 status = work_on_group( EmailSuppression::INVALID_EMAILS )

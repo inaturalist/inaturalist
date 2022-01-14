@@ -106,7 +106,7 @@ class TaxonNamesController < ApplicationController
     params[:taxon_name][:updater_id] = current_user.id
 
     respond_to do | format |
-      if @taxon_name.update_attributes( params[:taxon_name] )
+      if @taxon_name.update( params[:taxon_name] )
         flash[:notice] = t( :taxon_name_was_successfully_updated )
         format.html { redirect_to( taxon_name_path( @taxon_name ) ) }
         format.json { head :ok }

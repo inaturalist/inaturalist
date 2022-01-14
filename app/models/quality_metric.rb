@@ -63,6 +63,6 @@ class QualityMetric < ApplicationRecord
 
   def self.vote(user, observation, metric, agree)
     qm = observation.quality_metrics.find_or_initialize_by( metric: metric, user_id: user.try(:id) )
-    qm.update_attributes( agree: agree )
+    qm.update( agree: agree )
   end
 end

@@ -11,20 +11,6 @@ SET row_security = off;
 
 
 --
--- Name: fuzzystrmatch; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS fuzzystrmatch WITH SCHEMA public;
-
-
---
--- Name: EXTENSION fuzzystrmatch; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION fuzzystrmatch IS 'determine similarities and distance between strings';
-
-
---
 -- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -36,7 +22,6 @@ CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
 --
 
 COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial types and functions';
-
 
 
 --
@@ -3250,7 +3235,6 @@ CREATE SEQUENCE public.places_id_seq
 --
 
 ALTER SEQUENCE public.places_id_seq OWNED BY public.places.id;
-
 
 
 --
@@ -6481,13 +6465,6 @@ ALTER TABLE ONLY public.exploded_atlas_places
 ALTER TABLE ONLY public.email_suppressions
     ADD CONSTRAINT email_suppressions_pkey PRIMARY KEY (id);
 
---
--- Name: places_sites places_sites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.places_sites
-    ADD CONSTRAINT places_sites_pkey PRIMARY KEY (id);
-
 
 --
 -- Name: external_taxa external_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
@@ -6847,6 +6824,14 @@ ALTER TABLE ONLY public.place_taxon_names
 
 ALTER TABLE ONLY public.places
     ADD CONSTRAINT places_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: places_sites places_sites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.places_sites
+    ADD CONSTRAINT places_sites_pkey PRIMARY KEY (id);
 
 
 --
@@ -9351,6 +9336,7 @@ CREATE INDEX index_taxon_ranges_on_geom ON public.taxon_ranges USING gist (geom)
 --
 
 CREATE INDEX index_taxon_ranges_on_taxon_id ON public.taxon_ranges USING btree (taxon_id);
+
 
 --
 -- Name: index_taxon_ranges_on_updater_id; Type: INDEX; Schema: public; Owner: -

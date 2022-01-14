@@ -60,7 +60,7 @@ describe List do
       list.add_taxon(species, manually_added: true)
       without_delay do
         expect {
-          list.update_attributes(rank_rule: "species?")
+          list.update(rank_rule: "species?")
         }.to change(list.listed_taxa, :count).by(0)
       end
     end
@@ -68,7 +68,7 @@ describe List do
       list.add_taxon(genus, manually_added: true)
       list.add_taxon(species, manually_added: true)
       without_delay do
-        list.update_attributes(rank_rule: "species?")
+        list.update(rank_rule: "species?")
         expect(list.taxa).to include genus
       end
     end

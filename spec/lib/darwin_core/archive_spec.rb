@@ -23,7 +23,7 @@ end
 
 describe DarwinCore::Archive, "make_descriptor" do
   it "should include the Simple Multimedia extension" do
-    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
+    archive = DarwinCore::Archive.new( extensions: %w(SimpleMultimedia) )
     xml = Nokogiri::XML(open(archive.make_descriptor))
     extension_elt = xml.at_xpath('//xmlns:extension')
     expect( extension_elt['rowType'] ).to eq 'http://rs.gbif.org/terms/1.0/Multimedia'
@@ -55,7 +55,7 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
   let(:o) { make_research_grade_observation }
   let(:p) { 
     photo = o.photos.first
-    without_delay { photo.update_attributes(license: Photo::CC_BY) }
+    without_delay { photo.update(license: Photo::CC_BY) }
     DarwinCore::SimpleMultimedia.adapt(photo, observation: o)
   }
 
@@ -102,7 +102,7 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
   end
 
   it "should include CC0-licensed photos by default" do
-    without_delay { p.update_attributes( license: Photo::CC0 ) }
+    without_delay { p.update( license: Photo::CC0 ) }
     expect( p.license ).to eq Photo::CC0
     expect( Photo.count ).to eq 1
     archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
@@ -114,7 +114,7 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
 
   it "should not include unlicensed photos by default" do
     expect( p.license ).not_to eq Photo::COPYRIGHT
-    without_delay { p.update_attributes( license: Photo::COPYRIGHT ) }
+    without_delay { p.update( license: Photo::COPYRIGHT ) }
     expect( p.license ).to eq Photo::COPYRIGHT
     expect( Photo.count ).to eq 1
     archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
@@ -133,7 +133,7 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
       expect( CSV.read( path ).size ).to eq 2
     end
     it "should include unlicensed images" do
-      without_delay { p.update_attributes( license: nil ) }
+      without_delay { p.update( license: nil ) }
       expect( p.license ).to eq Photo::COPYRIGHT
       p.observations.each(&:elastic_index!)
       archive = DarwinCore::Archive.new( extensions: %w(SimpleMultimedia), photo_licenses: ["ignore"])
@@ -319,7 +319,7 @@ describe DarwinCore::Archive, "make_occurrence_data" do
 
   it "should include unlicensed observations when licenses is ignore" do
     o = make_research_grade_observation
-    without_delay { o.update_attributes( license: nil ) }
+    without_delay { o.update( license: nil ) }
     expect( o.license ).to be_blank
     archive = DarwinCore::Archive.new( licenses: [ "ignore" ] )
     archive.make_data

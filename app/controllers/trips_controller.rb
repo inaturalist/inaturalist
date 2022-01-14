@@ -259,7 +259,7 @@ class TripsController < ApplicationController
       @trip.published_at = nil
     end
     respond_to do |format|
-      if @trip.update_attributes(params[:trip])
+      if @trip.update(params[:trip])
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
         format.json { head :no_content }
       else
@@ -361,7 +361,12 @@ class TripsController < ApplicationController
       format.json do
         @saved.each_with_index do |tt,i|
           if @saved[i].taxon
-            @saved[i].taxon.html = view_context.render_in_format(:html, :partial => "shared/taxon", :object => @saved[i].taxon)
+            @saved[i].taxon.html = view_context.render_in_format(
+              :html,
+              partial: "shared/taxon",
+              object: @saved[i].taxon,
+              current_user: current_user
+            )
           end
         end
         render :json => {

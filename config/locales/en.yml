@@ -635,13 +635,41 @@ en:
   # Label for an option to show/include content by any user
   any_user: Any
   anyone: Anyone
+  app_owner_application_about_p1a_html: |
+    iNaturalist apps allow authenticated use of the iNaturalist API. This
+    allows you to make API calls that do things like create observations or
+    identifications. Usual use cases are apps such as desktop apps or mobile
+    apps that include functionality for their user(s) to create iNaturalist
+    observations. This content must be generated with real human involvement
+    or oversight. Please read our <a href="/pages/community+guidelines"
+    target="_blank">Community Guidelines</a> prohibiting machine-generated
+    observations, identifications, and comments for more details.
+  app_owner_application_about_p2_html: |
+    As of 2022 we are requiring manual approval for users wishing to make API clients.
+    In order to create third-party apps, you must first submit an application to become
+    an "app owner." This application should describe the functionality of your proposed app
+    and how you plan to use it. In order to submit an application your account must be at
+    least 2 months old and must have made at least 10 <a href="/pages/help#identification"
+    target="_blank">improving identifications</a> in the last month. We may ask follow-up
+    questions about your plan and we reserve the right to turn down applications for any reason.
+  app_owner_application_inelligible: |
+    In order to submit an application your account must be at least 2 months old and must
+    have made at least 10 improving identifications in the last month.
+  app_owner_application_fields_explanation_html: Describe the functionality your app
+    will have and how you plan to use it.
+  app_owner_application_success: App owner application submitted
   # An app or service the user has authorized to access their iNat account, e.g.
   # the iNaturalist Android app or Flickr
   application: Application
+  # Apps or services the user has authorized to access their iNat account, e.g.
+  # the iNaturalist Android app or Flickr
   applications: Applications
+  apply_app_owner: Apply
   # Button label and section header when submitting a form to request to be a
   # curator
   apply_curator: Apply
+  apply_to_be_an_app_owner: Apply to be an App Owner
+  apply_to_create_applications_title: Apply To Create Applications
   apply_to_selected: Apply to selected
   apply_captive_cultivated: "Apply captive / cultivated"
   apply_fields: Apply fields
@@ -751,6 +779,17 @@ en:
     natureserve: NatureServe
     cites: CITES
   authorize: Authorize
+  # Second-person verb to authorize an application to access an iNat account
+  # via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: Authorize with PKCE
+  # Explanation for how to use the PKCE authorization link. All variables are
+  # code that must match the content of the link and thus cannot be
+  # translated.
+  authorize_with_pkce_desc_html: |
+    (Use <code>%{code_challenge}</code> as the
+    <code>%{code_verifier_param}</code>) Note: this is a basic example. In production code,
+    you MUST use <code>%{code_challenge_method}</code> and correctly hash
+    the <code>%{code_challenge_param}</code>.
   authorize_permissions_from_provider: "Authorize permissions from %{provider}"
   automatic_short: Auto
   automatically_add_observations_to_this_project: Automatically add observations to this project
@@ -759,6 +798,7 @@ en:
   # of values, and not a synonym of "typical" or "normal"
   avg: Avg
   back: Back
+  back_to_applications: "&laquo; Back to applications"
   back_to_all_species: Back to All Species
   back_to_editing_observation: Back to editing observation
   back_to_friends: Back to friends
@@ -844,6 +884,7 @@ en:
   by_you: By you
   calendar: Calendar
   calendars_only_show_x_observations_at_time: Calendars only show %{x} observations at a time
+  callback_url: Callback url
   cancel: Cancel
   cant_edit_or_delete_hidden_content: You can't edit or delete content that has been hidden by site curators
   cant_flag_an_object_that_doesnt_exist: Can't flag an object that doesn't exist
@@ -931,7 +972,6 @@ en:
   check_lists_must_belong_to_a_place: |
     Check lists must belong to a place. To create a new check list, visit
     a place's default check list and click the 'Create a new check list' link.
-  check_list_of_species_occuring_in: Check list of species occuring in
   check_list_place: "%{place} Check List"
   check_list_updated: Check list updated!
   check_lists_for: "Other Check Lists for %{place}"
@@ -979,6 +1019,7 @@ en:
               people to the new observation form, e.g. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
               You can use this to track participation from different sources. You can access these codes when downloading your project's observations as CSV.
   comma_separated_please: Comma-separated, please
+  # Noun, used to label a comment or a comment field in a form
   comment: comment
   # Verb, generally a label on a button that allows the user to add a comment
   comment_: Comment
@@ -1045,6 +1086,7 @@ en:
     included during the next model training, add or identify more observations
     of this taxon.
   concept_status: Concept Status
+  confidential: Confidential
   configure: Configure
   configure_a_widget_to_show:
     Configure a widget to show %{site_name} observations on your website or
@@ -1640,6 +1682,8 @@ en:
   each_place_displays_all_species_inat_knows: "Each place page displays all the species %{site_name} knows about from that place, including information about their abundance, conservation status, and who was first to observe that species from that place on %{site_name}. You can filter the species by taxonomic group, color, conservation status, or plain old search."
   earliest_added: Earliest Added
   edit: Edit
+  # Title of the moderation note editor
+  edit_moderator_note: Edit Moderator Note
   edit_a_batch_of_observations: Edit a Batch of Observations
   edit_account_settings_and_profile: "Edit account settings &amp; profile"
   edit_assessment: Edit Assessment
@@ -1743,7 +1787,6 @@ en:
   event_stats: Event Stats
   event_url: Event URL
   events_only: Events only
-  every_species_seen_by: Every species seen by
   everyone: everyone
   everyone_: Everyone
   everyone_journal_posts: Everyone's Journal Posts
@@ -1769,7 +1812,11 @@ en:
   # A third-party app or service the user has authorized to access their iNat
   # account, e.g. Flickr
   external_applications: External Applications
-  external_applications_description: External Applications are third party software applications that you have authorized to access your iNaturalist account on your behalf. In general, they can do everything with your account that you can, so make sure you trust the app developers before granting them permission.
+  external_applications_description: |
+    External Applications are third-party software applications that you have
+    authorized to access your iNaturalist account on your behalf. In general,
+    they can do everything with your account that you can, so make sure you
+    trust the app developers before granting them permission.
   external_taxon_including_children: External taxon (including children)
   extinct: extinct
   extinct_in_the_wild: Extinct in the Wild
@@ -2307,7 +2354,7 @@ en:
   leading: Leading
   learn: Learn
   learn_about_the_species_live_in: Learn about the species that live in
-  learn_about_third_party_tracking: Learn more about third party tracking
+  learn_about_third_party_tracking: Learn more about third-party tracking
   learn_more: Learn More
   learn_more_raquo: "Learn more &raquo;"
   learn_what_these_licenses_mean: Learn what these licenses mean
@@ -2410,6 +2457,10 @@ en:
   link_or_unlink_your_facebook_account: Link or unlink your Facebook account
   link_or_unlink_your_flickr_account: Link or unlink your Flickr account
   link_or_unlink_your_google_account: Link or unlink your Google account
+  # Text for a link that provides an example of how an application can send a
+  # user to iNat to authorize the app's use of their iNat account. "Link" is
+  # a noun.
+  link_to_authorization_code: Link to authorization code
   link_your_facebook_account: Link your Facebook account
   link_your_flickr_account: Link your Flickr account
   link_your_google_account: Link your Google account
@@ -2561,6 +2612,7 @@ en:
   make_sure_the_default_photo_looks_good: Make sure the default photo looks good in large size.
   make_this_your_default_license: "Make this your default %{type} license"
   make_this_the_primary_listing: "Make this the primary listing"
+  make_your_app_confidential: Make your app confidential if you can store your app secret securely, i.e. not in a publicly availble binary that can be decompiled. Uncheck this box if this is not the case and you plan to use the PKCE flow
   mammals: mammals
   manage_all_your_subscriptions: Manage all your subscriptions
   manage_names: Manage Names
@@ -2819,6 +2871,7 @@ en:
   new: New
   new_and_noteworthy: New & Noteworthy
   new_announcement: New announcement
+  new_application: New application
   new_assessment: New assessment
   new_check_list: New check list
   new_check_list_for: "Create a new check list for %{place} &raquo;"
@@ -4965,7 +5018,7 @@ en:
   these_folks_kindly_volunteer_to: These folks kindly volunteer to maintain our taxonomy and deal with other issues.
   these_observations_have_not_been_uploaded_yet: |
     These observations have not been uploaded yet.
-  third_party_tracking: Third Party Tracking
+  third_party_tracking: Third-Party Tracking
   third_person_possessive_singular: "%{object_phrase}'s %{noun}"
   this: this
   this_bioblitz_beings_in: This bioblitz begins in
@@ -5013,8 +5066,8 @@ en:
     This will remove iNaturalist's ability to access this account on your behalf
     until you grant access again. You may need to change your settings on the
     external site to completely prevent access.
-  # Application is a third-party app or service the user has authorized to
-  # access their iNat account
+  # Application is an app or service the user has authorized to access their
+  # iNat account
   this_will_sign_you_out_current_session: This will sign you out of your current session on this application.
   this_will_try_to_add_tags_to_your_flickr: This will try to add tags to your Flickr photos.  Continue?
   this_year: This Year
@@ -5159,6 +5212,7 @@ en:
   uploading_num_of_count_photos:
     one: Uploading photo...
     other: Uploading %{num} of %{count} photos...
+  url_for_your_app_outside_of_inaturalist: URL for your app outside of iNaturalist
   url_identifier_of_a_project_derived_from: "URL / identifier of a project derived from some external resource"
   url_of_this_taxon_on_the_source_website: URL of this taxon on the source's website
   usage_stats: Usage stats
@@ -5202,6 +5256,7 @@ en:
   user_added_an_x_to_noun_html: "%{user} added an %{x} to %{noun}"
   user_added_x_observations_html: "%{user} added %{x} observations"
   user_already_authenticated: User is already authenticated
+  user_already_app_owner: User is already an app owner
   user_autocomplete_placeholder: kueda, simon123, etc.
   # Label for comprehensive check lists. @vow_or_con will work for the taxon but
   # not the place. Gender for all variables is not known..
@@ -6010,13 +6065,13 @@ en:
     oauth:
       authorizations:
         new:
-          # Application is a third-party app or service the user is about to
+          # Application is an app or service the user is about to
           # authorize to access their iNat account
           authorize_application_to_use_your_account?: Authorize %{application} to use your account?
-          # Application is a third-party app or service the user has authorized to
+          # Application is an app or service the user has authorized to
           # access their iNat account
           this_application_will_be_able_to_colon: "This application will be able to:"
-          # Application is a third-party app or service the user has authorized to
+          # Application is an app or service the user has authorized to
           # access their iNat account
           more_about_application: More about %{application}
     observations:
@@ -7633,7 +7688,7 @@ en:
         you_must_enter_confirmation_code_in_the_form: |
           You must enter "%{confirmation_code}" in the form to delete your account
       edit:
-        about_third_party_tracking: About third party tracking
+        about_third_party_tracking: About third-party tracking
         blocking_desc_html: |
           <p>
             Blocking someone prevents them from messaging you, commenting on your
@@ -7787,9 +7842,9 @@ en:
           observations from the same day to make it harder for other people to
           guess the true coordinates based on observations made around the same
           time.
-        prefers_no_tracking_label: Do not collect stability and usage data using third party services
+        prefers_no_tracking_label: Do not collect stability and usage data using third-party services
         prefers_no_tracking_label_desc_we_use: |
-          We use a variety of third party services to monitor stability and
+          We use a variety of third-party services to monitor stability and
           diagnose bugs and problems in our software. These third parties
           include
         prefers_no_tracking_label_desc_we_use_google_html:
@@ -7812,7 +7867,7 @@ en:
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Device details, like make and model of a mobile phone
         prefers_no_tracking_label_desc_value_html: |
-          <strong>These third party services provide enormous value to
+          <strong>These third-party services provide enormous value to
           us</strong> in maintaining the stability and usability of iNaturalist
           with our relatively small staff. On mobile devices, there is almost no
           other way we can gain insight into problems that are occurring, since
@@ -8273,6 +8328,9 @@ en:
       # a concern, like messaging someone about plagiarism, or documenting
       # violations of the Community Guidelines for future reference
       ModeratorNote: Moderator Note
+      # Software application that operates iNat on a user's behalf, e.g. the
+      # iNaturalist Android app or an app made by a third party
+      OauthApplication: Application
       TaxonLink: Taxon Link
     attributes:
       assessment:
@@ -8319,6 +8377,18 @@ en:
         finished_at: Finished
         # Inputs to an export task, e.g. the query and the columns
         inputs: Inputs
+      oauth_application:
+        # The URL the user will be redirected to after authorizing an app to
+        # access their iNaturalist account
+        callback_url: Callback URL
+        # Unique identifier for an application
+        uid: ID
+        # Noun, secret associated with an application, sort of like the application's password
+        secret: Secret
+        # Adjective, whether or not this application can keep its secret
+        # confidential, e.g. a native or desktop app as opposed to a web
+        # app.
+        confidential: Confidential
       post:
         title: Title
         body: Body
@@ -8579,7 +8649,7 @@ en:
         content on your behalf, and access your hidden coordinates and any
         other information you can access on the site.
       login: |
-        Access information relevant to signing into a third party service, like the email address, username,
+        Access information relevant to signing into a third-party service, like the email address, username,
         name, and user icon associated with your account here.
       account_delete: |
         Delete your account on your behalf.

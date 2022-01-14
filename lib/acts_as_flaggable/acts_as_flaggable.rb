@@ -14,7 +14,7 @@ module Gonzo
           # flaggable was deleted
           # after_destroy do |record|
           #   Flag.where( flaggable: record ).each do |f|
-          #     f.update_attributes(
+          #     f.update(
           #       resolver_id: -1,
           #       resolved: true,
           #       comment: "#{f.flaggable_type} deleted"

@@ -102,7 +102,7 @@ describe UserMute do
           expect( update_action ).not_to be_blank
           expect( UpdateAction.unviewed_by_user_from_query( user.id, { } ) ).to eq false
           after_delayed_job_finishes do
-            ofv.update_attributes( updater: ofv.user, value: "#{ofv.value} foo" )
+            ofv.update( updater: ofv.user, value: "#{ofv.value} foo" )
           end
           update_action = UpdateAction.where( resource: o, notifier: ofv ).first
           expect( update_action ).not_to be_blank

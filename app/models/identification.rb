@@ -260,7 +260,7 @@ class Identification < ApplicationRecord
     observation.set_taxon_geoprivacy
     observation.skip_identification_indexing = true
     observation.skip_indexing = true
-    observation.update_attributes(attrs)
+    observation.update(attrs)
     true
   end
   
@@ -291,7 +291,7 @@ class Identification < ApplicationRecord
     observation.identifications.reload
     observation.set_community_taxon
     attrs[:community_taxon] = observation.community_taxon
-    observation.update_attributes(attrs)
+    observation.update(attrs)
     true
   end
   
@@ -367,7 +367,7 @@ class Identification < ApplicationRecord
     return true if skip_observation || bulk_delete
     ObservationReview.where(observation_id: observation_id, user_id: user_id).
       first_or_create.
-      update_attributes( reviewed: true, updated_at: Time.now )
+      update( reviewed: true, updated_at: Time.now )
     true
   end
 
@@ -534,7 +534,7 @@ class Identification < ApplicationRecord
     return if current_ident.blank?
     obs.project_observations.each do |po|
       if current_ident.user.project_users.exists?(["project_id = ? AND role IN (?)", po.project_id, [ProjectUser::MANAGER, ProjectUser::CURATOR]])
-        po.update_attributes(:curator_identification_id => current_ident.id)
+        po.update(:curator_identification_id => current_ident.id)
         ProjectUser.delay(priority: INTEGRITY_PRIORITY,
           unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
             [ po.project_id, obs.user_id ] }
@@ -564,12 +564,12 @@ class Identification < ApplicationRecord
         # that project observation has other identifications that belong to users who are curators use those
         po.observation.identifications.current.each do |other_ident|
           if other_curator_ident = other_ident.user.project_users.exists?(other_curator_conditions)
-            po.update_attributes(:curator_identification_id => other_ident.id)
+            po.update(:curator_identification_id => other_ident.id)
             break
           end
         end
 
-        po.update_attributes(:curator_identification_id => nil) unless other_curator_ident
+        po.update(:curator_identification_id => nil) unless other_curator_ident
         ProjectUser.delay(priority: INTEGRITY_PRIORITY,
           unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
             [ po.project_id, obs.user_id ] }
@@ -625,14 +625,14 @@ class Identification < ApplicationRecord
     Identification.current.where( "disagreement AND identifications.previous_observation_taxon_id IN (?)", input_taxon_ids ).find_each do |ident|
       ident.skip_observation = true
       if taxon_change.is_a?( TaxonMerge ) || taxon_change.is_a?( TaxonSwap )
-        ident.update_attributes(
+        ident.update(
           skip_set_previous_observation_taxon: true,
           previous_observation_taxon: taxon_change.output_taxon,
           skip_indexing: true
         )
         observation_ids << ident.observation_id
       elsif taxon_change.is_a?( TaxonSplit )
-        ident.update_attributes( disagreement: false, skip_indexing: true )
+        ident.update( disagreement: false, skip_indexing: true )
         observation_ids << ident.observation_id
       end
       ident_ids << ident.id
@@ -673,7 +673,7 @@ class Identification < ApplicationRecord
     return unless taxon = Taxon.find_by_id( taxon ) unless taxon.is_a?( Taxon )
     block = Proc.new{ |ident|
       if ident.taxon.self_and_ancestor_ids.include?( ident.previous_observation_taxon_id )
-        ident.update_attributes( disagreement: false )
+        ident.update( disagreement: false )
       end
     }
     batch_size = 200
@@ -755,7 +755,7 @@ class Identification < ApplicationRecord
       to_merge_ids = row['ids'].to_s.gsub(/[\{\}]/, '').split(',').sort
       idents = Identification.where( id: to_merge_ids )
       if reject_ident = idents.detect{|i| i.send(reflection.foreign_key) == reject.id }
-        reject_ident.update_attributes( current: false )
+        reject_ident.update( current: false )
       end
     end
   end

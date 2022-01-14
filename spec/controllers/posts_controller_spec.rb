@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe PostsController, "spam" do
   let(:spammer_content) {
     p = Post.make!(parent: User.make!)
-    p.user.update_attributes(spammer: true)
+    p.user.update(spammer: true)
     p
   }
   let(:flagged_content) {
@@ -34,8 +34,8 @@ describe PostsController, "spam" do
     it "returns posts new_than other posts" do
       p1 = Post.make!(parent: Site.default)
       p2 = Post.make!(parent: Site.default)
-      p1.update_attributes(published_at: Time.now)
-      p2.update_attributes(published_at: 1.minute.ago)
+      p1.update(published_at: Time.now)
+      p2.update(published_at: 1.minute.ago)
       get :index, format: :json
       expect( JSON.parse(response.body).length ).to eq( 2 )
       get :index, format: :json, params: { newer_than: p2.id }
@@ -49,8 +49,8 @@ describe PostsController, "spam" do
     it "returns posts older_than other posts" do
       p1 = Post.make!(parent: Site.default)
       p2 = Post.make!(parent: Site.default)
-      p1.update_attributes(published_at: Time.now)
-      p2.update_attributes(published_at: 1.minute.ago)
+      p1.update(published_at: Time.now)
+      p2.update(published_at: 1.minute.ago)
       get :index, format: :json
       expect( JSON.parse(response.body).length ).to eq( 2 )
       get :index, format: :json, params: { older_than: p1.id }

@@ -66,7 +66,7 @@ class GuideSectionsController < ApplicationController
   def update
     @guide_section.updater = current_user
     respond_to do |format|
-      if @guide_section.update_attributes(params[:guide_section])
+      if @guide_section.update(params[:guide_section])
         format.html { redirect_to @guide_section, notice: 'Guide section was successfully updated.' }
         format.json { head :no_content }
       else

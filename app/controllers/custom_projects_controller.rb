@@ -45,7 +45,7 @@ class CustomProjectsController < ApplicationController
 
     respond_to do |format|
       if !params[:preview]
-        if @custom_project.update_attributes(params[:custom_project])
+        if @custom_project.update(params[:custom_project])
           format.html { redirect_to(edit_project_path(@project), :notice => t(:custom_project_was_successfully_updated)) }
           format.xml  { head :ok }
         else

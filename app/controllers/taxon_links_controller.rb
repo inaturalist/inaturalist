@@ -41,7 +41,7 @@ class TaxonLinksController < ApplicationController
 
   def update
     respond_to do |format|
-      if @taxon_link.update_attributes(params[:taxon_link])
+      if @taxon_link.update(params[:taxon_link])
         format.html do
           flash[:notice] = "Taxon link updated."
           return redirect_to @taxon_link.taxon

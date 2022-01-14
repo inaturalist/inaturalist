@@ -182,7 +182,7 @@ describe GuidesController, "import_tags_from_csv" do
 
   it "should leave existing tags intact" do
     gt = guide.guide_taxa.sort_by( &:name ).first
-    gt.update_attributes( tag_list: %w(foo bar) )
+    gt.update( tag_list: %w(foo bar) )
     CSV.open( work_path, "w" ) do | csv |
       csv << ["name"]
       csv << [taxon_names[0], "shifty"]
@@ -212,7 +212,7 @@ describe GuidesController, "import_tags_from_csv_template" do
   end
   it "should include columns for predicates of all tags in the guide" do
     guide.guide_taxa.each do | gt |
-      gt.update_attributes( tag_list: "size=small,color=red" )
+      gt.update( tag_list: "size=small,color=red" )
     end
     get :import_tags_from_csv_template, format: :csv, params: { id: guide.id }
     csv = CSV.parse( response.body, headers: true )

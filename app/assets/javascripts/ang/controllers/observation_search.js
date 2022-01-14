@@ -866,15 +866,15 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.placeLastSearched = new Date( ).getTime( );
       $scope.autoPlaceSelect = true;
       $scope.mapBounds = null;
+      var location = $scope.searchedPlace.geometry.location;
       var bounds;
       if( $scope.searchedPlace.geometry.viewport ) {
         bounds = $scope.searchedPlace.geometry.viewport;
       } else {
-        var c = $scope.searchedPlace.geometry.location;
         // use some bounds which equate roughly to zoom level 15
         bounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng( c.lat( ) - 0.01, c.lng( ) - 0.02 ),
-            new google.maps.LatLng( c.lat( ) + 0.01, c.lng( ) + 0.02 ));
+            new google.maps.LatLng( location.lat() - 0.01, location.lng() - 0.02 ),
+            new google.maps.LatLng( location.lat() + 0.01, location.lng() + 0.02 ));
       }
       // if the searched place is specific enough to have an address
       if( $scope.searchedPlace.adr_address &&
@@ -890,7 +890,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $scope.mapBoundsIcon = null;
         var name = ( _.isObject( $scope.searchedPlace ) ?
           $scope.searchedPlace.name : $scope.searchedPlace ).toLowerCase( );
-        var options = { bounds: bounds, params: { per_page: 1, name: name } };
+        var options = { bounds: bounds, params: { per_page: 1, name: name, lat: location.lat(), lng: location.lng() } };
         // search for a best nearby place with a similar name
         $rootScope.$emit( "searchForNearbyPlaces", options, function( response ) {
           if( !response || !response.data || !response.data.results ) {
@@ -1261,15 +1261,22 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       options.params.nelat = options.bounds.getNorthEast( ).lat( );
       options.params.nelng = options.bounds.getNorthEast( ).lng( );
     }
-    // search a little left of center
-    shared.offsetCenter({ map: (onMap ? $scope.map : null), left: -130, up: 0 }, function( center ) {
-      if( center ) {
-        options.params.lat = center.lat( );
-        options.params.lng = center.lng( );
-      }
-      callback = callback || $scope.nearbyPlaceCallback;
-      PlacesFactory.nearby( options.params ).then( callback );
-    });
+    if( !( options.params.lat && options.params.lng ) ) {
+      // search a little left of center
+      shared.offsetCenter({ map: (onMap ? $scope.map : null), left: -130, up: 0 }, function( center ) {
+        if( center ) {
+          options.params.lat = center.lat( );
+          options.params.lng = center.lng( );
+        }
+        $scope.nearbyPlaceSearch( options, callback );
+      });
+    } else {
+      $scope.nearbyPlaceSearch( options, callback );
+    }
+  };
+  $scope.nearbyPlaceSearch = function ( options, callback ) {
+    callback = callback || $scope.nearbyPlaceCallback;
+    PlacesFactory.nearby( options.params ).then( callback );
   };
   $scope.nearbyPlaceCallback = function( response ) {
     if( !( response && response.data && response.data.results ) ) { return { }; }

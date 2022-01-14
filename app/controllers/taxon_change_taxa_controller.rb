@@ -26,7 +26,7 @@ class TaxonChangeTaxaController < ApplicationController
   def update
      @taxon_change_taxon = TaxonChangeTaxon.find(params[:id])
     respond_to do |format|
-      if @taxon_change_taxon.update_attributes(params[:taxon_change_taxon])
+      if @taxon_change_taxon.update(params[:taxon_change_taxon])
         flash[:notice] = 'Taxon change taxon was successfully updated.'
         format.html { redirect_to(taxon_change_path(@taxon_change_taxon.taxon_change)) }
       else

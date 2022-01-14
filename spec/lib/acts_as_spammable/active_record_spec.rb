@@ -48,7 +48,7 @@ describe "ActsAsSpammable", "ActiveRecord" do
     expect(o.flagged_as_spam?).to be false
     f = Flag.make!(flaggable: o, flag: Flag::SPAM)
     expect(o.flagged_as_spam?).to be true
-    Flag.last.update_attributes(resolved: true, resolver: @user)
+    Flag.last.update(resolved: true, resolver: @user)
     o.flags.reload
     expect(o.flagged_as_spam?).to be false
   end
@@ -257,7 +257,7 @@ describe "ActsAsSpammable", "ActiveRecord" do
       expect(Rakismet).to receive(:akismet_call).with("comment-check", anything).and_return("true")
       expect(Rakismet).to receive(:akismet_call).with("submit-ham", anything).and_return("true")
       c = Comment.make!
-      c.flags.last.update_attributes(resolved: true)
+      c.flags.last.update(resolved: true)
     end
 
     it "tells akismet about ham on destroyed akismet flags" do
@@ -283,7 +283,7 @@ describe "ActsAsSpammable", "ActiveRecord" do
       expect(Rakismet).to_not receive(:akismet_call).with("submit-ham", anything)
       c = Comment.make!
       f = Flag.make!(flaggable: c, flag: Flag::SPAM)
-      f.update_attributes(resolved: true)
+      f.update(resolved: true)
       f = Flag.make!(flaggable: c, flag: Flag::SPAM)
       f.destroy
     end

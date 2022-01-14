@@ -60,6 +60,13 @@ if ( PREFERRED_SEARCH_PLACE !== undefined && PREFERRED_SEARCH_PLACE !== null ) {
   } ) );
 }
 
+if ( OFFICIAL_APP_IDS !== undefined && OFFICIAL_APP_IDS !== null ) {
+  // set apps that will display icons in the observation modal
+  store.dispatch( setConfig( {
+    officialAppIds: OFFICIAL_APP_IDS
+  } ) );
+}
+
 setupKeyboardShortcuts( store.dispatch );
 
 window.onpopstate = e => {
