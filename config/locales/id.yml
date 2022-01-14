@@ -503,13 +503,25 @@ id:
   #Label for an option to show/include content by any user
   any_user: Semua
   anyone: Siapapun
+  app_owner_application_about_p1_html: |
+    Aplikasi pihak ketiga iNaturalist mengizinkan penggunaan berotentikasi atas API iNaturalist. Hal ini mengizinkan Anda untuk membuat panggilan API yang melakukan hal-hal seperti membuat pengamatan atau identifikasi. Ini biasa digunakan oleh aplikasi-aplikasi desktop atau mobile yang memiliki fungsi untuk membuat pengamatan iNaturalist. Konten ini harus dibuat dengan pengawasan dan campur tangan manusia. Silakan membaca <a href="/pages/community+guidelines" target="_blank">Pedoman Komunitas</a> kami yang melarang pengamatan, identifikasi, dan komentar yang dibuat bot untuk detail lebih lanjut.
+  app_owner_application_about_p2_html: |
+    Sejak 2022, kami mewajibkan persetujuan manual untuk pengguna-pengguna yang ingin membuat klien API. Untuk membuat aplikasi pihak ketiga, Anda harus mengajukan permohonan untuk menjadi "pemilik aplikasi". Permohonan ini harus mencakup fungsi aplikasi yang diajukan dan bagaimana Anda berencana untuk menggunakannya. Untuk mengajukan permohonan, akun Anda harus setidaknya berumur 2 bulan dan harus sudah membuat setidaknya 10 <a href="/pages/help#identification"
+    target="_blank">identifikasi pengembang</a> dalam sebulan terakhir. Kami mungkin akan menanyakan pertanyaan-pertanyaan lanjutan tentang rencana Anda dan kami memiliki hak untuk menolak permohonan Anda untuk alasan apapun.
+  app_owner_application_inelligible: |
+    Untuk mengajukan permohonan, akun Anda harus setidaknya berumur 2 bulan dan harus sudah membuat setidaknya 10 identifikasi pengembang dalam sebulan terakhir.
+  app_owner_application_fields_explanation_html: Jelaskan fungsi yang akan dimiliki aplikasi Anda dan bagaimana rencana Anda untuk menggunakannya.
+  app_owner_application_success: Permohonan menjadi pemilik aplikasi telah dikirim
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplikasi
   applications: Aplikasi
+  apply_app_owner: Daftar
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Daftar
+  apply_to_be_an_app_owner: Daftar sebagai Pemilik Aplikasi
+  apply_to_create_third_party_applications_title: Daftar Untuk Membuat Aplikasi Pihak Ketiga
   apply_to_selected: Terapkan untuk yang sudah dipilih
   apply_captive_cultivated: "Terapkan ditangkarkan / dibudidayakan"
   apply_fields: Terapkan bidang
@@ -626,6 +638,7 @@ id:
   #of values, and not a synonym of "typical" or "normal"
   avg: Rerata
   back: Kembali
+  back_to_applications: "&laquo; Kembali ke aplikasi"
   back_to_all_species: Kembali ke Semua Spesies
   back_to_editing_observation: Kembali ke mengubah observasi
   back_to_friends: Kembali ke teman
@@ -711,6 +724,7 @@ id:
   by_you: Oleh anda
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalender hanya menampilkan %{x} pengamatan dalam satu waktu
+  callback_url: Url callback
   cancel: Batalkan
   cant_edit_or_delete_hidden_content: Anda tidak dapat mengubah atau menghapus konten yang telah disembunyikan oleh kurator situs
   cant_flag_an_object_that_doesnt_exist: Tidak dapat menandai objek yang tidak ada
@@ -896,6 +910,7 @@ id:
   computer_vision_model_pending_desc: |
     Model Penglihatan Komputer belum dapat mengenali takson ini, jadi walaupun takson ini mungkin dimasukkan ke dalam rekomendasi otomatis dengan label "Sekitaran", ia tidak akan memiliki label "Serupa Secara Visual". Meskipun persyaratan untuk penyertaan model berubah-ubah untuk setiap model, secara umum penyertaan dibuat berdasarkan jumlah pengamatan, sehingga untuk meningkatkan kemungkinan takson ini akan dimasukkan di latihan model selanjutnya, tambahkan atau identifikasi lebih banyak pengamatan untuk takson ini.
   concept_status: Status Konsep
+  confidential: Rahasia
   configure: Pengaturan
   configure_a_widget_to_show: Mengonfigurasi widget untuk menunjukkan pengamatan %{site_name} di situs web atau blog Anda. Anda mungkin harus memasukkan CSS yang tertanam dalam <code>&lt;head&gt;</code> HTML Anda. Jangan ragu untuk menulis ulang CSSnya.
   confirm: Konfirmasi
@@ -2311,6 +2326,7 @@ id:
   make_sure_the_default_photo_looks_good: Pastikan foto tersebut terlihat bagus pada ukuran besar.
   make_this_your_default_license: "Buat ini menjadi lisensi %{type} utama Anda."
   make_this_the_primary_listing: "Buat ini menjadi daftar utama"
+  make_your_app_confidential: Buat aplikasi menjadi rahasia jika Anda bisa menyimpan rahasia aplikasi Anda secara aman, tidak dalam format biner yang dapat diakses publik yang dapat diuraikan. Jangan centang kotak ini jika Anda tidak menginginkannya dan Anda berencana menggunakan alur PKCE
   mammals: mamalia
   manage_all_your_subscriptions: Kelola semua langganan Anda
   manage_names: Kelola Nama
@@ -2548,6 +2564,7 @@ id:
   new: Baru
   new_and_noteworthy: Baru & Perlu Perhatian
   new_announcement: Pengumuman baru
+  new_application: Aplikasi baru
   new_assessment: Penilaian baru
   new_check_list: Daftar centang baru
   new_check_list_for: "Buat daftar centang baru untuk %{place} &raquo;"
@@ -4486,6 +4503,7 @@ id:
   these_observations_have_not_been_uploaded_yet: |
     Pengamatan ini belum diunggah.
   third_party_tracking: Pelacakan Pihak Ketiga
+  third_party_x_application: "Aplikasi %{x} Pihak Ketiga"
   third_person_possessive_singular: "%{noun} %{object_phrase}"
   this: ini
   this_bioblitz_beings_in: Bioblitz ini dimulai dalam
@@ -4665,6 +4683,7 @@ id:
       upload_failed: Gagal mengunggah
   uploading_num_of_count_photos:
     other: Mengunggah %{num} dari %{count} foto...
+  url_for_your_app_outside_of_inaturalist: URL untuk aplikasi Anda di luar iNaturalist
   url_identifier_of_a_project_derived_from: "URL / pengidentikasi dari sebuah proyek yang berasal dari beberapa sumber eksternal"
   url_of_this_taxon_on_the_source_website: URL takson ini pada situs sumber
   usage_stats: Statistik penggunaan
@@ -4701,6 +4720,7 @@ id:
   user_added_an_x_to_noun_html: "%{user} menambahkan %{x} kepada %{noun}"
   user_added_x_observations_html: "%{user} menambahkan %{x} pengamatan"
   user_already_authenticated: Pengguna sudah terautentikasi
+  user_already_app_owner: Pengguna sudah merupakan pemilik aplikasi
   user_autocomplete_placeholder: kueda, simon123, etc.
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
   #not the place. Gender for all variables is not known..
