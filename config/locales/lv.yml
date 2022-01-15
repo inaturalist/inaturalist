@@ -616,6 +616,8 @@ lv:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Lietotne
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Lietotnes
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -947,6 +949,7 @@ lv:
   comma_separated_list_of_tracking_codes: |
     Ar komatu atdalīti izsekošanas kodi. Ja vēlies sūtot lietotājiem jaunas novērojumu veidlapas, pievienot izekošanas kodu, izmanto šo saiti %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123. Tā iespējams izsekot līdzdalības aktivitāti no dažādiem avotiem. Kodiem iespējams piekļūt lejupielādējot projekta novērojumus CSV formātā.
   comma_separated_please: Lūdzu, atdalīt ar komatu
+  #Noun, used to label a comment or a comment field in a form
   comment: komentēt
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komentēt
@@ -1662,7 +1665,6 @@ lv:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Ārējās lietotnes
-  external_applications_description: Ārējās lietotnes ir trešo pušu lietotnes, kurām esi devis piekļuvi savam iNaturalist kontam. Trešās puses ar tavu kontu var veikt tās pašas darbības, ko tu, tādēļ pirms piekļuves sniegšanas, pārliecinies, vai lietotņu izstrādātāji ir uzticami.
   external_taxon_including_children: Ārējais taksons (t.s. apakšgrupas)
   extinct: izmiris
   extinct_in_the_wild: Izmiris savvaļā
@@ -2158,7 +2160,6 @@ lv:
   leading: Vadošā
   learn: Mācies
   learn_about_the_species_live_in: Mācies par sugām, kas dzīvo
-  learn_about_third_party_tracking: Papildinformācija par trešo pušu izsekošanu
   learn_more: Uzzini vairāk
   learn_more_raquo: "Uzzini vairāk &raquo;"
   learn_what_these_licenses_mean: Uzzini vairāk par šīm licencēm
@@ -4630,7 +4631,6 @@ lv:
   these_folks_kindly_volunteer_to: Šie cilvēki brīvprātīgi uztur mūsu takonomiju un risina citas problēmas.
   these_observations_have_not_been_uploaded_yet: |
     Novērojumi vēl nav augšupielādēti.
-  third_party_tracking: Trešo pušu sīkdatņu ievākšana
   third_person_possessive_singular: "%{object_phrase} %{noun}"
   this: šis
   this_bioblitz_beings_in: Bioblitz sākas
@@ -4671,8 +4671,8 @@ lv:
   this_will_refresh_listed_taxa: Ar šo darbību sarakstā iekļautie taksoni tiks pārlādēti. Šī darbība var aizņemt visai daudz laika, tāpēc, lūdzu, lieto to tikai tad, kad tas nepieciešams, un vēlams ar mazām kontrollapām.
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Izmanto šo funkciju, lai liegtu iNaturalist pieeju šim kontam tavā vārdā. iNaturalist nebūs pieejas līdz tu pats to neatjaunosi. Lai pilnīgi liegtu pieeju, iespējams, ka nāksies pielāgot iestatījumus arī ārējā tīmekļa vietnē.
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: Šādi iziesi no pašreizējās sesijas šajā lietotnē.
   this_will_try_to_add_tags_to_your_flickr: Šī funkcija mēģinās pievienot tagus tavām Flickr fotogrāfijām. Vēlies turpināt?
   this_year: Šogad
@@ -5533,13 +5533,13 @@ lv:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: Vai vēlies sniegt lietotnei %{application} piekļuvi pie konta?
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Lietotnei būs sniegta atļauja veikt šādas darbības:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Vairāk par %{application}
     observations:
@@ -6557,7 +6557,6 @@ lv:
         you_must_enter_confirmation_code_in_the_form: |
           Lai izdzēstu savu kontu, veidlapā jāievada "%{confirmation_code}"
       edit:
-        about_third_party_tracking: Par trešo pušu izsekošanu
         blocking_desc_html: |
           <p>
           Ja kāds tiek nobloķēts, šim lietotājam vairs nav iespējas nosūtīt tev ziņas, komentēt un identificēt tavus novērojumus vai kādā citā veidā sazināties ar tevi %{site_name} vietnē. Turklāt lietotāja novērojumi nebūs redzami tavos meklēšanas rezultātos un tavi novērojumi nebūs redzami lietotāja meklēšanas rezultātos. Tomēr tas nepadara tevi lietotājam neredzamu. Tavi novērojumi un profils tāpat būs atrodams, bet lietotājs nevarēs sazināties ar tevi.
@@ -6642,9 +6641,6 @@ lv:
           %{site_name} seko līdzi tavām un kopienas identifikācijām pie taviem novērojumiem. Ja tev šķiet, ka kopienas viedoklis nav uzticamāks par tavu, iestatījumus iespējams pielāgot tā, lai citi lietotāji spētu pievienot identifikācijas, bet tavi novērojumi tiks saistīti tikai ar tevis identificēto taksonu. Tavi novērojumi nevarēs sasniegt pētniecības līmeni, ja vien tava identifikācija nesakrītīs ar kopienas viedokli.
         prefers_coordinate_interpolation_protection_desc: |
           Ja iestatīsi novērojuma ģeoprivātumu uz "noslēpts" vai "privāts", tas ietekmēs visu tās dienas novērojumu ģeoprivātuma iestatījumus, kas apgrūtinās citu lietotāju iespējas noskaidrot patiesās koordinātas, kas būtu balstītas uz novērojumiem, kas veikti apmēram tajā pašā laikā.
-        prefers_no_tracking_label: Neievākt stabilitātes un lietojuma datus, izmantojot trešo pušu pakalpojumus.
-        prefers_no_tracking_label_desc_we_use: |
-          Izmantojam dažādus trešo pušu pakalpojumus, lai diagnosticētu stabilitāti un kļūmes mūsu programmatūrā. Iesaistītās trešās puses:
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Trešajām pusēm sniegtā informācija:
@@ -6656,8 +6652,6 @@ lv:
           Informācija par avāriju, lai precīzi noteiktu, piemēram, koda rindu, kas izraisīja avāriju.
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Informācija par ierīci, piemēram, mobilā telefona ražotājs un modelis
-        prefers_no_tracking_label_desc_value_html: |
-          <strong>Trešo pušu pakalpojumi mums ir nepieciešami</strong>, lai ar mūsu salīdzinoši mazo darbinieku skaitu nodrošinātu lietotnes darbības stabilitāti un lietojamību. Ar citām metodēm mobilo ierīču programmatūras nepilnības gandrīz nav iespējams pamanīt, jo šīs ierīces mēs nekontrolējam. Zināmos gadījumos šādas problēmas nav iespējams pamanīt kamēr neesam saņēmuši trešo pušu pakalpojumu datus par nepilnībām programmatūrā. <strong> Daloties ar šo informāciju, lietotāji palīdz mums strādāt lietotāju un visas iNaturalist kopienas labā.</strong>
         prefers_no_tracking_label_desc_limits: |
           Jāņem vērā, ka šī funkcija ietver tikai šiem pakalpojumu sniedzējiem nosūtītos analīžu un avāriju datus. Visus iNaturalist serverus nodrošina un uztur Microsoft, visas iNaturalist fotogrāfijas uzglabā Amazon un gandrīz visas iNaturalist kartes nodrošina Google – lietotājam apskatot iNaturalist novērojumus, ierīce ik reizi pieslēgsies šo uzņēmumu pakalpojumiem un atklās viņiem vismaz lietotāja IP adresi un, iespējams, arī citus datus (iPhone ierīcēs tiek izmantotas Apple Maps kartes). Visticamāk, iNaturalist nepastāvētu bez šo uzņēmumu pakalpojumiem. Mēs cenšamies ierobežot šiem uzņēmumiem pieejamo iNat lietotāju datu dažādību un daudzumu, bet šo datu plūsmu pavisam nav iespējams apturēt.
         project_settings_desc: |
@@ -7414,8 +7408,6 @@ lv:
     scopes:
       write: |
         Tavā vārdā izveidot, atjaunināt un dzēst tavus novērojumus, identifikācijas un citu saturu. Piekļūt tavām noslēptajām koordinātām un citiem tev pieejamiem vietnes datiem.
-      login: |
-        Piekļūšana pie informācijas, kas būtiska trešo pušu pakalpojumiem, piemēram, tava konta e-pasta adrese, lietotājvārds, vārds un profila attēls.
       account_delete: |
         Dzēst kontu tavā vārdā.
     errors:
