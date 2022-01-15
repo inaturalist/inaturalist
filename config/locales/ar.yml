@@ -535,6 +535,7 @@ ar:
   comma_separated_list_of_tracking_codes: |
     قائمة مفصولة بفواصل من رموز التتبع، أضف هذه العناصر إذا كنت تريد إلحاق كود تتبع عند إرسال الأشخاص إلى نموذج الملاحظة الجديد، مثل %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123، يمكنك استخدام هذا لتتبع المشاركة من مصادر مختلفة، يمكنك الوصول إلى هذه الرموز عند تنزيل ملاحظات مشروعك كملف CSV.
   comma_separated_please: مفصولة بفواصل، من فضلك
+  #Noun, used to label a comment or a comment field in a form
   comment: تعليق
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: تعليق
@@ -3958,13 +3959,13 @@ ar:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: تخويل %{application} لاستخدام حسابك؟
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "سيكون هذا التطبيق قادرا على:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: المزيد عن %{application}
     observations:
@@ -5738,9 +5739,6 @@ ar:
         إنشاء وتحديث وحذف الملاحظات ، والتعريفات، والمحتويات 
         الأخرى نيابة عنك، والوصول إلى الإحداثيات المخفية وأية 
         معلومات أخرى يمكنك الوصول إليها على الموقع.
-      login: |
-        الوصول إلى معلومات ذات صلة بتسجيل الدخول، مثل عنوان البريد الإلكتروني، واسم
-        المستخدم، وأيقونة المستخدم.
     errors:
       messages:
         #Common error messages
