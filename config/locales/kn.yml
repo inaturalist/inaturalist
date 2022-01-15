@@ -507,6 +507,8 @@ kn:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: ಅಪ್ಲಿಕೇಷನ್
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: ಅಪ್ಲಿಕೇಷನ್‍ಗಳು
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -795,6 +797,7 @@ kn:
   columns: ಉದ್ದಸಾಲುಗಳು
   combine: ಜೋಡಿಸಿ
   comma_separated_please: ದಯವಿಟ್ಟು, ಕಾಮಾ-ವಿಭಜಿತ,
+  #Noun, used to label a comment or a comment field in a form
   comment: ಅಭಿಪ್ರಾಯ
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: ಅಭಿಪ್ರಾಯ
@@ -4758,10 +4761,10 @@ kn:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: '%{application} ಗೆ ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಬಳಸಲು ಅನುಮತಿಸುವಿರಾ?'
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: '%{application} ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ವಿವರ'
     observations:
