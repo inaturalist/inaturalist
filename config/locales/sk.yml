@@ -510,6 +510,7 @@ sk:
   columns: Stĺpce
   combine: Spojiť
   comma_separated_please: Oddeľte čiarkami, prosím
+  #Noun, used to label a comment or a comment field in a form
   comment: komentár
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komentár
@@ -2990,7 +2991,7 @@ sk:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Viac o %{application}
     observations:
