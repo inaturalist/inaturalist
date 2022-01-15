@@ -641,6 +641,8 @@ pl:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplikacja
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Aplikacje
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -945,6 +947,7 @@ pl:
     Lista kodów śledzenia oddzielonych przecinkami. Dodaj je, jeśli chcesz dodać kod śledzenia podczas wysyłania osób do nowego formularza obserwacji, np. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
     Możesz tego użyć do śledzenia uczestnictwa z różnych źródeł. Możesz uzyskać dostęp do tych kodów podczas pobierania obserwacji projektu jako pliku CSV.
   comma_separated_please: Oddziel przecinkami, proszę
+  #Noun, used to label a comment or a comment field in a form
   comment: komentarz
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Skomentuj
@@ -3951,7 +3954,7 @@ pl:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Więcej o %{application}
     observations:
@@ -4130,7 +4133,6 @@ pl:
         you_must_enter_confirmation_code_in_the_form: |
           Musisz wprowadzić "%{confirmation_code}" w formularzu, aby usunąć swoje konto
       edit:
-        about_third_party_tracking: O śledzeniu przez strony trzecie
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Komentarzach
         #Checkbox label for user preference about what to receive in the daily email update
@@ -4156,11 +4158,6 @@ pl:
         project_addition_preferences:
           any: Dowolna
           joined: Projekty do których dołączyłeś
-        prefers_no_tracking_label: Nie zbieraj danych o stabilności i użytkowaniu z wykorzystaniem usług stron trzecich
-        prefers_no_tracking_label_desc_we_use: |
-          Używamy różnorodnych usług stron trzecich do monitorowania stabilności i
-          diagnozowania błędów i problemów w naszym oprogramowaniu. Te strony trzecie
-          obejmują
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Szczegóły przeglądarki, takie jak marka, model i wersja
