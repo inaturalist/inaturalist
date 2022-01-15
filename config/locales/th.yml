@@ -444,6 +444,8 @@ th:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: แอปพลิเคชัน
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: แอปพลิเคชันอื่นๆ
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -564,6 +566,7 @@ th:
   choose_taxon: เลือกหน่วยอนุกรมวิธาน
   classification: การจัดจำแนก
   colors: สี
+  #Noun, used to label a comment or a comment field in a form
   comment: ความคิดเห็น
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: ความคิดเห็น
