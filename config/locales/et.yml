@@ -521,6 +521,8 @@ et:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Mobiiliäpp
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Mobiiliäpid
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -807,6 +809,7 @@ et:
     Komaga eraldatud nimekiri jälgimiskoodidest. Kasuta neid, kui soovid uue vaatluse lingile lisada jälgimiskoodi, nt. %{root_url}observations/new?project_id=%{project_id}&tracking_code=sinukood123.
     Saad neid kasutada erinevatest allikatest pärit osalemise jälgimiseks. Näed koode, kui laed projektis sisalduvad vaatlused CSV-failina alla.
   comma_separated_please: Palun eralda komadega
+  #Noun, used to label a comment or a comment field in a form
   comment: kommentaar
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentaar
