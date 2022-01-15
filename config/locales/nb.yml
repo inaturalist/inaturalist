@@ -511,6 +511,8 @@ nb:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Applikasjon
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Applikasjoner
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -837,6 +839,7 @@ nb:
   comma_separated_list_of_tracking_codes: |
     Kommaseparert liste over traseringskoder. Legg til disse hvis du ønsker å legge til en traseringskode når folk sendes til det nye observasjonsskjemaet, f.eks. %{root_url}observations/new?project_id=%{project_id}&tracking_code=dinkode123. Du kan bruke dette for å trasere deltakelse fra ulike kilder. Du kan se disse koder når du laster ned observasjonene i prosjektet ditt som CSV.
   comma_separated_please: Kommaseparert, takk
+  #Noun, used to label a comment or a comment field in a form
   comment: kommentar
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentar
@@ -1877,7 +1880,6 @@ nb:
   leading: Leder
   learn: Lær
   learn_about_the_species_live_in: Lær om artene som forekommer i
-  learn_about_third_party_tracking: Lær mer om tredjepartssporing
   learn_more: Lær mer
   learn_more_raquo: "Lær mer &raquo;"
   learn_what_these_licenses_mean: Lær hva disse lisenser betyr
@@ -4063,7 +4065,6 @@ nb:
   these_folks_kindly_volunteer_to: Disse snille folka vedlikeholder vår taksonomi og ordner opp i andre saker.
   these_observations_have_not_been_uploaded_yet: |
     Disse observasjoner har ikke blitt lastet opp ennå.
-  third_party_tracking: Sporing av tredjeparter
   third_person_possessive_singular: "%{object_phrase}s %{noun}"
   this: dette
   this_bioblitz_beings_in: Denne bioblitzen starter om
@@ -4867,13 +4868,13 @@ nb:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: Tillat at %{application} kan bruke din konto?
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Dette programmet vil kunne:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Mer om %{application}
     observations:
@@ -5880,7 +5881,6 @@ nb:
         you_must_enter_confirmation_code_in_the_form: |
           Du må skrive "%{confirmation_code}" i skjemaet for å slette din konto
       edit:
-        about_third_party_tracking: Om tredjepartssporing
         blocking_desc_html: |
           <p>
           Å blokkere noen hindrer vedkommende fra å sende beskjeder til deg, kommentere på dine observasjoner, identifisere dine observasjoner, og kommunisere med deg på andre måter på %{site_name}. Det fjerner også deres observasjoner fra dine søkeresultater og fjerner dine observasjoner fra deres. Det gjør deg imidlertid ikke usynlig. De kan still finne dine observasjoner og se på din profil, de kan bare ikke ha kontakt med deg.
@@ -5970,9 +5970,6 @@ nb:
           %{site_name} holder rede på hva du tror dine observasjoner er og hva felleskapet tror det er. Identifikasjonen vi deler med datapartnere er felleskapets identifikasjon, men hvis synes at felleskapets mening aldri skal overstyre din egen, kan du melde deg av her. Folk vil fortsatt kunne legge til identifikasjoner, men felleskapets mening blir ikke prioritert over din. Dette betyr at dine observasjoner ikke vil kunne nå forskingskvalitet med mindre du er enig med felleskapet.
         prefers_coordinate_interpolation_protection_desc: |
           Når du setter geosperringen av en observasjon til "tilslørt" eller "privat" brukes det samme geosperringen på alle dine andre observasjoner fra den dagen for å gjøre det vanskelige for folk å gjette de sanne koordinate basert på observasjoner gjort rundt samme tidspunkt.
-        prefers_no_tracking_label: Ikke samle data om stabilitet og bruk ved hjelp av tredjepartstjenester
-        prefers_no_tracking_label_desc_we_use: |
-          Vi bruker en rekke tredjepartstjenester for å overvåke stabilitet og spore bugs og problemer i vår programmvare. Disse tredjeparter inkluderer
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Informasjon som vi kan dele med disse tredjeparter omfatter
@@ -5987,8 +5984,6 @@ nb:
           Kræsj-detaljer, som nøyaktig hvilken kodelinje det var som var årsaken til kræsjen
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Enhetsdetaljer, som merke og modell av en mobiltelefon
-        prefers_no_tracking_label_desc_value_html: |
-          <strong>Disse tredjepartstjenester har enorm verdi for oss</strong> i å vedlikeholde stabiliteten og brukbarheten av iNaturalist med vår relativ liten stab. På mobile enheter finnes det nesten ingen andre måte å ha innsikt i problemene som forekommer, siden programvaren kjører på enheter vi ikke har kontroll over. Noen ganger er vi ikke engang bevisste på slike problemer før vi ser de i dataene disse tjenester gir oss. <strong>Ved å dele denne informasjonen, hjelper du oss i å betjene deg og hele iNaturalist-fellesskapet.</strong>
         prefers_no_tracking_label_desc_limits: |
           Merk at dette valget kun gjelder analyser og kræsj-data som vi eksplisitt sender til disse bedrifter. Alle servere til iNaturalist leveres og hostes av Microsoft, alle bilder på iNaturalist hostes av Amazon, og nesten alle kart på iNaturalist leveres av Google, noe som betyr at du kobler deg opp mot tjenester av disse bedrifter hver gang du ser på en observasjon, og dermed i hvert fall avslører din IP-adresse til de (på iPhone bruker vi kart fra Apple). iNaturalist ville nok ikke finnes uten tjenestene disse bedrifter tilbyr, og mens vi kan begrense hvor mye og hvilke typer data du deler med de mens du bruker iNaturalist, kan vi ikke stoppe dataflyten helt.
         project_settings_desc: |
@@ -6688,8 +6683,6 @@ nb:
     scopes:
       write: |
         Opprett, oppdater, og slett dine observajoner, identifikasjoner, og annet innhold på dine vegner, og ha tilgang til dine skjulte koordinater og all annen informasjon du har tilgang til på siden.
-      login: |
-        Tilgangsinformasjon relevant for pålogging i en tredjepartstjeneste, som e-postadresse, brukernavn, navn, og brukerikon knyttet til kontoen din der.
       account_delete: |
         Slette din konto på dine vegner.
     errors:
