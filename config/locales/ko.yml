@@ -542,6 +542,7 @@ ko:
   columns: 열
   combine: 병합
   comma_separated_please: 쉼표로 분리해주세요
+  #Noun, used to label a comment or a comment field in a form
   comment: 댓글
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: 댓글
@@ -2416,10 +2417,10 @@ ko:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "이 애플리케이션은 다음을 할 수 있습니다:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: '%{application} 추가 정보'
     observations:
