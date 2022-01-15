@@ -530,6 +530,8 @@ el:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Εφαρμογή
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Εφαρμογές
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -853,6 +855,7 @@ el:
   comma_separated_list_of_tracking_codes: |
     Λίστα κωδικών παρακολούθησης διαχωρισμένη με κόμματα. Προσθέστε αυτά αν επιθυμείτε να προσαρτήσετε ένα κωδικό παρακολούθησης καθώς στέλνετε άτομα στην καινούρια φόρμα παρατηρήσεων, πχ%{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123. Μπορείτε να χρησιμοποιήσετε αυτό για να παρακολουθείτε τη συμμετοχή από διαφορετικές πηγές. Μπορείτε να έχετε πρόσβαση σε αυτούς τους κωδικούς όταν κατεβάζετε τις παρατηρήσεις των εργασιών σας ως CSV.
   comma_separated_please: Χωρισμένο με κόμμα, παρακαλώ
+  #Noun, used to label a comment or a comment field in a form
   comment: σχόλιο
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Σχόλιο
@@ -1500,7 +1503,6 @@ el:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Εξωτερικές Εφαρμογές
-  external_applications_description: Οι εξωτερικές εφαρμογές είναι εφαρμογές λογισμικού τρίτων που έχετε εξουσιοδοτήσει να έχουν πρόσβαση στον iNaturalist λογαριασμό σας. Σε γενικές γραμμές, μπορούν να κάνουν ό,τι και εσείς με το λογαριασμό σας, οπότε βεβαιωθείτε ότι εμπιστεύεστε τους προγραμματιστές των εφαρμογών πριν τους παραχωρήσετε την άδεια.
   external_taxon_including_children: Εξωτερική ταξινομική βαθμίδα (συμπεριλαμβανομένων παιδιών)
   extinct: εξαφανισμένο
   extinct_in_the_wild: εξαφανισμένο στη φύση
@@ -1945,7 +1947,6 @@ el:
   leading: Κορυφαίος
   learn: Μάθετε
   learn_about_the_species_live_in: Μάθετε σχετικά με τα είδη που ζουν εκεί
-  learn_about_third_party_tracking: Μάθετε περισσότερα για την παρακολούθηση τρίτων
   learn_more: Μάθετε περισσότερα
   learn_more_raquo: "Μάθετε περισσότερα &raquo;"
   learn_what_these_licenses_mean: Μάθετε τι σημαίνουν οι άδειες
@@ -4131,7 +4132,6 @@ el:
   these_folks_kindly_volunteer_to: Αυτοί οι άνθρωποι εθελοντικά έχουν αναλάβει την διατήρηση της ταξινόμησης και την διαχείριση άλλων δεδομένων
   these_observations_have_not_been_uploaded_yet: |
     Αυτές οι παρατηρήσεις δεν έχουν μεταφορτωθεί ακόμα.
-  third_party_tracking: Παρακολούθηση Τρίτων
   third_person_possessive_singular: "του %{object_phrase} %{noun}"
   this: αυτό
   this_bioblitz_beings_in: Το bioblitz ξεκινά σε
@@ -4170,8 +4170,8 @@ el:
   this_will_refresh_listed_taxa: Αυτό θα προσθέσει τις αρχειοθετημένες ταξινομικές βαθμίδες από τις παρατηρήσεις. Αυτό μπορεί να πάρει λίγη ώρα γι'αυτό σας παρακαλούμε να κάνετε περιορισμένη χρήση και μικρές λίστες ελέγχου.
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Αυτό θα αφαιρέσει τη δυνατότητα του iNaturalist να έχει πρόσβαση σε αυτόν τον λογαριασμό εκ μέρους σας μέχρι να σας επιτραπεί ξανά την πρόσβαση. Ίσως χρειαστεί να αλλάξετε τις ρυθμίσεις σας στην εξωτερική ιστοσελίδα για να αποτρέψετε εντελώς την πρόσβαση.
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: Αυτό θα σαςψαποσυνδέσει από την τρέχουσα συνεδρία σας σε αυτήν την εφαρμογή.
   this_will_try_to_add_tags_to_your_flickr: Αυτό θα προσπαθήσει να προσθέσει ετικέτα στις Flickr φωτογραφίες σας. Να συνεχίσει;
   this_year: Αυτό το έτος
@@ -4982,13 +4982,13 @@ el:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: Εξουσιοδοτείτε το %{application} να χρησιμοποιήσει τον λογαριασμό σας;
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Αυτή η εφαρμογή θα μπορεί να:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Περισσότερα για το %{application}
     observations:
@@ -6083,7 +6083,6 @@ el:
         you_must_enter_confirmation_code_in_the_form: |
           Πρέπει να εισαγάγετε "%{confirmation_code}" στη φόρμα για να σβήσετε τον λογαριασμό σας
       edit:
-        about_third_party_tracking: Σχετικά με την παρακολούθηση τρίτων
         blocking_desc_html: |
           <p>
           Ο αποκλεισμός κάποιου τον εμποδίζει από το να σας στέλνει μηνύματα, να σχολιάζει τις παρατηρήσεις σας, να εντοπίζει τις παρατηρήσεις σας και αλληλεπιδράτε κάπως αλλιώς
@@ -6203,9 +6202,6 @@ el:
           παρατηρήσεις σας από την ίδια μέρα για να κάνετε δυσκολότερη για άλλους ανθρώπους να
           εντοπίσουν τις πραγματικές συντεταγμένες με βάση παρατηρήσεις σας που έγιναν περίπου την ίδια
           ώρα.
-        prefers_no_tracking_label: Μη συλλέγετε δεδομένα σταθερότητας και χρήσης χρησιμοποιώντας υπηρεσίες τρίτων
-        prefers_no_tracking_label_desc_we_use: |
-          Χρησιμοποιούμε μια πληθώρα υπηρεσιών τρίτων για να εποπτεύουμε τη σταθερότητα και να να κάνουμε διάγνωση σφαλμάτων και προβλημάτων στο λογισμικό μας. Αυτές οι υπηρεσίες τρίτων περιλαμβάνουν
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Οι πληροφορίες που μπορεί να μοιραστούμε με αυτές τις υπηρεσίες τρίτων περιλαμβάνουν
@@ -6222,8 +6218,6 @@ el:
           Λεπτομέρειες "κατάρρευσης", όπως ακριβώς ποια γραμμή κώδικα προκάλεσε κατάρρευση
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Πληροφορίες συσκευής, όπως μάρκα και μοντέλο κινητού τηλεφώνου
-        prefers_no_tracking_label_desc_value_html: |
-          <strong>Αυτές οι υπηρεσίες τρίτων είναι τεράστιας αξίας για εμάς</strong> στη διατήρηση της σταθερότητας και της χρηστικότητας του iNaturalist με το σχετικά μικρό αριθμό προσωπικού μας. Στις κινητές συσκευές, δεν υπάρχει σχεδόν κανένας άλλος τρόπος να μπορέσουμε να κατανοήσουμε τα προβλήματα που προκύπτουν καθώς το λογισμικό τρέχει σε συσκευές που δεν ελέγχουμε. Μερικές φορές δεν γνωρίζουμε καν ότι τέτοια προβλήματα λαμβάνουν χώρα μέχρι να τα δούμε στα δεδομένα που παρέχουν αυτές οι υπηρεσίες. <strong>Με την κοινοποίηση αυτών των πληροφοριών, μας βοηθάτε να εξυπηρετήσουμε εσάς και ολόκληρη την κοινότητα του iNaturalist.</strong>
         prefers_no_tracking_label_desc_limits: |
           Λάβετε υπόψη ότι αυτή η επιλογή ισχύει μόνο για στοιχεία ανάλυσης και κατεστραμένα δεδομένα που αποστέλλουμε ρητά σε αυτές τις εταιρείες. Όλοι οι διακομιστές του iNaturalist παρέχονται και φιλοξενούνται από τη Microsoft, όλες οι εικόνες του iNaturalist φιλοξενούνται από την Amazon και σχεδόν όλοι οι χάρτες του iNaturalist εξυπηρετούνται από την Google, πράγμα που σημαίνει ότι κάθε φορά που κοιτάζετε μια παρατήρηση στο iNaturalist, συνδέεστε με υπηρεσίες που παρέχονται από αυτές τις εταιρείες και εκθέτετε την IP διεύθυνση σας σε αυτούς, το λιγότερο (στην εφαρμογή iPhone χρησιμοποιούμε τους χάρτες της Apple). Το iNaturalist πιθανότατα δεν θα υπήρχε χωρίς τις υπηρεσίες που παρέχουν αυτές οι εταιρείες και ενώ μπορούμε να περιορίσουμε το ποσό και τα είδη δεδομένων που μοιράζεστε μαζί τους ενώ χρησιμοποιείτε το iNat, δεν μπορούμε να σταματήσουμε πλήρως τη ροή των δεδομένων.
         project_settings_desc: |
@@ -6948,8 +6942,6 @@ el:
     scopes:
       write: |
         Δημιουργήστε, αναβαθμίστε και διαγράψτε τις παρατηρήσεις σας,τις ταυτοποιήσεις και άλλο περιεχόμενο σας, και δείτε τις κρυμμένες συντεταγμένες σας και οποιαδήποτε άλλη προσβάσιμη πληροφορία στην ιστοσελίδα.
-      login: |
-        Πρόσβαση στις πληροφορίες που σχετίζονται με την είσοδο σε μια υπηρεσία που παρέχεται από τρίτο, όπως η διεύθυνση email, το όνομα χρήστη, το όνομα και το εικονίδιο χρήστη που σχετίζεται με το λογαριασμό σας εδώ.
       account_delete: |
         Διαγράψτε τον λογαριασμό σας εξ ονόματός σας
     errors:
