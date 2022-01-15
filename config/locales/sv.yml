@@ -560,6 +560,8 @@ sv:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Applikation
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Applikationer
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -894,6 +896,7 @@ sv:
     Kommaseparerad lista med spårningskoder. Lägg till dessa om du vill lägga till en spårningskod när du sänder personer till det nya fyndformuläret, t.ex. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
     Du kan använda detta för att spåra deltagande från olika håll. Du kan komma åt dessa koder när du laddar ner projektets fynd som CSV.
   comma_separated_please: Kommaseparerad, tack
+  #Noun, used to label a comment or a comment field in a form
   comment: kommentar
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentera
@@ -1634,7 +1637,6 @@ sv:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Externa applikationer
-  external_applications_description: Externa applikationer är program från tredje part som du har gett behörighet att komma åt ditt iNaturalist-konto. I allmänhet kan de göra allt med ditt konto som du kan, så se till att du litar på apputvecklare innan du ger dem tillstånd.
   external_taxon_including_children: Externt taxon (inklusive barn)
   extinct: utdöd
   extinct_in_the_wild: Utdöd i vilt tillstånd
@@ -2145,7 +2147,6 @@ sv:
   leading: Leder
   learn: Lär dig
   learn_about_the_species_live_in: Lär dig om arterna som lever i
-  learn_about_third_party_tracking: Läs mer om spårning av tredje part
   learn_more: Läs mer
   learn_more_raquo: "Lär dig mer &raquo;"
   learn_what_these_licenses_mean: Lär dig vad dessa licenser innebär
@@ -4641,7 +4642,6 @@ sv:
   these_folks_kindly_volunteer_to: Följande personer underhåller frivilligt vår taxonomi och hanterar samtidigt andra frågor.
   these_observations_have_not_been_uploaded_yet: |
     Dessa fynd har ännu inte laddats upp.
-  third_party_tracking: Spårning av tredje part
   third_person_possessive_singular: "%{object_phrase}s %{noun}"
   this: detta
   this_bioblitz_beings_in: Denna bioblitz börjar om
@@ -4682,8 +4682,8 @@ sv:
   this_will_refresh_listed_taxa: Detta kommer att ladda om listade taxa i denna lista. Det kan ta ett tag så använd sparsamt och på små checklistor
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Detta tar bort iNaturalists möjlighet att komma åt detta konto åt dig tills du beviljar åtkomst igen. Du kan behöva ändra dina inställningar på den externa webbplatsen för att helt förhindra åtkomst.
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: Detta kommer att logga ut dig från din nuvarande session på denna applikation.
   this_will_try_to_add_tags_to_your_flickr: Detta kommer att försöka lägga till taggningar till dina Flickr-bilder. Vill du fortsätta?
   this_year: Detta år
@@ -5553,13 +5553,13 @@ sv:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: Auktorisera %{application} att använda ditt konto?
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Denna applikation kommer att kunna:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Mer om %{application}
     observations:
@@ -6640,7 +6640,6 @@ sv:
         you_must_enter_confirmation_code_in_the_form: |
           Du måste ange "%{confirmation_code}" i formuläret för att radera ditt konto
       edit:
-        about_third_party_tracking: Om tredjepartsspårning
         blocking_desc_html: |
           <p>
           Att blockera någon hindrar dem från att skicka meddelanden till dig, kommentera dina fynd, artbestämma dina fynd, och på annat sätt interagera med dig på %{site_name}. Det tar också bort deras fynd från dina sökresultat och dina fynd från deras sökresultat. Det gör dig dock inte osynlig för dem. De kan fortfarande hitta dina fynd och se din profil, de kan helt enkelt bara inte interagera med dig.
@@ -6731,10 +6730,6 @@ sv:
         prefers_coordinate_interpolation_protection_desc: |
           När du sätter koordinatsekretess för ett fynd till "diffuserad" eller "privat" kommer samma koordinatsekretess att sättas för alla dina andra
           fynd på samma dag, just för att göra det svårare för andra personer att gissa de exakta koordinaterna baserat på fynd gjorda vid ungefär samma tid.
-        prefers_no_tracking_label: Samla inte in stabilitets- och användningsdata med hjälp av tredjepartstjänster
-        prefers_no_tracking_label_desc_we_use: |
-          Vi använder en mängd tredjepartstjänster för att övervaka stabilitet samt diagnostisera buggar och problem med vår programvara. Dessa tredjeparter
-          inkluderar
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Information som vi kan dela med dessa tredje parter inkluderar
@@ -6747,8 +6742,6 @@ sv:
           Kraschdetaljer, såsom exakt vilken kodrad som orsakade en krasch
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Enhetsdetaljer, såsom märke och modell på en mobiltelefon
-        prefers_no_tracking_label_desc_value_html: |
-          <strong>Dessa tredjepartstjänster är enormt värdefulla för oss</strong> när det gäller att upprätthålla iNaturalists stabilitet och användbarhet med vår relativt lite personal. På mobila enheter finns det nästan inget annat sätt för oss att få inblick i problem som uppstår, eftersom programvaran körs på enheter vi inte kan kontrollera. Ibland är vi inte ens medvetna om att sådana problem uppstår förrän vi ser dem i de data som dessa tjänster tillhandahåller. <strong>Genom att dela denna information hjälper du oss att hjälpa dig och hela iNaturalist-communityn.</strong>
         prefers_no_tracking_label_desc_limits: |
           Observera att detta alternativ endast gäller analys- och kraschdata som vi uttryckligen skickar till dessa företag. Alla iNaturalist-servrar tillhandahålls och driftas av Microsoft, alla iNaturalist-bilder tillhandahålls av Amazon, och nästan alla iNaturalist-kartor kommer från Google, vilket innebär att varje gång du tittar på ett fynd på iNaturalist, ansluter du till tjänster som tillhandahålls av dessa företag och visar din IP-adress för dem, till ett minimum (i iPhone-appen använder vi Apples kartor).
           iNaturalist skulle förmodligen inte existera utan de tjänster som dessa företag tillhandahåller, och även om vi kan begränsa mängden och de typer av data som du delar med dem när du använder iNat, kan vi inte stoppa flödet av data helt.
@@ -7477,9 +7470,6 @@ sv:
     scopes:
       write: |
         Skapa, uppdatera och ta bort dina fynd, bestämningar och annat innehåll å dina vägnar samt få tillgång till dina dolda koordinater och all annan information som du kan komma åt på webbplatsen.
-      login: |
-        Få tillgång till information som är relevant för att logga in på en tredjepartstjänst, som e-postadress,
-        användarnamn, namn och användarikon som associeras med ditt konto här.
       account_delete: |
         Radera ditt konto för din räkning.
     errors:
