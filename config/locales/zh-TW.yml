@@ -485,6 +485,8 @@ zh-TW:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: 應用程式
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: 應用程式
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -813,6 +815,7 @@ zh-TW:
   comma_separated_list_of_tracking_codes: |
     以逗號分隔的追蹤代碼清單。當您以新觀察表格傳送人們時想附加追蹤代碼，請添加它，例如：%{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123。您可使用此追蹤來自不同來源的參與。您可在當下載您的專案觀察成 CSV 檔案時來存取這些代碼。
   comma_separated_please: 請以逗號分隔
+  #Noun, used to label a comment or a comment field in a form
   comment: 評論
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: 評論
@@ -1522,7 +1525,6 @@ zh-TW:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: 外部應用程式
-  external_applications_description: 外部應用程式是您授權第三方所開發的軟體可存取您的 iNaturalist 帳號。整體而言，他們可以使用您的帳號做所有您可以做的事情，所以請確保在授權給這些第三方軟體之前，您信任這些應用程式的開發者。
   external_taxon_including_children: 外部分類（包含子項）
   extinct: 絕種
   extinct_in_the_wild: 在野外絕種
@@ -2014,7 +2016,6 @@ zh-TW:
   leading: 優先
   learn: 學習
   learn_about_the_species_live_in: 了較有關物種存活於
-  learn_about_third_party_tracking: 了解更多關於第三方追蹤的細節
   learn_more: 了解更多
   learn_more_raquo: "了解更多&raquo;"
   learn_what_these_licenses_mean: 了解這些許可協議的含義
@@ -4446,7 +4447,6 @@ zh-TW:
   these_folks_kindly_volunteer_to: 這些友善人們志願來維護我們的物種分類法內容，並處理其它問題。
   these_observations_have_not_been_uploaded_yet: |
     這些觀察尚未被上傳。
-  third_party_tracking: 第三方追蹤
   third_person_possessive_singular: "%{object_phrase}的%{noun}"
   this: 此
   this_bioblitz_beings_in: 此 bioblitz 開始於
@@ -4486,8 +4486,8 @@ zh-TW:
   this_will_refresh_listed_taxa: 這將會在此名錄上重新整理已列出的物種分類群。因為會花費一段時間，所以請謹慎地使用並儘量用在小型的名錄上
   this_will_remove_inaturalists_ability_to_access_this_account: |
     這將取消 iNaturalist 代表您存取此帳號的能力，直到您再次授權為止。您也許需要在外部網站上更改您的設定來完全防止存取。
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: 這將會登出您在此應用程式中目前的連線階段。
   this_will_try_to_add_tags_to_your_flickr: 這將會嘗試添加標籤至您的 Flickr 照片，要繼續嗎？
   this_year: 今年
@@ -5315,13 +5315,13 @@ zh-TW:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: 授權 %{application} 來使用您的帳號？
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "此應用程式將能夠："
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: 更多有關 %{application}
     observations:
@@ -6396,7 +6396,6 @@ zh-TW:
         you_must_enter_confirmation_code_in_the_form: |
           您必須在表單輸入「%{confirmation_code}」來刪除您的帳號
       edit:
-        about_third_party_tracking: 關於第三方的追蹤
         blocking_desc_html: |2
           <p>
             封鎖某人可以防止他們傳送訊息給您，對您的觀察做出評論或鑑定，
@@ -6494,10 +6493,6 @@ zh-TW:
           %{site_name} 追蹤您對於您的觀察觀察紀錄鑑定之想法以及社群認為他們是什麼。如果您不認為社群的意見應該推翻您自己的鑑定，您可以在此取消選擇。其他人還是可以新增鑑定，但您的觀察紀錄還是以您的鑑定為準。這代表您的觀察紀錄就沒有資格成為「研究等級」的狀態，除非您的鑑定符合社群的鑑定意見。
         prefers_coordinate_interpolation_protection_desc: |
           當您設定觀察的位置隱私成「obscured」或「private」時，將會對您在同一天的所有其它觀察套用相同的位置隱私，這會讓其他人較難從同一時間所做出的觀察來猜測出真實座標。
-        prefers_no_tracking_label: 不要使用第三方服務來收集穩定性和使用資料分析
-        prefers_no_tracking_label_desc_we_use: |
-          我們使用了多種第三方服務來監測我們軟體內部的程式錯誤(bug)和問題。
-          這些第三方的服務包含：
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google 分析</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           我們可能會和這些第三方分享的資訊包含
@@ -6513,8 +6508,6 @@ zh-TW:
           當機詳細資訊，像是哪一行程式碼導致程式當掉
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           裝置詳細資訊，像是手機的製造商和型號
-        prefers_no_tracking_label_desc_value_html: |
-          <strong>這些第三方服務對我們來說有很大的價值</strong>，讓我們這個相對小型的工作團隊能維持 iNaturalist 的穩定性和可用性。在行動裝置上，由於該軟體在我們無法控制的裝置上運作，因此幾乎沒有其他方法可深入了解所發生的問題。有時候我們甚至沒有察覺到這類的問題發生，直到我們在這些服務中所提供的資料中才發現問題。<strong>透過分享這些資訊，您正在協助我們為您還有整個 iNaturalist 社群服務。</strong>
         prefers_no_tracking_label_desc_limits: |
           請注意這個選項只適用於我們明確寄送給這些公司的分析和當機資料。
           所有的 iNaturalist 伺服器由微軟(Microsoft)來提供營運，所有的 iNaturalist
@@ -7216,8 +7209,6 @@ zh-TW:
     scopes:
       write: |
         創建、更新，和刪除您的觀察、鑑定、代表您本身的內容，以及存取您的隱藏座標與您可在網站上取用的資訊。
-      login: |
-        存取與登入相關的資訊，像是電子郵件、使用者名、名稱、以及使用者圖示。
       account_delete: |
         代表您刪除您的帳號。
     errors:
