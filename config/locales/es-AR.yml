@@ -528,6 +528,8 @@ es-AR:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplicación
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Aplicaciones
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -855,6 +857,7 @@ es-AR:
     Códigos de rastreo separados por comas. Añádelos si quieres agregar un código de rastreo al enviar usuarios al nuevo formulario de observación, ej. %{root_url}observations/new?project_id=%{project_id}&tracking_code=tucodigo123.
     Esto se puede usar para rastrear la participación desde diferentes orígenes. Puedes acceder a estos códigos de rastreo al descargar las observaciones de tu proyecto con formato CSV.
   comma_separated_please: Separados por comas, por favor
+  #Noun, used to label a comment or a comment field in a form
   comment: comentario
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Comentario
@@ -1579,7 +1582,6 @@ es-AR:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplicaciones externas
-  external_applications_description: Las aplicaciones externas son aplicaciones de terceros a las cuales autorizaste para acceder a tu cuenta de iNaturalist en tu nombre. En general, pueden hacer lo mismo que vos podés hacer en tu cuenta, así que asegurate de confiar en sus desarrolladores antes de concederles permiso.
   external_taxon_including_children: Taxon (externo incluyendo descendientes)
   extinct: extinto
   extinct_in_the_wild: Extinta en estado silvestre
@@ -2075,7 +2077,6 @@ es-AR:
   leading: Principal
   learn: Aprende
   learn_about_the_species_live_in: Aprende sobre las especies que viven en
-  learn_about_third_party_tracking: Más información sobre el seguimiento de terceros
   learn_more: Aprende más
   learn_more_raquo: "Saber más &raquo;"
   learn_what_these_licenses_mean: Aprende lo que estas licencias significan
@@ -5109,13 +5110,13 @@ es-AR:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: '¿Autoriza a la %{application} para usar su cuenta?'
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Esta aplicación podrá:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Más sobre %{application}
     observations:
