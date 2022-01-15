@@ -541,6 +541,8 @@ ca:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplicació
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Aplicacions
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -874,6 +876,7 @@ ca:
     Es pot utilitzar per fer el seguiment de la participació en diferents fonts. Podeu accedir a aquests codis de seguiment
     quan descarregueu les observacions del projecte en format CSV.
   comma_separated_please: Si us plau, separeu per comes
+  #Noun, used to label a comment or a comment field in a form
   comment: comentari
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Comentari
@@ -1586,7 +1589,6 @@ ca:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplicacions externes
-  external_applications_description: Les aplicacions externes són aplicacions de tercer a les quals heu autoritzat per accedir al vostre compte d'iNaturalist en nom vostre. En general, poden fer les mateixes coses que podeu fer en el vostre compte, per tant, assegureu-vos de confiar en els seus desenvolupadors abans de concedir-los el permís.
   external_taxon_including_children: Tàxon extern (inclosos els inferiors)
   extinct: extint
   extinct_in_the_wild: Extingit en estat silvestre
@@ -2079,7 +2081,6 @@ ca:
   leading: Dirigint
   learn: Apreneu-ne
   learn_about_the_species_live_in: Informeu-vos sobre les espècies que viuen a
-  learn_about_third_party_tracking: Coneix més sobre el seguiment per tercers
   learn_more: Informeu-vos més
   learn_more_raquo: "Per saber-ne més »"
   learn_what_these_licenses_mean: Informeu-vos sobre què signifiquen aquestes llicències
@@ -4537,7 +4538,6 @@ ca:
   these_folks_kindly_volunteer_to: Aquestes persones s'ofereixen voluntàries amablement per mantenir la taxonomia i resoldre altres problemes.
   these_observations_have_not_been_uploaded_yet: |
     Aquestes observacions encara no s'han pujat
-  third_party_tracking: Seguiment per tercers
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: aquest
   this_bioblitz_beings_in: Aquest bioblitz comença en
@@ -4577,8 +4577,8 @@ ca:
   this_will_refresh_listed_taxa: Això actualitzarà els taxons llistats. Això pot requerir una mica de temps, així que utilitzeu-lo amb moderació i amb llistes de comprovació curtes
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Això eliminarà l'autorització a iNaturalist per accedir a aquest compte en nom vostre fins que la torneu a atorgar. Pot ser que necessiteu canviar les vostres preferències al lloc extern per evitar l'accés completament.
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: Això us farà sortir de la sessió actual d'aquesta aplicació.
   this_will_try_to_add_tags_to_your_flickr: Això intentarà afegir etiquetes a les vostres fotos de Flickr. Voleu continuar?
   this_year: Aquest any
@@ -5434,13 +5434,13 @@ ca:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: Autoritzeu a %{application} per utilitzar el vostre compte?
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Aquesta aplicació podrà:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Més sobre %{application}
     observations:
@@ -6454,7 +6454,6 @@ ca:
         you_must_enter_confirmation_code_in_the_form: |
           Escrigueu "%{confirmation_code}" en el formulari per eliminar el vostre compte
       edit:
-        about_third_party_tracking: Sobre el seguiment per part de tercers
         blocking_desc_html: |
           <p>
           Bloquejar algú impedeix que us enviï missatges i comenti les vostres observacions, identificar-les, i interaccionar amb tu a%{site_name}. També elimina les seves observacions dels vostres resultats de cerca i les vostres observacions del de les seves cerque. Tanmateix, no us fa invisible a ell.   Encara pot trobar les vostres observacions i veure el vostre perfil, només que no podreu interaccionar.
@@ -6523,9 +6522,6 @@ ca:
         prefers_coordinate_interpolation_protection_desc: |
           Quan poseu la geoprivacitat d'una observació "enfoquida" o
           "Privada" s'aplicarà la mateixa geoprivacitat a la resta d'Observacions del mateix dia per fer més difícil que altres persones  puguin intuir les coordenades real a partir d'altres observacions fetes al voltant d'aquesta en el mateix temps.
-        prefers_no_tracking_label: No recolliu dades d'estabilitat i ús utilitzant serveis de tercers
-        prefers_no_tracking_label_desc_we_use: |
-          Utilitzem serveis de tercers per enregistrar l'estabilitat i diagnosticar errades i problemes al nostre programari. Aquests tercers inclouen
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Les informacions que podríem compartir amb aquests tercers inclouen
@@ -6541,8 +6537,6 @@ ca:
           Detalls de fallades, com la línia de codi on es va produir exactament la fallada
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Detalls del dispositiu, como la marca i el modelo d'un telèfon mòbil
-        prefers_no_tracking_label_desc_value_html: |
-          <strong>Aquests serveis de tercers serveis ens proporcionen un valor enorme</strong> mantenint l'estabilitat i usabilitat de iNaturalist amb el relativament petit nombre de personal. En dispositius mòbils, no hi ha gairebé una altre forma de poder conèixer els problemes que estan succeint, donat que el programari està corrent en dispositius que no controlem. De vegades no som fins i tot conscient de que aquests problemes estan succeint fins que els veiem en la dades que ens proporcionen aquests serves¡is. <strong>Compartint aquesta informació, ens estàs ajudant servir-te a tu i a tota la comunitat d'iNaturalist.</strong>
         prefers_no_tracking_label_desc_limits: |
           Observeu que aquesta opció només s'aplica a l'analítica i dades de fallades que explícitament estem enviant a aquestes empreses. Tots els servidors d'iNaturalist són proporcionats i allotjats per Microsoft, totes les imatges d'iNaturalist són allotjades a Amazon, i gairebé tots els mapes d'iNaturalist se serveixen des de Google, el que significa que cada vegada que mireu a una observació d'iNaturalist, esteu connectant amb els serveis proporcionats per aquestes empreses i exposant-lis, al menys, la vostra adreça d'IP (a l'aplicació d'iPhone utilitzem els mapes d'Apple). iNaturalist probablement no existiria sense els serveis que proporciones aquestes empreses, i malgrat podem limitat el volum i tipus de dades que compartiu amb elles mentre utilitzant iNat, no podem parar íntegrament el flux de dades.
         project_settings_desc: |
@@ -7269,8 +7263,6 @@ ca:
     scopes:
       write: |
         Creeu, actualitzeu, i elimineu les vostres observacions, identificacions, i altre contingut en el vostre nom, i accediu a les vostres coordenades ocultes i qualsevol altra informació d'aquest lloc a la qual pugueu accedir.
-      login: |
-        Accediu a informació rellevant per entrar, com l'adreça de correu electrònic, el nom d'usuari, el nom, i la icona d'usuari
       account_delete: |
         Esborreu el vostre compte en nom vostre.
     errors:
