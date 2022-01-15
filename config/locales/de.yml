@@ -552,6 +552,8 @@ de:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Anwendungssoftware
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Apps
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -884,6 +886,7 @@ de:
     Komma-separierte Liste von Tracking-Codes. Füge diese hinzu, um einen Tracking-Code anzuhängen, wenn Personen auf das neue Beobachtungsformular weitergeleitet werden sollen, z.B. %{root_url}observations/new?project_id=%{project_id}&tracking_code=deincode123.
     Damit kann die Beteiligung aus verschiedenen Quellen verfolgt werden. Auf diese Codes kannst du zugreifen, wenn die Beobachtungen des Projekts als CSV heruntergeladen werden.
   comma_separated_please: müssen durch Kommas getrennt sein
+  #Noun, used to label a comment or a comment field in a form
   comment: Kommentar
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentar
@@ -1611,7 +1614,6 @@ de:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Externe Anwendungen
-  external_applications_description: Externe Anwendungen sind Softwareanwendungen von Drittanbietern, die in deinem Namen auf dein iNaturalist-Konto zugreifen dürfen. Im Allgemeinen können sie alles mit deinem Konto tun, was du kannst, also stelle sicher, dass du den App-Entwicklern vertraust, bevor du ihnen die Erlaubnis erteilst.
   external_taxon_including_children: Externes Taxon (einschließlich Nachfahren)
   extinct: ausgestorben
   extinct_in_the_wild: in der Natur ausgestorben
@@ -2097,7 +2099,6 @@ de:
   leading: initiativ
   learn: Lernen
   learn_about_the_species_live_in: 'Lerne mehr über die Arten, die hier leben:'
-  learn_about_third_party_tracking: Erfahre mehr über das Tracking von Drittanbietern
   learn_more: Mehr erfahren
   learn_more_raquo: "Mehr erfahren &raquo;"
   learn_what_these_licenses_mean: Erfahre hier, was diese Lizenzen bedeuten
@@ -4604,7 +4605,6 @@ de:
   these_folks_kindly_volunteer_to: Diese Personen engagieren sich freiwillig, um unsere Taxonomie zu pflegen und sich mit anderen Problemen zu befassen.
   these_observations_have_not_been_uploaded_yet: |
     Diese Beobachtungen wurden noch nicht hochgeladen.
-  third_party_tracking: Drittanbieter-Tracking
   third_person_possessive_singular: "%{noun} von %{object_phrase}"
   this: dies
   this_bioblitz_beings_in: Dieser Bioblitz beginnt in
@@ -4646,8 +4646,8 @@ de:
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Dadurch wird iNaturalist die Möglichkeit entzogen, in deinem Namen
     auf dieses Konto zuzugreifen, solange bis der Zugriff erneut gewährt wurde. Möglicherweise müssen deine Einstellungen auf der externen Seite auch geändert werden, um den Zugriff vollständig zu verhindern.
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: Dies wird dich von deiner aktuellen Sitzung in dieser Anwendung abmelden.
   this_will_try_to_add_tags_to_your_flickr: Dies wird versuchen, deinen Flickr-Bildern Tags hinzuzufügen.  Fortfahren?
   this_year: Dieses Jahr
@@ -5529,13 +5529,13 @@ de:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: '%{application} autorisieren, um dein Konto zu verwenden?'
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Diese Anwendung kann:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Mehr über %{application}
     observations:
@@ -6622,7 +6622,6 @@ de:
         you_must_enter_confirmation_code_in_the_form: |
           Du musst %{confirmation_code} in das Formular eingeben, um dein Konto löschen zu können
       edit:
-        about_third_party_tracking: Über das Tracking von Drittanbietern
         blocking_desc_html: |
           <p>
           Das Blockieren von Personen hindert sie daran, dir Nachrichten zu senden, deine Beobachtungen zu kommentieren, deine Beobachtungen zu identifizieren und anderweitig mit dir auf %{site_name} zu interagieren. Es entfernt auch deren Beobachtungen aus deinen Suchergebnissen und deine Beobachtungen aus ihren Suchergebnissen. Es macht dich jedoch nicht unsichtbar für sie. Sie können immer noch deine Beobachtungen finden und dein Profil ansehen, sie können einfach nicht mit dir interagieren.
@@ -6719,10 +6718,6 @@ de:
           %{site_name} berücksichtigt deine IDs zu deinen Beobachtungen und ebenso, welche Bestimmungen andere Benutzer zu deinen Beobachtungen abgeben. Die Identifikation, die wir mit Datenpartnern teilen, ist die Community-Identifikation (der gemeinsame Nenner aus allen IDs), aber wenn du nicht der Meinung bist, dass die Meinung der Community jemals deine eigene überstimmen sollte, kannst du hier dagegen entscheiden. Die Leute werden immer noch in der Lage sein, Bestimmungen hinzuzufügen, aber die Meinung der Community wird gegenüber deiner nicht bevorzugt. Das bedeutet, dass deine Beobachtungen nicht "Forschungsqualität" erhalten, es sei denn, du stimmst der Mehrheit zu.
         prefers_coordinate_interpolation_protection_desc: |
           Wenn du die Geo-Privatsphäre einer Beobachtung auf "verdeckt" oder "privat" stellst, wird das die Einstellungen aller deiner anderen Beobachtungen vom gleichen Tag ebenfalls betreffen. Damit wird es für andere Personen schwieriger, die wahren Koordinaten herauszufinden aufgrund deiner anderen Beobachtungen in der Nähe
-        prefers_no_tracking_label: Keine Stabilitäts- und Nutzungsdaten mit Hilfe von Diensten durch Dritte erfassen
-        prefers_no_tracking_label_desc_we_use: |
-          Wir verwenden verschiedene Dienste von Drittanbietern, um die Stabilität zu überwachen und
-          Fehler und Probleme in unserer Software zu diagnostizieren. Zu diesen Drittanbietern gehören
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Informationen, die wir mit diesen Drittanbitern teilen könnten, beinhalten
@@ -6732,8 +6727,6 @@ de:
           Absturzdetails, z.B. welche Codezeile einen Absturz verursacht hat
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Gerätedetails, wie der Hersteller und das Modell eines Mobiltelefons
-        prefers_no_tracking_label_desc_value_html: |
-          <strong>Diese Dienstleistungen von Drittanbietern sind für uns von enormem Wert</strong> um die Aufrechterhaltung der Stabilität und Nutzbarkeit von iNaturalist mit unserer relativ kleinen Anzahl an Mitarbeitern zu gewährleisten. Auf mobilen Geräten gibt es fast keine andere Möglichkeit, Erkenntnisse über aufgetretene Probleme zu gewinnen, da die Software auf Geräten läuft, die wir nicht verwalten. Manchmal sind wir uns nicht einmal darüber im Klaren, dass solche Probleme überhaupt auftreten, bis wir sie in den Daten sehen, die diese Dienste zur Verfügung stellen. <strong>Indem du diese Informationen teilst, hilfst du uns dabei, dich und die gesamte iNaturalist-Gemeinschaft besser zu unterstützen.</strong>
         prefers_no_tracking_label_desc_limits: |
           Beachte, dass diese Option nur für Analyse- und Absturzdaten gilt, die wir bewusst an diese Unternehmen senden. Alle iNaturalist-Server werden von Microsoft zur Verfügung gestellt und verwaltet, alle iNaturalist-Fotos befinden sich auf Servern von Amazon, und fast alle iNaturalist-Karten werden von Google zur Verfügung gestellt. Dies bedeutet, dass du jedes Mal, wenn du dir eine Beobachtung auf iNaturalist ansiehst, eine Verbindung zu diesen Firmen herstellst und ihnen zumindest deine IP-Adresse preisgibst (in der iPhone-App verwenden wir die Karten von Apple). iNaturalist würde ohne die Dienstleistungen, die diese Unternehmen anbieten, wahrscheinlich nicht existieren, und obwohl wir die Menge und die Art der Daten, die du bei der Nutzung von iNat mit ihnen teilst, begrenzen können, können wir den Datenfluss nicht vollständig unterbinden.
         project_settings_desc: |
@@ -7200,6 +7193,9 @@ de:
         finished_at: Beendet
         #Inputs to an export task, e.g. the query and the columns
         inputs: Eingaben
+      oauth_application:
+        #Unique identifier for an application
+        uid: ID
       post:
         title: Titel
         body: Text
@@ -7481,8 +7477,6 @@ de:
       write: |
         in deinem Namen Beobachtungen, Bestimmungen und andere Inhalte zu erstellen, zu aktualisieren und zu löschen, sowie auf versteckte Koordinaten und alle
         anderen Informationen zuzugreifen, die du auf der Website abrufen kannst.
-      login: |
-        auf Informationen zuzugreifen, die für die Anmeldung in einem Drittanbieter-Dienst relevant sind, wie E-Mail-Adresse, Benutzername, Name und Benutzersymbol, die mit deinem Konto verknüpft sind.
       account_delete: |
         Dein Konto in Deinem Namen zu löschen.
     errors:
