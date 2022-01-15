@@ -1,4 +1,5 @@
 class MushroomObserverImportFlowTask < FlowTask
+  REMOVAL_DATE = Date.parse( "2022-06-01" )
 
   validate :validate_unique_hash
   validate :api_key_present
@@ -58,6 +59,8 @@ class MushroomObserverImportFlowTask < FlowTask
   end
 
   def run
+    return if Date.today >= REMOVAL_DATE
+
     update(finished_at: nil, error: nil, exception: nil)
     log "Importing observations from Mushroom Observer for #{user}"
     page = 1
@@ -180,7 +183,7 @@ class MushroomObserverImportFlowTask < FlowTask
   end
 
   def mo_url_from_result( result )
-    "http://mushroomobserver.org/observer/show_observation/#{result[:id]}"
+    result[:url]
   end
 
   def observation_from_result( result, options = {} )
@@ -290,7 +293,7 @@ class MushroomObserverImportFlowTask < FlowTask
     end
     if !options[:skip_images] && ( images = images_from_result( result ) ) && images.size > 0
       images.each do |image|
-        image_url = "https://mushroomobserver.nyc3.digitaloceanspaces.com/orig/#{image[:id]}.jpg"
+        image_url = image.at(:original_url).text
         lp = LocalPhoto.new( user: user )
         begin
           log "getting image from #{image_url}"
@@ -299,17 +302,8 @@ class MushroomObserverImportFlowTask < FlowTask
             lp.file = (io.base_uri.path.split('/').last.blank? ? nil : io)
           end
         rescue => e
-          begin
-            image_url = "https://images.mushroomobserver.org/orig/#{image[:id]}.jpg"
-            log "getting image from #{image_url}"
-            io = open( URI.parse( image_url ) )
-            Timeout::timeout(10) do
-              lp.file = (io.base_uri.path.split('/').last.blank? ? nil : io)
-            end
-          rescue => e
-            warn( mo_url, "Failed to download #{image_url}")
-            next
-          end
+          warn( mo_url, "Failed to download #{image_url}")
+          next
         end
         if image_license = image.at( "license")
           lp.license = case image_license[:url]

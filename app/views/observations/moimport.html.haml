@@ -3,6 +3,11 @@
 .container
   .row
     .col-xs-12
+      .alert.alert-warning
+        %p
+          This tool will be removed on
+          = succeed "." do
+            =l @removal_date, format: :long
       %h1 Mushroom Observer Import
       %p
         This tool will import your observations from Mushroom Observer to iNat. You'll need to get a Mushroom Observer API key from
