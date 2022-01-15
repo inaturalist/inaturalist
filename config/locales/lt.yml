@@ -650,6 +650,8 @@ lt:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Programėlė
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Programėlės
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -963,6 +965,7 @@ lt:
   columns: Stulpeliai
   combine: Sujungti
   comma_separated_please: Prašome atskirti kableliais
+  #Noun, used to label a comment or a comment field in a form
   comment: komentaras
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komentuoti
@@ -4429,7 +4432,7 @@ lt:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Daugiau apie %{application}
     observations:
@@ -4682,7 +4685,6 @@ lt:
         by_deleting_your_account_you_will_remove: |
           Ištrindami savo paskyrą jūs panaikinsite
       edit:
-        about_third_party_tracking: Apie trečiųjų šalių sekimą
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jei apsigalvosite visada galite
           <a href='/users/edit'>keisti savo nustatymus</a>.
@@ -4725,9 +4727,6 @@ lt:
         project_addition_preferences:
           any: Nesvarbu
           joined: Projektai, prie kurių prisijungėte
-        prefers_no_tracking_label: Nerinkti stabilumo ir naudojimo duomenų su trečiųjų šalių paslaugomis
-        prefers_no_tracking_label_desc_we_use: |
-          Mes naudojame keletą trečiųjų šalių paslaugų stebėti stabilumą ir atrasti klaidas bei klaidas mūsų programinėje įrangoje. Trečiosios šalys yra
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Informacija, kuria dalinamės su trečiosiomis šalimis gali būti
@@ -4739,8 +4738,6 @@ lt:
           Sistemos gedimo detalės, pavyzdžiui, kokia būtent kodo eilutė sukėlė gedimą
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Įrenginio detalės, pavyzdžiui, mobiliojo telefono modelis
-        prefers_no_tracking_label_desc_value_html: |
-          <strong>Trečiųjų šalių paslaugos mūsų mažam personalui teikia didelę vertę</strong>, be jų negalėtumėme palaikyti iNaturalist stabilumo ir pritaikomumo. Mes nieko negalėtumėme žinoti apie problemas mobiliuosiuose įrenginiuose, nes mes nekontroliuojame jų operacinių sistemų. Kartais mes net nežinome problemų, kol nepamatome jų duomenyse, kuriuos mums pateikia trečiųjų šalių paslaugos. <strong>Besidalindami šia informacija jūs padedate mums tarnauti jums ir visai iNaturalist bendruomenei.</strong>
         search_place_help_html: |
           Numatytoji vieta stebėjimo paieškoms.
         scientific_name_first_desc: |
