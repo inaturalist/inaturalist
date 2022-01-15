@@ -943,6 +943,7 @@ he:
     רשימת קודי מעקב, כאשר פסיקים מפרידים בין הקודים. הוסיפו רשימות כאלה אם אתם רוצים לצרף קוד מעקב בעת שליחת אנשים לטופס התצפית החדש, למשל %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123. 
     באפשרותכם להשתמש בזה כדי לעקוב אחרי השתתפויות ממקורות שונים. תוכלו לגשת לקודים האלה בעת הורדת הפרויקטים כקובצי CSV.
   comma_separated_please: נא להפריד באמצעות פסיקים
+  #Noun, used to label a comment or a comment field in a form
   comment: תגובה
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: תגובה
@@ -1432,7 +1433,6 @@ he:
   export_observations: ייצוא תצפיות
   export_with_private_coordinates: ייצוא עם קואורדינטות מוסתרות
   exporting: "מתבצע ייצוא..."
-  external_applications_description: אפליקציות חיצוניות הן אפליקציות צד שלישי שאיפשרת להן גישה לחשבון האיי-נטורליסט שלך. ככל, אפליקציות אלה יכולות לעשות בחשבון כל דבר שבעליו יכולים, על כן יש לבטוח במפתחי האפליקציה טרם הענקת הגישה.
   extinct: נכחד
   extinct_in_the_wild: נכחד בבר
   extra_properties: תכונות נוספות
@@ -3885,7 +3885,7 @@ he:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: עוד מידע על %{application}
     observations:
@@ -4191,7 +4191,6 @@ he:
         you_must_enter_confirmation_code_in_the_form: |
           חובה להזין %{confirmation_code} בטופס על מנת למחוק את החשבון שלך
       edit:
-        about_third_party_tracking: אודות איסוף מידע עליך על ידי צד שלישי
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: הערות
         #Checkbox label for user preference about what to receive in the daily email update
@@ -4219,9 +4218,6 @@ he:
           joined: פרוייקטים שהצטרפת אליהם
         prefers_community_taxa_desc: |
           %{site_name} בוחן את דעתך על התצפיות שלך, בהשוואה לדעת הקהילה. הזיהויים שאנו חולקים עם שותפים לנתונים הם זיהויי הקהילה, אולם במידה ולדעתך זיהוי הקהילה לעולם אינו ראוי להחליף את שלך, ניתן לבטן את הסכמתך לזיהויים אלו כאן. אחרים עדיין יוכלו להוסיף זיהויים, אולם דעת הקהילה לא תועדף על פני הזיהוי שלך. משמעות הדבר כי התצפיות לא תועלנה לדרגת מחקר, אלא אם תסכים/י עם זיהוי הקהילה.
-        prefers_no_tracking_label: אין לאסוף מידע אודות יציבות והשימוש בפלטפורמה באמצעות שירותים של גוף שלישי
-        prefers_no_tracking_label_desc_we_use: |
-          אנחנו משתמשים במגוון שירותים של גופי צד שלישי על מנת לנטר את יציבות, ולאבחן באגים ובעיות אחרות בתוכנה ששלנו. גופי צד שלישי אלו כוללים
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           המידע שאנו עשויים לחלוק עם גופים אלו כולל
@@ -4914,8 +4910,6 @@ he:
     scopes:
       write: |
         באפשרותך ליצור, לעדכן ולמחוק תצפיות, אמצעי זיהוי ותוכן אחר שלך מטעמך לרבות לגשת לנקודות הציון המוסתרות שלך וכל מידע נוסף שאליו ניתן לגשת באתר.
-      login: |
-        לראות מידע הרלוונטי לכניסה אל שירותים חיצוניים, כמו כתובת מייל, שם משתמש, שם, ואייקון שלך.
       account_delete: |
         למחוק את החשבון שלך.
     errors:
