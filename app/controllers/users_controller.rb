@@ -833,8 +833,13 @@ class UsersController < ApplicationController
     # not sure why current_user would be nil here, but sometimes it is
     return redirect_to login_path if !current_user
     payload = { user_id: current_user.id }
-    if doorkeeper_token && (a = doorkeeper_token.application)
-      payload[:oauth_application_id] = a.becomes( OauthApplication ).id
+    if doorkeeper_token
+      payload[:scopes] = doorkeeper_token.scopes
+      if a = doorkeeper_token.application
+        payload[:oauth_application_id] = a.becomes( OauthApplication ).id
+      end
+    else
+      payload[:scopes] = [:login, :write]
     end
     render json: { api_token: JsonWebToken.encode( payload ) }
   end
