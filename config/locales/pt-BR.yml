@@ -546,6 +546,8 @@ pt-BR:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplicativo
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Aplicativos
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -837,7 +839,6 @@ pt-BR:
   check_list_for_taxon_html: "Lista de verificação para %{taxon}"
   check_lists_must_belong_to_a_place: |
     Listas de Verificação devem pertencer a um lugar. Para criar uma nova lista de verificação, visite a lista padrão do local e selecione o link 'Crie uma nova lista de verificação'.
-  check_list_of_species_occuring_in: Lista de Verificação de espécies que ocorrem em
   check_list_place: "Lista de Verificação de %{place}"
   check_list_updated: Check list Atualizada!
   check_lists_for: "Outras Check Lists para %{place}"
@@ -879,6 +880,7 @@ pt-BR:
     Lista de códigos de rastreamento em arquivo separado por vírgulas. Inclua este se você pretende incluir um código de rastreamento ao direcionar as pessoas para o formulário de novas observações, e.g. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
     Este código pode ser aplicado para rastrear a utilização de diferentes fontes nas participações, e estará disponível ao baixar os dados das observações do projeto como CSV.
   comma_separated_please: Por favor separe com vírgulas
+  #Noun, used to label a comment or a comment field in a form
   comment: comentário
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Comentário
@@ -1589,7 +1591,6 @@ pt-BR:
   event_stats: Estatísticas do evento
   event_url: URL do evento
   events_only: Apenas eventos
-  every_species_seen_by: Todas as espécies vistas por
   everyone: todos
   everyone_: Todos
   everyone_journal_posts: Publicações de Todos nos Boletins Informativos
@@ -1615,7 +1616,6 @@ pt-BR:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplicativos externos
-  external_applications_description: Aplicativos externos são aplicativos de terceiros que você autorizou a aceder à sua conta iNaturalist em seu nome. Em geral, eles podem fazer tudo com a sua conta que você puder, por isso certifique-se de confiar nos mesmos antes de lhes conceder permissão.
   external_taxon_including_children: Táxon externo (incluindo crianças)
   extinct: extinto
   extinct_in_the_wild: Extinto na natureza
@@ -2129,7 +2129,6 @@ pt-BR:
   leading: Conduzindo
   learn: Aprender
   learn_about_the_species_live_in: Aprenda sobre espécies que vivem em
-  learn_about_third_party_tracking: Saiba mais sobre o rastreamento de terceiros
   learn_more: Saiba mais
   learn_more_raquo: "Saiba mais &raquo;"
   learn_what_these_licenses_mean: Saiba o que estas licenças significam
@@ -4657,7 +4656,6 @@ pt-BR:
   these_folks_kindly_volunteer_to: Estas pessoas são gentis voluntários que mantém nossa taxonomia e lidam com outras questões.
   these_observations_have_not_been_uploaded_yet: |
     Estas observações ainda não foram carregadas.
-  third_party_tracking: Rastreamento de terceiros
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: este
   this_bioblitz_beings_in: Esta maratona naturalista começa em
@@ -4698,8 +4696,8 @@ pt-BR:
   this_will_refresh_listed_taxa: Esta ação irá atualizar todos os táxons recentemente incluídos. Isto pode levar alguns minutos, por favor utilize este recurso com moderação e em pequenas checklists
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Isto excluirá a capacidade do iNaturalist de acessar esta conta em seu nome até que você conceda acesso novamente. Você pode precisar alterar as suas configurações no site externo para impedir completamente o acesso.
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: Isso desconectará você da sua sessão atual nesta aplicação.
   this_will_try_to_add_tags_to_your_flickr: Isto irá tentar adicionar marcações nas suas fotos do Flickr. Deseja continuar?
   this_year: Este Ano
@@ -5566,13 +5564,13 @@ pt-BR:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: Autorizar %{application} a usar sua conta?
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Esta aplicação será capaz de:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Mais sobre %{application}
     observations:
@@ -6716,7 +6714,6 @@ pt-BR:
         you_must_enter_confirmation_code_in_the_form: |
           Você deve inserir "%{confirmation_code}" no formulário para excluir sua conta
       edit:
-        about_third_party_tracking: Sobre o rastreamento de terceiros
         blocking_desc_html: |
           <p>
           Bloquear alguém impede que você envie mensagens para você, comentando
@@ -6832,11 +6829,6 @@ pt-BR:
           O %{site_name} rastreia o que você acha que suas observações são e o que a comunidade acha. Se você não deseja que a opinião da comunidade se sobreponha à sua, você pode optar por não permitir isso desativando essa opção. As pessoas ainda poderão adicionar identificações, mas suas observações ficarão com o táxon da sua observação. Isso significa que suas observações não estarão elegíveis para o status de Nível de Pesquisa, a não ser que a sua identificação seja a mesma da comunidade.
         prefers_coordinate_interpolation_protection_desc: |
           Quando você define a geocodificação de uma observação como "obscurecida" ou "privado", isto aplicará a mesma georreferenciação a todas as outras observações do mesmo dia para tornar mais difícil para outras pessoas adivinhar as coordenadas verdadeiras com base em observações feitas em torno do mesmo tempo.
-        prefers_no_tracking_label: Não colete dados de estabilidade e uso usando serviços de terceiros
-        prefers_no_tracking_label_desc_we_use: |
-          Usamos uma variedade de serviços de terceiros para monitorar a estabilidade e
-          diagnosticar bugs e problemas em nosso software. Esses terceiros
-          incluem
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Informações que podemos compartilhar com esses terceiros incluem
@@ -6853,8 +6845,6 @@ pt-BR:
           Detalhes do erro, como exatamente qual linha de código causou um erro
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Detalhes do dispositivo, como fabricante e modelo de um telefone móvel
-        prefers_no_tracking_label_desc_value_html: |
-          <strong>Esses serviços de terceiros provém valor enorme para nós</strong> mantendo a estabilidade e usabilidade do iNaturalist com nossa equipe relativamente pequena. Em dispositivos móveis, não há quase nenhum outro jeito de ganhar conhecimento de problemas que estejam ocorrendo, já que o software está rodando em dispositivos que não controlamos. Às vezes nós nem estamos cientes de tais problemas até vermos nos dados que esses serviços providenciam. <strong>Ao compartilhar esta informação, você está nos ajudando a servir você e toda a comunidade iNaturalist.</strong>
         prefers_no_tracking_label_desc_limits: |
           Observe que esta opção se aplica apenas a dados de análise e erro que
           estamos enviando explicitamente para essas empresas. Todos os servidores iNaturalist são fornecidos e hospedados pela Microsoft, todas as imagens iNaturalist são hospedadas pela Amazon, e quase todos os mapas do iNaturalist são servidos pelo Google, o que significa que cada vez que você olha para uma observação no iNaturalist, você está se conectando a serviços prestados por essas empresas e expondo seu endereço IP a eles, pelo menos (no aplicativo para iPhone, usamos mapas da Apple). O iNaturalist provavelmente não existiria sem os
@@ -7613,8 +7603,6 @@ pt-BR:
         Crie, atualize e exclua suas observações, identificações e outros
         conteúdo em seu nome e acessar suas coordenadas ocultas e qualquer
         outras informações que você pode acessar no site.
-      login: |
-        Acessar informações relevantes para entrar, como endereço de e-mail, nome de usuário, nome e ícone do usuário.
       account_delete: |
         Excluir sua conta em seu nome.
     errors:

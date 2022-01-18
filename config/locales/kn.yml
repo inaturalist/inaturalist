@@ -507,6 +507,8 @@ kn:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: ಅಪ್ಲಿಕೇಷನ್
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: ಅಪ್ಲಿಕೇಷನ್‍ಗಳು
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -762,7 +764,6 @@ kn:
   check_list_for_taxon_html: "%{taxon} ಗಾಗಿ ತಾಳೆಪಟ್ಟಿ"
   check_lists_must_belong_to_a_place: |
     ತಾಳೆಪಟ್ಟಿಗಳು ಒಂದು ಸ್ಥಳಕ್ಕೆ ಸೇರಿರಬೇಕು. ಒಂದು ಹೊಸ ತಾಳೆಪಟ್ಟಿಯನ್ನು ರಚಿಸಲು, ಸ್ಥಳದ ನಿಯೋಜಿತ ತಾಳೆಪಟ್ಟಿಗೆ ಭೇಟಿನೀಡಿ ಮತ್ತು 'ಹೊಸ ತಾಳೆಪಟ್ಟಿಯನ್ನು ರಚಿಸಿ' ಅನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ.
-  check_list_of_species_occuring_in: ಇಲ್ಲಿ ಇರುವಿಕೆ ತೋರಿರುವ ಪ್ರಭೇದಗಳ ತಾಳೆಪಟ್ಟಿ
   check_list_place: "%{place} ತಾಳೆಪಟ್ಟಿ"
   check_list_updated: ತಾಳೆಪಟ್ಟಿ ನವೀಕರಣಗೊಂಡಿದೆ!
   check_lists_for: "%{place} ಗಾಗಿ ಇತರೇ ತಾಳೆಪಟ್ಟಿಗಳು"
@@ -796,6 +797,7 @@ kn:
   columns: ಉದ್ದಸಾಲುಗಳು
   combine: ಜೋಡಿಸಿ
   comma_separated_please: ದಯವಿಟ್ಟು, ಕಾಮಾ-ವಿಭಜಿತ,
+  #Noun, used to label a comment or a comment field in a form
   comment: ಅಭಿಪ್ರಾಯ
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: ಅಭಿಪ್ರಾಯ
@@ -1389,7 +1391,6 @@ kn:
   event_stats: ಕಾರ್ಯಕ್ರಮದ ಅಂಕಿಅಂಶಗಳು
   event_url: ಕಾರ್ಯಕ್ರಮದ URL
   events_only: ಕಾರ್ಯಕ್ರಮಗಳು ಮಾತ್ರ
-  every_species_seen_by: ಇವರ ಮೂಲಕ ವೀಕ್ಷಣೆಯಾದ ಎಲ್ಲಾ ಪ್ರಭೇದಗಳು
   everyone: ಎಲ್ಲರೂ
   everyone_: ಎಲ್ಲರೂ
   everyone_journal_posts: ಇದು ಎಲ್ಲರ ನಿಯತಕಾಲಿಕೆ ಲೇಖನಗಳು
@@ -4760,10 +4761,10 @@ kn:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: '%{application} ಗೆ ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಬಳಸಲು ಅನುಮತಿಸುವಿರಾ?'
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: '%{application} ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ವಿವರ'
     observations:

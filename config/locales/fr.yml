@@ -549,6 +549,8 @@ fr:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Application
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Applications
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -841,7 +843,6 @@ fr:
     Les check-lists doivent être associées à un lieu. Pour créer une
     nouvelle check-list, ouvrez la check-list par défaut d’un
     lieu et cliquez sur le lien 'Créer une nouvelle liste de contrôle'.
-  check_list_of_species_occuring_in: Liste des espèces présentes à
   check_list_place: "Check-list de %{place}"
   check_list_updated: Check-list mise à jour!
   check_lists_for: "Autres check-lists associées à %{place}"
@@ -888,6 +889,7 @@ fr:
     différentes sources. Vous pouvez accéder à ces codes en téléchargeant vos
     observations liées au projet en format CSV.
   comma_separated_please: Veuillez séparer par des virgules
+  #Noun, used to label a comment or a comment field in a form
   comment: commentaire
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Commentaire
@@ -1202,7 +1204,7 @@ fr:
   curator_application_what_curators_can_do_edit_taxonomy_html: 'Modifier la taxinomie d''iNaturalist en suivant les règles définies dans la <a href="/pages/curator+guide#policies" target="_blank">section correspondante du Guide des responsables de l''organisation</a>. Autrement dit, ils peuvent ajouter, scinder, permuter, fusionner, désactiver et supprimer des taxons sur iNaturalist. Ils peuvent également modifier la situation quant à la conservation et la géoconfidentialité des taxons, ainsi que modifier et gérer les noms vernaculaires, quel que soit l''utilisateur qui les a ajoutés.'
   curator_application_what_curators_can_do_hide_comments_html: |
     Masquer les commentaires et suspendre les utilisateurs qui ont enfreint les <a
-    href="/pages/community+guidelines" target="_blank">directives de la communauté
+    href="/pages/community+guidelines" target="_blank">règles de la communauté
     </a>
   #Description of a curator's ability to resolve flags; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
@@ -1261,7 +1263,7 @@ fr:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Vous êtes en mesure d'adopter un comportement approprié sur iNaturalist et de vous conformer aux
-    directives de la communauté. On attend des personnes qui reçoivent les pouvoirs des responsables qu'elles soient des utilisateurs exemplaires d'iNaturalist.
+    règles de la communauté. On attend des personnes qui reçoivent les pouvoirs des responsables qu'elles soient des utilisateurs exemplaires d'iNaturalist.
   curators_changed_for_x_html: "Responsables de l’organisation modifiés à %{x}"
   curators: Responsables de l’organisation
   curators_can_remove_observations_from: Les responsables de l’organisation peuvent supprimer des observations du projet. Leurs identifications sont affichées à côté des observations dans certaines vues du projet. Les responsables de l’organisation peuvent aussi voir les vraies coordonnées des contributions privées et masquées du projet.
@@ -1495,6 +1497,8 @@ fr:
   each_place_displays_all_species_inat_knows: "Chaque page de lieu affiche toutes les espèces répertoriées par %{site_name} pour ce lieu, y compris les informations sur leur abondance, leur statut de conservation et le nom de la première personne ayant observé cette espèce sur %{site_name}. Vous pouvez filtrer les espèces par groupe taxinomique, par couleur, selon leur statut de conservation ou par la fonctionnalité de recherche habituelle."
   earliest_added: Ajouté le plus tôt
   edit: Modifier
+  #Title of the moderation note editor
+  edit_moderator_note: Modifier la note de modération
   edit_a_batch_of_observations: Modifier un groupe d’observations
   edit_account_settings_and_profile: "Modifier les paramètres &amp; le profil"
   edit_assessment: Modifier l’évaluation
@@ -1598,7 +1602,6 @@ fr:
   event_stats: Statistiques de l'évènement
   event_url: URL de l’activité
   events_only: Événements uniquement
-  every_species_seen_by: Chaque espèce vue par
   everyone: tout le monde
   everyone_: Tout le monde
   everyone_journal_posts: Notes de journal de tout le monde
@@ -1624,7 +1627,6 @@ fr:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Applications externes
-  external_applications_description: Les applications externes sont des applications logicielles tierces auxquelles vous avez donné accès à votre compte iNaturalist. En général, elles peuvent exécuter tout ce que vous-même pouvez faire dans votre compte ; assurez-vous donc que vous faites bien confiance aux développeurs de ces applis avant de leur donner une quelconque permission.
   external_taxon_including_children: Taxon externe (incluant les enfants)
   extinct: disparue
   extinct_in_the_wild: Disparue à l’état sauvage
@@ -1708,6 +1710,7 @@ fr:
   flag_as_non_spammer: Signaler comme non-spammeur
   #Label for the date/time when a flag was created
   flag_created: Signalement créé
+  flag_deleted: Indicateur supprimé
   flag_description: Signaler ce contenu aux responsables de l’organisation pour les informer d'un problème.
   flag_comment_description: Ajoutez un commentaire facultatif à cet indication pour expliquer plus en détail pourquoi vous l'ajoutez et pour fournir des liens vers des données qui étayent votre point de vue.
   flag_for_check_list_title_html: |
@@ -2130,7 +2133,6 @@ fr:
   leading: En tête
   learn: Apprendre
   learn_about_the_species_live_in: Apprenez-en davantage sur les espèces qui vivent dans
-  learn_about_third_party_tracking: En savoir plus sur le suivi par des sites tiers
   learn_more: En savoir plus
   learn_more_raquo: "En savoir plus &raquo;"
   learn_what_these_licenses_mean: Apprenez-en d'avantage sur ce que veulent dire ces licences
@@ -2477,7 +2479,7 @@ fr:
     leur propre historique</strong>, donc les notes sur une personne ne devraient jamais être visibles
     par cette personne.
   moderator_note_desc: |
-    Les remarques du modérateur sont un relevé des interventions de modération ou des préoccupations documentées concernant un utilisateur, par exemple pour déterminer s'il s'agit d'un faux-nez. Ne pas inclure d'opinions personnelles ni de rumeurs à propos de l'utilisateur.
+    Les notes du modérateur sont un relevé des interventions de modération ou des préoccupations documentées concernant un utilisateur, par exemple pour déterminer s'il s'agit d'un faux-nez. Ne pas inclure d'opinions personnelles ni de rumeurs à propos de l'utilisateur.
   #Person who executed a moderator action or flagged something
   moderator_or_flagger: Modérateur / Signaleur
   mollusks: mollusques
@@ -4348,8 +4350,6 @@ fr:
   subscribe_to_observations_from_this_place_html: <a>Abonnez-vous</a> aux observations de cet endroit
   subscribe_to_observations_in_a_taxon: S’abonner à toutes les observations publiées sur une espèce ou un groupe d’organismes (par ex. 'scorpions').
   subscribe_to_observations_in_a_place: S’abonner à toutes les observations publiées dans cet emplacement. Vous pouvez aussi ajouter un filtre de taxon facultatif (par ex. 'scorpions du Texas').
-  subscribe_to_places_help: |
-    Les abonnements déterminent les notifications que vous recevez et le contenu de votre tableau de bord. Par exemple, vous pouvez vous abonner à un taxon pour recevoir une notification chaque fois que ce taxon est observé. Quand vous commentez ou que vous identifiez une observation, vous vous abonnez automatiquement aux notifications qui la concernent.
   subscribe_to_this: Abonnez-vous
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Abonnez-vous</a>
@@ -4622,7 +4622,6 @@ fr:
   these_folks_kindly_volunteer_to: Ces utilisateurs ont eu la gentillesse de se porter volontaires pour maintenir notre taxinomie et gérer les problèmes courants.
   these_observations_have_not_been_uploaded_yet: |
     Ces observations n’ont pas encore été téléversées.
-  third_party_tracking: Suivi par des partis tiers
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: ce
   this_bioblitz_beings_in: Ce bioblitz commence dans
@@ -4665,8 +4664,8 @@ fr:
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Ceci empêchera iNaturalist d'accéder à ce compte en votre nom
     jusqu'à ce que vous accordiez à nouveau l'accès. Vous devrez peut-être modifier vos paramètres sur le site externe pour empêcher complètement l'accès.
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: Cela va vous déconnecter de votre session sur cette application
   this_will_try_to_add_tags_to_your_flickr: Cette action tentera d’ajouter des étiquettes à vos photos Flickr. Voulez-vous continuer ?
   this_year: Cette année
@@ -5309,7 +5308,7 @@ fr:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: Prévoyez-vous d’utiliser %{site_name} dans la salle de classe ?
           community_guidelines_html: |
-            <a href="%{url}">Regardez les règles de la communauté</a> pour des conseils sur comment faire en sorte qu'iNaturalist reste un endroit amical et convivial.
+            <a href="%{url}">Consultez les règles de la communauté</a> pour des conseils pour qu'iNaturalist reste un endroit amical et convivial.
           please_read_the_teachers_guide_html: |
             Si c’est le cas, veuillez lire notre <a href="%{url}">Guide de l’enseignant</a> pour des conseils sur l’utilisation de %{site_name} avec des étudiants.
     donate:
@@ -5610,13 +5609,13 @@ fr:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: Autoriser %{application} à utiliser votre compte ?
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Cette application pourra :"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Plus sur %{application}
     observations:
@@ -7009,7 +7008,6 @@ fr:
         you_must_enter_confirmation_code_in_the_form: |
           Vous devez saisir « %{confirmation_code} » dans le formulaire pour supprimer votre compte
       edit:
-        about_third_party_tracking: À propos du suivi par des sites tiers
         blocking_desc_html: |
           <p>
           Bloquer quelqu'un l'empêche de vous envoyer des
@@ -7135,9 +7133,6 @@ fr:
           %{site_name} enregistre vos observations ainsi que votre identification et les identifications de la communauté. L’identification que nous communiquons à nos partenaires d’échange de données est celle de la communauté, mais si vous pensez que l’opinion de la communauté ne doit jamais primer sur la vôtre, vous pouvez changer ici le paramètre par défaut. Les autres utilisateurs pourront toujours ajouter des identifications, mais l’opinion de la communauté n'aura pas plus de poids que la vôtre. Autrement dit, vos observations ne pourront avoir le calibre recherche que si vous êtes d’accord avec la communauté.
         prefers_coordinate_interpolation_protection_desc: |
           Quand vous fixez la géoconfidentialité d’une observation à « masquée » ou « privée », le même niveau de géoconfidentialité sera appliqué à toutes vos observations faites le même jour, pour qu'il soit plus difficile pour les autres de deviner les vraies coordonnées d’après les observations faites dans ce secteur-là au même moment.
-        prefers_no_tracking_label: Ne pas collecter de données de performance et d'utilisation par le biais de services tiers
-        prefers_no_tracking_label_desc_we_use: |
-          Nous utilisons des services tiers pour évaluer la stabilité de l'application et détecter des bugs. Ces programmes tiers incluent
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Les informations que nous pourrions partager avec ces tiers incluent
@@ -7151,8 +7146,6 @@ fr:
           Les détails du crash, par exemple quelle ligne précise de code a causé le crash
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Détails de l'appareil, comme la marque et le modèle d'un téléphone portable
-        prefers_no_tracking_label_desc_value_html: |
-          <strong>Ces services tiers nous fournissent une valeur ajoutée énorme</strong> pour maintenir la stabilité et la facilité d'utilisation d'iNaturalist, malgré notre équipe relativement réduite. Sur les appareils mobiles, il n'y a quasiment pas d'autre façon pour nous d'être alertés des problèmes qui se produisent puisque le logiciel fonctionne sur des appareils que nous ne contrôlons pas. Parfois, nous ne sommes même pas au courant de l'existence de tels problèmes jusqu'à ce qu'ils apparaissent dans les données que ces services nous fournissent. <strong>En partageant ces informations, vous nous aidez à vous aider, ainsi que toute la communauté iNaturalist.</strong>
         prefers_no_tracking_label_desc_limits: |
           Notez que cette option ne s'applique qu'aux données de statistiques et d'erreurs que nous envoyons explicitement à ces entreprises. Tous les serveurs d'iNaturalist sont fournis et hébergés par Microsoft, toutes les images d'iNaturalist sont hébergées par Amazon, et presque toutes les cartes d'iNaturalist sont fournies par Google, ce qui signifie que chaque fois que vous regardez une observation sur iNaturalist, vous vous connectez aux services fournis par ces entreprises et leur exposez au minimum votre adresse IP (dans l’application pour iPhone nous utilisons les cartes d’Apple). iNaturalist n'existerait probablement pas sans les services fournis par ces sociétés, et bien que nous puissions limiter la quantité et les types de données que vous partagez avec eux en utilisant iNat, nous ne pouvons pas supprimer complètement ce flux de données.
         project_settings_desc: |
@@ -7584,11 +7577,11 @@ fr:
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
-      ModeratorAction: Action du Modérateur
+      ModeratorAction: Action du modérateur
       #Text note left by a moderator about another user recording a response to
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
-      ModeratorNote: Remarque du Modérateur
+      ModeratorNote: Note du modérateur
       TaxonLink: Lien de taxon
     attributes:
       assessment:
@@ -7929,8 +7922,6 @@ fr:
     scopes:
       write: |
         Créer, mettre à jour et supprimer vos observations, identifications et autre contenu en votre nom, et accéder à vos coordonnées masquées et toute autre information à laquelle vous pouvez accéder sur le site.
-      login: |
-        Accéder aux informations pertinentes pour se connecter, comme l’adresse de messagerie, le nom d’utilisateur, le nom et l’icône utilisateur.
       account_delete: |
         Supprimer votre compte en votre nom.
     errors:

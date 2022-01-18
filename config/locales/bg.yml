@@ -486,6 +486,8 @@ bg:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Приложение
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Приложения
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -673,7 +675,6 @@ bg:
   check_list_for_individual_taxa_that: 'Видов списък на отделни таксони които се срещат тук, например „Птици от %{place}“.'
   check_lists_must_belong_to_a_place: |
     Видовите списъци трябва да са асоциирани с някакво място. За да създадете нов видов списък, посетете списъкът по подразбиране на желаното място и щракнете „Създай нов видов списък“.
-  check_list_of_species_occuring_in: Видов списък на
   check_list_place: "Видов списък на %{place}"
   check_list_updated: Видовият списък е обновен!
   check_lists_for: "Други видови списъци за %{place}"
@@ -709,6 +710,7 @@ bg:
     %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
     Можете да ги използвате, за да проследявате от къде са дошли различните участници. Тези кодове ще са достъпни, когато изтеглите наблюденията на проекта в CSV формат.
   comma_separated_please: Разделени със запетая, моля
+  #Noun, used to label a comment or a comment field in a form
   comment: коментар
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Коментирай
@@ -1162,7 +1164,6 @@ bg:
   establishment_means_describes_how: |
     Начинът на заселване описва как видът се е установил на даденото място. Вижте DarwinCore за повече <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">информация относно терминологията</a>.
   event_in_progress: Активно събитие
-  every_species_seen_by: Всеки вид видян от
   everyone: всички
   everyone_: Всички
   everyone_journal_posts: Публикации в дневника от всички потребители
@@ -1184,7 +1185,6 @@ bg:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Външни приложения
-  external_applications_description: Външните приложения са приложения от трети страни, които сте оторизирали да използват Вашия акаунт на iNaturalist от Ваше име. Това им позволява да правят с Вашия акаунт всичко, което и Вие можете да правите; така че се уверете, че имате доверие на разработчиците на приложенията преди да им разрешите това.
   extinct: изчезнал
   extinct_in_the_wild: изчезнал в природата
   extra_properties: Допълнителни свойства
@@ -1528,7 +1528,6 @@ bg:
     identifications_in_year: Най-много разпознавания за %{year}
   learn: Научете
   learn_about_the_species_live_in: Научи за видовете живеещи в
-  learn_about_third_party_tracking: Научете повече за проследяването от трети страни
   learn_more: Научете повече
   learn_more_raquo: "Научи повече &raquo;"
   learn_what_these_licenses_mean: Научи какво означават тези лицензи
@@ -3318,7 +3317,6 @@ bg:
   these_are_items_people_on: |
     Това са елементи, които хората на сайта са маркирали за куриране. Коментарите съдържащи спам трябва да бъдат изтрити, а потребителите които ги генерират - да бъдат запорирани (отидете на профилната им страница и изберете „Запорирай потребителя“ долу вдясно, за да им попречите да влизат в сайта). Другите маркирани елементи трябва да бъдат изтрити само ако са отявлено нелегални, демонстриращи омраза и т.н. Грубост, обиди и други подобни, трябва да се овладяват с вежлив коментар. Потребителите, които злоупотребяват многократно, трябва да се докладват на администратор на сайта или на %{email}
   these_folks_kindly_volunteer_to: Тези хора любезно и доброволно поддържат нашата таксономия и се занимават с някои други проблеми.
-  third_party_tracking: Проследяване от трети страни
   this_bioblitz_beings_in: Този биоблиц започва след
   this_is_how_taxon_names_will_be_displayed: Така ще бъдат изобразявани всички имена на таксони из целия %{site_name}
   this_is_your_observation: Това наблюдение е Ваше
@@ -3341,8 +3339,8 @@ bg:
     Ако това е Вашият акаунт и смятате, че това е направено по погрешка, моля <a href="mailto:%{email}">свържете се с нас</a>.
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Това ще прекрати способността на iNaturalist да достъпва този акаунт от Ваше име, докато не възобновите достъпа му. Може да се наложи да промените настройките си на външния сайт, за да предотвратите напълно достъпа.
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: Това ще ви отпише от текущата Ви сесия на това приложение.
   this_year: Тази година
   threatened: Застрашен
@@ -3802,13 +3800,13 @@ bg:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: Разрешавате ли на %{application} да използва Вашия акаунт?
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Това приложение ще може да:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Повече относно %{application}
     observations:
@@ -4231,7 +4229,6 @@ bg:
         you_must_enter_confirmation_code_in_the_form: |
           Трябва да въведете „%{confirmation_code}“ във формуляра, за да изтриете акаунта си.
       edit:
-        about_third_party_tracking: Относно следенето от трети страни
         blocking_desc_html: |
           <p>Когато блокирате хора, те няма да могат да Ви изпращат съобщения, да коментират и разпознават Вашите наблюдения или да взаимодействат с Вас по какъвто и да било начин в %{site_name}. Това също ще премахва техните наблюдения от Вашите резултати при търсене на сайта, както ще премахва и Вашите наблюдения при техните търсения. Това обаче няма да Ви направи невидими за тях. Те все още ще могат да виждат Вашите наблюдения и профил, но няма да могат да взаимодействат с Вас.</p>
           <p>Блокирането е за случаите когато не можете да се разберете с някого и когато не Ви оставят на мира, въпреки усилията Ви да разрешите проблема с цивилизован диалог. Това не е начин да се скриете от някого, да попречите на разпознавания от хора на които нямате доверие или въобще да забраните разпознавания от общността (има настройка за това). Блокирането работи двупосочно - те няма да могат да взаимодействат с Вас, но и Вие няма да можете да взаимодействате с тях. Ако злоупотребите с функцията за да попречите на някого да разпознава наблюденията Ви, то и Вие няма да можете да разпознавате техните.</p>
@@ -4296,9 +4293,6 @@ bg:
           any: Всички
           joined: Проекти, в които участвате
           none: "Никои, само Вие можете да добавяте наблюденията си към проекти"
-        prefers_no_tracking_label: Не събирай данни за стабилността и потреблението използвайки услугите на трети страни
-        prefers_no_tracking_label_desc_we_use: |
-          Използваме разнообразни услуги от трети страни за да следим стабилността и за да диагностицираме бъгове и проблеми в софтуера ни. Тези трети страни са
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Информацията, която може да споделим с тези трети страни, включва
@@ -4310,8 +4304,6 @@ bg:
           Информация за софтуерен срив, например кой ред от кода е предизвикал срива
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Информация за устройството, например марка и модел на мобилен телефон
-        prefers_no_tracking_label_desc_value_html: |
-          <strong>Тези услуги от трети страни ни предоставят огромни улеснения</strong> при поддържането на стабилността и ползваемостта на iNaturalist от нашия сравнително малък персонал. За мобилни устройства, практически няма друг начин по който да разберем възникващите проблеми, тъй като софтуерът се изпълнява на устройства, над които нямаме никакъв контрол. Понякога дори не знаем, че е възникнал проблем, докато не го видим в данните, които тези услуги ни предоставят. <strong>Споделяйки тази информация, ни помагате да обслужваме както Вас, така и цялата общност на iNaturalist.</strong>
         prefers_no_tracking_label_desc_limits: |
           Имайте предвид, че тази настройка се отнася единствено за данните за анализ и сривове, които изрично изпращаме на тези компании. Всичките сървъри на iNaturalist са предоставени от Microsoft, всичките изображения са съхранявани от Amazon и почти всички карти са предоставени от Google (или Apple за приложението на iPhone). Това означава, че всеки път щом погледнете наблюдение на iNaturalist, Вие използвате услуги на тези компании и им предоставяте поне своя IP адрес. iNaturalist едва ли би бил възможен без услугите на тези компании и - въпреки, че можем да ограничим количеството и вида на информацията, която достига до тях докато използвате iNaturalist - не можем напълно да спрем потока от информация.
         project_settings_desc: |
@@ -4798,8 +4790,6 @@ bg:
     scopes:
       write: |
         Създава, обновява и изтрива Ваши наблюдения, разпознавания и друго съдържание от Ваше име, както и да получава скритите Ви координати и всяка друга информация, до която Вие самите имате достъп.
-      login: |
-        Получава информация необходима при влизането и използването на услуги от трети страни, като имейла, потребителското име и потребителската иконка на акаунта Ви тук.
       account_delete: |
         Изтрие акаунта Ви от Ваше име.
     flash:

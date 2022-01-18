@@ -511,7 +511,6 @@ ko:
   check_list_for_individual_taxa_that: '이 장소에 사는 각 분류군 체크리스트 (예: %{place}에 사는 새)'
   check_lists_must_belong_to_a_place: |
     체크리스트는 장소를 지정해야 합니다. 새로운 체크리스트를 만들기 위해 기본 체크스트에 들어가서 '새로운 체크리스트' 링크를 선택하세요.
-  check_list_of_species_occuring_in: 여기서 서식하는 종의 체크리스트
   check_list_place: "%{place} 체크리스트"
   check_list_updated: 체크리스트가 업데이트되었습니다!
   check_out_what_the_observation: 동정하고자 하는 관찰대상의 생김새를 확인합니다.
@@ -543,6 +542,7 @@ ko:
   columns: 열
   combine: 병합
   comma_separated_please: 쉼표로 분리해주세요
+  #Noun, used to label a comment or a comment field in a form
   comment: 댓글
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: 댓글
@@ -881,7 +881,6 @@ ko:
   event_stats: 이벤트 통계
   event_url: 이벤트 URL
   events_only: 이벤트만
-  every_species_seen_by: 관측된 모든 종들
   everyone: 모두
   everyone_: 모두
   everyone_journal_posts: 모든 사람의 일지 포스트
@@ -2418,10 +2417,10 @@ ko:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "이 애플리케이션은 다음을 할 수 있습니다:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: '%{application} 추가 정보'
     observations:

@@ -503,13 +503,28 @@ id:
   #Label for an option to show/include content by any user
   any_user: Semua
   anyone: Siapapun
+  app_owner_application_about_p1a_html: |
+    Aplikasi pihak ketiga iNaturalist mengizinkan penggunaan berotentikasi atas API iNaturalist. Hal ini mengizinkan Anda untuk membuat panggilan API yang melakukan hal-hal seperti membuat pengamatan atau identifikasi. Ini biasa digunakan oleh aplikasi-aplikasi desktop atau mobile yang memiliki fungsi untuk membuat pengamatan iNaturalist. Konten ini harus dibuat dengan pengawasan dan campur tangan manusia. Silakan membaca <a href="/pages/community+guidelines"
+    target="_blank">Pedoman Komunitas</a> kami yang melarang pengamatan, identifikasi, dan komentar yang dibuat bot untuk detail lebih lanjut.
+  app_owner_application_about_p2_html: |
+    Sejak 2022, kami mewajibkan persetujuan manual untuk pengguna-pengguna yang ingin membuat klien API. Untuk membuat aplikasi pihak ketiga, Anda harus mengajukan permohonan untuk menjadi "pemilik aplikasi". Permohonan ini harus mencakup fungsi aplikasi yang diajukan dan bagaimana Anda berencana untuk menggunakannya. Untuk mengajukan permohonan, akun Anda harus setidaknya berumur 2 bulan dan harus sudah membuat setidaknya 10 <a href="/pages/help#identification"
+    target="_blank">identifikasi pengembang</a> dalam sebulan terakhir. Kami mungkin akan menanyakan pertanyaan-pertanyaan lanjutan tentang rencana Anda dan kami memiliki hak untuk menolak permohonan Anda untuk alasan apapun.
+  app_owner_application_inelligible: |
+    Untuk mengajukan permohonan, akun Anda harus setidaknya berumur 2 bulan dan harus sudah membuat setidaknya 10 identifikasi pengembang dalam sebulan terakhir.
+  app_owner_application_fields_explanation_html: Jelaskan fungsi yang akan dimiliki aplikasi Anda dan bagaimana rencana Anda untuk menggunakannya.
+  app_owner_application_success: Permohonan menjadi pemilik aplikasi telah dikirim
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplikasi
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Aplikasi
+  apply_app_owner: Daftar
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Daftar
+  apply_to_be_an_app_owner: Daftar sebagai Pemilik Aplikasi
+  apply_to_create_applications_title: Mohon Izin Untuk Membuat Aplikasi
   apply_to_selected: Terapkan untuk yang sudah dipilih
   apply_captive_cultivated: "Terapkan ditangkarkan / dibudidayakan"
   apply_fields: Terapkan bidang
@@ -618,6 +633,14 @@ id:
     natureserve: NatureServe
     cites: CITES
   authorize: Otorisasi
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: Izinkan dengan PKCE
+  #Explanation for how to use the PKCE authorization link. All variables are
+  #code that must match the content of the link and thus cannot be
+  #translated.
+  authorize_with_pkce_desc_html: |
+    (Gunakan <code>%{code_challenge}</code> sebagai <code>%{code_verifier_param}</code>) Catatan: ini adalah contoh sederhana. Dalam kode produksi, Anda HARUS menggunakan <code>%{code_challenge_method}</code> dan menerapkan hash pada <code>%{code_challenge_param}</code> dengan benar.
   authorize_permissions_from_provider: "Otorisasi izin dari %{provider}"
   automatic_short: Otomatis
   automatically_add_observations_to_this_project: Secara otomatis menambahkan pengamatan ke dalam proyek ini
@@ -626,6 +649,7 @@ id:
   #of values, and not a synonym of "typical" or "normal"
   avg: Rerata
   back: Kembali
+  back_to_applications: "&laquo; Kembali ke aplikasi"
   back_to_all_species: Kembali ke Semua Spesies
   back_to_editing_observation: Kembali ke mengubah observasi
   back_to_friends: Kembali ke teman
@@ -711,6 +735,7 @@ id:
   by_you: Oleh anda
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalender hanya menampilkan %{x} pengamatan dalam satu waktu
+  callback_url: Url callback
   cancel: Batalkan
   cant_edit_or_delete_hidden_content: Anda tidak dapat mengubah atau menghapus konten yang telah disembunyikan oleh kurator situs
   cant_flag_an_object_that_doesnt_exist: Tidak dapat menandai objek yang tidak ada
@@ -797,7 +822,6 @@ id:
   check_list_for_taxon_html: "Daftar centang untuk %{taxon}"
   check_lists_must_belong_to_a_place: |
     Daftar centang harus memiliki lokasi. Untuk membuat daftar centang baru, kunjungi daftar centang standar dari sebuah tempat dan klik tautan 'Buat daftar centang baru'.
-  check_list_of_species_occuring_in: Daftar centang dari spesies yang terdapat di
   check_list_place: "Daftar Centang %{place}"
   check_list_updated: Daftar centang telah diperbarui!
   check_lists_for: "Daftar Centang Lainnya untuk %{place}"
@@ -839,6 +863,7 @@ id:
     Daftar kode pelacakan yang dipisahkan koma. Tambahkan ini kepada tautanmu jika kamu ingin menambahkan kode pelacakan saat membawa orang lain kepada formulir pengamatan yang baru, contohnya %{root_url}observations/new?project_id=%{project_id}&tracking_code=kodemu123.
     Kamu bisa menggunakan ini untuk melacak partisipasi dari sumber-sumber yang berbeda. Kamu dapat mengakses kode-kode ini saat mengunduh pengamatan proyekmu dalam bentuk CSV.
   comma_separated_please: Tolong dipisahkan dengan koma
+  #Noun, used to label a comment or a comment field in a form
   comment: Komentar
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komentar
@@ -897,6 +922,7 @@ id:
   computer_vision_model_pending_desc: |
     Model Penglihatan Komputer belum dapat mengenali takson ini, jadi walaupun takson ini mungkin dimasukkan ke dalam rekomendasi otomatis dengan label "Sekitaran", ia tidak akan memiliki label "Serupa Secara Visual". Meskipun persyaratan untuk penyertaan model berubah-ubah untuk setiap model, secara umum penyertaan dibuat berdasarkan jumlah pengamatan, sehingga untuk meningkatkan kemungkinan takson ini akan dimasukkan di latihan model selanjutnya, tambahkan atau identifikasi lebih banyak pengamatan untuk takson ini.
   concept_status: Status Konsep
+  confidential: Rahasia
   configure: Pengaturan
   configure_a_widget_to_show: Mengonfigurasi widget untuk menunjukkan pengamatan %{site_name} di situs web atau blog Anda. Anda mungkin harus memasukkan CSS yang tertanam dalam <code>&lt;head&gt;</code> HTML Anda. Jangan ragu untuk menulis ulang CSSnya.
   confirm: Konfirmasi
@@ -1439,6 +1465,8 @@ id:
   each_place_displays_all_species_inat_knows: "Tiap halaman tempat menampilkan semua spesies yang %{site_name} tahu di tempat tersebut, termasuk informasi tentang kelimpahannya, status konservasinya, dan siapa yang pertama kali mengamati spesies tersebut di tempat itu di %{site_name}. Kamu bisa menyaring spesies dilihat dari kelompok taksonominya, warnanya, status konservasinya, atau memakai pencarian biasa saja."
   earliest_added: Dari Awal
   edit: Ubah
+  #Title of the moderation note editor
+  edit_moderator_note: Edit Catatan Moderator
   edit_a_batch_of_observations: Ubah Sejumlah Pengamatan
   edit_account_settings_and_profile: "Rubah pengaturan akun &amp; profil"
   edit_assessment: Ubah Penilaian
@@ -1540,7 +1568,6 @@ id:
   event_stats: Statistik Acara
   event_url: URL Acara
   events_only: Hanya acara
-  every_species_seen_by: Setiap spesies dilihat oleh
   everyone: Semua orang
   everyone_: Semua orang
   everyone_journal_posts: Postingan Jurnal Semua Orang
@@ -1566,7 +1593,6 @@ id:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplikasi Eksternal
-  external_applications_description: Aplikasi Eksternal merupakan aplikasi perangkat lunak yang telah kamu izinkan untuk mengakses akun iNaturalistmu. Secara umum, mereka dapat melakukan apapun dengan akunmu sebagaimana yang dapat juga kamu lakukan dengannya, jadi pastikan kamu memercayai para pengembang aplikasinya sebelum memberikan izin.
   external_taxon_including_children: Takson Eksternal (termasuk anakannya)
   extinct: punah
   extinct_in_the_wild: Punah di Alam Liar
@@ -2058,7 +2084,6 @@ id:
   leading: Memimpin
   learn: Belajar
   learn_about_the_species_live_in: Pelajari tentang spesies yang hidup di
-  learn_about_third_party_tracking: Pelajari lebih lanjut tentang pelacak pihak ketiga
   learn_more: Pelajari lebih lanjut
   learn_more_raquo: "Pelajari lebih lanjut &raquo;"
   learn_what_these_licenses_mean: Pelajari apa yang dimaksud dengan lisensi ini
@@ -2161,6 +2186,10 @@ id:
   link_or_unlink_your_facebook_account: Hubungkan atau putuskan akun Facebook Anda
   link_or_unlink_your_flickr_account: Hubungkan atau putuskan akun Flickr Anda
   link_or_unlink_your_google_account: Hubungkan atau putuskan akun Google Anda
+  #Text for a link that provides an example of how an application can send a
+  #user to iNat to authorize the app's use of their iNat account. "Link" is
+  #a noun.
+  link_to_authorization_code: Tautan untuk kode otorisasi
   link_your_facebook_account: Hubungkan akun Facebook Anda
   link_your_flickr_account: Hubungkan akun Flickr Anda
   link_your_google_account: Hubungkan akun Google Anda
@@ -2311,6 +2340,7 @@ id:
   make_sure_the_default_photo_looks_good: Pastikan foto tersebut terlihat bagus pada ukuran besar.
   make_this_your_default_license: "Buat ini menjadi lisensi %{type} utama Anda."
   make_this_the_primary_listing: "Buat ini menjadi daftar utama"
+  make_your_app_confidential: Buat aplikasi menjadi rahasia jika Anda bisa menyimpan rahasia aplikasi Anda secara aman, tidak dalam format biner yang dapat diakses publik yang dapat diuraikan. Jangan centang kotak ini jika Anda tidak menginginkannya dan Anda berencana menggunakan alur PKCE
   mammals: mamalia
   manage_all_your_subscriptions: Kelola semua langganan Anda
   manage_names: Kelola Nama
@@ -2548,6 +2578,7 @@ id:
   new: Baru
   new_and_noteworthy: Baru & Perlu Perhatian
   new_announcement: Pengumuman baru
+  new_application: Aplikasi baru
   new_assessment: Penilaian baru
   new_check_list: Daftar centang baru
   new_check_list_for: "Buat daftar centang baru untuk %{place} &raquo;"
@@ -4485,7 +4516,6 @@ id:
   these_folks_kindly_volunteer_to: Orang-orang ini relawan yang baik  untuk mempertahankan taksonomi dan menangani isu-isu lainnya.
   these_observations_have_not_been_uploaded_yet: |
     Pengamatan ini belum diunggah.
-  third_party_tracking: Pelacakan Pihak Ketiga
   third_person_possessive_singular: "%{noun} %{object_phrase}"
   this: ini
   this_bioblitz_beings_in: Bioblitz ini dimulai dalam
@@ -4527,8 +4557,8 @@ id:
     Ini akan menghapus kemampuan iNaturalist untuk mengakses akun ini untukmu
     hingga kamu memberikan akses kembali. Kamu mungkin perlu untuk mengubah pengaturan
     di situs eksternal untuk memblokir akses sepenuhnya.
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: Hal ini akan mengeluarkanmu dari sesimu saat ini dengan aplikasi ini.
   this_will_try_to_add_tags_to_your_flickr: Hal ini akan mencoba menambahkan tag ke foto Flickr Anda. Lanjutkan?
   this_year: Tahun Ini
@@ -4665,6 +4695,7 @@ id:
       upload_failed: Gagal mengunggah
   uploading_num_of_count_photos:
     other: Mengunggah %{num} dari %{count} foto...
+  url_for_your_app_outside_of_inaturalist: URL untuk aplikasi Anda di luar iNaturalist
   url_identifier_of_a_project_derived_from: "URL / pengidentikasi dari sebuah proyek yang berasal dari beberapa sumber eksternal"
   url_of_this_taxon_on_the_source_website: URL takson ini pada situs sumber
   usage_stats: Statistik penggunaan
@@ -4701,6 +4732,7 @@ id:
   user_added_an_x_to_noun_html: "%{user} menambahkan %{x} kepada %{noun}"
   user_added_x_observations_html: "%{user} menambahkan %{x} pengamatan"
   user_already_authenticated: Pengguna sudah terautentikasi
+  user_already_app_owner: Pengguna sudah merupakan pemilik aplikasi
   user_autocomplete_placeholder: kueda, simon123, etc.
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
   #not the place. Gender for all variables is not known..
@@ -5360,13 +5392,13 @@ id:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: Izinkan %{application} untuk menggunakan akun Anda?
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Aplikasi ini dapat:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Lebih banyak tentang %{application}
     observations:
@@ -6359,7 +6391,6 @@ id:
         you_must_enter_confirmation_code_in_the_form: |
           Anda harus memasukkan "%{confirmation_code}" di formulir untuk menghapus akun Anda
       edit:
-        about_third_party_tracking: Tentang pelacakan pihak ketiga
         blocking_desc_html: |
           <p>
           Memblokir seseorang mencegah seseorang mengirim pesan kepada Anda, mengomentari pengamatan Anda, mengidentifikasi pengamatan Anda, serta berinteraksi dengan Anda di %{site_name}. Ini akan menghilangkan pengamatan mereka dari hasil pencarian Anda dan menghilangkan pengamatan Anda pada hasil pencarian mereka. Namun, hal ini tidak membuat Anda tidak terlihat bagi mereka. Mereka masih bisa menemukan pengamatan Anda dan melihat profil Anda, tetapi mereka hanya tidak bisa berinteraksi dengan Anda.
@@ -6442,9 +6473,6 @@ id:
           %{site_name} melacak organisme apa yang Anda pikirkan dalam pengamatan Anda dan apa yang komunitas pikirkan tentangnya. Jika Anda tidak berpikir bahwa pendapat komunitas harus mengesampingkan pendapat Anda, Anda bisa menonaktifkannya di sini. Orang-orang masih bisa menambahkan identifikasi, tetapi pengamatan Anda akan tetap dikaitkan dengan takson dari identifikasi Anda. Hal ini berarti pengamatan Anda tidak akan memenuhi syarat untuk status Kelas Riset kecuali identifikasi Anda sesuai dengan pendapat komunitas.
         prefers_coordinate_interpolation_protection_desc: |
           Saat Anda mengatur geoprivasi pengamatan menjadi "dikaburkan" atau "pribadi", tindakan ini akan menerapkan geoprivasi yang sama ke semua pengamatan Anda yang lain pada hari yang sama sehingga menyulitkan orang lain menebak koordinat sesungguhnya berdasarkan pengamatan yang dibuat dalam waktu yang kurang lebih sama.
-        prefers_no_tracking_label: Jangan mengambil data stabilitas dan pemakaian menggunakan layanan pihak ketiga
-        prefers_no_tracking_label_desc_we_use: |
-          Kami menggunakan berbagai layanan pihak ketiga untuk memantau stabilitas dan mendiagnosis kekutu dan masalah dalam perangkat lunak kami. Para pihak ketiga ini termasuk
         prefers_no_tracking_label_desc_we_use_google_html: Google(<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Informasi yang mungkin kami bagikan dengan pihak-pihak ketiga ini termasuk
@@ -6458,8 +6486,6 @@ id:
           Detail crash, seperti baris kode apa yang menyebabkan crash
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Detail perangkat, seperti pembuat dan model ponsel
-        prefers_no_tracking_label_desc_value_html: |
-          <strong>Layanan pihak ketiga ini memberikan keuntungan yang sangat besar bagi kami</strong> dalam menjaga stabilitas dan penggunaan iNaturalist dengan staf kami yang relatif sedikit. Pada perangkat-perangkat seluler, hampir tidak ada cara lain di mana kami bisa mendapatkan pengertian mengenai masalah-masalah yang sedang terjadi, karena perangkat lunaknya dijalankan pada perangkat-perangkat yang tidak kami kontrol. Terkadang, kami bahkan tidak menyadari masalah-masalah itu terjadi sebelum kami melihatnya pada data yang disediakan layanan ini. <strong>Dengan membagikan informasi ini, Anda membantu kami melayani Anda dan seluruh komunitas iNaturalist.</strong>
         prefers_no_tracking_label_desc_limits: |
           Ingat bahwa opsi ini hanya berlaku untuk data analytics dan crash yang secara eksplisit kami kirimkan ke perusahaan-perusahaan tersebut. Semua server-server iNaturalist disediakan dan dihosting oleh Microsoft, semua gambar-gambar iNaturalist dihosting oleh Amazon, dan hampir semua peta-peta iNaturalist disediakan oleh Google, yang berarti tiap kali Anda melihat suatu pengamatan di iNaturalist, Anda terkoneksi dengan layanan-layanan yang diberikan oleh perusahaan-perusahaan tersebut dan setidaknya mengekspos alamat IP Anda kepada mereka (untuk aplikasi iPhone kami menggunakan peta dari Apple). iNaturalist mungkin tidak dapat ada tanpa layanan-layanan yang perusahaan-perusahaan tersebut sediakan dan meskipun kami dapat membatasi jumlah dan jenis data yang Anda bagikan dengan mereka ketika menggunakan iNat, kami tidak dapat sepenuhnya menghentikan aliran data.
         project_settings_desc: |
@@ -6837,6 +6863,9 @@ id:
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
       ModeratorNote: Catatan Moderator
+      #Software application that operates iNat on a user's behalf, e.g. the
+      #iNaturalist Android app or an app made by a third party
+      OauthApplication: Aplikasi
       TaxonLink: Tautan Takson
     attributes:
       assessment:
@@ -6883,6 +6912,18 @@ id:
         finished_at: Diselesaikan
         #Inputs to an export task, e.g. the query and the columns
         inputs: Input
+      oauth_application:
+        #The URL the user will be redirected to after authorizing an app to
+        #access their iNaturalist account
+        callback_url: URL Callback
+        #Unique identifier for an application
+        uid: ID
+        #Noun, secret associated with an application, sort of like the application's password
+        secret: Rahasia
+        #Adjective, whether or not this application can keep its secret
+        #confidential, e.g. a native or desktop app as opposed to a web
+        #app.
+        confidential: Konfidensial
       post:
         title: Judul
         body: Isi
@@ -7154,8 +7195,6 @@ id:
     scopes:
       write: |
         Membuat, mengubah, dan menghapus pengamatan, identifikasi, dan konten Anda lainnya atas nama Anda, dan mengakses koordinat tersembunyi Anda dan informasi lainnya yang bisa Anda akses di situs.
-      login: |
-        Mengakses informasi yang relevan dengan proses masuk ke layanan pihak ketiga, seperti alamat email, nama pengguna, nama, dan ikon pengguna yang terkait dengan akun Anda di sini.
       account_delete: |
         Menghapus akun Anda atas nama Anda.
     errors:
