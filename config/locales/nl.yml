@@ -5834,42 +5834,6 @@ nl:
           schending van auteursrechten. Zie %{links} voor details
         join_project_desc_html: |
           Deelnemen aan het project geeft projectcuratoren de rechten om de verborgen coördinaten van deze of elke andere waarneming in het project te zien en impliceert dat jij akkoord gaat met de project<a href="%{url}" target="_blank">voorwaarden </a>.
-        quality_assessment_help_html: |2
-          <p>
-           De gegevenskwaliteit is een overzicht over de nauwkeurigheid van de waarneming. Alle waarnemingen beginnen als <strong>"onvolledig"</strong> en worden <strong>"ID nodig"</strong> als
-           </p>
-           <ul>
-           <li>de waarneming <strong>een datum heeft</strong></li>
-           <li>de waarneming <strong>geografische referenties heeft</strong> (d.w.z. coördinaten heeft)</li>
-           <li>de waarneming <strong>foto's of geluiden heeft</strong></li>
-           <li>de waarneming <strong>niet van een mens is</strong></li>
-           </ul>
-           <p>
-           Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> als
-           </p>
-           <ul>
-           <li>de %{site_name}<strong>-gemeenschap het eens is over de determinatie op soortniveau of lager</strong>, d.w.z. meer dan 2/3 van de determinaties is het eens over een taxon</li>
-           </ul>
-           <p>
-          Waarnemingen worden teruggezet naar <strong>"onvolledig"</strong> als niet aan de bovenstaande voorwaarden wordt voldaan of als de gemeenschap het eens is dat
-           </p>
-           <ul>
-           <li>de locatie <strong>niet nauwkeurig lijkt</strong> (bijvoorbeeld apen in het midden van 
-           de oceaan, nijlpaarden in kantoorgebouwen, etc.)</li>
-           <li>het <strong>organisme niet wild/genaturaliseerd is</strong> (bijv. gevangen of 
-           gekweekt door mensen of intelligente ruimtewezens)</li>
-          <li>de waarneming <strong>geen bewijs op van een organisme levert</strong>, b.v. 
-           afbeeldingen van landschappen, waterpartijen, rotsen, etc.</li>
-          <li>de waarneming <strong>geen recent (~100 jaar) bewijs van het organisme levert</strong> (bijv. fossielen, maar sporen, ontlasting en dode bladeren zijn oké)</li>
-           <li>de waarneming niet langer een determinatie nodig heeft <em>en</em> het gemeenschaps-ID hoger dan familie is</li>
-           <li>de waarnemer zich heeft afgemeld voor het gemeenschaps-ID en het taxon van het gemeenschaps-ID geen voorouder of afstammeling van het taxon van de waarnemer is</li>
-           </ul>
-           <p>
-           En alsof dat nog niet ingewikkeld genoeg was zijn er ook situaties waarin het systeem een stem krijgt:
-           </p>
-           <ul>
-           <li>Het systeem zal aangeven dat de waarneming niet wild/genaturaliseerd is als er minstens 10 andere waarnemingen van een genus of lager zijn in de kleinste equivalent van provincie, staat of land waarin deze waarneming valt en 80% of meer van die waarnemingen als niet wild/genaturaliseerd gemakreerd zijn.</li>
-           </ul>
         score_desc: "score = cumulatief aantal / (cumulatief aantal + meningsverschil aantal + voorouder meningsverschillen)"
         observation_flagged_notice_html: |
           Deze waarneming is gemeld als spam en is niet langer
