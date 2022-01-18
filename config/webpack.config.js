@@ -5,6 +5,7 @@ const webpackAssetsPath = path.join( "app", "webpack" );
 
 const config = {
   mode: "none",
+  target: ["web", "es5"],
   context: path.resolve( webpackAssetsPath ),
   entry: {
     // list out the various bundles we need to make for different apps
@@ -41,7 +42,7 @@ const config = {
     rules: [
       // run everything through babel
       {
-        test: /\.jsx?$/,
+        test: /\.c?jsx?$/,
         loader: "babel-loader",
         resolve: {
           fullySpecified: false
