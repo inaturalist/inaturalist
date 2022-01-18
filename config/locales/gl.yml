@@ -556,6 +556,8 @@ gl:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplicación
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Aplicacións
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -847,7 +849,6 @@ gl:
   check_list_for_taxon_html: "Comproba listaxe para %{taxon}"
   check_lists_must_belong_to_a_place: |
     As listas de verificación deben pertencer a algún lugar. Para crear unha nova lista de verificación, visita a listaxe predeterminada de calquera lugar e preme a ligazón 'Crear nova lista de verificación'.
-  check_list_of_species_occuring_in: Lista de comprobación de especies que existen en
   check_list_place: "Lista de comprobación de %{place}"
   check_list_updated: '¡Lista de verificación actualizada!'
   check_lists_for: "Outras listas de verificación para %{place}"
@@ -891,6 +892,7 @@ gl:
     Pódese empregar para rastrear a participación en diferentes fontes. Podes acceder a estes códigos de rastreo
     cando descargues as observacións do teu proxecto en formato CSV.
   comma_separated_please: Por favor separa por comas
+  #Noun, used to label a comment or a comment field in a form
   comment: Comentario
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Comentar
@@ -1567,7 +1569,6 @@ gl:
   event_stats: Estatísticas do Evento
   event_url: URL do evento
   events_only: Só eventos
-  every_species_seen_by: Todas as especies vistas por
   everyone: Todos
   everyone_: Todos
   everyone_journal_posts: Artigos en todos os diarios
@@ -1592,7 +1593,6 @@ gl:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplicacións Externas
-  external_applications_description: As Aplicacións Externas son aplicacións de software de tereceiros ás que autorizaches o acceso á túa conta iNaturalist da túa parte. En xeral, poden facer todo o que tí podes facer cá túa conta, así que asegúrate de que confías nos desenvolvedores da app antes de lles garantizar o permiso.
   external_taxon_including_children: Taxons esternos (incluíndo descendencia)
   extinct: Extinto
   extinct_in_the_wild: Extinguido en estado silvestre
@@ -2060,7 +2060,6 @@ gl:
   leading: Na dianteira
   learn: Infórmate
   learn_about_the_species_live_in: Aprende sobre as especies que viven en
-  learn_about_third_party_tracking: Saber máis sobre o rastrexo de terceiros
   learn_more: Aprende máis
   learn_more_raquo: "Saber máis »"
   learn_what_these_licenses_mean: Aprende o que estas licenzas significan
@@ -4376,7 +4375,6 @@ gl:
   these_folks_kindly_volunteer_to: Estas persoas amablemente ofrécense voluntarias para manter a taxonomía e resolver outros problemas.
   these_observations_have_not_been_uploaded_yet: |
     Esas observacións aínda non foron subidas.
-  third_party_tracking: Rastrexo de Terceiros
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: Este
   this_bioblitz_beings_in: Este bioblitz comeza en
@@ -4415,8 +4413,8 @@ gl:
   this_will_refresh_listed_taxa: Isto actualizará os taxons listados nesta lista. Isto pode levar algún tempo, asi que por favor, emprégao pouco en en listas de comprobacións pequenas
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Isto quitaralle a iNaturalist a capacidade de acceder da túa parte a esta conta, ata que lle permitas o accesso de novo. Pode ser que precises mudar a configuración no sitio externo para evitar o acceso completamente.
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: Isto pechará a túa sesión nesta aplicación.
   this_will_try_to_add_tags_to_your_flickr: Con isto tratarase de engadir etiquetas ás túas fotos de Flickr. Desexas continuar?
   this_year: Este Ano
@@ -5226,13 +5224,13 @@ gl:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: '¿Autorizas a %{application} para usar a túa conta?'
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Esta aplicación poderá:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Máis sobre %{application}
     observations:
@@ -6235,7 +6233,6 @@ gl:
         you_must_enter_confirmation_code_in_the_form: |
           Debes entrar "%{confirmation_code}" no formulario para eliminar a túa conta
       edit:
-        about_third_party_tracking: Acerca do rastrexo por parte de terceiros
         blocking_desc_html: |
           <p>
           Bloquear a alguén impídelle enviarte mensaxes, comentar nas túas observacións, identificar as túas observacións, e interactuar de calquer xeito contigo en %{site_name}. Tamén borra as súas observacións dos resultados das túas buscas e borra as túas observacións dos resultados das súas buscas. Aínda así, non che fai invisible cara esa persoa. Aínda pode atopar as túas observacións e ver o teu perfil, unicamente non pode interactuar contigo.
@@ -6318,9 +6315,6 @@ gl:
           %{site_name} segue o que cres que son as túas observacións e o que a comunidade pensa que son. Se pensas que a opinión da comunidade non debe desautorizar a túa, podes optar por excluíla aquí. A xente aínda poderá engadir identificacións, pero as túas observacións continuarán asociadas ó taxon da túa identificación. Isto significa que as túas observacións non poderán optar ó Grao de Investigación, non sendo que a túa identificación coincida cá opinión da comunidade.
         prefers_coordinate_interpolation_protection_desc: |
           Cando pós a xeoprivacidade dunha observación "escurecida" ou "privada", aplicarase a mesma xeoprivacidade a tódalas outras observacións do mesmo día para dificutar que outra xente atope as coordenadas verdadeiras baseándose nas observacións feitas ó redor do mesmo tempo.
-        prefers_no_tracking_label: Non recoller dados de estabilidade e de uso usando servicios de terceiros
-        prefers_no_tracking_label_desc_we_use: |
-          Empregamos unha variedade de servicios de terceiros para monitorizar a estabilidade e diagnosticar erros e problemas no noso software. Estes terceiros inclúen
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           A información que poderiamos compartir con estes terceiros inclúe
@@ -6332,8 +6326,6 @@ gl:
           Detalles do fallo, como exactamente cal foi a liña de código que causou o fallo
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Detalles do dispositivo, como marca e modelo dun teléfono mobil
-        prefers_no_tracking_label_desc_value_html: |
-          <strong>Os servicios de terceiros engaden un enorme valor para nós</strong>, mantendo a estabilidade e usabilidade de iNaturalist có noso relativamente pequeno cadro de persoal. En dispositivos móbiles, case non hai outro xeito para percibir os problemas que ocorren, xa que o software emprégase en dispositivos que non controlamos. Ás veces nin sequera nos decatamos dos problemas que ocorren ata que os vemos nos dados que estes servicios nos provén. <strong>Compartindo esta información, axúdasnos a atenderte a ti e á comunidade de iNaturalist enteira.</strong>
         prefers_no_tracking_label_desc_limits: |
           Repara que esta opción só se aplica a dados para análise e de erros que estamos enviando explícitamente a estas compañías. Tódolos servidores de iNaturalist son fornecidos e aloxados por Microsoft, tódalas imaxes de iNaturalist están aloxadas por Amazon, e case tódolos mapas de iNaturalist están fornecidos por Google, o que significa que de cada vez que ves unha observación en iNaturalist, estás conectándote ós servicios fornecidos por estas compañías e expoñéndolles o teu enderezo IP, como pouco (na aplicación para iPhone empregamos os mapas de Apple). iNaturalist probablemente non existiría sen os servizos que estas empresas fornecen, e aínda que poidamos limitar a cantidade e os tipos de dados que compartimos con eles usando iNat, non podemos parar a corrente de dados por completo.
         project_settings_desc: |
@@ -7051,8 +7043,6 @@ gl:
     scopes:
       write: |
         Crear, actualizar e borrar as túas observacións, identificacións e outros contidos da túa parte, e acceder ás túas coordenadas ocultas e outras informacións ás que poidas acceder no sitio.
-      login: |
-        Acceder a información relevante cara a iniciar sesión en servicios de terceiros, como o enderezo de correo electrónico, o nome de usuario e a icona de usuario asociada cá túa conta daquí.
       account_delete: |
         Eliminar a túa conta da túa parte.
     errors:

@@ -105,6 +105,9 @@ Rails.application.routes.draw do
       authorized_applications: "oauth_authorized_applications",
       tokens: "oauth_tokens"
   end
+  get "oauth/app_owner_application" => "oauth_applications#app_owner_application", :as => :app_owner_application
+  post "oauth/create_app_owner_application" => "oauth_applications#create_app_owner_application",
+    as: :create_app_owner_application
 
   wiki_root "/pages"
   get "/pages" => "wiki_pages#all", as: "wiki_all"

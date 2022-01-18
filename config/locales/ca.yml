@@ -538,13 +538,27 @@ ca:
   #Label for an option to show/include content by any user
   any_user: Qualsevol
   anyone: Qualsevol
+  app_owner_application_about_p1a_html: |
+    Les aplicacions d'iNaturalist permeten l'ús autenticat de l'API d'iNaturalist. Això permet fer trucades API que provoquen esdeveniments, com crear observacions o identificacions. Els casos més comuns són apps com les d'escriptori o de mòbil que inclouen funcionalitats per als seus usuaris per crear observacions d'iNaturalist. Aquest contingut s'ha de generar amb participació humana real o supervisada. Si us plau, per a més detalls podeu llegir les nostres <a href="/pages/community+guidelines" target="_blank">Directrius de la comunitat</a>, les quals prohibeixen observacions, identificacions i comentaris generades per màquines.
+  app_owner_application_about_p2_html: |
+    Des del 2022, estem requerint l'aprovació manual als usuaris que vulguin crear clients API.
+    Per crear aplicacions de tercers, primer heu d'enviar una sol·licitud per convertir-vos en "propietari de l'aplicació". Aquesta aplicació hauria de descriure la funcionalitat de l'aplicació proposada i com penseu utilitzar-la. Per enviar una sol·licitud, el vostre compte ha de tenir, com a mínim, 2 mesos d'antiguitat i haver realitzat almenys 10 <a href="/pages/help#identification" target="_blank">identificacions de millora</a> durant el darrer mes. Podem fer preguntes de seguiment sobre el vostre pla i ens reservem el dret de rebutjar les sol·licituds per qualsevol motiu.
+  app_owner_application_inelligible: |
+    Per enviar una aplicació, el vostre compte ha de tenir una antiguitat, almenys, de 2 mesos i heu d'haver fet un mínim de 10 millores d'identificacions en el darrer mes.
+  app_owner_application_fields_explanation_html: Descriviu la funcionalitat que tindrà de la vostra app i com planegeu utilitzar-la.
+  app_owner_application_success: Sol·licitud de propietari de l'app lliurada
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplicació
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Aplicacions
+  apply_app_owner: Sol·licitar
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Sol·licitar
+  apply_to_be_an_app_owner: Sol·licitud per ser Propietari d'App
+  apply_to_create_applications_title: Sol·licitud per Crear Aplicacions
   apply_to_selected: Apliqueu a les seleccionades
   apply_captive_cultivated: "Indicar en captivitat / cultivat"
   apply_fields: Aplicar els camps
@@ -653,6 +667,16 @@ ca:
     natureserve: NatureServe
     cites: CITES
   authorize: Autoritzeu
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: Autoritzar amb PKCE
+  #Explanation for how to use the PKCE authorization link. All variables are
+  #code that must match the content of the link and thus cannot be
+  #translated.
+  authorize_with_pkce_desc_html: |
+    (Utilitzeu <code>%{code_challenge}</code> com el
+    <code>%{code_verifier_param}</code>) Nota: aquest és un exemple bàsic. En el codi de producció,
+    HEU de fer servir <code>%{code_challenge_method}</code> i incloure el <code>%{code_challenge_param}</code>.
   authorize_permissions_from_provider: "Autoritza permisos de %{provider}"
   automatic_short: Automàtic
   automatically_add_observations_to_this_project: Afegeix automàticament observacions a aquest projecte
@@ -661,6 +685,7 @@ ca:
   #of values, and not a synonym of "typical" or "normal"
   avg: Mtj.
   back: Torna
+  back_to_applications: "&laquo; Tornar a aplicacions"
   back_to_all_species: Torna a totes les espècies
   back_to_editing_observation: Torna a modificar l'observació
   back_to_friends: Torneu a amics
@@ -746,6 +771,7 @@ ca:
   by_you: Pròpies
   calendar: Calendari
   calendars_only_show_x_observations_at_time: Els calendaris només mostren %{x} observacions alhora
+  callback_url: URL de Callback
   cancel: Cancel·la
   cant_edit_or_delete_hidden_content: No podeu editar o esborrar continguts que han estat ocultats pels supervisors del lloc
   cant_flag_an_object_that_doesnt_exist: No podeu posar una marca a un contingut que no existeix
@@ -832,7 +858,6 @@ ca:
   check_list_for_taxon_html: "Llista de comprovació de %{taxon}"
   check_lists_must_belong_to_a_place: |
     Les llistes de comprovació han de fer referència a un lloc. Per crear una nova llista de comprovació, visiteu una llista de comprovació d'un lloc per defecte i feu clic en l'enllaç "Crear una nova llista de comprovació'.
-  check_list_of_species_occuring_in: Llista de comprovació d'espècies que existeixen a
   check_list_place: "Llista de comprovació de %{place}"
   check_list_updated: Llista de comprovació actualitzada!
   check_lists_for: "Altres llistes de comprovació per a %{place}"
@@ -875,6 +900,7 @@ ca:
     Es pot utilitzar per fer el seguiment de la participació en diferents fonts. Podeu accedir a aquests codis de seguiment
     quan descarregueu les observacions del projecte en format CSV.
   comma_separated_please: Si us plau, separeu per comes
+  #Noun, used to label a comment or a comment field in a form
   comment: comentari
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Comentari
@@ -934,6 +960,7 @@ ca:
   computer_vision_model_pending_desc: |
     L’actual Model de Visió per Ordinador no reconeix aquest tàxon, per tant podria incloure's com a suggeriments automatitzats amb l'etiqueta "Proper" no tindrà l'etiqueta "Visualment similar". Malgrat els requisits pel model d'inclusió canvien amb cada model, generalment la inclusió es basa en el nombre d'observacions, per tant, per augmentar la possibilitat que aquest tàxon obtingui la inclusió durant el següent model de formació, afegiu o identifiqueu més observacions d’aquest tàxon.
   concept_status: Concepte de la situació
+  confidential: Confidencial
   configure: Configura
   configure_a_widget_to_show: Configureu el giny per mostrar les observacions d’%{site_name} al vostre lloc web o blog. També podeu incloure l'estil CSS a la <code><head></code> del vostre codi HTML. Podeu modificar el CSS lliurement.
   confirm: Confirmar
@@ -1461,6 +1488,8 @@ ca:
   each_place_displays_all_species_inat_knows: "Cada pàgina de lloc mostra totes les espècies que %{site_name} coneix d'aquest lloc, i inclou informació de l’abundància, l’estat de conservació i especifica qui la va observar per primera vegada en aquest lloc a %{site_name}. Podeu filtrar l'espècie per grup taxonòmic, color, estat de conservació o cerca simple."
   earliest_added: Més antigues
   edit: Modifica
+  #Title of the moderation note editor
+  edit_moderator_note: Editar Nota del Moderador
   edit_a_batch_of_observations: Modifica un grup d'observacions
   edit_account_settings_and_profile: "Modifica el compte i el perfil"
   edit_assessment: Edita valoració
@@ -1562,7 +1591,6 @@ ca:
   event_stats: Estadístiques de l'Esdeveniment
   event_url: URL de l'Esdeveniment
   events_only: Només esdeveniments
-  every_species_seen_by: Totes les espècies vistes per
   everyone: tots
   everyone_: Tothom
   everyone_journal_posts: Articles a les revistes de qualsevol
@@ -1588,7 +1616,8 @@ ca:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplicacions externes
-  external_applications_description: Les aplicacions externes són aplicacions de tercer a les quals heu autoritzat per accedir al vostre compte d'iNaturalist en nom vostre. En general, poden fer les mateixes coses que podeu fer en el vostre compte, per tant, assegureu-vos de confiar en els seus desenvolupadors abans de concedir-los el permís.
+  external_applications_description: |
+    Les aplicacions externes són aplicacions de tercers a les quals heu autoritzat per accedir al vostre compte d'iNaturalist en nom vostre. En general, poden fer les mateixes coses que podeu fer en el vostre compte, per tant, assegureu-vos de confiar en els seus desenvolupadors abans de concedir-los el permís.
   external_taxon_including_children: Tàxon extern (inclosos els inferiors)
   extinct: extint
   extinct_in_the_wild: Extingit en estat silvestre
@@ -2184,6 +2213,10 @@ ca:
   link_or_unlink_your_facebook_account: Vinculeu o desvinculeu el compte de Facebook
   link_or_unlink_your_flickr_account: Vinculeu o desvinculeu el compte de Flickr
   link_or_unlink_your_google_account: Vinculeu o desvinculeu el compte de Google
+  #Text for a link that provides an example of how an application can send a
+  #user to iNat to authorize the app's use of their iNat account. "Link" is
+  #a noun.
+  link_to_authorization_code: Enllaç al codi d'autorització
   link_your_facebook_account: Vinculeu el compte de Facebook
   link_your_flickr_account: Vinculeu el compte de Flickr
   link_your_google_account: Vinculeu el compte de Google
@@ -2334,6 +2367,7 @@ ca:
   make_sure_the_default_photo_looks_good: Assegureu-vos que la foto per defecte es vegi bé en mida gran.
   make_this_your_default_license: "Feu que aquesta sigui la llicència %{type} per defecte"
   make_this_the_primary_listing: "Feu que aquesta sigui la llista primària"
+  make_your_app_confidential: Podeu fer que la vostra app sigui confidencial si podeu guardar la vostra app en secret de manera segura, és a dir, que el seu binari no estigui disponible públicament i pugui ser descompilat. Desmarqueu aquesta casella si aquest no és el vostre cas i planegeu utilitzar el flux PKCE
   mammals: mamífers
   manage_all_your_subscriptions: Administreu totes les vostres subscripcions
   manage_names: Gestiona noms
@@ -2573,6 +2607,7 @@ ca:
   new: Nou
   new_and_noteworthy: Nou i Notable
   new_announcement: Nou anunci
+  new_application: Nova aplicació
   new_assessment: Valoració nova
   new_check_list: Llista de comprovació nova
   new_check_list_for: "Crea una nova llista de verificació per a {place} »"
@@ -4579,8 +4614,8 @@ ca:
   this_will_refresh_listed_taxa: Això actualitzarà els taxons llistats. Això pot requerir una mica de temps, així que utilitzeu-lo amb moderació i amb llistes de comprovació curtes
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Això eliminarà l'autorització a iNaturalist per accedir a aquest compte en nom vostre fins que la torneu a atorgar. Pot ser que necessiteu canviar les vostres preferències al lloc extern per evitar l'accés completament.
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: Això us farà sortir de la sessió actual d'aquesta aplicació.
   this_will_try_to_add_tags_to_your_flickr: Això intentarà afegir etiquetes a les vostres fotos de Flickr. Voleu continuar?
   this_year: Aquest any
@@ -4719,6 +4754,7 @@ ca:
   uploading_num_of_count_photos:
     one: Pujant la foto...
     other: Pujant foto %{num} de %{count}...
+  url_for_your_app_outside_of_inaturalist: URL de la vostra app fora d'iNaturalist
   url_identifier_of_a_project_derived_from: "Adreça web / identificador del projecte derivat de fonts externes"
   url_of_this_taxon_on_the_source_website: Enllaç d'aquesta espècie o grup a la pàgina web font
   usage_stats: Estadístiques d'ús
@@ -4756,6 +4792,7 @@ ca:
   user_added_an_x_to_noun_html: "%{user} ha afegit una %{x} a %{noun}"
   user_added_x_observations_html: "%{user} ha afegit %{x} observacions"
   user_already_authenticated: L'usuari ja es va autenticar
+  user_already_app_owner: L'usuari ja és propietari d'una app
   user_autocomplete_placeholder: kueda, simon123, etc.
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
   #not the place. Gender for all variables is not known..
@@ -5436,13 +5473,13 @@ ca:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: Autoritzeu a %{application} per utilitzar el vostre compte?
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Aquesta aplicació podrà:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Més sobre %{application}
     observations:
@@ -6544,7 +6581,7 @@ ca:
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Detalls del dispositiu, como la marca i el modelo d'un telèfon mòbil
         prefers_no_tracking_label_desc_value_html: |
-          <strong>Aquests serveis de tercers serveis ens proporcionen un valor enorme</strong> mantenint l'estabilitat i usabilitat de iNaturalist amb el relativament petit nombre de personal. En dispositius mòbils, no hi ha gairebé una altre forma de poder conèixer els problemes que estan succeint, donat que el programari està corrent en dispositius que no controlem. De vegades no som fins i tot conscient de que aquests problemes estan succeint fins que els veiem en la dades que ens proporcionen aquests serves¡is. <strong>Compartint aquesta informació, ens estàs ajudant servir-te a tu i a tota la comunitat d'iNaturalist.</strong>
+          <strong>Aquests serveis de tercers ens proporcionen un valor enorme</strong> mantenint l'estabilitat i usabilitat d'iNaturalist amb un nombre relativament petit de personal. En dispositius mòbils, no hi ha gairebé una altra forma de poder conèixer els problemes que estan succeint, donat que el programari està corrent en dispositius que no controlem. De vegades no som fins i tot conscient que estan succeint aquests problemes fins que els veiem en les dades que ens proporcionen aquests serveis. <strong>Compartint aquesta informació, ens estàs ajudant a servir-te a tu i a tota la comunitat d'iNaturalist.</strong>
         prefers_no_tracking_label_desc_limits: |
           Observeu que aquesta opció només s'aplica a l'analítica i dades de fallades que explícitament estem enviant a aquestes empreses. Tots els servidors d'iNaturalist són proporcionats i allotjats per Microsoft, totes les imatges d'iNaturalist són allotjades a Amazon, i gairebé tots els mapes d'iNaturalist se serveixen des de Google, el que significa que cada vegada que mireu a una observació d'iNaturalist, esteu connectant amb els serveis proporcionats per aquestes empreses i exposant-lis, al menys, la vostra adreça d'IP (a l'aplicació d'iPhone utilitzem els mapes d'Apple). iNaturalist probablement no existiria sense els serveis que proporciones aquestes empreses, i malgrat podem limitat el volum i tipus de dades que compartiu amb elles mentre utilitzant iNat, no podem parar íntegrament el flux de dades.
         project_settings_desc: |
@@ -6948,6 +6985,9 @@ ca:
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
       ModeratorNote: Nota del Moderador
+      #Software application that operates iNat on a user's behalf, e.g. the
+      #iNaturalist Android app or an app made by a third party
+      OauthApplication: Aplicació
       TaxonLink: Enllaç al Tàxon
     attributes:
       assessment:
@@ -6994,6 +7034,18 @@ ca:
         finished_at: Finalitzades
         #Inputs to an export task, e.g. the query and the columns
         inputs: Entrades
+      oauth_application:
+        #The URL the user will be redirected to after authorizing an app to
+        #access their iNaturalist account
+        callback_url: URL de Callback
+        #Unique identifier for an application
+        uid: ID
+        #Noun, secret associated with an application, sort of like the application's password
+        secret: Secret
+        #Adjective, whether or not this application can keep its secret
+        #confidential, e.g. a native or desktop app as opposed to a web
+        #app.
+        confidential: Confidencial
       post:
         title: Títol
         body: Text
@@ -7272,7 +7324,7 @@ ca:
       write: |
         Creeu, actualitzeu, i elimineu les vostres observacions, identificacions, i altre contingut en el vostre nom, i accediu a les vostres coordenades ocultes i qualsevol altra informació d'aquest lloc a la qual pugueu accedir.
       login: |
-        Accediu a informació rellevant per entrar, com l'adreça de correu electrònic, el nom d'usuari, el nom, i la icona d'usuari
+        Accediu a informació rellevant per entrar a un servei de tercers, com l'adreça de correu electrònic, el nom d'usuari, el nom, i la icona d'usuari associada amb el vostre compte, aquí.
       account_delete: |
         Esborreu el vostre compte en nom vostre.
     errors:

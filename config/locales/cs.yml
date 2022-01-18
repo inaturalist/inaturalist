@@ -687,6 +687,8 @@ cs:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplikace
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Aplikace
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -978,7 +980,6 @@ cs:
   check_list_for_taxon_html: "Kontrolní seznam pro %{taxon}"
   check_lists_must_belong_to_a_place: |
     Seznamy musí být spojené s místem. Pokud chcete vytvořit nový seznam, jděte do základního seznamu daného místa a klikněte na odkaz „Vytvořit nový seznam“.
-  check_list_of_species_occuring_in: Seznam druhů vyskytujících se v
   check_list_place: "Seznam pro %{place}"
   check_list_updated: Seznam byl aktualizován!
   check_lists_for: "Další seznamy pro %{place}"
@@ -1017,6 +1018,7 @@ cs:
   comma_separated_list_of_tracking_codes: |
     Seznam tracking kódů oddělených čárkou. Přidejte, pokud chcete připojit tracking kód při zadávání osob do formuláře nového pozorování, např. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123. Toto můžete využít při sledování účasti z různých zdrojů. Ke kódům máte přístup při stahování pozorování v projektu jako CSV.
   comma_separated_please: Oddělte čárkami prosím.
+  #Noun, used to label a comment or a comment field in a form
   comment: komentář
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komentář
@@ -1628,6 +1630,8 @@ cs:
   each_place_displays_all_species_inat_knows: "Každá stránka místa zobrazuje všechny druhy, které %{site_name} na tomto místě zná, včetně informací o jejich četnosti, ochranářském statusu a o tom, kde tento druh na tomto místě na %{site_name} zpozoroval jako první. Druhy můžete filtrovat podle taxonomické skupiny, barvy, ochranářského statusu nebo jednoduše vyhledáváním."
   earliest_added: Nejdříve přidáno
   edit: Editovat
+  #Title of the moderation note editor
+  edit_moderator_note: Upravit poznámku moderátora
   edit_a_batch_of_observations: Editovat soubor pozorování
   edit_account_settings_and_profile: "Editovat nastavení účtu &amp; profil"
   edit_assessment: Editovat hodnocení
@@ -1731,7 +1735,6 @@ cs:
   event_stats: Statistiky události
   event_url: URL události
   events_only: Pouze události
-  every_species_seen_by: Každý druh viděný
   everyone: každý
   everyone_: Každý
   everyone_journal_posts: Příspěvky všech do deníku
@@ -1757,7 +1760,6 @@ cs:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Externí aplikace
-  external_applications_description: Externí aplikace jsou softwarové aplikace třetích stran, které jste autorizovali k vašemu účtu iNaturalist vaším jménem. Obecně mohou udělat vše s vaším účtem a ujistěte se, že budete mít důvěru k vývojářům aplikací před udělením oprávnění.
   external_taxon_including_children: Externí taxon (včetně mláďat)
   extinct: vyhynulý
   extinct_in_the_wild: vyhynulý v přírodě
@@ -2207,7 +2209,7 @@ cs:
   journal_archives_for: Archivy deníků pro
   journal_post: Záznam v deníku
   journal_post_deleted: Záznam v deníku smazán.
-  journal_posts: Žurnál
+  journal_posts: Deník
   jpg_png_or_gif: "JPG, PNG, nebo GIF"
   jump_to_letter: Přeskočit na dopis
   just_a_reminder: Jen pro připomenutí, protože jste možná dali kurátorům projektů povolení nahlížet na soukromé souřadnice vašich pozorování v tomto projektu.
@@ -2260,7 +2262,6 @@ cs:
   leading: Nejlepší
   learn: Učit se
   learn_about_the_species_live_in: Naučte se o druzích, které žijí v
-  learn_about_third_party_tracking: Další informace o sledování třetích stran
   learn_more: Více informací
   learn_more_raquo: "Více informací &raquo;"
   learn_what_these_licenses_mean: Zjistěte, co znamenají tyto licence
@@ -4815,7 +4816,6 @@ cs:
   these_folks_kindly_volunteer_to: Tito lidé jsou tak hodní, že dobrovolně udržují naši taxonomii a řeší další problémy.
   these_observations_have_not_been_uploaded_yet: |
     Tato pozorování dosud nebyla nahrána.
-  third_party_tracking: Sledování třetí strany
   third_person_possessive_singular: "%{object_phrase} %{noun}"
   this: tento
   this_bioblitz_beings_in: Tento bioblitz začíná v
@@ -4858,8 +4858,8 @@ cs:
   this_will_refresh_listed_taxa: Tímto se obnoví taxony v tomto seznamu. Může to chvíli trvat, proto prosíme, abyste tento nástroj používali střídmě a pro malé seznamy.
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Tímto odstraníte možnost iNaturalist přistupovat k tomuto účtu vaším jménem, dokud znovu neudělíte přístup. Možná budete muset změnit nastavení na externím webu, abyste zcela zabránili přístupu.
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: Toto vás odhlásí z vaší aktuální relace v této aplikaci.
   this_will_try_to_add_tags_to_your_flickr: Tímto dojde k pokusu o přidání tagů k vašim fotkám na Flickru. Pokračovat?
   this_year: Tento rok
@@ -5754,13 +5754,13 @@ cs:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: Chcete autorizovat %{application} k použití vašeho účtu?
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Tato aplikace bude moci:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Více o %{application}
     observations:
@@ -6906,7 +6906,6 @@ cs:
         you_must_enter_confirmation_code_in_the_form: |
           Chcete-li účet smazat, musíte do formuláře zadat %{confirmation_code}
       edit:
-        about_third_party_tracking: O sledování třetí strany
         blocking_desc_html: |
           <p>
           Když někoho zablokujete, nebude vám moci posílat zprávy, vkládat komentáře k vašim pozorováním, identifikovat vaše pozorování ani s vámi na %{site_name} být jinak ve spojení. Také tím odstraníte jeho pozorování z výsledků svého vyhledávání a odstraníte vaše pozorování z jejich výsledků vyhledávání. Nebudete pro něj ale neviditelní. Stále mohou najít vaše pozorování a podívat se na váš profil, jen mezi vámi nemůže probíhat interakce.
@@ -6999,9 +6998,6 @@ cs:
         prefers_coordinate_interpolation_protection_desc: |
           Když nastavíte soukromí zeměpisné polohy pro pozorování na "přibližné" nebo
           "soukromé", pak totéž nastavíte i na Vaše další pozorování ze stejného dne, aby bylo pro ostatní lidi obtížnější odhadnout skutečné souřadnice na základě pozorování provedených ve stejný čas.
-        prefers_no_tracking_label: Neshromažďujte data o stabilitě a použití pomocí služeb třetích stran
-        prefers_no_tracking_label_desc_we_use: |
-          Ke sledování stability, diagnostice chyb a problémů v našem softwaru využíváme služby třetích stran. Tyto třetí strany zahrnují
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Informace, které můžeme sdílet s těmito třetími stranami, zahrnují
@@ -7018,14 +7014,6 @@ cs:
           Podrobnosti o selhání, stejně jako přesně, který řádek kódu způsobil selhání
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Podrobnosti o zařízení, například značka a model mobilního telefonu
-        prefers_no_tracking_label_desc_value_html: |2
-          <strong>Tyto služby třetích stran poskytují nesmírnou hodnotu pro
-          nás </strong> při udržování stability a použitelnosti programu iNaturalist
-          s našimi relativně malými zaměstnanci. Na mobilních zařízeních téměř neexistuje
-          jiný způsob, jak můžeme získat náhled na problémy, které se od té doby vyskytují v softwaru na zařízeních, která nekontrolujeme. Někdy si ani neuvědomujeme, že k těmto problémům dochází, dokud neuvidíme v systému
-          data, která tyto služby poskytují. <strong>Sdílení těchto informací 
-           pomáhá vám i celé iNaturalist
-          komunitě.</strong>
         prefers_no_tracking_label_desc_limits: |
           Tato možnost se vztahuje pouze na analýzu a údaje o selhání, které
           těmto společnostem výslovně posíláme. Všechny servery iNaturalist jsou
@@ -7834,8 +7822,6 @@ cs:
     scopes:
       write: |
         Vytvořte, aktualizujte a odstraňte své komentáře, identifikace a další obsah a získejte přístup ke skrytým kontaktním informacím a dalším informacím, ke kterým na webu můžete přistupovat.
-      login: |
-        Přístup k relevantním informacím pro přihlášení, jako je e-mailová adresa, uživatelské jméno, jméno a ikona uživatele.
       account_delete: |
         Vymazat svůj účet.
     errors:

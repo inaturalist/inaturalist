@@ -380,6 +380,8 @@ lb:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Applikatioun
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Applikatiounen
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -550,6 +552,7 @@ lb:
   columns: Kolonnen
   combine: Combinéieren
   comma_separated_please: W.e.g. mat Kommaen trennen
+  #Noun, used to label a comment or a comment field in a form
   comment: Bemierkung
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Bemierkung
@@ -2363,7 +2366,7 @@ lb:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Méi iwwer %{application}
     observations:
@@ -2708,6 +2711,9 @@ lb:
   activerecord:
     models:
       Atlas: Atlas
+      #Software application that operates iNat on a user's behalf, e.g. the
+      #iNaturalist Android app or an app made by a third party
+      OauthApplication: Applikatioun
     attributes:
       assessment:
         description: Beschreiwung
@@ -2727,6 +2733,13 @@ lb:
         description: Notizen
       observation_field_value:
         value: 'Wäert'
+      oauth_application:
+        #Unique identifier for an application
+        uid: ID
+        #Adjective, whether or not this application can keep its secret
+        #confidential, e.g. a native or desktop app as opposed to a web
+        #app.
+        confidential: Vertraulech
       post:
         title: Titel
       project:

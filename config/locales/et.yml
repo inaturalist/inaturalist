@@ -521,6 +521,8 @@ et:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Mobiiliäpp
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Mobiiliäpid
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -766,7 +768,6 @@ et:
   check_list_for_individual_taxa_that: 'Otsi kontrollnimekirjadest üksikuid soovitud kohas elavaid taksoneid. Nt "%{place}" linnud.'
   check_lists_must_belong_to_a_place: |
     Kontrollnimekirjad peavad kuuluma kindla koha alla. Uue nimekirja loomiseks külasta koha vaikimisi nimekirja nin vajuta lingile "Loo uus nimekiri"
-  check_list_of_species_occuring_in: Nimekiri liikidest, mida leidub kohas
   check_list_place: "%{place} kontrollnimekiri"
   check_list_updated: Nimekiri uuendatud!
   check_lists_for: "Teised kontrollnimekirjad kohas %{place}"
@@ -808,6 +809,7 @@ et:
     Komaga eraldatud nimekiri jälgimiskoodidest. Kasuta neid, kui soovid uue vaatluse lingile lisada jälgimiskoodi, nt. %{root_url}observations/new?project_id=%{project_id}&tracking_code=sinukood123.
     Saad neid kasutada erinevatest allikatest pärit osalemise jälgimiseks. Näed koode, kui laed projektis sisalduvad vaatlused CSV-failina alla.
   comma_separated_please: Palun eralda komadega
+  #Noun, used to label a comment or a comment field in a form
   comment: kommentaar
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentaar
@@ -1206,7 +1208,6 @@ et:
   event_stats: Sündmuse statistika
   event_url: Sündmuse URL
   events_only: Ainult sündmused
-  every_species_seen_by: Kõik liigid, mida on näinud
   everyone: kõik
   everyone_: Kõik
   everyone_journal_posts: Kõigi päevikukanded

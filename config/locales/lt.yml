@@ -650,6 +650,8 @@ lt:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Programėlė
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Programėlės
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -929,7 +931,6 @@ lt:
   check_list_for_taxon_html: "%{taxon} kontrolinis sąrašas"
   check_lists_must_belong_to_a_place: |
     Kontrolinis sąrašas turi priklausyti kokia nors vietai. Jei norite sukurti naują kontrolinį sąrašą, apsilankykite vietos numatytame kontroliniame sąraše ir paspauskite „Sukurti naują kontrolinį sąrašą“.
-  check_list_of_species_occuring_in: Kontrolinis sąrašas rūšių, aptinkamų
   check_list_place: "%{place} kontrolinis sąrašas"
   check_list_updated: Kontrolinis sąrašas atnaujintas!
   check_lists_for: "Kiti %{place} kontroliniai sąrašai"
@@ -964,6 +965,7 @@ lt:
   columns: Stulpeliai
   combine: Sujungti
   comma_separated_please: Prašome atskirti kableliais
+  #Noun, used to label a comment or a comment field in a form
   comment: komentaras
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komentuoti
@@ -1210,6 +1212,11 @@ lt:
   curator_application_what_curators_can_do: Ką gali kuratoriai
   #Header
   curator_application_what_curators_cannot_do: Ko negali kuratoriai
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Ištrinti kitų vartotojų sukurtą turinį
   #Title of a page where people apply to become a curator
   curator_application_title: Kuratoriaus paraiška
   curators: Kuratoriai
@@ -1383,6 +1390,8 @@ lt:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: PAREMTI
+  donate_again_caps: PAREMTI VĖL
+  donate_again_today_caps: PAREMTI VĖL ŠIANDIEN
   done: Baigta
   dont_have_an_account_sign_up_html: Neturite paskyros? <strong>Užsiregistruokite.</strong>
   dont_send_me_email: "Nesiųsti man el. laiškų!"
@@ -1406,6 +1415,8 @@ lt:
   duration_value: "Trukmė: %{duration} minutės"
   each_place_displays_all_species_inat_knows: "Kiekvienas vietos puslapis parodo visas rūšis, kurias %{site_name} žino toje vietoje, įskaitant informaciją apie jų gausumą, apsaugos statusą ir tai, kas buvo pirmasis %{site_name} vartotojas, stebėjęs tas rūšis. Jūs galite filtruoti rūšis pagal taksonominę grupę, spalvą, apsaugos statusą arba naudotis paprasta paieška."
   edit: Redaguoti
+  #Title of the moderation note editor
+  edit_moderator_note: Redaguoti moderatoriaus pastabas
   edit_a_batch_of_observations: Redaguoti grupę stebėjimų
   edit_account_settings_and_profile: "Redaguoti paskyros nustatymus ir profilį"
   edit_assessment: Redaguoti įvertinimą
@@ -1497,7 +1508,6 @@ lt:
   event_stats: Renginio Statistika
   event_url: Renginio URL
   events_only: Tik renginiai
-  every_species_seen_by: Visos rūšys, kurias matė
   everyone: visi
   everyone_: Visi
   everyone_journal_posts: Visų žurnalo įrašai
@@ -1531,6 +1541,7 @@ lt:
   failed_to_repair_photo: "Nepavyko pataisyti nuotraukos: %{errors}"
   failed_to_save_record: "Nepavyko įrašyti įrašo. Prašome pabandyti vėliau."
   failed_to_save_record_with_errors: "Nepavyko išsaugoti įrašo: %{errors}"
+  failed_to_unlink_your_account: Nepavyko atsieti jūsų paskyros
   'false': 'Ne'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Pamėgimai
@@ -1629,6 +1640,7 @@ lt:
   flag_saved_thanks_html: Žymė išsaugota. Ačiū! <a href="%{url}" class="readmore">Rodyti žymę</a>
   flag_this_observation: Pažymėti šį stebėjimą
   flag_this_photo: Pažymėti šią nuotrauką
+  flag_this_place: Pažymėti šią vietą
   flag_this_sound: Žymėti šį garsą
   flagged: pažymėta
   flagged_: Pažymėta
@@ -1714,6 +1726,8 @@ lt:
   google: Google
   got_it!: Aišku!
   got_your_data_somewhere_else?: Jūsų duomenys kažkur kitur?  Mes galime padėti.
+  graft: Prijungti
+  graft_taxon: Prijungti %{taxon}
   grant_role: "%{grant} %{role} vaidmenį"
   grid: Tinklelis
   grid_layout: Tinklelio išdėstymas
@@ -1850,6 +1864,8 @@ lt:
   inat_believes_this_is_a_complete_listing: "%{site_name} mano, jog tai yra pilnas šio taksono sąrašas šioje vietoje."
   inat_user_profile: "%{site_name}: %{user} profilis"
   inaturalist_activity_notifications: "Pranešimai apie %{site_name} veiklą"
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
+  inaturalist_applications: "iNaturalist programėlės"
   inaturalist_is_a_joint_initiative: "%{site_name} yra bendra California Academy of Sciences ir National Geographic Society iniciatyva."
   inaturalist_places: "%{site_name} vietos"
   info: Informacija
@@ -1942,6 +1958,7 @@ lt:
     scientific_names: Moksliniai pavadinimai
     afrikaans: Afrikanų
     albanian: Albanų
+    arabic: Arabų
     bengali: Bengalų
     catalan: Katalonų
     cebuano: Sebuanų
@@ -1956,31 +1973,42 @@ lt:
     estonian: Estų
     finnish: Suomių
     french: Prancūzų
+    galician: Galisų
     german: Vokiečių
     greek: Graikų
     hawaiian: Havajiečių
     hebrew: Hebrajų
     icelandic: Islandiečių
+    indonesian: Indoneziečių
     italian: Italų
     japanese: Japonų
     korean: Korėjiečių
     latvian: Latvių
     lithuanian: Lietuvių
     luxembourgish: Liuksemburgiečių
+    malay: Malajų
+    malayalam: Malajalių
     maltese: Maltiečių
     maori: Maorių
+    mongolian: Mongolų
     norwegian: Norvegų
     occitan: Oksitanų
     pangasinan: Pangasinanas
+    polish: Lenkų
     portuguese: Portugalų
     romanian: Rumunų
     russian: Rusų
+    sinhala: Sinhalų
+    slovak: Slovakų
+    slovenian: Slovėnų
     spanish: Ispanų
     swedish: Švedų
     tagalog: Tagalų
     tahitian: Taitiečių
+    thai: Tajų
     tokelauan: Tokelau
     turkish: Turkų
+    ukrainian: Ukrainiečių
     waray_waray: Varajų
   less: Mažiau
   licensed_site_photos: "Licencijuotos %{site_name} nuotraukos"
@@ -2040,6 +2068,7 @@ lt:
   locales_: Lokalės
   locales:
     ar: Arabų
+    be: Baltarusų
     bg: Bulgarų
     br: Bretonų
     ca: Katalonų
@@ -2051,6 +2080,7 @@ lt:
     eo: Esperanto
     es: Ispanų
     es-AR: Ispanų (argentiniečių)
+    es-CO: Ispanų (Kolumbija)
     es-MX: Ispanų (Meksika)
     et: Estų
     eu: Baskų
@@ -2079,6 +2109,7 @@ lt:
     sl: Slovėnų
     sq: Albanų
     sv: Švedų
+    th: Tajų
     tr: Turkų
     uk: Ukrainiečių
     zh-CN: Kinų (supaprastinta)
@@ -2100,6 +2131,8 @@ lt:
   log_out: Atsijungti
   log_out_caps: ATSIJUNGTI
   log_scale_label: Įrašas
+  #Status message shown while logging in
+  logging_in: Prisijungiama...
   login_slash_username: Prisijungimo / vartotojo vardas
   logo:
     logo: Logotipas
@@ -2257,10 +2290,15 @@ lt:
   multiple: keli
   multiple_select_option: '-- kelis --'
   multiple_taxon_ids_separated_by_commas: 'Daug taksonų ID, atskirtų kableliais, pvz.: 123,654'
+  must_be_not_observed_in_place: turi nebūti stebėtas %{place}
   must_be_observed_after: turi būti stebėtas po %{operand}
   must_be_observed_before: turi būti stebėtas prieš %{operand}
+  must_be_observed_by_user: turi būti stebėtas %{user}
+  must_be_observed_in_place: turi būti stebėtas %{place}
   must_be_less_than_x_MB: "Turi būti mažesnis nei %{x} MB"
   must_have_observation_field: "turi būti užildytas stebėjimo laukas „%{operand}“"
+  must_have_photos: turi turėti nuotraukų
+  must_have_sounds: turi turėti garsų
   must_have_x: "turi turėti %{x}"
   mute_user: Užtildyti vartotoją
   mute_removed: Užtildymas panaikintas
@@ -2293,6 +2331,8 @@ lt:
   needs_id_: Trūksta ID
   needs_id_expandable_html: "<span class='full'>Trūksta</span>ID"
   needs_to_be_identified: Reikia idendifikacijos
+  #Column header in a table listing iNaturalist Network members
+  network_member: Tinklo narys
   new: Nauji
   new_and_noteworthy: Nauji ir verti dėmesio
   new_announcement: Naujas pranešimas
@@ -2334,10 +2374,14 @@ lt:
   newly_added_species: Naujai pridėtos rūšys
   newly_observed_species: Naujai stebėtos rūšys
   next: Kitas
+  next_date_short: Kitas
   next_observation: Kitas stebėjimas
   next_page: Kitas puslapis
+  next_page_short: Kitas
   next_photo: Kita nuotrauka
+  next_post_short: Kitas
   next_tab: Kitas Skirtukas
+  next_taxon_short: Kitas
   'no': 'Ne'
   no_but_it_is_a_member_of_taxon: "Ne, bet tai yra %{taxon} narys"
   no_comments_yet: Dar nėra komentarų.
@@ -2441,10 +2485,15 @@ lt:
   observation: Stebėjimas
   observation_: stebėjimas
   observation_added_to_the_project: "Stebėjimas pridėtas prie šio projekto \"%{project}\""
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: '%{user} stebėjimas'
   observation_brief_something_on_day: "Kažkas %{day}"
   observation_brief_something_on_day_at_time: "Kažkas %{day} %{time}"
   observation_brief_something_on_day_at_time_by_user: "Kažkas atliko %{user} %{day} %{time}"
   observation_brief_something_on_day_by_user: "%{user} kažką atliko %{day}"
+  observation_brief_something_from_place: "Kažkas iš %{place}"
+  observation_brief_something_from_place_by_user: "%{user} kažkas iš %{place}"
   observation_brief_taxon_on_day_at_time: "%{taxon} %{day} %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} %{day} %{time} %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} %{day} %{user}"
@@ -2506,6 +2555,13 @@ lt:
   observer_short: Stebėtojas
   occurrence_status_descriptions:
     absent: Neaptinkamas šioje vietoje
+  occurrence_status_levels:
+    present: esamas
+    common: įprastas
+    uncommon: retas
+    irregular: nereguliarus
+    doubtful: abejotinas
+    absent: nesantis
   of_places: vietos
   of_this_taxon: Šio taksono
   offensive_inappropriate: Įžeidžiantis / Nepriimtinas
@@ -3047,11 +3103,15 @@ lt:
   preview_observations_with_these_observation_requirements: Peržiūrėti stebėjimus su šiais stebėjimų reikalavimais
   preview_of_synced_observation: "Sinchronizuoto stebėjimo <strong>Peržiūra</strong>. <a href=\"%{url}\">Anuliuoti?</a>"
   previewing: "Peržiūrima..."
+  previous_date_short: Ankst.
   prev: Ankst.
   previous_observation: Ankstesnis stebėjimas
   previous_page: Anstesnis puslapis
+  previous_page_short: Ankst.
   previous_photo: Ankstesnė nuotrauka
+  previous_post_short: Ankst.
   previous_tab: Ankstesnis skirtukas
+  previous_taxon_short: Ankst.
   print_verb: Spausdinti
   privacy: Privatumas
   private: privatus
@@ -3182,6 +3242,7 @@ lt:
     subspecies: Porūšis
     variety: Varietetas
     form: Forma
+    infrahybrid: infrahibridas
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
   ranks_lowercase_kingdom: karalystė
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
@@ -3206,6 +3267,10 @@ lt:
   ranks_lowercase_suborder: pobūris
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
   ranks_lowercase_infraorder: infrabūrys
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: gentis
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: pogentis
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
   ranks_lowercase_complex: kompleksas
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
@@ -4367,7 +4432,7 @@ lt:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Daugiau apie %{application}
     observations:
@@ -4620,7 +4685,6 @@ lt:
         by_deleting_your_account_you_will_remove: |
           Ištrindami savo paskyrą jūs panaikinsite
       edit:
-        about_third_party_tracking: Apie trečiųjų šalių sekimą
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jei apsigalvosite visada galite
           <a href='/users/edit'>keisti savo nustatymus</a>.
@@ -4663,9 +4727,6 @@ lt:
         project_addition_preferences:
           any: Nesvarbu
           joined: Projektai, prie kurių prisijungėte
-        prefers_no_tracking_label: Nerinkti stabilumo ir naudojimo duomenų su trečiųjų šalių paslaugomis
-        prefers_no_tracking_label_desc_we_use: |
-          Mes naudojame keletą trečiųjų šalių paslaugų stebėti stabilumą ir atrasti klaidas bei klaidas mūsų programinėje įrangoje. Trečiosios šalys yra
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Informacija, kuria dalinamės su trečiosiomis šalimis gali būti
@@ -4677,8 +4738,6 @@ lt:
           Sistemos gedimo detalės, pavyzdžiui, kokia būtent kodo eilutė sukėlė gedimą
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Įrenginio detalės, pavyzdžiui, mobiliojo telefono modelis
-        prefers_no_tracking_label_desc_value_html: |
-          <strong>Trečiųjų šalių paslaugos mūsų mažam personalui teikia didelę vertę</strong>, be jų negalėtumėme palaikyti iNaturalist stabilumo ir pritaikomumo. Mes nieko negalėtumėme žinoti apie problemas mobiliuosiuose įrenginiuose, nes mes nekontroliuojame jų operacinių sistemų. Kartais mes net nežinome problemų, kol nepamatome jų duomenyse, kuriuos mums pateikia trečiųjų šalių paslaugos. <strong>Besidalindami šia informacija jūs padedate mums tarnauti jums ir visai iNaturalist bendruomenei.</strong>
         search_place_help_html: |
           Numatytoji vieta stebėjimo paieškoms.
         scientific_name_first_desc: |

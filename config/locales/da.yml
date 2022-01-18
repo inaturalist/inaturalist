@@ -546,13 +546,38 @@ da:
   #Label for an option to show/include content by any user
   any_user: Hvilken som helst
   anyone: Enhver
+  app_owner_application_about_p1a_html: |
+    iNaturalist-apps tillader godkendt brug af iNaturalist API. Dette
+    muliggør at foretage API-kald, som gør ting såsom at oprette observationer eller
+    identifikationer. Alm. brugsscenarier er apps såsom computer- eller mobil-
+    apps, som omfatter funktionalitet for deres bruger til at oprette iNaturalist-observationer. Dette indhold skal genereres med reel menneskelig involvering
+    eller tilsyn. For yderligere detaljer, læs venligst vores <a href="/pages/community+guidelines"
+    target="_blank">Fællesskabsretningslinjer</a>, som forbyder maskingenererede observationer, identifikationer og kommentarer.
+  app_owner_application_about_p2_html: |
+    Fra og med 2022 kræver vi manuel godkendelse af brugere, som ønsker at kode API-klienter.
+    For at kode tredjeparts-apps, skal der først indsendes en ansøgning for at blive
+    en "app-ejer. Denne ansøgning skal beskrive funktionaliteten i den foreslåede app,
+    samt hvordan den planlægges brugt. For at kunne indsende en ansøgning skal din konto være
+    mindst 2 måneder gammel og skal have foretaget mindst 10 <a href="/pages/help#identification"
+    target="_blank">forbedrende identifikationer</a> den seneste måned. Vi kan stille opfølgende
+    spørgsmål om din plan og forbeholder os retten til at afvise ansøgninger uanset årsag.
+  app_owner_application_inelligible: |
+    For at kunne indsende en ansøgning skal din konto være mindst 2 måneder gammel og skal
+    have foretaget mindst 10 forbedrende identifikationer den seneste måned.
+  app_owner_application_fields_explanation_html: Beskriv funktionalitet, din app vil have, og hvordan du planlægger den brugt.
+  app_owner_application_success: App-ejeransøgning indsendt
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Program
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Applikationer
+  apply_app_owner: Ansøg
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Anvend
+  apply_to_be_an_app_owner: Ansøg om at blive App-ejer
+  apply_to_create_applications_title: Ansøg om at oprette applikationer
   apply_to_selected: Tilføj til valgte
   apply_captive_cultivated: "Tilføj i fangenskab / dyrket"
   apply_fields: Tilføj felter
@@ -662,6 +687,16 @@ da:
     natureserve: NatureServe
     cites: CITES
   authorize: Tillade
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: Godkend med PKCE
+  #Explanation for how to use the PKCE authorization link. All variables are
+  #code that must match the content of the link and thus cannot be
+  #translated.
+  authorize_with_pkce_desc_html: |
+    (Brug <code>%{code_challenge}</code> som
+    <code>%{code_verifier_param}</code>) Bemærk: dette er et basiseksempel. I produktionskoden
+    SKAL man anvende <code>%{code_challenge_method}</code> og hash'e <code>%{code_challenge_param}</code> korrekt.
   authorize_permissions_from_provider: "Godkend tilladelser fra %{provider}"
   automatic_short: Auto
   automatically_add_observations_to_this_project: Tilføj automatisk observationer til dette projekt
@@ -670,6 +705,7 @@ da:
   #of values, and not a synonym of "typical" or "normal"
   avg: Gns.
   back: Tilbage
+  back_to_applications: "&laquo; Retur til applikationer"
   back_to_all_species: Tilbage til Alle arter
   back_to_editing_observation: Tilbage til redigering af observation
   back_to_friends: Tilbage til venner
@@ -755,6 +791,7 @@ da:
   by_you: Af dig
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalendere viser kun %{x} observationer ad gangen
+  callback_url: Callback URL
   cancel: Annullér
   cant_edit_or_delete_hidden_content: Du kan ikke redigere eller slette indhold, som er blevet skjult af sidens kuratorer
   cant_flag_an_object_that_doesnt_exist: Kan ikke markere et objekt, som ikke eksisterer
@@ -842,7 +879,6 @@ da:
   check_lists_must_belong_to_a_place: |
     Tjeklister skal tilhøre et sted. For at oprette en ny tjekliste, besøg
     stedets standardtjekliste og klik på linket "Opret en ny tjekliste".
-  check_list_of_species_occuring_in: Tjekliste over arter der forekommer i
   check_list_place: "%{place} Tjekliste"
   check_list_updated: Tjekliste er opdateret
   check_lists_for: "Yderligere tjeklister for %{place}"
@@ -886,6 +922,7 @@ da:
     Kommasepareret liste med sporingskoder. Tilføj disse, hvis du vil tilføje en sporingskode, når du sender personer til det nye observationsskema, f.eks. %{root_url}observationer/nye?projekt_id=%{project_id}&sporings_kode=dinkode123.
     Du kan bruge dette til at spore deltagelse fra forskellige kilder. Du kan få adgang til disse koder, når du downloader dit projekts observationer som CSV.
   comma_separated_please: Kommasepareret, tak
+  #Noun, used to label a comment or a comment field in a form
   comment: kommentar
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentar
@@ -947,6 +984,7 @@ da:
     antal observationer, så for at forøge denne taksons chance for inkludering under den næste modeloptræning, så tilføj eller identificér flere observationer
     af denne takson.
   concept_status: Koncept status
+  confidential: Fortrolig
   configure: Konfigurér
   configure_a_widget_to_show: Konfigurér en widget for at vise %{site_name} observationer på din hjemmeside eller i din blog. Det kan være nødvendigt at medtage den integrerede CSS i <code>&lt;head&gt;</code> din HTML. Du kan ændre i CSS'en som du vil.
   confirm: Bekræft
@@ -1500,6 +1538,8 @@ da:
   each_place_displays_all_species_inat_knows: "Hver side med steder, viser alle de arter %{site_name} kender fra dette sted, med oplysninger om deres forekomst, bevaringsstatus, og hvem der var den første der observerede den pågældende art på dette sted på %{site_name}. Du kan filtrere arterne efter taksonomisk gruppe, farve, bevaringsstatus eller via almindelig gammeldags søgning."
   earliest_added: Tidligst tilføjet
   edit: Redigér
+  #Title of the moderation note editor
+  edit_moderator_note: Redigér Moderatornotat
   edit_a_batch_of_observations: Redigér et bundt af observationer
   edit_account_settings_and_profile: "Redigér kontoindstillinger &amp; profil"
   edit_assessment: Redigér vurdering
@@ -1603,7 +1643,6 @@ da:
   event_stats: Hændelses statistik
   event_url: Begivenheds-URL
   events_only: Kun events
-  every_species_seen_by: Alle arter set af
   everyone: alle
   everyone_: Alle
   everyone_journal_posts: alles journal indlæg
@@ -1629,7 +1668,8 @@ da:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Eksterne applikationer
-  external_applications_description: Eksterne programmer er tredjepartsprogrammer, som du har tilladt at tilgå din iNaturalist-konto på dine vegne. Generelt kan de gøre alt det med din konto, som du selv kan, så sørg for at du har tillid til programmerne, inden du giver tildeler dem adgangsrettigheder.
+  external_applications_description: |
+    Eksterne applikationer er tredjepartssoftware, som du har godkendt kan tilgå din iNaturalist-konto på dine vegne. De kan generelt gøre alt det med din konto, som du selv kan, så sørg for, at du har tillid til app-udviklerne, inden de tildeles adgangsrettigheder.
   external_taxon_including_children: Ekstern takson (inklusiv efterfølgere)
   extinct: uddød
   extinct_in_the_wild: Uddøde i naturen
@@ -2239,6 +2279,10 @@ da:
   link_or_unlink_your_facebook_account: Tilknyt eller frakobl din Facebook konto
   link_or_unlink_your_flickr_account: Tilknyt eller frakobl din Flickr konto
   link_or_unlink_your_google_account: Tilknyt eller frakobl din Google konto
+  #Text for a link that provides an example of how an application can send a
+  #user to iNat to authorize the app's use of their iNat account. "Link" is
+  #a noun.
+  link_to_authorization_code: Link til godkendelseskode
   link_your_facebook_account: Tilknyt din Facebook konto
   link_your_flickr_account: Tilknyt din Flickr konto
   link_your_google_account: Tilknyt din Google konto
@@ -2389,6 +2433,7 @@ da:
   make_sure_the_default_photo_looks_good: Sørg for, at standard billedet ser godt ud i stor størrelse.
   make_this_your_default_license: "Gør dette til din standard %{type} licens"
   make_this_the_primary_listing: "Gør dette til den primære liste"
+  make_your_app_confidential: Gør din app fortrolig, hvis du kan gemme din app-hemmeligt sikkert, dvs. ikke i en offentligt tilgængelig binær, der kan dekompileres. Afmarkér feltet, hvis dette ikke er tilfældet, og du planlægger at bruge PKCE-flowet
   mammals: pattedyr
   manage_all_your_subscriptions: Administrer alle dine abonnementer
   manage_names: Administrér navne
@@ -2637,6 +2682,7 @@ da:
   new: Ny
   new_and_noteworthy: Nyt og bemærkelsesværdigt
   new_announcement: Ny meddelelse
+  new_application: Ny applikation
   new_assessment: Ny vurdering
   new_check_list: Ny tjekliste
   new_check_list_for: "Opret en ny tjekliste for %{place}&raquo;"
@@ -4747,8 +4793,8 @@ da:
   this_will_refresh_listed_taxa: Dette opdaterer de angivne taksa på denne liste. Det kan tage et stykke tid, så brug venligst denne mulighed sparsomt og på små tjeklister
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Dette fjerner iNaturalists mulighed for at opnå adgang til denne konto på dine vegne, indtil du gentildeler adgang. Du skal muligvis ændre dine indstillinger på det eksterne websted for helt at forhindre adgang.
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: Dette vil logge dig ud af din nuværende session i denne applikation.
   this_will_try_to_add_tags_to_your_flickr: Dette vil forsøge at tilføje tags til dine Flickr foto´s. Fortsæt?
   this_year: Dette år
@@ -4892,6 +4938,7 @@ da:
   uploading_num_of_count_photos:
     one: Uploader foto...
     other: Uploader %{num} af %{count} foto´s...
+  url_for_your_app_outside_of_inaturalist: URL til din app uden for iNaturalist
   url_identifier_of_a_project_derived_from: "URL / identifikator for et projekt afledt af en ekstern ressource"
   url_of_this_taxon_on_the_source_website: URL for denne takson på kildens hjemmeside
   usage_stats: Anvendelses statistik
@@ -4930,6 +4977,7 @@ da:
   user_added_an_x_to_noun_html: "%{user} tilføjede en %{x} til %{noun}"
   user_added_x_observations_html: "%{user} tilføjede %{x} observationer"
   user_already_authenticated: Brugeren er allerede godkendt
+  user_already_app_owner: Bruger er allerede en app-ejer
   user_autocomplete_placeholder: kueda, simon123, osv.
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
   #not the place. Gender for all variables is not known..
@@ -5675,13 +5723,13 @@ da:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: Tillad %{application} at bruge din konto?
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Denne applikation vil være i stand til:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Mere om %{application}
     observations:
@@ -7099,9 +7147,9 @@ da:
         prefers_coordinate_interpolation_protection_desc: |
           Når du indstiller geofortroligheden for en observation til "sløret" eller
           "fortrolig", gælder den for alle observationer for denne dag for at gøre det sværere for andre personer at gætte de reelle koordinater baseret på observationer foretaget omkring samme tidspunkt.
-        prefers_no_tracking_label: Indsaml ikke driftsstabilitets- og brugsdata vha. tredjepartstjenester
+        prefers_no_tracking_label: Indsaml ikke stabilitets- og brugsdata vha. tredjepartstjenester
         prefers_no_tracking_label_desc_we_use: |
-          Vi benytter en række tredjepartstjenester til at overvåge driftsstabilitet og
+          Vi benytter en række tredjepartstjenester til at monitorere stabilitet og
           diagnosticere fejl og problemer i vores software. Disse tredjeparter
           omfatte
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
@@ -7122,12 +7170,12 @@ da:
         prefers_no_tracking_label_desc_value_html: |
           <strong>Disse tredjepartstjenester er at enorm værdi for os
           </strong> for opretholdelse af driftsstabiliteten og anvendeligheden
-          af iNaturalist med vores relativt lille personale. På mobilenheder er
+          af iNaturalist med vores relativt lille personalestab. På mobilenheder er
           der reelt ingen anden måde, hvorpå vi kan opnå indsigt i opståede
           problemer, da softwaren afvikles på enheder uden for vores kontrol.
           Nogle gange er vi ikke engang klar over, at sådanne problemer opstår,
           før vi ser dem i data leveret af disse tjenester. <strong>Ved at dele
-          disse oplysninger, hjælper du os med at tjene dig og hele 
+          disse oplysninger, hjælper du os med at betjene dig og hele
           iNaturalist-fællesskabet.</strong>
         prefers_no_tracking_label_desc_limits: |
           Bemærk, at denne mulighed kun gælder for analyser og nedbrudsdata, som vi
@@ -7555,6 +7603,9 @@ da:
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
       ModeratorNote: Moderatornotater
+      #Software application that operates iNat on a user's behalf, e.g. the
+      #iNaturalist Android app or an app made by a third party
+      OauthApplication: Applikation
       TaxonLink: Takson link
     attributes:
       assessment:
@@ -7601,6 +7652,18 @@ da:
         finished_at: Færdiggjort
         #Inputs to an export task, e.g. the query and the columns
         inputs: Input
+      oauth_application:
+        #The URL the user will be redirected to after authorizing an app to
+        #access their iNaturalist account
+        callback_url: Callback-URL
+        #Unique identifier for an application
+        uid: ID
+        #Noun, secret associated with an application, sort of like the application's password
+        secret: Hemmelighed
+        #Adjective, whether or not this application can keep its secret
+        #confidential, e.g. a native or desktop app as opposed to a web
+        #app.
+        confidential: Fortrolig
       post:
         title: Titel
         body: Indhold

@@ -688,6 +688,8 @@ be:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Прыкладанне
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Прыкладанні
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -978,7 +980,6 @@ be:
   check_lists_must_belong_to_a_place: |
     Кантрольныя спісы павінны належаць да месца. Каб стварыць новы кантрольны спіс, наведайце
     кантрольны спіс месца па змаўчанні і націсніце спасылку "Стварыць новы кантрольны спіс".
-  check_list_of_species_occuring_in: Кантрольны спіс відаў, якія сустракаюцца ў
   check_list_place: "Кантрольны спіс %{place}"
   check_list_updated: Кантрольны спіс быў адноўлены!
   check_lists_for: "Іншыя кантрольныя спісы для %{place}"
@@ -1019,6 +1020,7 @@ be:
   comma_separated_list_of_tracking_codes: |
     Спіс кодаў адсочвання, падзелены коскамі. Дадайце іх, калі вы хочаце дадаць код адсочвання калі накіроўваеце людзей да новай формы назіранняў. Напрыклад, %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123. Вы можаце выкарыстоўваць гэта дзеля таго, каб адсочваць удзел з розных крыніц. Вы можаце атрымаць дасяг да гэтых кодаў, калі спампуеце назіранні вашага праекта ў фармаце CSV-файла.
   comma_separated_please: Падзелены коскамі, калі ласка.
+  #Noun, used to label a comment or a comment field in a form
   comment: каментарый
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Каментарый
@@ -1724,7 +1726,6 @@ be:
   event_stats: Статыстыка падзеі
   event_url: URL падзеі
   events_only: Толькі падзеі
-  every_species_seen_by: Кожны від быў убачаны
   everyone: усе
   everyone_: Усе
   everyone_journal_posts: Усе допісы ў часопісах
@@ -1750,7 +1751,6 @@ be:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Знешнія прыкладанні
-  external_applications_description: Знешнія прыкладанні - гэта прыкладанні 3га боку, якім вы дазволілі доступ да вашага ўліковага запісу на iNaturalist ад вашага імя. Яны могуць рабіць з вашым уліковым запісам усё тое, што і вы самі, таму ўпэўніцеся, што вы давяраеце распрацоўшчыкам прыкладання перад тым, як даць ім гэты дазвол.
   external_taxon_including_children: Знешні таксон (улючаючы даччыныя)
   extinct: вымерлы
   extinct_in_the_wild: Вымерлы ў прыродзе
@@ -2232,7 +2232,6 @@ be:
   leading: Вядучы
   learn: Вывучайце
   learn_about_the_species_live_in: Даведайцеся пра віды, якія жывуць у
-  learn_about_third_party_tracking: Даведайцеся больш пра адсочванне трэціх асоб
   learn_more: Даведацца больш
   learn_more_raquo: "Даведацца больш &raquo;"
   learn_what_these_licenses_mean: Даведайцеся, што азначаюць гэтыя ліцэнзіі

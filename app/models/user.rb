@@ -496,6 +496,10 @@ class User < ApplicationRecord
   def is_curator?
     has_role?(:curator)
   end
+
+  def is_app_owner?
+    has_role?( Role::APP_OWNER )
+  end
   
   def is_admin?
     has_role?(:admin)
