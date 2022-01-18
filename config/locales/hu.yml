@@ -2697,56 +2697,6 @@ hu:
       show:
         data_quality_assessment_desc_html: |
           Az Adatminőségi kiértékelés a megfigyelés pontosságára irányul. A tudományos szintű meghatározások felhasználhatók tudományos célokra. Alább szavazatoddal értékelheted a megfigyelést:
-        quality_assessment_help_html: |
-          <p>
-          Az adatminőségi kiértékelés a megfigyelés pontosságának összefoglalása. Minden megfigyelés <strong>"hobbiszint"</strong>ről indul, majd <strong>"meghatározás szükséges"</strong> szintre válta, ha
-          </p>
-
-          <ul>
-          <li>a megfigyeléshez tartozik <strong>egy dátum</strong></li>
-          <li>a megfigyelés <strong>helyhez kötött</strong> (vagyis vannak szélességi és hosszúsági koordinátái)</li>
-          <li>a megfigyeléshez tartozik <strong>fénykép vagy hang</strong></li>
-          <li>a megfigyelés alanya <strong>nem ember</strong></li>
-          </ul>
-          <p>
-          A megfigyelés <strong>"tudományos szint"</strong>űre vált, ha
-          </p>
-          <ul>
-          <li>
-          az %{site_name} <strong>közössége egyetért a fajszintű (vagy alacsonyabb) meghatározással</strong>, például ha a meghatározók több mint kétharmada egyetért a taxonban. (Ha a közösség úgy szavaz, hogy a közösségi taxon már nem pontosítható, a meghatározás alcsalád vagy alacsonyabb szintre vált.)
-          </li>
-          </ul>
-          <p>
-          A megfigyelés <strong>"hobbiszintű"</strong>re vált, ha a fenti feltételek nem teljesülnek, vagy ha a közösség egyetért abban, hogy:
-          </p>
-          <ul>
-          <li>
-          a <strong>hely nem tűnik pontosnak</strong> (pl. majmok az óceán közepén, vízilovak irodaházak tetején stb.)
-          </li>
-          <li>
-          az <strong>élőlény nem vad vagy honosított</strong> (pl. ember által fogvatartott vagy kultivált)
-          </li>
-          <li>
-          a megfigyelés <strong>nem szolgál bizonyítékkal az élőlényről</strong>, pl. tájképek, vízfelszín, kövek stb.
-          </li>
-          <li>
-          a megfigyelés <strong>nem szolgál időszerű (~100 éves) bizonyítékkal az élőlényről</strong> (pl. fosszíliák, viszont nyomok, ürülék, száradt levelek elfogadhatók)
-          </li>
-          <li>
-          a megfigyelésnek már nincs szüksége azonosításra <em>és</em> a közösségi meghatározás család szint feletti
-          </li>
-          <li>
-          a megfigyelő kikapcsolta a közösségi meghatározást és a közösségi azonosítási taxon nem a szülője vagy a gyermeke a a megfigyelő azonosításához tartozo taxonnak
-          </li>
-          </ul>
-          <p>
-          És hogy ha ez még még mindig nem túl bonyolult, léteznek helyzetek, melyekben a rendszer maga szavaz:
-          </p>
-          <ul>
-          <li>
-          A rendszer a megfigyelést nem vadnak értékeli, ha van legalább 10 másik megfigyelés az adott nemzetség szintjén vagy az alatt a megfigyeléshez tartozó legkisebb földrajzi egységben, és ezen megfigyelések legalább 80 százaléka nem vadként van megjelölve.
-          </li>
-          </ul>
         observer_does_not_allow_observation_fields: A megfigyelő nem teszi lehetővé új adatmezők hozzáadását
         observer_only_allows_curators_to_add_fields: A megfigyelő csak kurátorok számára engedélyezi adatmezők hozzáadását
     observation_fields:
