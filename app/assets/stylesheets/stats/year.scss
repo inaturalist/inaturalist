@@ -520,6 +520,11 @@ $tip-opacity: 1;
     }
   }
 
+  .leaflet-safari .leaflet-tile-container {
+    width: auto !important;
+    height: auto !important;
+  }
+
   .TorqueMap {
     position: relative;
     .map {
