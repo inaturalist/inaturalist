@@ -1948,7 +1948,8 @@ class Observation < ApplicationRecord
         place_guess: o.place_guess,
         private_place_guess: o.private_place_guess,
         taxon_geoprivacy: o.taxon_geoprivacy,
-        public_positional_accuracy: o.calculate_public_positional_accuracy
+        public_positional_accuracy: o.calculate_public_positional_accuracy,
+        mappable: o.calculate_mappable
       )
     end
     Observation.elastic_index!( ids: observations.map(&:id), wait_for_index_refresh: true )
