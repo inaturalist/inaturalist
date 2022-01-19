@@ -26,7 +26,7 @@ th:
   x_matching_taxa_html:
     other: '<span class="count">%{count}</span> ลำดับอนุกรมวิธานที่ตรงกัน'
   x_misidentifications_of_this_species:
-    other: "%{count} การจำแนกชนิดนี้ผิด"
+    other: "%{count} ชนิดนี้มีการระบุผิด"
   x_misidentifications_of_species_in_this_genus:
     other: "%{count} สกุลนี้มีการระบุผิด"
   #This is a fallback. Most of the time we'll use
