@@ -1,6 +1,6 @@
 {
   "name": "inaturalist",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "iNaturalist npm package for managing node dependencies.",
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
@@ -23,7 +23,7 @@
     "gulp": "^4.0.2",
     "html-truncate": "^1.2.1",
     "immutability-helper": "^2.8.1",
-    "inaturalistjs": "github:inaturalist/inaturalistjs#node16",
+    "inaturalistjs": "github:inaturalist/inaturalistjs",
     "jquery": ">=3.5.0",
     "json-loader": "^0.5.4",
     "jsx-loader": "^0.13.2",
