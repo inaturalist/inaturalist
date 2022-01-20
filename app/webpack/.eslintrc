@@ -1,6 +1,12 @@
 {
   // I want to use babel-eslint for parsing!
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
+  },
   "extends": "airbnb",
   "env": {
     // I write for browser
