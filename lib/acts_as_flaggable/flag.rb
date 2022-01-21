@@ -201,7 +201,7 @@ class Flag < ActiveRecord::Base
 
   def resolvable_by?( user )
     if user.is_curator?
-      return true unless user.id === self.flaggable_user_id and flaggable_type != "Taxon"
+      return true unless (user.id === self.flaggable_user_id) && (flaggable_type != "Taxon")
     end
     false
   end

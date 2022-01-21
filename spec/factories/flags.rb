@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :flag do
     user
-    flaggable { build :taxon }
+    flaggable_user
+    flaggable { build :taxa }
     flag { Faker::Name.name }
     resolved { false }
   end
