@@ -553,15 +553,23 @@ fi:
   #Label for an option to show/include content by any user
   any_user: Mikä tahansa
   anyone: Kuka tahansa
+  app_owner_application_about_p2_html: |
+    Vuodesta 2022 lähtien vaadimme manuaalista hyväksyntää käyttäjille, jotka haluavat tehdä API-sovelluksia. Jotta voit luoda kolmannen osapuolen sovelluksia, sinun on ensin lähetettävä hakemus. Hakemuksen tulisi kuvata suunnitellun sovelluksen toiminnallisuutta ja sitä, mihin aiot käyttää sitä. Hakemuksen tekemiseksi tilisi on oltava vähintään 2 kuukautta vanha, ja sen on täytynyt tehdä vähintään 10 <a href="/pages/help#identification"target="_blank">tunnistuksen parantamista</a> viime kuussa. Saatamme kysyä jatkokysymyksiä suunnitelmastasi ja varaamme oikeuden hylätä hakemuksen mistä tahansa syystä.
+  app_owner_application_inelligible: |
+    Hakemuksen tekemiseksi tilisi on oltava vähintään 2 kuukautta vanha, ja sen on täytynyt tehdä vähintään 10 tunnistuksen parantamista viime kuussa.
+  app_owner_application_fields_explanation_html: Kuvaile sovelluksesi toiminnallisuus ja miten aiot käyttää sitä.
+  app_owner_application_success: Sovelluksen omistajan hakemus lähetetty
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Sovellus
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Sovellukset
+  apply_app_owner: Hae
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Hyväksy
+  apply_to_be_an_app_owner: Hae sovelluksen omistajaksi
   apply_to_selected: Käytä valittuihin
   apply_captive_cultivated: "Lisää vangittu / viljelty -merkintä"
   apply_fields: Hyväksy kentät
@@ -677,6 +685,7 @@ fi:
   #of values, and not a synonym of "typical" or "normal"
   avg: Keskiarvo
   back: Takaisin
+  back_to_applications: "&laquo; Takaisin hakemuksiin"
   back_to_all_species: Takaisin kaikkiin lajeihin
   back_to_editing_observation: Takaisin muokkaamaan havaintoa
   back_to_friends: Takaisin ystäviin
@@ -760,6 +769,7 @@ fi:
   by_you: Sinun
   calendar: Kalenteri
   calendars_only_show_x_observations_at_time: Kalenterit näyttävät vain %{x} havaintoa kerrallaan
+  callback_url: Takaisinkutsu-URL
   cancel: Peruuta
   cant_edit_or_delete_hidden_content: Et voi muokata tai poistaa sisältöä, jonka sivuston kuraattorit ovat piilottaneet
   cant_flag_an_object_that_doesnt_exist: Olematonta kohdetta ei voi liputtaa.
@@ -941,6 +951,7 @@ fi:
   computer_vision_model_pending_desc: |
     Nykyinen tietokonenäkömalli ei tunne tätä taksonia, joten vaikka se voi olla mukana automaattisissa ehdotuksissa "Lähistöllä"-tarralla, se ei saa "Samannäköinen"-tarraa. Tietokonenäkömalliin mukaanottamista koskevat vaatimukset vaihtelevat kullakin mallilla, mutta yleisesti mukaanottaminen perustuu havaintojen lukumäärään, joten parantaaksesi tämän taksonin mukaanpääsyä seuraavaan mallin koulutukseen, lisää havaintoja tästä taksonista tai tee lisää tunnistuksia.
   concept_status: Konseptin tila
+  confidential: Luottamuksellinen
   configure: Määritä
   configure_a_widget_to_show: Määritä pienoisohjelma joka näyttää %{site_name} havainnot verkkosivullasi tai blogissasi. Saatat joutua sisällyttämään sulautetun CSS:n <code>&lt;head&gt;</code> osioon HTML:ssäsi. Voit vapaasti uudelleenkirjoittaa CSS:n.
   confirm: Vahvista
@@ -2284,6 +2295,7 @@ fi:
   make_sure_the_default_photo_looks_good: Varmista, että oletuskuva näyttää hyvältä isossa koossa.
   make_this_your_default_license: "Tee tästä oletusarvoinen %{type}-lisenssisi"
   make_this_the_primary_listing: "Tee tästä ensisijainen luettelo"
+  make_your_app_confidential: Määritä sovelluksesi luottamukselliseksi, jos voit tallentaa sovelluksesi turvallisesti eli se ei ole julkisesti saatavilla binäärissä, joka voidaan purkaa. Poista tämä valintaruutu, jos näin ei ole, ja aiot käyttää PKCE-kulkua
   mammals: nisäkkäät
   manage_all_your_subscriptions: Hallitse kaikkia tilauksiasi
   manage_names: Hallitse nimiä
@@ -2510,6 +2522,7 @@ fi:
   new: Uusi
   new_and_noteworthy: Uutta ja huomionarvoista
   new_announcement: Uusi ilmoitus
+  new_application: Uusi sovellus
   new_assessment: Uusi arviointi
   new_check_list: Uusi lajiluettelo
   new_check_list_for: "Luo uusi lajiluettelo paikalle %{place} &raquo;"
@@ -4346,6 +4359,7 @@ fi:
   uploading_num_of_count_photos:
     one: Tallennetaan kuvaa...
     other: Tallennetaan %{num}/%{count} kuvaa...
+  url_for_your_app_outside_of_inaturalist: Sovelluksesi URL iNaturalistin ulkopuolella
   usage_stats: Käyttötilastot
   use_this_form_to_create_a_new: |
     Käytä tätä lomaketta, kun haluat ehdottaa uutta taksonomista muutosta ja kuvaile ehdotettu aktiivisen taksonin jako, yhdistäminen tai vaihto.
@@ -4374,6 +4388,7 @@ fi:
   user_added_an_x_to_noun_html: "%{x} käyttäjältä %{user} (%{noun})"
   user_added_x_observations_html: "%{user} lisäsi %{x} havaintoa"
   user_already_authenticated: Käyttäjä on jo todennettu
+  user_already_app_owner: Käyttäjä on jo sovelluksen omistaja
   user_autocomplete_placeholder: elliesimerkki, matti123, yms.
   user_blocked: Käyttäjä on estetty
   user_commented: "%{user} kommentoi"
