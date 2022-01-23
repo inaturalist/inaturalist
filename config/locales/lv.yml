@@ -42,7 +42,7 @@ lv:
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     #Count of number of taxa that represent the first addition to a life list
-    zero: "%{count} pirmais sugas novērojums sarakstā"
+    zero: "%{count} pirmie sugas novērojumi sarakstā"
     #Count of number of taxa that represent the first addition to a life list
     one: "%{count} pirmais sugas novērojums sarakstā"
     #Count of number of taxa that represent the first addition to a life list
@@ -451,8 +451,8 @@ lv:
   all_places: "Visas vietas"
   all_projects: Visi projekti
   all_rank_added_to_the_database:
-    phylum: Visas sugas pievienotas datubāzei
-    subphylum: Visas apakšsugas pievienotas datubāzei
+    phylum: Visi tipi pievienoti datubāzei
+    subphylum: Visas apakštipi pievienotas datubāzei
     superclass: Visas virsklases pievienotas datubāzei
     class: Visas klases pievienotas datubāzei
     subclass: Visas apakšklases pievienotas datubāzei
@@ -1912,7 +1912,7 @@ lv:
   header_your_favorites: Tava izlase
   header_your_lists: Tavi saraksti
   header_your_journal: Tavs žurnāls
-  header_your_identifications: Tavi novērojumi
+  header_your_identifications: Tavas identifikācijas
   header_your_projects: Tavi projekti
   header_your_profile: Tavs profils
   heads_up: Uzmanību!
@@ -2461,8 +2461,8 @@ lv:
   mentioned_you_in_noun_by_html: "%{user} pieminēja tevi pie %{noun} ieraksta, ko izveidoja %{by}"
   mentioned_you_in_noun_by_user_html: "%{user} pieminēja tevi pie %{noun} ieraksta, ko izveidoja %{by}"
   mentioned_you_in_noun_by_you_html: "%{user} pieminēja tevi pie %{noun} ieraksta, ko izveidoji tu"
-  mentioned_you_in_a_x_on_noun_html: "%{user} pieminērja tevi pie %{x} %{noun}"
-  mentioned_you_in_an_x_on_noun_html: "%{user} pieminērja tevi pie %{x} %{noun}"
+  mentioned_you_in_a_x_on_noun_html: "%{user} pieminēja tevi pie %{x} %{noun}"
+  mentioned_you_in_an_x_on_noun_html: "%{user} pieminēja tevi pie %{x} %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} pieminēja tevi pie %{x} %{noun}, ko izveidoja %{by}"
   mentioned_you_in_a_x_on_noun_by_user_html: "%{user} pieminēja tevi pie %{x} %{noun}, ko izveidoja %{by}"
   mentioned_you_in_a_x_on_noun_by_you_html: "%{user} pieminēja tevi pie %{x} %{noun}, ko izveidoji tu"
@@ -2582,7 +2582,7 @@ lv:
   #Project rule for an umbrella project. %{project} is the title of the project
   #the observation must be in
   must_be_in_project: 'jābūt projektā: %{project}'
-  must_be_in_taxon: jābūt iekļautam taksonā %{taxon}
+  must_be_in_taxon: jābūt taksonā %{taxon}
   must_be_not_in_taxon: nedrīkst būt iekļauts taksonā %{taxon}
   must_be_not_observed_by_user: nedrīkst būt novērojis lietotājs %{user}
   must_be_not_observed_in_place: nedrīkst būt novērots iekš %{place}
@@ -2603,8 +2603,8 @@ lv:
   n_ago: "pirms %{n}"
   n_people_agrees: "%{amount} lietotāju piekrīt"
   n_people_disagrees: "%{amount} lietotāju nepiekrīt"
-  n_person_agrees: "%{amount} lietotāju piekrīt"
-  n_person_disagrees: "%{amount} lietotāju nepiekrīt"
+  n_person_agrees: "%{amount} lietotājs piekrīt"
+  n_person_disagrees: "%{amount} lietotājs nepiekrīt"
   name: Nosaukums
   name_entered: Ievadītais nosaukums
   name_or_slug: "Nosaukums vai URL, piemēram, mans-projekts"
@@ -4015,7 +4015,7 @@ lv:
     must_be_identified: jābūt identificētam
     must_be_on_list: jābūt sarakstā
     must_be_observed_in_place: jābūt novērotam noteiktā vietā
-    must_be_in: jābūt iekļautam taksonā
+    must_be_in: jābūt taksonā
     must_be_coordinates_shareable_by_project_curators: novērotājam jāsniedz projekta pārziņiem piekļuve pie koordinātām.
     must_be_verifiable: jābūt pierādāmam
   running_total: Kopējais skaits
@@ -4237,7 +4237,7 @@ lv:
   sorry_you_need_to_be_signed_in_and: Lai saglabātu tagus no Flickr, jāpierakstās Flickr kontā un tas jāsavieno ar iNat kontu.
   sort: Kārtot
   sort_by: Kārtot pēc
-  sorting_by: Šķiro pēc
+  sorting_by: Kārto pēc
   soundcloud_needs_to_confirm: "SoundCloud jāpārliecinās, ka vēlies saistīt savu kontu ar %{site_name}."
   sounds:
     add_media: Pievienot medijus
@@ -4677,7 +4677,7 @@ lv:
   this_will_try_to_add_tags_to_your_flickr: Šī funkcija mēģinās pievienot tagus tavām Flickr fotogrāfijām. Vēlies turpināt?
   this_year: Šogad
   those_observations_no_longer_exist: Novērojumi vairs neeksistē.
-  threatened: Gandrīz apdraudēts
+  threatened: Apdraudēts
   time_: laiks
   time_ago: "pirms %{time}"
   #As in the title of a book or a blog post
@@ -5037,7 +5037,7 @@ lv:
   whats_this?: Kas tas?
   when: Kad
   when_did_you_see_it?: Kad to redzēji?
-  when_did_you_see_them?: <em>Kad</em> to redzēji?
+  when_did_you_see_them?: <em>Kad</em> tos redzēji?
   where: Kur
   where_were_they?: Kur tie bija?
   where_were_you?: Kur tu biji?
@@ -5117,7 +5117,7 @@ lv:
   #with access to their hidden coordinates but only for observations of
   #threatened taxa
   yes_but_only_for_threatened: |-
-    Jā, bet tikai manus novērojumus ar apdraudētiem taksoniem, bet ne tad, ja esmu iestatījis ģeoprivātumu.
+    Jā, bet tikai manus novērojumus ar apdraudētiem taksoniem, bet ne tad, ja esmu aktivizējis ģeoprivātumu.
   yes_find_them!: "Jā, vēlos tos atrast."
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates
@@ -5669,7 +5669,8 @@ lv:
           href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">DarwinCore
           Archive (DwC-A) priekš GBIF</a>: šis ir <a
           href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a>
-          fails, ko ģenerējam priekš GBIF. Fails nedrīkst saturēt neko citu, kas nav GBIF. Ja vēlies iegūt visu arhīvu, to iespējams lejupielādēt. Tas ir ļoti liels zip. arhīvs ar CSV ierakstiem, kas tiek atjaunots katru nedēļu
+          fails, ko ģenerējam priekš GBIF. Fails nedrīkst saturēt neko citu, kas nav GBIF. Ja vēlies iegūt visu arhīvu, to iespējams lejupielādēt. Tas ir ļoti liels zip. arhīvs ar CSV ierakstiem, kas tiek atjaunots katru nedēļu.
+          </p>
           </li>
           <li>
           <p>
@@ -5764,6 +5765,58 @@ lv:
           Dažām fotogrāfijām pievienots nepieņemama satura vai autortiesību pārkāpuma karodziņš. Vairāk informācijas: %{links}
         join_project_desc_html: |
           Ja pievienosies projektam, tā pārziņiem būs redzamas šīs vai citu projekta novērojumu noslēptās koordinātas. Pievienojoties projektam, tu piekrīti projekta <a href="%{url}" target="_blank">notiekumiem</a>.
+        quality_assessment_help_html: |
+          <p>
+          Datu kvalitātes novērtējumā aprakstīta novērojuma precizitāte. Sākumā visiem novērojumiem ir<strong>"hobija"</strong> līmeņa statuss, kas kļūst par
+          <strong>"nepieciešama ID"</strong>statusu, ja
+          </p>
+
+          <ul>
+          <li>novērojumam <strong>ir datums</strong></li>
+          <li>novērojumam ir <strong>koordinātas</strong> (augstums un platums)</li>
+          <li>novērojumam ir<strong>fotogrāfijas vai audiofaili</strong></li>
+          <li>novērojumā nav redzams <strong>cilvēks</strong></li>
+          </ul>
+          <p>
+          Novērojumi sasniedz <strong>"pētniecības līmeni"</strong>, ja
+          </p>
+          <ul>
+          <li>
+          %{site_name} <strong>kopiena vienojas par sugas vai zemākas pakāpes ID</strong>, t.i., kad vairāk par 2/3 identificētāju vienojas par vienu taksonu (ja kopiena nobalso par to, ka kopienas taksons vairāk nevar tikt precizēts, sistēma atjaunos apakšdzimtas vai zemākas pakāpes taksona statusu)
+          </li>
+          </ul>
+          <p>
+          Sistēma atjauno <strong>"hobija līmeņa"</strong>statusu arī tad, ja iepriekšminētie kritēriji netiek izpildīti vai kopiena vienojas par to, ka
+          </p>
+          <ul>
+          <li>
+          <strong>novērojuma atrašanās vieta nešķiet precīza</strong> (piemēram, pērtiķi okeāna vidū vai nīlzirgi ēkās utt.)
+          </li>
+          <li>
+          <strong>organisms nav savvaļas vai tas ir naturalizēts</strong> ( cilvēku vai citplanētiešu ieslodzīts vai kultivēts)
+          </li>
+          <li>
+          novērojumā <strong>nav organisma klātbūtnes pierādījumu</strong>, piemēram, attēli ar ainavām, ūdenstilpnēm, akmeņiem utt.
+          </li>
+          <li>
+          novērojums<strong>nesatur nesenus organisma klātbūtnes pierādījumus (~100 gadi) </strong> (fosilijas nav pieņemamas, bet nospiedumi, izkārnījumi vai nokritušas lapas ir pieņemamas)
+          </li>
+          <li>
+          novērojumam vairs nav nepieciešama ID <em>un</em> kopienas ID ir virs dzimtas pakāpes
+          </li>
+          <li>
+          novērotājs ir atteicies no kopienas ID funkcijas. Turklāt kopiena un kopienas ID taksons nav ar novērotāja ID saistīts priekštecis vai pēctecis.
+          </li>
+          </ul>
+          <p>
+          Lai gan šis process jau tā ir visai sarežģīts, noteiktās situācijās sistēma izvērtē arī to, vai organisms nav nebrīvē vai naturalizēts.
+          </p>
+          <ul>
+          <li>
+          Sistēma pievieno novērojumam "nebrīvē/naturalizēts" statusu, ja
+          novadā, štatā vai valstī ir pievienoti vismaz 10 citi novērojumi ģints vai zemākā pakāpē ar konkrēto taksonu un 80% vai vairāk no šiem novērojumiem ir atzīmēti kā nebrīvē vai naturalizēti.
+          </li>
+          </ul>
         score_desc: "aprēķins = kopējais skaits / (kopējais skaits + domstarpību skaits + domstarpības par taksonu priekštečiem)"
         observation_flagged_notice_html: |
           Novērojums atzīmēts kā mēstule un vairs nav publiski redzams nevienam lietotājam, izņemot tevi, jo tu esi satura autors vai pārzinis. Ja pieļauta kļūda, lūdzu,
@@ -6027,9 +6080,9 @@ lv:
           has_a_sound: ar audiofailiem
           has_media: ar medijiem (foto vai audio)
           identified: jābūt identificētam
-          in_taxon: jābūt iekļautam taksonā
+          in_taxon: jābūt taksonā
           observed_in_place: jābūt novērotam noteiktā vietā
-          on_list: jābūt iekļautam taksonā, kas pievienots projekta sarakstam
+          on_list: jābūt taksonā, kas pievienots projekta sarakstam
           verifiable: jābūt pierādāmam
           wild: jābūt savvaļas vai naturalizētam
         start_time_desc: "Tava Bioblitz sākuma laiks. Formāts: YYYY-MM-DDThh:mm:ss±hh:mm"
@@ -6707,7 +6760,7 @@ lv:
   date:
     abbr_day_names:
       - Svētd.
-      - Sestd.
+      - Pirmd.
       - Otrd.
       - Trešd.
       - Cetur.
@@ -6747,7 +6800,7 @@ lv:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%Y-%m-%d'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%B%d, %Y'
+      long: '%B %d, %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       short: '%b %d'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
