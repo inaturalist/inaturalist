@@ -177,6 +177,8 @@ GEM
       sprockets (>= 3.0, < 5)
       tilt
     ast (2.4.2)
+    audited (5.0.2)
+      activerecord (>= 5.0, < 7.1)
     aws-eventstream (1.2.0)
     aws-partitions (1.510.0)
     aws-sdk-cloudfront (1.56.0)
@@ -692,7 +694,7 @@ DEPENDENCIES
   acts_as_votable
   ancestry
   angular-rails-templates
-  audited (~> 5.0)
+  audited
   aws-sdk-cloudfront
   aws-sdk-s3
   aws-sdk-waf
