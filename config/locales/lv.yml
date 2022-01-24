@@ -2521,7 +2521,7 @@ lv:
       #Short text representing 1 day in the past
       d: "1 d."
       #Short text representing %d days in the past
-      dd: "%d d."
+      dd: "%dd."
       #Short text representing 1 month in the past
       M: "1 mēn."
       #Short text representing %d months in the past
@@ -4357,8 +4357,7 @@ lv:
     Informācijas panelī un jaunumos redzamais ir atkarīgs no abonementiem, piemēram, iespējams abonēt taksona jaunumus, lai saņemtu ziņojumus par jauniem novērojumiem ar šo taksonu. Tevis komentēto vai identificēto novērojumu paziņojumi tiek automātiski abonēti.
   subscribe_to_this: Sekot šim
   subscribe_to_x_from_this_y_html: |
-    <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Sekot</a>
-     %{x} no šī %{y}.
+    <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Sekot</a> %{x} no šī %{y}.
   subscriptions: Abonementi
   subscriptions_arent_available_for: Vietām bez robežām nav iespējams sekot.
   successfully_changed_your_password: Parole veiksmīgi nomainīta.
@@ -5315,7 +5314,7 @@ lv:
         </p>
         <p class="text-muted">
         iNaturalist ir California Academy of Sciences un National Geographic Society kopdarbs. Visus ziedojumus saņems
-        California Academy of Sciences, 501(c)(3) no nodokļiem atbrīvota bezpeļņas organizācija Amerikas Savienotajās Valstīs nodokļu maksātāja Nr. (Tax ID): 94-1156258).
+        California Academy of Sciences, 501(c)(3) no nodokļiem atbrīvota bezpeļņas organizācija Amerikas Savienotajās Valstīs nodokļu maksātāja Nr. (Tax ID: 94-1156258).
         </p>
       post_donate_social_media_text: Es atbalstu iNaturalist, jo...
       monthly_supporters:
@@ -5833,7 +5832,7 @@ lv:
         Tu vari rediģēt novērojuma lauku, jo esi tā autors vai vietnes pārzinis. Ja esi pārzinis, lūdzu, ņem vērā vadlīnijas:
         </p>
         <ol>
-        <li>Neveic patvaļīgas izmaiņas nosaukumos (piemēram, nomainīt "ēšanu" pret "nektāra ievākšanu"</li>
+        <li>Neveic patvaļīgas izmaiņas nosaukumos (piemēram, nomainīt "ēšanu" pret "nektāra ievākšanu")</li>
         <li>Jāņem vērā, ka novērojuma laukus var izmantot jebkuram taksonam, tāpēc nelieto tikai tam konkrētajam taksonam raksturīgu terminoloģiju!</li>
         <li>Nedzēs laukus, ko izmanto citi lietotāji</li>
         <li>Netulko pieejamos lauku nosaukumus citās valodās. Angļu valoda ir mūsu vietnes lingua franca. Ja vēlies izveidot lauku, kas iekļauj to pašu jēdzienu, bet citā valodā, lūdzu, izveido jaunu novērojuma lauku.</li>
@@ -6139,7 +6138,7 @@ lv:
           Vai tev būs nepieciešamas standarta projektu funkcijas, piemēram, pieeja patiesajām koordinātām, pielāgojami novērojumu lauki vai atsevišķi automātiski nefiltrējami novērojumi?
         duplicate_project: Kopēt projektu
         include_annotated_observations: |
-          Iekļaut novērojumus tikai ar konkrētām īpašībām (piemēram, dzīves posms), vai ar ar īpašībām un vērtību (piemēram, dzīves posms = pieaudzis). Viena projekta ietvaros iespējams filtrēt, izmantojot tikai vienu īpašību.
+          Iekļaut novērojumus tikai ar konkrētām īpašībām (piemēram, dzīves posms), vai ar īpašībām un vērtību (piemēram, dzīves posms = pieaudzis). Viena projekta ietvaros iespējams filtrēt, izmantojot tikai vienu īpašību.
         leaderboards_among_individuals: <strong>Lietotāju</strong> rangu tabula
         leaderboards_among_projects_and_bioblitzes: |
           <strong>Projektu</strong> rangu tabula
@@ -6646,7 +6645,7 @@ lv:
         prefers_no_tracking_label_desc_info_we_share: |
           Trešajām pusēm sniegtā informācija:
         prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
-          IP adreses (lai noteiktu atrašanās vietu pilsētās līmeņa izšķirtspējā un izsekotu lietotājus, kas izmanto dažādas tīmekļa vietnes un pakalpojumus. Esam iespējojuši <a href="https://support.google.com/analytics/answer/2763052"> </a> Google Analytics IP anonimizāciju. <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics iespējams, uz noteiktu laiku saglabā IP adreses.</a>
+          IP adreses, lai noteiktu atrašanās vietu pilsētās līmeņa izšķirtspējā un izsekotu lietotājus, kas izmanto dažādas tīmekļa vietnes un pakalpojumus. Esam iespējojuši <a href="https://support.google.com/analytics/answer/2763052"> </a> Google Analytics IP anonimizāciju. <a href="https://firebase.google.com/support/privacy">Firebase Crashlytics iespējams, uz noteiktu laiku saglabā IP adreses.</a>
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           Informācija par pārlūkprogrammu, piemēram, izstrādātājs, modelis un versija.
         prefers_no_tracking_label_desc_info_we_share_crash_details: |
@@ -7303,7 +7302,7 @@ lv:
               cannot_be_blank: nevar būt neaizpildīts
               invalid_point: kļūdains punkts, garumam jābūt lielākam par 180 vai arī platumam jābūt mazākam par -90
               must_have_more_than_three_points: jābūt vairāk par trīs punktiem
-              polygon_with_fewer_than_four_points: jābūt poligonam ar mazāk par 3 punktiem
+              polygon_with_fewer_than_four_points: ar poligonu, kam ir mazāk par četriem punktiem
         post:
           attributes:
             parent:
