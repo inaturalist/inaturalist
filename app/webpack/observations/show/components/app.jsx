@@ -146,6 +146,24 @@ const App = ( {
   } else {
     qualityGradeTooltipHtml = I18n.t( "research_grade_tooltip_html" );
   }
+  // Custom lazyload component for the DQA, where we want lazy loading to apply
+  // inside of the collapsible element
+  const AssessmentLazyLoad = props => (
+    <LazyLoad
+      debounce={false}
+      height={
+        !config.currentUser || !config.currentUser.prefers_hide_obs_show_quality_metrics
+          ? 670
+          : 70
+      }
+      verticalOffset={500}
+    >
+      {
+        // eslint-disable-next-line react/prop-types
+        props.children
+      }
+    </LazyLoad>
+  );
   return (
     <div id="ObservationShow">
       { config && config.testingApiV2 && (
@@ -341,19 +359,9 @@ const App = ( {
           </Row>
         </Grid>
       </div>
-      <LazyLoad
-        debounce={false}
-        height={
-          config.currentUser && !config.currentUser.prefers_hide_obs_show_quality_metrics
-            ? 748
-            : 70
-        }
-        verticalOffset={500}
-      >
-        <div className="data_quality_assessment">
-          <AssessmentContainer />
-        </div>
-      </LazyLoad>
+      <div className="data_quality_assessment">
+        <AssessmentContainer innerWrapper={AssessmentLazyLoad} />
+      </div>
       { ( !observation.obscured || observation.private_geojson ) && (
         <LazyLoad debounce={false} height={515} offset={500}>
           <div className="more_from">

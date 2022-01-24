@@ -168,6 +168,7 @@ class Project < ApplicationRecord
       s3_region: CONFIG.s3_region,
       bucket: CONFIG.s3_bucket,
       styles: { thumb: "48x48#", mini: "16x16#", span1: "30x30#", span2: "70x70#", original: "1024x1024>" },
+      processors: [:deanimator],
       path: "projects/:id-icon-:style.:extension",
       url: ":s3_alias_url",
       default_url: "/attachment_defaults/general/:style.png"
@@ -201,7 +202,7 @@ class Project < ApplicationRecord
       url: "#{ CONFIG.s3_host }/attachments/:class/:id-cover.:extension",
       default_url: ""
   end
-  validates_attachment_content_type :icon, content_type: [/jpe?g/i, /png/i, /octet-stream/], message: "must be JPG or PNG"
+  validates_attachment_content_type :cover, content_type: [/jpe?g/i, /png/i, /octet-stream/], message: "must be JPG or PNG"
   validate :cover_dimensions, unless: Proc.new { |p| p.errors.any? || p.is_new_project? }
   
   ASSESSMENT_TYPE = 'assessment'
@@ -283,7 +284,7 @@ class Project < ApplicationRecord
   def add_owner_as_project_user(options = {})
     return true unless saved_change_to_user_id? || options[:force]
     if pu = project_users.where(user_id: user_id).first
-      pu.update_attributes(role: ProjectUser::MANAGER)
+      pu.update(role: ProjectUser::MANAGER)
     else
       self.project_users.create(user: user, role: ProjectUser::MANAGER, skip_updates: true)
     end
@@ -662,7 +663,6 @@ class Project < ApplicationRecord
     CSV.open(path, 'w') do |csv|
       csv << columns
       Observation.search_in_batches( projects: id ) do |batch|
-        puts "[#{Time.now}] batch starting with #{batch.first.id}"
         Observation.preload_associations( batch, [:project_observations] )
         project_observations = batch.map {|o| o.project_observations.select{|po|
           po.project_id == id
@@ -751,7 +751,7 @@ class Project < ApplicationRecord
       where("project_observations.curator_identification_id IS NULL AND identifications.user_id = ?",
       project_user.user_id).find_each do |po|
       curator_ident = po.observation.identifications.detect{|ident| ident.user_id == project_user.user_id}
-      po.update_attributes(curator_identification: curator_ident)
+      po.update(curator_identification: curator_ident)
       ProjectUser.delay(priority: INTEGRITY_PRIORITY,
         unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
           [ project_id, po.observation.user_id ] }
@@ -789,7 +789,7 @@ class Project < ApplicationRecord
       Observation.prepare_batch_for_index( batch.map( &:observation ) )
       batch.each do |po|
         curator_ident = po.observation.identifications.detect{|ident| project_curator_user_ids.include?(ident.user_id)}
-        po.update_attributes(curator_identification: curator_ident)
+        po.update(curator_identification: curator_ident)
         ProjectUser.delay(priority: INTEGRITY_PRIORITY,
           unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
             [ project_id, po.observation.user_id ] }
@@ -813,14 +813,14 @@ class Project < ApplicationRecord
       return unless response
       response.total_results
     end
-    project.update_attributes(observed_taxa_count: observed_taxa_count)
+    project.update(observed_taxa_count: observed_taxa_count)
   end
   
   def self.revoke_project_observations_on_leave_project(project_id, user_id)
     return unless proj = Project.find_by_id(project_id)
     return unless usr = User.find_by_id(user_id)
     proj.project_observations.joins(:observation).where("observations.user_id = ?", usr).find_each do |po|
-      po.update_attributes(prefers_curator_coordinate_access: false)
+      po.update(prefers_curator_coordinate_access: false)
     end
   end
 
@@ -1033,7 +1033,7 @@ class Project < ApplicationRecord
       Observation.elastic_index!(ids: batch_metadata[:obs_ids_added])
     end
     update_counts
-    update_attributes(last_aggregated_at: Time.now)
+    update(last_aggregated_at: Time.now)
     logger.info "[INFO #{Time.now}] Finished aggregation for #{self} in #{Time.now - start_time}s, #{added} observations added, #{fails} failures"
   end
 
@@ -1075,9 +1075,9 @@ class Project < ApplicationRecord
       next unless admin_attr["user_id"]
       new_role = admin_attr["_destroy"] == "true" ? nil : "manager" 
       if new
-        project_users.find_or_create_by( user_id: admin_attr["user_id"] ).update_attributes( role: new_role )
+        project_users.find_or_create_by( user_id: admin_attr["user_id"] ).update( role: new_role )
       else
-        project_users.find_by( user_id: admin_attr["user_id"] )&.update_attributes( role: new_role )     
+        project_users.find_by( user_id: admin_attr["user_id"] )&.update( role: new_role )     
       end
     end
     project_users.reload
@@ -1114,7 +1114,7 @@ class Project < ApplicationRecord
       priority: INTEGRITY_PRIORITY,
       unique_hash: unique_hash
     ).notify_trusting_members_about_changes( id )
-    job.update_attributes( run_at: 1.hour.from_now )
+    job.update( run_at: 1.hour.from_now )
   end
 
   def notify_trusting_members_about_changes_if_rules_changed

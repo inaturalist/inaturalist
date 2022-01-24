@@ -154,7 +154,7 @@ class SiteDataExporter
         users
       WHERE
         site_id = #{@site.id}
-        AND (spammer = 'f' || spammer IS NULL)
+        AND (spammer = 'f' OR spammer IS NULL)
     SQL
     cmd = "psql #{@dbname} -h #{@dbhost} -c \"COPY (#{sql.gsub( /\s+/m, " ")}) TO STDOUT WITH CSV HEADER\" > #{path}"
     system_call cmd
@@ -419,16 +419,17 @@ class SiteDataExporter
         end
         Observation.preload_associations( observations, [
           :user,
+          { taxon: :taxon_names },
           { identifications: [:stored_preferences] },
-          { photos: :user },
+          { photos: [:flags, :file_prefix, :file_extension, :user] },
           :sounds,
           :quality_metrics,
           { observations_places: :place },
           {
-            annotations: {
+            annotations: [:votes_for, {
               controlled_attribute: [:labels],
               controlled_value: [:labels]
-            },
+            }],
           },
           :observation_field_values,
           :comments

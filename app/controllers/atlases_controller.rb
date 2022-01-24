@@ -79,7 +79,7 @@ class AtlasesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @atlas.update_attributes( params[:atlas] )
+      if @atlas.update( params[:atlas] )
         @atlas.taxon
         format.html { redirect_to( @atlas, notice: "Atlas was successfully updated." ) }
       else

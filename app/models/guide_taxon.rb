@@ -309,7 +309,7 @@ class GuideTaxon < ApplicationRecord
   def add_color_tags
     return unless taxon
     tags = tag_list + taxon.colors.map{|c| "color=#{c.value.downcase}"}
-    update_attributes(:tag_list => tags.uniq)
+    update(:tag_list => tags.uniq)
   end
 
   def add_rank_tag(rank, options = {})
@@ -325,7 +325,7 @@ class GuideTaxon < ApplicationRecord
     end
     return if name.blank?
     tags = tag_list + ["taxonomy:#{rank}=#{name}"]
-    update_attributes(:tag_list => tags.uniq)
+    update(:tag_list => tags.uniq)
   end
 
   def eol_page_id

@@ -117,6 +117,22 @@ class UserText extends React.Component {
       html = text.trim( ).replace( /\n/gm, "<br />" );
     }
     html = sanitizeHtml( UserText.hyperlinkMentions( html ), config || CONFIG );
+    // Note: markdown-it has a linkifier option too, but it does not allow you
+    // to specify attributes like nofollow, so we're using linkifyjs, but we
+    // are ignoring URLs in the existing tags that might have them like <a> and
+    // <code>
+
+    // Note: we're linkify way up here before stripping tags or truncating
+    // because truncation without tag stripping will truncate in the middle of
+    // a URL. If we do that and *then* linkify urls, we end up with a bad link.
+    // This way we might waste some time stripping off tags we just added, but
+    // we ensure that if we're stripping tags nothing gets re-linkified, and if
+    // we're not URLs don't get truncated in the middle.
+    html = linkifyHtml( html, {
+      className: null,
+      attributes: { rel: "nofollow" },
+      ignoreTags: ["a", "code", "pre"]
+    } );
     if ( stripTags ) {
       html = sanitizeHtml( html, { allowedTags: [], allowedAttributes: {} } );
     }
@@ -150,7 +166,7 @@ class UserText extends React.Component {
     }
     let htmlToDisplay = truncatedHtml || html;
     if ( !stripTags ) {
-      const sanitizedHtml = sanitizeHtml(
+      htmlToDisplay = sanitizeHtml(
         truncatedHtml || html,
         {
           allowedTags: ALLOWED_TAGS,
@@ -158,15 +174,6 @@ class UserText extends React.Component {
           exclusiveFilter: stripWhitespace && ( frame => ( frame.tag === "a" && !frame.text.trim( ) ) )
         }
       );
-      // Note: markdown-it has a linkifier option too, but it does not allow you
-      // to specify attributes link nofollow, so we're using linkifyjs, but we are
-      // ignoring URLs in the existing tags that might have them like a and code
-      const linkifiedHtml = linkifyHtml( sanitizedHtml, {
-        className: null,
-        attributes: { rel: "nofollow" },
-        ignoreTags: ["a", "code", "pre"]
-      } );
-      htmlToDisplay = linkifiedHtml;
     }
     if ( stripWhitespace ) {
       htmlToDisplay = htmlToDisplay.trim( ).replace( /^(<br *\/?>\s*)+/, "" );

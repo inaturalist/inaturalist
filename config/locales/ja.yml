@@ -459,6 +459,8 @@ ja:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: アプリケーション
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: アプリケーション
   apply_to_selected: 選択された項目に適応
   apply_captive_cultivated: "飼育/栽培として付ける"
@@ -728,7 +730,6 @@ ja:
   check_list_for_taxon_html: "%{taxon} のチェックリスト"
   check_lists_must_belong_to_a_place: |
     チェックリストは場所に所属しなければなりません。新規チェックリストを作るには、場所のデフォルトチェックリストから、「新規チェックリストを作成」のリンクをクリックしてください。
-  check_list_of_species_occuring_in: 種チェックリスト：
   check_list_place: "%{place} チェックリスト"
   check_list_updated: チェックリスト更新されました！
   check_lists_for: "その他の%{place}のチェックリスト"
@@ -766,6 +767,7 @@ ja:
   columns: 列
   combine: 統合
   comma_separated_please: カンマ区切りでお願いします
+  #Noun, used to label a comment or a comment field in a form
   comment: コメント
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: コメント
@@ -893,6 +895,9 @@ ja:
     track: 足跡
     #Endoskeletal remains, like a deer bone
     bone: 骨
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: 抜け殻
   controlled_term_definitions:
     alive: 生物は生きており、差し迫った死の兆候はない
     dead: 生物は死んでいるか、瀕死である
@@ -901,6 +906,10 @@ ja:
     fruiting: 植物に果実が付いている
     no_evidence_of_flowering: メディアは生殖構造の証拠を提供しません
     cannot_be_determined: 提供された証拠から判断することはできません
+    organism: 生物の本体またはその一部
+    scat: 糞（フクロウのペリットやその他の口から吐き出されたものは含まない）
+    track: 地面や雪面に残された生物の圧痕
+    molt: 脱ぎ捨てられた皮膚または外骨格
   controls: 設定
   coordinate_systems: 座標システム
   coordinates: 緯度経度
@@ -1234,7 +1243,6 @@ ja:
   event_stats: イベントの統計情報
   event_url: イベントURL
   events_only: イベントのみ
-  every_species_seen_by: 次のユーザが観察したすべての種：
   everyone: 全てのユーザー
   everyone_: みんな
   everyone_journal_posts: みんなの日記
@@ -1671,7 +1679,6 @@ ja:
   leading: 主導
   learn: 学習
   learn_about_the_species_live_in: 次の場所で生息する生き物について学ぶ：
-  learn_about_third_party_tracking: サードパーティのトラッキングについてもっと詳しく
   learn_more: もっと詳しく
   learn_more_raquo: "もっと詳しく &raquo;"
   learn_what_these_licenses_mean: 各種ライセンスについて
@@ -1993,6 +2000,7 @@ ja:
   most_species: 最多の種
   most_observed_species: 最も観察された種
   most_observed_threatened_species: 最も多く観察された絶滅危惧種
+  move_input_children_to_output?: 下位分類群を置換先へ移行しますか？
   multiple: 複数
   multiple_select_option: '--複数--'
   multiple_taxa_for_taxon_change: "複数の分類群（スワップ/マージの入力、分割の出力）"
@@ -2276,6 +2284,10 @@ ja:
   observed_on: 観測日時
   observer: 観察者
   observers: 観察者
+  observer_prefers_no_project_addition: |
+    他の人によって観察記録をプロジェクトへ追加することを許可していません。
+  observer_prefers_addition_to_projects_joined: |
+    観察者が参加しているプロジェクトにのみ、他の人によって観察記録を追加されることを許可しています。
   observer_short: 観察者
   occurence_status_describes_how: '分布状況とは、特定のエリアにおいてある分類群がどれだけ珍しいかを示すものです。それぞれの<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">用語の詳しい説明</a>をDarwinCoreでご覧いただけます（英語）'
   occurrence_status: 分布状況
@@ -3123,7 +3135,6 @@ ja:
   rules_and_formatting: "ルールとフォーマット"
   rules_for_adding_observations: 観測記録の追加に関するルール
   rules_for_becoming_a_member: 新規メンバーに関するルール
-  rules_for_becoming_memner: 新規メンバーに関するルール
   rules_types:
     must_be_captive: 飼育/栽培されている必要があります
     must_be_georeferenced: 位置情報が必要です
@@ -3400,8 +3411,6 @@ ja:
   subscribe_to_comments_on_this_taxon_drop_html: "コメントを%{tag_start}フォローする%{tag_end}"
   subscribe_to_observations_in_a_taxon: 生物の種や分類群（例：サソリ）のすべての観察結果をフォローします。
   subscribe_to_observations_in_a_place: ここに投稿されたすべての観察記録をフォローします。オプションの分類群フィルタ(例えば、 「テキサス州のサソリ」)を追加することもできます。
-  subscribe_to_places_to: |
-    登録して、その場所の新しい観察の更新情報を受け取りましょう。フォローした相手や自分がコメントしたものもフォロー管理できるので、「登録事項を管理」ボタンを押すと、自分のフォローを一覧にしたりフォローを削除したりできます。フォローの削除は、フォローしたページからでもできます。
   subscribe_to_this: こちらをフォロー
   subscribe_to_x_from_this_y_html: |
     この%{y}から%{x}を<a href="#" onclick="$(this).parents('form:first').submit(); return false;">フォローする</a>。
@@ -3757,6 +3766,7 @@ ja:
   users_latest_observations_on_site: "%{site}における%{user}さんの最新観察記録"
   users_profile: "%{user}さんのプロフィール"
   valid_options_are: 有効な選択肢：
+  value: 値
   verbing_x_of_y: "%{y}部の%{x}を%{verb}中..."
   view: 表示
   view_all: すべて表示
@@ -4152,6 +4162,8 @@ ja:
       new:
         check_the_box_to_include_member_observations: |
           このプロジェクトに参加したユーザーによる観察のみを含めるには、下のチェックボックスをオンにしてください。 上記の除外フィルターを使用して、プロジェクトの所有者や管理者を含む特定のユーザーからの観測を除外します。
+        delete_project: プロジェクトを削除
+        duplicate_project: プロジェクトの複製
         include_annotated_observations: |
           特定の属性（例：ライフステージ）、または特定の属性と値（例：ライフステージ＝成体）で注釈がつけられた観察記録のみを含めます。1つのプロジェクトにつき、1つの注釈のフィルターに制限されます。
         note_these_users_will_be_able_to_edit: |
@@ -4166,7 +4178,7 @@ ja:
         or_drag_and_drop: またはドラッグ＆ドロップ
         project_background_color: プロジェクトの概要の背景色
         project_background_color_help: 白いオーバーレイテキストが読みやすいように、十分に暗い色を選択してください。
-        project_banner: プロジェクトバナー (PNG、JPG、またはGIF)
+        project_banner: プロジェクトバナー (PNGまたはJPG)
         project_banner_help: 任意のバナー画像。理想的なサイズは760px×320pxです。
         project_details: プロジェクトの詳細
         project_icon: プロジェクトアイコン (PNG、JPG、または GIF)
@@ -4296,7 +4308,6 @@ ja:
         x_comments_html:
           other: あなたが追加した<strong class="count">コメントは%{count}件</strong>
       edit:
-        about_third_party_tracking: サードパーティのトラッキングについて
         blocking_desc_html: |
           <p>
           誰かをブロックすると、相手からのメッセージを受信しなくなり、あなたの観察日記へのコメントや観察の同定、%{site_name}での相互作用が停止されます。あなたの検索結果から相手の観察記録を削除しあわせて相手の検索結果からあなたの観察記録を削除します。しかし、それでもあなたの存在は表示されます。あなたの観察記録の検索とあなたのプロフィールの閲覧は可能で、ブロックされるのはあなたとのやりとりに限定されます。
@@ -4369,7 +4380,6 @@ ja:
           none: "許可しない。あなただけがあなたの観察記録をプロジェクトに追加することができます。"
         prefers_community_taxa_desc: |
           %{site_name} は、あなたの観察記録に対するあなた自身やコミュニティによる評価を追跡します。データ提携先と共有する同定情報はコミュニティの同定ですが、もしコミュニティの意見であなた自身の同定を上書きしないほうがよいと考える場合、これを解除できます。人々は引き続き同定情報を追加できても、あなたの意見よりコミュニティの意見が優先されることはありません。これにより、コミュニティ同定に同意しない限り、あなたの観察記録は研究用になりません。
-        prefers_no_tracking_label: サードパーティのサービスを使用して安定性や利用状況のデータを収集しない
         project_settings_desc: |
           これは、あなたが非表示/不明瞭にした座標にアクセスしたり、更新情報を送信したりすることをプロジェクトに許可するものではないことを覚えておいてください。これらの許可を与えるためには、プロジェクトに参加するか、状況次第で許可を与える必要があります。
         search_place_help_html: |

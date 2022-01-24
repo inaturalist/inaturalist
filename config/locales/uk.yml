@@ -666,6 +666,8 @@ uk:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Додаток
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Додатки
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -952,7 +954,6 @@ uk:
   check_list_for_taxon_html: "Таксономічний список для %{taxon}"
   check_lists_must_belong_to_a_place: |
     Таксономічні списки мають бути приналежними до певного місця. Щоб створити новий таксономічний список, відвідайте таксономічний список місця за промовчанням та натисніть на посилання "Створити новий таксономічний список".
-  check_list_of_species_occuring_in: Таксономічний список, що трапляються у
   check_list_place: "Таксономічний список %{place}"
   check_list_updated: Таксономічний список оновлено!
   check_lists_for: "Інші таксономічні списки для %{place}"
@@ -993,6 +994,7 @@ uk:
     Перелік кодів відстеження, розділений комами. Додайте їх, якщо ви бажаєте додати кои відстеження, спрямовуючи людей до нової форми спостережень, наприклад %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
     Ви можете використовувати їх для відстеження участі з різних джерел. Ви також можете отримати доступ до цих кодів, завантаживши ваші спостереження з проєкту у форматі CSV.
   comma_separated_please: Розділений комами, будь ласка
+  #Noun, used to label a comment or a comment field in a form
   comment: коментар
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Коментувати
@@ -1669,11 +1671,13 @@ uk:
   establishment_means: Шляхи виникнення
   establishment_means_describes_how: |
     Шлях виникнення описує, яким чином таксон потрапив на цю територію і став тут мешкати. Більше інформації про термінологію див. <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">у стандарті DarwinCore</a>
+  establishment_means_descriptions:
+    native: таксон еволюціонував в цьому регіоні або прибув у неантропогенний спосіб
+    introduced: прибув у цей регіон у антропогенний спосіб
   event_in_progress: Подія відбувається в даний час
   event_stats: Статистика події
   event_url: URL події
   events_only: Лише події
-  every_species_seen_by: Кожний вид, що помітили
   everyone: Усi
   everyone_: Усі
   everyone_journal_posts: Дописи в усіх журналах
@@ -1698,7 +1702,6 @@ uk:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Зовнішні додатки
-  external_applications_description: Зовнішні додатки це сторонні програми, яким ви надали доступ до вашого облікового запису iNaturalist. Загалом, вони можуть робити з вашим обліковим записом все те, що ви самі можете з ним зробити, тому, перш ніж надавати дозвіл, переконайтеся, що ви довіряєте розробникам програмного забезпечення.
   external_taxon_including_children: Зовнішній таксон (у т.ч. дочірні)
   extinct: Вимерлий
   extinct_in_the_wild: Вимерлий у природі
@@ -2187,7 +2190,6 @@ uk:
   leading: Провідна
   learn: Ознайомитися
   learn_about_the_species_live_in: Дізнайтеся, які види живуть у
-  learn_about_third_party_tracking: Дізнатися більше про відстеження сторонніми особами
   learn_more: Дізнатися більше
   learn_more_raquo: "Дізнатися більше &raquo;"
   learn_what_these_licenses_mean: Дізнайтеся, що означають ці ліцензії
@@ -2418,7 +2420,7 @@ uk:
   manage_your_relationships: Керувати вашими взаєминами
   manager: Керівник
   managers: Керівники
-  managers_can_do: Керівники можуть робити все, що можуть робити куратори, а також редагувати налаштування проєкту і дописувати у журналі проєкту.
+  managers_can_do: Керівники можуть робити все те, що і куратори, а також редагувати налаштування проєкту і дописувати у журналі проєкту.
   managing_projects: Керування проєктами
   map: Карта
   map_legend: Умовні позначення
@@ -2719,7 +2721,7 @@ uk:
     user: "%{user} не додав/додала нічого до вподобаних."
   no_journal_posts_yet: Ужурналі ще жодного допису
   no_license_all_rights_reserved: Немає ліцензії. Всі права застережено
-  no_managers_set: Менеджерів не визначено
+  no_managers_set: Керівників не визначено
   no_matching_article_from_x: "Немає відповідної статті з %{x}"
   no_matching_observations: Немає відповідних спостережень.
   no_matching_places: Немає відповідних місць
@@ -3942,7 +3944,7 @@ uk:
   remove_from_list: Вилучити зі списку
   remove_from_project: Вилучити з проєкту
   remove_this_section: Видалити цю секцію
-  remove_manager: Видалити менеджера
+  remove_manager: Видалити керівника
   remove_observations:
     one: Видалити 1 спостереження?
     few: Видалити %{count} спостереження?
@@ -4008,7 +4010,6 @@ uk:
   rules_and_formatting: "Правила та форматування"
   rules_for_adding_observations: Вимоги до спостережень
   rules_for_becoming_a_member: Як долучитися?
-  rules_for_becoming_memner: Як долучитися?
   rules_types:
     must_be_captive: Мусить бути таким, що утримується в неволі або вирощується
     must_be_georeferenced: мусить мати координати
@@ -4310,9 +4311,6 @@ uk:
   subscribe_to_observations_from_this_place_html: <a>Підписатися</a> на спостереження з цього місця
   subscribe_to_observations_in_a_taxon: Підписатися на всі спостереження певного виду або групи організмів (наприклад, 'синиці').
   subscribe_to_observations_in_a_place: Підписатися на всі спостереження з цього місця. Також, ви можете додати опційний фільтр за таксоном (наприклад, "синиці з України").
-  subscribe_to_places_to: |
-    Підпишіться на місця, щоб отримувати оновлення про нові спостереження, зроблені там. Новини від людей, за якими ви стежите, та спостереження яких ви прокоментували також визначаються підписками, тож, якщо ви хочете переглянути усі ваші підписки або відписатися від якихось, то можете натиснути "Управління усіма вашими підписками" нижче. Ви також маєте можливість відписатися від будь-чого на сайті, перейшовши на відповідну сторінку.
-    .
   subscribe_to_this: Підписатися на це
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Підписатися</a>
@@ -4528,8 +4526,7 @@ uk:
   that_was_the_last_observation_matching_the_current_filters: Це було останнє спостереження, що відповідає поточним фільтрам.
   thats_not_a_real_date: Дата недійсна!
   the_admin_is_the_person_who: |
-    Адміністратор — це людина, яка створила проєкт. Вони можуть робити все те саме, що й
-    менеджери і куратори, а також видалити проєкт.
+    Адміністратор — це людина, яка створила проєкт. Aдміністратори можуть робити все те саме, що керівники і куратори, а також видаляти проєкт.
   the_below_items_are_needed_to_achieve: |
     Для досягнення <span className="bold">Дослідницького рівня</span> необхідно, аби спостереження відповідало наступним пунктам:
   the_community_id_requires_at_least_two_identifications: Визначення спільноти потребує принаймні двох визначень.
@@ -4587,7 +4584,6 @@ uk:
   these_folks_kindly_volunteer_to: Ці люди люб'язно допомагають підтримують нашу таксономію та розв'язувати інші проблеми.
   these_observations_have_not_been_uploaded_yet: |
     Ці спостереження ще не завантажені.
-  third_party_tracking: Відстеження сторонніми сервісами
   third_person_possessive_singular: "%{noun} %{object_phrase}"
   this: це
   this_bioblitz_beings_in: Цей біобліц розпочинається за
@@ -4630,8 +4626,8 @@ uk:
   this_will_refresh_listed_taxa: Це призведе до оновлення таксонів у цьому списку. Це потребує деякого часу, так що, будь-ласка, використовуйте цю можливість економно і для невеликих таксономічних списків.
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Це позбавить iNaturalist можливості отримувати доступ до цього облікового запису від вашого імені, аж доки ви не надасте доступ повторно. Щоб повністю запобігти доступу, Вам необхідно змінити налаштування на зовнішньому сайті.
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: Ви вийдете з поточної сесії на цьому застосунку.
   this_will_try_to_add_tags_to_your_flickr: Ця дія призведе до додавання позначок до ваших фото у Flickr. Продовжити?
   this_year: Цього року
@@ -4838,7 +4834,7 @@ uk:
   user_is_now_the_admin_for_project_html: |
     <strong>%{user}</strong> тепер є адміністратором проєкту %{project}
   user_is_now_a_manager_for_project_html: |
-    <strong>%{user}</strong> тепер є менеджером проєкту %{project}
+    <strong>%{user}</strong> тепер є керівником проєкту %{project}
   user_is_now_a_curator_for_project_html: |
     <strong>%{user}</strong> тепер є куратором проєкту %{project}
   user_muted: Користувача ігноровано
@@ -5086,7 +5082,7 @@ uk:
   you_are_now_a_curator_for_project_html: |
     <strong>ви</strong> тепер є куратором %{project}
   you_are_now_a_manager_for_project_html: |
-    <strong>ви</strong> тепер є менеджером %{project}
+    <strong>ви</strong> тепер є керівником %{project}
   you_are_not_editing_any_guides_add_one_html: |
     Ви не редагуєте жодних посібників. <a href="/guides/new">Додайте новий</a>
   you_are_already_a_member_of_this_project: "Ви вже долучилися до цього проєкту!"
@@ -5491,13 +5487,13 @@ uk:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: Авторизуватися у %{application}, щоб використовувати ваш аккаунт?
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Цей застосунок матиме змогу:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Докладніше про %{application}
     observations:
@@ -6116,7 +6112,7 @@ uk:
         trust_help_notification2: |-
           Однак, всі учасники проєкту, що довірилися йому, отримуватимуть сповіщення щоразу як ви змінюватимете вимоги до спостережень, тож вони зможуть наново оцінити, чи хочуть вони продовжувати довіряти проєктові у світлі ваших нових вимог. Ваш доступ до прихованих координат буде відкликано впродовж одного тижня після зміни вимог до спостереження, тому учасники матимуть час на те, щоб зробити свій вибір.
         trusted_project_means: |
-          Довіра до проєкту означає, що менеджери проєктів можуть додати Доробки та користувацькі атрибути проєкту (наприклад, банер HTML, CSS). Доступ до користувацьких властивостей проєкту означає, що менеджери проєкту зможуть додавати потенційно шкідливі Javascript, тож довіряйте лише тим проєктам, менеджери яких є як відповідальними, так і технічно компетентними.
+          Довіра до проєкту означає, що керівники проєктів можуть додавати Доробки та користувацькі атрибути проєкту (наприклад, банер HTML, CSS). Доступ до користувацьких властивостей проєкту означає, що керівники проєкту зможуть додавати потенційно шкідливі Javascript, тож довіряйте лише тим проєктам, керівники яких є як відповідальними, так і технічно компетентними.
         you_can_preview: |
           Ви можете попередньо переглянути, як виглядатиме ваш проєкт в якості збірного проєкту, <a href="%{url}">натиснувши тут</a>.
       invite:
@@ -6182,7 +6178,7 @@ uk:
           Будь ласка, вкажіть вимоги до спостережень що додаватимуться до цього проєкту.
         project_background_color: Колір тла для опису проєкту
         project_background_color_help: Переконайтеся, що ви обрали достатньо темний відтінок, щоб білий текст був читабельним на цьому тлі.
-        project_banner: Баннер проєкту (PNG, JPG, або GIF)
+        project_banner: Баннер проєкту (PNG або JPG)
         project_banner_help: Опційне зображення баннера. Ідеальні розміри - 760х320 пікселів.
         project_details: Деталі проєкту
         project_icon: Піктограма проекту (PNG, JPG, або GIF)
@@ -6616,7 +6612,7 @@ uk:
         cannot_update_your_content: "%{site_name} не може автоматично оновити ваш доробок відповідно до цієї зміни."
         new_project_admin_html: |
           Ви несподівано стали адміністратором цього проєкту? Це трапилося тому, що попередній власник або призначив вас новим адміністратором, або видалив свій обліковий запис
-          і %{site_name} призначив вас, тому що ви є менеджером проєкту або куратором сайту. Якщо ви не хочете бути адміністратором проєкту, будь ласка, напишіть сюди <a href="mailto:%{help_email}">%{help_email}</a>
+          і %{site_name} призначив вас, тому що ви є керівником проєкту або куратором сайту. Якщо ви не хочете бути адміністратором проєкту, будь ласка, напишіть сюди <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: |
           Це просто нагадування про те, що куратори проєктів можуть бачити приватні і розмиті
           координати спостережень, які ви додали до цього проєкту.
@@ -6674,7 +6670,6 @@ uk:
         you_must_enter_confirmation_code_in_the_form: |
           Щоб видалити свій обліковий запис, введіть "%{confirmation_code}" у форму
       edit:
-        about_third_party_tracking: Про відстеження іншими сторонами
         blocking_desc_html: |
           <p>
           Блокування певних осіб завадить їм надсилати вам повідомлення, коментувати ваші спостереження, ідентифікувати ваші спостереження та взаємодіяти з вами іншим чином %{site_name}. Це також видалить їхні спостереження з ваших результатів пошуку та видалить ваші спостереження з результатів їхнього пошуку. Однак це не зробить вас невидимими для них. Вони зможуть як і раніше знаходити ваші спостереження та переглядати ваш профіль, але вони не зможуть взаємодіяти з вами.
@@ -6762,9 +6757,6 @@ uk:
           %{site_name} відстежує, чим є ваші спостереження на вашу думку та на думку спільноти. Якщо ви не згодні з тим, що думка спільноти переважає вашу, ви можете відмовитися від неї тут. Люди все одно будуть мати можливість додавати визначення, але ваші спостереження залишаться пов'язані з таксоном з вашого визначення. Це означає, що ваші спостереження не матимуть права на отримання статусу дослідницього рівня, якщо ваше визначення не відповідатиме думці спільноти.
         prefers_coordinate_interpolation_protection_desc: |
           Якщо ви налаштуєте конфіденційність геоданих щодо спостереження як "розмиті" або "приватні", це застосується до усіх інших ваших спостережень за той самий день, щоб іншим людям було важче вгадати справжні координати на основі спостережень, зроблених у той же час.
-        prefers_no_tracking_label: Не збирати дані про стабільність роботи та використання даних за допомогою сторонніх сервісів
-        prefers_no_tracking_label_desc_we_use: |
-          Ми використовуємо різні послуги сторонніх організацій для моніторингу стабільності і діагностування помилок і проблем у нашому програмному забезпеченні. Цими третіми сторонами є:
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Інформація, якою ми можемо поділитися з цими третіми сторонами, включає:
@@ -6780,8 +6772,6 @@ uk:
           Подробиці про збій, наприклад, який саме рядок коду спричинив збій
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Подробиці про пристрій, такі як виробник та модель мобільного телефону
-        prefers_no_tracking_label_desc_value_html: |
-          <strong> Ці послуги третіх сторін для нас є надзвичайно корисними</strong> у підтримці стабільності та зручності використання iNaturalist з урахуванням нашого порівняно невеликого персоналу. На мобільних пристроях майже неможливо в інший спосіб отримати уявлення про проблеми, які виникають, оскільки програмне забезпечення працює на пристроях, які ми не контролюємо. Іноді ми навіть не усвідомлюємо, що такі проблеми існують, поки не побачимо їх у даних, які надають ці сторони. <strong>Ділячись цією інформацією, ви допомагаєте нам служити вам і всій спільноті iNaturalist. </strong>
         prefers_no_tracking_label_desc_limits: |
           Зауважте, що ця можливість застосовується лише до аналітики та даних про збої, які ми явним чином надсилаємо цим компаніям. Усі сервери iNaturalist надані Microsoft та розміщені там же, усі світлини iNaturalist розміщені на
           Amazon, і майже усі мапи iNaturalist обслуговуються Google. Це означає, що кожного разу, коли ви переглядаєте спостереження на iNaturalist, ви під'єднуєтеся до послуг, що надаються цими компаніями, та відкриваєте їм щонайменше вашу IP-адресу (у застосунку для iPhone ми використовуємо мапи Apple). iNaturalist, ймовірно, не існував би без послуг, які надають ці компанії, і хоча ми можемо обмежити кількість і види даних, якими ви ділитесь з ними під час використання iNat, ми не можемо цілком зупинити потік даних.
@@ -7559,8 +7549,6 @@ uk:
     scopes:
       write: |
         Створювати, оновлювати, й видаляти ваші спостереження, визначення та інший контент від вашого імені, а також мати доступ до ваших прихованих координат спостережень та будь-якої фніормації на сайті, до якої маєте доступ ви.
-      login: |
-        Мати доступ до інформації, за допомогою якої відбувається реєстрація у сторонніх сервісах, такої як адреса електронної пошти, ім'я користувача, особисте ім'я та зображення користувача, пов'язані з вашим обліковим записом iNaturalist.
       account_delete: |
         Видалити ваш обліковий запис від вашого імені.
     errors:

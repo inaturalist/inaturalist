@@ -519,17 +519,28 @@ module ApplicationHelper
     @__serial_id = @__serial_id.to_i + 1
     @__serial_id
   end
-  
-  def image_url(source, options = {})
-    abs_path = source =~ /^\// ? source : asset_path( source ).to_s
+
+  def image_url( source, options = {} )
+    # Here FakeView is necessary again for situations where this gets called
+    # outside of a context with the normal URL and asset helpers
+    abs_path = source =~ %r{^/} ? source : FakeView.asset_path( source ).to_s
     unless abs_path =~ /\Ahttp/
-     abs_path = uri_join(options[:base_url] || @site.try(:url) || root_url, abs_path).to_s
+      the_root_url = begin
+        root_url
+      rescue StandardError => e
+        # If this method gets called outside of the context of a controller, url
+        # helpers like root_url may not be available, so we might need to fall
+        # back to FakeView. Note that rescuing ActionView::Template::Error
+        # doesn't seem to work here.
+        raise e unless e.message =~ /root_url/
+
+        FakeView.root_url
+      end
+      abs_path = uri_join( options[:base_url] || @site&.url || the_root_url, abs_path ).to_s
     end
     abs_path
-  rescue Exception => e
-    nil
   end
-  
+
   def truncate_with_more(text, options = {})
     return text if text.blank?
     more = options.delete(:more) || " ...#{t(:more).downcase} &darr;".html_safe
@@ -1051,18 +1062,23 @@ module ApplicationHelper
     ]
     # Find the key that is lowercase in English, b/c we're maddeningly
     # inconsistent about this
-    lowercase_key = potential_keys.detect do |k|
+    lowercase_key = potential_keys.detect do | k |
       en_t = I18n.t( k, locale: "en", default: nil )
       en_t && en_t[0].downcase == en_t[0]
     end
     lowercase_model_name = if lowercase_key
+      # puts "using lowercase key: #{lowercase_key}"
       I18n.t( lowercase_key, default: nil )
     end
-    lowercase_model_name ||= potential_keys.map{|k| I18n.t( k, default: nil ) }.compact.first
+    lowercase_model_name ||= potential_keys.map do | k |
+      lmn = I18n.t( k, default: nil )
+      # puts "trying key #{k}: #{lmn}"
+      lmn
+    end.compact.first
     lowercase_model_name ||= class_name
     lowercase_model_name
   end
-    
+
   def update_tagline_for(update, options = {})
     resource = update.resource
     notifier = update.notifier
@@ -1227,7 +1243,6 @@ module ApplicationHelper
   def activity_snippet(update, notifier, notifier_user, options = {})
     opts = {}
     if update.notification == "activity" && notifier_user
-      notifier_class_name_key = notifier.class.to_s.underscore
       notifier_class_name = lowercase_equivalent_model_name_for( notifier.class )
       key = "user_added_"
       opts = {
@@ -1265,7 +1280,6 @@ module ApplicationHelper
       end
     end
     key += '_html'
-
     t(key, opts)
   end
   

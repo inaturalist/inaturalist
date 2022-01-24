@@ -3,6 +3,39 @@
 require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 describe FlagsController do
+  describe "create" do
+    let( :taxon ) { Taxon.make! }
+    let( :user ) { User.make! }
+    it "should add an initial comment to a flag if it is submitted with the flag" do
+      sign_in( user )
+      first_comment = "first comment"
+      post :create, format: :json, params: {
+        flag: { flaggable_type: "Taxon",
+                flaggable_id: taxon.id,
+                flag: "some flag",
+                initial_comment_body: first_comment }
+      }
+      expect( response.status ).to eq 200
+      taxon.reload
+      expect( taxon.flags.first.comments.size ).to eq 1
+      expect( taxon.flags.first.comments.first.body ).to eq first_comment
+    end
+    it "should save a flag even if the submitted initial comment is invalid" do
+      sign_in( user )
+      long_comment = "abcdef" * 1000 # This comment is too long, 6000 characters. The limit is 5000.
+      post :create, format: :json, params: {
+        flag: { flaggable_type: "Taxon",
+                flaggable_id: taxon.id,
+                flag: "a different flag",
+                initial_comment_body: long_comment }
+      }
+      expect( response.status ).to eq 200
+      taxon.reload
+      expect( taxon.flags.first.comments.size ).to eq 0
+      expect( flash[:notice] ).to eq "Flag saved. Thanks! <a href=\"http://test.host/flags/2\" class=\"readmore\">View flag</a> Unfortunately, we were unable to save the comment."
+    end
+  end
+
   describe "update" do
     elastic_models( Observation )
 
@@ -67,7 +100,7 @@ describe FlagsController do
 
     it "does not allow the flag creator to destroy if resolved" do
       sign_in( user )
-      flag.update_attributes( resolved: true, resolver: make_curator )
+      flag.update( resolved: true, resolver: make_curator )
       post :destroy, params: { id: flag.id }
       expect( Flag.find_by_id( flag.id ) ).not_to be_blank
     end

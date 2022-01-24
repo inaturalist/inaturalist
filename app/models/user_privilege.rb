@@ -65,11 +65,11 @@ class UserPrivilege < ApplicationRecord
   end
 
   def restore!( options = {} )
-    update_attributes( revoked_at: nil )
+    update( revoked_at: nil )
   end
 
   def revoke!( options = {} )
-    update_attributes!(
+    update!(
       revoked_at: Time.now,
       revoke_user: options[:revoke_user],
       revoke_reason: options[:revoke_reason]

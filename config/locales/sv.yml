@@ -560,6 +560,8 @@ sv:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Applikation
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Applikationer
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -721,6 +723,8 @@ sv:
   batch_operations: Batch-funktioner
   be_the_first_to_fave_this_observation: Var först med att göra det här fyndet till favorit!
   because_of: eftersom
+  become_a_donor_caps: BLI BIDRAGSGIVARE
+  become_a_donor_today_caps: BLI BIDRAGSGIVARE IDAG
   before_importing_photos: innan bildimport
   bg_color: Bakgrundsfärg
   bio: Biografi
@@ -851,10 +855,10 @@ sv:
   check_lists_must_belong_to_a_place: |
     Checklistor måste tillhöra en fyndplats. För att skapa en ny checklista, besök
     en lokals standardchecklista och klicka på länken 'Skapa en ny checklista'.
-  check_list_of_species_occuring_in: Checklista över arter som förekommer i
   check_list_place: "%{place}-checklista"
   check_list_updated: Checklistan uppdaterades!
   check_lists_for: "Andra checklistor för %{place}"
+  check_out_the_inat_store: Kolla in iNaturalist-butiken
   check_out_what_the_observation: Kolla hur fyndet du försöker bestämma ser ut.
   check_this_box_if_html: |
     Markera denna ruta om du vill tillämpa en <a
@@ -892,6 +896,7 @@ sv:
     Kommaseparerad lista med spårningskoder. Lägg till dessa om du vill lägga till en spårningskod när du sänder personer till det nya fyndformuläret, t.ex. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
     Du kan använda detta för att spåra deltagande från olika håll. Du kan komma åt dessa koder när du laddar ner projektets fynd som CSV.
   comma_separated_please: Kommaseparerad, tack
+  #Noun, used to label a comment or a comment field in a form
   comment: kommentar
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentera
@@ -1469,6 +1474,8 @@ sv:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: DONERA
+  donate_again_caps: DONERA IGEN
+  donate_again_today_caps: DONERA IGEN IDAG
   done: Klar
   dont_have_an_account_sign_up_html: Har du inte ett konto? <strong>Registrera dig.</strong>
   dont_send_me_email: "Skicka inte någon e-post!"
@@ -1501,6 +1508,8 @@ sv:
   each_place_displays_all_species_inat_knows: "Varje fyndplatssida visar alla arter %{site_name} känner till från den fyndplatsen, inklusive information om deras antal, bevarandestatus och vem som var först med att observera den arten från den fyndplatsen på %{site_name}. Du kan filtrera arterna efter taxonomisk grupp, färg, bevarandestatus eller genom gammal hederlig sökning."
   earliest_added: Tidigast tillagda
   edit: Redigera
+  #Title of the moderation note editor
+  edit_moderator_note: Redigera moderatoranteckning
   edit_a_batch_of_observations: Redigera flera fynd i taget
   edit_account_settings_and_profile: "Redigera kontoinställningar och profil"
   edit_assessment: Redigera bedömning
@@ -1603,7 +1612,6 @@ sv:
   event_stats: Händelsestatistik
   event_url: Händelse-URL
   events_only: Endast händelser
-  every_species_seen_by: Alla arter sedda av
   everyone: alla
   everyone_: Alla
   everyone_journal_posts: Allas dagboksinlägg
@@ -1629,7 +1637,6 @@ sv:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Externa applikationer
-  external_applications_description: Externa applikationer är program från tredje part som du har gett behörighet att komma åt ditt iNaturalist-konto. I allmänhet kan de göra allt med ditt konto som du kan, så se till att du litar på apputvecklare innan du ger dem tillstånd.
   external_taxon_including_children: Externt taxon (inklusive barn)
   extinct: utdöd
   extinct_in_the_wild: Utdöd i vilt tillstånd
@@ -1715,6 +1722,7 @@ sv:
   #Label for the date/time when a flag was created
   flag_created: Flagga skapad
   flag_description: Flagga detta innehåll så att förvaltarna får reda på att det är något fel med det.
+  flag_comment_description: Lägg till en valfri kommentar till denna flagga som ytterligare förklarar varför du lägger till den och länkar till bevis som stöd.
   flag_for_check_list_title_html: |
     Flagga för checklista: %{title}
   flag_for_comment_id_html: Flagga för <a href="%{url}">kommentar %{id}</a>
@@ -2139,7 +2147,6 @@ sv:
   leading: Leder
   learn: Lär dig
   learn_about_the_species_live_in: Lär dig om arterna som lever i
-  learn_about_third_party_tracking: Läs mer om spårning av tredje part
   learn_more: Läs mer
   learn_more_raquo: "Lär dig mer &raquo;"
   learn_what_these_licenses_mean: Lär dig vad dessa licenser innebär
@@ -2567,6 +2574,9 @@ sv:
   multiple_select_option: '-- flera --'
   multiple_taxa_for_taxon_change: "Flera taxa (indata för byte/hopslagning, utdata för uppdelning)"
   multiple_taxon_ids_separated_by_commas: 'Flera taxonID åtskiljda av kommatecken, t.ex. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: måste vara i projekt %{project}
   must_be_in_taxon: måste inluderas i taxon %{taxon}
   must_be_not_in_taxon: får inte inkluderas i %{taxon}
   must_be_not_observed_by_user: får inte ha observerats av %{user}
@@ -3006,6 +3016,8 @@ sv:
       <li><strong>Diskussioner du bidrar till:</strong> Genom att kommentera eller lägga till bestämningar till någon annans innehåll prenumererar du automatiskt på all ny aktivitet för detta innehåll. Använd verktyget "Hantera dina prenumerationer" för att sluta få meddelanden.</li>
       </ul>
   one_by_one: "En-efter-en"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "ett av följande måste vara sant:"
   one_of_your_lists: "en av dina listor..."
   one_or_more_input_taxa_have_more_than_1000: |
     Ett eller flera inmatningstaxa har mer än 1000 underliggande observationer.
@@ -4003,7 +4015,6 @@ sv:
   rules_and_formatting: "Regler och formatering"
   rules_for_adding_observations: Regler för att lägga till fynd
   rules_for_becoming_a_member: Regler för att bli medlem
-  rules_for_becoming_memner: Regler för att bli medlem
   rules_types:
     must_be_captive: måste vara i fångenskap / odlad
     must_be_georeferenced: måste vara koordinatsatt
@@ -4012,6 +4023,7 @@ sv:
     must_be_observed_in_place: måste vara observerad på Fyndplats
     must_be_in: måste finnas i taxon
     must_be_coordinates_shareable_by_project_curators: observatören måste tillåta projekthandläggare att se koordinater.
+    must_be_verifiable: måste gå att verifiera
   running_total: Ackumulerat
   said: sade
   satellite: satellit
@@ -4362,9 +4374,6 @@ sv:
   subscribe_to_observations_from_this_place_html: <a>Prenumerera</a> på fynd från denna fyndplats
   subscribe_to_observations_in_a_taxon: Prenumerera på alla fynd av en art eller grupp av organismer (t.ex. 'skorpioner').
   subscribe_to_observations_in_a_place: Prenumerera på alla fynd som publiceras inom denna fyndplats. Du kan också lägga till ett valfritt taxonfilter (t.ex. 'skorpioner från Texas').
-  subscribe_to_places_to: |
-    Prenumerera på fyndplatser för att få uppdateringar om nya fynd gjorda där. Uppdateringar från personer du följer och saker du har kommenterat på
-    hanteras också genom prenumerationer, så om du vill se vad du prenumererar på och avsluta vissa prenumerationer, kan du klicka på "Hantera alla dina prenumerationer" nedan. Du ska också kunna avsluta prenumerationer direkt på deras respektive webbsidor.
   subscribe_to_this: Prenumerera på detta
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Prenumerera</a>
@@ -4633,7 +4642,6 @@ sv:
   these_folks_kindly_volunteer_to: Följande personer underhåller frivilligt vår taxonomi och hanterar samtidigt andra frågor.
   these_observations_have_not_been_uploaded_yet: |
     Dessa fynd har ännu inte laddats upp.
-  third_party_tracking: Spårning av tredje part
   third_person_possessive_singular: "%{object_phrase}s %{noun}"
   this: detta
   this_bioblitz_beings_in: Denna bioblitz börjar om
@@ -4674,8 +4682,8 @@ sv:
   this_will_refresh_listed_taxa: Detta kommer att ladda om listade taxa i denna lista. Det kan ta ett tag så använd sparsamt och på små checklistor
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Detta tar bort iNaturalists möjlighet att komma åt detta konto åt dig tills du beviljar åtkomst igen. Du kan behöva ändra dina inställningar på den externa webbplatsen för att helt förhindra åtkomst.
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: Detta kommer att logga ut dig från din nuvarande session på denna applikation.
   this_will_try_to_add_tags_to_your_flickr: Detta kommer att försöka lägga till taggningar till dina Flickr-bilder. Vill du fortsätta?
   this_year: Detta år
@@ -4738,6 +4746,7 @@ sv:
   type_taxon_name: "Ange taxonnamn"
   uicn_red_list_status: "IUCN:s rödlistestatus:"
   umbrella_projects: Paraplyprojekt
+  unable_to_save_comment: Tyvärr lyckades vi inte spara kommentaren.
   unblock: Avblockera
   unclassified: Oklassificerad
   ungrafted_taxa: Oplacerade taxa
@@ -5127,6 +5136,25 @@ sv:
   yes_reject_it: Ja, avvisa det
   yes_show_this_in_the_box: Ja, visa detta i den stora rutan högst upp i /taxa
   yesterday: Igår
+  yir_donate_banner_inaturalist_in_year: "INATURALIST %{year}:"
+  yir_donate_banner_reaching_millions: Når miljontals. Uppmärksammar biologisk mångfald. Globalt samarbete.
+  #"You" is singular
+  yir_donate_banner_all_thanks: Allt tack vare människor som du!
+  #"You" is singular
+  yir_donate_banner_inaturalist_thrives: iNaturalist frodas tack vare människor som du!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Du har hjälpt iNaturalist att frodas i år. Tack!
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist behöver ditt stöd
+  yir_generating_and_sharing: |
+    Att skapa och dela så mycket data om biologisk mångfald med sådan genomslagskraft och så snabbt och utan like har stadigt ökande kostnader
+  yir_millions_of_people_used_inaturalist: |
+    I år använde miljontals människor iNaturalist och Seek av iNaturalist för att knyta an till naturen
+  yir_thank_your_for_being_generous: |
+    Tack för att du bidrar med din tid, uppmärksamhet, expertis och donationer! iNaturalist är ett ideellt gemensamt initiativ av California Academy of Sciences och National Geographic Society. Programmet bygger på otaliga bidrag och donationer, inklusive välgörenhetsgåvor från mindre än en liten bråkdel av communityn. Vi är särskilt tacksamma till Månatliga Bidragsgivare vars återkommande gåvor hjälper oss att planera inför framtiden.
+  yir_your_gift_sustains: |
+    Din gåva upprätthåller detta program med global räckvidd och djup personlig och
+    ekologisk inverkan
   you: dig
   you_: Dig
   you_appear_offline_try_again: |
@@ -5525,13 +5553,13 @@ sv:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: Auktorisera %{application} att använda ditt konto?
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Denna applikation kommer att kunna:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Mer om %{application}
     observations:
@@ -6186,7 +6214,7 @@ sv:
           Vänligen ange villkoren för de fynd som ska läggas till i detta projekt.
         project_background_color: Bakgrundsfärg för projektsammanställning
         project_background_color_help: Se till att välja en tillräckligt mörk färg mörk så att den vita texten ovanpå blir läsbar.
-        project_banner: Projektbanderoll (PNG, JPG eller GIF)
+        project_banner: Projektbanderoll (PNG eller JPG)
         project_banner_help: Valfri banderollbild. Idealiska mått är 760px gånger 320px.
         project_details: Projektdetaljer
         project_icon: Projektikon (PNG, JPG eller GIF)
@@ -6572,6 +6600,9 @@ sv:
       delete:
         by_deleting_your_account_you_will_remove: |
           Genom att radera ditt konto kommer du att ta bort
+        caching: |
+          Om du raderar ditt konto för att du försökte radera en del av ditt innehåll men fortfarande kunde se det på en karta eller någon annanstans
+          på Internet, tänk på att kartdata kan cachas i upp till ett dygn även efter att poster raderats, och att radera innehåll på denna plattform kanske inte har någon effekt på kopior som finns på andra webbplatser och plattformar (som GBIF).
         x_observations_html:
           one: |
             <strong class="count">%{count} fynd</strong>,
@@ -6609,7 +6640,6 @@ sv:
         you_must_enter_confirmation_code_in_the_form: |
           Du måste ange "%{confirmation_code}" i formuläret för att radera ditt konto
       edit:
-        about_third_party_tracking: Om tredjepartsspårning
         blocking_desc_html: |
           <p>
           Att blockera någon hindrar dem från att skicka meddelanden till dig, kommentera dina fynd, artbestämma dina fynd, och på annat sätt interagera med dig på %{site_name}. Det tar också bort deras fynd från dina sökresultat och dina fynd från deras sökresultat. Det gör dig dock inte osynlig för dem. De kan fortfarande hitta dina fynd och se din profil, de kan helt enkelt bara inte interagera med dig.
@@ -6700,10 +6730,6 @@ sv:
         prefers_coordinate_interpolation_protection_desc: |
           När du sätter koordinatsekretess för ett fynd till "diffuserad" eller "privat" kommer samma koordinatsekretess att sättas för alla dina andra
           fynd på samma dag, just för att göra det svårare för andra personer att gissa de exakta koordinaterna baserat på fynd gjorda vid ungefär samma tid.
-        prefers_no_tracking_label: Samla inte in stabilitets- och användningsdata med hjälp av tredjepartstjänster
-        prefers_no_tracking_label_desc_we_use: |
-          Vi använder en mängd tredjepartstjänster för att övervaka stabilitet samt diagnostisera buggar och problem med vår programvara. Dessa tredjeparter
-          inkluderar
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Information som vi kan dela med dessa tredje parter inkluderar
@@ -6716,8 +6742,6 @@ sv:
           Kraschdetaljer, såsom exakt vilken kodrad som orsakade en krasch
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Enhetsdetaljer, såsom märke och modell på en mobiltelefon
-        prefers_no_tracking_label_desc_value_html: |
-          <strong>Dessa tredjepartstjänster är enormt värdefulla för oss</strong> när det gäller att upprätthålla iNaturalists stabilitet och användbarhet med vår relativt lite personal. På mobila enheter finns det nästan inget annat sätt för oss att få inblick i problem som uppstår, eftersom programvaran körs på enheter vi inte kan kontrollera. Ibland är vi inte ens medvetna om att sådana problem uppstår förrän vi ser dem i de data som dessa tjänster tillhandahåller. <strong>Genom att dela denna information hjälper du oss att hjälpa dig och hela iNaturalist-communityn.</strong>
         prefers_no_tracking_label_desc_limits: |
           Observera att detta alternativ endast gäller analys- och kraschdata som vi uttryckligen skickar till dessa företag. Alla iNaturalist-servrar tillhandahålls och driftas av Microsoft, alla iNaturalist-bilder tillhandahålls av Amazon, och nästan alla iNaturalist-kartor kommer från Google, vilket innebär att varje gång du tittar på ett fynd på iNaturalist, ansluter du till tjänster som tillhandahålls av dessa företag och visar din IP-adress för dem, till ett minimum (i iPhone-appen använder vi Apples kartor).
           iNaturalist skulle förmodligen inte existera utan de tjänster som dessa företag tillhandahåller, och även om vi kan begränsa mängden och de typer av data som du delar med dem när du använder iNat, kan vi inte stoppa flödet av data helt.
@@ -7446,9 +7470,6 @@ sv:
     scopes:
       write: |
         Skapa, uppdatera och ta bort dina fynd, bestämningar och annat innehåll å dina vägnar samt få tillgång till dina dolda koordinater och all annan information som du kan komma åt på webbplatsen.
-      login: |
-        Få tillgång till information som är relevant för att logga in på en tredjepartstjänst, som e-postadress,
-        användarnamn, namn och användarikon som associeras med ditt konto här.
       account_delete: |
         Radera ditt konto för din räkning.
     errors:

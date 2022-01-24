@@ -13,24 +13,33 @@ class ProviderOauthController < ApplicationController
     assertion_type = params[:assertion_type] || params[:grant_type]
     client = Doorkeeper::Application.find_by_uid(params[:client_id])
     if assertion_type.blank? || client.blank?
-      render :status => :unauthorized, :json => { :error => :access_denied }
+      render :status => :unauthorized, :json => { :error => t( "doorkeeper.errors.messages.access_denied" ) }
       return
     end
-    access_token = case assertion_type
-    when /facebook/
-      oauth_access_token_from_facebook_token( params[:client_id], params[:assertion] )
-    when /google/
-      oauth_access_token_from_google_token( params[:client_id], params[:assertion] )
-    when /apple/
-      oauth_access_token_from_apple_assertion( params[:client_id], params[:assertion] )
+    access_token = begin
+      Timeout::timeout( 10 ) do
+        case assertion_type
+        when /facebook/
+          oauth_access_token_from_facebook_token( params[:client_id], params[:assertion] )
+        when /google/
+          oauth_access_token_from_google_token( params[:client_id], params[:assertion] )
+        when /apple/
+          oauth_access_token_from_apple_assertion( params[:client_id], params[:assertion] )
+        end
+      end
+    rescue Timeout::Error
+      render status: :gateway_timeout, json: { error: t( "doorkeeper.errors.messages.temporarily_unavailable" ) }
+      return
     end
 
     if access_token
-      auth = Doorkeeper::OAuth::TokenResponse.new(access_token)
-      if request.format && request.format.json?
-        render :json => auth.body, :status => auth.status
+      auth = Doorkeeper::OAuth::TokenResponse.new( access_token )
+      # The following frmat stuff is a hack around a bug in the Android app;
+      # remove when possible
+      if request&.format&.json? || ( params[:frmat] && params[:frmat] == "json" )
+        render json: auth.body, status: auth.status
       else
-        uri = URI.parse(access_token.application.redirect_uri)
+        uri = URI.parse( access_token.application.redirect_uri )
         uri.query = Rack::Utils.build_query(
           :access_token => auth.token.token,
           :token_type   => auth.token.token_type,
@@ -39,7 +48,7 @@ class ProviderOauthController < ApplicationController
         redirect_to uri.to_s
       end
     else
-      render :status => :unauthorized, :json => { :error => :access_denied }
+      render :status => :unauthorized, :json => { :error => t( "doorkeeper.errors.messages.access_denied" ) }
     end
   end
 
@@ -270,7 +279,7 @@ class ProviderOauthController < ApplicationController
       if access_token
         # If the user already has a token for this client, ensure that the
         # scopes match what they're requesting
-        access_token.update_attributes( scopes: scopes_from_params( params, client ) )
+        access_token.update( scopes: scopes_from_params( params, client ) )
       else
         access_token = Doorkeeper::AccessToken.create!(
           application_id: client.id,

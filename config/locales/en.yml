@@ -173,7 +173,7 @@ en:
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> taxon curated"
     other: "<span class='count'>%{count}</span> taxa curated"
-  x_taxa_matching_current_filters: 
+  x_taxa_matching_current_filters:
     one: "%{count} taxon matching current filters"
     other: "%{count} taxa matching current filters"
   x_taxon_changes_added_html:
@@ -183,7 +183,7 @@ en:
   _percent_ID_d: "% ID'd"
   a_community_for_naturalist: A Community for Naturalists
   a_default_taxon_name_will_automatically_created: |
-    A default taxon name will automatically be created from the scientific name attribute of this taxon. 
+    A default taxon name will automatically be created from the scientific name attribute of this taxon.
     When you've saved this new taxon, you'll be able to add other names here (common names, outdated scientific names, etc.).
   a_flag_for_x: "a flag for %{x}"
   a_member_of_taxon_html: "a member of %{taxon}"
@@ -533,46 +533,46 @@ en:
     ray_finned_fishes: Ray-Finned Fishes
     reptiles: Reptiles
     life: Life
-    x_plantae: 
+    x_plantae:
       one: "%{count} plant"
       other: "%{count} plants"
-    x_animalia: 
+    x_animalia:
       one: "%{count} animal"
       other: "%{count} animals"
-    x_mollusca: 
+    x_mollusca:
       one: "%{count} mollusk"
       other: "%{count} mollusks"
-    x_amphibia: 
+    x_amphibia:
       one: "%{count} amphibian"
       other: "%{count} amphibians"
-    x_mammalia: 
+    x_mammalia:
       one: "%{count} mammal"
       other: "%{count} mammals"
-    x_actinopterygii: 
+    x_actinopterygii:
       one: "%{count} ray-finned fish"
       other: "%{count} ray-finned fishes"
-    x_reptilia: 
+    x_reptilia:
       one: "%{count} reptile"
       other: "%{count} reptiles"
-    x_aves: 
+    x_aves:
       one: "%{count} bird"
       other: "%{count} birds"
-    x_insecta: 
+    x_insecta:
       one: "%{count} insect"
       other: "%{count} insects"
-    x_arachnida: 
+    x_arachnida:
       one: "%{count} arachnid"
       other: "%{count} arachnids"
-    x_fungi: 
+    x_fungi:
       one: "%{count} fungus"
       other: "%{count} fungi"
-    x_chromista: 
+    x_chromista:
       one: "%{count} chromist"
       other: "%{count} chromists"
     x_protozoa:
       one: "%{count} protozoan"
       other: "%{count} protozoa"
-    x_other_animals: 
+    x_other_animals:
       one: "%{count} other animal"
       other: "%{count} other animals"
   all_taxa_: All taxa
@@ -635,13 +635,41 @@ en:
   # Label for an option to show/include content by any user
   any_user: Any
   anyone: Anyone
+  app_owner_application_about_p1a_html: |
+    iNaturalist apps allow authenticated use of the iNaturalist API. This
+    allows you to make API calls that do things like create observations or
+    identifications. Usual use cases are apps such as desktop apps or mobile
+    apps that include functionality for their user(s) to create iNaturalist
+    observations. This content must be generated with real human involvement
+    or oversight. Please read our <a href="/pages/community+guidelines"
+    target="_blank">Community Guidelines</a> prohibiting machine-generated
+    observations, identifications, and comments for more details.
+  app_owner_application_about_p2_html: |
+    As of 2022 we are requiring manual approval for users wishing to make API clients.
+    In order to create third-party apps, you must first submit an application to become
+    an "app owner." This application should describe the functionality of your proposed app
+    and how you plan to use it. In order to submit an application your account must be at
+    least 2 months old and must have made at least 10 <a href="/pages/help#identification"
+    target="_blank">improving identifications</a> in the last month. We may ask follow-up
+    questions about your plan and we reserve the right to turn down applications for any reason.
+  app_owner_application_inelligible: |
+    In order to submit an application your account must be at least 2 months old and must
+    have made at least 10 improving identifications in the last month.
+  app_owner_application_fields_explanation_html: Describe the functionality your app
+    will have and how you plan to use it.
+  app_owner_application_success: App owner application submitted
   # An app or service the user has authorized to access their iNat account, e.g.
   # the iNaturalist Android app or Flickr
   application: Application
+  # Apps or services the user has authorized to access their iNat account, e.g.
+  # the iNaturalist Android app or Flickr
   applications: Applications
+  apply_app_owner: Apply
   # Button label and section header when submitting a form to request to be a
   # curator
   apply_curator: Apply
+  apply_to_be_an_app_owner: Apply to be an App Owner
+  apply_to_create_applications_title: Apply To Create Applications
   apply_to_selected: Apply to selected
   apply_captive_cultivated: "Apply captive / cultivated"
   apply_fields: Apply fields
@@ -751,6 +779,17 @@ en:
     natureserve: NatureServe
     cites: CITES
   authorize: Authorize
+  # Second-person verb to authorize an application to access an iNat account
+  # via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: Authorize with PKCE
+  # Explanation for how to use the PKCE authorization link. All variables are
+  # code that must match the content of the link and thus cannot be
+  # translated.
+  authorize_with_pkce_desc_html: |
+    (Use <code>%{code_challenge}</code> as the
+    <code>%{code_verifier_param}</code>) Note: this is a basic example. In production code,
+    you MUST use <code>%{code_challenge_method}</code> and correctly hash
+    the <code>%{code_challenge_param}</code>.
   authorize_permissions_from_provider: "Authorize permissions from %{provider}"
   automatic_short: Auto
   automatically_add_observations_to_this_project: Automatically add observations to this project
@@ -759,6 +798,7 @@ en:
   # of values, and not a synonym of "typical" or "normal"
   avg: Avg
   back: Back
+  back_to_applications: "&laquo; Back to applications"
   back_to_all_species: Back to All Species
   back_to_editing_observation: Back to editing observation
   back_to_friends: Back to friends
@@ -799,6 +839,8 @@ en:
   batch_operations: Batch Operations
   be_the_first_to_fave_this_observation: Be the first to fave this observation!
   because_of: because of
+  become_a_donor_caps: BECOME A DONOR
+  become_a_donor_today_caps: BECOME A DONOR TODAY
   before_importing_photos: before importing photos
   bg_color: BG Color
   bio: Bio
@@ -842,6 +884,7 @@ en:
   by_you: By you
   calendar: Calendar
   calendars_only_show_x_observations_at_time: Calendars only show %{x} observations at a time
+  callback_url: Callback url
   cancel: Cancel
   cant_edit_or_delete_hidden_content: You can't edit or delete content that has been hidden by site curators
   cant_flag_an_object_that_doesnt_exist: Can't flag an object that doesn't exist
@@ -923,16 +966,16 @@ en:
   check_here_to_autoload_description: Check here to auto-load the description from Wikipedia. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common mispelling, like "Parus".
   check_here_to_autoload_photos: Check here to auto-load photos from Flickr. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common mispelling, like "Parus".
   check_list: Check list
-  check_list_description: Choose a higher-level taxon you'd like to show in this list, like "Aves" for birds, or "Amphibia" for amphibians. When set, this list won't allow taxa that are not in this taxon. For example, if you create a list of birds, you won't be able to add any frogs to it. 
+  check_list_description: Choose a higher-level taxon you'd like to show in this list, like "Aves" for birds, or "Amphibia" for amphibians. When set, this list won't allow taxa that are not in this taxon. For example, if you create a list of birds, you won't be able to add any frogs to it.
   check_list_for_individual_taxa_that: 'Check lists for individual taxa that live here, e.g. "Birds of %{place}".'
   check_list_for_taxon_html: "Check list for %{taxon}"
   check_lists_must_belong_to_a_place: |
     Check lists must belong to a place. To create a new check list, visit
     a place's default check list and click the 'Create a new check list' link.
-  check_list_of_species_occuring_in: Check list of species occuring in
   check_list_place: "%{place} Check List"
   check_list_updated: Check list updated!
   check_lists_for: "Other Check Lists for %{place}"
+  check_out_the_inat_store: Check Out the iNaturalist Store
   check_out_what_the_observation: Check out what the observation you're trying to identify looks like.
   check_this_box_if_html: |
     Check this box if you want to apply a <a
@@ -976,6 +1019,7 @@ en:
               people to the new observation form, e.g. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
               You can use this to track participation from different sources. You can access these codes when downloading your project's observations as CSV.
   comma_separated_please: Comma-separated, please
+  # Noun, used to label a comment or a comment field in a form
   comment: comment
   # Verb, generally a label on a button that allows the user to add a comment
   comment_: Comment
@@ -1042,6 +1086,7 @@ en:
     included during the next model training, add or identify more observations
     of this taxon.
   concept_status: Concept Status
+  confidential: Confidential
   configure: Configure
   configure_a_widget_to_show:
     Configure a widget to show %{site_name} observations on your website or
@@ -1193,7 +1238,7 @@ en:
   copy_and_paste_this_into_your_own_html: Copy and paste this into your own HTML.
   copy_guide_taxon_to: Copy guide taxon to...
   copyright:
-    some_rights_reserved: some rights reserved        
+    some_rights_reserved: some rights reserved
     some_rights_reserved_by: "(c) %{name}, some rights reserved (%{license_short})"
     all_rights_reserved: "(c) %{name}, all rights reserved"
     no_known_copyright_restrictions: "%{name}, no known copyright restrictions (%{license_name})"
@@ -1582,7 +1627,7 @@ en:
   # e.g. disconnecting your Flickr account
   disconnect: Disconnect
   disconnect_caps: DISCONNECT
-  disconnect_provider: "Disconnect %{provider}"  
+  disconnect_provider: "Disconnect %{provider}"
   display: Display
   display_link_to_checklist: Display link to project list from project page
   display_monthly_supporter_badge: Display Monthly Supporter Badge on profile
@@ -1603,6 +1648,8 @@ en:
   # Button text to donate to iNaturalist. Please try to keep translations as
   # short as possible
   donate: DONATE
+  donate_again_caps: DONATE AGAIN
+  donate_again_today_caps: DONATE AGAIN TODAY
   done: Done
   dont_have_an_account_sign_up_html: Don't have an account? <strong>Sign up.</strong>
   dont_send_me_email: "Don't send me any email!"
@@ -1635,6 +1682,8 @@ en:
   each_place_displays_all_species_inat_knows: "Each place page displays all the species %{site_name} knows about from that place, including information about their abundance, conservation status, and who was first to observe that species from that place on %{site_name}. You can filter the species by taxonomic group, color, conservation status, or plain old search."
   earliest_added: Earliest Added
   edit: Edit
+  # Title of the moderation note editor
+  edit_moderator_note: Edit Moderator Note
   edit_a_batch_of_observations: Edit a Batch of Observations
   edit_account_settings_and_profile: "Edit account settings &amp; profile"
   edit_assessment: Edit Assessment
@@ -1725,7 +1774,7 @@ en:
     naturalised: Naturalised
   establishment_means: Establishment Means
   establishment_means_describes_how: |
-    Establishment means describes how the taxon came to be established in an area.  
+    Establishment means describes how the taxon came to be established in an area.
     See DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
   establishment_means_descriptions:
     native: evolved in this region or arrived by non-anthropogenic means
@@ -1738,7 +1787,6 @@ en:
   event_stats: Event Stats
   event_url: Event URL
   events_only: Events only
-  every_species_seen_by: Every species seen by
   everyone: everyone
   everyone_: Everyone
   everyone_journal_posts: Everyone's Journal Posts
@@ -1764,7 +1812,11 @@ en:
   # A third-party app or service the user has authorized to access their iNat
   # account, e.g. Flickr
   external_applications: External Applications
-  external_applications_description: External Applications are third party software applications that you have authorized to access your iNaturalist account on your behalf. In general, they can do everything with your account that you can, so make sure you trust the app developers before granting them permission.
+  external_applications_description: |
+    External Applications are third-party software applications that you have
+    authorized to access your iNaturalist account on your behalf. In general,
+    they can do everything with your account that you can, so make sure you
+    trust the app developers before granting them permission.
   external_taxon_including_children: External taxon (including children)
   extinct: extinct
   extinct_in_the_wild: Extinct in the Wild
@@ -1850,7 +1902,9 @@ en:
   flag_as_non_spammer: Flag As Non-spammer
   # Label for the date/time when a flag was created
   flag_created: Flag Created
+  flag_deleted: Flag deleted
   flag_description: Flag this content to let the curators know something is wrong with it.
+  flag_comment_description: Add an optional comment to this flag that further explains why you are adding it and provides links to supporting evidence.
   flag_for_check_list_title_html: |
     Flag for Check List: %{title}
   flag_for_comment_id_html: Flag for <a href="%{url}">Comment %{id}</a>
@@ -2149,7 +2203,7 @@ en:
   # NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Imperiled
   import: Import
-  import_all_photos_as_observations: Import all photos as observations 
+  import_all_photos_as_observations: Import all photos as observations
   import_as_an_observation: Import as an observation
   import_as_another_observation: Import as another observation?
   import_date_time_location_taxonomic: "Import date, time, location, description, and taxonomic information from this photo."
@@ -2223,7 +2277,7 @@ en:
   is_not_following_anyone: is not following anyone.
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Is the evidence provided enough to confirm this is %{taxon}?
   is_this_offensive_html: 'Is this <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?'
-  is_this_place_a_duplicate: Is this place a duplicate? 
+  is_this_place_a_duplicate: Is this place a duplicate?
   it_can_now_be_used_for_research: It can now be used for research and featured on other websites
   # Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: italic text
@@ -2300,7 +2354,7 @@ en:
   leading: Leading
   learn: Learn
   learn_about_the_species_live_in: Learn about the species that live in
-  learn_about_third_party_tracking: Learn more about third party tracking
+  learn_about_third_party_tracking: Learn more about third-party tracking
   learn_more: Learn More
   learn_more_raquo: "Learn more &raquo;"
   learn_what_these_licenses_mean: Learn what these licenses mean
@@ -2403,6 +2457,10 @@ en:
   link_or_unlink_your_facebook_account: Link or unlink your Facebook account
   link_or_unlink_your_flickr_account: Link or unlink your Flickr account
   link_or_unlink_your_google_account: Link or unlink your Google account
+  # Text for a link that provides an example of how an application can send a
+  # user to iNat to authorize the app's use of their iNat account. "Link" is
+  # a noun.
+  link_to_authorization_code: Link to authorization code
   link_your_facebook_account: Link your Facebook account
   link_your_flickr_account: Link your Flickr account
   link_your_google_account: Link your Google account
@@ -2554,6 +2612,7 @@ en:
   make_sure_the_default_photo_looks_good: Make sure the default photo looks good in large size.
   make_this_your_default_license: "Make this your default %{type} license"
   make_this_the_primary_listing: "Make this the primary listing"
+  make_your_app_confidential: Make your app confidential if you can store your app secret securely, i.e. not in a publicly availble binary that can be decompiled. Uncheck this box if this is not the case and you plan to use the PKCE flow
   mammals: mammals
   manage_all_your_subscriptions: Manage all your subscriptions
   manage_names: Manage Names
@@ -2642,7 +2701,7 @@ en:
   misidentifications: Misidentifications
   misleading_or_illegal_content_html: |
     Misleading or illegal content, racial or ethnic slurs, etc. For more on
-    our definition of "appropriate," see the 
+    our definition of "appropriate," see the
     <a href="/help#inappropriate">FAQ</a>.
   # Label shown when a date has not been entered
   missing_date: Missing Date
@@ -2736,6 +2795,9 @@ en:
   multiple_select_option: -- multiple --
   multiple_taxa_for_taxon_change: "Multiple taxa (input for swap/merge, output for split)"
   multiple_taxon_ids_separated_by_commas: 'Multiple taxon IDs separated by commas, e.g. 123,654'
+  # Project rule for an umbrella project. %{project} is the title of the project
+  # the observation must be in
+  must_be_in_project: must be in project %{project}
   must_be_in_taxon: must be in taxon %{taxon}
   must_be_not_in_taxon: must not be in taxon %{taxon}
   must_be_not_observed_by_user: must not be observed by %{user}
@@ -2809,12 +2871,13 @@ en:
   new: New
   new_and_noteworthy: New & Noteworthy
   new_announcement: New announcement
+  new_application: New application
   new_assessment: New assessment
   new_check_list: New check list
   new_check_list_for: "Create a new check list for %{place} &raquo;"
   new_check_list_record: "If you want to mark this list as comprehensive, create it, add the taxa, and then edit it and you'll have the option to mark it as comprehensive here."
   new_comment_on_a_parent_by_user_link: New comment on @vow_or_con{vow:an|a} %{parent} by %{user_link}
-  new_flag_for: New Flag for 
+  new_flag_for: New Flag for
   new_guide: New Guide
   new_journal_post: New Journal Post
   new_lexicon: New Lexicon
@@ -3177,12 +3240,12 @@ en:
   on_day: "on"
   onboarding:
       observe_panel_title: Let's Get Started by Posting Some Observations
-      observe_panel_body_p1_local: Need inspiration? Here's some organisms being observed nearby...  
+      observe_panel_body_p1_local: Need inspiration? Here's some organisms being observed nearby...
       observe_panel_body_p1_global: Need inspiration? Here's some organisms being observed...
       observe_panel_body_p2: Get outside, and observe an individual organism. Pick something wild and take a clear, full frame photo. If you already have a photo of something wild, <a href="%{new_observation_path}">add it now</a>. You can also use the %{site_name} mobile apps to record observations.
       observe_panel_body_p3: Once you've shared your observations, this page will show you updates from the community in the form of comments and identifications. Who knows what you'll discover!
       follow_panel_title_local: Follow Some Nearby Naturalists
-      follow_panel_title_global: Follow Some Active Naturalists 
+      follow_panel_title_global: Follow Some Active Naturalists
       follow_panel_body: If you visit these profiles and click the follow button, you'll be updated when they post observations
       following_panel_title: Keep Track of People, Taxa, and Places
       following_panel_body: |
@@ -3204,6 +3267,8 @@ en:
           <li><strong>Discussions you've engaged in:</strong> Commenting or adding identifications to someone else's content automatically subscribes you to any new activity on this content. Use the 'Manage your subscriptions' tool to stop receiving updates.</li>
         </ul>
   one_by_one: "One-by-one"
+  # Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "one of the following must be true:"
   one_of_your_lists: "one of your lists..."
   one_or_more_input_taxa_have_more_than_1000: |
     One or more input taxa have more than 1000 downstream observations.
@@ -4232,7 +4297,6 @@ en:
   rules_and_formatting: "Rules & Formatting"
   rules_for_adding_observations: Rules for Adding Observations
   rules_for_becoming_a_member: Rules for Becoming a Member
-  rules_for_becoming_memner: Rules for Becoming a Member
   rules_types:
     must_be_captive: must be captive / cultivated
     must_be_georeferenced: must be georeferenced
@@ -4241,6 +4305,7 @@ en:
     must_be_observed_in_place: must be observed in Place
     must_be_in: must be in taxon
     must_be_coordinates_shareable_by_project_curators: observer must allow project curators to view coordinates.
+    must_be_verifiable: must be verifiable
   running_total: Running Total
   said: said
   satellite: satellite
@@ -4652,14 +4717,11 @@ en:
   subscribe_to_observations_from_this_place_html: <a>Subscribe</a> to observations from this place
   subscribe_to_observations_in_a_taxon: Subscribe to all observations posted of a species or group of organisms (e.g. 'scorpions').
   subscribe_to_observations_in_a_place: Subscribe to all observations posted within this place. You can also add an optional taxon filter (e.g. 'scorpions from Texas').
-  subscribe_to_places_to: |
-                            Subscribe to places to receive updates about new observations made
-                            there.  Updates from people you follow and things you've commented
-                             on are also managed through subscriptions, so if you want to see
-                            what you're subscribed to and unsubscribe from things, you can
-                            click "Manage all of your subscriptions" below.  You should also
-                            be able to unsubscribe from anything on the site by viewing it's
-                            page.
+  subscribe_to_places_help: |
+    Subscriptions control what you see in your updates and on your dashboard.
+    For example, you can subscribe to a taxon to get updates about new
+    observations of that taxon. You are automatically subscribed to updates
+    about observations you comment on or identify.
   subscribe_to_this: Subscribe to this
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Subscribe</a>
@@ -4956,7 +5018,7 @@ en:
   these_folks_kindly_volunteer_to: These folks kindly volunteer to maintain our taxonomy and deal with other issues.
   these_observations_have_not_been_uploaded_yet: |
     These observations have not been uploaded yet.
-  third_party_tracking: Third Party Tracking
+  third_party_tracking: Third-Party Tracking
   third_person_possessive_singular: "%{object_phrase}'s %{noun}"
   this: this
   this_bioblitz_beings_in: This bioblitz begins in
@@ -5001,11 +5063,11 @@ en:
   this_will_add_listed_taxa: This will add listed taxa from observations. This may take a while so please use sparingly and on small checklists
   this_will_refresh_listed_taxa: This will refresh the listed taxa on this list. This may take a while so please use sparingly and on small checklists
   this_will_remove_inaturalists_ability_to_access_this_account: |
-    This will remove iNaturalist's ability to access this account on your behalf 
-    until you grant access again. You may need to change your settings on the 
+    This will remove iNaturalist's ability to access this account on your behalf
+    until you grant access again. You may need to change your settings on the
     external site to completely prevent access.
-  # Application is a third-party app or service the user has authorized to
-  # access their iNat account
+  # Application is an app or service the user has authorized to access their
+  # iNat account
   this_will_sign_you_out_current_session: This will sign you out of your current session on this application.
   this_will_try_to_add_tags_to_your_flickr: This will try to add tags to your Flickr photos.  Continue?
   this_year: This Year
@@ -5069,6 +5131,7 @@ en:
   type_taxon_name: "Type taxon name"
   uicn_red_list_status: "IUCN Red List status:"
   umbrella_projects: Umbrella Projects
+  unable_to_save_comment: Unfortunately, we were unable to save the comment.
   unblock: Unblock
   unclassified: Unclassified
   ungrafted_taxa: Ungrafted Taxa
@@ -5108,7 +5171,7 @@ en:
   update_selected_taxa: Update Selected Taxa
   update_subscription: Update Subscription
   update_subscription_preferences: Update subscription preferences
-  update_x_selected_taxa: 
+  update_x_selected_taxa:
     one: "Update 1 selected taxon"
     other: "Update %{count} selected taxa"
   update_your_content: Update your content
@@ -5149,6 +5212,7 @@ en:
   uploading_num_of_count_photos:
     one: Uploading photo...
     other: Uploading %{num} of %{count} photos...
+  url_for_your_app_outside_of_inaturalist: URL for your app outside of iNaturalist
   url_identifier_of_a_project_derived_from: "URL / identifier of a project derived from some external resource"
   url_of_this_taxon_on_the_source_website: URL of this taxon on the source's website
   usage_stats: Usage stats
@@ -5192,6 +5256,7 @@ en:
   user_added_an_x_to_noun_html: "%{user} added an %{x} to %{noun}"
   user_added_x_observations_html: "%{user} added %{x} observations"
   user_already_authenticated: User is already authenticated
+  user_already_app_owner: User is already an app owner
   user_autocomplete_placeholder: kueda, simon123, etc.
   # Label for comprehensive check lists. @vow_or_con will work for the taxon but
   # not the place. Gender for all variables is not known..
@@ -5373,7 +5438,7 @@ en:
   what_did_you_see?: <em>What</em> did you see?
   what_do_you_think: What do you think?
   what_to_keep: What to keep
-  what_want_to_list?: What do you want to list? 
+  what_want_to_list?: What do you want to list?
   what_were_you_looking_for?: "What were you looking for? (target list)"
   whats_this?: What's this?
   when: When
@@ -5475,6 +5540,32 @@ en:
   yes_reject_it: Yes, reject it
   yes_show_this_in_the_box: Yes, show this in the big box at the top of /taxa
   yesterday: Yesterday
+  yir_donate_banner_inaturalist_in_year: "INATURALIST IN %{year}:"
+  yir_donate_banner_reaching_millions: Reaching millions. Illuminating biodiversity. Global collaboration.
+  # "You" is singular
+  yir_donate_banner_all_thanks: All thanks to people like you!
+  # "You" is singular
+  yir_donate_banner_inaturalist_thrives: iNaturalist thrives thanks to people like you!
+  # "You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: You helped iNaturalist thrive this year. Thank you!
+  # "Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist Needs Your Support
+  yir_generating_and_sharing: |
+    Generating and sharing high-impact biodiversity data at this unprecedented
+    scale and speed has increasing costs
+  yir_millions_of_people_used_inaturalist: |
+    Millions of people used iNaturalist and Seek by iNaturalist this year to
+    connect with nature
+  yir_thank_your_for_being_generous: |
+    Thank you for being generous with your time, attention, expertise, and
+    donations! iNaturalist is a not-for-profit joint initiative of the
+    California Academy of Sciences and the National Geographic Society. The
+    program relies on numerous grants and donations, including charitable gifts
+    from less than a tiny fraction of the community. We are especially grateful
+    to Monthly Supporters whose recurring gifts help us plan for the future.
+  yir_your_gift_sustains: |
+    Your gift sustains this program with global reach and profound personal and
+    ecological impacts
   you: you
   you_: You
   you_appear_offline_try_again: |
@@ -5569,7 +5660,7 @@ en:
   you_sure_delete_check_list: "Are you sure you want to delete this list? Some people may have put a lot of work into it..."
   you_sure_delete_comment?: Are you sure you want to delete this comment?
   you_sure_delete_identification?: Are you sure you want to delete this identification?
-  you_sure_delete_custom_field?: Are you sure you want to delete these custom fields? 
+  you_sure_delete_custom_field?: Are you sure you want to delete these custom fields?
   you_sure_delete_flag?: Are you sure you want to delete this flag?
   you_sure_delete_project?: Are you sure you want to delete this project?
   you_sure_delete_this_observation: "Are you sure you want to delete this observation?"
@@ -5740,7 +5831,7 @@ en:
         add_color_tags_help: |
           Add color tags from colors associated with the selected taxa.
         add_rank_tags_help_html: |
-          Add taxon rank tags based on our taxonomy, e.g. 
+          Add taxon rank tags based on our taxonomy, e.g.
           <code>family=Laridae</code>
           or
           <code>family=Gulls and Allies</code>
@@ -5749,13 +5840,13 @@ en:
         eol_subjects_desc: |
           EOL publishes content under a number of different subject headings,
           not all of which are available for every taxon. Choosing "Overview"
-          will just import the first available text section from EOL, which is
+          will just import the first available text section from EOL, which
           generally contains a summary when available.
         eol_collection_desc_html: |
-          The <a href="http://eol.org/" target="_blank">Encyclopedia of Life (EOL)</a> 
+          The <a href="http://eol.org/" target="_blank">Encyclopedia of Life (EOL)</a>
           is a repository of information about life on Earth. At EOL you can
           create
-          <a href="http://eol.org/info/252" target="_blank">collections</a> 
+          <a href="http://eol.org/info/252" target="_blank">collections</a>
           of species. If you want to import species from an EOL collection,
           paste in the URL of that collection here.
         guide_place_desc: |
@@ -5932,8 +6023,8 @@ en:
           undoing a lot of work.
         description_html: |
           This will change the establishment means of <em>all</em> listings of
-          this taxon on all descendant places of 
-          <a href="%{place_url}">%{place_name}</a> 
+          this taxon on all descendant places of
+          <a href="%{place_url}">%{place_name}</a>
           to <strong>"%{establishment_means}"</strong>. Only
           curators can use this tool. Changing the establishment means to
           "introduced" will have roughly the same effect, but it won't change
@@ -5974,13 +6065,13 @@ en:
     oauth:
       authorizations:
         new:
-          # Application is a third-party app or service the user is about to
+          # Application is an app or service the user is about to
           # authorize to access their iNat account
           authorize_application_to_use_your_account?: Authorize %{application} to use your account?
-          # Application is a third-party app or service the user has authorized to
+          # Application is an app or service the user has authorized to
           # access their iNat account
           this_application_will_be_able_to_colon: "This application will be able to:"
-          # Application is a third-party app or service the user has authorized to
+          # Application is an app or service the user has authorized to
           # access their iNat account
           more_about_application: More about %{application}
     observations:
@@ -6202,7 +6293,7 @@ en:
         longitude: Publicly visible longitude
         positional_accuracy: "Coordinate precision (yeah, yeah, accuracy != precision, poor choice of names)"
         private_latitude: "Private latitude, set if observation private or obscured"
-        private_longitude: "Private longitude, set if observation private or obscured" 
+        private_longitude: "Private longitude, set if observation private or obscured"
         geoprivacy: "Whether or not the observer has chosen to obscure or hide the coordinates"
         taxon_geoprivacy: "Most conservative geoprivacy applied due to the conservation statuses of taxa in current identification."
         coordinates_obscured: "Whether or not the coordinates have been obscured, either because of geoprivacy or because of a threatened taxon"
@@ -6263,7 +6354,7 @@ en:
           original files and adding them using the <a
           href="/observations/upload">Uploader</a> is the best workaround.
         project_csv_template_notice_html: |
-          There is a template file for this project that may help you with the structure of the CSV file. 
+          There is a template file for this project that may help you with the structure of the CSV file.
           <a href="%{url}">Download template</a>
         soundcloud_notice_html: |
           In 2018 Soundcloud changed their API and made it impossible for us to
@@ -6342,13 +6433,13 @@ en:
           power to see the hidden coordinates of this or any
           other observation in the project and implies that you
           agree to the project <a href="%{url}" target="_blank">terms</a>.
-        quality_assessment_help_html: |
+        quality_assessment_help2_html: |
           <p>
             The data quality assessment is a summary of an observation's accuracy. All
             observations start as <strong>"casual"</strong> grade, and become
             <strong>"needs ID"</strong> when
           </p>
-          
+
           <ul>
             <li>the observation <strong>has a date</strong></li>
             <li>the observation <strong>is georeferenced</strong> (i.e. has lat/lon coordinates)</li>
@@ -6381,8 +6472,8 @@ en:
             </li>
             <li>
               the observation <strong>doesn't present evidence of an
-              organism</strong>, e.g. images of landscapes, water features,
-              rocks, etc.
+              organism</strong>, e.g. images of water features,
+              rocks, landscapes that don't include the organism, etc.
             </li>
             <li>
               the observation <strong>doesn't present recent (~100 years) evidence of
@@ -6461,7 +6552,7 @@ en:
           before your bulk upload will work. Use the box at the bottom of
           the search page to import new names. If the name is present but
           applies to multiple valid taxa, try to use a more or less specific
-          name that only matches a single taxon. 
+          name that only matches a single taxon.
       collection_project_changed_for_trusting_member:
         # Followed by link to a page showing project managers
         admins_may_have_access_to_more_observations_html: |-
@@ -6668,7 +6759,7 @@ en:
           <a href="%{url}">download the KML</a>, edit it in the GIS application of your choice, and
           upload your edited KML directly.
         admin_level_desc: |
-          Should only be set for political bodies. In terms of 
+          Should only be set for political bodies. In terms of
           USA-equivalents, 0 = country, 10 = state, 20 = county, 30 = town
       new:
         check_list_note: "Note: check lists will be automatically disabled for very large places."
@@ -6710,7 +6801,7 @@ en:
           Remove all your observations from this project
         remove_observations_desc_html: |
           Keep in mind that project curators will still be able to add your
-          observations to their project unless you change your 
+          observations to their project unless you change your
           <a href="/users/edit">account settings</a>.
         revoke_observations_label: |
           Leave your observations in this project but prevent curators from viewing
@@ -6913,7 +7004,7 @@ en:
           this project.
         project_background_color: Project Summary Background Color
         project_background_color_help: Make sure to choose a color dark enough so the white overlaid text is legible.
-        project_banner: Project Banner (PNG, JPG, or GIF)
+        project_banner: Project Banner (PNG or JPG)
         project_banner_help: Optional banner image. Ideal dimensions are 760px by 320px.
         project_details: Project Details
         project_icon: Project Icon (PNG, JPG, or GIF)
@@ -7541,6 +7632,13 @@ en:
       delete:
         by_deleting_your_account_you_will_remove: |
           By deleting your account you will remove
+        caching: |
+          If you are deleting your account because you tried to delete some
+          of your content but you could still see it on a map or elsewhere
+          on the Internet, keep in mind that map data may be cached for up to
+          a day even after records are deleted, and that deleting content on
+          this platform may not have any effect on copies that exist on other
+          sites and platforms (like GBIF).
         x_observations_html:
           one: |
             <strong class="count">%{count} observation</strong>,
@@ -7590,7 +7688,7 @@ en:
         you_must_enter_confirmation_code_in_the_form: |
           You must enter "%{confirmation_code}" in the form to delete your account
       edit:
-        about_third_party_tracking: About third party tracking
+        about_third_party_tracking: About third-party tracking
         blocking_desc_html: |
           <p>
             Blocking someone prevents them from messaging you, commenting on your
@@ -7744,9 +7842,9 @@ en:
           observations from the same day to make it harder for other people to
           guess the true coordinates based on observations made around the same
           time.
-        prefers_no_tracking_label: Do not collect stability and usage data using third party services
+        prefers_no_tracking_label: Do not collect stability and usage data using third-party services
         prefers_no_tracking_label_desc_we_use: |
-          We use a variety of third party services to monitor stability and
+          We use a variety of third-party services to monitor stability and
           diagnose bugs and problems in our software. These third parties
           include
         prefers_no_tracking_label_desc_we_use_google_html:
@@ -7769,7 +7867,7 @@ en:
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Device details, like make and model of a mobile phone
         prefers_no_tracking_label_desc_value_html: |
-          <strong>These third party services provide enormous value to
+          <strong>These third-party services provide enormous value to
           us</strong> in maintaining the stability and usability of iNaturalist
           with our relatively small staff. On mobile devices, there is almost no
           other way we can gain insight into problems that are occurring, since
@@ -7910,8 +8008,8 @@ en:
     welcome:
       index:
         welcome_message_html: |
-          to %{image}, where you can <strong>record</strong> what you see in nature, 
-          <strong>meet</strong> other nature lovers, 
+          to %{image}, where you can <strong>record</strong> what you see in nature,
+          <strong>meet</strong> other nature lovers,
           and <strong>learn</strong> about the natural world.
         connect_with_nature: Connect with Nature
         explore_and_share: Explore and share your observations from the natural world.
@@ -7965,7 +8063,7 @@ en:
       - Fri
       - Sat
     abbr_month_names:
-      - 
+      -
       - Jan
       - Feb
       - Mar
@@ -8010,7 +8108,7 @@ en:
       # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%B %d, %Y'
     month_names:
-      - 
+      -
       - January
       - February
       - March
@@ -8230,6 +8328,9 @@ en:
       # a concern, like messaging someone about plagiarism, or documenting
       # violations of the Community Guidelines for future reference
       ModeratorNote: Moderator Note
+      # Software application that operates iNat on a user's behalf, e.g. the
+      # iNaturalist Android app or an app made by a third party
+      OauthApplication: Application
       TaxonLink: Taxon Link
     attributes:
       assessment:
@@ -8276,11 +8377,23 @@ en:
         finished_at: Finished
         # Inputs to an export task, e.g. the query and the columns
         inputs: Inputs
+      oauth_application:
+        # The URL the user will be redirected to after authorizing an app to
+        # access their iNaturalist account
+        callback_url: Callback URL
+        # Unique identifier for an application
+        uid: ID
+        # Noun, secret associated with an application, sort of like the application's password
+        secret: Secret
+        # Adjective, whether or not this application can keep its secret
+        # confidential, e.g. a native or desktop app as opposed to a web
+        # app.
+        confidential: Confidential
       post:
         title: Title
         body: Body
       project:
-        title: Title 
+        title: Title
         project_icon: Project icon
         project_type: Project type
         preferred_count_by: Preferred count by
@@ -8385,10 +8498,10 @@ en:
             value:
               dna_only_atcg: "for DNA can only contain the characters A, T, C, or G"
               date_format: |
-                must be in the form YYYY-MM-DD for a date field ("%{observation_field_name}" 
+                must be in the form YYYY-MM-DD for a date field ("%{observation_field_name}"
                 in your observation of "%{observation_species_guess}")
               time_format: |
-                must be in the form hh:mm for a time field ("%{observation_field_name}" 
+                must be in the form hh:mm for a time field ("%{observation_field_name}"
                 in your observation of "%{observation_species_guess}")
             observation_id:
               user_does_not_accept_fields_from_others: user does not accept fields from others
@@ -8536,7 +8649,7 @@ en:
         content on your behalf, and access your hidden coordinates and any
         other information you can access on the site.
       login: |
-        Access information relevant to signing into a third party service, like the email address, username,
+        Access information relevant to signing into a third-party service, like the email address, username,
         name, and user icon associated with your account here.
       account_delete: |
         Delete your account on your behalf.

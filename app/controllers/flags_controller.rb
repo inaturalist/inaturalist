@@ -4,7 +4,7 @@ class FlagsController < ApplicationController
   before_action :set_model, except: [:update, :show, :destroy, :on]
   before_action :model_required, except: [:index, :update, :show, :on, :destroy]
   before_action :load_flag, only: [:show, :destroy, :update]
-  before_action :curator_or_owner_required, only: [:update]
+  before_action :check_update_permissions, only: [:update]
 
   PARTIALS = %w(dialog)
 
@@ -113,7 +113,7 @@ class FlagsController < ApplicationController
     @flags = @flags.paginate(per_page: 50, page: params[:page])
     render :global_index, layout: "bootstrap"
   end
-  
+
   def show
     @object = @flag.flagged_object
     @object = @object.becomes(Photo) if @object.is_a?(Photo)
@@ -123,7 +123,7 @@ class FlagsController < ApplicationController
       format.html { render layout: "bootstrap" }
     end
   end
-  
+
   def new
     @flag = Flag.new(params[:flag])
     @object = @model.find(params[@object_key])
@@ -135,7 +135,7 @@ class FlagsController < ApplicationController
       return
     end
   end
-  
+
   def create
     create_options = params[:flag]
     create_options[:user_id] = current_user.id
@@ -145,16 +145,26 @@ class FlagsController < ApplicationController
       redirect_to root_path
     end
 
-    if @flag = Flag.where(create_options).where(resolved: true).first
+    @create_comment = false
+    if @flag = Flag.where( create_options.except( "initial_comment_body" ) ).where( resolved: true ).first
       @flag.resolved = false
     else
       @flag = @object.flags.build(create_options)
+      @create_comment = create_options.key?( :initial_comment_body ) && create_options[:initial_comment_body].length > 0
+      if @create_comment
+        @comment_attributes = { parent: @flag, user: current_user, body: create_options[:initial_comment_body] }
+        @flag.comments.build( @comment_attributes )
+      end
     end
     if @flag.flag == "other" && !params[:flag_explanation].blank?
       @flag.flag = params[:flag_explanation]
     end
+
     if @flag.save
-      flash[:notice] = t(:flag_saved_thanks_html, url: url_for( @flag ) )
+      flash[:notice] = t( :flag_saved_thanks_html, url: url_for( @flag ) )
+      if @create_comment && Comment.where( @comment_attributes ).length == 0
+        flash[:notice] << " " + t( :unable_to_save_comment )
+      end
     else
       flash[:error] = t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence.downcase)
     end
@@ -178,20 +188,24 @@ class FlagsController < ApplicationController
         end
       end
       format.json do
-        render :json => @flag.to_json
+        if @flag.valid?
+          render json: @flag
+        else
+          render status: :unprocessable_entity, json: @flag.errors
+        end
       end
     end
 
 
   end
-  
+
   def update
     if resolver_id = params[:flag].delete("resolver_id")
       params[:flag]["resolver"] = User.find_by_id(resolver_id)
     end
     respond_to do |format|
       msg = begin
-        if @flag.update_attributes(params[:flag])
+        if @flag.update(params[:flag])
           t(:flag_saved)
         else
           t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence)
@@ -202,7 +216,7 @@ class FlagsController < ApplicationController
       if @object.is_a?(Project)
         Project.refresh_es_index
       end
-      format.html do 
+      format.html do
         flash[:notice] = msg
         redirect_back_or_default(@flag)
       end
@@ -214,9 +228,9 @@ class FlagsController < ApplicationController
         end
       end
     end
-    
+
   end
-  
+
   def destroy
     unless @flag.deletable_by?( current_user )
       msg = t(:you_dont_have_permission_to_do_that)
@@ -241,7 +255,10 @@ class FlagsController < ApplicationController
       Project.refresh_es_index
     end
     respond_to do |format|
-      format.html { redirect_back_or_default(admin_path) }
+      format.html do
+        flash[:notice] = t(:flag_deleted)
+        redirect_back_or_default( flags_path )
+      end
       format.json do
         head :ok
       end
@@ -249,7 +266,7 @@ class FlagsController < ApplicationController
   end
 
   private
-  
+
   def load_flag
     render_404 unless @flag = Flag.where(id: params[:id] || params[:flag_id]).includes(:user, :resolver).first
   end
@@ -259,7 +276,7 @@ class FlagsController < ApplicationController
     object ||= @model.find_by_slug(params[@object_key]) if @model.respond_to?(:find_by_slug)
     object ||= @model.find_by_id( params[@object_key] )
   end
-  
+
   def set_model
     @object_key = (params.keys & Flag::TYPES.map(&:foreign_key)).first
     @model = @object_key.split("_id")[0].classify.constantize if @object_key
@@ -273,8 +290,8 @@ class FlagsController < ApplicationController
     end
   end
 
-  def curator_or_owner_required
-    unless logged_in? && @flag && (current_user.is_curator? || current_user.id == @flag.user.id)
+  def check_update_permissions
+    unless logged_in? && @flag && (current_user.is_curator? || current_user.id == @flag.user.id) && ((current_user.id != @flag.flaggable_user.id) || (@flag.flaggable_type == "Taxon"))
       flash[:error] = t(:you_dont_have_permission_to_do_that)
       if session[:return_to] == request.fullpath
         redirect_to root_url

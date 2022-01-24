@@ -11,20 +11,6 @@ SET row_security = off;
 
 
 --
--- Name: fuzzystrmatch; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS fuzzystrmatch WITH SCHEMA public;
-
-
---
--- Name: EXTENSION fuzzystrmatch; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION fuzzystrmatch IS 'determine similarities and distance between strings';
-
-
---
 -- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -1310,6 +1296,37 @@ CREATE SEQUENCE public.exploded_atlas_places_id_seq
 --
 
 ALTER SEQUENCE public.exploded_atlas_places_id_seq OWNED BY public.exploded_atlas_places.id;
+
+--
+-- Name: email_suppressions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.email_suppressions (
+    id bigint NOT NULL,
+    email text,
+    suppression_type text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: email_suppressions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.email_suppressions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: email_suppressions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.email_suppressions_id_seq OWNED BY public.email_suppressions.id;
 
 
 --
@@ -5570,6 +5587,13 @@ ALTER TABLE ONLY public.exploded_atlas_places ALTER COLUMN id SET DEFAULT nextva
 
 
 --
+-- Name: email_suppressions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.email_suppressions ALTER COLUMN id SET DEFAULT nextval('public.email_suppressions_id_seq'::regclass);
+
+
+--
 -- Name: external_taxa id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6499,6 +6523,14 @@ ALTER TABLE ONLY public.deleted_users
 
 ALTER TABLE ONLY public.exploded_atlas_places
     ADD CONSTRAINT exploded_atlas_places_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: email_suppressions email_suppressions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.email_suppressions
+    ADD CONSTRAINT email_suppressions_pkey PRIMARY KEY (id);
 
 
 --
@@ -10244,6 +10276,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210921160504'),
 ('20210930182050'),
 ('20211001151300'),
-('20211109220615');
-
+('20211109220615'),
+('20211216171216');
 

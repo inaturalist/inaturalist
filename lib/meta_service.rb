@@ -86,7 +86,7 @@ class MetaService
     response = nil
     begin
       if api_endpoint_cache
-        api_endpoint_cache.update_attributes(request_began_at: Time.now,
+        api_endpoint_cache.update(request_began_at: Time.now,
           request_completed_at: nil, success: nil, response: nil)
       end
       timed_out = Timeout::timeout(options[:timeout]) do
@@ -94,13 +94,13 @@ class MetaService
       end
     rescue Timeout::Error
       if api_endpoint_cache
-        api_endpoint_cache.update_attributes(
+        api_endpoint_cache.update(
           request_completed_at: Time.now, success: false)
       end
       raise Timeout::Error
     end
     if api_endpoint_cache
-      api_endpoint_cache.update_attributes(
+      api_endpoint_cache.update(
         request_completed_at: Time.now,
         success: !response.body.blank?,
         response: response.body

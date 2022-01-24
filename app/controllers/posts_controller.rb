@@ -189,7 +189,7 @@ class PostsController < ApplicationController
       @post.observations.clear
     end
 
-    if @post.update_attributes(params[@post.class.name.underscore.to_sym])
+    if @post.update(params[@post.class.name.underscore.to_sym])
       respond_to do |format|
         format.html do
           if @post.published_at

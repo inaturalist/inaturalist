@@ -74,7 +74,7 @@ describe ProjectUser do
       po = ProjectObservation.make!( observation: o, project: pu.project, user: pu.project.user )
       o.reload
       expect( o ).not_to be_coordinates_viewable_by pu.project.user
-      pu.update_attributes( preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_ANY )
+      pu.update( preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_ANY )
       Delayed::Worker.new.work_off
       pu.reload
       expect( pu.preferred_curator_coordinate_access ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_ANY
@@ -90,7 +90,7 @@ describe ProjectUser do
       other_o = Observation.make!( user: other_pu.user, latitude: 1, longitude: 1, geoprivacy: Observation::PRIVATE )
       other_po = ProjectObservation.make!( observation: other_o, project: other_pu.project, user: other_pu.project.user )
 
-      pu.update_attributes( preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_ANY )
+      pu.update( preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_ANY )
       Delayed::Worker.new.work_off
       pu.reload
       o.reload
@@ -104,7 +104,7 @@ describe ProjectUser do
       expect( po ).not_to be_prefers_curator_coordinate_access
       o.reload
       original_last_indexed_at = o.last_indexed_at
-      pu.update_attributes( preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_ANY )
+      pu.update( preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_ANY )
       Delayed::Worker.new.work_off
       po.reload
       o.reload
@@ -167,29 +167,29 @@ describe ProjectUser do
     after { disable_has_subscribers }
 
     it "should queue a job to update identifications if became curator" do
-      @project_user.update_attributes(:role => ProjectUser::CURATOR)
+      @project_user.update(:role => ProjectUser::CURATOR)
       jobs = Delayed::Job.where("created_at >= ?", @now)
       expect(jobs.select{|j| j.handler =~ /Project.*update_curator_idents_on_make_curator/m}).not_to be_blank
     end
     
     it "should queue a job to update identifications if became manager" do
-      @project_user.update_attributes(:role => ProjectUser::MANAGER)
+      @project_user.update(:role => ProjectUser::MANAGER)
       jobs = Delayed::Job.where("created_at >= ?", @now)
       expect(jobs.select{|j| j.handler =~ /Project.*update_curator_idents_on_make_curator/m}).not_to be_blank
     end
     
     it "should queue a job to update identifications if no longer curator" do
-      @project_user.update_attributes(:role => ProjectUser::CURATOR)
+      @project_user.update(:role => ProjectUser::CURATOR)
       Delayed::Job.delete_all
-      @project_user.update_attributes(:role => nil)
+      @project_user.update(:role => nil)
       jobs = Delayed::Job.where("created_at >= ?", @now)
       expect(jobs.select{|j| j.handler =~ /Project.*update_curator_idents_on_remove_curator/m}).not_to be_blank
     end
     
     it "should not queue a job to update identifications if moving btwn manager and curator" do
-      @project_user.update_attributes(:role => ProjectUser::CURATOR)
+      @project_user.update(:role => ProjectUser::CURATOR)
       Delayed::Job.delete_all
-      @project_user.update_attributes(:role => ProjectUser::MANAGER)
+      @project_user.update(:role => ProjectUser::MANAGER)
       jobs = Delayed::Job.where("created_at >= ?", @now)
       expect(jobs.select{|j| j.handler =~ /Project.*update_curator_idents_on_remove_curator/m}).to be_blank
       expect(jobs.select{|j| j.handler =~ /Project.*update_curator_idents_on_make_curator/m}).to be_blank
@@ -222,7 +222,7 @@ describe ProjectUser do
       start = Time.now
       expect( UpdateAction.unviewed_by_user_from_query(pu.user_id, resource: pu.project) ).to eq false
       without_delay do
-        p.update_attributes(:user => new_pu.user)
+        p.update(:user => new_pu.user)
       end
       expect( UpdateAction.unviewed_by_user_from_query(pu.user_id, resource: pu.project) ).to eq true
     end

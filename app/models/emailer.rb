@@ -1,5 +1,6 @@
-#encoding: utf-8
-class Emailer < ActionMailer::Base 
+# frozen_string_literal: true
+
+class Emailer < ActionMailer::Base
   helper :application
   helper :observations
   helper :taxa
@@ -9,75 +10,80 @@ class Emailer < ActionMailer::Base
 
   include Shared::MailerModule
 
-  default from: "#{Site.default.try(:name)} <#{Site.default.try(:email_noreply)}>",
-          reply_to: Site.default.try(:email_noreply)
+  default from: "#{Site.default.try( :name )} <#{Site.default.try( :email_noreply )}>",
+    reply_to: Site.default.try( :email_noreply )
 
-  def updates_notification(user, updates)
+  def updates_notification( user, updates )
     return if user.blank? || updates.blank?
     return if user.email.blank?
     return if user.prefers_no_email
+    return if user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
+    
     @user = user
     set_locale
-    @grouped_updates = UpdateAction.group_and_sort(updates, :skip_past_activity => true)
-    mail(set_site_specific_opts.merge(
-      :to => user.email,
-      :subject => t(:updates_notification_email_subject, :prefix => subject_prefix, :date => Date.today)
-    ))
+    @grouped_updates = UpdateAction.group_and_sort( updates, skip_past_activity: true )
+    mail( set_site_specific_opts.merge(
+      to: user.email,
+      subject: t( :updates_notification_email_subject, prefix: subject_prefix, date: Date.today )
+    ) )
     reset_locale
   end
 
-  def new_message(message)
+  def new_message( message )
     @message = message
-    @message = Message.find_by_id(message) unless message.is_a?(Message)
+    @message = Message.find_by_id( message ) unless message.is_a?( Message )
     return unless @message
+
     @user = @message.to_user
     set_locale
     return if @user.email.blank?
     return unless @user.prefers_message_email_notification
     return if @user.prefers_no_email
+    return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
     return if @message.from_user.suspended?
-    if fmc = @message.from_user_copy
-      return if fmc.flags.where("resolver_id IS NULL").count > 0
-    end
-    mail(set_site_specific_opts.merge(:to => @user.email, :subject => "#{subject_prefix} #{@message.subject}"))
+    return if ( fmc = @message.from_user_copy ) && fmc.flags.where( "resolver_id IS NULL" ).count.positive?
+
+    mail( set_site_specific_opts.merge( to: @user.email, subject: "#{subject_prefix} #{@message.subject}" ) )
     reset_locale
   end
 
-  def observations_export_notification(flow_task)
+  def observations_export_notification( flow_task )
     @flow_task = flow_task
     @user = @flow_task.user
     set_locale
     return if @user.email.blank?
-    return unless fto = @flow_task.outputs.first
+    return unless ( fto = @flow_task.outputs.first )
     return unless fto.file?
+
     @file_url = fto.file.url
-    attachments[fto.file_file_name] = File.read(fto.file.path)
-    mail(set_site_specific_opts.merge(
+    attachments[fto.file_file_name] = File.read( fto.file.path )
+    mail( set_site_specific_opts.merge(
       to: @user.email,
-      subject: t(:site_observations_export_from_date,
+      subject: t( :site_observations_export_from_date,
         site_name: @site.name,
-        date: l(@flow_task.created_at.in_time_zone(@user.time_zone), format: :long))
-    ))
+        date: l( @flow_task.created_at.in_time_zone( @user.time_zone ), format: :long ) )
+    ) )
     reset_locale
   end
 
-  def observations_export_failed_notification(flow_task)
+  def observations_export_failed_notification( flow_task )
     @flow_task = flow_task
     @user = @flow_task.user
     set_locale
     return if @user.email.blank?
 
-    mail(set_site_specific_opts.merge(
+    mail( set_site_specific_opts.merge(
       to: @user.email,
-      subject: t(:site_observations_export_from_date,
+      subject: t( :site_observations_export_from_date,
         site_name: @site.name,
-        date: l(@flow_task.created_at.in_time_zone(@user.time_zone), format: :long))
-    ))
+        date: l( @flow_task.created_at.in_time_zone( @user.time_zone ), format: :long ) )
+    ) )
     reset_locale
   end
 
-  def project_user_invitation(pui)
+  def project_user_invitation( pui )
     return if pui.blank?
+
     @user = pui.invited_user
     @sender = pui.user
     @project = pui.project
@@ -85,53 +91,58 @@ class Emailer < ActionMailer::Base
     return if @user.email.blank?
     return unless @user.prefers_project_invitation_email_notification?
     return if @user.prefers_no_email?
+    return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
     return if @project.user.suspended?
-    mail(set_site_specific_opts.merge(
-      :to => @user.email, 
-      :subject => t(:user_invited_you_to_join_project, :user => @sender.try(:login), :project => @project.title)
-    ))
+
+    mail( set_site_specific_opts.merge(
+      to: @user.email,
+      subject: t( :user_invited_you_to_join_project, user: @sender.try( :login ), project: @project.title )
+    ) )
     reset_locale
   end
 
-  def user_updates_suspended(user)
+  def user_updates_suspended( user )
     return if user.blank?
+
     @user = user
     set_locale
     return if @user.email.blank?
     return if @user.prefers_no_email?
+    return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
     return if @user.suspended?
+
     @site_name = site_name
-    mail(set_site_specific_opts.merge(
+    mail( set_site_specific_opts.merge(
       to: @user.email,
-      subject: t(:updates_suspension_email_subject, prefix: subject_prefix)
-    ))
+      subject: t( :updates_suspension_email_subject, prefix: subject_prefix )
+    ) )
     reset_locale
   end
 
   # Send the user an email saying the bulk observation import encountered
   # an error.
-  def bulk_observation_error(user, filename, error_details)
+  def bulk_observation_error( user, filename, error_details )
     @user = user
     set_locale
-    @subject = "#{subject_prefix} #{t :were_sorry_but_your_bulk_import_of_filename_has_failed, :filename => filename}"
+    @subject = "#{subject_prefix} #{t :were_sorry_but_your_bulk_import_of_filename_has_failed, filename: filename}"
     @message       = error_details[:reason]
     @errors        = error_details[:errors]
     @field_options = error_details[:field_options]
-    mail(set_site_specific_opts.merge(
-      :to => "#{user.name} <#{user.email}>", :subject => @subject
-    ))
+    mail( set_site_specific_opts.merge(
+      to: "#{user.name} <#{user.email}>", subject: @subject
+    ) )
     reset_locale
   end
 
   # Send the user an email saying the bulk observation import was successful.
-  def bulk_observation_success(user, filename)
+  def bulk_observation_success( user, filename )
     @user = user
     set_locale
-    @subject = "#{subject_prefix} #{t(:bulk_import_of_filename_is_complete, :filename => filename)}"
+    @subject = "#{subject_prefix} #{t( :bulk_import_of_filename_is_complete, filename: filename )}"
     @filename = filename
-    mail(set_site_specific_opts.merge(
-      :to => "#{user.name} <#{user.email}>", :subject => @subject
-    ))
+    mail( set_site_specific_opts.merge(
+      to: "#{user.name} <#{user.email}>", subject: @subject
+    ) )
     reset_locale
   end
 
@@ -142,32 +153,32 @@ class Emailer < ActionMailer::Base
     @errors = errors
     @warnings = warnings
     @exception = mot.exception
-    mail(set_site_specific_opts.merge(
-      :to => "#{@user.name} <#{@user.email}>", :subject => @subject
-    ))
+    mail( set_site_specific_opts.merge(
+      to: "#{@user.name} <#{@user.email}>", subject: @subject
+    ) )
     reset_locale
   end
 
-  def custom_email(user, subject, body)
+  def custom_email( user, subject, body )
     @user = user
     set_locale
     @subject = subject
     @body = body
-    mail(set_site_specific_opts.merge(
-      :to => "#{@user.name} <#{@user.email}>", :subject => @subject
-    ))
+    mail( set_site_specific_opts.merge(
+      to: "#{@user.name} <#{@user.email}>", subject: @subject
+    ) )
     reset_locale
   end
 
-  def photos_missing(user, grouped_photos)
+  def photos_missing( user, grouped_photos )
     @user = user
     @site = user.site || Site.default
     @grouped_photos = grouped_photos
     set_locale
     @subject = I18n.t( "views.emailer.photos_missing.subject" )
-    mail(set_site_specific_opts.merge(
-      :to => "#{@user.name} <#{@user.email}>", :subject => @subject
-    ))
+    mail( set_site_specific_opts.merge(
+      to: "#{@user.name} <#{@user.email}>", subject: @subject
+    ) )
     reset_locale
   end
 
@@ -203,6 +214,7 @@ class Emailer < ActionMailer::Base
   def collection_project_changed_for_trusting_member( project_user )
     @project = project_user.project
     return unless @project.project_type == "collection"
+
     @user = project_user.user
     mail_with_defaults(
       subject: t(
@@ -223,7 +235,19 @@ class Emailer < ActionMailer::Base
     mail( opts )
   end
 
+  def app_owner_application( user, application )
+    set_site
+    opts = set_site_specific_opts
+    # Always send this email to iNat staff
+    opts[:to] = Site.default.email_help.to_s.sub( "@", "+app_owner@" )
+    opts[:subject] = "App Owner Application from #{user.login} (#{user.id})"
+    @user = user
+    @application = application
+    mail( opts )
+  end
+
   private
+
   def mail_with_defaults( defaults = {} )
     set_site
     opts = set_site_specific_opts.merge( defaults )
@@ -234,12 +258,12 @@ class Emailer < ActionMailer::Base
   end
 
   def default_url_options
-    opts = (Rails.application.config.action_mailer.default_url_options || {}).dup
-    site = @user.try(:site) || @site || Site.default
-    if site_uri = URI.parse( site.url )
+    opts = ( Rails.application.config.action_mailer.default_url_options || {} ).dup
+    site = @user.try( :site ) || @site || Site.default
+    if ( site_uri = URI.parse( site.url ) )
       opts[:host] = site_uri.host
-      if port = site_uri.port
-        opts[:port] = port unless [80, 443].include?( port )
+      if ( port = site_uri.port ) && ![80, 443].include?( port )
+        opts[:port] = port
       end
     end
     opts
@@ -251,7 +275,7 @@ class Emailer < ActionMailer::Base
   end
 
   def site_name
-    if site = @user.site
+    if ( site = @user.site )
       site.name
     else
       @site.name
@@ -283,7 +307,7 @@ class Emailer < ActionMailer::Base
     @site_name = @site.name
     # Can't have unicode chars in email headers
     {
-      from: "#{@site.name.mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').to_s} <#{@site.email_noreply}>",
+      from: "#{@site.name.mb_chars.unicode_normalize.gsub( /[^\x00-\x7F]/n, '' )} <#{@site.email_noreply}>",
       reply_to: @site.email_noreply
     }
   end
@@ -297,9 +321,8 @@ class Emailer < ActionMailer::Base
       # We're having Sendgrid perform this substitution because ERB freaks out
       # when you put tags like this in a template
       sub: {
-        "{{asm_group_unsubscribe_raw_url}}" => ['<%asm_group_unsubscribe_raw_url%>'.html_safe]
+        "{{asm_group_unsubscribe_raw_url}}" => ["<%asm_group_unsubscribe_raw_url%>".html_safe]
       }
     }
   end
-
 end

@@ -1,7 +1,4 @@
 es-MX:
-  x_comments:
-    one: '1 comentario'
-    other: '%{count} comentarios'
   x_comments_html:
     one: '<span class="count">%{count}</span> comentario'
     other: '<span class="count">%{count}</span> comentarios'
@@ -543,6 +540,8 @@ es-MX:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplicación
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Aplicaciones
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -834,7 +833,6 @@ es-MX:
   check_lists_must_belong_to_a_place: |
     Las listas de comprobación deben pertenecer a un lugar. Para crear una nueva lista de comprobación,
     visita la lista de comprobación de algún lugar y selecciona el enlace "Crea una nueva lista de comprobación".
-  check_list_of_species_occuring_in: Lista de comprobación de espcies ocurriendo en
   check_list_place: "Lista de comprobación de %{place}"
   check_list_updated: '¡Lista de comprobación actualizada!'
   check_lists_for: "Otras listas de comprobación para %{place}"
@@ -878,6 +876,7 @@ es-MX:
     Se puede usar para rastrear la participación en diferentes fuentes. Puedes tener acceso a estos códigos de rastreo
     cuando descargas las observaciones de tu proyecto con formato CSV.
   comma_separated_please: Separadas por una coma, por favor
+  #Noun, used to label a comment or a comment field in a form
   comment: comentario
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Comentario
@@ -1578,7 +1577,6 @@ es-MX:
   event_stats: Estadísticas del evento
   event_url: URL del evento
   events_only: Solo eventos
-  every_species_seen_by: Todas las especies vistas por
   everyone: todos
   everyone_: todos
   everyone_journal_posts: Todas las notas de los Diarios
@@ -1604,7 +1602,6 @@ es-MX:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplicaciones externas
-  external_applications_description: Las aplicaciones externas son aplicaciones de terceros a las cuales has autorizado acceder a tu cuenta de iNaturalist en tu nombre. En general, pueden hacer lo mismo que tú puedes hacer en tu cuenta, así que asegúrate de confiar en sus desarrolladores antes de concederles permiso.
   external_taxon_including_children: Taxón externo (incluyendo descendientes)
   extinct: Extinta
   extinct_in_the_wild: Extinta en vida silvestre
@@ -2099,7 +2096,6 @@ es-MX:
   leading: Principal
   learn: Aprende
   learn_about_the_species_live_in: Aprende sobre las especies que viven en
-  learn_about_third_party_tracking: Más información sobre el seguimiento de terceros
   learn_more: Aprende más
   learn_more_raquo: "Aprende más &raquo;"
   learn_what_these_licenses_mean: Aprende el significado de estas licencias
@@ -2528,6 +2524,9 @@ es-MX:
   multiple_select_option: '--- Múltiple ---'
   multiple_taxa_for_taxon_change: "Más de una especie o grupo (entrada de datos para intercambiar/mezclar, salida de datos para separar)"
   multiple_taxon_ids_separated_by_commas: 'IDs múltiples separados por comas, p.e. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: debe estar en el proyecto %{project}
   must_be_in_taxon: debe estar en el taxón %{taxon}
   must_be_not_in_taxon: no debe estar en el taxón %{taxon}
   must_be_not_observed_by_user: no debe ser observado por %{user}
@@ -2976,6 +2975,8 @@ es-MX:
       </li>
       </ul>
   one_by_one: "Uno per uno"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "una de las siguientes opciones debe ser cierta:"
   one_of_your_lists: "una de tus listas..."
   one_or_more_input_taxa_have_more_than_1000: |
     Uno o más taxones de entrada tienen más de 1000 observaciones asignadas.
@@ -3965,7 +3966,6 @@ es-MX:
   rules_and_formatting: "Reglas & formato"
   rules_for_adding_observations: Reglas para añadir observaciones
   rules_for_becoming_a_member: Reglas para convertirse en miembro
-  rules_for_becoming_memner: Reglas para convertirse en miembro
   rules_types:
     must_be_captive: debe ser en cautiverio / cultivado
     must_be_georeferenced: deben estar con georeferencia
@@ -3974,6 +3974,7 @@ es-MX:
     must_be_observed_in_place: deben ser observaciones en este lugar
     must_be_in: deben estar dentro de la especie o grupo
     must_be_coordinates_shareable_by_project_curators: el observador debe permitir a los curadores del proyecto ver las coordenadas.
+    must_be_verifiable: debe ser verificable
   running_total: Total acumulado
   said: decia
   satellite: satélite
@@ -4315,11 +4316,6 @@ es-MX:
   subscribe_to_observations_from_this_place_html: <a>Suscríbete</a> a las observaciones de este lugar
   subscribe_to_observations_in_a_taxon: Suscríbete a todas las observaciones publicadas de una especie o grupo (por ejemplo 'escorpiones').
   subscribe_to_observations_in_a_place: Suscríbete a todas las observaciones publicadas en este lugar. También puede agregar un filtro para una especie o grupo (por ejemplo 'escorpiones de tijuana')
-  subscribe_to_places_to: |
-    Suscríbete a lugares para recibir actualizaciones acerca de nuevas
-    observaciones, personas que sigues y cosas que has comentado. En la herramienta "Administra las suscripciones"
-    puedes ver a que te has suscrito y a que no, y si así lo deseas podrás quitar todas las suscripciones de algún sitio que ya no
-    quieras tener en tus preferencias.
   subscribe_to_this: Suscribir a este
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Suscribir</a>
@@ -4587,7 +4583,6 @@ es-MX:
   these_folks_kindly_volunteer_to: Estas personas amablemente son voluntarios para mantener la taxonomía y resolver otros problemas.
   these_observations_have_not_been_uploaded_yet: |
     Estas observaciones no se han subido aún.
-  third_party_tracking: Seguimiento de Terceros
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: este
   this_bioblitz_beings_in: Este maratón naturalista empieza en
@@ -4627,8 +4622,8 @@ es-MX:
   this_will_refresh_listed_taxa: Esto actualizará los taxa incluidos en esta lista. Esto puede tomar un tiempo así que por favor utiliza con moderación y en listas pequeñas de comprobación
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Esto eliminará la capacidad de iNaturalist para acceder a esta cuenta en tu nombre hasta que le permitas el acceso de nuevo. Puede que necesites cambiar la configuración en el sitio externo para impedir completamente el acceso.
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: Esto cerrará la sesión actual en esta aplicación.
   this_will_try_to_add_tags_to_your_flickr: Esto intentará añadir etiquetas a tus fotos de Flickr. ¿Continuas?
   this_year: Este año
@@ -5076,6 +5071,8 @@ es-MX:
   yes_reject_it: Sí, rechazarlo
   yes_show_this_in_the_box: Si, muestra esto en la caja  grande por arriba de /grupos (taxa)
   yesterday: Ayer
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Has ayudado a iNaturalist a existir durante este año. ¡Gracias!
   you: Ti
   you_: Tú
   you_appear_offline_try_again: |
@@ -5296,12 +5293,6 @@ es-MX:
         coordinates_desc: |
           Dando a sus coordenadas guía ayudará a las personas les resulta en
           la búsqueda según la ubicación.
-        eol_subjects_desc: |
-          EOL publica el contenido en una serie de diferentes encabezamientos
-          de materia, no todos los cuales están disponibles para cada taxón.
-          La elección de "Panorama" se acaba de importar la primera sección de
-          texto disponible de EOL, que generalmente contiene un resumen cuando
-          esté disponible.
         eol_collection_desc_html: |
           La <a href="http://eol.org/" target="_blank"> Enciclopedia de la
           Vida (EOL)</a> es un repositorio de información sobre la vida en la Tierra.
@@ -5509,13 +5500,13 @@ es-MX:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: '¿Autoriza a la %{application} para usar su cuenta?'
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Esta aplicación podrá:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Más sobre %{application}
     observations:
@@ -6162,7 +6153,6 @@ es-MX:
           Especifica los requisitos para las observaciones que se añadirán a este proyecto.
         project_background_color: Color de fondo del resumen del proyecto
         project_background_color_help: Asegúrate de seleccionar un color suficientemente oscuro para que el texto blanco sobrepuesto sea legible.
-        project_banner: Imagen del proyecto (PNG, JPG o GIF)
         project_banner_help: Imagen opcional. Las dimensiones ideales son 760px por 320px.
         project_details: Detalles del proyecto
         project_icon: Icono del proyecto (PNG, JPG o GIF)
@@ -6555,6 +6545,9 @@ es-MX:
       delete:
         by_deleting_your_account_you_will_remove: |
           Al borrar su cuenta se eliminarán
+        caching: |
+          Si eliminas tu cuenta porque intentaste borrar algo de tu contenido, pero aún así podías verla en un mapa o en cualquier otro lugar en Internet, ten en cuenta que los datos del mapa pueden almacenarse en caché hasta al día incluso después de eliminar los registros, y que la eliminación de contenido en esta plataforma puede no tener ningún efecto en las copias que existen en otros
+          sitios y plataformas (como GBIF).
         x_observations_html:
           one: |
             <strong class="count">1 observación</strong>,
@@ -6591,7 +6584,6 @@ es-MX:
         you_must_enter_confirmation_code_in_the_form: |
           Introduce "%{confirmation_code}" en la aplicación para eliminar tu cuenta
       edit:
-        about_third_party_tracking: Acerca de rastreo por parte de terceros
         blocking_desc_html: |
           <p>
           El bloqueo de una persona previene que te envíe mensajes, comente tus observaciones, identifique tus observaciones, e interactúe contigo en %{site_name}. También suprime sus observaciones de tus resultados de búsqueda y remueve tus observaciones de sus resultados de búsqueda. Sin embargo, no te hace invisible. Pueden encontrar tus observaciones y ver tu perfil, solamente no pueden interactuar contigo.
@@ -6680,10 +6672,6 @@ es-MX:
           %{site_name} rastrea lo que piensas que son tus observaciones y lo que piensa la comunidad. La identificación que compartimos con los socios de datos es la de la comunidad, pero si tu no crees que la opinión de la comunidad nunca superar la tuya puedes mantenerlo de esa manera. La gente podrá añadir identificaciones, pero la opinión de la comunidad no será priorizadas frente a la tuya. Esto significa que tus observaciones sólo serán de grado de investigación, cuando tu estés de acuerdo con la comunidad.
         prefers_coordinate_interpolation_protection_desc: |
           Cuando configuras la geoprivacidad de una observación como "oculto" o "privado" se aplicará la misma geoprivacidad a todas las observaciones del mismo día para evitar sacar conclusiones de coordenadas mediante observaciones que se hicieron alrededor del mismo tiempo.
-        prefers_no_tracking_label: No recopilar datos de estabilidad y uso utilizando servicios de terceros
-        prefers_no_tracking_label_desc_we_use: |
-          Utilizamos varios servicios de terceros para registrar la estabilidad,
-          diagnosticar errores y problemas en nuestro software. Estas terceros incluyen a
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Crashlytics Firebase</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           La información que podríamos compartir con terceras partes incluye
@@ -6697,13 +6685,6 @@ es-MX:
           Detalles sobre fallas, como exactamente qué línea de código causó un error
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Detalles del dispositivo, como marca y modelo de un teléfono móvil
-        prefers_no_tracking_label_desc_value_html: |
-          <strong>Estos servicios de terceros son de enorme valor para
-          nosotros</strong> manteniendo la estabilidad y usabilidad de iNaturalist ya que nuestro personal es relativamente pequeño. En los dispositivos móviles, casi no hay
-          otra forma en que podamos ver los problemas que están ocurriendo, ya que
-          el software se está ejecutando en dispositivos que no controlamos. A veces
-          ni siquiera somos conscientes de que estos problemas ocurren hasta que los vemos en los datos que estos servicios proporcionan. <strong>Al compartir esta información, 
-          nos ayudas a servirte y a toda la comunidad iNaturalist.</strong>
         prefers_no_tracking_label_desc_limits: |
           Ten en cuenta que esta opción solo se aplica a los datos analíticos y de errores que
           estamos enviando explícitamente a estas empresas. Todos los servidores de iNaturalist son proporcionados y alojados por Microsoft, todas las imágenes de iNaturalist están alojadas por Amazon, y casi todos los mapas de iNaturalist son servidos por Google, lo que significa cada vez que veas una observación en iNaturalist, estás conectándote a los servicios proporcionados por estas empresas y exponiendo tu dirección IP a ellas, como mínimo (en la aplicación de iPhone usamos Mapas de Apple). iNaturalist probablemente no existiría sin los servicios que ofrecen estas empresas, y mientras podemos limitar la cantidad y los tipos de datos que compartas con ellos mientras usamos iNat, no podemos detener el flujo de datos por completo.
@@ -7449,8 +7430,6 @@ es-MX:
     scopes:
       write: |
         Crear, actualizar y eliminar sus observaciones, identificaciones, y otro contenido en tu nombre, y acceder sus coordenadas privadas y cualquier otra información  disponible en el sitio.
-      login: |
-        Información relevante para acceder, como dirección de correo electrónico, nombre de usuario e icono de usuario.
       account_delete: |
         Elimina tu cuenta en tu nombre.
     errors:

@@ -102,7 +102,7 @@ describe ConservationStatus do
       cs = without_delay {ConservationStatus.make!}
       t = cs.taxon
       expect(t.conservation_status).not_to be_blank
-      without_delay {cs.update_attributes(:iucn => Taxon::IUCN_LEAST_CONCERN)}
+      without_delay {cs.update(:iucn => Taxon::IUCN_LEAST_CONCERN)}
       t.reload
       expect(t.conservation_status).to be < Taxon::IUCN_NEAR_THREATENED
     end
@@ -170,7 +170,7 @@ describe ConservationStatus do
     it "should obscure observations of taxon" do
       o = Observation.make!( taxon: cs.taxon, latitude: 1, longitude: 1 )
       expect( o ).to be_coordinates_obscured
-      without_delay { cs.update_attributes( geoprivacy: Observation::PRIVATE ) }
+      without_delay { cs.update( geoprivacy: Observation::PRIVATE ) }
       o.reload
       expect( o.latitude ).to be_blank
     end
@@ -178,15 +178,17 @@ describe ConservationStatus do
     it "should unobscure observations of taxon" do
       o = Observation.make!( taxon: cs.taxon, latitude: 1, longitude: 1 )
       expect( o ).to be_coordinates_obscured
-      cs.update_attributes( geoprivacy: Observation::PRIVATE )
+      cs.update( geoprivacy: Observation::PRIVATE )
       Delayed::Worker.new.work_off
       o.reload
       expect( o.latitude ).to be_blank
-      cs.update_attributes( geoprivacy: Observation::OPEN )
+      expect( o ).not_to be_mappable
+      cs.update( geoprivacy: Observation::OPEN )
       Delayed::Worker.new.work_off
       o.reload
       expect( o.latitude ).not_to be_blank
       expect( o.private_latitude ).to be_blank
+      expect( o ).to be_mappable
     end
 
     it "should obscure but not hide coordinates when geoprivacy changes from private to obscured" do
@@ -194,19 +196,21 @@ describe ConservationStatus do
       o = Observation.make!( taxon: test_cs.taxon, latitude: 1, longitude: 1 )
       expect( o ).to be_coordinates_private
       expect( o.latitude ).to be_blank
-      test_cs.update_attributes( geoprivacy: Observation::OBSCURED )
+      expect( o ).not_to be_mappable
+      test_cs.update( geoprivacy: Observation::OBSCURED )
       Delayed::Worker.new.work_off
       o.reload
       expect( o ).to be_coordinates_obscured
       expect( o.latitude ).not_to be_blank
       expect( o.private_latitude ).to eq 1
+      expect( o ).to be_mappable
     end
 
     it "should change geom for observations of taxon" do
       o = Observation.make!( taxon: cs.taxon, latitude: 1, longitude: 1 )
       lat = o.latitude
       geom_lat = o.geom.y
-      cs.update_attributes( geoprivacy: Observation::OPEN )
+      cs.update( geoprivacy: Observation::OPEN )
       expect( cs.taxon.conservation_statuses.count ).to eq 1
       Delayed::Worker.new.work_off
       o.reload
@@ -218,7 +222,7 @@ describe ConservationStatus do
       p = make_place_with_geom
       o = Observation.make!( taxon: cs.taxon, latitude: p.latitude, longitude: p.longitude)
       expect( o ).to be_coordinates_obscured
-      without_delay { cs.update_attributes( geoprivacy: Observation::PRIVATE ) }
+      without_delay { cs.update( geoprivacy: Observation::PRIVATE ) }
       o.reload
       expect( o.latitude ).to be_blank
     end
@@ -227,7 +231,7 @@ describe ConservationStatus do
       p = make_place_with_geom
       o = Observation.make!( taxon: cs.taxon, latitude: -1*p.latitude, longitude: p.longitude )
       expect( o ).to be_coordinates_obscured
-      without_delay { cs.update_attributes( geoprivacy: Observation::PRIVATE, place: p ) }
+      without_delay { cs.update( geoprivacy: Observation::PRIVATE, place: p ) }
       o.reload
       expect( o.latitude ).not_to be_blank
     end
@@ -237,7 +241,7 @@ describe ConservationStatus do
       expect( o.public_positional_accuracy ).to be > 10
       es_o = Observation.elastic_search( where: { id: o.id } ).results[0]
       expect( es_o.public_positional_accuracy ).to be > 10
-      cs.update_attributes( geoprivacy: Observation::OPEN )
+      cs.update( geoprivacy: Observation::OPEN )
       Delayed::Worker.new.work_off
       o.reload
       expect( o.public_positional_accuracy ).to be_nil
@@ -260,7 +264,7 @@ describe ConservationStatus do
           taxon: cs.taxon
       )
       expect( o ).not_to be_coordinates_obscured
-      cs.update_attributes( place: new_place )
+      cs.update( place: new_place )
       Delayed::Worker.new.work_off
       o.reload
       expect( o ).to be_coordinates_obscured
@@ -277,7 +281,7 @@ describe ConservationStatus do
         )
       end
       expect( o ).to be_coordinates_obscured
-      cs.update_attributes( place: new_place )
+      cs.update( place: new_place )
       Delayed::Worker.new.work_off
       o.reload
       expect( o ).not_to be_coordinates_obscured
@@ -287,7 +291,7 @@ describe ConservationStatus do
       taxon.reload
       o = Observation.make!( taxon: cs.taxon, latitude: -3, longitude: -3 )
       expect( o ).to be_coordinates_obscured
-      cs.update_attributes( place: new_place )
+      cs.update( place: new_place )
       Delayed::Worker.new.work_off
       o.reload
       expect( o ).not_to be_coordinates_obscured
@@ -300,7 +304,7 @@ describe ConservationStatus do
           longitude: -3
       )
       expect( o ).not_to be_coordinates_obscured
-      cs.update_attributes( place: nil )
+      cs.update( place: nil )
       Delayed::Worker.new.work_off
       o.reload
       expect( o ).to be_coordinates_obscured

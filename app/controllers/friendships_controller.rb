@@ -39,7 +39,7 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    if @friendship.update_attributes( approved_params )
+    if @friendship.update( approved_params )
       respond_to do |format|
         format.html { redirect_back_or_default( person_path( current_user ) ) }
         format.json { render json: { friendship: @friendship } }

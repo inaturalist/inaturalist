@@ -511,7 +511,6 @@ ko:
   check_list_for_individual_taxa_that: '이 장소에 사는 각 분류군 체크리스트 (예: %{place}에 사는 새)'
   check_lists_must_belong_to_a_place: |
     체크리스트는 장소를 지정해야 합니다. 새로운 체크리스트를 만들기 위해 기본 체크스트에 들어가서 '새로운 체크리스트' 링크를 선택하세요.
-  check_list_of_species_occuring_in: 여기서 서식하는 종의 체크리스트
   check_list_place: "%{place} 체크리스트"
   check_list_updated: 체크리스트가 업데이트되었습니다!
   check_out_what_the_observation: 동정하고자 하는 관찰대상의 생김새를 확인합니다.
@@ -543,6 +542,7 @@ ko:
   columns: 열
   combine: 병합
   comma_separated_please: 쉼표로 분리해주세요
+  #Noun, used to label a comment or a comment field in a form
   comment: 댓글
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: 댓글
@@ -881,7 +881,6 @@ ko:
   event_stats: 이벤트 통계
   event_url: 이벤트 URL
   events_only: 이벤트만
-  every_species_seen_by: 관측된 모든 종들
   everyone: 모두
   everyone_: 모두
   everyone_journal_posts: 모든 사람의 일지 포스트
@@ -2185,8 +2184,6 @@ ko:
   subscribe_to_a_place: 장소 알림 받기
   subscribe_to_observations_in_a_taxon: '특정 분류군에 대한 모든 관찰에 대한 알림을 받기 (예시: ''메뚜기과'', ''흰나비속'')'
   subscribe_to_observations_in_a_place: '특정 장소에 대한 모든 관찰에 대한 알림을 받기 (예시: ''과천시'', ''경기도'')'
-  subscribe_to_places_to: |
-    장소에 대한 알림을 설정해서 그 장소의 새로운 관찰에 대한 알림을 받아보세요. 팔로우하는 사용자들과 댓글 또한 알림 설정을 통하여 관리되기 때문에, 알림을 설정한 항목을 확인하거나 알림을 취소하고 싶을 때는 아래의 '알림 관리' 항목을 클릭하세요. 또한, iNaturalist의 대부분 항목에 대한 알림을 취소할 수 있습니다.
   subscriptions: 알림 받기
   suggest_an_identification: 동정하기
   suggestions: 제안
@@ -2420,10 +2417,10 @@ ko:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "이 애플리케이션은 다음을 할 수 있습니다:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: '%{application} 추가 정보'
     observations:
@@ -2473,7 +2470,6 @@ ko:
         or_drag_and_drop: (아니면 끌어 놓으십시오)
         project_background_color: 프로젝트 요약 배경색
         project_background_color_help: 겹치는 흰색 텍스트를 읽을 수 있도록 충분히 어두운 색을 선택해 주십시오.
-        project_banner: 프로젝트 배너 (PNG, JPG, GIF)
         project_banner_help: 선택적인 배너 그림입니다. 이상적인 크기는 760px x 320px입니다.
         project_details: 프로젝트 세부 사항
         project_icon: 프로젝트 아이콘 (PNG, JPG, GIF)

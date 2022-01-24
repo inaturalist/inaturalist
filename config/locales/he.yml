@@ -774,6 +774,8 @@ he:
   batch_operations: מספר פעולות
   be_the_first_to_fave_this_observation: תהיו הראשון להעדיף תצפית זו!
   because_of: בגלל
+  become_a_donor_caps: לתרומה
+  become_a_donor_today_caps: לתרומה עכשיו
   before_importing_photos: לפני ייבוא תמונות
   bg_color: צבע רקע
   bio_description: ספרו למשתמשים האחרים על עצמכם!
@@ -901,7 +903,6 @@ he:
   check_list_for_taxon_html: "רשימת מינים של %{taxon}"
   check_lists_must_belong_to_a_place: |
     רשימות בדיקה חייבות להיות שייכות למקום. כדי ליצור רשימת בדיקה חדשה, יש להיכנס לרשימת ברירת המחדל של המקום הרצוי ולאחר מכן ללחוץ על הקישור "יצירת רשימת בדיקה חדשה".
-  check_list_of_species_occuring_in: רשימת המינים של מינים הנמצאים ב
   check_list_place: "רשימת בדיקה %{place}"
   check_list_updated: רשימת הבדיקה עודכנה!
   check_lists_for: "רשימות בדיקה אחרות של %{place}"
@@ -942,6 +943,7 @@ he:
     רשימת קודי מעקב, כאשר פסיקים מפרידים בין הקודים. הוסיפו רשימות כאלה אם אתם רוצים לצרף קוד מעקב בעת שליחת אנשים לטופס התצפית החדש, למשל %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123. 
     באפשרותכם להשתמש בזה כדי לעקוב אחרי השתתפויות ממקורות שונים. תוכלו לגשת לקודים האלה בעת הורדת הפרויקטים כקובצי CSV.
   comma_separated_please: נא להפריד באמצעות פסיקים
+  #Noun, used to label a comment or a comment field in a form
   comment: תגובה
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: תגובה
@@ -1307,6 +1309,8 @@ he:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: לתרומה
+  donate_again_caps: לתרומה נוספת
+  donate_again_today_caps: לתרומה נוספת עכשיו
   done: בוצע
   dont_have_an_account_sign_up_html: אין לכם חשבון? <strong>להרשמה.</strong>
   dont_send_me_email: "אל תשלחו לי אימיילים!"
@@ -1403,11 +1407,14 @@ he:
   establishment_means: דרכי התבססות
   establishment_means_describes_how: |
     דרכי התבוססות מתאר איך טקסון מסוים הגיע למקום מוגדר. צפו בDarwinCore <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">כדי לקבל מידע נוסף</a>.
+  establishment_means_descriptions:
+    native: שעברו אבולוציה באזור זה או שהגיעו לא באמצעות האדם
+    endemic: מקומי ושאינו מופיע במקומות אחרים
+    introduced: מופיע באזור בעקבות הבאתו על ידי פעילות אדם
   event_in_progress: אירוע בתהליך
   event_stats: סטטיסטיקות האירוע
   event_url: URL של האירוע
   events_only: אירועים בלבד
-  every_species_seen_by: כל המינים שנצפו על ידי
   everyone: כולם
   everyone_: כל אחד
   everyone_journal_posts: הפוסטים של כולם
@@ -1426,7 +1433,6 @@ he:
   export_observations: ייצוא תצפיות
   export_with_private_coordinates: ייצוא עם קואורדינטות מוסתרות
   exporting: "מתבצע ייצוא..."
-  external_applications_description: אפליקציות חיצוניות הן אפליקציות צד שלישי שאיפשרת להן גישה לחשבון האיי-נטורליסט שלך. ככל, אפליקציות אלה יכולות לעשות בחשבון כל דבר שבעליו יכולים, על כן יש לבטוח במפתחי האפליקציה טרם הענקת הגישה.
   extinct: נכחד
   extinct_in_the_wild: נכחד בבר
   extra_properties: תכונות נוספות
@@ -2077,6 +2083,9 @@ he:
   most_observed_threatened_species: המינים שבסכנת הכחדה הנצפים ביותר
   multiple: בחירה מרובה
   multiple_select_option: '-- בחירה מרובה --'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: נדרש להיות תחת פרויקט %{project}
   must_be_observed_after: שנצפה אחרי %{operand}
   must_be_observed_before: שנצפה לפני %{operand}
   must_be_less_than_x_MB: "חייב להיות קטן מ %{x} MB"
@@ -3106,6 +3115,7 @@ he:
     must_be_identified: חייב להיות מזוהה
     must_be_on_list: חייב להיות ברשימה
     must_be_coordinates_shareable_by_project_curators: מדווח חייב לאפשר לאוצרי הפרוייקט לראות את הקואורדינטות
+    must_be_verifiable: חייב להיות בר-אימות
   running_total: סך הכל
   said: נאמר
   satellite: לוויין
@@ -3315,8 +3325,6 @@ he:
   subscribe_to_a_place: מינוי למקום
   subscribe_to_observations_in_a_taxon: מינוי לכל התצפיות של מין מסוים או קבוצת אורגניזמים (למשל "עקרבים").
   subscribe_to_observations_in_a_place: הירשמו כמנויים לכל התצפיות מהמקום הזה. אפשר גם להוסיף מסנן טקסונים (למשל "עקרבים מטקסס").
-  subscribe_to_places_to: |
-    מנוי למקומות מאפשר קבלת עדכונים בנוגע לתצפיות חדשות שם. עדכונים מאנשים שברשימת המעקב שלך ודברים שהגבת בנוגע אליהם מנוהלים גם הם באמצעות מנויים. אם ברצונך לצפות ברשימת המנויים שלך או להסיר את מנוי כל שהוא, ניתן ללחוץ על "ניהול כל המינויים שלי". ניתן גם לבטל כל מנוי שהוא באתר באמצעות צפיה בדף שלו.
   subscribe_to_this: הרשמה
   subscriptions: מינויים
   subscriptions_arent_available_for: לא ניתן להרשם למקומות ללא גבולות
@@ -3506,6 +3514,7 @@ he:
   type_taxon_name: "הקלד שם הטקסון"
   uicn_red_list_status: "סטטוס הרשימה האדומה של IUCN:"
   umbrella_projects: פרוייקטי מטריה
+  unable_to_save_comment: לצערנו ההודעה לא נשמרה.
   unblock: הסרת חסימה
   unclassified: לא מסווג
   unique_identifier_of_this_taxon: מזהה ייחודי של טקסון זה במסד הנתונים של מקור זה
@@ -3597,6 +3606,7 @@ he:
   username_or_email: שם משתמש או כתובת מייל
   users: משתמשים
   users_id: "הזיהוי של %{user}"
+  users_journal: "היומן של %{user}"
   users_profile: "הפרופיל של %{user}"
   users_projects: "הפרוייקטים של %{user}"
   valid_options_are: האופציות האפשריות הן
@@ -3739,6 +3749,12 @@ he:
   yes_i_want_to_join: כן, ברצוני להצטרף
   yes_license_my_observations_so_scientists_can_use: כן, החל רישוי לתמונות, קולות ותצפיות על מנת שחוקרים יוכלו להשתמש בנתונים שלי.
   yesterday: אתמול
+  yir_donate_banner_inaturalist_in_year: "INATURALIST ב%{year}"
+  yir_donate_banner_reaching_millions: מגיעים למיליוני בני אדם. מאירים את מגוון המינים. שיתופי פעולה חוצי גבולות.
+  #"You" is singular
+  yir_donate_banner_all_thanks: הכל בזכות אנשים כמוך!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: עזרת להעצים את iNaturalist השנה. תודה!
   you: אותך
   you_: אתה
   you_appear_offline_try_again: |
@@ -3869,7 +3885,7 @@ he:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: עוד מידע על %{application}
     observations:
@@ -4167,13 +4183,14 @@ he:
       delete:
         by_deleting_your_account_you_will_remove: |
           במחיקת החשבון שלך יוסרו גם
+        caching: |
+          במידה ומתצבעת מחיקת חשבון מכיוון שניסית למחוק תוכן כלשהו ועדיין ניתן לצפות בו במפה או במקום אחר במרשתת, יש לזכור שמידע ממופה עשוי להישמר באופן זמני במשך יום נוסף לאחר שהרשומות נמחקו, ושמחיחקת רשומות בפלטפורמה זו עשוייה שלא להשפיע על עותקים של המידע שנמצא באתרים או פלטפורמות אחרות כדוגמת GBIF.
         furthermore_cannot_undo_html: |
           ומה עוד, <strong>לא ניתן לבטל פעילות הזאת.</strong> אם תשנה את דעתך, לא ניתן יהיה לקבל את התוכן שלך בחזרה.
         type_confirmation_code: הקלדת %{confirmation_code}
         you_must_enter_confirmation_code_in_the_form: |
           חובה להזין %{confirmation_code} בטופס על מנת למחוק את החשבון שלך
       edit:
-        about_third_party_tracking: אודות איסוף מידע עליך על ידי צד שלישי
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: הערות
         #Checkbox label for user preference about what to receive in the daily email update
@@ -4201,9 +4218,6 @@ he:
           joined: פרוייקטים שהצטרפת אליהם
         prefers_community_taxa_desc: |
           %{site_name} בוחן את דעתך על התצפיות שלך, בהשוואה לדעת הקהילה. הזיהויים שאנו חולקים עם שותפים לנתונים הם זיהויי הקהילה, אולם במידה ולדעתך זיהוי הקהילה לעולם אינו ראוי להחליף את שלך, ניתן לבטן את הסכמתך לזיהויים אלו כאן. אחרים עדיין יוכלו להוסיף זיהויים, אולם דעת הקהילה לא תועדף על פני הזיהוי שלך. משמעות הדבר כי התצפיות לא תועלנה לדרגת מחקר, אלא אם תסכים/י עם זיהוי הקהילה.
-        prefers_no_tracking_label: אין לאסוף מידע אודות יציבות והשימוש בפלטפורמה באמצעות שירותים של גוף שלישי
-        prefers_no_tracking_label_desc_we_use: |
-          אנחנו משתמשים במגוון שירותים של גופי צד שלישי על מנת לנטר את יציבות, ולאבחן באגים ובעיות אחרות בתוכנה ששלנו. גופי צד שלישי אלו כוללים
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           המידע שאנו עשויים לחלוק עם גופים אלו כולל
@@ -4896,8 +4910,6 @@ he:
     scopes:
       write: |
         באפשרותך ליצור, לעדכן ולמחוק תצפיות, אמצעי זיהוי ותוכן אחר שלך מטעמך לרבות לגשת לנקודות הציון המוסתרות שלך וכל מידע נוסף שאליו ניתן לגשת באתר.
-      login: |
-        לראות מידע הרלוונטי לכניסה אל שירותים חיצוניים, כמו כתובת מייל, שם משתמש, שם, ואייקון שלך.
       account_delete: |
         למחוק את החשבון שלך.
     errors:

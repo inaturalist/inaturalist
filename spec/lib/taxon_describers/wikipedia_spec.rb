@@ -2,7 +2,6 @@ require "spec_helper"
 
 describe "TaxonDescribers" do
   describe "Wikipedia" do
-
     let(:animalia) { Taxon.make!( name: "Animalia" ) }
     let(:wikipedia) { TaxonDescribers::Wikipedia.new }
 
@@ -33,7 +32,8 @@ describe "TaxonDescribers" do
       expect( cache.request_url ).to eq(
         "https://en.wikipedia.org/w/api.php?page=Animalia&redirects=true&action=parse&format=xml"
       )
-      expect( cache.cached? ).to be true
+      # expect( cache.cached? ).to be true
+      expect( cache ).to be_cached
     end
 
     it "caches the result based on locale" do
@@ -57,6 +57,5 @@ describe "TaxonDescribers" do
       t = Taxon.make!( name: "Some great name" )
       expect( wikipedia.page_url( t ) ).to eq( "https://en.wikipedia.org/wiki/Some_great_name" )
     end
-
   end
 end

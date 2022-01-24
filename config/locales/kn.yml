@@ -507,6 +507,8 @@ kn:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: ಅಪ್ಲಿಕೇಷನ್
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: ಅಪ್ಲಿಕೇಷನ್‍ಗಳು
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -631,12 +633,15 @@ kn:
   back_to_suggestions: ಸಲಹೆಗಳು ಗೆ ಹಿಂದಿರುಗಿ
   back_to_taxon: "%{defaulttaxon} ಗೆ ಹಿಂದಿರುಗಿ"
   back_to_taxon_changes: "ಜೀವಿವರ್ಗದ ಬದಲಾವಣೆಗಳಿಗೆ ಹಿಂದಿರುಗಿ"
+  back_to_users_calendar: "%{user} ದಿನದರ್ಶಿಕೆಗೆ ಹಿಂದಿರುಗಿ"
+  back_to_users_lists: "%{user} ಅವರ ಪಟ್ಟಿಗಳಿಗೆ ಹಿಂದಿರುಗಿ"
   back_to_viewing: "<i>%{taxon}</i> ವೀಕ್ಷಣೆಗೆ ಹಿಂದಿರುಗಿ"
   back_to_x: "%{noun} ಗೆ ಹಿಂದಿರುಗಿ"
   back_to_x_assessment: "%{project} ಮೌಲ್ಯಮಾಪನಗಳಿಗೆ ಹಿಂದಿರುಗಿ"
   back_to_x_history: "%{x} ಇತಿಹಾಸಕ್ಕೆ ಹಿಂದಿರುಗಿ"
   back_to_x_journal: "%{user} ರವರ ನಿಯತಕಾಲಿಕೆಗೆ ಹಿಂದಿರುಗಿ"
   back_to_x_blog: "%{x} ಅವರ ಬ್ಲಾಗ್ ಗೆ ಹಿಂದಿರುಗಿ"
+  back_to_your_calendar: ನಿಮ್ಮ ದಿನದರ್ಶಿಕೆಗೆ ಹಿಂದಿರುಗಿ
   back_to_your_dashboard: ನಿಮ್ಮ ಡ್ಯಾಷ್‍ಬೋರ್ಡ್ ಗೆ ಮರಳಿ
   back_to_your_lists: ನಿಮ್ಮ ಪಟ್ಟಿಗೆ ಹಿಂದಿರುಗಿ
   back_to_your_journal: ನಿಮ್ಮ ನಿಯತಕಾಲಿಕೆಗೆ ಹಿಂದಿರುಗಿ
@@ -759,10 +764,10 @@ kn:
   check_list_for_taxon_html: "%{taxon} ಗಾಗಿ ತಾಳೆಪಟ್ಟಿ"
   check_lists_must_belong_to_a_place: |
     ತಾಳೆಪಟ್ಟಿಗಳು ಒಂದು ಸ್ಥಳಕ್ಕೆ ಸೇರಿರಬೇಕು. ಒಂದು ಹೊಸ ತಾಳೆಪಟ್ಟಿಯನ್ನು ರಚಿಸಲು, ಸ್ಥಳದ ನಿಯೋಜಿತ ತಾಳೆಪಟ್ಟಿಗೆ ಭೇಟಿನೀಡಿ ಮತ್ತು 'ಹೊಸ ತಾಳೆಪಟ್ಟಿಯನ್ನು ರಚಿಸಿ' ಅನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ.
-  check_list_of_species_occuring_in: ಇಲ್ಲಿ ಇರುವಿಕೆ ತೋರಿರುವ ಪ್ರಭೇದಗಳ ತಾಳೆಪಟ್ಟಿ
   check_list_place: "%{place} ತಾಳೆಪಟ್ಟಿ"
   check_list_updated: ತಾಳೆಪಟ್ಟಿ ನವೀಕರಣಗೊಂಡಿದೆ!
   check_lists_for: "%{place} ಗಾಗಿ ಇತರೇ ತಾಳೆಪಟ್ಟಿಗಳು"
+  check_out_the_inat_store: iNaturalist ಮಳಿಗೆಗೆ ಭೇಟಿ ನೀಡಿ
   check_out_what_the_observation: ನೀವು ಗುರುತಿಸಲು ಪ್ರಯತ್ನಿಸುತ್ತಿರುವ ವೀಕ್ಷಣೆಯು ಯಾವ ರೀತಿ ಕಾಣುವುದೆಂದು ಒಮ್ಮೆ ಗಮನಿಸಿ.
   checklist: ತಾಳೆಪಟ್ಟಿ
   choose_a_field: ಆವರಣವೊಂದನ್ನು ಆರಿಸಿ
@@ -792,6 +797,7 @@ kn:
   columns: ಉದ್ದಸಾಲುಗಳು
   combine: ಜೋಡಿಸಿ
   comma_separated_please: ದಯವಿಟ್ಟು, ಕಾಮಾ-ವಿಭಜಿತ,
+  #Noun, used to label a comment or a comment field in a form
   comment: ಅಭಿಪ್ರಾಯ
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: ಅಭಿಪ್ರಾಯ
@@ -1266,6 +1272,7 @@ kn:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: ದೇಣಿಗೆ ನೀಡಿ
+  donate_again_today_caps: ಇಂದು ಮತ್ತೊಮ್ಮೆ ದೇಣಿಗೆ ನೀಡಿ
   done: ಸಂಪನ್ನವಾಗಿದೆ
   dont_have_an_account_sign_up_html: ಖಾತೆ ಇಲ್ಲವೇ? <strong>ನೋಂದಾಯಿಸಿಕೊಳ್ಳಿ.</strong>
   dont_send_me_email: "ನನಗೆ ಯಾವುದೇ ಮಿಂಚೆ ಕಳುಹಿಸಬೇಡಿ!"
@@ -1378,11 +1385,12 @@ kn:
   establishment_means: ನೆಲೆಯ ವಿಧಾನ
   establishment_means_describes_how: |
     ಜೀವಿವರ್ಗವು ಪ್ರದೇಶವೊಂದರಲ್ಲಿ ಬಂದು ಹೇಗೆ ನೆಲೆಸಿತು ಎಂಬುದನ್ನು ನೆಲೆಯ ವಿಧಾನವು ವಿವರಿಸುತ್ತದೆ. <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">ಪರಿಭಾಷೆಯ ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ಮಾಹಿತಿ</a>ಗಾಗಿ ಡಾರ್ವಿನ್‍ಕೋರ್ ಅನ್ನು ನೋಡಿ.
+  establishment_means_descriptions:
+    endemic: ಸ್ಥಳೀಯವಾಗಿದೆ ಹಾಗೂ ಮತ್ತೆ ಎಲ್ಲೂ ಕಂಡುಬರುವುದಿಲ್ಲ
   event_in_progress: ಕಾರ್ಯಕ್ರಮ ಪ್ರಗತಿಯಲ್ಲಿದೆ
   event_stats: ಕಾರ್ಯಕ್ರಮದ ಅಂಕಿಅಂಶಗಳು
   event_url: ಕಾರ್ಯಕ್ರಮದ URL
   events_only: ಕಾರ್ಯಕ್ರಮಗಳು ಮಾತ್ರ
-  every_species_seen_by: ಇವರ ಮೂಲಕ ವೀಕ್ಷಣೆಯಾದ ಎಲ್ಲಾ ಪ್ರಭೇದಗಳು
   everyone: ಎಲ್ಲರೂ
   everyone_: ಎಲ್ಲರೂ
   everyone_journal_posts: ಇದು ಎಲ್ಲರ ನಿಯತಕಾಲಿಕೆ ಲೇಖನಗಳು
@@ -2174,6 +2182,9 @@ kn:
   most_observed_threatened_species: ಅತಿಹೆಚ್ಚು ವೀಕ್ಷಿಸಿರುವ ಅಪಾಯದಂಚಿನಲ್ಲಿರುವ ಪ್ರಭೇದಗಳು
   multiple: ಹಲವಾರು
   multiple_select_option: '--ಹಲವಾರು--'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: '%{project} ಪ್ರಾಯೋಜನೆಯಲ್ಲಿರಲೇಬೇಕು'
   must_be_in_taxon: '%{taxon} ಜೀವಿವರ್ಗದಲ್ಲಿರಲೇಬೇಕು'
   must_be_not_in_taxon: '%{taxon} ಜೀವಿವರ್ಗದಲ್ಲಿರಲೇಬಾರದು'
   must_be_not_observed_by_user: '%{user} ಅವರಿಂದ ವಿಕ್ಷಣೆಯಾಗಿರಲೇಬಾರದು'
@@ -2405,6 +2416,10 @@ kn:
   observation_brief_something_on_day_at_time: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ ಒಂದಿಷ್ಟು"
   observation_brief_something_on_day_at_time_by_user: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
   observation_brief_something_on_day_by_user: "%{day} ರಂದು %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "%{month} %{year} ನಲ್ಲಿ ಒಂದಿಷ್ಟು"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "%{month} %{year} ನಲ್ಲಿ %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
   observation_brief_something_by_user: "%{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
   observation_brief_something_from_place: "%{place} ನಲ್ಲಿ ಒಂದಿಷ್ಟು"
   observation_brief_something_from_place_by_user: "%{place} ನಲ್ಲಿ %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
@@ -2412,10 +2427,18 @@ kn:
   observation_brief_something_from_place_on_day_by_user: "%{place} ನಲ್ಲಿ %{day} ರಂದು %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
   observation_brief_something_from_place_on_day_at_time: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{place} ನಲ್ಲಿ ಒಂದಿಷ್ಟು"
   observation_brief_something_from_place_on_day_at_time_by_user: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{place} ನಲ್ಲಿ %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "%{place} ಇಲ್ಲಿಂದ %{month} %{year} ನಲ್ಲಿ ಒಂದಿಷ್ಟು"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "%{place} ಇಲ್ಲಿಂದ %{month} %{year} ನಲ್ಲಿ %{user} ಮೂಲಕ ಒಂದಿಷ್ಟು"
   observation_brief_taxon_on_day: "%{day} ರಂದು %{taxon}"
   observation_brief_taxon_on_day_at_time: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{taxon}"
   observation_brief_taxon_on_day_at_time_by_user: "%{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{user} ಮೂಲಕ %{taxon}"
   observation_brief_taxon_on_day_by_user: "%{day} ರಂದು %{user} ಮೂಲಕ %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{month} %{year} ನಲ್ಲಿ %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{month} %{year} ನಲ್ಲಿ %{user} ಮೂಲಕ %{taxon}"
   observation_brief_taxon_by_user: "%{user} ಮೂಲಕ %{taxon}"
   observation_brief_taxon_from_place: "%{place} ನಲ್ಲಿ %{taxon}"
   observation_brief_taxon_from_place_by_user: "%{place} ನಲ್ಲಿ %{user} ಮೂಲಕ %{taxon}"
@@ -2423,6 +2446,10 @@ kn:
   observation_brief_taxon_from_place_on_day_by_user: "%{place} ನಲ್ಲಿ %{day} ರಂದು %{user} ಮೂಲಕ %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time: "%{place} ನಲ್ಲಿ %{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{place} ನಲ್ಲಿ %{day} ರಂದು %{time} ಸಮಯದಲ್ಲಿ %{user} ಮೂಲಕ %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{place} ಇಲ್ಲಿಂದ %{month} %{year} ನಲ್ಲಿ %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{place} ಇಲ್ಲಿಂದ %{month} %{year} ನಲ್ಲಿ %{user} ಮೂಲಕ %{taxon}"
   observations_by_category: "ವಿಭಾಗಗಳ ಪ್ರಕಾರ ವೀಕ್ಷಣೆಗಳು"
   observations_by_app: ಆಪ್ ಮೂಲಕ ಆದ ವೀಕ್ಷಣೆಗಳು
   observations_by_rank: ಶ್ರೇಣಿಗಳ ಪ್ರಕಾರ ವೀಕ್ಷಣೆಗಳು
@@ -2545,6 +2572,8 @@ kn:
     youve_got_updates_panel_title: ನಿಮಗೆ ನವೀಕರಣಗಳಿವೆ!
     youve_got_updates_panel_body_p1: ಈ ಕೆಳಗಿನವುಗಳ ನವೀಕರಣದಿಂದ ಪ್ರಸ್ತುತದಿಂದಿರಿ...
   one_by_one: "ಒಂದರ-ನಂತರ-ಇನ್ನೊಂದು"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "ಈ ಕೆಳಕಂಡವುಗಳಲ್ಲಿ ಯಾವುದಾದರೊಂದು ನಿಜವಿರಲೇಬೇಕು:"
   one_of_your_lists: "ನಿಮ್ಮ ಪಟ್ಟಿಗಳಲ್ಲೊಂದು..."
   only_a_project_manager_can_add: ಪ್ರಾಯೋಜನೆಯ ಮೇಲ್ವಿಚಾರಣೆ ಸ್ಥಿತಿಯನ್ನು ಕೇವಲ ಪ್ರಾಯೋಜನೆ ವ್ಯವಸ್ಥಾಪಕರು ಮಾತ್ರ ಸೇರಿಸಬಹುದು
   only_administrators_may_access_that_page: ಆ ಪುಟಕ್ಕೆ ಕೇವಲ ನಿರ್ವಾಹಕರಿಗೆ ಮಾತ್ರ ಪ್ರವೇಶವಿದೆ
@@ -2580,6 +2609,7 @@ kn:
   or_choose_high_level_taxa: "... ಅಥವಾ ಕೆಲವು ಉನ್ನತ-ಮಟ್ಟದ ಜೀವಿವರ್ಗಗಳಿಂದ ಆಯ್ಕೆಮಾಡಿ"
   or_if_you_dont_want_email: "ಅಥವಾ ನಿಮಗೆ ಯಾವುದೇ ಮಿಂಚೆ ಬೇಕಿಲ್ಲ ಎನಿಸಿದ್ದಲ್ಲಿ..."
   orange: ಕಿತ್ತಳೆ
+  order: ಗಣ
   organism_is_wild: ಜೀವಿಯು ವನ್ಯಜೀವಿಯಾಗಿದೆ
   organisms: ಜೀವಿಗಳು
   original: ಮೂಲ
@@ -3487,13 +3517,13 @@ kn:
   rules_and_formatting: "ನಿಯಮಗಳು ‍& ನಮೂನೆಗಳು"
   rules_for_adding_observations: ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಲು ನಿಯಮಗಳು
   rules_for_becoming_a_member: ಸದಸ್ಯರಾಗಲು ನಿಯಮಗಳು
-  rules_for_becoming_memner: ಸದಸ್ಯರಾಗಲು ನಿಯಮಗಳು
   rules_types:
     must_be_identified: ಗುರುತಿಸುವಿಕೆಯ ಅಗತ್ಯವಿದೆ
     must_be_on_list: ಪಟ್ಟಿಯಲ್ಲಿರಲೇಬೇಕು
     must_be_observed_in_place: ಸ್ಥಳದಲ್ಲಿ ವೀಕ್ಷಣೆಯಾಗಿರಲೇಬೇಕು
     must_be_in: ಜೀವಿವರ್ಗದಲ್ಲಿರಲೇಬೇಕು
     must_be_coordinates_shareable_by_project_curators: ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನೋಡಲು ಪ್ರಾಯೋಜನೆಯ ಮೇಲ್ವಿಚಾರಕರಿಗೆ ವೀಕ್ಷಕರು ಅನುಮತಿಸಲೇಬೇಕು.
+    must_be_verifiable: ಪರಿಶೀಲಿಸಬಲ್ಲದಾಗಿರಬೇಕು
   running_total: ಕ್ರೋಢೀಕೃತ ಮೊತ್ತ
   said: ಹೇಳಿದ್ದಾರೆ
   satellite: ಉಪಗ್ರಹ
@@ -4245,6 +4275,7 @@ kn:
   users_favorites: "%{user} ಅವರ ಮೆಚ್ಚಿನವುಗಳು"
   users_highlights_and_stats_from_year_on_site: "%{user} ಅವರ %{year} ನಲ್ಲಿನ %{site} ನ ಮುಖ್ಯಾಂಶಗಳು ಮತ್ತು ಅಂಕಿಅಂಶಗಳು"
   users_id: "%{user} ರ ID"
+  users_journal: "%{user} ರ ನಿಯತಕಾಲಿಕೆ"
   users_latest_observations_on_site: "%{site} ನಲ್ಲಿ %{user} ಅವರ ಇತ್ತೀಚಿನ ವೀಕ್ಷಣೆಗಳು"
   users_profile: "%{user} ರ ಪರಿಚಯ"
   users_projects: "%{user} ಅವರ ಪ್ರಾಯೋಜನೆಗಳು"
@@ -4444,6 +4475,13 @@ kn:
   yes_reject_it: ಹೌದು, ಇದನ್ನು ತಿರಸ್ಕರಿಸಿ
   yes_show_this_in_the_box: ಹೌದು, ಜೀವಿವರ್ಗಗಳ ಮೇಲಿನ ದೊಡ್ಡ ಪೆಟ್ಟಿಗೆಯಲ್ಲಿ ಇದನ್ನು ಪ್ರದರ್ಶಿಸಿ
   yesterday: ನೆನ್ನೆ
+  yir_donate_banner_inaturalist_in_year: "%{year} ನೇ ವರ್ಷದಲ್ಲಿ INATURALIST"
+  #"You" is singular
+  yir_donate_banner_all_thanks: ನಿಮ್ಮಂಥ ಎಲ್ಲಾ ವ್ಯಕ್ತಿಗಳಿಗೆ ಧನ್ಯವಾದಗಳು!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: ಈ ವರ್ಷ iNaturalist ನ ಅಭಿವೃದ್ಧಿಗೆ ನೀವು ಸಹಕರಿಸಿದ್ದೀರಿ. ಧನ್ಯವಾದಗಳು!
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist ಗೆ ನಿಮ್ಮ ಸಹಾಯದ ಅಗತ್ಯವಿದೆ
   you: ನೀವು
   you_: ನೀವು
   you_appear_offline_try_again: |
@@ -4723,10 +4761,10 @@ kn:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: '%{application} ಗೆ ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಬಳಸಲು ಅನುಮತಿಸುವಿರಾ?'
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: '%{application} ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ವಿವರ'
     observations:
@@ -4980,7 +5018,6 @@ kn:
         please_specify_the_requirements: |
           ಈ ಪ್ರಾಯೋಜನೆಗೆ ಸೇರಿಸಬೇಕಾಗಿರುವ ವೀಕ್ಷಣಾ ಅಪೇಕ್ಷಣೆಗಳನ್ನು ದಯವಿಟ್ಟು ಸೂಚಿಸಿ.
         project_background_color: ಪ್ರಾಯೋಜನೆ ಸಾರಾಂಶದ ಹಿನ್ನೆಲೆ ಬಣ್ಣ
-        project_banner: ಪ್ರಾಯೋಜನೆ ಬ್ಯಾನರು (PNG, JPG, ಅಥವಾ GIF)
         project_banner_help: ಐಚ್ಛಿಕ ಬ್ಯಾನರ್ ಚಿತ್ರ. ಸೂಕ್ತವಾದ ಅಳತೆ 760px by 320px
         project_details: ಪ್ರಾಯೋಜನೆಯ ವಿವರಗಳು
         project_icon: ಪ್ರಾಯೋಜನೆ ಐಕಾನ್ (PNG, JPG, ಅಥವಾ GIF)

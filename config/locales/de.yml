@@ -552,6 +552,8 @@ de:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Anwendungssoftware
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Apps
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -712,6 +714,8 @@ de:
   batch_operations: Stapeloperationen
   be_the_first_to_fave_this_observation: Sei der erste, der diese Beobachtung favorisiert!
   because_of: because of
+  become_a_donor_caps: Unterstützer werden
+  become_a_donor_today_caps: Werde heute ein Unterstützer
   before_importing_photos: vor dem Importieren von Bildern
   bg_color: Hintergrundfarbe
   bio: Über mich
@@ -837,14 +841,14 @@ de:
   check_here_to_autoload_photos: Wähle dies aus, wenn Fotos von Flickr automatisch geladen werden sollen. Du solltest es abwählen, wenn der wissenschaftliche Name eines Taxons auch ein nichtwissenschaftliches Wort (z.B. "Mus") oder eine häufige Falschschreibung ist.
   check_list: Checkliste
   check_list_description: Wähle ein höherstufiges Taxon, wie "Aves" für Vögel oder "Amphibia" für Lurche aus, das du in dieser Liste anzeigen möchtest. Wenn gesetzt, erlaubt diese Liste keine Taxa, die nicht in diesem Taxon enthalten sind. Zum Beispiel, wenn du eine Liste mit Vögeln erstellt, wirst dort keine Frösche hinzufügen können.
-  check_list_for_individual_taxa_that: 'Checklisten für individuelle Taxa die hier leben, wie "Vögel in %{place}".'
+  check_list_for_individual_taxa_that: 'Checklisten für das Vorkommen individueller Taxa, wie z.B. "Vögel in %{place}".'
   check_list_for_taxon_html: "Checkliste für %{taxon}"
   check_lists_must_belong_to_a_place: |
     Checklisten müssen zu einem Gebiet gehören. Um eine neue Checkliste zu erstellen, rufe die Standardprüfliste des Ortes auf und klicke auf die Verknüpfung "Neue Checkliste erstellen".
-  check_list_of_species_occuring_in: Checkliste von Arten vorkommend in
   check_list_place: "Checkliste von %{place}"
   check_list_updated: Checkliste aktualisiert!
   check_lists_for: "Andere Checklisten für %{place}"
+  check_out_the_inat_store: Schau dir den iNaturalist-Store an
   check_out_what_the_observation: Schau dir an, wie die Beobachtung, die Du identifizieren möchtest, aussieht.
   check_this_box_if_html: |
     Wähle dies aus, wenn Du Deine Fotos unter die <a
@@ -882,6 +886,7 @@ de:
     Komma-separierte Liste von Tracking-Codes. Füge diese hinzu, um einen Tracking-Code anzuhängen, wenn Personen auf das neue Beobachtungsformular weitergeleitet werden sollen, z.B. %{root_url}observations/new?project_id=%{project_id}&tracking_code=deincode123.
     Damit kann die Beteiligung aus verschiedenen Quellen verfolgt werden. Auf diese Codes kannst du zugreifen, wenn die Beobachtungen des Projekts als CSV heruntergeladen werden.
   comma_separated_please: müssen durch Kommas getrennt sein
+  #Noun, used to label a comment or a comment field in a form
   comment: Kommentar
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentar
@@ -977,6 +982,8 @@ de:
       Organisation, die diesen Status deklariert hat. Du kannst dies überspringen, wenn *du* als Autorität aufgeführt werden möchtest.
     place: Dieser Status ist auf dieses Gebiet beschränkt.
     url: URL für eine Seite, die diesen Status beschreibt.
+    geoprivacy: |
+      Standardgeoprivität für Beobachtungen dieses Taxons. Beachte, dass der Schutzstatus, der innerhalb eines Kontinents, Landes oder Bundeslandes besteht, die Geoprivität der darüber liegenden Kategorie überschreiben kann.
     iucn: |
       Äquivalenter IUCN-Code der Roten Liste. Dies ist nicht die tatsächliche IUCN-Bewertung,
       nur der IUCN-Code, der am besten mit der Bedrohung der Offenlegung der Koordinaten
@@ -1277,7 +1284,7 @@ de:
   date_: Datum
   date_added: Hinzugefügt
   date_authorized: Autorisierungsdatum
-  date_created: Datum erstellt
+  date_created: Erstelldatum
   date_format:
     date_long:
       january: '%{day}. Januar %{year}'
@@ -1452,6 +1459,8 @@ de:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: SPENDEN
+  donate_again_caps: Spende noch einmal
+  donate_again_today_caps: SPENDE JETZT
   done: Fertig
   dont_have_an_account_sign_up_html: Du hast noch keinen Account? <br><strong>Hier registrieren</strong>
   dont_send_me_email: "Sende mir keine E-Mails!"
@@ -1478,6 +1487,8 @@ de:
   each_place_displays_all_species_inat_knows: "Jede Gebietsseite zeigt alle Arten, die %{site_name} von diesem Ort kennt, einschließlich Informationen über deren Häufigkeit und Erhaltungszustand und wer als erster eine Art von diesem Ort auf %{site_name} beobachtet hat. Du kannst Arten nach taxonomischer Gruppe, Farbe, Erhaltungszustand filtern oder die einfache alte Suche nutzen."
   earliest_added: Zuerst hinzugefügt
   edit: Bearbeiten
+  #Title of the moderation note editor
+  edit_moderator_note: Moderatornotiz bearbeiten
   edit_a_batch_of_observations: Batch-Bearbeitung von Beobachtungen
   edit_account_settings_and_profile: "Kontoeinstellungen &amp; Profil bearbeiten"
   edit_assessment: Bewertung bearbeiten
@@ -1578,7 +1589,6 @@ de:
   event_stats: Ereignisstatistiken
   event_url: Ereignis-URL
   events_only: Nur Ereignisse
-  every_species_seen_by: Jede Art gesehen von
   everyone: jeder
   everyone_: Jeder
   everyone_journal_posts: Alle Journal-Beiträge
@@ -1604,7 +1614,6 @@ de:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Externe Anwendungen
-  external_applications_description: Externe Anwendungen sind Softwareanwendungen von Drittanbietern, die in deinem Namen auf dein iNaturalist-Konto zugreifen dürfen. Im Allgemeinen können sie alles mit deinem Konto tun, was du kannst, also stelle sicher, dass du den App-Entwicklern vertraust, bevor du ihnen die Erlaubnis erteilst.
   external_taxon_including_children: Externes Taxon (einschließlich Nachfahren)
   extinct: ausgestorben
   extinct_in_the_wild: in der Natur ausgestorben
@@ -1689,7 +1698,9 @@ de:
   flag_as_non_spammer: Als Nicht-Spammer markieren
   #Label for the date/time when a flag was created
   flag_created: Meldung berichtet
+  flag_deleted: Meldung gelöscht
   flag_description: Melde diesen Inhalt, um Kuratoren wissen zu lassen, dass etwas nicht stimmt (Begründung am besten auf englisch verfassen).
+  flag_comment_description: Erläutere in einem optionalen Kommentar den Sachverhalt näher und füge ggf. einen unterstützenden Link hinzu.
   flag_for_check_list_title_html: |
     Meldung für die Checkliste: %{title}
   flag_for_comment_id_html: Meldung dieses <a href="%{url}">Kommentars %{id}</a>
@@ -1814,7 +1825,7 @@ de:
   go: Los
   go_back: Zurück gehen
   going_to_your_observations: Gehe zu Deinen Beobachtungen...
-  good_choice_for_sharing: Gute Auswahl zum teilen mit Wissenschaftler
+  good_choice_for_sharing: Gute Wahl zum Teilen für wissenschaftliche Zwecke
   google: Google
   google_maps_not_loaded_error: |
     Google Maps konnte nicht gestartet werden. Möglicherweise wurde der Zugriff auf Google Maps
@@ -2088,7 +2099,6 @@ de:
   leading: initiativ
   learn: Lernen
   learn_about_the_species_live_in: 'Lerne mehr über die Arten, die hier leben:'
-  learn_about_third_party_tracking: Erfahre mehr über das Tracking von Drittanbietern
   learn_more: Mehr erfahren
   learn_more_raquo: "Mehr erfahren &raquo;"
   learn_what_these_licenses_mean: Erfahre hier, was diese Lizenzen bedeuten
@@ -2339,7 +2349,7 @@ de:
   make_curator: Kurator machen
   make_manager: Zum Manager machen
   make_sure_the_default_photo_looks_good: Vergewissere dich, dass das Standardfoto in großer Größe gut aussieht.
-  make_this_your_default_license: "Mach dies zu deiner Standard-%{type}-Lizenz."
+  make_this_your_default_license: "Zu deiner Standard-%{type}-Lizenz machen"
   make_this_the_primary_listing: "Dies zur primären Auflistung machen"
   mammals: Säugetiere
   manage_all_your_subscriptions: Alle deine Abos verwalten
@@ -2519,6 +2529,9 @@ de:
   multiple_select_option: '--mehrfach--'
   multiple_taxa_for_taxon_change: "Mehrere Taxa (Eingabe zum Tausch/Zusammenführen, Ausgabe zum Auftrennen)"
   multiple_taxon_ids_separated_by_commas: 'Mehrere Taxon-IDs getrennt durch Kommas, z.B. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: muss im Projekt %{project} sein
   must_be_in_taxon: muss im Taxon %{taxon} sein
   must_be_not_in_taxon: darf nicht im Taxon %{taxon} sein
   must_be_not_observed_by_user: darf nicht von %{user} beobachtet worden sein
@@ -2589,7 +2602,7 @@ de:
   new_announcement: Neue Ankündigungen
   new_assessment: Neue Bewertung
   new_check_list: Neue Checkliste
-  new_check_list_for: "Eine neue Checkliste für %{place} &raquo; erstellen"
+  new_check_list_for: "Eine neue Checkliste für %{place} erstellen"
   new_check_list_record: "Wenn du diese Liste als <em>umfassend</em> markieren möchtest, erstellen sie, füge die Taxa hinzu, und dann bearbeite es. Dann hast du die Möglichkeit, es hier als 'umfassend' zu kennzeichnen."
   new_comment_on_a_parent_by_user_link: Ein neuer Kommentar zu @vow_or_con{vow:einer|einer} %{parent} von %{user_link}
   new_flag_for: Neue Meldung für
@@ -2896,7 +2909,7 @@ de:
   observed: Beobachtet
   observed_by: Beobachtet von
   observed_on: Gesehen am
-  observer: Beobachter
+  observer: beob. von
   observers: Beobachter
   observer_prefers_no_project_addition: |
     Beobachter erlaubt es anderen Personen nicht, ihre Beobachtungen zu Projekten hinzuzufügen.
@@ -2961,6 +2974,8 @@ de:
       <li><strong>Diskussionen, an denen du teilgenommen hast:</strong> Das Kommentieren oder Hinzufügen von Bestimmungen zum Inhalt eines anderen Benutzers hat zur Folge, dass du automatisch über jede neue Aktivität zu diesem Inhalt benachrichtigt wirst. Benutze die Schaltfläche 'Abonnements verwalten', um keine Updates mehr zu erhalten.</li>
       </ul>
   one_by_one: "einer nach dem anderen"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "Einer der folgenden Punkte muss zutreffen:"
   one_of_your_lists: "einer deiner Listen..."
   only_a_project_manager_can_add: Nur ein Projektmanager kann den Status eines Projektkurators hinzufügen.
   only_administrators_may_access_that_page: Nur Administratoren dürfen auf diese Seite zugreifen
@@ -3958,7 +3973,6 @@ de:
   rules_and_formatting: "Regeln & Formatierung"
   rules_for_adding_observations: Regeln für das Hinzufügen von Beobachtungen
   rules_for_becoming_a_member: Regeln für die Mitgliedschaft
-  rules_for_becoming_memner: Regeln für die Mitgliedschaft
   rules_types:
     must_be_captive: muss in Haltung/kultiviert sein
     must_be_georeferenced: muss georeferenziert sein
@@ -3967,6 +3981,7 @@ de:
     must_be_observed_in_place: muss im Gebiet beobachtet worden sein
     must_be_in: 'muss in diesem Taxon sein:'
     must_be_coordinates_shareable_by_project_curators: Der Beobachter muss den Projektkuratoren erlauben, die Koordinaten einzusehen.
+    must_be_verifiable: muss verifizierbar sein
   running_total: Gesamtzahl
   said: sagte
   satellite: Satellit
@@ -4270,7 +4285,7 @@ de:
   species_unknown: Art unbekannt
   specify_the_reason_youre_flagging: Gib den Grund an, warum du diesen Eintrag meldest
   #Abbreviation for "source"
-  src: aus
+  src: Quelle
   standard: Standard
   start: Beginn
   start_a_new_project: Neues Projekt beginnen
@@ -4321,12 +4336,8 @@ de:
   subscribe_to_observations_from_this_place_html: Beobachtungen von diesem Ort <a>abonnieren</a>
   subscribe_to_observations_in_a_taxon: Abonniere alle Beobachtungen einer Art oder Gruppe von Organismen (z.B. "Heuschrecken").
   subscribe_to_observations_in_a_place: Abonniere alle in diesem Gebiet veröffentlichten Beobachtungen. Du kannst auch einen optionalen Taxonfilter hinzufügen (z.B. 'Moose aus Baden-Württemberg').
-  subscribe_to_places_to: |
-    Du kannst bestimmte Gebiete abonnieren, um über neue Beobachtungen informiert zu werden, die dort gemacht wurden.
-    Mittels Abonnements siehst du auch die Aktivitäten von Personen, denen du folgst, und Sachen,
-    die du kommentiert hast. Um zu sehen, was du abonniert hast, und um Abonnements abzubestellen,
-    klicke unten auf „Verwalte deine Abonnements“. Du kannst auch einzelne Abonnements abbestellen,
-    indem du die jeweilige Seite aufrufst.
+  subscribe_to_places_help: |
+    Durch Abonnements bestimmst du, welche Updates und Dashboard-Meldungen dir angezeigt werden. Wenn du zum Beispiel ein Taxon abonnierst, siehst du entsprechend aktuelle Beobachtungen auf deinem Dashboard. Beobachtungen, die du kommentierst oder zu welchen du Bestimmungen abgibst, werden automatisch abonniert.
   subscribe_to_this: Abonnieren
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Abonniere</a>
@@ -4594,7 +4605,6 @@ de:
   these_folks_kindly_volunteer_to: Diese Personen engagieren sich freiwillig, um unsere Taxonomie zu pflegen und sich mit anderen Problemen zu befassen.
   these_observations_have_not_been_uploaded_yet: |
     Diese Beobachtungen wurden noch nicht hochgeladen.
-  third_party_tracking: Drittanbieter-Tracking
   third_person_possessive_singular: "%{noun} von %{object_phrase}"
   this: dies
   this_bioblitz_beings_in: Dieser Bioblitz beginnt in
@@ -4636,8 +4646,8 @@ de:
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Dadurch wird iNaturalist die Möglichkeit entzogen, in deinem Namen
     auf dieses Konto zuzugreifen, solange bis der Zugriff erneut gewährt wurde. Möglicherweise müssen deine Einstellungen auf der externen Seite auch geändert werden, um den Zugriff vollständig zu verhindern.
-  #Application is a third-party app or service the user has authorized to
-  #access their iNat account
+  #Application is an app or service the user has authorized to access their
+  #iNat account
   this_will_sign_you_out_current_session: Dies wird dich von deiner aktuellen Sitzung in dieser Anwendung abmelden.
   this_will_try_to_add_tags_to_your_flickr: Dies wird versuchen, deinen Flickr-Bildern Tags hinzuzufügen.  Fortfahren?
   this_year: Dieses Jahr
@@ -4699,6 +4709,7 @@ de:
   type_taxon_name: "Name des Taxons eingeben"
   uicn_red_list_status: "Rote-Listen-Status der IUCN"
   umbrella_projects: Dach-Projekte
+  unable_to_save_comment: Leider konnten wir den Kommentar nicht speichern.
   unblock: Entsperren
   unclassified: Nicht klassifiziert
   ungrafted_taxa: nicht zugeordnete Taxa
@@ -4731,7 +4742,7 @@ de:
   update_existing_photos_with_new_license: Bestehende Bilder mit der neuen Lizenzauswahl aktualisieren
   update_existing_sounds_with_new_license: Bestehende Sounds mit der neuen Lizenzauswahl aktualisieren
   update_observations: Beobachtungen aktualisieren
-  update_past: "Letzten %{type} aktualisieren"
+  update_past: "Einstellungen der %{type} aktualisieren"
   update_photos: Fotos aktualisieren
   update_search: Suche aktualisieren
   update_selected_taxa: Ausgewählte Taxa aktualisieren
@@ -4845,7 +4856,7 @@ de:
     <strong>%{user}</strong> ist jetzt ein Kurator für %{project}
   user_muted: Benutzer gesperrt
   user_observed_on_on_date_in_place: |
-    %{user} beobachtete dies am %{date} in %{place}
+    Von %{user} beobachtet am %{date} in %{place}
   user_suggested_an_id: "%{user} hat eine Bestimmung (ID) vorgeschlagen"
   user_thinks_yours_is: "%{user} %{noun} deine Beobachtung %{observation} ist"
   user_trusts_you_with_their_private_coordinates: "%{user} vertraut Dir seine/ihre verborgenen Koordinaten an"
@@ -5085,6 +5096,30 @@ de:
   yes_reject_it: Ja, ablehnen!
   yes_show_this_in_the_box: Ja, zeige dies in der großen Box oben auf /taxa an
   yesterday: Gestern
+  yir_donate_banner_inaturalist_in_year: "INATURALIST %{year}:"
+  yir_donate_banner_reaching_millions: Erreicht Millionen. Macht Biodiversität sichtbar in globaler Zusammenarbeit.
+  #"You" is singular
+  yir_donate_banner_all_thanks: Alles dank solcher Menschen wie dir!
+  #"You" is singular
+  yir_donate_banner_inaturalist_thrives: iNaturalist hat Erfolg dank Leuten wie dir!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Du hast iNaturalist geholfen, dieses Jahr zu gedeihen. Vielen Dank!
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist braucht deine Unterstützung
+  yir_generating_and_sharing: |
+    Das Generieren und Bereitstellen von bedeutsamen Daten zur biologischen Vielfalt in dieser beispiellosen Größe und Geschwindigkeit bringt steigende Kosten mit sich
+  yir_millions_of_people_used_inaturalist: |
+    Millionen von Menschen haben iNaturalist und Seek in diesem Jahr benutzt, um
+    sich mit der Natur zu verbinden
+  yir_thank_your_for_being_generous: |
+    Vielen Dank für deine Zeit, Aufmerksamkeit, Fachwissen und deine
+    Spenden! iNaturalist ist eine gemeinnützige Initiative der
+    California Academy of Sciences und der National Geographic Society. Das
+    Programm beruht auf zahlreichen Zuschüssen und Spenden, einschließlich karitativer Geschenke
+    von weniger als einem winzigen Bruchteil der Gemeinschaft. Besonders dankbar sind wir
+    den monatlichen Unterstützern, deren wiederkehrenden Beiträge uns bei der Planung für die Zukunft helfen.
+  yir_your_gift_sustains: |
+    Deine Unterstützung trägt zur Fortsetzung dieses Projekts von globaler Reichweite und tiefgreifender persönlicher und ökologischer Bedeutung bei
   you: Dir
   you_: Du
   you_appear_offline_try_again: |
@@ -5494,13 +5529,13 @@ de:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: '%{application} autorisieren, um dein Konto zu verwenden?'
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "Diese Anwendung kann:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Mehr über %{application}
     observations:
@@ -6132,7 +6167,6 @@ de:
           diesem Projekt an.
         project_background_color: Projektübersicht Hintergrundfarbe
         project_background_color_help: Achte darauf, dass eine Farbe dunkel genug ist, so dass der weiße überlagerte Text lesbar ist.
-        project_banner: Projektbanner (PNG, JPG oder GIF)
         project_banner_help: Optionales Banner. Ideale Abmessungen sind 760px x 320px.
         project_details: Projektdetails
         project_icon: Projektsymbol (PNG, JPG oder GIF)
@@ -6541,6 +6575,8 @@ de:
       delete:
         by_deleting_your_account_you_will_remove: |
           Durch das Löschen deines Kontos wirst du entfernen:
+        caching: |
+          Wenn du dein Konto löschen möchtest, weil du versucht hast, bestimmte Inhalte zu löschen, aber sie trotzdem noch auf einer Karte oder anderswo im Internet siehst, bedenke, dass Kartendaten bis zu einem Tag zwischengespeichert werden, auch nachdem Datensätze gelöscht wurden, und dass das Löschen von Inhalten auf dieser Plattform möglicherweise keine Auswirkungen auf Kopien hat, die auf anderen Websites und Plattformen existieren (wie GBIF).
         x_observations_html:
           one: |
             <strong class="count">%{count} Beobachtung</strong>,
@@ -6586,7 +6622,6 @@ de:
         you_must_enter_confirmation_code_in_the_form: |
           Du musst %{confirmation_code} in das Formular eingeben, um dein Konto löschen zu können
       edit:
-        about_third_party_tracking: Über das Tracking von Drittanbietern
         blocking_desc_html: |
           <p>
           Das Blockieren von Personen hindert sie daran, dir Nachrichten zu senden, deine Beobachtungen zu kommentieren, deine Beobachtungen zu identifizieren und anderweitig mit dir auf %{site_name} zu interagieren. Es entfernt auch deren Beobachtungen aus deinen Suchergebnissen und deine Beobachtungen aus ihren Suchergebnissen. Es macht dich jedoch nicht unsichtbar für sie. Sie können immer noch deine Beobachtungen finden und dein Profil ansehen, sie können einfach nicht mit dir interagieren.
@@ -6683,10 +6718,6 @@ de:
           %{site_name} berücksichtigt deine IDs zu deinen Beobachtungen und ebenso, welche Bestimmungen andere Benutzer zu deinen Beobachtungen abgeben. Die Identifikation, die wir mit Datenpartnern teilen, ist die Community-Identifikation (der gemeinsame Nenner aus allen IDs), aber wenn du nicht der Meinung bist, dass die Meinung der Community jemals deine eigene überstimmen sollte, kannst du hier dagegen entscheiden. Die Leute werden immer noch in der Lage sein, Bestimmungen hinzuzufügen, aber die Meinung der Community wird gegenüber deiner nicht bevorzugt. Das bedeutet, dass deine Beobachtungen nicht "Forschungsqualität" erhalten, es sei denn, du stimmst der Mehrheit zu.
         prefers_coordinate_interpolation_protection_desc: |
           Wenn du die Geo-Privatsphäre einer Beobachtung auf "verdeckt" oder "privat" stellst, wird das die Einstellungen aller deiner anderen Beobachtungen vom gleichen Tag ebenfalls betreffen. Damit wird es für andere Personen schwieriger, die wahren Koordinaten herauszufinden aufgrund deiner anderen Beobachtungen in der Nähe
-        prefers_no_tracking_label: Keine Stabilitäts- und Nutzungsdaten mit Hilfe von Diensten durch Dritte erfassen
-        prefers_no_tracking_label_desc_we_use: |
-          Wir verwenden verschiedene Dienste von Drittanbietern, um die Stabilität zu überwachen und
-          Fehler und Probleme in unserer Software zu diagnostizieren. Zu diesen Drittanbietern gehören
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Informationen, die wir mit diesen Drittanbitern teilen könnten, beinhalten
@@ -6696,8 +6727,6 @@ de:
           Absturzdetails, z.B. welche Codezeile einen Absturz verursacht hat
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Gerätedetails, wie der Hersteller und das Modell eines Mobiltelefons
-        prefers_no_tracking_label_desc_value_html: |
-          <strong>Diese Dienstleistungen von Drittanbietern sind für uns von enormem Wert</strong> um die Aufrechterhaltung der Stabilität und Nutzbarkeit von iNaturalist mit unserer relativ kleinen Anzahl an Mitarbeitern zu gewährleisten. Auf mobilen Geräten gibt es fast keine andere Möglichkeit, Erkenntnisse über aufgetretene Probleme zu gewinnen, da die Software auf Geräten läuft, die wir nicht verwalten. Manchmal sind wir uns nicht einmal darüber im Klaren, dass solche Probleme überhaupt auftreten, bis wir sie in den Daten sehen, die diese Dienste zur Verfügung stellen. <strong>Indem du diese Informationen teilst, hilfst du uns dabei, dich und die gesamte iNaturalist-Gemeinschaft besser zu unterstützen.</strong>
         prefers_no_tracking_label_desc_limits: |
           Beachte, dass diese Option nur für Analyse- und Absturzdaten gilt, die wir bewusst an diese Unternehmen senden. Alle iNaturalist-Server werden von Microsoft zur Verfügung gestellt und verwaltet, alle iNaturalist-Fotos befinden sich auf Servern von Amazon, und fast alle iNaturalist-Karten werden von Google zur Verfügung gestellt. Dies bedeutet, dass du jedes Mal, wenn du dir eine Beobachtung auf iNaturalist ansiehst, eine Verbindung zu diesen Firmen herstellst und ihnen zumindest deine IP-Adresse preisgibst (in der iPhone-App verwenden wir die Karten von Apple). iNaturalist würde ohne die Dienstleistungen, die diese Unternehmen anbieten, wahrscheinlich nicht existieren, und obwohl wir die Menge und die Art der Daten, die du bei der Nutzung von iNat mit ihnen teilst, begrenzen können, können wir den Datenfluss nicht vollständig unterbinden.
         project_settings_desc: |
@@ -6860,7 +6889,7 @@ de:
       7: Sa
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      default: '%Y-%m-%d'
+      default: '%d. %b. %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       long: '%B %d, %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
@@ -7164,6 +7193,9 @@ de:
         finished_at: Beendet
         #Inputs to an export task, e.g. the query and the columns
         inputs: Eingaben
+      oauth_application:
+        #Unique identifier for an application
+        uid: ID
       post:
         title: Titel
         body: Text
@@ -7445,8 +7477,6 @@ de:
       write: |
         in deinem Namen Beobachtungen, Bestimmungen und andere Inhalte zu erstellen, zu aktualisieren und zu löschen, sowie auf versteckte Koordinaten und alle
         anderen Informationen zuzugreifen, die du auf der Website abrufen kannst.
-      login: |
-        auf Informationen zuzugreifen, die für die Anmeldung in einem Drittanbieter-Dienst relevant sind, wie E-Mail-Adresse, Benutzername, Name und Benutzersymbol, die mit deinem Konto verknüpft sind.
       account_delete: |
         Dein Konto in Deinem Namen zu löschen.
     errors:

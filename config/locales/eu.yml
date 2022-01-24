@@ -657,7 +657,6 @@ eu:
   check_list_description: Hautatu zerrendan erakutsi nahi duzun maila altuagoko taxona, esate baterako, "Aves" hegaztietarako edo "Amphibia" anfibioetarako. Amaitzen duzunean, zerrenda honek ez du jaso gabeko taxonik onartuko. Esate baterako, hegazti-zerrenda sortzen baduzu, ezingo duzu igelik gehitu.
   check_list_for_individual_taxa_that: 'Hemen bizi den espezie edo talde espezifiko baterako egiaztapen-zerrendak, adibidez: Hemengo hegaztiak: %{place}.'
   check_list_for_taxon_html: "Bilatu %{taxon} zerrendan"
-  check_list_of_species_occuring_in: 'Hemen existitzen diren espezieen egiaztapen-zerrenda:'
   check_list_place: "Honen egiaztapen-zerrenda: %{place}"
   check_lists_for: "Honako beste egiaztapen-zerrenda batzuk: %{place}"
   check_out_what_the_observation: Begirada bat eman identifikatu nahian zabiltzan behaketei.
@@ -697,6 +696,7 @@ eu:
     hauetara sar zaitezke zure proiektuko behaketak CSV formatuan
     deskargatzen dituzunean.
   comma_separated_please: Mesedez, komekin bereizi
+  #Noun, used to label a comment or a comment field in a form
   comment: oharra
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Iruzkina
@@ -1029,7 +1029,6 @@ eu:
   establishment_means: Kokatzeko moduak
   establishment_means_describes_how: |
     Kokatzeko moduak taxona eremu batean nola txertatu zen deskribatzen du. Ikusi DarwinCore honetarako: <a href="http: //rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">informazio gehiago terminologian</a>.
-  every_species_seen_by: 'Espezie guztiak honela ikusita:'
   everyone: guztiak
   everyone_journal_posts: Artikuluak egunkari guztietan
   exact: Zehatza
@@ -2112,8 +2111,6 @@ eu:
   subject_affecting_stuff_html: "%{subject} eratiten du %{stuff}"
   subject_committed_thing_affecting_stuff_html: "%{subject} agindu zuen %{thing} eragiten duena %{stuff}"
   submitted: Bidalita
-  subscribe_to_places_to: |
-    Tokietan harpidetu behaketa berriei, jarraitzen dituzun pertsonei eta aipatu dituzun gauzei buruzko eguneraketak jasotzeko; hori guztia harpidetzek gobernatzen dute, zertan harpidetu zaren eta zertan ez ikus dezakezu. Beheko esteka hautatu "Zure harpidetza guztiak kudeatu" eta, hala nahi baduzu, dagoeneko lehentasunetan izan nahi ez duzun tokiren bateko harpidetza guztiak kendu ahal izango dituzu.
   subscribe_to_this: 'Honetara harpidetu:'
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents(form:first).submit(); return false;">Harpidetu</a> %{x} hauetatik %{y} hauetan.

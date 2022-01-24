@@ -1,6 +1,12 @@
 {
   // I want to use babel-eslint for parsing!
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
+  },
   "extends": "airbnb",
   "env": {
     // I write for browser
@@ -18,7 +24,8 @@
     google: true,
     iNaturalist: true,
     SITE: true,
-    iNatModels: true
+    iNatModels: true,
+    OFFICIAL_APP_IDS: true
   },
   // To give you an idea how to override rule options:
   // "rules": {

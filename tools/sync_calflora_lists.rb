@@ -118,7 +118,7 @@ def work_on_place(place)
     puts "\t\tEstablishment means: #{establishment_means}"
     if existing_lt = place.check_list.listed_taxa.where(:taxon_id => taxon.id).first
       puts "\t\tFound existing lt: #{existing_lt}, moving to new list"
-      existing_lt.update_attributes(:list => list, :establishment_means => establishment_means) unless OPTS[:test]
+      existing_lt.update(:list => list, :establishment_means => establishment_means) unless OPTS[:test]
     else
       puts "\t\tAdding #{taxon} to #{list}"
       lt = unless OPTS[:test]
@@ -234,7 +234,7 @@ end
 
 def make_list_comprehensive(list)
   puts "\tMaking #{list} comprehensive..."
-  list.update_attributes(:comprehensive => true) unless OPTS[:test]
+  list.update(:comprehensive => true) unless OPTS[:test]
 end
 
 california = Place.where(name: "California", admin_level: Place::STATE_LEVEL).first

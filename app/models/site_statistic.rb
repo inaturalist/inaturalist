@@ -317,7 +317,7 @@ class SiteStatistic < ApplicationRecord
       obs_id_stats.created_at BETWEEN '#{(at_time - 1.week).to_s(:db)}' AND '#{at_time.to_s(:db)}'
     SQL
     Site.connection.execute(sql)[0].inject({}) do |memo,pair|
-      memo[pair[0]] = pair[1].to_numeric
+      memo[pair[0]] = pair[1].to_s.to_numeric
       memo
     end
   end

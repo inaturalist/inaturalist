@@ -445,7 +445,7 @@ class TaxonName < ApplicationRecord
         tn.is_valid? && tn.name == ext_name.taxon.name
       end
       if !ext_name.valid? && ext_name.errors[:name] && matching_tn_exists
-        ext_name.update_attributes( is_valid: false )
+        ext_name.update( is_valid: false )
       end
     end
     ext_names

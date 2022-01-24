@@ -513,7 +513,6 @@ sq:
   check_list_for_individual_taxa_that: 'Kontrolloni listat për taxa individuale që jetojnë këtu, psh. "Zogjtë e %{place}".'
   check_lists_must_belong_to_a_place: |
     Listat kontrolluese kanë vend të caktuar. Për të krijuar një listë të re kontrolluese, gjeni listën shabllon të një vendi dhe klikoni në vegzën ‘Krijo listë të re kontrolluese’.
-  check_list_of_species_occuring_in: Kontrollo listën e specieve që shfaqen në
   check_list_place: "%{place} Lista kontrolluese"
   check_list_updated: Lista kontrolluese është përditësuar!
   check_lists_for: "Listat kontrolluese të tjerëve për %{place}"
@@ -549,6 +548,7 @@ sq:
     Lista e kodeve gjurmuese të ndara me presje. Shtoni këto nëse doni të shtoni një kod gjurmues kur u dërgoni njerëzve formën e re të vëzhgimit, p.sh. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
     Ju mund ta përdorni këtë për të gjurmuar pjesëmarrjen nga burime të ndryshme. Këto kode mund të aksesohen kur shkarkoni vëzhgimet e projektit si CSV.
   comma_separated_please: Të ndara me pikëpresje, ju lutem
+  #Noun, used to label a comment or a comment field in a form
   comment: koment
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Koment
@@ -901,7 +901,6 @@ sq:
   event_stats: Statistikat e ngjarjes
   event_url: URL e ngjarjes
   events_only: Vetëm ngjarjet
-  every_species_seen_by: Çdo specie e parë nga
   everyone: gjithkush
   everyone_: Gjithkush
   everyone_journal_posts: Të gjitha postimet e ditarit
@@ -2266,7 +2265,6 @@ sq:
   rules_and_formatting: "Regullat dhe Formatimi"
   rules_for_adding_observations: Rregullat për të shtuar vëzhgime
   rules_for_becoming_a_member: Rregullat për t'u bërë Anëtar
-  rules_for_becoming_memner: Rregullat për t'u bërë Anëtar
   rules_types:
     must_be_georeferenced: patjetër të ketë referencë gjeografike
     must_be_identified: Patjetër të identifikohet

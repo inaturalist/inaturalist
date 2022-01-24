@@ -86,7 +86,7 @@ class ProviderAuthorizationsController < ApplicationController
     end
     
     if @provider_authorization && @provider_authorization.valid? && (scope = get_session_omniauth_scope)
-      @provider_authorization.update_attributes(:scope => scope.to_s)
+      @provider_authorization.update(:scope => scope.to_s)
       session["omniauth_#{request.env['omniauth.strategy'].name}_scope"] = nil
     end
     
@@ -146,7 +146,7 @@ class ProviderAuthorizationsController < ApplicationController
       sign_in(User.create_from_omniauth(auth_info))
       @provider_authorization = current_user.provider_authorizations.last
       current_user.remember_me!
-      current_user.update_attributes(:site => @site) if @site
+      current_user.update(:site => @site) if @site
       flash[:notice] = "Welcome!"
       if session[:invite_params].nil?
         flash[:allow_edit_after_auth] = true

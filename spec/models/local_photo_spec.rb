@@ -261,7 +261,7 @@ describe LocalPhoto, "flagging" do
     Flag.make!( flaggable: lp, flag: Flag::COPYRIGHT_INFRINGEMENT )
     f2 = Flag.make!( flaggable: lp, flag: Flag::SPAM )
     lp.reload
-    f2.update_attributes( resolved: true, resolver: User.make! )
+    f2.update( resolved: true, resolver: User.make! )
     lp.reload
     %w(original large medium small thumb square).each do | size |
       expect( lp.send( "#{size}_url" ) ).to be =~ /copyright/
@@ -298,14 +298,14 @@ describe LocalPhoto, "flagging" do
   #   it "should change the URLs back when resolved" do
   #     photo = flag.flaggable
   #     expect( photo.original_url ).to be =~ /copyright/
-  #     flag.update_attributes( resolved: true, resolver: User.make! )
+  #     flag.update( resolved: true, resolver: User.make! )
   #     photo.reload
   #     %w(original large medium small thumb square).each do |size|
   #       expect( lp.send( "#{size}_url" ) ).not_to be =~ /copyright/
   #     end
   #   end
   #   it "should revert quality grade" do
-  #     flag.update_attributes( resolved: true, resolved_at: Time.now, resolver: make_curator, comment: "foo" )
+  #     flag.update( resolved: true, resolved_at: Time.now, resolver: make_curator, comment: "foo" )
   #     Delayed::Worker.new.work_off
   #     expect( flag ).to be_resolved
   #     @obs.reload
@@ -313,7 +313,7 @@ describe LocalPhoto, "flagging" do
   #   end
   #   it "should not revert quality grade if there's another unresolved copyright flag" do
   #     other_flag = Flag.make!( flaggable: o.photos.first, flag: Flag::COPYRIGHT_INFRINGEMENT )
-  #     flag.update_attributes( resolved: true, resolved_at: Time.now, resolver: make_curator, comment: "foo" )
+  #     flag.update( resolved: true, resolved_at: Time.now, resolver: make_curator, comment: "foo" )
   #     Delayed::Worker.new.work_off
   #     expect( flag ).to be_resolved
   #     @obs.reload

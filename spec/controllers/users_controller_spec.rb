@@ -119,7 +119,7 @@ describe UsersController, "set_spammer" do
       it "removes spam flags" do
         @user = User.make!
         obs = Observation.make!( user: @user )
-        @user.update_attributes( spammer: true )
+        @user.update( spammer: true )
         Flag.make!( flaggable: obs, flag: Flag::SPAM )
         expect( @user.spammer ).to be true
         expect( @user.flags_on_spam_content.count ).to eq 1
@@ -266,7 +266,7 @@ describe UsersController, "add_role" do
     Site.make! if Site.default.blank?
     site = Site.make!
     sa = SiteAdmin.make!( site: site )
-    normal_user.update_attributes!( site: site )
+    normal_user.update!( site: site )
     sign_in sa.user
     put :add_role, params: { id: normal_user.id, role: Role::CURATOR }
     normal_user.reload
@@ -295,7 +295,7 @@ describe UsersController, "remove_role" do
     Site.make! if Site.default.blank?
     site = Site.make!
     sa = SiteAdmin.make!( site: site )
-    target_curator_user.update_attributes!( site: site )
+    target_curator_user.update!( site: site )
     sign_in sa.user
     put :remove_role, params: { id: target_curator_user.id, role: Role::CURATOR }
     target_curator_user.reload

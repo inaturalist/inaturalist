@@ -62,7 +62,7 @@ end
 CSV.foreach( csv_path, headers: HEADERS ) do | row |
   next if row["action"] == "action"
 
-  identifier = %w(action taxon_name id place_id status iucn).map {| a | row[a] }.join( "-" )
+  identifier = %w(action taxon_name id place_id status iucn_equivalent).map {| a | row[a] }.join( "-" )
   logger.info identifier
   blank_column = catch :required_missing do
     REQUIRED.each {| h | throw :required_missing, h if row[h].blank? }
@@ -75,7 +75,8 @@ CSV.foreach( csv_path, headers: HEADERS ) do | row |
   end
   taxon = Taxon.find_by_id( row["taxon_id"] ) unless row["taxon_id"].blank?
   unless taxon
-    logger.info "#{identifier}: Couldn't find taxon for '#{row['taxon_id']}', trying to find the taxon by the name '#{row["taxon_name"]}"
+    logger.info "#{identifier}: Couldn't find taxon for '#{row['taxon_id']}', " \
+      "trying to find the taxon by the name '#{row['taxon_name']}"
     if row["taxon_name"].blank?
       logger.error "#{identifier}: No name specified, skipping..."
       skipped << identifier
@@ -97,9 +98,24 @@ CSV.foreach( csv_path, headers: HEADERS ) do | row |
     skipped << identifier
     next
   end
-  iucn = Taxon::IUCN_STATUS_VALUES[row["iucn"].to_s.parameterize.underscore]
-  if iucn.blank? && !row["iucn"].blank?
-    logger.error "#{identifier}: #{row['iucn']} is not a valid IUCN status, skipping..."
+  cs = ConservationStatus.find_by_id( row["id"] ) unless row["id"].blank?
+  cs ||= taxon.conservation_statuses.where(
+    place_id: place,
+    authority: row["authority"]
+  ).first
+  if row["action"] == "REMOVE"
+    if cs
+      cs.destroy
+      deleted << identifier
+      logger.debug "#{identifier}: Deleted #{identifier}"
+    end
+    next
+  end
+  iucn_equivalent = row["iucn_equivalent"].to_s.gsub( /\(.*\)/, "" ).strip.parameterize.underscore
+  iucn = Taxon::IUCN_STATUS_VALUES[iucn_equivalent]
+  if iucn.blank? && !row["iucn_equivalent"].blank?
+    logger.error "#{identifier}: #{row['iucn_equivalent']} is not a valid IUCN status, skipping..."
+    skipped << identifier
     next
   end
   user = unless row["username"].blank?
@@ -112,20 +128,6 @@ CSV.foreach( csv_path, headers: HEADERS ) do | row |
     end
     user
   end
-  cs = ConservationStatus.find_by_id( row["id"] ) unless row["id"].blank?
-  cs ||= taxon.conservation_statuses.where(
-    place_id: place,
-    status: row["status"],
-    authority: row["authority"]
-  ).first
-  if row["action"] == "REMOVE"
-    if cs
-      cs.destroy
-      deleted << identifier
-      logger.debug "#{identifier}: Deleted #{identifier}"
-    end
-    next
-  end
   cs ||= ConservationStatus.new( user: user, taxon: taxon, place: place )
   %w(status authority url geoprivacy).each do | a |
     cs.send( "#{a}=", row[a] ) unless row[a].blank?
@@ -134,7 +136,7 @@ CSV.foreach( csv_path, headers: HEADERS ) do | row |
   cs.updater = user if cs.changed?
   if cs.valid?
     cs.save! unless opts.dry
-    if cs.new_record?
+    if cs.id_previously_changed? || cs.new_record?
       logger.debug "#{identifier}: Created #{cs}"
       created << identifier
     else

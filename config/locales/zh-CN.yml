@@ -466,6 +466,8 @@ zh-CN:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: 应用程序
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: 应用程序
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -751,7 +753,6 @@ zh-CN:
   check_list_for_taxon_html: "查看 %{taxon} 列表"
   check_lists_must_belong_to_a_place: |
     名录必须属于某一个地点。要创建一个新名录，请访问该地点的默认名录，并点击“创建新名录”的链接。
-  check_list_of_species_occuring_in: 在以下地点出现的物种名录
   check_list_place: "%{place} 监视列表"
   check_list_updated: 监视列表已更新！
   check_lists_for: "用于%{place}的其他检查表"
@@ -787,6 +788,7 @@ zh-CN:
   comma_separated_list_of_tracking_codes: |
     以逗号分隔的追踪代码列表。如果您希望向人们发送新的观察表时附加追踪代码，请添加它，例如%{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123。您可以使用它追踪来自不同来源的参与者。当下载您项目的观察为CSV文件时，您可以访问这些代码。
   comma_separated_please: 请以逗号分隔
+  #Noun, used to label a comment or a comment field in a form
   comment: 评论
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: 评论
@@ -1379,7 +1381,6 @@ zh-CN:
   event_stats: 活动统计
   event_url: 活动URL
   events_only: 仅活动
-  every_species_seen_by: 每个物种由该人发现
   everyone: 任何人
   everyone_: 大家
   everyone_journal_posts: 每个人的日志
@@ -1861,7 +1862,6 @@ zh-CN:
   leading: 标题
   learn: 学习
   learn_about_the_species_live_in: 了解有关居住于此的物种
-  learn_about_third_party_tracking: 了解更多关于第三方跟踪的信息
   learn_more: 了解更多
   learn_more_raquo: "了解更多 &raquo;"
   learn_what_these_licenses_mean: 了解这些授权协议是什么意思
@@ -3590,7 +3590,6 @@ zh-CN:
   rules_and_formatting: "规则和格式"
   rules_for_adding_observations: 添加观察的规则
   rules_for_becoming_a_member: 成为成员的规则
-  rules_for_becoming_memner: 成为成员的规则
   rules_types:
     must_be_captive: 必须是圈养或是栽培的
     must_be_georeferenced: 必须有地理参考
@@ -3882,8 +3881,6 @@ zh-CN:
   subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}订阅%{tag_end} 对此分类单元的评论"
   subscribe_to_observations_in_a_taxon: 订阅来自一个物种或一个生物群（例如“蝎子”）的所有观察结果。
   subscribe_to_observations_in_a_place: 订阅在此地点发布的所有观察结果。您还可以添加一个分类过滤（例如：“位于得克萨斯州的蝎子”）。
-  subscribe_to_places_to: |
-    订阅地点来接收在那里进行的新观察的更新。您关注的人和您评论的内容的更新也通过订阅进行管理，另外，如果您想查看订阅的内容并取消订阅内容，可以点击下方的“管理所有订阅”。您还可以在此页面取消订阅网站上的任何内容。
   subscribe_to_this: 订阅此
   subscribe_to_x_from_this_y_html: |
     从此%{y}<a href="#" onclick="$(this).parents('form:first').submit(); return false;">订阅</a>至%{x}。
@@ -4084,7 +4081,6 @@ zh-CN:
   these_folks_kindly_volunteer_to: 这些热心的志愿者帮助维护我们的分类并处理其他问题。
   these_observations_have_not_been_uploaded_yet: |
     这些观察结果尚未上传。
-  third_party_tracking: 第三方跟踪
   third_person_possessive_singular: "%{object_phrase} 的 %{noun}"
   this: 此
   this_bioblitz_beings_in: 此bioblitz开始于
@@ -4845,13 +4841,13 @@ zh-CN:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: 授权 %{application} 来使用您的账号？
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "此应用程序将能够："
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: 更多有关 %{application}
     observations:
@@ -5251,7 +5247,6 @@ zh-CN:
           请指定对要添加到此项目的观察记录的要求。
         project_background_color: 项目摘要背景颜色
         project_background_color_help: 确保选择足够深的颜色，以使叠加于其上的白色文本清晰可辨。
-        project_banner: 项目横幅（PNG、JPG或GIF）
         project_banner_help: 可选的横幅图片。理想尺寸为760px×320px。
         project_details: 项目详情
         project_icon: 项目图标（PNG、JPG或GIF）
@@ -5545,7 +5540,6 @@ zh-CN:
         you_must_enter_confirmation_code_in_the_form: |
           您必须在表单中输入"%{confirmation_code}"才能删除您的帐户
       edit:
-        about_third_party_tracking: 关于第三方的追踪
         blocking_desc_html: |
           <p>
           屏蔽某人以阻止他们发信息给您，评论您的观察，辨别您的观察结果，以及在您在％{site_name}%{site_name}上的其他交互。这个操作也把他们的观察从您的观察搜索结果中移出，同时也将您的观察从他们的搜索结果中删除。但是，它不会让您对他们不可见。他们仍然能找到您的观察并查看您的个人资料，他们只是不能与您互动

@@ -94,7 +94,7 @@ class CheckListsController < ApplicationController
   def update
     @check_list = @list
     update_list_rules
-    if @list.update_attributes(params[:check_list])
+    if @list.update(params[:check_list])
       flash[:notice] = t(:check_list_updated)
       return redirect_to @list
     else

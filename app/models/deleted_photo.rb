@@ -37,10 +37,10 @@ class DeletedPhoto < ApplicationRecord
         # the photo has files in either bucket, so attempt a delete from the static bucket
         puts "deleting photo #{photo_id} [#{images.size} files] from S3"
         client.delete_objects( bucket: static_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
-        update_attributes( removed_from_s3: true )
+        update( removed_from_s3: true )
       else
         # the file list is for some reason empty
-        update_attributes( removed_from_s3: true )
+        update( removed_from_s3: true )
         puts "#{photo_id} has no photos in S3"
       end
     end

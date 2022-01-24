@@ -194,7 +194,7 @@ describe TaxonName, "update" do
     tn = create :taxon_name, taxon: t, lexicon: TaxonName::SCIENTIFIC_NAMES
     TaxonName.where( id: tn.id ).update_all( name: name )
     tn.reload
-    tn.update_attributes( position: 10 )
+    tn.update( position: 10 )
     expect( tn ).to be_valid
     expect( tn.position ).to eq 10
   end
@@ -205,7 +205,7 @@ describe TaxonName, "update" do
     tn = create :taxon_name
     TaxonName.where( id: tn.id ).update_all( lexicon: lexicon )
     tn.reload
-    tn.update_attributes( position: 10 )
+    tn.update( position: 10 )
     expect( tn ).to be_valid
     expect( tn.position ).to eq 10
   end
@@ -214,7 +214,7 @@ describe TaxonName, "update" do
     tn = create :taxon_name
     TaxonName.where( id: tn.id ).update_all( lexicon: nil )
     tn.reload
-    tn.update_attributes( position: 10 )
+    tn.update( position: 10 )
     tn.valid?
     expect( tn ).to be_valid
     expect( tn.position ).to eq 10
@@ -281,8 +281,8 @@ describe TaxonName, "choose_common_name" do
   it "should respect position when choosing a locale-specific name" do
     tn_romanji = TaxonName.make!( name: "Hamachi", lexicon: "Japanese", taxon: t )
     tn_ja = TaxonName.make!( name: "ブリ", lexicon: "Japanese", taxon: t )
-    tn_ja.update_attributes( position: 1 )
-    tn_romanji.update_attributes( position: 2 )
+    tn_ja.update( position: 1 )
+    tn_romanji.update( position: 2 )
     expect( TaxonName.choose_common_name( [tn_romanji, tn_ja], locale: "ja" ) ).to eq tn_ja
   end
 
@@ -319,7 +319,7 @@ describe TaxonName, "choose_common_name" do
     tn_or = TaxonName.make!( name: "Oregon myrtle", lexicon: "English", taxon: t )
     PlaceTaxonName.make!( taxon_name: tn_or, place: oregon )
     t.reload
-    Site.default.update_attributes( place: oregon )
+    Site.default.update( place: oregon )
     expect( TaxonName.choose_common_name( t.taxon_names, site: Site.default ) ).to eq tn_or
   end
 

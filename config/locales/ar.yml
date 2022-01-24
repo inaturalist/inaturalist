@@ -491,7 +491,6 @@ ar:
   check_lists_must_belong_to_a_place: |
     يجب أن تنتمي قوائم التحقق إلى مكان ما، لإنشاء قائمة تحقق جديدة; 
     انتقل إلى قائمة الاختيار الافتراضية للمكان وانقر على الرابط "إنشاء قائمة تحقق جديدة".
-  check_list_of_species_occuring_in: قوائم تحقق للأنواع التي تحدث في
   check_list_place: "قائمة تحقق %{place}"
   check_list_updated: تم تحديث قائمة التحقق!
   check_lists_for: "قوائم تحقق أخرى لـ%{place}"
@@ -536,6 +535,7 @@ ar:
   comma_separated_list_of_tracking_codes: |
     قائمة مفصولة بفواصل من رموز التتبع، أضف هذه العناصر إذا كنت تريد إلحاق كود تتبع عند إرسال الأشخاص إلى نموذج الملاحظة الجديد، مثل %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123، يمكنك استخدام هذا لتتبع المشاركة من مصادر مختلفة، يمكنك الوصول إلى هذه الرموز عند تنزيل ملاحظات مشروعك كملف CSV.
   comma_separated_please: مفصولة بفواصل، من فضلك
+  #Noun, used to label a comment or a comment field in a form
   comment: تعليق
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: تعليق
@@ -935,7 +935,6 @@ ar:
   event_stats: إحصائيات الحدث
   event_url: مسار الحدث
   events_only: الأحداث فقط
-  every_species_seen_by: كل الأنواع التي ينظر إليها
   everyone: الجميع
   everyone_: الجميع
   everyone_journal_posts: مجلات مشاركات الجميع
@@ -2747,7 +2746,6 @@ ar:
   rules_and_formatting: "القواعد والتنسيق"
   rules_for_adding_observations: قواعد إضافة الملاحظات
   rules_for_becoming_a_member: قواعد لتصبح عضوا
-  rules_for_becoming_memner: قواعد لتصبح عضوا
   rules_types:
     must_be_georeferenced: يجب أن تكون مرجعا جغرافيا
     must_be_identified: يجب تحديدها
@@ -3005,13 +3003,6 @@ ar:
   subscribe_to_a_place: الاشتراك في مكان
   subscribe_to_observations_in_a_taxon: الاشتراك في جميع الملاحظات المنشورة لنوع أو مجموعة من الكائنات الحية (على سبيل المثال 'العقارب').
   subscribe_to_observations_in_a_place: الاشتراك في جميع الملاحظات المنشورة في هذا المكان، كما يمكنك إضافة مرشح اختياري (مثل العقارب من تكساس).
-  subscribe_to_places_to: |
-    اشترك في الأماكن لتلقي تحديثات حول الملاحظات الجديدة التي تم إجراؤها 
-    هناك، كما تتم إدارة التحديثات من الأشخاص الذين تتابعهم والأشياء التي علقت عليها من خلال الاشتراكات، لذا إذا كنت تريد مشاهدة 
-    ما اشتركت فيه وإلغاء الاشتراك من الأشياء، يمكنك 
-    النقر على "إدارة جميع اشتراكاتك" أدناه، يجب أيضا 
-    أن تكون قادرا على إلغاء الاشتراك من أي شيء على الموقع من خلال عرض 
-    صفحته.
   subscribe_to_this: اشترك في هذا
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">الاشتراك</a> %{x} fمن هذا %{y}.
@@ -3806,9 +3797,9 @@ ar:
         coordinates_desc: |
           إن تقديم إحداثيات دليلك سيساعد الأشخاص في العثور عليه عند البحث بحسب الموقع.
         eol_subjects_desc: |
-          تنشر موسوعة الحياة المحتوى تحت عدد من عناوين المواضيع المختلفة، 
+          تنشر موسوعة الحياة المحتوى تحت عدد من عناوين المواضيع المختلفة،
           وليست جميعها متوفرة لكل مجموعة، سيؤدي اختيار "نظرة عامة"
-          إلى استيراد أول جزء نص متاح من موسوعة الحياة، والذي 
+          إلى استيراد أول جزء نص متاح من موسوعة الحياة، والذي
           يحتوي عادة على ملخص عند توفره.
         eol_collection_desc_html: |
           <a href="http://eol.org/" target="_blank">موسوعة الحياة (EOL)</a> 
@@ -3968,13 +3959,13 @@ ar:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user is about to
+          #Application is an app or service the user is about to
           #authorize to access their iNat account
           authorize_application_to_use_your_account?: تخويل %{application} لاستخدام حسابك؟
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "سيكون هذا التطبيق قادرا على:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: المزيد عن %{application}
     observations:
@@ -4627,7 +4618,6 @@ ar:
           هذا المشروع.
         project_background_color: لون خلفية ملخص المشروع
         project_background_color_help: تأكد من اختيار لون داكن بدرجة كافية حتى يصبح النص المتراكب الأبيض مقروءا.
-        project_banner: بانر المشروع (PNG أو JPG أو GIF)
         project_banner_help: صورة بانر اختيارية، الأبعاد المثالية هي 760 بكسل × 320 بكسل.
         project_details: تفاصيل المشروع
         project_icon: أيقونة المشروع (PNG أو JPG أو GIF)
@@ -5749,9 +5739,6 @@ ar:
         إنشاء وتحديث وحذف الملاحظات ، والتعريفات، والمحتويات 
         الأخرى نيابة عنك، والوصول إلى الإحداثيات المخفية وأية 
         معلومات أخرى يمكنك الوصول إليها على الموقع.
-      login: |
-        الوصول إلى معلومات ذات صلة بتسجيل الدخول، مثل عنوان البريد الإلكتروني، واسم
-        المستخدم، وأيقونة المستخدم.
     errors:
       messages:
         #Common error messages
