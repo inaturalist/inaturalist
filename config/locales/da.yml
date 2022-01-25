@@ -6000,6 +6000,71 @@ da:
           beføjelse til at se de skjulte koordinater for denne eller enhver
           anden observation i projektet og indebærer at du
           acceptere projektets <a href="%{url}" target="_blank"> vilkår </a>.
+        quality_assessment_help2_html: |2
+          <p>
+          Datakvalitetsvurderingen er et sammendrag af en observations nøjagtighed. Alle observationer gradueres indledningsvis som <strong>"tilfældig"</strong>, og bliver så til <strong>"behøver ID"</strong>, når
+          </p>
+
+          <ul>
+          <li>observationen <strong>har en dato</strong></li>
+          <li>observationen <strong>georafgrænses</strong> (dvs. har br.gr./lg.gr. koordinater)</li>
+          <li>observationen <strong>har fotos eller lyde</strong></li>
+          <li>observationen <strong>er ikke fra et menneske</strong></li>
+          </ul>
+          <p>
+          Observationer bliver <strong>"forskningskvalitet"</strong>, når
+          </p>
+          <ul>
+          <li>
+           %{site_name} <strong>-fællesskabet er enig i artsniveau ID eller
+          lavere</strong>, dvs. ved konsensus blandt flere end 2/3 af de identificerende parter om en takson (hvis fællesskabet har stemt om, at Fællesskabets Takson ikke kan forbedres yderligere, 
+          reverseres dette til underfamilieniveau-ID eller lavere)
+          </li>
+          </ul>
+          <p>
+          Observationer reverseres til <strong>"tilfældig"</strong>, hvis ovenstående betingelser ikke er opfyldt, eller fællesskabet er enige om at
+          </p>
+          <ul>
+          <li>
+           <strong>placeringen ikke ser
+          præcis ud</strong> (f. eks. aber i midten af havet,
+          flodheste i kontorbygninger osv.)
+          </li>
+          <li>
+          <strong>organismen ikke er vild/naturaliseret</strong> (f. eks. fangenskab eller opdrættet af mennesker
+          eller intelligente rumvæsen)
+          </li>
+          <li>
+          observationen <strong>ikke præsenterer dokumentation for en
+          organisme</strong>, f.eks. billeder af vandsærpræg,
+          klipper, landskaber, som ikke omfatter organismen mv.
+          </li>
+          <li>
+          observationen <strong>ikke repræsenterer nyere (~100 år) tegn på
+          organismen</strong> (f.eks. fossiler, men spor, ekskrementer og døde blade
+          er OK)
+          </li>
+          <li>
+          observationen ikke længere behøver en ID <em>og</em> fællesskabs-ID'en er højere end familie
+          </li>
+          <li>
+          observatøren har fravalgt fællesskabs-ID, og fællesskabs-ID
+          taksonen ikke er en forfader eller efterkommer af den takson, der er tilknyttet
+          observatørens ID
+          </li>
+          </ul>
+          <p>
+          Og var dette ikke var kompliceret nok, så der er også situationer, hvor systemet får en stemme:
+          </p>
+          <ul>
+          <li>
+          Systemet vil stemme for, at observationen ikke er vild/naturaliseret, 
+          hvis der er mindst 10 andre observationer af en slægt eller færre i
+          det mindste amt, stat eller landeækvivalent sted, som
+          indeholder denne observation og 80% eller flere af disse observationer
+          er blevet markeret som ikke-vilde/-naturaliseret.
+          </li>
+          </ul>
         score_desc: "score = kumulativ antal / (kumulativ antal  + uenighed antal  + stamfader uenigheder)"
         observation_flagged_notice_html: |
           Denne observation er blevet markeret som spam og er ikke længere
