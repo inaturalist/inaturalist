@@ -5764,58 +5764,6 @@ lv:
           Dažām fotogrāfijām pievienots nepieņemama satura vai autortiesību pārkāpuma karodziņš. Vairāk informācijas: %{links}
         join_project_desc_html: |
           Ja pievienosies projektam, tā pārziņiem būs redzamas šīs vai citu projekta novērojumu noslēptās koordinātas. Pievienojoties projektam, tu piekrīti projekta <a href="%{url}" target="_blank">notiekumiem</a>.
-        quality_assessment_help_html: |
-          <p>
-          Datu kvalitātes novērtējumā aprakstīta novērojuma precizitāte. Sākumā visiem novērojumiem ir<strong>"hobija"</strong> līmeņa statuss, kas kļūst par
-          <strong>"nepieciešama ID"</strong>statusu, ja
-          </p>
-
-          <ul>
-          <li>novērojumam <strong>ir datums</strong></li>
-          <li>novērojumam ir <strong>koordinātas</strong> (augstums un platums)</li>
-          <li>novērojumam ir<strong>fotogrāfijas vai audiofaili</strong></li>
-          <li>novērojumā nav redzams <strong>cilvēks</strong></li>
-          </ul>
-          <p>
-          Novērojumi sasniedz <strong>"pētniecības līmeni"</strong>, ja
-          </p>
-          <ul>
-          <li>
-          %{site_name} <strong>kopiena vienojas par sugas vai zemākas pakāpes ID</strong>, t.i., kad vairāk par 2/3 identificētāju vienojas par vienu taksonu (ja kopiena nobalso par to, ka kopienas taksons vairāk nevar tikt precizēts, sistēma atjaunos apakšdzimtas vai zemākas pakāpes taksona statusu)
-          </li>
-          </ul>
-          <p>
-          Sistēma atjauno <strong>"hobija līmeņa"</strong>statusu arī tad, ja iepriekšminētie kritēriji netiek izpildīti vai kopiena vienojas par to, ka
-          </p>
-          <ul>
-          <li>
-          <strong>novērojuma atrašanās vieta nešķiet precīza</strong> (piemēram, pērtiķi okeāna vidū vai nīlzirgi ēkās utt.)
-          </li>
-          <li>
-          <strong>organisms nav savvaļas vai tas ir naturalizēts</strong> ( cilvēku vai citplanētiešu ieslodzīts vai kultivēts)
-          </li>
-          <li>
-          novērojumā <strong>nav organisma klātbūtnes pierādījumu</strong>, piemēram, attēli ar ainavām, ūdenstilpnēm, akmeņiem utt.
-          </li>
-          <li>
-          novērojums<strong>nesatur nesenus organisma klātbūtnes pierādījumus (~100 gadi) </strong> (fosilijas nav pieņemamas, bet nospiedumi, izkārnījumi vai nokritušas lapas ir pieņemamas)
-          </li>
-          <li>
-          novērojumam vairs nav nepieciešama ID <em>un</em> kopienas ID ir virs dzimtas pakāpes
-          </li>
-          <li>
-          novērotājs ir atteicies no kopienas ID funkcijas. Turklāt kopiena un kopienas ID taksons nav ar novērotāja ID saistīts priekštecis vai pēctecis.
-          </li>
-          </ul>
-          <p>
-          Lai gan šis process jau tā ir visai sarežģīts, noteiktās situācijās sistēma izvērtē arī to, vai organisms nav nebrīvē vai naturalizēts.
-          </p>
-          <ul>
-          <li>
-          Sistēma pievieno novērojumam "nebrīvē/naturalizēts" statusu, ja
-          novadā, štatā vai valstī ir pievienoti vismaz 10 citi novērojumi ģints vai zemākā pakāpē ar konkrēto taksonu un 80% vai vairāk no šiem novērojumiem ir atzīmēti kā nebrīvē vai naturalizēti.
-          </li>
-          </ul>
         score_desc: "aprēķins = kopējais skaits / (kopējais skaits + domstarpību skaits + domstarpības par taksonu priekštečiem)"
         observation_flagged_notice_html: |
           Novērojums atzīmēts kā mēstule un vairs nav publiski redzams nevienam lietotājam, izņemot tevi, jo tu esi satura autors vai pārzinis. Ja pieļauta kļūda, lūdzu,
