@@ -1593,6 +1593,8 @@ id:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplikasi Eksternal
+  external_applications_description: |
+    Aplikasi Eksternal merupakan aplikasi perangkat lunak yang telah kamu izinkan untuk mengakses akun iNaturalistmu. Secara umum, mereka dapat melakukan apapun dengan akunmu sebagaimana yang dapat juga kamu lakukan dengannya, jadi pastikan kamu memercayai para pengembang aplikasinya sebelum memberikan izin.
   external_taxon_including_children: Takson Eksternal (termasuk anakannya)
   extinct: punah
   extinct_in_the_wild: Punah di Alam Liar
@@ -2084,6 +2086,7 @@ id:
   leading: Memimpin
   learn: Belajar
   learn_about_the_species_live_in: Pelajari tentang spesies yang hidup di
+  learn_about_third_party_tracking: Pelajari lebih lanjut tentang pelacak pihak ketiga
   learn_more: Pelajari lebih lanjut
   learn_more_raquo: "Pelajari lebih lanjut &raquo;"
   learn_what_these_licenses_mean: Pelajari apa yang dimaksud dengan lisensi ini
@@ -2508,6 +2511,9 @@ id:
   multiple_select_option: '-- banyak --'
   multiple_taxa_for_taxon_change: "Beberapa taksa (input untuk tukar/gabung, output untuk pemisahan)"
   multiple_taxon_ids_separated_by_commas: 'Beberapa ID takson dipisahkan oleh koma, contoh. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: harus di dalam proyek %{project}
   must_be_in_taxon: harus berada di takson %{taxon}
   must_be_not_in_taxon: seharusnya tidak ada di takson %{taxon}
   must_be_not_observed_by_user: seharusnya tidak diamati oleh %{user}
@@ -2951,6 +2957,8 @@ id:
       <li><strong>Diskusi yang telah kamu ikuti:</strong> Berkomentar atau menambahkan identifikasi kepada konten orang lain otomatis menambahkan langgananmu kepada aktivitas baru apapun pada konten ini. Pakai fitur 'Kelola langganan Anda' untuk berhenti menerima kabar.</li>
       </ul>
   one_by_one: "Satu per satu"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "salah satu di bawah ini harus dipenuhi:"
   one_of_your_lists: "salah satu dari daftar Anda..."
   one_or_more_input_taxa_have_more_than_1000: |
     Satu atau lebih taksa input memiliki lebih dari 1000 pengamatan di hilir. Hal ini membutuhkan beberapa waktu untuk diproses, apakah Anda yakin perubahan takson ini diperlukan? Perubahan takson ini juga tidak bisa dikembalikan seperti semula.
@@ -4516,6 +4524,7 @@ id:
   these_folks_kindly_volunteer_to: Orang-orang ini relawan yang baik  untuk mempertahankan taksonomi dan menangani isu-isu lainnya.
   these_observations_have_not_been_uploaded_yet: |
     Pengamatan ini belum diunggah.
+  third_party_tracking: Pelacakan Pihak Ketiga
   third_person_possessive_singular: "%{noun} %{object_phrase}"
   this: ini
   this_bioblitz_beings_in: Bioblitz ini dimulai dalam
@@ -4781,6 +4790,7 @@ id:
   users_highlights_and_stats_from_year_on_site: "Sorotan dan statistik %{user} pada %{year} di %{site}"
   users_id: "ID %{user}"
   users_identifications: "Identifikasi %{user}"
+  users_journal: "Jurnal %{user}"
   users_latest_observations_on_site: "Pengamatan terbaru %{user} di %{site}"
   users_lists: "Daftar %{user}"
   users_profile: "Profil %{user}"
@@ -5003,6 +5013,8 @@ id:
   yir_donate_banner_all_thanks: Semuanya berkat orang-orang sepertimu!
   #"You" is singular
   yir_donate_banner_inaturalist_thrives: iNaturalist berkembang karena orang-orang sepertimu!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Anda telah membantu perkembangan iNaturalist tahun ini. Terima kasih!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist Membutuhkan Dukunganmu
   yir_generating_and_sharing: |
@@ -5615,6 +5627,65 @@ id:
           Beberapa foto ini telah ditandai karena konten yang tidak pantas atau pelanggaran hak cipta. Untuk informasi selengkapnya, lihat %{links}
         join_project_desc_html: |
           Bergabung dengan proyek memberikan kurator proyek kemampuan untuk melihat koordinat tersembunyi pengamatan ini atau pengamatan lainnya di proyek itu dan dengan melakukan tindakan ini, Anda dianggap setuju dengan <a href="%{url}" target="_blank">ketentuan</a> proyek.
+        quality_assessment_help2_html: |
+          <p>
+          Penilaian kualitas data merupakan sebuah ringkasan tentang akurasi pengamatan. Semua 
+          pengamatan dimulai dengan kelas <strong>"kasual"</strong>, dan menjadi 
+          <strong>"butuh ID"</strong> ketika
+          </p>
+
+          <ul>
+          <li>pengamatan <strong>memiliki tanggal</strong></li>
+          <li>pengamatan <strong>memiliki georeferensi</strong> (memiliki koordinat lin/buj)</li>
+          <li>pengamatan <strong>memiliki foto atau suara</strong></li>
+          <li>pengamatan <strong>bukan tentang manusia</strong></li>
+          </ul>
+          </p>
+          Pengamatan menjadi <strong>kelas "Riset"</strong> yang kuat ketika
+          </p>
+          <ul>
+          <li><strong>komunitas %{site_name} setuju dengan ID bertingkat spesies
+          atau di bawahnya</strong>. Hal ini dipenuhi ketika lebih dari 2/3
+          pengidentifikasi setuju dengan sebuah takson (jika komunitas telah 
+          memilih bahwa Takson Komunitas tidak dapat ditingkatkan lagi,
+          ID kembali ke ID bertingkat subfamili atau lebih rendah)
+          </li>
+          </ul>
+          <p>
+          Pengamatan akan kembali menjadi tingkat <strong>"kasual"</strong> jika kondisi-kondisi di atas tidak dipenuhi atau komunitas setuju bahwa
+          </p>
+          <ul>
+          <li><strong>lokasi tampak tidak akurat</strong> 
+          (misalkan monyet di tengah laut, kuda nil di bangunan kantor, dll.)
+          </li>
+          <li><strong>organisme tidak liar/dinaturalisasi</strong> (seperti organisme yang dipelihara 
+          atau dibudidayakan oleh manusia atau alien cerdas dari luar angkasa)
+          </li>
+          <li>pengamatan <strong>tidak menunjukkan adanya organisme</strong>,
+          seperti gambar-gambar pemandangan, perairan, batu, dll.
+          </li>
+          <li>pengamatan <strong>tidak menampilkan bukti suatu organisme 
+          yang diambil belakangan ini (~100 tahun)</strong> (seperti fosil,
+          namun bukti-bukti seperti jejak, tahi, dan daun mati diperbolehkan)
+          </li>
+          <li>pengamatan tidak lagi memerlukan ID <em>dan</em> ID komunitas berada di atas famili
+          </li>
+          <li>pengamat tidak memilih untuk menggunakan ID komunitas
+          dan takson ID komunitas bukan induk atau turunan dari takson
+          yang terkait dengan ID pengamat
+          </li>
+          </ul>
+          <p>
+          Dan jika ini semua masih belum ruwet, ada situasi-situasi lainnya di mana sistem dapat memilih:
+          </p>
+          <ul>
+          <li>Sistem bisa menentukan bahwa suatu pengamatan tidak liar/dinaturalisasi
+          jika terdapat setidaknya 10 pengamatan lainnya dari sebuah genus atau
+          tingkat di bawahnya yang berada di dalam suatu tempat setingkat kabupaten,
+          provinsi, atau negara yang paling kecil yang memiliki pengamatan ini dan
+          lebih dari 80% pengamatan tersebut telah ditandai sebagai tidak liar/dinaturalisasi.
+          </li>
+          </ul>
         score_desc: "nilai = jumlah kumulatif / (jumlah kumulatif + jumlah pertentangan + pertentangan induk)"
         observation_flagged_notice_html: |
           Pengamatan ini telah ditandai sebagai spam dan sudah tidak terlihat lagi secara publik. Anda dapat melihatnya karena Anda membuatnya, atau Anda merupakan kurator situs. Jika menurut Anda ini adalah sebuah kesalahan, silakan <a href="mailto:%{help_email}" class="contact">menghubungi kami</a>. <a href="/observations/%{observation_id}/flags">Kelola tanda</a>
@@ -5959,6 +6030,7 @@ id:
           Harap tentukan persyaratan-persyaratan untuk pengamatan yang akan ditambahkan ke proyek ini.
         project_background_color: Warna Latar Belakang Ringkasan Proyek
         project_background_color_help: Pastikan Anda memilih warna yang cukup gelap supaya teks putih di atasnya dapat terbaca.
+        project_banner: Sampul Proyek (PNG atau JPG)
         project_banner_help: Gambar sampul opsional. Ukuran idealnya adalah 760px x 320px.
         project_details: Rincian Proyek
         project_icon: Ikon Proyek (PNG, JPG, atau GIF)
@@ -6341,6 +6413,7 @@ id:
         you_must_enter_confirmation_code_in_the_form: |
           Anda harus memasukkan "%{confirmation_code}" di formulir untuk menghapus akun Anda
       edit:
+        about_third_party_tracking: Tentang pelacakan pihak ketiga
         blocking_desc_html: |
           <p>
           Memblokir seseorang mencegah seseorang mengirim pesan kepada Anda, mengomentari pengamatan Anda, mengidentifikasi pengamatan Anda, serta berinteraksi dengan Anda di %{site_name}. Ini akan menghilangkan pengamatan mereka dari hasil pencarian Anda dan menghilangkan pengamatan Anda pada hasil pencarian mereka. Namun, hal ini tidak membuat Anda tidak terlihat bagi mereka. Mereka masih bisa menemukan pengamatan Anda dan melihat profil Anda, tetapi mereka hanya tidak bisa berinteraksi dengan Anda.
@@ -6423,6 +6496,9 @@ id:
           %{site_name} melacak organisme apa yang Anda pikirkan dalam pengamatan Anda dan apa yang komunitas pikirkan tentangnya. Jika Anda tidak berpikir bahwa pendapat komunitas harus mengesampingkan pendapat Anda, Anda bisa menonaktifkannya di sini. Orang-orang masih bisa menambahkan identifikasi, tetapi pengamatan Anda akan tetap dikaitkan dengan takson dari identifikasi Anda. Hal ini berarti pengamatan Anda tidak akan memenuhi syarat untuk status Kelas Riset kecuali identifikasi Anda sesuai dengan pendapat komunitas.
         prefers_coordinate_interpolation_protection_desc: |
           Saat Anda mengatur geoprivasi pengamatan menjadi "dikaburkan" atau "pribadi", tindakan ini akan menerapkan geoprivasi yang sama ke semua pengamatan Anda yang lain pada hari yang sama sehingga menyulitkan orang lain menebak koordinat sesungguhnya berdasarkan pengamatan yang dibuat dalam waktu yang kurang lebih sama.
+        prefers_no_tracking_label: Jangan mengambil data stabilitas dan pemakaian menggunakan layanan pihak ketiga
+        prefers_no_tracking_label_desc_we_use: |
+          Kami menggunakan berbagai layanan pihak ketiga untuk memantau stabilitas dan mendiagnosis kekutu dan masalah dalam perangkat lunak kami. Para pihak ketiga ini termasuk
         prefers_no_tracking_label_desc_we_use_google_html: Google(<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Informasi yang mungkin kami bagikan dengan pihak-pihak ketiga ini termasuk
@@ -6436,6 +6512,8 @@ id:
           Detail crash, seperti baris kode apa yang menyebabkan crash
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Detail perangkat, seperti pembuat dan model ponsel
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Layanan pihak ketiga ini memberikan keuntungan yang sangat besar bagi kami</strong> dalam menjaga stabilitas dan penggunaan iNaturalist dengan staf kami yang relatif sedikit. Pada perangkat-perangkat seluler, hampir tidak ada cara lain di mana kami bisa mendapatkan pengertian mengenai masalah-masalah yang sedang terjadi, karena perangkat lunaknya dijalankan pada perangkat-perangkat yang tidak kami kontrol. Terkadang, kami bahkan tidak menyadari masalah-masalah itu terjadi sebelum kami melihatnya pada data yang disediakan layanan ini. <strong>Dengan membagikan informasi ini, Anda membantu kami melayani Anda dan seluruh komunitas iNaturalist.</strong>
         prefers_no_tracking_label_desc_limits: |
           Ingat bahwa opsi ini hanya berlaku untuk data analytics dan crash yang secara eksplisit kami kirimkan ke perusahaan-perusahaan tersebut. Semua server-server iNaturalist disediakan dan dihosting oleh Microsoft, semua gambar-gambar iNaturalist dihosting oleh Amazon, dan hampir semua peta-peta iNaturalist disediakan oleh Google, yang berarti tiap kali Anda melihat suatu pengamatan di iNaturalist, Anda terkoneksi dengan layanan-layanan yang diberikan oleh perusahaan-perusahaan tersebut dan setidaknya mengekspos alamat IP Anda kepada mereka (untuk aplikasi iPhone kami menggunakan peta dari Apple). iNaturalist mungkin tidak dapat ada tanpa layanan-layanan yang perusahaan-perusahaan tersebut sediakan dan meskipun kami dapat membatasi jumlah dan jenis data yang Anda bagikan dengan mereka ketika menggunakan iNat, kami tidak dapat sepenuhnya menghentikan aliran data.
         project_settings_desc: |
@@ -7145,6 +7223,8 @@ id:
     scopes:
       write: |
         Membuat, mengubah, dan menghapus pengamatan, identifikasi, dan konten Anda lainnya atas nama Anda, dan mengakses koordinat tersembunyi Anda dan informasi lainnya yang bisa Anda akses di situs.
+      login: |
+        Mengakses informasi yang relevan dengan proses masuk ke layanan pihak ketiga, seperti alamat email, nama pengguna, nama, dan ikon pengguna yang terkait dengan akun Anda di sini.
       account_delete: |
         Menghapus akun Anda atas nama Anda.
     errors:
