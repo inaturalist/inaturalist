@@ -237,6 +237,8 @@ module DarwinCore
       params[:projects] = [@project.id] if @project
       params[:quality_grade] = @opts[:quality] === "verifiable" ? "research,needs_id" : @opts[:quality]
       params[:site_id] = @opts[:site_id]
+      params[:d1] = @opts[:d1]
+      params[:d2] = @opts[:d2]
       params[:created_d1] = @opts[:created_d1]
       params[:created_d2] = @opts[:created_d2]
       if @opts[:photos].to_s == "true"

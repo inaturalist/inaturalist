@@ -343,6 +343,28 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( ids ).not_to include not_in_project.id
   end
 
+  it "should filter by d1" do
+    outside_o = make_research_grade_observation( observed_on_string: 20.years.ago.to_s )
+    inside_o = make_research_grade_observation( observed_on_string: 2.years.ago.to_s )
+    archive = DarwinCore::Archive.new( d1: 10.years.ago.to_date.to_s )
+    archive.make_data
+    path = archive.extension_paths[:occurrence]
+    ids = CSV.read( path, headers: true ).map {| r | r[0].to_i }
+    expect( ids ).to include inside_o.id
+    expect( ids ).not_to include outside_o.id
+  end
+
+  it "should filter by d2" do
+    inside_o = make_research_grade_observation( observed_on_string: 20.years.ago.to_s )
+    outside_o = make_research_grade_observation( observed_on_string: 2.years.ago.to_s )
+    archive = DarwinCore::Archive.new( d2: 10.years.ago.to_date.to_s )
+    archive.make_data
+    path = archive.extension_paths[:occurrence]
+    ids = CSV.read( path, headers: true ).map {| r | r[0].to_i }
+    expect( ids ).to include inside_o.id
+    expect( ids ).not_to include outside_o.id
+  end
+
   it "should set the license to a URI" do
     o_cc_by = make_research_grade_observation( license: Observation::CC_BY )
     archive = DarwinCore::Archive.new( licenses: [ Observation::CC_BY, Observation::CC0 ] )
