@@ -7089,6 +7089,8 @@ id:
             observed_on:
               cannot_be_greater_than_date_created: |
                 tidak boleh lebih besar dari tanggal penambahan pengamatan
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: harus berada dalam kurun waktu 130 tahun terakhir
         observation_field_value:
           attributes:
             value:
