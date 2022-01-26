@@ -4685,6 +4685,7 @@ lt:
         by_deleting_your_account_you_will_remove: |
           Ištrindami savo paskyrą jūs panaikinsite
       edit:
+        about_third_party_tracking: Apie trečiųjų šalių sekimą
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jei apsigalvosite visada galite
           <a href='/users/edit'>keisti savo nustatymus</a>.
@@ -4727,6 +4728,9 @@ lt:
         project_addition_preferences:
           any: Nesvarbu
           joined: Projektai, prie kurių prisijungėte
+        prefers_no_tracking_label: Nerinkti stabilumo ir naudojimo duomenų su trečiųjų šalių paslaugomis
+        prefers_no_tracking_label_desc_we_use: |
+          Mes naudojame keletą trečiųjų šalių paslaugų stebėti stabilumą ir atrasti klaidas bei klaidas mūsų programinėje įrangoje. Trečiosios šalys yra
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Informacija, kuria dalinamės su trečiosiomis šalimis gali būti
@@ -4738,6 +4742,8 @@ lt:
           Sistemos gedimo detalės, pavyzdžiui, kokia būtent kodo eilutė sukėlė gedimą
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Įrenginio detalės, pavyzdžiui, mobiliojo telefono modelis
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Trečiųjų šalių paslaugos mūsų mažam personalui teikia didelę vertę</strong>, be jų negalėtumėme palaikyti iNaturalist stabilumo ir pritaikomumo. Mes nieko negalėtumėme žinoti apie problemas mobiliuosiuose įrenginiuose, nes mes nekontroliuojame jų operacinių sistemų. Kartais mes net nežinome problemų, kol nepamatome jų duomenyse, kuriuos mums pateikia trečiųjų šalių paslaugos. <strong>Besidalindami šia informacija jūs padedate mums tarnauti jums ir visai iNaturalist bendruomenei.</strong>
         search_place_help_html: |
           Numatytoji vieta stebėjimo paieškoms.
         scientific_name_first_desc: |
@@ -5188,6 +5194,9 @@ lt:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "koordinatės negali būti 0,0"
+            observed_on:
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: turi būti per paskutinius 130 metų
         observations_export_flow_task:
           attributes:
             base:
