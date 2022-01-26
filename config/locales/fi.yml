@@ -1584,6 +1584,8 @@ fi:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Ulkopuolinen sovellus
+  external_applications_description: |
+    Ulkoiset sovellukset ovat kolmannen osapuolen ohjelmistosovelluksia, jotka olet valtuuttanut käyttämään iNaturalist-tiliäsi puolestasi. Yleensä ne voivat tehdä tililläsi kaiken saman kuin itsekin, joten varmista, että luotat sovelluskehittäjiin, ennen kuin myönnät luvan.
   extinct: kuollut sukupuuttoon
   extinct_in_the_wild: Sukupuuttoon kuollut luonnossa
   extra_properties: Lisäominaisuudet
@@ -2048,6 +2050,7 @@ fi:
   leading: Johtava
   learn: Opi
   learn_about_the_species_live_in: Opi lajeista, jotka elävät paikassa
+  learn_about_third_party_tracking: Lue lisää kolmannen osapuolen seurannasta
   learn_more: Lue lisää
   learn_more_raquo: "Lisätietoja &raquo;"
   learn_what_these_licenses_mean: Opi, mitä nämä lisenssit tarkoittavat
@@ -4217,6 +4220,7 @@ fi:
   these_folks_kindly_volunteer_to: Nämä ystävälliset vapaaehtoiset ylläpitävät taksonomiaamme ja käsittelevät muita asioita.
   these_observations_have_not_been_uploaded_yet: |
     Näitä havaintoja ei ole vielä tallennettu.
+  third_party_tracking: Kolmannen osapuolen seuranta
   third_person_possessive_singular: "Käyttäjän %{object_phrase} %{noun}"
   this: tämä
   this_bioblitz_beings_in: Aikaa tämän projektin alkuun
@@ -5638,6 +5642,7 @@ fi:
         settings_and_mute_html: |
           Jos saat liian paljon ilmoituksia sivustolta, voit <a href="/users/edit">asetuksistasi</a> muokata, mitä ilmoituksia lähetetään tai estää sähköpostin lähetyksen. Jos saat liikaa ilmoituksia joltakin henkilöltä, harkitse hänen <a href="/users/edit">vaimentamistaan</a> tilisi poistamisen sijaan.
       edit:
+        about_third_party_tracking: Tietoja kolmannen osapuolen tekemästä seurannasta
         blocking_desc_html: |
           <p>
           Toisen käyttäjän estäminen (blokkaaminen) estää heitä viestimästä kanssasi, kommentoimasta havaintojasi, tunnistamasta havaintojasi, tai muuten olemassa yhteydessä sinuun %{site_name}issa. Estäminen myös poistaa hänen havaintonsa näkemistäsi hakutuloksista sekä poistaa havaintosi heidän hakutuloksistaan. Mutta estäminen ei tee sinusta näkymätöntä hänelle. Hän voi silti löytää havaintojasi ja katsoa profiiliasi, hän vain ei vain voi viestiä kanssasi.
@@ -5725,6 +5730,8 @@ fi:
           %{site_name} pitää kirjaa siitä mitä mieltä sinä ja käyttäjäyhteisö on tunnistanut havaintojesi lajin. Jaamme yhteisön tekemän tunnistuksen kumppaniemme kanssa. Jos et kuitenkaan halua että yhteisön tekemä tunnistus menee omasi edelle, voit valita sen tässä (ota tällöin ruksi pois ruudusta). Muut käyttäjät voivat silti lisätä omia tunnistuksiaan havaintoihisi, mutta yhteisön mielipide ei mene omasi edelle. Tämä tarkoittaa myös että havaintojasi ei luokitella tutkimustasolle, paitsi jos olet samaa mieltä yhteisön kanssa.
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Laitteen tiedot, kuten puhelimen valmistaja ja malli
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Nämä kolmannen osapuolen palvelut ovat meille suunnattoman arvokkaita</strong>, kun ylläpidämme iNaturalistin vakautta ja käytettävyyttä kohtalaisen pienellä henkilöstöllä. Mobiillilaitteilla ei ole melkein muuta mahdollisuutta saada ymmärrystä esiintyviin ongelmiin, koska ohjelma on käytössä laitteella jota emme hallinnoi. Joskus emme edes ole tietoisia joidenkin ongelmien esiintymisestä, ennen kuin näemme ne datassa jota nämä palvelut tuottavat.<strong>Jakamalla tämän tiedon autat meitä palvelemaan itseäsi ja koko iNaturalist-yhteisöä.</strong>
         prefers_no_tracking_label_desc_limits: |
           Huomaa, että tätä asetusta sovelletaan vain analytiikkadataan ja kaatumisraportteihin, joita lähetämme näille yrityksille. Kaikki iNaturalistin palvelimet tarjoaa ja niitä isännöi Microsoft, kaikkia iNaturalistin kuvia isännöi Amazon ja melkein kaikki iNaturalistin kartat tarjoaa Google. Tämä tarkoittaa, että aina kun katsot havaintoa iNaturalistissa, olet yhteydessä näiden yritysten tarjoamiin palveluihin ja paljastat niille ainakin IP-osoitteesi (uudessa iPhone-sovelluksessa käytetään Applen karttoja). iNaturalistia ei varmankaan olisi olemassa ilman palveluita, joita nämä yritykset tarjoavat. Vaikka voimme rajoittaa iNaturalistin käytöstäsi näille yrityksille jaettavan datan määrää ja laatua, emme voi estää datan kulkua kokonaan.
         project_settings_desc: |
@@ -6395,6 +6402,8 @@ fi:
     scopes:
       write: |
         Voi luoda, päivittää ja poistaa havaintojasi, tunnistuksiasi ja muuta sisältöä puolestasi. Se myös pääsee näkemään piilotetut koordinaattisi ja kaiken muun tiedon, johon sinulla on sivustolla pääsy.
+      login: |
+        Pääsee käsiksi tietoon, jota tarvitaan kirjautumiseen kolmannen osapuolen palveluun. Näistä tietoja ovat esim. sähköpostiosoitteesi, käyttäjätunnuksesi, nimesi ja profiilikuvasi.
       account_delete: |
         Poistaa käyttäjätilini puolestani.
     flash:
