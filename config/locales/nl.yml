@@ -561,15 +561,27 @@ nl:
   #Label for an option to show/include content by any user
   any_user: Alle
   anyone: Iedereen
+  app_owner_application_about_p1a_html: |
+    iNaturalist apps staan geverifieerd gebruik van de iNaturalist API toe. Dit stelt je in staat 
+    API calls te doen die waarnemingen of determinaties maken. Veel voorkomende voorbeelden zijn desktop applicaties of mobiele apps die waarnemingen in iNaturalist maken voor zijn gebruiker. Deze inhoud moet tot stand worden gebracht met echte menselijke betrokkenheid
+    of toezicht. Lees onze <a href="/pages/community+guidelines"
+    target="_blank">Community Guidelines</a> voor meer informatie waarin machine-gegenereerde waarnemingen, determinaties en opmerkingen worden verboden.
+  app_owner_application_inelligible: |
+    Om een toepassing in te kunnen dienen moet je account minimaal 2 maanden oud zijn en moet minstens 10 verbeterende determinaties hebben gedaan in de afgelopen maand.
+  app_owner_application_fields_explanation_html: Beschrijf de functionaliteit van je app en hoe je deze gaat gebruiken.
+  app_owner_application_success: App eigenaar aanvraag ingediend
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Toepassing
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Toepassingen
+  apply_app_owner: Aanvragen
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Aanvragen
+  apply_to_be_an_app_owner: Aanvraag om App Eigenaar te worden
+  apply_to_create_applications_title: Aanvraag om toepassingen te maken
   apply_to_selected: Toepassen op selectie
   apply_captive_cultivated: "In gevangenschap / gecultiveerd toepassen"
   apply_fields: Velden toepassen
@@ -678,6 +690,16 @@ nl:
     natureserve: NatureServe
     cites: CITES
   authorize: Machtigen
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: Autoriseer met PKCE
+  #Explanation for how to use the PKCE authorization link. All variables are
+  #code that must match the content of the link and thus cannot be
+  #translated.
+  authorize_with_pkce_desc_html: |
+    (Gebruik <code>%{code_challenge}</code> als
+    <code>%{code_verifier_param}</code>) Opmerking: dit is een simpel voorbeeld. In productie code MOET je <code>%{code_challenge_method}</code> gebruiken en correct 
+    de <code>%{code_challenge_param}</code> hash'en.
   authorize_permissions_from_provider: "Sta machtigingen van %{provider} toe"
   automatic_short: Automatisch
   automatically_add_observations_to_this_project: Voeg automatisch waarnemingen aan dit project toe
@@ -686,6 +708,7 @@ nl:
   #of values, and not a synonym of "typical" or "normal"
   avg: Gem.
   back: Terug
+  back_to_applications: "&laquo; Terug naar toepassingen"
   back_to_all_species: Terug naar Alle Soorten
   back_to_editing_observation: Terug naar waarneming bewerken
   back_to_friends: Terug naar vrienden
@@ -771,6 +794,7 @@ nl:
   by_you: Door jou
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalenders tonen slechts %{x} waarnemingen tegelijk
+  callback_url: Callback url
   cancel: Annuleren
   cant_edit_or_delete_hidden_content: Je kunt inhoud die verborgen is door sitecuratoren niet bewerken of verwijderen
   cant_flag_an_object_that_doesnt_exist: Niet mogelijk om een object te melden dat niet bestaat
@@ -964,6 +988,7 @@ nl:
     wordt opgenomen. Voeg meer waarnemingen toe van dit taxon of determineer ze.
     .
   concept_status: Conceptstatus
+  confidential: Vertrouwelijk
   configure: Instellen
   configure_a_widget_to_show: Stel een widget in om de  %{site_name} waarnemingen te tonen op je website of blog. Het kan zijn dat je de  CSS moet opnemen in de  <code>&lt;head&gt;</code> van je HTML. Voel je vrij de CSS te herschrijven.
   confirm: Bevestigen
@@ -1504,6 +1529,8 @@ nl:
   each_place_displays_all_species_inat_knows: "Bij elke plaats staan alle soorten uit %{site_name} die bekend zijn van die plek, inclusief informatie over hun abundantie, beschermingsstatus en wie als eerste die soort vanaf die plaats op %{site_name} heeft waargenomen. Je kunt de soort filteren op taxonomische groep, kleur, beschermingsstatus of gewoon ouderwets zoeken."
   earliest_added: Vroegste toegevoegd
   edit: Bewerken
+  #Title of the moderation note editor
+  edit_moderator_note: Moderator Notitie bewerken
   edit_a_batch_of_observations: Bewerk een reeks waarnemingen
   edit_account_settings_and_profile: "Account instellingen &amp; profiel bewerken"
   edit_assessment: Beoordeling bewerken
@@ -1630,6 +1657,8 @@ nl:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Externe toepassingen
+  external_applications_description: |
+    Externe applicaties zijn applicaties van derden die namens jou toegang hebben tot je iNaturalist account. Over het algemeen kunnen ze alles doen met je account wat jij kunt, dus zorg ervoor dat je de app-ontwikkelaars vertrouwt voordat je ze toestemming geeft.
   external_taxon_including_children: Extern taxon (inclusief kinderen)
   extinct: uitgestorven
   extinct_in_the_wild: Uitgestorven in het Wild
@@ -1710,6 +1739,7 @@ nl:
   flag_as_non_spammer: Meld als niet-spammer
   #Label for the date/time when a flag was created
   flag_created: Melding aangemaakt
+  flag_deleted: Melding verwijderd
   flag_description: Meld deze inhoud zodat de curatoren weten dat er iets mis mee is.
   flag_comment_description: Voeg een optionele opmerking toe aan deze markering die verder verklaart waarom je deze toevoegt en die links geeft naar het bewijsmateriaal.
   flag_for_check_list_title_html: |
@@ -2133,6 +2163,7 @@ nl:
   leading: Leidend
   learn: Leren
   learn_about_the_species_live_in: Leer over de soorten die voorkomen in
+  learn_about_third_party_tracking: Lees meer over het volgen door derden
   learn_more: Lees meer
   learn_more_raquo: "Leer meer &raquo;"
   learn_what_these_licenses_mean: Leer meer over de betekenis van deze licenties
@@ -2235,6 +2266,10 @@ nl:
   link_or_unlink_your_facebook_account: Maak of verbreek de verbinding met je Facebook-account
   link_or_unlink_your_flickr_account: Maak of verbreek de verbinding met je Flickr-account
   link_or_unlink_your_google_account: Maak of verbreek de verbinding met je Google-account
+  #Text for a link that provides an example of how an application can send a
+  #user to iNat to authorize the app's use of their iNat account. "Link" is
+  #a noun.
+  link_to_authorization_code: Link naar autorisatiecode
   link_your_facebook_account: Verbind je Facebook-account
   link_your_flickr_account: Verbind je Flickr-account
   link_your_google_account: Verbind je Google-account
@@ -2385,6 +2420,7 @@ nl:
   make_sure_the_default_photo_looks_good: Zorg ervoor dat de standaardfoto er goed uit ziet in groot formaat.
   make_this_your_default_license: "Maak dit je standaard %{type} licentie"
   make_this_the_primary_listing: "Maak dit je hoofdlijst"
+  make_your_app_confidential: Maak jouw app vertrouwelijk als jij jouw app secret securely kunt opslaan, d.w.z. niet in een publiek beschikbaar binary dat kan worden gedecompileerd. Vink dit vakje uit als dit niet het geval is en je van plan bent de PKCE-stroom te gebruiken
   mammals: zoogdieren
   manage_all_your_subscriptions: Al je abonnementen beheren
   manage_names: Namen beheren
@@ -2630,6 +2666,7 @@ nl:
   new: Nieuw
   new_and_noteworthy: Nieuw & opmerkelijk
   new_announcement: Nieuwe aankondiging
+  new_application: Nieuwe toepassing
   new_assessment: Nieuwe schatting
   new_check_list: Nieuwe checklist
   new_check_list_for: "Maak een nieuwe checklist voor %{place} &raquo;"
@@ -4398,6 +4435,11 @@ nl:
   subscribe_to_observations_from_this_place_html: <a>Abonneer</a> op waarnemingen van deze plaats
   subscribe_to_observations_in_a_taxon: Op alle waarnemingen van een soort of groep organismen (bijv. 'schorpioenen') abonneren.
   subscribe_to_observations_in_a_place: Op alle waarnemingen die op deze plaats worden gerapporteerd abonneren. Je kunt eventueel ook een taxonfilter toevoegen (bijv. 'Paardenbloemen in Utrecht').
+  subscribe_to_places_help: |
+    Abonnementen bepalen wat je ziet in jouw updates en op jouw dashboard.
+    Je kunt je bijvoorbeeld abonneren op een taxon om updates te krijgen over nieuwe
+    waarnemingen van dat taxon. Je bent automatisch geabonneerd op updates
+    over waarnemingen waarop je reageert of die je determineert.
   subscribe_to_this: Hierop abonneren
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Abonneer</a>
@@ -4668,6 +4710,7 @@ nl:
   these_folks_kindly_volunteer_to: Deze mensen bieden ons vrijwillig aan om onze taxonomie te beheren en andere problemen aan te pakken.
   these_observations_have_not_been_uploaded_yet: |
     Deze waarnemingen werden nog niet geüpload.
+  third_party_tracking: Volgen door derden
   third_person_possessive_singular: "%{noun} van %{object_phrase}"
   this: deze
   this_bioblitz_beings_in: Deze bioblitz begint over
@@ -4854,6 +4897,7 @@ nl:
   uploading_num_of_count_photos:
     one: Foto uploaden...
     other: Uploading %{num} van %{count} fotos...
+  url_for_your_app_outside_of_inaturalist: URL voor uw app buiten iNaturalist
   url_identifier_of_a_project_derived_from: "URL/identifier van een project dat is afgeleid van een externe bron"
   url_of_this_taxon_on_the_source_website: URL van dit taxon op de website van de bron
   usage_stats: Gebruiksstatistieken
@@ -4891,6 +4935,7 @@ nl:
   user_added_an_x_to_noun_html: "%{user} heeft een %{x} toegevoegd aan %{noun}"
   user_added_x_observations_html: "%{user} heeft %{x} waarnemingen toegevoegd"
   user_already_authenticated: Gebruiker is al geverifieerd
+  user_already_app_owner: Gebruiker is al eigenaar van een app
   user_autocomplete_placeholder: kueda, simon123, enz.
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
   #not the place. Gender for all variables is not known..
@@ -5834,42 +5879,6 @@ nl:
           schending van auteursrechten. Zie %{links} voor details
         join_project_desc_html: |
           Deelnemen aan het project geeft projectcuratoren de rechten om de verborgen coördinaten van deze of elke andere waarneming in het project te zien en impliceert dat jij akkoord gaat met de project<a href="%{url}" target="_blank">voorwaarden </a>.
-        quality_assessment_help_html: |2
-          <p>
-           De gegevenskwaliteit is een overzicht over de nauwkeurigheid van de waarneming. Alle waarnemingen beginnen als <strong>"onvolledig"</strong> en worden <strong>"ID nodig"</strong> als
-           </p>
-           <ul>
-           <li>de waarneming <strong>een datum heeft</strong></li>
-           <li>de waarneming <strong>geografische referenties heeft</strong> (d.w.z. coördinaten heeft)</li>
-           <li>de waarneming <strong>foto's of geluiden heeft</strong></li>
-           <li>de waarneming <strong>niet van een mens is</strong></li>
-           </ul>
-           <p>
-           Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> als
-           </p>
-           <ul>
-           <li>de %{site_name}<strong>-gemeenschap het eens is over de determinatie op soortniveau of lager</strong>, d.w.z. meer dan 2/3 van de determinaties is het eens over een taxon</li>
-           </ul>
-           <p>
-          Waarnemingen worden teruggezet naar <strong>"onvolledig"</strong> als niet aan de bovenstaande voorwaarden wordt voldaan of als de gemeenschap het eens is dat
-           </p>
-           <ul>
-           <li>de locatie <strong>niet nauwkeurig lijkt</strong> (bijvoorbeeld apen in het midden van 
-           de oceaan, nijlpaarden in kantoorgebouwen, etc.)</li>
-           <li>het <strong>organisme niet wild/genaturaliseerd is</strong> (bijv. gevangen of 
-           gekweekt door mensen of intelligente ruimtewezens)</li>
-          <li>de waarneming <strong>geen bewijs op van een organisme levert</strong>, b.v. 
-           afbeeldingen van landschappen, waterpartijen, rotsen, etc.</li>
-          <li>de waarneming <strong>geen recent (~100 jaar) bewijs van het organisme levert</strong> (bijv. fossielen, maar sporen, ontlasting en dode bladeren zijn oké)</li>
-           <li>de waarneming niet langer een determinatie nodig heeft <em>en</em> het gemeenschaps-ID hoger dan familie is</li>
-           <li>de waarnemer zich heeft afgemeld voor het gemeenschaps-ID en het taxon van het gemeenschaps-ID geen voorouder of afstammeling van het taxon van de waarnemer is</li>
-           </ul>
-           <p>
-           En alsof dat nog niet ingewikkeld genoeg was zijn er ook situaties waarin het systeem een stem krijgt:
-           </p>
-           <ul>
-           <li>Het systeem zal aangeven dat de waarneming niet wild/genaturaliseerd is als er minstens 10 andere waarnemingen van een genus of lager zijn in de kleinste equivalent van provincie, staat of land waarin deze waarneming valt en 80% of meer van die waarnemingen als niet wild/genaturaliseerd gemakreerd zijn.</li>
-           </ul>
         score_desc: "score = cumulatief aantal / (cumulatief aantal + meningsverschil aantal + voorouder meningsverschillen)"
         observation_flagged_notice_html: |
           Deze waarneming is gemeld als spam en is niet langer
@@ -6686,6 +6695,7 @@ nl:
         you_must_enter_confirmation_code_in_the_form: |
           Je moet de "%{confirmation_code}" in het formulier invoeren om je account te verwijderen
       edit:
+        about_third_party_tracking: Over het volgen door derden
         blocking_desc_html: |
           <p>Door iemand te blokkeren kunnen ze je berichten niet meer zien of reageren op jouw waarnemingen, je waarnemingen determineren of andere interacties met je hebben op %{site_name}. Het verwijdert ook hun waarnemingen uit je zoekresultaten en verwijdert jouw waarnemingen uit hun zoekresultaten. Het maakt je echter niet onzichtbaar voor ze. Ze kunnen nog steeds je waarnemingen vinden en je profiel bekijken, ze kunnen echter geen interactie met je aangaan.
           </p>
@@ -6776,6 +6786,9 @@ nl:
           %{site_name} houdt bij wat jij denkt dat je waarnemingen zijn en wat de gemeenschap denkt dat ze zijn. Als je vindt dat de mening van de gemeenschap de jouwe nooit mag vervangen kun je dat hier uitzetten. Mensen kunnen nog steeds determinaties toevoegen, maar je waarnemingen blijven gekoppeld aan het taxon van jouw determinatie. Dit betekent dat je waarnemingen niet in aanmerking komen voor onderzoekskwaliteit tenzij je het eens bent met de gemeenschap.
         prefers_coordinate_interpolation_protection_desc: |
           Wanneer je de geoprivacy van een waarneming instelt op "verduisterd" of "privé" dan zal dezelfde geoprivacy op al je andere waarnemingen van dezelfde dag worden toegepast om het moeilijker te maken voor andere mensen om de ware coördinaten af te leiden van waarnemingen die rondom hetzelfde tijdstip zijn gemaakt.
+        prefers_no_tracking_label: Verzamel geen gegevens over stabiliteit en gebruik met behulp van diensten van derden
+        prefers_no_tracking_label_desc_we_use: |
+          We gebruiken diverse diensten van derden om stabiliteit te monitoren, en bugs en problemen in onze software op te sporen. Deze derden omvatten
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Informatie die we kunnen delen met deze derden omvat
@@ -6789,6 +6802,8 @@ nl:
           Crashdetails, zoals exact welke regel code een crash heeft veroorzaakt
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Apparaatdetails, zoals merk en model van een mobiele telefoon
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Deze services van derden zijn erg waardevol voor ons</strong> bij het stabiel en bruikbaar houden van iNaturalist met ons relatief kleine aantal werknemers. Op mobiele apparaten is er nagenoeg geen andere manier om inzicht te krijgen in de problemen die zich voordoen, aangezien de software draait op apparaten waarover we geen controle hebben. Soms weten we niet eens dat zulke problemen zich voordoen voordat we ze in de data van zulke diensten zien. <strong>Door deze informatie te delen help je ons, en de gehele gemeenschap op iNaturalist.</strong>
         prefers_no_tracking_label_desc_limits: |
           Deze optie is alleen van toepassing op analytische en crashgegevens die wij
           expliciet naar deze bedrijven sturen. Alle iNaturalist servers zijn
@@ -7213,6 +7228,9 @@ nl:
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
       ModeratorNote: Moderatornotitie
+      #Software application that operates iNat on a user's behalf, e.g. the
+      #iNaturalist Android app or an app made by a third party
+      OauthApplication: Toepassing
       TaxonLink: Taxonlink
     attributes:
       assessment:
@@ -7259,6 +7277,18 @@ nl:
         finished_at: Voltooid
         #Inputs to an export task, e.g. the query and the columns
         inputs: Invoer
+      oauth_application:
+        #The URL the user will be redirected to after authorizing an app to
+        #access their iNaturalist account
+        callback_url: Callback URL
+        #Unique identifier for an application
+        uid: ID
+        #Noun, secret associated with an application, sort of like the application's password
+        secret: Geheim
+        #Adjective, whether or not this application can keep its secret
+        #confidential, e.g. a native or desktop app as opposed to a web
+        #app.
+        confidential: Vertrouwelijk
       post:
         title: Titel
         body: Tekst
@@ -7542,6 +7572,9 @@ nl:
     scopes:
       write: |
         Je waarnemingen, determinaties en andere inhoud namens jou aanmaken, bewerken en verwijderen, en je verborgen coördinaten en alle andere informatie waar je toegang toe hebt op deze site inzien.
+      login: |
+        Toegangsinformatie relevant bij het inloggen bij diensten door derden, zoals e-mailadres, gebruikersnaam,
+        naam en avatar gekoppeld aan je account daar.
       account_delete: |
         Je account namens jou verwijderen.
     errors:

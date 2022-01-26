@@ -1414,6 +1414,8 @@ pt:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplicações externas
+  external_applications_description: |
+    Aplicativos externos são aplicativos de terceiros que você autorizou a aceder à sua conta iNaturalist em seu nome. Em geral, eles podem fazer tudo com a sua conta que você puder, por isso certifique-se de confiar nos mesmos antes de lhes conceder permissão.
   extinct: extinto
   extinct_in_the_wild: extinto na natureza
   extra_properties: Propriedades Extra
@@ -1755,6 +1757,7 @@ pt:
   leading: Principal
   learn: Aprender
   learn_about_the_species_live_in: Aprenda sobre as espécies que vivem em
+  learn_about_third_party_tracking: Saiba mais sobre o rastreamento de terceiros
   learn_more: Saiba mais
   learn_more_raquo: "Saiba mais &raquo;"
   learn_what_these_licenses_mean: Saiba o que estas licenças significam
@@ -3231,6 +3234,7 @@ pt:
     e escolhendo um registo pai. Por exemplo, o pai do Homo sapiens seria
     o gênero Homo. Também poderá querer verificar se existem táxons com o mesmo significado e
     combiná-los.
+  third_party_tracking: Rastreamento de terceiros
   this: isto
   this_is_how_taxon_names_will_be_displayed: É assim que todos os nomes de táxon serão exibidos para si no %{site_name}
   this_observation_is_featured_on_x_sites:

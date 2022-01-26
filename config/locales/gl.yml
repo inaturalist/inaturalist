@@ -1593,6 +1593,8 @@ gl:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplicacións Externas
+  external_applications_description: |
+    As Aplicacións Externas son aplicacións de software de tereceiros ás que autorizaches o acceso á túa conta iNaturalist da túa parte. En xeral, poden facer todo o que tí podes facer cá túa conta, así que asegúrate de que confías nos desenvolvedores da app antes de lles garantizar o permiso.
   external_taxon_including_children: Taxons esternos (incluíndo descendencia)
   extinct: Extinto
   extinct_in_the_wild: Extinguido en estado silvestre
@@ -2060,6 +2062,7 @@ gl:
   leading: Na dianteira
   learn: Infórmate
   learn_about_the_species_live_in: Aprende sobre as especies que viven en
+  learn_about_third_party_tracking: Saber máis sobre o rastrexo de terceiros
   learn_more: Aprende máis
   learn_more_raquo: "Saber máis »"
   learn_what_these_licenses_mean: Aprende o que estas licenzas significan
@@ -4375,6 +4378,7 @@ gl:
   these_folks_kindly_volunteer_to: Estas persoas amablemente ofrécense voluntarias para manter a taxonomía e resolver outros problemas.
   these_observations_have_not_been_uploaded_yet: |
     Esas observacións aínda non foron subidas.
+  third_party_tracking: Rastrexo de Terceiros
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: Este
   this_bioblitz_beings_in: Este bioblitz comeza en
@@ -5453,56 +5457,6 @@ gl:
           Algunhas destas fotos foron marcadas por contidos inapropiados ou violacións de dereitos de autor. Para ver detalles preme %{links}
         join_project_desc_html: |
           Unirse ó proxecto daralle ós conservadores do proxecto o poder de ver as coordenadas ocultas desta ou outras observacións no proxecto e implica que ti estás de acordo cós <a href="%{url}" target="_blank">termos</a> do proxecto.
-        quality_assessment_help_html: |
-          <p>
-          A avaliación da calidade dos dados é un resumo da exactitude dunha observación. Tódalas observacións comezan có grao <strong>"casual"</strong>, e pasa a <strong>"necesita identificación</strong> cando
-          </p>
-
-          <ul>
-          <li>a observación <strong>ten unha data</strong></li>
-          <li>a observación <strong>está xeorreferenciada</strong> (i.e. ten coordenadas lon/lat)</li>
-          <li>a observación <strong>ten fotos ou sons</strong></li>
-          <li>a observación <strong>non é dun humano</strong></li>
-          </ul>
-          <p>
-          As observacións pasan ó <strong>grao de investigación</strong> cando
-          </p>
-          <ul>
-          <li>
-          A <strong> comunidade de %{site_name} está de acordo cá identificación a nivel de especie ou inferior</strong>, p.e. cando ó menos 2/3 dos identificadores están de acordo nun taxon
-          </li>
-          </ul>
-          <p>
-          As observacións revertiranse a <strong>"casual" </strong>se as condicións anteriores non se cumpren ou se a comunidade está de acordo en que
-          </p>
-          <ul>
-          <li>
-          a <strong>ubicación non semella acertada</strong> (p.e. monos no medio do océano, hipopótamos en edificios de oficinas, etc.)
-          </li>
-          <li>
-          o <strong>organismo non é silvestre/ naturalizado</strong> (p.e. cativos ou cultidavos por humanos ou alieníxenas intelixentes do espacio exterior)
-          </li>
-          <li>
-          a observación <strong>non presenta evidencias dun organismo</strong> (p.e. imaxes de paisaxes, características acuáticas, rochas, etc.)
-          </li>
-          <li>
-          a observación <strong>non presenta evidencias recentes (~100 anos) dun organismo</strong> (p.e. fósiles, pero pegadas, dexeccións e follas mortas valen)
-          </li>
-          <li>
-          a observación xa non precisa unha identificación <em>e</em> a identificación da comunidade é superior ó nivel de familia
-          </li>
-          <li>
-          o observador rexeitou o taxon da comunidade e o taxon da comunidade non é ancestro nin descendente do taxon asociado cá identificación da observación
-          </li>
-          </ul>
-          <p>
-          E se isto non fose o suficientemente complicado, hai tamén situacións onde o sistema vota:
-          </p>
-          <ul>
-          <li>
-          O sistema votará que a observación non é silvestre/naturalizada se hai polo menos 10 observacións diferentes dun xénero ou nivel inferior no lugar equivalente menor do condado, estado ou pais que conteña esta observación e 80% ou máis desas observacións foron marcadas como non silvestre ou naturalizada.
-          </li>
-          </ul>
         score_desc: "puntuación = conta cumulativa / (conta cumulativa + conta de desacordos + desacordos de ancestros)"
         observation_flagged_notice_html: |
           Esta observación marcouse como lixo e xa non é visible publicamente. Ti podes vela porque ti a creaches, ou es un conservador do sitio. Se pensas que isto é un erro, por favor <a href="mailto:%{help_email}" class="contact">contacta con nós</a>.
@@ -6233,6 +6187,7 @@ gl:
         you_must_enter_confirmation_code_in_the_form: |
           Debes entrar "%{confirmation_code}" no formulario para eliminar a túa conta
       edit:
+        about_third_party_tracking: Acerca do rastrexo por parte de terceiros
         blocking_desc_html: |
           <p>
           Bloquear a alguén impídelle enviarte mensaxes, comentar nas túas observacións, identificar as túas observacións, e interactuar de calquer xeito contigo en %{site_name}. Tamén borra as súas observacións dos resultados das túas buscas e borra as túas observacións dos resultados das súas buscas. Aínda así, non che fai invisible cara esa persoa. Aínda pode atopar as túas observacións e ver o teu perfil, unicamente non pode interactuar contigo.
@@ -6315,6 +6270,9 @@ gl:
           %{site_name} segue o que cres que son as túas observacións e o que a comunidade pensa que son. Se pensas que a opinión da comunidade non debe desautorizar a túa, podes optar por excluíla aquí. A xente aínda poderá engadir identificacións, pero as túas observacións continuarán asociadas ó taxon da túa identificación. Isto significa que as túas observacións non poderán optar ó Grao de Investigación, non sendo que a túa identificación coincida cá opinión da comunidade.
         prefers_coordinate_interpolation_protection_desc: |
           Cando pós a xeoprivacidade dunha observación "escurecida" ou "privada", aplicarase a mesma xeoprivacidade a tódalas outras observacións do mesmo día para dificutar que outra xente atope as coordenadas verdadeiras baseándose nas observacións feitas ó redor do mesmo tempo.
+        prefers_no_tracking_label: Non recoller dados de estabilidade e de uso usando servicios de terceiros
+        prefers_no_tracking_label_desc_we_use: |
+          Empregamos unha variedade de servicios de terceiros para monitorizar a estabilidade e diagnosticar erros e problemas no noso software. Estes terceiros inclúen
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           A información que poderiamos compartir con estes terceiros inclúe
@@ -6326,6 +6284,8 @@ gl:
           Detalles do fallo, como exactamente cal foi a liña de código que causou o fallo
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Detalles do dispositivo, como marca e modelo dun teléfono mobil
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Os servicios de terceiros engaden un enorme valor para nós</strong>, mantendo a estabilidade e usabilidade de iNaturalist có noso relativamente pequeno cadro de persoal. En dispositivos móbiles, case non hai outro xeito para percibir os problemas que ocorren, xa que o software emprégase en dispositivos que non controlamos. Ás veces nin sequera nos decatamos dos problemas que ocorren ata que os vemos nos dados que estes servicios nos provén. <strong>Compartindo esta información, axúdasnos a atenderte a ti e á comunidade de iNaturalist enteira.</strong>
         prefers_no_tracking_label_desc_limits: |
           Repara que esta opción só se aplica a dados para análise e de erros que estamos enviando explícitamente a estas compañías. Tódolos servidores de iNaturalist son fornecidos e aloxados por Microsoft, tódalas imaxes de iNaturalist están aloxadas por Amazon, e case tódolos mapas de iNaturalist están fornecidos por Google, o que significa que de cada vez que ves unha observación en iNaturalist, estás conectándote ós servicios fornecidos por estas compañías e expoñéndolles o teu enderezo IP, como pouco (na aplicación para iPhone empregamos os mapas de Apple). iNaturalist probablemente non existiría sen os servizos que estas empresas fornecen, e aínda que poidamos limitar a cantidade e os tipos de dados que compartimos con eles usando iNat, non podemos parar a corrente de dados por completo.
         project_settings_desc: |
@@ -7043,6 +7003,8 @@ gl:
     scopes:
       write: |
         Crear, actualizar e borrar as túas observacións, identificacións e outros contidos da túa parte, e acceder ás túas coordenadas ocultas e outras informacións ás que poidas acceder no sitio.
+      login: |
+        Acceder a información relevante cara a iniciar sesión en servicios de terceiros, como o enderezo de correo electrónico, o nome de usuario e a icona de usuario asociada cá túa conta daquí.
       account_delete: |
         Eliminar a túa conta da túa parte.
     errors:

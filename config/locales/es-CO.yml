@@ -1593,6 +1593,8 @@ es-CO:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplicaciones externas
+  external_applications_description: |
+    Las aplicaciones externas son aplicaciones de terceros a las cuales has autorizado acceder a tu cuenta de iNaturalist en tu nombre. En general, pueden hacer lo mismo que tú puedes hacer en tu cuenta, así que asegúrate de que confías en los desarrolladores de la aplicación antes de concederles permiso.
   external_taxon_including_children: Taxón externo (incluyendo descendientes)
   extinct: extinto
   extinct_in_the_wild: Extinto en estado silvestre
@@ -2046,6 +2048,7 @@ es-CO:
   leading: Principal
   learn: Aprende
   learn_about_the_species_live_in: Aprende sobre las especies que viven en
+  learn_about_third_party_tracking: Más información sobre el seguimiento de terceros
   learn_more: Aprende más
   learn_more_raquo: "Aprender más &raquo;"
   learn_what_these_licenses_mean: Aprende lo que significan estas licencias
