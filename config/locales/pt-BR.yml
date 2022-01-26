@@ -543,15 +543,38 @@ pt-BR:
   #Label for an option to show/include content by any user
   any_user: Qualquer
   anyone: Qualquer um
+  app_owner_application_about_p1a_html: |
+    Aplicativos iNaturalist permitem o uso autenticado da API do iNaturalist. Isso
+    permite que se façam chamadas de API que possibilitam fazer coisas tais como criar observações ou identificações.
+    Casos usuais são aplicativos para desktop ou celulares
+    que incluem funcionalidades para os seus usuários criarem observações no iNaturalist.
+    Este conteúdo deve ser gerado com participação ou supervisão humana.
+    Para mais detalhes, por favor, leia as nossas <a href="/pages/community+guidelines"
+    target="_blank">Diretrizes da Comunidade</a> que proíbem observações, identificações e comentários gerados por máquina.
+  app_owner_application_about_p2_html: |
+    A partir de 2022 estamos exigindo aprovação manual para usuários que desejam criar clientes API.
+    Para criar aplicativos de terceiros, você deve primeiro submeter uma inscrição para se tornar
+    um "proprietário de aplicativos". Nesta inscrição se deve descrever a funcionalidade do aplicativo proposto
+    e como você planeja usá-lo. Para enviar uma inscrição, sua conta deve ter mais de 2 meses e devem ter sido feitos pelo menos 10 <a href="/pages/help#identification"
+    target="_blank">melhoramentos de identificações</a> no último mês. Podemos fazer perguntas de esclarecimento
+    sobre o seu plano e nos reservamos o direito de recusar os pedidos por qualquer motivo.
+  app_owner_application_inelligible: |
+    Para enviar uma solicitação, sua conta deve ter pelo menos 2 meses e você
+    ter feito pelo menos 10 sugestões de melhoria de identificações no mês passado.
+  app_owner_application_fields_explanation_html: Descreva a funcionalidade do seu aplicativo e como você planeja usá-la.
+  app_owner_application_success: Inscrição de app de usuário enviada
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplicativo
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Aplicativos
+  apply_app_owner: Enviar
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Aplicar
+  apply_to_be_an_app_owner: Inscrição para App Owner
+  apply_to_create_applications_title: Inscrição para Criar Aplicativos
   apply_to_selected: Aplicar nos selecionados
   apply_captive_cultivated: "Aplicar doméstico/cultivado"
   apply_fields: Aplicar campos
@@ -660,6 +683,9 @@ pt-BR:
     natureserve: NatureServe
     cites: CITES
   authorize: Autorizar
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: Autorizar com PKCE
   authorize_permissions_from_provider: "Autorizar permissões de %{provider}"
   automatic_short: Automático
   automatically_add_observations_to_this_project: Adicionar automaticamente observações a este projeto
@@ -668,6 +694,7 @@ pt-BR:
   #of values, and not a synonym of "typical" or "normal"
   avg: Méd
   back: Voltar
+  back_to_applications: "&laquo; Voltar para aplicativos"
   back_to_all_species: Voltar para Todas as Espécies
   back_to_editing_observation: Voltar para observação editada
   back_to_friends: Voltar a amigos
@@ -753,6 +780,7 @@ pt-BR:
   by_you: Por você
   calendar: Calendário
   calendars_only_show_x_observations_at_time: Calendários só mostram %{x} observações por vez
+  callback_url: URL de retorno
   cancel: Cancelar
   cant_edit_or_delete_hidden_content: Você não pode editar ou excluir o conteúdo que foi ocultado pelos curadores do site
   cant_flag_an_object_that_doesnt_exist: Não é possível sinalizar um objeto que não existe
@@ -947,6 +975,7 @@ pt-BR:
     incluído durante o próximo treinamento do modelo, pode-se adicionar ou identificar mais observações
     deste táxon.
   concept_status: Conceito de Status
+  confidential: Confidencial
   configure: Configurar
   configure_a_widget_to_show: Configure o widget para mostrar as observações de %{site_name} no seu site ou blog. Você talvez tenha que incluir o código CSS no <code>&lt;head&gt;</code> do seu HTML. Fique a vontade para reescrever o CSS.
   confirm: Confirmar
@@ -1616,6 +1645,8 @@ pt-BR:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplicativos externos
+  external_applications_description: |
+    Aplicativos externos são aplicativos de terceiros que você autorizou a aceder à sua conta iNaturalist em seu nome. Em geral, eles podem fazer tudo com a sua conta que você puder, por isso certifique-se de confiar nos mesmos antes de lhes conceder permissão.
   external_taxon_including_children: Táxon externo (incluindo crianças)
   extinct: extinto
   extinct_in_the_wild: Extinto na natureza
@@ -1696,6 +1727,7 @@ pt-BR:
   flag_as_non_spammer: Marcar como não difusor de spam
   #Label for the date/time when a flag was created
   flag_created: Sinalização Criada
+  flag_deleted: Marcação apagada
   flag_description: Sinalizar este conteúdo para que os coordenadores saibam que algo está errado.
   flag_comment_description: Adicione um comentário opcional a este sinalizador que explica mais o porquê de você estar adicionando-o e fornece links para evidências.
   flag_for_check_list_title_html: |
@@ -2129,6 +2161,7 @@ pt-BR:
   leading: Conduzindo
   learn: Aprender
   learn_about_the_species_live_in: Aprenda sobre espécies que vivem em
+  learn_about_third_party_tracking: Saiba mais sobre o rastreamento de terceiros
   learn_more: Saiba mais
   learn_more_raquo: "Saiba mais &raquo;"
   learn_what_these_licenses_mean: Saiba o que estas licenças significam
@@ -2380,6 +2413,7 @@ pt-BR:
   make_sure_the_default_photo_looks_good: Tenha certeza que a foto padrão tem boa definição em tamanho grande.
   make_this_your_default_license: "Torne esta %{type} sua licença padrão"
   make_this_the_primary_listing: "Torne esta sua lista principal"
+  make_your_app_confidential: Torne seu aplicativo confidencial se você deseja armazenar seu aplicativo de forma segura, ou seja, não em um binário disponível publicamente que possa ser descompilado. Desmarque esta caixa se não for o caso e você planeja usar o fluxo PKCE
   mammals: mamíferos
   manage_all_your_subscriptions: Administre todas suas inscrições
   manage_names: Gerencie nomes
@@ -2622,6 +2656,7 @@ pt-BR:
   new: Novidades
   new_and_noteworthy: Novo e Notável
   new_announcement: Novo anúncio
+  new_application: Nova inscrição
   new_assessment: Nova avaliação
   new_check_list: Nova lista de verificação
   new_check_list_for: "Criar uma lista de verificação nova para %{place} &raquo;"
@@ -4656,6 +4691,7 @@ pt-BR:
   these_folks_kindly_volunteer_to: Estas pessoas são gentis voluntários que mantém nossa taxonomia e lidam com outras questões.
   these_observations_have_not_been_uploaded_yet: |
     Estas observações ainda não foram carregadas.
+  third_party_tracking: Rastreamento de terceiros
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: este
   this_bioblitz_beings_in: Esta maratona naturalista começa em
@@ -4837,6 +4873,7 @@ pt-BR:
   uploading_num_of_count_photos:
     one: Carregando foto...
     other: Carregando %{num} de %{count} fotos...
+  url_for_your_app_outside_of_inaturalist: URL fora do iNaturalist para o seu aplicativo
   url_identifier_of_a_project_derived_from: "URL / identificador de um projeto exportado de provedores externos"
   url_of_this_taxon_on_the_source_website: O link deste táxon no site que é fonte
   usage_stats: Estatísticas de uso
@@ -4874,6 +4911,7 @@ pt-BR:
   user_added_an_x_to_noun_html: "%{user} adicionou uma %{x} a %{noun}"
   user_added_x_observations_html: "%{user} adicionou %{x} observações"
   user_already_authenticated: O usuário já está autenticado
+  user_already_app_owner: O usuário já é um proprietário de aplicativo
   user_autocomplete_placeholder: kueda, simon123, etc.
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
   #not the place. Gender for all variables is not known..
@@ -6664,6 +6702,7 @@ pt-BR:
         you_must_enter_confirmation_code_in_the_form: |
           Você deve inserir "%{confirmation_code}" no formulário para excluir sua conta
       edit:
+        about_third_party_tracking: Sobre o rastreamento de terceiros
         blocking_desc_html: |
           <p>
           Bloquear alguém impede que você envie mensagens para você, comentando
@@ -6779,6 +6818,11 @@ pt-BR:
           O %{site_name} rastreia o que você acha que suas observações são e o que a comunidade acha. Se você não deseja que a opinião da comunidade se sobreponha à sua, você pode optar por não permitir isso desativando essa opção. As pessoas ainda poderão adicionar identificações, mas suas observações ficarão com o táxon da sua observação. Isso significa que suas observações não estarão elegíveis para o status de Nível de Pesquisa, a não ser que a sua identificação seja a mesma da comunidade.
         prefers_coordinate_interpolation_protection_desc: |
           Quando você define a geocodificação de uma observação como "obscurecida" ou "privado", isto aplicará a mesma georreferenciação a todas as outras observações do mesmo dia para tornar mais difícil para outras pessoas adivinhar as coordenadas verdadeiras com base em observações feitas em torno do mesmo tempo.
+        prefers_no_tracking_label: Não colete dados de estabilidade e uso usando serviços de terceiros
+        prefers_no_tracking_label_desc_we_use: |
+          Usamos uma variedade de serviços de terceiros para monitorar a estabilidade e
+          diagnosticar bugs e problemas em nosso software. Esses terceiros
+          incluem
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Informações que podemos compartilhar com esses terceiros incluem
@@ -6795,6 +6839,8 @@ pt-BR:
           Detalhes do erro, como exatamente qual linha de código causou um erro
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Detalhes do dispositivo, como fabricante e modelo de um telefone móvel
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Esses serviços de terceiros provém valor enorme para nós</strong> mantendo a estabilidade e usabilidade do iNaturalist com nossa equipe relativamente pequena. Em dispositivos móveis, não há quase nenhum outro jeito de ganhar conhecimento de problemas que estejam ocorrendo, já que o software está rodando em dispositivos que não controlamos. Às vezes nós nem estamos cientes de tais problemas até vermos nos dados que esses serviços providenciam. <strong>Ao compartilhar esta informação, você está nos ajudando a servir você e toda a comunidade iNaturalist.</strong>
         prefers_no_tracking_label_desc_limits: |
           Observe que esta opção se aplica apenas a dados de análise e erro que
           estamos enviando explicitamente para essas empresas. Todos os servidores iNaturalist são fornecidos e hospedados pela Microsoft, todas as imagens iNaturalist são hospedadas pela Amazon, e quase todos os mapas do iNaturalist são servidos pelo Google, o que significa que cada vez que você olha para uma observação no iNaturalist, você está se conectando a serviços prestados por essas empresas e expondo seu endereço IP a eles, pelo menos (no aplicativo para iPhone, usamos mapas da Apple). O iNaturalist provavelmente não existiria sem os
@@ -7216,6 +7262,9 @@ pt-BR:
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
       ModeratorNote: Nota do Moderador
+      #Software application that operates iNat on a user's behalf, e.g. the
+      #iNaturalist Android app or an app made by a third party
+      OauthApplication: Aplicativo
       TaxonLink: Link de táxon
     attributes:
       assessment:
@@ -7262,6 +7311,18 @@ pt-BR:
         finished_at: Concluído
         #Inputs to an export task, e.g. the query and the columns
         inputs: Entradas
+      oauth_application:
+        #The URL the user will be redirected to after authorizing an app to
+        #access their iNaturalist account
+        callback_url: URL de retorno
+        #Unique identifier for an application
+        uid: ID
+        #Noun, secret associated with an application, sort of like the application's password
+        secret: Chave
+        #Adjective, whether or not this application can keep its secret
+        #confidential, e.g. a native or desktop app as opposed to a web
+        #app.
+        confidential: Confidencial
       post:
         title: Título
         body: Texto
@@ -7403,6 +7464,8 @@ pt-BR:
             observed_on:
               cannot_be_greater_than_date_created: |
                 não pode ser maior que a data em que a observação foi adicionada
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: deve estar nos últimos 130 anos
         observation_field_value:
           attributes:
             value:
@@ -7553,6 +7616,8 @@ pt-BR:
         Crie, atualize e exclua suas observações, identificações e outros
         conteúdo em seu nome e acessar suas coordenadas ocultas e qualquer
         outras informações que você pode acessar no site.
+      login: |
+        Acessar informações relevantes para entrar, como endereço de e-mail, nome de usuário, nome e ícone do usuário.
       account_delete: |
         Excluir sua conta em seu nome.
     errors:
