@@ -7811,6 +7811,8 @@ da:
             observed_on:
               cannot_be_greater_than_date_created: |
                 kan ikke være større end datoen observationen blev tilføjet
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: skal være indenfor de seneste 130 år
         observation_field_value:
           attributes:
             value:
