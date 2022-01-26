@@ -673,9 +673,34 @@ describe Observation do
       expect( o.time_zone ).to eq u.time_zone
     end
 
+    it "should not allow observed_on to be more than 130 years ago" do
+      o = build :observation, observed_on_string: 140.years.ago.to_s
+      expect( o ).not_to be_valid
+      expect( o.errors[:observed_on] ).not_to be_blank
+    end
   end
 
   describe "updating" do
+    it "should not allow observed on to become more than 130 years ago" do
+      o = create :observation
+      expect( o ).to be_valid
+      expect( o.errors[:observed_on] ).to be_blank
+      o.update( observed_on_string: 140.years.ago.to_s )
+      expect( o ).not_to be_valid
+      expect( o.errors[:observed_on] ).not_to be_blank
+    end
+
+    it "should allow observed on to remain more than 130 years ago" do
+      o = create :observation
+      bad_date = 140.years.ago
+      Observation.where( id: o.id ).update( observed_on: bad_date.to_date.to_s )
+      o.reload
+      expect( o ).to be_valid
+      expect( o.errors[:observed_on] ).to be_blank
+      o.update( description: "#{o.description} and then some" )
+      expect( o ).to be_valid
+      expect( o.errors[:observed_on] ).to be_blank
+    end
 
     it "should create an obs review if taxon set but was blank and updated by the observer" do
       o = Observation.make!

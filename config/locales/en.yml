@@ -6433,7 +6433,7 @@ en:
           power to see the hidden coordinates of this or any
           other observation in the project and implies that you
           agree to the project <a href="%{url}" target="_blank">terms</a>.
-        quality_assessment_help_html: |
+        quality_assessment_help2_html: |
           <p>
             The data quality assessment is a summary of an observation's accuracy. All
             observations start as <strong>"casual"</strong> grade, and become
@@ -8493,6 +8493,8 @@ en:
             observed_on:
               cannot_be_greater_than_date_created: |
                 cannot be greater than the date the observation was added
+              # Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: must be within the last 130 years
         observation_field_value:
           attributes:
             value:

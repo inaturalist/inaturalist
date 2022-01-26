@@ -1762,7 +1762,7 @@ class ObservationsController < ApplicationController
     @removal_date = MushroomObserverImportFlowTask::REMOVAL_DATE
     return render_404 if Date.today >= @removal_date
 
-    if @api_key = params[:api_key]&.strip
+    if ( @api_key = params[:api_key]&.strip )
       @mo_import_task = MushroomObserverImportFlowTask.new( user: current_user )
       @mo_url_field = @mo_import_task.mo_url_observation_field
       @mo_import_task.inputs.build( extra: { api_key: @api_key } )
@@ -1771,7 +1771,7 @@ class ObservationsController < ApplicationController
         @mo_user_name = @mo_import_task.mo_user_name
         if @mo_user_id
           begin
-            @results = @mo_import_task.get_results_xml.map do |r|
+            @results = @mo_import_task.get_results_xml[0..9].map do | r |
               [r, @mo_import_task.observation_from_result( r, skip_images: true )]
             end
           rescue RestClient::BadGateway
@@ -1790,7 +1790,7 @@ class ObservationsController < ApplicationController
         @errors << e.message
       end
     end
-    respond_to do |format|
+    respond_to do | format |
       format.html { render layout: "bootstrap" }
     end
   end

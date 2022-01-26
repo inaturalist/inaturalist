@@ -107,6 +107,7 @@ end
 
 Flag.blueprint do
   user { User.make! }
+  flaggable_user { User.make! }
   flaggable { Taxon.make! }
   flag { Faker::Name.name }
   resolved { false }

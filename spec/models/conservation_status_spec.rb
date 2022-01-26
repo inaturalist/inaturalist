@@ -182,11 +182,13 @@ describe ConservationStatus do
       Delayed::Worker.new.work_off
       o.reload
       expect( o.latitude ).to be_blank
+      expect( o ).not_to be_mappable
       cs.update( geoprivacy: Observation::OPEN )
       Delayed::Worker.new.work_off
       o.reload
       expect( o.latitude ).not_to be_blank
       expect( o.private_latitude ).to be_blank
+      expect( o ).to be_mappable
     end
 
     it "should obscure but not hide coordinates when geoprivacy changes from private to obscured" do
@@ -194,12 +196,14 @@ describe ConservationStatus do
       o = Observation.make!( taxon: test_cs.taxon, latitude: 1, longitude: 1 )
       expect( o ).to be_coordinates_private
       expect( o.latitude ).to be_blank
+      expect( o ).not_to be_mappable
       test_cs.update( geoprivacy: Observation::OBSCURED )
       Delayed::Worker.new.work_off
       o.reload
       expect( o ).to be_coordinates_obscured
       expect( o.latitude ).not_to be_blank
       expect( o.private_latitude ).to eq 1
+      expect( o ).to be_mappable
     end
 
     it "should change geom for observations of taxon" do

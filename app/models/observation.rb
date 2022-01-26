@@ -377,6 +377,11 @@ class Observation < ApplicationRecord
     :message => "should be a number"
   validates_presence_of :geo_x, :if => proc {|o| o.geo_y.present? }
   validates_presence_of :geo_y, :if => proc {|o| o.geo_x.present? }
+  validate do
+    if observed_on && ( new_record? || observed_on_changed? ) && observed_on < 130.years.ago
+      errors.add( :observed_on, :must_be_within_130_years )
+    end
+  end
   
   before_validation :munge_observed_on_with_chronic,
                     :set_time_zone,
@@ -1948,7 +1953,8 @@ class Observation < ApplicationRecord
         place_guess: o.place_guess,
         private_place_guess: o.private_place_guess,
         taxon_geoprivacy: o.taxon_geoprivacy,
-        public_positional_accuracy: o.calculate_public_positional_accuracy
+        public_positional_accuracy: o.calculate_public_positional_accuracy,
+        mappable: o.calculate_mappable
       )
     end
     Observation.elastic_index!( ids: observations.map(&:id), wait_for_index_refresh: true )
