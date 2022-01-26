@@ -1679,6 +1679,7 @@ ja:
   leading: 主導
   learn: 学習
   learn_about_the_species_live_in: 次の場所で生息する生き物について学ぶ：
+  learn_about_third_party_tracking: サードパーティのトラッキングについてもっと詳しく
   learn_more: もっと詳しく
   learn_more_raquo: "もっと詳しく &raquo;"
   learn_what_these_licenses_mean: 各種ライセンスについて
@@ -3652,6 +3653,7 @@ ja:
   total_members: メンバー人数
   total_observations: 合計観察記録数
   total_observations_caps: 合計観察記録数
+  total_species_observed_caps: 合計観察種数
   'true': '真'
   trends: トレンド
   trusted_project?: 信頼できるプロジェクト？
@@ -3980,6 +3982,8 @@ ja:
   your_profile_was_successfully_updated: プロフィールは無事更新されました
   your_recent_projects: あなたの最近のプロジェクト
   your_relationships: ユーザーとの関係
+  youre_not_following_anyone: |-
+    あなたはまだ誰もフォローしていません。他のナチュラリストをフォローすることで、最近の観察記録を追跡することができます。みんなが何を<a href="%{observations_path}">観察</a>しているか調べて、新しい<a href="%{people_path}">知り合い</a>を作りましょう。
   youve_successfully_linked_your_provider_account: "あなたの%{provider}アカウントと無事接続できました。"
   verifiable: 研究用+要同定
   views:
@@ -4162,10 +4166,15 @@ ja:
       new:
         check_the_box_to_include_member_observations: |
           このプロジェクトに参加したユーザーによる観察のみを含めるには、下のチェックボックスをオンにしてください。 上記の除外フィルターを使用して、プロジェクトの所有者や管理者を含む特定のユーザーからの観測を除外します。
+        collection_projects: コレクションプロジェクト
+        custom_banner_icon_and_project_description: バナー画像・アイコン・プロジェクト概要の設定
         delete_project: プロジェクトを削除
         duplicate_project: プロジェクトの複製
         include_annotated_observations: |
           特定の属性（例：ライフステージ）、または特定の属性と値（例：ライフステージ＝成体）で注釈がつけられた観察記録のみを含めます。1つのプロジェクトにつき、1つの注釈のフィルターに制限されます。
+        multiple_project_administrators: 複数人のプロジェクト管理者を設定できます
+        no_need_to_rely_on_manual_addition: |
+          観察記録を手動で追加する必要はありません
         note_these_users_will_be_able_to_edit: |
           注意: これらのユーザーは、管理者を含むすべてのプロジェクトの詳細を編集することができます。
         note_you_can_delete_the_time: |
@@ -4194,7 +4203,14 @@ ja:
           プロジェクトに追加する観測記録のフィルターを指定します。複数の種（または分類群）、場所、日付、またはその他の条件を選択して、自動的に観測結果をプロジェクトに追加することができます。
         trusting_members_will_be_notified: |
           プロジェクトの要件やユーザーからの信頼に関する条件を変更しました。これにより、既に不明瞭の座標をプロジェクト管理者へ信頼して提供しているメンバーにも通知され、新しい要件でもプロジェクトを信頼するかどうかを判断する機会が与えられます。
+        unique_url_for_outreach: アウトリーチのための独自のURLを発行できます
         users_can_follow_your_project: ユーザーはプロジェクトをフォローすることで、ニュースから最新の情報を得ることができます
+        we_have_redesigned_projects: |
+          プロジェクトは、あなたが定義した「場所」「分類群」「ユーザー」「データ品質」「観測日
+          」の要件に適合する全ての観察記録が自動で含まれるようデザインされています。
+
+          まずはプロジェクトを、コレクションプロジェクトかアンブレラプロジェクトのどちらのタイプにするか選択してください。以下の機能は２つのタイプで共通です:
+        welcome_to_projects: プロジェクトへようこそ！
         errors:
           summary_is_required: プロジェクトの概要が必要です。
       project_user_curator_coordinate_access_labels:
@@ -4308,6 +4324,7 @@ ja:
         x_comments_html:
           other: あなたが追加した<strong class="count">コメントは%{count}件</strong>
       edit:
+        about_third_party_tracking: サードパーティのトラッキングについて
         blocking_desc_html: |
           <p>
           誰かをブロックすると、相手からのメッセージを受信しなくなり、あなたの観察日記へのコメントや観察の同定、%{site_name}での相互作用が停止されます。あなたの検索結果から相手の観察記録を削除しあわせて相手の検索結果からあなたの観察記録を削除します。しかし、それでもあなたの存在は表示されます。あなたの観察記録の検索とあなたのプロフィールの閲覧は可能で、ブロックされるのはあなたとのやりとりに限定されます。
@@ -4380,6 +4397,7 @@ ja:
           none: "許可しない。あなただけがあなたの観察記録をプロジェクトに追加することができます。"
         prefers_community_taxa_desc: |
           %{site_name} は、あなたの観察記録に対するあなた自身やコミュニティによる評価を追跡します。データ提携先と共有する同定情報はコミュニティの同定ですが、もしコミュニティの意見であなた自身の同定を上書きしないほうがよいと考える場合、これを解除できます。人々は引き続き同定情報を追加できても、あなたの意見よりコミュニティの意見が優先されることはありません。これにより、コミュニティ同定に同意しない限り、あなたの観察記録は研究用になりません。
+        prefers_no_tracking_label: サードパーティのサービスを使用して安定性や利用状況のデータを収集しない
         project_settings_desc: |
           これは、あなたが非表示/不明瞭にした座標にアクセスしたり、更新情報を送信したりすることをプロジェクトに許可するものではないことを覚えておいてください。これらの許可を与えるためには、プロジェクトに参加するか、状況次第で許可を与える必要があります。
         search_place_help_html: |
