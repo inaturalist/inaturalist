@@ -383,9 +383,11 @@ lb:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Applikatiounen
+  apply_app_owner: Bewerben
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Uwenden
+  apply_to_be_an_app_owner: Bewerben fir App Besëtzer ze ginn
   apply_to_selected: Ob den Ausgewielten uwenden
   apply_captive_cultivated: "Gefaangen / Kultivéiert uwenden"
   apply_fields: Felder uwenden
@@ -440,6 +442,7 @@ lb:
   automatic_short: Automatesch
   automatically_add_observations_to_this_project: Automatesch Observatioune bei dëse Projet derbäisetzen
   back: Zréck
+  back_to_applications: "&laquo; Zréck zu den Applikatiounen"
   back_to_all_species: Zréck op all Aarten
   back_to_editing_observation: Zréck op d'Ännere vun der Observatioun
   back_to_friends: Zréck bei d'Frënn
@@ -496,6 +499,7 @@ lb:
   by_user: "Vum %{user}"
   by_you: Vun Iech
   calendar: Kalenner
+  callback_url: Callback url
   cancel: Ofbriechen
   captive: Gefaangen
   captive_cultivated: Gefaangen / Kultivéiert
@@ -579,6 +583,7 @@ lb:
   computer_vision_model: Computer Vision Model
   #Status of a taxon that the Computer Vision Model can recognize
   computer_vision_model_included: Begräifen an
+  confidential: Vertraulech
   configure: Astellen
   configure_a_widget_to_show: Konfiguréiert de Widget esou, dass hien %{site_name} Observatiounen ob Ärem Blog oder Ärer Websäit weist. Et ka sinn dass Dir embedded CSS an den <code>&lt;head&gt;</code> vun Ärem HTML musst drasetzen. Dir kënnt gären den CSS ëmschreiwen.
   confirm: Confirméieren
@@ -1332,6 +1337,7 @@ lb:
   new: Nei
   new_and_noteworthy: Nei & Bemierkenswäert
   new_announcement: Nei Ukënnegung
+  new_application: Nei Applikatioun
   new_comment_on_a_parent_by_user_link: Nei Bemierkung iwwer @vow_or_con{vow:an|a} %{parent} vum %{user_link}
   new_guide: Neie Guide
   new_lexicon: Neie Lexikon
@@ -2154,6 +2160,7 @@ lb:
       photo_failed: Foto konnt net eropgeluede ginn
       remove_observation: Observatioun ewechhuelen
       remove_photo: Foto ewechhuelen
+  url_for_your_app_outside_of_inaturalist: URL fir Är App ausserhalb vun iNaturalist
   usage_stats: Statistike vum Benotzen
   user: Benotzer
   user_added_a_comment_html: "%{user} huet ee Kommentar bäigefüügt"
@@ -2164,6 +2171,7 @@ lb:
   user_added_an_x: "%{user} huet eng %{x} derbäigesat"
   user_added_x_observations_html: "%{user} huet %{x} Observatiounen bäigesat"
   user_already_authenticated: De Benotzer ass schonn authentifizéiert
+  user_already_app_owner: De Benotzer ass schonn en App Besëtzer
   user_autocomplete_placeholder: kueda, simon123, etc.
   user_blocked: Benotzer gespaart
   user_commented: "%{user} huet kommenteiert"
