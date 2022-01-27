@@ -1173,7 +1173,7 @@ class TaxaController < ApplicationController
       Audited::Audit.where( auditable_type: "TaxonName", auditable_id: @taxon.taxon_name_ids )
     ).or(
       Audited::Audit.where( auditable_type: "ConservationStatus", auditable_id: @taxon.conservation_status_ids )
-    )
+    ).order( "created_at desc" )
     render layout: "bootstrap-container"
   end
 

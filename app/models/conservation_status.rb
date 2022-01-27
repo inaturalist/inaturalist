@@ -7,6 +7,8 @@ class ConservationStatus < ApplicationRecord
   belongs_to :place
   belongs_to :source
 
+  revert_changes_for geoprivacy: [nil, "", Observation::OPEN], description: :blank, authority: :blank
+
   before_save :normalize_geoprivacy
   after_save :update_observation_geoprivacies, :if => lambda {|record|
     record.saved_change_to_id? || record.saved_change_to_geoprivacy? || record.saved_change_to_place_id?

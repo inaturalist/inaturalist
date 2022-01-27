@@ -45,6 +45,14 @@ class Taxon < ApplicationRecord
   acts_as_flaggable
   has_ancestry orphan_strategy: :adopt
 
+  revert_changes_for ancestry: :blank,
+    complete_rank: :blank,
+    name_provider: :blank,
+    source_identifier: :blank,
+    source_url: :blank,
+    wikipedia_summary: :blank,
+    wikipedia_title: :blank
+
   has_many :taxon_names, dependent: :destroy
   has_many :taxon_changes
   has_many :taxon_change_taxa, inverse_of: :taxon

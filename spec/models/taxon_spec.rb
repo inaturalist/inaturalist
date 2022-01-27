@@ -1851,3 +1851,13 @@ describe "taxon_framework_relationship" do
     end
   end
 end
+
+describe "audits" do
+  it "should not be recorded if wikipedia_title changes from nil to an empty string" do
+    t = create :taxon
+    expect( t.audits.size ).to eq 1
+    expect( t.wikipedia_title ).to be_nil
+    t.update( wikipedia_title: "" )
+    expect( t.audits.size ).to eq 1
+  end
+end
