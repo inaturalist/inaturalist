@@ -291,12 +291,13 @@ class FlagsController < ApplicationController
   end
 
   def check_update_permissions
-    unless logged_in? && @flag && (current_user.is_curator? || current_user.id == @flag.user.id) && ((current_user.id != @flag.flaggable_user.id) || (@flag.flaggable_type == "Taxon"))
-      flash[:error] = t(:you_dont_have_permission_to_do_that)
+    unless logged_in? && @flag && ( current_user.is_curator? || current_user.id == @flag.user.id ) &&
+        ( current_user.id != @flag.flaggable_user_id || @flag.flaggable_type == "Taxon" )
+      flash[:error] = t( :you_dont_have_permission_to_do_that )
       if session[:return_to] == request.fullpath
         redirect_to root_url
       else
-        redirect_back_or_default(root_url)
+        redirect_back_or_default( root_url )
       end
     end
   end
