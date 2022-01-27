@@ -66,7 +66,6 @@ class DateTimeFieldWrapper extends Component {
       inputProps,
       minDate,
       mode,
-      onChange,
       size
     } = this.props;
     return (
@@ -82,7 +81,7 @@ class DateTimeFieldWrapper extends Component {
         defaultText={defaultText || ""}
         dateTime={dateTime}
         inputFormat={inputFormat || DATETIME_WITH_TIMEZONE_OFFSET}
-        onChange={onChange}
+        onChange={this.onChange}
       />
     );
   }
