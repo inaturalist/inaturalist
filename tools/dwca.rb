@@ -36,6 +36,7 @@ opts = Optimist.options do
   HELP
 
   opt :path, "Path to archive", type: :string, short: "-f", default: "public/observations/dwca.zip"
+  opt :aws_s3_path, "Path to upload archive to configured AWS account/bucket", type: :string
   opt :place, "Only export observations from this place", type: :string, short: "-p"
   opt :taxon, "Only export observations of this taxon", type: :string, short: "-t"
   opt :project, "Only export observations from this project", type: :string, short: "-o"
