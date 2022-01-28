@@ -31,10 +31,10 @@ module DarwinCore
       %w(references http://purl.org/dc/terms/references),
       %w(occurrenceRemarks http://rs.tdwg.org/dwc/terms/occurrenceRemarks),
       %w(recordedBy http://rs.tdwg.org/dwc/terms/recordedBy),
-      %w(recordedByID http://rs.gbif.org/terms/1.0/recordedByID),
+      %w(recordedByID http://rs.tdwg.org/dwc/terms/recordedByID),
       %w(identifiedBy http://rs.tdwg.org/dwc/terms/identifiedBy),
-      %w(identifiedByID http://rs.gbif.org/terms/1.0/identifiedByID),
-      %w(establishmentMeans http://rs.tdwg.org/dwc/terms/establishmentMeans),
+      %w(identifiedByID http://rs.tdwg.org/dwc/terms/identifiedByID),
+      %w(captive https://www.inaturalist.org/schema/terms/captive),
       %w(eventDate http://rs.tdwg.org/dwc/terms/eventDate),
       %w(eventTime http://rs.tdwg.org/dwc/terms/eventTime),
       %w(verbatimEventDate http://rs.tdwg.org/dwc/terms/verbatimEventDate),
@@ -267,7 +267,7 @@ module DarwinCore
         idents.detect {| i | i.taxon_id == taxon_id && i.category == Identification::IMPROVING }
       end
 
-      def establishmentMeans
+      def captive
         score = quality_metric_score( QualityMetric::WILD )
         score && score < 0.5 ? "cultivated" : "wild"
       end
