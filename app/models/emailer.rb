@@ -246,6 +246,17 @@ class Emailer < ActionMailer::Base
     mail( opts )
   end
 
+  def welcome( user )
+    @user = user
+    @resource = @user
+    set_locale
+    mail( set_site_specific_opts.merge(
+      to: user.email,
+      subject: t( :welcome_to_inat, site_name: site_name )
+    ) )
+    reset_locale
+  end
+
   private
 
   def mail_with_defaults( defaults = {} )

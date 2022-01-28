@@ -19,7 +19,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :suspendable,
          :recoverable, :rememberable, :confirmable, :validatable, 
          :encryptable, :lockable, :encryptor => :restful_authentication_sha1
-  handle_asynchronously :send_devise_notification
+  # handle_asynchronously :send_devise_notification
   
   # set user.skip_email_validation = true if you want to, um, skip email validation before creating+saving
   attr_accessor :skip_email_validation
@@ -386,12 +386,25 @@ class User < ApplicationRecord
     !suspended?
   end
 
+  def child_without_permission?
+    !birthday.blank? &&
+      birthday < 13.years.ago &&
+      UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
+  end
+
   # This is a dangerous override in that it doesn't call super, thereby
   # ignoring the results of all the devise modules like confirmable. We do
   # this b/c we want all users to be able to sign in, even if unconfirmed, but
   # not if suspended.
   def active_for_authentication?
-    active? && ( birthday.blank? || birthday < 13.years.ago || !UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists? )
+    return false if suspended?
+
+    return false if child_without_permission?
+
+    # Temporary state to allow existing users to sign in
+    return true if confirmation_sent_at.blank?
+
+    super
   end
 
   def download_remote_icon
@@ -809,8 +822,6 @@ class User < ApplicationRecord
       :password_confirmation => autogen_pw,
       :icon_url => icon_url
     )
-    u.skip_email_validation = true
-    u.skip_confirmation!
     user_saved = begin
       u.save
     rescue PG::Error, ActiveRecord::RecordNotUnique => e

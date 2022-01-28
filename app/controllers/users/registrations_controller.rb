@@ -86,7 +86,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           return
         else
           set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_navigational_format?
-          expire_session_data_after_sign_in!
+          expire_data_after_sign_in!
           redirect_to root_url
           return
         end

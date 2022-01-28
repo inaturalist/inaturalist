@@ -63,29 +63,6 @@ class UsersController < ApplicationController
     }
   cache_sweeper :user_sweeper, :only => [:update]
 
-  # this method should have been replaced by Devise, but there are probably some activation emails lingering in people's inboxes
-  def activate
-    user = current_user
-    case
-    when user && user.suspended?
-      redirect_back_or_default('/')
-    when (!params[:activation_code].blank?) && user && !user.confirmed?
-      user.confirm!
-      flash[:notice] = t(:your_account_has_been_verified, :site_name => @site.name)
-      if logged_in? && current_user.is_admin?
-        redirect_back_or_default('/')
-      else
-        redirect_to '/login'
-      end
-    when params[:activation_code].blank?
-      flash[:error] = t(:your_activation_code_was_missing)
-      redirect_back_or_default('/')
-    else 
-      flash[:error]  = t(:we_couldnt_find_a_user_with_that_activation_code)
-      redirect_back_or_default('/')
-    end
-  end
-
   # Don't take these out yet, useful for admin user management down the road
 
   def suspend

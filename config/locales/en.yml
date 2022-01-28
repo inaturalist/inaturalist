@@ -1601,7 +1601,7 @@ en:
       destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
     mailer:
       confirmation_instructions:
-        subject: 'Confirmation instructions'
+        subject: Activate your account
       reset_password_instructions:
         subject: 'Reset password instructions'
   devise_reset_password_instructions_hello_email: Hello %{email}
