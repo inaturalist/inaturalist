@@ -704,7 +704,6 @@ class ObservationsController < ApplicationController
       end
       format.json do
         if errors
-          Rails.logger.debug "[DEBUG] errors: #{@observations[0].errors.full_messages.to_sentence}"
           json = if @observations.size == 1 && is_iphone_app_2?
             {:error => @observations.map{|o| o.errors.full_messages}.flatten.uniq.compact.to_sentence}
           else
@@ -2182,6 +2181,12 @@ class ObservationsController < ApplicationController
     unless search_params[:place].blank? || search_params[:place].is_a?(Array)
       @place = search_params[:place]
     end
+    if search_params[:not_in_place_record].is_a?(Array) && search_params[:not_in_place_record].length == 1
+      search_params[:not_in_place_record] = search_params[:not_in_place_record].first
+    end
+    unless search_params[:not_in_place_record].blank? || search_params[:not_in_place_record].is_a?(Array)
+      @not_in_place_record = search_params[:not_in_place_record]
+    end
     @q = search_params[:q] unless search_params[:q].blank?
     @search_on = search_params[:search_on]
     @iconic_taxa = search_params[:iconic_taxa_instances]
@@ -2219,6 +2224,7 @@ class ObservationsController < ApplicationController
     @projects = search_params[:projects]
     @pcid = search_params[:pcid]
     @geoprivacy = search_params[:geoprivacy] unless search_params[:geoprivacy].blank?
+    @taxon_geoprivacy = search_params[:taxon_geoprivacy] unless search_params[:taxon_geoprivacy].blank?
     @rank = search_params[:rank]
     @hrank = search_params[:hrank]
     @lrank = search_params[:lrank]

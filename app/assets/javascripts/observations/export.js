@@ -1,5 +1,14 @@
 /* eslint-disable */
-var REJECT_PARAMS = ['filters_open', 'order', 'order_by', 'utf8', 'flow_task_id', 'view', 'taxon_name']
+var REJECT_PARAMS = [
+  "filters_open",
+  "flow_task_id",
+  "order",
+  "order_by",
+  "taxon_name",
+  "utf8",
+  "view",
+  "without_taxon_name"
+];
 var MAX_OBSERVATIONS = 200000;
 function reloadPreview() {
   $( "#limit-alert" ).hide( );
