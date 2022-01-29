@@ -802,6 +802,9 @@ be:
     natureserve: NatureServe
     cites: CITES
   authorize: Аўтарызаваць
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: Аўтарызацыя з дапамогай PKCE
   authorize_permissions_from_provider: "Аўтарызаваць дазволы адд %{provider}"
   automatic_short: Аўта
   automatically_add_observations_to_this_project: Аўтаматычна дадаць назіранні да гэтага праекта
@@ -1085,6 +1088,7 @@ be:
     дададзены падчас наступнага мадэльнага навучання, дадайце або вызначце больш назіранняў
     гэтага таксона.
   concept_status: Статус канцэпцыі
+  confidential: Канфідэнцыйна
   configure: Наладзіць
   configure_a_widget_to_show: Наладзьце віджэт, каб паказаць назіранні з вашага сайта ці штодзённіка %{site_name}. Магчыма, вам спатрэбіцца дадаць убудаваны CSS у <code>&lt;head&gt;</code> вашага HTML.  Вы можаце перапісаць CSS.
   confirm: Пацвердзіць
@@ -2972,6 +2976,7 @@ be:
   open_description: "Каардынаты бачны для ўсіх, калі таксон не знаходзіцца пад пагрозай."
   open_street_map: OpenStreetMap
   or: або
+  organisms: Арганізмы
   originally_flagged_by: Першапачаткова пазначаны
   originally_imported_from_url_html: "Першапачаткова імпартаваны з <a href='%{url}'>%{url}</a>"
   other: Iншае
@@ -3021,8 +3026,20 @@ be:
   per_month: За месяц
   per_week: За тыдзень
   photo: Фота
+  photo_attribution: "Фота %{attribution}"
+  photo_by_id_attribution: "Фота %{id}, %{attribution}"
+  photo_deleted: Фота выдалена
+  photo_destroyed_because_it_was_deleted_from: "Фота пашкоджана, таму што яно было выдалена з вонкавага сайта або %{site_name} больш не мае дазволу на яго прагляд"
+  photo_type: Тып фота
+  photos_chosen_for_this_taxon: Фота, якія абраныя для гэтага таксона
+  photos_locked_desc: Толькі супрацоўнікі могуць змяняць фатаграфіі па змаўчанні для гэтага таксона
+  photos_of_taxon_html: "Фатаздымкі %{taxon}"
   photos_or_sounds: Фатаздымкі альбо гукі
   photos_or_sounds?: Фатаздымкі альбо гукі?
+  photos_size:
+    small: малы
+    medium: сярэдні
+    large: вялікі
   pi_consent_desc_title: Пра асабістую інфармацыю
   pi_consent_desc_html: |
     Мы захоўваем асабістую інфармацыю, такую як імёны карыстальнікаў і адрасы электроннай пошты, таму каб кіраваць уліковымі запісамі на гэтым сайце ў адпаведнасці з законамі аб канфідэнцыяльнасці вы павінны паставіць гэты сцяжок, каб паказаць, што згаджаецеся на такое выкарыстанне асабістай інфармацыі. Каб даведацца больш аб тым, якую інфармацыю мы збіраем і як яе выкарыстоўваем, глядзіце нашу <a href='%{privacy_url}' target='_blank'>палітыку прыватнасці</a> і нашыя <a href='%{terms_url} ' target='_blank'>умовы абслугоўвання</a>.
@@ -3030,6 +3047,10 @@ be:
     Я згаджаюся дазволіць iNaturalist захоўваць і апрацоўваць абмежаваныя віды асабістай інфармацыі пра мяне для кіравання маім уліковым запісам
   pi_consent_child_label: |
     Я згаджаюся дазволіць iNaturalist захоўваць і апрацоўваць абмежаваныя віды асабістай інфармацыі аб маім дзіцяці для кіравання уліковым запісам майго дзіцяці
+  pin_verb: Замацаваць
+  pink: ружовы
+  pinned_locations_desc: |
+    Замацуйце гэтую камбінацыю каардынатаў, дакладнасці, геапрывязкі і нататак аб мясцовасці для наступнага выкарыстання.
   place: Месца
   place_geo:
     geo_planet_place_types:
@@ -3045,25 +3066,45 @@ be:
       country: краіна
       District: Раён
       district: раён
+      Local_Administrative_Area: Мясцовая адміністратыўная адзінка
+      local_administrative_area: мясцовая адміністратыўная адзінка
+      Local_Authority: Мясцовая ўлада
+      local_authority: мясцовая ўлада
+      Municipality: Муніцыпалітэт
+      municipality: муніцыпалітэт
       Open_Space: Адкрытая прастора
       open_space: адкрытая прастора
+      Republic: Рэспубліка
+      republic: рэспубліка
+      Sports_Team: Спартыўная каманда
+      sports_team: спартыўная каманда
+      State: Штат
+      state: штат
       Street: Вуліца
       street: вуліца
       Street_Segment: Адрэзак вуліцы
       street_segment: адрэзак вуліцы
       Unknown: Невядомае
       unknown: невядомае
+      Zone: Зона
+      zone: зона
+  place_imported: Месца імпартавана!
+  place_name: Назва месца
   places: Месцы
   places_added_by_members_of_the_community: Месцы, дадазеныя ўдзельнікамі супольніцтва
   places_name:
     afghanistan: Афганістан
     africa: Афрыка
+    akrotiri_and_dhekelia: Акраціры і Дэкелія
+    aland: Аланды
     albania: Албанія
     algeria: Алжыр
     american_samoa: Амерыканскае Самоа
     andorra: Андора
     angola: Ангола
     anguilla: Ангілья
+    antarctica: Антарктыка
+    antigua_and_barbuda: Антыгуа і Барбуда
     argentina: Аргентына
     armenia: Арменія
     aruba: Аруба
@@ -3129,7 +3170,34 @@ be:
     equatorial_guinea: Экватарыяльная Гвінея
     eritrea: Эрытрэя
     estonia: Эстонія
+    ethiopia: Эфіопія
     europe: Еўропа
+    falkland_islands: Фалклендскія астравы
+    faroe_islands: Фарэрскія астравы
+    fiji: Фіджы
+    finland: Фінляндыя
+    france: Францыя
+    french_guiana: Французская Гвіяна
+    french_polynesia: Французская Палінэзія
+    french_southern_territories: Французскія Паўднёвыя і Антарктычныя Тэрыторыі
+    gabon: Габон
+    gambia: Гамбія
+    georgia: Грузія
+    germany: Германія
+    ghana: Гана
+    gibraltar: Гібралтар
+    greece: Грэцыя
+    greenland: Грэнландыя
+    grenada: Грэнада
+    guadeloupe: Гвадэлупа
+    guam: Гуам
+    guatemala: Гватэмала
+    guernsey: Гернсі
+    guinea: Гвінея
+    guinea_bissau: Гвінея-Бісау
+    guyana: Гаяна
+    haiti: Гаіці
+    heard_island_and_mcdonald_islands: Востраў Херд і астравы Мак-Доналд
     honduras: Гандурас
     hong_kong: Ганконг
     hungary: Венгрыя
@@ -3139,6 +3207,7 @@ be:
     iran: Іран
     iraq: Ірак
     ireland: Ірландыя
+    isle_of_man: Востраў Мэн
     israel: Ізраіль
     italy: Італія
     jamaica: Ямайка
@@ -3194,6 +3263,7 @@ be:
     nicaragua: Нікарагуа
     niger: Нігер
     nigeria: Нігерыя
+    niue: Ніуе
     norfolk_island: Востраў Норфалк
     north_africa: Паўночная Афрыка
     north_america: Паўночная Амерыка
@@ -3202,19 +3272,25 @@ be:
     norway: Нарвегія
     oman: Аман
     pakistan: Пакістан
+    palau: Палау
     palestine: Палесціна
     panama: Панама
     papua_new_guinea: Папуа Новая Гвінея
     paraguay: Парагвай
     peru: Перу
     philippines: Філіпіны
+    pitcairn_islands: Астравы Піткэрн
     poland: Польшча
     portugal: Партугалія
     puerto_rico: Пуэрта Рыка
     qatar: Катар
     republic_of_congo: Рэспубліка Конга
+    reunion: Рэюньён
     romania: Румынія
     russia: Расія
+    rwanda: Руанда
+    saint_barthelemy: Сэн-Бартэлемі
+    saint_helena: Востраў Святой Алены
     south_america: Паўднёвая Амерыка
     south_georgia_and_the_south_sandwich_islands: Паўднёвая Джорджыя і Паўднёвыя Сандвічавы астравы
     south_korea: Паўднёвая Карэя
@@ -3267,15 +3343,25 @@ be:
   powered_by_inaturalist_open_source_software_html: 'Працуе на <a href="https://github.com/inaturalist/inaturalist" target="_new" >адкрытым праграмным забяспячэнні iNaturalist</a>'
   press: Прэса
   previous_observation: Папярэдняе назіранне
+  previous_tab: Папярэдняя вокладка
   privacy: Прыватнасць
   profile: Профіль
+  profile_picture: Аватар
   profile_visibility_desc: |
     З мэтаю абароны %{site_name} да спаму, профілі карыстальнікаў зробяцца бачнымі публічна толькі пасля таго, як карыстальнік зробіць некалькі назіранняў з узроўнем "даследванне".
+  project: Праэкт
+  project_curator_id: Вызначэнні куратара праекта
+  project_curator_tools: Інструменты куратара праекта
   project_curators: Куратары праекта
   project_group_label: Група
   project_group_description: Група, да якой належыць праект
+  project_list_defaults:
+    title: "Таксанамічны спіс карыстальніка %{owner_name}"
+    description: Спіс відаў карыстальніка %{owner_name}
   project_curators_added_some_of_your_observations_html: |
     куратары дадалі некаторыя з вашых назіранняў да <a href="%{url}">%{project}</a>
+  project_members: "Удзельнікі праэкта %{project}"
+  project_members_only: Толькі ўдзельнікі праэкта
   project_membership_model_description: Ваш праект з'яўляецца адкрытым для ўсіх, альбо толькі для людзей, якіх вы запрашаеце?
   project_observations: Назіранні праекта
   project_post: Публікацыі праекта
@@ -3284,6 +3370,8 @@ be:
   project_settings: Налады праекта
   project_start_time_datetime: "Час пачатку: %{datetime}"
   project_that_does_not_contain_these_observations: Праект, які не змяшчае гэтых назіранняў
+  project_user_cannot_be_found: Немагчыма знайсці карыстальніка праекта
+  project_user_was_invalid: "Карыстальнік праекта несапраўдны: %{project_user}"
   project_was_successfully_created: ЗПраект быў паспяхова створаны.
   project_was_successfully_updated: Праект быў паспяхова адноўлены.
   project_x_was_delete: "%{project} быў выдалены (калі ласка, пачакайце некалькі хвілін, каб яго выдаліць з вэб-сайта)"
@@ -3296,6 +3384,14 @@ be:
       many: Класаў
       other: Класаў
     subclass: Падклас
+    subterclass: Надклас
+    zoosection: Зоасекцыя
+    zoosubsection: Зоападсекцыя
+    superfamily: Надсямейства
+    epifamily: Эпісямейства
+    family: Сямейства
+    subfamily: Падсямейства
+    supertribe: Надтрыба
     tribe: Трыба
     subtribe: Падтрыба
     genus: Род
@@ -3304,6 +3400,7 @@ be:
       few: Роды
       many: Родаў
       other: Роды
+    genushybrid: Міжродавы гібрыд
     subgenus: Падрод
     section: Секцыя
     subsection: Падсекцыя
@@ -3318,17 +3415,38 @@ be:
     hybrid: Гібрыд
     #Singular
     subspecies: Падвід
+    variety: Разнавіднасць
+    form: Форма
+    infrahybrid: Інфрагібрыд
     leaves: Лісце
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
   ranks_lowercase_kingdom: царства
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
   ranks_lowercase_subkingdom: падцарства
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: тып
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: падтып
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: надклас
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
   ranks_lowercase_class: клас
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
   ranks_lowercase_subclass: падклас
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
   ranks_lowercase_infraclass: інфраклас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: надклас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: надсямейства
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: эпісямейства
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: сямейства
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: падсямейства
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: надтрыба
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
   ranks_lowercase_tribe: трыба
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
@@ -3349,6 +3467,17 @@ be:
   ranks_lowercase_species: віды
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
   ranks_lowercase_hybrid: гібрыд
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: падвід
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: разнавіднасць
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: форма
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: інфрагібрыд
+  ray_finned_fishes: промнепёрыя рыбы
+  read_more: Больш падрабязна
+  read_the_full_wikipedia: Прачытайце поўнае апісанне з Вікіпедыі
   reason: Прычына
   reason_you_are_flagging_this_item: Прычына, па якой вы пазначаеце гэты элемент.
   receive_email_notifications: Атрымліваць апавяшчэнні па электроннай пошце
@@ -3358,9 +3487,18 @@ be:
   recent_atom_observations_by: "Апошнія назіранні ад %{login} (Atom)"
   recent_observations_by: "Апошнія назіранні ад %{login}"
   relative_observations: Блізкія назіранні
+  relationships:
+    error: памылка
   reload_from_observations: Перазагрузіце з назіранняў
   remove: Выдаліць
+  remove_conservation_status: выдаліць прыродаахоўны статус
+  remove_from: Выдаліць з
+  remove_curator: Выдаліць куратара
+  remove_curator_status: Выдаліць статус куратара
+  remove_from_list: Выдаліць са спісу
   remove_from_project: Выдаліць з праекта
+  remove_this_section: Выдаліць гэты раздзел
+  remove_manager: Выдаліць менеджара
   remove_observations:
     one: Выдаліць 1 назіранне?
     few: Выдаліць %{count} назіранні?
@@ -3369,6 +3507,11 @@ be:
   remove_photo: Выдаліць фота
   remove_place: Выдаліць месца
   remove_selected: Выдаліць выбраныя
+  remove_tags: Выдаліць тэгі
+  removed: Выдалена
+  removed_project_user: Удзельнік праэкта выдалены
+  removing: "Выдаленне..."
+  reorder_by_taxonomy: Упарадкаваць адпаведна з таксанаміяй
   research_: Даследванне
   research_grade: Даследванне
   research_grade_short_html: "У<span class='full'>зровень </span>Д<span class='full'>аследвання</span>"
@@ -3421,6 +3564,10 @@ be:
   searching: "Пошук..."
   seasonality: Сезоннасць
   see_something_wrong_with_taxon: Убачылі нешта не тое з гэтым таксонам? Дайце ведаць куратарам.
+  select: Выбраць
+  select_all: Выбраць усё
+  select_at_least_one: Выбраць хаця б адно
+  select_one_or_more_photos: 'Выбраць адно або некалькі фота'
   select_observations_to_edit: Выбраць назіранні для рэдагавання...
   sending: Адпраўка...
   show_off_your_recent_observations: Пакажыце вашыя апошнія назіранні ў сваім блоге або на сваім сайце!
