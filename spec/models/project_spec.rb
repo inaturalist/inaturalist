@@ -161,6 +161,38 @@ describe Project do
 
   end
 
+  describe "updating" do
+    describe "from traditional to collection" do
+      it "should set observation_requirements_updated_at to now if it was blank and there are trusting users" do
+        proj = create :project
+        expect( proj ).not_to be_is_new_project
+        expect( proj.observation_requirements_updated_at ).not_to be_blank
+        proj.update_column( :observation_requirements_updated_at, nil )
+        proj.reload
+        expect( proj.observation_requirements_updated_at ).to be_blank
+        expect( proj ).to be_can_be_converted_to_collection_project
+        create :project_user,
+          project: proj,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        proj.update( project_type: "collection" )
+        expect( proj.observation_requirements_updated_at ).not_to be_blank
+        expect( proj.observation_requirements_updated_at ).to be >= 1.hour.ago
+      end
+      it "should set observation_requirements_updated_at to before the wait period if it was blank and there are no trusting users" do
+        proj = create :project
+        expect( proj ).not_to be_is_new_project
+        expect( proj.observation_requirements_updated_at ).not_to be_blank
+        proj.update_column( :observation_requirements_updated_at, nil )
+        proj.reload
+        expect( proj.observation_requirements_updated_at ).to be_blank
+        expect( proj ).to be_can_be_converted_to_collection_project
+        proj.update( project_type: "collection" )
+        expect( proj.observation_requirements_updated_at ).not_to be_blank
+        expect( proj.observation_requirements_updated_at ).to be < ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+      end
+    end
+  end
+
   describe "destruction" do
     it "should work despite rule against owner leaving the project" do
       project = Project.make!

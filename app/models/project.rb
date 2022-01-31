@@ -366,7 +366,7 @@ class Project < ApplicationRecord
 
   def set_observation_requirements_updated_at( options = {} )
     if new_record?
-      # puts "set_observation_requirements_updated_at: new project, backdating"
+      Rails.logger.debug "set_observation_requirements_updated_at: new project, backdating"
       self.observation_requirements_updated_at = ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
       return true
     end
@@ -379,13 +379,19 @@ class Project < ApplicationRecord
         ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
       ]
     )
-    if old_params == new_params && !prefers_user_trust_changed? && !options[:force]
-      # puts "set_observation_requirements_updated_at: no change"
+    changed_from_trad_to_collection = project_type_changed? &&
+      changes[:project_type].first.blank? &&
+      %w(collection umbrella).include?( changes[:project_type].last )
+    if old_params == new_params && !prefers_user_trust_changed? && !options[:force] && !changed_from_trad_to_collection
+      Rails.logger.debug "set_observation_requirements_updated_at: no change"
     elsif pu_scope.exists?
-      # puts "set_observation_requirements_updated_at: trusting users exist, setting stamp to now"
+      Rails.logger.debug "set_observation_requirements_updated_at: trusting users exist, setting observation_requirements_updated_at to now"
       self.observation_requirements_updated_at = Time.now
+    elsif changed_from_trad_to_collection
+      Rails.logger.debug "set_observation_requirements_updated_at: trad proj changing to a new-style project and there are no trusting users, backdating observation_requirements_updated_at"
+      self.observation_requirements_updated_at = ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
     else
-      # puts "set_observation_requirements_updated_at: requirements changed but no trusting users, no change"
+      Rails.logger.debug "set_observation_requirements_updated_at: requirements changed but no trusting users, no change"
     end
   end
 
