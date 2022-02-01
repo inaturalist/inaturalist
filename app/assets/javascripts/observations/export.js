@@ -103,6 +103,13 @@ $(document).ready(function() {
       reloadPreview( );
     }
   } );
+  $( "#filters input[name=without_taxon_name]" ).taxonAutocomplete( {
+    idEl: $( "#without_taxon_id" ),
+    afterSelect: function( ) {
+      filtersToQuery( );
+      reloadPreview( );
+    }
+  } );
 } );
 
 window.startFlowTask = function ( flowTask ) {
