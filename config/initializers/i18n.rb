@@ -1,6 +1,4 @@
 # tell the I18n library where to find your translations
-I18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}')].sort
-I18n.load_path += Dir[Rails.root.join('config', 'locales', 'extra', '*.{rb,yml}')].sort
 I18N_LOCALES = Dir[Rails.root.join('config', 'locales', '*.{rb,yml}')].sort.map{|p| 
   p[/\/([\w\-]+?)\.yml/, 1]
 }.compact.uniq

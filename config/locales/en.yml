@@ -1601,9 +1601,13 @@ en:
       destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
     mailer:
       confirmation_instructions:
-        subject: Activate your account
+        # Subject of an email sent to confirm your account
+        subject: Confirm your email address
       reset_password_instructions:
         subject: 'Reset password instructions'
+  devise_confirmation_instructions_please_click: "Please click the link below to confirm your email address and activate your %{site_name} account:"
+  devise_confirmation_instructions_if_you_did_not: |
+    If you did not sign up for @vow_or_con{vow:an|a} %{site_name} account, please ignore this email.
   devise_reset_password_instructions_hello_email: Hello %{email}
   devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
     Someone has requested a link to change your password. You can do this through the link below.

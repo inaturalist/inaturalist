@@ -11,16 +11,16 @@ class DeviseMailer < Devise::Mailer
     elsif record.respond_to?( :user )
       record.user
     end
-    site = @site || user.try( :site ) || Site.default
+    @site ||= user&.site || Site.default
     if user
       old_locale = I18n.locale
       I18n.locale = user.locale.blank? ? I18n.default_locale : user.locale
       opts = opts.merge(
-        from: "#{site.name} <#{site.email_noreply}>",
-        reply_to: site.email_noreply
+        from: "#{@site.name} <#{@site.email_noreply}>",
+        reply_to: @site.email_noreply
       )
       begin
-        DeviseMailer.default_url_options[:host] = URI.parse(site.url).host
+        DeviseMailer.default_url_options[:host] = URI.parse( @site.url ).host
       rescue
         # url didn't parse for some reason, leave it as the default
       end

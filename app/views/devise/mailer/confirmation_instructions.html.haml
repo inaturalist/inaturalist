@@ -1,7 +1,7 @@
 = render "emailer/header"
 
-%p Please click the link below to activate your iNaturalist account:
-%p= link_to "Activate my account", confirmation_url( @resource, confirmation_token: @token )
-%p If you did not sign up for an iNaturalist account, please ignore this email.
+%p=t :devise_confirmation_instructions_please_click, site_name: @site.name, vow_or_con: @site.name[0].downcase
+%p= link_to t( "devise.mailer.confirmation_instructions.subject" ), confirmation_url( @resource, confirmation_token: @token )
+%p=t :devise_confirmation_instructions_if_you_did_not, site_name: @site.name, vow_or_con: @site.name[0].downcase
 
 = render "emailer/footer"
