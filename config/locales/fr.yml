@@ -7815,6 +7815,8 @@ fr:
             observed_on:
               cannot_be_greater_than_date_created: |
                 ne peut pas être postérieure à la date à laquelle l’observation a été ajoutée
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: doit être dans les 130 dernières années
         observation_field_value:
           attributes:
             value:
