@@ -754,6 +754,34 @@ describe User do
       user.sane_destroy
       expect( TaxonName.find_by_id( tn.id ) ).not_to be_blank
     end
+    it "should delete observed_by_user? project observation rules" do
+      por = ProjectObservationRule.make!( operator: "observed_by_user?", operand: user )
+      user.reload
+      user.sane_destroy
+      expect( ProjectObservationRule.find_by_id( por.id ) ).to be_blank
+    end
+    it "should delete not_observed_by_user? project observation rules" do
+      por = ProjectObservationRule.make!( operator: "not_observed_by_user?", operand: user )
+      user.reload
+      user.sane_destroy
+      expect( ProjectObservationRule.find_by_id( por.id ) ).to be_blank
+    end
+    it "should reindex a project with a observed_by_user? rule" do
+      por = ProjectObservationRule.make!( operator: "observed_by_user?", operand: user )
+      project = por.ruler
+      es_project = Project.elastic_search( where: { id: project.id } ).results.results[0]
+      es_por = es_project.project_observation_rules.detect do | r |
+        r.operator == "observed_by_user?" && r.operand_id == user.id
+      end
+      expect( es_por ).not_to be_blank
+      user.sane_destroy
+      project.reload
+      es_project = Project.elastic_search( where: { id: project.id } ).results.results[0]
+      es_por = es_project.project_observation_rules.detect do | r |
+        r.operator == "observed_by_user?" && r.operand_id == user.id
+      end
+      expect( es_por ).to be_blank
+    end
   end
 
   describe "suspension" do
