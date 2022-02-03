@@ -6062,6 +6062,73 @@ cs:
           Některé z těchto fotek byly označeny kvůli nevhodnému obsahu nebo porušení autorských práv. Podrobnosti najdete zde %{links}
         join_project_desc_html: |
           Pokud se připojíte k projektu, umožníte kurátorům projektu zobrazit skryté souřadnice tohoto i ostatních pozorování v projektu a zároveň vyjadřujete svůj souhlas s <a href="%{url}" target="_blank">podmínkami</a> projektu.
+        quality_assessment_help2_html: |
+          <p>
+          Hodnocení kvality dat je souhrnem přesnosti pozorování. Všechna
+          pozorování začínají jako <strong>"příležitostná"</strong> a stávají se
+          <strong>„vyžaduje ID“</strong> když
+          </p>
+
+          <ul>
+          <li>pozorování <strong>má datum</strong></li>
+          <li>pozorování <strong>je georeferencováno</strong> (tj. má souřadnice zeměpisné šířky/délky)</li>
+          <li>pozorování <strong>obsahuje fotografie nebo zvuky</strong></li>
+          <li>pozorování <strong>není od člověka</strong></li>
+          </ul>
+          <p>
+          Pozorování se stanou <strong>„třídou pro výzkum“</strong>, když
+          </p>
+          <ul>
+          <li>
+          komunita %{site_name} <strong>souhlasí s ID na úrovni druhu nebo
+          nižší</strong> t. j. když se více než 2/3 identifikátorů shoduje na a
+          taxon (pokud komunita hlasovala, že komunitní taxon nemůže být dále vylepšen, takže se vrátí na ID na úrovni podrodiny nebo nižší)
+          </li>
+          </ul>
+          <p>
+          Pokud nebudou splněny výše uvedené podmínky, nebo s tím komunita souhlasí, vrátí se pozorování na <strong>„příležitostná“</strong>
+          </p>
+          <ul>
+          <li>
+          <strong>místo nevypadá
+          přesné</strong> (např. opice uprostřed oceánu,
+          hroši v kancelářských budovách atd.)
+          </li>
+          <li>
+          <strong>organismus není divoký / zdivočelý</strong> (např. v zajetí nebo kultivovaný lidmi
+          nebo inteligentní vesmírní mimozemšťané)
+          </li>
+          <li>
+          pozorování <strong>nepředkládá důkaz o 
+          organismu</strong>např. obrázky vodních prvků,
+          skály, krajiny, které nezahrnují organismus atd.
+          </li>
+          <li>
+          pozorování <strong>nepředkládá nedávné (~100 let) důkazy
+          organismu</strong>(např. fosilie, ale stopy, trus a odumřelé listy
+          jsou v pořádku)
+          </li>
+          <li>
+          pozorování již nepotřebuje ID <em>a</em> ID komunity je nad rodinou
+          </li>
+          <li>
+          pozorovatel se odhlásil z ID komunity a komunity
+          ID taxon není předkem ani potomkem souvisejícího taxonu
+          s průkazem pozorovatele
+          </li>
+          </ul>
+          <p>
+          A pokud to nebylo dost složité, existují také situace, kdy systém dostane hlas:
+          </p>
+          <ul>
+          <li>
+          Systém bude hlasovat, že pozorování není divoké / zdivočelé
+          pokud existuje alespoň 10 dalších pozorování rodu nebo nižšího místa
+          elvivalentu kraje, státu nebo země, které
+          obsahuje toto pozorování a 80 % nebo více těchto pozorování
+          byly označeny jako nikoli divoké/zdivočelé.
+          </li>
+          </ul>
         score_desc: "skóre = kumulativní počet / (kumulativní počet + počet neshod + neshody u základních)"
         observation_flagged_notice_html: |
           Toto pozorování bylo označeno jako spam a už není zobrazováno jako veřejné. Vy ho vidíte, protože jste ho vytvořili nebo jste kurátor stránky. Pokud si myslíte, že došlo k chybě,
@@ -7696,6 +7763,8 @@ cs:
             observed_on:
               cannot_be_greater_than_date_created: |
                 nemůže být větší než datum přidání pozorování
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: musí být během posledních 130 let
         observation_field_value:
           attributes:
             value:

@@ -510,6 +510,7 @@ kn:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: ಅಪ್ಲಿಕೇಷನ್‍ಗಳು
+  apply_app_owner: ಸಲ್ಲಿಸಿ
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: ಸಲ್ಲಿಸಿ
@@ -611,6 +612,9 @@ kn:
     iucn_red_list: IUCN ಕೆಂಪು ಪಟ್ಟಿ
     natureserve: ನೇಚರ್ ಸರ್ವ್
   authorize: ಧೃಢೀಕರಿಸಿ
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: PKCE ನೊಂದಿಗೆ ಧೃಢೀಕರಿಸಿ
   authorize_permissions_from_provider: "%{provider} ಅವರಿಂದ ಅನುಮತಿಗಳನ್ನು ಧೃಢೀಕರಿಸಿ"
   automatic_short: ಸ್ವಯಂ
   automatically_add_observations_to_this_project: ಈ ಪ್ರಾಯೋಜನೆಗೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ
@@ -853,6 +857,7 @@ kn:
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: ಬಾಕಿ ಇದೆ
   concept_status: ಪರಿಕಲ್ಪನೆ ಸ್ಥಿತಿ
+  confidential: ಗೋಪ್ಯ
   confirm: ಖಚಿತಪಡಿಸಿ
   confirm_membership: ಸದಸ್ಯತ್ವ ಖಚಿತಪಡಿಸಿ
   confirm_new_password: ಹೊಸ ಗುಪ್ತಪದವನ್ನು ಖಚಿತಪಡಿಸಿ
@@ -5734,6 +5739,11 @@ kn:
         finished_at: ಮುಕ್ತಾಯಗೊಂಡಿದೆ
         #Inputs to an export task, e.g. the query and the columns
         inputs: ಇನ್ಪುಟ್‍ಗಳು
+      oauth_application:
+        #Unique identifier for an application
+        uid: ID
+        #Noun, secret associated with an application, sort of like the application's password
+        secret: ಗುಪ್ತ
       post:
         title: ಶೀರ್ಷಿಕೆ
         body: ಪೂರ್ಣಪಾಠ
@@ -5858,6 +5868,8 @@ kn:
             observed_on:
               cannot_be_greater_than_date_created: |
                 ವೀಕ್ಷಣೆಯನ್ನು ಸೇರಿಸಿದ ದಿನಾಂಕಕ್ಕಿಂತ ಹೆಚ್ಚಿನದಾಗಿರಲು ಸಾಧ್ಯವಿಲ್ಲ
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: ಕಳೆದ 130 ವರ್ಷಗಳ ಒಳಗಿರಲೇಬೇಕು
         observation_field_value:
           attributes:
             value:

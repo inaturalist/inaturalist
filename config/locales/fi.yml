@@ -3914,6 +3914,8 @@ fi:
   sites_network_your_username: |
     Käyttäjätunnuksesi ja salasanasi toimivat kaikilla sivustoilla, jotka ovat mukana iNaturalist-verkostossa. Jos liität tunnuksesi paikalliseen verkostoon, paikallinen instituutio pääsee käsiksi sähköpostiosoitteeseesi (viestiäkseen sinulle sivustoon liittyvistä asioista) ja karkeistettujen ja yksitysten havaintojesi tarkkoihin koodinaatteihin.
   some_agree: jotkut ovat samaa mieltä
+  some_observations_are_missing_media_or_identifications: |
+    Ainakin yhdestä havainnosta puuttuu kuva tai tunnistus
   some_observations_are_missing_media_or_identifications_desc: |
     Havainnot, joissa ei ole kuvia tai ääniä eivät näy oletuksena hauissa. Jos havainnossa ei ole tunnistusta, lajiryhmän asiantuntijat eivät välttämättä koskaan katso sitä. Lisää havaintoon ainakin karkea tunnistus, esim. "kasvit" - tämä auttaa muita löytämään havaintosi.
   some_observations_failed_to_be_added: Joidenkin havaintojen liittäminen projektiin epäonnistui
@@ -6292,6 +6294,8 @@ fi:
             observed_on:
               cannot_be_greater_than_date_created: |
                 ei voi olla suurempi kuin päivä jolloin havainto lisättiin
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: on oltava viimeisten 130 vuoden aikana
         observation_field_value:
           attributes:
             value:

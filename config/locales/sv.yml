@@ -7432,6 +7432,8 @@ sv:
             observed_on:
               cannot_be_greater_than_date_created: |
                 kan inte vara större än det datum som fyndet lades till
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: måste vara inom de senaste 130 åren
         observation_field_value:
           attributes:
             value:
