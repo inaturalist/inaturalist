@@ -72,7 +72,7 @@ class MushroomObserverImportFlowTask < FlowTask
         transaction do
           o = observation_from_result( result )
           if o && !o.save
-            mo_url_from_result( result )
+            mo_url = mo_url_from_result( result )
             errors[mo_url] = o.errors.full_messages.to_sentence
             clear_warnings_for_url( mo_url )
           end
