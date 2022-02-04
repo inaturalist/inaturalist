@@ -123,10 +123,11 @@ CSV.foreach( csv_path, headers: HEADERS ) do | row |
     next
   end
   user = unless row["username"].blank?
-    user = User.find_by_login( row["username"] )
-    user ||= User.find_by_id( row["username"] )
+    username = row["username"].strip
+    user = User.find_by_login( username )
+    user ||= User.find_by_id( username )
     if user.blank?
-      logger.error "#{identifier}: User #{row['username']} specified but no matching user found, skipping..."
+      logger.error "#{identifier}: User #{username} specified but no matching user found, skipping..."
       skipped << identifier
       next
     end
