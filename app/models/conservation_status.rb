@@ -158,4 +158,34 @@ class ConservationStatus < ApplicationRecord
   def index_taxon
     taxon.elastic_index!
   end
+
+  def self.merge_duplicates( options = {} )
+    start = Time.now
+    debug = options.delete(:debug)
+    dry = options.delete(:dry)
+    klass = self
+    where = options.map {| k,v | "#{k} = #{v}" }.join( " AND " ) unless options.blank?
+    sql = <<-SQL
+      SELECT taxon_id, place_id, authority, array_agg(id) AS ids, count(*)
+      FROM #{klass.table_name}
+      #{"WHERE #{where}" if where}
+      GROUP BY taxon_id, place_id, authority HAVING count(*) > 1
+    SQL
+    puts "Finding #{klass.name.pluralize} WHERE #{where}" if debug
+    ordered_geoprivacies = ["private", "obscured", "open", nil]
+    rejects = []
+    keepers = []
+    connection.execute( sql.gsub(/\s+/, " " ).strip ).each do |row|
+      to_merge_ids = row["ids"].to_s.gsub( /[\{\}]/, "" ).split( "," ).sort
+      records = klass.where( id: to_merge_ids ).sort_by do | a, b |
+        [ordered_geoprivacies.index(a&.geoprivacy), a&.id] <=> [ordered_geoprivacies.index(b&.geoprivacy), b&.id]
+      end.compact
+      keeper = records.shift
+      puts "keeper: #{keeper}, merging #{records}" if debug
+      keepers << keeper.id
+      rejects += records.map( &:id )
+      records.each( &:destroy ) unless dry
+    end
+    puts "#{keepers.size} kept, #{rejects.size} deleted in #{Time.now - start}" if debug
+  end
 end
