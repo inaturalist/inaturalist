@@ -12,10 +12,5 @@ module Users
     before_action { @skip_external_connections = true }
     skip_before_action :verify_authenticity_token
     before_action :return_here, only: []
-
-    def show
-      Rails.logger.debug "[DEBUG] @observations: #{@observations}"
-      super
-    end
   end
 end

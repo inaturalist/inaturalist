@@ -1,6 +1,7 @@
 import React, { createRef } from "react";
 import PropTypes from "prop-types";
 import Dropzone from "react-dropzone";
+import moment from "moment";
 
 import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
@@ -13,7 +14,8 @@ const Profile = ( {
   handlePhotoUpload,
   onFileDrop,
   removePhoto,
-  changePassword
+  changePassword,
+  resendConfirmation
 } ) => {
   const hiddenFileInput = createRef( null );
   const iconDropzone = createRef( );
@@ -47,6 +49,41 @@ const Profile = ( {
     );
   };
 
+  let emailConfirmation = (
+    <div className="text-success">
+      Confirmed on
+      { " " }
+      { moment( profile.confirmed_at ).format( I18n.t( "momentjs.date_long" ) )}
+    </div>
+  );
+  if ( !profile.confirmed_at ) {
+    emailConfirmation = (
+      <div
+        className={`alert alert-${profile.confirmation_sent_at ? "warning" : "danger"}`}
+      >
+        {
+          profile.confirmation_sent_at
+            ? `Confirmation email sent at ${moment( profile.confirmation_sent_at ).format( I18n.t( "momentjs.datetime_with_zone_no_year" ) )}`
+            : "You have not confirmed your email address!"
+        }
+        { " " }
+        <button
+          type="button"
+          className="btn btn-nostyle alert-link"
+          onClick={
+            // TODO replace this will with a react modal, e.g. ConfirmModal
+            ( ) => confirm(
+              "After you resend the confirmation email, you will be signed out and you will not be able to sign in to your account until you click the link in the email, so make absolutely sure you have entered your email address correctly.",
+              resendConfirmation
+            )
+          }
+        >
+          Re-send confirmation email
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="row">
       <div className="col-md-5 col-sm-10">
@@ -73,7 +110,15 @@ const Profile = ( {
                 >
                   {I18n.t( "upload_new_photo" )}
                 </button>
-                <input id="user_icon" className="hide" type="file" ref={hiddenFileInput} onChange={handlePhotoUpload} accept="image/*" />
+                <input
+                  id="user_icon"
+                  className="hide"
+                  value=""
+                  type="file"
+                  ref={hiddenFileInput}
+                  onChange={handlePhotoUpload}
+                  accept="image/*"
+                />
                 <button className="btn btn-default remove-photo-margin" type="button" onClick={removePhoto}>
                   {I18n.t( "remove_photo" )}
                 </button>
@@ -84,19 +129,41 @@ const Profile = ( {
         <SettingsItem header={I18n.t( "username" )} required htmlFor="user_login">
           <div className="text-muted help-text">{I18n.t( "username_description" )}</div>
           {showError( "login", "username" )}
-          <input id="user_login" type="text" className="form-control" value={profile.login} name="login" onChange={handleInputChange} />
+          <input
+            id="user_login"
+            type="text"
+            className="form-control"
+            value={profile.login}
+            name="login"
+            onChange={handleInputChange}
+          />
         </SettingsItem>
         <SettingsItem header={I18n.t( "email" )} required htmlFor="user_email">
           <div className="text-muted help-text">{I18n.t( "email_description" )}</div>
           {showError( "email" )}
-          <input id="user_email" type="text" className="form-control" value={profile.email} name="email" onChange={handleInputChange} />
+          <input
+            id="user_email"
+            type="text"
+            className="form-control"
+            value={profile.email}
+            name="email"
+            onChange={handleInputChange}
+          />
+          { emailConfirmation }
         </SettingsItem>
         <ChangePassword changePassword={changePassword} showError={showError} />
       </div>
       <div className="col-md-offset-1 col-md-6 col-sm-10">
         <SettingsItem header={I18n.t( "display_name" )} htmlFor="user_name">
           <div className="text-muted help-text">{I18n.t( "display_name_description" )}</div>
-          <input id="user_name" type="text" className="form-control" value={profile.name} name="name" onChange={handleInputChange} />
+          <input
+            id="user_name"
+            type="text"
+            className="form-control"
+            value={profile.name || ""}
+            name="name"
+            onChange={handleInputChange}
+          />
         </SettingsItem>
         <SettingsItem header={I18n.t( "bio" )} htmlFor="user_description">
           <div className="text-muted help-text">{I18n.t( "bio_description" )}</div>
@@ -131,7 +198,8 @@ Profile.propTypes = {
   handlePhotoUpload: PropTypes.func,
   onFileDrop: PropTypes.func,
   removePhoto: PropTypes.func,
-  changePassword: PropTypes.func
+  changePassword: PropTypes.func,
+  resendConfirmation: PropTypes.func
 };
 
 export default Profile;

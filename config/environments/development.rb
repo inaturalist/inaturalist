@@ -19,16 +19,16 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :test
 
-  # # Uncomment to test mail delivery
-  # smtp_config_path = File.open("#{Rails.root}/config/smtp.yml")
-  # ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path).symbolize_keys
-  # config.action_mailer.delivery_method = :smtp
+  # Uncomment to test mail delivery
+  smtp_config_path = File.open("#{Rails.root}/config/smtp.yml")
+  ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path).symbolize_keys
+  config.action_mailer.delivery_method = :smtp
 
-  # Uncomment these to test caching
-  # config.action_controller.perform_caching             = true
-  # config.action_view.cache_template_loading            = true
-  # config.cache_classes = true
-  config.cache_store = :mem_cache_store, CONFIG.memcached
+  # # Uncomment these to test caching
+  # # config.action_controller.perform_caching             = true
+  # # config.action_view.cache_template_loading            = true
+  # # config.cache_classes = true
+  # config.cache_store = :mem_cache_store, CONFIG.memcached
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load

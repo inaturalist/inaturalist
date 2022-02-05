@@ -6,7 +6,8 @@ import {
   handlePhotoUpload,
   onFileDrop,
   removePhoto,
-  changePassword
+  changePassword,
+  resendConfirmation
 } from "../ducks/user_settings";
 
 function mapStateToProps( state ) {
@@ -17,11 +18,12 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    handleInputChange: e => { dispatch( handleInputChange( e ) ); },
-    handlePhotoUpload: e => { dispatch( handlePhotoUpload( e ) ); },
-    onFileDrop: droppedFiles => { dispatch( onFileDrop( droppedFiles ) ); },
-    removePhoto: ( ) => { dispatch( removePhoto( ) ); },
-    changePassword: input => { dispatch( changePassword( input ) ); }
+    handleInputChange: e => dispatch( handleInputChange( e ) ),
+    handlePhotoUpload: e => dispatch( handlePhotoUpload( e ) ),
+    onFileDrop: droppedFiles => dispatch( onFileDrop( droppedFiles ) ),
+    removePhoto: ( ) => dispatch( removePhoto( ) ),
+    changePassword: input => dispatch( changePassword( input ) ),
+    resendConfirmation: input => dispatch( resendConfirmation( ) )
   };
 }
 

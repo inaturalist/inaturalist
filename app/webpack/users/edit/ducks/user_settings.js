@@ -216,3 +216,20 @@ export function changePassword( input ) {
     dispatch( setUserData( profile ) );
   };
 }
+
+export function resendConfirmation( ) {
+  return ( dispatch, getState ) => {
+    const { profile } = getState( );
+    profile.confirmation_sent_at = ( new Date( ) ).toISOString( );
+    dispatch( setUserData( profile ) );
+    return inatjs.users.resendConfirmation( { useAuth: true } ).then( ( ) => {
+      dispatch( fetchUserSettings( "saved" ) );
+      window.location.reload( );
+    } ).catch( e => {
+      handleSaveError( e ).then( errors => {
+        profile.errors = errors;
+        dispatch( setUserData( profile, null ) );
+      } );
+    } );
+  };
+}

@@ -39,8 +39,12 @@ const store = createStore(
     applyMiddleware(
       thunkMiddleware
     ),
-    // enable Redux DevTools if available
-    window.devToolsExtension ? window.devToolsExtension() : applyMiddleware()
+    // enable Redux DevTools if available, old style
+    window.devToolsExtension ? window.devToolsExtension() : applyMiddleware( ),
+    // Redux devtools, new style
+    window.__REDUX_DEVTOOLS_EXTENSION__
+      ? window.__REDUX_DEVTOOLS_EXTENSION__( )
+      : applyMiddleware( )
   )
 );
 
