@@ -32,7 +32,7 @@ th:
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
-    other: "%{count} การจำแนกชนิดในนี้ผิด %{rank}"
+    other: "%{count} การระบุชนิดต่อไปนี้ผิด %{rank}"
   x_observations:
     other: "%{count} การสังเกต"
   x_observations_:
@@ -89,7 +89,7 @@ th:
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A ถึง Z"
-  about: เกี่ยวกับเรา
+  about: รายละเอียด
   about_blocking: เกี่ยวกับการบล็อก
   about_charts: เกี่ยวกับแผนภูมิ
   about_conservation_status: เพิ่มสถานะการอนุรักษ์
