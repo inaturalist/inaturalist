@@ -200,7 +200,7 @@ lv:
   about: Apraksts
   about_blocking: Vairāk par bloķēšanu
   about_charts: Vairāk par grafikiem
-  about_community_taxa: Vairāk par kopienas taksoniem
+  about_community_taxa: Informācija par kopienas taksoniem
   about_complete_taxa: Vairāk par pilnīgiem taksoniem
   about_conservation_status: Vairāk par aizsardzības statusu
   about_editing_observation_fields: Vairāk par novērojuma lauka rediģēšanu
@@ -438,7 +438,7 @@ lv:
   affiliated_organizations: Partnerorganizācijas
   agree_: Piekrist
   agree?: Piekrist?
-  agree_with_current_taxon: Piekrist pašreizējam taksonam
+  agree_with_current_taxon: Piekrist šobrīd noteiktajam taksonam
   agreeing: Piekrīt...
   aka: jeb
   all: Viss
@@ -1865,7 +1865,7 @@ lv:
   geoprivacy_is_private_desc: Novērotājs ir apslēpis koordinātas
   georeferenced: Pievienota ģeogrāfiskā atsauce?
   get_started: Sākt
-  getting_started_guide: Padomi jaunajiem lietotājiem
+  getting_started_guide: Padomi jauniem lietotājiem
   #Prompt to donate money on a montly basis
   give_monthly_caps: ZIEDOT KATRU MĒNESI
   #Prompt to donate money once
@@ -1984,7 +1984,7 @@ lv:
   identify_observations: "Identificēt novērojumus"
   identify_observations_by_these_users: Identificēt šo lietotāju novērojumus
   identify_title: "Identificēt"
-  identification: identifikācija
+  identification: ID
   identification_by_user: Lietotāja %{user} identifikācija
   identification_deleted: Identifikācija dzēsta
   identification_saved: "Identifikācija saglabāta"
@@ -2991,7 +2991,7 @@ lv:
   #Button label to offset the date/time of observations by a set number of hours
   offset_time_verb: Nobīde
   old_observation_form: Vecā novērojumu veidlapa (neiesakām lietot)
-  ok: "Labi"
+  ok: "Aizvērt"
   on_caps: "IESLĒGTS"
   on_day: "ieslēgts"
   onboarding:
@@ -4844,7 +4844,7 @@ lv:
   user_added_a_x_to_noun_by_user_html: "%{user} pievienoja %{x} pie %{noun} no %{by}"
   user_added_a_x_to_noun_by_you_html: "%{user} pievienoja %{x} pie tava %{noun}"
   user_added_a_x_to_noun_html: "%{user} pievienoja %{x} pie %{noun}"
-  user_added_an_identification_html: "%{user} pievienoja identifikāciju"
+  user_added_an_identification_html: "%{user} pievienoja ID"
   user_added_an_observation_field_html: '%{user} pievienoja vērtību "%{field_name}" laukā lietotāja %{owner} novērojumam'
   user_added_an_observation_field_value_html: "%{user} pievienoja novērojuma lauka vērtību"
   user_added_an_observation_html: "%{user} pievienoja novērojumu"
@@ -6121,7 +6121,7 @@ lv:
         project_name: Projekta nosaukums
         project_summary: Projekta kopsavilkums
         project_summary_help: |
-          Apraksti savu projektu īsi un kodolīgi. Sāc ar svarīgāko, jo pirmās ~ 200 rakstzīmes būs redzamas pa labi no projekta sākuma plakāta.
+          Apraksti savu projektu īsi un kodolīgi. Sāc ar svarīgāko, jo pirmās ~ 200 rakstzīmes būs redzamas projekta sākuma plakāta labajā pusē.
         project_summary_placeholder: Izzini un izseko putnus Goldengeitas parkā.
         select_native_to_include: |
           Lai savā projektā iekļautu tikai "vietējos" taksonus, atlasi "Vietējs". Lai iekļautu tikai "introducētos" taksonus, atlasi "Introducēts".
