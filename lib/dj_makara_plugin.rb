@@ -1,5 +1,8 @@
 # only allow certain jobs to query replicas
 def job_can_use_replica( job )
+  unless job.handler_yaml.respond_to?(:object) && job.handler_yaml.respond_to?(:method_name)
+    return false
+  end
   job.handler_yaml.object == Identification &&
     job.handler_yaml.method_name == :run_update_curator_identification
 end
