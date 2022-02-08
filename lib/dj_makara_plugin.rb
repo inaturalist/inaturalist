@@ -12,6 +12,7 @@ class DJMakaraPlugin < Delayed::Plugin
       using_replica = job_can_use_replica(job)
       begin
         if using_replica && ActiveRecord::Base.connection.respond_to?(:enable_replica)
+          # enable use of replica DBs
           ActiveRecord::Base.connection.enable_replica
           ActiveRecord::Base.connection.enable_context_refresh
           Makara::Context.release_all
