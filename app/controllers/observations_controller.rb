@@ -2055,7 +2055,9 @@ class ObservationsController < ApplicationController
   def user_viewed_updates(options={})
     return unless logged_in?
     if options[:delay]
-      @observation.delay(priority: USER_PRIORITY).user_viewed_updates(current_user.id)
+      ActiveRecord::Base.connection.without_sticking do
+        @observation.delay(priority: USER_PRIORITY).user_viewed_updates(current_user.id)
+      end
     else
       @observation.user_viewed_updates(current_user.id)
     end
