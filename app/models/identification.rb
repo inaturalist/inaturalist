@@ -6,7 +6,7 @@ class Identification < ApplicationRecord
                     automated: false
 
   blockable_by lambda {|identification| identification.observation.try(:user_id) }
-  has_moderator_actions
+  has_moderator_actions %w(hide unhide)
   belongs_to_with_uuid :observation
   belongs_to :user
   belongs_to_with_uuid :taxon

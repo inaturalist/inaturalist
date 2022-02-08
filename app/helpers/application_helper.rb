@@ -343,6 +343,8 @@ module ApplicationHelper
     end
     # Ensure all tags are closed
     text = Nokogiri::HTML::DocumentFragment.parse( text ).to_s
+    # Remove empty paragraphs
+    text = text.gsub( "<p></p>", "" )
     text.html_safe
   end
 

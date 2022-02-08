@@ -63,42 +63,30 @@ class UsersController < ApplicationController
     }
   cache_sweeper :user_sweeper, :only => [:update]
 
-  # this method should have been replaced by Devise, but there are probably some activation emails lingering in people's inboxes
-  def activate
-    user = current_user
-    case
-    when user && user.suspended?
-      redirect_back_or_default('/')
-    when (!params[:activation_code].blank?) && user && !user.confirmed?
-      user.confirm!
-      flash[:notice] = t(:your_account_has_been_verified, :site_name => @site.name)
-      if logged_in? && current_user.is_admin?
-        redirect_back_or_default('/')
-      else
-        redirect_to '/login'
-      end
-    when params[:activation_code].blank?
-      flash[:error] = t(:your_activation_code_was_missing)
-      redirect_back_or_default('/')
-    else 
-      flash[:error]  = t(:we_couldnt_find_a_user_with_that_activation_code)
-      redirect_back_or_default('/')
-    end
-  end
-
-  # Don't take these out yet, useful for admin user management down the road
-
   def suspend
-    @user.suspended_by_user = current_user
-    @user.suspend!
-    flash[:notice] = t(:the_user_x_has_been_suspended, :user => @user.login)
-    redirect_back_or_default(@user)
+    if @user.suspended?
+      flash[:error] = "You cannot suspend someone who is already suspended"
+      return redirect_back_or_default person_path( @user )
+    end
+    @moderator_action = ModeratorAction.new(
+      resource: @user,
+      user: current_user,
+      action: ModeratorAction::SUSPEND
+    )
+    render layout: "bootstrap"
   end
    
   def unsuspend
-    @user.unsuspend!
-    flash[:notice] = t(:the_user_x_has_been_unsuspended, :user => @user.login)
-    redirect_back_or_default(@user)
+    unless @user.suspended?
+      flash[:error] = "You cannot unsuspend someone who is not suspended"
+      return redirect_back_or_default person_path( @user )
+    end
+    @moderator_action = ModeratorAction.new(
+      resource: @user,
+      user: current_user,
+      action: ModeratorAction::UNSUSPEND
+    )
+    render layout: "bootstrap"
   end
   
   def add_role
@@ -991,33 +979,31 @@ class UsersController < ApplicationController
       @records += scope.to_a
     end
     if @types.blank? || @types.include?( "ModeratorAction" )
-      moderator_actions_on_identifications = ModeratorAction.
+      ma_scope = ModeratorAction.
         where( "moderator_actions.created_at < ?", before ).
-        where( resource_type: "Identification" ).
-        joins( "JOIN identifications i ON i.id = moderator_actions.resource_id" ).
-        where( "i.user_id = ?", @user ).
-        order( "moderator_actions.id desc" )
-      moderator_actions_on_comments = ModeratorAction.
-        where( "moderator_actions.created_at < ?", before ).
-        where( resource_type: "Comment" ).
-        joins( "JOIN comments c ON c.id = moderator_actions.resource_id" ).
-        where( "c.user_id = ?", @user ).
         order( "moderator_actions.id desc" )
       if @years.blank?
-        moderator_actions_on_comments = moderator_actions_on_comments.limit( max )
-        moderator_actions_on_identifications = moderator_actions_on_identifications.limit( max )
+        ma_scope = ma_scope.limit( max )
       else
         @years.each do |year|
-          d1 = "#{year}-01-01"
-          d2 = "#{year}-12-31"
-          moderator_actions_on_comments = moderator_actions_on_comments.
-            where( "moderator_actions.created_at BETWEEN ? AND ?", d1, d2 )
-          moderator_actions_on_identifications = moderator_actions_on_identifications.
-            where( "moderator_actions.created_at BETWEEN ? AND ?", d1, d2 )
+          ma_scope = ma_scope.where(
+            "moderator_actions.created_at BETWEEN ? AND ?",
+            "#{year}-01-01",
+            "#{year}-12-31"
+          )
         end
       end
-      @records += moderator_actions_on_comments.to_a
-      @records += moderator_actions_on_identifications.to_a
+      @records += ma_scope.
+        where( resource_type: "Identification" ).
+        joins( "JOIN identifications i ON i.id = moderator_actions.resource_id" ).
+        where( "i.user_id = ?", @user ).to_a
+      @records += ma_scope.
+        where( resource_type: "Comment" ).
+        joins( "JOIN comments c ON c.id = moderator_actions.resource_id" ).
+        where( "c.user_id = ?", @user ).to_a
+      @records += ma_scope.
+        where( resource_type: "User" ).
+        where( "moderator_actions.resource_id = ?", @user ).to_a
     end
     @records = @records.flatten.sort_by {|r| r.created_at }
     respond_to do |format|
