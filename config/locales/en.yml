@@ -1584,6 +1584,9 @@ en:
       unauthenticated: 'You need to sign in or sign up before continuing.'
       invalid: 'Invalid email or password.'
       invalid_token: 'Invalid authentication token.'
+      unconfirmed: |
+        Please check your email and click the link in the email you received
+        to confirm your account.
       user:
         suspended: Your account has been suspended
     sessions:
@@ -4013,6 +4016,26 @@ en:
   proposed_taxa_that_support_the_community_id: Proposed taxa that support the Community ID
   protozoans: protozoans
   provider_authorizations: Provider Authorizations
+  provider_without_email_error_apple: |
+    Apple did not provide an email address for that account, which is
+    required. Please create a account on this site instead of signing
+    in via Apple.
+  provider_without_email_error_flickr: |
+    Facebook did not provide an email address for that account, which is
+    required. Please create a account on this site instead of signing
+    in via Facebook.
+  provider_without_email_error_flickr: |
+    Flickr did not provide an email address for that account, which is
+    required. Please create a account on this site instead of signing
+    in via Flickr.
+  provider_without_email_error_generic: |
+    That service did not provide an email address for that account, which is
+    required. Please create a account on this site instead of signing
+    in via third parties.
+  provider_without_email_error_google_oauth2: |
+    Google did not provide an email address for that account, which is
+    required. Please create a account on this site instead of signing
+    in via Google.
   public_domain: Public Domain
   publish: Publish
   purple: purple

@@ -101,35 +101,18 @@ describe User do
   end
 
   describe "creation" do
-    before do
-      @user = nil
-      @creating_user = lambda do
-        @user = create_user
-        puts "[ERROR] #{@user.errors.full_messages.to_sentence}" if @user.new_record?
-      end
+    it "increments User#count" do
+      expect { create( :user ) }.to change( User, :count ).by( 1 )
     end
 
-    it 'increments User#count' do
-      expect(@creating_user).to change(User, :count).by(1)
-    end
-
-    it 'initializes confirmation_token' do
-      @creating_user.call
-      @user.reload
-      expect(@user.confirmation_token).not_to be_blank
+    it "initializes confirmation_token" do
+      expect( create( :user ).confirmation_token ).not_to be_blank
     end
 
     it "should require email under normal circumstances" do
-      u = User.make
+      u = build :user
       u.email = nil
-      expect(u).not_to be_valid
-    end
-    
-    it "should allow skipping email validation" do
-      u = User.make
-      u.email = nil
-      u.skip_email_validation = true
-      expect(u).to be_valid
+      expect( u ).not_to be_valid
     end
 
     it "should set the URI" do
@@ -1368,7 +1351,7 @@ describe User do
     let(:auth_info) { {
       "info" => {
         "email" => email,
-        "name" => email
+        "name" => Faker::Name.name
       },
       "extra" => {
         "user_hash" => {
@@ -1376,19 +1359,38 @@ describe User do
         }
       }
     } }
-    it "should not allow an email in the name field" do
+    it "should set the confirmation_token" do
       u = User.create_from_omniauth( auth_info )
-      expect( u.email ).to eq email
-      expect( u.name ).not_to include email
+      expect( u ).not_to be_confirmed
+      expect( u.confirmation_token ).not_to be_blank
     end
-    it "should not automatically suggest something like the email in the name field" do
-      u = User.create_from_omniauth( auth_info )
-      expect( u.name ).to be_blank
-    end
-    it "should not automatically suggest something like the email in the login field" do
-      email_login_suggestion = User.suggest_login( email )
-      u = User.create_from_omniauth( auth_info )
-      expect( u.login ).not_to include email_login_suggestion
+    it "should send the confirmation email"
+    describe "with an email in the name field" do
+      let(:auth_info) { {
+        "info" => {
+          "email" => email,
+          "name" => email
+        },
+        "extra" => {
+          "user_hash" => {
+            "email" => email
+          }
+        }
+      } }
+      it "should not allow an email in the name field" do
+        u = User.create_from_omniauth( auth_info )
+        expect( u.email ).to eq email
+        expect( u.name ).not_to include email
+      end
+      it "should not automatically suggest something like the email in the name field" do
+        u = User.create_from_omniauth( auth_info )
+        expect( u.name ).to be_blank
+      end
+      it "should not automatically suggest something like the email in the login field" do
+        email_login_suggestion = User.suggest_login( email )
+        u = User.create_from_omniauth( auth_info )
+        expect( u.login ).not_to include email_login_suggestion
+      end
     end
   end
 

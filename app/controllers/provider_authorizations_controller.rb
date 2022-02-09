@@ -82,7 +82,8 @@ class ProviderAuthorizationsController < ApplicationController
     if @provider_authorization = ProviderAuthorization.find_from_omniauth(auth_info)
       update_existing_provider_authorization(auth_info)
     else
-      create_provider_authorization(auth_info)
+      create_provider_authorization( auth_info )
+      return redirect_back_or_default @landing_path || home_url
     end
     
     if @provider_authorization && @provider_authorization.valid? && (scope = get_session_omniauth_scope)
@@ -143,19 +144,34 @@ class ProviderAuthorizationsController < ApplicationController
     # create a new inat user and link provider to that user
     else
       sign_out(current_user) if current_user
-      sign_in(User.create_from_omniauth(auth_info))
-      @provider_authorization = current_user.provider_authorizations.last
-      current_user.remember_me!
-      current_user.update(:site => @site) if @site
-      flash[:notice] = "Welcome!"
+      user = User.create_from_omniauth(auth_info)
+      unless user.valid?
+        if user.email.blank?
+          flash[:error] = case auth_info[:provider]
+          when "apple" then t( "provider_without_email_error_apple" )
+          when "flickr" then t( "provider_without_email_error_flickr" )
+          when "facebook" then t( "provider_without_email_error_facebook" )
+          when "google_oauth2" then t( "provider_without_email_error_google_oauth2" )
+          else
+            t( "provider_without_email_error_generic" )
+          end
+        else
+          flash[:error] = t( :failed_to_save_record_with_errors, errors: user.errors.full_messages.to_sentence )
+        end
+        return
+      end
+      @provider_authorization = user.provider_authorizations.last
+      user.update(:site => @site) if @site
       if session[:invite_params].nil?
         flash[:allow_edit_after_auth] = true
         @landing_path = edit_after_auth_url
-        return
+        return @provider_authorization
       end
+      @landing_path = root_path
     end
     
     @landing_path ||= edit_user_path(current_user)
+    @provider_authorization
   end
   
   def update_existing_provider_authorization(auth_info)

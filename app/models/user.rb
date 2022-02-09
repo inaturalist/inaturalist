@@ -21,10 +21,6 @@ class User < ApplicationRecord
          :encryptable, :lockable, :encryptor => :restful_authentication_sha1
   # handle_asynchronously :send_devise_notification
   
-  # set user.skip_email_validation = true if you want to, um, skip email validation before creating+saving
-  attr_accessor :skip_email_validation
-  attr_accessor :skip_registration_email
-  
   # licensing extras
   attr_accessor   :make_observation_licenses_same
   attr_accessor   :make_photo_licenses_same
@@ -353,14 +349,6 @@ class User < ApplicationRecord
       errors.add( :email, :domain_is_not_supported )
     end
     true
-  end
-
-  # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
-  # you can also force skipping email validation by setting u.skip_email_validation=true before you save
-  # (this option is necessary because the User is created before the associated ProviderAuthorization)
-  # This is not a normal validation b/c email validation happens in Devise, which looks for this method
-  def email_required?
-    !(skip_email_validation || provider_authorizations.count > 0)
   end
   
   def icon_url_provided?
@@ -833,7 +821,7 @@ class User < ApplicationRecord
       Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
       u.update(:login => suggestion)
     end
-    u.add_provider_auth(auth_info)
+    u.add_provider_auth(auth_info) if u.valid? && u.persisted?
     u
   end
 
