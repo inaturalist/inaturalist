@@ -1024,6 +1024,10 @@ en:
   # Verb, generally a label on a button that allows the user to add a comment
   comment_: Comment
   comment_deleted: Comment deleted
+  # Notice when a comment has been hidden by moderators
+  comment_hidden: Comment hidden
+  # Notice when a comment has been unhidden by moderators
+  comment_unhidden: Comment unhidden
   comments: Comments
   comments_by_me: Comments by me
   comments_have_been_disabled: Comments have been disabled
@@ -2169,6 +2173,10 @@ en:
   identification_by_user: Identification by %{user}
   identification_deleted: Identification deleted.
   identification_saved: "Identification saved!"
+  # Notice when the text content of an identification has been hidden by moderators
+  identification_text_hidden: Identification text hidden
+  # Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Identification text unhidden
   identification_updated: Identification updated!
   identification_user_short: Ident. user
   identification_withdrawn: Identification withdrawn.
@@ -3893,8 +3901,8 @@ en:
   please_complete_the_following_to_add_project: |
     Please complete the following to add this observation to the project:
   please_confirm_your_inat_username: "Please confirm your %{site_name} username"
-  please_explain_why_you_want_to_hide_this: Please explain why you want to hide this
-  please_explain_why_you_want_to_unhide_this: Please explain why you want to unhide this
+  please_explain_why_you_want_to_hide_this: Please explain why you are hiding this
+  please_explain_why_you_want_to_unhide_this: Please explain why are unhiding this
   please_fix_your_csv_and_try_again: Please fix your CSV and try again.
   please_hold_on_while_the_file: Please hold on while the file is generated. It can take a couple minutes if you have a lot of observations.
   please_hold_on_while_the_file_is_generated: Please hold on while the file is generated.  It can take a couple minutes for large lists.
@@ -4737,6 +4745,11 @@ en:
   summary: Summary
   supporting: Supporting
   suspend_user: Suspend user
+  suspend_user_html: Suspend %{user}
+  suspend_user_reason_instructions_html: |
+    Explain why you are suspending this account and cite any violations of the
+    %{link_start_tag}Community Guidelines%{link_end_tag}. Please refrain
+     from adding personal opinions.
   sw_lat: SW Lat.
   sw_lon: SW Lon.
   sync: Sync?
@@ -5159,6 +5172,9 @@ en:
   unsubscribe: Unsubscribe
   unsubscribe_from_emails_like_this: Unsubscribe from emails like this
   unsuspend_user: Unsuspend user
+  unsuspend_user_html: Unsuspend %{user}
+  unsuspend_user_reason_instructions: |
+    Please explain why you are unsuspending this user.
   upcoming_bioblitzes: Upcoming bioblitzes
   update: Update
   update_existing_observations_with_new_license: Update existing observations with new license choices
@@ -8361,6 +8377,10 @@ en:
       message:
         subject: Subject
         body: Body
+      moderator_action:
+        # The reason a moderator action was taken, e.g. an explanation for why
+        # someone thought a comment should be hidden
+        reason: Reason
       observation:
         description: Notes
         geo_x: Easting
@@ -8479,6 +8499,11 @@ en:
               guide_has_too_many_taxa: "guide can only have 500 taxa"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: is not supported for this kind of content
+            base:
+              only_staff_can_unhide: Only staff can unhide hidden content
+              staff_cannot_be_suspended: Staff cannot be suspended
             user_id:
               must_be_a_curator: must be a curator
         mushroom_observer_import_flow_task:
