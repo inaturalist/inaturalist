@@ -858,6 +858,8 @@ fr-CA:
         notification_preferences_user_observations: Observations de personnes que je suis
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_or_place_observations: Observations de taxons ou de lieux auxquels je suis abonné·e
+        prefers_no_tracking_label_desc_we_use: |
+          Nous utilisons des services tiers pour évaluer la stabilité de l'application et détecter des bogues. Ces programmes tiers incluent
         prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
           Adresses IP (qui peuvent être utilisées pour déterminer votre ville et vous traquer sur différents sites Web et services; notez que vous avons activé
           l'<a href="https://support.google.com/analytics/answer/2763052">anonymisation IP</a> dans Google Analytics ; Firebase Crashlytics
@@ -949,3 +951,7 @@ fr-CA:
               belongs_to_an_existing_user: |
                 appartient à un utilisateur existant; si vous avez un compte, veuillez vous connecter
                 avant de continuer, ou utilisez une adresse de messagerie différente
+  doorkeeper:
+    scopes:
+      login: |
+        Accéder aux informations pertinentes pour se connecter, comme l’adresse de messagerie, le nom d’utilisateur, le nom et l’icône utilisateur.

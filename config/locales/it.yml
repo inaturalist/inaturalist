@@ -541,9 +541,17 @@ it:
   #Label for an option to show/include content by any user
   any_user: Qualsiasi
   anyone: Chiunque
+  app_owner_application_about_p1a_html: |
+    Le app iNaturalist consentono l'uso autenticato dell'API iNaturalist. Questo
+    ti consente di effettuare chiamate API che fanno cose come creare osservazioni o
+    identificazioni. I casi d'uso tipici sono app come app desktop o app per dispositivi mobili che includono funzionalità per consentire ai propri utenti di creare osservazioni iNaturalist. Questo contenuto deve essere generato con un vero coinvolgimento o supervisione umana. Per maggiori dettagli si prega di leggere le nostre <a href="/pages/community+guidelines"
+    target="_blank">Linee Guida della Comunità</a> che proibiscono osservazioni, identificazioni e commenti generati da macchine.
+  app_owner_application_about_p2_html: |
+    A partire dal 2022 abbiamo bisogno di approvazione manuale per gli utenti che desiderano fare da client API. Per creare app di terze parti, è necessario prima inviare un'applicazione per diventare un "proprietario dell'app". Questa domanda dovrebbe descrivere la funzionalità della tua app proposta e come hai intenzione di utilizzarla. Per poter presentare una domanda, il tuo account deve avere almeno 2 mesi di età e deve aver effettuato almeno 10 <a href="/pages/help#identification" target="_blank">identificazioni di miglioramento</a> nell'ultimo mese. Potremmo porti ulteriori domande sul tuo piano e ci riserviamo il diritto di respingere le domande per qualsiasi motivo.
   app_owner_application_inelligible: |
     Al fine di sottomettere un applicazione, il tuo account deve avere almeno 2 mesi di vita e deve aver effettuato almeno 10 identificazioni di miglioramento nell'ultimo mese.
   app_owner_application_fields_explanation_html: Descrivi la funzionalità che la tua app avrà e come intendi utilizzarla.
+  app_owner_application_success: Domanda "proprietario dell'App" inviata
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Applicazione
@@ -770,7 +778,6 @@ it:
   by_you: Le mie
   calendar: Calendario
   calendars_only_show_x_observations_at_time: I calendari mostrano solo %{x} osservazioni alla volta
-  callback_url: Url di richiamata
   cancel: Annulla
   cant_edit_or_delete_hidden_content: Non puoi modificare o cancellare contenuti che sono stati nascosti dai curatori del sito
   cant_flag_an_object_that_doesnt_exist: Non è possibile contrassegnare un oggetto che non esiste
@@ -3578,8 +3585,6 @@ it:
   please_complete_the_following_to_add_project: |
     Per favore completa i campi seguenti per aggiungere l'osservazione al progetto:
   please_confirm_your_inat_username: "Per favore, conferma il tuo nome utente %{site_name}"
-  please_explain_why_you_want_to_hide_this: Per favore spiegate perché vuoi nascondere questo
-  please_explain_why_you_want_to_unhide_this: Per favore spiega perché vuoi scoprire questo
   please_fix_your_csv_and_try_again: Per favore  correggi il tuo CSV e prova di nuovo.
   please_hold_on_while_the_file: Per favore attendi la creazione del file. L'operazione può richiedere alcuni minuti se hai molte osservazioni.
   please_hold_on_while_the_file_is_generated: Per favore attendi la creazione del file. L'operazione può richiedere alcuni minuti per liste molto lunghe.
@@ -5719,9 +5724,9 @@ it:
           Alcune di queste foto sono state etichettate per contenuti inappropriati o che violano il copyright. Per dettagli: %{links}
         join_project_desc_html: |
           Prendendo parte al progetto darai ai curatori la possibilità di vedere le coordinate nascoste di queste e di tutte le osservazioni nel progetto, e implica che tu acconsenta ai <a href="%{url}" target="_blank">termini</a> del progetto.
-        quality_assessment_help_html: |
+        quality_assessment_help2_html: |
           <p>
-          La valutazione della qualità dei dati è un riassunto della accuratezza dell'osservazione. Tutte le osservazioni partono dal livello <strong>"casuale"</strong>, e diventano <strong>"serve ID"</strong> quando
+          La valutazione della qualità dei dati è un riassunto della accuratezza dell'osservazione. Tutte le osservazioni partono dal livello <strong>"informale"</strong>, e diventano <strong>"serve ID"</strong> quando
           </p>
 
           <ul>
@@ -5735,11 +5740,11 @@ it:
           </p>
           <ul>
           <li>
-          la <strong>community di %{site_name} concorda con l'ID a livello di specie o inferiore</strong>, ad esempio: quando più di 2/3 delle identificazioni concordano su un taxon
+          la <strong>community di %{site_name} concorda con l'ID a livello di specie o inferiore</strong>, ad esempio: quando più di 2/3 delle identificazioni concordano su un taxon (se la comunità ha votato che cil Taxon della Comunità non può essere migliorato ulteriormente, questo torna all'ID della sottofamiglia o inferiore)
           </li>
           </ul>
           <p>
-          Le osservazioni torneranno al livello <strong>"casuale"</strong> se le suddette condizioni non sono rispettate o la comunità concorda che
+          Le osservazioni torneranno al livello <strong>"informale"</strong> se le suddette condizioni non sono rispettate o la comunità concorda che
           </p>
           <ul>
           <li>
@@ -5749,7 +5754,7 @@ it:
           l'<strong>organismo non è selvatico/naturalizzato</strong> (ad esempio: in cattività o coltivato dall'uomo o da specie aliene intelligenti)
           </li>
           <li>
-          l'osservazione <strong>non ha prove della presenza dell'organismo</strong>, ad esempio: immagini di paesaggi, giochi d'acqua, rocce, ecc.
+          l'osservazione <strong>non ha prove della presenza dell'organismo</strong>, ad esempio: immagini digiochi d'acqua, paesaggi che non contengono organismi, ecc.
           </li>
           <li>
           l'osservazione <strong>non ha prove recenti (100 anni circa) dell'organismo</strong>, ad esempio, i fossili (ma invece le tracce, gli escrementi, e le foglie morte sono sufficienti)
@@ -7231,6 +7236,8 @@ it:
             observed_on:
               cannot_be_greater_than_date_created: |
                 non può essere successiva alla data in cui l'osservazione è stata aggiunta
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: deve essere negli ultimi 130 anni
         observation_field_value:
           attributes:
             value:

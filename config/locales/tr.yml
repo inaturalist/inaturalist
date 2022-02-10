@@ -1566,6 +1566,8 @@ tr:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Harici Uygulamalar
+  external_applications_description: |
+    Harici Uygulamalar, iNaturalist hesabına senin adına erişmelerine izin verdiğin üçüncü parti uygulamalardır. Genel olarak, hesabınla yapabildiğin her şeyi onlar da yapabilir, bu yüzden erişim izni vermeden önce uygulamanın geliştiricilerine güvendiğinden emin olmalısın.
   external_taxon_including_children: Dış sınıf (alt sınıfları içerir)
   extinct: soyu tükenmiş
   extinct_in_the_wild: Doğada Soyu Tükenmiş
@@ -2033,6 +2035,7 @@ tr:
   leading: Öncü
   learn: Öğren
   learn_about_the_species_live_in: Yaşayan türler ile ilgili bilgi edin
+  learn_about_third_party_tracking: Üçüncü parti izlemeleri hakkında daha fazla bilgi edinin
   learn_more: Daha Çok Bilgi
   learn_more_raquo: "Daha çok öğren &raquo;"
   learn_what_these_licenses_mean: Bu lisansların ne anlama geldiğini öğren
@@ -3438,8 +3441,6 @@ tr:
   please_complete_the_following_to_add_project: |
     Bu gözlemi projeye eklemek için lütfen aşağıdakileri tamamlayın:
   please_confirm_your_inat_username: "Lütfen %{site_name} kullanıcı adınızı onaylayın"
-  please_explain_why_you_want_to_hide_this: Lütfen bunu neden gizlemek istediğini açıkla
-  please_explain_why_you_want_to_unhide_this: Lütfen bunun gizliliğini neden kaldırmak istediğini açıkla
   please_fix_your_csv_and_try_again: Lütfen CSV'nizi düzeltin ve yeniden deneyin.
   please_hold_on_while_the_file: Dosya oluşurken lütfen bekleyin. Çok gözleminiz varsa, bu birkaç dakika sürebilir.
   please_hold_on_while_the_file_is_generated: Dosya oluşurken lütfen bekleyin. Büyük listeler için birkaç dakika sürebilir.
@@ -4356,6 +4357,7 @@ tr:
   these_folks_kindly_volunteer_to: Bu insanlar, sınıflandırmamızı sürdürmek ve diğer konuları ele almak için gönüllü olarak çalışmaktadır.
   these_observations_have_not_been_uploaded_yet: |
     Bu gözlemler henüz yüklenmedi.
+  third_party_tracking: Üçüncü Parti İzlemeleri
   third_person_possessive_singular: "%{object_phrase}'in %{noun}"
   this: bu
   this_bioblitz_beings_in: Bioblitz şurada başlar
@@ -5505,65 +5507,6 @@ tr:
           projedeki diğer gözlemleri görme yetkisi verecek 
           ve bu, proje <a href="%{url}" target="_blank">şartlarını</a>
           kabul ettiğiniz anlamına gelir.
-        quality_assessment_help_html: |
-          <p>
-          Veri nitelik değerlendirmesi bir gözlemin doğruluğunun bir özetidir. Bütün 
-          gözlemler <strong>"sıradan"</strong> sınıf gibi başlar ve aşağıdakiler olduğu zaman
-          <strong>tanımlama gerektirir</strong>
-          </p>
-
-          <ul>
-          <li>gözlem <strong>bir tarihe sahip</strong></li>
-          <li>gözlem <strong>coğrafi olarak kabul edilebilir</strong> (örn. enlem/boylam koordinatlarına sahip)</li>
-          <li>gözlem <strong>fotoğraflara ya da seslere sahip</strong></li>
-          <li>gözlem <strong>bir insanın değil</strong></li>
-          </ul>
-          <p>
-          Gözlemler aşağıdakiler olduğu zaman <strong>"araştırma sınıfı"</strong> olur
-          </p>
-          <ul>
-          <li>
-          %{site_name} <strong>topluluğu, tür düzeyinde ya da daha düşük düzeyde tanımlamayı kabul ettiği zaman</strong>,örn.
-          tanımlayıcıların 2/3'ünden fazlası bir sınıflandırmada anlaşma sağladığı zaman
-          </li>
-          </ul>
-          <p>
-          Yukarıdaki koşullar yerine getirilmezse ya da topluluk kabul ederse, gözlemler <strong>"sıradan"</strong> sınıfa geri döner
-          </p>
-          <ul>
-          <li>
-          <strong>konum doğru görünmüyor</strong> (örn. okyanusun ortasındaki maymunlar,
-          ofis binası içerisindeki su aygırları, vb.)
-          </li>
-          <li>
-          <strong>organizma vahşi ya da doğal değil</strong> (örn. insanlar tarafından kısıtlanmış ya da ekilmiş)
-          </li>
-          <li>
-          gözlem <strong>bir organizmanın kanıtını sunmuyor</strong>,
-          örn. manzara resimleri, su özellikleri, kayalar, vb.
-          </li>
-          <li>
-          gözlem <strong>organizmanın son kanıtını (~100 yıl) sunmuyor</strong>
-          (örn. fosiller, ancak izler, dışkılar, ve ölü yapraklar kullanılabilir)
-          </li>
-          <li>
-          gözlemin bir tanımlamaya ihtiyacı yok <em>ve</em> topluluk tanımlaması ailenin üstünde
-          </li>
-          <li>
-          gözlemci, topluluk tanımlamasından vazgeçti ve topluluk tanımlamasının sınıflandırması gözlemcinin tanımlaması ile bağlantılı sınıflandırmanın atası veya soyundan gelmedi
-          </li>
-          </ul>
-          <p>
-          Ve eğer bu yeterince karmaşık değilse, sistemin oy kullanabileceği durumlar da vardır:
-          </p>
-          <ul>
-          <li>
-          Sistem, bu gözlemi içeren en küçük ilçe, eyalet ya da ülke eşdeğerindeki yerde 
-          en az 10 farklı cins gözlemine ya da daha düşük düzeye sahipse ve 
-          bunların %80 ya da daha çoğu vahşi/doğal değil şeklinde işaretlenmişse,
-          gözlemi vahşi/doğal değil şeklinde oylayacaktır.
-          </li>
-          </ul>
         score_desc: "puan = toplam sayı / (toplam sayı + uyuşmazlık sayısı + soy uyuşmazlıkları)"
         observation_flagged_notice_html: |
           Bu gözlem gereksiz olarak işaretlendi ve artık herkese açık değil. 
@@ -6529,6 +6472,7 @@ tr:
         you_must_enter_confirmation_code_in_the_form: |
           Hesabınızı silmek için forma "%{confirmation_code}" girmelisiniz
       edit:
+        about_third_party_tracking: Üçüncü tarafın izlemesi hakkında
         blocking_desc_html: |
           <p>
           Birilerini engellemek onların seninle mesajlaşmalarını, gözlemlerin hakkında yorum yapmalarını, gözlemlerini tanımlamalarını ve %{site_name} adresinden seninle iletişim kurmalarını önler. Ayrıca, onların gözlemlerini senin arama sonuçlarından, senin gözlemlerini de onların arama sonuçlarından kaldırır. Ancak, bu durum seni onlara görünmez yapmaz. Hala gözlemlerini bulabilir ve profilini görebilirler, sadece seninle etkileşime giremezler.
@@ -6642,6 +6586,9 @@ tr:
           aynı coğrafi gizliliği, diğer insanların aynı zamanda yapılan gözlemlerine dayanarak 
           gerçek koordinatları tahmin etmelerini zorlaştırmak için, aynı günden itibaren tüm 
           diğer gözlemleriniz için de geçerli kılar.
+        prefers_no_tracking_label: Üçüncü taraf hizmetleri kullanarak stabilite ve kullanım verileri toplamayın
+        prefers_no_tracking_label_desc_we_use: |
+          Stabiliteyi izlemek ve yazılımımızdaki hataları ve sorunları bulmak için çeşitli üçüncü taraf hizmetleri kullanıyoruz. Bu üçüncü partiler şunları içerir
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Bu üçüncü taraflarla paylaşabileceğimiz bilgiler şunları içerir
@@ -6658,6 +6605,8 @@ tr:
           Çökme ayrıntıları, tam olarak hangi kod satırının çökmeye neden olduğu gibi
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Aygıt ayrıntıları, bir telefonun üreticisi ve modeli gibi
+        prefers_no_tracking_label_desc_value_html: |
+          iNaturalist’in nispeten küçük kadromuzla istikrarını ve kullanılabilirliğini korumamıza, <strong>bu üçüncü taraf hizmetler büyük değer katıyor</strong>. Mobil aygıtlarda, ortaya çıkan sorunları anlamamızın neredeyse hiçbir yolu yoktur çünkü yazılım kontrol etmediğimiz aygıtlarda çalışıyor. Bazen, bu hizmetlerin sağladığı verilerde bunları görene kadar bu gibi sorunların yaşandığını bile bilmiyoruz. <strong>Bu bilgiyi paylaşarak, size ve bütün iNaturalist topluluğuna hizmet etmemize yardımcı oluyorsunuz.</strong>
         prefers_no_tracking_label_desc_limits: |
           Bu seçeneğin yalnızca açıkça bu şirketlere gönderdiğimiz analizler ve çökme verileri için geçerli olduğunu unutmayın. Tüm iNaturalist sunucuları Microsoft tarafından sağlanmakta ve barındırılmaktadır, iNaturalist görüntüleri Amazon tarafından barındırılmaktadır ve neredeyse bütün iNaturalist haritaları Google tarafından sunulmaktadır; bunun anlamı iNaturalist'teki gözlemlere her baktığınızda, bu şirketler tarafından sağlanan hizmetlere bağlanıyor ve en azından IP adresinizi onlara gösteriyorsunuz (iPhone uygulamasında Apple'ın haritalarını kullanıyoruz). iNaturalist olasılıkla bu şirketlerin sunduğu hizmetler olmadan olmazdı ve iNat'ı kullanırken onlarla paylaştığınız veri miktarını ve türlerini sınırlayabilirken, veri akışını bütünüyle durduramayız.
         project_settings_desc: |
@@ -7405,6 +7354,8 @@ tr:
     scopes:
       write: |
         Gözlemlerinizi, tanımlarınızı ve sizin adınıza diğer içerikleri oluşturun, güncelleyin ve silin, ve gizli koordinatlarınıza ve sitede erişebileceğiniz diğer bilgilere erişin.
+      login: |
+        E-posta adresi, kullanıcı adı, isim, ve kullanıcı simgesi gibi oturum açmakla ilgili bilgilere erişin.
       account_delete: |
         Hesabınızı sizin adınıza silin.
     errors:

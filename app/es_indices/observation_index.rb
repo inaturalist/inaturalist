@@ -605,6 +605,15 @@ class Observation < ApplicationRecord
       end
     end
 
+    unless p[:not_in_place].blank?
+      place_ids = [p[:not_in_place]].flatten.map {| v | ElasticModel.id_or_object( v ) }
+      inverse_filters << if p[:viewer]&.id == p[:user_id].to_i
+        { terms: { "private_place_ids" => place_ids } }
+      else
+        { terms: { "place_ids" => place_ids } }
+      end
+    end
+
     # params that can be true / false / any
     [ { http_param: :introduced, es_field: "taxon.introduced" },
       { http_param: :threatened, es_field: "taxon.threatened" },

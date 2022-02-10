@@ -618,6 +618,7 @@ he:
   #Label for an option to show/include content by any user
   any_user: הכל
   anyone: כולם
+  app_owner_application_fields_explanation_html: תיאור של פונקציונליות היישום ואיזה שימוש בכוונתך לעשות בו.
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: בצע
@@ -996,6 +997,7 @@ he:
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: ממתין
   concept_status: מצב הקונספט
+  confidential: חסוי
   configure: הגדרה
   confirm: אישור
   confirm_membership: אישור חברות
@@ -1331,6 +1333,8 @@ he:
   duplicate_verb: שכפל
   duration_value: "משך זמן: %{duration} דקות"
   edit: עריכה
+  #Title of the moderation note editor
+  edit_moderator_note: ערוך הערת אוצר
   edit_a_batch_of_observations: עריכת תצפיות מרובות
   edit_assessment: עריכת האומדן
   edit_atlas: ערוך אטלס
@@ -1433,6 +1437,8 @@ he:
   export_observations: ייצוא תצפיות
   export_with_private_coordinates: ייצוא עם קואורדינטות מוסתרות
   exporting: "מתבצע ייצוא..."
+  external_applications_description: |
+    אפליקציות חיצוניות הן אפליקציות צד שלישי שאיפשרת להן גישה לחשבון האיי-נטורליסט שלך. ככל, אפליקציות אלה יכולות לעשות בחשבון כל דבר שבעליו יכולים, על כן יש לבטוח במפתחי האפליקציה טרם הענקת הגישה.
   extinct: נכחד
   extinct_in_the_wild: נכחד בבר
   extra_properties: תכונות נוספות
@@ -2128,6 +2134,7 @@ he:
   new: חדש
   new_and_noteworthy: חדש ומעניין
   new_announcement: הודעה חדשה
+  new_application: יישום חדש
   new_assessment: הערכה חדשה
   new_check_list: רשימת מינים חדשה
   new_check_list_for: "יצירת רשימת מינים חדשה עבור %{place} &raquo;"
@@ -2892,8 +2899,6 @@ he:
   plants: צמחים
   please_add_a_citation_for_this_change: נא להוסיף ציטטה לשינוי זה.
   please_be_careful!: אנא היו זהירים!
-  please_explain_why_you_want_to_hide_this: נא להסביר את סיבת הבקשה להסתרה
-  please_explain_why_you_want_to_unhide_this: נא להסביר את סיבת הבקשה לאי-הסתרה
   please_fix_your_csv_and_try_again: נא לתקן את ה CSV ולנסות פעם נוספת
   popular: פופולרי
   position: מיקום
@@ -4191,6 +4196,7 @@ he:
         you_must_enter_confirmation_code_in_the_form: |
           חובה להזין %{confirmation_code} בטופס על מנת למחוק את החשבון שלך
       edit:
+        about_third_party_tracking: אודות איסוף מידע עליך על ידי צד שלישי
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: הערות
         #Checkbox label for user preference about what to receive in the daily email update
@@ -4218,6 +4224,9 @@ he:
           joined: פרוייקטים שהצטרפת אליהם
         prefers_community_taxa_desc: |
           %{site_name} בוחן את דעתך על התצפיות שלך, בהשוואה לדעת הקהילה. הזיהויים שאנו חולקים עם שותפים לנתונים הם זיהויי הקהילה, אולם במידה ולדעתך זיהוי הקהילה לעולם אינו ראוי להחליף את שלך, ניתן לבטן את הסכמתך לזיהויים אלו כאן. אחרים עדיין יוכלו להוסיף זיהויים, אולם דעת הקהילה לא תועדף על פני הזיהוי שלך. משמעות הדבר כי התצפיות לא תועלנה לדרגת מחקר, אלא אם תסכים/י עם זיהוי הקהילה.
+        prefers_no_tracking_label: אין לאסוף מידע אודות יציבות והשימוש בפלטפורמה באמצעות שירותים של גוף שלישי
+        prefers_no_tracking_label_desc_we_use: |
+          אנחנו משתמשים במגוון שירותים של גופי צד שלישי על מנת לנטר את יציבות, ולאבחן באגים ובעיות אחרות בתוכנה ששלנו. גופי צד שלישי אלו כוללים
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           המידע שאנו עשויים לחלוק עם גופים אלו כולל
@@ -4814,6 +4823,8 @@ he:
             observed_on:
               cannot_be_greater_than_date_created: |
                 לא יכול להיות מאוחר יותר מאשר התאריך שבו התצפית הועלתה
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: חייב להיות במהלך 130 השנים האחרונות
         observation_field_value:
           attributes:
             value:
@@ -4910,6 +4921,8 @@ he:
     scopes:
       write: |
         באפשרותך ליצור, לעדכן ולמחוק תצפיות, אמצעי זיהוי ותוכן אחר שלך מטעמך לרבות לגשת לנקודות הציון המוסתרות שלך וכל מידע נוסף שאליו ניתן לגשת באתר.
+      login: |
+        לראות מידע הרלוונטי לכניסה אל שירותים חיצוניים, כמו כתובת מייל, שם משתמש, שם, ואייקון שלך.
       account_delete: |
         למחוק את החשבון שלך.
     errors:

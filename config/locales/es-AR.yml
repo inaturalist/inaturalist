@@ -1582,6 +1582,8 @@ es-AR:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplicaciones externas
+  external_applications_description: |
+    Las aplicaciones externas son aplicaciones de terceros a las cuales autorizaste para acceder a tu cuenta de iNaturalist en tu nombre. En general, pueden hacer lo mismo que vos podés hacer en tu cuenta, así que asegurate de confiar en sus desarrolladores antes de concederles permiso.
   external_taxon_including_children: Taxon (externo incluyendo descendientes)
   extinct: extinto
   extinct_in_the_wild: Extinta en estado silvestre
@@ -2077,6 +2079,7 @@ es-AR:
   leading: Principal
   learn: Aprende
   learn_about_the_species_live_in: Aprende sobre las especies que viven en
+  learn_about_third_party_tracking: Más información sobre el seguimiento de terceros
   learn_more: Aprende más
   learn_more_raquo: "Saber más &raquo;"
   learn_what_these_licenses_mean: Aprende lo que estas licencias significan
@@ -3423,8 +3426,6 @@ es-AR:
   please_complete_the_following_to_add_project: |
     Completa lo siguiente para añadir este observación al proyecto:
   please_confirm_your_inat_username: "Por favor confirma tu nombre de usuario con %{site_name}"
-  please_explain_why_you_want_to_hide_this: Explica por qué quieres ocultar esto.
-  please_explain_why_you_want_to_unhide_this: Explica por qué quieres revelar esto
   please_fix_your_csv_and_try_again: Corrige el archivo CSV e inténtalo de nuevo.
   please_hold_on_while_the_file: Por favor espere mientras se genera el archivo. Puede tomar algunos minutos para listas grandes.
   please_hold_on_while_the_file_is_generated: Por favor espere mientras se genera el archivo. Puede tomar algunos minutos para listas grandes.

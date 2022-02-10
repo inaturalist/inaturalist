@@ -684,15 +684,27 @@ cs:
   #Label for an option to show/include content by any user
   any_user: Kterýkoliv
   anyone: Kdokoliv
+  app_owner_application_about_p1a_html: |
+    Aplikace iNaturalist umožňují ověřené použití rozhraní iNaturalist API. To vám umožňuje provádět volání API, která dělají věci, jako je vytváření pozorování nebo identifikace. Obvyklé případy použití jsou aplikace, jako jsou aplikace pro stolní počítače nebo mobilní aplikace, které svým uživatelům obsahují funkce pro vytváření pozorování iNaturalistů. Tento obsah musí být generován se skutečným lidským zapojením nebo dohledem. Přečtěte si prosím naše <a href="/pages/community+guidelines" target="_blank">Pokyny pro komunitu</a>, které zakazují strojově generovaná pozorování, identifikace a komentáře, kde najdete další podrobnosti.
+  app_owner_application_about_p2_html: |
+    Od roku 2022 vyžadujeme ruční schválení pro uživatele, kteří chtějí vytvářet API klienty. Chcete-li vytvářet aplikace třetích stran, musíte nejprve odeslat aplikaci, abyste se stali „vlastníkem aplikace“. Tato aplikace by měla popisovat funkce navrhované aplikace a způsob, jakým ji plánujete používat. Abyste mohli odeslat žádost, váš účet musí být alespoň 2 měsíce starý a musí mít za poslední měsíc alespoň 10 <a href="/pages/help#identification" target="_blank">lepších identifikací</a> . Můžeme klást doplňující otázky týkající se vašeho plánu a vyhrazujeme si právo odmítnout žádosti z jakéhokoli důvodu.
+  app_owner_application_inelligible: |
+    Aby bylo možné podat žádost, musí být váš účet nejméně 2 měsíce a
+    musí za poslední měsíc zlepšit identifikaci.
+  app_owner_application_fields_explanation_html: Popište funkci, kterou bude mít aplikace a jak ji plánujete.
+  app_owner_application_success: Žádost vlastníka aplikace byla odeslána
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplikace
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Aplikace
+  apply_app_owner: Použít
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Použít
+  apply_to_be_an_app_owner: Použít jako vlastníka aplikace
+  apply_to_create_applications_title: Žádost pro vytvoření aplikací
   apply_to_selected: Platí pro vybrané
   apply_captive_cultivated: "Aplikuj zajetí / kutlivovaný"
   apply_fields: Použít pole
@@ -801,6 +813,17 @@ cs:
     natureserve: NatureServe
     cites: CITES
   authorize: Autorizovat
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: Autorizovat s PKCE
+  #Explanation for how to use the PKCE authorization link. All variables are
+  #code that must match the content of the link and thus cannot be
+  #translated.
+  authorize_with_pkce_desc_html: |
+    (Použij <code>%{code_challenge}</code> jako
+    <code>%{code_verifier_param}</code>) Poznámka: toto je základní příklad. ve výrobním kódu,
+    MUSÍ použít <code>%{code_challenge_method}</code> a správně hash
+     <code>%{code_challenge_param}</code>.
   authorize_permissions_from_provider: "Schválit povolení od %{provider}"
   automatic_short: Automaticky
   automatically_add_observations_to_this_project: Automaticky přidat pozorování k tomuto projektu
@@ -809,6 +832,7 @@ cs:
   #of values, and not a synonym of "typical" or "normal"
   avg: Prům.
   back: Zpět
+  back_to_applications: "&laquo; Zpět do aplikací"
   back_to_all_species: Zpět na Všechny Druhy
   back_to_editing_observation: Zpět na editaci pozorování
   back_to_friends: Zpět k přátelům
@@ -1085,6 +1109,7 @@ cs:
     do trénování příštího modelu, přidejte nebo identifikuje více pozorování
     tohoto taxonu.
   concept_status: Status konceptu
+  confidential: Důvěrné
   configure: Konfigurovat
   configure_a_widget_to_show: Proveďte konfiguraci widgetu, abyste mohli pozorování %{site_name} zveřejnit na vašich stránkách nebo blogu. Je možné, že do <code>&lt;nadpisu&gt;</code> vašeho HTML budete muset přidat vložené CSS. CSS můžete přepsat.
   confirm: Potvrdit
@@ -1760,6 +1785,8 @@ cs:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Externí aplikace
+  external_applications_description: |
+    Externí aplikace jsou softwarové aplikace třetích stran, které jste autorizovali k vašemu účtu iNaturalist vaším jménem. Obecně mohou udělat vše s vaším účtem a ujistěte se, že budete mít důvěru k vývojářům aplikací před udělením oprávnění.
   external_taxon_including_children: Externí taxon (včetně mláďat)
   extinct: vyhynulý
   extinct_in_the_wild: vyhynulý v přírodě
@@ -2262,6 +2289,7 @@ cs:
   leading: Nejlepší
   learn: Učit se
   learn_about_the_species_live_in: Naučte se o druzích, které žijí v
+  learn_about_third_party_tracking: Další informace o sledování třetích stran
   learn_more: Více informací
   learn_more_raquo: "Více informací &raquo;"
   learn_what_these_licenses_mean: Zjistěte, co znamenají tyto licence
@@ -2363,6 +2391,10 @@ cs:
   link_or_unlink_your_facebook_account: Propojit nebo zrušit propojení vašeho facebookového účtu
   link_or_unlink_your_flickr_account: Propojit nebo zrušit propojení vašeho účtu na Flickru
   link_or_unlink_your_google_account: Propojit nebo zrušit propojení vašeho účtu na Googlu
+  #Text for a link that provides an example of how an application can send a
+  #user to iNat to authorize the app's use of their iNat account. "Link" is
+  #a noun.
+  link_to_authorization_code: Odkaz na autorizační kód
   link_your_facebook_account: Propojit váš účet na Facebooku
   link_your_flickr_account: Propojit váš účet na Flickru
   link_your_google_account: Propojit váš účet na Googlu
@@ -2513,6 +2545,7 @@ cs:
   make_sure_the_default_photo_looks_good: Ujistěte se, že výchozí fotografie vypadá dobře ve velkých formátech.
   make_this_your_default_license: "Nastavte tuto výchozí licenci %{type}"
   make_this_the_primary_listing: "Vytvořte tohle jako primární zápis"
+  make_your_app_confidential: Udělejte svou aplikaci důvěrnou, pokud můžete bezpečně uložit svou aplikaci, tzn. že není ve veřejně dostupném binárním souboru, který lze dekompilovat. Zrušte zaškrtnutí tohoto políčka, pokud tomu tak není, a plánujete použít tok PKCE
   mammals: savci
   manage_all_your_subscriptions: Spravujte všechny vaše odběry
   manage_names: Spravovat jména
@@ -2763,6 +2796,7 @@ cs:
   new: Nový
   new_and_noteworthy: Nové a pozoruhodné
   new_announcement: Nové oznámení
+  new_application: Nová aplikace
   new_assessment: Nové hodnocení
   new_check_list: Nový seznam
   new_check_list_for: "Vytvořit nový seznam pro %{place}&raquo;"
@@ -3748,8 +3782,6 @@ cs:
   please_complete_the_following_to_add_project: |
     Pokud chcete přidat toto pozorování k projektu, vyplňte prosím následující:
   please_confirm_your_inat_username: "Potvrďte prosím své uživatelské jméno pro %{site_name}"
-  please_explain_why_you_want_to_hide_this: Vysvětlete, proč to chcete skrýt
-  please_explain_why_you_want_to_unhide_this: Vysvětlete, proč to chcete odkrýt
   please_fix_your_csv_and_try_again: Opravte si prosím CSV a zkuste to znovu.
   please_hold_on_while_the_file: Počkejte prosím, než se soubor vytvoří. Pokud máte hodně pozorování, může to trvat několik minut.
   please_hold_on_while_the_file_is_generated: Počkejte prosím, než se soubor vytvoří. U velkých seznamů to může trvat několik minut.
@@ -4816,6 +4848,7 @@ cs:
   these_folks_kindly_volunteer_to: Tito lidé jsou tak hodní, že dobrovolně udržují naši taxonomii a řeší další problémy.
   these_observations_have_not_been_uploaded_yet: |
     Tato pozorování dosud nebyla nahrána.
+  third_party_tracking: Sledování třetí strany
   third_person_possessive_singular: "%{object_phrase} %{noun}"
   this: tento
   this_bioblitz_beings_in: Tento bioblitz začíná v
@@ -5003,6 +5036,7 @@ cs:
     few: Nahrávání %{num} %{count} fotek...
     many: Nahrávání %{num} %{count} fotek...
     other: Nahrávání %{num} %{count} fotek...
+  url_for_your_app_outside_of_inaturalist: URL pro vaši aplikaci mimo iNaturalist
   url_identifier_of_a_project_derived_from: "URL / identifikátor projektu odvozený z externího zdroje"
   url_of_this_taxon_on_the_source_website: URL tohoto taxonu na webové stránce zdroje
   usage_stats: Statistika užívání
@@ -5042,6 +5076,7 @@ cs:
   user_added_an_x_to_noun_html: "Uživatel %{user} přidal %{x} k %{noun}"
   user_added_x_observations_html: "Uživatel %{user} přidal %{x} pozorování"
   user_already_authenticated: Uživatel je již ověřen
+  user_already_app_owner: Uživatel je již vlastníkem aplikace
   user_autocomplete_placeholder: kueda, simon123, atd.
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
   #not the place. Gender for all variables is not known..
@@ -6024,54 +6059,71 @@ cs:
           Některé z těchto fotek byly označeny kvůli nevhodnému obsahu nebo porušení autorských práv. Podrobnosti najdete zde %{links}
         join_project_desc_html: |
           Pokud se připojíte k projektu, umožníte kurátorům projektu zobrazit skryté souřadnice tohoto i ostatních pozorování v projektu a zároveň vyjadřujete svůj souhlas s <a href="%{url}" target="_blank">podmínkami</a> projektu.
-        quality_assessment_help_html: |
+        quality_assessment_help2_html: |
           <p>
-          Hodnocení kvality dat je shrnutím přesnosti pozorování. Všechny pozorování začínají jako <strong>"příležitostné"</strong> hodnocení a stávají se <strong>"potřebují ID"</strong>, když
+          Hodnocení kvality dat je souhrnem přesnosti pozorování. Všechna
+          pozorování začínají jako <strong>"příležitostná"</strong> a stávají se
+          <strong>„vyžaduje ID“</strong> když
           </p>
 
           <ul>
-          <li>pozorování <strong>má datum</strong></li>.
-          <li>pozorování <strong>je georeferencované</strong> (tj. má souřadnice zeměpisné šířky / délky)</li>.
-          <li>pozorování <strong>má fotografie nebo zvuky</strong></li>
-          <li>pozorování <strong>není člověka</strong></li>.
+          <li>pozorování <strong>má datum</strong></li>
+          <li>pozorování <strong>je georeferencováno</strong> (tj. má souřadnice zeměpisné šířky/délky)</li>
+          <li>pozorování <strong>obsahuje fotografie nebo zvuky</strong></li>
+          <li>pozorování <strong>není od člověka</strong></li>
           </ul>
           <p>
-          Pozorování se stává <strong>"výzkumným stupněm"</strong>, když
+          Pozorování se stanou <strong>„třídou pro výzkum“</strong>, když
           </p>
           <ul>
           <li>
-          komunita %{site_name} <strong>se shodne na ID na úrovni druhu nebo nižší</strong>, tj. když se na taxonu shodnou více než 2/3 identifikátorů (pokud komunita odhlasovala, že taxon komunity již nelze vylepšovat, vrací se k ID na úrovni podrodů nebo nižší)
+          komunita %{site_name} <strong>souhlasí s ID na úrovni druhu nebo
+          nižší</strong> t. j. když se více než 2/3 identifikátorů shoduje na a
+          taxon (pokud komunita hlasovala, že komunitní taxon nemůže být dále vylepšen, takže se vrátí na ID na úrovni podrodiny nebo nižší)
           </li>
           </ul>
           <p>
-          Pozorování se vrátí na <strong>"příležitostné"</strong>, pokud nejsou splněny výše uvedené podmínky nebo se na tom komunita nedohodne.
+          Pokud nebudou splněny výše uvedené podmínky, nebo s tím komunita souhlasí, vrátí se pozorování na <strong>„příležitostná“</strong>
           </p>
           <ul>
           <li>
-          <strong>místo pozorování nevypadá přesně</strong> (např. opice uprostřed oceánu, hroši v kancelářských budovách apod.)
-
-          <li>
-          <strong>organismus není divoký/přirozený</strong> (např. v zajetí nebo vypěstovaný lidmi či inteligentními mimozemšťany z vesmíru)
+          <strong>místo nevypadá
+          přesné</strong> (např. opice uprostřed oceánu,
+          hroši v kancelářských budovách atd.)
           </li>
           <li>
-          pozorování <strong>nepředstavuje důkaz organismu</strong>, např. snímky krajiny, vodních prvků, skal apod.
+          <strong>organismus není divoký / zdivočelý</strong> (např. v zajetí nebo kultivovaný lidmi
+          nebo inteligentní vesmírní mimozemšťané)
           </li>
           <li>
-          pozorování <strong>nepředstavuje nedávné (~100 let) důkazy o organismu</strong> (např. zkameněliny, ale stopy, trus a mrtvé listí jsou v pořádku).
+          pozorování <strong>nepředkládá důkaz o 
+          organismu</strong>např. obrázky vodních prvků,
+          skály, krajiny, které nezahrnují organismus atd.
           </li>
           <li>
-          pozorování již nepotřebuje identifikaci <em>a</em>identifikace společenstva je nad rodinou
+          pozorování <strong>nepředkládá nedávné (~100 let) důkazy
+          organismu</strong>(např. fosilie, ale stopy, trus a odumřelé listy
+          jsou v pořádku)
           </li>
           <li>
-          pozorovatel se odhlásil z ID společenství a taxon s ID společenství není předkem ani potomkem taxonu spojeného s ID pozorovatele
+          pozorování již nepotřebuje ID <em>a</em> ID komunity je nad rodinou
+          </li>
+          <li>
+          pozorovatel se odhlásil z ID komunity a komunity
+          ID taxon není předkem ani potomkem souvisejícího taxonu
+          s průkazem pozorovatele
           </li>
           </ul>
           <p>
-          A pokud by to nebylo dost složité, existují také situace, kdy systém dostane hlas:
+          A pokud to nebylo dost složité, existují také situace, kdy systém dostane hlas:
           </p>
           <ul>
           <li>
-          Systém odhlasuje, že pozorování není divoké/přirozené, pokud je v nejmenším okresním, státním nebo zemském ekvivalentu, který obsahuje toto pozorování, alespoň 10 dalších pozorování daného rodu nebo nižšího druhu a 80 % nebo více těchto pozorování bylo označeno jako divoké/přirozené.
+          Systém bude hlasovat, že pozorování není divoké / zdivočelé
+          pokud existuje alespoň 10 dalších pozorování rodu nebo nižšího místa
+          elvivalentu kraje, státu nebo země, které
+          obsahuje toto pozorování a 80 % nebo více těchto pozorování
+          byly označeny jako nikoli divoké/zdivočelé.
           </li>
           </ul>
         score_desc: "skóre = kumulativní počet / (kumulativní počet + počet neshod + neshody u základních)"
@@ -6906,6 +6958,7 @@ cs:
         you_must_enter_confirmation_code_in_the_form: |
           Chcete-li účet smazat, musíte do formuláře zadat %{confirmation_code}
       edit:
+        about_third_party_tracking: O sledování třetí strany
         blocking_desc_html: |
           <p>
           Když někoho zablokujete, nebude vám moci posílat zprávy, vkládat komentáře k vašim pozorováním, identifikovat vaše pozorování ani s vámi na %{site_name} být jinak ve spojení. Také tím odstraníte jeho pozorování z výsledků svého vyhledávání a odstraníte vaše pozorování z jejich výsledků vyhledávání. Nebudete pro něj ale neviditelní. Stále mohou najít vaše pozorování a podívat se na váš profil, jen mezi vámi nemůže probíhat interakce.
@@ -6998,6 +7051,9 @@ cs:
         prefers_coordinate_interpolation_protection_desc: |
           Když nastavíte soukromí zeměpisné polohy pro pozorování na "přibližné" nebo
           "soukromé", pak totéž nastavíte i na Vaše další pozorování ze stejného dne, aby bylo pro ostatní lidi obtížnější odhadnout skutečné souřadnice na základě pozorování provedených ve stejný čas.
+        prefers_no_tracking_label: Neshromažďujte data o stabilitě a použití pomocí služeb třetích stran
+        prefers_no_tracking_label_desc_we_use: |
+          Ke sledování stability, diagnostice chyb a problémů v našem softwaru využíváme služby třetích stran. Tyto třetí strany zahrnují
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Informace, které můžeme sdílet s těmito třetími stranami, zahrnují
@@ -7014,6 +7070,14 @@ cs:
           Podrobnosti o selhání, stejně jako přesně, který řádek kódu způsobil selhání
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Podrobnosti o zařízení, například značka a model mobilního telefonu
+        prefers_no_tracking_label_desc_value_html: |2
+          <strong>Tyto služby třetích stran poskytují nesmírnou hodnotu pro
+          nás </strong> při udržování stability a použitelnosti programu iNaturalist
+          s našimi relativně malými zaměstnanci. Na mobilních zařízeních téměř neexistuje
+          jiný způsob, jak můžeme získat náhled na problémy, které se od té doby vyskytují v softwaru na zařízeních, která nekontrolujeme. Někdy si ani neuvědomujeme, že k těmto problémům dochází, dokud neuvidíme v systému
+          data, která tyto služby poskytují. <strong>Sdílení těchto informací
+           pomáhá vám i celé iNaturalist
+          komunitě.</strong>
         prefers_no_tracking_label_desc_limits: |
           Tato možnost se vztahuje pouze na analýzu a údaje o selhání, které
           těmto společnostem výslovně posíláme. Všechny servery iNaturalist jsou
@@ -7486,6 +7550,9 @@ cs:
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
       ModeratorNote: Poznámka moderátora
+      #Software application that operates iNat on a user's behalf, e.g. the
+      #iNaturalist Android app or an app made by a third party
+      OauthApplication: Žádost
       TaxonLink: Odkazy taxonu
     attributes:
       assessment:
@@ -7532,6 +7599,18 @@ cs:
         finished_at: Dokončeno
         #Inputs to an export task, e.g. the query and the columns
         inputs: Vstupy
+      oauth_application:
+        #The URL the user will be redirected to after authorizing an app to
+        #access their iNaturalist account
+        callback_url: URL zpětného volání
+        #Unique identifier for an application
+        uid: ID
+        #Noun, secret associated with an application, sort of like the application's password
+        secret: Tajný klíč
+        #Adjective, whether or not this application can keep its secret
+        #confidential, e.g. a native or desktop app as opposed to a web
+        #app.
+        confidential: Důvěrné
       post:
         title: Název
         body: Obsah
@@ -7681,6 +7760,8 @@ cs:
             observed_on:
               cannot_be_greater_than_date_created: |
                 nemůže být větší než datum přidání pozorování
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: musí být během posledních 130 let
         observation_field_value:
           attributes:
             value:
@@ -7822,6 +7903,8 @@ cs:
     scopes:
       write: |
         Vytvořte, aktualizujte a odstraňte své komentáře, identifikace a další obsah a získejte přístup ke skrytým kontaktním informacím a dalším informacím, ke kterým na webu můžete přistupovat.
+      login: |
+        Přístup k relevantním informacím pro přihlášení, jako je e-mailová adresa, uživatelské jméno, jméno a ikona uživatele.
       account_delete: |
         Vymazat svůj účet.
     errors:

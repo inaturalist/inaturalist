@@ -26,13 +26,13 @@ th:
   x_matching_taxa_html:
     other: '<span class="count">%{count}</span> ลำดับอนุกรมวิธานที่ตรงกัน'
   x_misidentifications_of_this_species:
-    other: "%{count} การจำแนกชนิดนี้ผิด"
+    other: "%{count} ชนิดนี้มีการระบุผิด"
   x_misidentifications_of_species_in_this_genus:
     other: "%{count} สกุลนี้มีการระบุผิด"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
-    other: "%{count} การจำแนกชนิดในนี้ผิด %{rank}"
+    other: "%{count} การระบุชนิดต่อไปนี้ผิด %{rank}"
   x_observations:
     other: "%{count} การสังเกต"
   x_observations_:
@@ -89,7 +89,7 @@ th:
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A ถึง Z"
-  about: เกี่ยวกับเรา
+  about: รายละเอียด
   about_blocking: เกี่ยวกับการบล็อก
   about_charts: เกี่ยวกับแผนภูมิ
   about_conservation_status: เพิ่มสถานะการอนุรักษ์
@@ -524,6 +524,7 @@ th:
   authority_list:
     iucn_red_list: บัญชีแดง IUCN
   back_to_all_species: กลับไปที่ชนิดทั้งหมด
+  back_to_users_calendar: "กลับไปที่ปฏิทินของ %{user}"
   back_to_your_calendar: กลับสู่ปฏิทิน
   birds: นก
   birthday: วันเกิด
@@ -531,6 +532,7 @@ th:
   blocked_users: ผู้ใช้ที่ถูกบล็อก
   browse_all_species: ค้นดูชนิดทั้งหมด
   browse_species_that_occur_near_this_observation: ค้นดูชนิดที่พบใกล้กับการสังเกตนี้
+  calendar: ปฏิทิน
   captive: ถูกจับมา
   captive_cultivated: ถูกจับมา / เพาะปลูก
   captive_observations: การสังเกตของสิ่งมีชีวิตที่ถูกจับมา
@@ -815,6 +817,7 @@ th:
   go: ค้นหา
   go_back: ย้อนกลับ
   going_to_your_observations: กำลังไปที่การสังเกตของคุณ...
+  grid: ตาราง
   has_id_supported_by_two_or_more: มีการระบุตั้งแต่สองคนขึ้นไป
   has_photos_or_sounds: มีรูปถ่ายหรือเสียง
   has_sound: มีเสียง
@@ -823,6 +826,7 @@ th:
   header_your_calendar: ปฏิทินของฉัน
   header_your_favorites: รายการโปรดของคุณ
   header_your_lists: รายการของคุณ
+  help_support_inaturalist: "ช่วยสนับสนุน iNaturalist"
   here_are_our_top_species_suggestions: นี่คือชนิดที่ได้รับการแนะนำเป็นอันดับต้น ๆ
   hide_uncountable_species: ซ่อนชนิดที่นับไม่ได้
   identify: ระบุชนิด
@@ -839,6 +843,7 @@ th:
   leaves: ใบ
   lexicons:
     mongolian: มองโกเลีย
+  list: รายการ
   location_is_accurate: สถานที่สังเกตถูกต้อง
   location_is_exact: มีหลักฐานของสิ่งมีชีวิต
   location_is_private: สถานที่นี้เป็นส่วนตัว
@@ -1068,6 +1073,9 @@ th:
   your_content: เนื้อหาของคุณ
   your_recent_projects: โครงการล่าสุดของคุณ
   views:
+    guides:
+      pdf_layouts:
+        grid: ตาราง
     lifelists:
       all_species: ชนิดทั้งหมด
       all_observations: การสังเกตทั้งหมด

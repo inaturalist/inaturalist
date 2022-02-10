@@ -704,7 +704,6 @@ class ObservationsController < ApplicationController
       end
       format.json do
         if errors
-          Rails.logger.debug "[DEBUG] errors: #{@observations[0].errors.full_messages.to_sentence}"
           json = if @observations.size == 1 && is_iphone_app_2?
             {:error => @observations.map{|o| o.errors.full_messages}.flatten.uniq.compact.to_sentence}
           else
@@ -1762,7 +1761,7 @@ class ObservationsController < ApplicationController
     @removal_date = MushroomObserverImportFlowTask::REMOVAL_DATE
     return render_404 if Date.today >= @removal_date
 
-    if @api_key = params[:api_key]&.strip
+    if ( @api_key = params[:api_key]&.strip )
       @mo_import_task = MushroomObserverImportFlowTask.new( user: current_user )
       @mo_url_field = @mo_import_task.mo_url_observation_field
       @mo_import_task.inputs.build( extra: { api_key: @api_key } )
@@ -1771,7 +1770,7 @@ class ObservationsController < ApplicationController
         @mo_user_name = @mo_import_task.mo_user_name
         if @mo_user_id
           begin
-            @results = @mo_import_task.get_results_xml.map do |r|
+            @results = @mo_import_task.get_results_xml[0..9].map do | r |
               [r, @mo_import_task.observation_from_result( r, skip_images: true )]
             end
           rescue RestClient::BadGateway
@@ -1790,7 +1789,7 @@ class ObservationsController < ApplicationController
         @errors << e.message
       end
     end
-    respond_to do |format|
+    respond_to do | format |
       format.html { render layout: "bootstrap" }
     end
   end
@@ -2182,6 +2181,12 @@ class ObservationsController < ApplicationController
     unless search_params[:place].blank? || search_params[:place].is_a?(Array)
       @place = search_params[:place]
     end
+    if search_params[:not_in_place_record].is_a?(Array) && search_params[:not_in_place_record].length == 1
+      search_params[:not_in_place_record] = search_params[:not_in_place_record].first
+    end
+    unless search_params[:not_in_place_record].blank? || search_params[:not_in_place_record].is_a?(Array)
+      @not_in_place_record = search_params[:not_in_place_record]
+    end
     @q = search_params[:q] unless search_params[:q].blank?
     @search_on = search_params[:search_on]
     @iconic_taxa = search_params[:iconic_taxa_instances]
@@ -2219,6 +2224,7 @@ class ObservationsController < ApplicationController
     @projects = search_params[:projects]
     @pcid = search_params[:pcid]
     @geoprivacy = search_params[:geoprivacy] unless search_params[:geoprivacy].blank?
+    @taxon_geoprivacy = search_params[:taxon_geoprivacy] unless search_params[:taxon_geoprivacy].blank?
     @rank = search_params[:rank]
     @hrank = search_params[:hrank]
     @lrank = search_params[:lrank]

@@ -36,21 +36,21 @@ class MushroomObserverImportFlowTask < FlowTask
   end
 
   def get( url, params = {} )
-    try = params.delete(:try) || 1
+    try = params.delete( :try ) || 1
     resp = begin
       log "GET #{url}, #{params}"
       RestClient.get( url, params: params )
     rescue Net::ReadTimeout, RestClient::Exceptions::ReadTimeout
-      raise TimeoutError.new(
+      raise TimeoutError,
         "Request timed out. You might want to let Mushroom Observer know that #{url} may not be working"
-      )
+    rescue RestClient::TooManyRequests
+      OpenStruct.new( code: 429 )
     end
     if resp.code == 429
       log "429 error from Mushroom Observer for #{url}, try #{try}"
       if tries > 3
-        raise TooManyRequestsError.new(
-          "This process made too many requests to Mushroom Observer so MO stopped returning our calls"
-        )
+        raise TooManyRequestsError,
+          "iNat made too many requests to Mushroom Observer so MO stopped returning our calls"
       end
       sleep try * 30 # seconds
       resp = get( url, params.merge( try: try + 1 ) )
@@ -72,7 +72,7 @@ class MushroomObserverImportFlowTask < FlowTask
         transaction do
           o = observation_from_result( result )
           if o && !o.save
-            mo_url_from_result( result )
+            mo_url = mo_url_from_result( result )
             errors[mo_url] = o.errors.full_messages.to_sentence
             clear_warnings_for_url( mo_url )
           end
@@ -110,6 +110,7 @@ class MushroomObserverImportFlowTask < FlowTask
     url = "https://mushroomobserver.org/api2/observations.xml"
     return [] if api_key.blank?
     return [] if mo_user_id.blank?
+
     resp = get( url, {
       user: mo_user_id,
       detail: "high",

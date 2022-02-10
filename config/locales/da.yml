@@ -791,7 +791,6 @@ da:
   by_you: Af dig
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalendere viser kun %{x} observationer ad gangen
-  callback_url: Callback URL
   cancel: Annullér
   cant_edit_or_delete_hidden_content: Du kan ikke redigere eller slette indhold, som er blevet skjult af sidens kuratorer
   cant_flag_an_object_that_doesnt_exist: Kan ikke markere et objekt, som ikke eksisterer
@@ -927,6 +926,10 @@ da:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentar
   comment_deleted: Kommentar slettet
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Kommentar skjult
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Kommentar glort synlig
   comments: Kommentarer
   comments_by_me: Kommentarer fra mig
   comments_have_been_disabled: Kommentarer er deaktiveret
@@ -2002,6 +2005,8 @@ da:
   identification_by_user: Identifikation af %{user}
   identification_deleted: Identifikation slettet
   identification_saved: "Identifikation gemt!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Identifikationstekst gjort synlig
   identification_updated: Identifikation opdateret!
   identification_user_short: Ident. bruger
   identification_withdrawn: Identifikation trukket tilbage
@@ -3674,8 +3679,6 @@ da:
   please_complete_the_following_to_add_project: |
     Udfyld venligst følgende for at tilføje denne observation til projektet:
   please_confirm_your_inat_username: "Bekræft venligst dit %{site_name} brugernavn"
-  please_explain_why_you_want_to_hide_this: Forklar venligst hvorfor du vil skjule dette
-  please_explain_why_you_want_to_unhide_this: Forklar venligst hvorfor du ikke længere vil skjule dette
   please_fix_your_csv_and_try_again: Ret venligst din CSV og prøv igen.
   please_hold_on_while_the_file: Vent venligst, mens filen genereres. Det kan tage et par minutter, hvis du har mange observationer.
   please_hold_on_while_the_file_is_generated: Vent venligst, mens filen genereres. Det kan tage et par minutter for store lister.
@@ -4478,6 +4481,11 @@ da:
   summary: Oversigt
   supporting: Støtter
   suspend_user: Suspenderet bruger
+  suspend_user_html: Suspendér %{user}
+  suspend_user_reason_instructions_html: |
+    Forklar, hvorfor du suspenderer denne konto og citér evt. overtrædelser af
+    %{link_start_tag}Fællesskabsretningslinjer%{link_end_tag}. Undlad venligst
+    at tilføje personlige meninger.
   sw_lat: SV Bre.
   sw_lon: SV Læn.
   sync: Synk?
@@ -4885,6 +4893,9 @@ da:
   unsubscribe: Afmeld abonnement
   unsubscribe_from_emails_like_this: Afmeld e-mailindhold som dette
   unsuspend_user: Bruger ikke længere suspenderet
+  unsuspend_user_html: Afsuspendér %{user}
+  unsuspend_user_reason_instructions: |
+    Forklar venligst, hvorfor du afsuspenderer denne bruger.
   upcoming_bioblitzes: Kommende bioblitzer
   update: Opdatér
   update_existing_observations_with_new_license: Opdatér eksisterende observationer med det nye licensvalg
@@ -6000,63 +6011,69 @@ da:
           beføjelse til at se de skjulte koordinater for denne eller enhver
           anden observation i projektet og indebærer at du
           acceptere projektets <a href="%{url}" target="_blank"> vilkår </a>.
-        quality_assessment_help_html: |
+        quality_assessment_help2_html: |2
           <p>
-          Vurderingen af datakvaliteten er resultatet af en observations nøjagtighed. Alle observationer starter som <strong> "uformel" </strong> kvalitet og bliver<strong> "behøver ID"</strong> når
+          Datakvalitetsvurderingen er et sammendrag af en observations nøjagtighed. Alle observationer gradueres indledningsvis som <strong>"tilfældig"</strong>, og bliver så til <strong>"behøver ID"</strong>, når
           </p>
 
           <ul>
           <li>observationen <strong>har en dato</strong></li>
-          <li>observationen <strong>er georefereret</strong> (dvs. har bre.læn. koordinater)</li>
-          <li>observationen <strong>har foto´s eller lyde</strong></li>
-          <li>observationen <strong>ikke er af et menneske</strong></li>
+          <li>observationen <strong>georafgrænses</strong> (dvs. har br.gr./lg.gr. koordinater)</li>
+          <li>observationen <strong>har fotos eller lyde</strong></li>
+          <li>observationen <strong>er ikke fra et menneske</strong></li>
           </ul>
           <p>
-          Observationen bliver <strong>"forskningskvalitet"</strong> når
+          Observationer bliver <strong>"forskningskvalitet"</strong>, når
           </p>
           <ul>
           <li>
-          %{site_name} <strong>fællesskabet er enige i identifikationen på artsniveau eller lavere</strong>, dvs.
-          når flere end 2/3 af identifikatorerne er enige om en takson
+           %{site_name} <strong>-fællesskabet er enig i artsniveau ID eller
+          lavere</strong>, dvs. ved konsensus blandt flere end 2/3 af de identificerende parter om en takson (hvis fællesskabet har stemt om, at Fællesskabets Takson ikke kan forbedres yderligere, 
+          reverseres dette til underfamilieniveau-ID eller lavere)
           </li>
           </ul>
           <p>
-          Observationer vil vende tilbage til <strong>"uformel"</strong> hvis ovenstående betingelser ikke er opfyldt eller fællesskabet ikke er enig
+          Observationer reverseres til <strong>"tilfældig"</strong>, hvis ovenstående betingelser ikke er opfyldt, eller fællesskabet er enige om at
           </p>
           <ul>
           <li>
-          <strong>Placeringen ser ikke nøjagtig ud</strong> (f.eks. aber midt ude på åbent hav,
-          flodheste i kontorbygninger, etc.)
+           <strong>placeringen ikke ser
+          præcis ud</strong> (f. eks. aber i midten af havet,
+          flodheste i kontorbygninger osv.)
           </li>
           <li>
-          <strong>organismen er ikke vild/fra naturen</strong> (f.eks. i fangenskab eller dyrket af mennesker
-          eller intelligente rumvæsener)
+          <strong>organismen ikke er vild/naturaliseret</strong> (f. eks. fangenskab eller opdrættet af mennesker
+          eller intelligente rumvæsen)
           </li>
           <li>
-          observationen <strong>viser ikke bevis for en
-          organisme</strong>, f.eks. billeder af landskab, vand,
-          klipper, etc.
+          observationen <strong>ikke præsenterer dokumentation for en
+          organisme</strong>, f.eks. billeder af vandsærpræg,
+          klipper, landskaber, som ikke omfatter organismen mv.
           </li>
           <li>
-          observationen <strong>viser ikke nyere (~ 100 år) bevis for
-          organismen</strong> (f.eks. fossiler, spor, efterladenskaber, og døde blade
-          er ok)
+          observationen <strong>ikke repræsenterer nyere (~100 år) tegn på
+          organismen</strong> (f.eks. fossiler, men spor, ekskrementer og døde blade
+          er OK)
           </li>
           <li>
-          observationen behøver ikke længere et ID <em>og</em> fællesskabs ID er over familie
+          observationen ikke længere behøver en ID <em>og</em> fællesskabs-ID'en er højere end familie
           </li>
           <li>
-          observatøren har frasagt sig fællesskabets ID og fællesskabets
-          ID takson er ikke en stamfader eller efterkommer af den takson tilknyttet
-          med observatørens ID
+          observatøren har fravalgt fællesskabs-ID, og fællesskabs-ID
+          taksonen ikke er en forfader eller efterkommer af den takson, der er tilknyttet
+          observatørens ID
           </li>
           </ul>
           <p>
-          Og som om det ikke var kompliceret nok, er der også situationer, hvor systemet får en stemme:
+          Og var dette ikke var kompliceret nok, så der er også situationer, hvor systemet får en stemme:
           </p>
           <ul>
           <li>
-          Systemet vil stemme, at observationen ikke er vild/fra naturen hvis der er mindst 10 andre observationer af en slægt eller lavere, i det mindste amt-, stats- eller landelignende sted, som indeholder denne observation, og 80 % eller mere af disse observationer er blevet markeret som ikke værende vilde/fra naturen.
+          Systemet vil stemme for, at observationen ikke er vild/naturaliseret, 
+          hvis der er mindst 10 andre observationer af en slægt eller færre i
+          det mindste amt, stat eller landeækvivalent sted, som
+          indeholder denne observation og 80% eller flere af disse observationer
+          er blevet markeret som ikke-vilde/-naturaliseret.
           </li>
           </ul>
         score_desc: "score = kumulativ antal / (kumulativ antal  + uenighed antal  + stamfader uenigheder)"
@@ -7636,6 +7653,10 @@ da:
       message:
         subject: Emne
         body: Brødtekst
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Årsag
       observation:
         description: Notater
         geo_x: Østlig
@@ -7791,6 +7812,11 @@ da:
               guide_has_too_many_taxa: "Guide kan kun have 500 taksa"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: ikke understøttet for denne indholdstype
+            base:
+              only_staff_can_unhide: Kun personalet kan gøre skjult indhold synligt
+              staff_cannot_be_suspended: Personalet kan ikke suspenderes
             user_id:
               must_be_a_curator: skal være kurator
         mushroom_observer_import_flow_task:
@@ -7805,6 +7831,8 @@ da:
             observed_on:
               cannot_be_greater_than_date_created: |
                 kan ikke være større end datoen observationen blev tilføjet
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: skal være indenfor de seneste 130 år
         observation_field_value:
           attributes:
             value:

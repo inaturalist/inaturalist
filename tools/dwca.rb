@@ -36,6 +36,7 @@ opts = Optimist.options do
   HELP
 
   opt :path, "Path to archive", type: :string, short: "-f", default: "public/observations/dwca.zip"
+  opt :aws_s3_path, "Path to upload archive to configured AWS account/bucket", type: :string
   opt :place, "Only export observations from this place", type: :string, short: "-p"
   opt :taxon, "Only export observations of this taxon", type: :string, short: "-t"
   opt :project, "Only export observations from this project", type: :string, short: "-o"
@@ -75,6 +76,8 @@ opts = Optimist.options do
   opt :post_taxon_archive_as_url, "URL the second archive will be posted as", type: :string
   opt :community_taxon, "Use the community taxon for the taxon associated with the occurrence, not the default taxon",
     type: :boolean
+  opt :d1, "Mininum date of observation", type: :string
+  opt :d2, "Maximum date of observation", type: :string
   opt :created_d1, "Mininum date of observation creation", type: :string
   opt :created_d2, "Maximum date of observation creation", type: :string
   opt :photographed_taxa, "When core is taxon, only include taxa with observation photos", type: :boolean, default: false

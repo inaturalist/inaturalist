@@ -107,6 +107,23 @@ describe ObservationsExportFlowTask do
       expect( csv.detect{|row| row[taxon_id_col_idx].to_i == o_of_other_taxon.taxon.id } ).not_to be_blank
     end
 
+    it "should filter by not_in_place" do
+      u = User.make!
+      place = make_place_with_geom
+      o_in_place = Observation.make!( user: u, latitude: place.latitude, longitude: place.longitude )
+      o_not_in_place = Observation.make!( user: u, latitude: place.latitude + 10, longitude: place.longitude + 10 )
+      expect( u.observations.count ).to eq 2
+      ft = ObservationsExportFlowTask.make
+      ft.inputs.build( extra: { query: "user_id=#{u.id}&not_in_place=#{place.id}" } )
+      ft.save!
+      ft.run
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
+      expect( csv.size ).to eq 2
+      id_col_idx = csv[0].index( "id" )
+      expect( csv.detect {| row | row[id_col_idx].to_i == o_in_place.id } ).to be_blank
+      expect( csv.detect {| row | row[id_col_idx].to_i == o_not_in_place.id } ).not_to be_blank
+    end
+
     it "should allow JSON output" do
       o = Observation.make!
       ft = ObservationsExportFlowTask.make

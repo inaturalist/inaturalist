@@ -1862,6 +1862,7 @@ zh-CN:
   leading: 标题
   learn: 学习
   learn_about_the_species_live_in: 了解有关居住于此的物种
+  learn_about_third_party_tracking: 了解更多关于第三方跟踪的信息
   learn_more: 了解更多
   learn_more_raquo: "了解更多 &raquo;"
   learn_what_these_licenses_mean: 了解这些授权协议是什么意思
@@ -3213,8 +3214,6 @@ zh-CN:
   please_complete_the_following_to_add_project: |
     请完成以下操作来添加此观察至项目：
   please_confirm_your_inat_username: "请确认您在%{site_name}的用户名"
-  please_explain_why_you_want_to_hide_this: 请解释为什么你想要隐藏这个
-  please_explain_why_you_want_to_unhide_this: 请解释为什么你想要取消隐藏
   please_fix_your_csv_and_try_again: 请修复您的CSV，然后重试。
   please_hold_on_while_the_file: 请等待生成文件。如果您有很多观察结果，这可能需要几分钟时间。
   please_hold_on_while_the_file_is_generated: 请等待文件生成。较大的清单可能需要几分钟。
@@ -4081,6 +4080,7 @@ zh-CN:
   these_folks_kindly_volunteer_to: 这些热心的志愿者帮助维护我们的分类并处理其他问题。
   these_observations_have_not_been_uploaded_yet: |
     这些观察结果尚未上传。
+  third_party_tracking: 第三方跟踪
   third_person_possessive_singular: "%{object_phrase} 的 %{noun}"
   this: 此
   this_bioblitz_beings_in: 此bioblitz开始于
@@ -5540,6 +5540,7 @@ zh-CN:
         you_must_enter_confirmation_code_in_the_form: |
           您必须在表单中输入"%{confirmation_code}"才能删除您的帐户
       edit:
+        about_third_party_tracking: 关于第三方的追踪
         blocking_desc_html: |
           <p>
           屏蔽某人以阻止他们发信息给您，评论您的观察，辨别您的观察结果，以及在您在％{site_name}%{site_name}上的其他交互。这个操作也把他们的观察从您的观察搜索结果中移出，同时也将您的观察从他们的搜索结果中删除。但是，它不会让您对他们不可见。他们仍然能找到您的观察并查看您的个人资料，他们只是不能与您互动
