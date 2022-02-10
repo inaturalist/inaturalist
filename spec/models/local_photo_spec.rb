@@ -5,15 +5,15 @@ require "spec_helper"
 describe LocalPhoto, "creation" do
   elastic_models( Observation )
   describe "creation" do
-    it "should set the native page url" do
+    it "should not set the native page url" do
       p = LocalPhoto.make!
-      expect( p.native_page_url ).not_to be_blank
+      expect( p.native_page_url ).to be_blank
     end
 
-    it "should set the native_realname" do
+    it "should not set the native_realname" do
       u = User.make!( name: "Hodor Hodor Hodor" )
       lp = LocalPhoto.make!( user: u )
-      expect( lp.native_realname ).to eq( u.name )
+      expect( lp.native_realname ).to be_blank
     end
 
     it "should set absolute image urls" do
@@ -26,9 +26,9 @@ describe LocalPhoto, "creation" do
       expect { LocalPhoto.make!( user: nil, subtype: "FlickrPhoto" ) }.to_not raise_error
     end
 
-    it "uses id as native_photo id unless it has a subtype" do
+    it "sets native_photo id unless it has a subtype" do
       lp = LocalPhoto.make!
-      expect( lp.native_photo_id ).to eq lp.id.to_s
+      expect( lp.native_photo_id ).to be_blank
       lp = LocalPhoto.make!( subtype: "FlickrPhoto", native_photo_id: "1234" )
       expect( lp.native_photo_id ).to eq "1234"
     end

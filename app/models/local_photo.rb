@@ -1,8 +1,7 @@
 #encoding: utf-8
 class LocalPhoto < Photo
   include LogsDestruction
-  before_create :set_defaults
-  after_create :set_native_photo_id, :set_urls
+  after_create :set_urls
   after_update :change_photo_bucket_if_needed
   
   # only perform EXIF-based rotation on mobile app contributions
@@ -199,14 +198,6 @@ class LocalPhoto < Photo
   # validates_attachment_presence :file
   # validates_attachment_size :file, :less_than => 5.megabytes
   
-  def set_defaults
-    if user
-      self.native_username ||= user.login
-      self.native_realname ||= user.name
-    end
-    true
-  end
-
   def file=(data)
     self.file.assign(data)
     # uploaded photos need metadata immediately in order to
@@ -246,7 +237,6 @@ class LocalPhoto < Photo
   def set_urls
     return if new_record?
     updates = { }
-    updates[:native_page_url] = FakeView.photo_url(self) if native_page_url.blank?
     updates[:file_extension_id] = FileExtension.id_for_extension( self.parse_extension )
     updates[:file_prefix_id] = FilePrefix.id_for_prefix( self.parse_url_prefix )
     Photo.where( id: id ).update_all( updates )
@@ -306,12 +296,6 @@ class LocalPhoto < Photo
       super
     else
       "#{super}, uploaded by #{user.try_methods(:name, :login)}"
-    end
-  end
-  
-  def set_native_photo_id
-    if subtype.blank?
-      update_attribute(:native_photo_id, id)
     end
   end
 
@@ -489,31 +473,6 @@ class LocalPhoto < Photo
       where( "id < ?", max_id ).
       find_each( batch_size: 100 ) do |lp|
       lp.prune_odp_duplicates( s3_client: s3_client )
-    end
-  end
-
-  def self.update_photo_prefix_and_extension_batch( min_id, max_id )
-    start_time = Time.now
-    counter = 0
-    Photo.where("id > ? AND id <= ?", min_id, max_id ).find_in_batches( batch_size: 100 ) do |batch|
-      Photo.transaction do
-        batch.each do |photo|
-          if counter % 1000 == 0
-            puts "#{counter}, ID: #{photo.id}, Time: #{(Time.now - start_time).round(2)}"
-          end
-          counter += 1
-          if photo.metadata
-            photo.width ||= photo.metadata.dig(:dimensions, :original, :width)
-            photo.height ||= photo.metadata.dig(:dimensions, :original, :height)
-          end
-          photo.update_columns(
-            width: photo.width,
-            height: photo.height,
-            file_extension_id: FileExtension.id_for_extension( photo.extension ),
-            file_prefix_id: FilePrefix.id_for_prefix( photo.url_prefix )
-          )
-        end
-      end
     end
   end
 

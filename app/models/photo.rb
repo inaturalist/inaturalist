@@ -1,6 +1,7 @@
 #encoding: utf-8
 class Photo < ApplicationRecord
   acts_as_flaggable
+  has_one :photo_metadata, dependent: :destroy
   belongs_to :user
   belongs_to :file_extension
   belongs_to :file_prefix
@@ -30,7 +31,8 @@ class Photo < ApplicationRecord
 
   before_save :set_license, :trim_fields
   after_save :update_default_license,
-             :update_all_licenses
+             :update_all_licenses,
+             :update_metadata_if_changed
   after_commit :index_observations, :index_taxa, on: [:create, :update]
   after_destroy :create_deleted_photo
 
@@ -311,6 +313,22 @@ class Photo < ApplicationRecord
     }
   end
 
+  def update_metadata_if_changed
+    return unless saved_change_to_metadata?
+    if metadata.blank?
+      PhotoMetadata.where( photo_id: id ).destroy
+      return
+    end
+    photo_metadata = PhotoMetadata.where( photo_id: id ).first_or_create
+    PhotoMetadata.where( photo_id: id ).
+      update_all( metadata: Zlib::Deflate.deflate( YAML.dump( metadata ) ) )
+  end
+
+  def compressed_metadata
+    return unless photo_metadata
+    @compressed_metadata ||= YAML.load( Zlib::Inflate.inflate( photo_metadata.metadata ) )
+  end
+
   def self.repair_photos_for_user(user, type)
     count = 0
     user.photos.where(type: type).find_each do |photo|
@@ -489,6 +507,35 @@ class Photo < ApplicationRecord
       json["#{ size }_url"] = best_url(size)
     end
     json
+  end
+
+  def self.update_photo_prefix_and_extension_batch( min_id, max_id )
+    start_time = Time.now
+    counter = 0
+    Photo.where("id > ? AND id <= ?", min_id, max_id ).find_in_batches( batch_size: 100 ) do |batch|
+      Photo.transaction do
+        batch.each do |photo|
+          if counter % 1000 == 0
+            puts "#{counter}, ID: #{photo.id}, Time: #{(Time.now - start_time).round(2)}"
+          end
+          counter += 1
+          if photo.type == "LocalPhoto" && photo.subtype.blank? &&
+            ( !photo.native_photo_id.nil? || !photo.native_page_url.nil? ||
+              !photo.native_username.nil? || !photo.native_realname.nil? )
+            photo.update_columns(
+              native_photo_id: nil,
+              native_page_url: nil,
+              native_username: nil,
+              native_realname: nil
+            )
+          end
+          next if photo.metadata.blank?
+          metadata = PhotoMetadata.where( photo_id: photo.id ).first_or_initialize
+          metadata.metadata = Zlib::Deflate.deflate( YAML.dump( photo.metadata ) )
+          metadata.save
+        end
+      end
+    end
   end
 
   private
