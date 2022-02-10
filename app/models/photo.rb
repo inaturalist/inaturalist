@@ -319,14 +319,8 @@ class Photo < ApplicationRecord
       PhotoMetadata.where( photo_id: id ).destroy
       return
     end
-    photo_metadata = PhotoMetadata.where( photo_id: id ).first_or_create
-    PhotoMetadata.where( photo_id: id ).
-      update_all( metadata: Zlib::Deflate.deflate( YAML.dump( metadata ) ) )
-  end
-
-  def compressed_metadata
-    return unless photo_metadata
-    @compressed_metadata ||= YAML.load( Zlib::Inflate.inflate( photo_metadata.metadata ) )
+    PhotoMetadata.where( photo_id: id ).first_or_create
+    PhotoMetadata.where( photo_id: id ).update_all( metadata: metadata )
   end
 
   def self.repair_photos_for_user(user, type)
@@ -530,9 +524,8 @@ class Photo < ApplicationRecord
             )
           end
           next if photo.metadata.blank?
-          metadata = PhotoMetadata.where( photo_id: photo.id ).first_or_initialize
-          metadata.metadata = Zlib::Deflate.deflate( YAML.dump( photo.metadata ) )
-          metadata.save
+          PhotoMetadata.where( photo_id: photo.id ).first_or_create
+          PhotoMetadata.where( photo_id: photo.id ).update_all( metadata: photo.metadata )
         end
       end
     end
