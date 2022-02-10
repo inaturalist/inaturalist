@@ -1,10 +1,40 @@
 = content_for :extracss do
   :css
-    table.changes td {
-      width: 40%;
+    .table.history td.nobr,
+    .table.history td.action,
+    .table.history td.record,
+    .table.history td.user {
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+    table.table.changes {
+      margin-bottom: 0;
+    }
+    table.changes tr {
+      display: flex;
+    }
+    table.changes tr:first-child td {
+      -# border-top: none;
+    }
+    table.changes td.value {
+      overflow-wrap: anywhere;
+      flex-grow: 1;
+      width: 100%;
+    }
+    table.changes .update td.value {
+      width: 50%;
     }
     table.changes td.attr {
-      width: 20%;
+      width: 150px;
+    }
+    table.changes td.change {
+      background-color: #dceaa3;
+    }
+    .changes blockquote {
+      margin-bottom: 0;
+    }
+    td.changes-with-changes blockquote {
+      margin-top: 10px;
     }
 .row
   #pageheader.col-xs-12
@@ -14,7 +44,7 @@
       =t :bold_label_colon_value_html, label: t(:history), value: @record.name
 .row
   .col-xs-12
-    %table.table
+    %table.table.history
       %thead
         %tr
           %th Date
@@ -23,45 +53,45 @@
           %th User
           %th Changes
       %tbody
-        - for audit in @audits
-          %tr
-            %td.nobr
-              .date=l audit.created_at.to_date, format: :short_with_year
-              .time.text-muted=l audit.created_at, format: :observed_at
-            %td= audit.action
-            %td
-              :ruby
-                item_url = case audit.auditable_type
-                  when "TaxonName" then edit_taxon_name_path( audit.auditable )
-                  when "ConservationStatus" then edit_taxon_path( audit.auditable )
-                  else audit.auditable
-                end
-              = link_to audit.auditable.try_methods(:to_plain_s, :to_s) || t( "activerecord.models.#{audit.auditable_type}", default: audit.auditable_type.underscore.humanize ), item_url
-            %td= link_to_user( audit.user )
-            %td
-              - unless audit.comment.blank?
-                %blockquote= formatted_user_text( audit.comment, skip_simple_format: true )
-              - unless audit.audited_changes.blank?
-                %table.table.changes
-                  - if audit.action == "create"
-                    %thead
-                      %tr
-                        %th Attribute
-                        %th Value
-                    %tbody
-                      - for changed_attr, val in audit.audited_changes
-                        %tr
-                          %td.attr=t "activerecord.attributes.#{audit.auditable_type}.#{changed_attr}", default: changed_attr.humanize
-                          %td= val
-                  - elsif audit.action == "update"
-                    %thead
-                      %tr
-                        %th Attribute
-                        %th Previous Value
-                        %th Changed to
-                    %tbody
-                      - for changed_attr, changes in audit.audited_changes
-                        %tr
-                          %td.attr=t "activerecord.attributes.#{audit.auditable_type}.#{changed_attr}", default: changed_attr.humanize
-                          %td= changes[0]
-                          %td= changes[1]
+        - for date, count in @audit_days
+          - if @date == date || @show_all
+            - for audit in @audits
+              %tr
+                %td.nobr.date
+                  .date=l audit.created_at.to_date, format: :short_with_year
+                  .time.text-muted=l audit.created_at, format: :observed_at
+                %td.action= audit.action
+                %td.record
+                  :ruby
+                    item_url = case audit.auditable_type
+                      when "TaxonName" then edit_taxon_name_path( audit.auditable )
+                      when "ConservationStatus" then edit_taxon_path( audit.auditable )
+                      else audit.auditable
+                    end
+                  = link_to audit.auditable.try_methods(:to_plain_s, :to_s) || t( "activerecord.models.#{audit.auditable_type}", default: audit.auditable_type.underscore.humanize ), item_url
+                %td.user= link_to_user( audit.user )
+                %td{ class: "changes #{audit.audited_changes.blank? ? "" : "changes-with-changes"}" }
+                  - unless audit.audited_changes.blank?
+                    %table.table.table-bordered.table-responsive.changes
+                      - if audit.action == "create"
+                        %tbody.create
+                          - for changed_attr, val in audit.audited_changes
+                            %tr
+                              %th.attr=t "activerecord.attributes.#{audit.auditable_type}.#{changed_attr}", default: changed_attr.humanize
+                              %td.change.value= val
+                      - elsif audit.action == "update"
+                        %tbody.update
+                          - for changed_attr, changes in audit.audited_changes
+                            %tr
+                              %th.attr=t "activerecord.attributes.#{audit.auditable_type}.#{changed_attr}", default: changed_attr.humanize
+                              %td.value= changes[0]
+                              %td.change.value= changes[1]
+                  - unless audit.comment.blank?
+                    %blockquote= formatted_user_text( audit.comment, skip_simple_format: true )
+          - else
+            %tr
+              %td.nobr.date
+                %strong= link_to l( date, format: :short_with_year ), url_for( year: date.year, month: date.month, day: date.day ), class: "date"
+              %td.nobr{ colspan: 4 }
+                %strong= link_to "#{count} items", url_for( year: date.year, month: date.month, day: date.day )
+

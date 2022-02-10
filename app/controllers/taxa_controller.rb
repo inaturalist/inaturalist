@@ -1169,11 +1169,20 @@ class TaxaController < ApplicationController
 
   def history
     @record = @taxon
-    @audits = Audited::Audit.where( auditable_type: "Taxon", auditable_id: @taxon.id ).or(
+    audit_scope = Audited::Audit.where( auditable_type: "Taxon", auditable_id: @taxon.id ).or(
       Audited::Audit.where( auditable_type: "TaxonName", auditable_id: @taxon.taxon_name_ids )
     ).or(
       Audited::Audit.where( auditable_type: "ConservationStatus", auditable_id: @taxon.conservation_status_ids )
-    ).order( "created_at desc" )
+    )
+    @audit_days = audit_scope.group( "audits.created_at::date" ).count.sort_by(&:first).reverse
+    @date = params[:year] &&
+      params[:month] &&
+      params[:day] &&
+      ( Date.parse( "#{params[:year]}-#{params[:month]}-#{params[:day]}") rescue nil )
+    @date ||= @audit_days&.sort&.reverse.last.first
+    @show_all = audit_scope.count < 500
+    @audits = audit_scope.order( "created_at desc" )
+    @audits = @audits.where( "created_at::date = ?", @date ) unless @show_all
     render layout: "bootstrap-container"
   end
 
