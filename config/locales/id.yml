@@ -867,6 +867,10 @@ id:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komentar
   comment_deleted: Hapus komentar
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Komentar disembunyikan
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Komentar ditampilkan kembali
   comments: Komentar
   comments_by_me: Komentar oleh saya
   comments_have_been_disabled: Komentar telah dinonaktifkan
@@ -1910,6 +1914,8 @@ id:
   identification_by_user: Identifikasi oleh %{user}
   identification_deleted: Identifikasi telah dihapus.
   identification_saved: "Identifikasi telah disimpan!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Teks identifikasi ditampilkan kembali
   identification_updated: Identifikasi telah diperbarui!
   identification_user_short: Pengguna identifikasi
   identification_withdrawn: Identifikasi ditarik.
@@ -4286,6 +4292,9 @@ id:
   summary: Ringkasan
   supporting: Pendukung
   suspend_user: Tangguhkan pengguna
+  suspend_user_html: Tangguhkan %{user}
+  suspend_user_reason_instructions_html: |
+    Jelaskan alasan Anda ingin menangguhkan akun ini dan sertakan pelanggaran yang dilakukan terhadap %{link_start_tag}Pedoman Komunitas%{link_end_tag}. Sebisa mungkin jangan menambahkan pendapat pribadi.
   sw_lat: Lin. SB
   sw_lon: Buj. SB
   sync: Sinkronkan?
@@ -4653,6 +4662,9 @@ id:
   unsubscribe: Berhenti berlangganan
   unsubscribe_from_emails_like_this: Berhenti mendapatkan email seperti ini
   unsuspend_user: Cabut penangguhan pengguna
+  unsuspend_user_html: Cabut penangguhan %{user}
+  unsuspend_user_reason_instructions: |
+    Jelaskan alasan Anda mencabut penangguhan pengguna ini.
   upcoming_bioblitzes: Bioblitz yang akan datang
   update: Perbarui
   update_existing_observations_with_new_license: Perbarui pengamatan yang sudah ada dengan pilihan lisensi baru
@@ -6921,6 +6933,10 @@ id:
       message:
         subject: Subyek
         body: Isi
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Alasan
       observation:
         description: Catatan
         geo_x: Arah Timur
@@ -7072,6 +7088,11 @@ id:
               guide_has_too_many_taxa: "panduan hanya dapat memiliki 500 taksa"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: tidak didukung untuk konten jenis ini
+            base:
+              only_staff_can_unhide: Hanya staf yang dapat menampilkan kembali konten yang disembunyikan
+              staff_cannot_be_suspended: Staf tidak bisa ditangguhkan
             user_id:
               must_be_a_curator: harus merupakan kurator
         mushroom_observer_import_flow_task:
