@@ -791,7 +791,6 @@ da:
   by_you: Af dig
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalendere viser kun %{x} observationer ad gangen
-  callback_url: Callback URL
   cancel: Annullér
   cant_edit_or_delete_hidden_content: Du kan ikke redigere eller slette indhold, som er blevet skjult af sidens kuratorer
   cant_flag_an_object_that_doesnt_exist: Kan ikke markere et objekt, som ikke eksisterer
@@ -927,6 +926,10 @@ da:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentar
   comment_deleted: Kommentar slettet
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Kommentar skjult
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Kommentar glort synlig
   comments: Kommentarer
   comments_by_me: Kommentarer fra mig
   comments_have_been_disabled: Kommentarer er deaktiveret
@@ -2002,6 +2005,8 @@ da:
   identification_by_user: Identifikation af %{user}
   identification_deleted: Identifikation slettet
   identification_saved: "Identifikation gemt!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Identifikationstekst gjort synlig
   identification_updated: Identifikation opdateret!
   identification_user_short: Ident. bruger
   identification_withdrawn: Identifikation trukket tilbage
@@ -3674,8 +3679,6 @@ da:
   please_complete_the_following_to_add_project: |
     Udfyld venligst følgende for at tilføje denne observation til projektet:
   please_confirm_your_inat_username: "Bekræft venligst dit %{site_name} brugernavn"
-  please_explain_why_you_want_to_hide_this: Forklar venligst hvorfor du vil skjule dette
-  please_explain_why_you_want_to_unhide_this: Forklar venligst hvorfor du ikke længere vil skjule dette
   please_fix_your_csv_and_try_again: Ret venligst din CSV og prøv igen.
   please_hold_on_while_the_file: Vent venligst, mens filen genereres. Det kan tage et par minutter, hvis du har mange observationer.
   please_hold_on_while_the_file_is_generated: Vent venligst, mens filen genereres. Det kan tage et par minutter for store lister.
@@ -4478,6 +4481,11 @@ da:
   summary: Oversigt
   supporting: Støtter
   suspend_user: Suspenderet bruger
+  suspend_user_html: Suspendér %{user}
+  suspend_user_reason_instructions_html: |
+    Forklar, hvorfor du suspenderer denne konto og citér evt. overtrædelser af
+    %{link_start_tag}Fællesskabsretningslinjer%{link_end_tag}. Undlad venligst
+    at tilføje personlige meninger.
   sw_lat: SV Bre.
   sw_lon: SV Læn.
   sync: Synk?
@@ -4885,6 +4893,9 @@ da:
   unsubscribe: Afmeld abonnement
   unsubscribe_from_emails_like_this: Afmeld e-mailindhold som dette
   unsuspend_user: Bruger ikke længere suspenderet
+  unsuspend_user_html: Afsuspendér %{user}
+  unsuspend_user_reason_instructions: |
+    Forklar venligst, hvorfor du afsuspenderer denne bruger.
   upcoming_bioblitzes: Kommende bioblitzer
   update: Opdatér
   update_existing_observations_with_new_license: Opdatér eksisterende observationer med det nye licensvalg
@@ -7642,6 +7653,10 @@ da:
       message:
         subject: Emne
         body: Brødtekst
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Årsag
       observation:
         description: Notater
         geo_x: Østlig
@@ -7797,6 +7812,11 @@ da:
               guide_has_too_many_taxa: "Guide kan kun have 500 taksa"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: ikke understøttet for denne indholdstype
+            base:
+              only_staff_can_unhide: Kun personalet kan gøre skjult indhold synligt
+              staff_cannot_be_suspended: Personalet kan ikke suspenderes
             user_id:
               must_be_a_curator: skal være kurator
         mushroom_observer_import_flow_task:

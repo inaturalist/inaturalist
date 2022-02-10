@@ -893,6 +893,10 @@ de:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentar
   comment_deleted: Kommentar gelöscht
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Kommentar ausgeblendet
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Kommentar wieder sichtbar
   comments: Kommentare
   comments_by_me: Kommentare von mir
   comments_have_been_disabled: Kommentare wurden deaktiviert
@@ -1929,6 +1933,8 @@ de:
   identification_by_user: Bestimmung durch %{user}
   identification_deleted: Bestimmung gelöscht.
   identification_saved: "Bestimmung gespeichert!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Bestimmungstext wieder sichtbar
   identification_updated: Bestimmung aktualisiert!
   identification_user_short: Ident. Benutzer
   identification_withdrawn: Bestimmung zurückgezogen.
@@ -3585,8 +3591,6 @@ de:
   please_complete_the_following_to_add_project: |
     Bitte vervollständige die folgenden Schritte, um diese Beobachtung dem Projekt hinzuzufügen:
   please_confirm_your_inat_username: "Bette bestätigen Sie ihren Benutzernamen %{site_name}"
-  please_explain_why_you_want_to_hide_this: Bitte gib einen Grund an, warum du das verbergen möchtest
-  please_explain_why_you_want_to_unhide_this: Bitte gib einen Grund an, warum du das sichtbar machen möchtest
   please_fix_your_csv_and_try_again: Bitte korrigiere dein CSV und versuche es erneut.
   please_hold_on_while_the_file: Bitte um Geduld, während die Datei erzeugt wird. Es kann ein paar Minuten dauern, wenn du viele Beobachtungen hast.
   please_hold_on_while_the_file_is_generated: Bitte um Geduld während die Datei erstellt wird. Bei großen Listen kann es ein paar Minuten dauern.
@@ -4363,6 +4367,10 @@ de:
   summary: Zusammenfassung
   supporting: bestätigend
   suspend_user: Benutzer sperren
+  suspend_user_html: '%{user} sperren'
+  suspend_user_reason_instructions_html: |
+    Begründe, warum dieses Konto gesperrt wurde und führe alle Verstöße gegen die
+    %{link_start_tag}Gemeinschaftsrichtlinien%{link_end_tag} an. Bitte verzichte auf persönliche Meinungen.
   sw_lat: SW Lat.
   sw_lon: SW Lon.
   sync: Synchronisieren?
@@ -4747,6 +4755,9 @@ de:
   unsubscribe: Abbestellen
   unsubscribe_from_emails_like_this: E-Mails wie diese abbestellen
   unsuspend_user: Benutzer entsperren
+  unsuspend_user_html: '%{user} entsperren'
+  unsuspend_user_reason_instructions: |
+    Bitte begründe, warum die Sperre dieses Benutzers aufgehoben werden soll.
   upcoming_bioblitzes: Bevorstehende bioblitze
   update: Aktualisieren
   update_existing_observations_with_new_license: Bestehende Beobachtungen mit der neuen Lizenzauswahl aktualisieren
@@ -5648,7 +5659,7 @@ de:
           nicht gelten.
           Die privaten_*-Felder werden bei der Verwendung des Benutzer-Filters nur dann angeben, wenn du der Benutzer bist, oder bei der Verwendung des Projekt-Filters, wenn du das Projekt erstellt hast.
         be_patient: |
-          Bitte um Geduld, das kann einige Minuten dauern. Wenn es zu lange dauert, kannst du
+          Bitte um Geduld, das kann einige Minuten dauern. Wenn es zu lange dauert, kannst du:
         check_back: |
           Wenn du diese Seite in ein paar Minuten neu lädst, sollte der Export
           in der Liste am Ende der Seite erscheinen.
@@ -7197,6 +7208,10 @@ de:
       message:
         subject: Betreff
         body: Nachrichtentext
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Begründung
       observation:
         description: Bemerkungen
         geo_x: Rechtswert
@@ -7339,6 +7354,11 @@ de:
               guide_has_too_many_taxa: "Guide kann nur 500 Taxa haben"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: wird für diese Art von Inhalten nicht unterstützt
+            base:
+              only_staff_can_unhide: Nur Administratoren können versteckte Inhalte wieder sichtbar machen
+              staff_cannot_be_suspended: iNat-Personal kann nicht gesperrt werden
             user_id:
               must_be_a_curator: muss ein Kurator sein
         mushroom_observer_import_flow_task:
