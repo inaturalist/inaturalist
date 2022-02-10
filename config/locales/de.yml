@@ -893,6 +893,10 @@ de:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentar
   comment_deleted: Kommentar gelöscht
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Kommentar ausgeblendet
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Kommentar wieder sichtbar
   comments: Kommentare
   comments_by_me: Kommentare von mir
   comments_have_been_disabled: Kommentare wurden deaktiviert
@@ -1929,6 +1933,8 @@ de:
   identification_by_user: Bestimmung durch %{user}
   identification_deleted: Bestimmung gelöscht.
   identification_saved: "Bestimmung gespeichert!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Bestimmungstext wieder sichtbar
   identification_updated: Bestimmung aktualisiert!
   identification_user_short: Ident. Benutzer
   identification_withdrawn: Bestimmung zurückgezogen.
@@ -4361,6 +4367,10 @@ de:
   summary: Zusammenfassung
   supporting: bestätigend
   suspend_user: Benutzer sperren
+  suspend_user_html: '%{user} sperren'
+  suspend_user_reason_instructions_html: |
+    Begründe, warum dieses Konto gesperrt wurde und führe alle Verstöße gegen die
+    %{link_start_tag}Gemeinschaftsrichtlinien%{link_end_tag} an. Bitte verzichte auf persönliche Meinungen.
   sw_lat: SW Lat.
   sw_lon: SW Lon.
   sync: Synchronisieren?
@@ -4745,6 +4755,9 @@ de:
   unsubscribe: Abbestellen
   unsubscribe_from_emails_like_this: E-Mails wie diese abbestellen
   unsuspend_user: Benutzer entsperren
+  unsuspend_user_html: '%{user} entsperren'
+  unsuspend_user_reason_instructions: |
+    Bitte begründe, warum die Sperre dieses Benutzers aufgehoben werden soll.
   upcoming_bioblitzes: Bevorstehende bioblitze
   update: Aktualisieren
   update_existing_observations_with_new_license: Bestehende Beobachtungen mit der neuen Lizenzauswahl aktualisieren
@@ -7195,6 +7208,10 @@ de:
       message:
         subject: Betreff
         body: Nachrichtentext
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Begründung
       observation:
         description: Bemerkungen
         geo_x: Rechtswert
@@ -7337,6 +7354,11 @@ de:
               guide_has_too_many_taxa: "Guide kann nur 500 Taxa haben"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: wird für diese Art von Inhalten nicht unterstützt
+            base:
+              only_staff_can_unhide: Nur Administratoren können versteckte Inhalte wieder sichtbar machen
+              staff_cannot_be_suspended: iNat-Personal kann nicht gesperrt werden
             user_id:
               must_be_a_curator: muss ein Kurator sein
         mushroom_observer_import_flow_task:
