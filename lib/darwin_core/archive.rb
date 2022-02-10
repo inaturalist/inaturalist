@@ -284,7 +284,8 @@ module DarwinCore
         :quality_metrics, 
         { identifications: { user: [:provider_authorizations] } },
         { observations_places: :place },
-        { annotations: { controlled_value: [:labels], votes_for: {} } }
+        { annotations: { controlled_value: [:labels], votes_for: {} } },
+        { site: :place }
       ]
       if @opts[:community_taxon]
         preloads << :community_taxon

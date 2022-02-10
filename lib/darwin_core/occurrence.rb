@@ -59,7 +59,8 @@ module DarwinCore
       %w(genus http://rs.tdwg.org/dwc/terms/genus),
       ["license", "http://purl.org/dc/terms/license", nil, "dwc_license"],
       %w(rightsHolder http://purl.org/dc/terms/rightsHolder),
-      %w(inaturalistLogin http://xmlns.com/foaf/0.1/nick)
+      %w(inaturalistLogin http://xmlns.com/foaf/0.1/nick),
+      %w(publishingCountry http://rs.gbif.org/terms/1.0/publishingCountry)
     ] + ANNOTATION_TERMS
     cattr_accessor :annotation_controlled_attributes do
       {}
@@ -476,6 +477,16 @@ module DarwinCore
         return unless winning_anno
 
         winning_anno.controlled_value.label.downcase
+      end
+
+      def publishingCountry
+        return unless site&.place&.code
+
+        return unless site.place.admin_level == Place::COUNTRY_LEVEL
+
+        return unless site.place.code.size == 2
+
+        site.place.code.upcase
       end
     end
   end
