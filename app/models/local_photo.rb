@@ -209,11 +209,11 @@ class LocalPhoto < Photo
 
   def extract_metadata(path = nil)
     return unless file && (path || !file.queued_for_write.blank?)
-    metadata = self.metadata.to_h.clone || {}
+    extracted_metadata = self.metadata.to_h.clone || {}
     begin
       if ( file_path = ( path || file.queued_for_write[:original].path ) )
         exif_data = ExifMetadata.new( path: file_path, type: file_content_type ).extract
-        metadata.merge!( exif_data )
+        extracted_metadata.merge!( exif_data )
       end
     rescue EXIFR::MalformedImage, EOFError => e
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
@@ -226,12 +226,14 @@ class LocalPhoto < Photo
     rescue ExifMetadata::ExtractionError => e
       Rails.logger.error "[ERROR #{Time.now}] ExifMetadata failed to extract metadata: #{e}"
     end
-    metadata = metadata.force_utf8
+    extracted_metadata = extracted_metadata.force_utf8
     if dimensions = extract_dimensions( :original )
       self.width = dimensions[:width]
       self.height = dimensions[:height]
     end
-    self.metadata = metadata
+    self.metadata = extracted_metadata
+    self.photo_metadata ||= PhotoMetadata.new( photo: self )
+    self.photo_metadata.metadata = extracted_metadata
   end
 
   def set_urls

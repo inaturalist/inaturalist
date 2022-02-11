@@ -1,7 +1,7 @@
 #encoding: utf-8
 class Photo < ApplicationRecord
   acts_as_flaggable
-  has_one :photo_metadata
+  has_one :photo_metadata, autosave: true, dependent: :destroy
   belongs_to :user
   belongs_to :file_extension
   belongs_to :file_prefix
@@ -31,10 +31,9 @@ class Photo < ApplicationRecord
 
   before_save :set_license, :trim_fields
   after_save :update_default_license,
-             :update_all_licenses,
-             :update_metadata_if_changed
+             :update_all_licenses
   after_commit :index_observations, :index_taxa, on: [:create, :update]
-  after_destroy :create_deleted_photo, :destroy_metadata
+  after_destroy :create_deleted_photo
 
   SQUARE = 75
   THUMB = 100
@@ -313,16 +312,6 @@ class Photo < ApplicationRecord
     }
   end
 
-  def update_metadata_if_changed
-    return unless saved_change_to_metadata?
-    if metadata.blank?
-      PhotoMetadata.where( photo_id: id ).destroy
-      return
-    end
-    PhotoMetadata.where( photo_id: id ).first_or_create
-    PhotoMetadata.where( photo_id: id ).update_all( metadata: metadata )
-  end
-
   def self.repair_photos_for_user(user, type)
     count = 0
     user.photos.where(type: type).find_each do |photo|
@@ -479,7 +468,7 @@ class Photo < ApplicationRecord
       :methods => [:license_code, :attribution, :square_url,
         :thumb_url, :small_url, :medium_url, :large_url],
       :except => [:file_processing, :file_file_size,
-        :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
+        :file_content_type, :file_file_name, :mobile, :metadata, :user_id,
         :native_realname, :native_photo_id]
     }
   end
@@ -543,10 +532,6 @@ class Photo < ApplicationRecord
       user_id: user_id,
       orphan: orphan || false
     )
-  end
-
-  def destroy_metadata
-    PhotoMetadata.delete_by( photo_id: id )
   end
 
 end

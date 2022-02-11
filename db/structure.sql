@@ -8617,7 +8617,7 @@ CREATE INDEX index_observations_user_datetime ON public.observations USING btree
 -- Name: index_photo_metadata_on_photo_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_photo_metadata_on_photo_id ON public.photo_metadata USING btree (photo_id);
+CREATE UNIQUE INDEX index_photo_metadata_on_photo_id ON public.photo_metadata USING btree (photo_id);
 
 
 --

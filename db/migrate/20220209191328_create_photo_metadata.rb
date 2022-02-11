@@ -4,6 +4,6 @@ class CreatePhotoMetadata < ActiveRecord::Migration[6.1]
       t.integer :photo_id, null: false
       t.binary :metadata
     end
-    add_index :photo_metadata, :photo_id
+    add_index :photo_metadata, :photo_id, unique: true
   end
 end
