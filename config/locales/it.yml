@@ -778,6 +778,7 @@ it:
   by_you: Le mie
   calendar: Calendario
   calendars_only_show_x_observations_at_time: I calendari mostrano solo %{x} osservazioni alla volta
+  callback_url: Url di richiamata
   cancel: Annulla
   cant_edit_or_delete_hidden_content: Non puoi modificare o cancellare contenuti che sono stati nascosti dai curatori del sito
   cant_flag_an_object_that_doesnt_exist: Non è possibile contrassegnare un oggetto che non esiste
@@ -910,6 +911,10 @@ it:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Commenta
   comment_deleted: Commento cancellato
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Contenuto nascosto
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Commento mostrato
   comments: Commenti
   comments_by_me: I miei commenti
   comments_have_been_disabled: I commenti sono stati disabilitati
@@ -1943,6 +1948,8 @@ it:
   identification_by_user: Identificazione di %{user}
   identification_deleted: Identificazione eliminata.
   identification_saved: "Identificazione salvata!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Testo dell'identificazione mostrato
   identification_updated: Identificazione aggiornata!
   identification_user_short: Utente ident.
   identification_withdrawn: Identificazione ritirata.
@@ -3585,6 +3592,8 @@ it:
   please_complete_the_following_to_add_project: |
     Per favore completa i campi seguenti per aggiungere l'osservazione al progetto:
   please_confirm_your_inat_username: "Per favore, conferma il tuo nome utente %{site_name}"
+  please_explain_why_you_want_to_hide_this: Per favore spiega perché vuoi nascondere questo
+  please_explain_why_you_want_to_unhide_this: Per favore spiega perché vuoi mostrare questo
   please_fix_your_csv_and_try_again: Per favore  correggi il tuo CSV e prova di nuovo.
   please_hold_on_while_the_file: Per favore attendi la creazione del file. L'operazione può richiedere alcuni minuti se hai molte osservazioni.
   please_hold_on_while_the_file_is_generated: Per favore attendi la creazione del file. L'operazione può richiedere alcuni minuti per liste molto lunghe.
@@ -4338,6 +4347,9 @@ it:
   summary: Riassunto
   supporting: Sostenitori
   suspend_user: Sospendi utente
+  suspend_user_html: Sospendi %{user}
+  suspend_user_reason_instructions_html: |
+    Spiega perché stai sospendendo questo account e cita qualsiasi violazione delle %{link_start_tag}Linee Guida%{link_end_tag}. Per favore astieniti dall'aggiungere opinioni personali.
   sw_lat: Lat. SO
   sw_lon: Lon. SO
   sync: Sincronizza?
@@ -4719,6 +4731,9 @@ it:
   unsubscribe: Cancella iscrizione
   unsubscribe_from_emails_like_this: Annulla l'iscrizione ad email come queste
   unsuspend_user: Riammetti utente
+  unsuspend_user_html: Riammetti %{user}
+  unsuspend_user_reason_instructions: |
+    Spiega perché stati riammettendo questo utente.
   upcoming_bioblitzes: Prossime blioblitz
   update: Aggiorna
   update_existing_observations_with_new_license: Aggiorna le osservazioni esistenti con la nuova licenza scelta
@@ -7067,6 +7082,10 @@ it:
       message:
         subject: Oggetto
         body: Testo
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Motivo
       observation:
         description: Descrizioni
         geo_x: Est
@@ -7222,6 +7241,11 @@ it:
               guide_has_too_many_taxa: "la guida può avere al massimo 500 taxa"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: non è supportato per questo tipo di contenuto
+            base:
+              only_staff_can_unhide: Solo lo staff può mostrare i contenuti nascosti
+              staff_cannot_be_suspended: Lo Staff non può essere sospeso
             user_id:
               must_be_a_curator: deve essere un curatore
         mushroom_observer_import_flow_task:
