@@ -1,7 +1,7 @@
 #encoding: utf-8
 class Photo < ApplicationRecord
   acts_as_flaggable
-  has_one :photo_metadata, dependent: :destroy
+  has_one :photo_metadata
   belongs_to :user
   belongs_to :file_extension
   belongs_to :file_prefix
@@ -34,7 +34,7 @@ class Photo < ApplicationRecord
              :update_all_licenses,
              :update_metadata_if_changed
   after_commit :index_observations, :index_taxa, on: [:create, :update]
-  after_destroy :create_deleted_photo
+  after_destroy :create_deleted_photo, :destroy_metadata
 
   SQUARE = 75
   THUMB = 100
@@ -503,7 +503,7 @@ class Photo < ApplicationRecord
     json
   end
 
-  def self.update_photo_prefix_and_extension_batch( min_id, max_id )
+  def self.update_photo_native_columns_and_copy_metadata( min_id, max_id )
     start_time = Time.now
     counter = 0
     Photo.where("id > ? AND id <= ?", min_id, max_id ).find_in_batches( batch_size: 100 ) do |batch|
@@ -543,6 +543,10 @@ class Photo < ApplicationRecord
       user_id: user_id,
       orphan: orphan || false
     )
+  end
+
+  def destroy_metadata
+    PhotoMetadata.delete_by( photo_id: id )
   end
 
 end
