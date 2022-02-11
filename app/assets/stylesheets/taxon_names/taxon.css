@@ -1,4 +1,7 @@
-.bootstrap input.sortable-position {background-color: orange;padding:2px;}
+.bootstrap input.sortable-position {
+  background-color: orange;
+  padding: 2px;
+}
 .names > li.sorttarget { height: 2em;border: 3px dotted #ccc;}
 .names > li { border: 3px dotted transparent;border-radius: 500px; padding:3px; padding-right:5px;}
 .names > li:hover { border: 3px dotted #eee; cursor:move;}

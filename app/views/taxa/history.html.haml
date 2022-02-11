@@ -10,12 +10,6 @@
     table.table.changes {
       margin-bottom: 0;
     }
-    table.changes tr {
-      display: flex;
-    }
-    table.changes tr:first-child td {
-      -# border-top: none;
-    }
     table.changes td.value {
       overflow-wrap: anywhere;
       flex-grow: 1;
@@ -76,6 +70,7 @@
                       - if audit.action == "create"
                         %tbody.create
                           - for changed_attr, val in audit.audited_changes
+                            - next if val.blank?
                             %tr
                               %th.attr=t "activerecord.attributes.#{audit.auditable_type}.#{changed_attr}", default: changed_attr.humanize
                               %td.change.value= val
