@@ -18,7 +18,6 @@ class Photo < ApplicationRecord
     :remote_small_url,
     :remote_square_url,
     :remote_thumb_url
-  serialize :metadata
 
   include Shared::LicenseModule
   # include ActsAsUUIDable
@@ -261,7 +260,7 @@ class Photo < ApplicationRecord
   def serializable_hash( opts = nil )
     options = opts ? opts.clone : { }
     options[:except] ||= []
-    options[:except] += [:metadata, :file_content_type, :file_file_name,
+    options[:except] += [:file_content_type, :file_file_name,
       :file_file_size, :file_processing, :file_updated_at, :mobile,
       :original_url]
     options[:methods] ||= []
@@ -310,6 +309,10 @@ class Photo < ApplicationRecord
       height: height,
       width: width
     }
+  end
+
+  def metadata
+    photo_metadata&.metadata
   end
 
   def self.repair_photos_for_user(user, type)
@@ -468,7 +471,7 @@ class Photo < ApplicationRecord
       :methods => [:license_code, :attribution, :square_url,
         :thumb_url, :small_url, :medium_url, :large_url],
       :except => [:file_processing, :file_file_size,
-        :file_content_type, :file_file_name, :mobile, :metadata, :user_id,
+        :file_content_type, :file_file_name, :mobile, :user_id,
         :native_realname, :native_photo_id]
     }
   end

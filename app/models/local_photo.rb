@@ -209,7 +209,7 @@ class LocalPhoto < Photo
 
   def extract_metadata(path = nil)
     return unless file && (path || !file.queued_for_write.blank?)
-    extracted_metadata = self.metadata.to_h.clone || {}
+    extracted_metadata = metadata.to_h.clone || {}
     begin
       if ( file_path = ( path || file.queued_for_write[:original].path ) )
         exif_data = ExifMetadata.new( path: file_path, type: file_content_type ).extract
@@ -231,7 +231,6 @@ class LocalPhoto < Photo
       self.width = dimensions[:width]
       self.height = dimensions[:height]
     end
-    self.metadata = extracted_metadata
     self.photo_metadata ||= PhotoMetadata.new( photo: self )
     self.photo_metadata.metadata = extracted_metadata
   end
