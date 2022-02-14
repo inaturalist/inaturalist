@@ -954,7 +954,6 @@ class Observation < ApplicationRecord
       ECT
       GST
       IST
-      PST
     )
     
     if ( iso8601_datetime = DateTime.iso8601( observed_on_string ) rescue nil )
