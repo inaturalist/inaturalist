@@ -1,4 +1,7 @@
 es-MX:
+  x_comments:
+    one: '1 comentario'
+    other: '%{count} comentarios'
   x_comments_html:
     one: '<span class="count">%{count}</span> comentario'
     other: '<span class="count">%{count}</span> comentarios'
@@ -4029,6 +4032,7 @@ es-MX:
     must_be_in: deben estar dentro de la especie o grupo
     must_be_coordinates_shareable_by_project_curators: el observador debe permitir a los curadores del proyecto ver las coordenadas.
     must_be_verifiable: debe ser verificable
+    must_be_wild: debe ser salvaje
   running_total: Total acumulado
   said: decia
   satellite: satélite
@@ -7594,6 +7598,8 @@ es-MX:
     scopes:
       write: |
         Crear, actualizar y eliminar sus observaciones, identificaciones, y otro contenido en tu nombre, y acceder sus coordenadas privadas y cualquier otra información  disponible en el sitio.
+      login: |
+        Información relevante para acceder, como dirección de correo electrónico, nombre de usuario e icono de usuario.
       account_delete: |
         Elimina tu cuenta en tu nombre.
     errors:
