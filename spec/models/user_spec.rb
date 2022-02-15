@@ -881,12 +881,12 @@ describe User do
 
     it "should update the identifications_count" do
       Identification.make!( user: reject )
-      Delayed::Worker.new.work_off
+      Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
       reject.reload
       expect( reject.identifications_count ).to eq 1
       expect( keeper.identifications_count ).to eq 0
       keeper.merge( reject )
-      Delayed::Worker.new.work_off
+      Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
       keeper.reload
       expect( keeper.identifications_count ).to eq 1
     end
