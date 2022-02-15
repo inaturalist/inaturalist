@@ -1179,8 +1179,8 @@ class TaxaController < ApplicationController
       params[:month] &&
       params[:day] &&
       ( Date.parse( "#{params[:year]}-#{params[:month]}-#{params[:day]}") rescue nil )
-    @date ||= @audit_days&.sort&.reverse.last.first
-    @show_all = audit_scope.count < 500
+    @date ||= @audit_days&.sort&.reverse&.last&.first
+    @show_all = @date && audit_scope.count < 500
     @audits = audit_scope.order( "created_at desc" )
     @audits = @audits.where( "created_at::date = ?", @date ) unless @show_all
     render layout: "bootstrap-container"
