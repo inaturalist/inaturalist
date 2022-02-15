@@ -11,7 +11,7 @@ class PlaceTaxonName < ApplicationRecord
   end
 
   def to_s
-    "<PlaceTaxonName #{id}, place_id: #{place_id}, taxon_name_id: #{taxon_name_id}>"
+    "<PlaceTaxonName #{id}, place: #{place&.display_name} (#{place_id}), taxon_name: #{taxon_name&.to_s}>"
   end
 
   #

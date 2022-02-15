@@ -59,6 +59,7 @@
                   :ruby
                     item_url = case audit.auditable_type
                       when "TaxonName" then edit_taxon_name_path( audit.auditable )
+                      when "PlaceTaxonName" then edit_taxon_name_path( audit.auditable.taxon_name_id )
                       when "ConservationStatus" then edit_taxon_path( audit.auditable )
                       else audit.auditable
                     end

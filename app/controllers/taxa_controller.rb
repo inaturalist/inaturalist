@@ -1169,8 +1169,11 @@ class TaxaController < ApplicationController
 
   def history
     @record = @taxon
+    place_taxon_name_ids = PlaceTaxonName.where( taxon_name_id: @taxon.taxon_name_ids ).pluck( :id )
     audit_scope = Audited::Audit.where( auditable_type: "Taxon", auditable_id: @taxon.id ).or(
       Audited::Audit.where( auditable_type: "TaxonName", auditable_id: @taxon.taxon_name_ids )
+    ).or(
+      Audited::Audit.where( auditable_type: "PlaceTaxonName", auditable_id: place_taxon_name_ids )
     ).or(
       Audited::Audit.where( auditable_type: "ConservationStatus", auditable_id: @taxon.conservation_status_ids )
     )
