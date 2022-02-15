@@ -263,7 +263,6 @@ class User < ApplicationRecord
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_update :set_observations_taxa_if_pref_changed
-  after_update :update_photo_properties
   after_create :set_uri
   after_destroy :create_deleted_user
   after_destroy :remove_oauth_access_tokens
@@ -1221,21 +1220,6 @@ class User < ApplicationRecord
       Observation.delay( priority: USER_INTEGRITY_PRIORITY ).set_observations_taxa_for_user( id )
     end
     true
-  end
-
-  def update_photo_properties
-    changes = {}
-    changes[:native_username] = login if saved_change_to_login?
-    changes[:native_realname] = name if saved_change_to_name?
-    unless changes.blank?
-      delay( priority: USER_INTEGRITY_PRIORITY ).update_photos_with_changes( changes )
-    end
-    true
-  end
-
-  def update_photos_with_changes( changes )
-    return if changes.blank?
-    photos.update_all( changes )
   end
 
   def recent_notifications(options={})

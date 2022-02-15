@@ -3026,6 +3026,16 @@ ALTER SEQUENCE public.passwords_id_seq OWNED BY public.passwords.id;
 
 
 --
+-- Name: photo_metadata; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.photo_metadata (
+    photo_id integer NOT NULL,
+    metadata bytea
+);
+
+
+--
 -- Name: photos; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -8604,6 +8614,13 @@ CREATE INDEX index_observations_user_datetime ON public.observations USING btree
 
 
 --
+-- Name: index_photo_metadata_on_photo_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_photo_metadata_on_photo_id ON public.photo_metadata USING btree (photo_id);
+
+
+--
 -- Name: index_photos_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10173,5 +10190,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210921160504'),
 ('20210930182050'),
 ('20211001151300'),
-('20211216171216');
+('20211216171216'),
+('20220209191328');
 
