@@ -157,8 +157,7 @@ class TaxonPageTabs extends React.Component {
                     { " " }
                     { I18n.t( "edit_photos" ) }
                   </MenuItem>
-                )
-              }
+                ) }
               <MenuItem
                 className={isCurator ? "" : "hidden"}
                 eventKey="edit-taxon"

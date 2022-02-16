@@ -1,35 +1,5 @@
 = content_for :extracss do
-  :css
-    .table.history td.nobr,
-    .table.history td.action,
-    .table.history td.record,
-    .table.history td.user {
-      padding-top: 16px;
-      padding-bottom: 16px;
-    }
-    table.table.changes {
-      margin-bottom: 0;
-    }
-    table.changes td.value {
-      overflow-wrap: anywhere;
-      flex-grow: 1;
-      width: 100%;
-    }
-    table.changes .update td.value {
-      width: 50%;
-    }
-    table.changes td.attr {
-      width: 150px;
-    }
-    table.changes td.change {
-      background-color: #dceaa3;
-    }
-    .changes blockquote {
-      margin-bottom: 0;
-    }
-    td.changes-with-changes blockquote {
-      margin-top: 10px;
-    }
+  = stylesheet_link_tag "taxa/history"
 .row
   #pageheader.col-xs-12
     %span.breadcrumbs
@@ -41,11 +11,11 @@
     %table.table.history
       %thead
         %tr
-          %th Date
-          %th Action
-          %th Record
-          %th User
-          %th Changes
+          %th=t :date_
+          %th=t :action
+          %th=t :record_noun
+          %th=t :user
+          %th=t :changes
       %tbody
         - for date, count in @audit_days
           - if @date == date || @show_all
@@ -54,7 +24,7 @@
                 %td.nobr.date
                   .date=l audit.created_at.to_date, format: :short_with_year
                   .time.text-muted=l audit.created_at, format: :observed_at
-                %td.action= audit.action
+                %td.action=t audit.action, default: audit.action
                 %td.record
                   :ruby
                     item_url = case audit.auditable_type
@@ -91,4 +61,3 @@
                 %strong= link_to l( date, format: :short_with_year ), url_for( year: date.year, month: date.month, day: date.day ), class: "date"
               %td.nobr{ colspan: 4 }
                 %strong= link_to "#{count} items", url_for( year: date.year, month: date.month, day: date.day )
-
