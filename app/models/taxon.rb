@@ -1610,7 +1610,7 @@ class Taxon < ApplicationRecord
 
     reject.reload
     Rails.logger.info "[INFO] Merged #{reject} into #{self}"
-    reject.destroy
+    reject.destroy if reject.persisted? # not sure why it wouldn't be...
   end
 
   def to_tags
