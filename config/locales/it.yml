@@ -912,9 +912,9 @@ it:
   comment_: Commenta
   comment_deleted: Commento cancellato
   #Notice when a comment has been hidden by moderators
-  comment_hidden: Contenuto nascosto
+  comment_hidden: Commento nascosto
   #Notice when a comment has been unhidden by moderators
-  comment_unhidden: Commento mostrato
+  comment_unhidden: Commento non nascosto
   comments: Commenti
   comments_by_me: I miei commenti
   comments_have_been_disabled: I commenti sono stati disabilitati
@@ -4350,7 +4350,7 @@ it:
   suspend_user: Sospendi utente
   suspend_user_html: Sospendi %{user}
   suspend_user_reason_instructions_html: |
-    Spiega perché stai sospendendo questo account e cita qualsiasi violazione delle %{link_start_tag}Linee Guida%{link_end_tag}. Per favore astieniti dall'aggiungere opinioni personali.
+    Spiega perché stai sospendendo questo profilo e cita qualsiasi violazione delle %{link_start_tag}Linee Guida della Community%{link_end_tag}. Sei pregato di astenerti dall'aggiungere opinioni personali.
   sw_lat: Lat. SO
   sw_lon: Lon. SO
   sync: Sincronizza?
@@ -4734,7 +4734,7 @@ it:
   unsuspend_user: Riammetti utente
   unsuspend_user_html: Riammetti %{user}
   unsuspend_user_reason_instructions: |
-    Spiega perché stati riammettendo questo utente.
+    Sei pregato di spiegare perché stai riammettendo questo utente.
   upcoming_bioblitzes: Prossime blioblitz
   update: Aggiorna
   update_existing_observations_with_new_license: Aggiorna le osservazioni esistenti con la nuova licenza scelta
@@ -7245,7 +7245,7 @@ it:
             action:
               not_supported_for_this_kind_of_content: non è supportato per questo tipo di contenuto
             base:
-              only_staff_can_unhide: Solo lo staff può mostrare i contenuti nascosti
+              only_staff_can_unhide: Solo lo staff può mostrare nuovamente i contenuti nascosti
               staff_cannot_be_suspended: Lo Staff non può essere sospeso
             user_id:
               must_be_a_curator: deve essere un curatore
