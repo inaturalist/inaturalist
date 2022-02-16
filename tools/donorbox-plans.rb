@@ -91,11 +91,14 @@ loop do
     rescue StandardError
       puts "\tFailed to parse donorbox_plan_started_at from #{plan['started_at']}"
     end
-    next unless user.changed?
 
     # If we've already encountered a plan, we only want to replace it if this
     # plan is active
-    next unless !changes[user.id] || plan["status"] == "active"
+    puts "\tExisting change queued: #{changes[user.id]}" if opts.debug
+    puts "\tPlan status: #{plan['status']}" if opts.debug
+    unless !changes[user.id] || plan["status"] == "active"
+      next
+    end
 
     changes[user.id] = {
       donorbox_donor_id: user.donorbox_donor_id,
@@ -103,6 +106,9 @@ loop do
       donorbox_plan_status: user.donorbox_plan_status,
       donorbox_plan_started_at: user.donorbox_plan_started_at
     }
+    if opts.debug
+      puts "\tAdded/replaced changes for #{user}: #{changes[user.id]}"
+    end
   end
   page += 1
 end
@@ -115,14 +121,19 @@ changes.each do | user_id, updates |
     puts "User #{user_id} no longer exists"
     next
   end
+  puts user if opts.debug
+  puts "\tAssigning changes: #{updates}" if opts.debug
   user.assign_attributes( updates )
   # If status changed to cancelled, remove the monthly supporter badge
   if user.donorbox_plan_status_changed? && user.donorbox_plan_status != "active"
     user.prefers_monthly_supporter_badge = false
   end
   user_updated = opts.dry || user.save
-  if user_updated
-    puts "\tUpdated #{user}: #{user.saved_changes || user.changes}"
+  applied_changes = opts.dry ? user.changes : user.saved_changes
+  if applied_changes.blank?
+    puts "\tNo changes to apply"
+  elsif user_updated
+    puts "\tUpdated #{user}: #{applied_changes}"
     num_updated_users += 1
   else
     puts "\tFailed to update user: #{user.errors.full_messages.to_sentence}"
