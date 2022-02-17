@@ -229,11 +229,11 @@ describe LocalPhoto, "to_observation" do
     it "should not import branded descriptions" do
       LocalPhoto::BRANDED_DESCRIPTIONS.each do | branded_description |
         lp = LocalPhoto.make!
-        lp.metadata = {
+        pm = PhotoMetadata.new( photo: lp, metadata: {
           dc: {
             description: branded_description
           }
-        }
+        })
         o = lp.to_observation
         expect( o.description ).to be_blank
       end
