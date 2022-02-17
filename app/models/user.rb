@@ -386,12 +386,22 @@ class User < ApplicationRecord
     !suspended?
   end
 
+  def child_without_permission?
+    !birthday.blank? &&
+      birthday > 13.years.ago &&
+      UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
+  end
+
   # This is a dangerous override in that it doesn't call super, thereby
   # ignoring the results of all the devise modules like confirmable. We do
   # this b/c we want all users to be able to sign in, even if unconfirmed, but
   # not if suspended.
   def active_for_authentication?
-    active? && ( birthday.blank? || birthday < 13.years.ago || !UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists? )
+    return false if suspended?
+
+    return false if child_without_permission?
+
+    super
   end
 
   def download_remote_icon

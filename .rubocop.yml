@@ -37,6 +37,9 @@ Layout/SpaceAroundBlockParameters:
 Layout/SpaceInsideParens:
   EnforcedStyle: space
 
+Lint/NoReturnInBeginEndBlocks:
+  Enabled: false
+
 Metrics/AbcSize:
   Enabled: false
 
