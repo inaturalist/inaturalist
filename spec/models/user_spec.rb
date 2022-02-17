@@ -106,7 +106,7 @@ describe User do
     end
 
     it "initializes confirmation_token" do
-      expect( create( :user ).confirmation_token ).not_to be_blank
+      expect( create( :user, :as_unconfirmed ).confirmation_token ).not_to be_blank
     end
 
     it "should require email under normal circumstances" do

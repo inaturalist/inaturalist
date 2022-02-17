@@ -3,18 +3,28 @@ class ProviderOauthController < ApplicationController
 
   layout "bootstrap"
 
-  def self.controller_path
-    "oauth"
-  end
+  class MissingEmailError < StandardError; end
+  class SuspendedError < StandardError; end
+  class ChildWithoutPermissionError < StandardError; end
+  class UnconfirmedError < StandardError; end
+  class BadAssertionTypeError < StandardError; end
 
   # OAuth2 assertion flow: http://tools.ietf.org/html/draft-ietf-oauth-assertions-01#section-6.3
   # Accepts Facebook and Google access tokens and returns an iNat access token
   def assertion
     assertion_type = params[:assertion_type] || params[:grant_type]
     client = Doorkeeper::Application.find_by_uid(params[:client_id])
-    if assertion_type.blank? || client.blank?
-      render :status => :unauthorized, :json => { :error => t( "doorkeeper.errors.messages.access_denied" ) }
-      return
+    if client.blank?
+      return render status: :bad_request, json: {
+        error: "invalid_client",
+        error_description: t( "doorkeeper.errors.messages.access_denied" )
+      }
+    end
+    unless client.trusted?
+      return render status: :bad_request, json: {
+        error: "unauthorized_client",
+        error_description: t( "doorkeeper.errors.messages.access_denied" )
+      }
     end
     access_token = begin
       Timeout::timeout( 10 ) do
@@ -25,10 +35,44 @@ class ProviderOauthController < ApplicationController
           oauth_access_token_from_google_token( params[:client_id], params[:assertion] )
         when /apple/
           oauth_access_token_from_apple_assertion( params[:client_id], params[:assertion] )
+        else
+          raise BadAssertionTypeError
         end
       end
     rescue Timeout::Error
-      render status: :gateway_timeout, json: { error: t( "doorkeeper.errors.messages.temporarily_unavailable" ) }
+      # Not a part of the oauth spec: https://datatracker.ietf.org/doc/html/rfc6749
+      render status: :gateway_timeout, json: {
+        error: "timeout",
+        error_description: t( "doorkeeper.errors.messages.temporarily_unavailable" )
+      }
+      return
+    rescue BadAssertionTypeError
+      return render status: :bad_request, json: {
+        error: "unsupported_grant_type",
+        error_description: t( "doorkeeper.errors.messages.access_denied" )
+      }
+    rescue MissingEmailError
+      render status: :bad_request, json: {
+        error: "invalid_grant",
+        error_description: t( :provider_without_email_error_generic ).to_s.gsub( /\s+/, " " )
+      }
+      return
+    rescue SuspendedError
+      return render status: :bad_request, json: {
+        error: "invalid_grant",
+        error_description: t( :this_user_has_been_suspended )
+      }
+    rescue ChildWithoutPermissionError
+      render status: :bad_request, json: {
+        error: "invalid_grant",
+        error_description: t( "please_ask_your_parents_for_permission" )
+      }
+      return
+    rescue UnconfirmedError
+      render status: :bad_request, json: {
+        error: "invalid_grant",
+        error_description: t( "devise.failure.unconfirmed" )
+      }
       return
     end
 
@@ -48,7 +92,10 @@ class ProviderOauthController < ApplicationController
         redirect_to uri.to_s
       end
     else
-      render :status => :unauthorized, :json => { :error => t( "doorkeeper.errors.messages.access_denied" ) }
+      render status: :bad_request, json: {
+        error: "invalid_grant",
+        error_description: t( "doorkeeper.errors.messages.access_denied" )
+      }
     end
   end
 
@@ -91,13 +138,14 @@ class ProviderOauthController < ApplicationController
           }
         }
         user = User.create_from_omniauth(auth_info)
+        raise MissingEmailError if !user.valid? && !user.errors[:email].blank?
       end
       user
     rescue Koala::Facebook::AuthenticationError => e
       Rails.logger.debug "[DEBUG] Failed to get fb user info from token: #{e}"
       nil
     end
-    return nil unless user
+    return nil unless user && user.persisted?
     assertion_access_token_for_client_and_user( client, user )
   end
 
@@ -140,13 +188,13 @@ class ProviderOauthController < ApplicationController
           }
         }
         user = User.create_from_omniauth( auth_info )
+        raise MissingEmailError if !user.valid? && !user.errors[:email].blank?
       end
       user
     rescue RestClient::Unauthorized => e
       Rails.logger.debug "[DEBUG] Failed to make a Google API call: #{e}"
       nil
     end
-
     return nil unless user && user.persisted?
     assertion_access_token_for_client_and_user( client, user )
   end
@@ -247,6 +295,7 @@ class ProviderOauthController < ApplicationController
         }
       }
       user = User.create_from_omniauth( auth_info )
+      raise MissingEmailError if !user.valid? && !user.errors[:email].blank?
     end
     return nil unless user && user.persisted?
     if access_token = assertion_access_token_for_client_and_user( client, user )
@@ -270,6 +319,11 @@ class ProviderOauthController < ApplicationController
   end
 
   def assertion_access_token_for_client_and_user( client, user )
+    unless user.active_for_authentication?
+      raise SuspendedError if user.suspended?
+      raise ChildWithoutPermissionError if user.child_without_permission?
+      raise UnconfirmedError if ( !user.confirmed? || confirmation_sent_at.blank? )
+    end
     access_token = Doorkeeper::AccessToken.
       where( application_id: client.id, resource_owner_id: user.id, revoked_at: nil ).
       order( "created_at desc" ).

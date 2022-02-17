@@ -7,6 +7,8 @@ FactoryBot.define do
     created_at { 5.days.ago.to_s(:db) }
     state { "active" }
     time_zone { "Pacific Time (US & Canada)" }
+    confirmed_at { 4.days.ago.to_s(:db) }
+    confirmation_token { Faker::Alphanumeric.alphanumeric }
 
     factory :admin do
       roles { [association(:role, name: 'admin')] }
@@ -19,4 +21,8 @@ FactoryBot.define do
 
   trait(:as_admin) { roles { [association(:role, name: 'admin')] } }
   trait(:as_curator) { roles { [association(:role, name: 'curator')] } }
+  trait(:as_unconfirmed) {
+    confirmed_at { nil }
+    confirmation_token { nil }
+  }
 end

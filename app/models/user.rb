@@ -376,7 +376,7 @@ class User < ApplicationRecord
 
   def child_without_permission?
     !birthday.blank? &&
-      birthday < 13.years.ago &&
+      birthday > 13.years.ago &&
       UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
   end
 
