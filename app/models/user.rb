@@ -244,6 +244,7 @@ class User < ApplicationRecord
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
   before_validation :set_time_zone
+  before_create :skip_confirmation_if_child
   before_save :allow_some_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
   before_save :check_suspended_by_user
@@ -374,10 +375,12 @@ class User < ApplicationRecord
     !suspended?
   end
 
+  def child?
+    !birthday.blank? && birthday > 13.years.ago
+  end
+
   def child_without_permission?
-    !birthday.blank? &&
-      birthday > 13.years.ago &&
-      UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
+    child? && UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
   end
 
   # This is a dangerous override in that it doesn't call super, thereby
@@ -417,6 +420,14 @@ class User < ApplicationRecord
     return true if login.blank?
     self.login = login.strip
     true
+  end
+
+  # Confirmation should be sent to the child *after* the parent has been verified
+  def skip_confirmation_if_child
+    if child?
+      puts "Theoretically skipping confirmation"
+      skip_confirmation!
+    end
   end
   
   def allow_some_licenses
