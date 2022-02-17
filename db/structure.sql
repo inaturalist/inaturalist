@@ -9,7 +9,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-
 --
 -- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
 --
@@ -1225,37 +1224,6 @@ ALTER SEQUENCE public.deleted_users_id_seq OWNED BY public.deleted_users.id;
 
 
 --
--- Name: exploded_atlas_places; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.exploded_atlas_places (
-    id integer NOT NULL,
-    atlas_id integer,
-    place_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: exploded_atlas_places_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.exploded_atlas_places_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: exploded_atlas_places_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.exploded_atlas_places_id_seq OWNED BY public.exploded_atlas_places.id;
-
---
 -- Name: email_suppressions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1285,6 +1253,38 @@ CREATE SEQUENCE public.email_suppressions_id_seq
 --
 
 ALTER SEQUENCE public.email_suppressions_id_seq OWNED BY public.email_suppressions.id;
+
+
+--
+-- Name: exploded_atlas_places; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.exploded_atlas_places (
+    id integer NOT NULL,
+    atlas_id integer,
+    place_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: exploded_atlas_places_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.exploded_atlas_places_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: exploded_atlas_places_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.exploded_atlas_places_id_seq OWNED BY public.exploded_atlas_places.id;
 
 
 --
@@ -5123,41 +5123,6 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: versions; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.versions (
-    id integer NOT NULL,
-    item_type character varying NOT NULL,
-    item_id bigint NOT NULL,
-    event character varying NOT NULL,
-    whodunnit character varying,
-    created_at timestamp without time zone,
-    object_changes json
-);
-
-
---
--- Name: versions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.versions_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.versions_id_seq OWNED BY public.versions.id;
-
-
---
 -- Name: votes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5521,17 +5486,17 @@ ALTER TABLE ONLY public.deleted_users ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- Name: exploded_atlas_places id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.exploded_atlas_places ALTER COLUMN id SET DEFAULT nextval('public.exploded_atlas_places_id_seq'::regclass);
-
-
---
 -- Name: email_suppressions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.email_suppressions ALTER COLUMN id SET DEFAULT nextval('public.email_suppressions_id_seq'::regclass);
+
+
+--
+-- Name: exploded_atlas_places id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.exploded_atlas_places ALTER COLUMN id SET DEFAULT nextval('public.exploded_atlas_places_id_seq'::regclass);
 
 
 --
@@ -6193,13 +6158,6 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
--- Name: versions id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.versions ALTER COLUMN id SET DEFAULT nextval('public.versions_id_seq'::regclass);
-
-
---
 -- Name: votes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6451,19 +6409,19 @@ ALTER TABLE ONLY public.deleted_users
 
 
 --
--- Name: exploded_atlas_places exploded_atlas_places_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.exploded_atlas_places
-    ADD CONSTRAINT exploded_atlas_places_pkey PRIMARY KEY (id);
-
-
---
 -- Name: email_suppressions email_suppressions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.email_suppressions
     ADD CONSTRAINT email_suppressions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: exploded_atlas_places exploded_atlas_places_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.exploded_atlas_places
+    ADD CONSTRAINT exploded_atlas_places_pkey PRIMARY KEY (id);
 
 
 --
@@ -7219,14 +7177,6 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: versions versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.versions
-    ADD CONSTRAINT versions_pkey PRIMARY KEY (id);
-
-
---
 -- Name: votes votes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7628,6 +7578,13 @@ CREATE INDEX index_deleted_users_on_login ON public.deleted_users USING btree (l
 --
 
 CREATE INDEX index_deleted_users_on_user_id ON public.deleted_users USING btree (user_id);
+
+
+--
+-- Name: index_email_suppressions_on_email_and_suppression_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_email_suppressions_on_email_and_suppression_type ON public.email_suppressions USING btree (email, suppression_type);
 
 
 --
@@ -9619,13 +9576,6 @@ CREATE UNIQUE INDEX index_users_on_uuid ON public.users USING btree (uuid);
 
 
 --
--- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_versions_on_item_type_and_item_id ON public.versions USING btree (item_type, item_id);
-
-
---
 -- Name: index_votes_on_unique_obs_fave; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10173,5 +10123,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210921160504'),
 ('20210930182050'),
 ('20211001151300'),
-('20211216171216');
+('20211216171216'),
+('20220127195113');
+
 
