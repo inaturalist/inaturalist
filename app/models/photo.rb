@@ -18,7 +18,6 @@ class Photo < ApplicationRecord
     :remote_small_url,
     :remote_square_url,
     :remote_thumb_url
-  serialize :metadata
 
   include Shared::LicenseModule
   # include ActsAsUUIDable
@@ -310,6 +309,10 @@ class Photo < ApplicationRecord
       height: height,
       width: width
     }
+  end
+
+  def metadata
+    photo_metadata&.metadata
   end
 
   def self.repair_photos_for_user(user, type)
