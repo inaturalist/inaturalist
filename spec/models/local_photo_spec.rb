@@ -34,7 +34,8 @@ describe LocalPhoto, "creation" do
     end
 
     it "should not remove metadata" do
-      p = LocalPhoto.new( metadata: { test_attr: "test_val" } )
+      p = LocalPhoto.new( )
+      pm = PhotoMetadata.new( photo: p, metadata: { test_attr: "test_val" } )
       expect( p ).to receive( "file=" ).at_least( :once ).and_return( nil )
       p.file = { styles: { } }
       expect( p.metadata[:test_attr] ).to eq "test_val"
@@ -189,11 +190,11 @@ describe LocalPhoto, "to_observation" do
       of = ObservationField.make!( name: "sex", allowed_values: "unknown|male|female",
         datatype: ObservationField::TEXT )
       lp = LocalPhoto.make!
-      lp.metadata = {
+      pm = PhotoMetadata.new( photo: lp, metadata: {
         dc: {
           subject: ["sex=female"]
         }
-      }
+      })
       o = lp.to_observation
       expect( o.observation_field_values.detect { |ofv| ofv.observation_field_id == of.id }.value ).to eq "female"
     end
@@ -202,11 +203,11 @@ describe LocalPhoto, "to_observation" do
       of = ObservationField.make!( name: "sex", allowed_values: "unknown|male|female",
         datatype: ObservationField::TEXT )
       lp = LocalPhoto.make!
-      lp.metadata = {
+      pm = PhotoMetadata.new( photo: lp, metadata: {
         dc: {
           subject: ["sex=whatevs"]
         }
-      }
+      })
       o = lp.to_observation
       puts "o.errors: #{o.errors.full_messages.to_sentence}" unless o.valid?
       expect( o ).to be_valid
@@ -215,11 +216,11 @@ describe LocalPhoto, "to_observation" do
 
     it "should add arbitrary tags from keywords" do
       lp = LocalPhoto.make!
-      lp.metadata = {
+      pm = PhotoMetadata.new( photo: lp, metadata: {
         dc: {
           subject: ["tag1", "tag2"]
         }
-      }
+      })
       o = lp.to_observation
       expect( o.tag_list ).to include "tag1"
       expect( o.tag_list ).to include "tag2"

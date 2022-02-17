@@ -284,6 +284,10 @@ PicasaPhoto.blueprint do
   native_photo_id { rand(1000) }
 end
 
+PhotoMetadata.blueprint do
+  photo { Photo.make! }
+end
+
 Place.blueprint do
   name { Faker::Lorem.sentence }
   latitude { rand(90) }
