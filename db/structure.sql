@@ -3043,12 +3043,6 @@ CREATE TABLE public.photos (
     id integer NOT NULL,
     user_id integer,
     native_photo_id character varying(255),
-    square_url character varying(512),
-    thumb_url character varying(512),
-    small_url character varying(512),
-    medium_url character varying(512),
-    large_url character varying(512),
-    original_url character varying(512),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     native_page_url character varying(512),
@@ -3062,7 +3056,6 @@ CREATE TABLE public.photos (
     file_processing boolean,
     mobile boolean DEFAULT false,
     file_updated_at timestamp without time zone,
-    metadata text,
     subtype character varying(255),
     native_original_image_url character varying(512),
     uuid uuid DEFAULT public.uuid_generate_v4(),
@@ -10191,5 +10184,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210930182050'),
 ('20211001151300'),
 ('20211216171216'),
-('20220209191328');
+('20220209191328'),
+('20220217224804');
 
