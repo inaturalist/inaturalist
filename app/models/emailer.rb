@@ -268,18 +268,6 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
-  def default_url_options
-    opts = ( Rails.application.config.action_mailer.default_url_options || {} ).dup
-    site = @user.try( :site ) || @site || Site.default
-    if ( site_uri = URI.parse( site.url ) )
-      opts[:host] = site_uri.host
-      if ( port = site_uri.port ) && ![80, 443].include?( port )
-        opts[:port] = port
-      end
-    end
-    opts
-  end
-
   def subject_prefix
     site = @user.site || @site || Site.default
     "[#{site.name}]"
