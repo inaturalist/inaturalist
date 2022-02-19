@@ -12,9 +12,9 @@ lv:
     one: '%{count} reizi pievienots izlasei'
     other: '%{count} reizes pievienots izlasei'
   x_flags_resolved_html:
-    zero: "<span class='count'>%{count}</span> atrisināti ziņojumi"
-    one: "<span class='count'>%{count}</span> atrisināts ziņojums"
-    other: "<span class='count'>%{count}</span> atrisināti ziņojumi"
+    zero: "<span class='count'>%{count}</span> atrisināti karodziņi"
+    one: "<span class='count'>%{count}</span> atrisināts karodziņš"
+    other: "<span class='count'>%{count}</span> atrisināti karodziņi"
   x_identifications:
     zero: '%{count} identifikācijas'
     one: '%{count} identifikāciju'
@@ -163,9 +163,9 @@ lv:
     one: "%{count} taksons atbilst izvēlētajiem filtriem"
     other: "%{count} taksoni atbilst izvēlētajiem filtriem"
   x_taxon_changes_added_html:
-    zero: "<span class='count'>%{count}</span> pievienotas izmaiņas taksonā"
+    zero: "<span class='count'>%{count}</span> pievienotas izmaiņas taksonos"
     one: "<span class='count'>%{count}</span> pievienota izmaiņa taksonā"
-    other: "<span class='count'>%{count}</span> pievienotas izmaiņas taksonā"
+    other: "<span class='count'>%{count}</span> pievienotas izmaiņas taksonos"
   _100_day_trends: Pēdējo 100 dienu tendences
   _percent_ID_d: "% identificēti"
   a_community_for_naturalist: Kopiena dabas draugiem
@@ -585,12 +585,12 @@ lv:
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
-  any: jebkas
+  any: vienalga
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
-  any_: Jebkas
+  any_: Vienalga
   #Label for an option to show content with any annotation attribute
   any_annotation_attribute: Jebkāda
   #Label for an option to show content with any annotation value
@@ -1324,7 +1324,7 @@ lv:
   data_used: "Izmantotie dati:"
   datatype: Datu veids
   date_: Datums
-  date_added: Pievienošanas datums
+  date_added: Pievien. datums
   date_authorized: Autorizācijas datums
   date_created: Izveidošanas datums
   date_format:
@@ -1642,7 +1642,7 @@ lv:
   events_only: Tikai pasākumi
   everyone: visi lietotāji
   everyone_: Visi lietotāji
-  everyone_journal_posts: Visu lietotāju ieraksti žurnālā
+  everyone_journal_posts: Visu lietotāju ieraksti
   everywhere: visur
   exact: Konkrēts
   exact_date: Konkrēts datums
@@ -1692,7 +1692,7 @@ lv:
   favorite_taxa: Taksonu izlase
   favorites: "Izlase"
   feature_this_project_: "Piedāvāt šo projektu"
-  featured: Piedāvātie
+  featured: Ieteikumi
   #Title for a button or section describing the "featured" status of a project
   featuring: Piedāvā
   feedback: Atsauksmes
@@ -2044,7 +2044,7 @@ lv:
   increase_brightness: Palielināt spilgtumu
   in_progress: procesā
   in_the_past: pagātnē
-  in_the_past_week: pagājušonedēļ
+  in_the_past_week: Pagājušajā nedēļā
   inactive: Neaktīvs
   #Status of a complete set that is not available for general use on iNat, e.g.
   #a draft
@@ -2140,7 +2140,7 @@ lv:
   last_observation: Pēdējais novērojums
   last_observation_caps: PĒDĒJAIS NOVĒROJUMS
   last_seen: 'Pēdējoreiz manīts:'
-  last_year: Pagājušogad
+  last_year: Pagājušajā gadā
   lat: Plat.
   latitude: Platums
   latitude_in_decimals: 'Platums decimālajos grādos, piemēram, 38.123'
@@ -2155,7 +2155,7 @@ lv:
   leaderboard_most:
     species_in_month_year: 'Visvairāk sugu laika periodā: %{month_year}'
     species_in_year: Visvairāk sugu %{year}. gadā
-    observations_in_month_year: 'Lielākā daļa novērojumu laika periodā: %{month_year}'
+    observations_in_month_year: 'Visvairāk novērojumu laika periodā: %{month_year}'
     observations_in_year: Visvairāk novērojumu %{year}. gadā
     identifications_in_month_year: 'Visvairāk identifikāciju laika periodā: %{month_year}'
     identifications_in_year: Visvairāk identifikāciju %{year}. gadā
@@ -2432,7 +2432,7 @@ lv:
     overlays:
       all_observations: Visi novērojumi
       every_publicly_visible_observation: Visi publiski pieejamie novērojumi, kas izveidoti iNaturalist tīklā.
-      featured_observations: Piedāvātie novērojumi
+      featured_observations: Ieteiktie novērojumi
       gbif_network: GBIF tīkls
       gbif_network_description: Muzeju un citu avotu arhīvi, kurus izplatījusi Globālās bioloģiskās daudzveidības informācijas sistēma (GBIF).
       observations: Novērojumi
@@ -2648,7 +2648,7 @@ lv:
   #Column header in a table listing iNaturalist Network members
   network_member: Tīkla dalībnieks
   new: Jauns
-  new_and_noteworthy: Jauns un ievērojamības cienīgs
+  new_and_noteworthy: Jauna un ievērojama funckija
   new_announcement: Jauns paziņojums
   new_assessment: Jauns novērtējums
   new_check_list: Jauna kontrollapa
@@ -2785,7 +2785,7 @@ lv:
   no_wikipedia_page_for_taxon: Šim taksonam nav Vikipēdijas apraksta
   noble_curators: "%{site} vietnes cēlie pārziņi"
   non_human?: Mākslīgs?
-  none: Nekas
+  none: Nodzēst
   none_found: Nekas netika atrasts
   normal: normāls
   not_atlased: Nav iekļauts atlantā
@@ -3704,7 +3704,7 @@ lv:
   project_x_was_delete: "%{project} izdzēsts (lūdzu, pagaidi pāris minūtes līdz tas tiks noņemts no vietnes)"
   projects: Projekti
   projects_description: |
-    %{site_name} projektos kopā ar citiem lietotājiem iespējams apkopot novērojumus. Ja plāno uzsākt kādu amatierzinātnes projektu vai uzskaitīt putnus savā apkārtnē, projektu izveidošana visnotaļ būs lieliska ideja.
+    %{site_name} projektos iespējams apkopot novērojumus kopā ar citiem lietotājiem. Izveido projektu, ja plāno uzsākt kādu amatierzinātnes projektu vai uzskaitīt putnus savā apkārtnē.
   projects_from_place: "Projekti no %{place}"
   projects_in_x: "Projekti iekš %{x}"
   #"admins" is equivalent to "administrates"
@@ -3724,7 +3724,7 @@ lv:
   query: Vaicājums
   radius: Rādiuss (m)
   radius_value: "Rādiuss (m): %{radius}"
-  random: Nejaušs
+  random: Nejauši
   range: Periods
   rank: Klasifikācija
   rank_position: Klasifikācija
@@ -4592,7 +4592,7 @@ lv:
   the_name_of_the_taxon_dashes: Taksona nosaukums, atstarpju vietā domuzīmes.
   the_name_of_the_taxon_underscores: Taksona nosaukums, atstarpju vietā pasvītras.
   the_observation_was_already_added_to_that_project: Novērojums jau ir pievienots projektam.
-  the_people_of_inat: "%{site_name} vietnes cilvēki"
+  the_people_of_inat: "%{site_name} vietnes lietotāji"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Zemāk norādītās sugas netika atrastas %{site_name} datubāzē.
   the_title_of_the_wikipedia_article_we_use: |
@@ -4628,7 +4628,7 @@ lv:
     Lietotāji šiem vienumiem ir pievienojuši karodziņus. Komentārus ar mēstulēm jāizdzēš un lietotājus, kas pievieno mēstules uz laiku jābloķē, dodoties uz viņu profila lapu un lapas labajā apakšējā stūrī spiežot uz "nobloķēt uz laiku", lai neļautu viņiem pieslēgties. Citus ar karodziņu atzīmētus vienumus jādzēš tikai tad, ja tie nepārprotami ir prettiesiski vai paredzēti naida izraisīšanai. Par nepieklājību, rupju valodu u.t.m.l. jābrīdina tikai ar pieklājīgu komentāru. Par atkārtotiem noteikumu pārkāpējiem jāziņo vietnes administratoram %{email}.
   these_are_taxa_that: |
     Šos taksonus kāda iemesla dēļ %{site} nespēja automātiski pievienot mūsu taksonomiskajam kokam. Tos iespējams pievienot kokam, rediģējot taksonu un izvēloties augstākas pakāpes taksonu, piemēram, augstākas pakāpes taksons par Homo sapiens ir ģints Homo. Ieteicams pārbaudīt arī to, vai nav citu vienādu taksonu un, ja tādi ir, tad tos ieteicams apvienot.
-  these_folks_kindly_volunteer_to: Šie cilvēki brīvprātīgi uztur mūsu takonomiju un risina citas problēmas.
+  these_folks_kindly_volunteer_to: Šie cilvēki brīvprātīgi uztur mūsu takonomiju un meklē risinājumus dažādām problēmām.
   these_observations_have_not_been_uploaded_yet: |
     Novērojumi vēl nav augšupielādēti.
   third_party_tracking: Trešo pušu sīkdatņu ievākšana
@@ -5054,7 +5054,7 @@ lv:
   who_helped_user_the_most: "Kas palīdzēja lietotājam %{user} visvairāk"
   who_user_helped_the_most: "Kam lietotājs %{user} palīdzēja visvairāk"
   why_the_coordinates_are_obscured: Kādēļ koordinātas ir noslēptas
-  with_annotation: Ar piezīmi
+  with_annotation: Ar piezīmēm
   without_annotation: Bez piezīmēm
   widget: Logrīks
   widget_code: Logrīka kods
