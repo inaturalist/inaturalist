@@ -3,7 +3,7 @@
 .row
   #pageheader.col-xs-12
     %span.breadcrumbs
-      = link_to t(:back), edit_taxon_path( @record ), class: "back crumb"
+      = link_to t(:back), @record, class: "back crumb"
     %h2
       =t :bold_label_colon_value_html, label: t(:history), value: @record.name
 .row
@@ -44,13 +44,13 @@
                           - for changed_attr, val in audit.audited_changes
                             - next if val.blank?
                             %tr
-                              %th.attr=t "activerecord.attributes.#{audit.auditable_type}.#{changed_attr}", default: changed_attr.humanize
+                              %th.attr=t "activerecord.attributes.#{audit.auditable_type}.#{changed_attr}", default: t( changed_attr, default: changed_attr.humanize )
                               %td.change.value= val
                       - elsif audit.action == "update"
                         %tbody.update
                           - for changed_attr, changes in audit.audited_changes
                             %tr
-                              %th.attr=t "activerecord.attributes.#{audit.auditable_type}.#{changed_attr}", default: changed_attr.humanize
+                              %th.attr=t "activerecord.attributes.#{audit.auditable_type}.#{changed_attr}", default: t( changed_attr, default: changed_attr.humanize )
                               %td.value= changes[0]
                               %td.change.value= changes[1]
                   - unless audit.comment.blank?
@@ -60,4 +60,8 @@
               %td.nobr.date
                 %strong= link_to l( date, format: :short_with_year ), url_for( year: date.year, month: date.month, day: date.day ), class: "date"
               %td.nobr{ colspan: 4 }
-                %strong= link_to "#{count} items", url_for( year: date.year, month: date.month, day: date.day )
+                %strong= link_to t( :x_changes, x: count ), url_for( year: date.year, month: date.month, day: date.day )
+    - if @audits.blank?
+      .text-center.stacked=t :no_results_found
+    .alert.alert-info.upstacked
+      %p=t :taxon_history_notice

@@ -4879,6 +4879,7 @@ en:
   taxon_framework_relationship_unknown_count_html: "Relationship unknown count: %{count}"
   taxon_framework_relationships: Taxon Framework Relationships
   taxon_framework_taxon: Taxon framework taxon
+  taxon_history_notice:  History was introduced in February 2022, so no history is available prior to that date.
   taxon_merge: taxon merge
   taxon_name: Taxon name
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxon name must match an existing taxon in our database
@@ -8458,6 +8459,8 @@ en:
         place_type: Place type
         prefers_check_lists: Check lists allowed?
         woeid: WOEID
+      place_taxon_name:
+        position: Position
       site:
         logo: Wordmark
         logo_email_banner: Email Banner
@@ -8482,6 +8485,7 @@ en:
         lexicon: Lexicon
         name: Name
         name_provider: Name provider
+        position: Position
         source_url: Source URL
         source_identifier: Source identifier
       user:
