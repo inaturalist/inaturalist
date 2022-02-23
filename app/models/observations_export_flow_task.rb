@@ -204,22 +204,7 @@ class ObservationsExportFlowTask < FlowTask
     exp_columns = Observation::CSV_COLUMNS if exp_columns.blank?
     ofv_columns = exp_columns.select{|c| c.index("field:")}
     ident_columns = exp_columns.select{|c| c.index("ident_by_" )}
-    exp_columns = (exp_columns & Observation::ALL_EXPORT_COLUMNS) + ofv_columns + ident_columns
-    viewer_curates_project = if projects = params[:projects]
-      if projects.size == 1
-        project = Project.find(projects[0]) rescue nil
-        project.curated_by?(user) if project
-      end
-    end
-    viewer_is_owner = if user_id = params[:user_id]
-      if filter_user = User.find_by_id(user_id) || User.find_by_login(user_id)
-        filter_user === user
-      end
-    end
-    unless viewer_curates_project || viewer_is_owner
-      exp_columns = exp_columns.select{|c| c !~ /^private_/}
-    end
-    exp_columns
+    (exp_columns & Observation::ALL_EXPORT_COLUMNS) + ofv_columns + ident_columns
   end
 
   def enqueue_options

@@ -423,6 +423,20 @@ describe ObservationsExportFlowTask do
         expect( csv[1] ).not_to include o.private_latitude.to_s
       end
     end
+
+    it "should include private coordinates if the observer trusts the exporter" do
+      o = make_private_observation( taxon: create( :taxon ) )
+      viewer = create :user
+      Friendship.make!( user: o.user, friend: viewer, trust: true )
+      expect( o ).to be_coordinates_viewable_by( viewer )
+      ft = ObservationsExportFlowTask.make( user: viewer )
+      ft.inputs.build( extra: { query: "user_id=#{o.user_id}" } )
+      ft.save!
+      ft.run
+      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
+      expect( csv.size ).to eq 2
+      expect( csv[1] ).to include o.private_latitude.to_s
+    end
   end
 
   describe "columns" do

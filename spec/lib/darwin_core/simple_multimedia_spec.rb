@@ -21,7 +21,7 @@ describe DarwinCore::SimpleMultimedia do
     expect( photo.identifier ).to eq photo.original_url
   end
   it "should return photo page URL for references" do
-    expect( photo.references ).to eq photo.native_page_url
+    expect( photo.references ).to eq FakeView.photo_url( photo )
   end
   # it "should return EXIF date_time_original for created"
   it "should return user name for creator" do

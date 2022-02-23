@@ -905,6 +905,10 @@ ca:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Comentari
   comment_deleted: El comentari s’ha esborrat
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Comentari amagat
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Comentari visible de nou
   comments: Comentaris
   comments_by_me: Els vostres comentaris
   comments_have_been_disabled: S'han desactivat els comentaris
@@ -1935,6 +1939,8 @@ ca:
   identification_by_user: Identificació de %{user}
   identification_deleted: Identificació eliminada.
   identification_saved: "Identificació desada!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Text de la identificació mostrat de nou
   identification_updated: Identificació actualitzada!
   identification_user_short: Ident. Usuari
   identification_withdrawn: Identificació retirada.
@@ -3573,6 +3579,8 @@ ca:
   please_complete_the_following_to_add_project: |
     Si us plau completeu el següent per afegir aquesta observació al projecte:
   please_confirm_your_inat_username: "Confirmeu el nom d'usuari a %{site_name}"
+  please_explain_why_you_want_to_hide_this: Si us plau, expliqueu el motiu pel qual voleu ocultar això
+  please_explain_why_you_want_to_unhide_this: Si us plau, expliqueu el motiu pel qual voleu deixar d'ocultar això
   please_fix_your_csv_and_try_again: Si us plau corregiu el CSV i proveu-ho de nou.
   please_hold_on_while_the_file: Espereu mentre es genera l'arxiu. El procés pot trigar uns minuts per a llistes grans.
   please_hold_on_while_the_file_is_generated: Espereu mentre es genera l'arxiu. El procés pot trigar uns minuts per a llistes grans.
@@ -4324,6 +4332,9 @@ ca:
   summary: Resum
   supporting: Recolzar
   suspend_user: Suspèn usuari
+  suspend_user_html: Suspendre a %{user}
+  suspend_user_reason_instructions_html: |
+    Expliqueu perquè esteu suspenent aquest compte i citeu qualsevol violació de les %{link_start_tag}Normes de la Comunitat%{link_end_tag}. Si us plau, absteniu-vos de donar opinions personals.
   sw_lat: lat. S.O.
   sw_lon: long. S.O.
   sync: Sincronitza?
@@ -4702,6 +4713,9 @@ ca:
   unsubscribe: Elimineu subscripció
   unsubscribe_from_emails_like_this: Des-subscriure's de correus electrònics com aquest
   unsuspend_user: Reactiva usuari
+  unsuspend_user_html: Reactiveu %{user}
+  unsuspend_user_reason_instructions: |
+    Si us plau, expliqueu perquè esteu reactivant aquest usuari.
   upcoming_bioblitzes: Propers bioblitzes
   update: Actualitza
   update_existing_observations_with_new_license: Actualitza les observacions existents amb la llicència triada
@@ -7016,6 +7030,10 @@ ca:
       message:
         subject: Assumpte
         body: Cos
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Raó
       observation:
         description: Notes
         geo_x: Est
@@ -7171,6 +7189,11 @@ ca:
               guide_has_too_many_taxa: "La guia només pot tenir 500 tàxons"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: no està suportat per aquest tipus de contigut
+            base:
+              only_staff_can_unhide: Només el personal pot ocultar i tornar a mostrar el contingut ocult.
+              staff_cannot_be_suspended: El personal no es pot suspendre
             user_id:
               must_be_a_curator: ha de ser supervisor
         mushroom_observer_import_flow_task:

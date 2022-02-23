@@ -3069,6 +3069,16 @@ ALTER SEQUENCE public.passwords_id_seq OWNED BY public.passwords.id;
 
 
 --
+-- Name: photo_metadata; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.photo_metadata (
+    photo_id integer NOT NULL,
+    metadata bytea
+);
+
+
+--
 -- Name: photos; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3076,12 +3086,6 @@ CREATE TABLE public.photos (
     id integer NOT NULL,
     user_id integer,
     native_photo_id character varying(255),
-    square_url character varying(512),
-    thumb_url character varying(512),
-    small_url character varying(512),
-    medium_url character varying(512),
-    large_url character varying(512),
-    original_url character varying(512),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     native_page_url character varying(512),
@@ -3095,7 +3099,6 @@ CREATE TABLE public.photos (
     file_processing boolean,
     mobile boolean DEFAULT false,
     file_updated_at timestamp without time zone,
-    metadata text,
     subtype character varying(255),
     native_original_image_url character varying(512),
     uuid uuid DEFAULT public.uuid_generate_v4(),
@@ -8647,6 +8650,13 @@ CREATE INDEX index_observations_user_datetime ON public.observations USING btree
 
 
 --
+-- Name: index_photo_metadata_on_photo_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_photo_metadata_on_photo_id ON public.photo_metadata USING btree (photo_id);
+
+
+--
 -- Name: index_photos_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10217,4 +10227,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210930182050'),
 ('20211001151300'),
 ('20211109220615'),
-('20211216171216');
+('20211216171216'),
+('20220209191328'),
+('20220217224804');
+

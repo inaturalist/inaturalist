@@ -329,8 +329,10 @@ class Identification < ApplicationRecord
     return true if user.destroyed?
     return true if bulk_delete
     if self.user_id != self.observation.user_id
-      User.delay(unique_hash: { "User::update_identifications_counter_cache": user_id }).
-        update_identifications_counter_cache(user_id)
+      User.delay(
+        unique_hash: { "User::update_identifications_counter_cache": user_id },
+        run_at: 5.minutes.from_now
+      ).update_identifications_counter_cache(user_id)
     end
     true
   end

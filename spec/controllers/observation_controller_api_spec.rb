@@ -400,7 +400,8 @@ shared_examples_for "an ObservationsController" do
     end
 
     it "should not include photo metadata" do
-      p = LocalPhoto.make!( metadata: { foo: "bar" } )
+      p = LocalPhoto.make!( )
+      pm = PhotoMetadata.make!( photo: p, metadata: { foo: "bar" } )
       expect( p.metadata ).not_to be_blank
       o = Observation.make!( user: p.user, taxon: Taxon.make! )
       make_observation_photo( photo: p, observation: o )
@@ -1270,7 +1271,8 @@ shared_examples_for "an ObservationsController" do
     end
 
     it "should not include photo metadata" do
-      p = LocalPhoto.make!( metadata: { foo: "bar" } )
+      p = LocalPhoto.make!( )
+      pm = PhotoMetadata.make!( photo: p, metadata: { foo: "bar" } )
       expect( p.metadata ).not_to be_blank
       o = Observation.make!( user: p.user, taxon: Taxon.make! )
       make_observation_photo( photo: p, observation: o )
