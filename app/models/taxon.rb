@@ -1662,19 +1662,19 @@ class Taxon < ApplicationRecord
     Taxon.descendant_conditions( self )
   end
 
-  def iucn_global_conservation_status
-    conservation_statuses.detect { | cs | cs.authority == "iucn" && cs.place_id.blank? }
+  def global_conservation_status
+    conservation_statuses.select { | cs | cs.place_id.blank? }.sort_by { | cs | cs.iucn.to_i }.last
   end
 
   # TODO: make this work for different conservation status sources
   def conservation_status_name
-    return nil if iucn_global_conservation_status.blank?
+    return nil if global_conservation_status.blank?
 
-    IUCN_STATUSES[iucn_global_conservation_status.status]
+    IUCN_STATUSES[global_conservation_status.iucn]
   end
 
   def conservation_status_code
-    return nil if iucn_global_conservation_status.blank?
+    return nil if global_conservation_status.blank?
 
     IUCN_STATUS_CODES[conservation_status_name]
   end
