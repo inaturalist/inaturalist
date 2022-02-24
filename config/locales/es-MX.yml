@@ -1,4 +1,8 @@
 es-MX:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} cambio"
+    other: "%{count} cambios"
   x_comments:
     one: '1 comentario'
     other: '%{count} comentarios'
@@ -217,6 +221,7 @@ es-MX:
   accuracy_meters: Precisión (metros)
   accuracy_of_the_coordinates: |
     Precisión de las coordenadas en metros. Las puedes cambiar seleccionando el enlace a "Modificar" o seleccionando el punto de tu ubicación en el mapa. Trata de hacer el círculo lo suficientemente grande para asegurar que estabas en algún lugar del área marcada.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Acción
   actions: Acciones
   active: Activo
@@ -855,6 +860,8 @@ es-MX:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} se han incluido en %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} será incluido en %{output_taxon}"
   change_your_password: Cambia tu contraseña
+  #Plural noun, as in changes to a taxon record over time
+  changes: Cambios
   changing_the_geoprivacy: 'Cambiar la geoprivacidad modifica como otras personas ven la ubicación de tu observación.'
   check_above_for_errors: Revisa errores arriba
   check_back_soon: '¡Regresa pronto para revisar!'
@@ -3918,6 +3925,8 @@ es-MX:
   recently_finished: Terminado recientemente
   recently_observed: Observado recientemente
   recently_resolved: Resuelto recientemente
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Grabar
   red: Rojo
   redo_search_in_map: Volver a cargar el mapa
   redo_search_in_map_area: Volver a cargar el mapa
@@ -4511,6 +4520,7 @@ es-MX:
   taxon_framework_relationship_unknown_count_html: "Número de relaciones desconocidas: %{count}"
   taxon_framework_relationships: Relación del Marco de referencia del Taxón
   taxon_framework_taxon: Taxón del marco de referencia del taxón
+  taxon_history_notice: La Historia se introdujo en febrero de 2022, por lo que no hay historia disponible antes de esa fecha.
   taxon_merge: fusión de taxa
   taxon_name: Nombre de la especie o grupo
   taxon_name_must_match_an_existing_taxon_in_our_database: El nombre taxonómico debe coincidir con un taxón existente en la base de datos.
@@ -5063,6 +5073,8 @@ es-MX:
   where_were_you?: <em>¿Dónde</em> estabas?
   which_projects_can_add_your_observations?: '¿Qué proyectos tradicionales pueden añadir tus observaciones?'
   white: Blanco
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: '¿Por qué estás haciendo este cambio? (opcional)'
   why_you_can_see_the_coordinates: Por qué puedes ver las coordenadas
   who_can_add_observation_fields_to_my_obs: '¿Quién puede añadir campos de observación a mis observaciones?'
   who_can_add_observations_to_this_project?: '¿Quiénes pueden añadir observaciones a este proyecto?'
@@ -7313,6 +7325,8 @@ es-MX:
         #confidential, e.g. a native or desktop app as opposed to a web
         #app.
         confidential: Confidencial
+      place_taxon_name:
+        position: Posición
       post:
         title: Título
         body: Texto
@@ -7367,7 +7381,11 @@ es-MX:
         source_identifier: Identificador de la fuente
         source_url: Enlace fuente
       taxon_name:
+        is_valid: '¿Es válido?'
+        lexicon: Lexicon
+        name: Nombre
         name_provider: Proveedor de nombre
+        position: Posición
         source_url: Dirección web de la fuente
         source_identifier: Identificador de la fuente
       user:
