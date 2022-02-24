@@ -4318,10 +4318,8 @@ CREATE TABLE public.taxa (
     wikipedia_title character varying(255),
     featured_at timestamp without time zone,
     ancestry character varying(255),
-    conservation_status integer,
     locked boolean DEFAULT false NOT NULL,
     is_active boolean DEFAULT true NOT NULL,
-    complete_rank character varying,
     taxon_framework_relationship_id integer,
     uuid uuid DEFAULT public.uuid_generate_v4(),
     photos_locked boolean DEFAULT false

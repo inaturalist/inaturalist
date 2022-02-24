@@ -64,9 +64,6 @@ class TaxonSwap < TaxonChange
         Rails.logger.error "[ERROR #{Time.now}] Failed to add #{taxon_photo} to #{output_taxon}: #{e}"
       end
     end
-    
-    # duplicate iucn_status
-    output_taxon.conservation_status = input_taxon.conservation_status
 
     # duplicate conservation_statuses
     input_taxon.conservation_statuses.each do |cs|
