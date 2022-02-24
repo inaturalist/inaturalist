@@ -44,13 +44,13 @@
                           - for changed_attr, val in audit.audited_changes
                             - next if val.blank?
                             %tr
-                              %th.attr=t "activerecord.attributes.#{audit.auditable_type}.#{changed_attr}", default: t( changed_attr, default: changed_attr.humanize )
+                              %th.attr=t "activerecord.attributes.#{audit.auditable_type.underscore}.#{changed_attr}", default: t( changed_attr, default: changed_attr.humanize )
                               %td.change.value= val
                       - elsif audit.action == "update"
                         %tbody.update
                           - for changed_attr, changes in audit.audited_changes
                             %tr
-                              %th.attr=t "activerecord.attributes.#{audit.auditable_type}.#{changed_attr}", default: t( changed_attr, default: changed_attr.humanize )
+                              %th.attr=t "activerecord.attributes.#{audit.auditable_type.underscore}.#{changed_attr}", default: t( changed_attr, default: changed_attr.humanize )
                               %td.value= changes[0]
                               %td.change.value= changes[1]
                   - unless audit.comment.blank?

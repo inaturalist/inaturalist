@@ -3,7 +3,6 @@
 require "#{File.dirname( __FILE__ )}/../spec_helper.rb"
 
 describe Taxon, "associations" do
-  it { is_expected.to belong_to( :conservation_status_source ).class_name "Source" }
   it { is_expected.to belong_to( :creator ).class_name "User" }
   it { is_expected.to belong_to( :iconic_taxon ).class_name( "Taxon" ).with_foreign_key "iconic_taxon_id" }
   it { is_expected.to belong_to :source }

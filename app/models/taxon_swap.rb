@@ -67,8 +67,6 @@ class TaxonSwap < TaxonChange
     
     # duplicate iucn_status
     output_taxon.conservation_status = input_taxon.conservation_status
-    output_taxon.conservation_status_source_id = input_taxon.conservation_status_source_id
-    output_taxon.conservation_status_source_identifier = input_taxon.conservation_status_source_identifier
 
     # duplicate conservation_statuses
     input_taxon.conservation_statuses.each do |cs|
