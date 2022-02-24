@@ -1,4 +1,8 @@
 sv:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} ändring"
+    other: "%{count} ändringar"
   x_comments:
     one: '%{count} kommentar'
     other: '%{count} kommentarer'
@@ -234,6 +238,7 @@ sv:
   accuracy_meters: Noggrannhet (meter)
   accuracy_of_the_coordinates: |
     Koordinaternas noggrannhet i meter. Du kan redigera detta genom att klicka på "redigera"-länken ovan eller genom att klicka på kartmarkören och dra i handtagen. Försök att göra cirkeln så stor att du är säker på att du var någonstans inne i den.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Åtgärd
   actions: Åtgärder
   active: Aktiva
@@ -882,6 +887,8 @@ sv:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} slogs ihop med %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} kommer att slås ihop med %{output_taxon}"
   change_your_password: Ändra ditt lösenord
+  #Plural noun, as in changes to a taxon record over time
+  changes: Ändringar
   changing_the_geoprivacy: 'Ändring av koordinatsekretess förändrar hur andra personer ser ditt fynds position.'
   check_above_for_errors: Kolla efter fel ovan
   check_back_soon: Kolla snart igen!
@@ -3966,6 +3973,8 @@ sv:
   recently_finished: Nyligen avslutade
   recently_observed: Nyligen observerade
   recently_resolved: Nyligen lösta
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Uppgift
   red: röd
   redo_search_in_map: Gör om kartsökningen
   redo_search_in_map_area: Gör om sökningen i kartområdet
@@ -4568,6 +4577,7 @@ sv:
   taxon_framework_relationship_unknown_count_html: "Antal okända relationer: %{count}"
   taxon_framework_relationships: Taxonkontextrelationer
   taxon_framework_taxon: Taxonkontextens taxon
+  taxon_history_notice: Historik introducerades i februari 2022, så ingen historik är tillgänglig före detta datum.
   taxon_merge: taxonhopslagning
   taxon_name: Taxon namn
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxonnamn måste matcha ett befintligt taxon i vår databas
@@ -5125,6 +5135,8 @@ sv:
   where_were_you?: Var var du?
   which_projects_can_add_your_observations?: Till vilka traditionella projekt passar dina fynd?
   white: vit
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Varför gör du denna förändring? (valfritt)
   why_you_can_see_the_coordinates: Därför kan du se koordinaterna
   who_can_add_observation_fields_to_my_obs: Vem kan lägga till fyndfält till mina fynd?
   who_can_add_observations_to_this_project?: Vem kan lägga till fynd i detta projekt?
@@ -7310,6 +7322,8 @@ sv:
         #confidential, e.g. a native or desktop app as opposed to a web
         #app.
         confidential: Konfidentiell
+      place_taxon_name:
+        position: Position
       post:
         title: Rubrik
         body: Innehåll
@@ -7364,7 +7378,11 @@ sv:
         source_identifier: Källans identifierare
         source_url: Källans URL
       taxon_name:
+        is_valid: Är giltigt?
+        lexicon: Lexikon
+        name: Namn
         name_provider: Namnleverantör
+        position: Position
         source_url: Källans URL
         source_identifier: Källans identifierare
       user:
