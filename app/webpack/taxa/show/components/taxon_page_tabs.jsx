@@ -106,6 +106,9 @@ class TaxonPageTabs extends React.Component {
                 case "new-atlas":
                   window.location = `/atlases/new?taxon_id=${taxon.id}`;
                   break;
+                case "history":
+                  window.location = `/taxa/${taxon.id}/history`;
+                  break;
                 default:
                   window.location = `/taxa/${taxon.id}/edit`;
               }
@@ -154,8 +157,8 @@ class TaxonPageTabs extends React.Component {
                     { " " }
                     { I18n.t( "edit_photos" ) }
                   </MenuItem>
-                )
-              }
+                ) }
+              { atlasItem }
               <MenuItem
                 className={isCurator ? "" : "hidden"}
                 eventKey="edit-taxon"
@@ -164,7 +167,13 @@ class TaxonPageTabs extends React.Component {
                 { " " }
                 { I18n.t( "edit_taxon" ) }
               </MenuItem>
-              { atlasItem }
+              <MenuItem
+                eventKey="history"
+              >
+                <i className="fa fa-history" />
+                { " " }
+                { I18n.t( "history" ) }
+              </MenuItem>
             </Dropdown.Menu>
           </Dropdown>
         </li>

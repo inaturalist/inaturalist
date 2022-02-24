@@ -1,0 +1,67 @@
+= content_for :extracss do
+  = stylesheet_link_tag "taxa/history"
+.row
+  #pageheader.col-xs-12
+    %span.breadcrumbs
+      = link_to t(:back), @record, class: "back crumb"
+    %h2
+      =t :bold_label_colon_value_html, label: t(:history), value: @record.name
+.row
+  .col-xs-12
+    %table.table.history
+      %thead
+        %tr
+          %th=t :date_
+          %th=t :action
+          %th=t :record_noun
+          %th=t :user
+          %th=t :changes
+      %tbody
+        - for date, count in @audit_days
+          - if @date == date || @show_all
+            - for audit in @audits
+              %tr
+                %td.nobr.date
+                  .date=l audit.created_at.to_date, format: :short_with_year
+                  .time.text-muted=l audit.created_at, format: :observed_at
+                %td.action=t audit.action, default: audit.action
+                %td.record
+                  :ruby
+                    item_url = case audit.auditable_type
+                      when "TaxonName" then edit_taxon_name_path( audit.auditable )
+                      when "PlaceTaxonName" then edit_taxon_name_path( audit.auditable.taxon_name_id )
+                      when "ConservationStatus" then edit_taxon_path( audit.auditable )
+                      else audit.auditable
+                    end
+                  = link_to audit.auditable.try_methods(:to_plain_s, :to_s) || t( "activerecord.models.#{audit.auditable_type}", default: audit.auditable_type.underscore.humanize ), item_url
+                %td.user
+                  = audit.user_id && audit.user_id > 0 ? link_to_user( audit.user ) : "iNaturalist"
+                %td{ class: "changes #{audit.audited_changes.blank? ? "" : "changes-with-changes"}" }
+                  - unless audit.audited_changes.blank?
+                    %table.table.table-bordered.table-responsive.changes
+                      - if audit.action == "create"
+                        %tbody.create
+                          - for changed_attr, val in audit.audited_changes
+                            - next if val.blank?
+                            %tr
+                              %th.attr=t "activerecord.attributes.#{audit.auditable_type}.#{changed_attr}", default: t( changed_attr, default: changed_attr.humanize )
+                              %td.change.value= val
+                      - elsif audit.action == "update"
+                        %tbody.update
+                          - for changed_attr, changes in audit.audited_changes
+                            %tr
+                              %th.attr=t "activerecord.attributes.#{audit.auditable_type}.#{changed_attr}", default: t( changed_attr, default: changed_attr.humanize )
+                              %td.value= changes[0]
+                              %td.change.value= changes[1]
+                  - unless audit.comment.blank?
+                    %blockquote= formatted_user_text( audit.comment, skip_simple_format: true )
+          - else
+            %tr
+              %td.nobr.date
+                %strong= link_to l( date, format: :short_with_year ), url_for( year: date.year, month: date.month, day: date.day ), class: "date"
+              %td.nobr{ colspan: 4 }
+                %strong= link_to t( :x_changes, x: count ), url_for( year: date.year, month: date.month, day: date.day )
+    - if @audits.blank?
+      .text-center.stacked=t :no_results_found
+    .alert.alert-info.upstacked
+      %p=t :taxon_history_notice

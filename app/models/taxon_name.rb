@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class TaxonName < ApplicationRecord
+  audited except: [
+    :creator_id,
+    :parameterized_lexicon,
+    :taxon_id,
+    :updater_id
+  ]
   belongs_to :taxon
   belongs_to :source
   belongs_to :creator, class_name: "User"

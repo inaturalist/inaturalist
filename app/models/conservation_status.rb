@@ -1,10 +1,13 @@
 #encoding: utf-8
 class ConservationStatus < ApplicationRecord
+  audited except: [:taxon_id, :user_id, :updater_id]
   belongs_to :taxon
   belongs_to :user
   has_updater
   belongs_to :place
   belongs_to :source
+
+  revert_changes_for geoprivacy: [nil, "", Observation::OPEN], description: :blank, authority: :blank
 
   before_save :normalize_geoprivacy
   after_save :update_observation_geoprivacies, :if => lambda {|record|

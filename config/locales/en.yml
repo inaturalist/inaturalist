@@ -1,4 +1,11 @@
 en:
+  # Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    zero: "%{count} changes"
+    one: "%{count} change"
+    few: "%{count} changes"
+    many: "%{count} changes"
+    other: "%{count} changes"
   x_comments:
     one: '%{count} comment'
     other: '%{count} comments'
@@ -311,6 +318,7 @@ en:
     Accuracy of the coordinates in meters. You can edit this by click the "edit"
     link above or by clicking on the map marker and dragging the handles. Try to
     make the circle big enough that you are sure you were somewhere inside it.
+  # Noun, as in "Ken-ichi's action was not acceptable"
   action: Action
   actions: Actions
   active: Active
@@ -960,6 +968,8 @@ en:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} were merged into %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} will be merged into %{output_taxon}"
   change_your_password: Change Your Password
+  # Plural noun, as in changes to a taxon record over time
+  changes: Changes
   changing_the_geoprivacy: 'Changing the geoprivacy alters how other people see the location of your observation.'
   check_above_for_errors: Check above for errors
   check_back_soon: Check back soon!
@@ -4200,6 +4210,8 @@ en:
   recently_finished: Recently Finished
   recently_observed: Recently Observed
   recently_resolved: Recently Resolved
+  # Record as a noun, as in "According to our records, you love whales"
+  record_noun: Record
   red: red
   redo_search_in_map: Redo search in map
   redo_search_in_map_area: Redo search in map area
@@ -4868,6 +4880,7 @@ en:
   taxon_framework_relationship_unknown_count_html: "Relationship unknown count: %{count}"
   taxon_framework_relationships: Taxon Framework Relationships
   taxon_framework_taxon: Taxon framework taxon
+  taxon_history_notice:  History was introduced in February 2022, so no history is available prior to that date.
   taxon_merge: taxon merge
   taxon_name: Taxon name
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxon name must match an existing taxon in our database
@@ -5466,6 +5479,8 @@ en:
   where_were_you?: Where were you?
   which_projects_can_add_your_observations?: Which traditional projects can add your observations?
   white: white
+  # Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Why are you making this change? (optional)
   why_you_can_see_the_coordinates: Why You Can See the Coordinates
   who_can_add_observation_fields_to_my_obs: Who can add observation fields to my observations?
   who_can_add_observations_to_this_project?: Who can add observations to this project?
@@ -8410,6 +8425,9 @@ en:
         # confidential, e.g. a native or desktop app as opposed to a web
         # app.
         confidential: Confidential
+      place_taxon_name:
+        # Numeric position of a taxon name within a place
+        position: Position
       post:
         title: Title
         body: Body
@@ -8444,6 +8462,8 @@ en:
         place_type: Place type
         prefers_check_lists: Check lists allowed?
         woeid: WOEID
+      place_taxon_name:
+        position: Position
       site:
         logo: Wordmark
         logo_email_banner: Email Banner
@@ -8464,7 +8484,11 @@ en:
         source_identifier: Source identifier
         source_url: Source URL
       taxon_name:
+        is_valid: Is valid?
+        lexicon: Lexicon
+        name: Name
         name_provider: Name provider
+        position: Position
         source_url: Source URL
         source_identifier: Source identifier
       user:

@@ -33,8 +33,25 @@ class Taxon < ApplicationRecord
     self.uuid = uuid.downcase
     true
   end
+  audited except: [
+    :creator_id,
+    :delta,
+    :listed_taxa_count,
+    :observations_count,
+    :updater_id,
+    :uuid,
+    :version
+  ]
   acts_as_flaggable
   has_ancestry orphan_strategy: :adopt
+
+  revert_changes_for ancestry: :blank,
+    complete_rank: :blank,
+    name_provider: :blank,
+    source_identifier: :blank,
+    source_url: :blank,
+    wikipedia_summary: :blank,
+    wikipedia_title: :blank
 
   has_many :taxon_names, dependent: :destroy
   has_many :taxon_changes
@@ -1593,7 +1610,7 @@ class Taxon < ApplicationRecord
 
     reject.reload
     Rails.logger.info "[INFO] Merged #{reject} into #{self}"
-    reject.destroy
+    reject.destroy if reject.persisted? # not sure why it wouldn't be...
   end
 
   def to_tags

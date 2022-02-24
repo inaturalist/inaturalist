@@ -37,7 +37,8 @@ class TaxaController < ApplicationController
   before_action :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :update_photos, :set_photos, :edit_colors,
     :update_colors, :refresh_wikipedia_summary, :merge, 
-    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details]
+    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details,
+    :history]
   before_action :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
   before_action :limit_page_param_for_search, :only => [:index,
@@ -1164,6 +1165,28 @@ class TaxaController < ApplicationController
         end
       end
     end
+  end
+
+  def history
+    @record = @taxon
+    place_taxon_name_ids = PlaceTaxonName.where( taxon_name_id: @taxon.taxon_name_ids ).pluck( :id )
+    audit_scope = Audited::Audit.where( auditable_type: "Taxon", auditable_id: @taxon.id ).or(
+      Audited::Audit.where( auditable_type: "TaxonName", auditable_id: @taxon.taxon_name_ids )
+    ).or(
+      Audited::Audit.where( auditable_type: "PlaceTaxonName", auditable_id: place_taxon_name_ids )
+    ).or(
+      Audited::Audit.where( auditable_type: "ConservationStatus", auditable_id: @taxon.conservation_status_ids )
+    )
+    @audit_days = audit_scope.group( "audits.created_at::date" ).count.sort_by(&:first).reverse
+    @date = params[:year] &&
+      params[:month] &&
+      params[:day] &&
+      ( Date.parse( "#{params[:year]}-#{params[:month]}-#{params[:day]}") rescue nil )
+    @date ||= @audit_days&.sort&.reverse&.last&.first
+    @show_all = @date && audit_scope.count < 500
+    @audits = audit_scope.order( "created_at desc" )
+    @audits = @audits.where( "created_at::date = ?", @date ) unless @show_all
+    render layout: "bootstrap-container"
   end
 
   private

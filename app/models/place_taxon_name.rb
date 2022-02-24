@@ -1,4 +1,5 @@
 class PlaceTaxonName < ApplicationRecord
+  audited except: [:taxon_name_id, :place_id]
   belongs_to :place, :inverse_of => :place_taxon_names
   belongs_to :taxon_name, :inverse_of => :place_taxon_names
   validates_uniqueness_of :place_id, :scope => :taxon_name_id
@@ -10,7 +11,7 @@ class PlaceTaxonName < ApplicationRecord
   end
 
   def to_s
-    "<PlaceTaxonName #{id}, place_id: #{place_id}, taxon_name_id: #{taxon_name_id}>"
+    "<PlaceTaxonName #{id}, place: #{place&.display_name} (#{place_id}), taxon_name: #{taxon_name&.to_s}>"
   end
 
   #

@@ -310,4 +310,14 @@ describe ConservationStatus do
       expect( o ).to be_coordinates_obscured
     end
   end
+
+  describe "audits" do
+    it "should not be recorded if geoprivacy changes from nil to open" do
+      cs = create :conservation_status, geoprivacy: nil
+      expect( cs.audits.size ).to eq 1
+      expect( cs.geoprivacy ).to be_nil
+      cs.update( geoprivacy: Observation::OPEN )
+      expect( cs.audits.size ).to eq 1
+    end
+  end
 end
