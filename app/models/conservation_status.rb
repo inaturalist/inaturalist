@@ -13,9 +13,7 @@ class ConservationStatus < ApplicationRecord
   after_save :update_observation_geoprivacies, :if => lambda {|record|
     record.saved_change_to_id? || record.saved_change_to_geoprivacy? || record.saved_change_to_place_id?
   }
-  after_save :update_taxon_conservation_status
   after_destroy :update_observation_geoprivacies
-  after_destroy :update_taxon_conservation_status
 
   after_save :index_taxon
   after_update :index_taxon
@@ -139,10 +137,6 @@ class ConservationStatus < ApplicationRecord
       ).reassess_coordinates_for_observations_of( taxon_id, place: place_id_before_last_save )
     end
     true
-  end
-
-  def update_taxon_conservation_status
-    Taxon.set_conservation_status(taxon_id)
   end
 
   def as_indexed_json(options={})

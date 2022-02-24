@@ -1129,14 +1129,6 @@ describe Taxon do
     end
   end
 
-  describe "conservation status" do
-    it "should define boolean methods" do
-      taxon = Taxon.make!( conservation_status: Taxon::IUCN_VULNERABLE )
-      expect( taxon ).to be_iucn_vulnerable
-      expect( taxon ).not_to be_iucn_extinct
-    end
-  end
-
   describe "locking" do
     it "should cause grafting descendents to fail" do
       taxon = Taxon.make!( locked: true )

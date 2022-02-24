@@ -750,13 +750,6 @@ class Taxon < ApplicationRecord
     true
   end
 
-  def self.set_conservation_status( id )
-    return unless ( t = Taxon.find_by_id( id ) )
-
-    s = t.conservation_statuses.where( "place_id IS NULL" ).pluck( :iucn ).max
-    Taxon.where( id: t ).update_all( conservation_status: s )
-  end
-
   def capitalize_name
     self.name = Taxon.capitalize_scientific_name( name, rank )
     true
@@ -1717,8 +1710,6 @@ class Taxon < ApplicationRecord
   end
 
   def globally_threatened?
-    return conservation_status >= IUCN_NEAR_THREATENED unless conservation_status.blank?
-
     if association( :conservation_statuses ).loaded?
       conservation_statuses.detect {| cs | cs.place_id.blank? && cs.iucn >= IUCN_NEAR_THREATENED }
     else
