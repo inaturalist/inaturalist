@@ -7397,16 +7397,16 @@ nl:
         url: URL
         citation: Citaat
       taxon:
-        name: Naam
-        rank: Rang
-        parent_id: Bovenliggend ID
-        locked: Gesloten
-        auto_photos: Auto fotos
         auto_description: Auto Beschrijving
-        wikipedia_title: Wikipedia titel
-        wikipedia_summary: Wikipedia samenvatting
+        auto_photos: Auto fotos
+        locked: Gesloten
+        name: Naam
+        parent_id: Bovenliggend ID
+        rank: Rang
         source_identifier: Bron-id
         source_url: Bron-URL
+        wikipedia_summary: Wikipedia samenvatting
+        wikipedia_title: Wikipedia titel
       taxon_name:
         name_provider: Gegevensverstrekker
         source_url: Bron-URL
