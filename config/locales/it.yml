@@ -7159,16 +7159,16 @@ it:
         url: URL
         citation: Citazione
       taxon:
-        name: Nome
-        rank: Rango
-        parent_id: ID del taxon di livello superiore
-        locked: Bloccato
-        auto_photos: Carica foto automaticamente
         auto_description: Carica descrizione automaticamente
-        wikipedia_title: Titolo Wikipedia
-        wikipedia_summary: Riassunto Wikipedia
+        auto_photos: Carica foto automaticamente
+        locked: Bloccato
+        name: Nome
+        parent_id: ID del taxon di livello superiore
+        rank: Rango
         source_identifier: Identificatore della fonte
         source_url: URL sorgente
+        wikipedia_summary: Riassunto Wikipedia
+        wikipedia_title: Titolo Wikipedia
       taxon_name:
         name_provider: Nome del provider
         source_url: URL sorgente
