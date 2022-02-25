@@ -7655,16 +7655,16 @@ cs:
         url: URL odkaz
         citation: Citace
       taxon:
-        name: Jméno
-        rank: Pořadí
-        parent_id: Rodičovský identifikátor
-        locked: Zamknuto
-        auto_photos: Automatické fotky
         auto_description: Automatický popis
-        wikipedia_title: Titul Wikipedie
-        wikipedia_summary: Shrnutí na Wikipedii
+        auto_photos: Automatické fotky
+        locked: Zamknuto
+        name: Jméno
+        parent_id: Rodičovský identifikátor
+        rank: Pořadí
         source_identifier: Identifikátor zdroje
         source_url: URL zdroje
+        wikipedia_summary: Shrnutí na Wikipedii
+        wikipedia_title: Titul Wikipedie
       taxon_name:
         name_provider: Poskytovatel názvu
         source_url: URL zdroje
