@@ -4864,16 +4864,16 @@ et:
         in_text: Tekstis
         citation: Viide
       taxon:
-        name: Nimi
-        rank: Tase
-        parent_id: Ülemtaksoni ID
-        locked: Lukustatud
-        auto_photos: Automaatsed fotod
         auto_description: Automaatne kirjeldus
-        wikipedia_title: Wikipedia pealkiri
-        wikipedia_summary: Wikipedia kokkuvõte
+        auto_photos: Automaatsed fotod
+        locked: Lukustatud
+        name: Nimi
+        parent_id: Ülemtaksoni ID
+        rank: Tase
         source_identifier: Allikamääratleja
         source_url: Allika URL
+        wikipedia_summary: Wikipedia kokkuvõte
+        wikipedia_title: Wikipedia pealkiri
       taxon_name:
         name_provider: Nimepank
         source_url: Allika URL
