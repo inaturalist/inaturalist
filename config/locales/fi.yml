@@ -6202,16 +6202,16 @@ fi:
         url: URL-osoite
         citation: Viittaus
       taxon:
-        name: Nimi
-        rank: Sija
-        parent_id: Ylemmän taksonin ID
-        locked: Lukittu
-        auto_photos: Automaattiset kuvat
         auto_description: Automaattinen kuvaus
-        wikipedia_title: Wikipedia-otsikko
-        wikipedia_summary: Wikipedia-yhteenveto
+        auto_photos: Automaattiset kuvat
+        locked: Lukittu
+        name: Nimi
+        parent_id: Ylemmän taksonin ID
+        rank: Sija
         source_identifier: Lähdetunniste
         source_url: Lähteen URL-osoite
+        wikipedia_summary: Wikipedia-yhteenveto
+        wikipedia_title: Wikipedia-otsikko
       taxon_name:
         name_provider: Nimipankki
         source_url: Lähteen URL-osoite
