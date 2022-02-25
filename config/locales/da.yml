@@ -7746,16 +7746,43 @@ da:
         url: URL
         citation: Citation
       taxon:
-        name: Navn
-        rank: Rang
-        parent_id: Overordnet ID
-        locked: Låst
-        auto_photos: Auto. foto´s
+        ancestry: Herkomst
         auto_description: Auto. beskrivelse
-        wikipedia_title: Wikipedia titel
-        wikipedia_summary: Wikipedia oversigt
+        auto_photos: Auto. foto´s
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: Komplet rangering
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Bevaringsstatus
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: Fremvist d.
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: Ikonisk takson-ID
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Aktiv?
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Ikonisk?
+        locked: Låst
+        name: Navn
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Navneleverandør
+        parent_id: Overordnet ID
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Fotos låst?
+        rank: Rang
+        rank_level: Rangeringsniveau
+        source_id: 'Kilde-ID:'
         source_identifier: Kilde identifikator
         source_url: Kilde URL
+        #Identifier of the taxon framework relationship record associated
+        #with this taxon
+        taxon_framework_relationship_id: Taksonrammerelations-ID
+        wikipedia_summary: Wikipedia oversigt
+        wikipedia_title: Wikipedia titel
       taxon_name:
         is_valid: Er gyldig?
         lexicon: Leksikon
