@@ -8473,16 +8473,43 @@ en:
         url: URL
         citation: Citation
       taxon:
-        name: Name
-        rank: Rank
-        parent_id: Parent ID
-        locked: Locked
-        auto_photos: Auto photos
+        ancestry: Ancestry
         auto_description: Auto description
-        wikipedia_title: Wikipedia title
-        wikipedia_summary: Wikipedia summary
+        auto_photos: Auto photos
+        # Rank down to which all of this taxon's descendants have been added,
+        # e.g. if Homonidae has complete_rank set to genus, you would expect
+        # the genus Homo to be in the database, but not necessarily Homo
+        # sapiens
+        complete_rank: Complete rank
+        # The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Conservation status
+        # Datetime this taxon was featured for display on /taxa
+        featured_at: Featured at
+        # ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: Iconic taxon ID
+        # Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Active?
+        # Boolean attribute stating that this taxon is itself represented by
+        # an icon, e.g. Aves
+        is_iconic: Iconic?
+        locked: Locked
+        name: Name
+        # External source of the taxon, e.g. Catalogue of Life
+        name_provider: Name provider
+        parent_id: Parent ID
+        # Boolean attribute determining whether users can add, remove, or
+        # re-order photos of this taxon
+        photos_locked: Photos locked?
+        rank: Rank
+        rank_level: Rank level
+        source_id: Source ID
         source_identifier: Source identifier
         source_url: Source URL
+        # Identifier of the taxon framework relationship record associated
+        # with this taxon
+        taxon_framework_relationship_id: Taxon framework relationship ID
+        wikipedia_summary: Wikipedia summary
+        wikipedia_title: Wikipedia title
       taxon_name:
         is_valid: Is valid?
         lexicon: Lexicon

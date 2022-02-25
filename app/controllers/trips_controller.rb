@@ -150,8 +150,7 @@ class TripsController < ApplicationController
                   :source_identifier, :creator_id, :updater_id, :version,
                   :featured_at, :auto_photos, :locked, :wikipedia_summary,
                   :wikipedia_title, :name_provider, :source_id,
-                  :conservation_status, :conservation_status_source_id,
-                  :conservation_status_source_identifier]
+                  :conservation_status]
               }
           }
           }

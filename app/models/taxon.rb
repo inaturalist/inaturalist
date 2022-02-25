@@ -93,7 +93,6 @@ class Taxon < ApplicationRecord
   belongs_to :iconic_taxon, class_name: "Taxon", foreign_key: "iconic_taxon_id"
   belongs_to :creator, class_name: "User"
   has_updater
-  belongs_to :conservation_status_source, class_name: "Source"
   belongs_to :taxon_framework_relationship, touch: true
   has_and_belongs_to_many :colors, -> { distinct }
   has_many :taxon_descriptions, dependent: :destroy
@@ -105,7 +104,6 @@ class Taxon < ApplicationRecord
   has_many :taxon_curators, inverse_of: :taxon
   has_one :simplified_tree_milestone_taxon, dependent: :destroy
 
-  accepts_nested_attributes_for :conservation_status_source
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :conservation_statuses, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :taxon_photos, allow_destroy: true
@@ -750,13 +748,6 @@ class Taxon < ApplicationRecord
   def set_wikipedia_summary_later
     delay( priority: OPTIONAL_PRIORITY ).set_wikipedia_summary if saved_change_to_wikipedia_title?
     true
-  end
-
-  def self.set_conservation_status( id )
-    return unless ( t = Taxon.find_by_id( id ) )
-
-    s = t.conservation_statuses.where( "place_id IS NULL" ).pluck( :iucn ).max
-    Taxon.where( id: t ).update_all( conservation_status: s )
   end
 
   def capitalize_name
@@ -1671,15 +1662,19 @@ class Taxon < ApplicationRecord
     Taxon.descendant_conditions( self )
   end
 
+  def global_conservation_status
+    conservation_statuses.select { | cs | cs.place_id.blank? }.sort_by { | cs | cs.iucn.to_i }.last
+  end
+
   # TODO: make this work for different conservation status sources
   def conservation_status_name
-    return nil if conservation_status.blank?
+    return nil if global_conservation_status.blank?
 
-    IUCN_STATUSES[conservation_status]
+    IUCN_STATUSES[global_conservation_status.iucn]
   end
 
   def conservation_status_code
-    return nil if conservation_status.blank?
+    return nil if global_conservation_status.blank?
 
     IUCN_STATUS_CODES[conservation_status_name]
   end
@@ -1715,8 +1710,6 @@ class Taxon < ApplicationRecord
   end
 
   def globally_threatened?
-    return conservation_status >= IUCN_NEAR_THREATENED unless conservation_status.blank?
-
     if association( :conservation_statuses ).loaded?
       conservation_statuses.detect {| cs | cs.place_id.blank? && cs.iucn >= IUCN_NEAR_THREATENED }
     else

@@ -96,13 +96,6 @@ describe TaxonSwap, "commit" do
     @swap.committer = @swap.user
   end
 
-  it "should duplicate conservation status" do
-    @input_taxon.update_attribute(:conservation_status, Taxon::IUCN_ENDANGERED)
-    expect(@output_taxon.conservation_status).to be_blank
-    @swap.commit
-    expect(@output_taxon.conservation_status).to eq(Taxon::IUCN_ENDANGERED)
-  end
-
   it "should duplicate conservation statuses" do
     cs = ConservationStatus.make!( taxon: @input_taxon )
     expect( @output_taxon.conservation_statuses ).to be_blank

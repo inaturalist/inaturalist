@@ -3,7 +3,6 @@
 require "#{File.dirname( __FILE__ )}/../spec_helper.rb"
 
 describe Taxon, "associations" do
-  it { is_expected.to belong_to( :conservation_status_source ).class_name "Source" }
   it { is_expected.to belong_to( :creator ).class_name "User" }
   it { is_expected.to belong_to( :iconic_taxon ).class_name( "Taxon" ).with_foreign_key "iconic_taxon_id" }
   it { is_expected.to belong_to :source }
@@ -1127,14 +1126,6 @@ describe Taxon do
       expect( taxon.photos ).to be_blank
       taxon.valid?
       expect( taxon.errors[:featured_at] ).not_to be_blank
-    end
-  end
-
-  describe "conservation status" do
-    it "should define boolean methods" do
-      taxon = Taxon.make!( conservation_status: Taxon::IUCN_VULNERABLE )
-      expect( taxon ).to be_iucn_vulnerable
-      expect( taxon ).not_to be_iucn_extinct
     end
   end
 

@@ -9,7 +9,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-
 --
 -- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
 --
@@ -4319,13 +4318,8 @@ CREATE TABLE public.taxa (
     wikipedia_title character varying(255),
     featured_at timestamp without time zone,
     ancestry character varying(255),
-    conservation_status integer,
-    conservation_status_source_id integer,
     locked boolean DEFAULT false NOT NULL,
-    conservation_status_source_identifier integer,
     is_active boolean DEFAULT true NOT NULL,
-    complete_rank character varying,
-    complete boolean,
     taxon_framework_relationship_id integer,
     uuid uuid DEFAULT public.uuid_generate_v4(),
     photos_locked boolean DEFAULT false
@@ -4787,55 +4781,6 @@ CREATE SEQUENCE public.taxon_schemes_id_seq
 --
 
 ALTER SEQUENCE public.taxon_schemes_id_seq OWNED BY public.taxon_schemes.id;
-
-
---
--- Name: taxon_versions; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.taxon_versions (
-    id integer NOT NULL,
-    taxon_id integer,
-    version integer,
-    name character varying(255),
-    rank character varying(255),
-    source_identifier character varying(255),
-    source_url character varying(255),
-    parent_id integer,
-    source_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    iconic_taxon_id integer,
-    is_iconic boolean DEFAULT false,
-    auto_photos boolean DEFAULT true,
-    auto_description boolean DEFAULT true,
-    lft integer,
-    rgt integer,
-    name_provider character varying(255),
-    delta boolean DEFAULT false,
-    creator_id integer,
-    updater_id integer,
-    rank_level integer
-);
-
-
---
--- Name: taxon_versions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.taxon_versions_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: taxon_versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.taxon_versions_id_seq OWNED BY public.taxon_versions.id;
 
 
 --
@@ -6148,13 +6093,6 @@ ALTER TABLE ONLY public.taxon_schemes ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- Name: taxon_versions id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.taxon_versions ALTER COLUMN id SET DEFAULT nextval('public.taxon_versions_id_seq'::regclass);
-
-
---
 -- Name: trip_purposes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7163,14 +7101,6 @@ ALTER TABLE ONLY public.taxon_scheme_taxa
 
 ALTER TABLE ONLY public.taxon_schemes
     ADD CONSTRAINT taxon_schemes_pkey PRIMARY KEY (id);
-
-
---
--- Name: taxon_versions taxon_versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.taxon_versions
-    ADD CONSTRAINT taxon_versions_pkey PRIMARY KEY (id);
 
 
 --
@@ -9189,13 +9119,6 @@ CREATE INDEX index_taxa_on_ancestry ON public.taxa USING btree (ancestry text_pa
 
 
 --
--- Name: index_taxa_on_conservation_status_source_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_taxa_on_conservation_status_source_id ON public.taxa USING btree (conservation_status_source_id);
-
-
---
 -- Name: index_taxa_on_featured_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10229,5 +10152,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211109220615'),
 ('20211216171216'),
 ('20220209191328'),
-('20220217224804');
+('20220217224804'),
+('20220224012321');
+
 

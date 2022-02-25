@@ -15,7 +15,8 @@ class CompleteSet < ApplicationRecord
     place_with_descendant_ids = [place.id, place_descendant_ids].compact.flatten
     taxon_descendant_ids = taxon.subtree.
       where( "taxa.is_active = true AND taxa.rank != 'hybrid' AND taxa.rank_level <= ?", Taxon::RANK_LEVELS["species"] ).
-      where( "taxa.conservation_status IS NULL OR taxa.conservation_status < ?", Taxon::IUCN_EXTINCT_IN_THE_WILD).
+      joins( "LEFT OUTER JOIN conservation_statuses ON conservation_statuses.taxon_id = taxa.id" ).
+      where( "conservation_statuses.id IS NULL OR conservation_statuses.iucn < ?", Taxon::IUCN_EXTINCT_IN_THE_WILD).
       pluck( :id )
     #these are all listed sp+spp in places/desc places
     taxon_ids = ListedTaxon.joins( { list: :check_list_place } ).where( "lists.type = 'CheckList'" ).
