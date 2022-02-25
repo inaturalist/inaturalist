@@ -7412,16 +7412,16 @@ ru:
         url: URL
         citation: Ссылка
       taxon:
-        name: Наименование
-        rank: Ранг
-        parent_id: Идентификация родительского таксона
-        locked: Заблокирован
-        auto_photos: Автоматические фото
         auto_description: Автоматическое описание
-        wikipedia_title: Статья Википедии
-        wikipedia_summary: Сводка из Википедии
+        auto_photos: Автоматические фото
+        locked: Заблокирован
+        name: Наименование
+        parent_id: Идентификация родительского таксона
+        rank: Ранг
         source_identifier: Идентификатор источника
         source_url: URL источника
+        wikipedia_summary: Сводка из Википедии
+        wikipedia_title: Статья Википедии
       taxon_name:
         name_provider: Провайдер наименования
         source_url: URL источника
