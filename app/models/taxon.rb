@@ -42,6 +42,7 @@ class Taxon < ApplicationRecord
     :uuid,
     :version
   ]
+  has_associated_audits
   acts_as_flaggable
   has_ancestry orphan_strategy: :adopt
 

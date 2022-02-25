@@ -1,6 +1,6 @@
 #encoding: utf-8
 class ConservationStatus < ApplicationRecord
-  audited except: [:taxon_id, :user_id, :updater_id]
+  audited except: [:taxon_id, :user_id, :updater_id], associated_with: :taxon
   belongs_to :taxon
   belongs_to :user
   has_updater

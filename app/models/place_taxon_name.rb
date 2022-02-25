@@ -1,7 +1,8 @@
 class PlaceTaxonName < ApplicationRecord
-  audited except: [:taxon_name_id, :place_id]
+  audited except: [:taxon_name_id, :place_id], associated_with: :taxon
   belongs_to :place, :inverse_of => :place_taxon_names
   belongs_to :taxon_name, :inverse_of => :place_taxon_names
+  has_one :taxon, through: :taxon_name
   validates_uniqueness_of :place_id, :scope => :taxon_name_id
   validates_presence_of :place_id, :taxon_name
 

@@ -45,7 +45,7 @@
       = link_to observations_path( taxon_id: change_taxon.id, verifiable: "any", place_id: "any" ), rel: "nofollow" do
         =t :x_observations_html, count: change_taxon.observations_count
       - unless change_taxon.conservation_status_code.blank?
-        %span.blob.conservation_status{ class: change_taxon.conservation_status_name }
+        %span.blob.conservation_status{ class: change_taxon.conservation_status_name, title: t( change_taxon.conservation_status_name ) }
           = change_taxon.conservation_status_code
       - if taxon_range
         = link_to t(:range), taxon_path(change_taxon, :anchor => 'taxon_range')

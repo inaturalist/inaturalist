@@ -243,7 +243,7 @@ module ApplicationHelper
   # Example: url_for_params(:taxon_id => 1, :without => :page)
   def url_for_params( options = {} )
     new_params = request.POST.merge( request.GET ).merge( options )
-    if without = options.delete(:without)
+    if without = new_params.delete(:without)
       without = [without] unless without.is_a?(Array)
       without.map!(&:to_s)
       new_params = new_params.reject {|k,v| without.include?(k) }

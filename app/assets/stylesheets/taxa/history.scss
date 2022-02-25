@@ -10,6 +10,12 @@
       }
     }
   }
+  .action,
+  .user {
+    white-space: nowrap;
+  }
+  .filter-link { visibility: hidden; }
+  td:hover .filter-link { visibility: visible; }
   .changes {
     margin-bottom: 0;
 

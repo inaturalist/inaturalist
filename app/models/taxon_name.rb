@@ -6,7 +6,7 @@ class TaxonName < ApplicationRecord
     :parameterized_lexicon,
     :taxon_id,
     :updater_id
-  ]
+  ], associated_with: :taxon
   belongs_to :taxon
   belongs_to :source
   belongs_to :creator, class_name: "User"

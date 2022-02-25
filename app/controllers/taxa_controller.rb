@@ -1169,14 +1169,26 @@ class TaxaController < ApplicationController
 
   def history
     @record = @taxon
-    place_taxon_name_ids = PlaceTaxonName.where( taxon_name_id: @taxon.taxon_name_ids ).pluck( :id )
     audit_scope = Audited::Audit.where( auditable_type: "Taxon", auditable_id: @taxon.id ).or(
-      Audited::Audit.where( auditable_type: "TaxonName", auditable_id: @taxon.taxon_name_ids )
-    ).or(
-      Audited::Audit.where( auditable_type: "PlaceTaxonName", auditable_id: place_taxon_name_ids )
-    ).or(
-      Audited::Audit.where( auditable_type: "ConservationStatus", auditable_id: @taxon.conservation_status_ids )
+      Audited::Audit.where( associated_type: "Taxon", associated_id: @taxon.id )
     )
+    audited_types = %w(Taxon TaxonName PlaceTaxonName ConservationStatus)
+    if audited_types.include?( params[:auditable_type] ) && ( @auditable_type = params[:auditable_type] )
+      audit_scope = audit_scope.where( auditable_type: @auditable_type )
+    end
+    if (
+        params[:auditable_id].to_i > 0 &&
+        params[:auditable_id].to_s == params[:auditable_id].to_s &&
+        ( @auditable_id = params[:auditable_id] )
+    )
+      audit_scope = audit_scope.where( auditable_id: @auditable_id )
+    end
+    if ( @user_id = params[:user_id] )
+      audit_scope = audit_scope.where( user_id: @user_id )
+    end
+    if ( @audit_action = params[:audit_action] )
+      audit_scope = audit_scope.where( action: @audit_action )
+    end
     @audit_days = audit_scope.group( "audits.created_at::date" ).count.sort_by(&:first).reverse
     @date = params[:year] &&
       params[:month] &&
