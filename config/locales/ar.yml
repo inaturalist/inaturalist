@@ -5569,16 +5569,16 @@ ar:
         url: مسار
         citation: اقتباس
       taxon:
-        name: اسم
-        rank: المرتبة
-        parent_id: معرف الأصل
-        locked: مقفل
-        auto_photos: صور تلقائية
         auto_description: وصف تلقائي
-        wikipedia_title: عنوان ويكيبيديا
-        wikipedia_summary: ملخص ويكيبيديا
+        auto_photos: صور تلقائية
+        locked: مقفل
+        name: اسم
+        parent_id: معرف الأصل
+        rank: المرتبة
         source_identifier: معرف المصدر
         source_url: مسار المصدر
+        wikipedia_summary: ملخص ويكيبيديا
+        wikipedia_title: عنوان ويكيبيديا
       taxon_name:
         name_provider: موفر الاسم
         source_url: مسار المصدر
