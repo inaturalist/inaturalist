@@ -68,13 +68,13 @@ class TaxonPageTabs extends React.Component {
       let atlasItem;
       if ( isCurator && taxon.rank_level <= 10 ) {
         atlasItem = taxon.atlas_id ? (
-          <MenuItem eventKey="edit-atlas">
+          <MenuItem eventKey="edit-atlas" href={`/atlases/${taxon.atlas_id}`}>
             <i className="fa fa-globe" />
             { " " }
             { I18n.t( "edit_atlas" ) }
           </MenuItem>
         ) : (
-          <MenuItem eventKey="new-atlas">
+          <MenuItem eventKey="new-atlas" href={`/atlases/new?taxon_id=${taxon.id}`}>
             <i className="fa fa-globe" />
             { " " }
             { I18n.t( "create_an_atlas" ) }
@@ -122,6 +122,7 @@ class TaxonPageTabs extends React.Component {
             <Dropdown.Menu>
               <MenuItem
                 eventKey="add-flag"
+                href={`/taxa/${taxon.id}/flags/new`}
               >
                 <i className="fa fa-flag" />
                 { " " }
@@ -130,6 +131,7 @@ class TaxonPageTabs extends React.Component {
               <MenuItem
                 className={flagsCount > 0 ? "" : "hidden"}
                 eventKey="view-flags"
+                href={`/taxa/${taxon.id}/flags`}
               >
                 <i className="fa fa-flag-checkered" />
                 { " " }
@@ -162,6 +164,7 @@ class TaxonPageTabs extends React.Component {
               <MenuItem
                 className={isCurator ? "" : "hidden"}
                 eventKey="edit-taxon"
+                href={`/taxa/${taxon.id}/edit`}
               >
                 <i className="fa fa-pencil" />
                 { " " }
@@ -169,6 +172,7 @@ class TaxonPageTabs extends React.Component {
               </MenuItem>
               <MenuItem
                 eventKey="history"
+                href={`/taxa/${taxon.id}/history`}
               >
                 <i className="fa fa-history" />
                 { " " }
