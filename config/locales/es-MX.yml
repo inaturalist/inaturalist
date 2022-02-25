@@ -7370,16 +7370,40 @@ es-MX:
         url: Enlace
         citation: Bibliografía
       taxon:
-        name: Nombre
-        rank: Clasificación
-        parent_id: Identificador de la clase o especie padre
-        locked: Candado
-        auto_photos: Cargar fotos automáticamente
+        ancestry: Ancestro
         auto_description: Cargar automáticamente la descripción
-        wikipedia_title: Título de wikipedia
-        wikipedia_summary: Resumen de wikipedia
+        auto_photos: Cargar fotos automáticamente
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: Completar rango
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Estado de conservación
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: Destacado en
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: ID icónico del taxón
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: '¿Activo?'
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: '¿Icónico?'
+        locked: Candado
+        name: Nombre
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Proveedor de nombre
+        parent_id: Identificador de la clase o especie padre
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: '¿Fotos bloqueadas?'
+        rank: Clasificación
+        rank_level: Nivel de rango
+        source_id: ID fuente
         source_identifier: Identificador de la fuente
         source_url: Enlace fuente
+        wikipedia_summary: Resumen de wikipedia
+        wikipedia_title: Título de wikipedia
       taxon_name:
         is_valid: '¿Es válido?'
         lexicon: Lexicon
