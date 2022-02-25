@@ -209,7 +209,7 @@ sv:
   about_trusting_projects: Om att lita på projekt
   about_trusting_projects_options_any: Alla dina fynd i detta projekt
   about_trusting_projects_options_any_desc: |-
-    Detta inkluderar fynd där du har satt koordinatsekretess till "diffuserad" eller "privat", t.ex. fynd från din bakgård eller platser som du inte vill att andra människor ska känna till.
+    Detta inkluderar fynd där du har satt koordinatsekretess till "diffuserad" eller "privat", t.ex. fynd från din bakgård eller platser som du inte vill att någon annan ska känna till.
   about_trusting_projects_options_taxon: |-
     Endast de av dina fynd i detta projekt vars koordinater är dolda på grund av hotade taxa
   about_trusting_projects_options_taxon_desc: |-
@@ -1144,7 +1144,7 @@ sv:
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Endast m. fullständiga koordinater
   coords_viewable_for_proj_desc: |
-    Visa bara fynd från detta projekt för vilka du kan se de "verkliga" koordinaterna, inklusive odiffuserade fynd, diffuserade fynd av personer som litar på dig, diffuserade fynd av personer som anförtror detta projekt med allt och fynd som är diffuserade p.g.a. hotade taxa av människor som bara litar på detta projekt med samma.
+    Visa bara fynd från detta projekt för vilka du kan se de "verkliga" koordinaterna, inklusive odiffuserade fynd, diffuserade fynd av personer som litar på dig, diffuserade fynd av personer som anförtror detta projekt med allt och fynd som är diffuserade p.g.a. hotade taxa av användare som bara litar på detta projekt med samma.
   copy: Kopiera
   copy_and_paste_the_following_code_to: Kopiera och klistra in följande kod för att infoga denna bedömning på en annan webbsida.
   copy_and_paste_this_into_your_own_html: Kopiera och klistra in detta i din egen HTML.
@@ -1987,7 +1987,7 @@ sv:
   hide: Dölj
   hide_content: Dölj innehåll
   hide_desc: |
-    Att dölja innehåll kommer att ta bort det från publik visning, men människor kommer fortfarande att kunna se att något dolts, och webbplatsens förvaltare samt författaren till innehållet kommer fortfarande att kunna se det dolda innehållet. Normalt gäller detta endast skriftligt innehåll, t.ex. om du döljer innehållet i en bestämning är den fortfarande synlig medan determinatörens kommentarer är dolda. Du kan inte ångra detta, och endast webbplatsens personal kan ta fram innehåll när det väl har dolts, så var försiktig och använd endast detta för mycket stötande innehåll.
+    Att dölja innehåll kommer att ta bort det från publik visning, men man kommer fortfarande att kunna se att något dolts, och webbplatsens förvaltare samt författaren till innehållet kommer fortfarande att kunna se det dolda innehållet. Normalt gäller detta endast skriftligt innehåll, t.ex. om du döljer innehållet i en bestämning är den fortfarande synlig medan determinatörens kommentarer är dolda. Du kan inte ångra detta, och endast webbplatsens personal kan ta fram innehåll när det väl har dolts, så var försiktig och använd endast detta för mycket stötande innehåll.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Dölj "Utan anteckning"
@@ -2983,7 +2983,7 @@ sv:
   observations_deleted: Fynden raderades.
   observations_fields_are: |
     Fyndfält är extra information kopplad till ett fynd, såsom antal observerade individer, habitatbeskrivning eller egentligen vad som helst! Projekt kan också ange vilka fält som bör fyllas i.
-  observations_from_people_taxa_and_places_youre_following: "Fynd från personer, fyndplatser och arter som du följer"
+  observations_from_people_taxa_and_places_youre_following: "Fynd från användare, fyndplatser och arter som du följer"
   observations_from_this_place: Fynd från denna fyndplats
   observations_from_this_project: Fynd från detta projekt
   observations_in_this_project_must: Fynd i detta projekt måste uppfylla följande kriterier
@@ -4675,7 +4675,7 @@ sv:
   the_name_of_the_taxon_dashes: Taxonnamn, mellanslag ersatta med bindestreck.
   the_name_of_the_taxon_underscores: Taxonnamn, mellanslag ersatta med understreck.
   the_observation_was_already_added_to_that_project: Fyndet hade redan lagts till i det projektet.
-  the_people_of_inat: "Människorna på %{site_name}"
+  the_people_of_inat: "Användarna på %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Arterna som listas nedan hittades inte i %{site_name}-databasen.
   the_title_of_the_wikipedia_article_we_use: |
@@ -5224,9 +5224,9 @@ sv:
   yir_donate_banner_inaturalist_in_year: "INATURALIST %{year}:"
   yir_donate_banner_reaching_millions: Når miljontals. Uppmärksammar biologisk mångfald. Globalt samarbete.
   #"You" is singular
-  yir_donate_banner_all_thanks: Allt tack vare människor som du!
+  yir_donate_banner_all_thanks: Allt tack vare användare som du!
   #"You" is singular
-  yir_donate_banner_inaturalist_thrives: iNaturalist frodas tack vare människor som du!
+  yir_donate_banner_inaturalist_thrives: iNaturalist frodas tack vare användare som du!
   #"You" is singular
   yir_donate_banner_you_helped_inaturalist_thrive: Du har hjälpt iNaturalist att frodas i år. Tack!
   #"Your" is singular
@@ -5234,7 +5234,7 @@ sv:
   yir_generating_and_sharing: |
     Att skapa och dela så mycket data om biologisk mångfald med sådan genomslagskraft och så snabbt och utan like har stadigt ökande kostnader
   yir_millions_of_people_used_inaturalist: |
-    I år använde miljontals människor iNaturalist och Seek av iNaturalist för att knyta an till naturen
+    I år använde miljontals personer iNaturalist och Seek av iNaturalist för att knyta an till naturen
   yir_thank_your_for_being_generous: |
     Tack för att du bidrar med din tid, uppmärksamhet, expertis och donationer! iNaturalist är ett ideellt gemensamt initiativ av California Academy of Sciences och National Geographic Society. Programmet bygger på otaliga bidrag och donationer, inklusive välgörenhetsgåvor från mindre än en liten bråkdel av communityn. Vi är särskilt tacksamma till Månatliga Bidragsgivare vars återkommande gåvor hjälper oss att planera inför framtiden.
   yir_your_gift_sustains: |
@@ -5459,7 +5459,7 @@ sv:
           eller
           <code>family=måsfåglar</code>
         coordinates_desc: |
-          Genom att ge din guide koordinater hjälper du människor att hitta den när de söker efter position.
+          Genom att ge din guide koordinater hjälper du användare att hitta den när de söker efter position.
         eol_subjects_desc: |
           EOL publicerar innehåll under ett antal olika ämnesrubriker, som inte alla är tillgängliga för alla taxa. Att välja "Översikt" kommer bara att importera den första tillgängliga textdelen från EOL, som vanligen är en sammanfattning när den finns.
         eol_collection_desc_html: |
@@ -6390,7 +6390,7 @@ sv:
           Är du säker på att du vill konvertera detta projekt till ett Samlingsprojekt?
         bioblitz_results_desc_html: |
           <p>
-          Till skillnad från vanliga projekt visar bioblitzar händelsestatistik från <em>alla</em> fynd inom en fyndplats och tidsperiod, inte bara fynd som människor avsiktligt har lagt till projektet. Detta, för att ta bort hindret med att lägga till fynd till ett projekt bara för att köra statistiken i realtid. Observera att fynd inte kommer att vara tillgängliga för export eller visning i olika projektvyer såsom medlemsbidrag på webbplatsen eller sökning på projektfynd i mobilapparna såvida inte projektgruppen och
+          Till skillnad från vanliga projekt visar bioblitzar händelsestatistik från <em>alla</em> fynd inom en fyndplats och tidsperiod, inte bara fynd som användare avsiktligt har lagt till projektet. Detta, för att ta bort hindret med att lägga till fynd till ett projekt bara för att köra statistiken i realtid. Observera att fynd inte kommer att vara tillgängliga för export eller visning i olika projektvyer såsom medlemsbidrag på webbplatsen eller sökning på projektfynd i mobilapparna såvida inte projektgruppen och
           deltagarna aktivt lägger till relevanta fynd som de skulle göra i ett vanligt projekt.
           </p>
           <p>
@@ -6597,7 +6597,7 @@ sv:
         about_taxon_curators_desc: |
           Dessa personer hanterar den del av det taxonomiska trädet som inkluderar detta taxon. Om du vill göra ändringar, vänligen flagga detta taxon eller kontakta någon av dessa personer.
         charts_help_seasonality: |
-          Detta diagram visar antalet fynd av detta taxon grupperat efter månad. Tänk på att detta är fyndantal, så de påverkas både av när organismen kan bserveras och när människor bry sig om att observera dem. En fågel kan alltså tyckas vara mycket aktiv i maj, men det kan också bero på att fler människor skådar i maj men tenderar att ignorera den arten under följande månader. På samma sätt, om du ser fler trollsländor i juni än i januari, beror det förmodligen på att det finns fler personer som observerar på norra halvklotet än på
+          Detta diagram visar antalet fynd av detta taxon grupperat efter månad. Tänk på att detta är fyndantal, så de påverkas både av när organismen kan bserveras och när människor bry sig om att observera dem. En fågel kan alltså tyckas vara mycket aktiv i maj, men det kan också bero på att fler personer skådar i maj men tenderar att ignorera den arten under följande månader. På samma sätt, om du ser fler trollsländor i juni än i januari, beror det förmodligen på att det finns fler personer som observerar på norra halvklotet än på
           det södra och inte för att trollsländor är mer aktiva i juni, så kolla kartan när du begrundar dessa diagram. Det är alltid en bra idé att vara skeptisk till dessa diagram när det finns få fynd och/eller stora skillnader mellan antalet "Verifierbara" fynd och sådana av "Forskningsklass".
         charts_help_history: |
           Detta diagram visar antalet fynd av detta taxon per månad under de senaste tio åren. Återigen är det beroende av antal personer som observerar, men du kommer att se märkliga fyndtoppar, och om det verkar platt eller minskande trots ett ökande antal observatörer, skulle det kunna bero på en abundansförändring.
@@ -6605,7 +6605,7 @@ sv:
           Vi visar också säsongsbetonade diagram för fyndanteckningar.
           Anteckningar är ett sätt att lägga till metadata till fynd genom ett kontrollerat ordförråd för termer, t.ex. om ett fynd visar en växt som blommar eller är i frukt.
         charts_help_relative_observations: |
-          Att visa frekvens som en relativ andel av alla fynd hjälper till att jämna ut effekten av webbplatsens tillväxt överlag. Till exempel, om webbplatsen växer och vi får fler fynd med varje nytt år, får vi fler fynd av varje enskilt taxon, men det säger inget om huruvida det finns mer av detta taxon att observera, bara att det finns fler människor som observerar det. Att visa den relativa andelen betyder att om det finns 100 fynd totalt, och 20 fynd av detta taxon, är andelen 0,2 (20 / 100). Om det observeras 2000 fynd nästa år, varav 400 fynd av detta taxon, är andelen fortfarande 0,2 (400 / 2000). Detta orsakar vissa avvikelser när det finns mycket få observatörer i ett område, eller för taxa som mycket sällan observeras, men det gäller även för totalt antal.
+          Att visa frekvens som en relativ andel av alla fynd hjälper till att jämna ut effekten av webbplatsens tillväxt överlag. Till exempel, om webbplatsen växer och vi får fler fynd med varje nytt år, får vi fler fynd av varje enskilt taxon, men det säger inget om huruvida det finns mer av detta taxon att observera, bara att det finns fler personer som observerar det. Att visa den relativa andelen betyder att om det finns 100 fynd totalt, och 20 fynd av detta taxon, är andelen 0,2 (20 / 100). Om det observeras 2000 fynd nästa år, varav 400 fynd av detta taxon, är andelen fortfarande 0,2 (400 / 2000). Detta orsakar vissa avvikelser när det finns mycket få observatörer i ett område, eller för taxa som mycket sällan observeras, men det gäller även för totalt antal.
         complete_taxon_desc: |
           "Fullständiga" taxa har alla underliggande, befintliga taxa av en specifik rang inkluderade i webbplatsens databas. När ett taxon är komplett ner till art, till exempel, kan vi säga hur många av dess arter som har observerats och hur många som fortfarande behöver observeras. Antalet arter för "fullständiga" taxa som är kompletta ner till art omfattar inte "oräkneliga" arter såsom utdöda arter eller inaktiva artkoncept, och de omfattar endast arter, inte lägre taxa som underarter
           eller varieteter.
@@ -6926,7 +6926,7 @@ sv:
         explore_and_share: Utforska och dela dina fynd från naturen.
         observations_to_date: 'Fynd hittills'
         species_observed: 'Observerade arter'
-        people_signed_up: 'Registrerade personer'
+        people_signed_up: 'Registrerade användare'
         how_it_works: Hur det fungerar
         record_your_observations: Spara dina fynd
         share_with_fellow_naturalists: Dela med andra naturforskare
@@ -7367,16 +7367,43 @@ sv:
         url: URL
         citation: Citering
       taxon:
-        name: Namn
-        rank: Rang
-        parent_id: FöräldraID
-        locked: Låst
-        auto_photos: Automatiska bilder
+        ancestry: Ursprung
         auto_description: Automatisk beskrivning
-        wikipedia_title: Wikipedia-titel
-        wikipedia_summary: Wikipedia-sammanfattning
+        auto_photos: Automatiska bilder
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: Fullständig rang
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Bevarandestatus
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: Uppmärksammat
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: Ikoniskt taxonID
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Aktivt?
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Ikoniskt?
+        locked: Låst
+        name: Namn
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Namnkälla
+        parent_id: FöräldraID
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Bilder låsta?
+        rank: Rang
+        rank_level: Rangnivå
+        source_id: Käll-ID
         source_identifier: Källans identifierare
         source_url: Källans URL
+        #Identifier of the taxon framework relationship record associated
+        #with this taxon
+        taxon_framework_relationship_id: TaxonkontextsrelationsID
+        wikipedia_summary: Wikipedia-sammanfattning
+        wikipedia_title: Wikipedia-titel
       taxon_name:
         is_valid: Är giltigt?
         lexicon: Lexikon
