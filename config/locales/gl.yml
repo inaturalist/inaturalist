@@ -6778,16 +6778,16 @@ gl:
         url: Enlace
         citation: Bibliografía
       taxon:
-        name: Nome
-        rank: Clasificación
-        parent_id: Identificador da clase ou especie pai
-        locked: Cadeado
-        auto_photos: Cargar as fotos automaticamente
         auto_description: Cargar a descrición automaticamente
-        wikipedia_title: Título de Wikipedia
-        wikipedia_summary: Resumo de Wikipedia
+        auto_photos: Cargar as fotos automaticamente
+        locked: Cadeado
+        name: Nome
+        parent_id: Identificador da clase ou especie pai
+        rank: Clasificación
         source_identifier: Identificador da fonte
         source_url: Enlace fonte
+        wikipedia_summary: Resumo de Wikipedia
+        wikipedia_title: Título de Wikipedia
       taxon_name:
         name_provider: Provedor de nome
         source_url: Dirección web da fonte
