@@ -131,7 +131,9 @@ ja:
   #should work here
   about_place: "%{place}について"
   about_places: 場所について
+  about_taxon_ranges: 分類群の分布・生息区域について
   about_the_cc_licenses: クリエイティブ・コモンズ・ライセンスについて
+  about_the_network: ネットワークについて
   about_these_licenses: ライセンスについて
   about_this_bioblitz: このバイオブリッツについて
   about_this_map: この地図について
@@ -161,9 +163,14 @@ ja:
   accuracy_meters: 精度（m）
   accuracy_of_the_coordinates: |
     座標の誤差、単位はメートル。画面上部の「編集」ボタンを押すか、地図のマーカを押してハンドルを押したまま引くと修正できます。円は大きめにして、自分の現在地がその中に入るようにします。
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: 操作
   actions: 操作
   active: 活動中
+  #Status of a complete set that is available for use
+  active_complete_set_status: 有効
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: 有効
   active_users: 活動中の利用者
   activity: 活動
   activity_settings: アクティビティ設定
@@ -414,6 +421,7 @@ ja:
   alphabetical_order: アルファベット順
   already_have_an_account_log_in_html: アカウントは登録済みですか？ <strong>ログインしてください。</strong>
   amphibians: 両生類
+  analyze_ids: 分析ID
   ancestor_taxon: 祖先の分類群
   and: そして
   and_other_taxa: "&amp; その他の分類群"
@@ -591,17 +599,21 @@ ja:
   back_to_taxon: "%{defaulttaxon}に戻る"
   back_to_taxon_changes: "分類群変更履歴へ戻る"
   back_to_taxon_framework_for_x: "%{taxon_name} のタクソン・フレームワークに戻る"
+  back_to_users_calendar: "%{user}のカレンダーに戻る"
+  back_to_users_lists: "%{user}のリストに戻る"
   back_to_viewing: "<i>%{taxon}</i>に戻る"
   back_to_x: "%{noun}に戻る"
   back_to_x_assessment: "%{project}の評定に戻る"
   back_to_x_history: "%{x}の履歴へ戻る"
   back_to_x_journal: "%{user}さんの日記へ戻る"
   back_to_x_blog: "%{x}のブログに戻る"
+  back_to_your_calendar: カレンダーに戻る
   back_to_your_dashboard: 自分のダッシュボードに戻る
   back_to_your_lists: 自分のリストに戻る
   back_to_your_journal: 自分の日記に戻る
   back_to_your_observations: 自分の観察記録に戻る
   back_to_your_profile: 自分のプロフィールに戻る
+  badges: バッジ
   based_on_the_evidence_can_id_be_improved: |
     証拠に基づいてコミュニティ分類群を確定しますか、改善しますか？
   batch: 一括
@@ -4684,15 +4696,15 @@ ja:
         title: タイトル
         citation: 引用
       taxon:
-        name: 名称
-        rank: 階級
-        parent_id: 親ID
-        locked: ロック済み
-        auto_photos: 自動写真
         auto_description: 自動説明
-        wikipedia_title: ウィキペディアのタイトル
-        wikipedia_summary: ウィキペディアより概要
+        auto_photos: 自動写真
+        locked: ロック済み
+        name: 名称
+        parent_id: 親ID
+        rank: 階級
         source_url: ソースURL
+        wikipedia_summary: ウィキペディアより概要
+        wikipedia_title: ウィキペディアのタイトル
       taxon_name:
         name_provider: 名称提供先
         source_url: ソースURL

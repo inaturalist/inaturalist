@@ -1,4 +1,8 @@
 da:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} ændring"
+    other: "%{count} ændringer"
   x_comments:
     one: '1 kommentar'
     other: '%{count} kommentarer'
@@ -223,6 +227,7 @@ da:
   accuracy_meters: Nøjagtighed (meter)
   accuracy_of_the_coordinates: |
     Koordinaternes nøjagtighed i meter. Du kan redigere nøjagtigheden ved at trykke på "Rediger" herover eller ved at klikke på kortmarkøren og trække. Prøv at lave cirklen så stor at du er sikker på at du var et sted inden for den.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Handling
   actions: Handlinger
   active: Aktiv
@@ -791,6 +796,7 @@ da:
   by_you: Af dig
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalendere viser kun %{x} observationer ad gangen
+  callback_url: Callback URL
   cancel: Annullér
   cant_edit_or_delete_hidden_content: Du kan ikke redigere eller slette indhold, som er blevet skjult af sidens kuratorer
   cant_flag_an_object_that_doesnt_exist: Kan ikke markere et objekt, som ikke eksisterer
@@ -866,6 +872,8 @@ da:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} blev sammenlagt i %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} bliver sammenlagt i %{output_taxon}"
   change_your_password: Ændre din adgangskode
+  #Plural noun, as in changes to a taxon record over time
+  changes: Ændringer
   changing_the_geoprivacy: 'Ændring af geofortrolighed ændrer hvordan andre personer ser placeringen af din observation.'
   check_above_for_errors: Tjek ovenstående for fejl
   check_back_soon: Kig ind snart!
@@ -3679,6 +3687,8 @@ da:
   please_complete_the_following_to_add_project: |
     Udfyld venligst følgende for at tilføje denne observation til projektet:
   please_confirm_your_inat_username: "Bekræft venligst dit %{site_name} brugernavn"
+  please_explain_why_you_want_to_hide_this: Forklar venligst, hvorfor dette skjules
+  please_explain_why_you_want_to_unhide_this: Forklar venligst, hvorfor dette ikke længere skal skjules
   please_fix_your_csv_and_try_again: Ret venligst din CSV og prøv igen.
   please_hold_on_while_the_file: Vent venligst, mens filen genereres. Det kan tage et par minutter, hvis du har mange observationer.
   please_hold_on_while_the_file_is_generated: Vent venligst, mens filen genereres. Det kan tage et par minutter for store lister.
@@ -3970,6 +3980,8 @@ da:
   recently_finished: Nyligt afsluttet
   recently_observed: Nyligt observeret
   recently_resolved: Nyligt løst
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Optegnelse
   red: rød
   redo_search_in_map: Gentag søgning på kort
   redo_search_in_map_area: Gentag søgning på kortområde
@@ -4084,6 +4096,7 @@ da:
     must_be_in: skal være takson
     must_be_coordinates_shareable_by_project_curators: observatør skal tillade projektkuratorer at se koordinater.
     must_be_verifiable: skal være verificerbar
+    must_be_wild: skal være vild
   running_total: Igangværende total
   said: sagde
   satellite: satellit
@@ -4602,6 +4615,7 @@ da:
   taxon_framework_relationship_unknown_count_html: "Slægtsskab ukendt-antal: %{count}"
   taxon_framework_relationships: Taksonramme relationer
   taxon_framework_taxon: Taksonramme takson
+  taxon_history_notice: Historik blev indført februar 2022, så ingen historik findes før denne dato.
   taxon_merge: takson sammenlægning
   taxon_name: Takson navn
   taxon_name_must_match_an_existing_taxon_in_our_database: Takson navn skal matche et eksisterende takson i vores database
@@ -5180,6 +5194,8 @@ da:
   where_were_you?: Hvor observerede du den?
   which_projects_can_add_your_observations?: Hvilke traditionelle projekter kan tilføje dine observationer?
   white: hvid
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Hvorfor foretages denne ændring? (valgfrit)
   why_you_can_see_the_coordinates: Hvorfor du kan se koordinaterne
   who_can_add_observation_fields_to_my_obs: Hvem kan tilføje observationsfelter til mine observationer?
   who_can_add_observations_to_this_project?: Hvem kan tilføje observationer til dette projekt?
@@ -7685,6 +7701,8 @@ da:
         #confidential, e.g. a native or desktop app as opposed to a web
         #app.
         confidential: Fortrolig
+      place_taxon_name:
+        position: Position
       post:
         title: Titel
         body: Indhold
@@ -7728,18 +7746,49 @@ da:
         url: URL
         citation: Citation
       taxon:
-        name: Navn
-        rank: Rang
-        parent_id: Overordnet ID
-        locked: Låst
-        auto_photos: Auto. foto´s
+        ancestry: Herkomst
         auto_description: Auto. beskrivelse
-        wikipedia_title: Wikipedia titel
-        wikipedia_summary: Wikipedia oversigt
+        auto_photos: Auto. foto´s
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: Komplet rangering
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Bevaringsstatus
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: Fremvist d.
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: Ikonisk takson-ID
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Aktiv?
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Ikonisk?
+        locked: Låst
+        name: Navn
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Navneleverandør
+        parent_id: Overordnet ID
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Fotos låst?
+        rank: Rang
+        rank_level: Rangeringsniveau
+        source_id: 'Kilde-ID:'
         source_identifier: Kilde identifikator
         source_url: Kilde URL
+        #Identifier of the taxon framework relationship record associated
+        #with this taxon
+        taxon_framework_relationship_id: Taksonrammerelations-ID
+        wikipedia_summary: Wikipedia oversigt
+        wikipedia_title: Wikipedia titel
       taxon_name:
+        is_valid: Er gyldig?
+        lexicon: Leksikon
+        name: Navn
         name_provider: Navne udbyder
+        position: Position
         source_url: Kilde URL
         source_identifier: Kilde identifikator
       user:

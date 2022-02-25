@@ -200,6 +200,7 @@ pt:
   accuracy_meters: Precisão (metros)
   accuracy_of_the_coordinates: |
     A precisão das coordenadas estão em metros. Podes modificá-la premendo, acima, a hiperligação "modificar", ou premendo no marcador do mapa e arrastando os círculos. Tenta fazer o círculo de um modo que fiques em seu interior.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Ação
   actions: Ações
   active: Ativo
@@ -3828,15 +3829,15 @@ pt:
         title: Título
         citation: Bibliografía
       taxon:
+        auto_description: Carregar a descrição automaticamente
+        auto_photos: Carregar as fotos automaticamente
+        locked: Bloqueado
         name: Nome
         rank: Classificação
-        locked: Bloqueado
-        auto_photos: Carregar as fotos automaticamente
-        auto_description: Carregar a descrição automaticamente
-        wikipedia_title: Título do artigo no Wikipedia
-        wikipedia_summary: Resumo do conteúdo do Wikipedia
         source_identifier: Identificador da fonte
         source_url: Fonte URL
+        wikipedia_summary: Resumo do conteúdo do Wikipedia
+        wikipedia_title: Título do artigo no Wikipedia
       taxon_name:
         source_url: Fonte URL
         source_identifier: Identificador da fonte

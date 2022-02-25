@@ -198,6 +198,7 @@ id:
   accuracy_meters: Akurasi (meter)
   accuracy_of_the_coordinates: |
     Keakuratan koordinat dalam meter. Anda dapat mengedit ini dengan mengeklik tautan "edit" di atas atau dengan mengeklik penanda peta dan menyeret pegangannya. Cobalah untuk membuat lingkaran yang cukup besar hingga Anda yakin Anda berada di suatu tempat di dalamnya.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Tindakan
   actions: Tindakan
   active: Aktif
@@ -3946,6 +3947,7 @@ id:
     must_be_in: harus di dalam takson
     must_be_coordinates_shareable_by_project_curators: pengamat harus mengizinkan kurator proyek untuk melihat koordinat.
     must_be_verifiable: harus bisa diverifikasi
+    must_be_wild: harus liar
   running_total: Total Akumulasi
   said: mengatakan
   satellite: satelit
@@ -7008,16 +7010,43 @@ id:
         url: URL
         citation: Kutipan
       taxon:
-        name: Nama
-        rank: Peringkat
-        parent_id: ID Induk
-        locked: Terkunci
-        auto_photos: Foto Otomatis
+        ancestry: Nenek Moyang
         auto_description: Deskripsi Otomatis
-        wikipedia_title: Judul Wikipedia
-        wikipedia_summary: Ringkasan Wikipedia
+        auto_photos: Foto Otomatis
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: Kategori lengkap
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Status konservasi
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: Ditampilkan pada
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: ID takson ikonik
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Aktif?
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Ikonik?
+        locked: Terkunci
+        name: Nama
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Penyedia nama
+        parent_id: ID Induk
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Foto dikunci?
+        rank: Peringkat
+        rank_level: Tingkat kategori
+        source_id: ID sumber
         source_identifier: Pengidentifikasi sumber
         source_url: URL Sumber
+        #Identifier of the taxon framework relationship record associated
+        #with this taxon
+        taxon_framework_relationship_id: ID hubungan framework takson
+        wikipedia_summary: Ringkasan Wikipedia
+        wikipedia_title: Judul Wikipedia
       taxon_name:
         name_provider: Nama penyedia
         source_url: URL Sumber

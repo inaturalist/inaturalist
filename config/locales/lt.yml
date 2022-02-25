@@ -1,4 +1,10 @@
 lt:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} pakeitimas"
+    few: "%{count} pakeitimai"
+    many: "%{count} pakeitimai"
+    other: "%{count} pakeitimai"
   x_comments:
     one: '%{count} komentaras'
     few: '%{count} komentarai'
@@ -296,6 +302,7 @@ lt:
   accuracy_meters: Tikslumas (metrais)
   accuracy_of_the_coordinates: |
     Koordinačių tikslumas metrais. Gali tai redaguoti paspausdami nuorodą „redaguoti“ aukščiau arba paspausdami ant žemėlapio žymeklio ir tempdami rankenas. Pasistenkite, kad apskritimas būtų tokio dydžio, kad būtumėte tikras, kad buvote jo viduje.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Veiksmas
   actions: Veiksmai
   active: Aktyvus
@@ -864,6 +871,7 @@ lt:
   card: Kortelė
   casual: netinkamas
   casual_: Netinkamas
+  casual_tooltip_html: 'Stebėjimui trūksta medijos, vietovės, datos arba neatitinka „Tyrimo“ ir „Trūksta ID“ kokybės įvertinimo dėl kitų priežasčių. <a href="https://www.inaturalist.org/pages/help#quality">Sužinokite daugiau apie kokybės įvertinimą</a>'
   categories: Kategorijos
   cc_0_name: Nėra Autorinių Teisių (CC0)
   cc_attribution_license: Creative Commons Attribution licencija
@@ -920,6 +928,8 @@ lt:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} buvo sujungtas į %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} bus sujungtas į %{output_taxon}"
   change_your_password: Keisti Savo Slaptažodį
+  #Plural noun, as in changes to a taxon record over time
+  changes: Pakeitimai
   changing_the_geoprivacy: 'Vietos privatumo pakeitimas lemia, kaip kiti žmonės mato jūsų stebėjimo vietą.'
   check_above_for_errors: Patikrinkite, ar nėra klaidų
   check_back_soon: Patikrinkite netrukus!
@@ -970,6 +980,10 @@ lt:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komentuoti
   comment_deleted: Komentaras ištrintas
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Komentaras paslėptas
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Komentaras nebepaslėptas
   comments: Komentarai
   comments_by_me: Mano komentarai
   comments_have_been_disabled: Komentarai buvo išjungti
@@ -1022,6 +1036,7 @@ lt:
   computer_vision_model_pending_desc: |
     Dabartinis kompiuterinio matymo modelis nežino apie šį taksoną, taigi, nors šis taksonas gali būti įtrauktas į automatinių pasiūlymų sąrašą su etikete „netoliese“, prie jo nebus etiketės „vizualiai panašus“. Kiekvienam modeliui galioja skirtingos įtrauktimo taisyklės, tačiau dažniausiai įtraukimas priklauso nuo stebėjimų skaičiaus, todėl, norint padidinti galimybę šiam taksonui būti įtrauktam kito modelio mokymo metu, įkelkite arba identifikuokite daugiau šio taksono stebėjimų.
   concept_status: Koncepcijos Būsena
+  confidential: Konfidencialu
   configure: Konfigūruoti
   configure_a_widget_to_show: Konfiguruoti valdiklį, kad jis rodytų %{site_name} stebėjimus jūsų tinklalapyje ar tinklaraštyje. Jums gali reikėti įtraukti įterptą CSS <code>&lt;head&gt;</code> jūsų HTML. Nesivaržykite perrašyti CSS.
   confirm: Patvirtinti
@@ -1203,6 +1218,10 @@ lt:
     Turite paaiškinti, kodėl norite tapti kuratoriumi
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Kodėl norite tapti kuratoriumi?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Jei norite redaguoti „iNaturalist“ taksonomiją, pateikite vieną ar du taksonomijos pakeitimų, kuriuos norite atlikti, pavyzdžius ir nurodykite šaltinį(-ius). Jei pakeitimas atitinka reikalavimus, nurodykite atitinkamą taksonomijos autorių, <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">įvardytą Kuratoriaus gairėse</a>. Jei nenurodysite šaltinių, jūsų siūlomi pakeitimai nebus svarstomi.
   #Header
   curator_application_how_curators_lose_their_powers: |
     Kaip kuratorius praranda savo galias
@@ -1217,8 +1236,14 @@ lt:
   #"Curators cannot..."
   curator_application_what_curators_cannot_do_delete_html: |
     Ištrinti kitų vartotojų sukurtą turinį
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Skaityti kitų žmonių žinučių.
   #Title of a page where people apply to become a curator
   curator_application_title: Kuratoriaus paraiška
+  curators_changed_for_x_html: "Kuratoriai keičiami kas %{x}"
   curators: Kuratoriai
   curator_identification: Kuratorius identifikavimas
   current_flags: Dabartinės žymės
@@ -1332,6 +1357,11 @@ lt:
   details: Informacija
   deviation: Nuokrypis
   devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Jei jūsų el. pašto adresas saugojamas mūsų duomenų bazėje, netrukus gausite el. laišką su jūsų el. pašto patvirtinimo instrukcijomis.
     failure:
       already_authenticated: 'Jūs jau esate prisijungęs.'
       unauthenticated: 'Prieš tęsiant, Jums reikia prisijungti arba užsiregistruoti.'
@@ -1364,6 +1394,7 @@ lt:
     Jei jūs to neprašėte, prašome ignoruoti šį el. laišką.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Jūsų slaptažodis nepasikeis tol, kol nesukursite naujo paspausite aukščiau esančią nuorodą.
+  devise_unlock_instructions_unlock: Atblokuoti paskyrą
   discoveries: Atradimai
   did_you_mean: 'Ar turėjote omenyje'
   did_you_photos_flickr?: Ar įkėlėte nuotraukų į Flickr?
@@ -1804,6 +1835,8 @@ lt:
   identification_by_user: Identifikuota %{user}
   identification_deleted: Identifikacija ištrinta.
   identification_saved: "Identifikacija išsaugota!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Identifikacijos tekstas nebepaslėptas
   identification_updated: Identifikacija atnaujinta!
   identification_user_short: Ident. vartotojas
   identification_withdrawn: Identifikacija atsiimta.
@@ -2290,6 +2323,11 @@ lt:
   multiple: keli
   multiple_select_option: '-- kelis --'
   multiple_taxon_ids_separated_by_commas: 'Daug taksonų ID, atskirtų kableliais, pvz.: 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: turi būti projekte %{project}
+  must_be_in_taxon: turi būti taksone %{taxon}
+  must_be_not_in_taxon: neturi būti taksone %{taxon}
   must_be_not_observed_in_place: turi nebūti stebėtas %{place}
   must_be_observed_after: turi būti stebėtas po %{operand}
   must_be_observed_before: turi būti stebėtas prieš %{operand}
@@ -2298,6 +2336,8 @@ lt:
   must_be_less_than_x_MB: "Turi būti mažesnis nei %{x} MB"
   must_have_observation_field: "turi būti užildytas stebėjimo laukas „%{operand}“"
   must_have_photos: turi turėti nuotraukų
+  #Grades is a comma separated list of quality grades
+  must_have_quality_grades: "turi turėti kokybės įvertinimą %{grades}"
   must_have_sounds: turi turėti garsų
   must_have_x: "turi turėti %{x}"
   mute_user: Užtildyti vartotoją
@@ -2449,6 +2489,7 @@ lt:
   no_taxa: Nėra taksonų
   no_taxa_selected: Jokie taksonai nepasirinkti!
   no_taxon_framework_relationships: nėra taksono struktūros ryšių
+  no_users_found_with_those_filters: Vartotojų nerasta pagal tokius kriterijus
   no_wikipedia_page_for_taxon: Šis taksonas neturi Vikipedijos straipsnio.
   noble_curators: "%{site} geraširdžiai kuratoriai"
   non_human?: Ne žmogus?
@@ -3089,6 +3130,8 @@ lt:
   please_add_a_citation_for_this_change: Prašome pridėti citatą prie šio pakeitimo.
   please_allow_a_few_weeks_for_external_sites: Prašome išoriniams tinklalapiams duoti kelias savaites sinchronizuoti šio stebėjimo pakeitimus #Title to a section warning a user to exercise caution
   please_confirm_your_inat_username: "Prašome patvirtinti savo %{site_name} vartotojo vardą"
+  please_explain_why_you_want_to_hide_this: Paaiškinkite, kodėl norite tai slėpti
+  please_explain_why_you_want_to_unhide_this: Paaiškinkite, kodėl nebenorite to slėpti
   please_fix_your_csv_and_try_again: Prašome sutaisyti savo CSV ir bandyti dar kartą.
   popular: Populiarus
   position: Pozicija
@@ -3309,6 +3352,8 @@ lt:
   recently_finished: Neseniai baigti
   recently_observed: Neseniai stebėta
   recently_resolved: Neseniai išspręsti
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Įrašas
   red: raudona
   redo_search_in_map: Pakartoti paiešką žemėlapyje
   redo_search_in_map_area: Pakartoti paiešką žemėlapio plote
@@ -3406,6 +3451,7 @@ lt:
     must_be_observed_in_place: turi būti stebėtas vietoje
     must_be_in: turi būti taksone
     must_be_coordinates_shareable_by_project_curators: stebėtojas turi leisti projekto kuratoriams žiūrėti koordinates.
+    must_be_wild: turi būti laukinis
   said: pasakė
   satellite: palydovas
   save: Išsaugoti
@@ -3781,6 +3827,7 @@ lt:
   taxon_framework_relationship_unknown_count_html: "Nežinomų ryšių skaičius: %{count}"
   taxon_framework_relationships: Taksono struktūros ryšiai
   taxon_framework_taxon: Taksono struktūros taksonas
+  taxon_history_notice: Istorija buvo pristatyta 2022 metų vasarį, todėl nėra ankstesnės istorijos.
   taxon_name: Taksono pavadinimas
   taxon_observed_by_html: |
     <a href="%{url}">%{taxon}</a> stebėjo
@@ -4194,6 +4241,8 @@ lt:
   where_were_they?: Kur jie?
   where_were_you?: Kur buvote?
   white: balta
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Kodėl darote šį pakeitimą? (neprivaloma)
   why_you_can_see_the_coordinates: Kodėl galite matyti koordinates
   who_can_add_observations_to_this_project?: Kas gali pridėti stebėjimų prie šio projekto?
   who_can_see_the_coordinates: Kas gali matyti koordinates
@@ -5080,6 +5129,10 @@ lt:
         published_at: Publikacija
       listed_taxon:
         establishment_means: Įsikūrimo būdas
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Priežastis
       observation:
         observed_on: stebėjimo data
       observation_field_value:
@@ -5093,6 +5146,8 @@ lt:
         finished_at: Pabaiga
         #Inputs to an export task, e.g. the query and the columns
         inputs: Įvesties duomenys
+      place_taxon_name:
+        position: Pozicija
       post:
         title: Pavadinimas
       project:
@@ -5123,17 +5178,21 @@ lt:
         url: URL
         citation: Citata
       taxon:
+        auto_description: Automatinis aprašymas
+        auto_photos: Automatinės nuotraukos
+        locked: Užrakintas
         name: Pavadinimas
         rank: Rangas
-        locked: Užrakintas
-        auto_photos: Automatinės nuotraukos
-        auto_description: Automatinis aprašymas
-        wikipedia_title: Wikipedijos antraštė
-        wikipedia_summary: Vikipedijos santrauka
         source_identifier: Šaltinio identifikuotojas
         source_url: Šaltinio URL
+        wikipedia_summary: Vikipedijos santrauka
+        wikipedia_title: Wikipedijos antraštė
       taxon_name:
+        is_valid: yra teisinga?
+        lexicon: Leksikonas
+        name: Pavadinimas
         name_provider: Pavadinimo suteikėjas
+        position: Pozicija
         source_url: Šaltinio URL
         source_identifier: Šaltinio identifikuotojas
       user:
@@ -5158,7 +5217,7 @@ lt:
         greater_than: turi būti daugiau už %{count}
         greater_than_or_equal_to: turi būti daugiau arba lygu %{count}
         inclusion: neįtraukta į sąrašą
-        invalid: yra teisinga
+        invalid: yra neteisinga
         less_than: turi būti mažiau už %{count}
         less_than_or_equal_to: turi būti mažiau arba lygu %{count}
         new_project_owner_must_be_a_manager: Naujasis projekto savininkas turi būti administratorius

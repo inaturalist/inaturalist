@@ -198,6 +198,7 @@ kn:
   accept_community_identifications: ಸಮುದಾಯ ಗುರುತಿಸುವಿಕೆಗಳನ್ನು ಒಪ್ಪಿಕೊಳ್ಳಿ
   accuracy: ನಿಖರತೆ
   accuracy_meters: ನಿಖರತೆ (ಮೀಟರ್‍ಗಳು)
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: ಕ್ರಿಯೆ
   actions: ಕ್ರಿಯೆಗಳು
   active: ಸಕ್ರಿಯ
@@ -5783,14 +5784,14 @@ kn:
         url: URL
         citation: ಉಲ್ಲೇಖ
       taxon:
+        auto_description: ಸ್ವಯಂ ವಿವರಣೆಗಳು
+        auto_photos: ಸ್ವಯಂ ಚಿತ್ರಗಳು
+        locked: ನಿರ್ಬಂಧಿತ
         name: ಹೆಸರು
         rank: ಶ್ರೇಣಿ
-        locked: ನಿರ್ಬಂಧಿತ
-        auto_photos: ಸ್ವಯಂ ಚಿತ್ರಗಳು
-        auto_description: ಸ್ವಯಂ ವಿವರಣೆಗಳು
-        wikipedia_title: ವಿಕಿಪೀಡಿಯಾ ಶೀರ್ಷಿಕೆ
-        wikipedia_summary: ವಿಕಿಪೀಡಿಯಾ ಸಾರಾಂಶ
         source_url: ಮೂಲ URL
+        wikipedia_summary: ವಿಕಿಪೀಡಿಯಾ ಸಾರಾಂಶ
+        wikipedia_title: ವಿಕಿಪೀಡಿಯಾ ಶೀರ್ಷಿಕೆ
       taxon_name:
         name_provider: ನಾಮಾವಳಿ ಪೂರೈಕೆದಾರರು
         source_url: ಮೂಲ URL

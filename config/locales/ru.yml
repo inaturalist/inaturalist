@@ -301,6 +301,7 @@ ru:
   accuracy_meters: Точность (метры)
   accuracy_of_the_coordinates: |
     Точность определения координат в метрах. Вы можете изменить это значение, нажав на ссылку "редактировать" выше или, щёлкнув на маркеры карты, перетащить их. Постарайтесь сделать круг достаточно большим - настолько, чтобы он точно включал место, где вы были.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Действие
   actions: Действия
   active: Активные
@@ -7411,16 +7412,16 @@ ru:
         url: URL
         citation: Ссылка
       taxon:
-        name: Наименование
-        rank: Ранг
-        parent_id: Идентификация родительского таксона
-        locked: Заблокирован
-        auto_photos: Автоматические фото
         auto_description: Автоматическое описание
-        wikipedia_title: Статья Википедии
-        wikipedia_summary: Сводка из Википедии
+        auto_photos: Автоматические фото
+        locked: Заблокирован
+        name: Наименование
+        parent_id: Идентификация родительского таксона
+        rank: Ранг
         source_identifier: Идентификатор источника
         source_url: URL источника
+        wikipedia_summary: Сводка из Википедии
+        wikipedia_title: Статья Википедии
       taxon_name:
         name_provider: Провайдер наименования
         source_url: URL источника

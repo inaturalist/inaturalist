@@ -218,6 +218,7 @@ it:
   accuracy_meters: Precisione (metri)
   accuracy_of_the_coordinates: |
     Precisione delle coordinate in metri. È possibile modificare questa operazione facendo click sul collegamento "modifica" qui sopra o facendo click sull'indicatore di mappa e trascinando gli agganci. Prova a fare un cerchio grande abbastanza per assicurarti di essere stato da qualche parte al suo interno.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Azione
   actions: Azioni
   active: Attivi
@@ -912,9 +913,9 @@ it:
   comment_: Commenta
   comment_deleted: Commento cancellato
   #Notice when a comment has been hidden by moderators
-  comment_hidden: Contenuto nascosto
+  comment_hidden: Commento nascosto
   #Notice when a comment has been unhidden by moderators
-  comment_unhidden: Commento mostrato
+  comment_unhidden: Commento non nascosto
   comments: Commenti
   comments_by_me: I miei commenti
   comments_have_been_disabled: I commenti sono stati disabilitati
@@ -3996,6 +3997,7 @@ it:
     must_be_in: deve essere nel taxon
     must_be_coordinates_shareable_by_project_curators: l'osservatore deve permettere ai curatori del progetto di visualizzare le coordinate.
     must_be_verifiable: dev'esser verificabile
+    must_be_wild: deve essere selvatico
   running_total: Totale attuale
   said: detto
   satellite: satellite
@@ -4349,7 +4351,7 @@ it:
   suspend_user: Sospendi utente
   suspend_user_html: Sospendi %{user}
   suspend_user_reason_instructions_html: |
-    Spiega perché stai sospendendo questo account e cita qualsiasi violazione delle %{link_start_tag}Linee Guida%{link_end_tag}. Per favore astieniti dall'aggiungere opinioni personali.
+    Spiega perché stai sospendendo questo profilo e cita qualsiasi violazione delle %{link_start_tag}Linee Guida della Community%{link_end_tag}. Sei pregato di astenerti dall'aggiungere opinioni personali.
   sw_lat: Lat. SO
   sw_lon: Lon. SO
   sync: Sincronizza?
@@ -4733,7 +4735,7 @@ it:
   unsuspend_user: Riammetti utente
   unsuspend_user_html: Riammetti %{user}
   unsuspend_user_reason_instructions: |
-    Spiega perché stati riammettendo questo utente.
+    Sei pregato di spiegare perché stai riammettendo questo utente.
   upcoming_bioblitzes: Prossime blioblitz
   update: Aggiorna
   update_existing_observations_with_new_license: Aggiorna le osservazioni esistenti con la nuova licenza scelta
@@ -7157,16 +7159,16 @@ it:
         url: URL
         citation: Citazione
       taxon:
-        name: Nome
-        rank: Rango
-        parent_id: ID del taxon di livello superiore
-        locked: Bloccato
-        auto_photos: Carica foto automaticamente
         auto_description: Carica descrizione automaticamente
-        wikipedia_title: Titolo Wikipedia
-        wikipedia_summary: Riassunto Wikipedia
+        auto_photos: Carica foto automaticamente
+        locked: Bloccato
+        name: Nome
+        parent_id: ID del taxon di livello superiore
+        rank: Rango
         source_identifier: Identificatore della fonte
         source_url: URL sorgente
+        wikipedia_summary: Riassunto Wikipedia
+        wikipedia_title: Titolo Wikipedia
       taxon_name:
         name_provider: Nome del provider
         source_url: URL sorgente
@@ -7244,7 +7246,7 @@ it:
             action:
               not_supported_for_this_kind_of_content: non è supportato per questo tipo di contenuto
             base:
-              only_staff_can_unhide: Solo lo staff può mostrare i contenuti nascosti
+              only_staff_can_unhide: Solo lo staff può mostrare nuovamente i contenuti nascosti
               staff_cannot_be_suspended: Lo Staff non può essere sospeso
             user_id:
               must_be_a_curator: deve essere un curatore

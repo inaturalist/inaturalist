@@ -222,6 +222,7 @@ el:
   accuracy_meters: Ακρίβεια (σε μέτρα)
   accuracy_of_the_coordinates: |
     Ακρίβεια των συντεταγμένων σε μέτρα. Μπορείτε να επεξεργαστείτε αυτό πατώντας το κουμπί "Επεξεργασία" ή πατώντας πάνω στο σημάδι του χάρτη και σύροντας τις λαβές. Προσπαθήστε να κάνετε το χάρτη αρκετά μεγάλο έτσι ώστε να είστε σίγουροι ότι βρίσκεστε κάπου μέσα σε αυτόν.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Δράση
   actions: Δράσεις
   active: Ενεργό
@@ -6678,16 +6679,16 @@ el:
         url: URL
         citation: Παραπομπή
       taxon:
-        name: Όνομα
-        rank: Κατάταξη
-        parent_id: Γονεϊκή ταυτότητα
-        locked: Κλειδωμένο
-        auto_photos: Αυτόματες φωτογραφίες
         auto_description: Αυτόματη περιγραφή
-        wikipedia_title: Τίτλος στη Βικιπαίδεια
-        wikipedia_summary: Περίληψη στη Βικιπαίδεια
+        auto_photos: Αυτόματες φωτογραφίες
+        locked: Κλειδωμένο
+        name: Όνομα
+        parent_id: Γονεϊκή ταυτότητα
+        rank: Κατάταξη
         source_identifier: Ταυτοποιητής πηγής
         source_url: URL πηγής
+        wikipedia_summary: Περίληψη στη Βικιπαίδεια
+        wikipedia_title: Τίτλος στη Βικιπαίδεια
       taxon_name:
         name_provider: Πάροχος ονομασίας
         source_url: URL πηγής

@@ -177,6 +177,7 @@ zh-TW:
   accuracy_meters: 精確度 (公尺)
   accuracy_of_the_coordinates: |
     坐標精確度達數公尺。您可以點擊上方「編輯」連結修改或點選地圖上的標記，拖曳控制棒來修改座標。請盡量擴大圓形區塊，直到您確定自己位於其範圍中。
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: 操作
   actions: 操作
   active: 有效
@@ -6927,16 +6928,16 @@ zh-TW:
         url: 網址
         citation: 引用
       taxon:
-        name: 名稱
-        rank: 級別
-        parent_id: 父級鑑定
-        locked: 已鎖定
-        auto_photos: 自動照片
         auto_description: 自動描述
-        wikipedia_title: 維基百科標題
-        wikipedia_summary: 維基百科摘要
+        auto_photos: 自動照片
+        locked: 已鎖定
+        name: 名稱
+        parent_id: 父級鑑定
+        rank: 級別
         source_identifier: 來源鑑定人
         source_url: 來源 URL
+        wikipedia_summary: 維基百科摘要
+        wikipedia_title: 維基百科標題
       taxon_name:
         name_provider: 名稱提供者
         source_url: 來源 URL

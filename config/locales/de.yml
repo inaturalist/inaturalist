@@ -225,6 +225,7 @@ de:
   accuracy_meters: Genauigkeit (Meter)
   accuracy_of_the_coordinates: |
     Genauigkeit der Koordinaten in Metern. Diese kannst du bearbeiten, indem du oben auf den Link „Bearbeiten“ klickst oder indem du auf den Kartenpin klickst und dann an den Punkten ziehst. Versuche, den Kreis groß genug zu ziehen, sodass du sicher sein kannst, dass du dich innerhalb aufgehalten hast.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Aktion
   actions: Aktionen
   active: Aktiv
@@ -3996,6 +3997,7 @@ de:
     must_be_in: 'muss in diesem Taxon sein:'
     must_be_coordinates_shareable_by_project_curators: Der Beobachter muss den Projektkuratoren erlauben, die Koordinaten einzusehen.
     must_be_verifiable: muss verifizierbar sein
+    must_be_wild: muss wild sein
   running_total: Gesamtzahl
   said: sagte
   satellite: Satellit
@@ -7274,13 +7276,13 @@ de:
         url: URL
         citation: Zitierung
       taxon:
+        auto_description: Automatische Beschreibung
+        locked: Gesperrt
         name: Name
         rank: Rang
-        locked: Gesperrt
-        auto_description: Automatische Beschreibung
-        wikipedia_title: Wikipedia-Titel
-        wikipedia_summary: Wikipedia-Zusammenfassung
         source_url: Quell-URL
+        wikipedia_summary: Wikipedia-Zusammenfassung
+        wikipedia_title: Wikipedia-Titel
       taxon_name:
         name_provider: Namensanbieter
         source_url: Quellen-URL

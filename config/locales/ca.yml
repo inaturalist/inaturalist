@@ -218,6 +218,7 @@ ca:
   accuracy_meters: Exactitud (metres)
   accuracy_of_the_coordinates: |
     Exactitud de les coordenades en metres. Les podeu canviar fent clic a l’enllaç "edita" o amb un clic al punt de la ubicació en el mapa. Intenteu fer el cercle prou gran per garantir que estàveu en algun lloc de l'àrea marcada.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Acció
   actions: Accions
   active: Actiu
@@ -3982,6 +3983,7 @@ ca:
     must_be_in: ha d'estar en el tàxon
     must_be_coordinates_shareable_by_project_curators: l'observador ha de permetre als supervisors del projecte veure les coordenades.
     must_be_verifiable: ha de ser verificable
+    must_be_wild: ha de ser silvestre
   running_total: Acumulat total
   said: deia
   satellite: satèl·lit
@@ -7105,16 +7107,16 @@ ca:
         url: Enllaç
         citation: Bibliografia
       taxon:
-        name: Nom
-        rank: Rang
-        parent_id: Identificació del tàxon pare
-        locked: Tancat
-        auto_photos: Carrega fotos automàticament
         auto_description: Carrega automàticament la descripció
-        wikipedia_title: Títol de la Viquipèdia
-        wikipedia_summary: Resum de Viquipèdia
+        auto_photos: Carrega fotos automàticament
+        locked: Tancat
+        name: Nom
+        parent_id: Identificació del tàxon pare
+        rank: Rang
         source_identifier: Identificador de la font
         source_url: Enllaç font
+        wikipedia_summary: Resum de Viquipèdia
+        wikipedia_title: Títol de la Viquipèdia
       taxon_name:
         name_provider: Proveïdor de nom
         source_url: Adreça web de la font

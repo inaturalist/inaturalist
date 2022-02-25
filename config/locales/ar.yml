@@ -46,6 +46,7 @@ ar:
   accuracy_meters: الدقة (أمتار)
   accuracy_of_the_coordinates: |
     دقة الإحداثيات  بالأمتار. تستطيع التعديل عن طريق النقر على رابط "تعديل" بالأعلى أو الضغط على العلامة في الخريطه وسحب المقبض، حاول صنع دائره كبيره بحيث تتأكد أنك في مكان ما بداخلها.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: فعل
   actions: إجراءات
   active: نشط
@@ -5568,16 +5569,16 @@ ar:
         url: مسار
         citation: اقتباس
       taxon:
-        name: اسم
-        rank: المرتبة
-        parent_id: معرف الأصل
-        locked: مقفل
-        auto_photos: صور تلقائية
         auto_description: وصف تلقائي
-        wikipedia_title: عنوان ويكيبيديا
-        wikipedia_summary: ملخص ويكيبيديا
+        auto_photos: صور تلقائية
+        locked: مقفل
+        name: اسم
+        parent_id: معرف الأصل
+        rank: المرتبة
         source_identifier: معرف المصدر
         source_url: مسار المصدر
+        wikipedia_summary: ملخص ويكيبيديا
+        wikipedia_title: عنوان ويكيبيديا
       taxon_name:
         name_provider: موفر الاسم
         source_url: مسار المصدر

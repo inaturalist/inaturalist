@@ -230,6 +230,7 @@ fi:
   accuracy_meters: Tarkkuus (metreinä)
   accuracy_of_the_coordinates: |
     Koordinaattien tarkkuus metreinä. Voit muokata tätä napsauttamalla "muokkaa" - linkkiä tai klikkaamalla karttamerkintää ja vetämällä kahvoista. Yritä tehdä ympyrä tarpeeksi isoksi, jotta olet varma, että olit jossain sen sisällä.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Toiminto
   actions: Toiminnot
   active: Aktiivinen
@@ -3769,6 +3770,7 @@ fi:
     must_be_observed_in_place: täytyy olla havaittu paikassa
     must_be_in: täytyy olla taksonissa
     must_be_coordinates_shareable_by_project_curators: havainnoijan on annettava projektin kuraattoreille mahdollisuus tarkistella koordinaatteja.
+    must_be_wild: on oltava luonnonvarainen
   running_total: Kumulatiivinen summa
   said: sanoi
   satellite: satelliitti
@@ -4002,10 +4004,10 @@ fi:
   start_date_time: Aloituspäivä / aika
   start_one: Aloita yksi
   start_one_now: Aloita yksi nyt!
-  start_typing_field_name: Aloita näppäilemällä nimi kenttään...
-  start_typing_place_name: Aloita näppäilemällä paikan nimi...
-  start_typing_taxon_name: Aloita näppäilemällä taksonin nimi...
-  start_typing_someones_name: "Aloita näppäilemällä jonkun nimi..."
+  start_typing_field_name: Aloita kirjoittamalla nimi kenttään...
+  start_typing_place_name: Aloita kirjoittamalla paikan nimi...
+  start_typing_taxon_name: Aloita kirjoittamalla taksonin nimi...
+  start_typing_someones_name: "Aloita kirjoittamalla jonkun nimi..."
   stats: Tilastot
   stats_for_this_year_have_not_been_generated: Paina nappia alta, niin luomme tilastot.
   status: Tila
@@ -6200,16 +6202,16 @@ fi:
         url: URL-osoite
         citation: Viittaus
       taxon:
-        name: Nimi
-        rank: Sija
-        parent_id: Ylemmän taksonin ID
-        locked: Lukittu
-        auto_photos: Automaattiset kuvat
         auto_description: Automaattinen kuvaus
-        wikipedia_title: Wikipedia-otsikko
-        wikipedia_summary: Wikipedia-yhteenveto
+        auto_photos: Automaattiset kuvat
+        locked: Lukittu
+        name: Nimi
+        parent_id: Ylemmän taksonin ID
+        rank: Sija
         source_identifier: Lähdetunniste
         source_url: Lähteen URL-osoite
+        wikipedia_summary: Wikipedia-yhteenveto
+        wikipedia_title: Wikipedia-otsikko
       taxon_name:
         name_provider: Nimipankki
         source_url: Lähteen URL-osoite

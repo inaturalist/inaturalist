@@ -83,6 +83,7 @@ mk:
   accuracy_meters: Уточнетост (метри)
   accuracy_of_the_coordinates: |
     Уточнетост на координатите во метри. Можете да го измените ова на „уреди“ погоре или стискајќи на бележникот на картата и повлекувајќи ги рачките. Потрудете се кружницата да биде доволно голема за да бидете сигурни дека сте некаде во неа.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Дејство
   actions: Дејства
   active: Активен
@@ -1695,14 +1696,14 @@ mk:
         in_text: Во текстот
         citation: Наведување
       taxon:
+        auto_description: Авто. опис
+        auto_photos: Авто. слики
         name: Име
         rank: Ранг
-        auto_photos: Авто. слики
-        auto_description: Авто. опис
-        wikipedia_title: Наслов на Википедија
-        wikipedia_summary: Преглед од Википедија
         source_identifier: Назнака на изворот
         source_url: Изворен URL
+        wikipedia_summary: Преглед од Википедија
+        wikipedia_title: Наслов на Википедија
       taxon_name:
         name_provider: Добавувач на името
         source_url: Изворен URL
