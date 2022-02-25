@@ -7130,16 +7130,16 @@ tr:
         url: URL
         citation: Alıntı
       taxon:
-        name: İsim
-        rank: Sıralama
-        parent_id: Üst Kimliği
-        locked: Kilitli
-        auto_photos: Otomatik fotoğraflar
         auto_description: Otomatik açıklama
-        wikipedia_title: Vikipedi başlığı
-        wikipedia_summary: Vikipedi özeti
+        auto_photos: Otomatik fotoğraflar
+        locked: Kilitli
+        name: İsim
+        parent_id: Üst Kimliği
+        rank: Sıralama
         source_identifier: Kaynak tanımlayıcı
         source_url: Kaynak URL
+        wikipedia_summary: Vikipedi özeti
+        wikipedia_title: Vikipedi başlığı
       taxon_name:
         name_provider: İsim sağlayıcı
         source_url: Kaynak URL
