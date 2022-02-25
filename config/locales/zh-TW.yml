@@ -6928,16 +6928,16 @@ zh-TW:
         url: 網址
         citation: 引用
       taxon:
-        name: 名稱
-        rank: 級別
-        parent_id: 父級鑑定
-        locked: 已鎖定
-        auto_photos: 自動照片
         auto_description: 自動描述
-        wikipedia_title: 維基百科標題
-        wikipedia_summary: 維基百科摘要
+        auto_photos: 自動照片
+        locked: 已鎖定
+        name: 名稱
+        parent_id: 父級鑑定
+        rank: 級別
         source_identifier: 來源鑑定人
         source_url: 來源 URL
+        wikipedia_summary: 維基百科摘要
+        wikipedia_title: 維基百科標題
       taxon_name:
         name_provider: 名稱提供者
         source_url: 來源 URL
