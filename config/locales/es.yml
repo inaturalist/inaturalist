@@ -7301,16 +7301,16 @@ es:
         url: Enlace
         citation: Bibliografía
       taxon:
-        name: Nombre
-        rank: Clasificación
-        parent_id: Identificador de la clase o especie padre
-        locked: Candado
-        auto_photos: Cargar fotos automáticamente
         auto_description: Cargar automáticamente la descripción
-        wikipedia_title: Título de Wikipedia
-        wikipedia_summary: Resumen de Wikipedia
+        auto_photos: Cargar fotos automáticamente
+        locked: Candado
+        name: Nombre
+        parent_id: Identificador de la clase o especie padre
+        rank: Clasificación
         source_identifier: Identificador de la fuente
         source_url: Enlace fuente
+        wikipedia_summary: Resumen de Wikipedia
+        wikipedia_title: Título de Wikipedia
       taxon_name:
         name_provider: Proveedor de nombre
         source_url: Dirección web de la fuente
