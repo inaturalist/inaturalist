@@ -4696,15 +4696,15 @@ ja:
         title: タイトル
         citation: 引用
       taxon:
-        name: 名称
-        rank: 階級
-        parent_id: 親ID
-        locked: ロック済み
-        auto_photos: 自動写真
         auto_description: 自動説明
-        wikipedia_title: ウィキペディアのタイトル
-        wikipedia_summary: ウィキペディアより概要
+        auto_photos: 自動写真
+        locked: ロック済み
+        name: 名称
+        parent_id: 親ID
+        rank: 階級
         source_url: ソースURL
+        wikipedia_summary: ウィキペディアより概要
+        wikipedia_title: ウィキペディアのタイトル
       taxon_name:
         name_provider: 名称提供先
         source_url: ソースURL
