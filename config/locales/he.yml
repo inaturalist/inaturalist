@@ -4731,16 +4731,16 @@ he:
         url: URL
         citation: מקור ביבליוגרפי
       taxon:
-        name: שם
-        rank: דרגה
-        parent_id: זיהוי אב
-        locked: נעול
-        auto_photos: תמונות אוטומטיות
         auto_description: תיאור אוטומטי
-        wikipedia_title: כותרת ויקיפדיה
-        wikipedia_summary: תקציר ויקיפידיה
+        auto_photos: תמונות אוטומטיות
+        locked: נעול
+        name: שם
+        parent_id: זיהוי אב
+        rank: דרגה
         source_identifier: מזהה מקור
         source_url: URL המקור
+        wikipedia_summary: תקציר ויקיפידיה
+        wikipedia_title: כותרת ויקיפדיה
       taxon_name:
         name_provider: מספק שם
         source_url: URL המקור
