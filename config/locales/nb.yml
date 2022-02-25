@@ -6422,16 +6422,16 @@ nb:
         url: URL
         citation: Sitering
       taxon:
-        name: Navn
-        rank: Rang
-        parent_id: Overordnet ID
-        locked: Låst
-        auto_photos: Automatiske bilder
         auto_description: Auto-beskrivelse
-        wikipedia_title: Wikipedia tittel
-        wikipedia_summary: Wikipedia sammendrag
+        auto_photos: Automatiske bilder
+        locked: Låst
+        name: Navn
+        parent_id: Overordnet ID
+        rank: Rang
         source_identifier: Kildeidentifikator
         source_url: Kilde url
+        wikipedia_summary: Wikipedia sammendrag
+        wikipedia_title: Wikipedia tittel
       taxon_name:
         name_provider: Navneleverandør
         source_url: Kilde url
