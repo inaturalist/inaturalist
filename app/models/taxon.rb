@@ -381,8 +381,8 @@ class Taxon < ApplicationRecord
     [status_name, const_get( "IUCN_#{status_name.upcase}" )]
   end.to_h
   IUCN_STATUS_NAMES.each do | status_name |
-    define_method( "iucn_#{status_name}?" ) do
-      conservation_status == self.class.const_get( "IUCN_#{status_name.upcase}" )
+    define_method( "#{status_name}?" ) do
+      global_conservation_status&.iucn == self.class.const_get( "IUCN_#{status_name.upcase}" )
     end
   end
   IUCN_CODE_VALUES = IUCN_STATUS_VALUES.transform_keys do | name |

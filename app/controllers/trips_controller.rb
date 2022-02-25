@@ -160,7 +160,7 @@ class TripsController < ApplicationController
   end
 
   def new
-    @first_trip if Trip.where(user_id: current_user.id).count == 0
+    @first_trip = Trip.where(user_id: current_user.id).count == 0
     @trip = Trip.new(:user => current_user)
     respond_to do |format|
       format.html
