@@ -2744,16 +2744,16 @@ sq:
         in_text: Ne tekst
         citation: Citim
       taxon:
-        name: Emri
-        rank: Renditja
-        parent_id: ID amë
-        locked: I bllokuar
-        auto_photos: Foto automatike
         auto_description: Përshrkim automatik
-        wikipedia_title: Titulli i Wikipedia
-        wikipedia_summary: Përmbledhje e Wikipedia
+        auto_photos: Foto automatike
+        locked: I bllokuar
+        name: Emri
+        parent_id: ID amë
+        rank: Renditja
         source_identifier: Identifikuesi i burimit
         source_url: Burimi URL
+        wikipedia_summary: Përmbledhje e Wikipedia
+        wikipedia_title: Titulli i Wikipedia
       taxon_name:
         name_provider: Ofruesi i emrit
         source_url: Burimi URL
