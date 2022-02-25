@@ -5989,16 +5989,16 @@ zh-CN:
         url: 网址
         citation: 引用
       taxon:
-        name: 名称
-        rank: 排名
-        parent_id: 父ID
-        locked: 已锁定
-        auto_photos: 自动照片
         auto_description: 自动描述
-        wikipedia_title: 维基百科标题
-        wikipedia_summary: 维基百科摘要
+        auto_photos: 自动照片
+        locked: 已锁定
+        name: 名称
+        parent_id: 父ID
+        rank: 排名
         source_identifier: 来源标识符
         source_url: 来源URL
+        wikipedia_summary: 维基百科摘要
+        wikipedia_title: 维基百科标题
       taxon_name:
         name_provider: 名称提供方
         source_url: 来源URL
