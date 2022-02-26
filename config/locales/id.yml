@@ -1,4 +1,7 @@
 id:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    other: "%{count} perubahan"
   x_comments:
     other: '%{count} komentar'
   x_comments_html:
@@ -736,6 +739,7 @@ id:
   by_you: Oleh anda
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalender hanya menampilkan %{x} pengamatan dalam satu waktu
+  callback_url: URL callback
   cancel: Batalkan
   cant_edit_or_delete_hidden_content: Anda tidak dapat mengubah atau menghapus konten yang telah disembunyikan oleh kurator situs
   cant_flag_an_object_that_doesnt_exist: Tidak dapat menandai objek yang tidak ada
@@ -811,6 +815,8 @@ id:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} telah dilebur menjadi %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} akan dilebur menjadi %{output_taxon}"
   change_your_password: Ubah Kata Sandi Anda
+  #Plural noun, as in changes to a taxon record over time
+  changes: Perubahan
   changing_the_geoprivacy: 'Mengubah geoprivasi mengubah bagaimana orang lain melihat lokasi pengamatan Anda.'
   check_above_for_errors: Periksa hal-hal di atas untuk eror
   check_back_soon: Periksa kembali nanti!
@@ -3555,6 +3561,8 @@ id:
   please_complete_the_following_to_add_project: |
     Harap menyelesaikan hal-hal berikut ini untuk menambahkan pengamatan ini ke dalam proyek:
   please_confirm_your_inat_username: "Harap konfirmasi nama pengguna %{site_name} Anda"
+  please_explain_why_you_want_to_hide_this: Tolong jelaskan mengapa Anda ingin menyembunyikan ini
+  please_explain_why_you_want_to_unhide_this: Tolong jelaskan mengapa Anda ingin menampilkan ini
   please_fix_your_csv_and_try_again: Harap perbaiki CSV Anda dan coba lagi.
   please_hold_on_while_the_file: Silahkan tunggu sementara file yang dihasilkan. Ini dapat mengambil beberapa menit jika Anda memiliki banyak pengamatan.
   please_hold_on_while_the_file_is_generated: Silahkan tunggu sementara file yang dihasilkan. Ini dapat mengambil beberapa menit untuk daftar besar.
@@ -3834,6 +3842,8 @@ id:
   recently_finished: Baru Diselesaikan
   recently_observed: Baru Diamati
   recently_resolved: Baru Dibereskan
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Catatan
   red: merah
   redo_search_in_map: Ulangi pencarian di peta
   redo_search_in_map_area: Ulangi pencarian dalam area peta
@@ -4043,6 +4053,9 @@ id:
   show_active_and_inactive_taxa: Tampilkan taksa aktif dan tidak aktif
   show_common_names: Tampilkan nama umum
   show_hidden_content: Tampilkan Konten Tersembunyi
+  show_history_by_this_user: Tunjukkan sejarah oleh pengguna ini
+  show_history_for_this_kind_of_action: Tunjukkan sejarah untuk aksi ini
+  show_history_for_this_record: Tunjukkan sejarah untuk catatan ini
   show_keyboard_shortcuts: Tampilkan Pintasan Papan Tik
   show_less: Tampilkan Lebih Sedikit
   show_more: Tampilkan Lebih Banyak
@@ -4394,6 +4407,7 @@ id:
   taxon_framework_relationship_unknown_count_html: "Jumlah relasi tidak diketahui: %{count}"
   taxon_framework_relationships: Relasi Framework Takson
   taxon_framework_taxon: Takson Framework Takson
+  taxon_history_notice: Sejarah baru diperkenalkan pada Februari 2022, jadi tidak ada sejarah yang tersedia sebelum tanggal tersebut.
   taxon_merge: Penggabungan Takson
   taxon_name: Nama takson
   taxon_name_must_match_an_existing_taxon_in_our_database: Nama takson harus cocok dengan takson yang sudah ada di database kami
@@ -6967,6 +6981,8 @@ id:
         #confidential, e.g. a native or desktop app as opposed to a web
         #app.
         confidential: Konfidensial
+      place_taxon_name:
+        position: Posisi
       post:
         title: Judul
         body: Isi
@@ -7048,7 +7064,11 @@ id:
         wikipedia_summary: Ringkasan Wikipedia
         wikipedia_title: Judul Wikipedia
       taxon_name:
+        is_valid: Valid?
+        lexicon: Kamus
+        name: Nama
         name_provider: Nama penyedia
+        position: Posisi
         source_url: URL Sumber
         source_identifier: Pengidentifikasi sumber
       user:
