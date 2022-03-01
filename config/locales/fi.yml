@@ -770,6 +770,7 @@ fi:
   by_you: Sinun
   calendar: Kalenteri
   calendars_only_show_x_observations_at_time: Kalenterit näyttävät vain %{x} havaintoa kerrallaan
+  callback_url: Takaisinkutsu-URL
   cancel: Peruuta
   cant_edit_or_delete_hidden_content: Et voi muokata tai poistaa sisältöä, jonka sivuston kuraattorit ovat piilottaneet
   cant_flag_an_object_that_doesnt_exist: Olematonta kohdetta ei voi liputtaa.
@@ -900,6 +901,10 @@ fi:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentti
   comment_deleted: Kommentti poistettu
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Kommentti piilotettu
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Kommentti näkyvissä
   comments: Kommentit
   comments_by_me: Omat kommentit
   comments_have_been_disabled: Kommentointi poistettu käytöstä
@@ -1880,6 +1885,8 @@ fi:
   identification_by_user: Käyttäjän %{user} tunnistus
   identification_deleted: Tunnistus poistettu.
   identification_saved: "Tunnistus tallennettu!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Määritysteksti piilotettu
   identification_updated: Tunnistus päivitetty!
   identification_user_short: Tunnist. käyttäjä
   identification_withdrawn: Tunnistus peruutettu.
@@ -3401,6 +3408,8 @@ fi:
   please_complete_the_following_to_add_project: |
     Täydennä seuraavat tiedot lisätäksesi tämän havainnon projektiin:
   please_confirm_your_inat_username: "Ole hyvä ja vahvista %{site_name} käyttäjänimesi"
+  please_explain_why_you_want_to_hide_this: Selvennä, miksi haluat piilottaa tämän
+  please_explain_why_you_want_to_unhide_this: Selvennä, miksi haluat poistaa piilotuksen
   please_fix_your_csv_and_try_again: Korjaa CSV:si ja yritä uudelleen.
   please_hold_on_while_the_file: Ole hyvä ja odota kun tiedostoa muodostetaan. Tämä voi kestää muutaman minuutin, jos sinulla on paljon havaintoja.
   please_hold_on_while_the_file_is_generated: Ole hyvä ja odota kun tiedostoa muodostetaan. Tämä voi kestää muutaman minuutin, jos luettelo on suuri.
@@ -3859,6 +3868,9 @@ fi:
   show_active_and_inactive_taxa: Näytä aktiiviset ja epäaktiiviset taksonit
   show_common_names: Näytä yleiskieliset nimet
   show_hidden_content: Näytä piilotettu sisältö
+  show_history_by_this_user: Näytä tämän käyttäjän historia
+  show_history_for_this_kind_of_action: Näytä tämän kaltaisen toiminnon historia
+  show_history_for_this_record: Näytä tämän tietueen historia
   show_keyboard_shortcuts: Näytä pikanäppäimet
   show_less: Näytä vähemmän
   show_more: Näytä enemmän
@@ -4059,6 +4071,11 @@ fi:
   summary: Yhteenveto
   supporting: Tukee määritystä
   suspend_user: Hyllytä käyttäjä
+  suspend_user_html: Hyllytä %{user}
+  suspend_user_reason_instructions_html: |
+    Selitä, miksi hyllytät tämän käyttäjätilin ja mainitse rikkomukset
+    %{link_start_tag}yhteisön ohjeissa%{link_end_tag}. Pidättäydy
+    lisäämästä henkilökohtaisia mielipiteitä.
   sw_lat: SW leveysaste
   sw_lon: SW pituusaste
   sync: Synkronoi?
@@ -4320,6 +4337,9 @@ fi:
   unsubscribe: Peruuta tilaus
   unsubscribe_from_emails_like_this: Lopeta tämänkaltaisten viestien tilaus.
   unsuspend_user: Jäädytetty käyttäjä
+  unsuspend_user_html: Poista käyttäjän %{user} hyllytys
+  unsuspend_user_reason_instructions: |
+    Selitä, miksi poistat käyttäjän hyllytyksen.
   upcoming_bioblitzes: Tulevat bioblitzit
   update: Päivitä
   update_existing_observations_with_new_license: Päivitä olemassa olevat havainnot uusilla lisenssivaihtoehdoilla
@@ -6154,6 +6174,10 @@ fi:
       message:
         subject: Aihe
         body: Sisältö
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Syy
       observation:
         description: Muistiinpanot
         geo_x: Itä
@@ -6204,6 +6228,8 @@ fi:
       taxon:
         auto_description: Automaattinen kuvaus
         auto_photos: Automaattiset kuvat
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Aktiivinen?
         locked: Lukittu
         name: Nimi
         parent_id: Ylemmän taksonin ID
@@ -6280,6 +6306,11 @@ fi:
               guide_has_too_many_taxa: "oppaassa voi olla vain 500 taksonia"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: ei ole tuettu tällaista sisältöä
+            base:
+              only_staff_can_unhide: Vain ylläpitäjät voivat paljastaa piilotetun sisällön
+              staff_cannot_be_suspended: Ylläpitäjiä ei voida hyllyttää
             user_id:
               must_be_a_curator: on oltava kuraattori
         mushroom_observer_import_flow_task:
