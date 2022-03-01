@@ -2495,6 +2495,9 @@ sv:
   mark_all_as_unreviewed: Markera alla som ogranskade
   matching_species_will_shown_up_here: Matchande arter kommer att synas här. Kartorna kommer att visa ett utbredningsområde om %{place} har ett för den arten.
   maverick: Motförslag
+  maximum_positional_accuracy: Maximal positionsnoggrannhet
+  maximum_positional_accuracy_including_unknown: |
+    Maximal positionsnoggrannhet inklusive fynd utan positionsnoggrannhet
   media: Media
   media_type: Mediatyp
   medium: medium
@@ -2541,6 +2544,7 @@ sv:
     target="_blank">användarvillkor</a> eller inte agerar i enlighet med våra <a
     href="%{guidelines_url}" target="_blank">community-riktlinjer</a>,
     flagga detta meddelande nedan.
+  minimum_positional_accuracy: Minimal positionsnoggrannhet
   misidentifications: Felbestämningar
   misleading_or_illegal_content_html: |
     Vilseledande eller olagligt innehåll, rasistiska eller etniska glåpord etc. För mer om
@@ -4186,6 +4190,9 @@ sv:
   show_active_and_inactive_taxa: Visa accepterade och ickeaccpeterade taxa
   show_common_names: Visa vardagliga namn
   show_hidden_content: Visa dolt innehåll
+  show_history_by_this_user: Visa historik för den här användaren
+  show_history_for_this_kind_of_action: Visa historik för denna typ av åtgärd
+  show_history_for_this_record: Visa historik för denna post
   show_keyboard_shortcuts: Visa kortkommandon
   show_less: Visa mindre
   show_more: Visa mer

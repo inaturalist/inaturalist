@@ -1,4 +1,8 @@
 it:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} modifica"
+    other: "%{count} modifiche"
   x_comments:
     one: '%{count} commento'
     other: '%{count} commenti'
@@ -855,6 +859,8 @@ it:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} sono stati uniti in %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} saranno uniti in %{output_taxon}"
   change_your_password: Cambia la tua password
+  #Plural noun, as in changes to a taxon record over time
+  changes: Modifiche
   changing_the_geoprivacy: 'Cambiando la geoprivacy modifichi il modo in cui gli altri vedono la posizione della tua osservazione.'
   check_above_for_errors: Controlla sopra per errori
   check_back_soon: Ricontrolla presto!
@@ -2417,6 +2423,9 @@ it:
   mark_all_as_unreviewed: Contrassegna tutto come non controllato
   matching_species_will_shown_up_here: Le specie che corrispondono saranno mostrati qui. Le mappe mostreranno un areale se il %{place} ne ha uno disponibile  per la specie.
   maverick: In disaccordo
+  maximum_positional_accuracy: Accuratezza posizionale massima
+  maximum_positional_accuracy_including_unknown: |
+    Accuratezza posizionale massima incluse le osservazioni senza accuratezza posizionale
   media: File multimediali
   media_type: Tipo di supporto
   medium: medio
@@ -2461,6 +2470,7 @@ it:
     Se sospetti che questa persona stia violando i nostri <a href="%{tos_url}"
     target="_blank">Termini di Servizio</a> onon agendo secondo le nostre <a
     href="%{guidelines_url}" target="_blank">Linne Guida della Comunità</a>, per favore contrassegna questo messaggio qui sotto.
+  minimum_positional_accuracy: Accuratezza posizionale minima
   misidentifications: Identificazioni erronee
   misleading_or_illegal_content_html: |
     Contenuto ingannevole o illegale, insulto etnico o razziale, etc. Per altre informazioni sulla definizione di “appropriato”, vedi <a href="/help#inappropriate">FAQ</a>.
@@ -3883,6 +3893,8 @@ it:
   recently_finished: Terminato di recente
   recently_observed: Osservate di recente
   recently_resolved: Recentemente risolti
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Registro
   red: rosso
   redo_search_in_map: Ripeti la ricerca nella mappa
   redo_search_in_map_area: Ripeti la ricerca nell'area di mappa
@@ -4094,6 +4106,9 @@ it:
   show_active_and_inactive_taxa: Mostra taxa attivi e inattivi
   show_common_names: Mostra nomi comuni
   show_hidden_content: Mostra contenuti nascosti
+  show_history_by_this_user: Mostra cronologia da questo utente
+  show_history_for_this_kind_of_action: Mostra cronologia per questo tipo d'azione
+  show_history_for_this_record: Mostra cronologia per questo registro
   show_keyboard_shortcuts: Mostra Scorciatoie di Tastiera
   show_less: Mostra meno
   show_more: Mostra di più
@@ -4464,6 +4479,7 @@ it:
   taxon_framework_relationship_unknown_count_html: "Conteggio delle relazioni sconosciute: %{count}"
   taxon_framework_relationships: Relazioni del quadro del taxon
   taxon_framework_taxon: Taxon del quadro del taxon
+  taxon_history_notice: La cronologia è stata introdotta a Febbraio 2022, quindi non ne è disponibile alcuna da prima di tale data.
   taxon_merge: unione del taxon
   taxon_name: Nome del taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Il nome del taxon deve corrispondere a uno di quelli del nostro database
@@ -5016,6 +5032,8 @@ it:
   where_were_you?: Tu dov'eri?
   which_projects_can_add_your_observations?: Quali progetti tradizionali possono aggiungere le tue osservazioni?
   white: bianco
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Perché stai effettuando questa modifica? (facoltativo)
   why_you_can_see_the_coordinates: Perché puoi vedere le coordinate
   who_can_add_observation_fields_to_my_obs: Chi può aggiungere campi di osservazione alle mie osservazioni?
   who_can_add_observations_to_this_project?: Chi può aggiungere osservazioni al questo progetto?
@@ -7116,6 +7134,8 @@ it:
         #confidential, e.g. a native or desktop app as opposed to a web
         #app.
         confidential: Confidenziale
+      place_taxon_name:
+        position: Posizione
       post:
         title: Titolo
         body: Corpo
@@ -7159,18 +7179,49 @@ it:
         url: URL
         citation: Citazione
       taxon:
+        ancestry: Discendenza
         auto_description: Carica descrizione automaticamente
         auto_photos: Carica foto automaticamente
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: Rango completo
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Stato di conservazione
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: In evidenza alle
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: ID del taxon iconico
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Attivo?
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Iconico?
         locked: Bloccato
         name: Nome
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Fornitore del nome
         parent_id: ID del taxon di livello superiore
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Foto bloccate?
         rank: Rango
+        rank_level: Livello di rango
+        source_id: ID origine
         source_identifier: Identificatore della fonte
         source_url: URL sorgente
+        #Identifier of the taxon framework relationship record associated
+        #with this taxon
+        taxon_framework_relationship_id: ID di relazione del quadro del taxon
         wikipedia_summary: Riassunto Wikipedia
         wikipedia_title: Titolo Wikipedia
       taxon_name:
+        is_valid: È valido?
+        lexicon: Lessico
+        name: Nome
         name_provider: Nome del provider
+        position: Posizione
         source_url: URL sorgente
         source_identifier: Identificatore della fonte
       user:

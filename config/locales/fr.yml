@@ -1,4 +1,8 @@
 fr:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} changement"
+    other: "%{count} changements"
   x_comments:
     one: '1 commentaire'
     other: '%{count} commentaires'
@@ -779,6 +783,7 @@ fr:
   by_you: Par vous
   calendar: Calendrier
   calendars_only_show_x_observations_at_time: Les calendriers ne montrent que %{x} observations à la fois
+  callback_url: URL de rappel
   cancel: Annuler
   cant_edit_or_delete_hidden_content: Vous ne pouvez modifier ou supprimer de contenu masqué par des responsables du site
   cant_flag_an_object_that_doesnt_exist: Impossible de signaler un objet qui n’existe pas
@@ -854,6 +859,8 @@ fr:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} ont été fusionnés dans %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} sera fusionné dans %{output_taxon}"
   change_your_password: Modifier votre mot de passe
+  #Plural noun, as in changes to a taxon record over time
+  changes: Changements
   changing_the_geoprivacy: 'En changeant la géoconfidentialité, vous changez la façon dont les gens voient l’emplacement de votre observation.'
   check_above_for_errors: Vérifier ci-dessus les erreurs
   check_back_soon: Revenez voir dans quelques temps !
@@ -918,6 +925,10 @@ fr:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Commentaire
   comment_deleted: Commentaire supprimé
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Commentaire masqué
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Commentaire non masqué
   comments: Commentaires
   comments_by_me: Mes commentaires
   comments_have_been_disabled: Les commentaires sont désactivés
@@ -1983,6 +1994,8 @@ fr:
   identification_by_user: Identification par %{user}
   identification_deleted: identification supprimée.
   identification_saved: "Identification enregistrée!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Texte d'identification non masqué
   identification_updated: Identification mise à jour!
   identification_user_short: Identifiant. utilisateur
   identification_withdrawn: Identification retirée.
@@ -2452,6 +2465,9 @@ fr:
   mark_all_as_unreviewed: Marquer tout comme non vérifié
   matching_species_will_shown_up_here: Les espèces correspondantes seront affichées ici. Les cartes afficheront une aire de répartition pour cette espèce si elle existe dans %{place}.
   maverick: Divergent
+  maximum_positional_accuracy: Précision maximale de localisation
+  maximum_positional_accuracy_including_unknown: |
+    Précision maximale de localisation incluant les observations sans précision de la localisation
   media: Média
   media_type: Type de média
   medium: moyen
@@ -2498,6 +2514,7 @@ fr:
     target="_blank">conditions d'utilisation</a> ou qu'elle n'agit pas conformément à nos <a
     href="%{guidelines_url}" target="_blank">directives de la communauté</a>, s'il vous plaît
     signalez ce message ci-dessous.
+  minimum_positional_accuracy: Précision minimale de localisation
   misidentifications: Identifications erronées
   misleading_or_illegal_content_html: |
     Contenu trompeur ou illégal, insultes raciales ou ethniques, etc.
@@ -3647,6 +3664,8 @@ fr:
   please_complete_the_following_to_add_project: |
     Veuillez compléter ce qui suit pour ajouter cette observation au projet :
   please_confirm_your_inat_username: "Veuillez confirmer votre nom d’utilisateur sur %{site_name}"
+  please_explain_why_you_want_to_hide_this: Veuillez expliquer la raison pour laquelle vous voulez masquer ceci.
+  please_explain_why_you_want_to_unhide_this: Veuillez expliquer la raison pour laquelle vous voulez afficher ceci.
   please_fix_your_csv_and_try_again: Veuillez corriger le format CSV et réessayer.
   please_hold_on_while_the_file: Veuillez patienter pendant la génération du fichier. Cette démarche peut prendre quelques minutes si vous avez beaucoup d’observations.
   please_hold_on_while_the_file_is_generated: Veuillez patienter pendant la génération du fichier. Cette démarche peut prendre quelques minutes pour les grosses listes.
@@ -3937,6 +3956,8 @@ fr:
   recently_finished: Récemment terminé
   recently_observed: Récemment observé
   recently_resolved: Récemment résolu
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Enregistrement
   red: rouge
   redo_search_in_map: Refaire la recherche sur la carte
   redo_search_in_map_area: Refaire la recherche dans la région cartographique
@@ -4051,6 +4072,7 @@ fr:
     must_be_in: doit être dans le taxon
     must_be_coordinates_shareable_by_project_curators: l’observateur doit autoriser les responsables du projet à voir les coordonnées.
     must_be_verifiable: doit être vérifiable
+    must_be_wild: doit être sauvage
   running_total: Total actuel
   said: a dit
   satellite: satellite
@@ -4147,6 +4169,9 @@ fr:
   show_active_and_inactive_taxa: Afficher les taxons actifs et inactifs
   show_common_names: Afficher les noms vulgaires
   show_hidden_content: Afficher le contenu masqué
+  show_history_by_this_user: Afficher l'historique de l'utilisateur
+  show_history_for_this_kind_of_action: Afficher l'historique du type d'action
+  show_history_for_this_record: Afficher l'historique de l'enregistrement
   show_keyboard_shortcuts: Afficher les raccourcis clavier
   show_less: Afficher moins
   show_more: Afficher d'avantage
@@ -4399,6 +4424,10 @@ fr:
   summary: Résumé
   supporting: Soutenir
   suspend_user: Suspendre l’utilisateur
+  suspend_user_html: Suspendre %{user}
+  suspend_user_reason_instructions_html: |
+    Expliquez pourquoi vous suspendez ce compte et documentez les violations commises des
+    %{link_start_tag}Règles de la communauté%{link_end_tag}. Veuillez vous abstenir d'ajouter des opinions personnelles.
   sw_lat: Lat. SO
   sw_lon: Long. SO
   sync: Synchroniser ?
@@ -4511,6 +4540,7 @@ fr:
   taxon_framework_relationship_unknown_count_html: "Nombre inconnu de relation : %{count}"
   taxon_framework_relationships: Relations du cadre taxonomique
   taxon_framework_taxon: Taxon du cadre taxonomique
+  taxon_history_notice: L'historique a été lancé en février 2022, donc aucun historique n'est disponible avant cette date.
   taxon_merge: fusion de taxon
   taxon_name: Nom du taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Le nom du taxon doit correspondre à un taxon existant dans notre base de données
@@ -4791,6 +4821,9 @@ fr:
   unsubscribe: Désabonnez-vous
   unsubscribe_from_emails_like_this: Se désabonner des e-mails comme celui-ci
   unsuspend_user: Mettre fin à la suspension de l’utilisateur
+  unsuspend_user_html: 'Mettre fin à la suspension : %{user}'
+  unsuspend_user_reason_instructions: |
+    Veuillez expliquer pourquoi vous mettez fin à la suspension de cet utilisateur.
   upcoming_bioblitzes: Bioblitz à venir
   update: Mettre à jour
   update_existing_observations_with_new_license: Mettre à jour les observations existantes au moyen des nouveaux choix de licence
@@ -5075,6 +5108,8 @@ fr:
   where_were_you?: Où étiez-vous ?
   which_projects_can_add_your_observations?: Quels projets traditionnels peuvent ajouter vos observations ?
   white: blanc
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Pourquoi faites-vous ce changement ? (Facultatif)
   why_you_can_see_the_coordinates: Pourquoi vous pouvez voir les coordonnées
   who_can_add_observation_fields_to_my_obs: Qui peut ajouter des champs d’observation à mes observations ?
   who_can_add_observations_to_this_project?: Qui peut ajouter des observations à ce projet ?
@@ -7644,6 +7679,10 @@ fr:
       message:
         subject: Objet
         body: Corps du texte
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Motif
       observation:
         description: Notes
         geo_x: Abscisse
@@ -7672,6 +7711,8 @@ fr:
         #confidential, e.g. a native or desktop app as opposed to a web
         #app.
         confidential: Confidentiel
+      place_taxon_name:
+        position: Position
       post:
         title: Titre
         body: Corps
@@ -7715,18 +7756,49 @@ fr:
         url: URL
         citation: Citation
       taxon:
+        ancestry: Généalogie
         auto_description: Description automatique
         auto_photos: Photos automatiques
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: Rang taxonomique complet
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Statut de conservation
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: En vedette
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: ID du taxon emblématique
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Actif ?
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Emblématique ?
         locked: Verrouillé
         name: Nom
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Source du nom
         parent_id: ID du taxon de rang supérieur
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Photos verrouillées ?
         rank: Rang
+        rank_level: Niveau de rang
+        source_id: ID source
         source_identifier: Identifiant source
         source_url: URL source
+        #Identifier of the taxon framework relationship record associated
+        #with this taxon
+        taxon_framework_relationship_id: ID du type de relation avec le cadre taxinomique
         wikipedia_summary: Résumé Wikipédia
         wikipedia_title: Titre Wikipédia
       taxon_name:
+        is_valid: Est valide ?
+        lexicon: Lexique
+        name: Nom
         name_provider: Sources de noms
+        position: Position
         source_url: URL source
         source_identifier: Identifiant source
       user:
@@ -7799,6 +7871,11 @@ fr:
               guide_has_too_many_taxa: "le guide ne peut avoir que 500 taxons"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: n'est pas pris en charge pour ce type de contenu
+            base:
+              only_staff_can_unhide: Seuls les membres de l'équipe peuvent réafficher un contenu masqué
+              staff_cannot_be_suspended: Les membres de l'équipe ne peuvent pas être suspendus
             user_id:
               must_be_a_curator: doit être un·e responsable
         mushroom_observer_import_flow_task:

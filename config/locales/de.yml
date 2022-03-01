@@ -2402,6 +2402,9 @@ de:
   mark_all_as_unreviewed: Alle als "nicht begutachtet" markieren
   matching_species_will_shown_up_here: Entsprechende Arten werden hier erscheinen. Die Karten zeigen das Verbreitungsgebiet an, falls %{place} eine Beobachtung für diese Art hat.
   maverick: Ausreißer
+  maximum_positional_accuracy: Maximale Genauigkeit der Position
+  maximum_positional_accuracy_including_unknown: |
+    Maximale Genauigkeit der Position einschließlich Beobachtungen ohne Angaben
   media: Medien
   media_type: Medientyp
   medium: mittel
@@ -2452,6 +2455,7 @@ de:
     target="_blank">Nutzungsbedingungen</a> verletzt oder nicht gemäß unseren <a
     href="%{guidelines_url}" target="_blank">Richtlinien agiert</a>, melde bitte
     diese Nachricht weiter unten.
+  minimum_positional_accuracy: Minimale Genauigkeit der Position
   misidentifications: Fehlbestimmungen
   misleading_or_illegal_content_html: |
     Irreführende oder illegale Inhalte, rassistische oder ethnische Beleidigungen usw. Für mehr Informationen über unsere Definition von "angemessen", siehe die 
@@ -3592,6 +3596,8 @@ de:
   please_complete_the_following_to_add_project: |
     Bitte vervollständige die folgenden Schritte, um diese Beobachtung dem Projekt hinzuzufügen:
   please_confirm_your_inat_username: "Bette bestätigen Sie ihren Benutzernamen %{site_name}"
+  please_explain_why_you_want_to_hide_this: Bitte gib einen Grund an, warum du das verbergen möchtest
+  please_explain_why_you_want_to_unhide_this: Bitte gib einen Grund an, warum du das sichtbar machen möchtest
   please_fix_your_csv_and_try_again: Bitte korrigiere dein CSV und versuche es erneut.
   please_hold_on_while_the_file: Bitte um Geduld, während die Datei erzeugt wird. Es kann ein paar Minuten dauern, wenn du viele Beobachtungen hast.
   please_hold_on_while_the_file_is_generated: Bitte um Geduld während die Datei erstellt wird. Bei großen Listen kann es ein paar Minuten dauern.

@@ -857,6 +857,8 @@ pt-BR:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} foram agrupados em %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} serão agrupados em %{output_taxon}"
   change_your_password: Altere sua senha
+  #Plural noun, as in changes to a taxon record over time
+  changes: Modificações
   changing_the_geoprivacy: 'Mudar a geoprivacidade altera como as outras pessoas verão a localização das suas observações.'
   check_above_for_errors: Verifique erros acima
   check_back_soon: Verifique em breve!
@@ -2456,6 +2458,7 @@ pt-BR:
   mark_all_as_unreviewed: Marcar Todos como Não Revisado
   matching_species_will_shown_up_here: As espécies encontradas serão mostradas aqui. Os mapas irão mostrar uma área se %{place} tiver uma para alguma espécie.
   maverick: Maverick
+  maximum_positional_accuracy: Precisão máxima de localização
   media: Mídia
   media_type: Tipo de media
   medium: médio
@@ -4150,6 +4153,9 @@ pt-BR:
   show_active_and_inactive_taxa: Exibir espécies ativas e inativas
   show_common_names: Mostrar nomes comuns
   show_hidden_content: Mostrar conteúdo oculto
+  show_history_by_this_user: Mostrar histórico deste usuário
+  show_history_for_this_kind_of_action: Mostrar histórico para este tipo de ação
+  show_history_for_this_record: Mostrar histórico deste registro
   show_keyboard_shortcuts: Mostrar Teclas de Atalho
   show_less: Mostrar menos
   show_more: Mostrar mais
@@ -4571,7 +4577,7 @@ pt-BR:
   taxon_framework_relationship_unknown_count_html: "Número desconhecido de relacionamento: %{count}"
   taxon_framework_relationships: Relações de marco do táxon
   taxon_framework_taxon: Táxon de estrutura de táxon
-  taxon_history_notice: O histórico foi introduzida em fevereiro de 2022, portanto, nenhum histórico está disponível antes dessa data.
+  taxon_history_notice: O histórico foi introduzido em fevereiro de 2022, portanto, nenhum histórico está disponível antes dessa data.
   taxon_merge: Fundir táxon
   taxon_name: Nome de táxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Nome do táxon deve coincidir com um nome presente em nossa base de dados
@@ -7391,12 +7397,29 @@ pt-BR:
         url: URL
         citation: Citação
       taxon:
+        ancestry: Ancestral
         auto_description: Descrição automática
         auto_photos: Carregar as fotos automaticamente
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Estado de conservação
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: ID de táxon icônico
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Ativo
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Icônico?
         locked: Bloqueado
         name: Nome
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Nome do provedor
         parent_id: ID do Ancestral
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Fotos bloqueadas?
         rank: Posição
+        rank_level: Nível de classificação
+        source_id: ID de origem
         source_identifier: Identificador de fonte
         source_url: URL de origem
         wikipedia_summary: Resumo do conteúdo da Wikipedia

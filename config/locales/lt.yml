@@ -4723,10 +4723,10 @@ lt:
     users:
       dashboard:
         new_project_admin_html: |
-          Svarstote kodėl jūs tapote šio projekto administratoriumi? Ankstesnis savininkas
-          arba paskirė jus nauju administratoriumi, arba ištrynė savo paskyrą
-          ir %{site_name} paskyrė jus, nes esate projekto valdytojas arba
-          puslapio kuratorius. Jei nenorite būti projekto administratoriumi, prašome
+          Svarstote, kodėl jūs tapote šio projekto administratoriumi? Ankstesnis administratorius
+          paskyrė jus nauju arba ištrynė savo paskyrą
+          ir %{site_name} paskyrė jus, nes esate projekto vadovas arba
+          svetainės prižiūrėtojas. Jei nenorite būti šio projekto administratoriumi, prašome
           susisiekti <a href="mailto:%{help_email}">%{help_email}</a>
       delete:
         by_deleting_your_account_you_will_remove: |

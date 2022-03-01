@@ -1,4 +1,8 @@
 kn:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} ಬದಲಾವಣೆ"
+    other: "%{count} ಬದಲಾವಣೆಗಳು"
   x_comments:
     one: '%{count} ಅಭಿಪ್ರಾಯ'
     other: '%{count} ಅಭಿಪ್ರಾಯಗಳು'
@@ -759,6 +763,8 @@ kn:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} ಅನ್ನು %{output_taxon} ನೊಂದಿಗೆ ವಿಲೀನಗೊಳಿಸಲಾಗಿದೆ"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} ಅನ್ನು %{output_taxon} ನೊಂದಿಗೆ ವಿಲೀನಗೊಳಿಸಲಾಗುತ್ತದೆ"
   change_your_password: ನಿಮ್ಮ ಗುಪ್ತಪದ ಬದಲಿಸಿ
+  #Plural noun, as in changes to a taxon record over time
+  changes: ಬದಲಾವಣೆಗಳು
   changing_the_geoprivacy: 'ಭೂಗೌಪ್ಯತೆಯ ಬದಲಾವಣೆಯು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳ ಸ್ಥಳಗಳನ್ನು ಇತರರು ಹೇಗೆ ನೋಡುತ್ತಾರೆಂಬುದನ್ನು ಮಾರ್ಪಡಿಸುತ್ತದೆ.'
   check_above_for_errors: ದೋಷಗಳಿಗಾಗಿ ಮೇಲೆ ನೋಡಿ
   check_back_soon: ಶೀಘ್ರದಲ್ಲೇ ನಿರೀಕ್ಷಿಸಿ!
@@ -3149,6 +3155,8 @@ kn:
   please_complete_the_following_to_add_project: |
     ಈ ವೀಕ್ಷಣೆಯನ್ನು ಪ್ರಾಯೋಜನೆಗೆ ಸೇರಿಸಲು ಈ ಕೆಳಗಿನವುಗಳನ್ನು ದಯವಿಟ್ಟು ಪೂರ್ಣಗೊಳಿಸಿ:
   please_confirm_your_inat_username: "ದಯವಿಟ್ಟು ನಿಮ್ಮ %{site_name} ಬಳಕೆದಾರರ ಹೆಸರನ್ನು ಖಚಿತಪಡಿಸಿ"
+  please_explain_why_you_want_to_hide_this: ಇದನ್ನು ನೀವೇಕೆ ಮರೆಮಾಡಲು ಬಯಸುತ್ತೀರೆಂಬುದನ್ನು ದಯವಿಟ್ಟು ವಿವರಿಸಿ
+  please_explain_why_you_want_to_unhide_this: ಇದನ್ನು ನೀವೇಕೆ ಮರುಪ್ರದರ್ಶಿಸಲು ಬಯಸುತ್ತೀರೆಂಬುದನ್ನು ದಯವಿಟ್ಟು ವಿವರಿಸಿ
   please_fix_your_csv_and_try_again: ದಯವಿಟ್ಟು ನಿಮ್ಮ CSV ಯನ್ನು ದುರಸ್ತಿ ಮಾಡಿ ಮತ್ತು ನಂತರ ಪ್ರಯತ್ನಿಸಿ.
   please_hold_on_while_the_file: ಕಡತ ರಚನೆಯಾಗುತ್ತಿದೆ ದಯವಿಟ್ಟು ಸಾವಧಾನದಿಂದಿರಿ. ನೀವು ಹೆಚ್ಚು ವೀಕ್ಷಣೆಗಳನ್ನು ಹೊಂದಿದ್ದಲ್ಲಿ ಇದು ಸ್ವಲ್ಪ ಸಮಯ ತೆಗೆದುಕೊಳ್ಳಬಹುದು.
   please_hold_on_while_the_file_is_generated: ಕಡತ ರಚನೆಯಾಗುತ್ತಿದೆ ದಯವಿಟ್ಟು ಸಾವಧಾನದಿಂದಿರಿ. ಬಹಳ ದೊಡ್ಡ ಪಟ್ಟಿಗಳನ್ನು ಹೊಂದಿದ್ದಲ್ಲಿ ಇದು ಸ್ವಲ್ಪ ಸಮಯ ತೆಗೆದುಕೊಳ್ಳಬಹುದು.
@@ -3418,6 +3426,8 @@ kn:
   recently_finished: ಇತ್ತೀಚೆಗೆ ಸಂಪೂರ್ಣಗೊಳಿಸಿದ್ದು
   recently_observed: ಇತ್ತೀಚೆಗೆ ವೀಕ್ಷಿಸಿದ್ದು
   recently_resolved: ಇತ್ತೀಚೆಗೆ ಪರಿಹರಿಸಿದ್ದು
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: ದಾಖಲೆ
   red: ಕೆಂಪು
   redo_search_in_map: ಭೂಪಟದಲ್ಲಿ ಹುಡುಕಾಟವನ್ನು ಮತ್ತೆ ಮಾಡಿ
   redo_search_in_map_area: ಭೂಪಟದ ಪ್ರದೇಶದಲ್ಲಿ ಹುಡುಕಾಟವನ್ನು ಮತ್ತೆ ಮಾಡಿ
@@ -3528,6 +3538,7 @@ kn:
     must_be_in: ಜೀವಿವರ್ಗದಲ್ಲಿರಲೇಬೇಕು
     must_be_coordinates_shareable_by_project_curators: ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನೋಡಲು ಪ್ರಾಯೋಜನೆಯ ಮೇಲ್ವಿಚಾರಕರಿಗೆ ವೀಕ್ಷಕರು ಅನುಮತಿಸಲೇಬೇಕು.
     must_be_verifiable: ಪರಿಶೀಲಿಸಬಲ್ಲದಾಗಿರಬೇಕು
+    must_be_wild: ವನ್ಯಜೀವಿಯಾಗಿರಲೇಬೇಕು
   running_total: ಕ್ರೋಢೀಕೃತ ಮೊತ್ತ
   said: ಹೇಳಿದ್ದಾರೆ
   satellite: ಉಪಗ್ರಹ
@@ -3834,6 +3845,7 @@ kn:
   summary: ಸಾರಾಂಶ
   supporting: ಬೆಂಬಲಿಸುತ್ತಿದೆ
   suspend_user: ಬಳಕೆದಾರರನ್ನು ತಡೆಹಿಡಿಯಿರಿ
+  suspend_user_html: '%{user} ರನ್ನು ತಡೆಹಿಡಿಯಿರಿ'
   sw_lat: ನೈರುತ್ಯ ಅಕ್ಷಾಂಶ
   sw_lon: ನೈರುತ್ಯ ರೇಖಾಂಶ
   sync: ಸಿಂಕ್ ಮಾಡಬೇಕೆ?
@@ -5724,6 +5736,10 @@ kn:
       message:
         subject: ವಿಷಯ
         body: ಪೂರ್ಣಪಾಠ
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: ಕಾರಣ
       observation:
         description: ಟಿಪ್ಪಣಿಗಳು
         geo_x: ಪೂರ್ವ
@@ -5743,6 +5759,8 @@ kn:
         uid: ID
         #Noun, secret associated with an application, sort of like the application's password
         secret: ಗುಪ್ತ
+      place_taxon_name:
+        position: ಸ್ಥಾನ
       post:
         title: ಶೀರ್ಷಿಕೆ
         body: ಪೂರ್ಣಪಾಠ
@@ -5784,16 +5802,28 @@ kn:
         url: URL
         citation: ಉಲ್ಲೇಖ
       taxon:
+        ancestry: ಪೀಳಿಗೆ
         auto_description: ಸ್ವಯಂ ವಿವರಣೆಗಳು
         auto_photos: ಸ್ವಯಂ ಚಿತ್ರಗಳು
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: ಸಂರಕ್ಷಣೆ ಸ್ಥಿತಿ
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: ಸಕ್ರಿಯ?
         locked: ನಿರ್ಬಂಧಿತ
         name: ಹೆಸರು
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: ಚಿತ್ರಗಳು ನಿರ್ಬಂಧಿತವಾಗಿವೆಯೇ?
         rank: ಶ್ರೇಣಿ
         source_url: ಮೂಲ URL
         wikipedia_summary: ವಿಕಿಪೀಡಿಯಾ ಸಾರಾಂಶ
         wikipedia_title: ವಿಕಿಪೀಡಿಯಾ ಶೀರ್ಷಿಕೆ
       taxon_name:
+        is_valid: ಸಿಂಧುವಾಗಿದೆಯೇ?
+        lexicon: ಪದ ಭಂಡಾರ
+        name: ಹೆಸರು
         name_provider: ನಾಮಾವಳಿ ಪೂರೈಕೆದಾರರು
+        position: ಸ್ಥಾನ
         source_url: ಮೂಲ URL
       user:
         email: ಮಿಂಚೆ
