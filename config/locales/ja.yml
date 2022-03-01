@@ -1,4 +1,7 @@
 ja:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    other: "%{count}件の変更"
   x_comments:
     other: '%{count}件のコメント'
   x_faves:
@@ -464,12 +467,17 @@ ja:
   #Label for an option to show/include content by any user
   any_user: すべて
   anyone: 誰でも
+  app_owner_application_success: アプリ所有者の申請書が送信されました
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: アプリケーション
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: アプリケーション
+  apply_app_owner: 適用
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: 適用
   apply_to_selected: 選択された項目に適応
   apply_captive_cultivated: "飼育/栽培として付ける"
   apply_fields: フィールドを適用する
@@ -623,6 +631,8 @@ ja:
   batch_operations: 一括操作
   be_the_first_to_fave_this_observation: この観察記録の最初のお気に入り登録者になろう！
   because_of: 理由として
+  become_a_donor_caps: 寄付はこちら
+  become_a_donor_today_caps: 寄付はこちら
   before_importing_photos: 写真をインポートする前に
   bg_color: 背景色
   bio: プロフィール
@@ -640,6 +650,8 @@ ja:
   body: 本文
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: ボールド体
   bounding_box: 境界ボックス
   breadcrumbs: パンくずリスト
   brief_caption: 短い説明
@@ -659,6 +671,7 @@ ja:
   by_you: あなた
   calendar: カレンダー
   calendars_only_show_x_observations_at_time: カレンダーは一度に%{x} 個の観察記録のみを表示します
+  callback_url: コールバックURL
   cancel: キャンセル
   cant_edit_or_delete_hidden_content: サイト管理者によって非表示にされているコンテンツを編集または削除することはできません。
   cant_flag_an_object_that_doesnt_exist: 存在しないオブジェクトはフラグ付けできません
@@ -692,6 +705,7 @@ ja:
   change_descriptions:
     split: 古い分類群が複数の新しい分類群に分割されます
     merge: いくつかの古い分類群が一つの新しい分類群にまとめる
+    swap: 入力分類群を出力分類群に置き換え
     drop: 現在は完全に廃止された分類群。過去の記録またはデータ提供先との互換性のために保存されます。
     stage: 変更グループの一部としてリリースするための非アクティブなコンセプトを準備する
   change_geoprivacy: '位置情報プライバシーを変更する'
@@ -731,6 +745,8 @@ ja:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa}は%{output_taxon}に統合されました"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa}は%{output_taxon}に統合されます"
   change_your_password: パスワードを変更
+  #Plural noun, as in changes to a taxon record over time
+  changes: 更新履歴
   changing_the_geoprivacy: '地理的条件を変えることで、他人からの自分の観測地点の見え方が変わります。'
   check_above_for_errors: 上記のエラーをチェック
   check_back_soon: お早めに!
@@ -784,6 +800,10 @@ ja:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: コメント
   comment_deleted: コメント削除されました
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: コメントを非表示
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: コメントの再表示
   comments: コメント
   comments_by_me: 自分のコメント
   comments_have_been_disabled: コメントが無効になっています
@@ -827,6 +847,7 @@ ja:
   computer_vision_model_included: 含む
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: 保留
+  confidential: 機密
   configure: 設定する
   configure_a_widget_to_show: Webサイトまたはブログに%{site_name} の観察記録を表示するようウィジェットを設定します。埋め込まれたCSSをHTMLの<code>&lt;head&gt;</code>に含める必要があるかもしれません。CSSを自由に編集してください。
   confirm: 確認
@@ -836,6 +857,9 @@ ja:
   confirm_your_info: 登録情報をご確認ください
   confirming_ids: IDの確認
   confirming_ids_description: これをオフにすると、自分と一致するIDについては通知されなくなります。
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: 接続
   connect_to_provider: "%{provider}に接続"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: 関連づけられたアカウント
@@ -873,6 +897,16 @@ ja:
   contributor_cannot_be_found: 提供者が見つかりません
   contributors_to_project: "%{project}への貢献者"
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: 指定なし
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: 指定なし
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: 指定なし
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: 指定なし
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: 指定なし
     sex: 性別
     male: オス
     female: メス
@@ -923,6 +957,7 @@ ja:
     track: 地面や雪面に残された生物の圧痕
     molt: 脱ぎ捨てられた皮膚または外骨格
   controls: 設定
+  convert: 変換
   coordinate_systems: 座標システム
   coordinates: 緯度経度
   copy: コピー
@@ -953,6 +988,7 @@ ja:
   copyright_info_and_more: 著作権情報など
   copyright_infringement: 著作権侵害
   copyright_infringement_desc: 著作権法に違反するか、またはオブザーバー以外の人が作成したものであり、帰属性がありません
+  covered_by_a_taxon_framework_html: "%{link} に覆われています"
   couldnt_change_your_password: "パスワードを変えることができませんでした：%{e}"
   couldnt_find_a_user_matching_x_param: "%{id}というユーザーが見つかりません"
   couldnt_find_that_taxon: お探しのタクソンが見つかりません
@@ -1190,6 +1226,7 @@ ja:
   edit_source: ソースを編集
   edit_taxa: 分類群を編集
   edit_taxon: 分類群を編集
+  edit_taxon_framework: 分類群フレームワークを編集
   edit_taxon_link: 分類群リンクを編集
   edit_taxon_range: 分類群の分布・生息区域を編集
   edit_the_observation: 観察記録を編集
@@ -1538,6 +1575,7 @@ ja:
       maverick: |
         分類群はコミュニティ分類群の下位でも上位でもありません。すなわち、コミュニティはこの分類群に同意しません。
   id_withdrawn: 同定の撤回
+  ids_by_taxon: 分類群別ID
   identify: 同定する
   identify_observations: "観察記録をID判定"
   identify_observations_by_these_users: ユーザーによる観察記録の同定
@@ -2886,6 +2924,8 @@ ja:
   please_complete_the_following_to_add_project: |
     この観察記録をプロジェクトに追加するには、次のことを完了してください：
   please_confirm_your_inat_username: "%{site_name}のユーザネームをご確認ください"
+  please_explain_why_you_want_to_hide_this: これを非表示にする理由を説明してください
+  please_explain_why_you_want_to_unhide_this: これを表示する理由を説明してください
   please_fix_your_csv_and_try_again: CSVデータを直し、再度お試しください
   please_hold_on_while_the_file: ファイル作成が完了するまでしばらくお待ちください。たくさんの観察記録があれば数分かかる場合があります。
   please_hold_on_while_the_file_is_generated: ファイルが生成されるまでしばらくお待ちください。長いリストの場合、数分かかることがあります。
@@ -3061,6 +3101,8 @@ ja:
   recently_finished: 最近完成
   recently_observed: 最近の観察記録
   recently_resolved: 最近解決済み
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: 記録
   red: 赤
   redo_search_in_map: マップ範囲内で再検索
   redo_search_in_map_area: マップ範囲内で再検索
@@ -3247,6 +3289,7 @@ ja:
   show_active_and_inactive_taxa: 新旧（廃止）分類群を表示
   show_common_names: 一般名の表示
   show_hidden_content: 非表示コンテンツを表示
+  show_history_by_this_user: このユーザーの履歴を表示
   show_keyboard_shortcuts: キーボードショートカットを表示
   show_less: 一部のみ表示
   show_more: もっと表示
@@ -3502,6 +3545,7 @@ ja:
     data_url: データURL
   taxon_changes: 分類群の変更
   taxon_framework_relationships: タクソン・フレームワークの関係
+  taxon_history_notice: 履歴は2022年2月に導入されました。それ以前の履歴は表示されません。
   taxon_merge: 分類群の統合
   taxon_name: 分類群名
   taxon_name_must_match_an_existing_taxon_in_our_database: 分類群名はデータベース内の既存の分類群と一致している必要があります
@@ -3873,6 +3917,8 @@ ja:
   where_were_you?: 場所は？
   which_projects_can_add_your_observations?: どのプロジェクトに自分の観察記録の追加を許可しますか？
   white: 白
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: 変更理由(任意)
   why_you_can_see_the_coordinates: あなたがこの座標を見ることができる理由
   who_can_add_observation_fields_to_my_obs: 他のユーザーが自分の観察記録へ観察記録フィールドを追加することを許可しますか？
   who_can_add_observations_to_this_project?: このプロジェクトに観察記録を追加できるのは誰ですか？
@@ -4250,6 +4296,9 @@ ja:
           これはこのプロジェクトに明示的に追加され専門家が吟味したチェックリストと種数の観測であり、対象はこのイベントを行った場所と時間に記録された観測すべではありません。
       updates_desc: |
         ダッシュボードと毎日の更新メールで、このプロジェクトの更新情報を受け取ることができます。
+    search:
+      index:
+        no_taxa_options: "いくつかの選択肢があります:"
     shared:
       spam:
         message_for_owner_and_curators_html: |
