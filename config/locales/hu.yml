@@ -160,6 +160,10 @@ hu:
   about_complete_taxa: A teljes taxonokról
   about_conservation_status: A természetvédelmi státuszról
   about_editing_observation_fields: A megfigyelések adatmezőiről
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: A letelepedési formákról
   about_license_options: A licencelési lehetőségekről
   about_licenses: A licencekről
   about_muting: A némításról
@@ -427,6 +431,7 @@ hu:
   apply_fields: Mezők alkalmazása
   apply_geoprivacy: Helyvédelem alkalmazása
   apply_darr: "Alkalmaz &darr;"
+  apply_establishment_means_to_descendant_places: "Alkalmazd a letelepedési formát a leszármazó helyekre"
   apply_these_settings_to_all: Ezen beállítások alkalmazása az összes alábbi megfigyelésre.
   arachnids: pókszabásúak
   archives: Archívum
@@ -444,6 +449,8 @@ hu:
   are_you_sure_you_want_to_delete_this_post: Biztos, hogy kitörlöd ezt a cikket?
   are_you_sure_you_want_to_remove_from_project: Biztos, hogy kitörlöd %{user}-t ebből a projektből?
   are_you_sure_you_want_to_remove_manager: Biztosan törölni szeretnéd %{user}-t mint menedzsert?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Biztosan törlöd ezt a megfigyelést a %{project} projektből?
   associated_taxa: Társított taxonok
   attention: Figyelem
   you_sure_delete_list: Biztosan törölni szertné ezt a listát?
@@ -515,6 +522,7 @@ hu:
   be_the_first_to_fave_this_observation: Elsőként kedvencelheted ezt a megfigyelést...
   become_a_donor_caps: TÁMOGATÁS
   become_a_donor_today_caps: TÁMOGATÁS
+  before_importing_photos: mielőtt fotókat importálnál
   bg_color: Háttérszín
   bio: Leírás
   bio_description: Mutatkozz be az iNaturalist többi felhasználójának!
@@ -565,7 +573,17 @@ hu:
     merge: Egyesítés
     swap: Csere
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_from: felosztva ezekből
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: Felosztva ezekre
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    merge_into: egyesít ezekbe
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    merged_into: egyesítve ezekbe
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replaced_by: erre lecserélve
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replace_with: csere ezzel
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: Cserélve erre
     input_taxon_was_dropped_html: "%{input_taxon} ejtve"
@@ -573,11 +591,22 @@ hu:
     input_taxon_will_be_activated_soon_html: "%{input_taxon} hamarosan aktiválva lesz"
     input_taxon_was_replaced_by_output_taxon_html: "%{input_taxon} le lett cserélve erre: %{output_taxon}"
   change_your_password: Jelszó módosítása
+  #Plural noun, as in changes to a taxon record over time
+  changes: Változások
+  changing_the_geoprivacy: 'A helyvédelem módosítása megváltoztatja hogyan látják mások a megfigyelésed koordinátáit.'
   check_back_soon: Jöjjön vissza hamarosan!
+  check_list: Lista
+  check_list_for_taxon_html: "%{taxon} listája"
+  check_list_place: "%{place} listája"
+  check_list_updated: Lista frissítve
+  check_lists_for: "%{place} más listái"
+  check_out_the_inat_store: Nézd meg az iNaturalist áruházat
+  checklist: Lista
   choose_a_field: Adatmező kiválasztása
   choose_a_place: Válassz helyet
   choose_a_taxon: Válassz taxont (opcionális)
   choose_files: Válassz fájlokat
+  choose_photos_for_this_taxon: Válassz fotókat ehhez a taxonhoz
   choose_tags: Cimke választása
   choose_taxon: Taxon választása
   citation: Idézet
@@ -595,6 +624,10 @@ hu:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Megjegyzés
   comment_deleted: Megjegyzés törölve
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Megjegyzés rejtve
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Megjegyzés nincs rejtve
   comments: Megjegyzések
   comments_by_me: Megjegyzések tőlem
   comments_have_been_disabled: Megjegyzések letiltva
@@ -616,6 +649,9 @@ hu:
   complete: Kész.
   completed: Kész
   completed_at: Elkészült
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
+  comprehensive?: Minden részletre kiterjedő?
   #Name for the statistical model used to determine visual similarity between
   #photos and taxa
   computer_vision_model: Gépi látás modell
@@ -637,6 +673,8 @@ hu:
   #connecting to Flickr
   connect: Csatlakozás
   conservation_status: Természetvédelmi státusz
+  conservation_status_geoprivacy_desc: |
+    Az alapértelmezett helyvédelmet alkalmazták e taxon minden megfigyelésére ezen a helyen
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Tartalom
   content_type: Tartalom típusa
@@ -739,6 +777,7 @@ hu:
   csv_file: CSV fájl
   csv_should_not_contain_a_header_row: CSV nem szabad tartalmazzon fejléc sort
   cumulative_ids: "Kumulatív meghatározások: %{count}/%{total}"
+  curation: Gondozás
   curator: Gondnok
   curator_application_what_curators_can_do_hide_comments_html: |
     A <a
@@ -785,6 +824,7 @@ hu:
       november: November
       december: December
   date_is_accurate: A dátum pontos
+  date_obscured_notice: A dátum kitakart hogy egy személyt vagy szervezetet védjen
   date_observed: Megfigyelés dátuma
   date_observed_: Megfigyelés dátuma
   date_observed_on: megfigyelés dátuma
@@ -881,6 +921,7 @@ hu:
   documentation_for_developers_html: <a href="/pages/developers">Fejlesztői</a> dokumentáció
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     A fonálférgeket tanulmányozod? Esetleg te vagy a világ legelismertebb szakértője moharendszertan-témában? Vagy csak szeretsz vadvirágokat nézegetni? A profilod kitöltésével személyesebbé és bizalmasabbá teheted jelenléted.
+  doesnt_have_default_photo: még nincs alapértelmezett fotója.
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: TÁMOGATÁS
@@ -935,11 +976,24 @@ hu:
   email_description: Az email címedet nem osztjuk meg más felhasználókkal az iNaturalist oldalon
   email_notifications: Email értesítések
   embed_widget_project: E projekt moduljának megjelenítése a weboldaladon
+  encompassing_places: Övező helyek
   end: Vége
+  error_updating_photo: "Hiba a fotó frissítésekor: %{photo_errors}"
   establishment:
+    endemic: Helyi
+    establishment: Letelepedés
     introduced: Behurcolt
+    invasive: Inváziós
+    managed: Felügyelt
     native: Őshonos
+    naturalised: Honosított
+  establishment_means: Letelepedési Forma
+  establishment_means_describes_how: |
+    A letelepedés forma azt írja le, hogyan telepedett le egy taxon egy területen. 
+    Lásd a DarwinCore-t <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">a kifejezés bővebb leírásáért.</a>.
   establishment_means_descriptions:
+    native: ezen a környéken fejlődött vagy más úton, ember segítsége nélkül érkezett
+    endemic: őshonos és sehol máshol nem fordul elő
     introduced: a területre emberi beavatkozással érkezett
   event_url: Esemény URL
   everyone: mindenki
@@ -950,6 +1004,7 @@ hu:
   exact_date: Pontos dátum
   except: kivéve
   exit_full_screen: "Kilépés teljes képernyőből"
+  examples_of_ranking_organizations: Példa besoroló szervezetekre
   explore: Felfedezés
   export: Exportálás
   export_observations: Megfigyelések exportálása
@@ -958,6 +1013,7 @@ hu:
   extinct_in_the_wild: Vadon kihalt
   evidence_of_organism: Bizonyíték az organizmusra
   facebook: Facebook
+  failed_to_repair_photo: "Nem sikerült a fotó javtása: %{errors}"
   failed_to_save_record: "A rekord mentése sikertelen. Kérjük, próbáld meg később."
   failed_to_save_record_with_errors: "Nem sikerült menteni a rekordot: %{errors}"
   'false': 'Nem'
@@ -997,6 +1053,34 @@ hu:
   flag: Bejelentés
   flag_as_inappropriate: Megjelölés kifogásolhatóként
   flag_an_item: Megjelölés kifogásolhatóként
+  #Label for the date/time when a flag was created
+  flag_created: Bejelentés létrehozva
+  flag_for_check_list_title_html: |
+    Lista bejelentése: %{title}
+  flag_for_comment_id_html: <a href="%{url}">%{id} hozzászólás</a> bejelentése
+  flag_for_comment_id_deleted: '%{id} hozzászólás bejelentése (törölve)'
+  flag_for_curation: Megjelölés gondozásra
+  flag_for_guide_title_html: |
+    Útmutató bejelentése: %{title}
+  flag_for_identification_id_html: <a href="%{url}">%{id} meghatározás</a> bejelentése
+  flag_for_life_list_title_html: |
+    Életlista bejelentése: %{title}
+  flag_for_list_title_html: |
+    Lista bejelentése: %{title}
+  flag_for_message_id_html: <a href="%{url}">%{id} üzenet</a> bejelentése
+  flag_for_observation_title_html: |
+    Megfigyelés bejelentése: %{title}
+  flag_for_photo_id_html: Bejelentés a <a href="%{url}">%{id} fotónak</a>
+  flag_for_place_title_html: |
+    Hely bejelentése: %{title}
+  flag_for_project_title_html: |
+    Projekt bejelentése: %{title}
+  flag_for_guide_section_id_html: <a href="%{url}">%{id} útmutató rész</a> bejelentése
+  flag_for_sound_id_html: <a href="%{url}">%{id} hang</a> bejelentése
+  flag_for_taxon_title_html: |
+    Taxon bejelentése: %{title}
+  flag_for_user_title_html: |
+    Felhasználó bejelentése: %{title}
   flag_it!: Bejelentés!
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objektum
@@ -1008,6 +1092,7 @@ hu:
   flag_this_sound: Hang bejelentése
   flagged: bejelentett
   flagged_: Bejelentett
+  flagged_for_curation: Gondozásra megjelölve
   flagged_taxon: Bejelentett taxon
   flagging_desc: |
     A megjelöléssel felhívhatod az önkéntes moderátoraink figyelmét egyes tartalmakra. Kérkük, hogy ne jelölj meg kifogásolhatóként olyan dolgokat, amelyeket magad is megoldhatsz, például meghatározás hozzáadásával, az Adatminőségi kiértékeléssel, vagy kapcsolatfelvétel révén azzal, aki a kifogásolt tartalmat létrehozta.
@@ -1033,14 +1118,19 @@ hu:
   frequency: Gyakoriság
   from_a_place: egy helyről
   from_flickr_facebook_etc: Flickr, Facebook stb. oldalakról
+  from_photos: Fotókról
   from_soundcloud: Soundcloudról
   full_screen: Teljes képernyő
   generate_widget: Modul létrehozása
   Genus: Nemzetség
   geoprivacy: Pozíció láthatósága
+  geoprivacy_is_obscured: A helymegjelenítés kitakart
+  geoprivacy_is_obscured_desc: A megfigyelő úgy döntött, hogy kitakarja a koordinátákat.
   geoprivacy_is_private: A pozíció nem publikus
+  geoprivacy_is_private_desc: A megfigyelő úgy döntött, hogy elrejtse a koordinátákat.
   get_started: Elkezdem
   getting_started_guide: Első lépések
+  globally: Globális
   go: Mehet
   go_back: Vissza
   going_to_your_observations: Vissza a megfigyeléseidhez
@@ -1053,7 +1143,9 @@ hu:
   grouping: Csoportosítás
   guides: Útmutatók
   has_id_supported_by_two_or_more: Két vagy több meghatározás egyezik
+  has_photo: Van fénykép
   has_photos: Fényképpel
+  has_photo_and_sound: Van fénykép és hang
   has_photos_or_sounds: Hanggal
   has_sounds: Hanggal
   header_your_observations: Megfigyeléseim
@@ -1167,6 +1259,8 @@ hu:
   just_added!: Most adták hozzá!
   kml: KML
   labels: Címkék
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
+  location_private: A hely bizalmas
   #Label shown when a location has not been entered. Originally "unknown" in
   #English but we switched to "missing" to convey that a complete observation
   #*should* have a location
@@ -1179,12 +1273,16 @@ hu:
   large: nagy
   last_active_with_date: "Utolsó aktivitás: %{date}"
   last_observation: Utóljára megfigyelte
+  last_observation_caps: UTOLJÁRA MEGFIGYELVE
+  last_seen: Utoljára látva
   last_year: Tavaly
   lat: Szél
   latitude: Szélességi kör
   #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Rétegek
   layout: Elrendezés
+  leaderboard: Ranglista
+  leaderboard_for_x: "%{x} ranglistája"
   leaderboards: Ranglisták
   leaderboard_most:
     species_in_month_year: Legtöbb faj %{month_year} hónapban
@@ -1370,6 +1468,8 @@ hu:
       every_publicly_visible_observation: Minden nyilvánosan látható megfigyelés az iNaturalist hálózatáról
       featured_observations: Kiemelt megfigyelések
       observations: Megfigyelések
+      checklist_places: Lista helyei
+      checklist_places_description: E taxon listáinak helyei
       range: Tartomány
   map_tooltip: Mutasd a térkép nézetet
   mark_as_reviewed: Megjelölés átnézettként
@@ -1396,6 +1496,7 @@ hu:
   mentioned_you_in_an_x_on_noun_by_html: "%{user} megemlített (%{by}: %{x}, %{noun})"
   mentioned_you_in_an_x_on_noun_by_user_html: "%{user} megemlített (%{by}: %{x}, %{noun})"
   mentioned_you_in_an_x_on_noun_by_you_html: "%{user} megemlített (te: %{x}, %{noun})"
+  merge_two_places_together: Két hely összevonása. Minden faj a listákon össze lessz vonva és minden földrajzi adat.
   merge_observation_field_x_into: '"%{x}" adatmező összevonása ezzel...'
   merging_places: Helyek összevonása
   message: Üzenet
@@ -1494,7 +1595,10 @@ hu:
   new_and_noteworthy: Újdonságok
   new_announcement: Új felhívás
   new_assessment: Új értékelés
+  new_check_list: Új lista
+  new_check_list_for: "%{place}: új lista létrehozása &raquo;"
   new_comment_on_a_parent_by_user_link: 'Új hozzászólás: %{user_link} %{parent}'
+  new_flag_for: 'Új bejelentés ehhez:'
   new_journal_post: Új hírmondó-bejegyzés
   new_lexicon: Új szókészlet
   new_list: Új lista
@@ -1591,6 +1695,7 @@ hu:
   not_confident: Nincs kellő bizonyosságú javaslatunk.
   not_confident_top_suggestions: Nincs kellő bizonyosságú javaslatunk, de a legjobb tippjeink
   not_found: Nincs találat
+  not_recorded: Nincs feljegyezve
   note: Megjegyzés
   notes: Megjegyzések
   notifications: Értesítések
@@ -1636,6 +1741,7 @@ hu:
   observations_by_app: Megfigyelések applikáció szerint
   observations_by_rank: Megfigyelések besorolás szerint
   observations_by_you: "Megfigyeléseid"
+  observation_curation: Megfigyelés gondozása
   observation_date: Dátum
   observation_date?: Dátum?
   observation_field: Adatmező
@@ -1649,6 +1755,7 @@ hu:
   observation_fields_are_additional: Az adatmezők kiegészítő információkkal szolgálhatnak a megfigyelésekhez.
   observation_fields_by_preferences_description: |
     Az adatmezők nagyjából címkékként működnek, és alapértelmezetten bárki hozzáadhatja azokat a megfigyelésedhez. Ezen a beállítások módosíthatsz, ha csak te szeretnéd ezt megtenni, vagy a kurátorokra bízod.
+  observation_removed_from_the_project: "A megfigyelést törölték a \"%{project}\" projektből"
   observation_rules: Megfigyelések szabályai
   observation_was_deleted: Megfigyelés törölve
   observation_without_media: Megfigyelés fénykép/hang nélkül
@@ -1659,10 +1766,13 @@ hu:
   observations_deleted: Megfigyelések kitörölve.
   observations_fields_are: |
     Az adatmezők a megfigyelésekhez tartozó extra adatok, amely bármi lehet, például a megfigyelők száma, élőhelyleírás, stb. A projektek meghatározhatják, hogy mely adatmezők kitöltése kötelező.
+  observations_from_people_taxa_and_places_youre_following: "A követett emberek, helyek és taxonok megfigyelései"
   observations_in_this_project_must: E projekt megfigyeléseire a következő kritériumok vonatkoznak
   observations_map: Megfigyelések / Térkép
+  observations_needing_curation: Gondozásra szorult megfigyelések
   observations_observed_this_month: A <em>megfigyelések</em> dátuma (és nem a feltöltés dátuma) alapján. Rajta, ki a természetbe!
   observations_of_relatives: Rokon fajok megfigyelései
+  observations_removed_from_the_project: "A megfigyeléseket törölték a \"%{project}\" projektből"
   observations_saved: Megfigyelés(ek) elmentve!
   observations_specifying_this_field: Megfigyelések ezzel az adatmezővel
   observations_specifying_this_field_with_value: Megfigyelések "%{value}" értékkel ebben az adatmezőben
@@ -1679,6 +1789,7 @@ hu:
   observer: Megfigyelő
   observers: Megfigyelők
   observer_short: Megfigyelő
+  occurrence_status_establishment_means: Előfordulás, letelepedés státusz
   occurrence_status_levels:
     common: gyakori
     uncommon: Nem gyakori
@@ -1686,6 +1797,7 @@ hu:
     doubtful: kétes
     absent: hiányzó
   of_places: helyek
+  of_this_taxon: erről a taxonról
   offensive_inappropriate: Erőszakos / Felháborodástkeltő
   off_caps: "KI"
   #Header label for hiding or unhiding the time shifter in the Uploader
@@ -1712,6 +1824,7 @@ hu:
       <li><strong>Beszélgetések melyekben részt vettél:</strong> Amikor megjegyzést fűzől mások megfigyeléseihez vagy ezeket azonosítod automatikusan feliratkozol, hogy új fejleményeket kapj minden ezekkel kapcsolatos aktivitásról. Használd a 'Feliratkozások kezelése' eszközt ha nem akarsz a fejleményekről értesülni.</li>
       </ul>
   one_by_one: "Egyenként"
+  one_of_your_lists: "egyik listád..."
   only_you: Csak te
   open: nyilvános
   open_: Nyilvános
@@ -1762,6 +1875,7 @@ hu:
   password_confirmation: 'Jelszó megerősítése'
   paste: Beilleszt
   people: Emberek
+  people_following_user: "%{user} követői"
   people_added:
     #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
     #kueda
@@ -1788,6 +1902,7 @@ hu:
   photo_type: Kép típusa
   photos_of_taxon_html: "%{taxon} képei"
   photos_or_sounds: Fényképek vagy hangok
+  photos_or_sounds?: Fényképek vagy hangok?
   photos_size:
     small: kicsi
     medium: közepes
@@ -1812,6 +1927,7 @@ hu:
       Colloquial: Köznyelvi
       colloquial: köznyelvi
       Commune: Község
+      commune: község
       Continent: Földrész
       continent: földrész
       Country: Ország
@@ -1862,6 +1978,8 @@ hu:
       time_zone: időzóna
       Unknown: Ismeretlen
       unknown: ismeretlen
+      Zone: Zóna
+      zone: zóna
   place_name: Hely neve
   placement: Elhelyezés
   places: Helyek
@@ -2076,6 +2194,7 @@ hu:
     zimbabwe: Zimbabwe
   places_of_interest: Érdekes helyek
   plants: növények
+  please_allow_a_few_weeks_for_external_sites: Kérünk adj pár hetet a külső honlapoknak, hogy e megfigyelés változtatásait szinkronizálják #Title to a section warning a user to exercise caution
   please_confirm_your_inat_username: "Kérjük erősítsd meg %{site_name} felhasználónevedet"
   popular: Népszerű
   position: Pozíció
@@ -2114,6 +2233,8 @@ hu:
   project_group_label: Csoport
   project_journal: Hírmondó
   project_id_or_url_slug: Projektazonosító vagy URL-paraméter, pl. 333 vagy magyarorszag-biodiverzitasa
+  project_list_defaults:
+    title: "%{owner_name} listája"
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a> gondozói hozzáadták pár megfigyelésedet
   project_requirements: Kritériumok
@@ -2293,6 +2414,7 @@ hu:
   remove_from_featured: Törlés a kiemeltek közül
   remove_photo: Fénykép eltávolítása
   removed: Eltávolítva
+  reorder_by_taxonomy: Rendszertani sorrend
   reply: Válasz
   reptiles: hüllők
   required: kötelező
@@ -2316,6 +2438,8 @@ hu:
   rotate_left: Forgatás balra
   row_singular_or_plural: Sor(ok)
   rules_for_adding_observations: Megfigyelések hozzáadására vonatkozó szabályok
+  rules_types:
+    must_be_wild: vad kell legyen
   running_total: Kumulatív
   satellite: műholdkép
   save: Mentés
@@ -2344,8 +2468,11 @@ hu:
   search_by_name_or_email: Keresés név vagy email alapján
   search_external_name_providers: Keress rá külső névszolgáltatókon
   search_for_species: Fajok keresése
+  #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
+  search_reasons: Okok keresése
   search_species: Fajok keresése
   search_species_: Fajok keresése...
+  search_your_photos: Kényképeid keresése
   seasonality: Szezonalitás
   second_person_possessive_singular: "%{noun}, a tied"
   seen_nearby: A közelben látták
@@ -2384,6 +2511,10 @@ hu:
   skip_to_next_page: "Ugrás a következő oldalra"
   small: kicsi
   site_stats: Webhelyforgalom
+  sites_affiliation_more_automatically_hidden_coordinates: |
+    Automatikusan rejtett koordináták (kitakart vagy rejtett a "taxon helyvédelme" miatt)
+  sites_affiliation_more_user_hidden_coordinates: |
+    Felhasználó által rejtett koordináták (kitakarva vagy rejtve a helyvédelmi beállítások miatt)
   some_agree: néhányan egyetértenek
   some_observations_are_missing_media_or_identifications: |
     Néhány megfigyelésből hiányzik a média vagy az asonosítás
@@ -2397,6 +2528,7 @@ hu:
     add_media: Média hozzáadása
     add_sounds: Hang hozzáadása
     listen: Hallgatás
+    no_photos_sounds: Nincs fénykép vag hang
     photos_sounds: Fotók / hangok
     select_one_or_more_sounds: Hang(ok) kiválasztása
     sound: Hang
@@ -2407,6 +2539,8 @@ hu:
   source_list_: "Forrás"
   source_list:
     inaturalist: iNaturalist
+    catalogue_of_life_2012_annual_checklist: 'Az élet katalógusa: 2012 évi lista'
+    catalogue_of_life_2013_annual_checklist: 'Az élet katalógusa: 2013 évi lista'
   source_url: Forrás URL
   sources: Források
   sources_youve_added: Források, melyeket hozzáadtál
@@ -2428,6 +2562,7 @@ hu:
   start_typing_field_name: Gépeld be a mezőnevet...
   stats: Statisztikák
   status: Státusz
+  status_globally: '"%{status}" Globálisan'
   stop_editing: Szerkesztés befejezése
   stop_trusting_this_person_with_your_private_coordinates: Vond vissza ezen személytől, hogy láthassa rejtett koordinátáidat
   #As in a place to purchase things. We use it as a link to a place where you
@@ -2449,6 +2584,7 @@ hu:
   suggest_an_identification: Meghatározás hozzáadása
   suggestions: Javaslatok
   summary: Összefoglaló
+  suspend_user_html: '%{user} felfüggesztése'
   sw_lat: DNy Szél.
   sw_lon: DNy Hossz.
   sync: Frissít?
@@ -2460,8 +2596,10 @@ hu:
   tags: Címkék
   taxa: Taxon
   taxa_info: Taxoninformációk
+  taxa_needing_curation: Gondozásra szorult taxonok
   taxon: Taxon
   taxon_autocomplete_placeholder: Madarak, pillangók, stb.
+  taxon_geoprivacy: Taxon helyvédelme
   taxon_is_threatened_coordinates_hidden: Veszélyeztetett taxon, a koordináták nem publikusak
   taxon_is_threatened_coordinates_hidden_desc: |
     A meghatározások között van legalább egy olyan taxon, amely (vagy amelynek egy altaxonja) ritkaság és/vagy veszélyeztetett. Emiatt a hely nem publikus.
@@ -2469,12 +2607,19 @@ hu:
   taxonomy: Besorolás
   taxon_map:
     overlays: Rétegek
+  taxon_changes: Taxonváltozások
   taxon_name: Taxon neve
   taxon_range_guidelines_learn_more_about_taxon_ranges: További információk a taxonintervallumokról
   taxon_ranks: Rendszertani besorolás
+  taxon_scheme: Taxonrendszer
+  taxon_schemes: "Taxonrendszerek"
   taxon_swap: taxoncsere
   taxonomic: Rendszertani
+  taxonomic_changes: Rendszertani változások
   taxonomic_groups: Rendszertani csoportok
+  taxonomy_details: Rendszertani részletek
+  taxonomy_details_for: 'Rendszertani részletek erről:'
+  taxonomy_settings: Rendszertani beállítások
   tell_the_world_a_little_about_yourself: Mesélj magadról
   tell_us_why: Miért gondolod?
   terms: Feltételek
@@ -2486,6 +2631,8 @@ hu:
   the_below_items_are_needed_to_achieve: |
     A következőkre van szükség a <span className="bold">Tudományos szint</span> eléréséhez:
   the_community_id_requires_at_least_two_identifications: A közösségi taxonhoz legalább két felhasználó meghatározása szükséges.
+  the_community_must_feel_that: |
+    A közösségnek éreznie kell, hogy a közösségi taxon a lehető legjobb a bizonyítékok alapján
   the_observation_was_already_added_to_that_project: A megfigyelés már hozzá volt adva ahhoz a projekthez.
   the_people_of_inat: "Emberek az %{site_name} mögött"
   the_world: A világ
@@ -2493,11 +2640,14 @@ hu:
   these_folks_kindly_volunteer_to: Ők azok, akik önkéntesen gondozzák a taxonómiát és megoldanak különféle problémákat.
   these_observations_have_not_been_uploaded_yet: |
     Ezek a megfigyelések még nem kerültek feltöltésre.
+  this_is_your_observation: Ez a te megfigyelésed
+  this_is_your_observation_desc: Mindig láthatod saját megfigyeléseid koordinátáit.
   this_observation_is_featured_on_x_sites:
     one: Ez a megfigyelés kiemelést kapott az %{count} oldalon
     other: Ez a megfigyelés kiemelést kapott az %{count} oldalakon
   this_observation_is_research_grade: Ez a megfigyelés tudományos szintű!
   this_observation_was_created_using: "A megfigyelés ezzel készült:"
+  this_place_has_no_check_list: "Ennek a helynek nincs listája"
   this_year: Idén
   threatened: Veszélyeztetett
   time_ago: "%{time}"
@@ -2509,11 +2659,13 @@ hu:
   top_identifier_caps: FŐ AZONOSÍTÓ
   top_identifiers: Legtöbbször azonosította
   top_identifiers_of_taxon: '%{taxon} taxon legaktívabb meghatározói'
+  top_observer_caps: LEGTÖBBSZÖR MEGFIGYELTE
   top_observers: Legtöbbször megfigyelte
   tos_privacy_guidelines_label: |
     Egyetértek a <a href="/terms" target="_blank">Felhasználási feltételekkel</a> és az <a href="/privacy" target="_blank">Adatvédelmi nyilatkozattal</a>, és átolvastam a <a href="/pages/community+guidelines" target="_blank">Közösségi irányelveket</a>.
   total: Összes
   total_observations: Minden megfigyelés
+  total_observations_caps: ÖSSZES MEGFIGYELÉS
   'true': 'Igen'
   trending: Népszerű
   trends: Trendek
@@ -2534,6 +2686,7 @@ hu:
   unreview_all: Összes áttekintés visszavonása
   unsubscribe: Leiratkozás
   unsubscribe_from_emails_like_this: Leiratkozás az ehhez hasonló emailekről
+  unsuspend_user_html: Feloldod %{user} felfüggesztését
   update: Frissítés
   update_search: Keresés frissítése
   update_subscription: Feliratkozás frissítése
@@ -2548,6 +2701,8 @@ hu:
   uploaded_by: Feltöltötte
   uploader:
     tooltips:
+      remove: Kiválasztott megfigyelések eltávolítása
+      remove_observation: Megfigyelés törlése
       remove_photo: Fénykép eltávolítása
   uploading_num_of_count_photos:
     one: Fénykép feltöltése...
@@ -2596,11 +2751,13 @@ hu:
   view_all_members: Tagok megtekintése
   view_all_n: "Minden %{n} megtekintése"
   view_all_observations: Minden megfigyelés megtekintése
+  view_check_list_page: Mutasd a lista lapját
   view_details: Részletek
   view_dynamic_lifelist_: DINAMUKUS ÉLETFA MEGTEKINTÉSE
   view_field_options: Mező beállítások
   view_flag: Bejelentés megtekintése
   view_flags: Bejelentések megjelenítése
+  view_flags_for_x_html: "%{x} bejelentései"
   view_full_size_photo: Teljes méretű fénykép megtekintése
   view_journal: Hírmondó megtekintése
   view_leaderboard_from_last_month: Az előző havi ranglista megtekintése
@@ -2619,7 +2776,9 @@ hu:
   view_post: Bejegyzés megtekintése
   view_sample: Példa megtekintése
   view_stats: Statisztikák megtekintése
+  view_taxon_changes: Taxonváltozások megtekintése
   view_taxon_page: Taxon lapjának megtekintése
+  view_taxononomy_details_for_taxon: "%{taxon} rendszertani részletei"
   view_user_observations: "%{user} megfigyelései"
   view_x: "%{x} megtekintése"
   view_year_stats_for_site: "%{site} %{year} évi statisztikáinak megtekintése"
@@ -2633,6 +2792,7 @@ hu:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Kívánt
   was_it_captive_cultivated?: "Fogságban lévő vagy kultivált?"
+  we_have_no_establishment_data_for_this_taxon: "Nincs letelepedési adatunk erről a taxonról"
   weather: Időjárás
   website: Weboldal
   welcome: Üdvözlünk
@@ -2653,9 +2813,14 @@ hu:
   where_were_they?: Hol vannak?
   where_were_you?: Hol voltál?
   white: fehér
+  why_you_can_see_the_coordinates: Miért láthatod a koordinátákat
   who_can_add_observation_fields_to_my_obs: Ki adhat adatmezőket a megfigyeléseimhez?
+  who_can_see_the_coordinates: Ki láthatja a koordinátákat
+  who_can_see_the_coordinates_observer: Az a személy aki a megfigyelést végezte
+  who_can_see_the_coordinates_trusted: Egyének akikben a megfigyelő megbízik és számukra láthatóvá tette koordinátáit
   who_helped_user_the_most: "%{user} tőlük kapott a legtöbb segítséget"
   who_user_helped_the_most: "%{user} nekik segített a legtöbbet"
+  why_the_coordinates_are_obscured: Miért rejtettek a koordináták
   with_annotation: Megjelölés
   widget: Modul
   widget_code: Modul kódrészlet
@@ -2690,11 +2855,14 @@ hu:
   yir_donate_banner_you_helped_inaturalist_thrive: Nagy szereped volt idén az iNaturalist sikerében. Köszönjük szépen!
   you: te
   you_: Te
+  you_are_already_a_member_of_this_project: "Ennek a projektnek már tagja vagy!"
   you_are_submitting_obs_with_no_date_or_no_location: |
     Dátum és hely nélkül töltesz fel megfigyeléseket. Az ilyen megfigyeléseket lehetetlen azonosítani, ezért ezek alapértelmezetten nem jelennek meg a kereséseknél.
   you_cant_delete_observation_fields_that_people_are_using: "Nem lehet használatban lévő adatmezőket törölni"
   you_faved_this: A kedvenced!
+  you_must_be_a_member_of_this_project_to_do_that: Ennek a projektnek tagja kell legyél ahhoz
   you_must_choose_an_observation_field: Ki kell választanod egy adatmezőt
+  you_sure_delete_check_list: "Biztos ki akarod törölni ezt a listát? Mások már sok munkát fektethettek bele..."
   you_sure_delete_identification?: Biztosan törlöd ezt az azonosítást?
   you_sure_delete_this_observation: "Biztosan törlöd ezt a megfigyelést?"
   your_comment_was_saved: A taralmad elmentve
@@ -2764,6 +2932,10 @@ hu:
         children: Gyermekek
         simplified_tree: Egyszerűsített fa
         full_taxonomy: Teljes rendszertan
+    listed_taxa:
+      establishment_field:
+        confirmation: |
+          Biztos vagy benne? Ez megváltoztatja a lista MINDEN taxon letelepedési formáját amelyek e helyen belül léteznek. Sok munka mehet kárba.
     lists:
       edit:
         lifelist_titles_cannot_be_changed: Az életlisták nevén nem lehet módosítani
@@ -2790,12 +2962,17 @@ hu:
         total_taxa: Összes taxon
       field_descriptions:
         time_zone: A megfigyelés időzónája
+        geoprivacy: "Ha a megfigyelő úgy döntött kitakarja vagy elrejtse a koordinátákat"
+      identify:
+        unreview_all_tooltip: "Átnézett státusz visszavonása minden megfigyeléstől az oldalon"
       import:
         date_column_format: YYYY-MM-DD HH:MM
         decimal_degrees_format: dd.dddd
       show:
         data_quality_assessment_desc_html: |
           Az Adatminőségi kiértékelés a megfigyelés pontosságára irányul. A tudományos szintű meghatározások felhasználhatók tudományos célokra. Alább szavazatoddal értékelheted a megfigyelést:
+        flagged_photos_desc_html: |
+          Pár fotó be volt jelentve helytelen tartalomért vagy a szerzői jogok sértéséért. Részletekért lásd %{links}
         observer_does_not_allow_observation_fields: A megfigyelő nem teszi lehetővé új adatmezők hozzáadását
         observer_only_allows_curators_to_add_fields: A megfigyelő csak kurátorok számára engedélyezi adatmezők hozzáadását
     observation_fields:
@@ -2809,11 +2986,19 @@ hu:
         <li>Ne törölj használatban lévő adatmezőket</li>
         <li>Ne fordítsd le a meglévő mezőket más nyelvekre. Az iNaturalist közvetítőnyelve az angol. Ha nagyon indolkolt egy meglévő koncepciójú adatmező más nyelvre való átültetése, hozz létre egy új adatmezőt.</li>
         </ol>
+    emailer:
+      collection_project_changed_for_trusting_member:
+        wondering_what_this_means_html: |
+          Azon tűnődsz mi a "helyvédelem"?
+          <a href="%{url}">Tudj meg többet a leírásban</a>.
     projects:
       project_type: Projekttípus
       collection: Gyűjtemény
       collection_and_umbrellas_do_not_support: |
         A gyűjtő- és ernyőprojektek jelenleg nem férhetnek hozzá a rejtett koordinátákhoz.
+      confirm_leave:
+        remove_observations_label: |
+          Töröld az összes megfigyelésedet ebből a projektből
       edit:
         #Label for button to make another user the owner of a project
         make_owner: Legyen tulajdonos
@@ -2943,6 +3128,10 @@ hu:
           <p>
           Ezeket a problémákat mi azzal próbáljuk kiküszöbölni, hogy mind a népies, mind pedig a tudományos nevet megjelenítjük, a felhasználó nyelvi és földrajzi beállításai alapján.
           </p>
+        about_conservation_status_desc: |
+          A természetvédelmi státusz összefoglalja a kihalás veszélyét bizonyos élőlénycsoportokra nézve.
+        about_establishment_desc: |
+          A "Letelepedési forma" azt írja le hogyan érkezett egy faj oda, ahol most él. Behurcolt azt jelenti, hogy emberi tevékenység által jött be, őshonos pedig azt, hogy ember segítsége nélkül érkezett. Helyi fajok csak egy bizonyos helyen léteznek és sehol máshol.
         frequency:
           research: Tudományos szintű
           verifiable: Hiteles
@@ -2987,6 +3176,7 @@ hu:
         notification_preferences_taxon_changes: Rendszertani változások
         project_addition_preferences:
           any: Bármely
+        same_day_geoprivacy_protection: Azonosnapi helymegjelenítés védettsége
         scientific_name_first_desc: |
           Tudományos név megjelenítése elsőként
         thanks_for_supporting_us!: Köszönjük a támogatást!
@@ -3211,8 +3401,14 @@ hu:
       guide:
         source_url: Forrás URL
         published_at: Publikálva
+      listed_taxon:
+        establishment_means: Letelepedési Forma
       message:
         subject: Tárgy
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Ok
       observation:
         description: Megjegyzések
         observed_on: megfigyelés dátuma
@@ -3259,6 +3455,7 @@ hu:
         name: Név
         parent_id: szülő
         place_type: Hely típusa
+        prefers_check_lists: Listák engedélyezve?
       source:
         title: Név
         in_text: Szövegben
@@ -3295,6 +3492,10 @@ hu:
           one: '%{count} hiba miatt %{model} nem menthető el'
           other: '%{count} hiba miatt %{model} nem menthető el'
       models:
+        moderator_action:
+          attributes:
+            base:
+              staff_cannot_be_suspended: A személyzetet nem lehet felfüggeszteni
         user:
           attributes:
             email:
