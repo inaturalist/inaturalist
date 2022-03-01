@@ -3427,6 +3427,8 @@ es-AR:
   please_complete_the_following_to_add_project: |
     Completa lo siguiente para añadir este observación al proyecto:
   please_confirm_your_inat_username: "Por favor confirma tu nombre de usuario con %{site_name}"
+  please_explain_why_you_want_to_hide_this: Explica por qué quieres ocultar esto.
+  please_explain_why_you_want_to_unhide_this: Explica por qué quieres revelar esto
   please_fix_your_csv_and_try_again: Corrige el archivo CSV e inténtalo de nuevo.
   please_hold_on_while_the_file: Por favor espere mientras se genera el archivo. Puede tomar algunos minutos para listas grandes.
   please_hold_on_while_the_file_is_generated: Por favor espere mientras se genera el archivo. Puede tomar algunos minutos para listas grandes.
@@ -3784,6 +3786,7 @@ es-AR:
     must_be_observed_in_place: deben ser observaciones en este lugar
     must_be_in: deben estar dentro de la especie o grupo
     must_be_coordinates_shareable_by_project_curators: el observador debe permitir a los curadores del proyecto ver las coordenadas.
+    must_be_wild: debe ser silvestre
   running_total: Total acumulado
   said: decia
   satellite: satélite
@@ -4124,6 +4127,7 @@ es-AR:
   summary: Resumen
   supporting: Apoyo a
   suspend_user: Suspender usuario
+  suspend_user_html: Suspender a %{user}
   sw_lat: lat. S.O.
   sw_lon: long. S.O.
   sync: '¿Sincronizar?'
@@ -4452,6 +4456,7 @@ es-AR:
   unreview_all: Marcar todos como no revisados
   unsubscribe: Quitar suscripción
   unsuspend_user: Reactivar usuario
+  unsuspend_user_html: Reactivar a %{user}
   upcoming_bioblitzes: Próximos maratones naturalistas
   update: Actualizar
   update_existing_observations_with_new_license: Actualizar las observaciones existentes con la licencia que escogí
@@ -6441,6 +6446,10 @@ es-AR:
       listed_taxon:
         occurrence_status_level: Nivel de estatus de ocurrencia
         establishment_means: Medio de establecimiento
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Razón
       observation:
         description: Notas
         geo_x: Hacia el este
