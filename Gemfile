@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 ruby "~> 2.6.0"
 
-gem "rails", "6.1.4"
+gem "rails", "6.1.4.6"
 
 gem "actionpack-action_caching"
 gem "actionpack-page_caching"
