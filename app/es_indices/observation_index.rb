@@ -978,6 +978,38 @@ class Observation < ApplicationRecord
       values = [ p[:csa] ].flatten.map(&:downcase)
       search_filters << conservation_condition(:authority, values, p)
     end
+    if p[:acc_above].to_i > 0
+      search_filters << { range: { positional_accuracy: { gt: p[:acc_above].to_i } } }
+    end
+    if p[:acc_below].to_i > 0
+      search_filters << { range: { positional_accuracy: { lt: p[:acc_below].to_i } } }
+    end
+    if p[:acc_below_or_unknown].to_i > 0
+      search_filters << {
+        bool: {
+          should: [
+            {
+              range: {
+                positional_accuracy: {
+                  lt: p[:acc_below_or_unknown].to_i
+                }
+              }
+            },
+            {
+              bool: {
+                must_not: [
+                  {
+                    exists: {
+                      field: "positional_accuracy"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    end
     # sort defaults to created at descending
     sort_order = (p[:order] || "desc").downcase.to_sym
     sort = case p[:order_by]

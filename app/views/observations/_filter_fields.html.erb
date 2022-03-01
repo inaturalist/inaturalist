@@ -517,6 +517,33 @@
   <input type="hidden" name="created_on" id="created_on" value="<%= @created_on %>"/>
 <% end %>
 
+<% if show_all %>
+  <div class="clear row upstacked">
+    <label for="acc_above_input" class="label"><strong><%=t :acc_above %></strong></label>
+    <div class="left">
+      <input type="number" min="0" name="acc_above" id="acc_above_input" value="<%= @acc_above %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small"><%= t :minimum_positional_accuracy %></div>
+    </div>
+  </div>
+  <div class="clear row upstacked">
+    <label for="acc_above_input" class="label"><strong><%=t :acc_below %></strong></label>
+    <div class="left">
+      <input type="number" min="0" name="acc_below" id="acc_below_input" value="<%= @acc_below %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small"><%= t :maximum_positional_accuracy %></div>
+    </div>
+  </div>
+  <div class="clear row upstacked">
+    <label for="acc_above_input" class="label"><strong><%=t :acc_below_or_unknown %></strong></label>
+    <div class="left">
+      <input type="number" min="0" name="acc_below_or_unknown" id="acc_below_or_unknown_input" value="<%= @acc_below_or_unknown %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small"><%= t :maximum_positional_accuracy_including_unknown %></div>
+    </div>
+  </div>
+<% end -%>
+
 <input type="hidden" name="site" value="<%= @site_uri %>">
 <input type="hidden" name="tdate" id="tdate"/>
 <input type="hidden" name="list_id" id="list_id" value="<%= @list.try(:id) %>"/>
