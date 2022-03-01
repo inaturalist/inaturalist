@@ -551,6 +551,9 @@ fr:
   #Label for an option to show/include content by any user
   any_user: Tous
   anyone: Tout le monde
+  app_owner_application_about_p1a_html: |
+    Les applications iNaturalist permettent l'utilisation authentifiée de l'API iNaturalist. Cela vous permet de faire des appels API qui font des choses comme créer des observations ou des identifications. Les utilisations habituelles sont des applications comme des applications de bureau ou des applications mobiles qui comprennent des fonctionnalités permettant à leurs utilisateurs de créer des observations iNaturalist. Ce contenu doit être produit avec une implication ou une surveillance humaine réelle. Pour en savoir plus, veuillez lire les <a href="/pages/community+guidelines"
+    target="_blank">Règles de la communauté</a> qui interdisent les observations, identifications et commentaires générés par ordinateur.
   app_owner_application_about_p2_html: |
     À partir de 2022, nous imposons une approbation manuelle aux utilisateurs qui souhaitent faire un client API. Pour créer une application tierce, vous devez d'abord soumettre une demande pour devenir «propriétaire d'application». Dans cette demande, vous devez décrire la fonctionnalité de l'application que vous proposez et comment vous comptez l'utiliser. Pour pouvoir soumettre une demande, vous devez avoir créé votre compte il y a au moins 2 mois et vous devez avoir ajouté au moins 10 <a href="/pages/help#identification" target="_blank">identifications d'amélioration</a> au cours du mois dernier. Nous vous poserons peut-être des questions sur votre projet et nous nous réservons le droit de refuser les demandes, quelle que soit la raison du refus.
   app_owner_application_inelligible: |
@@ -568,6 +571,7 @@ fr:
   #curator
   apply_curator: Postuler
   apply_to_be_an_app_owner: Demander à devenir propriétaire d'application
+  apply_to_create_applications_title: Faire une demande pour créer des applications
   apply_to_selected: Appliquer à la sélection
   apply_captive_cultivated: "Appliquer la caractéristique en captivité/cultivé"
   apply_fields: Appliquer les champs
@@ -675,6 +679,16 @@ fr:
     natureserve: NatureServe
     cites: CITES
   authorize: Autoriser
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: Autorisez avec PKCE
+  #Explanation for how to use the PKCE authorization link. All variables are
+  #code that must match the content of the link and thus cannot be
+  #translated.
+  authorize_with_pkce_desc_html: |
+    (Utilisez <code>%{code_challenge}</code> comme
+    <code>%{code_verifier_param}</code>) Remarque : c'est un exemple élémentaire. Dans le code de production, vous DEVEZ utiliser <code>%{code_challenge_method}</code> et hacher correctement
+    le <code>%{code_challenge_param}</code>.
   authorize_permissions_from_provider: "Autoriser les permissions de %{provider}"
   automatic_short: Auto
   automatically_add_observations_to_this_project: Ajouter automatiquement des observations à ce projet
@@ -2262,6 +2276,10 @@ fr:
   link_or_unlink_your_facebook_account: Lier ou dissocier votre compte Facebook
   link_or_unlink_your_flickr_account: Lier ou dissocier votre compte Flickr
   link_or_unlink_your_google_account: Lier ou dissocier votre compte Google
+  #Text for a link that provides an example of how an application can send a
+  #user to iNat to authorize the app's use of their iNat account. "Link" is
+  #a noun.
+  link_to_authorization_code: Lien vers le code d'autorisation
   link_your_facebook_account: Lier votre compte Facebook
   link_your_flickr_account: Lier votre compte Flickr
   link_your_google_account: Lier votre compte Google
@@ -3646,6 +3664,8 @@ fr:
   please_complete_the_following_to_add_project: |
     Veuillez compléter ce qui suit pour ajouter cette observation au projet :
   please_confirm_your_inat_username: "Veuillez confirmer votre nom d’utilisateur sur %{site_name}"
+  please_explain_why_you_want_to_hide_this: Veuillez expliquer la raison pour laquelle vous voulez masquer ceci.
+  please_explain_why_you_want_to_unhide_this: Veuillez expliquer la raison pour laquelle vous voulez afficher ceci.
   please_fix_your_csv_and_try_again: Veuillez corriger le format CSV et réessayer.
   please_hold_on_while_the_file: Veuillez patienter pendant la génération du fichier. Cette démarche peut prendre quelques minutes si vous avez beaucoup d’observations.
   please_hold_on_while_the_file_is_generated: Veuillez patienter pendant la génération du fichier. Cette démarche peut prendre quelques minutes pour les grosses listes.
@@ -7626,6 +7646,9 @@ fr:
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
       ModeratorNote: Note du modérateur
+      #Software application that operates iNat on a user's behalf, e.g. the
+      #iNaturalist Android app or an app made by a third party
+      OauthApplication: Application
       TaxonLink: Lien de taxon
     attributes:
       assessment:
@@ -7676,6 +7699,18 @@ fr:
         finished_at: Terminé
         #Inputs to an export task, e.g. the query and the columns
         inputs: Entrées
+      oauth_application:
+        #The URL the user will be redirected to after authorizing an app to
+        #access their iNaturalist account
+        callback_url: URL de rappel
+        #Unique identifier for an application
+        uid: ID
+        #Noun, secret associated with an application, sort of like the application's password
+        secret: Clé secrète
+        #Adjective, whether or not this application can keep its secret
+        #confidential, e.g. a native or desktop app as opposed to a web
+        #app.
+        confidential: Confidentiel
       place_taxon_name:
         position: Position
       post:
@@ -7721,10 +7756,18 @@ fr:
         url: URL
         citation: Citation
       taxon:
+        ancestry: Généalogie
         auto_description: Description automatique
         auto_photos: Photos automatiques
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: Rang taxonomique complet
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: Statut de conservation
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: En vedette
         #ID of the iconic taxon this taxon belongs to
         iconic_taxon_id: ID du taxon emblématique
         #Boolean attribute stating whether this taxon is active (i.e. available for use)
@@ -7831,6 +7874,7 @@ fr:
             action:
               not_supported_for_this_kind_of_content: n'est pas pris en charge pour ce type de contenu
             base:
+              only_staff_can_unhide: Seuls les membres de l'équipe peuvent réafficher un contenu masqué
               staff_cannot_be_suspended: Les membres de l'équipe ne peuvent pas être suspendus
             user_id:
               must_be_a_curator: doit être un·e responsable
@@ -7846,6 +7890,8 @@ fr:
             observed_on:
               cannot_be_greater_than_date_created: |
                 ne peut pas être postérieure à la date à laquelle l’observation a été ajoutée
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: doit être dans les 130 dernières années
         observation_field_value:
           attributes:
             value:
