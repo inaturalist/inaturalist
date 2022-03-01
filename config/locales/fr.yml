@@ -1,4 +1,8 @@
 fr:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} changement"
+    other: "%{count} changements"
   x_comments:
     one: '1 commentaire'
     other: '%{count} commentaires'
@@ -547,9 +551,6 @@ fr:
   #Label for an option to show/include content by any user
   any_user: Tous
   anyone: Tout le monde
-  app_owner_application_about_p1a_html: |
-    Les applications iNaturalist permettent l'utilisation authentifiée de l'API iNaturalist. Cela vous permet de faire des appels API qui font des choses comme créer des observations ou des identifications. Les utilisations habituelles sont des applications comme des applications de bureau ou des applications mobiles qui comprennent des fonctionnalités permettant à leurs utilisateurs de créer des observations iNaturalist. Ce contenu doit être produit avec une implication ou une surveillance humaine réelle. Pour en savoir plus, veuillez lire les <a href="/pages/community+guidelines"
-    target="_blank">Règles de la communauté</a> qui interdisent les observations, identifications et commentaires générés par ordinateur.
   app_owner_application_about_p2_html: |
     À partir de 2022, nous imposons une approbation manuelle aux utilisateurs qui souhaitent faire un client API. Pour créer une application tierce, vous devez d'abord soumettre une demande pour devenir «propriétaire d'application». Dans cette demande, vous devez décrire la fonctionnalité de l'application que vous proposez et comment vous comptez l'utiliser. Pour pouvoir soumettre une demande, vous devez avoir créé votre compte il y a au moins 2 mois et vous devez avoir ajouté au moins 10 <a href="/pages/help#identification" target="_blank">identifications d'amélioration</a> au cours du mois dernier. Nous vous poserons peut-être des questions sur votre projet et nous nous réservons le droit de refuser les demandes, quelle que soit la raison du refus.
   app_owner_application_inelligible: |
@@ -567,7 +568,6 @@ fr:
   #curator
   apply_curator: Postuler
   apply_to_be_an_app_owner: Demander à devenir propriétaire d'application
-  apply_to_create_applications_title: Faire une demande pour créer des applications
   apply_to_selected: Appliquer à la sélection
   apply_captive_cultivated: "Appliquer la caractéristique en captivité/cultivé"
   apply_fields: Appliquer les champs
@@ -675,16 +675,6 @@ fr:
     natureserve: NatureServe
     cites: CITES
   authorize: Autoriser
-  #Second-person verb to authorize an application to access an iNat account
-  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
-  authorize_with_pkce: Autorisez avec PKCE
-  #Explanation for how to use the PKCE authorization link. All variables are
-  #code that must match the content of the link and thus cannot be
-  #translated.
-  authorize_with_pkce_desc_html: |
-    (Utilisez <code>%{code_challenge}</code> comme
-    <code>%{code_verifier_param}</code>) Remarque : c'est un exemple élémentaire. Dans le code de production, vous DEVEZ utiliser <code>%{code_challenge_method}</code> et hacher correctement
-    le <code>%{code_challenge_param}</code>.
   authorize_permissions_from_provider: "Autoriser les permissions de %{provider}"
   automatic_short: Auto
   automatically_add_observations_to_this_project: Ajouter automatiquement des observations à ce projet
@@ -779,6 +769,7 @@ fr:
   by_you: Par vous
   calendar: Calendrier
   calendars_only_show_x_observations_at_time: Les calendriers ne montrent que %{x} observations à la fois
+  callback_url: URL de rappel
   cancel: Annuler
   cant_edit_or_delete_hidden_content: Vous ne pouvez modifier ou supprimer de contenu masqué par des responsables du site
   cant_flag_an_object_that_doesnt_exist: Impossible de signaler un objet qui n’existe pas
@@ -854,6 +845,8 @@ fr:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} ont été fusionnés dans %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} sera fusionné dans %{output_taxon}"
   change_your_password: Modifier votre mot de passe
+  #Plural noun, as in changes to a taxon record over time
+  changes: Changements
   changing_the_geoprivacy: 'En changeant la géoconfidentialité, vous changez la façon dont les gens voient l’emplacement de votre observation.'
   check_above_for_errors: Vérifier ci-dessus les erreurs
   check_back_soon: Revenez voir dans quelques temps !
@@ -918,6 +911,10 @@ fr:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Commentaire
   comment_deleted: Commentaire supprimé
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Commentaire masqué
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Commentaire non masqué
   comments: Commentaires
   comments_by_me: Mes commentaires
   comments_have_been_disabled: Les commentaires sont désactivés
@@ -1983,6 +1980,8 @@ fr:
   identification_by_user: Identification par %{user}
   identification_deleted: identification supprimée.
   identification_saved: "Identification enregistrée!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Texte d'identification non masqué
   identification_updated: Identification mise à jour!
   identification_user_short: Identifiant. utilisateur
   identification_withdrawn: Identification retirée.
@@ -2263,10 +2262,6 @@ fr:
   link_or_unlink_your_facebook_account: Lier ou dissocier votre compte Facebook
   link_or_unlink_your_flickr_account: Lier ou dissocier votre compte Flickr
   link_or_unlink_your_google_account: Lier ou dissocier votre compte Google
-  #Text for a link that provides an example of how an application can send a
-  #user to iNat to authorize the app's use of their iNat account. "Link" is
-  #a noun.
-  link_to_authorization_code: Lien vers le code d'autorisation
   link_your_facebook_account: Lier votre compte Facebook
   link_your_flickr_account: Lier votre compte Flickr
   link_your_google_account: Lier votre compte Google
@@ -2452,6 +2447,9 @@ fr:
   mark_all_as_unreviewed: Marquer tout comme non vérifié
   matching_species_will_shown_up_here: Les espèces correspondantes seront affichées ici. Les cartes afficheront une aire de répartition pour cette espèce si elle existe dans %{place}.
   maverick: Divergent
+  maximum_positional_accuracy: Précision maximale de localisation
+  maximum_positional_accuracy_including_unknown: |
+    Précision maximale de localisation incluant les observations sans précision de la localisation
   media: Média
   media_type: Type de média
   medium: moyen
@@ -2498,6 +2496,7 @@ fr:
     target="_blank">conditions d'utilisation</a> ou qu'elle n'agit pas conformément à nos <a
     href="%{guidelines_url}" target="_blank">directives de la communauté</a>, s'il vous plaît
     signalez ce message ci-dessous.
+  minimum_positional_accuracy: Précision minimale de localisation
   misidentifications: Identifications erronées
   misleading_or_illegal_content_html: |
     Contenu trompeur ou illégal, insultes raciales ou ethniques, etc.
@@ -3937,6 +3936,8 @@ fr:
   recently_finished: Récemment terminé
   recently_observed: Récemment observé
   recently_resolved: Récemment résolu
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Enregistrement
   red: rouge
   redo_search_in_map: Refaire la recherche sur la carte
   redo_search_in_map_area: Refaire la recherche dans la région cartographique
@@ -4051,6 +4052,7 @@ fr:
     must_be_in: doit être dans le taxon
     must_be_coordinates_shareable_by_project_curators: l’observateur doit autoriser les responsables du projet à voir les coordonnées.
     must_be_verifiable: doit être vérifiable
+    must_be_wild: doit être sauvage
   running_total: Total actuel
   said: a dit
   satellite: satellite
@@ -4147,6 +4149,9 @@ fr:
   show_active_and_inactive_taxa: Afficher les taxons actifs et inactifs
   show_common_names: Afficher les noms vulgaires
   show_hidden_content: Afficher le contenu masqué
+  show_history_by_this_user: Afficher l'historique de l'utilisateur
+  show_history_for_this_kind_of_action: Afficher l'historique du type d'action
+  show_history_for_this_record: Afficher l'historique de l'enregistrement
   show_keyboard_shortcuts: Afficher les raccourcis clavier
   show_less: Afficher moins
   show_more: Afficher d'avantage
@@ -4399,6 +4404,10 @@ fr:
   summary: Résumé
   supporting: Soutenir
   suspend_user: Suspendre l’utilisateur
+  suspend_user_html: Suspendre %{user}
+  suspend_user_reason_instructions_html: |
+    Expliquez pourquoi vous suspendez ce compte et documentez les violations commises des
+    %{link_start_tag}Règles de la communauté%{link_end_tag}. Veuillez vous abstenir d'ajouter des opinions personnelles.
   sw_lat: Lat. SO
   sw_lon: Long. SO
   sync: Synchroniser ?
@@ -4511,6 +4520,7 @@ fr:
   taxon_framework_relationship_unknown_count_html: "Nombre inconnu de relation : %{count}"
   taxon_framework_relationships: Relations du cadre taxonomique
   taxon_framework_taxon: Taxon du cadre taxonomique
+  taxon_history_notice: L'historique a été lancé en février 2022, donc aucun historique n'est disponible avant cette date.
   taxon_merge: fusion de taxon
   taxon_name: Nom du taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Le nom du taxon doit correspondre à un taxon existant dans notre base de données
@@ -4791,6 +4801,9 @@ fr:
   unsubscribe: Désabonnez-vous
   unsubscribe_from_emails_like_this: Se désabonner des e-mails comme celui-ci
   unsuspend_user: Mettre fin à la suspension de l’utilisateur
+  unsuspend_user_html: 'Mettre fin à la suspension : %{user}'
+  unsuspend_user_reason_instructions: |
+    Veuillez expliquer pourquoi vous mettez fin à la suspension de cet utilisateur.
   upcoming_bioblitzes: Bioblitz à venir
   update: Mettre à jour
   update_existing_observations_with_new_license: Mettre à jour les observations existantes au moyen des nouveaux choix de licence
@@ -5075,6 +5088,8 @@ fr:
   where_were_you?: Où étiez-vous ?
   which_projects_can_add_your_observations?: Quels projets traditionnels peuvent ajouter vos observations ?
   white: blanc
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Pourquoi faites-vous ce changement ? (Facultatif)
   why_you_can_see_the_coordinates: Pourquoi vous pouvez voir les coordonnées
   who_can_add_observation_fields_to_my_obs: Qui peut ajouter des champs d’observation à mes observations ?
   who_can_add_observations_to_this_project?: Qui peut ajouter des observations à ce projet ?
@@ -7611,9 +7626,6 @@ fr:
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
       ModeratorNote: Note du modérateur
-      #Software application that operates iNat on a user's behalf, e.g. the
-      #iNaturalist Android app or an app made by a third party
-      OauthApplication: Application
       TaxonLink: Lien de taxon
     attributes:
       assessment:
@@ -7644,6 +7656,10 @@ fr:
       message:
         subject: Objet
         body: Corps du texte
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Motif
       observation:
         description: Notes
         geo_x: Abscisse
@@ -7660,18 +7676,8 @@ fr:
         finished_at: Terminé
         #Inputs to an export task, e.g. the query and the columns
         inputs: Entrées
-      oauth_application:
-        #The URL the user will be redirected to after authorizing an app to
-        #access their iNaturalist account
-        callback_url: URL de rappel
-        #Unique identifier for an application
-        uid: ID
-        #Noun, secret associated with an application, sort of like the application's password
-        secret: Clé secrète
-        #Adjective, whether or not this application can keep its secret
-        #confidential, e.g. a native or desktop app as opposed to a web
-        #app.
-        confidential: Confidentiel
+      place_taxon_name:
+        position: Position
       post:
         title: Titre
         body: Corps
@@ -7717,16 +7723,39 @@ fr:
       taxon:
         auto_description: Description automatique
         auto_photos: Photos automatiques
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Statut de conservation
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: ID du taxon emblématique
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Actif ?
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Emblématique ?
         locked: Verrouillé
         name: Nom
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Source du nom
         parent_id: ID du taxon de rang supérieur
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Photos verrouillées ?
         rank: Rang
+        rank_level: Niveau de rang
+        source_id: ID source
         source_identifier: Identifiant source
         source_url: URL source
+        #Identifier of the taxon framework relationship record associated
+        #with this taxon
+        taxon_framework_relationship_id: ID du type de relation avec le cadre taxinomique
         wikipedia_summary: Résumé Wikipédia
         wikipedia_title: Titre Wikipédia
       taxon_name:
+        is_valid: Est valide ?
+        lexicon: Lexique
+        name: Nom
         name_provider: Sources de noms
+        position: Position
         source_url: URL source
         source_identifier: Identifiant source
       user:
@@ -7799,6 +7828,10 @@ fr:
               guide_has_too_many_taxa: "le guide ne peut avoir que 500 taxons"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: n'est pas pris en charge pour ce type de contenu
+            base:
+              staff_cannot_be_suspended: Les membres de l'équipe ne peuvent pas être suspendus
             user_id:
               must_be_a_curator: doit être un·e responsable
         mushroom_observer_import_flow_task:
@@ -7813,8 +7846,6 @@ fr:
             observed_on:
               cannot_be_greater_than_date_created: |
                 ne peut pas être postérieure à la date à laquelle l’observation a été ajoutée
-              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
-              must_be_within_130_years: doit être dans les 130 dernières années
         observation_field_value:
           attributes:
             value:
