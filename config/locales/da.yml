@@ -2481,6 +2481,9 @@ da:
   mark_all_as_unreviewed: Markér alle som ikke gennemgået
   matching_species_will_shown_up_here: Matchende arter vil dukke op her. Kortene vil vise et område, hvis %{place} har en for den pågældende art.
   maverick: Uafhængig
+  maximum_positional_accuracy: Maksimal placeringsnøjagtighed
+  maximum_positional_accuracy_including_unknown: |
+    Maksimal placeringsnøjagtighed, herunder observationer uden placeringsnøjagtighed
   media: Medier
   media_type: Medietype
   medium: mellem
@@ -2528,6 +2531,7 @@ da:
     target="_blank">Tjenestevilkår</a> eller ikke handler i overensstemmelse med vores <a
     href="%{guidelines_url}" target="_blank">Fællesskabsretningslinjer</a>, så
     markér venligst denne besked nedenfor.
+  minimum_positional_accuracy: Minimal placeringsnøjagtighed
   misidentifications: Fejlidentifikationer
   misleading_or_illegal_content_html: |
     Vildledende eller ulovligt indhold, race eller etniske nedgørelse osv. For mere om vores definition af "passende", se
