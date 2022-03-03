@@ -401,7 +401,7 @@ class User < ApplicationRecord
 
     return false if child_without_permission?
 
-    super
+    true
   end
 
   def download_remote_icon

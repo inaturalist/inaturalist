@@ -32,7 +32,7 @@ module Privileges
     end
     def earns_privilege( privilege, options = { on: [:create, :destroy]} )
       return if self.included_modules.include?( Privileges::InstanceMethods )
-      include HasSubscribers::InstanceMethods
+      include Privileges::InstanceMethods
 
       options[:on].each do |phase|
         send( "after_#{phase}", lambda {
