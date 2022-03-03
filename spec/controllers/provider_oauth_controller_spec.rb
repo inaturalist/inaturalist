@@ -91,6 +91,22 @@ describe ProviderOauthController do
             assertion: "foo"
           }
         end
+        # As the OAuth spec says
+        it "should return 400" do
+          post :assertion, format: :json, params: assertion_params
+          expect( response.status ).to eq 400
+        end
+        it "should return a localized error_description" do
+          locale = "es"
+          post :assertion, format: :json, params: assertion_params.merge( locale: locale )
+          response_json = JSON.parse( response.body )
+          expect(
+            response_json["error_description"]
+          ).to eq I18n.t( "doorkeeper.errors.messages.access_denied", locale: locale )
+          expect(
+            response_json["error_description"]
+          ).not_to eq I18n.t( "doorkeeper.errors.messages.access_denied", locale: "en" )
+        end
         it "should return unsupported_grant_type error" do
           post :assertion, format: :json, params: assertion_params
           expect( response ).not_to be_successful
