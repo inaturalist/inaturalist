@@ -7426,6 +7426,8 @@ nl:
       taxon:
         auto_description: Auto Beschrijving
         auto_photos: Auto fotos
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Actief?
         locked: Gesloten
         name: Naam
         #External source of the taxon, e.g. Catalogue of Life
