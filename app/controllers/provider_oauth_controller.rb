@@ -3,12 +3,6 @@ class ProviderOauthController < ApplicationController
 
   layout "bootstrap"
 
-  class MissingEmailError < StandardError; end
-  class SuspendedError < StandardError; end
-  class ChildWithoutPermissionError < StandardError; end
-  class UnconfirmedError < StandardError; end
-  class BadAssertionTypeError < StandardError; end
-
   # OAuth2 assertion flow: http://tools.ietf.org/html/draft-ietf-oauth-assertions-01#section-6.3
   # Accepts Facebook and Google access tokens and returns an iNat access token
   def assertion
@@ -36,7 +30,7 @@ class ProviderOauthController < ApplicationController
         when /apple/
           oauth_access_token_from_apple_assertion( params[:client_id], params[:assertion] )
         else
-          raise BadAssertionTypeError
+          raise INat::Auth::BadAssertionTypeError
         end
       end
     rescue Timeout::Error
@@ -46,29 +40,29 @@ class ProviderOauthController < ApplicationController
         error_description: t( "doorkeeper.errors.messages.temporarily_unavailable" )
       }
       return
-    rescue BadAssertionTypeError
+    rescue INat::Auth::BadAssertionTypeError
       return render status: :bad_request, json: {
         error: "unsupported_grant_type",
         error_description: t( "doorkeeper.errors.messages.access_denied" )
       }
-    rescue MissingEmailError
+    rescue INat::Auth::MissingEmailError
       render status: :bad_request, json: {
         error: "invalid_grant",
         error_description: t( :provider_without_email_error_generic ).to_s.gsub( /\s+/, " " )
       }
       return
-    rescue SuspendedError
+    rescue INat::Auth::SuspendedError
       return render status: :bad_request, json: {
         error: "invalid_grant",
         error_description: t( :this_user_has_been_suspended )
       }
-    rescue ChildWithoutPermissionError
+    rescue INat::Auth::ChildWithoutPermissionError
       render status: :bad_request, json: {
         error: "invalid_grant",
         error_description: t( "please_ask_your_parents_for_permission" )
       }
       return
-    rescue UnconfirmedError
+    rescue INat::Auth::UnconfirmedError
       render status: :bad_request, json: {
         error: "invalid_grant",
         error_description: t( "devise.failure.unconfirmed" )
@@ -138,7 +132,7 @@ class ProviderOauthController < ApplicationController
           }
         }
         user = User.create_from_omniauth(auth_info)
-        raise MissingEmailError if !user.valid? && !user.errors[:email].blank?
+        raise INat::Auth::MissingEmailError if !user.valid? && !user.errors[:email].blank?
       end
       user
     rescue Koala::Facebook::AuthenticationError => e
@@ -188,7 +182,7 @@ class ProviderOauthController < ApplicationController
           }
         }
         user = User.create_from_omniauth( auth_info )
-        raise MissingEmailError if !user.valid? && !user.errors[:email].blank?
+        raise INat::Auth::MissingEmailError if !user.valid? && !user.errors[:email].blank?
       end
       user
     rescue RestClient::Unauthorized => e
@@ -295,7 +289,7 @@ class ProviderOauthController < ApplicationController
         }
       }
       user = User.create_from_omniauth( auth_info )
-      raise MissingEmailError if !user.valid? && !user.errors[:email].blank?
+      raise INat::Auth::MissingEmailError if !user.valid? && !user.errors[:email].blank?
     end
     return nil unless user && user.persisted?
     if access_token = assertion_access_token_for_client_and_user( client, user )
@@ -320,9 +314,9 @@ class ProviderOauthController < ApplicationController
 
   def assertion_access_token_for_client_and_user( client, user )
     unless user.active_for_authentication?
-      raise SuspendedError if user.suspended?
-      raise ChildWithoutPermissionError if user.child_without_permission?
-      raise UnconfirmedError if ( !user.confirmed? || confirmation_sent_at.blank? )
+      raise INat::Auth::SuspendedError if user.suspended?
+      raise INat::Auth::ChildWithoutPermissionError if user.child_without_permission?
+      raise INat::Auth::UnconfirmedError if ( !user.confirmed? || confirmation_sent_at.blank? )
     end
     access_token = Doorkeeper::AccessToken.
       where( application_id: client.id, resource_owner_id: user.id, revoked_at: nil ).

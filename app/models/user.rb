@@ -424,10 +424,7 @@ class User < ApplicationRecord
 
   # Confirmation should be sent to the child *after* the parent has been verified
   def skip_confirmation_if_child
-    if child?
-      puts "Theoretically skipping confirmation"
-      skip_confirmation!
-    end
+    skip_confirmation! if child?
   end
   
   def allow_some_licenses
