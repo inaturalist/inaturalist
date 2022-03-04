@@ -153,6 +153,28 @@ describe ObservationsExportFlowTask do
       expect( csv.detect{|row| row.detect{|v| v == in_project.id.to_s}} ).not_to be_blank
       expect( csv.detect{|row| row.detect{|v| v == not_in_project.id.to_s}} ).to be_blank
     end
+
+    describe "email notification" do
+      let(:o) { create :observation }
+      let(:ft) {
+        ft = build :observations_export_flow_task
+        ft.inputs.build( extra: { query: "user_id=#{o.user.id}" } )
+        ft.save!
+        ft
+      }
+      it "should happen if requested" do
+        ft.update( options: { email: true } )
+        expect {
+          ft.run
+        }.to change( ActionMailer::Base.deliveries, :size ).by 1
+      end
+      it "should not happen if not requested" do
+        expect( ft.options[:email] ).to be_blank
+        expect {
+          ft.run
+        }.not_to change( ActionMailer::Base.deliveries, :size )
+      end
+    end
   end
 
   describe "geoprivacy" do

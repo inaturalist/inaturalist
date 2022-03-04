@@ -61,6 +61,8 @@ class ObservationsExportFlowTask < FlowTask
       self.outputs.create!(:file => f)
     end
     logger.info "ObservationsExportFlowTask #{id}: Created outputs" if @debug
+    # The user may have requested an email confirmation after this run started
+    reload
     if options[:email]
       Emailer.observations_export_notification(self).deliver_now
       logger.info "ObservationsExportFlowTask #{id}: Emailed user #{user_id}" if @debug
@@ -69,9 +71,13 @@ class ObservationsExportFlowTask < FlowTask
   rescue Exception => e
     exception_string = [ e.class, e.message ].join(" :: ")
     logger.error "ObservationsExportFlowTask #{id}: Error: #{exception_string}" if @debug
-    update(finished_at: Time.now,
+    update(
+      finished_at: Time.now,
       error: "Error",
-      exception: [ exception_string, e.backtrace ].join("\n"))
+      exception: [ exception_string, e.backtrace ].join("\n")
+    )
+    # The user may have requested an email confirmation after this run started
+    reload
     if options[:email]
       Emailer.observations_export_failed_notification(self).deliver_now
       logger.error "ObservationsExportFlowTask #{id}: Emailed user #{user_id} about error" if @debug
