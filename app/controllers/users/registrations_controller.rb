@@ -95,7 +95,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           else
             t( "devise.registrations.signed_up_but_#{resource.inactive_message}" )
           end
-          set_flash_message :notice, msg if is_navigational_format?
+          flash[:notice] = msg if is_navigational_format?
           expire_data_after_sign_in!
           respond_with( resource ) do | format |
             format.json { render status: :created, json: { message: msg } }

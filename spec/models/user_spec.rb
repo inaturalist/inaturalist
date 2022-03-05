@@ -1364,7 +1364,10 @@ describe User do
       expect( u ).not_to be_confirmed
       expect( u.confirmation_token ).not_to be_blank
     end
-    it "should send the confirmation email"
+    it "should send the confirmation email" do
+      User.create_from_omniauth( auth_info )
+      expect( ActionMailer::Base.deliveries.last.subject ).to include "Confirm"
+    end
     describe "with an email in the name field" do
       let(:auth_info) { {
         "info" => {
@@ -1391,6 +1394,21 @@ describe User do
         u = User.create_from_omniauth( auth_info )
         expect( u.login ).not_to include email_login_suggestion
       end
+    end
+  end
+
+  describe "confirmation" do
+    it "should deliver the welcome email when a new user is confirmed" do
+      user = create :user, :as_unconfirmed
+      expect( ActionMailer::Base.deliveries.last.subject ).to include "Confirm"
+      expect { user.confirm }.to change( ActionMailer::Base.deliveries, :size ).by( 1 )
+      expect( ActionMailer::Base.deliveries.last.subject ).to include "Welcome"
+    end
+    it "should not deliver the welcome email when an existing user is confirmed" do
+      user = create :user
+      user.update( confirmed_at: nil, confirmation_sent_at: nil )
+      expect( user ).not_to be_confirmed
+      expect { user.confirm }.not_to change( ActionMailer::Base.deliveries, :size )
     end
   end
 
