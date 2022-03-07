@@ -174,10 +174,10 @@ id:
     karena taksa yang terancam
   about_trusting_projects_options_taxon_desc: |-
     Banyak proyek hanya membutuhkan akses ke koordinat yang dikaburkan karena
-    pengamatan menggambarkan takson yang terancam.
+    pengamatannya menggambarkan takson yang terancam.
   about_trusting_projects_overview: |-
     Memberikan akses kepada koordinat tersembunyi Anda akan mengizinkan manajer dari proyek
-    ini untuk melihat lokasi pemantauan Anda yang sebenarnya dan tanpa dikaburkan dalam
+    ini untuk melihat lokasi pengamatan Anda yang sebenarnya dan tanpa dikaburkan dalam
     proyek ini. Hal ini sangat penting dalam situasi seperti saat peneliti atau manajer sumber daya membutuhkan akses ke koordinat yang tepat untuk analisis dan
     pengambilan keputusan.
   #Header for a section listing all the project managers (admins and curators)
@@ -185,7 +185,7 @@ id:
   about_trusting_projects_project_managers_are: |-
     Manajer proyek yang akan memiliki akses ke koordinat tersembunyi Anda adalah:
   about_trusting_projects_warning: |-
-    Ingatlah bahwa manajer proyek dapat mengubah parameter proyek untuk memasukkan pemantauan apapun kepunyaan Anda, dan mereka dapat menambah atau menghapus manajer projek kapan saja. Anda akan menerima notifikasi tentang perubahan ini, namun pada dasarnya Anda memercayakan proyek ini dengan data lokasi pribadi Anda, jadi berhati-hatilah.
+    Ingatlah bahwa manajer proyek dapat mengubah parameter proyek untuk memasukkan apapun pengamatan kepunyaan Anda, dan mereka dapat menambah atau menghapus manajer proyek kapan saja. Anda akan menerima notifikasi tentang perubahan ini, namun pada dasarnya Anda memercayakan proyek ini dengan data lokasi pribadi Anda, jadi berhati-hatilah.
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Anda dapat memilih untuk membagikan koordinat yang disembunyikan dengan
@@ -200,7 +200,7 @@ id:
   accuracy: Akurasi
   accuracy_meters: Akurasi (meter)
   accuracy_of_the_coordinates: |
-    Keakuratan koordinat dalam meter. Anda dapat mengedit ini dengan mengeklik tautan "edit" di atas atau dengan mengeklik penanda peta dan menyeret pegangannya. Cobalah untuk membuat lingkaran yang cukup besar hingga Anda yakin Anda berada di suatu tempat di dalamnya.
+    Keakuratan koordinat dalam meter. Anda dapat mengubah ini dengan mengeklik tautan "edit" di atas atau dengan mengeklik penanda peta dan menyeret pegangannya. Cobalah untuk membuat lingkaran yang cukup besar hingga Anda yakin Anda berada di suatu tempat di dalamnya.
   #Noun, as in "Ken-ichi's action was not acceptable"
   action: Tindakan
   actions: Tindakan
@@ -957,7 +957,7 @@ id:
   cannot_be_changed_during_a_content_freeze: Tidak dapat diganti di saat pembekuan konten
   conservation_status: Status Konservasi
   conservation_status_descriptions:
-    status: Kode status, peringkat, dll Jika kode pendek seperti E atau CR ada, silakan gunakan itu, tetapi jika tidak, silakan gunakan status yang lengkap, misalnya terancam punah atau kritis.
+    status: Kode status, peringkat, dll. Jika kode pendek seperti E atau CR tersedia, silakan menggunakan itu, tetapi jika tidak, harap menggunakan status yang lengkap, misalnya terancam punah atau kritis.
     description: Deskripsi singkat tentang mengapa ini tercantum.
     authority: |
       Organisasi yang menyatakan status ini. Harap gunakan fitur penyelesaian otomatis untuk memilih otoritas yang ada sebelum menambahkan yang baru. Kamu bisa melompati ini jika *kamu* ingin didaftarkan sebagai otoritas.
@@ -1101,7 +1101,7 @@ id:
   couldnt_find_that_taxon: tidak dapat menemukan taksa tersebut
   create: Buat
   create_a_guide: Membuat panduan
-  create_a_new_field: Membuat halaman baru
+  create_a_new_field: Buat Kolom Baru
   create_a_new_place: Membuat lokasi baru
   create_a_new_taxon: Membuat taksa baru
   create_a_query: Membuat pertanyaan
@@ -1249,7 +1249,7 @@ id:
   curators_can_remove_observations_from: Kurator dapat menghapus pengamatan dari proyek dan identifikasi mereka ditampilkan di samping pengamatan pada pandangan tertentu proyek-. Kurator juga dapat melihat koordinat sebenarnya dari kontribusi swasta dan menyembunyikannya untuk proyek ini.
   curator_identification: Identifikasi kurator
   current_flags: Tanda Saat Ini
-  custom_project_fields: Proyek lapangan kustom
+  custom_project_fields: Proyek Kolom Kustom
   custom_project_was_successfully_created: Proyek kustom telah berhasil dibuat
   custom_project_was_successfully_updated: Proyek kustom telah berhasil diperbaharui
   customize_location: Sesuaikan Lokasi
@@ -1605,7 +1605,7 @@ id:
   external_applications: Aplikasi Eksternal
   external_applications_description: |
     Aplikasi Eksternal merupakan aplikasi perangkat lunak yang telah kamu izinkan untuk mengakses akun iNaturalistmu. Secara umum, mereka dapat melakukan apapun dengan akunmu sebagaimana yang dapat juga kamu lakukan dengannya, jadi pastikan kamu memercayai para pengembang aplikasinya sebelum memberikan izin.
-  external_taxon_including_children: Takson Eksternal (termasuk anakannya)
+  external_taxon_including_children: Takson Eksternal (termasuk turunannya)
   extinct: punah
   extinct_in_the_wild: Punah di Alam Liar
   extra_properties: Properti Tambahan
@@ -2962,7 +2962,7 @@ id:
     comments_panel_title: Penasaran akan diskusi yang sedang berjalan di %{site_name}?
     comments_panel_body: "<p>%{site_name} merupakan tempat berbagi cerita dan berdiskusi tentang pengamatan makhluk hidup. Berikut adalah diskusi yang sedang berjalan saat ini. (Catatan: Anda secara otomatis mengikuti diskusi apapun yang Anda komentari atau bantu identifikasi. Kelola kabar-kabar tersebut di bagian 'Langganan' di kanan.)</p>"
     updates_by_you_panel_title: Tab ini adalah cara cepat untuk menyaring kabar tentang konten Anda saja.
-    updates_by_you_panel_body: Ingat, di tab 'Semua kabar', Anda akan mendapatkan kabar bukan hanya tentang konten Anda sendiri, tetapi juga konten tentang orang-orang yang Anda ikuti dan taksa atau tempat-tempat yang kamu ikut berlangganan menggunakan fitur Langganan di kanan.
+    updates_by_you_panel_body: Ingat, di tab 'Semua kabar', Anda akan mendapatkan kabar bukan hanya tentang konten Anda sendiri, tetapi juga konten tentang orang-orang yang Anda ikuti serta takson atau tempat-tempat yang kamu ikut berlangganan dengan menggunakan fitur Langganan di kanan.
     youve_got_updates_panel_title: Kamu mendapatkan berita baru!
     youve_got_updates_panel_body_p1: Jangan ketinggalan dengan kabar-kabar berikut...
     youve_got_updates_panel_body_p2: |
@@ -3560,7 +3560,8 @@ id:
     Setelah dipertimbangkan, kami harus membatasi kondisi di mana orang-orang dapat menambahkan tempat baru di masa yang akan datang dikarenakan tingkat pertumbuhan iNat saat ini.
   plants: tanaman
   please_add_a_citation_for_this_change: Harap tambahkan kutipan untuk perubahan ini.
-  please_allow_a_few_weeks_for_external_sites: Harap menunggu beberapa minggu untuk situs eksternal menyinkronisasi perubahan dari pengamatan ini #Title to a section warning a user to exercise caution
+  please_allow_a_few_weeks_for_external_sites: Harap menunggu beberapa minggu untuk situs eksternal menyinkronisasi perubahan dari pengamatan ini #Request that a known child ask their parents for permission to use this service
+  #Title to a section warning a user to exercise caution
   please_be_careful!: Harap Berhati-hati!
   please_complete_the_following_to_add_project: |
     Harap menyelesaikan hal-hal berikut ini untuk menambahkan pengamatan ini ke dalam proyek:
@@ -4282,21 +4283,21 @@ id:
   submit_observations:
     other: Kirimkan %{count} pengamatan
   submitted: Dikirimkan
-  subscribe_to_a_taxon: Berlangganan Takson
+  subscribe_to_a_taxon: Berlangganan pada suatu Takson
   subscribe_to_a_place: Berlangganan Tempat
-  subscribe_to_comments_on_this_flag_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari tanda ini"
-  subscribe_to_comments_on_this_post_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari postingan ini"
-  subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari aktivasi takson ini"
-  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari penukaran takson ini"
-  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari penggabungan takson ini"
-  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari pemisahan takson ini"
-  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Berlanggananlah%{tag_end} untuk mengomentari deaktivasi takson ini"
-  subscribe_to_observations_from_this_place_html: <a>Berlanggananlah</a> untuk pengamatan dari tempat ini
-  subscribe_to_observations_in_a_taxon: Ikuti semua postingan pengamatan spesies atau sekelompok organisme (contohnya 'kalajengking').
+  subscribe_to_comments_on_this_flag_html: "%{tag_start}Berlanggananlah%{tag_end} pada komentar di tanda ini"
+  subscribe_to_comments_on_this_post_html: "%{tag_start}Berlanggananlah%{tag_end} pada komentar di postingan ini"
+  subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Berlanggananlah%{tag_end} pada komentar di aktivasi takson ini"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Berlanggananlah%{tag_end} pada komentar di penukaran takson ini"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Berlanggananlah%{tag_end} pada komentar di penggabungan takson ini"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Berlanggananlah%{tag_end} pada komentar di pemisahan takson ini"
+  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Berlanggananlah%{tag_end} pada komentar di deaktivasi takson ini"
+  subscribe_to_observations_from_this_place_html: <a>Berlanggananlah</a> pada pengamatan dari tempat ini
+  subscribe_to_observations_in_a_taxon: Ikuti semua postingan pengamatan suatu spesies atau sekelompok organisme (contohnya 'kalajengking').
   subscribe_to_observations_in_a_place: Ikuti semua pengamatan yang diunggah di tempat ini. Anda juga bisa menambahkan saringan takson opsional (contohnya 'kalajengking dari Texas').
   subscribe_to_places_help: |
     Langganan mengatur apa yang Anda akan lihat di berita dan dasbor Anda.
-    Sebagai contoh, Anda bisa berlangganan dengan sebuah takson untuk mendapatkan kabar tentang pengamatan-pengamatan baru dari takson tersebut. Anda secara otomatis berlangganan dengan kabar tentang pengamatan-pengamatan yang Anda komentari atau identifikasi.
+    Sebagai contoh, Anda bisa berlangganan dengan sebuah takson untuk mendapatkan kabar tentang pengamatan-pengamatan baru dari takson tersebut. Anda secara otomatis berlangganan pada kabar tentang pengamatan-pengamatan yang Anda komentari atau identifikasi.
   subscribe_to_this: Berlangganan pada ini
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Berlangganan</a> pada %{x} dari %{y} ini.
@@ -4959,6 +4960,8 @@ id:
   where_were_you?: Di manakah Anda?
   which_projects_can_add_your_observations?: Proyek tradisional manakah yang dapat menambahkan pengamatan Anda?
   white: putih
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Mengapa Anda membuat perubahan ini? (opsional)
   why_you_can_see_the_coordinates: Mengapa Anda Bisa Melihat Koordinatnya
   who_can_add_observation_fields_to_my_obs: Siapa yang dapat menambahkan bidang pengamatan ke pengamatan saya?
   who_can_add_observations_to_this_project?: Siapa yang dapat menambahkan pengamatan ke proyek ini?
@@ -5077,14 +5080,14 @@ id:
   you_are_submitting_obs_with_no_date_or_no_location: |
     Anda sedang mengirimkan pengamatan tanpa waktu atau lokasi.
     Pengamatan tanpa informasi ini sering kali tidak mungkin untuk diidentifikasi dan menurut pengaturan sistem tidak akan terlihat di pencarian pengamatan.
-  you_are_subscribed_to_comments_on_this_flag: Anda berlangganan dengan komentar di tanda ini.
-  you_are_subscribed_to_comments_on_this_post: Anda berlangganan dengan komentar di postingan ini.
-  you_are_subscribed_to_comments_on_this_taxon_stage: Anda berlangganan dengan komentar di aktivasi takson ini
-  you_are_subscribed_to_comments_on_this_taxon_swap: Anda berlangganan dengan komentar di penukaran takson ini
-  you_are_subscribed_to_comments_on_this_taxon_merge: Anda berlangganan dengan komentar di penggabungan takson ini
-  you_are_subscribed_to_comments_on_this_taxon_split: Anda berlangganan dengan komentar di pemisahan takson ini
-  you_are_subscribed_to_comments_on_this_taxon_drop: Anda berlangganan dengan komentar di deaktivasi takson ini
-  you_are_subscribed_to_observations_from_this_place: Anda berlangganan dengan komentar dari tempat ini.
+  you_are_subscribed_to_comments_on_this_flag: Anda berlangganan pada komentar di tanda ini.
+  you_are_subscribed_to_comments_on_this_post: Anda berlangganan pada komentar di postingan ini.
+  you_are_subscribed_to_comments_on_this_taxon_stage: Anda berlangganan pada komentar di aktivasi takson ini
+  you_are_subscribed_to_comments_on_this_taxon_swap: Anda berlangganan pada komentar di penukaran takson ini
+  you_are_subscribed_to_comments_on_this_taxon_merge: Anda berlangganan pada komentar di penggabungan takson ini
+  you_are_subscribed_to_comments_on_this_taxon_split: Anda berlangganan pada komentar di pemisahan takson ini
+  you_are_subscribed_to_comments_on_this_taxon_drop: Anda berlangganan pada komentar di deaktivasi takson ini
+  you_are_subscribed_to_observations_from_this_place: Anda berlangganan pada komentar dari tempat ini.
   you_arent_a_member_of_that_project: Anda bukan anggota dari proyek tersebut.
   you_arent_following_that_person: "Anda tidak mengikuti orang tersebut."
   you_can_accept_invitations: Anda dapat menerima undangan di sini
@@ -5473,7 +5476,7 @@ id:
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Gabungan
         #Date field to use when grouping by date, e.g. date created or date added
-        date_field: Kolom Data
+        date_field: Kolom Tanggal
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Horizontal
         #Date range to aggregate by, e.g. observations per month vs. observations per week
@@ -6351,7 +6354,7 @@ id:
           Suatu takson hanya boleh memiliki %{max} foto. Anda harus menghapus foto yang sudah ada untuk menambahkan lebih banyak foto.
         no_trending_desc: Tidak ada organisme di bawah takson ini yang diamati sejak bulan lalu
         photo_chooser_modal_desc: |
-          Seret foto ke sini dari kiri, atau seret foto ke sini untuk menyusun kembali.
+          Seret foto ke sini dari kiri, atau seret foto di sini untuk menyusun kembali.
         photo_chooser_modal_explanation: |
           Ingat bahwa halaman takson akan menampilkan foto-foto takson ini dan turunannya. Namun, foto-foto yang terpilih untuk takson ini akan diperlihatkan pertama. Foto pertama adalah foto standar yang akan digunakan di seluruh situs.
         rare_desc: Taksa terancam yang paling sedikit diamati

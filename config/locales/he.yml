@@ -20,7 +20,7 @@ he:
     many: '%{count} זיהויים'
     other: '%{count} זיהויים'
   x_identifications_html:
-    one: 'זיהיו <span class="count">%{count}</span>'
+    one: 'זיהוי <span class="count">%{count}</span>'
     two: '<span class="count">%{count}</span> זיהוים'
     many: '<span class="count">%{count}</span> זיהוים'
     other: '<span class="count">%{count}</span> זיהוים'
@@ -2907,6 +2907,7 @@ he:
   places_merged_successfully: המקומות אוחדו בהצלחה!
   plants: צמחים
   please_add_a_citation_for_this_change: נא להוסיף ציטטה לשינוי זה.
+  #Title to a section warning a user to exercise caution
   please_be_careful!: אנא היו זהירים!
   please_explain_why_you_want_to_hide_this: נא להסביר את סיבת הבקשה להסתרה
   please_explain_why_you_want_to_unhide_this: נא להסביר את סיבת הבקשה לאי-הסתרה
