@@ -101,22 +101,12 @@ describe User do
   end
 
   describe "creation" do
-    before do
-      @user = nil
-      @creating_user = lambda do
-        @user = create_user
-        puts "[ERROR] #{@user.errors.full_messages.to_sentence}" if @user.new_record?
-      end
+    it "increments User#count" do
+      expect { create( :user ) }.to change( User, :count ).by( 1 )
     end
 
-    it 'increments User#count' do
-      expect(@creating_user).to change(User, :count).by(1)
-    end
-
-    it 'initializes confirmation_token' do
-      @creating_user.call
-      @user.reload
-      expect(@user.confirmation_token).not_to be_blank
+    it "initializes confirmation_token" do
+      expect( create( :user, :as_unconfirmed ).confirmation_token ).not_to be_blank
     end
 
     it "should require email under normal circumstances" do
