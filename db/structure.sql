@@ -10,6 +10,48 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: tiger; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA tiger;
+
+
+--
+-- Name: tiger_data; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA tiger_data;
+
+
+--
+-- Name: topology; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA topology;
+
+
+--
+-- Name: SCHEMA topology; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON SCHEMA topology IS 'PostGIS Topology schema';
+
+
+--
+-- Name: fuzzystrmatch; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS fuzzystrmatch WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION fuzzystrmatch; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION fuzzystrmatch IS 'determine similarities and distance between strings';
+
+
+--
 -- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -21,6 +63,34 @@ CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
 --
 
 COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial types and functions';
+
+
+--
+-- Name: postgis_tiger_geocoder; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS postgis_tiger_geocoder WITH SCHEMA tiger;
+
+
+--
+-- Name: EXTENSION postgis_tiger_geocoder; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION postgis_tiger_geocoder IS 'PostGIS tiger geocoder and reverse geocoder';
+
+
+--
+-- Name: postgis_topology; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS postgis_topology WITH SCHEMA topology;
+
+
+--
+-- Name: EXTENSION postgis_topology; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION postgis_topology IS 'PostGIS topology spatial types and functions';
 
 
 --
@@ -1447,7 +1517,9 @@ CREATE TABLE public.flags (
     resolved_at timestamp without time zone,
     flaggable_user_id integer,
     flaggable_content text,
-    uuid uuid DEFAULT public.uuid_generate_v4()
+    uuid uuid DEFAULT public.uuid_generate_v4(),
+    flaggable_parent_type character varying,
+    flaggable_parent_id bigint
 );
 
 
@@ -4313,7 +4385,6 @@ CREATE TABLE public.taxa (
     observations_count integer DEFAULT 0,
     listed_taxa_count integer DEFAULT 0,
     rank_level double precision,
-    unique_name character varying(255),
     wikipedia_summary text,
     wikipedia_title character varying(255),
     featured_at timestamp without time zone,
@@ -4784,6 +4855,86 @@ ALTER SEQUENCE public.taxon_schemes_id_seq OWNED BY public.taxon_schemes.id;
 
 
 --
+-- Name: taxon_versions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.taxon_versions (
+    id integer NOT NULL,
+    taxon_id integer,
+    version integer,
+    name character varying(255),
+    rank character varying(255),
+    source_identifier character varying(255),
+    source_url character varying(255),
+    parent_id integer,
+    source_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    iconic_taxon_id integer,
+    is_iconic boolean DEFAULT false,
+    auto_photos boolean DEFAULT true,
+    auto_description boolean DEFAULT true,
+    lft integer,
+    rgt integer,
+    name_provider character varying(255),
+    delta boolean DEFAULT false,
+    creator_id integer,
+    updater_id integer,
+    rank_level integer
+);
+
+
+--
+-- Name: taxon_versions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.taxon_versions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: taxon_versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.taxon_versions_id_seq OWNED BY public.taxon_versions.id;
+
+
+--
+-- Name: time_zone_geometries; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.time_zone_geometries (
+    ogc_fid integer NOT NULL,
+    tzid character varying,
+    geom public.geometry(MultiPolygon)
+);
+
+
+--
+-- Name: time_zone_geometries_ogc_fid_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.time_zone_geometries_ogc_fid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: time_zone_geometries_ogc_fid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.time_zone_geometries_ogc_fid_seq OWNED BY public.time_zone_geometries.ogc_fid;
+
+
+--
 -- Name: trip_purposes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5111,6 +5262,41 @@ CREATE SEQUENCE public.users_id_seq
 --
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: versions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.versions (
+    id integer NOT NULL,
+    item_type character varying NOT NULL,
+    item_id bigint NOT NULL,
+    event character varying NOT NULL,
+    whodunnit character varying,
+    created_at timestamp without time zone,
+    object_changes json
+);
+
+
+--
+-- Name: versions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.versions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.versions_id_seq OWNED BY public.versions.id;
 
 
 --
@@ -6093,6 +6279,20 @@ ALTER TABLE ONLY public.taxon_schemes ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: taxon_versions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taxon_versions ALTER COLUMN id SET DEFAULT nextval('public.taxon_versions_id_seq'::regclass);
+
+
+--
+-- Name: time_zone_geometries ogc_fid; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.time_zone_geometries ALTER COLUMN ogc_fid SET DEFAULT nextval('public.time_zone_geometries_ogc_fid_seq'::regclass);
+
+
+--
 -- Name: trip_purposes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6146,6 +6346,13 @@ ALTER TABLE ONLY public.user_privileges ALTER COLUMN id SET DEFAULT nextval('pub
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Name: versions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.versions ALTER COLUMN id SET DEFAULT nextval('public.versions_id_seq'::regclass);
 
 
 --
@@ -7104,6 +7311,22 @@ ALTER TABLE ONLY public.taxon_schemes
 
 
 --
+-- Name: taxon_versions taxon_versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taxon_versions
+    ADD CONSTRAINT taxon_versions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: time_zone_geometries time_zone_geometries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.time_zone_geometries
+    ADD CONSTRAINT time_zone_geometries_pkey PRIMARY KEY (ogc_fid);
+
+
+--
 -- Name: trip_purposes trip_purposes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7165,6 +7388,14 @@ ALTER TABLE ONLY public.user_privileges
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: versions versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.versions
+    ADD CONSTRAINT versions_pkey PRIMARY KEY (id);
 
 
 --
@@ -7646,6 +7877,13 @@ CREATE INDEX index_file_prefixes_on_prefix ON public.file_prefixes USING btree (
 --
 
 CREATE INDEX index_flags_on_flaggable_id_and_flaggable_type ON public.flags USING btree (flaggable_id, flaggable_type);
+
+
+--
+-- Name: index_flags_on_flaggable_parent_type_and_flaggable_parent_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_flags_on_flaggable_parent_type_and_flaggable_parent_id ON public.flags USING btree (flaggable_parent_type, flaggable_parent_id);
 
 
 --
@@ -9175,13 +9413,6 @@ CREATE INDEX index_taxa_on_taxon_framework_relationship_id ON public.taxa USING 
 
 
 --
--- Name: index_taxa_on_unique_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_taxa_on_unique_name ON public.taxa USING btree (unique_name);
-
-
---
 -- Name: index_taxa_on_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9595,6 +9826,13 @@ CREATE UNIQUE INDEX index_users_on_uuid ON public.users USING btree (uuid);
 
 
 --
+-- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_versions_on_item_type_and_item_id ON public.versions USING btree (item_type, item_id);
+
+
+--
 -- Name: index_votes_on_unique_obs_fave; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9690,6 +9928,13 @@ CREATE UNIQUE INDEX taggings_idx ON public.taggings USING btree (tag_id, taggabl
 --
 
 CREATE INDEX taxon_names_lower_name_index ON public.taxon_names USING btree (lower((name)::text));
+
+
+--
+-- Name: time_zone_geometries_geom_geom_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX time_zone_geometries_geom_geom_idx ON public.time_zone_geometries USING gist (geom);
 
 
 --
@@ -10104,6 +10349,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190702063435'),
 ('20190820224224'),
 ('20190918161513'),
+('20191101004413'),
 ('20191104233418'),
 ('20191115201008'),
 ('20191203201511'),
@@ -10151,9 +10397,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211001151300'),
 ('20211109220615'),
 ('20211216171216'),
+('20220105014844'),
 ('20220209191328'),
 ('20220217224804'),
 ('20220224012321'),
-('20220225054243');
+('20220225054243'),
+('20220308015748');
 
 

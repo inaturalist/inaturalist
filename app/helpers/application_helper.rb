@@ -274,22 +274,6 @@ module ApplicationHelper
     html.html_safe
   end
   
-  # def link_to(*args)
-  #   if args.size >= 2 && args[1].is_a?(Taxon) && args[1].unique_name? && 
-  #       !(args[2] && args[2].is_a?(Hash) && args[2][:method])
-  #     return super(args.first, url_for_taxon(args[1]), *args[2..-1])
-  #   end
-  #   super
-  # end
-  
-  def url_for_taxon(taxon)
-    if taxon && taxon.unique_name?
-      url_for(:controller => 'taxa', :action => taxon.unique_name.split.join('_'))
-    else
-      url_for(taxon)
-    end
-  end
-  
   def modal_image(photo, options = {})
     size = options[:size]
     img_url ||= photo.best_url(size)
