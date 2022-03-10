@@ -1404,10 +1404,17 @@ describe User do
       expect { user.confirm }.to change( ActionMailer::Base.deliveries, :size ).by( 1 )
       expect( ActionMailer::Base.deliveries.last.subject ).to include "Welcome"
     end
-    it "should not deliver the welcome email when an existing user is confirmed" do
+    it "should not deliver the welcome email when confirmation_sent_at is nil" do
       user = create :user
       user.update( confirmed_at: nil, confirmation_sent_at: nil )
       expect( user ).not_to be_confirmed
+      expect { user.confirm }.not_to change( ActionMailer::Base.deliveries, :size )
+    end
+    it "should not deliver the welcome email when user has privileges" do
+      user = create :user, :as_unconfirmed
+      create :user_privilege, user: user
+      expect( user ).not_to be_confirmed
+      expect( user.user_privileges ).not_to be_blank
       expect { user.confirm }.not_to change( ActionMailer::Base.deliveries, :size )
     end
   end

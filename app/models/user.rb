@@ -1246,7 +1246,21 @@ class User < ApplicationRecord
   end
 
   def send_welcome_email
-    if saved_change_to_confirmed_at? && confirmed? && !confirmation_sent_at.blank?
+    if (
+      saved_change_to_confirmed_at? &&
+      confirmed? &&
+      # This might happen if an existing user successfully resets their
+      # password, i.e. they don't send themselves a confirmation email b/c
+      # they can't sign in, but they can request the reset password email,
+      # and successfully clicking that link also confirms the email address
+      !confirmation_sent_at.blank? &&
+      # This is for existing users who explicitly request a confirmation
+      # email, which sets confirmation_sent_at. This is imperfect, but it
+      # should prevent most actual users from receiving the welcome email
+      # again. People with no privileges have not really added any content
+      # and could probably use a reminder of the links in the welcome email
+      !user_privileges.any?
+    )
       Emailer.welcome( self ).deliver_now
     end
   end
