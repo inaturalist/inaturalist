@@ -72,10 +72,12 @@ const Profile = ( {
           className="btn btn-nostyle alert-link"
           onClick={
             // TODO replace this will with a react modal, e.g. ConfirmModal
-            ( ) => confirm(
-              "After you resend the confirmation email, you will be signed out and you will not be able to sign in to your account until you click the link in the email, so make absolutely sure you have entered your email address correctly.",
-              resendConfirmation
-            )
+            ( ) => {
+              if ( confirm( "After you resend the confirmation email, you will be signed out and you will not be able to sign in to your account until you click the link in the email, so make absolutely sure you have entered your email address correctly." ) ) {
+                console.log( "[DEBUG] confirmed, resending" );
+                resendConfirmation( );
+              }
+            }
           }
         >
           Re-send confirmation email

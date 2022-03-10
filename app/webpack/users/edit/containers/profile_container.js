@@ -23,7 +23,7 @@ function mapDispatchToProps( dispatch ) {
     onFileDrop: droppedFiles => dispatch( onFileDrop( droppedFiles ) ),
     removePhoto: ( ) => dispatch( removePhoto( ) ),
     changePassword: input => dispatch( changePassword( input ) ),
-    resendConfirmation: input => dispatch( resendConfirmation( ) )
+    resendConfirmation: ( ) => dispatch( resendConfirmation( ) )
   };
 }
 
