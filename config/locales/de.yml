@@ -304,7 +304,7 @@ de:
   add_observations_by_checking_off: Füge Beobachtungen durch das Auswählen von Arten aus einer Liste hinzu.
   add_observations_project: Beobachtungen zu diesem Projekt hinzufügen
   #Prompt to add a new journal post
-  add_one: Einen hinzufügen!
+  add_one: Hinzufügen
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Jetzt hinzufügen
@@ -719,7 +719,7 @@ de:
   because_of: because of
   become_a_donor_caps: Unterstützer werden
   become_a_donor_today_caps: Werde heute ein Unterstützer
-  before_importing_photos: vor dem Importieren von Bildern
+  before_importing_photos: vor dem Importieren von Bildern verlinken
   bg_color: Hintergrundfarbe
   bio: Über mich
   bio_description: Erzähle anderen Nutzern etwas von dir!
@@ -2362,7 +2362,7 @@ de:
   main_content_description: Hauptinhalt hier hinein
   make_a_new_place: Neues Gebiet erstellen
   make_a_taxon_swap_instead?: Stattdessen einen TaxonSwap durchführen?
-  make_curator: Kurator machen
+  make_curator: Zum Kurator machen
   make_manager: Zum Manager machen
   make_sure_the_default_photo_looks_good: Vergewissere dich, dass das Standardfoto in großer Größe gut aussieht.
   make_this_your_default_license: "Zu deiner Standard-%{type}-Lizenz machen"
@@ -2374,7 +2374,7 @@ de:
   manage_your_relationships: Deine Beziehungen verwalten
   manager: Manager
   managers: Manager
-  managers_can_do: Manager können alles tun, was Kuratoren können, Projekteinstellungen bearbeiten und Projektjournalbeiträge schreiben.
+  managers_can_do: Manager können, anders als Kuratoren, zusätzlich noch Projekteinstellungen bearbeiten und Projektjournalbeiträge schreiben.
   managing_projects: Projekte verwalten
   map: Karte
   map_legend: Kartenlegende
@@ -4966,7 +4966,7 @@ de:
   view_post: Eintrag anzeigen
   view_projects_from_place: "Projekte von %{place} anzeigen"
   view_sample: Beispiel anzeigen
-  view_stats: Statistiken ansehen
+  view_stats: Statistiken
   view_taxon_change: Taxonänderung ansehen
   view_taxon_changes: Taxonänderungen ansehen
   view_taxon_framework_relationship: Taxon-Framework Beziehung anzeigen
@@ -5043,9 +5043,9 @@ de:
   whats_this?: Was ist das?
   when: Wann
   when_did_you_see_it?: Wann war die Beobachtung?
-  when_did_you_see_them?: <em>Wann</em> hast du sie gesehen?
+  when_did_you_see_them?: <em>Wann</em> war die Beobachtung?
   where: Wo
-  where_were_they?: Wo waren die Beobachtungen?
+  where_were_they?: Wo?
   where_were_you?: Wo war das?
   which_projects_can_add_your_observations?: Welche traditionellen Projekte können deine Beobachtungen hinzufügen?
   white: weiß
@@ -5241,7 +5241,7 @@ de:
   you_sure_delete_this_observation: "Sicher, dass Du diese Beobachtung löschen möchtest?"
   you_sure_remove_taxon_from?: "Bist du sicher, dass du dieses Taxon von %{list} entfernen möchtest?"
   you_unlinked_your_provider_account: "Du hast die Verknüpfung zu deinem %{provider}-Konto rückgängig gemacht"
-  youll_need_to_link: Dazu musst du es verlinken
+  youll_need_to_link: Dazu musst du
   youve_joined_the_x_project: "Du bist dem %{project_invitation} Projekt beigetreten und deine Beobachtung wurde hinzugefügt"
   your_account_has_been_activated: Dein Benutzerkonto wurde aktiviert!
   your_account_has_been_verified: "Dein %{site_name} Konto wurde verifiziert! Bitte melde dich an, um fortzufahren."
@@ -5254,7 +5254,7 @@ de:
   your_default_time_zone: Deine Standard-Zeitzone
   your_email_address: Deine E-Mail-Adresse
   your_favorites: Deine Favoriten
-  your_flickr_account: Dein Flickr-Account
+  your_flickr_account: deinen Flickr-Account
   your_flickr_photos_have_been_tagged: Deine Flickr-Bilder wurden getaggt!
   your_hard_drive: deiner Festplatte
   your_home: Dein Dashboard
@@ -5266,7 +5266,7 @@ de:
   your_observations_couldnt_be_added_to_that_project: "Deine Beobachtungen konnten nicht zum Projekt hinzugefügt werden: %{errors}"
   your_photos_have_been_tagged: Deine Bilder wurden getaggt!
   your_projects: Deine Projekte
-  your_google_account: Dein Google-Konto
+  your_google_account: Google-Konto
   your_google_account_info: Deine Google-Konto Informationen
   your_pinned_locations: Deine angepinnten Orte
   your_profile_was_successfully_updated: Dein Profil wurde erfolgreich aktualisiert!
