@@ -1446,10 +1446,9 @@ class TaxaController < ApplicationController
     
     # Redirect to a canonical form
     if @taxon
-      canonical = (@taxon.unique_name || @taxon.name).split.join('_')
+      canonical = @taxon.name.split.join( "_" )
       taxon_names ||= @taxon.taxon_names.limit(100)
-      acceptable_names = [@taxon.unique_name, @taxon.name].compact.map{|n| n.split.join('_')} + 
-        taxon_names.map{|tn| tn.name.split.join('_')}
+      acceptable_names = [canonical] + taxon_names.map{|tn| tn.name.split.join('_')}
       unless acceptable_names.include?(params[:q])
         sciname_candidates = [
           params[:action].to_s.sanitize_encoding.split.join('_').downcase, 

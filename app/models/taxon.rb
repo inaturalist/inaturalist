@@ -1396,21 +1396,6 @@ class Taxon < ApplicationRecord
     true
   end
 
-  def update_unique_name( _options = {} )
-    reload # there's a chance taxon names have been created since load
-    return true unless default_name
-
-    [default_name.name, name].uniq.each do | candidate |
-      candidate = candidate.gsub( %r{[.'?!\\/]}, "" ).downcase
-      break if unique_name == candidate
-
-      next if Taxon.exists?( unique_name: candidate )
-
-      Taxon.where( id: id ).update_all( unique_name: candidate )
-      break
-    end
-  end
-
   def wikipedia_summary( options = {} )
     return unless auto_description?
 

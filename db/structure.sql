@@ -4313,7 +4313,6 @@ CREATE TABLE public.taxa (
     observations_count integer DEFAULT 0,
     listed_taxa_count integer DEFAULT 0,
     rank_level double precision,
-    unique_name character varying(255),
     wikipedia_summary text,
     wikipedia_title character varying(255),
     featured_at timestamp without time zone,
@@ -9175,13 +9174,6 @@ CREATE INDEX index_taxa_on_taxon_framework_relationship_id ON public.taxa USING 
 
 
 --
--- Name: index_taxa_on_unique_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_taxa_on_unique_name ON public.taxa USING btree (unique_name);
-
-
---
 -- Name: index_taxa_on_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10154,6 +10146,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220209191328'),
 ('20220217224804'),
 ('20220224012321'),
-('20220225054243');
+('20220225054243'),
+('20220308015748');
 
 

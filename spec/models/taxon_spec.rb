@@ -549,72 +549,6 @@ describe Taxon, "normalize_rank" do
   end
 end
 
-describe Taxon, "unique name" do
-  it "should be the default_name by default" do
-    taxon = Taxon.make!( name: "I am galactus" )
-    expect( taxon.unique_name ).to eq taxon.default_name.name.downcase
-  end
-
-  it "should be the scientific name if the common name is already another taxon's unique name" do
-    taxon = Taxon.make!
-    TaxonName.make!( name: "Most Awesome Radicalbird",
-      taxon: taxon,
-      lexicon: TaxonName::LEXICONS[:ENGLISH] )
-    taxon.save
-    taxon.reload
-    expect( taxon.unique_name ).to eq taxon.common_name.name.downcase
-
-    new_taxon = Taxon.make!( name: "Ballywickia purhiensis",
-      rank: "species" )
-    new_taxon.taxon_names << TaxonName.make!(
-      name: taxon.common_name.name,
-      lexicon: TaxonName::LEXICONS[:ENGLISH]
-    )
-    new_taxon.reload
-    expect( new_taxon.unique_name ).to eq new_taxon.name.downcase
-  end
-
-  it "should be nil if all else fails" do
-    common_name = TaxonName.make!(
-      lexicon: TaxonName::LEXICONS[:ENGLISH]
-    )
-    taxon = common_name.taxon
-    expect( taxon.unique_name.downcase ).to eq common_name.name.downcase
-
-    new_taxon = Taxon.make!( name: taxon.name )
-    TaxonName.make!(
-      name: common_name.name,
-      taxon: new_taxon,
-      lexicon: TaxonName::LEXICONS[:ENGLISH]
-    )
-    expect( new_taxon.unique_name.downcase ).to eq new_taxon.name.downcase
-
-    yet_another_taxon = Taxon.make!( name: taxon.name )
-    TaxonName.make!(
-      name: common_name.name,
-      taxon: yet_another_taxon,
-      lexicon: TaxonName::LEXICONS[:ENGLISH]
-    )
-    expect( yet_another_taxon.unique_name ).to be_nil
-  end
-
-  it "should work if there are synonyms in different lexicons" do
-    taxon = Taxon.make!
-    TaxonName.make!( taxon: taxon, name: "foo", lexicon: TaxonName::LEXICONS[:ENGLISH] )
-    TaxonName.make!( taxon: taxon, name: "Foo", lexicon: TaxonName::LEXICONS[:SPANISH] )
-    taxon.reload
-    expect( taxon.unique_name ).not_to be_blank
-    expect( taxon.unique_name ).to eq "foo"
-  end
-
-  it "should not contain punctuation" do
-    taxon = Taxon.make!
-    TaxonName.make!( taxon: taxon, name: "St. Gerome's Radical Snake", lexicon: TaxonName::LEXICONS[:ENGLISH] )
-    taxon.reload
-    expect( taxon.unique_name ).not_to match( %r{[.'?!\\/]} )
-  end
-end
-
 describe Taxon, "common_name" do
   it "should default to English if present" do
     t = Taxon.make!
@@ -812,7 +746,6 @@ describe Taxon, "merging" do
     reject = rule.operand
     keeper = Taxon.make
     keeper.name = "Amphibiatwo"
-    keeper.unique_name = "Amphibiatwo"
     keeper.save
     keeper.update( parent: reject.parent )
 
