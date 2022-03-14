@@ -32,18 +32,22 @@ class UserPrivilege < ApplicationRecord
   def self.earned_coordinate_access?( user )
     return false unless user.created_at < 3.years.ago
 
-    verifiable_obs_count = Observation.elastic_search( filters: [
-                                                        { term: { "user.id" => user.id } },
-                                                        { terms: { quality_grade: ["research"] } }
-                                                      ] ).total_entries
+    verifiable_obs_count = Observation.elastic_search(
+      filters: [
+        { term: { "user.id" => user.id } },
+        { terms: { quality_grade: ["research"] } }
+      ]
+    ).total_entries
     return true if verifiable_obs_count >= 1000
 
-    improving_ids_count = Identification.elastic_search( filters: [
-                                                          { term: { current: true } },
-                                                          { term: { "user.id" => user.id } },
-                                                          { term: { category: "improving" } },
-                                                          { term: { own_observation: false } }
-                                                        ] ).total_entries
+    improving_ids_count = Identification.elastic_search(
+      filters: [
+        { term: { current: true } },
+        { term: { "user.id" => user.id } },
+        { term: { category: "improving" } },
+        { term: { own_observation: false } }
+      ]
+    ).total_entries
     improving_ids_count >= 1000
   end
 
