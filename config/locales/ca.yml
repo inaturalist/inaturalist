@@ -2415,6 +2415,9 @@ ca:
   mark_all_as_unreviewed: Marqueu-ho tot com a No revisat
   matching_species_will_shown_up_here: Les espècies trobades es mostraran aquí. El mapa mostrarà un rang si %{place} té alguna d'aquestes espècies.
   maverick: Disident
+  maximum_positional_accuracy: Precisió màxima de la localització
+  maximum_positional_accuracy_including_unknown: |
+    Màxima precisió de la posició, incloent-hi les observacions sense precisió de la seva localització
   media: Multimèdia
   media_type: Tipus de fitxer multimèdia
   medium: mitjà
@@ -2459,6 +2462,7 @@ ca:
     Si sospiteu que aquesta persona està violant les nostres<a href="%{tos_url}"
     target="_blank">Condicions d'Ús</a> o no actua segons les nostres <a
     href="%{guidelines_url}" target="_blank">Directrius de la Comunitat</a>, si us plau, marqueu aquest missatge a sota.
+  minimum_positional_accuracy: Precisió mínima de la localització
   misidentifications: Identificacions incorrectes
   misleading_or_illegal_content_html: |
     Contingut il·legal, enganyós, racista, xenòfob, etc. Si voleu informació sobre la nostra definició de "inapropiat" consulteu el
@@ -3582,6 +3586,7 @@ ca:
   plants: Plantes
   please_add_a_citation_for_this_change: Heu d'afegir una referència per a aquest canvi.
   please_allow_a_few_weeks_for_external_sites: Si us plau, espereu algunes setmanes perquè els llocs externs sincronitzin els canvis d'aquesta observació #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: Si us plau, demana permís als teus pares o tutors.
   #Title to a section warning a user to exercise caution
   please_be_careful!: Si us plau, aneu amb compte!
   please_complete_the_following_to_add_project: |
