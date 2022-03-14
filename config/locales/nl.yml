@@ -7433,10 +7433,18 @@ nl:
         url: URL
         citation: Citaat
       taxon:
+        ancestry: Voorouders
         auto_description: Auto Beschrijving
         auto_photos: Auto fotos
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: Uitgelicht
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: Pictogram taxon ID
         #Boolean attribute stating whether this taxon is active (i.e. available for use)
         is_active: Actief?
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Pictogram?
         locked: Gesloten
         name: Naam
         #External source of the taxon, e.g. Catalogue of Life
@@ -7448,6 +7456,7 @@ nl:
         wikipedia_summary: Wikipedia samenvatting
         wikipedia_title: Wikipedia titel
       taxon_name:
+        is_valid: Is geldig?
         lexicon: Lexicon
         name_provider: Gegevensverstrekker
         position: Positie
