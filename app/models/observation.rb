@@ -579,7 +579,7 @@ class Observation < ApplicationRecord
   
   # Find observations by user
   scope :by, lambda {|user|
-    if user&.id || user.to_i > 0
+    if user.is_a?( User ) || user.to_i > 0
       where("observations.user_id = ?", user)
     else
       joins(:user).where("users.login = ?", user)
