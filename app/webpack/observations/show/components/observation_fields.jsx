@@ -28,6 +28,7 @@ class ObservationFields extends React.Component {
       observation,
       config,
       addObservationFieldValue,
+      removeObservationFieldValue,
       updateObservationFieldValue,
       collapsible,
       updateSession
@@ -109,7 +110,9 @@ class ObservationFields extends React.Component {
               setEditingFieldValue={fieldValue => {
                 this.setState( { editingFieldValue: fieldValue } );
               }}
-              {...this.props}
+              config={config}
+              observation={observation}
+              removeObservationFieldValue={removeObservationFieldValue}
             />
           );
         } ) }
