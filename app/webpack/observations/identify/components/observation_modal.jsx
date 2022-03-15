@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import _ from "lodash";
 import moment from "moment";
-import DiscussionListContainer from "../containers/discussion_list_container";
+import DiscussionList from "./discussion_list";
 import CommentFormContainer from "../containers/comment_form_container";
 import IdentificationFormContainer from "../containers/identification_form_container";
 import SuggestionsContainer from "../containers/suggestions_container";
@@ -124,11 +124,16 @@ class ObservationModal extends React.Component {
       increaseBrightness,
       keyboardShortcutsShown,
       loadingDiscussionItem,
+      mapZoomLevel,
+      mapZoomLevelLocked,
       observation,
+      officialAppIds,
       onClose,
+      onMapZoomChanged,
       resetBrightness,
       reviewedByCurrentUser,
       setImagesCurrentIndex,
+      setMapZoomLevelLocked,
       showNextObservation,
       showPrevObservation,
       tab,
@@ -137,13 +142,8 @@ class ObservationModal extends React.Component {
       toggleCaptive,
       toggleKeyboardShortcuts,
       toggleReviewed,
-      visible,
       updateCurrentUser,
-      mapZoomLevel,
-      onMapZoomChanged,
-      mapZoomLevelLocked,
-      setMapZoomLevelLocked,
-      officialAppIds
+      visible
     } = this.props;
     if ( !observation ) {
       return <div />;
@@ -798,7 +798,7 @@ class ObservationModal extends React.Component {
                           className="observation-description"
                         />
                       ) }
-                      <DiscussionListContainer observation={observation} />
+                      <DiscussionList observation={observation} currentUserID={currentUser.id} />
                       <center className={loadingDiscussionItem ? "loading" : "loading collapse"}>
                         <div className="big loading_spinner" />
                       </center>

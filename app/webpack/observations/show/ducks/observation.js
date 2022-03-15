@@ -845,12 +845,33 @@ export function confirmDeleteID( uuid ) {
   };
 }
 
+export function withdrawID( uuid ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newIdentifications = _.map( state.observation.identifications, i => (
+      i.uuid === uuid
+        ? { ...i, current: false, api_status: "saving" }
+        : i
+    ) );
+    dispatch( setAttributes( { identifications: newIdentifications } ) );
+    dispatch( callAPI( inatjs.identifications.update, {
+      uuid,
+      identification: {
+        current: false
+      }
+    } ) );
+  };
+}
+
 export function restoreID( uuid ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newIdentifications = _.map( state.observation.identifications, i => (
-      i.uuid === uuid ? Object.assign( { }, i, { current: true, api_status: "saving" } ) : i
+      i.uuid === uuid
+        ? { ...i, current: true, api_status: "saving" }
+        : i
     ) );
     dispatch( setAttributes( { identifications: newIdentifications } ) );
     dispatch( callAPI( inatjs.identifications.update, {

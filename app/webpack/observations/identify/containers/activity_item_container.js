@@ -10,11 +10,9 @@ import {
   stopLoadingDiscussionItem,
   submitIdentificationWithConfirmation,
   deleteComment,
-  deleteIdentification,
   updateIdentification
 } from "../actions";
 import { setFlaggingModalState } from "../../show/ducks/flagging_modal";
-
 
 function mapStateToProps( state, ownProps ) {
   return {
@@ -70,10 +68,17 @@ function mapDispatchToProps( dispatch, ownProps ) {
           dispatch( fetchCurrentObservation( ) );
         } );
     },
-    deleteID: id => {
+    withdrawID: id => {
       const ident = { id, className: "Identification" };
+      const updateIdent = { id, current: false };
+      if ( id.toString( ).match( /A-z/ ) ) {
+        ident.uuid = id;
+        delete ident.id;
+        updateIdent.uuid = id;
+        delete updateIdent.id;
+      }
       dispatch( loadingDiscussionItem( ident ) );
-      dispatch( deleteIdentification( ident ) )
+      dispatch( updateIdentification( updateIdent ) )
         .catch( ( ) => {
           dispatch( stopLoadingDiscussionItem( ident ) );
         } )
