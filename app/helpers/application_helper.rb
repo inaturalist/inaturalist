@@ -531,11 +531,16 @@ module ApplicationHelper
     return text if text.blank?
     more = options.delete(:more) || " ...#{t(:more).downcase} &darr;".html_safe
     less = options.delete(:less) || " #{t(:less).downcase} &uarr;".html_safe
-    options[:omission] ||= ""
-    options[:separator] ||= " "
+    unless ellipsize = options.delete(:ellipsize)
+      options[:omission] ||= ""
+      options[:separator] ||= " "
+    end
     truncated = truncate(text, options.merge(escape: false))
     return truncated.html_safe if text == truncated
+
     truncated = Nokogiri::HTML::DocumentFragment.parse(truncated)
+    return truncated.to_s.html_safe if ellipsize
+
     morelink = link_to_function(more, "$(this).parents('.truncated').hide().next('.untruncated').show()", 
       :class => "nobr ui")
     last_node = truncated.children.last || truncated
