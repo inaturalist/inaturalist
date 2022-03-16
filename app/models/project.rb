@@ -283,10 +283,15 @@ class Project < ApplicationRecord
   
   def add_owner_as_project_user(options = {})
     return true unless saved_change_to_user_id? || options[:force]
-    if pu = project_users.where(user_id: user_id).first
-      pu.update(role: ProjectUser::MANAGER)
+    existing_project_user = project_users.where(user_id: user_id).first
+    if existing_project_user
+      existing_project_user.update( role: ProjectUser::MANAGER )
     else
-      self.project_users.create(user: user, role: ProjectUser::MANAGER, skip_updates: true)
+      self.project_users.create!(
+        user: user,
+        role: ProjectUser::MANAGER,
+        skip_updates: true
+      )
     end
     true
   end
@@ -366,7 +371,6 @@ class Project < ApplicationRecord
 
   def set_observation_requirements_updated_at( options = {} )
     if new_record?
-      Rails.logger.debug "set_observation_requirements_updated_at: new project, backdating"
       self.observation_requirements_updated_at = ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
       return true
     end
@@ -1074,13 +1078,13 @@ class Project < ApplicationRecord
   end
 
   def add_admins
-    new = new_record?
+    is_new = new_record?
     yield
     return if admin_attributes.blank?
     admin_attributes.each do |k, admin_attr|
       next unless admin_attr["user_id"]
       new_role = admin_attr["_destroy"] == "true" ? nil : "manager" 
-      if new
+      if is_new
         project_users.find_or_create_by( user_id: admin_attr["user_id"] ).update( role: new_role )
       else
         project_users.find_by( user_id: admin_attr["user_id"] )&.update( role: new_role )     

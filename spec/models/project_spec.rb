@@ -92,6 +92,17 @@ describe Project do
       expect(project.project_users).not_to be_empty
       expect(project.project_users.first.user_id).to eq project.user_id
     end
+
+    it "should automatically add the creator as a member for a traditional project with a rule" do
+      user = create :user
+      UserPrivilege.make!( user: user, privilege: UserPrivilege::ORGANIZER )
+      project = build :project, user: user
+      expect( project.project_type ).to be_blank
+      project.project_observation_rules.build( operator: "georeferenced?" )
+      project.save!
+      expect( project.project_users ).not_to be_empty
+      expect( project.project_users.first.user_id ).to eq project.user_id
+    end
   
     it "should stip titles" do
       project = Project.make!(:title => " zomg spaces ")
