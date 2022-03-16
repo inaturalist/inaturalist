@@ -1097,6 +1097,10 @@ en:
   confirm_new_password: Confirm New Password
   confirm_now: Confirm now
   confirm_your_info: Confirm your info
+  # date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Confirmation email sent at %{datetime}
+  # Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Confirmed on %{date}
   confirming_ids: Confirming ID's
   confirming_ids_description: If you turn this off, you will no longer be notified about IDs that agree with yours.
   # Label for a button to connect your iNat account to another account, e.g.
@@ -1611,14 +1615,21 @@ en:
         subject: Confirm your email address
       reset_password_instructions:
         subject: 'Reset password instructions'
-  devise_confirmation_instructions_please_click: "Please click the link below to confirm your email address and activate your %{site_name} account:"
   devise_confirmation_instructions_if_you_did_not: |
     If you did not sign up for @vow_or_con{vow:an|a} %{site_name} account, please ignore this email.
+  devise_confirmation_instructions_please_click: |
+    Please click the link below to confirm your email address and activate your %{site_name} account:
+  devise_confirmation_instructions_resend_instructions: |
+    You must have a working email address to use iNaturalist. When you signed
+    up for an account, you should have received a confirmation email with a
+    link to click to confirm that your email address works, but if you didn't
+    you can send yourself another confirmation email here.
+  devise_confirmation_instructions_send_confirmation_email: Send confirmation email
   devise_reset_password_instructions_hello_email: Hello %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Someone has requested a link to change your password. You can do this through the link below.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     If you didn't request this, please ignore this email.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Someone has requested a link to change your password. You can do this through the link below.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Your password won't change until you access the link above and create a new one.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -4300,6 +4311,7 @@ en:
   research_grade_tooltip_html: '"Research Grade" observations have media, location, a date, and a community consensus on a precise identification (usually at species-level). <a href="https://www.inaturalist.org/pages/help#quality">Learn more about quality grades</a>'
   research_grade_observations_have: '"Research grade" observations have a date, photo, coordinates, and a community-supported ID.  Click through to see the data quality assessment.'
   research_grade_qualification: Research Grade Qualification
+  resend_confirmation_email: Re-send confirmation email
   reset_filters_short: Reset
   reset_brightness: Reset Brightness
   reset_search_filters: Reset Search Filters
@@ -5334,6 +5346,11 @@ en:
   username_or_user_id: Username or User ID
   users: Users
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>'s contributions to %{project_title}
+  users_edit_resend_confirmation_prompt: |
+    After you resend the confirmation email, you will be signed out and you
+    will not be able to sign in to your account until you click the link in
+    the email, so make absolutely sure you have entered your email address
+    correctly.
   users_favorites: "%{user}'s Favorites"
   users_highlights_and_stats_from_year_on_site: "%{user}'s highlights and stats from %{year} on %{site}"
   users_id: "%{user}'s ID"
@@ -5672,6 +5689,7 @@ en:
   you_dont_have_permission_to_edit_those_photos: You don't have permission to edit those photos.
   you_faved_this: You faved this!
   you_have_left_x_project: "You have left %{project}"
+  you_have_not_confirmed_your_email_address: You have not confirmed your email address!
   you_havent_linked_your_inaturalist_google_account: "You haven't linked your %{site_name} account and your Google account yet"
   you_joined_this_project: You joined this project!
   you_must_be_a_member_of_this_project_to_do_that: You must be a member of this project to do that

@@ -51,9 +51,7 @@ const Profile = ( {
 
   let emailConfirmation = (
     <div className="text-success">
-      Confirmed on
-      { " " }
-      { moment( profile.confirmed_at ).format( I18n.t( "momentjs.date_long" ) )}
+      { I18n.t( "confirmed_on_date", { date: moment( profile.confirmed_at ).format( I18n.t( "momentjs.date_long" ) ) } )}
     </div>
   );
   if ( !profile.confirmed_at ) {
@@ -63,8 +61,10 @@ const Profile = ( {
       >
         {
           profile.confirmation_sent_at
-            ? `Confirmation email sent at ${moment( profile.confirmation_sent_at ).format( I18n.t( "momentjs.datetime_with_zone_no_year" ) )}`
-            : "You have not confirmed your email address!"
+            ? I18n.t( "confirmation_email_sent_at_datetime", {
+              datetime: moment( profile.confirmation_sent_at ).format( I18n.t( "momentjs.datetime_with_zone_no_year" ) )
+            } )
+            : I18n.t( "you_have_not_confirmed_your_email_address" )
         }
         { " " }
         <button
@@ -73,14 +73,13 @@ const Profile = ( {
           onClick={
             // TODO replace this will with a react modal, e.g. ConfirmModal
             ( ) => {
-              if ( confirm( "After you resend the confirmation email, you will be signed out and you will not be able to sign in to your account until you click the link in the email, so make absolutely sure you have entered your email address correctly." ) ) {
-                console.log( "[DEBUG] confirmed, resending" );
+              if ( confirm( I18n.t( "users_edit_resend_confirmation_prompt" ) ) ) {
                 resendConfirmation( );
               }
             }
           }
         >
-          Re-send confirmation email
+          { I18n.t( "resend_confirmation_email" ) }
         </button>
       </div>
     );

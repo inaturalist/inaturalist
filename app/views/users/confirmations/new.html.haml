@@ -1,7 +1,6 @@
 = form_for( resource, as: resource_name, url: confirmation_path( resource_name ), html: { method: :post }) do |f|
-  %h1 Confirm your email address
-  %p
-    You must have a working email address to use iNaturalist. When you signed up for an account, you should have received a confirmation email with a link to click to confirm that your email address works, but if you didn't you can send yourself another confirmation email here.
+  %h1=t "devise.mailer.confirmation_instructions.subject"
+  %p=t :devise_confirmation_instructions_resend_instructions
   - unless resource.errors[:confirmation_token].blank?
     .error= formatted_error_sentence_for( resource, :confirmation_token )
   .form-group.text-field.email
@@ -9,4 +8,4 @@
     - unless resource.errors[:email].blank?
       .error= formatted_error_sentence_for( resource, :email )
   .actions
-    = f.submit "Send confirmation email", class: "btn btn-inat btn-primary btn-lg"
+    = f.submit t(:devise_confirmation_instructions_send_confirmation_email), class: "btn btn-inat btn-primary btn-lg"
