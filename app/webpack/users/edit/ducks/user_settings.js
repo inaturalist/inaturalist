@@ -1,6 +1,7 @@
 import inatjs from "inaturalistjs";
 import _ from "lodash";
 import { updateBlockedAndMutedUsers } from "./relationships";
+import { setConfirmModalState } from "../../../observations/show/ducks/confirm_modal";
 import { fetchNetworkSites } from "./network_sites";
 
 const SET_USER_DATA = "user/edit/SET_USER_DATA";
@@ -231,5 +232,18 @@ export function resendConfirmation( ) {
         dispatch( setUserData( profile, null ) );
       } );
     } );
+  };
+}
+
+export function confirmResendConfirmation( ) {
+  return ( dispatch, getState ) => {
+    dispatch( setConfirmModalState( {
+      show: true,
+      message: I18n.t( "users_edit_resend_confirmation_prompt" ),
+      confirmText: I18n.t( "yes" ),
+      onConfirm: ( ) => {
+        dispatch( resendConfirmation( ) );
+      }
+    } ) );
   };
 }

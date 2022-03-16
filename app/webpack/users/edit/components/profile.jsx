@@ -15,7 +15,7 @@ const Profile = ( {
   onFileDrop,
   removePhoto,
   changePassword,
-  resendConfirmation
+  confirmResendConfirmation
 } ) => {
   const hiddenFileInput = createRef( null );
   const iconDropzone = createRef( );
@@ -70,14 +70,7 @@ const Profile = ( {
         <button
           type="button"
           className="btn btn-nostyle alert-link"
-          onClick={
-            // TODO replace this will with a react modal, e.g. ConfirmModal
-            ( ) => {
-              if ( confirm( I18n.t( "users_edit_resend_confirmation_prompt" ) ) ) {
-                resendConfirmation( );
-              }
-            }
-          }
+          onClick={( ) => confirmResendConfirmation( )}
         >
           { I18n.t( "resend_confirmation_email" ) }
         </button>
@@ -200,7 +193,7 @@ Profile.propTypes = {
   onFileDrop: PropTypes.func,
   removePhoto: PropTypes.func,
   changePassword: PropTypes.func,
-  resendConfirmation: PropTypes.func
+  confirmResendConfirmation: PropTypes.func
 };
 
 export default Profile;

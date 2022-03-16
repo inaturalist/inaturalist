@@ -7,7 +7,7 @@ import {
   onFileDrop,
   removePhoto,
   changePassword,
-  resendConfirmation
+  confirmResendConfirmation
 } from "../ducks/user_settings";
 
 function mapStateToProps( state ) {
@@ -23,7 +23,7 @@ function mapDispatchToProps( dispatch ) {
     onFileDrop: droppedFiles => dispatch( onFileDrop( droppedFiles ) ),
     removePhoto: ( ) => dispatch( removePhoto( ) ),
     changePassword: input => dispatch( changePassword( input ) ),
-    resendConfirmation: ( ) => dispatch( resendConfirmation( ) )
+    confirmResendConfirmation: ( ) => dispatch( confirmResendConfirmation( ) )
   };
 }
 
