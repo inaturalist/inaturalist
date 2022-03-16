@@ -1,0 +1,6 @@
+= render "emailer/header"
+
+%p=t :devise_email_changed_you_requested, old_email: @resource.email, new_email: @resource.unconfirmed_email
+%p=t :devise_email_changed_you_will_receive
+
+= render "emailer/footer"

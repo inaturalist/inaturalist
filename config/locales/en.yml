@@ -934,6 +934,10 @@ en:
   change_group: Change group
   change_icon: Change icon
   change_password: Change Password
+  # Message shown after you change your email address
+  change_to_email_requested_html:
+    Change to <strong>%{email}</strong> requested. Check your email at that
+    address to confirm the change.
   change_types:
     activated_soon: activated soon
     change_types: Change types
@@ -1628,18 +1632,29 @@ en:
       confirmation_instructions:
         # Subject of an email sent to confirm your account
         subject: Confirm your email address
+      email_changed:
+        # Subject of an email sent when you try to change the email address
+        # associated with your account
+        subject: Email change requested
       reset_password_instructions:
         subject: 'Reset password instructions'
   devise_confirmation_instructions_if_you_did_not: |
     If you did not sign up for @vow_or_con{vow:an|a} %{site_name} account, please ignore this email.
   devise_confirmation_instructions_please_click: |
-    Please click the link below to confirm your email address and activate your %{site_name} account:
+    Please click the link below to confirm your email address:
   devise_confirmation_instructions_resend_instructions: |
     You must have a working email address to use iNaturalist. When you signed
     up for an account, you should have received a confirmation email with a
     link to click to confirm that your email address works, but if you didn't
     you can send yourself another confirmation email here.
   devise_confirmation_instructions_send_confirmation_email: Send confirmation email
+  devise_email_changed_you_requested: You requested a change from %{old_email} to %{new_email}.
+  devise_email_changed_you_will_receive: |
+    You will receive an email at the new address to confirm the change, but we
+    wanted to notify you at your old address just in case someone else has
+    access to your account and is trying to change it without you knowing. If
+    you did not intentionally change your email address, please forward this
+    email to help@inaturalist.org immediately so we can investigate.
   devise_reset_password_instructions_hello_email: Hello %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     If you didn't request this, please ignore this email.

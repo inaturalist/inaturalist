@@ -5089,7 +5089,8 @@ CREATE TABLE public.users (
     locked_at timestamp without time zone,
     failed_attempts integer DEFAULT 0,
     unlock_token character varying,
-    oauth_application_id integer
+    oauth_application_id integer,
+    unconfirmed_email character varying
 );
 
 
@@ -10143,11 +10144,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211001151300'),
 ('20211109220615'),
 ('20211216171216'),
+('20220127195113'),
 ('20220209191328'),
 ('20220217224804'),
 ('20220224012321'),
 ('20220225054243'),
+('20220305012626'),
 ('20220308015748');
-('20220127195113');
 
 

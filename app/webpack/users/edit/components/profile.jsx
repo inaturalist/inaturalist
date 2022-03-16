@@ -15,7 +15,8 @@ const Profile = ( {
   onFileDrop,
   removePhoto,
   changePassword,
-  confirmResendConfirmation
+  confirmResendConfirmation,
+  resendConfirmation
 } ) => {
   const hiddenFileInput = createRef( null );
   const iconDropzone = createRef( );
@@ -48,10 +49,28 @@ const Profile = ( {
       </div>
     );
   };
-
   let emailConfirmation = (
-    <div className="text-success">
-      { I18n.t( "confirmed_on_date", { date: moment( profile.confirmed_at ).format( I18n.t( "momentjs.date_long" ) ) } )}
+    <div>
+      <p className="text-success">
+        { I18n.t( "confirmed_on_date", { date: moment( profile.confirmed_at ).format( I18n.t( "momentjs.date_long" ) ) } )}
+      </p>
+      { profile.unconfirmed_email && (
+        <div className="alert alert-warning">
+          <span
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "change_to_email_requested_html", { email: profile.unconfirmed_email } )
+            }}
+          />
+          { " " }
+          <button
+            type="button"
+            className="btn btn-nostyle alert-link"
+            onClick={( ) => resendConfirmation( )}
+          >
+            { I18n.t( "resend_confirmation_email" ) }
+          </button>
+        </div>
+      ) }
     </div>
   );
   if ( !profile.confirmed_at ) {
@@ -193,6 +212,7 @@ Profile.propTypes = {
   onFileDrop: PropTypes.func,
   removePhoto: PropTypes.func,
   changePassword: PropTypes.func,
+  resendConfirmation: PropTypes.func,
   confirmResendConfirmation: PropTypes.func
 };
 
