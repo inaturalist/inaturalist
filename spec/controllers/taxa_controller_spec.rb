@@ -328,6 +328,26 @@ describe TaxaController do
         expect( cs.updater ).not_to eq user
       end
     end
+
+    describe "with audits" do
+      let( :current_user ) { make_curator }
+      let( :taxon ) { create :taxon, rank: Taxon::SPECIES }
+      before { sign_in( current_user ) }
+      it "should create an audit belonging to the current_user" do
+        put :update, params: { id: taxon.id, taxon: { rank: "genus" } }
+        taxon.reload
+        expect( taxon.audits.last.user ).to eq current_user
+      end
+      it "should create an audit with a user_id that survives user deletion" do
+        put :update, params: { id: taxon.id, taxon: { rank: "genus" } }
+        taxon.reload
+        audit = taxon.audits.last
+        expect( taxon.audits.last.user ).to eq current_user
+        current_user.destroy
+        audit.reload
+        expect( audit.user_id ).to be > 0
+      end
+    end
   end
 
   describe "autocomplete" do

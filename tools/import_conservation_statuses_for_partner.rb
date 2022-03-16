@@ -113,16 +113,21 @@ CSV.foreach( csv_path, headers: HEADERS ) do | row |
   end
   iucn_equivalent = row["iucn_equivalent"].to_s.gsub( /\(.*\)/, "" ).strip.parameterize.underscore
   iucn = Taxon::IUCN_STATUS_VALUES[iucn_equivalent]
-  if iucn.blank? && !row["iucn_equivalent"].blank?
+  iucn ||= if row["iucn_equivalent"].to_s.size.positive? &&
+      Taxon::IUCN_STATUS_VALUES.values.include?( row["iucn_equivalent"].to_i )
+    row["iucn_equivalent"].to_i
+  end
+  if iucn.nil? && !row["iucn_equivalent"].blank?
     logger.error "#{identifier}: #{row['iucn_equivalent']} is not a valid IUCN status, skipping..."
     skipped << identifier
     next
   end
   user = unless row["username"].blank?
-    user = User.find_by_login( row["username"] )
-    user ||= User.find_by_id( row["username"] )
+    username = row["username"].strip
+    user = User.find_by_login( username )
+    user ||= User.find_by_id( username )
     if user.blank?
-      logger.error "#{identifier}: User #{row['username']} specified but no matching user found, skipping..."
+      logger.error "#{identifier}: User #{username} specified but no matching user found, skipping..."
       skipped << identifier
       next
     end

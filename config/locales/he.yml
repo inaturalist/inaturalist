@@ -20,7 +20,7 @@ he:
     many: '%{count} זיהויים'
     other: '%{count} זיהויים'
   x_identifications_html:
-    one: 'זיהיו <span class="count">%{count}</span>'
+    one: 'זיהוי <span class="count">%{count}</span>'
     two: '<span class="count">%{count}</span> זיהוים'
     many: '<span class="count">%{count}</span> זיהוים'
     other: '<span class="count">%{count}</span> זיהוים'
@@ -278,6 +278,7 @@ he:
   accuracy_meters: דיוק (מטרים)
   accuracy_of_the_coordinates: |
     הדיוק של הקואורדינטות במטרים. אפשר לערוך את השדה הזה באמצעות לחיצה על הקישור "עריכה" שלמעלה או באמצעות לחיצה על סמן המפה וגרירת הידיות. השתדלו שהמעגל יהיה גדול מספיק כדי שתהיו בטוחים שהייתם בתוכו.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: פעולה
   actions: פעולות
   active: פעיל
@@ -618,6 +619,7 @@ he:
   #Label for an option to show/include content by any user
   any_user: הכל
   anyone: כולם
+  app_owner_application_fields_explanation_html: תיאור של פונקציונליות היישום ואיזה שימוש בכוונתך לעשות בו.
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: בצע
@@ -948,6 +950,10 @@ he:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: תגובה
   comment_deleted: התגובה נמחקה
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: ההערה הוסתרה
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: ההערה נפתחה
   comments: תגובות
   comments_by_me: תגובות שלי
   comments_have_been_disabled: לא ניתן להוסיף הערות
@@ -996,6 +1002,7 @@ he:
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: ממתין
   concept_status: מצב הקונספט
+  confidential: חסוי
   configure: הגדרה
   confirm: אישור
   confirm_membership: אישור חברות
@@ -1331,6 +1338,8 @@ he:
   duplicate_verb: שכפל
   duration_value: "משך זמן: %{duration} דקות"
   edit: עריכה
+  #Title of the moderation note editor
+  edit_moderator_note: ערוך הערת אוצר
   edit_a_batch_of_observations: עריכת תצפיות מרובות
   edit_assessment: עריכת האומדן
   edit_atlas: ערוך אטלס
@@ -1433,6 +1442,8 @@ he:
   export_observations: ייצוא תצפיות
   export_with_private_coordinates: ייצוא עם קואורדינטות מוסתרות
   exporting: "מתבצע ייצוא..."
+  external_applications_description: |
+    אפליקציות חיצוניות הן אפליקציות צד שלישי שאיפשרת להן גישה לחשבון האיי-נטורליסט שלך. ככל, אפליקציות אלה יכולות לעשות בחשבון כל דבר שבעליו יכולים, על כן יש לבטוח במפתחי האפליקציה טרם הענקת הגישה.
   extinct: נכחד
   extinct_in_the_wild: נכחד בבר
   extra_properties: תכונות נוספות
@@ -2004,6 +2015,9 @@ he:
   mark_all_as_reviewed: סימון כל התצפיות כתצפיות שנסקרו
   mark_all_as_unreviewed: סימון כל התצפיות כתצפיות שלא נסקרו
   maverick: יוצא מן הכלל
+  maximum_positional_accuracy: דיוק מיקום מירבי
+  maximum_positional_accuracy_including_unknown: |
+    דיוק מיקום מירבי כולל תצפיות ללא דיוק מיקום
   media: מדיה
   media_type: סוג המדיה
   medium: בינוני
@@ -2029,6 +2043,7 @@ he:
   message_from_user_at_time: מ%{user} ב%{time}
   message_from_user_on_date: מ%{user} ב%{date}
   messages: הודעות
+  minimum_positional_accuracy: דיוק מיקום מינימאלי
   misidentifications: זיהויים שגויים
   mobile: נייד
   mollusks: רכיכות
@@ -2128,6 +2143,7 @@ he:
   new: חדש
   new_and_noteworthy: חדש ומעניין
   new_announcement: הודעה חדשה
+  new_application: יישום חדש
   new_assessment: הערכה חדשה
   new_check_list: רשימת מינים חדשה
   new_check_list_for: "יצירת רשימת מינים חדשה עבור %{place} &raquo;"
@@ -2891,6 +2907,7 @@ he:
   places_merged_successfully: המקומות אוחדו בהצלחה!
   plants: צמחים
   please_add_a_citation_for_this_change: נא להוסיף ציטטה לשינוי זה.
+  #Title to a section warning a user to exercise caution
   please_be_careful!: אנא היו זהירים!
   please_explain_why_you_want_to_hide_this: נא להסביר את סיבת הבקשה להסתרה
   please_explain_why_you_want_to_unhide_this: נא להסביר את סיבת הבקשה לאי-הסתרה
@@ -3036,6 +3053,8 @@ he:
   recently_finished: התסיימו לאחרונה
   recently_observed: נצפה לאחרונה
   recently_resolved: נפתרו לאחרונה
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: רישומים
   red: אדום
   redo_search_in_map: חזרה על חיפוש במפה
   redo_search_in_map_area: חזרה על חיפוש במרחב המפה
@@ -3116,6 +3135,7 @@ he:
     must_be_on_list: חייב להיות ברשימה
     must_be_coordinates_shareable_by_project_curators: מדווח חייב לאפשר לאוצרי הפרוייקט לראות את הקואורדינטות
     must_be_verifiable: חייב להיות בר-אימות
+    must_be_wild: חייב להיות בר
   running_total: סך הכל
   said: נאמר
   satellite: לוויין
@@ -3334,6 +3354,7 @@ he:
   summary: סיכום
   supporting: תומך
   suspend_user: השהיית משתמש
+  suspend_user_html: השהיית %{user}
   sw_lat: קו רוחב
   sw_lon: קו אורך
   sync: לסנכרן?
@@ -3380,6 +3401,7 @@ he:
   taxon_colors: צבעי טקסון
   taxon_curators: אוצרי טקסון
   taxon_framework_complete: "שלם: כן"
+  taxon_history_notice: היסטוריה התווספה בפברואר 2022, לכן נתוני היסטוריה אינם זמינים לפני מועד זה.
   taxon_merge: איחוד טקסונים
   taxon_name: שם הטקסון
   taxon_observed_by_user: "%{taxon} נצפה על ידי %{user}"
@@ -3532,6 +3554,7 @@ he:
   unreview_all: ביטול הסקירה של הכול
   unsubscribe: ביטול מינוי
   unsubscribe_from_emails_like_this: הסר מתפוצת דברי דואר מסוג זה
+  unsuspend_user_html: בטול השהיית %{user}
   upcoming_bioblitzes: ביובליצים עתידיים
   update: עדכון
   update_observations: עדכון תצפיות
@@ -3706,6 +3729,8 @@ he:
   where_were_they?: היכן הם היו?
   where_were_you?: היכן היית?
   white: לבן
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: מדוע החלטת על שינוי זה? (אופציונאלי)
   who_can_add_observations_to_this_project?: מי יכולים להוסיף תצפיות לפרוייקט?
   who_can_see_the_coordinates: מי יכול לראות את הקואורדינטות
   who_can_see_the_coordinates_projects: אוצרים של הפרוייקטים הבאים
@@ -4191,6 +4216,7 @@ he:
         you_must_enter_confirmation_code_in_the_form: |
           חובה להזין %{confirmation_code} בטופס על מנת למחוק את החשבון שלך
       edit:
+        about_third_party_tracking: אודות איסוף מידע עליך על ידי צד שלישי
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: הערות
         #Checkbox label for user preference about what to receive in the daily email update
@@ -4218,6 +4244,9 @@ he:
           joined: פרוייקטים שהצטרפת אליהם
         prefers_community_taxa_desc: |
           %{site_name} בוחן את דעתך על התצפיות שלך, בהשוואה לדעת הקהילה. הזיהויים שאנו חולקים עם שותפים לנתונים הם זיהויי הקהילה, אולם במידה ולדעתך זיהוי הקהילה לעולם אינו ראוי להחליף את שלך, ניתן לבטן את הסכמתך לזיהויים אלו כאן. אחרים עדיין יוכלו להוסיף זיהויים, אולם דעת הקהילה לא תועדף על פני הזיהוי שלך. משמעות הדבר כי התצפיות לא תועלנה לדרגת מחקר, אלא אם תסכים/י עם זיהוי הקהילה.
+        prefers_no_tracking_label: אין לאסוף מידע אודות יציבות והשימוש בפלטפורמה באמצעות שירותים של גוף שלישי
+        prefers_no_tracking_label_desc_we_use: |
+          אנחנו משתמשים במגוון שירותים של גופי צד שלישי על מנת לנטר את יציבות, ולאבחן באגים ובעיות אחרות בתוכנה ששלנו. גופי צד שלישי אלו כוללים
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           המידע שאנו עשויים לחלוק עם גופים אלו כולל
@@ -4672,6 +4701,10 @@ he:
       listed_taxon:
         occurrence_status_level: סטטוס הופעה
         establishment_means: דרכי התבססות
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: סיבה
       observation:
         description: רשימות
         geo_x: אייסטינג
@@ -4679,6 +4712,8 @@ he:
         observed_on: תאריך צפייה
       observation_field_value:
         value: 'ערך'
+      place_taxon_name:
+        position: מיקום
       post:
         title: כותרת
         body: טקסט
@@ -4721,18 +4756,23 @@ he:
         url: URL
         citation: מקור ביבליוגרפי
       taxon:
-        name: שם
-        rank: דרגה
-        parent_id: זיהוי אב
-        locked: נעול
-        auto_photos: תמונות אוטומטיות
         auto_description: תיאור אוטומטי
-        wikipedia_title: כותרת ויקיפדיה
-        wikipedia_summary: תקציר ויקיפידיה
+        auto_photos: תמונות אוטומטיות
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: פעיל?
+        locked: נעול
+        name: שם
+        parent_id: זיהוי אב
+        rank: דרגה
         source_identifier: מזהה מקור
         source_url: URL המקור
+        wikipedia_summary: תקציר ויקיפידיה
+        wikipedia_title: כותרת ויקיפדיה
       taxon_name:
+        lexicon: לקסיקון
+        name: שם
         name_provider: מספק שם
+        position: מיקום
         source_url: URL המקור
         source_identifier: מזהה מקור
       user:
@@ -4807,6 +4847,12 @@ he:
           attributes:
             base:
               guide_has_too_many_taxa: "מגדירים לא יכולים להכיל יותר מ 500 טקסונים"
+        moderator_action:
+          attributes:
+            action:
+              not_supported_for_this_kind_of_content: לא קיימת תמיכה עבור תוכן זה
+            base:
+              only_staff_can_unhide: רק צוות iNaturalist יכול לבטל הסתרת תוכן מוסתר
         observation:
           attributes:
             base:
@@ -4814,6 +4860,8 @@ he:
             observed_on:
               cannot_be_greater_than_date_created: |
                 לא יכול להיות מאוחר יותר מאשר התאריך שבו התצפית הועלתה
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: חייב להיות במהלך 130 השנים האחרונות
         observation_field_value:
           attributes:
             value:
@@ -4910,6 +4958,8 @@ he:
     scopes:
       write: |
         באפשרותך ליצור, לעדכן ולמחוק תצפיות, אמצעי זיהוי ותוכן אחר שלך מטעמך לרבות לגשת לנקודות הציון המוסתרות שלך וכל מידע נוסף שאליו ניתן לגשת באתר.
+      login: |
+        לראות מידע הרלוונטי לכניסה אל שירותים חיצוניים, כמו כתובת מייל, שם משתמש, שם, ואייקון שלך.
       account_delete: |
         למחוק את החשבון שלך.
     errors:

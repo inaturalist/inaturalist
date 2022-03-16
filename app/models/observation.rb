@@ -579,7 +579,7 @@ class Observation < ApplicationRecord
   
   # Find observations by user
   scope :by, lambda {|user|
-    if user.is_a?(User) || user.to_i > 0
+    if user.is_a?( User ) || user.to_i > 0
       where("observations.user_id = ?", user)
     else
       joins(:user).where("users.login = ?", user)
@@ -954,7 +954,6 @@ class Observation < ApplicationRecord
       ECT
       GST
       IST
-      PST
     )
     
     if ( iso8601_datetime = DateTime.iso8601( observed_on_string ) rescue nil )

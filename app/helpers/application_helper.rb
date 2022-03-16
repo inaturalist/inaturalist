@@ -243,7 +243,7 @@ module ApplicationHelper
   # Example: url_for_params(:taxon_id => 1, :without => :page)
   def url_for_params( options = {} )
     new_params = request.POST.merge( request.GET ).merge( options )
-    if without = options.delete(:without)
+    if without = new_params.delete(:without)
       without = [without] unless without.is_a?(Array)
       without.map!(&:to_s)
       new_params = new_params.reject {|k,v| without.include?(k) }
@@ -272,22 +272,6 @@ module ApplicationHelper
       end
     end
     html.html_safe
-  end
-  
-  # def link_to(*args)
-  #   if args.size >= 2 && args[1].is_a?(Taxon) && args[1].unique_name? && 
-  #       !(args[2] && args[2].is_a?(Hash) && args[2][:method])
-  #     return super(args.first, url_for_taxon(args[1]), *args[2..-1])
-  #   end
-  #   super
-  # end
-  
-  def url_for_taxon(taxon)
-    if taxon && taxon.unique_name?
-      url_for(:controller => 'taxa', :action => taxon.unique_name.split.join('_'))
-    else
-      url_for(taxon)
-    end
   end
   
   def modal_image(photo, options = {})
@@ -343,6 +327,8 @@ module ApplicationHelper
     end
     # Ensure all tags are closed
     text = Nokogiri::HTML::DocumentFragment.parse( text ).to_s
+    # Remove empty paragraphs
+    text = text.gsub( "<p></p>", "" )
     text.html_safe
   end
 
@@ -545,11 +531,16 @@ module ApplicationHelper
     return text if text.blank?
     more = options.delete(:more) || " ...#{t(:more).downcase} &darr;".html_safe
     less = options.delete(:less) || " #{t(:less).downcase} &uarr;".html_safe
-    options[:omission] ||= ""
-    options[:separator] ||= " "
+    unless ellipsize = options.delete(:ellipsize)
+      options[:omission] ||= ""
+      options[:separator] ||= " "
+    end
     truncated = truncate(text, options.merge(escape: false))
     return truncated.html_safe if text == truncated
+
     truncated = Nokogiri::HTML::DocumentFragment.parse(truncated)
+    return truncated.to_s.html_safe if ellipsize
+
     morelink = link_to_function(more, "$(this).parents('.truncated').hide().next('.untruncated').show()", 
       :class => "nobr ui")
     last_node = truncated.children.last || truncated

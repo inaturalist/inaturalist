@@ -6,12 +6,12 @@ FactoryBot.define do
     slug { name.parameterize }
     uuid { Faker::Internet.uuid }
     admin_level { Place::STATE_LEVEL }
+    latitude { 0.5 }
+    longitude { 0.5 }
 
     after(:build) { |place| build :place_geometry, place: place }
 
     trait :with_geom do
-      latitude { 0.5 }
-      longitude { 0.5 }
       swlat { 0.0 }
       swlng { 0.0 }
       nelat { 1.0 }

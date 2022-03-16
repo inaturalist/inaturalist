@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProviderOauthController < ApplicationController
   skip_before_action :verify_authenticity_token
 
@@ -7,7 +9,7 @@ class ProviderOauthController < ApplicationController
   # Accepts Facebook and Google access tokens and returns an iNat access token
   def assertion
     assertion_type = params[:assertion_type] || params[:grant_type]
-    client = Doorkeeper::Application.find_by_uid(params[:client_id])
+    client = Doorkeeper::Application.find_by_uid( params[:client_id] )
     if client.blank?
       return render status: :bad_request, json: {
         error: "invalid_client",
@@ -21,7 +23,7 @@ class ProviderOauthController < ApplicationController
       }
     end
     access_token = begin
-      Timeout::timeout( 10 ) do
+      Timeout.timeout( 10 ) do
         case assertion_type
         when /facebook/
           oauth_access_token_from_facebook_token( params[:client_id], params[:assertion] )
@@ -79,9 +81,9 @@ class ProviderOauthController < ApplicationController
       else
         uri = URI.parse( access_token.application.redirect_uri )
         uri.query = Rack::Utils.build_query(
-          :access_token => auth.token.token,
-          :token_type   => auth.token.token_type,
-          :expires_in   => auth.token.expires_in
+          access_token: auth.token.token,
+          token_type: auth.token.token_type,
+          expires_in: auth.token.expires_in
         )
         redirect_to uri.to_s
       end
@@ -94,58 +96,60 @@ class ProviderOauthController < ApplicationController
   end
 
   private
-  def oauth_access_token_from_facebook_token(client_id, provider_token)
-    client = Doorkeeper::Application.find_by_uid(client_id)
+
+  def oauth_access_token_from_facebook_token( client_id, provider_token )
+    client = Doorkeeper::Application.find_by_uid( client_id )
     return nil unless client
-    user = if (pa = ProviderAuthorization.where(:provider_name => "facebook", :token => provider_token).first)
+
+    user = if ( pa = ProviderAuthorization.where( provider_name: "facebook", token: provider_token ).first )
       pa.user
     end
     user ||= begin
-      fb = Koala::Facebook::API.new(provider_token)
+      fb = Koala::Facebook::API.new( provider_token )
       r = fb.get_object( "me", fields: "id,email,name,first_name,last_name,about,link,website,location,verified" )
-      user = User.joins(:provider_authorizations).
-        where("provider_authorizations.provider_uid = ?", r['id']).
-        where("provider_authorizations.provider_name = 'facebook'").
+      user = User.joins( :provider_authorizations ).
+        where( "provider_authorizations.provider_uid = ?", r["id"] ).
+        where( "provider_authorizations.provider_name = 'facebook'" ).
         first
-      user ||= User.where("email = ?", r['email']).first
+      user ||= User.where( "email = ?", r["email"] ).first
       if user.blank?
-        uid = r['id']
+        uid = r["id"]
         auth_info = {
-          'provider' => 'facebook',
-          'uid' => uid,
-          'info' => {
-            'email' => r['email'],
-            'name' => r['name'],
-            'first_name' => r['first_name'],
-            'last_name' => r['last_name'],
-            'image' => "http://graph.facebook.com/#{uid}/picture?type=square",
-            'description' => r['about'],
-            'urls' => {
-              'Facebook' => r['link'],
-              'Website' => r['website']
+          "provider" => "facebook",
+          "uid" => uid,
+          "info" => {
+            "email" => r["email"],
+            "name" => r["name"],
+            "first_name" => r["first_name"],
+            "last_name" => r["last_name"],
+            "image" => "http://graph.facebook.com/#{uid}/picture?type=square",
+            "description" => r["about"],
+            "urls" => {
+              "Facebook" => r["link"],
+              "Website" => r["website"]
             },
-            'location' => (r['location'] || {})['name'],
-            'verified' => r['verified']
+            "location" => ( r["location"] || {} )["name"],
+            "verified" => r["verified"]
           },
-          'credentials' => {
-            'token' => provider_token
+          "credentials" => {
+            "token" => provider_token
           }
         }
-        user = User.create_from_omniauth(auth_info)
-        raise INat::Auth::MissingEmailError if !user.valid? && !user.errors[:email].blank?
+        user = User.create_from_omniauth( auth_info )
       end
       user
     rescue Koala::Facebook::AuthenticationError => e
       Rails.logger.debug "[DEBUG] Failed to get fb user info from token: #{e}"
       nil
     end
-    return nil unless user && user.persisted?
+    return nil unless user&.persisted?
+
     assertion_access_token_for_client_and_user( client, user )
   end
 
-  def oauth_access_token_from_google_token(client_id, provider_token)
-    client = Doorkeeper::Application.find_by_uid(client_id)
-    user = if (pa = ProviderAuthorization.where(:provider_name => "google_oauth2", :token => provider_token).first)
+  def oauth_access_token_from_google_token( client_id, provider_token )
+    client = Doorkeeper::Application.find_by_uid( client_id )
+    user = if ( pa = ProviderAuthorization.where( provider_name: "google_oauth2", token: provider_token ).first )
       pa.user
     end
     user ||= begin
@@ -153,32 +157,32 @@ class ProviderOauthController < ApplicationController
         Authorization: "Bearer #{provider_token}",
         "User-Agent" => "iNaturalist/Google"
       } )
-      json = JSON.parse(r.body)
-      unless uid = json['id']
+      json = JSON.parse( r.body )
+      unless ( uid = json["id"] )
         Rails.logger.debug "[DEBUG] Google auth failed: #{json.inspect}"
         return nil
       end
-      user = User.joins(:provider_authorizations).
-        where("provider_authorizations.provider_uid = ?", uid).
-        where("provider_authorizations.provider_name = 'google_oauth2'").
+      user = User.joins( :provider_authorizations ).
+        where( "provider_authorizations.provider_uid = ?", uid ).
+        where( "provider_authorizations.provider_name = 'google_oauth2'" ).
         first
       if user.blank?
         auth_info = {
-          'provider' => 'google_oauth2',
-          'uid' => uid,
-          'info' => {
-            'email' => json['email'],
-            'name' => json['name'],
-            'first_name' => json['given_name'],
-            'last_name' => json['family_name'],
-            'image' => json['picture'],
-            'urls' => {
-              'Google Plus' => json['link']
+          "provider" => "google_oauth2",
+          "uid" => uid,
+          "info" => {
+            "email" => json["email"],
+            "name" => json["name"],
+            "first_name" => json["given_name"],
+            "last_name" => json["family_name"],
+            "image" => json["picture"],
+            "urls" => {
+              "Google Plus" => json["link"]
             },
-            'verified' => json['verified_email']
+            "verified" => json["verified_email"]
           },
-          'credentials' => {
-            'token' => provider_token
+          "credentials" => {
+            "token" => provider_token
           }
         }
         user = User.create_from_omniauth( auth_info )
@@ -189,7 +193,8 @@ class ProviderOauthController < ApplicationController
       Rails.logger.debug "[DEBUG] Failed to make a Google API call: #{e}"
       nil
     end
-    return nil unless user && user.persisted?
+    return nil unless user&.persisted?
+
     assertion_access_token_for_client_and_user( client, user )
   end
 
@@ -243,7 +248,7 @@ class ProviderOauthController < ApplicationController
       iss: "https://appleid.apple.com",
       verify_iat: true,
       verify_aud: true,
-      aud: [iphone_app_id], #.concat(options.authorized_client_ids),
+      aud: [iphone_app_id], # .concat(options.authorized_client_ids),
       algorithms: ["RS256"],
       jwks: jwks
     } )
@@ -251,8 +256,11 @@ class ProviderOauthController < ApplicationController
     issuer_is_apple = id_token_conents["iss"] == "https://appleid.apple.com"
     audience_is_inat = id_token_conents["aud"] == iphone_app_id
     token_is_current = Time.now < Time.at( id_token_conents["exp"] )
-    if !( issuer_is_apple && audience_is_inat && token_is_current )
-      error_message = "Invalid identity token. iss: #{id_token_conents["iss"]}, aud: #{id_token_conents["aud"]}, exp: #{id_token_conents["exp"]} "
+    unless issuer_is_apple && audience_is_inat && token_is_current
+      error_message = <<~MSG
+        Invalid identity token. iss: #{id_token_conents['iss']},
+        aud: #{id_token_conents['aud']}, exp: #{id_token_conents['exp']}
+      MSG
       Rails.logger.error = error_message
       LogStasher.write_hash(
         error_message: error_message,
@@ -291,8 +299,9 @@ class ProviderOauthController < ApplicationController
       user = User.create_from_omniauth( auth_info )
       raise INat::Auth::MissingEmailError if !user.valid? && !user.errors[:email].blank?
     end
-    return nil unless user && user.persisted?
-    if access_token = assertion_access_token_for_client_and_user( client, user )
+    return nil unless user&.persisted?
+
+    if ( access_token = assertion_access_token_for_client_and_user( client, user ) )
       # We could get into a situation where the token was created but no
       # ProviderAuthorization records was created if an existing user was found
       # via email and User.create_from_omniauth wasn't called, so we make
@@ -301,7 +310,7 @@ class ProviderOauthController < ApplicationController
         provider_name: "apple",
         provider_uid: provider_uid
       ).first
-      if !existing_pa
+      unless existing_pa
         ProviderAuthorization.create!(
           provider_name: "apple",
           provider_uid: provider_uid,
@@ -340,7 +349,7 @@ class ProviderOauthController < ApplicationController
   end
 
   def scopes_from_params( params, client )
-    allowed_scopes = client.scopes.try(:to_a) || []
+    allowed_scopes = client.scopes.try( :to_a ) || []
     requested_scopes = params[:scope].to_s.split( /\s/ ).compact.uniq
     scopes = allowed_scopes & requested_scopes
     scopes = Doorkeeper.configuration.default_scopes.to_a if scopes.blank?

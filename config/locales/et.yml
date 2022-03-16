@@ -204,6 +204,7 @@ et:
   accuracy_meters: Täpsus (meetrit)
   accuracy_of_the_coordinates: |
     Koordinaatide täpsus meetrites. Saad seda muuta vajutades ülal "muuda" lingile või kaardimärgisele ja lohistades selle piirjoone elemente. Proovi muuta ring piisavalt suureks, et oleksid kindel, et viibised vaatlemise ajal selle sees.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Toiming
   actions: Toimingud
   active: Aktiivne
@@ -2569,7 +2570,7 @@ et:
   places_merged_successfully: Kohtade ühendamine õnnestus!
   plants: taimed
   please_add_a_citation_for_this_change: Palun lisa selle muudatuse juurde viide.
-  please_allow_a_few_weeks_for_external_sites: Palun oota paar nädalat, et välised saidid selle vaatluse muudatused kätte saaksid #Title to a section warning a user to exercise caution
+  please_allow_a_few_weeks_for_external_sites: Palun oota paar nädalat, et välised saidid selle vaatluse muudatused kätte saaksid #Request that a known child ask their parents for permission to use this service
   please_complete_the_following_to_add_project: |
     Vaatluse projektile lisamiseks tee palun ära:
   please_confirm_your_inat_username: "Palun kinnita oma %{site_name} kasutajatunnus"
@@ -4863,16 +4864,16 @@ et:
         in_text: Tekstis
         citation: Viide
       taxon:
-        name: Nimi
-        rank: Tase
-        parent_id: Ülemtaksoni ID
-        locked: Lukustatud
-        auto_photos: Automaatsed fotod
         auto_description: Automaatne kirjeldus
-        wikipedia_title: Wikipedia pealkiri
-        wikipedia_summary: Wikipedia kokkuvõte
+        auto_photos: Automaatsed fotod
+        locked: Lukustatud
+        name: Nimi
+        parent_id: Ülemtaksoni ID
+        rank: Tase
         source_identifier: Allikamääratleja
         source_url: Allika URL
+        wikipedia_summary: Wikipedia kokkuvõte
+        wikipedia_title: Wikipedia pealkiri
       taxon_name:
         name_provider: Nimepank
         source_url: Allika URL

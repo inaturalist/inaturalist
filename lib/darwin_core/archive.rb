@@ -122,6 +122,7 @@ module DarwinCore
           response = HTTParty.post( @opts[:post_taxon_archive_to_url], options )
         end
       end
+      upload_to_aws_s3
       @opts[:path]
     end
 
@@ -283,7 +284,8 @@ module DarwinCore
         :quality_metrics, 
         { identifications: { user: [:provider_authorizations] } },
         { observations_places: :place },
-        { annotations: { controlled_value: [:labels], votes_for: {} } }
+        { annotations: { controlled_value: [:labels], votes_for: {} } },
+        { site: :place }
       ]
       if @opts[:community_taxon]
         preloads << :community_taxon
@@ -685,6 +687,23 @@ module DarwinCore
       # include itself
       ranked_ancestors[taxon[:rank].to_sym] ||= taxon
       ranked_ancestors
+    end
+
+    def upload_to_aws_s3
+      return unless @opts[:aws_s3_path]
+      s3_config = YAML.load_file( File.join( Rails.root, "config", "s3.yml" ) )
+      client = ::Aws::S3::Client.new(
+        access_key_id: s3_config["access_key_id"],
+        secret_access_key: s3_config["secret_access_key"],
+        region: CONFIG.s3_region
+      )
+      resource = Aws::S3::Resource.new( client: client )
+      bucket = resource.bucket( CONFIG.s3_bucket )
+      object = bucket.object( @opts[:aws_s3_path] )
+      object.upload_file( @opts[:path], {
+        acl: "public-read",
+        content_encoding: "zip"
+      } )
     end
 
   end

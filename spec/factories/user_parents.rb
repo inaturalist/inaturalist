@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :user_parent do
     user { build :user, birthday: 5.years.ago.to_date.to_s }

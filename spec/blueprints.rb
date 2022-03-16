@@ -186,7 +186,6 @@ end
 
 LocalPhoto.blueprint do
   user { User.make }
-  native_page_url   { "http://localhost:3000/photos/1234" }
   file_content_type { "image/jpeg" }
   file_file_name    { "foo.jpg" }
   file_updated_at   { Time.now }
@@ -268,7 +267,6 @@ end
 
 Photo.blueprint do
   user { User.make }
-  native_photo_id { rand(1000) }
 end
 
 FlickrPhoto.blueprint do
@@ -284,6 +282,10 @@ end
 PicasaPhoto.blueprint do
   user { User.make! }
   native_photo_id { rand(1000) }
+end
+
+PhotoMetadata.blueprint do
+  photo { Photo.make! }
 end
 
 Place.blueprint do

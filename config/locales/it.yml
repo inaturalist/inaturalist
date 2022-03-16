@@ -1,4 +1,8 @@
 it:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} modifica"
+    other: "%{count} modifiche"
   x_comments:
     one: '%{count} commento'
     other: '%{count} commenti'
@@ -218,6 +222,7 @@ it:
   accuracy_meters: Precisione (metri)
   accuracy_of_the_coordinates: |
     Precisione delle coordinate in metri. È possibile modificare questa operazione facendo click sul collegamento "modifica" qui sopra o facendo click sull'indicatore di mappa e trascinando gli agganci. Prova a fare un cerchio grande abbastanza per assicurarti di essere stato da qualche parte al suo interno.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Azione
   actions: Azioni
   active: Attivi
@@ -541,9 +546,17 @@ it:
   #Label for an option to show/include content by any user
   any_user: Qualsiasi
   anyone: Chiunque
+  app_owner_application_about_p1a_html: |
+    Le app iNaturalist consentono l'uso autenticato dell'API iNaturalist. Questo
+    ti consente di effettuare chiamate API che fanno cose come creare osservazioni o
+    identificazioni. I casi d'uso tipici sono app come app desktop o app per dispositivi mobili che includono funzionalità per consentire ai propri utenti di creare osservazioni iNaturalist. Questo contenuto deve essere generato con un vero coinvolgimento o supervisione umana. Per maggiori dettagli si prega di leggere le nostre <a href="/pages/community+guidelines"
+    target="_blank">Linee Guida della Comunità</a> che proibiscono osservazioni, identificazioni e commenti generati da macchine.
+  app_owner_application_about_p2_html: |
+    A partire dal 2022 abbiamo bisogno di approvazione manuale per gli utenti che desiderano fare da client API. Per creare app di terze parti, è necessario prima inviare un'applicazione per diventare un "proprietario dell'app". Questa domanda dovrebbe descrivere la funzionalità della tua app proposta e come hai intenzione di utilizzarla. Per poter presentare una domanda, il tuo account deve avere almeno 2 mesi di età e deve aver effettuato almeno 10 <a href="/pages/help#identification" target="_blank">identificazioni di miglioramento</a> nell'ultimo mese. Potremmo porti ulteriori domande sul tuo piano e ci riserviamo il diritto di respingere le domande per qualsiasi motivo.
   app_owner_application_inelligible: |
     Al fine di sottomettere un applicazione, il tuo account deve avere almeno 2 mesi di vita e deve aver effettuato almeno 10 identificazioni di miglioramento nell'ultimo mese.
   app_owner_application_fields_explanation_html: Descrivi la funzionalità che la tua app avrà e come intendi utilizzarla.
+  app_owner_application_success: Domanda "proprietario dell'App" inviata
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Applicazione
@@ -846,6 +859,8 @@ it:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} sono stati uniti in %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} saranno uniti in %{output_taxon}"
   change_your_password: Cambia la tua password
+  #Plural noun, as in changes to a taxon record over time
+  changes: Modifiche
   changing_the_geoprivacy: 'Cambiando la geoprivacy modifichi il modo in cui gli altri vedono la posizione della tua osservazione.'
   check_above_for_errors: Controlla sopra per errori
   check_back_soon: Ricontrolla presto!
@@ -903,6 +918,10 @@ it:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Commenta
   comment_deleted: Commento cancellato
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Commento nascosto
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Commento non nascosto
   comments: Commenti
   comments_by_me: I miei commenti
   comments_have_been_disabled: I commenti sono stati disabilitati
@@ -1936,6 +1955,8 @@ it:
   identification_by_user: Identificazione di %{user}
   identification_deleted: Identificazione eliminata.
   identification_saved: "Identificazione salvata!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Testo dell'identificazione mostrato
   identification_updated: Identificazione aggiornata!
   identification_user_short: Utente ident.
   identification_withdrawn: Identificazione ritirata.
@@ -2402,6 +2423,9 @@ it:
   mark_all_as_unreviewed: Contrassegna tutto come non controllato
   matching_species_will_shown_up_here: Le specie che corrispondono saranno mostrati qui. Le mappe mostreranno un areale se il %{place} ne ha uno disponibile  per la specie.
   maverick: In disaccordo
+  maximum_positional_accuracy: Accuratezza posizionale massima
+  maximum_positional_accuracy_including_unknown: |
+    Accuratezza posizionale massima incluse le osservazioni senza accuratezza posizionale
   media: File multimediali
   media_type: Tipo di supporto
   medium: medio
@@ -2446,6 +2470,7 @@ it:
     Se sospetti che questa persona stia violando i nostri <a href="%{tos_url}"
     target="_blank">Termini di Servizio</a> onon agendo secondo le nostre <a
     href="%{guidelines_url}" target="_blank">Linne Guida della Comunità</a>, per favore contrassegna questo messaggio qui sotto.
+  minimum_positional_accuracy: Accuratezza posizionale minima
   misidentifications: Identificazioni erronee
   misleading_or_illegal_content_html: |
     Contenuto ingannevole o illegale, insulto etnico o razziale, etc. Per altre informazioni sulla definizione di “appropriato”, vedi <a href="/help#inappropriate">FAQ</a>.
@@ -3573,13 +3598,14 @@ it:
     Per quello che vale, in futuro dovremo incrementare le limitazioni all'aggiunta di nuovi luoghi dato l'attuale tasso di crescita di iNat.
   plants: piante
   please_add_a_citation_for_this_change: Per piacere aggiungi un riferimento per questa modifica.
-  please_allow_a_few_weeks_for_external_sites: Per favore attendi alcune settimane affinché i siti esterni sincronizzino la modifiche per questa osservazione #Title to a section warning a user to exercise caution
+  please_allow_a_few_weeks_for_external_sites: Per favore attendi alcune settimane affinché i siti esterni sincronizzino la modifiche per questa osservazione #Request that a known child ask their parents for permission to use this service
+  #Title to a section warning a user to exercise caution
   please_be_careful!: Per favore, presta attenzione!
   please_complete_the_following_to_add_project: |
     Per favore completa i campi seguenti per aggiungere l'osservazione al progetto:
   please_confirm_your_inat_username: "Per favore, conferma il tuo nome utente %{site_name}"
-  please_explain_why_you_want_to_hide_this: Per favore spiegate perché vuoi nascondere questo
-  please_explain_why_you_want_to_unhide_this: Per favore spiega perché vuoi scoprire questo
+  please_explain_why_you_want_to_hide_this: Per favore spiega perché vuoi nascondere questo
+  please_explain_why_you_want_to_unhide_this: Per favore spiega perché vuoi mostrare questo
   please_fix_your_csv_and_try_again: Per favore  correggi il tuo CSV e prova di nuovo.
   please_hold_on_while_the_file: Per favore attendi la creazione del file. L'operazione può richiedere alcuni minuti se hai molte osservazioni.
   please_hold_on_while_the_file_is_generated: Per favore attendi la creazione del file. L'operazione può richiedere alcuni minuti per liste molto lunghe.
@@ -3868,6 +3894,8 @@ it:
   recently_finished: Terminato di recente
   recently_observed: Osservate di recente
   recently_resolved: Recentemente risolti
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Registro
   red: rosso
   redo_search_in_map: Ripeti la ricerca nella mappa
   redo_search_in_map_area: Ripeti la ricerca nell'area di mappa
@@ -3982,6 +4010,7 @@ it:
     must_be_in: deve essere nel taxon
     must_be_coordinates_shareable_by_project_curators: l'osservatore deve permettere ai curatori del progetto di visualizzare le coordinate.
     must_be_verifiable: dev'esser verificabile
+    must_be_wild: deve essere selvatico
   running_total: Totale attuale
   said: detto
   satellite: satellite
@@ -4078,6 +4107,9 @@ it:
   show_active_and_inactive_taxa: Mostra taxa attivi e inattivi
   show_common_names: Mostra nomi comuni
   show_hidden_content: Mostra contenuti nascosti
+  show_history_by_this_user: Mostra cronologia da questo utente
+  show_history_for_this_kind_of_action: Mostra cronologia per questo tipo d'azione
+  show_history_for_this_record: Mostra cronologia per questo registro
   show_keyboard_shortcuts: Mostra Scorciatoie di Tastiera
   show_less: Mostra meno
   show_more: Mostra di più
@@ -4333,6 +4365,9 @@ it:
   summary: Riassunto
   supporting: Sostenitori
   suspend_user: Sospendi utente
+  suspend_user_html: Sospendi %{user}
+  suspend_user_reason_instructions_html: |
+    Spiega perché stai sospendendo questo profilo e cita qualsiasi violazione delle %{link_start_tag}Linee Guida della Community%{link_end_tag}. Sei pregato di astenerti dall'aggiungere opinioni personali.
   sw_lat: Lat. SO
   sw_lon: Lon. SO
   sync: Sincronizza?
@@ -4445,6 +4480,7 @@ it:
   taxon_framework_relationship_unknown_count_html: "Conteggio delle relazioni sconosciute: %{count}"
   taxon_framework_relationships: Relazioni del quadro del taxon
   taxon_framework_taxon: Taxon del quadro del taxon
+  taxon_history_notice: La cronologia è stata introdotta a Febbraio 2022, quindi non ne è disponibile alcuna da prima di tale data.
   taxon_merge: unione del taxon
   taxon_name: Nome del taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Il nome del taxon deve corrispondere a uno di quelli del nostro database
@@ -4714,6 +4750,9 @@ it:
   unsubscribe: Cancella iscrizione
   unsubscribe_from_emails_like_this: Annulla l'iscrizione ad email come queste
   unsuspend_user: Riammetti utente
+  unsuspend_user_html: Riammetti %{user}
+  unsuspend_user_reason_instructions: |
+    Sei pregato di spiegare perché stai riammettendo questo utente.
   upcoming_bioblitzes: Prossime blioblitz
   update: Aggiorna
   update_existing_observations_with_new_license: Aggiorna le osservazioni esistenti con la nuova licenza scelta
@@ -4994,6 +5033,8 @@ it:
   where_were_you?: Tu dov'eri?
   which_projects_can_add_your_observations?: Quali progetti tradizionali possono aggiungere le tue osservazioni?
   white: bianco
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Perché stai effettuando questa modifica? (facoltativo)
   why_you_can_see_the_coordinates: Perché puoi vedere le coordinate
   who_can_add_observation_fields_to_my_obs: Chi può aggiungere campi di osservazione alle mie osservazioni?
   who_can_add_observations_to_this_project?: Chi può aggiungere osservazioni al questo progetto?
@@ -5719,9 +5760,9 @@ it:
           Alcune di queste foto sono state etichettate per contenuti inappropriati o che violano il copyright. Per dettagli: %{links}
         join_project_desc_html: |
           Prendendo parte al progetto darai ai curatori la possibilità di vedere le coordinate nascoste di queste e di tutte le osservazioni nel progetto, e implica che tu acconsenta ai <a href="%{url}" target="_blank">termini</a> del progetto.
-        quality_assessment_help_html: |
+        quality_assessment_help2_html: |
           <p>
-          La valutazione della qualità dei dati è un riassunto della accuratezza dell'osservazione. Tutte le osservazioni partono dal livello <strong>"casuale"</strong>, e diventano <strong>"serve ID"</strong> quando
+          La valutazione della qualità dei dati è un riassunto della accuratezza dell'osservazione. Tutte le osservazioni partono dal livello <strong>"informale"</strong>, e diventano <strong>"serve ID"</strong> quando
           </p>
 
           <ul>
@@ -5735,11 +5776,11 @@ it:
           </p>
           <ul>
           <li>
-          la <strong>community di %{site_name} concorda con l'ID a livello di specie o inferiore</strong>, ad esempio: quando più di 2/3 delle identificazioni concordano su un taxon
+          la <strong>community di %{site_name} concorda con l'ID a livello di specie o inferiore</strong>, ad esempio: quando più di 2/3 delle identificazioni concordano su un taxon (se la comunità ha votato che cil Taxon della Comunità non può essere migliorato ulteriormente, questo torna all'ID della sottofamiglia o inferiore)
           </li>
           </ul>
           <p>
-          Le osservazioni torneranno al livello <strong>"casuale"</strong> se le suddette condizioni non sono rispettate o la comunità concorda che
+          Le osservazioni torneranno al livello <strong>"informale"</strong> se le suddette condizioni non sono rispettate o la comunità concorda che
           </p>
           <ul>
           <li>
@@ -5749,7 +5790,7 @@ it:
           l'<strong>organismo non è selvatico/naturalizzato</strong> (ad esempio: in cattività o coltivato dall'uomo o da specie aliene intelligenti)
           </li>
           <li>
-          l'osservazione <strong>non ha prove della presenza dell'organismo</strong>, ad esempio: immagini di paesaggi, giochi d'acqua, rocce, ecc.
+          l'osservazione <strong>non ha prove della presenza dell'organismo</strong>, ad esempio: immagini digiochi d'acqua, paesaggi che non contengono organismi, ecc.
           </li>
           <li>
           l'osservazione <strong>non ha prove recenti (100 anni circa) dell'organismo</strong>, ad esempio, i fossili (ma invece le tracce, gli escrementi, e le foglie morte sono sufficienti)
@@ -7062,6 +7103,10 @@ it:
       message:
         subject: Oggetto
         body: Testo
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Motivo
       observation:
         description: Descrizioni
         geo_x: Est
@@ -7090,6 +7135,8 @@ it:
         #confidential, e.g. a native or desktop app as opposed to a web
         #app.
         confidential: Confidenziale
+      place_taxon_name:
+        position: Posizione
       post:
         title: Titolo
         body: Corpo
@@ -7133,18 +7180,49 @@ it:
         url: URL
         citation: Citazione
       taxon:
-        name: Nome
-        rank: Rango
-        parent_id: ID del taxon di livello superiore
-        locked: Bloccato
-        auto_photos: Carica foto automaticamente
+        ancestry: Discendenza
         auto_description: Carica descrizione automaticamente
-        wikipedia_title: Titolo Wikipedia
-        wikipedia_summary: Riassunto Wikipedia
+        auto_photos: Carica foto automaticamente
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: Rango completo
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Stato di conservazione
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: In evidenza alle
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: ID del taxon iconico
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Attivo?
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Iconico?
+        locked: Bloccato
+        name: Nome
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Fornitore del nome
+        parent_id: ID del taxon di livello superiore
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Foto bloccate?
+        rank: Rango
+        rank_level: Livello di rango
+        source_id: ID origine
         source_identifier: Identificatore della fonte
         source_url: URL sorgente
+        #Identifier of the taxon framework relationship record associated
+        #with this taxon
+        taxon_framework_relationship_id: ID di relazione del quadro del taxon
+        wikipedia_summary: Riassunto Wikipedia
+        wikipedia_title: Titolo Wikipedia
       taxon_name:
+        is_valid: È valido?
+        lexicon: Lessico
+        name: Nome
         name_provider: Nome del provider
+        position: Posizione
         source_url: URL sorgente
         source_identifier: Identificatore della fonte
       user:
@@ -7217,6 +7295,11 @@ it:
               guide_has_too_many_taxa: "la guida può avere al massimo 500 taxa"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: non è supportato per questo tipo di contenuto
+            base:
+              only_staff_can_unhide: Solo lo staff può mostrare nuovamente i contenuti nascosti
+              staff_cannot_be_suspended: Lo Staff non può essere sospeso
             user_id:
               must_be_a_curator: deve essere un curatore
         mushroom_observer_import_flow_task:
@@ -7231,6 +7314,8 @@ it:
             observed_on:
               cannot_be_greater_than_date_created: |
                 non può essere successiva alla data in cui l'osservazione è stata aggiunta
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: deve essere negli ultimi 130 anni
         observation_field_value:
           attributes:
             value:

@@ -605,6 +605,15 @@ class Observation < ApplicationRecord
       end
     end
 
+    unless p[:not_in_place].blank?
+      place_ids = [p[:not_in_place]].flatten.map {| v | ElasticModel.id_or_object( v ) }
+      inverse_filters << if p[:viewer]&.id == p[:user_id].to_i
+        { terms: { "private_place_ids" => place_ids } }
+      else
+        { terms: { "place_ids" => place_ids } }
+      end
+    end
+
     # params that can be true / false / any
     [ { http_param: :introduced, es_field: "taxon.introduced" },
       { http_param: :threatened, es_field: "taxon.threatened" },
@@ -968,6 +977,38 @@ class Observation < ApplicationRecord
     unless p[:csa].blank?
       values = [ p[:csa] ].flatten.map(&:downcase)
       search_filters << conservation_condition(:authority, values, p)
+    end
+    if p[:acc_above].to_i > 0
+      search_filters << { range: { positional_accuracy: { gt: p[:acc_above].to_i } } }
+    end
+    if p[:acc_below].to_i > 0
+      search_filters << { range: { positional_accuracy: { lt: p[:acc_below].to_i } } }
+    end
+    if p[:acc_below_or_unknown].to_i > 0
+      search_filters << {
+        bool: {
+          should: [
+            {
+              range: {
+                positional_accuracy: {
+                  lt: p[:acc_below_or_unknown].to_i
+                }
+              }
+            },
+            {
+              bool: {
+                must_not: [
+                  {
+                    exists: {
+                      field: "positional_accuracy"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
     end
     # sort defaults to created at descending
     sort_order = (p[:order] || "desc").downcase.to_sym

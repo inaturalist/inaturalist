@@ -1,0 +1,58 @@
+@import "../colors";
+
+.table {
+  .history {
+    td {
+      &.nobr,
+      &.action,
+      &.record,
+      &.user {
+        padding-top: 16px;
+        padding-bottom: 16px;
+      }
+    }
+  }
+  .action,
+  .user {
+    white-space: nowrap;
+  }
+  .filter-link { visibility: hidden; }
+  td:hover .filter-link { visibility: visible; }
+  .changes {
+    margin-bottom: 0;
+
+    td.value {
+      overflow-wrap: anywhere;
+      flex-grow: 1;
+      width: 100%;
+    }
+
+    .update {
+      td.value {
+        width: 50%;
+      }
+    }
+
+    td.attr {
+      width: 150px;
+    }
+
+    td.change {
+      background-color: #dceaa3;
+
+      &.deleted {
+        background-color: $light-grey;
+        min-width: 10em;
+      }
+    }
+
+    blockquote {
+      margin-bottom: 0;
+    }
+  }
+  .changes-with-changes {
+    blockquote {
+      margin-top: 10px;
+    }
+  }
+}

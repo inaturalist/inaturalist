@@ -36,12 +36,6 @@ function postIdentification( params ) {
   };
 }
 
-function deleteIdentification( ident ) {
-  return function ( ) {
-    return inatjs.identifications.delete( ident );
-  };
-}
-
 function updateIdentification( ident, updates ) {
   return function ( ) {
     return inatjs.identifications.update( ident, updates );
@@ -146,7 +140,6 @@ export {
   postIdentification,
   agreeWithObservaiton,
   agreeWithCurrentObservation,
-  deleteIdentification,
   agreeingWithObservation,
   stopAgreeingWithObservation,
   updateIdentification,

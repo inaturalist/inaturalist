@@ -84,8 +84,7 @@ describe Photo do
         native_username: "a native_username",
         native_realname: "a native_realname",
         license: 2,
-        mobile: false,
-        metadata: { meta: :data })
+        mobile: false)
       lp = Photo.local_photo_from_remote_photo(fp)
       expect( lp.native_photo_id ).to eq fp.native_photo_id
       expect( lp.native_page_url ).to eq fp.native_page_url
@@ -93,7 +92,6 @@ describe Photo do
       expect( lp.native_realname ).to eq fp.native_realname
       expect( lp.license ).to eq fp.license
       expect( lp.mobile ).to eq fp.mobile
-      expect( lp.metadata ).to eq fp.metadata
       expect( lp["original_url"] ).to be nil
       expect( lp.subtype ).to eq "FlickrPhoto"
       expect( lp.native_original_image_url ).to eq fp.original_url

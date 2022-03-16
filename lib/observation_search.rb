@@ -273,6 +273,15 @@ module ObservationSearch
         end
         p[:place_id] = p[:place].id if p[:place] && p[:place].is_a?( Place )
       end
+      unless p[:not_in_place].blank?
+        not_in_place_record = begin
+          Place.find( p[:not_in_place] )
+        rescue ActiveRecord::RecordNotFound
+          nil
+        end
+        p[:not_in_place] = not_in_place_record&.id if not_in_place_record.is_a?( Place )
+        p[:not_in_place_record] = not_in_place_record
+      end
       p[:search_on] = nil unless Observation::FIELDS_TO_SEARCH_ON.include?(p[:search_on])
       # iconic_taxa
       if p[:iconic_taxa]

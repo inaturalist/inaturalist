@@ -12,6 +12,7 @@ class User < ApplicationRecord
   acts_as_voter
   acts_as_spammable fields: [ :description ],
                     comment_type: "signup"
+  has_moderator_actions %w(suspend unsuspend)
 
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = 'admin'
@@ -259,7 +260,6 @@ class User < ApplicationRecord
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_update :set_observations_taxa_if_pref_changed
-  after_update :update_photo_properties
   after_update :send_welcome_email
   after_create :set_uri
   after_destroy :create_deleted_user
@@ -1230,21 +1230,6 @@ class User < ApplicationRecord
     true
   end
 
-  def update_photo_properties
-    changes = {}
-    changes[:native_username] = login if saved_change_to_login?
-    changes[:native_realname] = name if saved_change_to_name?
-    unless changes.blank?
-      delay( priority: USER_INTEGRITY_PRIORITY ).update_photos_with_changes( changes )
-    end
-    true
-  end
-
-  def update_photos_with_changes( changes )
-    return if changes.blank?
-    photos.update_all( changes )
-  end
-
   def send_welcome_email
     if (
       saved_change_to_confirmed_at? &&
@@ -1406,6 +1391,16 @@ class User < ApplicationRecord
     Observation.elastic_index!( scope: Observation.by( id ), delay: true )
     Identification.elastic_index!( scope: Identification.where( user_id: id ), delay: true )
     Project.elastic_index!( scope: Project.where( user_id: id ), delay: true )
+  end
+
+  def moderated_with( moderator_action )
+    if moderator_action.action == ModeratorAction::SUSPEND && !is_admin?
+      self.suspended_by_user = moderator_action.user
+      suspend!
+    elsif moderator_action.action == ModeratorAction::UNSUSPEND
+      self.suspended_by_user = nil
+      unsuspend!
+    end
   end
 
   def personal_lists

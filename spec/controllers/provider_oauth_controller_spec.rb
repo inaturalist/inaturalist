@@ -5,11 +5,13 @@ require "#{File.dirname( __FILE__ )}/../spec_helper"
 describe ProviderOauthController do
   describe "from google" do
     let( :client ) { create :oauth_application, trusted: true }
-    let( :assertion_params ) { {
-      assertion_type: "google",
-      client_id: client.uid,
-      assertion: "foo"
-    } }
+    let( :assertion_params ) do
+      {
+        assertion_type: "google",
+        client_id: client.uid,
+        assertion: "foo"
+      }
+    end
 
     before do
       stub_request( :get, "https://www.googleapis.com/userinfo/v2/me" ).to_return(
@@ -20,10 +22,12 @@ describe ProviderOauthController do
     end
 
     describe "with an email address" do
-      let( :google_response ) { {
-        id: Faker::Number.number.to_s,
-        email: Faker::Internet.email
-      } }
+      let( :google_response ) do
+        {
+          id: Faker::Number.number.to_s,
+          email: Faker::Internet.email
+        }
+      end
 
       it "should create a user" do
         expect( User.find_by_email( google_response[:email] ) ).to be_blank
@@ -59,7 +63,6 @@ describe ProviderOauthController do
         expect( JSON.parse( response.body )["access_token"] ).not_to be_blank
       end
 
-
       it "should not return a token for a confirmed suspended user" do
         u = create :user, email: google_response[:email], confirmed_at: Time.now
         u.suspend!
@@ -90,11 +93,13 @@ describe ProviderOauthController do
       end
 
       describe "with a bad assertion_type" do
-        let( :assertion_params ) { {
-          assertion_type: "fragglerock",
-          client_id: client.uid,
-          assertion: "foo"
-        } }
+        let( :assertion_params ) do
+          {
+            assertion_type: "fragglerock",
+            client_id: client.uid,
+            assertion: "foo"
+          }
+        end
         # As the OAuth spec says
         it "should return 400" do
           post :assertion, format: :json, params: assertion_params
@@ -119,11 +124,13 @@ describe ProviderOauthController do
         end
       end
       describe "with a bad client_id" do
-        let( :assertion_params ) { {
-          assertion_type: "google",
-          client_id: "#{client.uid}sdgsdg",
-          assertion: "foo"
-        } }
+        let( :assertion_params ) do
+          {
+            assertion_type: "google",
+            client_id: "#{client.uid}sdgsdg",
+            assertion: "foo"
+          }
+        end
         it "should return invalid_client error" do
           post :assertion, format: :json, params: assertion_params
           expect( response ).not_to be_successful

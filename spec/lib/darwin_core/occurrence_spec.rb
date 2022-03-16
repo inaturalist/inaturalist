@@ -206,4 +206,38 @@ describe DarwinCore::Occurrence do
       end
     end
   end
+
+  describe "publishingCountry" do
+    it "should be blank if an observation has no site" do
+      o = create :observation
+      expect( o.site ).to be_blank
+      expect( DarwinCore::Occurrence.adapt( o ).publishingCountry ).to be_blank
+    end
+    it "should be blank if an observation's site has no place" do
+      site = create :site
+      expect( site.place ).to be_blank
+      o = create :observation, site: site
+      expect( DarwinCore::Occurrence.adapt( o ).publishingCountry ).to be_blank
+    end
+    it "should be blank if an observation's site's place is not a country" do
+      place = create :place
+      expect( place.admin_level ).not_to eq Place::COUNTRY_LEVEL
+      site = create :site, place: place
+      o = create :observation, site: site
+      expect( DarwinCore::Occurrence.adapt( o ).publishingCountry ).to be_blank
+    end
+    it "should be blank if an observation's site's place's code is not two letters" do
+      place = create :place, admin_level: Place::COUNTRY_LEVEL, code: "ABCD"
+      expect( place.admin_level ).to eq Place::COUNTRY_LEVEL
+      site = create :site, place: place
+      o = create :observation, site: site
+      expect( DarwinCore::Occurrence.adapt( o ).publishingCountry ).to be_blank
+    end
+    it "should be an observation's site's place's code" do
+      place = create :place, admin_level: Place::COUNTRY_LEVEL, code: "IN"
+      site = create :site, place: place
+      o = create :observation, site: site
+      expect( DarwinCore::Occurrence.adapt( o ).publishingCountry ).to eq place.code
+    end
+  end
 end

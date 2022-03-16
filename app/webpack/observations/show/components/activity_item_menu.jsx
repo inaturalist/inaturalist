@@ -7,7 +7,7 @@ const ActivityItemMenu = ( {
   item,
   config,
   deleteComment,
-  deleteID,
+  withdrawID,
   editing,
   restoreID,
   setFlaggingModalState,
@@ -47,8 +47,8 @@ const ActivityItemMenu = ( {
       if ( item.current ) {
         menuItems.push( (
           <MenuItem
-            key={`id-delete-${item.uuid}`}
-            eventKey="delete"
+            key={`id-withdraw-${item.uuid}`}
+            eventKey="withdraw"
           >
             { I18n.t( "withdraw" ) }
           </MenuItem>
@@ -307,9 +307,9 @@ const ActivityItemMenu = ( {
               untrustUser( item.user );
             } else if ( key === "manage-relationships" ) {
               window.open( "/relationships", "_blank" );
-            } else if ( isID && key === "delete" ) {
-              deleteID( item.uuid );
-            } else if ( isID && key === "restore" ) {
+            } else if ( key === "withdraw" ) {
+              withdrawID( item.uuid );
+            } else if ( key === "restore" ) {
               restoreID( item.uuid );
             } else if ( key === "delete" ) {
               deleteComment( item.uuid );
@@ -339,7 +339,7 @@ ActivityItemMenu.propTypes = {
   onEdit: PropTypes.func,
   config: PropTypes.object,
   deleteComment: PropTypes.func,
-  deleteID: PropTypes.func,
+  withdrawID: PropTypes.func,
   editing: PropTypes.bool,
   restoreID: PropTypes.func,
   setFlaggingModalState: PropTypes.func,

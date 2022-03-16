@@ -177,6 +177,7 @@ zh-TW:
   accuracy_meters: 精確度 (公尺)
   accuracy_of_the_coordinates: |
     坐標精確度達數公尺。您可以點擊上方「編輯」連結修改或點選地圖上的標記，拖曳控制棒來修改座標。請盡量擴大圓形區塊，直到您確定自己位於其範圍中。
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: 操作
   actions: 操作
   active: 有效
@@ -1525,6 +1526,8 @@ zh-TW:
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: 外部應用程式
+  external_applications_description: |
+    外部應用程式是您授權第三方所開發的軟體可存取您的 iNaturalist 帳號。整體而言，他們可以使用您的帳號做所有您可以做的事情，所以請確保在授權給這些第三方軟體之前，您信任這些應用程式的開發者。
   external_taxon_including_children: 外部分類（包含子項）
   extinct: 絕種
   extinct_in_the_wild: 在野外絕種
@@ -2016,6 +2019,7 @@ zh-TW:
   leading: 優先
   learn: 學習
   learn_about_the_species_live_in: 了較有關物種存活於
+  learn_about_third_party_tracking: 了解更多關於第三方追蹤的細節
   learn_more: 了解更多
   learn_more_raquo: "了解更多&raquo;"
   learn_what_these_licenses_mean: 了解這些許可協議的含義
@@ -3455,7 +3459,8 @@ zh-TW:
     不管怎麼說，有鑑於目前 iNat 成長的速度，我們將會在未來限制大家新增地點的條件。
   plants: 植物
   please_add_a_citation_for_this_change: 請為此次更改添加引用。
-  please_allow_a_few_weeks_for_external_sites: 請允許幾週時間讓外部網站由此筆觀察做同步更改 #Title to a section warning a user to exercise caution
+  please_allow_a_few_weeks_for_external_sites: 請允許幾週時間讓外部網站由此筆觀察做同步更改 #Request that a known child ask their parents for permission to use this service
+  #Title to a section warning a user to exercise caution
   please_be_careful!: 請務必小心！
   please_complete_the_following_to_add_project: |
     請完成以下內容來添加觀察至專案裡：
@@ -4447,6 +4452,7 @@ zh-TW:
   these_folks_kindly_volunteer_to: 這些友善人們志願來維護我們的物種分類法內容，並處理其它問題。
   these_observations_have_not_been_uploaded_yet: |
     這些觀察尚未被上傳。
+  third_party_tracking: 第三方追蹤
   third_person_possessive_singular: "%{object_phrase}的%{noun}"
   this: 此
   this_bioblitz_beings_in: 此 bioblitz 開始於
@@ -5547,69 +5553,6 @@ zh-TW:
           一些照片已被標記為內容不適當或侵犯版權。詳細內容請見 %{links}
         join_project_desc_html: |
           加入專案將會給予專案策展人可查看任何在專案裡觀察之隱藏座標的權限，並意味著您同意專案的<a href="%{url}" target="_blank">條款</a>。
-        quality_assessment_help_html: |2
-          <p>
-          資料品質評估是一筆觀察紀錄精確性的摘要。
-          所有的觀察都由<strong>「粗略」</strong>等級開始，然後升級為
-          <strong>「需要鑑定」</strong>，其條件為
-          </p>
-
-          <ul>
-          <li>該觀察紀錄<strong>有日期</strong></li>
-          <li>該觀察紀錄 <strong>有地理資訊點位</strong> (即：有經緯度座標)</li>
-          <li>該觀察紀錄 <strong>有照片或聲音檔</strong></li>
-          <li>該觀察紀錄 <strong>不是由人類圈養或栽培的</strong></li>
-          </ul>
-          <p>
-          當符合以下條件，該觀察紀錄就會成為<strong>「研究等級」</strong> 
-          </p>
-          <ul>
-          <li>
-          %{site_name} 的 <strong>社群同意該觀察紀錄鑑定到種或種以下階層</strong>，
-          即：當超過三分之二以上的鑑定者同意該分類群
-          (如果社群投票的分類群無法再更進一步精確鑑定，
-          這將會回復到亞科或更低層極的階層)
-          </li>
-          </ul>
-          <p>
-          如果無法達成上述條件或社群同意，觀察紀錄將回復到<strong>「粗略」</strong> 等級
-          </p>
-          <ul>
-          <li>
-          <strong>地點看起來不精確</strong>
-           (例如： 猴子在海洋中間出現、河馬出現在辦公大樓裡之類的)
-          </li>
-          <li>
-          <strong>生物不是野生或歸化</strong> (例：由人類或
-          有智慧外星人所圈養或栽培的)
-          </li>
-          <li>
-          該觀察紀錄 <strong>沒有生物出現的證據</strong>，例如：
-          風景照、水體照、岩石等。
-          </li>
-          <li>
-          該觀察紀錄 <strong>沒有現今(約 100 年左右)生物出現
-          的證據</strong> (例：化石，但是獸跡、糞便和枯掉的葉子可以)
-          </li>
-          <li>
-          該觀察紀錄不再需要一筆鑑定<em>而且</em> 社群鑑定為科的階層以上
-          </li>
-          <li>
-          觀察者可以取消社群鑑定的選項，然後社群鑑定的分類群
-          不會再和該觀察者鑑定的祖先或後裔相關聯。
-          </li>
-          </ul>
-          <p>
-          然後如果情況還不夠複雜的話，還有一些情形系統可以有投票權：
-          </p>
-          <ul>
-          <li>
-          如果在包含該觀察紀錄的最小的縣市、州省或等同於國家的地點中
-          有某個屬(或屬以下)至少 10 筆觀察紀錄，而且包含這筆觀察紀錄
-          中有 80% 以上的觀察紀錄已被註記為非野生或歸化的，系統就會
-          將此觀察紀錄註記為非野生或歸化。
-          </li>
-          </ul>
         score_desc: "分數 = 累積次數 /（累積次數 + 不一致次數 + 祖先不一致次數）"
         observation_flagged_notice_html: |
           此觀察已被標記為垃圾訊息並不再對外公開。若您還能看見該觀察是因為您是它的創建者、或是網站的策展人。如果您認為這是個誤會，請<a href="mailto:%{help_email}" class="contact">聯絡我們</a>。<a href="/observations/%{observation_id}/flags">管理標籤</a>
@@ -6396,6 +6339,7 @@ zh-TW:
         you_must_enter_confirmation_code_in_the_form: |
           您必須在表單輸入「%{confirmation_code}」來刪除您的帳號
       edit:
+        about_third_party_tracking: 關於第三方的追蹤
         blocking_desc_html: |2
           <p>
             封鎖某人可以防止他們傳送訊息給您，對您的觀察做出評論或鑑定，
@@ -6493,6 +6437,10 @@ zh-TW:
           %{site_name} 追蹤您對於您的觀察觀察紀錄鑑定之想法以及社群認為他們是什麼。如果您不認為社群的意見應該推翻您自己的鑑定，您可以在此取消選擇。其他人還是可以新增鑑定，但您的觀察紀錄還是以您的鑑定為準。這代表您的觀察紀錄就沒有資格成為「研究等級」的狀態，除非您的鑑定符合社群的鑑定意見。
         prefers_coordinate_interpolation_protection_desc: |
           當您設定觀察的位置隱私成「obscured」或「private」時，將會對您在同一天的所有其它觀察套用相同的位置隱私，這會讓其他人較難從同一時間所做出的觀察來猜測出真實座標。
+        prefers_no_tracking_label: 不要使用第三方服務來收集穩定性和使用資料分析
+        prefers_no_tracking_label_desc_we_use: |
+          我們使用了多種第三方服務來監測我們軟體內部的程式錯誤(bug)和問題。
+          這些第三方的服務包含：
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google 分析</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           我們可能會和這些第三方分享的資訊包含
@@ -6508,6 +6456,8 @@ zh-TW:
           當機詳細資訊，像是哪一行程式碼導致程式當掉
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           裝置詳細資訊，像是手機的製造商和型號
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>這些第三方服務對我們來說有很大的價值</strong>，讓我們這個相對小型的工作團隊能維持 iNaturalist 的穩定性和可用性。在行動裝置上，由於該軟體在我們無法控制的裝置上運作，因此幾乎沒有其他方法可深入了解所發生的問題。有時候我們甚至沒有察覺到這類的問題發生，直到我們在這些服務中所提供的資料中才發現問題。<strong>透過分享這些資訊，您正在協助我們為您還有整個 iNaturalist 社群服務。</strong>
         prefers_no_tracking_label_desc_limits: |
           請注意這個選項只適用於我們明確寄送給這些公司的分析和當機資料。
           所有的 iNaturalist 伺服器由微軟(Microsoft)來提供營運，所有的 iNaturalist
@@ -6981,16 +6931,16 @@ zh-TW:
         url: 網址
         citation: 引用
       taxon:
-        name: 名稱
-        rank: 級別
-        parent_id: 父級鑑定
-        locked: 已鎖定
-        auto_photos: 自動照片
         auto_description: 自動描述
-        wikipedia_title: 維基百科標題
-        wikipedia_summary: 維基百科摘要
+        auto_photos: 自動照片
+        locked: 已鎖定
+        name: 名稱
+        parent_id: 父級鑑定
+        rank: 級別
         source_identifier: 來源鑑定人
         source_url: 來源 URL
+        wikipedia_summary: 維基百科摘要
+        wikipedia_title: 維基百科標題
       taxon_name:
         name_provider: 名稱提供者
         source_url: 來源 URL
@@ -7209,6 +7159,8 @@ zh-TW:
     scopes:
       write: |
         創建、更新，和刪除您的觀察、鑑定、代表您本身的內容，以及存取您的隱藏座標與您可在網站上取用的資訊。
+      login: |
+        存取與登入相關的資訊，像是電子郵件、使用者名、名稱、以及使用者圖示。
       account_delete: |
         代表您刪除您的帳號。
     errors:

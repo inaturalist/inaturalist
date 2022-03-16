@@ -66,7 +66,7 @@
         = f.submit t(:save_trip), :class => "btn btn-primary"
         = f.submit t(:unpublish), :class => "btn btn-default", :name => "unpublish"
       - else
-        = f.submit t(:publish), data: ( @first_trip  ? { confirm: t(:target_list_alert) } : nil ), class: "btn btn-primary", name: "publish"
-        = f.submit t(:save), data: ( @first_trip  ?  { confirm: t(:target_list_alert) } : nil ), class: "btn btn-default"
+        = f.submit t(:publish), data: ( @first_trip  ? { confirm: t(:target_list_alert) } : {} ), class: "btn btn-primary", name: "publish"
+        = f.submit t(:save), data: ( @first_trip  ?  { confirm: t(:target_list_alert) } : {} ), class: "btn btn-default"
       = link_to t(:cancel), :back, class: "btn btn-default"
       = link_to t(:delete), @trip, :method => :delete, data: { confirm: t( :are_you_sure? ) }, class: "btn btn-danger pull-right"

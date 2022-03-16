@@ -88,42 +88,6 @@ describe ConservationStatus do
     end
   end
 
-  describe ConservationStatus, "saving" do
-    it "should should set taxon conservation_status" do
-      t = Taxon.make!
-      expect(t.conservation_status).to be_blank
-      cs = without_delay {ConservationStatus.make!(:taxon => t)}
-      expect(cs.iucn).not_to be_blank
-      t.reload
-      expect(t.conservation_status).to eq(cs.iucn)
-    end
-
-    it "should nilify taxon conservation_status if no other global statuses" do
-      cs = without_delay {ConservationStatus.make!}
-      t = cs.taxon
-      expect(t.conservation_status).not_to be_blank
-      without_delay {cs.update(:iucn => Taxon::IUCN_LEAST_CONCERN)}
-      t.reload
-      expect(t.conservation_status).to be < Taxon::IUCN_NEAR_THREATENED
-    end
-
-    it "should should not set taxon conservation_status if not the highest status" do
-      t = Taxon.make!
-      cs1 = without_delay {ConservationStatus.make!(:iucn => Taxon::IUCN_ENDANGERED, :taxon => t, :authority => "foo")}
-      cs2 = without_delay {ConservationStatus.make!(:iucn => Taxon::IUCN_LEAST_CONCERN, :taxon => t, :authority => "bar")}
-      t.reload
-      expect(t.conservation_status).to eq(cs1.iucn)
-    end
-
-    it "should should not set taxon conservation_status if not global" do
-      t = Taxon.make!
-      p = make_place_with_geom
-      cs = ConservationStatus.make!(:taxon => t, :place => p)
-      t.reload
-      expect(t.conservation_status).to be_blank
-    end
-  end
-
   describe ConservationStatus, "deletion" do
     it "should reassess observations of taxon" do
       species = Taxon.make!( rank: Taxon::SPECIES )
@@ -308,6 +272,16 @@ describe ConservationStatus do
       Delayed::Worker.new.work_off
       o.reload
       expect( o ).to be_coordinates_obscured
+    end
+  end
+
+  describe "audits" do
+    it "should not be recorded if geoprivacy changes from nil to open" do
+      cs = create :conservation_status, geoprivacy: nil
+      expect( cs.audits.size ).to eq 1
+      expect( cs.geoprivacy ).to be_nil
+      cs.update( geoprivacy: Observation::OPEN )
+      expect( cs.audits.size ).to eq 1
     end
   end
 end

@@ -446,6 +446,7 @@ Rails.application.routes.draw do
       get "taxonomy_details", as: "taxonomy_details_for"
       get "show_google"
       get "taxobox"
+      get "history"
     end
     collection do
       get "synonyms"

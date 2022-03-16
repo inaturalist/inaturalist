@@ -121,7 +121,6 @@ class ActivityItem extends React.Component {
       item,
       config,
       deleteComment,
-      deleteID,
       restoreID,
       setFlaggingModalState,
       currentUserID,
@@ -136,7 +135,8 @@ class ActivityItem extends React.Component {
       untrustUser,
       showHidden,
       hideContent,
-      unhideContent
+      unhideContent,
+      withdrawID
     } = this.props;
     const { editing } = this.state;
 
@@ -616,7 +616,7 @@ class ActivityItem extends React.Component {
                 editing={editing}
                 config={config}
                 deleteComment={deleteComment}
-                deleteID={deleteID}
+                withdrawID={withdrawID}
                 restoreID={restoreID}
                 setFlaggingModalState={setFlaggingModalState}
                 linkTarget={linkTarget}
@@ -649,8 +649,8 @@ ActivityItem.propTypes = {
   addID: PropTypes.func,
   deleteComment: PropTypes.func,
   editComment: PropTypes.func,
-  deleteID: PropTypes.func,
   confirmDeleteID: PropTypes.func,
+  withdrawID: PropTypes.func,
   editID: PropTypes.func,
   restoreID: PropTypes.func,
   setFlaggingModalState: PropTypes.func,

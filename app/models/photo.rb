@@ -1,6 +1,7 @@
 #encoding: utf-8
 class Photo < ApplicationRecord
   acts_as_flaggable
+  has_one :photo_metadata, autosave: true, dependent: :destroy
   belongs_to :user
   belongs_to :file_extension
   belongs_to :file_prefix
@@ -17,7 +18,6 @@ class Photo < ApplicationRecord
     :remote_small_url,
     :remote_square_url,
     :remote_thumb_url
-  serialize :metadata
 
   include Shared::LicenseModule
   # include ActsAsUUIDable
@@ -311,6 +311,10 @@ class Photo < ApplicationRecord
     }
   end
 
+  def metadata
+    photo_metadata&.metadata
+  end
+
   def self.repair_photos_for_user(user, type)
     count = 0
     user.photos.where(type: type).find_each do |photo|
@@ -467,7 +471,7 @@ class Photo < ApplicationRecord
       :methods => [:license_code, :attribution, :square_url,
         :thumb_url, :small_url, :medium_url, :large_url],
       :except => [:file_processing, :file_file_size,
-        :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
+        :file_content_type, :file_file_name, :mobile, :metadata, :user_id,
         :native_realname, :native_photo_id]
     }
   end
@@ -489,6 +493,34 @@ class Photo < ApplicationRecord
       json["#{ size }_url"] = best_url(size)
     end
     json
+  end
+
+  def self.update_photo_native_columns_and_copy_metadata( min_id, max_id )
+    start_time = Time.now
+    counter = 0
+    Photo.where("id > ? AND id <= ?", min_id, max_id ).find_in_batches( batch_size: 100 ) do |batch|
+      Photo.transaction do
+        batch.each do |photo|
+          if counter % 1000 == 0
+            puts "#{counter}, ID: #{photo.id}, Time: #{(Time.now - start_time).round(2)}"
+          end
+          counter += 1
+          if photo.type == "LocalPhoto" && photo.subtype.blank? &&
+            ( !photo.native_photo_id.nil? || !photo.native_page_url.nil? ||
+              !photo.native_username.nil? || !photo.native_realname.nil? )
+            photo.update_columns(
+              native_photo_id: nil,
+              native_page_url: nil,
+              native_username: nil,
+              native_realname: nil
+            )
+          end
+          next if photo.metadata.blank?
+          PhotoMetadata.where( photo_id: photo.id ).first_or_create
+          PhotoMetadata.where( photo_id: photo.id ).update_all( metadata: photo.metadata )
+        end
+      end
+    end
   end
 
   private

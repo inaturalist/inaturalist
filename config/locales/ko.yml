@@ -118,6 +118,8 @@ ko:
   add_a_comment: 댓글 추가
   add_a_field: 필드 추가
   add_a_flag: 플래그 달기
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: 링크 추가
   add_a_name: 이름 추가하기
   add_a_new_change_group: 새로운 변화 그룹 추가하기
   add_a_single_observation: 관찰 하나를 추가합니다.
@@ -2720,8 +2722,8 @@ ko:
         start_time: 시작 시간
         last_aggregated_at: 마지막으로 묶인 관찰
       taxon:
-        wikipedia_title: 위키백과 제목
         wikipedia_summary: 위키백과 요약
+        wikipedia_title: 위키백과 제목
       user:
         email: 이메일
         login: 사용자 이름

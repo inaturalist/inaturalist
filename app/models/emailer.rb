@@ -18,7 +18,7 @@ class Emailer < ActionMailer::Base
     return if user.email.blank?
     return if user.prefers_no_email
     return if user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
-    
+
     @user = user
     set_locale
     @grouped_updates = UpdateAction.group_and_sort( updates, skip_past_activity: true )
@@ -232,6 +232,9 @@ class Emailer < ActionMailer::Base
     opts[:subject] = "Curator Application from #{user.login} (#{user.id})"
     @user = user
     @application = application
+    # Small guard against not receiving applications if help@inat gets
+    # unsubscribed from transactional emails
+    @x_smtpapi_headers[:asm_group_id] = CONFIG&.sendgrid&.asm_group_ids&.account
     mail( opts )
   end
 
@@ -316,7 +319,7 @@ class Emailer < ActionMailer::Base
       # This is an identifier specifying the Sendgrid Unsubscribe Group this
       # email belongs to. This assumes we're using one for all email sent from
       # the webapp
-      asm_group_id: CONFIG.sendgrid && CONFIG.sendgrid.asm_group_ids ? CONFIG.sendgrid.asm_group_ids.default : nil,
+      asm_group_id: CONFIG&.sendgrid&.asm_group_ids&.default,
       # We're having Sendgrid perform this substitution because ERB freaks out
       # when you put tags like this in a template
       sub: {

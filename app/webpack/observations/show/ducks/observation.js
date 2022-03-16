@@ -845,12 +845,33 @@ export function confirmDeleteID( uuid ) {
   };
 }
 
+export function withdrawID( uuid ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newIdentifications = _.map( state.observation.identifications, i => (
+      i.uuid === uuid
+        ? { ...i, current: false, api_status: "saving" }
+        : i
+    ) );
+    dispatch( setAttributes( { identifications: newIdentifications } ) );
+    dispatch( callAPI( inatjs.identifications.update, {
+      uuid,
+      identification: {
+        current: false
+      }
+    } ) );
+  };
+}
+
 export function restoreID( uuid ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newIdentifications = _.map( state.observation.identifications, i => (
-      i.uuid === uuid ? Object.assign( { }, i, { current: true, api_status: "saving" } ) : i
+      i.uuid === uuid
+        ? { ...i, current: true, api_status: "saving" }
+        : i
     ) );
     dispatch( setAttributes( { identifications: newIdentifications } ) );
     dispatch( callAPI( inatjs.identifications.update, {
@@ -866,7 +887,9 @@ export function vote( scope, params = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    const payload = Object.assign( { }, { id: state.observation.id }, params );
+    const { testingApiV2 } = state.config;
+    const obsID = testingApiV2 ? state.observation.uuid : state.observation.id;
+    const payload = Object.assign( { }, { id: obsID }, params );
     if ( scope ) {
       payload.scope = scope;
       const newVotes = _.filter( state.observation.votes, v => (
@@ -886,7 +909,9 @@ export function vote( scope, params = { } ) {
 export function unvote( scope ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    const payload = { id: state.observation.id };
+    const { testingApiV2 } = state.config;
+    const obsID = testingApiV2 ? state.observation.uuid : state.observation.id;
+    const payload = { id: obsID };
     if ( scope ) {
       payload.scope = scope;
       const newVotes = _.map( state.observation.votes, v => (

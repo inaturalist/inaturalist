@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // Behavior for the observations filter widget ... thing.
 $(document).ready(function() {
   $('.iconic_taxon_filter input').change(function() {
@@ -41,12 +43,21 @@ function showFilters(link, options) {
   if ($('#filters .simpleTaxonSelector').length == 0) {
     $('#filters input[name=taxon_name]').taxonAutocomplete()
   }
-  if ($('#place_filter .ui-widget').length == 0) {
-    $('#filters input[name=place_id]').chooser({
-      collectionUrl: '/places/autocomplete.json',
-      resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
-      chosen: eval('(' + $('#filters input[name=place_id]').attr('data-json') + ')')
-    })
+  if ( $( "#place_filter .ui-widget" ).length === 0 ) {
+    var chosenPlaceJson = $( "#filters input[name=place_id]" ).attr( "data-json" );
+    $( "#filters input[name=place_id]" ).chooser( {
+      collectionUrl: "/places/autocomplete.json",
+      resourceUrl: "/places/{{id}}.json?partial=autocomplete_item",
+      chosen: chosenPlaceJson ? JSON.parse( chosenPlaceJson ) : null
+    } );
+  }
+  if ( $( "#not_in_place_filter .ui-widget" ).length === 0 ) {
+    var chosenNotInPlaceJson = $( "#filters input[name=not_in_place]" ).attr( "data-json" );
+    $( "#filters input[name=not_in_place]" ).chooser( {
+      collectionUrl: "/places/autocomplete.json",
+      resourceUrl: "/places/{{id}}.json?partial=autocomplete_item",
+      chosen: chosenNotInPlaceJson ? JSON.parse( chosenNotInPlaceJson ) : null
+    } );
   }
 }
 
