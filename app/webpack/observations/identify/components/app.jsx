@@ -7,7 +7,7 @@ import SearchBarContainer from "../containers/search_bar_container";
 import PaginationControlContainer from "../containers/pagination_control_container";
 import FinishedModalContainer from "../containers/finished_modal_container";
 import SideBar from "./side_bar";
-import AlertModalContainer from "../containers/alert_modal_container";
+import AlertModalContainer from "../../../shared/containers/alert_modal_container";
 import FlaggingModalContainer from "../containers/flagging_modal_container";
 import DisagreementAlertContainer from "../containers/disagreement_alert_container";
 import ModeratorActionModalContainer from "../containers/moderator_action_modal_container";

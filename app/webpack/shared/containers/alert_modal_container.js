@@ -1,11 +1,9 @@
 import { connect } from "react-redux";
 import AlertModal from "../components/alert_modal";
-import {
-  hideAlert
-} from "../actions";
+import { hideAlert } from "../ducks/alert_modal";
 
 function mapStateToProps( state ) {
-  return state.alert;
+  return state.alertModal;
 }
 
 function mapDispatchToProps( dispatch ) {
