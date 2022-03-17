@@ -3657,6 +3657,7 @@ be:
   read_more: Больш падрабязна
   read_our_getting_started_guide: прачытайце наша Кіраўніцтва па пачатку працы
   read_the_full_wikipedia: Прачытайце поўнае апісанне з Вікіпедыі
+  real_time_discussions: Абмяркоўванні ў рэальным часе
   reason: Прычына
   reason_you_are_flagging_this_item: Прычына, па якой вы пазначаеце гэты элемент.
   receive_email_notifications: Атрымліваць апавяшчэнні па электроннай пошце
@@ -3848,6 +3849,9 @@ be:
   tos_privacy_guidelines_label: |
     Я пагаджаюся з <a href="/terms" target="_blank">Умовамі карыстання</a> і <a href="/privacy" target="_blank">Палітыкай прыватнасці</a>, і я азнаёміўся з <a href="/pages/community+guidelines" target="_blank">Правіламі супольніцтва</a>.
   twitter: Twitter
+  update_your_content: Аднавіць змест
+  updated: Адноўлена
+  updated_daily: Аднаўляецца штодзённа
   upload: Запампаваць
   uploader:
     tooltips:
@@ -3858,9 +3862,23 @@ be:
       select_all: Выбраць усе назіранні
       upload_failed: Запампоўка не атрымалася
   user: Карыстальнік
+  user_added_a_comment_html: "%{user} дадаў каментар"
+  user_added_a_fave_html: "%{user} дадаў упадабанне"
+  user_added_a_flag_html: "%{user} дадаў пазнаку"
+  user_added_a_x: "%{user} дадаў %{x}"
+  user_added_a_x_to_noun_by_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} дадаў %{x} да вашага %{noun}"
+  user_added_a_x_to_noun_html: "%{user} дадаў %{x} да %{noun}"
   user_added_an_identification_html: "%{user} дадаў вызначэнне"
   user_added_an_observation_field_value_html: "%{user} дадаў значэнне поля назірання"
   user_added_an_observation_html: "%{user} дадаў назіранне"
+  user_added_an_x: "%{user} дадаў %{x}"
+  user_added_an_x_to_noun_by_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} дадаў %{x} да вашага %{noun}"
+  user_added_an_x_to_noun_html: "%{user} дадаў %{x} да %{noun}"
+  user_added_x_observations_html: "%{user} дадаў %{x} назіранняў"
   user_suggested_an_id: "%{user} прапанаваў вызначэнне"
   username: Імя карыстальніка
   username_or_email: Імя карыстальніка або email
@@ -3887,6 +3905,8 @@ be:
   you_are_already_a_member_of_this_project: "Вы ўжо з'яўляецеся ўдзельнікам гэтага праэкту!"
   you_arent_a_member_of_that_project: Вы не з'яўляецеся ўдзельнікам гэтага праэкту.
   you_must_be_a_member_of_this_project_to_do_that: Вы павінны быць удзельнікам гэтага праэкту, каб зрабіць гэта
+  you_retain_full_copyright_over_your_content: "Вы захоўваеце поўныя аўтарскія правы на свой змест, акрамя правоў, прадастаўленых %{site_name} у нашых Умовах прадастаўлення паслуг."
+  your_content: Ваш змест
   your_id: Вашае вызначэнне
   your_identification: Вашае вызначэнне
   your_observations: Вашыя назіранні
@@ -3897,6 +3917,29 @@ be:
         admins_must_be_existing_members: Адміністратары павінны быць існымі ўдзельнікамі праэкту.
       new:
         users_can_follow_your_project: Карыстальнікі могуць сачыць за наванамі вашага праэкту праз допісы ў дзённіку
+      show:
+        bioblitz_results_desc_html: |
+          <p>
+          У адрозненні ад звычайных праэктаў, біябліцы адлюстроўваюць статыстыку
+          <em>усіх</em> назіранняў у дазеным часе і месцы, а не толькі назіранні, якія былі дадазены людзьмі да праэкту наўмысна.
+          Гэта зроблена каб унікнуць цяжкасцей дадання назіранняў да праэкту каб маць статыстыку ў рэальным часе.
+          Звярніце ўвагу, што назіранні не будуць дасяжныя для экспарту або адлюстравання ў розных выглядах праэкта, напрыклад
+          унёскі членаў на вэб-сайце або пошук назіранняў праэкта
+          ў мабільных прыкладаннях, калі толькі каманда праэкта і
+          удзельнікі не дадаюць адпаведныя назіранні актыўна, як гэта робіцца ў звычайных
+          праэктах.
+          </p>
+          <p>
+          Звярніце ўвагу, што ў той час як гэты від праекта паказвае статыстыку для назіранняў, што
+          не былі наўмысна дададзеныя ў праект, гэта не дазваляе
+          куратарам убачыць прыватныя або схаваныя каардынаты для гэтых
+          назіранняў або выказаць здагадку, што назіральнікі пагадзіліся з умовамі праэкту. 
+          Калі вы куратар праэкта і вам патрэбны доступ да прыватных
+          каардынатаў, вам трэба, каб ўдзельнікі пагадзіліся з умовамі праэкту , 
+          а калі вы хочаце, каб назіранні залічваліся ў кантрольны спіс куратарскага праэкту,
+          пераканайцеся, што вашыя ўдзельнікі далучаюцца да праэкта і дадаюць свае
+          назіранні, як у звычайным праэкце.
+          </p>
     taxa:
       show:
         frequency:
@@ -3911,6 +3954,8 @@ be:
         trending_desc: Найбольш назіральныя таксоны за апошні месяц
         wanted_desc: Віды ў гэтым таксоне, якія яшчэ не назіраліся.
     users:
+      dashboard:
+        your_content_will_be_updated: Ваш змест, які адносіцца да гэтых таксонаў, будзе адноўлены аўтаматычна.
       edit:
         name_place_help_html: |
           Аддаваць перавагу распаўсюджаным назвам, якія выкарыстоўваюцца ў гэтым месцы.
