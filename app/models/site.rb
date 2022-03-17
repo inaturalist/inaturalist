@@ -514,4 +514,43 @@ class Site < ApplicationRecord
       "#{SiteDataExporter.basename_for_site( self )}.zip"
     ) )
   end
+
+  def login_featured_observations
+    Rails.cache.fetch( "Site::#{id}::login_featured_observations", expires_in: 1.hour ) do
+      es_query = {
+        has: ["photos"],
+        per_page: 100,
+        order_by: "votes",
+        order: "desc",
+        place_id: try(:place_id).blank? ? nil : place_id,
+        projects: ["log-in-photos"]
+      }
+      observations = Observation.elastic_query( es_query ).to_a
+      if observations.blank?
+        es_query.delete(:projects)
+        observations = Observation.elastic_query( es_query ).to_a
+      end
+      if observations.blank?
+        es_query.delete(:place_id)
+        observations = Observation.elastic_query( es_query ).to_a
+      end
+      Observation.preload_associations( observations, [:user, {
+        observations_places: :place,
+        observation_photos: {
+          photo: [:flags, :file_prefix, :file_extension]
+        },
+        taxon: :taxon_names,
+      }] )
+      if es_query[:projects].blank?
+        ratio = params[:ratio].to_f
+        ratio = 1 if ratio <= 0
+        observations = observations.select do |o|
+          photo = o.observation_photos.sort_by{ |op| op.position || op.id }.first.photo
+          r = photo.original_dimensions[:width].to_f / photo.original_dimensions[:height].to_f
+          r < ratio
+        end
+      end
+      observations
+    end
+  end
 end

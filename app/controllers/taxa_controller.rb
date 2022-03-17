@@ -147,7 +147,7 @@ class TaxaController < ApplicationController
   def show
     if params[:id]
       begin
-        @taxon ||= Taxon.where(id: params[:id]).includes(:taxon_names).first
+        @taxon ||= Taxon.where(id: params[:id]).includes({ taxon_names: :place_taxon_names }).first
       rescue RangeError => e
         Logstasher.write_exception(e, request: request, session: session, user: current_user)
         nil
