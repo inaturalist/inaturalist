@@ -608,8 +608,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         return;
       }
       $scope.observations = ObservationsFactory.responseToInstances( response );
-      ObservationsFactory.speciesCounts( { ...statsParams, per_page: $scope.speciesPagination.perPage } )
-        .then( function( response ) {
+      var speciesParams = _.extend( { }, statsParams, {
+        per_page: $scope.speciesPagination.perPage
+      } );
+      ObservationsFactory.speciesCounts( speciesParams ).then( function( response ) {
         if( $scope.lastSearchTime != thisSearchTime ) { return; }
         $scope.totalSpecies = response.data.total_results;
         $scope.taxa = _.map( response.data.results, function( r ) {
@@ -618,7 +620,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
           return t;
         });
         $scope.speciesPagination.searching = false;
-      });
+      } );
       ObservationsFactory.identifiers( statsParams ).then( function( response ) {
         if( $scope.lastSearchTime != thisSearchTime ) { return; }
         $scope.totalIdentifiers = response.data.total_results;
