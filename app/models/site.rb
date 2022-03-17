@@ -542,12 +542,8 @@ class Site < ApplicationRecord
         taxon: :taxon_names,
       }] )
       if es_query[:projects].blank?
-        ratio = params[:ratio].to_f
-        ratio = 1 if ratio <= 0
         observations = observations.select do |o|
           photo = o.observation_photos.sort_by{ |op| op.position || op.id }.first.photo
-          r = photo.original_dimensions[:width].to_f / photo.original_dimensions[:height].to_f
-          r < ratio
         end
       end
       observations
