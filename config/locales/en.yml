@@ -1796,6 +1796,12 @@ en:
   email: Email
   email_description: Your email is not shared with other users on iNaturalist
   email_address_for_comments_and_other_feedback: Email address for comments and other feedback
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Please confirm your email address%{link_end_tag}</strong>.
+    All users must confirm their email address by June 1, 2022. After that
+    date anyone who has not confirmed their email address will be unable to
+    sign in unless they reset their password. To confirm your email address,
+    go to your %{link_start_tag}account settings%{link_end_tag}.
   email_copyright: "Copyright &copy; %{x}, all rights reserved"
   email_notifications: Email Notifications
   email_settings: Email settings
