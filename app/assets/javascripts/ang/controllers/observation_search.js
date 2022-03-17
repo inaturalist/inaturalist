@@ -523,6 +523,11 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.pagination.perPage = $scope.pagination.maxSections * $scope.pagination.perSection;
     $scope.pagination.searching = true;
     $scope.pagination.stopped = false;
+    $scope.speciesPagination = $scope.speciesPagination || { };
+    $scope.speciesPagination.page = 1;
+    $scope.speciesPagination.perPage = 50;
+    $scope.speciesPagination.searching = true;
+    $scope.speciesPagination.stopped = false;
     // important to note we're not resetting scope.pagination.total to 0,
     // as that would cause ui.bootstrap to jump back to page 1
     $scope.numberTaxaShown = 15;
@@ -603,7 +608,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         return;
       }
       $scope.observations = ObservationsFactory.responseToInstances( response );
-      ObservationsFactory.speciesCounts( statsParams ).then( function( response ) {
+      ObservationsFactory.speciesCounts( { ...statsParams, per_page: $scope.speciesPagination.perPage } )
+        .then( function( response ) {
         if( $scope.lastSearchTime != thisSearchTime ) { return; }
         $scope.totalSpecies = response.data.total_results;
         $scope.taxa = _.map( response.data.results, function( r ) {
@@ -611,6 +617,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
           t.resultCount = r.count;
           return t;
         });
+        $scope.speciesPagination.searching = false;
       });
       ObservationsFactory.identifiers( statsParams ).then( function( response ) {
         if( $scope.lastSearchTime != thisSearchTime ) { return; }
@@ -635,14 +642,42 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   // simple "pagination" of results already fetched, so we're not
   // rendering too many DOM elements, which need images fetched
-  $scope.showMoreTaxa = function( ) {
-    $scope.numberTaxaShown += 20;
-  };
   $scope.showMoreIdentifiers = function( ) {
     $scope.numberIdentifiersShown += 20;
   };
   $scope.showMoreObservers = function( ) {
     $scope.numberObserversShown += 20;
+  };
+  $scope.showMoreTaxa = function( ) {
+    $scope.speciesPagination = $scope.speciesPagination || { };
+    if( !$scope.taxa || _.isEmpty( $scope.speciesPagination ) ) { return; }
+    if ( $scope.speciesPagination.page >= 20 ||
+      ( $scope.speciesPagination.page * $scope.speciesPagination.perPage ) > $scope.totalSpecies ) {
+      $scope.speciesPagination.stopped = true;
+    }
+    if( $scope.speciesPagination.searching === true ) { return; }
+    if( $scope.speciesPagination.stopped === true ) { return; }
+    $scope.speciesPagination.searching = true;
+    $scope.speciesPagination.page += 1;
+
+    var taxonParams = ObservationsFactory.processParamsForAPI( _.extend( { },
+      $scope.params,
+      iNaturalist.localeParams( ), {
+        page: $scope.speciesPagination.page,
+        per_page: $scope.speciesPagination.perPage
+      }
+    ), $scope.possibleFields );
+    taxonParams = _.omit( taxonParams, [ "order_by", "order" ] );
+
+    ObservationsFactory.speciesCounts( taxonParams ).then( function( response ) {
+      $scope.totalSpecies = response.data.total_results;
+      $scope.taxa = $scope.taxa.concat( _.map( response.data.results, function( r ) {
+        var t = new iNatModels.Taxon( r.taxon );
+        t.resultCount = r.count;
+        return t;
+      } ) );
+      $scope.speciesPagination.searching = false;
+    });
   };
   $scope.apiPage = function( ) {
     var page = ( ( $scope.pagination.page - 1 ) * $scope.pagination.maxSections ) + $scope.pagination.section;

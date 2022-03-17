@@ -9,7 +9,7 @@ function( $http, $rootScope, $filter ) {
     if( options.cache !== true ) { options.cache = false; }
     var config = {
       cache: options.cache,
-      timeout: 20000 // 20 second timeout
+      timeout: 60000 // 60 second timeout
     };
     var apiURL = $( "meta[name='config:inaturalist_api_url']" ).attr( "content" );
     if ( apiURL && url.indexOf( apiURL ) >= 0 ) {
