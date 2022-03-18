@@ -109,7 +109,7 @@ class UpdateAction < ApplicationRecord
     return unless user.active? # email verified
     updates = UpdateAction.elastic_paginate(
       filters: [
-        { term: { subscriber_ids: user.id } },
+        { term: { "subscriber_ids.keyword": user.id } },
         { range: { created_at: { gte: start_time } } },
         { range: { created_at: { lte: end_time } } }
       ],
@@ -160,7 +160,7 @@ class UpdateAction < ApplicationRecord
     end
     filters = [
       { term: { notification: "activity" } },
-      { term: { subscriber_ids: user_id } }
+      { term: { "subscriber_ids.keyword": user_id } }
     ]
     inverse_filters = { terms: { id: action_ids } }
     unless clauses.blank?

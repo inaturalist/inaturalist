@@ -17,6 +17,7 @@ const PreviousNextButtons = ( {
   }
   const previousDisabled = _.isEmpty( otherObservations.earlierUserObservations );
   const nextDisabled = _.isEmpty( otherObservations.laterUserObservations );
+  const { testingApiV2 } = config || {};
   let prevAction = e => {
     e.preventDefault( );
     return false;
@@ -34,7 +35,7 @@ const PreviousNextButtons = ( {
     previousObs = otherObservations.earlierUserObservations[0];
     prevAction = e => {
       e.preventDefault( );
-      showNewObservation( previousObs );
+      showNewObservation( previousObs, { useInstance: !testingApiV2 } );
       return false;
     };
     if ( previousObs.taxon ) {
@@ -51,7 +52,7 @@ const PreviousNextButtons = ( {
     nextObs = otherObservations.laterUserObservations[0];
     nextAction = e => {
       e.preventDefault( );
-      showNewObservation( nextObs );
+      showNewObservation( nextObs, { useInstance: !testingApiV2 } );
       return false;
     };
     if ( nextObs.taxon ) {

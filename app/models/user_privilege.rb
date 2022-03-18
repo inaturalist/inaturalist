@@ -34,7 +34,7 @@ class UserPrivilege < ApplicationRecord
 
     verifiable_obs_count = Observation.elastic_search(
       filters: [
-        { term: { "user.id" => user.id } },
+        { term: { "user.id.keyword" => user.id } },
         { terms: { quality_grade: ["research"] } }
       ]
     ).total_entries
@@ -43,7 +43,7 @@ class UserPrivilege < ApplicationRecord
     improving_ids_count = Identification.elastic_search(
       filters: [
         { term: { current: true } },
-        { term: { "user.id" => user.id } },
+        { term: { "user.id.keyword" => user.id } },
         { term: { category: "improving" } },
         { term: { own_observation: false } }
       ]

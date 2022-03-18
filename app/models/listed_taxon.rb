@@ -975,7 +975,7 @@ class ListedTaxon < ApplicationRecord
     true
   end
 
-  def self.reindex_observations( taxon_id, place_id )
+  def self.c( taxon_id, place_id )
     last_id = 0
     per_page = 1000
     while true
@@ -984,8 +984,8 @@ class ListedTaxon < ApplicationRecord
         sort: { id: "asc" },
         filters: [
           { range: { id: { gt: last_id } } },
-          { term: { private_place_ids: place_id } },
-          { term: { "taxon.ancestor_ids": taxon_id } }
+          { term: { "private_place_ids.keyword": place_id } },
+          { term: { "taxon.ancestor_ids.keyword": taxon_id } }
         ]
       ).per_page( per_page )
       ids = res.response.hits.hits.map(&:_id).map(&:to_i)

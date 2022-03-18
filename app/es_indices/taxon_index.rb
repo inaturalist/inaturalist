@@ -12,7 +12,12 @@ class Taxon < ApplicationRecord
     :taxon_change_taxa, :taxon_schemes, :taxon_changes, :en_wikipedia_description,
     { conservation_statuses: :place },
     { taxon_names: :place_taxon_names },
-    { taxon_photos: { photo: [ :user, :flags ] } },
+    { taxon_photos: { photo: [
+      :user,
+      :flags,
+      :file_extension,
+      :file_prefix
+    ] } },
     { listed_taxa_with_means_or_statuses: :place }) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do

@@ -2478,7 +2478,7 @@ class Taxon < ApplicationRecord
       batch.each do | t |
         Taxon.where( id: t.id ).update_all(
           observations_count: Observation.elastic_search(
-            filters: [{ term: { "taxon.ancestor_ids" => t.id } }],
+            filters: [{ term: { "taxon.ancestor_ids.keyword" => t.id } }],
             size: 0,
             track_total_hits: true
           ).total_entries

@@ -3183,8 +3183,8 @@ class Observation < ApplicationRecord
     return false unless place
     buckets = Observation.elastic_search(
       filters: [
-        { term: { "taxon.ancestor_ids": target_taxon.id } },
-        { term: { place_ids: place.id } },
+        { term: { "taxon.ancestor_ids.keyword": target_taxon.id } },
+        { term: { "place_ids.keyword": place.id } },
       ],
       # earliest_sort_field: "id",
       size: 0,

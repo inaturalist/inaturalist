@@ -686,7 +686,7 @@ class Identification < ApplicationRecord
         ident_response = Identification.elastic_search(
           size: batch_size,
           filters: [
-            { term: { "taxon.ancestor_ids": taxon.id } },
+            { term: { "taxon.ancestor_ids.keyword": taxon.id } },
             { term: { disagreement: true } },
             { range: { id: { gt: batch_start_id } } }
           ],
@@ -717,7 +717,7 @@ class Identification < ApplicationRecord
           includes: ["id"],
         },
         filters: [
-          { terms: { "taxon.ancestor_ids" => [taxon_id] } }
+          { terms: { "taxon.ancestor_ids.keyword" => [taxon_id] } }
         ],
         track_total_hits: true
       ).page( page ).per_page( 1000 )

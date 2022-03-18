@@ -2,7 +2,7 @@ class UpdateAction < ApplicationRecord
 
   include ActsAsElasticModel
 
-  settings index: { number_of_shards: Rails.env.production? ? 6 : 1, analysis: ElasticModel::ANALYSIS } do
+  settings index: { number_of_shards: Rails.env.production? ? 6 : 4, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :created_at, type: "date"
       indexes :id, type: "integer"

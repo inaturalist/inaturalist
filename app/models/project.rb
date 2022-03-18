@@ -951,8 +951,8 @@ class Project < ApplicationRecord
         # matching the node.js iNaturalistAPI filters/aggregations for obs counts
         result = Observation.elastic_search(
           filters: [
-            { term: { project_ids: self.id } },
-            { terms: { "user.id": uids } }
+            { term: { "project_ids.keyword": self.id } },
+            { terms: { "user.id.keyword": uids } }
           ],
           size: 0,
           aggregate: {
@@ -977,10 +977,10 @@ class Project < ApplicationRecord
       user_ids.in_groups_of(500, false) do |uids|
         # matching the node.js iNaturalistAPI filters/aggregations for species counts
         filters = [
-          { term: { project_ids: self.id } },
+          { term: { "project_ids.keyword": self.id } },
           { range: { "taxon.rank_level": { lte: Taxon::SPECIES_LEVEL } } },
           { range: { "taxon.rank_level": { gte: Taxon::SUBSPECIES_LEVEL } } },
-          { terms: { "user.id": uids } }
+          { terms: { "user.id.keyword": uids } }
         ]
         result = Observation.elastic_search(
           filters: filters,
