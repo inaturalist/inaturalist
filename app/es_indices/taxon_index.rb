@@ -54,8 +54,12 @@ class Taxon < ApplicationRecord
         indexes :resolved, type: "short", index: false
         indexes :unresolved, type: "short", index: false
       end
-      indexes :iconic_taxon_id, type: "integer"
-      indexes :id, type: "integer"
+      indexes :iconic_taxon_id, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
+      indexes :id, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :is_active, type: "boolean"
       indexes :listed_taxa do
         indexes :establishment_means, type: "keyword", index: false
@@ -87,7 +91,9 @@ class Taxon < ApplicationRecord
         indexes :position, type: "short"
       end
       indexes :observations_count, type: "integer"
-      indexes :parent_id, type: "integer"
+      indexes :parent_id, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :photos_locked, type: "boolean", index: false
       indexes :place_ids, type: "integer"
       indexes :rank, type: "keyword"
@@ -137,8 +143,7 @@ class Taxon < ApplicationRecord
       end
       indexes :taxon_schemes_count, type: "byte"
       indexes :universal_search_rank, type: "integer"
-      # This will require rebuilding the index ~~kueda 2030-03-24
-      # indexes :uuid, type: "keyword"
+      indexes :uuid, type: "keyword"
       indexes :wikipedia_url, type: "keyword", index: false
     end
   end
