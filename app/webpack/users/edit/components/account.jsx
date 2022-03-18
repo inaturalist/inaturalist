@@ -104,11 +104,33 @@ const Account = ( {
           <CheckboxRowContainer
             name="prefers_no_tracking"
             label={I18n.t( "views.users.edit.prefers_no_tracking_label" )}
+            description={(
+              <button
+                type="button"
+                className="btn btn-link btn-tracking btn-nostyle"
+                onClick={( ) => setModalState( { show: true } )}
+              >
+                <i className="fa fa-info-circle" />
+                {` ${I18n.t( "learn_more" )}`}
+              </button>
+            )}
           />
-          <button type="button" className="btn btn-link btn-tracking" onClick={( ) => setModalState( { show: true } )}>
-            <i className="fa fa-info-circle" />
-            {` ${I18n.t( "learn_about_third_party_tracking" )}`}
-          </button>
+          <CheckboxRowContainer
+            name="pi_consent"
+            label={I18n.t( "pi_consent_label" )}
+            modalDescription={I18n.t( "pi_consent_desc_html", { privacy_url: "/privacy", terms_url: "/terms" } )}
+            modalDescriptionTitle={I18n.t( "pi_consent_desc_title" )}
+            disabled={profile.pi_consent}
+            confirm={I18n.t( "revoke_privacy_consent_warning" )}
+          />
+          <CheckboxRowContainer
+            name="data_transfer_consent"
+            label={I18n.t( "data_transfer_consent_label" )}
+            modalDescription={I18n.t( "data_transfer_consent_desc_html", { privacy_url: "/privacy", terms_url: "/terms" } )}
+            modalDescriptionTitle={I18n.t( "data_transfer_consent_desc_title" )}
+            disabled={profile.data_transfer_consent}
+            confirm={I18n.t( "revoke_privacy_consent_warning" )}
+          />
         </SettingsItem>
         <SettingsItem header={I18n.t( "danger_zone" )} htmlFor="user_delete_account">
           <p>
@@ -142,8 +164,7 @@ const Account = ( {
               />
             </SettingsItem>
           )
-          : <div className="nocontent"><div className="loading_spinner" /></div>
-        }
+          : <div className="nocontent"><div className="loading_spinner" /></div> }
       </div>
     </div>
   );

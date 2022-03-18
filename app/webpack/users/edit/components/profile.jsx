@@ -106,17 +106,11 @@ const Profile = ( {
           <CheckboxRowContainer
             name="prefers_monthly_supporter_badge"
             label={I18n.t( "display_monthly_supporter_badge" )}
-            description={(
-              <p
-                className="text-muted"
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{
-                  __html: I18n.t( "views.users.edit.monthly_supporter_desc_html", {
-                    url: "https://www.inaturalist.org/monthly-supporters?utm_campaign=monthly-supporter&utm_content=inline-link&utm_medium=web&utm_source=inaturalist.org&utm_term=account-settings"
-                  } )
-                }}
-              />
-            )}
+            description={
+              I18n.t( "views.users.edit.monthly_supporter_desc_html", {
+                url: "https://www.inaturalist.org/monthly-supporters?utm_campaign=monthly-supporter&utm_content=inline-link&utm_medium=web&utm_source=inaturalist.org&utm_term=account-settings"
+              } )
+            }
             disabled={!profile.monthly_supporter}
           />
         </SettingsItem>
