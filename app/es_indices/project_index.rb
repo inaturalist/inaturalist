@@ -51,7 +51,7 @@ class Project < ApplicationRecord
       indexes :last_post_at, type: "date"
       indexes :location, type: "geo_point"
       indexes :observations_count, type: "integer"
-      indexes :place_id, type: "keyord"
+      indexes :place_id, type: "keyword"
       indexes :place_ids, type: "keyword"
       indexes :project_observation_fields do
         indexes :id, type: "integer"

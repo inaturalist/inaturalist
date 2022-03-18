@@ -23,7 +23,7 @@ class Place < ApplicationRecord
         analyzer: "keyword_autocomplete_analyzer",
         search_analyzer: "keyword_analyzer"
       indexes :geometry_geojson, type: "geo_shape"
-      indexes :id, type: "integer", type: "integer" do
+      indexes :id, type: "integer" do
         indexes :keyword, type: "keyword"
       end
       indexes :location, type: "geo_point"

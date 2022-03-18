@@ -16,7 +16,9 @@ class Taxon < ApplicationRecord
     { listed_taxa_with_means_or_statuses: :place }) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
-      indexes :ancestor_ids, type: "integer"
+      indexes :ancestor_ids, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :ancestry, type: "keyword"
       indexes :atlas_id, type: "integer"
       indexes :colors do

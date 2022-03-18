@@ -9,7 +9,7 @@ class User < ApplicationRecord
       indexes :activity_count, type: "integer"
       indexes :created_at, type: "date"
       indexes :icon, type: "keyword", index: false
-      indexes :id, type: "integer", type: "integer" do
+      indexes :id, type: "integer" do
         indexes :keyword, type: "keyword"
       end
       indexes :identifications_count, type: "integer"
