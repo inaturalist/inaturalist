@@ -800,7 +800,6 @@ nl:
   by_you: Door jou
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalenders tonen slechts %{x} waarnemingen tegelijk
-  callback_url: Callback url
   cancel: Annuleren
   cant_edit_or_delete_hidden_content: Je kunt inhoud die verborgen is door sitecuratoren niet bewerken of verwijderen
   cant_flag_an_object_that_doesnt_exist: Niet mogelijk om een object te melden dat niet bestaat
@@ -1136,7 +1135,8 @@ nl:
     coördinaten kunt zien, inclusief niet vervaagde waarnemingen, vervaagde waarnemingen door
     mensen die jou vertrouwen, vervaagde waarnemingen door mensen die dit project
     met alles vertrouwen en waarnemingen die zijn vervaagd vanwege bedreigde taxa door mensen die dit project
-    alleen met hetzelfde vertrouwen stellen.
+    alleen waarnemingen toe vertrouwen die zijn vervaagd omdat het bedreigde taxa zijn.
+
   copy: Kopiëren
   copy_and_paste_the_following_code_to: Kopieer en plak de volgende programmeercode om deze beoordeling aan een andere website toe te voegen
   copy_and_paste_this_into_your_own_html: Kopieer en plak dit in je eigen HTML.
@@ -3677,6 +3677,7 @@ nl:
   plants: planten
   please_add_a_citation_for_this_change: Voeg een citaat toe voor deze wijziging.
   please_allow_a_few_weeks_for_external_sites: Wacht een paar weken zodat externe sites de wijzigingen van deze waarneming kunnen synchroniseren #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: Vraag je ouders om toestemming
   #Title to a section warning a user to exercise caution
   please_be_careful!: Wees voorzichtig!
   please_complete_the_following_to_add_project: |
