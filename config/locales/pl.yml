@@ -4014,6 +4014,7 @@ pl:
           verifiable: być weryfikowalna
         submission_models:
           any: każdy
+          curators: kuratorzy projektu
       new:
         are_you_sure_you_want_to_delete: Czy jesteś pewien, że chcesz usunąć ten projekt?
         data_visualizations: Wizualizacje danych
@@ -4542,6 +4543,8 @@ pl:
         observed_on: data obserwacji
       observation_field_value:
         value: 'wartość'
+      place_taxon_name:
+        position: Pozycja
       post:
         title: Tytuł
         body: Treść
@@ -4577,13 +4580,18 @@ pl:
       taxon:
         auto_description: Automatyczny opis
         auto_photos: Automatyczne zdjęcia
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Aktywny?
         locked: Zablokowany
         name: Nazwa
         rank: Kategoria
         source_identifier: Identyfikator źródła
         source_url: Źródłowy adres URL
       taxon_name:
+        lexicon: Leksykon
+        name: Nazwa
         name_provider: Dostawca nazw
+        position: Pozycja
         source_url: Źródłowy adres URL
         source_identifier: Identyfikator źródła
       user:
