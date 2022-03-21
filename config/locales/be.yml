@@ -2485,6 +2485,8 @@ be:
   log_out_caps: ВЫЙСЦІ
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Выйсці з %{site_name}?"
+  #Status message shown while logging in
+  logging_in: Уваход...
   login_slash_username: Логін / імя карыстальніка
   logo:
     logo: Лагатып
@@ -3192,18 +3194,55 @@ be:
       airport: аэрапорт
       Building: Пабудова
       building: пабудова
+      Canton: Кантон
+      canton: кантон
+      City Building: Гарадскі будынак
+      city building: гарадскі будынак
+      Colloquial: Размоўны
+      Commune: Камуна
+      commune: камуна
       Constituency: Акруга
       constituency: акруга
       Continent: Кантынент
       continent: кантынент
       Country: Краіна
       country: краіна
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Муатамадыят
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: муатамадыят
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: Сектар дэпартамента
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: сектар дэпартамента
       District: Раён
       district: раён
+      Drainage: Вадасбор
+      drainage: вадасбор
+      Estate: Маёнтак
+      estate: маёнтак
+      Governorate: Губернатарства
+      governorate: губернатарства
+      Historical_County: Гістарычнае графства
+      historical_county: гістарычнае графства
+      Historical_State: Гістарычны штат
+      historical_state: гістарычны штат
+      Historical_Town: Гістарычнае мястэчка
+      historical_town: гістарычнае мястэчка
+      Intersection: Перасячэнне
+      intersection: перасячэнне
+      Island: Выспа
+      island: выспа
       Local_Administrative_Area: Мясцовая адміністратыўная адзінка
       local_administrative_area: мясцовая адміністратыўная адзінка
       Local_Authority: Мясцовая ўлада
       local_authority: мясцовая ўлада
+      Miscellaneous: Рознае
+      miscellaneous: рознае
       Municipality: Муніцыпалітэт
       municipality: муніцыпалітэт
       Nationality: Нацыянальнасць
@@ -3494,6 +3533,8 @@ be:
     zambia: Замбія
     zimbabwe: Зімбабвэ
   places_merged_successfully: Месцы паспяхова аб'яднаны!
+  #Title to a section warning a user to exercise caution
+  please_be_careful!: Калі ласка, будзьце асцярожны!
   please_confirm_your_inat_username: "Калі ласка, пацвердзіце сваё %{site_name} імя карыстальніка"
   please_explain_why_you_want_to_hide_this: Калі ласка, растлумачце, чаму вы хочаце схаваць гэта
   please_explain_why_you_want_to_unhide_this: Калі ласка, растлумачце, чаму вы хочаце паказаць гэта
@@ -3514,6 +3555,7 @@ be:
   previous_taxon_short: Папяр.
   print_verb: Друкаваць
   privacy: Прыватнасць
+  probably_spam: Магчыма, спам
   proceed: Працягнуць
   processing: Апрацоўваецца
   processing3p: "Апрацоўваецца..."
@@ -3555,6 +3597,8 @@ be:
   projects: Праэкты
   projects_description: |
     Праекты дазваляюць аб'ядноўваць свае назіранні з іншымі людзьмі на %{site_name}. Незалежна ад таго, ці гэта новая ініцыятыва грамадзянскай навукі, ці вы сочыце за птушкамі ў вашым раёне, праекты - гэта зручна.
+  public_domain: Здабытак грамадства
+  publish: Апублікаваць
   ranks:
     class: Клас
     x_classes:
