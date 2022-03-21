@@ -42,16 +42,19 @@ export function setLeader( key, leader ) {
 
 export function fetchTopObserver( ) {
   return function ( dispatch, getState ) {
-    return inatjs.observations.observers( defaultObservationParams( getState( ) ) )
+    const params = { ...defaultObservationParams( getState( ) ), per_page: 1 };
+    return inatjs.observations.observers( params )
       .then( response => dispatch( setLeader( "topObserver", response.results[0] ) ) );
   };
 }
 
 export function fetchTopIdentifier( ) {
   return function ( dispatch, getState ) {
-    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
-      own_observation: false
-    } );
+    const params = {
+      ...defaultObservationParams( getState( ) ),
+      own_observation: false,
+      per_page: 1
+    };
     return inatjs.identifications.identifiers( params )
       .then( response => dispatch( setLeader( "topIdentifier", response.results[0] ) ) );
   };

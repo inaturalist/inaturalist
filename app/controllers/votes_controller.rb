@@ -32,6 +32,8 @@ class VotesController < ApplicationController
 
   def unvote
     @record.unvote voter: current_user, vote: params[:vote], vote_scope: params[:scope]
+    # ActsAsVotable uses delete_all, which bypasses after_destroy :run_votable_callback
+    @record.votable_callback if @record.respond_to?( :votable_callback )
     respond_to do |format|
       format.html do
         redirect_to @record

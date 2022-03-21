@@ -438,17 +438,21 @@ class Observation < ApplicationRecord
       o.taxon_native ||= false
       o.taxon_endemic ||= false
     }
-    observations_by_id = Hash[ observations.map{ |o| [ o.id, o ] } ]
-    batch_ids_string = observations_by_id.keys.join(",")
+    batch_ids_string = observations.map(&:id).join(",")
     return if batch_ids_string.blank?
     # fetch all place_ids store them in `indexed_place_ids`
     if options.blank? || options[:places]
+      observation_private_place_ids = { }
       connection.execute("
         SELECT observation_id, place_id
         FROM observations_places
         WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
-        if o = observations_by_id[ r["observation_id"].to_i ]
-          o.indexed_private_place_ids << r["place_id"].to_i
+        observation_private_place_ids[r["observation_id"]] ||= []
+        observation_private_place_ids[r["observation_id"]] << r["place_id"]
+      end
+      observations.each do |o|
+        if observation_private_place_ids[o.id]
+          o.indexed_private_place_ids = observation_private_place_ids[o.id]
         end
       end
       private_place_ids = observations.map(&:indexed_private_place_ids).flatten.uniq.compact
@@ -483,14 +487,14 @@ class Observation < ApplicationRecord
       uniq_obs_place_ids = observations.map{ |o|o.indexed_private_places.map(&:path_ids) }.flatten.compact.uniq.join(',')
       return if uniq_obs_place_ids.empty? || taxon_ids.empty?
       Observation.connection.execute("
-        SELECT taxon_id, establishment_means, string_agg(place_id::text,',') as place_ids
+        SELECT taxon_id, establishment_means, place_id
         FROM listed_taxa
         WHERE taxon_id IN (#{ taxon_ids.join(',') })
         AND place_id IN (#{ uniq_obs_place_ids })
-        AND establishment_means IS NOT NULL
-        GROUP BY taxon_id, establishment_means").to_a.each do |r|
-        taxon_establishment_places[r["taxon_id"].to_s] ||= {}
-        taxon_establishment_places[r["taxon_id"].to_s][r["establishment_means"]] = r["place_ids"].split( "," )
+        AND establishment_means IS NOT NULL").to_a.each do |r|
+        taxon_establishment_places[r["taxon_id"]] ||= {}
+        taxon_establishment_places[r["taxon_id"]][r["establishment_means"]] ||= []
+        taxon_establishment_places[r["taxon_id"]][r["establishment_means"]] << r["place_id"]
       end
       place_ids = taxon_establishment_places.values.map(&:values).flatten.uniq.map(&:to_i)
       return if place_ids.empty?
@@ -498,8 +502,8 @@ class Observation < ApplicationRecord
       Place.connection.execute("
         SELECT id, bbox_area
         FROM places WHERE id IN (#{ place_ids.join(',') })").to_a.each do |r|
-        places[r["id"].to_s] = {
-          id: r["id"].to_i,
+        places[r["id"]] = {
+          id: r["id"],
           bbox_area: r["bbox_area"].to_f
         }
       end
@@ -521,15 +525,15 @@ class Observation < ApplicationRecord
         end
       end
       observations.each do |o|
-        if o.taxon && taxon_places[o.taxon.id.to_s]
-          closest = taxon_places[o.taxon.id.to_s].
-            slice(*o.indexed_private_places.map(&:path_ids).flatten.compact.uniq.map(&:to_s)).
+        if o.taxon && taxon_places[o.taxon.id]
+          closest = taxon_places[o.taxon.id].
+            slice(*o.indexed_private_places.map(&:path_ids).flatten.compact.uniq).
             values.sort_by{ |p| p[:bbox_area] || 0 }.first
           o.taxon_introduced = !!(closest &&
             closest.values_at(*ListedTaxon::INTRODUCED_EQUIVALENTS).compact.any?)
           o.taxon_native = !!(closest &&
             closest.values_at(*ListedTaxon::NATIVE_EQUIVALENTS).compact.any?)
-          o.taxon_endemic = (o.indexed_private_place_ids & taxon_endemic_place_ids[o.taxon.id.to_s]).any?
+          o.taxon_endemic = (o.indexed_private_place_ids & taxon_endemic_place_ids[o.taxon.id]).any?
         end
       end
     end

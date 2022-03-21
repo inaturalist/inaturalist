@@ -17,7 +17,7 @@ class TaxonNamesController < ApplicationController
     per_page = params[:per_page].to_i
     per_page = 30 if per_page <= 0
     per_page = 200 if per_page > 200
-    @taxon_names = TaxonName.page( params[:page] ).per_page( per_page )
+    @taxon_names = TaxonName.page( params[:page] ).per_page( per_page ).includes( :place_taxon_names )
 
     if params[:q]
       @taxon_names = @taxon_names.where( "name LIKE ?", "%#{params[:q].split.join( '%' )}%" )

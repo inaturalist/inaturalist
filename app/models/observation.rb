@@ -2573,7 +2573,11 @@ class Observation < ApplicationRecord
         29625, # City Nature Challenge 2019
         40364  # City Nature Challenge 2020
       ].map {|umbrella_project_id|
-        if umbrella = Project.find_by_id( umbrella_project_id )
+        if umbrella = Project.includes( {
+          project_observation_rules: {
+            operand: :project_observation_rules
+          }
+        } ).find_by_id( umbrella_project_id )
           umbrella.project_observation_rules.select{|por| por.operator == "in_project?"}.map {|por|
             por.operand.project_observation_rules.
               select{|sub_por| sub_por.operator == "observed_in_place?" }.
