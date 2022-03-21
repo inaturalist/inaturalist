@@ -605,10 +605,10 @@ class Observation < ApplicationRecord
     end
     if p[:user]
       search_filters << { term: {
-        "user.id" => ElasticModel.id_or_object(p[:user]) } }
+        "user.id.keyword" => ElasticModel.id_or_object(p[:user]) } }
     elsif p[:user_id]
       search_filters << { terms: {
-        "user.id" => [ p[:user_id] ].flatten.map{ |u| ElasticModel.id_or_object(u) } } }
+        "user.id.keyword" => [ p[:user_id] ].flatten.map{ |u| ElasticModel.id_or_object(u) } } }
     end
 
     # params to search based on value

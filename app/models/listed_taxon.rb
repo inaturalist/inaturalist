@@ -975,7 +975,7 @@ class ListedTaxon < ApplicationRecord
     true
   end
 
-  def self.c( taxon_id, place_id )
+  def self.reindex_observations( taxon_id, place_id )
     last_id = 0
     per_page = 1000
     while true
