@@ -400,13 +400,15 @@ export function fetchCommunityTaxonSummary( ) {
 
 export function fetchNewProjects( ) {
   return ( dispatch, getState ) => {
-    const { observation } = getState( );
+    const { observation, config } = getState( );
+    const { testingApiV2 } = config;
     const params = {
       include_new_projects: "true",
       locale: I18n.locale,
       ttl: -1
     };
-    return inatjs.observations.fetch( observation.uuid, params ).then( response => {
+    const fetchID = testingApiV2 ? observation.uuid : observation.id;
+    return inatjs.observations.fetch( fetchID, params ).then( response => {
       const responseObservation = response.results[0];
       if ( responseObservation && _.has( responseObservation, "non_traditional_projects" ) ) {
         dispatch( setAttributes( {
