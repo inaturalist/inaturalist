@@ -1087,11 +1087,10 @@ class Project < ApplicationRecord
       if is_new
         project_users.find_or_create_by( user_id: admin_attr["user_id"] ).update( role: new_role )
       else
-        project_users.find_by( user_id: admin_attr["user_id"] )&.update( role: new_role )     
+        project_users.find_by( user_id: admin_attr["user_id"] )&.update( role: new_role )
       end
     end
     project_users.reload
-    elastic_index!
   end
 
   def destroy_project_rules
