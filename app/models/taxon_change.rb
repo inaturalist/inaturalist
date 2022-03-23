@@ -290,7 +290,7 @@ class TaxonChange < ApplicationRecord
     #   loop do
     #     results = Identification.elastic_paginate(
     #       filters: [
-    #         { terms: { "taxon.ancestor_ids" => input_taxon_ids } },
+    #         { terms: { "taxon.ancestor_ids.keyword" => input_taxon_ids } },
     #         { term: { current: true } }
     #       ],
     #       page: page,

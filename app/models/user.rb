@@ -1242,7 +1242,7 @@ class User < ApplicationRecord
     elsif options[:viewed]
       options[:filters] << { term: { viewed_subscriber_ids: id } }
     end
-    options[:filters] << { term: { subscriber_ids: id } }
+    options[:filters] << { term: { "subscriber_ids.keyword": id } }
     ops = {
       filters: options[:filters],
       inverse_filters: options[:inverse_filters],
@@ -1303,7 +1303,7 @@ class User < ApplicationRecord
     return unless user = User.find_by_id(user_id)
     new_fields_result = Observation.elastic_search(
       filters: [
-        { term: { non_owner_identifier_user_ids: user_id } }
+        { term: { "non_owner_identifier_user_ids.keyword": user_id } }
       ],
       size: 0,
       track_total_hits: true
@@ -1318,7 +1318,7 @@ class User < ApplicationRecord
     result = Observation.elastic_search(
       filters: [
         { bool: { must: [
-          { term: { "user.id": user_id } },
+          { term: { "user.id.keyword": user_id } },
         ] } }
       ],
       size: 0,
@@ -1434,8 +1434,8 @@ class User < ApplicationRecord
     taxon_counts = Observation.elastic_search(
       size: 0,
       filters: [
-        { term: { "user.id": id } },
-        { terms: { "taxon.ancestor_ids": taxa_plus_ancestor_ids } },
+        { term: { "user.id.keyword": id } },
+        { terms: { "taxon.ancestor_ids.keyword": taxa_plus_ancestor_ids } },
         { range: { "observed_on_details.date": { lt: date.to_s } } }
       ],
       aggregate: {

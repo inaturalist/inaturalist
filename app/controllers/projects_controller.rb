@@ -417,8 +417,14 @@ class ProjectsController < ApplicationController
       end
     end
     respond_to do |format|
+      # Project uses accepts_nested_attributes which saves associates after the main record,
+      # potentially trigging a lot of indexing for things like ProjectUsers. So skip indexing the
+      # project until the entire save/update process is done
+      @project.skip_indexing = true
+      saved_successfully = @project.update(params[:project])
       @project.wait_for_index_refresh = true
-      if @project.update(params[:project])
+      @project.elastic_index!
+      if saved_successfully
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_updated)) }
         format.json { render json: @project }
       else

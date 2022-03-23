@@ -241,7 +241,9 @@ describe "Observation Index" do
       list = List.make!
       lt1 = ListedTaxon.make!( list: list, taxon: Taxon.make! )
       lt2 = ListedTaxon.make!( list: list, taxon: Taxon.make! )
-      filtered_ancestor_ids = Observation.params_to_elastic_query( list_id: list.id )[:filters][0][:terms]["taxon.ancestor_ids"]
+      filtered_ancestor_ids = Observation.params_to_elastic_query(
+        list_id: list.id
+      )[:filters][0][:terms]["taxon.ancestor_ids.keyword"]
       expect( filtered_ancestor_ids ).to include lt1.taxon_id
       expect( filtered_ancestor_ids ).to include lt2.taxon_id
     end
@@ -316,8 +318,8 @@ describe "Observation Index" do
         { http_param: :observed_on_day, es_field: "observed_on_details.day" },
         { http_param: :observed_on_month, es_field: "observed_on_details.month" },
         { http_param: :observed_on_year, es_field: "observed_on_details.year" },
-        { http_param: :place_id, es_field: "place_ids" },
-        { http_param: :site_id, es_field: "site_id" }
+        { http_param: :place_id, es_field: "place_ids.keyword" },
+        { http_param: :site_id, es_field: "site_id.keyword" }
       ].each do |filter|
         # single values
         expect( Observation.params_to_elastic_query({
@@ -378,13 +380,13 @@ describe "Observation Index" do
     it "filters by site_id" do
       s = Site.make!(preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_SITE)
       expect( Observation.params_to_elastic_query({ }, site: s) ).to include(
-      filters: [ { terms: { "site_id" => [ s.id ] } } ] )
+      filters: [ { terms: { "site_id.keyword" => [ s.id ] } } ] )
     end
 
     it "filters by site place" do
       s = Site.make!(preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_PLACE, place: make_place_with_geom)
       expect( Observation.params_to_elastic_query({ }, site: s) ).to include(
-        filters: [ { terms: { "place_ids" => [ s.place.id ] } } ] )
+        filters: [ { terms: { "place_ids.keyword" => [ s.place.id ] } } ] )
     end
 
     it "filters by site bounding box" do
@@ -396,19 +398,19 @@ describe "Observation Index" do
 
     it "filters by user and user_id" do
       expect( Observation.params_to_elastic_query({ user: 1 }) ).to include(
-        filters: [ { terms: { "user.id" => [ 1 ] } } ] )
+        filters: [ { terms: { "user.id.keyword" => [ 1 ] } } ] )
       expect( Observation.params_to_elastic_query({ user_id: 1 }) ).to include(
-        filters: [ { terms: { "user.id" => [ 1 ] } } ] )
+        filters: [ { terms: { "user.id.keyword" => [ 1 ] } } ] )
     end
 
     it "filters by taxon_id" do
       expect( Observation.params_to_elastic_query({ observations_taxon: 1 }) ).to include(
-        filters: [ { term: { "taxon.ancestor_ids" => 1 } } ] )
+        filters: [ { term: { "taxon.ancestor_ids.keyword" => 1 } } ] )
     end
 
     it "filters by taxon_ids" do
       expect( Observation.params_to_elastic_query({ observations_taxon_ids: [ 1, 2 ] }) ).to include(
-        filters: [ { terms: { "taxon.ancestor_ids" => [ 1, 2 ] } } ] )
+        filters: [ { terms: { "taxon.ancestor_ids.keyword" => [ 1, 2 ] } } ] )
     end
 
     it "filters by license" do
@@ -488,7 +490,7 @@ describe "Observation Index" do
     it "filters by not_in_project" do
       p = Project.make!
       expect( Observation.params_to_elastic_query({ not_in_project: p.id }) ).to include(
-        inverse_filters: [ { term: { project_ids: p.id } } ] )
+        inverse_filters: [ { term: { "project_ids.keyword": p.id } } ] )
     end
 
     it "filters by lrank" do
@@ -664,7 +666,7 @@ describe "Observation Index" do
         updated_since: timeString, aggregation_user_ids: [ 1, 2 ] }) ).to include(
         filters: [ { bool: { should: [
           { range: { updated_at: { gte: timeObject } } },
-          { terms: { "user.id" => [1, 2] } } ] } } ] )
+          { terms: { "user.id.keyword" => [1, 2] } } ] } } ] )
     end
 
     it "filters by observation field values" do

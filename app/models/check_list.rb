@@ -142,8 +142,8 @@ class CheckList < List
   def cache_columns_options(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt && lt.taxon_id
-    filters = [ { term: { "taxon.ancestor_ids": lt.taxon_id } } ]
-    filters << { term: { place_ids: lt.place.id } } if lt.place
+    filters = [ { term: { "taxon.ancestor_ids.keyword": lt.taxon_id } } ]
+    filters << { term: { "place_ids.keyword": lt.place.id } } if lt.place
     { filters: filters,
       earliest_sort_field: "id",
       range_filters: [ { term: { quality_grade: "research" } } ] }
