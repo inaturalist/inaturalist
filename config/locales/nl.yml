@@ -4191,6 +4191,8 @@ nl:
   show_active_and_inactive_taxa: Actieve en inactieve taxa weergeven
   show_common_names: Toon lokale namen
   show_hidden_content: Verborgen inhoud tonen
+  show_history_by_this_user: Toon geschiedenis van deze gebruiker
+  show_history_for_this_record: Toon geschiedenis voor dit item
   show_keyboard_shortcuts: Toon sneltoetsen
   show_less: Minder weergeven
   show_more: Meer weergeven
@@ -5156,6 +5158,8 @@ nl:
   where_were_you?: Waar was je?
   which_projects_can_add_your_observations?: Welke traditionele projecten kunnen je waarnemingen toevoegen?
   white: wit
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Waarom maak je deze wijziging? (optioneel)
   why_you_can_see_the_coordinates: Waarom u de coördinaten kunt zien
   who_can_add_observation_fields_to_my_obs: Wie kan waarnemingsvelden toevoegen aan mijn waarnemingen?
   who_can_add_observations_to_this_project?: Wie kan waarnemingen aan dit project toevoegen?
@@ -7453,6 +7457,8 @@ nl:
         name_provider: Naamleverancier
         parent_id: Bovenliggend ID
         rank: Rang
+        rank_level: Hiërarchie niveau
+        source_id: Bron ID
         source_identifier: Bron-id
         source_url: Bron-URL
         wikipedia_summary: Wikipedia samenvatting
