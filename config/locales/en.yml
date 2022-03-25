@@ -421,6 +421,7 @@ en:
   add_life_stage_egg_annotation: 'Add "Life Stage: Egg" annotation'
   add_evidence_of_presence_organism_annotation: 'Add "Evidence of Presence: organism" annotation'
   add_evidence_of_presence_feather_annotation: 'Add "Evidence of Presence: feather" annotation'
+  add_evidence_of_presence_gall_annotation: 'Add "Evidence of Presence: gall" annotation'
   add_evidence_of_presence_scat_annotation: 'Add "Evidence of Presence: scat" annotation'
   add_evidence_of_presence_track_annotation: 'Add "Evidence of Presence: track" annotation'
   add_evidence_of_presence_bone_annotation: 'Add "Evidence of Presence: bone" annotation'
@@ -1203,6 +1204,8 @@ en:
     evidence_of_presence: Evidence of Presence
     # As in the feather on a bird
     feather: Feather
+    # Abnormal growth
+    gall: Gall
     # Refers to an observation that depicts the actual organism and not some
     # kind of secondary evidence like a footprint
     organism: Organism
@@ -1232,6 +1235,7 @@ en:
       Predominantly endoskeletal remains; partial bone exposure in an otherwise
       intact organism should be labelled "organism"
     molt: Discarded skin or exoskeleton
+    gall: Deformed plant tissue outgrowth caused by a parasitic organism
   controls: Controls
   convert: Convert
   coordinate_systems: Coordinate systems

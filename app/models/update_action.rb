@@ -271,9 +271,13 @@ class UpdateAction < ApplicationRecord
     rescue PG::Error, ActiveRecord::RecordNotUnique => e
       # caught a record not unique error. Try ES once more before returning
       Logstasher.write_exception(e, reference: "UpdateAction.first_with_attributes RecordNotUnique")
-      UpdateAction.refresh_es_index
-      if action = UpdateAction.elastic_paginate(filters: filters, keep_es_source: true).first
-        return action
+      sleep( 1 )
+      10.times do |iteration|
+        if action = UpdateAction.elastic_paginate(filters: filters, keep_es_source: true).first
+          return action
+        else
+          sleep( 1 )
+        end
       end
       return
     end

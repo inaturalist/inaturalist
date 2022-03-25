@@ -1469,7 +1469,7 @@ class User < ApplicationRecord
       user = u
     end
     LocalPhoto.where( user_id: user.id ).
-      select( :id, :license, :original_url, :user_id, :file_prefix_id, :file_extension_id ).
+      select( :id, :license, :user_id, :file_prefix_id, :file_extension_id ).
       includes( :user, :file_prefix, :file_extension, :flags ).find_each do |photo|
       if photo.photo_bucket_should_be_changed?
         LocalPhoto.delay(
