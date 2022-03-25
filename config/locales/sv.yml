@@ -341,6 +341,7 @@ sv:
   add_life_stage_egg_annotation: 'Lägg till anteckningen "Livsstadium: Ägg"'
   add_evidence_of_presence_organism_annotation: 'Lägg till "Stöd för förekomst: organism"-anteckning'
   add_evidence_of_presence_feather_annotation: 'Lägg till "Stöd för förekomst: fjäder"-anteckning'
+  add_evidence_of_presence_gall_annotation: 'Lägg till "Stöd för förekomst: gall"-anteckning'
   add_evidence_of_presence_scat_annotation: 'Lägg till "Stöd för förekomst: spillning"-anteckning'
   add_evidence_of_presence_track_annotation: 'Lägg till "Stöd för förekomst: spår"-anteckning'
   add_evidence_of_presence_bone_annotation: 'Lägg till "Stöd för förekomst: benrester"-anteckning'
@@ -1106,6 +1107,8 @@ sv:
     evidence_of_presence: Stöd för förekomst
     #As in the feather on a bird
     feather: Fjäder
+    #Abnormal growth
+    gall: Gall
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organism
@@ -1134,6 +1137,7 @@ sv:
     bone: |
       Mest kvarlämningar av inre skelett; delvis synligt ben från en i övrigt intakt organism bör anges som "organism"
     molt: Kvarlämning av skinn eller exoskelett
+    gall: Onormal tillväxtförändring på en växt orsakad av en parasiterande organism
   controls: Kontroller
   convert: Konvertera
   coordinate_systems: Koordinatsystem
@@ -1143,6 +1147,8 @@ sv:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Endast m. fullständiga koordinater
+  coords_viewable_for_proj_desc: |
+    Visa bara fynd från detta projekt för vilka du kan se de "verkliga" koordinaterna, inklusive odiffuserade fynd, diffuserade fynd av personer som litar på dig, diffuserade fynd av personer som anförtror detta projekt med allt, och fynd som är diffuserade p.g.a. hotade taxa av användare som bara anförtror detta projekt med fynd som diffuserats p.g.a. hotade taxa.
   copy: Kopiera
   copy_and_paste_the_following_code_to: Kopiera och klistra in följande kod för att infoga denna bedömning på en annan webbsida.
   copy_and_paste_this_into_your_own_html: Kopiera och klistra in detta i din egen HTML.
