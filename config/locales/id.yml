@@ -304,6 +304,7 @@ id:
   add_life_stage_egg_annotation: 'Tambahkan catatan "Fase Hidup: Telur"'
   add_evidence_of_presence_organism_annotation: 'Tambahkan catatan "Bukti Keberadaan: organisme"'
   add_evidence_of_presence_feather_annotation: 'Tambahkan catatan "Bukti Keberadaan: bulu"'
+  add_evidence_of_presence_gall_annotation: 'Tambahkan catatan "Bukti Keberadaan: puru"'
   add_evidence_of_presence_scat_annotation: 'Tambahkan catatan "Bukti Keberadaan: tahi"'
   add_evidence_of_presence_track_annotation: 'Tambahkan catatan "Bukti Keberadaan: jejak"'
   add_evidence_of_presence_bone_annotation: 'Tambahkan catatan "Bukti Keberadaan: tulang"'
@@ -1023,6 +1024,8 @@ id:
     evidence_of_presence: Bukti Keberadaan
     #As in the feather on a bird
     feather: Bulu
+    #Abnormal growth
+    gall: Puru
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organisme
@@ -1051,6 +1054,7 @@ id:
     bone: |
       Didominasi oleh sisa-sisa endoskeleton; organisme yang seharusnya utuh, tapi sebagian tulangnya terlihat harus tetap dilabeli "organisme"
     molt: Kulit yang dibuang atau eksoskeleton
+    gall: Pertumbuhan jaringan tumbuhan berlebihan yang disebabkan oleh organisme parasit
   controls: Kontrol
   convert: Ubah
   coordinate_systems: Sistem koordinat
