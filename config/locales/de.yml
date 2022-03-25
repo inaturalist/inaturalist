@@ -328,6 +328,7 @@ de:
   add_life_stage_egg_annotation: 'Vermerk "Lebensstadium: Ei" hinzufügen'
   add_evidence_of_presence_organism_annotation: 'Annotation ''Anwesenheitsnachweis: Organismus'' hinzufügen'
   add_evidence_of_presence_feather_annotation: 'Annotation ''Anwesenheitsnachweis: Feder'' hinzufügen'
+  add_evidence_of_presence_gall_annotation: 'Annotation ''Anwesenheitsnachweis: Galle'' hinzufügen'
   add_evidence_of_presence_scat_annotation: 'Annotation ''Anwesenheitsnachweis: Kot'' hinzufügen'
   add_evidence_of_presence_track_annotation: 'Annotation ''Anwesenheitsnachweis: Spur'' hinzufügen'
   add_evidence_of_presence_bone_annotation: 'Annotation ''Anwesenheitsnachweis: Knochen'' hinzufügen'
@@ -1053,6 +1054,8 @@ de:
     evidence_of_presence: Anwesenheitsnachweis
     #As in the feather on a bird
     feather: Feder
+    #Abnormal growth
+    gall: Galle
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organismus
@@ -1081,6 +1084,7 @@ de:
     bone: |
       Vorwiegend Überreste des Endoskeletts; teilweise Sichtbarkeit von Knochen in ansonsten intakten Lebewesen sollten als 'Organismus' gekennzeichnet werden
     molt: Abgeworfene Haut oder Exoskelett
+    gall: Durch einen parasitären Organismus verursachte Deformation von Pflanzengewebe
   controls: Steuerung
   convert: Konvertieren
   coordinate_systems: Koordinatensysteme
