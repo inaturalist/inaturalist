@@ -283,10 +283,15 @@ class Project < ApplicationRecord
   
   def add_owner_as_project_user(options = {})
     return true unless saved_change_to_user_id? || options[:force]
-    if pu = project_users.where(user_id: user_id).first
-      pu.update(role: ProjectUser::MANAGER)
+    existing_project_user = project_users.where(user_id: user_id).first
+    if existing_project_user
+      existing_project_user.update( role: ProjectUser::MANAGER )
     else
-      self.project_users.create(user: user, role: ProjectUser::MANAGER, skip_updates: true)
+      self.project_users.create!(
+        user: user,
+        role: ProjectUser::MANAGER,
+        skip_updates: true
+      )
     end
     true
   end
@@ -366,7 +371,6 @@ class Project < ApplicationRecord
 
   def set_observation_requirements_updated_at( options = {} )
     if new_record?
-      Rails.logger.debug "set_observation_requirements_updated_at: new project, backdating"
       self.observation_requirements_updated_at = ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
       return true
     end
@@ -947,8 +951,8 @@ class Project < ApplicationRecord
         # matching the node.js iNaturalistAPI filters/aggregations for obs counts
         result = Observation.elastic_search(
           filters: [
-            { term: { project_ids: self.id } },
-            { terms: { "user.id": uids } }
+            { term: { "project_ids.keyword": self.id } },
+            { terms: { "user.id.keyword": uids } }
           ],
           size: 0,
           aggregate: {
@@ -973,10 +977,10 @@ class Project < ApplicationRecord
       user_ids.in_groups_of(500, false) do |uids|
         # matching the node.js iNaturalistAPI filters/aggregations for species counts
         filters = [
-          { term: { project_ids: self.id } },
+          { term: { "project_ids.keyword": self.id } },
           { range: { "taxon.rank_level": { lte: Taxon::SPECIES_LEVEL } } },
           { range: { "taxon.rank_level": { gte: Taxon::SUBSPECIES_LEVEL } } },
-          { terms: { "user.id": uids } }
+          { terms: { "user.id.keyword": uids } }
         ]
         result = Observation.elastic_search(
           filters: filters,
@@ -1074,20 +1078,19 @@ class Project < ApplicationRecord
   end
 
   def add_admins
-    new = new_record?
+    is_new = new_record?
     yield
     return if admin_attributes.blank?
     admin_attributes.each do |k, admin_attr|
       next unless admin_attr["user_id"]
       new_role = admin_attr["_destroy"] == "true" ? nil : "manager" 
-      if new
+      if is_new
         project_users.find_or_create_by( user_id: admin_attr["user_id"] ).update( role: new_role )
       else
-        project_users.find_by( user_id: admin_attr["user_id"] )&.update( role: new_role )     
+        project_users.find_by( user_id: admin_attr["user_id"] )&.update( role: new_role )
       end
     end
     project_users.reload
-    elastic_index!
   end
 
   def destroy_project_rules

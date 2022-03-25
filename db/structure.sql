@@ -9,7 +9,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-
 --
 -- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
 --
@@ -575,6 +574,48 @@ CREATE SEQUENCE public.atlases_id_seq
 --
 
 ALTER SEQUENCE public.atlases_id_seq OWNED BY public.atlases.id;
+
+
+--
+-- Name: audits; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.audits (
+    id bigint NOT NULL,
+    auditable_id integer,
+    auditable_type character varying,
+    associated_id integer,
+    associated_type character varying,
+    user_id integer,
+    user_type character varying,
+    username character varying,
+    action character varying,
+    audited_changes jsonb,
+    version integer DEFAULT 0,
+    comment character varying,
+    remote_address character varying,
+    request_uuid character varying,
+    created_at timestamp without time zone
+);
+
+
+--
+-- Name: audits_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.audits_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: audits_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.audits_id_seq OWNED BY public.audits.id;
 
 
 --
@@ -1225,37 +1266,6 @@ ALTER SEQUENCE public.deleted_users_id_seq OWNED BY public.deleted_users.id;
 
 
 --
--- Name: exploded_atlas_places; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.exploded_atlas_places (
-    id integer NOT NULL,
-    atlas_id integer,
-    place_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: exploded_atlas_places_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.exploded_atlas_places_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: exploded_atlas_places_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.exploded_atlas_places_id_seq OWNED BY public.exploded_atlas_places.id;
-
---
 -- Name: email_suppressions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1285,6 +1295,38 @@ CREATE SEQUENCE public.email_suppressions_id_seq
 --
 
 ALTER SEQUENCE public.email_suppressions_id_seq OWNED BY public.email_suppressions.id;
+
+
+--
+-- Name: exploded_atlas_places; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.exploded_atlas_places (
+    id integer NOT NULL,
+    atlas_id integer,
+    place_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: exploded_atlas_places_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.exploded_atlas_places_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: exploded_atlas_places_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.exploded_atlas_places_id_seq OWNED BY public.exploded_atlas_places.id;
 
 
 --
@@ -3026,6 +3068,16 @@ ALTER SEQUENCE public.passwords_id_seq OWNED BY public.passwords.id;
 
 
 --
+-- Name: photo_metadata; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.photo_metadata (
+    photo_id integer NOT NULL,
+    metadata bytea
+);
+
+
+--
 -- Name: photos; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3033,12 +3085,6 @@ CREATE TABLE public.photos (
     id integer NOT NULL,
     user_id integer,
     native_photo_id character varying(255),
-    square_url character varying(512),
-    thumb_url character varying(512),
-    small_url character varying(512),
-    medium_url character varying(512),
-    large_url character varying(512),
-    original_url character varying(512),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     native_page_url character varying(512),
@@ -3052,7 +3098,6 @@ CREATE TABLE public.photos (
     file_processing boolean,
     mobile boolean DEFAULT false,
     file_updated_at timestamp without time zone,
-    metadata text,
     subtype character varying(255),
     native_original_image_url character varying(512),
     uuid uuid DEFAULT public.uuid_generate_v4(),
@@ -4268,18 +4313,12 @@ CREATE TABLE public.taxa (
     observations_count integer DEFAULT 0,
     listed_taxa_count integer DEFAULT 0,
     rank_level double precision,
-    unique_name character varying(255),
     wikipedia_summary text,
     wikipedia_title character varying(255),
     featured_at timestamp without time zone,
     ancestry character varying(255),
-    conservation_status integer,
-    conservation_status_source_id integer,
     locked boolean DEFAULT false NOT NULL,
-    conservation_status_source_identifier integer,
     is_active boolean DEFAULT true NOT NULL,
-    complete_rank character varying,
-    complete boolean,
     taxon_framework_relationship_id integer,
     uuid uuid DEFAULT public.uuid_generate_v4(),
     photos_locked boolean DEFAULT false
@@ -4744,55 +4783,6 @@ ALTER SEQUENCE public.taxon_schemes_id_seq OWNED BY public.taxon_schemes.id;
 
 
 --
--- Name: taxon_versions; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.taxon_versions (
-    id integer NOT NULL,
-    taxon_id integer,
-    version integer,
-    name character varying(255),
-    rank character varying(255),
-    source_identifier character varying(255),
-    source_url character varying(255),
-    parent_id integer,
-    source_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    iconic_taxon_id integer,
-    is_iconic boolean DEFAULT false,
-    auto_photos boolean DEFAULT true,
-    auto_description boolean DEFAULT true,
-    lft integer,
-    rgt integer,
-    name_provider character varying(255),
-    delta boolean DEFAULT false,
-    creator_id integer,
-    updater_id integer,
-    rank_level integer
-);
-
-
---
--- Name: taxon_versions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.taxon_versions_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: taxon_versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.taxon_versions_id_seq OWNED BY public.taxon_versions.id;
-
-
---
 -- Name: trip_purposes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5123,41 +5113,6 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: versions; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.versions (
-    id integer NOT NULL,
-    item_type character varying NOT NULL,
-    item_id bigint NOT NULL,
-    event character varying NOT NULL,
-    whodunnit character varying,
-    created_at timestamp without time zone,
-    object_changes json
-);
-
-
---
--- Name: versions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.versions_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.versions_id_seq OWNED BY public.versions.id;
-
-
---
 -- Name: votes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5395,6 +5350,13 @@ ALTER TABLE ONLY public.atlases ALTER COLUMN id SET DEFAULT nextval('public.atla
 
 
 --
+-- Name: audits id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.audits ALTER COLUMN id SET DEFAULT nextval('public.audits_id_seq'::regclass);
+
+
+--
 -- Name: colors id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5521,17 +5483,17 @@ ALTER TABLE ONLY public.deleted_users ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- Name: exploded_atlas_places id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.exploded_atlas_places ALTER COLUMN id SET DEFAULT nextval('public.exploded_atlas_places_id_seq'::regclass);
-
-
---
 -- Name: email_suppressions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.email_suppressions ALTER COLUMN id SET DEFAULT nextval('public.email_suppressions_id_seq'::regclass);
+
+
+--
+-- Name: exploded_atlas_places id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.exploded_atlas_places ALTER COLUMN id SET DEFAULT nextval('public.exploded_atlas_places_id_seq'::regclass);
 
 
 --
@@ -6130,13 +6092,6 @@ ALTER TABLE ONLY public.taxon_schemes ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- Name: taxon_versions id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.taxon_versions ALTER COLUMN id SET DEFAULT nextval('public.taxon_versions_id_seq'::regclass);
-
-
---
 -- Name: trip_purposes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6190,13 +6145,6 @@ ALTER TABLE ONLY public.user_privileges ALTER COLUMN id SET DEFAULT nextval('pub
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
-
-
---
--- Name: versions id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.versions ALTER COLUMN id SET DEFAULT nextval('public.versions_id_seq'::regclass);
 
 
 --
@@ -6304,6 +6252,14 @@ ALTER TABLE ONLY public.atlas_alterations
 
 ALTER TABLE ONLY public.atlases
     ADD CONSTRAINT atlases_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: audits audits_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.audits
+    ADD CONSTRAINT audits_pkey PRIMARY KEY (id);
 
 
 --
@@ -6451,19 +6407,19 @@ ALTER TABLE ONLY public.deleted_users
 
 
 --
--- Name: exploded_atlas_places exploded_atlas_places_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.exploded_atlas_places
-    ADD CONSTRAINT exploded_atlas_places_pkey PRIMARY KEY (id);
-
-
---
 -- Name: email_suppressions email_suppressions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.email_suppressions
     ADD CONSTRAINT email_suppressions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: exploded_atlas_places exploded_atlas_places_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.exploded_atlas_places
+    ADD CONSTRAINT exploded_atlas_places_pkey PRIMARY KEY (id);
 
 
 --
@@ -7147,14 +7103,6 @@ ALTER TABLE ONLY public.taxon_schemes
 
 
 --
--- Name: taxon_versions taxon_versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.taxon_versions
-    ADD CONSTRAINT taxon_versions_pkey PRIMARY KEY (id);
-
-
---
 -- Name: trip_purposes trip_purposes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7219,14 +7167,6 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: versions versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.versions
-    ADD CONSTRAINT versions_pkey PRIMARY KEY (id);
-
-
---
 -- Name: votes votes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7267,6 +7207,20 @@ ALTER TABLE ONLY public.year_statistics
 
 
 --
+-- Name: associated_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX associated_index ON public.audits USING btree (associated_type, associated_id);
+
+
+--
+-- Name: auditable_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auditable_index ON public.audits USING btree (auditable_type, auditable_id, version);
+
+
+--
 -- Name: fk_flags_user; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7292,6 +7246,13 @@ CREATE INDEX index_annotations_on_controlled_value_id ON public.annotations USIN
 --
 
 CREATE INDEX index_annotations_on_resource_id_and_resource_type ON public.annotations USING btree (resource_id, resource_type);
+
+
+--
+-- Name: index_annotations_on_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_annotations_on_uuid ON public.annotations USING btree (uuid);
 
 
 --
@@ -7418,6 +7379,20 @@ CREATE INDEX index_atlases_on_taxon_id ON public.atlases USING btree (taxon_id);
 --
 
 CREATE INDEX index_atlases_on_user_id ON public.atlases USING btree (user_id);
+
+
+--
+-- Name: index_audits_on_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audits_on_created_at ON public.audits USING btree (created_at);
+
+
+--
+-- Name: index_audits_on_request_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audits_on_request_uuid ON public.audits USING btree (request_uuid);
 
 
 --
@@ -7628,6 +7603,13 @@ CREATE INDEX index_deleted_users_on_login ON public.deleted_users USING btree (l
 --
 
 CREATE INDEX index_deleted_users_on_user_id ON public.deleted_users USING btree (user_id);
+
+
+--
+-- Name: index_email_suppressions_on_email_and_suppression_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_email_suppressions_on_email_and_suppression_type ON public.email_suppressions USING btree (email, suppression_type);
 
 
 --
@@ -8604,6 +8586,13 @@ CREATE INDEX index_observations_user_datetime ON public.observations USING btree
 
 
 --
+-- Name: index_photo_metadata_on_photo_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_photo_metadata_on_photo_id ON public.photo_metadata USING btree (photo_id);
+
+
+--
 -- Name: index_photos_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8961,6 +8950,13 @@ CREATE INDEX index_roles_users_on_user_id ON public.roles_users USING btree (use
 
 
 --
+-- Name: index_rules_on_ruler_id_and_ruler_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_rules_on_ruler_id_and_ruler_type ON public.rules USING btree (ruler_id, ruler_type);
+
+
+--
 -- Name: index_saved_locations_on_title; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9136,13 +9132,6 @@ CREATE INDEX index_taxa_on_ancestry ON public.taxa USING btree (ancestry text_pa
 
 
 --
--- Name: index_taxa_on_conservation_status_source_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_taxa_on_conservation_status_source_id ON public.taxa USING btree (conservation_status_source_id);
-
-
---
 -- Name: index_taxa_on_featured_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9196,13 +9185,6 @@ CREATE INDEX index_taxa_on_rank_level ON public.taxa USING btree (rank_level);
 --
 
 CREATE INDEX index_taxa_on_taxon_framework_relationship_id ON public.taxa USING btree (taxon_framework_relationship_id);
-
-
---
--- Name: index_taxa_on_unique_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_taxa_on_unique_name ON public.taxa USING btree (unique_name);
 
 
 --
@@ -9619,13 +9601,6 @@ CREATE UNIQUE INDEX index_users_on_uuid ON public.users USING btree (uuid);
 
 
 --
--- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_versions_on_item_type_and_item_id ON public.versions USING btree (item_type, item_id);
-
-
---
 -- Name: index_votes_on_unique_obs_fave; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9728,6 +9703,13 @@ CREATE INDEX taxon_names_lower_name_index ON public.taxon_names USING btree (low
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
+
+
+--
+-- Name: user_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX user_index ON public.audits USING btree (user_id, user_type);
 
 
 --
@@ -10173,5 +10155,14 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210921160504'),
 ('20210930182050'),
 ('20211001151300'),
-('20211216171216');
+('20211109220615'),
+('20211216171216'),
+('20220209191328'),
+('20220217224804'),
+('20220224012321'),
+('20220225054243'),
+('20220308015748'),
+('20220317205240'),
+('20220317210522');
+
 

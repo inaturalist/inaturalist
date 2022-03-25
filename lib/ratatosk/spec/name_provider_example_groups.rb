@@ -121,12 +121,6 @@ shared_examples_for "a Taxon adapter" do
     @adapter.reload
     expect(@adapter.taxon_names.select{|n| n.name == @adapter.name}.size).to be(1)
   end
-
-  it "should have a unique name after saving" do
-    @adapter.save
-    @adapter.reload
-    expect(@adapter.unique_name).not_to be_nil
-  end
 end
 
 shared_examples_for "a TaxonName adapter" do

@@ -1,4 +1,8 @@
 ca:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} canvi"
+    other: "%{count} canvis"
   x_comments:
     one: '1 comentari'
     other: '%{count} comentaris'
@@ -218,6 +222,7 @@ ca:
   accuracy_meters: Exactitud (metres)
   accuracy_of_the_coordinates: |
     Exactitud de les coordenades en metres. Les podeu canviar fent clic a l’enllaç "edita" o amb un clic al punt de la ubicació en el mapa. Intenteu fer el cercle prou gran per garantir que estàveu en algun lloc de l'àrea marcada.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Acció
   actions: Accions
   active: Actiu
@@ -847,6 +852,8 @@ ca:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} s'ha fusionat amb %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} es fusionarà a %{output_taxon}"
   change_your_password: Canvia la vostra contrasenya
+  #Plural noun, as in changes to a taxon record over time
+  changes: Canvis
   changing_the_geoprivacy: 'Canviar la geoprivacitat modifica la manera en què altres persones veuen la localització de la vostra observació.'
   check_above_for_errors: Verifiqueu els errors anteriors
   check_back_soon: Verifiqueu properament!
@@ -905,6 +912,10 @@ ca:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Comentari
   comment_deleted: El comentari s’ha esborrat
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Comentari amagat
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Comentari visible de nou
   comments: Comentaris
   comments_by_me: Els vostres comentaris
   comments_have_been_disabled: S'han desactivat els comentaris
@@ -1935,6 +1946,8 @@ ca:
   identification_by_user: Identificació de %{user}
   identification_deleted: Identificació eliminada.
   identification_saved: "Identificació desada!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Text de la identificació mostrat de nou
   identification_updated: Identificació actualitzada!
   identification_user_short: Ident. Usuari
   identification_withdrawn: Identificació retirada.
@@ -2402,6 +2415,9 @@ ca:
   mark_all_as_unreviewed: Marqueu-ho tot com a No revisat
   matching_species_will_shown_up_here: Les espècies trobades es mostraran aquí. El mapa mostrarà un rang si %{place} té alguna d'aquestes espècies.
   maverick: Disident
+  maximum_positional_accuracy: Precisió màxima de la localització
+  maximum_positional_accuracy_including_unknown: |
+    Màxima precisió de la posició, incloent-hi les observacions sense precisió de la seva localització
   media: Multimèdia
   media_type: Tipus de fitxer multimèdia
   medium: mitjà
@@ -2446,6 +2462,7 @@ ca:
     Si sospiteu que aquesta persona està violant les nostres<a href="%{tos_url}"
     target="_blank">Condicions d'Ús</a> o no actua segons les nostres <a
     href="%{guidelines_url}" target="_blank">Directrius de la Comunitat</a>, si us plau, marqueu aquest missatge a sota.
+  minimum_positional_accuracy: Precisió mínima de la localització
   misidentifications: Identificacions incorrectes
   misleading_or_illegal_content_html: |
     Contingut il·legal, enganyós, racista, xenòfob, etc. Si voleu informació sobre la nostra definició de "inapropiat" consulteu el
@@ -3568,13 +3585,15 @@ ca:
     Per això, si és necessari, en el futur podríem restringir les condicions per les quals els usuaris poden afegir nous llocs atès el ritme de creixement d'iNat.
   plants: Plantes
   please_add_a_citation_for_this_change: Heu d'afegir una referència per a aquest canvi.
-  please_allow_a_few_weeks_for_external_sites: Si us plau, espereu algunes setmanes perquè els llocs externs sincronitzin els canvis d'aquesta observació #Title to a section warning a user to exercise caution
+  please_allow_a_few_weeks_for_external_sites: Si us plau, espereu algunes setmanes perquè els llocs externs sincronitzin els canvis d'aquesta observació #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: Si us plau, demana permís als teus pares o tutors.
+  #Title to a section warning a user to exercise caution
   please_be_careful!: Si us plau, aneu amb compte!
   please_complete_the_following_to_add_project: |
     Si us plau completeu el següent per afegir aquesta observació al projecte:
   please_confirm_your_inat_username: "Confirmeu el nom d'usuari a %{site_name}"
-  please_explain_why_you_want_to_hide_this: Si us plau, expliqueu el motiu pels qual voleu ocultar això
-  please_explain_why_you_want_to_unhide_this: Si us plau, expliqueu el motiu pel qual voleu deixar d'ocultar aixó
+  please_explain_why_you_want_to_hide_this: Si us plau, expliqueu el motiu pel qual voleu ocultar això
+  please_explain_why_you_want_to_unhide_this: Si us plau, expliqueu el motiu pel qual voleu deixar d'ocultar això
   please_fix_your_csv_and_try_again: Si us plau corregiu el CSV i proveu-ho de nou.
   please_hold_on_while_the_file: Espereu mentre es genera l'arxiu. El procés pot trigar uns minuts per a llistes grans.
   please_hold_on_while_the_file_is_generated: Espereu mentre es genera l'arxiu. El procés pot trigar uns minuts per a llistes grans.
@@ -3862,6 +3881,8 @@ ca:
   recently_finished: Terminat recentment
   recently_observed: Observat recentment
   recently_resolved: Resolt recentment
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Registre
   red: vermell
   redo_search_in_map: Refer la cerca al mapa
   redo_search_in_map_area: Torneu a realitzar la cerca a l'àrea del mapa
@@ -3976,6 +3997,7 @@ ca:
     must_be_in: ha d'estar en el tàxon
     must_be_coordinates_shareable_by_project_curators: l'observador ha de permetre als supervisors del projecte veure les coordenades.
     must_be_verifiable: ha de ser verificable
+    must_be_wild: ha de ser silvestre
   running_total: Acumulat total
   said: deia
   satellite: satèl·lit
@@ -4072,6 +4094,9 @@ ca:
   show_active_and_inactive_taxa: Mostra tàxons actius i inactius
   show_common_names: Mostra noms vulgars
   show_hidden_content: Mostra Contingut Ocult
+  show_history_by_this_user: Mostrar historial d'aquest usuari
+  show_history_for_this_kind_of_action: Mostrar historial d'aquesta mena d'acció
+  show_history_for_this_record: Mostra historial d'aquest registre
   show_keyboard_shortcuts: Mostreu Dreceres de teclat
   show_less: Mostrar menys
   show_more: Mostrar més
@@ -4326,6 +4351,9 @@ ca:
   summary: Resum
   supporting: Recolzar
   suspend_user: Suspèn usuari
+  suspend_user_html: Suspendre a %{user}
+  suspend_user_reason_instructions_html: |
+    Expliqueu perquè esteu suspenent aquest compte i citeu qualsevol violació de les %{link_start_tag}Normes de la Comunitat%{link_end_tag}. Si us plau, absteniu-vos de donar opinions personals.
   sw_lat: lat. S.O.
   sw_lon: long. S.O.
   sync: Sincronitza?
@@ -4438,6 +4466,7 @@ ca:
   taxon_framework_relationship_unknown_count_html: "Nombre de relacions desconegudes: %{count}"
   taxon_framework_relationships: Relació del Marc del Tàxon
   taxon_framework_taxon: Marc taxonòmic de tàxon
+  taxon_history_notice: Els històrics es van introduir el febrer de 2022, per tant, no hi ha històrics disponibles anteriors a aquesta data.
   taxon_merge: fusiona tàxons
   taxon_name: Nom del tàxon
   taxon_name_must_match_an_existing_taxon_in_our_database: El nom del tàxon ha de correspondre amb un d'existent a la nostra base de dades
@@ -4704,6 +4733,9 @@ ca:
   unsubscribe: Elimineu subscripció
   unsubscribe_from_emails_like_this: Des-subscriure's de correus electrònics com aquest
   unsuspend_user: Reactiva usuari
+  unsuspend_user_html: Reactiveu %{user}
+  unsuspend_user_reason_instructions: |
+    Si us plau, expliqueu perquè esteu reactivant aquest usuari.
   upcoming_bioblitzes: Propers bioblitzes
   update: Actualitza
   update_existing_observations_with_new_license: Actualitza les observacions existents amb la llicència triada
@@ -4983,6 +5015,8 @@ ca:
   where_were_you?: <em>On</em> estàveu?
   which_projects_can_add_your_observations?: Quins projectes tradicionals poden incorporar les vostres observacions?
   white: blanc
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Perquè esteu fent aquest canvi? (opcional)
   why_you_can_see_the_coordinates: Per què podeu veure les coordenades?
   who_can_add_observation_fields_to_my_obs: Qui pot afegir camps d'observació a les meves observacions?
   who_can_add_observations_to_this_project?: Qui pot afegir observacions a aquest projecte?
@@ -7018,6 +7052,10 @@ ca:
       message:
         subject: Assumpte
         body: Cos
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Raó
       observation:
         description: Notes
         geo_x: Est
@@ -7046,6 +7084,8 @@ ca:
         #confidential, e.g. a native or desktop app as opposed to a web
         #app.
         confidential: Confidencial
+      place_taxon_name:
+        position: Posició
       post:
         title: Títol
         body: Text
@@ -7089,18 +7129,49 @@ ca:
         url: Enllaç
         citation: Bibliografia
       taxon:
-        name: Nom
-        rank: Rang
-        parent_id: Identificació del tàxon pare
-        locked: Tancat
-        auto_photos: Carrega fotos automàticament
+        ancestry: Ancestre
         auto_description: Carrega automàticament la descripció
-        wikipedia_title: Títol de la Viquipèdia
-        wikipedia_summary: Resum de Viquipèdia
+        auto_photos: Carrega fotos automàticament
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: Classificació completa
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Estat de conservació
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: Destacat el
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: ID del tàxon icònic al qual pertany aquest tàxon
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Actiu?
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Icònic?
+        locked: Tancat
+        name: Nom
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Proveïdor del nom
+        parent_id: Identificació del tàxon pare
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Fotos bloquejades?
+        rank: Rang
+        rank_level: Nivell de classificació
+        source_id: ID de la font
         source_identifier: Identificador de la font
         source_url: Enllaç font
+        #Identifier of the taxon framework relationship record associated
+        #with this taxon
+        taxon_framework_relationship_id: ID de la relació del marc del tàxon
+        wikipedia_summary: Resum de Viquipèdia
+        wikipedia_title: Títol de la Viquipèdia
       taxon_name:
+        is_valid: És vàlid?
+        lexicon: Lèxic
+        name: Nom
         name_provider: Proveïdor de nom
+        position: Posició
         source_url: Adreça web de la font
         source_identifier: Identificador de la font
       user:
@@ -7173,6 +7244,11 @@ ca:
               guide_has_too_many_taxa: "La guia només pot tenir 500 tàxons"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: no està suportat per aquest tipus de contigut
+            base:
+              only_staff_can_unhide: Només el personal pot ocultar i tornar a mostrar el contingut ocult.
+              staff_cannot_be_suspended: El personal no es pot suspendre
             user_id:
               must_be_a_curator: ha de ser supervisor
         mushroom_observer_import_flow_task:

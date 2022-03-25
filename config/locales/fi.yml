@@ -230,6 +230,7 @@ fi:
   accuracy_meters: Tarkkuus (metreinä)
   accuracy_of_the_coordinates: |
     Koordinaattien tarkkuus metreinä. Voit muokata tätä napsauttamalla "muokkaa" - linkkiä tai klikkaamalla karttamerkintää ja vetämällä kahvoista. Yritä tehdä ympyrä tarpeeksi isoksi, jotta olet varma, että olit jossain sen sisällä.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Toiminto
   actions: Toiminnot
   active: Aktiivinen
@@ -900,6 +901,10 @@ fi:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentti
   comment_deleted: Kommentti poistettu
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Kommentti piilotettu
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Kommentti näkyvissä
   comments: Kommentit
   comments_by_me: Omat kommentit
   comments_have_been_disabled: Kommentointi poistettu käytöstä
@@ -1880,6 +1885,8 @@ fi:
   identification_by_user: Käyttäjän %{user} tunnistus
   identification_deleted: Tunnistus poistettu.
   identification_saved: "Tunnistus tallennettu!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Määritysteksti piilotettu
   identification_updated: Tunnistus päivitetty!
   identification_user_short: Tunnist. käyttäjä
   identification_withdrawn: Tunnistus peruutettu.
@@ -3396,7 +3403,8 @@ fi:
     Meidän täytyy rajoittaa paikkojen lisäämistä tulevaisuudesta, koska iNaturalistin käyttö kasvaa jatkuvasti.
   plants: kasvit
   please_add_a_citation_for_this_change: Lisää viite muutokselle.
-  please_allow_a_few_weeks_for_external_sites: Salli muutama viikko ulkopuolisille sivustoille synkronoida muutokset tästä havainnosta #Title to a section warning a user to exercise caution
+  please_allow_a_few_weeks_for_external_sites: Salli muutama viikko ulkopuolisille sivustoille synkronoida muutokset tästä havainnosta #Request that a known child ask their parents for permission to use this service
+  #Title to a section warning a user to exercise caution
   please_be_careful!: Ole varovainen!
   please_complete_the_following_to_add_project: |
     Täydennä seuraavat tiedot lisätäksesi tämän havainnon projektiin:
@@ -3772,6 +3780,7 @@ fi:
     must_be_observed_in_place: täytyy olla havaittu paikassa
     must_be_in: täytyy olla taksonissa
     must_be_coordinates_shareable_by_project_curators: havainnoijan on annettava projektin kuraattoreille mahdollisuus tarkistella koordinaatteja.
+    must_be_wild: on oltava luonnonvarainen
   running_total: Kumulatiivinen summa
   said: sanoi
   satellite: satelliitti
@@ -3860,6 +3869,9 @@ fi:
   show_active_and_inactive_taxa: Näytä aktiiviset ja epäaktiiviset taksonit
   show_common_names: Näytä yleiskieliset nimet
   show_hidden_content: Näytä piilotettu sisältö
+  show_history_by_this_user: Näytä tämän käyttäjän historia
+  show_history_for_this_kind_of_action: Näytä tämän kaltaisen toiminnon historia
+  show_history_for_this_record: Näytä tämän tietueen historia
   show_keyboard_shortcuts: Näytä pikanäppäimet
   show_less: Näytä vähemmän
   show_more: Näytä enemmän
@@ -4005,10 +4017,10 @@ fi:
   start_date_time: Aloituspäivä / aika
   start_one: Aloita yksi
   start_one_now: Aloita yksi nyt!
-  start_typing_field_name: Aloita näppäilemällä nimi kenttään...
-  start_typing_place_name: Aloita näppäilemällä paikan nimi...
-  start_typing_taxon_name: Aloita näppäilemällä taksonin nimi...
-  start_typing_someones_name: "Aloita näppäilemällä jonkun nimi..."
+  start_typing_field_name: Aloita kirjoittamalla nimi kenttään...
+  start_typing_place_name: Aloita kirjoittamalla paikan nimi...
+  start_typing_taxon_name: Aloita kirjoittamalla taksonin nimi...
+  start_typing_someones_name: "Aloita kirjoittamalla jonkun nimi..."
   stats: Tilastot
   stats_for_this_year_have_not_been_generated: Paina nappia alta, niin luomme tilastot.
   status: Tila
@@ -4060,6 +4072,11 @@ fi:
   summary: Yhteenveto
   supporting: Tukee määritystä
   suspend_user: Hyllytä käyttäjä
+  suspend_user_html: Hyllytä %{user}
+  suspend_user_reason_instructions_html: |
+    Selitä, miksi hyllytät tämän käyttäjätilin ja mainitse rikkomukset
+    %{link_start_tag}yhteisön ohjeissa%{link_end_tag}. Pidättäydy
+    lisäämästä henkilökohtaisia mielipiteitä.
   sw_lat: SW leveysaste
   sw_lon: SW pituusaste
   sync: Synkronoi?
@@ -4321,6 +4338,9 @@ fi:
   unsubscribe: Peruuta tilaus
   unsubscribe_from_emails_like_this: Lopeta tämänkaltaisten viestien tilaus.
   unsuspend_user: Jäädytetty käyttäjä
+  unsuspend_user_html: Poista käyttäjän %{user} hyllytys
+  unsuspend_user_reason_instructions: |
+    Selitä, miksi poistat käyttäjän hyllytyksen.
   upcoming_bioblitzes: Tulevat bioblitzit
   update: Päivitä
   update_existing_observations_with_new_license: Päivitä olemassa olevat havainnot uusilla lisenssivaihtoehdoilla
@@ -6155,6 +6175,10 @@ fi:
       message:
         subject: Aihe
         body: Sisältö
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Syy
       observation:
         description: Muistiinpanot
         geo_x: Itä
@@ -6203,16 +6227,18 @@ fi:
         url: URL-osoite
         citation: Viittaus
       taxon:
-        name: Nimi
-        rank: Sija
-        parent_id: Ylemmän taksonin ID
-        locked: Lukittu
-        auto_photos: Automaattiset kuvat
         auto_description: Automaattinen kuvaus
-        wikipedia_title: Wikipedia-otsikko
-        wikipedia_summary: Wikipedia-yhteenveto
+        auto_photos: Automaattiset kuvat
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Aktiivinen?
+        locked: Lukittu
+        name: Nimi
+        parent_id: Ylemmän taksonin ID
+        rank: Sija
         source_identifier: Lähdetunniste
         source_url: Lähteen URL-osoite
+        wikipedia_summary: Wikipedia-yhteenveto
+        wikipedia_title: Wikipedia-otsikko
       taxon_name:
         name_provider: Nimipankki
         source_url: Lähteen URL-osoite
@@ -6281,6 +6307,11 @@ fi:
               guide_has_too_many_taxa: "oppaassa voi olla vain 500 taksonia"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: ei ole tuettu tällaista sisältöä
+            base:
+              only_staff_can_unhide: Vain ylläpitäjät voivat paljastaa piilotetun sisällön
+              staff_cannot_be_suspended: Ylläpitäjiä ei voida hyllyttää
             user_id:
               must_be_a_curator: on oltava kuraattori
         mushroom_observer_import_flow_task:

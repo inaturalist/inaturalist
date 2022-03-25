@@ -333,6 +333,7 @@ be:
   accuracy_of_the_coordinates: |
     Дакладнасць каардынат у метрах. Вы можаце змяніць гэта, націснуўшы спасылку "рэдагаваць" вышэй, альбо націснуўшы на маркер карты і перацягваючы элементы кіравання. Паспрабуйце
     зрабіце круг дастаткова вялікім, каб вы былі ўпэўнены, што знаходзіліся дзесьці ўнутры яго.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Дзеянне
   actions: Дзеянні
   active: Актыўны
@@ -991,6 +992,8 @@ be:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} былі аб'яднаны ў %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} будуць аб'яднаны ў %{output_taxon}"
   change_your_password: Змяніць пароль
+  #Plural noun, as in changes to a taxon record over time
+  changes: Змяненні
   changing_the_geoprivacy: 'Змена наладаў геапрыватнасці ўплыае на тое, як іншыя людзі бачаць месцазнаходжанне вашых назіранняў.'
   check_above_for_errors: Праверце пазначанае на наяўнасць памылак
   check_back_soon: Да хуткага пабачэння!
@@ -1048,6 +1051,8 @@ be:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Каментарый
   comment_deleted: Каментарый выдалены
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Каментар схаваны
   comments: Каментарыі
   comments_by_me: Мае каментарыі
   comments_have_been_disabled: Каментарыі былі адключаныя
@@ -2254,6 +2259,8 @@ be:
   latitude: Шырата
   latitude_in_decimals: 'Шырата ў дзесятковых градусах, напр. -122,123'
   latitude_value: "Шырата: %{latitude}"
+  #As in map layers, i.e. layers of data that might be overlayed on a map
+  layers: Слаі
   leaderboard: Табліца лідараў
   leaderboard_for_x: "Табліца лідараў для %{x}"
   leaderboards: Рэтынг лідараў
@@ -2401,6 +2408,17 @@ be:
   lists_by_login:
     title:
       current_user: Вашыя спісы
+  load: Загрузіць
+  loading: "Загрузка..."
+  loading_flickr_photos: "Загрузка фота з Flickr..."
+  loading_images: Загрузка выяў...
+  loading_metadata: Загрузка метададзеных...
+  loading_preview_and_code: Загрузка папярэдняга прагляду і кода...
+  loading_suggestions: Загрузка прапаноў...
+  loading_tags: "Загрузка тэгаў..."
+  loading_taxa_from_your: "Загрузка таксонаў з вашых назіранняў..."
+  loading_wikipedia_description: "Загрузка апісання з Вікіпедыі..."
+  locales_: Лакалізацыі
   locales:
     ar: Арабская
     be: Беларуская
@@ -2468,13 +2486,18 @@ be:
   log_out_caps: ВЫЙСЦІ
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Выйсці з %{site_name}?"
+  login_slash_username: Логін / імя карыстальніка
   logo:
+    logo: Лагатып
     white_bg_gif: GIF на белым фоне
     transparent_png: празрысты PNG
     white_text_transparent_png: празрысты PNG з белым тэкстам
+    none: няма
+  long: Даўг
   longitude: Даўгата
   longitude_in_decimal: 'Даўгата ў дзесятковых градусах, напр. -122,123'
   longitude_value: "Даўгата: %{longitude}"
+  look_up_name: "Шукаць імя"
   looks_like_neither_have!: Здаецца, ні ў кога няма таксонаў!
   looks_like_no_species_in_guide: Здаецца, у вашым даведніку яшчэ няма відаў.
   lookup: Пошук
@@ -3058,11 +3081,17 @@ be:
   only_staff_can_edit_large_places: Толькі супрацоўнікі сайта могуць рэдагаваць вельмі вялікія месцы
   only_staff_can_edit_standard_places: Толькі супрацоўнікі сайта могуць рэдагаваць месцы ў стандартнай іерархіі
   only_the_owner_of_this_list_can_do_that: Толькі ўладальнік гэтага спісу можа зрабіць гэта. Не будзь злым.
+  only_the_project_admin_can_delete_this_project: Толькі адміністратар праекта можа выдаліць гэты праект.
+  only_view_nearby_suggestions: Праглядзець толькі прапановы паблізу
+  only_you: Толькі вы
   open: адкрыць
   open_: Адкрыць
   open_description: "Каардынаты бачны для ўсіх, калі таксон не знаходзіцца пад пагрозай."
   open_street_map: OpenStreetMap
+  optional_columns_note_for_any: "Дадатковыя слупкі (заўвага: каб любы з гэтых слупкоў выкарыстоўваўся ў назіранні, усе яны павінны прысутнічаць)"
   or: або
+  or_choose_high_level_taxa: "... або выбраць з некаторых таксонаў вышэйшага рангу"
+  or_if_you_dont_want_email: "Ці калі вы проста нічога не хочаце атрымліваць па электроннай пошце..."
   order_by: Упарадкаваць па
   organisms: Арганізмы
   originally_flagged_by: Першапачаткова пазначаны
@@ -3409,6 +3438,16 @@ be:
     rwanda: Руанда
     saint_barthelemy: Сэн-Бартэлемі
     saint_helena: Востраў Святой Алены
+    saudi_arabia: Саудаўская Аравія
+    senegal: Сенегал
+    serbia: Сербія
+    seychelles: Сейшэльскія астравы
+    sierra_leone: Сьера-Леонэ
+    singapore: Сінгапур
+    slovakia: Славакія
+    slovenia: Славенія
+    solomon_islands: Саламонавы астравы
+    somalia: Самалі
     south_america: Паўднёвая Амерыка
     south_georgia_and_the_south_sandwich_islands: Паўднёвая Джорджыя і Паўднёвыя Сандвічавы астравы
     south_korea: Паўднёвая Карэя
@@ -3455,6 +3494,7 @@ be:
     yemen: Емен
     zambia: Замбія
     zimbabwe: Зімбабвэ
+  places_merged_successfully: Месцы паспяхова аб'яднаны!
   please_confirm_your_inat_username: "Калі ласка, пацвердзіце сваё %{site_name} імя карыстальніка"
   please_explain_why_you_want_to_hide_this: Калі ласка, растлумачце, чаму вы хочаце схаваць гэта
   please_explain_why_you_want_to_unhide_this: Калі ласка, растлумачце, чаму вы хочаце паказаць гэта
@@ -3726,6 +3766,20 @@ be:
     Адрасы электроннай пошты абагульняюцца з Удзельнікамі Сеткі выключна для камунікацыйных мэтаў, звязаных з сайтам.
   sites_affiliation_more_twice_per_year: |
     Два разы на год iNaturalist дзеліцца адрасамі электроннай пошты ўліковых запісаў афіцыйных партнёраў і некаторымі закрытымі каардынатамі (калі каардынаты схаваныя або прыватныя) з удзельнікамі сеткі iNaturalist, каб палегчыць выкарыстанне дадзеных iNaturalist для даследавання, захавання і кіравання ў іх адпаведных раёнах. Два спосабы, якімі каардынаты робяць закрытымі, выкарыстоўваюцца па-рознаму, як апісана ніжэй.
+  sites_network_consists_of: "Сетка iNaturalist складаецца з некалькіх арганізацый:"
+  sites_network_inaturalist_network_collection: |
+    Сетка iNaturalist - гэта калекцыя лакалізаваных вэб-сайтаў, якія цалкам звязаны з сусветнай супольнасцю iNaturalist. Сеткавыя сайты падтрымліваюцца мясцовымі ўстановамі, якія спрыяюць мясцоваму выкарыстанню і палягчаюць выкарыстанне дадзеных iNaturalist на карысць мясцовай біяразнастайнасці. Яны маюць доступ да сапраўдных каардынатаў у сваіх геаграфічных зонах, якія аўтаматычна схаваныя ад грамадскасці, каб лепш абараняць віды, якія знаходзяцца пад пагрозай.
+  sites_network_your_username: |
+    Вашы імя карыстальніка і пароль працуюць на ўсіх сайтах, якія ўваходзяць у сетку iNaturalist. Калі вы вырашыце далучыцца да сайту Сеткі, мясцовыя ўстановы, якія падтрымліваюць кожны сайт, таксама атрымаюць доступ да вашага адраса электроннай пошты (толькі для зносін з вамі аб дзейнасці сайта) і доступ да сапраўдных каардынатаў для назіранняў, якія вы вырашылі зрабіць публічна схаванымі або прыватнымі.
+  some_observations_are_missing_media_or_identifications: |
+    У некаторых назіраннях адсутнічаюць медыяфайлы або вызначэнні
+  some_observations_are_missing_media_or_identifications_desc: |
+    Назіранні без медыяфайлаў па змаўчанні не будуць бачныя пры пошуку, а тыя, якія не маюць ніякага вызначэння, могуць не быць заўважаныя экспертамі, якія шукаюць канкрэтныя таксоны. Нават вельмі грубае вызначэнне, як "расліны", можа дапамагчы спецыялістам па раслінах знайсці вашае назіранне.
+  some_observations_failed_to_be_added: Некаторыя назіранні не атрымалася дадаць да праектаў
+  some_observations_failed_to_save: Некаторыя назіранні не атрымалася захаваць
+  some_of_those_photos_couldnt_be_saved: "Некаторыя з гэтых фота не атрымалася захаваць: %{error}"
+  some_other_reason: Іншая прычына, якую вы можаце растлумачыць ніжэй.
+  some_rights_reserved: некаторыя правы абаронены
   sounds:
     add_media: Дадаць медыа
     add_sounds: Дадаць гукі

@@ -314,6 +314,7 @@ uk:
   accuracy_of_the_coordinates: |
     Точність координат у метрах. Ви можете змінити це натиснувши на посилання
     "змінити" вгорі або натиснувши на маркер карти й перетягнувши повзунки. Спробуйте зробити коло достатньо великим, аби бути певним, що ви були десь всередині.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Дія
   actions: Дії
   active: Активні
@@ -3595,7 +3596,8 @@ uk:
     Як вже на то пішло, якщо темп зростання iNat буде таким і надалі, в майбутньому нам доведеться обмежити умови, за яких люди матимуть змогу додавати місця.
   plants: рослини
   please_add_a_citation_for_this_change: Будь ласка, додайте цитату до цієї зміни.
-  please_allow_a_few_weeks_for_external_sites: Будь ласка, почекайте кілька тижнів, аби зовнішні сайти синхронізували зміни, зроблені для цього спостереження #Title to a section warning a user to exercise caution
+  please_allow_a_few_weeks_for_external_sites: Будь ласка, почекайте кілька тижнів, аби зовнішні сайти синхронізували зміни, зроблені для цього спостереження #Request that a known child ask their parents for permission to use this service
+  #Title to a section warning a user to exercise caution
   please_be_careful!: Будь ласка, будьте уважні!
   please_complete_the_following_to_add_project: |
     Будь ласка, завершіть наступні дії, щоб додати це спостереження в проект:
@@ -7277,16 +7279,16 @@ uk:
         url: URL-адреса
         citation: 'Як цитувати:'
       taxon:
-        name: Назва
-        rank: Ранг
-        parent_id: ID початкового запису
-        locked: Заблоковано
-        auto_photos: Автоматичні фото
         auto_description: Автоматичний опис
-        wikipedia_title: Назва статті на Вікіпедії
-        wikipedia_summary: Зведення з Вікіпедії
+        auto_photos: Автоматичні фото
+        locked: Заблоковано
+        name: Назва
+        parent_id: ID початкового запису
+        rank: Ранг
         source_identifier: Ідентифікатор джерела
         source_url: Посилання на джерело
+        wikipedia_summary: Зведення з Вікіпедії
+        wikipedia_title: Назва статті на Вікіпедії
       taxon_name:
         name_provider: Джерело назв
         source_url: Посилання на джерело

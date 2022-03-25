@@ -101,22 +101,12 @@ describe User do
   end
 
   describe "creation" do
-    before do
-      @user = nil
-      @creating_user = lambda do
-        @user = create_user
-        puts "[ERROR] #{@user.errors.full_messages.to_sentence}" if @user.new_record?
-      end
+    it "increments User#count" do
+      expect { create( :user ) }.to change( User, :count ).by( 1 )
     end
 
-    it 'increments User#count' do
-      expect(@creating_user).to change(User, :count).by(1)
-    end
-
-    it 'initializes confirmation_token' do
-      @creating_user.call
-      @user.reload
-      expect(@user.confirmation_token).not_to be_blank
+    it "initializes confirmation_token" do
+      expect( create( :user, :as_unconfirmed ).confirmation_token ).not_to be_blank
     end
 
     it "should require email under normal circumstances" do
@@ -274,26 +264,26 @@ describe User do
       expect( es_o ).to eq o
     end
 
-    it "should update the native_realname on all photos if the name changed" do
+    it "should not update the native_realname on all photos if the name changed" do
       u = User.make!( name: "timdal the great" )
       o = make_research_grade_observation( user: u )
       p = o.photos.first
-      expect( p.native_realname ).to eq u.name
+      expect( p.native_realname ).to be_blank
       new_name = "Zolophon the Destroyer"
       without_delay { u.update( name: new_name ) }
       p.reload
-      expect( p.native_realname ).to eq new_name
+      expect( p.native_realname ).to be_blank
     end
 
-    it "should update the native_username on all photos if the login changed" do
+    it "should not update the native_username on all photos if the login changed" do
       o = make_research_grade_observation
       u = o.user
       p = o.photos.first
-      expect( p.native_username ).to eq u.login
+      expect( p.native_username ).to be_blank
       new_login = "zolophon"
       without_delay { u.update( login: new_login ) }
       p.reload
-      expect( p.native_username ).to eq new_login
+      expect( p.native_username ).to be_blank
     end
 
     it "should not update photos by other users when the name changes" do
@@ -302,11 +292,11 @@ describe User do
       other_o = make_research_grade_observation
       other_p = other_o.photos.first
       other_u = other_o.user
-      expect( other_p.native_realname ).to eq other_u.name
+      expect( other_p.native_realname ).to be_blank
       new_login = "zolophon"
       without_delay { target_u.update( login: new_login ) }
       other_p.reload
-      expect( other_p.native_realname ).to eq other_u.name
+      expect( other_p.native_realname ).to be_blank
     end
 
     describe 'disallows illegitimate logins' do
@@ -488,11 +478,11 @@ describe User do
       other_o = make_research_grade_observation
       other_p = other_o.photos.first
       other_u = other_o.user
-      expect( other_p.native_realname ).to eq other_u.name
+      expect( other_p.native_realname ).to be_blank
       new_login = "zolophon"
       without_delay { target_u.destroy }
       other_p.reload
-      expect( other_p.native_realname ).to eq other_u.name
+      expect( other_p.native_realname ).to be_blank
     end
 
     it "should remove oauth access tokens" do
@@ -881,12 +871,12 @@ describe User do
 
     it "should update the identifications_count" do
       Identification.make!( user: reject )
-      Delayed::Worker.new.work_off
+      Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
       reject.reload
       expect( reject.identifications_count ).to eq 1
       expect( keeper.identifications_count ).to eq 0
       keeper.merge( reject )
-      Delayed::Worker.new.work_off
+      Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
       keeper.reload
       expect( keeper.identifications_count ).to eq 1
     end

@@ -40,13 +40,6 @@ describe TaxonMerge, "commit" do
     @merge.committer = @merge.user
   end
 
-  it "should not duplicate conservation status" do
-    @input_taxon1.update_attribute(:conservation_status, Taxon::IUCN_ENDANGERED)
-    expect(@output_taxon.conservation_status).to be_blank
-    @merge.commit
-    expect(@output_taxon.conservation_status).to be_blank
-  end
-
   it "should duplicate taxon names" do
     name1 = "Tyra"
     name2 = "Landry"

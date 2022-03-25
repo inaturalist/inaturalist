@@ -224,32 +224,7 @@ class ApplicationController < ActionController::Base
     @footless = true
     @no_footer_gap = true
     @responsive = true
-    es_query = {
-      has: ["photos"],
-      per_page: 100,
-      order_by: "votes",
-      order: "desc",
-      place_id: @site.try(:place_id).blank? ? nil : @site.place_id,
-      projects: ["log-in-photos"]
-    }
-    @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
-    if @observations.blank?
-      es_query.delete(:projects)
-      @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
-    end
-    if @observations.blank?
-      es_query.delete(:place_id)
-      @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
-    end
-    if es_query[:projects].blank?
-      ratio = params[:ratio].to_f
-      ratio = 1 if ratio <= 0
-      @observations = @observations.select do |o|
-        photo = o.observation_photos.sort_by{ |op| op.position || op.id }.first.photo
-        r = photo.original_dimensions[:width].to_f / photo.original_dimensions[:height].to_f
-        r < ratio
-      end
-    end
+    @observations = @site.login_featured_observations
   end
 
   def get_flickraw

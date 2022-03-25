@@ -225,6 +225,7 @@ de:
   accuracy_meters: Genauigkeit (Meter)
   accuracy_of_the_coordinates: |
     Genauigkeit der Koordinaten in Metern. Diese kannst du bearbeiten, indem du oben auf den Link „Bearbeiten“ klickst oder indem du auf den Kartenpin klickst und dann an den Punkten ziehst. Versuche, den Kreis groß genug zu ziehen, sodass du sicher sein kannst, dass du dich innerhalb aufgehalten hast.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Aktion
   actions: Aktionen
   active: Aktiv
@@ -303,7 +304,7 @@ de:
   add_observations_by_checking_off: Füge Beobachtungen durch das Auswählen von Arten aus einer Liste hinzu.
   add_observations_project: Beobachtungen zu diesem Projekt hinzufügen
   #Prompt to add a new journal post
-  add_one: Einen hinzufügen!
+  add_one: Hinzufügen
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Jetzt hinzufügen
@@ -718,7 +719,7 @@ de:
   because_of: because of
   become_a_donor_caps: Unterstützer werden
   become_a_donor_today_caps: Werde heute ein Unterstützer
-  before_importing_photos: vor dem Importieren von Bildern
+  before_importing_photos: vor dem Importieren von Bildern verlinken
   bg_color: Hintergrundfarbe
   bio: Über mich
   bio_description: Erzähle anderen Nutzern etwas von dir!
@@ -893,6 +894,10 @@ de:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Kommentar
   comment_deleted: Kommentar gelöscht
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Kommentar ausgeblendet
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Kommentar wieder sichtbar
   comments: Kommentare
   comments_by_me: Kommentare von mir
   comments_have_been_disabled: Kommentare wurden deaktiviert
@@ -1929,6 +1934,8 @@ de:
   identification_by_user: Bestimmung durch %{user}
   identification_deleted: Bestimmung gelöscht.
   identification_saved: "Bestimmung gespeichert!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Bestimmungstext wieder sichtbar
   identification_updated: Bestimmung aktualisiert!
   identification_user_short: Ident. Benutzer
   identification_withdrawn: Bestimmung zurückgezogen.
@@ -2355,7 +2362,7 @@ de:
   main_content_description: Hauptinhalt hier hinein
   make_a_new_place: Neues Gebiet erstellen
   make_a_taxon_swap_instead?: Stattdessen einen TaxonSwap durchführen?
-  make_curator: Kurator machen
+  make_curator: Zum Kurator machen
   make_manager: Zum Manager machen
   make_sure_the_default_photo_looks_good: Vergewissere dich, dass das Standardfoto in großer Größe gut aussieht.
   make_this_your_default_license: "Zu deiner Standard-%{type}-Lizenz machen"
@@ -2367,7 +2374,7 @@ de:
   manage_your_relationships: Deine Beziehungen verwalten
   manager: Manager
   managers: Manager
-  managers_can_do: Manager können alles tun, was Kuratoren können, Projekteinstellungen bearbeiten und Projektjournalbeiträge schreiben.
+  managers_can_do: Manager können, anders als Kuratoren, zusätzlich noch Projekteinstellungen bearbeiten und Projektjournalbeiträge schreiben.
   managing_projects: Projekte verwalten
   map: Karte
   map_legend: Kartenlegende
@@ -2395,6 +2402,9 @@ de:
   mark_all_as_unreviewed: Alle als "nicht begutachtet" markieren
   matching_species_will_shown_up_here: Entsprechende Arten werden hier erscheinen. Die Karten zeigen das Verbreitungsgebiet an, falls %{place} eine Beobachtung für diese Art hat.
   maverick: Ausreißer
+  maximum_positional_accuracy: Maximale Genauigkeit der Position
+  maximum_positional_accuracy_including_unknown: |
+    Maximale Genauigkeit der Position einschließlich Beobachtungen ohne Angaben
   media: Medien
   media_type: Medientyp
   medium: mittel
@@ -2445,6 +2455,7 @@ de:
     target="_blank">Nutzungsbedingungen</a> verletzt oder nicht gemäß unseren <a
     href="%{guidelines_url}" target="_blank">Richtlinien agiert</a>, melde bitte
     diese Nachricht weiter unten.
+  minimum_positional_accuracy: Minimale Genauigkeit der Position
   misidentifications: Fehlbestimmungen
   misleading_or_illegal_content_html: |
     Irreführende oder illegale Inhalte, rassistische oder ethnische Beleidigungen usw. Für mehr Informationen über unsere Definition von "angemessen", siehe die 
@@ -3580,7 +3591,9 @@ de:
     Nebenbei bemerkt, unter Berücksichtigung der aktuellen Wachstumsrate von iNat werden wir wohl die Befugnisse einschränken müssen, mit denen Benutzer in Zukunft Gebiete hinzufügen können.
   plants: Pflanzen
   please_add_a_citation_for_this_change: Bitte eine Zitierung zu dieser Veränderung hinzufügen.
-  please_allow_a_few_weeks_for_external_sites: Es kann einige Wochen dauern, bis externe Seiten Änderungen aus dieser Beobachtung synchronisiert haben #Title to a section warning a user to exercise caution
+  please_allow_a_few_weeks_for_external_sites: Es kann einige Wochen dauern, bis externe Seiten Änderungen aus dieser Beobachtung synchronisiert haben #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: Bitte frage deine Eltern um Erlaubnis
+  #Title to a section warning a user to exercise caution
   please_be_careful!: Bitte sei vorsichtig!
   please_complete_the_following_to_add_project: |
     Bitte vervollständige die folgenden Schritte, um diese Beobachtung dem Projekt hinzuzufügen:
@@ -3992,6 +4005,7 @@ de:
     must_be_in: 'muss in diesem Taxon sein:'
     must_be_coordinates_shareable_by_project_curators: Der Beobachter muss den Projektkuratoren erlauben, die Koordinaten einzusehen.
     must_be_verifiable: muss verifizierbar sein
+    must_be_wild: muss wild sein
   running_total: Gesamtzahl
   said: sagte
   satellite: Satellit
@@ -4076,7 +4090,7 @@ de:
   sending: Sende …
   #Label for messages you've sent
   sent: Gesendet
-  separate_values_with_a_pipe: Werte mit einer Pipe trennen, z.B. "1-5|6-10|a lot" oder "yes|no|maybe".
+  separate_values_with_a_pipe: Werte mit einem Senkrechten Strich trennen, z.B. "1-5|6-10|a lot" oder "yes|no|maybe".
   set_a_place_if_this_link_only_applies_to: Wähle ein Gebiet, wenn dieser Link nur für Taxa von einem bestimmten Ort gilt. Lass es leer, wenn es für Taxa auf der ganzen Welt gilt.
   set_license: Lizenz festlegen
   settings: Einstellungen
@@ -4363,6 +4377,10 @@ de:
   summary: Zusammenfassung
   supporting: bestätigend
   suspend_user: Benutzer sperren
+  suspend_user_html: '%{user} sperren'
+  suspend_user_reason_instructions_html: |
+    Begründe, warum dieses Konto gesperrt wurde und führe alle Verstöße gegen die
+    %{link_start_tag}Gemeinschaftsrichtlinien%{link_end_tag} an. Bitte verzichte auf persönliche Meinungen.
   sw_lat: SW Lat.
   sw_lon: SW Lon.
   sync: Synchronisieren?
@@ -4747,6 +4765,9 @@ de:
   unsubscribe: Abbestellen
   unsubscribe_from_emails_like_this: E-Mails wie diese abbestellen
   unsuspend_user: Benutzer entsperren
+  unsuspend_user_html: '%{user} entsperren'
+  unsuspend_user_reason_instructions: |
+    Bitte begründe, warum die Sperre dieses Benutzers aufgehoben werden soll.
   upcoming_bioblitzes: Bevorstehende bioblitze
   update: Aktualisieren
   update_existing_observations_with_new_license: Bestehende Beobachtungen mit der neuen Lizenzauswahl aktualisieren
@@ -4945,7 +4966,7 @@ de:
   view_post: Eintrag anzeigen
   view_projects_from_place: "Projekte von %{place} anzeigen"
   view_sample: Beispiel anzeigen
-  view_stats: Statistiken ansehen
+  view_stats: Statistiken
   view_taxon_change: Taxonänderung ansehen
   view_taxon_changes: Taxonänderungen ansehen
   view_taxon_framework_relationship: Taxon-Framework Beziehung anzeigen
@@ -5022,9 +5043,9 @@ de:
   whats_this?: Was ist das?
   when: Wann
   when_did_you_see_it?: Wann war die Beobachtung?
-  when_did_you_see_them?: <em>Wann</em> hast du sie gesehen?
+  when_did_you_see_them?: <em>Wann</em> war die Beobachtung?
   where: Wo
-  where_were_they?: Wo waren die Beobachtungen?
+  where_were_they?: Wo?
   where_were_you?: Wo war das?
   which_projects_can_add_your_observations?: Welche traditionellen Projekte können deine Beobachtungen hinzufügen?
   white: weiß
@@ -5220,7 +5241,7 @@ de:
   you_sure_delete_this_observation: "Sicher, dass Du diese Beobachtung löschen möchtest?"
   you_sure_remove_taxon_from?: "Bist du sicher, dass du dieses Taxon von %{list} entfernen möchtest?"
   you_unlinked_your_provider_account: "Du hast die Verknüpfung zu deinem %{provider}-Konto rückgängig gemacht"
-  youll_need_to_link: Dazu musst du es verlinken
+  youll_need_to_link: Dazu musst du
   youve_joined_the_x_project: "Du bist dem %{project_invitation} Projekt beigetreten und deine Beobachtung wurde hinzugefügt"
   your_account_has_been_activated: Dein Benutzerkonto wurde aktiviert!
   your_account_has_been_verified: "Dein %{site_name} Konto wurde verifiziert! Bitte melde dich an, um fortzufahren."
@@ -5233,7 +5254,7 @@ de:
   your_default_time_zone: Deine Standard-Zeitzone
   your_email_address: Deine E-Mail-Adresse
   your_favorites: Deine Favoriten
-  your_flickr_account: Dein Flickr-Account
+  your_flickr_account: deinen Flickr-Account
   your_flickr_photos_have_been_tagged: Deine Flickr-Bilder wurden getaggt!
   your_hard_drive: deiner Festplatte
   your_home: Dein Dashboard
@@ -5245,7 +5266,7 @@ de:
   your_observations_couldnt_be_added_to_that_project: "Deine Beobachtungen konnten nicht zum Projekt hinzugefügt werden: %{errors}"
   your_photos_have_been_tagged: Deine Bilder wurden getaggt!
   your_projects: Deine Projekte
-  your_google_account: Dein Google-Konto
+  your_google_account: Google-Konto
   your_google_account_info: Deine Google-Konto Informationen
   your_pinned_locations: Deine angepinnten Orte
   your_profile_was_successfully_updated: Dein Profil wurde erfolgreich aktualisiert!
@@ -5648,7 +5669,7 @@ de:
           nicht gelten.
           Die privaten_*-Felder werden bei der Verwendung des Benutzer-Filters nur dann angeben, wenn du der Benutzer bist, oder bei der Verwendung des Projekt-Filters, wenn du das Projekt erstellt hast.
         be_patient: |
-          Bitte um Geduld, das kann einige Minuten dauern. Wenn es zu lange dauert, kannst du
+          Bitte um Geduld, das kann einige Minuten dauern. Wenn es zu lange dauert, kannst du:
         check_back: |
           Wenn du diese Seite in ein paar Minuten neu lädst, sollte der Export
           in der Liste am Ende der Seite erscheinen.
@@ -7197,6 +7218,10 @@ de:
       message:
         subject: Betreff
         body: Nachrichtentext
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Begründung
       observation:
         description: Bemerkungen
         geo_x: Rechtswert
@@ -7259,13 +7284,13 @@ de:
         url: URL
         citation: Zitierung
       taxon:
+        auto_description: Automatische Beschreibung
+        locked: Gesperrt
         name: Name
         rank: Rang
-        locked: Gesperrt
-        auto_description: Automatische Beschreibung
-        wikipedia_title: Wikipedia-Titel
-        wikipedia_summary: Wikipedia-Zusammenfassung
         source_url: Quell-URL
+        wikipedia_summary: Wikipedia-Zusammenfassung
+        wikipedia_title: Wikipedia-Titel
       taxon_name:
         name_provider: Namensanbieter
         source_url: Quellen-URL
@@ -7339,6 +7364,11 @@ de:
               guide_has_too_many_taxa: "Guide kann nur 500 Taxa haben"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: wird für diese Art von Inhalten nicht unterstützt
+            base:
+              only_staff_can_unhide: Nur Administratoren können versteckte Inhalte wieder sichtbar machen
+              staff_cannot_be_suspended: iNat-Personal kann nicht gesperrt werden
             user_id:
               must_be_a_curator: muss ein Kurator sein
         mushroom_observer_import_flow_task:

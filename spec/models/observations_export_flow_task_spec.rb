@@ -153,6 +153,28 @@ describe ObservationsExportFlowTask do
       expect( csv.detect{|row| row.detect{|v| v == in_project.id.to_s}} ).not_to be_blank
       expect( csv.detect{|row| row.detect{|v| v == not_in_project.id.to_s}} ).to be_blank
     end
+
+    describe "email notification" do
+      let(:o) { create :observation }
+      let(:ft) {
+        ft = build :observations_export_flow_task
+        ft.inputs.build( extra: { query: "user_id=#{o.user.id}" } )
+        ft.save!
+        ft
+      }
+      it "should happen if requested" do
+        ft.update( options: { email: true } )
+        expect {
+          ft.run
+        }.to change( ActionMailer::Base.deliveries, :size ).by 1
+      end
+      it "should not happen if not requested" do
+        expect( ft.options[:email] ).to be_blank
+        expect {
+          ft.run
+        }.not_to change( ActionMailer::Base.deliveries, :size )
+      end
+    end
   end
 
   describe "geoprivacy" do
@@ -422,6 +444,20 @@ describe ObservationsExportFlowTask do
         expect( csv.size ).to eq 2
         expect( csv[1] ).not_to include o.private_latitude.to_s
       end
+    end
+
+    it "should include private coordinates if the observer trusts the exporter" do
+      o = make_private_observation( taxon: create( :taxon ) )
+      viewer = create :user
+      Friendship.make!( user: o.user, friend: viewer, trust: true )
+      expect( o ).to be_coordinates_viewable_by( viewer )
+      ft = ObservationsExportFlowTask.make( user: viewer )
+      ft.inputs.build( extra: { query: "user_id=#{o.user_id}" } )
+      ft.save!
+      ft.run
+      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
+      expect( csv.size ).to eq 2
+      expect( csv[1] ).to include o.private_latitude.to_s
     end
   end
 

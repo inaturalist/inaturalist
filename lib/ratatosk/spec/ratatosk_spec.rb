@@ -105,14 +105,6 @@ describe Ratatosk, "searching" do
   it "should find 'horseshoe crab'" do
     expect( @ratatosk.find('horseshoe crab') ).not_to be_blank
   end
-  
-  it "should return a taxon with a unique name for Holodiscus discolor" do
-    tn = @ratatosk.find('Holodiscus discolor').first
-    tn.save
-    taxon = tn.taxon
-    taxon.reload
-    expect(taxon.unique_name).not_to be_nil
-  end
 
   it "should add names to existing taxa" do
     load_test_taxa

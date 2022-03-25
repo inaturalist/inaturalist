@@ -220,6 +220,7 @@ pt-BR:
   accuracy_meters: Precisão (Acurácia em metros)
   accuracy_of_the_coordinates: |
     Precisão (Acurácia) das coordenadas em metros. Você pode editar este campo clicando no link acima ou clicando em um ponto no mapa e selecionando a localização. Tente criar um círculo grande o suficiente para que você esteja certo de que esteve em algum ponto dentro desta área.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Ação
   actions: ações
   active: Ativo
@@ -856,6 +857,8 @@ pt-BR:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} foram agrupados em %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} serão agrupados em %{output_taxon}"
   change_your_password: Altere sua senha
+  #Plural noun, as in changes to a taxon record over time
+  changes: Modificações
   changing_the_geoprivacy: 'Mudar a geoprivacidade altera como as outras pessoas verão a localização das suas observações.'
   check_above_for_errors: Verifique erros acima
   check_back_soon: Verifique em breve!
@@ -913,6 +916,10 @@ pt-BR:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Comentário
   comment_deleted: Comentário apagado
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Comentário ocultado
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Comentário reexibido
   comments: Comentários
   comments_by_me: Meus comentários
   comments_have_been_disabled: Os comentários foram desabilitados
@@ -1987,6 +1994,8 @@ pt-BR:
   identification_by_user: Identificação por %{user}
   identification_deleted: Identificação apagada.
   identification_saved: "Identificação salva!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Texto de identificação reexibido
   identification_updated: Identificação atualizada!
   identification_user_short: Usuário ident.
   identification_withdrawn: Identificação retirada.
@@ -2449,6 +2458,7 @@ pt-BR:
   mark_all_as_unreviewed: Marcar Todos como Não Revisado
   matching_species_will_shown_up_here: As espécies encontradas serão mostradas aqui. Os mapas irão mostrar uma área se %{place} tiver uma para alguma espécie.
   maverick: Maverick
+  maximum_positional_accuracy: Precisão máxima de localização
   media: Mídia
   media_type: Tipo de media
   medium: médio
@@ -3632,13 +3642,14 @@ pt-BR:
     pessoas podem adicionar lugares no futuro dada a taxa de crescimento atual do iNat.
   plants: plantas
   please_add_a_citation_for_this_change: Por favor adicione uma referência para esta mudança.
-  please_allow_a_few_weeks_for_external_sites: Por favor, espere algumas semanas até que os sites externos sincronizem esta observação #Title to a section warning a user to exercise caution
+  please_allow_a_few_weeks_for_external_sites: Por favor, espere algumas semanas até que os sites externos sincronizem esta observação #Request that a known child ask their parents for permission to use this service
+  #Title to a section warning a user to exercise caution
   please_be_careful!: Por favor, tenha cuidado!
   please_complete_the_following_to_add_project: |
     Por favor complete o seguinte para adicionar esta observação ao projeto:
   please_confirm_your_inat_username: "Por favor confirme seu nome de usuário em %{site_name}"
-  please_explain_why_you_want_to_hide_this: Por favor, explique por que você quer esconder isso
-  please_explain_why_you_want_to_unhide_this: Por favor, explique por que você quer mostrar isso
+  please_explain_why_you_want_to_hide_this: Por favor, explique por quê você quer ocultar isso
+  please_explain_why_you_want_to_unhide_this: Por favor, explique por quê você quer reexibir isso
   please_fix_your_csv_and_try_again: Por favor arrume seu CSV e tente novamente.
   please_hold_on_while_the_file: Por favor aguarde enquanto este arquivo é gerado. Isto pode levar alguns minutos caso você tenha muitas observações.
   please_hold_on_while_the_file_is_generated: Por favor aguarde alguns minutos enquanto o arquivo é grado. Isto pode levar alguns minutos para listas grandes.
@@ -3930,6 +3941,8 @@ pt-BR:
   recently_finished: Terminado recentemente
   recently_observed: Recentemente observado
   recently_resolved: Recentemente resolvido
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Registro
   red: vermelho
   redo_search_in_map: Refazer a pesquisa no mapa
   redo_search_in_map_area: Refazer a pesquisa na área do mapa
@@ -4044,6 +4057,7 @@ pt-BR:
     must_be_in: deve estar presente na espécie ou grupo
     must_be_coordinates_shareable_by_project_curators: observador deve autorizar que administradores de projetos acessem as coordenadas.
     must_be_verifiable: Deve ser verificável
+    must_be_wild: deve ser selvagem
   running_total: Total acumulado
   said: disse
   satellite: satélite
@@ -4140,6 +4154,9 @@ pt-BR:
   show_active_and_inactive_taxa: Exibir espécies ativas e inativas
   show_common_names: Mostrar nomes comuns
   show_hidden_content: Mostrar conteúdo oculto
+  show_history_by_this_user: Mostrar histórico deste usuário
+  show_history_for_this_kind_of_action: Mostrar histórico para este tipo de ação
+  show_history_for_this_record: Mostrar histórico deste registro
   show_keyboard_shortcuts: Mostrar Teclas de Atalho
   show_less: Mostrar menos
   show_more: Mostrar mais
@@ -4444,6 +4461,9 @@ pt-BR:
   summary: Resumo
   supporting: Concordante
   suspend_user: Suspender usuário
+  suspend_user_html: Suspender %{user}
+  suspend_user_reason_instructions_html: |
+    Explique porque está suspendendo esta conta e cite quaisquer violações das %{link_start_tag}Diretrizes da Comunidade%{link_end_tag}. Por favor, evite adicionar opiniões pessoais.
   sw_lat: Lat. S.O.
   sw_lon: Lon. S.O.
   sync: Sincronizar
@@ -4558,6 +4578,7 @@ pt-BR:
   taxon_framework_relationship_unknown_count_html: "Número desconhecido de relacionamento: %{count}"
   taxon_framework_relationships: Relações de marco do táxon
   taxon_framework_taxon: Táxon de estrutura de táxon
+  taxon_history_notice: O histórico foi introduzido em fevereiro de 2022, portanto, nenhum histórico está disponível antes dessa data.
   taxon_merge: Fundir táxon
   taxon_name: Nome de táxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Nome do táxon deve coincidir com um nome presente em nossa base de dados
@@ -4823,6 +4844,9 @@ pt-BR:
   unsubscribe: Cancelar inscrição
   unsubscribe_from_emails_like_this: Cancelar assinatura de e-mails como este
   unsuspend_user: Reativar usuário
+  unsuspend_user_html: Reativar %{user}
+  unsuspend_user_reason_instructions: |
+    Por favor, explique por que você está cancelando a suspensão deste usuário.
   upcoming_bioblitzes: Próximas bioblitz
   update: Atualizar
   update_existing_observations_with_new_license: Atualizar as observações existentes com uma nova licença escolhida
@@ -5103,6 +5127,8 @@ pt-BR:
   where_were_you?: Onde você está?
   which_projects_can_add_your_observations?: Quais projetos tradicionais podem adicionar suas observações?
   white: branco
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Por que você está fazendo esta alteração? (opcional)
   why_you_can_see_the_coordinates: Por que você pode ver as coordenadas
   who_can_add_observation_fields_to_my_obs: Quem pode adicionar campos de observação às minhas observações?
   who_can_add_observations_to_this_project?: Quem pode adicionar observações a este projeto?
@@ -7295,6 +7321,10 @@ pt-BR:
       message:
         subject: Assunto
         body: Corpo do texto
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: 'Motivo:'
       observation:
         description: Anotações
         geo_x: Deslocando-se ao leste
@@ -7323,6 +7353,8 @@ pt-BR:
         #confidential, e.g. a native or desktop app as opposed to a web
         #app.
         confidential: Confidencial
+      place_taxon_name:
+        position: Posição
       post:
         title: Título
         body: Texto
@@ -7366,18 +7398,39 @@ pt-BR:
         url: URL
         citation: Citação
       taxon:
-        name: Nome
-        rank: Posição
-        parent_id: ID do Ancestral
-        locked: Bloqueado
-        auto_photos: Carregar as fotos automaticamente
+        ancestry: Ancestral
         auto_description: Descrição automática
-        wikipedia_title: Título do artigo no Wikipedia
-        wikipedia_summary: Resumo do conteúdo da Wikipedia
+        auto_photos: Carregar as fotos automaticamente
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Estado de conservação
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: ID de táxon icônico
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Ativo
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Icônico?
+        locked: Bloqueado
+        name: Nome
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Nome do provedor
+        parent_id: ID do Ancestral
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Fotos bloqueadas?
+        rank: Posição
+        rank_level: Nível de classificação
+        source_id: ID de origem
         source_identifier: Identificador de fonte
         source_url: URL de origem
+        wikipedia_summary: Resumo do conteúdo da Wikipedia
+        wikipedia_title: Título do artigo no Wikipedia
       taxon_name:
+        is_valid: É válido?
+        lexicon: Léxico
+        name: Nome
         name_provider: Nome do provedor
+        position: Posição
         source_url: URL de origem
         source_identifier: Identificador de fonte
       user:
@@ -7450,6 +7503,11 @@ pt-BR:
               guide_has_too_many_taxa: "a guia só pode ter 500 táxons"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: não é suportado para este tipo de conteúdo
+            base:
+              only_staff_can_unhide: Somente funcionários do site podem reexibir conteúdo oculto
+              staff_cannot_be_suspended: Funcionários do site não podem ser suspensos
             user_id:
               must_be_a_curator: deve ser um curador
         mushroom_observer_import_flow_task:

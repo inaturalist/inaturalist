@@ -389,7 +389,7 @@ describe Identification, "creation" do
           expect( Delayed::Job.count ).to be > 1
           user.reload
           expect( user.identifications_count ).to eq 0
-          Delayed::Worker.new.work_off
+          Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
           user.reload
           expect( user.identifications_count ).to eq 1
         end

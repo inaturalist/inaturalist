@@ -1,7 +1,10 @@
 import { connect } from "react-redux";
 import ObservationFields from "../components/observation_fields";
-import { addObservationFieldValue, removeObservationFieldValue,
-  updateObservationFieldValue } from "../ducks/observation";
+import {
+  addObservationFieldValue,
+  removeObservationFieldValue,
+  updateObservationFieldValue
+} from "../ducks/observation";
 import { updateSession } from "../ducks/users";
 
 function mapStateToProps( state ) {

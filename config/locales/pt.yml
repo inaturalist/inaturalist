@@ -200,6 +200,7 @@ pt:
   accuracy_meters: Precisão (metros)
   accuracy_of_the_coordinates: |
     A precisão das coordenadas estão em metros. Podes modificá-la premendo, acima, a hiperligação "modificar", ou premendo no marcador do mapa e arrastando os círculos. Tenta fazer o círculo de um modo que fiques em seu interior.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Ação
   actions: Ações
   active: Ativo
@@ -2703,7 +2704,7 @@ pt:
   places_merged_successfully: Lugares agrupados com sucesso!
   plants: plantas
   please_add_a_citation_for_this_change: Por favor adicione uma referência para esta alteração.
-  please_allow_a_few_weeks_for_external_sites: Por favor, aguarde algumas semanas para que os sites externos sincronizem as alterações desta observação #Title to a section warning a user to exercise caution
+  please_allow_a_few_weeks_for_external_sites: Por favor, aguarde algumas semanas para que os sites externos sincronizem as alterações desta observação #Request that a known child ask their parents for permission to use this service
   please_complete_the_following_to_add_project: |
     Por favor, preencha com a(s) seguinte(s) informação(ões) para adicionar a observação ao projeto:
   please_confirm_your_inat_username: "Por favor, confirme o seu nome de utilizador do  %{site_name}"
@@ -3828,15 +3829,15 @@ pt:
         title: Título
         citation: Bibliografía
       taxon:
+        auto_description: Carregar a descrição automaticamente
+        auto_photos: Carregar as fotos automaticamente
+        locked: Bloqueado
         name: Nome
         rank: Classificação
-        locked: Bloqueado
-        auto_photos: Carregar as fotos automaticamente
-        auto_description: Carregar a descrição automaticamente
-        wikipedia_title: Título do artigo no Wikipedia
-        wikipedia_summary: Resumo do conteúdo do Wikipedia
         source_identifier: Identificador da fonte
         source_url: Fonte URL
+        wikipedia_summary: Resumo do conteúdo do Wikipedia
+        wikipedia_title: Título do artigo no Wikipedia
       taxon_name:
         source_url: Fonte URL
         source_identifier: Identificador da fonte

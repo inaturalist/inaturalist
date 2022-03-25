@@ -47,11 +47,13 @@
     <th><%= t(:actions) %></th>
   </tr>
   <% for flagging in @flags %>
-  <% rendered_taxon =  render(:partial => 'shared/taxon', 
-                              :locals => { :taxon => flagging.flagged_object, :link_url => flagging.flagged_object }) %>
   <tr>
     <td><%= flagging.created_at %></td>
-    <td><%= rendered_taxon %></td>
+    <td>
+      <% if flagging.flagged_object %>
+        <%= render( "shared/taxon", taxon: flagging.flagged_object, link_url: flagging.flagged_object ) %>
+      <% end -%>
+    </td>
     <td><%= h flagging.flag %></td>
     <td>
       <% if flagging.user -%>

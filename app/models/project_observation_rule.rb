@@ -78,9 +78,9 @@ class ProjectObservationRule < Rule
 
   def touch_projects
     if ruler && ruler.is_a?( Project )
-      ruler.touch
+      ruler.touch unless ruler.saved_change_to_id?
       if operand && operand.is_a?( Project )
-        operand.touch
+        operand.touch unless operand.saved_change_to_id?
       end
     end
   end

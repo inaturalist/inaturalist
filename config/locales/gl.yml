@@ -234,6 +234,7 @@ gl:
   accuracy_meters: Exactitude (metros)
   accuracy_of_the_coordinates: |
     Exactitude das coordenadas en metros. Pódelas cambiar facendo clic no enlace Modificar ou facendo clic no punto da túa localización no mapa. Trata de facer o círculo o suficientemente grande como para garantir que estabas nalgún lugar da área que marcaches.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Accións
   actions: Accións
   active: Activa
@@ -3450,7 +3451,8 @@ gl:
     Polo que vale, teremos que restrinxir as condicións para poder engadir lugares no futuro, dado a actual taxa de crecemento de iNat.
   plants: Plantas
   please_add_a_citation_for_this_change: Debes engadir unha referencia para este cambio.
-  please_allow_a_few_weeks_for_external_sites: Por favor, dálles unhas semanas ás páxinas externas para sincronizar os cambios desta observación #Title to a section warning a user to exercise caution
+  please_allow_a_few_weeks_for_external_sites: Por favor, dálles unhas semanas ás páxinas externas para sincronizar os cambios desta observación #Request that a known child ask their parents for permission to use this service
+  #Title to a section warning a user to exercise caution
   please_be_careful!: '¡Por favor, Ten Coidado!'
   please_complete_the_following_to_add_project: |
     Por favor, completa o seguinte para engadir esta observación ó proxecto:
@@ -6779,16 +6781,16 @@ gl:
         url: Enlace
         citation: Bibliografía
       taxon:
-        name: Nome
-        rank: Clasificación
-        parent_id: Identificador da clase ou especie pai
-        locked: Cadeado
-        auto_photos: Cargar as fotos automaticamente
         auto_description: Cargar a descrición automaticamente
-        wikipedia_title: Título de Wikipedia
-        wikipedia_summary: Resumo de Wikipedia
+        auto_photos: Cargar as fotos automaticamente
+        locked: Cadeado
+        name: Nome
+        parent_id: Identificador da clase ou especie pai
+        rank: Clasificación
         source_identifier: Identificador da fonte
         source_url: Enlace fonte
+        wikipedia_summary: Resumo de Wikipedia
+        wikipedia_title: Título de Wikipedia
       taxon_name:
         name_provider: Provedor de nome
         source_url: Dirección web da fonte

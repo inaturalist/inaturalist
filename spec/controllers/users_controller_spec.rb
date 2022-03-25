@@ -311,46 +311,6 @@ describe UsersController, "remove_role" do
   end
 end
 
-describe UsersController, "suspend" do
-  let( :user ) { User.make! }
-  let( :curator_user ) { make_curator }
-  it "suspends the user" do
-    expect( user.suspended_at ).to be_nil
-    sign_in curator_user
-    get :suspend, params: { id: user.id }
-    user.reload
-    expect( user.suspended_at ).not_to be_nil
-  end
-
-  it "sets the suspending user" do
-    expect( user.suspended_at ).to be_nil
-    sign_in curator_user
-    get :suspend, params: { id: user.id }
-    user.reload
-    expect( user.suspended_by_user ).to eq curator_user
-  end
-end
-
-describe UsersController, "unsuspend" do
-  let( :user ) { User.make!( suspended_at: Time.now ) }
-  let( :curator_user ) { make_curator }
-  it "unsuspends the user" do
-    expect( user.suspended_at ).not_to be_nil
-    sign_in curator_user
-    get :unsuspend, params: { id: user.id }
-    user.reload
-    expect( user.suspended_at ).to be_nil
-  end
-
-  it "unsets the suspending user" do
-    expect( user.suspended_at ).not_to be_nil
-    sign_in curator_user
-    get :unsuspend, params: { id: user.id }
-    user.reload
-    expect( user.suspended_by_user ).to be_nil
-  end
-end
-
 describe UsersController, "show" do
   it "should with a login" do
     u = User.make!

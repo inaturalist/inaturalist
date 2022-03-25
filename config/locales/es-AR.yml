@@ -202,6 +202,7 @@ es-AR:
   accuracy_meters: Precisión (metros)
   accuracy_of_the_coordinates: |
     Precisión de las coordenadas en metros. Se pueden cambiar seleccionando el enlace "Modificar" arriba o seleccionando el punto de la ubicación en el mapa y arrastrando las manillas. Procure hacer el círculo lo suficientemente grande para asegurarse de que estaba en algún lugar dentro del área marcada.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Acción
   actions: Acciones
   active: Activo
@@ -3421,7 +3422,8 @@ es-AR:
     Por si sirve de algo, en el futuro tendremos que restringir las condiciones para añadir lugares, dada la tasa actual de crecimiento de iNat.
   plants: plantas
   please_add_a_citation_for_this_change: Añade una referencia para este cambio.
-  please_allow_a_few_weeks_for_external_sites: Por favor, espere alguna semana para que los sitios externos sincronicen los cambios en esta observación #Title to a section warning a user to exercise caution
+  please_allow_a_few_weeks_for_external_sites: Por favor, espere alguna semana para que los sitios externos sincronicen los cambios en esta observación #Request that a known child ask their parents for permission to use this service
+  #Title to a section warning a user to exercise caution
   please_be_careful!: '¡Tené cuidado!'
   please_complete_the_following_to_add_project: |
     Completa lo siguiente para añadir este observación al proyecto:
@@ -3785,6 +3787,7 @@ es-AR:
     must_be_observed_in_place: deben ser observaciones en este lugar
     must_be_in: deben estar dentro de la especie o grupo
     must_be_coordinates_shareable_by_project_curators: el observador debe permitir a los curadores del proyecto ver las coordenadas.
+    must_be_wild: debe ser silvestre
   running_total: Total acumulado
   said: decia
   satellite: satélite
@@ -4125,6 +4128,7 @@ es-AR:
   summary: Resumen
   supporting: Apoyo a
   suspend_user: Suspender usuario
+  suspend_user_html: Suspender a %{user}
   sw_lat: lat. S.O.
   sw_lon: long. S.O.
   sync: '¿Sincronizar?'
@@ -4453,6 +4457,7 @@ es-AR:
   unreview_all: Marcar todos como no revisados
   unsubscribe: Quitar suscripción
   unsuspend_user: Reactivar usuario
+  unsuspend_user_html: Reactivar a %{user}
   upcoming_bioblitzes: Próximos maratones naturalistas
   update: Actualizar
   update_existing_observations_with_new_license: Actualizar las observaciones existentes con la licencia que escogí
@@ -6442,6 +6447,10 @@ es-AR:
       listed_taxon:
         occurrence_status_level: Nivel de estatus de ocurrencia
         establishment_means: Medio de establecimiento
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Razón
       observation:
         description: Notas
         geo_x: Hacia el este
@@ -6499,16 +6508,16 @@ es-AR:
         url: Enlace
         citation: Bibliografía
       taxon:
-        name: Nombre
-        rank: Clasificación
-        parent_id: Identificador de la clase o especie padre
-        locked: Candado
-        auto_photos: Cargar fotos automáticamente
         auto_description: Cargar automáticamente la descripción
-        wikipedia_title: Título de Wikipedia
-        wikipedia_summary: Resumen de Wikipedia
+        auto_photos: Cargar fotos automáticamente
+        locked: Candado
+        name: Nombre
+        parent_id: Identificador de la clase o especie padre
+        rank: Clasificación
         source_identifier: Identificador de la fuente
         source_url: Enlace fuente
+        wikipedia_summary: Resumen de Wikipedia
+        wikipedia_title: Título de Wikipedia
       taxon_name:
         name_provider: Proveedor de nombre
         source_url: Dirección web de la fuente

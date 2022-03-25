@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class TaxonName < ApplicationRecord
+  audited except: [
+    :creator_id,
+    :parameterized_lexicon,
+    :taxon_id,
+    :updater_id
+  ], associated_with: :taxon
   belongs_to :taxon
   belongs_to :source
   belongs_to :creator, class_name: "User"
@@ -34,13 +40,6 @@ class TaxonName < ApplicationRecord
   before_create {| name | name.position = name.taxon.taxon_names.size }
   before_save :set_is_valid
   after_create {| name | name.taxon.set_scientific_taxon_name }
-  after_save :update_unique_names
-  after_destroy do | name |
-    name&.taxon&.delay(
-      priority: OPTIONAL_PRIORITY,
-      unique_hash: { "Taxon::update_unique_name": name.taxon_id }
-    )&.update_unique_name
-  end
   after_save :index_taxon
   after_destroy :index_taxon
 
@@ -231,16 +230,6 @@ class TaxonName < ApplicationRecord
     return true if lexicon.blank?
 
     self.lexicon = TaxonName.normalize_lexicon( lexicon )
-    true
-  end
-
-  def update_unique_names
-    return true unless saved_change_to_name?
-
-    non_unique_names = TaxonName.includes( :taxon ).where( name: name ).select( "DISTINCT ON (taxon_id) *" )
-    non_unique_names.each do | taxon_name |
-      taxon_name.taxon&.update_unique_name
-    end
     true
   end
 

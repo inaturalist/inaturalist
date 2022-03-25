@@ -6,13 +6,14 @@
   if @not_in_place_record && @not_in_place_record.html.blank?
     @not_in_place_record.html = render(:partial => "places/autocomplete_item", :object => @not_in_place_record)
   end
+  show_all ||= false
   hide_buttons ||= false
-  show_user_field ||= false
-  show_project_field ||= !@projects.blank?
-  show_multiple_taxa_field ||= !@observations_taxon_ids.blank?
-  show_extra_date_fields ||= false
-  show_ident_user_field ||= !@ident_user.blank?
-  show_without_taxon_field ||= !@without_observations_taxon.blank?
+  show_user_field ||= show_all
+  show_project_field ||= show_all || !@projects.blank?
+  show_multiple_taxa_field ||= show_all || !@observations_taxon_ids.blank?
+  show_extra_date_fields ||= show_all
+  show_ident_user_field ||= show_all || !@ident_user.blank?
+  show_without_taxon_field ||= show_all || !@without_observations_taxon.blank?
 %>
 <div id="search_filter" class="row">
   <label class="label" for="q">
@@ -419,16 +420,19 @@
     </div>
   </div>
 <% end -%>
-<% if @verifiable -%>
+<% if show_all || @verifiable -%>
   <%= render(partial: "yes_no_any_field", locals: { field: "verifiable", value: @verifiable }) %>
 <% end -%>
-<% if @threatened -%>
+<% if show_all || @threatened -%>
   <%= render(partial: "yes_no_any_field", locals: { field: "threatened", value: @threatened }) %>
 <% end -%>
-<% if @introduced -%>
+<% if show_all || @introduced -%>
   <%= render(partial: "yes_no_any_field", locals: { field: "introduced", value: @introduced }) %>
 <% end -%>
-<% if @popular -%>
+<% if show_all || @native -%>
+  <%= render(partial: "yes_no_any_field", locals: { field: "native", value: @native }) %>
+<% end -%>
+<% if show_all || @popular -%>
   <%= render(partial: "yes_no_any_field", locals: { field: "popular", value: @popular }) %>
 <% end -%>
 
@@ -512,6 +516,33 @@
   <input type="hidden" name="d2" id="d2" value="<%= @d2 %>"/>
   <input type="hidden" name="created_on" id="created_on" value="<%= @created_on %>"/>
 <% end %>
+
+<% if show_all %>
+  <div class="clear row upstacked">
+    <label for="acc_above_input" class="label"><strong><%=t :acc_above %></strong></label>
+    <div class="left">
+      <input type="number" min="0" name="acc_above" id="acc_above_input" value="<%= @acc_above %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small"><%= t :minimum_positional_accuracy %></div>
+    </div>
+  </div>
+  <div class="clear row upstacked">
+    <label for="acc_above_input" class="label"><strong><%=t :acc_below %></strong></label>
+    <div class="left">
+      <input type="number" min="0" name="acc_below" id="acc_below_input" value="<%= @acc_below %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small"><%= t :maximum_positional_accuracy %></div>
+    </div>
+  </div>
+  <div class="clear row upstacked">
+    <label for="acc_above_input" class="label"><strong><%=t :acc_below_or_unknown %></strong></label>
+    <div class="left">
+      <input type="number" min="0" name="acc_below_or_unknown" id="acc_below_or_unknown_input" value="<%= @acc_below_or_unknown %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small"><%= t :maximum_positional_accuracy_including_unknown %></div>
+    </div>
+  </div>
+<% end -%>
 
 <input type="hidden" name="site" value="<%= @site_uri %>">
 <input type="hidden" name="tdate" id="tdate"/>

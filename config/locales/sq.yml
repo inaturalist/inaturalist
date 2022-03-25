@@ -61,6 +61,7 @@ sq:
   accuracy_meters: Saktësia (metra)
   accuracy_of_the_coordinates: |
     Saktësia e koordinatave në metra. Ju mund ta redaktoni këtë duke klikuar lidhjen "redakto" lart ose duke klikuar në shenjën e hartës duke zvarritur dorën. Mundohuni ta bëni rrethin mjaftueshem të madh që të  jeni i sigurt se keni qenë diku brenda tij.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Veprim
   actions: Veprimet
   active: Aktiv
@@ -2044,7 +2045,7 @@ sq:
   places_merged_successfully: Vendet u bashkuan me sukses!
   plants: bimët
   please_add_a_citation_for_this_change: Ju lutem shtoni citat për këtë ndryshim.
-  please_allow_a_few_weeks_for_external_sites: Ju lutem prisni ca javë derisa faqet e jashtme të sinkonizojnë ndryshimet nga ky vëzhgim #Title to a section warning a user to exercise caution
+  please_allow_a_few_weeks_for_external_sites: Ju lutem prisni ca javë derisa faqet e jashtme të sinkonizojnë ndryshimet nga ky vëzhgim #Request that a known child ask their parents for permission to use this service
   please_complete_the_following_to_add_project: |
     Ju lutem plotësoni pjesën në vazhdim që ta shtoni këtë vëzhgim te projekti:
   please_confirm_your_inat_username: "Ju lutem konfirmoni emrin e përdoruesit për %{site_name}"
@@ -2743,16 +2744,16 @@ sq:
         in_text: Ne tekst
         citation: Citim
       taxon:
-        name: Emri
-        rank: Renditja
-        parent_id: ID amë
-        locked: I bllokuar
-        auto_photos: Foto automatike
         auto_description: Përshrkim automatik
-        wikipedia_title: Titulli i Wikipedia
-        wikipedia_summary: Përmbledhje e Wikipedia
+        auto_photos: Foto automatike
+        locked: I bllokuar
+        name: Emri
+        parent_id: ID amë
+        rank: Renditja
         source_identifier: Identifikuesi i burimit
         source_url: Burimi URL
+        wikipedia_summary: Përmbledhje e Wikipedia
+        wikipedia_title: Titulli i Wikipedia
       taxon_name:
         name_provider: Ofruesi i emrit
         source_url: Burimi URL

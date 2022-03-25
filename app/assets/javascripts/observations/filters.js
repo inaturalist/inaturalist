@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // Behavior for the observations filter widget ... thing.
 $(document).ready(function() {
   $('.iconic_taxon_filter input').change(function() {

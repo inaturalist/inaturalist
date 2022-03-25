@@ -12,6 +12,7 @@ class User < ApplicationRecord
   acts_as_voter
   acts_as_spammable fields: [ :description ],
                     comment_type: "signup"
+  has_moderator_actions %w(suspend unsuspend)
 
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = 'admin'
@@ -262,7 +263,6 @@ class User < ApplicationRecord
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_update :set_observations_taxa_if_pref_changed
-  after_update :update_photo_properties
   after_create :set_uri
   after_destroy :create_deleted_user
   after_destroy :remove_oauth_access_tokens
@@ -386,12 +386,22 @@ class User < ApplicationRecord
     !suspended?
   end
 
+  def child_without_permission?
+    !birthday.blank? &&
+      birthday > 13.years.ago &&
+      UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
+  end
+
   # This is a dangerous override in that it doesn't call super, thereby
   # ignoring the results of all the devise modules like confirmable. We do
   # this b/c we want all users to be able to sign in, even if unconfirmed, but
   # not if suspended.
   def active_for_authentication?
-    active? && ( birthday.blank? || birthday < 13.years.ago || !UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists? )
+    return false if suspended?
+
+    return false if child_without_permission?
+
+    true
   end
 
   def download_remote_icon
@@ -1222,21 +1232,6 @@ class User < ApplicationRecord
     true
   end
 
-  def update_photo_properties
-    changes = {}
-    changes[:native_username] = login if saved_change_to_login?
-    changes[:native_realname] = name if saved_change_to_name?
-    unless changes.blank?
-      delay( priority: USER_INTEGRITY_PRIORITY ).update_photos_with_changes( changes )
-    end
-    true
-  end
-
-  def update_photos_with_changes( changes )
-    return if changes.blank?
-    photos.update_all( changes )
-  end
-
   def recent_notifications(options={})
     return [] if CONFIG.has_subscribers == :disabled
     options[:filters] = options[:filters] ? options[:filters].dup : [ ]
@@ -1247,7 +1242,7 @@ class User < ApplicationRecord
     elsif options[:viewed]
       options[:filters] << { term: { viewed_subscriber_ids: id } }
     end
-    options[:filters] << { term: { subscriber_ids: id } }
+    options[:filters] << { term: { "subscriber_ids.keyword": id } }
     ops = {
       filters: options[:filters],
       inverse_filters: options[:inverse_filters],
@@ -1308,7 +1303,7 @@ class User < ApplicationRecord
     return unless user = User.find_by_id(user_id)
     new_fields_result = Observation.elastic_search(
       filters: [
-        { term: { non_owner_identifier_user_ids: user_id } }
+        { term: { "non_owner_identifier_user_ids.keyword": user_id } }
       ],
       size: 0,
       track_total_hits: true
@@ -1323,7 +1318,7 @@ class User < ApplicationRecord
     result = Observation.elastic_search(
       filters: [
         { bool: { must: [
-          { term: { "user.id": user_id } },
+          { term: { "user.id.keyword": user_id } },
         ] } }
       ],
       size: 0,
@@ -1380,6 +1375,16 @@ class User < ApplicationRecord
     Project.elastic_index!( scope: Project.where( user_id: id ), delay: true )
   end
 
+  def moderated_with( moderator_action )
+    if moderator_action.action == ModeratorAction::SUSPEND && !is_admin?
+      self.suspended_by_user = moderator_action.user
+      suspend!
+    elsif moderator_action.action == ModeratorAction::UNSUSPEND
+      self.suspended_by_user = nil
+      unsuspend!
+    end
+  end
+
   def personal_lists
     lists.not_flagged_as_spam.
       where("type = 'List' OR type IS NULL")
@@ -1429,8 +1434,8 @@ class User < ApplicationRecord
     taxon_counts = Observation.elastic_search(
       size: 0,
       filters: [
-        { term: { "user.id": id } },
-        { terms: { "taxon.ancestor_ids": taxa_plus_ancestor_ids } },
+        { term: { "user.id.keyword": id } },
+        { terms: { "taxon.ancestor_ids.keyword": taxa_plus_ancestor_ids } },
         { range: { "observed_on_details.date": { lt: date.to_s } } }
       ],
       aggregate: {
@@ -1464,7 +1469,7 @@ class User < ApplicationRecord
       user = u
     end
     LocalPhoto.where( user_id: user.id ).
-      select( :id, :license, :original_url, :user_id, :file_prefix_id, :file_extension_id ).
+      select( :id, :license, :user_id, :file_prefix_id, :file_extension_id ).
       includes( :user, :file_prefix, :file_extension, :flags ).find_each do |photo|
       if photo.photo_bucket_should_be_changed?
         LocalPhoto.delay(

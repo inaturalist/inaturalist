@@ -333,6 +333,7 @@ cs:
   accuracy_meters: Přesnost (v metrech)
   accuracy_of_the_coordinates: |
     Přesnost souřadnic v metrech. Můžete editovat kliknutím na odkaz „editovat“ výše nebo kliknutím na označení mapy a přetažením. Pokuste se vytvořit dostatečně velký kruh, abyste si byli jistí, že jste byli uvnitř.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Akce
   actions: Akce
   active: Aktivní
@@ -994,6 +995,8 @@ cs:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} byly sloučeny do %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} budou sloučeny do %{output_taxon}"
   change_your_password: Změna vašeho hesla
+  #Plural noun, as in changes to a taxon record over time
+  changes: Změny
   changing_the_geoprivacy: 'Změnou soukromí zeměpisné polohy změníte to, jak ostatní uvidí umístění vašeho pozorování.'
   check_above_for_errors: Zkontrolujte chyby výše
   check_back_soon: Brzy opět zkontrolujte!
@@ -1048,6 +1051,10 @@ cs:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komentář
   comment_deleted: komentář smazán
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Komentář skryt
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Komentář není skrytý
   comments: Komentáře
   comments_by_me: Moje komentáře
   comments_have_been_disabled: Komentáře byly zakázány
@@ -2116,6 +2123,8 @@ cs:
   identification_by_user: Identifikace uživatelem %{user}
   identification_deleted: Identifikace smazána.
   identification_saved: "Identifikace uloženaǃ"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Text identifikace není skrytý
   identification_updated: Identifikace aktualizovánaǃ
   identification_user_short: Ident. uživatele
   identification_withdrawn: Identifikace odstraněna.
@@ -2582,6 +2591,9 @@ cs:
   mark_all_as_unreviewed: Označit všechny za nezkontrolované
   matching_species_will_shown_up_here: Zde se zobrazí odpovídající druhy. Pokud má %{place} pro daný druh rozsah, zobrazí se na mapě.
   maverick: Samorost
+  maximum_positional_accuracy: Maximální přesnost polohy
+  maximum_positional_accuracy_including_unknown: |
+    Maximální přesnost polohy včetně pozorování bez polohové přesnosti
   media: Média
   media_type: Typ média
   medium: střední
@@ -2632,6 +2644,7 @@ cs:
     target="_blank">Smluvní podmínky</a> nebo nejedná v souladu s našimi <a
     href="%{guidelines_url}" target="_blank">Pravidly komunity</a>, prosíme,
     označte tuto zprávu níže.
+  minimum_positional_accuracy: Minimální přesnost polohy
   misidentifications: Zprávy
   misleading_or_illegal_content_html: |
     Zavádějící nebo nelegální obsah, rasové nebo etnické napadání atd. Podrobnosti k naší definici toho, co je „vhodné“ najdete na
@@ -3778,7 +3791,8 @@ cs:
     Možná se Vás to netýká, ale vzhledem k současné míře růstu iNat budeme muset omezit podmínky, za nichž lidé mohou přidávat nová místa.
   plants: rostliny
   please_add_a_citation_for_this_change: Přidejte prosím citaci pro tuto změnu.
-  please_allow_a_few_weeks_for_external_sites: Počkejte prosím pár týdnů, než se změny z tohoto pozorování sesynchronizují s externími stránkami #Title to a section warning a user to exercise caution
+  please_allow_a_few_weeks_for_external_sites: Počkejte prosím pár týdnů, než se změny z tohoto pozorování sesynchronizují s externími stránkami #Request that a known child ask their parents for permission to use this service
+  #Title to a section warning a user to exercise caution
   please_be_careful!: Prosím, opatrně!
   please_complete_the_following_to_add_project: |
     Pokud chcete přidat toto pozorování k projektu, vyplňte prosím následující:
@@ -4092,6 +4106,8 @@ cs:
   recently_finished: Nedávno dokončené
   recently_observed: Nedávno pozorované
   recently_resolved: Nedávno vyřešené
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Záznam
   red: červený
   redo_search_in_map: Opakovat hledání v mapě
   redo_search_in_map_area: Opakovat hledání v části mapy
@@ -4208,6 +4224,7 @@ cs:
     must_be_in: musí být v taxonu
     must_be_coordinates_shareable_by_project_curators: pozorovatel musí kurátorům projektu zpřístupnit náhled souřadnic.
     must_be_verifiable: musí být ověřitelné
+    must_be_wild: musí být volně žijící
   running_total: Spuštění celkem
   said: řekl/a
   satellite: satelitní
@@ -4306,6 +4323,9 @@ cs:
   show_active_and_inactive_taxa: Zobrazit aktivní a neaktivní taxony
   show_common_names: Zobrazit obecné názvy
   show_hidden_content: Zobrazit skrytý obsah
+  show_history_by_this_user: Zobrazit historii tohoto uživatele
+  show_history_for_this_kind_of_action: Zobrazit historii pro tento druh akce
+  show_history_for_this_record: Zobrazit historii pro tento záznam
   show_keyboard_shortcuts: Zobrazit klávesové zkratky
   show_less: Zobrazit méně
   show_more: Zobrazit více
@@ -4569,6 +4589,11 @@ cs:
   summary: Přehled
   supporting: Podpora
   suspend_user: Vyloučit uživatele
+  suspend_user_html: Pozastavit %{user}
+  suspend_user_reason_instructions_html: |
+    Vysvětlete, proč pozastavujete tento účet a poukazujete na jakékoli porušení
+    %{link_start_tag}pokynů komunity%{link_end_tag}. Prosím, zdržte se
+    přidávání osobních názorů.
   sw_lat: z. d. JZ
   sw_lon: z. d. JZ
   sync: Synchronizovat?
@@ -4710,6 +4735,7 @@ cs:
   taxon_framework_relationship_unknown_count_html: "Neznámý počet vztahů: %{count}"
   taxon_framework_relationships: Vztahy mezi taxony
   taxon_framework_taxon: Taxon rámce taxonu
+  taxon_history_notice: Historie byla zavedena v únoru 2022, takže před tímto datem není k dispozici žádná historie.
   taxon_merge: sloučení taxonů
   taxon_name: Název taxonu
   taxon_name_must_match_an_existing_taxon_in_our_database: Název taxonu musí odpovídat stávajícímu taxonu v naší databázi
@@ -4985,6 +5011,9 @@ cs:
   unsubscribe: Zrušit odebírání
   unsubscribe_from_emails_like_this: Odhlásit se z odběru podobných e-mailů
   unsuspend_user: Zrušit vyloučení uživatele
+  unsuspend_user_html: Zrušit pozastavení %{user}
+  unsuspend_user_reason_instructions: |
+    Vysvětlete, proč tomuto uživateli rušíte pozastavení.
   upcoming_bioblitzes: Nadcházející bioblitzy
   update: Aktualizovat
   update_existing_observations_with_new_license: Aktualizovat stávající pozorování na nové volby licencí
@@ -5270,6 +5299,8 @@ cs:
   where_were_you?: Kde jste byli?
   which_projects_can_add_your_observations?: K jakým projektům můžete přidat svá pozorování?
   white: bílý
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Proč provádíte tuto změnu? (volitelné)
   why_you_can_see_the_coordinates: Proč můžete vidět souřadnice
   who_can_add_observation_fields_to_my_obs: Kdo může přidat pole pozorování do mých pozorování?
   who_can_add_observations_to_this_project?: Kdo může přidávat pozorování k vašemu projektu?
@@ -7586,6 +7617,10 @@ cs:
       message:
         subject: Předmět
         body: Obsah
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Důvod
       observation:
         description: Poznámky
         geo_x: Východní směr
@@ -7614,6 +7649,8 @@ cs:
         #confidential, e.g. a native or desktop app as opposed to a web
         #app.
         confidential: Důvěrné
+      place_taxon_name:
+        position: Pozice
       post:
         title: Název
         body: Obsah
@@ -7657,18 +7694,38 @@ cs:
         url: URL odkaz
         citation: Citace
       taxon:
-        name: Jméno
-        rank: Pořadí
-        parent_id: Rodičovský identifikátor
-        locked: Zamknuto
-        auto_photos: Automatické fotky
+        ancestry: Předchůdce
         auto_description: Automatický popis
-        wikipedia_title: Titul Wikipedie
-        wikipedia_summary: Shrnutí na Wikipedii
+        auto_photos: Automatické fotky
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Stav ochrany
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: Doporučeno v
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Aktivní?
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Je ikonický?
+        locked: Zamknuto
+        name: Jméno
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Poskytovatel názvu
+        parent_id: Rodičovský identifikátor
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Fotografie uzamčeny?
+        rank: Pořadí
+        source_id: ID zdroje
         source_identifier: Identifikátor zdroje
         source_url: URL zdroje
+        wikipedia_summary: Shrnutí na Wikipedii
+        wikipedia_title: Titul Wikipedie
       taxon_name:
+        is_valid: Je platné?
+        lexicon: Slovník
+        name: Název
         name_provider: Poskytovatel názvu
+        position: Pozice
         source_url: URL zdroje
         source_identifier: Identifikátor zdroje
       user:
@@ -7749,6 +7806,11 @@ cs:
               guide_has_too_many_taxa: "průvodce může mít jen 500 taxonů"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: není podporováno pro tento druh obsahu
+            base:
+              only_staff_can_unhide: Pouze personál může odkrýt skrytý obsah
+              staff_cannot_be_suspended: Zaměstnanci nemohou být pozastaveni
             user_id:
               must_be_a_curator: musí být kurátor
         mushroom_observer_import_flow_task:

@@ -1,4 +1,11 @@
 en:
+  # Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    zero: "%{count} changes"
+    one: "%{count} change"
+    few: "%{count} changes"
+    many: "%{count} changes"
+    other: "%{count} changes"
   x_comments:
     one: '%{count} comment'
     other: '%{count} comments'
@@ -311,6 +318,7 @@ en:
     Accuracy of the coordinates in meters. You can edit this by click the "edit"
     link above or by clicking on the map marker and dragging the handles. Try to
     make the circle big enough that you are sure you were somewhere inside it.
+  # Noun, as in "Ken-ichi's action was not acceptable"
   action: Action
   actions: Actions
   active: Active
@@ -413,6 +421,7 @@ en:
   add_life_stage_egg_annotation: 'Add "Life Stage: Egg" annotation'
   add_evidence_of_presence_organism_annotation: 'Add "Evidence of Presence: organism" annotation'
   add_evidence_of_presence_feather_annotation: 'Add "Evidence of Presence: feather" annotation'
+  add_evidence_of_presence_gall_annotation: 'Add "Evidence of Presence: gall" annotation'
   add_evidence_of_presence_scat_annotation: 'Add "Evidence of Presence: scat" annotation'
   add_evidence_of_presence_track_annotation: 'Add "Evidence of Presence: track" annotation'
   add_evidence_of_presence_bone_annotation: 'Add "Evidence of Presence: bone" annotation'
@@ -960,6 +969,8 @@ en:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} were merged into %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} will be merged into %{output_taxon}"
   change_your_password: Change Your Password
+  # Plural noun, as in changes to a taxon record over time
+  changes: Changes
   changing_the_geoprivacy: 'Changing the geoprivacy alters how other people see the location of your observation.'
   check_above_for_errors: Check above for errors
   check_back_soon: Check back soon!
@@ -1024,6 +1035,10 @@ en:
   # Verb, generally a label on a button that allows the user to add a comment
   comment_: Comment
   comment_deleted: Comment deleted
+  # Notice when a comment has been hidden by moderators
+  comment_hidden: Comment hidden
+  # Notice when a comment has been unhidden by moderators
+  comment_unhidden: Comment unhidden
   comments: Comments
   comments_by_me: Comments by me
   comments_have_been_disabled: Comments have been disabled
@@ -1189,6 +1204,8 @@ en:
     evidence_of_presence: Evidence of Presence
     # As in the feather on a bird
     feather: Feather
+    # Abnormal growth
+    gall: Gall
     # Refers to an observation that depicts the actual organism and not some
     # kind of secondary evidence like a footprint
     organism: Organism
@@ -1218,6 +1235,7 @@ en:
       Predominantly endoskeletal remains; partial bone exposure in an otherwise
       intact organism should be labelled "organism"
     molt: Discarded skin or exoskeleton
+    gall: Deformed plant tissue outgrowth caused by a parasitic organism
   controls: Controls
   convert: Convert
   coordinate_systems: Coordinate systems
@@ -1228,11 +1246,12 @@ en:
   # that the viewer has permission to see
   coords_viewable_for_proj_label: Only w/ full coordinates
   coords_viewable_for_proj_desc: |
-    Only show observations from this project for which you can see the "true"
+    Only show observations in this project where you can see the "true"
     coordinates, including unobscured observations, obscured observations by
-    people who trust you, obscured observations by people who trust this project
-    with anything, and observations obscured by threatened taxa by people who
-    only trust this project with same.
+    people who trust you, obscured observations by people who trust this
+    project with anything, and observations obscured by threatened taxa by
+    people who only trust this project to view observations that were
+    obscured by threatened taxa.
   copy: Copy
   copy_and_paste_the_following_code_to: Copy and paste the following code to embed this assessment into another web page.
   copy_and_paste_this_into_your_own_html: Copy and paste this into your own HTML.
@@ -2169,6 +2188,10 @@ en:
   identification_by_user: Identification by %{user}
   identification_deleted: Identification deleted.
   identification_saved: "Identification saved!"
+  # Notice when the text content of an identification has been hidden by moderators
+  identification_text_hidden: Identification text hidden
+  # Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Identification text unhidden
   identification_updated: Identification updated!
   identification_user_short: Ident. user
   identification_withdrawn: Identification withdrawn.
@@ -2648,6 +2671,9 @@ en:
   mark_all_as_unreviewed: Mark All As Unreviewed
   matching_species_will_shown_up_here: Matching species will show up here. The maps will show a range if %{place} has one for that species.
   maverick: Maverick
+  maximum_positional_accuracy: Maximum positional accuracy
+  maximum_positional_accuracy_including_unknown: |
+    Maximum positional accuracy including observations without positional accuracy
   media: Media
   media_type: Media Type
   medium: medium
@@ -2698,6 +2724,7 @@ en:
     target="_blank">Terms of Service</a> or not acting in accordance with our <a
     href="%{guidelines_url}" target="_blank">Community Guidelines</a>, please
     flag this message below.
+  minimum_positional_accuracy: Minimum positional accuracy
   misidentifications: Misidentifications
   misleading_or_illegal_content_html: |
     Misleading or illegal content, racial or ethnic slurs, etc. For more on
@@ -3888,13 +3915,15 @@ en:
   please_add_a_citation_for_this_change: Please add a citation for this change.
   please_allow_a_few_weeks_for_external_sites:
     Please allow a few weeks for external sites to sync changes from this observation
+  # Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: Please ask your parents for permission
   # Title to a section warning a user to exercise caution
   please_be_careful!: Please Be Careful!
   please_complete_the_following_to_add_project: |
     Please complete the following to add this observation to the project:
   please_confirm_your_inat_username: "Please confirm your %{site_name} username"
-  please_explain_why_you_want_to_hide_this: Please explain why you want to hide this
-  please_explain_why_you_want_to_unhide_this: Please explain why you want to unhide this
+  please_explain_why_you_want_to_hide_this: Please explain why you are hiding this
+  please_explain_why_you_want_to_unhide_this: Please explain why are unhiding this
   please_fix_your_csv_and_try_again: Please fix your CSV and try again.
   please_hold_on_while_the_file: Please hold on while the file is generated. It can take a couple minutes if you have a lot of observations.
   please_hold_on_while_the_file_is_generated: Please hold on while the file is generated.  It can take a couple minutes for large lists.
@@ -4192,6 +4221,8 @@ en:
   recently_finished: Recently Finished
   recently_observed: Recently Observed
   recently_resolved: Recently Resolved
+  # Record as a noun, as in "According to our records, you love whales"
+  record_noun: Record
   red: red
   redo_search_in_map: Redo search in map
   redo_search_in_map_area: Redo search in map area
@@ -4306,6 +4337,7 @@ en:
     must_be_in: must be in taxon
     must_be_coordinates_shareable_by_project_curators: observer must allow project curators to view coordinates.
     must_be_verifiable: must be verifiable
+    must_be_wild: must be wild
   running_total: Running Total
   said: said
   satellite: satellite
@@ -4405,6 +4437,9 @@ en:
   show_active_and_inactive_taxa: Show active and inactive taxa
   show_common_names: Show common names
   show_hidden_content: Show Hidden Content
+  show_history_by_this_user: Show history by this user
+  show_history_for_this_kind_of_action: Show history for this kind of action
+  show_history_for_this_record: Show history for this record
   show_keyboard_shortcuts: Show Keyboard Shortcuts
   show_less: Show Less
   show_more: Show More
@@ -4737,6 +4772,11 @@ en:
   summary: Summary
   supporting: Supporting
   suspend_user: Suspend user
+  suspend_user_html: Suspend %{user}
+  suspend_user_reason_instructions_html: |
+    Explain why you are suspending this account and cite any violations of the
+    %{link_start_tag}Community Guidelines%{link_end_tag}. Please refrain
+     from adding personal opinions.
   sw_lat: SW Lat.
   sw_lon: SW Lon.
   sync: Sync?
@@ -4854,6 +4894,7 @@ en:
   taxon_framework_relationship_unknown_count_html: "Relationship unknown count: %{count}"
   taxon_framework_relationships: Taxon Framework Relationships
   taxon_framework_taxon: Taxon framework taxon
+  taxon_history_notice:  History was introduced in February 2022, so no history is available prior to that date.
   taxon_merge: taxon merge
   taxon_name: Taxon name
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxon name must match an existing taxon in our database
@@ -5159,6 +5200,9 @@ en:
   unsubscribe: Unsubscribe
   unsubscribe_from_emails_like_this: Unsubscribe from emails like this
   unsuspend_user: Unsuspend user
+  unsuspend_user_html: Unsuspend %{user}
+  unsuspend_user_reason_instructions: |
+    Please explain why you are unsuspending this user.
   upcoming_bioblitzes: Upcoming bioblitzes
   update: Update
   update_existing_observations_with_new_license: Update existing observations with new license choices
@@ -5449,6 +5493,8 @@ en:
   where_were_you?: Where were you?
   which_projects_can_add_your_observations?: Which traditional projects can add your observations?
   white: white
+  # Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Why are you making this change? (optional)
   why_you_can_see_the_coordinates: Why You Can See the Coordinates
   who_can_add_observation_fields_to_my_obs: Who can add observation fields to my observations?
   who_can_add_observations_to_this_project?: Who can add observations to this project?
@@ -8361,6 +8407,10 @@ en:
       message:
         subject: Subject
         body: Body
+      moderator_action:
+        # The reason a moderator action was taken, e.g. an explanation for why
+        # someone thought a comment should be hidden
+        reason: Reason
       observation:
         description: Notes
         geo_x: Easting
@@ -8389,6 +8439,9 @@ en:
         # confidential, e.g. a native or desktop app as opposed to a web
         # app.
         confidential: Confidential
+      place_taxon_name:
+        # Numeric position of a taxon name within a place
+        position: Position
       post:
         title: Title
         body: Body
@@ -8423,6 +8476,8 @@ en:
         place_type: Place type
         prefers_check_lists: Check lists allowed?
         woeid: WOEID
+      place_taxon_name:
+        position: Position
       site:
         logo: Wordmark
         logo_email_banner: Email Banner
@@ -8432,18 +8487,49 @@ en:
         url: URL
         citation: Citation
       taxon:
-        name: Name
-        rank: Rank
-        parent_id: Parent ID
-        locked: Locked
-        auto_photos: Auto photos
+        ancestry: Ancestry
         auto_description: Auto description
-        wikipedia_title: Wikipedia title
-        wikipedia_summary: Wikipedia summary
+        auto_photos: Auto photos
+        # Rank down to which all of this taxon's descendants have been added,
+        # e.g. if Homonidae has complete_rank set to genus, you would expect
+        # the genus Homo to be in the database, but not necessarily Homo
+        # sapiens
+        complete_rank: Complete rank
+        # The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Conservation status
+        # Datetime this taxon was featured for display on /taxa
+        featured_at: Featured at
+        # ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: Iconic taxon ID
+        # Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Active?
+        # Boolean attribute stating that this taxon is itself represented by
+        # an icon, e.g. Aves
+        is_iconic: Iconic?
+        locked: Locked
+        name: Name
+        # External source of the taxon, e.g. Catalogue of Life
+        name_provider: Name provider
+        parent_id: Parent ID
+        # Boolean attribute determining whether users can add, remove, or
+        # re-order photos of this taxon
+        photos_locked: Photos locked?
+        rank: Rank
+        rank_level: Rank level
+        source_id: Source ID
         source_identifier: Source identifier
         source_url: Source URL
+        # Identifier of the taxon framework relationship record associated
+        # with this taxon
+        taxon_framework_relationship_id: Taxon framework relationship ID
+        wikipedia_summary: Wikipedia summary
+        wikipedia_title: Wikipedia title
       taxon_name:
+        is_valid: Is valid?
+        lexicon: Lexicon
+        name: Name
         name_provider: Name provider
+        position: Position
         source_url: Source URL
         source_identifier: Source identifier
       user:
@@ -8479,6 +8565,11 @@ en:
               guide_has_too_many_taxa: "guide can only have 500 taxa"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: is not supported for this kind of content
+            base:
+              only_staff_can_unhide: Only staff can unhide hidden content
+              staff_cannot_be_suspended: Staff cannot be suspended
             user_id:
               must_be_a_curator: must be a curator
         mushroom_observer_import_flow_task:

@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 ruby "~> 2.6.0"
 
-gem "rails", "6.1.4"
+gem "rails", "6.1.4.6"
 
 gem "actionpack-action_caching"
 gem "actionpack-page_caching"
@@ -14,6 +14,7 @@ gem "acts-as-taggable-on"
 gem "acts_as_votable"
 gem "ancestry"
 gem "angular-rails-templates"
+gem "audited"
 gem "aws-sdk-cloudfront"
 gem "aws-sdk-s3"
 gem "aws-sdk-waf"

@@ -117,6 +117,7 @@ eo:
   accuracy_meters: Precizeco (metroj)
   accuracy_of_the_coordinates: |
     Precizeco de la koordinatoj en metroj. Vi povas redakti ĉi tion alklakante la ligon "redakti" supre aŭ alklakante la mapan markilon kaj trenante la tenilojn. Provu fari la rondon sufiĉe granda, ke vi certas, ke vi estis ie en ĝi.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Ago
   actions: Agoj
   active: Aktiva
@@ -2121,15 +2122,15 @@ eo:
         url: Retadreso
         citation: Citaĵo
       taxon:
+        auto_description: Aŭtomata priskribo
+        auto_photos: Aŭtomataj fotoj
+        locked: Ŝlosita
         name: Nomo
         rank: Rango
-        locked: Ŝlosita
-        auto_photos: Aŭtomataj fotoj
-        auto_description: Aŭtomata priskribo
-        wikipedia_title: Vikipedia titolo
-        wikipedia_summary: Resumo ĉe Vikipedio
         source_identifier: Identigilo de fonto
         source_url: Fonta retadreso
+        wikipedia_summary: Resumo ĉe Vikipedio
+        wikipedia_title: Vikipedia titolo
       taxon_name:
         name_provider: Provizanto de nomo
         source_url: Fonta retadreso

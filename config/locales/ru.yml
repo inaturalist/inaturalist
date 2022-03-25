@@ -1,4 +1,10 @@
 ru:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} изменение"
+    few: "%{count} изменения"
+    many: "%{count} изменений"
+    other: "%{count} изменений"
   x_comments:
     one: '%{count} комментарий'
     few: '%{count} комментария'
@@ -301,6 +307,7 @@ ru:
   accuracy_meters: Точность (метры)
   accuracy_of_the_coordinates: |
     Точность определения координат в метрах. Вы можете изменить это значение, нажав на ссылку "редактировать" выше или, щёлкнув на маркеры карты, перетащить их. Постарайтесь сделать круг достаточно большим - настолько, чтобы он точно включал место, где вы были.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Действие
   actions: Действия
   active: Активные
@@ -961,6 +968,8 @@ ru:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} были объединены в %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} будут объединены в %{output_taxon}"
   change_your_password: Изменить пароль
+  #Plural noun, as in changes to a taxon record over time
+  changes: Изменения
   changing_the_geoprivacy: 'Изменение настройки приватности местоположения влияет на то, могут ли другие люди видеть место вашего наблюдения.'
   check_above_for_errors: Проверьте указанное выше на наличие ошибок
   check_back_soon: Возвращайтесь в ближайшее время!
@@ -1017,6 +1026,10 @@ ru:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Комментарий
   comment_deleted: Комментарий удалён
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Комментарий скрыт
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Комментарий показан
   comments: Комментарии
   comments_by_me: Мои комментарии
   comments_have_been_disabled: Комментарии были отключены
@@ -2062,6 +2075,8 @@ ru:
   identification_by_user: Идентификация %{user}
   identification_deleted: Идентификация удалена.
   identification_saved: "Идентификация сохранена!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Идентификационный текст показан
   identification_updated: Идентификация обновлена!
   identification_user_short: Идент. пользователя
   identification_withdrawn: Идентификация отозвана.
@@ -2529,6 +2544,9 @@ ru:
   mark_all_as_unreviewed: Отметить все как непроверенные
   matching_species_will_shown_up_here: Здесь будут отображены удовлетворяющие условиям виды. На карте будет показан ареал, если %{place} содержит один из видов.
   maverick: Независимое мнение
+  maximum_positional_accuracy: Максимальная точность местоположения
+  maximum_positional_accuracy_including_unknown: |
+    Максимальная точность местоположени, включая наблюдения с неточным местоположением
   media: Медиафайл
   media_type: Тип медиафайла
   medium: средний
@@ -2573,6 +2591,7 @@ ru:
     Если вы подозреваете, что этот человек нарушает наши <a href="%{tos_url}"
     target="_blank">Условия предоставления услуг</a> или не действует в соответствии с нашими <a
     href="%{guidelines_url}" target="_blank">Правилами сообщества</a>, пожалуйста, проставьте флажок ниже этого сообщения.
+  minimum_positional_accuracy: Максимальная точность местоположения
   misidentifications: Ошибочные идентификации
   misleading_or_illegal_content_html: |
     Вводящий в заблуждение или незаконный контент, расовые или этнические оскорбления и т.д. Более подробно о нашем определении «приемлемый» см. <a href="/help#inappropriate">FAQ</a>.
@@ -3692,7 +3711,8 @@ ru:
     Как бы то ни было, нам придется ограничить условия, при которых люди могут добавлять места в будущем, учитывая текущие темпы роста iNat.
   plants: растения
   please_add_a_citation_for_this_change: Пожалуйста, добавьте ссылку на это изменение.
-  please_allow_a_few_weeks_for_external_sites: Пожалуйста, подождите несколько недель, чтобы внешние сайты синхронизировали изменения с этим наблюдением #Title to a section warning a user to exercise caution
+  please_allow_a_few_weeks_for_external_sites: Пожалуйста, подождите несколько недель, чтобы внешние сайты синхронизировали изменения с этим наблюдением #Request that a known child ask their parents for permission to use this service
+  #Title to a section warning a user to exercise caution
   please_be_careful!: Будьте осторожны!
   please_complete_the_following_to_add_project: |
     Чтобы добавить это наблюдение в проект, выполните следующие действия:
@@ -4002,6 +4022,8 @@ ru:
   recently_finished: Последние завершенные
   recently_observed: Последние наблюдаемые
   recently_resolved: Последние разрешенные
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Запись
   red: красный
   redo_search_in_map: Повторить поиск на карте
   redo_search_in_map_area: Повторить поиск на карте
@@ -4118,6 +4140,7 @@ ru:
     must_be_in: должен быть привязан к таксону
     must_be_coordinates_shareable_by_project_curators: наблюдатель должен разрешить куратору проекта видеть координаты.
     must_be_verifiable: должно быть проверяемым
+    must_be_wild: должен быть диким
   running_total: Текущий итог
   said: добавил
   satellite: спутниковый
@@ -4216,6 +4239,9 @@ ru:
   show_active_and_inactive_taxa: Показать активные и неактивные таксоны
   show_common_names: Показывать народные названия
   show_hidden_content: Показать скрытый контент
+  show_history_by_this_user: Показать историю этого пользователя
+  show_history_for_this_kind_of_action: Показать историю таких действий
+  show_history_for_this_record: Показать историю этой записи
   show_keyboard_shortcuts: Показывать сочетания клавиш
   show_less: Показать меньше
   show_more: Показать больше
@@ -4474,6 +4500,9 @@ ru:
   summary: Обзор
   supporting: Поддерживающее мнение
   suspend_user: Заблокировать пользователя
+  suspend_user_html: Приостановить работу %{user}
+  suspend_user_reason_instructions_html: |
+    Объясните, почему вы приостанавливаете работу этого аккаунта и процитируйте нарушения Руководящих принципов сообщества%{link_start_tag}%{link_end_tag}. Пожалуйста, воздержитесь от добавления личных мнений.
   sw_lat: ЮЗ шир.
   sw_lon: ЮЗ долг.
   sync: Синхронизировать?
@@ -4616,6 +4645,7 @@ ru:
   taxon_framework_relationship_unknown_count_html: "Количество неизвестных связей: %{count}"
   taxon_framework_relationships: Связи основы таксона
   taxon_framework_taxon: Таксон основы таксона
+  taxon_history_notice: История была введена в феврале 2022, поэтому до этой даты история не существует.
   taxon_merge: слияние таксонов
   taxon_name: Наименование таксона
   taxon_name_must_match_an_existing_taxon_in_our_database: Наименование таксона должно соответствовать существующему в нашей базе
@@ -4886,6 +4916,9 @@ ru:
   unsubscribe: Отменить подписку
   unsubscribe_from_emails_like_this: Отписаться от таких писем
   unsuspend_user: Разблокированный пользователь
+  unsuspend_user_html: Возобновить работу %{user}
+  unsuspend_user_reason_instructions: |
+    Пожалуйста, объясните, почему вы возобновляете работу этого аккаунта
   upcoming_bioblitzes: Предстоящие биоблицы
   update: Обновить
   update_existing_observations_with_new_license: Обновить существующие наблюдения новыми вариантами лицензий
@@ -5171,6 +5204,8 @@ ru:
   where_were_you?: Где вы были?
   which_projects_can_add_your_observations?: Какие традиционные проекты могут воспользоваться вашими наблюдениями?
   white: белый
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Почему вы вносите это изменение? (опционально)
   why_you_can_see_the_coordinates: Почему вы можете видеть координаты
   who_can_add_observation_fields_to_my_obs: Кто может добавлять поля наблюдения к моим наблюдениям?
   who_can_add_observations_to_this_project?: Кто может добавлять наблюдения к этому проекту?
@@ -7343,6 +7378,10 @@ ru:
       message:
         subject: Тема
         body: Текст сообщения
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Причина
       observation:
         description: Примечания
         geo_x: Движение на восток
@@ -7371,6 +7410,8 @@ ru:
         #confidential, e.g. a native or desktop app as opposed to a web
         #app.
         confidential: Конфиденциальное
+      place_taxon_name:
+        position: Расположение
       post:
         title: Название
         body: Текст сообщения
@@ -7414,18 +7455,49 @@ ru:
         url: URL
         citation: Ссылка
       taxon:
-        name: Наименование
-        rank: Ранг
-        parent_id: Идентификация родительского таксона
-        locked: Заблокирован
-        auto_photos: Автоматические фото
+        ancestry: Предки
         auto_description: Автоматическое описание
-        wikipedia_title: Статья Википедии
-        wikipedia_summary: Сводка из Википедии
+        auto_photos: Автоматические фото
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: Полный ранг
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Природоохранный статус
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: Рекомендуемый
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: Иконический ID таксона
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Активный?
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Иконический?
+        locked: Заблокирован
+        name: Наименование
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Провайдер наименования
+        parent_id: Идентификация родительского таксона
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Фото заблокированы?
+        rank: Ранг
+        rank_level: Уровень ранга
+        source_id: 'ID источника:'
         source_identifier: Идентификатор источника
         source_url: URL источника
+        #Identifier of the taxon framework relationship record associated
+        #with this taxon
+        taxon_framework_relationship_id: ID связи с основой таксона
+        wikipedia_summary: Сводка из Википедии
+        wikipedia_title: Статья Википедии
       taxon_name:
+        is_valid: Допустимое?
+        lexicon: 'Лексикон:'
+        name: Наименование
         name_provider: Провайдер наименования
+        position: Расположение
         source_url: URL источника
         source_identifier: Идентификатор источника
       user:
@@ -7506,6 +7578,11 @@ ru:
               guide_has_too_many_taxa: "руководство может содержать только 500 таксонов"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: не поддерживается для контента данного типа
+            base:
+              only_staff_can_unhide: Только сотрудники могут сделать видимым скрытый контент
+              staff_cannot_be_suspended: Работа сотрудников не может быть приостановлена
             user_id:
               must_be_a_curator: должен быть куратором
         mushroom_observer_import_flow_task:

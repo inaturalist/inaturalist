@@ -445,6 +445,7 @@ Rails.application.routes.draw do
       get "taxonomy_details", as: "taxonomy_details_for"
       get "show_google"
       get "taxobox"
+      get "history"
     end
     collection do
       get "synonyms"
@@ -489,7 +490,7 @@ Rails.application.routes.draw do
   get "journal/:login/archives/:year/:month" => "posts#archives", :as => :journal_archives_by_month,
     :constraints => { month: /\d{1,2}/, year: /\d{1,4}/, login: simplified_login_regex }
   get "journal/:login/:id/edit" => "posts#edit", :as => :edit_journal_post
-  resources :posts, except: [:index], constraints: { id: id_param_pattern } do
+  resources :posts, constraints: { id: id_param_pattern } do
     resources :flags
     collection do
       get :for_project_user

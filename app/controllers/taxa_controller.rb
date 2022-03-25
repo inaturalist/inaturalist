@@ -37,7 +37,8 @@ class TaxaController < ApplicationController
   before_action :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :update_photos, :set_photos, :edit_colors,
     :update_colors, :refresh_wikipedia_summary, :merge, 
-    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details]
+    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details,
+    :history]
   before_action :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
   before_action :limit_page_param_for_search, :only => [:index,
@@ -146,7 +147,7 @@ class TaxaController < ApplicationController
   def show
     if params[:id]
       begin
-        @taxon ||= Taxon.where(id: params[:id]).includes(:taxon_names).first
+        @taxon ||= Taxon.where(id: params[:id]).includes({ taxon_names: :place_taxon_names }).first
       rescue RangeError => e
         Logstasher.write_exception(e, request: request, session: session, user: current_user)
         nil
@@ -1166,6 +1167,40 @@ class TaxaController < ApplicationController
     end
   end
 
+  def history
+    @record = @taxon
+    audit_scope = Audited::Audit.where( auditable_type: "Taxon", auditable_id: @taxon.id ).or(
+      Audited::Audit.where( associated_type: "Taxon", associated_id: @taxon.id )
+    )
+    audited_types = %w(Taxon TaxonName PlaceTaxonName ConservationStatus)
+    if audited_types.include?( params[:auditable_type] ) && ( @auditable_type = params[:auditable_type] )
+      audit_scope = audit_scope.where( auditable_type: @auditable_type )
+    end
+    if (
+        params[:auditable_id].to_i > 0 &&
+        params[:auditable_id].to_s == params[:auditable_id].to_s &&
+        ( @auditable_id = params[:auditable_id] )
+    )
+      audit_scope = audit_scope.where( auditable_id: @auditable_id )
+    end
+    if ( @user_id = params[:user_id] )
+      audit_scope = audit_scope.where( user_id: @user_id )
+    end
+    if ( @audit_action = params[:audit_action] )
+      audit_scope = audit_scope.where( action: @audit_action )
+    end
+    @audit_days = audit_scope.group( "audits.created_at::date" ).count.sort_by(&:first).reverse
+    @date = params[:year] &&
+      params[:month] &&
+      params[:day] &&
+      ( Date.parse( "#{params[:year]}-#{params[:month]}-#{params[:day]}") rescue nil )
+    @date ||= @audit_days&.sort&.reverse&.last&.first
+    @show_all = @date && audit_scope.count < 500
+    @audits = audit_scope.order( "created_at desc" )
+    @audits = @audits.where( "created_at::date = ?", @date ) unless @show_all
+    render layout: "bootstrap-container"
+  end
+
   private
   def respond_to_merge_error(msg)
     respond_to do |format|
@@ -1411,10 +1446,9 @@ class TaxaController < ApplicationController
     
     # Redirect to a canonical form
     if @taxon
-      canonical = (@taxon.unique_name || @taxon.name).split.join('_')
+      canonical = @taxon.name.split.join( "_" )
       taxon_names ||= @taxon.taxon_names.limit(100)
-      acceptable_names = [@taxon.unique_name, @taxon.name].compact.map{|n| n.split.join('_')} + 
-        taxon_names.map{|tn| tn.name.split.join('_')}
+      acceptable_names = [canonical] + taxon_names.map{|tn| tn.name.split.join('_')}
       unless acceptable_names.include?(params[:q])
         sciname_candidates = [
           params[:action].to_s.sanitize_encoding.split.join('_').downcase, 

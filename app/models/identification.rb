@@ -6,7 +6,7 @@ class Identification < ApplicationRecord
                     automated: false
 
   blockable_by lambda {|identification| identification.observation.try(:user_id) }
-  has_moderator_actions
+  has_moderator_actions %w(hide unhide)
   belongs_to_with_uuid :observation
   belongs_to :user
   belongs_to_with_uuid :taxon
@@ -329,8 +329,10 @@ class Identification < ApplicationRecord
     return true if user.destroyed?
     return true if bulk_delete
     if self.user_id != self.observation.user_id
-      User.delay(unique_hash: { "User::update_identifications_counter_cache": user_id }).
-        update_identifications_counter_cache(user_id)
+      User.delay(
+        unique_hash: { "User::update_identifications_counter_cache": user_id },
+        run_at: 5.minutes.from_now
+      ).update_identifications_counter_cache(user_id)
     end
     true
   end
@@ -684,7 +686,7 @@ class Identification < ApplicationRecord
         ident_response = Identification.elastic_search(
           size: batch_size,
           filters: [
-            { term: { "taxon.ancestor_ids": taxon.id } },
+            { term: { "taxon.ancestor_ids.keyword": taxon.id } },
             { term: { disagreement: true } },
             { range: { id: { gt: batch_start_id } } }
           ],
@@ -707,23 +709,25 @@ class Identification < ApplicationRecord
   end
 
   def self.reindex_for_taxon( taxon_id )
-    page = 1
     ident_ids = []
+    last_id = 0
     while true
       r = Identification.elastic_search(
         source: {
           includes: ["id"],
         },
         filters: [
-          { terms: { "taxon.ancestor_ids" => [taxon_id] } }
+          { range: { id: { gt: last_id } } },
+          { terms: { "taxon.ancestor_ids.keyword" => [taxon_id] } }
         ],
-        track_total_hits: true
-      ).page( page ).per_page( 1000 )
+        track_total_hits: true,
+        sort: { id: :asc }
+      ).per_page( 1000 )
       break unless r.response && r.response.hits && r.response.hits.hits
       new_ident_ids = r.response.hits.hits.map(&:_id)
       break if new_ident_ids.blank?
+      last_id = new_ident_ids.last
       ident_ids += new_ident_ids
-      page += 1
     end
     Identification.elastic_index!( ids: ident_ids )
   end
