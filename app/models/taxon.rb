@@ -571,7 +571,7 @@ class Taxon < ApplicationRecord
 
     Identification.delay(
       priority: INTEGRITY_PRIORITY,
-      queue: "slow",
+      queue: "throttled",
       unique_hash: { "Identification::reindex_for_taxon": id }
     ).reindex_for_taxon( id )
   end
