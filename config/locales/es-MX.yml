@@ -324,6 +324,7 @@ es-MX:
   add_life_stage_egg_annotation: 'Añade anotación "etapa de vida: huevo"'
   add_evidence_of_presence_organism_annotation: 'Añadir anotación "Evidencia de Presencia: organismo"'
   add_evidence_of_presence_feather_annotation: 'Añadir anotación "Evidencia de Presencia: pluma(s)"'
+  add_evidence_of_presence_gall_annotation: 'Añadir anotación "Evidencia de Presencia: agalla"'
   add_evidence_of_presence_scat_annotation: 'Añadir anotación "Evidencia de Presencia: excreta(s)"'
   add_evidence_of_presence_track_annotation: 'Añadir anotación "Evidencia de Presencia: huella(s)"'
   add_evidence_of_presence_bone_annotation: 'Añadir anotación "Evidencia de Presencia: hueso(s)"'
@@ -1082,6 +1083,8 @@ es-MX:
     evidence_of_presence: Evidencia de presencia
     #As in the feather on a bird
     feather: Pluma(s)
+    #Abnormal growth
+    gall: Agalla
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organismo(s)
@@ -1110,6 +1113,7 @@ es-MX:
     bone: |
       Principalmente restos del endoesqueleto/huesos; por otro lado, la exposición parcial de huesos en un organismo intacto, debe etiquetarse "organismo"
     molt: Piel descartada o exoesqueleto
+    gall: Brote de tejido vegetal deformado causado por un organismo parasítico
   controls: Controles
   convert: Convierte
   coordinate_systems: Sistemas de coordenadas
