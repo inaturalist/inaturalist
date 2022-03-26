@@ -404,6 +404,7 @@ pl:
   add_life_stage_egg_annotation: 'Dodaj adnotację "Stadium rozwoju: Jajo"'
   add_evidence_of_presence_organism_annotation: 'Dodaj adnotację „Ślad obecności: organizm”'
   add_evidence_of_presence_feather_annotation: 'Dodaj adnotację „Ślad obecności: pióro”'
+  add_evidence_of_presence_gall_annotation: 'Dodaj adnotację „Ślad obecności: galas”'
   add_evidence_of_presence_scat_annotation: 'Dodaj adnotację „Ślad obecności: odchody”'
   add_evidence_of_presence_track_annotation: 'Dodaj adnotację „Ślad obecności: trop”'
   add_evidence_of_presence_bone_annotation: 'Dodaj adnotację „Ślad obecności: kość”'
@@ -1084,6 +1085,8 @@ pl:
     evidence_of_presence: Ślad obecności
     #As in the feather on a bird
     feather: Pióro
+    #Abnormal growth
+    gall: Galas
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organizm
