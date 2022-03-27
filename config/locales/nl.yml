@@ -341,6 +341,7 @@ nl:
   add_life_stage_egg_annotation: 'Aantekening "Levenstadium: Ei" toevoegen'
   add_evidence_of_presence_organism_annotation: 'Voeg "Bewijs van Aanwezigheid: organisme" aantekening toe'
   add_evidence_of_presence_feather_annotation: 'Voeg "Bewijs van Aanwezigheid: veer" aantekening toe'
+  add_evidence_of_presence_gall_annotation: 'Voeg "Bewijs van Aanwezigheid: gal" aantekening toe'
   add_evidence_of_presence_scat_annotation: 'Voeg "Bewijs van Aanwezigheid: poep" aantekening toe'
   add_evidence_of_presence_track_annotation: 'Voeg "Bewijs van Aanwezigheid: spoor" aantekening toe'
   add_evidence_of_presence_bone_annotation: 'Voeg "Bewijs van Aanwezigheid: bot" aantekening toe'
@@ -1093,6 +1094,8 @@ nl:
     evidence_of_presence: Bewijs van voorkomst
     #As in the feather on a bird
     feather: Veer
+    #Abnormal growth
+    gall: Gal
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organisme
@@ -1121,6 +1124,7 @@ nl:
     bone: |
       Vooral endoskelet-resten; gedeeltelijke blootstelling van bot in een verder intact organisme moet worden gelabeld als "organisme"
     molt: Afgeworpen huid of exoskelet
+    gall: Misvormde uitgroei van plantenweefsel veroorzaakt door een parasitair organisme
   controls: Besturing
   convert: Converteren
   coordinate_systems: Coördinaatsystemen
