@@ -330,6 +330,7 @@ da:
   add_life_stage_egg_annotation: 'Tilføj anmærkningen "Livsstadie: Æg"'
   add_evidence_of_presence_organism_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Organisme"'
   add_evidence_of_presence_feather_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Fjer"'
+  add_evidence_of_presence_gall_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Gevækst"'
   add_evidence_of_presence_scat_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Ekskrement"'
   add_evidence_of_presence_track_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Spor"'
   add_evidence_of_presence_bone_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Knogle"'
@@ -1092,6 +1093,8 @@ da:
     evidence_of_presence: Bevis for tilstedeværelse
     #As in the feather on a bird
     feather: Fjer
+    #Abnormal growth
+    gall: Gevækst
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organisme
@@ -1120,6 +1123,7 @@ da:
     bone: |
       Overvejende endoskeletale rester; delvis knogleeksponering i en ellers intakt organisme skal mærkes "organisme"
     molt: Afstødt hud eller exoskelet
+    gall: Deform udvækst af plantevæv forårsaget af parasitisk organisme
   controls: Kontrolpanel
   convert: Konvertér
   coordinate_systems: Koordinatsystem
