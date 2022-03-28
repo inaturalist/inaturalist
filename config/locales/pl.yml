@@ -1,4 +1,10 @@
 pl:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} zmiana"
+    few: "%{count} zmiany"
+    many: "%{count} zmian"
+    other: "%{count} zmiany"
   x_comments:
     one: '1 komentarz'
     few: '%{count} komentarze'
@@ -256,6 +262,7 @@ pl:
   about_places: O lokalizacjach
   about_taxon_ranges: O zasięgach taksonów
   about_the_cc_licenses: O licencjach Creative Commons
+  about_the_network: O sieci
   about_these_licenses: O tych licencjach
   about_this_bioblitz: O tym bioblitzu
   about_this_map: O tej mapie
@@ -397,6 +404,7 @@ pl:
   add_life_stage_egg_annotation: 'Dodaj adnotację "Stadium rozwoju: Jajo"'
   add_evidence_of_presence_organism_annotation: 'Dodaj adnotację „Ślad obecności: organizm”'
   add_evidence_of_presence_feather_annotation: 'Dodaj adnotację „Ślad obecności: pióro”'
+  add_evidence_of_presence_gall_annotation: 'Dodaj adnotację „Ślad obecności: galas”'
   add_evidence_of_presence_scat_annotation: 'Dodaj adnotację „Ślad obecności: odchody”'
   add_evidence_of_presence_track_annotation: 'Dodaj adnotację „Ślad obecności: trop”'
   add_evidence_of_presence_bone_annotation: 'Dodaj adnotację „Ślad obecności: kość”'
@@ -749,6 +757,9 @@ pl:
     natureserve: NatureServe
     cites: Konwencja waszyngtońska (CITES)
   authorize: Autoryzuj
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: Autoryzuj z PKCE
   automatic_short: Automatyczny
   automatically_add_observations_to_this_project: Automatycznie dodawaj obserwacje do tego projektu
   automatically_update_my_content_for_taxon_changes: Automatycznie aktualizuj moje obserwacje wraz ze zmianami taksonomicznymi
@@ -898,6 +909,8 @@ pl:
     input_taxa_were_merged_into_output_taxon_html: "taksony %{input_taxa} zostały scalone w %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "taksony %{input_taxa} zostaną scalone w %{output_taxon}"
   change_your_password: Zmień hasło
+  #Plural noun, as in changes to a taxon record over time
+  changes: Zmiany
   changing_the_geoprivacy: 'Zmiana geo-prywatności zmienia to jak inni widzą lokalizację Twojej obserwacji.'
   check_back_soon: Sprawdź ponownie wkrótce!
   check_here_to_autoload_description: Zaznacz tutaj, aby pobrać automatycznie opis z Wikipedii. Nie zaznaczaj, jeśli nazwa naukowa taksonu jest jednocześnie zwykłym słowem lub częstym błędem (np. "Lodówka").
@@ -1072,6 +1085,8 @@ pl:
     evidence_of_presence: Ślad obecności
     #As in the feather on a bird
     feather: Pióro
+    #Abnormal growth
+    gall: Galas
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organizm
@@ -3692,7 +3707,7 @@ pl:
   values: Wartości
   verifiable_observations_by_observation_date: Obserwacje weryfikowalne według daty obserwacji
   view: Zobacz
-  view_all: Zobacz wszsytkie
+  view_all: Zobacz wszystkie
   view_all_flags: Zobacz wszystkie zgłoszenia
   view_all_members: Zobacz wszystkich użytkowników
   view_all_n: "Zobacz wszystkie %{n}"
@@ -4002,6 +4017,7 @@ pl:
           verifiable: być weryfikowalna
         submission_models:
           any: każdy
+          curators: kuratorzy projektu
       new:
         are_you_sure_you_want_to_delete: Czy jesteś pewien, że chcesz usunąć ten projekt?
         data_visualizations: Wizualizacje danych
@@ -4530,6 +4546,8 @@ pl:
         observed_on: data obserwacji
       observation_field_value:
         value: 'wartość'
+      place_taxon_name:
+        position: Pozycja
       post:
         title: Tytuł
         body: Treść
@@ -4565,13 +4583,18 @@ pl:
       taxon:
         auto_description: Automatyczny opis
         auto_photos: Automatyczne zdjęcia
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Aktywny?
         locked: Zablokowany
         name: Nazwa
         rank: Kategoria
         source_identifier: Identyfikator źródła
         source_url: Źródłowy adres URL
       taxon_name:
+        lexicon: Leksykon
+        name: Nazwa
         name_provider: Dostawca nazw
+        position: Pozycja
         source_url: Źródłowy adres URL
         source_identifier: Identyfikator źródła
       user:
@@ -4644,6 +4667,10 @@ pl:
           attributes:
             value:
               dna_only_atcg: "dla DNA może zawierać wyłącznie litery A, T, C lub G"
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_query: Zapytanie nie może być puste
         post:
           attributes:
             parent:
