@@ -800,7 +800,7 @@ lv:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: treknraksts
-  bounding_box: Rakstzīmju lauks
+  bounding_box: Areāls
   breadcrumbs: Adreses josla
   #This is a description of the "head" property of Custom Project Fields, i.e.
   #the customizable content that will replace top section of the project detail
@@ -951,7 +951,7 @@ lv:
     Ar komatu atdalīti izsekošanas kodi. Ja vēlies sūtot lietotājiem jaunas novērojumu veidlapas, pievienot izekošanas kodu, izmanto šo saiti %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123. Tā iespējams izsekot līdzdalības aktivitāti no dažādiem avotiem. Kodiem iespējams piekļūt lejupielādējot projekta novērojumus CSV formātā.
   comma_separated_please: Lūdzu, atdalīt ar komatu
   #Noun, used to label a comment or a comment field in a form
-  comment: komentēt
+  comment: komentārs
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komentēt
   comment_deleted: Komentārs ir izdzēsts
@@ -4773,7 +4773,7 @@ lv:
   update_observations: Atjaunināt novērojumus
   update_past: "Atjaunināt iepriekšējo %{type}"
   update_photos: Atjaunināt fotogrāfijas
-  update_search: Labot meklēšanu
+  update_search: Meklēt
   update_selected_taxa: Labot atlasītos taksonus
   update_subscription: Atjaunināt abonementu
   update_subscription_preferences: Pielāgot abonementu iestatījumus
