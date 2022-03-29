@@ -405,6 +405,7 @@ lt:
   add_life_stage_egg_annotation: 'Pridėti „Amžiaus tarpsnis: Kiaušinis“ papildomą informaciją'
   add_evidence_of_presence_organism_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: pats organizmas“'
   add_evidence_of_presence_feather_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: plunksna“'
+  add_evidence_of_presence_gall_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: galas“'
   add_evidence_of_presence_scat_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: išmatos“'
   add_evidence_of_presence_track_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: pėdsakai“'
   add_evidence_of_presence_bone_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: kaulas“'
@@ -1123,6 +1124,8 @@ lt:
     evidence_of_presence: Organizmo buvimo įrodymai
     #As in the feather on a bird
     feather: Plunksna
+    #Abnormal growth
+    gall: Galas
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organizmas
@@ -1151,6 +1154,7 @@ lt:
     bone: |
       Daugiausia endoskeleto liekanos; dalinis kaulo atsidengimas daugiau nepažeistame organizme turėtų būti įvardijamas kaip „organizmas“
     molt: Numesta oda arba egzoskeletas
+    gall: Parazitinių organizmų sukelta augalo audinio deformacija
   controls: Valdikliai
   convert: Konvertuoti
   coordinate_systems: Koordinačių sistemos
