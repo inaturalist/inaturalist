@@ -333,6 +333,7 @@ fi:
   add_life_stage_egg_annotation: 'Lisää "Life Stage: Egg" selitys'
   add_evidence_of_presence_organism_annotation: 'Lisää "Todiste läsnäolosta: eliö" -kommentti'
   add_evidence_of_presence_feather_annotation: 'Lisää "Todiste läsnäolosta: sulka" -kommentti'
+  add_evidence_of_presence_gall_annotation: 'Lisää "Todiste läsnäolosta: äkämä" -kommentti'
   add_evidence_of_presence_scat_annotation: 'Lisää "Todiste läsnäolosta: jätös" -kommentti'
   add_evidence_of_presence_track_annotation: 'Lisää "Todiste läsnäolosta: jälki" -kommentti'
   add_evidence_of_presence_bone_annotation: 'Lisää "Todiste läsnäolosta: luu" -kommentti'
@@ -1040,6 +1041,8 @@ fi:
     evidence_of_presence: Todiste läsnäolosta
     #As in the feather on a bird
     feather: Sulka
+    #Abnormal growth
+    gall: Äkämä
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Eliö
@@ -1067,6 +1070,7 @@ fi:
     bone: |
       Pääasiassa sisäisen tukirangan jäänteitä; osittainen luun paljastuminen muuten ehjässä eliössä tulisi merkitä "eliöksi"
     molt: Hylätty nahka tai ulkoinen tukiranka
+    gall: Loiseliön aiheuttama kasvikudoksen epämuodostuma
   controls: Ohjaimet
   convert: Muunna
   coordinate_systems: Koordinaattijärjestelmät
