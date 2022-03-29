@@ -329,6 +329,7 @@ fr:
   add_life_stage_egg_annotation: 'Ajoute l''annotation «  Stade de développement : oeuf »'
   add_evidence_of_presence_organism_annotation: 'Ajouter l''annotation « Signe de présence : organisme »'
   add_evidence_of_presence_feather_annotation: 'Ajouter l''annotation « Signe de présence : plume »'
+  add_evidence_of_presence_gall_annotation: 'Ajouter l''annotation « Signe de présence : galle »'
   add_evidence_of_presence_scat_annotation: 'Ajouter l''annotation « Signe de présence : excréments »'
   add_evidence_of_presence_track_annotation: 'Ajouter l''annotation « Signe de présence : piste »'
   add_evidence_of_presence_bone_annotation: 'Ajouter l''annotation « Signe de présence : os »'
@@ -1079,6 +1080,8 @@ fr:
     evidence_of_presence: Signe de présence
     #As in the feather on a bird
     feather: Plume
+    #Abnormal growth
+    gall: Galle
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organisme
@@ -1107,6 +1110,7 @@ fr:
     bone: |
       Restes principalement endosquelettiques ; en cas d'exposition partielle des os d'un organisme intact par ailleurs, indiquer « organisme ».
     molt: Dépouille ou exosquelette abandonné
+    gall: Excroissance d'un tissu végétal causée par un parasite
   controls: Contrôles
   convert: Convertir
   coordinate_systems: Systèmes des coordonnées
