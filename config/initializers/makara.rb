@@ -37,9 +37,15 @@ module ActiveRecord
 
       SQL_PRIMARY_MATCHERS = [] unless defined?( SQL_PRIMARY_MATCHERS )
       CUSTOM_SQL_PRIMARY_MATCHERS = SQL_PRIMARY_MATCHERS + [/delayed_jobs/i].map(&:freeze).freeze
+      SQL_SKIP_STICKINESS_MATCHERS = [] unless defined?( SQL_SKIP_STICKINESS_MATCHERS )
+      CUSTOM_SQL_SKIP_STICKINESS_MATCHERS  = SQL_SKIP_STICKINESS_MATCHERS + [/FROM "sessions"/i].map(&:freeze).freeze
 
       def sql_primary_matchers
         CUSTOM_SQL_PRIMARY_MATCHERS
+      end
+
+      def sql_skip_stickiness_matchers
+        CUSTOM_SQL_SKIP_STICKINESS_MATCHERS
       end
 
     end
@@ -107,5 +113,24 @@ class ActiveRecord::ConnectionAdapters::PostGISAdapter
   # if makara is being used every time we want to use without_sticking
   def without_sticking
     yield
+  end
+end
+
+module Makara
+  class Middleware
+
+    protected
+
+    def ignore_request?(env)
+      if defined?(Rails)
+        return true if env["PATH_INFO"] == "/ping"
+        if Rails.try(:application).try(:config).try(:assets).try(:prefix)
+          if env["PATH_INFO"].to_s =~ /^#{Rails.application.config.assets.prefix}/
+            return true
+          end
+        end
+      end
+      false
+    end
   end
 end
