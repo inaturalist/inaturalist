@@ -121,6 +121,10 @@ class ActiveRecord::ConnectionAdapters::PostGISAdapter
   def without_sticking
     yield
   end
+
+  # same for these added methods
+  def enable_replica; end
+  def disable_replica; end
 end
 
 module Makara
