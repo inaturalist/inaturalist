@@ -35,6 +35,10 @@ class Annotation < ApplicationRecord
 
   attr_accessor :skip_indexing, :bulk_delete, :wait_for_obs_index_refresh
 
+  def to_s
+    "<Annotation #{id} user_id: #{user_id} resource_type: #{resource_type} resource_id: #{resource_id}>"
+  end
+
   def resource_is_an_observation
     if !resource.is_a?(Observation)
       errors.add(:resource_type, "must be an Observation")

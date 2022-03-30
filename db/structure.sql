@@ -7250,6 +7250,13 @@ CREATE INDEX index_annotations_on_resource_id_and_resource_type ON public.annota
 
 
 --
+-- Name: index_annotations_on_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_annotations_on_uuid ON public.annotations USING btree (uuid);
+
+
+--
 -- Name: index_annotations_on_unique_resource_and_attribute; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8944,6 +8951,13 @@ CREATE INDEX index_roles_users_on_user_id ON public.roles_users USING btree (use
 
 
 --
+-- Name: index_rules_on_ruler_id_and_ruler_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_rules_on_ruler_id_and_ruler_type ON public.rules USING btree (ruler_id, ruler_type);
+
+
+--
 -- Name: index_saved_locations_on_title; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10150,6 +10164,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220224012321'),
 ('20220225054243'),
 ('20220305012626'),
-('20220308015748');
+('20220308015748'),
+('20220317205240'),
+('20220317210522');
 
 

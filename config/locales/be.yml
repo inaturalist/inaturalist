@@ -1245,8 +1245,6 @@ be:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Толькі з поўнымі каардынатамі
-  coords_viewable_for_proj_desc: |
-    Паказваць толькі назіранні з гэтага праекта, для якіх вы можаце бачыць "сапраўдныя" каардынаты, уключаючы адкрытыя каардынаты, каардынаты прыхаваныя асобамі, што давяраюць вам, каардынаты прыхаваныя асобамі, што давяраюць гэтаму праекту свае дадзеныя, каардынаты прыхаваныя для ўразлівых таксонаў асобамі, што давяраюць гэтаму праекту такія назіранні.
   copy: Капіяваць
   copy_and_paste_the_following_code_to: Скапіюйце і ўстаўце наступны код каб размясціць гэтую ацэнку на іншай вэб-старонцы.
   copy_and_paste_this_into_your_own_html: Скапіюйце і ўстаўце гэта ў ваш уласны HTML.
@@ -1471,7 +1469,6 @@ be:
       december: Снежань
   date_is_accurate: Дата з'яўляецца дакладнай
   date_joined: Дата далучэння
-  date_obscured_notice: Дата прыхавана для абароны персанальных дадзеных або для бяспекі арганізма
   date_observed: Дата назірання
   date_observed_: Дата назірання
   date_observed_on: дата назірання
@@ -1980,7 +1977,6 @@ be:
   generating_mobile_archive: "Стварэнне мабільнага архіва"
   Genus: Род
   geoprivacy: Геапрыватнасць
-  geoprivacy_is_obscured: Геапрыватнасць прыхавана
   geoprivacy_is_obscured_desc: Назіральнік вырашыў прыхаваць гэтыя каардынаты.
   geoprivacy_is_private: 'Геапрыватнасць: прыватнае'
   geoprivacy_is_private_desc: Назіральнік вырашыў схаваць гэтыя каардынаты.
@@ -2261,6 +2257,7 @@ be:
   latitude_value: "Шырата: %{latitude}"
   #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Слаі
+  layout: Размяшчэнне
   leaderboard: Табліца лідараў
   leaderboard_for_x: "Табліца лідараў для %{x}"
   leaderboards: Рэтынг лідараў
@@ -2473,7 +2470,6 @@ be:
   location_is_accurate: Месцазнаходжанне з'яўлаецца дакладным
   location_is_exact: месцазнаходжанне дакладнае
   location_is_public: Месцазнаходжанне агульнадаступнае
-  location_is_obscured: Месцазнаходжанне схавана
   location_is_private: Прыватнае местцазнаходжанне
   location_specified: Месцазнаходжанне ўказана
   locked_taxa_will_not_allow_new: Заблакіраваныя таксоны не дазваляюць дадаваць да іх новыя таксоны-нашчадкі. Такім чынам, калі вы заблакавалі Amphibia і хтосьці паспрабаваў імпартаваць <i>Rana catesbeiana</i> ад знешняга пастаўшчыка імёнаў, новы таксон будзе створаны, але яго нельга будзе класіфікаваць як амфібію. Калі гэта адбудзецца, толькі што дададзеныя таксоны павінны быць пазначаны для ўвагі куратара. Гэта сапраўды варта выкарыстоўваць толькі для таксонаў, для якіх мы лічым, што ў нас ужо ёсць усе нашчадкі. Куратар можа перавызначыць гэта, рэдагуючы таксоны і непасрэдна ўводзячы бацькоўскія ідэнтыфікатары, але, калі ласка, падумайце аб аб'яднанні новых таксонаў з існуючымі.
@@ -2486,6 +2482,8 @@ be:
   log_out_caps: ВЫЙСЦІ
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Выйсці з %{site_name}?"
+  #Status message shown while logging in
+  logging_in: Уваход...
   login_slash_username: Логін / імя карыстальніка
   logo:
     logo: Лагатып
@@ -3162,6 +3160,7 @@ be:
   per_page: "На старонцы"
   photo: Фота
   photo_attribution: "Фота %{attribution}"
+  photo_browser: Праглядальнік фота
   photo_by_id_attribution: "Фота %{id}, %{attribution}"
   photo_deleted: Фота выдалена
   photo_destroyed_because_it_was_deleted_from: "Фота пашкоджана, таму што яно было выдалена з вонкавага сайта або %{site_name} больш не мае дазволу на яго прагляд"
@@ -3193,18 +3192,55 @@ be:
       airport: аэрапорт
       Building: Пабудова
       building: пабудова
+      Canton: Кантон
+      canton: кантон
+      City Building: Гарадскі будынак
+      city building: гарадскі будынак
+      Colloquial: Размоўны
+      Commune: Камуна
+      commune: камуна
       Constituency: Акруга
       constituency: акруга
       Continent: Кантынент
       continent: кантынент
       Country: Краіна
       country: краіна
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Муатамадыят
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: муатамадыят
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: Сектар дэпартамента
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: сектар дэпартамента
       District: Раён
       district: раён
+      Drainage: Вадасбор
+      drainage: вадасбор
+      Estate: Маёнтак
+      estate: маёнтак
+      Governorate: Губернатарства
+      governorate: губернатарства
+      Historical_County: Гістарычнае графства
+      historical_county: гістарычнае графства
+      Historical_State: Гістарычны штат
+      historical_state: гістарычны штат
+      Historical_Town: Гістарычнае мястэчка
+      historical_town: гістарычнае мястэчка
+      Intersection: Перасячэнне
+      intersection: перасячэнне
+      Island: Выспа
+      island: выспа
       Local_Administrative_Area: Мясцовая адміністратыўная адзінка
       local_administrative_area: мясцовая адміністратыўная адзінка
       Local_Authority: Мясцовая ўлада
       local_authority: мясцовая ўлада
+      Miscellaneous: Рознае
+      miscellaneous: рознае
       Municipality: Муніцыпалітэт
       municipality: муніцыпалітэт
       Nationality: Нацыянальнасць
@@ -3495,6 +3531,8 @@ be:
     zambia: Замбія
     zimbabwe: Зімбабвэ
   places_merged_successfully: Месцы паспяхова аб'яднаны!
+  #Title to a section warning a user to exercise caution
+  please_be_careful!: Калі ласка, будзьце асцярожны!
   please_confirm_your_inat_username: "Калі ласка, пацвердзіце сваё %{site_name} імя карыстальніка"
   please_explain_why_you_want_to_hide_this: Калі ласка, растлумачце, чаму вы хочаце схаваць гэта
   please_explain_why_you_want_to_unhide_this: Калі ласка, растлумачце, чаму вы хочаце паказаць гэта
@@ -3515,6 +3553,7 @@ be:
   previous_taxon_short: Папяр.
   print_verb: Друкаваць
   privacy: Прыватнасць
+  probably_spam: Магчыма, спам
   proceed: Працягнуць
   processing: Апрацоўваецца
   processing3p: "Апрацоўваецца..."
@@ -3556,6 +3595,8 @@ be:
   projects: Праэкты
   projects_description: |
     Праекты дазваляюць аб'ядноўваць свае назіранні з іншымі людзьмі на %{site_name}. Незалежна ад таго, ці гэта новая ініцыятыва грамадзянскай навукі, ці вы сочыце за птушкамі ў вашым раёне, праекты - гэта зручна.
+  public_domain: Здабытак грамадства
+  publish: Апублікаваць
   ranks:
     class: Клас
     x_classes:
@@ -3659,6 +3700,7 @@ be:
   read_more: Больш падрабязна
   read_our_getting_started_guide: прачытайце наша Кіраўніцтва па пачатку працы
   read_the_full_wikipedia: Прачытайце поўнае апісанне з Вікіпедыі
+  real_time_discussions: Абмяркоўванні ў рэальным часе
   reason: Прычына
   reason_you_are_flagging_this_item: Прычына, па якой вы пазначаеце гэты элемент.
   receive_email_notifications: Атрымліваць апавяшчэнні па электроннай пошце
@@ -3850,6 +3892,9 @@ be:
   tos_privacy_guidelines_label: |
     Я пагаджаюся з <a href="/terms" target="_blank">Умовамі карыстання</a> і <a href="/privacy" target="_blank">Палітыкай прыватнасці</a>, і я азнаёміўся з <a href="/pages/community+guidelines" target="_blank">Правіламі супольніцтва</a>.
   twitter: Twitter
+  update_your_content: Аднавіць змест
+  updated: Адноўлена
+  updated_daily: Аднаўляецца штодзённа
   upload: Запампаваць
   uploader:
     tooltips:
@@ -3860,9 +3905,23 @@ be:
       select_all: Выбраць усе назіранні
       upload_failed: Запампоўка не атрымалася
   user: Карыстальнік
+  user_added_a_comment_html: "%{user} дадаў каментар"
+  user_added_a_fave_html: "%{user} дадаў упадабанне"
+  user_added_a_flag_html: "%{user} дадаў пазнаку"
+  user_added_a_x: "%{user} дадаў %{x}"
+  user_added_a_x_to_noun_by_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} дадаў %{x} да вашага %{noun}"
+  user_added_a_x_to_noun_html: "%{user} дадаў %{x} да %{noun}"
   user_added_an_identification_html: "%{user} дадаў вызначэнне"
   user_added_an_observation_field_value_html: "%{user} дадаў значэнне поля назірання"
   user_added_an_observation_html: "%{user} дадаў назіранне"
+  user_added_an_x: "%{user} дадаў %{x}"
+  user_added_an_x_to_noun_by_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  user_added_an_x_to_noun_by_user_html: "%{user} дадаў %{x} да %{noun} %{by}"
+  user_added_an_x_to_noun_by_you_html: "%{user} дадаў %{x} да вашага %{noun}"
+  user_added_an_x_to_noun_html: "%{user} дадаў %{x} да %{noun}"
+  user_added_x_observations_html: "%{user} дадаў %{x} назіранняў"
   user_suggested_an_id: "%{user} прапанаваў вызначэнне"
   username: Імя карыстальніка
   username_or_email: Імя карыстальніка або email
@@ -3889,6 +3948,8 @@ be:
   you_are_already_a_member_of_this_project: "Вы ўжо з'яўляецеся ўдзельнікам гэтага праэкту!"
   you_arent_a_member_of_that_project: Вы не з'яўляецеся ўдзельнікам гэтага праэкту.
   you_must_be_a_member_of_this_project_to_do_that: Вы павінны быць удзельнікам гэтага праэкту, каб зрабіць гэта
+  you_retain_full_copyright_over_your_content: "Вы захоўваеце поўныя аўтарскія правы на свой змест, акрамя правоў, прадастаўленых %{site_name} у нашых Умовах прадастаўлення паслуг."
+  your_content: Ваш змест
   your_id: Вашае вызначэнне
   your_identification: Вашае вызначэнне
   your_observations: Вашыя назіранні
@@ -3899,6 +3960,29 @@ be:
         admins_must_be_existing_members: Адміністратары павінны быць існымі ўдзельнікамі праэкту.
       new:
         users_can_follow_your_project: Карыстальнікі могуць сачыць за наванамі вашага праэкту праз допісы ў дзённіку
+      show:
+        bioblitz_results_desc_html: |
+          <p>
+          У адрозненні ад звычайных праэктаў, біябліцы адлюстроўваюць статыстыку
+          <em>усіх</em> назіранняў у дазеным часе і месцы, а не толькі назіранні, якія былі дадазены людзьмі да праэкту наўмысна.
+          Гэта зроблена каб унікнуць цяжкасцей дадання назіранняў да праэкту каб маць статыстыку ў рэальным часе.
+          Звярніце ўвагу, што назіранні не будуць дасяжныя для экспарту або адлюстравання ў розных выглядах праэкта, напрыклад
+          унёскі членаў на вэб-сайце або пошук назіранняў праэкта
+          ў мабільных прыкладаннях, калі толькі каманда праэкта і
+          удзельнікі не дадаюць адпаведныя назіранні актыўна, як гэта робіцца ў звычайных
+          праэктах.
+          </p>
+          <p>
+          Звярніце ўвагу, што ў той час як гэты від праекта паказвае статыстыку для назіранняў, што
+          не былі наўмысна дададзеныя ў праект, гэта не дазваляе
+          куратарам убачыць прыватныя або схаваныя каардынаты для гэтых
+          назіранняў або выказаць здагадку, што назіральнікі пагадзіліся з умовамі праэкту. 
+          Калі вы куратар праэкта і вам патрэбны доступ да прыватных
+          каардынатаў, вам трэба, каб ўдзельнікі пагадзіліся з умовамі праэкту , 
+          а калі вы хочаце, каб назіранні залічваліся ў кантрольны спіс куратарскага праэкту,
+          пераканайцеся, што вашыя ўдзельнікі далучаюцца да праэкта і дадаюць свае
+          назіранні, як у звычайным праэкце.
+          </p>
     taxa:
       show:
         frequency:
@@ -3913,6 +3997,8 @@ be:
         trending_desc: Найбольш назіральныя таксоны за апошні месяц
         wanted_desc: Віды ў гэтым таксоне, якія яшчэ не назіраліся.
     users:
+      dashboard:
+        your_content_will_be_updated: Ваш змест, які адносіцца да гэтых таксонаў, будзе адноўлены аўтаматычна.
       edit:
         name_place_help_html: |
           Аддаваць перавагу распаўсюджаным назвам, якія выкарыстоўваюцца ў гэтым месцы.

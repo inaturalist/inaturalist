@@ -154,7 +154,7 @@ export function infiniteScrollObservations( nextScrollIndex ) {
   return ( dispatch, getState ) => {
     const { project, config } = getState( );
     if ( !project || !project.filtered_observations_loaded ) { return null; }
-    const total = project.filtered_observations_loaded.total_results;
+    const total = project.filtered_observations.total_results;
     const loaded = project.filtered_observations.results.length;
     if ( nextScrollIndex > total || nextScrollIndex <= loaded || nextScrollIndex > 500 ) {
       dispatch( setConfig( { observationsScrollIndex: nextScrollIndex } ) );
@@ -179,14 +179,44 @@ export function infiniteScrollObservations( nextScrollIndex ) {
   };
 }
 
+export function infiniteScrollSpecies( nextScrollIndex ) {
+  return ( dispatch, getState ) => {
+    const { project, config } = getState( );
+    if ( !project || !project.species_loaded ) { return null; }
+    const total = project.species.total_results;
+    const loaded = project.species.results.length;
+    if ( nextScrollIndex > total || nextScrollIndex <= loaded || nextScrollIndex > 500 ) {
+      dispatch( setConfig( { speciesScrollIndex: nextScrollIndex } ) );
+      return null;
+    }
+    let params = Object.assign( { }, project.search_params, {
+      per_page: 50,
+      page: project.species_page + 1
+    } );
+    return inatjs.observations.speciesCounts( params ).then( response => {
+      project.species.results = project
+        .species.results.concat( response.results );
+      dispatch( setAttributes( {
+        species: project.species,
+        species_page: project.species_page + 1
+      } ) );
+      dispatch( setConfig( { speciesScrollIndex: nextScrollIndex } ) );
+    } ).catch( e => console.log( e ) );
+  };
+}
+
 export function fetchSpecies( ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
     if ( !project ) { return null; }
-    return inatjs.observations.speciesCounts( project.search_params ).then( response => {
+    let params = Object.assign( { }, project.search_params, {
+      per_page: 50
+    } );
+    return inatjs.observations.speciesCounts( params ).then( response => {
       dispatch( setAttributes( {
         species_loaded: true,
-        species: response
+        species: response,
+        species_page: 1
       } ) );
     } ).catch( e => console.log( e ) );
   };

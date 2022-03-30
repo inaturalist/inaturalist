@@ -330,6 +330,7 @@ da:
   add_life_stage_egg_annotation: 'Tilføj anmærkningen "Livsstadie: Æg"'
   add_evidence_of_presence_organism_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Organisme"'
   add_evidence_of_presence_feather_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Fjer"'
+  add_evidence_of_presence_gall_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Gevækst"'
   add_evidence_of_presence_scat_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Ekskrement"'
   add_evidence_of_presence_track_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Spor"'
   add_evidence_of_presence_bone_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Knogle"'
@@ -1092,6 +1093,8 @@ da:
     evidence_of_presence: Bevis for tilstedeværelse
     #As in the feather on a bird
     feather: Fjer
+    #Abnormal growth
+    gall: Gevækst
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organisme
@@ -1120,6 +1123,7 @@ da:
     bone: |
       Overvejende endoskeletale rester; delvis knogleeksponering i en ellers intakt organisme skal mærkes "organisme"
     molt: Afstødt hud eller exoskelet
+    gall: Deform udvækst af plantevæv forårsaget af parasitisk organisme
   controls: Kontrolpanel
   convert: Konvertér
   coordinate_systems: Koordinatsystem
@@ -1129,10 +1133,6 @@ da:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Kun m/ fulde koordinater
-  coords_viewable_for_proj_desc: |
-    Vis kun observationer fra dette projekt, for hvilke du kan se de "reelle"
-    koordinater, herunder uslørede observationer, slørede observationer fra
-    personer, som stoler på dig, slørede observationer fra personer, som tiltror dette projekt alle datatyper, og observationer sløret grundet truede taksa fra personer, som kun tiltror dette projekt samme data.
   copy: Kopiér
   copy_and_paste_the_following_code_to: Kopiér og indsæt følgende kode for at integrere denne vurdering på en anden webside.
   copy_and_paste_this_into_your_own_html: Kopiér og indsæt dette i din egen HTML.

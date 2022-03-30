@@ -603,7 +603,9 @@ module DarwinCore
       while chunk_start_id <= max_id
         params[:min_id] = chunk_start_id
         params[:max_id] = chunk_start_id + search_chunk_size - 1
-        try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, sleep: 1, tries: 10, logger: logger ) do
+        try_and_try_again( [
+          Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
+          Elasticsearch::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10, logger: logger ) do
           Observation.search_in_batches( params, logger: logger ) do |batch|
             avg_batch_time = if batch_times.size > 0
               (batch_times.inject{|sum, num| sum + num}.to_f / batch_times.size).round(3)
