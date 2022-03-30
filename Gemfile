@@ -58,6 +58,7 @@ gem "icalendar", require: ["icalendar", "icalendar/tzinfo"]
 gem "irwi", git: "https://github.com/Programatica/irwi.git"
 gem "json"
 gem "koala"
+gem "makara", git: "https://github.com/instacart/makara.git", tag: "v0.6.0.pre"
 gem "nokogiri"
 gem "non-stupid-digest-assets"
 gem "objectify-xml", git: "https://github.com/inaturalist/objectify_xml.git"

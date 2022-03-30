@@ -73,7 +73,9 @@ class ObservationsController < ApplicationController
     :import_photos, :import_sounds, :new_from_list]
   before_action :photo_identities_required, :only => [:import_photos]
   before_action :load_prefs, :only => [:index, :project, :by_login]
-  
+
+  prepend_around_action :enable_replica, only: [:taxon_summary]
+
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess votes id"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
   REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng BBOX"
@@ -2055,7 +2057,9 @@ class ObservationsController < ApplicationController
   def user_viewed_updates(options={})
     return unless logged_in?
     if options[:delay]
-      @observation.delay(priority: USER_PRIORITY).user_viewed_updates(current_user.id)
+      ActiveRecord::Base.connection.without_sticking do
+        @observation.delay(priority: USER_PRIORITY).user_viewed_updates(current_user.id)
+      end
     else
       @observation.user_viewed_updates(current_user.id)
     end

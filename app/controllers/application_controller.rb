@@ -291,6 +291,22 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  #
+  # if Makara is configured with replica DBs, querying of replicas is currently
+  # disabled by default. Actions must use this in a `prepend_around_action` to
+  # have any queries run against the replicas. e.g.
+  #
+  #    prepend_around_action :enable_replica
+  #
+  def enable_replica
+    begin
+      ActiveRecord::Base.connection.enable_replica
+      yield
+    ensure
+      ActiveRecord::Base.connection.disable_replica
+    end
+  end
+
   def return_here_from_url
     return true if params[:return_to].blank?
     session[:return_to] = params[:return_to]
@@ -745,7 +761,9 @@ class ApplicationController < ActionController::Base
     return unless logged_in?
     updates = UpdateAction.where( resource: record )
     if options[:delay]
-      UpdateAction.delay( priority: USER_PRIORITY ).user_viewed_updates( updates, current_user.id )
+      ActiveRecord::Base.connection.without_sticking do
+        UpdateAction.delay( priority: USER_PRIORITY ).user_viewed_updates( updates, current_user.id )
+      end
     else
       UpdateAction.user_viewed_updates( updates, current_user.id )
     end

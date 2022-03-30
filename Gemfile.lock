@@ -59,6 +59,14 @@ GIT
       nokogiri (>= 1.8.1)
 
 GIT
+  remote: https://github.com/instacart/makara.git
+  revision: 90b2cbcf026b169e29eefb1d74c9c96ae8906391
+  tag: v0.6.0.pre
+  specs:
+    makara (0.6.0.pre)
+      activerecord (>= 5.2.0)
+
+GIT
   remote: https://github.com/narze/machinist
   revision: eaf5a447ff0d59a1fb2c49b91c6e1b2d95d8e4ee
   ref: eaf5a447ff0d59a1fb2c49b91c6e1b2d95d8e4ee
@@ -747,6 +755,7 @@ DEPENDENCIES
   koala
   lefthook
   machinist!
+  makara!
   newrelic_rpm
   nokogiri
   non-stupid-digest-assets
