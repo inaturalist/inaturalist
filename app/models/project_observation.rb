@@ -43,7 +43,7 @@ class ProjectObservation < ApplicationRecord
     existing_project_updates = UpdateAction.elastic_paginate(
       filters: [
         { term: { notification: UpdateAction::YOUR_OBSERVATIONS_ADDED } },
-        { term: { subscriber_ids: observation.user_id } }
+        { term: { "subscriber_ids.keyword": observation.user_id } }
       ],
       inverse_filters: [
         { term: { viewed_subscriber_ids: observation.user_id } }

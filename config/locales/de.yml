@@ -263,9 +263,9 @@ de:
   add_an_observation_to_project_html: Beobachtung zu %{project} hinzufügen
   add_annotations_for_x: Annotationen für "%{x}" hinzufügen
   add_annotations_for_controlled_attribute:
-    sex: Annotationen für "Geschlecht" hinzufügen
-    plant_phenology: Annotationen zur "Pflanzenphänologie" hinzufügen
-    life_stage: Annotationen zum "Entwicklungsstadium" hinzufügen
+    sex: 'Angaben hinzufügen für: "Geschlecht"'
+    plant_phenology: 'Angaben hinzufügen zu: "Pflanzenphänologie"'
+    life_stage: 'Angaben hinzufügen zu: "Entwicklungsstadium"'
     evidence_of_presence: Annotation für 'Anwesenheitsnachweis' hinzufügen
   add_another_flag: Weitere Meldung hinzufügen
   add_another_photo: Weiteres Foto hinzufügen
@@ -310,24 +310,25 @@ de:
   add_one_now: Jetzt hinzufügen
   add_photos: Fotos hinzufügen
   add_place: Gebiet hinzufügen
-  add_alive_or_dead_alive_annotation: 'Annotation "lebendig oder tot: lebendig" hinzufügen'
+  add_alive_or_dead_alive_annotation: 'Angabe hinzufügen: "lebendig/tot: lebendig"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Annotation "lebendig oder tot: Kann nicht bestimmt werden" hinzufügen'
   add_alive_or_dead_dead_annotation: 'Annotation "lebendig oder tot: tot" hinzufügen'
-  add_plant_phenology_budding_annotation: 'Vermerk "Pflanzenphänologie: Knospend" hinzufügen'
-  add_plant_phenology_flower_budding_annotation: 'Vermerk "Pflanzenphänologie: Knospend" hinzufügen'
-  add_plant_phenology_flowering_annotation: 'Vermerk "Pflanzenphänologie: Blühend" hinzufügen'
-  add_plant_phenology_fruiting_annotation: 'Vermerk "Pflanzenphänologie: Fruchttragend" hinzufügen'
+  add_plant_phenology_budding_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Knospend"'
+  add_plant_phenology_flower_budding_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Knospend"'
+  add_plant_phenology_flowering_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Blühend"'
+  add_plant_phenology_fruiting_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Fruchttragend"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Annotation "Phänologie (Pflanze): Nicht blühend" hinzufügen'
-  add_life_stage_adult_annotation: 'Annotation "Entwicklungssstadium: Adult" hinzufügen'
-  add_life_stage_teneral_annotation: 'Vermerk "Lebensstadium: Frisch geschlüpft" hinzufügen'
-  add_life_stage_subimago_annotation: 'Vermerk "Lebensstadium: Subimago" hinzufügen'
-  add_life_stage_pupa_annotation: 'Vermerk "Lebensstadium: Puppe" hinzufügen'
-  add_life_stage_nymph_annotation: 'Annotation "Entwicklungsstadium: Nymphe" hinzufügen'
+  add_life_stage_adult_annotation: 'Angabe hinzufügen "Entwicklungssstadium: Adult"'
+  add_life_stage_teneral_annotation: 'Angabe hinzufügen "Lebensstadium: Frisch geschlüpft"'
+  add_life_stage_subimago_annotation: 'Angabe hinzufügen "Lebensstadium: Subimago"'
+  add_life_stage_pupa_annotation: 'Angabe hinzufügen "Lebensstadium: Puppe"'
+  add_life_stage_nymph_annotation: 'Angabe hinzufügen "Entwicklungsstadium: Nymphe"'
   add_life_stage_larva_annotation: 'Vermerk "Lebensstadium: Larve" hinzufügen'
-  add_life_stage_juvenile_annotation: 'Vermerk "Lebensstadium: Jungtier" hinzufügen'
-  add_life_stage_egg_annotation: 'Vermerk "Lebensstadium: Ei" hinzufügen'
+  add_life_stage_juvenile_annotation: 'Angabe hinzufügen "Entwicklungsstadium: Jungtier"'
+  add_life_stage_egg_annotation: 'Angabe hinzufügen "Entwicklungsstadium: Ei"'
   add_evidence_of_presence_organism_annotation: 'Annotation ''Anwesenheitsnachweis: Organismus'' hinzufügen'
   add_evidence_of_presence_feather_annotation: 'Annotation ''Anwesenheitsnachweis: Feder'' hinzufügen'
+  add_evidence_of_presence_gall_annotation: 'Annotation ''Anwesenheitsnachweis: Galle'' hinzufügen'
   add_evidence_of_presence_scat_annotation: 'Annotation ''Anwesenheitsnachweis: Kot'' hinzufügen'
   add_evidence_of_presence_track_annotation: 'Annotation ''Anwesenheitsnachweis: Spur'' hinzufügen'
   add_evidence_of_presence_bone_annotation: 'Annotation ''Anwesenheitsnachweis: Knochen'' hinzufügen'
@@ -337,9 +338,9 @@ de:
   #As in a Guide Section
   add_section: Abschnitt hinzufügen
   add_several_observations_at_once: Mehrere Beobachtungen gleichzeitig hinzufügen.
-  add_sex_female_annotation: 'Annotation "Geschlecht: Weiblich" hinzufügen'
-  add_sex_male_annotation: 'Vermerk "Geschlecht: Männlich" hinzufügen'
-  add_sex_cannot_be_determined_annotation: 'Annotation "Geschlecht: Kann nicht bestimmt werden" hinzufügen'
+  add_sex_female_annotation: 'Angabe hinzufügen: "Geschlecht: Weiblich" '
+  add_sex_male_annotation: 'Angabe hinzufügen: "Geschlecht: Männlich"'
+  add_sex_cannot_be_determined_annotation: 'Angabe hinzufügen: "Geschlecht: nicht bestimmbar"'
   add_some_now: Jetzt welche hinzufügen
   add_tag: Tag hinzufügen
   add_tags: Stichwörter hinzufügen
@@ -1053,6 +1054,8 @@ de:
     evidence_of_presence: Anwesenheitsnachweis
     #As in the feather on a bird
     feather: Feder
+    #Abnormal growth
+    gall: Galle
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organismus
@@ -1081,6 +1084,7 @@ de:
     bone: |
       Vorwiegend Überreste des Endoskeletts; teilweise Sichtbarkeit von Knochen in ansonsten intakten Lebewesen sollten als 'Organismus' gekennzeichnet werden
     molt: Abgeworfene Haut oder Exoskelett
+    gall: Durch einen parasitären Organismus verursachte Deformation von Pflanzengewebe
   controls: Steuerung
   convert: Konvertieren
   coordinate_systems: Koordinatensysteme
@@ -1090,10 +1094,6 @@ de:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Nur mit vollständigen Koordinaten
-  coords_viewable_for_proj_desc: |
-    Nur Beobachtungen dieses Projekts anzeigen, für die du die "wahren"
-    Koordinaten sehen kannst, einschließlich unverschleierter Beobachtungen, verdeckter Beobachtungen von Personen, die dir vertrauen, verdeckte Beobachtungen von Leuten, die diesem Projekt mit allem vertrauen, und Beobachtungen verschleiert durch bedrohte Taxa von Benutzern, die
-    nur diesem Projekt mit dem Gleichen vertrauen.
   copy: Kopieren
   copy_and_paste_the_following_code_to: Kopiere und füge den folgenden Code ein, um diese Bewertung in eine andere Webseite einzubetten.
   copy_and_paste_this_into_your_own_html: Dies in dein eigenes HTML kopieren und einfügen.
@@ -1898,7 +1898,7 @@ de:
     Das Verstecken von Inhalten macht sie für die Öffentlichkeit unsichtbar, aber andere Benutzer werden immer noch in der Lage sein zu erkennen, dass etwas verborgen ist, und Kuratoren und der Autor des Inhalts wird weiterhin in der Lage sein, den versteckten Inhalt zu sehen. Im Allgemeinen gilt dies nur für schriftliche Inhalte, z.B. wenn du den Inhalt eines Artikels ausblendst, sind Bestimmungen immer noch sichtbar, aber die Bemerkungen nicht mehr. Du kannst dies nicht rückgängig machen, und nur das Personal der Website kann es wieder einblenden. Also sei vorsichtig und verwende dies nur für sehr anstößige Inhalte.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
-  hide_no_annotation: '"Keine Annotation" ausblenden'
+  hide_no_annotation: Beobachtungen ohne Angaben ausblenden
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Gesamtzahl ausblenden
   hide_uncountable_species: Nicht-zählbare Arten verstecken
@@ -2729,7 +2729,7 @@ de:
   no_attached_range: Kein zugehöriges Verbreitungsgebiet
   no_range_data_available: Keine Verbreitungsdaten verfügbar.
   no_recent_activity: Keine kürzliche Aktivität
-  no_relevant_annotations: Keine relevanten Annotationen
+  no_relevant_annotations: Keine relevanten Angaben
   no_reply_yet: Noch keine Antwort
   no_results_found: Keine Ergebnisse gefunden
   no_results_for: 'Keine Ergebnisse für'
@@ -2891,7 +2891,7 @@ de:
   observations: Beobachtungen
   observations_: Beobachtungen
   observations_added_by_x_html: "Beobachtungen hinzugefügt von %{x}"
-  observations_annotated_with_annotation: "Beobachtungen vermerkt mit %{annotation}"
+  observations_annotated_with_annotation: "Alle Beobachtungen mit Angaben zu \"%{annotation}\""
   observations_by: Beobachtungen von
   observations_by_user: "Beobachtungen von %{user}"
   observations_deleted: Beobachtungen gelöscht.
@@ -4107,7 +4107,7 @@ de:
   show_more: Mehr anzeigen
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
-  show_no_annotation: '"Keine Annotation" anzeigen'
+  show_no_annotation: Beobachtungen ohne Angaben anzeigen
   show_off_your_recent_observations: Zeige Deine neuesten Beobachtungen auf Deinem Blog oder Deiner Webseite!
   show_only: 'beschränken auf:'
   show_relative_proportions_of_all_observations: Relativen Anteil aller Beobachtungen anzeigen

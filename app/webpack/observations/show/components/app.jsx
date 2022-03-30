@@ -321,7 +321,7 @@ const App = ( {
                   height={30}
                 >
                   <Col xs={12}>
-                    <AnnotationsContainer />
+                    <AnnotationsContainer key={`activity-panel-${observation.uuid}`} />
                   </Col>
                 </LazyLoad>
               </Row>

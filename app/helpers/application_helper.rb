@@ -1601,7 +1601,14 @@ module ApplicationHelper
       end
       s.html_safe
     end
-    link_to( content, url_for_params( order_by: header, order: @order == "desc" ? "asc" : "desc" ), options )
+    link_to(
+      content,
+      url_for_params( {
+        order_by: header,
+        order: @order == "desc" ? "asc" : "desc"
+      }.merge( options[:url_options] ) ),
+      options
+    )
   end
 
 end

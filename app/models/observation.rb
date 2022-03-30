@@ -2573,7 +2573,11 @@ class Observation < ApplicationRecord
         29625, # City Nature Challenge 2019
         40364  # City Nature Challenge 2020
       ].map {|umbrella_project_id|
-        if umbrella = Project.find_by_id( umbrella_project_id )
+        if umbrella = Project.includes( {
+          project_observation_rules: {
+            operand: :project_observation_rules
+          }
+        } ).find_by_id( umbrella_project_id )
           umbrella.project_observation_rules.select{|por| por.operator == "in_project?"}.map {|por|
             por.operand.project_observation_rules.
               select{|sub_por| sub_por.operator == "observed_in_place?" }.
@@ -3181,22 +3185,22 @@ class Observation < ApplicationRecord
       ].include?( p.admin_level )
     end
     return false unless place
-    buckets = Observation.elastic_search(
-      filters: [
-        { term: { "taxon.ancestor_ids": target_taxon.id } },
-        { term: { place_ids: place.id } },
-      ],
-      # earliest_sort_field: "id",
+    base_filters = [
+      { term: { "taxon.ancestor_ids.keyword": target_taxon.id } },
+      { term: { "place_ids.keyword": place.id } },
+    ]
+    count_captive = Observation.elastic_search(
+      filters: base_filters + [{ term: { captive: true } }],
       size: 0,
-      aggregate: {
-        captive: {
-          terms: { field: "captive", size: 15 }
-        }
-      }
-    ).results.response.response.aggregations.captive.buckets
-    captive_stats = Hash[ buckets.map{ |b| [ b["key"], b["doc_count" ] ] } ]
-    total = captive_stats.values.sum
-    ratio = captive_stats[1].to_f / total
+      track_total_hits: true
+    ).results.total_entries
+    count_wild = Observation.elastic_search(
+      filters: base_filters + [{ term: { captive: false } }],
+      size: 0,
+      track_total_hits: true
+    ).results.total_entries
+    total = count_captive + count_wild
+    ratio = count_captive.to_f / total
     # puts "total: #{total}, ratio: #{ratio}, place: #{place}"
     total > 10 && ratio >= 0.8
   end

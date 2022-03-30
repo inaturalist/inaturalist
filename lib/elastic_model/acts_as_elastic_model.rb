@@ -31,7 +31,9 @@ module ActsAsElasticModel
 
     class << self
       def elastic_search(options = {})
-        try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, sleep: 1, tries: 10 ) do
+        try_and_try_again( [
+          Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
+          Elasticsearch::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10 ) do
           begin
             __elasticsearch__.search(ElasticModel.search_hash(options))
           rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e

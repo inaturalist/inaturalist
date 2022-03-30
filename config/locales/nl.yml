@@ -341,6 +341,7 @@ nl:
   add_life_stage_egg_annotation: 'Aantekening "Levenstadium: Ei" toevoegen'
   add_evidence_of_presence_organism_annotation: 'Voeg "Bewijs van Aanwezigheid: organisme" aantekening toe'
   add_evidence_of_presence_feather_annotation: 'Voeg "Bewijs van Aanwezigheid: veer" aantekening toe'
+  add_evidence_of_presence_gall_annotation: 'Voeg "Bewijs van Aanwezigheid: gal" aantekening toe'
   add_evidence_of_presence_scat_annotation: 'Voeg "Bewijs van Aanwezigheid: poep" aantekening toe'
   add_evidence_of_presence_track_annotation: 'Voeg "Bewijs van Aanwezigheid: spoor" aantekening toe'
   add_evidence_of_presence_bone_annotation: 'Voeg "Bewijs van Aanwezigheid: bot" aantekening toe'
@@ -800,7 +801,6 @@ nl:
   by_you: Door jou
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalenders tonen slechts %{x} waarnemingen tegelijk
-  callback_url: Callback url
   cancel: Annuleren
   cant_edit_or_delete_hidden_content: Je kunt inhoud die verborgen is door sitecuratoren niet bewerken of verwijderen
   cant_flag_an_object_that_doesnt_exist: Niet mogelijk om een object te melden dat niet bestaat
@@ -1094,6 +1094,8 @@ nl:
     evidence_of_presence: Bewijs van voorkomst
     #As in the feather on a bird
     feather: Veer
+    #Abnormal growth
+    gall: Gal
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organisme
@@ -1122,6 +1124,7 @@ nl:
     bone: |
       Vooral endoskelet-resten; gedeeltelijke blootstelling van bot in een verder intact organisme moet worden gelabeld als "organisme"
     molt: Afgeworpen huid of exoskelet
+    gall: Misvormde uitgroei van plantenweefsel veroorzaakt door een parasitair organisme
   controls: Besturing
   convert: Converteren
   coordinate_systems: Coördinaatsystemen
@@ -1135,8 +1138,9 @@ nl:
     Toon alleen waarnemingen van dit project waarvoor je de "echte"
     coördinaten kunt zien, inclusief niet vervaagde waarnemingen, vervaagde waarnemingen door
     mensen die jou vertrouwen, vervaagde waarnemingen door mensen die dit project
-    met alles vertrouwen, en waarnemingen die zijn vervaagd vanwege bedreigde taxa door mensen die dit project
-    alleen met hetzelfde vertrouwen.
+    met alles vertrouwen en waarnemingen die zijn vervaagd vanwege bedreigde taxa door mensen die dit project
+    alleen waarnemingen toe vertrouwen die zijn vervaagd omdat het bedreigde taxa zijn.
+
   copy: Kopiëren
   copy_and_paste_the_following_code_to: Kopieer en plak de volgende programmeercode om deze beoordeling aan een andere website toe te voegen
   copy_and_paste_this_into_your_own_html: Kopieer en plak dit in je eigen HTML.
@@ -3677,6 +3681,7 @@ nl:
   plants: planten
   please_add_a_citation_for_this_change: Voeg een citaat toe voor deze wijziging.
   please_allow_a_few_weeks_for_external_sites: Wacht een paar weken zodat externe sites de wijzigingen van deze waarneming kunnen synchroniseren #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: Vraag je ouders om toestemming
   #Title to a section warning a user to exercise caution
   please_be_careful!: Wees voorzichtig!
   please_complete_the_following_to_add_project: |
@@ -4190,6 +4195,8 @@ nl:
   show_active_and_inactive_taxa: Actieve en inactieve taxa weergeven
   show_common_names: Toon lokale namen
   show_hidden_content: Verborgen inhoud tonen
+  show_history_by_this_user: Toon geschiedenis van deze gebruiker
+  show_history_for_this_record: Toon geschiedenis voor dit item
   show_keyboard_shortcuts: Toon sneltoetsen
   show_less: Minder weergeven
   show_more: Meer weergeven
@@ -4592,6 +4599,7 @@ nl:
   taxon_framework_relationship_unknown_count_html: "Relatie onbekend: %{count}"
   taxon_framework_relationships: Taxonkader-relaties
   taxon_framework_taxon: Taxonkader-taxon
+  taxon_history_notice: Geschiedenis is in februari 2022 geïntroduceerd dus er is vóór die datum geen geschiedenis beschikbaar.
   taxon_merge: taxon samenvoegen
   taxon_name: Taxon naam
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxonnaam moet overeenkomen met een bestaand taxon in onze database
@@ -5154,6 +5162,8 @@ nl:
   where_were_you?: Waar was je?
   which_projects_can_add_your_observations?: Welke traditionele projecten kunnen je waarnemingen toevoegen?
   white: wit
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Waarom maak je deze wijziging? (optioneel)
   why_you_can_see_the_coordinates: Waarom u de coördinaten kunt zien
   who_can_add_observation_fields_to_my_obs: Wie kan waarnemingsvelden toevoegen aan mijn waarnemingen?
   who_can_add_observations_to_this_project?: Wie kan waarnemingen aan dit project toevoegen?
@@ -7451,6 +7461,8 @@ nl:
         name_provider: Naamleverancier
         parent_id: Bovenliggend ID
         rank: Rang
+        rank_level: Hiërarchie niveau
+        source_id: Bron ID
         source_identifier: Bron-id
         source_url: Bron-URL
         wikipedia_summary: Wikipedia samenvatting

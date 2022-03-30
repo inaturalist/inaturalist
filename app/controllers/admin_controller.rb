@@ -68,11 +68,13 @@ class AdminController < ApplicationController
 
   def user_content
     return unless load_user_content_info
+    @page = params[:page]
     @order = params[:order]
     @order = "desc" unless %w(asc desc).include?( @order )
     @order_by = params[:order_by]
     @order_by = "created_at" unless %w(created_at updated_at).include?( @order_by )
-    @records = @display_user.send( @reflection_name ).order( "#{@order_by} #{@order}" ) rescue []
+    @records = @display_user.send( @reflection_name ).
+      order( @order_by => @order ).page( params[:page] || 1 ).limit( 200 ) rescue []
 
     render layout: "bootstrap"
   end
