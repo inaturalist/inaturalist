@@ -561,7 +561,6 @@ Rails.application.routes.draw do
     collection do
       get :index
       get :queries
-      get :stop_query
       get :users
       get "users/:id" => "admin#user_detail", as: :user_detail
       get "login_as/:id" => "admin#login_as", as: :login_as

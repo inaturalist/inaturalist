@@ -291,6 +291,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  #
+  # if Makara is configured with replica DBs, querying of replicas is currently
+  # disabled by default. Actions must use this in a `prepend_around_action` to
+  # have any queries run against the replicas. e.g.
+  #
+  #    prepend_around_action :enable_replica
+  #
   def enable_replica
     begin
       ActiveRecord::Base.connection.enable_replica

@@ -1,6 +1,7 @@
-# don't indicate cached queries are being run against the primary DB
 module MakaraLoggingSubscriber
-  # See https://github.com/instacart/makara/blob/e45ba090fce998dad9e9a2759426f4695009cfae/lib/makara/logging/subscriber.rb#L23
+  # extending this method to not return a wrapper name for cached queries.
+  # This will fix a bug in query logging which was improperly reporting
+  # that all cached queries were being run against the primary, not cached
   def current_wrapper_name(event)
     return nil if event.payload[:cached]
     super(event)
@@ -18,6 +19,7 @@ module Makara
     module Subscriber
       protected
 
+      # overriding this method to properly fetch the adapter for Rails 6
       def current_wrapper_name(event)
         adapter = event.payload[:connection]
 
@@ -36,14 +38,20 @@ module ActiveRecord
     class MakaraAbstractAdapter < ::Makara::Proxy
 
       SQL_PRIMARY_MATCHERS = [] unless defined?( SQL_PRIMARY_MATCHERS )
-      CUSTOM_SQL_PRIMARY_MATCHERS = SQL_PRIMARY_MATCHERS + [/delayed_jobs/i].map(&:freeze).freeze
+      CUSTOM_SQL_PRIMARY_MATCHERS = SQL_PRIMARY_MATCHERS +
+        [/delayed_jobs/i, /FROM "sessions"/ ].map(&:freeze).freeze
       SQL_SKIP_STICKINESS_MATCHERS = [] unless defined?( SQL_SKIP_STICKINESS_MATCHERS )
-      CUSTOM_SQL_SKIP_STICKINESS_MATCHERS  = SQL_SKIP_STICKINESS_MATCHERS + [/FROM "sessions"/i].map(&:freeze).freeze
+      CUSTOM_SQL_SKIP_STICKINESS_MATCHERS  = SQL_SKIP_STICKINESS_MATCHERS +
+        [/FROM "sessions"/i].map(&:freeze).freeze
 
+      # overriding this MakaraAbstractAdapter method with an extended
+      # set of patterns whose matched queries will always run on the primary
       def sql_primary_matchers
         CUSTOM_SQL_PRIMARY_MATCHERS
       end
 
+      # overriding this MakaraAbstractAdapter method with an extended
+      # set of patterns whose matched queries will not trigger stickiness
       def sql_skip_stickiness_matchers
         CUSTOM_SQL_SKIP_STICKINESS_MATCHERS
       end
@@ -61,29 +69,35 @@ module ActiveRecord
       attr_reader :context_refresh
       attr_reader :last_context_refresh
 
+      # added method than can be used to force all queries to be run against the primary
       def disable_replica
         @replica_enabled = false
       end
 
-      # replicas will only be used if enable_replica is called
+      # added method than can be used to allow queries to be run against replicas
       def enable_replica
         @replica_enabled = true
       end
 
-      # when running in a non-web context, makara will never attempt to refresh
-      # its context, meaning if stickiness is enabled and a query gets run
+      # added method to be used mainly for scripts, delayed jobs, etc.
+      # When running in a non-web context, makara will never attempt to refresh
+      # its context. Meaning if stickiness is enabled and a query gets run
       # against the primary, all other queries will be run against the primary
-      # forever, regardless of the primary_ttl. This method allow a context
-      # refresh check to run to allow connections to fall back to using replicas
-      # after primary_ttl has expired
+      # forever, regardless of the primary_ttl. This method allows a context
+      # refresh check to run which will reasses if connection primary_ttl has
+      # expired and queries can be run against replicas again
       def enable_context_refresh
         @context_refresh = true
       end
 
+      # added method to disable context refreshing
       def disable_context_refresh
         @context_refresh = false
       end
 
+      # overriding this method to enforce the @replica_enabled toggle, and to
+      # enable context refreshing so longer-running non-web code does not get
+      # stuck to the primary for too long
       def needs_primary?(method_name, args)
         return true if !@replica_enabled
         # if primary_ttl is defined, and there hasn't been a context refresh or
@@ -95,22 +109,15 @@ module ActiveRecord
         end
         super
       end
-
-      # def should_stick?(method_name, args)
-      #   return false unless sticky?
-      #   sql = coerce_query_to_sql_string(args.first)
-      #   return true if sql_primary_matchers.any?{|m| sql =~ m }
-      #   super
-      # end
-
     end
   end
 end
 
 class ActiveRecord::ConnectionAdapters::PostGISAdapter
   # makara defines this method on its DB proxy class, but it won't exist in
-  # an environment that doesn't use makara. So stub the method to avoid checking
-  # if makara is being used every time we want to use without_sticking
+  # an environment that doesn't use makara configuration in database.yml. So
+  # stub the method to avoid checking if makara is being used everwhere we
+  # want to use without_sticking
   def without_sticking
     yield
   end
@@ -121,6 +128,7 @@ module Makara
 
     protected
 
+    # overridding this method to skip the context-preserving middleware for ping requests
     def ignore_request?(env)
       if defined?(Rails)
         return true if env["PATH_INFO"] == "/ping"
