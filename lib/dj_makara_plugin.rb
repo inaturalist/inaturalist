@@ -14,7 +14,7 @@ class DJMakaraPlugin < Delayed::Plugin
     lifecycle.around(:invoke_job) do |job, *args, &block|
       using_replica = job_can_use_replica(job)
       begin
-        if using_replica && ActiveRecord::Base.connection.respond_to?(:enable_replica)
+        if using_replica && ActiveRecord::Base.connection.respond_to?(:enable_context_refresh)
           # enable use of replica DBs
           ActiveRecord::Base.connection.enable_replica
           ActiveRecord::Base.connection.enable_context_refresh
@@ -22,7 +22,7 @@ class DJMakaraPlugin < Delayed::Plugin
         end
         block.call(job, *args)
       ensure
-        if using_replica && ActiveRecord::Base.connection.respond_to?(:disable_replica)
+        if using_replica && ActiveRecord::Base.connection.respond_to?(:enable_context_refresh)
           ActiveRecord::Base.connection.disable_replica
           ActiveRecord::Base.connection.disable_context_refresh
           Makara::Context.release_all
