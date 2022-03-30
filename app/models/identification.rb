@@ -316,7 +316,8 @@ class Identification < ApplicationRecord
     Identification.
       delay(
         priority: INTEGRITY_PRIORITY,
-        unique_hash: { "Identification::run_update_curator_identification": id }
+        unique_hash: { "Identification::run_update_curator_identification": id },
+        run_at: 1.minute.from_now
       ).
       run_update_curator_identification( id )
     true
