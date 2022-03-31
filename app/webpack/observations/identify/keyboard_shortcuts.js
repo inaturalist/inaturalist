@@ -159,6 +159,11 @@ const annotationShortcuts = [
     shortcut: "e m",
     term: "Evidence of Presence",
     value: "Molt"
+  },
+  {
+    shortcut: "e g",
+    term: "Evidence of Presence",
+    value: "Gall"
   }
 ];
 
