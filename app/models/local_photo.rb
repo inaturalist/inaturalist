@@ -73,8 +73,8 @@ class LocalPhoto < Photo
     invalidate_cloudfront_caches :file, "photos/:id/*"
   else
     has_attached_file :file, file_options.merge(
-      path: ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
-      url: "/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
+      path: ":rails_root/public/attachments/:class/:attachment/:id/:style.:content_type_extension",
+      url: "/attachments/:class/:attachment/:id/:style.:content_type_extension",
     )
   end
 

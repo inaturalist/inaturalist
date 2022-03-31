@@ -46,14 +46,9 @@ class Photo < ApplicationRecord
 
   def parse_extension
     return unless file.url( :original )
-    if CONFIG.usingS3 && matches = file.url( :original ).match(/original\.([^?]*)(\?|$)/)
-      return matches[1]
-    end
-    # the local path is configured to be a little different: ...:id/:style/:basename.:extension
-    if !CONFIG.usingS3 && matches = file.url( :original ).match(/original\/[^\.]+\.([^?]*)(\?|$)/)
-      return matches[1]
-    end
-    nil
+
+    ext = File.extname( URI.parse( file.url( :original ) ).path ).sub( ".", "" )
+    ext.blank? ? nil : ext
   end
 
   def parse_url_prefix
