@@ -2484,10 +2484,6 @@ lv:
     Esi uzmanīgs, ja kāds lūdz īpatņu paraugus vai atklāt noslēptos datus. Centies pārbaudīt konkrētā lietotāja identitāti. Ja persona lūdz īpatņu paraugus, pieprasi uzrādīt atļauju.
   messages_new_correspondent_personal: |
     Neizpaud neuzticamiem cilvēkiem informāciju par sevi.
-  messages_new_correspondent_actions_html: |
-    Ja rodas aizdomas par to, ka šī persona pārkāpj <a href="%{tos_url}"
-    target="_blank">lietošanas noteikumus</a> vai neievēro <a
-    href="%{guidelines_url}" target="_blank">kopienas vadlīnijas</a>, lūdzu, atzīmē lietotāja ziņu ar karodziņu.
   misidentifications: Nepareizas identifikācijas
   misleading_or_illegal_content_html: |
     Maldinošs vai nelikumīgs saturs, rasu un etniskā un naida izraisīšana u.t.m.l. Lai uzzinātu vairāk par to, ko saprotam ar vārdu "piemērots", skatīt <a href="/help#inappropriate">BUJ</a>.
@@ -3158,8 +3154,6 @@ lv:
     original: sākotnējais
   photos_updated: Fotogrāfijas atjaunotas
   pi_consent_desc_title: Vairāk par personīgo informāciju
-  pi_consent_desc_html: |
-    Mēs uzglabājam tādu personīgo informāciju kā lietotājvārdi un e-pasta adreses, lai nodrošinātu kontu darbību un izpildītu privātuma likumu prasības. Lūdzam atzīmēt šo lodziņu, lai piekristu personīgās informācijas izmantošanai. Lai uzzinātu vairāk par datu veidiem un to pielietojumu, skatīt: <a href='%{privacy_url}' target='_blank'>Privātuma politiku</a> un <a href='%{terms_url}' target='_blank'>Lietošanas noteikumus</a>.
   pi_consent_label: |
     Es ļauju iNaturalist glabāt un apstrādāt ierobežota veida informāciju par mani, lai nodrošinātu mana konta darbību.
   pi_consent_child_label: |
@@ -4556,7 +4550,6 @@ lv:
   terms: Noteikumi
   terms_and_rules_html: "Noteikumi &amp; Nosacījumi"
   terms_new_users: "Ja pievienosi nosacījumus, jauniem lietotājiem, kas pievienosies projektam, tiem būs jāpiekrīt."
-  terms_service: Lietošanas noteikumi
   terrain: piekļuve
   text: Teksts
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4697,9 +4690,6 @@ lv:
   top_identifiers_of_taxon: '%{taxon} taksona biežākie identificētāji'
   top_observer_caps: NR. 1. NOVĒROTĀJS
   top_observers: Biežākie novērotāji
-  tos_privacy_guidelines_label: |
-    Piekrītu <a href="/terms" target="_blank">Lietošanas noteikumiem</a> un
-    <a href="/privacy" target="_blank">Privātuma politikai</a>, un esmu pārlasījis <a href="/pages/community+guidelines" target="_blank">Kopienas vadlīnijas</a>.
   total: Kopā
   totals: Kopā
   total_ids_on_input_taxon: "Kopējais ievades taksona ID skaits"
@@ -5217,8 +5207,6 @@ lv:
   you_must_specify_and_confirm_a_new_password: Jāievada un jāapstiprina jauna parole.
   you_need_to_have_linked_flickr_account: Lai saglabātu fotogrāfiju tagus, Flickr konts jāsavieno ar iNat kontu.
   you_need_to_select_some_observations_first: Vispirms jāizvēlas kāds novērojums.
-  you_retain_full_copyright: "Tev saglabāsies pilnas sava satura autortiesības, izņemot tās autortiesības, kas piešķirtas %{site_name} vietnei, kā tas norādīts mūsu lietošanas noteikumos."
-  you_retain_full_copyright_over_your_content: "Tev saglabāsies pilnas sava satura autortiesības, izņemot tās autortiesības, kas piešķirtas %{site_name} vietnei, kā tas norādīts mūsu lietošanas noteikumos."
   you_should_delete_this_taxon_change: |
     Iesakām izdzēst šīs taksonu izmaiņas vai atrast risinājumu kopā ar lietotājiem, kas veica pārējās izmaiņas.
   you_sure_delete_asset?: Vai tiešām vēlaties dzēst projekta pielikumu?
@@ -6506,19 +6494,6 @@ lv:
           Lai izdzēstu savu kontu, veidlapā jāievada "%{confirmation_code}"
       edit:
         about_third_party_tracking: Par trešo pušu izsekošanu
-        blocking_desc_html: |
-          <p>
-          Ja kāds tiek nobloķēts, šim lietotājam vairs nav iespējas nosūtīt tev ziņas, komentēt un identificēt tavus novērojumus vai kādā citā veidā sazināties ar tevi %{site_name} vietnē. Turklāt lietotāja novērojumi nebūs redzami tavos meklēšanas rezultātos un tavi novērojumi nebūs redzami lietotāja meklēšanas rezultātos. Tomēr tas nepadara tevi lietotājam neredzamu. Tavi novērojumi un profils tāpat būs atrodams, bet lietotājs nevarēs sazināties ar tevi.
-          </p>
-          <p>
-          Bloķēšana lietojama situācijās, kad nevari ar kādu satikt un par spīti taviem centieniem atrisināt nesaskaņas civilizētā ceļā lietotājs tevi tāpat neliek mierā. Bloķēšana nav paredzēta tam, lai slēptos no citiem, izvairītos no cilvēkiem, kuru novērojumiem neuzticies vai, lai atteiktos no kopienas ID (tam parezēta cita funkcija). Bloķēšana funkcionē abejādi – ja kādu nobloķēsi, lietotājs nevarēs ar tevi sazināties, bet arī tu nevarēsi sazināties ar viņu. Ja šo funkciju lietosi nepareizi, piemēram, lai izvairītos no kāda lietotāja identifikācijām, tad liegsi arī sev iespēju identificēt šī lietotāja novērojumus.
-          </p>
-          <p>
-          Nobloķēt iespējams tikai trīs lietotājus. Uzskatām, ka tas ir pamatots daudzums, kas sniedz iespēju nobloķēt traucējošus lietotājus un tai pašā laikā liedz kādam izmantot šo funkciju maldinošā veidā. Ja tev rodas nepieciešamība nobloķēt vairāk lietotāju, lūdzu, <a href="mailto:%{help_email}">sazinies ar mums</a>.
-          </p>
-          <p>
-          Ja kāds tevi neliek mierā vai izseko %{site_name} vietnē, lūdzu, <a href="mailto:%{help_email}">sazinies ar mums</a>. Ja lietotāja darbības pārkāpj lietošanas noteikumus vai uzskatām, ka lietotāja izturēšanās ir nepiemērota mūsu vietnei, veiksim izmeklēšanu.
-          </p>
         common_names_desc: |
           Rādīt tautā pieņemtos nosaukumus. Atspējo šo funkciju, ja vēlies redzēt tikai zinātniskos nosaukumus. Lai kontrolētu to, kurus tautā pieņemtos nosaukumus redzēsi, iespējams mainīt darbības un atrašanās vietas iestatījumus.
         display_monthly_supporter_status_on_my_profile: |
