@@ -2348,10 +2348,6 @@ tr:
     Türler ve gizli bilgilerle ilgili isteklere karşı dikkatli olun. İstek yapan kişinin kimliğini doğrulamaya çalışın ve türler hakkında sorular soruyorlarsa, yetki izinlerini göstermelerini isteyin.
   messages_new_correspondent_personal: |
     Güvenmediğin kişilere kendin hakkındaki kişisel bilgilerini paylaşma.
-  messages_new_correspondent_actions_html: |
-    Eğer bu kişinin <a href="%{tos_url}"
-    target="_blank">Hizmet Şartları</a>mızı ihlal ettiğinden veya <a
-    href="%{guidelines_url}" target="_blank">Topluluk Kılavuzu</a>muza uygun davranmadığından şüpheleniyorsan, lütfen bu mesajı aşağıdan işaretle.
   misidentifications: Yanlış tanımlamalar
   misleading_or_illegal_content_html: |
     Yanıltıcı veya yasa dışı içerik, ırksal veya etnik hakaretler vb. "Uygun" tanımımızla ilgili daha çoğu için <a href="/help#inappropriate">SSS'ye</a>bakın.
@@ -2996,8 +2992,6 @@ tr:
     original: orjinal
   photos_updated: Fotoğraflar güncellendi.
   pi_consent_desc_title: Kişisel Bilgiler Hakkında
-  pi_consent_desc_html: |
-    Bu sitede hesapları yönetmek için kullanıcı adları ve e-posta adresleri gibi kişisel bilgileri saklarız ve gizlilik yasalarına uymak için kişisel bilgilerin kullanımına izin verdiğinizi belirtmek üzere bu kutuyu işaretlemen gerekir. Hangi bilgileri topladığımız ve bunları nasıl kullandığımızla ilgili daha çok bilgi için lütfen <a href='%{privacy_url}' target='_blank'>Gizlilik Politikamıza</a> ve <a href='%{terms_url}' target='_blank'>Kullanım Şartlarına</a> bak.
   pi_consent_label: |
     iNaturalist’in hesabımı yönetmek için sınırlı sayıda kişisel bilgiyi saklamasına ve işlemesine izin veriyorum
   pi_consent_child_label: |
@@ -4289,7 +4283,6 @@ tr:
   terms: Şartlar
   terms_and_rules_html: "Şartlar &amp; Kurallar"
   terms_new_users: "Eğer şart eklerseniz, yeni kullanıcıların bu projeye katılmadan önce onları kabul etmesi gerekir."
-  terms_service: Hizmet Şartları
   terrain: arazi
   text: Metin
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4426,8 +4419,6 @@ tr:
   top_identifiers_of_taxon: '%{taxon}''ı En Çok Tanımlayanlar'
   top_observer_caps: EN ÇOK GÖZLEMLEYEN
   top_observers: En Çok Gözlemleyenler
-  tos_privacy_guidelines_label: |
-    <a href="/terms" target="_blank">Hizmet Şartları</a> ve <a href="/privacy" target="_blank">Gizlilik Politikası</a>'nı onaylıyorum, ve <a href="/pages/community+guidelines" target="_blank">Topluluk İlkelerini</a> inceledim.
   total: Toplam
   totals: Toplam
   total_members: Toplam üye
@@ -4924,8 +4915,6 @@ tr:
   you_must_specify_and_confirm_a_new_password: Yeni bir şifre belirlemeli ve onaylamalısınız.
   you_need_to_have_linked_flickr_account: Fotoğraflarınızı etiketlemek için bağlı bir Flickr hesabına sahip olmalısınız.
   you_need_to_select_some_observations_first: Önce bazı gözlemleri seçmelisiniz.
-  you_retain_full_copyright: "Hizmet Şartlarımızda %{site_name} 'e verilen hakların yanı sıra, içeriğinizin tüm telif haklarını saklı tutarsınız."
-  you_retain_full_copyright_over_your_content: "Hizmet Şartlarımızda %{site_name}'e verilen hakların yanı sıra, içeriğinizin tüm telif hakkını saklı tutarsınız."
   you_sure_delete_asset?: Bu Proje Varlığını silmek istediğinize emin misin?
   you_sure_delete_check_list: "Bu listeyi silmek istediğine emin misin? Bazı insanlar burada çok iş yapmış olabilir..."
   you_sure_delete_comment?: Bu yorumu silmek istediğinize emin misiniz?
@@ -6475,19 +6464,6 @@ tr:
           Hesabınızı silmek için forma "%{confirmation_code}" girmelisiniz
       edit:
         about_third_party_tracking: Üçüncü tarafın izlemesi hakkında
-        blocking_desc_html: |
-          <p>
-          Birilerini engellemek onların seninle mesajlaşmalarını, gözlemlerin hakkında yorum yapmalarını, gözlemlerini tanımlamalarını ve %{site_name} adresinden seninle iletişim kurmalarını önler. Ayrıca, onların gözlemlerini senin arama sonuçlarından, senin gözlemlerini de onların arama sonuçlarından kaldırır. Ancak, bu durum seni onlara görünmez yapmaz. Hala gözlemlerini bulabilir ve profilini görebilirler, sadece seninle etkileşime giremezler.
-          </p>
-          <p>
-          Engelleme; uyuşmazlıkların medeni bir şekilde çözülmesi için elinden geleni yapmana rağmen, anlaşamadığın ve seni rahat bırakmayacakları durumlar içindir. İnsanlardan gizlenmenin, görüşlerine güvenmediğin kişilerin tanımlamalarını engellemenin veya topluluk kimliğinden vazgeçmenin bir yolu değildir (bunun için başka bir ayar var). Engelleme çift yönlü çalışır: engellediğin kişiler seninle etkileşime giremezken, sen de onlarla etkileşime giremezsin. Birilerinin senin gözlemlerini tanımlamasına engel olmak için kötüye kullanırsan, aynı zamanda kendini de onların gözlemlerini tanımlamaya kapatmış olursun.
-          </p>
-          <p>
-          Toplamda yalnızca üç kişiyi engelleyebilirsin. Bunun, hem kötüye kullanmanın önüne geçeceğini hem de engelleme ihtiyacı olan kişiler için yetecek bir sayı olduğunu düşünüyoruz. Eğer daha fazla kişiyi engellemen gerektiğini hissediyorsan, lütfen <a href="mailto:%{help_email}">bizimle iletişime geç</a>.
-          </p>
-          <p>
-          Birisi seni taciz ediyor veya %{site_name} üzerinden izliyorsa, <a href="mailto:%{help_email}">lütfen bize bildir</a>. Bu davranış, Hizmet Şartlarımızın ihlal edildiğini veya sitemiz için uygunsuz olduğunu düşündüğümüz diğer davranışları temsil ediyorsa, incelemeye alırız.
-          </p>
         common_names_desc: |
           Yaygın isimleri göster. Yalnızca bilimsel adları görüntülemek istiyorsanız devre dışı bırakın. 
           Konum ve yer ayarlarınızı değiştirerek hangi yaygın isimleri gördüğünüzü kontrol edebileceğinizi unutmayın.
