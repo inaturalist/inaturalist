@@ -1,4 +1,3 @@
-require_relative "../models/delayed_job" if Rails.env.development?
 #
 # A collection of tools useful for administrators.
 #
