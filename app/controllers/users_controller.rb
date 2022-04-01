@@ -1200,6 +1200,7 @@ protected
   def permit_params
     return if params[:user].blank?
     params.require(:user).permit(
+      :data_transfer_consent,
       :description,
       :email,
       :icon,
@@ -1215,6 +1216,7 @@ protected
       :password,
       :password_confirmation,
       :per_page,
+      :pi_consent,
       :place_id,
       :preferred_identify_image_size,
       :preferred_observation_fields_by,

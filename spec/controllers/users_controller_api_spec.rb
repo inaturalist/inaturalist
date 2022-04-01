@@ -121,6 +121,38 @@ shared_examples_for "a signed in UsersController" do
         expect( friendship ).not_to be_following
       end
     end
+
+    describe "pi_consent" do
+      it "set to true should change pi_consent_at" do
+        expect( user.pi_consent_at ).to be_blank
+        put :update, format: :json, params: { id: user.id, user: { pi_consent: true } }
+        user.reload
+        expect( user.pi_consent_at ).not_to be_blank
+      end
+      it "set to not true should not change anything" do
+        user.update( pi_consent: true )
+        expect( user.pi_consent_at ).not_to be_blank
+        put :update, format: :json, params: { id: user.id, user: { pi_consent: false } }
+        user.reload
+        expect( user.pi_consent_at ).not_to be_blank
+      end
+    end
+
+    describe "data_transfer_consent" do
+      it "set to true should change data_transfer_consentat" do
+        expect( user.data_transfer_consent_at ).to be_blank
+        put :update, format: :json, params: { id: user.id, user: { data_transfer_consent: true } }
+        user.reload
+        expect( user.data_transfer_consent_at ).not_to be_blank
+      end
+      it "set to not true should not change anything" do
+        user.update( data_transfer_consent: true )
+        expect( user.data_transfer_consent_at ).not_to be_blank
+        put :update, format: :json, params: { id: user.id, user: { data_transfer_consent: false } }
+        user.reload
+        expect( user.data_transfer_consent_at ).not_to be_blank
+      end
+    end
   end
 
   describe "new_updates" do
