@@ -2386,11 +2386,6 @@ fi:
     henkilöllisyys, ja jos hän pyytää näytteitä, pyydä nähdä hänen lupansa.
   messages_new_correspondent_personal: |
     Älä luovuta henkilökohtaisia tietoja itsestäsi ihmisille, joihin et luota.
-  messages_new_correspondent_actions_html: |
-    Jos epäilet, että tämä henkilö rikkoo <a href="%{tos_url}"
-    target="_blank">käyttöehtoja</a> tai ei toimi <a
-    href="%{guidelines_url}" target="_blank">yhteisön ohjeiden</a>mukaisesti, liputa viesti.
-    .
   misidentifications: Virhetunnistukset
   misleading_or_illegal_content_html: |
     Harhaanjohtavaa tai laitonta sisältöä, rodun tai kansan loukkaaminen, yms. Lisätietoa
@@ -3003,10 +2998,6 @@ fi:
     original: alkuperäinen
   photos_updated: Kuvat päivitetty.
   pi_consent_desc_title: Henkilötiedoista
-  pi_consent_desc_html: |
-    Tallennamme henkilötietoa, kuten käyttäjänimiä ja sähköpostiosoitteita, hallitaksemme käyttäjätilejä tällä sivustolla. Ole hyvä ja anna suostumuksesi käyttää antamiasi henkilötietoja näihin tarkoituksiin. Voit lukea lisää 
-    <a href='%{privacy_url}' target='_blank'>tietosuojaselosteesta</a>
-    ja <a href='%{terms_url}' target='_blank'>käyttöehdoista</a>.
   pi_consent_label: |
     Kyllä, suostun siihen, että iNaturalist tallentaa ja käyttää tiettyjä henkilötietojani käyttäjätilini hallintaan
   pi_consent_child_label: |
@@ -4190,7 +4181,6 @@ fi:
   terms: Ehdot
   terms_and_rules_html: "Ehdot &amp; säännöt"
   terms_new_users: "Jos lisäät ehtoja, uusien käyttäjien on hyväksyttävä ne ennen tähän projektiin liittymistä."
-  terms_service: Käyttöehdot
   terrain: maasto
   text: Teksti
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4292,8 +4282,6 @@ fi:
   top_identifiers_of_taxon: Taksonin %{taxon} parhaimmat tunnistajat
   top_observer_caps: PARAS HAVAINNOIJA
   top_observers: Eniten havainnoineet
-  tos_privacy_guidelines_label: |
-    Hyväksyn <a href="/terms" target="_blank">käyttöehdot</a> ja <a href="/privacy" target="_blank">yksityisyyskäytännöt</a>, ja olen tutustunut <a href="/pages/community+guidelines" target="_blank">yhteisön pelisääntöihin</a> (englanniksi).
   total: Yhteensä
   totals: Yhteensä
   total_members: Jäseniä yhteensä
@@ -4706,8 +4694,6 @@ fi:
   you_must_select_at_least_one_taxon: Sinun on valittava vähintään yksi taksoni
   you_must_specify_and_confirm_a_new_password: Sinun täytyy valita ja vahvistaa uusi salasanasi.
   you_need_to_select_some_observations_first: Sinun täytyy ensin valita joitakin havaintoja.
-  you_retain_full_copyright: "Säilytät täydet tekijänoikeudet sisältöösi, lukuun ottamatta käyttöehdoissa määriteltyjä %{site_name}ille myönnettyjä oikeuksia."
-  you_retain_full_copyright_over_your_content: "Säilytät täydet tekijänoikeudet sisältöösi, lukuun ottamatta käyttöehdoissa määriteltyjä %{site_name}ille myönnettyjä oikeuksia."
   you_sure_delete_asset?: Haluatko varmasti poistaa tämän omaisuuden?
   you_sure_delete_check_list: "Haluatko varmasti poistaa tämän luettelon? Jotkut ihmiset ovat saattaneet tehdä paljon työtä sen eteen..."
   you_sure_delete_comment?: Haluatko varmasti poistaa tämän kommentin?
@@ -5669,17 +5655,6 @@ fi:
           Jos saat liian paljon ilmoituksia sivustolta, voit <a href="/users/edit">asetuksistasi</a> muokata, mitä ilmoituksia lähetetään tai estää sähköpostin lähetyksen. Jos saat liikaa ilmoituksia joltakin henkilöltä, harkitse hänen <a href="/users/edit">vaimentamistaan</a> tilisi poistamisen sijaan.
       edit:
         about_third_party_tracking: Tietoja kolmannen osapuolen tekemästä seurannasta
-        blocking_desc_html: |
-          <p>
-          Toisen käyttäjän estäminen (blokkaaminen) estää heitä viestimästä kanssasi, kommentoimasta havaintojasi, tunnistamasta havaintojasi, tai muuten olemassa yhteydessä sinuun %{site_name}issa. Estäminen myös poistaa hänen havaintonsa näkemistäsi hakutuloksista sekä poistaa havaintosi heidän hakutuloksistaan. Mutta estäminen ei tee sinusta näkymätöntä hänelle. Hän voi silti löytää havaintojasi ja katsoa profiiliasi, hän vain ei vain voi viestiä kanssasi.
-          </p><p>
-          Estäminen on tarkoitettu tilanteisiin, jossa et tule toimeen jonkin kanssa, ja tämä toinen henkilö ei jätä sinua rauhaan, vaikka olisit yrittänyt ratkaista erimielisyydet sivistyneesti. Estäminen ei ole tapa piiloutua muilta, estää tunnistuksia käyttäjiltä joihin et luota, tai estää yhteisömäärityksiä (tähän on toinen toiminto). Estäminen toimii kahdella tavalla: jos estät jonkun, he eivät voi olla yhteydessä sinuun, etkä sinä heihin. Jos väärinkäytät estämistä estääksesi jotakuta tunnistamasta havaintojasi, estät myös itseäsi tunnistamasta heidän havaintojaan.
-          </p>
-          <p>
-          Voit estää vain kolme käyttäjää. Mielestämme tämä on kohtuullinen lukumäärä, joka sallii estämisen tarpeellisissa tilanteissa, mutta samalla estää estotoiminnon väärinkäytön. Jos sinun pitää voida estää useampia käyttäjiä, ole hyvä ja <a href="mailto:%{help_email}">ota yhteyttä meihin</a>.
-          </p><p>
-          Jos joku ahdistelee sinua %{site_name}issa, <a href="mailto:%{help_email}">ota meihin yhteyttä</a>. Jos tämä rikkoo käyttöehtoja tai on mielestämme muuten sivustolle epäsoveliasta käytöstä, niin selvitämme asian.
-          </p>
         common_names_desc: |
           Näytä yleiskieliset nimet. Poista käytöstä jos haluat nähdä vain tieteelliset nimet.
           Huomaa, että voit valita millä kielellä näet yleiskieliset vaihtamalla maa ja paikka-asetuksiasi.
