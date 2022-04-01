@@ -2452,10 +2452,6 @@ ca:
     Vigileu les peticions de dades ocultes o sobre alguns individus. Intenteu verificar la identitat de la persones que demanen aquesta informació, i si us pregunten sobre alguns exemplars, comproveu la seva autorització.
   messages_new_correspondent_personal: |
     No faciliteu informació personal a persones en les que no confieu.
-  messages_new_correspondent_actions_html: |
-    Si sospiteu que aquesta persona està violant les nostres<a href="%{tos_url}"
-    target="_blank">Condicions d'Ús</a> o no actua segons les nostres <a
-    href="%{guidelines_url}" target="_blank">Directrius de la Comunitat</a>, si us plau, marqueu aquest missatge a sota.
   minimum_positional_accuracy: Precisió mínima de la localització
   misidentifications: Identificacions incorrectes
   misleading_or_illegal_content_html: |
@@ -3137,9 +3133,6 @@ ca:
     original: original
   photos_updated: Fotos actualitzades.
   pi_consent_desc_title: Quant a la informació personal
-  pi_consent_desc_html: |
-    Emmagatzem informació personal com el nom d'usuari i l'adreça de correu electrònic per gestionar els comptes d'aquest lloc i per complir amb la legislació sobre privacitat necessitem que confirmeu el vostre consentiment per utilitzar aquesta informació personal. Per conèixer més sobre la informació que guardem i com la utilitzem, si us plau, llegiu la nostra 
-    <a href='%{privacy_url}' target='_blank'>Política de Privacitat</a> i les nostres <a href='%{terms_url}' target='_blank'>Condicions del Servei</a>.
   pi_consent_label: |
     Autoritzo a iNaturalist a guardar i processar determinades informacions de caràcter personal sobre mi per gestionar el meu compte
   pi_consent_child_label: |
@@ -4523,7 +4516,6 @@ ca:
   terms: Termes
   terms_and_rules_html: "Condicions i normes"
   terms_new_users: "Si incorporeu condicions, els nous usuaris han d'acceptar-les abans d'unir-se al projecte."
-  terms_service: Condicions del servei
   terrain: terreny
   text: Text
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4664,8 +4656,6 @@ ca:
   top_identifiers_of_taxon: Principals identificadors de %{taxon}
   top_observer_caps: PRINCIPAL OBSERVADOR
   top_observers: Principal observadors
-  tos_privacy_guidelines_label: |
-    Accepto les <a href="/terms" target="_blank">Condicions del Servei</a> i la <a href="/privacy" target="_blank">Política de Privacitat</a>, i he revisat les <<a href="/pages/community+guidelines" target="_blank">Normes de la Comunitat</a>.
   total: Total
   totals: Totals
   total_ids_on_input_taxon: "IDs total del tàxon d'entrada"
@@ -5181,8 +5171,6 @@ ca:
   you_must_specify_and_confirm_a_new_password: Heu d'especificar i confirmar una nova contrasenya.
   you_need_to_have_linked_flickr_account: Heu de vincular un compte de Flickr per etiquetar les vostres fotos.
   you_need_to_select_some_observations_first: Primer heu de seleccionar les observacions.
-  you_retain_full_copyright: "Tal com indiquen les nostres condicions de servei, sou el titular de tots els drets d'autor pel que fa al vostre contingut, a part d'aquells drets concedits a %{site_name}."
-  you_retain_full_copyright_over_your_content: "Tal com indiquen les nostres condicions de servei, sou titular dels drets d'autor complets pel que fa al vostre contingut, a part d'aquells drets atorgats a %{site_name}."
   you_should_delete_this_taxon_change: |
     Probablement hauries d'eliminar aquest canvi de tàxon, o si més no cercar alguna mena de solució amb la persona o persones que van fer l'altre canvi.
   you_sure_delete_asset?: Esteu segur que voleu eliminar aquest arxiu?
@@ -6522,16 +6510,6 @@ ca:
           Escrigueu "%{confirmation_code}" en el formulari per eliminar el vostre compte
       edit:
         about_third_party_tracking: Sobre el seguiment per part de tercers
-        blocking_desc_html: |
-          <p>
-          Bloquejar algú impedeix que us enviï missatges i comenti les vostres observacions, identificar-les, i interaccionar amb tu a%{site_name}. També elimina les seves observacions dels vostres resultats de cerca i les vostres observacions del de les seves cerque. Tanmateix, no us fa invisible a ell.   Encara pot trobar les vostres observacions i veure el vostre perfil, només que no podreu interaccionar.
-          </p>
-          <p>
-          Només podeu bloquejar un màxim de tres persones. Pensem que és un número raonable adequat per aquells que necessiten bloquejar algú evitant l'abús del bloqueig. Si creieu que necessiteu bloquejar més persones, si us plau <a href="mailto:%{help_email}">contacteu amb nosaltres</a>.
-          </p>
-          <p>Si algú us està assetjant a %{site_name},
-          <a href="mailto:%{help_email}">digueu-nos-ho</a>. Si suposa una violació de les Condicions d'Ús o representa un comportament que pugui ser inapropiat al nostre lloc, ho investigarem.
-          </p>
         common_names_desc: |
           Mostrar noms comuns. Deshabiliteu-lo si només voleu veure els noms científics.
           Penseu que podeu controlar quins noms comuns veieu per canviant la vostra localització i ubicació.
