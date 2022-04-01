@@ -2427,10 +2427,6 @@ id:
     Hati-hati terhadap permohonan spesimen atau data yang disembunyikan. Coba verifikasi identitas orang yang mengajukan permohonan dan jika mereka meminta spesimen, coba minta izin mereka.
   messages_new_correspondent_personal: |
     Jangan memberi informasi personal tentang dirimu kepada orang yang kamu tidak kenal atau percaya.
-  messages_new_correspondent_actions_html: |
-    Jika sekiranya ada orang yang kamu pikir melanggar <a href="%{tos_url}"
-    target="_blank">Syarat dan Ketentuan Layanan</a> atau tidak bertindak sesuai <a
-    href="%{guidelines_url}" target="_blank">Pedoman Komunitas</a>, harap menandai pesan di bawah ini.
   minimum_positional_accuracy: Akurasi posisi minimum
   misidentifications: Kesalahan identifikasi
   misleading_or_illegal_content_html: |
@@ -3113,8 +3109,6 @@ id:
     original: asli
   photos_updated: Foto diperbarui.
   pi_consent_desc_title: Tentang Informasi Pribadi
-  pi_consent_desc_html: |
-    Kami menyimpan informasi pribadi seperti nama pengguna dan alamat email untuk mengelola akun di situs ini, dan untuk mematuhi undang-undang privasi, kami meminta Anda untuk mencentang kotak ini untuk menyatakan bahwa Anda mengizinkan penggunaan informasi pribadi ini. Untuk mempelajari lebih lanjut tentang informasi apa yang kami kumpulkan dan bagaimana kami menggunakannya, Anda bisa melihat <a href='%{privacy_url}' target='_blank'>Kebijakan Privasi</a> dan <a href='%{terms_url}' target='_blank'>Syarat dan Ketentuan Layanan</a> kami.
   pi_consent_label: |
     Saya mengizinkan iNaturalist untuk menyimpan dan memproses sebagian informasi pribadi saya demi pengelolaan akun saya.
   pi_consent_child_label: |
@@ -4470,7 +4464,6 @@ id:
   terms: Ketentuan
   terms_and_rules_html: "Ketentuan &amp; Aturan"
   terms_new_users: "Jika Anda menambahkan ketentuan, pengguna baru harus menyetujuinya sebelum bergabung pada proyek ini."
-  terms_service: Ketentuan Layanan
   terrain: medan
   text: Teks
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4615,8 +4608,6 @@ id:
   top_identifiers_of_taxon: Pengidentfikasi Terbanyak dari %{taxon}
   top_observer_caps: PENGAMAT TERBANYAK
   top_observers: Pengamat Terbanyak
-  tos_privacy_guidelines_label: |
-    Saya menyetujui <a href="/terms" target="_blank">Syarat dan Ketentuan Layanan</a> dan <a href="/privacy" target="_blank">Kebijakan Privasi</a>, dan saya telah membaca <a href="https://www.inaturalist.org/pages/community+guidelines">Pedoman Komunitas</a>.
   total: Total
   totals: Total
   total_ids_on_input_taxon: "Total ID takson input:"
@@ -5126,8 +5117,6 @@ id:
   you_must_specify_and_confirm_a_new_password: Anda harus menentukan dan mengonfirmasi kata sandi baru.
   you_need_to_have_linked_flickr_account: Anda harus memiliki tautan akun Flickr untuk memberikan tag pada foto Anda.
   you_need_to_select_some_observations_first: Anda perlu memilih beberapa pengamatan terlebih dahulu.
-  you_retain_full_copyright: "Anda memiliki hak cipta penuh atas konten Anda di samping hak-hak lainnya yang diberikan kepada %{site_name} dalam Syarat dan Ketentuan Layanan kami."
-  you_retain_full_copyright_over_your_content: "Anda memiliki hak cipta penuh atas konten Anda di samping hak-hak lainnya yang diberikan kepada %{site_name} dalam Syarat dan Ketentuan Layanan kami."
   you_should_delete_this_taxon_change: |
     Anda mungkin harus menghapus perubahan takson ini, atau setidaknya mencari solusi dengan orang-orang yang membuat perubahan lainnya.
   you_sure_delete_asset?: Apakah Anda yakin ingin menghapus Aset Proyek ini?
@@ -6441,19 +6430,6 @@ id:
           Anda harus memasukkan "%{confirmation_code}" di formulir untuk menghapus akun Anda
       edit:
         about_third_party_tracking: Tentang pelacakan pihak ketiga
-        blocking_desc_html: |
-          <p>
-          Memblokir seseorang mencegah seseorang mengirim pesan kepada Anda, mengomentari pengamatan Anda, mengidentifikasi pengamatan Anda, serta berinteraksi dengan Anda di %{site_name}. Ini akan menghilangkan pengamatan mereka dari hasil pencarian Anda dan menghilangkan pengamatan Anda pada hasil pencarian mereka. Namun, hal ini tidak membuat Anda tidak terlihat bagi mereka. Mereka masih bisa menemukan pengamatan Anda dan melihat profil Anda, tetapi mereka hanya tidak bisa berinteraksi dengan Anda.
-          </p>
-          <p>
-          Pemblokiran diperuntukkan untuk situasi di mana Anda tidak bisa bergaul dengan seseorang dan mereka terus mengganggu Anda, meskipun Anda telah berusaha untuk menyelesaikan perselisihan dengan cara yang manusiawi. Ini bukanlah cara untuk bersembunyi dari orang, untuk mencegah identifikasi dari orang-orang yang pendapatnya tidak Anda percayai, atau untuk mematikan ID komunitas (ada pengaturan lain untuk itu). Jadi, pemblokiran bekerja dua arah: jika Anda memblokir seseorang, mereka tidak dapat berinteraksi dengan Anda, tetapi Anda juga tidak bisa berinteraksi dengan mereka. Jika Anda menyalahgunakan ini untuk mencegah seseorang untuk mengidentifikasi pengamatan Anda, Anda juga mencegah diri Anda untuk mengidentifikasi pengamatan mereka.
-          </p>
-          <p>
-          Anda hanya bisa memblokir tiga orang. Kami pikir angka ini adalah jumlah yang masuk akal yang mengakomodasi orang-orang yang membutuhkan pemblokiran sambil mencegah penyalahgunaan fitur pemblokiran. Jika Anda rasa Anda perlu memblokir lebih banyak orang, silakan <a href="mailto:%{help_email}">menghubungi kami</a>.
-          </p>
-          <p>
-          Jika seseorang mengganggu atau melakukan stalking kepada Anda di %{site_name}, <a href="mailto:%{help_email}">beritahu kami</a>. Jika hal itu merupakan pelanggaran Syarat dan Ketentuan Layanan kami atau merupakan perilaku yang kami anggap tidak pantas untuk situs kami, kami akan menyelidikinya.
-          </p>
         common_names_desc: |
           Tunjukkan nama umum. Matikan jika Anda hanya ingin melihat nama ilmiah. Ingat bahwa Anda dapt mengontrol nama umum mana yang Anda lihat dengan mengganti pengaturan tempat Anda.
         display_monthly_supporter_status_on_my_profile: |
