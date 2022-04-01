@@ -2497,11 +2497,6 @@ pt-BR:
     se ela pedir espécimes, peça para ver a sua licença.
   messages_new_correspondent_personal: |
     Não divulgue informações pessoais sobre si mesmo a pessoas em quem você não confia.
-  messages_new_correspondent_actions_html: |
-    Se você suspeita que essa pessoa está violando os nossos <a href="%{tos_url}"
-    target="_blank">Termos de Serviço</a> ou não está agindo de acordo com as nossas <a
-    href="%{guidelines_url}" target="_blank">Diretrizes da Comunidade</a>, por favor
-    sinalize esta mensagem abaixo.
   misidentifications: Identificações erradas
   misleading_or_illegal_content_html: |
     Conteúdo ilegal ou falso, insultos étnicos e raciais, etc. Para mais sobre nossa definição de "apropriado", veja as <a href="/help#inappropriate">Perguntas frequentes</a>.
@@ -3181,10 +3176,6 @@ pt-BR:
     original: original
   photos_updated: Fotos atualizadas.
   pi_consent_desc_title: Sobre informações pessoais
-  pi_consent_desc_html: |
-    Nós armazenamos informações pessoais, como nomes de usuários e endereços de e-mail, a fim para gerenciar contas neste site e para cumprir as leis de privacidade, nós preciso que você marque esta caixa para indicar que você concorda com esse uso de informação pessoal. Para saber mais sobre quais informações coletamos e como nós o usamos, por favor veja nossa
-    <a href='%{privacy_url}' target='_blank'>Política de Privacidade</a>
-    e nossos <a href='%{terms_url}' target='_blank'>Termos de serviço</a>.
   pi_consent_label: |
     Eu concordo em permitir que o iNaturalist armazene e processe tipos limitados de informações pessoais sobre mim para gerenciar minha conta
   pi_consent_child_label: |
@@ -4634,7 +4625,6 @@ pt-BR:
   terms: Termos
   terms_and_rules_html: "Termos &amp; Regras"
   terms_new_users: "Caso você adicione termos, todos os novos usuários deveram concordas antes de ingressar neste projeto."
-  terms_service: Termos de Serviço
   terrain: terreno
   text: Texto
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4774,9 +4764,6 @@ pt-BR:
   top_identifiers_of_taxon: Principais Identificadores de %{taxon}
   top_observer_caps: MAIOR OBSERVADOR
   top_observers: Principais Observadores
-  tos_privacy_guidelines_label: |
-    Eu concordo com os <a href="/terms" target="_blank">Termos de serviço</a> e com a
-    <a href="/privacy" target="_blank">Política de Privacidade</a>, e eu revisei as <a href="/pages/community+guidelines" target="_blank">Diretrizes da Comunidade</a>.
   total: Total
   totals: Totais
   total_ids_on_input_taxon: "IDs totais do táxon de entrada:"
@@ -5304,8 +5291,6 @@ pt-BR:
   you_must_specify_and_confirm_a_new_password: Você deve especificar e confirmar uma nova senha.
   you_need_to_have_linked_flickr_account: Você tem que ter uma conta do Flickr vinculada para marcar suas fotos.
   you_need_to_select_some_observations_first: Você tem que selecionar algumas observações primeiro.
-  you_retain_full_copyright: "Você possui total direito sobre o seu conteúdo a parte daqueles que são de direito concedido ao %{site_name} em nossos Termos de Serviço."
-  you_retain_full_copyright_over_your_content: "Você detém total direito sobre seu conteúdo a parte dos direitos garantidos ao %{site_name} segundo nossos Termos de Serviços."
   you_should_delete_this_taxon_change: |
     Você provavelmente deve excluir esta mudança de táxon, ou pelo menos chegar em algum
     tipo de solução com a(s) pessoa(s) que fizeram as outras alterações.
@@ -6723,41 +6708,6 @@ pt-BR:
           Você deve inserir "%{confirmation_code}" no formulário para excluir sua conta
       edit:
         about_third_party_tracking: Sobre o rastreamento de terceiros
-        blocking_desc_html: |
-          <p>
-          Bloquear alguém impede que você envie mensagens para você, comentando
-             observações, identificando suas observações e, de outra forma, interagindo
-             com você no %{site_name}. Também remove suas observações do seu
-             resultados de pesquisa e remove suas observações da pesquisa
-             resultados. No entanto, isso não o torna invisível para eles. Eles podem
-             ainda encontrar suas observações e ver o seu perfil, eles simplesmente não podem
-             interaja com você.
-          </p>
-          <p>
-          O bloqueio é para situações em que você simplesmente não consegue se entender
-             alguém e eles não vão deixar você sozinho, apesar de seus melhores esforços para
-             resolver disputas de maneira civilizada. Não é uma maneira de se esconder
-             pessoas, para impedir a identificação de pessoas cujas opiniões você
-             não confie ou exclua a ID da comunidade (há outra
-             definição para isso). Assim, o bloqueio funciona nos dois sentidos: se você bloquear
-             alguém, eles não podem interagir com você, mas você também não pode interagir
-             com eles. Se você usá-lo incorretamente para impedir que alguém identifique sua
-             observações, você também evita identificar suas
-             observações.
-          </p>
-          <p>
-          Você só pode bloquear três pessoas. Achamos que isso é razoável
-             número que acomoda as pessoas que precisam de bloqueio enquanto
-             prevenir o abuso do bloqueio. Se você acha que precisa bloquear mais
-             pessoas, por favor <a href="mailto:%{help_email}">Contate-nos</a>.
-          </p>
-          <p>
-          Se alguém está assediando ou perseguindo você no %{site_name},
-          <a href="mailto:%{help_email}">Por favor nos informe</a>. E se
-             isso representa uma violação dos nossos Termos de Serviço ou representa
-             outro comportamento que consideramos inapropriado para o nosso site, nós
-             investigar.
-          </p>
         common_names_desc: |
           Mostrar nomes comuns. Desabilite se você quiser apenas ver nomes científicos.
           Observe que você pode controlar quais nomes comuns você vê alterando
