@@ -2,7 +2,7 @@ import _ from "lodash";
 import iNaturalistJS from "inaturalistjs";
 import { fetchObservationsStats, resetObservationsStats } from "./observations_stats_actions";
 import { setConfig } from "../../../shared/ducks/config";
-import { showAlert, hideAlert } from "./alert_actions";
+import { showAlert, hideAlert } from "../../../shared/ducks/alert_modal";
 import { paramsForSearch } from "../reducers/search_params_reducer";
 
 const RECEIVE_OBSERVATIONS = "receive_observations";

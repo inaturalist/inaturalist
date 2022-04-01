@@ -40,44 +40,31 @@ const ThirdPartyTrackingModal = ( { show, onClose } ) => (
         </strong>
       </p>
       <ul>
+        <li
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html:
+              I18n.t(
+                "views.users.edit.prefers_no_tracking_label_desc_info_we_share_ip_addresses_html"
+              )
+          }}
+        />
         <li>
-          <strong>
-            <span
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{
-                __html:
-                  I18n.t(
-                    "views.users.edit.prefers_no_tracking_label_desc_info_we_share_ip_addresses_html"
-                  )
-              }}
-            />
-          </strong>
-        </li>
-        <li>
-          <strong>
-            {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share_browser_details" )}
-          </strong>
+          {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share_browser_details" )}
         </li>
         <li>
-          <strong>
-            {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share_crash_details" )}
-          </strong>
+          {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share_crash_details" )}
         </li>
         <li>
-          <strong>
-            {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share_device_details" )}
-          </strong>
+          {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share_device_details" )}
         </li>
-        <li className="stacked">
-          <strong>
-            <span
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{
-                __html: I18n.t( "views.users.edit.prefers_no_tracking_label_desc_value_html" )
-              }}
-            />
-          </strong>
-        </li>
+        <li
+          className="stacked"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "views.users.edit.prefers_no_tracking_label_desc_value_html" )
+          }}
+        />
       </ul>
       <p>{I18n.t( "views.users.edit.prefers_no_tracking_label_desc_limits" )}</p>
     </Modal.Body>

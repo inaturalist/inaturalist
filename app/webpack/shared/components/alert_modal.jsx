@@ -6,12 +6,13 @@ import {
 } from "react-bootstrap";
 
 const AlertModal = ( {
-  visible,
-  title,
+  backdrop,
   content,
-  onConfirm,
+  onCancel,
   onClose,
-  onCancel
+  onConfirm,
+  title,
+  visible
 } ) => {
   let modalFooter = (
     <Modal.Footer>
@@ -48,7 +49,7 @@ const AlertModal = ( {
       show={visible}
       className="AlertModal"
       bsSize="small"
-      backdrop={false}
+      backdrop={backdrop}
       onHide={onClose}
     >
       <Modal.Header closeButton>
@@ -56,9 +57,7 @@ const AlertModal = ( {
           { title || I18n.t( "alert" ) }
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        { content }
-      </Modal.Body>
+      <Modal.Body dangerouslySetInnerHTML={{ __html: content }} />
       { modalFooter }
     </Modal>
   );
@@ -70,7 +69,8 @@ AlertModal.propTypes = {
   content: PropTypes.string,
   onConfirm: PropTypes.func,
   onClose: PropTypes.func,
-  onCancel: PropTypes.func
+  onCancel: PropTypes.func,
+  backdrop: PropTypes.bool
 };
 
 export default AlertModal;

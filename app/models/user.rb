@@ -33,6 +33,7 @@ class User < ApplicationRecord
 
   attr_accessor :html
   attr_accessor :pi_consent
+  attr_accessor :data_transfer_consent
 
   # Email notification preferences
   preference :comment_email_notification, :boolean, default: true
@@ -254,6 +255,7 @@ class User < ApplicationRecord
   before_save :check_suspended_by_user
   before_save :remove_email_from_name
   before_save :set_pi_consent_at
+  before_save :set_data_transfer_consent_at
   before_save :set_locale
   after_save :update_observation_licenses
   after_save :update_photo_licenses
@@ -1409,7 +1411,14 @@ class User < ApplicationRecord
 
   def set_pi_consent_at
     if pi_consent
-      self.pi_consent_at = Time.now
+      self.pi_consent_at ||= Time.now
+    end
+    true
+  end
+
+  def set_data_transfer_consent_at
+    if data_transfer_consent
+      self.data_transfer_consent_at ||= Time.now
     end
     true
   end
