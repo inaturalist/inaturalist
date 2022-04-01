@@ -2779,12 +2779,6 @@ nb:
     original: opprinnelig
   photos_updated: Bilder oppdatert.
   pi_consent_desc_title: Om personlig informasjon
-  pi_consent_desc_html: |
-    Vi lagrer personlig informasjon som brukernavn og e-postadresser for
-    å administrere kontoer på dette nettstedet, og for å overholde personvernloven trenger vi
-    at du krysser av denne boksen for å angi at du samtykker til denne bruken av
-    personlig informasjon. For å lære mer om hvilken informasjon vi samler inn og
-    hvordan vi bruker det, vennligst se vår <a href='%{privacy_url}' target='_blank'>personvernspolitikk</a> og våre <a href='%{terms_url}' target='_blank'>tjenestevilkår</a>.
   pi_consent_label: |
     Jeg samtykker i at iNaturalist kan lagre og prosessere begrensede typer av personlig informasjon om meg for å administrere min konto
   pi_consent_child_label: |
@@ -3998,7 +3992,6 @@ nb:
   terms: Vilkår
   terms_and_rules_html: "Vilkår &amp; regler"
   terms_new_users: "Hvis du legger til vilkår, må nye brukere akseptere de før de blir med i dette prosjektet."
-  terms_service: Tjenestevilkår
   terrain: terreng
   text: Tekst
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4127,10 +4120,6 @@ nb:
   top_identifiers: Topp-identifikatorer
   top_identifiers_of_taxon: Topp-identifikatorer av %{taxon}
   top_observers: Topp-observatører
-  tos_privacy_guidelines_label: |
-    Jeg godtar <a href="/terms" target="_blank">tjenestevilkårene</a> og
-    <a href="/privacy" target="_blank">personvernerklæringen</a>, og jeg har gått gjennom
-    <a href="/pages/community+guidelines" target="_blank">samfunnets retningslinjer</a>.
   total: Totalt
   totals: Totaler
   total_members: Samlet antall medlemmer
@@ -4589,8 +4578,6 @@ nb:
   you_must_specify_and_confirm_a_new_password: Du må oppgi og bekrefte et nytt passord.
   you_need_to_have_linked_flickr_account: Du må ha koblet din Flickr-konto for å legge til etiketter til dine bilder.
   you_need_to_select_some_observations_first: Du må velge noen observasjoner først.
-  you_retain_full_copyright: "Du beholder alle rettigheter over ditt innhold bortsett fra rettighetene som gis til %{site_name} i våre tjenestevilkår."
-  you_retain_full_copyright_over_your_content: "Du beholder alle rettigheter over ditt innhold bortsett fra rettighetene som gis til %{site_name} i våre tjenestevilkår."
   you_sure_delete_asset?: Er du sikker på at du vil slette denn projektressursen?
   you_sure_delete_check_list: "Er du sikker på at du vil slette denne listen? Noen personer kan ha lagt mye arbeid inn i den..."
   you_sure_delete_comment?: Er du sikker på at du vil slette denne kommentaren?
@@ -5835,20 +5822,6 @@ nb:
           Du må skrive "%{confirmation_code}" i skjemaet for å slette din konto
       edit:
         about_third_party_tracking: Om tredjepartssporing
-        blocking_desc_html: |
-          <p>
-          Å blokkere noen hindrer vedkommende fra å sende beskjeder til deg, kommentere på dine observasjoner, identifisere dine observasjoner, og kommunisere med deg på andre måter på %{site_name}. Det fjerner også deres observasjoner fra dine søkeresultater og fjerner dine observasjoner fra deres. Det gjør deg imidlertid ikke usynlig. De kan still finne dine observasjoner og se på din profil, de kan bare ikke ha kontakt med deg.
-          </p>
-          <p>
-          Blokkering er for tilfeller hvor du bare ikke kommer overens med noen og de ikke lar deg være i fred, til tross for dine forsøk å ordne opp i konflikter på en sivilisert måte. Det er ikke en måte å gjemme seg for folk, hindre identifikasjoner fra folk som du ikke stoler på meningen av, eller melde deg ut av felleskapets ID (det finnes en annen instilling for det). Blokkering fungerer altså begge veier: hvis du blokkerer noen, kan de ikke ha kontakt med deg, men du kan heller ikke ha kontakt med de. Hvis du misbrker det for å hindre at noen identifiserer dine observasjoner, hindrer du også deg selv i å identifisere deres observasjoner.
-          </p>
-          <p>
-          Du kan kun blokkere tre personer. Vi mener at dette er et greit antall som gir rom til å blokkere de som trenger det mens det hindrer misbruk av blokkering. Hvis du mener at du trenger å blokkere flere, vennligst <a href="mailto:%{help_email}">ta kontakt med oss</a>.
-          </p>
-          <p>
-          Hvis noen plager deg eller stalker deg på %{site_name},
-          <a href="mailto:%{help_email}">vennligst si ifra til oss</a>. Hvis dette er et brudd av våre tjenestevilkår eller er annen oppførsel som vi mener er upassende for vår side, vil vi undersøke saken.
-          </p>
         common_names_desc: |
           Vis populærnavn. Slå av hvis du ønsker å se vitenskapelige navn. Merk at du kan styre hvilke populærnavn du ser ved å endre dine instillinger for språk og land.
         display_monthly_supporter_status_on_my_profile: |
