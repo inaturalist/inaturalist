@@ -2504,11 +2504,6 @@ fr:
     de la personne qui fait la demande et si elle demande des spécimens, demandez-lui à voir son autorisation.
   messages_new_correspondent_personal: |
     Ne divulguez pas d'informations personnelles vous concernant à des personnes en qui vous n'avez pas confiance.
-  messages_new_correspondent_actions_html: |
-    Si vous soupçonnez que cette personne viole nos <a href="%{tos_url}"
-    target="_blank">conditions d'utilisation</a> ou qu'elle n'agit pas conformément à nos <a
-    href="%{guidelines_url}" target="_blank">directives de la communauté</a>, s'il vous plaît
-    signalez ce message ci-dessous.
   minimum_positional_accuracy: Précision minimale de localisation
   misidentifications: Identifications erronées
   misleading_or_illegal_content_html: |
@@ -3198,14 +3193,6 @@ fr:
     original: d’origine
   photos_updated: Photos à jour.
   pi_consent_desc_title: Au sujet des informations personnelles
-  pi_consent_desc_html: |
-    Nous stockons les informations personnelles telles que le nom des utilisateurs et les adresses de messagerie afin de
-    gérer les compter sur ce site, et pour être en accord avec les lois sur la vie privée, nous
-    avons besoin que vous cochiez cette case pour indiquer que vous acceptez cette utilisation
-    d’informations personnelles. Pour en savoir plus sur les informations que nous collectons et
-    comment nous les utilisons, veuillez voir notre
-    <a href='%{privacy_url}' target='_blank'>Politique de confidentialité</a>
-    et nos <a href='%{terms_url}' target='_blank'>Conditions de service</a>.
   pi_consent_label: |
     J’autorise iNaturalist à stocker et à traiter des informations
     personnelles limitées me concernant pour gérer mon compte.
@@ -4598,7 +4585,6 @@ fr:
   terms: Conditions
   terms_and_rules_html: "Conditions &amp; Règles"
   terms_new_users: "Si vous ajoutez des conditions, les nouveaux utilisateurs devront les accepter avant de se joindre à ce projet."
-  terms_service: Conditions d’utilisation
   terrain: terrain
   text: Texte
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4752,10 +4738,6 @@ fr:
   top_identifiers_of_taxon: Meilleurs identificateurs de %{taxon}
   top_observer_caps: MEILLEUR OBSERVATEUR
   top_observers: Meilleurs observateurs
-  tos_privacy_guidelines_label: |
-    J'accepte les <a href="/terms" target="_blank">conditions d'utilisation</a> et la
-    <a href="/privacy" target="_blank">politique de confidentialité</a>, et j'ai lu
-    les <a href="/pages/community+guidelines" target="_blank">Règles de la communauté</a>.
   total: Score total
   totals: Totaux
   total_ids_on_input_taxon: "Total des Id du taxon d'entrée :"
@@ -5290,8 +5272,6 @@ fr:
   you_must_specify_and_confirm_a_new_password: Vous devez spécifier et confirmer un nouveau mot de passe.
   you_need_to_have_linked_flickr_account: Vous devez avoir un compte Flickr lié pour étiqueter vos photos.
   you_need_to_select_some_observations_first: Vous devez d’abord sélectionner des observations.
-  you_retain_full_copyright: "Vous conservez tous les droits sur votre contenu, mis à part les droits accordés à %{site_name} dans nos Conditions d’utilisation."
-  you_retain_full_copyright_over_your_content: "Vous conservez tous les droits sur votre contenu, mis à part les droits accordés à %{site_name} dans nos Conditions d’utilisation."
   you_should_delete_this_taxon_change: |
     Vous devriez probablement supprimer cette modification de taxon ou trouver une solution avec la ou les personnes qui ont fait les autres modifications.
   you_sure_delete_asset?: Êtes-vous certain de vouloir supprimer ce fichier du projet?
@@ -7063,41 +7043,6 @@ fr:
           Vous devez saisir « %{confirmation_code} » dans le formulaire pour supprimer votre compte
       edit:
         about_third_party_tracking: À propos du suivi par des sites tiers
-        blocking_desc_html: |
-          <p>
-          Bloquer quelqu'un l'empêche de vous envoyer des
-          messages, de commenter vos  observations, d'identifier vos observations
-          et d'interagir autrement  avec vous sur %{site_name}. Cela supprime également
-          ses observations de vos  résultats de recherche et supprime vos observations
-          ses résultats de   recherche. Cependant, cela ne vous rend pas invisible
-          pour lui. Il peut toujours   trouver vos observations et regardez votre
-          profil, il ne peut tout simplement pas  interagir avec vous.
-          </p>
-          <p>
-          Le blocage est pour des situations où vous ne pouvez simplement pas vous
-          entendre  avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts
-          pour  régler les différends d'une manière civilisée. Ce n'est pas un moyen
-          pour se cacher de  personnes, pour empêcher les identifications de personnes
-          dont vous ne partagez pas les opinions, ou de retirer votre identifiant
-          de la communauté (il y en a un autre moyen   de régler cela). Ainsi, le
-          blocage fonctionne dans les deux sens: si vous bloquez  quelqu'un, ils
-          ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir
-          avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier
-          vos  observations, vous vous empêchez également d'identifier ses  observations.
-          </p>
-          <p>
-          Vous ne pouvez bloquer que trois personnes. Nous pensons que
-          c'est un nombre raisonnable  qui accueille les personnes qui ont besoin
-          de bloquer et  prévenir les abus de blocage. Si vous sentez que vous devez
-          bloquer plus  <a href="mailto:%{help_email}"> contactez-nous </a>.
-          </p>
-          <p>
-          Si quelqu'un vous harcèle ou vous traque sur %{site_name},
-          <a href="mailto:%{help_email}"> merci de nous le faire savoir </a>.
-          Si cela représente une violation de nos conditions d'utilisation ou représente
-          autre comportement que nous considérons inapproprié pour notre site, nous
-          enquêterons.
-          </p>
         common_names_desc: |
           Afficher les noms vulgaires. À désactiver si vous ne voulez voir que les noms scientifiques.
           Notez que vous pouvez contrôler le type de noms vulgaires que vous voyez en changeant vos paramètres régionaux et votre localisation.
