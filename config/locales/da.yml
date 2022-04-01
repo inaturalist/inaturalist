@@ -2519,11 +2519,6 @@ da:
     prøver, så udbed dig vedkommende tilladelse.
   messages_new_correspondent_personal: |
     Videregiv ingen af dine personlige oplysninger til ikke-betroede parter.
-  messages_new_correspondent_actions_html: |
-    Har du mistanke om, at vedkommende overtræder vores <a href="%{tos_url}"
-    target="_blank">Tjenestevilkår</a> eller ikke handler i overensstemmelse med vores <a
-    href="%{guidelines_url}" target="_blank">Fællesskabsretningslinjer</a>, så
-    markér venligst denne besked nedenfor.
   minimum_positional_accuracy: Minimal placeringsnøjagtighed
   misidentifications: Fejlidentifikationer
   misleading_or_illegal_content_html: |
@@ -3222,10 +3217,6 @@ da:
     original: original
   photos_updated: Foto´s opdateret
   pi_consent_desc_title: Om personlig information
-  pi_consent_desc_html: |
-    Vi opbevarer personlig information som brugernavne og e-mail adresser for at administrere konti på dette site, og for at overholde persondataloven beder vi dig markere denne boks for at indikere at du accepterer denne brug af
-    personlig information. Se mere om hvilken information vi indsamler og hvordan vi bruger den i vores <a href='%{privacy_url}' target='_blank'>fortrolighedspolitik</a>
-    og vores <a href='%{terms_url}' target='_blank'>brugerbetingelser</a>.
   pi_consent_label: |
     Jeg accepterer, at iNaturalist får tilladelse til at gemme og behandle begrænsede former for personlig information om mig, for at administrere min konto
   pi_consent_child_label: |
@@ -4686,7 +4677,6 @@ da:
   terms: Vilkår
   terms_and_rules_html: "Vilkår &amp; Regler"
   terms_new_users: "Hvis du tilføjer vilkår, skal nye brugere acceptere dem, inden de tilmelder sig dette projekt."
-  terms_service: Servicevilkår
   terrain: terræn
   text: Tekst
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4844,10 +4834,6 @@ da:
   top_identifiers_of_taxon: Flest identifikationer af %{taxon}
   top_observer_caps: OBSERVATIONSLEDER
   top_observers: Top observatører
-  tos_privacy_guidelines_label: |
-    Jeg accepterer <a href="/terms" target="_blank">Tjenestevilkår</a> og
-    <a href="/privacy" target="_blank">Fortrolighedspolitik</a>, og jeg har gennemset
-    <a href="/pages/community+guidelines" target="_blank">Fællesskabsretningslinjer</a>.
   total: I alt
   totals: totaler
   total_ids_on_input_taxon: "ID'er i alt for input-takson:"
@@ -5379,8 +5365,6 @@ da:
   you_must_specify_and_confirm_a_new_password: Du skal angive og bekræfte en ny adgangskode.
   you_need_to_have_linked_flickr_account: Du skal have en tilknyttet Flickr konto for at tagge dine foto´s.
   you_need_to_select_some_observations_first: Du skal først vælge nogle observationer.
-  you_retain_full_copyright: "Du beholder fuld ophavsret over dit indhold bortset fra de rettigheder, der er givet til %{site_name} i vores Servicevilkår."
-  you_retain_full_copyright_over_your_content: "Du beholder fuld ophavsret over dit indhold bortset fra de rettigheder, der er givet til %{site_name} i vores Servicevilkår."
   you_should_delete_this_taxon_change: |
     Du bør sikkert slette denne taksonændring, eller i det mindste finde ud af en
     form for løsning med vedkommende, som har foretaget den anden ændring(er).
@@ -7085,20 +7069,6 @@ da:
           Du skal indtaste "%{confirmation_code}" i formularen, for at slette din konto
       edit:
         about_third_party_tracking: Om tredjepartssporing
-        blocking_desc_html: |
-          <P>
-            At blokere nogen, forhindrer dem i at sende dig beskeder, kommentere på dine
-           observationer, identificere dine observationer og i det hele taget at interagere med dig på %{site_name}. Det fjerner også deres observationer fra dine søgeresultater og fjerner dine observationer fra deres søgeresultater. Dog gør det dig ikke usynlig for dem. De kan stadig finde dine observationer og se din profil, de kan bare ikke interagere med dig.
-          </P>
-          <P>
-            Blokering er til situationer, hvor du bare ikke kan komme overens med en eller anden, som bare ikke vil lade dig være, trods din bedste indsats for at løse tvister på en civiliseret måde. Det er ikke en måde, at skjule sig fra andre personer eller at forhindre identifikationer fra personer, hvis mening du ikke stoler på eller for at fravælge fællesskabs ID'et (der er en anden indstilling til det). Blokeringen virker således begge veje: hvis du blokerer nogen, så kan de ikke interagere med dig, men du kan heller ikke interagere med dem. Hvis du misbruger blokering for at forhindre nogen i at identificere dine observationer, forhindrer du også dig selv i at identificere deres observationer.
-          </p>
-          <P>
-            Du kan kun blokere tre personer. Vi mener, at dette er et rimeligt antal, der rummer de personer, der har brug for blokering, alt imens det forhindrer misbrug af blokering. Hvis du føler, at du skal blokere flere personer, så vær venlig at <a href="mailto:%{help_email}"> kontakte os</a>.
-          </p>
-          <P>
-            Hvis nogen har chikaneret eller stalket dig på %{site_name},<ahref="mailto:%{help_email}">så lad os vide det</a>. Hvis dette er en overtrædelse af vores servicevilkår eller repræsenterer en anden opførsel, som vi anser for upassende for vores hjemmeside, og vil vi undersøge sagen.
-          </p>
         common_names_desc: |
           Vis lokale navne. Deaktiver, hvis du kun vil se videnskabelige navne.
           Bemærk at du kan styre hvilke lokale navne du ser ved at ændre din
