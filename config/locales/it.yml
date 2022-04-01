@@ -2461,10 +2461,6 @@ it:
     Fai attenzione alle richieste di campioni o di dati nascosti. Cerca di verificare l'identità della persona che fa la richiesta e, se chiedono esemplari, chiedete di vedere la loro autorizzazione.
   messages_new_correspondent_personal: |
     Non rivelare le tue informazioni personali a persone di cui non ti fidi.
-  messages_new_correspondent_actions_html: |
-    Se sospetti che questa persona stia violando i nostri <a href="%{tos_url}"
-    target="_blank">Termini di Servizio</a> onon agendo secondo le nostre <a
-    href="%{guidelines_url}" target="_blank">Linne Guida della Comunità</a>, per favore contrassegna questo messaggio qui sotto.
   minimum_positional_accuracy: Accuratezza posizionale minima
   misidentifications: Identificazioni erronee
   misleading_or_illegal_content_html: |
@@ -3149,9 +3145,6 @@ it:
     original: originale
   photos_updated: Foto aggiornate.
   pi_consent_desc_title: Riguardo le Informazioni Personali
-  pi_consent_desc_html: |
-    Noi conserviamo informazioni personali come nome utente e email per gestire gli account su questo sito, e per rispettare le leggi sulla privacy, devi selezionare questa casella per indicare che tu acconsenti all'utilizzo delle informazioni personali. Per saperne di più su quali informazioni personali raccogliamo e su come le usiamo, per favore visita le nostre <a href='%{privacy_url}' target='_blank'>Politiche della Privacy</a>
-    and our <a href='%{terms_url}' target='_blank'>Termini di Servizio</a>.
   pi_consent_label: |
     Io acconsento che iNaturalist conservi e processi un limitato tipo di mie informazioni personali al fine di gestire il mio account
   pi_consent_child_label: |
@@ -4539,7 +4532,6 @@ it:
   terms: Termini
   terms_and_rules_html: "Termini &amp; Regole"
   terms_new_users: "Se aggiungi termini, i nuovi utenti devono accettarli prima di unirsi al progetto."
-  terms_service: Termini del servizio
   terrain: terreno
   text: Testo
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4680,10 +4672,6 @@ it:
   top_identifiers_of_taxon: Migliori identificatori per %{taxon}
   top_observer_caps: MIGLIOR OSSERVATORE
   top_observers: Migliori osservatori
-  tos_privacy_guidelines_label: |
-    Accetto i <a href="/terms" target="_blank">Termini di Servizio</a> e l'
-    <a href="/privacy" target="_blank">Informativa sulla privacy</a>, e ho esaminato
-    le <a href="/pages/community+guidelines" target="_blank">Linee Guida della Comunità</a>.
   total: Totale
   totals: Totali
   total_ids_on_input_taxon: "ID Totali del taxon di origine:"
@@ -5201,8 +5189,6 @@ it:
   you_must_specify_and_confirm_a_new_password: Devi specificare e confermare una nuova password.
   you_need_to_have_linked_flickr_account: Devi aver collegato un account Flickr per etichettare le tue foto.
   you_need_to_select_some_observations_first: Prima devi selezionare qualche osservazioni.
-  you_retain_full_copyright: "Mantieni il pieno copyright sui tuoi contenuti tranne quelli concessi ad %{site_name} nei nostri Termini di Servizio."
-  you_retain_full_copyright_over_your_content: "Mantieni il pieno copyright sui tuoi contenuti tranne quelli concessi ad %{site_name} nei nostri Termini di Servizio."
   you_should_delete_this_taxon_change: |
     Dovresti probabilmente eliminare questa modifica del taxon o almeno trovare qualche tipo di soluzione con la/le persona/e che hanno effettuato le altre modifiche.
   you_sure_delete_asset?: Sei sicuro di voler cancellare questa Risorsa di Progetto?
@@ -6561,19 +6547,6 @@ it:
           Devi digitare %{confirmation_code} nel formulario per cancellare la tua utenza
       edit:
         about_third_party_tracking: Riguardo al tracciamento di terze parti
-        blocking_desc_html: |
-          <p>
-          Se blocchi qualcuno gli impedisci di inviarti messaggi, commentare le tue osservazioni, identificare le tue osservazioni ed interagire con te su %{site_name}. Rimuove anche le loro osservazioni dai tuoi risultati di ricerca e le tue osservazioni dai loro. Tuttavia, non ti rende invisibile a loro. Essi possono ancora vedere le tue osservazioni e guardare il tuo profilo, ma non interagire con te.
-          </p>
-          <p>
-          Il blocco è per le situazioni in cui non è impossibile andare d'accordo con qualcuno e questo non ti lascia in pace, nonostante i tuoi migliori sforzi per  risolvere le controversie in modo civile. Non è un modo per nascondersi dalle persone, per impedire le identificazioni da parte di persone delle cui opinioni non ti fidi o disattivare l'ID della comunità (c'è un impostazione specifica per questo). Quindi, il blocco funziona in entrambi i sensi: se blocchi qualcuno, questo non può interagire con te, ma tu non puoi nemmeno interagire con lui. Se la usi impropriamente per impedire a qualcuno di identificare le tue osservazioni, ti impedisci anche di identificare le sue osservazioni.
-          </p>
-          <p>
-          Puoi bloccare solo tre persone. Pensiamo che sia un numero ragionevole che va incontro alle persone che hanno bisogno di bloccare qualcuno ma previene l'abuso del blocco. Se pensi d aver la necessità di bloccare più persone, per favore <a href="mailto:%{help_email}">contattaci</a>.
-          </p>
-          <p>
-          Se qualcuno ti sta molestando o ti sta stalkerando su %{site_name}, <a href="mailto:%{help_email}">faccelo sapere</a>. Se ciò rappresenta una violazione dei nostri Termini di servizio o altri comportamenti che riteniamo inappropriati per il nostro sito, investigheremo.
-          </p>
         common_names_desc: |
           Mostra i nomi comuni. Disabilita se vuoi vedere i nomi scientifici. Nota che puoi controllare quali nomi comuni vedere cambiando le impostazioni locali e quelle del luogo.
         display_monthly_supporter_status_on_my_profile: |
