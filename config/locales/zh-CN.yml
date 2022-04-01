@@ -2154,11 +2154,6 @@ zh-CN:
     请注意那些向您索取样品或隐藏数据的请求。如果有人想要获取样本，尝试要求查看他们的许可证来验证他们的身份。
   messages_new_correspondent_personal: |
     不要向您不信任的人泄露您的个人信息。
-  messages_new_correspondent_actions_html: |
-    如果您怀疑此人违反了我们的 <a href="%{tos_url}"
-    target="_blank">服务条款</a> 或没有按照我们 <a
-    href="%{guidelines_url}" target="_blank">社区准则</a>行事， 请
-    在下方标记此消息。
   misidentifications: 错误识别
   misleading_or_illegal_content_html: |
     误导性或非法内容，种族歧视或民族蔑称等。有关我们对“适当”的更多定义，参见<a href="/help#inappropriate">常见问题</a>。
@@ -2783,8 +2778,6 @@ zh-CN:
     original: 原始
   photos_updated: 照片已更新。
   pi_consent_desc_title: 关于个人信息
-  pi_consent_desc_html: |
-    我们需要储存用户名称以及电子邮箱地址之类的个人信息来管理在网站上的账号，因要符合隐私法规的要求，需要您勾选此方框來表明您同意上述的个人信息使用。要了解更多关于我们如何收集以及使用信息，请查看我们的<a href='%{privacy_url}' target='_blank'>隐私政策</a>和<a href='%{terms_url}' target='_blank'>服务条款</a>。
   pi_consent_label: |
     我同意允许 iNaturalist 储存、处理关于我的有限个人信息，以便管理我的账号。
   pi_consent_child_label: |
@@ -4015,7 +4008,6 @@ zh-CN:
   terms: 条款
   terms_and_rules_html: "条款和规则"
   terms_new_users: "如果您添加条款，新用户必须在加入该项目前同意这些条款。"
-  terms_service: 服务条款
   terrain: 地形
   text: 文本
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4141,10 +4133,6 @@ zh-CN:
   top_identifiers: 顶端标识符
   top_identifiers_of_taxon: '%{taxon} 中排名靠前的鉴定者'
   top_observers: 最多观察者
-  tos_privacy_guidelines_label: |
-    我同意 <a href="/terms" target="_blank">服务条款</a> 和
-    <a href="/privacy" target="_blank">隐私政策</a>, 我已经审阅了
-     <a href="/pages/community+guidelines" target="_blank">社区准则</a>。
   total: 总计
   totals: 总计
   total_members: 成员总数
@@ -4598,8 +4586,6 @@ zh-CN:
   you_must_specify_and_confirm_a_new_password: 您必须指定一个新密码并确认它。
   you_need_to_have_linked_flickr_account: 您需要连接一个Flickr账户才能标记您的照片。
   you_need_to_select_some_observations_first: 您首先需要选择一些观察。
-  you_retain_full_copyright: "除了在我们的服务条款中授予给 %{site_name} 的这些权限外，您对您的内容保留完整的版权。"
-  you_retain_full_copyright_over_your_content: "除了在我们的服务条款中授予给 %{site_name} 的这些权限外，您对您的内容保留完整的版权。"
   you_sure_delete_asset?: 您确定要删除此优点吗？
   you_sure_delete_check_list: "您确定要删除这个列表么？一些人可能把大量的工作投入在它身上..."
   you_sure_delete_comment?: 您确定要删除此评论吗？
@@ -5545,19 +5531,6 @@ zh-CN:
           您必须在表单中输入"%{confirmation_code}"才能删除您的帐户
       edit:
         about_third_party_tracking: 关于第三方的追踪
-        blocking_desc_html: |
-          <p>
-          屏蔽某人以阻止他们发信息给您，评论您的观察，辨别您的观察结果，以及在您在％{site_name}%{site_name}上的其他交互。这个操作也把他们的观察从您的观察搜索结果中移出，同时也将您的观察从他们的搜索结果中删除。但是，它不会让您对他们不可见。他们仍然能找到您的观察并查看您的个人资料，他们只是不能与您互动
-          </p>
-          <p>
-          屏蔽是为了解决您不能和某些人相处，尽管您尽了最大的努力以文明的方式解决争端，他们也还是会纠缠您。这不是一种隐藏身份，以防止您的身份被人您不信任的人识别或注销社区 ID（有另一个设置专门做这个的）。因此，屏蔽工作方式如下：如果您屏蔽了某人他们不能与您互动，但您也不能和他们互动。如果您误用它来防止别人识别您的观察，您也将阻止您自己识别别人的观察。
-          </p>
-          <p>
-          您只能屏蔽三个人。我们认为这是合理的：符合屏蔽的需要，同时防止滥用屏蔽。如果您觉得需要屏蔽更多人请<a href="mailto:%{help_email}">与我们联系</a>。
-          </p>
-          <p>
-          如果有人在%{site_name}上骚扰或跟踪您，<a href="mailto:%{help_email}">请告知我们</a>。如果这是违反我们的服务条款或是表现出其他对我们网站的不合适行为，我们将会进行调查。
-          </p>
         common_names_desc: |
           显示常用名。如果您只希望查看学名则可以禁用。注意您可以通过更改您的地域和地点设置，控制您想看到的常用名。
         display_monthly_supporter_status_on_my_profile: |
