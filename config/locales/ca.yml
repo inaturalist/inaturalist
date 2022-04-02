@@ -325,6 +325,7 @@ ca:
   add_life_stage_egg_annotation: 'Afegiu nota "Estat del Cicle biològic: Ou"'
   add_evidence_of_presence_organism_annotation: 'Afegiu l''anotació "Evidència de Presència: Organisme".'
   add_evidence_of_presence_feather_annotation: 'Afegiu l''anotació "Evidència de Presència: Plomes"'
+  add_evidence_of_presence_gall_annotation: 'Afegir anotació "Evidència de Presència: Cecidi"'
   add_evidence_of_presence_scat_annotation: 'Afegiu l''anotació "Evidència de Presència: Excrements"'
   add_evidence_of_presence_track_annotation: 'Afegiu l''anotació "Evidència de Presència: Petjades"'
   add_evidence_of_presence_bone_annotation: 'Afegiu l''anotació "Evidència de Presència: Ossos"'
@@ -385,6 +386,8 @@ ca:
   agree_with_current_taxon: D'acord amb actual taxon
   agreeing: Acceptant...
   aka: alies
+  #Noun, title of a popup alerting you to something
+  alert: Alerta
   all: Tots
   all_comments: Tots els comentaris
   all_flags_must_be_resolved: Cal completar totes les etiquetes
@@ -1062,6 +1065,8 @@ ca:
     evidence_of_presence: Evidència de Presència
     #As in the feather on a bird
     feather: Plomes
+    #Abnormal growth
+    gall: Cecidi
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organisme
@@ -1090,6 +1095,7 @@ ca:
     bone: |
       Predominantment restes d'endoesquelet; els ossos parcialment exposats d'altra forma en organismes intactes haurien d'etiquetar-se com a "organisme"
     molt: Restes de pell o exoesquelet
+    gall: Creixement deforme d'un teixit vegetal causat per un organisme paràsit
   controls: Controls
   convert: Convertiu
   coordinate_systems: Sistemes de coordenades
@@ -1099,6 +1105,8 @@ ca:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Només amb coordenades reals visibles
+  coords_viewable_for_proj_desc: |
+    Mostra únicament les observacions d'aquest projecte que permeten veure les coordenades "reals", les quals inclouen les que es mostren per a tothom i les enfosquides, però de persones que confien en tu, les que les confien en aquest projecte i les de tàxons vulnerables de persones que les han confiat a aquest projecte.
   copy: Còpia
   copy_and_paste_the_following_code_to: Copieu i enganxeu el codi següent per incrustar aquesta avaluació en una altra pàgina web.
   copy_and_paste_this_into_your_own_html: Copieu i enganxeu en un HTML.
@@ -1171,6 +1179,9 @@ ca:
     Heu d'explicar per què voleu ser supervisor
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Per què voleu ser supervisor?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Si voleu editar la taxonomia d'iNaturalist, si us plau indiqueu-nos un o dos exemples dels canvis taxonòmics que voldríeu fer, i incloeu les fonts de les vostres propostes de canvi. Si s'escau, citeu les autoritats taxonòmiques adequades <a href="https://www.inaturalist.org/pages/curator+guide#policies"> com s'indica a la Guia del Supervisor.</a>. Si no incloeu cap font, la vostra proposta no serà considerada.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Si voleu editar els noms comuns, si us plau indiqueu un o dos exemples dels canvis que voldríeu fer
@@ -2452,6 +2463,10 @@ ca:
     Vigileu les peticions de dades ocultes o sobre alguns individus. Intenteu verificar la identitat de la persones que demanen aquesta informació, i si us pregunten sobre alguns exemplars, comproveu la seva autorització.
   messages_new_correspondent_personal: |
     No faciliteu informació personal a persones en les que no confieu.
+  messages_new_correspondent_actions_html: |
+    Si sospiteu que aquesta persona està violant les nostres <a href="%{tos_url}"
+    target="_blank">Condicions d'Ús</a> o no actua segons les nostres <a
+    href="%{guidelines_url}" target="_blank">Directrius de la Comunitat</a>, si us plau, marqueu aquest missatge a sota.
   minimum_positional_accuracy: Precisió mínima de la localització
   misidentifications: Identificacions incorrectes
   misleading_or_illegal_content_html: |
@@ -3133,10 +3148,35 @@ ca:
     original: original
   photos_updated: Fotos actualitzades.
   pi_consent_desc_title: Quant a la informació personal
+  pi_consent_desc_html: |
+    <p>
+    Emmagatzem informació personal com ara el nom d'usuari i l'adreça de correu electrònic per gestionar els comptes d'aquest lloc i, per complir amb la legislació sobre privacitat, necessitem que confirmeu el vostre consentiment per utilitzar aquesta informació personal. Per conèixer més sobre la informació que guardem i com la usem, si us plau, llegiu la nostra
+    <a href='%{privacy_url}' target='_blank'>Política de Privacitat</a> i les nostres <a href='%{terms_url}' target='_blank'>Condicions del Servei</a>.
+    </p>
+    <p>
+    No hi ha forma de tenir un compte a iNaturalist sense arxivar aquesta informació personal, per això l'única forma de revocar el vostre consentiment és esborrant el vostre compte.</p>
   pi_consent_label: |
     Autoritzo a iNaturalist a guardar i processar determinades informacions de caràcter personal sobre mi per gestionar el meu compte
   pi_consent_child_label: |
     Autoritzo a iNaturalist a guardar i processar determinades informacions de caràcter personal sobre el meu/va fill/a per gestionar el meu compte infantil
+  data_transfer_consent_desc_title: Sobre el Consentiment de Transferència d'Informació Personal
+  data_transfer_consent_desc_html: |
+    <p>
+    Algunes lleis de privadesa de dades, com el Reglament General de Protecció de Dades (RGPD) de la Unió Europea, requereixen el vostre consentiment explícit per transferir informació personal de les seves jurisdiccions a altres jurisdiccions on la protecció legal d'aquesta informació no es considera adequada. A partir del <a href="https://www.aepd.es/es/derechos-y-deberes/cumple-tus-deberes/medidas-de-cumplimiento/transferencias-internacionales">2020</a>, la Unió Europea ja no considera que els Estats Units siguin una jurisdicció que ofereixi una protecció legal adequada a la informació de les persones, concretament a causa de la possibilitat que el govern dels EUA vigili les dades que entren als EUA. És possible que altres jurisdiccions tinguin la mateixa opinió.
+    </p>
+    <p>
+    L'ús d'iNaturalist requereix l'emmagatzematge d'informació personal, com ara la vostra adreça de correu electrònic, totes les dades d'iNaturalist s'emmagatzemen als Estats Units i no podem estar segurs de a quina jurisdicció legal us trobeu quan feu servir iNaturalist, de manera que, per complir amb les lleis de privadesa com el RGPD, heu de reconèixer que enteneu i accepteu aquest risc i consentiu la transferència de la vostra informació personal als servidors d'iNaturalist als EUA.
+    </p>
+    <p>
+    Per obtenir més informació sobre quina informació recollim i com la fem servir, consulteu la nostra <a href='%{privacy_url}' target='_blank'>Política de privadesa</a> i les nostres <a href='%{terms_url}' target='_blank'>Condicions d'ús</a> .
+    </p>
+    <p>
+    No hi ha manera de tenir un compte d'iNaturalist sense emmagatzemar informació personal, de forma que l'única manera de revocar aquest consentiment és suprimir el vostre compte.
+    </p>
+  data_transfer_consent_label: |
+    Dono el meu consentiment per a transmetre la meva informació personal als Estats Units d'Amèrica.
+  data_transfer_consent_child_label: |
+    Dono el meu consentiment per a transmetre la informació personal dels meus infants als Estats Units d'Amèrica.
   pin_verb: Posar al mapa
   pink: rosa
   pinned_locations_desc: |
@@ -3967,6 +4007,7 @@ ca:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "Revocar %{site_name}?"
+  revoke_privacy_consent_warning: "L'única possibilitat per a revocar aquest consentiment és esborrant el vostre compte i totes les dades associades."
   rg_observations: Observacions de Grau de Recerca
   role: Permís
   rotate_left: Gira a l'esquerra
@@ -4516,6 +4557,7 @@ ca:
   terms: Termes
   terms_and_rules_html: "Condicions i normes"
   terms_new_users: "Si incorporeu condicions, els nous usuaris han d'acceptar-les abans d'unir-se al projecte."
+  terms_service: Condicions del servei
   terrain: terreny
   text: Text
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4656,6 +4698,8 @@ ca:
   top_identifiers_of_taxon: Principals identificadors de %{taxon}
   top_observer_caps: PRINCIPAL OBSERVADOR
   top_observers: Principal observadors
+  tos_privacy_guidelines_label: |
+    Accepto les <a href="/terms" target="_blank">Condicions del Servei</a> i la <a href="/privacy" target="_blank">Política de Privacitat</a>, i he revisat les <a href="/pages/community+guidelines" target="_blank">Normes de la Comunitat</a>.
   total: Total
   totals: Totals
   total_ids_on_input_taxon: "IDs total del tàxon d'entrada"
@@ -5171,6 +5215,8 @@ ca:
   you_must_specify_and_confirm_a_new_password: Heu d'especificar i confirmar una nova contrasenya.
   you_need_to_have_linked_flickr_account: Heu de vincular un compte de Flickr per etiquetar les vostres fotos.
   you_need_to_select_some_observations_first: Primer heu de seleccionar les observacions.
+  you_retain_full_copyright: "Manteniu l'autoria i drets sobre el vostre contingut, a banda dels drets concedits a %{site_name} segons les nostres Condicions del Servei."
+  you_retain_full_copyright_over_your_content: "Manteniu l'autoria i drets sobre el vostre contingut, a banda dels drets concedits a %{site_name} segons les nostres Condicions del Servei."
   you_should_delete_this_taxon_change: |
     Probablement hauries d'eliminar aquest canvi de tàxon, o si més no cercar alguna mena de solució amb la persona o persones que van fer l'altre canvi.
   you_sure_delete_asset?: Esteu segur que voleu eliminar aquest arxiu?
@@ -6510,6 +6556,18 @@ ca:
           Escrigueu "%{confirmation_code}" en el formulari per eliminar el vostre compte
       edit:
         about_third_party_tracking: Sobre el seguiment per part de tercers
+        blocking_desc_html: |
+          <p>
+          Bloquejar algú impedeix que us enviï missatges i comenti les vostres observacions, identificar-les, i interaccionar amb tu a %{site_name}. També elimina les observacions dels vostres resultats de cerca i les vostres observacions de les seves cerques. Tanmateix, això no us fa invisible a ell. Encara podrà trobar les vostres observacions i veure el vostre perfil, només que no podrà interaccionar.
+          </p>
+          <p>
+          El bloqueig és per a situacions en què no pots suportar algú i aquest no et deixa de molestar, malgrat els teus millors esforços per resoldre les disputes d'una forma civilitzada. No és una manera d'amagar-se de la gent, d'evitar identificacions de persones en les opinions de les quals no confieu, ni de desactivar l'identificador de la comunitat (hi ha altres configuracions per fer-ho). Per tant, el bloqueig funciona de les dues maneres: si bloqueges algú, ell no pot interactuar amb tu, però tampoc podràs interactuar amb ell. Si en feu un mal ús per evitar que algú identifiqui les vostres observacions, també us impediu identificar les seves observacions.
+          </p>
+          <p>
+          Només podeu bloquejar un màxim de tres persones. Pensem que és un número raonable adequat per aquells que necessiten bloquejar algú evitant l'abús del bloqueig. Si creieu que necessiteu bloquejar més persones, si us plau <a href="mailto:%{help_email}">contacteu amb nosaltres</a>.
+          </p>
+          <p>Si algú us està assetjant a %{site_name}, <a href="mailto:%{help_email}">digueu-nos-ho</a>. Si suposa una violació de les Condicions del Servei o representa un comportament que pugui ser inapropiat al nostre lloc, ho investigarem.
+          </p>
         common_names_desc: |
           Mostrar noms comuns. Deshabiliteu-lo si només voleu veure els noms científics.
           Penseu que podeu controlar quins noms comuns veieu per canviant la vostra localització i ubicació.
