@@ -332,6 +332,8 @@ bg:
   agree_with_current_taxon: Съгласен съм с текущия таксон
   agreeing: Съгласяване...
   aka: или
+  #Noun, title of a popup alerting you to something
+  alert: Внимание
   all: Всичко
   all_comments: Всички коментари
   all_flags_must_be_resolved: Всички маркери трябва да бъдат разрешени
@@ -604,6 +606,7 @@ bg:
   brief_caption: Кратко заглавие
   brown: кафяво
   browse_all_projects: Разгледай всички проекти
+  browse_all_species: Разгледай всички видове
   browse_observations: Разгледай наблюдения
   browse_people: Разгледай хора
   browse_projects: Разгледай проекти
@@ -1228,6 +1231,7 @@ bg:
   filter_by_curator_identification: Филтрирай по разпознавания от куратори
   filter_by_place: Филтрирай по място
   filter_by_taxon: Филтрирай по таксон
+  filter_by_place_taxon_and_color: Филтрирай по място, таксон или цвят чрез контролерите.
   filter_list_by_this_taxon: Филтрирай списъка по този таксон
   filters: Филтри
   find: Намери
@@ -1854,8 +1858,12 @@ bg:
   most_observed_species: Най-наблюдавани видове
   multiple_select_option: '-- множествен --'
   multiple_taxa_for_taxon_change: "Множество таксони (вход за размяна/обединяване, изход за разделяне)"
+  must_be_not_observed_by_user: не трябва да е наблюдавано от %{user}
+  must_be_not_observed_in_place: не трябва да е наблюдавано в %{place}
   must_be_observed_after: трябва да е наблюдавано след %{operand}
   must_be_observed_before: трябва да е наблюдавано преди %{operand}
+  must_be_observed_by_user: трябва да е наблюдавано от %{user}
+  must_be_observed_in_place: трябва да е наблюдавано в %{place}
   must_be_less_than_x_MB: "Трябва да е по-малко от %{x} MB"
   must_have_observation_field: "трябва да има попълнено поле за наблюдения '%{operand}'"
   must_have_x: "трябва да има %{x}"
@@ -3292,6 +3300,7 @@ bg:
   terms: Условия
   terms_and_rules_html: "Условия и правила"
   terms_new_users: "Ако добавите условия, новите потребители ще трябва да се съгласят с тях, преди да се присъединят към проекта."
+  terms_service: Условия за ползване
   terrain: терен
   text: Текст
   thanks_from_all_of_us_here_at: Благодарности от всички нас тук на
@@ -3780,12 +3789,29 @@ bg:
         alphaname: Азбучно по научно име
         alphadisplay: Азбучно по имената показвани по подразбиране
     lifelists:
+      list_view: Списъчен изглед
+      tree_view: Дървовиден изглед
+      observed_species: Наблюдавани видове
+      unobserved_species: Ненаблюдавани видове
+      all_species: Всички видове
+      all_unobserved_species: Всички ненаблюдавани видове
       all_observations: Всички наблюдения
+      filter_by: Филтрирай по
+      filtered_by: Филтрирано по
       restrict_to_taxa_observed_in_place: Ограничи до таксони наблюдавани във %{place}
+      no_unobserved_species_in_place: Няма ненаблюдавани видове в %{place}
+      no_unobserved_species_within_this_taxon: Няма ненаблюдавани видове от този таксон
+      no_unobserved_species_within_this_taxon_in_place: Няма ненаблюдавани видове от този таксон в %{place}
       dropdowns:
+        sort: Сортиране
+        taxonomic: Таксономично
         name: Име
+        most_observed: Най-наблюдаван
         least_observed: Най-малко наблюдаван
+        show: Покажи
         children: Деца
+        simplified_tree: Опростено дърво
+        full_taxonomy: Пълна таксономия
     lists:
       new:
         place_desc: |
@@ -4731,6 +4757,13 @@ bg:
             redirect_uri:
               invalid_uri: "трябва да е валиден URI."
               relative_uri: "трябва да е абсолютен URI."
+        observation:
+          attributes:
+            observed_on:
+              cannot_be_greater_than_date_created: |
+                не може да е по-късно от датата на добавяне на наблюдението
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: трябва да е през последните 130 години
         observation_field_value:
           attributes:
             value:
