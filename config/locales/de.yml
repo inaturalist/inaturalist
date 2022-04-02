@@ -393,6 +393,8 @@ de:
   agree_with_current_taxon: Bin mit aktuellem Taxon einverstanden
   agreeing: Zustimmung …
   aka: auch bekannt als
+  #Noun, title of a popup alerting you to something
+  alert: Hinweis
   all: Alle
   all_comments: Alle Kommentare
   all_flags_must_be_resolved: Alle Meldungen müssen geklärt sein
@@ -3130,6 +3132,36 @@ de:
     Ich bin damit einverstanden, dass iNaturalist in begrenztem Umfang persönliche Informationen über mich speichert und verarbeitet, um mein Konto zu verwalten.
   pi_consent_child_label: |
     Ich bin damit einverstanden, dass iNaturalist bestimmte personenbezogene Daten über mein Kind speichert und verarbeitet, um das Konto meines Kindes verwalten zu können.
+  data_transfer_consent_desc_title: Über die Einwilligung zur persönlichen Datenübertragung
+  data_transfer_consent_desc_html: |
+    <p>
+    Einige Datenschutzgesetze, wie die Datenschutz-Grundverordnung der Europäischen Union (DSGVO), erfordern die ausdrückliche Einwilligung zur Übermittlung von
+    persönlichen Daten aus ihren Zuständigkeitsbereichen an solche mit anderer Rechtsprechung, wo der rechtliche Schutz dieser Informationen für nicht ausreichend erachtet wird. Seit
+    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a> sieht die Europäische Union die Vereinigten Staaten nicht länger als rechtsprechenden Raum an, der einen angemessenen rechtlichen Schutz personenbezogener
+    Informationen bietet - insbesondere wegen der Möglichkeit, dass die US-Regierung
+    Daten überwachen kann, die in das Land kommen. Es ist möglich, dass andere Rechtsprechungen
+    dieselbe Meinung haben.
+    </p>
+    <p>
+    Die Verwendung von iNaturalist erfordert die Speicherung von persönlichen Daten wie deiner
+    E-Mail-Adresse, alle iNaturalist-Daten werden in den Vereinigten Staaten gespeichert, und
+    wir können nicht wissen, in welcher rechtlichen Gerichtsbarkeit du dich befindest, wenn du iNaturalist verwendest. Um Datenschutzgesetze wie die DSGVO einzuhalten, musst du bestätigen, dass du dieses Risiko verstehst und akzeptierst und dich damit einverstanden erklärst, dass
+    deine persönlichen Daten auf die Server von iNaturalist in den USA übertragen werden.
+    </p>
+    <p>
+    Um mehr darüber zu erfahren, welche Informationen wir sammeln und wie wir sie verwenden,
+    lies bitte unsere
+    <a href='%{privacy_url}' target='_blank'>Datenschutzerklärung</a>
+    und unsere <a href='%{terms_url}' target='_blank'>Nutzungsbedingungen</a>.
+    </p>
+    <p>
+    Es gibt keine Möglichkeit, ein iNaturalist-Konto zu haben, ohne persönliche
+    Informationen zu speichern, so dass die einzige Möglichkeit, diese Einwilligung zu widerrufen, in der Löschung des Kontos besteht.
+    </p>
+  data_transfer_consent_label: |
+    I stimme zu, dass meine persönlichen Daten in die Vereinigten Staaten übertragen werden dürfen
+  data_transfer_consent_child_label: |
+    I stimme zu, dass die persönlichen Daten meines Kindes in die Vereinigten Staaten übertragen werden dürfen
   pin_verb: Anpinnen
   pink: rosa
   pinned_locations_desc: |
@@ -3972,6 +4004,7 @@ de:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "%{site_name} ablehnen?"
+  revoke_privacy_consent_warning: "Die einzige Möglichkeit, diese Einwilligung zu widerrufen, ist die Löschung des Kontos und aller damit verbundenen Daten."
   rg_observations: FQ Beobachtungen
   role: Rolle
   rotate_left: Nach links drehen
