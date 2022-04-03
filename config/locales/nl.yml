@@ -1213,6 +1213,10 @@ nl:
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Waarom wil je een curator zijn?
   #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Als jij de taxonomie van iNaturalist wilt bewerken, geef dan één of twee voorbeelden
+    van taxonomische wijzigingen die jij wilt aanbrengen en voeg bronnen toe aan je wijzigingsvoorstellen. Indien van toepassing citeer dan de juiste taxonomische autoriteiten <a href="https://www.inaturalist.org/pages/curator+guide#policies"> zoals vermeld in de Curator Guide</a>. Als je geen bronnen toevoegt wordt je aanvraag niet in behandeling genomen.
+  #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Als je algemene namen wilt bewerken geef dan één of twee voorbeelden van
     wijzigingen die je wilt aanbrengen
@@ -2512,6 +2516,11 @@ nl:
     Wees voorzichtig met verzoeken om specimens of verborgen gegevens. Probeer de identiteit te verifiëren van de persoon die het verzoek doet en als ze om specimens vragen, vraag dan om hun vergunning te zien.
   messages_new_correspondent_personal: |
     Geef geen persoonlijke informatie over jezelf aan mensen die je niet vertrouwt.
+  messages_new_correspondent_actions_html: |
+    Als jij vermoedt dat deze persoon onze <a href="%{tos_url}"
+    target="_blank">Gebruiksvoorwaarden</a> schendt of niet handelt in overeenstemming met onze <a
+    href="%{guidelines_url}" target="_blank">Gemeenschapsrichtlijnen</a>,
+    markeer dan dit bericht hieronder.
   minimum_positional_accuracy: Minimale locatienauwkeurigheid
   misidentifications: Onjuiste determinaties
   misleading_or_illegal_content_html: |
@@ -3215,11 +3224,28 @@ nl:
     original: origineel
   photos_updated: Foto's bijgewerkt.
   pi_consent_desc_title: Persoonlijke gegevens
+  pi_consent_desc_html: |
+    <p>
+    Persoonlijke gegevens zoals gebruikersnamen en e-mailadressen worden bewaard om accounts op deze site te beheren en om te voldoen aan privacywetten moet je dit vakje aanvinken om aan te geven dat je akkoord gaat met het gebruik van deze persoonlijke informatie. Voor meer informatie over de informatie die wordt verzamelt en hoe we het gebruiken, zie onze
+    <a href='%{privacy_url}' target='_blank'>Privacybeleid</a>
+    en onze <a href='%{terms_url}' target='_blank'>Gebruiksvoorwaarden</a>.
+    </p>
+    <p>
+    Er is geen manier om een iNaturalist account te hebben zonder persoonlijke
+    informatie op te slaan dus de enige manier om deze toestemming in te trekken is door je
+    account te verwijderen.
+    </p>
   pi_consent_label: |
     Ik stem ermee in dat iNaturalist persoonlijke informatie over mij kan opslaan en verwerken om mijn account te beheren
   pi_consent_child_label: |
     Ik stem ermee in dat iNaturalist persoonlijke informatie over mijn kind kan opslaan en verwerken om het account van mijn kind te beheren
   data_transfer_consent_desc_title: Over toestemming voor persoonlijke informatie overdracht
+  data_transfer_consent_label: |
+    Ik sta toe dat mijn persoonlijke gegevens aan de
+    Verenigde Staten van Amerika worden overgedragen
+  data_transfer_consent_child_label: |
+    Ik sta toe dat de persoonlijke gegevens van mijn kind aan de
+    Verenigde Staten van Amerika worden overgedragen
   pin_verb: Vastzetten
   pink: roze
   pinned_locations_desc: |
@@ -4651,6 +4677,7 @@ nl:
   terms: Voorwaarden
   terms_and_rules_html: "Voorwaarden en regels"
   terms_new_users: "Als je voorwaarden toevoegd moeten nieuwe gebruikers daar mee akkoord gaan voordat ze deel kunnen nemen aan het dit project."
+  terms_service: Gebruiksvoorwaarden
   terrain: terrein
   text: Tekst
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4802,6 +4829,10 @@ nl:
   top_identifiers_of_taxon: Top-determineerders van %{taxon}
   top_observer_caps: TOP WAARNEMER
   top_observers: Top Waarnemers
+  tos_privacy_guidelines_label: |
+    Ik ga akkoord met de <a href="/terms" target="_blank">Gebruiksvoorwaarden</a> en het
+    <a href="/privacy" target="_blank">Privacybeleid</a> en ik heb
+    de <a href="/pages/community+guidelines" target="_blank">Gemeenschapsrichtlijnen</a> doorgenomen.
   total: Totaal
   totals: Totalen
   total_ids_on_input_taxon: "Totaal aantal IDs van invoertaxon:"
@@ -5324,6 +5355,8 @@ nl:
   you_must_specify_and_confirm_a_new_password: Je moet een nieuw wachtwoord opgeven en bevestigen.
   you_need_to_have_linked_flickr_account: Je moet een Flickr-account hebben om je foto's te kunnen labelen.
   you_need_to_select_some_observations_first: Je moet eerste enkele waarnemingen selecteren.
+  you_retain_full_copyright: "Je behoudt het volledige auteursrecht op je inhoud met uitzondering van de rechten die zijn verleend aan %{site_name} in onze Gebruiksvoorwaarden."
+  you_retain_full_copyright_over_your_content: "Je behoudt het volledige auteursrecht op je inhoud met uitzondering van de rechten die zijn verleend aan %{site_name} in onze Gebruiksvoorwaarden."
   you_should_delete_this_taxon_change: |
     Je zou waarschijnlijk deze taxonwijziging moeten verwijderen of stel ten minste een oplossing voor met de persoon / mensen die de andere veranderingen hebben aangebracht.
   you_sure_delete_asset?: Weet je zeker dat je dit projectbestand wilt verwijderen?
@@ -6783,6 +6816,19 @@ nl:
           Je moet de "%{confirmation_code}" in het formulier invoeren om je account te verwijderen
       edit:
         about_third_party_tracking: Over het volgen door derden
+        blocking_desc_html: |
+          <p>Door iemand te blokkeren kunnen ze je berichten niet meer zien of reageren op jouw waarnemingen, je waarnemingen determineren of andere interacties met je hebben op %{site_name}. Het verwijdert ook hun waarnemingen uit je zoekresultaten en verwijdert jouw waarnemingen uit hun zoekresultaten. Het maakt je echter niet onzichtbaar voor ze. Ze kunnen nog steeds je waarnemingen vinden en je profiel bekijken, ze kunnen echter geen interactie met je aangaan.
+          </p>
+          <p>
+            Blokkeren is voor situaties waar je gewoon niet kunt opschieten met iemand en ze je niet met rust laten, ondanks je inspanningen om geschillen op een beschaafde manier regelen. Het is geen manier om je te verbergen voor mensen, om determinaties te voorkomen van mensen van wie je de mening niet vertrouwt, of niet voor het gemeenschaps-ID kiest (daar is een andere instelling voor). Blokkeren werkt dus in beide richtingen: als je iemand blokkeert, kunnen ze geen interactie met je hebben, maar je kunt ook geen interactie hebben met hen. Als je het misbruikt om te voorkomen dat iemand je waarnemingen determineert, voorkomt je ook dat je diegenes waarnemingen kan determineren.
+          </p>
+          <p>
+            Je kunt maar drie mensen blokkeren. We denken dat dit een redelijk aantal is dat geschikt is voor de mensen die blokkering nodig hebben. Dit is om misbruik van blokkering te voorkomen. Als je vindt dat je meer mensen moet kunnen blokkeren <a href="mailto:%{help_email}">neem dan contact met ons op</a>.
+          </p>
+          <p>
+            Als iemand je lastigvalt of stalkt op %{site_name}, <a href="mailto:%{help_email}">laat het ons weten</a>. Als
+            het een schending van onze gebruiksvoorwaarden is of ander gedrag dat we ongepast achten voor onze site, zullen we onderzoek doen.
+          </p>
         common_names_desc: |
           Toon lokale namen. Schakel dit uit als je alleen wetenschappelijke namen wilt zien. Merk op dat je kunt bepalen welke lokale namen je ziet door je taal- en plaatsinstellingen te wijzigen.
         display_monthly_supporter_status_on_my_profile: |
