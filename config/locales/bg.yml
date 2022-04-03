@@ -200,6 +200,10 @@ bg:
   action: Действие
   actions: Действия
   active: Активен
+  #Status of a complete set that is available for use
+  active_complete_set_status: Активен
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Активен
   active_users: Активни потребители
   activity: Активност
   activity_settings: Настройки за активност
@@ -925,6 +929,7 @@ bg:
   curators_can_remove_observations_from: Кураторите могат да премахват наблюдения от проекта и техните разпознавания се показват до наблюденията в определени изгледи специфични за проектите. Кураторите могат също да виждат истинските координати на поверителни или замаскирани наблюдения добавени в проекта.
   current_flags: Текущи маркери
   darr_apply_darr: "&darr; Приложи &darr;"
+  daily_users: Дневни потребители
   danger_zone: Опасна зона
   dashboard: Табло
   data_deficient: недостатъчно данни
@@ -1457,7 +1462,13 @@ bg:
   increase_brightness: Увеличи яркостта
   in_the_past_week: През изминалата седмица
   inactive: Неактивен
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Неактивен
   inactive_taxon: неактивен таксон
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Неактивен
   inactive_taxon_concepts_are: Неактивните таксони са или таксономично остарели, или са подготвяни за таксономична промяна. Остарелите таксони се съхраняват за да се поддържа история и съвместимост с някои партньорски сайтове.
   inappropriate_content: Неуместно съдържание?
   inat_believes_this_is_a_complete_listing: "%{site_name} смята, че това е пълен списък за този таксон на това място."
@@ -1558,6 +1569,7 @@ bg:
     afrikaans: африканс
     albanian: албански
     bengali: бенгалски
+    bulgarian: български
     catalan: каталонски
     cebuano: себуански
     chinese_simplified: китайски (опростен)
@@ -2179,6 +2191,7 @@ bg:
     Само една координатна система може да бъде използвана в един файл. В противен случай ще се конвертира или изобрази погрешно.
   only_project_curators_can_do_that: Само кураторите на проекта могат да правят това.
   only_receive_updates_about_this_taxon: Получавай известия само за този таксон
+  only_show_active_taxa: Показвай само активни таксони
   only_staff_can_edit_standard_places: Само екипът на сайта може да редактира местата в стандартната йерархия
   only_the_owner_of_this_list_can_do_that: Само собственика на списъка може да прави това. Не бъди така лош.
   only_the_project_admin_can_delete_this_project: Само администратора на проекта може да го изтрие.
@@ -3164,6 +3177,7 @@ bg:
   still_no_luck?: Пак ли нищо?
   stop_editing: Прекрати редактирането
   stop_following_user: "Спри да следваш %{user}"
+  stop_trusting_this_person_with_your_private_coordinates: Спри да доверяваш скритите си координати на този човек.
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: МАГАЗИН
@@ -3389,8 +3403,11 @@ bg:
   trends: Тенденции
   #Noun
   trust: Доверие
+  trusted: Доверен
+  trusted_project?: Доверен проект?
   trust_this_person_with_your_private_coordinates: Довери скритите си координати на този човек
   trust_this_project_with_your_private_coordinates?: Довери скритите си координати на този проект?
+  trust_with_private_coordinates: Довери скритите си координати
   twitter: Туитър
   two_thirds: 2/3
   #As in a category, not as in a keyboard
@@ -3499,6 +3516,7 @@ bg:
   user_observed_on_on_date_in_place: |
     %{user} го наблюдава на %{date} във %{place}
   user_suggested_an_id: "%{user} предложи ID"
+  user_trusts_you_with_their_private_coordinates: "%{user} ти доверява скритите си координати"
   user_trusts_you_with_their_private_coordinates_desc: |
     Наблюдателят е решил да Ви довери координатите на всичките си наблюдения.
   username: Потребителско име
@@ -4131,8 +4149,12 @@ bg:
         this_has_been_flagged_as_spam: Това е маркирано като спам
     stats:
       index:
+        active_desc: Добавили са разпознаване, наблюдение, коментар или публикация през последните 30 дни
         android_desc_html: Създадено с приложението на <a href="%{url}">iNaturalist за Андроид</a>
+        identifiers_desc: Добавили са разпознаване към наблюдение на някой друг този ден
         iphone_desc_html: Създадено с приложението на <a href="%{url}">iNaturalist за iPhone</a>
+        new_users_desc: Регистрирали са се този ден
+        observers_desc: Добавили са наблюдение този ден
         other_desc_html: Създадено с други приложения <a href="%{url}">направени от разработчици</a>
         TTCID_desc: Време за получаване на разпознаване от някой друг, съответстващо на консенсусното разпознаване от общността.
         website_desc_html: |
@@ -4724,6 +4746,8 @@ bg:
         title: Заглавие
         citation: Цитиране
       taxon:
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Активен?
         name: Име
         parent_id: Родителски №
         rank: Ранг
