@@ -310,9 +310,9 @@ de:
   add_one_now: Jetzt hinzufügen
   add_photos: Fotos hinzufügen
   add_place: Gebiet hinzufügen
-  add_alive_or_dead_alive_annotation: 'Angabe hinzufügen: "lebendig/tot: lebendig"'
-  add_alive_or_dead_cannot_be_determined_annotation: 'Annotation "lebendig oder tot: Kann nicht bestimmt werden" hinzufügen'
-  add_alive_or_dead_dead_annotation: 'Annotation "lebendig oder tot: tot" hinzufügen'
+  add_alive_or_dead_alive_annotation: 'Angabe hinzufügen "lebendig/tot: lebendig"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Angabe hinzufügen "lebendig/tot: Kann nicht bestimmt werden"'
+  add_alive_or_dead_dead_annotation: 'Angabe hinzufügen "lebendig/tot: tot"'
   add_plant_phenology_budding_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Knospend"'
   add_plant_phenology_flower_budding_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Knospend (Blüte)"'
   add_plant_phenology_flowering_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Blühend"'
@@ -323,7 +323,7 @@ de:
   add_life_stage_subimago_annotation: 'Angabe hinzufügen "Lebensstadium: Subimago"'
   add_life_stage_pupa_annotation: 'Angabe hinzufügen "Lebensstadium: Puppe"'
   add_life_stage_nymph_annotation: 'Angabe hinzufügen "Entwicklungsstadium: Nymphe"'
-  add_life_stage_larva_annotation: 'Vermerk "Lebensstadium: Larve" hinzufügen'
+  add_life_stage_larva_annotation: 'Angabe hinzufügen "Entwicklungsstadium: Larve"'
   add_life_stage_juvenile_annotation: 'Angabe hinzufügen "Entwicklungsstadium: Jungtier"'
   add_life_stage_egg_annotation: 'Angabe hinzufügen "Entwicklungsstadium: Ei"'
   add_evidence_of_presence_organism_annotation: 'Annotation ''Anwesenheitsnachweis: Organismus'' hinzufügen'
@@ -338,8 +338,8 @@ de:
   #As in a Guide Section
   add_section: Abschnitt hinzufügen
   add_several_observations_at_once: Mehrere Beobachtungen gleichzeitig hinzufügen.
-  add_sex_female_annotation: 'Angabe hinzufügen: "Geschlecht: Weiblich" '
-  add_sex_male_annotation: 'Angabe hinzufügen: "Geschlecht: Männlich"'
+  add_sex_female_annotation: 'Angabe hinzufügen "Geschlecht: Weiblich" '
+  add_sex_male_annotation: 'Angabe hinzufügen "Geschlecht: Männlich"'
   add_sex_cannot_be_determined_annotation: 'Angabe hinzufügen: "Geschlecht: nicht bestimmbar"'
   add_some_now: Jetzt welche hinzufügen
   add_tag: Tag hinzufügen
@@ -1905,7 +1905,7 @@ de:
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "anzupassende Stunden:"
   however_there_were_some_issues: "Allerdings gab es ein paar Probleme: %{issues}"
-  i_dont_know_but_i_am_sure_this_is_taxon: kein Veto; und '%{taxon}' kann zumindest bestätigt werden
+  i_dont_know_but_i_am_sure_this_is_taxon: kein Veto;  '%{taxon}' ist jedenfalls korrekt
   icon: Symbol
   icon_size: Symbolgröße
   iconic_taxon: Symbol-Taxon
@@ -2663,7 +2663,7 @@ de:
   next_taxon_short: Weiter
   'no': 'Nein'
   no_assessments_have_been_added_to_this_project_yet: Zu diesem Projekt sind noch keine Bewertungen hinzugekommen.
-  no_but_it_is_a_member_of_taxon: "Ja; aber der Nachweis lässt als Bestimmung '%{taxon}' zu"
+  no_but_it_is_a_member_of_taxon: "Ja; aber zumindest ist '%{taxon}' als Bestimmung möglich"
   no_comments_yet: Noch keine Kommentare.
   no_creative_commons_flickr_photos_tagged_x: 'Keine Creative Commons Flickr Bilder mit "%{x}" getaggt'
   no_curators_set: Keine Kuratoren festgelegt
