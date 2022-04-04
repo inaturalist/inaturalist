@@ -1,4 +1,8 @@
 nl:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} wijziging"
+    other: "%{count} wijzigingen"
   x_comments:
     one: '1 reactie'
     other: '%{count} reacties'
@@ -405,6 +409,8 @@ nl:
   agree_with_current_taxon: Akkoord gaan met huidige taxon
   agreeing: Bevestig...
   aka: ook bekend als
+  #Noun, title of a popup alerting you to something
+  alert: Opgelet
   all: Alle
   all_comments: Alle reacties
   all_flags_must_be_resolved: Alle meldingen moeten worden opgelost
@@ -801,6 +807,7 @@ nl:
   by_you: Door jou
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalenders tonen slechts %{x} waarnemingen tegelijk
+  callback_url: Callback url
   cancel: Annuleren
   cant_edit_or_delete_hidden_content: Je kunt inhoud die verborgen is door sitecuratoren niet bewerken of verwijderen
   cant_flag_an_object_that_doesnt_exist: Niet mogelijk om een object te melden dat niet bestaat
@@ -3997,6 +4004,8 @@ nl:
   recently_finished: Onlangs beëindigd
   recently_observed: Onlangs waargenomen
   recently_resolved: Onlangs opgelost
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Item
   red: rood
   redo_search_in_map: Opnieuw zoeken op kaart
   redo_search_in_map_area: Opnieuw zoeken in kaartgebied
@@ -4211,6 +4220,7 @@ nl:
   show_common_names: Toon lokale namen
   show_hidden_content: Verborgen inhoud tonen
   show_history_by_this_user: Toon geschiedenis van deze gebruiker
+  show_history_for_this_kind_of_action: Toon geschiedenis voor dit soort actie
   show_history_for_this_record: Toon geschiedenis voor dit item
   show_keyboard_shortcuts: Toon sneltoetsen
   show_less: Minder weergeven
@@ -7461,6 +7471,13 @@ nl:
         ancestry: Voorouders
         auto_description: Auto Beschrijving
         auto_photos: Auto fotos
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: Complete hiërarchie
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Natuurbeschermingstatus
         #Datetime this taxon was featured for display on /taxa
         featured_at: Uitgelicht
         #ID of the iconic taxon this taxon belongs to
@@ -7475,16 +7492,23 @@ nl:
         #External source of the taxon, e.g. Catalogue of Life
         name_provider: Naamleverancier
         parent_id: Bovenliggend ID
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Foto's vergrendeld?
         rank: Rang
         rank_level: Hiërarchie niveau
         source_id: Bron ID
         source_identifier: Bron-id
         source_url: Bron-URL
+        #Identifier of the taxon framework relationship record associated
+        #with this taxon
+        taxon_framework_relationship_id: Taxonkader-relatie ID
         wikipedia_summary: Wikipedia samenvatting
         wikipedia_title: Wikipedia titel
       taxon_name:
         is_valid: Is geldig?
         lexicon: Lexicon
+        name: Naam
         name_provider: Gegevensverstrekker
         position: Positie
         source_url: Bron-URL
