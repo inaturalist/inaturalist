@@ -394,6 +394,8 @@ fr:
   agree_with_current_taxon: Accepter le taxon actuel
   agreeing: En cours d'acceptance...
   aka: alias
+  #Noun, title of a popup alerting you to something
+  alert: Alerte
   all: Tous
   all_comments: Tous les commentaires
   all_flags_must_be_resolved: Tous les signalements doivent être résolus
@@ -1120,6 +1122,8 @@ fr:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Seulement avec des coordonnées complètes
+  coords_viewable_for_proj_desc: |
+    Montrez uniquement des observations du projet pour lesquelles vous pouvez voir les coordonnées réelles, incluant les coordonnées ouvertes, ou cachées par des gens qui vous font confiance, par des gens qui font confiance au projet, ou car elles sont à propos d'un taxon menacé mises par des gens qui font confiance au projet.
   copy: Copier
   copy_and_paste_the_following_code_to: Copiez et collez le code suivant pour inclure cette évaluation dans une autre page Web.
   copy_and_paste_this_into_your_own_html: Copiez et collez dans votre propre HTML.
@@ -1193,6 +1197,13 @@ fr:
     Vous devez expliquer pourquoi vous voulez devenir responsable.
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Pourquoi voulez-vous être responsable?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Si vous souhaitez modifier la taxonomie d'iNaturalist, veuillez fournir un exemple ou deux
+    de changements taxonomiques que vous souhaitez apporter, en incluant des sources. Le cas échéant, veuillez citer les autorités taxonomiques
+    appropriées mentionnées dans le <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">Guide du responsable de l'organisation</a>. Si vous n'incluez aucune source, votre demande
+    ne sera pas prise en considération.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Si vous souhaitez modifier les noms vernaculaires, veuillez fournir un exemple ou deux des
@@ -2504,6 +2515,11 @@ fr:
     de la personne qui fait la demande et si elle demande des spécimens, demandez-lui à voir son autorisation.
   messages_new_correspondent_personal: |
     Ne divulguez pas d'informations personnelles vous concernant à des personnes en qui vous n'avez pas confiance.
+  messages_new_correspondent_actions_html: |
+    Si vous soupçonnez que cette personne viole nos <a href="%{tos_url}"
+    target="_blank">conditions d'utilisation</a> ou qu'elle n'agit pas conformément à nos <a
+    href="%{guidelines_url}" target="_blank">directives de la communauté</a>, s'il vous plaît
+    signalez ce message ci-dessous.
   minimum_positional_accuracy: Précision minimale de localisation
   misidentifications: Identifications erronées
   misleading_or_illegal_content_html: |
@@ -3199,6 +3215,25 @@ fr:
   pi_consent_child_label: |
     J’accepte de permettre à iNaturalist de stocker et traiter des types restreints
     d’informations personnelles sur mon enfant, afin de gérer son compte
+  data_transfer_consent_desc_title: À propos du consentement pour le transfert de renseignements personnels
+  data_transfer_consent_desc_html: |
+    <p>
+    Certaines dispositions juridiques sur les données à caractère personnel, comme le Règlement général sur la protection des données (RGPD) de l’Union européenne, prévoient qu'un consentement explicite est nécessaire pour transférer des données à caractère personnel vers un territoire où la protection juridique de ces données n'est pas jugée adéquate. Depuis <a href="https://fr.wikipedia.org/wiki/Max_Schrems">2020</a>, l'Union européenne ne considère plus que les États-Unis sont un pays qui assure une protection juridique adéquate des données à caractère personnel, en raison de la possibilité qu'a le gouvernement américain de surveiller les données qui entrent aux États-Unis. D'autres pays pourraient avoir le même avis.
+    </p>
+    <p>
+    L'utilisation d'iNaturalist nécessite le stockage de données à caractère personnel comme votre
+    adresse e-mail. Toutes les données d'iNaturalist sont stockées aux États-Unis, et nous ne pouvons pas savoir sur quel territoire juridique vous vous trouvez lorsque vous utilisez iNaturalist. C'est pourquoi, pour des raisons de respect des dispositions juridiques comme le RGPD, vous devez attester que vous comprenez et acceptez ce risque et que vous consentenz au transfert de vos données à caractère personnel sur les serveurs d'iNaturalist aux États-Unis.
+    </p>
+    <p>
+    Pour en savoir plus sur les données que nous recueillons et sur l'usage que nous en faisons, veuillez consulter notre <a href='%{privacy_url}' target='_blank'>politique de confidentialité</a> et nos <a href='%{terms_url}' target='_blank'>conditions générales d'utilisation</a>.
+    </p>
+    <p>
+    Il n'est pas possible d'avoir un compte iNaturalist sans que des données à caractère personnel soient stockées; la seule façon de retirer ce consentement est donc de supprimer votre compte.
+    </p>
+  data_transfer_consent_label: |
+    J'autorise le transfert aux États-Unis de mes données à caractère personnel
+  data_transfer_consent_child_label: |
+    J'autorise le transfert aux États-Unis des données à caractère personnel de mon enfant
   pin_verb: Épingler
   pink: rose
   pinned_locations_desc: |
@@ -3642,6 +3677,7 @@ fr:
   plants: plantes
   please_add_a_citation_for_this_change: Veuillez ajouter une citation pour cette modification.
   please_allow_a_few_weeks_for_external_sites: Veuillez accorder quelques semaines aux sites externes pour synchroniser les changements de cette observation #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: Demande la permission à tes parents.
   #Title to a section warning a user to exercise caution
   please_be_careful!: S'il vous plaît, soyez prudents !
   please_complete_the_following_to_add_project: |
@@ -4038,6 +4074,7 @@ fr:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "Révoquer %{site_name}?"
+  revoke_privacy_consent_warning: "La seule façon de retirer ce consentement est de supprimer votre compte et toutes les données qui y sont associées."
   rg_observations: Observations CR
   role: Rôle
   rotate_left: Pivoter vers la gauche
@@ -4585,6 +4622,7 @@ fr:
   terms: Conditions
   terms_and_rules_html: "Conditions &amp; Règles"
   terms_new_users: "Si vous ajoutez des conditions, les nouveaux utilisateurs devront les accepter avant de se joindre à ce projet."
+  terms_service: Conditions d'utilisation
   terrain: terrain
   text: Texte
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4738,6 +4776,10 @@ fr:
   top_identifiers_of_taxon: Meilleurs identificateurs de %{taxon}
   top_observer_caps: MEILLEUR OBSERVATEUR
   top_observers: Meilleurs observateurs
+  tos_privacy_guidelines_label: |
+    J'accepte les <a href="/terms" target="_blank">conditions d'utilisation</a> et la
+    <a href="/privacy" target="_blank">politique de confidentialité</a>, et j'ai lu
+    les <a href="/pages/community+guidelines" target="_blank">Règles de la communauté</a>.
   total: Score total
   totals: Totaux
   total_ids_on_input_taxon: "Total des Id du taxon d'entrée :"
@@ -5272,6 +5314,8 @@ fr:
   you_must_specify_and_confirm_a_new_password: Vous devez spécifier et confirmer un nouveau mot de passe.
   you_need_to_have_linked_flickr_account: Vous devez avoir un compte Flickr lié pour étiqueter vos photos.
   you_need_to_select_some_observations_first: Vous devez d’abord sélectionner des observations.
+  you_retain_full_copyright: "Vous conservez tous les droits sur votre contenu, mis à part les droits accordés à %{site_name} dans nos Conditions d’utilisation."
+  you_retain_full_copyright_over_your_content: "Vous conservez tous les droits sur votre contenu, mis à part les droits accordés à %{site_name} dans nos Conditions d’utilisation."
   you_should_delete_this_taxon_change: |
     Vous devriez probablement supprimer cette modification de taxon ou trouver une solution avec la ou les personnes qui ont fait les autres modifications.
   you_sure_delete_asset?: Êtes-vous certain de vouloir supprimer ce fichier du projet?
@@ -7043,6 +7087,41 @@ fr:
           Vous devez saisir « %{confirmation_code} » dans le formulaire pour supprimer votre compte
       edit:
         about_third_party_tracking: À propos du suivi par des sites tiers
+        blocking_desc_html: |
+          <p>
+          Bloquer quelqu'un l'empêche de vous envoyer des
+          messages, de commenter vos  observations, d'identifier vos observations
+          et d'interagir autrement  avec vous sur %{site_name}. Cela supprime également
+          ses observations de vos  résultats de recherche et supprime vos observations
+          ses résultats de   recherche. Cependant, cela ne vous rend pas invisible
+          pour lui. Il peut toujours   trouver vos observations et regardez votre
+          profil, il ne peut tout simplement pas  interagir avec vous.
+          </p>
+          <p>
+          Le blocage est pour des situations où vous ne pouvez simplement pas vous
+          entendre  avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts
+          pour  régler les différends d'une manière civilisée. Ce n'est pas un moyen
+          pour se cacher de  personnes, pour empêcher les identifications de personnes
+          dont vous ne partagez pas les opinions, ou de retirer votre identifiant
+          de la communauté (il y en a un autre moyen   de régler cela). Ainsi, le
+          blocage fonctionne dans les deux sens: si vous bloquez  quelqu'un, ils
+          ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir
+          avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier
+          vos  observations, vous vous empêchez également d'identifier ses  observations.
+          </p>
+          <p>
+          Vous ne pouvez bloquer que trois personnes. Nous pensons que
+          c'est un nombre raisonnable  qui accueille les personnes qui ont besoin
+          de bloquer et  prévenir les abus de blocage. Si vous sentez que vous devez
+          bloquer plus  <a href="mailto:%{help_email}"> contactez-nous </a>.
+          </p>
+          <p>
+          Si quelqu'un vous harcèle ou vous traque sur %{site_name},
+          <a href="mailto:%{help_email}"> merci de nous le faire savoir </a>.
+          Si cela représente une violation de nos conditions d'utilisation ou représente
+          autre comportement que nous considérons inapproprié pour notre site, nous
+          enquêterons.
+          </p>
         common_names_desc: |
           Afficher les noms vulgaires. À désactiver si vous ne voulez voir que les noms scientifiques.
           Notez que vous pouvez contrôler le type de noms vulgaires que vous voyez en changeant vos paramètres régionaux et votre localisation.
