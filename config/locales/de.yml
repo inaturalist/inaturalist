@@ -3031,7 +3031,6 @@ de:
   open_description: "Jeder kann die Koordinaten sehen, außer das Taxon ist gefährdet."
   open_street_map: OpenStreetMap
   optional: optional
-  optional_columns_note_for_any: "Optionale Spalten (Anmerkung: Jede dieser Spalten muss in einer Beobachtung verwendet werden)"
   or: oder
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3144,6 +3143,15 @@ de:
     original: Original
   photos_updated: Fotos aktualisiert.
   pi_consent_desc_title: Über personenbezogene Daten
+  pi_consent_desc_html: |
+    <p>
+    Wir speichern personenbezogene Daten, wie Benutzernamen und E-Mail-Adressen, um Konten auf dieser Website zu verwalten. Um die Datenschutzgesetze einzuhalten, benötigen wir deine Einwilligung in diese Nutzung personenbezogener Daten, indem du dieses Kästchen ankreuzt. Um mehr darüber zu erfahren, welche Informationen wir sammeln und wie wir sie verwenden, lies bitte unsere
+    <a href='%{privacy_url}' target='_blank'>Datenschutzrichtlinie</a>
+    und unsere <a href='%{terms_url}' target='_blank'>Nutzungsbedingungen</a>.
+    </p>
+    <p>
+    Es gibt keine Möglichkeit, einen iNaturalist-Account zu haben, ohne dass persönliche Informationen gespeichert werden - die einzige Möglichkeit, die Einstimmung zu widerrufenn ist, das Konto zu löschen.
+    </p>
   pi_consent_label: |
     Ich bin damit einverstanden, dass iNaturalist in begrenztem Umfang persönliche Informationen über mich speichert und verarbeitet, um mein Konto zu verwalten.
   pi_consent_child_label: |
@@ -3991,7 +3999,6 @@ de:
   required: erforderlich
   required_: erforderlich
   required_field: Pflichtfeld
-  required_columns_in_order: Erforderliche Spalten in der Reihenfolge
   research: Forschung
   research_: Forschung
   research_grade: Forschungsqualität
