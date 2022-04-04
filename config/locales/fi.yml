@@ -398,6 +398,8 @@ fi:
   agree_with_current_taxon: Samaa mieltä tämän tunnistuksen kanssa
   agreeing: Samaa mieltä...
   aka: tunnetaan myös nimellä
+  #Noun, title of a popup alerting you to something
+  alert: Varoitus
   all: Kaikki
   all_comments: Kaikki kommentit
   all_flags_must_be_resolved: Kaikki liput on ratkaistava
@@ -3002,6 +3004,11 @@ fi:
     Kyllä, suostun siihen, että iNaturalist tallentaa ja käyttää tiettyjä henkilötietojani käyttäjätilini hallintaan
   pi_consent_child_label: |
     Kyllä, suostun siihen, että iNaturalist tallentaa ja käyttää tiettyjä lapseni henkilötietoja lapseni käyttäjätilin hallintaan
+  data_transfer_consent_desc_title: Tietoja suostumuksesta henkilötietojen siirtoon
+  data_transfer_consent_label: |
+    Hyväksyn henkilötietojeni siirtämisen Amerikan yhdysvaltoihin
+  data_transfer_consent_child_label: |
+    Hyväksyn lapseni henkilötietojen siirtämisen Amerikan yhdysvaltoihin
   pin_verb: Kiinnitä
   pink: pinkki
   pinned_locations_desc: |
@@ -3399,6 +3406,7 @@ fi:
   plants: kasvit
   please_add_a_citation_for_this_change: Lisää viite muutokselle.
   please_allow_a_few_weeks_for_external_sites: Salli muutama viikko ulkopuolisille sivustoille synkronoida muutokset tästä havainnosta #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: Pyydä vanhemmiltasi lupaa
   #Title to a section warning a user to exercise caution
   please_be_careful!: Ole varovainen!
   please_complete_the_following_to_add_project: |
@@ -3759,6 +3767,7 @@ fi:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "Peru %{site_name}?"
+  revoke_privacy_consent_warning: "Ainoa tapa peruuttaa tämä suostumus on poistaa tilisi ja kaikki siihen liittyvät tiedot."
   rg_observations: RG havainnot
   role: Rooli
   rotate_left: Käännä vasemmalle
