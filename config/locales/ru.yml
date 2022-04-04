@@ -410,6 +410,7 @@ ru:
   add_life_stage_egg_annotation: 'Добавить значение "Стадия жизни: Яйцо"'
   add_evidence_of_presence_organism_annotation: 'Добавить значение "Доказательство присутствия: организм"'
   add_evidence_of_presence_feather_annotation: 'Добавить значение "Доказательство присутствия: перо"'
+  add_evidence_of_presence_gall_annotation: 'Добавить значение "Доказательство присутствия: галл"'
   add_evidence_of_presence_scat_annotation: 'Добавить значение "Доказательство присутствия: экскременты"'
   add_evidence_of_presence_track_annotation: 'Добавить значение "Доказательство присутствия: след"'
   add_evidence_of_presence_bone_annotation: 'Добавить значение "Доказательство присутствия: кость"'
@@ -474,6 +475,8 @@ ru:
   agree_with_current_taxon: Согласен с текущим таксоном
   agreeing: Соглашаемся...
   aka: ака
+  #Noun, title of a popup alerting you to something
+  alert: Предупреждение
   all: Все
   all_comments: Все комментарии
   all_flags_must_be_resolved: Все флаги должны быть разрешены
@@ -1180,6 +1183,8 @@ ru:
     evidence_of_presence: Доказательство присутствия
     #As in the feather on a bird
     feather: Перо
+    #Abnormal growth
+    gall: Галл
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Организм
@@ -1208,6 +1213,7 @@ ru:
     bone: |
       Преимущественно остатки эндоскелета; частичное обнажение костей в остальном неповрежденном организме должно быть помечено как "организм"
     molt: Удалённая кожа или экзоскелет
+    gall: Уродливый рост ткани растения, вызванный паразитическим организмом
   controls: Элементы управления
   convert: Конвертировать
   coordinate_systems: Системы координат
@@ -1217,6 +1223,9 @@ ru:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Только полные координаты
+  coords_viewable_for_proj_desc: |
+    Показывать только те наблюдения этого проекта, для которых вы можете видеть "истинные" координаты, включая не скрытые наблюдения, скрытые наблюдения
+    тех, кто вам доверяет, скрытые наблюдения тех, кто в чем-то доверяет этому проекту, и скрытые из-за таксонов , находящихся под угрозой, наблюдения, тех, кто доверяет в том же этому проекту.
   copy: Копировать
   copy_and_paste_the_following_code_to: Скопируйте и вставьте следующий код, чтобы разместить эту оценку на другой веб-странице.
   copy_and_paste_this_into_your_own_html: Скопируйте и вставьте это в ваш HTML.
@@ -1288,6 +1297,11 @@ ru:
     Вы должны объяснить, почему вы хотите стать куратором
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Почему вы хотите быть куратором?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Если вы хотите отредактировать таксономию iNaturalist, предоставьте один или два примера таксономических изменений, которые вы хотели бы внести, и укажите источники предлагаемых вами изменений. Если возможно, укажите соответствующие таксономические авторитетные источники <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">как указано в руководстве для кураторов</a>. Если вы не указываете какие-либо источники, ваша
+    заявка не будет рассмотрена.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Если вы хотите отредактировать общие имена, пожалуйста, приведите один или два примера изменений, которые вы хотели бы внести
@@ -3259,6 +3273,29 @@ ru:
     Я разрешаю iNaturalist хранить и обрабатывать ограниченные виды личной информации обо мне для управления моей учетной записью
   pi_consent_child_label: |
     Я разрешаю iNaturalist хранить и обрабатывать ограниченные виды личной информации о моем ребенке для управления учётной записью моего ребенка
+  data_transfer_consent_desc_title: О согласии на передачу личной информации
+  data_transfer_consent_desc_html: |
+    <p>
+    Некоторые законы о конфиденциальности данных, такие как Общий регламент ЕС по защите данных (GDPR), требуют явного согласия на передачу личной информации из их юрисдикций в другие юрисдикции, где правовая защита этой информации считается недостаточной. По данным
+    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>,
+    Европейский союз больше не считает Соединенные Штаты юрисдикцией, которая обеспечивает надлежащую правовую защиту личной информации, в частности, из-за возможности попадания данных государственного наблюдения США в США. Вполне возможно, что и в других юрисдикциях может быть такое же мнение.
+    </p>
+    <p>
+    Использование iNaturalist требует хранения личной информации, такой как ваш адрес электронной почты, все данные iNaturalist хранятся в Соединенных Штатах, и мы не можем быть уверены, в какой правовой юрисдикции вы находитесь, когда используете iNaturalist, поэтому для соблюдения законов о конфиденциальности, таких как GDPR, вы должны подтвердить, что понимаете и принимаете этот риск и даёте согласие на передачу вашей личной информации на серверы iNaturalist в США.
+    </p>
+    <p>
+    Чтобы узнать больше о том, какую информацию мы собираем и как мы ее используем, пожалуйста, ознакомьтесь с нашей
+    <a href='%{privacy_url}' target='_blank'>Политикой конфиденциальности</a>
+    и нашими <a href='%{terms_url}' target='_blank'>Условиями использования</a>.
+    </p>
+    <p>
+    Невозможно создать учетную запись iNaturalist без хранения личной
+    информации, поэтому единственный способ отозвать это согласие - удалить свою учетную запись.
+    </p>
+  data_transfer_consent_label: |
+    Я даю согласие на передачу моей личной информации в Соединенные Штаты Америки
+  data_transfer_consent_child_label: |
+    Я даю согласие на передачу личной информации моего ребёнка в Соединенные Штаты Америки
   pin_verb: Закрепить
   pink: розовый
   pinned_locations_desc: |
@@ -3697,6 +3734,7 @@ ru:
   plants: растения
   please_add_a_citation_for_this_change: Пожалуйста, добавьте ссылку на это изменение.
   please_allow_a_few_weeks_for_external_sites: Пожалуйста, подождите несколько недель, чтобы внешние сайты синхронизировали изменения с этим наблюдением #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: Пожалуйста, получите разрешение у своих родителей
   #Title to a section warning a user to exercise caution
   please_be_careful!: Будьте осторожны!
   please_complete_the_following_to_add_project: |
@@ -4108,6 +4146,7 @@ ru:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "Отменить регистрацию на %{site_name}?"
+  revoke_privacy_consent_warning: "Единственный способ отозвать это согласие - удалить вашу учетную запись и все связанные с ней данные."
   rg_observations: Наблюдения статуса "исследовательский"
   role: Роль
   rotate_left: Повернуть влево
@@ -4693,6 +4732,7 @@ ru:
   terms: Обозначения
   terms_and_rules_html: "Условия и правила"
   terms_new_users: "Если вы зададите условия, новые пользователи должны согласиться с ними, прежде чем присоединиться к этому проекту."
+  terms_service: Условия использования
   terrain: местность
   text: Текст
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
