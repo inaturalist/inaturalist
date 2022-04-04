@@ -386,6 +386,8 @@ pt-BR:
   agree_with_current_taxon: Concordar com o táxon atual
   agreeing: Concordando...
   aka: também conhecido como
+  #Noun, title of a popup alerting you to something
+  alert: Alerta
   all: Todas
   all_comments: Todos comentários
   all_flags_must_be_resolved: Todas as sinalizações devem ser resolvidas
@@ -3071,7 +3073,6 @@ pt-BR:
   open_description: "Qualquer um pode ter acesso as coordenadas a não ser que o táxon esteja em perigo."
   open_street_map: OpenStreetMap
   optional: opcional
-  optional_columns_note_for_any: "Colunas opcionais (nota: para qualquer uma destas colunas ser utilizada em uma observação, todas devem estar presentes)"
   or: ou
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3189,6 +3190,38 @@ pt-BR:
     Eu concordo em permitir que o iNaturalist armazene e processe tipos limitados de informações pessoais sobre mim para gerenciar minha conta
   pi_consent_child_label: |
     Eu concordo em permitir que o iNaturalist armazene e processe tipos limitados de informações pessoais sobre meu filho para gerenciar a conta do meu filho
+  data_transfer_consent_desc_title: Sobre o consentimento para transferência de informações pessoais
+  data_transfer_consent_desc_html: |
+    <p>
+    Algumas leis de privacidade de dados, como o Regulamento Geral de Proteção de Dados da União Europeia (European Union's General Data Protection Regulation GDPR), exigem consentimento explícito para transferir informações pessoais de suas jurisdições para outras jurisdições onde a proteção legal desta informação não é considerada adequado. A partir de 
+    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>,
+    a União Europeia não considera os Estados Unidos como uma
+    jurisdição que fornece proteção legal adequada para informações pessoais, especificamente devido à possibilidade de o governo dos EUA exercer vigilância de dados entrando nos EUA. É possível que outras jurisdições possam ter a mesma politica.
+    </p>
+    <p>
+    O uso do iNaturalist requer o armazenamento de informações pessoais como seu
+    endereço de e-mail, todos os dados do iNaturalist são armazenados nos Estados Unidos e
+    não podemos ter certeza sobre em qual jurisdição legal você está quando está usando
+    iNaturalist, portanto, para cumprir as leis de privacidade como o GDPR, você
+    deve reconhecer que você entende e aceita esse risco e consentir em transferir suas informações pessoais para os servidores do iNaturalist nos EUA.
+    </p>
+    <p>
+    Para saber mais sobre quais informações coletamos e como as usamos,
+    por favor veja o nossa
+    <a href='%{privacy_url}' target='_blank'>Política de Privacidade</a>
+    e nossos <a href='%{terms_url}' target='_blank'>Termos de Uso</a>.
+    </p>
+    <p>
+    Não há como ter uma conta iNaturalist sem armazenar 
+    informações pessoais, portanto, a única maneira de revogar esse consentimento é excluir sua
+    conta.
+    </p>
+  data_transfer_consent_label: |
+    Eu concordo em permitir que minhas informações pessoais sejam transferidas para os Estados Unidos
+    da América
+  data_transfer_consent_child_label: |
+    Eu concordo em permitir que as informações pessoais do meu filho sejam transferidas para os
+    Estados Unidos da América
   pin_verb: Fixar
   pink: rosa
   pinned_locations_desc: |
@@ -4005,7 +4038,6 @@ pt-BR:
   required: obrigatório
   required_: Obrigatório
   required_field: campo obrigatório
-  required_columns_in_order: É obrigatório classificar as colunas em ordem
   research: pesquisa
   research_: Pesquisar
   research_grade: Nível de Pesquisa
@@ -4034,6 +4066,7 @@ pt-BR:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "Anular %{site_name}?"
+  revoke_privacy_consent_warning: "A única maneira de revogar esse consentimento é excluir sua conta e todos os dados associados"
   rg_observations: Observações NP
   role: Função
   rotate_left: Girar a esquerda
