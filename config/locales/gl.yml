@@ -1076,6 +1076,8 @@ gl:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Só con coordenadas completas
+  coords_viewable_for_proj_desc: |
+    Mostrar unicamente observacións deste proxecto para as que podes ver as coordenadas "verdadeiras", incluindo observacións non escurecidas pola xente que confía a este proxecto calquera cousa, e observacións escuras por seren taxons ameazados por xente que só confía a este proxecto este tipo de observacións.
   copy: Copiar
   copy_and_paste_the_following_code_to: Copia e cola o seguinte código para incluir esta avaliación noutra páxina web.
   copy_and_paste_this_into_your_own_html: Copiar e pegar no teu propio HTML.
@@ -1147,6 +1149,10 @@ gl:
     Debes explicar porqué queres ser un administrador
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: '¿Porqué queres ser un administrador?'
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Se queres editar a taxonomía de iNaturalist, por favor, da un exemplo ou dous de mudanzas taxonómicas que che gustaría facer e inclúe fontes para as mudanzas propostas. Se corresponde, por favor, cita ás autoridades taxonómicas pertinentes <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">como aparecen listadas na Guía do Administrador</a>. Se non inclúes ningunha fonte, a túa solicitude non será considerada.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Se quixeres editar nomes vernáculos, por favor, da un ou dous exemplos dos cambios que che gustaría facer
