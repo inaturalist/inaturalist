@@ -1096,6 +1096,10 @@ de:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Nur mit vollständigen Koordinaten
+  coords_viewable_for_proj_desc: |
+    Nur Beobachtungen dieses Projekts anzeigen, für die du die "wahren"
+    Koordinaten sehen kannst, einschließlich verdeckter Beobachtungen von Personen, die dir vertrauen, verdeckte Beobachtungen von Leuten, die diesem Projekt ihre Beobachtungen anvertrauen, sowie Beobachtungen von bedrohte Taxa von Benutzern, die
+    nur diesem Projekt mit dem Gleichen vertrauen.
   copy: Kopieren
   copy_and_paste_the_following_code_to: Kopiere und füge den folgenden Code ein, um diese Bewertung in eine andere Webseite einzubetten.
   copy_and_paste_this_into_your_own_html: Dies in dein eigenes HTML kopieren und einfügen.
@@ -1171,6 +1175,13 @@ de:
     Du musst begründen, warum du Kurator werden willst
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Warum möchtest du Kurator sein?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Wenn Sie die Taxonomie von iNaturalist bearbeiten möchten, geben Sie bitte ein Beispiel oder zwei
+    von Taxonomie-Änderungen an, die Sie vornehmen möchten. Diese sollten die Quellen für Ihre
+    vorgeschlagenen Änderungen enthalten. Falls zutreffend, führen Sie bitte die entsprechenden taxonomischen Institution, <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">wie im Kuratorhandbuch</a>aufgelistet an.
+    Wenn Sie keine Quellen angeben, wird Ihre Bewerbung nicht berücksichtigt.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Wenn du umgangsprachliche Namen bearbeiten möchtest, gib bitte ein oder zwei Beispiele von
@@ -2445,6 +2456,11 @@ de:
   messages_new_correspondent_personal: |
     Gib keine persönlichen Informationen über dich an Personen weiter, denen du nicht
     vertraust.
+  messages_new_correspondent_actions_html: |
+    Wenn du den Verdacht hast, dass diese Person unsere <a href="%{tos_url}"
+    target="_blank">Nutzungsbedingungen</a> verletzt oder nicht gemäß unseren <a
+    href="%{guidelines_url}" target="_blank">Richtlinien agiert</a>, melde bitte
+    diese Nachricht weiter unten.
   minimum_positional_accuracy: Minimale Genauigkeit der Position
   misidentifications: Fehlbestimmungen
   misleading_or_illegal_content_html: |
@@ -4571,6 +4587,7 @@ de:
   terms: Bedingungen
   terms_and_rules_html: "Bedingungen &amp; Regeln"
   terms_new_users: "Wenn du Bedingungen hinzufügst, müssen neue Benutzer ihnen zustimmen, bevor sie diesem Projekt beitreten."
+  terms_service: Nutzungsbedingungen
   terrain: Gelände
   text: Text
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4718,6 +4735,10 @@ de:
   top_identifiers_of_taxon: Top-Bestimmer für %{taxon}
   top_observer_caps: TOP-BEOBACHTER
   top_observers: Top-Beobachter
+  tos_privacy_guidelines_label: |
+    Ich stimme den <a href="/terms" target="_blank">Nutzungsbedingungen</a> und der
+    <a href="/privacy" target="_blank">Datenschutzerklärung</a> zu, und ich habe
+    die <a href="/pages/community+guidelines" target="_blank">Community-Richtlinien</a> verstanden.
   total: Gesamt
   totals: Insgesamt
   total_members: Mitglieder insgesamt
@@ -5241,6 +5262,8 @@ de:
   you_must_specify_and_confirm_a_new_password: Du musst ein neues Passwort erstellen und bestätigen.
   you_need_to_have_linked_flickr_account: Du benötigst ein verlinkten Flickr-Account, um deine Bilder zu taggen.
   you_need_to_select_some_observations_first: Du musst zuerst eine Beobachtung auswählen.
+  you_retain_full_copyright: "Das volle Urheberrecht an deinen Inhalten verbleibt bei dir, abgesehen von den Rechten, die %{site_name} in unseren Allgemeinen Geschäftsbedingungen gewährt werden."
+  you_retain_full_copyright_over_your_content: "Das volle Urheberrecht an deinen Inhalten verbleibt bei dir, abgesehen von den Rechten, die %{site_name} in unseren Allgemeinen Geschäftsbedingungen gewährt werden."
   you_sure_delete_asset?: Bist Du dir sicher, dass Du diese Projektanhänge löschen willst?
   you_sure_delete_check_list: "Bist du sicher, dass du diese Liste löschen möchtest? Andere Leute haben möglicherweise viel Arbeit in sie gesteckt..."
   you_sure_delete_comment?: Sicher, dass Du diesen Kommentar löschen willst?
@@ -6664,6 +6687,19 @@ de:
           Du musst %{confirmation_code} in das Formular eingeben, um dein Konto löschen zu können
       edit:
         about_third_party_tracking: Über das Tracking von Drittanbietern
+        blocking_desc_html: |
+          <p>
+          Das Blockieren von Personen hindert sie daran, dir Nachrichten zu senden, deine Beobachtungen zu kommentieren, deine Beobachtungen zu identifizieren und anderweitig mit dir auf %{site_name} zu interagieren. Es entfernt auch deren Beobachtungen aus deinen Suchergebnissen und deine Beobachtungen aus ihren Suchergebnissen. Es macht dich jedoch nicht unsichtbar für sie. Sie können immer noch deine Beobachtungen finden und dein Profil ansehen, sie können einfach nicht mit dir interagieren.
+          </p>
+          <p>
+          Blockieren ist für Situationen, in denen man einfach nicht mit jemandem zurechtkommt und man nicht in Ruhe gelassen wird, trotz aller Bemühungen, Streitigkeiten auf zivilisierte Weise beizulegen. Es ist keine Möglichkeit, sich vor Leuten zu verstecken, um Identifikationen von Leuten zu verhindern, deren Meinung man nicht traut, oder sich aus der Community-ID auszutreten (es gibt eine eigene Einstellung dafür). Das Blockieren funktioniert also in beide Richtungen: Wenn du jemanden blockierst, kann er nicht mit dir interagieren, aber du kannst auch nicht mit der Person interagieren. Wenn Sie es missbrauchen, um jemanden daran zu hindern, Ihre Beobachtungen zu identifizieren, dann hindern Sie sich auch daran, ihre Beobachtungen zu identifizieren.
+          </p>
+          <p>
+          Du kannst nur drei Personen blockieren. Wir denken, dass dies eine vernünftige Zahl ist, die den Leuten entgegenkommt, die jemanden blockieren müssen, und gleichzeitig den Missbrauch der Blockierungs-Funktion verhindert. Wenn du glaubst, dass du mehr Leute blockieren musst, bitte <a href="mailto:%{help_email}">kontaktiere uns</a>.
+          </p>
+          <p>
+          Wenn dich jemand auf %{site_name} belästigt oder verfolgt, <a href="mailto:%{help_email}">bitte lass es uns wissen</a>. Wenn dies einen Verstoß gegen unsere Nutzungsbedingungen darstellt oder die andere Verhaltensweisen, die wir für unangemessen halten, werden wir dem nachgehen.
+          </p>
         common_names_desc: |
           Umgangssprachliche Namen anzeigen. Deaktiviere diese Option, wenn du nur wissenschaftliche Namen sehen möchtest.
           Beachte, dass du kontrollieren kannst, welche gebräuchlichen Namen du angezeigt bekommst, indem du deine Gebietsschema- und Ortseinstellungen änderst.
