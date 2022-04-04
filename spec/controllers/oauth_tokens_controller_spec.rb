@@ -28,11 +28,21 @@ describe OauthTokensController, "with resource owner password credentials" do
   it_behaves_like "a token creator that blocks suspended users"
   before { ActionController::Base.allow_forgery_protection = true }
   after { ActionController::Base.allow_forgery_protection = false }
-  it "should return a 401 for an incorrect password" do
+  it "should return a 400 for an incorrect password" do
     get :create, format: :json, params: default_params_for_strategy.merge(
       password: "#{user.password}foo"
     )
     expect( response.code ).to eq "400"
+  end
+
+  it "should localize an error response" do
+    locale = "fr"
+    get :create, format: :json, params: default_params_for_strategy.merge(
+      password: "#{user.password}foo",
+      locale: locale
+    )
+    json = JSON.parse( response.body )
+    expect( json["error_description"] ).to eq I18n.t( :invalid_grant, scope: [:doorkeeper, :errors, :messages], locale: locale )
   end
 end
 
