@@ -325,6 +325,7 @@ it:
   add_life_stage_egg_annotation: 'Aggiungi nota "Stadio vitale: Uovo"'
   add_evidence_of_presence_organism_annotation: 'Aggiungi l''annotazione "Prova di Presenza: organismo"'
   add_evidence_of_presence_feather_annotation: 'Aggiungi l''annotazione "Prova di Presenza: piuma"'
+  add_evidence_of_presence_gall_annotation: 'Aggiungi l''annotazione "Prova di Presenza: gall"'
   add_evidence_of_presence_scat_annotation: 'Aggiungi l''annotazione "Prova di Presenza: escremento"'
   add_evidence_of_presence_track_annotation: 'Aggiungi l''annotazione "Prova di Presenza: traccia"'
   add_evidence_of_presence_bone_annotation: 'Aggiungi l''annotazione "Prova di Presenza: osso"'
@@ -1067,6 +1068,8 @@ it:
     evidence_of_presence: Prova di Presenza
     #As in the feather on a bird
     feather: Piuma
+    #Abnormal growth
+    gall: Gall
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organismo
@@ -1095,6 +1098,7 @@ it:
     bone: |
       Resti prevalentemente endoscheletrici; l'esposizione parziale delle ossa in un organismo altrimenti intatto dovrebbe essere etichettata come "organismo"
     molt: Pelle o esoscheletro scartati
+    gall: Escrescenza deformata del tessuto vegetale causata da un organismo parassitario
   controls: Controlli
   convert: Converti
   coordinate_systems: Sistemi di coordinate
@@ -1104,6 +1108,8 @@ it:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Solo con coordinate complete
+  coords_viewable_for_proj_desc: |
+    Mostra solo le osservazioni di questo progetto per cui tu puoi vedere le "vere" coordinate, incluse le osservazioni non oscurate, le osservazioni oscurate di persone che si fidano di te, le osservazioni oscurate di persone che si fidano completamente di questo progetto e le osservazioni oscurate di taxa minacciati di persone che si fidano solo di questo progetto.
   copy: Copia
   copy_and_paste_the_following_code_to: Copia e incolla il seguente codice per incorporare questa valutazione in un'altra pagina web.
   copy_and_paste_this_into_your_own_html: Copia e incolla nel tuo HTML.
@@ -3587,6 +3593,7 @@ it:
   plants: piante
   please_add_a_citation_for_this_change: Per piacere aggiungi un riferimento per questa modifica.
   please_allow_a_few_weeks_for_external_sites: Per favore attendi alcune settimane affinché i siti esterni sincronizzino la modifiche per questa osservazione #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: Sei pregato di chiedere l'autorizzazione ai tuoi genitori
   #Title to a section warning a user to exercise caution
   please_be_careful!: Per favore, presta attenzione!
   please_complete_the_following_to_add_project: |
