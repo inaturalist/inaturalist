@@ -1225,6 +1225,9 @@ sv:
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Varför vill du bli förvaltare?
   #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Om du vill redigera iNaturalists taxonomi, ge ett exempel eller två på taxonomiska ändringar du skulle vilja genomföra och inkludera källor till dina föreslagna förändringar. Om möjligt, ange etablerade taxonomiska auktoriteter <a href="https://www.inaturalist.se/pages/f%C3%B6rvaltarguide#policies">som angivet i Förvaltarvägledningen</a>. Om du inte inkluderar några källor kommer din ansökan inte att beaktas.
+  #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Om du vill redigera vardagliga namn, ge ett exempel eller två på ändringar som du vill göra
   #Prompt for information when applying to be a curator
@@ -2540,6 +2543,11 @@ sv:
     Var försiktig med förfrågningar om exemplar eller dolda data. Försök att bekräfta identiteten på den person som gör begäran och om de ber om exemplar, be att få se deras tillstånd.
   messages_new_correspondent_personal: |
     Lämna inte ut personlig information om dig själv till personer du inte litar på.
+  messages_new_correspondent_actions_html: |
+    Om du misstänker att denna person bryter mot våra <a href="%{tos_url}"
+    target="_blank">användarvillkor</a> eller inte agerar i enlighet med våra <a
+    href="%{guidelines_url}" target="_blank">community-riktlinjer</a>,
+    flagga detta meddelande nedan.
   minimum_positional_accuracy: Minimal positionsnoggrannhet
   misidentifications: Felbestämningar
   misleading_or_illegal_content_html: |
@@ -4640,6 +4648,7 @@ sv:
   terms: Villkor
   terms_and_rules_html: "Villkor &amp; regler"
   terms_new_users: "Om du lägger till villkor måste nya användare godkänna dem innan de går med i projektet."
+  terms_service: Användarvillkor
   terrain: terräng
   text: Text
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4785,6 +4794,9 @@ sv:
   top_identifiers_of_taxon: Flest bestämningar av %{taxon}
   top_observer_caps: MESTA OBSERVATÖR
   top_observers: Toppobservatörer
+  tos_privacy_guidelines_label: |
+    Jag godkänner <a href="/terms" target="_blank">Användarvillkoren</a> och
+    <a href="/privacy" target="_blank">Integritetspolicyn</a>, och jag har granskat <a href="/pages/community+guidelines" target="_blank">Communityns riktlinjer</a>.
   total: Totalt
   totals: Summa
   total_ids_on_input_taxon: "Alla ID:n för intaxon:"
@@ -5307,6 +5319,8 @@ sv:
   you_must_specify_and_confirm_a_new_password: Du måste ange och bekräfta ett nytt lösenord.
   you_need_to_have_linked_flickr_account: Du måste ha ett länkat Flickr-konto för att tagga dina bilder.
   you_need_to_select_some_observations_first: Du måste välja några fynd först.
+  you_retain_full_copyright: "Du behåller full upphovsrätt till ditt innehåll förutom de rättigheter som %{site_name} beviljas i våra användarvillkor."
+  you_retain_full_copyright_over_your_content: "Du behåller full upphovsrätt till ditt innehåll förutom de rättigheter som %{site_name} beviljas i våra användarvillkor."
   you_should_delete_this_taxon_change: |
     Du bör förmodligen ta bort denna taxonändring, eller åtminstone komma på någon
     typ av lösning med den(de) person(-er) som gjort den(de) andra förändringen(-arna).
@@ -6737,6 +6751,21 @@ sv:
           Du måste ange "%{confirmation_code}" i formuläret för att radera ditt konto
       edit:
         about_third_party_tracking: Om spårning av tredjepart
+        blocking_desc_html: |
+          <p>
+          Att blockera någon hindrar dem från att skicka meddelanden till dig, kommentera dina fynd, artbestämma dina fynd, och på annat sätt interagera med dig på %{site_name}. Det tar också bort deras fynd från dina sökresultat och dina fynd från deras sökresultat. Det gör dig dock inte osynlig för dem. De kan fortfarande hitta dina fynd och se din profil, de kan helt enkelt bara inte interagera med dig.
+          </p>
+          <p>
+          Blockering är till för situationer där du helt enkelt inte kan komma överens med någon och de lämnar dig inte i fred, trots att du ansträngt dig för att lösa tvister på ett civiliserat sätt. Det är inte ett sätt att gömma sig från personer, förhindra artbestämningar från personer vars åsikter du inte litar på eller välja bort community-bestämningar (det finns en annan inställning för det). Blockeringen verkar alltså åt
+          båda hållen: om du blockerar någon kan de inte interagera med dig, men du kan inte heller interagera med dem. Om du missbrukar detta för att hindra någon från att artbestämma dina fynd hindrar du också dig själv från att bestämma deras fynd.
+          </p>
+          <p>
+          Du kan bara blockera tre personer. Vi tycker att det är ett rimligt antal som tillmötesgår de personer som behöver blockera någon medan det förhindrar missbruk av blockering. Om du känner att du behöver blockera fler personer, vänligen <a href="mailto:%{help_email}">kontakta oss</a>.
+          </p>
+          <p>
+          Om någon trakasserar eller förföljer dig på %{site_name},
+          <a href="mailto:%{help_email}">vänligen meddela oss</a>. Om det visar sig vara ett brott mot våra Användarvillkor, eller något annat beteende som vi anser är olämpligt på vår webbplats, kommer vi att titta närmare på det.
+          </p>
         common_names_desc: |
           Visa vardagliga namn. Inaktivera om du bara vill se vetenskapliga namn.
           Observera att du kan kontrollera vilka vardagliga namn du ser genom att ändra inställningar för lokalisering och plats.
