@@ -1003,6 +1003,8 @@ zh-TW:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: 僅有完整座標的
+  coords_viewable_for_proj_desc: |
+    僅顯示該專案中您可以看到真實座標的觀察紀錄，包含未遮蔽的觀察記錄、信任您的人所建立的遮蔽觀察記錄、全然信任此專案的人所建立的遮蔽觀察記錄，還有信任此專案的人所建立因受脅物種而遮蔽的觀察記錄。
   copy: 複製
   copy_and_paste_the_following_code_to: 複製並貼上以下代碼來內嵌此評估至其它網頁。
   copy_and_paste_this_into_your_own_html: 複製貼上至您自己的 HTML。
@@ -1074,6 +1076,10 @@ zh-TW:
     您必須解釋為什麼您想成為策展人
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: 為什麼您想要成為策展人？
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    如果您想要編輯 iNaturalist 的分類法，請提供一或兩個您想要做出的分類方面更改例子，並包含您提議更改的來源。若適用的話，請引用恰當的分類依據，如同列在<a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">策展人指南</a>裡的方針內容。如果您沒有包含任何來源，您的申請不會被列入考慮。
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     如果您想編輯俗名，請提供您會如何編輯的一至兩個範例
