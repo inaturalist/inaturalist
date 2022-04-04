@@ -3095,7 +3095,6 @@ fr:
   open_description: "Tout le monde peut voir les coordonnées sauf si le taxon est menacé."
   open_street_map: OpenStreetMap
   optional: facultatif
-  optional_columns_note_for_any: "Colonnes facultatives (remarque : pour que n’importe laquelle de ces colonnes soit utilisée dans une observation, elles doivent toutes être présentes)"
   or: ou
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3209,6 +3208,15 @@ fr:
     original: d’origine
   photos_updated: Photos à jour.
   pi_consent_desc_title: Au sujet des informations personnelles
+  pi_consent_desc_html: |
+    <p>
+    Nous stockons des données à caractère personnel telles que les noms d'utilisateur et les adresses de messagerie pour gérer les comptes sur ce site. Pour nous conformer aux dispositions relatives à la protection de la vie privée, nous devons vous demander de cocher cette case pour indiquer que vous consentez à cette utilisation de vos données à caractère personnel. Pour en savoir plus sur les données que nous recueillons et sur l'usage que nous en faisons, veuillez consulter notre
+    <a href='%{privacy_url}' target='_blank'>Politique de confidentialité</a>
+    et nos <a href='%{terms_url}' target='_blank'>Conditions d'utilisation</a>.
+    </p>
+    <p>
+    Il n'est pas possible d'avoir un compte iNaturalist sans que des données à caractère personnel soient stockées; la seule façon de retirer ce consentement est de supprimer votre compte.
+    </p>
   pi_consent_label: |
     J’autorise iNaturalist à stocker et à traiter des informations
     personnelles limitées me concernant pour gérer mon compte.
@@ -4045,7 +4053,6 @@ fr:
   required: obligatoire
   required_: Obligatoire
   required_field: champ obligatoire
-  required_columns_in_order: Colonnes obligatoires dans l’ordre
   research: recherche
   research_: Recherche
   research_grade: Niveau de recherche
