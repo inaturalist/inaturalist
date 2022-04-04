@@ -1003,6 +1003,8 @@ zh-TW:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: 僅有完整座標的
+  coords_viewable_for_proj_desc: |
+    僅顯示該專案中您可以看到真實座標的觀察紀錄，包含未遮蔽的觀察記錄、信任您的人所建立的遮蔽觀察記錄、全然信任此專案的人所建立的遮蔽觀察記錄，還有信任此專案的人所建立因受脅物種而遮蔽的觀察記錄。
   copy: 複製
   copy_and_paste_the_following_code_to: 複製並貼上以下代碼來內嵌此評估至其它網頁。
   copy_and_paste_this_into_your_own_html: 複製貼上至您自己的 HTML。
@@ -2343,10 +2345,6 @@ zh-TW:
     注意關於請求給予標本或隱藏的座標。試著確認提出請求者的身分，若他們要求您提供標本，要求查看他們的許可證。
   messages_new_correspondent_personal: |
     不要揭露有關您的個人資訊給不信任的第三者。
-  messages_new_correspondent_actions_html: |
-    如果您懷疑這個人正違反我們的<a href="%{tos_url}"
-    target="_blank">服務條款</a>或是不遵守<a
-    href="%{guidelines_url}" target="_blank">社群守則</a>，請在這則訊息底下加上旗號標記。
   misidentifications: 判讀錯誤
   misleading_or_illegal_content_html: |
     誤導、不合法內容、種族或民族歧視等等其它。更多有關我們對於「適當」內容的定義，請查看
@@ -2902,7 +2900,6 @@ zh-TW:
   open_description: "任何人皆可查看座標，除非該物種分類受到瀕臨滅絕危險。"
   open_street_map: 開放街圖
   optional: 可選
-  optional_columns_note_for_any: "選用欄位（註：適用於存在觀察裡的任一可用欄位）"
   or: 或
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3016,8 +3013,6 @@ zh-TW:
     original: 原有
   photos_updated: 照片已更新
   pi_consent_desc_title: 關於個人資訊
-  pi_consent_desc_html: |
-    我們會遵守隱私法規，來儲存像是使用者名稱以及電子郵件地址這類的個人資訊，以便管理在網站上的帳號，因此會需要您勾選此方框來表明您同意上述的個人資訊使用。要了解更多關於我們如何收集以及使用資訊，請查看我們的<a href='%{privacy_url}' target='_blank'>隱私政策</a>和<a href='%{terms_url}' target='_blank'>服務條款</a>。
   pi_consent_label: |
     我同意允許讓 iNaturalist 儲存、處理關於我的有限個人資訊，以便管理我的帳號。
   pi_consent_child_label: |
@@ -3813,7 +3808,6 @@ zh-TW:
   required: 必要
   required_: 必要
   required_field: 必填欄位
-  required_columns_in_order: 排序需求的欄位
   research: 研究
   research_: 研究
   research_grade: 研究等級
@@ -4379,7 +4373,6 @@ zh-TW:
   terms: 條款
   terms_and_rules_html: "條款&amp;規範"
   terms_new_users: "若您添加條款，新用戶必須再加入專案前同意該項目。"
-  terms_service: 服務條款
   terrain: 地形
   text: 文字
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4517,8 +4510,6 @@ zh-TW:
   top_identifiers_of_taxon: '%{taxon}的熱門鑑定人'
   top_observer_caps: 最高紀錄之觀察者
   top_observers: 熱門觀察者
-  tos_privacy_guidelines_label: |
-    我同意<a href="/terms" target="_blank">服務條款</a>和<a href="/privacy" target="_blank">隱私權政策</a>，而且我已經審閱過<a href="/pages/community+guidelines" target="_blank">社群守則</a>。
   total: 總計
   totals: 總計
   total_ids_on_input_taxon: "輸入分類群的所有 ID："
@@ -5002,8 +4993,6 @@ zh-TW:
   you_must_specify_and_confirm_a_new_password: 您必須指定且確認一組新密碼。
   you_need_to_have_linked_flickr_account: 您需要一個連結的 Flickr 帳號來標記您的照片。
   you_need_to_select_some_observations_first: 首先您需要選擇一些觀察。
-  you_retain_full_copyright: "除了由我們的服務條款授予給 %{site_name} 的這些權限外，您保留了您內容的完整版權。"
-  you_retain_full_copyright_over_your_content: "除了由我們的使用條款授予給 %{site_name} 的這些權限外，您保留了您內容的完整版權。"
   you_should_delete_this_taxon_change: |
     您也許應該刪除此分類群更改，或是至少與做出此更改的人來找出解決方案。
   you_sure_delete_asset?: 您確定要刪除此可用物件？
@@ -6338,31 +6327,6 @@ zh-TW:
           您必須在表單輸入「%{confirmation_code}」來刪除您的帳號
       edit:
         about_third_party_tracking: 關於第三方的追蹤
-        blocking_desc_html: |2
-          <p>
-            封鎖某人可以防止他們傳送訊息給您，對您的觀察做出評論或鑑定，
-            或是在 %{site_name} 上與您互動。這也會讓您與對方在進行搜尋時，
-            處理結果不會顯示出彼此的觀察。然而，這並不代表您對於他們是
-            無法察覺的，他們仍可以有辦法找出您的觀察，以及檢視您的個人檔案，
-           \ 只是無法與您做出互動。
-          </p>
-          <p>
-            封鎖是為了儘管您已經盡力以文明方式來解決爭議，但對方仍不罷休且
-            無法相處情形下的解決方式。這不是一種用來隱藏自己，防止來自於您
-           \ 所不信任人們的鑑定，或是選擇排除掉社群鑑定（有其它設定可以這樣做）
-            的方式。因此封鎖是運作在：若您封鎖了某人，對方會無法對您互動，
-           \ 而您也無法與他互動的如此結果。如果您不小心誤用此功能，會讓某人
-            無法鑑定您的觀察，也會出現您無法向對方的觀察做出鑑定之情況。 
-          </p>
-          <p>
-           \ 您最多僅可封鎖三名使用者，這是我們評估能符合需求，且避免濫用此功能
-            最適宜的數量。若認為有需要封禁更多人的情況，請<a href="mailto:%{help_email}">聯絡我們</a>。
-          </p>
-          <p>
-           \ 如果有人在 %{site_name} 網站上對您做出騷擾或是跟蹤的跡象，<a href="mailto:%{help_email}">請讓我們知道</a>。
-           \ 若有出現違反我們的服務條款，或是其它不適合在我們網站上所做出的行為，
-            我們將會進行調查。
-          </p>
         common_names_desc: |
           顯示俗名。若您想要檢視學名的話請停用。
           註：您可以透過更改您的在地化與地點設定，來控制要查看何種俗名。

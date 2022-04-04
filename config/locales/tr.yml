@@ -382,11 +382,15 @@ tr:
   admin_s: Yönetici(ler)
   admin_only: Yalnızca Yönetici
   admin_tools: Yönetici Araçları
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Bağlı Kuruluşlar
   agree_: Onayla
   agree?: Onaylansın mı?
   agree_with_current_taxon: Geçerli sınıfla onayla
   agreeing: Onaylanıyor...
   aka: diğer adıyla
+  #Noun, title of a popup alerting you to something
+  alert: Uyarı
   all: Tümü
   all_comments: Tüm yorumlar
   all_flags_must_be_resolved: Tüm işaretler çözümlenmeli
@@ -826,6 +830,8 @@ tr:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa}, %{output_taxon} sınıfıyla birleştirildi"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa}, %{output_taxon} sınıfıyla birleştirilecek"
   change_your_password: Şifreni Değiştir
+  #Plural noun, as in changes to a taxon record over time
+  changes: Değişiklikler
   changing_the_geoprivacy: 'Coğrafi gizliliğin değişimi, diğer insanların gözlemlerinin konumları nasıl göreceğini değiştirir.'
   check_above_for_errors: Hatalar için yukarıyı kontrol et
   check_back_soon: Yakında kontrol et!
@@ -928,6 +934,7 @@ tr:
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Yükleniyor
   concept_status: Konsept Durumu
+  confidential: Gizli
   configure: Yapılandır
   configure_a_widget_to_show: '%{site_name} sayfasındaki gözlemleri kendi sayfanda ya da blogunda görmek için bir widget yapılandır. Gömülü CSS’yi <code>&lt;head&gt;</code> HTML’nizin içine eklemeniz gerekebilir. CSS''yi tekrar yazmaktan çekinmeyin.'
   confirm: Onayla
@@ -1047,6 +1054,8 @@ tr:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Sadece tam koordinatlılar
+  coords_viewable_for_proj_desc: |
+    Sadece bu projede görebileceğin "gerçek" koordinatları; gizlenmemiş gözlemler, size güvenen kişilerin gizlenmiş gözlemleri, bu projeye tamamıyla güvenen kişilerin gizlenmiş gözlemleri, yine aynı şekilde sadece bu projeye güvenen kişilerin tehlike sınıfındaki gizlenmiş gözlemleri de dahil olacak şekilde göster.
   copy: Kopyala
   copy_and_paste_the_following_code_to: Bu değerlendirmeyi başka bir ağ sayfasına yerleştirmek için aşağıdaki kodu kopyalayıp yapıştırın.
   copy_and_paste_this_into_your_own_html: Bunu kopyalayıp kendi HTML'nize yapıştırın.
@@ -2348,10 +2357,6 @@ tr:
     Türler ve gizli bilgilerle ilgili isteklere karşı dikkatli olun. İstek yapan kişinin kimliğini doğrulamaya çalışın ve türler hakkında sorular soruyorlarsa, yetki izinlerini göstermelerini isteyin.
   messages_new_correspondent_personal: |
     Güvenmediğin kişilere kendin hakkındaki kişisel bilgilerini paylaşma.
-  messages_new_correspondent_actions_html: |
-    Eğer bu kişinin <a href="%{tos_url}"
-    target="_blank">Hizmet Şartları</a>mızı ihlal ettiğinden veya <a
-    href="%{guidelines_url}" target="_blank">Topluluk Kılavuzu</a>muza uygun davranmadığından şüpheleniyorsan, lütfen bu mesajı aşağıdan işaretle.
   misidentifications: Yanlış tanımlamalar
   misleading_or_illegal_content_html: |
     Yanıltıcı veya yasa dışı içerik, ırksal veya etnik hakaretler vb. "Uygun" tanımımızla ilgili daha çoğu için <a href="/help#inappropriate">SSS'ye</a>bakın.
@@ -2884,7 +2889,6 @@ tr:
   open_description: "Sınıf tehdit altında olmadığı sürece herkes koordinatları görebilir."
   open_street_map: OpenStreetMap
   optional: isteğe bağlı
-  optional_columns_note_for_any: "İsteğe bağlı sütunlar (not: bir gözlemde kullanılacak bu sütunların herhangi biri için hepsinin bulunması gerekir)"
   or: ya da
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -2996,12 +3000,15 @@ tr:
     original: orjinal
   photos_updated: Fotoğraflar güncellendi.
   pi_consent_desc_title: Kişisel Bilgiler Hakkında
-  pi_consent_desc_html: |
-    Bu sitede hesapları yönetmek için kullanıcı adları ve e-posta adresleri gibi kişisel bilgileri saklarız ve gizlilik yasalarına uymak için kişisel bilgilerin kullanımına izin verdiğinizi belirtmek üzere bu kutuyu işaretlemen gerekir. Hangi bilgileri topladığımız ve bunları nasıl kullandığımızla ilgili daha çok bilgi için lütfen <a href='%{privacy_url}' target='_blank'>Gizlilik Politikamıza</a> ve <a href='%{terms_url}' target='_blank'>Kullanım Şartlarına</a> bak.
   pi_consent_label: |
     iNaturalist’in hesabımı yönetmek için sınırlı sayıda kişisel bilgiyi saklamasına ve işlemesine izin veriyorum
   pi_consent_child_label: |
     iNaturalist’in çocuğumun hesabını yönetmek için sınırlı sayıda kişisel bilgisini saklamasına ve işlemesine izin veriyorum
+  data_transfer_consent_desc_title: Kişisel Bilgi Aktarımı İzni Hakkında
+  data_transfer_consent_label: |
+    Kişisel bilgilerimin Amerika Birleşik Devletleri'ne aktarılmasına izin veriyorum
+  data_transfer_consent_child_label: |
+    Çocuğumun kişisel bilgilerinin Amerika Birleşik Devletleri'ne aktarılmasına izin veriyorum
   pin_verb: Sabitle
   pink: pembe
   pinned_locations_desc: |
@@ -3785,7 +3792,6 @@ tr:
   required: gerekli
   required_: Gerekli
   required_field: alan gerekli
-  required_columns_in_order: Sırayla gerekli sütunlar
   research: araştır
   research_: Araştırma
   research_grade: Araştırma Sınıfı
@@ -3812,6 +3818,7 @@ tr:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "%{site_name} iptal edilsin mi?"
+  revoke_privacy_consent_warning: "Bu izni iptal etmenin tek yolu hesabınızı ve ilgili tüm verileri silmektir."
   rg_observations: AS Gözlemleri
   role: Rol
   rotate_left: Sola Döndür
@@ -4289,7 +4296,6 @@ tr:
   terms: Şartlar
   terms_and_rules_html: "Şartlar &amp; Kurallar"
   terms_new_users: "Eğer şart eklerseniz, yeni kullanıcıların bu projeye katılmadan önce onları kabul etmesi gerekir."
-  terms_service: Hizmet Şartları
   terrain: arazi
   text: Metin
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4426,8 +4432,6 @@ tr:
   top_identifiers_of_taxon: '%{taxon}''ı En Çok Tanımlayanlar'
   top_observer_caps: EN ÇOK GÖZLEMLEYEN
   top_observers: En Çok Gözlemleyenler
-  tos_privacy_guidelines_label: |
-    <a href="/terms" target="_blank">Hizmet Şartları</a> ve <a href="/privacy" target="_blank">Gizlilik Politikası</a>'nı onaylıyorum, ve <a href="/pages/community+guidelines" target="_blank">Topluluk İlkelerini</a> inceledim.
   total: Toplam
   totals: Toplam
   total_members: Toplam üye
@@ -4924,8 +4928,6 @@ tr:
   you_must_specify_and_confirm_a_new_password: Yeni bir şifre belirlemeli ve onaylamalısınız.
   you_need_to_have_linked_flickr_account: Fotoğraflarınızı etiketlemek için bağlı bir Flickr hesabına sahip olmalısınız.
   you_need_to_select_some_observations_first: Önce bazı gözlemleri seçmelisiniz.
-  you_retain_full_copyright: "Hizmet Şartlarımızda %{site_name} 'e verilen hakların yanı sıra, içeriğinizin tüm telif haklarını saklı tutarsınız."
-  you_retain_full_copyright_over_your_content: "Hizmet Şartlarımızda %{site_name}'e verilen hakların yanı sıra, içeriğinizin tüm telif hakkını saklı tutarsınız."
   you_sure_delete_asset?: Bu Proje Varlığını silmek istediğinize emin misin?
   you_sure_delete_check_list: "Bu listeyi silmek istediğine emin misin? Bazı insanlar burada çok iş yapmış olabilir..."
   you_sure_delete_comment?: Bu yorumu silmek istediğinize emin misiniz?
@@ -6475,19 +6477,6 @@ tr:
           Hesabınızı silmek için forma "%{confirmation_code}" girmelisiniz
       edit:
         about_third_party_tracking: Üçüncü tarafın izlemesi hakkında
-        blocking_desc_html: |
-          <p>
-          Birilerini engellemek onların seninle mesajlaşmalarını, gözlemlerin hakkında yorum yapmalarını, gözlemlerini tanımlamalarını ve %{site_name} adresinden seninle iletişim kurmalarını önler. Ayrıca, onların gözlemlerini senin arama sonuçlarından, senin gözlemlerini de onların arama sonuçlarından kaldırır. Ancak, bu durum seni onlara görünmez yapmaz. Hala gözlemlerini bulabilir ve profilini görebilirler, sadece seninle etkileşime giremezler.
-          </p>
-          <p>
-          Engelleme; uyuşmazlıkların medeni bir şekilde çözülmesi için elinden geleni yapmana rağmen, anlaşamadığın ve seni rahat bırakmayacakları durumlar içindir. İnsanlardan gizlenmenin, görüşlerine güvenmediğin kişilerin tanımlamalarını engellemenin veya topluluk kimliğinden vazgeçmenin bir yolu değildir (bunun için başka bir ayar var). Engelleme çift yönlü çalışır: engellediğin kişiler seninle etkileşime giremezken, sen de onlarla etkileşime giremezsin. Birilerinin senin gözlemlerini tanımlamasına engel olmak için kötüye kullanırsan, aynı zamanda kendini de onların gözlemlerini tanımlamaya kapatmış olursun.
-          </p>
-          <p>
-          Toplamda yalnızca üç kişiyi engelleyebilirsin. Bunun, hem kötüye kullanmanın önüne geçeceğini hem de engelleme ihtiyacı olan kişiler için yetecek bir sayı olduğunu düşünüyoruz. Eğer daha fazla kişiyi engellemen gerektiğini hissediyorsan, lütfen <a href="mailto:%{help_email}">bizimle iletişime geç</a>.
-          </p>
-          <p>
-          Birisi seni taciz ediyor veya %{site_name} üzerinden izliyorsa, <a href="mailto:%{help_email}">lütfen bize bildir</a>. Bu davranış, Hizmet Şartlarımızın ihlal edildiğini veya sitemiz için uygunsuz olduğunu düşündüğümüz diğer davranışları temsil ediyorsa, incelemeye alırız.
-          </p>
         common_names_desc: |
           Yaygın isimleri göster. Yalnızca bilimsel adları görüntülemek istiyorsanız devre dışı bırakın. 
           Konum ve yer ayarlarınızı değiştirerek hangi yaygın isimleri gördüğünüzü kontrol edebileceğinizi unutmayın.

@@ -1136,6 +1136,8 @@ lv:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Tikai ar pilnām koordinātām
+  coords_viewable_for_proj_desc: |
+    Rādīt tikai tos projekta novērojumus, kuru faktiskās koordinātas ir tev redzamas. Tai skaitā nenoslēptās un noslēptās koordinātas no lieotājiem, kas tev tās uztic, noslēptās koordinātas no lietotājiem, kas uzticas projektam, un apdraudētu taksonu noslēptās kordinātas, kuras lietotāji uztic tikai šim projektam.
   copy: Kopēt
   copy_and_paste_the_following_code_to: Nokopē un ielīmē kodu, lai ieguldītu šo vērtējumu citā tīmekļa vietnē.
   copy_and_paste_this_into_your_own_html: Nokopē un ielīmē šo kodu savā HTML.
@@ -2003,7 +2005,7 @@ lv:
   if_for_some_reason_a_user_doesnt_agree: |
     Ja kāda iemesla dēļ izvēlies nepiekrist kopienas taksonam, to iespējams noraidīt. Tādā gadījumā tava ID tiks izmantota, lai sasaistītu citus novērojumus un atjaunotu sarakstus. Tas nozīmē arī to, ka tavs novērojums var iegūt pētniecības līmeņa statusu tikai tad, ja kopiena piekrīt tev.
   if_matches_come_from_a_comprehensive_list: Ja atbilstīgo taksonu avots ir pilnīgs saraksts, šeit parādīsies zaļa josla.
-  if_this_is_a_scientific_name: Vai šis ir zinātniskais nosaukums? Vai tas ir pašreiz apstiprināts?
+  if_this_is_a_scientific_name: Vai šis ir apstiprināts zinātniskais nosaukums?
   if_this_link_will_apply_to_descendant: Ja saite attiecas uz zemāku pakāpju taksoniem, tad iespējams izmantot tagus no veidnes, lai URL vietrādī aizpildītu taksona nosaukumu.
   if_you_have_any_trouble_with_the_site_check_out: 'Ja radušies jautājumi, lūdzu, atver, <a href="%{help_url}">palīdzības sadaļu</a> vai nosūti ziņojumu mūsu <a href="%{feedback_url}">atsauksmju grupai</a>.'
   if_your_project_is: Ja tavam projektam ir noteikta atrašanās vieta, norādi koordinātas kartē vai ievadi tās manuāli.
@@ -3048,7 +3050,6 @@ lv:
   open_description: "Koordinātas ir redzamas visiem, ja vien taksons nav apdraudēts."
   open_street_map: OpenStreetMap
   optional: pēc izvēles
-  optional_columns_note_for_any: "Izvēles slejas (Uzmanību! Lai slejas varētu izmantot novērojumos, tās visas jāizmanto reizē.)"
   or: vai
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3162,8 +3163,6 @@ lv:
     original: sākotnējais
   photos_updated: Fotogrāfijas atjaunotas
   pi_consent_desc_title: Vairāk par personīgo informāciju
-  pi_consent_desc_html: |
-    Mēs uzglabājam tādu personīgo informāciju kā lietotājvārdi un e-pasta adreses, lai nodrošinātu kontu darbību un izpildītu privātuma likumu prasības. Lūdzam atzīmēt šo lodziņu, lai piekristu personīgās informācijas izmantošanai. Lai uzzinātu vairāk par datu veidiem un to pielietojumu, skatīt: <a href='%{privacy_url}' target='_blank'>Privātuma politiku</a> un <a href='%{terms_url}' target='_blank'>Lietošanas noteikumus</a>.
   pi_consent_label: |
     Es ļauju iNaturalist glabāt un apstrādāt ierobežota veida informāciju par mani, lai nodrošinātu mana konta darbību.
   pi_consent_child_label: |
@@ -3975,7 +3974,6 @@ lv:
   required: nepieciešams
   required_: Nepieciešams
   required_field: obligāts lauks
-  required_columns_in_order: Nepieciešamās slejas pēc kārtas
   research: pētniecība
   research_: Pētniecība
   research_grade: Pētniecības līmenis

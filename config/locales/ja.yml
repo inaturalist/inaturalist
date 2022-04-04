@@ -1960,6 +1960,9 @@ ja:
   mark_all_as_unreviewed: すべてを未読にする
   matching_species_will_shown_up_here: 該当する種はここに表示されます。%{place}におけるその種の棲息区域情報があれば、マップに表示されます。
   maverick: 反対
+  maximum_positional_accuracy: 最大位置精度
+  maximum_positional_accuracy_including_unknown: |
+    位置精度のない観測を含む最大位置精度
   media: メディア
   media_type: メディアの種類
   medium: 中
@@ -1993,10 +1996,7 @@ ja:
     標本や非公開データの要求には注意が必要です。依頼者が誰であるかを確認するようにし、標本を要求している場合は許可証を見せてもらうようにしましょう。
   messages_new_correspondent_personal: |
     信頼できない人に自分の個人情報を開示しないようにしましょう。
-  messages_new_correspondent_actions_html: |
-    この人物が<a href="%{tos_url}"
-    target="_blank">利用規約</a>に違反しているか、<a
-    href="%{guidelines_url}" target="_blank">コミュニティガイドライン</a>に従わない行為をしている疑いがありましたら、このメッセージの下部からフラグを立ててください。
+  minimum_positional_accuracy: 最小位置精度
   misidentifications: 誤同定
   misleading_or_illegal_content_html: |
     紛らわしいまたは違法な内容、人種及び民族に対する差別的な内容、など
@@ -2525,8 +2525,6 @@ ja:
     original: 元サイズ
   photos_updated: 写真は更新されました
   pi_consent_desc_title: 個人情報について
-  pi_consent_desc_html: |
-    このサイトでアカウントを管理し、プライバシー法を遵守するために、ユーザー名や電子メールアドレスなどの個人情報を保存します。個人情報の使用に同意する場合は、このチェックボックスをオンにしてください。当社が収集する情報およびその使用方法の詳細については、<a href='%{privacy_url}' target='_blank'>プライバシーポリシー</a>および<a href='%{terms_url}' target='_blank'>利用規約</a>をご覧ください。
   pi_consent_label: |
     アカウントを管理するため、iNaturalistにいくつかの個人情報を保存し、処理させることに同意します。
   pi_consent_child_label: |
@@ -2920,6 +2918,7 @@ ja:
   plants: 植物
   please_add_a_citation_for_this_change: この変更の参考文献を記入してください
   please_allow_a_few_weeks_for_external_sites: 外部サイトがこの観察記録の変更を同期するのに数週間かかります。 #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: お父さんやお母さんに使っていいか、聞いてみましょう！
   #Title to a section warning a user to exercise caution
   please_be_careful!: 気をつけてください！
   please_complete_the_following_to_add_project: |
@@ -3162,7 +3161,6 @@ ja:
   required: 必須
   required_: 必須
   required_field: 必須フィールド
-  required_columns_in_order: 必要な列を次の順に
   research: 研究
   research_: 研究用
   research_grade: 研究用
@@ -3585,7 +3583,6 @@ ja:
   terms: 規約
   terms_and_rules_html: "規約及び規則"
   terms_new_users: "新規項目の追加をするには、新規ユーザーはプロジェクトに参加する前提条件として、規約に同意しなければならなりません。"
-  terms_service: 利用規約
   terrain: 地形
   text: テキスト
   thanks!: ありがとうございます！
@@ -3701,8 +3698,6 @@ ja:
   top_identifiers_of_taxon: '%{taxon}のトップ同定者'
   top_observer_caps: トップ観察者
   top_observers: トップ観察者
-  tos_privacy_guidelines_label: |
-    <a href="/terms" target="_blank">利用規約</a>と<a href="/privacy" target="_blank">プライバシーポリシー</a>に同意し、<a href="/pages/community+guidelines" target="_blank">コミュニティガイドライン</a>を確認しました。
   total: 合計
   totals: 合計
   total_members: メンバー人数
@@ -4009,8 +4004,6 @@ ja:
   you_must_have_a_header_row: 見出し行が必要です。
   you_must_select_at_least_one_taxon: 一つ以上の分類群を選択しなければなりません
   you_need_to_select_some_observations_first: まずは観察記録を選択する必要があります
-  you_retain_full_copyright: "利用規約により%{site_name}に付与された権利を除き、コンテンツの完全な著作権を保持します。"
-  you_retain_full_copyright_over_your_content: "利用規約により%{site_name}に付与された権利を除き、コンテンツの完全な著作権を保持します。"
   you_sure_delete_asset?: このアセットを削除して本当によろしいですか？
   you_sure_delete_comment?: このコメントを削除して本当によろしいですか？
   you_sure_delete_custom_field?: この専用フィールドを削除して本当によろしいですか？
@@ -4385,20 +4378,6 @@ ja:
           other: あなたが追加した<strong class="count">コメントは%{count}件</strong>
       edit:
         about_third_party_tracking: サードパーティのトラッキングについて
-        blocking_desc_html: |
-          <p>
-          誰かをブロックすると、相手からのメッセージを受信しなくなり、あなたの観察日記へのコメントや観察の同定、%{site_name}での相互作用が停止されます。あなたの検索結果から相手の観察記録を削除しあわせて相手の検索結果からあなたの観察記録を削除します。しかし、それでもあなたの存在は表示されます。あなたの観察記録の検索とあなたのプロフィールの閲覧は可能で、ブロックされるのはあなたとのやりとりに限定されます。
-          </p>
-          <p>
-          ブロックはあなたが誰かと友好的な関係が築けない状況で、どれほど努力しても相手の干渉が止まらず、文明的なやり方で紛争を解決できない場合の対策です。その意見を信用できない相手から自分の存在を隠す方法あるいはコミュニティ同定を回避する手段でもありません（専門の設定が必要）。したがって両面性
-          があります：誰かをブロックする場合、相手もあなたも互いに対話できません。自分の観察記録が誰かに同定されないようにブロックを誤用した場合、自分も相手の観察記録を同定できなくなります。
-          </p>
-          <p>
-          ブロックの上限は3人です。これはブロック処理が必要な人々と処理の悪用防止を両立する合理的な規制だと考えます。もっと多くのブロック処理が必要だと感じたら<a href="mailto:%{help_email}">お問い合わせ</a>ください。
-          </p>
-          <p>
-          誰かに%{site_name}で嫌がらせやつけ回しをされた場合は<a href="mailto:%{help_email}">お知らせください</a>。もし利用規約の違反あるいは私たちのサイトに不適切と判断するその他の行為に当たるかどうか、調査に当たります。
-          </p>
         common_names_desc: |
           一般名を表示します。学名のみを表示したい場合は無効にします。場所や地域の設定を変更することで、表示する一般名を制御することができます。
         display_monthly_supporter_status_on_my_profile: |

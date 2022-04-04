@@ -3121,7 +3121,6 @@ sv:
   open_description: "Alla kan se koordinaterna såvida detta taxon inte är hotat."
   open_street_map: OpenStreetMap
   optional: valfritt
-  optional_columns_note_for_any: "Valfria kolumner (obs: för att någon av dessa kolumner ska kunna användas i ett fynd, måste alla finnas med)"
   or: eller
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3235,12 +3234,6 @@ sv:
     original: original
   photos_updated: Bilder uppdaterade.
   pi_consent_desc_title: Om personuppgifter
-  pi_consent_desc_html: |
-    Vi lagrar personuppgifter som användarnamn och e-postadresser för att hantera konton på denna webbplats, och för att följa integritetslagstiftning,
-    du behöver kryssa i den här rutan för att ange att du samtycker till hur vi använder personuppgifter. För att lära dig mer om vilken information vi samlar in och
-    hur vi använder den, vänligen se vår
-    <a href='%{privacy_url}' target='_blank'>integritetspolicy</a>
-    och våra <a href='%{terms_url}' target='_blank'>användarvillkor</a>.
   pi_consent_label: |
     Jag medger att iNaturalist får lagra och bearbeta en begränsad typ av personuppgifter om mig för att kunna hantera mitt konto
   pi_consent_child_label: |
@@ -4053,7 +4046,6 @@ sv:
   required: obligatorisk
   required_: Obligatorisk
   required_field: obligatoriskt fält
-  required_columns_in_order: Obligatoriska kolumner i ordning
   research: forskning
   research_: Forskning
   research_grade: Forskningsklass

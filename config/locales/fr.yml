@@ -329,6 +329,7 @@ fr:
   add_life_stage_egg_annotation: 'Ajoute l''annotation «  Stade de développement : oeuf »'
   add_evidence_of_presence_organism_annotation: 'Ajouter l''annotation « Signe de présence : organisme »'
   add_evidence_of_presence_feather_annotation: 'Ajouter l''annotation « Signe de présence : plume »'
+  add_evidence_of_presence_gall_annotation: 'Ajouter l''annotation « Signe de présence : galle »'
   add_evidence_of_presence_scat_annotation: 'Ajouter l''annotation « Signe de présence : excréments »'
   add_evidence_of_presence_track_annotation: 'Ajouter l''annotation « Signe de présence : piste »'
   add_evidence_of_presence_bone_annotation: 'Ajouter l''annotation « Signe de présence : os »'
@@ -393,6 +394,8 @@ fr:
   agree_with_current_taxon: Accepter le taxon actuel
   agreeing: En cours d'acceptance...
   aka: alias
+  #Noun, title of a popup alerting you to something
+  alert: Alerte
   all: Tous
   all_comments: Tous les commentaires
   all_flags_must_be_resolved: Tous les signalements doivent être résolus
@@ -1079,6 +1082,8 @@ fr:
     evidence_of_presence: Signe de présence
     #As in the feather on a bird
     feather: Plume
+    #Abnormal growth
+    gall: Galle
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organisme
@@ -1107,6 +1112,7 @@ fr:
     bone: |
       Restes principalement endosquelettiques ; en cas d'exposition partielle des os d'un organisme intact par ailleurs, indiquer « organisme ».
     molt: Dépouille ou exosquelette abandonné
+    gall: Excroissance d'un tissu végétal causée par un parasite
   controls: Contrôles
   convert: Convertir
   coordinate_systems: Systèmes des coordonnées
@@ -1116,6 +1122,8 @@ fr:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Seulement avec des coordonnées complètes
+  coords_viewable_for_proj_desc: |
+    Montrez uniquement des observations du projet pour lesquelles vous pouvez voir les coordonnées réelles, incluant les coordonnées ouvertes, ou cachées par des gens qui vous font confiance, par des gens qui font confiance au projet, ou car elles sont à propos d'un taxon menacé mises par des gens qui font confiance au projet.
   copy: Copier
   copy_and_paste_the_following_code_to: Copiez et collez le code suivant pour inclure cette évaluation dans une autre page Web.
   copy_and_paste_this_into_your_own_html: Copiez et collez dans votre propre HTML.
@@ -3087,7 +3095,6 @@ fr:
   open_description: "Tout le monde peut voir les coordonnées sauf si le taxon est menacé."
   open_street_map: OpenStreetMap
   optional: facultatif
-  optional_columns_note_for_any: "Colonnes facultatives (remarque : pour que n’importe laquelle de ces colonnes soit utilisée dans une observation, elles doivent toutes être présentes)"
   or: ou
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3202,19 +3209,39 @@ fr:
   photos_updated: Photos à jour.
   pi_consent_desc_title: Au sujet des informations personnelles
   pi_consent_desc_html: |
-    Nous stockons les informations personnelles telles que le nom des utilisateurs et les adresses de messagerie afin de
-    gérer les compter sur ce site, et pour être en accord avec les lois sur la vie privée, nous
-    avons besoin que vous cochiez cette case pour indiquer que vous acceptez cette utilisation
-    d’informations personnelles. Pour en savoir plus sur les informations que nous collectons et
-    comment nous les utilisons, veuillez voir notre
+    <p>
+    Nous stockons des données à caractère personnel telles que les noms d'utilisateur et les adresses de messagerie pour gérer les comptes sur ce site. Pour nous conformer aux dispositions relatives à la protection de la vie privée, nous devons vous demander de cocher cette case pour indiquer que vous consentez à cette utilisation de vos données à caractère personnel. Pour en savoir plus sur les données que nous recueillons et sur l'usage que nous en faisons, veuillez consulter notre
     <a href='%{privacy_url}' target='_blank'>Politique de confidentialité</a>
-    et nos <a href='%{terms_url}' target='_blank'>Conditions de service</a>.
+    et nos <a href='%{terms_url}' target='_blank'>Conditions d'utilisation</a>.
+    </p>
+    <p>
+    Il n'est pas possible d'avoir un compte iNaturalist sans que des données à caractère personnel soient stockées; la seule façon de retirer ce consentement est de supprimer votre compte.
+    </p>
   pi_consent_label: |
     J’autorise iNaturalist à stocker et à traiter des informations
     personnelles limitées me concernant pour gérer mon compte.
   pi_consent_child_label: |
     J’accepte de permettre à iNaturalist de stocker et traiter des types restreints
     d’informations personnelles sur mon enfant, afin de gérer son compte
+  data_transfer_consent_desc_title: À propos du consentement pour le transfert de renseignements personnels
+  data_transfer_consent_desc_html: |
+    <p>
+    Certaines dispositions juridiques sur les données à caractère personnel, comme le Règlement général sur la protection des données (RGPD) de l’Union européenne, prévoient qu'un consentement explicite est nécessaire pour transférer des données à caractère personnel vers un territoire où la protection juridique de ces données n'est pas jugée adéquate. Depuis <a href="https://fr.wikipedia.org/wiki/Max_Schrems">2020</a>, l'Union européenne ne considère plus que les États-Unis sont un pays qui assure une protection juridique adéquate des données à caractère personnel, en raison de la possibilité qu'a le gouvernement américain de surveiller les données qui entrent aux États-Unis. D'autres pays pourraient avoir le même avis.
+    </p>
+    <p>
+    L'utilisation d'iNaturalist nécessite le stockage de données à caractère personnel comme votre
+    adresse e-mail. Toutes les données d'iNaturalist sont stockées aux États-Unis, et nous ne pouvons pas savoir sur quel territoire juridique vous vous trouvez lorsque vous utilisez iNaturalist. C'est pourquoi, pour des raisons de respect des dispositions juridiques comme le RGPD, vous devez attester que vous comprenez et acceptez ce risque et que vous consentenz au transfert de vos données à caractère personnel sur les serveurs d'iNaturalist aux États-Unis.
+    </p>
+    <p>
+    Pour en savoir plus sur les données que nous recueillons et sur l'usage que nous en faisons, veuillez consulter notre <a href='%{privacy_url}' target='_blank'>politique de confidentialité</a> et nos <a href='%{terms_url}' target='_blank'>conditions générales d'utilisation</a>.
+    </p>
+    <p>
+    Il n'est pas possible d'avoir un compte iNaturalist sans que des données à caractère personnel soient stockées; la seule façon de retirer ce consentement est donc de supprimer votre compte.
+    </p>
+  data_transfer_consent_label: |
+    J'autorise le transfert aux États-Unis de mes données à caractère personnel
+  data_transfer_consent_child_label: |
+    J'autorise le transfert aux États-Unis des données à caractère personnel de mon enfant
   pin_verb: Épingler
   pink: rose
   pinned_locations_desc: |
@@ -3658,6 +3685,7 @@ fr:
   plants: plantes
   please_add_a_citation_for_this_change: Veuillez ajouter une citation pour cette modification.
   please_allow_a_few_weeks_for_external_sites: Veuillez accorder quelques semaines aux sites externes pour synchroniser les changements de cette observation #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: Demande la permission à tes parents.
   #Title to a section warning a user to exercise caution
   please_be_careful!: S'il vous plaît, soyez prudents !
   please_complete_the_following_to_add_project: |
@@ -4025,7 +4053,6 @@ fr:
   required: obligatoire
   required_: Obligatoire
   required_field: champ obligatoire
-  required_columns_in_order: Colonnes obligatoires dans l’ordre
   research: recherche
   research_: Recherche
   research_grade: Niveau de recherche
@@ -4054,6 +4081,7 @@ fr:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "Révoquer %{site_name}?"
+  revoke_privacy_consent_warning: "La seule façon de retirer ce consentement est de supprimer votre compte et toutes les données qui y sont associées."
   rg_observations: Observations CR
   role: Rôle
   rotate_left: Pivoter vers la gauche
@@ -4601,7 +4629,7 @@ fr:
   terms: Conditions
   terms_and_rules_html: "Conditions &amp; Règles"
   terms_new_users: "Si vous ajoutez des conditions, les nouveaux utilisateurs devront les accepter avant de se joindre à ce projet."
-  terms_service: Conditions d’utilisation
+  terms_service: Conditions d'utilisation
   terrain: terrain
   text: Texte
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.

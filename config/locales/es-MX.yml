@@ -1196,10 +1196,6 @@ es-MX:
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: '¿Por qué quieres ser curador?'
   #Prompt for information when applying to be a curator
-  curator_application_fields_taxonomy_examples_html: |
-    Si quieres editar la taxonomía de iNaturalist, por favor proporciona un ejemplo o dos
-    de cambios taxonómicos que te gustaría realizar, e incluye enlaces a las autoridades taxonómicas pertinentes tal como establece la Guía del curador
-  #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Si quieres editar nombres comunes, por favor proporciona un ejemplo o dos de los cambios que te gustaría hacer
   #Prompt for information when applying to be a curator
@@ -2493,11 +2489,6 @@ es-MX:
   messages_new_correspondent_personal: |
     No reveles tu información personal a personas en las que
     no confías.
-  messages_new_correspondent_actions_html: |
-    Si sospechas que esta persona está violando nuestros <a href="%{tos_url}"
-    target="_blank">términos de servicio</a> o no actúa de acuerdo con nuestras <a
-    href="%{guidelines_url}" target="_blank">directrices de la comunidad</a>, por favor
-    denuncia este mensaje.
   minimum_positional_accuracy: Precisión mínima de posición
   misidentifications: Identificaciones erróneas
   misleading_or_illegal_content_html: |
@@ -3078,7 +3069,6 @@ es-MX:
   open_description: "Todos pueden ver las coordenadas a menos que la especie esté en riesgo"
   open_street_map: Mapa OpenStreetMap
   optional: opcional
-  optional_columns_note_for_any: "Columnas opcionales (nota: para que cada una de estas columnas sea usada en una observación deben estar presentes en todas)"
   or: o
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3192,8 +3182,6 @@ es-MX:
     original: original
   photos_updated: Fotos actualizadas.
   pi_consent_desc_title: Sobre la Informacion Personal
-  pi_consent_desc_html: |
-    Almacenamos información personal como nombres de usuario y direcciones de correo electrónico para administrar cuentas en este sitio y para cumplir con las leyes de privacidad, necesitamos que marque esta casilla para indicar que acepta este uso de información personal. Para obtener más información sobre qué información recopilamos y cómo la usamos, consulte nuestra <a href='%{privacy_url}' target='_blank'>Política de Privacidad</a> y nuestros <a href='%{terms_url}' target='_blank'>Términos de Servicio</a>.
   pi_consent_label: |
     Permito a iNaturalist a almacenar y procesar ciertos tipos de
     información personal para administrar mi cuenta
@@ -4003,7 +3991,6 @@ es-MX:
   required: Requerido
   required_: Obligatorio
   required_field: Campo requerido
-  required_columns_in_order: Columnas requeridas en orden
   research: Investigación
   research_: Investigación
   research_grade: grado de investigación
@@ -4594,7 +4581,6 @@ es-MX:
   terms: Condiciones
   terms_and_rules_html: "Términos &amp; reglas"
   terms_new_users: "Condiciones a las que nuevos usuarios deben estar de acuerdo antes de unirse a este proyecto."
-  terms_service: Condiciones de servicio
   terrain: terreno
   text: Texto
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4738,8 +4724,6 @@ es-MX:
   top_identifiers_of_taxon: Identificadores principales de %{taxon}
   top_observer_caps: OBSERVADOR PRINCIPAL
   top_observers: Mejores observadores
-  tos_privacy_guidelines_label: |
-    Acepto los <a href="/terms" target="_blank">Términos de servicio</a> y la <a href="/privacy" target="_blank">Política de privacidad</a>, y he revisado los <a href="/pages/community+guidelines" target="_blank">Lineamientos de la comunidad</a>.
   total: Total
   totals: Totales
   total_ids_on_input_taxon: "Total de IDs del taxón de entrada:"
@@ -5266,8 +5250,6 @@ es-MX:
   you_must_specify_and_confirm_a_new_password: Debes especificar y confirmar una nueva contraseña.
   you_need_to_have_linked_flickr_account: Necesitas tener enlazada tu cuenta Flickr para etiquetar tus fotos.
   you_need_to_select_some_observations_first: Primero, necesitas seleccionar algunas observaciones.
-  you_retain_full_copyright: "Tú retienes los derechos de autor sobre tu contenido con reserva de los que conferiste a %{site_name} en nuestras Condiciones de Servicio."
-  you_retain_full_copyright_over_your_content: "Tu retienes los derechos de autor sobre tu contenido con reserva de los que conferiste a %{site_name} en nuestras Condiciones de Servicio."
   you_should_delete_this_taxon_change: |
     Probablemente deberías eliminar este cambio de taxón, o al menos encontar algún tipo de solución con la persona / personas que hicieron el otro(s) cambio(s).
   you_sure_delete_asset?: '¿Estás seguro que quieres borrar este recurso?'
@@ -6738,20 +6720,6 @@ es-MX:
           Introduce "%{confirmation_code}" en la aplicación para eliminar tu cuenta
       edit:
         about_third_party_tracking: Acerca de rastreo por parte de terceros
-        blocking_desc_html: |
-          <p>
-          El bloqueo de una persona previene que te envíe mensajes, comente tus observaciones, identifique tus observaciones, e interactúe contigo en %{site_name}. También suprime sus observaciones de tus resultados de búsqueda y remueve tus observaciones de sus resultados de búsqueda. Sin embargo, no te hace invisible. Pueden encontrar tus observaciones y ver tu perfil, solamente no pueden interactuar contigo.
-          </p>
-          <p>
-          El bloqueo es para situaciones en donde no puedes llevarte con alguna personas y no dejan de molestarte, a pesar de tus mejores esfuerzos de aclarar las discusiones de forma civilizada. No es una forma para esconderte de la gente, para prevenir identificaciones de gente de la cual no confías en sus identificaciones, o de salirte de las identificaciones de la comunidad (hay otras maneras para eso). Así que el bloqueo funciona de las dos maneras: si bloqueas a alguien, no podrá interactuar contigo, ni tu podrás interactuar con ellos. Si lo utilizas erróneamente para prevenir que alguien identifique tus observaciones, no podrás tampoco identificar sus observaciones.
-          </p>
-          <p>
-          Solamente puedes bloquear a tres personas. Pensamos que este es un número razonable y previene el abuso del bloqueo. Si piensan que tienes que bloquear a mas gente, por favor <a href="mailto:%{help_email}">contáctanos</a>.
-          </p>
-          <p>
-          Si alguien te está molestando %{site_name},
-          <a href="mailto:%{help_email}">contáctanos </a>. Si esto representa una violación a nuestros Términos de Servicio o representa comportamiento que consideramos es inapropiado en nuestro sitio, investigaremos.
-          </p>
         common_names_desc: |
           Mostrar los nombres comunes. Desactiva la opción si quieres ver solo los científicos.
           Observa que puedes controlar cuáles nombres comunes ves al modificar la configuración de idioma y región.

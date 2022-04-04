@@ -433,6 +433,8 @@ he:
   agree_with_current_taxon: הסכמה עם הטקסון הנוכחי
   agreeing: מסכים...
   aka: כינוי
+  #Noun, title of a popup alerting you to something
+  alert: התראה
   all: הכול
   all_comments: כל התגובות
   all_flags_must_be_resolved: כל הדגלים צריכים להיפתר
@@ -1087,6 +1089,8 @@ he:
     evidence_of_presence: עדות לנוכחות
     #As in the feather on a bird
     feather: נוצה
+    #Abnormal growth
+    gall: עפץ
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: אורגניזם
@@ -1109,6 +1113,7 @@ he:
     scat: חומר גללי (לא כולל צנפות)
     track: טביעה שנעשת על ידי אורגניזם בקרקע או שלג
     molt: נשל או שלד חיצוני
+    gall: רקמת צמח מעוותת הגדלה כתוצאה מנוכחות אורגניזם טפיל
   controls: פקדים
   convert: המרה
   coordinate_systems: מערכת קואורדינטות
@@ -2517,6 +2522,7 @@ he:
     אני נותן את הסכמתי לאפשר ל iNaturalist לשמור ולעבד מידע אישי מוגבל אודותיי על מנת לנהל את חשבוני
   pi_consent_child_label: |
     אני נותן את הסכמתי לאפשר ל iNaturalist לשמור ולעבד מידע אישי מוגבל של בני/בתי אודותיי על מנת לנהל את חשבונו/ה
+  data_transfer_consent_desc_title: אודות הסכמה להעברת מידע אישי
   pin_verb: נעץ מיקום
   pink: ורוד
   place: מקום
@@ -2907,6 +2913,7 @@ he:
   places_merged_successfully: המקומות אוחדו בהצלחה!
   plants: צמחים
   please_add_a_citation_for_this_change: נא להוסיף ציטטה לשינוי זה.
+  please_ask_your_parents_for_permission: אנא בקשו מהוריכם לאישור
   #Title to a section warning a user to exercise caution
   please_be_careful!: אנא היו זהירים!
   please_explain_why_you_want_to_hide_this: נא להסביר את סיבת הבקשה להסתרה

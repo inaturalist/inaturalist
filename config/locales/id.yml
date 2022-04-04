@@ -7,7 +7,7 @@ id:
   x_comments_html:
     other: '<span class="count">%{count}</span> komentar'
   x_faves:
-    other: '%{count} hours'
+    other: '%{count} favorit'
   x_flags_resolved_html:
     other: "<span class='count'>%{count}</span> tanda selesai"
   x_identifications:
@@ -89,7 +89,7 @@ id:
     other: "<span class='count'>%{count}</span> perubahan takson ditambahkan"
   _100_day_trends: Tren 100 hari
   _percent_ID_d: "% BerID"
-  a_community_for_naturalist: Komunitas untuk Naturalis
+  a_community_for_naturalist: Sebuah Komunitas untuk Naturalis
   a_default_taxon_name_will_automatically_created: |
     Sebuah nama standar takson akan secara otomatis dibuat dari atribut nama ilmiah takson ini. Bila Anda telah menyimpan takson baru ini, Anda akan dapat menambahkan nama lain di sini (nama umum, nama ilmiah usang, dll).
   a_flag_for_x: "tanda untuk %{x}"
@@ -120,7 +120,7 @@ id:
   about: Tentang
   about_blocking: Tentang pemblokiran
   about_charts: Tentang Grafik
-  about_community_taxa: Tentang komunitas taksa
+  about_community_taxa: Tentang taksa komunitas
   about_complete_taxa: Tentang Taksa Lengkap
   about_conservation_status: Tentang Status Konservasi
   about_editing_observation_fields: Tentang Mengedit Bidang Pengamatan
@@ -364,6 +364,8 @@ id:
   agree_with_current_taxon: Setuju dengan takson saat ini
   agreeing: Menyetujui...
   aka: alias
+  #Noun, title of a popup alerting you to something
+  alert: Peringatan
   all: Semua
   all_comments: Semua komentar
   all_flags_must_be_resolved: Seluruh tanda harus diselesaikan
@@ -847,7 +849,7 @@ id:
   choose_file: Pilih berkas
   choose_files: Pilih berkas
   choose_from_your_lists: Pilih dari daftar Anda
-  choose_photos_for_this_taxon: Pilih foto dari takson ini
+  choose_photos_for_this_taxon: Pilih foto untuk takson ini
   choose_photos_to_tag_from_photostream: Pilih foto untuk dilabeli dari photostream Anda
   choose_rule: Pilih aturan
   choose_subjects: Pilih subjek
@@ -1064,6 +1066,14 @@ id:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Hanya dengan koordinat sepenuhnya
+  coords_viewable_for_proj_desc: |
+    Hanya tampilkan pengamatan-pengamatan dalam proyek ini yang koordinat 
+    "sebenarnya" dapat Anda lihat, termasuk pengamatan yang tidak dikaburkan, 
+    pengamatan yang dikaburkan oleh orang-orang yang memercayai Anda, 
+    pengamatan yang dikaburkan oleh orang-orang yang memercayai proyek ini 
+    secara keseluruhan, dan pengamatan yang dikaburkan karena taksa terancam 
+    oleh orang-orang yang percaya kepada proyek ini hanya untuk melihat 
+    pengamatan yang dikaburkan karena taksa terancam.
   copy: Salin
   copy_and_paste_the_following_code_to: Salin dan letakkan kode berikut untuk menanamkan penilaian ini ke halaman web lain.
   copy_and_paste_this_into_your_own_html: Salin dan letakkan ini ke HTML anda
@@ -1141,8 +1151,13 @@ id:
   curator_application_fields_explanation_html: Mengapa Anda ingin menjadi seorang kurator?
   #Prompt for information when applying to be a curator
   curator_application_fields_taxonomy_examples_html: |
-    Jika kamu ingin mengubah taksonomi iNaturalist, harap menyediakan sebuah contoh atau beberapa contoh dari perubahan taksonomi yang ingin dilakukan, dan sertakan juga sumber-sumber dari perubahan yang diusulkan. Kalau bisa, tolong kutip juga otoritas taksonomi yang terkait <a
-    href="https://www.inaturalist.org/pages/curator+guide#policies">seperti yang terdaftar di Panduan Kurator</a>. Jika kamu tidak mau memasukkan sumber apapun, permohonanmu tidak akan diacuhkan.
+    Jika Anda ingin mengubah taksonomi iNaturalist, harap menyediakan satu atau 
+    beberapa contoh dari perubahan taksonomi yang ingin dilakukan, dan sertakan 
+    juga sumber-sumber dari perubahan yang diusulkan. Jika memungkinkan, harap 
+    mengutip juga otoritas-otoritas taksonomi yang terkait <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">seperti yang terdaftar 
+    pada Panduan Kurator</a>. Jika Anda tidak memasukkan sumber apapun, 
+    permohonan Anda tidak akan diproses.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Jika anda ingin menyunting nama yang umum digunakan, sila tambahkan satu atau beberapa contoh dari
@@ -2432,7 +2447,7 @@ id:
   messages_new_correspondent_personal: |
     Jangan memberi informasi personal tentang dirimu kepada orang yang kamu tidak kenal atau percaya.
   messages_new_correspondent_actions_html: |
-    Jika sekiranya ada orang yang kamu pikir melanggar <a href="%{tos_url}"
+    Jika sekiranya Anda merasa orang ini melanggar <a href="%{tos_url}"
     target="_blank">Syarat dan Ketentuan Layanan</a> atau tidak bertindak sesuai <a
     href="%{guidelines_url}" target="_blank">Pedoman Komunitas</a>, harap menandai pesan di bawah ini.
   minimum_positional_accuracy: Akurasi posisi minimum
@@ -2998,12 +3013,11 @@ id:
   only_the_project_admin_can_delete_this_project: Hanya pengelola proyek yang dapat menghapus proyek ini.
   only_view_nearby_suggestions: Hanya tampilkan rekomendasi yang ditemui di sekitar
   only_you: Hanya Anda
-  open: buka
+  open: terbuka
   open_: Buka
   open_description: "Semua orang dapat melihat koordinatnya kecuali takson yang terancam."
   open_street_map: OpenStreetMap
   optional: opsional
-  optional_columns_note_for_any: "kolom opsional (catatan: untuk setiap kolom ini untuk digunakan dalam sebuah pengamatan, mereka semua harus hadir)"
   or: atau
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3118,11 +3132,55 @@ id:
   photos_updated: Foto diperbarui.
   pi_consent_desc_title: Tentang Informasi Pribadi
   pi_consent_desc_html: |
-    Kami menyimpan informasi pribadi seperti nama pengguna dan alamat email untuk mengelola akun di situs ini, dan untuk mematuhi undang-undang privasi, kami meminta Anda untuk mencentang kotak ini untuk menyatakan bahwa Anda mengizinkan penggunaan informasi pribadi ini. Untuk mempelajari lebih lanjut tentang informasi apa yang kami kumpulkan dan bagaimana kami menggunakannya, Anda bisa melihat <a href='%{privacy_url}' target='_blank'>Kebijakan Privasi</a> dan <a href='%{terms_url}' target='_blank'>Syarat dan Ketentuan Layanan</a> kami.
+    <p>
+    Kami menyimpan informasi pribadi seperti nama pengguna dan alamat email untuk mengelola akun di situs ini, dan untuk mematuhi undang-undang privasi, kami meminta Anda untuk mencentang kotak ini untuk menyatakan bahwa Anda mengizinkan penggunaan informasi pribadi ini. Untuk mempelajari lebih lanjut tentang apa saja informasi yang kami kumpulkan dan bagaimana kami menggunakannya, Anda bisa melihat <a href='%{privacy_url}' target='_blank'>Kebijakan Privasi</a> dan <a href='%{terms_url}' target='_blank'>Syarat dan Ketentuan Layanan</a> kami.
+    </p>
+    <p>
+    Akun iNaturalist tidak dapat dibuat tanpa menyimpan informasi pribadi, jadi satu-satunya cara untuk mencabut izin ini hanyalah dengan menghapus akun Anda.
+    </p>
   pi_consent_label: |
     Saya mengizinkan iNaturalist untuk menyimpan dan memproses sebagian informasi pribadi saya demi pengelolaan akun saya.
   pi_consent_child_label: |
     Saya mengizinkan iNaturalist untuk menyimpan dan memproses sebagian informasi pribadi anak saya demi pengelolaan akun anak saya.
+  data_transfer_consent_desc_title: Tentang Persetujuan Pengiriman Informasi Pribadi
+  data_transfer_consent_desc_html: |
+    <p>
+    Beberapa hukum privasi seperti General Data Protection Regulation 
+    (GDPR) Uni Eropa memerlukan izin untuk memindahkan informasi 
+    pribadi dari yurisdiksi mereka ke yurisdiksi lain di mana perlindungan 
+    hukum untuk informasi ini dirasa belum mencukupi standar. Sejak <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>, 
+    Uni Eropa tidak lagi menetapkan Amerika Serikat sebagai yurisdiksi 
+    yang menyediakan perlindungan hukum yang cukup untuk informasi 
+    pribadi, secara khusus karena adanya kemungkinan penyadapan data 
+    yang masuk ke AS oleh pemerintah AS. Tidak menutup kemungkinan 
+    yurisdiksi lain juga memiliki pendapat yang sama.
+    </p>
+    <p>
+    iNaturalist menggunakan penyimpanan informasi pribadi seperti 
+    alamat email. Semua data iNaturalist disimpan di Amerika Serikat dan 
+    kami tidak dapat memastikan tempat yurisdiksi hukum Anda saat Anda 
+    menggunakan iNaturalist sehingga, untuk dapat mematuhi hukum privasi 
+    seperti GDPR, Anda harus mengakui bahwa Anda mengerti dan menerima 
+    risiko ini dan mengizinkan pemindahan informasi pribadi Anda ke server 
+    iNaturalist di AS.
+    </p>
+    <p>
+    Untuk mengetahui lebih lanjut tentang informasi apa saja yang kami 
+    kumpulkan dan bagaimana kami menggunakannya, 
+    silakan mengunjungi 
+    <a href='%{privacy_url}' target='_blank'>Kebijakan Privasi</a>
+    kami dan <a href='%{terms_url}' target='_blank'>Syarat Penggunaan</a> 
+    kami.
+    </p>
+    <p>
+    Tidak mungkin membuka akun iNaturalist tanpa menyimpan informasi 
+    pribadi, jadi satu-satunya cara untuk mencabut izin ini adalah dengan 
+    menghapus akun Anda.
+    </p>
+  data_transfer_consent_label: |
+    Saya mengizinkan pengiriman informasi pribadi saya ke Amerika Serikat
+  data_transfer_consent_child_label: |
+    Saya mengizinkan pengiriman informasi pribadi anak saya saya ke Amerika Serikat
   pin_verb: Pin
   pink: merah muda
   pinned_locations_desc: |
@@ -3915,7 +3973,6 @@ id:
   required: wajib diisi
   required_: Wajib Diisi
   required_field: kolom yang wajib diisi
-  required_columns_in_order: Kolom wajib sesuai urutan
   research: penelitian
   research_: Penelitian
   research_grade: Kelas Riset
@@ -3944,6 +4001,7 @@ id:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "Cabut %{site_name}?"
+  revoke_privacy_consent_warning: "Satu-satunya cara untuk mencabut izin ini adalah dengan menghapus akun Anda dan semua data yang terkait."
   rg_observations: Pengamatan KR
   role: Peran
   rotate_left: Putar ke Kiri
@@ -4474,7 +4532,7 @@ id:
   terms: Ketentuan
   terms_and_rules_html: "Ketentuan &amp; Aturan"
   terms_new_users: "Jika Anda menambahkan ketentuan, pengguna baru harus menyetujuinya sebelum bergabung pada proyek ini."
-  terms_service: Ketentuan Layanan
+  terms_service: Syarat dan Ketentuan Layanan
   terrain: medan
   text: Teks
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4620,7 +4678,7 @@ id:
   top_observer_caps: PENGAMAT TERBANYAK
   top_observers: Pengamat Terbanyak
   tos_privacy_guidelines_label: |
-    Saya menyetujui <a href="/terms" target="_blank">Syarat dan Ketentuan Layanan</a> dan <a href="/privacy" target="_blank">Kebijakan Privasi</a>, dan saya telah membaca <a href="https://www.inaturalist.org/pages/community+guidelines">Pedoman Komunitas</a>.
+    Saya menyetujui <a href="/terms" target="_blank">Syarat dan Ketentuan Layanan</a> dan <a href="/privacy" target="_blank">Kebijakan Privasi</a>, dan saya telah membaca <a href="/pages/community+guidelines" target="_blank">Pedoman Komunitas</a>.
   total: Total
   totals: Total
   total_ids_on_input_taxon: "Total ID takson input:"

@@ -1,4 +1,7 @@
 zh-CN:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    other: "%{count} 更改"
   x_comments:
     other: '%{count} 条评论'
   x_comments_html:
@@ -31,6 +34,8 @@ zh-CN:
     other: '<span class="count">%{count}</span> 个匹配的分类群'
   x_misidentifications_of_this_species:
     other: "该物种的%{count}个错误鉴定"
+  x_misidentifications_of_species_in_this_genus:
+    other: "%{count}该属中的错误物种鉴定"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -133,11 +138,33 @@ zh-CN:
   #should work here
   about_place: "关于%{place}"
   about_places: 关于地点
+  about_taxon_ranges: 关于分类阶元的范围
+  about_taxon_ranges_desc: |
+    分类单位范围指的是一个分类阶元内的生物在全球范围内的分布。分类单位范围通常来自于世界自然保护联盟的红色名录。
   about_the_cc_licenses: 关于知识共享许可协议
+  about_the_network: 关于我们
   about_these_licenses: 关于这些许可协议
   about_this_bioblitz: 关于此bioblitz
   about_this_map: 关于此地图
   about_this_project: 关于这个项目
+  about_trips_html: |
+    <h4>
+    探索功能使你能够通过添加观察场景的描述，收集未出现或出现情况下的数据。
+    </h4>
+    <p>
+    <strong>为什么</strong>有些未出现或者出现情况下的数据包含了可以帮助物种采样的信息。这些信息对于像物种分布模型等科学家们日后的分析有着极大的帮助。（未经处理的iNaturalist观察记录均为“出现的”数据。）
+    </p>
+    <p>
+    <strong>怎么做</strong>你可以在探索过程中记录以下信息：
+    </p>
+    <ul>
+    <li><strong>有什么</strong>你在寻找（目标物种列表）</li>
+    <li><strong>在哪里</strong>你在（探索地点）寻找</li>
+    <li><strong>时间</strong>你寻找了（多长时间）</li>
+    </ul>
+    <p>
+    那些你能够在搜寻地点范围内找到的目标物种将被视为出现。与之相反，在你的目标物种列表上但并未被观察到的物种会被视为未出现。点击“显示过往探索中的物种踪迹”以查看从探索和有关观察中获得的物种出现记录表单。<a href='%{url}'>了解更多</a>
+    </p>
   about_trusting_projects: 关于信任的项目
   about_trusting_projects_options_any: 您在此项目中的所有观察
   about_trusting_projects_options_any_desc: |-
@@ -199,6 +226,8 @@ zh-CN:
   add_a_numbered_list: 添加编号列表
   add_a_single_observation: 添加一个单独的观察。
   add_a_taxon: 加入一个分类
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: |
+    添加<a target="_blank" href="%{url}">分类单元交换</a>是否想要更改名称
   add_an_assessment: 添加一个评估
   add_an_identification: 新增物种鉴定
   add_an_observation: 添加一个观察
@@ -305,6 +334,18 @@ zh-CN:
   add_your_own_observations_at: "在 %{site_name} 添加您的个人观察"
   added: 提交日期
   added!: 已添加！
+  added_as_a_part_of_a_taxon_change_html: |
+    添加为
+    <a target="%{target}" class="%{class}" href="%{url}">分类单元变更</a>
+  added_as_a_part_of_a_taxon_merge_html: |
+    添加为
+    <a target="%{target}" class="%{class}" href="%{url}">分类单元合并</a>
+  added_as_a_part_of_a_taxon_split_html: |
+    添加为
+    <a target="%{target}" class="%{class}" href="%{url}">分类单元拆分</a>
+  added_as_a_part_of_a_taxon_swap_html: |
+    添加为
+    <a target="%{target}" class="%{class}" href="%{url}">分类单元互换</a>
   added_by: 添加自
   added_by_user_on_date_html: "由%{user}加入于%{date}"
   added_on_datetime: "添加于 %{datetime}"
@@ -316,6 +357,8 @@ zh-CN:
   admin_s: 管理员
   admin_only: 仅限管理员
   admin_tools: 管理员工具
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: 附属机构
   agree_: 同意
   agree?: 是否同意？
   agree_with_current_taxon: 同意当前的分类单元
@@ -422,6 +465,7 @@ zh-CN:
   alphabetical_order: 按字母顺序
   already_have_an_account_log_in_html: 已有账户? <strong>请登录。</strong>
   amphibians: 两栖动物
+  analyze_ids: 过往记录分析
   ancestor_taxon: 祖先分类
   and: 和
   and_other_taxa: "&amp; 其他分类"
@@ -464,15 +508,28 @@ zh-CN:
   #Label for an option to show/include content by any user
   any_user: 任意
   anyone: 任何人
+  app_owner_application_about_p1a_html: |
+    iNaturalist应用软件允许经过授权的API使用。这允许您通过调用API来完成物种观察或者物种识认记录的创建。通常情况下，用户可以在移动端或者电脑端的应用创建iNaturalist观察记录。记录中的内容必须在真人的参与或者监管下生成。更多细节请阅读我们的<a href="/pages/community+guidelines"
+    target="_blank">社区指导手册</a>禁止机器生成的物种观察记录、物种识认记录和评论。
+  app_owner_application_about_p2_html: |
+    自2022年，希望使用API客户端的用户需要通过我们的人工审批。为了创建第三方应用程序，您必须首先提交一份申请，以成为 "应用程序所有者"。这份申请应包含该应用程序的功能，以及您计划如何使用它。在提交申请前，您的账户注册时间需至少已有2个月，并在过去的一个月里完成了10次<a href="/pages/help#identification"
+    target="_blank">改进鉴定（Improving identifications）</a>。我们可能会对您的计划提出后续问题，并保留以任何理由拒绝申请的权利。
+  app_owner_application_inelligible: |
+    在提交申请前，您的账户注册时间需至少已有2个月，并在过去的一个月里完成了10次改进鉴定（Improving identifications）。
+  app_owner_application_fields_explanation_html: 描述您的应用将具有的功能以及您计划如何使用它。
+  app_owner_application_success: 应用程序所有者的申请已提交
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: 应用程序
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: 应用程序
+  apply_app_owner: 申请
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: 申请
+  apply_to_be_an_app_owner: 申请成为应用程序所有者
+  apply_to_create_applications_title: 申请创建应用
   apply_to_selected: 申请选择
   apply_captive_cultivated: "应用俘虏 / 耕作"
   apply_fields: 申请字段
@@ -2154,11 +2211,6 @@ zh-CN:
     请注意那些向您索取样品或隐藏数据的请求。如果有人想要获取样本，尝试要求查看他们的许可证来验证他们的身份。
   messages_new_correspondent_personal: |
     不要向您不信任的人泄露您的个人信息。
-  messages_new_correspondent_actions_html: |
-    如果您怀疑此人违反了我们的 <a href="%{tos_url}"
-    target="_blank">服务条款</a> 或没有按照我们 <a
-    href="%{guidelines_url}" target="_blank">社区准则</a>行事， 请
-    在下方标记此消息。
   misidentifications: 错误识别
   misleading_or_illegal_content_html: |
     误导性或非法内容，种族歧视或民族蔑称等。有关我们对“适当”的更多定义，参见<a href="/help#inappropriate">常见问题</a>。
@@ -2671,7 +2723,6 @@ zh-CN:
   open_description: "任何人可以查看观察，除非分类受到威胁。"
   open_street_map: 开放式街道地图
   optional: 可选
-  optional_columns_note_for_any: "可选列（注意：若要观察中使用这些列的任意一个，它们必须都存在）"
   or: 或
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -2783,8 +2834,6 @@ zh-CN:
     original: 原始
   photos_updated: 照片已更新。
   pi_consent_desc_title: 关于个人信息
-  pi_consent_desc_html: |
-    我们需要储存用户名称以及电子邮箱地址之类的个人信息来管理在网站上的账号，因要符合隐私法规的要求，需要您勾选此方框來表明您同意上述的个人信息使用。要了解更多关于我们如何收集以及使用信息，请查看我们的<a href='%{privacy_url}' target='_blank'>隐私政策</a>和<a href='%{terms_url}' target='_blank'>服务条款</a>。
   pi_consent_label: |
     我同意允许 iNaturalist 储存、处理关于我的有限个人信息，以便管理我的账号。
   pi_consent_child_label: |
@@ -3558,7 +3607,6 @@ zh-CN:
   required: 必填
   required_: 必选
   required_field: 必填字段
-  required_columns_in_order: 按序排列的需求列
   research: 研究
   research_: 研究
   research_grade: 研究级别
@@ -4015,7 +4063,6 @@ zh-CN:
   terms: 条款
   terms_and_rules_html: "条款和规则"
   terms_new_users: "如果您添加条款，新用户必须在加入该项目前同意这些条款。"
-  terms_service: 服务条款
   terrain: 地形
   text: 文本
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4141,10 +4188,6 @@ zh-CN:
   top_identifiers: 顶端标识符
   top_identifiers_of_taxon: '%{taxon} 中排名靠前的鉴定者'
   top_observers: 最多观察者
-  tos_privacy_guidelines_label: |
-    我同意 <a href="/terms" target="_blank">服务条款</a> 和
-    <a href="/privacy" target="_blank">隐私政策</a>, 我已经审阅了
-     <a href="/pages/community+guidelines" target="_blank">社区准则</a>。
   total: 总计
   totals: 总计
   total_members: 成员总数
@@ -4598,8 +4641,6 @@ zh-CN:
   you_must_specify_and_confirm_a_new_password: 您必须指定一个新密码并确认它。
   you_need_to_have_linked_flickr_account: 您需要连接一个Flickr账户才能标记您的照片。
   you_need_to_select_some_observations_first: 您首先需要选择一些观察。
-  you_retain_full_copyright: "除了在我们的服务条款中授予给 %{site_name} 的这些权限外，您对您的内容保留完整的版权。"
-  you_retain_full_copyright_over_your_content: "除了在我们的服务条款中授予给 %{site_name} 的这些权限外，您对您的内容保留完整的版权。"
   you_sure_delete_asset?: 您确定要删除此优点吗？
   you_sure_delete_check_list: "您确定要删除这个列表么？一些人可能把大量的工作投入在它身上..."
   you_sure_delete_comment?: 您确定要删除此评论吗？
@@ -5545,19 +5586,6 @@ zh-CN:
           您必须在表单中输入"%{confirmation_code}"才能删除您的帐户
       edit:
         about_third_party_tracking: 关于第三方的追踪
-        blocking_desc_html: |
-          <p>
-          屏蔽某人以阻止他们发信息给您，评论您的观察，辨别您的观察结果，以及在您在％{site_name}%{site_name}上的其他交互。这个操作也把他们的观察从您的观察搜索结果中移出，同时也将您的观察从他们的搜索结果中删除。但是，它不会让您对他们不可见。他们仍然能找到您的观察并查看您的个人资料，他们只是不能与您互动
-          </p>
-          <p>
-          屏蔽是为了解决您不能和某些人相处，尽管您尽了最大的努力以文明的方式解决争端，他们也还是会纠缠您。这不是一种隐藏身份，以防止您的身份被人您不信任的人识别或注销社区 ID（有另一个设置专门做这个的）。因此，屏蔽工作方式如下：如果您屏蔽了某人他们不能与您互动，但您也不能和他们互动。如果您误用它来防止别人识别您的观察，您也将阻止您自己识别别人的观察。
-          </p>
-          <p>
-          您只能屏蔽三个人。我们认为这是合理的：符合屏蔽的需要，同时防止滥用屏蔽。如果您觉得需要屏蔽更多人请<a href="mailto:%{help_email}">与我们联系</a>。
-          </p>
-          <p>
-          如果有人在%{site_name}上骚扰或跟踪您，<a href="mailto:%{help_email}">请告知我们</a>。如果这是违反我们的服务条款或是表现出其他对我们网站的不合适行为，我们将会进行调查。
-          </p>
         common_names_desc: |
           显示常用名。如果您只希望查看学名则可以禁用。注意您可以通过更改您的地域和地点设置，控制您想看到的常用名。
         display_monthly_supporter_status_on_my_profile: |

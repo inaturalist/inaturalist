@@ -1076,6 +1076,8 @@ gl:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Só con coordenadas completas
+  coords_viewable_for_proj_desc: |
+    Mostrar unicamente observacións deste proxecto para as que podes ver as coordenadas "verdadeiras", incluindo observacións non escurecidas pola xente que confía a este proxecto calquera cousa, e observacións escuras por seren taxons ameazados por xente que só confía a este proxecto este tipo de observacións.
   copy: Copiar
   copy_and_paste_the_following_code_to: Copia e cola o seguinte código para incluir esta avaliación noutra páxina web.
   copy_and_paste_this_into_your_own_html: Copiar e pegar no teu propio HTML.
@@ -2358,10 +2360,6 @@ gl:
     Coidado con peticións de especímenes ou dados agochados. Tenta verificar a identidade da persoa que chos está pedindo, e se está pedindo especímenes, pídelle que che amose a súa autorización.
   messages_new_correspondent_personal: |
     Non facilites información persoal sobre ti a persoas das que non confías.
-  messages_new_correspondent_actions_html: |
-    Se sospeitas que esta persoa está vulnerando os nosos <a href="%{tos_url}"
-    target="_blank">Termos de Servizo</a> ou que non actúa dacordo cás nosas <a
-    href="%{guidelines_url}" target="_blank">Directrices da Comunidade</a>, por favor, marca a seguinte mensaxe.
   misidentifications: Identificacións erradas
   misleading_or_illegal_content_html: |
     Contido ilegal, enganoso, racista, xenófobo, etc.
@@ -2892,7 +2890,6 @@ gl:
   open_description: "Todo o mundo pode ver as coordenadas a menos que o taxón estea en perigo."
   open_street_map: OpenStreetMap
   optional: Opcional
-  optional_columns_note_for_any: "Columnas opcionais (nota: para que algunha das columnas sexa usada nunha observación, terán que estar todas presentes)"
   or: ou
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3004,8 +3001,6 @@ gl:
     original: orixinal
   photos_updated: Fotos actualizadas.
   pi_consent_desc_title: Sobre a Información Persoal
-  pi_consent_desc_html: |
-    Almacenamos información persoal como os nomes de usuario e os enderezos de correo electrónico para xestionar as contas deste sitio, e para cumprir cás leis de privacidade, precisamos que marques esta casiña para nos indicar que consentes o uso da infomación persoal. Para saber máis sobre a información que recollemos e cómo a usamos, por favor, ve a nosa <a href='%{privacy_url}' target='_blank'>Política de Privacidade</a> e os nosos <a href='%{terms_url}' target='_blank'>Termos de Servizo</a>.
   pi_consent_label: |
     Consinto permitir que iNaturalist almacene e procese tipos de información persoal limitados sobre min para xestionar a miña conta
   pi_consent_child_label: |
@@ -3810,7 +3805,6 @@ gl:
   required: Obrigatorio
   required_: Obrigatorio
   required_field: Campo requirido
-  required_columns_in_order: Columnas requiridas en orde
   research: Investigación
   research_: Investigación
   research_grade: grao de investigación
@@ -4305,7 +4299,6 @@ gl:
   terms: Termos
   terms_and_rules_html: "Termos & Regras"
   terms_new_users: "Os novos usuarios deben aceptar estes termos antes de unirse ao proxecto."
-  terms_service: Termos do servizo
   terrain: Terreo
   text: Texto
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4444,8 +4437,6 @@ gl:
   top_identifiers_of_taxon: Maiores Identificadores de %{taxon}
   top_observer_caps: MAIOR OBSERVADOR
   top_observers: Maiores Observadores
-  tos_privacy_guidelines_label: |
-    Estou dacordo cós <a href="/terms" target="_blank">Termos de Servizo</a> e <a href="/privacy" target="_blank">Políticas de Privacidade</a>, e revisei as <a href="/pages/community+guidelines" target="_blank">Directrices da Comunidade</a>.
   total: Total
   totals: Totais
   total_members: Total de membros
@@ -4921,8 +4912,6 @@ gl:
   you_must_specify_and_confirm_a_new_password: Debes especificar e confirmar un novo contrasinal.
   you_need_to_have_linked_flickr_account: Debes ter unha conta de Flickr vinculada para etiquetar as túas fotos.
   you_need_to_select_some_observations_first: Debes seleccionar algunhas observacións primeiro.
-  you_retain_full_copyright: "Es titular de todos os dereitos de autor sobre o teu contido á parte daqueles dereitos concedidos a %{site_name} segundo os nosos Termos de Servizo."
-  you_retain_full_copyright_over_your_content: "Es titular de dereitos de autor completos sobre o teu contido, á parte daqueles dereitos outorgados a %{site_name} segundo os nosos Termos de Servizo."
   you_sure_delete_asset?: Estás seguro de que desexas eliminar este arquivo?
   you_sure_delete_check_list: "Estás seguro de que desexas eliminar esta lista? Algunhas persoas poderían ter traballado moito nela..."
   you_sure_delete_comment?: Estás seguro de que queres borrar o comentario?
@@ -6188,19 +6177,6 @@ gl:
           Debes entrar "%{confirmation_code}" no formulario para eliminar a túa conta
       edit:
         about_third_party_tracking: Acerca do rastrexo por parte de terceiros
-        blocking_desc_html: |
-          <p>
-          Bloquear a alguén impídelle enviarte mensaxes, comentar nas túas observacións, identificar as túas observacións, e interactuar de calquer xeito contigo en %{site_name}. Tamén borra as súas observacións dos resultados das túas buscas e borra as túas observacións dos resultados das súas buscas. Aínda así, non che fai invisible cara esa persoa. Aínda pode atopar as túas observacións e ver o teu perfil, unicamente non pode interactuar contigo.
-          </p>
-          <p>
-          O bloqueo é para situacións nas que non te podes levar con alguén e este non che deixa en paz, a pesar dos teus esforzos para resolver disputas dun xeito civilizado. Non é un xeito de esconderte da xente, ou evitar identificacións de xente en cuxas opinións non confías, ou para excluír a identificación da comunidade (hai outra configuración para iso). Logo o bloqueo funciona en ambos sentidos: se ti bloqueas a alguén, non pode interactuar contigo, pero ti tampouco podes interactuar con esa persoa. Se o empregares para evitar que alguén identifique as túas observacións, tamén te impides a ti identificar as súas observacións.
-          </p>
-          <p>
-          Só podes bloquear a tres persoas. Pensamos que este é un número razoable que acomoda á xente que necesita bloquear, ó tempo que se evita o seu abuso. Se cres que precisas bloquear máis xente, por favor, <a href="mailto:%{help_email}">contáctanos</a>.
-          </p>
-          <p>
-          Se alguén te acosa ou asedia en %{site_name}, <a href="mailto:%{help_email}">fáinolo saber</a>. Se isto representa un quebranto dos nosos Termos de Servicio ou representa outro comportamento inapropiado para o noso sitio, investigarémolo.
-          </p>
         common_names_desc: |
           Mostrar nomes comúns. Inhabilitar se só queres ver nomes científicos. Repara que podes controlar cales nomes comúns ves mudando as túas configuracións de local e ubicación.
         display_monthly_supporter_status_on_my_profile: |
