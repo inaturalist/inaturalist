@@ -1072,6 +1072,8 @@ es-CO:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Sólo con coordenadas completas
+  coords_viewable_for_proj_desc: |
+    Mostrar sólo observaciones de este proyecto para las que puedes ver las coordenadas "verdaderas", incluyendo observaciones no oscurecidas, observaciones oscurecidas por personas que confían en ti, o en este proyecto, o corresponden a taxones amenazados y sus observadores confían en este proyecto.
   copy: Copiar
   copy_and_paste_the_following_code_to: Copiar y pegar el siguiente código para incrustar esta evaluación en otra página web.
   copy_and_paste_this_into_your_own_html: Copiar y pegar en tu propio HTML.
@@ -1146,6 +1148,11 @@ es-CO:
     Debes explicar por qué quieres convertirte en curador
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: '¿Por qué quieres ser un curador?'
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Si quieres editar la taxonomía de iNaturalist, por favor proporciona un ejemplo o dos
+    de cambios taxonómicos que te gustaría hacer, e incluye fuentes para tus cambios propuestos. Si aplica, por favor cita la autoridad taxonómica apropiada <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">como se lista en la Guía de Curadores</a>. Si no incluyes ninguna fuente tu aplicación no será considerada.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Si quieres editar nombres comunes, por favor proporciona un ejemplo o dos de los cambios que te gustaría hacer
