@@ -327,6 +327,7 @@ es:
   add_life_stage_egg_annotation: 'Agregar anotación "Etapa de vida: huevo"'
   add_evidence_of_presence_organism_annotation: 'Añadir anotación "Evidencia de Presencia: organismo"'
   add_evidence_of_presence_feather_annotation: 'Añadir anotación "Evidencia de Presencia: plumas"'
+  add_evidence_of_presence_gall_annotation: 'Añadir anotación "Evidencia de Presencia: agalla"'
   add_evidence_of_presence_scat_annotation: 'Añadir anotación "Evidencia de Presencia: excrementos"'
   add_evidence_of_presence_track_annotation: 'Añadir anotación "Evidencia de Presencia: huellas"'
   add_evidence_of_presence_bone_annotation: 'Añadir anotación "Evidencia de Presencia: huesos"'
@@ -390,6 +391,8 @@ es:
   agree_with_current_taxon: De acuerdo con el taxón actual
   agreeing: Aceptando...
   aka: alias
+  #Noun, title of a popup alerting you to something
+  alert: Alerta
   all: Todos
   all_comments: Todos los comentarios
   all_flags_must_be_resolved: Se deben solucionar todos los indicadores
@@ -1078,6 +1081,8 @@ es:
     evidence_of_presence: Evidencia de presencia
     #As in the feather on a bird
     feather: Plumas
+    #Abnormal growth
+    gall: Agalla
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organismo
@@ -1106,6 +1111,7 @@ es:
     bone: |
       Predominantemente restos de endosqueletos; la exposición parcial de huesos de un organismo intacto debe etiquetarse como "organismo"
     molt: Restos de piel o exoesqueleto
+    gall: Brote de tejido vegetal deformado causado por un organismo parásito o infección
   controls: Controles
   convert: Convertir
   coordinate_systems: Sistemas de coordenadas
@@ -1115,6 +1121,8 @@ es:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Solo con coordenadas que pueda ver
+  coords_viewable_for_proj_desc: |
+    Mostrar solo observaciones de este proyecto para las que puedes ver las coordenadas "verdaderas", incluyendo observaciones no oscurecidas, observaciones oscurecidas por personas que confían en ti, o en este proyecto, o corresponden a taxones amenazados, y sus observadores confían en este proyecto.
   copy: Copia
   copy_and_paste_the_following_code_to: Copia y pega el siguiente código para incrustar esta evaluación en otra página web.
   copy_and_paste_this_into_your_own_html: Copiar y pegar en tu propio HTML.
@@ -1187,6 +1195,10 @@ es:
     Debes explicar por qué quieres convertirte en conservador
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: '¿Por qué quieres ser conservador?'
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Si quieres editar la taxonomía de iNaturalist, por favor proporciona uno o dos ejemplos de cambios taxonómicos que te gustaría hacer, e incluye las fuentes de los cambios propuestos. Si son aplicables, por favor cita la autoridad taxonómica correspondiente <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">como están listadas en la Guía de Curadores</a>. Si no incluyes ninguna fuente, tu aplicación no será considerada.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Si quieres editar nombres comunes, por favor proporciona un ejemplo o dos de los cambios que te gustaría hacer
@@ -2449,6 +2461,9 @@ es:
   mark_all_as_unreviewed: Marca todas como no revisadas
   matching_species_will_shown_up_here: Las especies que encuentres se mostrarán aquí. El mapa mostrará un área si %{place} tiene alguna de esas especies.
   maverick: Disidente
+  maximum_positional_accuracy: Precisión máxima de localización
+  maximum_positional_accuracy_including_unknown: |
+    Precisión máxima de la posición, incluyendo observaciones sin precisión de su posición
   media: Multimedia
   media_type: Tipo de medios
   medium: medio
@@ -2491,6 +2506,7 @@ es:
   messages_new_correspondent_personal: |
     No reveles tu información personal a personas en las que
     no confías.
+  minimum_positional_accuracy: Precisión mínima de localización
   misidentifications: Identificaciones erróneas
   misleading_or_illegal_content_html: |
     Contenido ilegal o engañoso, insultos raciales o étnicos, etc.
@@ -3185,6 +3201,11 @@ es:
   pi_consent_child_label: |
     Permito a iNaturalist a almacenar y procesar ciertos tipos de
     información personal acerca de mi hijo/a para administrar la cuenta de este/a
+  data_transfer_consent_desc_title: Sobre el Consentimiento de Transferencia de Información Personal
+  data_transfer_consent_label: |
+    Doy mi consentimiento para que mi información personal sea transferida a los Estados Unidos de América
+  data_transfer_consent_child_label: |
+    Doy mi consentimiento para que la información personal de los menores a mi cargo sea transferida a los Estados Unidos de América
   pin_verb: Fijar
   pink: rosa
   pinned_locations_desc: |
@@ -3627,6 +3648,7 @@ es:
   plants: plantas
   please_add_a_citation_for_this_change: Añade una referencia para este cambio.
   please_allow_a_few_weeks_for_external_sites: Por favor, espere alguna semana para que los sitios externos sincronicen los cambios en esta observación #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: Por favor, pide permiso a tus padres o tutores
   #Title to a section warning a user to exercise caution
   please_be_careful!: '¡Ten cuidado!'
   please_complete_the_following_to_add_project: |
@@ -4020,6 +4042,7 @@ es:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "¿Revocar %{site_name}?"
+  revoke_privacy_consent_warning: "La única forma de revocar este consentimiento es eliminar su cuenta y todos los datos asociados."
   rg_observations: GI Observaciones
   role: Permiso
   rotate_left: Gira a la izquierda
