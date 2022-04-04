@@ -442,6 +442,7 @@ be:
   add_life_stage_egg_annotation: 'Дадаць значэнне "Жыццёвая стадыя: яйка"'
   add_evidence_of_presence_organism_annotation: 'Дадаць значэнне "Доказ прысутнасці: арганізм"'
   add_evidence_of_presence_feather_annotation: 'Дадаць значэнне "Доказ прысутнасці: пяро"'
+  add_evidence_of_presence_gall_annotation: 'Дадаць значэнне "Доказ прысутнасці: гал"'
   add_evidence_of_presence_scat_annotation: 'Дадаць значэнне "Доказ прысутнасці: экскрэменты"'
   add_evidence_of_presence_track_annotation: 'Дадаць значэнне "Доказ прысутнасці: сляды"'
   add_evidence_of_presence_bone_annotation: 'Дадаць значэнне "Доказ прысутнасці: костка"'
@@ -1059,6 +1060,8 @@ be:
   comment_deleted: Каментарый выдалены
   #Notice when a comment has been hidden by moderators
   comment_hidden: Каментар схаваны
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Каментар паказаны
   comments: Каментарыі
   comments_by_me: Мае каментарыі
   comments_have_been_disabled: Каментарыі былі адключаныя
@@ -1214,6 +1217,8 @@ be:
     evidence_of_presence: Доказы прысутнасці
     #As in the feather on a bird
     feather: Пер'е
+    #Abnormal growth
+    gall: Гал
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Арганізм
@@ -1242,6 +1247,7 @@ be:
     bone: |
       Па большай частцы, рэшткі экзаскелету; чатковае агаленне костак у астатняй частцы некранутага арганізма павінна быць пазначана як "арганізм"
     molt: Скура, або экзаскелет, што засталіся пасля ліняння
+    gall: Дэфармаванае разрастанне расліннай тканкі, выкліканае паразітычным арганізмам
   controls: Элементы кіравання
   convert: Пераўтварыць
   coordinate_systems: Сістэма каардынат
@@ -1251,6 +1257,8 @@ be:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Толькі з поўнымі каардынатамі
+  coords_viewable_for_proj_desc: |
+    Паказваць толькі назіранні з гэтага праекта, для якіх вы можаце бачыць "сапраўдныя" каардынаты, уключаючы адкрытыя каардынаты, каардынаты прыхаваныя асобамі, што давяраюць вам, каардынаты прыхаваныя асобамі, што давяраюць гэтаму праекту свае дадзеныя, каардынаты прыхаваныя для ўразлівых таксонаў асобамі, што давяраюць гэтаму праекту такія назіранні.
   copy: Капіяваць
   copy_and_paste_the_following_code_to: Скапіюйце і ўстаўце наступны код каб размясціць гэтую ацэнку на іншай вэб-старонцы.
   copy_and_paste_this_into_your_own_html: Скапіюйце і ўстаўце гэта ў ваш уласны HTML.
@@ -1322,6 +1330,10 @@ be:
     Вы павінны растулмачыць, чаму вы хочаце стаць куратарам
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Чаму вы хочаце быць куратарам?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Калі вы хочаце рэдагаваць таксанамію iNaturalist, калі ласка, прывядзіце адзін ці два прыклады змен, якія вы бы зрабілі, і прывядзіце крыніцы для вашых прапанованых зменаў. Калі магчыма, прывядзіце цытаты з аўтарэтэтных таксанамічных крыніц <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">як пералічана ў Кіраўніцтве куратара</a>. Калі вы не ўключыце ніводнай крыніцы, вашая заяўка не будзе разглядацца.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Калі вы хочаце рэдагаваць агульныя назвы, калі ласка, прывядзіце прыклад адной ці двух зменаў, які вы б зрабілі
@@ -1471,6 +1483,7 @@ be:
       december: Снежань
   date_is_accurate: Дата з'яўляецца дакладнай
   date_joined: Дата далучэння
+  date_obscured_notice: Дата прыхавана для абароны персанальных дадзеных або для бяспекі арганізма
   date_observed: Дата назірання
   date_observed_: Дата назірання
   date_observed_on: дата назірання
@@ -1865,7 +1878,9 @@ be:
   flag_as_non_spammer: Пазначыць як не спамера
   #Label for the date/time when a flag was created
   flag_created: Пазнака створана
+  flag_deleted: Пазнака выдалена
   flag_description: Пазначыць гэты змест каб паведаміць куратарам, што з ім неште не так.
+  flag_comment_description: Дадайце дадатковы каментар да гэтай пазнакі, які тлумачыць, чаму вы дадаеце яго, і дае спасылкі на доказы.
   flag_for_check_list_title_html: |
     Пазначыць для таксанамічнага спісу: %{title}
   flag_for_comment_id_html: Пазначыць для <a href="%{url}">каментара %{id}</a>
@@ -2087,6 +2102,7 @@ be:
   i_dont_know_but_i_am_sure_this_is_taxon: Я не ведаю, але здаецца, што гэта %{taxon}
   icon: Значок
   icon_size: Памер значка
+  iconic_taxon: Іканічны таксон
   id: Вызначэнне
   id_categories:
     tooltips:
@@ -2106,6 +2122,8 @@ be:
   identification_by_user: Вызначэнне карыстальніка %{user}
   identification_deleted: вызначэнне выдалена.
   identification_saved: "вызначэнне захавана!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Тэкст вызначэння паказаны
   identification_updated: Вызначэнне абноўлена!
   identification_user_short: Вызн. карыстальнік
   identification_withdrawn: Вызначэнне знята.
@@ -2114,6 +2132,9 @@ be:
   computer_vision_suggestion_desc: |
     Камп'ютарны зрок - гэта працэс навучання камп'ютараў распазнаваць заканамернасці ў малюнках. Мы прапануем інструменты, якія на аснове мадэляў камп'ютэрнага зроку, навучаных на фотаздымках суполкі, даюць парады па ідэнтыфікацыі, напрыклад, функцыі аўтазапаўнення і параўнання. Гэтая метка паказвае, што чалавек дадаў вызначэнне з дапамогай аднаго з гэтых інструментаў.
   identifiers: Вызначальнікі
+  identotron: Ідэнтатрон
+  identotron_for: Ідэнтатрон для
+  identotron_help: Дапамога па ідэнтатрону
   ids: "Вызначэнні"
   ids_made_for_others: Вызначэнні, зробленыя для іншых
   if_for_some_reason_a_user_doesnt_agree: |
@@ -2233,6 +2254,7 @@ be:
   kml_file_size_error: "Памер KML павінен быць менш за 1 МБ"
   label_colon: "%{label}:"
   labels: Пазнакі
+  label_to_group_a_batch_of_taxon_changes: Пазнака для групіравання пакета змяненняў таксона
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Прыватнае местцазнаходжанне
   #Label shown when a location has not been entered. Originally "unknown" in
@@ -2256,6 +2278,7 @@ be:
   lat: Шыр.
   latitude: Шырата
   latitude_in_decimals: 'Шырата ў дзесятковых градусах, напр. -122,123'
+  latitude_slash_y_coord_slash_northing: Шырата / Y каардыната / на поўнач
   latitude_value: "Шырата: %{latitude}"
   #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Слаі
@@ -2277,6 +2300,7 @@ be:
   learn_more: Даведацца больш
   learn_more_raquo: "Даведацца больш &raquo;"
   learn_what_these_licenses_mean: Даведайцеся, што азначаюць гэтыя ліцэнзіі
+  least_concern: Пад найменшай пагрозай
   leave: Пакінуць
   leave_a_comment: Пакінуць каментарый
   leave_this_project: Пакінуць гэты праект
@@ -2403,10 +2427,17 @@ be:
     taxonomic: таксанамічны
     photo: фота
   list_was_successfully_created: Спіс быў паспяхова створаны.
+  listed_taxa: Пералічаныя таксоны
+  listed_taxon: Пералічаны таксон
+  listed_taxon_updated: Таксон са спісу адноўлены
+  listing_lists: Пераліск спісаў
+  listing_project_assets: Пералік рэсурсаў праэкту
+  listing_taxa: Пералік таксонаў
   lists: Спісы
   lists_by_login:
     title:
       current_user: Вашыя спісы
+      login: Спісы %{login}
   load: Загрузіць
   loading: "Загрузка..."
   loading_flickr_photos: "Загрузка фота з Flickr..."
@@ -2417,6 +2448,7 @@ be:
   loading_tags: "Загрузка тэгаў..."
   loading_taxa_from_your: "Загрузка таксонаў з вашых назіранняў..."
   loading_wikipedia_description: "Загрузка апісання з Вікіпедыі..."
+  locale_description: Лакалізацыя вызначае пераважныя налады вашай мовы і фармату даты.
   locales_: Лакалізацыі
   locales:
     ar: Арабская
@@ -2445,6 +2477,7 @@ be:
     id: Інданезійская
     it: Італьянская
     ja: Японская
+    kn: Каннада
     ko: Карэйская
     lb: Люксембургская
     lt: Літоўская
@@ -2468,10 +2501,12 @@ be:
     zh-CN: Кітайская (спрошчаны правапіс)
     zh-TW: Кітайская (традыцыйная)
   locality_notes: Нататкі месцазнаходжання
+  localized_species_accounts: Лакалізаваныя дадзеныя аб відах
   location: Месцазнаходжанне
   location_is_accurate: Месцазнаходжанне з'яўлаецца дакладным
   location_is_exact: месцазнаходжанне дакладнае
   location_is_public: Месцазнаходжанне агульнадаступнае
+  location_is_obscured: Месцазнаходжанне схавана
   location_is_private: Прыватнае местцазнаходжанне
   location_specified: Месцазнаходжанне ўказана
   locked_taxa_will_not_allow_new: Заблакіраваныя таксоны не дазваляюць дадаваць да іх новыя таксоны-нашчадкі. Такім чынам, калі вы заблакавалі Amphibia і хтосьці паспрабаваў імпартаваць <i>Rana catesbeiana</i> ад знешняга пастаўшчыка імёнаў, новы таксон будзе створаны, але яго нельга будзе класіфікаваць як амфібію. Калі гэта адбудзецца, толькі што дададзеныя таксоны павінны быць пазначаны для ўвагі куратара. Гэта сапраўды варта выкарыстоўваць толькі для таксонаў, для якіх мы лічым, што ў нас ужо ёсць усе нашчадкі. Куратар можа перавызначыць гэта, рэдагуючы таксоны і непасрэдна ўводзячы бацькоўскія ідэнтыфікатары, але, калі ласка, падумайце аб аб'яднанні новых таксонаў з існуючымі.
@@ -2484,6 +2519,7 @@ be:
   log_out_caps: ВЫЙСЦІ
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Выйсці з %{site_name}?"
+  log_scale_label: Log
   #Status message shown while logging in
   logging_in: Уваход...
   login_slash_username: Логін / імя карыстальніка
@@ -2496,6 +2532,7 @@ be:
   long: Даўг
   longitude: Даўгата
   longitude_in_decimal: 'Даўгата ў дзесятковых градусах, напр. -122,123'
+  longitude_slash_x_coord_slash_easting: Даўгата / Х каардыната / на ўсход
   longitude_value: "Даўгата: %{longitude}"
   look_up_name: "Шукаць імя"
   looks_like_neither_have!: Здаецца, ні ў кога няма таксонаў!
@@ -2515,6 +2552,7 @@ be:
   make_sure_the_default_photo_looks_good: Пераканайцеся, што фота па змаўчанні добра выглядае ў вялікім памеры.
   make_this_your_default_license: "Зрабіце гэта вашай ліцэнзіяй %{type} па змаўчанні"
   make_this_the_primary_listing: "Зрабіць гэта асноўным спісам"
+  make_your_app_confidential: Зрабіце вашу праграму канфідэнцыйнай, калі вы можаце надзейна захоўваць сакрэт вашай праграмы, гэта значыць не ў агульнадаступным двайковым файле, які можна дэкампіляваць. Зніміце пазнаку, калі гэта не так, і вы плануеце выкарыстоўваць PKCE
   mammals: млекакормячыя
   manage_all_your_subscriptions: Кіруйце ўсімі сваімі падпіскамі
   manage_names: Кіраваць назвамі
@@ -2549,6 +2587,9 @@ be:
   mark_all_as_unreviewed: Пазначыць усё як неправеранае
   matching_species_will_shown_up_here: Тут з'явяцца адпаведныя віды. На мапах будзе паказаны арэал, калі %{place} змяшчае адзін з гэтых відаў.
   maverick: Незалежнае меркаванне
+  maximum_positional_accuracy: Максімальная дакладнасць пазіцыі
+  maximum_positional_accuracy_including_unknown: |
+    Максімальная дакладнасць месцазнаходжання, уключаючы назіранні, якія не маюць дакладнасці месцазнаходжання
   media: Медыя
   media_type: Тып медыя-файлу
   medium: сярэдні
@@ -2559,6 +2600,7 @@ be:
     Удзельнік %{partial_inat_network_tag_html}сеткі iNaturalist</a> - сумеснай ініцыятывы %{cas_tag_html} і %{nat_geo_tag_html}.
   #As in members of a project
   members: Удзельнікі
+  membership_model: Мадэль удзелу
   mentioned_you_in_noun_html: "%{user} згадаў вас у %{noun}"
   mentioned_you_in_noun_by_html: "%{user} згадаў вас у %{noun} %{by}"
   mentioned_you_in_noun_by_user_html: "%{user} згадаў вас у %{noun} %{by}"
@@ -2588,6 +2630,7 @@ be:
     Будзьце ўважлівыя да запытаў на ўзоры або схаваныя дадзеныя. Паспрабуйце праверыць асобу чалавека, які робіць запыт, і калі яны просяць узоры, запытайце іх паказаць дазвол.
   messages_new_correspondent_personal: |
     Не раскрывайце асабістую інфармацыю пра сябе людзям, якім не давяраеце
+  minimum_positional_accuracy: Мінімальная дакладнасць пазіцыі
   misidentifications: Памылковыя ідэнтыфікацыі
   misleading_or_illegal_content_html: |
     Увядзенне ў зман альбо незаконны змест, расавыя альбо этнічныя абразы і г.д. Больш падрабязна пра наша азначэнне "дарэчны" глядзіце ў <a href="/help#inappropriate">FAQ</a>.
@@ -2672,6 +2715,14 @@ be:
   most_observed_species: Найчасцей назіраемыя віды
   most_observed_introduced_species: Самыя назіраемыя віды-інтрадуцэнты
   most_observed_threatened_species: Самыя назіраемыя віды, якія знаходзяцца пад пагрозай
+  move_input_children_to_output?: Перамясціць даччыныя таксоны ў выхад?
+  multiple: некальнік
+  multiple_select_option: '-- некалькі --'
+  multiple_taxa_for_taxon_change: "Некалькі таксонаў (увод для замены/аб'яднання, выхад для падзелу)"
+  multiple_taxon_ids_separated_by_commas: 'Некалькі ID таксонаў, падзеленыя коскамі, напр. 123, 654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: павінна быць у праэкце %{project}
   must_be_in_taxon: павінен належыць да таксону %{taxon}
   must_be_not_in_taxon: не павінен належыць да таксону %{taxon}
   must_be_not_observed_by_user: не павінен назірацца карыстальнікам %{user}
@@ -2687,6 +2738,9 @@ be:
   must_have_quality_grades: "павінна мець узровень якасці: %{grades}"
   must_have_sounds: павінна мець гукі
   must_have_x: "павінен мець %{x}"
+  mute_user: Ігнараваць карыстальніка
+  mute_removed: Ігнараванне скасавана
+  muted_users: Карыстальнікі, якіх вы ігнаруеце
   n_ago: "%{n} таму"
   n_people_agrees: "%{amount} людзей згодныя"
   n_people_disagrees: "%{amount} людзей не згодныя"
@@ -2697,6 +2751,7 @@ be:
   name_or_slug: "Назва або URL-slug, напрыклад, my-project"
   name_of_the_place_you: Назва месца, дзе вы зрабілі назіранне
   name_providers:
+    col: Каталог Жыцця
     ubio: uBio
     nzor: Рэестр арганізмаў Новай Зеландыі
   names: Назвы
@@ -2923,6 +2978,25 @@ be:
   observation_brief_something_from_place: "Некаторае з %{place}"
   observation_brief_something_from_place_by_user: "Некаторае з %{place} ад %{user}"
   observation_brief_something_from_place_on_day: "Некаторае з %{place} за %{day}"
+  observation_brief_taxon_on_day: "%{taxon} за %{day}"
+  observation_brief_taxon_on_day_at_time: "%{taxon} за %{day} у %{time}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} за %{day} у %{time} ад %{user}"
+  observation_brief_taxon_on_day_by_user: "%{taxon} за %{day} ад %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} у %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} у %{month} %{year} ад %{user}"
+  observation_brief_taxon_by_user: "%{taxon} ад %{user}"
+  observation_brief_taxon_from_place: "%{taxon} з %{place}"
+  observation_brief_taxon_from_place_by_user: "%{taxon} з %{place} ад %{user}"
+  observation_brief_taxon_from_place_on_day: "%{taxon} з %{place} за %{day}"
+  observation_brief_taxon_from_place_on_day_by_user: "%{taxon} з %{place} за %{day} ад %{user}"
+  observation_brief_taxon_from_place_on_day_at_time: "%{taxon} з %{place} за %{day} у %{time}"
+  observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} з %{place} за %{day} у %{time} ад %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} з %{place} у %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} з %{place} у %{month} %{year} ад %{user}"
   observations_by_category: "Назіранні па катэгорыі"
   observations_by_app: Назіранні па прыкладанням
   observations_by_rank: Назіранні па рангу
@@ -3010,6 +3084,7 @@ be:
     Назіральнік дазваляе іншым людзям дадаваць свае назіранні толькі ў праекты, да якіх яны далучыліся.
   observer_short: Назіральнік
   occurence_status_describes_how: 'Статус наяўнасці паказвае, наколькі у дадзенай вобласці таксон звычайны або рэдкі. Глядзіце ў DarwinCore <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">дадатковую інфармацыю пра тэрміналогію</a>.'
+  occurrence_status: Статус наяўнасці
   occurrence_status_descriptions:
     absent: На тэрыторыі не сустракаецца
     common: Сустракаецца часта
@@ -3031,9 +3106,14 @@ be:
   off_caps: "ВЫКЛ"
   official_blog: Афіцыйны блог
   offline_access_enabled: Аўтаномны доступ уключаны
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Час змяшчэння"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Змяшчэнне
   old_observation_form: Старая форма назірання (састарэла)
   ok: "ОК"
   on_caps: "УКЛ"
+  on_day: ","
   onboarding:
     observe_panel_title: Давайце пачнем з публікацыі некаторых назіранняў
     observe_panel_body_p1_local: Патрэбна натхненне? Вось некаторыя арганізмы назіраюцца паблізу...
@@ -3051,6 +3131,7 @@ be:
     updates_by_you_panel_title: Гэта вокладка - гэта хуткі спосаб адфільтраваць абнаўленні толькі вашага кантэнту.
     updates_by_you_panel_body: Памятайце, што на вокладцы «Усе абнаўленні» вы будзеце атрымліваць абнаўленні не толькі па вашаму кантэнту, але і пра кантэнты людзей, за якімі вы сочыце, а таксама аб таксонах або месцах, на якія вы падпісаліся з дапамогай інструмента «Падпіскі» справа.
     youve_got_updates_panel_title: У вас ёсць абнаўленні!
+    youve_got_updates_panel_body_p1: Сачыце за абнаўленнямі наступных...
     youve_got_updates_panel_body_p2: |
       <ul>
       <li><strong>Ваш змест:</strong> Дзейнасць, звязаная з вашымі назіраннямі, такая як каментарыі, вызначэнні, або ўпадабанні ад супольніцтва %{site_name}. Вы таксама будзеце атрымліваць абнаўленні калі нехта дадасць вашае назіранне да праэкту, або дадасць інфармацыю ў ягоныя дадатковыя палі.</li>
@@ -3058,6 +3139,10 @@ be:
       <li><strong>Арганізмы, Праэкты і Месцы:</strong> Новыя назірання для асбоных арганізмаў або месцаў, на якія вы падпісаныя</li>
       <li><strong>Дыскусіі, у якіх вы ўдзельнічаеце:</strong> Каментаванне або даданне вызначэнняў да чыёга-небудзь зместа аўтаматычна падпісвае вас да новых падзей, звязанных з гэтым зместам. Карыстайцеся інструментам 'Кіраванне сваімі падпіскамі' каб перастаць атрымліваць абнаўленні.</li>
       </ul>
+  one_by_one: "Па аднаму"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "адно з наступнага павінна быць праўдай:"
+  one_of_your_lists: "адзін з вашых спісаў..."
   one_or_more_input_taxa_have_more_than_1000: |
     Адзін або некалькі ўваходных таксонаў маюць больш за 1000 ніжэй падпарадкаваных назіранняў. Апрацоўка фіксацыі можа заняць некаторы час. Вы ўпэўненыя, што гэта змена таксона неабходная? Акрамя таго, змены таксонаў нельга адмяніць.
   only_a_project_manager_can_add: Толькі кіраўнік праекта можа дадаць статус куратара праекта
@@ -3086,14 +3171,25 @@ be:
   open_: Адкрыць
   open_description: "Каардынаты бачны для ўсіх, калі таксон не знаходзіцца пад пагрозай."
   open_street_map: OpenStreetMap
+  optional: дадатковы
   optional_columns_note_for_any: "Дадатковыя слупкі (заўвага: каб любы з гэтых слупкоў выкарыстоўваўся ў назіранні, усе яны павінны прысутнічаць)"
   or: або
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
+  or_all_caps: АБО
   or_choose_high_level_taxa: "... або выбраць з некаторых таксонаў вышэйшага рангу"
   or_if_you_dont_want_email: "Ці калі вы проста нічога не хочаце атрымліваць па электроннай пошце..."
+  orange: аранжавы
+  order: Сартаваць
   order_by: Упарадкаваць па
+  organism_is_wild: Арганізм з'яўляецца дзікім
   organisms: Арганізмы
+  original: Зыходны
   originally_flagged_by: Першапачаткова пазначаны
   originally_imported_from_url_html: "Першапачаткова імпартаваны з <a href='%{url}'>%{url}</a>"
+  original_page_url_for_this_photo: "Зыходная спасылка на старонку гэтага фота."
+  original_rights_holder: Зыходны праваўладальнік
+  original_url_for_this_map: Зыходная спасылка на гэтую мапу
   organism_appears_captive_cultivated: Арганізм існуе ў няволі / культывуецца
   other: Iншае
   other_animals: іншыя жывёлы
@@ -3120,7 +3216,9 @@ be:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Іншыя таксоны, якія звычайна памылкова вызначаюцца як гэты падрод, у <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_subsection: Іншыя таксоны, якія звычайна памылкова вызначаюцца як гэтая падсекцыя
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Іншыя таксоны, якія звычайна памылкова вызначаюцца як гэтая падсекцыя, у <a href="%{url}">%{place}</a>
+  outside_of_all_atlases: Па-за ўсімі атласамі
   our_blog: Наш блог
+  output_taxon: Выходны таксон
   overview: Агляд
   owner: Уладальнік
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -3133,6 +3231,7 @@ be:
   password: Пароль
   password_confirmation: 'Пацверджанне паролю'
   paste: Уставіць
+  paste_in_a_bunch_of_names: Устаўце некалькі назваў, па 1 на радок і націсніце кнопку!
   people: Людзі
   people_following_user: "Людзі, якія падпісаныя на %{user}"
   people_user_follows: "Людзі, на якіх падпісаны %{user}"
@@ -3150,6 +3249,7 @@ be:
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
       without_observation: дадаў/дадала <strong>вызначэнне</strong>
+    post: зрабіў %{post_link}
     comment:
       with_by: пракаментаваў(ла) @vow_or_con{vow:an|a} %{comment_subject_link} карыстальніка %{by_link}
       without_by: пракаментаваў(ла) @vow_or_con{vow:an|a} %{comment_subject_link}
@@ -3164,8 +3264,14 @@ be:
   photo_by_id_attribution: "Фота %{id}, %{attribution}"
   photo_deleted: Фота выдалена
   photo_destroyed_because_it_was_deleted_from: "Фота пашкоджана, таму што яно было выдалена з вонкавага сайта або %{site_name} больш не мае дазволу на яго прагляд"
+  photo_hosting_accounts: Уліковыя запісы фотахостынгаў
+  photo_licensing: Ліцэнзія фота
   photo_type: Тып фота
+  photo_urls_repaired: Спасылкі на фота выпраўлены
   photos_chosen_for_this_taxon: Фота, якія абраныя для гэтага таксона
+  photos_from: Фота з
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Фота заблакаваны
   photos_locked_desc: Толькі супрацоўнікі могуць змяняць фатаграфіі па змаўчанні для гэтага таксона
   photos_of_taxon_html: "Фатаздымкі %{taxon}"
   photos_or_sounds: Фатаздымкі альбо гукі
@@ -3174,6 +3280,8 @@ be:
     small: малы
     medium: сярэдні
     large: вялікі
+    original: зыходны
+  photos_updated: Фота адноўлены.
   pi_consent_desc_title: Пра асабістую інфармацыю
   pi_consent_label: |
     Я згаджаюся дазволіць iNaturalist захоўваць і апрацоўваць абмежаваныя віды асабістай інфармацыі пра мяне для кіравання маім уліковым запісам
@@ -3184,6 +3292,12 @@ be:
   pinned_locations_desc: |
     Замацуйце гэтую камбінацыю каардынатаў, дакладнасці, геапрывязкі і нататак аб мясцовасці для наступнага выкарыстання.
   place: Месца
+  placeholder: Запаўняльнік
+  place_autocomplete_placeholder: Нацыянальны парк "Нарачанскі" і г.д.
+  place_create_quota_exceeded: |
+    Вы перавысілі колькасць месц, якія можаце стварыць на працягу перыяду ў 24 гадзіны
+    (%{quota})
+  place_deleted: Месца выдалена.
   place_geo:
     geo_planet_place_types:
       Airport: Аэрапорт
@@ -3195,6 +3309,7 @@ be:
       City Building: Гарадскі будынак
       city building: гарадскі будынак
       Colloquial: Размоўны
+      colloquial: размоўны
       Commune: Камуна
       commune: камуна
       Constituency: Акруга
@@ -3203,6 +3318,8 @@ be:
       continent: кантынент
       Country: Краіна
       country: краіна
+      County: Графства
+      county: графства
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       Delegation: Муатамадыят
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
@@ -3233,6 +3350,8 @@ be:
       intersection: перасячэнне
       Island: Выспа
       island: выспа
+      Land_Feature: Адзінка ландшафта
+      land_feature: адзінка ландшафта
       Local_Administrative_Area: Мясцовая адміністратыўная адзінка
       local_administrative_area: мясцовая адміністратыўная адзінка
       Local_Authority: Мясцовая ўлада
@@ -3243,6 +3362,10 @@ be:
       municipality: муніцыпалітэт
       Nationality: Нацыянальнасць
       nationality: нацыянальнасць
+      Nearby_Building: Прылеглы будынак
+      nearby_building: прылеглы будынак
+      Nearby_Intersection: Бліжэйшае скрыжаванне
+      nearby_intersection: бліжэйшае скрыжаванне
       Open_Space: Адкрытая прастора
       open_space: адкрытая прастора
       Parish: Парафія
@@ -3472,16 +3595,26 @@ be:
     rwanda: Руанда
     saint_barthelemy: Сэн-Бартэлемі
     saint_helena: Востраў Святой Алены
+    saint_kitts_and_nevis: Сэнт-Кітс і Нэвіс
+    saint_lucia: Сэнт-Люсія
+    saint_martin: Сэнт-Марцін
+    saint_pierre_and_miquelon: Сэнт-П'ер і Міквэлон
+    saint_vincent_and_the_grenadines: Сэнт-Вінсэнт і Грэнадыны
+    samoa: Самоа
+    san_marino: Сан-Марына
+    sao_tome_and_principe: Сан-Тамэ і Прынсіпі
     saudi_arabia: Саудаўская Аравія
     senegal: Сенегал
     serbia: Сербія
     seychelles: Сейшэльскія астравы
     sierra_leone: Сьера-Леонэ
     singapore: Сінгапур
+    sint_maarten: Сінт-Мартэн
     slovakia: Славакія
     slovenia: Славенія
     solomon_islands: Саламонавы астравы
     somalia: Самалі
+    south_africa: Паўднёвая Афрыка
     south_america: Паўднёвая Амерыка
     south_georgia_and_the_south_sandwich_islands: Паўднёвая Джорджыя і Паўднёвыя Сандвічавы астравы
     south_korea: Паўднёвая Карэя
@@ -3528,13 +3661,33 @@ be:
     yemen: Емен
     zambia: Замбія
     zimbabwe: Зімбабвэ
+  places_of_interest: Славутасці
   places_merged_successfully: Месцы паспяхова аб'яднаны!
+  please_ask_your_parents_for_permission: Калі ласка, атрымай дазвол ў бацькоў
   #Title to a section warning a user to exercise caution
   please_be_careful!: Калі ласка, будзьце асцярожны!
+  please_complete_the_following_to_add_project: |
+    Каб дадаць гэтае назіранне для праэкта, калі ласка выканайце наступныя дзеянні:
   please_confirm_your_inat_username: "Калі ласка, пацвердзіце сваё %{site_name} імя карыстальніка"
   please_explain_why_you_want_to_hide_this: Калі ласка, растлумачце, чаму вы хочаце схаваць гэта
   please_explain_why_you_want_to_unhide_this: Калі ласка, растлумачце, чаму вы хочаце паказаць гэта
+  please_fix_your_csv_and_try_again: Калі ласка, выправіце ваш CSV і паспрабуйце зноў.
+  please_hold_on_while_the_file: Калі ласка, пачакайце пакуль ствараецца файл. Калі ў вас шмат назіранняў, гэта можа заняць некалькі хвілін.
+  please_hold_on_while_the_file_is_generated: Калі ласка, пачакайце пакуль ствараецца файл. Гэта можа заняць некалькі хвілін для вялікіх спісаў.
+  popular: Папулярнае
+  position: Пазіцыя
+  #Post is a noun
+  post_from_journal_by_parent_html: Допіс з <a href="%{url}">часопісу %{parent}</a>
+  #Post is a noun
+  post_from_your_journal_html: Допіс з <a href="%{url}">вашага часопісу</a>
+  post_published: Допіс апублікаваны!
+  posted_by: Апублікавана
+  posted_on: Апублікавана ў
+  posts: Допісы
+  potential_disagreement: Патэнцыйная нязгода
+  powered_by: Працуе на
   powered_by_inaturalist_open_source_software_html: 'Працуе на <a href="https://github.com/inaturalist/inaturalist" target="_new" >адкрытым праграмным забяспячэнні iNaturalist</a>'
+  present: прысутнічае
   press: Прэса
   preview: Папярэдні агляд
   preview_observations_with_these_observation_requirements: Папярэдні агляд назіранняў адпаведна патрабаванням праэкта
@@ -3551,6 +3704,8 @@ be:
   previous_taxon_short: Папяр.
   print_verb: Друкаваць
   privacy: Прыватнасць
+  private: прыватнае
+  private_: Прыватнае
   probably_spam: Магчыма, спам
   proceed: Працягнуць
   processing: Апрацоўваецца
@@ -3560,15 +3715,30 @@ be:
   profile_visibility_desc: |
     З мэтаю абароны %{site_name} да спаму, профілі карыстальнікаў зробяцца бачнымі публічна толькі пасля таго, як карыстальнік зробіць некалькі назіранняў з узроўнем "даследванне".
   project: Праэкт
+  project_admins:
+    one: Адміністратар праэкту
+    few: Адміністратары праэкту
+    many: Адміністратараў праэкту
+    other: Адміністратары праэкту
   project_assessments: Адзнакі праекту
+  project_assets: Рэсурсы праэкту
+  project_coordinate_access_enabled: |
+    Вы павінны маць магчымасць бачыць прыхаваныя каардынаты для назіранняў ад асоб, якія вам давяраюць.
+  project_coordinate_access_disabled_until_datetime: |
+    Вы не зможаце адрымаць доступ да прыхаваных каардынат %{datetime}
   project_coordinate_access_warning: |
     Доступ да каардынат важны для навукоўцаў, але таксама імі могуць злоўжываць браканьеры. Пераканайцеся, што вы давяраеце ўсім куратарам праекта, перш чым давяраць гэтаму праекту.
+  project_cover: Вокладка праэкту
+  project_created_on: стварыў гэты праэкт %{date}
   project_curator_id: Вызначэнні куратара праекта
   project_curator_tools: Інструменты куратара праекта
   project_curators: Куратары праекта
   project_group_label: Група
   project_group_description: Група, да якой належыць праект
   project_home: Дамашняя старонка праекта
+  project_icon: Іконка праэкту
+  project_journal: Часопіс праэкту
+  project_id_or_url_slug: ID прэкту або URL-слаг, напр. 333 або my-project
   project_list: Спіс праекта
   project_list_defaults:
     title: "Таксанамічны спіс карыстальніка %{owner_name}"
@@ -3593,8 +3763,23 @@ be:
   projects: Праэкты
   projects_description: |
     Праекты дазваляюць аб'ядноўваць свае назіранні з іншымі людзьмі на %{site_name}. Незалежна ад таго, ці гэта новая ініцыятыва грамадзянскай навукі, ці вы сочыце за птушкамі ў вашым раёне, праекты - гэта зручна.
+  projects_from_place: "Праэкту з %{place}"
+  projects_in_x: "Праэкты ў %{x}"
+  #"admins" is equivalent to "administrates"
+  projects_user_admins: Праэкты, якія адмініструе %{user}
+  projects_you_admin: Праэкты, якія вы адмініструеце
+  protozoans: найпростыя
+  provider_authorizations: Аўтарызацыі правайдэра
   public_domain: Здабытак грамадства
   publish: Апублікаваць
+  purple: фіялетавы
+  quality_grade: Якасць
+  quality_grade_: Якасць
+  quality_grade_colon: "Якасць:"
+  queued: У чарзе
+  query: Запыт
+  radius: Радыюс (м)
+  radius_value: "Радыюс (м): %{radius}"
   ranks:
     class: Клас
     x_classes:
@@ -3707,11 +3892,13 @@ be:
   #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Апошнія назіранні ад %{login} (Atom)"
   recent_observations_by: "Апошнія назіранні ад %{login}"
+  recently_active: Актыўныя нядаўна
   relative_observations: Блізкія назіранні
   relationships:
     error: памылка
   reload_from_observations: Перазагрузіце з назіранняў
   remove: Выдаліць
+  remove_all_tags: Выдаліць усе пазнакі
   remove_conservation_status: выдаліць прыродаахоўны статус
   remove_from: Выдаліць з
   remove_curator: Выдаліць куратара
@@ -3738,6 +3925,7 @@ be:
   research_grade_short_html: "У<span class='full'>зровень </span>Д<span class='full'>аследвання</span>"
   research_grade_tooltip_html: 'Назіранні з узроўнем "Даследванне" маюць медыяфайлы, месцазнаходжанне, дату і пагадненне супольніцтва аб дакладным вызначэнні (звычайна на ўзроўні віду). <a href="https://www.inaturalist.org/pages/help#quality">Даведацца больш пра ўзроўні якасці</a>'
   research_grade_observations_have: 'Назіранні ўзроўню «Даследванне» маюць дату, фота, каардынаты і ідэнтыфікатар, які падтрымліваецца супольнасцю. Клікніце, каб убачыць ацэнку якасці дадзеных.'
+  review_all: Праглядзець усё
   rg_observations: Нізіранні даследчыцкага ўзроўню
   rules_for_adding_observations: Правілы дадання назіранняў
   satellite: спадарожнік
@@ -3811,6 +3999,7 @@ be:
     Сетка iNaturalist - гэта калекцыя лакалізаваных вэб-сайтаў, якія цалкам звязаны з сусветнай супольнасцю iNaturalist. Сеткавыя сайты падтрымліваюцца мясцовымі ўстановамі, якія спрыяюць мясцоваму выкарыстанню і палягчаюць выкарыстанне дадзеных iNaturalist на карысць мясцовай біяразнастайнасці. Яны маюць доступ да сапраўдных каардынатаў у сваіх геаграфічных зонах, якія аўтаматычна схаваныя ад грамадскасці, каб лепш абараняць віды, якія знаходзяцца пад пагрозай.
   sites_network_your_username: |
     Вашы імя карыстальніка і пароль працуюць на ўсіх сайтах, якія ўваходзяць у сетку iNaturalist. Калі вы вырашыце далучыцца да сайту Сеткі, мясцовыя ўстановы, якія падтрымліваюць кожны сайт, таксама атрымаюць доступ да вашага адраса электроннай пошты (толькі для зносін з вамі аб дзейнасці сайта) і доступ да сапраўдных каардынатаў для назіранняў, якія вы вырашылі зрабіць публічна схаванымі або прыватнымі.
+  some_agree: частка згодныя
   some_observations_are_missing_media_or_identifications: |
     У некаторых назіраннях адсутнічаюць медыяфайлы або вызначэнні
   some_observations_are_missing_media_or_identifications_desc: |
@@ -3836,6 +4025,7 @@ be:
   suggest_an_identification: Прапанаваць вызначэнне
   suggestions: Прапановы
   supporting: Падтрымка
+  tags_are_a_way: 'Пазнакі - гэта сродак арганізацыі назіранняў. Напрыклад, вы можаце пазначыць усе свае назіранні ў прыпрыліўных вадаёмах як "прыліўныя вадаёмы" каб зрабіць паскорыць іх пошук у будучыні.'
   taxa_info: Інфармацыя пра таксоны
   taxon_changes: Змены таксона
   taxon_colors: Колеры таксона
@@ -3848,6 +4038,7 @@ be:
   tell_everyone_a_little_about_you: Раскажыце ўсім крыху пра сябе
   tell_the_world_a_little_about_yourself: Раскажыце нам пра сябе
   tell_us_why: Раскажыце нам, чаму...
+  terms_service: Ўмовы выкарыстання
   terrain: рэльеф
   thanks!: Дзякуй!
   that_photo_doesnt_exist: Такога фота не існуе.
@@ -3887,6 +4078,7 @@ be:
   top_observer_caps: ЛЕПШЫ НАЗІРАЛЬНІК
   top_observers: Лепшыя назіральнікі
   twitter: Twitter
+  unreview_all: Удмяніць прагляд усяго
   update_your_content: Аднавіць змест
   updated: Адноўлена
   updated_daily: Аднаўляецца штодзённа
@@ -3909,6 +4101,7 @@ be:
   user_added_a_x_to_noun_by_you_html: "%{user} дадаў %{x} да вашага %{noun}"
   user_added_a_x_to_noun_html: "%{user} дадаў %{x} да %{noun}"
   user_added_an_identification_html: "%{user} дадаў вызначэнне"
+  user_added_an_observation_field_html: '%{user} дадаў значэнне "%{field_name}" да назірання %{owner}'
   user_added_an_observation_field_value_html: "%{user} дадаў значэнне поля назірання"
   user_added_an_observation_html: "%{user} дадаў назіранне"
   user_added_an_x: "%{user} дадаў %{x}"
@@ -3923,6 +4116,15 @@ be:
   users: Карыстальнікі
   value: Значэнне
   values: Значэнні
+  view_all: Праглядзець усё
+  view_all_flags: Праглядзець усе пазнакі
+  view_all_members: Праглядзець усіх удзельнікаў
+  view_all_n: "Праглядзець усе %{n}"
+  view_all_observations: Праглядзець усе назіранні
+  view_all_photocount_photos: "Праглядзець усе %{photo_count} фота"
+  view_leaderboard_from_last_month: Глядзець табліцу лідараў з мінулага месяцу
+  view_leaderboard_from_last_year: Глядзець табліцу лідараў з мінулага году
+  view_all_of_your_observations_from_x: "Праглядзець усе назіранні ад %{x}"
   video_tutorials: Відэа-інструкцыі
   weather: Надвор'е
   website: Веб-сайт
@@ -3943,16 +4145,23 @@ be:
   you_are_already_a_member_of_this_project: "Вы ўжо з'яўляецеся ўдзельнікам гэтага праэкту!"
   you_arent_a_member_of_that_project: Вы не з'яўляецеся ўдзельнікам гэтага праэкту.
   you_must_be_a_member_of_this_project_to_do_that: Вы павінны быць удзельнікам гэтага праэкту, каб зрабіць гэта
+  you_retain_full_copyright_over_your_content: "Вы захоўваеце поўныя аўтарскія правы на свой змест, акрамя правоў, прадастаўленых %{site_name} у нашых Умовах прадастаўлення паслуг."
   your_content: Ваш змест
   your_id: Вашае вызначэнне
   your_identification: Вашае вызначэнне
   your_observations: Вашыя назіранні
   your_recent_projects: Вашыя апошнія праэкты
   views:
+    observations:
+      identify:
+        review_all_tooltip: "Пазначыць усе назіранні на старонцы як прагледжаныя"
     projects:
       edit:
         admins_must_be_existing_members: Адміністратары павінны быць існымі ўдзельнікамі праэкту.
       new:
+        leaderboards_among_individuals: Табліца лідараў сярод <strong>асоб</strong>
+        leaderboards_among_projects_and_bioblitzes: |
+          Табліца лідараў сярод <strong>праэктаў</strong>
         users_can_follow_your_project: Карыстальнікі могуць сачыць за наванамі вашага праэкту праз допісы ў дзённіку
       show:
         bioblitz_results_desc_html: |
@@ -4023,6 +4232,10 @@ be:
           none: "Ніякія, толькі вы можаце дадаваць свае назіранні ў праекты"
         scientific_name_first_desc: |
           Паказваць навуковыя назвы перад агульнымі.
+      show:
+        favorites_list_prompt_html: |
+          Хочаце паказаць некаторыя з вашых любімых таксонаў? %{link_start_tag}Стварыце спіс%{link_end_tag} пад назвай «Абранае» і апошнія дапаўненні
+          з'явяцца ў гэтым абсягу.
     user_parents:
       new:
         inaturalist_minor_account_signup: Рэгістрацыя ўліковага запісу iNaturalist для дзіцяці
