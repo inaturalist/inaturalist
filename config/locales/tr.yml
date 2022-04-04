@@ -382,11 +382,15 @@ tr:
   admin_s: Yönetici(ler)
   admin_only: Yalnızca Yönetici
   admin_tools: Yönetici Araçları
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Bağlı Kuruluşlar
   agree_: Onayla
   agree?: Onaylansın mı?
   agree_with_current_taxon: Geçerli sınıfla onayla
   agreeing: Onaylanıyor...
   aka: diğer adıyla
+  #Noun, title of a popup alerting you to something
+  alert: Uyarı
   all: Tümü
   all_comments: Tüm yorumlar
   all_flags_must_be_resolved: Tüm işaretler çözümlenmeli
@@ -826,6 +830,8 @@ tr:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa}, %{output_taxon} sınıfıyla birleştirildi"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa}, %{output_taxon} sınıfıyla birleştirilecek"
   change_your_password: Şifreni Değiştir
+  #Plural noun, as in changes to a taxon record over time
+  changes: Değişiklikler
   changing_the_geoprivacy: 'Coğrafi gizliliğin değişimi, diğer insanların gözlemlerinin konumları nasıl göreceğini değiştirir.'
   check_above_for_errors: Hatalar için yukarıyı kontrol et
   check_back_soon: Yakında kontrol et!
@@ -928,6 +934,7 @@ tr:
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Yükleniyor
   concept_status: Konsept Durumu
+  confidential: Gizli
   configure: Yapılandır
   configure_a_widget_to_show: '%{site_name} sayfasındaki gözlemleri kendi sayfanda ya da blogunda görmek için bir widget yapılandır. Gömülü CSS’yi <code>&lt;head&gt;</code> HTML’nizin içine eklemeniz gerekebilir. CSS''yi tekrar yazmaktan çekinmeyin.'
   confirm: Onayla
@@ -1047,6 +1054,8 @@ tr:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Sadece tam koordinatlılar
+  coords_viewable_for_proj_desc: |
+    Sadece bu projede görebileceğin "gerçek" koordinatları; gizlenmemiş gözlemler, size güvenen kişilerin gizlenmiş gözlemleri, bu projeye tamamıyla güvenen kişilerin gizlenmiş gözlemleri, yine aynı şekilde sadece bu projeye güvenen kişilerin tehlike sınıfındaki gizlenmiş gözlemleri de dahil olacak şekilde göster.
   copy: Kopyala
   copy_and_paste_the_following_code_to: Bu değerlendirmeyi başka bir ağ sayfasına yerleştirmek için aşağıdaki kodu kopyalayıp yapıştırın.
   copy_and_paste_this_into_your_own_html: Bunu kopyalayıp kendi HTML'nize yapıştırın.
@@ -2996,6 +3005,11 @@ tr:
     iNaturalist’in hesabımı yönetmek için sınırlı sayıda kişisel bilgiyi saklamasına ve işlemesine izin veriyorum
   pi_consent_child_label: |
     iNaturalist’in çocuğumun hesabını yönetmek için sınırlı sayıda kişisel bilgisini saklamasına ve işlemesine izin veriyorum
+  data_transfer_consent_desc_title: Kişisel Bilgi Aktarımı İzni Hakkında
+  data_transfer_consent_label: |
+    Kişisel bilgilerimin Amerika Birleşik Devletleri'ne aktarılmasına izin veriyorum
+  data_transfer_consent_child_label: |
+    Çocuğumun kişisel bilgilerinin Amerika Birleşik Devletleri'ne aktarılmasına izin veriyorum
   pin_verb: Sabitle
   pink: pembe
   pinned_locations_desc: |
@@ -3806,6 +3820,7 @@ tr:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "%{site_name} iptal edilsin mi?"
+  revoke_privacy_consent_warning: "Bu izni iptal etmenin tek yolu hesabınızı ve ilgili tüm verileri silmektir."
   rg_observations: AS Gözlemleri
   role: Rol
   rotate_left: Sola Döndür
