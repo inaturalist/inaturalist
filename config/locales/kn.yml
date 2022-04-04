@@ -299,6 +299,7 @@ kn:
   add_life_stage_egg_annotation: '"ಜೈವಿಕ ಹಂತ : ಮೊಟ್ಟೆ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_evidence_of_presence_organism_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು : ಜೀವಿ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_evidence_of_presence_feather_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು: ಗರಿ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
+  add_evidence_of_presence_gall_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು: ಅಸಹಜ ಬೆಳವಣಿಗೆ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_evidence_of_presence_scat_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು: ಹಿಕ್ಕೆ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_evidence_of_presence_track_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು: ಹೆಜ್ಜೆಗುರುತು" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_evidence_of_presence_bone_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು: ಮೂಳೆ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
@@ -947,6 +948,8 @@ kn:
     evidence_of_presence: ಇರುವಿಕೆಯ ಕುರುಹು
     #As in the feather on a bird
     feather: ಗರಿ
+    #Abnormal growth
+    gall: ಅಸಹಜ ಬೆಳವಣಿಗೆ
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: ಜೀವಿ
@@ -2076,6 +2079,7 @@ kn:
   mark_all_as_reviewed: ಎಲ್ಲವನ್ನೂ ವಿಮರ್ಶಿಸಿದೆಯೆಂದು ಗುರುತಿಸಿ
   mark_all_as_unreviewed: ಎಲ್ಲವನ್ನೂ ವಿಮರ್ಶಿಸಿಲ್ಲವೆಂದು ಗುರುತಿಸಿ
   matching_species_will_shown_up_here: ಹೋಲಿಕೆಯಾಗುವ ಪ್ರಭೇದಗಳು ಇಲ್ಲಿ ಪ್ರದರ್ಶಿತವಾಗುತ್ತವೆ. %{place} ಆ ಪ್ರಭೇದದಲ್ಲಿ ಒಂದನ್ನಾದರೂ ಹೊಂದಿದ್ದಲ್ಲಿ ಭೂಪಟಗಳು ವ್ಯಾಪ್ತಿಯನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತವೆ.
+  maximum_positional_accuracy: ಗರಿಷ್ಟ ಸ್ಥಾನಿಕ ನಿಖರತೆ
   media: ಮಾಧ್ಯಮ
   media_type: ಮಾಧ್ಯಮದ ವಿಧ
   medium: ಮಧ್ಯಮ
@@ -2116,6 +2120,7 @@ kn:
     ಸ್ಪೆಸಿಮನ್‍ಗಳು ಅಥವಾ ಮರೆಮಾಡಿದ ದತ್ತಾಂಶದ ವಿನಂತಿಗಳ ಬಗ್ಗೆ ಎಚ್ಚರದಿಂದಿರಿ. ವಿನಂತಿಸುವ ವ್ಯಕ್ರಿಗಳ ಗುರುತನ್ನು ಪರಿಶೀಲಿಸಲು ಪ್ರಯತ್ನಿಸಿ ಹಾಗೂ ಅವರು ಸ್ಪೆಸಿಮನ್‍ಗಳನ್ನು ಕೇಳುತ್ತಿದ್ದಲ್ಲಿ, ಅವರ ಪರವಾನಗಿ ಪತ್ರವನ್ನು ತೋರಿಸಲು ಹೇಳಿ.
   messages_new_correspondent_personal: |
     ನಿಮಗೆ ನಂಬಿಕೆ ಇಲ್ಲದ ವ್ಯಕ್ತಿಗಳ ಜೊತೆ ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಬೇಡಿ.
+  minimum_positional_accuracy: ಕನಿಷ್ಟ ಸ್ಥಾನಿಕ ನಿಖರತೆ
   misidentifications: ತಪ್ಪಾದ ಗುರುತಿಸುವಿಕೆಗಳು
   #Label shown when a date has not been entered
   missing_date: ಕಾಣೆಯಾದ ದಿನಾಂಕ
@@ -3632,6 +3637,9 @@ kn:
   show_active_and_inactive_taxa: ಸಕ್ರಿಯ ಹಾಗು ನಿಷ್ಕ್ರಿಯ ಜೀವಿವರ್ಗಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ
   show_common_names: ಸಾಮಾನ್ಯ ಹೆಸರುಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ
   show_hidden_content: ಮರೆಮಾಡಿದ ವಿಷಯಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ
+  show_history_by_this_user: ಈ ಬಳಕೆದಾರರಂತೆ ಇತಿಹಾಸವನ್ನು ಪ್ರದರ್ಶಿಸಿ
+  show_history_for_this_kind_of_action: ಈ ಬಗೆಯ ಕ್ರಿಯೆಗಾಗಿ ಇತಿಹಾಸವನ್ನು ಪ್ರದರ್ಶಿಸಿ
+  show_history_for_this_record: ಈ ದಾಖಲಾತಿಗಾಗಿ ಇತಿಹಾಸವನ್ನು ಪ್ರದರ್ಶಿಸಿ
   show_keyboard_shortcuts: ಕೀಬೋರ್ಡ್ ಶಾರ್ಟ್‍ಕಟ್‍ಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ
   show_less: ಕಡಿಮೆ ತೋರಿಸಿ
   show_more: ಇನ್ನಷ್ಟು ತೋರಿಸಿ
