@@ -104,7 +104,7 @@ class ObservationFieldsController < ApplicationController
   # PUT /observation_fields/1.xml
   def update
     respond_to do |format|
-      if @observation_field.update_attributes(params[:observation_field])
+      if @observation_field.update(params[:observation_field])
         format.html { redirect_to(@observation_field, :notice => 'ObservationField was successfully updated.') }
         format.json  { render :json => @observation_field }
       else

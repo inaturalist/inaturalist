@@ -79,7 +79,7 @@ class AtlasesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @atlas.update_attributes( params[:atlas] )
+      if @atlas.update( params[:atlas] )
         @atlas.taxon
         format.html { redirect_to( @atlas, notice: "Atlas was successfully updated." ) }
       else
@@ -105,14 +105,14 @@ class AtlasesController < ApplicationController
     taxon = Taxon.find( taxon_id )
     lts = taxon.atlas.get_atlas_presence_place_listed_taxa( place_id )
     error = nil
+    presence = "not allowed"
     if lts.count > 0
       lts.each do |lt|
         lt.updater = current_user
         lt.destroy
       end
       presence = false
-    else
-      list = place.check_list
+    elsif ( list = place.check_list )
 
       # If there are other potentially relevant comprehensive lists, those
       # need to be added to as well otherwise the validation for our new
@@ -142,6 +142,8 @@ class AtlasesController < ApplicationController
       else
         presence = true
       end
+    else
+      error = "#{place.display_name} has no check list"
     end
 
 

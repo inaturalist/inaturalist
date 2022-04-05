@@ -1,7 +1,6 @@
 class ProjectsController < ApplicationController
   WIDGET_CACHE_EXPIRATION = 15.minutes
 
-  protect_from_forgery unless: -> { request.format.widget? }
   before_action :allow_external_iframes, only: [ :show ]
 
   caches_action :observed_taxa_count, :contributors,
@@ -9,17 +8,22 @@ class ProjectsController < ApplicationController
     cache_path: Proc.new {|c| c.params},
     if: Proc.new {|c| c.request.format == :widget}
 
-  before_action :doorkeeper_authorize!, 
-    only: [ :by_login, :join, :leave, :members, :feature, :unfeature ],
-    if: lambda { authenticate_with_oauth? }
+  ## AUTHENTICATION
+  before_action :doorkeeper_authorize!,
+    only: [:by_login, :join, :leave, :members, :feature, :unfeature],
+    if: -> { authenticate_with_oauth? }
+  before_action :authenticate_user!,
+    unless: -> { authenticated_with_oauth? },
+    except: [:index, :show, :search, :map, :contributors, :observed_taxa_count,
+      :browse, :calendar, :stats_slideshow]
+  protect_from_forgery with: :exception, if: lambda {
+    !request.format.widget? && request.headers["Authorization"].blank?
+  }
+  ## /AUTHENTICATION
+
   before_action :admin_or_this_site_admin_required, only: [ :feature, :unfeature ]
-  
   before_action :return_here,
     only: [ :index, :show, :contributors, :members, :show_contributor, :terms, :invite ]
-  before_action :authenticate_user!, 
-    unless: lambda { authenticated_with_oauth? },
-    except: [ :index, :show, :search, :map, :contributors, :observed_taxa_count,
-      :browse, :calendar, :stats_slideshow ]
   load_except = [ :create, :index, :search, :new_traditional, :by_login, :map, :browse, :calendar, :new ]
   before_action :load_project, except: load_except
   blocks_spam except: load_except, instance: :project
@@ -413,8 +417,14 @@ class ProjectsController < ApplicationController
       end
     end
     respond_to do |format|
+      # Project uses accepts_nested_attributes which saves associates after the main record,
+      # potentially trigging a lot of indexing for things like ProjectUsers. So skip indexing the
+      # project until the entire save/update process is done
+      @project.skip_indexing = true
+      saved_successfully = @project.update(params[:project])
       @project.wait_for_index_refresh = true
-      if @project.update_attributes(params[:project])
+      @project.elastic_index!
+      if saved_successfully
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_updated)) }
         format.json { render json: @project }
       else
@@ -1115,18 +1125,18 @@ class ProjectsController < ApplicationController
       redirect_to @project
       return
     end
-    @project.update_attributes( user: new_admin )
+    @project.update( user: new_admin )
     redirect_back_or_default @project
   end
 
   def feature
     feature = SiteFeaturedProject.where(site: @site, project: @project).
       first_or_create(user: @current_user)
-    feature.update_attributes( user: @current_user )
+    feature.update( user: @current_user )
     if feature.noteworthy && ( params[:noteworthy].nil? || params[:noteworthy].noish? )
-      feature.update_attributes( noteworthy: false )
+      feature.update( noteworthy: false )
     elsif !feature.noteworthy && params[:noteworthy].yesish?
-      feature.update_attributes( noteworthy: true )
+      feature.update( noteworthy: true )
     end
     render status: :ok, json: { }
   end

@@ -52,7 +52,7 @@ describe ObservationFieldValue do
     it "should touch the observation" do
       ofv = ObservationFieldValue.make!
       o = ofv.observation
-      ofv.update_attributes( value: "this is a new value" )
+      ofv.update( value: "this is a new value" )
       o.reload
       expect( o.updated_at ).to be >= ofv.updated_at
     end
@@ -69,7 +69,7 @@ describe ObservationFieldValue do
 
     it "should create an update for the observer if user is not observer" do
       expect( UpdateAction.unviewed_by_user_from_query(@o.user_id, resource: @o) ).to eq false
-      without_delay { @ofv.update_attributes(:value => "bar") }
+      without_delay { @ofv.update(:value => "bar") }
       expect( UpdateAction.unviewed_by_user_from_query(@o.user_id, resource: @o) ).to eq true
     end
 
@@ -77,7 +77,7 @@ describe ObservationFieldValue do
       ofv = without_delay { ObservationFieldValue.make!(:user => @o.user, :value => "foo", :observation => @o) }
       UpdateAction.destroy_all
       expect( UpdateAction.unviewed_by_user_from_query(@o.user_id, resource: @o) ).to eq false
-      without_delay { ofv.update_attributes(:value => "bar", :updater => User.make!) }
+      without_delay { ofv.update(:value => "bar", :updater => User.make!) }
       expect( UpdateAction.unviewed_by_user_from_query(@o.user_id, resource: @o) ).to eq true
     end
 
@@ -87,7 +87,7 @@ describe ObservationFieldValue do
       expect(o.user_id).to eq ofv.user_id
       UpdateAction.destroy_all
       expect( UpdateAction.unviewed_by_user_from_query(o.user_id, resource: o) ).to eq false
-      without_delay { ofv.update_attributes(:value => "bar") }
+      without_delay { ofv.update(:value => "bar") }
       expect( UpdateAction.unviewed_by_user_from_query(o.user_id, resource: o) ).to eq false
     end
 
@@ -96,7 +96,7 @@ describe ObservationFieldValue do
       without_delay { Comment.make!(:user => u, :parent => @o)}
       UpdateAction.destroy_all
       expect( UpdateAction.unviewed_by_user_from_query(u.id, resource: @o) ).to eq false
-      without_delay { @ofv.update_attributes(:value => "bar") }
+      without_delay { @ofv.update(:value => "bar") }
       expect( UpdateAction.unviewed_by_user_from_query(u.id, resource: @o) ).to eq false
     end
   end

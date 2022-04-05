@@ -17,7 +17,7 @@ describe "Observation Index" do
 
   it "sets location based on private coordinates if exist" do
     o = Observation.make!(latitude: 3.0, longitude: 4.0)
-    o.update_attributes(private_latitude: 1.0, private_longitude: 2.0)
+    o.update(private_latitude: 1.0, private_longitude: 2.0)
     json = o.as_indexed_json
     expect( json[:location] ).to eq "1.0,2.0"
   end
@@ -72,7 +72,7 @@ describe "Observation Index" do
       status: Taxon::IUCN_NEAR_THREATENED)
     o.reload
     expect( o.as_indexed_json[:taxon][:threatened] ).to be false
-    cs.update_attributes(place: present_place)
+    cs.update(place: present_place)
     o.reload
     expect( o.as_indexed_json[:taxon][:threatened] ).to be true
   end
@@ -142,10 +142,10 @@ describe "Observation Index" do
     OauthApplication.make!(name: "iNaturalist iPhone App")
     o = Observation.make!( oauth_application_id: 11 )
     expect( o.as_indexed_json[:oauth_application_id] ).to eq 11
-    o.update_attributes( oauth_application_id: nil,
+    o.update( oauth_application_id: nil,
       user_agent: "iNaturalist/1.5.1 (Build 195; Android 3.18..." )
     expect( o.as_indexed_json[:oauth_application_id] ).to eq OauthApplication.inaturalist_android_app.id
-    o.update_attributes( user_agent: "iNaturalist/2.7 (iOS iOS 10.3.2 iPhone)" )
+    o.update( user_agent: "iNaturalist/2.7 (iOS iOS 10.3.2 iPhone)" )
     expect( o.as_indexed_json[:oauth_application_id] ).to eq OauthApplication.inaturalist_iphone_app.id
   end
 
@@ -201,7 +201,7 @@ describe "Observation Index" do
       expect( o.photos.length ).to eq 3
       expect( o.as_indexed_json[:photos_count] ).to eq 2
       allow( f.flaggable ).to receive(:flagged_with).and_return( true )
-      f.update_attributes( resolved: true )
+      f.update( resolved: true )
       expect( f ).to be_resolved
       o.reload
       expect( o.as_indexed_json[:photos_count] ).to eq 3
@@ -241,7 +241,9 @@ describe "Observation Index" do
       list = List.make!
       lt1 = ListedTaxon.make!( list: list, taxon: Taxon.make! )
       lt2 = ListedTaxon.make!( list: list, taxon: Taxon.make! )
-      filtered_ancestor_ids = Observation.params_to_elastic_query( list_id: list.id )[:filters][0][:terms]["taxon.ancestor_ids"]
+      filtered_ancestor_ids = Observation.params_to_elastic_query(
+        list_id: list.id
+      )[:filters][0][:terms]["taxon.ancestor_ids.keyword"]
       expect( filtered_ancestor_ids ).to include lt1.taxon_id
       expect( filtered_ancestor_ids ).to include lt2.taxon_id
     end
@@ -316,8 +318,8 @@ describe "Observation Index" do
         { http_param: :observed_on_day, es_field: "observed_on_details.day" },
         { http_param: :observed_on_month, es_field: "observed_on_details.month" },
         { http_param: :observed_on_year, es_field: "observed_on_details.year" },
-        { http_param: :place_id, es_field: "place_ids" },
-        { http_param: :site_id, es_field: "site_id" }
+        { http_param: :place_id, es_field: "place_ids.keyword" },
+        { http_param: :site_id, es_field: "site_id.keyword" }
       ].each do |filter|
         # single values
         expect( Observation.params_to_elastic_query({
@@ -378,13 +380,13 @@ describe "Observation Index" do
     it "filters by site_id" do
       s = Site.make!(preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_SITE)
       expect( Observation.params_to_elastic_query({ }, site: s) ).to include(
-      filters: [ { terms: { "site_id" => [ s.id ] } } ] )
+      filters: [ { terms: { "site_id.keyword" => [ s.id ] } } ] )
     end
 
     it "filters by site place" do
       s = Site.make!(preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_PLACE, place: make_place_with_geom)
       expect( Observation.params_to_elastic_query({ }, site: s) ).to include(
-        filters: [ { terms: { "place_ids" => [ s.place.id ] } } ] )
+        filters: [ { terms: { "place_ids.keyword" => [ s.place.id ] } } ] )
     end
 
     it "filters by site bounding box" do
@@ -396,19 +398,19 @@ describe "Observation Index" do
 
     it "filters by user and user_id" do
       expect( Observation.params_to_elastic_query({ user: 1 }) ).to include(
-        filters: [ { terms: { "user.id" => [ 1 ] } } ] )
+        filters: [ { terms: { "user.id.keyword" => [ 1 ] } } ] )
       expect( Observation.params_to_elastic_query({ user_id: 1 }) ).to include(
-        filters: [ { terms: { "user.id" => [ 1 ] } } ] )
+        filters: [ { terms: { "user.id.keyword" => [ 1 ] } } ] )
     end
 
     it "filters by taxon_id" do
       expect( Observation.params_to_elastic_query({ observations_taxon: 1 }) ).to include(
-        filters: [ { term: { "taxon.ancestor_ids" => 1 } } ] )
+        filters: [ { term: { "taxon.ancestor_ids.keyword" => 1 } } ] )
     end
 
     it "filters by taxon_ids" do
       expect( Observation.params_to_elastic_query({ observations_taxon_ids: [ 1, 2 ] }) ).to include(
-        filters: [ { terms: { "taxon.ancestor_ids" => [ 1, 2 ] } } ] )
+        filters: [ { terms: { "taxon.ancestor_ids.keyword" => [ 1, 2 ] } } ] )
     end
 
     it "filters by license" do
@@ -488,7 +490,7 @@ describe "Observation Index" do
     it "filters by not_in_project" do
       p = Project.make!
       expect( Observation.params_to_elastic_query({ not_in_project: p.id }) ).to include(
-        inverse_filters: [ { term: { project_ids: p.id } } ] )
+        inverse_filters: [ { term: { "project_ids.keyword": p.id } } ] )
     end
 
     it "filters by lrank" do
@@ -664,7 +666,7 @@ describe "Observation Index" do
         updated_since: timeString, aggregation_user_ids: [ 1, 2 ] }) ).to include(
         filters: [ { bool: { should: [
           { range: { updated_at: { gte: timeObject } } },
-          { terms: { "user.id" => [1, 2] } } ] } } ] )
+          { terms: { "user.id.keyword" => [1, 2] } } ] } } ] )
     end
 
     it "filters by observation field values" do

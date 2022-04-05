@@ -1,4 +1,7 @@
 class OauthTokensController < Doorkeeper::TokensController
+  include Shared::FiltersModule
+  prepend_before_action :set_request_locale, :set_site
+
   def create
     super
     resource_owner_id = authorize_response.try(:token).try(:resource_owner_id)

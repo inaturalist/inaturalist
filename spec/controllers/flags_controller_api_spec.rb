@@ -7,6 +7,8 @@ describe FlagsController do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow(controller).to receive(:doorkeeper_token) { token }
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
 
   describe "create" do
     let(:comment) { Comment.make! }
@@ -57,6 +59,32 @@ describe FlagsController do
       put :update, format: :json, params: { id: flag.id, flag: { resolved: true } }
       json = JSON.parse( response.body )
       expect( json["resolved"] ).to eq true
+    end
+  end
+
+  context "when current user is flagged" do
+    describe "update" do
+      context "on a non taxon flag" do
+        let(:flag) { Flag.make!( user: user, flaggable: Comment.make!(user: user) ) }
+        it "should not result in an update" do
+          expect( flag.flaggable_user.id ).to eq user.id
+          expect( flag ).not_to be_resolved
+          put :update, format: :json, params: { id: flag.id, flag: { resolved: true } }
+          flag.reload
+          expect( flag ).not_to be_resolved
+        end
+      end
+
+      context "on a taxon flag" do
+        let(:flag) { Flag.make!( user: user, flaggable_user: user ) }
+        it "should result in an update" do
+          expect( flag.flaggable_user.id ).to eq user.id
+          expect( flag ).not_to be_resolved
+          put :update, format: :json, params: { id: flag.id, flag: { resolved: true } }
+          flag.reload
+          expect( flag ).to be_resolved
+        end
+      end
     end
   end
 end

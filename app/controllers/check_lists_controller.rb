@@ -94,7 +94,7 @@ class CheckListsController < ApplicationController
   def update
     @check_list = @list
     update_list_rules
-    if @list.update_attributes(params[:check_list])
+    if @list.update(params[:check_list])
       flash[:notice] = t(:check_list_updated)
       return redirect_to @list
     else
@@ -175,7 +175,7 @@ class CheckListsController < ApplicationController
   end
   
   def lock_down_default_check_lists
-    return true unless @list.is_default?
+    return true unless @list.is_default? && @list.place.prefers_check_lists?
     if logged_in? && current_user.is_admin?
       flash[:notice] = t(:you_can_edit_this_default_check_list_because)
     else

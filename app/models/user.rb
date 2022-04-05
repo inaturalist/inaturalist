@@ -12,6 +12,7 @@ class User < ApplicationRecord
   acts_as_voter
   acts_as_spammable fields: [ :description ],
                     comment_type: "signup"
+  has_moderator_actions %w(suspend unsuspend)
 
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = 'admin'
@@ -32,6 +33,7 @@ class User < ApplicationRecord
 
   attr_accessor :html
   attr_accessor :pi_consent
+  attr_accessor :data_transfer_consent
 
   # Email notification preferences
   preference :comment_email_notification, :boolean, default: true
@@ -253,6 +255,7 @@ class User < ApplicationRecord
   before_save :check_suspended_by_user
   before_save :remove_email_from_name
   before_save :set_pi_consent_at
+  before_save :set_data_transfer_consent_at
   before_save :set_locale
   after_save :update_observation_licenses
   after_save :update_photo_licenses
@@ -262,12 +265,11 @@ class User < ApplicationRecord
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_update :set_observations_taxa_if_pref_changed
-  after_update :update_photo_properties
   after_create :set_uri
-  after_destroy :create_deleted_user
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
   after_destroy :reindex_faved_observations_after_destroy_later
+  after_destroy :create_deleted_user
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
@@ -386,12 +388,22 @@ class User < ApplicationRecord
     !suspended?
   end
 
+  def child_without_permission?
+    !birthday.blank? &&
+      birthday > 13.years.ago &&
+      UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
+  end
+
   # This is a dangerous override in that it doesn't call super, thereby
   # ignoring the results of all the devise modules like confirmable. We do
   # this b/c we want all users to be able to sign in, even if unconfirmed, but
   # not if suspended.
   def active_for_authentication?
-    active? && ( birthday.blank? || birthday < 13.years.ago || !UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists? )
+    return false if suspended?
+
+    return false if child_without_permission?
+
+    true
   end
 
   def download_remote_icon
@@ -496,6 +508,10 @@ class User < ApplicationRecord
   def is_curator?
     has_role?(:curator)
   end
+
+  def is_app_owner?
+    has_role?( Role::APP_OWNER )
+  end
   
   def is_admin?
     has_role?(:admin)
@@ -514,6 +530,14 @@ class User < ApplicationRecord
   
   def friends_with?(user)
     friends.exists?(user)
+  end
+
+  def trusts?( user )
+    return false if user.blank?
+    return false unless user.id
+    return true if user.id == id
+
+    friendships.where( friend_id: user, trust: true ).exists?
   end
   
   def picasa_client
@@ -698,13 +722,13 @@ class User < ApplicationRecord
         longitude = ll[1]
         if geoip_response.results.city
           # also probably know the county
-          lat_lon_acc_admin_level = 2
+          lat_lon_acc_admin_level = Place::COUNTY_LEVEL
         elsif geoip_response.results.region
           # also probably know the state
-          lat_lon_acc_admin_level = 1
+          lat_lon_acc_admin_level = Place::STATE_LEVEL
         else
           # probably just know the country
-          lat_lon_acc_admin_level = 0
+          lat_lon_acc_admin_level = Place::COUNTRY_LEVEL
         end
       end
     end
@@ -712,7 +736,23 @@ class User < ApplicationRecord
     self.longitude = longitude
     self.lat_lon_acc_admin_level = lat_lon_acc_admin_level
   end
-  
+
+  def email_suppressed_in_group?( suppressed_groups )
+    unless suppressed_groups.is_a?( Array )
+      suppressed_groups = [suppressed_groups]
+    end
+    unsuppressed_groups = [
+      EmailSuppression::ACCOUNT_EMAILS,
+      EmailSuppression::DONATION_EMAILS,
+      EmailSuppression::NEWS_EMAILS,
+      EmailSuppression::TRANSACTIONAL_EMAILS
+    ].reject {| i | ( suppressed_groups.include? i ) }
+    return true if EmailSuppression.where( "email = ? AND suppression_type NOT IN (?)",
+      email, unsuppressed_groups ).first
+
+    false
+  end
+
   def get_lat_lon_from_ip_if_last_ip_changed
     return true if last_ip.nil?
     if last_ip_changed? || latitude.nil?
@@ -792,7 +832,7 @@ class User < ApplicationRecord
     unless user_saved
       suggestion = User.suggest_login(u.login)
       Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
-      u.update_attributes(:login => suggestion)
+      u.update(:login => suggestion)
     end
     u.add_provider_auth(auth_info)
     u
@@ -942,16 +982,11 @@ class User < ApplicationRecord
     end
 
     # transition ownership of projects with observations, delete the rest
-    Project.where(:user_id => id).find_each do |p|
-      if p.observations.exists?
-        if manager = p.project_users.managers.where("user_id != ?", id).first
-          p.user = manager.user
-          manager.role_will_change!
-          manager.save
-        else
-          pu = ProjectUser.create(:user => User.admins.first, :project => p)
-          p.user = pu.user
-        end
+    Project.where( user_id: id ).find_each do | p |
+      if p.observations.exists? && ( manager = p.project_users.managers.where( "user_id != ?", id ).first )
+        p.user = manager.user
+        manager.role_will_change!
+        manager.save
         p.save
       else
         p.destroy
@@ -1199,21 +1234,6 @@ class User < ApplicationRecord
     true
   end
 
-  def update_photo_properties
-    changes = {}
-    changes[:native_username] = login if saved_change_to_login?
-    changes[:native_realname] = name if saved_change_to_name?
-    unless changes.blank?
-      delay( priority: USER_INTEGRITY_PRIORITY ).update_photos_with_changes( changes )
-    end
-    true
-  end
-
-  def update_photos_with_changes( changes )
-    return if changes.blank?
-    photos.update_all( changes )
-  end
-
   def recent_notifications(options={})
     return [] if CONFIG.has_subscribers == :disabled
     options[:filters] = options[:filters] ? options[:filters].dup : [ ]
@@ -1224,7 +1244,7 @@ class User < ApplicationRecord
     elsif options[:viewed]
       options[:filters] << { term: { viewed_subscriber_ids: id } }
     end
-    options[:filters] << { term: { subscriber_ids: id } }
+    options[:filters] << { term: { "subscriber_ids.keyword": id } }
     ops = {
       filters: options[:filters],
       inverse_filters: options[:inverse_filters],
@@ -1285,7 +1305,7 @@ class User < ApplicationRecord
     return unless user = User.find_by_id(user_id)
     new_fields_result = Observation.elastic_search(
       filters: [
-        { term: { non_owner_identifier_user_ids: user_id } }
+        { term: { "non_owner_identifier_user_ids.keyword": user_id } }
       ],
       size: 0,
       track_total_hits: true
@@ -1300,7 +1320,7 @@ class User < ApplicationRecord
     result = Observation.elastic_search(
       filters: [
         { bool: { must: [
-          { term: { "user.id": user_id } },
+          { term: { "user.id.keyword": user_id } },
         ] } }
       ],
       size: 0,
@@ -1357,6 +1377,16 @@ class User < ApplicationRecord
     Project.elastic_index!( scope: Project.where( user_id: id ), delay: true )
   end
 
+  def moderated_with( moderator_action )
+    if moderator_action.action == ModeratorAction::SUSPEND && !is_admin?
+      self.suspended_by_user = moderator_action.user
+      suspend!
+    elsif moderator_action.action == ModeratorAction::UNSUSPEND
+      self.suspended_by_user = nil
+      unsuspend!
+    end
+  end
+
   def personal_lists
     lists.not_flagged_as_spam.
       where("type = 'List' OR type IS NULL")
@@ -1381,7 +1411,14 @@ class User < ApplicationRecord
 
   def set_pi_consent_at
     if pi_consent
-      self.pi_consent_at = Time.now
+      self.pi_consent_at ||= Time.now
+    end
+    true
+  end
+
+  def set_data_transfer_consent_at
+    if data_transfer_consent
+      self.data_transfer_consent_at ||= Time.now
     end
     true
   end
@@ -1406,8 +1443,8 @@ class User < ApplicationRecord
     taxon_counts = Observation.elastic_search(
       size: 0,
       filters: [
-        { term: { "user.id": id } },
-        { terms: { "taxon.ancestor_ids": taxa_plus_ancestor_ids } },
+        { term: { "user.id.keyword": id } },
+        { terms: { "taxon.ancestor_ids.keyword": taxa_plus_ancestor_ids } },
         { range: { "observed_on_details.date": { lt: date.to_s } } }
       ],
       aggregate: {
@@ -1440,7 +1477,9 @@ class User < ApplicationRecord
       u ||= User.find_by_login( user )
       user = u
     end
-    LocalPhoto.where( user_id: user.id ).select( :id, :license, :original_url, :user_id ).includes( :user ).each do |photo|
+    LocalPhoto.where( user_id: user.id ).
+      select( :id, :license, :user_id, :file_prefix_id, :file_extension_id ).
+      includes( :user, :file_prefix, :file_extension, :flags ).find_each do |photo|
       if photo.photo_bucket_should_be_changed?
         LocalPhoto.delay(
           queue: "photos",
@@ -1459,20 +1498,21 @@ class User < ApplicationRecord
     spammers = []
     num_checks = {}
     User.order( "id desc" ).limit( limit ).
-        where( "spammer is null " ).
-        where( "created_at < ? ", 12.hours.ago ). # half day grace period
-        where( "description is not null and description != '' and description ilike '%http%'" ).
-        where( "observations_count = 0 and identifications_count = 0" ).
-        pluck(:id).
-        in_groups_of( 10 ) do |ids|
+      where( "spammer is null " ).
+      where( "created_at < ? ", 12.hours.ago ). # half day grace period
+      where( "description is not null and description != '' and description ilike '%http%'" ).
+      where( "observations_count = 0 and identifications_count = 0" ).
+      pluck( :id ).
+      in_groups_of( 10 ) do | ids |
       puts
       puts "BATCH #{ids[0]}"
       puts
-      3.times do |i|
+      3.times do | i |
         batch = User.where( "id IN (?)", ids )
         puts "Try #{i}"
-        batch.each do |u|
+        batch.each do | u |
           next if spammers.include?( u.login )
+
           num_checks[u.login] ||= 0
           puts "#{u}, checked #{num_checks[u.login]} times already"
           num_checks[u.login] += 1
@@ -1493,11 +1533,12 @@ class User < ApplicationRecord
 
   def self.ip_address_is_often_suspended( ip )
     return false if ip.blank?
+
     count_suspended = User.where( last_ip: ip ).where( "suspended_at IS NOT NULL" ).count
     count_active = User.where( last_ip: ip ).where( "suspended_at IS NULL" ).count
     total = count_suspended + count_active
     return false if total < 3
-    return count_suspended.to_f / ( count_suspended + count_active ).to_f >= 0.9
-  end
 
+    count_suspended.to_f / ( count_suspended + count_active ) >= 0.9
+  end
 end

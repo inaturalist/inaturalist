@@ -317,7 +317,7 @@ class SiteStatistic < ApplicationRecord
       obs_id_stats.created_at BETWEEN '#{(at_time - 1.week).to_s(:db)}' AND '#{at_time.to_s(:db)}'
     SQL
     Site.connection.execute(sql)[0].inject({}) do |memo,pair|
-      memo[pair[0]] = pair[1].to_numeric
+      memo[pair[0]] = pair[1].to_s.to_numeric
       memo
     end
   end
@@ -339,7 +339,7 @@ class SiteStatistic < ApplicationRecord
       iphone: Observation.elastic_search(
         filters: [
           date_filter,
-          { term: { oauth_application_id: iphone_app_id } }
+          { term: { "oauth_application_id.keyword": iphone_app_id } }
         ],
         size: 0,
         track_total_hits: true
@@ -347,7 +347,7 @@ class SiteStatistic < ApplicationRecord
       android: Observation.elastic_search(
         filters: [
           date_filter,
-          { term: { oauth_application_id: android_app_id } }
+          { term: { "oauth_application_id.keyword": android_app_id } }
         ],
         size: 0,
         track_total_hits: true
@@ -358,7 +358,7 @@ class SiteStatistic < ApplicationRecord
           {
             bool: {
               must: { exists: { field: "oauth_application_id" } },
-              must_not: { terms: { oauth_application_id: [
+              must_not: { terms: { "oauth_application_id.keyword": [
                 iphone_app_id,
                 android_app_id
               ] } }

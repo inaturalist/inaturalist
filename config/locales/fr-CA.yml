@@ -128,7 +128,6 @@ fr-CA:
   account: Compte
   account_creation: Création de compte
   account_settings: Paramètres du compte
-  accept: accepter
   accept_community_identifications: Accepter les identifications de la communauté
   accuracy: Précision
   accuracy_meters: Précision (mètres)
@@ -138,6 +137,7 @@ fr-CA:
     marqueur de la carte et en le déplaçant au bon endroit. Assurez-vous que le
     cercle soit assez grand pour être certain que vous vous trouviez
     à l’intérieur.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Action
   actions: Actions
   active: Actif
@@ -266,7 +266,6 @@ fr-CA:
   blog_widget: Widget de blogue
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: texte en gras
-  check_out_our_blog: Visitez notre blogue
   check_this_box_if_html: |
     Cochez cette case si vous voulez appliquer une
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>licence Creative Commons d’attribution non commerciale</a> au contenu téléversé. Ceci veut dire que quiconque peut copier et réutiliser vos photos ou vos observations sans demander la permission, du moment qu’ils vous en donnent le crédit et n'utilisent pas les œuvres commercialement. Vous pouvez choisir une autre licence ou supprimer la licence plus tard, mais il s'agit de la meilleure licence pour échanger avec les chercheurs.
@@ -345,14 +344,6 @@ fr-CA:
   parental_consent:
     must_specify_email: Vous devez spécifier une adresse courriel
     invalid_email: Format de courriel invalide
-  pi_consent_desc_html: |
-    Nous stockons les informations personnelles telles que le nom des utilisateurs et les adresses de messagerie afin de
-    gérer les compter sur ce site, et pour être en accord avec les lois sur la vie privée, nous
-    avons besoin que vous cochiez cette case pour indiquer que vous acceptez cette utilisation
-    d’informations personnelles. Pour en savoir plus sur les informations que nous collectons et
-    comment nous les utilisons, veuillez voir notre
-    <a href='%{privacy_url}' target='_blank'>Politique de confidentialité</a>
-    et nos <a href='%{terms_url}' target='_blank'>Conditions de service</a>.
   project_x_was_delete: "%{project} a été supprimé (merci d'attendre quelques minutes pour qu'il soit supprimé du site Web)"
   receive_email_notifications_when_people_leave_you: Recevoir des avis par courriel sur
   search_by_name_or_email: Rechercher par nom ou par courriel
@@ -740,33 +731,6 @@ fr-CA:
           Assurez-vous d'avoir lu les différences dans notre <a href="%{url}" target="_blank">billet de blogue au sujet des Projets collection</a>.
       updates_desc: |
         Recevoir des notifications pour ce projet sur votre tableau de bord et dans le courriel quotidien
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>Vous avez plusieurs options :</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Ajouter un signalement à un taxon de plus haut niveau</strong>
-          <p>
-          Par ex. le genre qui contient une espèce. Ensuite, un responsable
-          de l'organisation bienveillant ajoutera le taxon s’il peut être ajouté.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Contacter le Forum</a></strong>
-          <p>
-          Beaucoup de responsables du site suivent les messages vers le forum.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Contacter l'équipe d'assistance</a>
-          </strong>
-          <p>
-          Soyez patient·e, notre équipe d'assistance est restreinte.
-          </p>
-          </li>
-          </ul>
     shared:
       spam:
         message_for_owner_and_curators_html: |
@@ -834,18 +798,37 @@ fr-CA:
       edit:
         blocking_desc_html: |
           <p>
-          Bloquer quelqu'un l'empêche de vous envoyer des messages, de commenter vos  observations, d'identifier vos observations et d'interagir autrement avec vous sur %{site_name}. Cela supprime également ses observations de vos  résultats de recherche et supprime vos observations ses résultats de   recherche. Cependant, cela ne vous rend pas invisible pour lui. Il peut toujours trouver vos observations et regardez votre profil, il ne peut tout simplement pas  interagir avec vous.
+          Bloquer quelqu'un l'empêche de vous envoyer des
+          messages, de commenter vos  observations, d'identifier vos observations
+          et d'interagir autrement  avec vous sur %{site_name}. Cela supprime également
+          ses observations de vos  résultats de recherche et supprime vos observations
+          ses résultats de   recherche. Cependant, cela ne vous rend pas invisible
+          pour lui. Il peut toujours   trouver vos observations et regardez votre
+          profil, il ne peut tout simplement pas  interagir avec vous.
           </p>
           <p>
-          Le blocage est pour des situations où vous ne pouvez simplement pas vous entendre avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts pour  régler les différends d'une manière civilisée. Ce n'est pas un moyen pour se cacher de personnes, pour empêcher les identifications de personnes dont vous ne partagez pas les opinions, ou de retirer votre identifiant de la communauté (il y en a un autre moyen de régler cela). Ainsi, le blocage fonctionne dans les deux sens: si vous bloquez  quelqu'un, ils ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier vos observations, vous vous empêchez également d'identifier ses  observations.
+          Le blocage est pour des situations où vous ne pouvez simplement pas vous
+          entendre  avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts
+          pour  régler les différends d'une manière civilisée. Ce n'est pas un moyen
+          pour se cacher de  personnes, pour empêcher les identifications de personnes
+          dont vous ne partagez pas les opinions, ou de retirer votre identifiant
+          de la communauté (il y en a un autre moyen de régler cela). Ainsi, le
+          blocage fonctionne dans les deux sens: si vous bloquez  quelqu'un, ils
+          ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir
+          avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier
+          vos  observations, vous vous empêchez également d'identifier ses  observations.
           </p>
           <p>
-          Vous ne pouvez bloquer que trois personnes. Nous pensons que c'est un nombre raisonnable qui accueille les personnes qui ont besoin de bloquer et  prévenir les abus de blocage. Si vous sentez que vous devez bloquer plus <a href="mailto:%{help_email}">contactez-nous</a>.
+          Vous ne pouvez bloquer que trois personnes. Nous pensons que
+          c'est un nombre raisonnable  qui accueille les personnes qui ont besoin
+          de bloquer et  prévenir les abus de blocage. Si vous sentez que vous devez
+          bloquer plus  <a href="mailto:%{help_email}"> contactez-nous </a>.
           </p>
           <p>
           Si quelqu'un vous harcèle ou vous traque sur %{site_name},
-          <a href="mailto:%{help_email}">merci de nous le faire savoir</a>.
-          Si cela représente une violation de nos conditions d'utilisation ou représente autre comportement que nous considérons inapproprié pour notre site, nous
+          <a href="mailto:%{help_email}"> merci de nous le faire savoir </a>.
+          Si cela représente une violation de nos conditions d'utilisation ou représente
+          autre comportement que nous considérons inapproprié pour notre site, nous
           enquêterons.
           </p>
         inaturalist_network_affiliation_desc_html: |2

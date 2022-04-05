@@ -55,9 +55,9 @@
 
     <span class="breadcrumbs">
       <% if @list.user -%>
-        <%= link_to raw(is_me?(@list.user) ? t(:back_to_your_lists) : t(:back_to_lists, name: possessive(@list.user).downcase)),
-                    lists_by_login_path(:login => @list.user.login),
-                    :class => 'back crumb' %>
+        <%= link_to raw( is_me?( @list.user ) ? t(:back_to_your_lists) : t(:back_to_users_lists, user: @list.user.login, vow_or_con: @list.user.login[0].downcase) ),
+                    lists_by_login_path( login: @list.user.login ),
+                    class: "back crumb" %>
       <% else %>
         <%= link_to t(:back_to_x, :noun => @list.owner_name), @list.owner, :class => "back crumb" %>
       <% end -%>
@@ -72,9 +72,11 @@
 <div id="maincol" class="column span-17">
   <%= render :partial => 'tools' %>
 
-  <div id="description" class="readable description">
-    <%= formatted_user_text(@list.description =~ /^Every species seen by / ? @list.description.gsub('Every species seen by', t(:every_species_seen_by)) : @list.description) %>
-  </div>
+  <%- unless @list.description.blank? %>
+    <div id="description" class="readable description">
+      <%= formatted_user_text @list.description %>
+    </div>
+  <% end -%>
 
   <% if @list.rank_rule != "any" -%>
     <div id="list_rank_rule" class="description">

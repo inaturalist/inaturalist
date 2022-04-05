@@ -31,7 +31,9 @@ module ActsAsElasticModel
 
     class << self
       def elastic_search(options = {})
-        try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, sleep: 1, tries: 10 ) do
+        try_and_try_again( [
+          Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
+          Elasticsearch::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10 ) do
           begin
             __elasticsearch__.search(ElasticModel.search_hash(options))
           rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
@@ -69,7 +71,7 @@ module ActsAsElasticModel
           filter_scope : self.all
         # it also accepts an array of IDs to filter by
         if filter_ids = options.delete(:ids)
-          filter_ids.compact!
+          filter_ids = filter_ids.compact.uniq
           batch_sleep = options.delete(:sleep)
           if filter_ids.length > options[:batch_size]
             # call again for each batch, then return
@@ -259,7 +261,9 @@ module ActsAsElasticModel
             refresh: options[:wait_for_index_refresh] ? "wait_for" : false
           })
           if batch && batch.length > 0 && batch.first.respond_to?(:last_indexed_at)
-            where(id: batch).update_all(last_indexed_at: Time.now)
+            ActiveRecord::Base.connection.without_sticking do
+              where(id: batch).update_all(last_indexed_at: Time.now)
+            end
           end
           GC.start
         rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e

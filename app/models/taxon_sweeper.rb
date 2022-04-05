@@ -1,5 +1,9 @@
 class TaxonSweeper < ActionController::Caching::Sweeper
-  observe Taxon
+  begin
+    observe Taxon
+  rescue ActiveRecord::NoDatabaseError
+    puts "Database not connected, failed to observe Taxon. Ignore if setting up for the first time"
+  end
   include Shared::SweepersModule
   
   def after_update(taxon)

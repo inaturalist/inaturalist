@@ -9,7 +9,7 @@ function( $http, $rootScope, $filter ) {
     if( options.cache !== true ) { options.cache = false; }
     var config = {
       cache: options.cache,
-      timeout: 20000 // 20 second timeout
+      timeout: 60000 // 60 second timeout
     };
     var apiURL = $( "meta[name='config:inaturalist_api_url']" ).attr( "content" );
     if ( apiURL && url.indexOf( apiURL ) >= 0 ) {
@@ -83,6 +83,7 @@ function( $http, $rootScope, $filter ) {
 
   var offsetCenter = function( options, callback ) {
     if( !options.map ) { return callback( ); }
+    if ( typeof ( google ) === "undefined" ) { return callback( ); }
     var overlay = new google.maps.OverlayView( );
     overlay.draw = function( ) { };
     overlay.onAdd = function( ) { };
@@ -110,6 +111,7 @@ function( $http, $rootScope, $filter ) {
 
   var processPoints = function( geometry, callback, thisArg ) {
     if( !geometry ) { return; }
+    if ( typeof ( google ) === "undefined" ) { return callback( ); }
     if( geometry instanceof google.maps.LatLng ) {
       callback.call( thisArg, geometry );
     } else if( geometry instanceof google.maps.Data.Point ) {
@@ -186,7 +188,7 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
         if ( !scope.time ) return "";
         if ( scope.obscured ) return "";
         scope.timezone = scope.timezone || "UTC";
-        return moment( scope.time.replace( /[+-]\d\d:\d\d/, "" ) ).tz( scope.timezone ).format( "LT z" );
+        return moment.tz( scope.time.replace( /[+-]\d\d:\d\d/, "" ), scope.timezone ).format( "LT z" );
       }
     },
     template: '<span class="date">{{ dateString() }}</span><span class="time">{{ timeString() }}</span>'

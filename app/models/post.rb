@@ -46,6 +46,7 @@ class Post < ApplicationRecord
   has_and_belongs_to_many :observations, -> { distinct }
 
   validates_length_of :title, in: 1..2000
+  validates_length_of :body, in: 1..1000000
   validates_presence_of :parent
   validate :user_must_be_on_site_long_enough
   

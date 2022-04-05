@@ -1057,7 +1057,7 @@ time {
 }
 
 .QualityMetrics {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   padding-right: 20px;
   .grade {
     margin: 15px 0px 25px;
@@ -2113,11 +2113,9 @@ time {
     display: block;
     margin-top: 25px;
     .application {
-      .icon {
+      img {
+        max-height: 14px;
         margin-right: 5px;
-        img {
-          border: 1px solid $border-grey;
-        }
       }
       .name {
         vertical-align: middle;

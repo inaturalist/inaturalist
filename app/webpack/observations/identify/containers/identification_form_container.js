@@ -7,9 +7,9 @@ import {
   loadingDiscussionItem,
   fetchObservationsStats,
   stopLoadingDiscussionItem,
-  showAlert,
   addIdentification
 } from "../actions";
+import { showAlert } from "../../../shared/ducks/alert_modal";
 import { showDisagreementAlert } from "../../shared/ducks/disagreement_alert";
 import { updateEditorContent } from "../../shared/ducks/text_editors";
 

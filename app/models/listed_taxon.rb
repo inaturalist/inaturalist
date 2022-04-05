@@ -40,7 +40,7 @@ class ListedTaxon < ApplicationRecord
   after_save :update_cache_columns_for_check_list
   after_save :propagate_establishment_means
   after_save :remove_other_primary_listings
-  after_save :update_attributes_on_related_listed_taxa
+  after_save :update_on_related_listed_taxa
   after_save :index_taxon
   after_save :log_create_if_taxon_id_changed
   after_commit :expire_caches
@@ -196,13 +196,9 @@ class ListedTaxon < ApplicationRecord
     end
   end
   PRESENT_EQUIVALENTS = [PRESENT, COMMON, UNCOMMON]
-  
+
   ESTABLISHMENT_MEANS = %w(native endemic introduced)
-  ESTABLISHMENT_MEANS_DESCRIPTIONS = ActiveSupport::OrderedHash.new
-  ESTABLISHMENT_MEANS_DESCRIPTIONS["native"] = "evolved in this region or arrived by non-anthropogenic means"
-  ESTABLISHMENT_MEANS_DESCRIPTIONS["endemic"] = "native and occurs nowhere else"
-  ESTABLISHMENT_MEANS_DESCRIPTIONS["introduced"] = "arrived in the region via anthropogenic means"
-  
+
   ESTABLISHMENT_MEANS.each do |means|
     const_set means.upcase, means
     define_method "#{means}?" do
@@ -458,7 +454,7 @@ class ListedTaxon < ApplicationRecord
           update_cache_columns_for(id)
       end
     elsif primary_listed_taxon
-      primary_listed_taxon.update_attributes_on_related_listed_taxa
+      primary_listed_taxon.update_on_related_listed_taxa
     end
     true
   end
@@ -748,9 +744,8 @@ class ListedTaxon < ApplicationRecord
   end
 
   def expire_caches
-    return unless list.is_a?(CheckList)
     ctrl = ActionController::Base.new
-    if !place_id.blank? && manually_added
+    if !place_id.blank? && manually_added && list.is_a?( CheckList )
       I18N_SUPPORTED_LOCALES.each do |locale|
         ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place_id, locale: locale ) )
         ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place.slug, locale: locale ) ) if place
@@ -844,7 +839,7 @@ class ListedTaxon < ApplicationRecord
           end
         else
           lt.skip_index_taxon = true
-          lt.update_attributes( taxon: output_taxon )
+          lt.update( taxon: output_taxon )
         end
       end
       yield(lt) if block_given?
@@ -893,7 +888,7 @@ class ListedTaxon < ApplicationRecord
     related_listed_taxon.update_attribute(:primary_listing, true) if related_listed_taxon && related_listed_taxon.list_id && related_listed_taxon.place_id && can_set_as_primary?
   end
 
-  def update_attributes_on_related_listed_taxa
+  def update_on_related_listed_taxa
     return true unless primary_listing
     related_listed_taxa.each do |related_listed_taxon|
       related_listed_taxon.primary_listing = false
@@ -934,11 +929,11 @@ class ListedTaxon < ApplicationRecord
     primary_listed_taxon.try(:establishment_means)
   end
 
-  def update_attributes_and_primary(listed_taxon, current_user)
+  def update_and_primary(listed_taxon, current_user)
     transaction do
-      update_attributes(listed_taxon.merge(:updater_id => current_user.id))
+      update(listed_taxon.merge(:updater_id => current_user.id))
       if primary_listed_taxon && primary_listed_taxon != self
-        primary_listed_taxon.update_attributes(
+        primary_listed_taxon.update(
           occurrence_status_level: listed_taxon['occurrence_status_level'],
           establishment_means: listed_taxon['establishment_means']
         )
@@ -961,9 +956,10 @@ class ListedTaxon < ApplicationRecord
   end
 
   def establishment_means_description
-    default = ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS[establishment_means]
-    key = default.gsub( "-", "_" ).gsub( " ", "_" ).downcase
-    I18n.t( "establishment_means_descriptions.#{ key }", default: default )
+    # I18n.t( "establishment_means_descriptions.native" )
+    # I18n.t( "establishment_means_descriptions.endemic" )
+    # I18n.t( "establishment_means_descriptions.introduced" )
+    I18n.t( "establishment_means_descriptions.#{establishment_means}" )
   end
 
   def reindex_observations_later
@@ -988,8 +984,8 @@ class ListedTaxon < ApplicationRecord
         sort: { id: "asc" },
         filters: [
           { range: { id: { gt: last_id } } },
-          { term: { private_place_ids: place_id } },
-          { term: { "taxon.ancestor_ids": taxon_id } }
+          { term: { "private_place_ids.keyword": place_id } },
+          { term: { "taxon.ancestor_ids.keyword": taxon_id } }
         ]
       ).per_page( per_page )
       ids = res.response.hits.hits.map(&:_id).map(&:to_i)

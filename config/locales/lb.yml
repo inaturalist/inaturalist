@@ -17,9 +17,9 @@ lb:
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Bestëmmunger'
+    one: '<span class="count">%{count}</span> Bestëmmer'
     #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Bestëmmunger'
+    other: '<span class="count">%{count}</span> Bestëmmer'
   x_languages:
     one: "%{count} Sprooch"
     other: "%{count} Sproochen"
@@ -128,6 +128,7 @@ lb:
   about_places: Iwwer Plazen
   about_taxon_ranges: Iwwer Taxon-Verbreedungsgebiett
   about_the_cc_licenses: Iwwer Creative Commons Lizenzen
+  about_the_network: Iwwert d'Netzwierk
   about_these_licenses: Iwwer dës Lizenzen
   about_this_bioblitz: Iwwer dëse Bioblitz
   about_this_map: Iwwer dës Kaart
@@ -135,12 +136,12 @@ lb:
   about_trusting_projects_options_any: All Är Observatiounen an dësem Projet
   account: Benotzerkont
   account_settings: Astellunge vum Benotzerkont
-  accept: akzeptéieren
   accept_community_identifications: Bestëmmungen vun der Community akzeptéieren
   accuracy: Prezisioun
   accuracy_meters: Genauegkeet (Meter)
   accuracy_of_the_coordinates: |
     Prezisioun vun de Koordinaten a Meter. Dir kënnt dat ännere wann Dir uewen op de Link "änneren" klickt oder wann Dir op de Markeur vun der Kaart klickt an un de Gräifpunkten zitt. Probéiert fir de Krees grouss genuch ze maache fir sécher ze sinn datt Dir iergendwou dra sidd.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Aktioun
   actions: Aktiounen
   active: Aktiv
@@ -259,6 +260,8 @@ lb:
   admin_s: Administrateur(en)
   admin_only: Just fir Administrateuren
   admin_tools: Geschier fir Administrateuren
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Organisatiounen déi Member vum Netzwierk sinn
   agree_: Akzeptéieren
   agree?: Zoustëmmen?
   agree_with_current_taxon: Si mam aktuellen Taxon d'accord
@@ -334,6 +337,7 @@ lb:
   alphabetical_order: Alphabetesch Reiefolleg
   already_have_an_account_log_in_html: Hutt Dir schonn e Benotzerkont? <strong>Aloggen.</strong>
   amphibians: Amphibien
+  analyze_ids: IDen analyséieren
   and: a(n)
   android: Android
   animals: Déieren
@@ -377,10 +381,14 @@ lb:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Applikatioun
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: Applikatiounen
+  apply_app_owner: Bewerben
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Uwenden
+  apply_to_be_an_app_owner: Bewerben fir App Besëtzer ze ginn
   apply_to_selected: Ob den Ausgewielten uwenden
   apply_captive_cultivated: "Gefaangen / Kultivéiert uwenden"
   apply_fields: Felder uwenden
@@ -407,7 +415,6 @@ lb:
   are_you_sure_you_want_to_delete_this_photo?: Sidd Dir sécher datt Dir dës Foto läsche wëllt?
   are_you_sure_you_want_to_delete_this_post: Sidd Dir sécher datt Dir dës Matdeelung läsche wëllt?
   are_you_sure_you_want_to_remove_from_project: Sidd Dir sécher datt Dir %{user} vun dësem Projet erofhuele wëllt?
-  are_you_sure_you_want_to_remove_this_invitation: Sidd Dir sécher datt Dir dës Invitatioun ewechhuele wëllt?
   associated_observations: Associéiert Observatiounen
   attention: Opgepasst
   you_sure_delete_list: Sidd Dir sécher datt Dir dës Lëscht läsche wëllt?
@@ -436,8 +443,8 @@ lb:
   automatic_short: Automatesch
   automatically_add_observations_to_this_project: Automatesch Observatioune bei dëse Projet derbäisetzen
   back: Zréck
+  back_to_applications: "&laquo; Zréck zu den Applikatiounen"
   back_to_all_species: Zréck op all Aarten
-  back_to_calendar: "Zréck op de Kalenner vum %{user}}"
   back_to_editing_observation: Zréck op d'Ännere vun der Observatioun
   back_to_friends: Zréck bei d'Frënn
   back_to_lists: "Zréck op %{name}-Lëschten"
@@ -449,17 +456,21 @@ lb:
   back_to_projects: Zréck op d'Projeten
   back_to_suggestions: Zréck bei d'Proposen
   back_to_taxon: "Zréck op %{defaulttaxon}"
+  back_to_users_calendar: "Zréck op de Kalenner vum %{user}"
+  back_to_users_lists: "Zréck zur Lëschte vum %{user}"
   back_to_x: "Zréck op %{noun}"
   back_to_x_history: "Zeréck zum %{x} Historique"
   back_to_x_blog: "Zeréck op dem %{x} säi Blog"
+  back_to_your_calendar: Zereck zu Ären Kalenner
   back_to_your_dashboard: Zereck ob Ären Dashboard
   back_to_your_lists: Zréck op Är Lëschten
   back_to_your_observations: Zréck bei Är Observatiounen
   back_to_your_profile: Zréck op Äre Profil
-  back_to_your_projects: Zréck op Är Projeten
   badges: Badgen
   batch: Batch
   because_of: well
+  become_a_donor_caps: GITT EEN DONATEUR
+  become_a_donor_today_caps: GITT HAUT EEN DONATEUR
   before_importing_photos: virum Import vu Fotoen
   bg_color: Hannergrondfaarf
   bio: Bio
@@ -489,6 +500,7 @@ lb:
   by_user: "Vum %{user}"
   by_you: Vun Iech
   calendar: Kalenner
+  callback_url: Callback url
   cancel: Ofbriechen
   captive: Gefaangen
   captive_cultivated: Gefaangen / Kultivéiert
@@ -522,7 +534,7 @@ lb:
     replaced_with: ersat duerch
   change_your_password: Ännert Äert Passwuert
   check_above_for_errors: Kuckt uewen no de Feeler hei driwwer
-  check_out_our_blog: Besicht eise Blog
+  check_out_the_inat_store: Besicht och den iNaturalist Store
   checklist: Check-Lëscht
   choose_a_field: E Feld eraussichen
   choose_a_place: Eng Plaz eraussichen
@@ -545,6 +557,7 @@ lb:
   columns: Kolonnen
   combine: Combinéieren
   comma_separated_please: W.e.g. mat Kommaen trennen
+  #Noun, used to label a comment or a comment field in a form
   comment: Bemierkung
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Bemierkung
@@ -571,6 +584,7 @@ lb:
   computer_vision_model: Computer Vision Model
   #Status of a taxon that the Computer Vision Model can recognize
   computer_vision_model_included: Begräifen an
+  confidential: Vertraulech
   configure: Astellen
   configure_a_widget_to_show: Konfiguréiert de Widget esou, dass hien %{site_name} Observatiounen ob Ärem Blog oder Ärer Websäit weist. Et ka sinn dass Dir embedded CSS an den <code>&lt;head&gt;</code> vun Ärem HTML musst drasetzen. Dir kënnt gären den CSS ëmschreiwen.
   confirm: Confirméieren
@@ -654,6 +668,8 @@ lb:
   curation: Kuratioun
   curator: Kurator
   #Header
+  curator_application_what_curators_can_do: Wat Kuratore maache kennen
+  #Header
   curator_application_what_curators_cannot_do: Wat Kuratore maache kennen
   #Title of a page where people apply to become a curator
   curator_application_title: Kurator Demande
@@ -727,6 +743,7 @@ lb:
   description_from: Beschreiwung vum
   description_slash_tags: Beschreiwung / Tags
   desription: Beschreiwung
+  destination: Destinatioun
   destroy: Zerstéieren
   details: Detailer
   deviation: Deviatioun
@@ -755,6 +772,8 @@ lb:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: SPENDEN
+  donate_again_caps: NACH EEMOL SPENDEN
+  donate_again_today_caps: HAUT NACH EEMOL SPENDEN
   done: Fäerdeg
   dont_send_me_email: "Schéckt mir keng E-Mailen!"
   download: Eroflueden
@@ -816,6 +835,7 @@ lb:
   exact: Genee
   exact_date: Geneeën Datum
   exact_rank: Genaue Rang
+  examples_of_data_use_by_network_members: Beispiller vum Benotze vun den Donnéeën duerch Netzwierk Memberen
   explore: Entdecken
   export: Exportéieren
   export_observations: Observatiounen exportéieren
@@ -826,6 +846,8 @@ lb:
   extinct: ausgestuerwen
   facebook_account_information: D'Informatioun vun Ärem Facebook-Benotzerkont
   facebook_options: Facebook-Optiounen
+  facebook_photo_import_disabled_notice: |
+    Am November 2020 huet Facebook ons opgefuerdert z'iwwerpréiwen ob mir wierklech Zougang zu Fotoe brauchen, dëse Prozess konnte mir net ofschléisse wéinst Probleemer mam Facebook Verifizéierungssystem. Als Konsequenz ënnerstëtze mir net méi den Import vu Facebook Fotoen.
   failed_to_find_your_location: Är Positioun gouf net fonnt.
   'false': 'Falsch'
   Family: Famill
@@ -885,8 +907,15 @@ lb:
     other: 'Follgen %{count} Persounen'
   formatting: Formatéierung
   forgot_your_password: Hutt Dir Äert Passwuert vergiess?
+  forum: Forum
   forum_categories:
+    bug_reports: Bug Meldungen
+    feature_requests: Feature Ufroen
+    forum_feedback: Forum Feedback
+    forum_moderation: Forum Moderatioun
+    nature_talk: Natur Diskussioun
     news_and_updates: Neiegkeeten & Aktualisatiounen
+    tutorials: Tutorialen
   frequency: Frequenz
   from_a_place: vun enger Plaz
   from_flickr_facebook_etc: Vu Flickr, Facebook, asw.
@@ -901,6 +930,8 @@ lb:
   globally: Global
   go: Lass
   go_back: Zréck goen
+  google_maps_not_loaded_error: |
+    Google Maps konnt net initialiséiert ginn. Et ka sinn dass Dir den Zougang zu Google Maps mat enger Browser Extensioun oder enger Firewall blockéiert, oder soss eppes wéi en Internet Service Provider blockéiert den Zougang.
   got_it!: Verstan!
   grid: Gitter
   group: Grupp
@@ -940,11 +971,9 @@ lb:
   identification_saved: "Identifikatioun gespäichert!"
   identification_withdrawn: Identifikatioun zréckgezunn.
   identifications: Bestemmungen
-  identifications_by: "Idendifikatioun vum %{user}"
   identifiers: Bestëmmer
   ids: "IDen"
   ids_made_for_others: IDs fir een aneren gemaach
-  ignore: ignoréieren
   ignore_and_continue: Ignoréieren a virufueren
   import: Importéieren
   import_all_photos_as_observations: All Fotoen als Observatiounen importéieren
@@ -953,6 +982,7 @@ lb:
   import_photos: Fotoen importéieren
   improving: Verbesseren
   in_n: "a(n) %{n}"
+  inaturalist_network: iNaturalist Netzwierk
   include_projects: Projet aschléissen
   include_suggestions_not_seen_nearby: Suggestiounen abegräifen déi net an der Géigend gesi gi sinn
   include_taxa: Taxa aschléissen
@@ -1030,22 +1060,29 @@ lb:
   leave_this_project: Dëse Projet verloossen
   let_us_walk_you_through: Mir feiren Iech duerch d'Haaptfeatures vun dësem Site.
   lexicon: Lexikon
+  lexicon_cannot_contain_words: "kann déi folgend Wierder net enthalen: %{words}"
   lexicons:
     scientific_names: Wëssenschaftlech Nimm
     albanian: Albanesch
+    arabic: Arabesch
+    armenian: Armenesch
     belarusian: Belarusesch
     bengali: Bengalesch
+    bulgarian: Bulgaresch
     catalan: Katalanesch
     chinese_simplified: Chinesesch (Vereinfacht)
     chinese_traditional: Chinesesch (traditionell)
     creole_french: kreolesch (Franséisch)
+    croatian: Kroatesch
     czech: Tschechesch
     danish: Dänesch
     dutch: Hollännesch
     english: Englesch
     estonian: Estnesch
+    faroese: Färöesch
     finnish: Finnesch
     french: Franséisch
+    galician: Galizesch
     gela: Gela
     german: Däitsch
     greek: Griichesch
@@ -1053,6 +1090,7 @@ lb:
     hebrew: Hebräesch
     hungarian: Ungaresch
     icelandic: Islännesch
+    indonesian: Indonesesch
     italian: Italienesch
     japanese: Japanesch
     kannada: Kannada
@@ -1060,22 +1098,32 @@ lb:
     latvian: Lettesch
     lithuanian: Litauesch
     luxembourgish: Lëtzebuergesch
+    malay: Malayesch
+    malayalam: Malayalam
     maltese: Maltesesch
     marathi: Marathi
+    maya: Maya
+    mongolian: Mongolesch
+    nahuatl: Nahuatl
     norwegian: Norwegesch
     occitan: Okzitanesch
+    ojibwe: Ojibwe
+    palauan: Palauesch
     polish: Polnesch
     portuguese: Portugisesch
     romanian: Rumänesch
     russian: Russesch
+    setswana: Setswana
     sinhala: Sinhala
     slovak: Slokwakesch
+    slovenian: Slowenesch
     spanish: Spuenesch
     swedish: Schwedesch
     tahitian: Tahitesch
     thai: Thailännesch
     turkish: Tierkesch
     ukrainian: Ukrainesch
+    visayan: Visayesch
   less: Manner
   license: Lizenz
   life: Liewen
@@ -1134,6 +1182,7 @@ lb:
     pt-BR: Portugisesch (Brasilien)
     ru: Russesch
     sk: Slokwakesch
+    sl: Slowenesch
     sq: Albanesch
     sv: Schwedesch
     th: Thailännesch
@@ -1235,6 +1284,7 @@ lb:
   month: Mount
   months: Méint
   more: Méi
+  more_about_sharing: Méi iwwert Deele vun Donnéeën
   more_fields: Méi Felder
   more_filters: Méi Filteren
   more_from_x: Méi iwwer %{x}
@@ -1253,6 +1303,9 @@ lb:
   most_observed_threatened_species: Bedroten Aarten déi am dacksten observéiert goufen
   multiple: méi
   multiple_select_option: '-- méi --'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: muss am Projet %{project} sinn
   must_be_in_taxon: muss am Taxon %{taxon} sinn
   must_be_not_in_taxon: muss net am Taxon %{taxon} sinn
   must_be_not_observed_by_user: muss net observéiert sinn vum %{user}
@@ -1280,9 +1333,12 @@ lb:
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, ass Deel vum internationalen iNaturalist Netzwierk, a fokusséiert sech ob d'Notzer zu %{place}. Wëllt Dir Äer Konto-Zougehéieregkeet änneren vun <strong>%{inat_site_name}</strong> ob <strong>%{site_name}</strong> an Är Donnéeën esou mat de Lokalen Institutiounen deelen?
+  #Column header in a table listing iNaturalist Network members
+  network_member: Netzwierk Memberen
   new: Nei
   new_and_noteworthy: Nei & Bemierkenswäert
   new_announcement: Nei Ukënnegung
+  new_application: Nei Applikatioun
   new_comment_on_a_parent_by_user_link: Nei Bemierkung iwwer @vow_or_con{vow:an|a} %{parent} vum %{user_link}
   new_guide: Neie Guide
   new_lexicon: Neie Lexikon
@@ -1314,6 +1370,7 @@ lb:
   no_comments_yet: Nach keng Bemierkungen.
   no_description: Keng Beschreiwung
   no_identifications: Keng Bestëmmungen
+  no_ids: "Zuel vun IDen"
   no_favorites_added:
     current_user: Dir hutt nach keng Favoriten derbäigesat.
   no_journal_posts_yet: Nach keng Journal Posts
@@ -1383,20 +1440,28 @@ lb:
   observation_attribution_copyright_html: Observatioune &copy; %{user}
   observation_belongs_to_project_requiring_field: |
     D'Observatioun gehéiert zu engem Projet deen dëst Feld verlaangt. D'Observatioun muss aus deem Projet erausgeholl ginn ier dëst Feld ka geläscht ginn.
-  observation_brief_something_in_month: "Eppes am %{month}"
-  observation_brief_something_in_month_by_user: "Eppes am %{month} vum %{user}"
-  observation_brief_something_from_place_in_month: "Eppes aus %{place} am %{month}"
-  observation_brief_something_from_place_in_month_by_user: "Eppes aus %{place} am %{month} vum %{user}"
-  observation_brief_taxon_in_month: "%{taxon} am %{month}"
-  observation_brief_taxon_in_month_by_user: "%{taxon} am %{month} vum %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Eppes am %{month}%{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Eppes am %{month}%{year} vum %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Eppes aus %{place} am %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Eppes aus %{place} am %{month} %{year} vum %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} am %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} am %{month} %{year} vum %{user}"
   observation_brief_taxon_from_place: "%{taxon} vun %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} vun %{place} vum %{user}"
   observation_brief_taxon_from_place_on_day: "%{taxon} vun %{place} vum %{day}"
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} vun %{place} vum %{day} vum %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} vun %{place} vum %{day} um %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} vun %{place} vum %{day} um %{time} vum %{user}"
-  observation_brief_taxon_from_place_in_month: "%{taxon} aus %{place} am %{month}"
-  observation_brief_taxon_from_place_in_month_by_user: "%{taxon} aus %{place} am %{month} vum %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} aus %{place} am %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} aus %{place} am %{month} %{year} vum %{user}"
   observations_by_category: "Observatioune Pro Kategorie"
   observations_by_app: Observatioune no App
   observations_by_rank: Observatiounen no Rang
@@ -1422,7 +1487,6 @@ lb:
   observations_by: Observatioune vum
   observations_by_user: "Observatioune vum %{user}"
   observations_deleted: Observatioune goufe geläscht.
-  observations_from: Observatioune vum %{date}
   observations_from_people_taxa_and_places_youre_following: "Observatioune vu Leit, Plazen an Taxa, deenen dir suivéiert."
   observations_from_this_place: Observatioune vun dëser Plaz
   observations_from_this_project: Observatioune vun dësem Projet
@@ -1459,6 +1523,8 @@ lb:
     following_panel_body: |
       Op %{site_name} kënnt Dir Leit erausichen deenen hir gepoust Observatiounen Dir verfollege wëllt. Dir kënnt Iech och op verschidden Aarten abonnéieren, fir nei Observatioune vun dësen Aarten am A ze halen, oder datselwecht och mat Plaze maachen.
     youve_got_updates_panel_title: Dir hutt Aktualisatiounen!
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "ee vun de folgende muss richteg sinn:"
   only_administrators_may_access_that_page: Nëmmen Administrateure kënnen op déi Säit kommen
   only_letters_numbers: "Nëmme Buschtawen an Zifferen, keng Eidelzeechen, muss mat engem Buschtaf ufänken"
   only_the_project_admin_can_delete_this_project: Nëmmen den Administrateur vum Projet kann dëse Projet läschen.
@@ -1686,11 +1752,11 @@ lb:
   places_warning_quota: |
     Dir kënnt nëmmen dräi Plazen pro Dag kreéieren.
   plants: Planzen
+  #Title to a section warning a user to exercise caution
   please_be_careful!: Sidd w.e.g. virsiichteg!
   please_explain_why_you_want_to_hide_this: Erkläert w.e.g. firwat Dir dëst verstoppe wëllt
   popular: Beléift
   position: Positioun
-  possessive_user: "%{user}"
   potential_disagreement: Potentiellen Desaccord
   preview: Virschau
   previous_date_short: Vireg
@@ -1883,6 +1949,7 @@ lb:
   role: Roll
   rules_types:
     must_be_captive: muss Gefaangen / Kultivéiert sinn
+    must_be_verifiable: muss iwwerpréifbar sinn
   said: gesot
   satellite: Satellit
   save: Späicheren
@@ -1941,6 +2008,14 @@ lb:
   site_admin_tools: Säiten Administratortoolen
   site_staff: "%{site_name} Personal"
   site_stats: Satistiken vum Site
+  sites_affiliation_about_desc_html: |
+    Wann Är Organisatioun interesséiert ass sech dem iNaturalist Netzwierk unzeschléissen, kënnt Dir %{start_tag_join}hei%{end_tag_join} méi Detailer fannen.
+  sites_affiliation_examples_portugal_atlas_html: |
+    Dem Portugal säin iNaturalist Netzwierk Member %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} deelt Donnéeë mam portugiseschen Atlas vun den Zuchvullen, dem Atlas vu Mamendéieren, a verschidden aner portugisesch Fuerschungsprojeten
+  sites_affiliation_title: Méi iwwert d'iNaturalist Netzwierk Memberschaft gewuer ginn
+  sites_network_consists_of: "D'iNaturalist Netzwierk besteet aus verschiddene Organisatiounen:"
+  sites_network_your_username: |
+    Wann Dir Iech dem Portal vun engem lokalen iNaturalist Partner affiliéiert (z.B. iNaturalist.LU), hunn déi lokal Institutiounen déi dëst Portal ënnerstëtzen Zougang zu Ärer E-Mail Adress (nëmme fir mat Iech iwwer Sujete bezüglech dem Portal ze korrespondéieren) an Zougang zu de genaue Koordinate vun Observatiounen déi Dir ob verstoppt oder privat gesat hutt.
   some_observations_failed_to_save: Verschidden Observatioune konnten net gespäichert ginn
   sorry_we_didnt_find_that_photo: "Pardon, mir hunn déi Foto net fonnt."
   sort: Zortéieren
@@ -1983,13 +2058,14 @@ lb:
   subscribe_to_a_taxon: Op en Taxon abonnéieren
   subscribe_to_a_place: Op eng Platz abonnéieren
   subscribe_to_observations_in_a_taxon: Op all Observatiounen iwwer eng Aart oder eng Grupp vun Organismen (z.B. Skorpiounen) abonnéieren.
+  subscribe_to_places_help: |
+    Abonnementer kontrolléiere wat Dir an Ären Updaten an op Ärem Dashboard gesitt. Zum Beispill kënnt Dir Iech op en Taxon abonéiere fir Updater iwwer nei Observatioune vun dësem Taxon ze kréien. Dir sidd automatesch op Updatë vun Observatiounen abonéiert déi Dir kommentéiert oder bestëmmt.
   subscribe_to_this: 'Ob dest abonéiren:'
   subscriptions: Abonnementer
   suggest_an_identification: Eng Bestëmmung virschloen
   suggestions: Virschléi
   summary: Resumé
   supporting: Ënnerstëtzen
-  support_inaturalist: iNaturalist ënnerstëtzen
   suspend_user: Benotzer suspendéieren
   table: Tabell
   taxa: Taxa
@@ -2010,7 +2086,6 @@ lb:
   taxonomy_details_for: Taxonomesch Detailer fir
   tell_the_world_a_little_about_yourself: Zielt eis eppes vun Iech
   tell_us_why: Sot eis firwat...
-  terms_service: Konditioune vum Service
   text: Text
   thanks!: Merci!
   thanks_from_all_of_us_here_at: Merci vun eis all hei op
@@ -2040,8 +2115,6 @@ lb:
   top_identifiers_of_taxon: Top Bestëmmer fir %{taxon}
   top_observer_caps: TOP BEOBACHTER
   top_observers: Top Observateuren
-  tos_privacy_guidelines_label: |
-    Ech stemmen de <a href="/terms" target="_blank">Konditioune vum Service</a> an den <a href="/privacy" target="_blank">Dateschutz Richtlinnen</a> zou an ech hunn <a href="/pages/community+guidelines" target="_blank">Communautéit's Richtlinne</a> gekuckt.
   total: Total
   total_observations: Total Observatiounen
   total_observations_caps: TOTAL OBSERVATIOUNEN
@@ -2059,6 +2132,7 @@ lb:
   two_thirds: 2/3tel
   #As in a category, not as in a keyboard
   type: Typ
+  unable_to_save_comment: Leider konnte mir de Kommentar net späicheren.
   unblock: Spär ophiewen
   unknown: Onbekannt
   unknown_error: Onbekannte Feeler
@@ -2085,6 +2159,7 @@ lb:
       photo_failed: Foto konnt net eropgeluede ginn
       remove_observation: Observatioun ewechhuelen
       remove_photo: Foto ewechhuelen
+  url_for_your_app_outside_of_inaturalist: URL fir Är App ausserhalb vun iNaturalist
   usage_stats: Statistike vum Benotzen
   user: Benotzer
   user_added_a_comment_html: "%{user} huet ee Kommentar bäigefüügt"
@@ -2095,6 +2170,7 @@ lb:
   user_added_an_x: "%{user} huet eng %{x} derbäigesat"
   user_added_x_observations_html: "%{user} huet %{x} Observatiounen bäigesat"
   user_already_authenticated: De Benotzer ass schonn authentifizéiert
+  user_already_app_owner: De Benotzer ass schonn en App Besëtzer
   user_autocomplete_placeholder: kueda, simon123, etc.
   user_blocked: Benotzer gespaart
   user_commented: "%{user} huet kommenteiert"
@@ -2106,6 +2182,8 @@ lb:
   username_or_email: Benotzernumm oder E-Mail-Adress
   users: Benotzer
   users_favorites: "%{user} seng Favoritten"
+  users_identifications: "Bestëmmung vum %{user}"
+  users_lists: "Lëschte vum %{user}"
   users_profile: "Profil vum %{user}"
   users_projects: "Projete vum %{user}"
   value: Wäert
@@ -2116,8 +2194,7 @@ lb:
   view_all_members: All Membere weisen
   view_all_observations: All Observatioune weisen
   view_details: Detailer weisen
-  view_dynamic_lifelist: Dynamesch LiewensLëscht weisen
-  view_invitation: Invitatioun weisen
+  view_dynamic_lifelist_: DYNAMESCH LIFE-LESCHT KUCKEN
   view_license: Lizenz weisen
   view_lists: Lëschte weisen
   view_more: Méi weisen
@@ -2209,6 +2286,24 @@ lb:
   yes_license_my_observations_so_scientists_can_use: Jo, lizenzéiert meng Fotoen, Sounds an Observatiounen, sou datt d'Wëssenschaftler meng Donnéeë benotze kënnen (recommandéiert).
   yes_reject_it: Jo, refuséiert et
   yesterday: Gëschter
+  yir_donate_banner_inaturalist_in_year: "INATURALIST WÄREND %{year}:"
+  yir_donate_banner_reaching_millions: Erreecht Milliounen. Hiew d'Biodiversitéit ervir. Global Zesummenaarbecht.
+  #"You" is singular
+  yir_donate_banner_all_thanks: Villmools Merci u Léit wéi Iech!
+  #"You" is singular
+  yir_donate_banner_inaturalist_thrives: iNaturalist floréieren Dank Léit wei Iech!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Dir hutt dëst Joer gehollef dass den iNaturalist floréiert. Merci!
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist brauch Är Ënnerstëtzung
+  yir_generating_and_sharing: |
+    Generéiere an Deele vun esou ville Biodiversitéitsdonnéeë verursaacht ëmmer méi Käschten.
+  yir_millions_of_people_used_inaturalist: |
+    Millioune Leit hunn dëst Joer iNaturalist a Seek vun iNaturalist benotzt fir sech mat der Natur ze verbannen
+  yir_thank_your_for_being_generous: |
+    Merci datt Dir esou generéis mat Ärer Zäit, Opmierksamkeet, Expertise a Spende sidd! iNaturalist ass eng nonprofit gemeinsam Initiativ vun der California Academy of Sciences an der National Geographic Society. De Programm hänkt vu ville Boursen a Spenden of, dorënner karitativ Kaddoe vu enger ganz klenger Fraktioun vun der Gemeinschaft. Mir si besonnesch dankbar un déi di all Mount spenden, des widderhuelend Bäiträg hëllefen eis  fir d'Zukunft ze plangen.
+  yir_your_gift_sustains: |
+    Äre Kaddo ënnerstëtzt dëse Programm mat globaler Reechwäit an déiwem perséinlechen an ekologeschen Impakt
   you: Iech
   you_: Iech
   you_are_already_a_member_of_this_project: "Dir sidd scho Member vun dësem Projet!"
@@ -2278,7 +2373,7 @@ lb:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Méi iwwer %{application}
     observations:
@@ -2330,6 +2425,10 @@ lb:
         observer: Jo, awer nëmme wann ech selwer d'Observatioun bei de Projet derbäisetzen
         any: Jo, et ass net wichteg wien d'Observatioun bei de Projet derbäisetzt.
         none: Neen.
+    search:
+      index:
+        no_taxa_options: "Dir hutt e puer Optiounen:"
+        no_taxa_forum: Kontaktéiert de Forum
     shared:
       blocked:
         youve_been_blocked: Dir gouft gespaart
@@ -2619,6 +2718,9 @@ lb:
   activerecord:
     models:
       Atlas: Atlas
+      #Software application that operates iNat on a user's behalf, e.g. the
+      #iNaturalist Android app or an app made by a third party
+      OauthApplication: Applikatioun
     attributes:
       assessment:
         description: Beschreiwung
@@ -2638,6 +2740,13 @@ lb:
         description: Notizen
       observation_field_value:
         value: 'Wäert'
+      oauth_application:
+        #Unique identifier for an application
+        uid: ID
+        #Adjective, whether or not this application can keep its secret
+        #confidential, e.g. a native or desktop app as opposed to a web
+        #app.
+        confidential: Vertraulech
       post:
         title: Titel
       project:
@@ -2691,6 +2800,30 @@ lb:
               cannot_be_blank: däerf net eidel sinn
               must_have_more_than_three_points: muss méi wei 3 Punkten hunn
               polygon_with_fewer_than_four_points: huet ee Polygon mat manner wei 4 Punkten
+        project_observation:
+          attributes:
+            user_id:
+              must_be_curator: muss e Curator vun dësem Projet sinn
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kann nëmme vun engem Curator vun dësem Taxon geännert ginn
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kann nëmme vun engem Curator vun dësem Taxon geännert ginn
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kann nëmme vun engem Curator vun dësem Taxon geännert ginn
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kann nëmme vun engem Curator vun dësem Taxon geännert ginn
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kann nëmme vun engem Curator vun dësem Taxon geännert ginn
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                kann nëmme vun engem Curator vun dësem Taxon geännert ginn
         taxon_photo:
           attributes:
             taxon:
@@ -2839,4 +2972,6 @@ lb:
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"
   z_to_a: Z bis A
+  zoom_in: Erazoomen
+  zoom_out: Erauszoomen
   zoom_photo: Zoom Foto

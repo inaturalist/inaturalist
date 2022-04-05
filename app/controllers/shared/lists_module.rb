@@ -149,7 +149,11 @@ module Shared::ListsModule
         end
         @listed_taxa = @listed_taxa.to_a
         ListedTaxon.preload_associations(@listed_taxa, [
-          { taxon: [ { taxon_names: :place_taxon_names }, { photos: :user }, :taxon_descriptions ]}
+          { taxon: [
+            { taxon_names: :place_taxon_names },
+            { photos: [:user, :flags, :file_prefix, :file_extension] },
+            :taxon_descriptions
+          ]}
         ])
         render :json => {
           :list => @list,
@@ -241,7 +245,7 @@ module Shared::ListsModule
     
     list_attributes = params[:list] || params[:check_list]
     
-    if @list.update_attributes(list_attributes)
+    if @list.update(list_attributes)
       flash[:notice] = t(:list_saved)
       redirect_to @list
     else
@@ -444,7 +448,11 @@ private
       :per_page => per_page,
       :include => [
         :list, :user, :first_observation, :last_observation,
-        {:taxon => [:iconic_taxon, :photos, { taxon_names: :place_taxon_names }]}
+        { taxon: [
+          :iconic_taxon,
+          { photos: [:flags, :file_prefix, :file_extension] },
+          { taxon_names: :place_taxon_names }
+        ] }
       ]
     }
     # This scope uses an eager load which won't load all 2nd order associations (e.g. taxon names), so they'll have to loaded when needed

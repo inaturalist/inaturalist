@@ -125,7 +125,7 @@ def natureServeStatus2iNatStatus(status_node, taxon, name, url, place = nil)
       :url => url
     }
     if existing
-      if existing.update_attributes(attrs)
+      if existing.update(attrs)
         puts "\tUpdated #{existing} (#{name})"
       else
         puts "\tFAILED to update #{existing}: #{existing.errors.full_messages.to_sentence} (#{name})"

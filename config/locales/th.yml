@@ -1,10 +1,12 @@
 th:
   x_comments:
-    other: '%{count} ข้อคิดเห็น'
+    other: 'มี %{count} ความคิดเห็น'
   x_comments_html:
     other: '<span class="count">%{count}</span> คอมเมนต์'
   x_faves:
     other: '%{count} ชอบ'
+  x_flags_resolved_html:
+    other: "<span class='count'>%{count}</span> flag resolved แก้ปัญหารายงานแล้ว"
   x_identifications:
     other: '%{count} การจำแนก'
   x_identifications_html:
@@ -17,16 +19,24 @@ th:
     other: '<span class="count">%{count}</span> ผู้จำแนก'
   x_languages:
     other: "%{count} ภาษา"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    other: "รายการสิ่งมีชีวิต %{count} รายการแรก"
+  x_journal_posts_html:
+    other: '<span class="count">%{count}</span> โพสต์บทความ'
   x_matching_taxa:
     other: '%{count} ลำดับอนุกรมวิธานที่ตรงกัน'
   x_matching_taxa_html:
     other: '<span class="count">%{count}</span> ลำดับอนุกรมวิธานที่ตรงกัน'
   x_misidentifications_of_this_species:
-    other: "%{count} การจำแนกชนิดนี้ผิด"
+    other: "%{count} ชนิดนี้มีการระบุผิด"
+  x_misidentifications_of_species_in_this_genus:
+    other: "%{count} สกุลนี้มีการระบุผิด"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
-    other: "%{count} การจำแนกชนิดในนี้ผิด %{rank}"
+    other: "%{count} การระบุชนิดต่อไปนี้ผิด %{rank}"
   x_observations:
     other: "%{count} การสังเกต"
   x_observations_:
@@ -38,7 +48,7 @@ th:
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> การสังเกตการณ์ที่ตรวจสอบแล้ว"
   x_observers_html:
-    other: '<span class="count">%{count}</span> ผู้สังเกตการณ์'
+    other: '<span class="count">%{count}</span> ผู้สังเกต'
   x_others:
     other: "%{count} อื่น ๆ"
   x_people:
@@ -83,7 +93,7 @@ th:
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A ถึง Z"
-  about: เกี่ยวกับเรา
+  about: รายละเอียด
   about_blocking: เกี่ยวกับการบล็อก
   about_charts: เกี่ยวกับแผนภูมิ
   about_conservation_status: เพิ่มสถานะการอนุรักษ์
@@ -146,12 +156,12 @@ th:
   account: บัญชีผู้ใช้
   account_creation: การสร้างบัญชี
   account_settings: การตั้งค่าบัญชี
-  accept: ยอมรับ
   accept_community_identifications: ยอมรับการระบุตัวตนของชุมชน
   accuracy: ความแม่นยำ
   accuracy_meters: ความแม่นยำ (เมตร)
   accuracy_of_the_coordinates: |
     ความแม่นยำของพิกัดถูกระบุเป็นหน่วยเมตร คุณสามารถแก้ไขได้โดยคลิ๊กลิงค์ "แก้ไข" ด้านบนหรือคลิ๊กที่เครื่องหมายบนแผนที่แล้วลากแก้ไขโดยพยายามทำให้วงกลมใหญ่พอที่จะแน่ใจได้ว่าคุณอยู่ข้างในนั้น
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: ปฏิบัติการ
   actions: การดำเนินการทั้งหมด
   active: กำลังดำเนินการ
@@ -340,7 +350,7 @@ th:
     complex: คอมเพล็กซ์ (Complexe) ทั้งหมดที่เพิ่มลงในฐานข้อมูล
     species: ชนิด (Species) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
     hybrid: ลูกผสม (Hybrids) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
-    subspecies: ชนิดย่อย (Subspecies) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    subspecies: ชนิดย่อยทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
     variety: พันธุ์ (Variety) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมุล
     form: แบบ (Form) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
   all_rights_reserved: สงวนลิขสิทธิ์
@@ -439,6 +449,8 @@ th:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: แอปพลิเคชัน
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
   applications: แอปพลิเคชันอื่นๆ
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -502,10 +514,783 @@ th:
   are_you_sure_want_delete_this_name: คุณแน่ใจหรือไม่ว่าต้องการลบชื่อนี้?
   are_you_sure_want_delete_this_range: คุณแน่ใจหรือไม่ว่าต้องการลบช่วงเหล่านี้?
   are_you_sure_you_want_to_delete_this: คุณแน่ใจไหมที่จะลบทิ้ง?
+  are_you_sure_you_want_to_delete_this_assessment?: คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?
+  are_you_sure_you_want_to_delete_this_photo?: คุณแน่ใจหรือไม่ว่าต้องการนำรูปภาพนี้ออก?
+  are_you_sure_you_want_to_delete_this_post: คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?
+  are_you_sure_you_want_to_delete_this_taxon_change: คุณแน่ใจหรือไม่ว่าต้องการลบการเปลี่ยนอันดับอนุกรมวิธานนี้?
+  are_you_sure_you_want_to_remove_all_tags: แน่ใจหรือไม่ว่าจะนำแท็กทั้งหมดออก
+  are_you_sure_you_want_to_remove_curator: ยืนยันการลบ %{user} as a curator?
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    คุณแน่ใจหรือไม่ว่าต้องการนำการสังเกตนี้ออกจาก %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "คุณแน่ใจหรือไม่ว่าต้องการนำอันดับอนุกรมวิธานออกจาก %{place} รายการ?"
+  you_sure_delete_list: คุณแน่ใจคุณต้องการลบรายการนี้หรือไม่?
+  you_sure_delete_taxon_from_list?: "คุณแน่ใจหรือไม่ว่าต้องการนำ %{taxon} ออกจากรายการ?"
+  asc: วันแรกสุดก่อน
   assessment: การประเมินผล
+  #Noun form, as in a property of something. Generally used to describe the
+  #name of an attribute available for annotation, e.g. "Life Stage"
+  attribute: คุณลักษณะ
+  authority_list:
+    iucn_red_list: บัญชีแดง IUCN
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: ค่าเฉลี่ย
+  back_to_all_species: กลับไปที่ชนิดทั้งหมด
+  back_to_users_calendar: "กลับไปที่ปฏิทินของ %{user}"
+  back_to_your_calendar: กลับสู่ปฏิทิน
+  based_on_the_evidence_can_id_be_improved: |
+    ตามหลักฐานแล้ว หน่วยอนุกรมวิธานที่เสนอโดยชุมชนยังสามารถยืนยันหรือจำแนกย่อยลงไปอีกได้หรือไม่?
+  be_the_first_to_fave_this_observation: เป็นคนแรกที่เพิ่มการสังเกตนี้เข้ารายการโปรด!
+  birds: นก
+  birthday: วันเกิด
+  block_user: บล็อกผู้ใช้
+  blocked_users: ผู้ใช้ที่ถูกบล็อก
+  browse_all_species: ค้นดูชนิดทั้งหมด
+  browse_species_that_occur_near_this_observation: ค้นดูชนิดที่พบใกล้กับการสังเกตนี้
+  calendar: ปฏิทิน
+  captive: ถูกจับมา
+  captive_cultivated: ถูกจับมา / เพาะปลูก
+  captive_observations: การสังเกตของสิ่งมีชีวิตที่ถูกจับมา
+  casual_: ไม่เป็นทางการ
+  casual_tooltip_html: 'การสังเกตระดับ "ไม่เป็นทางการ" คือการสังเกตที่ไม่มีสื่อ สถานที่ หรือวันที่ หรือไม่เป็นไปตามคุณสมบัติที่ต้องการของการสังเกตระดับงานวิจัยหรือกำลังรอจำแนกชนิด <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เกี่ยวกับระดับคุณภาพข้อมูล</a>'
+  change_admin: เปลี่ยนผู้ดูแล
+  #Button to change the cover (or banner) image for a project
+  change_cover: เปลี่ยนภาพหน้าปก
+  change_descriptions:
+    split: แยกหน่วยอนุกรมวิธานเก่าเป็นหลายหน่วยฯ ใหม่
+    merge: หลายหน่วยอนุกรมวิธานเก่ารวมเป็นหนึ่งหน่วยฯ ใหม่
+  change_geoprivacy: 'เปลี่ยนความเป็นส่วนตัวของพิกัด'
+  change_group: เปลี่ยนกลุ่ม
+  change_icon: เปลี่ยนไอคอน
+  change_password: เปลี่ยนรหัสผ่าน
+  change_types:
+    split: แยก
+    merge: ยุบรวม
+    swap: เปลี่ยน
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_from: แยกจาก
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_into: แยกเป็น
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    merge_into: ยุบรวมเป็น
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    merged_into: ถูกยุบรวมเป็น
+  change_your_password: เปลี่ยนรหัสผ่านของคุณ
+  check_list: รายการตรวจสอบ
+  check_list_for_individual_taxa_that: 'รายการตรวจสอบหน่วยอนุกรมวิธานเฉพาะรายที่อาศัยที่นี่ เช่น "นกใน %{place}"'
+  check_list_for_taxon_html: "รายการตรวจสอบสำหรับ %{taxon}"
+  check_lists_must_belong_to_a_place: |
+    รายการตรวจสอบจะต้องเป็นของสถานที่ ในการสร้างรายการตรวจสอบใหม่ ให้ไปที่รายการตรวจสอบเริ่มต้นของสถานที่หนึ่ง แล้วคลิกลิงก์ 'สร้างรายการตรวจสอบใหม่'
+  check_list_place: "รายการตรวจสอบ %{place}"
+  check_list_updated: รายการตรวจสอบอัปเดตแล้ว!
+  check_lists_for: "รายการตรวจสอบอื่น ๆ สำหรับ %{place}"
+  check_out_the_inat_store: ดูร้านค้าของ iNaturalist
+  checklist: รายการตรวจสอบ
+  choose_a_field: เลือกข้อมูลภาคสนาม
+  choose_a_place: เลือกสถานที่
+  choose_file: เลือกไฟล์
+  choose_files: เลือกไฟล์
+  choose_from_your_lists: เลือกจากรายการของคุณ
+  choose_tags: เลือกแท็ก
+  choose_taxon: เลือกหน่วยอนุกรมวิธาน
+  classification: การจัดจำแนก
+  colors: สี
+  combine: รวม
+  #Noun, used to label a comment or a comment field in a form
+  comment: ความคิดเห็น
+  #Verb, generally a label on a button that allows the user to add a comment
+  comment_: ความคิดเห็น
+  comment_deleted: ความคิดเห็นที่ถูกลบ
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: ความคิดเห็นถูกซ่อน
+  comments: ความคิดเห็น
+  comments_by_me: ความคิดเห็นของฉัน
+  comments_on_my_observations: ความคิดเห็นในการสังเกตของฉัน
+  common_name: ชื่อสามัญ
+  community: ชุมชน
+  community_guidelines: วิธีใช้งานสำหรับชุมชน
+  community_id_heading: หน่วยอนุกรมวิธานที่เสนอโดยชุมชน
+  community_id_at_species_or_lower?: หน่วยอนุกรมวิธานที่เสนอโดยชุมชนที่ระดับชนิดหรือต่ำกว่า?
+  community_id_at_species_level_or_lower: หน่วยอนุกรมวิธานที่เสนอโดยชุมชนที่ระดับชนิดหรือต่ำกว่า
+  compare: เปรียบเทียบ
+  compare_with: เปรียบเทียบกับ
+  comparing: เปรียบเทียบ
+  comparing_list_to_list: "เปรียบเทียบ %{list1} กับ %{list2}"
+  comparing_versions_x_and_y: "เปรียบเทียบเวอร์ชัน %{x} กับ %{y}"
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
+  comprehensive?: ครอบคลุมหรือไม่?
+  confirm_now: ยืนยันเลย
+  conservation_status: สถานะการอนุรักษ์
+  controlled_term_labels:
+    sex: เพศ
+    male: เพศผู้
+    female: เพศเมีย
+    plant_phenology: ชีพลักษณ์ของพืช
+    budding: แตกตา
+    flower_budding: แตกตาดอก
+    flowering: ออกดอก
+    fruiting: ออกผล
+    life_stage: ระยะการเจริญ
+    adult: ตัวเต็มวัย
+    teneral: หลังลอกคราบ
+    subimago: ตัวรองตัวเต็มวัย
+    pupa: ดักแด้
+    no_evidence_of_flowering: ไม่พบการออกดอก
+    nymph: ตัวอ่อน
+    larva: หนอน
+    egg: ไข่
+    juvenile: วัยเด็ก
+    alive_or_dead: มีชีวิตหรือตาย
+    alive: มีชีวิต
+    dead: ตาย
+    cannot_be_determined: ระบุไม่ได้
+    evidence_of_presence: หลักฐานที่พบ
+    #As in the feather on a bird
+    feather: ขนนก
+    #Abnormal growth
+    gall: ปุ่มปม
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: ตัวสิ่งมีชีวิต
+    #Fecal matter, not regurgitated matter
+    scat: มูลสัตว์
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: ร่องรอยตามทาง
+    #Endoskeletal remains, like a deer bone
+    bone: กระดูก
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: คราบ
+  controlled_term_definitions:
+    flower_budding: เห็นตาดอกที่ยังไม่บาน
+    flowering: เห็นดอกบานและยังอยู่ติดกับลำต้น
+    fruiting: เห็นผลที่ยังอยู่ติดกับลำต้น
+    feather: ขนที่หลุดออกจากตัวนก
+    organism: ตัวสิ่งมีชีวิตทั้งหมดหรือบางส่วน
+    molt: ผิวหนังหรือเปลือกนอกที่ลอกทิ้งไว้
+  coordinate_systems: ระบบพิกัด
+  coordinates: พิกัด
+  copy: คัดลอก
+  copyright:
+    some_rights_reserved: สงวนลิขสิทธิ์บางประการ
+    no_rights_reserved: ไม่สงวนลิขสิทธิ์
+    anonymous: ไม่ระบุชื่อ
+    public_domain: โดเมนสาธารณะ
+    copyright: ลิขสิทธิ์
+    no_copyright: ไม่มีลิขสิทธิ์
+  copyright_info_and_more: ข้อมูลลิขสิทธิ์และอื่น ๆ
+  create: สร้าง
+  create_a_guide: สร้างคู่มือ
+  create_a_new_place: สร้างสถานที่ใหม่
+  create_a_new_taxon: สร้างหน่วยอนุกรมวิธานใหม่
+  create_an_account: สร้างบัญชีใหม่
+  curation: จัดการอนุกรมวิธาน
+  curator: ผู้ดูแล
+  curators: ผู้ดูแล
+  danger_zone: พิจารณาให้ดีก่อนเลือก
+  data_quality_assessment: การประเมินคุณภาพข้อมูล
+  date_: วันที่
+  date_added: วันที่เพิ่ม
+  date_created: วันที่สร้าง
+  date_format:
+    date_long:
+      january: '%{day} มกราคม %{year}'
+      february: '%{day} กุมภาพันธ์ %{year}'
+      march: '%{day} มีนาคม %{year}'
+      april: '%{day} เมษายน %{year}'
+      may: '%{day} พฤษภาคม %{year}'
+      june: '%{day} มิถุนายน %{year}'
+      july: '%{day} กรกฎาคม %{year}'
+      august: '%{day} สิงหาคม %{year}'
+      september: '%{day} กันยายน %{year}'
+      october: '%{day} ตุลาคม %{year}'
+      november: '%{day} พฤศจิกายน %{year}'
+      december: '%{day} ธันวาคม %{year}'
+    month:
+      january: มกราคม
+      february: กุมภาพันธ์
+      march: มีนาคม
+      april: เมษายน
+      may: พฤษภาคม
+      june: มิถุนายน
+      july: กรกฎาคม
+      august: สิงหาคม
+      september: กันยายน
+      october: ตุลาคม
+      november: พฤศจิกายน
+      december: ธันวาคม
+  date_is_accurate: วันที่สังเกตถูกต้อง
+  date_joined: วันที่เข้าร่วม
+  date_obscured_notice: ปิดบังวันที่เพื่อรักษาความเป็นส่วนตัวของผู้สังเกตหรือสิ่งมีชีวิต
+  date_observed: วันที่สังเกต
+  date_observed_: วันที่สังเกต
+  date_observed_on: สังเกตในวันที่
+  date_picker:
+    currentText: วันนี้
+    range: ช่วงวันที่
+  date_range: ช่วงวันที่
+  date_specified: มีการระบุวันที่สังเกต
+  date_time: วันที่/เวลา
+  date_updated: วันที่อัปเดต
+  day: วัน
+  decrease_brightness: ลดความสว่าง
+  #Default option
+  default: ค่าเริ่มต้น
+  #Default option
+  default_: ค่าเริ่มต้น
+  default_invite_comment: "ภาพนี้อย่างแจ่ม! คุณน่าจะเอาไปโพสต์ที่ %{site_name}: {{INVITE_LINK}}"
+  default_search_place_description: |
+    สถานที่นี้จะเป็นค่าตั้งต้นในการสำรวจและการระบุชนิดทั้งหมด
+  definitions: คำนิยาม
+  delete: ลบ
+  delete_all: ลบทั้งหมด
+  delete_conversation: ลบการสนทนา
+  #Button to delete the cover (or banner) image for a project
+  delete_cover?: ลบภาพหน้าปก?
+  delete_icon?: ลบไอคอน?
+  delete_photo: ลบรูป
+  delete_project: ลบโครงการนี้
+  delete_user: ลบผู้ใช้
+  delete_your_account: ลบบัญชีของคุณ
+  deleted_synonyms: ชื่อพ้องที่ลบไป
+  deleted_user: ผู้ใช้ที่ถูกลบ
+  deleted_vote: โหวตที่ถูกลบ
+  deleting: กำลังลบ...
+  deleting_verb: กำลังลบ
+  deny: ปฏิเสธ
+  desc: วันล่าสุดก่อน
+  descending: มากไปน้อย
+  description_slash_tags: คำอธิบาย / แท็ก
+  desription: คำอธิบาย
+  details: รายละเอียด
+  disagree_: ไม่เห็นด้วย
+  distance_traveled_value: "ระยะทาง: %{distance} เมตร"
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: บริจาค
+  donate_again_today_caps: บริจาคอีกครั้งในวันนี้
+  done: เสร็จสิ้น
+  download: ดาวน์โหลด
+  download_csv: ดาวน์โหลด CSV
+  download_kml: ดาวน์โหลด KML
+  drag_and_drop_some_photos_or_sounds: ลากแล้ววางรูปถ่ายหรือเสียง
+  duplicate_verb: คัดลอก
+  duration_value: "ระยะเวลา: %{duration} นาที"
+  edit: แก้ไข
+  edit_multiple_species: แก้ไขหลายชนิด
+  edit_photos: แก้ไขรูปภาพ
+  edit_photos_for_observation_id: "แก้ไขรูปภาพของการสังเกต %{obs_id}"
+  edit_taxa: แก้ไขหน่วยอนุกรมวิธาน
+  edit_taxon: แก้ไขหน่วยอนุกรมวิธาน
+  edit_taxon_framework: แก้ไขโครงร่างของหน่วยอนุกรมวิธาน
+  end: สิ้นสุด
+  endangered: ใกล้สูญพันธุ์
+  endemic: เฉพาะถิ่น
+  establishment:
+    endemic: ประจำถิ่นเดียว
+    introduced: ถูกนำเข้ามา
+    invasive: รุกราน
+    managed: ถูกควบคุม
+    native: พื้นเมือง
+    naturalised: ปรับตัวเข้ากับท้องถิ่น
+  everyone: ทุกคน
+  everyone_: ทุกคน
+  everywhere: ทุกที่
+  exact_date: เฉพาะวันที่
+  except: ยกเว้น
+  exclude_places: ไม่รวมสถานที่นี้
+  exclude_projects: ไม่รวมโครงการนี้
+  exclude_taxa: ไม่รวมหน่วยอนุกรมวิธานนี้
+  exclude_users: ไม่รวมผู้ใช้นี้
+  exclusion_filters: ไม่รวมเงื่อนไขเหล่านี้
+  exit_full_screen: "ออกจากโหมดเต็มจอ"
+  examples_of_data_use_by_network_members: ตัวอย่างการใช้ข้อมูลโดยสมาชิกเครือข่าย
+  examples_of_ranking_organizations: ตัวอย่างการจัดลำดับองค์กร
+  explore: สำรวจ
+  export: ส่งออก
+  export_observations: ส่งออกการสังเกต
+  exporting: "กำลังส่งออก..."
+  extinct: สูญพันธุ์
+  extinct_in_the_wild: สูญพันธุ์จากธรรมชาติ
+  evidence_of_organism: มีหลักฐานของสิ่งมีชีวิต
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
+  faves: รายการโปรด
+  Family: วงศ์
+  favorite_taxa: หน่วยอนุกรมวิธานที่ชอบ
+  favorites: "รายการโปรด"
+  filters: ตัวกรอง
+  find_new_place_to_explore: ค้นหาสถานที่ใหม่เพื่อสำรวจ
+  find_observations: ค้นหาการสังเกต
+  find_photos: ค้นหาภาพ
+  find_places: ค้นหาสถานที่
+  find_some_people_to_follow: "ค้นหาผู้คนที่จะติดตาม"
+  find_species: ค้นหาชนิด
+  find_suitable_observations: ค้นหาการสังเกตที่เหมาะสม
+  find_unsuitable_observations: ค้นหาการสังเกตที่ไม่เหมาะสม
+  find_your_current_location: ค้นหาตำแหน่งปัจจุบันของคุณ
+  finished: เสร็จสิ้น
+  #Verb form, as in "Flag this item"
+  flag: รายงาน
+  flag_as_inappropriate: รายงานว่าไม่เหมาะสม
+  flag_as_spammer: รายงานว่าเป็นสแปม
+  flag_as_non_spammer: รายงานว่าไม่เป็นสแปม
+  #Label for the date/time when a flag was created
+  flag_created: รายงานที่สร้าง
+  flag_for_check_list_title_html: |
+    รายงานรายการตรวจสอบ: %{title}
+  flag_for_curation: รายงานอนุกรมวิธาน
+  flag_for_life_list_title_html: |
+    รายงานรายการสิ่งมีชีวิต: %{title}
+  flag_it!: รายงานเลย!
+  flag_this_photo: รายงานภาพนี้
+  flag_this_place: รายงานสถานที่นี้
+  flag_this_sound: รายงานเสียงนี้
+  flagged: ถูกรายงาน
+  flagged_: ถูกรายงาน
+  flagged_for_curation: รายงานอนุกรมวิธานแล้ว
+  flagged_taxon: หน่วยอนุกรมวิธานที่ถูกรายงาน
+  flagger: ผู้รายงาน
+  flags: รายงาน
+  flags_with_count: รายงาน (%{count})
+  follow_receive_updates_about_new_observations: ติดตาม (รับข้อมูลเกี่ยวกับการสังเกตใหม่ ๆ)
+  following: กำลังติดตาม
+  following_x_people:
+    other: 'กำลังติดตาม %{count} คน'
+  from_eol_collection: จาก EOL collection
+  from_flickr_facebook_etc: จาก Flickr, Facebook และอื่น ๆ
+  from_list: จากรายการ
+  from_photos: จากรูปถ่าย
+  from_place: จากสถานที่
+  from_soundcloud: จาก Soundcloud
+  fungi:
+    other: เห็ดรา
+  Genus: สกุล
+  geoprivacy: ความเป็นส่วนตัวของพิกัด
+  geoprivacy_is_obscured: พิกัดถูกปิดบังไว้
+  geoprivacy_is_obscured_desc: ผู้สังเกตปิดบังพิกัดไว้
+  go: ค้นหา
+  go_back: ย้อนกลับ
+  going_to_your_observations: กำลังไปที่การสังเกตของคุณ...
+  grid: ตาราง
+  has_id_supported_by_two_or_more: มีการระบุตั้งแต่สองคนขึ้นไป
+  has_photos_or_sounds: มีรูปถ่ายหรือเสียง
+  has_sound: มีเสียง
+  has_sounds: มีเสียง
+  header_your_observations: การสังเกตของฉัน
+  header_your_calendar: ปฏิทินของฉัน
+  header_your_favorites: รายการโปรดของคุณ
+  header_your_lists: รายการของคุณ
+  header_your_journal: วารสารของฉัน
+  help_support_inaturalist: "ช่วยสนับสนุน iNaturalist"
+  here_are_our_top_species_suggestions: นี่คือชนิดที่ได้รับการแนะนำเป็นอันดับต้น ๆ
+  hide_uncountable_species: ซ่อนชนิดที่นับไม่ได้
+  history: ประวัติ
+  i_dont_know_but_i_am_sure_this_is_taxon: ฉันไม่รู้ แต่ฉันแน่ใจว่านี่คือ%{taxon}
+  id_categories:
+    tooltips:
+      leading: |
+        หน่วยอนุกรมวิธานนี้เป็นลูกหลานของหน่วยฯ ที่เสนอโดยชุมชน ซึ่งจะช่วยให้เข้าใกล้คำตอบที่ถูกต้องมากขึ้น
+      improving: |
+        คำแนะนำแรกที่ชุมชนเห็นพ้องกัน ซึ่งจะช่วยให้หน่วยอนุกรมวิธานที่เสนอโดยชุมชนแบ่งย่อยลงไปมากขึ้น
+      maverick: |
+        หน่วยอนุกรมวิธานนี้ไม่ใช่ลูกหลานหรือบรรพบุรุษของหน่วยฯ ที่เสนอโดยชุมชน นั่นหมายความว่าชุมชนไม่ยอมรับคำแนะนำนี้
+  id_withdrawn: ถอนการจำแนก
+  identify: ระบุชนิด
+  identify_observations: "ระบุการสังเกต"
+  identify_observations_by_these_users: ผู้ใช้งานเหล่านี้ได้ระบุการสังเกต
+  identify_title: "ระบุชนิด"
+  computer_vision_suggestion: แนะนำจากการจำแนกภาพด้วยคอมพิวเตอร์
+  import_all_photos_as_observations: เพิ่มการสังเกตจากรูปภาพทั้งหมด
+  import_observations: นำเข้าการสังเกต
+  improving: แนะนำคนแรก
+  inappropriate_content: เนื้อหาไม่เหมาะสมใช่ไหม?
+  info: ข้อมูล
+  it_can_now_be_used_for_research: สามารถนำไปใช้ในการวิจัยและแสดงบนหน้าเว็บอื่น ๆ ได้
+  join: เข้าร่วม
+  journal: วารสาร
+  journal_post: โพสต์วารสาร
+  journal_posts: โพสต์วารสาร
+  last_observation: การสังเกตล่าสุด
+  last_observation_caps: การสังเกตล่าสุด
+  latitude_value: "ละติจูด: %{latitude}"
+  leaderboard: กระดานจัดอันดับ
+  leaderboard_for_x: "กระดานจัดอันดับสำหรับ %{x}"
+  leaderboards: กระดานจัดอันดับ
+  leading: เข้าใกล้คำตอบ
+  leave_a_comment: แสดงความคิดเห็น
+  #Terminal nodes in a taxonomic tree
+  leaves: ใบ
+  lexicons:
+    scientific_names: ชื่อวิทยาศาสตร์
+    mongolian: มองโกเลีย
+    polish: ภาษาโปแลนด์
+  life_list: "รายการสิ่งมีชีวิตของ %{user}"
+  list: รายการ
+  locales:
+    pl: ภาษาโปแลนด์
+  location_is_accurate: สถานที่สังเกตถูกต้อง
+  location_is_exact: มีหลักฐานของสิ่งมีชีวิต
+  location_is_private: สถานที่นี้เป็นส่วนตัว
+  location_specified: มีการระบุสถานที่สังเกต
+  longitude: ลองจิจูด
+  longitude_slash_x_coord_slash_easting: ลองจิจูด / แกน x / ตะวันออก
+  longitude_value: "ลองจิจูด: %{longitude}"
+  look_up_name: "ค้นหาชื่อ"
+  looks_like_no_species_in_guide: ดูเหมือนว่ายังไม่มีรายชื่อชนิดในคู่มือของคุณ
+  map: แผนที่
+  map_legend: คำอธิบายสัญลักษณ์
+  map_of_observations: แผนที่แสดงพิกัดการสังเกต
+  maps:
+    overlays:
+      all_observations: การสังเกตทั้งหมด
+      observations: การสังเกต
+      checklist_places: สถานที่รายการตรวจสอบ
+      range: ขอบเขต
+  mark_as_reviewed: ทำเครื่องหมายว่าดูแล้ว
+  mark_all_as_reviewed: ทำเครื่องหมายทั้งหมดว่าดูแล้ว
+  mark_all_as_unreviewed: ทำเครื่องหมายทั้งหมดว่ายังไม่ดู
+  maverick: ขัดแย้ง
+  media_type: ประเภทสื่อ
+  message_from_user_at_time: จาก %{user} เมื่อ %{time}
+  message_from_user_on_date: จาก %{user} เมื่อ %{date}
+  momentjs:
+    shortRelativeTime:
+      #Short text representing 1 minute in the past
+      m: "1 นาที"
+      #Short text representing %d minutes in the past
+      mm: "%d นาที"
+      #Short text representing %d hours in the past
+      hh: "%d ชม."
+      #Short text representing %d days in the past
+      dd: "%d วัน"
+      #Short text representing %d months in the past
+      MM: "%d เดือน"
+      #Short text representing %d years in the past
+      yy: "%d ปี"
+  more: เพิ่มเติม
+  more_about_sharing: ข้อมูลเพิ่มเติมในการแชร์
+  more_filters: ตัวกรองเพิ่มเติม
+  more_from_x: การสังเกตเพิ่มเติมจาก %{x}
+  more_import_options: ตัวเลือกนำเข้าเพิ่มเติม
+  more_info: ข้อมูลเพิ่มเติม
+  more_info_title: ข้อมูลเพิ่มเติม
+  more_journal_posts: โพสต์บันทึกเพิ่มเติม
+  more_than_a_week_ago: มากกว่าหนึ่งสัปดาห์ที่ผ่านมา
+  most_observations: ผู้ที่มีการสังเกตมากสุด
+  most_species: ผู้ที่พบจำนวนชนิดมากสุด
+  most_observed_species: ชนิดที่พบมากสุด
+  most_observed_introduced_species: ชนิดพันธุ์ต่างถิ่นที่พบมากสุด
+  most_observed_threatened_species: ชนิดที่เสี่ยงต่อการสูญพันธุ์ที่พบมากสุด
+  n_ago: "%{n} ที่แล้ว"
+  n_people_disagrees: "มี %{amount} คนไม่เห็นด้วย"
+  n_person_disagrees: "มี %{amount} คนไม่เห็นด้วย"
+  nearby_observations_: การสังเกตในบริเวณใกล้เคียง
+  needs_id: รอระบุชนิด
+  needs_id_: รอระบุชนิด
+  new_check_list: รายการตรวจสอบใหม่
+  new_check_list_for: "สร้างรายการตรวจสอบใหม่สำหรับ %{place} &raquo;"
+  new_journal_post: โพสต์วารสารใหม่
+  new_list: รายการใหม่
+  new_observations: การสังเกตใหม่
+  new_observations_in_year: "การสังเกตใหม่ในปี %{year}"
+  new_observations_ellispsis: "การสังเกตใหม่..."
+  new_observations_from_place_html: "การสังเกตใหม่จาก %{place}"
+  new_species_added_in_interval: ชนิดใหม่ที่เพิ่มใน %{interval}
+  new_species_added_in_interval_x_of_y: ชนิดใหม่ที่เพิ่มใน %{interval} (แสดง %{x} จาก %{y})
+  newly_added_species: ชนิดที่เพิ่มใหม่
+  newly_observed_species: ชนิดที่พบใหม่
+  newly_observed_species_in_year: "ชนิดที่เพิ่มใหม่ในปี %{year}"
+  no_but_it_is_a_member_of_taxon: "ไม่ใช่ แต่จัดจำแนกอยู่ใน%{taxon}"
+  no_ids_have_been_suggested_yet: ยังไม่ได้รับการแนะนำ
+  no_its_as_good_as_it_can_be: ไม่ต้อง แค่นี้ก็ดีแล้ว
+  no_journal_posts_yet: ยังไม่มีโพสต์วารสาร
+  no_observations_yet: ยังไม่มีการสังเกต
+  no_project_to_admin_current_user: "คุณไม่ได้เป็นผู้ดูแลโครงการใด ๆ"
+  no_project_to_admin_login: "%{login} ไม่ได้เป็นผู้ดูแลโครงการใด ๆ"
+  no_species_on_this_list: ยังไม่มีชนิดในรายการนี้!
+  number_of_observations: จำนวนการสังเกต
+  observations_by_category: "การสังเกตแบ่งตามประเภท"
+  observations_by_app: การสังเกตแบ่งตามแอป
+  observations_by_rank: การสังเกตแบ่งตามลำดับอนุกรมวิธาน
+  observations_by_user_on_date: "การสังเกตโดย %{user} ในวันที่ %{date}"
+  observation_date: วันที่
+  observation_field: ข้อมูลภาคสนาม
+  observation_field_details: รายละเอียดข้อมูลภาคสนาม
+  observation_fields: ข้อมูลภาคสนาม
+  observations: การสังเกต
+  observations_: การสังเกต
+  observations_by: การสังเกตโดย
+  observations_by_user: "การสังเกตโดย %{user}"
+  observations_deleted: ลบการสังเกตแล้ว
+  observations_from_people_taxa_and_places_youre_following: "การสังเกตจากผู้คน สถานที่ และหน่วยอนุกรมวิธานที่คุณกำลังติดตาม"
+  observations_from_this_place: การสังเกตจากสถานที่นี้
+  observations_from_this_project: การสังเกตจากโครงการนี้
+  observations_in_this_project_must: การสังเกตในโครงการต้องเป็นไปตามเกณฑ์ต่อไปนี้
+  observations_map: การสังเกต / แผนที่
+  observations_of_relatives: การสังเกตของหน่วยอนุกรมวิธานเดียวกัน
+  observations_of_taxon: "การสังเกตของ %{taxon_name}"
+  observations_per_month: การสังเกต / เดือน
+  observations_this_year_vs_last_year: การสังเกตในปีนี้กับปีที่แล้ว
+  observations_total: การสังเกตทั้งหมด
+  observations_was_successfully_updated: อัปเดตการสังเกตเรียบร้อยแล้ว
+  observed: สังเกตเมื่อ
+  observed_by: สังเกตโดย
+  only_administrators_may_access_that_page: ผู้ดูแลเท่านั้นที่เข้าถึงหน้านั้นได้
+  order: อันดับ
+  order_by: เรียงลำดับตาม
+  organism_is_wild: สิ่งมีชีวิตพบตามธรรมชาติ
+  other_species_commonly_misidentified_as_this_species: ชนิดอื่น ๆ ที่มักถูกระบุผิดว่าเป็นชนิดนี้
+  other_species_commonly_misidentified_as_this_species_in_place_html: ชนิดอื่น ๆ ที่มักถูกระบุผิดว่าเป็นชนิดนี้ใน <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genushybrid: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกจำแนกผิดว่าเป็นสกุลผสมนี้
+  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกจำแนกผิดว่าเป็นสกุลผสมนี้ใน <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_hybrid: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกจำแนกผิดว่าเป็นสกุลผสมนี้
+  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกจำแนกผิดว่าเป็นสกุลผสมนี้ใน <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_species: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกระบุผิดว่าเป็นชนิดนี้
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกระบุผิดว่าเป็นชนิดนี้ใน <a href="%{url}">%{place}</a>
+  our_blog: บล็อกของเรา
+  per_day: ต่อวัน
+  places_name:
+    azerbaijan: อาเซอร์ไบจาน
+    thailand: ประเทศไทย
+    trinidad_and_tobago: ตรินิแดดและโตเบโก
+    united_kingdom: สหราชอาณาจักร
+  #Post is a noun
+  post_from_journal_by_parent_html: โพสต์จาก<a href="%{url}">วารสารของ %{parent}</a>
+  #Post is a noun
+  post_from_your_journal_html: โพสต์จาก<a href="%{url}">วารสารของคุณ</a>
+  preview: ดูตัวอย่าง
+  previewing: "กำลังแสดงตัวอย่าง..."
+  privacy: ความเป็นส่วนตัว
+  private_: ส่วนตัว
+  project_journal: วารสารโครงการ
+  project_list_defaults:
+    title: "รายการตรวจสอบของ %{owner_name}"
+  project_curators_added_some_of_your_observations_html: |
+    ผู้ดูแลเพิ่มการสังเกตบางอันของคุณไปที่โครงการ <a href="%{url}">%{project}</a>
+  project_requirements: ข้อกำหนดโครงการ
+  projects: โครงการ
+  quality_grade: ระดับคุณภาพ
+  quality_grade_: ระดับคุณภาพ
+  quality_grade_colon: "ระดับคุณภาพ"
+  radius_value: "รัศมี (เมตร): %{radius}"
+  ranks:
+    kingdom: อาณาจักร
+    x_kingdoms:
+      other: อาณาจักร
+    subkingdom: อาณาจักรย่อย
+    phylum: ไฟลัม
+    x_phyla:
+      other: ไฟลัม
+    subphylum: ไฟลัมย่อย
+    superclass: ชั้นใหญ่
+    class: ชั้น
+    x_classes:
+      other: ชั้น
+    subclass: ชั้นย่อย
+    infraclass: ชั้นฐาน
+    superorder: อันดับใหญ่
+    order: อันดับ
+    x_orders:
+      other: อันดับ
+    suborder: อันดับย่อย
+    infraorder: อันดับฐาน
+    subterclass: ชั้นใต้
+    parvorder: อนุอันดับ
+    superfamily: วงศ์ใหญ่
+    epifamily: วงศ์บน
+    family: วงศ์
+    x_families:
+      other: วงศ์
+    subfamily: วงศ์ย่อย
+    supertribe: เผ่าใหญ่
+    tribe: เผ่า
+    subtribe: เผ่าย่อย
+    genus: สกุล
+    x_genera:
+      other: สกุล
+    genushybrid: สกุลผสม
+    subgenus: สกุลย่อย
+    #Singular
+    species: ชนิด
+    x_species:
+      other: ชนิด
+    hybrid: ลูกผสม
+    #Singular
+    subspecies: ชนิดย่อย
+    infrahybrid: ลูกผสมฐาน
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: อาณาจักร
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: อาณาจักรย่อย
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: ไฟลัม
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: ไฟลัมย่อย
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: ชั้นใหญ่
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: ชั้น
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: ชั้นย่อย
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: ชั้นฐาน
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: อันดับใหญ่
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: อันดับ
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: อันดับย่อย
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: อันดับฐาน
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: ชั้นใต้
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: อนุอันดับ
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: วงศ์ใหญ่
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: วงศ์บน
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: วงศ์
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: วงศ์ย่อย
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: เผ่าใหญ่
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: เผ่า
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: เผ่าย่อย
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: สกุล
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: สกุลผสม
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: สกุลย่อย
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: ชนิด
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: ลูกผสม
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: ชนิดย่อย
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: ลูกผสมฐาน
+  real_time_discussions: การถกเถียงที่กำลังเกิดขึ้น
+  receive_project_journal_notifications?: รับการแจ้งเตือนจากวารสารโครงการหรือไม่?
+  recent_evidence_of_organism: หลักฐานไม่เก่าเกินไป (ไม่เป็นซากดึกดำบรรพ์)
+  recent_observations: การสังเกตล่าสุด
+  recent_observations_: การสังเกตล่าสุด
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
+  recent_atom_observations_by: "การสังเกตล่าสุดโดย %{login} (Atom)"
+  recent_observations_by: "การสังเกตล่าสุดโดย %{login}"
+  redo_search_in_map: ค้นหาในแผนที่อีกครั้ง
+  redo_search_in_map_area: ค้นหาในขอบเขตแผนที่อีกครั้ง
+  remove: ลบออก
+  remove_conservation_status: นำสถานะการอนุรักษ์ออก
+  research_grade: ระดับงานวิจัย
+  research_grade_tooltip_html: 'การสังเกต "ระดับงานวิจัย" ต้องมีสื่อ สถานที่ วันที่ และความเห็นร่วมกันของชุมชนในการจำแนก (ปกติจะต้องจำแนกที่ระดับชนิด) <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เพิ่มเติมเกี่ยวกับระดับคุณภาพข้อมูล</a>'
+  research_grade_observations_have: 'การสังเกต "ระดับงานวิจัย" ต้องมีวันที่ รูปภาพ พิกัด และการจำแนกชนิดโดยชุมชน คลิกเพื่อดูการประเมินคุณภาพข้อมูล'
+  research_grade_qualification: คุณสมบัติระดับงานวิจัย
+  reset_search_filters: ตั้งค่าตัวกรองใหม่
+  review_all: ทบทวนทั้งหมด
+  rules_types:
+    must_be_verifiable: ต้องพิสูจน์ได้
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: ชื่อวิทยาศาสตร์
+  search: ค้นหา
+  search_by_name_or_email: ค้นหาด้วยชื่อหรืออีเมล
+  search_for_a_location: ค้นหาตำแหน่ง
+  search_for_species: ค้นหาชนิด
+  search_list: ค้นหารายการ
+  search_observations: "ค้นหาการสังเกต"
+  search_projects: ค้นหาโครงการ
+  search_species: ค้นหาชนิด
+  search_species_: กำลังค้นหาชนิด...
+  search_the_map: ค้นหาแผนที่
+  search_this_taxon: ค้นหาหน่วยอนุกรมวิธานนี้
+  searching: "กำลังค้นหา..."
+  seasonality: ตามฤดูกาล
+  select: เลือก
+  select_all: เลือกทั้งหมด
+  selected_taxon: หน่วยอนุกรมวิธานที่ถูกเลือก
+  select_this_taxon: เลือกหน่วยอนุกรมวิธานนี้
+  show: แสดง
+  show_common_names: แสดงชื่อสามัญ
+  show_hidden_content: แสดงเนื้อหาที่ซ่อนอยู่
+  show_keyboard_shortcuts: แสดงปุ่มลัดแป้นพิมพ์
+  show_less: แสดงน้อยลง
+  show_more: แสดงเพิ่ม
+  show_off_your_recent_observations: อวดการสังเกตล่าสุดบนบล็อกหรือเว็บไซต์ของคุณ!
+  show_only: แสดงเฉพาะ
+  show_scientific_name_first: แสดงชื่อวิทยาศาสตร์ก่อน
+  show_uncountable_species: แสดงชนิดที่นับไม่ได้
+  similar_species: ชนิดที่คล้ายกัน
+  similar_taxa: หน่วยอนุกรมวิธานที่คล้าย
+  sort_by: เรียงตาม
+  sorting_by: เรียงตาม
+  sounds:
+    select_one_or_more_sounds: เลือกอย่างน้อยหนึ่งเสียง
+    selected_sounds: เสียงที่ถูกเลือก
+  source_list:
+    catalogue_of_life_2012_annual_checklist: 'Catalogue of Life: รายการตรวจสอบรายปี 2012'
+    catalogue_of_life_2013_annual_checklist: 'Catalogue of Life: รายการตรวจสอบรายปี 2013'
+  #Plural
+  species: ชนิด
+  species_from_around_the_world: ชนิดจากทั่วโลก
+  species_name_cap: ชื่อชนิด
+  species_names: ชื่อชนิด
+  species_search: การค้นหาชนิด
+  species_taxon_name: ชนิด / ชื่อหน่วยอนุกรมวิธาน
+  species_unknown: ไม่ทราบชนิด
+  start: เริ่มต้น
+  stats: สถิติ
+  stop_following_user: "เลิกติดตาม %{user}"
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: ร้านค้า
+  submitted: ส่งเมื่อ
+  subscribe_to_a_taxon: ติดตามหน่วยอนุกรมวิธาน
+  subscribe_to_a_place: ติดตามสถานที่
+  subscriptions: การติดตาม
+  suggest_an_identification: แนะนำว่าเป็น
+  supporting: สนับสนุน
+  tags: แท็ก
+  taxa_info: ข้อมูลหน่วยอนุกรมวิธาน
+  taxon_geoprivacy: ความเป็นส่วนตัวของพิกัด
+  taxon_is_kingdom_of_life_with_x_observations:
+    other: "%{taxon} เป็นอาณาจักรที่มี %{count} การสังเกต"
+  taxonomy: อนุกรมวิธาน
+  taxon_changes: การเปลี่ยนแปลงหน่วยอนุกรมวิธาน
+  taxon_search: การค้นหาหน่วยอนุกรมวิธาน
+  taxon_search_results_for: ผลการค้นหาหน่วยอนุกรมวิธานสำหรับ
+  taxonomic_changes: การเปลี่ยนแปลงหน่วยอนุกรมวิธาน
+  taxonomy_details: รายละเอียดหน่วยอนุกรมวิธาน
+  taxonomy_details_for: รายละเอียดหน่วยอนุกรมวิธานสำหรับ
+  the_below_items_are_needed_to_achieve: |
+    การสังเกตจะเป็น<span className="bold">ระดับงานวิจัย</span>ได้ต้องมีคุณสมบัติต่อไปนี้:
+  the_community_id_requires_at_least_two_identifications: จะต้องมีการจำแนกโดยชุมชนอย่างน้อยสองคน
   these_observations_have_not_been_uploaded_yet: |
     การสังเกตเหล่านี้ยังไม่ถูกอัปโหลด
+  this_observation_is_research_grade: การสังเกตนี้เป็นระดับงานวิจัย!
+  this_observation_was_created_using: "การสังเกตนี้สร้างขึ้นมาด้วยการใช้:"
+  this_place_has_no_check_list: "สถานที่นี้ไม่มีรายการตรวจสอบ"
+  time_ago: "%{time} ที่แล้ว"
+  today: วันนี้
+  top_identifier_caps: ผู้ที่มีการจำแนกมากสุด
+  top_identifiers: ผู้ที่มีการจำแนกมากสุด
+  top_identifiers_of_taxon: ผู้ที่มีการจำแนก %{taxon} มากสุด
+  top_observer_caps: ผู้ที่มีการสังเกตมากสุด
+  top_observers: ผู้ที่มีการสังเกตมากสุด
+  total_observations: การสังเกตทั้งหมด
+  total_observations_caps: การสังเกตทั้งหมด
+  total_species_observed_caps: ชนิดที่ถูกสังเกตทั้งหมด
+  trends: แนวโน้ม
+  unclassified: ไม่ถูกจัดจำแนก
+  unreview_all: เลิกทบทวนทั้งหมด
+  update_search: อัปเดตการค้นหา
+  update_selected_taxa: อัปเดตหน่วยอนุกรมวิธานที่ถูกเลือก
+  update_x_selected_taxa:
+    other: "อัปเดต %{count} หน่วยอนุกรมวิธานที่ถูกเลือก"
   upload: อัปโหลด
   upload_a_csv_file: อัปโหลดไฟล์ CSV
   upload_a_csv_file_with_observation: |
@@ -513,10 +1298,111 @@ th:
   upload_new_photo: อัพโหลดรูปภาพใหม่
   upload_photo: อัปโหลดรูปภาพ
   uploaded_by: อัปโหลดโดย
+  uploader:
+    tooltips:
+      combine: รวมการสังเกตที่ถูกเลือก
+      select_all: เลือกการสังเกตทั้งหมด
+  usage_stats: สถิติการใช้งาน
+  user_disagrees_this_is_taxon: "%{user} ไม่เห็นด้วยว่านี่เป็น %{taxon}"
+  user_suggested_an_id: "%{user} แนะนำว่าเป็น"
+  users_journal: "วารสารของ %{user}"
+  value: ค่า
+  values: ค่า
+  view_all: ดูทั้งหมด
+  view_all_flags: ดูการรายงานทั้งหมด
+  view_all_members: ดูสมาชิกทุกคน
+  view_all_observations: ดูการสังเกตทั้งหมด
+  view_check_list_page: ดูหน้ารายการตรวจสอบ
+  view_dynamic_lifelist_: ดูรายการสิ่งมีชีวิตแบบไดนามิก
+  view_flags: ดูการรายงาน
+  view_flags_for_x_html: "ดูการรายงานสำหรับ %{x}"
+  view_journal: ดูวารสาร
+  view_leaderboard_from_last_month: ดูกระดานจัดอันดับจากเดือนที่แล้ว
+  view_leaderboard_from_last_year: ดูกระดานจัดอันดับจากปีที่แล้ว
+  view_observation_flags: ดูการรายงานการสังเกต
+  view_stats: ดูสถิติ
+  view_taxon_changes: ดูการเปลี่ยนแปลงหน่วยอนุกรมวิธาน
+  view_taxononomy_details_for_taxon: "ดูรายละเอียดหน่วยอนุกรมวิธานสำหรับ %{taxon}"
+  view_yours: ดูของฉัน
+  view_all_of_your_observations_from_x: "ดูการสังเกตทั้งหมดของคุณจาก %{x}"
+  we_have_no_conservation_status_for_this_taxon: เรายังไม่มีสถานะการอนุรักษ์สำหรับหน่วยอนุกรมวิธานนี้
+  whats_this?: นี่คืออะไร?
+  withdrawing: กำลังถอน...
+  x_journal: "วารสารของ %{user}"
+  x_project_journal: "%{name} ของ %{project}"
+  yes_i_want_to_join: ใช่ ฉันอยากเข้าร่วม
+  yesterday: เมื่อวาน
+  you_are_submitting_obs_with_no_date_or_no_location: |
+    คุณกำลังส่งการสังเกตที่ไม่มีวันที่หรือสถานที่ การสังเกตที่ไม่มีข้อมูลเหล่านี้มักจะจำแนกไม่ได้ และเบื้องต้นจะไม่สามารถมองเห็นจากการค้นหาการสังเกต
+  you_didnt_select_any_observations: คุณไม่ได้เลือกการสังเกตใด ๆ
+  you_didnt_select_any_photos_to_tag: คุณไม่ได้เลือกรูปภาพที่จะแท็ก!
+  you_faved_this: เพิ่มเข้ารายการโปรดแล้ว!
+  you_must_select_at_least_one_taxon: คุณต้องเลือกอย่างน้อยหนึ่งหน่วยอนุกรมวิธาน
+  you_need_to_select_some_observations_first: คุณต้องเลือกการสังเกตบางอันก่อน
+  your_content: เนื้อหาของคุณ
+  your_recent_projects: โครงการล่าสุดของคุณ
+  views:
+    guides:
+      pdf_layouts:
+        grid: ตาราง
+        journal: วารสาร
+      pdf_layout_notes:
+        journal: |
+          แบ่งหน้าโดยให้ข้อมูลชนิดอยู่ฝั่งซ้ายและช่องว่างสำหรับการบันทึกอยู่ฝั่งขวา ข้อมูลชนิดจะถูกตัดออกบางส่วนเพื่อให้พอดีกับหน้า
+      sorts:
+        alphaname: เรียงชื่อวิทยาศาสตร์ตามตัวอักษร
+        alphadisplay: เรียงชื่อที่แสดงตามตัวอักษร
+    lifelists:
+      list_view: รายการ
+      tree_view: แผนภูมิต้นไม้
+      all_species: ชนิดทั้งหมด
+      all_observations: การสังเกตทั้งหมด
+      total_observations: การสังเกตทั้งหมด
+      all_observations_in_this_taxon: การสังเกตทั้งหมดในหน่วยอนุกรมวิธานนี้
+      dropdowns:
+        name: ชื่อ
+        show: แสดง
+    lists:
+      edit:
+        lifelist_titles_cannot_be_changed: เปลี่ยนชื่อรายการสิ่งมีชีวิตไม่ได้
+    messages:
+      from: จาก
+    observations:
+      show:
+        data_quality_assessment_desc_html: |
+          การประเมินคุณภาพข้อมูลคือการตรวจวัดความถูกต้องของการสังเกต นักวิทยาศาสตร์อาจนำการสังเกตระดับงานวิจัยไปศึกษาต่อได้ คุณสามารถโหวตได้ข้างล่างนี้
+    emailer:
+      collection_project_changed_for_trusting_member:
+        #Followed by the project icon and a link to the project
+        requirements_have_changed: |-
+          ข้อกำหนดการสังเกตของโครงการต่อไปนี้เพิ่งมีการเปลี่ยนแปลง:
+    stats:
+      year:
+        new_species_per_year: ชนิดใหม่ / ปี
+        species_per_year: ชนิด / ปี
+    taxa:
+      show:
+        frequency:
+          research: ระดับงานวิจัย
+          "Life Stage=Subimago": ตัวรองตัวเต็มวัย
+    users:
+      edit:
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: โพสต์วารสารโครงการ
+        search_place_help_html: |
+          สถานที่เริ่มต้นสำหรับการค้นหาการสังเกต
+      show:
+        favorites_list_prompt_html: |
+          อยากอวดหน่วยอนุกรมวิธานที่คุณชอบไหมล่ะ? ถ้าอย่างนั้นก็%{link_start_tag}สร้างรายการ%{link_end_tag}ที่ชื่อว่า "รายการโปรด" เพื่อให้สิ่งที่คุณชอบล่าสุดมาปรากฏที่นี่
+    welcome:
+      index:
+        explore_and_share: สำรวจและแชร์การสังเกตของคุณจากโลกธรรมชาติ
+        species_observed: 'ชนิดที่ถูกสังเกต'
+        join_today: เข้าร่วมวันนี้
   date:
     abbr_month_names:
       - 
-      - Jan
+      - ม.ค.
       - Feb
       - Mar
       - Apr
@@ -528,9 +1414,17 @@ th:
       - Oct
       - Nov
       - Dec
+    day_names:
+      - อาทิตย์
+      - จันทร์
+      - อังคาร
+      - พุธ
+      - พฤหัสบดี
+      - ศุกร์
+      - เสาร์
     month_names:
       - 
-      - January
+      - มกราคม
       - February
       - March
       - April
@@ -541,9 +1435,42 @@ th:
       - September
       - October
       - November
-      - December
+      - ธันวาคม
+  datetime:
+    distance_in_words:
+      less_than_x_minutes:
+        other: น้อยกว่า %{count} นาที
+      x_days:
+        other: '%{count} วัน'
+    countdown_x_days:
+      other: วัน
+    prompts:
+      day: วัน
+      minute: นาที
+  helpers:
+    select:
+      prompt: โปรดเลือก
   number:
     human:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    attributes:
+      conservation_status:
+        geoprivacy: ความเป็นส่วนตัวของพิกัด
+      observation_field_value:
+        value: 'ค่า'
+      project:
+        map_type: ประเภทแผนที่
+      taxon:
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: สถานะการอนุรักษ์
+      user:
+        search_place_id: ค้นหาสถานที่
+    errors:
+      models:
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: "สำหรับ DNA จะต้องมีอักษร A T C หรือ G เท่านั้น"

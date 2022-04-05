@@ -10,7 +10,7 @@ describe CheckListsController, "show" do
 
   describe "occurrence_status filter" do
     before do
-      @lt_canna.update_attributes(occurrence_status_level: ListedTaxon::ABSENT)
+      @lt_canna.update(occurrence_status_level: ListedTaxon::ABSENT)
       @lt_canna.reload
       expect( @lt_canna ).to be_absent
     end
@@ -35,5 +35,26 @@ describe CheckListsController, "show" do
       expect( listed_taxa ).not_to include @lt_pregilla
       expect( listed_taxa ).to include @lt_canna
     end
+  end
+end
+
+describe CheckListsController, "destroy" do
+  it "should be allowed for curators if list is the default but place does not allow checklists" do
+    place = create :place, :with_geom, prefers_check_lists: true
+    list = place.check_list
+    place.update( prefers_check_lists: false )
+    curator = create :user, :as_curator
+    sign_in curator
+    delete :destroy, params: { id: list.id }
+    expect( List.find_by_id( list.id ) ).to be_blank
+  end
+
+  it "should not be allowed for curators if list is the default and the place allows checklists" do
+    place = create :place, :with_geom, prefers_check_lists: true
+    list = place.check_list
+    curator = create :user, :as_curator
+    sign_in curator
+    delete :destroy, params: { id: list.id }
+    expect( List.find_by_id( list.id ) ).not_to be_blank
   end
 end

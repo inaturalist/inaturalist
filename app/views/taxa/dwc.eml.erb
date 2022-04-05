@@ -30,8 +30,8 @@
       <para>
         <% if @license %>
         This archive is licensed under a
-        <ulink url=<%=raw FakeView.url_for_license( @license ).encode( xml: :attr ) %>>
-          <citetitle><%= FakeView.license_name( @license ) %></citetitle>
+        <ulink url=<%=raw url_for_license( @license ).encode( xml: :attr ) %>>
+          <citetitle><%= license_name( @license ) %></citetitle>
         </ulink>.
         <% end %>
         Taxonomic information should not represent creative work and thus may not be subject to intellectual property restrictions in many jurisdictions.
@@ -114,7 +114,7 @@
         <!-- level to which the metadata document applies; default for GBIF is "dataset";  "series" is the other common level -->
         <hierarchyLevel> dataset </hierarchyLevel>
         <!-- URL of the logo associated with a resource -->
-        <resourceLogoUrl><%= FakeView.asset_url( Site.default.logo.url, host: Site.default.url ) %></resourceLogoUrl>
+        <resourceLogoUrl><%= asset_url( Site.default.logo.url, host: Site.default.url ) %></resourceLogoUrl>
       </gbif>
     </metadata>
   </additionalMetadata>

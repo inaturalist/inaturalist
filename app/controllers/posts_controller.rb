@@ -110,13 +110,13 @@ class PostsController < ApplicationController
         @observations = @post.observations.order_by('observed_on')
         @shareable_image_url = @post.body[/img.+?src=["'](.+?)["']/, 1] if @post.body
         @shareable_image_url ||= if @post.parent_type == "Project"
-          FakeView.image_url(@post.parent.icon.url(:original))
+          helpers.image_url(@post.parent.icon.url(:original))
         elsif @post.parent_type == "User"
-          FakeView.image_url(@post.user.icon.url(:original))
+          helpers.image_url(@post.user.icon.url(:original))
         elsif @post.parent_type == "Site"
-          FakeView.image_url(@post.parent.logo_square.url)
+          helpers.image_url(@post.parent.logo_square.url)
         end
-        @shareable_description = FakeView.shareable_description(@post.body) if @post.body
+        @shareable_description = helpers.shareable_description(@post.body) if @post.body
         render "trips/show"
       end
       format.json { render json: @post }
@@ -189,7 +189,7 @@ class PostsController < ApplicationController
       @post.observations.clear
     end
 
-    if @post.update_attributes(params[@post.class.name.underscore.to_sym])
+    if @post.update(params[@post.class.name.underscore.to_sym])
       respond_to do |format|
         format.html do
           if @post.published_at
@@ -285,7 +285,7 @@ class PostsController < ApplicationController
         })
         json.each_with_index do |post, i|
           ar_post = @posts.detect{|p| p.id == post['id'].to_i}
-          json[i]['body'] = FakeView.formatted_user_text(
+          json[i]['body'] = helpers.formatted_user_text(
             json[i]['body'],
             scrubber: PostScrubber.new(
               tags: Post::ALLOWED_TAGS,

@@ -52,28 +52,44 @@ module UsersHelper
       "%s is one of your contacts." % potential_friend.login
     end
   end
-  
-  def possessive(user, options = {})
-    capitalize_it = options.delete(:capitalize)
-    if logged_in? && current_user == user
-      if capitalize_it
-        t(:your_, :default => "your").capitalize
+
+  def possessive_noun( user, noun )
+    if is_me?( user )
+      default_second_person = t( :second_person_possessive_singular, noun: t( noun, default: noun ) )
+      case noun.underscore.downcase
+      when "identifications"
+        t( :header_your_identifications, default: default_second_person )
+      when "lists"
+        t( :header_your_lists, default: default_second_person )
+      when "journal"
+        t( :header_your_journal, default: default_second_person )
+      when "favorites"
+        t( :header_your_favorites, default: default_second_person )
+      when "projects"
+        t( :header_your_projects, default: default_second_person )
       else
-        t(:your_, :default => "your")
+        default_second_person
       end
     else
-      t :possessive_user, :user => user.login
+      default_third_person = t( :third_person_possessive_singular,
+        noun: t( noun, default: noun ), object_phrase: user.login )
+      case noun.underscore.downcase
+      when "identifications"
+        t( :users_identifications, user: user.login, vow_or_con: user.login[0].downcase, default: default_second_person )
+      when "lists"
+        t( :users_lists, user: user.login, vow_or_con: user.login[0].downcase, default: default_second_person )
+      when "journal"
+        t( :x_journal, user: user.login, vow_or_con: user.login[0].downcase, default: default_second_person )
+      when "favorites"
+        t( :users_favorites, user: user.login, vow_or_con: user.login[0].downcase, default: default_third_person )
+      when "projects"
+        t( :users_projects, user: user.login, vow_or_con: user.login[0].downcase, default: default_third_person )
+      else
+        default_third_person
+      end
     end
   end
 
-  def possessive_noun(user, noun, options = {})
-    if is_me?(user)
-      t(:second_person_possessive_singular, :noun => noun)
-    else
-      t(:third_person_possessive_singular, :noun => noun, :object_phrase => user.login)
-    end
-  end
-  
   def you_or_login(user, options = {})
     capitalize_it = options.delete(:capitalize)
     if respond_to?(:user_signed_in?) && logged_in? && respond_to?(:current_user) && current_user == user

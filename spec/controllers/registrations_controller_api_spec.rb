@@ -13,7 +13,15 @@ end
 
 describe Users::RegistrationsController, "create" do
   elastic_models( Observation )
-  
+  # This is mildly insane, but here we're turning on forgery protection to test
+  # that we're successfully turning it off in this controller. Theoretically
+  # someone who is not signed in doesn't have an active session that coulbe be
+  # exploited by CSRF, and someone who is signed in should be protected by our
+  # own code that will cause registration to fail when you try to create
+  # another account
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
+
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
     stub_request(:get, /#{INatAPIService::ENDPOINT}/).
@@ -142,22 +150,43 @@ describe Users::RegistrationsController, "create" do
     u = register_user_with_params
     expect( u.oauth_application_id ).to eq 0
   end
+
   it "should set the oauth_application_id based on the Seek User-Agent" do
     a = OauthApplication.make!( name: "Seek" )
     request.env["HTTP_USER_AGENT"] = "Seek/2.12.9 Handset (Build 199) Android/8.1.0"
     u = register_user_with_params
     expect( u.oauth_application_id ).to eq a.id
   end
+
   it "should set the oauth_application_id based on the iPhone User-Agent" do
     a = OauthApplication.make!( name: "iNaturalist iPhone App" )
     request.env["HTTP_USER_AGENT"] = "iNaturalist/636 CFNetwork/1220.1 Darwin/20.3.0"
     u = register_user_with_params
     expect( u.oauth_application_id ).to eq a.id
   end
+
   it "should set the oauth_application_id based on the Seek User-Agent" do
     a = OauthApplication.make!( name: "iNaturalist Android App" )
     request.env["HTTP_USER_AGENT"] = "iNaturalist/1.23.4 (Build 493; Android 4.14.190-20973144-abA715WVLU2CUB5 A715WVLU2CUB5; SDK 30; a71 SM-A715W a71cs; OS Version 11)"
     u = register_user_with_params
     expect( u.oauth_application_id ).to eq a.id
+  end
+
+  it "should not allow an authenticated user to create another user" do
+    sign_in( create( :user ) )
+    expect do
+      register_user_with_params
+    end.not_to change( User, :count )
+    expect( response.response_code ).to eq 422
+  end
+
+  it "should accept data_transfer_consent" do
+    u = register_user_with_params( data_transfer_consent: true )
+    expect( u.data_transfer_consent_at ).not_to be_blank
+  end
+
+  it "should accept pi_consent" do
+    u = register_user_with_params( pi_consent: true )
+    expect( u.pi_consent_at ).not_to be_blank
   end
 end

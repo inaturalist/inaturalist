@@ -1,6 +1,6 @@
 = render "header"
 
-%p= t "views.emailer.observations_export_notification.your_observations_export_failed_html", url: @exports_url
+%p= t "views.emailer.observations_export_notification.your_observations_export_failed_html", url: export_observations_url
 %table{ cellpadding: 10 }
   %tr
     %th{ valign: "top", align: "left" }= t :query

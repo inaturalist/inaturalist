@@ -23,8 +23,8 @@ const markerSVG = {
   strokeWeight: 0,
   scale: 0.02,
   rotation: 180,
-  origin: new google.maps.Point( 0, 0 ),
-  anchor: new google.maps.Point( 625, 0 )
+  origin: typeof ( google ) !== "undefined" && new google.maps.Point( 0, 0 ),
+  anchor: typeof ( google ) !== "undefined" && new google.maps.Point( 625, 0 )
 };
 
 // https://github.com/tomchentw/react-google-maps/issues/220#issuecomment-319269122
@@ -111,11 +111,11 @@ class LocationChooserMap extends React.Component {
 
   fitCircles( ) {
     if ( !this.map ) { return; }
+    if ( typeof ( google ) === "undefined" ) return;
     const circles = [];
     const { obsCards } = this.props;
     _.each( obsCards, c => {
       if ( c.latitude ) {
-        /* global google */
         circles.push( new google.maps.Circle( {
           center: {
             lat: c.latitude,
@@ -269,25 +269,27 @@ class LocationChooserMap extends React.Component {
         notes = places[0].formatted_address;
       }
     }
-    if ( viewport && !searchedForCoord ) {
-      // radius is the largest distance from geom center to one of the bounds corners
-      radius = _.max( [
-        LocationChooserMap.distanceInMeters( lat, lng,
-          viewport.getCenter().lat(), viewport.getCenter().lng() ),
-        LocationChooserMap.distanceInMeters( lat, lng,
-          viewport.getNorthEast().lat(), viewport.getNorthEast().lng() )
-      ] );
-      this.map.fitBounds( viewport );
-    } else {
-      if ( !searchedForCoord ) {
-        notes = searchQuery || notes;
+    if ( typeof ( google ) !== "undefined" ) {
+      if ( viewport && !searchedForCoord ) {
+        // radius is the largest distance from geom center to one of the bounds corners
+        radius = _.max( [
+          LocationChooserMap.distanceInMeters( lat, lng,
+            viewport.getCenter().lat(), viewport.getCenter().lng() ),
+          LocationChooserMap.distanceInMeters( lat, lng,
+            viewport.getNorthEast().lat(), viewport.getNorthEast().lng() )
+        ] );
+        this.map.fitBounds( viewport );
+      } else {
+        if ( !searchedForCoord ) {
+          notes = searchQuery || notes;
+        }
+        this.map.fitBounds(
+          new google.maps.LatLngBounds(
+            new google.maps.LatLng( lat - 0.001, lng - 0.001 ),
+            new google.maps.LatLng( lat + 0.001, lng + 0.001 )
+          )
+        );
       }
-      this.map.fitBounds(
-        new google.maps.LatLngBounds(
-          new google.maps.LatLng( lat - 0.001, lng - 0.001 ),
-          new google.maps.LatLng( lat + 0.001, lng + 0.001 )
-        )
-      );
     }
     let { manualPlaceGuess, notes: existingNotes } = this.props;
     if ( manualPlaceGuess && notes ) {
@@ -435,7 +437,7 @@ class LocationChooserMap extends React.Component {
           ref={ref => { this.searchbox = ref; }}
           bounds={bounds}
           onPlacesChanged={this.handlePlacesChanged}
-          controlPosition={google.maps.ControlPosition.TOP_LEFT}
+          controlPosition={typeof ( google ) !== "undefined" && google.maps.ControlPosition.TOP_LEFT}
         >
           <input
             ref={ref => { this.searchboxInput = ref; }}

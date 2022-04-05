@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import _ from "lodash";
 import moment from "moment";
-import DiscussionListContainer from "../containers/discussion_list_container";
+import DiscussionList from "./discussion_list";
 import CommentFormContainer from "../containers/comment_form_container";
 import IdentificationFormContainer from "../containers/identification_form_container";
 import SuggestionsContainer from "../containers/suggestions_container";
@@ -21,6 +21,7 @@ import ObservationFieldsContainer from "../containers/observation_fields_contain
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonMap from "./taxon_map";
 import UserText from "../../../shared/components/user_text";
+import ErrorBoundary from "../../../shared/components/error_boundary";
 import { formattedDateTimeInTimeZone } from "../../../shared/util";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 import FollowButtonContainer from "../containers/follow_button_container";
@@ -59,6 +60,7 @@ class ObservationModal extends React.Component {
       const that = this;
       setTimeout( ( ) => {
         const map = $( ".TaxonMap", ReactDOM.findDOMNode( that ) ).data( "taxonMap" );
+        if ( typeof ( google ) === "undefined" ) { return; }
         google.maps.event.trigger( map, "resize" );
         if ( observation && observation.latitude ) {
           map.setCenter( new google.maps.LatLng(
@@ -122,11 +124,16 @@ class ObservationModal extends React.Component {
       increaseBrightness,
       keyboardShortcutsShown,
       loadingDiscussionItem,
+      mapZoomLevel,
+      mapZoomLevelLocked,
       observation,
+      officialAppIds,
       onClose,
+      onMapZoomChanged,
       resetBrightness,
       reviewedByCurrentUser,
       setImagesCurrentIndex,
+      setMapZoomLevelLocked,
       showNextObservation,
       showPrevObservation,
       tab,
@@ -135,12 +142,8 @@ class ObservationModal extends React.Component {
       toggleCaptive,
       toggleKeyboardShortcuts,
       toggleReviewed,
-      visible,
       updateCurrentUser,
-      mapZoomLevel,
-      onMapZoomChanged,
-      mapZoomLevelLocked,
-      setMapZoomLevelLocked
+      visible
     } = this.props;
     if ( !observation ) {
       return <div />;
@@ -192,31 +195,35 @@ class ObservationModal extends React.Component {
         taxonLayer.gbif = { disabled: true };
       }
       taxonMap = (
-        <TaxonMap
-          key={`map-for-${obsForMap.id}`}
-          placement="obs-modal"
-          reloadKey={`map-for-${obsForMap.id}-${obsForMap.private_latitude ? "full" : ""}`}
-          taxonLayers={[taxonLayer]}
-          observations={[obsForMap]}
-          clickable={!blind}
-          latitude={obsForMap.latitude}
-          longitude={obsForMap.longitude}
-          zoomLevel={
-            mapZoomLevelLocked && mapZoomLevel ? mapZoomLevel : ( obsForMap.map_scale || 5 )
-          }
-          onZoomChanged={onMapZoomChanged}
-          mapTypeControl
-          mapTypeControlOptions={{
-            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-            position: google.maps.ControlPosition.TOP_RIGHT
-          }}
-          showAccuracy
-          showAllLayer={false}
-          overlayMenu={false}
-          zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
-          currentUser={currentUser}
-          updateCurrentUser={updateCurrentUser}
-        />
+        <ErrorBoundary key="observation-modal-map">
+          <TaxonMap
+            key={`map-for-${obsForMap.id}`}
+            placement="obs-modal"
+            reloadKey={`map-for-${obsForMap.id}-${obsForMap.private_latitude ? "full" : ""}`}
+            taxonLayers={[taxonLayer]}
+            observations={[obsForMap]}
+            clickable={!blind}
+            latitude={obsForMap.latitude}
+            longitude={obsForMap.longitude}
+            zoomLevel={
+              mapZoomLevelLocked && mapZoomLevel ? mapZoomLevel : ( obsForMap.map_scale || 5 )
+            }
+            onZoomChanged={onMapZoomChanged}
+            mapTypeControl
+            mapTypeControlOptions={{
+              style: typeof ( google ) !== "undefined" && google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+              position: typeof ( google ) !== "undefined" && google.maps.ControlPosition.TOP_RIGHT
+            }}
+            showAccuracy
+            showAllLayer={false}
+            overlayMenu={false}
+            zoomControlOptions={{
+              position: typeof ( google ) !== "undefined" && google.maps.ControlPosition.TOP_LEFT
+            }}
+            currentUser={currentUser}
+            updateCurrentUser={updateCurrentUser}
+          />
+        </ErrorBoundary>
       );
     } else if ( observation.obscured ) {
       taxonMap = (
@@ -732,6 +739,24 @@ class ObservationModal extends React.Component {
                                 I18n.t( `places_name.${_.snakeCase( country.name )}`, { defaultValue: country.name } ) || I18n.t( "somewhere_on_earth" )
                               ) : I18n.t( "somewhere_on_earth" ) }
                             </li>
+                            { observation.application && observation.application.name && (
+                              <li>
+                                <a href={observation.application.url}>
+                                  { officialAppIds.includes( observation.application.id ) ? (
+                                    <img
+                                      className="app-thumbnail"
+                                      src={observation.application.icon}
+                                      alt={observation.application.name}
+                                    />
+                                  ) : <i className="fa fa-cloud-upload bullet-icon" />
+                                  }
+                                  <span className="name">
+                                    { observation.application.name }
+                                  </span>
+                                </a>
+                              </li>
+                            )
+                            }
                             { blind ? null : (
                               <li className="view-follow">
                                 <a
@@ -773,7 +798,7 @@ class ObservationModal extends React.Component {
                           className="observation-description"
                         />
                       ) }
-                      <DiscussionListContainer observation={observation} />
+                      <DiscussionList observation={observation} currentUserID={currentUser.id} />
                       <center className={loadingDiscussionItem ? "loading" : "loading collapse"}>
                         <div className="big loading_spinner" />
                       </center>

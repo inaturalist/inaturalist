@@ -1,5 +1,5 @@
 import inatjs from "inaturalistjs";
-import { showAlert } from "./alert_actions";
+import { showAlert } from "../../../shared/ducks/alert_modal";
 
 const POST_COMMENT = "post_comment";
 

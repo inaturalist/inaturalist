@@ -1,0 +1,21 @@
+- content_for :title do
+  = @title = t( :apply_to_create_applications_title )
+- content_for :extracss do
+  :css
+    .container .field {
+      margin-bottom: 20px;
+    }
+.container
+  .row
+    .col-xs-8.col-xs-offset-2
+      %h1= @title
+      %p=t :app_owner_application_about_p1a_html
+      %p=t :app_owner_application_about_p2_html
+      - if @eligible
+        %h2=t :apply_app_owner
+        = form_for :application, url: {action: "create_app_owner_application"}, builder: BootstrapFormBuilder do |f|
+          = f.text_area :explanation, value: @app_owner_application[:explanation], label: t( "app_owner_application_fields_explanation_html" ), style: "min-height: 100px", required: true, minlength: OauthApplicationsController::MIN_EXPLANATION_LENGTH
+          = f.submit t(:apply_app_owner), class: "btn btn-primary"
+      - else
+        .alert.alert-warning
+          %p=t :app_owner_application_inelligible

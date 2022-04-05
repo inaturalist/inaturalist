@@ -19,10 +19,7 @@ describe Place do
   it { is_expected.to have_many :observations_places }
   it { is_expected.to have_one(:place_geometry).dependent(:destroy).inverse_of :place }
   it { is_expected.to have_one(:place_geometry_without_geom).class_name 'PlaceGeometry' }
-  it do
-    is_expected.to have_many(:extra_place_sites).dependent(:nullify).inverse_of(:extra_place).class_name("Site")
-                                                .with_foreign_key :extra_place_id
-  end
+  it { is_expected.to have_many(:places_sites).dependent :destroy }
 
   it { is_expected.to validate_presence_of(:place_geometry).on :create }
   it { is_expected.to validate_presence_of :latitude }
@@ -169,7 +166,7 @@ describe Place, "updating" do
     expect(
       Project.elastic_paginate( where: { place_ids: [ old_parent.id ] } )
     ).to include project
-    place.update_attributes( parent: new_parent )
+    place.update( parent: new_parent )
     Delayed::Worker.new.work_off
     expect(
       Project.elastic_paginate( where: { place_ids: [ new_parent.id ] } )

@@ -66,10 +66,10 @@ oc:
   #positional uncertainty
   acc: 'Exactitud (mètres)'
   account: Compte
-  accept: acceptar
   accept_community_identifications: Acceptar las identificacions de la comunautat
   accuracy: Precision
   accuracy_meters: Precision (mètres)
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Accion
   actions: Accions
   active: actiu
@@ -262,7 +262,6 @@ oc:
   authorize_permissions_from_provider: "Autorizar los accèsses dempuèi %{provider}"
   back: Retorn
   back_to_all_species: Tornar a totas las espècias
-  back_to_calendar: "Retorn al calendièr de %{user}"
   back_to_editing_observation: Retorn a la modificacion d’observacion
   back_to_lists: "Retorn a las listas %{name}"
   back_to_observation: Retorn a l’observacion
@@ -282,7 +281,6 @@ oc:
   back_to_your_journal: Retorn a vòstre jornal
   back_to_your_observations: Retorn a vòstras observacions
   back_to_your_profile: Retorn a vòstre perfil
-  back_to_your_projects: Retorn a vòstres projèctes
   batch: Lòt
   batch_edit: Moditicacion del lòt
   #Where x is the title of a list of taxa
@@ -370,6 +368,7 @@ oc:
   code: Còdi
   columns: Colomnas
   combine: Combinar
+  #Noun, used to label a comment or a comment field in a form
   comment: comentari
   comment_deleted: Comentari suprimit
   comments: Comentaris
@@ -541,7 +540,6 @@ oc:
   event_stats: Estatisticas de l'eveniment
   event_url: URL de l’activitat
   events_only: Eveniments unicament
-  every_species_seen_by: Cada espècia vista per
   everyone: tot lo monde
   everywhere: pertot
   exact_date: Data exacta
@@ -644,11 +642,9 @@ oc:
   identification_deleted: identificacion suprimida.
   identification_saved: "Identificacion enregistrada !"
   identifications: Identificacions
-  identifications_by: "Identificacions per %{user}"
   identifiers: Identificants
   identotron_for: Identotron per
   identotron_help: Ajuda de l’Identotron
-  ignore: ignorar
   #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: En perilh
   import: Importar
@@ -982,7 +978,6 @@ oc:
     west_africa: Africa occidentala
   plants: plantas
   position: Posicion
-  possessive_user: "de %{user}"
   posted_by: Publicat per
   posts: Nòtas
   powered_by: Optimizat per

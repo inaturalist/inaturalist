@@ -17,7 +17,7 @@ import {
   showNextTab,
   toggleKeyboardShortcuts
 } from "./actions";
-import { increaseBrightness, decreaseBrightness} from "./ducks/brightnesses";
+import { increaseBrightness, decreaseBrightness } from "./ducks/brightnesses";
 
 const bindShortcut = ( shortcut, action, dispatch, options = { } ) => {
   bind( shortcut, ( ) => {
@@ -159,6 +159,11 @@ const annotationShortcuts = [
     shortcut: "e m",
     term: "Evidence of Presence",
     value: "Molt"
+  },
+  {
+    shortcut: "e g",
+    term: "Evidence of Presence",
+    value: "Gall"
   }
 ];
 

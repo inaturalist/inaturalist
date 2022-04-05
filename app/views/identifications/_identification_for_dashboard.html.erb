@@ -27,7 +27,7 @@
             identification.user_id != current_user.id && 
             (viewers_identification.blank? || viewers_identification.taxon_id != identification.taxon_id) %>
           <span class="btn btn-sm btn-default btn_agree">
-            <%= link_to t(:agree), {
+            <%= link_to t(:agree_), {
                  controller: "identifications",
                  action: "agree",
                  observation_id: identification.observation_id,

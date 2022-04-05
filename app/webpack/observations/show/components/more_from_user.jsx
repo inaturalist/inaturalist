@@ -30,10 +30,11 @@ const MoreFromUser = ( {
   }
   const onDate = dateObserved ? dateObserved.format( "YYYY-MM-DD" ) : null;
   const calendarDate = dateObserved ? dateObserved.format( "YYYY/M/D" ) : null;
+  const { testingApiV2 } = config || {};
   const loadObservationCallback = ( e, o ) => {
     if ( !e.metaKey ) {
       e.preventDefault( );
-      showNewObservation( o );
+      showNewObservation( o, { useInstance: !testingApiV2 } );
     }
   };
   const userLogin = observation.user.login;

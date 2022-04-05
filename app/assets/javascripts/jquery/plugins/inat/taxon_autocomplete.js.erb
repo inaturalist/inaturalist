@@ -111,7 +111,9 @@ autocompleter.taxonTemplate = function( result, fieldValue, options ) {
     labelDiv.append( $( "<a/>" ).attr( "href", "#" ) );
   }
   if( result.id ) {
-    var rightElement = $( "<a/>" ).attr( "target", "_blank" ).
+    var rightElement = $( "<a/>" ).
+      attr( "target", "_blank" ).
+      attr( "rel", "noopener noreferrer" ).
       attr( "href", "/taxa/" + result.id );
     $( "<div/>" ).addClass( "ac-view" ).append( I18n.t("view") ).appendTo( rightElement );
     wrapperDiv.append( rightElement );

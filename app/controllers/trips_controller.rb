@@ -97,11 +97,11 @@ class TripsController < ApplicationController
         @prev = @trip.parent.journal_posts.published.where("published_at < ?", @trip.published_at || @trip.updated_at).order("published_at DESC").first
         @shareable_image_url = @trip.body[/img.+?src="(.+?)"/, 1] if @trip.body
         @shareable_image_url ||= if @trip.parent_type == "Project"
-          FakeView.image_url(@trip.parent.icon.url(:original))
+          helpers.image_url(@trip.parent.icon.url(:original))
         else
-          FakeView.image_url(@trip.user.icon.url(:original))
+          helpers.image_url(@trip.user.icon.url(:original))
         end
-        @shareable_description = FakeView.shareable_description( @trip.body ) if @trip.body
+        @shareable_description = helpers.shareable_description( @trip.body ) if @trip.body
         trip_purpose_taxon_ids = @trip.trip_purposes.where( complete: true ).map( &:resource_id ).flatten.uniq
         if trip_purpose_taxon_ids.include? Taxon::LIFE.id
           @target_list_taxa = [Taxon::LIFE]
@@ -150,8 +150,7 @@ class TripsController < ApplicationController
                   :source_identifier, :creator_id, :updater_id, :version,
                   :featured_at, :auto_photos, :locked, :wikipedia_summary,
                   :wikipedia_title, :name_provider, :source_id,
-                  :conservation_status, :conservation_status_source_id,
-                  :conservation_status_source_identifier]
+                  :conservation_status]
               }
           }
           }
@@ -161,7 +160,7 @@ class TripsController < ApplicationController
   end
 
   def new
-    @first_trip if Trip.where(user_id: current_user.id).count == 0
+    @first_trip = Trip.where(user_id: current_user.id).count == 0
     @trip = Trip.new(:user => current_user)
     respond_to do |format|
       format.html
@@ -259,7 +258,7 @@ class TripsController < ApplicationController
       @trip.published_at = nil
     end
     respond_to do |format|
-      if @trip.update_attributes(params[:trip])
+      if @trip.update(params[:trip])
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
         format.json { head :no_content }
       else
@@ -361,7 +360,12 @@ class TripsController < ApplicationController
       format.json do
         @saved.each_with_index do |tt,i|
           if @saved[i].taxon
-            @saved[i].taxon.html = view_context.render_in_format(:html, :partial => "shared/taxon", :object => @saved[i].taxon)
+            @saved[i].taxon.html = view_context.render_in_format(
+              :html,
+              partial: "shared/taxon",
+              object: @saved[i].taxon,
+              current_user: current_user
+            )
           end
         end
         render :json => {

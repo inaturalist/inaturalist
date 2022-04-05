@@ -54,19 +54,30 @@ class DateTimeFieldWrapper extends Component {
   }
 
   render( ) {
+    const {
+      allowFutureDates,
+      dateTime,
+      defaultText,
+      inputFormat,
+      inputProps,
+      minDate,
+      mode,
+      size
+    } = this.props;
     return (
       <DateTimeField
         ref="datetime"
         key="datetime"
         className="datetime"
-        mode={ this.props.mode }
-        size={ this.props.size }
-        maxDate={ this.props.allowFutureDates ? null : moment( ) }
-        inputProps={ this.props.inputProps }
-        defaultText={ this.props.defaultText || "" }
-        dateTime={ this.props.dateTime }
-        inputFormat={this.props.inputFormat || parsableDatetimeFormat( )}
-        onChange={ this.onChange }
+        mode={mode}
+        size={size}
+        minDate={minDate || moment( ).subtract( 130, "years" )}
+        maxDate={allowFutureDates ? null : moment( )}
+        inputProps={inputProps}
+        defaultText={defaultText || ""}
+        dateTime={dateTime}
+        inputFormat={inputFormat || parsableDatetimeFormat( )}
+        onChange={this.onChange}
       />
     );
   }
@@ -86,7 +97,8 @@ DateTimeFieldWrapper.propTypes = {
     PropTypes.string,
     PropTypes.number,
     PropTypes.object
-  ] )
+  ] ),
+  minDate: PropTypes.object
 };
 
 export default DateTimeFieldWrapper;

@@ -30,6 +30,7 @@ class Observation < ApplicationRecord
       return false unless observation.georeferenced?
       return true if subscription.taxon_id.blank?
       return false if observation.taxon.blank?
+      return true if observation.taxon_id == subscription.taxon_id
       observation.taxon.ancestor_ids.include?(subscription.taxon_id)
     }
   notifies_subscribers_of :taxon_and_ancestors, :notification => "new_observations", 
@@ -376,6 +377,11 @@ class Observation < ApplicationRecord
     :message => "should be a number"
   validates_presence_of :geo_x, :if => proc {|o| o.geo_y.present? }
   validates_presence_of :geo_y, :if => proc {|o| o.geo_x.present? }
+  validate do
+    if observed_on && ( new_record? || observed_on_changed? ) && observed_on < 130.years.ago
+      errors.add( :observed_on, :must_be_within_130_years )
+    end
+  end
   
   before_validation :set_time_zone,
                     :munge_observed_on_with_chronic,
@@ -404,17 +410,17 @@ class Observation < ApplicationRecord
 
   before_update :set_quality_grade
 
-  after_save :refresh_check_lists,
-             :update_default_license,
-             :update_all_licenses,
-             :update_taxon_counter_caches,
-             :update_quality_metrics,
-             :update_public_positional_accuracy,
-             :update_mappable,
-             :set_captive,
-             :set_taxon_photo,
-             :create_observation_review,
-             :reassess_annotations
+  after_save :refresh_check_lists
+  after_save :update_default_license
+  after_save :update_all_licenses
+  after_save :update_taxon_counter_caches
+  after_save :update_quality_metrics
+  after_save :update_public_positional_accuracy
+  after_save :update_mappable
+  after_save :set_captive
+  after_save :set_taxon_photo
+  after_save :create_observation_review
+  after_save :reassess_annotations
   after_create :set_uri
   after_commit :update_user_counter_caches_after_create, on: :create
   after_commit :update_user_counter_caches_after_destroy, on: :destroy
@@ -573,7 +579,7 @@ class Observation < ApplicationRecord
   
   # Find observations by user
   scope :by, lambda {|user|
-    if user.is_a?(User) || user.to_i > 0
+    if user.is_a?( User ) || user.to_i > 0
       where("observations.user_id = ?", user)
     else
       joins(:user).where("users.login = ?", user)
@@ -743,7 +749,7 @@ class Observation < ApplicationRecord
       { taxon: { taxon_names: :place_taxon_names } },
       :iconic_taxon,
       { identifications: :stored_preferences },
-      { photos: [ :flags, :user ] },
+      { photos: [ :flags, :user, :file_extension, :file_prefix ] },
       :stored_preferences, :flags, :quality_metrics,
       :votes_for ]
     # why do we need taxon_descriptions when logged in?
@@ -775,6 +781,7 @@ class Observation < ApplicationRecord
     # I18n.t( :observation_brief_something_by_user )
     # I18n.t( :observation_brief_something_from_place )
     # I18n.t( :observation_brief_something_from_place_by_user )
+    # I18n.t( :observation_brief_something_from_place_in_month_year_by_user )
     # I18n.t( :observation_brief_something_from_place_on_day )
     # I18n.t( :observation_brief_something_from_place_on_day_at_time )
     # I18n.t( :observation_brief_something_from_place_on_day_at_time_by_user )
@@ -786,6 +793,7 @@ class Observation < ApplicationRecord
     # I18n.t( :observation_brief_taxon_by_user )
     # I18n.t( :observation_brief_taxon_from_place )
     # I18n.t( :observation_brief_taxon_from_place_by_user )
+    # I18n.t( :observation_brief_taxon_from_place_in_month_year_by_user )
     # I18n.t( :observation_brief_taxon_from_place_on_day )
     # I18n.t( :observation_brief_taxon_from_place_on_day_at_time )
     # I18n.t( :observation_brief_taxon_from_place_on_day_at_time_by_user )
@@ -819,9 +827,10 @@ class Observation < ApplicationRecord
         key += "_at_time"
         i18n_vars[:time] = I18n.l( time_observed_at_in_zone, format: :compact )
       end
-    elsif !self.observed_on.blank?
-      key += "_in_month"
-      i18n_vars[:month] = I18n.l( self.observed_on, format: :month_year )
+    elsif !observed_on.blank?
+      key += "_in_month_year"
+      i18n_vars[:month] = I18n.l( observed_on, format: "%B" )
+      i18n_vars[:year] = I18n.l( observed_on, format: "%Y" )
     end
     unless options[:no_user]
       key += "_by_user"
@@ -945,7 +954,6 @@ class Observation < ApplicationRecord
       ECT
       GST
       IST
-      PST
     )
     
     if ( iso8601_datetime = DateTime.iso8601( observed_on_string ) rescue nil )
@@ -1154,7 +1162,7 @@ class Observation < ApplicationRecord
         end
       elsif taxon.blank? && owners_ident && owners_ident.current?
         if identifications.where( user_id: user_id ).count > 1
-          owners_ident.update_attributes( current: false, skip_observation: true )
+          owners_ident.update( current: false, skip_observation: true )
         else
           owners_ident.skip_observation = true
           owners_ident.destroy
@@ -1367,8 +1375,8 @@ class Observation < ApplicationRecord
     end
   end
   
-  def quality_metrics_pass?
-    QualityMetric::METRICS.each do |metric|
+  def quality_metrics_pass?( metrics = QualityMetric::METRICS )
+    metrics.each do |metric|
       return false unless passes_quality_metric?(metric)
     end
     true
@@ -1576,9 +1584,10 @@ class Observation < ApplicationRecord
     obscure_coordinates
     self.latitude, self.longitude = [nil, nil]
   end
-  
+
   def obscure_coordinates
-    return unless ( [geoprivacy, taxon_geoprivacy] & [OBSCURED, PRIVATE] ).size > 0
+    return unless ( [geoprivacy, taxon_geoprivacy] & [OBSCURED, PRIVATE] ).size.positive?
+
     geoprivacy_changed_from_private_to_obscured = latitude_was.blank? &&
       ![geoprivacy, taxon_geoprivacy].include?( PRIVATE ) &&
       [geoprivacy, taxon_geoprivacy].include?( OBSCURED )
@@ -1594,15 +1603,14 @@ class Observation < ApplicationRecord
       self.private_longitude ||= longitude
     end
     # In this situation, the true coordinates didn't really change, so just reset them
-    if (
-      ( latitude == private_latitude || longitude == private_longitude ) &&
-      !( private_latitude_changed? || private_longitude_changed? ) &&
-      !geoprivacy_changed_from_private_to_obscured && latitude_was && longitude_was &&
-      !( latitude.blank? && longitude.blank? && private_latitude.blank? && private_longitude.blank? )
-    )
-      self.latitude, self.longitude = [latitude_was, longitude_was]
+    if ( latitude == private_latitude || longitude == private_longitude ) &&
+        !( private_latitude_changed? || private_longitude_changed? ) &&
+        !geoprivacy_changed_from_private_to_obscured && latitude_was && longitude_was &&
+        !( latitude.blank? && longitude.blank? && private_latitude.blank? && private_longitude.blank? )
+      self.latitude = latitude_was
+      self.longitude = longitude_was
       set_geom_from_latlon
-    elsif !private_latitude.blank? && !private_longitude.blank?  && (
+    elsif !private_latitude.blank? && !private_longitude.blank? && (
         private_latitude_changed? ||
         private_longitude_changed? ||
         geoprivacy_changed_from_private_to_obscured
@@ -1613,7 +1621,6 @@ class Observation < ApplicationRecord
     end
     true
   end
-
 
   def obscure_place_guess
     public_place_guess = Observation.place_guess_from_latlon(
@@ -1650,24 +1657,27 @@ class Observation < ApplicationRecord
     end
     true
   end
-  
+
   def lat_lon_in_place_guess?
     !place_guess.blank? && place_guess !~ /[a-cf-mo-rt-vx-z]/i && !place_guess.scan(COORDINATE_REGEX).blank?
   end
-  
+
   def unobscure_coordinates
     return unless coordinates_obscured? || coordinates_private?
+
     return unless geoprivacy.blank?
-    self.latitude = private_latitude
-    self.longitude = private_longitude
+
+    self.latitude = private_latitude unless latitude_changed?
+    self.longitude = private_longitude unless longitude_changed?
     self.private_latitude = nil
     self.private_longitude = nil
     set_geom_from_latlon
     self.obscuration_changed = true
   end
-  
+
   def iconic_taxon_name
     return nil if taxon_id.blank?
+
     if Taxon::ICONIC_TAXA_BY_ID.blank?
       if taxon.association(:iconic_taxon).loaded?
         taxon.iconic_taxon.try(:name)
@@ -1957,7 +1967,8 @@ class Observation < ApplicationRecord
         place_guess: o.place_guess,
         private_place_guess: o.private_place_guess,
         taxon_geoprivacy: o.taxon_geoprivacy,
-        public_positional_accuracy: o.calculate_public_positional_accuracy
+        public_positional_accuracy: o.calculate_public_positional_accuracy,
+        mappable: o.calculate_mappable
       )
     end
     Observation.elastic_index!( ids: observations.map(&:id), wait_for_index_refresh: true )
@@ -2191,7 +2202,10 @@ class Observation < ApplicationRecord
   end
 
   def update_taxon_counter_caches
-    return true unless destroyed? || saved_change_to_taxon_id?
+    unless destroyed? || saved_change_to_taxon_id? || transaction_include_any_action?( [:create] )
+      return true
+    end
+
     taxon_ids = [taxon_id_before_last_save, taxon_id].compact.uniq
     unless taxon_ids.blank?
       taxon_ids_including_ancestors = Taxon.where("id IN (?)", taxon_ids).
@@ -2272,7 +2286,7 @@ class Observation < ApplicationRecord
     if captive_flag.yesish?
       QualityMetric.vote( user, self, QualityMetric::WILD, false )
     elsif captive_flag.noish? && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
-      qm.update_attributes( agree: true )
+      qm.update( agree: true )
     elsif force_quality_metrics && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
       qm.destroy
     end
@@ -2285,16 +2299,16 @@ class Observation < ApplicationRecord
     true
   end
   
-  def update_attributes(attributes)
-    # hack around a weird android bug
-    attributes.delete(:iconic_taxon_name)
+  # def update(attributes)
+  #   # hack around a weird android bug
+  #   attributes.delete(:iconic_taxon_name)
     
-    # MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
-    #   self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
-    #   self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
-    # end
-    super(attributes)
-  end
+  #   # MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
+  #   #   self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
+  #   #   self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
+  #   # end
+  #   super(attributes)
+  # end
   
   def license_name
     return nil if license.blank?
@@ -2574,7 +2588,11 @@ class Observation < ApplicationRecord
         29625, # City Nature Challenge 2019
         40364  # City Nature Challenge 2020
       ].map {|umbrella_project_id|
-        if umbrella = Project.find_by_id( umbrella_project_id )
+        if umbrella = Project.includes( {
+          project_observation_rules: {
+            operand: :project_observation_rules
+          }
+        } ).find_by_id( umbrella_project_id )
           umbrella.project_observation_rules.select{|por| por.operator == "in_project?"}.map {|por|
             por.operand.project_observation_rules.
               select{|sub_por| sub_por.operator == "observed_in_place?" }.
@@ -2675,12 +2693,12 @@ class Observation < ApplicationRecord
   end
 
   # Actually referring to Place::STATE_LEVEL seems to cause trouble here
-  [1, 2].each do |admin_level|
-    define_method "place_admin#{admin_level}" do
+  [10, 20].each do |admin_level|
+    define_method "place_admin#{admin_level/10}" do
       public_places.detect{|p| p.admin_level == admin_level}
     end
-    define_method "place_admin#{admin_level}_name" do
-      send( "place_admin#{admin_level}" ).try(:name)
+    define_method "place_admin#{admin_level/10}_name" do
+      send( "place_admin#{admin_level/10}" ).try(:name)
     end
   end
 
@@ -2799,7 +2817,7 @@ class Observation < ApplicationRecord
     unless options[:skip_identifications]
       identifications.group_by{|ident| [ident.user_id, ident.taxon_id]}.each do |pair, idents|
         c = idents.sort_by(&:id).last
-        c.update_attributes(:current => true)
+        c.update(:current => true)
       end
     end
     save!
@@ -2807,7 +2825,7 @@ class Observation < ApplicationRecord
 
   def create_observation_review
     return true unless taxon
-    return true unless taxon_id_before_last_save.blank?
+    return true unless taxon_id_before_last_save.blank? || transaction_include_any_action?( [:create] )
     return true unless editing_user_id && editing_user_id == user_id
     ObservationReview.where( observation_id: id, user_id: user_id ).first_or_create.touch
     true
@@ -3182,22 +3200,22 @@ class Observation < ApplicationRecord
       ].include?( p.admin_level )
     end
     return false unless place
-    buckets = Observation.elastic_search(
-      filters: [
-        { term: { "taxon.ancestor_ids": target_taxon.id } },
-        { term: { place_ids: place.id } },
-      ],
-      # earliest_sort_field: "id",
+    base_filters = [
+      { term: { "taxon.ancestor_ids.keyword": target_taxon.id } },
+      { term: { "place_ids.keyword": place.id } },
+    ]
+    count_captive = Observation.elastic_search(
+      filters: base_filters + [{ term: { captive: true } }],
       size: 0,
-      aggregate: {
-        captive: {
-          terms: { field: "captive", size: 15 }
-        }
-      }
-    ).results.response.response.aggregations.captive.buckets
-    captive_stats = Hash[ buckets.map{ |b| [ b["key"], b["doc_count" ] ] } ]
-    total = captive_stats.values.sum
-    ratio = captive_stats[1].to_f / total
+      track_total_hits: true
+    ).results.total_entries
+    count_wild = Observation.elastic_search(
+      filters: base_filters + [{ term: { captive: false } }],
+      size: 0,
+      track_total_hits: true
+    ).results.total_entries
+    total = count_captive + count_wild
+    ratio = count_captive.to_f / total
     # puts "total: #{total}, ratio: #{ratio}, place: #{place}"
     total > 10 && ratio >= 0.8
   end

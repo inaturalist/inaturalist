@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserPrivilege < ApplicationRecord
   belongs_to :user
   belongs_to :revoke_user, class_name: "User"
@@ -11,7 +13,7 @@ class UserPrivilege < ApplicationRecord
     SPEECH,
     ORGANIZER,
     COORDINATE_ACCESS
-  ]
+  ].freeze
 
   # The earned_#{privilege}? methods are intended to calculate whether the user
   # has *currently* earned a privilege. They might have it without currently
@@ -29,17 +31,23 @@ class UserPrivilege < ApplicationRecord
 
   def self.earned_coordinate_access?( user )
     return false unless user.created_at < 3.years.ago
-    verifiable_obs_count = Observation.elastic_search( filters: [
-      { term: { "user.id" => user.id } },
-      { terms: { quality_grade: ["research"] } }
-    ] ).total_entries
+
+    verifiable_obs_count = Observation.elastic_search(
+      filters: [
+        { term: { "user.id.keyword" => user.id } },
+        { terms: { quality_grade: ["research"] } }
+      ]
+    ).total_entries
     return true if verifiable_obs_count >= 1000
-    improving_ids_count = Identification.elastic_search( filters: [
-      { term: { current: true } },
-      { term: { "user.id" => user.id } },
-      { term: { category: "improving" } },
-      { term: { own_observation: false } }
-    ] ).total_entries
+
+    improving_ids_count = Identification.elastic_search(
+      filters: [
+        { term: { current: true } },
+        { term: { "user.id.keyword" => user.id } },
+        { term: { category: "improving" } },
+        { term: { own_observation: false } }
+      ]
+    ).total_entries
     improving_ids_count >= 1000
   end
 
@@ -59,17 +67,18 @@ class UserPrivilege < ApplicationRecord
     #   UserPrivilege.create!( user: user, privilege: privilege )
     # end
     return if user.user_privileges.where( privilege: privilege ).exists?
-    if send( "earned_#{privilege}?", user )
-      UserPrivilege.create!( user: user, privilege: privilege )
-    end
+
+    return unless send( "earned_#{privilege}?", user )
+
+    UserPrivilege.create!( user: user, privilege: privilege )
   end
 
-  def restore!( options = {} )
-    update_attributes( revoked_at: nil )
+  def restore!( _options = {} )
+    update( revoked_at: nil )
   end
 
   def revoke!( options = {} )
-    update_attributes!(
+    update!(
       revoked_at: Time.now,
       revoke_user: options[:revoke_user],
       revoke_reason: options[:revoke_reason]

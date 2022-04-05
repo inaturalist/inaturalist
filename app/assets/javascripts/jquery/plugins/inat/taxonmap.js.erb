@@ -92,6 +92,10 @@ inatTaxonMap.fit = function( elt ) {
 
 inatTaxonMap.setupGoogleMap = function( elt ) {
   var options = $(elt).data('taxonMapOptions');
+  if ( typeof ( google ) === "undefined" ) {
+    $( elt ).html( "<div class='alert alert-warning alert-inside text-center'>" + I18n.t( "google_maps_not_loaded_error" ) + "</div>" );
+    return;
+  }
   var map,
       mapOptions = $.extend( true, { }, {
         backgroundColor: '#E3EAF6',

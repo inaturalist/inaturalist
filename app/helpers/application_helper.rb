@@ -243,7 +243,7 @@ module ApplicationHelper
   # Example: url_for_params(:taxon_id => 1, :without => :page)
   def url_for_params( options = {} )
     new_params = request.POST.merge( request.GET ).merge( options )
-    if without = options.delete(:without)
+    if without = new_params.delete(:without)
       without = [without] unless without.is_a?(Array)
       without.map!(&:to_s)
       new_params = new_params.reject {|k,v| without.include?(k) }
@@ -272,22 +272,6 @@ module ApplicationHelper
       end
     end
     html.html_safe
-  end
-  
-  # def link_to(*args)
-  #   if args.size >= 2 && args[1].is_a?(Taxon) && args[1].unique_name? && 
-  #       !(args[2] && args[2].is_a?(Hash) && args[2][:method])
-  #     return super(args.first, url_for_taxon(args[1]), *args[2..-1])
-  #   end
-  #   super
-  # end
-  
-  def url_for_taxon(taxon)
-    if taxon && taxon.unique_name?
-      url_for(:controller => 'taxa', :action => taxon.unique_name.split.join('_'))
-    else
-      url_for(taxon)
-    end
   end
   
   def modal_image(photo, options = {})
@@ -343,6 +327,8 @@ module ApplicationHelper
     end
     # Ensure all tags are closed
     text = Nokogiri::HTML::DocumentFragment.parse( text ).to_s
+    # Remove empty paragraphs
+    text = text.gsub( "<p></p>", "" )
     text.html_safe
   end
 
@@ -519,26 +505,42 @@ module ApplicationHelper
     @__serial_id = @__serial_id.to_i + 1
     @__serial_id
   end
-  
-  def image_url(source, options = {})
-    abs_path = source =~ /^\// ? source : asset_path( source ).to_s
+
+  def image_url( source, options = {} )
+    # Here FakeView is necessary again for situations where this gets called
+    # outside of a context with the normal URL and asset helpers
+    abs_path = source =~ %r{^/} ? source : FakeView.asset_path( source ).to_s
     unless abs_path =~ /\Ahttp/
-     abs_path = uri_join(options[:base_url] || @site.try(:url) || root_url, abs_path).to_s
+      the_root_url = begin
+        root_url
+      rescue StandardError => e
+        # If this method gets called outside of the context of a controller, url
+        # helpers like root_url may not be available, so we might need to fall
+        # back to FakeView. Note that rescuing ActionView::Template::Error
+        # doesn't seem to work here.
+        raise e unless e.message =~ /root_url/
+
+        FakeView.root_url
+      end
+      abs_path = uri_join( options[:base_url] || @site&.url || the_root_url, abs_path ).to_s
     end
     abs_path
-  rescue Exception => e
-    nil
   end
-  
+
   def truncate_with_more(text, options = {})
     return text if text.blank?
     more = options.delete(:more) || " ...#{t(:more).downcase} &darr;".html_safe
     less = options.delete(:less) || " #{t(:less).downcase} &uarr;".html_safe
-    options[:omission] ||= ""
-    options[:separator] ||= " "
+    unless ellipsize = options.delete(:ellipsize)
+      options[:omission] ||= ""
+      options[:separator] ||= " "
+    end
     truncated = truncate(text, options.merge(escape: false))
     return truncated.html_safe if text == truncated
+
     truncated = Nokogiri::HTML::DocumentFragment.parse(truncated)
+    return truncated.to_s.html_safe if ellipsize
+
     morelink = link_to_function(more, "$(this).parents('.truncated').hide().next('.untruncated').show()", 
       :class => "nobr ui")
     last_node = truncated.children.last || truncated
@@ -1025,15 +1027,15 @@ module ApplicationHelper
         image_tag(resource.parent.logo_square.url, options.merge(:class => "siteicon"))
       end
     when "Place"
-      image_tag(FakeView.image_url("icon-maps.png"), options)
+      image_tag( image_url( "icon-maps.png" ), options )
     when "Taxon"
       taxon_image(resource, {:style => "square", :width => 48}.merge(options))
     when "TaxonSplit", "TaxonMerge", "TaxonSwap", "TaxonDrop", "TaxonStage"
-      image_tag( FakeView.image_url( "#{resource.class.name.underscore}-aaaaaa-48px.png", options) )
+      image_tag( image_url( "#{resource.class.name.underscore}-aaaaaa-48px.png", options) )
     when "ObservationField"
-      image_tag(FakeView.image_url("notebook-icon-color-155px-shadow.jpg"), options)
+      image_tag( image_url( "notebook-icon-color-155px-shadow.jpg" ), options )
     else
-      image_tag(FakeView.image_url("logo-cccccc-20px.png"), options)
+      image_tag( image_url( "logo-cccccc-20px.png" ), options )
     end
   end
   
@@ -1051,18 +1053,23 @@ module ApplicationHelper
     ]
     # Find the key that is lowercase in English, b/c we're maddeningly
     # inconsistent about this
-    lowercase_key = potential_keys.detect do |k|
+    lowercase_key = potential_keys.detect do | k |
       en_t = I18n.t( k, locale: "en", default: nil )
       en_t && en_t[0].downcase == en_t[0]
     end
     lowercase_model_name = if lowercase_key
+      # puts "using lowercase key: #{lowercase_key}"
       I18n.t( lowercase_key, default: nil )
     end
-    lowercase_model_name ||= potential_keys.map{|k| I18n.t( k, default: nil ) }.compact.first
+    lowercase_model_name ||= potential_keys.map do | k |
+      lmn = I18n.t( k, default: nil )
+      # puts "trying key #{k}: #{lmn}"
+      lmn
+    end.compact.first
     lowercase_model_name ||= class_name
     lowercase_model_name
   end
-    
+
   def update_tagline_for(update, options = {})
     resource = update.resource
     notifier = update.notifier
@@ -1227,7 +1234,6 @@ module ApplicationHelper
   def activity_snippet(update, notifier, notifier_user, options = {})
     opts = {}
     if update.notification == "activity" && notifier_user
-      notifier_class_name_key = notifier.class.to_s.underscore
       notifier_class_name = lowercase_equivalent_model_name_for( notifier.class )
       key = "user_added_"
       opts = {
@@ -1265,7 +1271,6 @@ module ApplicationHelper
       end
     end
     key += '_html'
-
     t(key, opts)
   end
   
@@ -1372,7 +1377,7 @@ module ApplicationHelper
 
   def google_maps_js(options = {})
     libraries = options[:libraries] || []
-    version = Rails.env.development? ? "weekly" : "3.43"
+    version = Rails.env.development? ? "weekly" : "3.46"
     params = "v=#{version}&key=#{CONFIG.google.browser_api_key}"
     params += "&libraries=#{libraries.join(',')}" unless libraries.blank?
     "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?#{params}'></script>".html_safe
@@ -1596,7 +1601,14 @@ module ApplicationHelper
       end
       s.html_safe
     end
-    link_to( content, url_for_params( order_by: header, order: @order == "desc" ? "asc" : "desc" ), options )
+    link_to(
+      content,
+      url_for_params( {
+        order_by: header,
+        order: @order == "desc" ? "asc" : "desc"
+      }.merge( options[:url_options] ) ),
+      options
+    )
   end
 
 end

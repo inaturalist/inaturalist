@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::UnknownFormat, with: :render_404
 
   helper :all # include all helpers, all the time
-  protect_from_forgery
+  protect_from_forgery with: :exception, if: -> { request.headers["Authorization"].blank? }
   before_action :permit_params
   around_action :set_time_zone
   around_action :logstash_catchall
@@ -224,32 +224,7 @@ class ApplicationController < ActionController::Base
     @footless = true
     @no_footer_gap = true
     @responsive = true
-    es_query = {
-      has: ["photos"],
-      per_page: 100,
-      order_by: "votes",
-      order: "desc",
-      place_id: @site.try(:place_id).blank? ? nil : @site.place_id,
-      projects: ["log-in-photos"]
-    }
-    @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
-    if @observations.blank?
-      es_query.delete(:projects)
-      @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
-    end
-    if @observations.blank?
-      es_query.delete(:place_id)
-      @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
-    end
-    if es_query[:projects].blank?
-      ratio = params[:ratio].to_f
-      ratio = 1 if ratio <= 0
-      @observations = @observations.select do |o|
-        photo = o.observation_photos.sort_by{ |op| op.position || op.id }.first.photo
-        r = photo.original_dimensions[:width].to_f / photo.original_dimensions[:height].to_f
-        r < ratio
-      end
-    end
+    @observations = @site.login_featured_observations
   end
 
   def get_flickraw
@@ -272,10 +247,9 @@ class ApplicationController < ActionController::Base
       else
         redirect_back_or_default(root_url)
       end
-      throw :abort
     end
   end
-  
+
   # Override Devise implementation so we can set this for oauth2 / doorkeeper requests
   def current_user
     cu = super
@@ -314,6 +288,22 @@ class ApplicationController < ActionController::Base
         # with the response body
         Logstasher.write_unprocessable( request, response, session, current_user )
       end
+    end
+  end
+
+  #
+  # if Makara is configured with replica DBs, querying of replicas is currently
+  # disabled by default. Actions must use this in a `prepend_around_action` to
+  # have any queries run against the replicas. e.g.
+  #
+  #    prepend_around_action :enable_replica
+  #
+  def enable_replica
+    begin
+      ActiveRecord::Base.connection.enable_replica
+      yield
+    ensure
+      ActiveRecord::Base.connection.disable_replica
     end
   end
 
@@ -462,7 +452,7 @@ class ApplicationController < ActionController::Base
     
     update_params = update_params.to_h.reject{|k,v| v.blank?} if update_params
     if update_params.is_a?(Hash) && !update_params.empty?
-      # prefs.update_attributes(update_params)
+      # prefs.update(update_params)
       if logged_in?
         update_params.each do |k,v|
           new_value = if v == "true"
@@ -637,7 +627,6 @@ class ApplicationController < ActionController::Base
   def authenticate_with_oauth?
     # Don't want OAuth if we're already authenticated
     return false if !session.blank? && !session['warden.user.user.key'].blank?
-    return false if request.authorization.to_s =~ /^Basic /
     # Need an access token for OAuth
     return false unless !params[:access_token].blank? || request.authorization.to_s =~ /^Bearer /
     # If the bearer token is a JWT with a user we don't want to go through
@@ -649,11 +638,25 @@ class ApplicationController < ActionController::Base
       nil
     end
     return false if jwt_claims && jwt_claims.fetch( "user_id" )
-    @doorkeeper_for_called = true
+    @should_authenticate_with_oauth = true
   end
 
   def authenticated_with_oauth?
-    @doorkeeper_for_called && doorkeeper_token && doorkeeper_token.accessible?
+    @should_authenticate_with_oauth && doorkeeper_token && doorkeeper_token.accessible?
+  end
+
+  def authenticated_with_jwt?
+    return false unless current_user
+    return false unless ( token = request.authorization.to_s.split( /\s+/ ).last )
+
+    jwt_claims = begin
+      ::JsonWebToken.decode( token )
+    rescue JWT::DecodeError
+      nil
+    end
+    return false unless jwt_claims && ( current_user.id == jwt_claims.fetch( "user_id" ) )
+
+    true
   end
 
   def pagination_headers_for(collection)
@@ -758,7 +761,9 @@ class ApplicationController < ActionController::Base
     return unless logged_in?
     updates = UpdateAction.where( resource: record )
     if options[:delay]
-      UpdateAction.delay( priority: USER_PRIORITY ).user_viewed_updates( updates, current_user.id )
+      ActiveRecord::Base.connection.without_sticking do
+        UpdateAction.delay( priority: USER_PRIORITY ).user_viewed_updates( updates, current_user.id )
+      end
     else
       UpdateAction.user_viewed_updates( updates, current_user.id )
     end

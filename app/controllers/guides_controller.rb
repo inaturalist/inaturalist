@@ -169,7 +169,7 @@ class GuidesController < ApplicationController
         end
         @guide_taxa = @guide_taxa.page(params[:page]).per_page(100)
         GuideTaxon.preload_associations(@guide_taxa, [
-          { guide_photos: [ :photo, {taggings: :tag} ] } ])
+          { guide_photos: [ { photo: [:flags, :file_prefix, :file_extension] }, { taggings: :tag } ] } ])
         @tag_counts = ActsAsTaggableOn::Tag.joins(:taggings).
           joins("JOIN guide_taxa gt ON gt.id = taggings.taggable_id").
           where("taggings.taggable_type = 'GuideTaxon' AND taggings.context = 'tags' AND gt.guide_id = ?", @guide).
@@ -306,7 +306,7 @@ class GuidesController < ApplicationController
     end
     create_default_guide_taxa
     respond_to do |format|
-      if @guide.update_attributes(guide_params)
+      if @guide.update(guide_params)
         format.html do
           notice = if params[:publish]
             t( :guide_was_successfully_published )
@@ -478,7 +478,7 @@ class GuidesController < ApplicationController
 
     @guide.guide_taxa.find_each do |gt|
       next unless tags[gt.name]
-      gt.update_attributes(tag_list: gt.tag_list + tags[gt.name])
+      gt.update(tag_list: gt.tag_list + tags[gt.name])
     end
     respond_to do |format|
       format.html { redirect_back_or_default(@guide) }
@@ -491,7 +491,7 @@ class GuidesController < ApplicationController
     @guide.guide_taxa.order(:position).includes(taggings: :tag).each_with_index do |gt,i|
       tags[gt.name] ||= {}
       gt.tags.each do |tag|
-        namespace, predicate, value = FakeView.machine_tag_pieces(tag.name)
+        namespace, predicate, value = helpers.machine_tag_pieces(tag.name)
         header = [namespace, predicate].compact.join(':')
         headers << header
         tags[gt.name][header] = [tags[gt.name][header].to_s.split('|'), value].flatten.join('|')

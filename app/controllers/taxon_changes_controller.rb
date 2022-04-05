@@ -142,7 +142,7 @@ class TaxonChangesController < ApplicationController
       redirect_back_or_default(@taxon_change)
       return
     end
-    if @taxon_change.update_attributes(change_params)
+    if @taxon_change.update(change_params)
       flash[:notice] = 'Taxon Change was successfully updated.'
       redirect_to taxon_change_path(@taxon_change)
       return

@@ -26,9 +26,9 @@ class UsersController < ApplicationController
   before_action :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
   before_action :admin_required, :only => [:curation, :merge]
   before_action :site_admin_of_user_required, only: [:add_role, :remove_role]
-  before_action :curator_required, only: [:recent]
-  before_action :curator_or_site_admin_required, only: [
+  before_action :curator_required, only: [
     :moderation,
+    :recent,
     :set_spammer,
     :suspend,
     :unsuspend
@@ -49,9 +49,6 @@ class UsersController < ApplicationController
   skip_before_action :check_preferred_site, only: :api_token
   skip_before_action :set_ga_trackers, only: :api_token
 
-  protect_from_forgery unless: -> {
-    request.parameters[:action] == "search" && request.format.json? }
-
   caches_action :dashboard_updates,
     :expires_in => 15.minutes,
     :cache_path => Proc.new {|c|
@@ -66,42 +63,30 @@ class UsersController < ApplicationController
     }
   cache_sweeper :user_sweeper, :only => [:update]
 
-  # this method should have been replaced by Devise, but there are probably some activation emails lingering in people's inboxes
-  def activate
-    user = current_user
-    case
-    when user && user.suspended?
-      redirect_back_or_default('/')
-    when (!params[:activation_code].blank?) && user && !user.confirmed?
-      user.confirm!
-      flash[:notice] = t(:your_account_has_been_verified, :site_name => @site.name)
-      if logged_in? && current_user.is_admin?
-        redirect_back_or_default('/')
-      else
-        redirect_to '/login'
-      end
-    when params[:activation_code].blank?
-      flash[:error] = t(:your_activation_code_was_missing)
-      redirect_back_or_default('/')
-    else 
-      flash[:error]  = t(:we_couldnt_find_a_user_with_that_activation_code)
-      redirect_back_or_default('/')
-    end
-  end
-
-  # Don't take these out yet, useful for admin user management down the road
-
   def suspend
-    @user.suspended_by_user = current_user
-    @user.suspend!
-    flash[:notice] = t(:the_user_x_has_been_suspended, :user => @user.login)
-    redirect_back_or_default(@user)
+    if @user.suspended?
+      flash[:error] = "You cannot suspend someone who is already suspended"
+      return redirect_back_or_default person_path( @user )
+    end
+    @moderator_action = ModeratorAction.new(
+      resource: @user,
+      user: current_user,
+      action: ModeratorAction::SUSPEND
+    )
+    render layout: "bootstrap"
   end
    
   def unsuspend
-    @user.unsuspend!
-    flash[:notice] = t(:the_user_x_has_been_unsuspended, :user => @user.login)
-    redirect_back_or_default(@user)
+    unless @user.suspended?
+      flash[:error] = "You cannot unsuspend someone who is not suspended"
+      return redirect_back_or_default person_path( @user )
+    end
+    @moderator_action = ModeratorAction.new(
+      resource: @user,
+      user: current_user,
+      action: ModeratorAction::UNSUSPEND
+    )
+    render layout: "bootstrap"
   end
   
   def add_role
@@ -117,7 +102,7 @@ class UsersController < ApplicationController
 
     @user.roles << @role
     if @role.name === Role::CURATOR
-      @user.update_attributes( curator_sponsor: current_user )
+      @user.update( curator_sponsor: current_user )
     end
     flash[:notice] = "Added #{@role.name} status to #{@user.login}"
     redirect_back_or_default @user
@@ -137,7 +122,7 @@ class UsersController < ApplicationController
     if @user.roles.delete(@role)
       flash[:notice] = "Removed #{@role.name} status from #{@user.login}"
       if @role.name === Role::CURATOR
-        @user.update_attributes( curator_sponsor: nil )
+        @user.update( curator_sponsor: nil )
       end
     else
       flash[:error] = "#{@user.login} doesn't have #{@role.name} status"
@@ -150,6 +135,13 @@ class UsersController < ApplicationController
     @helpers_count = INatAPIService.get( "/observations/identifiers",
       user_id: current_user.id, per_page: 0 ).total_results
     @comments_count = current_user.comments.count
+    projects_with_managers_count = ProjectUser.
+      joins(:project).
+      where( "projects.user_id = ?", current_user ).
+      where( role: ProjectUser::MANAGER ).
+      where( "project_users.user_id != ?", current_user ).
+      count( "DISTINCT project_id" )
+    @projects_count = current_user.projects.count - projects_with_managers_count
     ident_response = Identification.elastic_search(
       size: 0,
       filters: [
@@ -202,16 +194,16 @@ class UsersController < ApplicationController
 
   def set_spammer
     if [ "true", "false" ].include?(params[:spammer])
-      @user.update_attributes(spammer: params[:spammer])
+      @user.update(spammer: params[:spammer])
       if params[:spammer] === "false"
-        flash[:notice] = t(:user_flagged_as_a_non_spammer_html, user: FakeView.link_to_user( @user ) )
+        flash[:notice] = t(:user_flagged_as_a_non_spammer_html, user: helpers.link_to_user( @user ) )
         @user.flags_on_spam_content.each do |flag|
-          flag.update_attributes(resolved: true, resolver: current_user)
+          flag.update(resolved: true, resolver: current_user)
         end
         @user.flags.where(flag: Flag::SPAM).update_all(resolved: true, resolver_id: current_user.id )
         @user.unsuspend!
       else
-        flash[:notice] = t(:user_flagged_as_a_spammer_html, user: FakeView.link_to_user( @user ) )
+        flash[:notice] = t(:user_flagged_as_a_spammer_html, user: helpers.link_to_user( @user ) )
         @user.add_flag( flag: Flag::SPAM, user_id: current_user.id )
       end
     end
@@ -315,7 +307,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html do
-        @shareable_image_url = FakeView.image_url(@selected_user.icon.url(:original))
+        @shareable_image_url = helpers.image_url(@selected_user.icon.url(:original))
         @shareable_description = @selected_user.description
         @shareable_description = I18n.t(:user_is_a_naturalist, :user => @selected_user.login) if @shareable_description.blank?
         if @selected_user.last_active.blank?
@@ -381,8 +373,10 @@ class UsersController < ApplicationController
       search_params = { verifiable: true, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
       nearby_taxa_results = get_nearby_taxa_obs_counts( search_params )
       local_onboarding_content[:local_results] = false
-    else #have latitude and longitude so show local content
-      if current_user.lat_lon_acc_admin_level == 0 || current_user.lat_lon_acc_admin_level == 1 #use place_id to fetch content from country or state
+    else
+      # have latitude and longitude so show local content
+      # use place_id to fetch content from country or state
+      if current_user.lat_lon_acc_admin_level == 0 || current_user.lat_lon_acc_admin_level == Place::STATE_LEVEL
         place = Place.containing_lat_lng(current_user.latitude, current_user.longitude).where(admin_level: current_user.lat_lon_acc_admin_level).first
         if place
           search_params = { verifiable: true, place_id: place.id, d1: 12.months.ago.to_s, d2: Time.now, rank: 'species' }
@@ -817,7 +811,7 @@ class UsersController < ApplicationController
       v = false if v.noish?
       session[k] = v
       if (k =~ /^prefers_/ || k =~ /^preferred_/) && logged_in? && current_user.respond_to?(k)
-        current_user.update_attributes(k => v)
+        current_user.update(k => v)
       end
     end
     head :no_content
@@ -839,19 +833,19 @@ class UsersController < ApplicationController
       groups -= [params[:leave]].flatten
     end
     groups = ( groups + [params[:test]] ).compact.uniq
-    current_user.update_attributes( test_groups: groups.join( "|" ) )
+    current_user.update( test_groups: groups.join( "|" ) )
     redirect_back_or_default( root_path )
   end
 
   def leave_test
     groups = ( current_user.test_groups_array - [params[:test]].flatten ).compact.uniq
-    current_user.update_attributes( test_groups: groups.join( "|" ) )
+    current_user.update( test_groups: groups.join( "|" ) )
     redirect_back_or_default( root_path )
   end
 
   def trust
     if friendship = current_user.friendships.where( friend_id: params[:id] ).first
-      friendship.update_attributes( trust: true )
+      friendship.update( trust: true )
     else
       friendship = current_user.friendships.create!( friend: @user, trust: true, following: false )
     end
@@ -862,7 +856,7 @@ class UsersController < ApplicationController
 
   def untrust
     if friendship = current_user.friendships.where( friend_id: params[:id] ).first
-      friendship.update_attributes( trust: false )
+      friendship.update( trust: false )
     end
     respond_to do |format|
       format.json { render json: { friendship: friendship } }
@@ -985,33 +979,31 @@ class UsersController < ApplicationController
       @records += scope.to_a
     end
     if @types.blank? || @types.include?( "ModeratorAction" )
-      moderator_actions_on_identifications = ModeratorAction.
+      ma_scope = ModeratorAction.
         where( "moderator_actions.created_at < ?", before ).
-        where( resource_type: "Identification" ).
-        joins( "JOIN identifications i ON i.id = moderator_actions.resource_id" ).
-        where( "i.user_id = ?", @user ).
-        order( "moderator_actions.id desc" )
-      moderator_actions_on_comments = ModeratorAction.
-        where( "moderator_actions.created_at < ?", before ).
-        where( resource_type: "Comment" ).
-        joins( "JOIN comments c ON c.id = moderator_actions.resource_id" ).
-        where( "c.user_id = ?", @user ).
         order( "moderator_actions.id desc" )
       if @years.blank?
-        moderator_actions_on_comments = moderator_actions_on_comments.limit( max )
-        moderator_actions_on_identifications = moderator_actions_on_identifications.limit( max )
+        ma_scope = ma_scope.limit( max )
       else
         @years.each do |year|
-          d1 = "#{year}-01-01"
-          d2 = "#{year}-12-31"
-          moderator_actions_on_comments = moderator_actions_on_comments.
-            where( "moderator_actions.created_at BETWEEN ? AND ?", d1, d2 )
-          moderator_actions_on_identifications = moderator_actions_on_identifications.
-            where( "moderator_actions.created_at BETWEEN ? AND ?", d1, d2 )
+          ma_scope = ma_scope.where(
+            "moderator_actions.created_at BETWEEN ? AND ?",
+            "#{year}-01-01",
+            "#{year}-12-31"
+          )
         end
       end
-      @records += moderator_actions_on_comments.to_a
-      @records += moderator_actions_on_identifications.to_a
+      @records += ma_scope.
+        where( resource_type: "Identification" ).
+        joins( "JOIN identifications i ON i.id = moderator_actions.resource_id" ).
+        where( "i.user_id = ?", @user ).to_a
+      @records += ma_scope.
+        where( resource_type: "Comment" ).
+        joins( "JOIN comments c ON c.id = moderator_actions.resource_id" ).
+        where( "c.user_id = ?", @user ).to_a
+      @records += ma_scope.
+        where( resource_type: "User" ).
+        where( "moderator_actions.resource_id = ?", @user ).to_a
     end
     @records = @records.flatten.sort_by {|r| r.created_at }
     respond_to do |format|
@@ -1031,7 +1023,7 @@ protected
     else
       notice_msg = t(:you_are_now_following_x, :friend_user => friend_user.login)
       if friendship = current_user.friendships.where( friend_id: friend_user.id ).first
-        friendship.update_attributes( following: true )
+        friendship.update( following: true )
       else
         friendship = current_user.friendships.create( friend: friend_user, following: true )
       end
@@ -1051,7 +1043,7 @@ protected
     if friendship = current_user.friendships.find_by_friend_id(params[:remove_friend_id])
       notice_msg = t(:you_are_no_longer_following_x, :friend => friendship.friend.login)
       if friendship.trust?
-        friendship.update_attributes( following: false )
+        friendship.update( following: false )
       else
         friendship.destroy
       end
@@ -1208,6 +1200,7 @@ protected
   def permit_params
     return if params[:user].blank?
     params.require(:user).permit(
+      :data_transfer_consent,
       :description,
       :email,
       :icon,
@@ -1223,6 +1216,7 @@ protected
       :password,
       :password_confirmation,
       :per_page,
+      :pi_consent,
       :place_id,
       :preferred_identify_image_size,
       :preferred_observation_fields_by,
@@ -1270,18 +1264,6 @@ protected
     @sites = Site.live.limit(100)
     if @user = current_user
       @user.site_id ||= Site.first.try(:id) unless @sites.blank?
-    end
-  end
-
-  def curator_or_site_admin_required
-    unless logged_in? && @user && ( current_user.is_curator? || current_user.is_site_admin_of?( @user.site ) )
-      flash[:notice] = t(:only_curators_can_access_that_page)
-      if session[:return_to] == request.fullpath
-        redirect_to root_url
-      else
-        redirect_back_or_default(root_url)
-      end
-      return false
     end
   end
 

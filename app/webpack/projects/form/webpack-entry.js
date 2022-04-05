@@ -2,6 +2,7 @@ import _ from "lodash";
 import "@babel/polyfill";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
+import moment from "moment";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import {
@@ -15,6 +16,8 @@ import controlledTermsReducer, { fetchAllControlledTerms }
   from "../../observations/show/ducks/controlled_terms";
 /* global CURRENT_PROJECT */
 /* global COPY_PROJECT */
+
+moment.locale( I18n.locale );
 
 const rootReducer = combineReducers( {
   confirmModal: confirmModalReducer,

@@ -42,11 +42,28 @@ class GuidePhoto < ApplicationRecord
     return if photo # no updating
     if attributes[:id].blank? && attributes[:thumb_url].blank? && !attributes[:native_photo_id].blank?
       klass = Object.const_get(attributes[:type])
-      self.photo = if existing = klass.find_by_native_photo_id(attributes[:native_photo_id])
+      # attempt to lookup photo with native_photo_id
+      # look within the custom subclass
+      self.photo = if existing = Photo.where(
+        native_photo_id: attributes[:native_photo_id],
+        type: attributes[:type],
+        subtype: nil
+      ).first
+        existing
+      # look at LocalPhotos whose subtype is the custom subclass
+      elsif attributes[:type] != "LocalPhoto" && existing = Photo.where(
+        native_photo_id: attributes[:native_photo_id],
+        type: "LocalPhoto",
+        subtype: attributes[:type]
+      ).first
         existing
       else
         r = klass.get_api_response(attributes[:native_photo_id])
         klass.new_from_api_response(r)
+      end
+      unless self.photo.is_a?( LocalPhoto )
+        # turn all remote photos into LocalPhotos
+        self.photo = Photo.local_photo_from_remote_photo( self.photo )
       end
     else
       self.photo = LocalPhoto.new({:user_id => guide.user_id}.merge(attributes.symbolize_keys))

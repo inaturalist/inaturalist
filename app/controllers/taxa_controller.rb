@@ -1,15 +1,19 @@
 #encoding: utf-8
 class TaxaController < ApplicationController
   caches_page :range, :if => Proc.new {|c| c.request.format == :geojson}
-  caches_action :show, :expires_in => 1.day,
-    :cache_path => Proc.new{ |c| {
-      locale: I18n.locale,
-      ssl: c.request.ssl? } },
-    :if => Proc.new {|c|
-      !request.format.json? &&
-      ( c.session.blank? || c.session['warden.user.user.key'].blank? ) &&
-      c.params[:test].blank?
-    }
+  # taxa/show includes a CSRF token, which means you might see someone else's
+  # token while signed out, which makes it impossible to update the session. I
+  # want to see how we do without this. If we need caching, we need to be more
+  # selective than caching the entire page. ~~~kueda 20211019
+  # caches_action :show, :expires_in => 1.day,
+  #   :cache_path => Proc.new{ |c| {
+  #     locale: I18n.locale,
+  #     ssl: c.request.ssl? } },
+  #   :if => Proc.new {|c|
+  #     !request.format.json? &&
+  #     ( c.session.blank? || c.session['warden.user.user.key'].blank? ) &&
+  #     c.params[:test].blank?
+  #   }
 
   caches_action :show, expires_in: 1.day,
     cache_path: Proc.new{ |c| {
@@ -33,7 +37,8 @@ class TaxaController < ApplicationController
   before_action :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :update_photos, :set_photos, :edit_colors,
     :update_colors, :refresh_wikipedia_summary, :merge, 
-    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details]
+    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details,
+    :history]
   before_action :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
   before_action :limit_page_param_for_search, :only => [:index,
@@ -142,7 +147,7 @@ class TaxaController < ApplicationController
   def show
     if params[:id]
       begin
-        @taxon ||= Taxon.where(id: params[:id]).includes(:taxon_names).first
+        @taxon ||= Taxon.where(id: params[:id]).includes({ taxon_names: :place_taxon_names }).first
       rescue RangeError => e
         Logstasher.write_exception(e, request: request, session: session, user: current_user)
         nil
@@ -327,7 +332,7 @@ class TaxaController < ApplicationController
 
   def update
     return unless presave
-    if @taxon.update_attributes(params[:taxon])
+    if @taxon.update(params[:taxon])
       flash[:notice] = t(:taxon_was_successfully_updated)
       if locked_ancestor = @taxon.ancestors.is_locked.first
         flash[:notice] += " Heads up: you just added a descendant of a " + 
@@ -917,7 +922,23 @@ class TaxaController < ApplicationController
         subclass = Object.const_get( photo[:type].camelize )
       end
       record = Photo.find_by_id( photo[:id] )
-      record ||= subclass.find_by_native_photo_id( photo[:native_photo_id] )
+      # attempt to lookup photo with native_photo_id
+      if photo[:native_photo_id]
+        # look within the custom subclass
+        record ||= Photo.where(
+          native_photo_id: photo[:native_photo_id],
+          type: photo[:type],
+          subtype: nil
+        ).first
+        unless subclass == LocalPhoto
+          # look at LocalPhotos whose subtype is the custom subclass
+          record ||= Photo.where(
+            native_photo_id: photo[:native_photo_id],
+            type: "LocalPhoto",
+            subtype: subclass.name
+          ).first
+        end
+      end
       unless record
         if api_response = subclass.get_api_response( photo[:native_photo_id] )
           record = subclass.new_from_api_response( api_response )
@@ -925,6 +946,10 @@ class TaxaController < ApplicationController
       end
       unless record
         Rails.logger.debug "[DEBUG] failed to find record for #{photo}"
+      end
+      unless record.is_a?( LocalPhoto )
+        # turn all remote photos into LocalPhotos
+        record = Photo.local_photo_from_remote_photo( record )
       end
       record
     }.compact
@@ -1142,6 +1167,40 @@ class TaxaController < ApplicationController
     end
   end
 
+  def history
+    @record = @taxon
+    audit_scope = Audited::Audit.where( auditable_type: "Taxon", auditable_id: @taxon.id ).or(
+      Audited::Audit.where( associated_type: "Taxon", associated_id: @taxon.id )
+    )
+    audited_types = %w(Taxon TaxonName PlaceTaxonName ConservationStatus)
+    if audited_types.include?( params[:auditable_type] ) && ( @auditable_type = params[:auditable_type] )
+      audit_scope = audit_scope.where( auditable_type: @auditable_type )
+    end
+    if (
+        params[:auditable_id].to_i > 0 &&
+        params[:auditable_id].to_s == params[:auditable_id].to_s &&
+        ( @auditable_id = params[:auditable_id] )
+    )
+      audit_scope = audit_scope.where( auditable_id: @auditable_id )
+    end
+    if ( @user_id = params[:user_id] )
+      audit_scope = audit_scope.where( user_id: @user_id )
+    end
+    if ( @audit_action = params[:audit_action] )
+      audit_scope = audit_scope.where( action: @audit_action )
+    end
+    @audit_days = audit_scope.group( "audits.created_at::date" ).count.sort_by(&:first).reverse
+    @date = params[:year] &&
+      params[:month] &&
+      params[:day] &&
+      ( Date.parse( "#{params[:year]}-#{params[:month]}-#{params[:day]}") rescue nil )
+    @date ||= @audit_days&.sort&.reverse&.last&.first
+    @show_all = @date && audit_scope.count < 500
+    @audits = audit_scope.order( "created_at desc" )
+    @audits = @audits.where( "created_at::date = ?", @date ) unless @show_all
+    render layout: "bootstrap-container"
+  end
+
   private
   def respond_to_merge_error(msg)
     respond_to do |format|
@@ -1294,7 +1353,7 @@ class TaxaController < ApplicationController
     params[:flickr_photos].each do |flickr_photo_id|
       tags = params[:tags]
       photo = nil
-      if photo = photos.detect{|p| p.native_photo_id == flickr_photo_id}
+      if photo = photos.detect{|p| p.native_photo_id == flickr_photo_id && p.subtype == "FlickrPhoto" }
         tags += " " + photo.observations.map{|o| "inaturalist:observation=#{o.id}"}.join(' ')
         tags.strip!
       end
@@ -1327,22 +1386,24 @@ class TaxaController < ApplicationController
     end
     
     flickr = get_flickraw
-    
+
     flickr_photo_ids = []
-    @observations.each do |observation|
-      observation.photos.each do |photo|
-        next unless photo.is_a?(FlickrPhoto)
+    @observations.each do | observation |
+      observation.photos.each do | photo |
+        next unless photo.is_a?( FlickrPhoto ) || photo.subtype == "FlickrPhoto"
         next unless observation.taxon
+
         tags = observation.taxon.to_tags
         tags << "inaturalist:observation=#{observation.id}"
-        tag_flickr_photo(photo.native_photo_id, tags, :flickr => flickr)
+        tag_flickr_photo( photo.native_photo_id, tags, flickr: flickr )
         unless flash[:error].blank?
           return redirect_back_or_default( flickr_tagger_path )
         end
+
         flickr_photo_ids << photo.native_photo_id
       end
     end
-    
+
     redirect_to :action => 'flickr_photos_tagged', :flickr_photos => flickr_photo_ids
   end
   
@@ -1367,7 +1428,7 @@ class TaxaController < ApplicationController
 
     
     @observations = current_user.observations.joins(:photos).
-      where(photos: { native_photo_id: @flickr_photos.map(&:native_photo_id), type: FlickrPhoto.to_s })
+      where(photos: { native_photo_id: @flickr_photos.map(&:native_photo_id), subtype: FlickrPhoto.to_s })
     @observations_by_native_photo_id = {}
     @observations.each do |observation|
       observation.photos.each do |flickr_photo|
@@ -1385,10 +1446,9 @@ class TaxaController < ApplicationController
     
     # Redirect to a canonical form
     if @taxon
-      canonical = (@taxon.unique_name || @taxon.name).split.join('_')
+      canonical = @taxon.name.split.join( "_" )
       taxon_names ||= @taxon.taxon_names.limit(100)
-      acceptable_names = [@taxon.unique_name, @taxon.name].compact.map{|n| n.split.join('_')} + 
-        taxon_names.map{|tn| tn.name.split.join('_')}
+      acceptable_names = [canonical] + taxon_names.map{|tn| tn.name.split.join('_')}
       unless acceptable_names.include?(params[:q])
         sciname_candidates = [
           params[:action].to_s.sanitize_encoding.split.join('_').downcase, 
@@ -1478,7 +1538,7 @@ class TaxaController < ApplicationController
       param = photo_class.to_s.underscore.pluralize
       next if params[param].blank?
       params[param].reject {|i| i.blank?}.uniq.each do |photo_id|
-        if fp = photo_class.find_by_native_photo_id(photo_id)
+        if fp = LocalPhoto.where( subtype: photo_class.name, native_photo_id: photo_id ).first
           photos << fp 
         else
           pp = photo_class.get_api_response(photo_id) rescue nil
@@ -1533,7 +1593,7 @@ class TaxaController < ApplicationController
     @external_taxa.each do |external_taxon|
       external_taxon.delay(:priority => USER_INTEGRITY_PRIORITY).graft_silently unless external_taxon.grafted?
       if external_taxon.created_at > start
-        external_taxon.update_attributes( creator: current_user )
+        external_taxon.update( creator: current_user )
       end
     end
 

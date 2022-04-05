@@ -140,12 +140,7 @@
     = render "exports_table", flow_tasks: @recent_exports
 
 #filters
-  = render "filter_fields", 
-    hide_buttons: true, 
-    show_user_field: true, 
-    show_project_field: true, 
-    show_multiple_taxa_field: true, 
-    show_extra_date_fields: true
+  = render "filter_fields", hide_buttons: true, show_all: true
 #rundialog.dialog{:style => "display:none"}
   .clear.centered.inline.buttonrow
     .inter

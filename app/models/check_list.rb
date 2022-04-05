@@ -142,8 +142,8 @@ class CheckList < List
   def cache_columns_options(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt && lt.taxon_id
-    filters = [ { term: { "taxon.ancestor_ids": lt.taxon_id } } ]
-    filters << { term: { place_ids: lt.place.id } } if lt.place
+    filters = [ { term: { "taxon.ancestor_ids.keyword": lt.taxon_id } } ]
+    filters << { term: { "place_ids.keyword": lt.place.id } } if lt.place
     { filters: filters,
       earliest_sort_field: "id",
       range_filters: [ { term: { quality_grade: "research" } } ] }
@@ -216,7 +216,7 @@ class CheckList < List
       if listed_taxon.primary_listing
         ListedTaxon.update_cache_columns_for(listed_taxon)
       else
-        listed_taxon.primary_listed_taxon.update_attributes_on_related_listed_taxa
+        listed_taxon.primary_listed_taxon.update_on_related_listed_taxa
       end
       if !listed_taxon.valid?
         Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +

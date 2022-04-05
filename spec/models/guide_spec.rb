@@ -43,12 +43,12 @@ describe Guide do
       @guide_taxon = GuideTaxon.make!(:guide => @guide)
       @photo = FlickrPhoto.create!(
           "native_photo_id" => "6336919400",
-          "square_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_s.jpg",
-          "thumb_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_t.jpg",
-          "small_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_m.jpg",
-          "medium_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116.jpg",
-          "large_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_b.jpg",
-          "original_url" => "http://farm7.staticflickr.com/6220/6336919400_767093042c_o.jpg",
+          "remote_square_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_s.jpg",
+          "remote_thumb_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_t.jpg",
+          "remote_small_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_m.jpg",
+          "remote_medium_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116.jpg",
+          "remote_large_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_b.jpg",
+          "remote_original_url" => "http://farm7.staticflickr.com/6220/6336919400_767093042c_o.jpg",
           "native_page_url" => "http://www.flickr.com/photos/ken-ichi/6336919400/",
           "native_username" => "Ken-ichi",
           "native_realname" => "Ken-ichi Ueda",
@@ -120,7 +120,7 @@ describe Guide do
 
     it "should generate when downloadable changed to true" do
       expect(g.ngz.url).to be_blank
-      g.update_attributes(:downloadable => true)
+      g.update(:downloadable => true)
       Delayed::Worker.new(:quiet => true).work_off
       g.reload
       expect(g.ngz.url).not_to be_blank
@@ -129,27 +129,27 @@ describe Guide do
     it "job should not trigger if no relevant attributes changed" do
       g
       Delayed::Job.delete_all
-      g.update_attributes :zoom_level => 5
+      g.update :zoom_level => 5
       Delayed::Job.all.each {|j| puts j.handler} if Delayed::Job.count > 0
       expect(Delayed::Job.count).to eq 0
     end
 
     it "should be removed when downloadable changed to false" do
       expect(g.ngz.url).to be_blank
-      g.update_attributes(:downloadable => true)
+      g.update(:downloadable => true)
       Delayed::Worker.new(:quiet => true).work_off
       g.reload
       expect(g.ngz.url).not_to be_blank
-      g.update_attributes(:downloadable => false)
+      g.update(:downloadable => false)
       expect(g.ngz.url).to be_blank
     end
 
     it "job should only queue once" do
       g
       Delayed::Job.delete_all
-      g.update_attributes(:downloadable => true)
-      g.update_attributes(:downloadable => false)
-      g.update_attributes(:downloadable => true)
+      g.update(:downloadable => true)
+      g.update(:downloadable => false)
+      g.update(:downloadable => true)
       Delayed::Job.all.each {|j| puts j.handler} if Delayed::Job.count > 1
       expect(Delayed::Job.count).to eq 1
     end
@@ -158,19 +158,19 @@ describe Guide do
   describe "publication" do
     it "should not be allowed for guides with less than 3 taxa" do
       g = Guide.make!
-      g.update_attributes(:published_at => Time.now)
+      g.update(:published_at => Time.now)
       expect(g.errors[:published_at]).not_to be_blank
 
       2.times do
         GuideTaxon.make!(:guide => g)
       end
       g.reload
-      g.update_attributes(:published_at => Time.now)
+      g.update(:published_at => Time.now)
       expect(g.errors[:published_at]).not_to be_blank
 
       GuideTaxon.make!(:guide => g)
       g.reload
-      g.update_attributes(:published_at => Time.now)
+      g.update(:published_at => Time.now)
       expect(g.errors[:published_at]).to be_blank
       expect(g).to be_valid
     end

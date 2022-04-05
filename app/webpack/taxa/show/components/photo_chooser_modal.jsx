@@ -255,7 +255,7 @@ class PhotoChooserModal extends React.Component {
     }
     const photosToDisplay = _.filter(
       photos,
-      p => p.small_url.match( /\.(jpe?g|gif|png)/i )
+      p => p.small_url && p.small_url.match( /\.(jpe?g|gif|png)/i )
     );
     const prevNextButtons = (
       <ButtonGroup className="pull-right">

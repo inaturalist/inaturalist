@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import AlertModalContainer from "../../../shared/containers/alert_modal_container";
 import Menu from "./menu";
 import AccountContainer from "../containers/account_container";
 import ContentContainer from "../containers/content_container";
@@ -101,6 +102,7 @@ class App extends Component {
         <ThirdPartyTrackingModalContainer />
         <CreativeCommonsLicensingModalContainer />
         <DeleteRelationshipModalContainer />
+        <AlertModalContainer />
       </div>
     );
   }

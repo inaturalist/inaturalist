@@ -33,7 +33,7 @@ class PhotosController < ApplicationController
   end
   
   def update
-    if @photo.update_attributes( photo_params( params[:photo] ) )
+    if @photo.update( photo_params( params[:photo] ) )
       respond_to do |format|
         format.html do
           flash[:notice] = t(:updated_photo)
@@ -160,10 +160,10 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = LocalPhoto.new(file: params[:file],
-      user: current_user, mobile: is_mobile_app?)
+    @photo = LocalPhoto.new( file: params[:file],
+      user: current_user, mobile: is_mobile_app? )
     respond_to do |format|
-      if @photo.save
+      if !@photo.file.blank? && @photo.save
         @photo.reload
         format.html { redirect_to observations_path }
         format.json do
@@ -179,7 +179,10 @@ class PhotosController < ApplicationController
         end
       else
         format.html { redirect_to observations_path }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
+        format.json do
+          errors = @photo.file.blank? ? { errors: "No photo specified" } : @photo.errors
+          render json: errors, status: :unprocessable_entity
+        end
       end
     end
   end

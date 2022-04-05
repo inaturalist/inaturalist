@@ -21,7 +21,7 @@ class ModeratorNotesController < ApplicationController
   end
 
   def update
-    if @moderator_note.update_attributes( approved_update_params )
+    if @moderator_note.update( approved_update_params )
       flash[:notice] = t(:updated)
     else
       flash[:error] = t(:failed_to_save_record_with_errors, errors: @moderator_note.errors.full_messages.to_sentence )

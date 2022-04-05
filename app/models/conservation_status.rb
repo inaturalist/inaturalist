@@ -1,19 +1,19 @@
 #encoding: utf-8
 class ConservationStatus < ApplicationRecord
+  audited except: [:taxon_id, :user_id, :updater_id], associated_with: :taxon
   belongs_to :taxon
   belongs_to :user
   has_updater
   belongs_to :place
   belongs_to :source
 
-  before_create :set_geoprivacy
+  revert_changes_for geoprivacy: [nil, "", Observation::OPEN], description: :blank, authority: :blank
+
   before_save :normalize_geoprivacy
   after_save :update_observation_geoprivacies, :if => lambda {|record|
     record.saved_change_to_id? || record.saved_change_to_geoprivacy? || record.saved_change_to_place_id?
   }
-  after_save :update_taxon_conservation_status
   after_destroy :update_observation_geoprivacies
-  after_destroy :update_taxon_conservation_status
 
   after_save :index_taxon
   after_update :index_taxon
@@ -104,13 +104,6 @@ class ConservationStatus < ApplicationRecord
     end
   end
 
-  def set_geoprivacy
-    if !iucn.nil? && iucn <= Taxon::IUCN_LEAST_CONCERN && user_id.blank?
-      self.geoprivacy = Observation::OPEN
-    end
-    true
-  end
-
   def normalize_geoprivacy
     if geoprivacy.blank?
       self.geoprivacy = nil
@@ -124,6 +117,8 @@ class ConservationStatus < ApplicationRecord
 
   def update_observation_geoprivacies
     return true if skip_update_observation_geoprivacies
+    # Don't reassess obs for newly created or destroyed non-obscuring global statuses
+    return true if ( saved_change_to_id? || destroyed? ) && ( geoprivacy.nil? || geoprivacy == Observation::OPEN ) && place_id.nil?
     Observation.delay(priority: USER_INTEGRITY_PRIORITY,
       queue: "throttled",
       unique_hash: {
@@ -144,10 +139,6 @@ class ConservationStatus < ApplicationRecord
     true
   end
 
-  def update_taxon_conservation_status
-    Taxon.set_conservation_status(taxon_id)
-  end
-
   def as_indexed_json(options={})
     {
       place_id: place_id,
@@ -163,5 +154,35 @@ class ConservationStatus < ApplicationRecord
 
   def index_taxon
     taxon.elastic_index!
+  end
+
+  def self.merge_duplicates( options = {} )
+    start = Time.now
+    debug = options.delete(:debug)
+    dry = options.delete(:dry)
+    klass = self
+    where = options.map {| k,v | "#{k} = #{v}" }.join( " AND " ) unless options.blank?
+    sql = <<-SQL
+      SELECT taxon_id, place_id, authority, array_agg(id) AS ids, count(*)
+      FROM #{klass.table_name}
+      #{"WHERE #{where}" if where}
+      GROUP BY taxon_id, place_id, authority HAVING count(*) > 1
+    SQL
+    puts "Finding #{klass.name.pluralize} WHERE #{where}" if debug
+    ordered_geoprivacies = ["private", "obscured", "open", nil]
+    rejects = []
+    keepers = []
+    connection.execute( sql.gsub(/\s+/, " " ).strip ).each do |row|
+      to_merge_ids = row["ids"].to_s.gsub( /[\{\}]/, "" ).split( "," ).sort
+      records = klass.where( id: to_merge_ids ).sort_by do | a, b |
+        [ordered_geoprivacies.index(a&.geoprivacy), a&.id] <=> [ordered_geoprivacies.index(b&.geoprivacy), b&.id]
+      end.compact
+      keeper = records.shift
+      puts "keeper: #{keeper}, merging #{records}" if debug
+      keepers << keeper.id
+      rejects += records.map( &:id )
+      records.each( &:destroy ) unless dry
+    end
+    puts "#{keepers.size} kept, #{rejects.size} deleted in #{Time.now - start}" if debug
   end
 end

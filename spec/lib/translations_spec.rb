@@ -30,6 +30,16 @@ describe "translations" do
   data = {}
   Dir.glob( "config/locales/*.yml" ).each do |path|
     next if path =~ /qqq.yml/
+    locale = File.basename( path, ".yml" )
+    yaml = YAML.load_file( path )
+    unless locale =~ /(phonetic|doorkeeper)/
+      # Sometimes Crowdin seems to set the root of pt-BR to pt, which makes
+      # all the pt-BR translations unavailable to everyone with that
+      # preference
+      it "#{locale} should have a root key that matches the locale" do
+        expect( yaml.keys.first ).to eq locale
+      end
+    end
     traverse( YAML.load_file( path ) ) do |translation, key|
       data[key] = translation
     end

@@ -8,7 +8,7 @@ import {
   addIdentification
 } from "./current_observation_actions";
 import { updateObservationInCollection } from "./observations_actions";
-import { showAlert } from "./alert_actions";
+import { showAlert } from "../../../shared/ducks/alert_modal";
 
 const POST_IDENTIFICATION = "post_identification";
 const AGREEING_WITH_OBSERVATION = "agreeing_with_observation";
@@ -33,12 +33,6 @@ function postIdentification( params ) {
       ) );
       throw e;
     } );
-  };
-}
-
-function deleteIdentification( ident ) {
-  return function ( ) {
-    return inatjs.identifications.delete( ident );
   };
 }
 
@@ -146,7 +140,6 @@ export {
   postIdentification,
   agreeWithObservaiton,
   agreeWithCurrentObservation,
-  deleteIdentification,
   agreeingWithObservation,
   stopAgreeingWithObservation,
   updateIdentification,

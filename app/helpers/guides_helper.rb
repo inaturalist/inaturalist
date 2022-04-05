@@ -37,4 +37,11 @@ module GuidesHelper
     fname = "#{fname}.#{ext}" unless ext.blank?
     fname
   end
+
+  def ngz_url( guide )
+    return nil unless guide.downloadable?
+    return nil if guide.ngz.url.blank?
+
+    uri_join( root_url, guide.ngz.url ).to_s
+  end
 end

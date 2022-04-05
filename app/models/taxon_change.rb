@@ -198,11 +198,11 @@ class TaxonChange < ApplicationRecord
       return
     end
     unless is_a?( TaxonSplit ) && is_branching?
-      input_taxa.each {|t| t.update_attributes!(is_active: false, skip_only_inactive_children_if_inactive: (move_children? || !active_children_conflict?) )}
+      input_taxa.each {|t| t.update!(is_active: false, skip_only_inactive_children_if_inactive: (move_children? || !active_children_conflict?) )}
     end
     output_taxa.each do |t|
       next if is_a?( TaxonSplit ) && t.id == input_taxon.id && input_taxon.is_active
-      t.update_attributes!(
+      t.update!(
         is_active: true,
         skip_only_inactive_children_if_inactive: move_children?,
         skip_taxon_framework_checks: true
@@ -290,7 +290,7 @@ class TaxonChange < ApplicationRecord
     #   loop do
     #     results = Identification.elastic_paginate(
     #       filters: [
-    #         { terms: { "taxon.ancestor_ids" => input_taxon_ids } },
+    #         { terms: { "taxon.ancestor_ids.keyword" => input_taxon_ids } },
     #         { term: { current: true } }
     #       ],
     #       page: page,
@@ -338,7 +338,7 @@ class TaxonChange < ApplicationRecord
     end
     proc = Proc.new do |record|
       if taxon = options[:taxon] || output_taxon_for_record( record )
-        record.update_attributes( taxon: taxon )
+        record.update( taxon: taxon )
       end
       yield(record) if block_given?
     end
@@ -388,12 +388,12 @@ class TaxonChange < ApplicationRecord
       ActiveRecord::Base.connection.execute(taxon_link_sql) unless debug
     end
     input_taxa.each do |input_taxon|
-      input_taxon.update_attributes( is_active: true ) unless debug
+      input_taxon.update( is_active: true ) unless debug
     end
     if options[:deactivate_output_taxa]
       output_taxa.each do |output_taxon|
         unless input_taxa.include? output_taxon
-          output_taxon.update_attributes( is_active: false ) unless debug
+          output_taxon.update( is_active: false ) unless debug
         end
       end
     end
@@ -487,7 +487,7 @@ class TaxonChange < ApplicationRecord
             skip_locks: true
           )
           output_child.save!
-          output_child.update_attributes( parent: output_taxon, skip_locks: true )
+          output_child.update( parent: output_taxon, skip_locks: true )
         end
         tc.add_output_taxon( output_child )
         tc.save!

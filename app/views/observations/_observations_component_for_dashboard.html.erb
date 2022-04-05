@@ -48,11 +48,10 @@
     <div class="media-body">
       <h3>
         <% if observation.taxon %>
-          <%= render :partial => 'shared/taxon', 
-                     :locals => {
-                        :taxon => observation.taxon,
-                        :link_url => observation_path(observation),
-                        :include_parens => false} %>
+          <%= render "shared/taxon",
+            taxon: observation.taxon,
+            link_url: observation_path( observation ),
+            include_parens: true %>
         <% elsif !observation.species_guess.blank? %>
           <span class="taxon">
             <%= link_to observation.species_guess, observation_path(observation) %>

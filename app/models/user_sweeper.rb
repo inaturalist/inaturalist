@@ -1,5 +1,9 @@
 class UserSweeper < ActionController::Caching::Sweeper
-  observe User
+  begin
+    observe User
+  rescue ActiveRecord::NoDatabaseError
+    puts "Database not connected, failed to observe User. Ignore if setting up for the first time"
+  end
 
   def after_update( user )
     ctrl = ActionController::Base.new

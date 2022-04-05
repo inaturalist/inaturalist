@@ -36,12 +36,12 @@
       <% unless @taxa.blank? %>
       <para>
         * Depicts an individual in the following taxa:
-        <%=raw @taxa.each_with_index.map {|taxon, i| "#{i+1}) #{taxon.name} (<![CDATA[#{FakeView.taxon_url( taxon )}]]>)" }.join( ", " ) %>
+        <%=raw @taxa.each_with_index.map {|taxon, i| "#{i+1}) #{taxon.name} (<![CDATA[#{taxon_url( taxon )}]]>)" }.join( ", " ) %>
       </para>
       <% end %>
       <% if @place %>
       <para>
-        * Coordinates in <%=raw @place.display_name %> (<![CDATA[<%= FakeView.place_url( @place ) %>]]>)
+        * Coordinates in <%=raw @place.display_name %> (<![CDATA[<%= place_url( @place ) %>]]>)
       </para>
       <% end %>
       <% if @observations_params[:license] == "none" %>
@@ -51,14 +51,14 @@
       <% elsif @observations_params[:license] != "any" && ( licenses = @observations_params[:license].to_s.split( "," ) ) && !licenses.blank? %>
       <para>
         * Published under one of the following licenses or waivers:
-        <%=raw licenses.each_with_index.map {|license, i| "#{i+1}) <![CDATA[#{FakeView.url_for_license( license )}]]>" }.join( ", " ) %>
+        <%=raw licenses.each_with_index.map {|license, i| "#{i+1}) <![CDATA[#{url_for_license( license )}]]>" }.join( ", " ) %>
       </para>
       <% end %>
       <% if @observations_params[:projects] && project_ids = @observations_params[:projects].to_s.split( "," ) %>
       <para>
         * In one of the following iNaturalist projects:
         <%=raw project_ids.map {|project_id|
-          ( project = Project.find_by_id( project_id ) ) && "<![CDATA[<#{FakeView.project_url( project )}]]>"
+          ( project = Project.find_by_id( project_id ) ) && "<![CDATA[<#{project_url( project )}]]>"
         }.compact.join( ", " ) %>
       </para>
       <% end %>
@@ -69,7 +69,7 @@
       <% end %>
       <% if site = Site.find_by_id( @observations_params[:site_id] ) %>
       <para>
-        * Affiliated with the iNaturalist Network Partner <![CDATA[<%=raw FakeView.site_url( site )%>]]>
+        * Affiliated with the iNaturalist Network Partner <![CDATA[<%=raw site_url( site )%>]]>
       </para>
       <% end %>
       <% if @observations_params[:created_d1] %>
@@ -101,8 +101,8 @@
       <para>
         <% if @license %>
         This archive is licensed under a
-        <ulink url=<%=raw FakeView.url_for_license( @license ).encode( xml: :attr ) %>>
-          <citetitle><%= FakeView.license_name( @license ) %></citetitle>
+        <ulink url=<%=raw url_for_license( @license ).encode( xml: :attr ) %>>
+          <citetitle><%= license_name( @license ) %></citetitle>
         </ulink>. Individual records may be published under less-restrictive conditions; please see individual records for guidance on usage.
         <% else %>
         These data are licensed under a variety of Creative Commons licenses and waivers. Please see individual records for their usage requirements.
@@ -193,7 +193,7 @@
         <!-- level to which the metadata document applies; default for GBIF is "dataset";  "series" is the other common level -->
         <hierarchyLevel> dataset </hierarchyLevel>
         <!-- URL of the logo associated with a resource -->
-        <resourceLogoUrl><%= FakeView.asset_url( Site.default.logo.url, host: Site.default.url ) %></resourceLogoUrl>
+        <resourceLogoUrl><%= asset_url( Site.default.logo.url, host: Site.default.url ) %></resourceLogoUrl>
       </gbif>
     </metadata>
   </additionalMetadata>

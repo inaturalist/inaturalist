@@ -5,7 +5,16 @@ br:
   a_flag_for_x: "ur merk evit %{x}"
   a_member_of_taxon_html: "un ezel eus %{taxon}"
   about: Diwar-benn
+  about_blocking: Diwar-benn ar blokañ
+  about_charts: Diwar-benn ar Grafik
   about_community_taxa: Diwar-benn taksonioù ar gumuniezh
+  about_complete_taxa: Diwar-benn an Takson Glok
+  about_conservation_status: Diwar-benn Statud ar Mirerezh
+  about_editing_observation_fields: Diwar-benn Kemmadurioù ar Maezioù Arsellet
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: Diwar-benn an Doare Enplantañ
   about_licenses: Diwar-bennn aotreoù-implijout
   about_places: Diwar-benn al lec'hioù
   about_the_cc_licenses: Diwar-benn an aotreoù-implijout Creative Commons
@@ -13,7 +22,6 @@ br:
   about_this_map: Diwar-benn ar gartenn-maÆ
   about_this_project: Diwar-benn ar raktres-mañ
   account: Kont
-  accept: Degemer
   accept_community_identifications: Degemer anaoudurioù ar gumuniezh
   accuracy: Pizhder
   accuracy_meters: Pizhder (metroù)
@@ -177,7 +185,6 @@ br:
   are_you_sure_you_want_to_remove_from_project: Ha sur eo hoc'h eus c'hoant da zilemel %{user} eus ar raktres-mañ ?
   are_you_sure_you_want_to_remove_manager: Ha sur eo hoc'h eus c'hoant da zilemel %{user} evel merour ?
   are_you_sure_you_want_to_remove_these_x_taxa?: "Ha sur eo hoc'h eus c'hoant da zilemel an taksonoù-mañ %{x} ?"
-  are_you_sure_you_want_to_remove_this_invitation: Ha sur eo hoc'h eus c'hoant da zilemel ar bedadenn-mañ ?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Ha sur eo hoc'h eus c'hoant da zilemel an takson-mañ eus ar roll kontrollañ %{place} ?"
   associated_taxa: Taksonoù kar
   attention: Diwall
@@ -197,7 +204,6 @@ br:
     iucn_red_list: Listenn ruz an UICN
   back: Distreiñ
   back_to_all_species: Distreiñ d'an Holl spesadoù
-  back_to_calendar: "Distreiñ da zeiziadur %{user}"
   back_to_lists: "Disro d'an %{name}"
   back_to_observation: Distro d'an evzezhiadenn
   back_to_observation_fields: Distro da vaeziennoù an evezhiadennoù
@@ -216,7 +222,6 @@ br:
   back_to_your_lists: Distreiñ d'ho rolloù
   back_to_your_observations: Distreiñ d'hoc'h evezhiadennoù
   back_to_your_profile: Distreiñ d'ho profil
-  back_to_your_projects: Distreiñ d'ho raktresoù
   batch: Lod
   batch_edit: Kemmañ lod
   #Where x is the title of a list of taxa
@@ -284,7 +289,6 @@ br:
   check_list: Gwiriañ ar roll
   check_list_place: "Roll kontrollañ %{place}"
   check_list_updated: Roll kontrollañ hizivaet!
-  check_out_our_blog: Gwiriañ hor Blog
   checklist: Roll kontrollañ
   choose_a_list_above: Dibab ul listenn a-us.
   choose_a_place: Dibab ul lec'h
@@ -306,6 +310,7 @@ br:
   columns: Bannoù
   combine: Kenaozañ
   comma_separated_please: Dispartiet gant skejoù, mar plij
+  #Noun, used to label a comment or a comment field in a form
   comment: evezhiadenn
   comment_deleted: Evezhiadenn dilamet
   comments: Evezhiadennoù
@@ -322,7 +327,6 @@ br:
   comparing: Keñveriañ
   comparing_list_to_list: "Keñveriañ %{list1} gant %{list2}"
   comparing_versions_x_and_y: "Keñveriañ an doareoù %{x} ha %{y}"
-  comparing_observations_from: "Keñveriañ evezhiadennoù %{user} eus an %{dates}"
   compiled_by_name: "Kempunet gant %{name}"
   completed: Klokaet
   completed_at: Klokaet e
@@ -531,7 +535,6 @@ br:
     native: henvroad
   event_url: URL an obererezh
   events_only: Darvoudoù hepken
-  every_species_seen_by: Pep spesad gwelet gant
   everyone: An holl dud
   everywhere: E pep lec'h
   exact_rank: Renk resis
@@ -1057,9 +1060,7 @@ br:
   places_merged_successfully: Kendeuzet mat eo bet al lec'hioù!
   plants: plant
   please_add_a_citation_for_this_change: Ouzhpennit un arroudenn evit ar c'hemm-mañ, mar plij.
-  please_add_this_to_x_html: "Ouzhpennit anezhañ da %{x}, mar plij"
   position: Lec'hiadur
-  possessive_user: "%{user}"
   prev: kent
   previous_page: Pajenn gent
   privacy: Reolennoù prevezded

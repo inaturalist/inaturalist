@@ -1,20 +1,22 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+# frozen_string_literal: true
+
+require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 shared_examples_for "a signed in UsersController" do
-  before(:all) { User.destroy_all }
+  before( :all ) { User.destroy_all }
   elastic_models( Observation )
   before { enable_has_subscribers }
   after { disable_has_subscribers }
 
   it "should show email for edit" do
     get :edit, format: :json
-    expect(response).to be_successful
-    expect(response.body).to be =~ /#{user.email}/
+    expect( response ).to be_successful
+    expect( response.body ).to be =~ /#{user.email}/
   end
 
   it "should show the dashboard" do
     get :dashboard
-    expect(response).to be_successful
+    expect( response ).to be_successful
   end
 
   describe "update" do
@@ -40,17 +42,17 @@ shared_examples_for "a signed in UsersController" do
     end
     describe "observation license preference" do
       it "should update past observations if requested" do
-        user.update_attributes( preferred_observation_license: Observation::CC_BY )
+        user.update( preferred_observation_license: Observation::CC_BY )
         o = Observation.make!( user: user )
         expect( o.license ).to eq Observation::CC_BY
-        put :update, format: :json, params: { 
+        put :update, format: :json, params: {
           id: user.id, user: { preferred_observation_license: Observation::CC0, make_observation_licenses_same: "1" }
         }
         o.reload
         expect( o.license ).to eq Observation::CC0
       end
       it "should update re-index past observations" do
-        user.update_attributes( preferred_observation_license: Observation::CC_BY )
+        user.update( preferred_observation_license: Observation::CC_BY )
         o = Observation.make!( user: user )
         es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
         expect( es_response.license_code ).to eq Observation::CC_BY.downcase
@@ -65,7 +67,7 @@ shared_examples_for "a signed in UsersController" do
     end
     describe "photo license preference" do
       it "should update past observations if requested" do
-        user.update_attributes( preferred_photo_license: Observation::CC_BY )
+        user.update( preferred_photo_license: Observation::CC_BY )
         p = LocalPhoto.make!( user: user )
         expect( p.license_code ).to eq Observation::CC_BY
         put :update, format: :json, params: { id: user.id, user: {
@@ -77,7 +79,7 @@ shared_examples_for "a signed in UsersController" do
       end
       # Honestly not sure why this passes
       it "should update re-index past observations" do
-        user.update_attributes( preferred_photo_license: Observation::CC_BY )
+        user.update( preferred_photo_license: Observation::CC_BY )
         o = make_research_grade_observation( user: user )
         es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
         expect( es_response.photo_licenses ).to include Observation::CC_BY.downcase
@@ -119,60 +121,92 @@ shared_examples_for "a signed in UsersController" do
         expect( friendship ).not_to be_following
       end
     end
+
+    describe "pi_consent" do
+      it "set to true should change pi_consent_at" do
+        expect( user.pi_consent_at ).to be_blank
+        put :update, format: :json, params: { id: user.id, user: { pi_consent: true } }
+        user.reload
+        expect( user.pi_consent_at ).not_to be_blank
+      end
+      it "set to not true should not change anything" do
+        user.update( pi_consent: true )
+        expect( user.pi_consent_at ).not_to be_blank
+        put :update, format: :json, params: { id: user.id, user: { pi_consent: false } }
+        user.reload
+        expect( user.pi_consent_at ).not_to be_blank
+      end
+    end
+
+    describe "data_transfer_consent" do
+      it "set to true should change data_transfer_consentat" do
+        expect( user.data_transfer_consent_at ).to be_blank
+        put :update, format: :json, params: { id: user.id, user: { data_transfer_consent: true } }
+        user.reload
+        expect( user.data_transfer_consent_at ).not_to be_blank
+      end
+      it "set to not true should not change anything" do
+        user.update( data_transfer_consent: true )
+        expect( user.data_transfer_consent_at ).not_to be_blank
+        put :update, format: :json, params: { id: user.id, user: { data_transfer_consent: false } }
+        user.reload
+        expect( user.data_transfer_consent_at ).not_to be_blank
+      end
+    end
   end
 
   describe "new_updates" do
     before { CONFIG.has_subscribers = :enabled }
     after { CONFIG.has_subscribers = :disabled }
     it "should show recent updates" do
-      o = Observation.make!(user: user)
-      without_delay { Comment.make!(parent: o) }
+      o = Observation.make!( user: user )
+      without_delay { Comment.make!( parent: o ) }
       get :new_updates, format: :json
-      json = JSON.parse(response.body)
-      expect(json.size).to be > 0
+      json = JSON.parse( response.body )
+      expect( json.size ).to be > 0
     end
 
     it "return mentions" do
-      without_delay { Comment.make!(body: "hey @#{ user.login }") }
+      without_delay { Comment.make!( body: "hey @#{user.login}" ) }
       get :new_updates, format: :json, params: { notification: "mention" }
-      json = JSON.parse(response.body)
-      expect(json.size).to be > 0
-      expect(json.first["notification"]).to eq "mention"
+      json = JSON.parse( response.body )
+      expect( json.size ).to be > 0
+      expect( json.first["notification"] ).to eq "mention"
     end
 
     it "should filter by resource_type" do
-      p = Post.make!(parent: user, user: user)
-      without_delay { Comment.make!(parent: p) }
+      p = Post.make!( parent: user, user: user )
+      without_delay { Comment.make!( parent: p ) }
       get :new_updates, format: :json, params: { resource_type: "Post" }
-      json = JSON.parse(response.body)
-      expect(json.size).to be > 0
+      json = JSON.parse( response.body )
+      expect( json.size ).to be > 0
 
       get :new_updates, format: :json, params: { resource_type: "Observation" }
-      json = JSON.parse(response.body)
-      expect(json).to be_blank
-      expect(json.size).to eq 0
+      json = JSON.parse( response.body )
+      expect( json ).to be_blank
+      expect( json.size ).to eq 0
     end
 
     it "should filter by notifier_type" do
-      o = Observation.make!(user: user)
-      without_delay { Comment.make!(parent: o) }
+      o = Observation.make!( user: user )
+      without_delay { Comment.make!( parent: o ) }
       get :new_updates, format: :json, params: { notifier_type: "Comment" }
-      json = JSON.parse(response.body)
-      expect(json.size).to be > 0
+      json = JSON.parse( response.body )
+      expect( json.size ).to be > 0
 
       get :new_updates, format: :json, params: { notifier_type: "Identification" }
-      json = JSON.parse(response.body)
-      expect(json).to be_blank
-      expect(json.size).to eq 0
+      json = JSON.parse( response.body )
+      expect( json ).to be_blank
+      expect( json.size ).to eq 0
     end
 
     it "should allow user to skip marking the updates as viewed" do
-      o = Observation.make!(user: user)
-      without_delay { Comment.make!(parent: o) }
-      expect( UpdateAction.unviewed_by_user_from_query(user.id, resource: o) ).to eq true
+      o = Observation.make!( user: user )
+      without_delay { Comment.make!( parent: o ) }
+      expect( UpdateAction.unviewed_by_user_from_query( user.id, resource: o ) ).to eq true
       get :new_updates, format: :json, params: { skip_view: true }
-      Delayed::Worker.new(quiet: true).work_off
-      expect( UpdateAction.unviewed_by_user_from_query(user.id, resource: o) ).to eq true
+      Delayed::Worker.new( quiet: true ).work_off
+      expect( UpdateAction.unviewed_by_user_from_query( user.id, resource: o ) ).to eq true
     end
   end
 
@@ -195,7 +229,7 @@ shared_examples_for "a signed in UsersController" do
   end
 
   describe "mute" do
-    let(:muted_user) { User.make! }
+    let( :muted_user ) { User.make! }
     it "should mute the specified user on behalf of the authenticated user" do
       expect( user.user_mutes.where( muted_user_id: muted_user.id ).first ).to be_blank
       post :mute, format: :json, params: { id: muted_user.id }
@@ -203,11 +237,11 @@ shared_examples_for "a signed in UsersController" do
       expect( user.user_mutes.where( muted_user_id: muted_user.id ).first ).not_to be_blank
     end
     it "should return an error if the specified user doesn't exist" do
-      post :mute, format: :json, params: { id: User.maximum(:id).to_i + 1 }
+      post :mute, format: :json, params: { id: User.maximum( :id ).to_i + 1 }
       expect( response.status ).to eq 404
     end
     it "should succeed if the specified user has already been muted" do
-      user_mute = UserMute.make!( user: user, muted_user: muted_user )
+      UserMute.make!( user: user, muted_user: muted_user )
       post :mute, format: :json, params: { id: muted_user.id }
       expect( response ).to be_no_content
       user.reload
@@ -223,13 +257,13 @@ shared_examples_for "a signed in UsersController" do
       expect( user.user_mutes.where( muted_user_id: user_mute.muted_user_id ).first ).to be_blank
     end
     it "should return an error if the specified user doesn't exist" do
-      delete :unmute, format: :json, params: { id: User.maximum(:id).to_i + 1 }
+      delete :unmute, format: :json, params: { id: User.maximum( :id ).to_i + 1 }
       expect( response.status ).to eq 404
     end
   end
 
   describe "block" do
-    let(:blocked_user) { User.make! }
+    let( :blocked_user ) { User.make! }
     it "should block the specified user on behalf of the authenticated user" do
       expect( user.user_blocks.where( blocked_user_id: blocked_user.id ).first ).to be_blank
       post :block, format: :json, params: { id: blocked_user.id }
@@ -238,20 +272,23 @@ shared_examples_for "a signed in UsersController" do
       expect( user.user_blocks.where( blocked_user_id: blocked_user.id ).first ).not_to be_blank
     end
   end
-
 end
 
 describe UsersController, "oauth authentication" do
-  let(:user) { User.make! }
-  let(:token) { Doorkeeper::AccessToken.create!(
-    application: OauthApplication.make!,
-    resource_owner_id: user.id,
-    scopes: Doorkeeper.configuration.default_scopes
-  ) }
+  let( :user ) { User.make! }
+  let( :token ) do
+    Doorkeeper::AccessToken.create!(
+      application: OauthApplication.make!,
+      resource_owner_id: user.id,
+      scopes: Doorkeeper.configuration.default_scopes
+    )
+  end
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
-    allow(controller).to receive(:doorkeeper_token) { token }
+    allow( controller ).to receive( :doorkeeper_token ) { token }
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
   it_behaves_like "a signed in UsersController"
 end
 
@@ -259,8 +296,8 @@ describe UsersController, "without authentication" do
   it "should not show email for edit" do
     user = User.make!
     get :edit, format: :json, params: { id: user.id }
-    expect(response).not_to be_successful
-    expect(response.body).not_to be =~ /#{user.email}/
+    expect( response ).not_to be_successful
+    expect( response.body ).not_to be =~ /#{user.email}/
   end
 
   describe "show" do
@@ -287,7 +324,7 @@ describe UsersController, "without authentication" do
     end
     it "should not deliver an email without the application JWT" do
       deliveries = ActionMailer::Base.deliveries.size
-      token = JsonWebToken.applicationToken + "bad"
+      token = "#{JsonWebToken.applicationToken}bad"
       request.env["HTTP_AUTHORIZATION"] = token
       post :parental_consent, format: :json, params: { email: Faker::Internet.email }
       expect( ActionMailer::Base.deliveries.size ).to eq deliveries
@@ -315,20 +352,24 @@ describe UsersController, "without authentication" do
       expect( response ).to be_unauthorized
     end
   end
-
 end
 
 describe UsersController, "oauth authentication with login scope" do
-  let(:user) { User.make! }
-  let(:token) { Doorkeeper::AccessToken.create!(
-    application: OauthApplication.make!,
-    scopes: "login",
-    resource_owner_id: user.id
-  ) }
+  let( :user ) { User.make! }
+  let( :token ) do
+    Doorkeeper::AccessToken.create!(
+      application: OauthApplication.make!,
+      scopes: "login",
+      resource_owner_id: user.id
+    )
+  end
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
-    allow( controller ).to receive(:doorkeeper_token) { token }
+    allow( controller ).to receive( :doorkeeper_token ) { token }
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
+
   describe "edit" do
     it "should return email" do
       get :edit, format: :json
@@ -347,16 +388,20 @@ describe UsersController, "oauth authentication with login scope" do
 end
 
 describe UsersController, "oauth authentication with the account_delete scope" do
-  let(:user) { User.make! }
-  let(:token) { Doorkeeper::AccessToken.create!(
-    application: OauthApplication.make!,
-    scopes: "account_delete",
-    resource_owner_id: user.id
-  ) }
+  let( :user ) { User.make! }
+  let( :token ) do
+    Doorkeeper::AccessToken.create!(
+      application: OauthApplication.make!,
+      scopes: "account_delete",
+      resource_owner_id: user.id
+    )
+  end
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
-    allow( controller ).to receive(:doorkeeper_token) { token }
+    allow( controller ).to receive( :doorkeeper_token ) { token }
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
 
   describe "destroy" do
     it "should delete the current user" do
@@ -378,14 +423,22 @@ describe UsersController, "oauth authentication with the account_delete scope" d
     end
 
     it "should fail if confirmation does not match the confirmation_code" do
-      delete :destroy, format: :json, params: { id: user.id, conformation: user.login, confirmation_code: "sdlkgnsldkg" }
+      delete :destroy, format: :json, params: {
+        id: user.id,
+        conformation: user.login,
+        confirmation_code: "sdlkgnsldkg"
+      }
       Delayed::Worker.new.work_off
       expect( User.find_by_id( user.id ) ).not_to be_blank
     end
 
     it "should not work for another user" do
       other_user = User.make!
-      delete :destroy, format: :json, params: { id: other_user.id, confirmation: other_user.login, confirmation_code: other_user.login }
+      delete :destroy, format: :json, params: {
+        id: other_user.id,
+        confirmation: other_user.login,
+        confirmation_code: other_user.login
+      }
       expect( response.code.to_i ).to be >= 400
       Delayed::Worker.new.work_off
       expect( User.find_by_id( user.id ) ).not_to be_blank

@@ -138,7 +138,7 @@ namespace :inaturalist do
         pp sounds
         begin
           client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: sounds.map{|s| { key: s.key } } } )
-          s.update_attributes(removed_from_s3: true)
+          s.update(removed_from_s3: true)
         rescue
           fails += 1
           break if fails >= 5
@@ -581,25 +581,6 @@ namespace :inaturalist do
     end
     ( all_keys - all_keys_in_use ).sort.each do |key|
       puts key
-    end
-
-  end
-
-  desc "Fetch missing image dimensions"
-  task :fetch_image_dimensions => :environment do
-    scope = LocalPhoto.where("original_url IS NOT NULL").
-      where("metadata IS NULL OR metadata !~ 'dimensions: *\n *:orig'")
-    batch_num = 0
-    batch_size = 100
-    total_batches = (scope.count / batch_size.to_f).ceil
-    scope.find_in_batches(batch_size: batch_size) do |batch|
-      batch_num += 1
-      puts "batch #{ batch_num } of #{ total_batches }"
-      batch.each do |photo|
-        photo.metadata ||= { }
-        photo.metadata[:dimensions] = photo.extrapolate_dimensions_from_original
-        photo.update_column(:metadata, photo.metadata)
-      end
     end
   end
 

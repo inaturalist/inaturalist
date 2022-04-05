@@ -45,7 +45,15 @@ class IdentificationsController < ApplicationController
     search_params[:taxon_id] = params[:taxon_id] if params[:taxon_id]
     api_response = INatAPIService.identifications(search_params)
     ids = Identification.where(id: api_response.results.map{ |r| r["id"] }).
-      includes(:observation, :user, { taxon: [ { taxon_names: :place_taxon_names }, :photos ] }).order(id: :desc)
+      includes(
+        :observation,
+        :stored_preferences,
+        :user,
+        { taxon: [
+          { taxon_names: :place_taxon_names },
+          { photos: [:flags, :file_prefix,] }
+        ] }
+      ).order(id: :desc)
     Observation.preload_for_component(ids.map(&:observation), logged_in: logged_in?)
     @identifications = WillPaginate::Collection.create(params[:page] || 1, per_page,
       api_response.total_results) do |pager|
@@ -133,8 +141,9 @@ class IdentificationsController < ApplicationController
               include: {
                 taxon: taxon_options,
                 photos: {
-                  only: [:id, :square_url, :thumb_url, :small_url, :medium_url, :large_url],
-                  methods: [:license_code, :attribution]
+                  only: [:id],
+                  methods: [:license_code, :attribution, :square_url,
+                    :thumb_url, :small_url, :medium_url, :large_url]
                 }
               }
             }
@@ -262,7 +271,7 @@ class IdentificationsController < ApplicationController
       end
       @identification.destroy
     else
-      @identification.update_attributes( current: false )
+      @identification.update( current: false )
     end
     respond_to do |format|
       format.html do

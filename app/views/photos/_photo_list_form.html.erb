@@ -34,7 +34,6 @@
     <%= t(:we_didnt_find_any_photos) %>
   </div>
 <% else %>
-  <h4><%= t :select_one_or_more_photos %></h4>
   <% photos.each do |photo| %>
     <%- 
       native_photo_id = photo.is_a?( LocalPhoto ) ? photo.id : ( photo.native_photo_id || photo.id )
@@ -61,7 +60,9 @@
         native_photo_id, 
         checked, 
         {:id => input_id, :class => "checkbox"} %>
-
+      <label for="<%= input_id %>">
+        <%= image_tag(thumb_url, :alt => 'Image') %>
+      </label>
       <% if synclink_base && (synclink_uri = URI.parse(synclink_base) rescue nil) %>
         <% 
           if synclink_uri.query.blank?
@@ -82,11 +83,7 @@
               "revert to your saved copy."
           } %>
       <% end %>
-
-      <label for="<%= input_id %>">
-        <%= image_tag(thumb_url, :alt => 'Image') %>
-      </label>
-      <span class='small view_photo'><%= link_to(t(:view_original), photo.native_page_url || photo.becomes(Photo), :target => '_blank') %></span>
+      <span class='small view_photo'><%= link_to(t(:view), photo.native_page_url || photo.becomes(Photo), :target => '_blank') %></span>
     </div>
   <% end %>
 <% end %>

@@ -112,12 +112,12 @@ eo:
   account: Konto
   account_creation: Kreado de Konto
   account_settings: Agordoj de Konto
-  accept: akcepti
   accept_community_identifications: Akceptu komunumajn identigojn
   accuracy: Precizeco
   accuracy_meters: Precizeco (metroj)
   accuracy_of_the_coordinates: |
     Precizeco de la koordinatoj en metroj. Vi povas redakti ĉi tion alklakante la ligon "redakti" supre aŭ alklakante la mapan markilon kaj trenante la tenilojn. Provu fari la rondon sufiĉe granda, ke vi certas, ke vi estis ie en ĝi.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Ago
   actions: Agoj
   active: Aktiva
@@ -347,7 +347,6 @@ eo:
   back_to_your_journal: Reen al via ĵurnalo
   back_to_your_observations: Reen al viaj observoj
   back_to_your_profile: Reen al via profilo
-  back_to_your_projects: Reen al viaj projektoj
   be_the_first_to_fave_this_observation: Estu la unua favoranto de ĉi tiu observo!
   because_of: pro
   bioblitz: Biofulmado
@@ -403,6 +402,7 @@ eo:
   colors: Koloroj
   columns: Kolumnoj
   combine: Kunigi
+  #Noun, used to label a comment or a comment field in a form
   comment: komento
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komento
@@ -639,7 +639,6 @@ eo:
   event_stats: Statistiko pri Evento
   event_url: Eventa Retadreso
   events_only: Nur eventoj
-  every_species_seen_by: Ĉiu specio vidata de
   everyone: ĉiu
   everyone_: Ĉiu
   everyone_journal_posts: Ĉies Ĵurnalaj Afiŝoj
@@ -751,10 +750,8 @@ eo:
   identification_saved: "Identigo konserviĝis!"
   identification_updated: Identigo aktualiĝis!
   identifications: Identigoj
-  identifications_by: "Identigoj far %{user}"
   ids: "Identigoj"
   ids_made_for_others: Identigoj por aliuloj
-  ignore: ignori
   ignore_and_continue: Ignori kaj daŭrigi
   import: Enporti
   import_photos: Enporti Fotojn
@@ -1360,7 +1357,6 @@ eo:
     zimbabwe: Zimbabvo
   plants: plantoj
   popular: Populara
-  possessive_user: "de %{user}"
   posts: Afiŝoj
   powered_by: Funkcias per
   powered_by_inaturalist_open_source_software_html: 'Funkciante per <a href="https://github.com/inaturalist/inaturalist" target="_new" >malfermitkoda programaro iNaturalist</a>'
@@ -1608,7 +1604,6 @@ eo:
   subscriptions: Abonoj
   suggestions: Sugestoj
   summary: Resumo
-  support_inaturalist: Subteni iNaturalist
   sw_lat: Latitudo SU
   sw_lon: Longitudo SU
   sync: Ĉu sinkronigi?
@@ -1640,7 +1635,6 @@ eo:
   taxonomic_order: Taksonomia Ordo
   taxonomic_status: Taksonomia stato
   taxonomic_tags_for_flickr: Taksonomiaj Etikedoj por Flickr
-  terms_service: Kondiĉoj de Servado
   terrain: tereno
   text: Teksto
   thanks!: Dankon!
@@ -2127,15 +2121,15 @@ eo:
         url: Retadreso
         citation: Citaĵo
       taxon:
+        auto_description: Aŭtomata priskribo
+        auto_photos: Aŭtomataj fotoj
+        locked: Ŝlosita
         name: Nomo
         rank: Rango
-        locked: Ŝlosita
-        auto_photos: Aŭtomataj fotoj
-        auto_description: Aŭtomata priskribo
-        wikipedia_title: Vikipedia titolo
-        wikipedia_summary: Resumo ĉe Vikipedio
         source_identifier: Identigilo de fonto
         source_url: Fonta retadreso
+        wikipedia_summary: Resumo ĉe Vikipedio
+        wikipedia_title: Vikipedia titolo
       taxon_name:
         name_provider: Provizanto de nomo
         source_url: Fonta retadreso
