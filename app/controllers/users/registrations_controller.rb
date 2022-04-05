@@ -11,6 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       params.require(:user).permit(
         :birthday,
         :description,
+        :data_transfer_consent,
         :email,
         :icon,
         :icon_url,
