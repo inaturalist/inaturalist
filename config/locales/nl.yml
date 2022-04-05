@@ -3246,6 +3246,23 @@ nl:
   pi_consent_child_label: |
     Ik stem ermee in dat iNaturalist persoonlijke informatie over mijn kind kan opslaan en verwerken om het account van mijn kind te beheren
   data_transfer_consent_desc_title: Over toestemming voor persoonlijke informatie overdracht
+  data_transfer_consent_desc_html: |
+    <p>
+    Bepaalde privacywetgeving, zoals de General Data
+    Protection Regulation (GDPR) van de Europese Unie, vereist expliciete toestemming om persoonlijke informatie te verzenden vanuit hun jurisdictie naar andere jurisdicties waar de wettelijke bescherming van deze informatie als onvoldoende wordt beschouwd. Vanaf 
+    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a> beschouwt de Europese Unie de Verenigde Staten niet langer als een jurisdictie waar voldoende wettelijke bescherming wordt geboden voor persoonlijke informatie, met name vanwege de mogelijkheid van surveillance door de regering van de Verenigde Staten van data die het land binnenkomt. Mogelijk hebben andere jurisdicties dezelfde mening.
+    </p>
+    <p>
+    Het gebruik van iNaturalist vereist het opslaan van persoonlijke informatie zoals je e-mailadres, en alle iNaturalist data wordt opgeslagen in de Verenigde Staten, en we kunnen niet met zekerheid zeggen in welke jurisdictie je je bevindt als je iNaturalist gebruikt, dus om te voldoen aan privacywetgeving zoals GDPR, moet je aangeven dat je dit risico begrijpt en aanvaardt, en toestemming geven om je persoonlijke informatie naar de servers van iNaturlist te versturen in de Verenigde Staten.
+    </p>
+    <p>
+    Om meer te leren over wat voor informatie we verzamelen en hoe we het gebruiken, zie onze 
+    <a href='%{privacy_url}' target='_blank'>Privacy Policy</a>
+    en onze <a href='%{terms_url}' target='_blank'>gebruiksvoorwaarden</a>.
+    </p>
+    <p>
+    Er is geen manier om een iNaturalist account the hebben zonder persoonlijke informatie op te slaan, dus de enige manier om je toestemming in te trekken is het verwijderen van je account.
+    </p>
   data_transfer_consent_label: |
     Ik sta toe dat mijn persoonlijke gegevens aan de
     Verenigde Staten van Amerika worden overgedragen
@@ -5002,7 +5019,6 @@ nl:
     %{user} denkt dat dit een volledige lijst is van %{taxon} in %{place}
   user_blocked: Gebruiker geblokkeerd
   user_commented: "%{user} reageerde"
-  user_commented_on: "%{user} heeft om %{time} gereageerd op je %{title}"
   user_disagrees_this_is_taxon: "%{user} denkt dat %{taxon} onjuist is"
   user_disagrees_with_previous_finer_identifications: "%{user} is het niet eens met eerdere, fijnere determinaties"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -5110,7 +5126,6 @@ nl:
   view_taxon_page: Taxonpagina weergeven
   view_taxon_page_for_this_x: "Taxonpagina voor %{x} weergeven"
   view_taxononomy_details_for_taxon: "Bekijk taxonomiedetails voor %{taxon}"
-  view_the: "De %{action}&#59; %{link} weergeven"
   view_the_observation: Bekijk de waarneming
   view_user_observations: "Waarnemingen van %{user} weergeven"
   view_x: "%{x} weergeven"
