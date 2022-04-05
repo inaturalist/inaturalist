@@ -2271,6 +2271,7 @@ da:
     portuguese: Portugisisk
     romanian: Rumænsk
     russian: Russisk
+    santali: Santali
     setswana: Setswana
     sinhala: Singalesisk
     slovak: Slovakisk
@@ -2289,7 +2290,7 @@ da:
   licensed_site_photos: "Licenserede %{site_name} fotos"
   license: Licens
   licensing: Valg af licens
-  licensing_your_content_gives_others_legal: "Licensudstedelse af dit indhold giver andre legal ret til at bruge det, hvis de respekterer licensbetingelserne. %{site_name} bruger dit Creative Commons-licenserede indhold til at dele med datapartnere så som"
+  licensing_your_content_gives_others_legal: "Licensering af dit indhold giver andre juridisk ret til at benytte det, såfremt de overholder licensbetingelserne. %{site_name} bruger dit Creative Commons-licenserede indhold til at dele med datapartnere såsom "
   life: Liv
   life_list: "%{user}'s Livsliste"
   linear_scale_label: Lineær
@@ -2390,6 +2391,7 @@ da:
     pt: Portugisisk
     pt-BR: Portugisisk (Brasilien)
     ru: Russisk
+    sat: Santali
     sk: Slovakisk
     sl: Slovensk
     sq: Albansk
@@ -2533,7 +2535,7 @@ da:
     Videregiv ingen af dine personlige oplysninger til ikke-betroede parter.
   messages_new_correspondent_actions_html: |
     Har man mistanke om, at vedkommende overtræder vores <a href="%{tos_url}"
-    target="_blank">Tjenestevilkår</a> eller ikke handler i overensstemmelse med vores <a
+    target="_blank">Vilkår for brug</a> eller ikke handler i overensstemmelse med vores <a
     href="%{guidelines_url}" target="_blank">Fællesskabsretningslinjer</a>, så
     markér venligst denne besked nedenfor.
   minimum_positional_accuracy: Minimal placeringsnøjagtighed
@@ -4883,7 +4885,7 @@ da:
   top_observers: Top observatører
   tos_privacy_guidelines_label: |
     Jeg accepterer <a href="/terms" target="_blank">Vilkår for brug</a> samt
-    <a href="/privacy" target="_blank">Fortrolighedspolitik</a>, og jeg har gennemset <a href="/pages/community+guidelines" target="_blank">Fællesskabsretningslinjer</a>.
+    <a href="/privacy" target="_blank">Fortrolighedspolitik</a>, og jeg har gennemgået <a href="/pages/community+guidelines" target="_blank">Fællesskabsretningslinjer</a>.
   total: I alt
   totals: totaler
   total_ids_on_input_taxon: "ID'er i alt for input-takson:"
@@ -5048,7 +5050,6 @@ da:
     %{user} mener, at dette er en omfattende liste over %{taxon} på %{place}
   user_blocked: Bruger blokeret
   user_commented: "%{user} kommenterede"
-  user_commented_on: "%{user} kommenterede på din %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} er uenig i denne %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig med tidligere, mere præcise identifikationer"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -5156,7 +5157,6 @@ da:
   view_taxon_page: Vis takson side
   view_taxon_page_for_this_x: "Vis takson side for dette %{x}"
   view_taxononomy_details_for_taxon: "Vis taksonomi detaljer for %{taxon}"
-  view_the: "Vis %{action}&#59; %{link}"
   view_the_observation: Vis observationen
   view_user_observations: "Vis %{user}'s observationer"
   view_x: "Vis %{x}"
@@ -5415,8 +5415,8 @@ da:
   you_must_specify_and_confirm_a_new_password: Du skal angive og bekræfte en ny adgangskode.
   you_need_to_have_linked_flickr_account: Du skal have en tilknyttet Flickr konto for at tagge dine foto´s.
   you_need_to_select_some_observations_first: Du skal først vælge nogle observationer.
-  you_retain_full_copyright: "Man beholder fuld ophavsret over sit indhold fraset de rettigheder, som er tildelt %{site_name} i vores Vilkår for brug."
-  you_retain_full_copyright_over_your_content: "Du beholder fuld ophavsret over dit indhold bortset fra de rettigheder, der er givet til %{site_name} i vores Servicevilkår."
+  you_retain_full_copyright: "Man beholder den fulde ophavsret til sit indhold bortset fra de rettigheder, som er givet til %{site_name} i vores Vilkår for brug."
+  you_retain_full_copyright_over_your_content: "Man beholder den fulde ophavsret til sit indhold bortset fra de rettigheder, som er givet til %{site_name} i vores Vilkår for brug."
   you_should_delete_this_taxon_change: |
     Du bør sikkert slette denne taksonændring, eller i det mindste finde ud af en
     form for løsning med vedkommende, som har foretaget den anden ændring(er).
@@ -7157,12 +7157,9 @@ da:
           Bemærk: Skift ikke for sjov din tilknytning, hvis du har flere end 1.000 observationer.
           </p>
         licensing_desc_html: |
-          Licensering af dit indhold giver andre personer juridisk ret til at bruge det
-          uden at spørge om din tilladelse, hvis de overholder betingelserne i
-          licensen. %{site_name} bruger dit Creative Commons licenseret indhold til at dele med datapartnere som <a href="http://www.gbif.org/"> Global
-          Biodiversitet information facilitet </a> (GBIF), en international,
-          interstatslig organisation, der udarbejder og distribuerer
-          biodiversitets information fra hele verden.
+          Licensering af dit indhold giver enhver den juridiske ret til at benytte dette uden at indhente din tilladelse, såfremt de overholder vilkårene i licensen. Derudover medtager %{site_name} dit Creative Commons-licenseret indhold i regelmæssigt opdaterede arkiver produceret til udvalgte partnerorganisationer med interesse for vores data. Eksempelvis medtager vi posterne No Copyright (CC0), Attribution (CC BY) og Attribution-NonCommercial (CC BY-NC) i det arkiv, vi genererer til <a href="http://www.gbif.org/">Global biodiversitetsinformation
+          Facility</a> (GBIF), en international, mellemstatslig organisation,
+          der kompilerer og distribuerer information om biodiversitet fra hele verden.
         license_description_attribution_html: |
           Licensbeskrivelser og billeder &copy; %{year} Creative Commons, benyttet under en <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution-licens</a> (så meta!)
         #Header for the section of the profile settings where you can choose to
