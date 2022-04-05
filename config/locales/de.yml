@@ -916,7 +916,7 @@ de:
   committed_taxon_changes_cannot_be_deleted: Übertragene Taxon-Änderungen können nicht gelöscht werden
   #Status message while a taxon change is being committed
   committing: Übertragung …
-  common_name: Allgemeiner Name
+  common_name: Allgemeingebräuchlicher Name
   community: Community
   community_curated: Von Benutzern erstellt
   community_guidelines: Community-Richtlinien
@@ -1184,7 +1184,7 @@ de:
     Wenn Sie keine Quellen angeben, wird Ihre Bewerbung nicht berücksichtigt.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
-    Wenn du umgangsprachliche Namen bearbeiten möchtest, gib bitte ein oder zwei Beispiele von
+    Wenn du umgangssprachliche Namen bearbeiten möchtest, gib bitte ein oder zwei Beispiele von
     Änderungen an, die du vornehmen möchtest
   #Prompt for information when applying to be a curator
   curator_application_fields_moderation_examples_html: |
@@ -2193,6 +2193,7 @@ de:
     portuguese: Portugiesisch
     romanian: Rumänisch
     russian: Russisch
+    santali: Santali
     setswana: Setswana
     sinhala: Singhalesisch
     slovak: Slowakisch
@@ -2312,6 +2313,7 @@ de:
     pt: Portugiesisch
     pt-BR: Portugiesisch (Brasilien)
     ru: Russisch
+    sat: Santali
     sk: Slowakisch
     sl: Slowenisch
     sq: Albanisch
@@ -4140,7 +4142,7 @@ de:
   short_or_abbreviated_title_for_display: Kurztitel oder Abkürzung für eine Anzeige mit limitiertem Platz. Maximal 10 Zeichen.
   show: Anzeigen
   show_active_and_inactive_taxa: Aktive und inaktive Taxa anzeigen
-  show_common_names: Umgangssprachliche Namen anzeigen
+  show_common_names: Allgemeingebräuchliche Namen anzeigen
   show_hidden_content: Ausgeblendeten Inhalt anzeigen
   show_keyboard_shortcuts: Tastaturkürzel anzeigen
   show_less: Weniger anzeigen
@@ -4905,7 +4907,6 @@ de:
     %{user} glaubt, dass dies eine umfassende Liste von %{taxon} in %{place} ist
   user_blocked: Benutzer gesperrt
   user_commented: "%{user} hat kommentiert"
-  user_commented_on: "%{user} hat dein %{title} %{time} kommentiert"
   user_disagrees_this_is_taxon: "%{user} stimmt der Identifikation als %{taxon} nicht zu"
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -5013,7 +5014,6 @@ de:
   view_taxon_page: Taxonseite ansehen
   view_taxon_page_for_this_x: "Taxonseite für dieses %{x} ansehen"
   view_taxononomy_details_for_taxon: "Taxonomie-Details für %{taxon} anzeigen"
-  view_the: "%{action}&#59; %{link} ansehen"
   view_the_observation: Die Beobachtung ansehen
   view_user_observations: "Beobachtungen von %{user} ansehen"
   view_x: "%{x} anzeigen"
@@ -5115,7 +5115,7 @@ de:
   worldwide: Weltweit
   wondering_what_to_do_next: Hier ein paar nächste Schritte, um dich auf den Weg zur Beobachtung und Identifizierung der Natur zu bringen
   would_you_like_to: Möchtest du
-  would_you_prefer_to_view_common_names_used_in_place_html: Würdest du es vorziehen, die umgangssprachlichen Namen in <strong>%{place}</strong> zu sehen?
+  would_you_prefer_to_view_common_names_used_in_place_html: Würdest du es vorziehen, die allgemeingebräuchlichen Namen in <strong>%{place}</strong> zu sehen?
   x_blog: "%{x}'s Blog"
   x_deleted: "%{x} gelöscht"
   x_does_not_exist: "\"%{x}\" existiert nicht"
@@ -5723,7 +5723,7 @@ de:
         id: "Eindeutige Kennung für diese Beobachtung"
         species_guess: "Name, den der Melder für das beobachtete Taxon eingegeben hat"
         scientific_name: "Wissenschaftlicher Name des beobachteten Taxons entsprechend dieser Seite"
-        common_name: "Allgemeiner oder umgangssprachlicher Name des beobachteten Taxons gemäß dieser Seite"
+        common_name: "Allgemeingebräuchlicher oder umgangssprachlicher Name des beobachteten Taxons gemäß dieser Seite"
         iconic_taxon_name: Höheres taxonomisches Level für das beobachtete Taxon
         taxon_id: Eindeutige Kennung für das beobachtete Taxon
         id_please: Ob der Beobachter die ID-Hilfe angefordert hat oder nicht
@@ -6510,14 +6510,14 @@ de:
       show:
         about_names_desc: |
           <p>
-          Die meisten Kategorien von Organismen weisen "Umgangssprachliche Namen" in den gesprochenen Sprachen auf. Diese Namen sind in der Regel bekannt, leicht auszusprechen und im Laufe der Zeit etabliert, aber viele Organismen haben mehrere verschiedene Namen an verschiedenen Orten, sogar in der gleichen Sprache, was es schwierig machen kann, über diese Organismen ohne Verwirrung zu kommunizieren. Wissenschaftler gehen dieses Problem an, indem sie einen einzigen "wissenschaftlichen Namen" für jede Kategorie von Organismen verwenden, der den Regeln der
-          <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologischen Nomenklatur</a> folgt, aber diese Namen basieren in der Regel auf Latein, einer Sprache, die niemand spricht, sodass die Namen für viele Menschen nicht so einprägsam sind wie umgangssprachliche Namen. Wissenschaftliche Namen können auch die taxonomische Anordnung eines Organismus widerspiegeln, so dass sie sich ändern können, wenn Wissenschaftler genauere Theorien über die evolutionären Beziehungen zwischen verschiedenen Organismen entwickeln, was wiederum ihren Nutzen für die Kommunikation verringert, selbst unter Menschen, die die wissenschaftlichen Namen verwenden.
+          Die meisten Organismenformen besitzen "umgangssprachliche oder allgemeingebräuchliche Namen". Diese Namen sind im Allgemeinen leicht auszusprechen und haben sich im Laufe der Zeit etabliert, aber viele Organismen haben, auch in der gleichen Sprache, mehrere verschiedene Namen an unterschiedlichen Orten. Dadurch kann es schwierig werden, ohne Verwechslungen über diese Organismen zu kommunizieren. Wissenschaftler gehen dieses Problem an, indem sie einen einzigen "wissenschaftlichen Namen" für jede Kategorie von Organismen verwenden, der den Regeln der
+          <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologischen Nomenklatur</a> folgt, aber diese Namen basieren in der Regel auf Latein und Altgriechisch - Sprachen, die niemand spricht - sodass die Bezeichnungen für viele Menschen nicht so einprägsam sind wie umgangssprachliche Namen. Wissenschaftliche Namen können auch die taxonomische Position eines Organismus widerspiegeln, so dass sie sich ändern können, falls Wissenschaftler neue Erkenntnisse über die verwandschaftlichen Beziehungen zwischen verschiedenen Organismen entwickeln, was wiederum ihren Nutzen für die Kommunikation verringert, selbst unter Menschen, die die wissenschaftlichen Namen verwenden.
           </p>
           <p>
           Das alte Sprichwort fasst es zusammen: "Umgangssprachliche Namen ändern sich von Ort zu Ort, und wissenschaftliche Namen ändern sich von Zeit zu Zeit."
           </p>
           <p>
-          Wir versuchen, diese Unzulänglichkeiten zu beheben, indem wir, wo immer möglich, sowohl umgangssprachliche als auch wissenschaftliche Namen zeigen und umgangssprachliche Namen auf der Grundlage der Sprache und der geografischen Präferenzen des Betrachters auswählen.
+          Wir versuchen, diese Unzulänglichkeiten zu beheben, indem wir, wo immer möglich, sowohl allgemeingebräuchliche als auch wissenschaftliche Namen zeigen und umgangssprachliche Namen auf der Grundlage der Sprache und der geografischen Präferenzen des Betrachters auswählen.
           </p>
         about_conservation_status_desc: |
           Der Gefährdungsstatus beschreibt das Aussterberisiko einer Gruppe von Organismen.
@@ -6627,7 +6627,7 @@ de:
           Füge einen Namen zu einem Gebiet hinzu, um ihn für Webseiten und Benutzer dieses Ortes vorrangig zu verwenden. Wenn es mehrere Namen pro Ort gibt, kannst du sie <a href="%{url}">hier</a> priorisieren. Bitte füge <strong>nicht</strong> für JEDEN Ort, an dem der Name verwendet wird, einen Namen hinzu, sondern nur für Gebiete, die mit anderen Orten in Konflikt stehen.
       taxon:
         about_html: |
-          Taxa können viele umgangssprachliche Namen haben. Wir unterstützen einen standardmäßigen umgangssprachlichen Namen, der hier geändert werden kann, indem ein Name an den Anfang der Liste gezogen wird. Du kannst auch Standardnamen an verschiedenen Orten angeben, indem du den Namen editierst und einen Ort hinzufügst, aber bitte nur, wenn verschiedene Orte widersprüchliche Namen haben.
+          Taxa können viele umgangssprachliche Namen haben. Wir unterstützen einen standardmäßigen, allgemeingebräuchlichen Namen, der hier festgelegt werden kann, indem ein Name an den Anfang der Liste gezogen wird. Du kannst auch unterschieldiche Standardnamen für bestimmte Orte angeben, indem du den Namen editierst und einen Ort hinzufügst, aber bitte nur, wenn verschiedene Orte uneindeutige Namen haben.
     users:
       dashboard:
         taxon_change_desc: |
@@ -6708,8 +6708,8 @@ de:
           Wenn dich jemand auf %{site_name} belästigt oder verfolgt, <a href="mailto:%{help_email}">bitte lass es uns wissen</a>. Wenn dies einen Verstoß gegen unsere Nutzungsbedingungen darstellt oder die andere Verhaltensweisen, die wir für unangemessen halten, werden wir dem nachgehen.
           </p>
         common_names_desc: |
-          Umgangssprachliche Namen anzeigen. Deaktiviere diese Option, wenn du nur wissenschaftliche Namen sehen möchtest.
-          Beachte, dass du kontrollieren kannst, welche gebräuchlichen Namen du angezeigt bekommst, indem du deine Gebietsschema- und Ortseinstellungen änderst.
+          Allgemeingebräuchliche Namen anzeigen. Deaktiviere diese Option, wenn du nur wissenschaftliche Namen sehen möchtest.
+          Beachte, dass du kontrollieren kannst, welche gebräuchlichen Namen du angezeigt bekommst, indem du deine Standard-Ortseinstellungen änderst.
         display_monthly_supporter_status_on_my_profile: |
           'Monatlicher Unterstützer'-Status auf meinem Profil anzeigen
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
@@ -6756,7 +6756,7 @@ de:
           Identifikationen, die die Community-ID deiner Beobachtungen verändern, verpassen könntest
           </p>
         name_place_help_html: |
-          Umgangssprachliche Namen and diesem Ort bevorzugen
+          Allgemeingebräuchliche Namen dieses Gebiets verwenden:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Kommentare
         #Checkbox label for user preference about what to receive in the daily email update
@@ -6813,7 +6813,7 @@ de:
         search_place_help_html: |
           Standardgebiet für die Suche nach Beobachtungen.
         scientific_name_first_desc: |
-          Wissenschaftliche Namen vor umgangssprachlichen Namen anzeigen.
+          Wissenschaftliche Namen vor allgemeingebräuchlichen Namen anzeigen.
         taxon_change_desc: |
           Wenn Taxa auf %{site_name} zusammengeführt oder umbenannt werden, werden deine Beobachtungen, aufgelisteten Taxa, Identifikationen usw. automatisch auf die neuen Taxa aktualisiert, wenn die Änderung eindeutig ist. Wenn du dich abmeldest oder die Änderung mehrdeutig ist (z.B. eine Aufteilung), erhältst du ein Update über die Änderungsverknüpfung zu einem Tool, mit dem du deinen Inhalt manuell aktualisieren kannst, wenn du es willst.
         thanks_for_supporting_us!: Vielen Dank für Ihre Unterstützung!

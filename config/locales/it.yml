@@ -4837,7 +4837,6 @@ it:
     %{user} pensa che questa sia una lista onnicomprensiva per %{taxon} in %{place}
   user_blocked: Utente bloccato
   user_commented: "%{user} ha commentato"
-  user_commented_on: "%{user} ha commentato la tua %{title} alle ore %{time}"
   user_disagrees_this_is_taxon: "%{user} non concorda che sia %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} non è d'accordo con le identificazioni precedenti di maggior dettaglio"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -4945,7 +4944,6 @@ it:
   view_taxon_page: Visualizza la Pagina del Taxon
   view_taxon_page_for_this_x: "Visualizza la pagina per questo %{x}"
   view_taxononomy_details_for_taxon: "Visualizza i dettagli tassonomici per %{taxon}"
-  view_the: "Visualizza la %{action}&#59; %{link}"
   view_the_observation: Visualizza l'osservazione
   view_user_observations: "Visualizza le osservazioni di %{user}"
   view_x: "Visualizza %{x}"
