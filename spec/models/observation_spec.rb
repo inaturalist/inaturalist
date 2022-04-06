@@ -645,7 +645,7 @@ describe Observation do
       it "should be set" do
         t = Taxon.make!
         o = Observation.make!( taxon: t )
-        Delayed::Worker.new.work_off
+        Delayed::Job.find_each{|j| j.invoke_job}
         expect( o.identifications.first.taxon ).to eq t
         expect( o.identifications.first.category ).to eq Identification::LEADING
       end
