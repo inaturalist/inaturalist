@@ -1,10 +1,16 @@
 # only allow certain jobs to query replicas
 def job_can_use_replica( job )
+  return true if job.handler_yaml.is_a?( ObservationsExportFlowTask )
   unless job.handler_yaml.respond_to?(:object) && job.handler_yaml.respond_to?(:method_name)
     return false
   end
-  job.handler_yaml.object == Identification &&
-    job.handler_yaml.method_name == :run_update_curator_identification
+  class_name = ( job.handler_yaml.object.kind_of?( ActiveRecord::Base ) ?
+    job.handler_yaml.object.class.name : job.handler_yaml.object.name ) rescue nil
+  object_method = "#{class_name}::#{job.handler_yaml.method_name}"
+  return true if object_method == "Identification::run_update_curator_identification"
+  return true if object_method == "CheckList::refresh_listed_taxon"
+  return true if object_method == "Observation::notify_subscribers_of"
+  false
 end
 
 class DJMakaraPlugin < Delayed::Plugin

@@ -14,6 +14,9 @@ module HasSubscribers
       include HasSubscribers::InstanceMethods
       
       has_many :update_subscriptions, class_name: "Subscription", as: :resource, inverse_of: :resource
+      has_many :update_subscriptions_with_unsuspended_users, -> {
+        joins(:user).where(users: { subscriptions_suspended_at: nil }) },
+        class_name: "Subscription", as: :resource, inverse_of: :resource
       has_many :subscribers, through: :update_subscriptions, source: :user
       has_many :update_actions, as: :resource
       
@@ -202,6 +205,12 @@ module HasSubscribers
       notification ||= options[:notification] || "create"
       users_to_notify = { }
       users_with_unviewed_from_notifier = Subscription.users_with_unviewed_updates_from(notifier)
+
+      # give the model a chance to load needed associations in an efficient way
+      if options[:before_notify] && options[:before_notify].is_a?( Proc )
+        options[:before_notify].call( notifier )
+      end
+
       updater_proc = Proc.new {|subscribable|
         next if subscribable.blank?
         next unless subscribable.respond_to?(:update_subscriptions)
@@ -220,8 +229,10 @@ module HasSubscribers
             users_to_notify[subscribable] << subscribable.user_id
           end
         end
-
-        subscribable.update_subscriptions.with_unsuspended_users.find_each do |subscription|
+        # if subscriptions are loaded, iterate them with "each", but if they are
+        # not loaded, use "find_each" which will query and iterate in groups
+        iterate_method = subscribable.update_subscriptions_with_unsuspended_users.loaded? ? "each" : "find_each"
+        subscribable.update_subscriptions_with_unsuspended_users.send(iterate_method) do |subscription|
           next if notifier.respond_to?(:user_id) && subscription.user_id == notifier.user_id && !options[:include_notifier]
           next if subscription.created_at > notifier.updated_at
           next if users_with_unviewed_from_notifier.include?(subscription.user_id)
