@@ -44,6 +44,9 @@ class AdminController < ApplicationController
           @geoip_latitude, @geoip_longitude = geoip_response.results.ll
         end
       end
+      @email_suppressions = [
+        @display_user.email_suppressions.to_a, EmailSuppression.where( email: @display_user.email ).to_a
+      ].flatten.compact.uniq
     end
 
     respond_to do |format|

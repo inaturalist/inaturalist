@@ -129,6 +129,7 @@ class User < ApplicationRecord
   has_many :deleted_observations
   has_many :deleted_photos
   has_many :deleted_sounds
+  has_many :email_suppressions, dependent: :delete_all
   has_many :flags_as_flagger, inverse_of: :user, class_name: "Flag"
   has_many :flags_as_flaggable_user, inverse_of: :flaggable_user,
     class_name: "Flag", foreign_key: "flaggable_user_id", dependent: :nullify
@@ -1018,6 +1019,10 @@ class User < ApplicationRecord
     if user = User.find_by_id( user_id )
       puts "Destroying user (this could take a while)"
       user.sane_destroy
+    end
+
+    if ( deleted_user = DeletedUser.where( user_id: user_id ).first ) && !deleted_user.email.blank?
+      EmailSuppression.where( email: deleted_user.email ).delete_all
     end
 
     puts "Updating flags created by user..."

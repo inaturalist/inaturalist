@@ -1274,7 +1274,8 @@ CREATE TABLE public.email_suppressions (
     email text,
     suppression_type text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    user_id integer
 );
 
 
@@ -7250,13 +7251,6 @@ CREATE INDEX index_annotations_on_resource_id_and_resource_type ON public.annota
 
 
 --
--- Name: index_annotations_on_uuid; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_annotations_on_uuid ON public.annotations USING btree (uuid);
-
-
---
 -- Name: index_annotations_on_unique_resource_and_attribute; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7268,6 +7262,13 @@ CREATE UNIQUE INDEX index_annotations_on_unique_resource_and_attribute ON public
 --
 
 CREATE INDEX index_annotations_on_user_id ON public.annotations USING btree (user_id);
+
+
+--
+-- Name: index_annotations_on_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_annotations_on_uuid ON public.annotations USING btree (uuid);
 
 
 --
@@ -7611,6 +7612,13 @@ CREATE INDEX index_deleted_users_on_user_id ON public.deleted_users USING btree 
 --
 
 CREATE INDEX index_email_suppressions_on_email_and_suppression_type ON public.email_suppressions USING btree (email, suppression_type);
+
+
+--
+-- Name: index_email_suppressions_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_email_suppressions_on_user_id ON public.email_suppressions USING btree (user_id);
 
 
 --
@@ -10165,6 +10173,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220308015748'),
 ('20220310001916'),
 ('20220317205240'),
-('20220317210522');
+('20220317210522'),
+('20220407173712');
 
 

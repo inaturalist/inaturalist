@@ -15,6 +15,8 @@ end
 
 start = Time.now
 
+@logger = Logger.new( $stdout )
+
 def get_response( url )
   RestClient.get( url, {
     "Authorization" => "Bearer #{CONFIG.sendgrid.api_key}"
@@ -27,7 +29,7 @@ def get_records( url_base )
   success = true
   i = 0
   while json.count.positive? && success == true
-    puts "\t...reading page #{i}"
+    @logger.info "\t...reading page #{i}"
     offset = 500 * i
     url = "#{url_base}?limit=500&offset=#{offset}"
     begin
@@ -48,7 +50,7 @@ def get_records( url_base )
 end
 
 def get_supressions( suppression_type )
-  puts "getting suppressions of type #{suppression_type}"
+  @logger.info "getting suppressions of type #{suppression_type}"
   url_base = "https://api.sendgrid.com/v3/suppression/#{suppression_type}"
   records = get_records( url_base )
   emails = records[:records].map {| i | i["email"] }.uniq
@@ -56,7 +58,7 @@ def get_supressions( suppression_type )
 end
 
 def get_supression_group
-  puts "getting group suppressions"
+  @logger.info "getting group suppressions"
   url_base = "https://api.sendgrid.com/v3/asm/suppressions"
   records = get_records( url_base )
   emails = {}
@@ -71,6 +73,7 @@ def save_emails( emails, suppression_type )
   failed_to_save = []
   emails.each do | email |
     es = EmailSuppression.find_or_initialize_by( email: email, suppression_type: suppression_type )
+    es.user = User.find_by_email( email )
     if es.new_record?
       unless es.save
         failed_to_save << { email: email, suppression_type: suppression_type }
@@ -84,7 +87,7 @@ end
 
 def work_on_group( suppression_type )
   emails = get_supressions( suppression_type )
-  puts "saving suppressions"
+  @logger.info "saving suppressions"
   failed_to_save = save_emails( emails[:emails], suppression_type )
   { success: emails[:success], failed_to_save: failed_to_save }
 end
@@ -126,23 +129,23 @@ to_remove = EmailSuppression.where( "updated_at < ? AND suppression_type IN (?)"
   start, successful_groups )
 remove_count = to_remove.count
 if remove_count.positive?
-  puts "Removing #{remove_count} here's a sample:"
-  to_remove.limit( 50 ).map {| i | puts i.attributes.values.join( " : " ) }
+  @logger.info "Removing #{remove_count} here's a sample:"
+  to_remove.limit( 50 ).map {| i | @logger.info i.attributes.values.join( " : " ) }
   to_remove.delete_all
 end
 
-puts
-puts "Imported #{create_count} emails and removed #{remove_count} emails in #{Time.now - start}s"
-puts
+@logger.info
+@logger.info "Imported #{create_count} emails and removed #{remove_count} emails in #{Time.now - start}s"
+@logger.info
 if unsuccessful_groups.count.positive?
-  puts "Syncing unsuccessful for the following group(s): #{unsuccessful_groups.join( ', ' )}"
+  @logger.info "Syncing unsuccessful for the following group(s): #{unsuccessful_groups.join( ', ' )}"
 end
 if failed_to_save.count.positive?
-  puts "The following emails unsuccessfully saved:"
+  @logger.info "The following emails unsuccessfully saved:"
   failed_to_save.each do | k, v |
-    puts "\t#{k}"
+    @logger.info "\t#{k}"
     v.each do | row |
-      puts "\t\t#{row[:email]}"
+      @logger.info "\t\t#{row[:email]}"
     end
   end
 end
