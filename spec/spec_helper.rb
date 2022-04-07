@@ -305,21 +305,30 @@ def disable_user_email_domain_exists_validation
   CONFIG.user_email_domain_exists_validation = :disabled
 end
 
-def load_time_zone_geometries
+def load_time_zone_geometries( options = { } )
   table_name = TimeZoneGeometry.table_name
   pg_string = {
-    dbname: ApplicationRecord.connection_config[:database],
-    host: ApplicationRecord.connection_config[:host],
-    user: ApplicationRecord.connection_config[:username],
-    password: ApplicationRecord.connection_config[:password],
+    dbname: ApplicationRecord.connection_db_config.configuration_hash[:database],
+    host: ApplicationRecord.connection_db_config.configuration_hash[:host],
+    user: ApplicationRecord.connection_db_config.configuration_hash[:username],
+    password: ApplicationRecord.connection_db_config.configuration_hash[:password],
   }.map { |k,v| "#{k}=#{v}" }.join( " " )
-  tgz_fname = "western-us-time-zones.geojson.tgz"
-  geojson_fname = "western-us-time-zones.geojson"
-  fixtures_path = File.join( Rails.root, "spec", "fixtures" )
-  system "cd #{fixtures_path} && tar xzf #{tgz_fname}"
+  geojson_dir_path = File.join( Rails.root, "spec", "fixtures" )
+  # Fetch data from this URL. It's not great to have this external dependency,
+  # but the alternative is having a rather large fixture checked in
+  url = "https://github.com/evansiroky/timezone-boundary-builder/releases/download/2020d/timezones-with-oceans.geojson.zip"
+  zip_fname = File.basename( url )
+  geojson_fname = "combined-with-oceans.json"
+  if File.exists?( File.join( geojson_dir_path, geojson_fname ) )
+    puts "#{geojson_fname} exists, skipping download"
+  else
+    puts "Downloading #{url}"
+    system "cd #{geojson_dir_path} && curl -L -s -o #{zip_fname} #{url}", exception: true
+    system "cd #{geojson_dir_path} && unzip #{zip_fname}", exception: true
+  end
   system <<-BASH
     ogr2ogr -f "PostgreSQL" PG:"#{pg_string}" \
-      #{File.join( fixtures_path, geojson_fname)} \
+      #{File.join( geojson_dir_path, geojson_fname)} \
       -nln #{table_name} \
       -lco GEOMETRY_NAME=geom \
       -overwrite

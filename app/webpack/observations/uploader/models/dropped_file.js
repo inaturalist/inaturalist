@@ -1,6 +1,7 @@
 import _ from "lodash";
 import piexif from "piexifjs";
 import moment from "moment-timezone";
+import util, { parsableDatetimeFormat } from "./util";
 
 const BRANDED_DESCRIPTIONS = [
   "OLYMPUS DIGITAL CAMERA",
@@ -24,8 +25,7 @@ const DroppedFile = class DroppedFile {
     const updates = { };
     const obs = photo.to_observation;
     if ( obs.time_observed_at ) {
-      updates.date = moment( obs.time_observed_at )
-        .format( "YYYY/MM/DD h:mm A" );
+      updates.date = moment( obs.time_observed_at ).format( parsableDatetimeFormat( ) );
       updates.selected_date = updates.date;
     }
     if ( obs.latitude && obs.longitude ) {

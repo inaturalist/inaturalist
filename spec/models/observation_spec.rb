@@ -3540,7 +3540,7 @@ describe Observation do
         Identification.make!( observation: @o, taxon: @s1 )
         Identification.make!( observation: @o, taxon: @s1 )
         i = Identification.make!( observation: @o, taxon: @g1 )
-        i.update_attribute( :disagreement, nil )
+        i.update( :disagreement, nil )
         i.reload
         expect( i.disagreement ).to eq nil
         @o.reload
@@ -3667,7 +3667,7 @@ describe Observation do
       it "s1 g1.disagreement_nil should be g1" do
         Identification.make!( observation: @o, taxon: @s1 )
         i = Identification.make!( observation: @o, taxon: @g1 )
-        i.update_attribute( :disagreement, nil )
+        i.update( :disagreement, nil )
         o = Observation.find( @o.id )
         expect( o.probable_taxon ).to eq @g1
       end
@@ -4202,7 +4202,6 @@ describe Observation do
       o = make_research_grade_observation( taxon: t )
       expect( o ).to be_coordinates_obscured
       expect( o.public_positional_accuracy ).not_to be_blank
-      # o.update_attribute( :public_positional_accuracy, nil )
       Observation.where( id: o.id ).update_all( public_positional_accuracy: nil )
       o.reload
       expect( o.read_attribute( :public_positional_accuracy ) ).to be_blank
@@ -4484,7 +4483,7 @@ describe Observation, "set_time_zone" do
   it "should change the time zone when the coordinates change" do
     o = Observation.make!( latitude: oakland[:lat], longitude: oakland[:lng] )
     expect( o.zic_time_zone ).to eq "America/Los_Angeles"
-    o.update_attributes( latitude: denver[:lat], longitude: denver[:lng] )
+    o.update( latitude: denver[:lat], longitude: denver[:lng] )
     expect( o.zic_time_zone ).to eq "America/Denver"
   end
 
@@ -4507,7 +4506,7 @@ describe Observation, "set_time_zone" do
   it "should work when coordinates change to the middle of the ocean" do
     o = Observation.make!( latitude: oakland[:lat], longitude: oakland[:lng] )
     expect( o.zic_time_zone ).to eq "America/Los_Angeles"
-    o.update_attributes( latitude: pacific_ocean[:lat], longitude: pacific_ocean[:lng] )
+    o.update( latitude: pacific_ocean[:lat], longitude: pacific_ocean[:lng] )
     expect( o.zic_time_zone ).to eq "Etc/GMT+8"
   end
 
@@ -4522,7 +4521,7 @@ describe Observation, "set_time_zone" do
   it "should set the zic_time_zone when coordinates change to the middle of the ocean" do
     o = Observation.make!( latitude: oakland[:lat], longitude: oakland[:lng] )
     expect( o.zic_time_zone ).to eq "America/Los_Angeles"
-    o.update_attributes( latitude: pacific_ocean[:lat], longitude: pacific_ocean[:lng] )
+    o.update( latitude: pacific_ocean[:lat], longitude: pacific_ocean[:lng] )
     expect( o.zic_time_zone ).to eq "Etc/GMT+8"
   end
 end
