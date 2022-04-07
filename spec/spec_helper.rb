@@ -305,14 +305,11 @@ def disable_user_email_domain_exists_validation
   CONFIG.user_email_domain_exists_validation = :disabled
 end
 
-def load_time_zone_geometries( options = { } )
-  table_name = TimeZoneGeometry.table_name
-  pg_string = {
-    dbname: ApplicationRecord.connection_db_config.configuration_hash[:database],
-    host: ApplicationRecord.connection_db_config.configuration_hash[:host],
-    user: ApplicationRecord.connection_db_config.configuration_hash[:username],
-    password: ApplicationRecord.connection_db_config.configuration_hash[:password],
-  }.map { |k,v| "#{k}=#{v}" }.join( " " )
+def load_time_zone_geometries
+  # tgz_fname = "western-us-time-zones.geojson.tgz"
+  # geojson_fname = "western-us-time-zones.geojson"
+  fixtures_path = File.join( Rails.root, "spec", "fixtures" )
+  # system "cd #{fixtures_path} && tar xzf #{tgz_fname}"
   geojson_dir_path = File.join( Rails.root, "spec", "fixtures" )
   # Fetch data from this URL. It's not great to have this external dependency,
   # but the alternative is having a rather large fixture checked in
@@ -326,14 +323,7 @@ def load_time_zone_geometries( options = { } )
     system "cd #{geojson_dir_path} && curl -L -s -o #{zip_fname} #{url}", exception: true
     system "cd #{geojson_dir_path} && unzip #{zip_fname}", exception: true
   end
-  system <<-BASH
-    ogr2ogr -f "PostgreSQL" PG:"#{pg_string}" \
-      #{File.join( geojson_dir_path, geojson_fname)} \
-      -nln #{table_name} \
-      -lco GEOMETRY_NAME=geom \
-      -overwrite
-  BASH
-  ActiveRecord::Base.connection.execute "SELECT UpdateGeometrySRID('#{table_name}', 'geom', 0)"
+  TimeZoneGeometry.load_geojson_file( File.join( fixtures_path, geojson_fname ), logger: Logger.new( $stdout ) )
 end
 
 def unload_time_zone_geometries

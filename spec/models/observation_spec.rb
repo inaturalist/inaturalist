@@ -673,13 +673,13 @@ describe Observation do
       end
     end
 
-    it "should set time_zone to the user's time zone when a zic time zone we don't know about was specified but Rails ignores it" do
+    it "should set time_zone to the zic time zone when a zic time zone we don't know about was specified but Rails ignores it" do
       u = User.make!( time_zone: "Pacific Time (US & Canada)" )
       iana_tz = "America/Bahia"
       expect( ActiveSupport::TimeZone[iana_tz] ).not_to be_nil
       expect( ActiveSupport::TimeZone::MAPPING.invert[iana_tz] ).to be_nil
       o = Observation.make!( user: u, time_zone: "America/Bahia" )
-      expect( o.time_zone ).to eq u.time_zone
+      expect( o.time_zone ).to eq iana_tz
     end
 
     it "should not allow observed_on to be more than 130 years ago" do

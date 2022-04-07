@@ -1295,6 +1295,8 @@ class Observation < ApplicationRecord
         # time_zone. Rails can use that to cast times into other zones, even
         # if it doesn't recognize it as its own zone
         time_zone
+      else
+        ActiveSupport::TimeZone[time_zone].name
       end
     end
     self.time_zone ||= user.time_zone if user && !user.time_zone.blank?

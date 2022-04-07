@@ -157,7 +157,7 @@ describe LocalPhoto, "to_observation" do
     end
 
     describe "time zone" do
-      before(:all) { load_time_zone_geometries( remote: true ) }
+      before(:all) { load_time_zone_geometries }
       after(:all) { unload_time_zone_geometries }
 
       it "should be set for a gecko in Malaysia" do
