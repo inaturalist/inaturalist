@@ -2154,6 +2154,7 @@ es-AR:
     portuguese: Portugués
     romanian: Rumano
     russian: Ruso
+    santali: Santalí
     setswana: Setsuana
     slovak: Eslovaco
     slovenian: Esloveno
@@ -2265,6 +2266,7 @@ es-AR:
     pt: Portugués
     pt-BR: Portugués (Brasil)
     ru: Ruso
+    sat: Santalí
     sk: Eslovaco
     sl: Esloveno
     sq: Albanés
@@ -6495,6 +6497,8 @@ es-AR:
       taxon:
         auto_description: Cargar automáticamente la descripción
         auto_photos: Cargar fotos automáticamente
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Estado de conservación
         #ID of the iconic taxon this taxon belongs to
         iconic_taxon_id: ID del taxón icónico
         #Boolean attribute stating whether this taxon is active (i.e. available for use)
