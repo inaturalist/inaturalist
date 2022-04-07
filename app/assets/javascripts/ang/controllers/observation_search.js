@@ -629,15 +629,18 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
           u.resultCount = r.count;
           return u;
         });
-      });
-      ObservationsFactory.observers( statsParams ).then( function( response ) {
-        if( $scope.lastSearchTime != thisSearchTime ) { return; }
-        $scope.totalObservers = response.data.total_results;
-        $scope.observers = _.map( response.data.results, function( r ) {
-          var u = new iNatModels.User( r.user );
-          u.observationCount = r.observation_count;
-          u.speciesCount = r.species_count;
-          return u;
+        // identifiers is currently on average a little faster than observers.
+        // Query for identifiers first, and only when that's done fetch observers
+        // to help spread out query load
+        ObservationsFactory.observers( statsParams ).then( function( response ) {
+          if( $scope.lastSearchTime != thisSearchTime ) { return; }
+          $scope.totalObservers = response.data.total_results;
+          $scope.observers = _.map( response.data.results, function( r ) {
+            var u = new iNatModels.User( r.user );
+            u.observationCount = r.observation_count;
+            u.speciesCount = r.species_count;
+            return u;
+          });
         });
       });
     });

@@ -14,11 +14,13 @@ export default function reducer( state = { }, action ) {
     case SET_PROJECT:
       return action.project;
     case SET_ATTRIBUTES:
-      return new Project( Object.assign( { }, state, action.attributes ) );
+      return new Project( { ...state, ...action.attributes } );
     default:
   }
   return state;
 }
+
+const handleAPIError = e => console.log( e );
 
 export function setProject( p ) {
   return ( dispatch, getState ) => {
@@ -70,7 +72,7 @@ export function fetchCurrentProjectUser( ) {
           dispatch( setAttributes( { currentProjectUser: response.results[0] } ) );
         }
       } )
-      .catch( e => console.log( e ) );
+      .catch( handleAPIError );
   };
 }
 
@@ -79,17 +81,18 @@ export function fetchPopularObservations( ) {
     const { project } = getState( );
     if ( !project ) { return null; }
     if ( project.popular_observations_loaded ) { return null; }
-    const params = Object.assign( { }, project.search_params, {
+    const params = {
+      ...project.search_params,
       per_page: 47,
       popular: true,
       order: "votes"
-    } );
+    };
     return inatjs.observations.search( params ).then( response => {
       dispatch( setAttributes( {
         popular_observations_loaded: true,
         popular_observations: response
       } ) );
-    } ).catch( e => console.log( e ) );
+    } ).catch( handleAPIError );
   };
 }
 
@@ -97,10 +100,11 @@ export function fetchRecentObservations( ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
     if ( !project ) { return null; }
-    const params = Object.assign( { }, project.search_params, {
+    const params = {
+      ...project.search_params,
       return_bounds: "true",
       per_page: 50
-    } );
+    };
     dispatch( setConfig( {
       observationFilters: {
         order_by: "created_at",
@@ -115,7 +119,7 @@ export function fetchRecentObservations( ) {
         filtered_observations: response,
         filtered_observations_page: 1
       } ) );
-    } ).catch( e => console.log( e ) );
+    } ).catch( handleAPIError );
   };
 }
 
@@ -123,9 +127,7 @@ export function fetchFilteredObservations( ) {
   return ( dispatch, getState ) => {
     const { project, config } = getState( );
     if ( !project ) { return null; }
-    let params = Object.assign( { }, project.search_params, {
-      per_page: 50
-    } );
+    let params = { ...project.search_params, per_page: 50 };
     if ( config.observationFilters ) {
       params = Object.assign( params, config.observationFilters );
     }
@@ -136,7 +138,7 @@ export function fetchFilteredObservations( ) {
         filtered_observations: response,
         filtered_observations_page: 1
       } ) );
-    } ).catch( e => console.log( e ) );
+    } ).catch( handleAPIError );
   };
 }
 
@@ -160,10 +162,11 @@ export function infiniteScrollObservations( nextScrollIndex ) {
       dispatch( setConfig( { observationsScrollIndex: nextScrollIndex } ) );
       return null;
     }
-    let params = Object.assign( { }, project.search_params, {
+    let params = {
+      ...project.search_params,
       per_page: 50,
       page: project.filtered_observations_page + 1
-    } );
+    };
     if ( config.observationFilters ) {
       params = Object.assign( params, config.observationFilters );
     }
@@ -175,13 +178,13 @@ export function infiniteScrollObservations( nextScrollIndex ) {
         filtered_observations_page: project.filtered_observations_page + 1
       } ) );
       dispatch( setConfig( { observationsScrollIndex: nextScrollIndex } ) );
-    } ).catch( e => console.log( e ) );
+    } ).catch( handleAPIError );
   };
 }
 
 export function infiniteScrollSpecies( nextScrollIndex ) {
   return ( dispatch, getState ) => {
-    const { project, config } = getState( );
+    const { project } = getState( );
     if ( !project || !project.species_loaded ) { return null; }
     const total = project.species.total_results;
     const loaded = project.species.results.length;
@@ -189,10 +192,11 @@ export function infiniteScrollSpecies( nextScrollIndex ) {
       dispatch( setConfig( { speciesScrollIndex: nextScrollIndex } ) );
       return null;
     }
-    let params = Object.assign( { }, project.search_params, {
+    const params = {
+      ...project.search_params,
       per_page: 50,
       page: project.species_page + 1
-    } );
+    };
     return inatjs.observations.speciesCounts( params ).then( response => {
       project.species.results = project
         .species.results.concat( response.results );
@@ -201,7 +205,7 @@ export function infiniteScrollSpecies( nextScrollIndex ) {
         species_page: project.species_page + 1
       } ) );
       dispatch( setConfig( { speciesScrollIndex: nextScrollIndex } ) );
-    } ).catch( e => console.log( e ) );
+    } ).catch( handleAPIError );
   };
 }
 
@@ -209,16 +213,14 @@ export function fetchSpecies( ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
     if ( !project ) { return null; }
-    let params = Object.assign( { }, project.search_params, {
-      per_page: 50
-    } );
+    const params = { ...project.search_params, per_page: 50 };
     return inatjs.observations.speciesCounts( params ).then( response => {
       dispatch( setAttributes( {
         species_loaded: true,
         species: response,
         species_page: 1
       } ) );
-    } ).catch( e => console.log( e ) );
+    } ).catch( handleAPIError );
   };
 }
 
@@ -231,7 +233,7 @@ export function fetchObservers( ) {
         observers_loaded: true,
         observers: response
       } ) );
-    } ).catch( e => console.log( e ) );
+    } ).catch( handleAPIError );
   };
 }
 
@@ -239,13 +241,13 @@ export function fetchSpeciesObservers( ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
     if ( !project ) { return null; }
-    const params = Object.assign( { }, project.search_params, { order_by: "species_count" } );
+    const params = { ...project.search_params, order_by: "species_count" };
     return inatjs.observations.observers( params ).then( response => {
       dispatch( setAttributes( {
         species_observers_loaded: true,
         species_observers: response
       } ) );
-    } ).catch( e => console.log( e ) );
+    } ).catch( handleAPIError );
   };
 }
 
@@ -266,7 +268,7 @@ export function fetchIdentifiers( noPageLimit = false ) {
         identifiers: response,
         all_identifiers_loaded: noPageLimit
       } ) );
-    } ).catch( e => console.log( e ) );
+    } ).catch( handleAPIError );
   };
 }
 
@@ -279,7 +281,7 @@ export function fetchPosts( ) {
         posts_loaded: true,
         posts: response
       } ) );
-    } ).catch( e => console.log( e ) );
+    } ).catch( handleAPIError );
   };
 }
 
@@ -292,7 +294,7 @@ export function fetchIconicTaxaCounts( ) {
         iconic_taxa_species_counts_loaded: true,
         iconic_taxa_species_counts: response
       } ) );
-    } ).catch( e => console.log( e ) );
+    } ).catch( handleAPIError );
   };
 }
 
@@ -305,7 +307,7 @@ export function fetchUmbrellaStats( ) {
         umbrella_stats_loaded: true,
         umbrella_stats: response
       } ) );
-    } ).catch( e => console.log( e ) );
+    } ).catch( handleAPIError );
   };
 }
 
@@ -325,7 +327,7 @@ export function fetchQualityGradeCounts( ) {
         quality_grade_counts_loaded: true,
         quality_grade_counts: response
       } ) );
-    } ).catch( e => console.log( e ) );
+    } ).catch( handleAPIError );
   };
 }
 
@@ -345,7 +347,7 @@ export function fetchIdentificationCategories( ) {
         identification_categories_loaded: true,
         identification_categories: response
       } ) );
-    } ).catch( e => console.log( e ) );
+    } ).catch( handleAPIError );
   };
 }
 
@@ -359,14 +361,16 @@ export function fetchOverviewData( ) {
       return;
     }
     if ( project.project_type === "umbrella" ) {
-      dispatch( fetchUmbrellaStats( ) );
+      dispatch( fetchUmbrellaStats( ) )
+        .then( ( ) => dispatch( fetchRecentObservations( ) ) );
+    } else {
+      dispatch( fetchRecentObservations( ) );
     }
-    dispatch( fetchRecentObservations( ) );
-    dispatch( fetchSpecies( ) );
-    dispatch( fetchObservers( ) );
-    dispatch( fetchSpeciesObservers( ) );
-    dispatch( fetchIdentifiers( ) );
-    dispatch( fetchMembers( ) );
+    dispatch( fetchMembers( ) )
+      .then( ( ) => dispatch( fetchSpecies( ) ) );
+    dispatch( fetchObservers( ) )
+      .then( ( ) => dispatch( fetchIdentifiers( ) ) )
+      .then( ( ) => dispatch( fetchSpeciesObservers( ) ) );
   };
 }
 
@@ -450,7 +454,7 @@ export function feature( options = { } ) {
     if ( !project || !loggedIn || !( viewerIsAdmin || viewerIsSiteAdmin ) || !config.site ) {
       return;
     }
-    const params = Object.assign( { }, options, { id: project.id, inat_site_id: config.site.id } );
+    const params = { ...options, id: project.id, inat_site_id: config.site.id };
     inatjs.projects.feature( params ).then( ( ) => {
       const siteFeatures = _.filter( project.site_features, sf => sf.site_id !== config.site.id );
       siteFeatures.push( {
@@ -539,7 +543,7 @@ export function createFlag( className, id, flag, body ) {
     };
     return inatjs.flags.create( params ).then( ( ) => {
       dispatch( afterFlagChange( ) );
-    } ).catch( e => console.log( e ) );
+    } ).catch( handleAPIError );
   };
 }
 
@@ -549,13 +553,12 @@ export function deleteFlag( id ) {
     if ( !state.project || !state.config.currentUser ) { return null; }
     return inatjs.flags.delete( { id } ).then( ( ) => {
       dispatch( afterFlagChange( ) );
-    } ).catch( e => console.log( e ) );
+    } ).catch( handleAPIError );
   };
 }
 
 export function updateProjectUser( projectUser ) {
   return dispatch => {
-    console.log( "[DEBUG] projectUser: ", projectUser );
     inatjs.project_users.update( { id: projectUser.id, project_user: projectUser } )
       .then( ( ) => dispatch( fetchCurrentProjectUser( ) ) )
       .catch( e => alert( e ) );
