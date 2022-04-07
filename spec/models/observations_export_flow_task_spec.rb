@@ -32,7 +32,7 @@ describe ObservationsExportFlowTask do
       o = Observation.make!
       ft = ObservationsExportFlowTask.make
       ft.inputs.build(:extra => {:query => "user_id=#{o.user_id}"})
-      ft.run( debug: true, logger: Logger.new( STDOUT ) )
+      ft.run #( debug: true, logger: Logger.new( STDOUT ) )
       expect( ft.outputs ).to be_blank
       expect( ft.exception ).not_to be_blank
     end
@@ -321,7 +321,7 @@ describe ObservationsExportFlowTask do
             }.to_json,
             headers: { "Content-Type" => "application/json" }
           )
-        stub_request(:get, /\/v1\/observations\?.*per_page=1/).
+        stub_request(:get, /\/v1\/observations\?.*per_page=1[^0]/).
           to_return(
             status: 200,
             body: {
