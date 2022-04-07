@@ -135,4 +135,31 @@ describe Photo do
     end
   end
 
+  describe "to_taxon" do
+    it "should choose a taxon when there are multiple options with different names" do
+      taxa = 3.times.map { create :taxon }
+      photo = build :photo
+      allow( photo ).to receive( :to_taxa ).and_return( taxa )
+      expect( photo.to_taxon ).not_to be_blank
+    end
+    it "should not choose among synonyms on different branches" do
+      taxa = [
+        create( :taxon, rank: Taxon::GENUS, name: "Tipula" ),
+        create( :taxon, rank: Taxon::GENUS, name: "Tipula" )
+      ]
+      photo = build :photo
+      allow( photo ).to receive( :to_taxa ).and_return( taxa )
+      expect( photo.to_taxon ).to be_blank
+    end
+    it "should choose the coarsest synonym on the same branch" do
+      family = create( :taxon, rank: Taxon::FAMILY, name: "Tipulidae" )
+      genus = create( :taxon, rank: Taxon::GENUS, name: "Tipula", parent: family )
+      subgenus = create( :taxon, rank: Taxon::SUBGENUS, name: "Tipula", parent: genus )
+      taxa = [genus, subgenus]
+      photo = build :photo
+      allow( photo ).to receive( :to_taxa ).and_return( taxa )
+      expect( photo.to_taxon ).to eq genus
+    end
+  end
+
 end
