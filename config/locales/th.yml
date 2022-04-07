@@ -553,6 +553,7 @@ th:
   captive_observations: การสังเกตของสิ่งมีชีวิตที่ถูกจับมา
   casual_: ไม่เป็นทางการ
   casual_tooltip_html: 'การสังเกตระดับ "ไม่เป็นทางการ" คือการสังเกตที่ไม่มีสื่อ สถานที่ หรือวันที่ หรือไม่เป็นไปตามคุณสมบัติที่ต้องการของการสังเกตระดับงานวิจัยหรือกำลังรอจำแนกชนิด <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เกี่ยวกับระดับคุณภาพข้อมูล</a>'
+  cc_0_name: ไม่มีลิขสิทธิ์ (CC0)
   change_admin: เปลี่ยนผู้ดูแล
   #Button to change the cover (or banner) image for a project
   change_cover: เปลี่ยนภาพหน้าปก
@@ -679,12 +680,14 @@ th:
     public_domain: โดเมนสาธารณะ
     copyright: ลิขสิทธิ์
     no_copyright: ไม่มีลิขสิทธิ์
+  copyright_info: ข้อมูลลิขสิทธิ์
   copyright_info_and_more: ข้อมูลลิขสิทธิ์และอื่น ๆ
   create: สร้าง
   create_a_guide: สร้างคู่มือ
   create_a_new_place: สร้างสถานที่ใหม่
   create_a_new_taxon: สร้างหน่วยอนุกรมวิธานใหม่
   create_an_account: สร้างบัญชีใหม่
+  cumulative_ids: "การจำแนกสะสม: %{count} จาก %{total}"
   curation: จัดการอนุกรมวิธาน
   curator: ผู้ดูแล
   curators: ผู้ดูแล
@@ -853,6 +856,7 @@ th:
   flagger: ผู้รายงาน
   flags: รายงาน
   flags_with_count: รายงาน (%{count})
+  follow: ติดตาม
   follow_receive_updates_about_new_observations: ติดตาม (รับข้อมูลเกี่ยวกับการสังเกตใหม่ ๆ)
   following: กำลังติดตาม
   following_x_people:
@@ -900,6 +904,7 @@ th:
   identify_observations: "ระบุการสังเกต"
   identify_observations_by_these_users: ผู้ใช้งานเหล่านี้ได้ระบุการสังเกต
   identify_title: "ระบุชนิด"
+  identifications: การจำแนก
   computer_vision_suggestion: แนะนำจากการจำแนกภาพด้วยคอมพิวเตอร์
   import_all_photos_as_observations: เพิ่มการสังเกตจากรูปภาพทั้งหมด
   import_observations: นำเข้าการสังเกต
@@ -923,11 +928,38 @@ th:
   leaves: ใบ
   lexicons:
     scientific_names: ชื่อวิทยาศาสตร์
+    afrikaans: ภาษาอาฟรีกานส์
+    chinese_simplified: ภาษาจีน (ตัวย่อ)
+    chinese_traditional: ภาษาจีน (ดั้งเดิม)
+    english: ภาษาอังกฤษ
+    german: ภาษาเยอรมัน
+    greek: ภาษากรีก
+    italian: ภาษาอิตาลี
+    japanese: ภาษาญี่ปุ่น
+    korean: ภาษาเกาหลี
+    mongolian: ภาษามองโกเลีย
     polish: ภาษาโปแลนด์
+    russian: ภาษารัสเซีย
+    spanish: ภาษาสเปน
+    thai: ภาษาไทย
   life_list: "รายการสิ่งมีชีวิตของ %{user}"
   list: รายการ
   locales:
+    de: ภาษาเยอรมัน
+    el: ภาษากรีก
+    en: ภาษาอังกฤษ
+    es: ภาษาสเปน
+    es-AR: ภาษาสเปน (อาร์เจนตินา)
+    es-CO: ภาษาสเปน (โคลอมเบีย)
+    es-MX: ภาษาสเปน (เม็กซิโก)
+    it: ภาษาอิตาลี
+    ja: ภาษาญี่ปุ่น
+    ko: ภาษาเกาหลี
     pl: ภาษาโปแลนด์
+    ru: ภาษารัสเซีย
+    th: ภาษาไทย
+    zh-CN: ภาษาจีน (ตัวย่อ)
+    zh-TW: ภาษาจีน (ดั้งเดิม)
   location_is_accurate: สถานที่สังเกตถูกต้อง
   location_is_exact: มีหลักฐานของสิ่งมีชีวิต
   location_is_private: สถานที่นี้เป็นส่วนตัว
@@ -967,6 +999,7 @@ th:
       MM: "%d เดือน"
       #Short text representing %d years in the past
       yy: "%d ปี"
+  months: เดือน
   more: เพิ่มเติม
   more_about_sharing: ข้อมูลเพิ่มเติมในการแชร์
   more_filters: ตัวกรองเพิ่มเติม
@@ -981,6 +1014,9 @@ th:
   most_observed_species: ชนิดที่พบมากสุด
   most_observed_introduced_species: ชนิดพันธุ์ต่างถิ่นที่พบมากสุด
   most_observed_threatened_species: ชนิดที่เสี่ยงต่อการสูญพันธุ์ที่พบมากสุด
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: ต้องอยู่ในโครงการ %{project}
   n_ago: "%{n} ที่แล้ว"
   n_people_disagrees: "มี %{amount} คนไม่เห็นด้วย"
   n_person_disagrees: "มี %{amount} คนไม่เห็นด้วย"
@@ -1062,13 +1098,25 @@ th:
   previewing: "กำลังแสดงตัวอย่าง..."
   privacy: ความเป็นส่วนตัว
   private_: ส่วนตัว
+  project: โครงการ
+  project_admins:
+    other: ผู้ดูแลโครงการ
+  project_assessments: การประเมินโครงการ
+  project_cover: รูปหน้าปกโครงการ
   project_journal: วารสารโครงการ
   project_list_defaults:
     title: "รายการตรวจสอบของ %{owner_name}"
   project_curators_added_some_of_your_observations_html: |
     ผู้ดูแลเพิ่มการสังเกตบางอันของคุณไปที่โครงการ <a href="%{url}">%{project}</a>
+  project_members_only: สมาชิกโครงการเท่านั้น
   project_requirements: ข้อกำหนดโครงการ
+  project_rules: กฎของโครงการ
+  project_settings: การตั้งค่าโครงการ
   projects: โครงการ
+  projects_from_place: "โครงการจาก %{place}"
+  #"admins" is equivalent to "administrates"
+  projects_user_admins: โครงการที่ %{user} เป็นผู้ดูแล
+  projects_you_admin: โครงการที่คุณเป็นผู้ดูแล
   quality_grade: ระดับคุณภาพ
   quality_grade_: ระดับคุณภาพ
   quality_grade_colon: "ระดับคุณภาพ"
@@ -1174,6 +1222,7 @@ th:
   ranks_lowercase_subspecies: ชนิดย่อย
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: ลูกผสมฐาน
+  read_more: อ่านเพิ่มเติม
   real_time_discussions: การถกเถียงที่กำลังเกิดขึ้น
   receive_project_journal_notifications?: รับการแจ้งเตือนจากวารสารโครงการหรือไม่?
   recent_evidence_of_organism: หลักฐานไม่เก่าเกินไป (ไม่เป็นซากดึกดำบรรพ์)
@@ -1211,6 +1260,7 @@ th:
   seasonality: ตามฤดูกาล
   select: เลือก
   select_all: เลือกทั้งหมด
+  select_options: เลือก
   selected_taxon: หน่วยอนุกรมวิธานที่ถูกเลือก
   select_this_taxon: เลือกหน่วยอนุกรมวิธานนี้
   show: แสดง
@@ -1242,6 +1292,8 @@ th:
   species_taxon_name: ชนิด / ชื่อหน่วยอนุกรมวิธาน
   species_unknown: ไม่ทราบชนิด
   start: เริ่มต้น
+  start_a_new_project: เริ่มโครงการใหม่
+  start_a_project: เริ่มต้นโครงการ
   stats: สถิติ
   stop_following_user: "เลิกติดตาม %{user}"
   #As in a place to purchase things. We use it as a link to a place where you
@@ -1265,11 +1317,14 @@ th:
   taxonomic_changes: การเปลี่ยนแปลงหน่วยอนุกรมวิธาน
   taxonomy_details: รายละเอียดหน่วยอนุกรมวิธาน
   taxonomy_details_for: รายละเอียดหน่วยอนุกรมวิธานสำหรับ
+  that_project_doesnt_exist: "ไม่มีโครงการนั้น"
   the_below_items_are_needed_to_achieve: |
     การสังเกตจะเป็น<span className="bold">ระดับงานวิจัย</span>ได้ต้องมีคุณสมบัติต่อไปนี้:
   the_community_id_requires_at_least_two_identifications: จะต้องมีการจำแนกโดยชุมชนอย่างน้อยสองคน
   these_observations_have_not_been_uploaded_yet: |
     การสังเกตเหล่านี้ยังไม่ถูกอัปโหลด
+  this_is_your_observation: นี่คือการสังเกตของคุณ
+  this_observation: การสังเกตนี้
   this_observation_is_research_grade: การสังเกตนี้เป็นระดับงานวิจัย!
   this_observation_was_created_using: "การสังเกตนี้สร้างขึ้นมาด้วยการใช้:"
   this_place_has_no_check_list: "สถานที่นี้ไม่มีรายการตรวจสอบ"
@@ -1284,6 +1339,7 @@ th:
   total_observations_caps: การสังเกตทั้งหมด
   total_species_observed_caps: ชนิดที่ถูกสังเกตทั้งหมด
   trends: แนวโน้ม
+  umbrella_projects: โครงการครอบคลุม
   unclassified: ไม่ถูกจัดจำแนก
   unreview_all: เลิกทบทวนทั้งหมด
   update_search: อัปเดตการค้นหา
@@ -1302,7 +1358,11 @@ th:
       combine: รวมการสังเกตที่ถูกเลือก
       select_all: เลือกการสังเกตทั้งหมด
   usage_stats: สถิติการใช้งาน
+  user1_and_user2_faved_this_observation: "%{user1} และ %{user2} เพิ่มการสังเกตนี้เข้ารายการโปรด"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, และ %{x_others} เพิ่มการสังเกตนี้เข้ารายการโปรด"
+  user_commented: "%{user} แสดงความคิดเห็น"
   user_disagrees_this_is_taxon: "%{user} ไม่เห็นด้วยว่านี่เป็น %{taxon}"
+  user_faved_this_observation: "%{user} เพิ่มการสังเกตนี้เข้ารายการโปรด"
   user_suggested_an_id: "%{user} แนะนำว่าเป็น"
   users_journal: "วารสารของ %{user}"
   value: ค่า
@@ -1318,7 +1378,9 @@ th:
   view_journal: ดูวารสาร
   view_leaderboard_from_last_month: ดูกระดานจัดอันดับจากเดือนที่แล้ว
   view_leaderboard_from_last_year: ดูกระดานจัดอันดับจากปีที่แล้ว
+  view_more_observations_from_this_place: ดูการสังเกตเพิ่มเติมจากสถานที่นี้
   view_observation_flags: ดูการรายงานการสังเกต
+  view_observations_of_this_taxon_by: ดูการสังเกตหน่วยอนุกรมวิธานนี้ของ
   view_stats: ดูสถิติ
   view_taxon_changes: ดูการเปลี่ยนแปลงหน่วยอนุกรมวิธาน
   view_taxononomy_details_for_taxon: "ดูรายละเอียดหน่วยอนุกรมวิธานสำหรับ %{taxon}"
@@ -1326,6 +1388,7 @@ th:
   view_all_of_your_observations_from_x: "ดูการสังเกตทั้งหมดของคุณจาก %{x}"
   we_have_no_conservation_status_for_this_taxon: เรายังไม่มีสถานะการอนุรักษ์สำหรับหน่วยอนุกรมวิธานนี้
   whats_this?: นี่คืออะไร?
+  who_can_add_observations_to_this_project?: ใครเพิ่มการสังเกตเข้าโครงการนี้ได้บ้าง?
   withdrawing: กำลังถอน...
   x_journal: "วารสารของ %{user}"
   x_project_journal: "%{name} ของ %{project}"
@@ -1375,6 +1438,11 @@ th:
         #Followed by the project icon and a link to the project
         requirements_have_changed: |-
           ข้อกำหนดการสังเกตของโครงการต่อไปนี้เพิ่งมีการเปลี่ยนแปลง:
+    projects:
+      new:
+        collection_projects: โครงการสะสมชนิด
+        you_can_learn_more_html: |
+          เรียนรู้เพิ่มเติมเกี่ยวกับการจัดการโครงการได้<a href="https://www.inaturalist.org/pages/managing-projects">ที่นี่</a> หรืออ่านประวัติการเปลี่ยนแปลงโครงการได้ที่<a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">บล็อกของเรา</a>
     stats:
       year:
         new_species_per_year: ชนิดใหม่ / ปี
@@ -1437,10 +1505,14 @@ th:
       - ธันวาคม
   datetime:
     distance_in_words:
+      about_x_months:
+        other: ประมาณ %{count} เดือน
       less_than_x_minutes:
         other: น้อยกว่า %{count} นาที
       x_days:
         other: '%{count} วัน'
+      x_months:
+        other: '%{count} เดือน'
     countdown_x_days:
       other: วัน
     prompts:
@@ -1473,3 +1545,7 @@ th:
           attributes:
             value:
               dna_only_atcg: "สำหรับ DNA จะต้องมีอักษร A T C หรือ G เท่านั้น"
+        taxon_name:
+          attributes:
+            lexicon:
+              should_be_in_english: ควรเป็นภาษาอังกฤษ
