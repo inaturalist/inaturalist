@@ -1,7 +1,7 @@
 module ObservationSearch
 
   LIST_FILTER_SIZE_CAP = 5000
-  SEARCH_IN_BATCHES_BATCH_SIZE = 500
+  SEARCH_IN_BATCHES_BATCH_SIZE = 100
 
   def self.included(base)
     base.extend ClassMethods
