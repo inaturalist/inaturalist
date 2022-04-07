@@ -389,6 +389,8 @@ it:
   agree_with_current_taxon: D'accordo con il taxon corrente
   agreeing: Accordo in corso...
   aka: o
+  #Noun, title of a popup alerting you to something
+  alert: Avviso
   all: Tutto
   all_comments: Tutti i commenti
   all_flags_must_be_resolved: Tutte le segnalazioni devo essere risolte
@@ -1181,6 +1183,10 @@ it:
     Devi spiegare perché vuoi diventare un curatore
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Perché vuoi essere un curatore?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Se desideri modificare la tassonomia di iNaturalist, sei pregato di fornire uno o due esempi di modifich tassonomiche che vorresti effettuare e di includere le fonti per le modifiche da te proposte. Se applicabile, sei pregato di citare le autorità tassonomiche corrette <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">come elencate nella Guida del Curatore</a>. Se non includi alcuna fonte, la tua applicazione non sarà considerata.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Se vuoi modificare i nomi comuni, per favore fornisci uno o due esempi di modifiche che desideri apportare
@@ -2208,6 +2214,7 @@ it:
     portuguese: Portoghese
     romanian: Rumeno
     russian: Russo
+    santali: Santali
     setswana: Setswana
     sinhala: Singalese
     slovak: Slovacco
@@ -2327,6 +2334,7 @@ it:
     pt: Portoghese
     pt-BR: Portoghese (Brasile)
     ru: Russo
+    sat: Santali
     sk: Slovacco
     sl: Sloveno
     sq: Albanese
@@ -2467,6 +2475,10 @@ it:
     Fai attenzione alle richieste di campioni o di dati nascosti. Cerca di verificare l'identità della persona che fa la richiesta e, se chiedono esemplari, chiedete di vedere la loro autorizzazione.
   messages_new_correspondent_personal: |
     Non rivelare le tue informazioni personali a persone di cui non ti fidi.
+  messages_new_correspondent_actions_html: |
+    Se sospetti che questa persona stia violando i nostri <a href="%{tos_url}"
+    target="_blank">Termini d'Uso</a> o non stia agendo secondo le <a
+    href="%{guidelines_url}" target="_blank">Linee Guida della Community</a>, sei pregato di segnalare il seguente messaggio.
   minimum_positional_accuracy: Accuratezza posizionale minima
   misidentifications: Identificazioni erronee
   misleading_or_illegal_content_html: |
@@ -3150,10 +3162,35 @@ it:
     original: originale
   photos_updated: Foto aggiornate.
   pi_consent_desc_title: Riguardo le Informazioni Personali
+  pi_consent_desc_html: |
+    <p>
+    Memorizziamo informazioni personali quali nomi utente e indirizzi email per poter gestire i profili su questo sito, e per conformità con le leggi sulla privacy, necessitiamo che tu spunti questa casella per indicare al consenso a questo utilizzo delle informazioni personali. Per scoprire di più su quali informazioni raccogliamo e come le usiamo, sei pregato di visualizzare la nostra <a href='%{privacy_url}' target='_blank'>Politica sulla Privacy</a> e i nostri <a href='%{terms_url}' target='_blank'>Termini d'Uso</a>.
+    </p>
+    <p>
+    Non esiste modo per avere un profilo di iNaturalist senza che le informazioni personali siano memorizzate, quindi, l'unico modo per revocare questo consenso è eliminare il tuo profilo.
+    </p>
   pi_consent_label: |
     Io acconsento che iNaturalist conservi e processi un limitato tipo di mie informazioni personali al fine di gestire il mio account
   pi_consent_child_label: |
     Io acconsento che iNaturalist conservi e processi un limitato tipo di informazioni personali su mio figlio al fine di gestire l'account di mio figlio
+  data_transfer_consent_desc_title: Sul Consenso di Trasferimento delle Informazioni Personali
+  data_transfer_consent_desc_html: |
+    <p>
+    Alcune leggi sulla privacy dei dati, come il Regolamento Generale di Protezione dei Dati (GDPR) dell'Unione Europea, richiedono il consenso esplicito a trasferire le informazioni personali dalle loro giurisdizioni ad altre giurisdizioni in cui la protezione legale di queste informazioni non è considerata adeguata. Dal <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>, l'Unione Europea non considera più gli Stati Uniti una giurisdizione che fornisce una protezione legale delle informazioni personali, nello specifico a causa della possibilità che il governo degli USA sorvegli i dati in entrata negli Stati Uniti. È possibile che altre giurisdizioni potrebbero avere la stessa opinione.
+    </p>
+    <p>
+    Usare iNaturalist richiede l'archiviazione di informazioni personali come il tuo indirizzo email, tutti i dati di iNaturalist sono memorizzati negli Stati Uniti e non possiamo esser sicuri su quale giurisdizione legale ti trovi durante l'utilizzo di iNaturalist, quindi, per conformità con le leggi sulla privacy come il GDPR, devi acconsentire ad aver compreso e accetti questo rischio, e acconsenti al trasferimento delle tue informazioni personali ai server di iNaturalist negli Stati Uniti.
+    </p>
+    <p>
+    Per scoprire di più su quali informazioni raccogliamo e come le usiamo, sei pregato di leggere la nostra <a href='%{privacy_url}' target='_blank'>Politica sulla Privacy</a> e i nostri <a href='%{terms_url}' target='_blank'>Termini d'Uso</a>.
+    </p>
+    <p>
+    Non c'è modo per avere un profilo di iNaturalist senza archiviare le informazioni personali, quindi, il solo modo per revocare questo consenso è eliminare il tuo profilo.
+    </p>
+  data_transfer_consent_label: |
+    Acconsento al trasferimento delle mie informazioni personali negli Stati Uniti d'America
+  data_transfer_consent_child_label: |
+    Acconsento al trasferimento delle informazioni personali di mia/o figlia/o negli Stati Uniti d'America
   pin_verb: Memorizza
   pink: rosa
   pinned_locations_desc: |
@@ -3986,6 +4023,7 @@ it:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "Revoca %{site_name}?"
+  revoke_privacy_consent_warning: "Il solo modo per revocare questo consenso è eliminare il tuo profilo e tutti i dati associati."
   rg_observations: Osservazioni LR
   role: Ruolo
   rotate_left: Ruota a sinistra
@@ -4537,6 +4575,7 @@ it:
   terms: Termini
   terms_and_rules_html: "Termini &amp; Regole"
   terms_new_users: "Se aggiungi termini, i nuovi utenti devono accettarli prima di unirsi al progetto."
+  terms_service: Termini d'Uso
   terrain: terreno
   text: Testo
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4677,6 +4716,8 @@ it:
   top_identifiers_of_taxon: Migliori identificatori per %{taxon}
   top_observer_caps: MIGLIOR OSSERVATORE
   top_observers: Migliori osservatori
+  tos_privacy_guidelines_label: |
+    Acconsento ai <a href="/terms" target="_blank">Termini d'Uso</a> e alla <a href="/privacy" target="_blank">Politica sulla Privacy</a>, e ho revisionato le <a href="/pages/community+guidelines" target="_blank">Linee Guida della Community</a>.
   total: Totale
   totals: Totali
   total_ids_on_input_taxon: "ID Totali del taxon di origine:"
@@ -5192,6 +5233,8 @@ it:
   you_must_specify_and_confirm_a_new_password: Devi specificare e confermare una nuova password.
   you_need_to_have_linked_flickr_account: Devi aver collegato un account Flickr per etichettare le tue foto.
   you_need_to_select_some_observations_first: Prima devi selezionare qualche osservazioni.
+  you_retain_full_copyright: "Mantieni il pieno diritto d'autore sui tuoi contenuti, tranne che per quei diritti concessi a %{site_name} nei nostri Termini d'Uso."
+  you_retain_full_copyright_over_your_content: "Mantieni il pieno diritto d'autore sui tuoi contenuti, tranne che per quei diritti concessi a %{site_name} nei nostri Termini d'Uso."
   you_should_delete_this_taxon_change: |
     Dovresti probabilmente eliminare questa modifica del taxon o almeno trovare qualche tipo di soluzione con la/le persona/e che hanno effettuato le altre modifiche.
   you_sure_delete_asset?: Sei sicuro di voler cancellare questa Risorsa di Progetto?
@@ -6550,6 +6593,18 @@ it:
           Devi digitare %{confirmation_code} nel formulario per cancellare la tua utenza
       edit:
         about_third_party_tracking: Riguardo al tracciamento di terze parti
+        blocking_desc_html: |
+          <p>
+          Bloccare qualcuno impedisce che ti scriva, commenti sulle tue osservazioni, identifichi le tue osservazioni, e altrimenti interagisca con te su %{site_name}. Inoltre, rimuove le osservazioni del bloccato dai tuoi risultati di ricerca e rimuove le tue osservazioni dai suoi risultati di ricerca. Tuttavia, non rende a egli invisibile. Possono ancora trovare le tue osservazioni e visualizzare il tuo profilo, semplicemente, non possono interagire con te.
+          </p>
+          <p>
+          Il blocco è per situazioni in cui non vai d'accordo con qualcuno e quel qualcuno non ti lascia in pace, nonostante i migliori sforzi per risolvere dispute in una maniera civilizzata. Non è un modo per nascondersi dalle persone, per prevenire identificazioni da persone delle cui opinioni non ti fidi, o per disattivare l'ID della community (esiste un'altra impostazione per farlo). Dunque, bloccare funziona per entrambi: se blocchi qualcuno, non può interagire con te, ma nemmeno tu puoi interagirci. Se lo usi erroneamente per prevenire che qualcuno identifichi le tue osservazioni, potresti anche impedirti dall'identificare le loro.
+          </p>
+          <p>
+          Puoi bloccare solo tre persone. Pensiamo sia un numero ragionevole che accomodi le persone che necessitano del blocco, prevenendone l'abuso. Se senti il bisogno di bloccare altre persone, sei pregato di <a href="mailto:%{help_email}">contattarci</a>.
+          </p>
+          <p>Se qualcuno ti sta molestando o stalkerando su %{site_name}, <a href="mailto:%{help_email}">sei pregato di farcelo sapere</a>. Se questo rappresenta una violazione dei nostri Termini d'Uso o rappresenta altri comportamenti che riteniamo inappropriati per il nostro sito, investigheremo.
+          </p>
         common_names_desc: |
           Mostra i nomi comuni. Disabilita se vuoi vedere i nomi scientifici. Nota che puoi controllare quali nomi comuni vedere cambiando le impostazioni locali e quelle del luogo.
         display_monthly_supporter_status_on_my_profile: |
