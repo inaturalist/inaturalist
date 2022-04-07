@@ -323,6 +323,7 @@ pt-BR:
   add_life_stage_egg_annotation: 'Adicionar "Estágio de Vida: Ovo" anotação'
   add_evidence_of_presence_organism_annotation: 'Adicionar anotação "Evidência de Presença: organismo"'
   add_evidence_of_presence_feather_annotation: 'Adicionar anotação "Evidência de Presença: pena"'
+  add_evidence_of_presence_gall_annotation: 'Adicionar anotação "Evidência de Presença: galha"'
   add_evidence_of_presence_scat_annotation: 'Adicionar anotação "Evidência de Presença: fezes"'
   add_evidence_of_presence_track_annotation: 'Adicionar anotação "Evidência de Presença: rastro"'
   add_evidence_of_presence_bone_annotation: 'Adicionar anotação "Evidência de Presença: osso"'
@@ -1079,6 +1080,8 @@ pt-BR:
     evidence_of_presence: Evidência de Presença
     #As in the feather on a bird
     feather: Pena
+    #Abnormal growth
+    gall: Galha
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organismo
@@ -1107,6 +1110,7 @@ pt-BR:
     bone: |
       Predominantemente restos endoesqueléticos; exposição parcial de ossos num organismo intacto deve ser rotulado como "organismo"
     molt: Pele ou exoesqueleto descartados
+    gall: Crescimento anormal deformativo de tecido vegetal causado por parasita
   controls: Controles
   convert: Converter
   coordinate_systems: Sistemas de coordenadas
@@ -3670,6 +3674,7 @@ pt-BR:
   plants: plantas
   please_add_a_citation_for_this_change: Por favor adicione uma referência para esta mudança.
   please_allow_a_few_weeks_for_external_sites: Por favor, espere algumas semanas até que os sites externos sincronizem esta observação #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: Por favor, peça permissão aos seus pais
   #Title to a section warning a user to exercise caution
   please_be_careful!: Por favor, tenha cuidado!
   please_complete_the_following_to_add_project: |
