@@ -1908,6 +1908,7 @@ bg:
   must_be_observed_in_place: трябва да е наблюдавано в %{place}
   must_be_less_than_x_MB: "Трябва да е по-малко от %{x} MB"
   must_have_observation_field: "трябва да има попълнено поле за наблюдения '%{operand}'"
+  must_have_photos: трябва да има снимки
   must_have_x: "трябва да има %{x}"
   mute_user: Заглуши потребителя
   mute_removed: Заглушаването е отменено
@@ -4445,8 +4446,6 @@ bg:
         step2_title: ПОТВЪРДЕТЕ САМОЛИЧНОСТТА СИ ЧРЕЗ КРЕДИТНА КАРТА
     welcome:
       index:
-        welcome_message_html: |
-          в %{image}, където можете да <strong>регистрирате</strong> какво сте видели в природата, да <strong>срещнете</strong> други любители на природата и да <strong>научите</strong> повече за живия свят.
         connect_with_nature: Сближете се с Природата
         explore_and_share: Изследвай и споделяй своите наблюдения на природата.
         observations_to_date: 'Наблюдения до момента'
