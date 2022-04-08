@@ -44,14 +44,7 @@
         <%= o.text_field(:observed_on_string, 
                          :class => 'observed_on_string text') %>
         <%= o.error_message_on(:observed_on) %>
-        <%=
-          zones = ActiveSupport::TimeZone.all
-          if !zones.map(&:name).include?( observation.time_zone ) && otz = ActiveSupport::TimeZone[observation.time_zone]
-            zones = [zones, otz].flatten
-          end
-          zones = zones.sort_by(&:utc_offset)
-          o.time_zone_select :time_zone, zones, {}, class: "time_zone"
-        %>
+        <%= observation.timezone_object %>
         <div class="small description">
           <%=t :observation_observed_on_examples %>
         </div>

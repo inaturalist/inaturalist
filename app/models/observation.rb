@@ -1260,7 +1260,7 @@ class Observation < ApplicationRecord
   end
   
   #
-  # Set the time_zone of this observation if not already set
+  # Set the time_zone of this observation if coordinates changes or zone not already set
   #
   def set_time_zone
     # Make sure blank is always nil
