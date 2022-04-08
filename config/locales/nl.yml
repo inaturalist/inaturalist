@@ -573,7 +573,7 @@ nl:
     iNaturalist apps staan geverifieerd gebruik van de iNaturalist API toe. Dit stelt je in staat 
     API calls te doen die waarnemingen of determinaties maken. Veel voorkomende voorbeelden zijn desktop applicaties of mobiele apps die waarnemingen in iNaturalist maken voor zijn gebruiker. Deze inhoud moet tot stand worden gebracht met echte menselijke betrokkenheid
     of toezicht. Lees onze <a href="/pages/community+guidelines"
-    target="_blank">Community Guidelines</a> voor meer informatie waarin machine-gegenereerde waarnemingen, determinaties en opmerkingen worden verboden.
+    target="_blank">Gemeenschapsrichtlijnen</a> voor meer informatie waarin machine-gegenereerde waarnemingen, determinaties en opmerkingen worden verboden.
   app_owner_application_about_p2_html: |
     Vanaf 2022 is handmatige goedkeuring vereist voor gebruikers die API-clients willen maken.
     Om third-party-apps te maken moet je eerst een aanvraag indienen om een 'app-eigenaar' te mogen worden. Deze aanvraag moet de functionaliteit van jouw voorgestelde app beschrijven en hoe je het wilt gaan gebruiken. Om een aanvraag in te kunnen dienen moet jouw account minimaal 2 maanden oud zijn en minimaal 10 <a href="/pages/help#identification"
@@ -2265,6 +2265,7 @@ nl:
     portuguese: Portugees
     romanian: Roemeens
     russian: Russisch
+    santali: Santali
     setswana: Setswana
     sinhala: Singalees
     slovak: Slowaaks
@@ -2384,6 +2385,7 @@ nl:
     pt: Portugees
     pt-BR: Portugees (Brazilië)
     ru: Russisch
+    sat: Santali
     sk: Slowaaks
     sl: Sloveens
     sq: Albanees
@@ -3232,9 +3234,7 @@ nl:
   pi_consent_desc_title: Persoonlijke gegevens
   pi_consent_desc_html: |
     <p>
-    Persoonlijke gegevens zoals gebruikersnamen en e-mailadressen worden bewaard om accounts op deze site te beheren en om te voldoen aan privacywetten moet je dit vakje aanvinken om aan te geven dat je akkoord gaat met het gebruik van deze persoonlijke informatie. Voor meer informatie over de informatie die wordt verzamelt en hoe we het gebruiken, zie onze
-    <a href='%{privacy_url}' target='_blank'>Privacybeleid</a>
-    en onze <a href='%{terms_url}' target='_blank'>Gebruiksvoorwaarden</a>.
+    Persoonlijke gegevens zoals gebruikersnamen en e-mailadressen worden bewaard om accounts op deze site te beheren en om te voldoen aan privacywetten moet je dit vakje aanvinken om aan te geven dat je akkoord gaat met het gebruik van deze persoonlijke informatie. Voor meer informatie over de informatie die wordt verzamelt en hoe we het gebruiken, zie ons <a href='%{privacy_url}' target='_blank'>Privacybeleid</a> en onze <a href='%{terms_url}' target='_blank'>Gebruiksvoorwaarden</a>.
     </p>
     <p>
     Er is geen manier om een iNaturalist account te hebben zonder persoonlijke
@@ -3245,23 +3245,22 @@ nl:
     Ik stem ermee in dat iNaturalist persoonlijke informatie over mij kan opslaan en verwerken om mijn account te beheren
   pi_consent_child_label: |
     Ik stem ermee in dat iNaturalist persoonlijke informatie over mijn kind kan opslaan en verwerken om het account van mijn kind te beheren
-  data_transfer_consent_desc_title: Over toestemming voor persoonlijke informatie overdracht
+  data_transfer_consent_desc_title: Over toestemming voor persoonlijke informatieoverdracht
   data_transfer_consent_desc_html: |
     <p>
-    Bepaalde privacywetgeving, zoals de General Data
-    Protection Regulation (GDPR) van de Europese Unie, vereist expliciete toestemming om persoonlijke informatie te verzenden vanuit hun jurisdictie naar andere jurisdicties waar de wettelijke bescherming van deze informatie als onvoldoende wordt beschouwd. Vanaf 
-    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a> beschouwt de Europese Unie de Verenigde Staten niet langer als een jurisdictie waar voldoende wettelijke bescherming wordt geboden voor persoonlijke informatie, met name vanwege de mogelijkheid van surveillance door de regering van de Verenigde Staten van data die het land binnenkomt. Mogelijk hebben andere jurisdicties dezelfde mening.
+    Bepaalde privacywetgeving, zoals de Algemene Verordening Gegevensbescherming (AVG) van de Europese Unie, vereist expliciete toestemming om persoonlijke informatie te verzenden vanuit hun jurisdictie naar andere jurisdicties waar de wettelijke bescherming van deze informatie als onvoldoende wordt beschouwd. Vanaf 
+    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a> beschouwt de Europese Unie de Verenigde Staten niet langer als een jurisdictie waar voldoende wettelijke bescherming wordt geboden voor persoonlijke informatie, met name vanwege de mogelijkheid van surveillance door de regering van de Verenigde Staten van data die de VS binnenkomt. Mogelijk hebben andere jurisdicties dezelfde mening.
     </p>
     <p>
-    Het gebruik van iNaturalist vereist het opslaan van persoonlijke informatie zoals je e-mailadres, en alle iNaturalist data wordt opgeslagen in de Verenigde Staten, en we kunnen niet met zekerheid zeggen in welke jurisdictie je je bevindt als je iNaturalist gebruikt, dus om te voldoen aan privacywetgeving zoals GDPR, moet je aangeven dat je dit risico begrijpt en aanvaardt, en toestemming geven om je persoonlijke informatie naar de servers van iNaturlist te versturen in de Verenigde Staten.
+    Het gebruik van iNaturalist vereist het opslaan van persoonlijke informatie zoals je e-mailadres en alle iNaturalist data wordt opgeslagen in de Verenigde Staten, en we kunnen niet met zekerheid zeggen in welke jurisdictie je je bevindt als je iNaturalist gebruikt, dus om te voldoen aan privacywetgeving zoals AVG, moet je aangeven dat je dit risico begrijpt en aanvaardt, en toestemming geven om je persoonlijke informatie naar de servers van iNaturalist te versturen in de Verenigde Staten.
     </p>
     <p>
-    Om meer te leren over wat voor informatie we verzamelen en hoe we het gebruiken, zie onze 
-    <a href='%{privacy_url}' target='_blank'>Privacy Policy</a>
+    Om meer te leren over wat voor informatie we verzamelen en hoe we het gebruiken, zie ons 
+    <a href='%{privacy_url}' target='_blank'>Privacybeleid</a>
     en onze <a href='%{terms_url}' target='_blank'>gebruiksvoorwaarden</a>.
     </p>
     <p>
-    Er is geen manier om een iNaturalist account the hebben zonder persoonlijke informatie op te slaan, dus de enige manier om je toestemming in te trekken is het verwijderen van je account.
+    Er is geen manier om een iNaturalist account te hebben zonder persoonlijke informatie op te slaan, dus de enige manier om je toestemming in te trekken is het verwijderen van je account.
     </p>
   data_transfer_consent_label: |
     Ik sta toe dat mijn persoonlijke gegevens aan de
@@ -7031,8 +7030,6 @@ nl:
           Omdat je een iNaturalist-donor bent is je identiteit geverifiëert met door je bestaande gift.
     welcome:
       index:
-        welcome_message_html: |
-          naar %{image}, waar je kunt <strong>vastleggen</strong> wat je ziet in de natuur, andere natuurliefhebbers kunt <strong>ontmoeten</strong> en over de natuurlijke wereld kunt <strong>leren</strong>.
         connect_with_nature: Trek de natuur in
         explore_and_share: Verken en deel je waarnemingen uit de natuur.
         observations_to_date: 'Waarnemingen tot nu toe'
