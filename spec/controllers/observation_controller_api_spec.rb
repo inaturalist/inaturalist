@@ -1013,6 +1013,21 @@ shared_examples_for "an ObservationsController" do
       o.reload
       expect( o.license ).to eq Observation::CC_BY
     end
+
+    describe "time_zone" do
+      before(:all) { load_time_zone_geometries }
+      after(:all) { unload_time_zone_geometries }
+
+      it "should not change the time zone if the coordinates don't change" do
+        o.update( latitude: 20, longitude: 20 )
+        expect( o ).to be_georeferenced
+        expect( o.zic_time_zone ).not_to eq "America/Los_Angeles"
+        original_time_zone = expect( o.time_zone )
+        put :update, params: { id: o.id, format: :json, observation: { time_zone: "America/Los_Angeles" } }
+        o.reload
+        expect( o.zic_time_zone ).not_to eq "America/Los_Angeles"
+      end
+    end
   end
 
   describe "by_login" do

@@ -1265,12 +1265,18 @@ class Observation < ApplicationRecord
   def set_time_zone
     # Make sure blank is always nil
     self.time_zone = nil if time_zone.blank?
-    # Assign a time zone based on the coordinates if they exist and they've changed
-    if georeferenced? && coordinates_changed?
-      lat = private_latitude.blank? ? latitude : private_latitude
-      lng = private_longitude.blank? ? longitude : private_longitude
-      self.time_zone = TimeZoneGeometry.time_zone_from_lat_lng( lat, lng ).try(:name)
-      self.zic_time_zone = ActiveSupport::TimeZone::MAPPING[time_zone] unless time_zone.blank?
+    # If there are coordinates, use them to set the time zone, and reject
+    # changes to the time zone if the coordinates have not changed
+    if georeferenced?
+      if coordinates_changed?
+        lat = private_latitude.blank? ? latitude : private_latitude
+        lng = private_longitude.blank? ? longitude : private_longitude
+        self.time_zone = TimeZoneGeometry.time_zone_from_lat_lng( lat, lng ).try(:name)
+        self.zic_time_zone = ActiveSupport::TimeZone::MAPPING[time_zone] unless time_zone.blank?
+      elsif time_zone_changed?
+        self.time_zone = time_zone_was
+        self.zic_time_zone = zic_time_zone_was
+      end
     end
     # Try to assign a reasonable default time zone
     if time_zone.blank?
