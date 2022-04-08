@@ -28,7 +28,7 @@ Rails.application.configure do
   # config.action_controller.perform_caching             = true
   # config.action_view.cache_template_loading            = true
   # config.cache_classes = true
-  config.cache_store = :mem_cache_store, CONFIG.memcached
+  # config.cache_store = :mem_cache_store, CONFIG.memcached
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
