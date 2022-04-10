@@ -46,14 +46,9 @@ class Photo < ApplicationRecord
 
   def parse_extension
     return unless file.url( :original )
-    if CONFIG.usingS3 && matches = file.url( :original ).match(/original\.([^?]*)(\?|$)/)
-      return matches[1]
-    end
-    # the local path is configured to be a little different: ...:id/:style/:basename.:extension
-    if !CONFIG.usingS3 && matches = file.url( :original ).match(/original\/[^\.]+\.([^?]*)(\?|$)/)
-      return matches[1]
-    end
-    nil
+
+    ext = File.extname( URI.parse( file.url( :original ) ).path ).sub( ".", "" )
+    ext.blank? ? nil : ext
   end
 
   def parse_url_prefix
@@ -157,6 +152,24 @@ class Photo < ApplicationRecord
       end
     end
     return if photo_taxa.blank?
+    # If there are synonyms on the same branch, only keep the coarsest one
+    # (e.g. if a genus and subgenus have the same name, throw out the
+    # subgenus)
+    photo_taxa = photo_taxa.group_by(&:name).map do | name, name_taxa |
+      if name_taxa.size > 1
+        sorted_taxa = name_taxa.sort_by{|t| t.rank_level.to_i }
+        keepers = []
+        while sorted_taxa.size > 0
+          t = sorted_taxa.shift
+          unless sorted_taxa.detect {| st | t.ancestor_ids.include?( st.id ) }
+            keepers << t
+          end
+        end
+        keepers
+      else
+        name_taxa
+      end
+    end.flatten
     photo_taxa = photo_taxa.sort_by{|t| t.rank_level || Taxon::ROOT_LEVEL + 1}
     candidate = photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
     # if there are synonyms, don't decide

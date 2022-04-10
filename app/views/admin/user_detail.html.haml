@@ -64,6 +64,24 @@
                 - if @geoip_location
                   &nbsp;
                   = link_to @geoip_location, observations_path( user_id: @display_user.id, lat: @geoip_latitude, lng: @geoip_longitude )
+              - elsif user_attr == "email"
+                = @display_user.send( user_attr ).to_s.html_safe
+                - unless @email_suppressions.blank?
+                  .suppressions
+                    %h4 Sendgrid Suppressions
+                    %p Local records of Sendgrid suppression groups. These might explain why a user isn't receiving email (e.g. they requested we not send them a type of email via sendgrid)
+                    %table.table
+                      %thead
+                        %tr
+                          %th Address
+                          %th Type
+                          %th Updated at
+                      %tbody
+                        - for es in @email_suppressions
+                          %tr
+                            %td= es.email
+                            %td= es.suppression_type
+                            %td= es.updated_at
               - else
                 = @display_user.send(user_attr).to_s.html_safe
       %h3 Other Attributes

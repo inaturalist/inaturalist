@@ -310,11 +310,11 @@ de:
   add_one_now: Jetzt hinzufügen
   add_photos: Fotos hinzufügen
   add_place: Gebiet hinzufügen
-  add_alive_or_dead_alive_annotation: 'Angabe hinzufügen: "lebendig/tot: lebendig"'
-  add_alive_or_dead_cannot_be_determined_annotation: 'Annotation "lebendig oder tot: Kann nicht bestimmt werden" hinzufügen'
-  add_alive_or_dead_dead_annotation: 'Annotation "lebendig oder tot: tot" hinzufügen'
+  add_alive_or_dead_alive_annotation: 'Angabe hinzufügen "lebendig/tot: lebendig"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Angabe hinzufügen "lebendig/tot: Kann nicht bestimmt werden"'
+  add_alive_or_dead_dead_annotation: 'Angabe hinzufügen "lebendig/tot: tot"'
   add_plant_phenology_budding_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Knospend"'
-  add_plant_phenology_flower_budding_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Knospend"'
+  add_plant_phenology_flower_budding_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Knospend (Blüte)"'
   add_plant_phenology_flowering_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Blühend"'
   add_plant_phenology_fruiting_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Fruchttragend"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Annotation "Phänologie (Pflanze): Nicht blühend" hinzufügen'
@@ -323,7 +323,7 @@ de:
   add_life_stage_subimago_annotation: 'Angabe hinzufügen "Lebensstadium: Subimago"'
   add_life_stage_pupa_annotation: 'Angabe hinzufügen "Lebensstadium: Puppe"'
   add_life_stage_nymph_annotation: 'Angabe hinzufügen "Entwicklungsstadium: Nymphe"'
-  add_life_stage_larva_annotation: 'Vermerk "Lebensstadium: Larve" hinzufügen'
+  add_life_stage_larva_annotation: 'Angabe hinzufügen "Entwicklungsstadium: Larve"'
   add_life_stage_juvenile_annotation: 'Angabe hinzufügen "Entwicklungsstadium: Jungtier"'
   add_life_stage_egg_annotation: 'Angabe hinzufügen "Entwicklungsstadium: Ei"'
   add_evidence_of_presence_organism_annotation: 'Annotation ''Anwesenheitsnachweis: Organismus'' hinzufügen'
@@ -338,8 +338,8 @@ de:
   #As in a Guide Section
   add_section: Abschnitt hinzufügen
   add_several_observations_at_once: Mehrere Beobachtungen gleichzeitig hinzufügen.
-  add_sex_female_annotation: 'Angabe hinzufügen: "Geschlecht: Weiblich" '
-  add_sex_male_annotation: 'Angabe hinzufügen: "Geschlecht: Männlich"'
+  add_sex_female_annotation: 'Angabe hinzufügen "Geschlecht: Weiblich" '
+  add_sex_male_annotation: 'Angabe hinzufügen "Geschlecht: Männlich"'
   add_sex_cannot_be_determined_annotation: 'Angabe hinzufügen: "Geschlecht: nicht bestimmbar"'
   add_some_now: Jetzt welche hinzufügen
   add_tag: Tag hinzufügen
@@ -393,6 +393,8 @@ de:
   agree_with_current_taxon: Bin mit aktuellem Taxon einverstanden
   agreeing: Zustimmung …
   aka: auch bekannt als
+  #Noun, title of a popup alerting you to something
+  alert: Hinweis
   all: Alle
   all_comments: Alle Kommentare
   all_flags_must_be_resolved: Alle Meldungen müssen geklärt sein
@@ -914,7 +916,7 @@ de:
   committed_taxon_changes_cannot_be_deleted: Übertragene Taxon-Änderungen können nicht gelöscht werden
   #Status message while a taxon change is being committed
   committing: Übertragung …
-  common_name: Allgemeiner Name
+  common_name: Allgemeingebräuchlicher Name
   community: Community
   community_curated: Von Benutzern erstellt
   community_guidelines: Community-Richtlinien
@@ -1094,6 +1096,10 @@ de:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Nur mit vollständigen Koordinaten
+  coords_viewable_for_proj_desc: |
+    Nur Beobachtungen dieses Projekts anzeigen, für die du die "wahren"
+    Koordinaten sehen kannst, einschließlich verdeckter Beobachtungen von Personen, die dir vertrauen, verdeckte Beobachtungen von Leuten, die diesem Projekt ihre Beobachtungen anvertrauen, sowie Beobachtungen von bedrohte Taxa von Benutzern, die
+    nur diesem Projekt mit dem Gleichen vertrauen.
   copy: Kopieren
   copy_and_paste_the_following_code_to: Kopiere und füge den folgenden Code ein, um diese Bewertung in eine andere Webseite einzubetten.
   copy_and_paste_this_into_your_own_html: Dies in dein eigenes HTML kopieren und einfügen.
@@ -1173,12 +1179,12 @@ de:
   curator_application_fields_taxonomy_examples_html: |
     Wenn Sie die Taxonomie von iNaturalist bearbeiten möchten, geben Sie bitte ein Beispiel oder zwei
     von Taxonomie-Änderungen an, die Sie vornehmen möchten. Diese sollten die Quellen für Ihre
-    vorgeschlagenen Änderungen enthalten. Falls zutreffend, führen Sie bitte die entsprechenden taxonomischen Institution, <a 
-    href="https://www.inaturalist.org/pages/curator+guide#policies">wie im Kuratorhandbuch</a>aufgelistet an. 
+    vorgeschlagenen Änderungen enthalten. Falls zutreffend, führen Sie bitte die entsprechenden taxonomischen Institution, <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">wie im Kuratorhandbuch</a>aufgelistet an.
     Wenn Sie keine Quellen angeben, wird Ihre Bewerbung nicht berücksichtigt.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
-    Wenn du umgangsprachliche Namen bearbeiten möchtest, gib bitte ein oder zwei Beispiele von
+    Wenn du umgangssprachliche Namen bearbeiten möchtest, gib bitte ein oder zwei Beispiele von
     Änderungen an, die du vornehmen möchtest
   #Prompt for information when applying to be a curator
   curator_application_fields_moderation_examples_html: |
@@ -1910,7 +1916,7 @@ de:
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "anzupassende Stunden:"
   however_there_were_some_issues: "Allerdings gab es ein paar Probleme: %{issues}"
-  i_dont_know_but_i_am_sure_this_is_taxon: kein Veto; und '%{taxon}' kann zumindest bestätigt werden
+  i_dont_know_but_i_am_sure_this_is_taxon: kein Veto;  '%{taxon}' ist jedenfalls korrekt
   icon: Symbol
   icon_size: Symbolgröße
   iconic_taxon: Symbol-Taxon
@@ -2187,6 +2193,7 @@ de:
     portuguese: Portugiesisch
     romanian: Rumänisch
     russian: Russisch
+    santali: Santali
     setswana: Setswana
     sinhala: Singhalesisch
     slovak: Slowakisch
@@ -2306,6 +2313,7 @@ de:
     pt: Portugiesisch
     pt-BR: Portugiesisch (Brasilien)
     ru: Russisch
+    sat: Santali
     sk: Slowakisch
     sl: Slowenisch
     sq: Albanisch
@@ -2673,7 +2681,7 @@ de:
   next_taxon_short: Weiter
   'no': 'Nein'
   no_assessments_have_been_added_to_this_project_yet: Zu diesem Projekt sind noch keine Bewertungen hinzugekommen.
-  no_but_it_is_a_member_of_taxon: "Ja; aber der Nachweis lässt als Bestimmung '%{taxon}' zu"
+  no_but_it_is_a_member_of_taxon: "Ja; aber zumindest ist '%{taxon}' als Bestimmung möglich"
   no_comments_yet: Noch keine Kommentare.
   no_creative_commons_flickr_photos_tagged_x: 'Keine Creative Commons Flickr Bilder mit "%{x}" getaggt'
   no_curators_set: Keine Kuratoren festgelegt
@@ -3025,7 +3033,6 @@ de:
   open_description: "Jeder kann die Koordinaten sehen, außer das Taxon ist gefährdet."
   open_street_map: OpenStreetMap
   optional: optional
-  optional_columns_note_for_any: "Optionale Spalten (Anmerkung: Jede dieser Spalten muss in einer Beobachtung verwendet werden)"
   or: oder
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3139,13 +3146,48 @@ de:
   photos_updated: Fotos aktualisiert.
   pi_consent_desc_title: Über personenbezogene Daten
   pi_consent_desc_html: |
-    Wir speichern personenbezogene Daten wie Benutzernamen und E-Mail-Adressen, um Konten auf dieser Website zu verwalten. Um die Datenschutzgesetze einzuhalten, benötigen wir deine Einwilligung in diese Nutzung personenbezogener Daten, indem du dieses Kästchen ankreuzt. Um mehr darüber zu erfahren, welche Informationen wir sammeln und wie wir sie verwenden, lese bitte unsere
+    <p>
+    Wir speichern personenbezogene Daten, wie Benutzernamen und E-Mail-Adressen, um Konten auf dieser Website zu verwalten. Um die Datenschutzgesetze einzuhalten, benötigen wir deine Einwilligung in diese Nutzung personenbezogener Daten, indem du dieses Kästchen ankreuzt. Um mehr darüber zu erfahren, welche Informationen wir sammeln und wie wir sie verwenden, lies bitte unsere
     <a href='%{privacy_url}' target='_blank'>Datenschutzrichtlinie</a>
-    und unsere <a href='%{terms_url}' target='_blank'>Geschäftsbedingungen</a>.
+    und unsere <a href='%{terms_url}' target='_blank'>Nutzungsbedingungen</a>.
+    </p>
+    <p>
+    Es gibt keine Möglichkeit, einen iNaturalist-Account zu haben, ohne dass persönliche Informationen gespeichert werden - die einzige Möglichkeit, die Einstimmung zu widerrufenn ist, das Konto zu löschen.
+    </p>
   pi_consent_label: |
     Ich bin damit einverstanden, dass iNaturalist in begrenztem Umfang persönliche Informationen über mich speichert und verarbeitet, um mein Konto zu verwalten.
   pi_consent_child_label: |
     Ich bin damit einverstanden, dass iNaturalist bestimmte personenbezogene Daten über mein Kind speichert und verarbeitet, um das Konto meines Kindes verwalten zu können.
+  data_transfer_consent_desc_title: Über die Einwilligung zur persönlichen Datenübertragung
+  data_transfer_consent_desc_html: |
+    <p>
+    Einige Datenschutzgesetze, wie die Datenschutz-Grundverordnung der Europäischen Union (DSGVO), erfordern die ausdrückliche Einwilligung zur Übermittlung von
+    persönlichen Daten aus ihren Zuständigkeitsbereichen an solche mit anderer Rechtsprechung, wo der rechtliche Schutz dieser Informationen für nicht ausreichend erachtet wird. Seit
+    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a> sieht die Europäische Union die Vereinigten Staaten nicht länger als rechtsprechenden Raum an, der einen angemessenen rechtlichen Schutz personenbezogener
+    Informationen bietet - insbesondere wegen der Möglichkeit, dass die US-Regierung
+    Daten überwachen kann, die in das Land kommen. Es ist möglich, dass andere Rechtsprechungen
+    dieselbe Meinung haben.
+    </p>
+    <p>
+    Die Verwendung von iNaturalist erfordert die Speicherung von persönlichen Daten wie deiner
+    E-Mail-Adresse, alle iNaturalist-Daten werden in den Vereinigten Staaten gespeichert, und
+    wir können nicht wissen, in welcher rechtlichen Gerichtsbarkeit du dich befindest, wenn du iNaturalist verwendest. Um Datenschutzgesetze wie die DSGVO einzuhalten, musst du bestätigen, dass du dieses Risiko verstehst und akzeptierst und dich damit einverstanden erklärst, dass
+    deine persönlichen Daten auf die Server von iNaturalist in den USA übertragen werden.
+    </p>
+    <p>
+    Um mehr darüber zu erfahren, welche Informationen wir sammeln und wie wir sie verwenden,
+    lies bitte unsere
+    <a href='%{privacy_url}' target='_blank'>Datenschutzerklärung</a>
+    und unsere <a href='%{terms_url}' target='_blank'>Nutzungsbedingungen</a>.
+    </p>
+    <p>
+    Es gibt keine Möglichkeit, ein iNaturalist-Konto zu haben, ohne persönliche
+    Informationen zu speichern, so dass die einzige Möglichkeit, diese Einwilligung zu widerrufen, in der Löschung des Kontos besteht.
+    </p>
+  data_transfer_consent_label: |
+    I stimme zu, dass meine persönlichen Daten in die Vereinigten Staaten übertragen werden dürfen
+  data_transfer_consent_child_label: |
+    I stimme zu, dass die persönlichen Daten meines Kindes in die Vereinigten Staaten übertragen werden dürfen
   pin_verb: Anpinnen
   pink: rosa
   pinned_locations_desc: |
@@ -3659,8 +3701,8 @@ de:
   project_coordinate_access_disabled_until_datetime: |
     Du wirst bis %{datetime} nicht auf versteckte Koordinaten zugreifen können
   project_coordinate_access_warning: |
-    Zugang zu den Koordinaten ist wichtig für Wissenschaftler, kann aber auch von
-    Wilderern missbraucht werden. Stelle sicher, dass du allen Projektkuratoren vertraust, bevor du diesem Projekt vertraust.
+    Zugang zu den Koordinaten ist wichtig für Wissenschaftler, kann aber auch zu Missbrauch
+    führen (z.B. durch Wilderei, Ausgraben von Pflanzen etc.). Stelle sicher, dass du allen Projektkuratoren vertraust, bevor du diesem Projekt die Koordinaten deiner Beobachtungen anvertraust.
   project_cover: Projektcover
   project_created_on: hat dieses Projekt am %{date} erstellt
   project_curator_id: Projekt-Kurator-ID
@@ -3959,7 +4001,6 @@ de:
   required: erforderlich
   required_: erforderlich
   required_field: Pflichtfeld
-  required_columns_in_order: Erforderliche Spalten in der Reihenfolge
   research: Forschung
   research_: Forschung
   research_grade: Forschungsqualität
@@ -3988,6 +4029,7 @@ de:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "%{site_name} ablehnen?"
+  revoke_privacy_consent_warning: "Die einzige Möglichkeit, diese Einwilligung zu widerrufen, ist die Löschung des Kontos und aller damit verbundenen Daten."
   rg_observations: FQ Beobachtungen
   role: Rolle
   rotate_left: Nach links drehen
@@ -4100,7 +4142,7 @@ de:
   short_or_abbreviated_title_for_display: Kurztitel oder Abkürzung für eine Anzeige mit limitiertem Platz. Maximal 10 Zeichen.
   show: Anzeigen
   show_active_and_inactive_taxa: Aktive und inaktive Taxa anzeigen
-  show_common_names: Umgangssprachliche Namen anzeigen
+  show_common_names: Allgemeingebräuchliche Namen anzeigen
   show_hidden_content: Ausgeblendeten Inhalt anzeigen
   show_keyboard_shortcuts: Tastaturkürzel anzeigen
   show_less: Weniger anzeigen
@@ -4865,7 +4907,6 @@ de:
     %{user} glaubt, dass dies eine umfassende Liste von %{taxon} in %{place} ist
   user_blocked: Benutzer gesperrt
   user_commented: "%{user} hat kommentiert"
-  user_commented_on: "%{user} hat dein %{title} %{time} kommentiert"
   user_disagrees_this_is_taxon: "%{user} stimmt der Identifikation als %{taxon} nicht zu"
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -4973,7 +5014,6 @@ de:
   view_taxon_page: Taxonseite ansehen
   view_taxon_page_for_this_x: "Taxonseite für dieses %{x} ansehen"
   view_taxononomy_details_for_taxon: "Taxonomie-Details für %{taxon} anzeigen"
-  view_the: "%{action}&#59; %{link} ansehen"
   view_the_observation: Die Beobachtung ansehen
   view_user_observations: "Beobachtungen von %{user} ansehen"
   view_x: "%{x} anzeigen"
@@ -5075,7 +5115,7 @@ de:
   worldwide: Weltweit
   wondering_what_to_do_next: Hier ein paar nächste Schritte, um dich auf den Weg zur Beobachtung und Identifizierung der Natur zu bringen
   would_you_like_to: Möchtest du
-  would_you_prefer_to_view_common_names_used_in_place_html: Würdest du es vorziehen, die umgangssprachlichen Namen in <strong>%{place}</strong> zu sehen?
+  would_you_prefer_to_view_common_names_used_in_place_html: Würdest du es vorziehen, die allgemeingebräuchlichen Namen in <strong>%{place}</strong> zu sehen?
   x_blog: "%{x}'s Blog"
   x_deleted: "%{x} gelöscht"
   x_does_not_exist: "\"%{x}\" existiert nicht"
@@ -5683,7 +5723,7 @@ de:
         id: "Eindeutige Kennung für diese Beobachtung"
         species_guess: "Name, den der Melder für das beobachtete Taxon eingegeben hat"
         scientific_name: "Wissenschaftlicher Name des beobachteten Taxons entsprechend dieser Seite"
-        common_name: "Allgemeiner oder umgangssprachlicher Name des beobachteten Taxons gemäß dieser Seite"
+        common_name: "Allgemeingebräuchlicher oder umgangssprachlicher Name des beobachteten Taxons gemäß dieser Seite"
         iconic_taxon_name: Höheres taxonomisches Level für das beobachtete Taxon
         taxon_id: Eindeutige Kennung für das beobachtete Taxon
         id_please: Ob der Beobachter die ID-Hilfe angefordert hat oder nicht
@@ -6470,14 +6510,14 @@ de:
       show:
         about_names_desc: |
           <p>
-          Die meisten Kategorien von Organismen weisen "Umgangssprachliche Namen" in den gesprochenen Sprachen auf. Diese Namen sind in der Regel bekannt, leicht auszusprechen und im Laufe der Zeit etabliert, aber viele Organismen haben mehrere verschiedene Namen an verschiedenen Orten, sogar in der gleichen Sprache, was es schwierig machen kann, über diese Organismen ohne Verwirrung zu kommunizieren. Wissenschaftler gehen dieses Problem an, indem sie einen einzigen "wissenschaftlichen Namen" für jede Kategorie von Organismen verwenden, der den Regeln der
-          <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologischen Nomenklatur</a> folgt, aber diese Namen basieren in der Regel auf Latein, einer Sprache, die niemand spricht, sodass die Namen für viele Menschen nicht so einprägsam sind wie umgangssprachliche Namen. Wissenschaftliche Namen können auch die taxonomische Anordnung eines Organismus widerspiegeln, so dass sie sich ändern können, wenn Wissenschaftler genauere Theorien über die evolutionären Beziehungen zwischen verschiedenen Organismen entwickeln, was wiederum ihren Nutzen für die Kommunikation verringert, selbst unter Menschen, die die wissenschaftlichen Namen verwenden.
+          Die meisten Organismenformen besitzen "umgangssprachliche oder allgemeingebräuchliche Namen". Diese Namen sind im Allgemeinen leicht auszusprechen und haben sich im Laufe der Zeit etabliert, aber viele Organismen haben, auch in der gleichen Sprache, mehrere verschiedene Namen an unterschiedlichen Orten. Dadurch kann es schwierig werden, ohne Verwechslungen über diese Organismen zu kommunizieren. Wissenschaftler gehen dieses Problem an, indem sie einen einzigen "wissenschaftlichen Namen" für jede Kategorie von Organismen verwenden, der den Regeln der
+          <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologischen Nomenklatur</a> folgt, aber diese Namen basieren in der Regel auf Latein und Altgriechisch - Sprachen, die niemand spricht - sodass die Bezeichnungen für viele Menschen nicht so einprägsam sind wie umgangssprachliche Namen. Wissenschaftliche Namen können auch die taxonomische Position eines Organismus widerspiegeln, so dass sie sich ändern können, falls Wissenschaftler neue Erkenntnisse über die verwandschaftlichen Beziehungen zwischen verschiedenen Organismen entwickeln, was wiederum ihren Nutzen für die Kommunikation verringert, selbst unter Menschen, die die wissenschaftlichen Namen verwenden.
           </p>
           <p>
           Das alte Sprichwort fasst es zusammen: "Umgangssprachliche Namen ändern sich von Ort zu Ort, und wissenschaftliche Namen ändern sich von Zeit zu Zeit."
           </p>
           <p>
-          Wir versuchen, diese Unzulänglichkeiten zu beheben, indem wir, wo immer möglich, sowohl umgangssprachliche als auch wissenschaftliche Namen zeigen und umgangssprachliche Namen auf der Grundlage der Sprache und der geografischen Präferenzen des Betrachters auswählen.
+          Wir versuchen, diese Unzulänglichkeiten zu beheben, indem wir, wo immer möglich, sowohl allgemeingebräuchliche als auch wissenschaftliche Namen zeigen und umgangssprachliche Namen auf der Grundlage der Sprache und der geografischen Präferenzen des Betrachters auswählen.
           </p>
         about_conservation_status_desc: |
           Der Gefährdungsstatus beschreibt das Aussterberisiko einer Gruppe von Organismen.
@@ -6587,7 +6627,7 @@ de:
           Füge einen Namen zu einem Gebiet hinzu, um ihn für Webseiten und Benutzer dieses Ortes vorrangig zu verwenden. Wenn es mehrere Namen pro Ort gibt, kannst du sie <a href="%{url}">hier</a> priorisieren. Bitte füge <strong>nicht</strong> für JEDEN Ort, an dem der Name verwendet wird, einen Namen hinzu, sondern nur für Gebiete, die mit anderen Orten in Konflikt stehen.
       taxon:
         about_html: |
-          Taxa können viele umgangssprachliche Namen haben. Wir unterstützen einen standardmäßigen umgangssprachlichen Namen, der hier geändert werden kann, indem ein Name an den Anfang der Liste gezogen wird. Du kannst auch Standardnamen an verschiedenen Orten angeben, indem du den Namen editierst und einen Ort hinzufügst, aber bitte nur, wenn verschiedene Orte widersprüchliche Namen haben.
+          Taxa können viele umgangssprachliche Namen haben. Wir unterstützen einen standardmäßigen, allgemeingebräuchlichen Namen, der hier festgelegt werden kann, indem ein Name an den Anfang der Liste gezogen wird. Du kannst auch unterschieldiche Standardnamen für bestimmte Orte angeben, indem du den Namen editierst und einen Ort hinzufügst, aber bitte nur, wenn verschiedene Orte uneindeutige Namen haben.
     users:
       dashboard:
         taxon_change_desc: |
@@ -6668,8 +6708,8 @@ de:
           Wenn dich jemand auf %{site_name} belästigt oder verfolgt, <a href="mailto:%{help_email}">bitte lass es uns wissen</a>. Wenn dies einen Verstoß gegen unsere Nutzungsbedingungen darstellt oder die andere Verhaltensweisen, die wir für unangemessen halten, werden wir dem nachgehen.
           </p>
         common_names_desc: |
-          Umgangssprachliche Namen anzeigen. Deaktiviere diese Option, wenn du nur wissenschaftliche Namen sehen möchtest.
-          Beachte, dass du kontrollieren kannst, welche gebräuchlichen Namen du angezeigt bekommst, indem du deine Gebietsschema- und Ortseinstellungen änderst.
+          Allgemeingebräuchliche Namen anzeigen. Deaktiviere diese Option, wenn du nur wissenschaftliche Namen sehen möchtest.
+          Beachte, dass du kontrollieren kannst, welche gebräuchlichen Namen du angezeigt bekommst, indem du deine Standard-Ortseinstellungen änderst.
         display_monthly_supporter_status_on_my_profile: |
           'Monatlicher Unterstützer'-Status auf meinem Profil anzeigen
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
@@ -6716,7 +6756,7 @@ de:
           Identifikationen, die die Community-ID deiner Beobachtungen verändern, verpassen könntest
           </p>
         name_place_help_html: |
-          Umgangssprachliche Namen and diesem Ort bevorzugen
+          Allgemeingebräuchliche Namen dieses Gebiets verwenden:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Kommentare
         #Checkbox label for user preference about what to receive in the daily email update
@@ -6773,7 +6813,7 @@ de:
         search_place_help_html: |
           Standardgebiet für die Suche nach Beobachtungen.
         scientific_name_first_desc: |
-          Wissenschaftliche Namen vor umgangssprachlichen Namen anzeigen.
+          Wissenschaftliche Namen vor allgemeingebräuchlichen Namen anzeigen.
         taxon_change_desc: |
           Wenn Taxa auf %{site_name} zusammengeführt oder umbenannt werden, werden deine Beobachtungen, aufgelisteten Taxa, Identifikationen usw. automatisch auf die neuen Taxa aktualisiert, wenn die Änderung eindeutig ist. Wenn du dich abmeldest oder die Änderung mehrdeutig ist (z.B. eine Aufteilung), erhältst du ein Update über die Änderungsverknüpfung zu einem Tool, mit dem du deinen Inhalt manuell aktualisieren kannst, wenn du es willst.
         thanks_for_supporting_us!: Vielen Dank für Ihre Unterstützung!
@@ -6849,8 +6889,6 @@ de:
           Identität mit deiner bestehenden Spende verifizieren.
     welcome:
       index:
-        welcome_message_html: |
-          bei %{image}, hier kannst du deine Naturbeobachtungen <strong>erfassen</strong>, andere Naturbeobachter <strong>treffen</strong> und mehr über die Welt der Natur <strong>lernen</strong>.
         connect_with_nature: Verbinde dich mit der Natur
         explore_and_share: Entdecke und teile deine Naturbeobachtungen.
         observations_to_date: 'Beobachtungen bisher'

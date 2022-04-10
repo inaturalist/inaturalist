@@ -2192,7 +2192,6 @@ et:
   open_description: "Kõik näevad koordinaate kui takson pole ohustatud."
   open_street_map: OpenStreetMap
   optional: valikuline
-  optional_columns_note_for_any: "Valikulised tulbad (nb: selleks, et neid tulpasid vaatluse juures kasutada saaks, peavad nad kõik olemas olema)"
   or: või
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -2801,7 +2800,6 @@ et:
   required: nõutav
   required_: Nõutav
   required_field: nõutav väli
-  required_columns_in_order: Nõutavad tulbad järjekorras
   research: teaduslik
   research_: Teaduslik
   research_grade: Teaduskõlbulik
@@ -3229,7 +3227,6 @@ et:
   terms: Tingimused
   terms_and_rules_html: "Tingimused &amp; reeglid"
   terms_new_users: "Kui lisad tingimused, peavad uued kasutajad nendega enne projektiga liitumist nõustuma."
-  terms_service: Teenuse osutamise tingimused
   terrain: maastik
   text: Tekst
   thanks!: Aitäh!
@@ -3459,7 +3456,6 @@ et:
   user_autocomplete_placeholder: kueda, simon123, jne.
   user_blocked: Kasutaja blokeeritud
   user_commented: "%{user} kommenteeris"
-  user_commented_on: "Kasutaja %{user} kommenteeris sinu %{title} (%{time})"
   user_disagrees_this_is_taxon: "Kasutaja %{user} ei nõustu, et tegmist on taksoniga %{taxon}"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "Kasutaja %{user} märkis lemmikuks kasutaja %{owner} %{noun}"
@@ -3541,7 +3537,6 @@ et:
   view_taxon_changes: Vaata taksonimuutuseid
   view_taxon_page: Vaata taksoni lehekülge
   view_taxon_page_for_this_x: "Näita taksoni lehte: %{x}"
-  view_the: "Näita %{action}&#59; %{link}"
   view_the_observation: Ava vaatlus
   view_user_observations: "Vaata kasutaja %{user} vaatluseid"
   view_x: "Näita %{x}"
@@ -3716,8 +3711,6 @@ et:
   you_must_specify_and_confirm_a_new_password: Pead sisestama ja kinnitama uue salasõna.
   you_need_to_have_linked_flickr_account: Fotodele märksõnade lisamiseks peab sulle olema ühendatud Flickr konto.
   you_need_to_select_some_observations_first: Pead esmalt valima mõned vaatlused.
-  you_retain_full_copyright: "Säilitad enda lisatud sisule kõik autoriõigused väljaarvatud neend õigused, mille annad lehele %{site_name} üle vastavalt meie teenuse osutamise tingimustele."
-  you_retain_full_copyright_over_your_content: "Säilitad enda lisatud sisule kõik autoriõigused väljaarvatud neend õigused, mille annad lehele %{site_name} üle vastavalt meie teenuse osutamise tingimustele."
   you_sure_delete_asset?: Oled sa kindel, et soovid selle lisa kustutada?
   you_sure_delete_check_list: "Oled sa kindel, et soovid selle nimekirja kustutada? Keegi võis selle kallal kõvasti vaeva näha..."
   you_sure_delete_comment?: Oled sa kindel, et soovid selle kommentaari kustutada?
@@ -4452,19 +4445,6 @@ et:
         curators_can_see: |
           Pea meeles, et projekti kuraatorid näevad nende vaatluste priivatseid ja varjatud koordinaate, mida sa projekti lisad.
       edit:
-        blocking_desc_html: |
-          <p>
-          Kellegi blokeerimisel ei saa nad enam sulle sõnumeid saata, sinu vaatluseid kommenteerida, sinu vaatluseid määratleda ega mingil muul moel sinuga lehel %{site_name} suhelda. Samuti eemaldab see nende vaatlused sinu otsingutulemustest ning sinu vaatlused nende otsingutulemustest. Kuid see ei muuda sind nende jaoks nähtamatuks. Nad näevad sinu vaatluseid ja profiili edasi, kuid ei saa sinuga lihtsalt suhelda.
-          </p>
-          <p>
-          Blokeerimine on mõeldud olukordadeks, kui saa ei saa kellegagi läbi ning nad ei suuda sind rahule jätta hoolimata kõigist katsetest vaidluseid tsiviliseeritult lahendada. See ei ole mõeldud enda peitmiseks, selleks, et vältida määratlusi inimestelt, keda sa ei usalda, või et keelduda kogukondlikest määratlustest (selle jaoks on eraldi säte). Seega töötab blokeerimine kahetiselt: kui sa kellegi blokeerid, ei saa nad sinuga suhelda, kuid samuti ei saa ka sina nendega suhelda. Kui kasutad seda võimalust selleks, et keegi sinu vaatluseid ei määratleks, ei saa ka sina nende vaatlusi määratleda.
-          </p>
-          <p>
-          Blokeerida saab kuni kolm inimest. Usume, et tegu on mõistliku numbriga, mis katab ära blokeerimist vajavad inimesed, kuid ei luba ka blokeerimist kuritarvitada. Kui sulle näib, et peaksid blokeerima rohkem inimesi, siis <a href="mailto:%{help_email}">võta meiega palun ühendust</a>.
-          </p>
-          <p>
-          Kui keegi ahistab või jälitab sind lehel %{site_name}, siis <a href="mailto:%{help_email}">palun anna meile sellest teada</a>. Kui tegemist on meie teenuse osutamise tingimuste rikkumisega või kätkeb muud käitumist, mida me enda lehel sobilikuks ei pea, siis me ka uurime seda täpsemalt.
-          </p>
         common_names_desc: |
           Näita rahvapäraseid nimesid. Lülita see välja, kui soovid näha ainult teaduslikke nimesid. Pane tähele, et saad määrata, milliseid rahvapäraseid nimesid näed, muutes keele ja koha sätteid.
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
@@ -4518,8 +4498,6 @@ et:
         this_user_was_banned: See kasutaja on deaktiveeritud
     welcome:
       index:
-        welcome_message_html: |
-          lehele %{image}, kus saad <strong>talletada</strong> enda poolt looduses nähtut, <strong>kohtuda</strong> teiste looduse armastajatega ning <strong>õppida</strong> uusi teadmisi loodusliku maailma kohta.
         connect_with_nature: Liitu loodusega
         explore_and_share: Uuri ja jaga enda loodusvaatluseid.
         observations_to_date: 'Vaatluseid kokku'

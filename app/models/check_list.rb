@@ -290,6 +290,9 @@ class CheckList < List
     return unless lt
     # save sets all observation associates, months stats, etc.
     lt.force_update_cache_columns = true
+    # these associations will get loaded during the model save callbacks. Forcing them to be
+    # loaded here, outside the save transaction, so the queries will be run on replica DBs
+    ListedTaxon.preload_associations( lt, [{ list: :rules }, :taxon, :place])
     unless lt.save
       Rails.logger.error "[ERROR #{Time.now}] Couldn't save #{lt}: #{lt.errors.full_messages.to_sentence}"
     end

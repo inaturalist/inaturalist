@@ -29,6 +29,7 @@ class User < ApplicationRecord
 
   attr_accessor :html
   attr_accessor :pi_consent
+  attr_accessor :data_transfer_consent
 
   # Email notification preferences
   preference :comment_email_notification, :boolean, default: true
@@ -124,6 +125,7 @@ class User < ApplicationRecord
   has_many :deleted_observations
   has_many :deleted_photos
   has_many :deleted_sounds
+  has_many :email_suppressions, dependent: :delete_all
   has_many :flags_as_flagger, inverse_of: :user, class_name: "Flag"
   has_many :flags_as_flaggable_user, inverse_of: :flaggable_user,
     class_name: "Flag", foreign_key: "flaggable_user_id", dependent: :nullify
@@ -251,6 +253,7 @@ class User < ApplicationRecord
   before_save :check_suspended_by_user
   before_save :remove_email_from_name
   before_save :set_pi_consent_at
+  before_save :set_data_transfer_consent_at
   before_save :set_locale
   after_save :update_observation_licenses
   after_save :update_photo_licenses
@@ -262,10 +265,10 @@ class User < ApplicationRecord
   after_update :set_observations_taxa_if_pref_changed
   after_update :send_welcome_email
   after_create :set_uri
-  after_destroy :create_deleted_user
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
   after_destroy :reindex_faved_observations_after_destroy_later
+  after_destroy :create_deleted_user
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
@@ -1016,6 +1019,10 @@ class User < ApplicationRecord
       user.sane_destroy
     end
 
+    if ( deleted_user = DeletedUser.where( user_id: user_id ).first ) && !deleted_user.email.blank?
+      EmailSuppression.where( email: deleted_user.email ).delete_all
+    end
+
     puts "Updating flags created by user..."
     Flag.where( user_id: user_id ).update_all( user_id: -1 )
 
@@ -1427,7 +1434,14 @@ class User < ApplicationRecord
 
   def set_pi_consent_at
     if pi_consent
-      self.pi_consent_at = Time.now
+      self.pi_consent_at ||= Time.now
+    end
+    true
+  end
+
+  def set_data_transfer_consent_at
+    if data_transfer_consent
+      self.data_transfer_consent_at ||= Time.now
     end
     true
   end

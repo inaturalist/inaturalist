@@ -477,3 +477,10 @@ select.dropdown {
     }
   }
 }
+
+.AlertModal.modal {
+  .modal-dialog {
+    width: 100%;
+    max-width: 60%;
+  }
+}

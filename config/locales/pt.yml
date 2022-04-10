@@ -961,6 +961,11 @@ pt:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Apenas com coordenadas completas
+  coords_viewable_for_proj_desc: |
+    Mostrar apenas as observações deste projeto para as quais possa ver as coordenadas "verdadeiras"
+    , incluindo observações não ocultas, observações obscurecidas de
+    pessoas que confiam em si, observações ocultas de pessoas que confiam neste projeto e observações obscurecidas pelos táxons ameaçados por pessoas que as
+    confiam apenas a este projeto.
   copy: Copiar
   copy_and_paste_the_following_code_to: Copie e cole o seguinte código para incorporar esta avaliação em outra página da web.
   copy_and_paste_this_into_your_own_html: Copie e cole isso no seu próprio HTML.
@@ -1033,12 +1038,6 @@ pt:
     Você deve explicar porque se quer tornar um curador
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Por que quer ser um curador?
-  #Prompt for information when applying to be a curator
-  curator_application_fields_taxonomy_examples_html: |
-    Se deseja editar a taxonomia do iNaturalist, forneça um exemplo ou dois
-    de mudanças taxonómicas que gostaria de fazer, e inclua links para as autoridades taxonómicas apropriadas,
-    <a
-    href="https://www.inaturalist.org/pages/curator+guide#policies">como listado no Guia de Curadores</a>
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Se deseja editar nomes comuns, forneça um exemplo ou dois das
@@ -2001,11 +2000,6 @@ pt:
     se ela pedir espécimes, peça para ver a sua licença.
   messages_new_correspondent_personal: |
     Não divulgue informações pessoais sobre si mesmo a pessoas em quem você não confia.
-  messages_new_correspondent_actions_html: |
-    Se suspeitar que essa pessoa está a violar os nossos <a href="%{tos_url}"
-    target="_blank">Termos de Serviço</a> ou não está a agir de acordo com as nossas <a
-    href="%{guidelines_url}" target="_blank">Diretrizes da Comunidade</a>, por favor
-    sinalize esta mensagem abaixo.
   misidentifications: Identificações incorretas
   misleading_or_illegal_content_html: |
     Conteúdo enganador ou ilegal, insultos racistas ou xenófobos, etc. Para mais informação acerca do que consideramos "conteúdo apropriado" ver <a href="/help#inappropriate">FAQ</a>.
@@ -2414,7 +2408,6 @@ pt:
   open_: Abrir
   open_description: "Qualquer um pode ver as coordenadas a menos que o táxon esteja ameaçado."
   optional: opcional
-  optional_columns_note_for_any: "Colunas opcionais (nota: para usar qualquer uma destas colunas numa observação, todas têm de estar presentes)"
   or: ou
   or_choose_high_level_taxa: "... ou escolha a partir de um taxa de nível superior"
   or_if_you_dont_want_email: "Ou se simplesmente não quer nenhum email..."
@@ -3322,7 +3315,6 @@ pt:
   user_already_authenticated: O utilizador já está autenticado
   user_blocked: Utilizador bloqueado
   user_commented: "%{user} comentou"
-  user_commented_on: "%{user} comentou o seu %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} discorda que seja um(a) %{taxon}"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} adicionou %{noun} por %{owner} como favorito"

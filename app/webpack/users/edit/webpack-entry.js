@@ -10,6 +10,7 @@ import {
   combineReducers
 } from "redux";
 
+import alertModal from "../../shared/ducks/alert_modal";
 import userSettingsReducer, { fetchUserSettings } from "./ducks/user_settings";
 import sectionReducer, { setSelectedSectionFromHash } from "./ducks/app_sections";
 import sitesReducer, { fetchNetworkSites } from "./ducks/network_sites";
@@ -32,7 +33,8 @@ const rootReducer = combineReducers( {
   thirdPartyTracking: thirdPartyTrackingModalReducer,
   creativeCommonsLicensing: creativeCommonsLicensingModalReducer,
   section: sectionReducer,
-  confirmModal: confirmModalReducer
+  confirmModal: confirmModalReducer,
+  alertModal
 } );
 
 const store = createStore(

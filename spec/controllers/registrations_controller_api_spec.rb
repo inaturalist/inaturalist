@@ -177,4 +177,14 @@ describe Users::RegistrationsController, "create" do
     end.not_to change( User, :count )
     expect( response.response_code ).to eq 422
   end
+
+  it "should accept data_transfer_consent" do
+    u = register_user_with_params( data_transfer_consent: true )
+    expect( u.data_transfer_consent_at ).not_to be_blank
+  end
+
+  it "should accept pi_consent" do
+    u = register_user_with_params( pi_consent: true )
+    expect( u.pi_consent_at ).not_to be_blank
+  end
 end

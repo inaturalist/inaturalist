@@ -299,6 +299,7 @@ kn:
   add_life_stage_egg_annotation: '"ಜೈವಿಕ ಹಂತ : ಮೊಟ್ಟೆ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_evidence_of_presence_organism_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು : ಜೀವಿ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_evidence_of_presence_feather_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು: ಗರಿ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
+  add_evidence_of_presence_gall_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು: ಅಸಹಜ ಬೆಳವಣಿಗೆ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_evidence_of_presence_scat_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು: ಹಿಕ್ಕೆ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_evidence_of_presence_track_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು: ಹೆಜ್ಜೆಗುರುತು" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_evidence_of_presence_bone_annotation: '"ಇರುವಿಕೆಯ ಕುರುಹು: ಮೂಳೆ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
@@ -947,6 +948,8 @@ kn:
     evidence_of_presence: ಇರುವಿಕೆಯ ಕುರುಹು
     #As in the feather on a bird
     feather: ಗರಿ
+    #Abnormal growth
+    gall: ಅಸಹಜ ಬೆಳವಣಿಗೆ
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: ಜೀವಿ
@@ -1872,6 +1875,7 @@ kn:
     portuguese: ಪೋರ್ಚುಗೀಸ್
     romanian: ರೋಮಾನಿಯನ್
     russian: ರಷ್ಯನ್
+    santali: ಸಂತಾಲಿ
     setswana: ಸೆಟ್‍ಸ್ವಾನಾ
     sinhala: ಸಿಂಹಳ
     slovak: ಸ್ಲೋವಾಕ್
@@ -1986,6 +1990,7 @@ kn:
     pt: ಪೋರ್ಚುಗೀಸ್
     pt-BR: ಪೋರ್ಚುಗೀಸ್ (ಬ್ರಜಿಲ್)
     ru: ರಷ್ಯನ್
+    sat: ಸಂತಾಲಿ
     sk: ಸ್ಲೋವಾಕ್
     sl: ಸ್ಲೋವೇನಿಯನ್
     sq: ಅಲ್ಬೇನಿಯನ್
@@ -2076,6 +2081,7 @@ kn:
   mark_all_as_reviewed: ಎಲ್ಲವನ್ನೂ ವಿಮರ್ಶಿಸಿದೆಯೆಂದು ಗುರುತಿಸಿ
   mark_all_as_unreviewed: ಎಲ್ಲವನ್ನೂ ವಿಮರ್ಶಿಸಿಲ್ಲವೆಂದು ಗುರುತಿಸಿ
   matching_species_will_shown_up_here: ಹೋಲಿಕೆಯಾಗುವ ಪ್ರಭೇದಗಳು ಇಲ್ಲಿ ಪ್ರದರ್ಶಿತವಾಗುತ್ತವೆ. %{place} ಆ ಪ್ರಭೇದದಲ್ಲಿ ಒಂದನ್ನಾದರೂ ಹೊಂದಿದ್ದಲ್ಲಿ ಭೂಪಟಗಳು ವ್ಯಾಪ್ತಿಯನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತವೆ.
+  maximum_positional_accuracy: ಗರಿಷ್ಟ ಸ್ಥಾನಿಕ ನಿಖರತೆ
   media: ಮಾಧ್ಯಮ
   media_type: ಮಾಧ್ಯಮದ ವಿಧ
   medium: ಮಧ್ಯಮ
@@ -2116,6 +2122,7 @@ kn:
     ಸ್ಪೆಸಿಮನ್‍ಗಳು ಅಥವಾ ಮರೆಮಾಡಿದ ದತ್ತಾಂಶದ ವಿನಂತಿಗಳ ಬಗ್ಗೆ ಎಚ್ಚರದಿಂದಿರಿ. ವಿನಂತಿಸುವ ವ್ಯಕ್ರಿಗಳ ಗುರುತನ್ನು ಪರಿಶೀಲಿಸಲು ಪ್ರಯತ್ನಿಸಿ ಹಾಗೂ ಅವರು ಸ್ಪೆಸಿಮನ್‍ಗಳನ್ನು ಕೇಳುತ್ತಿದ್ದಲ್ಲಿ, ಅವರ ಪರವಾನಗಿ ಪತ್ರವನ್ನು ತೋರಿಸಲು ಹೇಳಿ.
   messages_new_correspondent_personal: |
     ನಿಮಗೆ ನಂಬಿಕೆ ಇಲ್ಲದ ವ್ಯಕ್ತಿಗಳ ಜೊತೆ ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಬೇಡಿ.
+  minimum_positional_accuracy: ಕನಿಷ್ಟ ಸ್ಥಾನಿಕ ನಿಖರತೆ
   misidentifications: ತಪ್ಪಾದ ಗುರುತಿಸುವಿಕೆಗಳು
   #Label shown when a date has not been entered
   missing_date: ಕಾಣೆಯಾದ ದಿನಾಂಕ
@@ -2613,7 +2620,6 @@ kn:
   open_description: "ಜೀವಿವರ್ಗ ಅಪಾಯದಂಚಿನಲ್ಲಿ ಇಲ್ಲದಿದ್ದಲ್ಲಿ ಎಲ್ಲರೂ ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನೋಡಬಹುದು."
   open_street_map: OpenStreetMap
   optional: ಐಚ್ಛಿಕ
-  optional_columns_note_for_any: "ಐಚ್ಛಿಕ ಲಂಬಸಾಲುಗಳು (ಸೂಚನೆ: ವೀಕ್ಷಣೆಯೊಂದರಲ್ಲಿ ಇವುಗಳಲ್ಲಿನ ಯಾವುದಾದರೂ ಲಂಬಸಾಲುಗಳನ್ನು ಬಳಸಬೇಕೆಂದಿದ್ದಲ್ಲಿ, ಅವು ಎಲ್ಲವೂ ಅಸ್ತಿತ್ವದಲ್ಲಿರಬೇಕಾಗುತ್ತದೆ)"
   or: ಅಥವಾ
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -2718,8 +2724,6 @@ kn:
     original: ಮೂಲ
   photos_updated: ಚಿತ್ರಗಳನ್ನು ನವೀಕರಿಸಲಾಗಿದೆ.
   pi_consent_desc_title: ವೈಯಕ್ತಿಕ ಮಾಹಿತಿ ಬಗ್ಗೆ
-  pi_consent_desc_html: |
-    ನಾವು ಬಳಕೆದಾರರ ಹೆಸರು ಮತ್ತು ಮಿಂಚೆ ವಿಳಾಸಗಳಂತಹ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿಗಳನ್ನು ಈ ತಾಣದಲ್ಲಿ ಖಾತೆ ನಿರ್ವಹಣೆಗಾಗಿ ಸಂಗ್ರಹಿಸುತ್ತೇವೆ, ಹಾಗೂ ಗೋಪ್ಯತಾ ನೀತಿಗಳ ಅನುಸರಣೆಗಾಗಿ ಈ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿಗಳ ಬಳಕೆಗೆ ಈ ಚೆಕ್‍ಬಾಕ್ಸ್ ಅನ್ನು ಆರಿಸುವುದರ ಮೂಲಕ ನಮಗೆ ನಿಮ್ಮ ಸಮ್ಮತಿಯ ಅಗತ್ಯವಿದೆ. ನಾವು ಸಂಗ್ರಹಿಸುವ ಮಾಹಿತಿಗಳನ್ನು ನಾವು ಹೇಗೆ ಬಳಸುತ್ತೇವೆ ಎಂಬುದರ ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ವಿವರ ತಿಳಿಯಲು ದಯವಿಟ್ಟು ನಮ್ಮ <a href='%{privacy_url}' target='_blank'>ಗೋಪ್ಯತಾ ನೀತಿ</a> ಮತ್ತು ನಮ್ಮ <a href='%{terms_url}' target='_blank'>ಸೇವಾ ನಿಯಮ</a> ಗಳನ್ನು ಗಮನಿಸಿ.
   pi_consent_label: |
     ನನ್ನ ಖಾತೆ ನಿರ್ವಹಣೆ ಸಲುವಾಗಿ ನನ್ನ ಬಗೆಗಿನ ಸೀಮಿತವಾದ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿಯನ್ನು iNaturalist ಗೆ ಸಂಗ್ರಹಿಸುವುದಕ್ಕೆ ಮತ್ತು ಸಂಸ್ಕರಿಸುವುದಕ್ಕೆ ನಾನು ಸಮ್ಮತಿ ನೀಡುತ್ತೇನೆ.
   pi_consent_child_label: |
@@ -3634,6 +3638,9 @@ kn:
   show_active_and_inactive_taxa: ಸಕ್ರಿಯ ಹಾಗು ನಿಷ್ಕ್ರಿಯ ಜೀವಿವರ್ಗಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ
   show_common_names: ಸಾಮಾನ್ಯ ಹೆಸರುಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ
   show_hidden_content: ಮರೆಮಾಡಿದ ವಿಷಯಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ
+  show_history_by_this_user: ಈ ಬಳಕೆದಾರರಂತೆ ಇತಿಹಾಸವನ್ನು ಪ್ರದರ್ಶಿಸಿ
+  show_history_for_this_kind_of_action: ಈ ಬಗೆಯ ಕ್ರಿಯೆಗಾಗಿ ಇತಿಹಾಸವನ್ನು ಪ್ರದರ್ಶಿಸಿ
+  show_history_for_this_record: ಈ ದಾಖಲಾತಿಗಾಗಿ ಇತಿಹಾಸವನ್ನು ಪ್ರದರ್ಶಿಸಿ
   show_keyboard_shortcuts: ಕೀಬೋರ್ಡ್ ಶಾರ್ಟ್‍ಕಟ್‍ಗಳನ್ನು ಪ್ರದರ್ಶಿಸಿ
   show_less: ಕಡಿಮೆ ತೋರಿಸಿ
   show_more: ಇನ್ನಷ್ಟು ತೋರಿಸಿ
@@ -3997,7 +4004,6 @@ kn:
   terms: ನಿಯಮಗಳು
   terms_and_rules_html: "ನಿಬಂಧನೆಗಳು &amp; ನಿಯಮಗಳು"
   terms_new_users: "ನೀವು ನಿಬಂಧನೆಗಳನ್ನು ಸೇರಿಸಿದಲ್ಲಿ, ಹೊಸ ಬಳಕೆದಾರರು ಪ್ರಾಯೋಜನೆಗೆ ಸೇರುವ ಮುನ್ನ ಅವುಗಳಿಗೆ ಸಮ್ಮತಿಸಬೇಕು."
-  terms_service: ಸೇವಾ ನಿಯಮಗಳು
   terrain: ಭೂಪ್ರದೇಶ
   text: ಪಠ್ಯ
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4116,7 +4122,7 @@ kn:
   top_observer_caps: ಅಗ್ರಶ್ರೇಣಿಯ ವೀಕ್ಷಕರು
   top_observers: ಅಗ್ರಶ್ರೇಣಿಯ ವೀಕ್ಷಕರು
   tos_privacy_guidelines_label: |
-    ನಾನು <a href="/terms" target="_blank">ಸೇವಾ ನಿಯಮಗಳು</a> ಮತ್ತು <a href="/privacy" target="_blank">ಗೋಪ್ಯತಾ ನೀತಿ</a> ಗೆ ಸಮ್ಮತಿಸುತ್ತೇನೆ, ಹಾಗೂ ನಾನು <a href="/pages/community+guidelines" target="_blank">ಸಮುದಾಯ ಮಾರ್ಗದರ್ಶಿಕೆ</a>ಗಳನ್ನು ಪರಿಶೀಲಿಸಿದ್ದೇನೆ.
+    ನಾನು <a href="/terms" target="_blank">ಬಳಕೆ ನಿಯಮಗಳು</a> ಮತ್ತು <a href="/privacy" target="_blank">ಗೋಪ್ಯತಾ ನೀತಿ</a> ಗೆ ಸಮ್ಮತಿಸುತ್ತೇನೆ, ಹಾಗೂ ನಾನು <a href="/pages/community+guidelines" target="_blank">ಸಮುದಾಯ ಮಾರ್ಗದರ್ಶಿಕೆ</a>ಗಳನ್ನು ಪರಿಶೀಲಿಸಿದ್ದೇನೆ.
   total: ಒಟ್ಟು
   totals: ಮೊತ್ತಗಳು
   total_members: ಒಟ್ಟು ಸದಸ್ಯರು
@@ -4258,7 +4264,6 @@ kn:
     %{place} ನಲ್ಲಿ ಇದು %{taxon} ನ ವಿಸ್ತೃತವಾದ ಪಟ್ಟಿಯೆಂದು %{user} ಅವರು ನಂಬಿದ್ದಾರೆ
   user_blocked: ಬಳಕೆದಾರನನ್ನು ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ
   user_commented: "%{user} ಅಭಿಪ್ರಾಯ ಸೇರಿಸಿದ್ದಾರೆ"
-  user_commented_on: "ನಿಮ್ಮ %{title} %{time} ಗೆ %{user} ಅವರು ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ"
   user_disagrees_this_is_taxon: "%{user} ಅವರು %{taxon} ಗೆ ಅಸಮ್ಮತಿಸಿದ್ದಾರೆ"
   user_faved_this_observation: "%{user} ಅವರು ಈ ವೀಕ್ಷಣೆಯನ್ನು ಮೆಚ್ಚಿದ್ದಾರೆ"
   user_flagged_as_a_non_spammer_html: "%{user} ಅವರನ್ನು ಸ್ಪಾಮರ್ ಅಲ್ಲವೆಂದು ಗುರುತಿಸಲಾಗಿದೆ"
@@ -4348,7 +4353,6 @@ kn:
   view_taxon_page: ಜೀವಿವರ್ಗದ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ
   view_taxon_page_for_this_x: "ಈ %{x} ಗಾಗಿ ಜೀವಿವರ್ಗದ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ"
   view_taxononomy_details_for_taxon: "%{taxon} ಗಾಗಿ ಜೀವಿವರ್ಗೀಕರಣದ ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
-  view_the: "%{action}&#59; %{link} ಅನ್ನು ವೀಕ್ಷಿಸಿ"
   view_the_observation: ವೀಕ್ಷಣೆಯನ್ನು ವೀಕ್ಷಿಸಿ
   view_user_observations: "%{user} ಅವರ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
   view_x: "%{x} ವೀಕ್ಷಿಸಿ"
@@ -4560,8 +4564,6 @@ kn:
   you_must_specify_and_confirm_a_new_password: ನೀವು ಗುಪ್ತಪದವನ್ನು ಸೂಚಿಸಬೇಕು ಮತ್ತು ಖಚಿತಪಡಿಸಬೇಕು.
   you_need_to_have_linked_flickr_account: ನೀವು ನಿಮ್ಮ ಚಿತ್ರಗಳನ್ನು ಟ್ಯಾಗ್ ಮಾಡಲು ಜೋಡಣೆಯಾದ ಫ್ಲಿಕರ್ ಖಾತೆಯ ಅಗತ್ಯವಿದೆ.
   you_need_to_select_some_observations_first: ನೀವು ಮೊದಲು ಕೆಲವು ವೀಕ್ಷಣೆಗಳನ್ನು ಆರಿಸಿಕೊಳ್ಳಬೇಕು.
-  you_retain_full_copyright: "ನಮ್ಮ ಸೇವಾನಿಯಮಗಳನ್ವಯ %{site_name} ಗೆ ನೀಡಿರುವ ಹಕ್ಕುಗಳಷ್ಟೇ ಅಲ್ಲದೆ ನೀವು ನಿಮ್ಮ ವಿಷಯಗಳ ಮೇಲೆ ಸಂಪೂರ್ಣ ಹಕ್ಕುಸ್ವಾಮ್ಯಗಳನ್ನು ಹೊಂದಿರುತ್ತೀರಿ."
-  you_retain_full_copyright_over_your_content: "ನಮ್ಮ ಸೇವಾನಿಯಮಗಳನ್ವಯ %{site_name} ಗೆ ನೀಡಿರುವ ಹಕ್ಕುಗಳಷ್ಟೇ ಅಲ್ಲದೆ ನೀವು ನಿಮ್ಮ ವಿಷಯಗಳ ಮೇಲೆ ಸಂಪೂರ್ಣ ಹಕ್ಕುಸ್ವಾಮ್ಯಗಳನ್ನು ಹೊಂದಿರುತ್ತೀರಿ."
   you_sure_delete_asset?: ಈ ಪ್ರಾಯೋಜನೆಯ ಸ್ವತ್ತನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
   you_sure_delete_check_list: "ಈ ಪಟ್ಟಿಯನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ? ಕೆಲವು ಮಂದಿ ಇದಕ್ಕಾಗಿ ಸುಮಾರು ಕೆಲಸ ಮಾಡಿದ್ದಾರೆ..."
   you_sure_delete_comment?: ಈ ಅಭಿಪ್ರಾಯವನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?
@@ -5378,8 +5380,6 @@ kn:
           ನೀವು iNaturalist ದಾನಿಗಳಲ್ಲೊಬ್ಬರಾಗಿರುವುದರಿಂದ, ನಾವು ನಿಮ್ಮ ಗುರುತನ್ನು ನಿಮ್ಮ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ದೇಣಿಗೆಗಳ ಮೂಲಕ ಪರಿಶೀಲಿಸಲು ಸಾಧ್ಯವಾಯಿತು.
     welcome:
       index:
-        welcome_message_html: |
-          %{image} ಅವರಿಗೆ, ಇಲ್ಲಿ ನೀವು ನಿಸರ್ಗದಲ್ಲಿ ಕಾಣಸಿಗುವ ವೈವಿಧ್ಯತೆಗಳನ್ನು <strong>ದಾಖಲಿಸಿ</strong>, ಇತರೇ ಪರಿಸರ ಪ್ರೇಮಿಗಳನ್ನು <strong>ಭೇಟಿ ಮಾಡಿ</strong>, ಹಾಗೂ ಪರಿಸರದ ಜಗತ್ತನ್ನು <strong>ಅರಿಯಿರಿ</strong>.
         connect_with_nature: ನಿಸರ್ಗದೊಡನೆ ಒಡನಾಡಿ
         explore_and_share: ನಿಸರ್ಗದ ಪ್ರಪಂಚವನ್ನು ಅನ್ವೇಷಿಸಿ ಮತ್ತು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ.
         observations_to_date: 'ಇಲ್ಲಿಯವರೆಗಿನ ವೀಕ್ಷಣೆಗಳು'

@@ -94,8 +94,18 @@ function setFiltersFromQuery(query) {
     } else {
       $('#filters :input[name="'+k+'"]').not(':checkbox, :radio').val(v)
     }
-    if (k == 'place_id') {
-      $('#filters input[name=place_id]').chooser('selectId', v)
+    if ( k === "place_id" ) {
+      if ( v === "any" ) {
+        $('#filters input[name=place_id]').chooser( "clear" );
+      } else {
+        $('#filters input[name=place_id]').chooser( "selectId", v );
+      }
+    } else if ( k === "not_in_place" ) {
+      if ( v === "any" ) {
+        $('#filters input[name=not_in_place]').chooser( "clear" );
+      } else {
+        $('#filters input[name=not_in_place]').chooser( "selectId", v );
+      }
     } else if (k == 'taxon_id') {
       $.fn.simpleTaxonSelector.selectTaxonFromId('#filters .simpleTaxonSelector', v)
     } else if (k == 'iconic_taxa' || k == 'has' || k == 'month') {

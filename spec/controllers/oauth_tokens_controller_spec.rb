@@ -28,6 +28,12 @@ describe OauthTokensController, "with resource owner password credentials" do
 
   before { ActionController::Base.allow_forgery_protection = true }
   after { ActionController::Base.allow_forgery_protection = false }
+  it "should return a 400 for an incorrect password" do
+    get :create, format: :json, params: default_params_for_strategy.merge(
+      password: "#{user.password}foo"
+    )
+    expect( response.code ).to eq "400"
+  end
 
   describe "for a confirmed user" do
     it_behaves_like "a token creator that blocks suspended users"
@@ -49,6 +55,16 @@ describe OauthTokensController, "with resource owner password credentials" do
       expect( json["error"] ).to eq "invalid_grant"
       expect( json["error_description"] ).not_to be_blank
     end
+  end
+
+  it "should localize an error response" do
+    locale = "fr"
+    get :create, format: :json, params: default_params_for_strategy.merge(
+      password: "#{user.password}foo",
+      locale: locale
+    )
+    json = JSON.parse( response.body )
+    expect( json["error_description"] ).to eq I18n.t( :invalid, scope: [:devise, :failure], locale: locale )
   end
 end
 

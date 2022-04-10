@@ -49,6 +49,8 @@ class UsersController < ApplicationController
   skip_before_action :check_preferred_site, only: :api_token
   skip_before_action :set_ga_trackers, only: :api_token
 
+  prepend_around_action :enable_replica, only: [:dashboard_updates]
+
   caches_action :dashboard_updates,
     :expires_in => 15.minutes,
     :cache_path => Proc.new {|c|
@@ -483,14 +485,29 @@ class UsersController < ApplicationController
         end
         unless @discourse_data = Rails.cache.read( cache_key )
           @discourse_data = {}
-          @discourse_data[:topics] = JSON.parse(
-            RestClient::Request.execute( method: "get",
-              url: url, open_timeout: 1, timeout: 5 ).body
-          )["topic_list"]["topics"].select{|t| !t["pinned"] && !t["closed"] && !t["has_accepted_answer"]}[0..5]
           @discourse_data[:categories] = JSON.parse(
             RestClient::Request.execute( method: "get",
               url: "#{@discourse_url}/categories.json", open_timeout: 1, timeout: 5 ).body
           )["category_list"]["categories"].index_by{|c| c["id"]}
+          forum_feedback_category = @discourse_data[:categories].values.detect{|c| c["name"] == "Forum Feedback"}
+          @discourse_data[:topics] = JSON.parse(
+            RestClient::Request.execute(
+              method: "get",
+              url: url,
+              open_timeout: 1,
+              timeout: 5
+            ).body
+          )["topic_list"]["topics"].select{ | t |
+            !t["pinned"] &&
+            !t["closed"] &&
+            !t["has_accepted_answer"] &&
+            # Remove posts in the Forum Feedback category
+            (
+              !t["category_id"] ||
+              !forum_feedback_category ||
+              t["category_id"] != forum_feedback_category["id"]
+            )
+          }[0..5]
           Rails.cache.write( cache_key, @discourse_data, expires_in: 15.minutes )
         end
       rescue SocketError, RestClient::Exception, Timeout::Error, RestClient::Exceptions::Timeout
@@ -1213,6 +1230,7 @@ protected
   def permit_params
     return if params[:user].blank?
     params.require(:user).permit(
+      :data_transfer_consent,
       :description,
       :email,
       :icon,
@@ -1228,6 +1246,7 @@ protected
       :password,
       :password_confirmation,
       :per_page,
+      :pi_consent,
       :place_id,
       :preferred_identify_image_size,
       :preferred_observation_fields_by,

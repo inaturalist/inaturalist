@@ -1,4 +1,8 @@
 nl:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} wijziging"
+    other: "%{count} wijzigingen"
   x_comments:
     one: '1 reactie'
     other: '%{count} reacties'
@@ -405,6 +409,8 @@ nl:
   agree_with_current_taxon: Akkoord gaan met huidige taxon
   agreeing: Bevestig...
   aka: ook bekend als
+  #Noun, title of a popup alerting you to something
+  alert: Opgelet
   all: Alle
   all_comments: Alle reacties
   all_flags_must_be_resolved: Alle meldingen moeten worden opgelost
@@ -567,7 +573,7 @@ nl:
     iNaturalist apps staan geverifieerd gebruik van de iNaturalist API toe. Dit stelt je in staat 
     API calls te doen die waarnemingen of determinaties maken. Veel voorkomende voorbeelden zijn desktop applicaties of mobiele apps die waarnemingen in iNaturalist maken voor zijn gebruiker. Deze inhoud moet tot stand worden gebracht met echte menselijke betrokkenheid
     of toezicht. Lees onze <a href="/pages/community+guidelines"
-    target="_blank">Community Guidelines</a> voor meer informatie waarin machine-gegenereerde waarnemingen, determinaties en opmerkingen worden verboden.
+    target="_blank">Gemeenschapsrichtlijnen</a> voor meer informatie waarin machine-gegenereerde waarnemingen, determinaties en opmerkingen worden verboden.
   app_owner_application_about_p2_html: |
     Vanaf 2022 is handmatige goedkeuring vereist voor gebruikers die API-clients willen maken.
     Om third-party-apps te maken moet je eerst een aanvraag indienen om een 'app-eigenaar' te mogen worden. Deze aanvraag moet de functionaliteit van jouw voorgestelde app beschrijven en hoe je het wilt gaan gebruiken. Om een aanvraag in te kunnen dienen moet jouw account minimaal 2 maanden oud zijn en minimaal 10 <a href="/pages/help#identification"
@@ -801,6 +807,7 @@ nl:
   by_you: Door jou
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalenders tonen slechts %{x} waarnemingen tegelijk
+  callback_url: Callback url
   cancel: Annuleren
   cant_edit_or_delete_hidden_content: Je kunt inhoud die verborgen is door sitecuratoren niet bewerken of verwijderen
   cant_flag_an_object_that_doesnt_exist: Niet mogelijk om een object te melden dat niet bestaat
@@ -1214,8 +1221,8 @@ nl:
   curator_application_fields_explanation_html: Waarom wil je een curator zijn?
   #Prompt for information when applying to be a curator
   curator_application_fields_taxonomy_examples_html: |
-    Als je de taxonomie van iNaturalist wilt bewerken, geef dan één of twee voorbeelden
-    van taxonomische wijzigingen die je wilt aanbrengen en voeg bronnen toe aan je voorstellen. Citeer indien van toepassing de juiste taxonomische autoriteiten <a href="https://www.inaturalist.org/pages/curator+guide#policies"> zoals vermeld in de Curator Guide</a>. Als je geen bronnen toevoegt wordt je aanvraag niet in behandeling genomen.
+    Als jij de taxonomie van iNaturalist wilt bewerken, geef dan één of twee voorbeelden
+    van taxonomische wijzigingen die jij wilt aanbrengen en voeg bronnen toe aan je wijzigingsvoorstellen. Indien van toepassing citeer dan de juiste taxonomische autoriteiten <a href="https://www.inaturalist.org/pages/curator+guide#policies"> zoals vermeld in de Curator Guide</a>. Als je geen bronnen toevoegt wordt je aanvraag niet in behandeling genomen.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Als je algemene namen wilt bewerken geef dan één of twee voorbeelden van
@@ -2258,6 +2265,7 @@ nl:
     portuguese: Portugees
     romanian: Roemeens
     russian: Russisch
+    santali: Santali
     setswana: Setswana
     sinhala: Singalees
     slovak: Slowaaks
@@ -2377,6 +2385,7 @@ nl:
     pt: Portugees
     pt-BR: Portugees (Brazilië)
     ru: Russisch
+    sat: Santali
     sk: Slowaaks
     sl: Sloveens
     sq: Albanees
@@ -2518,7 +2527,7 @@ nl:
     Geef geen persoonlijke informatie over jezelf aan mensen die je niet vertrouwt.
   messages_new_correspondent_actions_html: |
     Als jij vermoedt dat deze persoon onze <a href="%{tos_url}"
-    target="_blank">Servicevoorwaarden</a> schendt of niet handelt in overeenstemming met onze <a
+    target="_blank">Gebruiksvoorwaarden</a> schendt of niet handelt in overeenstemming met onze <a
     href="%{guidelines_url}" target="_blank">Gemeenschapsrichtlijnen</a>,
     markeer dan dit bericht hieronder.
   minimum_positional_accuracy: Minimale locatienauwkeurigheid
@@ -3110,7 +3119,6 @@ nl:
   open_description: "De coördinaten zijn voor iedereen zichtbaar, tenzij het gaat om een bedreigd taxon."
   open_street_map: OpenStreetMap
   optional: optioneel
-  optional_columns_note_for_any: "Optionele kolommen (opmerking: als een van deze kolommen bij een waarneming moeten worden gebruikt, dan moeten ze allemaal aanwezig zijn)"
   or: of
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3225,13 +3233,41 @@ nl:
   photos_updated: Foto's bijgewerkt.
   pi_consent_desc_title: Persoonlijke gegevens
   pi_consent_desc_html: |
-    Persoonlijke gegevens zoals gebruikersnamen en e-mailadressen worden bewaard om accounts op deze site te beheren en om te voldoen aan privacywetten moet je dit vakje aanvinken om aan te geven dat je akkoord gaat met het gebruik van deze persoonlijke informatie. Voor meer informatie over de informatie die wordt verzamelt en hoe we het gebruiken, zie onze
-    <a href='%{privacy_url}' target='_blank'>Privacybeleid</a>
-    en onze <a href='%{terms_url}' target='_blank'>Servicevoorwaarden</a>.
+    <p>
+    Persoonlijke gegevens zoals gebruikersnamen en e-mailadressen worden bewaard om accounts op deze site te beheren en om te voldoen aan privacywetten moet je dit vakje aanvinken om aan te geven dat je akkoord gaat met het gebruik van deze persoonlijke informatie. Voor meer informatie over de informatie die wordt verzamelt en hoe we het gebruiken, zie ons <a href='%{privacy_url}' target='_blank'>Privacybeleid</a> en onze <a href='%{terms_url}' target='_blank'>Gebruiksvoorwaarden</a>.
+    </p>
+    <p>
+    Er is geen manier om een iNaturalist account te hebben zonder persoonlijke
+    informatie op te slaan dus de enige manier om deze toestemming in te trekken is door je
+    account te verwijderen.
+    </p>
   pi_consent_label: |
     Ik stem ermee in dat iNaturalist persoonlijke informatie over mij kan opslaan en verwerken om mijn account te beheren
   pi_consent_child_label: |
     Ik stem ermee in dat iNaturalist persoonlijke informatie over mijn kind kan opslaan en verwerken om het account van mijn kind te beheren
+  data_transfer_consent_desc_title: Over toestemming voor persoonlijke informatieoverdracht
+  data_transfer_consent_desc_html: |
+    <p>
+    Bepaalde privacywetgeving, zoals de Algemene Verordening Gegevensbescherming (AVG) van de Europese Unie, vereist expliciete toestemming om persoonlijke informatie te verzenden vanuit hun jurisdictie naar andere jurisdicties waar de wettelijke bescherming van deze informatie als onvoldoende wordt beschouwd. Vanaf 
+    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a> beschouwt de Europese Unie de Verenigde Staten niet langer als een jurisdictie waar voldoende wettelijke bescherming wordt geboden voor persoonlijke informatie, met name vanwege de mogelijkheid van surveillance door de regering van de Verenigde Staten van data die de VS binnenkomt. Mogelijk hebben andere jurisdicties dezelfde mening.
+    </p>
+    <p>
+    Het gebruik van iNaturalist vereist het opslaan van persoonlijke informatie zoals je e-mailadres en alle iNaturalist data wordt opgeslagen in de Verenigde Staten, en we kunnen niet met zekerheid zeggen in welke jurisdictie je je bevindt als je iNaturalist gebruikt, dus om te voldoen aan privacywetgeving zoals AVG, moet je aangeven dat je dit risico begrijpt en aanvaardt, en toestemming geven om je persoonlijke informatie naar de servers van iNaturalist te versturen in de Verenigde Staten.
+    </p>
+    <p>
+    Om meer te leren over wat voor informatie we verzamelen en hoe we het gebruiken, zie ons 
+    <a href='%{privacy_url}' target='_blank'>Privacybeleid</a>
+    en onze <a href='%{terms_url}' target='_blank'>gebruiksvoorwaarden</a>.
+    </p>
+    <p>
+    Er is geen manier om een iNaturalist account te hebben zonder persoonlijke informatie op te slaan, dus de enige manier om je toestemming in te trekken is het verwijderen van je account.
+    </p>
+  data_transfer_consent_label: |
+    Ik sta toe dat mijn persoonlijke gegevens aan de
+    Verenigde Staten van Amerika worden overgedragen
+  data_transfer_consent_child_label: |
+    Ik sta toe dat de persoonlijke gegevens van mijn kind aan de
+    Verenigde Staten van Amerika worden overgedragen
   pin_verb: Vastzetten
   pink: roze
   pinned_locations_desc: |
@@ -3983,6 +4019,8 @@ nl:
   recently_finished: Onlangs beëindigd
   recently_observed: Onlangs waargenomen
   recently_resolved: Onlangs opgelost
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Item
   red: rood
   redo_search_in_map: Opnieuw zoeken op kaart
   redo_search_in_map_area: Opnieuw zoeken in kaartgebied
@@ -4051,7 +4089,6 @@ nl:
   required: vereist
   required_: Vereist
   required_field: verplicht veld
-  required_columns_in_order: Vereiste kolommen op volgorde
   research: onderzoek
   research_: Onderzoek
   research_grade: Onderzoekskwaliteit
@@ -4080,6 +4117,7 @@ nl:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "%{site_name} intrekken?"
+  revoke_privacy_consent_warning: "De enige manier om deze toestemming in te trekken is door je account en alle bijbehorende gegevens te verwijderen."
   rg_observations: RG Waarnemingen
   role: Rol
   rotate_left: Linksom draaien
@@ -4196,6 +4234,7 @@ nl:
   show_common_names: Toon lokale namen
   show_hidden_content: Verborgen inhoud tonen
   show_history_by_this_user: Toon geschiedenis van deze gebruiker
+  show_history_for_this_kind_of_action: Toon geschiedenis voor dit soort actie
   show_history_for_this_record: Toon geschiedenis voor dit item
   show_keyboard_shortcuts: Toon sneltoetsen
   show_less: Minder weergeven
@@ -4815,9 +4854,9 @@ nl:
   top_observer_caps: TOP WAARNEMER
   top_observers: Top Waarnemers
   tos_privacy_guidelines_label: |
-    Ik ga akkoord met de <a href="/terms" target="_blank">gebruiksvoorwaarden</a> en het
-    <a href="/privacy" target="_blank">privacybeleid</a>, en ik heb
-    de <a href="/pages/community+guidelines" target="_blank">gemeenschapsrichtlijnen</a> doorgenomen.
+    Ik ga akkoord met de <a href="/terms" target="_blank">Gebruiksvoorwaarden</a> en het
+    <a href="/privacy" target="_blank">Privacybeleid</a> en ik heb
+    de <a href="/pages/community+guidelines" target="_blank">Gemeenschapsrichtlijnen</a> doorgenomen.
   total: Totaal
   totals: Totalen
   total_ids_on_input_taxon: "Totaal aantal IDs van invoertaxon:"
@@ -4979,7 +5018,6 @@ nl:
     %{user} denkt dat dit een volledige lijst is van %{taxon} in %{place}
   user_blocked: Gebruiker geblokkeerd
   user_commented: "%{user} reageerde"
-  user_commented_on: "%{user} heeft om %{time} gereageerd op je %{title}"
   user_disagrees_this_is_taxon: "%{user} denkt dat %{taxon} onjuist is"
   user_disagrees_with_previous_finer_identifications: "%{user} is het niet eens met eerdere, fijnere determinaties"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -5087,7 +5125,6 @@ nl:
   view_taxon_page: Taxonpagina weergeven
   view_taxon_page_for_this_x: "Taxonpagina voor %{x} weergeven"
   view_taxononomy_details_for_taxon: "Bekijk taxonomiedetails voor %{taxon}"
-  view_the: "De %{action}&#59; %{link} weergeven"
   view_the_observation: Bekijk de waarneming
   view_user_observations: "Waarnemingen van %{user} weergeven"
   view_x: "%{x} weergeven"
@@ -5340,8 +5377,8 @@ nl:
   you_must_specify_and_confirm_a_new_password: Je moet een nieuw wachtwoord opgeven en bevestigen.
   you_need_to_have_linked_flickr_account: Je moet een Flickr-account hebben om je foto's te kunnen labelen.
   you_need_to_select_some_observations_first: Je moet eerste enkele waarnemingen selecteren.
-  you_retain_full_copyright: "Je behoudt het volledige auteursrecht op je inhoud met uitzondering van de rechten die zijn verleend aan %{site_name} in onze Servicevoorwaarden."
-  you_retain_full_copyright_over_your_content: "Je behoudt het volledige auteursrecht op je inhoud met uitzondering van de rechten die zijn verleend aan %{site_name} in onze Servicevoorwaarden."
+  you_retain_full_copyright: "Je behoudt het volledige auteursrecht op je inhoud met uitzondering van de rechten die zijn verleend aan %{site_name} in onze Gebruiksvoorwaarden."
+  you_retain_full_copyright_over_your_content: "Je behoudt het volledige auteursrecht op je inhoud met uitzondering van de rechten die zijn verleend aan %{site_name} in onze Gebruiksvoorwaarden."
   you_should_delete_this_taxon_change: |
     Je zou waarschijnlijk deze taxonwijziging moeten verwijderen of stel ten minste een oplossing voor met de persoon / mensen die de andere veranderingen hebben aangebracht.
   you_sure_delete_asset?: Weet je zeker dat je dit projectbestand wilt verwijderen?
@@ -6812,7 +6849,7 @@ nl:
           </p>
           <p>
             Als iemand je lastigvalt of stalkt op %{site_name}, <a href="mailto:%{help_email}">laat het ons weten</a>. Als
-            het een schending van onze servicevoorwaarden is of ander gedrag dat we ongepast achten voor onze site, zullen we onderzoek doen.
+            het een schending van onze gebruiksvoorwaarden is of ander gedrag dat we ongepast achten voor onze site, zullen we onderzoek doen.
           </p>
         common_names_desc: |
           Toon lokale namen. Schakel dit uit als je alleen wetenschappelijke namen wilt zien. Merk op dat je kunt bepalen welke lokale namen je ziet door je taal- en plaatsinstellingen te wijzigen.
@@ -6993,8 +7030,6 @@ nl:
           Omdat je een iNaturalist-donor bent is je identiteit geverifiëert met door je bestaande gift.
     welcome:
       index:
-        welcome_message_html: |
-          naar %{image}, waar je kunt <strong>vastleggen</strong> wat je ziet in de natuur, andere natuurliefhebbers kunt <strong>ontmoeten</strong> en over de natuurlijke wereld kunt <strong>leren</strong>.
         connect_with_nature: Trek de natuur in
         explore_and_share: Verken en deel je waarnemingen uit de natuur.
         observations_to_date: 'Waarnemingen tot nu toe'
@@ -7446,6 +7481,13 @@ nl:
         ancestry: Voorouders
         auto_description: Auto Beschrijving
         auto_photos: Auto fotos
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: Complete hiërarchie
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Natuurbeschermingstatus
         #Datetime this taxon was featured for display on /taxa
         featured_at: Uitgelicht
         #ID of the iconic taxon this taxon belongs to
@@ -7460,16 +7502,23 @@ nl:
         #External source of the taxon, e.g. Catalogue of Life
         name_provider: Naamleverancier
         parent_id: Bovenliggend ID
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Foto's vergrendeld?
         rank: Rang
         rank_level: Hiërarchie niveau
         source_id: Bron ID
         source_identifier: Bron-id
         source_url: Bron-URL
+        #Identifier of the taxon framework relationship record associated
+        #with this taxon
+        taxon_framework_relationship_id: Taxonkader-relatie ID
         wikipedia_summary: Wikipedia samenvatting
         wikipedia_title: Wikipedia titel
       taxon_name:
         is_valid: Is geldig?
         lexicon: Lexicon
+        name: Naam
         name_provider: Gegevensverstrekker
         position: Positie
         source_url: Bron-URL

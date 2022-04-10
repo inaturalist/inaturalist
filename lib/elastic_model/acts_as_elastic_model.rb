@@ -261,7 +261,9 @@ module ActsAsElasticModel
             refresh: options[:wait_for_index_refresh] ? "wait_for" : false
           })
           if batch && batch.length > 0 && batch.first.respond_to?(:last_indexed_at)
-            where(id: batch).update_all(last_indexed_at: Time.now)
+            ActiveRecord::Base.connection.without_sticking do
+              where(id: batch).update_all(last_indexed_at: Time.now)
+            end
           end
           GC.start
         rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e

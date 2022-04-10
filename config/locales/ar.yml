@@ -1991,7 +1991,6 @@ ar:
   open_description: "يمكن لأي شخص أن يرى الإحداثيات إذا لم تكن الأصناف مهددة."
   open_street_map: خريطة الشارع المفتوحة
   optional: اختياري
-  optional_columns_note_for_any: "الأعمدة الاختيارية (ملاحظة: لاستخدام أي من هذه الأعمدة في ملاحظة; يجب أن تكون جميعها موجودة)"
   or: أو
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -2079,14 +2078,6 @@ ar:
     original: أصلية
   photos_updated: تم تحديث الصور.
   pi_consent_desc_title: حول المعلومات الشخصية
-  pi_consent_desc_html: |
-    نقوم بتخزين المعلومات الشخصية مثل أسماء المستخدمين وعناوين البريد الإلكتروني من أجل 
-    إدارة الحسابات على هذا الموقع، والامتثال لقوانين الخصوصية،
-    نحتاج منك أن تحدد هذا الصندوق للإشارة إلى موافقتك على هذا الاستخدام 
-    للمعلومات الشخصية، لمعرفة المزيد حول المعلومات التي نجمعها 
-    وكيف نستخدمها؛ يُرجَى الاطلاع على
-    <a href='%{privacy_url}' target='_blank'>سياسة الخصوصية</a>
-    وand our <a href='%{terms_url}' target='_blank'>شروط الخدمة</a> لدينا.
   pi_consent_label: |
     أوافق على السماح لإيناتوراليست بتخزين ومعالجة أنواع محدودة من
     المعلومات الشخصية عني لإدارة حسابي
@@ -2720,7 +2711,6 @@ ar:
   required: مطلوب
   required_: مطلوب
   required_field: حقل مطلوب
-  required_columns_in_order: الأعمدة المطلوبة بالترتيب
   research: بحث
   research_: بحث
   research_grade: الصف البحثي
@@ -3118,7 +3108,6 @@ ar:
   terms: الشروط
   terms_and_rules_html: "الشروط &amp; القواعد"
   terms_new_users: "إذا أضفت شروطا، يجب على المستخدمين الجدد الموافقة عليها قبل الانضمام إلى هذا المشروع."
-  terms_service: شروط الخدمة
   terrain: تضاريس
   text: النص
   thanks!: شكرا!
@@ -3374,7 +3363,6 @@ ar:
   user_autocomplete_placeholder: kueda وsimon123 وما إلى ذلك.
   user_blocked: المستخدم ممنوع
   user_commented: "علق %{user}"
-  user_commented_on: "علق %{user} على %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user}غير موافق على هذا %{taxon}"
   user_disagrees_with_previous_finer_identifications: "لا يوافق %{user} على التعريفات الدقيقة السابقة"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -3468,7 +3456,6 @@ ar:
   view_taxon_page: عرض صفحة الأصنوفة
   view_taxon_page_for_this_x: "عرض صفحة الأصنوفة لهذا %{x}"
   view_taxononomy_details_for_taxon: "عرض تفاصيل تصنيف %{taxon}"
-  view_the: "عرض %{action}&#59; %{link}%{action}"
   view_the_observation: عرض الملاحظة
   view_user_observations: "عرض ملاحظات %{user}"
   view_x: "عرض %{x}"
@@ -3659,8 +3646,6 @@ ar:
   you_must_specify_and_confirm_a_new_password: يجب تحديد وتأكيد كلمة سر جديدة.
   you_need_to_have_linked_flickr_account: يجب أن يكون لديك حساب فليكر مرتبط لوضع علامة على صورك.
   you_need_to_select_some_observations_first: تحتاج إلى تحديد بعض الملاحظات أولا.
-  you_retain_full_copyright: "احتفظ بحقوق الطبع والنشر الكاملة على محتواك إلى جانب الحقوق الممنوحة ل%{site_name} في شروط الخدمة."
-  you_retain_full_copyright_over_your_content: "احتفظ بحقوق الطبع والنشر الكاملة على محتواك إلى جانب الحقوق الممنوحة ل%{site_name} في شروط الخدمة."
   you_sure_delete_asset?: هل تريد بالتأكيد حذف هذا الأصل؟
   you_sure_delete_check_list: "هل تريد بالتأكيد حذف هذه القائمة؟ قد يكون قد وضع بعض الناس الكثير من العمل فيها..."
   you_sure_delete_comment?: هل أنت متأكد أنك تريد حذف هذا التعليق؟
@@ -5076,41 +5061,6 @@ ar:
         you_must_enter_confirmation_code_in_the_form: |
           يجب عليك إدخال "%{confirmation_code}" في النموذج لحذف حسابك
       edit:
-        blocking_desc_html: |2
-          <p> 
-            يؤدي حظر شخص ما إلى منعهم من مراسلتك، والتعليق على ملاحظاتك، 
-            وتحديد ملاحظاتك، والتفاعل 
-            معك في %{site_name}، كما أنه يزيل ملاحظاتهم من 
-            نتائج البحث ويزيل ملاحظاتك من 
-            نتائج البحث الخاصة بهم، ومع ذلك، فإنه لا يجعلك غير مرئي لهم، لا 
-            يزال بإمكانهم العثور على ملاحظاتك وعرض ملف التعريف الخاص بك، ولا يمكن أن 
-            يتفاعلوا معك. 
-          </p> 
-          <p> 
-            الحظر هو للحالات التي لا يمكنك فيها الوصول إلى قرب
-            شخص ما، ولن يتركك بمفردك، على الرغم من أفضل ما تبذله من جهود 
-            لتسوية النزاعات بطريقة متحضرة، إنها ليست وسيلة للاختباء من
-            الأشخاص، لمنع هويات الأشخاص الذين 
-            لا تثق بهم، أو تعطيل معرف المجتمعية (هناك 
-            وضع آخر لذلك)، وبالتالي، فإن منع الأعمال في كلا الاتجاهين: إذا قمت بحظر 
-            شخص ما، فإنه لا يمكن أن يتفاعل معك، ولكن أيضا لا يمكن أن تتفاعل 
-            معهم، إذا كنت أسأت استخدام منع شخص ما من تحديد 
-            ملاحظاتك، يمكنك أيضا منع نفسك من تحديد 
-            ملاحظاتهم. 
-          </p> 
-          <p> 
-            يمكنك حظر ثلاثة أشخاص فقط، ونحن نعتقد أن هذا هو 
-            العدد المعقول الذي يستوعب الناس الذين يحتاجون إلى منع في حين 
-            منع إساءة الاستخدام للحجب، إذا كنت تشعر أنك بحاجة إلى حظر المزيد من 
-            الأشخاص، فيُرجًى <a href="mailto:%{help_email}">الاتصال بنا</a
-          </p> 
-          <p> 
-            إذا كان شخص ما يضايقك أو يطاردك في %{site_name}، 
-            <a href="mailto:٪{help_email}"> فيُرجَى إخبارنا بذلك</a>، إذا كان 
-            هذا يمثل انتهاكا لشروط الخدمة أو يمثل 
-            سلوكا آخر نعتبره غير لائق لموقعنا، 
-            فسنحقق في ذلك. 
-          </p>
         common_names_desc: |
           عرض الأسماء الشائعة، التعطيل إذا كنت تريد فقط لعرض الأسماء العلمية،
           لاحظ أنه يمكنك التحكم في الأسماء الشائعة التي تراها من خلال تغيير
@@ -5283,10 +5233,6 @@ ar:
           هويتك من خلال تبرعك الحالي.
     welcome:
       index:
-        welcome_message_html: |
-          ل%{image}، حيث يمكنك <strong>تسجيل</strong> ما تراه في الطبيعة، و 
-          <strong>مقابلة</strong> محبي طبيعة آخرين، 
-          و<strong>التعلم</strong> عن العالم الطبيعي.
         connect_with_nature: تواصل مع الطبيعة
         explore_and_share: استكشف وتبادل ملاحظاتك من العالم الطبيعي.
         observations_to_date: 'ملاحظات للتاريخ'

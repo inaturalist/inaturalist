@@ -405,6 +405,8 @@ sv:
   agree_with_current_taxon: Håll med om aktuellt taxon
   agreeing: Håller med...
   aka: även känd som
+  #Noun, title of a popup alerting you to something
+  alert: OBS!
   all: Alla
   all_comments: Alla kommentarer
   all_flags_must_be_resolved: Alla flaggor måste vara lösta
@@ -2284,6 +2286,7 @@ sv:
     portuguese: Portugisiska
     romanian: Rumänska
     russian: Ryska
+    santali: santali
     setswana: Setswana
     sinhala: Singalesiska
     slovak: Slovakiska
@@ -2403,6 +2406,7 @@ sv:
     pt: Portugisiska
     pt-BR: Portugisiska (Brasilien)
     ru: Ryska
+    sat: santali
     sk: Slovakiska
     sl: Slovenska
     sq: Albanska
@@ -3121,7 +3125,6 @@ sv:
   open_description: "Alla kan se koordinaterna såvida detta taxon inte är hotat."
   open_street_map: OpenStreetMap
   optional: valfritt
-  optional_columns_note_for_any: "Valfria kolumner (obs: för att någon av dessa kolumner ska kunna användas i ett fynd, måste alla finnas med)"
   or: eller
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3236,15 +3239,62 @@ sv:
   photos_updated: Bilder uppdaterade.
   pi_consent_desc_title: Om personuppgifter
   pi_consent_desc_html: |
-    Vi lagrar personuppgifter som användarnamn och e-postadresser för att hantera konton på denna webbplats, och för att följa integritetslagstiftning,
-    du behöver kryssa i den här rutan för att ange att du samtycker till hur vi använder personuppgifter. För att lära dig mer om vilken information vi samlar in och
-    hur vi använder den, vänligen se vår
-    <a href='%{privacy_url}' target='_blank'>integritetspolicy</a>
-    och våra <a href='%{terms_url}' target='_blank'>användarvillkor</a>.
+    <p>
+    Vi sparar personuppgifter som användarnamn och e-postadresser
+    för att kunna hantera konton på denna webbplats, och för att vi ska kunna
+    följa integritetslagar behöver du kryssa i denna ruta för att visa att du samtycker
+    till denna användning av personuppgifter. För att lära dig mer om vilken
+    information vi samlar in och hur vi använder den, vänligen se vår
+    <a href='%{privacy_url}' target='_blank'>Integritetspolicy</a>
+    och våra <a href='%{terms_url}' target='_blank'>Användarvillkor</a>.
+    </p>
+    <p>
+    Man kan inte ha ett iNaturalist-konto utan att personuppgifter
+    lagras, så det enda sättet du kan återkalla detta samtycke är genom
+    att ta bort ditt konto.
+    </p>
   pi_consent_label: |
     Jag medger att iNaturalist får lagra och bearbeta en begränsad typ av personuppgifter om mig för att kunna hantera mitt konto
   pi_consent_child_label: |
     Jag medger att iNaturalist får lagra och bearbeta en begränsad typ av personuppgifter om mitt barn för att kunna hantera mitt barns konto
+  data_transfer_consent_desc_title: Om samtycke till överföring av personuppgifter
+  data_transfer_consent_desc_html: |2
+    <p>
+    Vissa datasekretesslagar, såsom Europeiska unionens dataskyddsförordning
+    (GDPR), kräver uttryckligt samtycke för att överföra personuppgifter
+     från deras jurisdiktioner till andra jurisdiktioner där det rättsliga skyddet
+    för denna information inte anses vara tillräckligt. Från och med
+    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>,
+    anser inte längre den Europeiska unionen att USA är en
+    jurisdiktion som ger tillräckligt rättsligt skydd för personuppgifter,
+    särskilt då på grund av möjligheten att den amerikanska regeringen
+    övervakar data som kommer in i USA. Det är möjligt att andra jurisdiktioner
+    kan ha samma åsikt.
+    </p>
+    <p>
+    Användning av iNaturalist kräver lagring av personuppgifter som din
+    e-postadress, all iNaturalist-data lagras i USA, och
+    vi kan inte vara säkra på vilken jurisdiktion du är i när du använder
+    iNaturalist, så för att följa integritetslagar som GDPR,
+    måste du uppge att du förstår och accepterar denna risk och samtycker
+    till att dina personuppgifter överförs till iNaturalists servrar i
+    USA.
+    </p>
+    <p>
+    Lär dig mer om vilken information vi samlar in och hur vi använder den,
+    se vår
+    <a href='%{privacy_url}' target='_blank'>Integritetspolicy</a>
+    och våra <a href='%{terms_url}' target='_blank'>Användarvillkor</a>.
+    </p>
+    <p>
+    Det finns inget sätt att ha ett iNaturalist-konto utan att lagra personuppgifter,
+    så det enda sättet att återkalla detta samtycke är genom att ta bort ditt
+    konto.
+    </p>
+  data_transfer_consent_label: |
+    Jag samtycker till att mina personuppgifter får överföras till USA
+  data_transfer_consent_child_label: |
+    Jag samtycker till att låta mitt barns personuppgifter överföras till USA
   pin_verb: Fäst
   pink: rosa
   pinned_locations_desc: |
@@ -4053,7 +4103,6 @@ sv:
   required: obligatorisk
   required_: Obligatorisk
   required_field: obligatoriskt fält
-  required_columns_in_order: Obligatoriska kolumner i ordning
   research: forskning
   research_: Forskning
   research_grade: Forskningsklass
@@ -4082,6 +4131,7 @@ sv:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "Återkalla %{site_name}?"
+  revoke_privacy_consent_warning: "Det enda sättet att återkalla detta samtycke är genom att ta bort ditt konto och all tillhörande data."
   rg_observations: RG-fynd
   role: Roll
   rotate_left: Rotera åt vänster
@@ -4964,7 +5014,6 @@ sv:
     %{user} anser att detta är en fullständig lista över %{taxon} i %{place}
   user_blocked: Användare blockerad
   user_commented: "%{user} kommenterade"
-  user_commented_on: "%{user} kommenterade på din %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} håller inte med om att detta är %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} håller inte med om tidigare mer precis bestämning"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -5072,7 +5121,6 @@ sv:
   view_taxon_page: Visa taxonsida
   view_taxon_page_for_this_x: "Visa taxonsida för denna %{x}"
   view_taxononomy_details_for_taxon: "Visa taxonomidetaljer för %{taxon}"
-  view_the: "Visa %{action}&#59; %{link}"
   view_the_observation: Visa fyndet
   view_user_observations: "Visa %{user}s fynd"
   view_x: "Visa %{x}"
@@ -6933,8 +6981,6 @@ sv:
           Eftersom du är en iNaturalist-bidragsgivare kunde vi verifiera din identitet med din befintliga donation.
     welcome:
       index:
-        welcome_message_html: |
-          till %{image}, där du kan <strong>spara</strong> det du ser i naturen, <strong>träffa</strong> andra naturälskare, och <strong>lära dig</strong> om naturen.
         connect_with_nature: Få kontakt med naturen
         explore_and_share: Utforska och dela dina fynd från naturen.
         observations_to_date: 'Fynd hittills'

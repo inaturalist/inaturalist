@@ -1249,6 +1249,8 @@ cs:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Pouze s úplnými souřadnicemi
+  coords_viewable_for_proj_desc: |
+    Zobrazit pouze pozorování z tohoto projektu, pro které můžete vidět "skutečné" souřadnice, včetně nepozorovaných pozorování, skrytých pozorování lidí, kteří vám důvěřují, skrytá pozorování lidí, kteří důvěřují tomuto projektu a pozorování skrytých ohrožených taxonů lidmi, kteří tomuto projektu důvěřují.
   copy: kopírovat
   copy_and_paste_the_following_code_to: Zkopírujte a vložte následující kód, pokud chcete toto hodnocení vložit na jinou webovou stránku.
   copy_and_paste_this_into_your_own_html: Zkopírujte a vložte do vašeho vlastního HTML.
@@ -2637,11 +2639,6 @@ cs:
   messages_new_correspondent_personal: |
     Nezpřístupněte své osobní informace lidem, kterým
     nedůvěřujete.
-  messages_new_correspondent_actions_html: |
-    Pokud máte podezření, že tato osoba porušuje naše <a href="%{tos_url}"
-    target="_blank">Smluvní podmínky</a> nebo nejedná v souladu s našimi <a
-    href="%{guidelines_url}" target="_blank">Pravidly komunity</a>, prosíme,
-    označte tuto zprávu níže.
   minimum_positional_accuracy: Minimální přesnost polohy
   misidentifications: Zprávy
   misleading_or_illegal_content_html: |
@@ -3213,7 +3210,6 @@ cs:
   open_description: "Souřadnice uvidí všichni, pokud není taxon ohrožený."
   open_street_map: OpenStreetMap
   optional: nepovinné
-  optional_columns_note_for_any: "Nepovinné sloupce (poznámka: aby mohly být tyto sloupce použity pro pozorování, musí být všechny přítomné)"
   or: nebo
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3327,13 +3323,6 @@ cs:
     original: původní
   photos_updated: Fotky byly aktualizovány.
   pi_consent_desc_title: O osobní údajích
-  pi_consent_desc_html: |
-    Osobní údaje, jako jsou uživatelská jména a e-mailové adresy, ukládáme kvůli spravování účtú na tomto webu. V souladu se zákony na ochranu soukromí
-    musíte zaškrtnout toto políčko, abyste uvedli, že souhlasíte s použitím těchto
-    osobních informací. Chcete-li se dozvědět více o tom, jaké informace shromažďujeme a
-    jak to používáme, podívejte se na naše
-    <a href='%{privacy_url}' target='_blank'> Zásady ochrany osobních údajů </a>
-    a naše <a href='%{terms_url}' target='_blank'> smluvní podmínky </a>.
   pi_consent_label: |
     Souhlasím s tím, že umožním iNaturalist ukládat a zpracovávat omezené
     osobní údaje o mně za účelem správy mého účtu
@@ -4176,7 +4165,6 @@ cs:
   required: povinné
   required_: Povinné
   required_field: povinné pole
-  required_columns_in_order: Povinné sloupce v pořadí
   research: výzkum
   research_: Výzkum
   research_grade: Výzkumný stupeň
@@ -4795,7 +4783,6 @@ cs:
   terms: Podmínky
   terms_and_rules_html: "Podmínky &amp; Pravidla"
   terms_new_users: "Pokud přidáte podmínky, musí je noví uživatelé odsouhlasit, než se připojí k tomuto projektu."
-  terms_service: Podmínky služby
   terrain: terén
   text: Text
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4945,9 +4932,6 @@ cs:
   top_identifiers_of_taxon: Nejlepší identifikátoři %{taxon}
   top_observer_caps: TOP POZOROVATEL
   top_observers: Nejlepší pozorovatelé
-  tos_privacy_guidelines_label: |
-    Souhlasím s <a href="/terms" target="_blank">Podmínkami služby</a> a
-    <a href="/privacy" target="_blank">Zásadami ochrany osobních údajů</a>, a seznámil/a jsem se s <a href="/pages/community+guidelines" target="_blank">Pravidly komunity</a>.
   total: Součet
   totals: Součty
   total_ids_on_input_taxon: "Celkem ID vstupního taxonu:"
@@ -5114,7 +5098,6 @@ cs:
     %{user} se domnívá, že toto je komplexní seznam %{taxon} v %{place}
   user_blocked: Uživatel zablokován
   user_commented: "Uživatel %{user} přidal komentář"
-  user_commented_on: "Uživatel %{user} okomentoval váš %{title} %{time}"
   user_disagrees_this_is_taxon: "Uživatel %{user} nesouhlasí s tím, že toto je %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nesouhlasí s předchozí identifikací"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -5222,7 +5205,6 @@ cs:
   view_taxon_page: Zobrazit stránku taxonu
   view_taxon_page_for_this_x: "Zobrazit stránku taxonu pro tento %{x}"
   view_taxononomy_details_for_taxon: "Zobrazit podrobnosti taxonomie pro %{taxon}"
-  view_the: "Zobrazit %{action}&#59; %{link}"
   view_the_observation: Zobrazit pozorování
   view_user_observations: "Zobrazit pozorování uživatele %{user}"
   view_x: "Zobrazit %{x}"
@@ -5480,8 +5462,6 @@ cs:
   you_must_specify_and_confirm_a_new_password: Musíte uvést a potvrdit nové heslo.
   you_need_to_have_linked_flickr_account: Abyste mohli označovat své fotky, musíte mít propojený účet na Flickru.
   you_need_to_select_some_observations_first: Nejdřív musíte vybrat nějaká pozorování.
-  you_retain_full_copyright: "Veškerá vaše autorská práva k vašemu obsahu budou zachována, s výjimkou práv udělených %{site_name} podle našich Podmínek služby."
-  you_retain_full_copyright_over_your_content: "Veškerá vaše autorská práva k vašemu obsahu budou zachována, s výjimkou práv udělených %{site_name} podle našich Podmínek služby."
   you_should_delete_this_taxon_change: |
     Pravděpodobně byste měli tuto změnu taxonu smazat nebo alespoň najít nějaké řešení s osobou/osobami, které provedly jinou změnu/jiné změny.
   you_sure_delete_asset?: Jste si jistí, že chcete tuto položku smazat?
@@ -6991,19 +6971,6 @@ cs:
           Chcete-li účet smazat, musíte do formuláře zadat %{confirmation_code}
       edit:
         about_third_party_tracking: O sledování třetí strany
-        blocking_desc_html: |
-          <p>
-          Když někoho zablokujete, nebude vám moci posílat zprávy, vkládat komentáře k vašim pozorováním, identifikovat vaše pozorování ani s vámi na %{site_name} být jinak ve spojení. Také tím odstraníte jeho pozorování z výsledků svého vyhledávání a odstraníte vaše pozorování z jejich výsledků vyhledávání. Nebudete pro něj ale neviditelní. Stále mohou najít vaše pozorování a podívat se na váš profil, jen mezi vámi nemůže probíhat interakce.
-          </p>
-          <p>
-          Blokování je pro situace, kdy s někým prostě nevycházíte a on vás nenechá na pokoji, přestože se ze všech sil snažíte své spory urovnat civilizovaným způsobem. Není to způsob, jak se před lidmi schovávat, bránit identifikacím od lidí, jejichž názorům nedůvěřujete nebo si zvolit možnost nevyužívat komunitní ID (na to je jiné nastavení). Blokování tak funguje oběma směry: pokud někoho zablokujete, nemůže se s vámi spojit, ale zároveň se vy nemůžete spojit s ním. Pokud tuto možnost zneužijete k tomu, aby někdo nemohl identifikovat vaše pozorování, také znemožníte sami sobě identifikovat jeho pozorování.
-          </p>
-          <p>
-          Zablokovat můžete jen tři lidi. Myslíme si, že je to rozumné číslo, do kterého se vejdou lidé, které je třeba zablokovat, a zároveň nebude blokování zneužíváno. Pokud si myslíte, že potřebujete zablokovat víc lidí, <a href="mailto:%{help_email}">kontaktujte nás</a>.
-          </p>
-          <p>
-          Pokud vás někdo na %{site_name} obtěžuje nebo sleduje, <a href="mailto:%{help_email}">informujte nás prosím</a>. Pokud takové jednání představuje porušení našich podmínek služby nebo jiný druh chování, který považujeme za nevhodný pro naše stránky, záležitost prošetříme.
-          </p>
         common_names_desc: |
           Zobrazení obecných názvů. Zakažte, pokud chcete zobrazovat pouze vědecké názvy. Vezměte na vědomí, že můžete upravovat, jaké obecné názvy vidíte, změnou svého místního nastavení.
         display_monthly_supporter_status_on_my_profile: |
@@ -7197,8 +7164,6 @@ cs:
           identitu s vaším stávajícím darem.
     welcome:
       index:
-        welcome_message_html: |
-          do %{image}, kde můžete <strong>zaznamenávat</strong> to, co vidíte v přírodě, <strong>setkávat se</strong> s dalšími milovníky přírody a <strong>dozvídat se</strong> o světě přírody.
         connect_with_nature: Spojte se s přírodou
         explore_and_share: Objevujte a sdílejte svá pozorování ze světa přírody.
         observations_to_date: 'Pozorování k dnešnímu dni'

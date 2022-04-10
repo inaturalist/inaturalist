@@ -405,6 +405,7 @@ lt:
   add_life_stage_egg_annotation: 'Pridėti „Amžiaus tarpsnis: Kiaušinis“ papildomą informaciją'
   add_evidence_of_presence_organism_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: pats organizmas“'
   add_evidence_of_presence_feather_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: plunksna“'
+  add_evidence_of_presence_gall_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: galas“'
   add_evidence_of_presence_scat_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: išmatos“'
   add_evidence_of_presence_track_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: pėdsakai“'
   add_evidence_of_presence_bone_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: kaulas“'
@@ -469,6 +470,8 @@ lt:
   agree_with_current_taxon: Pritarti esamam taksonui
   agreeing: Sutinkama...
   aka: dar žinomas kaip
+  #Noun, title of a popup alerting you to something
+  alert: Įspėjimas
   all: Visi
   all_comments: Visi komentarai
   all_flags_must_be_resolved: Visos žymės turi būti išspręstos
@@ -662,7 +665,7 @@ lt:
   applications: Programėlės
   #Button label and section header when submitting a form to request to be a
   #curator
-  apply_curator: Taikyti
+  apply_curator: Pateikti
   apply_to_selected: Taikyti pasirinktiems
   apply_captive_cultivated: "Pritaikyti naminius/kultivuojamus"
   apply_fields: Taikyti laukus
@@ -1123,6 +1126,8 @@ lt:
     evidence_of_presence: Organizmo buvimo įrodymai
     #As in the feather on a bird
     feather: Plunksna
+    #Abnormal growth
+    gall: Galas
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organizmas
@@ -1151,6 +1156,7 @@ lt:
     bone: |
       Daugiausia endoskeleto liekanos; dalinis kaulo atsidengimas daugiau nepažeistame organizme turėtų būti įvardijamas kaip „organizmas“
     molt: Numesta oda arba egzoskeletas
+    gall: Parazitinių organizmų sukelta augalo audinio deformacija
   controls: Valdikliai
   convert: Konvertuoti
   coordinate_systems: Koordinačių sistemos
@@ -3418,7 +3424,6 @@ lt:
   required: privalomas
   required_: Privalomas
   required_field: privalomas laukas
-  required_columns_in_order: Privalomi stulpeliai iš eilės
   research_grade: Identifikuotas
   research_grade_short_html: "I<span class='full'>dentifikuotas</span><span class='full'></span>"
   research_grade_observations_have: '"Identifikuoti" stebėjimai turi datą, nuotrauką, koordinates ir bendruomenės patvirtintą ID. Paspauskite, kad pamatytumėte duomenų kokybės įvertinimą.'
@@ -4086,7 +4091,6 @@ lt:
     %{user} mano, jog tai yra išsamus %{taxon} sąrašas vietovėje: %{place}
   user_blocked: Vartotojas užblokuotas
   user_commented: "%{user} paliko komentarą"
-  user_commented_on: "%{user} paliko komentarą %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} nesutinka, kai tai %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nesutinka su ankstesnėmis smulkesnėmis identifikacijomis"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -4183,7 +4187,6 @@ lt:
   view_taxon_page: Rodyti taksono puslapį
   view_taxon_page_for_this_x: "Rodyti taksono puslapį šiam %{x}"
   view_taxononomy_details_for_taxon: "Rodyti taksonomijos informaciją: %{taxon}"
-  view_the: "Rodyti %{action}&#59; %{link}"
   view_the_observation: Rodyti stebėjimą
   view_user_observations: "Rodyti vartotojo %{user} stebėjimus"
   view_x: "Žiūrėti %{x}"

@@ -394,6 +394,8 @@ da:
   agree_with_current_taxon: Enig i den aktuelle takson
   agreeing: Er enig...
   aka: også kendt som
+  #Noun, title of a popup alerting you to something
+  alert: Advarsel
   all: Alle
   all_comments: Alle kommentarer
   all_flags_must_be_resolved: Alle markeringer skal være løst
@@ -1133,6 +1135,10 @@ da:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Kun m/ fulde koordinater
+  coords_viewable_for_proj_desc: |
+    Vis kun observationer fra dette projekt, for hvilke de "reelle"
+    koordinater kan ses, herunder uslørede observationer, slørede observationer fra
+    personer, som stoler på dig, slørede observationer fra personer, som tiltror dette projekt alle datatyper samt observationer sløret grundet truede taksa af personer, som kun tiltror dette projekt data sløret pga. nævnt forhold.
   copy: Kopiér
   copy_and_paste_the_following_code_to: Kopiér og indsæt følgende kode for at integrere denne vurdering på en anden webside.
   copy_and_paste_this_into_your_own_html: Kopiér og indsæt dette i din egen HTML.
@@ -1208,11 +1214,10 @@ da:
   curator_application_fields_explanation_html: Hvorfor vil du gerne være kurator?
   #Prompt for information when applying to be a curator
   curator_application_fields_taxonomy_examples_html: |
-    Ønsker du at redigere iNaturalists taksonomi, så angiv et eksempel eller to på de taksonomiske ændringer, du gerne vil foretage, og inkludere kilder til dine
-    foreslåede ændringer. Såfremt relevant, bedes du citere de korrekte taksonomiske myndigheder <a
+    Ønsker man at redigere iNaturalists taksonomi, så angiv et eksempel eller to på de taksonomiske ændringer, som ønskes foretaget, og medtag kilder til de
+    foreslåede ændringer. Såfremt relevant, bedes de korrekte taksonomiske myndigheder citeret <a
     href="https://www.inaturalist.org/pages/curator+guide#policies">, som anført
-    i Kuratorvejledning</a>. Inkluderer du ingen kilder, tages din
-    ansøgning ikke i betragtning.
+    i Kurator Guide</a>. Medtages ingen kilder, tages ansøgningen ikke i betragtning.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Ønsker du at redigere almindelige navne, så angiv et eksempel eller to på
@@ -2266,6 +2271,7 @@ da:
     portuguese: Portugisisk
     romanian: Rumænsk
     russian: Russisk
+    santali: Santali
     setswana: Setswana
     sinhala: Singalesisk
     slovak: Slovakisk
@@ -2284,7 +2290,7 @@ da:
   licensed_site_photos: "Licenserede %{site_name} fotos"
   license: Licens
   licensing: Valg af licens
-  licensing_your_content_gives_others_legal: "Licensudstedelse af dit indhold giver andre legal ret til at bruge det, hvis de respekterer licensbetingelserne. %{site_name} bruger dit Creative Commons-licenserede indhold til at dele med datapartnere så som"
+  licensing_your_content_gives_others_legal: "Licensering af dit indhold giver andre juridisk ret til at benytte det, såfremt de overholder licensbetingelserne. %{site_name} bruger dit Creative Commons-licenserede indhold til at dele med datapartnere såsom "
   life: Liv
   life_list: "%{user}'s Livsliste"
   linear_scale_label: Lineær
@@ -2385,6 +2391,7 @@ da:
     pt: Portugisisk
     pt-BR: Portugisisk (Brasilien)
     ru: Russisk
+    sat: Santali
     sk: Slovakisk
     sl: Slovensk
     sq: Albansk
@@ -2527,8 +2534,8 @@ da:
   messages_new_correspondent_personal: |
     Videregiv ingen af dine personlige oplysninger til ikke-betroede parter.
   messages_new_correspondent_actions_html: |
-    Har du mistanke om, at vedkommende overtræder vores <a href="%{tos_url}"
-    target="_blank">Tjenestevilkår</a> eller ikke handler i overensstemmelse med vores <a
+    Har man mistanke om, at vedkommende overtræder vores <a href="%{tos_url}"
+    target="_blank">Vilkår for brug</a> eller ikke handler i overensstemmelse med vores <a
     href="%{guidelines_url}" target="_blank">Fællesskabsretningslinjer</a>, så
     markér venligst denne besked nedenfor.
   minimum_positional_accuracy: Minimal placeringsnøjagtighed
@@ -3115,7 +3122,6 @@ da:
   open_description: "Alle kan se koordinaterne, medmindre taksonen er truet."
   open_street_map: OpenStreetMap
   optional: valgfri
-  optional_columns_note_for_any: "Valgfrie kolonner (Bemærk: for brug af enhver af disse kolonner, der skal bruges til en observation, skal de alle være til stede)"
   or: eller
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3230,13 +3236,39 @@ da:
   photos_updated: Foto´s opdateret
   pi_consent_desc_title: Om personlig information
   pi_consent_desc_html: |
-    Vi opbevarer personlig information som brugernavne og e-mail adresser for at administrere konti på dette site, og for at overholde persondataloven beder vi dig markere denne boks for at indikere at du accepterer denne brug af
-    personlig information. Se mere om hvilken information vi indsamler og hvordan vi bruger den i vores <a href='%{privacy_url}' target='_blank'>fortrolighedspolitik</a>
-    og vores <a href='%{terms_url}' target='_blank'>brugerbetingelser</a>.
+    <p>
+    Vi opbevarer personlig information såsom brugernavne og e-mailadresser for at håndtere konti på dette websted, og for at overholde persondatalove, skal du afkrydse dette felt som indikation på din accept af denne brug af
+    personlig information. Se mere om, hvilken information vi indsamler, og hvordan vi bruger den i vores <a href='%{privacy_url}' target='_blank'>Fortrolighedspolitik</a>
+    og vores <a href='%{terms_url}' target='_blank'>Vilkår for brug</a>.
+    </p>
+    <p>
+    Der er ingen mulighed for at have en iNaturalist-konto, uden at der lagres personlige oplysninger, så dette samtykke kan kun tilbagekaldes ved at slette kontoen.
+    </p>
   pi_consent_label: |
     Jeg accepterer, at iNaturalist får tilladelse til at gemme og behandle begrænsede former for personlig information om mig, for at administrere min konto
   pi_consent_child_label: |
     Jeg accepterer, at iNaturalist får tilladelse til at gemme og behandle begrænsede former for personlig information om mit barn, for at administrere mit barns konto
+  data_transfer_consent_desc_title: Om Personlig Informationsoverførselssamtykke
+  data_transfer_consent_desc_html: |
+    <p>
+    Visse databeskyttelseslove, såsom EUs Generelle Databeskyttelsesforordning (GDPR), kræver udtrykkeligt samtykke for overførsel af personlige oplysninger fra deres jurisdiktioner til andre jurisdiktioner, hvor den retlige beskyttelse af disse oplysninger ikke anses for at være tilstrækkelig. Fra <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>, anser Den Europæiske Union ikke længere USA for at være en jurisdiktion, der yder tilstrækkelig retsbeskyttelse af personlige oplysninger, navnlig grundet muligheden for, at amerikansk regeringsovervågningsdata indberettes til USA. Det er muligt, at andre jurisdiktioner kan have samme opfattelse.
+    </p>
+    <p>
+    Brug af iNaturalist kræver opbevaring af personlige oplysninger såsom 
+    e-mailadresse, og alle iNaturalist-data lagres i USA, og vi kan ikke være sikre på, hvilken juridisk jurisdiktion du er i under brug af iNaturalist, så for at overholde fortrolighedslove såsom GDPR, skal du erklære, at du forstår og accepterer denne risiko samt give samtykke til overførsel af dine personlige oplysninger til iNaturalist-servere i
+    USA.
+    </p>
+    <p>
+    For mere information om, hvilke oplysninger vi indsamler, og hvordan vi bruger dem, se venligst vores <a href='%{privacy_url}' target='_blank'>Fortrolighedspolitik</a>
+    og vores <a href='%{terms_url}' target='_blank'>Vilkår for brug</a>.
+    </p>
+    <p>
+    Det er ikke på nogen måde muligt at have en iNaturalist-konto, uden at gemme personlige oplysninger, så den eneste måde at tilbagekalde dette samtykke på, er at slette din konto.
+    </p>
+  data_transfer_consent_label: |
+    Jeg giver samtykke til, at mine personlige oplysninger overføres til USA
+  data_transfer_consent_child_label: |
+    Jeg giver samtykke til, at mit barns personlige oplysninger overføres til USA
   pin_verb: Gem
   pink: lyserød
   pinned_locations_desc: |
@@ -4056,7 +4088,6 @@ da:
   required: obligatorisk
   required_: Obligatorisk
   required_field: obligatorisk felt
-  required_columns_in_order: Obligatoriske kolonner i rækkefølge
   research: forskning
   research_: Forskning
   research_grade: forskningskvalitet
@@ -4085,6 +4116,7 @@ da:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "Tilbagekald %{site_name}?"
+  revoke_privacy_consent_warning: "Dette samtykke kan alene tilbagekaldes ved at slette din konto samt alle hertil knyttede data."
   rg_observations: FK observationer
   role: Rolle
   rotate_left: Rotér til venstre
@@ -4693,7 +4725,7 @@ da:
   terms: Vilkår
   terms_and_rules_html: "Vilkår &amp; Regler"
   terms_new_users: "Hvis du tilføjer vilkår, skal nye brugere acceptere dem, inden de tilmelder sig dette projekt."
-  terms_service: Servicevilkår
+  terms_service: Vilkår for brug
   terrain: terræn
   text: Tekst
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4852,9 +4884,8 @@ da:
   top_observer_caps: OBSERVATIONSLEDER
   top_observers: Top observatører
   tos_privacy_guidelines_label: |
-    Jeg accepterer <a href="/terms" target="_blank">Tjenestevilkår</a> og
-    <a href="/privacy" target="_blank">Fortrolighedspolitik</a>, og jeg har gennemset
-    <a href="/pages/community+guidelines" target="_blank">Fællesskabsretningslinjer</a>.
+    Jeg accepterer <a href="/terms" target="_blank">Vilkår for brug</a> samt
+    <a href="/privacy" target="_blank">Fortrolighedspolitik</a>, og jeg har gennemgået <a href="/pages/community+guidelines" target="_blank">Fællesskabsretningslinjer</a>.
   total: I alt
   totals: totaler
   total_ids_on_input_taxon: "ID'er i alt for input-takson:"
@@ -5019,7 +5050,6 @@ da:
     %{user} mener, at dette er en omfattende liste over %{taxon} på %{place}
   user_blocked: Bruger blokeret
   user_commented: "%{user} kommenterede"
-  user_commented_on: "%{user} kommenterede på din %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} er uenig i denne %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig med tidligere, mere præcise identifikationer"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -5127,7 +5157,6 @@ da:
   view_taxon_page: Vis takson side
   view_taxon_page_for_this_x: "Vis takson side for dette %{x}"
   view_taxononomy_details_for_taxon: "Vis taksonomi detaljer for %{taxon}"
-  view_the: "Vis %{action}&#59; %{link}"
   view_the_observation: Vis observationen
   view_user_observations: "Vis %{user}'s observationer"
   view_x: "Vis %{x}"
@@ -5386,8 +5415,8 @@ da:
   you_must_specify_and_confirm_a_new_password: Du skal angive og bekræfte en ny adgangskode.
   you_need_to_have_linked_flickr_account: Du skal have en tilknyttet Flickr konto for at tagge dine foto´s.
   you_need_to_select_some_observations_first: Du skal først vælge nogle observationer.
-  you_retain_full_copyright: "Du beholder fuld ophavsret over dit indhold bortset fra de rettigheder, der er givet til %{site_name} i vores Servicevilkår."
-  you_retain_full_copyright_over_your_content: "Du beholder fuld ophavsret over dit indhold bortset fra de rettigheder, der er givet til %{site_name} i vores Servicevilkår."
+  you_retain_full_copyright: "Man beholder den fulde ophavsret til sit indhold bortset fra de rettigheder, som er givet til %{site_name} i vores Vilkår for brug."
+  you_retain_full_copyright_over_your_content: "Man beholder den fulde ophavsret til sit indhold bortset fra de rettigheder, som er givet til %{site_name} i vores Vilkår for brug."
   you_should_delete_this_taxon_change: |
     Du bør sikkert slette denne taksonændring, eller i det mindste finde ud af en
     form for løsning med vedkommende, som har foretaget den anden ændring(er).
@@ -7093,18 +7122,18 @@ da:
       edit:
         about_third_party_tracking: Om tredjepartssporing
         blocking_desc_html: |
-          <P>
-            At blokere nogen, forhindrer dem i at sende dig beskeder, kommentere på dine
-           observationer, identificere dine observationer og i det hele taget at interagere med dig på %{site_name}. Det fjerner også deres observationer fra dine søgeresultater og fjerner dine observationer fra deres søgeresultater. Dog gør det dig ikke usynlig for dem. De kan stadig finde dine observationer og se din profil, de kan bare ikke interagere med dig.
-          </P>
-          <P>
-            Blokering er til situationer, hvor du bare ikke kan komme overens med en eller anden, som bare ikke vil lade dig være, trods din bedste indsats for at løse tvister på en civiliseret måde. Det er ikke en måde, at skjule sig fra andre personer eller at forhindre identifikationer fra personer, hvis mening du ikke stoler på eller for at fravælge fællesskabs ID'et (der er en anden indstilling til det). Blokeringen virker således begge veje: hvis du blokerer nogen, så kan de ikke interagere med dig, men du kan heller ikke interagere med dem. Hvis du misbruger blokering for at forhindre nogen i at identificere dine observationer, forhindrer du også dig selv i at identificere deres observationer.
+          <p>
+          Blokeres nogen, forhindres vedkommende i at sende dig beskeder, kommentere på dine observationer, identificere dine observationer og i det hele taget at interagere med dig på %{site_name}. Det fjerner også vedkommendes observationer fra dine søgeresultater og fjerner dine observationer fra vedkommendes søgeresultater. Det gør dig dog ikke usynlig for dem. De kan stadig finde dine observationer og se din profil, de kan blot ikke interagere med dig.
           </p>
-          <P>
-            Du kan kun blokere tre personer. Vi mener, at dette er et rimeligt antal, der rummer de personer, der har brug for blokering, alt imens det forhindrer misbrug af blokering. Hvis du føler, at du skal blokere flere personer, så vær venlig at <a href="mailto:%{help_email}"> kontakte os</a>.
+          <p>
+          Blokering er til situationer, hvor du blot ikke kan enes med nogen, der bare ikke vil lade dig være, trods dine forsøg at løse tvister på en civiliseret måde. Det er ikke en måde, at skjule sig fra andre personer eller at forhindre identifikationer fra personer, hvis mening man ikke stoler på eller for at fravælge fællesskabs-ID'et (der er en anden indstilling til dét). Blokering virker således begge veje: Blokerer du nogen, så kan vedkommende ikke interagere med dig, men du kan heller ikke interagere med vedkommende. Misbruger du blokering til at forhindre nogen i at identificere dine observationer, forhindrer du også dig selv i at identificere deres observationer.
           </p>
-          <P>
-            Hvis nogen har chikaneret eller stalket dig på %{site_name},<ahref="mailto:%{help_email}">så lad os vide det</a>. Hvis dette er en overtrædelse af vores servicevilkår eller repræsenterer en anden opførsel, som vi anser for upassende for vores hjemmeside, og vil vi undersøge sagen.
+          <p>
+          Du kan kun blokere tre personer. Vi mener, at dette er et rimeligt antal, der tilgodeser personer med behov for blokering, men samtidig forhindrer misbrug af blokering. Ved behov for blokering af flere personer, så <a href="mailto:%{help_email}">kontakt os</a>.
+          </p>
+          <p>
+          Chikanerer eller stalker nogen dig på %{site_name},
+          <a href="mailto:%{help_email}">så lad os vide det</a>. Udgør dette en overtrædelse af vores Vilkår for brug eller anden adfærd, som vi anser for upassende på vores websted, vil vi undersøge sagen.
           </p>
         common_names_desc: |
           Vis lokale navne. Deaktiver, hvis du kun vil se videnskabelige navne.
@@ -7128,12 +7157,9 @@ da:
           Bemærk: Skift ikke for sjov din tilknytning, hvis du har flere end 1.000 observationer.
           </p>
         licensing_desc_html: |
-          Licensering af dit indhold giver andre personer juridisk ret til at bruge det
-          uden at spørge om din tilladelse, hvis de overholder betingelserne i
-          licensen. %{site_name} bruger dit Creative Commons licenseret indhold til at dele med datapartnere som <a href="http://www.gbif.org/"> Global
-          Biodiversitet information facilitet </a> (GBIF), en international,
-          interstatslig organisation, der udarbejder og distribuerer
-          biodiversitets information fra hele verden.
+          Licensering af dit indhold giver enhver den juridiske ret til at benytte dette uden at indhente din tilladelse, såfremt de overholder vilkårene i licensen. Derudover medtager %{site_name} dit Creative Commons-licenseret indhold i regelmæssigt opdaterede arkiver produceret til udvalgte partnerorganisationer med interesse for vores data. Eksempelvis medtager vi posterne No Copyright (CC0), Attribution (CC BY) og Attribution-NonCommercial (CC BY-NC) i det arkiv, vi genererer til <a href="http://www.gbif.org/">Global biodiversitetsinformation
+          Facility</a> (GBIF), en international, mellemstatslig organisation,
+          der kompilerer og distribuerer information om biodiversitet fra hele verden.
         license_description_attribution_html: |
           Licensbeskrivelser og billeder &copy; %{year} Creative Commons, benyttet under en <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution-licens</a> (så meta!)
         #Header for the section of the profile settings where you can choose to
@@ -7304,8 +7330,6 @@ da:
           Eftersom du er en iNaturalist-donor, kunne vi bekræfte din identitet med din eksisterende donation.
     welcome:
       index:
-        welcome_message_html: |
-          til%{image}hvor du kan <strong> registrere </strong>, hvad du ser i naturen, <strong> møde </strong> andre naturelskere, og <strong> lære </strong> om verdens natur.
         connect_with_nature: I kontakt med naturen
         explore_and_share: Udforsk og del dine observationer fra naturen.
         observations_to_date: 'Observationer til dato'

@@ -486,6 +486,8 @@ en:
   agree_with_current_taxon: Agree with current taxon
   agreeing: Agreeing...
   aka: aka
+  # Noun, title of a popup alerting you to something
+  alert: Alert
   all: All
   all_comments: All comments
   all_flags_must_be_resolved: All flags must be resolved
@@ -2496,6 +2498,7 @@ en:
     portuguese: Portuguese
     romanian: Romanian
     russian: Russian
+    santali: Santali
     setswana: Setswana
     sinhala: Sinhala
     slovak: Slovak
@@ -2616,6 +2619,7 @@ en:
     pt: Portuguese
     pt-BR: Portuguese (Brazil)
     ru: Russian
+    sat: Santali
     sk: Slovak
     sl: Slovenian
     sq: Albanian
@@ -2763,7 +2767,7 @@ en:
     trust.
   messages_new_correspondent_actions_html: |
     If you suspect this person is violating our <a href="%{tos_url}"
-    target="_blank">Terms of Service</a> or not acting in accordance with our <a
+    target="_blank">Terms of Use</a> or not acting in accordance with our <a
     href="%{guidelines_url}" target="_blank">Community Guidelines</a>, please
     flag this message below.
   minimum_positional_accuracy: Minimum positional accuracy
@@ -3370,7 +3374,6 @@ en:
   open_description: "Everyone can see the coordinates unless the taxon is threatened."
   open_street_map: OpenStreetMap
   optional: optional
-  optional_columns_note_for_any: "Optional columns (note: for any of these columns to be used in an observation, they must all be present)"
   or: or
   # Usually used to separate buttons or functional areas of the interface, e.g.
   # sign in fields OR sign in with Facebook
@@ -3486,19 +3489,67 @@ en:
   photos_updated: Photos updated.
   pi_consent_desc_title: About Personal Information
   pi_consent_desc_html: |
-    We store personal information like usernames and email addresses in order
-    to manage accounts on this site, and to comply with privacy laws, we
-    need you to check this box to indicate that you consent to this use of
-    personal information. To learn more about what information we collect and
-    how we use it, please see our
-    <a href='%{privacy_url}' target='_blank'>Privacy Policy</a>
-    and our <a href='%{terms_url}' target='_blank'>Terms of Service</a>.
+    <p>
+      We store personal information like usernames and email addresses in
+      order to manage accounts on this site, and to comply with privacy laws,
+      we need you to check this box to indicate that you consent to this use
+      of personal information. To learn more about what information we
+      collect and how we use it, please see our
+      <a href='%{privacy_url}' target='_blank'>Privacy Policy</a>
+      and our <a href='%{terms_url}' target='_blank'>Terms of Use</a>.
+    </p>
+    <p>
+      There is no way to have an iNaturalist account without storing personal
+      information, so the only way to revoke this consent is to delete your
+      account.
+    </p>
   pi_consent_label: |
     I consent to allow iNaturalist to store and process limited kinds of
     personal information about me in order to manage my account
   pi_consent_child_label: |
     I consent to allow iNaturalist to store and process limited kinds of
     personal information about my child in order to manage my child's account
+  data_transfer_consent_desc_title: About Personal Information Transfer Consent
+  data_transfer_consent_desc_html: |
+    <p>
+      Some data privacy laws, like the European Union's General Data
+      Protection Regulation (GDPR), require explicit consent to transfer
+      personal information from their jurisdictions to other jurisdictions
+      where the legal protection of this information is not considered
+      adequate. As of
+      <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>,
+      the European Union no longer considers the United States to be a
+      jurisdiction that provides adequate legal protection of personal
+      information, specifically because of the possibility of the US government
+      surveilling data entering the US. It is possible other jurisdictions
+      may have the same opinion.
+    </p>
+    <p>
+      Using iNaturalist requires the storage of personal information like your
+      email address, all iNaturalist data is stored in the United States, and
+      we cannot be sure what legal jurisdiction you are in when you are using
+      iNaturalist, so in order to comply with privacy laws like the GDPR, you
+      must acknowledge that you understand and accept this risk and consent
+      to transferring your personal information to iNaturalist's servers in
+      the US.
+    </p>
+    <p>
+      To learn more about what information we collect and how we use it,
+      please see our
+      <a href='%{privacy_url}' target='_blank'>Privacy Policy</a>
+      and our <a href='%{terms_url}' target='_blank'>Terms of Use</a>.
+    </p>
+    <p>
+      There is no way to have an iNaturalist account without storing personal
+      information, so the only way to revoke this consent is to delete your
+      account.
+    </p>
+  data_transfer_consent_label: |
+    I consent to allow my personal information to be transferred to the United
+    States of America
+  data_transfer_consent_child_label: |
+    I consent to allow my child's personal information to be transferred to the
+    United States of America
   pin_verb: Pin
   pink: pink
   pinned_locations_desc: |
@@ -4353,7 +4404,6 @@ en:
   required: required
   required_: Required
   required_field: required field
-  required_columns_in_order: Required columns in order
   research: research
   research_: Research
   research_grade: Research Grade
@@ -4383,6 +4433,7 @@ en:
   # Application is a third-party app or service the user has authorized to
   # access their iNat account
   revoke_external_application: "Revoke %{site_name}?"
+  revoke_privacy_consent_warning: "The only way to revoke this consent is to delete your account and all associated data."
   rg_observations: RG Observations
   role: Role
   rotate_left: Rotate Left
@@ -5026,7 +5077,7 @@ en:
   terms: Terms
   terms_and_rules_html: "Terms &amp; Rules"
   terms_new_users: "If you add terms, new users must agree to them before joining this project."
-  terms_service: Terms of Service
+  terms_service: Terms of Use
   terrain: terrain
   text: Text
   # Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -5198,7 +5249,7 @@ en:
   top_observer_caps: TOP OBSERVER
   top_observers: Top Observers
   tos_privacy_guidelines_label: |
-    I agree to the <a href="/terms" target="_blank">Terms of Service</a> and
+    I agree to the <a href="/terms" target="_blank">Terms of Use</a> and
     <a href="/privacy" target="_blank">Privacy Policy</a>, and I have reviewed
     the <a href="/pages/community+guidelines" target="_blank">Community Guidelines</a>.
   total: Total
@@ -5371,7 +5422,6 @@ en:
     %{user} believes this is a comprehensive list of %{taxon} in %{place}
   user_blocked: User blocked
   user_commented: "%{user} commented"
-  user_commented_on: "%{user} commented on your %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} disagrees this is %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} disagrees with previous finer identifications"
   # %{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -5485,7 +5535,6 @@ en:
   view_taxon_page: View Taxon Page
   view_taxon_page_for_this_x: "View taxon page for this %{x}"
   view_taxononomy_details_for_taxon: "View taxonomy details for %{taxon}"
-  view_the: "View the %{action}&#59; %{link}"
   view_the_observation: View the observation
   view_user_observations: "View %{user}'s observations"
   view_x: "View %{x}"
@@ -5766,8 +5815,8 @@ en:
   you_must_specify_and_confirm_a_new_password: You must specify and confirm a new password.
   you_need_to_have_linked_flickr_account: You need to have a linked Flickr account to tag your photos.
   you_need_to_select_some_observations_first: You need to select some observations first.
-  you_retain_full_copyright: "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service."
-  you_retain_full_copyright_over_your_content: "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service."
+  you_retain_full_copyright: "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Use."
+  you_retain_full_copyright_over_your_content: "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Use."
   you_should_delete_this_taxon_change: |
     You should probably delete this taxon change, or at least figure out some
     kind of solution with the person / people who made the other change(s).
@@ -7835,7 +7884,7 @@ en:
           <p>
             If someone is harassing or stalking you on %{site_name},
             <a href="mailto:%{help_email}">please let us know</a>. If
-            this represents a violation of our Terms of Service or represents
+            this represents a violation of our Terms of Use or represents
             other behavior we deem inappropriate for our site, we will
             investigate.
           </p>
@@ -8122,10 +8171,6 @@ en:
           identity with your existing donation.
     welcome:
       index:
-        welcome_message_html: |
-          to %{image}, where you can <strong>record</strong> what you see in nature,
-          <strong>meet</strong> other nature lovers,
-          and <strong>learn</strong> about the natural world.
         connect_with_nature: Connect with Nature
         explore_and_share: Explore and share your observations from the natural world.
         observations_to_date: 'Observations to Date'

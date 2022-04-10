@@ -1,4 +1,3 @@
-require_relative "../models/delayed_job" if Rails.env.development?
 #
 # A collection of tools useful for administrators.
 #
@@ -7,6 +6,8 @@ class AdminController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_required
   before_action :return_here, only: [:stats, :index, :user_content, :user_detail]
+
+  prepend_around_action :enable_replica, only: [:queries]
 
   layout "application"
 
@@ -43,6 +44,9 @@ class AdminController < ApplicationController
           @geoip_latitude, @geoip_longitude = geoip_response.results.ll
         end
       end
+      @email_suppressions = [
+        @display_user.email_suppressions.to_a, EmailSuppression.where( email: @display_user.email ).to_a
+      ].flatten.compact.uniq
     end
 
     respond_to do |format|
@@ -162,27 +166,27 @@ class AdminController < ApplicationController
   end
 
   def queries
-    @queries = ActiveRecord::Base.connection.active_queries
+    replica_pool = ActiveRecord::Base.connection.instance_variable_get( "@replica_pool" )
+    if replica_pool
+      # if configured to use replica DBs with Makara, fetch queries from all primaries and replicas
+      primary_pool = ActiveRecord::Base.connection.instance_variable_get( "@primary_pool" )
+      @queries = []
+      ( primary_pool.connections + replica_pool.connections ).flatten.each do |connection|
+        instance_queries = connection.active_queries.map do |q|
+          { db_host: connection.config[:host] }.merge( q )
+        end
+        @queries += instance_queries
+      end
+    else
+      @queries = ActiveRecord::Base.connection.active_queries.map do |q|
+        { db_host: ActiveRecord::Base.connection_db_config.host }.merge( q )
+      end
+    end
+    @queries.delete_if{ |q| q["query"] =~ /pg_stat_activity/ }
     render layout: "admin"
   end
 
-  def stop_query
-    if params[:pid] && params[:pid].match( /^\d+$/ )
-      kill_postgresql_pid( params[:pid].to_i, params[:state] )
-    end
-    redirect_to :queries_admin
-  end
-
   private
-
-  def kill_postgresql_pid( pid, state = nil )
-    return unless pid && pid.is_a?( Integer )
-    if state == "idle in transaction"
-      ActiveRecord::Base.connection.execute( "SELECT pg_terminate_backend(#{ pid })" )
-    else
-      ActiveRecord::Base.connection.execute( "SELECT pg_cancel_backend(#{ pid })" )
-    end
-  end
 
   def load_user_content_info
     user_id = params[:id] || params[:user_id]

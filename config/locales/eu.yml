@@ -1927,7 +1927,6 @@ eu:
   required: nahitaezkoa
   required_: Beharrezkoa
   required_field: Eskatutako eremua
-  required_columns_in_order: Ordenan eskatutako zutabeak
   research: ikerketa
   research_grade: Ikerketa maila
   research_grade_observations_have: " \"Ikerketa maila\" duten behaketek data, argazkia, koordenatuak eta komunitateak babestutako identifikazioa dute.\nKlikatu datuen kalitatearen ebaluazioa ikusteko."
@@ -2176,7 +2175,6 @@ eu:
   terms: Baldintzak
   terms_and_rules_html: "Baldintzak & Arauak"
   terms_new_users: "Erabiltzaile berriek baldintza hauek onartu behar dituzte proiektuarekin bat egin aurretik."
-  terms_service: Zerbitzuaren baldintzak
   terrain: eremua
   that_photo_doesnt_exist: Argazki hori ez da existitzen.
   that_observation_doesnt_exist: Behaketa hori ez da existitzen.
@@ -2302,7 +2300,6 @@ eu:
   user_added_an_x_to_noun_by_html: "%{user}-(e)k %{by}-(r)en %{x} gehitu zuen %{noun}-(e)ra"
   user_added_an_x_to_noun_html: "%{user}-(e)k %{x} gehitu zuen %{noun}-(e)ra"
   user_added_x_observations_html: "%{user}-(e)k %{x} behaketa gehitu zituen"
-  user_commented_on: "%{user}-(e)k aipatu zuen: %{title} %{time}"
   user_invite_observation_to_project: '%{user}-(e)k zure "%{observation}" behaketa %{project} proiektura gonbidatu nahi du.'
   user_is_a_naturalist: "%{user} naturalista da!"
   user_thinks_yours_is: "%{user} %{noun} zure %{observation} behaketa honelakoa da:"
@@ -2349,7 +2346,6 @@ eu:
   view_taxon_page: Taxonaren orrialdea ikusi
   view_taxon_page_for_this_x: "%{x} honetarako taxonaren orrialdea ikusi"
   view_taxononomy_details_for_taxon: "Ikusi %{taxon} taxoiaren xehetasun taxonomikoak"
-  view_the: "%{action} ikusi"
   view_the_observation: Behaketa ikusi
   view_user_observations: "Honen behaketak ikusi: %{user}"
   view_your_dashboard: Zure taula ikusi
@@ -2447,8 +2443,6 @@ eu:
   you_must_specify_and_confirm_a_new_password: Pasahitz berria zehaztu eta baieztatu behar duzu.
   you_need_to_have_linked_flickr_account: Flickr-eko kontua izan behar duzu lotuta argazkiak etiketatzeko.
   you_need_to_select_some_observations_first: Behaketa batzuk hautatu behar dituzu lehenik eta behin.
-  you_retain_full_copyright: "Edukiaren gaineko eskubide guztien jabe zara, %{site_name} guneari gure Zerbitzu Baldintzen arabera emandako eskubideena izan ezik."
-  you_retain_full_copyright_over_your_content: "Edukiaren gaineko eskubide osoen jabe zara, %{site_name} guneari gure Zerbitzu Baldintzen arabera emandako eskubideena izan ezik."
   you_sure_delete_asset?: Ziur zaude fitxategi hau ezabatu nahi duzula?
   you_sure_delete_check_list: "Ziur zaude zerrenda hau ezabatu nahi duzula? Zenbait pertsonek agian lan asko egingo zuten horretan..."
   you_sure_delete_comment?: Ziur zaude aipamena ezabatu nahi duzula?
@@ -2557,13 +2551,6 @@ eu:
         notification_preferences_taxon_changes: Aldaketak taxonomian
         project_addition_preferences:
           any: Edozein
-    welcome:
-      index:
-        welcome_message_html: |
-          %{image}(e)k biodibertsitateari buruzko informazio-atari
-          hau erabiltzera gonbidatzen zaitu eta bertan naturan behatutakoa partekatu,
-          naturatik ikasi eta informazioa beste naturalista batzuekin partekatu ahal
-          izango duzu.
   date:
     abbr_day_names:
       - ig.

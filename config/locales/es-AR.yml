@@ -1051,6 +1051,8 @@ es-AR:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Solo con las coordenadas completas
+  coords_viewable_for_proj_desc: |
+    Se muestran solo las observaciones de este proyecto, para lo cual puedes ver las coordinadas "reales", incluidas las observaciones despejadas, las observaciones ocultas por personas en las que confiás, las observaciones ocultas por personas que confían en este proyecto a toda costa y observaciones ocultas por amenazas de taxas de parte de personas que solo confían en este programa de la misma manera.
   copy: Copia
   copy_and_paste_the_following_code_to: Copia y pega el siguiente código para incrustar esta evaluación en otra página web.
   copy_and_paste_this_into_your_own_html: Copiar y pegar en tu propio HTML.
@@ -2152,6 +2154,7 @@ es-AR:
     portuguese: Portugués
     romanian: Rumano
     russian: Ruso
+    santali: Santalí
     setswana: Setsuana
     slovak: Eslovaco
     slovenian: Esloveno
@@ -2263,6 +2266,7 @@ es-AR:
     pt: Portugués
     pt-BR: Portugués (Brasil)
     ru: Ruso
+    sat: Santalí
     sk: Eslovaco
     sl: Esloveno
     sq: Albanés
@@ -2359,6 +2363,9 @@ es-AR:
   mark_all_as_unreviewed: Marca todas como no revisadas
   matching_species_will_shown_up_here: Las especies que encuentres se mostrarán aquí. El mapa mostrará un área si %{place} tiene alguna de esas especies.
   maverick: Disidente
+  maximum_positional_accuracy: Precisión posicional máxima
+  maximum_positional_accuracy_including_unknown: |
+    Máxima precisión posicional, incluyendo observaciones sin precisión posicional
   media: Multimedia
   media_type: Tipo de medios
   medium: medio
@@ -2396,6 +2403,7 @@ es-AR:
     Tené cuidado con las peticiones acerca de especímenes o datos ocultos. Tratá de verificar la identidad de la persona que hace la solicitud y si está pidiendo especímenes, pedile su permiso.
   messages_new_correspondent_personal: |
     No reveles tu información personal a personas en las que no confíes.
+  minimum_positional_accuracy: Precisión posicional mínima
   misidentifications: Identificaciones erróneas
   misleading_or_illegal_content_html: |
     Contenido ilegal o engañoso, insultos raciales o étnicos, etc.
@@ -2473,6 +2481,9 @@ es-AR:
   multiple_select_option: '-- múltiples --'
   multiple_taxa_for_taxon_change: "Más de una especie o grupo (entrada de datos para intercambiar/mezclar, salida de datos para separar)"
   multiple_taxon_ids_separated_by_commas: 'Varias IDs de taxones separadas por comas, p.e. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: debe estar en el proyecto %{project}
   must_be_in_taxon: debe estar en el taxón %{taxon}
   must_be_not_in_taxon: no debe estar en el taxón %{taxon}
   must_be_not_observed_by_user: no debe ser observado por %{user}
@@ -2884,7 +2895,6 @@ es-AR:
   open_description: "Todo el mundo puede ver las coordenadas a menos que el taxón esté en peligro."
   open_street_map: Mapa OpenStreetMap
   optional: opcional
-  optional_columns_note_for_any: "Columnas opcionales (nota: para cualquiera de estas columnas sean utilizadas en una observación, todas deben estar presentes)"
   or: o
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -2992,8 +3002,6 @@ es-AR:
     original: original
   photos_updated: Fotos actualizadas.
   pi_consent_desc_title: Sobre la Informacion Personal
-  pi_consent_desc_html: |
-    Almacenamos información personal como nombres de usuario y direcciones de correo electrónico para administrar cuentas en este sitio y para cumplir con las leyes de privacidad, necesitamos que marque esta casilla para indicar que acepta este uso de información personal. Para obtener más información sobre qué información recopilamos y cómo la usamos, consulte nuestro <a href='%{privacy_url}' target='_blank'>Política de Privacidad</a> y nuestro <a href='%{terms_url}' target='_blank'>Términos de Servicio</a>.
   pi_consent_label: |
     Permito a iNaturalist a almacenar y procesar ciertos tipos de
     información personal para administrar mi cuenta
@@ -3746,7 +3754,6 @@ es-AR:
   required: obligatorio
   required_: Obligatorio
   required_field: Campo requerido
-  required_columns_in_order: Columnas requeridas en orden
   research: investigación
   research_: Investigación
   research_grade: Grado de investigación
@@ -3878,6 +3885,9 @@ es-AR:
   show_active_and_inactive_taxa: Muestra especies activas e inactivas
   show_common_names: Mostrar nombres vernáculos
   show_hidden_content: Mostrar contenido oculto
+  show_history_by_this_user: Mostrar el historial de este usuario
+  show_history_for_this_kind_of_action: Mostrar el historial de este tipo de acción
+  show_history_for_this_record: Mostrar el historial de este registro
   show_keyboard_shortcuts: Mostrar Atajos de Teclado
   show_less: Muestra menos
   show_more: Muestra más
@@ -4276,7 +4286,6 @@ es-AR:
   terms: Términos
   terms_and_rules_html: "Términos &amp; Reglas"
   terms_new_users: "Si añade Términos, los nuevos usuarios deberán aceptarlos antes de unirse a este proyecto."
-  terms_service: Términos del servicio
   terrain: terreno
   text: Texto
   thanks!: '¡Gracias!'
@@ -4398,8 +4407,6 @@ es-AR:
   top_identifiers_of_taxon: Identificadores principales de %{taxon}
   top_observer_caps: OBSERVADOR PRINCIPAL
   top_observers: Mejores observadores
-  tos_privacy_guidelines_label: |
-    Acepto los <a href="/terms" target="_blank">Términos de servicio</a> y la <a href="/privacy" target="_blank">Política de privacidad</a>, y he revisado las <a href="/pages/community+guidelines" target="_blank">Directrices de la comunidad</a>.
   total: Total
   totals: Totales
   total_members: Total de miembros
@@ -4535,7 +4542,6 @@ es-AR:
   user_autocomplete_placeholder: roget, kueda, etc.
   user_blocked: Usuario bloqueado
   user_commented: "%{user} comentó"
-  user_commented_on: "%{user} comentó sobre tu %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} no está de acuerdo que es %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} no está de acuerdo con identificaciones anteriores más finas."
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -4637,7 +4643,6 @@ es-AR:
   view_taxon_page: Ver página del taxón
   view_taxon_page_for_this_x: "Ver página del taxón para este %{x}"
   view_taxononomy_details_for_taxon: "Ver detalles taxonómicos para %{taxon}"
-  view_the: "Ver la %{action}"
   view_the_observation: Ver la observación
   view_user_observations: "Ver observaciones de %{user}"
   view_x: "Ver %{x}"
@@ -4857,8 +4862,6 @@ es-AR:
   you_must_specify_and_confirm_a_new_password: Debes especificar y confirmar una nueva contraseña.
   you_need_to_have_linked_flickr_account: Debe tener una cuenta de Flickr vinculada para etiquetar sus fotos.
   you_need_to_select_some_observations_first: Debe seleccionar algunas observaciones primero.
-  you_retain_full_copyright: "Tu mantienes todos los derechos de autor sobre tu contenido aparte de aquellos derechos concedidos a %{site_name} en nuestros Términos de Servicio"
-  you_retain_full_copyright_over_your_content: "Tu retienes derechos de autor totales sobre tu contenido aparte de aquellos derechos otorgados a %{site_name} en nuestros Términos de Servicio."
   you_sure_delete_asset?: '¿Confirmas que quieres eliminar este activo?'
   you_sure_delete_check_list: "¿Está seguro que desea eliminar esta lista? Algunas personas podrían haber aportado mucho trabajo a ella..."
   you_sure_delete_comment?: '¿Confirmas que quieres eliminar el comentario?'
@@ -5988,20 +5991,6 @@ es-AR:
         you_must_enter_confirmation_code_in_the_form: |
           Introduce "%{confirmation_code}"  en la aplicación para eliminar tu cuenta
       edit:
-        blocking_desc_html: |
-          <p>
-          El bloqueo de una persona previene que te envíe mensajes, comente tus observaciones, identifique tus observaciones, e interactúe contigo en %{site_name}. También suprime sus observaciones de tus resultados de búsqueda y remueve tus observaciones de sus resultados de búsqueda. Sin embargo, no te hace invisible. Pueden encontrar tus observaciones y ver tu perfil, solamente no pueden interactuar con vos.
-          </p>
-          <p>
-          El bloqueo es para situaciones en donde simplemente no podés llevarte bien con algunas personas y no dejan de molestarte a pesar de tus mejores esfuerzos de aclarar las discusiones de forma civilizada. No es una forma para esconderte de la gente, para prevenir identificaciones de personas en cuya opinión no confiás, o de salirte de las identificaciones de la comunidad (hay otras maneras para eso). Así que el bloqueo funciona de las dos maneras: si bloqueás a alguien, no podrá interactuar con vos, ni vos podrás interactuar con ellos. Si lo utilizás erróneamente para prevenir que alguien identifique tus observaciones, no podrás tampoco identificar sus observaciones.
-          </p>
-          <p>
-          Solamente podés bloquear a tres personas. Pensamos que este es un número razonable y previene el abuso del bloqueo. Si pensás que tenés que bloquear a mas gente, por favor <a href="mailto:%{help_email}">contáctanos</a>.
-          </p>
-          <p>
-          Si alguien te está molestando %{site_name},
-          <a href="mailto:%{help_email}">contáctanos </a>. Si esto representa una violación a nuestros Términos de Servicio o representa comportamiento que consideramos inapropiado en nuestro sitio, investigaremos.
-          </p>
         common_names_desc: |
           Mostrar los nombres vernáculos. Desactiva la opción si quieres ver solo los científicos.
           Observa que puedes controlar cuáles nombres vernáculos ves al modificar la configuración de idioma y región.
@@ -6120,10 +6109,6 @@ es-AR:
           Debido a que usted es un donante INaturalist, pudimos verificar su identidad con su donación existente.
     welcome:
       index:
-        welcome_message_html: |
-          %{image} lo invita a utilizar este portal de información sobre biodiversidad, 
-          en el que podrá compartir lo que observa en la naturaleza, aprender de ella e 
-          intercambiar información con otros ciudadanos naturalistas.
         connect_with_nature: Conectate con la naturaleza
         explore_and_share: Explorá y compartí tus observaciones del mundo natural.
         observations_to_date: 'Observaciones hasta la fecha'
@@ -6508,10 +6493,25 @@ es-AR:
       taxon:
         auto_description: Cargar automáticamente la descripción
         auto_photos: Cargar fotos automáticamente
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Estado de conservación
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: ID del taxón icónico
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: '¿Activo?'
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: '¿Icónico?'
         locked: Candado
         name: Nombre
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Proveedor del nombre
         parent_id: Identificador de la clase o especie padre
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: '¿Fotos bloqueadas?'
         rank: Clasificación
+        source_id: Fuente del ID
         source_identifier: Identificador de la fuente
         source_url: Enlace fuente
         wikipedia_summary: Resumen de Wikipedia

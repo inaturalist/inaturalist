@@ -10,5 +10,12 @@
         =t :yes_license_my_childs_observations
       - else 
         =t :yes_license_my_observations_so_scientists_can_use
-      %a{ href: "#", onclick: "return false;", data: { toggle: "popover", content: t(:check_this_box_if_html), placement: "top" }, title: t(:about_licenses) }
+      %button#licensing-button.btn.btn-nostyle{ type: "button", data: { toggle: "modal", target: "#licensing-modal" } }
         =t :learn_more
+  #licensing-modal.modal.fade{ tabindex: -1, aria: { labelledby: "licensing-button" }}
+    .modal-dialog{role: "document"}
+      .modal-content
+        .modal-header
+          %button.close{:type => "button", "data-dismiss" => "modal"} &times;
+          =t :about_licenses
+        .modal-body=t :check_this_box_if_html

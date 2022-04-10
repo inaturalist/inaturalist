@@ -1304,6 +1304,29 @@ describe User do
       other_f.reload
       expect( other_f.user_id ).to be > 0
     end
+
+    it "removes the DeletedUser" do
+      u = create :user
+      user_id = u.id
+      User.forget( user_id, skip_aws: true )
+      expect( DeletedUser.where( user_id: user_id ).first ).to be_blank
+    end
+    it "removes EmailSuppressions associated with the user" do
+      u = create :user
+      user_id = u.id
+      es = create :email_suppression, user: u
+      User.forget( user_id, skip_aws: true )
+      expect( EmailSuppression.find_by_id( es.id ) ).to be_blank
+    end
+    it "removes EmailSuppressions with matching emails not associated with the user" do
+      u = create :user
+      user_id = u.id
+      email = u.email
+      es = create :email_suppression, email: u.email
+      expect( u.email_suppressions ).to be_blank
+      User.forget( user_id, skip_aws: true )
+      expect( EmailSuppression.find_by_email( email ) ).to be_blank
+    end
   end
 
   describe "ip_address_is_often_suspended" do

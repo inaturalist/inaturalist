@@ -1,4 +1,7 @@
 class OauthTokensController < Doorkeeper::TokensController
+  include Shared::FiltersModule
+  prepend_before_action :set_request_locale, :set_site
+
   # Override the doorkeeper method to provide more helpful error messages when
   # auth fails. Note the OAuth spec enforces the status, keys, and the
   # `error` of the response, but not the `error_description`. Note that there
