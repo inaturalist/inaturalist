@@ -306,24 +306,22 @@ def disable_user_email_domain_exists_validation
 end
 
 def load_time_zone_geometries
-  # tgz_fname = "western-us-time-zones.geojson.tgz"
-  # geojson_fname = "western-us-time-zones.geojson"
+  puts "load_time_zone_geometries"
   fixtures_path = File.join( Rails.root, "spec", "fixtures" )
-  # system "cd #{fixtures_path} && tar xzf #{tgz_fname}"
-  geojson_dir_path = File.join( Rails.root, "spec", "fixtures" )
   # Fetch data from this URL. It's not great to have this external dependency,
   # but the alternative is having a rather large fixture checked in
-  url = "https://github.com/evansiroky/timezone-boundary-builder/releases/download/2020d/timezones-with-oceans.geojson.zip"
+  url = "https://github.com/evansiroky/timezone-boundary-builder/releases/download/2020d/timezones-with-oceans.shapefile.zip"
   zip_fname = File.basename( url )
-  geojson_fname = "combined-with-oceans.json"
-  if File.exists?( File.join( geojson_dir_path, geojson_fname ) )
-    puts "#{geojson_fname} exists, skipping download"
+  shp_fname = "combined-shapefile-with-oceans.shp"
+  puts "checking if #{File.join( fixtures_path, shp_fname )} exists"
+  if File.exists?( File.join( fixtures_path, shp_fname ) )
+    puts "#{shp_fname} exists, skipping download"
   else
     puts "Downloading #{url}"
-    system "cd #{geojson_dir_path} && curl -L -s -o #{zip_fname} #{url}", exception: true
-    system "cd #{geojson_dir_path} && unzip #{zip_fname}", exception: true
+    system "cd #{fixtures_path} && curl -L -s -o #{zip_fname} #{url}", exception: true
+    system "cd #{fixtures_path} && unzip -o #{zip_fname}", exception: true
   end
-  TimeZoneGeometry.load_geojson_file( File.join( fixtures_path, geojson_fname ), logger: Logger.new( $stdout ) )
+  TimeZoneGeometry.load_shapefile( File.join( fixtures_path, shp_fname ), logger: Logger.new( $stdout ) )
 end
 
 def unload_time_zone_geometries
