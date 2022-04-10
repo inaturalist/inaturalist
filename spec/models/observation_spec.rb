@@ -3540,7 +3540,7 @@ describe Observation do
         Identification.make!( observation: @o, taxon: @s1 )
         Identification.make!( observation: @o, taxon: @s1 )
         i = Identification.make!( observation: @o, taxon: @g1 )
-        i.update( :disagreement, nil )
+        i.update_attribute( :disagreement, nil )
         i.reload
         expect( i.disagreement ).to eq nil
         @o.reload
@@ -3667,7 +3667,7 @@ describe Observation do
       it "s1 g1.disagreement_nil should be g1" do
         Identification.make!( observation: @o, taxon: @s1 )
         i = Identification.make!( observation: @o, taxon: @g1 )
-        i.update( :disagreement, nil )
+        i.update_attribute( :disagreement, nil )
         o = Observation.find( @o.id )
         expect( o.probable_taxon ).to eq @g1
       end

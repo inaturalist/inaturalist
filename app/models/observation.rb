@@ -2198,7 +2198,7 @@ class Observation < ApplicationRecord
   
   def update_default_license
     return true unless make_license_default.yesish?
-    user.update( :preferred_observation_license, license )
+    user.update_attribute( :preferred_observation_license, license )
     true
   end
   
