@@ -4361,6 +4361,9 @@ en:
   restart: Restart
   restore: Restore
   restoring: Restoring...
+  result_window_too_large_error: |
+    Page number times the number of results per page cannot exceed 10,000. Try
+    applying filters to reduce the number of results.
   review_all: Review All
   review_identifications_of_taxon_html: |
     Review identifications of <span class="sciname">%{taxon}</span> %{taxon_id}
