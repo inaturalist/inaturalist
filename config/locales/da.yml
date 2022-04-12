@@ -4107,6 +4107,9 @@ da:
   restart: Genstart
   restore: Gendan
   restoring: Gendanner...
+  result_window_too_large_error: |
+    Sideantal x antal resultater pr. side kan maks. udgøre 10.000. Prøv
+    at bruge filtre for at reducere resultatantallet.
   review_all: Gennemgå alle
   review_identifications_of_taxon_html: |
     Gennemgå identifikationer af <span class="sciname">%{taxon}</span> %{taxon_id}
