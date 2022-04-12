@@ -55,7 +55,7 @@ class Emailer < ActionMailer::Base
     mail_with_defaults(
       to: @user.email,
       subject: t( :site_observations_export_from_date,
-        site_name: @site.name,
+        site_name: site_name,
         date: l( @flow_task.created_at.in_time_zone( @user.time_zone ), format: :long ) )
     )
   end
@@ -68,7 +68,7 @@ class Emailer < ActionMailer::Base
     mail_with_defaults(
       to: @user.email,
       subject: t( :site_observations_export_from_date,
-        site_name: @site.name,
+        site_name: site_name,
         date: l( @flow_task.created_at.in_time_zone( @user.time_zone ), format: :long ) )
     )
   end
@@ -170,6 +170,7 @@ class Emailer < ActionMailer::Base
   def user_parent_confirmation( user_parent )
     @site = Site.default
     @user_parent = user_parent
+    @user = @user_parent.parent_user
     mail_with_defaults(
       to: user_parent.email,
       subject: t( "views.emailer.user_parent_confirmation.subject" )
@@ -243,19 +244,16 @@ class Emailer < ActionMailer::Base
   end
 
   def site_name
-    if ( site = @user.site )
-      site.name
-    else
-      @site.name
-    end
+    set_site
+    @site.name
   end
 
   def set_locale
     @locale_was = I18n.locale
-    I18n.locale = if !@user.locale.blank?
-      @user.locale
-    elsif @user.site && !@user.site.preferred_locale.blank?
-      @user.site.preferred_locale
+    I18n.locale = if !@user&.locale&.blank?
+      @user&.locale
+    elsif @user&.site && !@user&.site&.preferred_locale&.blank?
+      @user&.site&.preferred_locale
     else
       I18n.default_locale
     end
