@@ -3994,6 +3994,8 @@ id:
   restart: Mulai Ulang
   restore: Pulihkan
   restoring: Memulihkan…
+  result_window_too_large_error: |
+    Nomor halaman dikali jumlah hasil per halaman tidak boleh melebihi 10.000. Coba menggunakan saringan untuk mengurangi jumlah hasil.
   review_all: Tinjau Semua
   review_identifications_of_taxon_html: |
     Tinjau kembali identifikasi <span class="sciname">%{taxon}</span> %{taxon_id}
