@@ -4122,6 +4122,8 @@ sv:
   restart: Starta om
   restore: Återställ
   restoring: Återställer...
+  result_window_too_large_error: |
+    Sidnummer gånger antalet resultat per sida får inte överstiga 10 000. Försök använda filter för att minska antalet resultat.
   review_all: Granska alla
   review_identifications_of_taxon_html: |
     Granska bestämningar av <span class="sciname">%{taxon}</span> %{taxon_id}
