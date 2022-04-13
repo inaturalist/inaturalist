@@ -4020,6 +4020,8 @@ de:
   restart: Neustart
   restore: Wiederherstellen
   restoring: Stelle wieder her …
+  result_window_too_large_error: |
+    Die Seitenanzahl multipliziert mit der Anzahl der Ergebnisse pro Seite darf 10.000 nicht überschreiten. Versuche Filter anzuwenden, um die Anzahl der Ergebnisse zu reduzieren.
   review_all: Alle Überprüfen
   review_identifications_of_taxon_html: |
     Überprüfe Bestimmungen von <span class="sciname">%{taxon}</span> %{taxon_id}
