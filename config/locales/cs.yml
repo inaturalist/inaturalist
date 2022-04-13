@@ -4184,6 +4184,9 @@ cs:
   restart: Restart
   restore: Obnovit
   restoring: Obnovování...
+  result_window_too_large_error: |
+    Počet stránek krát počet výsledků na stránku nesmí překročit 10 000. Zkuste
+    použít filtry ke snížení počtu výsledků.
   review_all: Označit všechny za zkontrolované
   review_identifications_of_taxon_html: |
     Přehled identifikací <span class="sciname">%{taxon}</span> %{taxon_id}
