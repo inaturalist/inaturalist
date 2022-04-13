@@ -4074,6 +4074,8 @@ fr:
   restart: Redémarrer
   restore: Rétablir
   restoring: Restauration …
+  result_window_too_large_error: |
+    Le nombre de pages multiplié par le nombre de résultats par page ne peut pas dépasser 10 000. Essayez d'appliquer des filtres pour réduire le nombre de résultats.
   review_all: Relire tout
   review_identifications_of_taxon_html: |
     Vérifier les identifications de <span class="sciname">%{taxon}</span> %{taxon_id}
