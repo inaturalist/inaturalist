@@ -18,8 +18,11 @@ export default class PhotoMarkerOverlayView extends google.maps.OverlayView {
 
   draw( ) {
     console.log( "[DEBUG] PhotoMarkerOverlayView draw, this.imgUrl: ", this.imgUrl, ", this.latLng: ", this.latLng );
-    const point = this.getProjection( ).fromLatLngToDivPixel( this.latLng );
-    if ( this.div ) {
+    const proj = this.getProjection( );
+    console.log( "[DEBUG] PhotoMarkerOverlayView draw, proj: ", proj );
+    if ( proj && this.latLng && this.div ) {
+      const point = proj.fromLatLngToDivPixel( this.latLng );
+      console.log( "[DEBUG] PhotoMarkerOverlayView draw, point: ", point );
       this.div.style.left = `${point.x}px`;
       this.div.style.top = `${point.y}px`;
     }
