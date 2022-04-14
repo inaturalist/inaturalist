@@ -3002,11 +3002,41 @@ fi:
     original: alkuperäinen
   photos_updated: Kuvat päivitetty.
   pi_consent_desc_title: Henkilötiedoista
+  pi_consent_desc_html: |
+    <p>Tallennamme henkilötietoa, kuten käyttäjänimiä ja sähköpostiosoitteita, hallitaksemme käyttäjätilejä tällä sivustolla. Ole hyvä ja anna suostumuksesi käyttää antamiasi henkilötietoja näihin tarkoituksiin rastittamalla ruutu. Voit lukea lisää mitä tietoja keräämme ja kuinka käytämme niitä
+    <a href='%{privacy_url}' target='_blank'>tietosuojaselosteesta</a>
+    ja <a href='%{terms_url}' target='_blank'>käyttöehdoista</a>.
+    </p>
+    <p>
+    iNaturalist-tiliä ei voi olla ilman henkilökohtaisten tietojen tallentamista, joten ainoa tapa peruuttaa tämä suostumus on poistaa
+    tilisi.
+    </p>
   pi_consent_label: |
     Kyllä, suostun siihen, että iNaturalist tallentaa ja käyttää tiettyjä henkilötietojani käyttäjätilini hallintaan
   pi_consent_child_label: |
     Kyllä, suostun siihen, että iNaturalist tallentaa ja käyttää tiettyjä lapseni henkilötietoja lapseni käyttäjätilin hallintaan
   data_transfer_consent_desc_title: Tietoja suostumuksesta henkilötietojen siirtoon
+  data_transfer_consent_desc_html: |
+    <p>
+    Jotkin tietosuojalait, kuten Euroopan unionin yleinen tietosuoja-asetus (GDPR), vaativat nimenomaista suostumusta
+    henkilötietojen siirtämiseen lainkäyttöalueeltaan muille lainkäyttöalueille, joilla näiden tietojen oikeudellista suojaa ei pidetä
+    riittävänä. Alkaen
+    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>,
+    Euroopan unioni ei enää pidä Yhdysvaltoja lainkäyttöalueena, joka tarjoaa riittävän oikeudellisen suojan henkilökohtaisille tiedoille,
+    erityisesti koska Yhdysvaltain hallitus voi seurata Yhdysvaltoihin siirrettyjä tietoja.
+    </p>
+    <p>
+    iNaturalistin käyttö edellyttää henkilökohtaisten tietojesi, kuten sähköpostiosoitteen, tallentamista ja kaikki iNaturalistin tiedot on tallennettu Yhdysvalloihin. Emme voi olla varmoja siitä, millä lainkäyttöalueella olet, kun käytät iNaturalistia, joten, jotta noudatettaisiin yksityisyyden suojaa koskevia lakeja, kuten GDPR, sinun on vahvistettava, että ymmärrät ja hyväksyt tämän riskin ja suostut henkilökohtaisten tietojesi siirtoon iNaturalistin palvelimille Yhdysvalloissa.
+    </p>
+    <p>
+    Jos haluat lisätietoja siitä, mitä tietoja keräämme ja miten käytämme niitä, katso meidän
+    <a href='%{privacy_url}' target='_blank'>Tietosuojaseloste</a>
+    ja <a href='%{terms_url}' target='_blank'>Käyttöehdot</a>.
+    </p>
+    <p>
+    iNaturalist-tiliä ei voi olla ilman henkilökohtaisten tietojen tallentamista, joten ainoa tapa peruuttaa tämä suostumus on poistaa
+    tilisi.
+    </p>
   data_transfer_consent_label: |
     Hyväksyn henkilötietojeni siirtämisen Amerikan yhdysvaltoihin
   data_transfer_consent_child_label: |
@@ -4295,6 +4325,8 @@ fi:
   top_identifiers_of_taxon: Taksonin %{taxon} parhaimmat tunnistajat
   top_observer_caps: PARAS HAVAINNOIJA
   top_observers: Eniten havainnoineet
+  tos_privacy_guidelines_label: |
+    Hyväksyn <a href="/terms" target="_blank">käyttöehdot</a> ja <a href="/privacy" target="_blank">tietosuojaselosteen</a>, ja olen tutustunut <a href="/pages/community+guidelines" target="_blank">yhteisön pelisääntöihin</a> (englanniksi).
   total: Yhteensä
   totals: Yhteensä
   total_members: Jäseniä yhteensä
