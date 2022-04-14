@@ -62,6 +62,7 @@ class LocationChooserMap extends React.Component {
       updateState,
       zoom
     } = this.props;
+    console.log( "[DEBUG] LocationChooserMap.render, this.props.zoom: ", this.props.zoom );
     const domNode = ReactDOM.findDOMNode( this );
     const map = new google.maps.Map( $( ".map-inner", domNode ).get( 0 ), {
       zoom: zoom || 1,
@@ -274,9 +275,13 @@ class LocationChooserMap extends React.Component {
     }
 
     // Delete existing overlays
+    console.log( "[DEBUG] deleting ", this.overlays.length, " overlays" );
     while ( this.overlays.length > 0 ) {
-      this.overlays.pop( ).setMap( null );
+      const overlay = this.overlays.pop( );
+      console.log( "[DEBUG] unsetting map for ", overlay );
+      overlay.setMap( null );
     }
+    console.log( "[DEBUG] this.overlays.length: ", this.overlays.length );
 
     // Add new circles
     if ( this.map && newCenter ) {

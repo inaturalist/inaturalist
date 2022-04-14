@@ -120,6 +120,7 @@ class LocationChooser extends SelectionBasedComponent {
       submitText,
       updateState
     } = this.props;
+    console.log( "[DEBUG] LocationChooser.render, this.props.zoom: ", this.props.zoom );
     let canSave = false;
     const latNum = Number( lat );
     const lngNum = Number( lng );

@@ -260,7 +260,7 @@ class DragDropZone extends Component {
       _.map( selectedObsCards, c => c.nonUploadedFiles().length )
     );
     const countPending = _.sum( _.map( obsCards, c => c.nonUploadedFiles().length ) );
-    /* global SITE */
+    console.log( "[DEBUG] locationChooser.zoom: ", locationChooser.zoom );
     return (
       <div onClick={DragDropZone.closeAutocompletes}>
         <Dropzone
