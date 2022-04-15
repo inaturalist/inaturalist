@@ -117,10 +117,10 @@ class LocationChooser extends SelectionBasedComponent {
       removeSavedLocation,
       savedLocations,
       saveLocation,
+      show,
       submitText,
       updateState
     } = this.props;
-    console.log( "[DEBUG] LocationChooser.render, this.props.zoom: ", this.props.zoom );
     let canSave = false;
     const latNum = Number( lat );
     const lngNum = Number( lng );
@@ -141,7 +141,7 @@ class LocationChooser extends SelectionBasedComponent {
       <option>{ I18n.t( "multiple_select_option" ) }</option> );
     return (
       <Modal
-        show={this.props.show}
+        show={show}
         className="location"
         onHide={this.close}
         backdrop="static"

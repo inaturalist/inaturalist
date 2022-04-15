@@ -58,11 +58,12 @@ class LocationChooserMap extends React.Component {
       center,
       config,
       center: existingCenter,
+      fitCurrentCircle,
+      show,
       updateCurrentUser,
       updateState,
       zoom
     } = this.props;
-    console.log( "[DEBUG] LocationChooserMap.render, this.props.zoom: ", this.props.zoom );
     const domNode = ReactDOM.findDOMNode( this );
     const map = new google.maps.Map( $( ".map-inner", domNode ).get( 0 ), {
       zoom: zoom || 1,
@@ -74,6 +75,7 @@ class LocationChooserMap extends React.Component {
       gestureHandling: "greedy",
       controlSize: 26
     } );
+    this.map = map;
     google.maps.event.addListener( map, "click", this.handleMapClick );
     google.maps.event.addListener( map, "maptypeid_changed", ( ) => {
       updateCurrentUser( { preferred_observations_search_map_type: this.map.getMapTypeId( ) } );
@@ -88,13 +90,17 @@ class LocationChooserMap extends React.Component {
         }
       } );
     } );
+    this.overlaysFromProps( );
     if ( map && !center ) {
-      setTimeout( this.fitCircles, 10 );
+      if ( !center ) {
+        setTimeout( this.fitCircles, 10 );
+      } else if ( show && fitCurrentCircle ) {
+        setTimeout( this.fitCurrentCircle, 10 );
+      }
     }
     if ( map ) {
       iNaturalist.log( { "map-placement": "observations-upload-location-chooser" } );
     }
-    this.map = map;
   }
 
   shouldComponentUpdate( nextProps ) {
@@ -114,30 +120,15 @@ class LocationChooserMap extends React.Component {
     } );
     const nextComparable = objectToComparable( {
       ..._.filter( nextProps, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
-      obsCards: _.keys( obsCards )
+      obsCards: _.keys( nextProps.obsCards )
     } );
     return comparable !== nextComparable;
   }
 
   componentDidUpdate( prevProps ) {
-    const {
-      center,
-      fitCurrentCircle,
-      show
-    } = this.props;
-
-    this.overlaysFromProps( );
-
-    // Fit map to circles
-    if ( show && !prevProps.show ) {
-      if ( !center ) {
-        setTimeout( this.fitCircles, 10 );
-      }
-    } else if (
-      show
-      && fitCurrentCircle
-      && objectToComparable( center ) !== objectToComparable( prevProps.center )
-    ) {
+    const { fitCurrentCircle } = this.props;
+    this.overlaysFromProps( prevProps );
+    if ( fitCurrentCircle ) {
       setTimeout( this.fitCurrentCircle, 10 );
     }
   }
@@ -252,14 +243,36 @@ class LocationChooserMap extends React.Component {
   }
 
   // Remove existing overlays and repopulate them based on the props
-  overlaysFromProps( ) {
+  overlaysFromProps( prevProps = {} ) {
     const {
       lat,
       lng,
       obsCard: currentCard,
       obsCards,
-      radius
+      radius,
+      show,
+      center,
+      fitCurrentCircle
     } = this.props;
+
+    // Determine if we should re-render the overlays
+    const comparableKeys = [
+      "show",
+      "lat",
+      "lng"
+    ];
+    const comparable = objectToComparable( {
+      ..._.filter( this.props, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
+      obsCards: _.keys( obsCards )
+    } );
+    const prevComparable = objectToComparable( {
+      ..._.filter( prevProps, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
+      obsCards: _.keys( prevProps.obsCards )
+    } );
+    if ( comparable === prevComparable ) {
+      return;
+    }
+
     let newCenter;
     const latNum = Number( lat );
     const lngNum = Number( lng );
@@ -275,13 +288,10 @@ class LocationChooserMap extends React.Component {
     }
 
     // Delete existing overlays
-    console.log( "[DEBUG] deleting ", this.overlays.length, " overlays" );
     while ( this.overlays.length > 0 ) {
       const overlay = this.overlays.pop( );
-      console.log( "[DEBUG] unsetting map for ", overlay );
       overlay.setMap( null );
     }
-    console.log( "[DEBUG] this.overlays.length: ", this.overlays.length );
 
     // Add new circles
     if ( this.map && newCenter ) {
