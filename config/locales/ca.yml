@@ -3998,6 +3998,8 @@ ca:
   restart: Reinicia
   restore: Restaura
   restoring: Restaurant...
+  result_window_too_large_error: |
+    El nombre de pàgines multiplicat pel nombre de resultats per pàgina no pot ser superior a 10.000. Intenteu aplicar filtres per reduir el nombre de resultats.
   review_all: Revisar-ho tot
   review_identifications_of_taxon_html: |
     Revisar les identificacions de <span class="sciname">%{taxon}</span>%{taxon_id}
