@@ -609,6 +609,7 @@ pl:
   alphabetical_order: Kolejność alfabetyczna
   already_have_an_account_log_in_html: Masz już konto? <strong>Zaloguj się.</strong>
   amphibians: płazy
+  analyze_ids: Analizuj oznaczenia
   ancestor_taxon: Takson przodek
   and: i
   and_other_taxa: "&amp; Inne taksony"
@@ -782,12 +783,15 @@ pl:
   back_to_suggestions: Wróć do sugestii
   back_to_taxon: "Wróć do %{defaulttaxon}"
   back_to_taxon_changes: "Wróć do zmian w taksonie"
+  back_to_users_calendar: "Wróć do kalendarza użytkownika %{user}"
+  back_to_users_lists: "Wróć do list użytkownika %{user}"
   back_to_viewing: "Wróć do przeglądania <i>%{taxon}</i>"
   back_to_x: "Wróć do %{noun}"
   back_to_x_assessment: "Wróć do ocen projektu %{project}"
   back_to_x_history: "Wróć do historii %{x}"
   back_to_x_journal: "Wróć do dziennika %{user}"
   back_to_x_blog: "Wróć do bloga %{x}"
+  back_to_your_calendar: Wróć do swojego kalendarza
   back_to_your_dashboard: Wróć do swojej strony głównej
   back_to_your_lists: Wróć do swoich list
   back_to_your_journal: Wróć do swojego dziennika
@@ -966,6 +970,10 @@ pl:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Skomentuj
   comment_deleted: Komentarz usunięty
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Komentarz ukryty
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Komentarz odkryty
   comments: Komentarze
   comments_by_me: Moje komentarze
   comments_have_been_disabled: Komentarze zostały wyłączone
@@ -1800,6 +1808,7 @@ pl:
   improving: Ulepszony
   in_n: "w %{n}"
   in_place_x: w miejscu %{place}
+  inaturalist_network: Sieć iNaturalist
   #Label for messages you've received
   inbox: skrzynka odbiorcza
   increase_brightness: Zwiększ jasność
@@ -1891,6 +1900,7 @@ pl:
   last_active_with_date: "Ostatnia aktywność: %{date}"
   last_confirmed_observation: Ostatnia potwierdzona obserwacja
   last_observation: Ostatnia obserwacja
+  last_observation_caps: OSTATNIA OBSERWACJA
   last_seen: Ostatnio widziany
   last_year: Poprzedni rok
   lat: Szer.
@@ -1932,21 +1942,27 @@ pl:
     scientific_names: Nazwy naukowe
     afrikaans: Afrikaans
     albanian: Albański
+    arabic: arabski
+    armenian: ormiański
     bengali: Bengalski
+    bulgarian: bułgarski
     catalan: Kataloński
     cebuano: Cebuano
     chinese_simplified: Chiński (uproszczony)
     chinese_traditional: Chiński (tradycyjny)
     creole_french: Kreolski (francuski)
     creole_portuguese: Kreolski (portugalski)
+    croatian: chorwacki
     czech: Czeski
     danish: Duński
     davawenyo: Davawenyo
     dutch: Holenderski
     english: Angielski
     estonian: Estoński
+    faroese: farerski
     finnish: Fiński
     french: Francuski
+    galician: galicyjski
     gela: Gela
     german: Niemiecki
     greek: Grecki
@@ -1956,21 +1972,33 @@ pl:
     hungarian: Węgierski
     icelandic: Islandzki
     ilokano: Iloko
+    indonesian: indonezyjski
     italian: Włoski
     japanese: Japoński
     korean: Koreański
     latvian: Łotewski
     lithuanian: Litewski
     luxembourgish: Luksemburski
+    malay: malajski
+    malayalam: malajalam
     maltese: Maltański
     maori: Maoryjski
+    maya: maya
     misima_paneati: Misima-Paneati
+    mongolian: mongolski
+    nahuatl: nahuatl
     norwegian: Norweski
     occitan: Oksytański
+    ojibwe: odżibwe
+    palauan: palau
     pangasinan: Pangasinan
+    polish: polski
     portuguese: Portugalski
     romanian: Rumuński
     russian: Rosyjski
+    setswana: setswana
+    sinhala: syngaleski
+    slovak: słowacki
     spanish: Hiszpański
     swedish: Szwedzki
     tagalog: Tagalski
@@ -1978,7 +2006,9 @@ pl:
     thai: Tajski
     tokelauan: Tokelau
     turkish: Turecki
+    ukrainian: ukraiński
     waray_waray: Warajski
+    visayan: bisajski
   less: Mniej
   license: Licencja
   life: Życie
@@ -2280,6 +2310,8 @@ pl:
   needs_id: potrzebuje oznaczenia
   needs_id_: Potrzebuje oznaczenia
   needs_id_expandable_html: "<span class='full'>Potrzebuje </span>oznaczenia"
+  #Column header in a table listing iNaturalist Network members
+  network_member: Członek sieci
   new: Nowi
   new_and_noteworthy: Nowe i godne uwagi
   new_announcement: Nowe ogłoszenie
@@ -2343,6 +2375,7 @@ pl:
   no_identifications_added:
     current_user: Nie dodałeś żadnych oznaczeń do obserwacji innych użytkowników.
     user: "%{user} nie dodał żadnych oznaczeń do obserwacji innych użytkowników."
+  no_ids: "Liczba oznaczeń"
   no_ids_have_been_suggested_yet: Nie zaproponowano jeszcze oznaczenia
   no_its_as_good_as_it_can_be: Nie, jest tak dobrze jak może być
   no_favorites_added:
@@ -2394,6 +2427,8 @@ pl:
   no_species_on_this_list_for_owner: |
     Możesz zacząć dodawać gatunki do tej listy używając narzędzia "Dodaj do swojej listy" po prawej stronie.
   no_subject_parens: "(Brak tematu)"
+  no_such_wiki_page: Nie ma takiej strony.
+  no_such_wiki_page_html: Nie ma takiej strony. Czy chcesz <a href="%{new_url}">ją utworzyć</a>?
   no_suggestions_available: Sugestie nie są dostępne
   no_summary_from_wikipedia: Brak podsumowania z Wikipedii
   no_summary_has_been_set: Nie ustawiono podsumowania.
@@ -3280,6 +3315,9 @@ pl:
   resolved_by_user_on_date_html: Rozstrzygnięte przez %{user} dnia %{date}
   restore: Przywróć
   restoring: Przywracanie...
+  result_window_too_large_error: |
+    Liczba stron razy liczba wyników na stronie nie może przekroczyć 10000. Spróbuj
+    zastosować filtry, aby zmniejszyć liczbę wyników.
   review_all: Przejrzyj wszystkie
   reviewed: Przejrzane
   rg_observations: Obserwacje SB
@@ -3485,6 +3523,7 @@ pl:
   taxon_colors: Kolory taksonu
   taxon_curators: Kuratorzy taksonu
   taxon_framework_deviations_with_count_html: "Odchylenia: %{count}"
+  taxon_history_notice: Historia została wprowadzona w lutym 2022 r., więc żadna historia nie jest dostępna przed tą datą.
   taxon_merge: scalenie taksonów
   taxon_name: Nazwa taksonu
   taxon_name_must_match_an_existing_taxon_in_our_database: Nazwa taksonu musi pasować do istniejącego taksonu w naszej bazie danych
@@ -3583,8 +3622,10 @@ pl:
   today: Dzisiaj
   too_many_results: Zbyt wiele wyników
   tools: Narzędzia
+  top_identifier_caps: NAJCZĘŚCIEJ OZNACZAJĄCY
   top_identifiers: Najczęściej oznaczający
   top_identifiers_of_taxon: Najczęściej oznaczający %{taxon}
+  top_observer_caps: NAJCZĘŚCIEJ OBSERWUJĄCY
   top_observers: Najczęściej obserwujący
   total: Razem
   total_members: Członków łącznie
@@ -3700,6 +3741,9 @@ pl:
   username_or_user_id: Nazwa użytkownika lub identyfikator użytkownika
   users: Użytkownicy
   users_favorites: "Ulubione użytkownika %{user}"
+  users_identifications: "Oznaczenia użytkownika %{user}"
+  users_journal: "Dziennik użytkownika %{user}"
+  users_lists: "Listy użytkownika %{user}"
   users_profile: "Profil %{user}"
   users_projects: "Projekty użytkownika %{user}"
   value: Wartość
@@ -3715,6 +3759,7 @@ pl:
   view_assessment: Zobacz ocenę
   view_check_list_page: Zobacz stronę checklisty
   view_details: Zobacz szczegóły
+  view_dynamic_lifelist_: ZOBACZ DYNAMICZNĄ LISTĘ ŻYCIA
   view_flag: Zobacz zgłoszenie
   view_flags: Zobacz zgłoszenia
   view_flags_for_x_html: "Zobacz zgłoszenie dla %{x}"
@@ -4540,6 +4585,10 @@ pl:
       message:
         subject: Temat
         body: Treść
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Powód
       observation:
         observed_on: data obserwacji
       observation_field_value:
