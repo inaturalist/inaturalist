@@ -4108,6 +4108,8 @@ nl:
   restart: Herstart
   restore: Herstellen
   restoring: Aan het herstellen ...
+  result_window_too_large_error: |
+    Aantal pagina's maal het aantal resultaten per pagina mag niet meer zijn dan 10.000. Probeer filters toe te passen om het aantal resultaten te verminderen.
   review_all: Alles nakijken
   review_identifications_of_taxon_html: |
     Controleer de determinaties van <span class="sciname">%{taxon}</span> %{taxon_id}
