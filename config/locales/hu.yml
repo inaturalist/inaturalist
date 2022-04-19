@@ -154,7 +154,6 @@ hu:
   #an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: Leírás
-  about_blocking: A tiltásról
   about_charts: A grafikonokról
   about_community_taxa: A közösségi taxonokról
   about_complete_taxa: A teljes taxonokról
@@ -166,7 +165,6 @@ hu:
   about_establishment_means: A letelepedési formákról
   about_license_options: A licencelési lehetőségekről
   about_licenses: A licencekről
-  about_muting: A némításról
   #Header for a section describing taxon names
   about_names: A nevekről
   #Title for a section providing a text description of a place, @vow_or_con
@@ -174,9 +172,7 @@ hu:
   about_place: "%{place} leírása"
   about_places: A helyekről
   about_taxon_ranges: A taxonintervallumokról
-  about_the_cc_licenses: A Creative Commons licencekről
   about_the_network: A hálózatról
-  about_these_licenses: Ezekről a licencekről
   about_this_map: Erről a térképről
   about_this_project: Erről a projektről
   about_trusting_projects: A projektekről melyekben megbízól
@@ -201,7 +197,6 @@ hu:
   active_taxon_status: Aktív
   active_users: Aktív felhasználó
   activity: Tevékenység
-  activity_settings: Tevékenység beállításai
   adapted_by_name_from_a_work_by_original: "%{original} munkája alapján adaptálta %{name}"
   add: Hozzáadás
   add_a_batch_of_observations: Megfigyelések tömeges hozzáadása
@@ -374,8 +369,6 @@ hu:
       other: "%{count} egyéb állat"
   all_taxa_: Minden taxon
   all_updates: Minden frissítés
-  all_your_observations_will_default_this_time_zone: Minden megfigyelésed ebben az időzónában lesz, hacsak nem választod másként
-  all_your_observations_will_default_to_this_time_zone: Minden megfigyelésed ebben az időzónában lesz, hacsak nem választod másként
   allowed_html: Engedélyezett HTML
   allowed_values: Megengedett értékek
   almost_there_: Majdnem kész...
@@ -561,7 +554,6 @@ hu:
   birds: madarak
   birthday: Születésnap
   black: fekete
-  block_user: Felhasználó tiltása
   block_removed: Tiltás visszavonva
   blocked_users: Letiltott felhasználók
   blog_widget: Blog modul
@@ -1019,7 +1011,6 @@ hu:
   donate: TÁMOGATÁS
   done: Kész
   dont_have_an_account_sign_up_html: Nincs még fiókod? <strong>Regisztrálj.</strong>
-  dont_send_me_email: "Ne küldj semmilyen emailt!"
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: Ejtsd le
@@ -1075,7 +1066,6 @@ hu:
   email: Email
   email_description: Az email címedet nem osztjuk meg más felhasználókkal az iNaturalist oldalon
   email_notifications: Email értesítések
-  email_settings: Email beállítások
   embed: 'Beágyazás'
   embed_this_assessment: Ezen értékelés beágyazása
   embed_widget_project: E projekt moduljának megjelenítése a weboldaladon
@@ -1740,7 +1730,6 @@ hu:
   must_have_photos: kell legyen kép
   must_have_sounds: kell legyen hang
   must_have_x: "kell legyen %{x}"
-  mute_user: Felhasználó némítása
   mute_removed: Némítás feloldva
   muted_users: Némított felhasználók
   n_ago: "%{n}"
@@ -3119,7 +3108,6 @@ hu:
   you_sure_delete_this_observation: "Biztosan törlöd ezt a megfigyelést?"
   your_comment_was_saved: A taralmad elmentve
   your_content: Tartalmaid
-  your_default_time_zone: Az alapértelmezett időzónád
   your_favorites: Kedvenceid
   your_hard_drive: saját meghajtó
   your_id: Meghatározásod
@@ -3410,12 +3398,6 @@ hu:
         trending_in_place_desc_html: 'Legtöbbször megfigyelt taxon az elmúlt hónapban itt: <a href="%{url}">%{place}</a>'
     users:
       edit:
-        display_monthly_supporter_status_on_my_profile: |
-          A havi támogató státusz megjelenítése a profilon
-        #Header for the section of the profile settings where you can choose to
-        #show a badge on your profile to indicate that you make a regular,
-        #monthly donation to iNat
-        monthly_supporter: Havi támogató
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Megjegyzések
         #Checkbox label for user preference about what to receive in the daily email update
@@ -3429,9 +3411,6 @@ hu:
         project_addition_preferences:
           any: Bármely
         same_day_geoprivacy_protection: Azonosnapi helymegjelenítés védettsége
-        scientific_name_first_desc: |
-          Tudományos név megjelenítése elsőként
-        thanks_for_supporting_us!: Köszönjük a támogatást!
       recent:
         about_recent_users: Rólunk
       show:
@@ -3720,7 +3699,6 @@ hu:
         email: Email
         login: Felhasználónév
         name: Név
-        time_zone: Időzóna
         place_id: Hely
     errors:
       messages:
