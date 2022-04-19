@@ -94,21 +94,17 @@ th:
   #"Alphabetical (ascending)"
   a_to_z: "A ถึง Z"
   about: รายละเอียด
-  about_blocking: เกี่ยวกับการบล็อก
   about_charts: เกี่ยวกับแผนภูมิ
   about_conservation_status: เพิ่มสถานะการอนุรักษ์
   about_editing_observation_fields: เกี่ยวกับการแก้ไขฟิลด์ที่สังเกตการณ์
   about_license_options: เกี่ยวกับตัวเลือกของใบอนุญาต
   about_licenses: เกี่ยวกับใบอนุญาต
-  about_muting: เกี่ยวกับการปิดบังผู้ใช้งาน
   #Header for a section describing taxon names
   about_names: เกี่ยวกับชื่อ
   #Title for a section providing a text description of a place, @vow_or_con
   #should work here
   about_place: "เกี่ยวกับ %{place}"
   about_places: เกี่ยวกับสถานที่
-  about_the_cc_licenses: เกี่ยวกับสัญญา Creative Commons (CC)
-  about_these_licenses: เกี่ยวกับใบอนุญาต
   about_this_bioblitz: เกี่ยวกับ Bioblitz
   about_this_map: เกี่ยวกับแผนที่นี้
   about_this_project: เกี่ยวกับโปรเจคนี้
@@ -167,7 +163,6 @@ th:
   active: กำลังดำเนินการ
   active_users: จำนวนผู้เล่นที่ยังมีความเคลื่อนไหวอยู่
   activity: กิจกรรมที่เกิดขึ้น
-  activity_settings: ตั้งค่ากิจกรรมของคุณ
   adapted_by_name_from_a_work_by_original: "เปลี่ยนแปลงโดย %{name} จากต้นทางของ %{original}"
   add: เพิ่มเติม
   add_a_batch_of_observations: เพิ่มชุดการสังเกต
@@ -403,8 +398,6 @@ th:
   all_taxa_in_this_guide: อันดับอนุกรมวิธานทั้งหมดตามคำแนะนำนี้
   all_taxonomic_groups: "&laquo; กลุ่มอนุกรมวิธานทั้งหมด"
   all_updates: ทั้งหมดที่อัปเดต
-  all_your_observations_will_default_this_time_zone: การสังเกตการณ์ทั้งหมดของคุณจะใช้เขตเวลานี้เป็นค่าเริ่มต้นเว้นแต่คุณจะระบุเป็นอย่างอื่น
-  all_your_observations_will_default_to_this_time_zone: การสังเกตการณ์ทั้งหมดของคุณจะใช้เขตเวลานี้เป็นค่าเริ่มต้นเว้นแต่คุณจะระบุเป็นอย่างอื่น
   allow_curator_access: ให้สิทธิแก่ผู้ดูแลระบบ
   allow_project_curators_to_view_your_private_coordinates: ให้สิทธิแก่ผู้ดูแลโครงการเข้าดูตำแหน่งที่ตั้งของคุณที่ซ่อนไว้
   alphabetical: ตามตัวอักษร
@@ -543,7 +536,6 @@ th:
   be_the_first_to_fave_this_observation: เป็นคนแรกที่เพิ่มการสังเกตนี้เข้ารายการโปรด!
   birds: นก
   birthday: วันเกิด
-  block_user: บล็อกผู้ใช้
   blocked_users: ผู้ใช้ที่ถูกบล็อก
   browse_all_species: ค้นดูชนิดทั้งหมด
   browse_species_that_occur_near_this_observation: ค้นดูชนิดที่พบใกล้กับการสังเกตนี้
@@ -1260,14 +1252,12 @@ th:
   selected_taxon: หน่วยอนุกรมวิธานที่ถูกเลือก
   select_this_taxon: เลือกหน่วยอนุกรมวิธานนี้
   show: แสดง
-  show_common_names: แสดงชื่อสามัญ
   show_hidden_content: แสดงเนื้อหาที่ซ่อนอยู่
   show_keyboard_shortcuts: แสดงปุ่มลัดแป้นพิมพ์
   show_less: แสดงน้อยลง
   show_more: แสดงเพิ่ม
   show_off_your_recent_observations: อวดการสังเกตล่าสุดบนบล็อกหรือเว็บไซต์ของคุณ!
   show_only: แสดงเฉพาะ
-  show_scientific_name_first: แสดงชื่อวิทยาศาสตร์ก่อน
   show_uncountable_species: แสดงชนิดที่นับไม่ได้
   similar_species: ชนิดที่คล้ายกัน
   similar_taxa: หน่วยอนุกรมวิธานที่คล้าย
@@ -1452,8 +1442,6 @@ th:
       edit:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_journal_posts: โพสต์วารสารโครงการ
-        search_place_help_html: |
-          สถานที่เริ่มต้นสำหรับการค้นหาการสังเกต
       show:
         favorites_list_prompt_html: |
           อยากอวดหน่วยอนุกรมวิธานที่คุณชอบไหมล่ะ? ถ้าอย่างนั้นก็%{link_start_tag}สร้างรายการ%{link_end_tag}ที่ชื่อว่า "รายการโปรด" เพื่อให้สิ่งที่คุณชอบล่าสุดมาปรากฏที่นี่
@@ -1533,8 +1521,6 @@ th:
       taxon:
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: สถานะการอนุรักษ์
-      user:
-        search_place_id: ค้นหาสถานที่
     errors:
       models:
         observation_field_value:
