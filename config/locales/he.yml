@@ -3611,7 +3611,6 @@ he:
   user_already_authenticated: משתמש זה כבר אושר
   user_blocked: המשתמש חסום
   user_commented: "%{user} העיר"
-  user_commented_on: "%{user} העיר על %{title}%{time} שלך"
   user_disagrees_this_is_taxon: "%{user} אינו מסכים שזה %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} אינו מסכים עם הפרטים הקטנים הקודמים"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -4309,8 +4308,6 @@ he:
           כי את/ה תורם לאיי-נטורליסט, יכולנו לבדוק את זהותך עם תרומה הקיימת.
     welcome:
       index:
-        welcome_message_html: |
-          ל%{image}, שמה תוכלו <strong>לנטור</strong> תצפיות בטבע, <strong>להיפגש</strong> עם אוהדי טבע אחרים,<strong> וללמוד</strong> על עולם הטבעי.
         connect_with_nature: התחברו לטבע
         explore_and_share: חיקרו וצרפו אחרים לתצפיות שלכם מעולם הטבע.
         observations_to_date: 'תצפיות עד היום'

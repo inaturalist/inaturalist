@@ -50,6 +50,11 @@ class ObservationsExportFlowTask < FlowTask
     outputs.reload
     query = inputs.first.extra[:query]
     format = options[:format]
+    # if using makara, release stuck primary connections as
+    # the following queries can and should be run against replicas
+    if ActiveRecord::Base.connection.respond_to?(:enable_context_refresh)
+      Makara::Context.release_all
+    end
     archive_path = case format
     when 'json'
       json_archive

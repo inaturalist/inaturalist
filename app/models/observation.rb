@@ -21,21 +21,30 @@ class Observation < ApplicationRecord
   after_create :update_observations_places
   after_update :update_observations_places
   
-  notifies_subscribers_of :public_places, :notification => "new_observations", 
-    :on => :create,
-    :queue_if => lambda {|observation|
+  notifies_subscribers_of :public_places,
+    notification: "new_observations",
+    on: :create,
+    queue_if: lambda {|observation|
       observation.georeferenced? && !observation.bulk_import
     },
-    :if => lambda {|observation, place, subscription|
+    if: lambda {|observation, place, subscription|
       return false unless observation.georeferenced?
       return true if subscription.taxon_id.blank?
       return false if observation.taxon.blank?
       return true if observation.taxon_id == subscription.taxon_id
       observation.taxon.ancestor_ids.include?(subscription.taxon_id)
+    },
+    before_notify: lambda{|observation|
+      Observation.preload_associations( observation, [ :taxon, {
+        observations_places: {
+          place: :update_subscriptions_with_unsuspended_users
+        }
+      }] )
     }
-  notifies_subscribers_of :taxon_and_ancestors, :notification => "new_observations", 
-    :queue_if => lambda {|observation| !observation.taxon_id.blank? && !observation.bulk_import},
-    :if => lambda {|observation, taxon, subscription|
+  notifies_subscribers_of :taxon_and_ancestors,
+    notification: "new_observations",
+    queue_if: lambda {|observation| !observation.taxon_id.blank? && !observation.bulk_import},
+    if: lambda {|observation, taxon, subscription|
       return true if observation.taxon_id == taxon.id
       return false if observation.taxon.blank?
       observation.taxon.ancestor_ids.include?(subscription.resource_id)

@@ -3456,7 +3456,7 @@ en:
       the European Union no longer considers the United States to be a
       jurisdiction that provides adequate legal protection of personal
       information, specifically because of the possibility of the US government
-      surveiling data entering the US. It is possible other jurisdictions
+      surveilling data entering the US. It is possible other jurisdictions
       may have the same opinion.
     </p>
     <p>
@@ -3480,10 +3480,10 @@ en:
       account.
     </p>
   data_transfer_consent_label: |
-    I consent to allow my personal information to be transfered to the United
+    I consent to allow my personal information to be transferred to the United
     States of America
   data_transfer_consent_child_label: |
-    I consent to allow my child's personal information to be transfered to the
+    I consent to allow my child's personal information to be transferred to the
     United States of America
   pin_verb: Pin
   pink: pink
@@ -4337,6 +4337,9 @@ en:
   restart: Restart
   restore: Restore
   restoring: Restoring...
+  result_window_too_large_error: |
+    Page number times the number of results per page cannot exceed 10,000. Try
+    applying filters to reduce the number of results.
   review_all: Review All
   review_identifications_of_taxon_html: |
     Review identifications of <span class="sciname">%{taxon}</span> %{taxon_id}
@@ -8172,10 +8175,6 @@ en:
           identity with your existing donation.
     welcome:
       index:
-        welcome_message_html: |
-          to %{image}, where you can <strong>record</strong> what you see in nature,
-          <strong>meet</strong> other nature lovers,
-          and <strong>learn</strong> about the natural world.
         connect_with_nature: Connect with Nature
         explore_and_share: Explore and share your observations from the natural world.
         observations_to_date: 'Observations to Date'

@@ -4418,7 +4418,6 @@ fi:
   user_autocomplete_placeholder: elliesimerkki, matti123, yms.
   user_blocked: Käyttäjä on estetty
   user_commented: "%{user} kommentoi"
-  user_commented_on: "%{user} kommentoi sinun %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} on eri mieltä siitä että tämä on %{taxon}"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} merkitsi käyttäjän %{owner} %{noun} suosikiksi"
@@ -4516,7 +4515,6 @@ fi:
   view_taxon_changes: Näytä taksonimuutokset
   view_taxon_page: Näytä taksonisivu
   view_taxon_page_for_this_x: "Näytä taksonisivu kohteessa %{x}"
-  view_the: "Näytä %{action}&#59; %{link}"
   view_the_observation: Näytä havainnot
   view_user_observations: "Näytä käyttäjän %{user} havainnot"
   view_x: "Näytä %{x}"
@@ -5805,8 +5803,6 @@ fi:
           Koska olet iNaturalist-lahjoittaja, pystyimme varmistamaan henkilöllisyytesi aiemmin tekemäsi lahjoituksen perusteella.
     welcome:
       index:
-        welcome_message_html: |
-          %{image}iin, jossa voit <strong>pitää kirjaa</strong> siitä mitä olet nähnyt luonnossa, <strong>tavata</strong> muita luonnonystäviä ja <strong>oppia</strong> uutta luonnosta.
         connect_with_nature: Vietä aikaa luonnossa
         explore_and_share: Tutki luontoa ja jaa havaintosi.
         observations_to_date: 'havaintoa tällä hetkellä'

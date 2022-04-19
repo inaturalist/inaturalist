@@ -48,7 +48,9 @@ class TaxaController < ApplicationController
     :tag_flickr_photos_from_observations]
   before_action :load_form_variables, :only => [:edit, :new]
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos, :set_photos]
-  
+
+  prepend_around_action :enable_replica, only: [:show]
+
   GRID_VIEW = "grid"
   LIST_VIEW = "list"
   BROWSE_VIEWS = [GRID_VIEW, LIST_VIEW]

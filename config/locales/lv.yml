@@ -4860,7 +4860,6 @@ lv:
     %{user} uzskata, ka šis ir pilnīgs %{taxon} taksona saraksts iekš %{place}
   user_blocked: Lietotājs bloķēts
   user_commented: "%{user} komentēja"
-  user_commented_on: "%{user} komentēja tavu %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} nepiekrīt %{taxon} identifikācijai"
   user_disagrees_with_previous_finer_identifications: "%{user} nepiekrīt iepriekšējām identifikācijām, kas bija tuvāk konkrētai sugai"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -4968,7 +4967,6 @@ lv:
   view_taxon_page: Skatīt taksona lapu
   view_taxon_page_for_this_x: "Skatīt taksona lapu šim %{x}"
   view_taxononomy_details_for_taxon: "Skatīt %{taxon} taksonomijas datus"
-  view_the: "Skatīt %{action}&#59; %{link}"
   view_the_observation: Skatīt novērojumu
   view_user_observations: "Skatīt lietotāja %{user} novērojumus"
   view_x: "Skatīt %{x}"
@@ -6673,10 +6671,6 @@ lv:
           Pateicoties tam, ka esi iNaturalist ziedotājs, spējām verificēt tavu identitāti.
     welcome:
       index:
-        welcome_message_html: |
-          %{image} <strong>reģistrē</strong> dabā novēroto,
-          <strong>satiec</strong> citus dabas mīlētājus
-          un <strong>iepazīsti</strong> dabu.
         connect_with_nature: Pietuvojies dabai
         explore_and_share: Izzini un dalies ar novērojumiem no dabas.
         observations_to_date: 'Novērojumi līdz šim brīdim'

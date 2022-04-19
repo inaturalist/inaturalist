@@ -3150,7 +3150,7 @@ ca:
   pi_consent_desc_html: |
     <p>
     Emmagatzem informació personal com ara el nom d'usuari i l'adreça de correu electrònic per gestionar els comptes d'aquest lloc i, per complir amb la legislació sobre privacitat, necessitem que confirmeu el vostre consentiment per utilitzar aquesta informació personal. Per conèixer més sobre la informació que guardem i com la usem, si us plau, llegiu la nostra
-    <a href='%{privacy_url}' target='_blank'>Política de Privacitat</a> i les nostres <a href='%{terms_url}' target='_blank'>Condicions del Servei</a>.
+    <a href='%{privacy_url}' target='_blank'>Política de Privacitat</a> i les nostres <a href='%{terms_url}' target='_blank'>Condicions d'Ús</a>.
     </p>
     <p>
     No hi ha forma de tenir un compte a iNaturalist sense arxivar aquesta informació personal, per això l'única forma de revocar el vostre consentiment és esborrant el vostre compte.</p>
@@ -4555,7 +4555,7 @@ ca:
   terms: Termes
   terms_and_rules_html: "Condicions i normes"
   terms_new_users: "Si incorporeu condicions, els nous usuaris han d'acceptar-les abans d'unir-se al projecte."
-  terms_service: Condicions del servei
+  terms_service: Condicions d'ús
   terrain: terreny
   text: Text
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4697,7 +4697,7 @@ ca:
   top_observer_caps: PRINCIPAL OBSERVADOR
   top_observers: Principal observadors
   tos_privacy_guidelines_label: |
-    Accepto les <a href="/terms" target="_blank">Condicions del Servei</a> i la <a href="/privacy" target="_blank">Política de Privacitat</a>, i he revisat les <a href="/pages/community+guidelines" target="_blank">Normes de la Comunitat</a>.
+    Accepto les <a href="/terms" target="_blank">Condicions d'Ús</a> i la <a href="/privacy" target="_blank">Política de Privacitat</a>, i he revisat les <a href="/pages/community+guidelines" target="_blank">Normes de la Comunitat</a>.
   total: Total
   totals: Totals
   total_ids_on_input_taxon: "IDs total del tàxon d'entrada"
@@ -4858,7 +4858,6 @@ ca:
     %{user} considera que aquesta és la llista completa de %{taxon} a %{place}
   user_blocked: Usuari blocat
   user_commented: "%{user} ha comentat"
-  user_commented_on: "%{user} ha comentat el teu %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} no creu que sigui %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} discrepa amb identificacions anteriors adequades"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -4966,7 +4965,6 @@ ca:
   view_taxon_page: Mostra la pàgina del tàxon
   view_taxon_page_for_this_x: "Mostra la pàgina del tàxon per a aquest %{x}"
   view_taxononomy_details_for_taxon: "Veure els detall taxonòmics del tàxon %{taxon}"
-  view_the: "Mostra la %{action}&#59; %{link}"
   view_the_observation: Mostra l'observació
   view_user_observations: "Mostra observacions de %{user}"
   view_x: "Veure %{x}"
@@ -5213,8 +5211,8 @@ ca:
   you_must_specify_and_confirm_a_new_password: Heu d'especificar i confirmar una nova contrasenya.
   you_need_to_have_linked_flickr_account: Heu de vincular un compte de Flickr per etiquetar les vostres fotos.
   you_need_to_select_some_observations_first: Primer heu de seleccionar les observacions.
-  you_retain_full_copyright: "Manteniu l'autoria i drets sobre el vostre contingut, a banda dels drets concedits a %{site_name} segons les nostres Condicions del Servei."
-  you_retain_full_copyright_over_your_content: "Manteniu l'autoria i drets sobre el vostre contingut, a banda dels drets concedits a %{site_name} segons les nostres Condicions del Servei."
+  you_retain_full_copyright: "Manteniu l'autoria i drets sobre el vostre contingut, a banda dels drets concedits a %{site_name} segons les nostres Condicions d'Ús."
+  you_retain_full_copyright_over_your_content: "Manteniu l'autoria i drets sobre el vostre contingut, a banda dels drets concedits a %{site_name} segons les nostres Condicions d'Ús."
   you_should_delete_this_taxon_change: |
     Probablement hauries d'eliminar aquest canvi de tàxon, o si més no cercar alguna mena de solució amb la persona o persones que van fer l'altre canvi.
   you_sure_delete_asset?: Esteu segur que voleu eliminar aquest arxiu?
@@ -6564,7 +6562,7 @@ ca:
           <p>
           Només podeu bloquejar un màxim de tres persones. Pensem que és un número raonable adequat per aquells que necessiten bloquejar algú evitant l'abús del bloqueig. Si creieu que necessiteu bloquejar més persones, si us plau <a href="mailto:%{help_email}">contacteu amb nosaltres</a>.
           </p>
-          <p>Si algú us està assetjant a %{site_name}, <a href="mailto:%{help_email}">digueu-nos-ho</a>. Si suposa una violació de les Condicions del Servei o representa un comportament que pugui ser inapropiat al nostre lloc, ho investigarem.
+          <p>Si algú us està assetjant a %{site_name}, <a href="mailto:%{help_email}">digueu-nos-ho</a>. Si suposa una violació de les Condicions d'Ús o representa un comportament que pugui ser inapropiat al nostre lloc, ho investigarem.
           </p>
         common_names_desc: |
           Mostrar noms comuns. Deshabiliteu-lo si només voleu veure els noms científics.
@@ -6709,8 +6707,6 @@ ca:
           Gràcies a la vostra donació a iNaturalist hem estat capaços de verificar la vostra identitat amb la donació efectuada.
     welcome:
       index:
-        welcome_message_html: |
-          %{image} us convida a utilitzar aquest portal d'informació sobre biodiversitat on podreu compartir el que observeu a la natura, aprendre de la natura i intercanviar informació amb altres naturalistes.
         connect_with_nature: Connecta amb la Natura
         explore_and_share: Exploreu i compartiu les vostres observacions sobre el món natural
         observations_to_date: 'Observacions fins Ara'

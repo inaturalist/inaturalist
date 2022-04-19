@@ -4343,7 +4343,6 @@ el:
     Ο/Η %{user} πιστεύει ότι αυτή είναι μια ολοκληρωμένη λίστα από %{taxon} στο %{place}
   user_blocked: Ο χρήστης αποκλείστηκε
   user_commented: "Ο/Η %{user} σχολίασε"
-  user_commented_on: "Ο/Η %{user} σχολίασε στο δικό σας %{title}%{time}"
   user_disagrees_this_is_taxon: "Ο/Η %{user} διαφωνεί ότι αυτό είναι %{taxon}"
   user_disagrees_with_previous_finer_identifications: "Ο/Η %{user} διαφωνεί με προηγούμενες καλύτερες ταυτοποιήσεις"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -4446,7 +4445,6 @@ el:
   view_taxon_page: Προβολή σελίδας ταξινομικής μονάδας
   view_taxon_page_for_this_x: "Προβολή σελίδας ταξινομικής μονάδας για %{x}"
   view_taxononomy_details_for_taxon: "Προβολή ταξινομικών λεπτομερειών για %{taxon}"
-  view_the: "Προβολή %{action}&#59; %{link}"
   view_the_observation: Προβολή της παρατήρησης
   view_user_observations: "Προβολή παρατηρήσεων της/του %{user}"
   view_x: "Προβολή %{x}"
@@ -6225,10 +6223,6 @@ el:
           Καθώς είστε δωρητής του iNaturalist, είχαμε τη δυνατότητα να επιβεβαιώσουμε την ταυτότητα σας με την υπάρχουσα δωρεά σας.
     welcome:
       index:
-        welcome_message_html: |
-          στην %{image}, όπου μπορείς <strong>να καταγράψεις</strong> αυτό που βλέπεις στη φύση,
-          <strong>συναντήστε</strong> άλλους λάτρεις της φύσης,
-          και <strong>μάθετε</strong> για τον φυσικό κόσμο.
         connect_with_nature: Συνδέσου με τη Φύση
         explore_and_share: Εξερεύνησε και μοιράσου τις παρατηρήσεις σου από τον φυσικό κόσμο.
         observations_to_date: 'Παρατηρήσεις μέχρι σήμερα'

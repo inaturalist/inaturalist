@@ -2506,6 +2506,11 @@ es:
   messages_new_correspondent_personal: |
     No reveles tu información personal a personas en las que
     no confías.
+  messages_new_correspondent_actions_html: |
+    Si sospechas que esta persona está violando nuestras <a href="%{tos_url}"
+    target="_blank">Condiciones de Uso</a> o no actúa de acuerdo con nuestras <a
+    href="%{guidelines_url}" target="_blank">directrices de la comunidad</a>, por favor
+    denuncia este mensaje.
   minimum_positional_accuracy: Precisión mínima de localización
   misidentifications: Identificaciones erróneas
   misleading_or_illegal_content_html: |
@@ -3194,6 +3199,13 @@ es:
     original: original
   photos_updated: Fotos actualizadas.
   pi_consent_desc_title: Sobre la Informacion Personal
+  pi_consent_desc_html: |
+    <p>
+    Almacenamos información personal como nombres de usuario y direcciones de correo electrónico para administrar las cuentas de este sitio, para cumplir con las leyes de privacidad, necesitamos que marques esta casilla para indicar que aceptas este uso de tu información personal. Para obtener más información sobre qué información recopilamos y cómo la usamos, consulta nuestro <a href='%{privacy_url}' target='_blank'>Política de Privacidad</a> y nuestro <a href='%{terms_url}' target='_blank'>Condiciones de Uso</a>.
+    </p>
+    <p>
+    No existe ninguna posibilidad de tener una cuenta en iNaturalist sin recoger esta información, por lo tanto, la única forma de revocar este consentimiento es borrando tu cuenta.
+    </p>
   pi_consent_label: |
     Permito a iNaturalist a almacenar y procesar ciertos tipos de
     información personal para administrar mi cuenta
@@ -3201,6 +3213,20 @@ es:
     Permito a iNaturalist a almacenar y procesar ciertos tipos de
     información personal acerca de mi hijo/a para administrar la cuenta de este/a
   data_transfer_consent_desc_title: Sobre el Consentimiento de Transferencia de Información Personal
+  data_transfer_consent_desc_html: |
+    <p>
+    Algunas leyes de protección de datos, como el Reglamento General de Protección de Datos (RGPD) de la Unión Europea, requieren del consentimiento explícito para transferir información personal de sus jurisdicciones a otras jurisdicciones donde la protección legal de esta información no se considera adecuada. Desde <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>, la Unión Europea ya no considera que los Estados Unidos brinden una protección legal adecuada a la información, especialmente debido a la posibilidad de que el gobierno de los EE. UU. vigile los datos que ingresan a los EE. UU. Es posible que otras jurisdicciones tengan la misma opinión.
+    </p>
+    <p>
+    El uso de iNaturalist requiere el almacenamiento de información personal como su dirección de correo electrónico, todos los datos de iNaturalist se almacenan en los Estados Unidos y no podemos estar seguros sobre la jurisdicción legal de donde se encuentra cuando usa iNaturalist, por lo que, para cumplir con las leyes de privacidad como el RGPD, debe indicar que comprende y acepta este riesgo y da su consentimiento para transferir su información personal a los servidores de iNaturalist en los EE. UU.
+    </p>
+    <p>
+    Para obtener más información sobre qué información recopilamos y cómo la utilizamos,
+    consulte nuestra <a href='%{privacy_url}' target='_blank'>Política de privacidad</a> y nuestras <a href='%{terms_url}' target='_blank'>Condiciones de uso</a> .
+    </p>
+    <p>
+    No hay forma de tener una cuenta de iNaturalist sin almacenar información personal, por lo que la única forma de revocar este consentimiento es eliminar su cuenta.
+    </p>
   data_transfer_consent_label: |
     Doy mi consentimiento para que mi información personal sea transferida a los Estados Unidos de América
   data_transfer_consent_child_label: |
@@ -4609,6 +4635,7 @@ es:
   terms: Términos
   terms_and_rules_html: "Términos &amp; Reglas"
   terms_new_users: "Si añade Términos, los nuevos usuarios deberán aceptarlos antes de unirse a este proyecto."
+  terms_service: Condiciones de uso
   terrain: terreno
   text: Texto
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4747,6 +4774,8 @@ es:
   top_identifiers_of_taxon: Identificadores principales de %{taxon}
   top_observer_caps: OBSERVADOR PRINCIPAL
   top_observers: Mejores observadores
+  tos_privacy_guidelines_label: |
+    Acepto las <a href="/terms" target="_blank">Condiciones de Uso</a> y la <a href="/privacy" target="_blank">Política de privacidad</a>, y he revisado las <a href="/pages/community+guidelines" target="_blank">Directrices de la comunidad</a>.
   total: total
   totals: Totales
   total_ids_on_input_taxon: "Total IDs del taxón de entrada:"
@@ -4908,7 +4937,6 @@ es:
     %{user} considera que esta es la lista exhaustiva de %{taxon} en %{place}
   user_blocked: Usuario bloqueado
   user_commented: "%{user} comentó"
-  user_commented_on: "%{user} comentó sobre tu %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} no está de acuerdo que es %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} no está de acuerdo con identificaciones anteriores más finas."
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -5016,7 +5044,6 @@ es:
   view_taxon_page: Ver página del taxón
   view_taxon_page_for_this_x: "Ver página del taxón para este %{x}"
   view_taxononomy_details_for_taxon: "Ver detalles taxonómicos para %{taxon}"
-  view_the: "Ver la %{action}"
   view_the_observation: Ver la observación
   view_user_observations: "Ver observaciones de %{user}"
   view_x: "Ver %{x}"
@@ -5269,6 +5296,8 @@ es:
   you_must_specify_and_confirm_a_new_password: Debes especificar y confirmar una nueva contraseña.
   you_need_to_have_linked_flickr_account: Debe tener una cuenta de Flickr vinculada para etiquetar sus fotos.
   you_need_to_select_some_observations_first: Debe seleccionar algunas observaciones primero.
+  you_retain_full_copyright: "Usted retiene todos derechos de autor sobre su contenido, aparte de aquellos derechos otorgados a %{site_name} en nuestras Condiciones de Uso."
+  you_retain_full_copyright_over_your_content: "Usted retiene todos derechos de autor sobre su contenido, aparte de aquellos derechos otorgados a %{site_name} en nuestras Condiciones de Uso."
   you_should_delete_this_taxon_change: |
     Probablemente deberías eliminar este cambio de taxón, o al menos averiguar algún tipo de solución con la persona / personas que hicieron el otro cambio.
   you_sure_delete_asset?: '¿Confirmas que quieres eliminar este activo?'
@@ -6874,10 +6903,6 @@ es:
           Debido a que usted es un donante INaturalist, pudimos verificar su identidad con su donación existente.
     welcome:
       index:
-        welcome_message_html: |
-          %{image} lo invita a utilizar este portal de información sobre biodiversidad, 
-          en el que podrá compartir lo que observa en la naturaleza, aprender de ella e 
-          intercambiar información con otros ciudadanos naturalistas.
         connect_with_nature: Conéctate con la naturaleza
         explore_and_share: Explora y comparte tus observaciones del mundo natural.
         observations_to_date: 'Observaciones hasta la fecha'

@@ -25,6 +25,15 @@ function( $http, $rootScope, $filter ) {
         return response;
       }, function( errorResponse ) {
         // Handle error case
+        if ( errorResponse && errorResponse.data && errorResponse.data.error ) {
+          if ( errorResponse.data.error.match( /window is too large/ ) ) {
+            alert( I18n.t( "result_window_too_large_error" ).replace( /\s+/g, " " ) );
+          } else {
+            alert( errorResponse.data.error );
+          }
+        } else {
+          alert( I18n.t( "doh_something_went_wrong" ) );
+        }
       }
     );
   };

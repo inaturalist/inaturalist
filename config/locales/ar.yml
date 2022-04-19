@@ -3363,7 +3363,6 @@ ar:
   user_autocomplete_placeholder: kueda وsimon123 وما إلى ذلك.
   user_blocked: المستخدم ممنوع
   user_commented: "علق %{user}"
-  user_commented_on: "علق %{user} على %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user}غير موافق على هذا %{taxon}"
   user_disagrees_with_previous_finer_identifications: "لا يوافق %{user} على التعريفات الدقيقة السابقة"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -3457,7 +3456,6 @@ ar:
   view_taxon_page: عرض صفحة الأصنوفة
   view_taxon_page_for_this_x: "عرض صفحة الأصنوفة لهذا %{x}"
   view_taxononomy_details_for_taxon: "عرض تفاصيل تصنيف %{taxon}"
-  view_the: "عرض %{action}&#59; %{link}%{action}"
   view_the_observation: عرض الملاحظة
   view_user_observations: "عرض ملاحظات %{user}"
   view_x: "عرض %{x}"
@@ -5235,10 +5233,6 @@ ar:
           هويتك من خلال تبرعك الحالي.
     welcome:
       index:
-        welcome_message_html: |
-          ل%{image}، حيث يمكنك <strong>تسجيل</strong> ما تراه في الطبيعة، و 
-          <strong>مقابلة</strong> محبي طبيعة آخرين، 
-          و<strong>التعلم</strong> عن العالم الطبيعي.
         connect_with_nature: تواصل مع الطبيعة
         explore_and_share: استكشف وتبادل ملاحظاتك من العالم الطبيعي.
         observations_to_date: 'ملاحظات للتاريخ'

@@ -487,7 +487,8 @@ class Identification < ApplicationRecord
   def update_categories
     return true if bulk_delete
     if skip_observation
-      Identification.delay.update_categories_for_observation( observation_id )
+      Identification.delay( run_at: 5.seconds.from_now ).
+        update_categories_for_observation( observation_id )
     else
       # update_categories_for_observation will reindex all the observation's
       # identifications, so we both do not need to re-index this individual

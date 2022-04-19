@@ -1,21 +1,18 @@
 # frozen_string_literal: true
 
 class EmailSuppression < ApplicationRecord
-  validates :suppression_type, inclusion: { in: %w( account_emails donation_emails news_from_inaturalist
-                                                    transactional_emails bounces blocks invalid_emails
-                                                    spam_reports unsubscribes ) }
-
-  # These are the names of endgrid suppression groups specified on Sendgrid
+  belongs_to :user
+  # These are the names of sendgrid suppression groups specified on Sendgrid
   # The IDs of the suppression groups that we actually use when sending emails
   # are specified in config/config.yml.
   ACCOUNT_EMAILS = "account_emails"
-  DONATION_EMAILS = "donation_emails"
-  NEWS_EMAILS = "news_from_inaturalist"
-  TRANSACTIONAL_EMAILS = "transactional_emails"
-  BOUNCES = "bounces"
   BLOCKS = "blocks"
+  BOUNCES = "bounces"
+  DONATION_EMAILS = "donation_emails"
   INVALID_EMAILS = "invalid_emails"
+  NEWS_EMAILS = "news_from_inaturalist"
   SPAM_REPORTS = "spam_reports"
+  TRANSACTIONAL_EMAILS = "transactional_emails"
   UNSUBSCRIBES = "unsubscribes"
 
   SUPRESSION_TYPES = [
@@ -29,4 +26,6 @@ class EmailSuppression < ApplicationRecord
     SPAM_REPORTS,
     UNSUBSCRIBES
   ].freeze
+
+  validates :suppression_type, inclusion: { in: SUPRESSION_TYPES }
 end
