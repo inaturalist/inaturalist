@@ -245,7 +245,6 @@ pl:
   #an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: Informacje
-  about_blocking: O blokowaniu
   about_charts: O wykresach
   about_community_taxa: O taksonach społeczności
   about_complete_taxa: O kompletnych taksonach
@@ -253,7 +252,6 @@ pl:
   about_editing_observation_fields: O edytowaniu pól obserwacji
   about_license_options: O opcjach licencji
   about_licenses: O licencjach
-  about_muting: O wyciszaniu
   #Header for a section describing taxon names
   about_names: O nazwach
   #Title for a section providing a text description of a place, @vow_or_con
@@ -261,9 +259,7 @@ pl:
   about_place: "O %{place}"
   about_places: O lokalizacjach
   about_taxon_ranges: O zasięgach taksonów
-  about_the_cc_licenses: O licencjach Creative Commons
   about_the_network: O sieci
-  about_these_licenses: O tych licencjach
   about_this_bioblitz: O tym bioblitzu
   about_this_map: O tej mapie
   about_this_project: O tym projekcie
@@ -311,7 +307,6 @@ pl:
   active_taxon_status: Aktywny
   active_users: Aktywni użytkownicy
   activity: Aktywność
-  activity_settings: Ustawienia aktywności
   adapted_by_name_from_a_work_by_original: "Zaadaptowany przez %{name} na podstawie pracy autorstwa %{original}"
   add: Dodaj
   add_a_batch_of_observations: Dodaj serię obserwacji
@@ -597,8 +592,6 @@ pl:
   all_taxa_in_this_guide: Wszystkie taksony w tym przewodniku
   all_taxonomic_groups: "&laquo; Wszystkie grupy taksonomiczne"
   all_updates: Wszystkie aktualizacje
-  all_your_observations_will_default_this_time_zone: Wszystkie twoje obserwacje będą przypisane do tej strefy czasowej, chyba że wskażesz inaczej.
-  all_your_observations_will_default_to_this_time_zone: Wszystkie twoje obserwacje będą przypisane do tej strefy czasowej, chyba że wskażesz inaczej.
   allow_curator_access: Zezwalaj na dostęp kuratorom
   allow_project_curators_to_view_your_private_coordinates: Zezwalaj opiekunom projektu na dostęp do ukrytych współrzędnych
   allowed_html: Dozwolony HTML
@@ -815,7 +808,6 @@ pl:
   birds: ptaki
   birthday: Urodziny
   black: czarny
-  block_user: Zablokuj użytkownika
   block_removed: Blokada została zdjęta
   blocked_users: Zablokowani użytkownicy
   blog_widget: Widżet bloga
@@ -1379,7 +1371,6 @@ pl:
   donate: WSPOMÓŻ
   done: Gotowe
   dont_have_an_account_sign_up_html: Nie masz konta? <strong>Zarejestruj się.</strong>
-  dont_send_me_email: "Nie wysyłaj mi żadnych e-maili!"
   dont_use_double_quotes: Nie używaj znaku cudzysłowu nigdzie indziej
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
@@ -1460,7 +1451,6 @@ pl:
   email_address_for_comments_and_other_feedback: Adres e-mail dla komentarzy i innych informacji zwrotnych.
   email_copyright: "Chroniony prawem autorskim &copy; %{x}, wszelkie prawa zastrzeżone"
   email_notifications: Powiadomienia e-mail
-  email_settings: Ustawienia powiadomień e-mail
   embed: 'Osadź'
   embed_place_widget: Osadź widget miejsca
   embed_this_assessment: Osadź tę ocenę
@@ -2015,9 +2005,6 @@ pl:
   life_list: "Lista życiowa użytkownika %{user}"
   linear_scale_label: Liniowo
   link: Łącze
-  link_or_unlink_your_facebook_account: Połącz lub usuń swoje konto Facebook
-  link_or_unlink_your_flickr_account: Połącz lub usuń swoje konto Flickr
-  link_or_unlink_your_google_account: Połącz lub usuń swoje konto Google
   link_your_facebook_account: Połącz swoje konto Facebook
   link_your_flickr_account: Połącz swoje konto Flickr
   link_your_google_account: Połącz swoje konto Google
@@ -2055,7 +2042,6 @@ pl:
   loading_tags: "Wczytywanie tagów..."
   loading_taxa_from_your: "Wczytywanie taksonów z twoich obserwacji..."
   loading_wikipedia_description: "Wczytywanie opisu z Wikipedii..."
-  locale_description: Ustawienia regionalne dostosowują język i format daty.
   locales_: Preferencje językowe
   locales:
     ar: Arabski
@@ -2285,7 +2271,6 @@ pl:
   must_be_observed_before: musi być zaobserwowany przed %{operand}
   must_be_less_than_x_MB: "Musi mieć mniej niż %{x} MB"
   must_have_x: "musi mieć %{x}"
-  mute_user: Wycisz Użytkownika
   mute_removed: Wyciszenie usunięte
   muted_users: Wyciszeni Użytkownicy
   n_ago: "%{n} temu"
@@ -2454,9 +2439,6 @@ pl:
   notifications: Powiadomienia
   notify_me_of_mentions: Powiadamiaj mnie o wzmiankach (np. @użytkownik)
   notify_me_of_mentions_description: "Jeśli wyłączysz tę opcję, nie będziesz otrzymywać żadnych powiadomień, gdy ktoś wspomni o Tobie na %{site_name}."
-  notify_me_about_redundant_identifications: Powiadamiaj mnie o potwierdzeniu oznaczeń
-  notify_me_about_redundant_identifications_desc: |
-    Otrzymuj powiadomienia o oznaczeniach, które pasują do Twoich własnych oznaczeń. Jeżeli z tego zrezygnujesz, będziesz otrzymywać tylko powiadomienia o oznaczeniach taksonów, które nie pasują do taksonu w Twoim własnym oznaczeniu.
   number_of_observations: Ilość obserwacji
   number_of_observers_value: "Liczba obserwatorów: %{number}"
   number_of_observers: "Liczba obserwatorów"
@@ -2602,7 +2584,6 @@ pl:
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
   or_all_caps: LUB
-  or_if_you_dont_want_email: "Lub gdy nie chcesz otrzymywać żadnych e-maili..."
   orange: pomarańczowy
   order: Kolejność
   order_by: Sortuj według
@@ -3255,7 +3236,6 @@ pl:
   reason: Powód
   recaptcha_verification_failed: Weryfikacja reCAPTCHA nie powiodła się
   receive_email_notifications: Otrzymuj powiadomienia e-mail
-  receive_email_notifications_when_people_leave_you: Otrzymuj powiadomienia e-mail o
   recent: Najnowsze
   recent_observations_: Najnowsze obserwacje
   recent_observations_by: "Ostatnie obserwacje wg %{login}"
@@ -3392,7 +3372,6 @@ pl:
   show_less: Pokaż mniej
   show_more: Pokaż więcej
   show_off_your_recent_observations: Pokaż swoje ostatnie obserwacje na swoim blogu lub stronie internetowej!
-  show_scientific_name_first: Pokazuj najpierw nazwy naukowe
   sign_in: Zaloguj się
   sign_in_with_provider: "Zaloguj się za pomocą %{provider}"
   sign_in_with_google: Zaloguj się z Google
@@ -3551,7 +3530,6 @@ pl:
   taxonomy_details_for: Szczegóły taksonomii dla
   taxonomy_settings: Ustawienia taksonomii
   teachers_guide: Przewodnik nauczyciela
-  tell_everyone_a_little_about_you: Opowiedz wszystkim trochę o sobie
   tell_the_world_a_little_about_yourself: Powiedz nam coś o sobie
   tell_us_why: Powiedz nam dlaczego...
   terrain: teren
@@ -3930,7 +3908,6 @@ pl:
   your_comment_was_saved: Twoja zawartość została zapisana
   your_content: Twoja zawartość
   your_contributions_to_project: "Twój wkład w %{project_title}"
-  your_default_time_zone: Twoja domyślna strefa czasowa
   your_email_address: Twój adres email
   your_favorites: Twoje ulubione
   your_flickr_account: Twoje konto Flickr
@@ -4244,14 +4221,8 @@ pl:
           Szczegóły urządzenia, takie jak marka i model telefonu komórkowego
         project_settings_desc: |
           Pamiętaj, że nie daje to projektom uprawnień do dostępu do twoich ukrytych współrzędnych lub wysyłania aktualizacji. Musisz dołączyć do projektów, aby przyznać te uprawnienia, lub przyznać je indywidualnie dla każdego przypadku.
-        search_place_help_html: |
-          Domyślna lokalizacja dla wyszukiwania obserwacji.
-        scientific_name_first_desc: |
-          Pokazuj nazwy naukowe przez nazwami zwyczajowymi.
         taxon_change_desc: |
           Gdy taksony na %{site_name} są scalane lub zmieniane są ich nazwy, Twoje obserwacje, taksony znajdujące się na listach, oznaczenia itp. zostaną automatycznie zaktualizowane do nowych taksonów, jeśli zmiana ta jest jednoznaczna. Jeśli zrezygnujesz z otrzymywania powiadomień o zmianach w taksonie lub zmiana jest niejednoznaczna (np. podział), otrzymasz aktualizację dotyczącą zmiany razem z linkiem do narzędzia, którego możesz użyć do ręcznej aktualizacji swojej zawartości.
-        thanks_for_supporting_us!: Dziękujemy za wsparcie!
-        youve_used_all_of_your_blocks: Wykorzystałeś wszystkie swoje blokady. Usuń blokadę, aby dodać inną.
       recent:
         about_recent_users: O
         definitions_html: <dl> <dt>Prawdopodobnie spam</dt> <dd> Użytkownik, który jest prawdopodobnie spamerem, co oznacza, że nie posiada żadnych obserwacji ani oznaczeń, ale posiada opis profilu. </dd> <dt>Automatyczny spam</dt> <dd> Spamer, który został automatycznie oznaczony jako spamer przez system. </dd> <dt>Ręczny spam</dt> <dd> Spamer, który został ręcznie oznaczony jako spamer przez kuratora strony. </dd> <dt>False Positives</dt> <dd> Użytkownicy, którzy zostali oznaczeni jako spamerzy, ale zgłoszenia zostały rozstrzygnięte przez kuratorów, ponieważ użytkownicy w rzeczywistości nie byli spamerami. </dd> </dl>
@@ -4660,8 +4631,6 @@ pl:
         login: Nazwa użytkownika
         name: Imię
         locale: Ustawienia regionalne
-        time_zone: Strefa czasowa
-        search_place_id: Lokalizacja wyszukiwania
         place_id: Lokalizacja
         preferred_observation_fields_by: Zezwalaj na pola obserwacji od
     errors:
