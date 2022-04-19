@@ -4784,6 +4784,16 @@ ALTER SEQUENCE public.taxon_schemes_id_seq OWNED BY public.taxon_schemes.id;
 
 
 --
+-- Name: time_zone_geometries; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.time_zone_geometries (
+    tzid character varying,
+    geom public.geometry(MultiPolygon)
+);
+
+
+--
 -- Name: trip_purposes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -10119,6 +10129,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190702063435'),
 ('20190820224224'),
 ('20190918161513'),
+('20191101004413'),
 ('20191104233418'),
 ('20191115201008'),
 ('20191203201511'),

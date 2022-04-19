@@ -155,6 +155,41 @@ describe LocalPhoto, "to_observation" do
       expect( o.positional_accuracy ).not_to eq 0
       expect( o.positional_accuracy ).to be_nil
     end
+
+    describe "time zone" do
+      before(:all) { load_time_zone_geometries }
+      after(:all) { unload_time_zone_geometries }
+
+      it "should be set for a gecko in Malaysia" do
+        p = build :local_photo
+        p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "gecko-foot-malaysia.jpg" ) )
+        p.extract_metadata
+        o = p.to_observation
+        expect( o.zic_time_zone ).to eq "Asia/Kuala_Lumpur"
+        expect( o.time_observed_at_in_zone.hour ).to eq 22
+      end
+
+      it "should be set for a gecko in Malaysia if observer time zone is Hawaii" do
+        p = build( :local_photo, user: create( :user, time_zone: "Hawaii" ) )
+        p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "gecko-foot-malaysia.jpg" ) )
+        p.extract_metadata
+        o = p.to_observation
+        expect( o.user.time_zone ).to eq "Hawaii"
+        expect( o.zic_time_zone ).to eq "Asia/Kuala_Lumpur"
+        expect( o.time_observed_at_in_zone.hour ).to eq 22
+      end
+
+      it "should be set for a gecko in Malaysia if operating time zone is PST" do
+        Time.use_zone( "America/Los_Angeles" ) do
+          p = build :local_photo
+          p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "gecko-foot-malaysia.jpg" ) )
+          p.extract_metadata
+          o = p.to_observation
+          expect( o.zic_time_zone ).to eq "Asia/Kuala_Lumpur"
+          expect( o.time_observed_at_in_zone.hour ).to eq 22
+        end
+      end
+    end
   end
 
   context "PNG" do

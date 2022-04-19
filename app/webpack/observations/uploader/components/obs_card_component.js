@@ -5,11 +5,11 @@ import { Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { pipe } from "ramda";
 import Dropzone from "react-dropzone";
 import _ from "lodash";
-import moment from "moment-timezone";
+import moment from "moment";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import FileGallery from "./file_gallery";
-import util, { ACCEPTED_FILE_TYPES, DATETIME_WITH_TIMEZONE, DATETIME_WITH_TIMEZONE_OFFSET } from "../models/util";
+import util, { ACCEPTED_FILE_TYPES, parsableDatetimeFormat } from "../models/util";
 
 const cardSource = {
   canDrag( props ) {
@@ -215,15 +215,7 @@ class ObsCardComponent extends Component {
       locationIcon = <i className="icon-icn-location-private" />;
     }
 
-    let inputFormat = DATETIME_WITH_TIMEZONE;
-    if ( obsCard.time_zone ) {
-      if (
-        parseInt( moment().tz( obsCard.time_zone ).format( "z" ), 0 )
-        && parseInt( moment().tz( obsCard.time_zone ).format( "z" ), 0 ) !== 0
-      ) {
-        inputFormat = DATETIME_WITH_TIMEZONE_OFFSET;
-      }
-    }
+    const inputFormat = parsableDatetimeFormat( );
 
     return cardDropTarget( fileDropTarget( cardDragSource(
       <div
@@ -326,7 +318,6 @@ class ObsCardComponent extends Component {
                 ? moment( obsCard.selected_date, inputFormat ).format( "x" )
                 : undefined
               }
-              timeZone={obsCard.time_zone}
               onChange={dateString => updateObsCard( obsCard, { date: dateString } )}
               onSelection={
                 dateString => updateObsCard(

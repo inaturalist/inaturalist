@@ -581,13 +581,8 @@ class UsersController < ApplicationController
   def edit
     respond_to do |format|
       format.html do
-        @monthly_supporter = @user.donorbox_plan_status == "active" &&
-          @user.donorbox_plan_type == "monthly"
-        if true || params[:test] == "profile"
-          render :edit2, layout: "bootstrap"
-        else
-          render :edit
-        end
+        @monthly_supporter = @user.donorbox_plan_status == "active" && @user.donorbox_plan_type == "monthly"
+        render :edit2, layout: "bootstrap"
       end
       format.json do
         render :json => @user.to_json(

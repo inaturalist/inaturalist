@@ -218,7 +218,6 @@ en:
   # an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "@vow_or_con{vow:an|a} %{resource}"
   about: About
-  about_blocking: About Blocking
   about_charts: About Charts
   about_community_taxa: About community taxa
   about_complete_taxa: About Complete Taxa
@@ -230,7 +229,6 @@ en:
   about_establishment_means: About Establishment Means
   about_license_options: About License Options
   about_licenses: About licenses
-  about_muting: About Muting
   # Header for a section describing taxon names
   about_names: About Names
   # Title for a section providing a text description of a place, @vow_or_con
@@ -241,9 +239,7 @@ en:
   about_taxon_ranges_desc: |
     Taxon Ranges convey the global distribution of a taxon. Taxon ranges are
     typically sourced from the IUCN Red List.
-  about_the_cc_licenses: About Creative Commons licenses
   about_the_network: About the Network
-  about_these_licenses: About these licenses
   about_this_bioblitz: About this bioblitz
   about_this_map: About This Map
   about_this_project: About this Project
@@ -328,7 +324,6 @@ en:
   active_taxon_status: Active
   active_users: Active Users
   activity: Activity
-  activity_settings: Activity settings
   adapted_by_name_from_a_work_by_original: "Adapted by %{name} from a work by %{original}"
   add: Add
   add_a_batch_of_observations: Add a Batch of Observations
@@ -590,8 +585,6 @@ en:
   all_taxa_in_this_guide: All taxa in this guide
   all_taxonomic_groups: "&laquo; All Taxonomic Groups"
   all_updates: All Updates
-  all_your_observations_will_default_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
-  all_your_observations_will_default_to_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
   allow_curator_access: Allow curator access
   allow_project_curators_to_view_your_private_coordinates: Allow project curators to view your hidden coordinates
   allowed_establish_means_values: Allowed establish means values
@@ -860,7 +853,6 @@ en:
   birds: birds
   birthday: Birthday
   black: black
-  block_user: Block User
   block_removed: Block removed
   blocked_users: Blocked Users
   blog_widget: Blog widget
@@ -1542,6 +1534,7 @@ en:
   default: default
   # Default option
   default_: Default
+  default_display_time_zone: Default display time zone
   default_invite_comment: "Great photo!  You should post it to %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Default observation license
   default_photo_license: Default photo license
@@ -1673,7 +1666,6 @@ en:
   donate_again_today_caps: DONATE AGAIN TODAY
   done: Done
   dont_have_an_account_sign_up_html: Don't have an account? <strong>Sign up.</strong>
-  dont_send_me_email: "Don't send me any email!"
   dont_use_double_quotes: Don't use double quotes anywhere else
   # Prompt shown when you are dragging a file somewhere and should release it to
   # add the file as, for example, a new photo in the Uploader
@@ -1768,7 +1760,6 @@ en:
   email_address_for_comments_and_other_feedback: Email address for comments and other feedback
   email_copyright: "Copyright &copy; %{x}, all rights reserved"
   email_notifications: Email Notifications
-  email_settings: Email settings
   embed: 'Embed'
   embed_place_widget: Embed place widget
   embed_this_assessment: Embed this assessment
@@ -2379,7 +2370,6 @@ en:
   leading: Leading
   learn: Learn
   learn_about_the_species_live_in: Learn about the species that live in
-  learn_about_third_party_tracking: Learn more about third-party tracking
   learn_more: Learn More
   learn_more_raquo: "Learn more &raquo;"
   learn_what_these_licenses_mean: Learn what these licenses mean
@@ -2480,9 +2470,6 @@ en:
   life_list: "%{user}'s Life List"
   linear_scale_label: Linear
   link: Link
-  link_or_unlink_your_facebook_account: Link or unlink your Facebook account
-  link_or_unlink_your_flickr_account: Link or unlink your Flickr account
-  link_or_unlink_your_google_account: Link or unlink your Google account
   # Text for a link that provides an example of how an application can send a
   # user to iNat to authorize the app's use of their iNat account. "Link" is
   # a noun.
@@ -2533,7 +2520,6 @@ en:
   loading_tags: "Loading tags..."
   loading_taxa_from_your: "Loading taxa from your observations..."
   loading_wikipedia_description: "Loading Wikipedia description..."
-  locale_description: Locale sets your language and date formatting preferences.
   locales_: Locales
   locales:
     ar: Arabic
@@ -2844,7 +2830,6 @@ en:
   must_have_quality_grades: "must have quality grades: %{grades}"
   must_have_sounds: must have sounds
   must_have_x: "must have %{x}"
-  mute_user: Mute User
   mute_removed: Mute removed
   muted_users: Muted Users
   n_ago: "%{n} ago"
@@ -3063,11 +3048,6 @@ en:
   notifications: Notifications
   notify_me_of_mentions: Notify me of mentions (e.g. @username)
   notify_me_of_mentions_description: "If you turn this off, you will not get any notifications when someone mentions you on %{site_name}."
-  notify_me_about_redundant_identifications: Notify me about confirming identifications
-  notify_me_about_redundant_identifications_desc: |
-    Receive notifications about identifications that match your own. If you
-    opt out of this you will only receive notifications about identifications
-    of taxa that don't match the taxon in your own identification exactly.
   number_of_observations: Number of observations
   number_of_observers_value: "Number of observers: %{number}"
   number_of_observers: "Number of observers"
@@ -3311,7 +3291,6 @@ en:
   only_curators_can_add_edit_scientific_names: Only curators can add/edit scientific names.
   only_curators_can_access_that_page: Only curators can access that page.
   only_files_with_10000_rows_at_a_time: Only files with fewer than 10,000 rows, please
-  only_letters_numbers: "Only letters and numbers, no spaces, must start with a letter"
   only_one_coordinate_system_per_file: |
     Only one coordinate system can be used per file, otherwise incorrect conversion or display will occur.
   only_project_curators_can_do_that: Only project curators can do that.
@@ -3337,7 +3316,6 @@ en:
   # sign in fields OR sign in with Facebook
   or_all_caps: OR
   or_choose_high_level_taxa: "... or choose from some high-level taxa"
-  or_if_you_dont_want_email: "Or if you just don't want any email..."
   orange: orange
   order: Order
   order_by: Order by
@@ -3427,7 +3405,6 @@ en:
   photo_credits: Photo Credits
   photo_deleted: Photo deleted
   photo_destroyed_because_it_was_deleted_from: "Photo destroyed because it was deleted from the external site or %{site_name} no longer has permission to view it"
-  photo_hosting_accounts: Photo hosting accounts
   photo_licensing: Photo Licensing
   photo_type: Photo type
   photo_urls_repaired: Photo URLs repaired
@@ -4253,7 +4230,6 @@ en:
   recaptcha_verification_failed: reCAPTCHA verification failed
   receive_email_notifications: Receive Email Notifications
   receive_email_notifications_description: "If you turn this off, you will no longer receive any emails from %{site_name} regarding notifications."
-  receive_email_notifications_when_people_leave_you: Receive email notifications about
   receive_project_journal_notifications?: Receive project journal notifications?
   receive_updates_from_this_project: Receive updates from this project
   recent: Recent
@@ -4489,7 +4465,6 @@ en:
   short_or_abbreviated_title_for_display: Short or abbreviated title for display in space-limited areas. Max 10 characters.
   show: Show
   show_active_and_inactive_taxa: Show active and inactive taxa
-  show_common_names: Show common names
   show_hidden_content: Show Hidden Content
   show_history_by_this_user: Show history by this user
   show_history_for_this_kind_of_action: Show history for this kind of action
@@ -4505,7 +4480,6 @@ en:
   show_relative_proportions_of_all_observations: Show relative proportions of all observations
   # Label for a button to show the running total of an accumulation chart
   show_running_total: Show Running Total
-  show_scientific_name_first: Show scientific names first
   show_taxa_from_both: (show taxa from both lists)
   show_taxa_from_everywhere: "Show taxa from everywhere"
   show_taxa_from_place: "Show taxa from %{place}"
@@ -5011,7 +4985,6 @@ en:
   taxonomy_details_info: 'The Taxonomy Details page uses Taxon Frameworks to help to describe what we mean by a taxon. <a href="/pages/taxon_frameworks">Read more</a>.'
   taxonomy_settings: Taxonomy Settings
   teachers_guide: Teacher's Guide
-  tell_everyone_a_little_about_you: Tell everyone a little about yourself
   tell_the_world_a_little_about_yourself: Tell us about yourself
   tell_us_why: Tell us why...
   terms: Terms
@@ -5170,6 +5143,124 @@ en:
   threatened: Threatened
   time_: time
   time_ago: "%{time} ago"
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: Central European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: South Africa Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: East Africa Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: Argentina Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: Colombia Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: Central Time (U.S. and Canada)
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: Pacific Time (Mexico)
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_denver: Mountain Time (U.S. and Canada)
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: Guatemala Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: Atlantic Standard Time (Canada)
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: Bolivia Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: Peru Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_los_angeles: Pacific  Time (U.S. and Canada)
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_mexico_city: Central Time (Mexico)
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: Eastern Time (U.S. and Canada)
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_phoenix: Arizona Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_santiago: Continental Chile Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_sao_paulo: Brasília Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: Pacific Time (Mexico)
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: Arabia Standard Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: Indochina Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: Hong Kong Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: Western Indonesia Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: Israel Standard Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_kolkata: Indian Standard Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_novosibirsk: Krasnoyarsk Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_shanghai: China Standard Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_singapore: Singapore Standard Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_taipei: Taiwan Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_tokyo: Japan Standard Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: Yekaterinburg Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: Adelaide Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: Brisbane Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_melbourne: Melbourne Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: Perth Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: Sydney Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: UTC
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: Central European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: Eastern European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: Central European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: Central European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: Central European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: Eastern European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: Turkey Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: Eastern European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: Western European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: Western European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: Central European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: Moscow Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: Central European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: Central European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: Central European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: Central European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: Eastern European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: Central European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: Central European Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: Samoa Time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: New Zealand time
+  # TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: Hawaii–Aleutian Time
   # As in the title of a book or a blog post
   title: title
   title_and_description: "Title & Description"
@@ -5774,7 +5865,6 @@ en:
   your_content: Your Content
   your_contributions_to_project: "Your contributions to %{project_title}"
   your_default: your default
-  your_default_time_zone: Your default time zone
   your_email_address: Your email address
   your_favorites: Your Favorites
   your_flickr_account: your Flickr account
@@ -7822,12 +7912,6 @@ en:
             other behavior we deem inappropriate for our site, we will
             investigate.
           </p>
-        common_names_desc: |
-          Show common names. Disable if you only want to view scientific names.
-          Note that you can control which common names you see by changing your
-          locale and place settings.
-        display_monthly_supporter_status_on_my_profile: |
-          Display Monthly Supporter status on my profile
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           If you change your mind you can always
           <a href='/users/edit'>edit your settings</a>.
@@ -7865,14 +7949,6 @@ en:
           Facility</a> (GBIF), an international, inter-governmental organization
           that compiles and distributes biodiversity information from around the
           world.
-        license_description_attribution_html: |
-          License descriptions and images &copy; %{year} Creative Commons, used
-          under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative
-          Commons Attribution license</a> (so meta!)
-        # Header for the section of the profile settings where you can choose to
-        # show a badge on your profile to indicate that you make a regular,
-        # monthly donation to iNat
-        monthly_supporter: Monthly Supporter
         monthly_supporter_desc_html: |
           iNaturalist Monthly Supporters make automatic monthly contributions
           which are received by the California Academy of Sciences (United
@@ -7992,10 +8068,6 @@ en:
           order to grant these permissions, or grant them on a case-by-case
           basis.
         same_day_geoprivacy_protection: Same-day geoprivacy protection
-        search_place_help_html: |
-          Default place for observation searches.
-        scientific_name_first_desc: |
-          Show scientific names before common names.
         taxon_change_desc: |
           When taxa are merged or renamed on %{site_name}, your observations, listed
           taxa, identifications, etc. will be automatically updated to the new
@@ -8003,13 +8075,11 @@ en:
           ambiguous (e.g. a split), you will receive an update about the
           change linking to a tool you can use to manually update your content
           if you choose.
-        thanks_for_supporting_us!: Thanks for supporting us!
         this_only_applies_to_traditional_projects: |
           This only applies to traditional projects. You can't exclude observations
           from collection or umbrella projects, which are essentially saved searches.
           You can read more
           <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">here</a>.
-        youve_used_all_of_your_blocks: You've used all of your blocks. Remove a block to add another.
       recent:
         about_recent_users: About
         definitions_html:
@@ -8585,8 +8655,8 @@ en:
         login: Username
         name: Name
         locale: Locale
-        time_zone: Time zone
-        search_place_id: Search place
+        time_zone: Time Zone
+        search_place_id: Search Place
         place_id: Place
         preferred_observation_fields_by: Allow observation fields from
     errors:

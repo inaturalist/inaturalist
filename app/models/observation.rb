@@ -392,8 +392,8 @@ class Observation < ApplicationRecord
     end
   end
   
-  before_validation :munge_observed_on_with_chronic,
-                    :set_time_zone,
+  before_validation :set_time_zone,
+                    :munge_observed_on_with_chronic,
                     :set_time_in_time_zone,
                     :set_coordinates,
                     :nilify_positional_accuracy_if_zero
@@ -1019,7 +1019,7 @@ class Observation < ApplicationRecord
       puts "matched tz_colon_offset_pattern (Adelaide): #{offset}, parsed_time_zone: #{parsed_time_zone}" if debug
     end
     
-    if parsed_time_zone && observed_on_string_changed?
+    if parsed_time_zone && observed_on_string_changed? && !georeferenced?
       self.time_zone = parsed_time_zone.name
       begin
         if (
@@ -1269,9 +1269,25 @@ class Observation < ApplicationRecord
   end
   
   #
-  # Set the time_zone of this observation if not already set
+  # Set the time_zone of this observation if coordinates changes or zone not already set
   #
   def set_time_zone
+    # Make sure blank is always nil
+    self.time_zone = nil if time_zone.blank?
+    # If there are coordinates, use them to set the time zone, and reject
+    # changes to the time zone if the coordinates have not changed
+    if georeferenced?
+      if coordinates_changed?
+        lat = private_latitude.blank? ? latitude : private_latitude
+        lng = private_longitude.blank? ? longitude : private_longitude
+        self.time_zone = TimeZoneGeometry.time_zone_from_lat_lng( lat, lng ).try(:name)
+        self.zic_time_zone = ActiveSupport::TimeZone::MAPPING[time_zone] unless time_zone.blank?
+      elsif time_zone_changed?
+        self.time_zone = time_zone_was
+        self.zic_time_zone = zic_time_zone_was
+      end
+    end
+    # Try to assign a reasonable default time zone
     if time_zone.blank?
       self.time_zone = nil
       self.time_zone ||= user.time_zone if user && !user.time_zone.blank?
@@ -1279,16 +1295,23 @@ class Observation < ApplicationRecord
       self.time_zone ||= 'UTC'
     end
     if !time_zone.blank? && !ActiveSupport::TimeZone::MAPPING[time_zone] && ActiveSupport::TimeZone[time_zone]
-      # self.time_zone = ActiveSupport::TimeZone::MAPPING.invert[time_zone]
       # We've got a zic time zone
-      # ztz = ActiveSupport::TimeZone[time_zone]
+      self.zic_time_zone = time_zone
       self.time_zone = if rails_tz = ActiveSupport::TimeZone::MAPPING.invert[time_zone]
         rails_tz
-      else
-        # Now we're in trouble, b/c the client specified a valid IANA time zone
-        # that TZInfo knows about, but it's one the Rails chooses to ignore and
-        # doesn't provide any mapping for so... we have to map it
+      elsif ActiveSupport::TimeZone::INAT_MAPPING[time_zone]
+        # Now we're in trouble, b/c the client specified a valid IANA time
+        # zone that TZInfo knows about, but it's one Rails chooses to ignore
+        # and doesn't provide any mapping for so... we have to map it
         ActiveSupport::TimeZone::INAT_MAPPING[time_zone]
+      elsif time_zone =~ /^Etc\//
+        # If we don't have custom mapping and there's no fancy Rails wrapper
+        # and it's one of these weird oceanic Etc zones, use that as the
+        # time_zone. Rails can use that to cast times into other zones, even
+        # if it doesn't recognize it as its own zone
+        time_zone
+      else
+        ActiveSupport::TimeZone[time_zone].name
       end
     end
     self.time_zone ||= user.time_zone if user && !user.time_zone.blank?
@@ -2184,7 +2207,7 @@ class Observation < ApplicationRecord
   
   def update_default_license
     return true unless make_license_default.yesish?
-    user.update_attribute(:preferred_observation_license, license)
+    user.update_attribute( :preferred_observation_license, license )
     true
   end
   

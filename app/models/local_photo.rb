@@ -345,6 +345,7 @@ class LocalPhoto < Photo
       if capture_time = (metadata[:date_time_original] || metadata[:date_time_digitized])
         o.set_time_zone
         o.time_observed_at = capture_time
+        # Force the time to be in the time zone
         o.set_time_in_time_zone
         if o.time_observed_at
           o.observed_on_string = o.time_observed_at.in_time_zone( o.time_zone || user.time_zone ).strftime("%Y-%m-%d %H:%M:%S")

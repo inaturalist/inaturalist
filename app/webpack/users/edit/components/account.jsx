@@ -78,12 +78,6 @@ const Account = ( {
     <div className="row">
       <div className="col-md-5 col-sm-10">
         <h4>{I18n.t( "account" )}</h4>
-        <SettingsItem header={I18n.t( "place_geo.geo_planet_place_types.Time_Zone" )} htmlFor="user_time_zone">
-          <p className="text-muted">{I18n.t( "all_your_observations_will_default_this_time_zone" )}</p>
-          <select id="user_time_zone" className="form-control dropdown" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
-            {createTimeZoneList( )}
-          </select>
-        </SettingsItem>
         <SettingsItem header={I18n.t( "language_slash_locale" )} htmlFor="user_locale">
           <p className="text-muted">{I18n.t( "language_slash_locale_description" )}</p>
           <select id="user_locale" className="form-control dropdown" value={setLocale( )} name="locale" onChange={handleInputChange}>
@@ -99,6 +93,12 @@ const Account = ( {
             afterSelect={e => handlePlaceAutocomplete( e, "search_place_id" )}
             afterClear={( ) => handlePlaceAutocomplete( { item: { id: 0 } }, "search_place_id" )}
           />
+        </SettingsItem>
+        <SettingsItem header={I18n.t( "activerecord.attributes.user.time_zone" )} htmlFor="user_time_zone">
+          <p className="text-muted">{I18n.t( "default_display_time_zone" )}</p>
+          <select id="user_time_zone" className="form-control dropdown" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
+            {createTimeZoneList( )}
+          </select>
         </SettingsItem>
         <SettingsItem header={I18n.t( "privacy" )} htmlFor="user_prefers_no_tracking">
           <CheckboxRowContainer

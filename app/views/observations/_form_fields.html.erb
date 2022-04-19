@@ -44,7 +44,7 @@
         <%= o.text_field(:observed_on_string, 
                          :class => 'observed_on_string text') %>
         <%= o.error_message_on(:observed_on) %>
-        <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
+        <%=t "time_zone_#{observation.zic_time_zone.parameterize.underscore}", default: observation.timezone_object %>
         <div class="small description">
           <%=t :observation_observed_on_examples %>
         </div>
