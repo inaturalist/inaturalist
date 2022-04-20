@@ -807,12 +807,8 @@ et:
   commercial_solicitation: Ärilisi teateid, katkiseid linke, jne.
   #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Sisesta
-  #Adjective describing a taxon change that has been committed
-  committed: Sisestanud
-  #Label for date the taxon change was committed
-  committed_on: Sisestatud kuupäeval %{date}
   #Status message while a taxon change is being committed
-  committing: Sisestan...
+  committing: Lisan...
   community: Kogukond
   community_curated: Kogukondlikult kureeritud
   community_id_heading: Kogukondlik määratlus
@@ -830,10 +826,12 @@ et:
   complete: Valmis
   completed: Lõpetatud
   completed_at: Lõpetatud
-  #As in whether or not a check list is comprehensive, i.e. it contains all the
-  #species in the taxon and place it purports to
-  comprehensive?: On see täielik?
-  comprehensive_list: Täielik nimekiri
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Kaasatud
+  computer_vision_model_included_desc: |
+    Praegu aktiivne masin-nägemismudel oskab seda taksonit tuvastada, mistõttu võib see takson ilmuda automaatsete pakkumiste all kategoorias "Visuaalselt sarnane".
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Ootel
   concept_status: Mõiste staatus
   configure: Uuenda
   configure_a_widget_to_show: Seadista %{site_name} tööriist, mis näitaks kodulehel või blogis sinu vaatlusi. Võib olla vajalik, et pead enda HTML-koodi päisesse lisama CSS-stiili. Kui soovid, võid CSSi muuta.
@@ -1432,9 +1430,8 @@ et:
   identification_user_short: Määratlenud kasutaja
   identification_withdrawn: Määratlus tagasivõetud.
   identifications: Määratlused
-  computer_vision_suggestion: Masin-nägemise pakkumine
   computer_vision_suggestion_desc: |
-    Masin-nägemine on protsess, mille abil õpetatakse arvuteid piltidelt mustreid leidma. Kasutame määratluste pakkumiseks (nt automaatne lõpetamine ja võrdlemine) tööriistu, mis kasutavad masin-nägemise mudeleid, mida on õpetatud kogukondlike fotode abil. Antud silt täistab seda, kui keegi on lisanud määratluse mõne taolise tööriista abil.
+    Masin-nägemine on protsess, mille abil õpetatakse arvuteid piltidelt mustreid leidma. Kasutame määratluste pakkumiseks (nt automaatne lõpetamine ja võrdlemine) tööriistu, mis kasutavad masin-nägemise mudeleid, mida on õpetatud kogukondlike fotode abil. Antud silt tähistab seda, kui keegi on lisanud määratluse mõne taolise tööriista abil.
   identifiers: Määratlejad
   identotron: Määramismasin
   identotron_for: 'Määramismasin:'
@@ -1443,7 +1440,6 @@ et:
   ids_made_for_others: Teistele pakutud määratlused
   if_for_some_reason_a_user_doesnt_agree: |
     Kui sa mingil põhjusel kogukondliku taksoniga ei nõustu, saad selle tagasi lükata, mis tähedab, et sinu määratlust kasutatakse teiste vaatlustega ühenduste loomiseks, elunimekirjade täiendamiseks, jne. Samuti tähendab see seda, et sinu vaatlus saab ainult siis teaduskõlbulikuks, kui kogukond sinuga nõustub.
-  if_matches_come_from_a_comprehensive_list: Kui määratlused pärinevad põhjalikust nimekirjast, ilmub siia roheline joon.
   if_this_is_a_scientific_name: Kui tegu on teadusliku nimetusega, siis kas seda kasutatakse ka praegu?
   if_this_link_will_apply_to_descendant: Kui see link käib alamtaksonite kohta, saad kasutada malli-koode URLi taksoni nime sisestamiseks
   if_you_have_any_trouble_with_the_site_check_out: 'Kui sul on küsimus, vaata palun meie <a href="%{help_url}">abiteemasid</a> või postita sõnum <a href="%{feedback_url}">tagasiside gruppi</a>.'
@@ -1477,7 +1473,13 @@ et:
   in_the_past: minevikus
   in_the_past_week: Eelmisel nädalal
   inactive: Mitteaktiivne
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Mitteaktiivne
   inactive_taxon: Mitteaktiivne takson
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Mitteaktiivne
   inactive_taxon_concepts_are: Mitteaktiivsed taksonid on kas taksonoomiliselt aegunud või need on taksoni muudatuste kohahoidjad. Aegunud taksoneid säilitatakse ajaloo jaoks ning partnerlehekülgedega ühlidumiseks.
   inappropriate_content: Ebasobiv sisu?
   inat_account_action: "%{site_name} &#58; Konto &#58; %{action_name}"
@@ -1877,7 +1879,6 @@ et:
   ne_lat: Kirdelaius
   ne_lon: Kirdepikkus
   near_threatened: Peaaegu ohustatud
-  nearby_observations_: Lähedal asuvad vaatlused
   needs_id: vajab määramist
   needs_id_: Vajab määramist
   needs_id_expandable_html: "<span class='full'>Vajab </span>määramist"
@@ -1887,7 +1888,6 @@ et:
   new_assessment: Uus hinnang
   new_check_list: Uus kontrollnimekiri
   new_check_list_for: "Loo kohale %{place} uus kontrollnimekiri &raquo;"
-  new_check_list_record: "Kui soovid märkida nimekirja lõplikuks, tee see esmalt valmis, lisa liigid ning seejärel muuda seda, sest ilmub ka valik selle lõplikuks märkimiseks."
   new_comment_on_a_parent_by_user_link: 'Uus kommentaar: %{parent} (kasutaja: %{user_link})'
   new_flag_for: 'Uus märkus:'
   new_guide: Uus juhend
@@ -2117,11 +2117,10 @@ et:
   on_day: "kuupäeval"
   onboarding:
     observe_panel_title: Alustame mõne vaatluse lisamisega
-    observe_panel_body_p1_local: Vajad inspiratsiooni? Siin on mõned lähipiirkonnas tehtud vaatlused...
     observe_panel_body_p1_global: Vajad inspiratsiooni? Siin on mõned vaadeldud organismid...
     observe_panel_body_p2: Mine õue ning vaatle mõnd üksikut organismi. Leia midagi metsikut ning tee sellest täielikult kadreeritud foto. Kui sul juba on millegi metsiku foto, <a href="%{new_observation_path}">lisa see kohe</a>. Vaatluste tegemiseks saab kasutada ka %{site_name} mobiiliäppi.
     observe_panel_body_p3: Kui oled oma vaatlust jaganud, ilmuvad siia lehel täiendused kogukondlike kommentaaride ja määratlustena. Kes teab, mida sa avastada võid!
-    follow_panel_title_local: Jälgi mõnda läheduses tegutsevad loodusloolast
+    follow_panel_title_local: Jälgi mõnda läheduses tegutsevat loodusloolast
     follow_panel_title_global: Jälgi mõnda aktiivset loodusloolast
     follow_panel_body: Külastades profiile ja klõpsates jälgimise nupule, antakse sulle teada, kui nad mõne vaatluse teevad
     following_panel_title: Jälgi inimesi, liike ja kohti
@@ -2304,10 +2303,6 @@ et:
       municipality: omavalitsus
       Nationality: Rahvus
       nationality: rahvus
-      Nearby_Building: Lähedane hoone
-      nearby_building: lähedane hoone
-      Nearby_Intersection: Lähedane ristmik
-      nearby_intersection: lähedane ristmik
       Open_Space: Avamaa
       open_space: avamaa
       Parish: Kihelkond
@@ -2856,7 +2851,6 @@ et:
   seasonality: Hooajalisus
   second_person_possessive_singular: "Sinu %{noun}"
   see_something_wrong_with_taxon: Kas selle taksoniga on midagi valesti? Anna kuraatoritele teada.
-  seen_nearby: Läheduses nähtud
   seen_one: Oled näinud?
   select: Vali
   select_all: Vali kõik
@@ -3037,7 +3031,6 @@ et:
   stuff_just_added: "Sinu poolt hiljuti lisatud..."
   subject_resolved_noun_html: "%{subject} lahendas: %{noun}"
   subject_affecting_stuff_html: "%{subject}, mis mõjutas: %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "Kasutaja %{subject} tegi @vow_or_con{vow:|} %{thing}, mis mõjutas: %{stuff}"
   submission_model: Lisamisviis
   submission_model_description: Kes saavad sinu projektile vaatluseid lisada?
   submit_observations:
@@ -3136,7 +3129,6 @@ et:
   taxonomy: Taksonoomia
   taxon_assessments_are: |
     Taksonite hinnangud on dokumendid, mis hindavad liigi praegust olukorda ja määravad enamasti kaitsestaatuse. Mõni kohalik kaitseorganisatsioon võib neid kasutada infohaldamiseks ning piirkondlikult ohustatud liikide kohta info saamiseks.
-  taxon_change_must_be_committed_to_update_records: Andmete uuendamiseks tuleb taksonimuutus lisada
   taxon_deleted: Takson kustutatud.
   taxon_doesnt_have_a_range: Taksonil pole piirkonda
   taxon_drop: taksoni kustutus
@@ -3217,7 +3209,7 @@ et:
   the_following_observations_could: "Järgnevaid vaatluseid ei saanud lisada: %{link}"
   the_following_photos_have_been_tagged: "Järgnevad fotod on varustatud märksõnadega:"
   the_identotron_is_a_tool_to: |
-    Määramismasin on tööriist, mis aitab sul oma vaatluseid määratleda lähtuvalt koha %{site_name} kontrollnimekirjast. Kui masinale antakse kõrgema taseme takson ja koht (nt Eesti imetajad), otsitakse selle koha kontrollnimekirjades olevaid taksoneid. Enamik koha %{site_name} kontrollnimekirju pole lõplikud, aga kui mõni neist on täielik (st see loetleb <em>kõiki</em> mõne taksoni esindajaid selles kohas), siis annab määramismasin sellest ka teada.
+    Määramismasin on tööriist, mis aitab sul oma vaatluseid määratleda lähtuvalt koha %{site_name} kontrollnimekirjast. Kui masinale antakse kõrgema taseme takson ja koht (nt Eesti imetajad), otsib %{site_name} selle koha kontrollnimekirjades olevaid taksoneid. Enamik kontrollnimekirju pole lõplikud, aga kui mõni neist on täielik (st see loetleb <em>kõiki</em> mõne taksoni esindajaid selles kohas), siis annab määramismasin sellest ka teada.
   the_name_of_the_taxon_including_space: Taksoni nimi koos liigi ja infraliigiga.
   the_observation_was_already_added_to_that_project: Vaatlus on sellesse projekti juba lisatud.
   the_people_of_inat: "Lehe %{site_name} kasutajad"
@@ -3273,9 +3265,6 @@ et:
   this_observation_was_created_using: "Selle vaatluse tegemiseks kasutati:"
   this_photo_is_already_associated: See foto on juba ühe sinu vaatlusega seotud.
   this_place_has_no_check_list: "Sellel kohal puudub kontrollnimekiri."
-  this_taxon_change_has_been_commited: |
-    <strong>Taksonimuudatus on lisatud!</strong>
-    Palun ära taksonit muuda. Teisi väljasid võib muuta.
   this_taxon_concept_is_inactive: see takson on mitteaktiivne
   this_taxon_has_no_default_photo: Sellel taksonil puudub vaikimisi foto!
   this_taxon_is_inactive_this_means: |
@@ -3397,8 +3386,6 @@ et:
   usage_stats: Kasutusstatistika
   use_name_as_a_placeholder: |
     Kasuta <span class='ac-placeholder'>"%{name}"</span> kohatäitjana
-  use_this_form_to_create_a_new: |
-    Kasuta seda vormi, et luua uus taksonoomilise muutuse visand, mis kirjeldab mõne aktiivse taksoni jagamist, ühendamist või vahetamist tulevikus.
   use_this_if_the_url_needs_genus_species_separated: |
     Kasuta seda, kui URLis peavad perekond ja liik mingil erilisel moel olema eristatud. Kui takson pole liik või infraliik, siis asendatakse kõik [GENUS] ja [SPECIES] vahel olev taksoni nimega. Seega kasuta ettevaatlikult.
   use_unique_file_names_for_separate_uploads: Kasuta erinevate üleslaaditavate failide puhul unikaalseid nimesid
@@ -3514,7 +3501,6 @@ et:
   view_yours: Vaata enda oma
   view_all_of_your_observations_from_x: "Vaata kõiki enda vaatluseid: %{x}"
   video_tutorials: Õppevideod
-  visually_similar: Visuaalselt sarnane
   vulnerable: Ohustatud
   w00t_no_ungrafted_taxa: Pookimata taksoneid pole!
   w_photos_only: fotodega
@@ -4100,20 +4086,6 @@ et:
           Projekti usaldamine on seotud sellega, et projektide haldajad saavad projekte täiendada lisade ning atribuutidega (nt bänneri HTML, CSS). Ligipääs nendele lisadele tähendab seda, et projekti haldajatel on teoorias võimalik täiendada koodi kuritahtliku Javascriptiga, seega tuleks usaldada ainult projekte, mille haldajad on nii usaldusväärsed kui tehniliselt kompetentsed.
         you_can_preview: |
           Saad näha eelvaadet sellest, milline su projekt näeks välja kogumisprojektina, <a href="%{url}">vajutades siia</a>.
-      invite:
-        description_html: |
-          <h3>Kutsetest</h3>
-          <p class="ui">
-          Inimeste kutsumine projekti on natuke teistsugune, kui üksikute vaatluste kutsumine. Inimeste kutsumise puhul
-          </p>
-          <ol>
-          <li>Saadetakse neile e-kiri kutsega projektiga liituma</li>
-          <li>Näitab neile kutset ka nende töölaual</li>
-          <li>Lubab neil sinu projektiga liituda, kui projekt on mõeldud vaid kutsututele</li>
-          </ol>
-          <p class="ui">
-          Vaid projekti kuraatorid saavad inimesi projekti kutsuda. Inimesi peaks saama otsida nende iNat kasutajatunnuse või nende <em>täieliku</em> e-posti aadressi abil, kui viimane meil andmebaasis olemas on.
-          </p>
       join:
         invite_only_description: |
           Selle projektis on vaid kutsutud liikmed. Kui soovid liituda, kontakteeru palun mõne alloleva kuraatoriga ning küsi endale kutset.
@@ -4285,8 +4257,6 @@ et:
           Kõrgema taseme taksonile kaitsestaatuse lisamine mõjutab kõiki selle taksoni alla kuuluvaid liike. Palun ära lisa staatust taksonitele, mis sisaldavad liike, kellel staatus puudub, sest vastasel juhul varjatakse ebavajalikult nende liikide vaatluste koordinaadid.
         complete_desc_html: |
           "Täielik" takson sisaldab <em>kõiki</em> selle teadaolevaid alamtaksoneid, mis vastavad iNaturalisti taksonite kureerimise reeglitele hoolimata sellest, kas neid on vaadeldud või mitte. Praegusel hetkel saavad ainult administraatorid määrata mõne taksoni täielikuks.
-        complete_rank_desc_html: |
-          Tase milleni see takson on täielik. Kui see sugukond sisaldab kõiki perekondi, kuid mitte kõiki liike, märgitaks siia "perekond". Vaikimisi valik on liik.
       show:
         about_names_desc: |
           <p>
@@ -4332,10 +4302,6 @@ et:
     taxon_changes:
       move_children_desc: |
         Sisendtaksoni alamtaksonid, mis on perekonnad või sellest kõrgemal tasemel, liigutatakse väljundi alla; liigid, alamliigid, teisendid, jne vahetatakse uue perekonna või liigi nimetusele vastavateks nimetusteks.
-      form:
-        move_children_desc_html: |
-          Sellesse kasti linnukese panemisel liigutatakse taksonite vahetamisel või ühendamisel sisendtaksoni alamtaksonid väljundtaksoni alla. Kui tegemist on perekonna või sellest madalama taseme muutusega, luuakse kõigi alamtaksonite puhul, mille nimi peaks muutuma, taksonivahetus. Kui sa näiteks vahetad sugukond Canidae Kutsudae vastu, muudetakse perekonna <i>Canis</i> ülemtakson lihtsalt Canidae-st Kutsudae-ks. Kui muudad perekonna <i>Canis</i> aga perekonnaks <i>Kutsis</i>, luuakse ja viiakse täitmisele taksonivahetus, mis muudaks liigi <i>Canis lupus</i> liigiks <i>Kutsis lupus</i> ning <i>Canis lupus</i> alamliigi <i>lupus</i> <i>Kutsis lupus</i> alamliigiks
-          <i>lupus</i>. See võib tekitada palju pahandust, nii et kasuta seda ettevaatlikult.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -4691,7 +4657,6 @@ et:
   activerecord:
     models:
       AssessmentSection: Hinnangu osa
-      CompleteSet: Täiskomplekt
       TaxonLink: Taksoni link
     attributes:
       assessment:
