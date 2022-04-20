@@ -1542,6 +1542,9 @@ en:
   default_search_place_description: |
     This will be your default place for all searches in Explore and Identify.
   default_sound_license: Default sound license
+  default_time_zone_desc: |
+    This is the default time zone. The final time zone will be assigned based
+    on the observation's location when it is saved.
   defaults_to_your_name_or_username: Defaults to your name or username
   defines_a_taxon_framework_for:  Defines a Taxon Framework for %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Defines a Taxon Framework for %{taxon} sourced to %{source}

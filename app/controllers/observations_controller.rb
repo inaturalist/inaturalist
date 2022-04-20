@@ -378,10 +378,9 @@ class ObservationsController < ApplicationController
   # An attempt at creating a simple new page for batch add
   def new
     @observation = Observation.new(:user => current_user)
-    @observation.time_zone = current_user.time_zone
 
     if params[:copy] && (copy_obs = Observation.find_by_id(params[:copy])) && copy_obs.user_id == current_user.id
-      %w(observed_on_string time_zone place_guess geoprivacy map_scale positional_accuracy).each do |a|
+      %w(observed_on_string time_zone zic_time_zone place_guess geoprivacy map_scale positional_accuracy).each do |a|
         @observation.send("#{a}=", copy_obs.send(a))
       end
       @observation.latitude = copy_obs.private_latitude || copy_obs.latitude
@@ -463,6 +462,7 @@ class ObservationsController < ApplicationController
     end
     
     @observation_fields = ObservationField.recently_used_by(current_user).limit(10)
+    @observation.set_time_zone if @observation.time_zone.blank?
     respond_to do |format|
       format.html do
         @observations = [@observation]
