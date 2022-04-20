@@ -1346,6 +1346,7 @@ de:
   default: Standard
   #Default option
   default_: Standard
+  default_display_time_zone: Standard-Zeitzone anzeigen
   default_invite_comment: "Super Foto! Du solltest es hier posten: %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Standardbeobachtungslizenz
   default_photo_license: Standard-Fotolizenz
@@ -1353,6 +1354,8 @@ de:
   default_search_place_description: |
     Dies wird dein Standardort für alle Suchvorgänge im Entdecken-Modus
   default_sound_license: Standard-Tonlizenz
+  default_time_zone_desc: |
+    Dies ist die Standard-Zeitzone. Die finale Zeitzone wird dann basierend auf dem Standort der Beobachtung zugeordnet, wenn sie gespeichert wird
   defaults_to_your_name_or_username: Standard ist dein Name oder Benutzername
   defines_a_taxon_framework_for: Definiert ein Taxon-Framework für %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definiert ein Taxon-Framework für %{taxon} auf Grundlage von %{source}
@@ -4702,6 +4705,20 @@ de:
   threatened: gefährdet
   time_: Zeit
   time_ago: "vor %{time}"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: Mitteleuropäische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: UTC
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: Mitteleuropäische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: Mitteleuropäische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: Mitteleuropäische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: Mitteleuropäische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: Mitteleuropäische Zeit
   #As in the title of a book or a blog post
   title: Titel
   title_and_description: "Titel & Beschreibung"
