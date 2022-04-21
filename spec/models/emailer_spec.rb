@@ -81,17 +81,17 @@ describe Emailer, "updates_notification" do
       end
       # Test change to curator
       pu.update( role: ProjectUser::CURATOR )
-      Delayed::Worker.new.work_off
+      Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
       mail = Emailer.updates_notification( viewer, viewer.recent_notifications )
       expect( mail.body ).to match /curator/
       # Test change to manage
       pu.update( role: ProjectUser::MANAGER )
-      Delayed::Worker.new.work_off
+      Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
       mail = Emailer.updates_notification( viewer, viewer.recent_notifications )
       expect( mail.body ).to match /manager/
       # Test change to admin
       project.update( user: user )
-      Delayed::Worker.new.work_off
+      Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
       mail = Emailer.updates_notification( viewer, viewer.recent_notifications )
       expect( mail.body ).to match /admin/
     end

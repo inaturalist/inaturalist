@@ -1936,7 +1936,7 @@ shared_examples_for "an ObservationsController" do
   describe "viewed_updates" do
     before do
       enable_has_subscribers
-      after_delayed_job_finishes do
+      after_delayed_job_finishes( ignore_run_at: true ) do
         @o = Observation.make!( user: user )
         @c = Comment.make!( parent: @o )
         @i = Identification.make!( observation: @o )

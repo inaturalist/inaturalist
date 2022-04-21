@@ -4106,7 +4106,7 @@ describe Observation do
 
     it "generates mention updates" do
       u = User.make!
-      o = after_delayed_job_finishes { Observation.make!(description: "hey @#{ u.login }") }
+      o = after_delayed_job_finishes( ignore_run_at: true ) { Observation.make!(description: "hey @#{ u.login }") }
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq true
     end
 
@@ -4125,14 +4125,14 @@ describe Observation do
       u = User.make!
       o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
       expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: o ) ).to eq true
-      after_delayed_job_finishes { o.update( description: "bye" ) }
+      after_delayed_job_finishes( ignore_run_at: true ) { o.update( description: "bye" ) }
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
     end
     it "generates a mention update if the description was updated and the mentioned user was in the new content" do
       u = User.make!
       o = without_delay { Observation.make!(description: "hey") }
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
-      after_delayed_job_finishes do
+      after_delayed_job_finishes( ignore_run_at: true ) do
         o.update( description: "#{o.description} @#{u.login}" )
       end
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq true
